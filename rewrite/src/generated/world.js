@@ -3,6 +3,11 @@
 // Stable minified names are retained for behavioral parity.
 
 import { installWorldOverrides } from "../world/install.ts";
+import { PerformanceCounter as ko0 } from "../ui/performance-counter.ts";
+import { collectEngineDiagnostics as jo0, formatDiagnosticsLines as qo0 } from "../ui/engine-diagnostics.ts";
+import { RaceChatOverlay } from "../multiplayer/race-chat-overlay.ts";
+import { initializeTrackInfoCard, loadTrackInfoCard } from "../multiplayer/track-info-card-loading.ts";
+import { disposeTrackCard, drawTrackCardClippedText, drawTrackCardLabel, renderTrackCard, setTrackCardBgm, setTrackCardVisible, slideTrackCardOut, updateTrackCard } from "../multiplayer/track-info-card-runtime.ts";
 import { initializeRacePresenter } from "../multiplayer/race-presenter-initialize.ts";
 import { updateRacePresenterFrame } from "../multiplayer/race-presenter-frame.ts";
 import { updateRaceSession } from "../multiplayer/race-session-update.ts";
@@ -49,6 +54,9 @@ const racePresenterLifecycleDependencies = { warmScene: (...args) => Hn(...args)
 const racePresenterActionsDependencies = { routeTagFamily: tag => Vo(tag), resetTachometer: tachometer => eP(tachometer) };
 const racePresenterRenderDependencies = { get transparentSort() { return jm; }, withColorPipeline: (...args) => yo(...args), renderTachometer: (...args) => JL(...args), get blackBarFraction() { return Rv; }, get worldAxis() { return H2; }, get depthAxis() { return $2; }, get postFinishState() { return X2.PostFinish; } };
 const raceSessionUpdateDependencies = { nowMs: () => performance.now(), get lteKeyMap() { return Xr0; }, get states() { return X2; } };
+const raceChatDependencies = { loadFrame: library => U1(library, ['stage_/common'], 'ingame_chat_Bg').bytes().then(p2), loadEmotions: library => cP(library), loadFontBytes: library => U1(library, ['gui_/font'], 'SourceHanSansCN-Medium', '.otf').bytes(), registerFont: (family, bytes) => f5(family, bytes), releaseFont: font => G1(font), parseChat: (text, emotions) => Ng(text, emotions), nowMs: () => performance.now(), setTimer: (callback, delay) => window.setTimeout(callback, delay), clearTimer: timer => window.clearTimeout(timer) };
+const trackInfoCardLoadingDependencies = { configEnabled: library => xs0(library), cardPath: directory => ds0(directory), parseXml: (text, path) => DE(text, path), gameLabels: (game, labels) => ws0(game, labels), uniqueResource: (library, path) => Gn(library, path), parseNode: bytes => s2(bytes), layout: node => Ss0(node), stripIndex: (value, team) => ps0(value, team), decodeImage: entry => yi(entry), difficultyLayout: (...args) => bs0(...args), registerFont: (family, bytes) => f5(family, bytes), releaseFont: font => G1(font), title: (title, trackId) => fs0(title, trackId) };
+const trackInfoCardRuntimeDependencies = { configureCanvas: (...args) => p3(...args), pixelRatio: () => xe(), drawTrack: (...args) => ys0(...args), drawReverse: (...args) => As0(...args), drawDifficulty: (...args) => Ms0(...args), drawLabel: (...args) => m9(...args), releaseFont: font => G1(font), removeResizeListener: listener => window.removeEventListener('resize', listener) };
 
 class _L {
     constructor(data, scene, renderScene, skydomeScene, lensFlare) {
@@ -4543,272 +4551,27 @@ function Ng(n, e) {
   return { text: n, action: 21 };
 }
 
-const Qr0 = 5e3,
-  kE = "KartSim Multiplayer Race Chat";
 
-function LE(n) {
-  return `${n.name} : ${n.text}`;
-}
 
-function PE(n) {
-  return n.key === "Enter" || n.code === "Enter";
-}
 
-function Jr0(n) {
-  return n.phase === "loading" && n.race
-    ? `已加载 ${n.race.loadedIds.length}/${n.members.length} 人，等待统一起跑`
-    : void 0;
-}
 
-class Dv {
-  constructor(e, t, i, r, s, o) {
-    if (
-      ((this.connection = t),
-      (this.status = i),
-      (this.frame = r),
-      (this.font = s),
-      (this.emotions = o),
-      !t.sendRaceChat || !t.subscribeRaceChat)
-    )
-      throw new Error("本局连接缺少聊天通道。");
-    ((this.element.className = "multiplayer-race-chat"),
-      (this.element.dataset.uiLayer = "dialog"),
-      this.element.setAttribute("aria-label", "比赛聊天"),
-      (this.element.hidden = !0),
-      (this.log.className = "multiplayer-race-chat-log"),
-      this.log.setAttribute("aria-live", "polite"),
-      (this.canvas.className = "multiplayer-race-chat-canvas"),
-      (this.canvas.width = 520),
-      (this.canvas.height = 156),
-      (this.input.className = "multiplayer-race-chat-input"),
-      (this.input.type = "text"),
-      (this.input.maxLength = 20),
-      (this.input.hidden = !0),
-      this.input.addEventListener("keydown", this.onInputKeyDown),
-      this.element.append(this.canvas, this.log, this.input),
-      e.append(this.element),
-      window.addEventListener("keydown", this.onWindowKeyDown, !0),
-      (this.off = t.subscribeRaceChat((a) => this.append(a))),
-      this.renderMessages());
+
+
+
+
+class Dv extends RaceChatOverlay {
+  constructor(root, connection, status, frame, font, emotions) {
+    super(root, connection, status, frame, font, emotions, raceChatDependencies);
   }
-  connection;
-  status;
-  frame;
-  font;
-  emotions;
-  element = document.createElement("section");
-  log = document.createElement("div");
-  canvas = document.createElement("canvas");
-  input = document.createElement("input");
-  off;
-  allowed = !1;
-  shown = !1;
-  sending = !1;
-  disposed = !1;
-  messages = new Map();
-  hideTimer;
-  roomChannel = !1;
-  loadingLine;
-  static async load(e, t, i, r) {
-    const [s, o, a] = await Promise.all([
-        U1(e, ["stage_/common"], "ingame_chat_Bg").bytes().then(p2),
-        cP(e),
-        U1(e, ["gui_/font"], "SourceHanSansCN-Medium", ".otf").bytes(),
-      ]),
-      c = await f5(kE, a);
-    try {
-      const l = document.createElement("canvas");
-      return (
-        (l.width = s.width),
-        (l.height = s.height),
-        l
-          .getContext("2d")
-          .putImageData(
-            new ImageData(new Uint8ClampedArray(s.pixels), s.width, s.height),
-            0,
-            0,
-          ),
-        new Dv(t, i, r, l, c, o)
-      );
-    } catch (l) {
-      throw (G1(c), l);
-    }
-  }
-  show() {
-    this.disposed || ((this.shown = !0), (this.element.hidden = !1));
-  }
-  updateRoom(e) {
-    if (this.disposed || e.roomId !== this.connection.roomId) return;
-    const t = Jr0(e);
-    t !== this.loadingLine && ((this.loadingLine = t), this.renderMessages());
-    const i = e.phase === "open";
-    if (
-      (i !== this.roomChannel &&
-        ((this.roomChannel = i), this.renderMessages()),
-      i)
-    ) {
-      for (const r of e.chat ?? []) this.append(r);
-      return;
-    }
-    if (e.race?.raceId === this.connection.raceId)
-      for (const r of e.race.chat ?? []) this.append(r);
-  }
-  setAllowed(e) {
-    this.disposed ||
-      this.allowed === e ||
-      ((this.allowed = e), e || this.close());
-  }
-  append(e) {
-    if (this.disposed || this.messages.has(e.sequence)) return;
-    this.messages.set(e.sequence, {
-      message: e,
-      until: performance.now() + Qr0,
-    });
-    const t = [...this.messages.keys()].sort((i, r) => i - r);
-    for (; t.length > 32;) this.messages.delete(t.shift());
-    this.renderMessages();
-  }
-  renderMessages() {
-    this.hideTimer !== void 0 &&
-      (window.clearTimeout(this.hideTimer), (this.hideTimer = void 0));
-    const e = performance.now(),
-      t = [...this.messages.values()]
-        .filter((s) => s.until > e)
-        .sort((s, o) => s.message.sequence - o.message.sequence)
-        .slice(-8),
-      i = this.canvas.getContext("2d");
-    (i.clearRect(0, 0, this.canvas.width, this.canvas.height),
-      this.input.hidden ||
-        i.drawImage(this.frame, 0, 0, this.canvas.width, this.canvas.height),
-      (i.font = `16px '${kE}'`),
-      (i.textBaseline = "top"),
-      (i.strokeStyle = "#000"),
-      (i.lineWidth = 2),
-      (i.lineJoin = "round"),
-      this.loadingLine &&
-        ((i.fillStyle = "#00e9ff"),
-        i.strokeText(this.loadingLine, 12, 10, this.canvas.width - 24),
-        i.fillText(this.loadingLine, 12, 10, this.canvas.width - 24)));
-    const r = t
-      .map(({ message: s }) => ({
-        message: s,
-        text: Ng(s.text, this.emotions).text,
-      }))
-      .filter((s) => s.text)
-      .slice(-(this.loadingLine ? 4 : 5));
-    (r.forEach(({ message: s, text: o }, a) => {
-      i.fillStyle =
-        s.playerId === this.connection.playerId ? "#a3ff2a" : "#fff";
-      const c = LE({ ...s, text: o }),
-        l = this.canvas.height - 56 - (r.length - 1 - a) * 19;
-      (i.strokeText(c, 12, l, this.canvas.width - 24),
-        i.fillText(c, 12, l, this.canvas.width - 24));
-    }),
-      (this.log.textContent = [
-        this.loadingLine,
-        ...r.map(({ message: s, text: o }) => LE({ ...s, text: o })),
-      ].filter(Boolean).join(`
-`)),
-      (this.log.scrollTop = this.log.scrollHeight),
-      t.length &&
-        (this.hideTimer = window.setTimeout(
-          () => this.renderMessages(),
-          Math.max(1, Math.ceil(Math.min(...t.map((s) => s.until)) - e)),
-        )));
-  }
-  open() {
-    !this.shown ||
-      !this.allowed ||
-      this.disposed ||
-      ((this.input.hidden = !1), this.renderMessages(), this.input.focus());
-  }
-  close() {
-    this.input.hidden ||
-      ((this.input.hidden = !0), this.input.blur(), this.renderMessages());
-  }
-  onWindowKeyDown = (e) => {
-    if (
-      !this.shown ||
-      !this.allowed ||
-      this.disposed ||
-      !PE(e) ||
-      e.repeat ||
-      e.isComposing ||
-      e.keyCode === 229 ||
-      !this.input.hidden
-    )
-      return;
-    const t = e.target;
-    (t instanceof HTMLElement &&
-      (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) ||
-      (e.preventDefault(), e.stopImmediatePropagation(), this.open());
-  };
-  onInputKeyDown = (e) => {
-    if (e.code === "Escape") {
-      (e.preventDefault(), e.stopImmediatePropagation(), this.close());
-      return;
-    }
-    if (!PE(e) || e.repeat || e.isComposing || e.keyCode === 229) return;
-    (e.preventDefault(), e.stopImmediatePropagation());
-    const t = this.input.value.trim();
-    if (!t) {
-      this.close();
-      return;
-    }
-    this.sending ||
-      !this.allowed ||
-      ((this.sending = !0),
-      (this.input.value = ""),
-      this.close(),
-      this.connection
-        .sendRaceChat(t)
-        .then(() => {
-          this.disposed;
-        })
-        .catch((i) => {
-          if (this.disposed) return;
-          const r = i instanceof Error ? i.message : String(i);
-          (r === "RACE_CHAT_CLOSED" && this.setAllowed(!1),
-            this.status(
-              r === "CHAT_RATE_LIMIT"
-                ? "发送过快，请稍后重试。"
-                : r === "RACE_CHAT_CLOSED"
-                  ? "当前阶段不能发送文字消息。"
-                  : `比赛聊天发送失败：${r}`,
-              !0,
-            ));
-        })
-        .finally(() => {
-          this.sending = !1;
-        }));
-  };
-  dispose() {
-    this.disposed ||
-      ((this.disposed = !0),
-      this.hideTimer !== void 0 && window.clearTimeout(this.hideTimer),
-      this.off(),
-      window.removeEventListener("keydown", this.onWindowKeyDown, !0),
-      this.input.removeEventListener("keydown", this.onInputKeyDown),
-      G1(this.font),
-      this.element.remove());
+  static async load(library, root, connection, status) {
+    return super.load(library, root, connection, status, raceChatDependencies);
   }
 }
 
 const es0 = "zeta_/cn/content/config.xml",
   ts0 = "inGameDispTrackInfo",
-  ns0 = "gui_/windowTemplate/trackInfoCard.bml",
-  is0 = "gui_/windowTemplate/trackcard.png",
-  rs0 = "gui_/windowTemplate/trackInfoLabel.png",
-  ss0 = "gui_/windowTemplate/trackDifficulty.bml",
-  os0 = "gui_/windowTemplate/난이도text@cn.png",
-  as0 = "gui_/windowTemplate/난이도원.png",
-  cs0 = "stage_/common/큰리버스트랙.png",
   pc = { width: 350, height: 205 },
-  ls0 = "gui_/font/SourceHanSansCN-Bold.otf",
-  qd = "etc_/bgmList.xml",
-  Kd = "etc_/baseStringBag.xml",
   us0 = "speedS",
-  hs0 = 16,
   Og = "P3553 Source Han Sans CN TrackInfoCard",
   FE = "_rvs";
 
@@ -4824,9 +4587,7 @@ function ps0(n, e) {
   return e ?? n;
 }
 
-const jd = 1600,
-  Xd = 900,
-  gs0 = `16px "${Og}"`;
+const gs0 = `16px "${Og}"`;
 
 function ms0(n, e, t = "") {
   return e !== ""
@@ -4843,39 +4604,10 @@ function ws0(n, e) {
   return ms0(r, s, o ? (e.get(o) ?? "") : "");
 }
 
-function vs0(n, e, t) {
-  const i = Math.fround(Math.min(4, t >>> 0)),
-    r = Math.fround(Math.fround(n) - Math.fround(Math.fround(3) * i));
-  return { adjustX: r, complete: -e > r };
-}
+
 
 class M7 {
-  constructor(e, t, i, r, s, o) {
-    ((this.root = e),
-      (this.trackTitle = t),
-      (this.trackDifficulty = i),
-      (this.bgmTitles = r),
-      (this.gameLabels = s),
-      (this.assets = o),
-      (this.adjustX = o.layout.adjustX));
-    const a = this.canvas.getContext("2d", { alpha: !0 });
-    if (!a) throw new Error("浏览器无法创建 trackInfoCard Canvas。");
-    ((this.context = a),
-      Object.assign(this.canvas.style, {
-        position: "absolute",
-        inset: "0",
-        width: "100%",
-        height: "100%",
-        pointerEvents: "none",
-      }),
-      (this.canvas.dataset.uiLayer = "hud"),
-      this.canvas.setAttribute("aria-hidden", "true"),
-      e.append(this.canvas),
-      (this.resizeObserver = new ResizeObserver(() => this.render())),
-      this.resizeObserver.observe(e),
-      window.addEventListener("resize", this.onWindowResize),
-      this.render());
-  }
+    constructor(root, title, difficulty, bgmTitles, gameLabels, assets) { initializeTrackInfoCard(this, root, title, difficulty, bgmTitles, gameLabels, assets); }
   root;
   trackTitle;
   trackDifficulty;
@@ -4892,184 +4624,15 @@ class M7 {
   adjustX;
   lastUpdateMs;
   disposed = !1;
-  static async load(e) {
-    const { library: t } = e;
-    if (!(await xs0(t))) return;
-    const i = t.get(ds0(e.trackDirectory));
-    if (!i) return;
-    const r = t.exactCanonicalCandidates(qd);
-    if (r.length === 0) return;
-    if (r.length !== 1)
-      throw new Error(`${qd} source 数量必须为 1，实际 ${r.length}。`);
-    const s = DE(await r[0].text(), qd),
-      o = t.exactCanonicalCandidates(Kd);
-    if (o.length !== 1)
-      throw new Error(`${Kd} source 数量必须为 1，实际 ${o.length}。`);
-    const a = ws0(e.game, DE(await o[0].text(), Kd)),
-      c = s2(await Gn(t, ns0).bytes()),
-      l = Ss0(c),
-      u = { ...l, stripIndex: ps0(l.stripIndex, e.game.team) },
-      h = /_rvs$/i.test(e.trackId),
-      [d, f, p, v, w, g, y, b] = await Promise.all([
-        yi(Gn(t, is0)),
-        yi(Gn(t, rs0)),
-        yi(i),
-        h ? yi(Gn(t, cs0)) : Promise.resolve(void 0),
-        Gn(t, ss0).bytes().then(s2),
-        yi(Gn(t, os0)),
-        yi(Gn(t, as0)),
-        Gn(t, ls0).bytes(),
-      ]);
-    if (d.width !== u.width || d.height !== u.cardHeight)
-      throw new Error(
-        `trackcard.png 应为 ${u.width}x${u.cardHeight}，实际 ${d.width}x${d.height}。`,
-      );
-    if (f.width !== u.width || f.height !== u.stripHeight * u.stripCount)
-      throw new Error(
-        `trackInfoLabel.png 应为 ${u.width}x${u.stripHeight * u.stripCount}，实际 ${f.width}x${f.height}。`,
-      );
-    if (v && (v.width !== p.width || v.height !== p.height))
-      throw new Error("反向标记与赛道预览图尺寸不一致。");
-    const A = { layout: bs0(w, u.trackRect, g, y), text: g, glyphs: y };
-    if (
-      e.difficulty !== void 0 &&
-      (!Number.isInteger(e.difficulty) || e.difficulty < 0)
-    )
-      throw new Error(`赛道难度无效：${e.difficulty}。`);
-    const x = await f5(Og, b);
-    try {
-      return new M7(e.root, fs0(e.trackTitle, e.trackId), e.difficulty, s, a, {
-        layout: u,
-        frame: d,
-        label: f,
-        track: p,
-        reverseStamp: v,
-        difficulty: A,
-        font: x,
-      });
-    } catch (M) {
-      throw (G1(x), M);
-    }
-  }
-  setBgmName(e) {
-    if (this.disposed) return;
-    const t = this.bgmTitles.get(e) ?? "";
-    this.bgmName !== t && ((this.bgmName = t), this.render());
-  }
-  setVisible(e) {
-    this.disposed ||
-      this.visible === e ||
-      ((this.visible = e),
-      (this.slidingOut = !1),
-      e && (this.adjustX = this.assets.layout.adjustX),
-      (this.canvas.hidden = !e),
-      e && this.render());
-  }
-  slideOut() {
-    this.disposed || !this.visible || (this.slidingOut = !0);
-  }
-  update(e) {
-    if (this.disposed) return;
-    const t = this.lastUpdateMs;
-    if (
-      ((this.lastUpdateMs = e),
-      !this.visible || !this.slidingOut || t === void 0)
-    )
-      return;
-    const i = (Math.trunc(e) - Math.trunc(t)) >>> 0,
-      r = vs0(this.adjustX, this.assets.layout.width, i);
-    ((this.adjustX = r.adjustX),
-      r.complete ? this.setVisible(!1) : this.render());
-  }
-  dispose() {
-    this.disposed ||
-      ((this.disposed = !0),
-      this.resizeObserver.disconnect(),
-      window.removeEventListener("resize", this.onWindowResize),
-      this.canvas.remove(),
-      G1(this.assets.font));
-  }
-  render() {
-    if (this.disposed || !this.visible) return;
-    const e = this.root.clientWidth,
-      t = this.root.clientHeight;
-    if (e <= 0 || t <= 0) return;
-    p3(this.canvas, this.context, e, t, xe(), jd, Xd);
-    const {
-        layout: i,
-        frame: r,
-        label: s,
-        track: o,
-        reverseStamp: a,
-        difficulty: c,
-      } = this.assets,
-      l = this.context;
-    l.clearRect(0, 0, jd, Xd);
-    const u = jd - this.adjustX - i.width,
-      h = Xd - i.adjustY - i.height;
-    l.drawImage(
-      s.image,
-      0,
-      i.stripIndex * i.stripHeight,
-      i.width,
-      i.stripHeight,
-      u,
-      h,
-      i.width,
-      i.stripHeight,
-    );
-    const d = h + i.cardTop;
-    (l.drawImage(r.image, u, d),
-      ys0(l, o, i.trackRect, u + i.trackRect.x, d + i.trackRect.y),
-      a && As0(l, a, u, d, i.width, i.cardHeight),
-      Ms0(l, this.trackDifficulty, c, u + i.trackRect.x, d + i.trackRect.y),
-      this.drawLabel(this.gameLabels.gameSpeed, i.gameSpeed, u, h),
-      this.drawLabel(this.gameLabels.gameInfo, i.gameInfo, u, h),
-      this.drawLabel(this.gameLabels.teamName, i.teamName, u, h),
-      (l.font = gs0),
-      (l.textBaseline = "middle"),
-      (l.textAlign = "left"),
-      this.drawClippedText(this.bgmName, i.bgmRect, u, h, i.bgmColor),
-      this.drawClippedText(
-        this.trackTitle,
-        i.trackNameRect,
-        u,
-        d,
-        i.trackNameColor,
-      ));
-  }
-  drawLabel(e, t, i, r) {
-    e &&
-      m9(
-        this.context,
-        e,
-        {
-          x: i + t.rect.x,
-          y: r + t.rect.y,
-          width: t.rect.width,
-          height: t.rect.height,
-        },
-        {
-          kind: "label",
-          family: Og,
-          size: hs0,
-          color: t.color,
-          align: t.align,
-          verticalAlign: t.verticalAlign,
-        },
-      );
-  }
-  drawClippedText(e, t, i, r, s) {
-    if (!e) return;
-    const o = this.context;
-    (o.save(),
-      o.beginPath(),
-      o.rect(i + t.x, r + t.y, t.width, t.height),
-      o.clip(),
-      (o.fillStyle = s),
-      o.fillText(e, i + t.x, r + t.y + t.height / 2),
-      o.restore());
-  }
+    static async load(options) { return loadTrackInfoCard(options, { ...trackInfoCardLoadingDependencies, create: (...args) => new M7(...args) }); }
+    setBgmName(trackId) { return setTrackCardBgm(this, trackId); }
+    setVisible(visible) { return setTrackCardVisible(this, visible); }
+    slideOut() { return slideTrackCardOut(this); }
+    update(nowMs) { return updateTrackCard(this, nowMs); }
+    dispose() { return disposeTrackCard(this, trackInfoCardRuntimeDependencies); }
+    render() { return renderTrackCard(this, trackInfoCardRuntimeDependencies); }
+    drawLabel(text, layout, x, y) { return drawTrackCardLabel(this, text, layout, x, y, trackInfoCardRuntimeDependencies); }
+    drawClippedText(text, rect, x, y, color) { return drawTrackCardClippedText(this, text, rect, x, y, color); }
 }
 
 function ys0(n, e, t, i, r) {
@@ -6033,454 +5596,37 @@ async function co0(n) {
 const Nv = 0.5,
   Ov = 2e3,
   Ug = Ov / Nv + 1,
-  ml = [8.33, 16.67, 33.33, 50, 100, 250, 1e3],
-  wP = 1024 * 1024,
-  HE = 1e3,
-  Io0 = 0.1;
+  wP = 1024 * 1024;
 
-class ko0 {
-  frameHistogram = new Uint32Array(Ug);
-  workHistogram = new Uint32Array(Ug);
-  thresholdCounts = new Uint32Array(ml.length);
-  longTaskObserver;
-  longTaskSupported;
-  raceStarted = !1;
-  raceStartTimeMs = 0;
-  raceEndTimeMs = 0;
-  raceStartedAt = "";
-  frameCount = 0;
-  totalFrameMs = 0;
-  totalWorkMs = 0;
-  latestFrameMs = 0;
-  latestWorkMs = 0;
-  workWindowStartMs = 0;
-  workWindowSumMs = 0;
-  workWindowCount = 0;
-  workWindowMeanMs = 0;
-  workEmaMs = 0;
-  workEmaInitialized = !1;
-  maxFrameMs = 0;
-  maxWorkMs = 0;
-  maxStallMs = 0;
-  panelPeakFrameMs = 0;
-  panelPeakWorkMs = 0;
-  pendingSkipFrames = 0;
-  longTaskCount = 0;
-  longTaskTotalMs = 0;
-  longTaskMaxMs = 0;
-  heapStartBytes = 0;
-  heapCurrentBytes = 0;
-  heapTotalBytes = 0;
-  heapLimitBytes = 0;
-  heapMinBytes = 0;
-  heapMaxBytes = 0;
-  heapLargestDropBytes = 0;
-  heapWindowStartMs = 0;
-  heapWindowActive = !1;
-  heapWindowAllocBytes = 0;
-  heapWindowGcDrops = 0;
-  heapWindowFrameCount = 0;
-  heapAllocMiBPerSec = 0;
-  heapGcPerSec = 0;
-  heapAllocKiBPerFrame = 0;
-  heapGcDropTotal = 0;
-  constructor() {
-    ((this.longTaskSupported = Lo0()),
-      this.longTaskSupported &&
-        ((this.longTaskObserver = new PerformanceObserver((e) =>
-          this.recordLongTasks(e),
-        )),
-        this.longTaskObserver.observe({ entryTypes: ["longtask"] })));
-  }
-  dispose() {
-    this.longTaskObserver?.disconnect();
-  }
-  beginRace(e = performance.now()) {
-    (this.frameHistogram.fill(0),
-      this.workHistogram.fill(0),
-      this.thresholdCounts.fill(0),
-      (this.raceStarted = !0),
-      (this.raceStartTimeMs = e),
-      (this.raceEndTimeMs = 0),
-      (this.raceStartedAt = new Date().toISOString()),
-      (this.frameCount = 0),
-      (this.totalFrameMs = 0),
-      (this.totalWorkMs = 0),
-      (this.latestFrameMs = 0),
-      (this.latestWorkMs = 0),
-      (this.maxFrameMs = 0),
-      (this.maxWorkMs = 0),
-      (this.maxStallMs = 0),
-      (this.panelPeakFrameMs = 0),
-      (this.panelPeakWorkMs = 0),
-      (this.workWindowStartMs = 0),
-      (this.workWindowSumMs = 0),
-      (this.workWindowCount = 0),
-      (this.workWindowMeanMs = 0),
-      (this.workEmaMs = 0),
-      (this.workEmaInitialized = !1),
-      (this.pendingSkipFrames = 1),
-      (this.longTaskCount = 0),
-      (this.longTaskTotalMs = 0),
-      (this.longTaskMaxMs = 0),
-      this.resetHeapSamples(e));
-  }
-  finishRace(e = performance.now()) {
-    !this.raceStarted ||
-      this.raceEndTimeMs !== 0 ||
-      ((this.raceEndTimeMs = e), this.sampleHeap(e));
-  }
-  recordFrame(e, t, i) {
-    if (!this.containsTime(i)) return !1;
-    if (this.pendingSkipFrames > 0) return ((this.pendingSkipFrames -= 1), !1);
-    const r = Math.max(0, e),
-      s = Math.max(0, t);
-    return (
-      (this.workEmaMs = this.workEmaInitialized
-        ? this.workEmaMs + (s - this.workEmaMs) * Io0
-        : s),
-      (this.workEmaInitialized = !0),
-      this.workWindowCount === 0 && (this.workWindowStartMs = i),
-      (this.workWindowSumMs += s),
-      (this.workWindowCount += 1),
-      i - this.workWindowStartMs >= HE &&
-        ((this.workWindowMeanMs = this.workWindowSumMs / this.workWindowCount),
-        (this.workWindowSumMs = 0),
-        (this.workWindowCount = 0),
-        (this.workWindowStartMs = i)),
-      (this.frameCount += 1),
-      (this.totalFrameMs += r),
-      (this.totalWorkMs += s),
-      (this.latestFrameMs = r),
-      (this.latestWorkMs = s),
-      (this.maxFrameMs = Math.max(this.maxFrameMs, r)),
-      (this.maxWorkMs = Math.max(this.maxWorkMs, s)),
-      (this.maxStallMs = Math.max(this.maxStallMs, r - s)),
-      (this.panelPeakFrameMs = Math.max(this.panelPeakFrameMs, r)),
-      (this.panelPeakWorkMs = Math.max(this.panelPeakWorkMs, s)),
-      (this.frameHistogram[KE(r)] += 1),
-      (this.workHistogram[KE(s)] += 1),
-      this.recordThresholds(r),
-      (this.heapWindowFrameCount += 1),
-      this.sampleHeap(i),
-      !0
-    );
-  }
-  skipNextFrame() {
-    this.pendingSkipFrames = Math.max(this.pendingSkipFrames, 1);
-  }
-  isRaceActive() {
-    return this.raceStarted && this.raceEndTimeMs === 0;
-  }
-  summary() {
-    const e = jE(
-        this.frameHistogram,
-        this.frameCount,
-        this.totalFrameMs,
-        this.maxFrameMs,
-      ),
-      t = jE(
-        this.workHistogram,
-        this.frameCount,
-        this.totalWorkMs,
-        this.maxWorkMs,
-      ),
-      i =
-        this.totalFrameMs > 0 ? (this.frameCount * 1e3) / this.totalFrameMs : 0;
-    return {
-      hasRace: this.raceStarted,
-      active: this.raceStarted && this.raceEndTimeMs === 0,
-      durationMs: this.totalFrameMs,
-      frameCount: this.frameCount,
-      averageFps: i,
-      latestFrameMs: this.latestFrameMs,
-      latestWorkMs: this.latestWorkMs,
-      workWindowMeanMs: this.workWindowMeanMs,
-      workEmaMs: this.workEmaMs,
-      timerResolutionMs: No0(),
-      crossOriginIsolated: globalThis.crossOriginIsolated === !0,
-      panelPeakFrameMs: this.panelPeakFrameMs,
-      panelPeakWorkMs: this.panelPeakWorkMs,
-      maxStallMs: this.maxStallMs,
-      frame: e,
-      work: t,
-      thresholdCounts: this.thresholdCounts.slice(),
-      longTaskSupported: this.longTaskSupported,
-      longTaskCount: this.longTaskCount,
-      longTaskTotalMs: this.longTaskTotalMs,
-      longTaskMaxMs: this.longTaskMaxMs,
-      heapSupported: this.heapStartBytes > 0,
-      heapStartBytes: this.heapStartBytes,
-      heapCurrentBytes: this.heapCurrentBytes,
-      heapTotalBytes: this.heapTotalBytes,
-      heapLimitBytes: this.heapLimitBytes,
-      heapMinBytes: this.heapMinBytes,
-      heapMaxBytes: this.heapMaxBytes,
-      heapLargestDropBytes: this.heapLargestDropBytes,
-      heapAllocMiBPerSec: this.heapAllocMiBPerSec,
-      heapAllocKiBPerFrame: this.heapAllocKiBPerFrame,
-      heapGcPerSec: this.heapGcPerSec,
-      heapGcDropTotal: this.heapGcDropTotal,
-    };
-  }
-  clearPanelPeaks() {
-    ((this.panelPeakFrameMs = 0), (this.panelPeakWorkMs = 0));
-  }
-  formatReport() {
-    const e = this.summary(),
-      t = navigator.deviceMemory;
-    return [
-      "KartRider Web Performance Report v1",
-      `State: ${e.active ? "running" : e.hasRace ? "finished" : "not started"}`,
-      `Started: ${this.raceStartedAt || "n/a"}`,
-      `Captured: ${new Date().toISOString()}`,
-      `URL: ${location.href}`,
-      `User agent: ${navigator.userAgent}`,
-      `Viewport: ${window.innerWidth}x${window.innerHeight} @ ${window.devicePixelRatio.toFixed(2)} DPR`,
-      `CPU threads: ${navigator.hardwareConcurrency || "unknown"}`,
-      `Device memory: ${t === void 0 ? "unavailable" : `${t} GiB (rounded)`}`,
-      "",
-      `Duration: ${Vo0(e.durationMs)}`,
-      `Frames: ${e.frameCount}`,
-      `Average FPS: ${e.averageFps.toFixed(2)}`,
-      `Frame interval: avg ${i1(e.frame.averageMs)}, p50 ${i1(e.frame.p50Ms)}, p95 ${i1(e.frame.p95Ms)}, p99 ${i1(e.frame.p99Ms)}, max ${i1(e.frame.maxMs)}`,
-      `Low FPS: 1% ${e.frame.low1Fps.toFixed(1)}, 0.1% ${e.frame.low01Fps.toFixed(1)}, min ${e.frame.minFps.toFixed(1)}`,
-      `Main-thread work: avg ${i1(e.work.averageMs)}, p50 ${i1(e.work.p50Ms)}, p95 ${i1(e.work.p95Ms)}, p99 ${i1(e.work.p99Ms)}, max ${i1(e.work.maxMs)}, 1s window mean ${$g(e.workWindowMeanMs)}, EMA ${$g(e.workEmaMs)}`,
-      `Worst stall (frame minus work): ${i1(e.maxStallMs)}`,
-      `Allocation: ${e.heapAllocKiBPerFrame.toFixed(1)} KiB/frame, ${e.heapAllocMiBPerSec.toFixed(2)} MiB/s, GC drops ${e.heapGcPerSec.toFixed(2)} /s (window) / ${e.heapGcDropTotal} total`,
-      "",
-      "Frame interval counts:",
-      ...Po0(e.thresholdCounts, e.frameCount),
-      "",
-      Fo0(e),
-      Do0(e),
-      "",
-      "Notes:",
-      "- Frame interval includes browser scheduling, background throttling, and work outside this callback.",
-      "- Main-thread work measures this game's animation callback through render submission; it is not GPU time.",
-      "- JS heap is Chromium-only and approximate; a large drop is evidence of reclamation, not proof of a GC pause.",
-    ].join(`
-`);
-  }
-  containsTime(e) {
-    return !this.raceStarted || e < this.raceStartTimeMs
-      ? !1
-      : this.raceEndTimeMs === 0 || e <= this.raceEndTimeMs;
-  }
-  recordThresholds(e) {
-    for (let t = 0; t < ml.length; t += 1)
-      e > ml[t] && (this.thresholdCounts[t] += 1);
-  }
-  recordLongTasks(e) {
-    for (const t of e.getEntries())
-      this.containsTime(t.startTime) &&
-        ((this.longTaskCount += 1),
-        (this.longTaskTotalMs += t.duration),
-        (this.longTaskMaxMs = Math.max(this.longTaskMaxMs, t.duration)));
-  }
-  resetHeapSamples(e) {
-    ((this.heapStartBytes = 0),
-      (this.heapCurrentBytes = 0),
-      (this.heapTotalBytes = 0),
-      (this.heapLimitBytes = 0),
-      (this.heapMinBytes = 0),
-      (this.heapMaxBytes = 0),
-      (this.heapLargestDropBytes = 0),
-      (this.heapWindowStartMs = 0),
-      (this.heapWindowActive = !1),
-      (this.heapWindowAllocBytes = 0),
-      (this.heapWindowGcDrops = 0),
-      (this.heapWindowFrameCount = 0),
-      (this.heapAllocMiBPerSec = 0),
-      (this.heapGcPerSec = 0),
-      (this.heapAllocKiBPerFrame = 0),
-      (this.heapGcDropTotal = 0),
-      this.sampleHeap(e));
-  }
-  sampleHeap(e) {
-    const t = performance.memory;
-    if (!t) return;
-    const i = t.usedJSHeapSize;
-    if (
-      ((this.heapTotalBytes = t.totalJSHeapSize),
-      (this.heapLimitBytes = t.jsHeapSizeLimit),
-      this.heapStartBytes === 0)
-    )
-      ((this.heapStartBytes = i),
-        (this.heapMinBytes = i),
-        (this.heapMaxBytes = i));
-    else {
-      const s = i - this.heapCurrentBytes;
-      (s > 0
-        ? (this.heapWindowAllocBytes += s)
-        : s <= -1572864 &&
-          ((this.heapWindowGcDrops += 1),
-          (this.heapGcDropTotal += 1),
-          (this.heapLargestDropBytes = Math.max(
-            this.heapLargestDropBytes,
-            -s,
-          ))),
-        (this.heapMinBytes = Math.min(this.heapMinBytes, i)),
-        (this.heapMaxBytes = Math.max(this.heapMaxBytes, i)));
-    }
-    ((this.heapCurrentBytes = i),
-      this.heapWindowActive ||
-        ((this.heapWindowActive = !0), (this.heapWindowStartMs = e)));
-    const r = e - this.heapWindowStartMs;
-    r >= HE &&
-      ((this.heapAllocMiBPerSec = qE(
-        this.heapWindowAllocBytes / (r / 1e3) / wP,
-      )),
-      (this.heapGcPerSec = qE(this.heapWindowGcDrops / (r / 1e3))),
-      (this.heapAllocKiBPerFrame =
-        this.heapWindowFrameCount > 0
-          ? Math.round(
-              (this.heapWindowAllocBytes / this.heapWindowFrameCount / 1024) *
-                10,
-            ) / 10
-          : 0),
-      (this.heapWindowAllocBytes = 0),
-      (this.heapWindowGcDrops = 0),
-      (this.heapWindowFrameCount = 0),
-      (this.heapWindowStartMs = e));
-  }
-}
 
-function qE(n) {
-  return Math.round(n * 100) / 100;
-}
 
-function Lo0() {
-  return (
-    typeof PerformanceObserver < "u" &&
-    (PerformanceObserver.supportedEntryTypes?.includes("longtask") ?? !1)
-  );
-}
 
-function KE(n) {
-  return Math.min(Ug - 1, Math.floor(n / Nv));
-}
 
-function jE(n, e, t, i) {
-  if (e === 0)
-    return {
-      averageMs: 0,
-      p50Ms: 0,
-      p95Ms: 0,
-      p99Ms: 0,
-      maxMs: 0,
-      low1Ms: 0,
-      low01Ms: 0,
-      low1Fps: 0,
-      low01Fps: 0,
-      minFps: 0,
-    };
-  const r = Math.ceil(e * 0.5),
-    s = Math.ceil(e * 0.95),
-    o = Math.ceil(e * 0.99);
-  let a = 0,
-    c = 0,
-    l = 0,
-    u = 0;
-  for (let f = 0; f < n.length; f += 1) {
-    a += n[f];
-    const p = vP(f);
-    if ((c === 0 && a >= r && (c = p), l === 0 && a >= s && (l = p), a >= o)) {
-      u = p;
-      break;
-    }
-  }
-  const h = XE(n, e, 0.01),
-    d = XE(n, e, 0.001);
-  return {
-    averageMs: t / e,
-    p50Ms: c,
-    p95Ms: l,
-    p99Ms: u,
-    maxMs: i,
-    low1Ms: h,
-    low01Ms: d,
-    low1Fps: h > 0 ? 1e3 / h : 0,
-    low01Fps: d > 0 ? 1e3 / d : 0,
-    minFps: i > 0 ? 1e3 / i : 0,
-  };
-}
 
-function vP(n) {
-  return Math.min(Ov, (n + 1) * Nv);
-}
 
-function XE(n, e, t) {
-  if (e === 0) return 0;
-  const i = Math.max(1, Math.ceil(e * t));
-  let r = i,
-    s = 0;
-  for (let o = n.length - 1; o >= 0 && r > 0; o -= 1) {
-    const a = n[o];
-    if (a === 0) continue;
-    const c = Math.min(a, r);
-    ((s += c * vP(o)), (r -= c));
-  }
-  return s / i;
-}
 
-function Po0(n, e) {
-  return ml.map((t, i) => {
-    const r = n[i],
-      s = e > 0 ? (r * 100) / e : 0;
-    return `  > ${t.toFixed(2).padStart(7)} ms: ${String(r).padStart(8)} (${s.toFixed(3)}%)`;
-  });
-}
 
-function Fo0(n) {
-  return n.longTaskSupported
-    ? `Long tasks (>50 ms): ${n.longTaskCount}, total ${i1(n.longTaskTotalMs)}, max ${i1(n.longTaskMaxMs)}`
-    : "Long Tasks API: unavailable";
-}
 
-function Do0(n) {
-  return n.heapSupported
-    ? `JS heap: start ${De(n.heapStartBytes)}, current ${De(n.heapCurrentBytes)}, min ${De(n.heapMinBytes)}, max ${De(n.heapMaxBytes)}, committed ${De(n.heapTotalBytes)}, limit ${De(n.heapLimitBytes)}, largest sampled drop ${De(n.heapLargestDropBytes)}`
-    : "JS heap: unavailable";
-}
 
-function Vo0(n) {
-  const e = n / 1e3,
-    t = Math.floor(e / 60),
-    i = e - t * 60;
-  return `${t}:${i.toFixed(2).padStart(5, "0")}`;
-}
 
-function i1(n) {
-  return n >= Ov ? `${n.toFixed(1)} ms` : `${n.toFixed(2)} ms`;
-}
 
-function $g(n) {
-  return Number.isFinite(n)
-    ? n >= 100
-      ? `${n.toFixed(1)} ms`
-      : n >= 1
-        ? `${n.toFixed(3)} ms`
-        : `${(n * 1e3).toFixed(1)} µs`
-    : "n/a";
-}
 
-let vc;
 
-function No0() {
-  if (vc !== void 0) return vc;
-  let n = 1 / 0;
-  for (let e = 0; e < 500; e += 1) {
-    const t = performance.now(),
-      i = performance.now();
-    i > t && (n = Math.min(n, i - t));
-  }
-  return ((vc = Number.isFinite(n) ? n : 0), vc);
-}
 
-function De(n) {
-  return `${(n / wP).toFixed(1)} MiB`;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const Uo = 39,
   yP = "launcher-room-v1",
@@ -6866,48 +6012,6 @@ function JE(n) {
     n.removeAttribute("aria-valuenow"));
 }
 
-function qo0(n, e, t) {
-  const i = e.longTaskSupported
-      ? `${e.longTaskCount} max ${i1(e.longTaskMaxMs)}`
-      : "n/a",
-    r = e.heapSupported
-      ? `used ${De(e.heapCurrentBytes)} / limit ${De(e.heapLimitBytes)} | committed ${De(e.heapTotalBytes)} | min ${De(e.heapMinBytes)} max ${De(e.heapMaxBytes)} | maxdrop ${De(e.heapLargestDropBytes)}`
-      : "unavailable",
-    s = [
-      `FPS        now ${t.toFixed(1)} | race avg ${e.averageFps.toFixed(1)} | frames ${e.frameCount}`,
-      `FRAME      p50 ${i1(e.frame.p50Ms)} | p95 ${i1(e.frame.p95Ms)} | p99 ${i1(e.frame.p99Ms)} | max ${i1(e.frame.maxMs)}`,
-      `LOW FPS    1% ${e.frame.low1Fps.toFixed(1)} | 0.1% ${e.frame.low01Fps.toFixed(1)} | min ${e.frame.minFps.toFixed(1)}`,
-      `WORK       p50 ${i1(e.work.p50Ms)} | p95 ${i1(e.work.p95Ms)} | max ${i1(e.work.maxMs)} | 1s mean ${$g(e.workWindowMeanMs)} | longtask ${i}`,
-      `STALL      worst frame minus its work = ${i1(e.maxStallMs)} (outside game callback => GC/GPU/browser)`,
-      `JS HEAP    ${r}`,
-      `ALLOC      ${e.heapAllocKiBPerFrame.toFixed(1)} KiB/frame | ${e.heapAllocMiBPerSec.toFixed(2)} MiB/s | GC ${e.heapGcPerSec.toFixed(2)} /s (total ${e.heapGcDropTotal})`,
-    ];
-  if (!n) return (s.push("ENGINE     (diagnostics provider unavailable)"), s);
-  s.push(
-    `DRAW       calls ${n.render.calls} | triangles ${n.render.triangles} | lines ${n.render.lines} | points ${n.render.points} | frameIndex ${n.render.frame}`,
-    `GPU MEM    geometries ${n.rendererMemory.geometries} | textures ${n.rendererMemory.textures} | programs ${n.programs} (start ${n.programsAtStart})`,
-    `CONTEXT    ${n.capabilities.isWebGL2 ? "WebGL2" : "WebGL1"} | maxTextures ${n.capabilities.maxTextures} | maxTextureSize ${n.capabilities.maxTextureSize} | DPR ${n.drawingBuffer.pixelRatio.toFixed(2)} | buffer ${n.drawingBuffer.width}x${n.drawingBuffer.height}`,
-    `SCENE      objects ${n.scene.objects} | visible ${n.scene.visibleObjects} | mesh ${n.scene.meshes} (skinned ${n.scene.skinnedMeshes}) | line ${n.scene.lineObjects} | point ${n.scene.pointObjects} | sprite ${n.scene.sprites} | light ${n.scene.lights}`,
-    `TRACK DRAW visible ${n.trackDraws.visibleMeshes} / ${n.trackDraws.builtMeshes} built | ${n.trackDraws.visibleTris} tri`,
-    `CAMERA     pos ${n.camera.position.join(", ")} | yaw ${n.camera.rotationY} | pitch ${n.camera.rotationX} | fov ${n.camera.fov} | near ${n.camera.near} | far ${n.camera.far}`,
-    `ASSETS     materials ${n.scene.materials} | geometries ${n.scene.geometries}`,
-    `ACTIVE     ${Object.keys(n.active)
-      .filter((o) => n.active[o])
-      .join(" ")}`,
-    `OPTIONS    boostBlur ${yc(n.options.boostBlur)} | toonLine ${yc(n.options.toonLine)} | shadow ${yc(n.options.shadow)} | dualBoostAuto ${yc(n.options.dualBoostAuto)}`,
-    `RAF DELAY  max ${i1(n.raf.maxDelayMs)} (vsync -> our callback; large = main thread busy before us)`,
-  );
-  for (const o of n.network ?? [])
-    s.push(
-      `NET peer-${o.peer} ${o.route} (${o.candidate ?? "pending"}) | RTT ${o.rttMs?.toFixed(0) ?? "-"} ms | age ${o.stateAgeMs.toFixed(0)} ms | queued ${o.bufferedBytes} B | RTC ${o.sent}/${o.received} | relay attempts ${o.relayed} | errors ${o.dropped} | repair ${o.repairs}`,
-    );
-  return s;
-}
-
-function yc(n) {
-  return n ? "on" : "off";
-}
-
 async function Ko0(n) {
   if (navigator.clipboard?.writeText)
     try {
@@ -6969,114 +6073,6 @@ function eT(n) {
     n.append(t),
     () => t.remove()
   );
-}
-
-function jo0(n) {
-  const {
-    renderer: e,
-    scene: t,
-    camera: i,
-    drawingBufferSize: r,
-    renderStats: s,
-  } = n;
-  e.getDrawingBufferSize(r);
-  let o = 0,
-    a = 0,
-    c = 0,
-    l = 0,
-    u = 0,
-    h = 0,
-    d = 0,
-    f = 0,
-    p = 0,
-    v = 0,
-    w = 0;
-  const g = new Set(),
-    y = new Set();
-  t.traverse((A) => {
-    ((o += 1), A.visible && (a += 1));
-    const x = A.isMesh === !0;
-    (x && (c += 1),
-      A.isSkinnedMesh && (l += 1),
-      A.isLine && (u += 1),
-      A.isPoints && (h += 1),
-      A.isSprite && (d += 1),
-      A.isLight && (f += 1));
-    const M = A.geometry;
-    M && y.add(M);
-    const E = A.material;
-    if ((Array.isArray(E) ? E.forEach((_) => g.add(_)) : E && g.add(E), x)) {
-      let _ = !1,
-        C = !0;
-      for (let S = A; S; S = S.parent)
-        (S.name.endsWith(":TimeAttackRenderScene") && (_ = !0),
-          S.visible || (C = !1));
-      if (_ && ((p += 1), C)) {
-        v += 1;
-        const S = A.geometry;
-        w +=
-          (S.drawRange.count !== 1 / 0
-            ? S.drawRange.count
-            : S.index
-              ? S.index.count
-              : S.attributes.position.count) / 3;
-      }
-    }
-  });
-  const b = e.info;
-  return {
-    network: n.network,
-    render: s,
-    rendererMemory: {
-      geometries: b.memory.geometries,
-      textures: b.memory.textures,
-    },
-    programs: b.programs?.length ?? 0,
-    programsAtStart: n.raceStartProgramCount,
-    capabilities: {
-      isWebGL2: e.capabilities.isWebGL2,
-      maxTextures: e.capabilities.maxTextures,
-      maxTextureSize: e.capabilities.maxTextureSize,
-    },
-    drawingBuffer: { width: r.x, height: r.y, pixelRatio: e.getPixelRatio() },
-    scene: {
-      objects: o,
-      visibleObjects: a,
-      meshes: c,
-      skinnedMeshes: l,
-      lineObjects: u,
-      pointObjects: h,
-      sprites: d,
-      lights: f,
-      materials: g.size,
-      geometries: y.size,
-    },
-    trackDraws: {
-      visibleMeshes: v,
-      visibleTris: Math.round(w),
-      builtMeshes: p,
-    },
-    camera: Xo0(i),
-    active: n.active,
-    options: n.options,
-    raf: { maxDelayMs: n.maxRafDelayMs },
-  };
-}
-
-function Xo0(n) {
-  const e = new o5().setFromQuaternion(n.quaternion, "YXZ");
-  return {
-    position: [
-      Math.round(n.position.x * 100) / 100,
-      Math.round(n.position.y * 100) / 100,
-      Math.round(n.position.z * 100) / 100,
-    ],
-    rotationY: Math.round(e.y * 1e3) / 1e3,
-    rotationX: Math.round(e.x * 1e3) / 1e3,
-    fov: Math.round(n.fov * 100) / 100,
-    near: n.near,
-    far: n.far,
-  };
 }
 
 const Yo0 = {

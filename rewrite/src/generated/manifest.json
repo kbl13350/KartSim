@@ -12,6 +12,7 @@
     "Kt"
   ],
   "handwrittenGarageRuntimeClassOverrides": [
+    "Pi",
     "Qi",
     "vn",
     "Ka"
@@ -38,6 +39,15 @@
     "ss",
     "Ya",
     "en"
+  ],
+  "handwrittenGarageControlCanvasHelperOverrides": [
+    "ct",
+    "Ke",
+    "Cs",
+    "Fe",
+    "Ie",
+    "Ei",
+    "Si"
   ],
   "handwrittenGaragePreparationDialogOverrides": [
     "constructor",
@@ -459,6 +469,7 @@
   "handwrittenRaceStartCoordinatorOverride": true,
   "handwrittenSoloRacePublisherOverride": true,
   "handwrittenApplicationMethodOverrides": [
+    "constructor",
     "get:previousRenderTime",
     "set:previousRenderTime",
     "get:lastUpdateMs",
@@ -544,6 +555,19 @@
     "prepareStartupReady",
     "startRace",
     "returnToReady"
+  ],
+  "handwrittenApplicationBootOverrides": [
+    "Rf0",
+    "If0",
+    "kf0",
+    "Lf0"
+  ],
+  "handwrittenWorldPerformanceOverrides": [
+    "ko0",
+    "qo0",
+    "yc",
+    "jo0",
+    "Xo0"
   ],
   "handwrittenApplicationAccessorOverrides": [
     "get:previousRenderTime",
@@ -1057,6 +1081,7 @@
     "onRoomKey"
   ],
   "handwrittenRaceLoadingScreenOverride": true,
+  "handwrittenRpScenePreviewOverride": true,
   "handwrittenGhostKsvClassMethodOverrides": [
     "encode",
     "build"
@@ -1106,6 +1131,19 @@
     "fail",
     "exit",
     "dispose"
+  ],
+  "handwrittenRaceChatOverlayOverride": true,
+  "handwrittenTrackInfoCardMethodOverrides": [
+    "constructor",
+    "load",
+    "setBgmName",
+    "setVisible",
+    "slideOut",
+    "update",
+    "dispose",
+    "render",
+    "drawLabel",
+    "drawClippedText"
   ],
   "handwrittenRaceSessionMethodOverrides": [
     "raceConnection",
@@ -1344,8 +1382,8 @@
     },
     {
       "file": "formats.js",
-      "bytes": 257763,
-      "sha256": "f2cae3627f69168d67a9b672c2cda8be6217266cff3b505a97b529898149c01b",
+      "bytes": 237829,
+      "sha256": "abd6166e5a5d4d3bf009b3feb153b4b7835d552daeb48f7c509a1bda8764ef78",
       "imports": 71,
       "exports": 185
     },
@@ -1386,8 +1424,8 @@
     },
     {
       "file": "world.js",
-      "bytes": 226075,
-      "sha256": "bce4264fb38f2acafc0435d9b16eb806a6d495d7ecb908cc65aaf6a18eedc94c",
+      "bytes": 195082,
+      "sha256": "f8ae857118f6d511569d84d051c0e556fc1a8584dbb5e8662b84f30cd7c5ecf8",
       "imports": 186,
       "exports": 81
     },
@@ -1400,8 +1438,8 @@
     },
     {
       "file": "multiplayer.js",
-      "bytes": 95555,
-      "sha256": "33d33b7e6a5af12fc625e2cd359fbc215a8549a912b8dff2b12a8a9c16e86527",
+      "bytes": 92797,
+      "sha256": "da687353fad8ddae718ee46d67cb834a3a490be038acc058d77584feb625f19d",
       "imports": 98,
       "exports": 18
     },
@@ -1414,8 +1452,8 @@
     },
     {
       "file": "app.js",
-      "bytes": 22864,
-      "sha256": "4f392649a07597aa146ff15abd3817452e175ce5442c594b507719d2cdbf50af",
+      "bytes": 15387,
+      "sha256": "fa70de2d4323080c68c9e49dd663b2e1a4720925e11c2de349a53772793562ef",
       "imports": 159,
       "exports": 1
     }

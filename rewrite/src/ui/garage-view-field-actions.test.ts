@@ -16,8 +16,9 @@ const release = readFileSync(
 const view = parse(release, { sourceType: "module" }).program.body.find(node =>
   node.type === "ClassDeclaration" && node.id?.name === "As");
 assert.ok(view && view.type === "ClassDeclaration");
+const members = view.body.body;
 function originalField(name: string, host: unknown, Scroll?: unknown): unknown {
-  const member = view.body.body.find(node =>
+  const member = members.find(node =>
     node.type === "ClassProperty" && node.key.type === "Identifier" &&
     node.key.name === name);
   assert.ok(member && member.type === "ClassProperty" && member.value);

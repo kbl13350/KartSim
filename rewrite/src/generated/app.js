@@ -2,6 +2,8 @@
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
 
+import { initializeApplication } from "../app/application-construction.ts";
+import { fitGameViewport, mountGameViewport, resolveStartupSelection, watchFrontendVersion } from "../app/boot-support.ts";
 import { canReloadForUpdate, configureApplicationBackbuffer, haltApplicationRuntime, handleApplicationShortcut, onApplicationKeyDown, restartRaceFromPause, toggleRacePause } from "../app/application-controls.ts";
 import { disposeApplicationRuntime } from "../app/application-disposal.ts";
 import { createPresenterHost, createReadyHost, getOrCreatePresenter, getOrCreateReadyCoordinator } from "../app/host-bridges.ts";
@@ -26,109 +28,11 @@ import { E7, Hv, Jf0, KP, Ka0, Kv, Ma0, Ta0, aT, cT, ep0, gr, ja0, np0, tp0, uT 
 import { EF, Ne, Ql0, Xl0, Zl0, bl0, im, jl0, ql0 } from "./multiplayer.js";
 import { Af0, Bd0, Fy, Gf0, Kh0, Mf0, Nh0, Ny, P7, Pt, _f0, bf0, if0, jf, l60, n60, vd0, vf0 } from "./timeattack.js";
 
+const startupSelectionDependencies = { defaultProfile: gr, resolveSystemKart: b4, isSpecialKartId: n3, displayKartName: Mw, startTrack: jf };
+const applicationConstructionDependencies = { outputColorSpace: qe, makeKartView: scene => new Vg(scene), makeHud: (root, actions) => new $o0(root, actions), collectEngineDiagnostics: jo0, makeAssets: hud => new Jo0(hud), makeInput: () => new jl0(), makeCanvasDiagnostics: (...args) => new qs0(...args), makeTouchControls: (...args) => new l60(...args), makeBlackBar: root => new yr0({ root }), makeResizeObserver: callback => new ResizeObserver(callback) };
+
 class Bf0 {
-  constructor(e) {
-    ((this.root = e),
-      (this.renderer.domElement.className = "game-canvas"),
-      (this.renderer.domElement.dataset.uiLayer = "world"),
-      (this.renderer.domElement.tabIndex = 0),
-      (this.renderer.outputColorSpace = qe),
-      (this.renderer.info.autoReset = !1),
-      this.root.append(this.renderer.domElement),
-      (this.kartView = new Vg(this.scene)),
-      (this.scene.matrixWorldAutoUpdate = !1),
-      (this.scene.matrixAutoUpdate = !1),
-      (this.scene.matrixWorldNeedsUpdate = !1),
-      (this.hud = new $o0(this.root, {
-        returnToReady: () => {
-          this.returnToReady();
-        },
-        collectEngineDiagnostics: () =>
-          jo0({
-            network: this.readyCoordinator?.networkDiagnostics(),
-            renderer: this.renderer,
-            scene:
-              this.presenter.multiplayerDiagnosticsView?.scene ?? this.scene,
-            camera:
-              this.presenter.multiplayerDiagnosticsView?.camera ?? this.camera,
-            drawingBufferSize: this.drawingBufferSize,
-            renderStats: this.engineRenderStats,
-            raceStartProgramCount: this.raceStartProgramCount,
-            maxRafDelayMs: this.maxRafDelayMs,
-            active: {
-              multiplayer: !!this.presenter.multiplayerDiagnosticsView,
-              physics:
-                !!this.session.physics ||
-                !!this.presenter.multiplayerDiagnosticsView,
-              track:
-                !!this.session.track ||
-                !!this.presenter.multiplayerDiagnosticsView,
-              vehicle:
-                !!this.session.vehicleRender ||
-                !!this.presenter.multiplayerDiagnosticsView,
-              character: !!this.session.characterRender,
-              linkedCharacter: !!this.session.linkedCharacterRender,
-              exhaust: !!this.session.exhaustEffect,
-              trails: !!this.session.kartTrails,
-              drift: !!this.session.kartDriftEffects,
-              zetAir: !!this.session.zetAirEffect,
-              shockWave: !!this.session.shockWaveEffect,
-              crash: !!this.session.crashEffect,
-              charger: !!this.session.chargerEffect,
-              trackEvents: !!this.session.trackEventEffects,
-              motionBlur: !!this.session.kartMotionBlur,
-              lampFlares: !!this.session.lampFlares,
-              tachometer: !!this.session.tachometer,
-              gameplayUi: !!this.presenter.raceInterface?.gameplayUi,
-              rain: !!this.session.rain,
-              snow: !!this.session.snow,
-              simpleShadow: !!this.session.simpleShadow,
-            },
-            options: {
-              boostBlur: this.gameOptions.boostBlur,
-              toonLine: this.gameOptions.toonLine,
-              shadow: this.gameOptions.shadow,
-              dualBoostAuto: this.gameOptions.dualBoostAuto,
-            },
-          }),
-      })),
-      (this.assets = new Jo0(this.hud)),
-      (this.input = new jl0()),
-      this.input.setKeyMap(this.gameOptions.keyMap),
-      (this.canvasDiagnostics = new qs0(
-        this.root,
-        this.renderer.domElement,
-        () => this.shell.current,
-        (t, i) => {
-          (this.hud.showDebugText(t, i ? "error" : "info"),
-            i ? console.error(t) : console.info(t));
-        },
-      )),
-      this.input.setEnabled(!1),
-      (this.touchControls = new l60(
-        this.root,
-        (t, i) => this.input.setTouchAction(t, i),
-        () => this.togglePause(),
-        (t) => this.setAutoForwardEnabled(t),
-        (t) => this.setNitroSeamlessMode(t),
-      )),
-      this.touchControls.setKeyMap(this.gameOptions.keyMap),
-      this.setNitroSeamlessMode(this.touchControls.getNitroSeamlessMode()),
-      (this.activeBlackBar = new yr0({ root: this.root })),
-      (this.session.warpBlackBar = this.activeBlackBar),
-      (this.session.warpHud = this.warpHudGate),
-      this.cameras.configureP3528ResolutionMode(),
-      this.configureBackbuffer(),
-      (this.viewportResizeObserver = new ResizeObserver(this.onViewportResize)),
-      this.viewportResizeObserver.observe(this.root),
-      window.addEventListener("resize", this.onViewportResize),
-      window.addEventListener("keydown", this.onGlobalKeyDown),
-      this.presenter.changeStage("TimeAttackReadyStage"),
-      this.presenter.start(),
-      this.mountDevTools(),
-      this.restoreTimeAttackRecords(),
-      this.loadVersionedResources());
-  }
+    constructor(root) { initializeApplication(this, root, applicationConstructionDependencies); }
   root;
   scene = new D1();
   camera = new Z9(62, 1, 0.1, 700);
@@ -280,153 +184,13 @@ class Bf0 {
     configureBackbuffer() { return configureApplicationBackbuffer(this, { width: H2, height: $2 }, EX, window.devicePixelRatio); }
 }
 
-function Rf0(n, e, t) {
-  const i = (p, v) => p.toLowerCase() === v.toLowerCase(),
-    r = (t ?? gr()).equipment,
-    { itemIds: s } = r,
-    o = s[3],
-    a = s[1],
-    c =
-      o === 0 && r.systemKartVariant
-        ? `kart_/${r.systemKartVariant}/model.1s`
-        : void 0,
-    l = c
-      ? b4(n.karts, o, c, r.systemKart)
-      : n.karts.find((p) =>
-          o === 0
-            ? p.itemId === 0 && p.systemKey === r.systemKart
-            : p.itemId === o,
-        ),
-    u = n3(o),
-    h = u
-      ? n.karts.find(
-          (p) => p.itemId === gr().equipment.itemIds[3] && !n3(p.itemId),
-        )
-      : l;
-  if (u && !h) throw new Error(`${Mw(o)} 当前目录中没有可用的启动替代车辆。`);
-  if (!h) throw new Error(`启动车辆不在当前车库目录：ItemKart ${o}。`);
-  const d = n.characters.find((p) => p.itemId === a);
-  if (!d) throw new Error(`启动角色不在当前车库目录：ItemCharacter ${a}。`);
-  const f = e.find((p) => i(p.path, jf.mapPath));
-  if (!f) throw new Error(`已验证启动赛道不在准入 catalog：${jf.mapPath}。`);
-  return {
-    selection: {
-      vehiclePath: h.path,
-      vehicleItemId: h.itemId,
-      vehicleSystemKey: h.systemKey,
-      characterPath: d.path,
-      characterItemId: d.itemId,
-      mapPath: f.path,
-      trackId: jf.trackId,
-    },
-    vehicleTitle: h.title,
-  };
-}
+function Rf0(garage, tracks, profile) { return resolveStartupSelection(garage, tracks, profile, startupSelectionDependencies); }
 
-function If0(n) {
-  const e = document.querySelector('script[type="module"][src]')?.src;
-  if (!e) return () => {};
-  let t = !1,
-    i = !1;
-  const r = async () => {
-      if (!(t || i || !n())) {
-        t = !0;
-        try {
-          const a = new URL("/", window.location.href);
-          a.searchParams.set("kart-update-check", String(Date.now()));
-          const c = await fetch(a, {
-            cache: "no-store",
-            credentials: "same-origin",
-          });
-          if (!c.ok || !c.headers.get("content-type")?.includes("text/html"))
-            return;
-          const l = new DOMParser()
-              .parseFromString(await c.text(), "text/html")
-              .querySelector('script[type="module"][src]')
-              ?.getAttribute("src"),
-            u = l ? new URL(l, c.url).href : void 0;
-          if (!u || u === e || !n() || i) return;
-          const h = `kart-frontend-reload:${u}`;
-          if (sessionStorage.getItem(h)) return;
-          (sessionStorage.setItem(h, "1"), window.location.reload());
-        } catch {
-        } finally {
-          t = !1;
-        }
-      }
-    },
-    s = () => {
-      r();
-    },
-    o = () => {
-      document.visibilityState === "visible" && r();
-    };
-  return (
-    window.addEventListener("pageshow", s),
-    document.addEventListener("visibilitychange", o),
-    r(),
-    () => {
-      ((i = !0),
-        window.removeEventListener("pageshow", s),
-        document.removeEventListener("visibilitychange", o));
-    }
-  );
-}
+function If0(canReload) { return watchFrontendVersion(canReload); }
 
-function kf0(n, e, t) {
-  if (![n, e, t].every((c) => Number.isFinite(c) && c > 0))
-    throw new Error(
-      "Viewport dimensions and pixel ratio must be positive and finite.",
-    );
-  const i = Math.max(1, Math.floor(Math.min((n * t) / 16, (e * t) / 9))),
-    r = i * 16,
-    s = i * 9,
-    o = Math.floor((n * t - r) / 2),
-    a = Math.floor((e * t - s) / 2);
-  return {
-    width: r / t,
-    height: s / t,
-    left: o / t,
-    top: a / t,
-    physicalWidth: r,
-    physicalHeight: s,
-  };
-}
 
-function Lf0(n) {
-  const e = {
-    width: n.style.width,
-    height: n.style.height,
-    left: n.style.left,
-    top: n.style.top,
-  };
-  let t;
-  const i = () => {
-      const o = kf0(window.innerWidth, window.innerHeight, xe());
-      ((n.style.width = `${o.width}px`),
-        (n.style.height = `${o.height}px`),
-        (n.style.left = `${o.left}px`),
-        (n.style.top = `${o.top}px`));
-    },
-    r = () => {
-      (t?.removeEventListener("change", s),
-        (t = window.matchMedia(`(resolution: ${xe()}dppx)`)),
-        t.addEventListener("change", s));
-    },
-    s = () => {
-      (i(), r());
-    };
-  return (
-    i(),
-    r(),
-    window.addEventListener("resize", i),
-    () => {
-      (window.removeEventListener("resize", i),
-        t?.removeEventListener("change", s),
-        Object.assign(n.style, e));
-    }
-  );
-}
+
+function Lf0(root) { return mountGameViewport(root, xe); }
 
 const Oy = document.querySelector("#app");
 

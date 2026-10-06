@@ -20,6 +20,14 @@ export interface FavoriteItem {
 
 export interface FavoriteTrack { themeId: number; trackId: number }
 
+/** A locally locked kart identity; locking does not prevent equipping. */
+export interface LockedItemRecord {
+  category: number;
+  itemId: number;
+  serial: number;
+  systemKart?: string;
+}
+
 export interface Equipment {
   itemIds: Record<number, number>;
   kartSerial: number;
@@ -59,6 +67,7 @@ export interface LocalProfile {
   initial: string;
   favoriteTracks: FavoriteTrack[];
   favoriteItems: FavoriteItem[];
+  lockedItems: LockedItemRecord[];
   myRoom: MyRoomProfile;
   garage?: unknown;
   [key: string]: unknown;
@@ -136,7 +145,8 @@ export function defaultLocalProfile(): LocalProfile {
   itemIds[70] = 1;
   return {
     equipment: { itemIds, kartSerial: 0, valueAt3E: 0, exceedType: 0 },
-    initial: "", favoriteTracks: [], favoriteItems: [], myRoom: defaultMyRoomProfile(),
+    initial: "", favoriteTracks: [], favoriteItems: [], lockedItems: [],
+    myRoom: defaultMyRoomProfile(),
   };
 }
 
@@ -181,6 +191,31 @@ export function validateFavoriteItems(value: unknown): void {
   }
 }
 
+export function lockedItemKey(item: LockedItemRecord): string {
+  return `${item.category}:${item.itemId}:${item.serial}:${item.systemKart ?? ""}`;
+}
+
+export function validateLockedItems(value: unknown): asserts value is LockedItemRecord[] {
+  if (!Array.isArray(value) || value.length > 100) {
+    throw new Error("本地用户资料的锁定车辆必须是最多 100 项的列表。");
+  }
+  const seen = new Set<string>();
+  for (const item of value) {
+    if (item?.category !== ITEM_CATEGORY.kart) {
+      throw new Error("只有卡丁车能加入锁定列表。");
+    }
+    validateInteger(item.itemId, 65535, "锁定车辆 ID");
+    validateInteger(item.serial, 65535, "锁定车辆实例编号");
+    if (item.itemId === 0 ? !hasSystemKartKey(item.systemKart) :
+        item.systemKart !== undefined) {
+      throw new Error("锁定车辆的系统身份无效。");
+    }
+    const key = lockedItemKey(item);
+    if (seen.has(key)) throw new Error("不能重复锁定同一车辆实例。");
+    seen.add(key);
+  }
+}
+
 export function resolveSystemKartVariant(key: string, variant: unknown,
   deps: Pick<ProfileDependencies, "systemKarts" | "resolveVariant">): string | undefined {
   if (variant === undefined) return undefined;
@@ -196,7 +231,7 @@ export function resolveSystemKartVariant(key: string, variant: unknown,
 
 export function parseLocalProfile(serialized: string, deps: ProfileDependencies): LocalProfile {
   // JSON.parse is the untrusted persistence boundary; validation below narrows it.
-  const profile = { initial: "", favoriteTracks: [], favoriteItems: [],
+  const profile = { initial: "", favoriteTracks: [], favoriteItems: [], lockedItems: [],
     myRoom: defaultMyRoomProfile(),
     ...JSON.parse(serialized) } as LocalProfile;
   const equipment = profile?.equipment;
@@ -219,6 +254,7 @@ export function parseLocalProfile(serialized: string, deps: ProfileDependencies)
   }
   validateFavoriteTracks(profile.favoriteTracks);
   validateFavoriteItems(profile.favoriteItems);
+  validateLockedItems(profile.lockedItems);
   validateMyRoomProfile(profile.myRoom);
   const garage = deps.normalizeGarage(profile.garage);
   deps.validateGarage(garage);
@@ -235,6 +271,7 @@ export function saveLocalProfile(profile: LocalProfile,
   storage: Pick<Storage, "setItem">,
   deps: Pick<ProfileDependencies, "validateGarage">): void {
   deps.validateGarage(profile.garage);
+  validateLockedItems(profile.lockedItems);
   validateMyRoomProfile(profile.myRoom);
   storage.setItem(LOCAL_PROFILE_KEY, JSON.stringify(profile));
 }

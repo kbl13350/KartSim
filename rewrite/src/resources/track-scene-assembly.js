@@ -1,4 +1,5 @@
 import { BufferGeometry, Group, Matrix4, Mesh, PerspectiveCamera, Vector3 } from "three";
+import { TrackSceneStore } from "./track-scene-store.js";
 
 /**
  * Builds a renderable track scene from decoded model nodes. The dependency
@@ -10,7 +11,7 @@ export async function assembleTrackScene(model, library, label, resolveTexture,
   const {
     inspectRoot, validateInspection, isMorphGeometry, stripIndices,
     allocateRigidGeometry, allocateTriangleGeometry, finishSharedGeometry,
-    SceneStore, loadEnvironment, StageBinding, localNodeMatrix,
+    loadEnvironment, StageBinding, localNodeMatrix,
     poseOverrideMatrix, sceneVisibility, prsController,
     makePrsRuntime, loadTexture, inheritToonTexture, createToonMaterial,
     applyMaterialProperties, createBasicMaterial, createTextureControllers,
@@ -96,7 +97,7 @@ export async function assembleTrackScene(model, library, label, resolveTexture,
       object.add(records[rootIndex].cullingObject);
     }
     finishSharedGeometry([rigidPool, trianglePool]);
-    store = new SceneStore(records);
+    store = new TrackSceneStore(records);
     if (blackPlanes.length > 0) blackPlaneMask = new Uint8Array(store.count);
   } catch (error) {
     dispose();
@@ -211,9 +212,16 @@ export async function assembleTrackScene(model, library, label, resolveTexture,
         const texcoord = source.texcoords[face.texcoordIndices[corner]];
         const normal = source.normals[texcoord.normalIndex];
         const vertex = firstVertex + faceIndex * 3 + corner;
-        pool.positions.set(position, vertex * 3);
-        pool.normals.set(normal, vertex * 3);
-        pool.uvs.set([texcoord.u, texcoord.v], vertex * 2);
+        const positionOffset = vertex * 3;
+        pool.positions[positionOffset] = position[0];
+        pool.positions[positionOffset + 1] = position[1];
+        pool.positions[positionOffset + 2] = position[2];
+        pool.normals[positionOffset] = normal[0];
+        pool.normals[positionOffset + 1] = normal[1];
+        pool.normals[positionOffset + 2] = normal[2];
+        const uvOffset = vertex * 2;
+        pool.uvs[uvOffset] = texcoord.u;
+        pool.uvs[uvOffset + 1] = texcoord.v;
       }
     });
     const vertexCount = source.faces.length * 3;

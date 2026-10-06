@@ -1,9 +1,11 @@
 import type { LocalProfile, MyRoomProfile } from "./local-profile";
 import { validateMyRoomProfile } from "./local-profile";
 import type { MyRoomEnvironment } from "./my-room-catalog";
+import { MyRoomSceneView, type MyRoomSceneLibrary } from "./my-room-scene";
 
 export interface MyRoomViewOptions {
   root: HTMLElement;
+  library: MyRoomSceneLibrary;
   environments: readonly MyRoomEnvironment[];
   profile: LocalProfile;
   onProfileChange(profile: LocalProfile): void;
@@ -19,9 +21,7 @@ const styles = `
 .ks-myroom-header h1{font-size:24px;margin:0;flex:1}.ks-myroom-subtitle{font-size:13px;color:#c2d9ef}.ks-myroom button,.ks-myroom select,.ks-myroom input,.ks-myroom textarea{font:inherit}
 .ks-myroom button{border:1px solid #88cafa;border-radius:9px;background:#15578e;color:white;padding:8px 15px;cursor:pointer}.ks-myroom button:hover{background:#2175b2}.ks-myroom button:focus-visible,.ks-myroom select:focus-visible,.ks-myroom input:focus-visible,.ks-myroom textarea:focus-visible{outline:3px solid #ffe082;outline-offset:2px}
 .ks-myroom-body{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:22px;padding:22px;overflow:auto;flex:1}
-.ks-myroom-scene{position:relative;min-height:300px;overflow:hidden;border:1px solid #99c2de;border-radius:16px;background:linear-gradient(180deg,var(--room-sky,#8ac6ef) 0%,var(--room-wall,#d7dfcb) 58%,var(--room-floor,#7c9a9b) 58%,var(--room-floor,#7c9a9b) 100%)}
-.ks-myroom-scene:before{content:"";position:absolute;left:11%;top:16%;width:28%;height:31%;border:12px solid #f7e9c9;border-radius:90px 90px 8px 8px;background:linear-gradient(#c2e9ff,#8cc6dc);box-shadow:0 12px 22px #13284155}
-.ks-myroom-scene:after{content:"";position:absolute;right:-15%;bottom:-46%;width:110%;height:60%;border-radius:50%;background:#344f65aa;transform:rotate(-8deg)}
+.ks-myroom-scene{position:relative;height:min(58vh,560px);min-height:300px;overflow:hidden;border:1px solid #99c2de;border-radius:16px;background:#102b49}
 .ks-myroom-scene-label{position:absolute;left:22px;bottom:22px;z-index:1;padding:10px 14px;border-radius:10px;background:#102b49da;font-weight:700}
 .ks-myroom-side{display:flex;flex-direction:column;gap:16px}.ks-myroom-card{padding:18px;border:1px solid #6f9dbd;border-radius:13px;background:#204366}.ks-myroom-card h2{margin:0 0 12px;font-size:17px}.ks-myroom-card p{margin:0 0 12px;color:#d8e8f5}
 .ks-myroom-field{display:block;margin:11px 0;color:#d9eafa;font-size:14px}.ks-myroom-field input,.ks-myroom-field select,.ks-myroom-field textarea{display:block;width:100%;margin-top:5px;padding:9px;border:1px solid #a6c8df;border-radius:8px;background:#f7fbff;color:#143047}.ks-myroom-field textarea{min-height:70px;resize:vertical}
@@ -37,17 +37,7 @@ function node<K extends keyof HTMLElementTagNameMap>(tag: K, className?: string,
   return element;
 }
 
-function palette(resourceName: string): [string, string, string] {
-  const family = resourceName.split("_")[0]?.toLowerCase();
-  if (family === "desert") return ["#f9d7a2", "#dbaf78", "#a77154"];
-  if (family === "ice") return ["#b4e4ff", "#e5f3f8", "#7bb1c6"];
-  if (family === "forest") return ["#8bbba9", "#abd1a0", "#527d67"];
-  if (family === "tomb") return ["#b9adba", "#d8cbbf", "#74636e"];
-  if (family === "china") return ["#e3b19b", "#e9cfad", "#a35659"];
-  return ["#8ac6ef", "#d7dfcb", "#7c9a9b"];
-}
-
-/** A local My Room screen backed by the original environment catalog and saved profile. */
+/** A local My Room screen backed by the original environment catalog and scene models. */
 export class MyRoomView {
   readonly element = node("section", "ks-myroom");
   readonly title = node("h1");
@@ -63,6 +53,7 @@ export class MyRoomView {
     ? document.activeElement : undefined;
   private disposed = false;
   private inventoryOpen = false;
+  private sceneView?: MyRoomSceneView;
 
   constructor(readonly options: MyRoomViewOptions) {
     this.profile = options.profile;
@@ -80,10 +71,10 @@ export class MyRoomView {
     header.append(this.title, subtitle, this.closeButton);
     const body = node("div", "ks-myroom-body");
     const sceneArea = node("div");
-    this.scene.setAttribute("aria-label", "小屋环境主题示意");
+    this.scene.setAttribute("aria-label", "原版小屋三维场景");
     this.scene.append(this.sceneLabel);
     sceneArea.append(this.scene,
-      node("p", "ks-myroom-subtitle", "主题示意 · 场景名称与可选范围来自原版小屋资源"));
+      node("p", "ks-myroom-subtitle", "原版小屋模型 · 拖动旋转，滚轮缩放"));
     const side = node("div", "ks-myroom-side");
     const info = node("section", "ks-myroom-card");
     info.append(node("h2", undefined, "我的小屋"),
@@ -101,6 +92,10 @@ export class MyRoomView {
       this.environmentSelect.append(choice);
     }
     environmentField.append(this.environmentSelect);
+    this.environmentSelect.addEventListener("change", () => {
+      const room = this.selectedEnvironment();
+      if (room) void this.sceneView?.setEnvironment(room);
+    });
     const save = node("button", undefined, "保存小屋设置");
     save.type = "button";
     save.addEventListener("click", () => this.save());
@@ -130,6 +125,9 @@ export class MyRoomView {
   show(): void {
     if (this.disposed) return;
     this.element.hidden = false;
+    this.sceneView ??= new MyRoomSceneView(this.scene, this.options.library);
+    const room = this.selectedEnvironment();
+    if (room) void this.sceneView.setEnvironment(room);
     window.addEventListener("keydown", this.onKeyDown, true);
     this.closeButton.focus();
   }
@@ -143,10 +141,7 @@ export class MyRoomView {
       ?? this.options.environments.find(item => item.isDefault)!;
     this.environmentSelect.value = String(room.id);
     this.sceneLabel.textContent = room.title;
-    const [sky, wall, floor] = palette(room.resourceName);
-    this.scene.style.setProperty("--room-sky", sky);
-    this.scene.style.setProperty("--room-wall", wall);
-    this.scene.style.setProperty("--room-floor", floor);
+    if (this.sceneView) void this.sceneView.setEnvironment(room);
     if (room.id !== profile.myRoom.environmentId) {
       this.setStatus("已保存的小屋环境资源不可用，当前显示默认环境。", true);
     }
@@ -159,6 +154,7 @@ export class MyRoomView {
     if (this.disposed) return;
     this.disposed = true;
     window.removeEventListener("keydown", this.onKeyDown, true);
+    this.sceneView?.dispose();
     this.element.remove();
     this.previousFocus?.isConnected && this.previousFocus.focus();
   }
@@ -172,7 +168,11 @@ export class MyRoomView {
     }
   };
 
-  private save(): void {
+  private selectedEnvironment(): MyRoomEnvironment | undefined {
+    return this.options.environments.find(item => String(item.id) === this.environmentSelect.value);
+  }
+
+  private async save(): Promise<void> {
     const environmentId = Number(this.environmentSelect.value);
     if (!this.options.environments.some(item => item.id === environmentId)) {
       this.setStatus("请选择可用的小屋环境。", true);
@@ -184,6 +184,12 @@ export class MyRoomView {
       message: this.messageInput.value.trim(),
     };
     try {
+      if (this.sceneView && !(await this.sceneView.setEnvironment(
+        this.options.environments.find(item => item.id === environmentId)!))) {
+        this.setStatus("小屋场景未能加载，设置没有保存。", true);
+        return;
+      }
+      if (this.disposed) return;
       validateMyRoomProfile(myRoom);
       const next = { ...this.profile, myRoom };
       this.options.onProfileChange(next);

@@ -5,6 +5,10 @@ export interface MyRoomEnvironment {
   resourceName: string;
   title: string;
   isDefault: boolean;
+  /** Original room model scale applied when displaying karts. */
+  scaleUpOnKart?: number;
+  bgm?: string;
+  bgmTheme?: string;
 }
 
 interface RoomResourceEntry {
@@ -34,7 +38,8 @@ export function parseMyRoomCatalog(rooms: BinaryXmlNode,
   if (rooms.name !== "myRoomList" || locale.name !== "myRoomList") {
     throw new Error("小屋场景清单格式无效。");
   }
-  const titles = new Map<number, { title: string; isDefault: boolean }>();
+  const titles = new Map<number, { title: string; isDefault: boolean;
+    bgm?: string; bgmTheme?: string }>();
   for (const node of locale.children) {
     if (node.name !== "myRoom") continue;
     const id = Number(attribute(node, "id"));
@@ -42,7 +47,8 @@ export function parseMyRoomCatalog(rooms: BinaryXmlNode,
     if (!Number.isInteger(id) || id < 0 || id > 65535 || !title || titles.has(id)) {
       throw new Error("小屋中文环境清单含无效或重复 ID。");
     }
-    titles.set(id, { title, isDefault: attribute(node, "default") === "true" });
+    titles.set(id, { title, isDefault: attribute(node, "default") === "true",
+      bgm: attribute(node, "bgm"), bgmTheme: attribute(node, "bgmTheme") });
   }
   const seen = new Set<number>();
   const environments: MyRoomEnvironment[] = [];
@@ -56,8 +62,18 @@ export function parseMyRoomCatalog(rooms: BinaryXmlNode,
     }
     seen.add(id);
     const localized = titles.get(id);
+    const rawScale = attribute(node, "scaleUpOnKart");
+    const scaleUpOnKart = rawScale === undefined ? undefined : Number(rawScale);
+    if (rawScale !== undefined && (!Number.isFinite(scaleUpOnKart) ||
+        scaleUpOnKart! <= 0)) {
+      throw new Error("小屋背景包含无效的车辆显示比例。");
+    }
     if (localized) environments.push({ id, resourceName: name,
-      title: localized.title, isDefault: localized.isDefault });
+      title: localized.title, isDefault: localized.isDefault,
+      ...(scaleUpOnKart === undefined ? {} : { scaleUpOnKart }),
+      ...(localized.bgm === undefined ? {} : { bgm: localized.bgm }),
+      ...(localized.bgmTheme === undefined ? {} : { bgmTheme: localized.bgmTheme }),
+    });
   }
   if (environments.length === 0 || environments.filter(item => item.isDefault).length !== 1) {
     throw new Error("小屋清单缺少唯一的默认中文场景。");

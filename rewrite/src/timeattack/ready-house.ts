@@ -1,7 +1,8 @@
 import type { LocalProfile } from "../ui/local-profile";
 import { ItemInventoryView } from "../ui/item-inventory-view";
 import type { ItemInventoryCatalog, ItemInventoryItem } from "../ui/item-inventory";
-import { loadMyRoomCatalog, type MyRoomResourceLibrary } from "../ui/my-room-catalog";
+import { loadMyRoomCatalog } from "../ui/my-room-catalog";
+import type { MyRoomSceneLibrary } from "../ui/my-room-scene";
 import { MyRoomView } from "../ui/my-room-view";
 import type { ReadyFlowController } from "./ready-flow";
 import type { ReadyGarageController } from "./ready-garage";
@@ -16,6 +17,10 @@ export interface ReadyHouseController extends ReadyFlowController {
     saveProfile(): void;
   };
 }
+
+type ReadyHouseLibrary = MyRoomSceneLibrary & {
+  timeAttackGarageCatalog(): Promise<unknown>;
+};
 
 /** Keep the in-memory profile and its local/server mirror together. */
 export function saveReadyHouseProfile(controller: ReadyHouseController,
@@ -45,9 +50,7 @@ export function closeReadyHouse(controller: ReadyHouseController): void {
 }
 
 async function openHouseInventory(controller: ReadyHouseController,
-  library: MyRoomResourceLibrary & {
-    timeAttackGarageCatalog(): Promise<unknown>;
-  }): Promise<void> {
+  library: ReadyHouseLibrary): Promise<void> {
   if (controller.inventoryOpening || controller.activeItemInventory || !controller.activeHouse) return;
   const house = controller.activeHouse;
   controller.inventoryOpening = true;
@@ -103,7 +106,7 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
   if (controller.disposed || controller.activeHouse || controller.readyModalBusy() ||
       !controller.activeTimeAttackReady) return;
   const library = controller.host.getLibrary() as
-    (MyRoomResourceLibrary & { timeAttackGarageCatalog(): Promise<unknown> }) | undefined;
+    ReadyHouseLibrary | undefined;
   if (!library) return;
   if (!controller.host.shell.openModal("house")) return;
   controller.activeTimeAttackReady.freeze();
@@ -113,6 +116,7 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
     if (controller.disposed || controller.host.shell.modal !== "house") return;
     const view = new MyRoomView({
       root: controller.host.root,
+      library,
       environments,
       profile: controller.host.getProfile() as LocalProfile,
       onProfileChange: profile => saveReadyHouseProfile(controller, profile),

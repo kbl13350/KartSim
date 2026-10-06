@@ -1,8 +1,11 @@
 import type { LocalProfile } from "./local-profile";
 import {
-  ITEM_INVENTORY_GROUPS, filterItemInventory, itemInventoryCanUnequip, itemInventoryEntries,
-  itemInventoryGroup, itemInventoryIsEquipped, itemInventoryIsFavorite,
-  itemInventoryKey, toggleItemInventoryFavorite, type ItemInventoryCatalog,
+  ITEM_INVENTORY_GROUPS, filterItemInventory, itemInventoryCanEquip,
+  itemInventoryCanFavorite, itemInventoryCanLock, itemInventoryCanUnequip,
+  itemInventoryEntries,
+  itemInventoryIsEquipped, itemInventoryIsFavorite, itemInventoryKey,
+  itemInventorySubcategories, toggleItemInventoryFavorite, toggleItemInventoryLock,
+  type ItemInventoryCatalog,
   type ItemInventoryGroup, type ItemInventoryItem,
 } from "./item-inventory";
 
@@ -16,14 +19,12 @@ export interface ItemInventoryViewOptions {
   onClose(): void;
 }
 
-const PAGE_SIZE = 30;
 const KIND_LABELS: Record<string, string> = {
   kart: "卡丁车", character: "角色", flyingPet: "飞行宠物",
   headBand: "头饰", balloon: "气球", goggle: "护目镜", handGearL: "手部装备",
   aura: "光环", color: "喷漆", dye: "染色", skidMark: "轮胎印", plate: "车牌",
+  pet: "宠物", unknown: "未收录",
 };
-const KIND_ORDER = ["kart", "character", "flyingPet", "headBand", "balloon",
-  "goggle", "handGearL", "aura", "color", "dye", "skidMark", "plate"];
 
 const STYLE = `
 .item-inventory-overlay{position:absolute;inset:0;z-index:80;display:grid;place-items:center;padding:20px;background:rgba(2,12,25,.76);color:#f1f6ff;font:15px/1.4 system-ui,-apple-system,"Microsoft YaHei",sans-serif;box-sizing:border-box}
@@ -43,10 +44,10 @@ const STYLE = `
 .item-inventory-search,.item-inventory-kind{border:1px solid #7db8d8;border-radius:8px;background:#eaf5fc;color:#122840;padding:8px 10px;font:inherit}
 .item-inventory-search{width:min(260px,100%)}
 .item-inventory-kind{min-width:138px}
-.item-inventory-content{display:grid;grid-template-columns:minmax(0,1fr) 245px;min-height:0;flex:1}
+.item-inventory-content{display:grid;grid-template-columns:245px minmax(0,1fr);min-height:0;flex:1}
 .item-inventory-main{display:flex;flex-direction:column;min-width:0;min-height:0;padding:12px 16px 16px}
 .item-inventory-count{font-size:12px;color:#b9d5eb;margin-bottom:10px}
-.item-inventory-grid{overflow:auto;min-height:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));align-content:start;gap:10px;padding:1px 4px 6px 1px}
+.item-inventory-grid{overflow:auto;min-height:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-content:start;gap:10px;padding:1px 4px 6px 1px}
 .item-inventory-card{border:1px solid #5689b0;border-radius:10px;padding:10px;background:linear-gradient(#264d75,#183653);min-height:142px;display:flex;flex-direction:column;gap:7px}
 .item-inventory-card[data-selected="true"]{border-color:#ffdc78;box-shadow:0 0 0 2px #d6a23d inset}
 .item-inventory-card-title{border:0;background:transparent;color:#fff;text-align:left;padding:0;font:inherit;font-size:15px;font-weight:700;line-height:1.35;cursor:pointer;overflow-wrap:anywhere}
@@ -57,12 +58,12 @@ const STYLE = `
 .item-inventory-card-actions .item-inventory-favorite{flex:0 0 36px;padding:5px}
 .item-inventory-equipped{color:#ffe59b;font-weight:700}
 .item-inventory-empty{grid-column:1/-1;border:1px dashed #6695b5;border-radius:12px;padding:32px;text-align:center;color:#cfe3f2}
-.item-inventory-pagination{display:flex;align-items:center;justify-content:center;gap:12px;padding-top:12px;color:#cee5f3}
-.item-inventory-detail{border-left:1px solid #4e83a8;padding:18px;overflow:auto;background:#112b49}
+.item-inventory-detail{border-right:1px solid #4e83a8;padding:18px;overflow:auto;background:#112b49}
 .item-inventory-detail h3{font-size:20px;line-height:1.35;margin:0 0 12px;overflow-wrap:anywhere}
 .item-inventory-detail p{margin:8px 0;color:#bfd7e9;overflow-wrap:anywhere}
 .item-inventory-detail .item-inventory-button{width:100%;margin-top:9px}
 .item-inventory-status{min-height:28px;padding:5px 20px 12px;color:#ffe6a1;font-size:13px}
+@media(max-width:900px){.item-inventory-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){.item-inventory-overlay{padding:8px}.item-inventory-window{max-height:calc(100% - 16px)}.item-inventory-header{padding:12px}.item-inventory-tools{padding:9px}.item-inventory-content{grid-template-columns:1fr}.item-inventory-detail{display:none}.item-inventory-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}.item-inventory-search{flex:1;min-width:130px}}
 `;
 
@@ -81,10 +82,11 @@ function button(label: string, onClick: () => void, className = ""): HTMLButtonE
   return result;
 }
 
-/** Independent My Items window, backed by the local garage catalog and profile. */
+/** Original My Room inventory categories backed by explicit account holdings. */
 export class ItemInventoryView {
   readonly element = node("div", "item-inventory-overlay");
-  readonly items: ItemInventoryItem[];
+  readonly catalogItems: ItemInventoryItem[];
+  items: ItemInventoryItem[];
   readonly window = node("section", "item-inventory-window");
   readonly tabs = node("div", "item-inventory-tabs");
   readonly kind = node("select", "item-inventory-kind");
@@ -92,52 +94,52 @@ export class ItemInventoryView {
   readonly count = node("div", "item-inventory-count");
   readonly grid = node("div", "item-inventory-grid");
   readonly detail = node("aside", "item-inventory-detail");
-  readonly pagination = node("div", "item-inventory-pagination");
   readonly status = node("div", "item-inventory-status");
   profile: LocalProfile;
-  group: ItemInventoryGroup = "all";
-  kindFilter = "all";
-  page = 0;
+  group: ItemInventoryGroup = "kartBody";
+  kindFilter = "whole";
+  visibleCount = 48;
   selectedKey?: string;
   busy = false;
   disposed = false;
   previousFocus: Element | null = null;
 
   constructor(readonly options: ItemInventoryViewOptions) {
-    this.items = itemInventoryEntries(options.catalog);
+    this.catalogItems = itemInventoryEntries(options.catalog);
+    this.items = this.withLocks(this.catalogItems, options.profile);
     this.profile = options.profile;
     this.element.setAttribute("role", "presentation");
     this.window.setAttribute("role", "dialog");
     this.window.setAttribute("aria-modal", "true");
-    this.window.setAttribute("aria-label", "我的道具");
+    this.window.setAttribute("aria-label", "我的物品");
     const style = node("style");
     style.textContent = STYLE;
     this.element.append(style);
 
     const header = node("header", "item-inventory-header");
     const title = node("div");
-    title.append(node("h2", undefined, "我的道具"),
-      node("p", undefined, "本地可用道具 · 装备与收藏保存在当前档案"));
+    title.append(node("h2", undefined, "我的物品"),
+      node("p", undefined, "按原版小屋仓库分类浏览并装备资源目录物品"));
     header.append(title, node("div", "item-inventory-spacer"),
       button("×", () => this.close(), "item-inventory-close"));
     const tools = node("div", "item-inventory-tools");
     this.tabs.setAttribute("role", "tablist");
     this.tabs.setAttribute("aria-label", "道具分类");
     this.search.type = "search";
-    this.search.placeholder = "搜索道具名称或编号";
+    this.search.placeholder = "请输入道具名称";
     this.search.setAttribute("aria-label", "搜索道具");
-    this.search.addEventListener("input", () => { this.page = 0; this.render(); });
+    this.search.maxLength = 14;
+    this.search.addEventListener("input", () => this.render());
     this.kind.setAttribute("aria-label", "细分类别");
     this.kind.addEventListener("change", () => {
       this.kindFilter = this.kind.value;
-      this.page = 0;
       this.render();
     });
     tools.append(this.tabs, this.kind, this.search);
     const main = node("div", "item-inventory-main");
-    main.append(this.count, this.grid, this.pagination);
+    main.append(this.count, this.grid);
     const content = node("div", "item-inventory-content");
-    content.append(main, this.detail);
+    content.append(this.detail, main);
     this.status.setAttribute("role", "status");
     this.window.append(header, tools, content, this.status);
     this.element.append(this.window);
@@ -159,7 +161,19 @@ export class ItemInventoryView {
 
   refresh(profile: LocalProfile): void {
     this.profile = profile;
+    this.items = this.withLocks(this.catalogItems, profile);
     if (!this.disposed) this.render();
+  }
+
+  private withLocks(items: ItemInventoryItem[], profile: LocalProfile):
+    ItemInventoryItem[] {
+    return items.map(item => ({
+      ...item, locked: profile.lockedItems.some(record =>
+        record.category === item.category &&
+        record.itemId === item.itemId &&
+        record.serial === (item.serial ?? 0) &&
+        (item.itemId !== 0 || record.systemKart === item.systemKey)),
+    }));
   }
 
   dispose(): void {
@@ -187,37 +201,33 @@ export class ItemInventoryView {
 
   private setStatus(message: string): void { this.status.textContent = message; }
 
-  private kindOptions(): string[] {
-    const relevant = this.items.filter(item => this.group === "all" ||
-      this.group === "favorite" ?
-      (this.group !== "favorite" || itemInventoryIsFavorite(item, this.profile)) :
-      itemInventoryGroup(item) === this.group);
-    const kinds = new Set(relevant.map(item => item.kind));
-    return KIND_ORDER.filter(kind => kinds.has(kind));
-  }
-
   private renderTabs(): void {
     this.tabs.replaceChildren(...ITEM_INVENTORY_GROUPS.map(group => {
       const tab = button(group.label, () => {
         this.group = group.key;
-        this.kindFilter = "all";
-        this.page = 0;
+        this.kindFilter = "whole";
+        this.selectedKey = undefined;
         this.render();
       });
       tab.setAttribute("role", "tab");
       tab.setAttribute("aria-selected", String(this.group === group.key));
       return tab;
     }));
-    const kinds = this.kindOptions();
-    if (this.kindFilter !== "all" && !kinds.includes(this.kindFilter)) this.kindFilter = "all";
-    this.kind.replaceChildren(node("option", undefined, "全部细类"),
-      ...kinds.map(kind => {
-        const option = node("option", undefined, KIND_LABELS[kind] ?? kind);
-        option.value = kind;
-        return option;
-      }));
-    this.kind.firstElementChild?.setAttribute("value", "all");
+    const subcategories = itemInventorySubcategories(this.group);
+    if (!subcategories.some(entry => entry.key === this.kindFilter))
+      this.kindFilter = "whole";
+    this.kind.replaceChildren(...subcategories.map(entry => {
+      const option = node("option", undefined, entry.label);
+      option.value = entry.key;
+      return option;
+    }));
     this.kind.value = this.kindFilter;
+  }
+
+  private itemState(item: ItemInventoryItem): string {
+    if (item.expiresAt !== undefined && item.expiresAt <= Date.now()) return "已过期";
+    if (itemInventoryIsEquipped(item, this.profile)) return "● 使用中";
+    return item.quantity === undefined ? "资源可用" : "数量 " + item.quantity + " 个";
   }
 
   private renderCard(item: ItemInventoryItem): HTMLElement {
@@ -229,23 +239,31 @@ export class ItemInventoryView {
       this.render();
     }, "item-inventory-card-title");
     const meta = node("div", "item-inventory-card-meta",
-      `${KIND_LABELS[item.kind] ?? item.kind} · #${item.itemId}`);
+      (KIND_LABELS[item.kind] ?? "道具") + " · #" + item.itemId +
+      (item.serial ? " · 实例 " + item.serial : ""));
     const equipped = itemInventoryIsEquipped(item, this.profile);
-    const state = node("div", "item-inventory-card-meta",
-      equipped ? "● 已装备" : "本地可用");
+    const state = node("div", "item-inventory-card-meta", this.itemState(item));
     if (equipped) state.classList.add("item-inventory-equipped");
     const actions = node("div", "item-inventory-card-actions");
     const favorite = button(itemInventoryIsFavorite(item, this.profile) ? "★" : "☆",
       () => this.toggleFavorite(item), "item-inventory-favorite");
-    favorite.title = itemInventoryIsFavorite(item, this.profile) ? "取消收藏" : "收藏";
-    favorite.setAttribute("aria-label", `${favorite.title} ${item.title}`);
-    favorite.disabled = item.itemId === 0 && item.kind !== "kart";
+    favorite.title = itemInventoryIsFavorite(item, this.profile) ? "取消星标" : "加入星标";
+    favorite.setAttribute("aria-label", favorite.title + " " + item.title);
+    favorite.disabled = !itemInventoryCanFavorite(item) || this.busy;
+    actions.append(favorite);
+    if (itemInventoryCanLock(item)) {
+      const lock = button(item.locked ? "解锁" : "锁定", () => this.toggleLock(item));
+      lock.disabled = this.busy;
+      actions.append(lock);
+    }
     const canUnequip = equipped && itemInventoryCanUnequip(item);
-    const equip = button(canUnequip ? "卸下" : equipped ? "已装备" : "装备",
+    const canEquip = itemInventoryCanEquip(item);
+    const equip = button(canUnequip ? "卸下" : equipped ? "使用中" :
+      canEquip ? "装备" : "暂不可用",
       () => void this.equip(item, canUnequip ? "unequip" : "equip"));
     equip.disabled = (equipped && !canUnequip) || this.busy ||
-      (item.itemId === 0 && item.kind !== "kart");
-    actions.append(favorite, equip);
+      (!canUnequip && !canEquip);
+    actions.append(equip);
     card.append(title, meta, state, actions);
     return card;
   }
@@ -253,43 +271,59 @@ export class ItemInventoryView {
   private renderDetail(item: ItemInventoryItem | undefined): void {
     this.detail.replaceChildren();
     if (!item) {
-      this.detail.append(node("h3", undefined, "道具详情"),
-        node("p", undefined, "选择一件道具查看详情。"));
+      this.detail.append(node("h3", undefined, "我的物品"),
+        node("p", undefined, "选择一件物品查看持有状态。"));
       return;
     }
     this.detail.append(node("h3", undefined, item.title),
-      node("p", undefined, `类别：${KIND_LABELS[item.kind] ?? item.kind}`),
-      node("p", undefined, `道具编号：${item.itemId}`),
-      node("p", undefined, `资源名称：${item.internalId}`),
-      node("p", undefined, itemInventoryIsEquipped(item, this.profile) ? "当前已装备" : "本地可用"));
-    const favorite = button(itemInventoryIsFavorite(item, this.profile) ? "取消收藏" : "加入收藏",
+      node("p", undefined, "类别：" + (KIND_LABELS[item.kind] ?? "道具")),
+      node("p", undefined, "道具编号：" + item.itemId));
+    if (item.serial) this.detail.append(node("p", undefined, "实例编号：" + item.serial));
+    if (item.quantity !== undefined)
+      this.detail.append(node("p", undefined, "持有数量：" + item.quantity));
+    if (item.expiresAt !== undefined)
+      this.detail.append(node("p", undefined,
+        "有效期至：" + new Date(item.expiresAt).toLocaleString("zh-CN")));
+    if (item.locked) this.detail.append(node("p", undefined, "已锁定"));
+    if (item.pcCafe) this.detail.append(node("p", undefined, "网吧专属"));
+    this.detail.append(node("p", undefined, this.itemState(item)));
+    const favorite = button(itemInventoryIsFavorite(item, this.profile) ? "取消星标" : "加入星标",
       () => this.toggleFavorite(item));
-    favorite.disabled = item.itemId === 0 && item.kind !== "kart";
+    favorite.disabled = !itemInventoryCanFavorite(item) || this.busy;
+    this.detail.append(favorite);
+    if (itemInventoryCanLock(item)) {
+      const lock = button(item.locked ? "解除锁定" : "锁定这件道具",
+        () => this.toggleLock(item));
+      lock.disabled = this.busy;
+      this.detail.append(lock);
+    }
     const equipped = itemInventoryIsEquipped(item, this.profile);
     const canUnequip = equipped && itemInventoryCanUnequip(item);
-    const equip = button(canUnequip ? "卸下这件道具" : equipped ? "已装备" : "装备这件道具",
+    const canEquip = itemInventoryCanEquip(item);
+    const equip = button(canUnequip ? "卸下这件道具" : equipped ? "使用中" :
+      canEquip ? "装备这件道具" : "暂不可用",
       () => void this.equip(item, canUnequip ? "unequip" : "equip"));
     equip.disabled = (equipped && !canUnequip) || this.busy ||
-      (item.itemId === 0 && item.kind !== "kart");
-    this.detail.append(favorite, equip);
+      (!canUnequip && !canEquip);
+    this.detail.append(equip);
   }
 
   private render(): void {
     this.renderTabs();
     const filtered = filterItemInventory(this.items, this.profile,
       this.group, this.search.value, this.kindFilter);
-    const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-    this.page = Math.min(this.page, totalPages - 1);
-    this.count.textContent = `共 ${filtered.length} 件本地可用道具`;
-    const pageItems = filtered.slice(this.page * PAGE_SIZE, (this.page + 1) * PAGE_SIZE);
-    this.grid.replaceChildren(...(pageItems.length > 0 ? pageItems.map(item => this.renderCard(item)) :
-      [node("div", "item-inventory-empty", "当前分类没有可显示的道具。")]));
-    const previous = button("上一页", () => { this.page--; this.render(); });
-    previous.disabled = this.page === 0;
-    const next = button("下一页", () => { this.page++; this.render(); });
-    next.disabled = this.page >= totalPages - 1;
-    this.pagination.replaceChildren(previous,
-      node("span", undefined, `${this.page + 1} / ${totalPages}`), next);
+    this.count.textContent = "我的物品 · " + filtered.length + " 件";
+    const visible = filtered.slice(0, this.visibleCount);
+    const gridNodes = visible.length > 0 ? visible.map(item => this.renderCard(item)) :
+      [node("div", "item-inventory-empty", "当前分类没有可显示的物品。")];
+    if (visible.length < filtered.length)
+      gridNodes.push(button("加载更多", () => {
+        this.visibleCount += 48;
+        this.render();
+      }));
+    const scrollTop = this.grid.scrollTop;
+    this.grid.replaceChildren(...gridNodes);
+    this.grid.scrollTop = scrollTop;
     const selected = this.items.find(item => itemInventoryKey(item) === this.selectedKey);
     this.renderDetail(selected);
   }
@@ -303,6 +337,21 @@ export class ItemInventoryView {
       this.profile = next;
       this.setStatus(itemInventoryIsFavorite(item, next) ? `已收藏 ${item.title}` :
         `已取消收藏 ${item.title}`);
+      this.render();
+    } catch (error) {
+      this.setStatus(error instanceof Error ? error.message : String(error));
+    }
+  }
+
+  private toggleLock(item: ItemInventoryItem): void {
+    if (this.busy) return;
+    try {
+      const next = toggleItemInventoryLock(this.profile, item);
+      if (next === this.profile) return;
+      this.options.onProfileChange(next);
+      this.profile = next;
+      this.items = this.withLocks(this.catalogItems, next);
+      this.setStatus(item.locked ? "已解锁 " + item.title : "已锁定 " + item.title);
       this.render();
     } catch (error) {
       this.setStatus(error instanceof Error ? error.message : String(error));

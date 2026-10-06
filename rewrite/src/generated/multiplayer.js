@@ -3,6 +3,7 @@
 // Stable minified names are retained for behavioral parity.
 
 import { keyboardActionsForCode } from "../input/action-bindings.ts";
+import { RpScenePreview } from "../multiplayer/rp-scene-preview.ts";
 import { RaceLoadingScreen } from "../multiplayer/race-loading-screen.ts";
 import { handleLobbyEmotionKey, handleLobbyRoomKey, initializeLobbyRoom, loadLobbyRoom } from "../multiplayer/lobby-room-construction.ts";
 import { lobbyRoomNodeState } from "../multiplayer/lobby-room-state.ts";
@@ -76,6 +77,7 @@ const lobbyRoomTrackDependencies = { randomTrack: code => X6(code), mode: room =
 const lobbyRoomConstructionDependencies = { mode: room => G2(room), loadRoleTeams: library => fa(library), loadEmotions: library => cP(library), loadCountdown: library => dy.load(library), loadDefinition: (library, roadblock) => Ll0(library, roadblock), withEmotions: (definition, emotions) => Fl0(definition, emotions), loadView: options => te.load(options), loadTrackChangeNotice: (...args) => fy.load(...args), createPreviews: (library, render, onError, emotions, audioContext) => new Tl0(library, render, onError, emotions, audioContext) };
 const lobbyRoomStateDependencies = { nodeName: node => T(node, 'name'), slots: (room, playerId) => FT(room, playerId), roadblockRunner: room => TF(room), gameplayMode: room => G2(room), decodeChat: (text, emotions) => Ng(text, emotions), wrapBubble: text => kl0(text), drawBubbleLine: (canvas, line, rect, options) => m9(canvas, line, rect, options), nowMs: () => performance.now(), get roadblockDefaults() { return tt; }, get rpChannelNames() { return lw; }, get colors() { return { redTeam: Rl0, blueTeam: Bl0, ownChat: _l0, otherChat: Gl0 }; } };
 const raceLoadingScreenAssets = { imageBytes: (library, roots, name) => U1(library, roots, name).bytes(), decodeImage: bytes => p2(bytes) };
+const rpScenePreviewDependencies = { createCamera: () => new Z9(), createSize: () => new B2(), createBinding: () => new ha(), sceneName: node => T(node, 'scene'), validateCamera: (...args) => _F(...args), parseScene: bytes => y9(bytes), loadScene: (...args) => W1(...args), resolveReference: (...args) => ya(...args), loadKartEnvironment: library => rn.load(library), loadKart: (...args) => Qv(...args), createRenderer: options => new I4(options), outputColorSpace: qe, kartFieldOfView: (...args) => we(...args), prepareKart: (...args) => ey(...args), renderKart: (...args) => f4(...args), configureSceneCamera: (...args) => Dl0(...args), disposeKart: kart => Js(kart) };
 
 class ll0 extends RaceStartCoordinator {
   constructor(options) {
@@ -1501,115 +1503,10 @@ function Dl0(n, e, t, i) {
     n.projectionMatrixInverse.copy(n.projectionMatrix).invert());
 }
 
-class my {
-  renderer;
-  camera = new Z9();
-  scenes = new Map();
-  size = new B2();
-  kart;
-  kartEnvironment;
-  kartBinding = new ha();
-  kartCamera = new Z9();
-  disposed = !1;
-  constructor() {
-    ((this.camera.matrixAutoUpdate = !1),
-      (this.camera.matrixWorldAutoUpdate = !1));
-  }
-  static async load(e, t, i) {
-    const r = new my();
-    try {
-      const s = [],
-        o = (a) => {
-          (a.name === "Play1SPanel" && s.push(a), a.children.forEach(o));
-        };
-      if ((o(t), s.length !== 2)) throw new Error("RP 原开箱/闪光场景不完整。");
-      for (const a of s) {
-        const c = T(a, "scene");
-        if (!["복불복상자(선물펑)", "반짝반짝눈이부셔"].includes(c ?? ""))
-          throw new Error("RP 场景身份不匹配。");
-        _F(a, 1, 1);
-        const l = `dialog/bokbulbok/${c}.1s`,
-          u = e.get(l);
-        if (!u) throw new Error(`RP 原动画缺失：${l}`);
-        const h = await W1(y9(await u.bytes()), e, l, (d) => ya(e, l, d), {
-          convertClientCoordinates: !1,
-        });
-        if ((r.scenes.set(a, h), !h.playControllers || !h.stopControllers))
-          throw new Error("RP 场景控制器生命周期缺失。");
-        h.stopControllers(1);
-      }
-      return (
-        (r.kartEnvironment = await rn.load(e)),
-        (r.kart = await Qv(e, i, r.kartEnvironment, r.kartBinding)),
-        (r.renderer = new I4({
-          alpha: !0,
-          antialias: !1,
-          preserveDrawingBuffer: !0,
-        })),
-        r.renderer.setClearColor(0, 0),
-        r.renderer.setPixelRatio(1),
-        (r.renderer.outputColorSpace = qe),
-        r
-      );
-    } catch (s) {
-      throw (r.dispose(), s);
-    }
-  }
-  paintKart(e, t, i) {
-    const r = this.kart,
-      s = this.renderer;
-    if (this.disposed || !r || !s) throw new Error("RP 车辆预览 owner 缺失。");
-    const o = Math.max(1, Math.trunc(t.width)),
-      a = Math.max(1, Math.trunc(t.height)),
-      c = this.kartCamera;
-    (c.position.set(Math.fround(-3.6), 2.25, 5),
-      c.lookAt(0, Math.fround(0.3), 0),
-      (c.near = 1),
-      (c.far = 100),
-      (c.aspect = o / a),
-      (c.fov = we(75 / Math.fround(1.4), c.aspect)),
-      c.updateProjectionMatrix(),
-      s.getSize(this.size),
-      (this.size.x !== o || this.size.y !== a) && s.setSize(o, a, !1),
-      s.clear(!0, !0, !0),
-      this.kartBinding.beginFrame(i >>> 0),
-      ey(r, i >>> 0, c, o, a),
-      f4(s, r.scene, c),
-      e.drawImage(s.domElement, t.x, t.y, t.width, t.height));
-  }
-  play(e, t) {
-    if (this.disposed) throw new Error("RP 动画已释放。");
-    const i = this.scenes.get(e);
-    if (!i) throw new Error("RP 动画节点未装配。");
-    i.playControllers(t >>> 0, 0);
-  }
-  paint(e, t, i, r) {
-    const s = this.scenes.get(e),
-      o = this.renderer;
-    if (this.disposed || !s || !o) throw new Error("RP 动画绘制 owner 缺失。");
-    const a = Math.max(1, Math.trunc(i.width)),
-      c = Math.max(1, Math.trunc(i.height));
-    (Dl0(this.camera, e, a, c),
-      o.getSize(this.size),
-      (this.size.x !== a || this.size.y !== c) && o.setSize(a, c, !1),
-      o.clear(!0, !0, !0),
-      s.update(r >>> 0, this.camera, a, c),
-      o.render(s.object, this.camera),
-      t.drawImage(o.domElement, i.x, i.y, i.width, i.height));
-  }
-  dispose() {
-    this.disposed ||
-      ((this.disposed = !0),
-      this.scenes.forEach((e) => e.dispose()),
-      this.scenes.clear(),
-      this.kart && Js(this.kart),
-      (this.kart = void 0),
-      this.kartBinding.dispose(),
-      this.kartEnvironment?.dispose(),
-      (this.kartEnvironment = void 0),
-      this.renderer?.dispose(),
-      this.renderer?.forceContextLoss(),
-      (this.renderer = void 0));
+class my extends RpScenePreview {
+  constructor() { super(rpScenePreviewDependencies); }
+  static async load(library, definition, kartItem) {
+    return super.load(library, definition, kartItem, rpScenePreviewDependencies);
   }
 }
 

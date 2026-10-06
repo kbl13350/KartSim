@@ -59,3 +59,18 @@ test("My Room rejects duplicate IDs and a missing default scene", () => {
     list(child({ id: "2", name: "desert_M01" })),
     list(child({ id: "2", title: "沙漠" }))), /默认中文场景/);
 });
+
+test("My Room keeps the original kart display scale and locale BGM metadata", () => {
+  const rooms = parseMyRoomCatalog(
+    list(child({ id: "16", name: "tomb_M01" }),
+      child({ id: "33", name: "village_M14", scaleUpOnKart: "2.0" })),
+    list(child({ id: "16", title: "墓地", default: "true" }),
+      child({ id: "33", title: "X 引擎小屋", bgm: "room_music", bgmTheme: "xmas" })),
+  );
+  assert.equal(rooms[1]?.scaleUpOnKart, 2);
+  assert.equal(rooms[1]?.bgm, "room_music");
+  assert.equal(rooms[1]?.bgmTheme, "xmas");
+  assert.throws(() => parseMyRoomCatalog(
+    list(child({ id: "16", name: "tomb_M01", scaleUpOnKart: "0" })),
+    list(child({ id: "16", title: "墓地", default: "true" }))), /显示比例/);
+});

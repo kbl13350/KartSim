@@ -27,7 +27,7 @@ export interface GaragePreviewActionHost {
   panels?: { setTransformPreview?(active: boolean): void };
   coatingMode: boolean;
   cosmeticSlot?: unknown;
-  button<T>(label: string, action: () => void): T;
+  button(label: string, action: () => void): unknown;
   setPartPreview(value: undefined): void;
   syncTransformPreviewUi(): void;
   syncCosmeticPreviewActions(): void;
@@ -49,7 +49,7 @@ export function createGarageCancelPreviewButton<T>(host: GaragePreviewActionHost
     host.syncTransformPreviewUi();
     host.syncCosmeticPreviewActions();
     host.updatePerformance();
-  });
+  }) as T;
 }
 
 /** Remove from the active coating, cosmetic or mechanical part lane. */
@@ -58,5 +58,5 @@ export function createGarageRemovePartButton<T>(host: GaragePreviewActionHost): 
     if (host.coatingMode) host.requestCoating(undefined);
     else if (host.cosmeticSlot) host.requestCosmetic(undefined);
     else host.requestEquip(undefined);
-  });
+  }) as T;
 }

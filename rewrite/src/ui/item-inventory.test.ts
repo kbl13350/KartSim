@@ -3,8 +3,9 @@ import test from "node:test";
 
 import { defaultMyRoomProfile, type LocalProfile } from "./local-profile";
 import {
-  filterItemInventory, itemInventoryCanUnequip, itemInventoryEntries, itemInventoryIsEquipped,
-  itemInventoryIsFavorite, toggleItemInventoryFavorite,
+  filterItemInventory, itemInventoryCanEquip, itemInventoryCanUnequip,
+  itemInventoryEntries, itemInventoryIsEquipped, itemInventoryIsFavorite,
+  itemInventorySubcategories, toggleItemInventoryFavorite, toggleItemInventoryLock,
   type ItemInventoryCatalog,
 } from "./item-inventory";
 
@@ -33,7 +34,7 @@ function profile(): LocalProfile {
     equipment: { itemIds: { 1: 2, 3: 387, 11: 22, 26: 0, 52: 0 },
       kartSerial: 0, valueAt3E: 0, exceedType: 0 },
     initial: "", favoriteItems: [], favoriteTracks: [],
-    myRoom: defaultMyRoomProfile(),
+    myRoom: defaultMyRoomProfile(), lockedItems: [],
   };
 }
 
@@ -48,6 +49,25 @@ test("My Items uses only categories supported by the local garage catalog", () =
     .map(item => item.title), ["蓝色光环"]);
   assert.deepEqual(filterItemInventory(items, profile(), "character", "", "flyingPet")
     .map(item => item.title), ["蓝色飞宠"]);
+});
+
+test("all valid catalog entries equip without an owned ledger, including locked vehicles", () => {
+  const items = itemInventoryEntries(catalog);
+  assert.equal(items.length, 6);
+  assert.equal(items.every(item => itemInventoryCanEquip(item)), true);
+  const locked = toggleItemInventoryLock(profile(), items[0]!);
+  assert.deepEqual(locked.lockedItems, [{ category: 3, itemId: 387, serial: 0 }]);
+  assert.equal(itemInventoryCanEquip({ ...items[0]!, locked: true }), true);
+  assert.deepEqual(toggleItemInventoryLock(locked, items[0]!).lockedItems, []);
+  const unchanged = profile();
+  assert.equal(toggleItemInventoryLock(unchanged, items[3]!), unchanged);
+});
+
+test("My Room garage exposes the original vehicle and equipment subcategories", () => {
+  assert.deepEqual(itemInventorySubcategories("kartBody").map(entry => entry.key),
+    ["whole", "itemKart", "speedkart", "kartGear", "strengthen", "enhanceIngredient"]);
+  assert.deepEqual(itemInventorySubcategories("equip").map(entry => entry.key),
+    ["whole", "headband", "balloon", "goggle", "handGearL", "rpLucciBonus", "decal"]);
 });
 
 test("favorites use existing profile identity, persist via profile copies, and respect system kart keys", () => {

@@ -7,6 +7,7 @@ import { BufferAttribute, BufferGeometry, Group, Matrix4, Mesh, MeshBasicMateria
   PerspectiveCamera, Sphere, Texture, Vector3 } from "three";
 
 import { assembleTrackScene } from "./track-scene-assembly.js";
+import { TrackSceneStore } from "./track-scene-store.js";
 
 const releaseFile = path.resolve(path.dirname(fileURLToPath(import.meta.url)),
   "../../../recovered/formatted/index.js");
@@ -90,6 +91,42 @@ function snapshot(scene: any) {
     bounds: scene.clientWorldBounds(scene.settings.node) };
 }
 
+test("平铺场景 store 的 preorder、矩阵视图和边界缓存与发行版一致", async () => {
+  const source = await readFile(releaseFile, "utf8");
+  const first = source.indexOf("class XK {");
+  const last = source.indexOf("\nconst Bb =", first);
+  const Original = new Function("v2", `${source.slice(first, last)}\nreturn XK;`)(Matrix4);
+  const child = sceneNode("child");
+  const parent = sceneNode("parent", [child]);
+  const record = (node: any, enabled: boolean) => ({ source: node,
+    object: new Group(), cullingObject: new Group(), bounds: node.bounds0,
+    serializedLocal: new Matrix4(), animatedTransform: enabled,
+    animatedDescendants: !enabled, enabled, cullingTraversalMode: 3,
+    onCollect: undefined, onVisible: undefined, visibility: undefined,
+    prs: undefined, prsRuntime: undefined, prsFallback: undefined,
+    needsClientWorldInverse: enabled,
+    initialClientWorld: new Matrix4().makeTranslation(enabled ? 2 : 4, 0, 0).elements });
+  const records = [record(parent, true), record(child, false)];
+  const old = new Original(records);
+  const current = new TrackSceneStore(records);
+  const currentFields = current as unknown as Record<string,
+    Uint8Array | Int32Array | Float64Array>;
+  for (const field of ["childOffsets", "childIndices", "parent", "enabled",
+    "animatedTransform", "animatedDescendants", "needsClientWorldInverse",
+    "clientWorld", "clientWorldInverse", "matrixDirty", "boundsDirty"])
+    assert.deepEqual([...currentFields[field]!], [...old[field]], field);
+  for (let index = 0; index < records.length; index++) {
+    assert.deepEqual([...current.clientWorldElementsViews[index]],
+      [...old.clientWorldElementsViews[index]]);
+    const oldMatrix = new Matrix4();
+    const currentMatrix = new Matrix4();
+    old.readClientWorld(index, oldMatrix);
+    current.readClientWorld(index, currentMatrix);
+    assert.deepEqual([...currentMatrix.elements], [...oldMatrix.elements]);
+    assert.deepEqual(current.ordinaryBounds(index), old.ordinaryBounds(index));
+  }
+});
+
 test("空材质场景的根装配、节点尺度、帧更新和释放与发行版一致", async () => {
   const makeOriginal = await releaseScene();
   for (const convert of [true, false]) {
@@ -161,6 +198,28 @@ test("相机居中与有无相机切换的世界矩阵策略与发行版一致",
   }
   old.dispose();
   current.dispose();
+});
+
+test("未支持的节点边界在装配失败时按发行版释放环境", async () => {
+  const makeOriginal = await releaseScene();
+  const source = await readFile(releaseFile, "utf8");
+  const classStart = source.indexOf("class XK {");
+  const classEnd = source.indexOf("\nconst Bb =", classStart);
+  const Store = new Function("v2", `${source.slice(classStart, classEnd)}\nreturn XK;`)(Matrix4);
+  const node = sceneNode("bad-bounds");
+  node.serializedBoundsOverride = 1;
+  const model = { root: node, settings: {} };
+  const oldHarness = harness();
+  const currentHarness = harness();
+  const originalError = await makeOriginal({ ...oldHarness.shared, XK: Store })(
+    model, {}, "invalid", () => ({}), { stageBinding: oldHarness.stageBinding })
+    .then(() => "success", error => String(error));
+  const currentError = await assembleTrackScene(model, {}, "invalid", () => ({}),
+    { stageBinding: currentHarness.stageBinding },
+    { ...currentHarness.adapter, SceneStore: Store })
+    .then(() => "success", error => String(error));
+  assert.equal(currentError, originalError);
+  assert.deepEqual(currentHarness.events, oldHarness.events);
 });
 
 test("三角网格候选的共享缓冲区、材质和 scene store 与发行版一致", async () => {

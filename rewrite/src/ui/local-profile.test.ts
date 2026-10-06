@@ -101,7 +101,7 @@ function legacyProfileView(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(legacyProfileView);
   if (value && typeof value === "object") {
     return Object.fromEntries(Object.entries(value)
-      .filter(([key]) => key !== "myRoom")
+      .filter(([key]) => key !== "myRoom" && key !== "lockedItems")
       .map(([key, entry]) => [key, legacyProfileView(entry)]));
   }
   return value;
@@ -130,4 +130,27 @@ test("local profile adds and validates the local My Room draft", () => {
   assert.throws(() => rewritten.validateMyRoomProfile({
     environmentId: 16, displayName: "", message: "",
   }), /小屋名称/);
+});
+
+test("kart locks migrate as empty and keep instance identities distinct", () => {
+  const profile = rewritten.defaultLocalProfile();
+  assert.deepEqual(profile.lockedItems, []);
+  rewritten.validateLockedItems([
+    { category: 3, itemId: 387, serial: 0 },
+    { category: 3, itemId: 387, serial: 1 },
+    { category: 3, itemId: 0, serial: 0, systemKart: "sys-a" },
+  ]);
+  assert.throws(() => rewritten.validateLockedItems([
+    { category: 3, itemId: 387, serial: 0 },
+    { category: 3, itemId: 387, serial: 0 },
+  ]), /重复锁定/);
+  assert.throws(() => rewritten.validateLockedItems([
+    { category: 11, itemId: 22, serial: 0 },
+  ]), /只有卡丁车/);
+  const deps: rewritten.ProfileDependencies = {
+    normalizeGarage: garage => garage, validateGarage: () => undefined,
+    garageKart: () => ({}), systemKarts: [], resolveVariant: () => undefined,
+  };
+  const { lockedItems: _old, ...legacy } = profile;
+  assert.deepEqual(rewritten.parseLocalProfile(JSON.stringify(legacy), deps).lockedItems, []);
 });

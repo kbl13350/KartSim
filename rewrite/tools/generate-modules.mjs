@@ -228,6 +228,18 @@ const racePresentationSessionMethodOverrides = new Map([
   ["exit", "  exit() { return exitRaceSession(this); }"],
   ["dispose", "  dispose() { return disposeRaceSession(this); }"],
 ]);
+const trackInfoCardMethodOverrides = new Map([
+  ["constructor", "  constructor(root, title, difficulty, bgmTitles, gameLabels, assets) { initializeTrackInfoCard(this, root, title, difficulty, bgmTitles, gameLabels, assets); }"],
+  ["load", "  static async load(options) { return loadTrackInfoCard(options, { ...trackInfoCardLoadingDependencies, create: (...args) => new M7(...args) }); }"],
+  ["setBgmName", "  setBgmName(trackId) { return setTrackCardBgm(this, trackId); }"],
+  ["setVisible", "  setVisible(visible) { return setTrackCardVisible(this, visible); }"],
+  ["slideOut", "  slideOut() { return slideTrackCardOut(this); }"],
+  ["update", "  update(nowMs) { return updateTrackCard(this, nowMs); }"],
+  ["dispose", "  dispose() { return disposeTrackCard(this, trackInfoCardRuntimeDependencies); }"],
+  ["render", "  render() { return renderTrackCard(this, trackInfoCardRuntimeDependencies); }"],
+  ["drawLabel", "  drawLabel(text, layout, x, y) { return drawTrackCardLabel(this, text, layout, x, y, trackInfoCardRuntimeDependencies); }"],
+  ["drawClippedText", "  drawClippedText(text, rect, x, y, color) { return drawTrackCardClippedText(this, text, rect, x, y, color); }"],
+]);
 // These helpers only served the KSV functions and the old Ghost store. Their
 // behavior now lives in the handwritten modules, so omit the dead copies.
 const retiredGhostHelpers = new Set([
@@ -275,6 +287,13 @@ const remoteMotionOverrides = new Set(["BL", "Gi0"]);
 const raceDrivingScaleOverrides = new Set(["Oi0", "zi0", "fE"]);
 const racePeerCadenceOverrides = new Set(["Vi0", "Ni0"]);
 const outgoingRaceMotionOverrides = new Set(["FL", "Ii0", "ki0"]);
+const worldPerformanceOverrides = new Set(["ko0", "qo0", "yc", "jo0", "Xo0"]);
+const appBootOverrides = new Map([
+  ["Rf0", "function Rf0(garage, tracks, profile) { return resolveStartupSelection(garage, tracks, profile, startupSelectionDependencies); }"],
+  ["If0", "function If0(canReload) { return watchFrontendVersion(canReload); }"],
+  ["kf0", "function kf0(width, height, ratio) { return fitGameViewport(width, height, ratio); }"],
+  ["Lf0", "function Lf0(root) { return mountGameViewport(root, xe); }"],
+]);
 const inputClassOverrides = new Set(["Xl0", "Zl0"]);
 const inputFunctionOverrides = new Map([
   ["xP", { section: "world", text: "function xP(code) { return browserScanCode(code); }" }],
@@ -550,6 +569,7 @@ const readyMethodOverrides = new Map([
   ["releaseReadyToonEnvironment", "  releaseReadyToonEnvironment() { return releaseReadyToonEnvironment(this); }"],
 ]);
 const applicationMethodOverrides = new Map([
+  ["constructor", "  constructor(root) { initializeApplication(this, root, applicationConstructionDependencies); }"],
   ["get:previousRenderTime", "  get previousRenderTime() { return readPresenterClock(this, \"previousRenderTime\"); }"],
   ["set:previousRenderTime", "  set previousRenderTime(value) { writePresenterClock(this, \"previousRenderTime\", value); }"],
   ["get:lastUpdateMs", "  get lastUpdateMs() { return readPresenterClock(this, \"lastUpdateMs\"); }"],
@@ -1104,8 +1124,11 @@ const statements = ast.program.body;
 const replacedFormatClasses = new Set();
 const replacedDriveCameraClasses = new Set();
 const replacedKeyControllers = new Set();
+let replacedTrackSceneAssembly = false;
 let replacedToonOutlineController = false;
 const replacedReadableFormatRenderers = new Set();
+const replacedWorldPerformance = new Set();
+const replacedAppBoot = new Set();
 let replacedPngInflate = false;
 let replacedCourseGraph = false;
 let replacedPngDecoder = false;
@@ -1131,6 +1154,9 @@ const replacedGhostKsvClassMethods = new Set();
 const replacedGhostKsvFunctions = new Set();
 const replacedMultiplayerPresenterMethods = new Set();
 const replacedRacePresentationSessionMethods = new Set();
+const replacedTrackInfoCardMethods = new Set();
+let replacedRaceChatOverlay = false;
+let replacedRpScenePreview = false;
 const retiredGhosts = new Set();
 const replacedPhysics = new Set();
 const replacedMotionCodec = new Set();
@@ -1299,6 +1325,20 @@ for (const node of statements) {
       : node.type === "VariableDeclaration" && node.declarations.length === 1
         ? node.declarations[0].id.name
         : undefined;
+  if (worldPerformanceOverrides.has(declarationName)) {
+    assert(originalSection(node.start) === "world" &&
+      node.type === (declarationName === "ko0" ? "ClassDeclaration" : "FunctionDeclaration"),
+    `Performance declaration ${declarationName} moved from world.`);
+    replacedWorldPerformance.add(declarationName);
+    continue;
+  }
+  if (appBootOverrides.has(declarationName)) {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "app",
+      `Application boot function ${declarationName} moved.`);
+    bodies.get("app").push({ at: node.start, text: appBootOverrides.get(declarationName) });
+    replacedAppBoot.add(declarationName);
+    continue;
+  }
   if (declarationName === "Kq") {
     assert(node.type === "VariableDeclaration" && originalSection(node.start) === "formats",
       "The original PNG signature moved from formats.");
@@ -1355,6 +1395,14 @@ for (const node of statements) {
   static fromParsed(parsed) { return ${parent}.fromParsed.call(${declarationName}, parsed); }
 }` });
     replacedKeyControllers.add(declarationName);
+    continue;
+  }
+  if (declarationName === "W1") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      "The track scene assembly function moved from formats.");
+    bodies.get("formats").push({ at: node.start,
+      text: "async function W1(model, library, label, resolveTexture, options = {}) { return assembleTrackScene(model, library, label, resolveTexture, options, trackSceneDependencies()); }" });
+    replacedTrackSceneAssembly = true;
     continue;
   }
   if (declarationName === "N6") {
@@ -1705,6 +1753,42 @@ for (const node of statements) {
       text: rewriteClassMethods(node, racePresentationSessionMethodOverrides,
         replacedRacePresentationSessionMethods),
     });
+    continue;
+  }
+  if (declarationName === "Dv") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "world",
+      "In-race chat moved from world.");
+    bodies.get("world").push({ at: node.start, text: `class Dv extends RaceChatOverlay {
+  constructor(root, connection, status, frame, font, emotions) {
+    super(root, connection, status, frame, font, emotions, raceChatDependencies);
+  }
+  static async load(library, root, connection, status) {
+    return super.load(library, root, connection, status, raceChatDependencies);
+  }
+}` });
+    replacedRaceChatOverlay = true;
+    continue;
+  }
+  if (declarationName === "M7") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "world",
+      "In-race track card moved from world.");
+    bodies.get("world").push({
+      at: node.start,
+      text: rewriteClassMethods(node, trackInfoCardMethodOverrides,
+        replacedTrackInfoCardMethods),
+    });
+    continue;
+  }
+  if (declarationName === "my") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "multiplayer",
+      "RP scene preview moved from multiplayer.");
+    bodies.get("multiplayer").push({ at: node.start, text: `class my extends RpScenePreview {
+  constructor() { super(rpScenePreviewDependencies); }
+  static async load(library, definition, kartItem) {
+    return super.load(library, definition, kartItem, rpScenePreviewDependencies);
+  }
+}` });
+    replacedRpScenePreview = true;
     continue;
   }
   if (declarationName === "Sw") {
@@ -2283,6 +2367,7 @@ assert(groupNames(replacedDriveCameraClasses) === "Cj, Ol",
   "The drive camera classes were not both replaced.");
 assert(groupNames(replacedKeyControllers) === "Zm, on",
   "The float and color key controllers were not both replaced.");
+assert(replacedTrackSceneAssembly, "The track scene assembly function was not replaced.");
 assert(replacedToonOutlineController, "The Toon outline controller was not replaced.");
 assert(groupNames(replacedReadableFormatRenderers) === "CB, bo, tw, wK",
   "The award scene, Toon batch, and material renderers were not all replaced.");
@@ -2332,6 +2417,10 @@ assert(replacedMultiplayerPresenterMethods.size === multiplayerPresenterMethodOv
   "The multiplayer race presenter update override was not found.");
 assert(replacedRacePresentationSessionMethods.size === racePresentationSessionMethodOverrides.size,
   "The multiplayer race session method overrides were not all found.");
+assert(replacedRaceChatOverlay, "The handwritten in-race chat overlay was not found.");
+assert(replacedTrackInfoCardMethods.size === trackInfoCardMethodOverrides.size,
+  "The handwritten track information card methods were not all found.");
+assert(replacedRpScenePreview, "The handwritten RP scene preview was not found.");
 assert(retiredGhosts.size === retiredGhostHelpers.size, "The retired Ghost helpers were not all found.");
 assert(replacedPhysics.size === physicsOverrides.size, "The handwritten vehicle parameter overrides were not all found.");
 assert(replacedStageManager, "The handwritten StageManager override was not found.");
@@ -2340,6 +2429,10 @@ assert(replacedReadyMethods.size === readyMethodOverrides.size, "The Ready flow 
 assert(replacedRaceStartCoordinator, "The race start coordinator override was not found.");
 assert(replacedSoloRacePublisher, "The solo race publisher override was not found.");
 assert(replacedApplicationMethods.size === applicationMethodOverrides.size, "The application race method overrides were not all found.");
+assert(replacedAppBoot.size === appBootOverrides.size,
+  "The application boot overrides were not all found.");
+assert(replacedWorldPerformance.size === worldPerformanceOverrides.size,
+  "The performance diagnostics overrides were not all found.");
 assert(replacedApplicationFields.size === applicationFieldOverrides.size,
   "The application key field override was not found.");
 assert(replacedTimeAttackStageMethods.size === timeAttackStageMethodOverrides.size, "The time attack stage method overrides were not all found.");
@@ -2597,6 +2690,7 @@ function renderModule(name) {
     lines.push('import { CameraHeightFollower, DriveCameraController } from "../resources/drive-camera.ts";');
     lines.push('import { FloatKeyController } from "../resources/float-key-controller.ts";');
     lines.push('import { ColorKeyController } from "../resources/color-key-controller.ts";');
+    lines.push('import { assembleTrackScene } from "../resources/track-scene-assembly.js";');
     lines.push('import { ToonOutlineController, toonColorFromArgb } from "../resources/toon-outline-controller.ts";');
     lines.push('import { ToonOutlineBatch } from "../resources/toon-outline-batch.ts";');
     lines.push('import { AwardPodiumScene, loadAwardPodiumScene } from "../resources/award-podium-scene.ts";');
@@ -2608,6 +2702,11 @@ function renderModule(name) {
   }
   if (name === "world") {
     lines.push('import { installWorldOverrides } from "../world/install.ts";');
+    lines.push('import { PerformanceCounter as ko0 } from "../ui/performance-counter.ts";');
+    lines.push('import { collectEngineDiagnostics as jo0, formatDiagnosticsLines as qo0 } from "../ui/engine-diagnostics.ts";');
+    lines.push('import { RaceChatOverlay } from "../multiplayer/race-chat-overlay.ts";');
+    lines.push('import { initializeTrackInfoCard, loadTrackInfoCard } from "../multiplayer/track-info-card-loading.ts";');
+    lines.push('import { disposeTrackCard, drawTrackCardClippedText, drawTrackCardLabel, renderTrackCard, setTrackCardBgm, setTrackCardVisible, slideTrackCardOut, updateTrackCard } from "../multiplayer/track-info-card-runtime.ts";');
     lines.push('import { initializeRacePresenter } from "../multiplayer/race-presenter-initialize.ts";');
     lines.push('import { updateRacePresenterFrame } from "../multiplayer/race-presenter-frame.ts";');
     lines.push('import { updateRaceSession } from "../multiplayer/race-session-update.ts";');
@@ -2771,6 +2870,7 @@ function renderModule(name) {
   }
   if (name === "multiplayer") {
     lines.push('import { keyboardActionsForCode } from "../input/action-bindings.ts";');
+    lines.push('import { RpScenePreview } from "../multiplayer/rp-scene-preview.ts";');
     lines.push('import { RaceLoadingScreen } from "../multiplayer/race-loading-screen.ts";');
     lines.push('import { handleLobbyEmotionKey, handleLobbyRoomKey, initializeLobbyRoom, loadLobbyRoom } from "../multiplayer/lobby-room-construction.ts";');
     lines.push('import { lobbyRoomNodeState } from "../multiplayer/lobby-room-state.ts";');
@@ -2812,6 +2912,8 @@ function renderModule(name) {
     lines.push('import { closeReadySettings, confirmReadySettings, handleReadyShortcut, openReadySettings, previewReadySettings, publishReadyRaceSpeed, releaseReadyToonEnvironment, saveReadyGameOptions, showReadyTrackSelectError } from "../timeattack/ready-settings.ts";');
   }
   if (name === "app") {
+    lines.push('import { initializeApplication } from "../app/application-construction.ts";');
+    lines.push('import { fitGameViewport, mountGameViewport, resolveStartupSelection, watchFrontendVersion } from "../app/boot-support.ts";');
     lines.push('import { canReloadForUpdate, configureApplicationBackbuffer, haltApplicationRuntime, handleApplicationShortcut, onApplicationKeyDown, restartRaceFromPause, toggleRacePause } from "../app/application-controls.ts";');
     lines.push('import { disposeApplicationRuntime } from "../app/application-disposal.ts";');
     lines.push('import { createPresenterHost, createReadyHost, getOrCreatePresenter, getOrCreateReadyCoordinator } from "../app/host-bridges.ts";');
@@ -2866,7 +2968,35 @@ function renderModule(name) {
     }
   }
   lines.push("");
+  if (name === "app") {
+    lines.push('const startupSelectionDependencies = { defaultProfile: gr, resolveSystemKart: b4, isSpecialKartId: n3, displayKartName: Mw, startTrack: jf };');
+    lines.push('const applicationConstructionDependencies = { outputColorSpace: qe, makeKartView: scene => new Vg(scene), makeHud: (root, actions) => new $o0(root, actions), collectEngineDiagnostics: jo0, makeAssets: hud => new Jo0(hud), makeInput: () => new jl0(), makeCanvasDiagnostics: (...args) => new qs0(...args), makeTouchControls: (...args) => new l60(...args), makeBlackBar: root => new yr0({ root }), makeResizeObserver: callback => new ResizeObserver(callback) };');
+    lines.push("");
+  }
   if (name === "formats") {
+    lines.push(`function trackSceneDependencies() { return {
+  inspectRoot: hB, validateInspection: ZK, isMorphGeometry: Vu,
+  stripIndices: Vp, allocateRigidGeometry: aj,
+  allocateTriangleGeometry: cj, finishSharedGeometry: oj,
+  loadEnvironment: library => rn.load(library), StageBinding: ha,
+  localNodeMatrix: uj, poseOverrideMatrix: GB, sceneVisibility: TK,
+  prsController: Lb, makePrsRuntime: zG, loadTexture: AB,
+  inheritToonTexture: YK, createToonMaterial: bo,
+  applyMaterialProperties: Mo, createBasicMaterial: CB,
+  createTextureControllers: _K, ColorController: Zm,
+  initializeMaterialUniforms: EB, makeMorphGeometry: lj,
+  MorphController: Qm, configureRenderOrder: ie, bindTexture: uK,
+  configureToonUniforms: xo, OutlineController: N6,
+  isVisible: Ob, updateLightFactor: PK, floatColor: _B,
+  updateMaterialEntry: dj, resetNodeControllers: QK,
+  eachVisibility: p8, resetTextureControllers: BK, eachPrs: ku,
+  playPrs: GW, materialControllers: Lu, setPrsCycleMode: BW,
+  stopPrs: RW, updateNodeVisibility: JK, readCameraPose: tj,
+  updateNodeWorld: nj, updateCulling: wq, cullBlackPlanes: Sq,
+  collectVisible: Gp, updateNoCameraCulling: ej,
+  serializeLocalTransform: Jm, readPoseOverrideFallback: hj,
+  setClientWorldRoot: BB, incrementFrameSerial: () => { Hc += 1; },
+}; }`);
     // Resolve late format constants only when a camera is constructed.
     lines.push(`function cameraMathDependencies() { return {
   f32: n0, floatWord: g1, bodyBasis: kB, clientVector: g4,
@@ -3008,6 +3138,7 @@ function awardPodiumLoadDependencies() { return {
     lines.push("const lobbyRoomConstructionDependencies = { mode: room => G2(room), loadRoleTeams: library => fa(library), loadEmotions: library => cP(library), loadCountdown: library => dy.load(library), loadDefinition: (library, roadblock) => Ll0(library, roadblock), withEmotions: (definition, emotions) => Fl0(definition, emotions), loadView: options => te.load(options), loadTrackChangeNotice: (...args) => fy.load(...args), createPreviews: (library, render, onError, emotions, audioContext) => new Tl0(library, render, onError, emotions, audioContext) };");
     lines.push("const lobbyRoomStateDependencies = { nodeName: node => T(node, 'name'), slots: (room, playerId) => FT(room, playerId), roadblockRunner: room => TF(room), gameplayMode: room => G2(room), decodeChat: (text, emotions) => Ng(text, emotions), wrapBubble: text => kl0(text), drawBubbleLine: (canvas, line, rect, options) => m9(canvas, line, rect, options), nowMs: () => performance.now(), get roadblockDefaults() { return tt; }, get rpChannelNames() { return lw; }, get colors() { return { redTeam: Rl0, blueTeam: Bl0, ownChat: _l0, otherChat: Gl0 }; } };");
     lines.push("const raceLoadingScreenAssets = { imageBytes: (library, roots, name) => U1(library, roots, name).bytes(), decodeImage: bytes => p2(bytes) };");
+    lines.push("const rpScenePreviewDependencies = { createCamera: () => new Z9(), createSize: () => new B2(), createBinding: () => new ha(), sceneName: node => T(node, 'scene'), validateCamera: (...args) => _F(...args), parseScene: bytes => y9(bytes), loadScene: (...args) => W1(...args), resolveReference: (...args) => ya(...args), loadKartEnvironment: library => rn.load(library), loadKart: (...args) => Qv(...args), createRenderer: options => new I4(options), outputColorSpace: qe, kartFieldOfView: (...args) => we(...args), prepareKart: (...args) => ey(...args), renderKart: (...args) => f4(...args), configureSceneCamera: (...args) => Dl0(...args), disposeKart: kart => Js(kart) };");
     lines.push("");
   }
   if (name === "world") {
@@ -3022,6 +3153,9 @@ function awardPodiumLoadDependencies() { return {
     lines.push("const racePresenterActionsDependencies = { routeTagFamily: tag => Vo(tag), resetTachometer: tachometer => eP(tachometer) };");
     lines.push("const racePresenterRenderDependencies = { get transparentSort() { return jm; }, withColorPipeline: (...args) => yo(...args), renderTachometer: (...args) => JL(...args), get blackBarFraction() { return Rv; }, get worldAxis() { return H2; }, get depthAxis() { return $2; }, get postFinishState() { return X2.PostFinish; } };");
     lines.push("const raceSessionUpdateDependencies = { nowMs: () => performance.now(), get lteKeyMap() { return Xr0; }, get states() { return X2; } };");
+    lines.push("const raceChatDependencies = { loadFrame: library => U1(library, ['stage_/common'], 'ingame_chat_Bg').bytes().then(p2), loadEmotions: library => cP(library), loadFontBytes: library => U1(library, ['gui_/font'], 'SourceHanSansCN-Medium', '.otf').bytes(), registerFont: (family, bytes) => f5(family, bytes), releaseFont: font => G1(font), parseChat: (text, emotions) => Ng(text, emotions), nowMs: () => performance.now(), setTimer: (callback, delay) => window.setTimeout(callback, delay), clearTimer: timer => window.clearTimeout(timer) };");
+    lines.push("const trackInfoCardLoadingDependencies = { configEnabled: library => xs0(library), cardPath: directory => ds0(directory), parseXml: (text, path) => DE(text, path), gameLabels: (game, labels) => ws0(game, labels), uniqueResource: (library, path) => Gn(library, path), parseNode: bytes => s2(bytes), layout: node => Ss0(node), stripIndex: (value, team) => ps0(value, team), decodeImage: entry => yi(entry), difficultyLayout: (...args) => bs0(...args), registerFont: (family, bytes) => f5(family, bytes), releaseFont: font => G1(font), title: (title, trackId) => fs0(title, trackId) };");
+    lines.push("const trackInfoCardRuntimeDependencies = { configureCanvas: (...args) => p3(...args), pixelRatio: () => xe(), drawTrack: (...args) => ys0(...args), drawReverse: (...args) => As0(...args), drawDifficulty: (...args) => Ms0(...args), drawLabel: (...args) => m9(...args), releaseFont: font => G1(font), removeResizeListener: listener => window.removeEventListener('resize', listener) };");
     lines.push("");
   }
   for (const fragment of bodies.get(name).sort((a, b) => a.at - b.at)) {
@@ -3193,6 +3327,7 @@ const garagePartOverrides = new Map([
   ["Kt", "function Kt(a, e) { return sameGaragePart(a, e); }"],
 ]);
 const garageRuntimeClassOverrides = new Map([
+  ["Pi", "class Pi extends GarageControlCanvas { constructor(surface, width, height) { super(surface, width, height, garageControlCanvasDependencies); } }"],
   ["Qi", "const Qi = GarageModelCache;"],
   ["vn", "class vn extends GarageInventoryScroll { constructor(viewport, hitTarget, snapStep) { super(viewport, hitTarget, snapStep, (...args) => Qs(...args)); } }"],
   ["Ka", "class Ka extends GaragePointEffects { constructor(surface, assets, load, onError) { super(surface, assets, load, onError, { attribute: (node, name) => y(node, name) }); } }"],
@@ -3219,6 +3354,15 @@ const garagePreparationHelperOverrides = new Map([
   ["ss", "function ss() { return preparationMethodPanelRect(); }"],
   ["Ya", "function Ya(context, rect) { return fillPreparationMethodPanel(context, rect); }"],
   ["en", "function en(context, presenter, cards, selectedId, normal, selected) { return drawPreparationCards(context, presenter, cards, selectedId, normal, selected); }"],
+]);
+const garageControlCanvasHelperOverrides = new Map([
+  ["ct", "function ct(left, right) { return intersectGarageRect(left, right); }"],
+  ["Ke", "function Ke(element) { return garageControlZIndex(element); }"],
+  ["Cs", "function Cs(rect, width, height, fit) { return garageObjectFitRect(rect, width, height, fit); }"],
+  ["Fe", "function Fe(value) { return splitGarageCssLayers(value); }"],
+  ["Ie", "function Ie(value, basis) { return garageCssLength(value, basis); }"],
+  ["Ei", "function Ei(context, style, rect, image) { return paintGarageControlBox(context, style, rect, image); }"],
+  ["Si", "function Si(context, style, character, rect) { return paintGarageControlCharacter(context, style, character, rect); }"],
 ]);
 const garagePreparationDialogOverrides = new Map([
   ["constructor", "constructor(surface, library, candidates, selectedItemId, onClose) { initializeGaragePreparation(this, surface, library, candidates, selectedItemId, onClose, garagePreparationConstructionDependencies); }"],
@@ -3486,6 +3630,14 @@ const garagePreparationHelperEdits = garageAst.program.body.flatMap(node =>
     : []);
 assert(garagePreparationHelperEdits.length === garagePreparationHelperOverrides.size,
   "Garage preparation helpers changed in the release source.");
+const garageControlCanvasHelperEdits = garageAst.program.body.flatMap(node =>
+  node.type === "FunctionDeclaration" && node.id &&
+    garageControlCanvasHelperOverrides.has(node.id.name)
+    ? [{ start: node.start, end: node.end,
+      text: garageControlCanvasHelperOverrides.get(node.id.name), name: node.id.name }]
+    : []);
+assert(garageControlCanvasHelperEdits.length === garageControlCanvasHelperOverrides.size,
+  "Garage control canvas helpers changed in the release source.");
 const preparationDialogClass = garageAst.program.body.find(node =>
   node.type === "ClassDeclaration" && node.id?.name === "Ja");
 assert(preparationDialogClass, "Garage preparation dialog changed in the release source.");
@@ -3768,6 +3920,7 @@ let redirected = garage;
 for (const edit of [...garageEdits, ...garageRuntimeClassEdits,
   ...garageUpgradeSessionClassEdits, ...garageUpgradeResultEdits,
   ...garagePointEffectHelperEdits, ...garagePreparationHelperEdits,
+  ...garageControlCanvasHelperEdits,
   ...garagePreparationDialogEdits, ...progressionHelperEdits, ...factoryLayoutEdits,
   ...progressionEdits, ...equipmentEdits,
   ...catalogNavigationEdits, ...factoryScoringEdits, ...cosmeticEquipmentEdits,
@@ -3784,6 +3937,10 @@ for (const edit of [...garageEdits, ...garageRuntimeClassEdits,
 }
 redirected = redirected.replace(oldImport, 'from "./app.js";');
 redirected = 'import { collectGarageParts, parseLegacyGarageParts, resolveEquippedGaragePart, sameGaragePart, sortGarageParts } from "../ui/garage-parts-business.ts";\n'
+  + 'import { GarageControlCanvas } from "../ui/garage-control-canvas.ts";\n'
+  + 'import { garageControlZIndex, garageObjectFitRect } from "../ui/garage-control-canvas-lifecycle.ts";\n'
+  + 'import { intersectGarageRect } from "../ui/garage-control-canvas-rebuild.ts";\n'
+  + 'import { garageCssLength, paintGarageControlBox, paintGarageControlCharacter, splitGarageCssLayers } from "../ui/garage-control-canvas-paint.ts";\n'
   + 'import { GarageModelCache } from "../ui/garage-model-cache.ts";\n'
   + 'import { GarageInventoryScroll } from "../ui/garage-inventory-scroll.ts";\n'
   + 'import { compareGarageSkillEffects, garageSkillEffectRect, GaragePointEffects } from "../ui/garage-point-effects.ts";\n'
@@ -3869,6 +4026,7 @@ redirected = 'import { collectGarageParts, parseLegacyGarageParts, resolveEquipp
   + 'const garageExceedDialogDependencies = { styleAction: (button, style, kind) => he(button, style, kind), loadStyles: library => Ts(library), resolveChoice: choice => ua(choice) };\n'
   + 'const garagePreparationRenderDependencies = { fitCanvas: (...args) => Pe(...args), pixelRatio: () => Ee(), drawFrame: (...args) => be(...args) };\n'
   + 'const garagePreparationConstructionDependencies = { createState: (candidates, selectedItemId) => new Qa(candidates, selectedItemId) };\n'
+  + 'const garageControlCanvasDependencies = { intersect: (left, right) => intersectGarageRect(left, right), paintBox: (context, style, rect, image) => paintGarageControlBox(context, style, rect, image), paintCharacter: (context, style, character, rect) => paintGarageControlCharacter(context, style, character, rect) };\n'
   + 'const garageUpgradeConstructionDependencies = { stylePrimary: button => he(button, undefined, "primary"), loadXun: (...args) => Ma(...args), loadClassic: (...args) => ka(...args) };\n'
   + 'const garageUpgradeRenderDependencies = { sizeCanvas: (...args) => Pe(...args), pixelRatio: () => Ee(), phase: (...args) => Aa(...args), get phaseLabels() { return Ia; } };\n'
   + redirected;
@@ -3898,6 +4056,7 @@ const manifest = {
   handwrittenGarageUpgradeResultOverrides: [...garageUpgradeResultOverrides.keys()],
   handwrittenGaragePointEffectHelperOverrides: [...garagePointEffectHelperOverrides.keys()],
   handwrittenGaragePreparationHelperOverrides: [...garagePreparationHelperOverrides.keys()],
+  handwrittenGarageControlCanvasHelperOverrides: [...garageControlCanvasHelperOverrides.keys()],
   handwrittenGaragePreparationDialogOverrides: [...garagePreparationDialogOverrides.keys()],
   handwrittenGarageProgressionOverrides: [...garageProgressionOverrides.keys()],
   handwrittenGarageProgressionHelperOverrides: [...garageProgressionHelperOverrides.keys()],
@@ -3958,6 +4117,8 @@ const manifest = {
   handwrittenRaceStartCoordinatorOverride: replacedRaceStartCoordinator,
   handwrittenSoloRacePublisherOverride: replacedSoloRacePublisher,
   handwrittenApplicationMethodOverrides: [...applicationMethodOverrides.keys()],
+  handwrittenApplicationBootOverrides: [...appBootOverrides.keys()],
+  handwrittenWorldPerformanceOverrides: [...worldPerformanceOverrides],
   handwrittenApplicationAccessorOverrides: [...applicationMethodOverrides.keys()]
     .filter(name => name.startsWith("get:") || name.startsWith("set:")),
   handwrittenApplicationFieldOverrides: [...applicationFieldOverrides.keys()],
@@ -4020,10 +4181,13 @@ const manifest = {
   handwrittenLobbyRoomMemberOverrides: [...lobbyRoomMethodOverrides.keys(),
     ...lobbyRoomFieldOverrides.keys()],
   handwrittenRaceLoadingScreenOverride: replacedRaceLoadingScreen,
+  handwrittenRpScenePreviewOverride: replacedRpScenePreview,
   handwrittenGhostKsvClassMethodOverrides: [...ghostKsvClassMethodOverrides.keys()],
   handwrittenGhostKsvFunctionOverrides: [...ghostKsvFunctionOverrides.keys()],
   handwrittenMultiplayerPresenterMethodOverrides: [...multiplayerPresenterMethodOverrides.keys()],
   handwrittenRacePresentationSessionMethodOverrides: [...racePresentationSessionMethodOverrides.keys()],
+  handwrittenRaceChatOverlayOverride: replacedRaceChatOverlay,
+  handwrittenTrackInfoCardMethodOverrides: [...trackInfoCardMethodOverrides.keys()],
   handwrittenRaceSessionMethodOverrides: [...raceSessionMethodOverrides.keys()],
   handwrittenClientMethodOverrides: [...clientMethodOverrides.keys()],
   handwrittenServerEventParserOverride: replacedServerEventParser,

@@ -8,6 +8,7 @@ test("generated Garage chunk delegates model, scroll and point effect classes", 
   const ast = parse(generated, { sourceType: "module" });
   const manifest = JSON.parse(readFileSync(new URL("../generated/manifest.json", import.meta.url), "utf8"));
   const classes = new Map([
+    ["Pi", "GarageControlCanvas"],
     ["Qi", "GarageModelCache"],
     ["vn", "GarageInventoryScroll"],
     ["Ka", "GaragePointEffects"],
@@ -32,4 +33,9 @@ test("generated Garage chunk delegates model, scroll and point effect classes", 
     assert.ok(declaration, name);
     assert.match(generated.slice(declaration.start!, declaration.end!), new RegExp(`${delegate}\\(`));
   }
+  assert.deepEqual(manifest.handwrittenGarageControlCanvasHelperOverrides,
+    ["ct", "Ke", "Cs", "Fe", "Ie", "Ei", "Si"]);
+  assert.match(generated, /const garageControlCanvasDependencies = \{/);
+  assert.match(generated, /paintBox: \(context, style, rect, image\) => paintGarageControlBox/);
+  assert.match(generated, /paintCharacter: \(context, style, character, rect\) => paintGarageControlCharacter/);
 });
