@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china21"/>
+  <Char id="sharming" pos="4 0" emotion="stop4"/>
+  <Msg name="木兰" string="哼！竟然…凌凌，你真的好厉害！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop2"/>
+  <Msg name="凌凌" string="我没听错吧！你叫我名字了诶。"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="4 0" emotion="stop2"/>
+  <Msg name="木兰" string="好吧，我承认。你赢了！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="sharming" pos="4 0" emotion="stop3"/>
+  <Msg name="木兰" string="…我得回去研究更厉害的技术了！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="门神" string="凌凌胜！"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" pos="4 0" emotion="stop4"/>
+  <Msg name="木兰" string="不要开心的过早！等我下次再来挑战你！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="lingling" pos="7 0" emotion="stop2"/>
+  <Msg name="凌凌" string="龙之车手果然名不虚传！竟然会分身！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="hantao" pos="10 0" flip="true" emotion="stop1"/>
+  <Msg name="门神" string="该是我出场了吗？"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="lingling" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="凌凌" string="（…看起来是个好人，但是面向好可怕）"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="hantao" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="门神" string="我倒要看看你的极限在哪里。"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="hantao" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="门神" string="这次可不简单哦。|你需要避开我的分身来完成哦！"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="hantao" pos="10 0" flip="true" emotion="stop2"/>
+  <Char id="sharming" pos="4 0" emotion="stop2"/>
+  <Msg name="木兰" string="看来门神非常欣赏你呢，加油哦！"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" remove="true"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="（咻咻）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="lingling" pos="6 0" emotion="normal"/>
+  <Msg name="凌凌" string="只留下了个纸条，两个人就消失了诶！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="凌凌" string="只留下了个纸条，两个人就消失了诶！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="7 0" emotion="stop2"/>
+  <Msg name="凌凌" string="…真奇怪，有种被别人训练的感觉呢。"/>
+  <Enter/>
+</Scene>

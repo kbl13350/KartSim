@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="bigTrackQuestComplete">
+    <m c="kr" v="님이 퀘스트를 완료했습니다"/>
+    <m c="jp" v="さんがクエストを完了しました。"/>
+    <m c="cn" v="完成任务"/>
+    <m c="vn" v="Hoàn thành"/>
+    <m c="ru" v="выполнил квест"/>
+    <m c="id" v="telah menyelesaikan Quest"/>
+    <m c="th" v="คุณทำเควสสำเร็จแล้ว"/>
+  </k>
+  <k n="quizTitle">
+    <m c="kr" v="O/X를 선택하세요."/>
+    <m c="cn" v="OX大考验"/>
+    <m c="tw" v="請選擇O/X"/>
+  </k>
+</StringBag>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot4"/>
+  <Char id="ghost" pos="4 0" emotion="stop1"/>
+  <Msg name="" string="很久很久以前……卡美洛王国有个传说，据说只有拥有传说之剑-圣剑的人才有资格成为真正的王。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="预言中说道，在卡美洛王室中诞生的孩子会拔出传说之剑-圣剑，|并成为旧世与未来的王。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="camelot1"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="..." string="嘤嘤…嘤嘤…"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="normal"/>
+  <Msg name="梅林" string="卡美洛王，按照约定，孩子就由我带走了。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="camelot_king" pos="4 0" emotion="normal"/>
+  <Msg name="卡美洛王" string="梅林，能否让我看下我的孩子……"/>
+  <Enter/>
+  <Char id="camelot_king" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="normal"/>
+  <Msg name="梅林" string="……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="camelot_king" pos="5 0" emotion="stop1"/>
+  <Msg name="卡美洛王" string="那……是女孩，还是男孩啊？这都不能说吗……"/>
+  <Enter/>
+  <Char id="camelot_king" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="normal"/>
+  <Msg name="梅林" string="想要保住这个孩子就必须遵从预言来行事。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="camelot_king" pos="5 0" emotion="stop1"/>
+  <Msg name="卡美洛王" string="（都不知道预言是真是假……）|知道了，孩子就拜托给你了。"/>
+  <Enter/>
+  <Char id="camelot_king" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="normal"/>
+  <Msg name="梅林" string="那么属下就告退了！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="mordred" pos="11 0" emotion="normal"/>
+  <Msg name="莫德雷德" string="陛下，那老头……不是，为什么将王子托付给梅林啊？|现在的他精神状态也大不如前了。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="camelot_king" pos="3 0" emotion="normal"/>
+  <Char id="mordred" pos="11 0" emotion="normal"/>
+  <Msg name="卡美洛王" string="那是因为……很久以前我跟他有过约定，虽然我也半信半疑……"/>
+  <Enter/>
+  <Char id="camelot_king" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="10 0" emotion="normal"/>
+  <Char id="camelot_king" pos="3 0" emotion="normal"/>
+  <Msg name="莫德雷德" string="既然这样，要不我去把王子带回来？"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="camelot_king" remove="true"/>
+  <Char id="camelot_king" pos="4 0" emotion="normal"/>
+  <Char id="mordred" pos="10 0" emotion="normal"/>
+  <Msg name="卡美洛王" string="嗯……你能从梅林那里将孩子带回来？"/>
+  <Enter/>
+  <Char id="camelot_king" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="11 0" emotion="stop1"/>
+  <Char id="camelot_king" pos="4 0" emotion="normal"/>
+  <Msg name="莫德雷德" string="您这是信不过我？我莫德雷德执行任务，还从来没失败过，不是吗？"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="camelot_king" remove="true"/>
+  <Char id="mordred" pos="10 0" emotion="normal"/>
+  <Char id="camelot_king" pos="4 0" emotion="normal"/>
+  <Msg name="卡美洛王" string="也对，你从来没让我失望过。那这次也拜托你了，莫德雷德。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="camelot_king" remove="true"/>
+  <BackGround texture="camelot2"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="camelot_soldier3" pos="14 0" emotion="normal"/>
+  <Char id="camelot_soldier2" pos="11 0" emotion="normal"/>
+  <Char id="camelot_soldier1" pos="8 0" emotion="normal"/>
+  <Char id="mordred" pos="4 0" emotion="normal"/>
+  <Msg name="莫德雷德" string="前面那个不就是梅林吗？！果然没走多远！"/>
+  <Enter/>
+  <Char id="camelot_soldier3" remove="true"/>
+  <Char id="camelot_soldier2" remove="true"/>
+  <Char id="camelot_soldier1" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="camelot_soldier3" pos="14 0" emotion="normal"/>
+  <Char id="camelot_soldier2" pos="11 0" emotion="normal"/>
+  <Char id="camelot_soldier1" pos="8 0" emotion="normal"/>
+  <Char id="mordred" pos="4 0" emotion="stop2"/>
+  <Msg name="莫德雷德" string="梅林！站住！把王子交出来。"/>
+  <Enter/>
+  <Char id="camelot_soldier3" remove="true"/>
+  <Char id="camelot_soldier2" remove="true"/>
+  <Char id="camelot_soldier1" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <BackGround texture="camelot3"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="梅林" string="（终究……还是逃不过命运啊）|那可不行，这事必须要由我来完成。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <BackGround texture="camelot2"/>
+  <Char id="mordred" pos="10 0" emotion="stop2"/>
+  <Msg name="莫德雷德" string="哎……糟老头子，没办法，只能用武力了。给我追！ "/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="camelot_soldier3" pos="12 0" emotion="normal"/>
+  <Char id="camelot_soldier2" pos="8 0" emotion="normal"/>
+  <Char id="camelot_soldier1" pos="4 0" emotion="normal"/>
+  <Msg name="卡美洛士兵" string="是！莫德雷德大人！"/>
+  <Enter/>
+</Scene>

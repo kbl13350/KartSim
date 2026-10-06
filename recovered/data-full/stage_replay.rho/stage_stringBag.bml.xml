@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="selectPlayer">
+    <m c="kr" v="플레이어 선택"/>
+    <m c="jp" v="プレイヤー選択"/>
+    <m c="cn" v="选择车手"/>
+    <m c="tw" v="選擇車手"/>
+    <m c="us" v="Select player"/>
+    <m c="vn" v="Chọn tay đua"/>
+    <m c="ru" v="Выбор игрока"/>
+    <m c="id" v="Pilih Player"/>
+    <m c="th" v="เลือกผู้เล่น"/>
+  </k>
+  <k n="eventCam">
+    <m c="kr" v="이벤트 카메라"/>
+    <m c="jp" v="イベントカメラ"/>
+    <m c="cn" v="活动视角"/>
+    <m c="tw" v="活動視角"/>
+    <m c="us" v="Event camera"/>
+    <m c="vn" v="Quay sự kiện"/>
+    <m c="ru" v="Ивентовая карта"/>
+    <m c="id" v="Event Camera"/>
+    <m c="th" v="มุมมองพิเศษ"/>
+  </k>
+  <k n="rankLock">
+    <m c="kr" v="등수 락온/오프"/>
+    <m c="jp" v="順位ロック on/off"/>
+    <m c="cn" v="排名 开/关"/>
+    <m c="tw" v="排名 開/關"/>
+    <m c="us" v="Rank lock on/off"/>
+    <m c="vn" v="Khóa vùng"/>
+    <m c="ru" v="Lock on/off рейтинга"/>
+    <m c="id" v="Rank Lock/Off"/>
+    <m c="th" v="เปิด/ปิด อันดับ"/>
+  </k>
+  <k n="stopCamWork">
+    <m c="kr" v="카메라웍 정지"/>
+    <m c="jp" v="カメラワーク停止"/>
+    <m c="cn" v="暂停"/>
+    <m c="tw" v="暫停"/>
+    <m c="us" v="Stop camera works"/>
+    <m c="vn" v="Dừng quay phim"/>
+    <m c="ru" v="Остановить камеру"/>
+    <m c="id" v="Camera Stocp"/>
+    <m c="th" v="ให้กล้องตาม"/>
+  </k>
+  <k n="screenUiOnOff">
+    <m c="kr" v="인터페이스 온/오프"/>
+    <m c="jp" v="ディスプレイon/off"/>
+    <m c="cn" v="游戏界面 开/关"/>
+    <m c="tw" v="遊戲界面 開/關"/>
+    <m c="us" v="Interface on/off"/>
+    <m c="vn" v="Mở/tắt màn hình"/>
+    <m c="ru" v="Вкл./выкл. Интерфейс"/>
+    <m c="id" v="Interface On/Off"/>
+    <m c="th" v="เปิด/ปิด อินเตอร์เฟส"/>
+  </k>
+  <k n="helpScreen">
+    <m c="kr" v="도움말 보기 / 닫기"/>
+    <m c="jp" v="ヘルプ表示 / 閉じる"/>
+    <m c="cn" v="帮助 开/关"/>
+    <m c="tw" v="幫助 開/關"/>
+    <m c="us" v="Help view/close"/>
+    <m c="vn" v="Mở/đóng cửa sổ trợ giúp"/>
+    <m c="ru" v="открыть/закрыть помощь"/>
+    <m c="id" v="Help On/Off"/>
+    <m c="th" v="เปิด/ปิด Help"/>
+  </k>
+  <k n="3rdCam">
+    <m c="kr" v="3인칭 카메라"/>
+    <m c="jp" v="3人称カメラ"/>
+    <m c="cn" v="第3人称视角"/>
+    <m c="tw" v="第3人稱視角"/>
+    <m c="us" v="3rd person camera view"/>
+    <m c="vn" v="Máy quay thứ 3"/>
+    <m c="ru" v="От 3-го лица"/>
+    <m c="id" v="3rd View Camera"/>
+    <m c="th" v="มุมมองบุคคลที่ 3"/>
+  </k>
+  <k n="firstPersonCam">
+    <m c="kr" v="1인칭 카메라"/>
+    <m c="jp" v="1人称カメラ"/>
+    <m c="cn" v="第1人称视角"/>
+    <m c="tw" v="第1人稱視角"/>
+    <m c="us" v="1st person camera view"/>
+    <m c="vn" v="Quay ở vị trí đầu"/>
+    <m c="ru" v="От 1-го лица"/>
+    <m c="id" v="1st View Camera"/>
+    <m c="th" v="มุมมองบุคคลที่ 1"/>
+  </k>
+  <k n="topCam">
+    <m c="kr" v="탑 카메라"/>
+    <m c="jp" v="トップカメラ"/>
+    <m c="cn" v="俯视视角"/>
+    <m c="tw" v="俯視視角"/>
+    <m c="us" v="Top view camera"/>
+    <m c="vn" v="Quay ở trên cao"/>
+    <m c="ru" v="Камера сверху"/>
+    <m c="id" v="Top Camera"/>
+    <m c="th" v="มุมด้านบน"/>
+  </k>
+  <k n="frontCam">
+    <m c="kr" v="정면 카메라"/>
+    <m c="jp" v="正面カメラ"/>
+    <m c="cn" v="正面视角"/>
+    <m c="tw" v="正面視角"/>
+    <m c="us" v="Front camera"/>
+    <m c="vn" v="Quay ở phía trước"/>
+    <m c="ru" v="Камера спереди"/>
+    <m c="id" v="Front Camera"/>
+    <m c="th" v="มุมด้านหน้า"/>
+  </k>
+  <k n="frontRotCam">
+    <m c="kr" v="정면 회전 카메라"/>
+    <m c="jp" v="正面回転カメラ"/>
+    <m c="cn" v="正面旋转视角"/>
+    <m c="tw" v="正面旋轉視角"/>
+    <m c="us" v="Front rotating camera"/>
+    <m c="vn" v="Quay lần lượt"/>
+    <m c="ru" v="Поворачивающая камера спереди"/>
+    <m c="id" v="Front Roll Camera"/>
+    <m c="th" v="มุมด้านหน้าหมุน"/>
+  </k>
+  <k n="leftViewCam">
+    <m c="kr" v="왼쪽 주시 카메라"/>
+    <m c="jp" v="左視点カメラ"/>
+    <m c="cn" v="左侧注视视角"/>
+    <m c="tw" v="左側注視視角"/>
+    <m c="us" v="Left view camera"/>
+    <m c="vn" v="Xem ở góc bên trái"/>
+    <m c="ru" v="Камера вида слева"/>
+    <m c="id" v="Left View Camera"/>
+    <m c="th" v="มุมด้านซ้ายออโต้"/>
+  </k>
+  <k n="rightViewCam">
+    <m c="kr" v="오른쪽 주시 카메라"/>
+    <m c="jp" v="右視点カメラ"/>
+    <m c="cn" v="右侧注视视角"/>
+    <m c="tw" v="右側注視視角"/>
+    <m c="us" v="Right view camera"/>
+    <m c="vn" v="Xem ở góc bên phải"/>
+    <m c="ru" v="Камера вида справа"/>
+    <m c="id" v="Right View Camera"/>
+    <m c="th" v="มุมด้านขวาออโต้"/>
+  </k>
+  <k n="lowViewCam">
+    <m c="kr" v="낮은 주시 카메라"/>
+    <m c="jp" v="低視点カメラ"/>
+    <m c="cn" v="低角度注视视角"/>
+    <m c="tw" v="低角度注視視角"/>
+    <m c="us" v="Lower view camera"/>
+    <m c="vn" v="Xem ở tốc độ chậm"/>
+    <m c="ru" v="Камера внизу"/>
+    <m c="id" v="Low View Camera"/>
+    <m c="th" v="มุมต่ำเปลี่ยนจุด"/>
+  </k>
+  <k n="lowFixCam">
+    <m c="kr" v="낮은 고정 카메라"/>
+    <m c="jp" v="低い固定カメラ"/>
+    <m c="cn" v="低角度固定视角"/>
+    <m c="tw" v="低角度固定視角"/>
+    <m c="us" v="Lower view fixed camera"/>
+    <m c="vn" v="Quay ở tốc độ chậm"/>
+    <m c="ru" v="Фиксированная камера внизу"/>
+    <m c="id" v="Low Fix Camera"/>
+    <m c="th" v="มุมต่ำฟิกซ์"/>
+  </k>
+  <k n="highFixCam">
+    <m c="kr" v="높은 고정 카메라"/>
+    <m c="jp" v="高い固定カメラ"/>
+    <m c="cn" v="高角度固定视角"/>
+    <m c="tw" v="高角度固定視角"/>
+    <m c="us" v="High view fixed camera"/>
+    <m c="vn" v="Quay ở tốc độ cao"/>
+    <m c="ru" v="Фиксированная камера вверху"/>
+    <m c="id" v="High Fix Camera"/>
+    <m c="th" v="มุมสูงฟิกซ์"/>
+  </k>
+  <k n="leftSideCam">
+    <m c="kr" v="왼쪽 측면 카메라"/>
+    <m c="jp" v="左側面カメラ"/>
+    <m c="cn" v="左侧面视角"/>
+    <m c="tw" v="左側面視角"/>
+    <m c="us" v="Left side camera"/>
+    <m c="vn" v="Quay ở góc trái"/>
+    <m c="ru" v="Камера слева"/>
+    <m c="id" v="Left Side Camera"/>
+    <m c="th" v="มุมด้านซ้ายฟิกซ์"/>
+  </k>
+  <k n="rightSideCam">
+    <m c="kr" v="오른쪽 측면 카메라"/>
+    <m c="jp" v="右側面カメラ"/>
+    <m c="cn" v="右侧面视角"/>
+    <m c="tw" v="右側面視角"/>
+    <m c="us" v="Right side camera"/>
+    <m c="vn" v="Quay ở góc phải"/>
+    <m c="ru" v="Камера справа"/>
+    <m c="id" v="Right Side Camera"/>
+    <m c="th" v="มุมด้านขวาฟิกซ์"/>
+  </k>
+  <k n="help">
+    <m c="kr" v="도움말"/>
+    <m c="cn" v="帮助"/>
+  </k>
+  <k n="help1-8">
+    <m c="kr" v="(등수 기준, SHIFT를 누르면 즉각 전환)"/>
+    <m c="jp" v="(順位基準、SHIFTを押すとすぐに転換)"/>
+    <m c="cn" v="以排名为标准，选择相应名次的车手进行观察"/>
+    <m c="tw" v="以排名為標準，選擇名次差不多的車手進行觀察"/>
+    <m c="us" v="(Select by ranks, press SHIFT to change)"/>
+    <m c="vn" v="Nhấn Shift sẽ thay đổi các số cơ bản"/>
+    <m c="ru" v="(С помощью кнопки SHIFT можно совершить замену)"/>
+    <m c="id" v="(Urutan Rank,Tekah SHIFT untuk mengubah langsung)"/>
+    <m c="th" v="(กดปุ่มหมายเลข 1-8 เพื่อเลือกดูผู้เล่นที่ต้องการ)"/>
+  </k>
+  <k n="helpL">
+    <m c="kr" v="(케이블카 애니메이션)"/>
+    <m c="jp" v="(ケーブルカーアニメーション)"/>
+    <m c="cn" v="（暂时未开放）"/>
+    <m c="tw" v="（暫時未開放）"/>
+    <m c="us" v="(Cable car animation)"/>
+    <m c="vn" v="Loạt phim"/>
+    <m c="ru" v="(Анимация)"/>
+    <m c="id" v="(Cable Car animation)"/>
+    <m c="th" v="(ใช้ได้เฉพาะสนามที่มีอนิเมชั่นพิเศษเท่านั้น)"/>
+  </k>
+  <k n="helpSpc">
+    <m c="kr" v="(하단 Rank Locked 표시 참조)"/>
+    <m c="jp" v="(画面下 Rank Locked 表示参照)"/>
+    <m c="cn" v="选择锁定某特定车手进行观察，或某特定名次进行观察"/>
+    <m c="tw" v="選擇鎖定某特定車手進行觀察，或某特定名次進行觀察"/>
+    <m c="us" v="(Refer to the Rank Locked sign at the bottom)"/>
+    <m c="vn" v="Khóa ở hàng cuối cùng"/>
+    <m c="ru" v="(См. информацию внизу: Rank Locked)"/>
+    <m c="id" v="(View Rank Locked bawah)"/>
+    <m c="th" v="(เลือก LOCK เพื่อดูผู้เล่นที่ต้องการจากอันดับด้านล่าง)"/>
+  </k>
+  <k n="helpBack">
+    <m c="kr" v="(D, E, H, Y 카메라에만 적용)"/>
+    <m c="jp" v="(D, E, H, Yカメラにのみ適用)"/>
+    <m c="cn" v="（暂时未开放）"/>
+    <m c="tw" v="（暫時未開放）"/>
+    <m c="us" v="(only applies to D, E, H, and Y cameras)"/>
+    <m c="vn" v="Chỉ sử dụng cho các Camera D, E, H, Y"/>
+    <m c="ru" v="(D, E, H, Y применяется исключительно к камере)"/>
+    <m c="id" v="(Hanya untuk D,E,H,Y Camera)"/>
+    <m c="th" v="(ใช้ได้แต่มุมกล้องปุ่ม D, E, H, Y เท่านั้น)"/>
+  </k>
+  <k n="helpI">
+    <m c="kr" v="(라이더명, 랩타임, 속도등을 숨김)"/>
+    <m c="jp" v="ライダー名、記録、速度などを表示"/>
+    <m c="cn" v="打开或关闭时间、圈数、速度、车手名等比赛资料"/>
+  </k>
+  <k n="helpF1">
+    <m c="kr" v="(UP/DOWN: 줌인/아웃)"/>
+    <m c="jp" v="(UP/DOWN: ズームイン/アウト)"/>
+    <m c="cn" v="打开或关闭帮助界面"/>
+    <m c="tw" v="打開或關閉幫助界面"/>
+    <m c="us" v="(UP/DOWN: Zoom in/out)"/>
+    <m c="vn" v="Lên/xuống"/>
+    <m c="ru" v="(UP/DOWN: Приблизить/уменьшить)"/>
+    <m c="id" v="(UP/DOWN : ZoomIn/Out)"/>
+    <m c="th" v="(UP/DOWN: ปรับใกล้/ไกล)"/>
+  </k>
+  <k n="helpA">
+    <m c="kr" v="(UP/DOWN: 줌인/아웃)"/>
+    <m c="jp" v="(UP/DOWN:ズームイン/アウト)"/>
+    <m c="cn" v="使用方向键：上/下，调整视角近/远"/>
+    <m c="th" v="(UP/DOWN: ปรับใกล้/ไกล)"/>
+  </k>
+  <k n="helpQ">
+    <m c="kr" v="(빠른 속도감 강조할 때 잠깐 사용)"/>
+    <m c="jp" v="(スピード感を強調する時に短時間使用)"/>
+    <m c="cn" v="可以充分感受速度感的视角"/>
+    <m c="tw" v="可以充分感受速度感的視角"/>
+    <m c="us" v="(Use for a short while to point out the speed)"/>
+    <m c="id" v="(Digunakan sebentar untuk memperkuat efek kecepatan)"/>
+    <m c="ru" v="(Используется для обозначения высокой скорости)"/>
+  </k>
+  <k n="helpS">
+    <m c="kr" v="(UP/DOWN: 줌인/아웃, LEFT/RIGHT: 회전)"/>
+    <m c="jp" v="(UP/DOWN: ズームイン/アウト、LEFT/RIGHT:回転)"/>
+    <m c="cn" v="使用方向键：上/下，调整视角近/远；左/右，旋转视角"/>
+    <m c="tw" v="使用方向鍵︰上/下，調整視角近/遠；左/右，旋轉視角"/>
+    <m c="us" v="(UP/DOWN: Zoom in/out, LEFT/RIGHT: turn)"/>
+    <m c="vn" v="Lên/xuống, sang trái/sang phải"/>
+    <m c="ru" v="(UP/DOWN: Приблизить/уменьшить, LEFT/RIGHT: поворот)"/>
+    <m c="id" v="(UP/DOWN : ZoomIn/Out,LEFT/RIGHT : Putar)"/>
+    <m c="th" v="(UP/DOWN: ปรับใกล้/ไกล - LEFT/RIGHT:หมุน)"/>
+  </k>
+  <k n="helpD">
+    <m c="kr" v="(UP/DOWN: 줌인/아웃, 아이템전에서 유용)"/>
+    <m c="jp" v="(UP/DOWN: ズームイン/アウト、アイテム戦で便利)"/>
+    <m c="cn" v="使用方向键：上/下，调整视角近/远"/>
+    <m c="tw" v="使用方向鍵︰上/下，調整視角近/遠，適合道具賽使用"/>
+    <m c="us" v="(UP/DOWN: Zoom in/out, useful in item race mode)"/>
+    <m c="vn" v="Lên/xuống"/>
+    <m c="ru" v="(UP/DOWN: Приблизить/уменьшить, полезно в аркадном режиме)"/>
+    <m c="id" v="(UP/DOWN : ZoomIn/Out,Berguna di Item Mode)"/>
+    <m c="th" v="(UP/DOWN: ปรับใกล้/ไกล)"/>
+  </k>
+  <k n="helpE">
+    <m c="kr" v="(UP/DOWN: 줌인/아웃, 아이템전에서 유용)"/>
+    <m c="jp" v="(UP/DOWN: ズームイン/アウト、アイテム戦で便利)"/>
+    <m c="cn" v="使用方向键：上/下，调整视角近/远"/>
+    <m c="tw" v="使用方向鍵︰上/下，調整視角近/遠，適合道具賽使用"/>
+    <m c="us" v="(UP/DOWN: Zoom in/out, useful in item race mode)"/>
+    <m c="vn" v="lên/xuốn"/>
+    <m c="ru" v="(UP/DOWN: Приблизить/уменьшить, полезно в аркадном режиме)"/>
+    <m c="id" v="(UP/DOWN : ZoomIn/Out,Berguna di Item Mode)"/>
+    <m c="th" v="(UP/DOWN: ปรับใกล้/ไกล)"/>
+  </k>
+  <k n="helpF">
+    <m c="kr" v="(실감나는 카메라웍. 오른쪽으로 꺾이는 커브에서 사용)"/>
+    <m c="jp" v="(迫力のあるカメラワーク。右に曲がるカーブで使用)"/>
+    <m c="cn" v="动感视角，适合右弯道上使用"/>
+    <m c="tw" v="動感視角，適合右彎道上使用"/>
+    <m c="us" v="(Realistic camera work, use when curved to right)"/>
+    <m c="vn" v="Sử dụng máy quay bên phải"/>
+    <m c="ru" v="(Реалистичное изображение. Используется при повороте вправо)"/>
+    <m c="id" v="(Camera Work yang bagus,Digunakan pada tikungan ke kanan)"/>
+    <m c="th" v="(ให้ดูสมจริงมากขึ้น ใช้เวลาดูรถเข้าโค้งขวา)"/>
+  </k>
+  <k n="helpR">
+    <m c="kr" v="(실감나는 카메라웍. 왼쪽 커브에서 사용)"/>
+    <m c="jp" v="(迫力のあるカメラワーク。左カーブで使用)"/>
+    <m c="cn" v="动感视角，适合左弯道上使用"/>
+    <m c="tw" v="動感視角，適合左彎道上使用"/>
+    <m c="us" v="(Realistic camera work, use when curved to left)"/>
+    <m c="vn" v="Sử dụng máy quay bên tráii"/>
+    <m c="ru" v="(Реалистичное изображение. Используется при повороте влево)"/>
+    <m c="id" v="(Camera Work yang bagus,Digunakan pada tikungan ke kiri)"/>
+    <m c="th" v="(ให้ดูสมจริงมากขึ้น ใช้เวลาดูรถเข้าโค้งซ้าย)"/>
+  </k>
+  <k n="helpV">
+    <m c="kr" v="(자유 카메라 가능)"/>
+    <m c="jp" v="(フリーカメラ可能)"/>
+    <m c="cn" v="从贴近地面的角度观察特定车手"/>
+    <m c="tw" v="從貼近地面的角度觀察特定車手"/>
+    <m c="us" v="(Free angle camera enabled)"/>
+    <m c="vn" v="Tự do quay film"/>
+    <m c="ru" v="(Свободная камера)"/>
+    <m c="id" v="(Free Camera)"/>
+    <m c="th" v="(มุมมองกล้องอิสระ)"/>
+  </k>
+  <k n="helpG">
+    <m c="kr" v="(지면에 고정된 카메라 시점으로 레이싱 관람)"/>
+    <m c="jp" v="地面に固定されたカメラ視点からレーシング観覧"/>
+    <m c="cn" v="从贴近地面的固定地点角度观察比赛"/>
+  </k>
+  <k n="helpT">
+    <m c="kr" v="(자유 카메라 가능)"/>
+    <m c="jp" v="(フリーカメラ可能)"/>
+    <m c="cn" v="从赛道上方固定地点观察比赛，通过控制鼠标，可自由调节视角"/>
+    <m c="tw" v="從賽道上方固定地點觀察比賽，透過控制鼠標，可自由調節視角"/>
+    <m c="us" v="(Free angle camera enabled)"/>
+    <m c="vn" v="Tự do quay film"/>
+    <m c="ru" v="(Свободная камера)"/>
+    <m c="id" v="(Free Camera)"/>
+    <m c="th" v="(ควบคุมมุมมองด้วยเมาส์หรือปุ่มลูกศรได้)"/>
+  </k>
+  <k n="helpH">
+    <m c="kr" v="(UP/DOWN: 높낮이 조절, LEFT/RIGHT: 줌인/아웃)"/>
+    <m c="jp" v="(UP/DOWN: 高さ調節、LEFT/RIGHT: ズームイン/アウト)"/>
+    <m c="cn" v="从赛道左侧观察比赛，使用方向键：上/下/左/右，可自由调节视角"/>
+    <m c="tw" v="從賽道左側觀察比賽，使用方向鍵︰上/下/左/右，可自由調節視角"/>
+    <m c="us" v="(UP/DOWM: adjust camera height, LEFT/RIGHT: Zoom in/out)"/>
+    <m c="vn" v="Lên/xuống, trái/phải"/>
+    <m c="ru" v="(UP/DOWN: Настройка высоты, LEFT/RIGHT: Приблизить/уменьшить)"/>
+    <m c="id" v="(UP/DOWN : Mengatur Tinggi,LEFT/RIGHT : ZoomIn/Out)"/>
+    <m c="th" v="(UP/DOWN:ปรับสูงต่ำ - LEFT/RIGHT:  ปรับดูใกล้ /ไกล)"/>
+  </k>
+  <k n="helpY">
+    <m c="kr" v="(자유 카메라 가능)"/>
+    <m c="jp" v="(フリーカメラ可能)"/>
+    <m c="cn" v="从赛道左侧观察比赛，使用方向键：上/下/左/右，可自由调节视角"/>
+    <m c="tw" v="從賽道左側觀察比賽，使用方向鍵︰上/下/左/右，可自由調節視角"/>
+    <m c="us" v="(Free angle camera enabled)"/>
+    <m c="vn" v="Tự do quay film"/>
+    <m c="ru" v="(Свободная камера)"/>
+    <m c="id" v="(Free Camera)"/>
+    <m c="th" v="(มุมมองกล้องอิสระ)"/>
+  </k>
+  <k n="fixAPlayer">
+    <m c="kr" v="선수고정"/>
+    <m c="jp" v="選手固定"/>
+    <m c="cn" v=" "/>
+    <m c="tw" v=" "/>
+    <m c="us" v="Camera fixed on the Rider"/>
+    <m c="vn" v="Xác nhận"/>
+    <m c="ru" v="Фиксация"/>
+    <m c="id" v="(Fix Player)"/>
+    <m c="th" v="LOCK"/>
+  </k>
+  <k n="time">
+    <m c="kr" v="TIME"/>
+    <m c="cn" v="原先记录"/>
+  </k>
+  <k n="best">
+    <m c="kr" v="BEST"/>
+    <m c="cn" v="新的记录"/>
+  </k>
+  <k n="userItemUse">
+    <m c="kr" v="%s 유저가 %s 사용하였습니다."/>
+  </k>
+  <k n="userItemGet">
+    <m c="kr" v="%s 유저가 %s 획득하였습니다."/>
+  </k>
+</StringBag>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Shadow isFixedKart="true" fixedKartId="1055" fixedCharId="10" isFixedChar="true" kartId="1055" characterId="12" colorId="9" dyeId="9" characterName="R博士">
+    <LevelContent level="0" ksv="village_I02_rvs" track="village_I02_rvs" laps="3"/>
+  </Shadow>
+</Root>

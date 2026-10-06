@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+		ForwardAccelForce='145.0'
+		BackwardAccelForce='100.0'
+		DragFactor='-0.077'
+		SteerConstraint='2.2'
+		DriftEscapeForce='920'
+		CornerDrawFactor='0.066'
+
+		BoosterBlur='true'
+		EngineSound='cotton7'
+
+		StartForwardAccelFactorSpeed = '1.2'
+		StartBoosterTimeSpeed ='1200'           
+
+		UseTransformBooster='true'
+		TransAccelFactor='1.68'
+		TransformTime='700'
+
+		BoosterWaveType='effect_zero'
+		BoosterType='cotton6'
+		BoosterType0='default'
+		BoosterType1='default'
+		BoosterType2='zero5'
+		BoosterType3='zero5'
+		BoosterType4='cotton6'
+		BoosterType5='cotton6'
+
+		Port0='mod1a1'
+		Port1='mod1a2'
+
+		FirePort0='mod2a1'
+		FirePort1='mod2a2'
+		FirePort2='mod2a3'
+		FirePort3='mod2a4'
+
+		DescBalance= '39'
+		DescStability ='42'
+		DescEngineGrade='1.2'
+		DescCornering='5'
+		DescEnchantCap = '25'
+
+		TailLampSize='0.3'
+		TailLampColor='0 255 100 100'
+		BoostBlurColor='255 77 77 77'
+/>
+<!-- 대만 솔리드 Z7 - TW 한정 판매 111007-->

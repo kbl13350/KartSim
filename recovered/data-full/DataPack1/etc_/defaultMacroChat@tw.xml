@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<defaultMacroChat>
+	<macroChat slotId='0' str='真是精采的比賽!! ' />
+	<macroChat slotId='1' str='愉快行駛吧^^ ' />
+	<macroChat slotId='2' str='唉唷笑死我啦~~哈哈哈哈哈哈哈哈哈' />
+	<macroChat slotId='3' str='謝謝~ (__) ' />
+	<macroChat slotId='4' str='對不起TAT' />
+	<macroChat slotId='5' str='沒關係~~ ' />
+	<macroChat slotId='6' str='小心~!!!! ' />
+	<macroChat slotId='7' str='天啊! 快來幫幫我啊~!! ' />
+	<macroChat slotId='8' str='我先走一步囉~~!! ' />
+	<macroChat slotId='9' str='我無法了...TAT' />
+</defaultMacroChat>
+
+

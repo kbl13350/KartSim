@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <XmlFile file="missionTimer"/>
+    <Container name="item" windowRect="0 0 280 75"/>
+    <StressMirror name="stressMirror"/>
+    <CutEffect name="cutEffect"/>
+  </Container>
+  <Container name="resultPanel" windowRect="fullscreen">
+    <Container name="trainingResultPanel" windowSize="317 156" align="center" adjust="0 30">
+      <Panel name="newrecord_time" leftTopWH="0 0 317 58" color="150 0 0 0" alphaBlend="true" visible="false">
+        <Container name="timeinfo" leftTopWH="0 3 317 29">
+          <Panel leftTopTex="10 0" texture="laptime_time@zz" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="min" leftTopWH="201 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+          <Panel leftTopWH="227 0 18 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="sec" leftTopWH="238 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+          <Panel leftTopWH="264 0 18 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="mil" leftTopWH="275 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+        </Container>
+        <Container name="bestinfo" leftTopWH="0 26 317 29">
+          <Panel leftTopTex="10 0" texture="laptime_best@zz" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="min" leftTopWH="201 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+          <Panel leftTopWH="227 0 18 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="sec" leftTopWH="238 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+          <Panel leftTopWH="264 0 18 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="mil" leftTopWH="275 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+        </Container>
+      </Panel>
+      <Panel name="driveInfo" leftTopWH="0 61 317 58" color="150 0 0 0" alphaBlend="true" visible="false">
+        <Container name="crashInfo" leftTopWH="0 3 317 29">
+          <Panel leftTopTex="10 0" texture="lapinfo_countCrash@zz" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="count" leftTopWH="245 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" rightAlign="true" align="vcenter"/>
+          <Panel leftTopTex="19 22" align="right,vcenter" texture="lapinfo_countTXT@zz" alphaBlend="true" adjust="12 0"/>
+        </Container>
+        <Container name="boosterInfo" leftTopWH="0 26 317 29">
+          <Panel leftTopTex="10 0" texture="lapinfo_countBooster@zz" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="count" leftTopWH="245 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" rightAlign="true" align="vcenter"/>
+          <Panel leftTopTex="19 22" align="right,vcenter" texture="lapinfo_countTXT@zz" alphaBlend="true" adjust="12 0"/>
+        </Container>
+      </Panel>
+      <Panel name="reward_timeAttack" leftTopWH="0 122 317 34" color="150 0 0 0" alphaBlend="true" visible="false">
+        <Container name="bonusMark" leftTopWH="188 0 28 18" align="vcenter"/>
+        <Container name="timeinfo" windowSize="317 34">
+          <CharPanel name="RP" leftTopWH="10 0 33 17" texture="reward_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789+" fontPos="0 0" text="+00" spaceOffset="-4" rightAlign="true" align="vcenter" adjust="12 0"/>
+          <Panel leftTopTex="48 0" texture="time_rp@zz" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="Lucci" leftTopWH="0 0 44 17" texture="reward_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789+" fontPos="0 0" text="+000" spaceOffset="-4" rightAlign="true" align="right.vcenter" adjust="52 0"/>
+          <Panel leftTopTex="0 0" texture="time_lucci@zz" alphaBlend="true" align="right.vcenter"/>
+        </Container>
+      </Panel>
+    </Container>
+    <Container name="rankingResultPanel" windowSize="317 156" align="center" adjust="0 30">
+      <Panel name="newrecord_time" leftTopWH="0 0 317 58" color="150 0 0 0" alphaBlend="true" visible="false">
+        <Container name="timeinfo" leftTopWH="0 3 317 29">
+          <Panel leftTopTex="10 0" texture="laptime_time@zz" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="min" leftTopWH="201 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+          <Panel leftTopWH="227 0 18 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="sec" leftTopWH="238 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+          <Panel leftTopWH="264 0 18 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="mil" leftTopWH="275 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+        </Container>
+        <Container name="bestinfo" leftTopWH="0 26 317 29">
+          <Panel leftTopTex="10 0" texture="laptime_best@zz" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="min" leftTopWH="201 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+          <Panel leftTopWH="227 0 18 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="sec" leftTopWH="238 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+          <Panel leftTopWH="264 0 18 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true" align="vcenter"/>
+          <CharPanel name="mil" leftTopWH="275 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4" align="vcenter"/>
+        </Container>
+      </Panel>
+      <Panel name="reward_timeAttack" windowSize="218 23" align="center" adjust="0 60" alphaBlend="true" color="100 0 0 0" visible="false">
+        <Window windowSize="218 1" frame="ShineLine"/>
+        <Window windowSize="218 1" frame="ShineLine" align="bottom"/>
+        <Container name="bonusMark" windowRect="220 0 254 22"/>
+        <Container name="timeinfo" windowRect="107 3 215 20">
+          <CharPanel name="RP" windowRect="-101 0 -56 17" texture="reward_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789+" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel leftTopTex="-54 -3" texture="time_rp@zz" alphaBlend="true"/>
+          <CharPanel name="Lucci" windowRect="2 0 47 17" texture="reward_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789+" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel leftTopTex="49 -3" texture="time_lucci@zz" alphaBlend="true"/>
+        </Container>
+      </Panel>
+    </Container>
+    <Container name="competitiveResultPanel" windowSize="930 900" align="right;vcenter" visible="false">
+      <ImageBoard windowSize="930 900" image="resultInfoBG@zz" alphaBlend="true"/>
+      <Container windowSize="460 900" align="right;vcenter">
+        <Panel name="grade" leftTopWH="0 150 392 188" texture="resultGrade_1" alphaBlend="true" align="hcenter" adjust="0 0"/>
+        <Panel name="newCompetitiveRecord" leftTopTex="0 330" texture="contest_img_resultIRecordTXT2@zz" alphaBlend="true" align="hcenter" visible="false"/>
+        <Container name="newrecord_time" leftTopWH="0 375 360 116" align="hcenter">
+          <Container name="timeinfo" leftTopWH="0 0 360 66">
+            <CharPanel name="min" leftTopWH="0 0 112 66" texture="contest_img_resultNumRecord" alphaBlend="true" fontSize="56 66" fontStr="0123456789:" fontPos="0 0" text="67" centerAlign="true" allowVertical="true" spaceOffset="-6"/>
+            <Panel leftTopWH="92 0 56 66" uvRect="56 66 112 132" texture="contest_img_resultNumRecord" alphaBlend="true"/>
+            <CharPanel name="sec" leftTopWH="123 0 112 66" texture="contest_img_resultNumRecord" alphaBlend="true" fontSize="56 66" fontStr="0123456789:" fontPos="0 0" text="89" centerAlign="true" allowVertical="true" spaceOffset="-6"/>
+            <Panel leftTopWH="215 0 56 66" uvRect="56 66 112 132" texture="contest_img_resultNumRecord" alphaBlend="true"/>
+            <CharPanel name="mil" leftTopWH="246 0 112 66" texture="contest_img_resultNumRecord" alphaBlend="true" fontSize="56 66" fontStr="0123456789:" fontPos="0 0" text="90" centerAlign="true" allowVertical="true" spaceOffset="-6"/>
+          </Container>
+          <Container name="bestinfo" leftTopWH="0 76 360 50">
+            <Panel leftTopTex="0 0" texture="contest_img_resultIRecordTXT1@zz" alphaBlend="true"/>
+            <CharPanel name="min" leftTopWH="190 0 52 34" texture="contest_img_resultNumBest" alphaBlend="true" fontSize="26 34" fontStr="0123456789:" fontPos="0 0" text="00" spaceOffset="-3"/>
+            <Panel leftTopWH="231 0 26 34" uvRect="260 0 286 34" texture="contest_img_resultNumBest" alphaBlend="true"/>
+            <CharPanel name="sec" leftTopWH="249 0 52 34" texture="contest_img_resultNumBest" alphaBlend="true" fontSize="26 34" fontStr="0123456789:" fontPos="0 0" text="00" spaceOffset="-3"/>
+            <Panel leftTopWH="290 0 26 34" uvRect="260 0 286 34" texture="contest_img_resultNumBest" alphaBlend="true"/>
+            <CharPanel name="mil" leftTopWH="308 0 52 34" texture="contest_img_resultNumBest" alphaBlend="true" fontSize="26 34" fontStr="0123456789:" fontPos="0 0" text="00" spaceOffset="-3"/>
+          </Container>
+        </Container>
+        <Container name="driveInfo" leftTopWH="0 600 355 200" align="hcenter">
+          <CharPanel name="trackPoint" leftTopWH="130 8 180 30" texture="contest_img_trackNumPoint" alphaBlend="true" fontSize="22 30" fontStr="0123456789" fontPos="0 0" text="12345" rightAlign="true"/>
+          <Container name="recordInfo" leftTopWH="100 79 220 22">
+            <Container name="record" leftTopWH="0 0 92 22">
+              <CharPanel name="min" leftTopWH="0 0 28 22" texture="contest_img_resultNumPoint1" alphaBlend="true" fontSize="14 22" fontStr="0123456789:" fontPos="0 0" text="00"/>
+              <Panel leftTopWH="23 0 14 22" uvRect="140 0 154 22" texture="contest_img_resultNumPoint1" alphaBlend="true"/>
+              <CharPanel name="sec" leftTopWH="32 0 28 22" texture="contest_img_resultNumPoint1" alphaBlend="true" fontSize="14 22" fontStr="0123456789:" fontPos="0 0" text="00"/>
+              <Panel leftTopWH="55 0 14 22" uvRect="140 0 154 22" texture="contest_img_resultNumPoint1" alphaBlend="true"/>
+              <CharPanel name="mil" leftTopWH="64 0 28 22" texture="contest_img_resultNumPoint1" alphaBlend="true" fontSize="14 22" fontStr="0123456789:" fontPos="0 0" text="00"/>
+            </Container>
+            <CharPanel name="point" leftTopWH="160 0 70 22" texture="contest_img_resultNumPoint1" alphaBlend="true" fontSize="14 22" fontStr="0123456789:" fontPos="0 0" text="10000" rightAlign="true"/>
+          </Container>
+          <Container name="crashInfo" leftTopWH="100 127 250 22">
+            <CharPanel name="count" leftTopWH="0 0 70 22" texture="contest_img_resultNumPoint1" alphaBlend="true" fontSize="14 22" fontStr="0123456789:" fontPos="0 0" text="10000" rightAlign="true"/>
+            <CharPanel name="point" leftTopWH="155 0 70 22" texture="contest_img_resultNumPoint1" alphaBlend="true" fontSize="14 22" fontStr="0123456789:" fontPos="0 0" text="10000" rightAlign="true"/>
+          </Container>
+          <Container name="boosterInfo" leftTopWH="100 176 250 22">
+            <CharPanel name="count" leftTopWH="0 0 70 22" texture="contest_img_resultNumPoint1" alphaBlend="true" fontSize="14 22" fontStr="0123456789:" fontPos="0 0" text="10000" rightAlign="true"/>
+            <CharPanel name="point" leftTopWH="155 0 70 22" texture="contest_img_resultNumPoint1" alphaBlend="true" fontSize="14 22" fontStr="0123456789:" fontPos="0 0" text="10000" rightAlign="true"/>
+          </Container>
+        </Container>
+      </Container>
+    </Container>
+  </Container>
+  <XmlFile file="retryPopup_2btn"/>
+</Container>

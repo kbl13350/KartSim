@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mine1"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Msg name="市长" string="呼…终于逃开了。|要赶紧收拾藏在矿山的宝石与金子…"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="rose" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="阿尔贝特" string="我就知道你在这里，市长！"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop3"/>
+  <Char id="rose" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="市长" string="吓一跳！这是谁啊？|原来是阿尔贝特"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop3"/>
+  <Char id="rose" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="市长" string="和你爸爸一样的聪明，|但别以为这样你就赢了！"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop2"/>
+  <Char id="rose" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="阿尔贝特" string="认罪吧，把敞篷老爷车的设计图交出来。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop3"/>
+  <Char id="rose" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="市长" string="吼吼吼，你觉得我会这么轻易交出来吗。|嘿嘿~！"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="rose" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="阿尔贝特" string="市长！！|站住！！这次绝对不会放过你。"/>
+  <Enter/>
+</Scene>

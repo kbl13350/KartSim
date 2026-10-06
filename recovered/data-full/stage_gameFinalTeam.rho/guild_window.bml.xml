@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="resultPanel" windowRect="0 0 800 600" align="center" visible="false">
+  <Panel name="specialRpBonus1" windowRect="690 500 790 595" texture="bazzi2@zz" uvRect="0 0 100 95" alphaBlend="true" visible="false"/>
+  <Panel name="specialRpBonus2" windowRect="690 500 790 595" texture="bazzi2@zz" uvRect="0 0 100 95" alphaBlend="true" visible="false"/>
+  <Panel name="happyNewYear" windowRect="10 480 138 608" texture="복주머니" uvRect="0 0 128 128" visible="false" alphaBlend="true"/>
+  <Panel name="observerEvent" windowRect="9 7 141 142" texture="GM당첨" uvRect="0 0 132 135" visible="false" alphaBlend="true"/>
+  <Container name="line0" windowRect="0 30 800 78">
+    <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+      <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+    </Panel>
+    <Panel name="resultID" windowSize="50 26" adjust="276 6" texture="id@zz" alphaBlend="true"/>
+    <Panel name="resultRP" windowSize="76 26" adjust="406 6" texture="rp@zz" alphaBlend="true"/>
+    <Panel name="resultCP" windowSize="45 24" adjust="546 7" texture="cp@zz" alphaBlend="true" visible="false"/>
+    <Panel name="resultLuccon" windowSize="45 24" adjust="546 7" texture="luccon@cn" alphaBlend="true" visible="false"/>
+    <Panel name="resultLucci" windowSize="99 24" adjust="606 7" texture="lucci@zz" alphaBlend="true"/>
+  </Container>
+  <Panel name="win1" windowSize="102 39" adjust="11 131" texture="win_red@zz" alphaBlend="true" visible="false"/>
+  <Panel name="win2" windowSize="102 39" adjust="11 131" texture="win_blue@zz" alphaBlend="true" visible="false"/>
+  <Panel name="lose1" windowSize="102 39" adjust="12 321" texture="lose_red@zz" alphaBlend="true" visible="false"/>
+  <Panel name="lose2" windowSize="102 39" adjust="12 321" texture="lose_blue@zz" alphaBlend="true" visible="false"/>
+  <Panel name="neoGet1" windowRect="237 520 579 592" texture="neo01@zz" alphaBlend="true" visible="false"/>
+  <Panel name="neoGet2" windowRect="237 520 579 592" texture="neo02@zz" alphaBlend="true" visible="false"/>
+</Container>

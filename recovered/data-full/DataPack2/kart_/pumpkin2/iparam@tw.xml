@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='3.2'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='ghost7'
+
+	SpecialSlotCapacity='2'
+
+	UseTransformBooster='true'	
+	TransAccelFactor='1.69'
+	TransformTime='700'
+
+	NormalBoosterTime = '-200'
+	TeamBoosterTime = '-400'
+	DriftMaxGauge = '-350'
+
+	StartForwardAccelFactorItem='1.2'
+	StartBoosterTimeItem='1200'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zeroplus'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zeroplus'
+	BoosterType3='zeroplus'
+
+	Port0='mod1b1'
+	Port1='mod1b2'
+	FirePort0='mod1b3'
+	FirePort1='mod1b4'
+	ExtWheel0='mod1a'
+	ExtWheel1='mod1b'
+
+	ExtWheelSpeed='5'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 246 0'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '43'
+	DescStability ='40'
+	DescEngineGrade='1.2'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+/>
+
+<!-- 대만 호박카트 Z7+ 121017 상점 판매용 -->

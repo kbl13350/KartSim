@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="nym02"/>
+  <Char id="naiad" pos="6 0" emotion="stop1"/>
+  <Msg name="美美" string="…啊…我的头…好痛"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="wisp" pos="7 0" emotion="stop1"/>
+  <Msg name="幻幻" string="啊啊…."/>
+  <Enter/>
+  <Char id="wisp" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop2"/>
+  <Msg name="黑妞" string="美美！幻幻!听到我说话吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop1"/>
+  <Msg name="宝宝" string="哈哈！终于能回家了。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="naiad" pos="6 0" emotion="stop1"/>
+  <Msg name="美美" string="刚…刚才我们都做了什么？"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="shylph" pos="7 0" emotion="stop1"/>
+  <Msg name="琳琳" string="多亏精灵的眼泪才能恢复意识…"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="wisp" pos="7 0" emotion="stop1"/>
+  <Msg name="幻幻" string="原来是这样…真是对不起大家…"/>
+  <Enter/>
+  <Char id="wisp" remove="true"/>
+  <Char id="naiad" pos="7 0" emotion="stop1"/>
+  <Msg name="美美" string="怎…怎么会这样…我没脸跟你们在一起！对不起！！"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="啊！！！美美！！别跑！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="…我们真的能回家吗？真是怀疑啊…"/>
+  <Enter/>
+</Scene>

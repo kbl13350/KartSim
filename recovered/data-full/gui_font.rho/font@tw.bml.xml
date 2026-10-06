@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Fonts>
+  <BitmapFont name="default" headerFile="nsimsun_9" dataFile="nsimsun_9"/>
+  <BoldFilterFont name="bold" baseFontName="default"/>
+  <OutlineFilterFont name="outline" baseFontName="default"/>
+  <BoldFilterFont name="bigbold" baseFontName="default"/>
+  <GdiFont name="scalex2_base" isRenderable="false" faceName="NSimSun" size="15" isBold="true"/>
+  <OutlineFilterFont name="scalex2" baseFontName="scalex2_base" outlineThickness="2"/>
+  <BoldFilterFont name="gulim14" baseFontName="default"/>
+  <BoldFilterFont name="default10" baseFontName="default"/>
+  <OutlineFilterFont name="du11bOutline" baseFontName="default"/>
+</Fonts>

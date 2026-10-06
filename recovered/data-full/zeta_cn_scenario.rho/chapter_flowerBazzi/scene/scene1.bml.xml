@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach8"/>
+  <Char id="zude" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="皮德" string="杉雯雯~有外卖要送哦~~"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Msg name="杉雯雯" string="好的~老板！|使命必达！~"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="zude" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Msg name="皮德" string="记住，安全第一~|小心车子~"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4chen" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="杉雯雯" string="放心吧~~我出发啦！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="zude" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="皮德" string="额？|雯雯~~那个，外卖还没拿走呢~~"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="zude" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="f4chen" pos="11 0" emotion="stop2"/>
+  <Msg name="杉雯雯" string="嘿嘿……不好意思~|这次真的出发啦！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.33'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.076'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.72'
+	TransformTime='650'   
+
+	NormalBoosterTime = '-100'
+	TeamBoosterTime = '-300'
+	DriftMaxGauge = '-500'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+	EnvMap='true'
+
+	StartForwardAccelFactorSpeed = '1.25'
+	StartBoosterTimeSpeed='1200'           
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zerosub'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zeroplus'
+	BoosterType3='zerosub'
+	BoosterType4='zerosub'
+
+	Port0='mod2c1'
+	Port1='mod2c2'
+	FirePort0='mod3a1'
+	FirePort1='mod2d2'
+	FirePort2='mod2d1'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '48'
+	DescStability ='45'
+	DescEngineGrade='1.2'
+	DescCornering='7'
+	DescEnchantCap = '31'
+/>
+
+<!--대만 제니스 Z7+ 이벤트 가샤폰 레전드 20121207 -->

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate5"/>
+  <Char id="narin" pos="10 0" emotion="stop1"/>
+  <Msg name="奈琳" string="什么呀，就这点实力~？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="10 0" emotion="stop1"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="奈尔" string="也太简单了吧。"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="mobi" pos="7 0" emotion="stop2"/>
+  <Msg name="吉米" string="别太得意哦~那些只是基础赛道！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="lodumani" pos="6 0" flip="true" emotion="stop2"/>
+  <Msg name="海盗船长" string="实力还算过关，来听听你到底要讲什么吧！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="先给你介绍下我们阿比斯吧！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="lodumani" pos="9 0" flip="true" emotion="stop3"/>
+  <Msg name="海盗船长" string="按你这么说……你们现在生活在很久以前沉到繁荣山丘南海的深海里。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="9 0" flip="true" emotion="stop3"/>
+  <Char id="tutu" pos="5 0" flip="true" emotion="stop7"/>
+  <Msg name="嘟嘟" string="这次来地面上是为了重新在地上建设你们的城市？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="lodumani" pos="9 0" flip="true" emotion="stop3"/>
+  <Char id="tutu" pos="5 0" flip="true" emotion="stop7"/>
+  <Char id="mobi" pos="2 0" flip="true" emotion="stop9"/>
+  <Msg name="吉米" string="这怎么可能？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="stop1"/>
+  <Char id="lodumani" pos="2 0" flip="true" emotion="stop3"/>
+  <Msg name="莫格瑞" string="现在这片海域改叫繁荣山丘南海了吗？那就对了！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="stop1"/>
+  <Char id="lodumani" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="13 0" emotion="stop1"/>
+  <Msg name="奈琳" string="世界上还有很多你们无法理解的东西~"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="lodumani" pos="6 0" flip="true" emotion="stop2"/>
+  <Msg name="海盗船长" string="（嗯……看起来也不像是在说谎，既然这样借此机会……）"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="6 0" flip="true" emotion="stop2"/>
+  <Msg name="海盗船长" string="喂，莫格瑞！既然这样是不是需要一片土地来建设你们城市？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="当然了，这次上来，就是来看看情况的！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="海盗船长" string="可惜，这里已经是我的地盘了，不能让给你们，"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="海盗船长" string="但我知道附近有个非常适合建设的地方！有没有兴趣啊？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="是嘛,那地方在哪里啊？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="海盗船长" string="虽然现在那里还有些人在住，但地方还是很不错！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="海盗船长" string="只要敢走几个菜鸟，就能轻松占领！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="mobi" pos="11 0" emotion="stop6"/>
+  <Char id="tutu" pos="4 0" flip="true" emotion="stop7"/>
+  <Msg name="嘟嘟" string="船长在说的那个地方应该不会是……"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="mobi" pos="11 0" emotion="stop9"/>
+  <Char id="tutu" pos="4 0" flip="true" emotion="stop7"/>
+  <Msg name="吉米" string="原来我们船长也有害怕的时候啊……！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="meoguri" pos="9 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="嗯，赶走几个菜鸟，那不是轻而易举嘛！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="奈尔" string="再怎么说，赶走别人这有点……"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="10 0" emotion="stop1"/>
+  <Msg name="奈琳" string="我家奈尔奈尔实在是太善良，这也是个问题啊~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="normal"/>
+  <Char id="lodumani" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="莫格瑞" string="那就没必要磨磨叽叽了，赶紧带路吧！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" pos="9 0" emotion="normal"/>
+  <Char id="lodumani" pos="4 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="好嘞，那你就跟我来吧！哇哈哈哈哈！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Shadow isFixedKart="true" fixedKartId="82" fixedCharId="62" isFixedChar="true" kartId="95" characterId="59" uniformId="0" colorId="8" dyeId="8" characterName="黑杰克">
+    <LevelContent level="0" ksv="black-3-1" track="moonhill_I05" laps="3"/>
+  </Shadow>
+</Root>

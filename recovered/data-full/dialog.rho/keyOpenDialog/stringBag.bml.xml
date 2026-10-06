@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="keyOpenCaption">
+    <m c="kr" v="챕터 오픈"/>
+    <m c="jp" v="チャプターオープン"/>
+    <m c="cn" v="开启章节"/>
+    <m c="tw" v="選擇章節"/>
+    <m c="vn" v="Mở khóa"/>
+    <m c="ru" v="Открыть главу"/>
+    <m c="id" v="Membuka Chapter"/>
+    <m c="th" v="เปิด Chapter"/>
+  </k>
+  <k n="getReward">
+    <m c="kr" v="시나리오 열쇠 또는 |라이더의 열쇠를 사용하여 |새로운 챕터를 오픈 하시겠습니까?"/>
+    <m c="jp" v="シナリオキーまたは ライダーのキーを|使用して 新しいチャプターをオープンさせますか？"/>
+    <m c="cn" v="要使用魔法之匙或者车手钥匙来打开新的章节吗？"/>
+    <m c="tw" v="需要使用『劇場鑰匙』或是『過關鑰匙』開啟新章節嗎？"/>
+    <m c="vn" v="Sử dụng chìa khóa của tay đua |hoặc chìa khóa của sân đua|để mở nhiệm vụ mới?"/>
+    <m c="ru" v="Вы хотите открыть следующую главу |с помощью ключа сценария|или ключа гонщика?"/>
+    <m c="id" v="Ingin membuka | chapter baru dengan menggunakan|scenario key atau rider key?"/>
+    <m c="th" v="จะใช้กุญแจนักแข่ง หรือ กุญแจโหมด|เนื้อเรื่องผู้เล่นในการเปิด Chapter ใหม่ ใช่ไหม"/>
+  </k>
+  <k n="NewQuest">
+    <m c="kr" v="새로운 퀘스트가 시작되었습니다.|퀘스트 창을 확인해 보세요."/>
+    <m c="jp" v="新しいクエストが始まりました。|クエストウィンドウを確認してください。"/>
+    <m c="vn" v="Đã bắt đầu nhiệm vụ mới.|Hãy kiểm tra lại cửa sổ nhiệm vụ"/>
+    <m c="ru" v="Открыт новый квест.|Узнайте условия в окне квестов."/>
+    <m c="id" v="Quest baru telah dimulai.|Silahkan cek Quest Window."/>
+    <m c="th" v="เริ่มเควสใหม่ ลองยืนยันหน้าต่างเควสดู"/>
+  </k>
+  <k n="error_noKey">
+    <m c="kr" v="새로운 챕터를 오픈 하기 위해서는 시나리오 열쇠 또는 라이더의 열쇠가 필요합니다."/>
+    <m c="jp" v="新しいチャプターをオープンするにはシナリオキーかライダーのキーが必要です。"/>
+    <m c="cn" v="如果要打开新的章节，需要魔法之匙或者车手钥匙。"/>
+    <m c="tw" v="為了開啟新章節需要『劇場鑰匙』或是『過關鑰匙』"/>
+    <m c="vn" v="Phải có chìa khóa để nổ máy."/>
+    <m c="ru" v="Для открытия новой лавы необходимы ключ сценария или ключ гонщика."/>
+    <m c="id" v="Untuk membuka chapter baru akan membutuhkan scenario key atau rider key."/>
+    <m c="th" v="ต้องใช้กุญแจ Scenario หรือ กุญแจผู้เล่นในการเปิด Chapter ใหม่"/>
+  </k>
+  <k n="error_aleadyOpen">
+    <m c="kr" v="챕터가 이미 오픈 되어 있습니다."/>
+    <m c="jp" v="チャプターがすでにオープンしています。"/>
+    <m c="cn" v="新的章节已经开放。"/>
+    <m c="tw" v="章節已經開啟"/>
+    <m c="vn" v="Nhiệm vụ đã sẵn sàng"/>
+    <m c="ru" v="Эта глава уже открыта."/>
+    <m c="id" v="Chapter telah dibuka"/>
+    <m c="th" v=" Chapter นี้เปิดอยู่แล้ว"/>
+  </k>
+  <k n="error_overMaxOpen">
+    <m c="kr" v="진행중인 챕터가 5개를 초과하였습니다. 동시에 진행 가능한 챕터는 총 5개 입니다."/>
+    <m c="jp" v="進行中のチャプターが5個以上になりました。 同時に進行可能なチャプターは5個までです。"/>
+    <m c="cn" v="正在进行中的章节已超过5个。能够同时进行的最大章节数是5个。"/>
+    <m c="tw" v="進行的章節已經超出5個，同時最多可進行5個章節"/>
+    <m c="vn" v="Đang tiến hành 5 nhiệm vụ, đồng thời toàn bộ nhiệm vụ có khả năng tiếp nhận là 5."/>
+    <m c="ru" v="Вы открыли более 5-ти глав. Одновременно можно выполнять 5 заданий."/>
+    <m c="id" v="Jumlah chapter yang sedang berjalan melebihi 5.Hanya maksimal 5 chapter yang bisa dijalankan."/>
+    <m c="th" v=" Chapter ที่ดำเนินงานอยู่เกิน 5 บทแล้ว สามารถเลือก Chapter ได้ในเวลาเดียวกันสูงสุด 5 บทเท่านั้น"/>
+  </k>
+  <k n="unknownError">
+    <m c="kr" v="알 수 없는 오류가 발생하였습니다."/>
+    <m c="jp" v="原因不明のエラーが発生しました。"/>
+    <m c="cn" v="发生未知的错误。"/>
+    <m c="tw" v="發生無法預期的錯誤"/>
+    <m c="us" v="An unknown error has occurred. "/>
+    <m c="vn" v="Không xác định được lỗi"/>
+    <m c="ru" v="Обнаружена неизвестная ошибка."/>
+    <m c="id" v="Telah terjadi error yang tidak dikenal"/>
+    <m c="th" v="เกิดความผิดพลาดขึ้น"/>
+  </k>
+</StringBag>

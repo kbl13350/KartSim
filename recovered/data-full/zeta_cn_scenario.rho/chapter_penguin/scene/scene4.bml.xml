@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[繁荣山丘]"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="呜呜……太冷了。黑妞什么时候到啊？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="normal"/>
+  <Msg name="皮蛋" string="说马上就到！不过这风也太冷了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="大家！抱歉我来晚啦~！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="11 0" emotion="stop3"/>
+  <Msg name="宝宝" string="今天太冷了，怕是没法练车了。|我还是回家睡个午觉……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop6"/>
+  <Msg name="黑妞" string="宝宝，等等！听说现在去企鹅小镇能体验冰橇呢！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="冰橇~？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Msg name="黑妞" string="肯定很好玩！要不要一起去？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Msg name="宝宝" string="好啊！走呗。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="4 0" emotion="stop5"/>
+  <Msg name="黑妞" string="趁人还不多，咱们赶紧出发吧~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="宝宝明明刚刚还在喊冷……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="ice2"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[企鹅小镇]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="bazzi" pos="11 0" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋，黑妞，宝宝" string="哇啊~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop4"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝" string="是冰橇！！我要去试试~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop4"/>
+  <Char id="dizini" pos="7 0" emotion="stop4"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋，黑妞" string="我也要！我也要！"/>
+  <Enter/>
+</Scene>

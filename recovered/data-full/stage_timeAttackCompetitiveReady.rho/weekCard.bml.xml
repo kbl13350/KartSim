@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window leftTopWH="0 0 374 77">
+  <Panel name="bg_cur" leftTopWH="0 0 374 77" align="vcenter" texture="contest_img_weekRankBG_current" visible="false" alphaBlend="true"/>
+  <Label name="week" leftTopWH="10 27 30 26" textRender="bold16" textAlign="left" textColor="255 175 205 233"/>
+  <Panel name="gradeIcon" leftTopWH="65 22 46 40" align="vcenter" texture="s_경쟁전_등급_미참여" alphaBlend="true"/>
+  <Panel name="gradeTextIcon" leftTopWH="100 21 110 38" align="vcenter" texture="경쟁전_등급텍스트M_진행예정@zz" alphaBlend="true"/>
+  <Container name="curInfo" leftTopWH="187 22 187 77" align="right|vcenter" visible="false">
+    <Label name="rankPercentage" windowSize="100 48" adjust="20 0" text="#sb(rankPercentageNone)" align="right|vcenter" textAlign="right|vcenter" textRender="bold14" textColor="255 192 126 0"/>
+  </Container>
+</Window>

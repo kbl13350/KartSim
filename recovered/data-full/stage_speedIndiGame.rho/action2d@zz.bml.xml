@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen" enable="false">
+  <ControlWindow name="start@zz" windowRect="fullscreen" fadeInLength="100" showLength="3900" fadeOutLength="300" visible="false">
+    <TonCharPanel windowSize="250 98" align="center" adjust="0 -80" texture="s_03@zz" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="start" fontSize="250 98" fontStr="3210" text="0" autoScroll="true" autoScrollTick="1000" flexible="true" allowVertical="true"/>
+  </ControlWindow>
+  <ControlWindow name="finallap@zz" windowRect="fullscreen" fadeInLength="100" showLength="700" fadeOutLength="300" visible="false">
+    <TonPanel windowSize="458 98" align="center" adjust="0 -230" texture="2d_1S_통합2@kr" uvRect="0 110 458 208" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="2lap@zz" windowRect="fullscreen" fadeInLength="100" showLength="700" fadeOutLength="300" visible="false">
+    <TonPanel windowSize="356 98" align="center" adjust="0 -230" texture="2d_1S_통합2@kr" uvRect="0 208 356 306" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="3lap@zz" windowRect="fullscreen" fadeInLength="100" showLength="700" fadeOutLength="300" visible="false">
+    <TonPanel windowSize="356 98" align="center" adjust="0 -230" texture="2d_1S_통합2@kr" uvRect="0 306 356 404" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="4lap@zz" windowRect="fullscreen" fadeInLength="100" showLength="700" fadeOutLength="300" visible="false">
+    <TonPanel windowSize="356 98" align="center" adjust="0 -230" texture="2d_1S_통합2@kr" uvRect="0 404 356 502" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="5lap@zz" windowRect="fullscreen" fadeInLength="100" showLength="700" fadeOutLength="300" visible="false">
+    <TonPanel windowSize="356 98" align="center" adjust="0 -230" texture="2d_1S_통합3@kr" uvRect="0 0 356 98" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="winner@zz" windowRect="fullscreen" fadeInLength="100" showLength="700" fadeOutLength="1000" visible="false">
+    <TonPanel windowSize="196 110" align="center" adjust="0 -80" texture="2d_1S_통합@kr" uvRect="196 330 392 440" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="finish@zz" windowRect="fullscreen" fadeInLength="100" showLength="700" fadeOutLength="300" visible="false">
+    <TonPanel windowSize="196 110" align="center" adjust="0 -80" texture="2d_1S_통합@kr" uvRect="276 220 472 330" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="finish카운트2" windowRect="fullscreen" fadeInLength="100" showLength="19900" fadeOutLength="300" visible="false">
+    <TonCharPanel name="finishNumber" windowSize="120 84" align="center" adjust="0 -80" texture="digit_count2@zz" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="count2" fontSize="120 84" fontStr="9876543210qwertasdfg" text="9" autoScroll="true" autoScrollTick="1000" flexible="true" allowVertical="true"/>
+  </ControlWindow>
+  <ControlWindow name="finish카운트" windowRect="fullscreen" fadeInLength="100" showLength="9900" fadeOutLength="300" visible="false">
+    <TonCharPanel name="finishNumber" windowSize="120 84" align="center" adjust="0 -80" texture="digit_count@zz" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="count" fontSize="120 84" fontStr="9876543210" text="9" autoScroll="true" autoScrollTick="1000" flexible="true" allowVertical="true"/>
+  </ControlWindow>
+  <ControlWindow name="retire@zz" windowRect="fullscreen" fadeInLength="100" showLength="2700" fadeOutLength="350" visible="false">
+    <TonPanel windowSize="386 110" align="center" adjust="0 -80" texture="2d_1S_통합@kr" uvRect="0 110 386 220" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="retire2@zz" windowRect="fullscreen" fadeInLength="100" showLength="2700" fadeOutLength="350" visible="false">
+    <TonPanel windowSize="333 62" align="center" adjust="0 -80" texture="예상골인시간" uvRect="0 0 333 62" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+    <TonCharPanel name="estimate" windowSize="333 51" adjust="0 -5" align="center" texture="예상시간" textureOp="modulate" color="255 255 255 255" alphaBlend="true" fontSize="42 51" fontStr="0123456789:" text="00:00:00"/>
+  </ControlWindow>
+  <ControlWindow name="raceover@zz" windowRect="fullscreen" fadeInLength="100" showLength="2700" fadeOutLength="350" visible="false">
+    <TonPanel windowSize="378 110" align="center" adjust="0 -80" texture="2d_1S_통합@kr" uvRect="0 0 378 110" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="clear@zz" windowRect="fullscreen" fadeInLength="100" showLength="2700" fadeOutLength="350" visible="false">
+    <TonPanel windowSize="196 110" align="center" adjust="0 -80" texture="2d_1S_통합@kr" uvRect="0 330 196 440" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="goldenflag_start@zz" windowRect="fullscreen" fadeInLength="100" showLength="2700" fadeOutLength="350" visible="false">
+    <TonPanel windowSize="282 110" align="center" adjust="0 -80" texture="2d_1S_통합3@kr" uvRect="0 98 282 208" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="flag_draw@zz" windowRect="fullscreen" fadeInLength="100" showLength="2700" fadeOutLength="350" visible="false">
+    <TonPanel windowSize="276 110" align="center" adjust="0 -80" texture="2d_1S_통합@kr" uvRect="0 220 276 330" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="runner_win@zz" windowRect="fullscreen" fadeInLength="100" showLength="700" fadeOutLength="1000" visible="false">
+    <TonPanel windowSize="306 68" align="center" adjust="0 -80" texture="runner_win@zz" uvRect="0 0 306 68" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="runner_lose@zz" windowRect="fullscreen" fadeInLength="100" showLength="700" fadeOutLength="1000" visible="false">
+    <TonPanel windowSize="306 68" align="center" adjust="0 -80" texture="runner_lose@zz" uvRect="0 0 306 68" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="victory@zz" windowRect="fullscreen" fadeInLength="100" showLength="2700" fadeOutLength="350" visible="false">
+    <TonPanel windowSize="194 110" align="center" adjust="0 -80" texture="2d_1S_통합3@kr" uvRect="282 98 476 208" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="newRecord@zz" windowRect="fullscreen" fadeInLength="100" showLength="2700" fadeOutLength="12000" visible="false">
+    <TonPanel windowSize="494 110" align="center" adjust="0 -140" texture="2d_1S_통합2@kr" uvRect="0 0 494 110" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="escape_win@zz" windowRect="fullscreen" fadeInLength="100" showLength="5050" fadeOutLength="350" visible="false">
+    <TonPanel leftTopTex="0 0" align="center" adjust="0 -79" texture="추격전_결과_탈주성공@zz" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="escape_lose@zz" windowRect="fullscreen" fadeInLength="100" showLength="5050" fadeOutLength="350" visible="false">
+    <TonPanel leftTopTex="0 0" align="center" adjust="0 -79" texture="추격전_결과_탈주실패@zz" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="tracing_win@zz" windowRect="fullscreen" fadeInLength="100" showLength="5050" fadeOutLength="350" visible="false">
+    <TonPanel leftTopTex="0 0" align="center" adjust="0 -79" texture="추격전_결과_추격성공@zz" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <ControlWindow name="tracing_lose@zz" windowRect="fullscreen" fadeInLength="100" showLength="5050" fadeOutLength="350" visible="false">
+    <TonPanel leftTopTex="0 0" align="center" adjust="0 -79" texture="추격전_결과_추격실패@zz" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+</Container>

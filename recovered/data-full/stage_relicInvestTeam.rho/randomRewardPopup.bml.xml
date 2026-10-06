@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="shadow" windowRect="fullscreen" color="128 0 0 0" alphaBlend="true">
+  <Container name="rewardNormal" windowRect="0 0 570 455" align="center">
+    <Panel windowRect="0 0 512 460" texture="팝업창_특별보상_01" enable="false" alphaBlend="true"/>
+    <Panel windowRect="512 0 570 460" texture="팝업창_특별보상_02" enable="false" alphaBlend="true"/>
+    <Container name="reward" windowRect="130 220 275 340"/>
+    <Label name="caption" windowRect="130 55 275 85" textRender="outline" textColor="white" textAlign="center" enable="false"/>
+    <Label name="text" windowRect="42 382 502 424" textRender="default" textColor="white" textAlign="center" enable="false"/>
+    <Label name="item" windowRect="350 232 510 280" textRender="default" textColor="white" textAlign="center" enable="false"/>
+    <ImageButton name="okButton" windowRect="472 371 526 426" autoLoadImage="확인버튼_0" textColor="white" textRender="outline" text="#sb(ok)" textAlign="center" alphaBlend="true"/>
+  </Container>
+</Panel>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="100 100 527 281" caption="캡션" captionPos="0 1" captionColor="black" align="center" setCloseButton="cancelButton">
+  <Panel name="pnlTargetItem" windowRect="4 4 116 115" frame="ItemSlotWindow" enable="false" alphaBlend="true"/>
+  <Label name="textLabel" windowRect="125 24 390 94" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="메세지!"/>
+  <StateButton name="구입하기" windowRect="130 81 206 109" iconSet="메인메뉴구입@zz" iconAlign="hcenter" iconPos="0 5"/>
+  <TextButton name="okButton" text="#sb(ok)" windowRect="305 92 375 112" altTextRender="outline"/>
+</CaptionWindow>

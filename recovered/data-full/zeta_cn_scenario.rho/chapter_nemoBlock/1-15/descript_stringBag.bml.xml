@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="重新汇合"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="宝宝和黑妞好不容易从麦迪娅那里逃出来，而皮蛋在卡洛儿的帮助下，终于见到了他们朋友们。再次汇合的他们决定回到像素村…"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="以指定速度通过所有检查站。|"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="像素 极限坡道"/>
+  </k>
+</StringBag>

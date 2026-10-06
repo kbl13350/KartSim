@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='85.0'
+	BackwardAccelForce='80.0'
+	DragFactor='-0.038'
+	SteerConstraint='1.25'
+	DriftEscapeForce='110'
+	CornerDrawFactor='0.035'
+/>
+<!-- 대만 버스트R4-Z (가샤폰) -->

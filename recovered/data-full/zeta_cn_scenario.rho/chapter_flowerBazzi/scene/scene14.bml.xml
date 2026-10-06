@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="park5"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop3"/>
+  <Msg name="道明宝宝" string="我道明宝宝竟然先到？|杉雯雯竟敢迟到…|哎~谁叫我是绅士呢，等等她…"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4bazzi" pos="10 0" emotion="stop1"/>
+  <Msg name="道明宝宝" string="嗯？纸条？什么东西？"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="纸条" string="道明宝宝你的女朋友被我们带走了。拿着麦德斯核心技术来黑暗组织解救你的女朋友。|要不然我们可就要不客气了。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="f4bazzi" pos="10 0" emotion="stop4"/>
+  <Msg name="道明宝宝" string="这些缺德的家伙！||竟敢绑架我的杉雯雯！！|（赶快打电话的宝宝）喂？F4集合！！！"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <BackGround texture="castle1"/>
+  <Char id="f4mobi" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="西门吉米" string="嗯…|这些家伙就是上次那些…"/>
+  <Enter/>
+  <Char id="f4mobi" remove="true"/>
+  <Char id="f4taki" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="美作奇奇" string="对，没错！|上次被你和杉雯雯打败后一直怀恨在心。"/>
+  <Enter/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4dao" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="得先潜入到黑暗组织里。"/>
+  <Enter/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4mobi" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="西门吉米" string="黑暗组织…|我以前去过一次，安全装置很繁杂，所以很难正面突破|如果我没猜错的话，应该有个秘密通道。"/>
+  <Enter/>
+  <Char id="f4mobi" remove="true"/>
+  <Char id="f4taki" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="美作奇奇" string="西门吉米果然厉害。"/>
+  <Enter/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Char id="f4mobi" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="道明宝宝" string="那就拜托了，西门。|交给你了。"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4mobi" remove="true"/>
+  <Char id="f4mobi" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Msg name="西门吉米" string="嗯，相信我。"/>
+  <Enter/>
+</Scene>

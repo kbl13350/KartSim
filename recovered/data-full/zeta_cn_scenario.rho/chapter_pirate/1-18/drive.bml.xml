@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Escape isFixedKart="true" fixedKartId="854" kartId="927" characterId="9" uniformId="0" colorId="8" dyeId="8" isFixedChar="true" fixedCharId="4" characterName="海盜船長">
+    <LevelContent level="0" track="pirate_I01_rvs" laps="3" ksv="pirate_I01_rvs_0" distance="20" startOffset="-1500"/>
+  </Escape>
+</Root>

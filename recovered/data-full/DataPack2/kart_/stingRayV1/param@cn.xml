@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='154'
+	BackwardAccelForce='100'
+	DragFactor='-0.086'
+	SteerConstraint='3.06'
+	CornerDrawFactor='0.073'
+	DriftEscapeForce='2220'
+	
+	driftBoostMulAccelFactor='1.4'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.8626'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+	BoostAccelFactor='1.54'
+	
+	DriftMaxGauge='-670'
+	NormalBoosterTime='80'
+	TeamBoosterTime='-140'
+	
+	DriftGaguePreservePercent='0.7'
+	antiCollideBalance='0.94'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.10'
+	driftBoostTick='500'
+	autoChargeLowSpeed='120'
+	TransformTime='700'
+	
+	TachometerType='V1GenTacho'
+	TachometerName='v1_exceed'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='V1'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='20'
+	dualBoosterTickMax='30'
+	dualMulAccelFactor='1.07'
+	dualTransLowSpeed='100'
+
+	chargeInstAccelGaugeByGrip = '0.06'
+	chargeInstAccelGaugeByBoost = '0.02'
+	chargeInstAccelGaugeByWall = '0.15'
+	instAccelFactor = '1.18'
+	instAccelGaugeLength = '2'
+	instAccelGaugeCooldownTime = '3.0'
+	instAccelGaugeMinUsable ='0.2'
+	instAccelGaugeMinVelLoss = '50'
+	instAccelGaugeMinVelBound = '0'
+
+	wallCollGaugeCooldownTime = '3.0'
+	wallCollGaugeMinVelBound = '200'
+	wallCollGaugeMinVelLoss = '50'
+	wallCollGaugeMaxVelLoss = '200'
+	useExtendedAfterBoosterMore = 'false'
+
+	ExceedWaveType='Exd_Wave_B'
+
+	BoosterType='11soon'
+	BoosterType0='11soon'
+	BoosterType1='11soon'
+	BoosterType2='11main1'
+	BoosterType3='11sub'
+	BoosterType4='11sub'
+	BoosterType5='11main2'
+	BoosterType6='11main2'
+
+	Port0='mod2a1' 
+	Port1='mod2a2'
+
+	FirePort0='mod2b1'
+	FirePort1='mod2a3'
+	FirePort2='mod2a4'
+	FirePort3='mod2b2'
+	FirePort4='mod2b3'
+
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 232  39   6'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 140  56 239' trailPort0='mod1b1' trailPort1='mod2a3' trailPort2='mod2a4'/>
+</BodyParam>

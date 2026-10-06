@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kart12TuningData>
+    <tuningSkillSet>
+        <!-- 스피드 성능 -->
+        <Skill idx='1' name='forwardAccel' tuneGroupId='411' skillName='普通行驶加速度' skillDesc='增加普通行驶加速度'/>
+        <Skill idx='2' name='cornerDrawFactor' tuneGroupId='412' skillName='弯道加速' skillDesc='增加弯道加速'/>
+        <Skill idx='3' name='dragFactor' tuneGroupId='413' skillName='最高速度' skillDesc='增加最高速度'/>
+        <Skill idx='4' name='normalBoosterTime' tuneGroupId='421' skillName='加速时间' skillDesc='增加加速时间'/>
+        <Skill idx='5' name='teamBoosterTime' tuneGroupId='422' skillName='组队加速时间' skillDesc='增加组队加速时间'/>
+        <Skill idx='6' name='startBoosterTimeSpeed' tuneGroupId='423' skillName='启动加速时间' skillDesc='增加启动加速时间'/>
+        <Skill idx='7' name='transAccelFactor' tuneGroupId='431' skillName='变形加速度' skillDesc='增加变形加速度'/>
+        <Skill idx='8' name='driftEscapeForce' tuneGroupId='432' skillName='漂移最佳化' skillDesc='增加漂移最佳化能力'/>
+        <Skill idx='9' name='driftMaxGauge' tuneGroupId='433' skillName='集气速度' skillDesc='增加集气速度'/>
+
+        <!-- 아이템 성능 -->
+        <Skill idx='10' name='protectWaterFly' tuneGroupId='511' skillName='防御水苍蝇' skillDesc='一定几率防御水苍蝇'/>
+        <Skill idx='11' name='protectBomb' tuneGroupId='512' skillName='防御水炸弹类型' skillDesc='一定几率防御水炸弹类型道具'/>
+        <Skill idx='12' name='protectDevil' tuneGroupId='513' skillName='防御大魔王类型' skillDesc='防御大魔王类型道具的攻击|（根据强化点数将增加概率，最多可增加至100%）'/>
+        <Skill idx='13' name='firedUfoGainShield' tuneGroupId='514' skillName='受飞碟攻击获盾牌' skillDesc='受到飞碟攻击时一定几率获得盾牌'/>
+        <Skill idx='14' name='firingMagnetGainBooster' tuneGroupId='521' skillName='用磁铁获得加速器' skillDesc='使用[磁铁]，[黄金磁铁]时一定几率获得加速器'/>
+        <Skill idx='15' name='shiled2SuperShield' tuneGroupId='522' skillName='盾牌变超级盾牌' skillDesc='获得盾牌时一定几率转换为超级盾牌'/>
+        <Skill idx='16' name='booster2SuperShiled' tuneGroupId='523' skillName='加速器变超级盾牌' skillDesc='获得加速器时一定几率转换为超级盾牌'/>
+        <Skill idx='17' name='waterEscape' tuneGroupId='524' skillName='迅速逃脱' skillDesc='迅速逃脱[水炸弹]，[水苍蝇]的攻击|（根据强化点数将增加概率，最多可增加至100%）'/>
+        <Skill idx='18' name='waterBomb2InfectedBomb' tuneGroupId='531' skillName='水炸弹变毒水炸弹' skillDesc='获得水炸弹时转换为毒性水炸弹|（根据强化点数将增加概率，最多可增加至100%）'/>
+        <Skill idx='19' name='rocket2GoldRocket' tuneGroupId='532' skillName='导弹变黄金导弹' skillDesc='获得导弹时一定几率转换成黄金导弹'/>
+        <Skill idx='20' name='booster2Siren' tuneGroupId='533' skillName='加速器变警灯' skillDesc='获得加速器时一定几率转换为警灯'/>
+        <Skill idx='21' name='banana2WaterMine' tuneGroupId='534' skillName='香蕉皮变水地雷' skillDesc='获得香蕉皮时转换为水地雷|（根据强化点数将增加概率，最多可增加至100%）'/>
+    </tuningSkillSet>
+
+    <!-- 카트바디 등급별 에띠의 칩셋 필요 수량-->
+    <KartLevelUpFee>
+        <Normal   chipsLv1='10' chipsLv2='12' chipsLv3='15' chipsLv4='20' chipsLv5='30' lucciLv1='2000' lucciLv2='2000' lucciLv3='2000' lucciLv4='2000' lucciLv5='2000'/>
+        <Rare     chipsLv1='15' chipsLv2='18' chipsLv3='23' chipsLv4='30' chipsLv5='45' lucciLv1='2000' lucciLv2='2000' lucciLv3='2000' lucciLv4='2000' lucciLv5='2000'/>
+        <Special  chipsLv1='15' chipsLv2='18' chipsLv3='23' chipsLv4='30' chipsLv5='45' lucciLv1='2000' lucciLv2='2000' lucciLv3='2000' lucciLv4='2000' lucciLv5='2000'/>
+        <Legend   chipsLv1='20' chipsLv2='24' chipsLv3='30' chipsLv4='40' chipsLv5='60' lucciLv1='2000' lucciLv2='2000' lucciLv3='2000' lucciLv4='2000' lucciLv5='2000'/>
+        <Unique   chipsLv1='23' chipsLv2='28' chipsLv3='35' chipsLv4='46' chipsLv5='69' lucciLv1='2000' lucciLv2='2000' lucciLv3='2000' lucciLv4='2000' lucciLv5='2000'/>
+        <Ultimate chipsLv1='20' chipsLv2='24' chipsLv3='30' chipsLv4='40' chipsLv5='60' lucciLv1='2000' lucciLv2='2000' lucciLv3='2000' lucciLv4='2000' lucciLv5='2000'/>
+        <Growth   chipsLv1='18' chipsLv2='22' chipsLv3='27' chipsLv4='36' chipsLv5='54' lucciLv1='2000' lucciLv2='2000' lucciLv3='2000' lucciLv4='2000' lucciLv5='2000'/>
+    </KartLevelUpFee>
+
+    <!-- 카트바디 레벨업 확률 및 지급 튜닝포인트-->
+    <KartLevelUpProb>
+        <LevelUp prob='100' tuningPoint='1'/>
+        <LevelUp prob='80' tuningPoint='2'/>
+        <LevelUp prob='50' tuningPoint='3'/>
+        <LevelUp prob='30' tuningPoint='4'/>
+        <LevelUp prob='10' tuningPoint='5'/>
+    </KartLevelUpProb>
+
+    <!-- 카트바디 튜닝 성능 변경 에띠의 스페너 필요 수량 -->
+    <KartTuningSkillChangeFee>
+        <Normal   ethisSpanner='10'/>
+        <Rare     ethisSpanner='20'/>
+        <Special  ethisSpanner='20'/>
+        <Legend   ethisSpanner='40'/>
+        <Unique   ethisSpanner='50'/>
+        <Ultimate ethisSpanner='40'/>
+        <Growth   ethisSpanner='30'/>
+    </KartTuningSkillChangeFee>
+
+    <!-- 카트바디 등급별 성능연구 해금시 연구자료 필요 수량-->
+    <KartTuningSkillUnlockFee>
+        <Normal   ethisStudyData='15' ethisDeepStudyData='25'/>
+        <Rare     ethisStudyData='23' ethisDeepStudyData='38'/>
+        <Special  ethisStudyData='23' ethisDeepStudyData='38'/>
+        <Legend   ethisStudyData='30' ethisDeepStudyData='50'/>
+        <Unique   ethisStudyData='35' ethisDeepStudyData='58'/>
+        <Ultimate ethisStudyData='30' ethisDeepStudyData='50'/>
+        <Growth   ethisStudyData='27' ethisDeepStudyData='45'/>
+    </KartTuningSkillUnlockFee>
+    
+</kart12TuningData>

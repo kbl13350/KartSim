@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window enable="true" leftTopWH="0 0 800 600" align="center">
+  <Panel windowRect="fullscreen" align="center" color="100 0 0 0" alphaBlend="true" visible="true"/>
+  <ImageBoard leftTopTex="0 52" image="시작백판" alphaBlend="true"/>
+  <Container name="ledCont" leftTopWH="0 0 800 600">
+    <Panel name="led_0" leftTopTex="10 140" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_1" leftTopTex="10 194" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_2" leftTopTex="10 248" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_3" leftTopTex="10 302" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_4" leftTopTex="10 357" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_5" leftTopTex="10 411" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_6" leftTopTex="10 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_7" leftTopTex="63 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_8" leftTopTex="117 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_9" leftTopTex="172 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_10" leftTopTex="226 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_11" leftTopTex="280 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_12" leftTopTex="497 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_13" leftTopTex="551 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_14" leftTopTex="605 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_15" leftTopTex="659 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_16" leftTopTex="713 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_17" leftTopTex="770 465" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_18" leftTopTex="770 411" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_19" leftTopTex="770 357" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_20" leftTopTex="770 302" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_21" leftTopTex="770 248" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_22" leftTopTex="770 194" texture="조명_01" alphaBlend="true"/>
+    <Panel name="led_23" leftTopTex="770 140" texture="조명_01" alphaBlend="true"/>
+  </Container>
+  <Label name="body" leftTopWH="225 205 370 150" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textRender="medium16" textColor="white" textColor2="black" text="#sb(startBody)" textAlign="center"/>
+  <ImageButton name="okButton" autoLoadImage="달성확인_0@zz" leftTopTex="306 452" alphaBlend="true" textColor="white" textRender="bold"/>
+</Window>

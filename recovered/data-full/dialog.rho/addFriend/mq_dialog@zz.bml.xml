@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow windowRect="0 0 330 215" frame="CaptionDialog" caption="#sb(mainCaption)" align="center" setCloseButton="close">
+    <Container windowRect="0 10 250 55" align="hcenter">
+      <Label windowRect="0 0 248 40" text="#sb(registerRid)" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+      <ChatEdit name="IdEdit" frame="DefaultEdit" windowRect="0 49 248 76" textAlign="center" maxChar="16" textRender="bold16" textColor="255 42 55 80"/>
+      <Label name="guideStr" windowRect="8 50 248 20" text="#sb(guideStr)" textAlign="center" textRender="bold16" textColor="255 183 186 194" enable="false"/>
+    </Container>
+    <Container windowRect="0 0 225 40" align="hcenter;bottom">
+      <Window windowRect="0 -20 260 -19" frame="VSection" align="hcenter"/>
+      <TextButton name="okButton" windowRect="0 0 105 40" text="#sb(registerOk)" textRender="bold16"/>
+      <TextButton name="cancelButton" windowRect="0 0 105 40" align="right" text="#sb(cancel)" textRender="bold16"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

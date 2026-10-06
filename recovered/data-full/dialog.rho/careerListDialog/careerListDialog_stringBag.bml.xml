@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="ableCareer">
+    <m c="kr" v="도전 가능한 커리어 미션 보기"/>
+    <m c="jp" v="挑戦可能なミッション表示"/>
+    <m c="cn" v="查看可挑战的成就"/>
+    <m c="tw" v="查看可挑戰的成就任務"/>
+    <m c="ru" v="Доступные задания"/>
+    <m c="id" v="Tampilkan misi career yang dapat diambil"/>
+    <m c="th" v="ดู Career ที่สามารถทำได้"/>
+  </k>
+  <k n="completedCareer">
+    <m c="kr" v="완료한 커리어 미션 보기"/>
+    <m c="jp" v="完了したミッション表示"/>
+    <m c="cn" v="查看已完成的成就"/>
+    <m c="tw" v="查看已完成的成就任務"/>
+    <m c="ru" v="Пройденные задания"/>
+    <m c="id" v="Tampilkan misi career yang sudah selesai"/>
+    <m c="th" v="ดู Career ที่ทำสำเร็จแล้ว"/>
+  </k>
+  <k n="point">
+    <m c="kr" v="포인트"/>
+    <m c="jp" v="ポイント"/>
+    <m c="cn" v="积分"/>
+    <m c="tw" v="分數"/>
+    <m c="ru" v="Очки"/>
+    <m c="id" v="Point"/>
+    <m c="th" v="แต้ม"/>
+  </k>
+  <k n="reward">
+    <m c="kr" v="보상"/>
+    <m c="jp" v="報酬"/>
+    <m c="cn" v="奖励"/>
+    <m c="tw" v="獎勵"/>
+    <m c="ru" v="Награда"/>
+    <m c="id" v="Hadiah"/>
+    <m c="th" v="ของตอบแทน"/>
+  </k>
+  <k n="careerCaption">
+    <m c="kr" v="카트 커리어"/>
+    <m c="jp" v="カートミッション"/>
+    <m c="cn" v="跑跑卡丁车成就"/>
+    <m c="tw" v="成就系統"/>
+    <m c="ru" v="Карьера"/>
+    <m c="id" v="Kart Career"/>
+    <m c="th" v="Career"/>
+  </k>
+  <k n="driveType">
+    <m c="kr" v="주행 타입"/>
+    <m c="jp" v="走行タイプ"/>
+    <m c="cn" v="行驶成就"/>
+    <m c="tw" v="賽跑模式"/>
+    <m c="id" v="Tipe Balapan"/>
+    <m c="th" v="รูปแบบการขับ"/>
+  </k>
+  <k n="driveTypeSuccess">
+    <m c="kr" v="챌린지 미션"/>
+    <m c="jp" v="チャレンジミッション"/>
+    <m c="cn" v="挑战成就"/>
+    <m c="tw" v="挑戰任務"/>
+    <m c="id" v="Misi"/>
+    <m c="th" v="ภารกิจ Challenge"/>
+  </k>
+  <k n="methodText">
+    <m c="kr" v="미션 수행 방법"/>
+    <m c="jp" v="ミッション進行方法"/>
+    <m c="cn" v="成就说明"/>
+    <m c="tw" v="任務進行方法"/>
+    <m c="ru" v="Прохождение"/>
+    <m c="id" v="Cara Misi"/>
+    <m c="th" v="วิธีทำภารกิจ"/>
+  </k>
+  <k n="hintText">
+    <m c="kr" v="힌 트"/>
+    <m c="jp" v="ヒント"/>
+    <m c="cn" v="提示"/>
+    <m c="tw" v="提示"/>
+    <m c="ru" v="Подсказки"/>
+    <m c="id" v="Hint"/>
+    <m c="th" v="คำใบ้"/>
+  </k>
+  <k n="completeText">
+    <m c="kr" v="완료"/>
+    <m c="jp" v="完了"/>
+    <m c="cn" v="完成"/>
+    <m c="tw" v="完成"/>
+    <m c="id" v="Selesai"/>
+    <m c="th" v="สำเร็จ"/>
+  </k>
+  <k n="giveupText">
+    <m c="kr" v="포기하기"/>
+    <m c="jp" v="放棄する"/>
+    <m c="cn" v="放弃"/>
+    <m c="tw" v="放棄"/>
+    <m c="ru" v="Отказаться"/>
+    <m c="id" v="Menyerah"/>
+    <m c="th" v="ยกเลิก"/>
+  </k>
+  <k n="challengeText">
+    <m c="kr" v="도전하기"/>
+    <m c="jp" v="挑戦する"/>
+    <m c="cn" v="挑战"/>
+    <m c="tw" v="挑戰"/>
+    <m c="ru" v="Принять задание"/>
+    <m c="id" v="Menantang"/>
+    <m c="th" v="เริ่มทำ"/>
+  </k>
+  <k n="checkText">
+    <m c="kr" v="체크하기"/>
+    <m c="jp" v="チェックする"/>
+    <m c="cn" v="记录"/>
+    <m c="tw" v="確認"/>
+    <m c="ru" v="Отметить"/>
+    <m c="id" v="Mengecek"/>
+    <m c="th" v="ตรวจสอบ"/>
+  </k>
+  <k n="rewardText">
+    <m c="kr" v="보상받기"/>
+    <m c="jp" v="報酬受取"/>
+    <m c="cn" v="领取奖励"/>
+    <m c="tw" v="獲得獎勵"/>
+    <m c="ru" v=""/>
+    <m c="id" v="Menerima hadiah"/>
+    <m c="th" v="การรับของตอบแทน"/>
+  </k>
+  <k n="closeText">
+    <m c="kr" v="닫 기"/>
+    <m c="jp" v="閉じる"/>
+    <m c="cn" v="关闭"/>
+    <m c="tw" v="關閉"/>
+    <m c="id" v="Tutup"/>
+    <m c="th" v="ปิด"/>
+  </k>
+  <k n="careerStateText">
+    <m c="kr" v="커리어 상태"/>
+    <m c="jp" v="ミッション状態"/>
+    <m c="cn" v="成就状态"/>
+    <m c="tw" v="成就狀態"/>
+    <m c="ru" v="Прогресс"/>
+    <m c="id" v="Status Career"/>
+    <m c="th" v="สถานะ Career"/>
+  </k>
+  <k n="careerCategoryText">
+    <m c="kr" v="커리어 검색 및 분류"/>
+    <m c="jp" v="ミッション検索と分類"/>
+    <m c="cn" v="成就搜索和分类"/>
+    <m c="tw" v="查詢成就與分類"/>
+    <m c="ru" v="Поиск и виды карьеры"/>
+    <m c="id" v="Kategori dan cari career"/>
+    <m c="th" v="ค้นหา Career "/>
+  </k>
+  <k n="challengeStateText">
+    <m c="kr" v="도전 상태 커리어"/>
+    <m c="jp" v="挑戦状態ミッション"/>
+    <m c="cn" v="成就挑战状态"/>
+    <m c="tw" v="挑戰狀態成就"/>
+    <m c="id" v="Career sedang dijalankan"/>
+    <m c="th" v="สถานะ Challenge Career"/>
+  </k>
+  <k n="careerlistText">
+    <m c="kr" v="커리어 리스트"/>
+    <m c="jp" v="ミッションリスト"/>
+    <m c="cn" v="成就列表"/>
+    <m c="tw" v="成就目錄"/>
+    <m c="ru" v="Список карьер"/>
+    <m c="id" v="Daftar Career"/>
+    <m c="th" v="รายชื่อ Career"/>
+  </k>
+  <k n="missionTitleText">
+    <m c="kr" v="미션 타이틀"/>
+    <m c="jp" v="ミッションタイトル"/>
+    <m c="cn" v="成就名称"/>
+    <m c="tw" v="任務名稱"/>
+    <m c="ru" v="Задание"/>
+    <m c="id" v="Title Misi"/>
+    <m c="th" v="หัวข้อภารกิจ"/>
+  </k>
+  <k n="missionStateText">
+    <m c="kr" v="진행 상황"/>
+    <m c="jp" v="進行状況"/>
+    <m c="cn" v="进行情况"/>
+    <m c="tw" v="進行狀況"/>
+    <m c="ru" v="Прогресс"/>
+    <m c="id" v="Status proces"/>
+    <m c="th" v="สถานะภารกิจ"/>
+  </k>
+  <k n="categoryName">
+    <m c="kr" v="카테고리"/>
+    <m c="jp" v="カテゴリ"/>
+    <m c="cn" v="分类"/>
+    <m c="tw" v="分類"/>
+    <m c="id" v="Kategori"/>
+    <m c="th" v="หมวดหมู่"/>
+  </k>
+  <k n="defaultFindText">
+    <m c="kr" v="검색어를 입력하세요."/>
+    <m c="jp" v="検索ワードを入力してください。"/>
+    <m c="cn" v="请输入搜索语句"/>
+    <m c="tw" v="請輸入查詢內容。"/>
+    <m c="ru" v="Введи ключевое слово."/>
+    <m c="id" v="Silahkan masukkan kata cari"/>
+    <m c="th" v="ใส่คำค้นหา"/>
+  </k>
+  <k n="complete">
+    <m c="kr" v="완료"/>
+    <m c="jp" v="完了"/>
+    <m c="cn" v="完成"/>
+    <m c="tw" v="完成"/>
+    <m c="ru" v="Завершено"/>
+    <m c="id" v="Selesai"/>
+    <m c="th" v="สำเร็จ"/>
+  </k>
+  <k n="completeCheckMsg0">
+    <m c="kr" v="축하합니다. 커리어 미션을 완료하셨습니다. 새로운 커리어 미션에 도전해 보세요~!"/>
+    <m c="jp" v="おめでとうございます。 ミッションを完了しました。 新しいミッションに挑戦してみてくださ～い！"/>
+    <m c="cn" v="恭喜您完成了，请挑战新的成就!"/>
+    <m c="tw" v="恭喜! 完成了成就任務。 再次挑戰新的成就任務~!"/>
+    <m c="id" v="Selamat,Kamu telah menyelesaikan misi career,Silahkan mengambil misi career lain~!"/>
+    <m c="th" v="ยินดีด้วย ทำ Career สำเร็จแล้ว|ลองทำ Career  ใหม่ดูสิ"/>
+  </k>
+  <k n="completeCheckMsg1">
+    <m c="kr" v="커리어 달성 조건을 만족하지 않습니다."/>
+    <m c="jp" v="ミッション達成条件を満たしていません。"/>
+    <m c="cn" v="未满足完成条件。"/>
+    <m c="tw" v="未達成成就任務條件。"/>
+    <m c="id" v="Tidak memenuhi kondisi misi career"/>
+    <m c="th" v="ยังทำ Career ไม่เสร็จสมบูรณ์์"/>
+  </k>
+  <k n="completeCheckMsg2">
+    <m c="kr" v="이미 완료한 커리어 입니다."/>
+    <m c="jp" v="すでに完了したミッションです。"/>
+    <m c="cn" v="已完成成就。"/>
+    <m c="tw" v="已經完成的成就。"/>
+    <m c="id" v="Career yang sudah selesai"/>
+    <m c="th" v="เป็น Career ที่สำเร็จแล้ว"/>
+  </k>
+  <k n="completeCheckMsg3">
+    <m c="kr" v="잘못된 보상입니다. 관리자에게 문의 바랍니다."/>
+    <m c="jp" v="誤った報酬です。管理者にお問い合わせください。"/>
+    <m c="cn" v="错误的奖励，请咨询客服人员。"/>
+    <m c="tw" v="獎勵錯誤。 請向官方管理者反應。"/>
+    <m c="id" v="Hadiah yang salah,Silahkan contact GM"/>
+    <m c="th" v="ของตอบแทนไม่ถูกต้อง กรุณาติดต่อทีมงาน"/>
+  </k>
+  <k n="completeCheckMsg4">
+    <m c="kr" v="유저가 보상을 받을 수 없는 상태 입니다."/>
+    <m c="jp" v="ユーザーが報酬を受け取れない状態です。"/>
+    <m c="cn" v="目前状态无法领取奖励。"/>
+    <m c="tw" v="使用者無法獲得獎勵。"/>
+    <m c="id" v="Kamu sedang dalam kondisi tidak bisa menerima hadiah"/>
+    <m c="th" v="ผู้เล่นอยู่ในสถานะที่ไม่สามารถรับของตอบแทนได้"/>
+  </k>
+  <k n="completeCheckMsg5">
+    <m c="kr" v="잘못된 커리어 데이터 입니다. 관리자에게 문의 바랍니다."/>
+    <m c="jp" v="誤ったミッションデータです。管理者にお問い合わせください。"/>
+    <m c="cn" v="成就数据出错，请咨询客服人员。"/>
+    <m c="tw" v="成就資料錯誤。 請向官方管理者反應。"/>
+    <m c="id" v="Data career yang salah,Silahkan contact GM"/>
+    <m c="th" v="Career Data เกิดข้อผิดพลาด กรุณาติดต่อทีมงาน"/>
+  </k>
+  <k n="completeCheckMsg6">
+    <m c="kr" v="알 수 없는 오류가 발생하였습니다. 관리자에게 문의 바랍니다."/>
+    <m c="jp" v="原因不明のエラーが発生しました。管理者にお問い合わせください。"/>
+    <m c="cn" v="发生未知错误，请咨询客服人员。"/>
+    <m c="tw" v="發生不明錯誤。 請向官方管理者反應。"/>
+    <m c="id" v="Telah terjadi error yang tak terduga,Silahkan contact GM"/>
+    <m c="th" v="เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ กรุณาติดต่อทีมงาน"/>
+  </k>
+  <k n="completeCheckMsg7">
+    <m c="kr" v="커리어 달성 조건을 만족하지 않습니다.|타임어택에 도전하시겠습니까?"/>
+    <m c="jp" v="ミッション達成条件を満たしていません。|タイムアタックに挑戦しますか？"/>
+    <m c="cn" v="未满足完成条件。|要重新挑战计时赛吗？"/>
+    <m c="tw" v="未滿足成就達成條件。|要挑戰計時賽嗎?"/>
+    <m c="id" v="Tidak memenuhi kondisi misi career|Ingin mencoba Time Attack?"/>
+    <m c="th" v="เงื่อนไขการทำ Career ยังไม่สมบรูณ์ |จะเล่นใน Time Attack หรือไม่"/>
+  </k>
+  <k n="completeCheckMsg8">
+    <m c="kr" v="커리어 달성 조건을 만족하지 않습니다.|라이더 스쿨로 이동하시겠습니까?"/>
+    <m c="jp" v="ミッション達成条件を満たしていません。|ライダースクールへ移動しますか？"/>
+    <m c="cn" v="未满足成就达成条件。|要移动到车手学校吗？"/>
+    <m c="tw" v="未滿足達成成就系統的條件 .|你要移動到騎士學園嗎 ?"/>
+    <m c="id" v="Tidak memenuhi kondisi misi career|Ingin ke Rider School?"/>
+    <m c="th" v="ยังทำ Career ไม่เสร็จสมบูรณ์ |กรุณาไปยัง ‘มือใหม่หัดขับ’ เพื่อทำภารกิจนี้"/>
+  </k>
+  <k n="completeCheckMsg9">
+    <m c="kr" v="커리어 보상을 보유하고 있어 보상을 지급 받지 못했습니다."/>
+    <m c="jp" v="ミッション報酬を保有しているため、報酬が支給されませんでした。"/>
+    <m c="cn" v=""/>
+    <m c="id" v="Tidak dapat menerima hadiah karena sudah memiliki hadiah career"/>
+  </k>
+  <k n="questionMsg">
+    <m c="kr" v="이미 해당 아이템을 보유 중이기에 보상을 획득할 수 없습니다.|그래도 커리어를 완료하시겠습니까?"/>
+    <m c="jp" v="すでに該当アイテムを保有しているため、報酬を入手できません。|それでもミッションを完了しますか？"/>
+    <m c="cn" v="您已拥有该道具，无法重复获得。| 确认继续完成成就吗？"/>
+    <m c="tw" v="你已擁有相關的道具， 因此無法重覆獲得.|你確認要完成成就系統嗎?"/>
+    <m c="id" v="Tidak dapat menerima hadiah karena sudah memiliki item tersebut.|Yakin ingin menyelesaikan career?"/>
+  </k>
+  <k n="registerReplyMsg0">
+    <m c="kr" v="새로운 커리어 미션 도전이 시작되었습니다!"/>
+    <m c="jp" v="新しいミッション挑戦が始まりました！"/>
+    <m c="cn" v="开始挑战全新成就！"/>
+    <m c="tw" v="新的成就任務挑戰開始了!"/>
+    <m c="id" v="Telah mulai misi career baru!"/>
+    <m c="th" v="ได้เริ่มภารกิจ Career ใหม่แล้ว"/>
+  </k>
+  <k n="registerReplyMsg1">
+    <m c="kr" v="3개의 커리어 미션에 도전 중 입니다. 도전 중인 커리어 미션 완료 후 도전해 보세요~!"/>
+    <m c="jp" v="3つのミッションに挑戦中です。 挑戦中のミッションを完了してから挑戦してください！"/>
+    <m c="cn" v="您的挑战序列已满，请完成已接受的成就，再挑战其他成就！"/>
+    <m c="tw" v="已有3個成就任務在挑戰中。 請完成挑戰中的任務後，再挑戰其他成就~!"/>
+    <m c="id" v="Sedang mencoba 3 misi career,Silahkan coba lagi setelah menyelesaikan misi tersebut~!"/>
+    <m c="th" v="กำลังทำ Career อยู่ 3 ภารกิจ กรุณาลองใหม่|หลังจากทำ Career ที่กำลังทำอยู่สำเร็จแล้ว"/>
+  </k>
+  <k n="registerReplyMsg2">
+    <m c="kr" v="도전 불가능한 커리어 입니다."/>
+    <m c="jp" v="挑戦不可能なミッションです。"/>
+    <m c="cn" v="无法挑战的成就。"/>
+    <m c="tw" v="無法挑戰的成就。"/>
+    <m c="id" v="Career yang tidak dapat diambil"/>
+    <m c="th" v="Career นี้ไม่สามารถทำได้"/>
+  </k>
+  <k n="registerReplyMsg3">
+    <m c="kr" v="완료된 커리어 입니다."/>
+    <m c="jp" v="完了したミッションです。"/>
+    <m c="cn" v="已完成的成就。"/>
+    <m c="tw" v="已經完成的成就。"/>
+    <m c="id" v="Career yang telah selesai"/>
+    <m c="th" v="Career นี้ทำสำเร็จแล้ว"/>
+  </k>
+  <k n="registerReplyMsg4">
+    <m c="kr" v="이미 도전 하고 있는 커리어 입니다."/>
+    <m c="jp" v="すでに挑戦しているミッションです。"/>
+    <m c="cn" v="正在进行的成就。"/>
+    <m c="tw" v="已經在挑戰中的成就。"/>
+    <m c="id" v="Career yang sedang dijalankan"/>
+    <m c="th" v="Career นี้กำลังทำอยู่"/>
+  </k>
+  <k n="registerReplyMsg5">
+    <m c="kr" v="알 수 없는 문제가 발생했습니다. 관리자에게 문의해 주시기 바랍니다."/>
+    <m c="jp" v="原因不明の問題が発生しました。管理者にお問い合わせください。"/>
+    <m c="cn" v="发生未知错误，请咨询客服人员。"/>
+    <m c="tw" v="發生了不明的問題。  請向官方管理者反應。"/>
+    <m c="id" v="Telah terjadi error yang tak terduga,Silahkan contact GM"/>
+    <m c="th" v="เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ กรุณาติดต่อทีมงาน"/>
+  </k>
+  <k n="careerUnregisterMsg">
+    <m c="kr" v="포기하시면 지금까지 도전하신 커리어 내용이 모두 사라집니다. 포기하시겠습니까?"/>
+    <m c="jp" v="放棄するとこれまで挑戦したミッションの内容がすべて消えてしまいます。放棄しますか？"/>
+    <m c="cn" v="选择放弃后已完成的挑战将被初始化，您确认放弃吗？"/>
+    <m c="tw" v="如果放棄，則到目前為止，此成就挑戰的進度都會消失。 確定要放棄嗎?"/>
+    <m c="id" v="Jika menyerah sekarang akan kehilangan semua konten career tersebut,Yakin menyerah?"/>
+    <m c="th" v="ถ้ายกเลิก Career จะต้องเริ่มทำ Career|ใหม่ทั้งหมดอีกครั้ง ต้องการยกเลิกหรือไม่?"/>
+  </k>
+  <k n="unregisterReplyMsg0">
+    <m c="kr" v="커리어를 포기하였습니다."/>
+    <m c="jp" v="ミッションを放棄しました。"/>
+    <m c="cn" v="您已放弃当前成就。"/>
+    <m c="tw" v="放棄了成就。"/>
+    <m c="id" v="Telah menyerah dari career"/>
+    <m c="th" v="ได้ทำการยกเลิก Career แล้ว"/>
+  </k>
+  <k n="unregisterReplyMsg1">
+    <m c="kr" v="진행하고 있지 않거나, 포기된 커리어 입니다."/>
+    <m c="jp" v="進行していないか、放棄したミッションです。"/>
+    <m c="cn" v="未进行或已放弃的成就。"/>
+    <m c="tw" v="沒有在進行或放棄的成就。"/>
+    <m c="id" v="Career yang sedang tidak dijalankan atau sudah diserahkan."/>
+    <m c="th" v="เป็น Career ที่ไม่ได้ทำหรือได้ยกเลิกไปแล้ว"/>
+  </k>
+  <k n="unregisterReplyMsg2">
+    <m c="kr" v="알 수 없는 문제가 발생했습니다. 관리자에게 문의해 주시기 바랍니다."/>
+    <m c="jp" v="原因不明の問題が発生しました。管理者にお問い合わせください。"/>
+    <m c="cn" v="发生未知错误，请咨询客服人员。"/>
+    <m c="tw" v="發生了不明的問題。 請向官方管理者反應。"/>
+    <m c="id" v="Telah terjadi error yang tak terduga,Silahkan contact GM"/>
+    <m c="th" v="เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ กรุณาติดต่อทีมงาน"/>
+  </k>
+  <k n="rewardSuccess">
+    <m c="kr" v="보상을 지급 받으셨습니다.|내아이템에서 확인해 주세요"/>
+    <m c="jp" v="報酬が支給されました。|マイホームでご確認ください。"/>
+    <m c="cn" v="已领取奖励。|请在小屋确认。"/>
+    <m c="tw" v="獲得了獎勵。|請至聊天室中確認"/>
+    <m c="id" v="Telah menerima hadiah|Silahkan cek di My Room"/>
+    <m c="th" v="ได้รับของตอบแทนแล้ว |กรุณาตรวจสอบที่ห้องของขวัญ"/>
+  </k>
+  <k n="refreshResponseMsg0">
+    <m c="kr" v="성공하였습니다."/>
+    <m c="jp" v="成功しました。"/>
+    <m c="id" v="Telah berhasil"/>
+  </k>
+  <k n="refreshResponseMsg1">
+    <m c="kr" v="알 수 없는 문제가 발생했습니다. 관리자에게 문의해 주시기 바랍니다."/>
+    <m c="jp" v="原因不明の問題が発生しました。管理者にお問い合わせください。"/>
+    <m c="id" v="Telah terjadi error yang tak terduga,Silahkan contact GM"/>
+  </k>
+  <k n="wholeCat">
+    <m c="kr" v="전체"/>
+    <m c="jp" v="全体"/>
+    <m c="cn" v="全部"/>
+    <m c="tw" v="全部"/>
+    <m c="id" v="All"/>
+    <m c="th" v="ทั้งหมด"/>
+  </k>
+  <k n="generalCat">
+    <m c="kr" v="일반"/>
+    <m c="jp" v="一般"/>
+    <m c="cn" v="一般"/>
+    <m c="tw" v="一般"/>
+    <m c="ru" v="Обычные"/>
+    <m c="id" v="Normal"/>
+    <m c="th" v="ทั่วไป"/>
+  </k>
+  <k n="ModeCat">
+    <m c="kr" v="모드"/>
+    <m c="jp" v="モード"/>
+    <m c="cn" v="模式"/>
+    <m c="tw" v="模式"/>
+    <m c="ru" v="Режимы"/>
+    <m c="id" v="Mode"/>
+    <m c="th" v="โหมด"/>
+  </k>
+  <k n="ThemeCat">
+    <m c="kr" v="테마"/>
+    <m c="jp" v="エリア"/>
+    <m c="cn" v="主题"/>
+    <m c="tw" v="主題"/>
+    <m c="ru" v="Темы"/>
+    <m c="id" v="Tema"/>
+    <m c="th" v="ธีม"/>
+  </k>
+  <k n="CollectCat">
+    <m c="kr" v="수집"/>
+    <m c="jp" v="収集"/>
+    <m c="cn" v="收集"/>
+    <m c="tw" v="收集"/>
+    <m c="ru" v="Набор"/>
+    <m c="id" v="Koleksi"/>
+    <m c="th" v="การสะสม"/>
+  </k>
+  <k n="etcCat">
+    <m c="kr" v="기타"/>
+    <m c="jp" v="その他"/>
+    <m c="cn" v="其他"/>
+    <m c="tw" v="其他"/>
+    <m c="ru" v="Прочее"/>
+    <m c="id" v="DLL"/>
+    <m c="th" v="อื่นๆ"/>
+  </k>
+  <k n="recommendCat">
+    <m c="kr" v="추천"/>
+    <m c="jp" v="推薦"/>
+    <m c="tw" v="推薦"/>
+    <m c="ru" v="Рекомендации"/>
+    <m c="id" v="Recommanded"/>
+    <m c="th" v="แนะนำ"/>
+  </k>
+  <k n="refresh">
+    <m c="kr" v="새로고침"/>
+    <m c="jp" v="更新"/>
+    <m c="tw" v="重新整理"/>
+    <m c="id" v="Refreah"/>
+  </k>
+</StringBag>

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <ImageBoard name="backGround_1920" windowSize="1920 1080" adjust="0 0" image="차고배경_1920x1080" alphaBlend="true" align="center" alphaTest="true" visible="true"/>
+  <ImageBoard name="backGround" windowSize="1600 900" align="center" image="garage_img_tuningBG_1600" alphaBlend="true">
+    <GaragePreview name="kartPreview" windowSize="480 480" adjust="-90 -100" align="center" preset="Kartune"/>
+    <Window name="menuTab" leftTopWH="0 54 744 44" align="hcenter" visible="true">
+      <ImageButton name="partsInstall" leftTopTex="0 0" align="vcenter" autoLoadImage="garage_btn_menuTab1_" alphaBlend="true" text="#sb(partsInstall)" textAlign="vcenter" stringPos="60 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white"/>
+      <ImageButton name="partsDisassemble" leftTopTex="124 0" align="vcenter" autoLoadImage="garage_btn_menuTab2_" alphaBlend="true" text="#sb(partsDisassemble)" textAlign="vcenter" stringPos="60 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white"/>
+      <ImageButton name="kartLevelUp" leftTopTex="248 0" align="vcenter" autoLoadImage="garage_btn_menuTab3_" alphaBlend="true" text="#sb(tunningStr)" textAlign="vcenter" stringPos="60 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white" enable="false"/>
+      <ImageButton name="partsComposite" leftTopTex="372 0" align="vcenter" autoLoadImage="garage_btn_menuTab4_" alphaBlend="true" text="#sb(partsComposite)" textAlign="vcenter" stringPos="60 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white"/>
+      <ImageButton name="partsFactory" leftTopTex="496 0" align="vcenter" autoLoadImage="garage_btn_menuTab5_" alphaBlend="true" text="#sb(factory)" textAlign="vcenter" stringPos="50 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white"/>
+      <ImageButton name="growthKart" leftTopTex="620 0" align="vcenter" autoLoadImage="garage_btn_menuTab6_" alphaBlend="true" text="#sb(upgrade)" textAlign="vcenter" stringPos="38 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white" visible="false">
+        <ImageBoard name="growthAlert" windowSize="20 20" align="right" adjust="-6 -6" image="icon_notice" alphaBlend="true" visible="false"/>
+      </ImageButton>
+      <Panel name="growthLock" leftTopWH="620 0 124 44" alphaBlend="true" visible="true" altText="#sb(growthTabLock)" altRelativePos="5 35" texture="garage_btn_menuTab6_0">
+        <Label windowSize="124 44" text="#sb(upgrade)" align="center" textAlign="center" textColor="255 135 141 146" textRender="bold16"/>
+      </Panel>
+    </Window>
+    <ImageButton name="카트레벨업" windowSize="280 78" align="center" adjust="-85 160" autoLoadImage="tuning_btn_levelUp_@zz" alphaBlend="true"/>
+    <Label name="selectedKartName" windowSize="100 50" adjust="20 116" textRender="outline24" textColor="white" textColor2="0 10 80 126" alphaBlend="true"/>
+    <Panel name="selectedKartType" leftTopTex="20 155" texture="garage_img_textCarType1" alphaBlend="true" visible="false"/>
+    <Panel name="tuning_enhance" windowSize="444 110" adjust="20 185" texture="tuning_enhanceBG" alphaBlend="true" depthBias="100.0">
+      <ColorLabel name="enchantTitle" windowSize="440 20" adjust="7 3" enable="false" textRender="bold16" textColor="white"/>
+      <ColorLabel name="enchantDesc" windowSize="440 20" adjust="7 23" multiLine="true" textRender="bold16" marginRect="8 8 5 5" autoWrap="true" lineGap="2" enable="false" textColor="white"/>
+      <ComboBox name="specialSlotSelect" windowSize="436 24" align="hcenter,bottom" adjust="0 -30" frame="ComboBox" listFrame="ComboList" comboListLength="22" autoComboListSizing="true"/>
+    </Panel>
+    <ImageBoard name="back_img" windowSize="366 560" adjust="0 117" align="right" image="tuning_kartInfoBG_1600" alphaBlend="true" depthBias="200.0">
+      <ImageButton name="pointHelp" windowSize="20 20" adjust="50 0" align="right" autoLoadImage="btn_helpIcon_s_" alphaBlend="true" text="#sb(help)" textAlign="vcenter" stringPos="25 0" textRender="outline14" textColor="white" textColor2="255 42 55 80" overTextColor="white" overTextColor2="255 42 55 80" clickedTextColor="white" clickedTextColor2="255 42 55 80" disabledTextColor="white" disabledTextColor2="255 42 55 80"/>
+      <Window name="resultGraph" windowSize="272 272" align="top,hcenter" adjust="0 19" enable="false"/>
+      <Container name="tuneMini" leftTopWH="60 266 206 44">
+        <Container name="tuneEnginePatch" leftTopWH="0 0 44 44" visible="false" enable="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 44 44" align="center"/>
+        </Container>
+        <Container name="tuneHandle" leftTopWH="54 0 44 44" visible="false" enable="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 44 44" align="center"/>
+        </Container>
+        <Container name="tuneWheel" leftTopWH="108 0 44 44" visible="false" enable="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 44 44" align="center"/>
+        </Container>
+        <Container name="tuneSupportKit" leftTopWH="162 0 44 44" visible="false" enable="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 44 44" align="center"/>
+        </Container>
+      </Container>
+      <Container leftTopWH="20 422 326 20">
+        <Label leftTopWH="20 -88 130 40" textAlign="center" text="#sb(pointLeft)" textRender="outline20" textColor="white" alphaBlend="true"/>
+        <Label name="pointLeft" leftTopWH="260 -88 64 40" textAlign="right;vcenter" text="0" textRender="outline20" textColor="white" alphaBlend="true"/>
+      </Container>
+      <Container leftTopWH="20 380 326 20">
+        <Label name="pointSpeedCat" leftTopWH="30 0 64 20" align="left" textAlign="left;vcenter" text="#sb(speed)" textRender="bold16" textColor="255 168 183 195" alphaBlend="true"/>
+        <ColorLabel name="pointSpeed" leftTopWH="205 0 64 20" textAlign="right;vcenter" textRender="bold16" alphaBlend="true"/>
+        <ImageButton name="pointSpeedPlus" windowSize="22 22" align="right" autoLoadImage="tuning_addPoint_" alphaBlend="true"/>
+        <ImageButton name="pointSpeedMinus" windowSize="22 22" align="right" adjust="26 0" autoLoadImage="tuning_subtractPoint_" alphaBlend="true"/>
+      </Container>
+      <Container leftTopWH="20 410 326 20">
+        <Label name="pointCorneringCat" leftTopWH="30 0 64 20" align="left" textAlign="left;vcenter" text="#sb(cornering)" textRender="bold16" textColor="255 168 183 195" alphaBlend="true"/>
+        <ColorLabel name="pointCornering" leftTopWH="205 0 64 20" textAlign="right;vcenter" textRender="bold16" alphaBlend="true"/>
+        <ImageButton name="pointCorneringPlus" windowSize="22 22" align="right" autoLoadImage="tuning_addPoint_" alphaBlend="true"/>
+        <ImageButton name="pointCorneringMinus" windowSize="22 22" align="right" adjust="26 0" autoLoadImage="tuning_subtractPoint_" alphaBlend="true"/>
+      </Container>
+      <Container leftTopWH="20 440 326 20">
+        <Label name="pointDriftCat" leftTopWH="30 0 64 20" align="left" textAlign="left;vcenter" text="#sb(drift)" textRender="bold16" textColor="255 168 183 195" alphaBlend="true"/>
+        <ColorLabel name="pointDrift" leftTopWH="205 0 64 20" textAlign="right;vcenter" textRender="bold16" alphaBlend="true"/>
+        <ImageButton name="pointDriftPlus" windowSize="22 22" align="right" autoLoadImage="tuning_addPoint_" alphaBlend="true"/>
+        <ImageButton name="pointDriftMinus" windowSize="22 22" align="right" adjust="26 0" autoLoadImage="tuning_subtractPoint_" alphaBlend="true"/>
+      </Container>
+      <Container leftTopWH="20 470 326 20">
+        <Label name="pointBoosterCat" leftTopWH="30 0 64 20" align="left" textAlign="left;vcenter" text="#sb(booster)" textRender="bold16" textColor="255 168 183 195" alphaBlend="true"/>
+        <ColorLabel name="pointBooster" leftTopWH="205 0 64 20" textAlign="right;vcenter" textRender="bold16" alphaBlend="true"/>
+        <ImageButton name="pointBoosterPlus" windowSize="22 22" align="right" autoLoadImage="tuning_addPoint_" alphaBlend="true"/>
+        <ImageButton name="pointBoosterMinus" windowSize="22 22" align="right" adjust="26 0" autoLoadImage="tuning_subtractPoint_" alphaBlend="true"/>
+      </Container>
+      <ImageButton name="pointClear" windowSize="134 38" align="bottom;left" adjust="20 23" frame="DefaultAlphaStaticButton" alphaBlend="true" text="#sb(initialize)" textRender="bold16" textColor="255 179 179 179" overTextColor="white" clickedTextColor="255 135 141 146" disabledTextColor="255 179 179 179"/>
+      <ImageButton name="pointApply" windowSize="184 38" align="bottom;right" adjust="20 23" frame="DefaultAlphaStaticButton" alphaBlend="true" text="#sb(apply)" textRender="bold16" textColor="255 179 179 179" overTextColor="white" clickedTextColor="255 135 141 146" disabledTextColor="255 179 179 179"/>
+    </ImageBoard>
+    <Window name="karts" leftTopWH="0 0 1600 195" adjust="0 45" alphaBlend="true" align="bottom">
+      <ImageButton name="allKart" leftTopTex="20 2" autoLoadImage="garage_btn_listTab_" alphaBlend="true" text="#sb(whole)" textAlign="center" stringPos="0 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="white" clickedTextRender="bold16" clickedTextColor="255 151 172 197" disabledTextRender="bold16" disabledTextColor="255 42 55 80"/>
+      <ImageButton name="speedKart" leftTopTex="124 2" autoLoadImage="garage_btn_listTab_" alphaBlend="true" text="#sb(speedkart)" textAlign="center" stringPos="0 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="white" clickedTextRender="bold16" clickedTextColor="255 151 172 197" disabledTextRender="bold16" disabledTextColor="255 42 55 80"/>
+      <ImageButton name="itemKart" leftTopTex="228 2" autoLoadImage="garage_btn_listTab_" alphaBlend="true" text="#sb(itemKart)" textAlign="center" stringPos="0 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="white" clickedTextRender="bold16" clickedTextColor="255 151 172 197" disabledTextRender="bold16" disabledTextColor="255 42 55 80"/>
+    </Window>
+    <GridSelectorDivLoad name="kartSelector" leftTopWH="18 698 1024 150" alignSize="9" maxLine="1" alignMargin="7 0" linePaging="true"/>
+    <Edit name="kartKeyword" visible="true" enable="true" leftTopWH="1345 666 100 22" maxChar="14" textRender="bold14" textColor="white" textBgColor="0 0 0 0" frame="NoFrame"/>
+    <ImageButton name="resetKeyword" leftTopTex="1448 667" autoLoadImage="garage_btn_kartSearch_" alphaBlend="true" visible="false"/>
+    <Window name="directionArrows" leftTopWH="1480 666 100 20">
+      <ImageButton name="leftKartPage" leftTopTex="-5 0" align="left;center" autoLoadImage="garage_btn_arrowLeft_" alphaBlend="true"/>
+      <ImageButton name="rightKartPage" leftTopTex="85 0" align="right;center" autoLoadImage="garage_btn_arrowRight_" alphaBlend="true"/>
+      <Label name="pageInfo" leftTopWH="-10 0 100 20" text="0" textColor="white" align="center" textAlign="center" textRender="bold14"/>
+    </Window>
+    <Container name="engine12Data" leftTopWH="0 96 1600 560" visible="false">
+      <Panel name="tuningLvMark" windowSize="36 36" adjust="0 0" texture="tuning_mark_1" alphaBlend="tre"/>
+      <ImageButton name="tuningLevelUp" windowSize="216 64" align="center" adjust="-85 225" autoLoadImage="tuning_btn_levelUp2_" alphaBlend="true"/>
+      <ImageBoard name="tuningPanel" windowSize="600 536" adjust="20 2" image="tuning_rightBg_2" alphaBlend="true" align="right;vcenter" alphaTest="true">
+        <Container name="skillTuning" windowSize="600 367" adjust="0 0">
+          <Label windowSize="100 20" adjust="0 10" text="#sb(tuningSkill)" align="hcenter" textAlign="center" textRender="bold16" textColor="white"/>
+          <Label windowSize="600 65" adjust="16 46" text="#sb(helpTuningSkillStr)" textRender="bold14" textColor="255 172 179 194"/>
+          <Label windowSize="100 20" adjust="26 132" text="#sb(haveTuningPoint)" textRender="bold16" textColor="white"/>
+          <Panel name="haveTuningPoint" adjust="134 134" windowSize="46 20" texture="tuning_pointTextBg" alphaBlend="true"/>
+          <Panel name="noTuningPoint" adjust="134 134" windowSize="46 20" texture="tuning_pointTextBg_none" alphaBlend="true"/>
+          <Label name="curTuningPoint" adjust="132 132" windowSize="50 20" text="0" textAlign="center" textRender="bold16" textColor="white"/>
+          <Container name="tuningSkill1" leftTopWH="16 165 580 60">
+            <Panel name="skillSlot1" windowSize="54 54" texture="tuning_performslot_none" alphaBlend="true"/>
+            <Panel name="curSkill" adjust="4 4" windowSize="46 46" texture="" alphaBlend="true" visible="false"/>
+            <ImageButton name="skillChange" adjust="30 27" windowSize="34 34" autoLoadImage="tuning_changePerformBtn_" alphaBlend="true"/>
+            <Label name="skillName" adjust="64 14" windowSize="200 25" text="" textAlign="left,vcenter" textRender="bold16" textColor="white"/>
+            <Panel name="skillGauge" adjust="191 19" windowSize="248 16" texture="tuning_progressbar_lock" alphaBlend="true"/>
+            <Play1SPanel name="tuningPoint1s" scene="튜닝포인트" leftTopWH="121 6 100 40" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.7 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" clearZBefore="true" clearZAfter="true" loop="false" alphaBlend="true" visible="false"/>
+            <ColorLabel name="skillTuningPoint" adjust="484 12" windowSize="50 25" text="0 / 5" textAlign="center" textRender="bold16" textColor="white"/>
+            <ImageButton name="minusTuningPoint" adjust="447 9" windowSize="34 34" autoLoadImage="tuning2_subtractPoint_" alphaBlend="true"/>
+            <ImageButton name="plusTuningPoint" adjust="539 9" windowSize="34 34" autoLoadImage="tuning2_addPoint_" alphaBlend="true"/>
+          </Container>
+          <Container name="tuningSkill2" leftTopWH="16 231 580 60">
+            <Panel name="skillSlot2" windowSize="54 54" texture="tuning_performslot_none" alphaBlend="true"/>
+            <Panel name="curSkill" adjust="4 4" windowSize="46 46" texture="" alphaBlend="true" visible="false"/>
+            <ImageButton name="skillChange" adjust="30 27" windowSize="34 34" autoLoadImage="tuning_changePerformBtn_" alphaBlend="true"/>
+            <Label name="skillName" adjust="64 14" windowSize="200 25" text="" textAlign="left,vcenter" textRender="bold16" textColor="white"/>
+            <Panel name="skillGauge" adjust="191 19" windowSize="248 16" texture="tuning_progressbar_lock" alphaBlend="true"/>
+            <Play1SPanel name="tuningPoint1s" scene="튜닝포인트" leftTopWH="121 6 100 40" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.7 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" clearZBefore="true" clearZAfter="true" loop="false" alphaBlend="true" visible="false"/>
+            <ColorLabel name="skillTuningPoint" adjust="484 12" windowSize="50 25" text="0 / 5" textAlign="center" textRender="bold16" textColor="white"/>
+            <ImageButton name="minusTuningPoint" adjust="447 9" windowSize="34 34" autoLoadImage="tuning2_subtractPoint_" alphaBlend="true"/>
+            <ImageButton name="plusTuningPoint" adjust="539 9" windowSize="34 34" autoLoadImage="tuning2_addPoint_" alphaBlend="true"/>
+          </Container>
+          <Container name="tuningSkill3" leftTopWH="16 297 580 60">
+            <Panel name="skillSlot3" windowSize="54 54" texture="tuning_performslot_none" alphaBlend="true"/>
+            <Panel name="curSkill" adjust="4 4" windowSize="46 46" texture="" alphaBlend="true" visible="false"/>
+            <ImageButton name="skillChange" adjust="30 27" windowSize="34 34" autoLoadImage="tuning_changePerformBtn_" alphaBlend="true"/>
+            <Label name="skillName" adjust="64 14" windowSize="200 25" text="" textAlign="left,vcenter" textRender="bold16" textColor="white"/>
+            <Panel name="skillGauge" adjust="191 19" windowSize="248 16" texture="tuning_progressbar_lock" alphaBlend="true"/>
+            <Play1SPanel name="tuningPoint1s" scene="튜닝포인트" leftTopWH="121 6 100 40" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.7 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" clearZBefore="true" clearZAfter="true" loop="false" alphaBlend="true" visible="false"/>
+            <ColorLabel name="skillTuningPoint" adjust="484 12" windowSize="50 25" text="0 / 5" textAlign="center" textRender="bold16" textColor="white"/>
+            <ImageButton name="minusTuningPoint" adjust="447 9" windowSize="34 34" autoLoadImage="tuning2_subtractPoint_" alphaBlend="true"/>
+            <ImageButton name="plusTuningPoint" adjust="539 9" windowSize="34 34" autoLoadImage="tuning2_addPoint_" alphaBlend="true"/>
+          </Container>
+        </Container>
+        <Container name="exceedType" windowSize="580 169" adjust="0 367">
+          <Label windowSize="100 20" adjust="0 0" text="#sb(exceedType)" align="hcenter" textAlign="center" textRender="bold16" textColor="white"/>
+          <Label windowSize="100 20" adjust="26 36" text="#sb(curExceedType)" textRender="bold16" textColor="white"/>
+          <Panel name="exceedSlot" adjust="20 72" windowSize="52 52" texture="tuning_Exceedslot" alphaBlend="true"/>
+          <Panel name="exceedIcon" adjust="20 72" windowSize="52 52" alphaBlend="true"/>
+          <Label windowSize="100 20" adjust="87 71" text="#sb(exceedAccel)" textRender="bold16" textColor="white"/>
+          <Label windowSize="100 20" adjust="87 101" text="#sb(exceedTime)" textRender="bold16" textColor="white"/>
+          <Panel name="exceedAccelGauge" adjust="205 76" windowSize="158 14" texture="tuning_exceedProgressbar_01" alphaBlend="true"/>
+          <Panel name="exceedTimeGauge" adjust="205 108" windowSize="158 14" texture="tuning_exceedProgressbar_01" alphaBlend="true"/>
+          <ColorLabel name="exceedDesc" windowSize="200 20" adjust="20 134" align="left" text="#sb(exceedDesc)" textRender="bold14" textColor="255 202 210 220"/>
+          <ImageButton name="exceedTypeChangeBtn" adjust="424 77" windowSize="146 42" autoLoadImage="tuning_btn_changeExceed_" alphaBlend="true" enable="false"/>
+          <Panel name="higherTuningLevel5" adjust="432 56" windowSize="22 22" texture="tuning_icon_lock" alphaBlend="true" visible="false">
+            <Label windowSize="100 20" adjust="22 -1" text="#sb(higherTuningLevel5)" textRender="bold14" textColor="255 123 130 141"/>
+          </Panel>
+          <Panel name="immutableItemKart" adjust="428 56" windowSize="22 22" texture="tuning_icon_lock" alphaBlend="true" visible="false">
+            <Label windowSize="100 20" adjust="22 -1" text="#sb(immutableItemKart)" textRender="bold14" textColor="255 123 130 141"/>
+          </Panel>
+          <Panel name="unableExceedTypeChangeKart" adjust="421 56" windowSize="22 22" texture="tuning_icon_lock" alphaBlend="true" visible="false">
+            <Label windowSize="100 20" adjust="22 -1" text="#sb(unableExceedTypeChangeKart)" textRender="bold14" textColor="255 123 130 141"/>
+          </Panel>
+        </Container>
+      </ImageBoard>
+    </Container>
+    <Panel name="textPerformList_12" leftTopTex="20 191" texture="garage_img_textPerformList_2@zz" alphaBlend="true" visible="false">
+      <Window name="kartParam" leftTopWH="100 10 200 500" enable="false">
+        <Panel name="transAccelFactor_PrewiewBg" leftTopWH="-22 15 410 36" alphaBlend="true" alphaTest="true" visible="false" texture="garage_img_compareBG2_2_cn"/>
+        <CharPanel name="transAccelFactor" leftTopWH="114 26 50 14" texture="garage_img_num_2_1" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" rightAlign="true" enable="false" visible="true"/>
+        <Panel name="cornerDrawFactor_PrewiewBg" leftTopWH="-22 48 410 36" alphaBlend="true" alphaTest="true" visible="false" texture="garage_img_compareBG2_3_cn"/>
+        <CharPanel name="cornerDrawFactor" leftTopWH="114 58 50 14" texture="garage_img_num_2_1" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" rightAlign="true" enable="false" visible="true"/>
+        <Panel name="driftEscapeForce_PrewiewBg" leftTopWH="-22 78 410 36" alphaBlend="true" alphaTest="true" visible="false" texture="garage_img_compareBG2_1_cn"/>
+        <CharPanel name="driftEscapeForce" leftTopWH="114 89 50 14" texture="garage_img_num_2_1" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" rightAlign="true" enable="false" visible="true"/>
+        <Panel name="normalBoosterTime_PrewiewBg" leftTopWH="-22 108 410 36" alphaBlend="true" alphaTest="true" visible="false" texture="garage_img_compareBG2_4_cn"/>
+        <CharPanel name="normalBoosterTime" leftTopWH="114 122 50 14" texture="garage_img_num_2_1" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" rightAlign="true" enable="false" visible="true"/>
+        <Panel name="boosterGauge_PrewiewBg" leftTopWH="-22 137 410 36" alphaBlend="true" alphaTest="true" visible="false" texture="garage_img_compareBG2_5_cn"/>
+        <CharPanel name="boosterGauge" leftTopWH="114 153 50 14" texture="garage_img_num_2_1" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" rightAlign="true" enable="false" visible="true"/>
+        <CharPanel name="transAccelFactorTuningValue" leftTopWH="175 26 50 14" texture="garage_img_num_2_2" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" enable="false"/>
+        <CharPanel name="cornerDrawFactorTuningValue" leftTopWH="175 58 50 14" texture="garage_img_num_2_2" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" enable="false"/>
+        <CharPanel name="driftEscapeForceTuningValue" leftTopWH="175 89 50 14" texture="garage_img_num_2_2" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" enable="false"/>
+        <CharPanel name="normalBoosterTimeTuningValue" leftTopWH="175 122 50 14" texture="garage_img_num_2_2" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" enable="false"/>
+        <CharPanel name="boosterGaugeTuningValue" leftTopWH="175 153 50 14" texture="garage_img_num_2_2" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0" enable="false"/>
+      </Window>
+    </Panel>
+    <Window name="equipedParts_12" leftTopWH="11 373 385 50" visible="false">
+      <ItemWindow name="kartView" windowSize="170 170" adjust="25 70"/>
+      <Container name="tuneEnginePatch" leftTopWH="13 43 50 50">
+        <Container name="item" leftTopWH="-4 -4 50 50" visible="true">
+          <Play1SPanel name="partsLvMaxEffect1s" scene="파츠슬롯이펙트" windowRect="-14 -12 64 64" zoom="1.0" stop="false" clearZAfter="true" clearZBefore="true" defaultCameraPos="0 -2.1 0" defaultSpotPos="0 0 0" visible="false" depthBias="512.0"/>
+          <Panel name="uniqueLevel" leftTopWH="0 0 50 50" alphaBlend="true" alphaTest="true" texture="uniqueLevel_0_50x50"/>
+          <Panel name="lock" texture="garage_img_partsBG1_lock2" leftTopWH="1 1 48 48" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 50 50" align="center"/>
+          <Label name="partsLv" leftTopWH="0 30 50 50" text="Lv.10" textAlign="hcenter" textRender="outline14" textColor="255 255 255 255"/>
+        </Container>
+      </Container>
+      <Container name="tuneHandle" leftTopWH="69 43 50 50">
+        <Container name="item" leftTopWH="-4 -4 50 50" visible="true">
+          <Play1SPanel name="partsLvMaxEffect1s" scene="파츠슬롯이펙트" windowRect="-14 -12 64 64" zoom="1.0" stop="false" clearZAfter="true" clearZBefore="true" defaultCameraPos="0 -2.1 0" defaultSpotPos="0 0 0" visible="false" depthBias="512.0"/>
+          <Panel name="uniqueLevel" leftTopWH="0 0 50 50" alphaBlend="true" alphaTest="true" texture="uniqueLevel_0_50x50"/>
+          <Panel name="lock" texture="garage_img_partsBG1_lock2" leftTopWH="1 1 48 48" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 50 50" align="center"/>
+          <Label name="partsLv" leftTopWH="0 30 50 50" text="Lv.10" textAlign="hcenter" textRender="outline14" textColor="255 255 255 255"/>
+        </Container>
+      </Container>
+      <Container name="tuneWheel" leftTopWH="125 43 50 50">
+        <Container name="item" leftTopWH="-4 -4 50 50" visible="true">
+          <Play1SPanel name="partsLvMaxEffect1s" scene="파츠슬롯이펙트" windowRect="-14 -12 64 64" zoom="1.0" stop="false" clearZAfter="true" clearZBefore="true" defaultCameraPos="0 -2.1 0" defaultSpotPos="0 0 0" visible="false" depthBias="512.0"/>
+          <Panel name="uniqueLevel" leftTopWH="0 0 50 50" alphaBlend="true" alphaTest="true" texture="uniqueLevel_0_50x50"/>
+          <Panel name="lock" texture="garage_img_partsBG1_lock2" leftTopWH="1 1 48 48" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 50 50" align="center"/>
+          <Label name="partsLv" leftTopWH="0 30 50 50" text="Lv.10" textAlign="hcenter" textRender="outline14" textColor="255 255 255 255"/>
+        </Container>
+      </Container>
+      <Container name="tuneSupportKit" leftTopWH="181 43 50 50">
+        <Container name="item" leftTopWH="-4 -4 50 50" visible="true">
+          <Play1SPanel name="partsLvMaxEffect1s" scene="파츠슬롯이펙트" windowRect="-14 -12 64 64" zoom="1.0" stop="false" clearZAfter="true" clearZBefore="true" defaultCameraPos="0 -2.1 0" defaultSpotPos="0 0 0" visible="false" depthBias="512.0"/>
+          <Panel name="uniqueLevel" leftTopWH="0 0 50 50" alphaBlend="true" alphaTest="true" texture="uniqueLevel_0_50x50"/>
+          <Panel name="lock" texture="garage_img_partsBG1_lock2" leftTopWH="1 1 48 48" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 50 50" align="center"/>
+          <Label name="partsLv" leftTopWH="0 30 50 50" text="Lv.10" textAlign="hcenter" textRender="outline14" textColor="255 255 255 255"/>
+        </Container>
+      </Container>
+      <Window name="selectedKartEquippedV1">
+        <Container name="partsCoating12" leftTopWH="237 43 50 50">
+          <Container name="item" leftTopWH="-4 -4 50 50" visible="true">
+            <Panel name="uniqueLevel" leftTopWH="0 0 50 50" alphaBlend="true" alphaTest="true" texture="uniqueLevel_0_50x50"/>
+            <Panel name="parts" leftTopWH="0 0 50 50" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+            <Panel name="lock" texture="garage_img_partsBG1_lock2" leftTopWH="1 1 48 48" alphaBlend="true" alphaTest="true" visible="false"/>
+            <ItemWindow name="itemView" leftTopWH="0 0 50 50" align="center"/>
+          </Container>
+        </Container>
+        <Container name="partsTailLamp12" leftTopWH="293 43 50 50">
+          <Container name="item" leftTopWH="-4 -4 50 50" visible="true">
+            <Panel name="uniqueLevel" leftTopWH="0 0 50 50" alphaBlend="true" alphaTest="true" texture="uniqueLevel_0_50x50"/>
+            <Panel name="parts" leftTopWH="0 0 50 50" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+            <Panel name="lock" texture="garage_img_partsBG1_lock2" leftTopWH="1 1 48 48" alphaBlend="true" alphaTest="true" visible="false"/>
+            <ItemWindow name="itemView" leftTopWH="0 0 50 50" align="center"/>
+          </Container>
+        </Container>
+        <Container name="partsBoosterEffect12" leftTopWH="349 43 50 50">
+          <Container name="item" leftTopWH="-4 -4 50 50" visible="true">
+            <Panel name="uniqueLevel" leftTopWH="0 0 50 50" alphaBlend="true" alphaTest="true" texture="uniqueLevel_0_50x50"/>
+            <Panel name="parts" leftTopWH="0 0 50 50" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+            <Panel name="lock" texture="garage_img_partsBG1_lock2" leftTopWH="1 1 48 48" alphaBlend="true" alphaTest="true" visible="false"/>
+            <ItemWindow name="itemView" leftTopWH="0 0 50 50" align="center"/>
+          </Container>
+        </Container>
+      </Window>
+    </Window>
+    <Window name="kartBodyEffect12" leftTopWH="18 458 385 50" depthBias="255.0">
+      <Container name="kartBodyEffectSlot0" leftTopWH="13 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Container name="kartBodyEffectSlot1" leftTopWH="64 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Container name="kartBodyEffectSlot2" leftTopWH="115 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Container name="kartBodyEffectSlot3" leftTopWH="166 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Container name="kartBodyEffectSlot4" leftTopWH="217 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Container name="kartBodyEffectSlot5" leftTopWH="268 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Container name="kartBodyEffectSlot6" leftTopWH="319 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Container name="kartBodyEffectSlot7" leftTopWH="370 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Container name="kartBodyEffectSlot8" leftTopWH="421 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Container name="kartBodyEffectSlot9" leftTopWH="472 43 44 44" visible="false">
+        <Panel name="kartFuncSlotBg" leftTopWH="0 0 44 44" alphaBlend="true" alphaTest="true" texture="garage_kartFuncSlotBg"/>
+        <Panel name="kartFuncIcon" leftTopWH="2 2 40 40" alphaBlend="true" alphaTest="true"/>
+        <Window name="kartBodyEffectTooltip" frame="DarkGrayPanel" enable="false" windowRect="0 -180 464 -5" visible="false" alphaBlend="true">
+          <Panel leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Panel name="itemGradeColorPanel" windowSize="462 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true"/>
+          <Panel name="pnlTargetItem" leftTopWH="10 40 122 122" texture="img_itemTooltopBoxBG" alphaBlend="true"/>
+          <Label text="#sb(kartBodyEffct)" align="hcenter" windowSize="434 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          <Label name="kartBodyEffectIconTooltipName" leftTopWH="150 37 280 1" textRender="bold14" textColor="255 255 237 84" text=""/>
+          <Label name="kartBodyEffectIconTooltipDesc" leftTopWH="150 62 280 1" textRender="bold14" textColor="255 255 237 84" text="" autoWrap="true"/>
+        </Window>
+      </Container>
+      <Label name="kartBodyEffectDesc" leftTopWH="12 90 300 150" text="" textAlign="left" textRender="bold14" textColor="255 225 230 239" enable="false"/>
+    </Window>
+  </ImageBoard>
+</Container>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bingoGacha>
+		<replaceReward stockId='7821' />
+		<bingoReward>
+				<stock id='27967' />
+				<stock id='27968' />
+				<stock id='27970' />
+		</bingoReward>
+		<rewardSet>
+				<reward period='2024-01-25T06:00:00~2024-02-22T05:59:59'>
+						<lv1>
+								<reward id='27975' prob='1' />
+								<reward id='27976' prob='1' />
+								<reward id='27980' prob='1' />
+						</lv1>
+						<lv2>
+								<reward id='27183' prob='1' />
+								<reward id='27184' prob='1' />
+								<reward id='26670' prob='1' />
+								<reward id='27453' prob='1' />
+								<reward id='27340' prob='1' />
+								<reward id='27303' prob='1' />
+								<reward id='27305' prob='1' />
+								<reward id='27699' prob='1' />
+								<reward id='21060' prob='1' />
+								<reward id='26710' prob='1' />
+								<reward id='21059' prob='1' />
+								<reward id='27977' prob='1' />
+								<reward id='27978' prob='1' />
+								<reward id='27979' prob='1' />
+								<reward id='27189' prob='1' />
+								<reward id='27092' prob='1' />
+								<reward id='27459' prob='1' />
+								<reward id='24014' prob='1' />
+								<reward id='25525' prob='1' />
+								<reward id='26820' prob='1' />
+								<reward id='23462' prob='1' />
+								<reward id='23024' prob='1' />
+								<reward id='24461' prob='1' />
+						</lv2>
+				</reward>
+		</rewardSet>
+		<duplicateProbs>
+				<prob val='10000' />
+				<prob val='9000' />
+				<prob val='8500' />
+				<prob val='7500' />
+				<prob val='8000' />
+				<prob val='7000' />
+				<prob val='6000' />
+				<prob val='4000' />
+				<prob val='3500' />
+				<prob val='4000' />
+				<prob val='4500' />
+				<prob val='5000' />
+				<prob val='4500' />
+				<prob val='2500' />
+				<prob val='2500' />
+				<prob val='1800' />
+				<prob val='1500' />
+				<prob val='550' />
+				<prob val='2000' />
+				<prob val='750' />
+				<prob val='950' />
+				<prob val='200' />
+				<prob val='300' />
+				<prob val='80' />
+				<prob val='15' />
+		</duplicateProbs>
+		<duplicateProbsNumberChange enable='true'>
+				<prob val='10000' />
+				<prob val='9500' />
+				<prob val='9000' />
+				<prob val='8500' />
+				<prob val='8500' />
+				<prob val='7500' />
+				<prob val='6500' />
+				<prob val='7500' />
+				<prob val='4500' />
+				<prob val='5000' />
+				<prob val='5500' />
+				<prob val='5000' />
+				<prob val='4500' />
+				<prob val='4000' />
+				<prob val='3000' />
+				<prob val='2700' />
+				<prob val='2000' />
+				<prob val='900' />
+				<prob val='2000' />
+				<prob val='1200' />
+				<prob val='1000' />
+				<prob val='400' />
+				<prob val='550' />
+				<prob val='110' />
+				<prob val='25' />
+		</duplicateProbsNumberChange>
+</bingoGacha>

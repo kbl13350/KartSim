@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Levels
+	rpLimit='75000000'
+>
+	<Level nextRp='1' tryLevel='1' glove='노랑5' name='黄色手套5' /> <!-- 레벨 0 -->
+	<Level nextRp='70' tryLevel='1' glove='노랑5' name='黄色手套5' />
+	<Level nextRp='148' tryLevel='1' glove='노랑4' name='黄色手套4' />
+	<Level nextRp='262' tryLevel='1' glove='노랑3' name='黄色手套3' />
+	<Level nextRp='412' tryLevel='1' glove='노랑2' name='黄色手套2' />
+	<Level nextRp='600' tryLevel='1' glove='노랑1' name='黄色手套1' />
+
+	<Level nextRp='902' tryLevel='2' glove='초록5' name='绿色手套5' />
+	<Level nextRp='1410' tryLevel='2' glove='초록4' name='绿色手套4' />
+	<Level nextRp='1930' tryLevel='2' glove='초록3' name='绿色手套3' />
+	<Level nextRp='2500' tryLevel='2' glove='초록2' name='绿色手套2' />
+	<Level nextRp='3200' tryLevel='2' glove='초록1' name='绿色手套1' />
+
+	<Level nextRp='4000' tryLevel='3' glove='파랑5' name='蓝色手套5' />
+	<Level nextRp='4900' tryLevel='3' glove='파랑4' name='蓝色手套4' />
+	<Level nextRp='6000' tryLevel='3' glove='파랑3' name='蓝色手套3' />
+	<Level nextRp='7800' tryLevel='3' glove='파랑2' name='蓝色手套2' />
+	<Level nextRp='9900' tryLevel='3' glove='파랑1' name='蓝色手套1' />
+
+	<Level nextRp='11878' tryLevel='4' glove='빨강5' name='红色手套5' />
+	<Level nextRp='13158' tryLevel='4' glove='빨강4' name='红色手套4' />
+	<Level nextRp='17318' tryLevel='4' glove='빨강3' name='红色手套3' />
+	<Level nextRp='19622' tryLevel='4' glove='빨강2' name='红色手套2' />
+	<Level nextRp='22070' tryLevel='4' glove='빨강1' name='红色手套1' />
+
+	<Level nextRp='24662' tryLevel='5' glove='검정5' name='黑色手套5' />
+	<Level nextRp='30278' tryLevel='5' glove='검정4' name='黑色手套4' />
+	<Level nextRp='33302' tryLevel='5' glove='검정3' name='黑色手套3' />
+	<Level nextRp='36470' tryLevel='5' glove='검정2' name='黑色手套2' />
+	<Level nextRp='39782' tryLevel='5' glove='검정1' name='黑色手套1' />
+
+	<Level nextRp='43238'  tryLevel='5' glove='무지개5' name='七彩色手套5' />
+	<Level nextRp='47452'  tryLevel='5' glove='무지개4' name='七彩色手套4' />
+	<Level nextRp='51862' tryLevel='5' glove='무지개3' name='七彩色手套3' />
+	<Level nextRp='56468' tryLevel='5' glove='무지개2' name='七彩色手套2' />
+	<Level nextRp='61270' tryLevel='5' glove='무지개1' name='七彩色手套1' />
+
+	<Level nextRp='66268'	tryLevel='5' glove='스타노랑5' name='黄色星星手套5' />
+	<Level nextRp='71462'	tryLevel='5' glove='스타노랑4' name='黄色星星手套4' />
+	<Level nextRp='76852'	tryLevel='5' glove='스타노랑3' name='黄色星星手套3' />
+	<Level nextRp='82438'	tryLevel='5' glove='스타노랑2' name='黄色星星手套2' />
+	<Level nextRp='88220'	tryLevel='5' glove='스타노랑1' name='黄色星星手套1' />
+
+	<Level nextRp='94198'	tryLevel='5' glove='스타초록5' name='绿色星星手套5' />
+	<Level nextRp='100372'	tryLevel='5' glove='스타초록4' name='绿色星星手套4' />
+	<Level nextRp='106742'	tryLevel='5' glove='스타초록3' name='绿色星星手套3' />
+	<Level nextRp='113308'	tryLevel='5' glove='스타초록2' name='绿色星星手套2' />
+	<Level nextRp='120070'	tryLevel='5' glove='스타초록1' name='绿色星星手套1' />
+
+	<Level nextRp='127028'	tryLevel='5' glove='스타파랑5' name='蓝色星星手套5' />
+	<Level nextRp='134182'	tryLevel='5' glove='스타파랑4' name='蓝色星星手套4' />
+	<Level nextRp='141532'	tryLevel='5' glove='스타파랑3' name='蓝色星星手套3' />
+	<Level nextRp='149078'	tryLevel='5' glove='스타파랑2' name='蓝色星星手套2' />
+	<Level nextRp='156820'	tryLevel='5' glove='스타파랑1' name='蓝色星星手套1' />
+
+	<Level nextRp='169510'	tryLevel='5' glove='스타빨강5' name='红色星星手套5' />
+	<Level nextRp='177760'	tryLevel='5' glove='스타빨강4' name='红色星星手套4' />
+	<Level nextRp='186310'	tryLevel='5' glove='스타빨강3' name='红色星星手套3' />
+	<Level nextRp='195260'	tryLevel='5' glove='스타빨강2' name='红色星星手套2' />
+	<Level nextRp='214660'	tryLevel='5' glove='스타빨강1' name='红色星星手套1' />
+
+	<Level nextRp='224810'	tryLevel='5' glove='스타검정5' name='黑色星星手套5' />
+	<Level nextRp='235210'	tryLevel='5' glove='스타검정4' name='黑色星星手套4' />
+	<Level nextRp='245910'	tryLevel='5' glove='스타검정3' name='黑色星星手套3' />
+	<Level nextRp='256960'	tryLevel='5' glove='스타검정2' name='黑色星星手套2' />
+	<Level nextRp='269010'	tryLevel='5' glove='스타검정1' name='黑色星星手套1' />
+
+	<Level nextRp='275573'	tryLevel='5' glove='스타무지개5' name='七彩色星星手套5' />
+	<Level nextRp='282296'	tryLevel='5' glove='스타무지개4' name='七彩色星星手套4' />
+	<Level nextRp='289184'	tryLevel='5' glove='스타무지개3' name='七彩色星星手套3' />
+	<Level nextRp='296239'	tryLevel='5' glove='스타무지개2' name='七彩色星星手套2' />
+	<Level nextRp='303466'	tryLevel='5' glove='스타무지개1' name='七彩色星星手套1' />
+
+
+	<Level nextRp='310870' tryLevel='5' glove='노랑별1' name='黄色星星1' />
+	<Level nextRp='318454' tryLevel='5' glove='노랑별2' name='黄色星星2' />
+	<Level nextRp='326224' tryLevel='5' glove='노랑별3' name='黄色星星3' />
+	<Level nextRp='334182' tryLevel='5' glove='노랑별4' name='黄色星星4' />
+	<Level nextRp='342336' tryLevel='5' glove='노랑별5' name='黄色星星5' />
+
+	<Level nextRp='350668' tryLevel='5' glove='초록별1' name='绿色星星1' />
+	<Level nextRp='359243' tryLevel='5' glove='초록별2' name='绿色星星2' />
+	<Level nextRp='368008' tryLevel='5' glove='초록별3' name='绿色星星3' />
+	<Level nextRp='376986' tryLevel='5' glove='초록별4' name='绿色星星4' />
+	<Level nextRp='386184' tryLevel='5' glove='초록별5' name='绿色星星5' />
+
+	<Level nextRp='395605' tryLevel='5' glove='파랑별1' name='蓝色星星1' />
+	<Level nextRp='405257' tryLevel='5' glove='파랑별2' name='蓝色星星2' />
+	<Level nextRp='415144' tryLevel='5' glove='파랑별3' name='蓝色星星3' />
+	<Level nextRp='425273' tryLevel='5' glove='파랑별4' name='蓝色星星4' />
+	<Level nextRp='435648' tryLevel='5' glove='파랑별5' name='蓝色星星5' />
+
+	<Level nextRp='446277' tryLevel='5' glove='빨강별1' name='红色星星1' />
+	<Level nextRp='457164' tryLevel='5' glove='빨강별2' name='红色星星2' />
+	<Level nextRp='468318' tryLevel='5' glove='빨강별3' name='红色星星3' />
+	<Level nextRp='479744' tryLevel='5' glove='빨강별4' name='红色星星4' />
+	<Level nextRp='491448' tryLevel='5' glove='빨강별5' name='红色星星5' />
+
+	<Level nextRp='503438' tryLevel='5' glove='검정별1' name='黑色星星1' />
+	<Level nextRp='515720' tryLevel='5' glove='검정별2' name='黑色星星2' />
+	<Level nextRp='528302' tryLevel='5' glove='검정별3' name='黑色星星3' />
+	<Level nextRp='541191' tryLevel='5' glove='검정별4' name='黑色星星4' />
+	<Level nextRp='554395' tryLevel='5' glove='검정별5' name='黑色星星5' />
+
+	<Level nextRp='567921' tryLevel='5' glove='무지개별1' name='彩虹星星1' />
+	<Level nextRp='581776' tryLevel='5' glove='무지개별2' name='彩虹星星2' />
+	<Level nextRp='595970' tryLevel='5' glove='무지개별3' name='彩虹星星3' />
+	<Level nextRp='610510' tryLevel='5' glove='무지개별4' name='彩虹星星4' />
+	<Level nextRp='708863' tryLevel='5' glove='무지개별5' name='彩虹星星5' />
+
+	<Level nextRp='794921'	tryLevel='5' glove='동달노랑' name='黄带铜牌'/>
+	<Level nextRp='891426' tryLevel='5'  glove='동달초록' name='绿带铜牌'/>
+	<Level nextRp='999648' tryLevel='5'  glove='동달파랑'  name='蓝带铜牌'/>
+	<Level nextRp='1121008' tryLevel='5'  glove='동달빨강' name='红带铜牌'/>
+	<Level nextRp='1257101' tryLevel='5'  glove='동달검정' name='黑带铜牌'/>
+	<Level nextRp='1409717' tryLevel='5' glove='동달무지개' name='彩带铜牌' />
+
+	<Level nextRp='1580861' tryLevel='5'  glove='은달노랑' name='黄带银牌'/>
+	<Level nextRp='1772781' tryLevel='5'  glove='은달초록' name='绿带银牌'/>
+	<Level nextRp='1988002' tryLevel='5'  glove='은달파랑' name='蓝带银牌'/>
+	<Level nextRp='2229351' tryLevel='5'  glove='은달빨강' name='红带银牌'/>
+	<Level nextRp='2500000' tryLevel='5'  glove='은달검정' name='黑带银牌'/>
+	<Level nextRp='2770649'	tryLevel='5' glove='은달무지개' name='彩带银牌'/>
+
+	<Level nextRp='3041298' tryLevel='5'  glove='금달노랑' name='黄带金牌'/>
+	<Level nextRp='3311947' tryLevel='5'  glove='금달초록' name='绿带金牌'/>
+	<Level nextRp='3582596' tryLevel='5'  glove='금달파랑' name='蓝带金牌'/>
+	<Level nextRp='3853245' tryLevel='5'  glove='금달빨강' name='红带金牌'/>
+	<Level nextRp='4123894' tryLevel='5'  glove='금달검정' name='黑带金牌'/>
+	<Level nextRp='4935841' tryLevel='5' glove='금달무지개' name='彩带金牌'/>
+
+	<Level nextRp='5238967' tryLevel='5'  glove='동뱃지노랑' name='黄铜徽章'/>
+	<Level nextRp='5578468' tryLevel='5'  glove='동뱃지초록' name='绿铜徽章'/>
+	<Level nextRp='5958709' tryLevel='5'  glove='동뱃지파랑' name='蓝铜徽章'/>
+	<Level nextRp='6384578' tryLevel='5'  glove='동뱃지빨강' name='红铜徽章'/>
+	<Level nextRp='6861551' tryLevel='5'  glove='동뱃지검정' name='黑铜徽章'/>
+	<Level nextRp='7824406' tryLevel='5'  glove='동뱃지무지개' name='彩虹铜徽章'/>
+
+	<Level nextRp='9549842' tryLevel='5'  glove='은뱃지노랑' name='黄银徽章'/>
+	<Level nextRp='11482330' tryLevel='5'  glove='은뱃지초록' name='绿银徽章'/>
+	<Level nextRp='13646716' tryLevel='5'  glove='은뱃지파랑' name='蓝银徽章'/>
+	<Level nextRp='16070828' tryLevel='5'  glove='은뱃지빨강' name='红银徽章'/>
+	<Level nextRp='18785833' tryLevel='5'  glove='은뱃지검정' name='黑银徽章'/>
+	<Level nextRp='24266546' tryLevel='5'  glove='은뱃지무지개' name='彩虹银徽章'/>
+
+	<Level nextRp='30404944' tryLevel='5'  glove='금뱃지노랑' name='黄金徽章'/>
+	<Level nextRp='37279949' tryLevel='5'  glove='금뱃지초록' name='绿金徽章'/>
+	<Level nextRp='44979954' tryLevel='5'  glove='금뱃지파랑' name='蓝金徽章'/>
+	<Level nextRp='53603959' tryLevel='5'  glove='금뱃지빨강' name='红金徽章'/>
+	<Level nextRp='63262844' tryLevel='5'  glove='금뱃지검정' name='黑金徽章'/>
+	<Level tryLevel='5'  glove='금뱃지무지개' name='彩虹金徽章'/>
+
+	<ChannelLevelList>
+		<ChannelLevel beginRp='0' endRp='9900' level='1' />
+		<ChannelLevel beginRp='9900' endRp='61270' level='2' />
+		<ChannelLevel beginRp='61270' endRp='269010' level='3' />
+		<ChannelLevel beginRp='269010' level='4' />
+	</ChannelLevelList>
+</Levels>

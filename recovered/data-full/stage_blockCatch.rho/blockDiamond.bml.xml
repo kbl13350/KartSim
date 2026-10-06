@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BlockBox name="blockDiamond" leftTopWH="-100 -100 73 74" enable="true" visible="false">
+  <Panel leftTopTex="0 -5" texture="다이아박스" alphaBlend="true" alphaTest="true" visible="true">
+    <Window name="collisionBox" leftTopWH="10 0 73 74" align="top;vcenter" enable="true"/>
+  </Panel>
+</BlockBox>

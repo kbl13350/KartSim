@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='143.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.072'
+           SteerConstraint='2.1'
+           DriftEscapeForce='500'
+           CornerDrawFactor='0.06'
+           UseTransformBooster='true'
+           TransAccelFactor='1.62'
+
+           EngineSound='cotton6'
+           BoosterBlur='true'
+           BoosterType='cotton6'
+           BoosterType0='default'
+           BoosterType1='default'
+
+           Port0='mod3'
+           FirePort0='mod4'
+           FirePort1='mod5'
+           FirePort2='mod6'
+           
+           EnvMap='1'
+
+
+	DescBalance= '38'
+	DescStability ='38'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '20'
+/>
+<!-- 중국 황금토끼SR (1주판매) -->

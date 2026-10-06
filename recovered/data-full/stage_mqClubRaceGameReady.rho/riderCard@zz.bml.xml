@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RiderCard name="riderCard" windowRect="0 0 251 313" autoMultiTexture="btn_singleEmptySlot1_" riderRect="3 0 251 308" alphaBlend="true">
+  <Play1SPanel name="slotBg" scene="empty_슬롯" windowRect="3 3 251 310" depthBias="-10000.0" defaultCameraPos="0.0 -1.5 0.0" defaultSpotPos="0.0 0.0 0.0" clearZAfter="true" clearZBefore="true" loop="true" visible="false" alphaBlend="true"/>
+  <ImageButton name="info" leftTopWH="219 47 22 22" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+  <Window name="vipTagSet" leftTopWH="152 50 40 40" visible="false">
+    <Panel name="vipTag" alphaBlend="true" enable="false" align="center"/>
+  </Window>
+  <Window name="lisenceTagSet" leftTopWH="255 70 40 40" visible="false">
+    <Panel name="lisenceTag" alphaBlend="true" enable="false" align="center"/>
+  </Window>
+  <Window name="tierGradeTagSet" leftTopWH="255 105 40 40" visible="false">
+    <Panel name="tierGradeTag" alphaBlend="true" enable="false" align="center"/>
+  </Window>
+  <Window name="tierMatchingWnd" leftTopWH="255 105 40 40" visible="false">
+    <Panel name="mpGradeTag" alphaBlend="true" enable="false" align="center"/>
+  </Window>
+  <Window name="coupleRingSet" leftTopWH="255 145 40 40" visible="false">
+    <Panel name="coupleRingBg" alphaBlend="true" enable="false" align="center"/>
+    <Panel name="coupleRing" alphaBlend="true" enable="false" align="center"/>
+  </Window>
+  <Container name="inviteCont" visible="false">
+    <ImageButton name="inviteVersusMode" leftTopWH="255 103 34 38" autoLoadImage="1vs1_in_button_0@zz" alphaBlend="true" altText="#sb(inviteVersusMode)" visible="false"/>
+  </Container>
+  <Panel leftTopTex="10 47" texture="img_slotEmblemBG" alphaBlend="true">
+    <Panel name="clubMark" windowRect="0 0 20 20" align="center" alphaBlend="true" visible="false">
+      <Panel name="clubFrame" windowSize="24 24" align="center" alphaBlend="true" alphaTest="true" visible="false" enable="false"/>
+    </Panel>
+  </Panel>
+  <Panel leftTopTex="10 86" texture="img_slotEmblemBG" alphaBlend="true">
+    <Panel name="emblem02" windowRect="0 0 20 20" align="center" alphaBlend="true" visible="false"/>
+  </Panel>
+  <Panel leftTopTex="10 125" texture="img_slotEmblemBG" alphaBlend="true">
+    <Panel name="emblem03" windowRect="0 0 20 20" align="center" alphaBlend="true" visible="false"/>
+  </Panel>
+  <Panel name="slotSpecialKitBG" leftTopTex="10 164" texture="img_slotSpecialKitBG" alphaBlend="true" depthBias="65" visible="false">
+    <Panel name="specialKit" windowRect="0 0 36 36" align="center" alphaBlend="true" visible="false"/>
+  </Panel>
+  <ImageButton name="blockChat" leftTopTex="0 0" autoLoadImage="btn_mute_" alphaBlend="true" visible="false"/>
+  <Panel name="bossTag_me" leftTopTex="0 268" texture="slotMaster_me@zz" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="bossTag_other" leftTopTex="0 268" texture="slotMaster@zz" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="ready" leftTopTex="0 268" texture="slotReady@zz" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="changing" leftTopTex="0 268" texture="slotPitin@zz" alphaBlend="true" visible="false" enable="false"/>
+  <ImageButton name="closed" leftTopWH="0 0 251 313" autoLoadImage="btn_slotClose_" alphaBlend="true" visible="false"/>
+  <Panel name="reserved" windowRect="4 30 130 184" texture="img_slotWaiting@zz" alphaBlend="true" visible="false" enable="false"/>
+  <Container name="gpContainer" windowRect="30 195 98 205" enable="false">
+    <Label name="gp" windowRect="60 0 92 92" textRender="outline" textColor="255 0 255 0" autoSizing="true" align="center" text=""/>
+  </Container>
+  <Container windowSize="251 235" align="bottom;center" adjust="0 -232">
+    <Label leftTopWH="0 10 251 26" text="#sb(clubInfo)" textColor="255 135 146 167" textRender="bold16" textAlign="center"/>
+    <Container name="clubInfo" leftTopWH="0 63 251 30" align="hcenter">
+      <Label name="clubName" leftTopWH="0 0 251 26" text="-" textColor="white" textRender="bold16" textAlign="center"/>
+      <Panel name="clubMark2" leftTopWH="0 0 24 24" alphaBlend="true" visible="false">
+        <Panel name="clubFrame" windowSize="24 24" align="center" alphaBlend="true" alphaTest="true" visible="false" enable="false"/>
+      </Panel>
+    </Container>
+    <Label name="clubRecord" leftTopWH="0 125 251 26" text="#sb(clubRecord)" textColor="255 135 146 167" textRender="bold16" textAlign="center"/>
+    <ColorLabel name="clubWinLose" leftTopWH="0 177 251 26" text="#sb(unitWinLose)" textColor="white" textRender="bold16" textAlign="center"/>
+  </Container>
+  <Panel name="coverPanel" texture="btn_singleSlotCover" windowRect="0 0 251 313" alphaBlend="true" visible="true" enable="false"/>
+  <Label name="riderNameLabel" windowRect="0 0 251 30" textRender="outline16" textColor="white" align="top,hcenter" marginRect="0 2 0 0" textAlign="center" enable="false" text=""/>
+  <Panel name="glove" leftTopWH="0 0 32 32" alphaBlend="true" visible="false"/>
+  <ImageButton name="kick" leftTopWH="217 3 26 26" autoLoadImage="kick_" enable="false" alphaBlend="true" altText="#sb(kick)"/>
+  <Panel name="myRiderTag" leftTopTex="0 0" align="center" texture="img_playerFrame@zz" alphaBlend="true" visible="false" enable="false"/>
+</RiderCard>

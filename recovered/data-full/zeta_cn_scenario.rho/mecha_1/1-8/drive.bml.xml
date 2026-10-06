@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <Tracing isFixedKart="true" fixedKartId="9" kartId="413" characterId="1" uniformId="0" colorId="1" dyeId="1" characterName="迪斯欧德R" miniNpc="true">
+    <LevelContent level="0" track="village_I08" laps="3" ksv="8단계_village_I01_1" distance="20" startOffset="1200"/>
+  </Tracing>
+</Root>

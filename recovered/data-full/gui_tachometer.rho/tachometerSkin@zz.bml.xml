@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tachometer>
+  <skin name="택시타코미터카드" TachometerType="TaxiTacho" TachometerName="taxi"/>
+</Tachometer>

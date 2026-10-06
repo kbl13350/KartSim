@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="mine">
+  <state name="Use" life="500" item="item00" itemFx="firing"/>
+  <state name="Set" life="30000" item="item01" size="2.0"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" itemFx="exploding"/>
+  <state name="AfterBoost" life="3000"/>
+  <state name="Eat" life="3000" firing="바나나먹기" firingFx="eat"/>
+  <state name="Disappear" life="3000"/>
+  <state name="EatBonus" life="3000" firing="바나나먹기" item="루찌획득" firingFx="eat"/>
+  <state name="Shield" life="3000"/>
+  <state name="Use" life="500" item="item00_bomb" itemFx="shooting"/>
+  <state name="Set" life="1000" item="item01_bomb" size="3.0" itemFx="exploding_china"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="fired02_bomb" itemFx="exploding"/>
+  <state name="AfterBoost" life="3000"/>
+  <state name="Eat" life="3000"/>
+  <state name="Disappear" life="3000"/>
+  <state name="EatBonus" life="3000"/>
+  <state name="Shield" life="3000"/>
+  <state name="Use" life="500" item="duckbomb_제자리" itemFx="오리폭탄_꽥"/>
+  <state name="Set" life="30000" item="duckbomb_제자리" size="2.0"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" itemFx="exploding"/>
+  <state name="AfterBoost" life="3000"/>
+  <state name="Eat" life="3000" firing="바나나먹기" firingFx="eat"/>
+  <state name="Disappear" life="3000"/>
+  <state name="EatBonus" life="3000" firing="바나나먹기" item="루찌획득" firingFx="eat"/>
+  <state name="Shield" life="3000"/>
+  <state name="Use" life="500" item="치킨bomb" itemFx="오리폭탄_꽥"/>
+  <state name="Set" life="30000" item="치킨bomb" size="2.0"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" itemFx="exploding"/>
+  <state name="AfterBoost" life="3000"/>
+  <state name="Eat" life="3000" firing="바나나먹기" firingFx="eat"/>
+  <state name="Disappear" life="3000"/>
+  <state name="EatBonus" life="3000" firing="바나나먹기" item="루찌획득" firingFx="eat"/>
+  <state name="Shield" life="3000"/>
+  <state name="Use" life="500" item="치킨bomb2" itemFx="오리폭탄_꽥"/>
+  <state name="Set" life="30000" item="치킨bomb2" size="2.0"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" itemFx="exploding"/>
+  <state name="AfterBoost" life="3000"/>
+  <state name="Eat" life="3000" firing="바나나먹기" firingFx="eat"/>
+  <state name="Disappear" life="3000"/>
+  <state name="EatBonus" life="3000" firing="바나나먹기" item="루찌획득" firingFx="eat"/>
+  <state name="Shield" life="3000"/>
+  <state name="Use" life="500" item="디셉티콘_박힘" itemFx="decepticonMissile"/>
+  <state name="Set" life="15000" item="디셉티콘_roof" size="4.0" itemFx="exploding_china"/>
+  <state name="Affect" life="2000" fired="락다운이펙_진행" itemFx="shock"/>
+  <state name="AfterBoost" life="3000"/>
+  <state name="Eat" life="3000"/>
+  <state name="Disappear" life="3000"/>
+  <state name="EatBonus" life="3000"/>
+  <state name="Shield" life="3000"/>
+  <state name="Use" life="1500" item="item00_abyss" itemFx="firing"/>
+  <state name="Set" life="60000" item="item01_abyss" size="2.5"/>
+  <state name="Affect" life="2000" item="item02_abyss" fired="fired02_abyss" itemFx="twist_bubble"/>
+  <state name="AfterBoost" life="1500"/>
+  <state name="Eat" life="1500"/>
+  <state name="Disappear" life="1500"/>
+  <state name="EatBonus" life="1500"/>
+  <state name="Shield" life="1500"/>
+  <state name="Use" life="500" item="태엽폭탄" itemFx="태엽폭탄_firing"/>
+  <state name="Set" life="30000" item="태엽폭탄" size="2.0"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" itemFx="exploding"/>
+  <state name="AfterBoost" life="3000"/>
+  <state name="Eat" life="3000" firing="바나나먹기" firingFx="eat"/>
+  <state name="Disappear" life="3000"/>
+  <state name="EatBonus" life="3000" firing="바나나먹기" item="루찌획득" firingFx="eat"/>
+  <state name="Shield" life="3000"/>
+  <state name="Use" life="500" item="톱니지뢰" itemFx="gear_firing"/>
+  <state name="Set" life="30000" item="톱니지뢰" size="2.0"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" itemFx="exploding"/>
+  <state name="AfterBoost" life="3000"/>
+  <state name="Eat" life="3000" firing="바나나먹기" firingFx="eat"/>
+  <state name="Disappear" life="3000"/>
+  <state name="EatBonus" life="3000" firing="바나나먹기" item="루찌획득" firingFx="eat"/>
+  <state name="Shield" life="3000"/>
+</item>

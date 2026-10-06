@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='85.0'
+	BackwardAccelForce='80.0'
+	DragFactor='-0.054'
+	SteerConstraint='1.75'
+	DriftEscapeForce='220'
+	CornerDrawFactor='0.04'
+	BoosterBlur='true'
+	EngineSound='pro'
+/>
+<!-- 일본 Vise Pro -->

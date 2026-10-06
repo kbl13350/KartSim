@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="tcEventStep" windowSize="80 80" adjust="0 44" enable="true" visible="true">
+  <ImageButton name="tcEventReward" windowSize="80 80" adjust="0 0" autoLoadImage="shop_chargePoint_slot_n_" enable="false" visible="true">
+    <ItemWindow name="rewardStockItem" windowSize="70 70" adjust="0 -5" align="center" stockId="0" enable="false" visible="false"/>
+    <Label name="rewardCount" leftTopWH="0 60 80 20" text="" textRender="bold14" textColor="255 255 255 255" textAlign="center" autoWrap="true" enable="false" visible="false"/>
+    <Panel name="complete" windowSize="80 80" adjust="0 0" align="center" texture="shop_chargePoint_slot_complete@zz" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+    <Panel name="close" windowSize="80 80" adjust="0 0" align="center" texture="shop_chargePoint_slot_eventClose@zz" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+    <Play1SPanel name="effect" scene="누적충전_빛" windowSize="130 130" adjust="0 0" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -1.33 0" defaultSpotPos="0 0 0" zoom="1.0" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+  </ImageButton>
+  <Label name="point" windowSize="70 15" adjust="0 54" align="center" text="" textAlign="center" textRender="bold14" textColor="255 52 60 86" enable="false"/>
+</Window>

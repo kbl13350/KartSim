@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="penguin4"/>
+  <Char id="jakob1" pos="7 0" emotion="stop5"/>
+  <Msg name="波利斯 雅克布" string="呃啊…气死我了！宝物都没拿到，还被抓了！！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" pos="6 0" emotion="stop1"/>
+  <Msg name="波诺 雅克布" string="大哥！我们现在怎么办？"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="还能怎么办？乖乖受罚吧。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengu_normal" pos="8 0" emotion="normal"/>
+  <Msg name="企小帅" string="我就告诉你们爱心石的秘密吧。"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="Pengu_normal" pos="8 0" emotion="stop1"/>
+  <Msg name="企小帅" string="来，看到这些矿石了吗？这就是爱心石。"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="你是说这些矿石就是爱心石？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="jakob1" pos="7 0" emotion="stop5"/>
+  <Msg name="波利斯 雅克布" string="这不就是些不值钱的普通矿石吗！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="Pengu_normal" pos="7 0" emotion="normal"/>
+  <Msg name="企小帅" string="如果是我们企鹅这样来挖的话~"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="Penguin_stuff" pos="7 -1" emotion="stop1"/>
+  <Msg name="石镐" string="哐-！哐-！哐-！"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="Penguin_stuff" pos="7 0" emotion="normal"/>
+  <Msg name="爱心石" string="……"/>
+  <Enter/>
+  <Char id="Penguin_stuff" remove="true"/>
+  <Char id="Pengu_normal" pos="7 0" emotion="stop1"/>
+  <Msg name="企小帅" string="就是爱心石，明白了吗？"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="jakob2" pos="7 0" emotion="stop1"/>
+  <Msg name="波诺 雅克布" string="那是什么？钻石吗？？"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" pos="7 0" emotion="stop5"/>
+  <Msg name="波利斯 雅克布" string="原来只是挖成爱心形状的普通石头啊！！！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="Pengu_normal" pos="7 0" emotion="stop1"/>
+  <Msg name="企小帅" string="看你们这么想要爱心石，我就特别传授你们这个挖矿技巧吧。"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop4"/>
+  <Msg name="宝宝" string="哦~要让他们挖多久啊？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengu_normal" pos="7 0" emotion="normal"/>
+  <Msg name="企小帅" string="大概一年时间应该够了吧~？"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="jakob1" pos="7 0" emotion="stop5"/>
+  <Msg name="波利斯 雅克布" string="那只企鹅在胡说八道什么！！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="他说看你们这么喜欢爱心石，|要教你们一年的挖矿技巧呢~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="jakob2" pos="4 0" emotion="stop1"/>
+  <Char id="jakob1" pos="9 0" emotion="stop1"/>
+  <Msg name="雅克布兄弟" string="什么？？！"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" pos="4 0" emotion="stop1"/>
+  <Char id="jakob1" pos="9 0" emotion="stop5"/>
+  <Msg name="波利斯 雅克布" string="我们不需要这些！！快放我们走！"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="Pengu_normal" pos="7 0" emotion="stop1"/>
+  <Msg name="企小帅" string="在这里等着吧，我们企鹅马上就到。"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="Pengu_normal" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="企小帅" string="还有，企小美！这是作为道歉送给你的礼物。"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <BackGround texture="penguin6"/>
+  <Char id="Penguin_stuff" pos="7 0" emotion="normal"/>
+  <Msg name="爱心石" string="闪亮"/>
+  <Enter/>
+  <Char id="Penguin_stuff" remove="true"/>
+  <BackGround texture="penguin4"/>
+  <Char id="Pengzi" pos="11 0" emotion="stop5"/>
+  <Char id="Pengu_normal" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="企小美" string="不行，这礼物太珍贵了，我不能收！"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="Pengzi" pos="11 0" emotion="stop5"/>
+  <Char id="Pengu_normal" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="企小帅" string="我就是想送给你！"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="Pengzi" pos="11 0" emotion="stop1"/>
+  <Char id="Pengu_normal" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="企小美" string="……！！"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengu_normal" remove="true"/>
+  <BackGround texture="penguin6"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="这氛围怎么怪怪的~？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop1"/>
+  <Msg name="宝宝" string="我还是重新去滑冰橇吧~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <BackGround texture="penguin4"/>
+  <Char id="jakob1" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="jakob2" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="波利斯 雅克布" string="把我们也带上！！！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="Pengu_normal" pos="7 0" emotion="stop1"/>
+  <Msg name="企小帅" string="再见！宝宝，谢谢你！"/>
+  <Enter/>
+  <Char id="Pengu_normal" remove="true"/>
+  <BackGround texture="penguin6"/>
+  <Char id="Pengzi" pos="7 0" emotion="stop5"/>
+  <Msg name="企小美" string="这次换我送你回家吧！"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="不用了，我现在认得路啦~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Msg name="宝宝" string="我还有一起回家的朋友们呢！再见~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengzi" pos="7 0" emotion="stop1"/>
+  <Msg name="企小美" string="那就谢谢你啦！下次再见！"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="宝宝" string="嗖~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Pengzi" pos="7 0" emotion="stop6"/>
+  <Msg name="企小美" string="本来还想和企小帅多聊会儿呢…"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengzi" pos="4 0" emotion="stop6"/>
+  <Char id="Pengu_normal" pos="11 0" emotion="normal"/>
+  <Msg name="企小帅" string="企小美!!"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="Pengzi" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="Pengu_normal" pos="11 0" emotion="normal"/>
+  <Msg name="企小美" string="啊！你一直在等我呀！"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengu_normal" remove="true"/>
+  <Char id="Pengzi" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="Pengu_normal" pos="11 0" emotion="stop1"/>
+  <Msg name="企小帅" string="跟我一起去我们小镇吧。我把你介绍给大家认识。"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengu_normal" remove="true"/>
+  <BackGround texture="penguin3"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[爱心石矿山内部]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="9 0" emotion="stop6"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="这是哪里？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="9 0" emotion="stop6"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="不知道！我们好像迷路了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="果然是迷路了~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="18 0" emotion="stop4"/>
+  <Char id="dizini" pos="5 0" emotion="stop5"/>
+  <Char id="dao" pos="10 0" emotion="stop4"/>
+  <Msg name="黑妞，皮蛋" string="宝宝！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Msg name="宝宝" string="我们去滑冰橇吧~！要跟紧我哦~"/>
+  <Enter/>
+</Scene>

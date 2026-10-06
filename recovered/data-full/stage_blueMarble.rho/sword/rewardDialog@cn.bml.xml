@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window texture="01_월하문일반" leftTopTex="0 0" align="center">
+  <Panel windowRect="-1024 -768 1024 768" color="200 0 0 0" alphaBlend="true"/>
+  <Panel name="bg_0" leftTopTex="0 0" texture="01_월하문일반" visible="false" alphaBlend="true"/>
+  <Panel name="bg_1" leftTopTex="0 0" texture="06_보물은월검" visible="false" alphaBlend="true"/>
+  <Panel name="bg_2" leftTopTex="0 0" texture="02_차이나일반" visible="false" alphaBlend="true"/>
+  <Panel name="bg_3" leftTopTex="0 0" texture="07_보물비룡도" visible="false" alphaBlend="true"/>
+  <Panel name="bg_4" leftTopTex="0 0" texture="03_빌리지일반" visible="false" alphaBlend="true"/>
+  <Panel name="bg_5" leftTopTex="0 0" texture="08_보물깨달음" visible="false" alphaBlend="true"/>
+  <Panel name="bg_6" leftTopTex="0 0" texture="04_해적일반" visible="false" alphaBlend="true"/>
+  <Panel name="bg_7" leftTopTex="0 0" texture="09_보물월하문" visible="false" alphaBlend="true"/>
+  <Label name="title" leftTopWH="152 148 110 20" fillTrans="true" multiLine="false" autoWrap="true" lineGap="1" textColor="white" text="title" textAlign="center" textRender="bold"/>
+  <Label name="body" leftTopWH="65 177 290 50" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="body" textAlign="center"/>
+  <Label name="rewardName" leftTopWH="154 308 110 20" fillTrans="true" multiLine="false" autoWrap="true" lineGap="1" textColor="white" text="body" textAlign="center"/>
+  <ItemWindow name="item" windowRect="165 244 256 295" itemCategory="jewel" itemId="1"/>
+  <ImageButton name="okButton" text="#sb(ok)" autoLoadImage="ok_0" leftTopTex="355 379" alphaBlend="true" textColor="white" textRender="bold"/>
+</Window>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'   
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.5'
+	DriftEscapeForce='1100'
+	CornerDrawFactor='0.071'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.69'
+	TransformTime='700'   
+
+	StartForwardAccelFactorSpeed = '1.2' 
+	StartBoosterTimeSpeed='1200'           
+
+	NormalBoosterTime = '80'
+	TeamBoosterTime = '120'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zero5'
+
+	Port0='mod1d1'
+	Port1='mod1d2'
+
+	FirePort0='mod1b4'
+	FirePort1='mod1c1'
+	FirePort2='mod1c2'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '42'
+	DescStability ='41'
+	DescEngineGrade='1.2'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+/>
+
+<!--대만 F724 120907 상점 판매 -->

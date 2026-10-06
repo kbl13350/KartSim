@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WindowAni name="pendingup">
+  <Normal/>
+  <MouseOn/>
+  <Clicked/>
+  <Disable/>
+  <Hide/>
+  <Show/>
+  <Active>
+    <PositionTon>
+      <Phase at="1" tick="0" translate="0.0 500.0 0.0"/>
+      <Phase at="2" tick="350" translate="0.0 0.0 0.0"/>
+    </PositionTon>
+  </Active>
+  <Deactive>
+    <PositionTon>
+      <Phase at="1" tick="0" translate="0.0 0.0 0.0"/>
+      <Phase at="2" tick="100" translate="0.0 0.0 0.0"/>
+      <Phase at="3" tick="300" translate="0.0 500.0 0.0"/>
+    </PositionTon>
+  </Deactive>
+</WindowAni>

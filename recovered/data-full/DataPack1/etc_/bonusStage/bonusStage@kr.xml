@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BonusStage>
+	
+	<!--	gameType : gameType string
+			bonusStageType : bonusStageId (default : none)
+									  0 : none 
+									  1 : 대박 트랙
+									  2 : 카드
+									  3 : 사다리 타기
+									  4 : 대박 보스
+			bonusStageSubType : bonusStageSubString (defauld : none)
+									  etc/bonustStage/bonusStageAttr.xml 참조
+									  1 - BattleLucci, BattleEgg
+									  4 - GoldDisorder
+ 		    gameLevel : 배틀 모드 처럼 난이도 설정이 가능한 게임 타입 (default : 0)
+			rewardSet : etc/bonustStage/bonusRewardSet.xml 참조 -->
+
+
+	<stage subEventId='1' gameTypes='BattleTeam' bonusStageType='1' bonusStageSubType='BattleLucci' />
+	<stage subEventId='2' gameTypes='SpeedIndi,SpeedTeam,ItemIndi,ItemTeam,FlagIndi,FlagTeam,BattleTeam,ItemIndiSpecial,ItemTeamSpecial,SpeedIndiShadow,SpeedTeamShadow,LeagueTeam,F1SpeedGame,BossGame,ChampionsTeamRoyal,ChampionsTeamMaster,SpeedMatch,ItemMatch,SpeedMixed,ItemMixed' bonusStageType='2' rewardSetId='2'/>
+	<stage subEventId='3' gameTypes='BattleTeam' bonusStageType='3' rewardSetId='3' lucciAddBonus='400'/>
+	<stage subEventId='4' gameTypes='BattleTeam' bonusStageType='4' bonusStageSubType='GoldDisorder' />
+	<stage subEventId='5' gameTypes='BattleTeam' bonusStageType='1' bonusStageSubType='OXQuiz' />
+	<schedule>
+		<bonusSatgeEvent subEventId='4' openPeriod='2022-06-09T00:00:00~2022-06-22T23:59:59'/>
+		<!--<bonusSatgeEvent subEventId='2' openPeriod='2013-08-22T00:00:00~2014-03-12T23:59:59'/>-->
+	</schedule>
+
+</BonusStage>
+

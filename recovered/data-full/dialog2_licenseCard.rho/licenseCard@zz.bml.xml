@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="capWnd" windowRect="0 0 456 352" caption="#sb(license)" align="center" frame="CaptionDialog" setCloseButton="OK">
+    <Panel name="bg" windowSize="291 194" adjust="0 20" texture="bg_Level1@kr" alphaBlend="true" align="hcenter" alphaTest="true">
+      <Panel name="frame" windowSize="89 104" adjust="7 60" texture="img_riderframe" alphaBlend="true" alphaTest="true"/>
+      <Label name="name" windowSize="100 10" adjust="103 74" text="#sb(rider)" textColor="black" textRender="bold14"/>
+      <Label name="createTime" windowSize="100 10" adjust="103 99" text="#sb(riderCreateTime)" textColor="black" textRender="bold14"/>
+      <Label name="level" windowSize="100 10" adjust="103 124" text="#sb(licenseLevel)" textColor="black" textRender="bold14"/>
+    </Panel>
+    <Window name="pro" windowSize="290 180" adjust="65 10" visible="false">
+      <Label windowSize="100 10" adjust="103 137" text="#sb(proLevelExpire)" textRender="bold14" textColor="255 72 106 163" textAlign="left"/>
+      <Label name="proLevelExpire" windowSize="100 10" adjust="103 155" textRender="bold14" text="2019-00-00 00:00" textColor="255 255 255 255" textAlign="left"/>
+    </Window>
+    <Label name="updateLevelText" windowSize="280 30" adjust="0 90" align="hcenter;bottom" textRender="bold14" text="#sb(updateLevelText)" textAlign="center" textColor="black" visible="false"/>
+    <Window leftTopWH="0 0 424 1" frame="HSection" align="hcenter;bottom" adjust="0 63"/>
+    <Container windowRect="0 0 132 50" align="hcenter;bottom">
+      <TextButton name="OK" leftTopWH="0 0 132 40" text="#sb(ok)" align="hcenter" textRender="bold20"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

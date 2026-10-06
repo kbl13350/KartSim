@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>--&gt;
+  <BackGround texture="abyss12"/>
+  <Char id="excalibur" pos="7 0" emotion="stop4"/>
+  <Msg name="..." string="（唰唰唰唰唰，咻咻咻咻咻，嗡嗡嗡嗡嗡）"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop5"/>
+  <Char id="ethi" pos="10 0" flip="true" emotion="stop5"/>
+  <Char id="dao" pos="14 0" flip="true" emotion="stop6"/>
+  <Char id="dizini" pos="1 0" emotion="stop6"/>
+  <Char id="pendragon" pos="5 0" emotion="stop1"/>
+  <Msg name="皮蛋一伙" string="……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Char id="pendragon" pos="7 0" emotion="stop1"/>
+  <Msg name="宝宝" string="发生什么事情了，这里是哪里啊？是在梦境吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="宝宝！看看你都做了些什么！|说了不要乱摸那里的东西！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="葱头" string="刚刚还是白天，怎么突然就变晚上了？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="好怕怕…这里是哪里啊？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Char id="pendragon" pos="7 0" emotion="stop1"/>
+  <Msg name="???" string="气喘吁吁…"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Char id="pendragon" pos="7 0" emotion="stop1"/>
+  <Msg name="宝宝" string="哎呀，吓死我了！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop5"/>
+  <Char id="pendragon" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="宝宝" string="这红色的小狗是哪来的啊？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Char id="pendragon" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Msg name="黑妞" string="哇…这狗长得好奇怪啊。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Char id="pendragon" pos="7 0" emotion="stop1"/>
+  <Msg name="宝宝" string="这家伙为什么总是在我头上啊！一边去，去去……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="ethi" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="葱头" string="话说回来，还是先搞清楚这是什么地方吧……"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="嗯……总觉得……|又被卷入到什么奇怪的事件了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="..." string="（吱呀…）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="12 0" emotion="stop6"/>
+  <Char id="ethi" pos="9 0" emotion="stop5"/>
+  <Char id="bazzi" pos="5 0" emotion="stop5"/>
+  <Char id="dizini" pos="1 0" emotion="stop6"/>
+  <Msg name="皮蛋一伙" string="呃啊，又是什么…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="梅林" string="（他们应该就是预言中的……）|哪位是传说中的勇士啊？"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="你说什么传说中的勇士啊……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="梅林" string="穿蓝衣服，你应该不是……|龙纹的机械战车，而且穿着红衣服……|你应该就是烈焰勇士吧！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop4"/>
+  <Msg name="宝宝" string="他是在说我吗？不过，您是哪位？|我说这爷爷有点奇怪，而且把卡丁车说成机械战车。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="..." string="（吱呀…）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="arthur" pos="11 0" emotion="stop2"/>
+  <Msg name="亚瑟" string="（气喘吁吁）终于赶上了……梅林叔叔！！来这儿做什么呀！！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="10 0" emotion="normal"/>
+  <Char id="merlin" pos="5 0" emotion="normal"/>
+  <Msg name="亚瑟" string="这些穿着古怪的人又是谁？"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="10 0" emotion="normal"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="亚瑟，你先等会。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ethi" pos="5 0" emotion="stop5"/>
+  <Msg name="葱头" string="（梅林？亚瑟？|……那这里是……历史书上的传说之地卡美洛？？）"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="arthur" pos="10 0" emotion="normal"/>
+  <Char id="merlin" pos="5 0" emotion="normal"/>
+  <Msg name="梅林" string="烈焰勇士，我需要先测试下你。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="奇怪的爷爷，你在说什么呢？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="arthur" pos="10 0" emotion="normal"/>
+  <Char id="merlin" pos="5 0" emotion="stop4"/>
+  <Msg name="梅林" string="嗯……有问题你就先追上我再说。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="10 0" emotion="normal"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="亚瑟，跟我来。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="8 0" emotion="stop3"/>
+  <Msg name="亚瑟" string="梅林叔叔，至少跟我解释一下啊，别总让我跟上……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="ethi" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="宝宝，先追上那位爷爷再说！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="葱头" string="有烈焰祥龙应该没问题吧？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="都说了，不用这车，凭我的实力也可以！|麻烦的事情接连不断，这次好好给你们展现一下我的实力。"/>
+  <Enter/>
+</Scene>

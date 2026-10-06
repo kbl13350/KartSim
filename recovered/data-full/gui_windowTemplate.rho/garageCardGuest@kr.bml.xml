@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GarageCard name="garageCardTemplate" windowRect="0 0 152 130" texture="카트슬롯_기본" selectedTexture="카트슬롯_선택2" alphaBlend="true">
+  <Container name="itemNameContainer" windowRect="0 2 146 25" enable="false">
+    <Label name="itemNameLabel" windowRect="40 6 146 35" textAlign="center" autoSizing="true" enable="false" align="center"/>
+    <Label name="ultimateNameLabel" windowRect="40 6 146 35" textAlign="center" autoSizing="true" enable="false" visible="false" align="center" textColor="255 255 222 0"/>
+  </Container>
+  <Window name="shopItemContainer" windowRect="8 24 144 124" enable="false"/>
+  <Panel name="periodIcon" windowSize="21 21" adjust="5 26" align="right" texture="기간제아이콘_1" alphaBlend="true" altText="#sb(periodItem)" altRelativePos="0 -28" visible="false"/>
+  <Panel name="kartLevel" windowSize="26 18" adjust="5 26" align="right" texture="turning_enhancedBG" alphaBlend="true" enable="false" visible="false">
+    <Label name="kartLevelStr" leftTopWH="0 0 26 18" align="center" textAlign="center" text="+0" textRender="outline" textColor="white" textColor2="255 113 0 0" alphaBlend="true" enable="false"/>
+  </Panel>
+  <Panel name="growthKartIcon" leftTopWH="126 27 18 18" texture="icon_upgradekart_ongoing" alphaBlend="true" enable="false" visible="false"/>
+  <Panel name="pcCafeItem" windowSize="28 14" adjust="9 28" texture="pcroomblue@zz" alphaBlend="true" visible="false" enable="false" align="left"/>
+  <Panel name="freeday" windowRect="65 1 129 33" texture="freeday@zz" uvRect="0 0 64 32" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="vipTag" windowSize="32 24" adjust="7 2" texture="vip_mini_grade1" alphaBlend="true" visible="false" enable="false" align="left"/>
+  <Panel name="modify" windowSize="30 31" adjust="7 26" texture="modify" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="usingStat" windowSize="20 20" adjust="8 8" texture="btn_checkBox_4" alphaBlend="true" enable="false" align="bottom;right" visible="false">
+    <Label windowSize="50 20" adjust="-43 3" enable="false" text="#sb(usingItem)" textRender="outline" textColor2="255 0 106 188" textColor="white"/>
+  </Panel>
+</GarageCard>

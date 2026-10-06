@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot14"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="梅林" string="哈哈哈~看来大家都顺利通过预选赛了~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="预选赛还是比较简单的~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="正赛应该也会很简单~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kei" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="听说正赛并不是跑赛道，而是各种弯道测试赛。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="梅林" string="是的~你也听说了啊。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="梅林" string="比起整体实力，正赛阶段更注重技巧~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="5 0" flip="true" emotion="stop6"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋，宝宝" string="啥？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="因为不是跑全场，所以我也有机会能赢~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="梅林" string="一定要拿到冠军，解决多年来的烦恼……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="爷爷，你有什么烦恼吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="梅林" string="你们这些小孩子是不会懂得……逐渐消失的自信……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="好吧！虽然不太懂，但还是请你加油！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="梅林" string="我会加油的……而且必须要加油……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="kei" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="（看看梅林爷爷的烦恼不少啊……但冠军必须得是我！）"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="8 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="8 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="通过预选的各位~现在正赛正式开始！"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="7 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="7 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="正赛为各位准备了更加苛刻的内容。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="8 0" flip="true" emotion="stop1"/>
+  <Char id="camelot_effect" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="亚瑟王" string="正赛1阶段主题就是~[转啊，转啊，转]"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="9 0" flip="true" emotion="stop1"/>
+  <Char id="camelot_effect" pos="9 0" flip="true" emotion="stop5"/>
+  <Msg name="亚瑟王" string="在规定时间内完成眼前的赛道就可以了。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="bazzi" pos="10 0" emotion="stop5"/>
+  <Msg name="宝宝" string="要爬那么高的坡吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="不过，应该没什么难度吧~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" pos="8 0" flip="true" emotion="stop4"/>
+  <Msg name="梅林" string="呵~呵~是时候展现我娴熟老练的车技了……|待我去去就来~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（漂移~，漂移~，漂移~……）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="厉害~虽然知道爷爷实力不凡，但没想是这种境界……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="10 0" emotion="stop5"/>
+  <Msg name="宝宝" string="果然在隐藏实力……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="果然符合‘在世的卡美洛传奇车神’这一称号，"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="kei" pos="7 0" flip="true" emotion="stop6"/>
+  <Msg name="凯" string="那我也去了！"/>
+  <Enter/>
+</Scene>

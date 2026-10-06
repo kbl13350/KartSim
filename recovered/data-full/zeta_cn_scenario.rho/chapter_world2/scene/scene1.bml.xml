@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach8"/>
+  <Char id="raptorLs" pos="7 0" emotion="stop3"/>
+  <Msg name="格雷格" string="哥，这样子是征服不了世界的。"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorLs" pos="4 0" emotion="stop3"/>
+  <Char id="raptorRs" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="你不觉得你的话太多了吗？"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="raptorLs" pos="4 0" emotion="stop4"/>
+  <Char id="raptorRs" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="你就是讨厌我。"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="呵呵呵|你就不要责备格雷格了。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop5"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷" string="是"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="你们说，我们现在要征服世界，最需要的是什么？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop4"/>
+  <Char id="raptorLs" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷格" string="嘻嘻|那当然是权利啊！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop3"/>
+  <Char id="totop" pos="10 0" emotion="stop4"/>
+  <Msg name="格雷" string="钱…要有资金才方便行动。"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="9 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="哈哈哈|不愧是格雷~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <BackGround texture="beach3"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="？？？" string="克莉丝！！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Chris" pos="11 0" emotion="stop2"/>
+  <Msg name="克莉丝" string="黑客大赛好无聊啊~|要不然去黑银行吧~"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="11 0" emotion="stop2"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="？？？" string="你不能随便拿银行的钱，|那是盗窃！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Chris" pos="11 0" emotion="stop2"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="克莉丝" string="知道了！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="Chris" pos="11 0" emotion="stop2"/>
+  <Msg name="？？？" string="克莉丝！！"/>
+  <Enter/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="7 0" emotion="stop1"/>
+  <Msg name="克莉丝" string="艾丽你好吵啊~|我耳朵都疼了~|反正我们先从这里出去吧。"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="raptorLs" pos="3 0" emotion="stop3"/>
+  <Msg name="格雷格" string="她们真烦！|哥，让我去教训一下她们吧？"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorLs" pos="3 0" emotion="stop3"/>
+  <Char id="totop" pos="10 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="这个少女很有趣啊。|这或许是命运的安排。"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" pos="3 0" emotion="stop3"/>
+  <Char id="raptorRs" pos="6 0" emotion="stop3"/>
+  <Char id="totop" pos="10 0" flip="true" emotion="stop5"/>
+  <Msg name="格雷" string="我们跟过去看看吧。"/>
+  <Enter/>
+</Scene>

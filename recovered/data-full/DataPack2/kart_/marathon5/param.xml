@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+  ForwardAccelForce='110.0'
+  BackwardAccelForce='100.0'
+  DragFactor='-0.046'
+  SteerConstraint='1.85'
+  DriftEscapeForce='150'
+  CornerDrawFactor='0.04'
+
+  BoosterBlur='true'
+  EngineSound='pro'
+
+  	DescBalance= '25'
+/>
+<!-- 마라톤 Pro 해외 -->

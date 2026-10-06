@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="misLicense_small" enable="false" windowRect="9 9 67 59" align="as_Center" alphaBlend="true" texture="bg_small">
+  <Panel name="license" windowRect="1 16 56 34" align="as_Center" alphaBlend="true"/>
+</Panel>

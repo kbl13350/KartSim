@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='146.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.076'
+	SteerConstraint='2.7'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.062'
+
+    UseTransformBooster='true'
+	TransAccelFactor='1.7'
+	TransformTime='250'
+	
+	StartForwardAccelFactorItem = '1.7'
+	StartBoosterTimeItem='1200'
+
+	UseExtendedAfterBooster='true'
+	BoosterAccelFactorItem ='1.6'
+
+	EngineSound='cotton8'
+
+	WaveEffect='true'
+	SpecialSlotCapacity='2'
+
+		
+		BoosterType='8main'
+		BoosterType0='8soon'
+		BoosterType1='8soon'
+		BoosterType2='8main'
+		BoosterType3='8main'
+
+	   
+		DescBalance= '44'
+		DescStability ='38'
+		DescEngineGrade='1.25'
+		DescCornering='4'
+		DescEnchantCap = '20'
+
+		addModelFolder='nordic1' 
+
+				
+
+
+/>
+<!-- 아이템 카트 평준화2 노르딕 R 130822 루찌카트-->

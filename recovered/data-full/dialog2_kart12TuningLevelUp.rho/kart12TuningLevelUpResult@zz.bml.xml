@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Container name="1920" align="center">
+    <Play1SPanel name="preEffect" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_시작" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="false"/>
+    <Play1SPanel name="successEffect" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_성공" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <Play1SPanel name="failEffect" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_실패" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <Play1SPanel name="successResult" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_성공결과" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="true" visible="false"/>
+    <Play1SPanel name="failResult" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화실패_결과" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="true" visible="false"/>
+    <Container name="success" leftTopWH="0 0 1600 182" align="center" alphaBlend="true" visible="false">
+      <TextButton name="okButton" windowSize="132 42" adjust="0 -60" text="#sb(ok)" align="hcenter;bottom" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <ItemWindow name="itemView" windowSize="250 250" adjust="490 0" align="vcenter" alphaBlend="true"/>
+      <Container windowSize="300 50" adjust="750 30">
+        <Label name="kartName" windowSize="250 50" adjust="0 0" text="" textRender="outline24" textColor="white"/>
+        <Panel name="kartLevel" windowSize="36 36" adjust="0 0" alphaBlend="true"/>
+      </Container>
+      <Label windowSize="100 30" adjust="766 98" textAlign="left" text="#sb(tuningSlotNum)" textRender="bold16" textColor="255 240 216 151"/>
+      <Label windowSize="100 30" adjust="766 126" textAlign="left" text="#sb(tuningPoint)" textRender="bold16" textColor="255 240 216 151"/>
+      <Label name="preSlotNum" windowSize="100 30" adjust="888 95" textAlign="center" text="" textRender="bold20" textColor="255 255 250 158"/>
+      <Label name="preTuningPoint" windowSize="100 30" adjust="888 124" textAlign="center" text="" textRender="bold20" textColor="255 255 250 158"/>
+      <ColorLabel name="slotNum" windowSize="100 30" adjust="1052 95" textAlign="center" text="" textRender="bold20" textColor="white"/>
+      <ColorLabel name="tuningPoint" windowSize="100 30" adjust="1052 124" textAlign="center" text="" textRender="bold20" textColor="white"/>
+    </Container>
+    <Container name="fail" leftTopWH="0 0 1600 182" align="center" alphaBlend="true" visible="false">
+      <TextButton name="okButton" windowSize="132 42" adjust="0 -60" text="#sb(ok)" align="hcenter;bottom" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <ItemWindow name="itemView" windowSize="250 250" adjust="490 0" align="vcenter" alphaBlend="true"/>
+      <Container windowSize="300 50" adjust="750 30">
+        <Label name="kartName" windowSize="250 50" adjust="0 0" text="" textRender="outline24" textColor="white"/>
+        <Panel name="kartLevel" windowSize="36 36" adjust="0 0" alphaBlend="true"/>
+      </Container>
+      <ColorLabel name="resultStr" windowSize="300 30" adjust="759 112" textAlign="left" text="#sb(resultStr)" textRender="bold16" textColor="255 179 195 228"/>
+    </Container>
+  </Container>
+  <Container name="1600" align="center">
+    <Play1SPanel name="preEffect" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_시작" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="false"/>
+    <Play1SPanel name="successEffect" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_성공" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <Play1SPanel name="failEffect" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_실패" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <Play1SPanel name="successResult" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_성공결과" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="true" visible="false"/>
+    <Play1SPanel name="failResult" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화실패_결과" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -18 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="true" visible="false"/>
+    <Container name="success" leftTopWH="0 0 1600 182" align="center" alphaBlend="true" visible="false">
+      <TextButton name="okButton" windowSize="132 42" adjust="0 -60" text="#sb(ok)" align="hcenter;bottom" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <ItemWindow name="itemView" windowSize="250 250" adjust="490 0" align="vcenter" alphaBlend="true"/>
+      <Container windowSize="300 50" adjust="750 30">
+        <Label name="kartName" windowSize="250 50" adjust="0 0" text="" textRender="outline24" textColor="white"/>
+        <Panel name="kartLevel" windowSize="36 36" adjust="0 0" alphaBlend="true"/>
+      </Container>
+      <Label windowSize="100 30" adjust="772 95" textAlign="left" text="#sb(tuningSlotNum)" textRender="bold16" textColor="255 240 216 151"/>
+      <Label windowSize="100 30" adjust="772 118" textAlign="left" text="#sb(tuningPoint)" textRender="bold16" textColor="255 240 216 151"/>
+      <Label name="preSlotNum" windowSize="100 30" adjust="857 90" textAlign="center" text="" textRender="bold20" textColor="255 255 250 158"/>
+      <Label name="preTuningPoint" windowSize="100 30" adjust="857 114" textAlign="center" text="" textRender="bold20" textColor="255 255 250 158"/>
+      <ColorLabel name="slotNum" windowSize="100 30" adjust="1000 90" textAlign="center" text="" textRender="bold20" textColor="white"/>
+      <ColorLabel name="tuningPoint" windowSize="100 30" adjust="1000 114" textAlign="center" text="" textRender="bold20" textColor="white"/>
+    </Container>
+    <Container name="fail" leftTopWH="0 0 1600 182" align="center" alphaBlend="true" visible="false">
+      <TextButton name="okButton" windowSize="132 42" adjust="0 -60" text="#sb(ok)" align="hcenter;bottom" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <ItemWindow name="itemView" windowSize="250 250" adjust="490 0" align="vcenter" alphaBlend="true"/>
+      <Container windowSize="300 50" adjust="750 30">
+        <Label name="kartName" windowSize="250 50" adjust="0 0" text="" textRender="outline24" textColor="white"/>
+        <Panel name="kartLevel" windowSize="36 36" adjust="0 0" alphaBlend="true"/>
+      </Container>
+      <ColorLabel name="resultStr" windowSize="300 30" adjust="765 105" textAlign="left" text="#sb(resultStr)" textRender="bold16" textColor="255 179 195 228"/>
+    </Container>
+  </Container>
+  <Container name="1400" align="center">
+    <Play1SPanel name="preEffect" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_시작" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -16 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="false"/>
+    <Play1SPanel name="successEffect" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_성공" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -16 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <Play1SPanel name="failEffect" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_실패" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -16 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <Play1SPanel name="successResult" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화_성공결과" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -16 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="true" visible="false"/>
+    <Play1SPanel name="failResult" windowRect="fullscreen" align="center" alphaBlend="true" scene="튜닝강화실패_결과" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -16 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" stop="true" enable="false" clearZAfter="true" visible="false"/>
+    <Container name="success" leftTopWH="0 0 1600 182" align="center" alphaBlend="true" visible="false">
+      <TextButton name="okButton" windowSize="132 42" adjust="0 -60" text="#sb(ok)" align="hcenter;bottom" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <ItemWindow name="itemView" windowSize="250 250" adjust="490 0" align="vcenter" alphaBlend="true"/>
+      <Container windowSize="300 50" adjust="750 30">
+        <Label name="kartName" windowSize="250 50" adjust="0 0" text="" textRender="outline24" textColor="white"/>
+        <Panel name="kartLevel" windowSize="36 36" adjust="0 0" alphaBlend="true"/>
+      </Container>
+      <Label windowSize="100 30" adjust="772 95" textAlign="left" text="#sb(tuningSlotNum)" textRender="bold16" textColor="255 240 216 151"/>
+      <Label windowSize="100 30" adjust="772 118" textAlign="left" text="#sb(tuningPoint)" textRender="bold16" textColor="255 240 216 151"/>
+      <Label name="preSlotNum" windowSize="100 30" adjust="857 92" textAlign="center" text="" textRender="bold20" textColor="255 255 250 158"/>
+      <Label name="preTuningPoint" windowSize="100 30" adjust="857 116" textAlign="center" text="" textRender="bold20" textColor="255 255 250 158"/>
+      <ColorLabel name="slotNum" windowSize="100 30" adjust="1000 92" textAlign="center" text="" textRender="bold20" textColor="white"/>
+      <ColorLabel name="tuningPoint" windowSize="100 30" adjust="1000 116" textAlign="center" text="" textRender="bold20" textColor="white"/>
+    </Container>
+    <Container name="fail" leftTopWH="0 0 1600 182" align="center" alphaBlend="true" visible="false">
+      <TextButton name="okButton" windowSize="132 42" adjust="0 -60" text="#sb(ok)" align="hcenter;bottom" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <ItemWindow name="itemView" windowSize="250 250" adjust="490 0" align="vcenter" alphaBlend="true"/>
+      <Container windowSize="300 50" adjust="750 30">
+        <Label name="kartName" windowSize="250 50" adjust="0 0" text="" textRender="outline24" textColor="white"/>
+        <Panel name="kartLevel" windowSize="36 36" adjust="0 0" alphaBlend="true"/>
+      </Container>
+      <ColorLabel name="resultStr" windowSize="300 30" adjust="765 105" textAlign="left" text="#sb(resultStr)" textRender="bold16" textColor="255 179 195 228"/>
+    </Container>
+  </Container>
+</Panel>

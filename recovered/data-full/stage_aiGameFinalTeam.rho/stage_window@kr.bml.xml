@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="Desktop" windowRect="fullscreen">
+  <Container windowRect="fullscreen">
+    <Container name="finalScene" windowSize="800 400" align="center">
+      <Panel name="championsFinalBack" windowRect="0 0 373 308" align="hcenter" alphaBlend="true" visible="false"/>
+      <Panel name="finalBack" windowRect="0 34 492 276" align="hcenter" alphaBlend="true" visible="false">
+        <Panel name="emotion" windowRect="-33 -76 479 225" alphaBlend="true"/>
+        <Label name="script" windowRect="246 22 457 122" alphaBlend="true" textAlign="center" multiLine="true" textColor="black" textColor2="yellow" textRender="bold"/>
+      </Panel>
+    </Container>
+    <List name="bonusIcons" windowSize="fullwidth 105" align="right;bottom" scrollType="horizon" listGap="5" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollBarVisible="false" rightAlign="true" enable="false" depthBias="1024"/>
+    <Panel name="observerEvent" windowRect="9 7 141 142" texture="GM당첨" uvRect="0 0 132 135" visible="false" alphaBlend="true"/>
+    <Panel name="gachaLotteryGet1" windowRect="0 520 307 591" align="hcenter" alphaBlend="true" visible="false"/>
+    <Panel name="gachaLotteryGet2" windowRect="0 520 307 591" align="hcenter" alphaBlend="true" visible="false"/>
+    <ControlWindow name="missionResult" windowSize="233 128" align="right" adjust="10 25" fadeInLength="2000" showLength="5000" fadeOutLength="0" visible="false">
+      <TonPanel name="missionResultPanel" windowSize="233 128" texture="success@zz" panelAnimPack="pop" textureOp="modulate" alphaBlend="true"/>
+    </ControlWindow>
+  </Container>
+  <Container name="eventBoss" visible="false" windowRect="0 0 1024 768" align="center">
+    <Panel name="bossBg" windowRect="0 0 1024 768" color="255 0 0 0" enable="false"/>
+    <Container windowRect="0 0 800 600" align="center">
+      <Panel windowRect="0 0 512 512" texture="골든디스오더_01@zz"/>
+      <Panel windowRect="512 0 800 512" texture="골든디스오더_02@zz"/>
+      <Panel windowRect="0 512 512 600" texture="골든디스오더_03@zz"/>
+      <Panel windowRect="512 512 800 600" texture="골든디스오더_04@zz"/>
+    </Container>
+  </Container>
+</Container>

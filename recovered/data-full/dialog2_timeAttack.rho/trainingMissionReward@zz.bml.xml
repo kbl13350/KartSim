@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowSize="512 372" adjust="0 0" frame="CaptionDialog" caption="#sb(title)" align="center" alphaBlend="true" setCloseButton="ok">
+  <Play1SPanel scene="종이폭죽효과" windowSize="512 372" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0" defaultSpotPos="0 0 0" zoom="1.0" clearZBefore="true" clearZAfter="true" enable="false" visible="true" loop="false"/>
+  <Container name="rewardItemPanel" windowSize="250 200" adjust="0 -65" align="center" visible="true"/>
+  <Label name="rewardStr0" windowSize="400 22" adjust="0 118" align="center;bottom" text="#sb(rewardMsg0)" textColor="255 42 55 80" textRender="bold16" textAlign="center" visible="true" enable="true"/>
+  <ColorLabel name="rewardStr1" windowSize="400 22" adjust="0 96" align="center;bottom" text="#sb(rewardMsg1)" textColor="black" textRender="bold16" textAlign="center" visible="true" enable="true"/>
+  <Label windowSize="400 22" adjust="0 74" align="center;bottom" text="#sb(rewardMsg2)" textColor="255 42 55 80" textRender="bold16" textAlign="center" visible="true" enable="true"/>
+  <TextButton name="ok" windowSize="130 40" adjust="0 6" align="center;bottom" text="#sb(ok)" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" textRender="bold16" alphaBlend="true" visible="true" enable="true"/>
+</CaptionWindow>

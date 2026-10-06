@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.085'
+	SteerConstraint='2.83'
+	CornerDrawFactor='0.076'
+	DriftEscapeForce='2040'
+
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+
+	BoostAccelFactor='1.868'
+	TransAccelFactor='1.867'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+
+	DriftMaxGauge='-730'
+	NormalBoosterTime='-10'
+	TeamBoosterTime='-120'
+
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	
+	Port0='mod1c'
+	Port1='mod1d'
+	FirePort0='mod1a'
+	FirePort1='mod1b'
+	FirePort2='mod2a'
+	FirePort3='mod2b'
+	FirePort4='mod2c'
+
+	EnvMap='true'
+
+	DescBalance= '53'
+	DescStability ='51'
+	DescEngineGrade='1'
+	DescCornering='7.5'
+	DescEnchantCap = '31'
+
+	addModelFolder='paragon1'
+
+/>
+
+<!-- 파라곤 SR / 한국 / 스피드 / 가챠폰 / 20191010 릴리즈 -->

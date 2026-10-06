@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='154'
+	BackwardAccelForce='100'
+	DragFactor='-0.08'
+	SteerConstraint='2.5'
+	CornerDrawFactor='0.07'
+	DriftEscapeForce='1700'
+	
+	driftBoostMulAccelFactor='1.31'
+	chargeBoostBySpeed='300'
+	
+	TransAccelFactor='1.852'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+	
+	DriftMaxGauge='-1300'
+	NormalBoosterTime='-380'
+	TeamBoosterTime='-650'
+	
+	DriftGaguePreservePercent='0.6'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	TransformTime='700'
+	
+	DescBalance='50'
+	DescStability='50'
+	DescEngineGrade='1.37'
+	DescCornering='8'
+	DescEnchantCap='25'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='9th_bike'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+	motorcycleType='true'
+	SpeedSlotCapacity='3'
+
+	BoosterType='9main'
+	BoosterType0='9soon'
+	BoosterType1='9main'
+
+
+	Port0='mod1a2'
+
+	FirePort0='mod1a1'
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+        WheelFixed = 'true'
+
+>
+<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort1='mod1a1'/>
+</BodyParam>
+<!-- 킹크랩 9 / 중국 / 레어 / 스피드 / 빙고2 로터리 / 20180208 릴리즈 -->

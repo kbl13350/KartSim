@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <AiKart id="1" track="mine_I02" isFixedKart="true" fixedKartId="1590" isFixedChar="true" fixedCharId="495" laps="3" gameType="item">
+    <LevelContent level="0" isAiItemFree="false" item="Rocket;WaterBomb;Booster;WaterFly" aiItemLevel="1">
+      <AiKart characterId="494" uniformId="0" kartId="1590" colorId="6" dyeId="3" balloonId="0" speed="45" accel="32" startTick="0" characterName="企小帅"/>
+    </LevelContent>
+  </AiKart>
+</Root>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="screenUI" windowRect="fullscreen">
+  <Panel windowRect="fullscreen" texture="ingame_shadow" alphaBlend="true"/>
+  <CharPanel name="recording" windowSize="108 38" align="right" adjust="40 160" texture="녹화중@zz" alphaBlend="true" fontSize="108 38" fontPos="0 0" fontStr="012" text=" 0"/>
+  <Panel name="teamWarn" windowRect="0 6 75 82" texture="crash_01" alphaBlend="true" align="hcenter" enable="false" visible="false">
+    <Panel name="light" windowRect="20 14 52 46" texture="crash_02" textureOp="modulate" alphaBlend="true"/>
+  </Panel>
+  <DashboardPanel name="slotTimer" windowRect="0 0 34 21" texture="미사일숫자" alphaBlend="true" fontSize="16 22" fontPos="3 0" fontStr="0123456789" text="3" speedTick="20" visible="false"/>
+  <XmlFile file="timeInfo"/>
+  <XmlFile file="rankBoard"/>
+</Container>

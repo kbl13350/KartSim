@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <Shadow isFixedKart="true" fixedKartId="1563" fixedCharId="482" isFixedChar="true" kartId="1219" characterId="316" colorId="57" dyeId="48" characterName="梅林">
+    <LevelContent level="0" track="camelot_I01" laps="2" ksv="1-9"/>
+  </Shadow>
+</Root>

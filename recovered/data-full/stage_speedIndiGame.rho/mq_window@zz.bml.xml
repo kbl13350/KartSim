@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="uiEffect" windowRect="fullscreen"/>
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <XmlFile file="collisionMission"/>
+    <StressMirror name="stressMirror"/>
+    <CutEffect name="cutEffect"/>
+  </Container>
+</Container>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <Step id="10" folder="1" challenge="请随我来。" challengeMotion="base" userWin="看来我已完成了作为引导者的职责。" userWinMotion="smile" userLose="我是不是跑得太快了？" userLoseMotion="choose" retireChallenge="请随我来。" retireChallengeMotion="base" retireUserWin="看来我已完成了作为引导者的职责。" retireUserWinMotion="smile" retireUserLose="我是不是跑得太快了？" retireUserLoseMotion="choose"/>
+  <Step id="20" folder="1" challenge="能听到吗？。。。" challengeMotion="base" userWin="看到你的实力，或许我真的可以把爱琳的命运交给你。。。" userWinMotion="base" userLose="很遗憾，我无法把爱琳的命运交给你。" userLoseMotion="base" retireChallenge="能听到吗？。。。" retireChallengeMotion="base" retireUserWin="看到你的实力，或许我真的可以把爱琳的命运交给你。。。" retireUserWinMotion="base" retireUserLose="很遗憾，我无法把爱琳的命运交给你。" retireUserLoseMotion="base"/>
+  <Step id="30" folder="1" challenge="那让我们开始吧？" challengeMotion="smile" userWin="怎…怎么可能！" userWinMotion="choose" userLose="真是比我想的还要没意思呢。|没有时间再陪你玩了。" userLoseMotion="base" retireChallenge="那让我们开始吧？" retireChallengeMotion="smile" retireUserWin="怎…怎么可能！" retireUserWinMotion="choose" retireUserLose="真是比我想的还要没意思呢。|没有时间再陪你玩了。" retireUserLoseMotion="base"/>
+</StringBag>

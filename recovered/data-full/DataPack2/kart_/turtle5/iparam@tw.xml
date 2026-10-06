@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.5'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.066'
+
+	BoosterBlur='true'
+	EngineSound='cotton8'
+	WaveEffect='true'
+	EnvMap='true'
+
+	SpecialSlotCapacity='2'
+	StartForwardAccelFactorItem = '1.7'
+	StartBoosterTimeItem='1300'           
+
+	UseExtendedAfterBooster='true'
+	BoosterAccelFactorItem ='1.6'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.73'
+	TransformTime='200'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8sub'
+	BoosterType1='8sub'
+	BoosterType2='8main'
+
+	Port0='mod2b1' 
+	Port1='mod2b2'
+
+	FirePort0='mod2c1'
+	FirePort1='mod2b3'
+	FirePort2='mod2b4'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '45'
+	DescStability ='43'
+	DescEngineGrade='1.25'
+	DescCornering='4'
+	DescEnchantCap = '30'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2b1' trailPort1='mod2b2'/>
+</BodyParam>
+
+<!--대만 로봇거북 HT 130117 가샤폰 레어 -->

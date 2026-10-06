@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.063'
+	SteerConstraint='2.3'
+	DriftEscapeForce='600'
+	CornerDrawFactor='0.052'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+	TransAccelFactor='1.66'
+
+    BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod5a'
+	Port1='mod5b'
+	FirePort0='mod1a1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a3'
+	FirePort3='mod2a'
+	FirePort4='mod2b'
+
+	DescBalance= '30'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='1'
+	DescEnchantCap = '30'
+/>
+
+ 
+
+<!-- 인니 cotton SR Type–E 가샤폰 레어 120719-->

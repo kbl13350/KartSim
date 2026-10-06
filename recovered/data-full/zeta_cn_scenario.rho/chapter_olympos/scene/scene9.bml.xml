@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="olympos1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[奥林匹斯 老城区]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="athena" pos="13 0" flip="true" emotion="stop1"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="雅典娜" string="……什么？！"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="13 0" flip="true" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="雅典娜" string="…………知道了。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="雅典娜，这次又是什么试练？"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="雅典娜" string="这次是最后的试练，|可能会非常困难。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝，皮蛋" string="最后？那么？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Msg name="雅典娜" string="完成这次试练就可以回家了。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="好的！赶紧开始吧！"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="试练内容是？"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="11 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="雅典娜" string="与哈迪斯的对决中获得胜利。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="11 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="赫拉克勒斯" string="果然…最后的试练不同寻常。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="portal" pos="12 -1" emotion="normal"/>
+  <Msg name="" string="（呱唧唧唧唧 呱唧唧唧唧）"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="portal" pos="12 -1" emotion="normal"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="哈迪斯" string="找到了！"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="portal" pos="12 -1" emotion="normal"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="赫拉克勒斯" string="哈迪斯！"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="赫拉克勒斯" string="正好我也在找你，省得我再跑一趟。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="hades" pos="12 0" emotion="stop1"/>
+  <Msg name="哈迪斯" string="就你那点破事，对我来说并不重要。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="哈迪斯" string="我就直说吧，只要交出我的人造人，这件事我就当没发生过。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="hades" pos="12 0" emotion="stop3"/>
+  <Msg name="哈迪斯" string="要不然我会让你后悔的。呼呼。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="hades" pos="12 0" emotion="stop3"/>
+  <Msg name="赫拉克勒斯" string="后悔。有点小期待哦。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop6"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="赫拉克勒斯" string="不用多说了，出招吧！"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop6"/>
+  <Char id="hades" pos="12 0" emotion="stop1"/>
+  <Msg name="哈迪斯" string="既然说不动，那别怪我不客气了。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop6"/>
+  <Char id="hades" pos="12 0" emotion="stop3"/>
+  <Msg name="哈迪斯" string="会让你深刻体会到什么叫做实力的差距，呼呼。"/>
+  <Enter/>
+</Scene>

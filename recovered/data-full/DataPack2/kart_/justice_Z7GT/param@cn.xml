@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+
+ForwardAccelForce='145.0'
+BackwardAccelForce='100.0'
+DragFactor='-0.077'
+SteerConstraint='3.5'
+DriftEscapeForce='1800'
+CornerDrawFactor='0.06'
+EngineSound='cotton85'
+
+StartForwardAccelFactorItem = '1.7'
+StartBoosterTimeItem='1300'           
+
+StartForwardAccelFactorSpeed = '1.8'
+StartBoosterTimeSpeed='1400'     
+
+SpecialSlotCapacity='2'
+ItemSlotCapacity='3'
+
+UseExtendedAfterBooster='true'
+BoosterAccelFactorItem ='1.65'
+
+UseTransformBooster='true'
+TransAccelFactor='1.83'
+TransformTime='100'
+
+NormalBoosterTime = '200'
+TeamBoosterTime = '300'
+DriftMaxGauge = '-550'
+DriftGaguePreservePercent='0.5'
+
+BoosterType='85main'
+BoosterType0='8soon'
+BoosterType1='8soon'
+
+Port0='mod1a1'
+Port1='mod1a2'
+FirePort0='mod1a3'
+
+TailLampSize='0.2'
+TailLampColor='0 100 242 255'
+BoostBlurColor='255 77 77 77'
+
+DescBalance= '46'
+DescStability ='46'
+DescEngineGrade='1.25'
+DescCornering='8'
+DescEnchantCap = '30'
+
+/>
+
+<!--중국 저스티스 HT+ 가챠폰 레어 20140828 -->

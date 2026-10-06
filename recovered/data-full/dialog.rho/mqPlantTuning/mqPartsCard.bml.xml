@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GarageCard name="garageCardTemplate" windowRect="0 0 152 130" texture="unique4" alphaBlend="true">
+  <Container name="shopItemContainer" windowRect="6 30 90 114" enable="false" align="hcenter"/>
+  <Label name="itemNameLabel" windowRect="0 2 146 25" textAlign="center" enable="false"/>
+  <Label name="leftCount" windowRect="0 30 141 55" autoSizing="false" text="#sb(alert)" textAlign="right" textRender="bold" textColor="black" enable="false" visible="false"/>
+  <TextButton name="equip" windowRect="0 92 107 122" text="#sb(equipMyParts)" align="hcenter" visible="false" altText="" frame="BlueStaticButton" textColor="white"/>
+  <Panel texture="img_slotCover" leftTopTex="0 0" alphaBlend="true" enable="false" visible="false" name="disable"/>
+  <Panel name="newItem" windowRect="0 25 34 46" texture="icon_new" alphaBlend="true" visible="false"/>
+</GarageCard>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<missionList>
+	<!-- 기본 주행 스킬 -->
+	<!-- 출발부스터 -->
+	<missionCat catId='1' step='1' >
+		<missionPhase missionPhase='0'>
+			<mission missionId='0' missionText='useStartBooster'/>
+		</missionPhase>
+		<missionPhase missionPhase='1'>
+			<mission missionId='0' missionText='useStartBooster'/>
+		</missionPhase>
+	</missionCat>
+	<!-- 드리프트&부스터 -->
+	<missionCat catId='1' step='2' >
+		<missionPhase missionPhase='0'>
+			<mission missionId='0' missionText='useDrift&amp;AdBoost'/>
+		</missionPhase>
+		<missionPhase missionPhase='1'>
+			<mission missionId='0' missionText='useBooster'/>
+		</missionPhase>
+		<missionPhase missionPhase='2'>
+			<mission missionId='0' missionText='useBooster'/>
+			<mission missionId='1' missionText='goalInLimitTime'/>
+		</missionPhase>
+	</missionCat>
+	<!-- 숏드리프트 -->
+	<missionCat catId='1' step='3' >
+		<missionPhase missionPhase='0'>
+			<mission missionId='0' missionText='useShortDrift'/>
+		</missionPhase>
+		<missionPhase missionPhase='1'>
+			<mission missionId='0' missionText='useShortDrift'/>
+			<mission missionId='1' missionText='goalInLimitTime'/>
+			<mission missionId='2' missionText='crashLimit'/>
+		</missionPhase>	
+	</missionCat>
+	<!-- 최적화드리프트 -->
+	<missionCat catId='1' step='4' >
+		<missionPhase missionPhase='0'>
+			<mission missionId='0' missionText='useOptimalDrift'/>
+		</missionPhase>
+		<missionPhase missionPhase='1'>
+			<mission missionId='0' missionText='useOptimalDrift'/>
+			<mission missionId='1' missionText='goalInLimitTime'/>
+		</missionPhase>	
+	</missionCat>
+	<!-- 숏풀드리프트 -->
+	<missionCat catId='2' step='1' >
+		<missionPhase missionPhase='0'>
+			<mission missionId='0' missionText='useShortFullDrift'/>
+		</missionPhase>
+		<missionPhase missionPhase='1'>
+			<mission missionId='0' missionText='useShortFullDrift'/>
+			<mission missionId='1' missionText='goalInLimitTime'/>
+		</missionPhase>
+	</missionCat>
+	<!-- 커팅드리프트 -->
+	<missionCat catId='2' step='2' >
+		<missionPhase missionPhase='0'>
+			<mission missionId='0' missionText='useCuttingDrift'/>
+		</missionPhase>
+		<missionPhase missionPhase='1'>
+			<mission missionId='0' missionText='useCuttingDrift'/>
+			<mission missionId='1' missionText='CompleteInLimit'/>
+		</missionPhase>
+	</missionCat>
+	<!-- 숏커팅드리프트 -->
+	<missionCat catId='2' step='3' >
+		<missionPhase missionPhase='0'>
+			<mission missionId='0' missionText='useShortCutDrift'/>
+		</missionPhase>
+		<missionPhase missionPhase='1'>
+			<mission missionId='0' missionText='useShortCutDrift'/>
+			<mission missionId='1' missionText='goalInLimitTime'/>
+		</missionPhase>
+	</missionCat>
+	<!-- 끌기드리프트 -->
+	<missionCat catId='2' step='4' >
+		<missionPhase missionPhase='0'>
+			<mission missionId='0' missionText='useDragDrift'/>
+		</missionPhase>
+		<missionPhase missionPhase='1'>
+			<mission missionId='0' missionText='useDragDrift'/>
+			<mission missionId='1' missionText='CompleteInLimit'/>
+		</missionPhase>
+	</missionCat>	
+</missionList>

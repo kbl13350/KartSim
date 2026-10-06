@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="dao" pos="7 0" emotion="normal"/>
+  <Msg name="皮蛋" string="呼，机器人不会追到这里了吧？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop1"/>
+  <Msg name="海盗船长" string="那些机器人，他们相互称为迪斯欧德|我们海盗团也因为受到他们的攻击而逃跑呢。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop3"/>
+  <Msg name="宝宝" string="迪斯欧德?这是什么？|为什么要攻击这个城镇呢！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop1"/>
+  <Msg name="海盗船长" string="好像是从西边过来的，|这些家伙们好像破坏的东西越多就会变得越强大。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Msg name="黑妞" string="西面的话...|会不会和葱头的失踪有关系呢？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="lodumani" pos="9 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="葱头失踪了？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="是的，在城镇的西面，|我们受到了迪斯欧德的攻击，然后他就不见了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" pos="9 0" emotion="stop2"/>
+  <Msg name="海盗船长" string="那么，那机器人刚刚说的实体...|就是葱头？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="700"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="现在没时间再呆在这里了！|从正面迎击吧！！|（砰！！）"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="for2"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Msg name="黑妞" string="现在城镇也稳定下来了。|但是，不知道什么时候迪斯欧德还会攻过来，叫人无法安心。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="是的，|与其干等着不如我们自己去解决吧。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" pos="9 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="我也会尽力帮你们的。|我们海盗团也要找那些家伙报仇！！！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="那么，出发吧？|你们就做好掉队的觉悟吧！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" pos="9 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="啊，我们还有些要做的事情，|我们会在南海出发，到时候在碰面了。|（砰！）"/>
+  <Enter/>
+</Scene>

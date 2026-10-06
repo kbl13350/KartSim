@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<burnigPointTable>
+	<config 
+		initBurningPoint = '55' 
+		maxBurningPoint = '300' 
+		resetHowOpened ='5'
+	/>
+	<gainPointFromGradeTable>
+		<item level='1' minPoint='5' maxPoint='7' selectCount='1'/>
+		<item level='2' minPoint='8' maxPoint='10' selectCount='3'/>
+		<item level='3' minPoint='12' maxPoint='14' selectCount='4'/>
+		<item level='4' minPoint='15' maxPoint='17' selectCount='5'/>
+		<item level='5' minPoint='18' maxPoint='20' selectCount='7'/>
+	</gainPointFromGradeTable>
+
+	<gainPointFromConsecutively>
+		<item level='1' minPoint='0' maxPoint='0'/>
+		<item level='2' minPoint='3' maxPoint='3'/>
+		<item level='3' minPoint='5' maxPoint='5'/>
+		<item level='4' minPoint='5' maxPoint='5'/>
+		<item level='5' minPoint='5' maxPoint='5'/>
+	</gainPointFromConsecutively>		
+
+	<consumePointFromAction> <!-- open=1 , preView=2, reset=3 -->
+		<item action='1' consumePoint='100'/>
+		<item action='2' consumePoint='35'/>
+		<item action='3' consumePoint='50'/>
+	</consumePointFromAction>	
+
+
+</burnigPointTable>

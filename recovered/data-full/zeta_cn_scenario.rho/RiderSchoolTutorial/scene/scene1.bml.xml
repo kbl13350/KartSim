@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="riderSchool"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="太棒啦！！难道是天才？|这么快就进入到最后一关了，|继续向前冲吧！"/>
+  <Enter/>
+</Scene>

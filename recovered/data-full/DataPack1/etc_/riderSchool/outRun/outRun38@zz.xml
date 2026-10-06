@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- (2022.06.23 Update) 문힐시티 숨겨진 지하터널 / 투탑 / 폭스 X / 통합속도 적용 -->
+<!-- (2022.10.20 Update) 연습카트 V1 기준 기록 및 설정 반영 -->
+<!-- 캐릭터 : 제우스 / 탑승 카트 : 썬더 버스트 V1 -->
+<OutRun kartId='1341'	characterId='332'	 colorId='5' dyeId='10' track='olympos_R01'	gameSpeed='7'>
+	<LevelContent level='7' ksv='PRO_8_olympos_R01_7'/>
+</OutRun>

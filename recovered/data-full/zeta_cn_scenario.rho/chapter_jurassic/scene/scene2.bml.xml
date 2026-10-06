@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="jurassic2"/>
+  <Char id="rachi" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="露西" string="这个赛道很好玩啊~?|恩? 卡诺怎么来了? 什么事?"/>
+  <Enter/>
+  <Char id="rachi" remove="true"/>
+  <Char id="carno" pos="8 0" emotion="stop1"/>
+  <Msg name="卡诺" string="我们为什么要在这种地方隐秘生活啊?|我们比人类更强更快!"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="carno" pos="11 0" emotion="stop4"/>
+  <Char id="naru" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="纳鲁" string="&quot;卡诺,那也不准发起战争 !&quot;"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="naru" remove="true"/>
+  <Char id="carno" pos="8 0" emotion="stop3"/>
+  <Msg name="卡诺" string="不，我无法理解为什么.|我要成为族长，要统治恐龙族!"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="rachi" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="露西" string="卡诺! 你这是在挑战我爸爸吗？"/>
+  <Enter/>
+  <Char id="rachi" remove="true"/>
+  <Char id="carno" pos="11 0" emotion="stop1"/>
+  <Char id="rachi" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="卡诺" string="最快最强的应该成为族长!|比起这个老头我更快!"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="rachi" remove="true"/>
+  <Char id="naru" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="纳鲁" string="真是无理取闹.|想赢我你还不够资格!"/>
+  <Enter/>
+  <Char id="naru" remove="true"/>
+  <Char id="naru" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="rachi" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="露西" string="对! 你想挑战我爸，就得先过我这关。"/>
+  <Enter/>
+  <Char id="naru" remove="true"/>
+  <Char id="rachi" remove="true"/>
+  <Char id="carno" pos="8 0" emotion="stop2"/>
+  <Msg name="卡诺" string="露西，你不是我的对手。"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="rachi" pos="5 0" emotion="stop3"/>
+  <Msg name="露西" string="你有那么厉害吗？|不服就跟我来！"/>
+  <Enter/>
+</Scene>

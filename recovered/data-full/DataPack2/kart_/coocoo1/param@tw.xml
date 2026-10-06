@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='154'
+	BackwardAccelForce='100'
+	DragFactor='-0.078'
+	SteerConstraint='2.7'
+	CornerDrawFactor='0.067'
+	DriftEscapeForce='1500'
+	
+	driftBoostMulAccelFactor='1.25'
+	chargeBoostBySpeed='300'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.846'
+	StartForwardAccelFactorSpeed='1.65'
+	StartBoosterTimeSpeed='1500'
+	
+	DriftMaxGauge='-520'
+	NormalBoosterTime='-90'
+	TeamBoosterTime='-180'
+	
+	DriftGaguePreservePercent='0.5'
+	antiCollideBalance='0.92'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	TransformTime='700'
+	
+	DescBalance='49'
+	DescStability='50'
+	DescEngineGrade='1.36'
+	DescCornering='8'
+	DescEnchantCap='30'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='coocoo1'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	BoosterType='9soon'
+	BoosterType0='9soon'
+	BoosterType1='9soon'
+	BoosterType2='9main'
+
+	Port0='mod2a2'
+	Port1='mod2a3'
+
+	FirePort0='mod2a1'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255'/>
+</BodyParam>
+<!-- 구구 9 / 대만 / 일반 / 스피드 / 카트기어 / 20170217 릴리즈 -->

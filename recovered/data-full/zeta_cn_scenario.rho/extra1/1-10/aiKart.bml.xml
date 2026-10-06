@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <AiKart id="1" track="gold_S03" isFixedKart="true" fixedKartId="8" laps="3" gameType="item">
+    <LevelContent level="0" item="Rocket;WaterBomb;Booster;Magnet;Angel;WaterFly;Ufo;Shield" aiItemLevel="1">
+      <AiKart characterId="24" uniformId="33" kartId="186" colorId="4" dyeId="4" characterName="艾佛德" balloonId="0" speed="42" accel="24" startTick="0"/>
+    </LevelContent>
+  </AiKart>
+</Root>

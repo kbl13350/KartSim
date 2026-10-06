@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='148.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.078'
+	SteerConstraint='3.0'
+	DriftEscapeForce='1850'
+	CornerDrawFactor='0.08'
+
+	BoosterBlur='true'
+	EngineSound='bike8'
+
+	WaveEffect='true'
+	motorcycleType='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.822'
+	TransformTime='200'		
+
+	StartForwardAccelFactorSpeed = '1.7'
+	StartBoosterTimeSpeed='1300' 
+
+	NormalBoosterTime = '-200'
+	TeamBoosterTime = '-500'
+	DriftMaxGauge = '-1400'
+	DriftGaguePreservePercent='0.5'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8main'
+	BoosterType4='8sub'
+	BoosterType5='8sub'
+
+
+	Port0='mod1b1' 
+	Port1='mod1b2'
+
+	FirePort0='mod1a1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a3'
+	FirePort3='mod1a4'
+
+	TailLampSize='0.1'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '46'
+	DescStability ='43'
+	DescEngineGrade='1.25'
+	DescCornering='3'
+	DescEnchantCap = '30'
+
+	SpeedSlotCapacity='3'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort3='mod1a3' trailPort4='mod1a4'/>
+</BodyParam>
+
+<!--대만 저스티스 바이크 HT 140213 빙고 가챠폰 중간 보상-->

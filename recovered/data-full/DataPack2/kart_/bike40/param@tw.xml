@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='146.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.078'
+	SteerConstraint='2.65'
+	DriftEscapeForce='1600'
+	CornerDrawFactor='0.07'
+
+	BoosterBlur='true'
+	EngineSound='bike8'
+
+	WaveEffect='true'
+	motorcycleType='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.795'
+	TransformTime='200'
+
+	StartForwardAccelFactorSpeed = '1.7'
+	StartBoosterTimeSpeed='1200'           
+
+	NormalBoosterTime = '-200'
+	TeamBoosterTime = '-500'
+	DriftMaxGauge = '-1300'
+	DriftGaguePreservePercent='0.6'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8sub'
+	BoosterType3='8sub'
+	BoosterType4='8main'
+
+	Port0='mod3a'
+	Port1='mod3b'
+
+	FirePort0='mod4a'
+	FirePort1='mod4b'
+	FirePort2='mod6a'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '49'
+	DescStability ='40'
+	DescEngineGrade='1.25'
+	DescCornering='7'
+	DescEnchantCap = '30'
+
+	SpeedSlotCapacity='3'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod4a' trailPort1='mod4b'/>
+</BodyParam>
+
+<!--대만 레전드 골든 스톰 블레이드 HT 120712 -->
+<!--대만 바이크 스피드 슬롯 3개 추가 20131125 -->

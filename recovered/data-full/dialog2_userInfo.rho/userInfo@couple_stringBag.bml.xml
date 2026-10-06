@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="Guild">
+    <m c="kr" v="길드"/>
+    <m c="jp" v="ギルド"/>
+    <m c="cn" v="我的车队"/>
+    <m c="tw" v="我的車隊"/>
+    <m c="us" v="Race Club"/>
+    <m c="vn" v="Đội"/>
+    <m c="ru" v="Гильдия"/>
+    <m c="id" v="Guild"/>
+    <m c="th" v="ชื่อกิลด์"/>
+  </k>
+  <k n="currentStatus">
+    <m c="kr" v="현재 상태"/>
+    <m c="jp" v="現在の状態"/>
+    <m c="cn" v="目前状态"/>
+    <m c="tw" v="目前狀況"/>
+    <m c="us" v="Status"/>
+    <m c="vn" v="Trạng thái"/>
+    <m c="ru" v="Состояние"/>
+    <m c="id" v="Status Sekarang"/>
+    <m c="th" v="สถานะปัจจุบัน"/>
+  </k>
+  <k n="refresh">
+    <m c="kr" v="새로 고침"/>
+    <m c="jp" v="更新"/>
+    <m c="cn" v="刷新信息"/>
+    <m c="tw" v="更新訊息"/>
+    <m c="us" v="Refresh"/>
+    <m c="vn" v="Cập nhật"/>
+    <m c="ru" v="Обновить"/>
+    <m c="id" v="Refresh"/>
+    <m c="th" v="หาอีกครั้ง"/>
+  </k>
+  <k n="playTogether">
+    <m c="kr" v="같이 하기"/>
+    <m c="jp" v="一緒にプレイ"/>
+    <m c="cn" v="加入游戏"/>
+    <m c="tw" v="加入遊戲"/>
+    <m c="us" v="Play Now"/>
+    <m c="vn" v="Đua nào"/>
+    <m c="ru" v="Перейти"/>
+    <m c="id" v="Bermain"/>
+    <m c="th" v="ไปเล่นด้วย"/>
+  </k>
+  <k n="registerFriend">
+    <m c="kr" v="친구 등록"/>
+    <m c="jp" v="友達登録"/>
+    <m c="cn" v="加为好友"/>
+    <m c="tw" v="加為好友"/>
+    <m c="us" v="Add a Buddy"/>
+    <m c="vn" v="Kết bạn"/>
+    <m c="ru" v="Добавить"/>
+    <m c="id" v="Add Friend"/>
+    <m c="th" v="เป็นเพื่อน"/>
+  </k>
+  <k n="gotoMyroom">
+    <m c="kr" v="방문 하기"/>
+    <m c="jp" v="訪問する"/>
+    <m c="cn" v="寻找小屋"/>
+    <m c="tw" v="尋找車手"/>
+    <m c="us" v="Visit"/>
+    <m c="vn" v="Đến nhà"/>
+    <m c="ru" v="Посетить"/>
+    <m c="id" v="Ke MyRoom"/>
+    <m c="th" v="ไปทักทาย"/>
+  </k>
+  <k n="requestFriend">
+    <m c="kr" v="친구 요청"/>
+    <m c="jp" v="友達申請"/>
+    <m c="cn" v="邀请好友"/>
+    <m c="tw" v="邀請朋友"/>
+    <m c="us" v="Buddy Request"/>
+    <m c="vn" v="Yêu cầu"/>
+    <m c="ru" v="Послать запрос о дружбе"/>
+    <m c="id" v="Tambah Teman"/>
+    <m c="th" v="ขอเป็นเพื่อน"/>
+  </k>
+  <k n="requestFriendMsgFmt">
+    <m c="kr" v="카트라이더(%s) 님께서 친구요청"/>
+    <m c="jp" v="カートライダー(%s)さんから友達申請"/>
+    <m c="cn" v="(%s)申请好友"/>
+    <m c="tw" v="(%s)申請好友"/>
+    <m c="us" v="A buddy request from KartRider(%s)"/>
+    <m c="vn" v="Tay đua (%s) yêu cầu thành viên"/>
+    <m c="ru" v="Гонщик (%s) прислал запрос о друге"/>
+    <m c="id" v="KartRider(%s) Request Tambah Teman"/>
+    <m c="th" v="ขอเป็นเพื่อนจากคุณ (%s) "/>
+  </k>
+  <k n="requestFriendComplete">
+    <m c="kr" v="친구 요청을 완료했습니다"/>
+    <m c="jp" v="友達申請を完了しました。"/>
+    <m c="cn" v="完成申请好友"/>
+    <m c="tw" v="申請好友完成"/>
+    <m c="us" v="You&apos;ve added a new buddy!"/>
+    <m c="vn" v="Đã gửi lời mời kết bạn!"/>
+    <m c="ru" v="Вы послали запрос о дружбе."/>
+    <m c="id" v="Request Tambah Teman selesai"/>
+    <m c="th" v="ขอเป็นเพื่อนแล้ว"/>
+  </k>
+  <k n="offline">
+    <m c="kr" v="접속중이지 않음"/>
+    <m c="jp" v="オフライン"/>
+    <m c="cn" v="不在线"/>
+    <m c="tw" v="離線"/>
+    <m c="us" v="Offline"/>
+    <m c="vn" v="Offline"/>
+    <m c="ru" v="Отключено"/>
+    <m c="id" v="Offline"/>
+    <m c="th" v="ไม่ได้ล็อกอิน"/>
+  </k>
+  <k n="singlePlay">
+    <m c="kr" v="싱글플레이"/>
+    <m c="jp" v="シングルプレイ"/>
+    <m c="cn" v="单人游戏"/>
+    <m c="tw" v="單人遊戲"/>
+    <m c="us" v="Single play"/>
+    <m c="vn" v="Chơi cá nhân"/>
+    <m c="ru" v="Одиночная игра"/>
+    <m c="id" v="Single Play"/>
+    <m c="th" v="single play"/>
+  </k>
+  <k n="inLobby">
+    <m c="kr" v="대기실"/>
+    <m c="jp" v="ロビー"/>
+    <m c="cn" v="游戏大厅"/>
+    <m c="tw" v="遊戲大廳"/>
+    <m c="us" v="Driver&apos;s Lobby"/>
+    <m c="vn" v="Đại sảnh"/>
+    <m c="ru" v="Комната ожидания"/>
+    <m c="id" v="Lobby"/>
+    <m c="th" v="ห้องล็อบบี้"/>
+  </k>
+  <k n="inGame">
+    <m c="kr" v="게임방"/>
+    <m c="jp" v="ゲームルーム"/>
+    <m c="cn" v="房间"/>
+    <m c="tw" v="房間"/>
+    <m c="us" v="Game Room"/>
+    <m c="vn" v="Đang đua xe"/>
+    <m c="ru" v="Игровая комната"/>
+    <m c="id" v="Game Room"/>
+    <m c="th" v="ห้องในเกม"/>
+  </k>
+  <k n="canJoin">
+    <m c="kr" v="입장가능"/>
+    <m c="jp" v="入場可能"/>
+    <m c="cn" v="可以进入"/>
+    <m c="tw" v="可以進入"/>
+    <m c="us" v="Able to join"/>
+    <m c="vn" v="Vào"/>
+    <m c="ru" v="Можно войти"/>
+    <m c="id" v="Dapat Masuk"/>
+    <m c="th" v="เข้าได้"/>
+  </k>
+  <k n="locked">
+    <m c="kr" v="잠김"/>
+    <m c="jp" v="ロック中"/>
+    <m c="cn" v="已加密"/>
+    <m c="tw" v="已加密"/>
+    <m c="us" v="Locked"/>
+    <m c="vn" v="Khóa"/>
+    <m c="ru" v="Закрыто"/>
+    <m c="id" v="Terkunci"/>
+    <m c="th" v="ล็อค"/>
+  </k>
+  <k n="cannotJoin">
+    <m c="kr" v="입장불가"/>
+    <m c="jp" v="入場不可"/>
+    <m c="cn" v="不可进入"/>
+    <m c="tw" v="不可進入"/>
+    <m c="us" v="Unable to join"/>
+    <m c="vn" v="Không vào"/>
+    <m c="ru" v="Вход запрещен"/>
+    <m c="id" v="Tidak Dapat Masuk"/>
+    <m c="th" v="เข้าไม่ได้"/>
+  </k>
+  <k n="coupleLabel">
+    <m c="kr" v="커플 라이더"/>
+    <m c="jp" v="カップルライダー"/>
+    <m c="cn" v="情侣车手"/>
+    <m c="tw" v="情侶車手"/>
+    <m c="vn" v="Bạn"/>
+    <m c="ru" v="Партнер"/>
+    <m c="id" v="Couple Rider"/>
+    <m c="th" v="ชื่อคู่รัก"/>
+  </k>
+  <k n="campaignLabel">
+    <m c="kr" v="캠페인전적"/>
+    <m c="jp" v="キャンペーン戦績"/>
+    <m c="cn" v="??????"/>
+    <m c="tw" v="??????"/>
+    <m c="ru" v="Статистика кампании"/>
+    <m c="id" v="Label Kampanye"/>
+    <m c="vn" v="Chiến tích"/>
+  </k>
+  <k n="campaignWinLose">
+    <m c="kr" v="%d승 %d패 , 승률 %d%%"/>
+    <m c="jp" v="%d勝 %d敗、勝率%d%%"/>
+    <m c="cn" v="??????"/>
+    <m c="tw" v="??????"/>
+    <m c="ru" v="%d побед, %dпроигрышей , отношение %d%%"/>
+    <m c="id" v="%d Win %d Lose, Win Rate %d%%"/>
+    <m c="vn" v="Thắng %d thua %d"/>
+  </k>
+  <k n="careerSummaryFormat">
+    <m c="kr" v="%lu포인트 / %d개 달성 (%.1f%%)"/>
+    <m c="cn" v="%lu积分 / 完成%d个  (%.1f%%)"/>
+    <m c="tw" v="%lu積分 / 完成 %d個  (%.1f%%)"/>
+    <m c="th" v="%lu Point / สำเร็จ %d อัน (%.1f%%)"/>
+    <m c="id" v="%lu Point / Mencapai %d Unit (%.1f%%)"/>
+  </k>
+</StringBag>

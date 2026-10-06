@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<firing2Gain>
+  <item kartId="243" firingItemIdx="rocket" firingStep="1" gainItemIdx="animalBooster" probability="0"/>
+  <item kartId="250" firingItemIdx="rocket" firingStep="1" gainItemIdx="animalBooster" probability="0"/>
+  <item kartId="769" firingItemIdx="magnet" firingStep="1" gainItemIdx="siren" probability="33"/>
+  <item kartId="792" firingItemIdx="magnet" firingStep="1" gainItemIdx="booster" probability="33"/>
+  <item kartId="812" firingItemIdx="magnet" firingStep="1" gainItemIdx="siren" probability="33"/>
+  <item kartId="920" firingItemIdx="magnet" firingStep="1" gainItemIdx="siren" probability="33"/>
+  <item kartId="957" firingItemIdx="magnet" firingStep="1" gainItemIdx="siren" probability="33"/>
+  <item kartId="1032" firingItemIdx="magnet" firingStep="1" gainItemIdx="siren" probability="40"/>
+  <item kartId="1068" firingItemIdx="superMagnet" firingStep="1" gainItemIdx="siren" probability="40"/>
+  <item kartId="1075" firingItemIdx="magnet" firingStep="1" gainItemIdx="animalBooster" probability="100"/>
+  <item kartId="1117" firingItemIdx="lockdownRocket" firingStep="1" gainItemIdx="magnet" probability="40"/>
+  <item kartId="1186" firingItemIdx="magnet" firingStep="1" gainItemIdx="booster" probability="100"/>
+  <item kartId="1210" firingItemIdx="rocket" firingStep="1" gainItemIdx="rocket" probability="40"/>
+  <item kartId="1213" firingItemIdx="magnet" firingStep="1" gainItemIdx="siren" probability="100"/>
+  <item kartId="1213" firingItemIdx="rocket" firingStep="1" gainItemIdx="magnet" probability="40"/>
+  <item kartId="1272" firingItemIdx="magnet" firingStep="1" gainItemIdx="animalBooster" probability="100"/>
+  <item kartId="1284" firingItemIdx="magnet" firingStep="1" gainItemIdx="magnet" probability="30"/>
+  <item kartId="1300" firingItemIdx="magnet" firingStep="1" gainItemIdx="siren" probability="35"/>
+  <item kartId="1346" firingItemIdx="waterFly" firingStep="1" gainItemIdx="waterFly" probability="35"/>
+  <item kartId="1362" firingItemIdx="goldRocket" firingStep="1" gainItemIdx="goldRocket" probability="40"/>
+  <item kartId="1375" firingItemIdx="magnet" firingStep="1" gainItemIdx="shield" probability="100"/>
+  <item kartId="1375" firingItemIdx="rocket" firingStep="1" gainItemIdx="magnet" probability="100"/>
+  <item kartId="1384" firingItemIdx="tigerRocket" firingStep="1" gainItemIdx="booster" probability="40"/>
+  <item kartId="1390" firingItemIdx="lockdownRocket" firingStep="1" gainItemIdx="guideRocket" probability="100"/>
+  <item kartId="1402" firingItemIdx="magnet" firingStep="1" gainItemIdx="siren" probability="35"/>
+  <item kartId="1417" firingItemIdx="magnet" firingStep="1" gainItemIdx="booster" probability="100"/>
+</firing2Gain>

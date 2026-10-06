@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="snowman">
+  <state name="Aim" life="0" auxFx0="aiming" auxFx1="inrange" auxFx2="ontarget" auxFx3="misfire"/>
+  <state name="Use" life="1500" firing="firing" itemFx="using"/>
+  <state name="Affect" life="2000" fired="fired" firedFx="affect"/>
+  <state name="Alert" life="0"/>
+  <state name="AfterBoost" life="0"/>
+  <state name="Waiting" life="0"/>
+  <state name="AffectSmall" life="2000"/>
+  <state name="Evade" life="0"/>
+</item>

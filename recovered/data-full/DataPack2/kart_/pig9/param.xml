@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='130.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.067'
+	SteerConstraint='2.4'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='lodi4'
+	UseTransformBooster='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zero5'
+	BoosterType3='zero5'
+	BoosterType4='cotton6'
+	BoosterType5='cotton6'
+	BoosterType6='cotton6'
+	BoosterType7='cotton6'
+
+	Port0='mod1c1' 
+	Port1='mod1c2'
+
+	FirePort0='mod1d1'
+	FirePort1='mod1d2'
+	FirePort2='mod2a1'
+	FirePort3='mod2a2'
+	FirePort4='mod2a3'
+	FirePort5='mod2a4'
+
+	
+
+	TachometerType='Tacho1'
+	TachometerName='pylon'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+/>

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.3'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.07'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.73'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.7'
+	StartBoosterTimeSpeed='1300'    
+
+	NormalBoosterTime = '-70'
+	TeamBoosterTime = '-200'
+	DriftMaxGauge = '-480'
+	DriftGaguePreservePercent='0.5'
+
+	WaveEffect='true'
+	BoosterBlur='true'
+	EngineSound='cotton8'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8sub'
+	BoosterType1='8sub'
+	BoosterType2='8main'
+	BoosterType3='8sub'
+	BoosterType4='8sub'
+
+	defaultSocket='3'
+
+	Port0='mod1c1' 
+	Port1='mod1c2'
+
+	FirePort0='mod1a1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a3'
+	
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '47'
+	DescStability ='48'
+	DescEngineGrade='1.25'
+	DescCornering='6'
+	DescEnchantCap = '25'
+	addModelFolder='lionmask2'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a2' trailPort1='mod1a3'/>
+</BodyParam>
+
+<!--중국 신화의 사자탈 HT 130613-->

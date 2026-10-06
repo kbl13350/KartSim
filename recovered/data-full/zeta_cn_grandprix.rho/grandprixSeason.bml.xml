@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpList>
+  <mode preset="itemTeamGp" channelCat="itemTeamGp" gameType="ItemTeam" gameSpeed="1" startUserCount="8">
+    <track id="forest_I01"/>
+    <track id="forest_I03"/>
+    <track id="forest_I04"/>
+    <track id="desert_I04"/>
+    <track id="desert_I03"/>
+    <track id="ice_I02"/>
+    <track id="ice_I04"/>
+    <track id="fairy_I03"/>
+    <track id="china_I01"/>
+    <track id="china_I02"/>
+    <track id="nymph_I01"/>
+    <track id="pirate_I03"/>
+    <track id="forest_I07"/>
+    <track id="northeu_I08"/>
+    <track id="gold_I01"/>
+    <track id="mine_I05"/>
+    <track id="beach_I02"/>
+  </mode>
+  <mode preset="speedTeamGp" channelCat="speedTeamGp" gameType="SpeedTeam" gameSpeed="1" startUserCount="8">
+    <track id="village_R06"/>
+    <track id="village_R01"/>
+    <track id="forest_I04"/>
+    <track id="forest_I07"/>
+    <track id="ice_I04"/>
+    <track id="desert_I02"/>
+    <track id="desert_R02"/>
+    <track id="gold_I01"/>
+    <track id="moonhill_I01"/>
+    <track id="gold_R02"/>
+    <track id="fairy_I03"/>
+    <track id="china_R03"/>
+    <track id="china_I02"/>
+    <track id="wkc_R03"/>
+    <track id="wkc_R01"/>
+  </mode>
+</gpList>

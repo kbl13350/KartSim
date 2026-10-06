@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="bingo">
+    <m c="kr" v="빙고"/>
+    <m c="cn" v="BINGO"/>
+    <m c="tw" v="賓果"/>
+  </k>
+  <k n="startBody">
+    <m c="kr" v="획득한 빙고 숫자는 빙고판에 체크됩니다.||빙고판에 체크된 빙고 숫자가|가로/세로/대각선으로 한 줄이 될 때마다|다양한 아이템을 받을 수 있습니다.|25개의 빙고 번호를 모두 모아 최종 보상을 받으세요."/>
+    <m c="cn" v="获得的Bingo数字会核对到Bingo板上。||核对的数字以横/竖/对角线成为一行时，|可以获得丰富的礼物。|收集所有25个Bingo数字，可以获得最终奖励。"/>
+    <m c="tw" v=" &apos;%s&apos;|出來的賓果數字會在賓果盤上確認。|確認的數字以直線/橫線/對角線/連成一線的話，|即可獲得豐厚的禮物喔~|*收集25個所有賓果數字即可獲得最終獎勵。|可獲得稀有車款&apos;%s&apos; 的機會!!"/>
+  </k>
+  <k n="bingoDesc">
+    <m c="kr" v="숫자가 모두 체크되면 |최종보상 획득 !!"/>
+    <m c="cn" v="收集25个BINGO板数字即可获得最终奖励！"/>
+    <m c="tw" v="蒐集25個賓果盤數字 |可獲得以下獎勵！"/>
+  </k>
+  <k n="bingoWarning">
+    <m c="kr" v="더 이상 가질 수 없는 아이템은 &apos;%s&apos;으로 보상이 교체됩니다."/>
+    <m c="cn" v="不能再获得的道具将变更为其他道具。"/>
+    <m c="tw" v="若獲得已無法再擁有的道具時，將會變更為其他的禮物."/>
+  </k>
+  <k n="lastNumber">
+    <m c="kr" v="마지막으로|나온 숫자"/>
+    <m c="cn" v="使用道具后|获得的数字"/>
+    <m c="tw" v="使用道具後|獲得的數字"/>
+  </k>
+  <k n="numberChange">
+    <m c="kr" v="숫자 변경권 사용(%d개)"/>
+    <m c="cn" v="使用数字变更卡(%d个)"/>
+    <m c="tw" v="使用數字變更卡(%d)"/>
+  </k>
+  <k n="buyLottery">
+    <m c="kr" v="구입하기"/>
+    <m c="cn" v="兑换"/>
+    <m c="tw" v="購買"/>
+  </k>
+  <k n="useChangeNumber">
+    <m c="kr" v="숫자 변경권을 사용하면, 마지막으로 나온 숫자가 다른 숫자로 변경됩니다.|숫자 변경권을 사용하시겠습니까?"/>
+    <m c="cn" v="使用数字变更卡时，最后出现的数字会变更。|（如果Bingo板中核对了最后出现的数字，那核对的数字也会变更，请注意。）|确定使用数字变更卡吗？"/>
+    <m c="tw" v="使用數字變更卡的話,最後出現的數字將變更為另外一個數字，要使用數字變更卡嗎?"/>
+  </k>
+  <k n="rewardText">
+    <m c="kr" v="축하합니다!|빙고 한 줄을 맞춰서 선물을 받았습니다.|오예~"/>
+    <m c="cn" v="成功完成1行BINGO获得了礼物。|再挑战下一个BINGO，获得礼物吧！！"/>
+    <m c="tw" v="已連成一條線嘍，禮物就送給你吧.|繼續挑戰賓果，再次獲得禮物吧!!"/>
+  </k>
+  <k n="replaceRewardText">
+    <m c="kr" v="선물 아이템을 더 이상 가질 수 없어, &apos;%s&apos;를 받았습니다.|다시 한번 빙고에 도전해 보세요."/>
+    <m c="cn" v="此道具无法再次获得|因此赠送相应的奖励|再次挑战bingo吧"/>
+    <m c="tw" v="已核對賓果連線一條可獲得的禮物了。|但該禮物已經獲得或已達累積上限，|所以再給你&apos;%s&apos;，|再挑戰一次賓果吧!"/>
+  </k>
+  <k n="bingoCompleteRewardText">
+    <m c="kr" v="빙고 숫자를 모두 모아, 최종 보상 획득! |정말 대단한 행운의 능력자시네요~"/>
+    <m c="cn" v="恭喜您！！！|收集Bingo数字，获得了最终奖励。"/>
+    <m c="tw" v="恭喜!! 收集賓果數字二十五個，獲得所有人羨慕的高級道具~&apos;%1!s!&apos;! 真是太幸運了!"/>
+  </k>
+  <k n="bingoCompleteReplaceRewardText">
+    <m c="kr" v="선물 아이템을 더 이상 가질 수 없어, &apos;%s&apos;를 받았습니다.|다시 한번 빙고에 도전해 보세요."/>
+    <m c="cn" v="此道具无法再次获得|因此赠送相应的奖励|再次挑战bingo吧"/>
+    <m c="tw" v="已核對賓果連線一條可獲得的禮物了。|但該禮物已經獲得或已達累積上限，|所以再給你&apos;%s&apos;，|再挑戰一次賓果吧!"/>
+  </k>
+  <k n="getMileagePrize">
+    <m c="kr" v="보상 획득"/>
+    <m c="cn" v="领取奖励"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mileageCountStr1">
+    <m c="kr" v="앞으로"/>
+    <m c="cn" v="剩余"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mileageCountStr2">
+    <m c="kr" v="회"/>
+    <m c="cn" v="次"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mileageProgressBarStr">
+    <m c="kr" v="%d/%d"/>
+    <m c="cn" v="%d/%d"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mileagePrizeReceiveFirst">
+    <m c="kr" v="마일리지가 가득 찼어요!|마일리지 보상을 모두 받은 후에 시도해주세요."/>
+    <m c="cn" v="积分已满！|请领取最终奖励后再试。"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mileagePrizeDlgTitle">
+    <m c="kr" v="마일리지 보상"/>
+    <m c="cn" v="积分奖励"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mileagePrizeDlgMsg1">
+    <m c="kr" v="%s 아이템을 획득하였습니다."/>
+    <m c="cn" v="获得%s道具。"/>
+    <m c="tw" v="已獲得%s道具。"/>
+  </k>
+  <k n="mileagePrizeDlgMsg2">
+    <m c="kr" v="(※ 루찌/RP는 즉시 지급되며 코인/아이템은 보상함을 확인해보세요!)"/>
+    <m c="cn" v="(※ 金币/经验已发放，请在奖励箱确认酷币/道具!)"/>
+    <m c="tw" v="(※ Lucci/經驗值立即發放，Koin/道具請確認獎勵箱!)"/>
+  </k>
+  <k n="mileagePrizeCompleteRewardMsg">
+    <m c="kr" v="빙고 마일리지를 모두 모아 최종 보상 획득!|최종 보상 획득으로 빙고판이 초기화되어 새로운 빙고판으로 진행됩니다."/>
+    <m c="cn" v="已使用累计积分来获得最终奖励！|BINGO面板进行重置，将以新的BINGO面板来进行。"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mileagePrizeCompleteRewardReplaceMsg">
+    <m c="kr" v="최종 보상 %s를 이미 보유하고 있어 획득할 수 없어요.|대신 %s를 드려요!"/>
+    <m c="cn" v="已持有最终奖励%s，|作为代替奖励%s！"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mileageAlertDlgMsg1">
+    <m c="kr" v="[color:255 36 129 255]%s[/color] 보유 수량이 부족합니다."/>
+    <m c="cn" v="[color:255 36 129 255]%s[/color]持有数量不足。"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mileageAlertDlgMsg2">
+    <m c="kr" v="[color:255 36 129 255]%s[/color] 를 사용하시겠습니까?"/>
+    <m c="cn" v="是否使用[color:255 36 129 255]%s[/color]？"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="changeBingoSet">
+    <m c="kr" v="빙고판 변경"/>
+    <m c="cn" v="更换面板"/>
+  </k>
+  <k n="useLottery">
+    <m c="kr" v="사용하기"/>
+    <m c="cn" v="使用"/>
+    <m c="tw" v="使用"/>
+  </k>
+  <k n="useOneLottery">
+    <m c="kr" v="1회 사용"/>
+    <m c="cn" v="单次抽取"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="lastNumber2">
+    <m c="kr" v="마지막으로 나온 숫자"/>
+    <m c="cn" v="使用道具后获得的数字"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="needItem">
+    <m c="kr" v="필요 아이템"/>
+    <m c="cn" v="所需道具"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="useMultiLottery">
+    <m c="kr" v="연속 사용"/>
+    <m c="cn" v="连续抽取"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="stopUseMultiLottery">
+    <m c="kr" v="연속 사용 그만하기"/>
+    <m c="cn" v="停止连抽"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="bingoMultiUseConfirmA">
+    <m c="kr" v="보유한 [color:255 36 129 255]%s[/color]을 모두 사용 후 이어서|보유한 [color:255 36 129 255]%s[/color]을 모두 사용할 때까지 진행됩니다.|연속 뽑기를 진행하시겠습니까?|* 빙고판 완성 또는 마일리지를 모두 채우면 중단됩니다."/>
+    <m c="cn" v="先用完所有[color:255 36 129 255]%s[/color]，|之后将继续使用[color:255 36 129 255]%s[/color]直至耗尽。|是否确认连续抽取？|*完成Bingo2面板或保底积分达到上限时将自动停止。"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="bingoMultiUseConfirmB">
+    <m c="kr" v="보유한 [color:255 36 129 255]%s[/color]을 모두 사용할 때까지|연속 뽑기를 진행하시겠습니까?|* 빙고판 완성 또는 마일리지를 모두 채우면 중단됩니다."/>
+    <m c="cn" v="将持续抽取直至耗尽所有[color:255 36 129 255]%s[/color]，|是否确认连续抽取？|*完成Bingo2面板或保底积分达到上限时将自动停止。"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="endLotteryPopUp">
+    <m c="kr" v="뽑기 진행에 필요한 아이템을 모두 사용하였습니다.|획득한 아이템들을 내 아이템에서 확인해보세요!"/>
+    <m c="cn" v="已用完所有抽取所需道具。|可前往我的物品查看获得的道具。"/>
+    <m c="tw" v=""/>
+  </k>
+</StringBag>

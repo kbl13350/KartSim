@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowRect="0 0 340 422" addStyle="moveable" caption="#sb(useLucciItemCaption)" align="center" frame="CaptionDialogBlankClient" setCloseButton="okButton">
+  <Window name="transFillPlane" windowRect="-1 0 316 216" frame="CaptionDialogClientRoundTransFill" enable="false"/>
+  <Window name="main" windowRect="4 0 316 222"/>
+  <Window name="backPlane" windowRect="0 215 314 357" frame="CaptionDialogClientRectFill"/>
+  <Label name="lblMsg" windowRect="0 234 313 335" frame="DefaultEdit" marginRect="10 10 10 10" multiLine="true" textAlign="center top"/>
+  <Container name="type2" windowRect="49 347 265 369">
+    <TextButton name="okButton" text="#sb(ok)" windowRect="53 0 163 22" hasDisable="true"/>
+  </Container>
+  <StringBag>
+    <k n="useLucciItemCaption">
+      <m c="kr" v="루찌 카드"/>
+      <m c="jp" v="ルッチカード"/>
+      <m c="cn" v="兑换券"/>
+      <m c="tw" v="兌換券"/>
+      <m c="ru" v="Карта Луцци"/>
+      <m c="th" v="Lucci Card"/>
+      <m c="id" v="Tukar Kupon"/>
+      <m c="vn" v="Thẻ Lucci"/>
+    </k>
+  </StringBag>
+</CaptionWindow>

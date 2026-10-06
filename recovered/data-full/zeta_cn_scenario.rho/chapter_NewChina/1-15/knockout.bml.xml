@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <KnockOut track="china_I02" laps="3" isFixedKart="true" fixedKartId="888">
+    <LevelContent level="0" ksv="15단계_result_20170721_1801_1분 47초">
+      <ShadowKart characterId="25" uniformId="0" kartId="1020" colorId="1" dyeId="1"/>
+      <ShadowKart characterId="3" uniformId="0" kartId="943" colorId="2" dyeId="2"/>
+      <ShadowKart characterId="1" uniformId="0" kartId="849" colorId="1" dyeId="1"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

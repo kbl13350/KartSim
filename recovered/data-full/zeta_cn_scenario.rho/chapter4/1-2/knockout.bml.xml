@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="1"/>
+  <KnockOut track="ice_I06" laps="3" isFixedKart="true" fixedKartId="888" isFixedChar="true" fixedCharId="2" type="rank">
+    <LevelContent level="0" ksv="chapter4_1_2" startOffset="3000">
+      <ShadowKart characterId="9" uniformId="0" kartId="865" colorId="1" dyeId="1" characterName="海盗船长"/>
+      <ShadowKart characterId="18" uniformId="0" kartId="888" colorId="8" dyeId="8" characterName="嘟嘟"/>
+      <ShadowKart characterId="20" uniformId="59" kartId="849" colorId="9" dyeId="9" characterName="神奇车手"/>
+      <ShadowKart characterId="15" uniformId="0" kartId="888" colorId="6" dyeId="6" characterName="吉米"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

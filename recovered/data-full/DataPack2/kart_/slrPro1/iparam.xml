@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+             SteerConstraint='1.65'
+             DriftEscapeForce='250'
+             CornerDrawFactor='0.045'
+             BoosterBlur='true'
+             EngineSound='pro'
+			 EnvMap='true'
+
+
+	DescCornering='4'
+	DescEnchantCap = '31'
+/>
+
+<!-- 중국 흑기사 PRO -->
+
+
+

@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BonusRewardSet>
+	
+	<!--	reward type : lucci 
+								rp 
+								stock 
+
+			isNoticeItem : 레어템 일 경우 표시 
+
+			defaultRewardType = [lucci | rp | stock] : stock의 경우 줄 수있는 아이템을 못 찾았을 때 default 는 0 루찌
+	-->
+
+
+
+	<!-- 카드 뒤집기 -->
+	<rewardSet name='lucciReward' id='2'>
+		<subSet name='card'>
+			<reward type='lucci' value='100'	prob='1910'  lureProb='577' />
+			<reward type='lucci' value='300'	prob='1681'  lureProb='577' />
+			<reward type='lucci' value='500'	prob='1528'  lureProb='577' />
+			<reward type='lucci' value='1000' prob='1070'  lureProb='577' />
+			<reward stockId='4635' prob='1070' lureProb='577' /> <!-- RP루찌 20% 카드(1일) -->
+			<reward type='lucci' value='5000' prob='458'  lureProb='577' />
+			<reward stockId='4636' prob='458' lureProb='577' /> <!-- RP 50% 카드(1일) -->
+			<reward type='lucci' value='10000' prob='306'  lureProb='481' />
+			<reward stockId='10246' prob='229' lureProb='481' /> <!-- 블루 상자(1개) -->
+			<reward stockId='10248' prob='229' lureProb='481' /> <!-- 블루 플랜트 상자(1개) -->
+			<reward stockId='10211' prob='229' lureProb='481' /> <!-- 5천 루찌 카드(1개) -->
+			<reward stockId='10250' prob='153' lureProb='481' /> <!-- 1 코인(1개) -->
+			<reward stockId='10222' prob='38' lureProb='481' /> <!-- 레드 플랜트 상자(1개) -->
+			<reward stockId='10247' prob='76' lureProb='481' /> <!-- 레드 상자(1개) -->
+			<reward stockId='10214' prob='76' lureProb='481' /> <!-- 3만 루찌 카드(1개) -->
+			<reward stockId='10332' prob='8' lureProb='385' /> <!-- 3 코인(1개) -->
+			<reward stockId='10252' prob='8' lureProb='385' /> <!-- 5 코인(1개) -->
+			<reward type='lucci' value='100000' prob='8' lureProb='385' />
+			<reward stockId='10321' prob='8' lureProb='385' /> <!-- 10 코인(1개) -->
+		</subSet>
+	</rewardSet>
+
+	<!-- 사다리 타기 -->
+	<rewardSet name='lucciReward' id='3'>
+		<subSet name='up'>
+			<reward type='lucci' value='200' prob='50' />
+			<reward type='lucci' value='400' prob='25' />
+			<reward type='lucci' value='800' prob='10' />
+			<reward type='lucci' value='1600' prob='5'  />
+			<reward type='lucci' value='1700' prob='4'  />
+			<reward type='lucci' value='1800' prob='3'  />
+			<reward type='lucci' value='1900' prob='2'  />
+			<reward type='lucci' value='2000' prob='1'  />
+		</subSet>
+		<subSet name='down' defaultRewardStock='3883'>
+			<reward stockId='4485' prob='400' /> <!-- 토스트 풍선 토스트 풍선(5 개) -->
+			<reward stockId='4486' prob='260' /> <!-- 토스트 풍선 토스트 풍선(30 개) -->
+			<reward stockId='4487' prob='200' /> <!-- 토스트 풍선 토스트 풍선(50 개) -->
+			<reward stockId='4488' prob='100' /> <!-- 토스트 풍선 토스트 풍선(100 개) -->
+			<reward stockId='5997' prob='380' /> <!-- 대왕 바나나 풍선 대왕 바나나 풍선(5 개) -->
+			<reward stockId='5952' prob='250' /> <!-- 대왕 바나나 풍선 대왕 바나나 풍선(30개) -->
+			<reward stockId='5998' prob='170' /> <!-- 대왕 바나나 풍선 대왕 바나나 풍선(50 개) -->
+			<reward stockId='5999' prob='100' /> <!-- 대왕 바나나 풍선 대왕 바나나 풍선(100 개) -->
+			<reward stockId='4492' prob='400' /> <!-- 톱니 풍선 톱니 풍선(5 개) -->
+			<reward stockId='4493' prob='250' /> <!-- 톱니 풍선 톱니 풍선(30 개) -->
+			<reward stockId='4494' prob='200' /> <!-- 톱니 풍선 톱니 풍선(50 개) -->
+			<reward stockId='3571' prob='100' /> <!-- 톱니 풍선 톱니 풍선(100개) -->
+			<reward stockId='4495' prob='380' /> <!-- 스패너 전자파밴드 스패너 전자파밴드(5 개) -->
+			<reward stockId='4496' prob='270' /> <!-- 스패너 전자파밴드 스패너 전자파밴드(30 개) -->
+			<reward stockId='4497' prob='200' /> <!-- 스패너 전자파밴드 스패너 전자파밴드(50 개) -->
+			<reward stockId='3574' prob='100' /> <!-- 스패너 전자파밴드 스패너 전자파밴드(100개) -->
+			<reward stockId='6000' prob='380' /> <!-- 두루마리 전자파밴드 두루마리 전자파밴드(5 개) -->
+			<reward stockId='6001' prob='270' /> <!-- 두루마리 전자파밴드 두루마리 전자파밴드(30 개) -->
+			<reward stockId='6002' prob='200' /> <!-- 두루마리 전자파밴드 두루마리 전자파밴드(50 개) -->
+			<reward stockId='3318' prob='100' /> <!-- 두루마리 전자파밴드 두루마리 전자파밴드(100개) -->
+			<reward stockId='4501' prob='380' /> <!-- 생선구이 밴드 생선구이 밴드(5 개) -->
+			<reward stockId='4502' prob='270' /> <!-- 생선구이 밴드 생선구이 밴드(30 개) -->
+			<reward stockId='4503' prob='200' /> <!-- 생선구이 밴드 생선구이 밴드(50 개) -->
+			<reward stockId='4504' prob='100' /> <!-- 생선구이 밴드 생선구이 밴드(100 개) -->
+			<reward stockId='3338' prob='100' /> <!-- CSO SAS CSO SAS(1일) -->
+			<reward stockId='0' prob='100' /> <!-- 배찌 배찌(1일) -->
+			<reward stockId='6003' prob='100' /> <!-- 손오공 손오공(1 일) -->
+			<reward stockId='5960' prob='100' /> <!-- 슈아이 슈아이(1 일) -->
+			<reward stockId='4207' prob='100' /> <!-- 럭셔리 우니 럭셔리 우니(1일) -->
+			<reward stockId='3301' prob='100' /> <!-- CSO 게릴라 CSO 게릴라(1일) -->
+			<reward stockId='2231' prob='390' /> <!-- 100 루찌 카드 100 루찌 카드 -->
+			<reward stockId='2232' prob='290' /> <!-- 500 루찌 카드 500 루찌 카드 -->
+			<reward stockId='1461' prob='240' /> <!-- 1000 루찌 카드 1000 루찌 카드 -->
+			<reward stockId='2233' prob='140' /> <!-- 5000 루찌 카드 5000 루찌 카드 -->
+			<reward stockId='3853' prob='100' /> <!-- 10000 루찌 카드 10000 루찌 카드(1개) -->
+			<reward stockId='1688' prob='100' /> <!-- RP루찌 70% 카드 RP루찌 70% 카드(1일) -->
+			<reward stockId='4505' prob='250' /> <!-- 디지니 필살기 디지니 필살기(1 개) -->
+			<reward stockId='1669' prob='200' /> <!-- 디지니 필살기 디지니 필살기(3개) -->
+			<reward stockId='1525' prob='100' /> <!-- 디지니 필살기 디지니 필살기(10개) -->
+			<reward stockId='4506' prob='250' /> <!-- 모스 필살기 모스 필살기(1 개) -->
+			<reward stockId='3027' prob='200' /> <!-- 모스 필살기 모스 필살기(3개) -->
+			<reward stockId='1997' prob='100' /> <!-- 모스 필살기 모스 필살기(10개) -->
+			<reward stockId='5585' prob='280' /> <!-- 케피 필살기 케피 필살기(1 개) -->
+			<reward stockId='5586' prob='200' /> <!-- 케피 필살기 케피 필살기(3 개) -->
+			<reward stockId='4278' prob='100' /> <!-- 케피 필살기 케피 필살기(10개) -->
+			<reward stockId='4508' prob='300' /> <!-- 돌고래 Z7 돌고래 Z7(1 일) -->
+			<reward stockId='4509' prob='100' /> <!-- 돌고래 Z7 돌고래 Z7(3 일) -->
+			<reward stockId='4510' prob='300' /> <!-- 우슈 팬더 Z7 우슈 팬더 Z7(1 일) -->
+			<reward stockId='4511' prob='100' /> <!-- 우슈 팬더 Z7 우슈 팬더 Z7(3 일) -->
+
+		</subSet>
+	</rewardSet>		
+
+	<!-- 도둑 잡기 클리어 보상 -->
+	<rewardSet name='robbersTeamClear' id='4'>
+		<subSet name='f'>
+			<reward type='lucci' value='10' prob='30'/>
+		</subSet>
+
+		<subSet name='c'>
+			<reward type='lucci' value='30' prob='10'/>
+			<reward type='lucci' value='20' prob='20'/>
+			<reward type='lucci' value='10' prob='40'/>
+			<reward type='rp' value='20' prob='10'/>
+			<reward type='rp' value='10' prob='40'/>
+		</subSet>
+
+		<subSet name='b'>
+			<reward type='lucci' value='50' prob='10'/>
+			<reward type='lucci' value='30' prob='25'/>
+			<reward type='lucci' value='10' prob='35'/>
+			<reward type='rp' value='30' prob='10'/>
+			<reward type='rp' value='20' prob='30'/>
+		</subSet>
+
+		<subSet name='a'>
+			<reward type='lucci' value='100' prob='10'/>
+			<reward type='lucci' value='80' prob='25'/>
+			<reward type='lucci' value='70' prob='35'/>
+			<reward type='rp' value='60' prob='10'/>
+			<reward type='rp' value='40' prob='30'/>
+			<reward stockId='5848' prob='1'/>
+			<reward stockId='5850' prob='1'/>
+		</subSet>
+
+		<subSet name='s'>
+			<reward type='lucci' value='150' prob='10'/>
+			<reward type='lucci' value='80' prob='25'/>
+			<reward type='lucci' value='70' prob='20'/>
+			<reward type='rp' value='80' prob='10'/>
+			<reward type='rp' value='50' prob='20'/>
+			<reward stockId='5847' prob='3'/>
+			<reward stockId='5849' prob='3'/>
+		</subSet>
+
+		<subSet name='sss'>
+			<reward type='lucci' value='200' prob='10'/>
+			<reward type='lucci' value='100' prob='25'/>
+			<reward type='lucci' value='90' prob='20'/>
+			<reward type='rp' value='100' prob='10'/>
+			<reward type='rp' value='70' prob='25'/>
+			<reward type='rp' value='50' prob='15'/>			
+			<reward stockId='5847' prob='5'/>
+			<reward stockId='5849' prob='5'/>
+		</subSet>
+	</rewardSet>
+
+</BonusRewardSet>
+

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <MaxSpeed track="forest_S01" laps="2" isFixedKart="true" fixedKartId="891" isFixedChar="true" fixedCharId="191">
+    <LevelContent level="0" speedValue="165;170;150;180;170;175;155;185" timeLimit="90000"/>
+  </MaxSpeed>
+</Root>

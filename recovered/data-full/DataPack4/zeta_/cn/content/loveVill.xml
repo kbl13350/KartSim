@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<loveVill>
+	<coupleSucceed rewardStockId='4019'/>
+	<coupleFailed rewardStockId='4020'/>
+	<missionList>
+		<mission idealType='关爱他人，耐心较强的车手' info='在8人参加的道具组队赛中完成3回' completeCnt='3'/>
+		<mission idealType='争强好胜，野心较强的车手' info='个人竞速赛中获得1次第一名' completeCnt='1'/>
+		<mission idealType='知识丰富的车手' info='交换5回强化部件' completeCnt='5'/>
+		<mission idealType='最厌恶“不义”的车手 ' info='挑战赛中获胜1回' completeCnt='1'/>
+		<mission idealType='拥有较强的协作精神，意气风发的车手' info='在8人参加的竞速组队赛中获得3回胜利' completeCnt='3'/>
+		<mission idealType='活跃而具有冒险精神的车手' info='在个人道具/竞速中行驶5回' completeCnt='5'/>
+		<mission idealType='具有较强的社交性，礼貌待人的车手' info='在组队道具/竞速中行驶5回' completeCnt='5'/>
+	</missionList>
+	<randomCharac>
+		<charac id='6' />
+		<charac id='3' />
+		<charac id='5' />
+		<charac id='4' />
+		<charac id='9' />
+		<charac id='15' />
+		<charac id='19' />
+		<charac id='16' />
+	</randomCharac>
+</loveVill>
+

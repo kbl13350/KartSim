@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='154'
+	BackwardAccelForce='100'
+	DragFactor='-0.083'
+	SteerConstraint='2.61'
+	CornerDrawFactor='0.074'
+	DriftEscapeForce='1820'
+	
+	driftBoostMulAccelFactor='1.31'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.8544'
+	BoosterAccelFactorItem='1.7'
+	StartForwardAccelFactorItem='1.9'
+	StartBoosterTimeItem='1550'
+
+	SpecialSlotCapacity='2'
+	
+	DriftMaxGauge='-300'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.10'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='V1GenTacho'
+	TachometerName='v1_exceed'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='V1'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	PartsTailLampLock = 'true'
+
+	dualBoosterTickMin='20'
+	dualBoosterTickMax='30'
+	dualMulAccelFactor='1.07'
+	dualTransLowSpeed='100'
+
+	chargeInstAccelGaugeByGrip = '0.04'
+	chargeInstAccelGaugeByBoost = '0.0'
+	chargeInstAccelGaugeByWall = '0.15'
+	instAccelFactor = '1.3'
+	instAccelGaugeLength = '1.0'
+	instAccelGaugeCooldownTime = '3.0'
+	instAccelGaugeMinUsable ='0.3'
+	instAccelGaugeMinVelLoss = '50'
+	instAccelGaugeMinVelBound = '0'
+
+	wallCollGaugeCooldownTime = '3.0'
+	wallCollGaugeMinVelBound = '160'
+	wallCollGaugeMinVelLoss = '50'
+	wallCollGaugeMaxVelLoss = '200'
+	useExtendedAfterBoosterMore = 'true'
+
+	ExceedWaveType='Exd_Wave_S'
+
+	BoosterType='11soon'
+	BoosterType0='11soon'
+	BoosterType1='11soon'
+	BoosterType2='11main1'
+            BoosterType3='11main1'
+	BoosterType4='11sub'
+	BoosterType5='11sub'
+	BoosterType6='11main2'
+            BoosterType7='11main2'
+
+
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1a3'
+            FirePort1='mod1a4'
+	FirePort2='mod1b1'
+	FirePort3='mod1b2'
+	FirePort4='mod1b3'
+            FirePort5='mod1b4'
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        	BoostBlurColor='255 0 138 255'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 6 25 190' trailPort0='mod1b1' trailPort1='mod1b2'/>
+</BodyParam>

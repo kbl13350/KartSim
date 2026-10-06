@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="vipInfoWin" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow leftTopWH="0 0 1142 716" frame="CaptionDialog" caption="#sb(vipInfoTitle)" setCloseButton="cancelButton" align="center">
+    <ImageBoard name="vipInfoBg" windowSize="1128 579" adjust="0 -42" align="center" image="vip_InfoPopup@zz" alphaBlend="false">
+      <Window name="left" leftTopWH="0 34 600 474">
+        <Label leftTopWH="160 -20 300 30" text="#sb(vipGradeUnfoTitle)" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="center"/>
+        <Panel name="gradeEmblem" windowSize="158 160" adjust="50 62" alphaBlend="true"/>
+        <Panel name="gradeString" windowSize="116 68" adjust="240 70" alphaBlend="true"/>
+        <CharPanel name="vipPoint" leftTopWH="520 86 25 33" texture="vip_num" rightAlign="true" alphaBlend="true" fontSize="25 33" spaceOffset="-2" fontStr="1234567890-" text="-" speedTick="5" enable="true" visible="true"/>
+        <Label leftTopWH="160 228 300 30" text="#sb(vipBenefit)" textColor="255 180 212 246" autoWrap="true" textRender="bold16" textAlign="center"/>
+        <Window name="currGrade" leftTopWH="0 200 400 300">
+          <Label windowSize="87 30" adjust="36 55" text="#sb(currentGrade)" textColor="255 204 241 255" textColor2="255 36 67 130" textRender="outline14" textAlign="center" autoWrap="true"/>
+          <Panel name="emblem" windowSize="87 44" adjust="36 81" alphaBlend="true"/>
+          <Panel name="vipcoinPnl" leftTopWH="216 136 24 27" texture="vipcoin_m" alphaBlend="true"/>
+          <Label windowSize="20 30" adjust="268 134" text="#sb(countUnit)" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="left;vcenter"/>
+          <Label name="mileageRewardCount" windowSize="80 30" adjust="180 134" text="0" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right;vcenter"/>
+          <Label leftTopWH="33 138 100 20" text="#sb(vipMileageReward)" textColor="255 204 241 255" textRender="bold14"/>
+          <Panel windowSize="5 5" adjust="35 178" texture="vip_dot" alphaBlend="true">
+            <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc0)" textColor="255 179 195 228" textRender="bold14"/>
+            <Panel name="MileageRateBg" windowSize="30 17" adjust="135 -5" texture="vip_numBg_5" alphaBlend="true">
+              <ColorLabel name="MileageRateLbl" leftTopWH="0 0 30 17" text="0" align="center" adjust="0 -2" textAlign="center" textRender="bold14" textColor="255 255 255 255"/>
+              <Label leftTopWH="36 -2 150 20" text="#sb(vipBenefitDesc1)" textColor="255 179 195 228" textRender="bold14"/>
+            </Panel>
+          </Panel>
+          <Panel name="benefitAddDesc" windowSize="5 5" adjust="35 203" texture="vip_dot" alphaBlend="true" visible="false">
+            <Label name="benefitAddDescLbl" leftTopWH="14 -8 150 20" text="" textColor="255 179 195 228" textRender="bold14"/>
+          </Panel>
+        </Window>
+        <Window name="nextGrade" leftTopWH="295 200 400 300" visible="false">
+          <Label windowSize="87 30" adjust="197 55" text="#sb(nextGrade)" textColor="255 204 241 255" textColor2="255 36 67 130" textRender="outline14" textAlign="center" autoWrap="true"/>
+          <Panel name="emblem" windowSize="87 44" adjust="197 81" alphaBlend="true"/>
+          <Panel name="vipcoinPnl" leftTopWH="216 136 24 27" texture="vipcoin_m" alphaBlend="true"/>
+          <Label windowSize="20 30" adjust="266 134" text="#sb(countUnit)" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="left;vcenter"/>
+          <Label name="mileageRewardCount" windowSize="80 30" adjust="178 134" text="0" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right;vcenter"/>
+          <Label leftTopWH="33 138 100 20" text="#sb(vipMileageReward)" textColor="255 204 241 255" textRender="bold14"/>
+          <Panel windowSize="5 5" adjust="35 178" texture="vip_dot" alphaBlend="true">
+            <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc0)" textColor="255 179 195 228" textRender="bold14"/>
+            <Panel name="MileageRateBg" windowSize="30 17" adjust="135 -5" texture="vip_numBg_5" alphaBlend="true">
+              <ColorLabel name="MileageRateLbl" leftTopWH="0 0 30 17" text="0" align="center" adjust="0 -2" textAlign="center" textRender="bold14" textColor="255 255 255 255"/>
+              <Label leftTopWH="36 -2 150 20" text="#sb(vipBenefitDesc1)" textColor="255 179 195 228" textRender="bold14"/>
+            </Panel>
+          </Panel>
+          <Panel name="benefitAddDesc" windowSize="5 5" adjust="35 203" texture="vip_dot" alphaBlend="true" visible="false">
+            <Label name="benefitAddDescLbl" leftTopWH="14 -8 150 20" text="" textColor="255 179 195 228" textRender="bold14"/>
+          </Panel>
+        </Window>
+        <Label name="nextGradePointLbl" leftTopWH="154 264 300 30" text="" autoWrap="true" textColor="255 255 255 255" textColor2="255 42 55 80" textRender="outline16" textAlign="center" visible="false"/>
+        <Panel name="vipProgressBar" windowSize="364 8" adjust="125 300" align="left" texture="vip_rpBar" uvRect="0 0 502 6" alphaBlend="true" visible="false"/>
+        <Window name="SectorJudgeGradePoint" leftTopWH="240 150 340 30">
+          <Panel name="JudgeGradePointBG" leftTopWH="0 0 346 30" texture="vip_pointPopup_overBG" uvRext="0 0 5 5" alphaBlend="true" visible="false"/>
+          <Label name="JudgeGradePoint" leftTopWH="146 0 176 30" text="" textColor="255 255 255 255" textColor2="255 42 55 80" textRender="outline16" autoWrap="true" textAlign="right,vcenter"/>
+          <Label leftTopWH="322 0 20 30" text="#sb(pointUnit)" textColor="255 255 255 255" textColor2="255 42 55 80" textRender="outline16" autoWrap="true" textAlign="right,vcenter"/>
+          <Label leftTopWH="16 0 200 30" text="#sb(judgeGradePoint)" textColor="255 21 75 142" autoWrap="true" textRender="bold16" multiLine="true" textAlign="left,vcenter"/>
+        </Window>
+        <Window name="SectorBeforeGradeBonus" leftTopWH="240 180 340 30">
+          <Panel name="BeforeGradeBonusBG" leftTopWH="0 0 346 30" texture="vip_pointPopup_overBG" uvRext="0 0 5 5" alphaBlend="true" visible="false"/>
+          <Label name="beforeGradeBonus" leftTopWH="146 0 176 30" text="" textColor="255 255 255 255" textColor2="255 42 55 80" textRender="outline16" autoWrap="true" textAlign="right,vcenter"/>
+          <Label leftTopWH="322 0 20 30" text="#sb(pointUnit)" textColor="255 255 255 255" textColor2="255 42 55 80" textRender="outline16" autoWrap="true" textAlign="right,vcenter"/>
+          <Label leftTopWH="16 0 200 30" text="#sb(beforeGradeBonus)" textColor="255 21 75 142" autoWrap="true" textRender="bold16" multiLine="true" textAlign="left,vcenter"/>
+        </Window>
+      </Window>
+      <Window name="profitPeriodNotice" leftTopWH="20 51 1120 30">
+        <Label leftTopWH="20 4 80 30" text="#sb(judgePeriod)" textRender="bold14" textColor="255 72 106 163" textAlign="left">
+          <Label name="judgePeriod" leftTopWH="232 0 300 30" text="" textRender="bold14" textColor="255 42 55 80" textAlign="right"/>
+        </Label>
+        <Label leftTopWH="602 4 80 30" text="#sb(profitPeriod)" textRender="bold14" textColor="255 72 106 163" textAlign="left">
+          <Label name="profitPeriod" leftTopWH="170 0 300 30" text="" textRender="bold14" textColor="255 42 55 80" textAlign="right"/>
+        </Label>
+      </Window>
+      <Window leftTopWH="600 12 400 150" enable="true">
+        <Label leftTopWH="110 0 300 30" text="#sb(nextMonthReward)" textColor="255 255 255 255" autoWrap="true" textRender="bold14" textAlign="center"/>
+        <Panel leftTopWH="340 84 34 38" texture="vipcoin_b" alphaBlend="true"/>
+        <CharPanel name="coinRewardCountPnl" leftTopWH="440 84 25 33" texture="vip_num" rightAlign="true" alphaBlend="true" fontSize="25 33" spaceOffset="-2" fontStr="1234567890-" text="-" speedTick="5" enable="true" visible="true"/>
+      </Window>
+      <Window name="bottomSector" leftTopWH="22 418 1000 150">
+        <Label leftTopWH="0 200 100 20" adjust="27 0" text="#sb(vipGuide1)" align="left;vcenter" multiLine="true" lineGap="4" textRender="bold14" textColor="255 88 105 129">
+          <Panel name="infoDot1" windowSize="5 5" adjust="-18 9" texture="vip_dot2" alphaBlend="true"/>
+          <Panel name="infoDot2" windowSize="5 5" adjust="-18 33" texture="vip_dot2" alphaBlend="true"/>
+          <Panel name="infoDot3" windowSize="5 5" adjust="-18 57" texture="vip_dot2" alphaBlend="true"/>
+        </Label>
+        <Label leftTopWH="0 200 100 20" adjust="618 10" text="#sb(vipGuide2)" align="left;vcenter" multiLine="true" lineGap="6" textRender="bold14" textColor="255 88 105 129">
+          <Panel name="infoDot1" windowSize="5 5" adjust="-18 9" texture="vip_dot2" alphaBlend="true"/>
+          <Panel name="infoDot2" windowSize="5 5" adjust="-18 35" texture="vip_dot2" alphaBlend="true"/>
+        </Label>
+      </Window>
+      <Window name="dummyWindow" leftTopWH="600 240 400 250" enable="true">
+        <Label leftTopWH="110 -69 300 30" text="#sb(totalMileage)" textColor="255 255 255 255" autoWrap="true" textRender="bold14" textAlign="center"/>
+        <CharPanel name="currMonthMileagePnl" leftTopWH="440 -20 25 33" texture="vip_num" rightAlign="true" alphaBlend="true" fontSize="25 33" spaceOffset="-2" fontStr="1234567890-" text="-" speedTick="5" enable="true" visible="true"/>
+        <Window name="SectorCashBuyMileage" leftTopWH="18 50 480 30">
+          <Panel name="CashBuyMileageBG" leftTopWH="0 0 480 30" texture="vip_pointPopup_overBG" uvRext="0 0 5 5" alphaBlend="true" visible="false"/>
+          <Label name="cashBuyMileage" leftTopWH="270 0 176 30" text="상점 구매 / 선물 점수" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right,vcenter"/>
+          <Label leftTopWH="446 0 20 30" text="#sb(pointUnit)" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right,vcenter"/>
+          <Label leftTopWH="10 0 200 30" text="#sb(cashBuyMileage)" textColor="255 180 212 246" autoWrap="true" textRender="bold16" textAlign="vcenter"/>
+        </Window>
+        <Window name="SectorAttendMileage" leftTopWH="18 92 480 30">
+          <Panel name="AttendMileageBG" leftTopWH="0 0 480 30" texture="vip_pointPopup_overBG" uvRext="0 0 5 5" alphaBlend="true" visible="false"/>
+          <Label name="attendMileage" leftTopWH="270 0 176 30" text="접속점수" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right,vcenter"/>
+          <Label leftTopWH="446 0 20 30" text="#sb(pointUnit)" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right,vcenter"/>
+          <Label leftTopWH="10 0 200 30" text="#sb(attendMileage)" textColor="255 180 212 246" autoWrap="true" textRender="bold16" textAlign="vcenter"/>
+        </Window>
+        <Window name="SectorPlaytimeMileage" leftTopWH="18 134 480 30">
+          <Panel name="PlaytimeMileageBG" leftTopWH="0 0 480 30" texture="vip_pointPopup_overBG" uvRext="0 0 5 5" alphaBlend="true" visible="false"/>
+          <Label name="playtimeMileage" leftTopWH="270 0 176 30" text="접속 시간 점수" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right,vcenter"/>
+          <Label leftTopWH="446 0 20 30" text="#sb(pointUnit)" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right,vcenter"/>
+          <Label leftTopWH="10 0 200 30" text="#sb(playtimeMileage)" textColor="255 180 212 246" autoWrap="true" textRender="bold16" textAlign="vcenter"/>
+        </Window>
+        <Window name="SectorPlayCntMileage" leftTopWH="18 176 480 30">
+          <Panel name="PlayCntMileageBG" leftTopWH="0 0 480 30" texture="vip_pointPopup_overBG" uvRext="0 0 5 5" alphaBlend="true" visible="false"/>
+          <Label name="playCntMileage" leftTopWH="270 0 176 30" text="멀티 플레이 점수" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right,vcenter"/>
+          <Label leftTopWH="446 0 20 30" text="#sb(pointUnit)" textColor="255 255 255 255" autoWrap="true" textRender="bold16" textAlign="right,vcenter"/>
+          <Label leftTopWH="10 0 200 30" text="#sb(playCntMileage)" textColor="255 180 212 246" autoWrap="true" textRender="bold16" textAlign="vcenter"/>
+        </Window>
+      </Window>
+      <Window name="CashBuyMileageDesc" leftTopWH="334 290 280 80" frame="DarkGrayPanel" alphaBlend="false" visible="false">
+        <ColorLabel windowSize="270 100" adjust="5 5" textColor="white" autoWrap="true" vertAutoSizing="true" multiLine="true" textRender="bold14" text="#sb(cashBuyMileageDesc)"/>
+      </Window>
+      <Window name="AttendMileageDesc" leftTopWH="334 324 280 100" frame="DarkGrayPanel" alphaBlend="false" visible="false">
+        <ColorLabel windowSize="270 100" adjust="5 5" textColor="white" autoWrap="true" vertAutoSizing="true" multiLine="true" textRender="bold14" text="#sb(attendMileageDesc)"/>
+      </Window>
+      <Window name="PlaytimeMileageDesc" leftTopWH="334 358 280 100" frame="DarkGrayPanel" alphaBlend="false" visible="false">
+        <ColorLabel windowSize="270 100" adjust="5 5" textColor="white" autoWrap="true" vertAutoSizing="true" multiLine="true" textRender="bold14" text="#sb(playtimeMileageDesc)"/>
+      </Window>
+      <Window name="PlayCntMileageDesc" leftTopWH="294 392 320 100" frame="DarkGrayPanel" alphaBlend="false" visible="false">
+        <ColorLabel windowSize="310 100" adjust="5 5" textColor="white" autoWrap="true" vertAutoSizing="true" multiLine="true" textRender="bold14" text="#sb(playCntMileageDesc)"/>
+      </Window>
+      <Window name="JudgeGradePointDesc" leftTopWH="590 184 280 40" frame="DarkGrayPanel" alphaBlend="false" visible="false">
+        <ColorLabel windowSize="270 100" adjust="5 5" textColor="white" autoWrap="true" vertAutoSizing="true" multiLine="true" textRender="bold14" text="#sb(judgeGradePointDesc)"/>
+      </Window>
+      <Window name="BeforeGradeBonusDesc" leftTopWH="590 214 280 160" frame="DarkGrayPanel" alphaBlend="false" visible="false">
+        <ColorLabel windowSize="270 100" adjust="5 5" textColor="white" autoWrap="true" vertAutoSizing="true" multiLine="true" textRender="bold14" text="#sb(beforeGradeBonusDesc)"/>
+      </Window>
+    </ImageBoard>
+    <ImageButton name="okButton" windowSize="310 68" adjust="0 4" align="hcenter;bottom" autoLoadImage="vipShopBtn_" alphaBlend="true" text="#sb(goVipExchangeStage)" textAlign="center" stringPos="-10 0" textRender="bold20" textColor="255 119 92 4" overTextRender="bold20" overTextColor="255 196 172 0" clickedTextRender="bold20" clickedTextColor="255 95 76 16" disabledTextRender="bold20" disabledTextColor="255 92 92 92"/>
+  </CaptionWindow>
+</Panel>

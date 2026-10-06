@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='100.0'
+	BackwardAccelForce='90.0'
+	DragFactor='-0.06'
+	SteerConstraint='1.8'
+	DriftEscapeForce='300'
+	CornerDrawFactor='0.043'
+	UseTransformBooster='true'
+	TransAccelFactor='1.59'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod4'
+	Port1='mod5'
+	FirePort0='mod3'
+	FirePort1='mod2a'
+	FirePort2='mod2b'
+
+	DescBalance= '30'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '30'
+
+/>
+<!-- 일본 냐옹이SR (가샤폰 레어) -->

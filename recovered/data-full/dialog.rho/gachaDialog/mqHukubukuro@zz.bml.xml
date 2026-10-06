@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="desktop" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="captionWindow" frame="CaptionDialog" windowRect="0 0 556 407" caption="#sb(rewardStockCaption2)" align="center" phaBlend="true" setCloseButton="close">
+    <ImageBoard name="transFillPlane" windowRect="0 0 542 246" image="common_popupBg_reward" align="hcenter,top" adjust="0 -1" alphaBlend="true" enable="false">
+      <Window name="itemPreview2" windowRect="-45 -24 200 200" alphaBlend="true"/>
+      <Window name="itemPreview" windowRect="185 -24 200 200" alphaBlend="true"/>
+    </ImageBoard>
+    <Window name="item1" frame="ItemPanel" windowRect="0 10 280 210" enable="false" alphaBlend="true" visible="false">
+      <Window name="itemRewardView" windowRect="0 0 280 210" alphaBlend="true"/>
+    </Window>
+    <ColorLabel name="description" leftTopWH="0 220 380 22" align="hcenter" textColor="255 42 55 80" textRender="bold16" text="#sb(getReward)" autoWrap="true" multiLine="true" textAlign="center"/>
+    <Window name="hSection" leftTopWH="0 0 390 1" frame="HSection" align="hcenter;bottom" adjust="0 63"/>
+    <Window name="underBody" leftTopWH="0 304 274 42" align="hcenter">
+      <TextButton name="ok" leftTopWH="0 0 132 42" frame="DefaultFocusedButton" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <TextButton name="cancel" leftTopWH="0 0 132 42" align="right" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Window>
+  </CaptionWindow>
+</Panel>

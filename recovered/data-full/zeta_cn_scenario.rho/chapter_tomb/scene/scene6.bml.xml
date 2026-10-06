@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill7"/>
+  <Char id="camilla" pos="8 0" emotion="normal"/>
+  <Msg name="卡米拉" string="呼，传送门果然很快。这里就是繁荣山丘吗？"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lumi" pos="8 0" emotion="stop1"/>
+  <Msg name="露米" string="坐传送门还是不太适应喵。"/>
+  <Enter/>
+  <Char id="lumi" remove="true"/>
+  <Char id="camilla" pos="10 0" emotion="stop2"/>
+  <Char id="lumi" pos="4 0" emotion="normal"/>
+  <Msg name="卡米拉" string="胖墩家在哪里啊？找不到了。"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lumi" remove="true"/>
+  <Char id="lumi" pos="3 0" emotion="normal"/>
+  <Char id="camilla" pos="10 0" emotion="stop2"/>
+  <Msg name="露米" string="问问那边走过来的小家伙喵。"/>
+  <Enter/>
+  <Char id="lumi" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="11 0" emotion="normal"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Msg name="卡米拉" string="小朋友！你知道胖墩家在哪里吗？"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="ani3"/>
+  <Char id="camilla" pos="11 0" emotion="normal"/>
+  <Msg name="葱头" string="胖墩？胖墩是我朋友，你找他家做什么？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop5"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Msg name="卡米拉" string="啊，我是送货的。因为这里我是第一次来。"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop4" flip="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop5"/>
+  <Msg name="葱头" string="啊~ 原来是这样，往这边走吧！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <BackGround texture="maple8"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Char id="camilla" pos="11 0" emotion="normal"/>
+  <Msg name="葱头" string="这里就是胖墩家。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Char id="camilla" pos="11 0" emotion="normal"/>
+  <Msg name="葱头" string="不过他出去玩了，现在应该不在家……"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop5"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="卡米拉" string="那我就放门口了，麻烦帮忙转告一下~"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Char id="camilla" pos="11 0" emotion="stop5"/>
+  <Msg name="葱头" string="没问题。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="4 0" emotion="stop5"/>
+  <Char id="lumi" pos="11 0" emotion="normal"/>
+  <Msg name="卡米拉" string="那任务完成！露米，我们走吧！"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lumi" remove="true"/>
+  <Char id="lumi" pos="8 0" emotion="stop5"/>
+  <Msg name="露米" string="喵~ 喵喵喵（靠谱的小家伙！谢谢你喵！）"/>
+  <Enter/>
+  <Char id="lumi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="stop4"/>
+  <Msg name="葱头" string="好可爱的猫咪~ 虽然听不懂在说什么，拜拜啦~！"/>
+  <Enter/>
+</Scene>

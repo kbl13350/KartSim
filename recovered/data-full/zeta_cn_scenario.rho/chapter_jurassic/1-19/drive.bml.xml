@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="1"/>
+  <Shadow kartId="868" characterId="146" uniformId="0" colorId="48" dyeId="48" characterName="卡诺" isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" ksv="Jurassic_1-19" track="jurassic_R01" laps="2"/>
+  </Shadow>
+</Root>

@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bokbulbok>
+		<bokbulbokInfo type='item' enable='true'>
+				<openErrorMsg msg='开放期间：2025.07.17 ~ 2025.07.31' />
+				<Schedule />
+				<gradeItemList>
+						<item grade='1' itemCatId='3' itemId='1575' prob='10' />
+						<item grade='1' itemCatId='3' itemId='1600' prob='10' />
+						<item grade='1' itemCatId='3' itemId='1615' prob='10' />
+						<item grade='1' itemCatId='3' itemId='1627' prob='10' />
+						<item grade='1' itemCatId='7' itemId='1' prob='10' />
+						<item grade='1' itemCatId='8' itemId='36' prob='2' />
+						<item grade='1' itemCatId='8' itemId='78' prob='2' />
+						<item grade='1' itemCatId='8' itemId='89' prob='2' />
+						<item grade='1' itemCatId='8' itemId='153' prob='2' />
+						<item grade='1' itemCatId='8' itemId='176' prob='2' />
+						<item grade='1' itemCatId='8' itemId='180' prob='3' />
+						<item grade='1' itemCatId='9' itemId='60' prob='3' />
+						<item grade='1' itemCatId='9' itemId='812' prob='3' />
+						<item grade='1' itemCatId='9' itemId='894' prob='3' />
+						<item grade='1' itemCatId='9' itemId='948' prob='3' />
+						<item grade='1' itemCatId='9' itemId='951' prob='3' />
+						<item grade='1' itemCatId='9' itemId='1348' prob='3' />
+						<item grade='1' itemCatId='9' itemId='1349' prob='3' />
+						<item grade='1' itemCatId='11' itemId='4' prob='3' />
+						<item grade='1' itemCatId='11' itemId='31' prob='3' />
+						<item grade='1' itemCatId='11' itemId='95' prob='3' />
+						<item grade='1' itemCatId='11' itemId='524' prob='3' />
+						<item grade='1' itemCatId='11' itemId='623' prob='3' />
+						<item grade='1' itemCatId='11' itemId='634' prob='3' />
+						<item grade='1' itemCatId='11' itemId='635' prob='3' />
+						<item grade='1' itemCatId='11' itemId='645' prob='3' />
+						<item grade='1' itemCatId='21' itemId='25' prob='3' />
+						<item grade='1' itemCatId='21' itemId='27' prob='3' />
+						<item grade='1' itemCatId='21' itemId='34' prob='3' />
+						<item grade='1' itemCatId='21' itemId='142' prob='3' />
+						<item grade='1' itemCatId='21' itemId='175' prob='3' />
+						<item grade='1' itemCatId='21' itemId='186' prob='3' />
+						<item grade='1' itemCatId='21' itemId='187' prob='3' />
+						<item grade='1' itemCatId='21' itemId='189' prob='3' />
+						<item grade='1' itemCatId='21' itemId='198' prob='3' />
+						<item grade='1' itemCatId='52' itemId='43' prob='3' />
+						<item grade='1' itemCatId='52' itemId='44' prob='3' />
+						<item grade='1' itemCatId='52' itemId='51' prob='3' />
+						<item grade='1' itemCatId='52' itemId='118' prob='3' />
+						<item grade='1' itemCatId='52' itemId='133' prob='3' />
+						<item grade='2' itemCatId='3' itemId='1455' prob='10' />
+						<item grade='2' itemCatId='3' itemId='1467' prob='10' />
+						<item grade='2' itemCatId='3' itemId='1482' prob='15' />
+						<item grade='2' itemCatId='3' itemId='1496' prob='15' />
+						<item grade='2' itemCatId='3' itemId='1500' prob='10' />
+				</gradeItemList>
+				<bokItemSet>
+						<set Level='1' prob='5'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='7' grade='1' />
+								<item itemCatId='8' grade='1' />
+								<item itemCatId='9' grade='1' />
+								<item itemCatId='11' grade='1' />
+								<item itemCatId='21' grade='1' />
+								<item itemCatId='52' grade='1' />
+						</set>
+						<set Level='2' prob='10'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='7' grade='1' />
+								<item itemCatId='9' grade='1' />
+								<item itemCatId='11' grade='1' />
+								<item itemCatId='52' grade='1' />
+						</set>
+						<set Level='3' prob='10'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='7' grade='1' />
+								<item itemCatId='8' grade='1' />
+								<item itemCatId='9' grade='1' />
+								<item itemCatId='21' grade='1' />
+						</set>
+						<set Level='4' prob='10'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='7' grade='1' />
+								<item itemCatId='8' grade='1' />
+								<item itemCatId='11' grade='1' />
+						</set>
+						<set Level='5' prob='10'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='8' grade='1' />
+								<item itemCatId='9' grade='1' />
+								<item itemCatId='11' grade='1' />
+						</set>
+						<set Level='6' prob='11'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='7' grade='1' />
+								<item itemCatId='9' grade='1' />
+						</set>
+						<set Level='7' prob='11'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='7' grade='1' />
+								<item itemCatId='11' grade='1' />
+						</set>
+						<set Level='8' prob='11'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='7' grade='1' />
+								<item itemCatId='8' grade='1' />
+						</set>
+						<set Level='9' prob='11'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='9' grade='1' />
+								<item itemCatId='11' grade='1' />
+						</set>
+						<set Level='10' prob='11'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='8' grade='1' />
+								<item itemCatId='11' grade='1' />
+						</set>
+				</bokItemSet>
+				<bulbokItemSet>
+						<set Level='1' prob='10'>
+								<item itemCatId='3' grade='2' />
+						</set>
+						<set Level='2' prob='10'>
+								<item itemCatId='3' grade='2' />
+						</set>
+						<set Level='3' prob='10'>
+								<item itemCatId='3' grade='2' />
+						</set>
+						<set Level='4' prob='10'>
+								<item itemCatId='3' grade='2' />
+						</set>
+						<set Level='5' prob='10'>
+								<item itemCatId='3' grade='2' />
+						</set>
+						<set Level='6' prob='10'>
+								<item itemCatId='3' grade='2' />
+						</set>
+				</bulbokItemSet>
+				<trackList>
+						<track id='forest_I01' />
+						<track id='forest_I10' />
+						<track id='forest_I02' />
+						<track id='forest_I03' />
+						<track id='forest_I04' />
+						<track id='forest_I05' />
+						<track id='forest_I06' />
+						<track id='forest_I07' />
+						<track id='forest_I09' />
+						<track id='jurassic_I01' />
+						<track id='jurassic_I02' />
+				</trackList>
+		</bokbulbokInfo>
+		<bokbulbokInfo type='speed' enable='true'>
+				<openErrorMsg msg='开放期间：2025.07.17 ~ 2025.07.31' />
+				<Schedule />
+				<gradeItemList>
+						<item grade='1' itemCatId='3' itemId='1564' prob='10' />
+						<item grade='1' itemCatId='3' itemId='1574' prob='10' />
+						<item grade='1' itemCatId='3' itemId='1587' prob='10' />
+						<item grade='1' itemCatId='3' itemId='1614' prob='10' />
+						<item grade='1' itemCatId='3' itemId='1626' prob='10' />
+						<item grade='1' itemCatId='52' itemId='43' prob='10' />
+						<item grade='1' itemCatId='52' itemId='44' prob='10' />
+						<item grade='1' itemCatId='52' itemId='118' prob='10' />
+						<item grade='1' itemCatId='52' itemId='125' prob='10' />
+						<item grade='1' itemCatId='52' itemId='126' prob='10' />
+						<item grade='2' itemCatId='3' itemId='1401' prob='10' />
+						<item grade='2' itemCatId='3' itemId='1430' prob='10' />
+						<item grade='2' itemCatId='3' itemId='1440' prob='10' />
+						<item grade='2' itemCatId='3' itemId='1459' prob='10' />
+						<item grade='2' itemCatId='3' itemId='1466' prob='10' />
+				</gradeItemList>
+				<bokItemSet>
+						<set Level='1' prob='25'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='52' grade='1' />
+						</set>
+						<set Level='2' prob='25'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='52' grade='1' />
+						</set>
+						<set Level='3' prob='25'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='52' grade='1' />
+						</set>
+						<set Level='4' prob='25'>
+								<item itemCatId='3' grade='1' />
+								<item itemCatId='52' grade='1' />
+						</set>
+				</bokItemSet>
+				<bulbokItemSet>
+						<set Level='1' prob='25'>
+								<item itemCatId='3' grade='2' />
+						</set>
+						<set Level='2' prob='25'>
+								<item itemCatId='3' grade='2' />
+						</set>
+						<set Level='3' prob='25'>
+								<item itemCatId='3' grade='2' />
+						</set>
+						<set Level='4' prob='25'>
+								<item itemCatId='3' grade='2' />
+						</set>
+				</bulbokItemSet>
+				<trackList>
+						<track id='fairy_R02' />
+						<track id='fairy_R03' />
+						<track id='nymph_R02' />
+						<track id='forest_I01' />
+						<track id='forest_I10' />
+						<track id='forest_I02' />
+						<track id='forest_I04' />
+						<track id='forest_I05' />
+						<track id='forest_I07' />
+						<track id='forest_R07' />
+						<track id='jurassic_I01' />
+						<track id='jurassic_R03' />
+						<track id='jurassic_R04' />
+				</trackList>
+		</bokbulbokInfo>
+</bokbulbok>

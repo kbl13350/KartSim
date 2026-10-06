@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="caption">
+    <m c="kr" v="친구 등록 요청"/>
+    <m c="jp" v="友達登録申請"/>
+    <m c="cn" v="好友申请"/>
+    <m c="tw" v="好友申請"/>
+    <m c="us" v="Buddy Request"/>
+    <m c="vn" v="Đồng ý"/>
+    <m c="ru" v="Запрос о дружбе"/>
+    <m c="id" v="Request mendaftarkan teman"/>
+    <m c="th" v="ขอลงทะเบียนเป็นเพื่อน"/>
+  </k>
+  <k n="registerAsk">
+    <m c="kr" v="%s 님께서 친구로 등록하기를 원합니다."/>
+    <m c="jp" v="%sさんから友達登録の申請がありました。"/>
+    <m c="cn" v="%s申请加为好友"/>
+    <m c="tw" v="%s想將您登錄為好友。"/>
+    <m c="us" v="%s wishes to add you as a buddy."/>
+    <m c="vn" v="%s gửi lời mời kết bạn."/>
+    <m c="ru" v="%s хочет добавить вас в список друзей."/>
+    <m c="id" v="%s ingin mendaftar kamu sebagai teman."/>
+    <m c="th" v="คุณ %s ต้องการขอลงทะเบียนเป็นเพื่อน"/>
+  </k>
+  <k n="alias">
+    <m c="kr" v="메모"/>
+    <m c="jp" v="メモ"/>
+    <m c="cn" v="备注"/>
+    <m c="tw" v="備註"/>
+    <m c="us" v="Memo"/>
+    <m c="vn" v="Tên"/>
+    <m c="ru" v="Пометка"/>
+    <m c="id" v="Memo"/>
+    <m c="th" v="ชื่อ"/>
+  </k>
+  <k n="aliasAsk">
+    <m c="kr" v="친구를 기억할 수 있는 메모를 입력해주세요."/>
+    <m c="jp" v="友達を思い出せるメモを入力してください。"/>
+    <m c="cn" v="请填写好友备注"/>
+    <m c="tw" v="請填寫好友備註"/>
+    <m c="us" v="Type in a brief description of your buddy."/>
+    <m c="vn" v="Biệt hiệu"/>
+    <m c="ru" v="Введите пометку о данном персонаже."/>
+    <m c="id" v="Silahkan masukkan memo yang bisa mengingat kamu."/>
+    <m c="th" v="ใส่ชื่อเพื่อนในสมุดบันทึกกันลืม"/>
+  </k>
+  <k n="register">
+    <m c="kr" v="친구 등록"/>
+    <m c="jp" v="友達登録"/>
+    <m c="cn" v="添加好友"/>
+    <m c="tw" v="新增好友"/>
+    <m c="us" v="Add a Buddy"/>
+    <m c="vn" v="Kết bạn"/>
+    <m c="ru" v="Принять"/>
+    <m c="id" v="Daftar Teman"/>
+    <m c="th" v="ลงทะเบียนเพื่อน"/>
+  </k>
+  <k n="reject">
+    <m c="kr" v="거절"/>
+    <m c="jp" v="ことわる"/>
+    <m c="cn" v="拒绝"/>
+    <m c="tw" v="拒絕"/>
+    <m c="us" v="Decline"/>
+    <m c="vn" v="Hủy"/>
+    <m c="ru" v="Отказ"/>
+    <m c="id" v="Menolak teman"/>
+    <m c="th" v="ปฎิเสธ"/>
+  </k>
+  <k n="ignore">
+    <m c="kr" v="요청 무시"/>
+    <m c="cn" v="无视邀请"/>
+    <m c="tw" v="忽略"/>
+  </k>
+</StringBag>

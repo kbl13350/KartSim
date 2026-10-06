@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu13"/>
+  <Char id="taki" pos="7 0" emotion="stop3"/>
+  <Msg name="奇奇" string="开始了！！ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="我们一定要赢！ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Msg name="宝宝" string="对~尽最大的努力~一定~|我一定会赢~别担心，你们就慢慢跟着~ |"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="切…不管怎样大家都加油吧！ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop1"/>
+  <Msg name="奇奇" string="好！给你们展示一下我的实力~！！ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop1"/>
+  <Msg name="Q博士" string="大赛现在开始。 |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop1"/>
+  <Msg name="Q博士" string="都坐好自己的车辆，准备。 |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop3"/>
+  <Msg name="Q博士" string="出发~~~~ |"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Shadow kartId="875" characterId="9" colorId="8" dyeId="8" isFixedKart="true" fixedKartId="854" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" ksv="pirate_R03_0" track="pirate_R03" laps="2"/>
+  </Shadow>
+</Root>

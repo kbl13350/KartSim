@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <AiKart id="1" track="world_I02" isFixedKart="true" fixedKartId="931" isFixedChar="true" fixedCharId="188" laps="3" gameType="item">
+    <LevelContent level="0" item="Rocket;WaterBomb;Booster;WaterFly" aiItemLevel="1">
+      <AiKart characterId="60" uniformId="0" kartId="932" colorId="8" dyeId="8" balloonId="0" speed="48" accel="30" startTick="0" characterName="黑杰克"/>
+      <AiKart characterId="61" uniformId="0" kartId="932" colorId="4" dyeId="4" balloonId="0" speed="48" accel="32" startTick="0" characterName="格雷格"/>
+      <AiKart characterId="62" uniformId="0" kartId="932" colorId="1" dyeId="1" balloonId="0" speed="48" accel="32" startTick="0" characterName="格雷"/>
+      <AiKart characterId="190" uniformId="0" kartId="872" colorId="59" dyeId="59" balloonId="0" speed="48" accel="32" startTick="0" characterName="克莉丝"/>
+    </LevelContent>
+  </AiKart>
+</Root>

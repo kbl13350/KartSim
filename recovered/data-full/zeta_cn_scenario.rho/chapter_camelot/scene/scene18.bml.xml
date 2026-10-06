@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot19"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="莫德雷德" string="还蛮厉害的嘛。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="莫德雷德……好强啊……好想回家……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="差不多就行了，给我滚一边去！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop7"/>
+  <Msg name="宝宝" string="我可是烈焰勇士！至少这一次是不会退缩的！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="你个好家伙！！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="normal"/>
+  <Msg name="梅林" string="亚瑟，趁现在！|趁烈焰勇士拖住莫德雷德，赶紧去拔圣剑！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="kei" pos="5 0" emotion="stop5"/>
+  <Char id="arthur" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="亚瑟" string="可是……凯他受伤了呀……怎么可以……"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" pos="5 0" emotion="stop5"/>
+  <Char id="arthur" pos="9 0" emotion="stop6"/>
+  <Msg name="亚瑟" string="他是为了保护我才受的伤……呜呜"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="9 0" emotion="stop6"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop5"/>
+  <Msg name="凯" string="我没事，我可是卡美洛的王子呢……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="10 0" emotion="stop6"/>
+  <Char id="kei" pos="6 0" flip="true" emotion="stop5"/>
+  <Msg name="凯" string="你有资格成为卡美洛的国王……别管我，快去。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="11 0" emotion="stop5"/>
+  <Char id="kei" pos="6 0" flip="true" emotion="stop5"/>
+  <Msg name="凯" string="快去拔出圣剑，阻止莫德雷德……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop5"/>
+  <Char id="mordred" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="宝宝" string="亚瑟！！我快不行了！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop5"/>
+  <Char id="mordred" pos="6 0" flip="true" emotion="stop2"/>
+  <Msg name="宝宝" string="烈焰勇士我当够了啊……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop5"/>
+  <Char id="mordred" pos="8 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="给我滚开！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="arthur" pos="12 0" emotion="stop5"/>
+  <Char id="kei" pos="6 0" flip="true" emotion="stop5"/>
+  <Msg name="凯" string="亚瑟，快点！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="12 0" emotion="stop2"/>
+  <Char id="kei" pos="6 0" flip="true" emotion="stop5"/>
+  <Msg name="亚瑟" string="知道了，凯，我马上回来！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ItemPresetSlotCard name="ItemPresetSlotCard" windowRect="0 0 424 664" image="preset_slot_normal">
+  <Window name="slotSelectedBg" windowSize="434 674" adjust="-5 -5" frame="GreenBorderLinePanel" alphaBlend="true" visible="false" enable="false"/>
+  <Label name="lblSlotTitle" windowSize="230 34" adjust="0 0" textColor="white" textAlign="center" align="hcenter" text="#sb(slotTitle)" textRender="bold16"/>
+  <ImageButton name="resetSlot" windowSize="26 26" adjust="4 4" alphaBlend="true" autoLoadImage="preset_btn_reset_" altText="#sb(slotReset)" altRelativePos="44 0"/>
+  <ImageButton name="setupSlot" windowSize="26 26" adjust="394 4" alphaBlend="true" autoLoadImage="preset_btn_setting_" altText="#sb(slotOption)" altRelativePos="24 0"/>
+  <Container name="presetIcon" windowSize="48 48" adjust="0 40" visible="true">
+    <Panel name="ItemIndi" windowSize="48 48" adjust="3 0" texture="preset_icon_ItemInd_s" alphaBlend="true" visible="false" enable="false"/>
+    <Panel name="SpeedIndi" windowSize="48 48" adjust="3 0" texture="preset_icon_SpeedInd_s" alphaBlend="true" visible="false" enable="false"/>
+    <Panel name="TimeAttack" windowSize="48 48" adjust="3 0" texture="preset_icon_TimeAttack_s" alphaBlend="true" visible="false" enable="false"/>
+    <Panel name="ItemTeam" windowSize="48 48" adjust="3 0" texture="preset_icon_ItemTeam_s" alphaBlend="true" visible="false" enable="false"/>
+    <Panel name="SpeedTeam" windowSize="48 48" adjust="3 0" texture="preset_icon_SpeedTeam_s" alphaBlend="true" visible="false" enable="false"/>
+    <Panel name="BattleTeam" windowSize="48 48" adjust="3 0" texture="preset_icon_TeamBattle_s" alphaBlend="true" visible="false" enable="false"/>
+  </Container>
+  <Label name="emptySlotMsg" windowSize="280 194" adjust="0 60" align="hcenter" text="#sb(emptySlotMsg)" textColor="white" textAlign="center" textRender="medium16"/>
+  <GaragePreview name="charKartPreview" windowSize="280 280" align="hcenter" enable="false"/>
+  <TextButton name="saveSlotBtn" leftTopWH="0 270 98 34" frame="DefaultFocusedButton" depthBias="101.0" align="center" text="#sb(save)" textRender="bold14"/>
+  <TextButton name="useSlotBtn" leftTopWH="0 270 98 34" depthBias="101.0" alphaBlend="true" text="#sb(use)" textRender="bold14"/>
+  <ImageButton name="buySlotBtn" leftTopWH="0 270 98 34" depthBias="101.0" align="hcenter" alphaBlend="true" autoLoadImage="preset_btn_use_0" text="#sb(buy)" textRender="bold14" textColor="255 119 76 0" overTextColor="255 163 113 0" clickedTextColor="255 111 71 0"/>
+  <Panel name="usePresetCheckPanel" windowSize="20 20" adjust="398 280" texture="btn_checkBox" alphaBlend="true" visible="false" enable="false">
+    <Label windowSize="50 20" adjust="-58 -4" enable="false" text="#sb(nowUsing)" textRender="outline16" textColor="white"/>
+  </Panel>
+  <Label name="lblSavedSlotItem" windowSize="278 28" adjust="0 312" text="#sb(savedItem)" textColor="255 157 191 241" textAlign="center" align="hcenter" textRender="bold16"/>
+  <Container name="presetList" windowSize="422 320" adjust="0 345" enable="false">
+    <Container name="kart" windowSize="422 32" adjust="0 0">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catKartBody)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+    <Container name="character" windowSize="422 32" adjust="0 32">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catCharacter)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+    <Container name="pet" windowSize="422 32" adjust="0 64">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catPet)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+    <Container name="flyingPet" windowSize="422 32" adjust="0 96">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catFlyingPet)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+    <Container name="headBand" windowSize="422 32" adjust="0 128">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catHeadBand)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+    <Container name="balloon" windowSize="422 32" adjust="0 160">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catBalloon)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+    <Container name="goggle" windowSize="422 32" adjust="0 192">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catGoggle)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+    <Container name="handGearL" windowSize="422 32" adjust="0 224">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catHandGear)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+    <Container name="color" windowSize="422 32" adjust="0 256">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catPaint)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+    <Container name="dye" windowSize="422 32" adjust="0 288">
+      <Label name="category" windowSize="100 32" adjust="10 0" textRender="medium16" textColor="255 157 191 241" textAlign="left|vcenter" text="#sb(catDye)"/>
+      <Label name="using" windowSize="100 32" adjust="10 0" align="right" textRender="medium16" textColor="255 255 255 255" textAlign="right|vcenter" text="#sb(presetItemNone)"/>
+    </Container>
+  </Container>
+</ItemPresetSlotCard>

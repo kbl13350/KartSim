@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="fullscreen" align="center">
+  <Panel name="bg" windowRect="center" enable="false" color="200 0 0 0" alphaBlend="true"/>
+  <Container windowRect="0 0 800 600" align="center">
+    <Container windowRect="10 118 550 367" enable="false">
+      <Panel texture="event01" windowRect="0 0 512 244" enable="false" alphaBlend="true"/>
+      <Panel texture="event02" windowRect="512 0 549 244" enable="false" alphaBlend="true"/>
+      <Label name="npcName" windowSize="40 10" adjust="78 9" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+      <Label name="playerName" windowSize="100 10" adjust="392 223" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+      <Container name="npc" windowRect="28 40 174 209">
+        <Panel name="npc_select" windowRect="0 0 146 169" texture="npc_event_card_3" alphaBlend="true" visible="false" enable="false"/>
+      </Container>
+      <Container name="player" windowRect="370 40 516 209">
+        <Panel name="player_select" windowRect="0 0 146 169" texture="pc_event_card_3" alphaBlend="true" visible="false" enable="false"/>
+      </Container>
+      <Panel name="result" windowRect="95 20 464 212" texture="result_0@zz" alphaBlend="true" visible="false" enable="false"/>
+    </Container>
+    <Container name="npcTable" windowRect="3 10 797 128" enable="false">
+      <Panel name="npcbg1" texture="cut01" windowRect="0 0 512 118" enable="false" alphaBlend="true"/>
+      <Panel name="npcbg2" texture="cut02" windowRect="512 0 793 118" enable="false" alphaBlend="true"/>
+      <Panel name="previewRps0" windowRect="125 -10 224 102" alphaBlend="true" visible="false" enable="false"/>
+      <Panel name="previewRps1" windowRect="125 -10 224 102" alphaBlend="true" visible="false"/>
+      <Panel name="previewRps2" windowRect="125 -10 224 102" alphaBlend="true" visible="false"/>
+      <Container name="npcInfo" windowRect="3 0 797 128" enable="false">
+        <Panel name="textbg" windowSize="237 116" adjust="330 -10" texture="text" alphaBlend="true" enable="false"/>
+        <Label name="npcmsg" windowSize="210 300" adjust="345 20" multiLine="true" textRender="bold" autoWrap="true" enable="false"/>
+        <Panel name="npcFace" windowSize="191 114" adjust="580 -10" alphaBlend="true" enable="false"/>
+      </Container>
+    </Container>
+    <Container name="playerTable" windowRect="10 360 549 600" enable="false">
+      <Panel name="playerbg1" texture="mycardback_01" windowRect="0 0 512 235" enable="false" alphaBlend="true"/>
+      <Panel name="playerbg2" texture="mycardback_02" windowRect="512 0 549 235" enable="false" alphaBlend="true"/>
+      <ImageButton name="scissors" windowSize="145 143" adjust="35 45" autoLoadImage="pc_jji0" alphaBlend="true"/>
+      <ImageButton name="rock" windowSize="145 143" adjust="200 45" autoLoadImage="pc_muk0" alphaBlend="true"/>
+      <ImageButton name="paper" windowSize="145 143" adjust="365 45" autoLoadImage="pc_ppa0" alphaBlend="true"/>
+      <Label name="scissorsNum" windowSize="100 20" adjust="55 140" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+      <Label name="rockNum" windowSize="100 20" adjust="220 140" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+      <Label name="paperNum" windowSize="100 20" adjust="385 140" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+    </Container>
+    <Panel windowRect="560 125 790 595" texture="level_back" alphaBlend="true">
+      <Label name="levelTitle" windowSize="80 10" adjust="90 19" multiLine="true" text="#sb(challengeLevel)" textColor="white" textRender="bold" autoWrap="true" enable="false"/>
+      <Container windowRect="17 52 212 352" enable="false">
+        <Panel name="present" texture="present_good" windowRect="2 275 193 333" alphaBlend="true"/>
+        <Panel name="presentPanel" texture="present_next" windowRect="2 337 193 395" alphaBlend="true"/>
+        <Window name="itemPanel" windowRect="17 280 49 325" alphaBlend="true"/>
+        <Window name="itemPanel2" windowRect="17 345 49 387" alphaBlend="true"/>
+        <Label name="presentTitle" windowSize="100 20" adjust="90 285" multiLine="true" text="#sb(currentReward)" textColor="white" autoWrap="true" enable="false"/>
+        <Label name="presentName" windowSize="140 20" adjust="65 310" multiLine="true" text="" autoWrap="true" textColor="white" enable="false"/>
+        <Label name="presentnextTitle" windowSize="100 20" adjust="90 346" multiLine="true" text="#sb(nextReward)" textColor="white" autoWrap="true" enable="false"/>
+        <Label name="presentnextName" windowSize="140 20" adjust="65 370" multiLine="true" text="" autoWrap="true" textColor="white" enable="false"/>
+        <Panel name="level1" texture="level_next" windowSize="190 24" adjust="3 185" alphaBlend="true"/>
+        <Panel name="levelwin1" texture="win" windowSize="17 15" adjust="8 190" visible="false" alphaBlend="true"/>
+        <Panel name="level2" texture="level_next" windowSize="190 24" adjust="3 155" alphaBlend="true"/>
+        <Panel name="levelwin2" texture="win" windowSize="17 15" adjust="8 160" visible="false" alphaBlend="true"/>
+        <Panel name="level3" texture="level_next" windowSize="190 24" adjust="3 125" alphaBlend="true"/>
+        <Panel name="levelwin3" texture="win" windowSize="17 15" adjust="8 130" visible="false" alphaBlend="true"/>
+        <Panel name="level4" texture="level_next" windowSize="190 24" adjust="3 95" alphaBlend="true"/>
+        <Panel name="levelwin4" texture="win" windowSize="17 15" adjust="8 100" visible="false" alphaBlend="true"/>
+        <Panel name="level5" texture="level_next" windowSize="190 24" adjust="3 65" alphaBlend="true"/>
+        <Panel name="levelwin5" texture="win" windowSize="17 15" adjust="8 70" visible="false" alphaBlend="true"/>
+        <Panel name="level6" texture="level_next" windowSize="190 24" adjust="3 35" alphaBlend="true"/>
+        <Panel name="levelwin6" texture="win" windowSize="17 15" adjust="8 40" visible="false" alphaBlend="true"/>
+        <Panel name="level7" texture="level_next" windowSize="190 24" adjust="3 5" alphaBlend="true"/>
+        <Panel name="levelwin7" texture="win" windowSize="17 15" adjust="8 10" visible="false" alphaBlend="true"/>
+        <Panel name="currentlevel" texture="level_here" windowRect="3 185 193 209" alphaBlend="true"/>
+        <Label name="leveltitle1" windowSize="50 20" adjust="80 191" multiLine="true" text="1 Level" autoWrap="true" enable="false"/>
+        <Label name="leveltitle2" windowSize="50 20" adjust="80 161" multiLine="true" text="2 Level" autoWrap="true" enable="false"/>
+        <Label name="leveltitle3" windowSize="50 20" adjust="80 131" multiLine="true" text="3 Level" autoWrap="true" enable="false"/>
+        <Label name="leveltitle4" windowSize="50 20" adjust="80 101" multiLine="true" text="4 Level" autoWrap="true" enable="false"/>
+        <Label name="leveltitle5" windowSize="50 20" adjust="80 71" multiLine="true" text="5 Level" autoWrap="true" enable="false"/>
+        <Label name="leveltitle6" windowSize="50 20" adjust="80 41" multiLine="true" text="6 Level" autoWrap="true" enable="false"/>
+        <Label name="leveltitle7" windowSize="50 20" adjust="80 11" multiLine="true" text="7 Level" autoWrap="true" enable="false"/>
+      </Container>
+    </Panel>
+  </Container>
+</Container>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ToolTipWindow name="limitedGoodsNotice" windowRect="50 -40 175 23" frame="DefaultTooltip" enable="true" autoWrap="true" multiLine="true" alphaBlend="true" textColor="white" vertAutoSizing="false" depthBias="500"/>

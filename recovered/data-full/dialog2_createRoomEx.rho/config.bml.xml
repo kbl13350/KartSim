@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channelCategory>
+  <gameType channelName="novice" openLevel="0" baseChannel="true"/>
+  <gameType channelName="rookieIntro" openLevel="0" baseChannel="false"/>
+  <gameType channelName="rookie" openLevel="1" baseChannel="true"/>
+  <gameType channelName="lv3" openLevel="2" baseChannel="true"/>
+  <gameType channelName="lv2" openLevel="3" baseChannel="true"/>
+  <gameType channelName="lv1" openLevel="4" baseChannel="true"/>
+  <gameType channelName="flag" openLevel="1" baseChannel="false"/>
+  <gameType channelName="bokbulbok" openLevel="1" baseChannel="false"/>
+  <gameType channelName="classic" openLevel="1" baseChannel="false"/>
+</channelCategory>

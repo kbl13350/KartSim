@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china6"/>
+  <Char id="raptorR" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷" string="大事不妙..|竟然不能回收兵马俑的星陨之石.."/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷" string="先回收蝴蝶仙境的星陨之石再说.."/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <BackGround texture="nym02"/>
+  <Char id="naiad" pos="11 0" emotion="stop1"/>
+  <Msg name="美美" string="好累哦.."/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="shylph" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="naiad" pos="11 0" emotion="stop1"/>
+  <Msg name="希尔芙" string="美美！|我不是让你休息一会儿的吗！！"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="naiad" remove="true"/>
+  <Char id="naiad" pos="11 0" emotion="stop1"/>
+  <Char id="shylph" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="美美" string="不好意思~|但也要快点调查出线索，才能帮助朋友们.."/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="shylph" remove="true"/>
+  <Char id="shylph" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="naiad" pos="11 0" emotion="stop1"/>
+  <Msg name="希尔芙" string="呼…."/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="naiad" remove="true"/>
+  <Char id="naiad" pos="7 0" emotion="stop2"/>
+  <Msg name="美美" string="那也是~找到了！！"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="shylph" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="naiad" pos="11 0" emotion="stop2"/>
+  <Msg name="希尔芙" string="真的？"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="naiad" remove="true"/>
+  <Char id="naiad" pos="11 0" emotion="stop2"/>
+  <Msg name="美美" string="嗯！记录上说藏在精灵之树里~|快去告诉他们！"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="shylph" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="naiad" pos="11 0" emotion="stop1"/>
+  <Msg name="希尔芙" string="辛苦了~~|那先休息一会儿吧~"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="naiad" remove="true"/>
+  <Char id="naiad" pos="11 0" emotion="stop2"/>
+  <Char id="shylph" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="美美" string="嗯~！知道了！"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="shylph" remove="true"/>
+  <Char id="shylph" pos="7 0" emotion="stop1"/>
+  <Msg name="希尔芙" string="那我待会儿再过来~"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <BackGround texture="nym01"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="真不知道要从哪儿找起！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="shylph" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="希尔芙" string="多亏美美找到了|星陨之石的位置~"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="格雷" string="嘿嘿~美美.."/>
+  <Enter/>
+</Scene>

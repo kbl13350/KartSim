@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="slotCard" leftTopWH="0 0 175 166" visible="true">
+  <Panel name="slotTypeGold" texture="gold_box" leftTopTex="0 0" alphaBlend="true" visible="false">
+    <Label name="itemName" leftTopWH="0 14 175 30" text="아이템이름" textAlign="center" textColor="White"/>
+  </Panel>
+  <Panel name="slotTypeSilver" texture="silver_box" leftTopTex="0 0" alphaBlend="true" visible="false">
+    <Label name="itemName" leftTopWH="0 14 175 30" text="아이템이름" textAlign="center" textColor="White"/>
+  </Panel>
+  <ItemWindow name="item" leftTopWH="10 20 130 100" align="center" stockId="1"/>
+  <Panel name="itemUnit" leftTopWH="101 105 43 20" texture="magicHat_img_itemNum" alphaBlend="true" visible="true">
+    <Label name="itemUnitDesc" leftTopWH="0 0 43 20" text="100개" textAlign="center" textColor="White"/>
+  </Panel>
+  <Panel name="soldOut" leftTopTex="0 0" texture="soldout@zz" visible="false" alphaBlend="true"/>
+  <Label name="itemCount" leftTopWH="0 127 30 20" align="hcenter" textAlign="center" text="/" textColor="white" alphaBlend="true">
+    <Label name="count" windowSize="30 20" adjust="-25 0" textAlign="right;vcenter" text="100" textRender="bold" textColor="yellow" alphaBlend="true"/>
+    <Label name="totalCount" windowSize="30 20" adjust="25 0" textAlign="left;vcenter" text="999" textColor="white" alphaBlend="true"/>
+  </Label>
+  <Panel name="mouseOn" leftTopTex="0 0" texture="box_mouse_on" visible="false" alphaBlend="true"/>
+  <Panel name="highLight" leftTopTex="0 0" texture="box_on" visible="false" alphaBlend="true"/>
+</Window>

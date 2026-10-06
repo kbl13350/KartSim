@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 레벨테이블 레볼루션 테이블로 변경될때, Stock에 있는 rpLimit값들도 같이 수정해주셔야합니다 -->
+<Levels>
+	<Level nextRp='70'		tryLevel='1' glove='노랑5' />
+	<Level nextRp='148'		tryLevel='1' glove='노랑4'/>
+	<Level nextRp='262'		tryLevel='1' glove='노랑3'/>
+	<Level nextRp='412'		tryLevel='1' glove='노랑2'/>
+	<Level nextRp='600'		tryLevel='1' glove='노랑1'/>
+
+	<Level nextRp='902'		tryLevel='2' glove='초록5'/>
+	<Level nextRp='1410'	tryLevel='2' glove='초록4'/>
+	<Level nextRp='1930'	tryLevel='2' glove='초록3'/>
+	<Level nextRp='2500'	tryLevel='2' glove='초록2'/>
+	<Level nextRp='3200'	tryLevel='2' glove='초록1'/>
+
+	<Level nextRp='4000'	tryLevel='3' glove='파랑5'/>
+	<Level nextRp='4900'	tryLevel='3' glove='파랑4'/>
+	<Level nextRp='6000'	tryLevel='3' glove='파랑3'/>
+	<Level nextRp='7800'	tryLevel='3' glove='파랑2'/>
+	<Level nextRp='9900'	tryLevel='3' glove='파랑1'/>
+
+	<Level nextRp='11878'	tryLevel='4' glove='빨강5'/>
+	<Level nextRp='13158'	tryLevel='4' glove='빨강4'/>
+	<Level nextRp='17318'	tryLevel='4' glove='빨강3'/>
+	<Level nextRp='19622'	tryLevel='4' glove='빨강2'/>
+	<Level nextRp='22070'	tryLevel='4' glove='빨강1'/>
+
+	<Level nextRp='24662'	tryLevel='5' glove='검정5'/>
+	<Level nextRp='30278'	tryLevel='5' glove='검정4'/>
+	<Level nextRp='33302'	tryLevel='5' glove='검정3'/>
+	<Level nextRp='36470'	tryLevel='5' glove='검정2'/>
+	<Level nextRp='39782'	tryLevel='5' glove='검정1'/>
+
+	<Level nextRp='43238'	tryLevel='5' glove='무지개5'/>
+	<Level nextRp='47452'	tryLevel='5' glove='무지개4'/>
+	<Level nextRp='51862'	tryLevel='5' glove='무지개3'/>
+	<Level nextRp='56468'	tryLevel='5' glove='무지개2'/>
+	<Level nextRp='61270'	tryLevel='5' glove='무지개1'/>
+
+	<Level nextRp='66268'	tryLevel='5' glove='스타노랑5'/>
+	<Level nextRp='71462'	tryLevel='5' glove='스타노랑4'/>
+	<Level nextRp='76852'	tryLevel='5' glove='스타노랑3'/>
+	<Level nextRp='82438'	tryLevel='5' glove='스타노랑2'/>
+	<Level nextRp='88220'	tryLevel='5' glove='스타노랑1'/>
+
+	<Level nextRp='94198'	tryLevel='5' glove='스타초록5'/>
+	<Level nextRp='100372'	tryLevel='5' glove='스타초록4'/>
+	<Level nextRp='106742'	tryLevel='5' glove='스타초록3'/>
+	<Level nextRp='113308'	tryLevel='5' glove='스타초록2'/>
+	<Level nextRp='120070'	tryLevel='5' glove='스타초록1'/>
+
+	<Level nextRp='127028'	tryLevel='5' glove='스타파랑5'/>
+	<Level nextRp='134182'	tryLevel='5' glove='스타파랑4'/>
+	<Level nextRp='141532'	tryLevel='5' glove='스타파랑3'/>
+	<Level nextRp='149078'	tryLevel='5' glove='스타파랑2'/>
+	<Level nextRp='156820'	tryLevel='5' glove='스타파랑1'/>
+
+	<Level nextRp='169510'	tryLevel='5' glove='스타빨강5'/>
+	<Level nextRp='177760'	tryLevel='5' glove='스타빨강4'/>
+	<Level nextRp='186310'	tryLevel='5' glove='스타빨강3'/>
+	<Level nextRp='195260'	tryLevel='5' glove='스타빨강2'/>
+	<Level nextRp='214660'	tryLevel='5' glove='스타빨강1'/>
+
+	<Level nextRp='224810'	tryLevel='5' glove='스타검정5'/>
+	<Level nextRp='235210'	tryLevel='5' glove='스타검정4'/>
+	<Level nextRp='245910'	tryLevel='5' glove='스타검정3'/>
+	<Level nextRp='256960'	tryLevel='5' glove='스타검정2'/>
+	<Level nextRp='269010'	tryLevel='5' glove='스타검정1'/>
+
+	<Level nextRp='275573'	tryLevel='5' glove='스타무지개5'/>
+	<Level nextRp='282296'	tryLevel='5' glove='스타무지개4'/>
+	<Level nextRp='289184'	tryLevel='5' glove='스타무지개3'/>
+	<Level nextRp='296239'	tryLevel='5' glove='스타무지개2'/>
+	<Level nextRp='303466'	tryLevel='5' glove='스타무지개1'/>
+
+	<noviceRpLimit value='381'/>
+	<rookieIntroRpLimit value='1120'/>
+
+	<ChannelLevelList>
+		<ChannelLevel beginRp='0' endRp='9900' level='1' />
+		<ChannelLevel beginRp='9900' level='0' />
+	</ChannelLevelList>
+</Levels>

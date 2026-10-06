@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="160 0 0 0" alphaBlend="true">
+  <ImageBoard name="riderGuide_completed" leftTopWH="0 80 1004 144" align="hcenter" image="riderGuideTopBg_1@zz" alphaBlend="true">
+    <ImageBoard name="riderGuide_char" leftTopWH="-10 -15 216 154" image="riderGuide_dao_6" alphaBlend="true"/>
+    <Label windowSize="350 40" adjust="234 18" text="#sb(riderGuide_title_completed)" textRender="bold20" textColor="255 21 75 142" textAlign="left"/>
+    <Label windowSize="350 70" adjust="234 50" text="#sb(riderGuide_description_completed)" textRender="bold16" textColor="255 30 40 50" textAlign="left" autoWrap="true"/>
+    <Window name="reward_1" leftTopWH="660 40 84 84" alphaBlend="true">
+      <ImageBoard leftTopWH="0 0 84 84" image="rgt_itemslot" alphaBlend="true" align="center"/>
+      <ItemWindow name="rewardStock" leftTopWH="0 0 70 70" adjust="0 8" align="center" visible="false"/>
+      <Panel name="rewardEmblem" leftTopWH="0 0 51 51" adjust="0 10" alphaBlend="true" align="center" visible="false"/>
+      <ImageBoard leftTopWH="0 0 84 21" image="rgt_itemslot_1@zz" alphaBlend="true" align="hcenter"/>
+      <ImageBoard name="dim" leftTopWH="0 0 84 84" image="rgt_itemslot_clear@zz" alphaBlend="true" align="center"/>
+    </Window>
+    <Window name="reward_2" leftTopWH="754 40 84 84" alphaBlend="true">
+      <ImageBoard leftTopWH="0 0 84 84" image="rgt_itemslot" alphaBlend="true" align="center"/>
+      <ItemWindow name="rewardStock" leftTopWH="0 0 70 70" adjust="0 8" align="center" visible="false"/>
+      <Panel name="rewardEmblem" leftTopWH="0 0 51 51" adjust="0 10" alphaBlend="true" align="center" visible="false"/>
+      <ImageBoard leftTopWH="0 0 84 21" image="rgt_itemslot_2@zz" alphaBlend="true" align="hcenter"/>
+      <ImageBoard name="dim" leftTopWH="0 0 84 84" image="rgt_itemslot_clear@zz" alphaBlend="true" align="center"/>
+    </Window>
+    <Window name="reward_3" leftTopWH="848 40 84 84" alphaBlend="true">
+      <ImageBoard leftTopWH="0 0 84 84" image="rgt_itemslot" alphaBlend="true" align="center"/>
+      <ItemWindow name="rewardStock" leftTopWH="0 0 70 70" adjust="0 8" align="center" visible="false"/>
+      <Panel name="rewardEmblem" leftTopWH="0 0 51 51" adjust="0 10" alphaBlend="true" align="center" visible="false"/>
+      <ImageBoard leftTopWH="0 0 84 21" image="rgt_itemslot_3@zz" alphaBlend="true" align="hcenter"/>
+      <ImageBoard name="dim" leftTopWH="0 0 84 84" image="rgt_itemslot_clear@zz" alphaBlend="true" align="center"/>
+    </Window>
+    <ImageButton name="okButton" leftTopWH="800 145 146 44" autoLoadImage="rgt_okBtn_@zz" alphaBlend="true"/>
+  </ImageBoard>
+</Panel>

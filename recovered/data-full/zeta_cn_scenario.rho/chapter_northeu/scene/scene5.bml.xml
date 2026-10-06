@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu7"/>
+  <Char id="taki" pos="8 0" emotion="stop3"/>
+  <Msg name="奇奇" string="伙伴们~赛完了吗？"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="奇奇~~~还在这里啊~"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奇奇" string="嗯！！！看着你们赛跑~我也想跑一跑。"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奇奇" string="皮蛋~我会驾驶飞碟哦。"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奇奇" string="和我比一比啊？？？"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="是吗？？？那来比一比啊？"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奇奇" string="快去进行那个叫赛车的东西吧！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="先找一个可以比赛的地方吧~"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="路比较复杂，|别走丢了~跟上奇奇！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奇奇" string="嗯，知道了~皮蛋！"/>
+  <Enter/>
+</Scene>

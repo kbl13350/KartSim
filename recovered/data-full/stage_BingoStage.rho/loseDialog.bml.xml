@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600" align="center">
+  <Panel windowRect="fullscreen" color="180 0 0 0" alphaBlend="true"/>
+  <Container windowRect="0 0 800 600" align="center">
+    <Panel leftTopTex="68 0" texture="패배백판_01@zz" alphaBlend="true"/>
+    <Panel leftTopTex="368 0" texture="패배백판_02@zz" alphaBlend="true"/>
+    <ImageButton name="okButton" leftTopTex="580 368" autoLoadImage="확인_0" alphaBlend="true">
+      <Label leftTopWH="8 20 50 20" text="#sb(ok)" textColor="white" textAlign="center"/>
+    </ImageButton>
+    <Label name="npcTalk" text="npcTalk" leftTopWH="150 92 205 90" textColor="white" textAlign="center" multiLine="true"/>
+  </Container>
+</Container>

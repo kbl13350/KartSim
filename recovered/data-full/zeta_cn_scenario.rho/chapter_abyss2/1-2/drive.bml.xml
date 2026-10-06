@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Tracing isFixedKart="true" fixedKartId="1174" isFixedChar="true" fixedCharId="305" kartId="1201" colorId="57" dyeId="57" characterId="291" uniformId="0" characterName="莫格瑞">
+    <LevelContent level="0" track="abyss_I01" laps="3" ksv="1-2" distance="30" startOffset="2000"/>
+  </Tracing>
+</Root>

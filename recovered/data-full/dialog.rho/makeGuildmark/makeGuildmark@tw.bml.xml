@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="makeGuildmark" caption="#sb(makeGuildmark)" windowRect="0 0 370 505" align="center" frame="CaptionDialog" captionPos="0 1" captionColor="black" setCloseButton="Cancel">
+  <Window windowRect="-1 0 336 140">
+    <Panel windowRect="0 0 285 123" texture="markReview@zz" align="center" alphaBlend="true">
+      <Panel name="OldGuildMark" windowRect="46 20 106 80" alphaBlend="true"/>
+      <Panel name="GuildMark" windowRect="179 20 239 80" alphaBlend="true"/>
+      <Label text="#sb(beforeMark)" windowRect="38 84 114 104" textAlign="center"/>
+      <Label text="#sb(afterMark)" windowRect="171 84 247 104" textAlign="center"/>
+    </Panel>
+  </Window>
+  <Window name="static03" windowRect="0 140 336 142" frame="Section"/>
+  <Window name="static02" windowRect="-1 402 336 430"/>
+  <Window name="static03" windowRect="0 415 336 417" frame="Section"/>
+  <TabControl name="selectBackMark" windowRect="-1 312 336 402" frame="TransFill" upButton="WideLeftScrollButton" upButtonPos="5 3" downButton="WideRightScrollButton" downButtonPos="314 3" scrollButtonSize="13 78" tabGap="13" viewMargin="-10 -10 0 10" scrollType="horizon" rigidScroll="false" autoAlign="false"/>
+  <Window name="static02" windowRect="-1 268 336 312">
+    <Panel texture="lineselect@zz" windowRect="5 17 126 36" alphaBlend="true"/>
+    <ComboBox name="backLevel" windowRect="220 16 335 38" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="85" scrollBarVisible="false">
+      <Skip>
+        <TextButton name="backLevel_1" windowRect="0 0 50 20" frame="SelectBtn" text="#sb(Level_1)" textAlign="center" altTextRender="outline"/>
+        <TextButton name="backLevel_2" windowRect="0 0 50 20" frame="SelectBtn" text="#sb(Level_2)" textAlign="center" altTextRender="outline"/>
+        <TextButton name="backLevel_3" windowRect="0 0 50 20" frame="SelectBtn" text="#sb(Level_3)" textAlign="center" altTextRender="outline"/>
+        <TextButton name="backLevel_4" windowRect="0 0 50 20" frame="SelectBtn" text="#sb(Level_4)" textAlign="center" altTextRender="outline"/>
+      </Skip>
+    </ComboBox>
+  </Window>
+  <TabControl name="selectFrontMark" windowRect="-1 178 336 268" frame="TransFill" upButton="WideLeftScrollButton" upButtonPos="5 3" downButton="WideRightScrollButton" downButtonPos="314 3" scrollButtonSize="13 78" tabGap="13" viewMargin="-10 -10 0 10" scrollType="horizon" rigidScroll="false" autoAlign="false"/>
+  <Window name="static02" windowRect="-1 142 336 178">
+    <Panel texture="logoselect@zz" windowRect="5 10 126 29" alphaBlend="true"/>
+    <ComboBox name="frontLevel" windowRect="220 8 335 30" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="85" scrollBarVisible="false">
+      <Skip>
+        <TextButton name="frontLevel_1" windowRect="0 0 50 20" frame="SelectBtn" text="#sb(Level_1)" textAlign="center" altTextRender="outline"/>
+        <TextButton name="frontLevel_2" windowRect="0 0 50 20" frame="SelectBtn" text="#sb(Level_2)" textAlign="center" altTextRender="outline"/>
+        <TextButton name="frontLevel_3" windowRect="0 0 50 20" frame="SelectBtn" text="#sb(Level_3)" textAlign="center" altTextRender="outline"/>
+        <TextButton name="frontLevel_4" windowRect="0 0 50 20" frame="SelectBtn" text="#sb(Level_4)" textAlign="center" altTextRender="outline"/>
+      </Skip>
+    </ComboBox>
+  </Window>
+  <TextButton name="OK" windowRect="85 420 157 442" text="#sb(modify)" altTextRender="outline"/>
+  <TextButton name="Cancel" windowRect="185 420 257 442" text="#sb(close)" altTextRender="outline"/>
+</CaptionWindow>

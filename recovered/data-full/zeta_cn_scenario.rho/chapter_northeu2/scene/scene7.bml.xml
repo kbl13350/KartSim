@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu11"/>
+  <Char id="taki" pos="5 0" emotion="stop3"/>
+  <Msg name="奇奇" string="我赢了！！！！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="啊…我竟然第三…我竟然第三…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dr.r" pos="14 0" emotion="stop4"/>
+  <Msg name="R博士" string="额…被抓了…其实我…"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="刚才在那个弯道真惊险~！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="对啊，真的很惊险~！在那么狭窄的地方竟然做出那么帅的飘移~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop3"/>
+  <Msg name="奇奇" string="在反方向的赛道行驶，好像实力更提高了！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="对！！我也有某种灵感！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Msg name="宝宝" string="向反方向行驶好像也有全新的感觉！|赛车灵魂开始燃烧了！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dr.r" pos="14 0" emotion="stop4"/>
+  <Msg name="R博士" string="喂…我被抓了…看看我"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop6"/>
+  <Msg name="奇奇" string="啊，对了！！你这个酒糟鼻！！|为什么要破坏赛道不让进行大赛啊！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dr.r" pos="11 0" emotion="stop3"/>
+  <Msg name="R博士" string="不要总叫我酒糟鼻酒糟鼻的！！我叫R博士！！"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="dr.r" pos="11 0" emotion="stop2"/>
+  <Msg name="R博士" string="看到我的厉害了吧~！！|我要破坏所有的赛道，不让你们赛车！！"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="dr.r" pos="11 0" emotion="stop2"/>
+  <Msg name="R博士" string="吼吼吼，对不住了..吼吼吼"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop3"/>
+  <Msg name="奇奇" string="没关系！！反而要谢谢你！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dr.r" pos="11 0" emotion="stop4"/>
+  <Msg name="R博士" string="什么？？"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="嗯！谢谢你博士…………酒糟鼻！！ "/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dr.r" pos="11 0" emotion="stop4"/>
+  <Msg name="R博士" string="谢..谢我？？"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop2"/>
+  <Char id="taki" pos="8 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="奇奇, 皮蛋, 宝宝" string="就因为你弄翻了赛道所以更有趣了！！|太好了~我们在反过来的赛道上比赛吧！！好开心！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="8 0" emotion="stop3"/>
+  <Msg name="奇奇" string="现在马上再比一次吧！！！这次第一名依然是我！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="这次我绝对不会输给你！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dr.r" pos="11 0" emotion="stop4"/>
+  <Msg name="R博士" string="喂…孩子们…………………"/>
+  <Enter/>
+</Scene>

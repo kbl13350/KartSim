@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="메뉴" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" visible="false">
+  <CaptionWindow frame="CaptionDialog" caption="#sb(menu)" windowRect="0 0 360 180" align="center" setCloseButton="cancelButton">
+    <Container windowRect="0 15 330 120" align="hcenter">
+      <StateButton name="다시시도" windowSize="104 106" iconSet="btn_singleAgain@zz" iconAlign="hcenter" text="#sb(retry)" textAlign="hcenter" stringPos="0 55" canDisable="true"/>
+      <StateButton name="팁" windowSize="104 106" align="hcenter" iconSet="팁보기_0@zz" iconInfix="" iconAlign="hcenter" text="#sb(goToTip)" textAlign="hcenter" stringPos="0 55" canDisable="true"/>
+      <StateButton name="싱글플레이" windowSize="104 106" align="right" iconSet="btn_menu@zz" iconAlign="hcenter" text="#sb(goToMenu)" textAlign="hcenter" stringPos="0 55"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" clientRect="0 0 765 501" caption="#sb(tourneyTable)" captionPos="0 1" captionColor="black" alphaBlend="true" align="center">
+    <CharPanel name="enablePnl" texture="teamFace0@zz" clientRect="0 0 40 40" fontSize="40 40" fontPos="0 0" fontStr="U0123456789" flexible="true" allowVertical="true"/>
+    <CharPanel name="disablePnl" texture="teamFace0@zz" clientRect="0 0 40 40" fontSize="40 40" fontPos="0 40" fontStr="U0123456789" flexible="true" allowVertical="true"/>
+    <CharPanel name="finalEnablePnl" texture="finalFace@zz" clientRect="-39 -36 74 67" fontSize="113 103" fontPos="0 0" fontStr="U" flexible="true" alphaBlend="true" visible="true" allowVertical="true"/>
+    <CharPanel name="finalDisablePnl" texture="finalFace@zz" clientRect="-39 -36 74 67" fontSize="113 103" fontPos="0 103" fontStr="U" flexible="true" alphaBlend="true" allowVertical="true"/>
+    <Panel name="enemySelect" texture="effect" clientRect="-5 -21 46 8" alphaBlend="true" visible="false"/>
+    <Panel name="userSelectBlink" texture="effect_u" clientRect="-5 -21 46 8" alphaBlend="true" visible="false"/>
+    <Panel name="userSelectRound" texture="user_effect" clientRect="-25 -27 65 63" alphaBlend="true" visible="false"/>
+    <Panel name="out" texture="out" clientRect="0 0 40 40" alphaBlend="true" visible="false"/>
+    <Window windowRect="0 2 765 499">
+      <Panel name="tableImage1" texture="table_01@zz" alphaBlend="true" windowRect="0 0 512 497"/>
+      <Panel name="tableImage2" texture="table_02@zz" alphaBlend="true" windowRect="512 0 765 497"/>
+      <PassGraphNode name="pg_1" windowRect=" 64 36 112 45" uvRect=" 64 36 112 45" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="39 9 48 11" uvRect="103 45 113 47" dir="bottom" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_2" windowRect="64 106 112 115" uvRect="64 106 112 115" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="39 -2 48 0" uvRect="103 104 112 106" dir="top" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_3" windowRect="64 176 180 185" uvRect="64 176 180 185" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="107 -4 116 0" uvRect="171 172 180 176" dir="top" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_4" windowRect="64 246 112 255" uvRect="64 246 112 255" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="39 9 48 11" uvRect="103 255 112 257" dir="bottom" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_5" windowRect="64 316 112 325" uvRect="64 316 112 325" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="39 -2 48 0" uvRect="103 314 112 316" dir="top" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_6" windowRect="64 386 180 395" uvRect="64 386 180 395" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="107 -4 116 0" uvRect="171 382 180 386" dir="top" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_7" windowRect="64 456 316 465" uvRect="64 456 316 465" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="243 -74 252 0" uvRect="307 382 316 456" dir="top" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_8" windowRect="452 34 703 43" uvRect="17 34 268 43" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 9 9 81" uvRect="17 43 26 115" dir="bottom" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_9" windowRect="588 104 703 113" uvRect="153 104 268 113" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 9 9 11" uvRect="153 113 162 115" dir="bottom" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_10" windowRect="656 174 703 183" uvRect="221 174 268 183" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 9 9 11" uvRect="221 183 230 185" dir="bottom" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_11" windowRect="656 244 703 253" uvRect="221 244 268 253" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 -2 9 0" uvRect="221 242 230 244" dir="top" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_12" windowRect="588 314 703 323" uvRect="153 314 268 323" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 9 9 11" uvRect="153 323 162 325" dir="bottom" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_13" windowRect="656 384 703 393" uvRect="221 384 268 393" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 9 9 11" uvRect="221 393 230 395" dir="bottom" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_14" windowRect="656 454 703 463" uvRect="221 454 268 463" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 -2 9 0" uvRect="221 452 230 454" dir="top" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_15" windowRect="132 71 180 80" uvRect="132 71 180 80" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="39 9 48 44" uvRect="171 80 180 115" dir="bottom" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_16" windowRect="132 281 180 290" uvRect="132 281 180 290" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="39 9 48 44" uvRect="171 290 180 325" dir="bottom" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_17" windowRect="588 209 634 218" uvRect="153 209 199 218" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 -37 9 0" uvRect="153 172 162 209" dir="top" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_18" windowRect="588 419 634 428" uvRect="153 419 199 428" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 -37 9 0" uvRect="153 382 162 419" dir="top" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_19" windowRect="200 141 248 150" uvRect="200 141 248 150" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="39 9 48 79" uvRect="239 150 248 220" dir="bottom" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_20" windowRect="200 351 248 360" uvRect="200 351 248 360" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="39 -74 48 0" uvRect="239 277 248 351" dir="top" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_21" windowRect="520 139 566 148" uvRect="85 139 131 148" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 9 9 81" uvRect="85 148 94 220" dir="bottom" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_22" windowRect="520 349 566 358" uvRect="85 349 131 358" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 -72 9 0" uvRect="85 277 94 349" dir="top" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_23" windowRect="268 245 316 254" uvRect="268 245 316 254" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="39 9 48 80" uvRect="307 254 316 325" dir="bottom" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_24" windowRect="452 245 498 254" uvRect="17 245 63 254" dir="left" texture="tourneyR" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 -73 9 0" uvRect="17 172 26 245" dir="top" texture="tourneyR" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_25" windowRect="336 351 390 360" uvRect="336 351 390 360" dir="right" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="45 -65 54 0" uvRect="381 286 390 351" dir="top" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <PassGraphNode name="pg_26" windowRect="378 139 430 148" uvRect="378 139 430 148" dir="left" texture="tourneyL" alphaBlend="true" visible="false">
+        <PassGraphNode windowRect="0 9 9 68" uvRect="378 148 387 207" dir="bottom" texture="tourneyL" alphaBlend="true" visible="false"/>
+      </PassGraphNode>
+      <TourSlot name="root" windowSize="0 0" adjust="366 231">
+        <TourSlot name="25" windowSize="40 40" adjust="-77 105">
+          <TourSlot name="23" windowSize="40 40" adjust="-68 -105">
+            <TourSlot name="19" windowSize="40 40" adjust="-68 -105">
+              <TourSlot name="15" windowSize="40 40" adjust="-68 -68">
+                <TourSlot name="1" windowSize="40 40" adjust="-68 -37"/>
+                <TourSlot name="2" windowSize="40 40" adjust="-68 33"/>
+              </TourSlot>
+              <TourSlot name="3" windowSize="40 40" adjust="-136 35"/>
+            </TourSlot>
+            <TourSlot name="20" windowSize="40 40" adjust="-68 105">
+              <TourSlot name="16" windowSize="40 40" adjust="-68 -68">
+                <TourSlot name="4" windowSize="40 40" adjust="-68 -37"/>
+                <TourSlot name="5" windowSize="40 40" adjust="-68 33"/>
+              </TourSlot>
+              <TourSlot name="6" windowSize="40 40" adjust="-136 35"/>
+            </TourSlot>
+          </TourSlot>
+          <TourSlot name="7" windowSize="40 40" adjust="-272 105"/>
+        </TourSlot>
+        <TourSlot name="26" windowSize="40 40" adjust="71 -105">
+          <TourSlot name="24" windowSize="40 40" adjust="68 105">
+            <TourSlot name="21" windowSize="40 40" adjust="68 -105">
+              <TourSlot name="17" windowSize="40 40" adjust="68 70">
+                <TourSlot name="10" windowSize="40 40" adjust="69 -35"/>
+                <TourSlot name="11" windowSize="40 40" adjust="69 35"/>
+              </TourSlot>
+              <TourSlot name="9" windowSize="40 40" adjust="137 -35"/>
+            </TourSlot>
+            <TourSlot name="22" windowSize="40 40" adjust="68 105">
+              <TourSlot name="18" windowSize="40 40" adjust="68 70">
+                <TourSlot name="13" windowSize="40 40" adjust="69 -35"/>
+                <TourSlot name="14" windowSize="40 40" adjust="69 35"/>
+              </TourSlot>
+              <TourSlot name="12" windowSize="40 40" adjust="137 -35"/>
+            </TourSlot>
+          </TourSlot>
+          <TourSlot name="8" windowSize="40 40" adjust="273 -104"/>
+        </TourSlot>
+      </TourSlot>
+    </Window>
+  </CaptionWindow>
+</Panel>

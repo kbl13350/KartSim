@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- (2021.10.28 Update) 어비스 스카이라인 / 머구리 / 가피시 X 적용 -->
+<!-- (2022.01.06 Update) 중국 통합 속도 반영 -->
+<!-- (2022.01.14 Update) 대만 통합 속도 반영 -->
+<!-- (2022.02.17 Update) 도검 구름의 협곡 / 월희 / 검객 월희 적용 -->
+<!-- 2022년 10월 중 패치 통해 어비스 스카이라인 / 머구리 / 가피시 X 로 적용 필요-->
+<!-- (2022.10.20 Update) 연습카트 V1 기준 기록 및 설정 반영 -->
+
+<!-- 머구리 / 스톰 V1 / 어비스 스카이라인 -->
+<OutRun kartId='1382'	characterId='291'	colorId='1' dyeId='57'	track='abyss_R01'	gameSpeed='7'>
+	<LevelContent level='7' ksv='PRO_6_abyss_R01_7'/>
+</OutRun>
+
+<!-- 가피시 X / 머구리 / 어비스 스카이라인 -->
+<!-- 
+<OutRun kartId='1175'	characterId='291'	colorId='79' dyeId='81'	track='abyss_R01'	gameSpeed='7'>
+	<LevelContent level='7' ksv='PRO_6_abyss_R01_7'/>
+</OutRun>
+-->

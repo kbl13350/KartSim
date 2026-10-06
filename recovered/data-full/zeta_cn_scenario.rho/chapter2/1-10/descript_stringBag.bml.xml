@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="synopsis">
+    <m c="cn" v="因为过度练习驾驶而饥饿难耐的胖墩，|拿着小乖的奶瓶开始了逃窜。|请在胖墩喝光小乖的牛奶前拦住他。"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="在规定的时间内超过胖墩|落后20米以上时，挑战失败|"/>
+  </k>
+</StringBag>

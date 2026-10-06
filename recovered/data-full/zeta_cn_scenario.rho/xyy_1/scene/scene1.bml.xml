@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="xyy4"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="好累啊!"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="啊！那边有个村庄！|过去寻找一下伙伴们吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" pos="8 0" emotion="stop1"/>
+  <Msg name="喜羊羊" string="美羊羊，知道懒羊羊在哪里吗？"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="xyy2" pos="8 0" emotion="stop2"/>
+  <Msg name="美羊羊" string="一定是躲在哪个角落睡觉呢！"/>
+  <Enter/>
+  <Char id="xyy2" remove="true"/>
+  <Char id="xyy2" pos="8 0" emotion="stop3"/>
+  <Msg name="美羊羊" string="喜羊羊，那边好像是灰太狼！"/>
+  <Enter/>
+  <Char id="xyy2" remove="true"/>
+  <Char id="xyy1" pos="11 0" emotion="stop3"/>
+  <Char id="xyy2" pos="4 0" emotion="stop3"/>
+  <Msg name="喜羊羊" string="灰太狼？快跑啊！|我来拦住他！|你快去告诉村长！"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="xyy2" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani1"/>
+  <Msg name="皮蛋" string="那边是…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="xyy1" pos="11 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="啊…为什么攻击我啊？救命啊！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <GameParam gameSpeed="0" gameType="item" item="Ufo;WaterFly;Magnet;Booster;Rocket;WaterBomb;Shield;"/>
+  <PlayerParam kartId="852" characterId="1" uniformId="0" balloonId="695" headBandId="219" colorId="1"/>
+  <AiKartList aiItemLevel="1">
+    <AiKart characterId="9" uniformId="0" kartId="865" colorId="1" balloonId="125" speed="48" accel="28" startTick="0" characterName="로두마니"/>
+    <AiKart characterId="146" uniformId="0" kartId="868" colorId="1" balloonId="1058" speed="41" accel="31" startTick="0" characterName="카르노"/>
+    <AiKart characterId="20" uniformId="0" kartId="600" colorId="8" balloonId="385" speed="46" accel="30" startTick="0" characterName="네오"/>
+    <AiKart characterId="2" uniformId="0" kartId="849" colorId="6" balloonId="695" speed="45" accel="29" startTick="0" characterName="다오"/>
+    <AiKart characterId="24" uniformId="0" kartId="882" colorId="2" balloonId="212" speed="48" accel="30" startTick="0" characterName="카파에"/>
+    <AiKart characterId="25" uniformId="0" kartId="842" colorId="1" balloonId="299" speed="44" accel="27" startTick="0" characterName="첸첸"/>
+  </AiKartList>
+  <TrackList>
+    <track id="forest_I01"/>
+    <track id="forest_I04"/>
+    <track id="desert_I04"/>
+    <track id="ice_I04"/>
+    <track id="china_I01"/>
+    <track id="china_I02"/>
+    <track id="forest_I07"/>
+  </TrackList>
+</Root>

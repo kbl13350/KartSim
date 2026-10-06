@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="wkc2"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="我竟在第一场比赛中获胜了！！|我不是在做梦吧！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop2"/>
+  <Msg name="黑妞" string="皮蛋，恭喜你！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="果然皮蛋是最棒的。|竟然在世界锦标赛第一场比赛中获胜了！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop7"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="这说明我的实力已是一流的！|世界上最棒的！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="racer" pos="8 0" emotion="stop1"/>
+  <Msg name="天才赛车手" string="不知天高地厚！"/>
+  <Enter/>
+  <Char id="racer" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="racer" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="谁呀！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="racer" remove="true"/>
+  <Char id="racer" pos="11 0" emotion="stop1"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="你在说什么呀！他可是获胜者。"/>
+  <Enter/>
+  <Char id="racer" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="racer" pos="8 0" emotion="stop1"/>
+  <Msg name="天才赛车手" string="获胜者？是靠实力获胜的吗？"/>
+  <Enter/>
+  <Char id="racer" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="racer" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="你是没获胜而嫉妒吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="racer" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="racer" pos="11 0" emotion="stop2"/>
+  <Msg name="天才赛车手" string="哈哈哈哈，获胜！|你是叫皮蛋吧，你开始自满起来了哦！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="racer" remove="true"/>
+  <Char id="racer" pos="8 0" emotion="stop1"/>
+  <Msg name="天才赛车手" string="你好好想一下车手该具备的心态是什么？|如果你是名副其实的赛车手，你应该明白自满是多么愚蠢的。"/>
+  <Enter/>
+  <Char id="racer" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="站住！！！"/>
+  <Enter/>
+</Scene>

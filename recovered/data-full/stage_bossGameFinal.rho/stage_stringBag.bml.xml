@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="winningComment">
+    <m c="kr" v="&quot;%s&quot;님께서 이번미션에서 보스에게 가장 많은 |데미지를 주었습니다."/>
+    <m c="jp" v="&quot;%s&quot;さんが今回のミッションでボスに一番多く|ダメージを与えました。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="&quot;%s&quot; telah memberi damage terbanyak ke boss|dalam misi ini"/>
+  </k>
+  <k n="lossCommentTimeMine">
+    <m c="kr" v="시한지뢰가 설치되면 지뢰가 폭발하기 전 폭발범위를 피해 다른 곳으로 재빨리 이동하세요."/>
+    <m c="jp" v="時限地雷が設置されたら、地雷が爆発する前に爆発範囲を避けて他の場所へ急いで移動してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Jika bom waktu telah terpasang silahkan pindah ke tempat lain yang bisa menghindari ledakan."/>
+  </k>
+  <k n="lossCommentBombRobot">
+    <m c="kr" v="폭탄로봇이 발사되면 로봇의 이동 경로를 피해 다른 곳으로 재빨리 이동하세요."/>
+    <m c="jp" v="爆弾ロボットが発射されたら、ロボットの移動経路を避けて他の場所へ急いで移動してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Jika bom robot telah diluncurkan silahkan pindah ke tempat lain yang bisa mengindari bom tersebut."/>
+  </k>
+  <k n="lossCommentIronChunk">
+    <m c="kr" v="무쇠더미가 설치되면 설치지점을 피해 좌우로 재빨리 이동하세요."/>
+    <m c="jp" v="鉄塊が設置されたら、設置地点を避けて左右へ急いで移動してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Jika iron chunk telah terpasang silahkan pindah kiri kanan untuk menghindarinya."/>
+  </k>
+  <k n="lossCommentSpaceBombming">
+    <m c="kr" v="우주폭격기가 발사되면 트랙 위의 타겟 포인트를 피해 다른 곳으로 재빨리 이동하세요."/>
+    <m c="jp" v="宇宙爆撃機が発射されたら、コース上のターゲットポイントを避けて他の場所へ急いで移動してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Jika Space Bomber telah diluncurkan silahkan pindah ke tempat lain yang bisa menghindarinya."/>
+  </k>
+  <k n="lossCommentHandGrenade">
+    <m c="kr" v="수류탄이 발사되면 트랙 위의 타겟 포인트를 피해 다른 곳으로 재빨리 이동하세요."/>
+    <m c="jp" v="手榴弾が発射されたら、コース上のターゲットポイントを避けて他の場所へ急いで移動してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Jika granade telah diluncurkan silahkan pindah ke tempat lain yang bisa menghindarinya."/>
+  </k>
+  <k n="lossCommentMechanicBall">
+    <m c="kr" v="메카닉볼이 발사되면 볼이 튀어오는 간격에 따라 다른 곳으로 재빨리 이동하세요."/>
+    <m c="jp" v="メカニックボールが発射されたら、炎が上がる間隔を見計らって他の場所へ急いで移動してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Jika mechanic ball telah diluncurkan silahkan pindah ke tempat lain yang bisa menghindarinya."/>
+  </k>
+  <k n="lossCommentCube">
+    <m c="kr" v="보스가 떨어트리는 큐브에서 획득한 아이템을 잘 활용하면 미션을 쉽게 클리어 할 수 있습니다."/>
+    <m c="jp" v="ボスが落とすキューブから獲得したアイテムをうまく活用するとミッションを楽にクリアできます。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Kamu dapat menyelesaikan misinya dengan mudah dengan cara menggunakan item yang di-drop dari boss"/>
+  </k>
+  <k n="lossCommentMissile">
+    <m c="kr" v="Ctrl키를 눌러 타겟을 고정한 상태에서 연속적으로 Ctrl키를 누르면 빠르게 미사일을 발사 할 수 있습니다."/>
+    <m c="jp" v="Ctrlキーを押してターゲットを固定した状態で連続してCtrlキーを押すと素早くミサイルを発射できます。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Setelah mengunci target dengan Ctrl,dapat memnyerang dengan cepat denganc cara menekan terus menurus Ctrl"/>
+  </k>
+  <k n="lossCommentAdjacent">
+    <m c="kr" v="보스에 너무 가까이 접근하면 공격을 당하게 되니 적정 거리를 유지하세요."/>
+    <m c="jp" v="ボスに近付き過ぎると攻撃されてしまうので、適当な距離を維持してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Jika terlalu dekat dengan boss akan ada kemungkinan diserang oleh boss"/>
+  </k>
+  <k n="lossCommentReload">
+    <m c="kr" v="미사일 재장전 시에는 미사일 발사가 불가능 합니다. 재장전 후 미사일을 사용하세요"/>
+    <m c="jp" v="ミサイル再装填時にはミサイル発射ができません。再装填が終わってからミサイルを使用してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Saat reload rudal tidak dapat menembaknya.Silahkan coba gunakan lagi setelah reload"/>
+  </k>
+  <k n="lossCommentStun">
+    <m c="kr" v="공격을 당해 HP=0이 되면 공중에 떠오르고 일정시간 동안 속도가 느려집니다.|또한 일정 시간 미사일 공격도 실패하게 되니 주의하세요~."/>
+    <m c="jp" v="攻撃を受けてHP=0になると、空中に浮きあがり、一定の時間速度が遅くなります。|また、しばらくの時間ミサイル攻撃も失敗してしまいますのでご注意ください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Jika HP = 0 akibat dari serangan boss untuk semetara waktu akan terangkat | di udaran dan melambat.Dan juga akan gagal menembak rudal maka tolong berhati-hati~."/>
+  </k>
+  <k n="lossCommentWaterbomb">
+    <m c="kr" v="전기 물폭탄은 아이템 큐브에서 획득이 가능합니다.|전기 물폭탄을 사용법은 물폭탄과 동일하며 명중 시 많은 데미지를 부여할 수 있습니다."/>
+    <m c="jp" v="エレキウォーターボムはアイテムキューブから入手できます。|エレキウォーターボムの使い方はウォーターボムと同じで、命中すると多くのダメージを与えることができます。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Bom air listrik bisa diperoleh dari Item Cube.|Cara penggunaan nya sama dengan bom air namun damage nya lebih besar."/>
+  </k>
+  <k n="lossCommentBigmissile">
+    <m c="kr" v="불꽃 미사일은 아이템 큐브에서 획득이 가능합니다.|불꽃 미사일을 사용하면 일직선으로 발사되며 명중 시 많은 데미지를 부여할 수 있습니다."/>
+    <m c="jp" v="ファイアーミサイルはアイテムキューブから入手できます。|ファイアーミサイルを使用すると一直線に発射され、命中すると多くのダメージを与えることができます。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Rudal api bisa diperoloe dari item cube.|Jika menggunakan nya akan ditembak lurus dan memberikan banyak damage,"/>
+  </k>
+</StringBag>

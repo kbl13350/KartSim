@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="myRankInfoTitle">
+    <m c="kr" v="내 랭킹 상세 정보"/>
+    <m c="cn" v="我的排名信息"/>
+  </k>
+  <k n="seasonExpectedRank">
+    <m c="kr" v="시즌 예상 랭킹"/>
+    <m c="cn" v="赛季预想排名"/>
+  </k>
+  <k n="pointFormat">
+    <m c="kr" v="%d 점"/>
+    <m c="cn" v="%d 分"/>
+  </k>
+  <k n="grade">
+    <m c="kr" v="등급"/>
+    <m c="cn" v="等级"/>
+  </k>
+  <k n="rank">
+    <m c="kr" v="순위"/>
+    <m c="cn" v="排名"/>
+  </k>
+  <k n="accumulatedScore">
+    <m c="kr" v="누적 점수"/>
+    <m c="cn" v="累计分数"/>
+  </k>
+  <k n="week">
+    <m c="kr" v="주차"/>
+    <m c="cn" v="每周"/>
+  </k>
+  <k n="weekFormat">
+    <m c="kr" v="%d주차"/>
+    <m c="cn" v="第%d周"/>
+  </k>
+  <k n="record">
+    <m c="kr" v="기록"/>
+    <m c="cn" v="分数"/>
+  </k>
+  <k n="pointDetailinfo">
+    <m c="kr" v="점수 상세 정보"/>
+    <m c="cn" v="分数详细信息"/>
+  </k>
+  <k n="notReflected">
+    <m c="kr" v="[미반영]"/>
+    <m c="cn" v="[未反映]"/>
+  </k>
+  <k n="myRankMsg1">
+    <m c="kr" v="시즌 예상 랭킹 정보 및 현재 주차의 등급, 순위 정보는 일정 시간마다 갱신됩니다."/>
+    <m c="cn" v="每隔一段时间自动更新赛季预想排名信息及当前周等级，排名信息。"/>
+  </k>
+  <k n="myRankMsg2">
+    <m c="kr" v="세 가지 트랙을 모두 완주하지 않은 주차의 점수는 시즌 랭킹에 반영되지 않습니다."/>
+    <m c="cn" v="只有完成每周的3个赛道后，该周分数才会反映在赛季排名。"/>
+  </k>
+  <k n="rankPercentageFormat">
+    <m c="kr" v="%d위|상위 %.2f%%"/>
+    <m c="cn" v="第%d名|前%.2f%%"/>
+  </k>
+  <k n="joinBonus">
+    <m c="kr" v="참여 보너스"/>
+    <m c="cn" v="参与额外奖励"/>
+  </k>
+  <k n="scheduled">
+    <m c="kr" v="진행 예정"/>
+    <m c="cn" v="敬请期待"/>
+  </k>
+  <k n="competitivePeriod">
+    <m c="kr" v="[챕터%d 시즌%d] %s ~ %s"/>
+    <m c="cn" v="[第%d章 %d赛季] %s ~ %s"/>
+  </k>
+  <k n="pastSeasonRecord">
+    <m c="kr" v="지난 시즌 기록"/>
+    <m c="cn" v="以往赛季纪录"/>
+  </k>
+  <k n="chapterSeasonFormat">
+    <m c="kr" v="챕터%d 시즌%d"/>
+    <m c="cn" v="%d章 %d赛季"/>
+  </k>
+  <k n="rankPercentageNone">
+    <m c="kr" v="-위|상위 -%"/>
+    <m c="cn" v="第-名|前-%"/>
+  </k>
+</StringBag>

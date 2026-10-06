@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="exceedChargeOnSpeed">
+    <m c="kr" v="특정 속도 이상 주행 시 익시드 게이지가 충전됩니다"/>
+    <m c="cn" v="当行驶速度达到一定速度时，超负荷槽将会集气。"/>
+  </k>
+  <k n="exceedChargeOnCollision">
+    <m c="kr" v="충돌 시에도 익시드 게이지가 충전됩니다."/>
+    <m c="cn" v="发生碰撞时，|同样也能获得超负荷集气量。"/>
+  </k>
+  <k n="exceedUsePartial">
+    <m c="kr" v="게이지가 완충되지 않아도 익시드를 사용할 수 있습니다"/>
+    <m c="cn" v="即使超负荷槽未完全充满，|也可以使用超负荷系统哦。"/>
+  </k>
+  <k n="useExceed">
+    <m c="kr" v="익시드를 사용해 보세요!"/>
+    <m c="cn" v="使用超负荷系统！"/>
+  </k>
+  <k n="goalInLimitTime">
+    <m c="kr" v="제한 시간 내 완주"/>
+    <m c="cn" v="规定时间内完成"/>
+    <m c="tw" v=""/>
+  </k>
+</StringBag>

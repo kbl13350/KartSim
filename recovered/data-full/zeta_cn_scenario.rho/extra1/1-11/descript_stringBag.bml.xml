@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="祭祀长的追击!"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="把皮蛋和朋友们看成是侵入者的祭祀长，|开始追逐皮蛋和朋友们，并打算把他们全部关进监狱。|被抓住的话，说不定会被一辈子关在监狱里。|请迅速避开祭祀长的追击！"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="在规定的时间内，通过所有的检查点。|"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="黄金之星"/>
+  </k>
+</StringBag>

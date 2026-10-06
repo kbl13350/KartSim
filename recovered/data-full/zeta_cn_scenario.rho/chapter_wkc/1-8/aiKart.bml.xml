@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="1"/>
+  <AiKart id="1" track="wkc_R03" isFixedKart="true" fixedKartId="10" laps="2" gameType="speed" isFixedChar="true" fixedCharId="2" miniNpc="true">
+    <LevelContent level="0" aiItemLevel="0">
+      <AiKart characterId="15" uniformId="0" kartId="456" colorId="8" dyeId="8" balloonId="0" speed="45" accel="25" startTick="0" characterName="天才赛车手"/>
+      <AiKart characterId="15" uniformId="0" kartId="456" colorId="9" dyeId="9" balloonId="0" speed="50" accel="25" startTick="0" characterName="骑士"/>
+      <AiKart characterId="15" uniformId="0" kartId="456" colorId="10" dyeId="10" balloonId="0" speed="50" accel="20" startTick="0" characterName="尼克"/>
+    </LevelContent>
+  </AiKart>
+</Root>

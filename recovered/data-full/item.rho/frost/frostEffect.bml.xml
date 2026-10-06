@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowSize="2048 1536" align="center">
+  <Panel name="frost1" leftTopTex="0 0" visible="false" texture="1920_frost1" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost2" leftTopTex="512 0" visible="false" texture="1920_frost2" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost3" leftTopTex="1024 0" visible="false" texture="1920_frost3" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost4" leftTopTex="1536 0" visible="false" texture="1920_frost4" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost5" leftTopTex="0 512" visible="false" texture="1920_frost5" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost6" leftTopTex="512 512" visible="false" texture="1920_frost6" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost7" leftTopTex="1024 512" visible="false" texture="1920_frost7" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost8" leftTopTex="1536 512" visible="false" texture="1920_frost8" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost9" leftTopTex="0 1024" visible="false" texture="1920_frost9" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost10" leftTopTex="512 1024" visible="false" texture="1920_frost10" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost11" leftTopTex="1024 1024" visible="false" texture="1920_frost11" alphaBlend="true" textureOp="modulate"/>
+  <Panel name="frost12" leftTopTex="1536 1024" visible="false" texture="1920_frost12" alphaBlend="true" textureOp="modulate"/>
+</Container>

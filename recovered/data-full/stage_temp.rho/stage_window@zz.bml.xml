@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <List name="frameHelp" leftTopWH="10 10 800 600" listGap="1" framePreset="Default" scrollBarVisible="true" visible="false"/>
+</Container>

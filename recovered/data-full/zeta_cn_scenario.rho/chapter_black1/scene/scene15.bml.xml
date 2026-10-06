@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold9"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="活了..|不对，是找到了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop5"/>
+  <Msg name="黑妞" string="哇~皮蛋真帅~♡"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kaphae" pos="8 0" emotion="stop2"/>
+  <Msg name="卡帕" string="皮蛋果然是勇敢的男人！"/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="mobi" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="stone" pos="11 0" emotion="stop5"/>
+  <Msg name="吉米" string="中间有紫水晶…"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="stone" remove="true"/>
+  <Char id="kaphae" pos="4 0" emotion="stop3"/>
+  <Char id="stone" pos="11 0" emotion="stop5"/>
+  <Msg name="卡帕" string="是啊！那就是星陨之石紫水晶！"/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="stone" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="stone" pos="11 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="呼..不管怎样（活了..)|我们现在怎么办？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="stone" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="先去尼欧那里月光之城吧！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="ani3"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Msg name="黑妞" string="宝宝怎么办？|找到宝宝一起去怎么样？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Msg name="葱头" string="宝宝应该也会去月光之城的！我们不是约好了吗！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="那倒是，宝宝不是傻瓜，比傻瓜强点~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mobi" pos="8 0" emotion="stop5"/>
+  <Msg name="吉米" string="月光之城..|(漫长的旅行..)"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="那也是..要从这里到月光之城|要走一段时间.."/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kaphae" pos="8 0" emotion="stop4"/>
+  <Msg name="卡帕" string="月光之城有捷径！相信我！"/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="ethi" pos="13 0" emotion="stop1"/>
+  <Char id="dizini" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="黑妞，皮蛋，葱头" string="捷径！！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Shake time="500"/>
+  <Char id="kaphae" pos="8 0" emotion="normal"/>
+  <Msg name="卡帕" string="但是~危险.."/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="ani2"/>
+  <Msg name="黑妞" string="没关系！我们有皮蛋！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="啊~哈哈哈..应该没事..|(只要没有石子… 我差点就死了啊..)"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kaphae" pos="8 0" emotion="stop4"/>
+  <Msg name="卡帕" string="那跟上吧~"/>
+  <Enter/>
+</Scene>

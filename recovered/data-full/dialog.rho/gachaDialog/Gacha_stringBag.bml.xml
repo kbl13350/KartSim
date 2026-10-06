@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="rewardStockCaption">
+    <m c="kr" v="네오의 숨은 보물"/>
+    <m c="jp" v="ネオの隠れた宝"/>
+    <m c="cn" v="车神的宝箱"/>
+    <m c="tw" v="神秘寶箱"/>
+    <m c="us" v="Neo&apos;s hidden treasure"/>
+    <m c="vn" v="Đã nhận phần thưởng"/>
+    <m c="ru" v="Сокровище Нео"/>
+    <m c="id" v="Hidden Treasure Neo"/>
+    <m c="th" v="ของขวัญที่ซ่อนอยู่ของ Neo"/>
+  </k>
+  <k n="NewQuest">
+    <m c="kr" v="새로운 퀘스트가 시작되었습니다.|퀘스트 창을 확인해 보세요."/>
+    <m c="jp" v="新しいクエストが始まりました。|クエストウィンドウを確認してください。"/>
+    <m c="us" v="New Quest available!  Please check your Quest Log."/>
+    <m c="vn" v="Bắt đầu tìm kiếm nhiệm vụ mới. | Hãy kiểm tra cửa sổ."/>
+    <m c="ru" v="Новый квест.|Откройте окно квеста."/>
+    <m c="id" v="Quest baru telah dimulai.|Silahkan cek window Quest."/>
+    <m c="th" v="เริ่มเควสใหม่ |กรุณายืนยันเควส"/>
+  </k>
+  <k n="congratulationStrFormat">
+    <m c="kr" v="축하합니다! 다음 상품을 획득하셨습니다.|&quot;%s&quot;"/>
+    <m c="jp" v="おめでとうございます！|次の商品を入手しました。|&quot;%s&quot;"/>
+    <m c="cn" v="恭喜你！获得了 %s道具"/>
+    <m c="tw" v="恭喜 ~ 獲得%s道具"/>
+    <m c="us" v="Congratulations! You have obtained the following item: &quot;%s&quot;"/>
+    <m c="vn" v="Chúc mừng bạn! |Bạn đã giành được phần thưởng.|&quot;%s&quot;"/>
+    <m c="ru" v="Поздравляем!|Вы получили награду.|&quot;%s&quot;"/>
+    <m c="id" v="Selamat!|Telah mendapat item berikut ini.|&quot;%s&quot;"/>
+    <m c="th" v="ยินดีด้วย!|ได้รับไอเทมแล้ว|&quot;%s&quot;"/>
+  </k>
+  <k n="congratulationStrFormatWithBonus">
+    <m c="kr" v="축하합니다! 다음 상품을 획득하셨습니다.|&quot;%1!s!&quot;, &quot;%2!s!&quot;"/>
+    <m c="jp" v="おめでとうございます！|次の商品を入手しました。|&quot;%1!s!&quot;, &quot;%2!s!&quot;"/>
+    <m c="cn" v="恭喜你！获得了 &quot;%1!s!&quot;, &quot;%2!s!&quot; 道具"/>
+    <m c="tw" v="恭喜～獲得&quot;%1!s!&quot;, &quot;%2!s!&quot;"/>
+    <m c="id" v="Selamat!|Telah mendapat item berikut ini.|&quot;%1!s!&quot;, &quot;%2!s!&quot;"/>
+  </k>
+  <k n="congratulationStr">
+    <m c="kr" v="축하합니다! 다음 상품을 획득하셨습니다."/>
+    <m c="cn" v="恭喜你！获得了"/>
+  </k>
+  <k n="lotteryNotInPeriod">
+    <m c="kr" v="사용 기간이 아닙니다."/>
+    <m c="jp" v="利用有効期間ではありません。"/>
+    <m c="cn" v="不在使用期之内"/>
+    <m c="tw" v="非使用期間"/>
+    <m c="us" v="This item cannot be used yet. "/>
+    <m c="vn" v="Vĩnh viễn"/>
+    <m c="ru" v="Сейчас не время действия."/>
+    <m c="id" v="Bukan periode pemakaian"/>
+    <m c="th" v="ไม่ใช่เวลาที่ใช้"/>
+  </k>
+  <k n="lotteryNotEnoughQuantity">
+    <m c="kr" v="%s의 개수가 부족하여 사용할 수가 없습니다.|%s을 오픈하려면 총 %d개가 필요합니다. "/>
+    <m c="cn" v="%s的数量不足，无法使用|%s需要%d个才可开启"/>
+    <m c="jp" v="%sの個数が足りないため、使用できません。|%sをオープンするには%d個必要です。"/>
+    <m c="tw" v=" 道具數量不足"/>
+    <m c="id" v="Tidak dapat menggunakannya karena kurang %s pcs|Jika ingin membuka %s membutuhkan total %d pcs."/>
+  </k>
+  <k n="lotteryNotHave">
+    <m c="kr" v="%s의 개수가 부족하여 사용할 수가 없습니다. "/>
+    <m c="cn" v="%s的数量不足，无法使用"/>
+    <m c="tw" v=" 道具數量不足"/>
+  </k>
+  <k n="unknownError">
+    <m c="kr" v="알 수 없는 오류가 발생했습니다."/>
+    <m c="jp" v="原因不明のエラーが発生しました。"/>
+    <m c="cn" v="发生了未知错误"/>
+    <m c="tw" v="禮物盒開啟失敗(禮物盒不會遭到消耗)，請嘗試再次開啟禮物盒。"/>
+    <m c="us" v="An unknown error occurred. "/>
+    <m c="vn" v="Không xác định được lỗi."/>
+    <m c="ru" v="Обнаружена неизвестная ошибка."/>
+    <m c="id" v="Telah terjadi error yang tidak terduga"/>
+    <m c="th" v="เกิดข้อบกพร่องที่ไม่สามารถระบุได้"/>
+  </k>
+  <k n="lotteryExceedTrialCount">
+    <m c="kr" v="이미 보유하고 있는 아이템 입니다. 다시 시도해주세요."/>
+    <m c="jp" v="一時的なネットワークの異常のため、正常に動作しませんでした。|アイテムは減っていません。もう一度お試しください。"/>
+    <m c="cn" v="您已持有该道具，请重新尝试。"/>
+    <m c="tw" v="該道具未被消耗 ！ 若您使用後，取得的道具為目前您車庫內持有的永久或最大使用期限的道具，此道具將不會被消耗，還請重新點選使用。"/>
+    <m c="id" v="Terjadi error sementar karena network.|Item tidak berkurang.silahkan coba lagi"/>
+  </k>
+  <k n="rewardStockCaption2">
+    <m c="kr" v="선물상자"/>
+    <m c="jp" v="プレゼントボックス"/>
+    <m c="cn" v="迷你宝箱"/>
+    <m c="tw" v="情人禮物盒"/>
+    <m c="us" v="Gift box"/>
+    <m c="vn" v="Phần thưởng"/>
+    <m c="ru" v="Подарочная коробка"/>
+    <m c="id" v="Gift Box"/>
+    <m c="th" v="กล่องของขวัญ"/>
+  </k>
+  <k n="getReward">
+    <m c="kr" v="선물상자 안에 어떤 행운이| 들어있는지 확인해보세요.|선물상자 아이템을 사용하시겠습니까?"/>
+    <m c="jp" v="プレゼントボックスの中にどんな幸運が| 入っているか、確認してください。|プレゼントボックス アイテムを使用しますか？"/>
+    <m c="cn" v="快来看看任务奖励里有怎样的幸运。|你确定要打开任务奖励吗?"/>
+    <m c="tw" v="要打開禮物盒嗎?"/>
+    <m c="us" v="Check to see what is inside this box.  Would you like to open the gift box?"/>
+    <m c="vn" v="Nhiều món quà bất ngờ |đang chờ bạn!|Bạn muốn mở nó chứ?"/>
+    <m c="ru" v="Проверьте, |улыбнулась ли вам удача. |Открыть?"/>
+    <m c="id" v="Coba cek isi gift box|apa kamu beruntung.|Ingin menggunakan gift box?"/>
+    <m c="th" v="ลองเปิดกล่องของขวัญดู|ว่ามีอะไรดีๆซ่อนอยู่|จะใช้ไอเทมกล่องของขวัญไหม"/>
+  </k>
+  <k n="oldBookInfo">
+    <m c="kr" v="어익후 개삽질 코드!"/>
+    <m c="jp" v="ゲッ、超無駄骨！"/>
+    <m c="vn" v="Sách tuyệt kỹ !"/>
+    <m c="ru" v="Неизвестный код!"/>
+    <m c="id" v="Ups..Silahkan coba lagi!"/>
+    <m c="th" v="0"/>
+  </k>
+  <k n="item">
+    <m c="kr" v="아이템"/>
+    <m c="jp" v="アイテム"/>
+    <m c="cn" v="道具"/>
+    <m c="tw" v="道具"/>
+    <m c="us" v="Items"/>
+    <m c="vn" v="Vật phẩm"/>
+    <m c="ru" v="Предмет"/>
+    <m c="id" v="Item"/>
+    <m c="th" v="ไอเทม"/>
+  </k>
+  <k n="needToMoveGachaStage">
+    <m c="kr" v="이 아이템은 이벤트 비밀상자에서|사용하실 수 있습니다.|이벤트 비밀상자로 이동하시겠습니까?"/>
+    <m c="jp" v="このアイテムはイベントシークレットボックスで|使用できます。|イベントシークレットボックスへ移動しますか？"/>
+    <m c="cn" v="该道具只在精品道具场可以使用。|是否进入精品道具场？"/>
+    <m c="tw" v="此道具僅限於神秘寶箱內使用。|要移動到神秘寶箱嗎?"/>
+    <m c="id" v="Item ini dapat digunakan | di secret chest event.|Ingin ke secret chest event?"/>
+  </k>
+  <k n="moveNow">
+    <m c="kr" v="확인"/>
+    <m c="jp" v="確認"/>
+    <m c="cn" v="确认"/>
+    <m c="tw" v="確認"/>
+    <m c="id" v="Konfirmasi"/>
+  </k>
+  <k n="bingoNumber">
+    <m c="kr" v="빙고숫자 : %d"/>
+    <m c="cn" v="BINGO数字 : %d"/>
+    <m c="tw" v="賓果數字 : %d"/>
+  </k>
+  <k n="openLotteryCheck">
+    <m c="cn" v="确定开启吗？|开启时将消耗一个相应道具。"/>
+  </k>
+  <k n="vipGrade">
+    <m c="kr" v="VIP"/>
+    <m c="cn" v="VIP"/>
+    <m c="tw" v="VIP"/>
+  </k>
+  <k n="platinumGrade">
+    <m c="kr" v="플래티넘"/>
+    <m c="cn" v="水晶"/>
+    <m c="tw" v="白金"/>
+  </k>
+  <k n="goldGrade">
+    <m c="kr" v="골드"/>
+    <m c="cn" v="黄金"/>
+    <m c="tw" v="金牌"/>
+  </k>
+  <k n="silverGrade">
+    <m c="kr" v="실버"/>
+    <m c="cn" v="白银"/>
+    <m c="tw" v="銀牌"/>
+  </k>
+  <k n="familyGrade">
+    <m c="kr" v="패밀리"/>
+    <m c="cn" v="会员"/>
+    <m c="tw" v="家族"/>
+  </k>
+  <k n="premiumBox">
+    <m c="kr" v="프리미엄 선물 상자"/>
+    <m c="cn" v="VIP会员礼物盒"/>
+    <m c="tw" v="我的VIP禮物寶盒"/>
+  </k>
+  <k n="useBox">
+    <m c="kr" v="상자열기"/>
+    <m c="cn" v="开启"/>
+    <m c="tw" v="開啟寶盒"/>
+  </k>
+  <k n="close">
+    <m c="kr" v="닫기"/>
+    <m c="cn" v="关闭"/>
+    <m c="tw" v="關閉"/>
+  </k>
+  <k n="premiumGrade">
+    <m c="kr" v="프리미엄"/>
+    <m c="cn" v="水晶"/>
+    <m c="tw" v="白金"/>
+  </k>
+  <k n="stopUseMultiLottery">
+    <m c="kr" v="연속 사용 그만하기"/>
+    <m c="cn" v="停止连抽"/>
+    <m c="tw" v=""/>
+  </k>
+</StringBag>

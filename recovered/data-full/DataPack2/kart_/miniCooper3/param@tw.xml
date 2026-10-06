@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='70'
+	BackwardAccelForce='80'
+	DragFactor='-0.035'
+	SteerConstraint='1.35'
+	DriftEscapeForce='110'
+	CornerDrawFactor='0.032'
+
+	EngineSound='minicooper2'
+	EnvMap='true'
+
+		DescBalance= '28'
+	DescStability ='30'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+/>
+
+<!-- 미니쿠퍼 R4 Type-B (대만) -->

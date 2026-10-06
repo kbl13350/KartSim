@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='135.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.068'
+	SteerConstraint='2.1'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.068'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+	DriftMaxGauge='-1550'
+
+	UseTransformBooster='true'
+    TransAccelFactor='1.75'
+	motorcycleType='true'
+	EnvMap='true'
+
+	BoosterBlur='true'
+	EngineSound='bike'
+
+	TachometerType='Tacho1'
+	TachometerName='bike'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod4a'
+	Port1='mod4b'
+	FirePort0='mod5a'
+	FirePort1='mod5b'
+	FirePort2='mod6a'
+	FirePort3='mod6b'
+
+	DescBalance= '32'
+	DescStability ='27'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '25'
+/>
+<!-- 스플릿윈드SE 오토바이 카트 -->

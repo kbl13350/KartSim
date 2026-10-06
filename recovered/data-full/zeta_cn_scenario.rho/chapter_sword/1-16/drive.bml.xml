@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Tracing isFixedKart="true" fixedKartId="1091" isFixedChar="true" fixedCharId="242" kartId="1094" colorId="1" dyeId="1" characterId="243" uniformId="0" characterName="张飞">
+    <LevelContent level="0" track="village_I05" laps="3" ksv="chapter_sword_1-16" distance="20" startOffset="1000"/>
+  </Tracing>
+</Root>

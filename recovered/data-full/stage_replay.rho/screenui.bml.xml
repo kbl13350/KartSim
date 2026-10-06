@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="screenUI" windowRect="fullscreen">
+  <Container name="timeinfo" windowSize="120 22" align="left;bottom" adjust="14 145">
+    <CharPanel name="min" windowRect="0 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="25 0 43 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="sec" windowRect="35 0 71 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="60 0 78 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="mil" windowRect="70 0 106 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+  </Container>
+  <Container name="recordTimeinfo" windowSize="120 22" align="right;bottom" adjust="-4 145">
+    <CharPanel name="min" windowRect="0 0 36 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="25 0 43 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="sec" windowRect="35 0 71 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="60 0 78 22" uvRect="180 0 198 22" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="mil" windowRect="70 0 106 22" texture="time_num" alphaBlend="true" fontSize="18 22" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+  </Container>
+  <Container windowRect="0 15 800 110">
+    <Panel windowSize="58 58" adjust="30 75" align="left" texture="카메라정보표시@zz" alphaBlend="true"/>
+    <Label name="useItemDesc" leftTopWH="0 7 200 40" textRender="bigbold" textColor="yellow" align="hcenter" visible="false"/>
+    <Window windowSize="112 15" adjust="86 77" align="left">
+      <Label name="currentRider" windowRect="0 0 92 20" text="???" textRender="outline20" textColor="white" align="hcenter"/>
+    </Window>
+    <Window windowSize="115 15" adjust="92 104" align="left">
+      <Label name="currentCam" windowRect="0 0 105 20" text="???" textRender="outline16" textColor="white" align="hcenter"/>
+    </Window>
+  </Container>
+  <RankList name="ranklist" leftTopWH="4 156 229 462"/>
+</Container>

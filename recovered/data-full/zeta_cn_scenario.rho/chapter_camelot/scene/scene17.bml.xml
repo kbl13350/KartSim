@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot19"/>
+  <Char id="arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="还差一点！！一定要得到圣剑！！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="mordred" pos="11 0" emotion="stop1"/>
+  <Char id="arthur" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="莫德雷德" string="到此为止了！前方禁止通行…"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="mordred" pos="11 0" emotion="normal"/>
+  <Msg name="亚瑟" string="可恶……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <BackGround texture="camelot20"/>
+  <Char id="excalibur" pos="9 0" emotion="normal"/>
+  <Char id="kei" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="莫德雷德！我到圣剑这里了！"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <BackGround texture="camelot19"/>
+  <Char id="mordred" pos="10 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="很好，凯王子！|赶紧拔出圣剑，成为卡美洛真正的王吧。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <BackGround texture="camelot20"/>
+  <Char id="excalibur" pos="9 0" emotion="normal"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="凯" string="我要拔出圣剑，成为卡美洛的国王！"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="excalibur" pos="7 0" emotion="stop3"/>
+  <Msg name="..." string="啪滋滋滋！！"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="excalibur" pos="9 0" emotion="stop3"/>
+  <Char id="kei" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="凯" string="啊啊啊啊啊！！"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="excalibur" pos="9 0" emotion="normal"/>
+  <Char id="kei" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="凯" string="我竟然被圣剑弹开了……"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <BackGround texture="camelot19"/>
+  <Char id="mordred" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="怎么可能……为什么会这样……|预言里说过只有王之血脉才能拔出圣剑啊……"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="9 0" emotion="stop2"/>
+  <Msg name="莫德雷德" string="难道说，凯王子不是卡美洛的王室血脉？"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="merlin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="梅林" string="呵呵……我当时不是跟你说了嘛。|带走那个孩子的话你会后悔的……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="梅林" string="你眼前的这个亚瑟才是卡美洛真正的王之血脉，呼呼。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="mordred" pos="9 0" emotion="stop2"/>
+  <Msg name="莫德雷德" string="可恶……是你这个老东西把孩子掉包了吧！！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="merlin" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="梅林" string="这都是你的命运……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="mordred" pos="9 0" emotion="stop2"/>
+  <Msg name="莫德雷德" string="别说的像自己什么都看透了一样！呃…真是个可恶的老头子！！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="趁现在！只要拔出圣剑……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="9 0" flip="true" emotion="stop2"/>
+  <Char id="mordred" pos="2 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="你想去哪！如果你真是卡美洛王的血脉……|那就给我消失吧！咿呀！！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="pung" pos="8 0" emotion="normal"/>
+  <Msg name="..." string="滋滋滋滋！！！砰！！！！"/>
+  <Enter/>
+  <Char id="pung" remove="true"/>
+  <Char id="arthur" pos="13 0" emotion="stop3"/>
+  <Char id="mordred" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="kei" pos="10 0" emotion="stop5"/>
+  <Msg name="莫德雷德" string="凯王子！！你这是在干什么？你要妨碍我莫德雷德吗？"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="13 0" emotion="stop3"/>
+  <Char id="mordred" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="kei" pos="9 0" emotion="stop5"/>
+  <Msg name="凯" string="咳咳，咳咳……莫德雷德……没必要伤害那个孩子吧？"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="12 0" emotion="stop5"/>
+  <Char id="kei" pos="8 0" emotion="stop5"/>
+  <Msg name="亚瑟" string="凯……竟然为了我，挡住了莫德雷德的攻击……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="莫德雷德" string="这，这……这么多年来我辅佐王子尽心尽力……|就为那个孩子要背叛我吗？"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫德雷德" string="本想把王子立为国王后将卡美洛收入囊中的……|看来我的计划要泡汤了！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="arthur" pos="12 0" emotion="stop2"/>
+  <Char id="kei" pos="7 0" emotion="stop5"/>
+  <Msg name="凯" string="莫德雷德……我敬你如同我亲生父母……没想到你会有这种野心……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="反正你只是我的傀儡。|看来我只能亲自拔出圣剑，成为卡美洛国王了。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="现在的你已经没用了……就跟老国王一样给我消失吧！！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop7"/>
+  <Msg name="宝宝" string="刀下留人！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop8"/>
+  <Msg name="宝宝" string="我现在非常饿，而且想回家……可都因为你……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="ani5"/>
+  <Msg name="宝宝" string="莫德雷德……我生气了！！后果很严重！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="又红又圆家伙，在说什么呢，你很碍事啊。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="好吧，那就拿你开刀吧！！"/>
+  <Enter/>
+</Scene>

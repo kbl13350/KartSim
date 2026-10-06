@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>'
+  <BackGround texture="wkc6"/>
+  <Char id="kai" pos="10 0" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="没想到海盗那帮家伙既然跟到了这里…|先观察观察…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="虽然市长说敞篷老爷车被曝光我就会有危险，|可事实是危险的是他。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop2"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="？" string="又见面了。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="你是？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="？" string="侦探，去矿山看看吧，|有人在那里等着你。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="我看没必要去矿山了，|亚伯特的女儿阿尔贝特。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="？！|你是怎么知道的？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="在2013年博物馆发现的宣告书的笔记，|与在亚伯特墓前发现的信上特殊的文字，一模一样！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="？！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="还有，你周围一直有敞篷老爷车的印迹。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="而且，你尽管伪装成了我，你身上会一直有玫瑰花香"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="阿尔贝特" string="吼吼~|果然是大侦探。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="敞篷老爷车因市长无法生产，|也不知道因为什么，大家对敞篷老爷车有不好的印象…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="作为敞篷老爷车主人亚伯特女儿的你，一直伪装着各种人，|想为敞篷老爷车洗清罪名，这么做是没用的~"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="呜呜…|市长…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop2"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="不要哭，阿尔贝特，|现在还不是掉眼泪的时候。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop2"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="市长为了独占所有可以赚钱的事业而编造的各种阴谋，|善良的市民就这么一直被骗着…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop2"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="阿尔贝特" string="对，都被市长骗着。|但，我不能以敞篷老爷车设计者女儿的身份出现在大家面前。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="在大家面前直接揭开市长的真实面目吧，|这是回转市民心的最好的方法~"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="怎么揭开？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop1"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="我会去矿山集合群众，|你去找一条可以潜入市长工厂的小路吧…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop1"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="阿尔贝特" string="小路到有一条，只要跟着矿山的轨道，|就可以偷偷摸摸进入到工厂。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop3"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="好，那我就替你出面去聚集群众们…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop3"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="阿尔贝特" string="好，福尔摩斯"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="10 0" emotion="stop4"/>
+  <Char id="rose" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="那待会见，阿尔贝特。"/>
+  <Enter/>
+</Scene>

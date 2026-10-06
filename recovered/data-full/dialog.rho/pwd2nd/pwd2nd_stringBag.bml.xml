@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="pwd2ndCaption">
+    <m c="kr" v="카트라이더 2차 비밀번호"/>
+  </k>
+  <k n="authenInfoEmail">
+    <m c="kr" v="E-MAIL"/>
+  </k>
+  <k n="authenInfoCell">
+    <m c="kr" v="휴대폰"/>
+  </k>
+  <k n="authenInfoQnA">
+    <m c="kr" v="질문/답"/>
+  </k>
+  <k n="authenInfoLevel1">
+    <m c="kr" v="[보안수준:낮음]"/>
+  </k>
+  <k n="authenInfoLevel2">
+    <m c="kr" v="[보안수준:중간]"/>
+  </k>
+  <k n="authenInfoLevel3">
+    <m c="kr" v="[보안수준:높음]"/>
+  </k>
+  <k n="authenInfoEmailDesc1">
+    <m c="kr" v="입력된 E-MAIL로 본인확인을 위한 인증번호가|전송됩니다."/>
+  </k>
+  <k n="authenInfoEmailDesc2">
+    <m c="kr" v="정확한 주소를 입력 해 주세요."/>
+  </k>
+  <k n="authenInfoCellDesc1">
+    <m c="kr" v="입력된 휴대폰으로 본인확인을 위한 인증번호가|전송됩니다."/>
+  </k>
+  <k n="authenInfoCellDesc2">
+    <m c="kr" v="정확한 번호를 입력 해 주세요."/>
+  </k>
+  <k n="authenInfoQnaStep1">
+    <m c="kr" v="STEP 1."/>
+  </k>
+  <k n="authenInfoQnaStep2">
+    <m c="kr" v="STEP 2."/>
+  </k>
+  <k n="numberpadText11">
+    <m c="kr" v="2차 비밀번호가 설정되어 있지 않습니다.|계정을 안전하게 보호하기 위해 2차 비밀번호를|반드시 설정해야 합니다.|안전한 카트라이더 이용을 위해 자신만의 번호를 설정해 주세요."/>
+  </k>
+  <k n="numberpadText21">
+    <m c="kr" v="4자리의 숫자를 입력하세요."/>
+  </k>
+  <k n="numberpadText12">
+    <m c="kr" v="2차 비밀번호를 확인합니다.|입력한 비밀번호를 다시 입력해 주세요."/>
+  </k>
+  <k n="numberpadText22">
+    <m c="kr" v="동일한 2차 비밀번호를 입력해 주세요!"/>
+  </k>
+  <k n="numberpadText13">
+    <m c="kr" v="2차 비밀번호가 틀립니다.|입력한 비밀번호를 다시 확인하시고|정확한 2차 비밀번호를 입력해 주세요."/>
+  </k>
+  <k n="numberpadText23">
+    <m c="kr" v="동일한 2차 비밀번호를 입력해 주세요!"/>
+  </k>
+  <k n="numberpadText14">
+    <m c="kr" v="정확한 2차 비밀번호를 입력해 주세요!|2차 비밀번호 입력이 틀린 경우 카트라이더 이용이 제한됩니다."/>
+  </k>
+  <k n="numberpadText24">
+    <m c="kr" v="2차 비밀번호를 입력해 주세요!"/>
+  </k>
+  <k n="numberpadText15">
+    <m c="kr" v="다시 정확한 2차 비밀번호를 입력해 주세요!|2차 비밀번호 입력이 틀린 경우|카트라이더 이용이 제한됩니다."/>
+  </k>
+  <k n="numberpadText25">
+    <m c="kr" v="2차 비밀번호를 입력해 주세요!"/>
+  </k>
+  <k n="numberpadText16">
+    <m c="kr" v="2차 비밀번호를 변경하기 위해서|기존 2차 비밀번호를 입력해 주세요!"/>
+  </k>
+  <k n="numberpadText26">
+    <m c="kr" v="2차 비밀번호를 입력해 주세요!"/>
+  </k>
+  <k n="numberpadText17">
+    <m c="kr" v="2차 비밀번호 설정을 변경합니다.|변경할 2차 비밀번호를 입력해 주세요."/>
+  </k>
+  <k n="numberpadText27">
+    <m c="kr" v="4자리의 숫자를 입력하세요."/>
+  </k>
+  <k n="lockedText">
+    <m c="kr" v="2차 비밀번호 입력 5회 실패로 게임 아이디가 잠겼습니다.|잠금 해제를 위해 2차 비밀번호 초기화가 필요합니다.|(카트라이더 홈페이지 &gt; 고객지원 &gt; 보안센터)"/>
+  </k>
+  <k n="lockedWebText">
+    <m c="kr" v="2차 비밀번호 초기화가 필요합니다."/>
+  </k>
+  <k n="authenInfoText11">
+    <m c="kr" v="2차 비밀번호 본인인증 정보 설정|2차 비밀번호 초기화 시, 본인인증에 사용 할|인증수단을 설정하세요!"/>
+  </k>
+  <k n="authenInfoText12">
+    <m c="kr" v="본인인증에 사용할 한 가지를 반드시 선택 해주세요!"/>
+  </k>
+  <k n="authenInfoText21">
+    <m c="kr" v="2차 비밀번호 본인인증 정보 설정을 변경합니다.|2차 비밀번호 초기화 시, 본인인증에 사용 할|인증수단을 설정하세요!"/>
+  </k>
+  <k n="authenInfoText22">
+    <m c="kr" v="본인인증에 사용할 한 가지를 반드시 선택 해주세요!"/>
+  </k>
+  <k n="pwd2ndNumberPadError1">
+    <m c="kr" v="잘못된 비밀번호를 설정하셨습니다.|2차 비밀번호를 다시 설정해 주세요."/>
+  </k>
+  <k n="pwd2ndNumberPadError2">
+    <m c="kr" v="4자리 모두 동일한 숫자로 2차 비밀번호를 설정할 수 없습니다.|2차 비밀번호를 다시 설정해 주세요."/>
+  </k>
+  <k n="pwd2ndAuthenInfoError">
+    <m c="kr" v="본인인증에 필요한 정보를 선택 및 입력하지 않으셨습니다.|각 항목 선택 및 입력 후 확인 버튼을 눌러주세요."/>
+  </k>
+  <k n="pwd2ndAuthenInfoErrorInvalidQna">
+    <m c="kr" v="본인인증 질문의 답변은 숫자, 영문(대/소), 한글만|입력 가능 합니다.|확인 후 다시 입력해주세요."/>
+  </k>
+  <k n="authenInfoQuestion0">
+    <m c="kr" v="자신의 별명은 무엇입니까?"/>
+  </k>
+  <k n="authenInfoQuestion1">
+    <m c="kr" v="가장 기억에 남는 장소는 어디입니까?"/>
+  </k>
+  <k n="authenInfoQuestion2">
+    <m c="kr" v="가장 인상깊게 읽었던 책은 무엇입니까?"/>
+  </k>
+  <k n="authenInfoQuestion3">
+    <m c="kr" v="가장 좋아하는 캐릭터는 무엇입니까?"/>
+  </k>
+  <k n="authenInfoQuestion4">
+    <m c="kr" v="자신의 보물 1호는 무엇입니까?"/>
+  </k>
+  <k n="authenInfoQuestion5">
+    <m c="kr" v="좋아하는 색깔은 무엇입니까?"/>
+  </k>
+  <k n="authenInfoQuestion6">
+    <m c="kr" v="가장 소중한 물건은 무엇입니까?"/>
+  </k>
+  <k n="authenInfoQuestion7">
+    <m c="kr" v="좋아하는 카트바디는 무엇입니까?"/>
+  </k>
+  <k n="authenInfoQuestion8">
+    <m c="kr" v="기타"/>
+  </k>
+</StringBag>

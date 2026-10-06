@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des2"/>
+  <Char id="jakob1" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="波利斯 雅克布" string="真不巧，你们这帮小屁孩。|知道我们的厉害了吧！快把黄金指南针交出来！"/>
+  <Enter/>
+  <Char id="jakob2" pos="3 0" emotion="stop4"/>
+  <Msg name="波诺 雅克布" string="就是，赶紧照着我大哥说的做！快交出来！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="呀，一不留神被他们追上来了|现在怎么办啊，皮蛋？"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="无论如何都不能把黄金指南针交给这些家伙！不然不知道会出现什么意外！|“挖井”队！有种你们和我来单挑，如果你们赢了，黄金指南针就归你们了！|怎么样？你们敢吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="jakob1" pos="3 0" emotion="stop5"/>
+  <Msg name="波利斯 雅克布" string="好狂的小子！居然敢挑战我们！|好！给这些小屁孩们看看我们“挖井”队的厉害！哦不！是淘金队！可恶的小子"/>
+  <Enter/>
+  <Char id="jakob2" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="波诺 雅克布" string="是！给这些小屁孩们看看我们“挖井”队的厉害！哦不！是淘金队！可恶的小子"/>
+  <Enter/>
+  <Char id="jakob1" pos="3 0" emotion="stop1"/>
+  <Msg name="波利斯 雅克布" string="弟弟！别老是重复我的话！"/>
+  <Enter/>
+  <Char id="jakob2" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="波诺 雅克布" string="哦！弟弟，别老是重复我……干嘛打我…… "/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop4"/>
+  <Msg name="胖墩" string="皮……皮蛋！你行吗？|看起来他们两个好像很强……万一你不幸……"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="你放心吧，我可是胜利者哦！我是绝对不会输的！放马过来吧！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LampFlare name="flickeringRed">
+  <lampFlare0 texture="front" isBlink="on" onTick="300" offTick="300"/>
+  <lampFlare1 texture="front"/>
+  <lampFlare2 texture="front"/>
+  <lampFlare3 texture="front"/>
+</LampFlare>

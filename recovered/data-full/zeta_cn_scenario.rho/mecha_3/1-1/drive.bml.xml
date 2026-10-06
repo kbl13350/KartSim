@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <Escape isFixedKart="true" fixedKartId="25" isFixedChar="true" fixedCharId="18" kartId="413" characterId="1" uniformId="41" colorId="1" dyeId="1" characterName="迪斯欧德R" miniNpc="true">
+    <LevelContent level="0" track="pirate_R01" laps="2" ksv="pirate_R01_1" distance="20" startOffset="-300"/>
+  </Escape>
+</Root>

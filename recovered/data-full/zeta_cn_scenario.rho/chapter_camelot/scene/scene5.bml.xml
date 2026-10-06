@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot7"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="另一边，世界巡回赛拉开帷幕……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="为了参加世界巡回赛，皮蛋、宝宝、黑妞、葱头等人来到了英国。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="ani1"/>
+  <Msg name="葱头" string="你俩是本届世界巡回赛繁的荣山丘的代表选手，|一定要让世界知道繁荣山丘车手的实力！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="ani1"/>
+  <Char id="bazzi" pos="11 0" emotion="ani1"/>
+  <Msg name="皮蛋,宝宝" string="那当然！一定会！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="stop1"/>
+  <Msg name="葱头" string="怎么样？这种级别的车辆|在世界巡回赛上拿奖，应该没问题吧？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop4"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop3"/>
+  <Char id="ethi" pos="2 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="我的车看起来真豪华！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop3"/>
+  <Char id="ethi" pos="2 0" emotion="ani3"/>
+  <Msg name="葱头" string="此车名叫光明骑士！！|可以进行简洁而温柔的漂移…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop4"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop3"/>
+  <Char id="ethi" pos="2 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="真的谢谢你哦…葱头！真想赶紧去跑车。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop5"/>
+  <Char id="ethi" pos="2 0" emotion="stop3"/>
+  <Msg name="宝宝" string="我的车是红色配……|啥？怎么被别人涂鸦了呀？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop4"/>
+  <Char id="ethi" pos="2 0" emotion="stop5"/>
+  <Msg name="葱头" string="那是龙纹！！此车是尖锋的特别版烈焰祥龙！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="ani2"/>
+  <Char id="ethi" pos="2 0" emotion="stop5"/>
+  <Msg name="宝宝" string="看来还得把涂鸦擦掉啊……真麻烦……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="ani2"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Msg name="葱头" string="说了是龙纹贴！好不容易才弄到的……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="ani1"/>
+  <Msg name="黑妞" string="真羡慕你们，|可以参加世界巡回赛，还有新车开！|看来这次一定要拿冠军啊？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="ani2"/>
+  <Char id="bazzi" pos="11 0" emotion="ani2"/>
+  <Msg name="皮蛋,宝宝" string="那当然，本届冠军非我莫属！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="可冠军只有一个啊？|我看应该是皮蛋吧？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="ani1"/>
+  <Msg name="葱头" string="嗯……毕竟光明骑士的性能摆在那里，很有可能。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="normal"/>
+  <Msg name="葱头" string="另外，烈焰祥龙的性能得看车手的实力，|不知道宝宝能不能驾驭得了。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="什么呀，我被小看了？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="宝宝，要不咱赛前热热身？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="要是还做赛前热身的话，那冠军肯定是我的了呀。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop2"/>
+  <Msg name="葱头" string="也好呀，顺便测试下新车的性能？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="我也要一起跑！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="好呀，好久没一起跑车了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="ani1"/>
+  <Msg name="宝宝" string="好吧，冠军预定车手就给你们露俩手吧！"/>
+  <Enter/>
+</Scene>

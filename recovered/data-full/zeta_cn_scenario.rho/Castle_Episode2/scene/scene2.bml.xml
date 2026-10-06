@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle4"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="恩…这里没有，宝宝到底去哪啦？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop2"/>
+  <Msg name="当娜" string="忙死了！路易来之前得收拾完啊…"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞" string="恩？是谁呢？|是大城堡的仆人吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop2"/>
+  <Msg name="当娜" string="啊，时间到了！！|出大事了！"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="啊！请稍等。|请问个事！"/>
+  <Enter/>
+</Scene>

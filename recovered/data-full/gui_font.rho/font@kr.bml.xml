@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Fonts>
+  <BitmapFont name="default" headerFile="nsimsun_9" dataFile="nsimsun_9"/>
+  <BoldFilterFont name="bold" baseFontName="default"/>
+  <OutlineFilterFont name="outline" baseFontName="default"/>
+  <BoldFilterFont name="bigbold" baseFontName="default"/>
+  <FtFont name="default16" fileName="SourceHanSansCN-Medium.otf" size="16" stroke="1"/>
+  <FtFont name="medium16" fileName="SourceHanSansCN-Medium.otf" size="16"/>
+  <FtFont name="bold14" fileName="SourceHanSansCN-Bold.otf" size="14"/>
+  <FtFont name="bold16" fileName="SourceHanSansCN-Bold.otf" size="16"/>
+  <FtFont name="bold20" fileName="SourceHanSansCN-Bold.otf" size="20"/>
+  <FtFont name="bold24" fileName="SourceHanSansCN-Bold.otf" size="24"/>
+  <FtFont name="outline14" fileName="SourceHanSansCN-Bold.otf" size="14" stroke="1"/>
+  <FtFont name="outline16" fileName="SourceHanSansCN-Bold.otf" size="16" stroke="1"/>
+  <FtFont name="outline20" fileName="SourceHanSansCN-Bold.otf" size="20" stroke="1"/>
+  <FtFont name="outline24" fileName="SourceHanSansCN-Bold.otf" size="24" stroke="1"/>
+  <GdiFont name="scalex2_base" isRenderable="false" faceName="NSimSun" size="15" isBold="true"/>
+  <OutlineFilterFont name="scalex2" baseFontName="scalex2_base" outlineThickness="2"/>
+  <OutlineFilterFont name="scalex2" isRenderable="false" faceName="NSimSun" size="15" isBold="true" outlineThickness="2"/>
+  <BoldFilterFont name="gulim14" baseFontName="default"/>
+</Fonts>

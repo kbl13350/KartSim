@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss2"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="奈尔" string="终于结束了。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="stop1"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="莫格瑞以后就不能再到地面上来了吧？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="stop1"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="虽然莫格瑞大人有点可怜……"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="stop1"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="14 0" emotion="normal"/>
+  <Msg name="茜茜" string="那也不能放松警惕。|赫凯特有可能还会找其他方法。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="stop1"/>
+  <Char id="dizini" pos="10 0" emotion="stop4"/>
+  <Char id="narin" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="14 0" emotion="normal"/>
+  <Msg name="黑妞" string="到时候再说吧！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="dizini" pos="10 0" emotion="stop4"/>
+  <Char id="narin" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="14 0" emotion="normal"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="……也是，先回繁荣山丘吧。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <BackGround texture="vill8"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="都安然无恙吧！|咦？茜茜也在啊？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop2"/>
+  <Char id="dizini" pos="6 0" emotion="stop5"/>
+  <Msg name="黑妞" string="皮蛋，你醒了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="12 0" emotion="stop2"/>
+  <Char id="dizini" pos="8 0" emotion="stop5"/>
+  <Char id="tiera" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="茜茜" string="你好啊，皮蛋，好久不见！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="奈琳" string="皮蛋大人~~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="奈琳" string="哎呀！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="怎么了？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="11 0" emotion="normal"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="本来想抱皮蛋大人的，|但突然感觉脸上有阵刺痛……"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="7 0" emotion="normal"/>
+  <Char id="neoul" pos="1 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="嗯？经这么一说，你脸确实有点红？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" pos="3 0" emotion="normal"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="进，进去再说吧！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="vill7"/>
+  <Char id="tiera" pos="8 0" emotion="normal"/>
+  <Msg name="茜茜" string="好了，那我就回童话世界了。"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="tiera" pos="11 0" emotion="normal"/>
+  <Char id="dizini" pos="4 0" emotion="stop2"/>
+  <Msg name="黑妞" string="嗯，非常感谢你！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="6 0" emotion="stop2"/>
+  <Char id="dao" pos="2 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="要不我们也去童话世界玩玩？"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="7 0" flip="true" emotion="stop4"/>
+  <Char id="dao" pos="2 0" emotion="stop4"/>
+  <Msg name="黑妞" string="也可以啊！皮蛋也好久没去童话世界了吧？"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" pos="10 0" emotion="normal"/>
+  <Msg name="奈琳" string="童话世界？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="10 0" emotion="normal"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="就是童话世界，很漂亮的。"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="10 0" flip="true" emotion="normal"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="是不是除了我，你们都去过？我也要去！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="tiera" pos="8 0" emotion="stop1"/>
+  <Msg name="茜茜" string="欢迎欢迎！那我开门了！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="portal" pos="8 0" emotion="normal"/>
+  <Msg name="" string="（嗡~）"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="portal" pos="8 0" emotion="normal"/>
+  <Char id="dao" pos="6 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="我先进去了~"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="portal" pos="8 0" emotion="normal"/>
+  <Char id="narin" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="奈琳" string="皮蛋大人~一起一起~"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="portal" pos="8 0" emotion="normal"/>
+  <Char id="dizini" pos="9 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="当时就该多打几下的……"/>
+  <Enter/>
+</Scene>

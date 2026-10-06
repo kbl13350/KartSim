@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="南海的袭击！" synopsis="在南海海滩中睡午觉的海盗团突然受到了黑色机器人的攻击，|艰难逃出来的海盗团好不容易躲到了他们的海盗船。" howToClear="在规定时间内打败迪斯欧德。|* 注意 差距0m时失败" missionText="逃脱成功 %d回 / %d回" addToGarage="true" visualScene="scene0" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardStockId="1661"/>
+  </Step>
+  <Step id="2" type="35" mode="single" preConditionId="1" title="反击！" synopsis="以海盗团的性格，绝对不允许就这么被攻击。|所以对迪斯欧德立即进行了反击。" howToClear="使用导弹战胜迪斯欧德" missionText="比赛胜利 %d回 / %d回" addToGarage="true" visualScene="scene1" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardLucci="500"/>
+  </Step>
+  <Step id="3" type="31" mode="single" preConditionId="2" title="捕获迪斯欧德！" synopsis="迪斯欧德好像小瞧了海盗团，不是，应该是惹错对象了。|结果虽然他们撤退了，可是几名迪斯欧德还是被捉了过去。" howToClear="在规定时间内追捕所有的迪斯欧德" missionText="追击成功 %d回 / %d回" addToGarage="true" visualScene="scene2" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="2790"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="卡奥斯的力量！" synopsis="被抓的迪斯欧德说了关于卡奥斯的情况，|卡奥斯的力量越来越变大，|繁荣山丘的攻击仅仅只是开始，南海也会受到攻击。|有点害怕的海盗团准备去繁荣山丘看一看。" howToClear="请在规定时间内完成游戏" missionText="完成游戏 %d回 / %d回" addToGarage="true" visualScene="scene3" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="1129"/>
+  </Step>
+  <Step id="5" type="31" mode="single" preConditionId="4" title="解救皮蛋一行！" synopsis="繁荣山丘果然受到了攻击，|海盗团为了防止卡奥斯的势力扩大，|帮皮蛋他们找到了避难处。" howToClear="不被皮蛋一行甩掉并完成比赛" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene4" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="2911"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="奇怪的想象！" synopsis="海盗船长正在想卡奥斯的力量，他的力量吸收的越多，|力量就越大。听皮蛋他们说卡奥斯正利用葱头的身体活着，|如果能把卡奥斯的力量抢过来的话？|海盗船长为了计划，迅速退回了基地。" howToClear="请在规定时间内完成游戏" missionText="完成游戏 %d回 / %d回" addToGarage="true" visualScene="scene5" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="2839"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="海盗领袖！" synopsis="首先，为了给繁荣山丘的伙伴一个善良的面貌，|海盗船长变成了海盗领袖。|准备跟前往卡奥斯基地的皮蛋一起联合起来。" howToClear="在规定时间内打败皮蛋。|* 注意 差距超过20m时失败" missionText="追击成功 %d回 / %d回" addToGarage="true" visualScene="scene6" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="337"/>
+  </Step>
+  <Step id="8" type="15" mode="multi" preConditionId="7" title="海盗船长的实力！" synopsis="皮蛋和葱头碰面的重要瞬间出现了海盗船长，|既帮助皮蛋一行，又把卡奥斯跟葱头分开的计划，|海盗船长开始给皮蛋一行进行了训练。" howToClear="在多人游戏中行驶30Km" missionText="目标 %.2fkm / %.2fkm" addToGarage="true" visualScene="scene7" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" achievementCount="30" rewardStockId="2909"/>
+  </Step>
+  <Step id="9" type="34" mode="single" preConditionId="8" title="与卡奥斯的决战！" synopsis="皮蛋一行终于要面对卡奥斯了，|海盗船长也要帮助他们打败卡奥斯。|葱头好像正抑制住卡奥斯的力量，|所以卡奥斯的力量越来越弱了。" howToClear="使用道具战胜葱头卡奥斯" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene8" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="黑暗的海盗船长！" synopsis="结果，成功打败卡奥斯后城市开始倒塌了，|海盗船长离开皮蛋一行开始跑向倒塌的城市。|远方可以感觉得到卡奥斯的力量，|海盗船长也越来越接近这个力量。" howToClear="请在规定时间内完成游戏" missionText="完成游戏 %d回 / %d回" addToGarage="true" visualScene="scene9" readyStage="1-10" stepTitleId="10" isFinalStep="true">
+    <Level difficult="0" rewardStockId="2910"/>
+  </Step>
+</StepList>

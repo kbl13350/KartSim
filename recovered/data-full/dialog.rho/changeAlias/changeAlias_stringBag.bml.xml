@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="aliasCaption">
+    <m c="kr" v="메모 바꾸기"/>
+    <m c="jp" v="メモ変更"/>
+    <m c="cn" v="更新备注"/>
+    <m c="tw" v="更換備註"/>
+    <m c="us" v="Change memo"/>
+    <m c="vn" v="Thay đổi biệt hiệu"/>
+    <m c="ru" v="Сменить пометку"/>
+    <m c="id" v="Mengubah memo"/>
+    <m c="th" v="การเปลี่ยนบันทึก"/>
+  </k>
+  <k n="alias">
+    <m c="kr" v="메모"/>
+    <m c="jp" v="メモ"/>
+    <m c="cn" v="备注"/>
+    <m c="tw" v="備註"/>
+    <m c="us" v="Memo"/>
+    <m c="vn" v="Biệt hiệu"/>
+    <m c="ru" v="Пометка"/>
+    <m c="id" v="Memo"/>
+    <m c="th" v="บันทึก"/>
+  </k>
+  <k n="aliasAsk">
+    <m c="kr" v="%s 님의 새로운 메모를 입력하세요."/>
+    <m c="jp" v="%sさんの新しいメモを入力してください。"/>
+    <m c="cn" v="请输入%s的新备注"/>
+    <m c="tw" v="請輸入%s的新備註"/>
+    <m c="us" v="Type in new memo for %s."/>
+    <m c="vn" v="Hãy đăng nhập biệt hiệu mới của bạn %s"/>
+    <m c="ru" v="Введите новую пометку об игроке %s."/>
+    <m c="id" v="Silahkan masukkan memo baru untuk %s"/>
+    <m c="th" v="กรุณากรอกบันทึกใหม่ของคุณ %s "/>
+  </k>
+</StringBag>

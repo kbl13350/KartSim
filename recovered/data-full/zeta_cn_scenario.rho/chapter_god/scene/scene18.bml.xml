@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god8"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="托尔" string="洛基！！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Msg name="洛基" string="嘻嘻…… 你好，好久不见，哥~"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="11 0" emotion="normal"/>
+  <Msg name="洛基" string="这，这么快就回来了~？|人类世界的风景怎么样啊？"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="loki" pos="11 0" emotion="normal"/>
+  <Msg name="托尔" string="别说废话|快把我变回原样！！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="11 0" emotion="stop1"/>
+  <Msg name="洛基" string="你那样貌也很漂亮啊~|我都被你迷住了！嘻嘻嘻"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="loki" pos="11 0" emotion="stop1"/>
+  <Msg name="托尔" string="别跟我说废话！！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="洛基" string="哎呀，知道了，哥！|你也知道，我不是讨厌哥才那么说的~对吧！！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="洛基" string="我会把你变回原样的，所以先放开我……|我疼~ 哥哥~"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="托尔" string="你这家伙……|再乱来，我就对你不客气了！！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="pung" pos="5 0" emotion="normal"/>
+  <Msg name="…" string="砰！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="pung" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="怎么回事？没变回来啊？"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="loki" pos="8 0" emotion="stop1"/>
+  <Msg name="洛基" string="嘻嘻！傻托尔，这都能骗到你？"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="4 0" emotion="normal"/>
+  <Char id="loki_fake1" pos="8 0" emotion="stop1"/>
+  <Char id="loki_fake2" pos="12 0" emotion="normal"/>
+  <Msg name="洛基" string="嘻嘻嘻！我会那么容易让你变回原样吗？"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki_fake1" remove="true"/>
+  <Char id="loki_fake2" remove="true"/>
+  <Char id="loki_fake4" pos="4 0" emotion="normal"/>
+  <Char id="loki_fake1" pos="8 0" emotion="stop1"/>
+  <Char id="loki_fake3" pos="12 0" emotion="normal"/>
+  <Char id="loki" pos="5 0" emotion="stop1"/>
+  <Char id="loki_fake2" pos="10 0" emotion="stop1"/>
+  <Msg name="洛基" string="嘻嘻嘻嘻！冠军奖杯是我的~"/>
+  <Enter/>
+  <Char id="loki_fake4" remove="true"/>
+  <Char id="loki_fake1" remove="true"/>
+  <Char id="loki_fake3" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki_fake2" remove="true"/>
+  <Char id="loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="loki_fake1" pos="8 0" flip="true" emotion="stop1"/>
+  <Char id="loki_fake2" pos="12 0" flip="true" emotion="stop1"/>
+  <Char id="loki_fake3" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="loki_fake4" pos="10 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="那就我先走一步！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki_fake1" remove="true"/>
+  <Char id="loki_fake2" remove="true"/>
+  <Char id="loki_fake3" remove="true"/>
+  <Char id="loki_fake4" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="托尔" string="你这个家伙，居然~~~！！！！！"/>
+  <Enter/>
+</Scene>

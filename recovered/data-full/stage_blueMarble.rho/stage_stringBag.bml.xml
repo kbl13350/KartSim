@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="slot0">
+    <m c="kr" v="붐힐마을|시작"/>
+    <m c="id" v="Boom Hill Marble|Mulai"/>
+    <m c="cn" v="跑跑大富翁|开始"/>
+    <m c="tw" v="繁榮山丘|開始"/>
+    <m c="jp" v="ブームヒル|スタート"/>
+  </k>
+  <k n="slot0_desc">
+    <m c="kr" v="여행 경비로 1000 루찌를 드립니다!|다시 파이팅!"/>
+    <m c="id" v="Kamu mendapat 1000 LUCCI |untuk petualangan kamu! | Semangat!"/>
+    <m c="cn" v="作为旅游经费奖励1000金币！|请再接再厉！"/>
+    <m c="tw" v="作為旅行經費給予1000 LUCCI!請再加油!"/>
+    <m c="jp" v="旅の経費として1000ルッチを差し上げます！|もう一度、ファイト！"/>
+  </k>
+  <k n="slot1">
+    <m c="kr" v="붐힐의 보물"/>
+    <m c="id" v="Harta karun |Boom Hill"/>
+    <m c="cn" v="繁荣山丘宝物"/>
+    <m c="tw" v="繁榮山丘的寶物"/>
+    <m c="jp" v="ブームヒルの宝"/>
+  </k>
+  <k n="slot1_desc">
+    <m c="kr" v="전설로 내려오는|붐힐의 보물을 발견했다!"/>
+    <m c="id" v="Menemukan harta karun | legenda Boom Hill!"/>
+    <m c="cn" v="发现了传说中的|稀有珍宝！"/>
+    <m c="tw" v="發現傳說中的|繁榮山丘的寶物了！"/>
+    <m c="jp" v="伝説として伝わる|ブームヒルの宝を見つけた！"/>
+  </k>
+  <k n="slot2">
+    <m c="kr" v="앗! 고장이다!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="出故障了!"/>
+    <m c="tw" v="啊！故障了！"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot2_desc">
+    <m c="kr" v="타이어 펑크로|움직일 수 없다!"/>
+    <m c="id" v="Kamu tidak bisa bergerak | akibat ban kamu pecah!"/>
+    <m c="cn" v="由于爆胎，|无法移动！"/>
+    <m c="tw" v="因卡丁車輪胎過熱|無法移動!"/>
+    <m c="jp" v="タイヤがパンクして|動けない！"/>
+  </k>
+  <k n="slot3">
+    <m c="kr" v="유령 소탕작전"/>
+    <m c="id" v="Misi menyerang |hantu"/>
+    <m c="cn" v="幽灵扫荡作战"/>
+    <m c="tw" v="掃蕩幽靈大作戰"/>
+    <m c="jp" v="幽霊退治作戦"/>
+  </k>
+  <k n="slot3_desc">
+    <m c="kr" v="마을 사람들의 부탁으로|공동묘지 유령을 퇴치했다!"/>
+    <m c="id" v="Kamu telah mengusir setan |atas permintaan penduduk desa!"/>
+    <m c="cn" v="受到村民的委托，|铲除了墓地的灵魂!"/>
+    <m c="tw" v="因為受到其他人的請託|打敗了墓園的幽靈!"/>
+    <m c="jp" v="町の人たちに頼まれて|セメタリーの幽霊を退治した！"/>
+  </k>
+  <k n="slot4">
+    <m c="kr" v="해골성 탐험"/>
+    <m c="id" v="Jelajahi istana |tengkorak"/>
+    <m c="cn" v="探索骷髅城"/>
+    <m c="tw" v="骷髏城大探險"/>
+    <m c="jp" v="スケルトン城|探検"/>
+  </k>
+  <k n="slot4_desc">
+    <m c="kr" v="공동묘지 해골성 탐험으로|루찌를 획득했다!"/>
+    <m c="id" v="Kamu mendapatkan LUCCI | dari penjelajahan kuburan |istana tengkorak!"/>
+    <m c="cn" v="由于探索墓地骷髅，|获得了金币！"/>
+    <m c="tw" v="因探險骷髏城，獲得Lucci!"/>
+    <m c="jp" v="セメタリーのスケルトン城を探検して|ルッチを入手した！"/>
+  </k>
+  <k n="slot5">
+    <m c="kr" v="담력훈련"/>
+    <m c="id" v="Melatih |keberanian"/>
+    <m c="cn" v="壮胆训练"/>
+    <m c="tw" v="壯膽訓練"/>
+    <m c="jp" v="肝試し"/>
+  </k>
+  <k n="slot5_desc">
+    <m c="kr" v="공동묘지 담력훈련으로|공포를 이겨냈다!"/>
+    <m c="id" v="Kamu telah mengalahkan ketakutan|kamu dengan latihan keberanian| di kuburan!"/>
+    <m c="cn" v="通过在墓地的壮胆训练，|克服了恐惧！"/>
+    <m c="tw" v="墓園壯膽訓練，成功戰勝恐懼!"/>
+    <m c="jp" v="セメタリーで肝試しをして|恐怖に打ち勝った！"/>
+  </k>
+  <k n="slot6">
+    <m c="kr" v="앗! 고장이다!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="出故障了!"/>
+    <m c="tw" v="啊！故障了！"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot6_desc">
+    <m c="kr" v="엔진에서 연기가 나기 시작했다!"/>
+    <m c="id" v="Mesin kamu mulai berasap!"/>
+    <m c="cn" v="引擎开始冒烟了！"/>
+    <m c="tw" v="卡丁車引擎開始冒煙了!"/>
+    <m c="jp" v="エンジンから煙が出始めた！"/>
+  </k>
+  <k n="slot7">
+    <m c="kr" v="펭귄 전사의|증표"/>
+    <m c="id" v="Tanda prajurit |pinguin"/>
+    <m c="cn" v="企鹅战士"/>
+    <m c="tw" v="企鵝戰士的證明"/>
+    <m c="jp" v="ペンギン|戦士の証"/>
+  </k>
+  <k n="slot7_desc">
+    <m c="kr" v="펭귄 전사와 결투에서 승리해|펭귄 전사의 증표를 얻었다!"/>
+    <m c="id" v="Mendapatkan tanda perajurit pinguin | setelah mengalahkan perajurit penguin!"/>
+    <m c="cn" v="由于在与企鹅战士的决斗中获得了胜利，|获得了企鹅战士的标志！"/>
+    <m c="tw" v="和企鵝戰士搏鬥上獲得了勝利|獲得企鵝戰士的證明！"/>
+    <m c="jp" v="ペンギン戦士との決闘に勝利して|ペンギン戦士の証を手に入れた！"/>
+  </k>
+  <k n="slot8">
+    <m c="kr" v="동계훈련"/>
+    <m c="id" v="Latihan |musim salju"/>
+    <m c="cn" v="冬训"/>
+    <m c="tw" v="冬季特訓"/>
+    <m c="jp" v="冬の合宿"/>
+  </k>
+  <k n="slot8_desc">
+    <m c="kr" v="혹한을 대비해|아이스 동계훈련을 시작했다!"/>
+    <m c="id" v="Kamu memulai latihan musim salju | untuk menghadapi cuaca dingin!"/>
+    <m c="cn" v="为了克服酷寒，|开始了冬训！"/>
+    <m c="tw" v="為了對付酷寒|開始了冰冷的冬季訓練！"/>
+    <m c="jp" v="厳しい寒さに備えて|アイス冬合宿を始めた！"/>
+  </k>
+  <k n="slot9">
+    <m c="kr" v="설산 등반"/>
+    <m c="id" v="Menjajaki |gunung salju"/>
+    <m c="cn" v="攀登雪山"/>
+    <m c="tw" v="雪山登山"/>
+    <m c="jp" v="雪山登り"/>
+  </k>
+  <k n="slot9_desc">
+    <m c="kr" v="설산이 거기에 있어|난 설산을 올라간다!"/>
+    <m c="id" v="Aku lihat gunung salju | mulai menuju puncak gunung salju!"/>
+    <m c="cn" v="由于那里有雪山，|因此我打算攀登雪山！"/>
+    <m c="tw" v="冰山就在那裡|我要征服冰山！"/>
+    <m c="jp" v="雪山がそこにある|だから雪山を登るんだ！"/>
+  </k>
+  <k n="slot10">
+    <m c="kr" v="빙산 속 보물"/>
+    <m c="id" v="Harta karun | gunung es"/>
+    <m c="cn" v="冰山之宝"/>
+    <m c="tw" v="冰山內的寶物"/>
+    <m c="jp" v="氷山の中の宝"/>
+  </k>
+  <k n="slot10_desc">
+    <m c="kr" v="부서진 빙산에서|숨겨진 보물을 발견했다!"/>
+    <m c="id" v="Kamu menemukan harta karun | dari dalam gunung es |yang hancur!"/>
+    <m c="cn" v="在崩解的冰山|发现了被隐藏的宝物!"/>
+    <m c="tw" v="在冰河破碎的冰山裡|發現了寶物！"/>
+    <m c="jp" v="崩れた氷山から|隠された宝を発見した！"/>
+  </k>
+  <k n="slot11">
+    <m c="kr" v="버섯동굴의|행운"/>
+    <m c="id" v="Keburuntungan|goa jamur"/>
+    <m c="cn" v="蘑菇窟的幸运"/>
+    <m c="tw" v="蘑菇洞窟的幸運"/>
+    <m c="jp" v="キノコトンネル|の幸運"/>
+  </k>
+  <k n="slot11_desc">
+    <m c="kr" v="행운이다!|버섯 동굴에서 누군가|떨어뜨린 루찌를 얻었다!"/>
+    <m c="id" v="Beruntung sekali! | kamu menemukan LUCI |dalam goa jamur!"/>
+    <m c="cn" v="真是幸运!|在蘑菇窟中发现了|被人遗失的金币!"/>
+    <m c="tw" v="真是幸運|在蘑菇洞窟裡拿到|某人掉落的LUCCI"/>
+    <m c="jp" v="ラッキー！|キノコトンネルで誰かが|落としたルッチを拾った！"/>
+  </k>
+  <k n="slot12">
+    <m c="kr" v="앗! 고장이다!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="出故障了!"/>
+    <m c="tw" v="啊！故障了！"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot12_desc">
+    <m c="kr" v="기름이 떨어졌다!|어떻게 하지?"/>
+    <m c="id" v="Bensinnya habis! | bagaimana ini?"/>
+    <m c="cn" v="没油了！|这该怎么办？"/>
+    <m c="tw" v="沒油了|該怎麼辦呢？"/>
+    <m c="jp" v="燃料切れ！|どうしよう？"/>
+  </k>
+  <k n="slot13">
+    <m c="kr" v="팬더의 선물"/>
+    <m c="id" v="Hadiah |dari panda"/>
+    <m c="cn" v="熊猫的礼物"/>
+    <m c="tw" v="熊貓的禮物"/>
+    <m c="jp" v="パンダの恩返し"/>
+  </k>
+  <k n="slot13_desc">
+    <m c="kr" v="숲 속에서 다친 팬더를|도와주고 선물을 받았다!"/>
+    <m c="id" v="Kamu mendapatkan hadiah |dari panda setelah membantu |panda yang terluka!"/>
+    <m c="cn" v="在森林里帮助了受伤的熊猫，|获得了礼物！"/>
+    <m c="tw" v="在森林裡幫忙受傷的熊貓|獲得了禮物"/>
+    <m c="jp" v="森の中でケガをしたパンダを|助けて、プレゼントをもらった！"/>
+  </k>
+  <k n="slot14">
+    <m c="kr" v="유격훈련"/>
+    <m c="id" v="Latihan |jarak bebas"/>
+    <m c="cn" v="游击训练"/>
+    <m c="tw" v="游擊訓練"/>
+    <m c="jp" v="遊撃訓練"/>
+  </k>
+  <k n="slot14_desc">
+    <m c="kr" v="정신통일!|고지가 앞에 있다!|전진하라~!"/>
+    <m c="id" v="Fokus!|Mulai terlihat sesuatu!|ayo maju terus~!"/>
+    <m c="cn" v="精神统一！|目标就在眼前！|前进~！"/>
+    <m c="tw" v="人車合一!|目標就在不遠處!|前進吧~!"/>
+    <m c="jp" v="精神統一！|高地が前にあるぞ！|前進せよ～！"/>
+  </k>
+  <k n="slot15">
+    <m c="kr" v="앗! 고장이다!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="出故障了!"/>
+    <m c="tw" v="啊！故障了！"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot15_desc">
+    <m c="kr" v="큰일이다!|핸들이 움직이지 않는다!"/>
+    <m c="id" v="Gawat!|tidak bisa menggerakkan setir!"/>
+    <m c="cn" v="出大事了！|转向盘不好使了！"/>
+    <m c="tw" v="出事了!|方向盤不能動了!"/>
+    <m c="jp" v="大変だ！|ハンドルが動かない！"/>
+  </k>
+  <k n="slot16">
+    <m c="kr" v="투투의 현상금"/>
+    <m c="id" v="Hadiah |pemburuan Tutu"/>
+    <m c="cn" v="嘟嘟的悬赏金"/>
+    <m c="tw" v="多多的懸賞"/>
+    <m c="jp" v="トゥトゥの|懸賞金"/>
+  </k>
+  <k n="slot16_desc">
+    <m c="kr" v="악당 투투를 생포했다!"/>
+    <m c="id" v="Kamu menangkap |hidup-hidup penjahat Tutu"/>
+    <m c="cn" v="生擒了恶人嘟嘟！"/>
+    <m c="tw" v="活捉到惡棍多多!"/>
+    <m c="jp" v="悪党トゥトゥを捕まえた！"/>
+  </k>
+  <k n="slot17">
+    <m c="kr" v="해적의 보물"/>
+    <m c="id" v="Harga karun |bajak laut"/>
+    <m c="cn" v="海盗的宝物"/>
+    <m c="tw" v="海盜的禮物"/>
+    <m c="jp" v="海賊の宝"/>
+  </k>
+  <k n="slot17_desc">
+    <m c="kr" v="숨겨진 해적의 보물지도를 얻었다!"/>
+    <m c="id" v="Kamu menemukan peta harta karun| bajak laut yang tersembunyi!"/>
+    <m c="cn" v="获得了隐藏的海盗之宝地图！"/>
+    <m c="tw" v="獲得了隱藏的海賊寶藏圖!"/>
+    <m c="jp" v="隠された海賊の宝の地図を手に入れた！"/>
+  </k>
+  <k n="slot18">
+    <m c="kr" v="해적선 탈출"/>
+    <m c="id" v="Kabur dari | bajak laut"/>
+    <m c="cn" v="逃脱海盗船"/>
+    <m c="tw" v="逃出海盜船"/>
+    <m c="jp" v="海賊船脱出"/>
+  </k>
+  <k n="slot18_desc">
+    <m c="kr" v="로두마니의 추격을|물리치고 해적선을 탈출했다!"/>
+    <m c="id" v="Kamu berhasil kabur dari kapal |bajak laut setelah mengelabui |kejaran Lodumani!"/>
+    <m c="cn" v="击破了海盗船长的追击|成功逃脱了海盗船!"/>
+    <m c="tw" v="抵擋了海盜首領的追擊!|從海盜船逃出!"/>
+    <m c="jp" v="ロドマニの追撃を|かわして海賊船から脱出した！"/>
+  </k>
+  <k n="slot19">
+    <m c="kr" v="위기일발"/>
+    <m c="id" v="Keadaan |berbahaya"/>
+    <m c="cn" v="危机爆发"/>
+    <m c="tw" v="危機來臨"/>
+    <m c="jp" v="危機一髪"/>
+  </k>
+  <k n="slot19_desc">
+    <m c="kr" v="위기일발!|로두마니가 따라온다!"/>
+    <m c="id" v="Keadaan darurat! | Lodumani mengejar kamu!"/>
+    <m c="cn" v="危机爆发！|让海盗船长追上来了！"/>
+    <m c="tw" v="千鈞一髮!| 海盜首領跟上來了!"/>
+    <m c="jp" v="危機一髪！|ロドマニが追って来る！"/>
+  </k>
+  <k n="slot20">
+    <m c="kr" v="앗! 고장이다!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="出故障了!"/>
+    <m c="tw" v="啊！故障了！"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot20_desc">
+    <m c="kr" v="모래 구덩이에|카트바디가 빠져 버렸다!"/>
+    <m c="id" v="Kart body masuk ke | lubang pasir!"/>
+    <m c="cn" v="车身陷进|沙坑里了！"/>
+    <m c="tw" v="在沙洞上|卡丁車陷進去!"/>
+    <m c="jp" v="砂のくぼみに|カートボディーがはまっちゃった！"/>
+  </k>
+  <k n="slot21">
+    <m c="kr" v="공룡 유적지"/>
+    <m c="id" v="Situs |Arkeologi"/>
+    <m c="cn" v="恐龙遗址"/>
+    <m c="tw" v="恐龍的遺跡"/>
+    <m c="jp" v="恐竜遺跡"/>
+  </k>
+  <k n="slot21_desc">
+    <m c="kr" v="모래 폭풍이 지나가자|숨겨진 공룡 유적지가 등장했다!"/>
+    <m c="id" v="Kamu menemukan situs |peninggalan dinosaurus setelah| badai angin pasir lewat!"/>
+    <m c="cn" v="沙尘暴掠过后|出现了被隐藏着的恐龙遗址！"/>
+    <m c="tw" v="穿過了沙塵暴，發現隱藏的恐龍遺跡!"/>
+    <m c="jp" v="砂嵐が過ぎると、|隠された恐竜遺跡が現れた！"/>
+  </k>
+  <k n="slot22">
+    <m c="kr" v="스핑크스"/>
+    <m c="id" v="Sphinx"/>
+    <m c="cn" v="狮身人面像"/>
+    <m c="tw" v="人面獅身像"/>
+    <m c="jp" v="スフィンクス"/>
+  </k>
+  <k n="slot22_desc">
+    <m c="kr" v="아침은 네 다리로, 낮에는 두 다리로|밤에는 세 다리로 걷는 짐승은 무엇이냐?"/>
+    <m c="id" v="&quot;Makhluk apa yang jalan |dengan 4 kaki di pagi hari |2 kaki di siang hari, |dan 3 kaki di malam hari?&quot;"/>
+    <m c="cn" v="早上用四条腿、中午用两条腿、|晚上用三条腿走路的动物是什么？"/>
+    <m c="tw" v="早上4隻腳，白天2隻腳|晚上3隻腳的動物是什麼？"/>
+    <m c="jp" v="朝は4本足、昼は2本足で|夜には3本足で歩く動物、な～んだ？"/>
+  </k>
+  <k n="slot23">
+    <m c="kr" v="앗! 고장이다!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="出故障了!"/>
+    <m c="tw" v="啊！故障了！"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot23_desc">
+    <m c="kr" v="고장이다~!|원인불명! 모스가 필요해!"/>
+    <m c="id" v="Rusak~! | tidak bisa menemukan penyebabnya! |Kamu butuh moss!"/>
+    <m c="cn" v="出故障啦~！|原因不明！需要小强！"/>
+    <m c="tw" v="故障了~!|原因不明!需要工頭協助!"/>
+    <m c="jp" v="故障した～！|原因不明！モス、助けて！"/>
+  </k>
+  <k n="slot24">
+    <m c="kr" v="사막의 보물"/>
+    <m c="id" v="Harta karun |padang pasir"/>
+    <m c="cn" v="沙漠之宝"/>
+    <m c="tw" v="沙漠的寶物"/>
+    <m c="jp" v="砂漠の宝"/>
+  </k>
+  <k n="slot24_desc">
+    <m c="kr" v="오아시스에서 사막의 보물을 발견했다!"/>
+    <m c="id" v="Kamu menemukan harta karun| padang pasir di oasis!"/>
+    <m c="cn" v="在绿洲发现了沙漠的宝物！"/>
+    <m c="tw" v="在綠洲發現了沙漠的寶物!"/>
+    <m c="jp" v="オアシスで砂漠の宝を発見した！"/>
+  </k>
+  <k n="slot25">
+    <m c="kr" v="피라미드 탐험"/>
+    <m c="id" v="Penjelajah| pyramid"/>
+    <m c="cn" v="探索金字塔"/>
+    <m c="tw" v="金字塔的探險"/>
+    <m c="jp" v="ピラミッド|探検"/>
+  </k>
+  <k n="slot25_desc">
+    <m c="kr" v="파라오의 전설이|가득한 피라미드를 탐험했다!"/>
+    <m c="id" v="Kamu telah menjelajahi pyramid | yang penuh dengan |legenda pharaoh "/>
+    <m c="cn" v="探索了充满法老传说的|金字塔！"/>
+    <m c="tw" v="在充滿埃及王子傳說|的金字塔裡冒險"/>
+    <m c="jp" v="ファラオの伝説が|眠るピラミッドを探検した！"/>
+  </k>
+  <k n="slotJackPot">
+    <m c="kr" v="진정한 보물"/>
+    <m c="id" v="Penjelajah| sejati"/>
+    <m c="tw" v="真正的寶物"/>
+    <m c="cn" v="珍贵宝物"/>
+    <m c="jp" v="真の宝"/>
+  </k>
+  <k n="slotJackPot_desc">
+    <m c="kr" v="우하하하!|보물은 나를 위해 존재한다!"/>
+    <m c="id" v="Hahaha!|harta karun ada untuk |menjadi milikku!"/>
+    <m c="tw" v="嗚哈哈哈!寶物是為了我而存在的！"/>
+    <m c="cn" v="哇哈哈哈！|宝物是属于我的。"/>
+    <m c="jp" v="ウハハハ！|宝はオレのために存在する！"/>
+  </k>
+  <k n="confirm">
+    <m c="kr" v="확인"/>
+    <m c="id" v="OK"/>
+    <m c="cn" v="确认"/>
+    <m c="tw" v="確認"/>
+    <m c="jp" v="確認"/>
+  </k>
+  <k n="blueMarbleDesc">
+    <m c="kr" v="붐힐마블 이벤트 규칙!"/>
+    <m c="id" v="Peraturan BoomHill Marble"/>
+    <m c="tw" v="大富翁規則!"/>
+    <m c="cn" v="跑跑大富翁活动规则"/>
+    <m c="jp" v="ブームヒルすごろくイベントルール！"/>
+  </k>
+  <k n="blueMarbleDescBody">
+    <m c="kr" v="1. 말 이동은 주사위를 굴려 나온 숫자만큼 슬롯을 이동합니다.|2. 주사위 숫자 1은 말 이동 후 자동으로 주사위를 한번 더 굴립니다.|3. 말이 슬롯에 도착하면 해당 슬롯에 대한 정보를 확인할 수 있습니다.|4. 보물 슬롯에 말이 도착한 경우 보물 도장을 찍을 수 있습니다.|5. 보물 슬롯(4개)에 도장을 모두 찍을 경우 특별한 보상을 받습니다."/>
+    <m c="id" v="1. Pion karakter bergerak sesuai angka dadu yang keluar|2. Lemparan berikut akan otomatis jika dadu lebih dari 1|3. Informasi Kotak akan didapatkan jika berada diatasnya|4. Dapat Stempel Harta Karun jika ada di Slot Harta Karun|5. Dapat Spesial Item jika dapat 4 Stempel Harta Karun"/>
+    <m c="cn" v="1.根据掷出来的骰子数移动跑跑大富翁棋子。            2.掷出骰子的数字为1时系统会自动再掷一次。|3.棋子到达指定格子后可以确认该格子的信息。        4.棋子到达宝物格子时可盖上宝物印章。|5.在4个宝物格子都盖上印章的话可获得特别的奖励。"/>
+    <m c="tw" v="1.大富翁棋子會依據骰出的數字移動至對應格數的欄位。|2.骰子數為1時，棋子再次移動後，會自動再丟出骰子。|3.棋子到達欄位時，可以確認該欄位的情報。|4.棋子到達寶物欄位時，可以蓋寶物圖章。|5.蒐集到4個寶物欄位圖章的話，可獲得特別的獎勵。"/>
+    <m c="jp" v="1. コマはサイコロを転がして出た目の数だけスロットを移動|2. サイコロの1が出ると、コマの移動後に自動的にもう一度|    サイコロを転がせる|3. コマがスロットに到着すると、そのスロットの情報を確認|4. 宝スロットにコマが止まると、宝スタンプを押す|5. 宝スロット(4個)すべてにスタンプを押すと、特別な報酬を入手"/>
+  </k>
+</StringBag>

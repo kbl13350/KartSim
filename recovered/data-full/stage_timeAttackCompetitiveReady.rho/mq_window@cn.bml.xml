@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" align="center"/>
+  <CaptionWindow name="timeAttack" windowSize="1328 785" adjust="0 -10" frame="CaptionDialog" caption="#sb(timeAttackCompetitive)" align="center" setCloseButton="exit">
+    <ImageBoard name="contentPanel" windowSize="1314 544" align="top,hcenter" adjust="0 -1" image="contest_img_mainBG" alphaBlend="true">
+      <Panel leftTopWH="7 9  144 36" texture="contest_img_textTitle1@zz" alphaBlend="true"/>
+      <ImageButton name="rankInfoBtn" leftTopWH="355 17  22 22" autoLoadImage="quest_btn_infoIcon_" alphaTest="true"/>
+      <Label name="curInfo" leftTopWH="407 10 458 36" textAlign="left|vcenter" textRender="bold14" textColor="255 255 228 79"/>
+      <Label name="openPeriod" leftTopWH="407 10 458 36" textAlign="right|vcenter" textRender="bold14" textColor="white"/>
+      <Panel leftTopWH="884 9 144 36" texture="contest_img_textTitle2@zz" alphaBlend="true"/>
+      <ImageButton name="trackInfoBtn" leftTopWH="1275 17  22 22" autoLoadImage="quest_btn_infoIcon_" alphaTest="true"/>
+      <Panel name="gradeIcon" leftTopWH="20 60 144 124" texture="경쟁전_등급_미참여" alphaBlend="true"/>
+      <Panel name="gradeTextIcon" leftTopWH="165 65 196 68" texture="경쟁전_등급텍스트L_미참여" alphaBlend="true"/>
+      <Label name="rankInfo" leftTopWH="220 125 50 26" text="#sb(rankPercentageNone)" textColor="255 255 215 38" textRender="outline14" textAlign="center"/>
+      <Label name="accumulatedScore" leftTopWH="210 145 50 26" text="#sb(pointNone)" textColor="255 255 215 38" textRender="outline14" textAlign="center"/>
+      <Window name="weeks" leftTopWH="9 197 374 308"/>
+      <Container windowSize="473 36" align="top|center" adjust="-22 49">
+        <Label name="weekPointTitle" windowSize="473 36" adjust="6 0" text="#sb(weekPointTitle)" textAlign="left|vcenter" textRender="outline16" textColor="white"/>
+        <ColorLabel name="weekPoint" windowSize="473 36" adjust="-4 0" textAlign="right|vcenter" text="#sb(weekPointString)" textRender="outline16" textColor="white"/>
+      </Container>
+      <Container name="캐릭터창" windowSize="490 340" align="center" adjust="25 20"/>
+      <Container windowSize="426 34" align="center" adjust="-20 211">
+        <ImageButton name="rankInfo" windowSize="142 34" adjust="0 0" autoLoadImage="contest_btn_detail_1_" alphaBlend="true"/>
+        <ImageButton name="myRankInfo" windowSize="142 34" adjust="142 0" autoLoadImage="contest_btn_detail_2_" alphaBlend="true"/>
+        <ImageButton name="rewardInfo" windowSize="142 34" adjust="284 0" autoLoadImage="contest_btn_detail_3_" alphaBlend="true"/>
+      </Container>
+      <Container name="tracks" windowRect="888 55 1306 463">
+        <Window name="trackBtn_1" leftTopWH="0 0 416 134" autoLoadImage="contest_btn_trackSelect_" alphaBlend="true"/>
+        <Window name="trackBtn_2" leftTopWH="0 137 416 134" autoLoadImage="contest_btn_trackSelect_" alphaBlend="true"/>
+        <Window name="trackBtn_3" leftTopWH="0 274 416 134"/>
+      </Container>
+      <Container windowSize="200 29" align="center" adjust="360 220">
+        <Label windowSize="100 29" adjust="0 0" text="#sb(joinBonus)" textRender="outline14" textColor="white"/>
+        <Label name="joinBonus" windowSize="100 29" adjust="100 0" text="#sb(pointNone)" textAlign="right" textRender="bold14" textColor="255 157 191 241"/>
+        <Panel name="bonusBar_1" texture="contest_img_bosusBar" windowSize="54 8" adjust="214 6" visible="false" alphaBlend="true"/>
+        <Panel name="bonusBar_2" texture="contest_img_bosusBar" windowSize="54 8" adjust="271 6" visible="false" alphaBlend="true"/>
+        <Panel name="bonusBar_3" texture="contest_img_bosusBar" windowSize="54 8" adjust="328 6" visible="false" alphaBlend="true"/>
+      </Container>
+      <Panel name="rankGuidePanel" leftTopWH="16 49 368 218" texture="contest_img_tooltipBG_1" alphaBlend="true" visible="false">
+        <Label text="#sb(rankGuideTItle)" leftTopWH="0 0 368 32" textAlign="center" textRender="bold14" textColor="255 201 211 219"/>
+        <Label text="#sb(seasonRanking)" leftTopWH="14 34 100 80" textAlign="left|vcenter" textRender="bold14" textColor="255 201 211 219"/>
+        <Label text="#sb(weekRanking)" leftTopWH="14 112 100 54" textAlign="left|vcenter" textRender="bold14" textColor="255 201 211 219"/>
+        <Label text="#sb(rankGuideMsg1)" leftTopWH="100 40 268 80" textAlign="left|top" textRender="bold14" textColor="255 201 211 219"/>
+        <Label text="#sb(rankGuideMsg2)" leftTopWH="100 42 268 80" textAlign="left|center" textRender="bold14" textColor="yellow"/>
+        <Label text="#sb(rankGuideMsg3)" leftTopWH="100 117 268 80" textAlign="left" textRender="bold14" textColor="255 201 211 219"/>
+        <Label text="#sb(rankGuideMsg4)" leftTopWH="14 170 368 17" textAlign="left" textRender="bold14" textColor="yellow"/>
+        <Label text="#sb(rankGuideMsg5)" leftTopWH="14 190 368 17" textAlign="left" textRender="bold14" textColor="255 201 211 219"/>
+      </Panel>
+      <Panel name="trackGuidePanel" leftTopWH="944 49 360 132" texture="contest_img_tooltipBG_2" alphaBlend="true" visible="false">
+        <Label text="#sb(trackGuideTItle)" leftTopWH="0 0 360 32" textAlign="center" textRender="bold14" textColor="255 201 211 219"/>
+        <Label text="#sb(trackGuideMsg)" leftTopWH="14 40 360 15" textAlign="left" textRender="bold14" textColor="255 201 211 219"/>
+      </Panel>
+    </ImageBoard>
+    <Container name="optionPanel" windowSize="1314 226" align="bottom,hcenter" adjust="0 -8">
+      <Panel name="thumbPanel" windowSize="350 205" adjust="10 10">
+        <Panel name="thumb" leftTopWH="0 0 350 205"/>
+        <Panel name="rvs" windowSize="350 205" align="center" texture="큰리버스트랙" alphaBlend="true" visible="false"/>
+        <Panel name="crz" windowSize="350 205" align="center" texture="crazyTrackMark" alphaBlend="true" visible="false"/>
+        <Container name="trackInfoPanel" windowSize="260 20" adjust="2 6" align="bottom|left">
+          <Panel name="icon" windowSize="30 30" adjust="3 -9" alphaBlend="true"/>
+          <Label name="name" windowSize="240 20" adjust="42 -6" textColor="white" textRender="outline16" textAlign="left,vcenter"/>
+        </Container>
+        <Container name="trackDifficulty" windowSize="260 20" adjust="233 170"/>
+      </Panel>
+      <Container windowSize="1314 226">
+        <ImageBoard windowSize="1314 226" adjust="0 0" image="contest_img_trackRecordBG" alphaBlend="true"/>
+        <Container leftTopWH="500 7 415 38">-					
+          <ImageBoard windowSize="40 40" adjust="0 0" image="timeAttack_main_iconGhost_s1" alphaBlend="true"/>
+          <ImageBoard windowSize="40 40" adjust="0 0" image="timeAttack_main_iconGhost_s2" alphaBlend="true" visible="false"/>
+          <Container name="shadowBtnPanel" leftTopWH="393 7 134 26">
+            <ImageButton name="onBtn" windowSize="67 26" align="left" autoLoadImage="contest_btn_option_" text="#sb(on)" textAlign="center" textRender="bold16" overTextRender="bold16" checkedTextRender="bold16" uncheckedTextRender="bold16" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 255 255 255" alphaBlend="true"/>
+            <ImageButton name="offBtn" windowSize="67 26" align="right" autoLoadImage="contest_btn_option_" text="#sb(off)" textAlign="center" textRender="bold16" overTextRender="bold16" checkedTextRender="bold16" uncheckedTextRender="bold16" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 255 255 255" alphaBlend="true"/>
+          </Container>
+          <Label leftTopWH="50 7 100 20" text="#sb(myKsv)" textAlign="left|vcenter" textRender="bold16" textColor="255 84 100 129"/>
+          <Label name="noRecord" leftTopWH="410 7 100 20" text="#sb(noRecord)" textAlign="hcenter" textRender="bold16" textColor="255 102 110 122"/>
+        </Container>
+        <Container windowSize="638 200" adjust="390 45">
+          <Label leftTopWH="28 0 638 34" text="#sb(trackPoint)" textAlign="left|vcenter" textRender="bold14" textColor="255 72 106 163"/>
+          <Label name="trackPoint" text="-" leftTopWH="-12 0 638 34" textAlign="right|vcenter" textRender="bold14" textColor="255 72 106 163"/>
+          <Label leftTopWH="28 34 638 34" text="#sb(record)" textAlign="left|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label name="bestRacingTime" text="??:??:??" leftTopWH="218 34 638 34" textAlign="left|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label name="racingPoint" text="-" leftTopWH="-12 34 638 34" textAlign="right|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label leftTopWH="28 68 638 34" text="#sb(crashCount)" textAlign="left|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label name="crashCount" text="-" leftTopWH="218 68 638 34" textAlign="left|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label name="crashPoint" text="-" leftTopWH="-12 68 638 34" textAlign="right|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label leftTopWH="28 102 638 34" text="#sb(boosterCount)" textAlign="left|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label name="boosterCount" text="-" leftTopWH="218 102 638 34" textAlign="left|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label name="boosterPoint" text="-" leftTopWH="-12 102 638 34" textAlign="right|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label leftTopWH="28 136 638 34" text="#sb(kartBody)" textAlign="left|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+          <Label name="kartBody" text="-" leftTopWH="218 136 638 34" textAlign="left|vcenter" textRender="bold14" textColor="255 85 91 101"/>
+        </Container>
+      </Container>
+      <Container name="buttonPanel" windowSize="248 195" align="right,hcenter" adjust="9 12">
+        <Container name="conditionPanel" windowSize="248 64" align="top" adjust="0 2" alphaBlend="true">
+          <Label leftTopWH="10 -6 100 30" text="#sb(racingRestriction)" textAlign="left" textRender="bold14" textColor="255 84 100 129"/>
+          <Label name="joinable" leftTopWH="174 -5 72 20" textAlign="center" textRender="bold14" textColor="255 255 84 84"/>
+          <Label name="restriction" leftTopWH="10 25 50 30" textAlign="left" textRender="bold14" textColor="255 84 100 129"/>
+        </Container>
+        <ImageButton name="시작" windowSize="248 82" align="center" autoLoadImage="contest_btn_start_@zz" alphaBlend="true" adjust="0 -2">
+          <Label name="charge" leftTopWH="85 50 122 20" textAlign="center" textRender="bold14" textColor="white"/>
+        </ImageButton>
+        <ImageButton name="myItemBtn" windowSize="248 66" align="bottom" autoLoadImage="contest_btn_myItem_@zz" alphaBlend="true" adjust="0 -12"/>
+      </Container>
+    </Container>
+  </CaptionWindow>
+</Container>

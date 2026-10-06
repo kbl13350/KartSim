@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='143.0'   
+	BackwardAccelForce='100.0'
+	DragFactor='-0.074'
+	SteerConstraint='2.25'
+	DriftEscapeForce='950'
+	CornerDrawFactor='0.07'
+	UseTransformBooster='true'
+
+	EngineSound='cotton7'
+	BoosterBlur='true'
+	EnvMap='true'
+
+	TransAccelFactor='1.71'
+	StartBoosterTimeSpeed='1200'           
+	StartForwardAccelFactorSpeed = '1.2'
+	TransformTime='700'    
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zero5'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zero5'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+
+	FirePort0='mod1a3'
+
+	TailLampSize='0.3'
+	TailLampColor='0 180 255 255'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '38'
+	DescStability ='33'
+	DescEngineGrade='1.2'
+	DescCornering='9'
+	DescEnchantCap = '31'
+
+/>
+<!-- 중국 백기사 Z7 120423 -->

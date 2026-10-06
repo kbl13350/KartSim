@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach8"/>
+  <Char id="f4bazzi" pos="9 0" emotion="stop1"/>
+  <Msg name="道明宝宝" string="格雷兄弟…真是奸诈狡猾。|我早说过，杉雯雯不是小偷！|我道明宝宝的话永远都是对的。"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="杉雯雯" string="…|谢谢你，道明宝宝。|"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop3"/>
+  <Char id="f4chen" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="道明宝宝" string="客气什么，应该的。|正义少女怎么可能是小偷.."/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop3"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="杉雯雯" string="谢谢…|如果不是你，我就会被冤枉成小偷~呜呜"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop1"/>
+  <Msg name="道明宝宝" string="别哭了，杉雯雯。|看来吓到你了。"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="嗯，谢谢，道明宝宝…"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop2"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="道明宝宝" string="那..|满足我一个愿望吧？"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="愿望？"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop1"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="道明宝宝" string="嗯，愿望嘛…|和我约会吧。|不要和花泽皮蛋进行什么幼稚的练习，我们约！会！吧！"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop1"/>
+  <Msg name="道明宝宝" string="杉雯雯！我想更加了解你。"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop3"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="杉雯雯" string="道明宝宝…"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop3"/>
+  <Msg name="道明宝宝" string="那，今天就要和我约会，知道了吗？"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop3"/>
+  <Msg name="杉雯雯" string="嗯…"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop2"/>
+  <Msg name="道明宝宝" string="太好了！|不准反悔！|能和我道明宝宝约会…|你要把这当做上天给你的恩赐！！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop2"/>
+  <Msg name="杉雯雯" string="真受不了你…"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop2"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="道明宝宝" string="哈哈哈哈哈！|杉雯雯！从现在开始你就是我的女朋友！"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <BackGround texture="castle4"/>
+  <Char id="f4bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="道明宝宝" string="今天就是我与杉雯雯的第一次约会~！！|我依然那么酷~"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="道明宝宝" string="怎么这么快就到时间了！！！|第一次约会可不能迟到！|快点！|"/>
+  <Enter/>
+</Scene>

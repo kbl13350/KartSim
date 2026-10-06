@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" leftTopWH="0 0 520 550" caption="#sb(congratulation)" captionPos="0 1" captionColor="black" align="center">
+    <ImageBoard name="bg_0" windowSize="485 287" image="try_dao" adjust="0 8" alphaBlend="true" align="top|center"/>
+    <Label name="body" leftTopWH="35 225 450 65" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="#sb(coupleUpBody)" textRender="outline14" textAlign="center" align="hcenter"/>
+    <Window enable="true" leftTopWH="0 0 520 550" align="center">
+      <Label name="coupleItemDesc" leftTopWH="43 420 450 65" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" text="#sb(coupleOnlyItems)" textAlign="center" align="hcenter" textRender="bold14"/>
+      <Container name="coupleReward" windowRect="0 100 485 50" align="center">
+        <Panel name="bg_3" leftTopTex="0 30" texture="기념일선물_백판공통" alphaBlend="true">
+          <ItemWindow name="item1" leftTopWH="30 -3 90 90" stockId="5387" visible="true"/>
+        </Panel>
+        <Panel name="bg_3" leftTopTex="164 30" texture="기념일선물_백판공통" alphaBlend="true">
+          <ItemWindow name="item2" leftTopWH="30 -3 90 90" stockId="5399" visible="true"/>
+        </Panel>
+        <Panel name="bg_3" leftTopTex="328 30" texture="기념일선물_백판공통" alphaBlend="true">
+          <ItemWindow name="item3" leftTopWH="30 -3 90 90" stockId="5394" visible="true"/>
+        </Panel>
+      </Container>
+      <TextButton name="okButton" text="#sb(ok)" align="hcenter" leftTopWH="242 482 100 40" alphaBlend="true" textRender="bold16"/>
+    </Window>
+  </CaptionWindow>
+</Panel>

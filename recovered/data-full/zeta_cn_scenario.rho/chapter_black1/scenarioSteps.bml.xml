@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="集合！伙伴们~" synopsis="繁荣山丘马上要开展世界GP大赛|为此世界各国的车手们会聚到繁荣山丘|去迎接他们吧！" howToClear="请完成赛道。" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="500"/>
+  </Step>
+  <Step id="2" type="31" mode="single" preConditionId="1" title="繁荣GP赛" synopsis="世界高手集聚的GP赛开始|为此伙伴们也约定加把劲|到底谁会是GP赛的大赢家呢？" howToClear="请在竞速GP赛获得第一！" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardStockId="5571"/>
+  </Step>
+  <Step id="3" type="34" mode="single" preConditionId="2" title="神秘车手！" synopsis="GP赛最后关头已确定皮蛋胜利|但突然出现神秘车手扰乱了比赛|抢走奖品|要赶紧抓住他！" howToClear="请在道具赛打败神秘车手。" missionText="对决胜利 %d回 / %d回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="星陨之石的秘密" synopsis="为了找回奖品|在追捕神秘车手的途中，发现了他的真面目|与星陨之石的秘密。伙伴们认知到奖品的重要性|为了找回奖品开始追击格雷格." howToClear="请在指定时间内追赶神秘车手。|*注意 超过20m挑战失败。" missionText="追击成功 %d回 / %d回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="5593"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="冲向南海 GO！" synopsis="追捕失败后伙伴们了解了星陨之石的秘密并开始寻找石板。|从嘟嘟口中得知海盗船长的宝物里看到了石板，向南海出发。" howToClear="请在指定时间完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="5594"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="亲爱的海盗船长！" synopsis="到达南海的皮蛋与伙伴们！|哀求海盗船长给他们看宝库|但一直被拒绝！虽然用威胁，撒娇各种方法|但是海盗船长看都不看竟然逃走。" howToClear="请在指定时间内完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardLucci="800"/>
+  </Step>
+  <Step id="7" type="32" mode="single" preConditionId="6" title="海盗船长的宝库！" synopsis="抓住海盗船长的伙伴们用温柔的话语（？）|获得了可以参观海盗船长宝库的机会。|但是，海盗船长提出了要通过考验的条件！|是什么考验呢？" howToClear="用指定速度以上的速度通过核对分。" missionText="请在规定时间内通过所有检查点 %d回 / %d回" addToGarage="true" visualScene="scene7" readyStage="1-7" otherWayLockId="8" stepTitleId="07">
+    <Level difficult="0" rewardStockId="1128"/>
+  </Step>
+  <Step id="8" type="32" mode="single" preConditionId="6" title="海盗船长的宝库！" synopsis="抓住海盗船长的伙伴们用温柔的话语（？）|获得了可以参观海盗船长宝库的机会。|但是，海盗船长提出了要通过考验的条件！|是什么考验呢？" howToClear="用指定速度以上的速度通过核对分。" missionText="请在规定时间内通过所有检查点 %d回 / %d回" addToGarage="true" visualScene="scene8" readyStage="1-8" otherWayLockId="7" stepTitleId="08">
+    <Level difficult="0" rewardStockId="1128"/>
+  </Step>
+  <Step id="9" type="30" mode="single" preConditionId="7|8" title="吉米的加入" synopsis="海盗船长看到自己宝库中的宝物不知踪影|命令吉米去寻找丢失的宝物。|与吉米合伙的伙伴们为了寻找卡帕，随着星陨之石的传说，|开始往黄金文明出发。" howToClear="请在指定时间完成赛道。" missionText="完成目标 %d回 / %d回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="5595"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="卡帕的惊呼" synopsis="到达黄金文明的皮蛋与伙伴们|寻找卡帕但是哪里也找不到。|这时，远处传来惊呼声，伙伴们根据惊呼声的方向|开始寻找卡帕。" howToClear="请在指定时间完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10">
+    <Level difficult="0" rewardStockId="1105"/>
+  </Step>
+  <Step id="11" type="34" mode="single" preConditionId="10" title="救援卡帕的作战" synopsis="到达了惊呼声的根源地|发现了被格雷格欺负的卡帕。|卡帕非常痛苦！|要赶紧救出卡帕。" howToClear="请在道具赛打败格雷格" missionText="对决胜利 %d回 / %d回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="11">
+    <Level difficult="0" rewardStockId="5596"/>
+  </Step>
+  <Step id="12" type="30" mode="single" preConditionId="11" title="逃脱的卡帕" synopsis="用袭击救出卡帕的皮蛋|想藏好卡帕就去抓格雷格，但是格雷格|已经逃走。要赶紧寻找躲藏的卡帕听一听原委。" howToClear="请在指定时间完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="12">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="13" type="30" mode="single" preConditionId="12" title="星陨之石的位置" synopsis="找到卡帕的皮蛋与伙伴们|从卡帕那里听到了格雷格与石板的位置。|得到卡帕的帮助，要赶紧出发|寻找石板。" howToClear="请在指定时间完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="13">
+    <Level difficult="0" rewardStockId="5597"/>
+  </Step>
+  <Step id="14" type="30" mode="single" preConditionId="13" title="星陨之石紫水晶" synopsis="到达紫水晶所在之处的皮蛋与伙伴们！|根据只要有勇气的人才可以获得紫水晶的传说|皮蛋首当其冲开始挑战！|皮蛋会获得星陨之石紫水晶吗？" howToClear="请在指定时间完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="14">
+    <Level difficult="0" rewardStockId="5598"/>
+  </Step>
+  <Step id="15" type="30" mode="single" preConditionId="14" title="捷径" synopsis="获得星陨之石紫水晶的皮蛋与伙伴们合作|出发去月光之城。为了快点和伙伴们见面|决定走卡帕所指的捷径。但是|捷径遍布着危险！|皮蛋与伙伴们可以安全到达月光之城吗？" howToClear="请在指定时间完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="15">
+    <Level difficult="0" rewardLucci="3000"/>
+  </Step>
+  <Step id="16" type="31" mode="single" preConditionId="15" title="到达月光之城" synopsis="到达月光之城的皮蛋与伙伴们，从尼欧那里得知|对黑暗组织的调查结果。尼欧说只要再调查一点|就可以知道黑暗组织总部位置|为了调查离开了座位。皮蛋为了和其他伙伴们集合|先出发去了约定的场所。" howToClear="与伙伴们的比赛上不要淘汰完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene16" readyStage="1-16" otherWayLockId="17" stepTitleId="16">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="17" type="31" mode="single" preConditionId="15" title="到达月光之城" synopsis="到达月光之城的皮蛋与伙伴们，从尼欧那里得知了|对黑暗组织的调查结果。尼欧说只要再调查一点|就可以知道黑暗组织总部位置|为了调查离开了座位。皮蛋为了和其他伙伴们集合|先出发去了约定的场所。" howToClear="与伙伴们的比赛上不要淘汰完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene17" readyStage="1-17" otherWayLockId="16" stepTitleId="17">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="18" type="30" mode="single" preConditionId="16|17" title="尼欧的帮助" synopsis="到达场所的皮蛋与伙伴们遇见了尼欧、宝宝以及|其他的伙伴们。尼欧解救了掉进陷阱里的宝宝与伙伴们|并且带到了这里，还告诉他们黑暗组织的总部。|为了最后的一战，准备出发去黑暗组织的总部吧。" howToClear="请在指定时间内完成赛道。" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="18">
+    <Level difficult="0" rewardStockId="5599"/>
+  </Step>
+  <Step id="19" type="34" mode="single" preConditionId="18" title="黑暗组织的逆袭" synopsis="到达黑暗组织的伙伴们|遇到了格雷兄弟的突袭。|伙伴们会安然无恙吗？" howToClear="请在道具赛打败格雷和格雷格。" missionText="对决胜利 %d回 / %d回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="19">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="20" type="36" mode="single" preConditionId="19" title="追击黑暗组织" synopsis="在黑暗组织所有的星陨之石被抢|伙伴们受到了很大的打击。|但是伙伴们已经认知阻挡黑暗组织的人只有他们，|因此他们决定再次协力追击格雷兄弟。" howToClear="请在指定时间内完成赛道。|* 用有限的导弹道具破坏妨碍物完成赛道" missionText="完成赛道 %d回 / %d回" addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="20" isFinalStep="true">
+    <Level difficult="0" rewardStockId="5600"/>
+  </Step>
+</StepList>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="TopUserRankTitle">
+    <m c="kr" v="Top 100위 유저랭킹"/>
+    <m c="cn" v="前100名玩家排名"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="searchUser">
+    <m c="kr" v="라이더명을 입력해주세요."/>
+    <m c="cn" v="请输入车手名称。"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="rankListEmpty">
+    <m c="kr" v="검색 조건에 만족하는 라이더가 없습니다.|검색 조건을 확인해주세요.|랭킹 보기에서는 100위 이내 라이더만 검색됩니다."/>
+    <m c="cn" v="未找到满足条件的车手。|请确认搜索条件。|查看排名中仅可搜索前100名以内的车手。"/>
+  </k>
+  <k n="guideText1">
+    <m c="kr" v="등급전 Top. 100위 내 순위를 달성할 시에 특별한 보상이 제공되니 최고의 라이더에 도전해 보세요."/>
+    <m c="cn" v="达成等级赛前100名，即可获得特别奖励，一起挑战最强车手吧！"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="guideText2">
+    <m c="kr" v="등급전 순위 정보가 일정 시간 동안 주기적으로 자동 업데이트됩니다.|현재 라이더님의 예상 순위를 확인해볼 수 있으며, 시즌 종료 후 확정된 순위를 알 수 있습니다."/>
+    <m c="cn" v="等级赛排名信息将定期自动更新。|可确认当前的预计排名，赛季结束后可确认最终排名。"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="seasonDate">
+    <m c="kr" v="%s ~ %s"/>
+    <m c="cn" v="%s ~ %s"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="speed">
+    <m c="kr" v="스피드"/>
+    <m c="cn" v="竞速赛"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="item">
+    <m c="kr" v="아이템"/>
+    <m c="cn" v="道具赛"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="grade">
+    <m c="kr" v="등급"/>
+    <m c="cn" v="等级"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="mp">
+    <m c="kr" v="포인트"/>
+    <m c="cn" v="分数"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="myRank">
+    <m c="kr" v="내 순위"/>
+    <m c="cn" v="我的排名"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="rank">
+    <m c="kr" v="순위"/>
+    <m c="cn" v="排名"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="rankFormat">
+    <m c="kr" v="%d위|상위 %.2f%%"/>
+    <m c="cn" v="%d名|前 %.2f%%"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="noneRankFormat">
+    <m c="kr" v="-위|상위 -%"/>
+    <m c="cn" v="-名|前 -%"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="riderName">
+    <m c="kr" v="라이더명"/>
+    <m c="cn" v="车手名"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="kart">
+    <m c="kr" v="사용카트"/>
+    <m c="cn" v="最终驾驶卡丁车"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="club">
+    <m c="kr" v="클럽"/>
+    <m c="cn" v="俱乐部"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="grade_5">
+    <m c="kr" v="레전드"/>
+    <m c="cn" v="王者"/>
+  </k>
+  <k n="grade_4">
+    <m c="kr" v="마스터 %d"/>
+    <m c="cn" v="钻石 %d"/>
+  </k>
+  <k n="grade_3">
+    <m c="kr" v="프로 %d"/>
+    <m c="cn" v="铂金 %d"/>
+  </k>
+  <k n="grade_2">
+    <m c="kr" v="아마추어 %d"/>
+    <m c="cn" v="黄金 %d"/>
+  </k>
+  <k n="grade_1">
+    <m c="kr" v="시니어 %d"/>
+    <m c="cn" v="白银 %d"/>
+  </k>
+  <k n="grade_0">
+    <m c="kr" v="주니어 %d"/>
+    <m c="cn" v="黄铜 %d"/>
+  </k>
+  <k n="레전드">
+    <m c="kr" v="레전드"/>
+    <m c="cn" v="王者"/>
+  </k>
+  <k n="마스터">
+    <m c="kr" v="마스터"/>
+    <m c="cn" v="钻石"/>
+  </k>
+  <k n="프로">
+    <m c="kr" v="프로"/>
+    <m c="cn" v="铂金"/>
+  </k>
+  <k n="아마추어">
+    <m c="kr" v="아마추어"/>
+    <m c="cn" v="黄金"/>
+  </k>
+  <k n="시니어">
+    <m c="kr" v="시니어"/>
+    <m c="cn" v="白银"/>
+  </k>
+  <k n="주니어">
+    <m c="kr" v="주니어"/>
+    <m c="cn" v="黄铜"/>
+  </k>
+</StringBag>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='135.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.072'
+	SteerConstraint='2.35'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+	EnvMap='true'
+
+	BoosterType='cotton6'
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zero5'
+	BoosterType3='zero5'
+
+
+
+	
+	Port0='mod2a3'
+	Port1='mod2a4'
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+ 	BoostBlurColor='255 77 77 77'
+
+/>

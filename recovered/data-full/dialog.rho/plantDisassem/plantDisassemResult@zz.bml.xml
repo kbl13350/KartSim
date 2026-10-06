@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="disAssemResult" windowSize="440 350" align="center" adjust="120 -30" caption="#sb(plantDisAssembleResult)" captionColor="black" captionPos="0 6" setCloseButton="okButton">
+  <Label name="resultMsg" windowSize="380 50" text="" textColor="white" align="hcenter" frame="TutorialBlue" textAlign="center" fontSize="12" adjust="0 10"/>
+  <Window name="itemSelect" windowRect="0 70 380 220" frame="InnerFrame" align="hcenter">
+    <Panel name="xEnergyImg" windowSize="60 60" adjust="10 0" alphaBlend="true" frame="BlackBorderDarkPanel"/>
+    <Label name="xEnergyMsg" windowSize="300 50" text="" textColor="255 54 108 198" textAlign="center" align="hcenter" fontSize="12" adjust="36 0"/>
+    <Panel name="lucciImg" windowSize="60 60" adjust="10 70" alphaBlend="true" frame="BlackBorderDarkPanel"/>
+    <Label name="lucciMsg" windowSize="300 50" text="" textColor="255 54 108 198" textAlign="center" align="hcenter" fontSize="12" adjust="36 70"/>
+  </Window>
+  <TextButton name="okButton" windowSize="85 30" align="hcenter,bottom" text="#sb(ok)"/>
+</CaptionWindow>

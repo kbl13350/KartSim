@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Tracing isFixedKart="true" fixedKartId="1055" isFixedChar="true" fixedCharId="10" kartId="1055" colorId="9" dyeId="9" characterId="12" characterName="R博士">
+    <LevelContent level="0" track="tomb_I01_rvs" laps="3" ksv="tomb_I01_rvs" distance="20" startOffset="1200"/>
+  </Tracing>
+</Root>

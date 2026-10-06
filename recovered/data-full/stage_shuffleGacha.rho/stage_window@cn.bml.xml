@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true"/>
+  <ImageBoard name="bg1024" leftTopWH="0 0 1024 768" align="center" alphaBlend="false" image="셔플 가챠폰BG_1024" visible="true"/>
+  <Container leftTopWH="0 0 800 600" align="center">
+    <ImageBoard name="bg800" leftTopWH="0 0 800 600" alphaBlend="false" image="셔플 가챠폰BG_800" visible="true"/>
+    <Panel leftTopTex="272 67" texture="machine_01" alphaBlend="true" enable="false"/>
+    <Panel leftTopTex="572 67" texture="machine_02" alphaBlend="true" enable="false"/>
+    <Panel leftTopTex="272 367" texture="machine_03" alphaBlend="true" enable="false"/>
+    <Panel leftTopTex="572 367" texture="machine_04" alphaBlend="true" enable="false"/>
+    <Play1SPanel name="vipIcon" scene="dummy" leftTopWH="0 0 64 64" align="right" adjust="50 0" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.59 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="2.8" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true">
+      <ColorLabel name="vipIconStr" leftTopWH="-30 70 130 20" align="hcenter" text="" textAlign="center" autoWrap="true" enalble="false" visible="true" textRender="bold"/>
+    </Play1SPanel>
+    <Container name="limitedFirstItemInfo" leftTopWH="18 12 210 172" visible="false">
+      <Panel leftTopTex="0 0" texture="한정아이템창" alphaBlend="true"/>
+      <Panel leftTopTex="27 19" texture="첫아이템개수" alphaBlend="true" visible="true"/>
+      <Label name="soldout" leftTopWH="0 20 210 22" align="hcenter" textRender="gulim14" textColor="white" textAlign="center" text="#sb(soldout)" visible="false"/>
+      <CharPanel name="count" leftTopWH="0 21 210 22" align="hcenter" texture="한정아이템_숫자" alphaBlend="true" fontSize="16 19" spaceOffset="0" fontStr="0123456789" text="0000" speedTick="5" enable="false" centerAlign="true" visible="true"/>
+      <Label name="name" leftTopWH="0 0 210 20" adjust="0 13" textRender="bold" textColor="yellow" textAlign="center" align="bottom" text=""/>
+    </Container>
+    <Container name="titleCont" leftTopWH="0 0 140 40" align="hcenter">
+      <Panel leftTopTex="0 0" align="hcenter" texture="타이틀" alphaBlend="true" enable="false"/>
+      <Label name="itemName" leftTopWH="8 10 140 30" textRender="gulim14" textColor="white" textAlign="hcenter" align="hcenter" multiLine="true"/>
+      <Label name="itemUsePeriod" leftTopWH=" 8 24 140 30" textRender="outline" textColor="white" textAlign="center" align="hcenter" multiLine="true"/>
+    </Container>
+    <Container name="leftView" leftTopWH="3 192 242 420">
+      <Panel leftTopTex="0 0" texture="왼쪽창" alphaBlend="true" enable="false"/>
+      <Container name="itemSummaryInfo" leftTopWH="0 0 242 233" visible="true">
+        <List name="itemCountList" leftTopWH="0 32 242 200"/>
+        <Label name="appearedItem" leftTopWH="0 3 145 23" align="left" textAlign="center" textRender="bold" textColor="white" text="#sb(appearedItem)"/>
+        <Label name="appearedItemCount" leftTopWH="0 3 95 23" align="right" textAlign="center" textRender="bold" textColor="white" text="#sb(appearedItemCount)"/>
+      </Container>
+      <Container name="itemBg" leftTopWH="0 230 242 170" alphaBlend="true">
+        <Panel name="openEffect" leftTopTex="6 9" texture="선택-활성" alphaBlend="true" visible="false"/>
+        <Window name="buyItem" leftTopWH="0 9 110 110" align="hcenter" enable="false"/>
+        <Panel name="itemCountBg" leftTopWH="0 103 47 21" align="hcenter" texture="수량_bg" alphaBlend="true">
+          <Label name="itemCount" leftTopWH="0 0 32 20" text="0" align="center" textColor="white" textAlign="center"/>
+        </Panel>
+        <Panel name="itemCountBg2" leftTopWH="0 103 47 21" align="hcenter" texture="수량_bg" alphaBlend="true" visible="false">
+          <Label name="itemCount2" leftTopWH="0 0 32 20" text="0" align="center" textColor="white" textAlign="center"/>
+        </Panel>
+        <ImageButton name="prevItem" leftTopWH="0 13 14 119" adjust="10 0" align="left" autoLoadImage="왼쪽화살_0" alphaBlend="true"/>
+        <ImageButton name="nextItem" leftTopWH="0 13 14 119" adjust="10 0" align="right" autoLoadImage="오른화살_0" alphaBlend="true"/>
+      </Container>
+    </Container>
+    <Container name="explanationCont" leftTopWH="315 450 300 60">
+      <ColorLabel name="line1" leftTopWH="15 10 290 20" textRender="gulim13" textColor="white" textAlign="left" text=""/>
+      <ColorLabel name="line2" leftTopWH="15 28 290 20" textRender="gulim13" textColor="white" textAlign="left" text=""/>
+      <ColorLabel name="line3" leftTopWH="15 46 290 20" textRender="gulim13" textColor="white" textAlign="left" text=""/>
+      <Container name="buttonGroup" leftTopWH="15 40 290 70">
+        <Container name="group_ok" leftTopWH="0 0 290 40" align="center" visible="false">
+          <TextButton name="ok" windowRect="0 0 110 28" align="hcenter" text="#sb(retry)" altTextRender="outline"/>
+        </Container>
+        <Container name="group_okcancel" leftTopWH="0 0 290 40" align="center" visible="false">
+          <BlinkButton name="ok" leftTopWH="0 0 88 28" adjust="50 0" align="left" autoLoadImage="확인_0" alphaBlend="true" hasDisable="true" autoStart="true" blinkGap="600">
+            <ColorLabel leftTopWH="0 0 88 31" textRender="outline" textColor="white" textColor2="255 148 54 3" textAlign="center" text="#sb(ok)"/>
+          </BlinkButton>
+          <ImageButton name="cancel" leftTopWH="0 0 52 28" adjust="50 0" align="right" autoLoadImage="취소_0" alphaBlend="true">
+            <ColorLabel leftTopWH="0 0 52 28" textRender="outline" textColor="white" textColor2="255 54 63 98" textAlign="center" text="#sb(cancel)"/>
+          </ImageButton>
+        </Container>
+      </Container>
+    </Container>
+    <Container name="mainPage" leftTopWH="230 70 520 370">
+      <Panel name="selected" leftTopTex="0 0" texture="select" alphaBlend="true" enable="false" visible="false"/>
+      <Container name="suffle6" windowRect="40 73 528 295" visible="false" enable="false">
+        <Container name="pos0" windowRect="30 25 40 40"/>
+        <Container name="pos1" windowRect="184 25 200 40"/>
+        <Container name="pos2" windowRect="340 25 350 40"/>
+        <Container name="pos3" windowRect="30 120 40 150"/>
+        <Container name="pos4" windowRect="184 120 200 150"/>
+        <Container name="pos5" windowRect="340 120 350 150"/>
+      </Container>
+      <Container name="suffle5" windowRect="40 73 528 295" visible="false" enable="false">
+        <Container name="pos0" windowRect="0 50 10 70"/>
+        <Container name="pos1" windowRect="95 70 130 90"/>
+        <Container name="pos2" windowRect="190 90 250 110"/>
+        <Container name="pos3" windowRect="285 70 370 90"/>
+        <Container name="pos4" windowRect="380 50 490 70"/>
+      </Container>
+      <Container name="suffle4" windowRect="40 73 528 295" visible="false" enable="false">
+        <Container name="pos0" windowRect="20 65 30 90"/>
+        <Container name="pos1" windowRect="130 65 130 90"/>
+        <Container name="pos2" windowRect="240 65 250 90"/>
+        <Container name="pos3" windowRect="350 65 370 90"/>
+      </Container>
+      <Container name="shuffleRewardsCont" windowRect="40 80 528 295"/>
+      <Container name="openRewardsCont" windowRect="40 80 528 295" enable="false"/>
+      <Container name="pongCont" windowRect="40 80 528 295" enable="false">
+        <Play1SPanel name="pong0" scene="펑" windowRect="5 -15 165 145" defaultCameraPos="0.0 -2.5 0.85" defaultSpotPos="0.0 0.0 0.6" zoom="1.7" clearZBefore="true" clearZAfter="true"/>
+        <Play1SPanel name="pong1" scene="펑" windowRect="159 -15 319 145" defaultCameraPos="0.0 -2.5 0.85" defaultSpotPos="0.0 0.0 0.6" zoom="1.7" clearZBefore="true" clearZAfter="true"/>
+        <Play1SPanel name="pong2" scene="펑" windowRect="315 -15 475 145" defaultCameraPos="0.0 -2.5 0.85" defaultSpotPos="0.0 0.0 0.6" zoom="1.7" clearZBefore="true" clearZAfter="true"/>
+        <Play1SPanel name="pong3" scene="펑" windowRect="5 100 165 260" defaultCameraPos="0.0 -2.5 0.85" defaultSpotPos="0.0 0.0 0.6" zoom="1.7" clearZBefore="true" clearZAfter="true"/>
+        <Play1SPanel name="pong4" scene="펑" windowRect="159 100 319 260" defaultCameraPos="0.0 -2.5 0.85" defaultSpotPos="0.0 0.0 0.6" zoom="1.7" clearZBefore="true" clearZAfter="true"/>
+        <Play1SPanel name="pong5" scene="펑" windowRect="315 100 475 260" defaultCameraPos="0.0 -2.5 0.85" defaultSpotPos="0.0 0.0 0.6" zoom="1.7" clearZBefore="true" clearZAfter="true"/>
+      </Container>
+    </Container>
+    <Container name="suffleContDisable" leftTopWH="272 67 513 528" visible="false">
+      <Panel leftTopTex="0 0" texture="가샤기계2_01" alphaBlend="true" enable="false"/>
+      <Panel leftTopTex="300 0" texture="가샤기계2_02" alphaBlend="true" enable="false"/>
+      <Panel leftTopTex="0 300" texture="가샤기계2_03" alphaBlend="true" enable="false"/>
+      <Panel leftTopTex="300 300" texture="가샤기계2_04" alphaBlend="true" enable="false"/>
+    </Container>
+    <ImageButton name="exit" leftTopWH="775 5 20 20" autoLoadImage="close_" alphaBlend="true" altText="#sb(close)"/>
+  </Container>
+</Container>

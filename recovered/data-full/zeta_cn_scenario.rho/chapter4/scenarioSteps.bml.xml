@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="神奇车手的劝告！" synopsis="繁荣山丘赛车大会中皮蛋以坚定的信念打败了神奇车手，|但是神奇车手却给皮蛋讲了一些必胜技巧，|皮蛋也按照神奇车手的提示进行了训练。" howToClear="在与神奇车手的对决中获胜。" missionText="比赛胜利 %d回/%d回 " addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="2" type="31" mode="single" preConditionId="1" title="山丘赛车大会决赛！" synopsis="皮蛋接受了神奇车手的指教完善了自己的不足之处，|然而在决赛中碰到海盗船长的皮蛋是否可以获得胜利呢？" howToClear="在比赛中获得第一。" missionText="比赛胜利 %d回/%d回 " addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardRp="1000"/>
+  </Step>
+  <Step id="3" type="34" mode="single" preConditionId="2" title="还我奖牌！" synopsis="皮蛋在繁荣山丘赛车大会中获得了胜利！|但是输给皮蛋的海盗船长抢走奖牌后要求皮蛋再比一次。|无能为力的皮蛋只能迎战！" howToClear="与海盗团的道具赛中获胜。" missionText="对决胜利 %d回/%d回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="4" type="31" mode="single" preConditionId="3" title="回到繁荣山丘。" synopsis="从海盗船长手里拿回奖牌的皮蛋一伙一起返回繁荣山丘。|这时小强提议在回去的路上进行一次比赛，|看谁能先到村庄。" howToClear="每圈都不是最后一名并完成赛道。" missionText="完成行驶 %d回/%d回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="14256"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="消息。" synopsis="回到繁荣山丘后突然听到了奇怪的消息。|听说村庄中出现了幽灵，而且这个幽灵提出了赛车比赛。|听到这个消息，皮蛋和伙伴们开始出去寻找幽灵。" howToClear="请在规定的时间内完成赛道." missionText="完成赛道目标 %d回/%d回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="3442"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="幽灵车手！" synopsis="在村庄巡逻的胖墩和葱头在墓地附近听到了奇怪的声音。|靠近时，被幽灵车手吓一跳的胖墩和葱头开始逃跑！" howToClear="在规定时间内甩掉幽灵车手。|*注意 距离差距为0M时挑战失败。" missionText="成功逃出 %d回/%d回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="3557"/>
+  </Step>
+  <Step id="7" type="32" mode="single" preConditionId="6" title="消失的幽灵车手！" synopsis="慌忙逃跑的胖墩发现了皮蛋，|然后给皮蛋讲了刚才所发生的事情。|皮蛋为了寻找幽灵车手，全力驶向了墓地。" howToClear="请在指定速度以上通过检查点。" missionText="完成游戏 %d回/%d回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="14256"/>
+  </Step>
+  <Step id="8" type="30" mode="single" preConditionId="7" title="皮蛋巡逻队！" synopsis="皮蛋到了胖墩所说的地方，可是幽灵车手已消失不见。|但是在墓地的岔路上发现了幽灵车手的痕迹，|需要赶紧追过去。" howToClear="请在规定时间内完成游戏" missionText="完成游戏 %d回/%d回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08A" otherWayLockId="9">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="9" type="30" mode="single" preConditionId="7" title="皮蛋巡逻队！" synopsis="皮蛋到了胖墩所说的地方，可是幽灵车手已消失不见。|但是在墓地的岔路上发现了幽灵车手的痕迹，|需要赶紧追过去。" howToClear="请在规定时间内完成游戏" missionText="完成游戏 %d回/%d回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="08B" otherWayLockId="8">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="8|9" title="幽灵车手的碰面。" synopsis="皮蛋终于追上幽灵车手！|可是幽灵车手的长相非常的眼熟！|反正皮蛋决心要抓捕这个幽灵车手了。" howToClear="在与幽灵车手对决中胜利" missionText="游戏胜利 %d回/%d回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="09">
+    <Level difficult="0" rewardStockId="3553"/>
+  </Step>
+  <Step id="11" type="30" mode="single" preConditionId="10" title="幽灵车手的身份！" synopsis="幽灵车手的实力比想象中的还差，|皮蛋准备揭穿幽灵车手的身份时，幽灵车手逃跑了。|皮蛋又开始了追逐幽灵车手。" howToClear="在规定时间内追击幽灵车手。|*注意 距离差距为20M时挑战失败。" missionText="成功追击 %d回/%d回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="10">
+    <Level difficult="0" rewardStockId="3552"/>
+  </Step>
+  <Step id="12" type="30" mode="single" preConditionId="11" title="事情的始末！" synopsis="再一次轻松追赶的皮蛋！可是幽灵车手的长相！|啊？宝宝…!皮蛋一时觉得特别无力…|皮蛋和伙伴们带着宝宝回到了村庄，|因这事，宝宝要受到特殊惩罚。" howToClear="请在规定时间内完成游戏。" missionText="完成游戏 %d回/%d回" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="11">
+    <Level difficult="0" rewardStockId="6809"/>
+  </Step>
+  <Step id="13" type="30" mode="single" preConditionId="12" title="又一次出现！" synopsis="此刻安静的繁荣山丘，再次传出了幽灵车手的消息。|怎么回事呢？这次确实不是宝宝搞的鬼啊！|难道是真的有幽灵车手？皮蛋巡逻队再次驶向了墓地。" howToClear="请在规定的时间内完成赛道." missionText="完成赛道目标 %d回/%d回" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="12">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="14" type="30" mode="single" preConditionId="13" title="真有幽灵车手？" synopsis="到了墓地后没有发现幽灵车手的身影，|可是皮蛋巡逻队不会轻易地放弃。|他们开始在墓地周围寻找幽灵车手的痕迹。" howToClear="请在规定时间内完成游戏。" missionText="完成游戏 %d回/%d回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="13">
+    <Level difficult="0" rewardStockId="1128"/>
+  </Step>
+  <Step id="15" type="30" mode="single" preConditionId="14" title="可怕的幽灵车手！" synopsis="皮蛋跟随幽灵车手痕迹发现幽灵车手，|可是跟之前的宝宝变身判若两人。|被幽灵车手的外貌吓到的皮蛋准备逃跑。" howToClear="在规定时间内甩掉幽灵车手。|*注意 距离差距为0M时挑战失败。" missionText="成功逃出 %d回/%d回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="14">
+    <Level difficult="0" rewardStockId="4875"/>
+  </Step>
+  <Step id="16" type="32" mode="single" preConditionId="15" title="特殊训练！" synopsis="被幽灵车手吓到后逃跑的皮蛋总觉得自己很没用。|为了和幽灵车手决一高下，准备去墓地进行特殊训练！" howToClear="请在指定速度以上通过检查点。" missionText="完成游戏 %d回/%d回" addToGarage="true" visualScene="scene16" readyStage="1-16" stepTitleId="15A" otherWayLockId="17">
+    <Level difficult="0" rewardStockId="14704"/>
+  </Step>
+  <Step id="17" type="32" mode="single" preConditionId="15" title="特殊训练！" synopsis="被幽灵车手吓到后逃跑的皮蛋总觉得自己很没用。|为了和幽灵车手决一高下，准备去墓地进行特殊训练！" howToClear="请在规定时间内通过检查点。" missionText="完成游戏 %d回/%d回" addToGarage="true" visualScene="scene17" readyStage="1-17" stepTitleId="15B" otherWayLockId="16">
+    <Level difficult="0" rewardStockId="14704"/>
+  </Step>
+  <Step id="18" type="31" mode="single" preConditionId="16|17" title="伙伴们的帮助。" synopsis="伙伴们发现为了和幽灵车手对决而努力的皮蛋，|为了皮蛋，伙伴们准备装扮成幽灵和皮蛋进行训练。" howToClear="在比赛中获得第一。" missionText="完成游戏 %d回/%d回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="16">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="19" type="30" mode="single" preConditionId="18" title="寻找幽灵车手！" synopsis="因伙伴们的帮助重新找回信心的皮蛋！|这次准备揭穿幽灵车手的身份！|可是去哪里找幽灵车手呢？" howToClear="在规定时间和撞击次数内完成游戏。" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="17">
+    <Level difficult="0" rewardStockId="7806"/>
+  </Step>
+  <Step id="20" type="30" mode="single" preConditionId="19" title="幽灵车手的真正身份！" synopsis="终于找到了幽灵车手！皮蛋向幽灵车手提出了对决！|皮蛋是否可以获得胜利呢？|幽灵车手的真正身份又是什么呢？" howToClear="在与幽灵车手的对决中获胜。" missionText="比赛胜利 %d回/%d回 " addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="18" isFinalStep="true">
+    <Level difficult="0" rewardStockId="14705"/>
+  </Step>
+</StepList>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh1"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="哇！这次阿嘉也完胜！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop2"/>
+  <Msg name="黑妞" string="阿嘉又赢了~！|真棒~！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="阿嘉" string="认输吧|并且遵守约定！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="thonz" pos="8 0" emotion="stop2"/>
+  <Msg name="尼兹" string="额~我又输了…!|怎么会这样…!"/>
+  <Enter/>
+  <Char id="thonz" remove="true"/>
+  <Char id="steve" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="thonz" pos="11 0" emotion="stop2"/>
+  <Msg name="罗杰" string="这…尼兹又输了？|丢尽了暴走联盟的脸！"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="thonz" remove="true"/>
+  <Char id="steve" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="thonz" pos="11 0" emotion="stop2"/>
+  <Msg name="尼兹" string="罗杰..!|下次肯定不会输"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="thonz" remove="true"/>
+  <Char id="steve" pos="8 0" emotion="stop3"/>
+  <Msg name="罗杰" string="没下次了！|阿嘉~在飙车现场抓个现形？"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="steve" pos="11 0" emotion="stop1"/>
+  <Msg name="阿嘉" string="罗杰！|我不会被你抓住的！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="steve" remove="true"/>
+  <Char id="steve" pos="8 0" emotion="stop3"/>
+  <Msg name="罗杰" string="阿嘉！|你想逃！站住！"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="thonz" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="barmer" pos="11 0" emotion="stop1"/>
+  <Msg name="尼兹" string="我们也跟去！|走！"/>
+  <Enter/>
+  <Char id="thonz" remove="true"/>
+  <Char id="barmer" remove="true"/>
+  <Char id="paul" pos="8 0" emotion="stop1"/>
+  <Msg name="神秘人员" string="好！|按计划阿嘉引诱了罗杰！"/>
+  <Enter/>
+</Scene>

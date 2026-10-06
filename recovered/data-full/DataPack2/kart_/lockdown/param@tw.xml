@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+ForwardAccelForce='150.0'
+BackwardAccelForce='100.0'
+DragFactor='-0.078'
+SteerConstraint='2.5'
+DriftEscapeForce='1500'
+CornerDrawFactor='0.066'
+EngineSound='tf_sedan'
+
+StartForwardAccelFactorItem = '1.7'
+StartBoosterTimeItem='1300'           
+
+StartForwardAccelFactorSpeed = '1.8'
+StartBoosterTimeSpeed='1400'              
+
+SpecialSlotCapacity='2'
+ItemSlotCapacity='3'
+
+UseExtendedAfterBooster='true'
+BoosterAccelFactorItem ='1.62'
+
+UseTransformBooster='true'
+TransAccelFactor='1.83'
+TransformTime='100'
+
+NormalBoosterTime = '-100'
+TeamBoosterTime = '-200'
+DriftMaxGauge = '-600'
+DriftGaguePreservePercent='0.5'
+
+BoosterType='8soon'
+BoosterType0='8soon'
+BoosterType1='8soon'
+
+Port0='mod3a'
+Port1='mod3b'
+
+TailLampSize='0.2'
+TailLampColor='0 255 100 100'
+BoostBlurColor='255 77 77 77'
+
+TachometerType='Tacho1'
+TachometerName='ht'
+itemSlotName='ht'
+boostGaugeName='ht'
+
+DescBalance= '47'
+DescStability ='47'
+DescEngineGrade='1.25'
+DescCornering='7'
+DescEnchantCap = '30'
+
+WheelFixed = 'true'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod3a' trailPort1='mod3b'/>
+</BodyParam>
+
+
+<!-- 락다운 20140724 상점 상시 판매 / 아이템+스피드 타입 조합 -->

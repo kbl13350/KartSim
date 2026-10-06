@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="nym01"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="怎么没能回去！失败了吗…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="怎么会这样..我们不能回家了吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="（总感觉有点怪...）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="naiad" pos="7 0" emotion="stop2"/>
+  <Msg name="美美" string="哈哈。。。哈哈哈。。。。"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="有什么好笑的。我们不能回家有那么高兴吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="真是的..上当了.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="naiad" pos="7 0" emotion="stop1"/>
+  <Msg name="美美" string="哈哈…哈哈哈…你们真单纯啊！！我是瞎说说的。好好笑啊！"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="什…什么.那我们能回家吗?"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="naiad" pos="8 0" emotion="stop1"/>
+  <Msg name="美美" string="好开心啊！咳咳，对不起啊。这次真的告诉你们回家的方法，其实有这个纹章就容易了。"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="还好啊，以为真的不能回家，只能跟黑妞在这里好好过日子了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="naiad" pos="7 0" emotion="stop1"/>
+  <Msg name="美美" string="你们真是好肉麻啊。想回去的话，只要这样把纹章...啊!"/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="哇哈哈哈哈！小朋友你们好啊!"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="700"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋和黑妞" string="海...海盗！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="700"/>
+  <Char id="tutu" pos="10 0" emotion="stop3"/>
+  <Char id="mobi" pos="4 0" emotion="stop2"/>
+  <Msg name="吉米和嘟嘟" string="美美和纹章我们带走了！！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="lodumani" pos="7 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="有了这个！我们接手整片大海和精灵森林只是时！间！问！题！哇哈哈哈"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋！海盗团逃跑了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="赶快去把美美救出来！！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,8 @@
+{
+  "exported_sprites": 241,
+  "source_atlases": [
+    "assets/uires/uiatlas/maingame/maingame_2.prefab",
+    "assets/uires/uiatlas/maingame/maingameatlas.prefab"
+  ],
+  "note": "Direction and drift examples come from the settings atlas; the exact race button variants have not been identified."
+}

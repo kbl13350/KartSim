@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="line" leftTopWH="0 288 1600 52">
+  <Panel name="bgBar" leftTopWH="0 2 810 50" align="hcenter" color="150 0 0 0" alphaBlend="true">
+    <CharPanel name="num" leftTopWH="35 0 19 21" texture="redteam_num@zz" fontSize="19 21" fontStr="0123456789x" alphaBlend="true" align="vcenter"/>
+    <Label name="id" leftTopWH="90 0 100 33" textRender="bold20" textColor="200 255 255 255" align="vcenter" textAlign="vcenter"/>
+    <Label name="time" leftTopWH="377 0 100 33" textRender="bold20" textColor="220 255 255 255" align="vcenter" textAlign="center"/>
+    <Label name="tp" leftTopWH="657 0 100 33" textRender="bold20" textColor="220 255 255 255" align="vcenter" textAlign="center"/>
+  </Panel>
+</Container>

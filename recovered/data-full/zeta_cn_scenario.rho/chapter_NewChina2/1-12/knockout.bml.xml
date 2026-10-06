@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <KnockOut track="china_I01" laps="3" isFixedKart="true" fixedKartId="1483" isFixedChar="true" fixedCharId="450" type="lap">
+    <LevelContent level="0" ksv="1-12" startOffset="1500">
+      <ShadowKart characterId="270" uniformId="0" kartId="1463" colorId="1" dyeId="1" characterName="木兰"/>
+      <ShadowKart characterId="270" uniformId="0" kartId="1463" colorId="1" dyeId="1" characterName="木兰"/>
+      <ShadowKart characterId="270" uniformId="0" kartId="1463" colorId="1" dyeId="1" characterName="木兰"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="dialog" clientRect="0 0 638 435" align="center">
+  <Container name="top" windowRect="0 0 638 435">
+    <Panel name="Base2" clientRect="319 0 638 435" texture="day_02" alphaBlend="true"/>
+    <Panel name="Base1" clientRect="0 0 319 435" texture="day_01" alphaBlend="true" enable="false">
+      <Container name="align" windowRect="33 167 605 435">
+        <CharPanel name="count0" fontStr="oxv01234" fontSize="95 101" text="" clientRect="0 0 380 101" texture="items" alphaBlend="true"/>
+        <CharPanel name="count1" fontStr="oxv01234" fontSize="95 101" text="" clientRect="0 108 380 209" texture="items" alphaBlend="true"/>
+        <CharPanel name="count2" fontStr="oxv01234" fontSize="95 101" text="" clientRect="0 216 380 317" texture="items" alphaBlend="true"/>
+        <CharPanel name="count3" fontStr="oxv01234" fontSize="95 101" text="" clientRect="0 324 380 425" texture="items" alphaBlend="true"/>
+        <CharPanel name="count4" fontStr="oxv01234" fontSize="95 101" text="" clientRect="0 432 380 533" texture="items" alphaBlend="true"/>
+        <Window name="firstOnce" windowRect="0 0 246 218" visible="false">
+          <Panel name="once" windowSize="246 218" texture="미니출첵_반짝" textureOp="modulate" alphaBlend="true" align="center" adjust="-62 -55"/>
+        </Window>
+        <Label name="1" windowRect="0 80 89 92" text="" textColor="255 218 24 24" textAlign="center"/>
+        <Label name="2" windowRect="95 80 184 92" text="" textColor="255 218 24 24" textAlign="center"/>
+        <Label name="3" windowRect="190 80 279 92" text="" textColor="255 218 24 24" textAlign="center"/>
+        <Label name="4" windowRect="285 80 374 92" text="" textColor="255 218 24 24" textAlign="center"/>
+        <Label name="5" windowRect="0 188 89 200" text="" textColor="255 218 24 24" textAlign="center"/>
+        <Label name="6" windowRect="95 188 184 200" text="" textColor="255 218 24 24" textAlign="center"/>
+        <Label name="7" windowRect="190 188 279 200" text="" textColor="255 218 24 24" textAlign="center"/>
+        <Label name="8" windowRect="285 188 374 200" text="" textColor="255 218 24 24" textAlign="center"/>
+      </Container>
+      <StateButton name="subAttend" windowRect="279 234 387 284" canDisable="true" iconSet="subAttend@zz" iconAlign="hcenter" iconPos="0 0" visible="false"/>
+    </Panel>
+  </Container>
+  <Container name="buttonGroup" windowSize="300 40" align="hcenter;bottom">
+    <ImageButton name="okButton" windowRect="0 0 78 23" autoLoadImage="bt_ok_" alphaBlend="true" align="center"/>
+  </Container>
+  <Window name="getItemNotice" clientRect="347 0 681 424" visible="false" alphaBlend="true">
+    <Label name="ItemNotice" clientRect="0 20 200 80" text="#sb(itemGet)" textAlign="center" multiLine="true" autoWrap="true" lineGap="1" textColor="black" textRender="bold" visible="false"/>
+    <Panel name="attendNotice1" clientRect="0 0 334 424" texture="아이템설명_01" visible="false" alphaBlend="true"/>
+    <Panel name="attendNotice2" clientRect="0 0 334 424" texture="아이템설명_02" visible="false" alphaBlend="true"/>
+    <Panel name="attendNotice3" clientRect="0 0 334 424" texture="아이템설명_03" visible="false" alphaBlend="true"/>
+    <Panel name="attendNotice4" clientRect="0 0 334 424" texture="아이템설명_04" visible="false" alphaBlend="true"/>
+    <Panel name="attendNotice5" clientRect="0 0 334 424" texture="아이템설명_05" visible="false" alphaBlend="true"/>
+    <Panel name="attendNotice6" clientRect="0 0 334 424" texture="아이템설명_06" visible="false" alphaBlend="true"/>
+    <Panel name="attendNotice7" clientRect="0 0 334 424" texture="아이템설명_07" visible="false" alphaBlend="true"/>
+    <Panel name="attendNotice8" clientRect="0 0 334 424" texture="아이템설명_08" visible="false" alphaBlend="true"/>
+    <ImageButton name="close" windowRect="152 324 177 349" autoLoadImage="bt_close_" alphaBlend="true"/>
+  </Window>
+</Container>

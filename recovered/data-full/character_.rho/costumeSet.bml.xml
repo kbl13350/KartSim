@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<costume>
+  <Lingling>
+    <Lingling_zongzi set="Lingling_zongzi"/>
+    <Lingling_HoneyBee set="Lingling_HoneyBee"/>
+  </Lingling>
+  <wonwon>
+    <wonwon_rapper set="wonwon_rapper"/>
+    <wonwon_duanwu set="wonwon_duanwu"/>
+    <wonwon_conductor set="wonwon_conductor"/>
+    <wonwon_wolha set="wonwon_wolha"/>
+  </wonwon>
+  <bazzi>
+    <bazzi_hawaiian set="bazzi_hawaiian"/>
+    <bazzi_peach set="bazzi_peach"/>
+    <bazzi_delivery set="bazzi_delivery"/>
+    <bazzi_penguin set="bazzi_penguin"/>
+    <bazzi_salmonSushi set="bazzi_salmonSushi"/>
+  </bazzi>
+  <uni>
+    <uni_rabbit set="uni_rabbit"/>
+    <uni_ghost set="uni_ghost"/>
+    <uni_chicken set="uni_chicken"/>
+  </uni>
+  <dizni>
+    <dizni_polkadot set="dizni_polkadot"/>
+    <dizni_fishbun set="dizni_fishbun"/>
+    <dizni_vega set="dizni_vega"/>
+    <dizni_spring set="dizni_spring"/>
+    <dizini_eggSushi set="dizini_eggSushi"/>
+  </dizni>
+  <bazzi_baby>
+    <bazzibaby_panda set="bazzibaby_panda"/>
+  </bazzi_baby>
+  <dizni_baby>
+    <diznibaby_panda set="diznibaby_panda"/>
+  </dizni_baby>
+  <wonwon_baby>
+    <wonwonbaby_panda set="wonwonbaby_panda"/>
+  </wonwon_baby>
+  <dao_baby>
+    <daobaby_panda set="daobaby_panda"/>
+  </dao_baby>
+  <brodi>
+    <brodi_whale set="brodi_whale"/>
+  </brodi>
+  <dao>
+    <dao_fishbun set="dao_fishbun"/>
+    <dao_altair set="dao_altair"/>
+    <dao_chicken set="dao_chicken"/>
+  </dao>
+  <tiera>
+    <tiera_swimsuit set="tiera_swimsuit"/>
+  </tiera>
+  <narin>
+    <narin_swimsuit set="narin_swimsuit"/>
+  </narin>
+  <neoul>
+    <neoul_swimsuit set="neoul_swimsuit"/>
+  </neoul>
+  <renewalRick>
+    <rick_houyi set="rick_houyi"/>
+    <rick_golddragon set="rick_golddragon"/>
+  </renewalRick>
+  <hanga>
+    <hanga_moonlight set="hanga_moonlight"/>
+  </hanga>
+  <ethi>
+    <ethi_redhorse set="ethi_redhorse"/>
+    <ethi_tunaSushi set="ethi_tunaSushi"/>
+  </ethi>
+  <kephi>
+    <kephi_tangsuit set="kephi_tangsuit"/>
+    <kephi_pumpkin set="kephi_pumpkin"/>
+  </kephi>
+  <Reto_Raincoat>
+    <Reto_nursery set="Reto_nursery"/>
+  </Reto_Raincoat>
+  <mos>
+    <mos_chicken set="mos_chicken"/>
+  </mos>
+</costume>

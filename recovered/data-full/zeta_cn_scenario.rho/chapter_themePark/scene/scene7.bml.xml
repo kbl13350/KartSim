@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="park2"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="好像是去这里了~|啊~在那儿！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pierrot" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="麻吉" string="让他们来这里的.."/>
+  <Enter/>
+  <Char id="pierrot" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Msg name="宝宝" string="麻~麻~|额~是嘟嘟！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="tutu" pos="11 0" emotion="stop8"/>
+  <Msg name="嘟嘟" string="嘿~！|在那儿啊！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="嘟嘟为什么跟着麻吉呢！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="难道是海盗船长想攻击这里.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="不管怎样得先告诉伙伴们！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="刚才明明说是去水上公园的.."/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <KnockOut track="forest_R02" laps="2" isFixedKart="true" fixedKartId="875" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" ksv="forest_R02">
+      <ShadowKart characterId="8" uniformId="0" kartId="943" colorId="5" dyeId="5"/>
+      <ShadowKart characterId="7" uniformId="0" kartId="875" colorId="3" dyeId="3"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+		ForwardAccelForce='145.0'
+		BackwardAccelForce='100.0'
+		DragFactor='-0.078'
+		SteerConstraint='3.1'
+		DriftEscapeForce='1450'
+		CornerDrawFactor='0.07'
+
+		BoosterBlur='true'
+		EngineSound='cotton85'
+		EnvMap='true'
+		WaveEffect='true'
+
+		antiCollideBalance='0.85'
+		GripBrakeForce='1000'
+		SlipBrakeForce='-200'
+
+
+		UseTransformBooster='true'
+		TransAccelFactor='1.793'
+		TransformTime='100'
+
+		StartForwardAccelFactorSpeed = '1.8'
+		StartBoosterTimeSpeed='1300'   
+
+		NormalBoosterTime = '0'
+		TeamBoosterTime = '0'
+		DriftMaxGauge = '-430'
+		DriftGaguePreservePercent='0.6'
+
+		BoosterWaveType='boost8'
+		BoosterType='8soon'
+		BoosterType0='8soon'
+		BoosterType1='8soon'
+		BoosterType2='8main'
+		BoosterType3='8sub'
+		BoosterType4='8sub'
+
+		Port0='mod2a3'
+		Port1='mod2a3'
+
+		FirePort0='mod2b1'
+		FirePort1='mod2a1'
+		FirePort2='mod2a2'
+
+		TailLampSize='0.2'
+		TailLampColor='255 150 15 18'
+		BoostBlurColor='255 77 77 77'
+
+		secondColor='255 224 12 0'
+		secondHighColor='255 255 50 0'
+
+		TachometerType='Tacho1'
+		TachometerName='ht'
+		itemSlotName='ht'
+		boostGaugeName='ht'
+
+		DescBalance='47'
+		DescStability='49'
+		DescEngineGrade='1.25'
+		DescCornering='8'
+		DescEnchantCap='25'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2a1' trailPort1='mod2a2'/>
+</BodyParam>
+
+<!--몬스터 HT+ W 20140220 중국 이벤트 판매 윙 파츠 -->

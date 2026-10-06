@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="fullscreen">
+  <RenderPanel name="render" windowRect="fullscreen"/>
+  <Container windowRect="fullscreen">
+    <Container windowSize="326 241" align="right" adjust="30 62">
+      <Panel name="userList_top" windowRect="0 0 326 32" uvRect="0 0 326 32" texture="img_friendListBG" alphaBlend="true">
+        <Label name="riderCount" windowSize="178 22" textAlign="center" textColor="255 255 249 231" text="#sb(riderCount)" align="center" textRender="bold14" textColor2="255 87 67 17"/>
+      </Panel>
+      <Panel name="userList_middle" windowRect="0 32 326 258" uvRect="0 34 326 43" texture="img_friendListBG" alphaBlend="true">
+        <Container name="riders">
+          <Window name="riderCard0" leftTopWH="0 3 326 30" alphaBlend="true" visible="false">
+            <Panel name="glove" windowRect="7 5 27 25" uvRect="0 0 20 20" alphaBlend="true" enable="false"/>
+            <Label name="rid" windowRect="35 0 171 30" textAlign="vcenter" textColor="white" textColor2="black" textRender="outline14" enable="false"/>
+            <ImageButton name="info" windowSize="22 22" adjust="5 0" align="right;vcenter" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+          </Window>
+          <Window name="riderCard1" leftTopWH="0 33 326 30" alphaBlend="true" visible="false">
+            <Panel name="glove" windowRect="7 5 27 25" uvRect="0 0 20 20" alphaBlend="true" enable="false"/>
+            <Label name="rid" windowRect="35 0 171 30" textAlign="vcenter" textColor="white" textColor2="black" textRender="outline14" enable="false"/>
+            <ImageButton name="info" windowSize="22 22" adjust="5 0" align="right;vcenter" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+          </Window>
+          <Window name="riderCard2" leftTopWH="0 63 326 30" alphaBlend="true" visible="false">
+            <Panel name="glove" windowRect="7 5 27 25" uvRect="0 0 20 20" alphaBlend="true" enable="false"/>
+            <Label name="rid" windowRect="35 0 171 30" textAlign="vcenter" textColor="white" textColor2="black" textRender="outline14" enable="false"/>
+            <ImageButton name="info" windowSize="22 22" adjust="5 0" align="right;vcenter" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+          </Window>
+          <Window name="riderCard3" leftTopWH="0 93 326 30" alphaBlend="true" visible="false">
+            <Panel name="glove" windowRect="7 5 27 25" uvRect="0 0 20 20" alphaBlend="true" enable="false"/>
+            <Label name="rid" windowRect="35 0 171 30" textAlign="vcenter" textColor="white" textColor2="black" textRender="outline14" enable="false"/>
+            <ImageButton name="info" windowSize="22 22" adjust="5 0" align="right;vcenter" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+          </Window>
+          <Window name="riderCard4" leftTopWH="0 123 326 30" alphaBlend="true" visible="false">
+            <Panel name="glove" windowRect="7 5 27 25" uvRect="0 0 20 20" alphaBlend="true" enable="false"/>
+            <Label name="rid" windowRect="35 0 171 30" textAlign="vcenter" textColor="white" textColor2="black" textRender="outline14" enable="false"/>
+            <ImageButton name="info" windowSize="22 22" adjust="5 0" align="right;vcenter" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+          </Window>
+          <Window name="riderCard5" leftTopWH="0 153 326 30" alphaBlend="true" visible="false">
+            <Panel name="glove" windowRect="7 5 27 25" uvRect="0 0 20 20" alphaBlend="true" enable="false"/>
+            <Label name="rid" windowRect="35 0 171 30" textAlign="vcenter" textColor="white" textColor2="black" textRender="outline14" enable="false"/>
+            <ImageButton name="info" windowSize="22 22" adjust="5 0" align="right;vcenter" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+          </Window>
+          <Window name="riderCard6" leftTopWH="0 183 326 30" alphaBlend="true" visible="false">
+            <Panel name="glove" windowRect="7 5 27 25" uvRect="0 0 20 20" alphaBlend="true" enable="false"/>
+            <Label name="rid" windowRect="35 0 171 30" textAlign="vcenter" textColor="white" textColor2="black" textRender="outline14" enable="false"/>
+            <ImageButton name="info" windowSize="22 22" adjust="5 0" align="right;vcenter" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+          </Window>
+          <Window name="riderCard7" leftTopWH="0 213 326 30" alphaBlend="true" visible="false">
+            <Panel name="glove" windowRect="7 5 27 25" uvRect="0 0 20 20" alphaBlend="true" enable="false"/>
+            <Label name="rid" windowRect="35 0 171 30" textAlign="vcenter" textColor="white" textColor2="black" textRender="outline14" enable="false"/>
+            <ImageButton name="info" windowSize="22 22" adjust="5 0" align="right;vcenter" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+          </Window>
+        </Container>
+      </Panel>
+      <Panel name="userList_bottom" windowRect="0 258 326 272" uvRect="0 38 326 42" texture="img_friendListBG" alphaBlend="true">
+        <ImageButton windowRect="0 0 193 26" name="userListButton" autoLoadNoDisable="unfold" align="hcenter" iconPos="0 0" iconAlign="center" alphaBlend="true" visible="false"/>
+      </Panel>
+    </Container>
+    <Window name="menuGroup" windowSize="436 84" adjust="30 62" alphaBlend="true" visible="false">
+      <ImageButton name="garageOpen" leftTopTex="0 10" autoLoadImage="btn_singleItem_" alphaBlend="true">
+        <Label name="menuButtonName" windowRect="0 45 84 65" textRender="bold14" text="#sb(item)" textColor="white" textAlign="center"/>
+      </ImageButton>
+      <ImageButton name="fishBasketOpen" leftTopTex="88 10" autoLoadImage="btn_fishBasket_" alphaBlend="true">
+        <Label name="menuButtonName" windowRect="0 45 84 65" textRender="bold14" text="#sb(openFishBasket)" textColor="white" textAlign="center"/>
+      </ImageButton>
+      <ImageButton name="findRiderOpen" leftTopTex="176 10" autoLoadImage="btn_fishVisit_" alphaBlend="true">
+        <Label name="menuButtonName" windowRect="0 45 84 65" textRender="bold14" text="#sb(openFindRider)" textColor="white" textAlign="center"/>
+      </ImageButton>
+      <ImageButton name="randomVisitOpen" leftTopTex="264 10" autoLoadImage="btn_fishRandom_" alphaBlend="true">
+        <Label name="menuButtonName" windowRect="0 45 84 65" textRender="bold14" text="#sb(openRandomvisit)" textColor="white" textAlign="center"/>
+      </ImageButton>
+      <ImageButton name="rankOpen" leftTopTex="352 10" autoLoadImage="btn_fishRanking_" alphaBlend="true">
+        <Label name="menuButtonName" windowRect="0 45 84 65" textRender="bold14" text="#sb(openRank)" textColor="white" textAlign="center"/>
+      </ImageButton>
+    </Window>
+    <Panel leftTopTex="30 146" texture="fish_useInfo@zz" alphaBlend="true"/>
+    <Container name="chatBox" windowSize="364 164" align="left;bottom" adjust="30 113">
+      <Container name="chatHistory" windowRect="0 0 364 164">
+        <Panel name="toggleImage1" windowRect="0 0 10 165" uvRect="0 0 8 134" texture="img_chatListBG" alphaBlend="true"/>
+        <Panel name="toggleImage2" windowRect="10 0 355 165" uvRect="8 0 10 134" texture="img_chatListBG" alphaBlend="true"/>
+        <Panel name="toggleImage3" windowRect="355 0 364 165" uvRect="10 0 18 134" texture="img_chatListBG" alphaBlend="true"/>
+        <Container name="chatHistoryRgn" windowRect="3 0 356 156"/>
+        <ScrollBar name="chatHistoryBar" windowRect="0 0 12 160" align="right;vcenter" scrollType="vertical" visible="false"/>
+      </Container>
+      <Container name="chatEdit" windowRect="0 165 373 196">
+        <Container windowSize="373 31">
+          <Panel windowRect="0 0 39 31" uvRect="0 0 39 31" texture="img_chatBoxBG" alphaBlend="true"/>
+          <Panel windowRect="39 0 354 31" uvRect="39 0 40 31" texture="img_chatBoxBG" alphaBlend="true"/>
+          <Panel windowRect="354 0 364 31" uvRect="40 0 50 31" texture="img_chatBoxBG" alphaBlend="true"/>
+          <Container name="focusLine" windowSize="364 31" visible="false">
+            <Panel windowRect="0 0 39 31" uvRect="0 0 39 31" texture="img_chatBoxline" alphaBlend="true"/>
+            <Panel windowRect="39 0 354 31" uvRect="39 0 40 31" texture="img_chatBoxline" alphaBlend="true"/>
+            <Panel windowRect="354 0 364 31" uvRect="40 0 50 31" texture="img_chatBoxline" alphaBlend="true"/>
+          </Container>
+          <Container name="chatRgn" windowRect="42 8 356 23"/>
+          <Label name="chatHelp1" windowRect="42 5 200 20" text="#sb(defaultChat)" textColor="255 220 220 220" enable="false" textRender="bold14"/>
+          <Label name="chatHelp2" windowRect="42 5 200 20" text="#sb(helpChat)" textColor="255 160 160 160" visible="false" enable="false" alphaBlend="true" textRender="bold14"/>
+        </Container>
+        <ImageButton name="openChat" windowRect="331 0 363 32" align="vcenter" autoLoadImage="btn_chatListUp_" alphaBlend="true" visible="false" enable="false"/>
+        <ImageButton name="hideChat" windowRect="331 0 363 32" align="vcenter" autoLoadImage="btn_chatListDown_" alphaBlend="true"/>
+      </Container>
+    </Container>
+  </Container>
+  <Container name="onFishingMark">
+    <BlinkButton name="onFishingMark0" leftTopWH="0 0 54 64" autoLoadImage="fishi_ingIcon_" alphaBlend="true" enable="true" visible="false" hasDisable="true" blinkGap="500" autoStart="true"/>
+    <BlinkButton name="onFishingMark1" leftTopWH="0 0 54 64" autoLoadImage="fishi_ingIcon_" alphaBlend="true" enable="true" visible="false" hasDisable="true" blinkGap="500" autoStart="true"/>
+    <BlinkButton name="onFishingMark2" leftTopWH="0 0 54 64" autoLoadImage="fishi_ingIcon_" alphaBlend="true" enable="true" visible="false" hasDisable="true" blinkGap="500" autoStart="true"/>
+    <BlinkButton name="onFishingMark3" leftTopWH="0 0 54 64" autoLoadImage="fishi_ingIcon_" alphaBlend="true" enable="true" visible="false" hasDisable="true" blinkGap="500" autoStart="true"/>
+    <BlinkButton name="onFishingMark4" leftTopWH="0 0 54 64" autoLoadImage="fishi_ingIcon_" alphaBlend="true" enable="true" visible="false" hasDisable="true" blinkGap="500" autoStart="true"/>
+    <BlinkButton name="onFishingMark5" leftTopWH="0 0 54 64" autoLoadImage="fishi_ingIcon_" alphaBlend="true" enable="true" visible="false" hasDisable="true" blinkGap="500" autoStart="true"/>
+    <BlinkButton name="onFishingMark6" leftTopWH="0 0 54 64" autoLoadImage="fishi_ingIcon_" alphaBlend="true" enable="true" visible="false" hasDisable="true" blinkGap="500" autoStart="true"/>
+    <BlinkButton name="onFishingMark7" leftTopWH="0 0 54 64" autoLoadImage="fishi_ingIcon_" alphaBlend="true" enable="true" visible="false" hasDisable="true" blinkGap="500" autoStart="true"/>
+  </Container>
+  <Panel name="onFishingDesc" leftTopTex="0 0" texture="fish_tooltip_1@zz" alphaBlend="true" visible="false"/>
+  <Container name="ridNameCont">
+    <Panel name="ridNameTag0" texture="fish_riderNameBG" leftTopTex="0 0" alphaBlend="true" visible="false">
+      <Label name="ridName" align="top;center" textColor="255 207 221 240" textRender="bold14" textColor2="black" textAlign="center"/>
+    </Panel>
+    <Panel name="ridNameTag1" texture="fish_riderNameBG" leftTopTex="0 0" alphaBlend="true" visible="false">
+      <Label name="ridName" align="top;center" textColor="255 207 221 240" textRender="bold14" textColor2="black" textAlign="center"/>
+    </Panel>
+    <Panel name="ridNameTag2" texture="fish_riderNameBG" leftTopTex="0 0" alphaBlend="true" visible="false">
+      <Label name="ridName" align="top;center" textColor="255 207 221 240" textRender="bold14" textColor2="black" textAlign="center"/>
+    </Panel>
+    <Panel name="ridNameTag3" texture="fish_riderNameBG" leftTopTex="0 0" alphaBlend="true" visible="false">
+      <Label name="ridName" align="top;center" textColor="255 207 221 240" textRender="bold14" textColor2="black" textAlign="center"/>
+    </Panel>
+    <Panel name="ridNameTag4" texture="fish_riderNameBG" leftTopTex="0 0" alphaBlend="true" visible="false">
+      <Label name="ridName" align="top;center" textColor="255 207 221 240" textRender="bold14" textColor2="black" textAlign="center"/>
+    </Panel>
+    <Panel name="ridNameTag5" texture="fish_riderNameBG" leftTopTex="0 0" alphaBlend="true" visible="false">
+      <Label name="ridName" align="top;center" textColor="255 207 221 240" textRender="bold14" textColor2="black" textAlign="center"/>
+    </Panel>
+    <Panel name="ridNameTag6" texture="fish_riderNameBG" leftTopTex="0 0" alphaBlend="true" visible="false">
+      <Label name="ridName" align="top;center" textColor="255 207 221 240" textRender="bold14" textColor2="black" textAlign="center"/>
+    </Panel>
+    <Panel name="ridNameTag7" texture="fish_riderNameBG" leftTopTex="0 0" alphaBlend="true" visible="false">
+      <Label name="ridName" align="top;center" textColor="255 207 221 240" textRender="bold14" textColor2="black" textAlign="center"/>
+    </Panel>
+  </Container>
+  <Container name="moveSeatCont">
+    <ImageButton name="moveSeat0" windowRect="0 0 50 54" autoLoadImage="fish_moveBtn_" alphaBlend="true" visible="false"/>
+    <ImageButton name="moveSeat1" windowRect="0 0 50 54" autoLoadImage="fish_moveBtn_" alphaBlend="true" visible="false"/>
+    <ImageButton name="moveSeat2" windowRect="0 0 50 54" autoLoadImage="fish_moveBtn_" alphaBlend="true" visible="false"/>
+    <ImageButton name="moveSeat3" windowRect="0 0 50 54" autoLoadImage="fish_moveBtn_" alphaBlend="true" visible="false"/>
+    <ImageButton name="moveSeat4" windowRect="0 0 50 54" autoLoadImage="fish_moveBtn_" alphaBlend="true" visible="false"/>
+    <ImageButton name="moveSeat5" windowRect="0 0 50 54" autoLoadImage="fish_moveBtn_" alphaBlend="true" visible="false"/>
+    <ImageButton name="moveSeat6" windowRect="0 0 50 54" autoLoadImage="fish_moveBtn_" alphaBlend="true" visible="false"/>
+    <ImageButton name="moveSeat7" windowRect="0 0 50 54" autoLoadImage="fish_moveBtn_" alphaBlend="true" visible="false"/>
+  </Container>
+  <Panel name="moveSeatDesc" leftTopTex="0 0" texture="fish_tooltip_2@zz" alphaBlend="true" visible="false"/>
+  <BlinkButton name="startFishing" windowRect="0 0 54 64" autoLoadImage="fish_positionIcon_" alphaBlend="true" enable="false" blinkGap="300" autoStart="true"/>
+  <Container>
+    <ToolTipWindow name="talkBalloon0" windowRect="270 180 400 230" frame="YellowTalkBalloon" autoWrap="true" multiLine="true" vertAutoSizing="true" alphaBlend="true" marginRect="0 0 0 0" color="230 255 255 255" visible="false" enable="false"/>
+    <ToolTipWindow name="talkBalloon1" windowRect="270 200 400 250" frame="YellowTalkBalloon" autoWrap="true" multiLine="true" vertAutoSizing="true" alphaBlend="true" marginRect="0 0 0 0" color="230 255 255 255" visible="false" enable="false"/>
+    <ToolTipWindow name="talkBalloon2" windowRect="270 200 400 250" frame="YellowTalkBalloon" autoWrap="true" multiLine="true" vertAutoSizing="true" alphaBlend="true" marginRect="0 0 0 0" color="230 255 255 255" visible="false" enable="false"/>
+    <ToolTipWindow name="talkBalloon3" windowRect="270 200 400 250" frame="YellowTalkBalloon" autoWrap="true" multiLine="true" vertAutoSizing="true" alphaBlend="true" marginRect="0 0 0 0" color="230 255 255 255" visible="false" enable="false"/>
+    <ToolTipWindow name="talkBalloon4" windowRect="270 200 400 250" frame="YellowTalkBalloon" autoWrap="true" multiLine="true" vertAutoSizing="true" alphaBlend="true" marginRect="0 0 0 0" color="230 255 255 255" visible="false" enable="false"/>
+    <ToolTipWindow name="talkBalloon5" windowRect="270 200 400 250" frame="YellowTalkBalloon" autoWrap="true" multiLine="true" vertAutoSizing="true" alphaBlend="true" marginRect="0 0 0 0" color="230 255 255 255" visible="false" enable="false"/>
+    <ToolTipWindow name="talkBalloon6" windowRect="270 200 400 250" frame="YellowTalkBalloon" autoWrap="true" multiLine="true" vertAutoSizing="true" alphaBlend="true" marginRect="0 0 0 0" color="230 255 255 255" visible="false" enable="false"/>
+    <ToolTipWindow name="talkBalloon7" windowRect="270 180 400 230" frame="YellowTalkBalloon" autoWrap="true" multiLine="true" vertAutoSizing="true" alphaBlend="true" marginRect="0 0 0 0" color="200 255 255 255" visible="false" enable="false"/>
+  </Container>
+</Container>

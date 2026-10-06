@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='105.0'
+	BackwardAccelForce='80.0'
+	DragFactor='-0.05'
+	SteerConstraint='1.5'
+	DriftEscapeForce='200'
+	CornerDrawFactor='0.035'
+
+	DescBalance= '25'
+	DescStability ='25'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '20'
+
+/>
+<!-- 일본 다오 철창카트  120607-->

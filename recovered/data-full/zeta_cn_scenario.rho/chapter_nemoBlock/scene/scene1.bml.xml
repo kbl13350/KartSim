@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for3"/>
+  <Char id="dao" pos="7 0" emotion="normal"/>
+  <Msg name="皮蛋" string="有没有什么好玩的呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="怎么了呀，皮蛋~？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="啊~好无聊啊！黑妞~环游世界也结束了~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="要不然我们邀请环游世界的朋友们来繁荣山丘吧？|你帮帮我呗~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="可是我们什么准备都没做啊，就这么让他们过来吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="那我们准备点吃的吧~|然后再准备些礼物给他们！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="啊，对了！|你听说了么？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="繁荣山丘要新开一家玩具店了~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="真的吗？那肯定有很多很多的玩具~|我们快去看看吧！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="不知道有没有我喜欢的玩具士兵~（嘻嘻）"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="皮蛋！！！！|你干嘛呢？我们得准备礼物啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="没有…我就是…|(我也想要玩具…）"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="听说刚好今天开业~|我们一起去看看吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="（今天开业的话肯定会送很多礼物~~）|那我们快去吧！|我先走了~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Msg name="黑妞" string="一起走啊~~~皮蛋！！！"/>
+  <Enter/>
+</Scene>

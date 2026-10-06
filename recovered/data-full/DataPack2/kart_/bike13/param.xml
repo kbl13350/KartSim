@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam	
+	 ForwardAccelForce='105.0'
+	 BackwardAccelForce='95.0'
+	 DragFactor='-0.055'
+	 SteerConstraint='1.7'
+	 DriftEscapeForce='180'
+	 CornerDrawFactor='0.042'
+	 BoosterBlur='true'
+	 EngineSound='pro'
+/>
+
+<!--중국 슈퍼 바이저 PRO-->            

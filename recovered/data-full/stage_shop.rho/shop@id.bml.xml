@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="krShopWindow" windowRect="255 0 800 575" frame="DefaultCaptionWindow" caption="#sb(shop)" captionPos="0 6" captionColor="black" setCloseButton="goBackButton">
+  <Window name="garageDialog" windowRect="70 37 473 465" alphaBlend="true" depthBias="256">
+    <Window name="ContentTab" windowRect="5 0 435 463" frame="InnerFrame">
+      <Label name="page" windowRect="162 424 239 439" text="0 / 0" textRender="outline" textColor="yellow" textColor2="black" textAlign="hcenter"/>
+      <TextButton name="prevPage" windowRect="131 417 162 449" frame="BulletLeftButton" useDisableState="true"/>
+      <TextButton name="nextPage" windowRect="239 417 270 449" frame="BulletRightButton" useDisableState="true"/>
+    </Window>
+    <Window name="ContentTab" windowRect="5 -9 435 2" frame="NoFrame" enable="false"/>
+    <TabControl name="itemSubCatTab" windowRect="10 -30 430 -12" upButton="BulletLeftButton" downButton="BulletRightButton" scrollButtonSize="18 18" tabGap="0" viewMargin="0 0 0 5" hideScrollAtNoScrollableArea="true" scrollType="horizon" rigidScroll="true" autoAlign="false" forceScrollVisible="true"/>
+    <TabControl name="itemCatTab" windowRect="-83 -38 -18 551" upButton="DropDownBulletButtonScale" downButton="DropDownBulletButtonScale" scrollButtonSize="21 70" tabGap="0" viewMargin="-14 0 14 0" hideScrollAtNoScrollableArea="true" viewAlign="vtop" scrollType="vertical" rigidScroll="false" autoAlign="true" forceScrollVisible="false"/>
+  </Window>
+</CaptionWindow>

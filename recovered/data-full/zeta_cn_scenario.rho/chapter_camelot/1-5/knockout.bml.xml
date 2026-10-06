@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="village_R01" laps="2" isFixedKart="true" fixedKartId="1170" isFixedChar="true" fixedCharId="1" type="rank">
+    <LevelContent level="0" ksv="1-5" startOffset="2500">
+      <ShadowKart characterId="2" uniformId="0" kartId="1160" colorId="6" dyeId="6" characterName="皮蛋"/>
+      <ShadowKart characterId="3" uniformId="0" kartId="1112" colorId="2" dyeId="2" characterName="黑妞"/>
+      <ShadowKart characterId="4" uniformId="0" kartId="1107" colorId="4" dyeId="4" characterName="葱头"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

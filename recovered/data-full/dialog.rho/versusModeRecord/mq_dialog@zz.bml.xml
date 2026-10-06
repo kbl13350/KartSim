@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <ImageBoard windowSize="1252 804" adjust="0 -9" image="bg@zz" align="center" alphaBlend="true" visible="true">
+    <ImageButton name="close" leftTopWH="1210 10 32 32" autoLoadImage="close_" alphaBlend="true"/>
+    <Label name="title" leftTopWH="0 7 100 20" align="hcenter" text="#sb(versusModeDetailInfo)" textColor="255 255 255 255" textRender="bold24" textAlign="center" visible="false"/>
+    <Panel name="grade" leftTopWH="31 61 51 51" texture="" alphaBlend="true" visible="false"/>
+    <Label name="rid" leftTopWH="100 65 100 20" text="" textColor="white" textColor2="255 5 63 188" textAlign="left" textRender="outline16"/>
+    <Label name="guild" leftTopWH="101 90 100 20" text="" textColor="white" textColor2="255 5 63 188" textAlign="left" textRender="outline14"/>
+    <CharPanel name="rank" leftTopWH="632 76 88 15" texture="number_score" rightAlign="true" alphaBlend="true" fontSize="14 22" fontStr=":1234567890" text="99999999"/>
+    <CharPanel name="vp" leftTopWH="871 76 55 15" texture="number_score" rightAlign="true" alphaBlend="true" fontSize="14 22" fontStr=":1234567890" text="99999"/>
+    <CharPanel name="win" leftTopWH="1041 76 44 15" texture="number_score" rightAlign="true" alphaBlend="true" fontSize="14 22" fontStr=":1234567890" text="9999"/>
+    <CharPanel name="lose" leftTopWH="1159 76 44 15" texture="number_score" rightAlign="true" alphaBlend="true" fontSize="14 22" fontStr=":1234567890" text="9999"/>
+    <Container name="element_0" leftTopWH="11 127 1233 126"/>
+    <Container name="element_1" leftTopWH="11 253 1233 126"/>
+    <Container name="element_2" leftTopWH="11 379 1233 126"/>
+    <Container name="element_3" leftTopWH="11 505 1233 126"/>
+    <Container name="element_4" leftTopWH="11 631 1233 126"/>
+    <Container windowSize="848 24" adjust="-5 12" align="hcenter;bottom">
+      <Label name="page" windowRect="0 0 60 11" align="center" text="0 / 0" textAlign="center" textRender="bold14" textColor="black" autoSizing="true" enable="false"/>
+      <ImageButton name="prevPage" leftTopTex="0 0" adjust="9 0" align="left" autoLoadImage="left_" alphaBlend="true"/>
+      <ImageButton name="nextPage" leftTopTex="0 0" adjust="-1 0" align="right" autoLoadImage="right_" alphaBlend="true"/>
+    </Container>
+  </ImageBoard>
+</Panel>

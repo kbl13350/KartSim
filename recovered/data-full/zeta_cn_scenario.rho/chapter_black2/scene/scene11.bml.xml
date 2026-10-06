@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china6"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="呼..还活着..|(下次打死都不来..)"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="小强" string="宝宝！！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="china5"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Char id="stone" pos="11 0" emotion="stop4"/>
+  <Msg name="宝宝" string="伟大的~~~~宝宝~~~~|冒着生命危险，拿到了星陨之石！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="stone" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop2"/>
+  <Msg name="鑫鑫" string="还挺像死而复生的人呢~"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="wenwen" pos="11 0" flip="true" emotion="stop7"/>
+  <Msg name="雯雯" string="鑫鑫！！"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop3"/>
+  <Msg name="鑫鑫" string="知道了~不管怎样！辛苦了！宝宝"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="ani1"/>
+  <Msg name="宝宝" string="嘿嘿~伟大的宝宝，我是最厉害的！哈哈哈哈"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="stop1"/>
+  <Msg name="小强" string="做得好，宝宝！|快出发去蝴蝶仙境吧！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="wenwen" pos="11 0" emotion="stop2"/>
+  <Char id="mos" pos="4 0" emotion="normal"/>
+  <Msg name="雯雯" string="对~要在格雷兄弟找到星陨之石之前去！"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="11 0" emotion="stop4"/>
+  <Msg name="宝宝" string="那就出发吧！|我先走了！|（嗡~~）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="rick" pos="8 0" emotion="stop3"/>
+  <Msg name="鑫鑫" string="小强，但是宝宝他..|知道路吗？"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="rick" pos="4 0" emotion="stop3"/>
+  <Msg name="小强" string="他不知道..|会再回来的..|宝宝不就这样吗.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="rick" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="嘿嘿..|伙伴们要往哪里去呢？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop7"/>
+  <Msg name="小强" string="果然.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop2"/>
+  <Msg name="鑫鑫" string="哈哈哈哈|我知道捷径，跟我走！"/>
+  <Enter/>
+</Scene>

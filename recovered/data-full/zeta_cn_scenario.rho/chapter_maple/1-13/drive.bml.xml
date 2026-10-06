@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <Shadow isFixedKart="true" fixedKartId="1421" fixedCharId="408" isFixedChar="true" kartId="1336" characterId="2" colorId="4" dyeId="6" characterName="皮蛋">
+    <LevelContent level="0" track="maple_I03" laps="3" ksv="1-13"/>
+  </Shadow>
+</Root>

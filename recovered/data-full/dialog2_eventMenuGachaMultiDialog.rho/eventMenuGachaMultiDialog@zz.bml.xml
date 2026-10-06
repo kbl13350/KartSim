@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="eventMenuGachaMultiDialog" leftTopWH="0 0 820 376" frame="CaptionDialog" align="center" caption="" setCloseButton="closeButton">
+    <Window name="bg" leftTopWH="0 10 780 308" frame="InputBoxBg2" align="hcenter"/>
+    <GridSelectorDivLoad name="itemSelector" windowSize="760 290" adjust="0 10" align="hcenter" alignStyle="horizontal" alignSize="5" maxLine="1" alignMargin="0 6" clientMargin="0 0 0 0"/>
+  </CaptionWindow>
+</Panel>

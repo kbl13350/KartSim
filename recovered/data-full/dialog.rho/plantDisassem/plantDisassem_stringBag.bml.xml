@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="plantDisAssembleResult">
+    <m c="kr" v="분해 결과"/>
+    <m c="cn" v="分解结果"/>
+    <m c="tw" v="分解結果"/>
+  </k>
+  <k n="itemResultMsg">
+    <m c="kr" v="%s 파츠가 분해 되었습니다."/>
+    <m c="cn" v="%s 部件已经分解。"/>
+    <m c="tw" v="%s 配件已解體."/>
+  </k>
+  <k n="getXEnergyFormat">
+    <m c="kr" v="%d 개의 X-에너지를 획득 하였습니다."/>
+    <m c="cn" v="获得了%d个的X-能量。"/>
+    <m c="tw" v="獲得%d個的 X-能量."/>
+  </k>
+  <k n="getLucciFormat">
+    <m c="kr" v="%d 루찌를 획득 하였습니다."/>
+    <m c="cn" v="获得%d金币。"/>
+    <m c="tw" v="獲得%dLUCCI了."/>
+  </k>
+  <k n="nowAvailableXenergy">
+    <m c="kr" v="보유 중인 X-에너지 : %d"/>
+    <m c="cn" v="持有的X-能量 : %d"/>
+    <m c="tw" v="擁有的X-能量 : %d"/>
+  </k>
+  <k n="partsShop">
+    <m c="kr" v="파츠 상점"/>
+    <m c="cn" v="部件商店"/>
+    <m c="tw" v="配件商城"/>
+  </k>
+  <k n="confirmExchange">
+    <m c="kr" v="교환"/>
+    <m c="cn" v="兑换"/>
+    <m c="tw" v="兌換"/>
+  </k>
+  <k n="plantDisAssemble">
+    <m c="kr" v="파츠 분해"/>
+    <m c="cn" v="部件分解"/>
+    <m c="tw" v="配件分解"/>
+  </k>
+  <k n="disAssemble">
+    <m c="kr" v="분해"/>
+    <m c="cn" v="分解"/>
+    <m c="tw" v="分解"/>
+  </k>
+  <k n="partsShopNotice">
+    <m c="kr" v="보유 중인 X-에너지를 소비하여 선택한 튜닝파츠로 교환할 수 있습니다.|튜닝파츠 기간은 최대 800일까지 누적됩니다.|800일 초과 시 초과된 기간은 누적 되지 않습니다."/>
+    <m c="tw" v="消耗擁有的 X-能量後，可以兌換改裝配件。|改裝配件使用天數最多可以累積 800日。|超過800日時，不可再累積。."/>
+    <m c="cn" v="消费持有的X-能量，可以兑换选择的强化部件。|强化部件的期限最多可以累积到800天。|超过800天时超过的时间将不会再累积。"/>
+  </k>
+  <k n="notEnoughtXEnergy">
+    <m c="kr" v="X-에너지가 충분하지 않습니다."/>
+    <m c="tw" v="X-能量是分解改裝配件時可獲得"/>
+    <m c="cn" v="X-能量不足"/>
+  </k>
+  <k n="partsDisAssembleWaring">
+    <m c="kr" v="파츠를 분해 하시겠습니까?"/>
+    <m c="cn" v="要分解部件吗？"/>
+    <m c="tw" v="你要分解配件嗎?"/>
+  </k>
+  <k n="t_engine">
+    <m c="kr" v="엔진패치"/>
+    <m c="cn" v="引擎"/>
+    <m c="tw" v="能量配件"/>
+  </k>
+  <k n="t_handle">
+    <m c="kr" v="핸들"/>
+    <m c="cn" v="方向盘"/>
+    <m c="tw" v="方向盤"/>
+  </k>
+  <k n="t_wheel">
+    <m c="kr" v="바퀴"/>
+    <m c="cn" v="车轮"/>
+    <m c="tw" v="輪胎"/>
+  </k>
+  <k n="t_kit">
+    <m c="kr" v="킷"/>
+    <m c="cn" v="部件"/>
+    <m c="tw" v="工具箱"/>
+  </k>
+  <k n="EquipedPartNotDisassem">
+    <m c="kr" v="장착 중인 아이템은 분해를 할 수 없습니다. "/>
+    <m c="cn" v="已装备的道具不可以分解。"/>
+    <m c="tw" v="套用中的道具是無法分解"/>
+  </k>
+  <k n="currentXenergy">
+    <m c="kr" v="X-에너지 보유량"/>
+    <m c="cn" v="X-能量持有量"/>
+    <m c="tw" v="X-能量擁有量"/>
+  </k>
+  <k n="notEnoughXEnergy">
+    <m c="kr" v="X-에너지가 충분하지 않습니다."/>
+    <m c="tw" v="X-能量是分解改裝配件時可獲得"/>
+    <m c="cn" v="X-能量不足"/>
+  </k>
+  <k n="plantPartsExchangeFail">
+    <m c="kr" v="교환을 실패하였습니다. (ErrorCode=%d)"/>
+    <m c="tw" v="兌換失敗 (ErrorCode=%d)"/>
+    <m c="cn" v="兑换失败。(ErrorCode=%d)"/>
+  </k>
+  <k n="buyItem">
+    <m c="kr" v="아이템 교환"/>
+    <m c="tw" v="兌換道具"/>
+    <m c="cn" v="兑换道具"/>
+  </k>
+</StringBag>

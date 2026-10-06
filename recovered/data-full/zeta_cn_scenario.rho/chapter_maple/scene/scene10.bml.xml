@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="maple9"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="orchid" pos="8 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="终于拿到异世界召回石了！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="orchid" pos="8 0" emotion="normal"/>
+  <Msg name="奥尔卡" string="怎么使用呢？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="7 0" emotion="normal"/>
+  <Msg name="异世界召回石" string="。。。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="orchid" pos="8 0" emotion="normal"/>
+  <Msg name="奥尔卡" string="嗯。。。跟其他召回石的使用方法是不一样吗？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="7 0" emotion="normal"/>
+  <Msg name="奥尔卡" string="这粉红色。。。好像在哪里见过？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="8 0" emotion="stop1"/>
+  <Msg name="奥尔卡" string="。。。对了！很像那个家伙。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="8 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="不小心召唤到时间神殿的那个家伙。。。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="7 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="品克缤！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="light" pos="8 0" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="8 0" emotion="normal"/>
+  <Msg name="异世界召回石" string="（闪耀！）"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="嗯？这里是哪里？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="这是怎么回事？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop5"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝" string="哇~！我们是瞬间移动了吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop5"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="什么？竟然可以瞬间移动！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="7 0" emotion="stop2"/>
+  <Msg name="胖墩" string="哇~这里好像是港口都市！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="yeti" pos="8 0" emotion="normal"/>
+  <Msg name="白雪人" string="这里是位于冒险岛世界西南部的明珠港。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="orchid" pos="9 0" emotion="stop1"/>
+  <Msg name="奥尔卡" string="品克缤？！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="9 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="哈哈！因为是异世界召回石，所以会召唤异世界的东西。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="8 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="所以一起召过来的你们也是异世界的咯？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="7 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="你们来自于其他世界是吧？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="normal"/>
+  <Char id="bazzi" pos="13 0" emotion="normal"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="。。。为什么问这个呢？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="normal"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="这家伙，长的不像好人呢。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="toben" pos="4 0" flip="true" emotion="ani1"/>
+  <Msg name="短中分勇士" string="奥尔卡，你这黑魔法师的走狗！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="orchid" pos="11 0" emotion="stop3"/>
+  <Char id="toben" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="奥尔卡" string="什么？！那我就让你见识见识走狗的能耐！！！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="orchid" pos="8 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="你们都将成为最好的实验材料。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="6 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="那么请各位跟我走一趟了！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Char id="bazzi" pos="12 0" emotion="stop5"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="实验材料？！这是什么意思？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="pinkbean" pos="8 0" emotion="stop1"/>
+  <Msg name="品克缤" string="大家先快逃！"/>
+  <Enter/>
+</Scene>

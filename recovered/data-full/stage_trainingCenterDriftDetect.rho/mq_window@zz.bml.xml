@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <XmlFile file="missionTimer"/>
+  </Container>
+  <Panel name="missionBg1" windowSize="326 46" texture="missionTextBg_1" align="right" adjust="25 25" alphaBlend="true" visible="false">
+    <Label name="missionText" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="white"/>
+    <Label name="missionTextComplete" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+    <Label name="missionCheckNum" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="white"/>
+    <Label name="missionCheckNumComplete" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+    <Panel name="missionCheckDim" windowSize="28 28" texture="missionCheck_dim" adjust="285 9" alphaBlend="true"/>
+    <Panel name="missionCheck" windowSize="28 28" texture="missionCheck" adjust="285 9" alphaBlend="true" visible="false"/>
+  </Panel>
+  <Panel name="missionBg2" windowSize="326 72" texture="missionTextBg_2" align="right" adjust="25 25" alphaBlend="true" visible="false">
+    <Container windowSize="326 46">
+      <Label name="missionText0" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="white"/>
+      <Label name="missionTextComplete0" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Label name="missionCheckNum0" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="white"/>
+      <Label name="missionCheckNumComplete0" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Panel name="missionCheckDim0" windowSize="28 28" texture="missionCheck_dim" adjust="285 9" alphaBlend="true"/>
+      <Panel name="missionCheck0" windowSize="28 28" texture="missionCheck" adjust="285 9" alphaBlend="true" visible="false"/>
+    </Container>
+    <Container windowSize="326 46" adjust="0 26">
+      <Label name="missionText1" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="white"/>
+      <Label name="missionTextComplete1" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Label name="missionCheckNum1" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="white"/>
+      <Label name="missionCheckNumComplete1" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Panel name="missionCheckDim1" windowSize="28 28" texture="missionCheck_dim" adjust="285 9" alphaBlend="true"/>
+      <Panel name="missionCheck1" windowSize="28 28" texture="missionCheck" adjust="285 9" alphaBlend="true" visible="false"/>
+    </Container>
+  </Panel>
+  <Panel name="missionBg3" windowSize="326 98" texture="missionTextBg_3" align="right" adjust="25 25" alphaBlend="true" visible="false">
+    <Container windowSize="326 46">
+      <Label name="missionText0" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="white"/>
+      <Label name="missionTextComplete0" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Label name="missionCheckNum0" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="white"/>
+      <Label name="missionCheckNumComplete0" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Panel name="missionCheckDim0" windowSize="28 28" texture="missionCheck_dim" adjust="285 9" alphaBlend="true"/>
+      <Panel name="missionCheck0" windowSize="28 28" texture="missionCheck" adjust="285 9" alphaBlend="true" visible="false"/>
+    </Container>
+    <Container windowSize="326 46" adjust="0 26">
+      <Label name="missionText1" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="white"/>
+      <Label name="missionTextComplete1" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Label name="missionCheckNum1" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="white"/>
+      <Label name="missionCheckNumComplete1" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Panel name="missionCheckDim1" windowSize="28 28" texture="missionCheck_dim" adjust="285 9" alphaBlend="true"/>
+      <Panel name="missionCheck1" windowSize="28 28" texture="missionCheck" adjust="285 9" alphaBlend="true" visible="false"/>
+    </Container>
+    <Container windowSize="326 46" adjust="0 52">
+      <Label name="missionText2" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="white"/>
+      <Label name="missionTextComplete2" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Label name="missionTextFail2" windowSize="200 46" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 255 69 69" visible="false"/>
+      <Label name="missionCheckNum2" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="white"/>
+      <Label name="missionCheckNumComplete2" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Label name="missionCheckNumFail2" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 255 69 69" visible="false"/>
+      <Panel name="missionCheckDim2" windowSize="28 28" texture="missionCheck_dim" adjust="285 9" alphaBlend="true"/>
+      <Panel name="missionCheck2" windowSize="28 28" texture="missionCheck" adjust="285 9" alphaBlend="true" visible="false"/>
+    </Container>
+  </Panel>
+  <Panel name="missionGuide1" windowSize="360 132" texture="tc_guide_04@zz" align="left" adjust="25 135" alphaBlend="true" visible="false">\
+    <Label windowSize="360 20" adjust="11 6" text="#sb(useShortDrift)" textAlign="left;vcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <ColorLabel windowSize="360 20" adjust="11 102" text="#sb(shortGuide)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+  </Panel>
+  <Panel name="missionGuide2" windowSize="360 282" texture="tc_guide_05@zz" align="left" adjust="25 135" alphaBlend="true" visible="false">
+    <Label windowSize="360 20" adjust="11 6" text="#sb(useOptimalDrift)" textAlign="left;vcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <Label windowSize="360 18" adjust="11 41" text="#sb(tryOptimalDrift)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <Label windowSize="360 18" adjust="11 161" text="#sb(driftEnd)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <ColorLabel windowSize="360 20" adjust="11 132" text="#sb(optimalGuide1)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+    <ColorLabel windowSize="360 20" adjust="11 252" text="#sb(optimalGuide2)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+  </Panel>
+  <Panel name="missionGuide5" windowSize="360 282" texture="tc_guide_06@zz" align="left" adjust="25 135" alphaBlend="true" visible="false">
+    <Label windowSize="360 20" adjust="11 6" text="#sb(useShortFullDrift)" textAlign="left;vcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <Label windowSize="360 18" adjust="11 41" text="#sb(tryShortDrift)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <Label windowSize="360 18" adjust="11 161" text="#sb(execFullDrift)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <ColorLabel windowSize="360 20" adjust="11 132" text="#sb(shortFullGuide1)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+    <ColorLabel windowSize="360 20" adjust="11 252" text="#sb(shortFullGuide2)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+  </Panel>
+  <Panel name="missionGuide3" windowSize="360 282" texture="tc_guide_07@zz" align="left" adjust="25 135" alphaBlend="true" visible="false">
+    <Label windowSize="360 20" adjust="11 6" text="#sb(useCuttingDrift)" textAlign="left;vcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <Label windowSize="360 18" adjust="11 41" text="#sb(tryDrift)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <Label windowSize="360 18" adjust="11 161" text="#sb(driftEndCutting)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <ColorLabel windowSize="360 20" adjust="11 132" text="#sb(cuttingGuide1)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+    <ColorLabel windowSize="360 20" adjust="11 252" text="#sb(cuttingGuide2)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+  </Panel>
+  <Panel name="missionGuide4" windowSize="360 282" texture="tc_guide_08@zz" align="left" adjust="25 135" alphaBlend="true" visible="false">
+    <Label windowSize="360 20" adjust="11 6" text="#sb(useShortCutDrift)" textAlign="left;vcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <Label windowSize="360 18" adjust="11 41" text="#sb(tryDrift)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <Label windowSize="360 18" adjust="11 161" text="#sb(driftEndShortCut)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <ColorLabel windowSize="360 20" adjust="11 132" text="#sb(cuttingGuide1)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+    <ColorLabel windowSize="360 20" adjust="11 252" text="#sb(shortCutGuide2)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+  </Panel>
+  <Panel name="missionGuide7" windowSize="360 282" texture="tc_guide_09@zz" align="left" adjust="25 135" alphaBlend="true" visible="false">
+    <Label windowSize="360 20" adjust="11 6" text="#sb(useDragDrift)" textAlign="left;vcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <Label windowSize="360 18" adjust="11 34" text="#sb(tryDrift)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <Label windowSize="360 18" adjust="11 139" text="#sb(execDragDrift)" textAlign="left;vcenter" textRender="bold14" textColor="255 22 255 255"/>
+    <ColorLabel windowSize="360 20" adjust="11 111" text="#sb(cuttingGuide1)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+    <ColorLabel windowSize="360 20" adjust="11 215" text="#sb(dragGuide2)" textAlign="left;vcenter" textRender="bold14" textColor="white"/>
+  </Panel>
+  <XmlFile file="retryPopup_3btn"/>
+  <XmlFile file="retryPopup_fail"/>
+</Container>

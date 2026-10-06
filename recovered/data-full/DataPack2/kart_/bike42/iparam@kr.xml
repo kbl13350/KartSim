@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.075'
+	SteerConstraint='2.1'
+	DriftEscapeForce='1400'
+	CornerDrawFactor='0.073'
+
+	BoosterBlur='true'
+	EngineSound='bike8'
+
+	WaveEffect='true'
+	motorcycleType='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.832'
+	TransformTime='200'		
+
+	StartForwardAccelFactorSpeed = '2'
+	StartBoosterTimeSpeed='1300'           
+
+	NormalBoosterTime = '-300'
+	TeamBoosterTime = '-600'
+	DriftMaxGauge = '-1500'
+	DriftGaguePreservePercent='0.5'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8sub'
+	BoosterType4='8sub'
+
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1b1'
+	FirePort1='mod1a3'
+	FirePort2='mod1a4'
+
+	TailLampSize='0.1'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	EnvMap='true'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '47'
+	DescStability ='38'
+	DescEngineGrade='1.25'
+	DescCornering='5'
+	DescEnchantCap = '30'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort3='mod1a3' trailPort4='mod1a4'/>
+</BodyParam>
+
+<!--한국 스플릿 윈드 HT 이벤트 가샤폰 130131-->

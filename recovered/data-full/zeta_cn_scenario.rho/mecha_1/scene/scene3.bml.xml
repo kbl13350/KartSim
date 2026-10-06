@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des5"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="（嘎吱）到底要跑到什么地方呀？|啊，这里是？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop6"/>
+  <Msg name="葱头" string="调查已经有了结果，线索就在那里。|那个后面肯定有什么东西...|但是，再往里面走的话就是道路的尽头了。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Msg name="黑妞" string="好像不能往那里走，那里给人的感觉不好...|但是那个黑色的东西是什么？好像在向这里靠近？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="唔...好奇怪的样子...黑色的...什么，是机器人？|啊啊啊！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Shake time="700"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="呵，他朝我们攻击了，大家躲开！！（砰砰）"/>
+  <Enter/>
+</Scene>

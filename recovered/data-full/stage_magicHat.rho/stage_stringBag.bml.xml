@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="cn" v="确定"/>
+    <m c="tw" v="確認"/>
+  </k>
+  <k n="exit">
+    <m c="kr" v="나가기"/>
+    <m c="cn" v="退出"/>
+    <m c="tw" v="離開"/>
+  </k>
+  <k n="item">
+    <m c="kr" v="아이템"/>
+    <m c="cn" v="道具"/>
+    <m c="tw" v="道具"/>
+  </k>
+  <k n="isOnInit">
+    <m c="kr" v="아이템이 매진되어 마술 열쇠 사용이 취소되었습니다.|초기화까지 기다려 주세요."/>
+    <m c="cn" v="由于道具已售罄，无法使用魔法手杖。|将初始化数据，请等待。"/>
+    <m c="tw" v="道具已經售完,魔術手杖的使用已被取消.|請等待新道具的到來."/>
+  </k>
+  <k n="isOnInitByGoldSoldout">
+    <m c="kr" v="골드 슬롯이 모두 매진됐어요!|새 아이템을 가져오는 중..."/>
+    <m c="cn" v="黄金栏中的道具已售罄！|正在更新道具列表…"/>
+    <m c="tw" v="金色傳說欄位已全部售完!|準備新道具中..."/>
+  </k>
+  <k n="isOnInitByScheduled">
+    <m c="kr" v="판매 기간이 종료됐어요!|새 아이템을 가져오는 중..."/>
+    <m c="cn" v="开放时间已结束！|正在更新道具列表…"/>
+    <m c="tw" v="販售時間已結束!|準備新道具中..."/>
+  </k>
+  <k n="notOpenPeriod">
+    <m c="kr" v="오픈 기간이 아닙니다."/>
+    <m c="cn" v="现在不是开放时间。"/>
+    <m c="tw" v="非開啟時間."/>
+  </k>
+  <k n="allSoldOut">
+    <m c="kr" v="모든 아이템이 매진되었습니다."/>
+    <m c="cn" v="所有道具已售罄。"/>
+    <m c="tw" v="所有道具已售完."/>
+  </k>
+  <k n="overTrialCount">
+    <m c="kr" v="아이템 획득에 실패하여,|사용이 취소되었습니다.|다시 시도해 주세요."/>
+    <m c="cn" v="获得道具的数量或期限已达上限，获取失败。|本次操作将不会消耗使用道具，请重新尝试。"/>
+    <m c="tw" v="獲得道具失敗,|已取消使用.|請重新試試看吧."/>
+  </k>
+  <k n="cannotEnterSession">
+    <m c="kr" v="입장할 수 없습니다."/>
+    <m c="cn" v="进入失败。"/>
+    <m c="tw" v="無法進入."/>
+  </k>
+  <k n="notExistToReduceItem">
+    <m c="kr" v="소모할 아이템이 설정되지 않습니다."/>
+    <m c="cn" v="未设置消耗道具。"/>
+    <m c="tw" v="消耗的道具沒有進行設定."/>
+  </k>
+  <k n="notExistToReduceItemCount">
+    <m c="kr" v="아이템의 소모 개수가 설정되지 않습니다."/>
+    <m c="cn" v="未设置消耗道具数量。"/>
+    <m c="tw" v="道具的消耗數量沒有進行設定."/>
+  </k>
+  <k n="unknownError">
+    <m c="kr" v="알 수 없는 오류가 발생했습니다."/>
+    <m c="cn" v="发生了未知错误"/>
+    <m c="tw" v="禮物盒開啟失敗(禮物盒不會遭到消耗)，請嘗試再次開啟禮物盒。"/>
+  </k>
+  <k n="explanation">
+    <m c="kr" v="골드 슬롯이 모두 매진되면 아이템이 초기화됩니다.| [color:yellow]%s[/color] 사용을 통해 아이템을 꺼낼 수 있습니다."/>
+    <m c="cn" v="当黄金栏中的道具售罄时将进行初始化。|可以使用[color:yellow]%s[/color]抽取道具。"/>
+    <m c="tw" v="金色傳說欄位全部售完時,道具將初始化.| 透過[color:yellow]%s[/color]的使用,可撈出道具."/>
+  </k>
+  <k n="explanation2">
+    <m c="kr" v="골드 슬롯이 모두 매진되면 아이템이 초기화됩니다. [color:yellow]%s, %s[/color] 사용을 통해 아이템을 꺼낼 수 있습니다."/>
+    <m c="cn" v="当黄金栏中的道具售罄时将进行初始化。 可以使用[color:yellow]%s, %s[/color]抽取道具。"/>
+    <m c="tw" v="金色傳說欄位全部售完時,道具將初始化. 透過[color:yellow]%s, %s[/color]的使用,可撈出道具."/>
+  </k>
+  <k n="noticeSoldOut">
+    <m c="kr" v="[color:yellow]%s[/color] 아이템이 매진되었습니다. 다른 아이템의 확률이 상승합니다!"/>
+    <m c="cn" v="[color:yellow]%s[/color]道具已售罄，获得其他道具的机会将上升！ "/>
+    <m c="tw" v="[color:yellow]%s[/color] 道具已經售完了!!其他道具的機率將會提升唷!"/>
+  </k>
+  <k n="notAllowEnchant">
+    <m c="kr" v="강화 불가"/>
+    <m c="cn" v="不可改装"/>
+    <m c="tw" v="無法強化"/>
+  </k>
+  <k n="notEnoughRequestItem">
+    <m c="kr" v="필요한 아이템이 부족합니다."/>
+    <m c="cn" v="所需道具数量不足"/>
+    <m c="tw" v="所需要的道具不足"/>
+  </k>
+</StringBag>

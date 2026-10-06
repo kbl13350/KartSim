@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GarageCard name="garageCardTemplate" windowRect="0 0 76 76" texture="tuning_selectAll" alphaBlend="true">
+  <Window name="shopItemContainer" leftTopWH="0 0 100 58" align="center" adjust="0 6" enable="false"/>
+  <Container name="itemNameContainer" windowRect="0 0 76 76" enable="false" visible="false">
+    <Label name="itemNameLabel" align="center" autoSizing="true"/>
+  </Container>
+  <Panel name="kartLevel" leftTopWH="49 5 26 18" texture="turning_enhancedBG" alphaBlend="true" enable="false" visible="false">
+    <Label name="kartLevelStr" leftTopWH="0 0 26 18" align="center" textAlign="center" text="+0" textRender="outline" textColor="white" textColor2="255 113 0 0" alphaBlend="true" enable="false"/>
+  </Panel>
+  <Panel name="riderOn" leftTopWH="0 50 64 19" align="hcenter" texture="tuning_rideOnBG" alphaBlend="true" enable="false" visible="false">
+    <Label leftTopWH="0 0 64 19" align="center" textAlign="center" text="#sb(itemOn)" textRender="outline" textColor="255 240 255 0" textColor2="255 28 119 0" alphaBlend="true" enable="false"/>
+  </Panel>
+</GarageCard>

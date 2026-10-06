@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageButton name="stockCard" windowSize="216 308" align="left;vcenter" autoLoadImage="personalShop_slot_0" text="#sb(shopBuy)" textAlign="hcenter" stringPos="0 258" textRender="bold16" textColor="255 119 92 4" overTextColor="255 196 172 0" clickedTextColor="255 95 76 16" disabledTextColor="255 92 92 92" alphaBlend="true" enable="true" visible="true">
+  <Label name="stockCardName" windowSize="200 25" align="center;top" adjust="0 5" text="stockCardName" textColor="white" textColor2="black" textRender="outline14" textAlign="center"/>
+  <Container name="discountCon" windowSize="67 32" adjust="-14 35" alphaBlend="true" enable="false"/>
+  <Container name="item" windowSize="180 115" align="center" adjust="0 -30" enable="false"/>
+  <Window name="priceCon" windowSize="152 20" adjust="0 32" align="center" enable="false">
+    <Panel name="priceType" windowSize="20 20" adjust=" 0" align="left;vcenter" texture="img_batteryIcon_s" alphaBlend="true"/>
+    <Label name="prePrice" windowSize="70 20" adjust="20 -3" align="vcenter" text="9999" textRender="outline16" textColor="255 203 203 203" textColor2="black" textAlign="center"/>
+    <Label name="discPrice" windowSize="70 20" adjust="90 -3" align="vcenter" text="9999" textRender="outline16" textColor="255 255 104 79" textColor2="black" textAlign="center"/>
+    <Panel name="disCountArrow" windowSize="70 14" adjust="25 0" align="vcenter" texture="img_discountArrow" alphaBlend="true"/>
+  </Window>
+  <Label name="timerDesc" windowSize="200 50" align="center;bottom" adjust="0 75" text="#sb(timer_desc)" textColor="255 42 55 80" textRender="bold14" textAlign="center"/>
+  <Window name="timer_overTen" windowSize="110 40" align="bottom;center" adjust="0 55" enable="false">
+    <CharPanel name="timer_hour" windowSize="32 24" align="left;center" adjust="0 0" texture="personalShop_slotNum" alphaBlend="true" fontSize="16 24" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+    <Panel name="timer_Colon1" windowSize="8 24" align="center" adjust="-20 1" texture="personalShop_slotColon" alphaBlend="true"/>
+    <CharPanel name="timer_minute" windowSize="32 24" align="center" adjust="0 0" texture="personalShop_slotNum" alphaBlend="true" fontSize="16 24" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+    <Panel name="timer_Colon2" windowSize="8 24" align="center" adjust="20 1" texture="personalShop_slotColon" alphaBlend="true"/>
+    <CharPanel name="timer_second" windowSize="32 24" align="right;center" adjust="0 0" texture="personalShop_slotNum" alphaBlend="true" fontSize="16 24" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+  </Window>
+  <Window name="timer_underTen" windowSize="110 40" align="bottom;center" adjust="0 55" enable="false">
+    <CharPanel name="timer_hour" windowSize="32 24" align="left;center" adjust="0 0" texture="personalShop_slotNum2" alphaBlend="true" fontSize="16 24" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+    <Panel name="timer_Colon1" windowSize="8 24" align="center" adjust="-20 1" texture="personalShop_slotColon2" alphaBlend="true"/>
+    <CharPanel name="timer_minute" windowSize="32 24" align="center" adjust="0 0" texture="personalShop_slotNum2" alphaBlend="true" fontSize="16 24" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+    <Panel name="timer_Colon2" windowSize="8 24" align="center" adjust="20 1" texture="personalShop_slotColon2" alphaBlend="true"/>
+    <CharPanel name="timer_second" windowSize="32 24" align="right;center" adjust="0 0" texture="personalShop_slotNum2" alphaBlend="true" fontSize="16 24" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+  </Window>
+</ImageButton>

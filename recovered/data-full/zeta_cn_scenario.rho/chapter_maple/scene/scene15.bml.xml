@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="maple14"/>
+  <Char id="kephi" pos="2 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="红雾遮挡了视线。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop4"/>
+  <Char id="kephi" pos="2 0" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="黑妞" string="这里不是刚才我们出发的地方吗。"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop4"/>
+  <Char id="kephi" pos="2 0" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Char id="pinkbean" pos="14 0" emotion="stop2"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="品克缤好重。。。"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop4"/>
+  <Char id="kephi" pos="2 0" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Char id="pinkbean" pos="14 0" emotion="stop2"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="我不行了。"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop3"/>
+  <Msg name="黑妞" string="周围没有人，可以放下了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop3"/>
+  <Msg name="黑妞" string="这是什么？竟然是音乐盒！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="maplestory_stuff" pos="8 0" emotion="stop3"/>
+  <Msg name="音乐盒" string="（发出阵阵旋律）"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="maplestory_stuff" pos="8 0" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="原来是从这里传出来的声音~！"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="maplestory_stuff" pos="8 0" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="kephi" pos="10 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="胖墩" string="我也想听听~！"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="maplestory_stuff" pos="8 0" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="kephi" pos="10 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="胖墩，等一下！我先放你下来。"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="maplestory_stuff" pos="8 0" emotion="stop3"/>
+  <Char id="pung" pos="8 0" emotion="normal"/>
+  <Msg name="" string="（哐！）"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pung" remove="true"/>
+  <BackGround texture="maple12"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋，胖墩！你们没事吧？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="我没事！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Char id="dao" pos="6 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="对不起胖墩！你。。没事吧？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Char id="dao" pos="6 0" emotion="stop6"/>
+  <Char id="kephi" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="啊。。。这里是哪里？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Msg name="宝宝" string="胖墩你醒了啊！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="这是什么话？刚才不是到舞会了吗？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kephi" pos="13 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="咦？我怎么感觉好像刚从梦里醒来。。。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="7 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="kephi" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="白雪人" string="冰淇淋没有了！白雪人生气！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="normal"/>
+  <Msg name="皮蛋" string="大家都恢复意识了吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="normal"/>
+  <Char id="bazzi" pos="5 0" emotion="normal"/>
+  <Msg name="宝宝" string="你们刚才一直念叨食物的名字，都不会说其他的话了呢。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="大家伙快看看！音乐盒竟然破碎了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Msg name="黑妞" string="红雾也消失了？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="这个音乐盒，看起来并不简单。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="有一种不详的感觉。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="yeti" pos="12 0" emotion="normal"/>
+  <Msg name="白雪人" string="白雪人很聪明。白雪人想到了。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="yeti" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="。。。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="yeti" pos="12 0" emotion="normal"/>
+  <Msg name="白雪人" string="音乐盒会制造红雾。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="yeti" pos="12 0" emotion="normal"/>
+  <Msg name="品克缤" string="音乐盒怎么会造雾？|我们世界里也没有过！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <BackGround texture="maple12"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Msg name="黑妞" string="那边还有音乐盒！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="是不是试一试就知道了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="yeti" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="白雪人" string="白雪人要搞破坏了。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <BackGround texture="maple14"/>
+  <Char id="maplestory_stuff" pos="8 0" emotion="stop3"/>
+  <Msg name="" string="（哐！）"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <BackGround texture="maple12"/>
+  <Char id="maplestory_stuff" pos="8 0" emotion="stop3"/>
+  <Char id="pung" pos="8 0" emotion="normal"/>
+  <Msg name="音乐盒" string="（破碎）"/>
+  <Enter/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pung" remove="true"/>
+  <BackGround texture="maple12"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Msg name="黑妞" string="看！红雾又消失了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="白雪人" string="看，白雪人很聪明。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="bazzi" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="dao" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="9 0" flip="true" emotion="stop5"/>
+  <Char id="kephi" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋, 黑妞, 宝宝, 胖墩" string="哇哦~！白雪人很棒！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="normal"/>
+  <Msg name="品克缤" string="好吧，承认你很聪明！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="那我们去破坏其他音乐盒吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="toben" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="我还没有学习过招数怎么办呢？"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="toben" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="pinkbean" pos="12 0" emotion="normal"/>
+  <Msg name="品克缤" string="我来教你一个特殊招数吧！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="pinkbean" pos="12 0" emotion="normal"/>
+  <Msg name="短中分勇士" string="哇！伟大的魔法师要亲自教我招数呢！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="pinkbean" pos="11 0" emotion="normal"/>
+  <Msg name="品克缤" string="这招的名字就是。。。"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop2"/>
+  <Msg name="品克缤" string="滚滚噜噜"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pung" pos="8 0" emotion="normal"/>
+  <Msg name="品克缤" string="这样一直滚到目标前面撞击就好了！"/>
+  <Enter/>
+  <Char id="pung" remove="true"/>
+  <Char id="toben" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop2"/>
+  <Msg name="品克缤" string="怎么样，很简单吧？"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop2"/>
+  <Msg name="短中分勇士" string="。。。！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop2"/>
+  <Msg name="短中分勇士" string="打破魔法师一定要使用魔法的偏见，击中对方要害的物理技能！|果然老师不是普通的魔法师呢！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop4"/>
+  <Msg name="宝宝" string="这个好像我也会哦~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop4"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop5"/>
+  <Char id="dizini" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋, 黑妞" string="。。。这是被迷住了吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop5"/>
+  <Char id="dizini" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="好像你们没有资格说这句话吧？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop5"/>
+  <Char id="dizini" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="我和皮蛋才不是呢！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Char id="dao" pos="9 0" emotion="stop4"/>
+  <Char id="dizini" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="当然了！对黑妞我可是很真诚的！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Char id="dao" pos="9 0" emotion="stop4"/>
+  <Char id="dizini" pos="13 0" flip="true" emotion="ani5"/>
+  <Msg name="黑妞" string="皮蛋~！我好感动。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="。。。他们本来就喜欢这样吗？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop3"/>
+  <Char id="kephi" pos="14 0" flip="true" emotion="stop2"/>
+  <Msg name="宝宝, 胖墩" string="（点头）"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="yeti" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="白雪人" string="白雪人选择无视，先走了。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="3 0" emotion="normal"/>
+  <Char id="bazzi" pos="6 0" flip="true" emotion="stop3"/>
+  <Char id="kephi" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="品克缤, 宝宝, 胖墩" string="我们也走~！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（加速）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="maple13"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop6"/>
+  <Char id="dizini" pos="13 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋, 黑妞" string="一起走~！"/>
+  <Enter/>
+</Scene>

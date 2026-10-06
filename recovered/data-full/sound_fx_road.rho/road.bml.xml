@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<road>
+  <sound name="강철다리" filename="강철다리" spacing="true" spacingLen="1" volume100="80"/>
+  <sound name="강철바닥" filename="강철바닥" spacing="true" spacingLen="1" volume100="80"/>
+  <sound name="그물다리" filename="그물다리" spacing="true" spacingLen="1" volume100="80"/>
+  <sound name="나무다리" filename="나무다리" spacing="true" spacingLen="1" volume0="20" volume100="100"/>
+  <sound name="얼음다리" filename="얼음다리" spacing="true" spacingLen="1" volume0="20" volume100="100"/>
+  <sound name="눈바닥" filename="눈바닥" spacing="false" volume0="20" volume100="100"/>
+  <sound name="돌다리" filename="돌다리" spacing="true" spacingLen="1"/>
+  <sound name="돌바닥" filename="돌바닥" spacing="true" spacingLen="1" volume100="100"/>
+  <sound name="작은돌바닥" filename="작은돌바닥" spacing="true" spacingLen="1" volume100="100"/>
+  <sound name="모래바닥" filename="모래바닥" spacing="false" volume0="20" volume100="100"/>
+  <sound name="물밟기" filename="물밟기" spacing="true" spacingLen="1"/>
+  <sound name="수풀바닥" filename="수풀바닥" spacing="true" spacingLen="1" volume100="65"/>
+  <sound name="철길다리" filename="철길다리" spacing="true" spacingLen="1" volume100="90"/>
+  <sound name="부스터존" filename="부스터존" spacing="false" spacingLen="1" volume0="5" volume100="100"/>
+  <sound name="철바닥" filename="철바닥" spacing="true" spacingLen="1" volume100="80"/>
+  <sound name="미끄러운바닥" filename="미끄러운바닥" spacing="true" spacingLen="1" volume100="90"/>
+</road>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <Shadow isFixedKart="true" fixedKartId="1483" fixedCharId="450" isFixedChar="true" kartId="1463" characterId="451" colorId="1" dyeId="1" characterName="门神">
+    <LevelContent level="0" track="china_R08" laps="2" ksv="1-14"/>
+  </Shadow>
+</Root>

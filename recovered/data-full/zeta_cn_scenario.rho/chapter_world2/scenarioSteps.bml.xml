@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="没有钱是万万不能的！" synopsis="黑暗组织认为要想征服世界，必须要有丰富的资金。|正当此时，有一个少女出现了，并声称她能利用黑客手段进入银行系统。|黑暗组织认为这是命运的安排，决定秘密跟踪她。|赶紧跟过去看看吧！" howToClear="在指定时间内追赶克莉丝。|* 注意：距离超过20米以上，挑战失败。" missionText="追击成功 0回 / 1回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="3000"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="克莉丝的价值" synopsis="黑暗组织认为要想征服世界，必须要有克莉丝的帮助。|但是艾丽一直在妨碍克莉丝加入黑暗组织。|生气的黑杰克向格雷下了命令，让他秘密地处理掉艾丽。" howToClear="与艾丽的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardStockId="11900"/>
+  </Step>
+  <Step id="3" type="30" mode="single" preConditionId="2" title="幸福的世界征服" synopsis="没有了艾丽的劝阻，黑暗组织成功地将克莉丝骗进了他们的组织。|克莉丝开心的期待着有趣的事情发生。|为了收集资金，黑暗组织决定向英国出发。" howToClear="请完成赛道。" missionText="完成赛道 0回 / 1回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="钱是万能的！" synopsis="成功抵达英国的黑暗组织，利用克莉丝的黑客实力，|成功的盗取了英国银行的巨额资金。|现在黑暗组织只剩下一件事情了，就是到全球各地收钱！|他们的下一个目标是…法国巴黎！" howToClear="在指定时间内完成比赛。" missionText="完成赛道 0回 / 1回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="1129"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="蓝色的小鬼" synopsis="到达浪漫之都——法国巴黎的黑杰克，|将任务交给格雷格和克莉丝后，|决定去思考一下人生。|而另一边，格雷格和克莉丝在街上遇到了皮蛋，|慌乱中他们决定先找个地方躲避一下。" howToClear="在指定时间内甩开皮蛋。|* 注意：距离在0米以下，挑战失败。" missionText="逃脱成功 0回 / 1回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="12642"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="不要再跟着我了！" synopsis="从巴黎开始，皮蛋他们的出现彻底打乱了黑暗组织的计划。|克莉丝为了阻止他们继续追踪，删除了电脑中的数据。|为了再干一票，他们决定经过韩国去往美国。" howToClear="与皮蛋的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="5600"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="怎么又是你！" synopsis="到达纽约的黑暗组织，在整理最后的计划时，|碰到了一直在阻碍他们征服世界的皮蛋和他们小伙伴们。|虽然很想教训他们，但是无奈他们旁边还有一个警察。|格雷挡在皮蛋他们面前，给其他人争取逃脱的时间。" howToClear="与皮蛋的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="74"/>
+  </Step>
+  <Step id="8" type="30" mode="single" preConditionId="7" title="克莉丝，我们需要你！" synopsis="躲到巴西里约的黑暗组织，决定等风头过去之后再行动。|但是克莉丝被紧追不舍的皮蛋他们抓走了。|没有克莉丝黑暗组织就无法获取资金，|为了救出克莉丝，他们决定起身去英国。" howToClear="在指定时间内完成比赛。" missionText="完成赛道 0回 / 1回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="1127"/>
+  </Step>
+  <Step id="9" type="34" mode="single" preConditionId="8" title="越狱" synopsis="黑暗组织到达英国后，查出了克莉丝的所在地，|并将克莉丝秘密地解救出来了。|但是在逃走时不幸又遇见了皮蛋他们。|他们的运气实在太差了，赶快逃吧！ " howToClear="与皮蛋他们的道具赛中获得第一。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="4169"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="阿泰尔" synopsis="为了躲避皮蛋他们的追捕，黑暗组织躲进了幽静的小村庄，|决定等风头过去之后再行动。|但是不受控制的克莉丝又开始闯祸了，与此同时，|一个神秘的自称阿泰尔的男人出现在了他们面前，|并诱惑他们和他一起征服世界。" howToClear="在指定时间内追赶阿泰尔。|* 注意：距离超过20米以上，挑战失败。" missionText="追击成功 0回 / 1回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10" isFinalStep="true">
+    <Level difficult="0" rewardStockId="12643"/>
+  </Step>
+</StepList>

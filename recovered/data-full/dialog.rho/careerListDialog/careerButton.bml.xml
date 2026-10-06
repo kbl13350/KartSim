@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CareerButton name="careerButtonTemplate" windowRect="0 0 227 27" texture="careerTheme" selectedTexture="careerThemeSelected" alphaBlend="true" focusedUv="227 0 454 27" ordinaryUv="0 0 227 27">
+  <Panel name="newButton" texture="new" leftTopTex="0 0" alphaBlend="true" enable="false"/>
+  <Label name="title" windowRect="0 0 223 27" textColor="255 0 0 0" textAlign="center"/>
+  <Panel name="clearIcon" windowSize="55 29 " adjust="0 1" texture="clear_stamp@zz" enable="false" alphaBlend="true" align="right;vcenter" visible="false"/>
+</CareerButton>

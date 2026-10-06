@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+		ForwardAccelForce='135.0'
+		BackwardAccelForce='100.0'
+		DragFactor='-0.07'
+		SteerConstraint='2.15'
+		DriftEscapeForce='500'
+		CornerDrawFactor='0.061'
+
+		UseTransformBooster='true'
+		TransAccelFactor='1.62'
+
+		EngineSound='cotton6'
+		BoosterBlur='true'
+           
+		BoosterType='cotton6'
+		BoosterType0='default'
+		BoosterType1='default'
+		Port0='mod1a1'
+		Port1='mod1a2'
+		FirePort0='mod1a3'
+		FirePort1='mod1a4'
+		FirePort2='mod1b1'
+
+/>
+<!-- 중국 스쿨버스SR (루찌,캐시판매) -->

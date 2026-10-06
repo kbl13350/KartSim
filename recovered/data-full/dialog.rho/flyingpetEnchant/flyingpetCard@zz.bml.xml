@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageBoardButton leftTopTex="524 92" autoLoadImageBoard="플라잉펫선택창" alphaBlend="true" alphaTest="true">
+  <Window name="itemPanel" windowSize="160 160" adjust="-33 -30"/>
+  <Label name="itemName" windowSize="330 35" adjust="100 15" textRender="bold14"/>
+  <Label name="itemPeriod" windowSize="330 35" adjust="100 55" multiLine="true" autoWrap="true" textRender="bold14" textColor="255 72 106 163"/>
+  <ImageBoard name="selected" leftTopTex="0 0" image="선택" alphaBlend="true" alphaTest="true" visible="false"/>
+</ImageBoardButton>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="fishing">
+    <m c="kr" v="미니게임 낚시"/>
+    <m c="cn" v="迷你游戏 钓鱼"/>
+    <m c="tw" v="釣魚遊戲"/>
+  </k>
+  <k n="fishingPeriodEnd">
+    <m c="kr" v="낚시 가능 기간이 아닙니다."/>
+    <m c="cn" v="暂未开放。"/>
+    <m c="tw" v="非開啟時間."/>
+  </k>
+  <k n="notEnoughBait">
+    <m c="kr" v="미끼가 부족합니다."/>
+    <m c="cn" v="鱼饵不足。"/>
+    <m c="tw" v="魚餌不足."/>
+  </k>
+  <k n="notEquipPole">
+    <m c="kr" v="낚싯대를 장착하세요."/>
+    <m c="cn" v="请装备鱼竿。"/>
+    <m c="tw" v="請裝備釣魚竿."/>
+  </k>
+</StringBag>

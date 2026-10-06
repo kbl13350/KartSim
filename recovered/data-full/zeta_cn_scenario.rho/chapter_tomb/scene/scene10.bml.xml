@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="tomb7"/>
+  <Char id="camilla" pos="11 0" emotion="stop3" flip="true"/>
+  <Msg name="卡米拉" string="真的一颗南瓜都不剩了啊。"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="elizabeth" pos="3 0" emotion="normal" flip="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop3" flip="true"/>
+  <Msg name="伊丽莎白" string="你们几个！在这儿做什么呢？"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop3"/>
+  <Char id="elizabeth" pos="3 0" emotion="normal" flip="true"/>
+  <Msg name="卡米拉" string="诶，伊丽莎白？！你什么时候在那里的？！"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop6" flip="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop3"/>
+  <Msg name="伊丽莎白" string="我全听见了！原来是露米认错品种，送错南瓜了？"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop3"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop1" flip="true"/>
+  <Msg name="伊丽莎白" string="这么重要的事情，我必须上报罗拉老师！"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop2"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop1" flip="true"/>
+  <Msg name="卡米拉" string="千万别！求你别告诉姐姐！只要帮我保密，什么都可以答应你！"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop5" flip="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop2"/>
+  <Msg name="伊丽莎白" string="唔~ 怎么办呢？我可是诚实的幽灵，说谎这种事可做不来~"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop4"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop5" flip="true"/>
+  <Msg name="卡米拉" string="拜托了，伊丽莎白！"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop1" flip="true"/>
+  <Char id="camilla" pos="11 0" emotion="stop4"/>
+  <Msg name="伊丽莎白" string="不好意思，我不能说谎！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="7 0" emotion="stop6"/>
+  <Msg name="卡米拉" string="那我可不能就这么放你走了！"/>
+  <Enter/>
+</Scene>

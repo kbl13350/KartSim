@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill7"/>
+  <Char id="mobi" pos="6 0" emotion="stop1"/>
+  <Msg name="吉米" string="到了……皮蛋应该就在里面。"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="mobi" pos="4 0" emotion="stop1"/>
+  <Char id="neoul" pos="10 0" emotion="normal"/>
+  <Msg name="奈尔" string="不一起进去吗？"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="mobi" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="neoul" pos="10 0" emotion="normal"/>
+  <Msg name="吉米" string="我不想见他们……回去路应该记得吧，那我先走了。"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="mobi" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="neoul" pos="10 0" emotion="normal"/>
+  <Msg name="奈尔" string="知道了，那就阿比斯见。"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="奈尔" string="……我也不想这么做的。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <BackGround texture="vill8"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="dao" pos="6 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="黑暗组织这帮家伙，下次一定会抓住他们的！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="上次看布莱恩大叔的时候都挂上赏金了~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop3"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Msg name="黑妞" string="咦，那里有个小孩啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="14 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="9 0" emotion="stop4"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="请问这里有叫皮蛋的车手吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" pos="14 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="9 0" emotion="stop5"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="黑妞" string="哎呦，皮蛋，好像是找你的~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="这孩子，脸上有个奇怪的东西~像是鳍~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="嘘，那种东西不能乱说！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="我就是皮蛋，有什么事吗？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奈尔" string="说起来你有可能不相信，我是来自深海都市-阿比斯的人。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="哦，所以才跟我们长得不太一样啊~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="奈尔" string="……你就不怀疑一下？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="这有什么好怀疑的，我们还去过恐龙的栖息地……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Char id="dizini" pos="3 0" emotion="stop2"/>
+  <Msg name="黑妞" string="还见过外星人……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Char id="dizini" pos="3 0" emotion="stop2"/>
+  <Char id="bazzi" pos="13 0" emotion="stop1"/>
+  <Msg name="宝宝" string="也到过神之国度~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Char id="dizini" pos="3 0" emotion="ani2"/>
+  <Char id="bazzi" pos="13 0" emotion="ani2"/>
+  <Msg name="皮蛋, 黑妞, 宝宝" string="所以深海都市也是有可能存在的啊~！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="奈尔" string="扑哧"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="哇，这孩子笑起来好可爱啊~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop5"/>
+  <Char id="dizini" pos="6 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="哎呀，别担心~有你我就满足啦~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="（……我有笑过吗？）"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="哼哼，所以你来找我是有什么事情吗？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="奈尔" string="阿比斯将要举办GP赛，现在正在到处邀请知名车手。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="奈尔" string="如果你想的话……"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="7 0" flip="true" emotion="stop5"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋, 黑妞, 宝宝" string="当然要去了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="奈尔" string="……我倒是希望你拒绝呢。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="啊？刚说什么？声音太小没听见。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="3 0" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奈尔" string="……没什么，那好吧，我给你们带路，跟上吧。"/>
+  <Enter/>
+</Scene>

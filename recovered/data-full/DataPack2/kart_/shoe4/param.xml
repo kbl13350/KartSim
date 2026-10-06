@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+         ForwardAccelForce='50.0'
+         BackwardAccelForce='70.0'
+         DragFactor='-0.03'
+         SteerConstraint='0.75'
+         DriftEscapeForce='80'
+         CornerDrawFactor='0.025'
+/>
+
+<!-- 태국 스타슈G3 -->
+

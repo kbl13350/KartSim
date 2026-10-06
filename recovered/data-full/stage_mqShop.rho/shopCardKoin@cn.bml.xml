@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageButton name="shopCard" windowRect="0 0 230 194" autoLoadImage="slotGreen_" text="버스트 E2" textRender="bold16" textColor="255 42 55 80" alphaBlend="true" textAlign="hcenter" stringPos="0 10" altRelativePos="-136 0">
+  <Container leftTopWH="5 40 220 149" enable="false">
+    <Container name="item" windowRect="0 0 180 115" align="hcenter"/>
+    <Container name="eventTag" leftTopWH="3 2 0 0">
+      <Label name="discountVal" windowSize="56 20" adjust="0 -4" text="9900" textRender="bold16" textColor="white" textAlign="center" visible="false" depthBias="10"/>
+    </Container>
+    <Container windowSize="152 18" adjust="0 8" align="hcenter;bottom">
+      <Panel name="priceType" windowSize="20 20" adjust="15 0" align="vcenter" texture="img_koin" alphaBlend="true"/>
+      <Label name="price" windowSize="56 20" adjust="0 -4" align="vcenter;hcenter" text="9900" textRender="outline16" textColor="white" textAlign="center"/>
+      <Label name="preprice" windowSize="70 20" adjust="35 -3" align="vcenter" text="9900" textRender="outline16" textColor="255 203 203 203" textAlign="center" visible="false"/>
+      <Label name="discprice" windowSize="70 20" adjust="110 -3" align="vcenter" text="9900" textRender="outline16" textColor="255 255 104 79" textColor2="255 124 32 11" textAlign="venter" visible="false"/>
+      <Panel name="discount" windowSize="70 14" adjust="35 0" align="vcenter" texture="img_discountArrow" alphaBlend="true" visible="false"/>
+    </Container>
+  </Container>
+  <ImageButton name="buy" leftTopWH="8 108 106 34" autoLoadImage="btn_itemBuy_s_" align="bottom,left" adjust="8 6" text="#sb(trade)" textRender="bold16" textColor="255 119 92 4" overTextColor="255 196 172 0" clickedTextColor="255 95 76 16" disabledTextColor="255 92 92 92" alphaBlend="true" visible="false"/>
+  <ImageButton name="buySub" leftTopWH="8 108 214 34" autoLoadImage="btn_itemBuy_" align="bottom,hcenter" text="#sb(trade)" adjust="0 8" textRender="bold16" textColor="255 119 92 4" overTextColor="255 196 172 0" clickedTextColor="255 95 76 16" disabledTextColor="255 92 92 92" alphaBlend="true" visible="false"/>
+  <ImageButton name="giveGift" leftTopWH="90 108 106 34" autoLoadImage="btn_itemPresent_" align="bottom,right" adjust="8 6" text="#sb(giveGift)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 147 28 106" disabledTextColor="255 92 92 92" alphaBlend="true" visible="false"/>
+  <ImageButton name="detailBtn" leftTopWH="200 13 18 18" autoLoadImage="quest_btn_infoIcon_" alphaBlend="true" visible="false"/>
+  <Panel name="selected" leftTopWH="195 44 26 26" texture="btn_slotSelect" alphaBlend="true" enable="false" visible="false"/>
+</ImageButton>

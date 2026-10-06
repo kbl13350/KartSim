@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="selectMegaphone" windowRect="0 0 163 140" frame="DefaultTooltip">
+  <GridSelector name="phoneList" windowRect="4 5 163 140" alignStyle="horizontal" alignSize="1" maxLine="4" alignMargin="3 2" clientMargin="0 0 0 0"/>
+</Window>

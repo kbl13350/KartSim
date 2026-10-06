@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window windowRect="0 0 912 32">
+  <ImageBoard name="todayRewardBG" windowSize="912 50" adjust="-3 0" image="todayReward" alphaBlend="true" align="center" visible="false"/>
+  <Label name="attendCount" windowSize="136 32" adjust="0 0" enable="true" textRender="bold14" textColor="255 255 255 255" multiLine="false" autoWrap="true" textAlign="center"/>
+  <Label name="normalRewardName" windowSize="382 32" adjust="136 0" enable="true" textRender="bold14" textColor="255 255 255 255" multiLine="false" autoWrap="true" textAlign="center"/>
+  <Label name="upgradeRewardName" windowSize="390 32" adjust="520 0" enable="true" textRender="bold14" textColor="255 254 227 4" multiLine="false" autoWrap="true" textAlign="center"/>
+</Window>

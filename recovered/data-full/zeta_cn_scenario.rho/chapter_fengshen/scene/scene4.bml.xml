@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="fengshen6"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[人界，商朝某树林]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="korea_stuff" pos="7 0" flip="true" emotion="normal"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="妲己" string="这是时隔多久才找回的妖力啊！"/>
+  <Enter/>
+  <Char id="korea_stuff" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="korea_stuff" pos="7 0" emotion="normal"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="妲己" string="想测试一下我的力量有没有全部回来呢~|先从魅惑术开始试试？"/>
+  <Enter/>
+  <Char id="korea_stuff" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="korea_stuff" pos="7 0" flip="true" emotion="normal"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="妲己" string="嗯……给谁用呢~?"/>
+  <Enter/>
+  <Char id="korea_stuff" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <BackGround texture="china23"/>
+  <Char id="Zhou" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="纣王" string="那个是？？那不是传说中的银狐尾巴吗？"/>
+  <Enter/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Zhou" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="纣王" string="我去把它抓过来，你且在这儿等着~"/>
+  <Enter/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="宦官" string="陛下？！！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="fengshen6"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="korea_stuff" pos="12 0" flip="true" emotion="normal"/>
+  <Char id="Daji" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="马蹄声" string="（哒哒哒）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="korea_stuff" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="korea_stuff" pos="11 0" emotion="normal"/>
+  <Char id="Daji" pos="11 0" emotion="normal"/>
+  <Msg name="妲己" string="咦？有人类的气息……？！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="korea_stuff" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="korea_stuff" pos="11 0" emotion="normal"/>
+  <Char id="Daji" pos="10 0" emotion="stop1"/>
+  <Msg name="妲己" string="魅惑对象自己送上门来~|看来要变身成人类了。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="korea_stuff" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Zhou" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="纣王" string="终于能亲手抓住那传说中的银狐了~！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Zhou" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="Daji" pos="11 0" emotion="normal"/>
+  <Msg name="纣王" string="？？？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="11 0" emotion="normal"/>
+  <Char id="Zhou" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="纣王" string="（分明已看到那银狐尾巴…|狐狸怎突然消失，竟出现如此美貌的女子！！）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="11 0" emotion="normal"/>
+  <Char id="Zhou" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="纣王" string="嘻嘻，姑娘怎会独自在这凶险的树林之中？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="11 0" emotion="stop4"/>
+  <Char id="Zhou" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="妲己" string="小女子之前在树林里遇到熊，吓得急忙逃窜，|却不慎失足，滚下山坡，如今迷路了。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="11 0" emotion="normal"/>
+  <Char id="Zhou" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="纣王" string="这可如何是好，你家住何方？吾送你回去。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="11 0" emotion="stop4"/>
+  <Char id="Zhou" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="妲己" string="掉下去之后，除了名字什么都想不起来了。呜呜"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="11 0" emotion="stop4"/>
+  <Char id="Zhou" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="纣王" string="那便随我一同回皇宫吧。|住到你想起为止也无妨。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <BackGround texture="china20"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[几个月后……]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="Zhou" pos="9 0" flip="true" emotion="normal"/>
+  <Msg name="妲己" string="找到啦！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="Zhou" pos="9 0" emotion="stop2"/>
+  <Msg name="妲己" string="这么容易就被我找到~|不是故意放水的吧？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="Zhou" pos="9 0" emotion="stop1"/>
+  <Msg name="纣王" string="哈哈哈！看来你对捉迷藏很有天赋啊。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="Zhou" pos="9 0" emotion="stop1"/>
+  <Msg name="妲己" string="呼呼，我在这方面确实很优秀。|这回该由陛下来找我啦~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="3 0" emotion="stop1"/>
+  <Char id="Zhou" pos="8 0" emotion="stop1"/>
+  <Msg name="纣王" string="哈哈哈！这次我可不会让着你~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="纣王的大臣们" string="啧啧，陛下不顾国政，如此奢侈|竟整天与女子寻欢作乐……"/>
+  <Enter/>
+</Scene>

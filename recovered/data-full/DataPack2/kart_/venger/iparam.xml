@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.3'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+	EnvMap='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod1a'
+	Port1='mod1b'
+	FirePort0='mod1c'
+	FirePort1='mod2a'
+	FirePort2='mod2b'
+	FirePort3='mod2c'
+	FirePort4='mod3a'
+	FirePort5='mod3b'
+
+	
+		DescBalance= '30'
+		DescStability ='30'
+		DescEngineGrade='1'
+		DescCornering='1'
+		DescEnchantCap = '20'
+
+/>
+
+
+<!-- 벤져 -->

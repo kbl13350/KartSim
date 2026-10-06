@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.35'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+
+            BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod2c1'
+	Port1='mod2c2'
+            FirePort0='mod2a1'
+	FirePort1='mod2a2'
+	FirePort2='mod2a3'
+	FirePort3='mod2a4'
+
+				
+	DescBalance= '30'
+	DescStability ='33'
+	DescEngineGrade='1'
+	DescCornering='1'
+	DescEnchantCap = '20'
+
+              
+/>
+<!-- 마라톤 SR-->

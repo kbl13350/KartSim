@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="licenseTip">
+    <m c="kr" v="라이센스 Tip"/>
+    <m c="cn" v="驾照考试提示"/>
+    <m c="tw" v="駕照提示"/>
+  </k>
+</StringBag>

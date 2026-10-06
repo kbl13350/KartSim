@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="steam1"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="印迹明明到了这个城市…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="等等，那个队伍是什么？|大家这么早排队？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="？" string="是去矿山。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Msg name="？" string="是为了去矿山开采市长工厂所必须的煤矿。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="终于看到了。|胆大包天竟敢伪装成福尔摩斯，这次让你好看！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="kai" pos="12 0" emotion="stop3"/>
+  <Msg name="？" string="我会再来见你的。|先去解决追着你的那个人吧。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="？！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Msg name="？" string="嗯哼，车子不错嘛？"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="你是？！"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="市长" string="啊，忘了自我介绍了。|我是月光之城的市长。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="市长？你对1920的宝…|你对这辆车了解吗？"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="市长" string="不仅知道，而且很了解。|但，这么危险的车辆你是从哪里得到的？"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="有人送给了我…"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop2"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="市长" string="有人竟然送侦探这么危险的东西。|这辆车不管落到谁手里，他的周围就会变危险。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop2"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="？|这是什么意思？"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="市长" string="我先带您到安全的地方吧|火车站附近就有我的工厂。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="（那远处那个大工厂是他的？虽然危险，可能会了解到一些真相）"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="那就…麻烦您了。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="市长" string="这是我的荣幸。您和这车辆如果曝光就会有危险，快点出发吧。|在工厂见，那我先走了。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="这个市长很奇怪…|先去工厂探个究竟吧。"/>
+  <Enter/>
+</Scene>

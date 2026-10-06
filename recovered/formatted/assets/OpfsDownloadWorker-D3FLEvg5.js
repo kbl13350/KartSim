@@ -1,0 +1,55 @@
+(function () {
+  "use strict";
+  const s = self;
+  s.onmessage = async ({ data: t }) => {
+    try {
+      (await w(t), n({ type: "done" }));
+    } catch (e) {
+      n({ type: "error", message: e instanceof Error ? e.message : String(e) });
+    }
+  };
+  async function w(t) {
+    const r = await (
+      await (
+        await (
+          await navigator.storage.getDirectory()
+        ).getDirectoryHandle(t.version)
+      ).getFileHandle(t.name, { create: !0 })
+    ).createSyncAccessHandle();
+    try {
+      await r.truncate(0);
+      const a = await fetch(t.url, { cache: "no-store" }),
+        u = y(a, t.name),
+        i = await d(u, r);
+      if (i !== t.size)
+        throw new Error(
+          `${t.name} 完整读取长度不匹配：manifest=${t.size}，response=${i}。`,
+        );
+      await r.flush();
+    } catch (a) {
+      throw (await r.truncate(0), await r.flush(), a);
+    } finally {
+      await r.close();
+    }
+  }
+  function y(t, e) {
+    if (t.status !== 200)
+      throw new Error(`${e} 完整读取失败：HTTP ${t.status}。`);
+    if (!t.body) throw new Error(`${e} 完整读取未返回响应流。`);
+    return t.body;
+  }
+  async function d(t, e) {
+    const c = t.getReader();
+    let o = 0;
+    for (;;) {
+      const { done: r, value: a } = await c.read();
+      if (r) return o;
+      if (e.write(a, { at: o }) !== a.byteLength)
+        throw new Error("OPFS 未完整写入资源数据。");
+      ((o += a.byteLength), n({ type: "progress", loadedBytes: o }));
+    }
+  }
+  function n(t) {
+    s.postMessage(t);
+  }
+})();

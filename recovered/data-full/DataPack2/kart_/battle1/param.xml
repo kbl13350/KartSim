@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.075'
+	SteerConstraint='2'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.067'
+	EngineSound='cotton6'
+
+	SpecialSlotCapacity='2'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterBlur='true'
+
+	Port0='mod2a'
+	Port1='mod2b'
+	FirePort0='mod1a'
+	FirePort1='mod1b'
+	FirePort2='mod1c'
+	FirePort3='mod1d'
+
+	ExtWheelSpeed='200'
+
+	DescBalance= '25'
+	DescStability ='30'
+	DescEnchantCap ='0'
+	DescEngineGrade='1'
+	DescCornering='2'
+
+/>
+
+<!-- 한국 다오 배틀 카트 SR -->
+

@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trackList>
+  <track id="forest_F01" name="포레스트 숨겨진 초원"/>
+  <track id="forest_I01" name="포레스트 통나무" bpLevelMin="0" bpLevelMax="22" f1speed="49" basicAi="true"/>
+  <track id="forest_I02" name="포레스트 버섯동굴" bpLevelMin="0" bpLevelMax="19" basicAi="true"/>
+  <track id="forest_I03" name="포레스트 골짜기" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="forest_I04" name="포레스트 기암괴석" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="forest_I05" name="포레스트 폭포속으로" bpLevelMin="0" bpLevelMax="19" basicAi="true"/>
+  <track id="forest_I06" name="포레스트 유격장" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="forest_I07" name="포레스트 행복한 팬더 마을" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="forest_I08" name="포레스트 바람의 봉래산"/>
+  <track id="forest_I09" name="포레스트 덩굴 숲 구름다리" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="forest_R02" name="포레스트 지그재그" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="forest_R03" name="포레스트 통곡의 절벽" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="forest_R04" name="포레스트 아찔한 다운힐" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="forest_R05" name="포레스트 오싹한 공중다리" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="forest_R06" name="포레스트 대관령" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="forest_R07" name="포레스트 위험한 폭포수" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="desert_F01" name="베거이 사막의 결투"/>
+  <track id="desert_I01" name="사막 지옥의 모래구덩이" bpLevelMin="12" bpLevelMax="22" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="desert_I10" name="사막 파라오의 안식처" basicAi="false"/>
+  <track id="desert_I02" name="사막 피라미드 탐험" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="desert_I11" name="사막 흐르는 모래 협곡" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="desert_I03" name="사막 버려진 오아시스" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="desert_I04" name="사막 베거이 시장" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="desert_I05" name="사막 울렁울렁" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="desert_I06" name="사막 스핑크스 수수께끼" bpLevelMin="12" bpLevelMax="22" f1speed="114" basicAi="true"/>
+  <track id="desert_I07" name="사막 숨겨진 송수관" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="desert_I08" name="사막 더스트2" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="desert_R01" name="사막 빙글빙글 공사장" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="desert_R02" name="사막 오래된 송수관" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="desert_R03" name="잊혀진 모래의 기억" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="desert_R04" name="사막 놀라운 공룡 유적지" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="desert_R05" name="사막 피라미드 탐험 5 Lap" blocked="true" basicAi="true"/>
+  <track id="desert_R06" name="사막 거대한 정유공장" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="village_C01" name="빌리지 손가락(아이템)" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="village_F01" name="지피 스타디움"/>
+  <track id="village_I01" name="빌리지 시계탑" bpLevelMin="12" bpLevelMax="22" basicAi="true"/>
+  <track id="village_I02" name="빌리지 손가락" allowed1vs1="true" pursuit1vs1="true" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="village_I11" name="빌리지 톡톡 연습장" allowed1vs1="true" pursuit1vs1="true" isOnlyTraining="true"/>
+  <track id="village_I03" name="빌리지 두개의 관문" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="village_I04" name="빌리지 운하" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="village_I13" name="빌리지 시계탑 운하" blocked="true" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="village_I05" name="빌리지 수로" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="village_I14" name="빌리지 풍차마을 기찻길" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="village_I06" name="빌리지 돌아올 수 없는 지름길"/>
+  <track id="village_I07" name="빌리지 댐 위의 대결" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="village_I08" name="빌리지 파괴된 시계탑" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="village_R01" name="빌리지 고가의 질주" allowed1vs1="true" pursuit1vs1="true" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="village_R10" name="빌리지 파괴된 손가락" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="village_R02" name="빌리지 손가락 2" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="village_R11" name="빌리지 지우펀" level="3" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="village_R03" name="빌리지 붐힐터널" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="village_R12" name="빌리지 남산" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="village_R04" name="빌리지 만리장성" level="1" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="village_R13" name="붐힐 드라이브" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="village_R05" name="빌리지 익스트림 경기장" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="village_R14" name="빌리지 붐힐 하이웨이" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="village_R06" name="빌리지 고가의 질주 2" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="village_R07" name="빌리지 운명의 다리" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="village_R08" name="빌리지 상해 서킷" blocked="true" basicAi="true"/>
+  <track id="village_R09" name="빌리지 코리아 서킷" blocked="true"/>
+  <track id="ice_D01" name="데스매치 눈덩이 볼링"/>
+  <track id="ice_F01" name="얼음동굴 멜로디의 전설"/>
+  <track id="ice_I01" name="아이스 갈라진 빙산" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="ice_I02" name="아이스 상어의 무덤" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="ice_I03" name="아이스 펭귄타운" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="ice_I04" name="아이스 투명동굴" bpLevelMin="0" bpLevelMax="16" f1speed="241" basicAi="true"/>
+  <track id="ice_I05" name="아이스 신나는 하프파이프" bpLevelMin="12" bpLevelMax="29" f1speed="242" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="ice_I06" name="아이스 펭귄전사 눈덩이 공격" bpLevelMin="9" bpLevelMax="29" basicAi="true"/>
+  <track id="ice_I07" name="아이스 짜릿한 동계 훈련장" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="ice_I08" name="프로즌 브레이크" basicAi="false"/>
+  <track id="ice_R01" name="아이스 설산 다운힐" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="ice_R02" name="아이스 부서진 빙산" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="ice_R03" name="아이스 아찔한 헬기 점프" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="ice_R04" name="아이스 공포의 하프파이프" allowed1vs1="true" pursuit1vs1="true" isAllowedRoadBlock="true"/>
+  <track id="ice_R05" name="아이스 짜릿한 고공점프" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="tomb_F01" name="악마성 해골 대난투"/>
+  <track id="tomb_I01" name="공동묘지 유령의 계곡" bpLevelMin="15" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="tomb_I02" name="공동묘지 공포의 외길" basicAi="false"/>
+  <track id="tomb_I03" name="공동묘지 비밀의 수도원" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="tomb_I04" name="공동묘지 유령습격" bpLevelMin="0" bpLevelMax="19" basicAi="true"/>
+  <track id="tomb_I05" name="공동묘지 어둠의 박쥐성"/>
+  <track id="tomb_I06" name="공동묘지 비밀의 해골제단" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="tomb_I07" name="유령의 축제"/>
+  <track id="tomb_R01" name="공동묘지 해골 손가락" allowed1vs1="true" pursuit1vs1="true" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="tomb_R02" name="공동묘지 마왕의 초대" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="tomb_R03" name="공동묘지 해골성 대탐험" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="tomb_R04" name="절망의 카타콤" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="mine_C04" name="광산 3개의 지름길(아이템)" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="mine_I01" name="광산 보석채굴장" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="mine_I02" name="광산 뽀글뽀글 용암굴" bpLevelMin="15" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="mine_I03" name="광산 떨어지는 폭포수" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="mine_I04" name="광산 무너지는 금광" basicAi="false"/>
+  <track id="mine_I05" name="광산 롤러코스터 질주" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="mine_R01" name="광산 꼬불꼬불 다운힐" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="mine_R02" name="광산 아슬아슬 궤도 전차" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="mine_R03" name="광산 위험한 제련소" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="mine_R04" name="광산 3개의 지름길" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="mine_R05" name="광산의 지배자" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="northeu_D01" name="데스매치 공포의 우주경기장"/>
+  <track id="northeu_I01" name="노르테유 코스모웨이" bpLevelMin="25" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I02" name="노르테유 위험한 지름길" bpLevelMin="25" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I03" name="노르테유 허공의 갈림길" bpLevelMin="29" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I04" name="노르테유 우주선 침투" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="northeu_I05" name="노르테유 붕붕 점프" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I06" name="노르테유 부스터존 점령작전" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I07" name="노르테유 우주 정거장" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="northeu_I08" name="노르테유 행성 저 멀리" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I09" name="노르테유 숨막히는 터널 탈주" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="northeu_R01" name="노르테유 익스프레스" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="northeu_R02" name="노르테유 전투비행장" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="northeu_R03" name="노르테유 스카이웨이" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="factory_D01" name="데스매치 핀저의 습격"/>
+  <track id="factory_I01" name="팩토리 브로디의 심술" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_I02" name="팩토리 거대톱니의 위협" bpLevelMin="25" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_I03" name="팩토리 우당탕 대소동" basicAi="false"/>
+  <track id="factory_I04" name="팩토리 모험의 시작" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_I05" name="팩토리 부스터 제작의 비밀" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_I06" name="팩토리 수상한 증기 장치" basicAi="false"/>
+  <track id="factory_I07" name="팩토리 핀저의 위험한 적재소" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_R01" name="팩토리 미완성 5구역" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="factory_R02" name="팩토리 부비트랩 공장 탐험" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="factory_R03" name="팩토리 두 개의 공장" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="pirate_I01" name="해적 위기일발 대탈출" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="pirate_I02" name="해적 짜릿한 고공비행" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="pirate_I03" name="해적 어질어질 부둣가" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="pirate_I04" name="해적 폭풍 속의 질주" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="pirate_I05" name="해적 해적선 보물탈취" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="pirate_R01" name="해적 로비 절벽의 전투" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="pirate_R02" name="해적 숨겨진 보물" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="pirate_R03" name="해적 가파른 감시탑" f1speed="132" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="pirate_R04" name="해적 상어섬의 비밀" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="pirate_R05" name="대해적 로두마니" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="fairy_I01" name="동화 다오와 콩나무" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="fairy_I02" name="동화 목욕탕에 개굴개굴" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="fairy_I03" name="동화 프레티온 목마" bpLevelMin="9" bpLevelMax="19" f1speed="242" basicAi="true"/>
+  <track id="fairy_I04" name="동화 카드왕국의 미로" bpLevelMin="15" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="fairy_I05" name="동화 가시덩굴괴물의 등장" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="fairy_I06" name="동화 프레티온의 헬로키티" blocked="true" basicAi="true"/>
+  <track id="fairy_R01" name="동화 이상한 나라의 문" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="fairy_R02" name="동화 잠자는 숲속의 거인" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="fairy_R03" name="동화 마녀의 성" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="moonhill_I01" name="문힐시티 지피의 미완성 빌딩" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="moonhill_I02" name="문힐시티 도시의 두 얼굴" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="moonhill_I03" name="문힐시티 터널 속 무법자" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="moonhill_I04" name="문힐시티 조심조심 기찻길" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="moonhill_I05" name="문힐시티 덜컹덜컹 지하철 탈출" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="moonhill_R01" name="문힐시티 폭우속의 질주" f1speed="196" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="moonhill_R02" name="문힐시티 숨겨진 지하터널" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="moonhill_R04" name="문힐시티 지피의 시청광장" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="gold_I01" name="황금문명 황금신전을 찾아서" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="gold_I02" name="황금문명 흔들리는 위협" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="gold_I03" name="황금문명 고디우스의 분노" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="gold_I04" name="황금문명 전설의 황금용광로" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="gold_I05" name="황금문명 신비의 황금 콘도르" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="gold_I06" name="황금문명 CSO 아즈텍" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="gold_R01" name="황금문명 오르에트 황금 좌표" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="gold_R02" name="황금문명 비밀장치의 위협" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="china_C01" name="차이나 서안 병마용(아이템)"/>
+  <track id="china_I01" name="차이나 북경 자금성" bpLevelMin="0" bpLevelMax="19" basicAi="true"/>
+  <track id="china_I02" name="차이나 상해 동방명주" bpLevelMin="0" bpLevelMax="22" f1speed="0" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="china_I03" name="차이나 북경 스포츠 공원" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="china_I04" name="차이나 북경 경기장" basicAi="false"/>
+  <track id="china_I05" name="차이나 빙등축제" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="china_I07" name="차이나 동방명주의 밤"/>
+  <track id="china_R01" name="차이나 서안 병마용" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="china_R02" name="차이나 골목길 대질주" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="china_R03" name="차이나 서안 병마용 2" f1speed="100" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="china_R04" name="차이나 용의 운하" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="china_R05" name="차이나 황산" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="china_R07" name="차이나 라사" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="castle_I01" name="대저택 버블버블 키친" basicAi="false"/>
+  <track id="castle_I02" name="대저택 루이의 장난감 천국" bpLevelMin="15" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="castle_I03" name="대저택 럭셔리 거대욕조" bpLevelMin="12" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="castle_I04" name="대저택 루이의 숨겨진 비밀 방" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="castle_I05" name="대저택 루이의 서재" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="castle_I06" name="대저택 루이의 정원" isAllowedRoadBlock="true"/>
+  <track id="castle_R01" name="대저택 은밀한 지하실" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="castle_R02" name="대저택 오후의 휴일" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="nymph_I01" name="님프 요정 마을의 초대" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="nymph_I02" name="님프 달팽이의 통나무 지름길" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="nymph_I03" name="님프 달의 정원" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="nymph_I04" name="님프 판타리니 화산" bpLevelMin="9" bpLevelMax="19" allowed1vs1="false" pursuit1vs1="false" basicAi="true"/>
+  <track id="nymph_I05" name="님프 달빛 샘물터" bpLevelMin="9" bpLevelMax="28" allowed1vs1="false" pursuit1vs1="false" basicAi="true"/>
+  <track id="nymph_R01" name="님프 바다 신전의 비밀" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="nymph_R02" name="님프 통나무 아슬아슬 점프" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="mechanic_I01" name="메카닉 적의 포화속으로" bpLevelMin="9" bpLevelMax="22" f1speed="0" basicAi="true"/>
+  <track id="mechanic_I02" name="메카닉 숨겨진 탈출로" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="mechanic_K01" name="메카닉 반격의 시작"/>
+  <track id="mechanic_K02" name="메카닉 두 개의 재앙"/>
+  <track id="mechanic_K03" name="메카닉 최후의 전장"/>
+  <track id="mechanic_R01" name="메카닉 잊혀진 도시의 중심부" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="wkc_D01" name="데스매치 거대한 모래지옥"/>
+  <track id="wkc_I01" name="WKC 크레이지 10"/>
+  <track id="wkc_I02" name="포텐 뱅크 트랙" blocked="true"/>
+  <track id="wkc_R01" name="WKC 싱가폴 서킷" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="wkc_R02" name="WKC 투어링 랠리" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="wkc_R11" name="WKC 싱가폴 마리나 서킷" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="wkc_R03" name="WKC 상해 서킷" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="wkc_R04" name="WKC 코리아 서킷" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="wkc_R05" name="WKC 브라질 서킷" f1speed="132" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="wkc_R09" name="WKC 호주서킷" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="brodi_I01" name="브로디 거대한 에너지 생산기" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="brodi_I02" name="브로디 에너지의 원천" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="brodi_R01" name="브로디 비밀의 연구소" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="brodi_R02" name="브로디 위험한 프레스 공장" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="park_I01" name="놀이동산 스릴만점 레일특급"/>
+  <track id="park_R01" name="놀이동산 360 타워" allowed1vs1="true" pursuit1vs1="true" isAllowedRoadBlock="true"/>
+  <track id="park_R02" name="놀이동산 워터 슬라이드" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="beach_I01" name="비치 수상비행장" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="beach_I02" name="비치 여객선" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="beach_I03" name="비치 신나는 여름 휴가"/>
+  <track id="beach_R01" name="비치 해변 드라이브" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="beach_R02" name="비치 해변 기차" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="beach_R03" name="비치 간이역" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="beach_R04" name="트랙 9" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="steam_I01" name="1920 수상한 증기 공장" isAllowedRoadBlock="true"/>
+  <track id="steam_R01" name="1920 기차역 질주" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="steam_R02" name="1920 아슬아슬 비행장" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="jurassic_I01" name="쥐라기 디노 마을의 초대" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="jurassic_I02" name="쥐라기 아슬아슬 화산 점프" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="jurassic_R01" name="쥐라기 공룡섬 대모험" allowed1vs1="true" pursuit1vs1="true" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="jurassic_R03" name="쥐라기 공룡 결투장" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="jurassic_R04" name="쥐라기 공룡 무덤" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="world_C02" name="월드 리오 다운힐(아이템)" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="world_I01" name="월드 파리 드라이브" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="world_I02" name="월드 런던 나이트"/>
+  <track id="world_I03" name="월드 그리스의 휴일" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="world_I05" name="월드 브라질 스포츠 스타디움" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="world_R01" name="월드 뉴욕 대질주" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="world_R10" name="월드 두바이 다운타운" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="world_R02" name="월드 리오 다운힐" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="world_R03" name="월드 이탈리아 여행" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="world_R04" name="더 월드" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="world_R05" name="월드 파리 에펠탑 다이브" allowed1vs1="true" pursuit1vs1="false"/>
+  <track id="world_R06" name="월드 이탈리아 피사의 사탑" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="nemo_C02" name="네모 장난감 선물공장(아이템)" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="nemo_I01" name="네모 네모난 마을" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="nemo_I02" name="네모 메디아 은신처" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="nemo_I03" name="네모 구구 둥지" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="nemo_R01" name="네모 산타의 비밀공간" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="nemo_R02" name="네모 장난감 선물공장" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="nemo_R03" name="네모 강철바위 용광로" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="sword_F01" name="천하무림 비무장"/>
+  <track id="sword_I01" name="도검 월하문" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="sword_I02" name="도검 용의 길" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="sword_R01" name="도검 구름의 협곡" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="sword_R02" name="도검 야외 수련관" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="sword_R03" name="도검 두 마리의 용" allowed1vs1="true" pursuit1vs1="true"/>
+  <track id="god_D01" name="데스매치 흔들흔들 용암지대"/>
+  <track id="god_I01" name="신화 꺼지지 않는 불꽃"/>
+  <track id="god_I02" name="신화 빛의 길" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="god_I03" name="신화 도전의 전당" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="god_R01" name="신화 오딘의 궁전" allowed1vs1="true" pursuit1vs1="false" basicAi="false"/>
+  <track id="god_R02" name="신화 신들의 세계" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="god_R03" name="신화 차원의 관문" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="abyss_I01" name="어비스 지상으로 가는 길" basicAi="false"/>
+  <track id="abyss_I02" name="어비스 바다의 인도자" basicAi="false"/>
+  <track id="abyss_I03" name="어비스 바다 속으로" basicAi="false"/>
+  <track id="abyss_R01" name="어비스 스카이라인" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="abyss_R02" name="어비스 숨겨진 바닷길" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="abyss_R03" name="어비스 바다 소용돌이" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="abyss_R04" name="어비스 운명의 갈림길" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="abyss_R05" name="어비스 배틀 콜로세움" basicAi="false"/>
+  <track id="camelot_I01" name="카멜롯 기사단 훈련장" basicAi="false"/>
+  <track id="camelot_I02" name="카멜롯 바다 하역장" basicAi="false"/>
+  <track id="camelot_I03" name="카멜롯 전차 추격전" basicAi="false"/>
+  <track id="camelot_R01" name="카멜롯 외곽 순찰로" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="camelot_R02" name="카멜롯 펜드래건 캐슬" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="camelot_R03" name="카멜롯 순찰로 역주행" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="olympos_I01" name="올림포스 선택의 문" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="olympos_I02" name="올림포스 스틱스 익스프레스" basicAi="false"/>
+  <track id="olympos_I03" name="올림포스 여신의 성소" bpLevelMin="9" bpLevelMax="29" basicAi="true"/>
+  <track id="olympos_R01" name="올림포스 하늘의 신전" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="olympos_R02" name="올림포스 제우스 시티" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="korea_I01" name="코리아 전주 한옥마을" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="korea_I02" name="코리아 롯데월드 어드벤처" basicAi="true"/>
+  <track id="korea_I03" name="코리아 인천 센트럴파크" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="korea_I04" name="코리아 한국민속촌" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="korea_I05" name="코리아 천년의 경주" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="korea_R01" name="코리아 다이나믹 서울" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="korea_R02" name="코리아 부산의 밤" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="korea_R03" name="코리아 제주 해오름 다운힐" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="korea_R04" name="코리아 부산 밤바다 역주행" blocked="true" basicAi="false"/>
+  <track id="mabi_I01" name="마비노기 티르 코네일" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="mabi_I02" name="마비노기 던바튼" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="mabi_R01" name="마비노기 이멘 마하" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="mabi_R02" name="마비노기 바올 던전" allowed1vs1="true" pursuit1vs1="true" basicAi="false"/>
+  <track id="maple_I01" name="메이플 헤네시스 오솔길" bpLevelMin="9" bpLevelMax="19" basicAi="true"/>
+  <track id="maple_I02" name="메이플 리스항구 선착장" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="maple_I03" name="메이플 꿈의 도시 레헬른" bpLevelMin="9" bpLevelMax="29" blocked="false" basicAi="true"/>
+  <track id="maple_R01" name="메이플 헤네시스 공원" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="maple_R02" name="메이플 리스항구 언덕길" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="maple_R03" name="메이플 레헬른 악몽의 시계탑" blocked="false" allowed1vs1="true" pursuit1vs1="true" basicAi="true"/>
+  <track id="camelot_S01" name="카멜롯 외곽 순찰로" blocked="true" basicAi="false"/>
+  <track id="camelot_S02" name="카멜롯 비밀의 장소" blocked="true" basicAi="false"/>
+  <track id="camelot_S03" name="카멜롯 불타는 마을" blocked="true" basicAi="false"/>
+  <track id="camelot_S04" name="카멜롯 무한회랑" blocked="true" basicAi="false"/>
+  <track id="camelot_S05" name="카멜롯 마음의 눈" blocked="true" basicAi="false"/>
+  <track id="camelot_S06" name="카멜롯 석궁 발사대" blocked="true" basicAi="false"/>
+  <track id="camelot_S07" name="카멜롯 번뇌의 언덕" blocked="true" basicAi="false"/>
+  <track id="olympos_S01" name="올림포스 제우스 시티" blocked="true" basicAi="false"/>
+  <track id="olympos_S02" name="올림포스 스틱스 익스프레스" blocked="true" basicAi="false"/>
+  <track id="olympos_S03" name="올림포스 여신의 성소" blocked="true" basicAi="false"/>
+  <track id="olympos_S04" name="올림포스 선로 위의 질주" blocked="true" basicAi="false"/>
+  <track id="korea_S01" name="코리아 다이나믹 서울" blocked="true" basicAi="false"/>
+  <track id="korea_S02" name="코리아 은밀한 잠입" blocked="true" basicAi="false"/>
+  <track id="mabi_S01" name="마비노기 이멘 마하" blocked="true" basicAi="false"/>
+  <track id="mabi_S02" name="마비노기 키홀의 분노" blocked="true" basicAi="false"/>
+  <track id="maple_S01" name="메이플 헤네시스 공원" blocked="true" allowed1vs1="false" pursuit1vs1="false"/>
+  <track id="maple_S02" name="메이플 리스항구 보물찾기" blocked="true" allowed1vs1="false" pursuit1vs1="false"/>
+  <track id="maple_S03" name="메이플 레헬른 미궁" blocked="true" allowed1vs1="false" pursuit1vs1="false"/>
+  <track_crz refId="forest_I03" name="포레스트 크레이지 골짜기"/>
+  <track_crz refId="desert_I03" name="사막 크레이지 오아시스"/>
+  <track_crz refId="village_I04" name="빌리지 크레이지 운하"/>
+  <track_crz refId="ice_I03" name="아이스 크레이지 펭귄타운"/>
+  <track_crz refId="factory_I04" name="팩토리 크레이지 모험"/>
+  <track_crz refId="gold_I03" name="황금문명 크레이지 고디우스"/>
+  <track_crz refId="china_I02" name="차이나 크레이지 동방명주"/>
+  <track_crz refId="beach_I02" name="비치 크레이지 여객선"/>
+  <track_crz refId="world_I03" name="월드 크레이지 그리스"/>
+  <track_rvs refId="forest_I01" isAllowedRoadBlock="true" basicAi="true"/>
+  <track_rvs refId="forest_I02" basicAi="true"/>
+  <track_rvs refId="forest_I03" basicAi="true"/>
+  <track_rvs refId="forest_I04" basicAi="true"/>
+  <track_rvs refId="forest_I05" isAllowedRoadBlock="true"/>
+  <track_rvs refId="forest_I07" isAllowedRoadBlock="true"/>
+  <track_rvs refId="forest_R02"/>
+  <track_rvs refId="desert_I01" basicAi="true"/>
+  <track_rvs refId="desert_I02" basicAi="true"/>
+  <track_rvs refId="desert_I03" basicAi="true"/>
+  <track_rvs refId="desert_I04" basicAi="true"/>
+  <track_rvs refId="desert_I05" basicAi="true"/>
+  <track_rvs refId="desert_R01"/>
+  <track_rvs refId="village_I01" isAllowedRoadBlock="true" basicAi="true"/>
+  <track_rvs refId="village_I02"/>
+  <track_rvs refId="village_I03" basicAi="true"/>
+  <track_rvs refId="village_I04"/>
+  <track_rvs refId="village_I13" isAllowedRoadBlock="true"/>
+  <track_rvs refId="village_I05" basicAi="false"/>
+  <track_rvs refId="village_R01"/>
+  <track_rvs refId="village_R03"/>
+  <track_rvs refId="ice_I01"/>
+  <track_rvs refId="ice_I02" isAllowedRoadBlock="true" basicAi="true"/>
+  <track_rvs refId="ice_I03" basicAi="true"/>
+  <track_rvs refId="ice_I04" isAllowedRoadBlock="true" basicAi="true"/>
+  <track_rvs refId="ice_I05"/>
+  <track_rvs refId="ice_R01"/>
+  <track_rvs refId="ice_R02"/>
+  <track_rvs refId="tomb_I01" basicAi="true"/>
+  <track_rvs refId="tomb_I02"/>
+  <track_rvs refId="tomb_I03"/>
+  <track_rvs refId="tomb_R01"/>
+  <track_rvs refId="mine_I01" basicAi="true"/>
+  <track_rvs refId="mine_I02" basicAi="true"/>
+  <track_rvs refId="mine_R01"/>
+  <track_rvs refId="northeu_I01"/>
+  <track_rvs refId="northeu_I02"/>
+  <track_rvs refId="northeu_I03"/>
+  <track_rvs refId="northeu_I04" isAllowedRoadBlock="true"/>
+  <track_rvs refId="northeu_I05"/>
+  <track_rvs refId="northeu_I06"/>
+  <track_rvs refId="northeu_I07"/>
+  <track_rvs refId="northeu_R01"/>
+  <track_rvs refId="factory_I01"/>
+  <track_rvs refId="factory_I02"/>
+  <track_rvs refId="factory_I03"/>
+  <track_rvs refId="factory_I04"/>
+  <track_rvs refId="factory_R01"/>
+  <track_rvs refId="pirate_I01"/>
+  <track_rvs refId="pirate_I02" basicAi="true"/>
+  <track_rvs refId="pirate_I03"/>
+  <track_rvs refId="pirate_I04"/>
+  <track_rvs refId="pirate_R01"/>
+  <track_rvs refId="pirate_R02"/>
+  <track_rvs refId="fairy_I02" basicAi="true"/>
+  <track_rvs refId="fairy_I03" basicAi="true"/>
+  <track_rvs refId="china_R02" basicAi="true"/>
+  <track_rvs refId="abyss_R02" basicAi="false"/>
+  <track_rvs refId="korea_I01"/>
+  <track_rvs refId="korea_I03"/>
+  <track_rvs refId="korea_R01"/>
+  <track_rvs refId="korea_R02"/>
+  <track_rvs refId="korea_R03"/>
+  <track_rvs refId="mabi_I01" basicAi="true"/>
+  <track_rvs refId="mabi_R01" basicAi="true"/>
+</trackList>

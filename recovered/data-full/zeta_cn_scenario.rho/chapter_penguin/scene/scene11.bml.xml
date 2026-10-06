@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="penguin4"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="呼！总算找到了。"/>
+  <Enter/>
+  <Char id="Pengu" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop4"/>
+  <Msg name="宝宝" string="企鹅们原来都这么快的吗？？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengu" pos="8 0" emotion="stop3"/>
+  <Msg name="企小帅" string="(什么啊这人类？他怎么知道我是企鹅的？)"/>
+  <Enter/>
+  <Char id="Pengu" remove="true"/>
+  <Char id="Pengu" pos="8 0" emotion="stop3"/>
+  <Msg name="企小帅" string="(甚至还会说企鹅语？！)"/>
+  <Enter/>
+  <Char id="Pengu" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="在想什么呢~？一声不吭就自己跑掉~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengu" pos="7 0" emotion="stop3"/>
+  <Msg name="企小帅" string="咳咳！你怎么才来？"/>
+  <Enter/>
+  <Char id="Pengu" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="明明是你话都不说一声就自己溜了。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop4"/>
+  <Msg name="宝宝" string="话说你跑得也太快了吧~？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengu" pos="7 0" emotion="stop1"/>
+  <Msg name="企小帅" string="那是，我确实有点快~"/>
+  <Enter/>
+  <Char id="Pengu" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="先不说这个，赶紧接着找要找的东西！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="那边有石镐的声音！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengu" pos="7 0" emotion="normal"/>
+  <Msg name="企小帅" string="(他在找什么呢？和矿山爆炸的事有关？先跟着他看看再说吧。)"/>
+  <Enter/>
+  <Char id="Pengu" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="宝宝" string="这边！"/>
+  <Enter/>
+</Scene>

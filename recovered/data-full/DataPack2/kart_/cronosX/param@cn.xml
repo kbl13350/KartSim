@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='154'
+	BackwardAccelForce='100'
+	DragFactor='-0.084'
+	SteerConstraint='3.2'
+	CornerDrawFactor='0.074'
+	DriftEscapeForce='2115'
+	
+	driftBoostMulAccelFactor='1.34'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.8603'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1450'
+	BoostAccelFactor='1.54'
+	
+	DriftMaxGauge='-600'
+	NormalBoosterTime='113'
+	TeamBoosterTime='-90'
+	
+	DriftGaguePreservePercent='0.7'
+	antiCollideBalance='0.98'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.1'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='X'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='60'
+	dualMulAccelFactor='1.1'
+	dualTransLowSpeed='100'
+
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10main1'
+	BoosterType3='10soon1'
+            BoosterType4='10soon1'
+            BoosterType5='10main'
+            BoosterType6='10main'
+	
+
+
+	Port0='mod1a3' 
+	Port1='mod1a4'
+
+	FirePort0='mod2c1'
+	FirePort1='mod1a1'
+            FirePort2='mod1a2'
+            FirePort3='mod1d2'
+            FirePort4='mod1d1'
+	
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+	isWheelOutline='true'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 110 255' trailPort0='mod1a3' trailPort1='mod1a4'/>
+</BodyParam>
+<!-- 크로노스 X / 중국 / 유니크 / 스피드 /  20201210 릴리즈 -->

@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<exchangeSystem kartWarningPoint='25'><!--useLucciValue 한번에 소비되는 루찌, coinPoint 코인 1당 포인트,  사용할수 있는 맥스 coinLimit 사용할수 있는 맥스 코인량, kartId 보여지는 카트 Id-->
+	<coinList showPeriod='*~2016-01-07T05:59:59' useLucciValue='500' koinLevel1='1' koinLevel2='2' koinLevel3='3'/>
+	<coinList showPeriod='2016-01-07T06:00:00~2016-01-21T05:59:59' useLucciValue='0' koinLevel1='1' koinLevel2='2' koinLevel3='3'/>
+	<coinList showPeriod='2016-01-21T06:00:00~*' useLucciValue='1000' koinLevel1='1' koinLevel2='2' koinLevel3='3'/>
+
+	<showroom kartId='1610' showPeriod='*~*'/> <!-- 루나 신 -->
+	<showroom kartId='1611' showPeriod='*~*'/> <!-- 솔라 신 -->
+<!--
+	<exchangeItem Id='1'  underPoint='11' LotteryId0='487' LotteryId1='488' LotteryId2='489' LotteryId3='490' kartString='C1 以上'/>
+	<exchangeItem Id='2'  underPoint='31' LotteryId0='491' LotteryId1='492' LotteryId2='493' LotteryId3='494' kartString='SR 以上'/>
+	<exchangeItem Id='3'  underPoint='51' LotteryId0='495' LotteryId1='496' LotteryId2='497' LotteryId3='498' kartString='Z7 以上'/>
+	<exchangeItem Id='4'  underPoint='81' LotteryId0='499' LotteryId1='500' LotteryId2='501' LotteryId3='502' kartString='HT 以上'/>
+	<exchangeItem Id='5'  underPoint='10000' LotteryId0='506' LotteryId1='507' LotteryId2='508' LotteryId3='509' kartString='HT+ 以上'/>
+-->
+	<exchangeItem Id='1'  underPoint='11' LotteryId='487' kartString='C1 以上'/><!--lottery1,2,3,4 의 경우는 획득 확률에만 영향을 준다-->
+	<exchangeItem Id='2'  underPoint='31' LotteryId='491' kartString='SR 以上'/>
+	<exchangeItem Id='3'  underPoint='51' LotteryId='495' kartString='Z7 以上'/>
+	<exchangeItem Id='4'  underPoint='104' LotteryId='499' kartString='HT 以上'/>
+	<exchangeItem Id='5'  underPoint='156' LotteryId='506' kartString='HT+ 以上'/>
+	<exchangeItem Id='6'  underPoint='312' LotteryId='799' kartString='JIU 以上'/>
+	<exchangeItem Id='7'  underPoint='624' LotteryId='1131' kartString='V1 以上'/>
+	<exchangeItem Id='8'  underPoint='10000' LotteryId='1212' kartString='迅 以上'/>
+
+	<exchangePoint engineGrade='1' point='1'/>
+	<exchangePoint engineGrade='2' point='6'/>
+	<exchangePoint engineGrade='3' point='11'/>
+	<exchangePoint engineGrade='4' point='26'/>
+	<exchangePoint engineGrade='5' point='41'/>
+	<exchangePoint engineGrade='6' point='52'/>
+	<exchangePoint engineGrade='7' point='78'/>
+	<exchangePoint engineGrade='8' point='156'/>
+	<exchangePoint engineGrade='9' point='312'/>
+
+	<!-- 
+		일반 합성만 사용시 : frontBannerImage
+		일반 + 기간제 합성 사용 시 : frontBannerImageBig
+		합성체험 Stage 내부 사용 이미지 : eventShowRoomBannerImage
+	-->
+	<exchangeGuideEvent enable='true'>
+		<!--
+		<eventItem
+			id='1'
+			openPeriod='2021-08-05T06:00:00~2021-08-12T05:59:59'
+			eventTempId='1'
+			eventTempMask='0xF0000000'
+			reward1StockId='12197'
+			reward2StockId='22338'
+			frontBannerImage='cn_20210722_합성체험팝업'
+			frontBannerImageBig='cn_20210722_합성체험팝업'
+			eventShowRoomBannerImage='cn_20210722_합성체험_s'
+		/> 
+		-->
+		<!--
+		<eventItem
+			id='1'
+			openPeriod='2016-11-17T06:00:00~2016-12-01T05:59:59'
+			eventTempId='0'
+			eventTempMask='0xF0000000'
+			reward1StockId='10998'
+			reward2StockId='10998'
+			frontBannerImage='20161117_합성체험_전체배너_cn'
+			frontBannerImageBig='리소스제작중_전체배너_505'
+			eventShowRoomBannerImage='20161117_cn_새배너_1015'
+		/> 
+		-->
+		<!-- 합성 체험 이벤트 -->
+	</exchangeGuideEvent>
+
+
+	<!-- eventType 은 다음과 같이 설정 가능
+	1. targetKartGrade
+	2. targetKartId
+	3. resultKartGrade
+	4. resultKartId -->
+	<!-- eventValue='3;4;5' 와 같이 중복 설정 가능 -->
+
+	<exchangeEventList>
+		<event
+			openPeriod='2020-08-20T00:00:00~*'
+			eventType='resultKartGrade'
+			eventValue='7'
+			rewardStockId='20796'
+		/> <!-- X 보석-->
+		<event
+			openPeriod='*~*'
+			eventType='resultKartGrade'
+			eventValue='6'
+			rewardStockId='11755'
+		/> <!-- JIU 보석-->
+		<event
+			openPeriod='*~*'
+			eventType='resultKartGrade'
+			eventValue='5'
+			rewardStockId='11756'
+		/> <!-- HT+ 보석-->
+		<event
+			openPeriod='*~*'
+			eventType='resultKartGrade'
+			eventValue='4'
+			rewardStockId='11757'
+		/> <!-- HT 보석-->
+		<event
+			openPeriod='*~*'
+			eventType='resultKartGrade'
+			eventValue='3'
+			rewardStockId='11758'
+		/> <!-- Z7 보석-->
+		<event
+			openPeriod='*~*'
+			eventType='resultKartGrade'
+			eventValue='2'
+			rewardStockId='11759'
+		/> <!-- SR 보석-->
+	</exchangeEventList>
+
+</exchangeSystem>

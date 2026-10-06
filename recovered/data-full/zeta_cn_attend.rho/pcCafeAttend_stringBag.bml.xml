@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="allCaption">
+    <m c="kr" v="출첵 이벤트"/>
+  </k>
+  <k n="itemGet">
+    <m c="kr" v="출첵 이벤트 아이템 획득!!||아직 확인하지 않으셨다면|마이룸으로!"/>
+  </k>
+  <k n="itemGift">
+    <m c="kr" v="출첵 이벤트 아이템 획득!!!|아이템은 커플에게 전달되었답니다!"/>
+  </k>
+  <k n="cancle">
+    <m c="kr" v="나가기"/>
+  </k>
+  <k n="subAttend">
+    <m c="kr" v="도장 복구"/>
+  </k>
+  <k n="absenceUserMsg">
+    <m c="kr" v="도장 찍는 것을 깜빡 잊으셨군요.|도장 복구 퀘스트를 완료하시면 세 번!!|깜빡 잊었던 도장을 다시 찍어드립니다."/>
+  </k>
+  <k n="nonAbsenceUserMsg">
+    <m c="kr" v="현재까지 100%% 도장 획득!!|도장 복구 퀘스트 진행이 불가능 합니다."/>
+  </k>
+  <k n="attendDateForm">
+    <m c="kr" v="%d월 %d일"/>
+    <m c="cn" v="%d月 %d日"/>
+  </k>
+</StringBag>

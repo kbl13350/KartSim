@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="ice2"/>
+  <Bgm theme="ice" file="ice_01"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="到底是拥有了不得的实力的车手啊，葱头…… "/>
+  <Enter/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="葱头" string="啧啧啧！|很不错的技术啊！"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="谢谢，葱头。|你的技术也很不错。|真是有意思的比赛。"/>
+  <Enter/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="葱头" string="皮蛋果然是拥有传闻中那样惊人的实力啊。|只要稍微再练习练习的话，在繁荣山丘赛车大会中获得优胜估计没什么问题了。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="嘿嘿。这样称赞我，我会不好意思的……"/>
+  <Enter/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="葱头" string="但是，皮蛋。|你和多人的比赛经验还很不足，感觉你和多人比赛的时候，战略和技术都还不足。|虽然你坚持自己的行驶方法也很重要，但是和多人进行比赛的时候，特别的战略和技术也是需要的。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="很尖锐的点评啊。虽然现在皮蛋一个人跑赛道，也是屈指可数的高手，但是我觉得在需要和很多人进行激烈接触的团体赛中，需要别的战略和战术。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="嗯……是这样吗？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="葱头" string="虽然和我没多大关系……|我觉得皮蛋如果能和更多车手进行比赛积累经验的话，会更好的。|那样的话，我觉得会比起现在有更多成长的。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="谢谢你的忠告，葱头！|如你所说的，看起来我需要积累点和别的车手的比赛经验了。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Shake time="700"/>
+  <Char id="marid" pos="3 0" emotion="stop6"/>
+  <Msg name="蓝蓝" string="葱头！ 回去吧！"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="葱头" string="好的， 蓝蓝小姐，走吧。|那么好好练习吧！繁荣山丘赛车大会中见~"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="嗯！我们一定会再见的！"/>
+  <Enter/>
+</Scene>

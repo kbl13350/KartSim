@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach4"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop2"/>
+  <Msg name="阿嘉" string="哈哈哈！我又赢了！|那个黄胡须叔叔！|该轮到你上场了吧？哈哈哈"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop4"/>
+  <Char id="mos" pos="7 0" emotion="stop7"/>
+  <Char id="dao" pos="11 0" emotion="stop6"/>
+  <Msg name="皮蛋，小强，胖墩" string="阿嘉，看起来太危险了！|你过分骄傲了"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="thonz" pos="8 0" emotion="stop2"/>
+  <Msg name="尼兹" string="丢尽了暴走联盟的脸！|我让你知道什么叫做真正的赛车手！"/>
+  <Enter/>
+  <Char id="thonz" remove="true"/>
+  <Char id="steve" pos="8 0" emotion="stop2"/>
+  <Msg name="罗杰" string="等等！|这个不是阿嘉吗？呵呵呵"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="罗杰！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="steve" pos="8 0" emotion="stop2"/>
+  <Msg name="罗杰" string="在飙车届很有名吗，小子…?|叫什么阿嘉来着？|呵呵呵"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="alma" pos="8 0" flip="true" emotion="stop2"/>
+  <Msg name="路易" string="阿嘉~！|你听错了吧~！"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="steve" pos="8 0" emotion="stop1"/>
+  <Msg name="罗杰" string="那现在在这里做什么呢？|尼兹，难道这家伙为难你了？"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="thonz" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="steve" pos="11 0" emotion="stop1"/>
+  <Msg name="尼兹" string="我们只是来打酱油|是他先挑衅我们的。"/>
+  <Enter/>
+  <Char id="thonz" remove="true"/>
+  <Char id="steve" remove="true"/>
+  <Char id="steve" pos="8 0" emotion="stop2"/>
+  <Msg name="罗杰" string="问题很麻烦~|非法驾驶还为难善良的人|呵呵呵"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="alma" pos="8 0" flip="true" emotion="stop2"/>
+  <Msg name="路易" string="什么…暴走联盟是善良的人！|还说我们为难他们！|我们只是…!"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="路易~算了！|说多了也没用！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="lena" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="美玲" string="罗杰…|少做点缺德事！"/>
+  <Enter/>
+  <Char id="lena" remove="true"/>
+  <Char id="steve" pos="8 0" emotion="stop2"/>
+  <Msg name="罗杰" string="美玲~以后单独和你聊聊|阿嘉~既然有罪就得受罚吧？|正式逮捕你~"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mine1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[奥林匹斯 地下深处]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Msg name="葱头" string="呜哇？！奥林匹斯地下还有这种地方？！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop6"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Msg name="黑妞" string="太……太热了……"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="12 0" emotion="stop6"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="bazzi" pos="2 0" emotion="stop3"/>
+  <Msg name="宝宝" string="啊啊~有点晕啊~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="再这样下去大家都要晕倒了！|得赶紧找到啊……咦？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Char id="kero" pos="13 0" flip="true" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="找到了！凯罗！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Char id="kero" pos="13 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Msg name="凯罗" string="你们是？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop1"/>
+  <Char id="kero" pos="13 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Msg name="黑妞" string="凯罗！我们是来救你的！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="kero" pos="13 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Msg name="凯罗" string="还有脸来找我？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Char id="kero" pos="12 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Msg name="凯罗" string="都怪你们，让我受此奇辱……|呜呜……呜呜……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Char id="kero" pos="12 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Msg name="葱头" string="额？难道。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（啪叽）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="bero" pos="13 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Msg name="贝洛" string="你们觉得我贝洛需要别人的援助吗？！|就这铁窗，轻松就能毁掉！！！"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="dao" pos="10 0" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝，黑妞，皮蛋" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bero" pos="13 0" emotion="stop2"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Msg name="贝洛" string="就这铁窗！！！呀啊啊啊！"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="bazzi" pos="3 0" emotion="ani3"/>
+  <Msg name="宝宝" string="好像似曾相似啊~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bero" pos="13 0" emotion="stop2"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Msg name="葱头" string="贝……贝洛！你先冷静下！"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bero" pos="13 0" emotion="stop2"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Char id="ethi" pos="3 0" emotion="stop4"/>
+  <Msg name="葱头" string="光芒正在消失。"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bero" pos="13 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Char id="ethi" pos="3 0" emotion="stop4"/>
+  <Msg name="贝洛" string="？！"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bero" pos="13 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Char id="ethi" pos="3 0" emotion="stop4"/>
+  <Msg name="葱头，贝洛" string="…………"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bero" pos="12 0" emotion="stop2"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Msg name="贝洛" string="瞎说什么！！！"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Char id="bero" pos="12 0" emotion="stop2"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Msg name="葱头" string="呃！纸条里说这么做能让贝洛变回凯罗啊？！难道是哈迪斯骗我们？！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Char id="bero" pos="13 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Msg name="贝洛" string="既然有那个纸条，那应该是哈迪斯大人派你们来的吧。|先把这个铁窗给我打开吧。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="bero" pos="13 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Char id="ethi" pos="7 0" emotion="stop3"/>
+  <Msg name="葱头" string="知道了！"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bero" pos="12 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Char id="ethi" pos="7 0" emotion="stop4"/>
+  <Msg name="" string="（咔嚓）"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bero" pos="9 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop6"/>
+  <Char id="ethi" pos="3 0" emotion="stop4"/>
+  <Msg name="贝洛" string="好了。"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bero" pos="9 0" emotion="stop1"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Char id="camelot_effect" pos="16 0" emotion="stop6"/>
+  <Msg name="贝洛" string="跟我走吧！你们这群憨憨！|别跟丢了！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <Shadow isFixedKart="true" fixedKartId="943" fixedCharId="2" isFixedChar="true" kartId="920" characterId="2" uniformId="76" colorId="8" dyeId="8" characterName="幽灵车手">
+    <LevelContent level="0" ksv="chapter4_1_20" track="tomb_R02" laps="2"/>
+  </Shadow>
+</Root>

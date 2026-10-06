@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china22"/>
+  <Char id="hantao" pos="11 0" emotion="stop1"/>
+  <Msg name="门神" string="虽然输了，但是没有遗憾！"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="hantao" pos="11 0" flip="true" emotion="stop2"/>
+  <Char id="sharming" pos="4 0" emotion="stop1"/>
+  <Msg name="木兰" string="赢了虽好，但是至少是场精彩的对决呢！"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" remove="true"/>
+  <Char id="lingling" pos="7 0" emotion="normal"/>
+  <Msg name="凌凌" string="谢谢你，我学到了很多！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="hantao" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="sharming" pos="4 0" emotion="stop4"/>
+  <Msg name="木兰" string="就只感谢门神吗？"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" remove="true"/>
+  <Char id="lingling" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="凌凌" string="当然不是~谢谢你们！|跟龙之车手对决是我的荣幸呢！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="5 0" emotion="stop2"/>
+  <Char id="hantao" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="木兰" string="我们也非常开心能够跟你进行对决。|那就期待下一次的对决~"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" pos="5 0" emotion="stop1"/>
+  <Char id="hantao" pos="10 0" flip="true" emotion="stop1"/>
+  <Msg name="门神" string="凌凌，快去寻找守护者气息吧！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" remove="true"/>
+  <Char id="lingling" pos="7 0" emotion="normal"/>
+  <Msg name="凌凌" string="好的，那我先走了~"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <BackGround texture="china27"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="" string="（咚咚）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="light" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（闪烁）"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Char id="draong2_stuff" pos="5 0" emotion="stop1"/>
+  <Char id="lingling" pos="11 0" emotion="stop3"/>
+  <Char id="light" pos="10 0" emotion="stop1"/>
+  <Msg name="" string="（咻~）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="draong2_stuff" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="light" remove="true"/>
+  <BackGround texture="china22"/>
+  <Char id="light" pos="11 -2" emotion="stop1"/>
+  <Char id="lingling" pos="11 0" emotion="stop1"/>
+  <Msg name="凌凌" string="第四个守护者气息也已找到。|传承仪式也临近尾声啦！"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="hantao" pos="3 0" emotion="stop2"/>
+  <Msg name="门神" string="最后的对决应该就是雯雯咯？"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="lingling" pos="11 0" emotion="normal"/>
+  <Msg name="凌凌" string="最后的龙之车手的名字是叫雯雯吗？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="hantao" pos="3 0" emotion="stop1"/>
+  <Msg name="门神" string="是的。虽然现在还有点生疏…但据说是被赋予了龙之气韵的最强龙之车手。"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="hantao" pos="3 0" emotion="stop2"/>
+  <Msg name="门神" string="虽然你也非常厉害，但雯雯的实力也不容小觑。"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="hantao" pos="3 0" emotion="stop1"/>
+  <Char id="sharming" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="木兰" string="因为雯雯每次跟强大的对手较量，都会迅速成长。"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" pos="3 0" emotion="stop2"/>
+  <Char id="sharming" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="木兰" string="是的…你们两个非常相似！|但到底谁更胜一筹，还是得比一比才知道咯。"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="sharming" pos="9 0" flip="true" emotion="stop1"/>
+  <Msg name="门神" string="每一个对决都要不留余力的去应对哦！|雯雯就在那座高山上。"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" remove="true"/>
+  <Char id="lingling" pos="7 0" emotion="stop5"/>
+  <Msg name="凌凌" string="那我马上出发去找她了！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="" string="（隆~！）"/>
+  <Enter/>
+</Scene>

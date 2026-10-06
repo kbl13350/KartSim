@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="100 100 470 260" caption="Caption" captionPos="0 1" captionColor="black" align="center" setCloseButton="cancelButton">
+  <Panel name="iconPanel" windowRect="15 10 46 40" uvRect="0 0 31 30" texture="대화상자정보" alphaBlend="true"/>
+  <Label name="textLabel" windowRect="55 13 325 87" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="Message"/>
+  <TextButton name="okButton" text="#sb(yes)" windowRect="255 59 325 81" altTextRender="outline"/>
+  <TextButton name="cancelButton" text="#sb(no)" windowRect="255 59 325 81" altTextRender="outline"/>
+  <TextButton name="errorButton" text="#sb(cancel)" windowRect="255 59 325 81" altTextRender="outline"/>
+</CaptionWindow>

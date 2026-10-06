@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+	clubRaceId = 0 은 공통 보상 입니다. 
+	clubRaceId를 찾아서 없으면 0번 아이디의 보상 리스트를 사용
+	가능하면 높은 점수의 보상을 위에 배치해주세요
+
+	min 설정이 없을 경우 최저 보상으로 설정됩니다.
+	ex) 900~, 500~, 400~ 의 보상이 존재할 경우, 0~399 까지는 최저 보상을 획득
+
+	기획 상의 기본 값은 보상을 지급하지 않는 것입니다.
+	실수 방지를 위해 clubRaceId.xml 파일에서 rewardDateTime 를 지정하고,
+	RewardList 태그의 enable='true' 가 설정된 경우에만 보상을 지급합니다.
+-->
+<ClubRaceRewardList>
+	<!--
+		!! 주의 사항 !!
+		RewardList 의 clubRaceId 변경이 없으면, 유저가 보상을 받을 수 없습니다.
+		반드시 clubRaceId.xml 과 ID를 맞춰주세요!
+	-->
+	<!-- 마지막 id='1' -->
+	<RewardList clubRaceId='1'>
+		<!-- <Reward min='2501' stockId='19967'/> -->	<!-- 슈퍼 카트키 5개 -->
+		<!-- <Reward min='2201' stockId='19966'/> -->	<!-- 슈퍼 카트키 3개 -->
+		<!-- <Reward min='1901' stockId='19336'/> -->	<!-- 슈퍼 카트키 2개 -->
+		<!-- <Reward min='1601' stockId='20468'/> -->	<!-- 네오의 신상 카트 No.4(5개) -->
+		<!-- <Reward min='1201' stockId='20516'/> -->	<!-- 네오의 신상 카트 No.4(3개) -->
+		<!-- <Reward min='901' stockId='20490'/> -->		<!-- 네오의 보급 카트 No.4(2개) -->
+		<!-- <Reward stockId='10252'/> -->				<!-- 5코인 -->
+	</RewardList>
+
+</ClubRaceRewardList>

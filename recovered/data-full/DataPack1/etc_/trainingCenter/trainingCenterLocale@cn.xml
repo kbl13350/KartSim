@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<itemList>
+	<itemCat id='1'> <!-- 기본 주행 스킬 -->								
+		<item step='1'		name='startBooster'		 			rewardStockId='8680' />		<!-- 1천 루찌 카드 / 1千金币卡(1 个) -->
+		<item step='2'		name='drift&amp;booster'			rewardStockId='8680' />		<!-- 1천 루찌 카드 / 1千金币卡(1 个) -->
+		<item step='3'		name='shortDrift'					rewardStockId='8680' />		<!-- 1천 루찌 카드 / 1千金币卡(1 个) -->
+		<item step='4'		name='optimizationDrift'			rewardStockId='24723' />	<!-- 오팔 상자(1 개) / 蛋白石盒(1 个) -->
+	</itemCat>								
+	<itemCat id='2'> <!-- 고급 주행 스킬 -->								
+		<item step='1'		name='shortFullDrift'				rewardStockId='11959' />	<!-- 2천 루찌 카드 / 2千金币卡(1 个) -->
+		<item step='2'		name='cuttingDrift'					rewardStockId='11959' />	<!-- 2천 루찌 카드 / 2千金币卡(1 个) -->
+		<item step='3'		name='shortCuttingDrift'			rewardStockId='11959' />	<!-- 2천 루찌 카드 / 2千金币卡(1 个) -->
+		<item step='4'		name='dragDrift'					rewardStockId='24721' />	<!-- 루비 상자(1 개) / 红宝石盒(1 个) -->
+	</itemCat>
+	<itemCat id='3'> <!-- 특수 주행 스킬 -->
+		<item step='1'		name='draft'						rewardStockId='11958' />	<!-- 3천 루찌 카드 / 3千金币卡(1 个) -->
+		<item step='2'		name='dualBooster'					rewardStockId='11958' />	<!-- 3천 루찌 카드 / 3千金币卡(1 个) -->
+		<item step='3'		name='exceedSystem'					rewardStockId='24723' />	<!-- 오팔 상자(1 개) / 蛋白石盒(1 个) -->
+		<item step='4'		name='chargeSystem'					rewardStockId='11958' />	<!-- 3천 루찌 카드 / 3千金币卡(1 个) -->
+	</itemCat>									
+</itemList>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="line1" windowRect="0 0 438 66">
+  <Panel name="bg" windowRect="0 0 374 66"/>
+  <Panel name="me" leftTopWH="-2 -2 378 70" texture="stancher_img_listSlotCover" alphaBlend="true" textureOp="modulate" color="0 255 255 255" visible="false">
+    <Panel windowRect="0 0 378 70" texture="stancher_img_listSlotCover" alphaBlend="true" color="0 255 255 255" visible="true"/>
+  </Panel>
+  <CharPanel name="rank" leftTopWH="20 0 19 24" texture="rankNum" alphaBlend="true" fontSize="19 24" fontStr="12345678x" text="0" align="vcenter" visible="false"/>
+  <Container name="upperCont" leftTopWH="0 0 374 45">
+    <Label name="id" leftTopWH="61 5 170 20" textColor="white" textAlign="center"/>
+    <Panel name="clubMark" leftTopWH="20 10 20 20" align="vcenter" alphaBlend="true">
+      <Panel name="clubFrame" windowSize="24 24" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+    </Panel>
+    <Label name="gid" leftTopWH="61 20 170 20" textColor="white" textAlign="center"/>
+    <Container leftTopWH="205 5 150 50">
+      <Label name="bonusCharName" leftTopWH="0 0 150 20" textColor="white" textAlign="center"/>
+      <Label name="bonus" leftTopWH="0 15 150 20" text="#sb(bonus)" textColor="white" textAlign="center" visible="false"/>
+    </Container>
+    <List name="bonusIcons" leftTopWH="-8 35 55 35" scrollType="horizon" listGap="0" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollBarVisible="false" rightAlign="true"/>
+  </Container>
+  <Window name="coupleRingSet" leftTopWH="374 0 64 64" align="vcenter" visible="false">
+    <Panel name="coupleRing" windowRect="0 0 64 64" alphaBlend="true" align="center"/>
+  </Window>
+  <Container name="lowerCont" leftTopWH="30 45 344 21">
+    <Container name="normalUserRp" windowRect="30 0 140 20" visible="true">
+      <Label windowSize="20 20" adjust="42 0" textColor="yellow" textAlign="vcenter" text="+" align="vcenter"/>
+      <Label name="rp" windowRect="20 0 100 20" textColor="white" textAlign="right;vcenter" align="vcenter" text="9999"/>
+      <Label windowSize="35 20" adjust="106 0" text="#sb(rp)" textColor="white" textAlign="vcenter" align="vcenter"/>
+    </Container>
+    <Container windowRect="170 0 280 20">
+      <Label windowSize="20 20" adjust="42 0" textColor="yellow" textAlign="vcenter" text="+" align="vcenter"/>
+      <Label name="lucci" windowRect="20 0 100 20" textColor="white" textAlign="right;vcenter" align="vcenter" text="9999"/>
+      <Label windowSize="35 20" adjust="106 0" text="#sb(lucci)" textColor="white" textAlign="vcenter" align="vcenter"/>
+    </Container>
+    <Container windowRect="0 0 0 0">
+      <Label name="gp" windowRect="0 0 0 0" textColor="white" textAlign="right;vcenter" align="vcenter" text="GP 1500(+0)"/>
+    </Container>
+  </Container>
+</Container>

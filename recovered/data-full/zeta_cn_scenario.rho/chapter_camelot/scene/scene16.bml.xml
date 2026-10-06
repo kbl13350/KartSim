@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot18"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="呼…呼……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="arthur" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="亚瑟" string="呜哇！通过看不见的路之后出现了一道门！！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="stop1"/>
+  <Msg name="梅林" string="我就知道你能行。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="stop3"/>
+  <Msg name="梅林" string="远处的那个就是了。那道光的发源地就是圣剑所在之处……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="终于找到了！！赶紧过去吧！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="找到圣剑之后绝对不会放过……莫德雷德那家伙！！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="normal"/>
+  <Msg name="梅林" string="嗯，我们走吧。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="12 0" emotion="stop3"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Char id="arthur" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="..." string="呜呼呼呼呼呼…"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop2"/>
+  <Msg name="梅林" string="这笑声，难道是……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="camelot_soldier2" pos="1 0" flip="true" emotion="normal"/>
+  <Char id="camelot_soldier1" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="kei" pos="8 0" flip="true" emotion="normal"/>
+  <Char id="mordred" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="老家伙，辛苦你了。我找圣剑找了那么久，居然会在这种地方。"/>
+  <Enter/>
+  <Char id="camelot_soldier2" remove="true"/>
+  <Char id="camelot_soldier1" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Msg name="梅林" string="你怎么会在这里？"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="梅林" string="你应该是去追另一个勇士才对啊？你对他们做了什么？"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="kei" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="mordred" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="我看他们的行动有点奇怪，就交给士兵去追了，我自已回宫了。|差不多应该……已经被处理掉了吧？"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop2"/>
+  <Msg name="梅林" string="莫德雷德……是我小看你了……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="kei" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="mordred" pos="8 0" flip="true" emotion="normal"/>
+  <Msg name="莫德雷德" string="不管过去或现在，你都逃不出我的手掌心！"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="难道皮蛋，黑妞，葱头他们被……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="arthur" pos="9 0" emotion="stop2"/>
+  <Msg name="亚瑟" string="可你为什么会跟凯在一起啊！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="凯？竟敢直呼王子之名！！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="莫德雷德" string="因为王子是由我一手带大的。|马上，王子将会得到圣剑，成为真正的王。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="还有，告诉我你们在这里的也是王子。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="kei" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="凯" string="我不容许任何会对卡美洛城造成危险的事情发生！"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="10 0" emotion="stop2"/>
+  <Msg name="亚瑟" string="（看来凯还不知道实情）莫德雷德……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="梅林" string="亚瑟，赶紧去把圣剑拔出来吧。|只要有那把剑，莫德雷德也不在话下了……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="8 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="嗯，知道了！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="竟想在我眼前夺取圣剑？痴心妄想！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="给我站住！！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <step110>
+    <Img texture="tc_1_1@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="比赛开始时使用起步加速，才能以更快速度领先。|记得在倒计时结束时按下前进键来使用！"/>
+    <Enter/>
+  </step110>
+  <step111>
+    <Img texture="tc_1_2@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="起步加速其实没那么难吧？再多练习几次就能完美掌握了。|通过起步加速任务来进一步熟悉操作吧！"/>
+    <Enter/>
+  </step111>
+  <step120>
+    <Img texture="tc_2_1@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="在前进和过弯时，可按下 SHIFT 键进行漂移。按SHIFT 键的时间较短，就会进行短暂漂移；若按下时间过长，则可能导致车身方向大幅偏离。|为了灵活运用漂移技巧，建议熟练掌握手感哦。"/>
+    <Enter/>
+    <Img texture="tc_2_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="漂移后如果想要回正车头，按下反方向键即可。|调整好方向后漂移就会结束，趁这个时机按下前进键即可使用瞬间加速！"/>
+    <Enter/>
+  </step120>
+  <step121>
+    <Img texture="tc_2_3@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="使用漂移可以为加速器集气。|试着充满后使用加速器吧！"/>
+    <Enter/>
+  </step121>
+  <step122>
+    <Img texture="tc_2_4@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="运用目前学到的漂移技巧并使用加速器，在规定时间内完成练习赛道吧！"/>
+    <Enter/>
+  </step122>
+  <step130>
+    <Img texture="tc_3_1@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="点漂可以在前进时，搭配左右方向键并短按 SHIFT 键来使用哦。"/>
+    <Enter/>
+    <Img texture="tc_3_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="它主要用来迅速调整方向，或快速给加速器集气。|这个技巧不难，相信你很快就能学会！"/>
+    <Enter/>
+  </step130>
+  <step131>
+    <Img texture="tc_3_3@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="开始任务！注意不要撞到墙壁，在规定时间内完成赛道吧。|好好运用刚刚学到的点漂技巧哦！"/>
+    <Enter/>
+  </step131>
+  <step140>
+    <Img texture="tc_4_1@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="漂移前，先往行驶方向按下方向键再开始漂移。|不要长按漂移键，用反方向键适当调整车身才是关键！"/>
+    <Enter/>
+    <Img texture="tc_4_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="要时刻注意从弯道外侧向内侧切入！|最佳化漂移做得好的话，印迹就不会重叠，会一直保持平行！"/>
+    <Enter/>
+  </step140>
+  <step141>
+    <Img texture="tc_4_3@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="开始任务！在规定时间内，使用漂移通过直角弯道区域并完成赛道。|好好运用刚刚学到的最佳化漂移技巧哦！"/>
+    <Enter/>
+  </step141>
+  <step210>
+    <Img texture="tc_5_1@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="点漂接长漂，是一项在短暂的点漂之后，再接一段长漂移的技巧！"/>
+    <Enter/>
+    <Img texture="tc_5_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="可以大量集气，尤其集气条只差一点点时，可以连续获得两个加速器！其实没想象中那么难，要不要练练看？"/>
+    <Enter/>
+  </step210>
+  <step211>
+    <Img texture="tc_5_3@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="开始任务！在直角弯道和U型弯道区域，试着用点漂接长漂完成赛道吧！"/>
+    <Enter/>
+  </step211>
+  <step220>
+    <Img texture="tc_6_1@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="断位漂移，是在漂移的时候，向反方向重新轻点漂移键，|快速脱离漂移回正车身的技巧！"/>
+    <Enter/>
+    <Img texture="tc_6_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="断位漂移既能在直线路段补气，也能在过弯时从漂移中快速脱离。试着练习一下吧！"/>
+    <Enter/>
+  </step220>
+  <step221>
+    <Img texture="tc_6_3@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="开始任务！在宽阔的练习赛道上，放松心态练习断位漂移，慢慢找到手感吧!"/>
+    <Enter/>
+  </step221>
+  <step230>
+    <Img texture="tc_7_1@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="快拉要在按住漂移键的状态下，再额外按下反方向键。|与断位漂移类似，但区别在于只需要按1次漂移键！"/>
+    <Enter/>
+    <Img texture="tc_7_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="虽然相比断位漂移，单次集气更少，但它的优点是可以快速控制车身。|在直线路段比起断位漂移，连续使用快拉来为加速器集气效率会更高！"/>
+    <Enter/>
+  </step230>
+  <step231>
+    <Img texture="tc_7_3@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="开始任务！在直线路段和平缓的弯道上，试着用断位漂移和快拉来练习，慢慢找到手感吧～"/>
+    <Enter/>
+  </step231>
+  <step240>
+    <Img texture="tc_8_1@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="拖漂的前提是要先保持最佳化漂移状态。在最佳化漂移后，快速用反方向键稳住车身，再连按行驶方向键，就能持续保持漂移了！"/>
+    <Enter/>
+    <Img texture="tc_8_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="想要保持拖漂状态，要根据转弯的角度，控制连按的速度来稳定行驶方向。注意，连按速度过快反而会导致大幅减速哦！"/>
+    <Enter/>
+  </step240>
+  <step241>
+    <Img texture="tc_8_3@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="保持精准拖漂状态可以减少速度损失，还能根据车辆的漂移性能产生额外加速！|熟练后还能同时使用加速器和拖漂，大幅缩短行驶时间，一定要多多练习！"/>
+    <Enter/>
+  </step241>
+  <step242>
+    <Img texture="tc_8_4@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="我们再多练习几次拖漂吧！虽然现在直接在实战中使用可能有点难度，但通过练习提前掌握手感很重要！"/>
+    <Enter/>
+  </step242>
+  <step310>
+    <Img texture="tc_9_1@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="在比赛中紧跟前车行驶时，会先吸取尾流。|保持这个状态一段时间，就会触发尾流加速，可以超越对手。|但要注意，只有驾驶带有尾流功能的车辆，才能触发这个效果！"/>
+    <Enter/>
+    <Img texture="tc_9_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="触发尾流加速后可瞬间超越前方对手。|这是实战中能策略性运用的重要技巧，一定要练习哦！"/>
+    <Enter/>
+  </step310>
+  <step311>
+    <Img texture="tc_9_3@cn"/>
+    <Emotion texture="dao5"/>
+    <Text value="现在就来正式练习尾流吧！在规定时间内成功触发尾流！任务开始！"/>
+    <Enter/>
+  </step311>
+  <step320>
+    <Img texture="tc_10_1@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="使用加速器时，可以使用双涡轮增压加速，实现进一步提速。|但要注意，只有驾驶带有双涡轮增压加速功能的车辆，才能触发这个效果！"/>
+    <Enter/>
+    <Img texture="tc_10_2@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="虽然默认为自动触发，但关闭自动选项的话，也可以手动开启。|只需在行驶中，看准时机按下CTRL键就可以。"/>
+    <Enter/>
+    <Img texture="tc_10_3@cn"/>
+    <Emotion texture="dao1"/>
+    <Text value="手动使用时，可在关键时机开启双涡轮增压加速，实现更精细的操控。但要注意，相比自动触发，手动开启可能会损失一些速度！"/>
+    <Enter/>
+  </step320>
+  <step330>
+    <Img texture="tc_11_1@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="行驶中车速达到一定速度以上，或撞到墙壁时，超负荷槽会自动集气。|使用超负荷系统，可在短时间内获得额外加速。|但要注意，只有驾驶带有超负荷功能的车辆，才能触发这个效果！"/>
+    <Enter/>
+    <Img texture="tc_11_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="需要等超负荷槽充到一定比例后，才能使用超负荷功能。|想用时，按下空格键或 X 键即可开启！"/>
+    <Enter/>
+    <Img texture="tc_11_3@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="发生碰撞、驶入减速区域，或是在急弯等地方出现减速情况时，使用超负荷功能，是非常有效的技巧之一！"/>
+    <Enter/>
+    <Img texture="tc_11_4@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="此外，在最高速度状态下使用超负荷系统，就能获得突破最高速度的加速度。|根据不同情况灵活运用超负荷系统，来缩短你的赛道纪录吧！"/>
+    <Enter/>
+  </step330>
+  <step340>
+    <Img texture="tc_12_1@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="迅 引擎竞速车新增全新功能赋能系统。使用一定次数加速器时，赋能槽会被充能，充满后将自动触发赋能系统。"/>
+    <Enter/>
+    <Img texture="tc_12_2@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="启动赋能系统时，将100%恢复因冲撞墙体而损失的加速器集气量。漂移时加速器集气效率提升，将更容易积攒加速器。"/>
+    <Enter/>
+    <Img texture="tc_12_3@cn"/>
+    <Emotion texture="dao2"/>
+    <Text value="此外，使用加速器或冲撞墙体时，超负荷集气量也会增加。因此，无论是高速行驶还是发生碰撞后的行驶恢复，都会更加顺畅。"/>
+    <Enter/>
+  </step340>
+</Scene>

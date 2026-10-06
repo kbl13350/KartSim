@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='130.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.067'
+	SteerConstraint='2.4'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='lodi4'
+	UseTransformBooster='true'
+
+	BoosterType='9soon'
+	BoosterType0='9soon'
+	BoosterType1='9soon'
+	BoosterType2='9main'
+	BoosterType3='9sub'
+	BoosterType4='9sub'
+	BoosterType5='9sub'
+	BoosterType6='9sub'
+
+	Port0='mod5a' 
+	Port1='mod5b'
+
+	FirePort0='mod6a'
+	FirePort1='mod2c1'
+	FirePort2='mod2c2'
+	FirePort3='mod2d1'
+	FirePort4='mod2d2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2c1' trailPort1='mod2c2'/>
+</BodyParam>

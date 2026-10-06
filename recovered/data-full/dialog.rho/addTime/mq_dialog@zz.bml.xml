@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <ImageBoard leftTopWH="0 0 1258 602" image="playtimeBg@zz" align="center" alphaBlend="true" visible="true">
+    <ImageButton name="closeButton" windowSize="20 20" adjust="5 7" align="top;right" autoLoadImage="kick_" alphaBlend="true" altText="#sb(close)"/>
+    <Label leftTopWH="0 0 1258 37" text="#sb(addTimeEvent)" textColor="255 255 255 255" textRender="bold16" textAlign="center" autoWrap="true" multiLine="true" lineGap="4"/>
+    <Container leftTopWH="0 33 1258 569" align="hcenter" alphaBlend="true">
+      <Label name="eventPeriod" leftTopWH="55 34 520 34" text="#sb(addTimeEventPeriod)" textColor="255 255 255 255" textRender="bold16" textAlign="center" autoWrap="true"/>
+      <Container leftTopWH="784 34 24 33" alphaBlend="true">
+        <Label name="totalAddTime" leftTopWH="-28 -13 120 56" text="777분" textColor="255 255 255 255" textRender="bold20" textAlign="vcenter|right" autoWrap="true"/>
+      </Container>
+      <Container leftTopWH="1070 34 24 33" alphaBlend="true">
+        <CharPanel name="curAddTimeHour1" leftTopWH="0 0 24 33" adjust="0 0" texture="playtime_number2" alphaBlend="true" fontSize="24 33" spaceOffset="1" fontStr="1234567890" text="0" speedTick="5" enable="true" visible="true"/>
+        <CharPanel name="curAddTimeHour2" leftTopWH="24 0 24 33" adjust="0 0" texture="playtime_number2" alphaBlend="true" fontSize="24 33" spaceOffset="1" fontStr="1234567890" text="0" speedTick="5" enable="true" visible="true"/>
+        <CharPanel name="dummyPanel1" leftTopWH="0 0 24 33" adjust="0 0" texture="playtime_numberbg" alphaBlend="true" fontSize="24 33" spaceOffset="1" fontStr="1234567890" text="88" speedTick="5" enable="true" visible="true"/>
+        <CharPanel name="dummyPanel2" leftTopWH="70 0 24 33" adjust="0 0" texture="playtime_numberbg" alphaBlend="true" fontSize="24 33" spaceOffset="1" fontStr="1234567890" text="88" speedTick="5" enable="true" visible="true"/>
+        <Panel name="colonBg" leftTopTex="53 2" texture="playtime_img_num2_bg" alphaBlend="true" alphaTest="true"/>
+        <Panel name="colon2" leftTopTex="53 2" texture="playtime_img_num2" alphaBlend="true" alphaTest="true" visible="true"/>
+        <CharPanel name="curAddTimeMin" leftTopWH="70 0 24 33" adjust="0 0" texture="playtime_number2" alphaBlend="true" fontSize="24 33" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5" enable="true" visible="true"/>
+      </Container>
+      <Label leftTopWH="44 502 1170 52" text="#sb(addTimeEventPlayInfo)" textColor="255 255 255 255" textAlign="center" textRender="bold14" autoWrap="true" multiLine="true" lineGap="4" visible="true"/>
+    </Container>
+    <Window name="stepList" leftTopWH="41 128 1170 393">
+      <Window name="step1" leftTopWH="0 0 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward1" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone1" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="255 255 255 255" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+      <Window name="step2" leftTopWH="236 0 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward2" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone2" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="white" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+      <Window name="step3" leftTopWH="472 0 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward3" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone3" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="white" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+      <Window name="step4" leftTopWH="708 0 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward4" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone4" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="white" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+      <Window name="step5" leftTopWH="944 0 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward5" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone5" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="white" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+      <Window name="step6" leftTopWH="0 201 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward6" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone6" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="white" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+      <Window name="step7" leftTopWH="236 201 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward7" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone7" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="white" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+      <Window name="step8" leftTopWH="472 201 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward8" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone8" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="white" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+      <Window name="step9" leftTopWH="708 201 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward9" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone9" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="white" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+      <Window name="step10" leftTopWH="944 201 232 198" enable="true" visible="true">
+        <Panel name="panelType" leftTopTex="0 0" texture="playtime_itemslot_normal_일반" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="needTime" leftTopWH="0 0 232 40" text="777분" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" visible="true"/>
+          <ItemWindow name="rewardStockItem" leftTopWH="0 40 198 130" align="hcenter" stockId="0" enable="true" visible="true"/>
+          <Label name="rewardStockName" leftTopWH="0 158 232 42" text="배찌(777일)" textColor="255 42 55 80" textRender="bold14" textAlign="center" autoWrap="true" visible="true"/>
+          <ImageButton name="getReward10" leftTopTex="168 132" autoLoadImage="playtime_btn_getiItem_0" alphaBlend="true" visible="false" text="#sb(receive)" textRender="bold14" textAlign="center" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 95 24 10" disabledTextColor="255 183 186 194"/>
+          <Panel name="receiveDone10" leftTopTex="0 0" texture="playtime_slot_finishCover" alphaBlend="true" alphaTest="true" visible="false">
+            <Label name="getRewardStr" leftTopWH="0 0 33 20" text="#sb(complete)" textRender="bold16" textColor="white" textAlign="center" align="center"/>
+          </Panel>
+          <Panel name="pcCafeValid" leftTopTex="0 0" texture="playtime_slot_lockcover_02next" alphaBlend="true" alphaTest="true" visible="false">
+            <Panel leftTopTex="0 0" align="center" texture="playtime_icon_goPcroom" alphaBlend="true" alphaTest="true"/>
+            <Label leftTopWH="0 145 100 20" text="#sb(pcCafeOnly)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" textAlign="center" align="hcenter"/>
+          </Panel>
+        </Panel>
+      </Window>
+    </Window>
+  </ImageBoard>
+</Panel>

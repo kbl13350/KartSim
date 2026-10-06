@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="startBooster">
+    <m c="kr" v="출발 부스터"/>
+    <m c="cn" v="起步加速"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="startBoosterGuide">
+    <m c="kr" v="시작 타이밍에 맞춰 [color:255 254 227 4]전진키[/color] 입력 후 유지"/>
+    <m c="cn" v="看准起步时机，按下[color:255 254 227 4]前进键[/color]并保持"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="useStartBooster">
+    <m c="kr" v="출발 부스터"/>
+    <m c="cn" v="起步加速"/>
+    <m c="tw" v=""/>
+  </k>
+</StringBag>

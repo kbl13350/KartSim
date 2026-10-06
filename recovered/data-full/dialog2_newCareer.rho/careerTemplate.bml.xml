@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageBoard name="careerCard" leftTopWH="0 0 972 136" image="career_img_slot1" alphaBlend="true" visible="true">
+  <ImageBoard name="completeCareerBg" image="career_img_slot2" windowSize="698 138" adjust="0 0" alphaBlend="true" visible="false"/>
+  <Panel name="careerIcon" windowSize="112 112" adjust="11 12" alphaBlend="true" visible="true"/>
+  <Label name="careerName" leftTopWH="170 10 340 20" text="" textColor="255 42 55 80" textRender="bold20" textAlign="left"/>
+  <Container name="career_size1" leftTopWH="0 0 698 138" visible="false">
+    <Panel name="careerInfoStar" windowSize="18 18" adjust="158 66" texture="career_img_star_0" alphaBlend="true" visible="true"/>
+    <Label name="careerInfo" leftTopWH="184 65 250 20" text="" textColor="255 135 146 167" textRender="bold14" textAlign="left" visible="true"/>
+  </Container>
+  <Container name="career_size2" leftTopWH="0 0 698 138" visible="false">
+    <Panel name="careerInfoStar_2_1" windowSize="18 18" adjust="158 56" texture="career_img_star_0" alphaBlend="true" visible="true"/>
+    <Label name="careerInfo_2_1" leftTopWH="184 55 250 20" text="커리어 내용" textColor="255 135 146 167" textRender="bold14" textAlign="left" visible="true"/>
+    <Panel name="careerInfoStar_2_2" windowSize="18 18" adjust="158 76" texture="career_img_star_0" alphaBlend="true" visible="true"/>
+    <Label name="careerInfo_2_2" leftTopWH="184 75 250 20" text="커리어 내용" textColor="255 135 146 167" textRender="bold14" textAlign="left" visible="true"/>
+  </Container>
+  <Container name="career_size3" leftTopWH="0 0 698 138" visible="false">
+    <Panel name="careerInfoStar_3_1" windowSize="18 18" adjust="158 46" texture="career_img_star_0" alphaBlend="true" visible="true"/>
+    <Label name="careerInfo_3_1" leftTopWH="184 45 250 20" text="커리어 내용" textColor="255 135 146 167" textRender="bold14" textAlign="left" visible="true"/>
+    <Panel name="careerInfoStar_3_2" windowSize="18 18" adjust="158 66" texture="career_img_star_0" alphaBlend="true" visible="true"/>
+    <Label name="careerInfo_3_2" leftTopWH="184 65 250 20" text="커리어 내용" textColor="255 135 146 167" textRender="bold14" textAlign="left" visible="true"/>
+    <Panel name="careerInfoStar_3_3" windowSize="18 18" adjust="158 86" texture="career_img_star_0" alphaBlend="true" visible="true"/>
+    <Label name="careerInfo_3_3" leftTopWH="184 85 250 20" text="커리어 내용" textColor="255 135 146 167" textRender="bold14" textAlign="left" visible="true"/>
+  </Container>
+  <Panel name="careerHelpIcon" windowSize="14 14" adjust="160 110" texture="career_img_noticeICON" alphaBlend="true" visible="true"/>
+  <Label name="careerHelp" leftTopWH="184 105 250 20" text="" textColor="255 135 146 167" textRender="bold14" textAlign="left"/>
+  <Container name="rewardContainer" leftTopWH="740 10 94 112" visible="false">
+    <Panel name="rewardNameBG" adjust="0 0" windowSize="94 112" texture="career_img_rewardBG" alphaBlend="true">
+      <Label name="rewardNameLabel" leftTopWH="0 0 94 20" text="#sb(reward)" textColor="255 102 110 122" textRender="bold14" textAlign="center" visible="true"/>
+    </Panel>
+    <ItemWindow name="rewardStock" align="center" adjust="0 10" windowSize="100 100" visible="false"/>
+    <Panel name="rewardEmblem" align="center" adjust="0 10" windowSize="51 51" texture="8547_51" alphaBlend="false"/>
+  </Container>
+  <Container name="careerListWheelContainer" leftTopWH="0 0 460 138"/>
+  <Panel name="careerPoint" adjust="845 1" windowSize="108 138" texture="career_img_point3_6" alphaBlend="true" visible="true">
+    <Label name="careerCompleteDate" leftTopWH="0 6 108 20" text="" textColor="white" textColor2="255 42 55 80" textRender="outline14" textAlign="center"/>
+    <NewCareerCompleteButton name="completeBtn" adjust="-3 94" windowSize="114 32" autoLoadImage="career_btn_confirm_" alphaBlend="true" alphaTest="true" enable="true" visible="false">
+      <Label name="buttonName" leftTopWH="0 0 114 32" text="#sb(achievementCareer)" textRender="bold16" textColor="255 140 70 5" textAlign="center"/>
+    </NewCareerCompleteButton>
+  </Panel>
+</ImageBoard>

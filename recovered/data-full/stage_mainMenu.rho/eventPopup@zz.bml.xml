@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <Window windowRect="0 0 700 480" align="center" alphaBlend="true">
+    <Window name="eventPopupFrame" frame="EventPassPanel" windowRect="0 0 700 412" alphaBlend="true" align="hcenter">
+      <ImageBoard name="eventMain" leftTopTex="0 0" alphaBlend="true"/>
+    </Window>
+    <ImageButton name="okButton" leftTopTex="0 430" autoLoadImage="btn_check_0" alphaBlend="true" align="hcenter"/>
+  </Window>
+</Panel>

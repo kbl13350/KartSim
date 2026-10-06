@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='148'
+	BackwardAccelForce='100'
+	DragFactor='-0.06'
+	SteerConstraint='2.96'
+	CornerDrawFactor='0.07'
+	DriftEscapeForce='2010'
+	
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.8582'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1350'
+	
+	DriftMaxGauge='500'
+	NormalBoosterTime='65'
+	TeamBoosterTime='-100'
+	
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='X'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='90'
+	dualMulAccelFactor='1.1'
+	dualTransLowSpeed='100'
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10main1'
+	BoosterType3='10main1'
+	BoosterType4='10main'
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1a3'
+	FirePort1='mod1a4'
+	FirePort2='mod1b1'
+
+	PartsEngineLock='true'
+	PartsWheelLock='true'
+	PartsSteeringLock='true'
+	PartsBoosterLock='true'
+
+
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 0 137 182' trailPort0='mod2a3' trailPort1='mod2a4'/>
+</BodyParam>
+<!-- 레전드 파츠 9 / 한국 / 레전드 / 스피드 / 이벤트 / 20190221 릴리즈 -->

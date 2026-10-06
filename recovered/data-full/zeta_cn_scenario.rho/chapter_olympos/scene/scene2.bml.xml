@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu8"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[繁荣山丘]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="我可不会输哦！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="宝宝" string="哼！我也是……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop5"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Msg name="黑妞" string="皮蛋认真起来好帅啊！|不行我也要上！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop5"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Msg name="葱头" string="啊……每次测试都这样……|好了！要开始了？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Msg name="皮蛋" string="3！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="11 0" emotion="normal"/>
+  <Msg name="宝宝" string="2！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋，宝宝" string="1！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop1"/>
+  <Msg name="皮蛋，宝宝" string="出发！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[哧哧哧哧~哧哧哧哧~]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="bazzi" pos="2 0" emotion="normal"/>
+  <Char id="dao" pos="5 0" emotion="normal"/>
+  <Msg name="雅典娜" string="（果然实力不凡，看来有必要拉拢他们了。）"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="stop3"/>
+  <Char id="bazzi" pos="2 0" emotion="normal"/>
+  <Char id="dao" pos="5 0" emotion="normal"/>
+  <Msg name="雅典娜" string="大伙，你们真快！"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="bazzi" pos="2 0" emotion="stop3"/>
+  <Msg name="宝宝，皮蛋" string="你是？"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="bazzi" pos="2 0" emotion="stop3"/>
+  <Msg name="雅典娜" string="大家好，我叫雅典娜。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="bazzi" pos="2 0" emotion="stop3"/>
+  <Msg name="雅典娜" string="你们的比赛太精彩了，不由自主的就停下来观看了。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="（哇！好漂亮的姐姐呀！还散发着成熟的魅力！）"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="ani4"/>
+  <Msg name="黑妞" string="（不过，皮蛋应该只会关注我一个人吧？）"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Char id="dizini" pos="9 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="看够了没有啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="啊？！不是，你看那个姐姐的车？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="10 0" emotion="stop4"/>
+  <Msg name="黑妞" string="哦！原来是在看车啊……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop5"/>
+  <Msg name="葱头" string="第一次见这种车……？而且，轮胎的部分很奇怪|我都无法想象它漂移的样子！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="stop3"/>
+  <Char id="ethi" pos="3 0" emotion="stop3"/>
+  <Msg name="雅典娜" string="啊！对我的车辆很感兴趣吗？"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="stop3"/>
+  <Char id="ethi" pos="3 0" emotion="stop1"/>
+  <Msg name="葱头" string="是的！！"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="athena" pos="8 0" emotion="stop3"/>
+  <Msg name="雅典娜" string="那么……跟我跑一圈，赢了就告诉你！"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="比赛？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="如果是比赛，那就没有理由要拒绝了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop2"/>
+  <Char id="ethi" pos="4 0" emotion="normal"/>
+  <Msg name="黑妞" string="皮蛋要比的话，我也要参加！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop2"/>
+  <Char id="ethi" pos="4 0" emotion="stop1"/>
+  <Msg name="葱头" string="我也想近距离观察！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="normal"/>
+  <Msg name="宝宝" string="啊！这又要搞什么啊……"/>
+  <Enter/>
+</Scene>

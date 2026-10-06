@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ButtonAni name="jelly">
+  <Normal>
+    <ScaleTon>
+      <Phase at="1" tick="0" scale="0.0 0.0 0.0"/>
+      <Phase at="2" tick="100" scale="1.0 1.0 1.0"/>
+      <Phase at="3" tick="1000" scale="1.0 1.0 1.0"/>
+      <Phase at="4" tick="1001" scale="0.0 0.0 0.0"/>
+      <Phase at="5" tick="1100" scale="1.0 1.0 1.0"/>
+      <Phase at="6" tick="2000" scale="1.0 1.0 1.0"/>
+      <Phase at="7" tick="2001" scale="0.0 0.0 0.0"/>
+      <Phase at="8" tick="2100" scale="1.0 1.0 1.0"/>
+      <Phase at="9" tick="3000" scale="1.0 1.0 1.0"/>
+      <Phase at="10" tick="3001" scale="0.0 0.0 0.0"/>
+      <Phase at="11" tick="3100" scale="1.0 1.0 1.0"/>
+      <Phase at="12" tick="4000" scale="1.0 1.0 1.0"/>
+    </ScaleTon>
+  </Normal>
+</ButtonAni>

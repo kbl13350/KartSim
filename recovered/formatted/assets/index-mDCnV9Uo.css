@@ -1,0 +1,3231 @@
+:root {
+  color-scheme: only light;
+  color: #f5f8fb;
+  background: #000;
+  font-family:
+    Arial Narrow,
+    DIN Alternate,
+    Microsoft YaHei,
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --cyan: #4be4f4;
+  --yellow: #ffd02f;
+  --viewport-width: 100vw;
+  --viewport-height: 100vh;
+  --game-width: min(
+    var(--viewport-width),
+    calc(var(--viewport-height) * 16 / 9)
+  );
+  --game-height: min(
+    var(--viewport-height),
+    calc(var(--viewport-width) * 9 / 16)
+  );
+}
+@supports (height: 100dvh) {
+  :root {
+    --viewport-width: 100dvw;
+    --viewport-height: 100dvh;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+body {
+  min-width: 320px;
+  overscroll-behavior: none;
+}
+#app {
+  position: absolute;
+  top: calc((var(--viewport-height) - var(--game-height)) / 2);
+  left: calc((var(--viewport-width) - var(--game-width)) / 2);
+  width: var(--game-width);
+  height: var(--game-height);
+}
+[data-ui-layer="world"] {
+  z-index: 0;
+}
+[data-ui-layer="stage"] {
+  z-index: 1;
+}
+[data-ui-layer="navigation"] {
+  z-index: 2;
+}
+[data-ui-layer="dialog"] {
+  z-index: 3;
+}
+[data-ui-layer="notice"] {
+  z-index: 4;
+}
+[data-ui-layer="controls"] {
+  z-index: 5;
+}
+[data-ui-layer="diagnostics"] {
+  z-index: 6;
+}
+[data-ui-layer="system"] {
+  z-index: 7;
+}
+.multiplayer-loading {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #fff;
+  pointer-events: auto;
+}
+.multiplayer-loading[hidden] {
+  display: none;
+}
+.multiplayer-loading-board {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.multiplayer-loading-progress {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+  color: #ffe500;
+  font:
+    bold clamp(12px, 1.3vw, 22px) "Microsoft YaHei",
+    sans-serif;
+  text-shadow:
+    1px 1px #000,
+    -1px -1px #000,
+    1px -1px #000,
+    -1px 1px #000;
+}
+.multiplayer-race-chat {
+  position: absolute;
+  left: 9px;
+  bottom: 9px;
+  width: min(520px, 42%);
+  aspect-ratio: 520 / 156;
+  pointer-events: none;
+}
+.multiplayer-race-chat[hidden],
+.multiplayer-race-chat-input[hidden] {
+  display: none;
+}
+.multiplayer-race-chat-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+.multiplayer-race-chat-log {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: pre;
+}
+.multiplayer-race-chat-input {
+  position: absolute;
+  left: 3%;
+  bottom: 7%;
+  width: 94%;
+  height: 22px;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font:
+    16px KartSim Multiplayer Race Chat,
+    sans-serif;
+  caret-color: #fff;
+  pointer-events: auto;
+}
+.client-dialog {
+  position: absolute;
+  inset: 0;
+}
+#app canvas,
+.touch-controls,
+.touch-controls button {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+#app canvas {
+  touch-action: none;
+}
+button {
+  color: inherit;
+  font: inherit;
+}
+.window-edit {
+  caret-color: #fff;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  letter-spacing: 0;
+}
+.window-edit::selection {
+  color: #fff;
+  background: #000;
+}
+.new-rider-dialog {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: #0006;
+  pointer-events: auto;
+}
+.new-rider-dialog[hidden] {
+  display: none;
+}
+.new-rider-dialog-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+.new-rider-dialog .window-edit {
+  position: absolute;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  padding: 0;
+}
+.new-rider-dialog button.new-rider-hit {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+.game-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  image-rendering: pixelated;
+}
+.hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.system-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+.touch-controls {
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: var(--viewport-width);
+  height: var(--viewport-height);
+  pointer-events: none;
+  --touch-key-size: 80px;
+  --touch-key-gap: 8px;
+  --touch-bottom: max(20px, env(safe-area-inset-bottom));
+}
+.touch-controls[hidden],
+.touch-controls [hidden] {
+  display: none;
+}
+.touch-controls button {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #09182a7a;
+  color: #fff;
+  box-shadow: 0 4px 16px #0003;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  touch-action: none;
+}
+.touch-controls svg {
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+}
+.touch-controls button[data-drive] {
+  width: var(--touch-key-width, var(--touch-key-size));
+  height: var(--touch-key-height, var(--touch-key-size));
+  background: radial-gradient(
+    ellipse closest-side,
+    rgb(9 24 42 / 48%) 0%,
+    rgb(9 24 42 / 30%) 45%,
+    rgb(9 24 42 / 10%) 75%,
+    transparent 100%
+  );
+  color: #ffffffd9;
+  box-shadow: none;
+}
+.touch-controls button[data-drive] svg {
+  width: 45%;
+  height: 45%;
+}
+.touch-auto-forward {
+  display: none;
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translate(-50%);
+  color: #ffffff7f;
+  font:
+    italic 900 9px/1 Arial,
+    sans-serif;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+.is-auto-forward .touch-auto-forward {
+  display: block;
+}
+.touch-dodge-key {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  font:
+    900 12px/1 Arial,
+    sans-serif;
+  pointer-events: none;
+}
+.touch-controls button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+.touch-controls button[aria-pressed="true"][data-drive] {
+  color: #092238;
+  background: radial-gradient(
+    ellipse closest-side,
+    rgb(158 237 255 / 75%) 0%,
+    rgb(158 237 255 / 45%) 45%,
+    rgb(158 237 255 / 15%) 75%,
+    transparent 100%
+  );
+}
+.touch-controls .touch-sim {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  left: max(16px, env(safe-area-inset-left));
+  width: var(--touch-key-width, 64px);
+  height: var(--touch-key-height, 44px);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  font-family:
+    Arial Black,
+    Impact,
+    sans-serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 1000;
+  opacity: 0.25;
+  text-shadow: 0 0 12px #0008;
+}
+.touch-controls .touch-sim:focus-visible {
+  opacity: 1;
+}
+.touch-menu {
+  position: fixed;
+  inset: 0;
+  width: var(--viewport-width);
+  height: var(--viewport-height);
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: max(24px, env(safe-area-inset-top))
+    max(32px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom))
+    max(24px, env(safe-area-inset-left));
+  border: 0;
+  background: transparent;
+  color: #fff;
+  overflow: auto;
+  pointer-events: auto;
+  touch-action: pan-y;
+}
+.touch-menu[open] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+}
+.touch-menu::backdrop {
+  background: #000a;
+}
+.touch-menu-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: clamp(8px, 2vh, 20px);
+  max-width: 100%;
+  margin-top: auto;
+}
+.touch-menu button {
+  display: block;
+  max-width: 100%;
+  min-height: 44px;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  font-family:
+    Arial Black,
+    Impact,
+    sans-serif;
+  font-style: italic;
+  font-weight: 1000;
+  font-synthesis: style weight;
+  letter-spacing: -0.065em;
+  line-height: 1.15;
+  text-align: right;
+  overflow-wrap: anywhere;
+  transform: skew(-10deg);
+  transform-origin: right center;
+  touch-action: manipulation;
+}
+.touch-menu-actions button {
+  font-size: clamp(30px, min(12vw, 10vh), 52px);
+}
+.touch-menu-actions [data-touch="auto-forward"],
+.touch-menu-actions [data-touch="card-blue"] {
+  white-space: nowrap;
+}
+.touch-menu-actions [data-touch="auto-forward"] span,
+.touch-menu-actions [data-touch="card-blue"] span {
+  font-size: 0.5em;
+}
+.touch-auto-forward-status {
+  margin: 0;
+  color: #ff8b84;
+  font-size: 14px;
+  text-align: right;
+}
+.touch-auto-forward-status:empty {
+  display: none;
+}
+.touch-ghost-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: clamp(8px, 2vh, 20px);
+  max-width: 100%;
+}
+.touch-menu.is-editing > .touch-menu-actions,
+.touch-menu.is-editing > .touch-screen-help {
+  display: none;
+}
+.touch-layout-editor {
+  position: absolute;
+  inset: 0;
+}
+.touch-layout-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: #101820e8;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  line-height: 1.5;
+  pointer-events: none;
+}
+.touch-layout-panel p {
+  margin: 0 0 8px;
+}
+.touch-layout-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px 16px;
+  pointer-events: auto;
+}
+.touch-menu button.touch-sim {
+  display: grid;
+  place-items: center;
+  max-width: none;
+  font-style: normal;
+  font-synthesis: none;
+  letter-spacing: normal;
+  text-align: center;
+  transform: none;
+  touch-action: none;
+  cursor: move;
+}
+.touch-menu button.touch-layout-resize-handle {
+  position: fixed;
+  z-index: 4;
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  background: var(--cyan);
+  color: #092238;
+  box-shadow: 0 2px 8px #000a;
+  transform: translate(calc(-50% + 3px), calc(-50% + 3px));
+  transform-origin: center;
+  touch-action: none;
+  cursor: nwse-resize;
+}
+.touch-layout-resize-handle svg {
+  width: 18px;
+  height: 18px;
+}
+.touch-layout-actions button {
+  font-size: 20px;
+  white-space: nowrap;
+}
+.touch-menu button[data-drive] {
+  display: grid;
+  max-width: none;
+  border-radius: 50%;
+  transform: none;
+  touch-action: none;
+  cursor: move;
+}
+.touch-controls button.is-layout-selected {
+  outline: 2px dashed var(--cyan);
+  outline-offset: 2px;
+}
+.touch-controls button[data-drive].touch-positioned {
+  z-index: 2;
+}
+.touch-controls button[data-drive].is-layout-selected.touch-positioned {
+  z-index: 3;
+}
+.touch-layout-panel [role="status"] {
+  color: #ff8b84;
+}
+.touch-layout-panel [role="status"]:empty {
+  display: none;
+}
+.touch-menu button:active {
+  opacity: 0.55;
+}
+.touch-screen-help {
+  flex: 0 0 auto;
+  width: min(620px, 100%);
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: right;
+}
+.touch-screen-help p {
+  margin: 0;
+}
+.touch-screen-help button {
+  margin: 12px 0 0 auto;
+  font-size: 24px;
+}
+.touch-modifiers,
+.touch-arrows {
+  position: absolute;
+  bottom: var(--touch-bottom);
+  display: grid;
+  gap: var(--touch-key-gap);
+}
+.touch-reorder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.touch-controls button.touch-reorder:disabled {
+  color: #ffffff47;
+  pointer-events: none;
+}
+.touch-modifiers {
+  left: max(12px, env(safe-area-inset-left));
+  grid-template-columns: var(--touch-key-size);
+  grid-template-rows: repeat(3, var(--touch-key-size));
+}
+.touch-modifiers > :nth-child(1) {
+  grid-area: 1 / 1;
+}
+.touch-modifiers > :nth-child(2) {
+  grid-area: 2 / 1;
+}
+.touch-modifiers > :nth-child(3) {
+  grid-area: 3 / 1;
+}
+@media (max-height: 380px) {
+  .touch-modifiers {
+    grid-template-columns: repeat(2, var(--touch-key-size));
+    grid-template-rows: repeat(2, var(--touch-key-size));
+  }
+  .touch-modifiers > :nth-child(3) {
+    grid-area: 2 / 2;
+  }
+}
+.touch-arrows {
+  right: max(12px, env(safe-area-inset-right));
+  grid-template-columns: repeat(3, var(--touch-key-size));
+  grid-template-rows: repeat(2, var(--touch-key-size));
+}
+.touch-left svg {
+  transform: rotate(-90deg);
+}
+.touch-down svg {
+  transform: rotate(180deg);
+}
+.touch-right svg {
+  transform: rotate(90deg);
+}
+.touch-up {
+  position: relative;
+  grid-area: 1 / 2;
+}
+.touch-left {
+  position: relative;
+  grid-area: 2 / 1;
+}
+.touch-down {
+  grid-area: 2 / 2;
+}
+.touch-right {
+  position: relative;
+  grid-area: 2 / 3;
+}
+@media (max-width: 367px) {
+  .touch-modifiers,
+  .touch-arrows {
+    right: auto;
+    left: calc(
+      50% - (3 * var(--touch-key-size) + 2 * var(--touch-key-gap)) / 2
+    );
+  }
+  .touch-modifiers {
+    bottom: calc(
+      var(--touch-bottom) + var(--touch-key-size) + var(--touch-key-gap)
+    );
+    grid-template-columns: repeat(3, var(--touch-key-size));
+    grid-template-rows: repeat(2, var(--touch-key-size));
+  }
+  .touch-modifiers > :nth-child(1) {
+    grid-area: 2 / 1;
+  }
+  .touch-modifiers > :nth-child(2) {
+    grid-area: 2 / 3;
+  }
+  .touch-modifiers > :nth-child(3) {
+    grid-area: 1 / 2;
+  }
+}
+.startup-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  color: #fff;
+  background: #000;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.42s ease;
+  will-change: opacity;
+}
+.startup-loading.is-complete {
+  opacity: 0;
+  pointer-events: none;
+}
+.startup-loading-copy {
+  position: absolute;
+  right: max(32px, env(safe-area-inset-right));
+  bottom: max(28px, env(safe-area-inset-bottom));
+  display: flex;
+  max-width: min(760px, calc(100vw - 64px));
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 14px;
+}
+.startup-frontend-version {
+  color: #a7a7a7;
+  font-size: 12px;
+}
+.startup-loading-label {
+  --loading-progress: 0%;
+  color: transparent;
+  background-image: linear-gradient(90deg, #ffffff38, #fff, #ffffff38);
+  background-position: 150% 0;
+  background-size: 250% 100%;
+  background-clip: text;
+  font-family:
+    Arial Black,
+    Impact,
+    sans-serif;
+  font-size: clamp(42px, 7vw, 88px);
+  font-style: italic;
+  font-weight: 1000;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+  transform: skew(-10deg);
+  transform-origin: right center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: loading-text 1.15s linear infinite;
+}
+.startup-loading-label.is-determinate {
+  background-image: linear-gradient(
+    90deg,
+    #fff 0 var(--loading-progress),
+    rgba(255, 255, 255, 0.22) var(--loading-progress) 100%
+  );
+  background-position: 0 0;
+  background-size: 100% 100%;
+  animation: none;
+}
+.startup-loading-copy > p {
+  max-width: 100%;
+  margin: 0;
+  color: #ff8b84;
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: right;
+}
+.startup-resource-choice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  color: #e7eef9;
+  font-size: 14px;
+}
+.startup-resource-choice[hidden] {
+  display: none;
+}
+.startup-resource-choice button {
+  padding: 8px 14px;
+  border: 1px solid #8ba8c8;
+  border-radius: 4px;
+  color: #fff;
+  background: #17375d;
+  cursor: pointer;
+}
+.startup-resource-choice button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+.startup-loading.has-error .startup-loading-label {
+  background-image: linear-gradient(#ff8b84, #ff8b84);
+  animation-play-state: paused;
+}
+.loading-fab,
+.pause-overlay {
+  position: fixed;
+  top: max(18px, env(safe-area-inset-top));
+  left: 50%;
+  z-index: 0;
+  display: flex;
+  max-width: calc(100vw - 36px);
+  min-height: 44px;
+  padding: 0 11px 0 16px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: #fff;
+  background: #05080cdb;
+  box-shadow: 0 8px 28px #00000052;
+}
+.loading-fab {
+  transform: translate(-50%);
+}
+.loading-fab[hidden] {
+  display: none;
+}
+.loading-fab-copy {
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.loading-fab-ring {
+  --loading-progress: 0%;
+  width: 24px;
+  flex: 0 0 24px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(
+    #fff var(--loading-progress),
+    rgba(255, 255, 255, 0.2) 0
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 0
+  );
+  mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 0);
+}
+.debug-text-list {
+  position: absolute;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  left: max(18px, env(safe-area-inset-left));
+  display: flex;
+  max-width: min(620px, calc(100vw - 48px));
+  flex-direction: column;
+  gap: 3px;
+  color: #e7f8fbe6;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  text-shadow: 0 1px 3px #000;
+}
+.debug-text-list > p {
+  margin: 0;
+}
+.debug-text-list > [data-kind="error"] {
+  color: #ffe8e5;
+}
+.debug-panel {
+  position: absolute;
+  top: 185px;
+  right: 25px;
+  display: none;
+  max-width: calc(100vw - 50px);
+  margin: 0;
+  padding: 12px 15px;
+  border-left: 2px solid var(--cyan);
+  color: #cbf2f7cc;
+  background: #020a12bd;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.debug-panel.is-visible {
+  display: block;
+  pointer-events: auto;
+}
+.debug-panel-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.debug-panel-actions > strong {
+  color: #dcfafdf2;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+}
+.debug-panel-actions > button {
+  padding: 4px 9px;
+  border: 1px solid rgba(109, 224, 235, 0.55);
+  border-radius: 3px;
+  color: #dcfafdf2;
+  background: #071e2aeb;
+  cursor: pointer;
+  font: inherit;
+}
+.debug-panel-actions > button:hover {
+  border-color: #a4f5fce6;
+  background: #0a303ef5;
+}
+.debug-panel > pre {
+  overflow-x: auto;
+  margin: 10px 0 0;
+  font: inherit;
+}
+.pause-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -10px);
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+.pause-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%);
+}
+.system-overlay.has-loading-fab .pause-overlay {
+  top: calc(max(18px, env(safe-area-inset-top)) + 56px);
+}
+.pause-overlay strong {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.pause-overlay button {
+  display: inline-flex;
+  min-height: 30px;
+  padding: 0 12px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(151, 218, 230, 0.35);
+  border-radius: 999px;
+  color: #e1f3f7db;
+  background: #050f1ac7;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  transition:
+    border-color 0.12s ease,
+    background 0.12s ease,
+    color 0.12s ease;
+}
+.pause-overlay button:hover {
+  border-color: var(--cyan);
+  color: #07101d;
+  background: var(--cyan);
+}
+.pause-actions {
+  display: flex;
+  gap: 10px;
+}
+@keyframes loading-text {
+  to {
+    background-position: -150% 0;
+  }
+}
+@media (max-width: 650px) {
+  .startup-loading-copy {
+    right: max(18px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+    max-width: calc(100vw - 36px);
+  }
+  .debug-panel {
+    top: 152px;
+    right: 13px;
+  }
+}
+.garage-x {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #101923;
+  pointer-events: auto;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.garage-x[hidden] {
+  display: none;
+}
+.garage-x .garage-selectable,
+.garage-x [data-selectable="true"],
+.garage-x input,
+.garage-x textarea,
+.garage-x [contenteditable]:not([contenteditable="false"]) {
+  -webkit-user-select: text;
+  user-select: text;
+}
+.garage-x-surface {
+  position: absolute;
+  width: 1600px;
+  height: 900px;
+  transform-origin: top left;
+  color: #eff5fa;
+  font:
+    16px P3528 Source Han Sans CN Garage,
+    sans-serif;
+}
+.garage-x-surface canvas {
+  position: absolute;
+  inset: 0;
+  width: 1600px;
+  height: 900px;
+  touch-action: none;
+}
+.garage-x-controls {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.garage-x-controls > [hidden] {
+  display: none !important;
+}
+.garage-x-controls > * {
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+.garage-x-transform-parts-root {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.garage-x-transform-parts-root > * {
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+.garage-x button,
+.garage-x input {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+.garage-x button {
+  cursor: pointer;
+}
+.garage-x button:hover {
+  color: #06acff;
+}
+.garage-x button.selected {
+  color: #fff;
+}
+.garage-x button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.garage-x button:focus-visible,
+.garage-x input:focus-visible {
+  outline: 3px solid #a3edff;
+  outline-offset: 2px;
+}
+.garage-x-kart-name {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 32px;
+  font-size: 26px;
+  font-weight: 700;
+  text-shadow:
+    1px 1px #000,
+    -1px -1px #000;
+}
+.garage-x-kart-level-badge {
+  display: block;
+  flex: 0 0 auto;
+  width: auto;
+  height: 26px;
+  object-fit: contain;
+}
+.garage-x-info {
+  font-size: 16px;
+  text-align: right;
+  text-shadow: 1px 1px #000;
+}
+.garage-x-info > div {
+  height: 32px;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  padding-left: 112px;
+  gap: 8px;
+}
+.garage-x-info > div > span {
+  width: 130px;
+  text-align: right;
+}
+.garage-x-info > div > strong {
+  min-width: 112px;
+  text-align: right;
+  font-size: 14px;
+}
+.garage-x-info > div > strong.garage-score-comparison-after {
+  font-size: inherit;
+}
+.garage-x-info .changed {
+  color: #8af0ac;
+}
+.garage-x-info > div.garage-score-row {
+  position: absolute;
+  inset: auto auto auto 0;
+  top: var(--garage-score-row-y);
+  width: 100%;
+  height: var(--garage-score-row-height);
+  padding: 0;
+  display: block;
+  line-height: var(--garage-score-row-height);
+}
+.garage-x-info .garage-score-row > .garage-score-value {
+  position: absolute;
+  left: var(--garage-score-value-x);
+  top: 0;
+  width: var(--garage-score-value-width);
+  min-width: 0;
+  height: var(--garage-score-value-height);
+  line-height: var(--garage-score-value-height);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.garage-x-info > div.garage-score-comparison {
+  position: absolute;
+  inset: auto;
+  left: var(--garage-score-comparison-x);
+  top: var(--garage-score-comparison-y);
+  width: var(--garage-score-comparison-width);
+  height: var(--garage-score-comparison-height);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  line-height: var(--garage-score-comparison-height);
+}
+.garage-x-info .garage-score-comparison > .garage-score-comparison-before,
+.garage-x-info .garage-score-comparison > .garage-score-comparison-after {
+  position: static;
+  flex: 0 0 auto;
+  width: var(--garage-score-comparison-value-width);
+  min-width: 0;
+  height: var(--garage-score-comparison-height);
+  line-height: var(--garage-score-comparison-height);
+  font-size: inherit;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.garage-x-info .garage-score-comparison > .garage-score-comparison-after {
+  width: var(--garage-score-comparison-after-width);
+  color: #10ebff;
+  transform: translate(-9px);
+}
+.garage-x-info .garage-score-comparison > .garage-score-comparison-before {
+  color: #fff;
+}
+.garage-vehicle-functions {
+  overflow: visible;
+}
+.garage-vehicle-function-row {
+  position: absolute;
+  left: 13px;
+  top: 43px;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+.garage-vehicle-function {
+  position: relative;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  outline: none;
+}
+.garage-vehicle-function-background {
+  position: absolute;
+  inset: 0;
+  width: 44px;
+  height: 44px;
+}
+.garage-vehicle-function-icon {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.garage-vehicle-function-icon.focused {
+  visibility: hidden;
+}
+.garage-vehicle-function:is(:hover, :focus-visible)
+  .garage-vehicle-function-icon.normal {
+  visibility: hidden;
+}
+.garage-vehicle-function:is(:hover, :focus-visible)
+  .garage-vehicle-function-icon.focused {
+  visibility: visible;
+}
+.garage-x-info.garage-xun-score-layout > div {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: block;
+  line-height: normal;
+}
+.garage-x-info.garage-xun-score-layout .garage-xun-score-value {
+  position: absolute;
+  left: var(--xun-value-x);
+  top: var(--xun-value-y);
+  width: var(--xun-value-width);
+  height: var(--xun-value-height);
+  min-width: 0;
+  line-height: var(--xun-value-height);
+  text-align: left;
+  white-space: nowrap;
+}
+.garage-x-info.garage-xun-score-layout > div.garage-xun-comparison {
+  inset: auto;
+  left: var(--xun-comparison-row-x);
+  top: var(--xun-comparison-row-y);
+  width: max-content;
+  height: 14px;
+  padding: 0;
+  display: inline-grid;
+  grid-template-columns: max-content var(--xun-arrow-width) max-content;
+  align-items: center;
+  column-gap: 0;
+  line-height: 14px;
+}
+.garage-x-info .garage-xun-comparison > .garage-xun-comparison-before {
+  position: static;
+  width: max-content;
+  min-width: 0;
+  height: 14px;
+  line-height: 14px;
+  color: #fff;
+  font-size: inherit;
+  text-align: left;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.garage-xun-comparison-arrow {
+  position: static;
+  width: var(--xun-arrow-width);
+  height: var(--xun-arrow-height);
+  background: center / contain no-repeat;
+  transform: translate(8px);
+}
+.garage-x-info .garage-xun-comparison > .garage-xun-comparison-after {
+  position: static;
+  width: max-content;
+  min-width: 0;
+  height: 14px;
+  line-height: 14px;
+  font-size: inherit;
+  text-align: left;
+  white-space: nowrap;
+  transform: translate(16px);
+}
+.garage-xun-comparison-after.increase {
+  color: #83ff1f;
+}
+.garage-xun-comparison-after.decrease {
+  color: #ff5b32;
+}
+.garage-x-parts-title {
+  font-size: 16px;
+  text-align: center;
+  line-height: 30px;
+}
+.garage-x-inventory {
+  display: grid;
+  grid-template-columns: repeat(3, var(--garage-part-column-step, 172px));
+  grid-auto-rows: var(--garage-part-row-step, 144px);
+  align-content: start;
+  gap: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  padding: 0;
+  transform: translate(2px, 2px);
+}
+.garage-x-inventory::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.garage-x-scrollbar-slot {
+  touch-action: none;
+  cursor: default;
+}
+.garage-part-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #595f68;
+}
+.garage-part-card:hover,
+.garage-part-card.selected {
+  box-shadow: inset 0 0 0 2px #69c3ee;
+  background: #526d83;
+}
+.garage-x .garage-part-preview {
+  position: relative;
+  width: 100%;
+  height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding-bottom: 4px;
+  font-size: 14px;
+}
+.garage-inventory-frame {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  top: 8px;
+  left: 54px;
+}
+.garage-inventory-icon {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  top: 14px;
+  left: 60px;
+  object-fit: contain;
+}
+.garage-equip-label {
+  width: 80px;
+  height: 32px;
+  line-height: 32px;
+  background-size: 100% 100%;
+  color: #fff;
+}
+.garage-native-part-card {
+  width: var(--garage-part-card-width);
+  height: var(--garage-part-card-height);
+  background-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  box-shadow: none;
+}
+.garage-native-part-card:hover,
+.garage-native-part-card:focus-within {
+  background-color: transparent;
+  background-position: 0 0;
+  box-shadow: none;
+}
+.garage-native-part-card.selected {
+  background-color: transparent;
+  box-shadow: none;
+}
+.garage-x .garage-native-part-card .garage-part-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: block;
+}
+.garage-x .garage-native-part-card .garage-part-preview:disabled {
+  opacity: 1;
+}
+.garage-native-part-card .garage-inventory-frame {
+  display: none;
+}
+.garage-native-part-card .garage-inventory-icon {
+  position: absolute;
+  width: var(--garage-part-icon-width);
+  height: var(--garage-part-icon-height);
+  left: calc((100% - var(--garage-part-icon-width)) / 2);
+  top: var(--garage-part-icon-y);
+  object-fit: contain;
+}
+.garage-native-part-card .garage-part-preview > span {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 172px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+.garage-part-card .garage-equip-label {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 10px;
+  transform: translate(-50%);
+  opacity: 0;
+  pointer-events: none;
+}
+.garage-part-card:hover .garage-equip-label,
+.garage-part-card:focus-within .garage-equip-label {
+  opacity: 1;
+  pointer-events: auto;
+}
+.garage-part-card.garage-cosmetic-card {
+  width: var(--garage-part-card-width);
+  height: var(--garage-part-card-height);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+.garage-part-card.garage-cosmetic-card:hover,
+.garage-part-card.garage-cosmetic-card.selected {
+  background-position: 0 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+.garage-x .garage-cosmetic-card .garage-part-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: block;
+}
+.garage-cosmetic-name {
+  position: absolute;
+  z-index: 1;
+  top: var(--garage-part-title-y, 4px);
+  left: var(--garage-part-title-x, 4px);
+  width: var(--garage-part-title-width, calc(100% - 8px));
+  height: var(--garage-part-title-height, 36px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 15px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}
+.garage-cosmetic-card .garage-inventory-icon {
+  width: auto;
+  height: auto;
+  max-width: var(--garage-part-icon-width);
+  max-height: var(--garage-part-icon-height);
+  left: 50%;
+  top: calc(var(--garage-part-icon-y) + var(--garage-part-icon-height) / 2);
+  transform: translate(-50%, -50%);
+  translate: none;
+}
+.garage-cosmetic-preview-hint {
+  position: absolute;
+  top: 63px;
+  color: #23384b;
+  font-size: 13px;
+}
+.garage-cosmetic-card .garage-equip-label {
+  height: 28px;
+  line-height: 28px;
+}
+.garage-parts-notice {
+  grid-column: 1 / -1;
+  color: #fff;
+  text-shadow: 1px 1px #000;
+  text-align: center;
+  padding: 32px 20px;
+}
+.garage-x .garage-native-button {
+  background-image: var(--button-1);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-1, #fff);
+}
+.garage-x .garage-native-button:hover {
+  background-image: var(--button-2, var(--button-1));
+  color: var(--text-2, #06acff);
+}
+.garage-x .garage-native-button:active {
+  background-image: var(--button-3, var(--button-1));
+  color: var(--text-3, #fff);
+}
+.garage-x .garage-native-button.selected {
+  background-image: var(--button-4, var(--button-1));
+  color: var(--text-4, #fff);
+}
+.garage-x .garage-native-button.garage-danger-button,
+.garage-x .garage-native-button.garage-danger-button:hover,
+.garage-x .garage-native-button.garage-danger-button:active {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-shadow: 0 1px #65000b;
+}
+.garage-x .garage-transform-preview {
+  overflow: visible;
+  background-size: 26px 26px;
+  background-position: 0 0;
+}
+.garage-x .garage-transform-preview > span {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+  white-space: nowrap;
+  text-shadow:
+    -1px -1px #243041,
+    1px -1px #243041,
+    -1px 1px #243041,
+    1px 1px #243041;
+  pointer-events: none;
+}
+.garage-x .garage-transform-preview[aria-pressed="true"],
+.garage-x .garage-transform-preview[aria-pressed="true"]:hover,
+.garage-x .garage-transform-preview[aria-pressed="true"]:active {
+  background-image: var(--button-5, var(--button-1));
+  color: #fff;
+}
+.garage-x .garage-menu-button {
+  padding-left: 35px;
+  font-size: 16px;
+}
+.garage-x .garage-equipped-slot {
+  overflow: visible;
+  text-align: left;
+  font-size: 14px;
+  isolation: isolate;
+}
+.garage-equipped-slot > span {
+  position: absolute;
+  top: 0;
+  left: 45px;
+  color: #c8c8c8;
+}
+.garage-equipped-slot > strong {
+  position: absolute;
+  top: 19px;
+  left: 45px;
+  white-space: nowrap;
+  color: #aaa;
+  font-size: 16px;
+}
+.garage-part-frame {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 44px;
+  height: 44px;
+}
+.garage-equipped-slot > .garage-part-frame {
+  z-index: 0;
+}
+.garage-equipped-icon {
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  z-index: 1;
+}
+.garage-equipped-slot[data-cosmetic-slot] > .garage-equipped-icon {
+  z-index: 2;
+}
+.garage-equipped-state-frame {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 44px;
+  height: 44px;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 0;
+}
+.garage-equipped-slot.selected .garage-part-frame {
+  filter: drop-shadow(0 0 2px #70d4ff);
+}
+.garage-equipped-slot.compact .garage-part-frame,
+.garage-equipped-slot.compact .garage-equipped-icon,
+.garage-equipped-slot.compact .garage-equipped-state-frame {
+  left: -4px;
+  top: -4px;
+  width: 50px;
+  height: 50px;
+}
+.garage-equipped-slot.compact > span {
+  display: none;
+}
+.garage-equipped-slot.compact > strong {
+  top: 30px;
+  left: -4px;
+  width: 50px;
+  height: 14px;
+  text-align: center;
+  font-family:
+    P3528 Source Han Sans CN Garage,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  color: #fff;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  white-space: nowrap;
+  text-shadow:
+    -1px -1px 0 #000,
+    0 -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 0 0 #000,
+    1px 0 0 #000,
+    -1px 1px 0 #000,
+    0 1px 0 #000,
+    1px 1px 0 #000;
+}
+.garage-equipped-slot.compact[data-cosmetic-slot] > strong {
+  display: none;
+}
+.garage-equipped-slot:not(.compact)[data-cosmetic-slot] > span {
+  top: 1px;
+  left: 45px;
+  width: 65px;
+  height: 15px;
+  line-height: 15px;
+}
+.garage-equipped-slot:not(.compact)[data-cosmetic-slot] > strong {
+  top: 20px;
+  left: 45px;
+  width: 150px;
+  height: 15px;
+  line-height: 15px;
+  color: #969696;
+}
+.garage-x .garage-equipped-preview-action {
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+.garage-part-lock {
+  z-index: 4;
+  pointer-events: none;
+}
+.garage-equipped-slot > .garage-part-lock {
+  z-index: 4;
+  pointer-events: none;
+}
+.garage-x-surface .garage-part-model {
+  position: absolute;
+  inset: auto;
+  touch-action: auto;
+  pointer-events: none;
+}
+.garage-x-surface .garage-part-model.garage-inventory-icon {
+  left: 18px;
+  top: -4px;
+  width: 136px;
+  height: 100px;
+}
+.garage-x-surface
+  .garage-booster-effect-card
+  .garage-part-model.garage-booster-effect-model {
+  z-index: 0;
+  left: 22px;
+  top: 40px;
+  width: 136px;
+  height: 100px;
+  transform: none;
+  translate: none;
+}
+.garage-x-surface
+  .garage-native-part-card
+  .garage-part-model.garage-inventory-icon {
+  left: calc((100% - var(--garage-part-icon-width)) / 2);
+  top: var(--garage-part-icon-y);
+  width: var(--garage-part-icon-width);
+  height: var(--garage-part-icon-height);
+}
+.garage-x-surface .garage-part-model.garage-equipped-icon {
+  left: 1px;
+  top: 1px;
+  width: 34px;
+  height: 34px;
+}
+.garage-x-surface .compact .garage-part-model.garage-equipped-icon {
+  left: -4px;
+  top: -4px;
+  width: 50px;
+  height: 50px;
+}
+.garage-x-surface .garage-part-model.garage-part-max-effect {
+  left: -18px;
+  top: -16px;
+  width: 78px;
+  height: 76px;
+}
+.garage-equipped-slot.compact > strong {
+  z-index: 2;
+}
+.garage-page-label {
+  text-align: center;
+  line-height: 20px;
+  font-size: 14px;
+  pointer-events: none;
+}
+.garage-x input {
+  outline: none;
+  font-size: 14px;
+  background: #142231;
+  color: #fff;
+}
+.garage-x-cards {
+  display: grid;
+  grid-template-columns: repeat(9, var(--garage-kart-card-width));
+  grid-template-rows: var(--garage-kart-card-height);
+  gap: 0 var(--garage-kart-card-gap);
+}
+.garage-x-cards button,
+.garage-x-cards button:hover,
+.garage-x-cards button.selected {
+  box-sizing: border-box;
+  width: var(--garage-kart-card-width);
+  height: var(--garage-kart-card-height);
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: transparent;
+}
+.garage-x-status {
+  color: #9faab7;
+  font-size: 13px;
+  line-height: 24px;
+}
+.garage-x-status:empty {
+  display: none !important;
+}
+.garage-x .quality-1 {
+  color: #f7d468;
+}
+.garage-x .quality-2 {
+  color: #ffe57d;
+}
+.garage-x .quality-3 {
+  color: #81d9ff;
+}
+.garage-x .quality-4 {
+  color: #fff;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+  .devtools-output {
+    scroll-behavior: auto;
+  }
+}
+.garage-progression {
+  position: absolute;
+  inset: 0;
+  color: #fff;
+  pointer-events: none;
+  font-size: 16px;
+}
+.garage-progression[hidden] {
+  display: none;
+}
+.garage-upgrade-layout {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.garage-upgrade-layout[hidden] {
+  display: none;
+}
+.garage-progression button,
+.garage-progression select {
+  pointer-events: auto;
+}
+.garage-progression select {
+  background: #23334b;
+  color: #fff;
+  border: 1px solid #59748c;
+  font-size: 16px;
+}
+.garage-progression select.garage-native-combo {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0 24px 0 8px;
+}
+.garage-progression .garage-native-button {
+  background-color: transparent;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+}
+.garage-x .garage-native-button:disabled {
+  background-image: var(--button-4, var(--button-1));
+  color: var(--text-4, #8190a5);
+  cursor: default;
+}
+.garage-progression .garage-exceed-lock-label {
+  overflow: visible;
+  white-space: nowrap;
+}
+.garage-progression .garage-exceed-description {
+  overflow: visible;
+  white-space: nowrap;
+  line-height: 20px;
+}
+.garage-progression .garage-tuning-art {
+  object-fit: fill;
+  pointer-events: none;
+}
+.garage-tuning-number {
+  text-align: center;
+  font-weight: 700;
+}
+.garage-native-label {
+  white-space: pre-line;
+  line-height: 1.25;
+  overflow: hidden;
+}
+.garage-native-outline {
+  text-shadow:
+    -1px -1px #2a374d,
+    1px -1px #2a374d,
+    -1px 1px #2a374d,
+    1px 1px #2a374d;
+}
+.garage-tuning-gauge {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.garage-point-effects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.garage-x-surface canvas.garage-point-effect {
+  position: absolute;
+  inset: auto;
+  pointer-events: none;
+}
+.garage-x-surface canvas.garage-point-effect[hidden] {
+  display: none;
+}
+.garage-tuning-skill-name {
+  display: flex;
+  align-items: center;
+  line-height: 19px;
+  overflow: hidden;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.garage-skill-selection {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  background: #0009;
+  pointer-events: auto;
+}
+.garage-skill-selection-panel {
+  position: absolute;
+  left: 427px;
+  top: 63px;
+  width: 746px;
+  height: 708px;
+  background: #17283f;
+  background-size: 100% 100%;
+  color: #fff;
+  font-size: 16px;
+}
+.garage-skill-selection-panel strong {
+  text-align: center;
+  font-size: 20px;
+}
+.garage-skill-selection-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  text-shadow: 0 1px 1px #032640;
+}
+.garage-skill-selection-heading > span:first-child {
+  color: var(--cyan);
+}
+.garage-skill-selection-panel button {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+.garage-skill-selection-panel button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.garage-skill-selection-panel button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+.garage-skill-selection-panel .garage-native-button {
+  background-color: transparent;
+  padding: 0;
+}
+.garage-skill-selection-panel .garage-skill-mode-tab {
+  background-color: transparent;
+  background-size: 100% 100%;
+  color: #5f6773;
+  font-weight: 700;
+  padding: 0;
+}
+.garage-skill-selection-panel .garage-skill-mode-tab[aria-pressed="true"] {
+  color: #fff;
+}
+.garage-skill-selection-panel .garage-skill-mode-tab:disabled {
+  opacity: 1;
+}
+.garage-skill-selection-status {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 225px;
+  top: 585px;
+  width: 480px;
+  height: 62px;
+  white-space: pre-line;
+  line-height: 25px;
+  font-size: 15px;
+}
+.garage-skill-selection-local {
+  color: #213c5b;
+  background: #eef3f8;
+  font-weight: 700;
+  line-height: 35px;
+  text-align: center;
+}
+.garage-exceed-change {
+  position: absolute;
+  inset: 0;
+  z-index: 42;
+  background: #000a;
+  pointer-events: auto;
+}
+.garage-exceed-change-panel {
+  position: absolute;
+  left: 178px;
+  top: 43px;
+  width: 1244px;
+  height: 748px;
+  color: #fff;
+  background-position: 7px -1px;
+  background-repeat: no-repeat;
+  font-family: inherit;
+}
+.garage-exceed-change-title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1244px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  text-shadow: 0 1px #07162d;
+}
+.garage-exceed-type-box {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  grid-template-rows: 34px 76px;
+  align-items: center;
+  color: #d8e3f2;
+  font-size: 15px;
+}
+.garage-exceed-type-box > img {
+  grid-row: 1 / 3;
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+}
+.garage-exceed-type-box.target {
+  position: absolute;
+  left: 55px;
+  top: 62px;
+  width: 420px;
+  height: 205px;
+  padding: 45px 55px;
+  box-sizing: border-box;
+  background: center/226px 226px no-repeat var(--target-bg);
+}
+.garage-exceed-material-info {
+  position: absolute;
+  left: 56px;
+  top: 296px;
+  width: 420px;
+  height: 235px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbc6d7;
+  font-weight: 700;
+}
+.garage-exceed-material-info .garage-exceed-type-box {
+  width: 390px;
+}
+.garage-exceed-fee {
+  position: absolute;
+  left: 45px;
+  top: 548px;
+  width: 430px;
+  height: 76px;
+  display: grid;
+  grid-template-columns: 34px 1fr 28px 1fr;
+  align-items: center;
+  gap: 8px;
+  color: #546481;
+  font-weight: 700;
+}
+.garage-exceed-fee img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+.garage-exceed-material-heading {
+  position: absolute;
+  left: 548px;
+  top: 25px;
+  width: 650px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+}
+.garage-exceed-material-grid {
+  position: absolute;
+  left: 548px;
+  top: 70px;
+  width: 650px;
+  height: 480px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 112px;
+  gap: 6px;
+  overflow-y: auto;
+}
+.garage-exceed-material {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  border: 1px solid #909bab;
+  background: #f4f6f8;
+  color: #25334a;
+  font-weight: 700;
+  cursor: pointer;
+}
+.garage-exceed-material:hover {
+  background: #e4f8ff;
+  border-color: #1baeea;
+}
+.garage-exceed-material.selected {
+  background: #79ddf5;
+  outline: 4px solid #a4ff00;
+  outline-offset: -5px;
+}
+.garage-exceed-material img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+.garage-exceed-material span {
+  max-width: 135px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.garage-exceed-local-notice {
+  position: absolute;
+  left: 548px;
+  top: 570px;
+  width: 650px;
+  height: 52px;
+  color: #f0693a;
+  font-size: 14px;
+  line-height: 22px;
+}
+.garage-exceed-change-action {
+  position: absolute;
+  left: 129px;
+  top: 655px;
+  width: 262px;
+  height: 76px;
+  border: 0;
+  background: center/100% 100% no-repeat var(--button-1);
+  color: transparent;
+  cursor: pointer;
+}
+.garage-exceed-change-action:hover {
+  background-image: var(--button-2);
+}
+.garage-exceed-change-action:active {
+  background-image: var(--button-3);
+}
+.garage-exceed-change-action:disabled {
+  background-image: var(--button-4);
+  cursor: default;
+}
+.garage-exceed-change-close {
+  position: absolute;
+  right: 17px;
+  top: 1px;
+  width: 35px;
+  height: 35px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 34px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.garage-exceed-confirm-shade {
+  position: absolute;
+  inset: -43px -178px;
+  z-index: 2;
+  background: #000a;
+}
+.garage-exceed-confirm {
+  position: absolute;
+  left: 518px;
+  top: 165px;
+  width: 564px;
+  height: 535px;
+  box-sizing: border-box;
+  padding: 34px 28px;
+  background-repeat: no-repeat;
+  background-size: 550px 535px;
+  color: #fff;
+  text-align: center;
+}
+.garage-exceed-confirm strong {
+  display: block;
+  height: 42px;
+  font-size: 20px;
+}
+.garage-exceed-confirm p {
+  margin: 280px auto 0;
+  width: 360px;
+  white-space: pre-line;
+  line-height: 25px;
+  color: #dbe6f5;
+  font-weight: 700;
+}
+.garage-exceed-confirm button {
+  position: absolute;
+  bottom: 15px;
+  width: 146px;
+  height: 42px;
+  border: 1px solid #8290a4;
+  background: #e8ebef;
+  color: #404b5f;
+  font-weight: 700;
+  font-size: 16px;
+}
+.garage-exceed-confirm button.primary {
+  left: 122px;
+  color: #fff;
+  border-color: #0875cf;
+  background: #238ff2;
+}
+.garage-exceed-confirm button:not(.primary) {
+  left: 280px;
+}
+.garage-exceed-choice-dialog .garage-exceed-change-panel {
+  left: 430px;
+  top: 150px;
+  width: 740px;
+  height: 500px;
+  box-sizing: border-box;
+  border: 2px solid #3d8ed8;
+  background: linear-gradient(#0a315d, #061b39 42px, #0b315b 42px, #082544);
+  box-shadow:
+    0 0 0 2px #07121f,
+    0 12px 28px #000b;
+}
+.garage-exceed-choice-dialog .garage-exceed-change-title {
+  width: 100%;
+  height: 42px;
+  background: linear-gradient(#267ac8, #0c4f9a);
+  border-bottom: 1px solid #63b9ef;
+  font-size: 21px;
+}
+.garage-exceed-choice-description {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 62px;
+  margin: 0;
+  color: #dbe9f8;
+  text-align: center;
+  font-weight: 700;
+  font-size: 17px;
+}
+.garage-exceed-choice-grid {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  top: 110px;
+  height: 245px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.garage-exceed-choice {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 2px solid #536c8b;
+  border-radius: 0;
+  background: linear-gradient(#163f6d, #0a2548);
+  color: #e8f2ff;
+  font-family: inherit;
+  cursor: pointer;
+}
+.garage-exceed-choice:hover {
+  border-color: #58cbff;
+  background: linear-gradient(#205487, #0c315a);
+}
+.garage-exceed-choice.selected {
+  border-color: #9dff00;
+  box-shadow: inset 0 0 0 3px #20a9ee;
+  background: linear-gradient(#176aa0, #0d3f6c);
+}
+.garage-exceed-choice img {
+  width: 94px;
+  height: 94px;
+  object-fit: contain;
+}
+.garage-exceed-choice strong {
+  font-size: 26px;
+  line-height: 30px;
+}
+.garage-exceed-choice span {
+  min-height: 34px;
+  color: #b9cbe0;
+  font-size: 13px;
+  line-height: 17px;
+  text-align: center;
+}
+.garage-exceed-choice-action,
+.garage-exceed-choice-cancel {
+  position: absolute;
+  bottom: 35px;
+  width: 146px;
+  height: 42px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.garage-exceed-choice-action {
+  left: 220px;
+}
+.garage-exceed-choice-cancel {
+  left: 375px;
+}
+.garage-exceed-choice-dialog .garage-exceed-change-close {
+  right: 5px;
+  top: 3px;
+}
+.garage-exceed-choice-dialog .garage-exceed-confirm-shade {
+  inset: -150px -430px;
+}
+.garage-exceed-choice-dialog .garage-exceed-choice-confirm {
+  left: 574px;
+  top: 285px;
+  width: 452px;
+  height: 254px;
+  padding: 0;
+  border: 2px solid #14263d;
+  background: #f7f8fa;
+  color: #24344b;
+  box-shadow: 0 10px 26px #0009;
+}
+.garage-exceed-choice-dialog .garage-exceed-choice-confirm > strong {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#2476c3, #0b4b92);
+  color: #fff;
+  font-size: 19px;
+}
+.garage-exceed-choice-dialog .garage-exceed-choice-confirm > p {
+  margin: 54px auto 0;
+  width: 390px;
+  color: #24344b;
+  font-size: 17px;
+  line-height: 26px;
+}
+.garage-exceed-choice-dialog .garage-exceed-choice-confirm > button {
+  bottom: 18px;
+  width: 132px;
+  height: 42px;
+}
+.garage-exceed-choice-dialog .garage-exceed-choice-confirm > button.primary {
+  left: 82px;
+}
+.garage-exceed-choice-dialog
+  .garage-exceed-choice-confirm
+  > button:not(.primary) {
+  left: 236px;
+}
+.garage-skill-action {
+  box-sizing: border-box;
+  padding: 0;
+  border: 1px solid #8b9cad !important;
+  border-radius: 0;
+  font-weight: 700 !important;
+  line-height: 40px;
+  text-align: center;
+  color: var(--action-text-0, #fff) !important;
+  box-shadow: inset 0 1px #fff9;
+}
+.garage-skill-action-primary {
+  background: linear-gradient(#3d91e1, #2172c4) !important;
+  border-color: #7bb9ed !important;
+}
+.garage-skill-action-secondary {
+  background: linear-gradient(#f5f6f7, #d9dde2) !important;
+  color: var(--action-text-0) !important;
+}
+.garage-skill-action-secondary {
+  --action-text-0: #404b5f;
+  --action-text-1: #6a7893;
+}
+.garage-skill-action:hover:not(:disabled) {
+  filter: brightness(1.08);
+  color: var(--action-text-1, var(--action-text-0, #fff)) !important;
+}
+.garage-skill-action:active:not(:disabled) {
+  filter: brightness(0.88);
+  color: var(--action-text-2, #182b48) !important;
+  box-shadow: inset 0 2px 3px #10243d66;
+}
+.garage-skill-action:disabled {
+  background: linear-gradient(#989c9f, #85898d) !important;
+  border-color: #777d82 !important;
+  color: var(--action-text-3, #dcdcdc) !important;
+  opacity: 1 !important;
+  box-shadow: inset 0 1px #c8cacc;
+}
+.garage-skill-card {
+  overflow: visible;
+  padding: 0;
+  color: #fff;
+  background: transparent var(--card-normal) 0 0 / 100% 100% no-repeat;
+}
+.garage-skill-card:hover:not(:disabled),
+.garage-skill-card:focus-visible {
+  background-image: var(--card-selected);
+}
+.garage-skill-card[aria-pressed="true"],
+.garage-skill-card[aria-pressed="true"]:hover {
+  background-image: var(--card-selected);
+}
+.garage-skill-card-selected-effect {
+  display: none;
+  pointer-events: none;
+}
+.garage-skill-card[aria-pressed="true"] .garage-skill-card-selected-effect {
+  display: block;
+}
+.garage-skill-card img {
+  pointer-events: none;
+}
+.garage-skill-card span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 15px;
+  text-align: center;
+  text-shadow: 1px 1px 2px #000;
+  z-index: 2;
+}
+.garage-confirmation {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: #0006;
+  pointer-events: auto;
+}
+.garage-confirmation[hidden] {
+  display: none;
+}
+.garage-x-surface .garage-confirmation-canvas {
+  position: absolute;
+  inset: 0;
+  width: 1600px;
+  height: 900px;
+  pointer-events: none;
+}
+.garage-x button.garage-confirmation-hit {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+  cursor: pointer;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+}
+.garage-factory {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: #fff;
+  font:
+    18px Arial,
+    sans-serif;
+  white-space: pre-line;
+}
+.garage-factory[hidden] {
+  display: none;
+}
+.garage-factory button,
+.garage-factory select {
+  pointer-events: auto;
+  color: #fff;
+  background: #273749;
+  border: 1px solid #697b8a;
+  border-radius: 0;
+  font: inherit;
+}
+.garage-factory button:disabled,
+.garage-factory select:disabled {
+  opacity: 0.5;
+}
+.garage-factory .viewport-dropdown-trigger {
+  padding: 0 28px 0 6px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.garage-factory .viewport-dropdown-trigger:after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: translateY(-70%) rotate(45deg);
+}
+.viewport-dropdown-popup {
+  position: fixed;
+  z-index: 10000;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #273749;
+  border: 1px solid #697b8a;
+  color: #fff;
+  font:
+    16px P3528 Source Han Sans CN Ready,
+    sans-serif;
+}
+.viewport-dropdown-popup > button {
+  display: block;
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.viewport-dropdown-popup > button:hover,
+.viewport-dropdown-popup > button:focus-visible {
+  background: #1684ad;
+  outline: none;
+}
+.viewport-dropdown-popup > button[aria-selected="true"] {
+  background: #888;
+}
+.viewport-dropdown-popup > button:disabled {
+  color: #86919d;
+  cursor: default;
+}
+.garage-x-cards.garage-factory-cards {
+  display: grid;
+  grid-template-columns: repeat(
+    var(--factory-columns),
+    var(--factory-card-width)
+  );
+  grid-template-rows: repeat(var(--factory-rows), var(--factory-card-height));
+  gap: var(--factory-gap-y) var(--factory-gap-x);
+}
+.garage-x-cards.garage-factory-cards[hidden] {
+  display: none;
+}
+.garage-x-cards.garage-factory-cards button {
+  color: #eaf4ff;
+  text-shadow: 1px 1px #15202e;
+}
+.garage-factory button[aria-pressed="true"] {
+  background: #306691;
+}
+.garage-factory button.garage-factory-tab {
+  border: 0;
+  padding: 0 8px;
+  background: var(--native-state-1) center / 100% 100% no-repeat;
+  color: #8792a7;
+  font:
+    700 16px Arial,
+    sans-serif;
+  line-height: 20px;
+  text-align: center;
+  white-space: normal;
+  touch-action: manipulation;
+}
+.garage-factory button.garage-factory-tab:hover {
+  background-image: var(--native-state-2);
+  color: #1088c7;
+}
+.garage-factory button.garage-factory-tab:active {
+  background-image: var(--native-state-3);
+}
+.garage-factory button.garage-factory-tab[aria-pressed="true"] {
+  background-image: var(--native-state-4);
+  color: #165c9f;
+}
+.garage-factory-picker-instruction {
+  font-size: 19px;
+  line-height: 28px;
+  white-space: nowrap;
+}
+.garage-factory button.garage-factory-choice {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 3px 8px;
+  border: 1px solid #33415a;
+  border-radius: 0;
+  background: #222b3e;
+  color: #c5cfdb;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  text-shadow: 1px 1px #182433;
+  white-space: normal;
+  touch-action: manipulation;
+}
+.garage-factory
+  button.garage-factory-choice:hover:not(:disabled):not([aria-pressed="true"]) {
+  background: #96d8f5;
+  border-color: #b8e7fb;
+  color: #17283a;
+  text-shadow: none;
+}
+.garage-factory
+  button.garage-factory-choice:active:not(:disabled):not(
+    [aria-pressed="true"]
+  ) {
+  background: #77c4ea;
+  border-color: #8fd3f4;
+  color: #17283a;
+}
+.garage-factory button.garage-factory-choice[aria-pressed="true"],
+.garage-factory button.garage-factory-choice[aria-pressed="true"]:hover {
+  background: #326fae;
+  border-color: #62a4dc;
+  color: #fff;
+  text-shadow: 1px 1px #173a5d;
+}
+.garage-factory button.garage-factory-choice:disabled {
+  background: #171d2b;
+  border-color: #252e40;
+  color: #697487;
+  opacity: 1;
+  text-shadow: none;
+}
+.garage-factory button.garage-factory-slot-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.garage-factory-slot-name {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  line-height: 17px;
+  text-overflow: ellipsis;
+}
+.garage-factory-slot-level {
+  display: block;
+  font-size: 14px;
+  line-height: 15px;
+}
+.garage-factory button.garage-factory-level-choice {
+  font-size: 18px;
+}
+.garage-x-cards.garage-factory-cards button,
+.garage-x-cards.garage-factory-cards button.selected {
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.garage-upgrade-preparation {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  background: #0009;
+}
+.garage-x-surface > .garage-upgrade-preparation,
+.garage-x-surface > .garage-upgrade {
+  pointer-events: auto;
+}
+.garage-upgrade-preparation canvas {
+  pointer-events: none;
+}
+.garage-preparation-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  white-space: pre-line;
+}
+.garage-preparation-label.level-value {
+  font-size: 24px;
+  color: #b3c3e4;
+}
+.garage-preparation-label.target-caption {
+  justify-content: flex-start;
+  color: #c6e9fb;
+  font-size: 14px;
+  text-align: left;
+}
+.garage-preparation-label.metric-caption {
+  justify-content: flex-start;
+  color: #fff;
+  font-size: 14px;
+  text-align: left;
+}
+.garage-preparation-label.metric-value {
+  gap: 7px;
+  color: #7caeff;
+  font-size: 24px;
+}
+.garage-preparation-value-main {
+  color: inherit;
+}
+.garage-preparation-value-increment {
+  color: #65ff24;
+  font-size: 22px;
+}
+.garage-preparation-label.vehicle-name {
+  color: #fff;
+  font-weight: 700;
+  text-shadow:
+    -1px -1px #000,
+    1px -1px #000,
+    -1px 1px #000,
+    1px 1px #000;
+}
+.garage-upgrade-method-panel {
+  position: absolute;
+  z-index: 2;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  color: #26384d;
+  font-family: var(--garage-upgrade-font);
+  font-synthesis: none;
+  contain: layout paint;
+}
+.garage-upgrade-method-title {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 9px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 29px;
+  text-rendering: geometricPrecision;
+}
+.garage-upgrade-method-divider {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 42px;
+  height: 1px;
+  background: #8495a8;
+}
+.garage-upgrade-method-buttons {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 55px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.garage-upgrade-method {
+  width: 156px;
+  height: 38px;
+  box-sizing: border-box;
+  border: 1px solid #71859b !important;
+  border-radius: 0;
+  background: #e4e9ee !important;
+  color: #26384d !important;
+  font-family: inherit !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 36px !important;
+  text-align: center;
+  text-rendering: geometricPrecision;
+}
+.garage-upgrade-method:hover:not(:disabled) {
+  background: #b9dcf1 !important;
+  border-color: #83bce1 !important;
+}
+.garage-upgrade-method.selected {
+  background: #287cc4 !important;
+  border-color: #70b9ec !important;
+  color: #fff !important;
+}
+.garage-upgrade-method:disabled {
+  background: #777f88 !important;
+  border-color: #626a72 !important;
+  color: #c5c9cd !important;
+  opacity: 1 !important;
+}
+.garage-upgrade-method-help {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 108px;
+  height: 79px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid #b5bec8;
+  background: #fff;
+  color: #2a3750;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: left;
+  text-rendering: geometricPrecision;
+  white-space: pre-line;
+}
+.garage-preparation-label.fee,
+.garage-preparation-label.help {
+  color: #2a3750;
+}
+.garage-preparation-label.help {
+  justify-content: flex-start;
+  font-size: 14px;
+  padding-left: 20px;
+}
+.garage-preparation-label.count {
+  justify-content: flex-end;
+  color: #cfddf0;
+}
+.garage-preparation-caption {
+  text-align: center;
+  font-size: 22px;
+  pointer-events: none;
+}
+.garage-preparation-status {
+  position: absolute;
+  left: 950px;
+  top: 763px;
+  width: 445px;
+  height: 50px;
+  color: #2a3750;
+  text-align: center;
+  font-size: 14px;
+  pointer-events: none;
+}
+.garage-x button.garage-preparation-close {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 30px;
+  line-height: 28px;
+  padding: 0;
+}
+.garage-x button.garage-preparation-card {
+  box-sizing: border-box;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.garage-x button.garage-preparation-page-arrow {
+  overflow: visible;
+  color: var(--page-arrow-normal);
+}
+.garage-x button.garage-preparation-page-arrow:hover:not(:disabled) {
+  color: var(--page-arrow-hover);
+}
+.garage-x button.garage-preparation-page-arrow:active:not(:disabled) {
+  color: var(--page-arrow-active);
+}
+.garage-x button.garage-preparation-page-arrow:disabled {
+  color: var(--page-arrow-disabled);
+  opacity: 1;
+}
+.garage-x-surface canvas.garage-preparation-page-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.garage-preparation-page-arrow-icon {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 14px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.garage-preparation-page-arrow.left .garage-preparation-page-arrow-icon {
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+.garage-preparation-page-arrow.right .garage-preparation-page-arrow-icon {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+.garage-upgrade {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  background: #0009;
+}
+.garage-x-surface .garage-upgrade canvas {
+  pointer-events: none;
+  width: 1600px;
+  height: 900px;
+}
+.garage-upgrade-label {
+  position: absolute;
+  left: 260px;
+  top: 690px;
+  width: 1080px;
+  color: #fff;
+  text-align: center;
+  white-space: pre-line;
+  line-height: 30px;
+  background: #15202ee6;
+}
+.garage-upgrade-classic .garage-upgrade-label {
+  top: 720px;
+  line-height: 22px;
+}
+.garage-upgrade.garage-upgrade-classic button:last-child {
+  left: 675px;
+}
+.garage-x .garage-upgrade button {
+  position: absolute;
+  top: 770px;
+  width: 250px;
+  height: 40px;
+  color: #fff;
+  background: #273e58;
+  border: 1px solid #93b6dd;
+}
+.garage-upgrade button:nth-last-child(2) {
+  left: 525px;
+}
+.garage-upgrade button:last-child {
+  left: 825px;
+}
+.garage-upgrade-result {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.garage-upgrade-result[hidden] {
+  display: none;
+}
+.garage-x-surface .garage-upgrade canvas.garage-upgrade-kart {
+  inset: 325px auto auto 490px;
+  width: 250px;
+  height: 250px;
+}
+.garage-upgrade-result strong {
+  position: absolute;
+  left: 750px;
+  top: 389px;
+  width: 300px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  color: #fff;
+  text-shadow: 1px 1px #4e3719;
+}
+.garage-upgrade-result-heading > span {
+  overflow: hidden;
+  min-width: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.garage-upgrade-result-level {
+  flex: 0 0 auto;
+  width: auto;
+  height: 36px;
+  object-fit: contain;
+}
+.garage-upgrade-stats {
+  position: absolute;
+  left: 772px;
+  top: 449px;
+  width: 328px;
+  color: #fff;
+  text-shadow: 1px 1px #715916;
+}
+.garage-upgrade-stat-row {
+  display: grid;
+  grid-template-columns: 85px 100px 43px 100px;
+  height: 24px;
+  line-height: 30px;
+  align-items: center;
+}
+.garage-upgrade-stat-label {
+  grid-column: 1;
+  font-size: 16px;
+}
+.garage-upgrade-stat-before {
+  grid-column: 2;
+  font-size: 20px;
+  text-align: center;
+}
+.garage-upgrade-stat-after {
+  grid-column: 4;
+  font-size: 20px;
+  text-align: center;
+}
+.garage-upgrade-result-only button:nth-last-child(2) {
+  left: 734px;
+  top: 559px;
+  width: 132px;
+  height: 42px;
+}
+.devtools-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  width: min(360px, 100vw);
+  flex-direction: column;
+  overflow: hidden;
+  border-left: 1px solid rgb(83 222 244 / 80%);
+  background: #020d167f;
+  color: #d8f7fb;
+  box-shadow: -8px 0 28px #000b;
+  font:
+    12px/1.45 Consolas,
+    monospace;
+  pointer-events: auto;
+}
+.devtools-panel[hidden] {
+  display: none;
+}
+.devtools-actions,
+.devtools-tabs {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.devtools-actions {
+  flex: none;
+  padding: 10px 10px 8px;
+}
+.devtools-actions > strong {
+  margin-right: auto;
+  color: var(--cyan);
+  letter-spacing: 0.06em;
+}
+.devtools-panel button,
+.devtools-filter {
+  border: 1px solid rgb(107 219 234 / 55%);
+  border-radius: 2px;
+  background: #082234;
+  color: inherit;
+  font: inherit;
+}
+.devtools-panel button {
+  padding: 4px 7px;
+  cursor: pointer;
+}
+.devtools-panel button[aria-selected="true"],
+.devtools-panel button[aria-pressed="true"] {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+.devtools-status {
+  flex: none;
+  display: flex;
+  gap: 10px;
+  padding: 6px 10px;
+  border-top: 1px solid rgb(83 222 244 / 35%);
+  border-bottom: 1px solid rgb(83 222 244 / 35%);
+  color: var(--cyan);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.devtools-status span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.devtools-filter {
+  flex: none;
+  width: calc(100% - 20px);
+  margin: 8px 10px 0;
+  padding: 5px 7px;
+}
+.devtools-objects {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 7px 10px 0;
+}
+.devtools-objects[hidden] {
+  display: none;
+}
+.devtools-objects > button {
+  padding: 2px 6px;
+  font-size: 11px;
+}
+.devtools-objects > button[data-selected="true"] {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  text-decoration: underline;
+}
+.devtools-objects > button[aria-pressed="true"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #53def42e;
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+.devtools-objects > button[aria-pressed="true"]:before {
+  content: "●";
+  font-size: 7px;
+  line-height: 1;
+}
+.devtools-objects > button[aria-pressed="true"][data-selected="true"] {
+  background: #53def44d;
+}
+.devtools-objects-hint {
+  color: #9fd9e499;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+.devtools-output {
+  flex: 1;
+  margin: 0;
+  padding: 9px 10px 10px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+}
+.devtools-line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.devtools-line[data-current="true"] {
+  background: #ffd02f29;
+  color: var(--yellow);
+}
+.devtools-line-warp {
+  cursor: pointer;
+  border-left: 2px solid rgb(107 219 234 / 45%);
+  padding-left: 6px;
+}
+.devtools-line-warp:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  background: #ffd02f1a;
+}
+.devtools-graph {
+  display: flex;
+  flex-direction: column;
+  margin-top: 9px;
+}
+.devtools-graph-node {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  min-width: 36px;
+  padding: 2px 8px;
+  border: 1px solid rgb(107 219 234 / 55%);
+  border-radius: 2px;
+  background: #082234;
+}
+.devtools-graph-node[data-state="current"] {
+  border-color: var(--yellow);
+  background: #ffd02f2e;
+  color: var(--yellow);
+}
+.devtools-graph-node[data-state="passed"] {
+  opacity: 0.5;
+}
+.devtools-graph-tag {
+  padding: 0 4px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+.devtools-graph-respawn {
+  color: #6fa8b8;
+  font-size: 10px;
+}
+.devtools-graph-node[data-state="current"] .devtools-graph-respawn {
+  color: #ffd02fbf;
+}
+.devtools-graph-warp {
+  cursor: pointer;
+}
+.devtools-graph-warp:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+.devtools-graph-edges {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 3px 0 3px 12px;
+  padding-left: 12px;
+  border-left: 1px solid rgb(107 219 234 / 45%);
+}
+.devtools-graph-edges:before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: -3px;
+  height: 3px;
+  border-left: 1px solid rgb(107 219 234 / 45%);
+}
+.devtools-graph-edge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 12px;
+  color: #9fd9e4;
+  white-space: nowrap;
+}
+.devtools-graph-edge:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 10px;
+  border-top: 1px solid currentColor;
+}
+.devtools-graph-label:after {
+  content: "▶";
+  margin-left: 5px;
+  font-size: 9px;
+}
+.devtools-graph-edge[data-kind="rail"] .devtools-graph-label:after {
+  content: "⇢";
+}
+.devtools-graph-edge[data-kind="return"] .devtools-graph-label:after {
+  content: "↩";
+}
+.devtools-graph-edge[data-kind="rail"]:before,
+.devtools-graph-edge[data-kind="return"]:before {
+  border-top-style: dashed;
+}
+.devtools-graph-target {
+  padding: 0 5px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  background: #082234;
+  font-size: 11px;
+}
+.devtools-graph-edge[data-kind="return"] .devtools-graph-target {
+  border-style: dashed;
+}
+.devtools-graph-edge[data-state="current"] {
+  color: var(--yellow);
+}
+.devtools-graph-edge[data-state="passed"] {
+  color: #5d8894;
+}
+.devtools-legend {
+  margin-top: 9px;
+  color: #6fa8b8;
+  font-size: 11px;
+}
+.devtools-layout-highlight {
+  position: absolute;
+  z-index: 19;
+  box-sizing: border-box;
+  border: 2px solid #ffcf36;
+  background: #ffcf361f;
+  pointer-events: none;
+}
+.devtools-layout-highlight[hidden] {
+  display: none;
+}

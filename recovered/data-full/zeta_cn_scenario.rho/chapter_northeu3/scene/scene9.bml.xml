@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu13"/>
+  <Char id="revaski" pos="7 0" emotion="stop3"/>
+  <Msg name="Q博士" string="现在开始举行游行庆典。 |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop3"/>
+  <Msg name="Q博士" string="马上入场的是今天的冠军，大家鼓掌！ |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Char id="dao" pos="9 0" emotion="stop3"/>
+  <Char id="taki" pos="13 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="哎~真可惜… |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Char id="dao" pos="12 0" emotion="stop3"/>
+  <Msg name="黑妞" string="既然是奇奇赢了~大家都庆祝庆祝吧~ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="0 0" emotion="stop3"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="8 0" emotion="stop3"/>
+  <Char id="taki" pos="12 0" emotion="stop2"/>
+  <Char id="dizini" pos="0 0" emotion="stop3"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="8 0" emotion="stop3"/>
+  <Char id="taki" pos="12 0" emotion="stop2"/>
+  <Msg name="奇奇" string="最后以为会反超我呢~|皮蛋是你让了我~ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="bazzi" pos="2 0" emotion="stop3"/>
+  <Char id="dao" pos="7 0" emotion="stop4"/>
+  <Char id="taki" pos="13 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="哪有~是你的实力好~|YOU WIN~ |"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Char id="dao" pos="13 0" emotion="stop3"/>
+  <Msg name="宝宝" string="呜呜…竟然是倒数第一…|我为什么会是倒数第一…到底哪里出问题了.. |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Char id="bazzi" pos="8 0" emotion="stop5"/>
+  <Char id="dao" pos="12 0" emotion="stop4"/>
+  <Msg name="黑妞" string="叫你练习的时候不好好听~|一练习就睡觉…啧啧… |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="Northeu1"/>
+  <Char id="dizini" pos="3 0" emotion="normal"/>
+  <Char id="bazzi" pos="6 0" emotion="normal"/>
+  <Char id="dao" pos="12 0" emotion="normal"/>
+  <Char id="taki" pos="9 0" emotion="stop3"/>
+  <Msg name="奇奇" string="哈哈哈~伙伴们，游行庆典开始了~大家都欢呼吧~ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dizini" pos="3 0" flip="true" emotion="stop6"/>
+  <Char id="dao" pos="12 0" emotion="stop6"/>
+  <Char id="taki" pos="9 0" emotion="stop5"/>
+  <Char id="bazzi" pos="6 0" emotion="stop1"/>
+  <Msg name="宝宝" string="司机叔叔~开快点！|比赛拿不到冠军，至少要在庆典中跑第一！ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop6"/>
+  <Char id="taki" pos="8 0" emotion="stop5"/>
+  <Msg name="黑妞" string="宝宝~~！！！|皮蛋，快去抓住宝宝~别让他搞坏庆典~ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Char id="taki" pos="6 0" emotion="stop5"/>
+  <Char id="dao" pos="13 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="额~在这里都要去抓宝宝… |"/>
+  <Enter/>
+</Scene>

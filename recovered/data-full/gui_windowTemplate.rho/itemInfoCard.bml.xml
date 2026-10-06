@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="itemInfoCard" windowSize="256 58" adjust="25 115" enable="false">
+  <Panel name="itemDescPanel1" windowRect="0 0 256 64" texture="말풍선_슬롯2개_위치값슬롯3과동일" alphaBlend="true" visible="false"/>
+  <Panel name="itemDescPanel2" windowRect="0 0 256 64" texture="말풍선_슬롯3개_위치값슬롯2와동일" alphaBlend="true" visible="false"/>
+  <Label name="itemDesc" windowSize="230 56" adjust="20 8" textColor="white" textColor2="255 28 50 87" multiLine="true" autoWrap="true" textRender="outline14" textAlign="center" lineGap="0"/>
+  <Panel name="itemIcon" windowRect="135 16 181 62" texture="설정아이콘_01" alphaBlend="true" visible="false"/>
+  <Label name="itemName" windowRect="10 16 135 62" textColor="white" textRender="gulim14" textAlign="center" visible="false"/>
+  <CharPanel name="ctrl" windowRect="188 16 239 67" texture="key_01" fontSize="51 51" fontStr="12" alphaBlend="true" visible="false"/>
+</Container>

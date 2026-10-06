@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ButtonAni name="damageHitChild">
+  <Active>
+    <ScaleTon>
+      <Phase at="1" tick="0" scale="0.5 0.5 0.5"/>
+      <Phase at="2" tick="300" scale="1.0 1.0 1.0"/>
+    </ScaleTon>
+  </Active>
+</ButtonAni>

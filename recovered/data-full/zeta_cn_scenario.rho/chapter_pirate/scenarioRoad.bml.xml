@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<World>
+  <Road to="1" path="188, 164 "/>
+  <Road to="2" path="191, 324 "/>
+  <Road to="3" path="305, 325 "/>
+  <Road to="4" path="394, 169 "/>
+  <Road to="5" path="466, 31 "/>
+  <Road to="6" path="752, 33 "/>
+  <Road to="7" path="750, 147 "/>
+  <Road to="8" path="612, 143 "/>
+  <Road to="9" path="614, 305 "/>
+  <Road to="10" path="752, 307 "/>
+  <Road to="11" path="836, 149 "/>
+  <Road to="12" path="898, 44 "/>
+  <Road to="13" path="897, 148 "/>
+  <Road to="14" path="1028, 285 "/>
+  <Road to="15" path="1029, 148 "/>
+  <Road to="16" path="1030, 39 "/>
+  <Road to="17" path="1188, 39 "/>
+  <Road to="18" path="1187, 150 "/>
+  <Road to="19" path="1187, 300 "/>
+  <Road from="19" to="20" path="1295, 157 - 1373, 155 "/>
+  <Road from="19" to="21" path="1372, 305 "/>
+</World>

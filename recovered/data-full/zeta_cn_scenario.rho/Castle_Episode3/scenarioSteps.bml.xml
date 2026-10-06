@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="32" mode="single" preConditionId="0" title="寻找迷失的宝宝！" synopsis="小强和伙伴们为了寻找宝宝，在城堡里分开进行搜索，|小强想先去庭院找找宝宝。" howToClear="请在规定时间内通过所有检查点" missionText="通过检查点 0回/1回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardStockId="2716"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="庭院机器人克鲁伊！" synopsis="搜索庭院的小强遇到了坏掉的庭院机器人克鲁伊，|小强准备修理一下克鲁伊…" howToClear="请在规定时间内完成游戏" missionText="完成游戏 0回/1回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="3" type="30" mode="single" preConditionId="2" title="克鲁伊的报答！" synopsis="修好的克鲁伊准备帮助小强寻找宝宝，|小强跟克鲁伊来到了大城堡的地下室…" howToClear="在与克鲁伊对决中胜利" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="2715"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="黑暗的地下室！" synopsis="跟着克鲁伊来到的是大城堡的地下仓库！|小强在地下仓库里发现了黑影，|被吓到的小强想要逃出地下室。" howToClear="在规定时间内打败皮德。|* 注意 差距0m就失败。" missionText="逃脱成功 0回/1回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="2729"/>
+  </Step>
+  <Step id="5" type="1" mode="multi" preConditionId="4" title="厨师长皮德！" synopsis="小强发现的黑影其实是大城堡的厨师长皮德！|皮德刚才是在找葡萄汁，帮皮德去找葡萄汁吧。" howToClear="在多人游戏中行驶30回" missionText="多人行驶 %d回/30回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" achievementCount="30" rewardStockId="1107"/>
+  </Step>
+  <Step id="6" type="32" mode="single" preConditionId="5" title="大城堡的仆人！" synopsis="在小强的帮助下做完晚餐的皮德给了小强一个提示，|小强为了寻找大城堡的仆人，|匆忙赶往大城堡的寝室…" howToClear="以规定的速度，通过所有的计时点。" missionText="计时点 通过0回/目标1回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="7" type="34" mode="single" preConditionId="6" title="可怕的当娜！" synopsis="小强好不容易在大城堡的寝室中找到了当娜！|但是因为小强弄乱了地毯，当娜非常生气…" howToClear="在与当娜的道具赛中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardLucci="500"/>
+  </Step>
+  <Step id="8" type="30" mode="single" preConditionId="7" title="当娜的追击！" synopsis="小强虽然逃出来了，可是生气的当娜又追了过来，赶紧逃跑吧。" howToClear="在规定时间内打败当娜。|* 注意 差距0m时就失败。" missionText="逃脱成功 0回/1回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="2718"/>
+  </Step>
+  <Step id="9" type="30" mode="single" preConditionId="8" title="路易的玩具屋！" synopsis="甩掉当娜后到达的地方是路易的玩具屋，|黑暗的房间里听到了路易的求救声！" howToClear="请在规定时间内完成游戏" missionText="完成游戏 0回/1回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="1046"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="路易的求救！" synopsis="路易不小心把自己关在了衣柜里，小强将路易救了出来。|路易说知道宝宝失踪的秘密…" howToClear="在与路易的对决中胜利" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10" isFinalStep="true">
+    <Level difficult="0" rewardStockId="2728"/>
+  </Step>
+</StepList>

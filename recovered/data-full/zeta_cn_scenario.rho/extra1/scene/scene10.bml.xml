@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold5"/>
+  <Char id="kaphae" pos="3 0" emotion="stop2"/>
+  <Msg name="???" string="谢……谢谢，你们不是淘金队？"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="当然不是！你有见过那么帅的淘金队吗？|但你是谁呢？住在这的吗？"/>
+  <Enter/>
+  <Char id="kaphae" pos="3 0" emotion="stop4"/>
+  <Msg name="卡帕" string="嗯！我叫卡帕！|是这个黄金文明的守护者！虽然还只有初级驾照……嘿嘿～|我还以为你们是看中黄金的淘金队呢|不好意思^^"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞" string="那这个地方，就你一个人生活着吗？"/>
+  <Enter/>
+  <Char id="kaphae" pos="3 0" emotion="stop2"/>
+  <Msg name="卡帕" string="不是，我是和爸爸一起生活的。爸爸是守护这里的祭祀长……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop3"/>
+  <Msg name="葱头" string="嗯……那么或许你爸爸知道我们回家的方法咯吧|我们的黄金指南针被抢掉了，所以出不去了 "/>
+  <Enter/>
+  <Char id="kaphae" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="卡帕" string="啊…… 原来是这样|我爸爸可能会知道，我带你们去见我爸爸，跟我来"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="真的？谢谢你，卡帕！|你爸爸不会很可怕的吧……"/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="gold4"/>
+  <Char id="kaphae" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="卡帕" string="爸爸~"/>
+  <Enter/>
+  <Char id="erphod" pos="3 0" emotion="stop1"/>
+  <Msg name="???" string="卡帕！你怎么随随便便的就把外人带到黄金神殿里来！"/>
+  <Enter/>
+  <Char id="kaphae" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="卡帕" string="不是的，爸爸！他们是我新认识的朋友，前面多亏他们，不然我差点遭到麻烦。他们迷路了，我想帮他们一下！|伙伴们，这是我爸爸！我爸爸是黄金文明遗迹的祭祀长！"/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="erphod" remove="true"/>
+  <Char id="ethi" pos="11 0" emotion="stop4"/>
+  <Char id="kephi" pos="8 0" emotion="stop3"/>
+  <Char id="dizini" pos="5 0" emotion="stop4"/>
+  <Char id="dao" pos="2 0" emotion="stop4"/>
+  <Msg name="皮蛋/黑妞/胖墩/葱头" string="您好！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kaphae" pos="3 0" emotion="stop2"/>
+  <Msg name="卡帕" string="我爸爸会告诉你们回家的路"/>
+  <Enter/>
+  <Char id="erphod" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="艾佛德" string="恩，我可以帮你。不过，你们是怎么找到这里来的？"/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="我们是依靠从繁荣山丘的爱德爷爷那边得到的黄金指南针，一路找到这里的！ |爱德爷爷故事中的黄金文明，真的是非常美丽的地方！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="erphod" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="艾佛德" string="黄金指南针！！！"/>
+  <Enter/>
+  <Char id="erphod" remove="true"/>
+  <Char id="kaphae" pos="3 0" emotion="normal"/>
+  <Msg name="卡帕" string="怎么了？爸爸？"/>
+  <Enter/>
+  <Char id="erphod" pos="12 0" emotion="normal"/>
+  <Msg name="艾佛德" string="没什么。你是叫皮蛋吗? |我会告诉你们回家的路的！"/>
+  <Enter/>
+  <Char id="erphod" remove="true"/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="哇！真的吗？太谢谢了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="erphod" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="艾佛德" string="但是，你们必须在比赛中战胜我才行……|来吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="erphod" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Msg name="葱头" string="恩……皮蛋！我有种不好的感觉……|祭祀长的眼神非常锐利，你当心点……"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="葱头你别疑神疑鬼了。那么和蔼的艾佛德，一定会遵守约定的！|我们开始吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="erphod" pos="3 0" emotion="stop1"/>
+  <Msg name="艾佛德" string="呼呼呼，那么，开始吧？"/>
+  <Enter/>
+</Scene>

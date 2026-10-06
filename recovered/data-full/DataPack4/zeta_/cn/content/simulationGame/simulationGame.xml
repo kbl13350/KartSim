@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<simulationGameList>
+	<!-- 
+		id						: 시뮬레이션 SeasonId (신규 시즌이라면 - 증가 처리 필수)
+		openPeriod		: 시뮬레이션 플레이가능 기간( config.xml에 기간과 동일하게 설정부탁드립니다. )
+		rewardPeriod		: 최종보상(type = 2) 수령기간입니다. 
+								  그랑프리와 동일하게 openPeriod 기간이 끝난 후로 설정해주세요.
+	-->
+
+	<!-- 마지막 Id : 7 -->
+	<simulationGame
+		id='7'
+		openPeriod='2023-03-23T06:00:00~2023-04-27T05:59:59'
+		rewardPeriod='2023-04-27T06:00:00~2023-05-11T05:59:59'
+	>
+		<rewardList type='0'>	<!-- 승리보상 -->
+			<reward step='0' count='1'	type='1' rewardValue='5327'/>	<!-- RP 100% 카드 (30일) -->
+			<reward step='1' count='5'	type='1' rewardValue='22659'/>	<!-- V1 파츠 조각(50 개) -->
+			<reward step='2' count='10'	type='1' rewardValue='24984'/>	<!-- 시뮬레이션 버프 충전권(5 개) -->
+			<reward step='3' count='30'	type='1' rewardValue='24989'/>	<!-- S 보석(50 개) -->
+			<reward step='4' count='50'	type='1' rewardValue='24991'/>	<!-- S 보석(100 개) -->
+		</rewardList>	
+		<rewardList type='1'>	<!-- 연승보상 -->
+			<reward step='0' count='3'	type='1' rewardValue='24723'/>	<!-- 오팔 상자(1 개) -->
+			<reward step='1' count='5'	type='1' rewardValue='24377'/>	<!-- 레어 파츠 V1 (무제한) -->
+			<reward step='2' count='10'	type='1' rewardValue='26207'/>	<!-- V1 스페셜 박스(1 개) -->
+			<reward step='3' count='20'	type='1' rewardValue='24953'/>	<!-- 레전드 파츠 V1(무제한) -->
+		</rewardList>	
+		<rewardList type='2'>	<!-- 최종보상 -->
+			<reward step='0' rank='50'	type='1' rewardValue='24996'/>	<!-- type='1'(스탁) / S 보석(1000 개) -->
+			<reward step='1' rank='150'	type='1' rewardValue='24995'/>	<!-- type='1'(스탁) / S 보석(800 개) -->
+			<reward step='2' rank='350'	type='1' rewardValue='24994'/>	<!-- type='1'(스탁) / S 보석(600 개) -->
+			<reward step='3' rank='700'	type='1' rewardValue='24993'/>	<!-- type='1'(스탁) / S 보석(400 개) -->
+			<reward step='4' rank='1000'	type='1' rewardValue='24992'/>	<!-- type='1'(스탁) / S 보석(200 개) -->
+		</rewardList>	
+		<!-- 보상 default type = 1 //  type 1(스탁). 2(루찌), 3(RP) -->
+	</simulationGame>
+	<simulationGame
+		id='6'
+		openPeriod='2023-01-12T06:00:00~2023-02-23T05:59:59'
+		rewardPeriod='2023-02-23T06:00:00~2023-03-09T05:59:59'
+	>
+		<rewardList type='0'>	<!-- 승리보상 -->
+			<reward step='0' count='1'	type='1' rewardValue='5327'/>	<!-- RP 100% 카드 (30일) -->
+			<reward step='1' count='5'	type='1' rewardValue='22659'/>	<!-- V1 파츠 조각(50 개) -->
+			<reward step='2' count='10'	type='1' rewardValue='24984'/>	<!-- 시뮬레이션 버프 충전권(5 개) -->
+			<reward step='3' count='30'	type='1' rewardValue='24989'/>	<!-- S 보석(50 개) -->
+			<reward step='4' count='50'	type='1' rewardValue='24991'/>	<!-- S 보석(100 개) -->
+		</rewardList>	
+		<rewardList type='1'>	<!-- 연승보상 -->
+			<reward step='0' count='3'	type='1' rewardValue='24723'/>	<!-- 오팔 상자(1 개) -->
+			<reward step='1' count='5'	type='1' rewardValue='24377'/>	<!-- 레어 파츠 V1 (무제한) -->
+			<reward step='2' count='10'	type='1' rewardValue='26207'/>	<!-- V1 스페셜 박스(1 개) -->
+			<reward step='3' count='20'	type='1' rewardValue='24953'/>	<!-- 레전드 파츠 V1(무제한) -->
+		</rewardList>	
+		<rewardList type='2'>	<!-- 최종보상 -->
+			<reward step='0' rank='50'	type='1' rewardValue='24996'/>	<!-- type='1'(스탁) / S 보석(1000 개) -->
+			<reward step='1' rank='150'	type='1' rewardValue='24995'/>	<!-- type='1'(스탁) / S 보석(800 개) -->
+			<reward step='2' rank='350'	type='1' rewardValue='24994'/>	<!-- type='1'(스탁) / S 보석(600 개) -->
+			<reward step='3' rank='700'	type='1' rewardValue='24993'/>	<!-- type='1'(스탁) / S 보석(400 개) -->
+			<reward step='4' rank='1000'	type='1' rewardValue='24992'/>	<!-- type='1'(스탁) / S 보석(200 개) -->
+		</rewardList>	
+		<!-- 보상 default type = 1 //  type 1(스탁). 2(루찌), 3(RP) -->
+	</simulationGame>
+	<simulationGame
+		id='5'
+		openPeriod='2022-10-20T06:00:00~2022-11-24T05:59:59'
+		rewardPeriod='2022-11-24T06:00:00~2022-12-08T05:59:59'
+	>
+		<rewardList type='0'>	<!-- 승리보상 -->
+			<reward step='0' count='1'	type='1' rewardValue='5327'/>	<!-- RP 100% 카드 (30일) -->
+			<reward step='1' count='5'	type='1' rewardValue='24988'/>	<!-- S 보석(30 개) -->
+			<reward step='2' count='10'	type='1' rewardValue='24984'/>	<!-- 시뮬레이션 버프 충전권(5 개) -->
+			<reward step='3' count='30'	type='1' rewardValue='24989'/>	<!-- S 보석(50 개) -->
+			<reward step='4' count='50'	type='1' rewardValue='24991'/>	<!-- S 보석(100 개) -->
+		</rewardList>	
+		<rewardList type='1'>	<!-- 연승보상 -->
+			<reward step='0' count='3'	type='1' rewardValue='24986'/>	<!-- S 보석(5 개) -->
+			<reward step='1' count='5'	type='1' rewardValue='24987'/>	<!-- S 보석(10 개) -->
+			<reward step='2' count='10'	type='1' rewardValue='24377'/>	<!-- 레어 파츠 V1 (무제한) -->
+		</rewardList>	
+		<rewardList type='2'>	<!-- 최종보상 -->
+			<reward step='0' rank='50'	type='1' rewardValue='24996'/>	<!-- type='1'(스탁) / S 보석(1000 개) -->
+			<reward step='1' rank='150'	type='1' rewardValue='24995'/>	<!-- type='1'(스탁) / S 보석(800 개) -->
+			<reward step='2' rank='350'	type='1' rewardValue='24994'/>	<!-- type='1'(스탁) / S 보석(600 개) -->
+			<reward step='3' rank='700'	type='1' rewardValue='24993'/>	<!-- type='1'(스탁) / S 보석(400 개) -->
+			<reward step='4' rank='1000'	type='1' rewardValue='24992'/>	<!-- type='1'(스탁) / S 보석(200 개) -->
+		</rewardList>	
+		<!-- 보상 default type = 1 //  type 1(스탁). 2(루찌), 3(RP) -->
+	</simulationGame>
+	<simulationGame
+		id='4'
+		openPeriod='2022-08-18T06:00:00~2022-09-22T05:59:59'
+		rewardPeriod='2022-09-22T06:00:00~2022-10-13T05:59:59'
+	>
+		<rewardList type='0'>	<!-- 승리보상 -->
+			<reward step='0' count='1'	type='1' rewardValue='5327'/>	<!-- RP 100% 카드 (30일) -->
+			<reward step='1' count='5'	type='1' rewardValue='24988'/>	<!-- S 보석(30 개) -->
+			<reward step='2' count='10'	type='1' rewardValue='24984'/>	<!-- 시뮬레이션 버프 충전권(5 개) -->
+			<reward step='3' count='30'	type='1' rewardValue='24989'/>	<!-- S 보석(50 개) -->
+			<reward step='4' count='50'	type='1' rewardValue='24991'/>	<!-- S 보석(100 개) -->
+		</rewardList>	
+		<rewardList type='1'>	<!-- 연승보상 -->
+			<reward step='0' count='3'	type='1' rewardValue='24986'/>	<!-- S 보석(5 개) -->
+			<reward step='1' count='5'	type='1' rewardValue='24987'/>	<!-- S 보석(10 개) -->
+			<reward step='2' count='10'	type='1' rewardValue='24377'/>	<!-- 레어 파츠 V1 (무제한) -->
+		</rewardList>	
+		<rewardList type='2'>	<!-- 최종보상 -->
+			<reward step='0' rank='50'	type='1' rewardValue='24996'/>	<!-- type='1'(스탁) / S 보석(1000 개) -->
+			<reward step='1' rank='150'	type='1' rewardValue='24995'/>	<!-- type='1'(스탁) / S 보석(800 개) -->
+			<reward step='2' rank='350'	type='1' rewardValue='24994'/>	<!-- type='1'(스탁) / S 보석(600 개) -->
+			<reward step='3' rank='700'	type='1' rewardValue='24993'/>	<!-- type='1'(스탁) / S 보석(400 개) -->
+			<reward step='4' rank='1000'	type='1' rewardValue='24992'/>	<!-- type='1'(스탁) / S 보석(200 개) -->
+		</rewardList>	
+		<!-- 보상 default type = 1 //  type 1(스탁). 2(루찌), 3(RP) -->
+	</simulationGame>
+</simulationGameList>
+

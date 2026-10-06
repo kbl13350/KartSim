@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="desktop" windowRect="fullscreen" color="150 0 0 0" alphaBlend="true">
+  <Container name="success" windowSize="800 600" adjust="0 5" align="center" visible="false">
+    <Play1SPanel name="grade1" windowSize="800 600" adjust="0 0" alphaBlend="true" scene="resultGrade1" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.3 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <Play1SPanel name="grade5" windowSize="800 600" adjust="0 0" alphaBlend="true" scene="resultGrade5" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.3 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <ItemWindow name="itemPanel" windowSize="300 200" adjust="0 -60" align="center" visible="false"/>
+    <Window name="reward" windowSize="400 400" adjust="0 0" align="center" visible="false">
+      <TextButton name="okButton" windowSize="132 40" adjust="0 -80" align="bottom;center" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+      <ColorLabel name="rewardName" windowSize="270 25" adjust="0 0" align="top;center" textAlign="center" textRender="outline24" textColor="white" textColor2="black" enable="true" visible="true"/>
+    </Window>
+  </Container>
+</Panel>

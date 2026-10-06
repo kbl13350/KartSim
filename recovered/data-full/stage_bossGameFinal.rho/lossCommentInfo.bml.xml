@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LossCommentList>
+  <lossComment commentName="lossCommentTimeMine" img="time_bomb3"/>
+  <lossComment commentName="lossCommentBombRobot" img="robot bomb3"/>
+  <lossComment commentName="lossCommentIronChunk" img="iron_block3"/>
+  <lossComment commentName="lossCommentSpaceBombming" img="control missile3"/>
+  <lossComment commentName="lossCommentHandGrenade" img="bomb3"/>
+  <lossComment commentName="lossCommentMechanicBall" img="mech_bomb3"/>
+  <lossComment commentName="lossCommentCube" img="loss_cube"/>
+  <lossComment commentName="lossCommentMissile" img="loss_ctrl"/>
+  <lossComment commentName="lossCommentAdjacent" img="crash_3"/>
+  <lossComment commentName="lossCommentReload" img="reload3"/>
+  <lossComment commentName="lossCommentStun" img="stun3"/>
+  <lossComment commentName="lossCommentWaterbomb" img="thunder_waterbomb3"/>
+  <lossComment commentName="lossCommentBigmissile" img="bigfire_missile3"/>
+</LossCommentList>

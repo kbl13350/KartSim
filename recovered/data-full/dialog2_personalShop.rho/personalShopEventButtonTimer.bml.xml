@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window windowSize="70 40" align="bottom;center" adjust="0 9" enable="false" alphaBlend="true">
+  <Window name="timer_overTen" windowSize="70 40">
+    <CharPanel name="timer_hour" windowSize="20 15" align="left;center" adjust="0 0" texture="event_personalShopNum" alphaBlend="true" fontSize="10 15" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+    <Panel name="timer_Colon1" windowSize="4 15" align="center" adjust="-12 1" texture="event_personalShopColon" alphaBlend="true"/>
+    <CharPanel name="timer_minute" windowSize="20 15" align="center" adjust="0 0" texture="event_personalShopNum" alphaBlend="true" fontSize="10 15" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+    <Panel name="timer_Colon2" windowSize="4 15" align="center" adjust="12 1" texture="event_personalShopColon" alphaBlend="true"/>
+    <CharPanel name="timer_second" windowSize="20 15" align="right;center" adjust="0 0" texture="event_personalShopNum" alphaBlend="true" fontSize="10 15" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+  </Window>
+  <Window name="timer_UnderTen" windowSize="70 40">
+    <CharPanel name="timer_hour" windowSize="20 15" align="left;center" adjust="0 0" texture="event_personalShopNum2" alphaBlend="true" fontSize="10 15" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+    <Panel name="timer_Colon1" windowSize="4 15" align="center" adjust="-12 1" texture="event_personalShopColon2" alphaBlend="true"/>
+    <CharPanel name="timer_minute" windowSize="20 15" align="center" adjust="0 0" texture="event_personalShopNum2" alphaBlend="true" fontSize="10 15" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+    <Panel name="timer_Colon2" windowSize="4 15" align="center" adjust="12 1" texture="event_personalShopColon2" alphaBlend="true"/>
+    <CharPanel name="timer_second" windowSize="20 15" align="right;center" adjust="0 0" texture="event_personalShopNum2" alphaBlend="true" fontSize="10 15" spaceOffset="1" fontStr="1234567890" text="00" speedTick="5"/>
+  </Window>
+</Window>

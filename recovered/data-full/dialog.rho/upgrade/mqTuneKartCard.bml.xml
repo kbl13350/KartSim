@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GarageCard name="garageCardTemplate" windowRect="0 0 152 130" texture="카트슬롯_기본" selectedTexture="카트슬롯_선택2" alphaBlend="true">
+  <Container name="shopItemContainer" windowRect="20 20 80 80" enable="true"/>
+  <Label name="itemNameLabel" windowRect="0 2 146 25" textAlign="center" enable="false"/>
+  <Label name="leftCount" windowRect="0 30 141 55" autoSizing="false" text="#sb(alert)" textAlign="right" textRender="bold" textColor="black" enable="false" visible="false"/>
+  <TextButton name="equip" windowRect="0 92 107 122" text="#sb(equipMyParts)" align="hcenter" visible="false" altText="" frame="BlueStaticButton" textColor="white"/>
+</GarageCard>

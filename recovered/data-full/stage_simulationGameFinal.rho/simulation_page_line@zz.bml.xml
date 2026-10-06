@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="resultWnd_" windowRect="0 0 718 80">
+  <Container name="pointCont" leftTopWH="11 0 54 80">
+    <CharPanel name="rank" leftTopWH="9 14 22 28" texture="clubRacing_scoreBoardNum" alphaBlend="true" fontSize="22 28" fontStr="0123456789-x" text="0"/>
+    <Label name="point" leftTopWH="-6 51 29 26" alphaBlend="true" text="0" textColor="220 255 255 255" textRender="medium16" textAlign="right|vcenter"/>
+    <Label leftTopWH="21 51 10 26" text="#sb(unitPoint)" textColor="255 255 255 255" textRender="medium16" textAlign="left,vcenter"/>
+  </Container>
+  <Container leftTopWH="116 12 200 40">
+    <Label name="id" windowSize="100 20" adjust="-13 -18" textColor="180 255 255 255" align="vcenter" textAlign="left,vcenter" textRender="medium16"/>
+    <Label name="clubId" windowSize="100 20" adjust="-13 2" text="-" align="vcenter" textColor="255 255 255 255" textAlign="left,vcenter" textRender="medium16"/>
+  </Container>
+  <Container name="timeCon1" leftTopWH="381 12 100 40" visible="false">
+    <Label name="time" windowSize="100 40" adjust="0 0" align="vcenter" textColor="white" textAlign="right,vcenter" textRender="default16"/>
+  </Container>
+  <Container name="timeCon2" leftTopWH="381 12 100 40" visible="false">
+    <Label name="kartOn" windowSize="100 20" adjust="-35 -18" align="vcenter" text="-" textColor="200 255 255 255" textAlign="right,venter" textRender="medium16"/>
+    <Label name="time" windowSize="100 20" adjust="-35 2" align="vcenter" textColor="255 255 255 255" textAlign="right,vcenter" textRender="medium16"/>
+  </Container>
+  <Container leftTopWH="520 12 100 40">
+    <Label name="bonus" windowSize="100 20" adjust="0 -18" align="vcenter" text="#sb(bonus)" textColor="200 255 255 255" textRender="medium16" textAlign="right,vcenter" visible="false"/>
+    <Label name="bonusCharName" windowSize="100 20" align="vcenter" adjust="0 2" textColor="255 255 255 255" textRender="medium16" textAlign="right,vcenter" text=""/>
+  </Container>
+  <Container name="rpLucciCont" leftTopWH="200 52 415 18">
+    <Container leftTopWH="179 0 87 18">
+      <Label name="rp" windowRect="3 0 38 18" textColor="255 255 215 31" textRender="medium16" textAlign="right" align="vcenter" text="0"/>
+      <Label windowRect="42 0 87 18" text="#sb(rp)" textColor="255 255 215 31" textRender="medium16" textAlign="vcenter" align="vcenter"/>
+    </Container>
+    <Container leftTopWH="347 0 74 18">
+      <Label name="lucci" windowRect="0 0 35 18" textColor="255 255 255 255" textRender="medium16" textAlign="right" align="vcenter" text="0"/>
+      <Label windowRect="42 0 74 18" text="#sb(lucci)" textColor="255 255 255 255" textRender="medium16" textAlign="vcenter" align="vcenter"/>
+    </Container>
+  </Container>
+</Container>

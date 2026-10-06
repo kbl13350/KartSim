@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='140.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.071'
+	SteerConstraint='2.3'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.064'
+	TransAccelFactor='1.62'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='cotton6'
+	BoosterType3='cotton6'
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+	FirePort0='mod1a3'
+	FirePort1='mod1a4'
+	FirePort2='mod1b1'
+	FirePort3='mod1b2'
+	FirePort4='mod1d2'
+
+	SpecialSlotCapacity='2'
+
+	DescBalance= '35'
+	DescStability ='45'
+	DescEngineGrade='1'
+	DescCornering='1'
+	DescEnchantCap = '25'
+/>
+
+<!--중국 보스전 카트 스팅거 SR 20110113-->

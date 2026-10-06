@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="与黄金神的最后对决"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="三个难题全部完成后，黄金神提出和自己进行最后的对决。|在黄金神的无差别道具攻击中，|皮蛋能否通过黄金神提出的所有的难题呢？"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="请在和黄金神的道具赛中胜出。|"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="黄金之城"/>
+  </k>
+</StringBag>

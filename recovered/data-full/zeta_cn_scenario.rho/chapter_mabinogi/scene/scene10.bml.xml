@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mabi2"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="奇怪。。什么都看不见呢。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop3"/>
+  <Msg name="..." string="救救我~！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="额，这个声音是！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="不会是。。。黑妞？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="mabi4"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="真的是黑妞!|你为什么在这里？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Msg name="黑妞" string="不知道！还好你来了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="是用魔法移动的吗？对我来说最珍贵的是你。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop5"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋~对我而言也是~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Msg name="" string="（哐）"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="嗬！快要坍塌了！我们赶紧逃出去吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="" string="（开锁声）"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="额？！钥匙没了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="她说这是魔法钥匙，打开了可能会消失吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" emotion="stop3"/>
+  <Msg name="黑妞" string="原来如此，吓死了，我们快走吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <BackGround texture="mabi8"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="..."/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="等一下！那个是不是娜儿？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="不是，娜儿为什么在那里？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="mabi7"/>
+  <Char id="nao" pos="12 0" emotion="stop3"/>
+  <Char id="camelot_effect" pos="12 0" emotion="stop6"/>
+  <Msg name="呢绒" string="我，我怎么在这里？"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="nao" pos="12 0" emotion="stop3"/>
+  <Char id="camelot_effect" pos="12 0" emotion="stop6"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Msg name="黑妞" string="娜儿！你为什么在这里？！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="camelot_effect" pos="12 0" emotion="stop6"/>
+  <Msg name="娜儿" string="我也不知道，|刚才还在侦查村庄。。。突然就。。。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="nao" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="camelot_effect" pos="12 0" emotion="stop6"/>
+  <Char id="dao" pos="2 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="娜儿可能也是魔法移动到这里的吧？"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="分明说过会有皮蛋最珍贵的东西。。。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="不，不要用那种眼神看我，我也不知道！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" emotion="stop3"/>
+  <Msg name="黑妞" string="emm，知道了，先救她出来吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="可是钥匙已经用了呀！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="额，那怎么办？怎么开门？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="" string="（哐）"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Msg name="娜儿" string="洞穴就快要坍塌了！赶紧逃出去吧！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="没有其他办法开门吗？"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="娜儿" string="没有魔法钥匙就没办法了。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Msg name="黑妞" string="刚才茉莉安不是说有人在这里遗漏了钥匙吗?"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="对了！这附近肯定还有其他的魔法钥匙！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Msg name="娜儿" string="不行！如果就这样困在洞穴里面，就没有办法成为帕拉丁了！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="但是我们不能丢下娜儿在这里不管！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="黑妞！你先去茉莉安那里报告情况。|我要先去救娜儿了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="dao" pos="13 0" emotion="stop5"/>
+  <Msg name="黑妞" string="皮蛋。。。！"/>
+  <Enter/>
+</Scene>

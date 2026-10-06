@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<PlantExchangeShop>
+	<!-- plantItemProp 의 period 는 실제 아이템의 유효기간이라면,
+		 여기서 period 는 보여주는 기간이다. -->
+
+	<!--<ExchangeCard name='3pack' itemId='6' energyNeedQuantity='30' period='*~*' icon='s_3pack_' key='exchange3PackDesc'/>-->
+	<ExchangeCard name='sp' itemId='7' energyNeedQuantity='30' period='*~*' icon='s_sp_' key='exchangeSpDesc' needItemCatId='25' needItemId='5' requireFail='hide'/>
+	<ExchangeCard name='all' itemId='1' energyNeedQuantity='10' period='*~*' icon='s_all_' key='exchangeDefaultDesc'/>
+	<ExchangeCard name='engine' itemId='2' energyNeedQuantity='15' period='*~*' icon='s_engine_' key='exchangeEngineDesc'/>
+	<ExchangeCard name='handle' itemId='3' energyNeedQuantity='14' period='*~*' icon='s_handle_' key='exchangeHandleDesc'/>
+	<ExchangeCard name='wheel' itemId='4' energyNeedQuantity='14' period='*~*' icon='s_wheel_' key='exchangeWheelDesc'/>
+	<ExchangeCard name='tuneKit' itemId='5' energyNeedQuantity='14' period='*~*' icon='s_kit_' key='exchangeSupportKitDesc'/>
+</PlantExchangeShop>

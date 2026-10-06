@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="createRoomCaption">
+    <m c="kr" v="방 만들기"/>
+    <m c="jp" v="ルーム作成"/>
+    <m c="cn" v="创建房间"/>
+    <m c="tw" v="開設房間"/>
+    <m c="us" v="Create a Room"/>
+    <m c="th" v="สร้างห้อง"/>
+    <m c="vn" v="Tạo phòng"/>
+    <m c="ru" v="Создать комнату"/>
+    <m c="id" v="Buat Room"/>
+  </k>
+  <k n="selectGame">
+    <m c="kr" v="게임 선택"/>
+    <m c="jp" v="ゲーム選択"/>
+    <m c="cn" v="选择游戏"/>
+    <m c="tw" v="選擇遊戲"/>
+    <m c="us" v="Choose a game"/>
+    <m c="th" v="เลือกเกม"/>
+    <m c="vn" v="Chọn kiểu đua"/>
+    <m c="ru" v="Выбрать тип игры"/>
+    <m c="id" v="Pilih Game"/>
+  </k>
+  <k n="roomName">
+    <m c="kr" v="방 이름"/>
+    <m c="jp" v="ルーム名"/>
+    <m c="cn" v="房间名称"/>
+    <m c="tw" v="房間名稱"/>
+    <m c="us" v="Name"/>
+    <m c="th" v="ชื่อห้อง"/>
+    <m c="vn" v="Tên"/>
+    <m c="ru" v="Имя"/>
+    <m c="id" v="Nama Room"/>
+  </k>
+  <k n="roomPeopleNumber">
+    <m c="kr" v="방 인원"/>
+    <m c="jp" v="ルームメンバー"/>
+    <m c="cn" v="房间人数"/>
+    <m c="tw" v="房間人數"/>
+    <m c="us" v="Number of Riders"/>
+    <m c="th" v="สมาชิกในห้อง"/>
+    <m c="vn" v="Số người"/>
+    <m c="ru" v="Кол-во человек"/>
+    <m c="id" v="Jumlah Pemain"/>
+  </k>
+  <k n="privateRoom">
+    <m c="kr" v="비공개 방"/>
+    <m c="jp" v="非公開ルーム"/>
+    <m c="cn" v="房间加密"/>
+    <m c="tw" v="房間加密"/>
+    <m c="us" v="Private"/>
+    <m c="th" v="ห้องลับ"/>
+    <m c="vn" v="Khóa"/>
+    <m c="ru" v="Закрыть"/>
+    <m c="id" v="Private Room"/>
+  </k>
+  <k n="sameClubOnly">
+    <m c="kr" v="같은 클럽만 입장 가능"/>
+    <m c="cn" v="只有相同俱乐部才能加入"/>
+    <m c="tw" v="只可進入相同的俱樂部"/>
+  </k>
+  <k n="gameSpeed">
+    <m c="kr" v="방 속도"/>
+    <m c="jp" v="ルーム速度"/>
+    <m c="cn" v="游戏速度"/>
+    <m c="tw" v="選擇競速"/>
+    <m c="id" v="Game Speed"/>
+  </k>
+  <k n="addBasicAi">
+    <m c="kr" v="AI 라이더"/>
+    <m c="cn" v="AI车手"/>
+    <m c="tw" v="AI車手"/>
+  </k>
+  <k n="runnerHandicap">
+    <m c="kr" v="러너 R키 사용 금지"/>
+    <m c="cn" v="禁止使用R键"/>
+    <m c="tw" v="禁止使用R鍵"/>
+  </k>
+</StringBag>

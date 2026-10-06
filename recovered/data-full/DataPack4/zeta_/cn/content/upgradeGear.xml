@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<upgradeGear id='9' period='2026-06-11T06:00:00~2026-07-02T05:59:59' useItemId='79' useEventItemId='112'>
+		<noticeMsgFormat msg='[%1!s!]打开升级齿轮，获得了稀有的[%2!s!]！大家加油哦' />
+
+		<upgradeInfoList period='2026-06-11T06:00:00~2026-07-02T05:59:59' openCost='5'>
+				<upgradeInfo grade='2' prob='20' upgradeCost='15' bonusStockId='13832' />
+				<upgradeInfo grade='3' prob='30' upgradeCost='10' bonusStockId='10389' />
+				<upgradeInfo grade='4' prob='160' upgradeCost='6' bonusStockId='10388' />
+				<upgradeInfo grade='5' prob='800' upgradeCost='3' bonusStockId='10387' />
+		</upgradeInfoList>
+		<rewardList period='2026-06-11T06:00:00~2026-07-02T05:59:59'>
+				<rewardGrade grade='1'>
+						<reward stockId='31719' prob5='1' prob4='2' prob3='3' prob2='5' prob1='1250' needToNotice='true'/>
+						<reward stockId='28390' prob5='1' prob4='2' prob3='10' prob2='20' prob1='3000' needToNotice='true'/>
+						<reward stockId='28615' prob5='1' prob4='2' prob3='10' prob2='20' prob1='3000' needToNotice='true'/>
+						<reward stockId='30713' prob5='1' prob4='2' prob3='5' prob2='10' prob1='1250' needToNotice='true'/>
+						<reward stockId='30714' prob5='1' prob4='2' prob3='5' prob2='10' prob1='1500' needToNotice='true'/>
+				</rewardGrade>
+				<rewardGrade grade='2'>
+						<reward stockId='29241' prob5='6' prob4='20' prob3='40' prob2='435' />
+						<reward stockId='29788' prob5='6' prob4='20' prob3='40' prob2='500' />
+						<reward stockId='30644' prob5='6' prob4='20' prob3='40' prob2='500' />
+						<reward stockId='30646' prob5='6' prob4='20' prob3='40' prob2='500' />
+						<reward stockId='30504' prob5='6' prob4='20' prob3='40' prob2='500' />
+						<reward stockId='30359' prob5='6' prob4='20' prob3='45' prob2='500' />
+						<reward stockId='30293' prob5='6' prob4='20' prob3='45' prob2='1000' />
+						<reward stockId='30096' prob5='8' prob4='60' prob3='45' prob2='1000' />
+						<reward stockId='31780' prob5='8' prob4='70' prob3='45' prob2='1000' />
+						<reward stockId='30505' prob5='8' prob4='70' prob3='45' prob2='1000' />
+						<reward stockId='29862' prob5='8' prob4='70' prob3='45' prob2='1000' />
+						<reward stockId='30264' prob5='8' prob4='70' prob3='45' prob2='1000' />
+						<reward stockId='30645' prob5='8' prob4='70' prob3='45' prob2='1000' />
+				</rewardGrade>
+				<rewardGrade grade='3'>
+						<reward stockId='31781' prob5='20' prob4='80' prob3='355' />
+						<reward stockId='31782' prob5='20' prob4='80' prob3='355' />
+						<reward stockId='31784' prob5='20' prob4='80' prob3='355' />
+						<reward stockId='31785' prob5='20' prob4='80' prob3='355' />
+						<reward stockId='31786' prob5='20' prob4='80' prob3='355' />
+						<reward stockId='31830' prob5='20' prob4='80' prob3='355' />
+						<reward stockId='31831' prob5='20' prob4='80' prob3='355' />
+						<reward stockId='31832' prob5='20' prob4='80' prob3='355' />
+						<reward stockId='31805' prob5='20' prob4='80' prob3='355' />
+						<reward stockId='31833' prob5='20' prob4='80' prob3='410' />
+						<reward stockId='31570' prob5='20' prob4='80' prob3='410' />
+						<reward stockId='29410' prob5='20' prob4='80' prob3='412' />
+						<reward stockId='29493' prob5='20' prob4='80' prob3='415' />
+						<reward stockId='29240' prob5='20' prob4='80' prob3='415' />
+						<reward stockId='30305' prob5='20' prob4='80' prob3='415' />
+						<reward stockId='29852' prob5='20' prob4='80' prob3='415' />
+						<reward stockId='29787' prob5='20' prob4='100' prob3='415' />
+						<reward stockId='29630' prob5='20' prob4='100' prob3='415' />
+						<reward stockId='29108' prob5='20' prob4='100' prob3='415' />
+						<reward stockId='29027' prob5='60' prob4='100' prob3='415' />
+						<reward stockId='29242' prob5='60' prob4='100' prob3='415' />
+						<reward stockId='29406' prob5='60' prob4='100' prob3='415' />
+						<reward stockId='29494' prob5='60' prob4='100' prob3='415' />
+						<reward stockId='29610' prob5='60' prob4='100' prob3='415' />
+				</rewardGrade>
+				<rewardGrade grade='4'>
+						<reward stockId='21062' prob5='80' prob4='280' />
+						<reward stockId='20686' prob5='80' prob4='280' />
+						<reward stockId='21454' prob5='80' prob4='280' />
+						<reward stockId='22921' prob5='80' prob4='280' />
+						<reward stockId='23232' prob5='80' prob4='280' />
+						<reward stockId='20493' prob5='80' prob4='300' />
+						<reward stockId='16577' prob5='80' prob4='300' />
+						<reward stockId='16965' prob5='80' prob4='300' />
+						<reward stockId='24009' prob5='80' prob4='300' />
+						<reward stockId='20726' prob5='80' prob4='300' />
+						<reward stockId='20680' prob5='80' prob4='300' />
+						<reward stockId='16734' prob5='80' prob4='300' />
+						<reward stockId='27289' prob5='80' prob4='300' />
+						<reward stockId='25624' prob5='80' prob4='300' />
+						<reward stockId='24923' prob5='80' prob4='300' />
+						<reward stockId='25577' prob5='80' prob4='300' />
+						<reward stockId='27786' prob5='80' prob4='300' />
+						<reward stockId='27312' prob5='80' prob4='300' />
+						<reward stockId='24430' prob5='80' prob4='300' />
+						<reward stockId='31326' prob5='80' prob4='300' />
+						<reward stockId='31321' prob5='80' prob4='280' />
+						<reward stockId='31834' prob5='80' prob4='280' />
+						<reward stockId='31674' prob5='80' prob4='300' />
+						<reward stockId='31673' prob5='80' prob4='300' />
+						<reward stockId='30880' prob5='80' prob4='300' />
+				</rewardGrade>
+				<rewardGrade grade='5'>
+						<reward stockId='20542' prob5='160' />
+						<reward stockId='20550' prob5='160' />
+						<reward stockId='20551' prob5='160' />
+						<reward stockId='20556' prob5='160' />
+						<reward stockId='31835' prob5='160' />
+						<reward stockId='31836' prob5='160' />
+						<reward stockId='31837' prob5='160' />
+						<reward stockId='31838' prob5='160' />
+						<reward stockId='5911' prob5='160' />
+						<reward stockId='6761' prob5='200' />
+						<reward stockId='19462' prob5='200' />
+						<reward stockId='2284' prob5='200' />
+						<reward stockId='31839' prob5='200' />
+						<reward stockId='31840' prob5='200' />
+						<reward stockId='26609' prob5='200' />
+						<reward stockId='20370' prob5='200' />
+						<reward stockId='16610' prob5='200' />
+						<reward stockId='20456' prob5='200' />
+						<reward stockId='27331' prob5='200' />
+						<reward stockId='27332' prob5='210' />
+						<reward stockId='17364' prob5='205' />
+						<reward stockId='27333' prob5='205' />
+						<reward stockId='31841' prob5='205' />
+						<reward stockId='1971' prob5='160' />
+						<reward stockId='19474' prob5='160' />
+						<reward stockId='3864' prob5='200' />
+						<reward stockId='31842' prob5='200' />
+						<reward stockId='15862' prob5='200' />
+						<reward stockId='15861' prob5='200' />
+						<reward stockId='21750' prob5='200' />
+						<reward stockId='31843' prob5='200' />
+						<reward stockId='14204' prob5='200' />
+						<reward stockId='17321' prob5='200' />
+						<reward stockId='16593' prob5='200' />
+						<reward stockId='20810' prob5='160' />
+						<reward stockId='31844' prob5='160' />
+						<reward stockId='31845' prob5='260' />
+						<reward stockId='27335' prob5='260' />
+				</rewardGrade>
+		</rewardList>
+</upgradeGear>

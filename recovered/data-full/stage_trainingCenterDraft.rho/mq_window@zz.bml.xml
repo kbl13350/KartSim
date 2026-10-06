@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <XmlFile file="missionTimer"/>
+  </Container>
+  <Panel name="missionBg1" windowSize="326 46" texture="missionTextBg_1" align="right" adjust="25 25" alphaBlend="true" visible="false">
+    <Label name="missionText0" windowSize="200 46" text="#sb(overtakeUseDraft)" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="white"/>
+    <Label name="missionTextComplete0" windowSize="200 46" text="#sb(overtakeUseDraft)" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+    <Label name="missionCheckNum0" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="white"/>
+    <Label name="missionCheckNumComplete0" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+    <Panel name="missionCheckDim0" windowSize="28 28" texture="missionCheck_dim" adjust="285 9" alphaBlend="true"/>
+    <Panel name="missionCheck0" windowSize="28 28" texture="missionCheck" adjust="285 9" alphaBlend="true" visible="false"/>
+  </Panel>
+  <Panel name="missionBg2" windowSize="326 72" texture="missionTextBg_2" align="right" adjust="25 120" alphaBlend="true" visible="false">
+    <Container windowSize="326 46">
+      <Label name="missionText0" windowSize="200 46" text="#sb(overtakeUseDraft)" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="white"/>
+      <Label name="missionTextComplete0" windowSize="200 46" text="#sb(overtakeUseDraft)" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Label name="missionCheckNum0" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="white"/>
+      <Label name="missionCheckNumComplete0" windowSize="100 46" align="right" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Panel name="missionCheckDim0" windowSize="28 28" texture="missionCheck_dim" adjust="285 9" alphaBlend="true"/>
+      <Panel name="missionCheck0" windowSize="28 28" texture="missionCheck" adjust="285 9" alphaBlend="true" visible="false"/>
+    </Container>
+    <Container windowSize="326 46" adjust="0 26">
+      <Label name="missionText1" windowSize="200 46" text="#sb(completeInLimit)" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="white"/>
+      <Label name="missionTextComplete1" windowSize="200 46" text="#sb(completeInLimit)" align="left" textAlign="vcenter" adjust="10 0" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Label name="missionCheckNum1" windowSize="100 46" align="right" text="(0/1)" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="white"/>
+      <Label name="missionCheckNumComplete1" windowSize="100 46" align="right" text="(0/1)" adjust="45 0" textAlign="vcenter;right" textRender="bold16" textColor="255 163 255 42" visible="false"/>
+      <Panel name="missionCheckDim1" windowSize="28 28" texture="missionCheck_dim" adjust="285 9" alphaBlend="true"/>
+      <Panel name="missionCheck1" windowSize="28 28" texture="missionCheck" adjust="285 9" alphaBlend="true" visible="false"/>
+    </Container>
+  </Panel>
+  <Play1SPanel name="draftGauge" windowSize="450 450" adjust="-140 80" align="center" alphaBlend="true" scene="draftGauge" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -6 0" defaultSpotPos="0.0 0.0 0.0" zoom="1" stop="true" enable="false" clearZAfter="false" visible="false"/>
+  <Panel name="draftTime" windowSize="160 34" align="center" adjust="200 50" texture="missionInfo_1" alphaBlend="true" visible="false" enable="false">
+    <Container windowSize="125 34" align="center">
+      <Label windowSize="60 34" text="#sb(draft)" align="left" adjust="0 -2" textAlign="center" textRender="outline16" textColor="white" textColor2="255 49 30 134"/>
+      <Label name="draftTimeLbl" windowSize="55 34" text="#sb(draft)" align="right" adjust="0 -2" textAlign="center" textRender="outline16" textColor="255 0 221 254" textColor2="255 49 30 134"/>
+    </Container>
+  </Panel>
+  <Panel name="draftSuccess" windowSize="160 34" align="center" adjust="200 50" texture="missionInfo_1" alphaBlend="true" visible="false" enable="false">
+    <Container windowSize="105 34" align="center">
+      <Label windowSize="60 34" text="#sb(draft)" align="left" adjust="0 -2" textAlign="center" textRender="outline16" textColor="white" textColor2="255 49 30 134"/>
+      <Label windowSize="30 34" text="#sb(success)" align="right" adjust="0 -2" textAlign="center" textRender="outline16" textColor="255 0 221 254" textColor2="255 49 30 134"/>
+    </Container>
+  </Panel>
+  <Panel name="overTakeSuccess" windowSize="160 34" align="center" adjust="200 50" texture="missionInfo_2" alphaBlend="true" visible="false" enable="false">
+    <Container windowSize="75 34" align="center">
+      <Label windowSize="30 34" text="#sb(overtake)" align="left" adjust="0 -2" textAlign="center" textRender="outline16" textColor="white" textColor2="255 155 79 40"/>
+      <Label windowSize="30 34" text="#sb(success)" align="right" adjust="0 -2" textAlign="center" textRender="outline16" textColor="255 254 227 4" textColor2="255 155 79 40"/>
+    </Container>
+  </Panel>
+  <XmlFile file="retryPopup_3btn"/>
+  <XmlFile file="retryPopup_fail"/>
+</Container>

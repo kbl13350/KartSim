@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="goldShield">
+  <state name="Use" life="500" itemFx="using"/>
+  <state name="Affect" life="2500" fired="fired01" firedFx="affecting"/>
+  <state name="Defend" life="1000" firing="쉴드방어"/>
+  <state name="Use" life="500" itemFx="protectusing"/>
+  <state name="Affect" life="4000" fired="fired02" firedFx="protectaffecting"/>
+  <state name="Defend" life="1000" firing="쉴드방어"/>
+</item>

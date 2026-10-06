@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="thunderbolt">
+  <state name="Use" life="500" firing="벼락_던짐" itemFx="벼락_사용"/>
+  <state name="Warning" life="1000" fired="벼락_예고" firedFx="벼락_사용"/>
+  <state name="Preaffect" life="600" fired="벼락_피격" firedFx="벼락_발동"/>
+  <state name="Affect" life="1500" fired="벼락_피격진행" firedFx="벼락_피격"/>
+  <state name="SpecialShield" life="1000" fired="벼락_방어" firedFx="shield"/>
+</item>

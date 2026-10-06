@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu12"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="…|阿尔贝特？这个送给你"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop1"/>
+  <Msg name="阿尔贝特" string="哇，好漂亮的玫瑰。|好香~"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop1"/>
+  <Msg name="阿尔贝特" string="虽然有些迟，但还是谢谢你。|如果不是你，爸爸会永远遗憾！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="rose" pos="11 0" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="阿尔贝特…?"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="rose" pos="11 0" emotion="stop1"/>
+  <Msg name="阿尔贝特" string="嗯？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="rose" pos="11 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="跟我回2013年吧？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="rose" pos="11 0" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="2013年？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="rose" pos="11 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="嗯，敞篷老爷车一定会在长时间内，|成为大家爱戴的车辆。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="rose" pos="11 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="阿尔贝特亲自去见证这个时刻吧。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="rose" pos="11 0" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="我想想…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="其实，我很舍不得扔下你就走。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="福尔摩斯…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="跟我走吧，阿尔贝特。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <BackGround texture="Northeu10"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="阿尔贝特，准备好了吗？"/>
+  <Enter/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="阿尔贝特" string="嗯，福尔摩斯。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="好~|我不会让你后悔的。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop4"/>
+  <Msg name="阿尔贝特" string="谢谢你，福尔摩斯"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="快！快出发吧。|这次我先出发。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop1"/>
+  <Msg name="阿尔贝特" string="嗯，带上齿轮护目镜|在火车站附近行驶几圈，应该就可以穿越了。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="rose" pos="11 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="嗯，不要走丢，跟上。|在2013年见。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="rose" pos="11 0" emotion="stop1"/>
+  <Msg name="阿尔贝特" string="嗯，在2013年见。"/>
+  <Enter/>
+</Scene>

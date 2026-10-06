@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="fullscreen" align="center">
+  <Panel name="bg" windowRect="fullscreen" enable="false" color="200 0 0 0" alphaBlend="true"/>
+  <Container windowRect="0 0 1280 800 " align="center">
+    <Container name="vsTable" leftTopWH="0 154 934 330" enable="false">
+      <ImageBoard name="eventBg" windowSize="934 330" adjust="0 0" enable="true" image="event" alphaBlend="true" visible="true"/>
+      <Label name="npcName" windowSize="200 30" adjust="10 10" multiLine="true" marginRect="10 0 0 0" text="胖墩" textColor="white" textAlign="left,vcenter" textRender="bold16" autoWrap="true" enable="false"/>
+      <Container name="npc" windowRect="150 50 342 294">
+        <Panel name="npc_select" windowRect="0 0 192 244" texture="npc_event_card_3" alphaBlend="true" visible="true" align="center" enable="false"/>
+      </Container>
+      <Container name="player" windowRect="590 50 782 294">
+        <Panel name="player_select" windowRect="0 0 192 244" texture="pc_event_card_3" alphaBlend="true" visible="true" align="center" enable="false"/>
+      </Container>
+      <Panel name="result" windowRect="0 0 569 389" texture="result_0@zz" alphaBlend="true" align="center" visible="true" enable="false"/>
+    </Container>
+    <Container name="npcTable" leftTopWH="0 10 1280 154" enable="false">
+      <ImageBoard name="npcBg" windowSize="1274 144" adjust="0 0" enable="true" image="cut" alphaBlend="true" visible="true"/>
+      <Panel name="previewRps0" windowRect="175 -10 293 140" alphaBlend="true" visible="false" enable="false"/>
+      <Panel name="previewRps1" windowRect="175 -10 293 140" alphaBlend="true" visible="false"/>
+      <Panel name="previewRps2" windowRect="175 -10 293 140" alphaBlend="true" visible="false"/>
+      <Container name="npcInfo" windowRect="0 0 1274 144" enable="false">
+        <Label name="textbg" windowRect="650 14 900 140" frame="YellowTalkBalloon" textRender="bold14" autoWrap="true" multiLine="true" visible="true" alphaBlend="true" marginRect="0 20 0 -23" textColor="black">
+          <Label name="npcmsg" windowRect="4 10 226 120" multiLine="true" autoWrap="true" textRender="bold16" textColor="255 42 55 80" align="center" textAlign="center" alphaBlend="true"/>
+        </Label>
+        <Panel name="npcFace" windowSize="272 212" adjust="920 0" alphaBlend="true" align="bottom" enable="false"/>
+      </Container>
+    </Container>
+    <Container name="playerTable" leftTopWH="0 484 934 330" enable="false">
+      <ImageBoard name="playerBg" windowSize="934 316" adjust="0 0" enable="true" image="mycardback" alphaBlend="true" visible="true"/>
+      <Label name="playerName" windowSize="200 30" adjust="30 6" multiLine="true" marginRect="10 0 0 0" textColor="white" align="right" textAlign="right,vcenter" textRender="bold16" autoWrap="true" enable="false"/>
+      <ImageButton name="scissors" windowSize="192 244" adjust="150 45" autoLoadImage="pc_jji0" alphaBlend="true">
+        <Label name="scissorsNum" windowSize="166 33" adjust="12 196" multiLine="true" textColor="255 207 221 240" textAlign="center" textRender="bold16" autoWrap="true" enable="false"/>
+      </ImageButton>
+      <ImageButton name="rock" windowSize="192 244" adjust="370 45" autoLoadImage="pc_muk0" alphaBlend="true">
+        <Label name="rockNum" windowSize="166 33" adjust="12 196" multiLine="true" textColor="255 207 221 240" textAlign="center" textRender="bold16" autoWrap="true" enable="false"/>
+      </ImageButton>
+      <ImageButton name="paper" windowSize="192 244" adjust="590 45" autoLoadImage="pc_ppa0" alphaBlend="true">
+        <Label name="paperNum" windowSize="166 33" adjust="12 196" multiLine="true" textColor="255 207 221 240" textAlign="center" textRender="bold16" autoWrap="true" enable="false"/>
+      </ImageButton>
+    </Container>
+    <ImageBoard leftTopWH="934 154 340 646" image="level_back" alphaBlend="true">
+      <Label name="levelTitle" windowSize="80 28" adjust="0 10" align="hcenter" textAlign="center" multiLine="true" text="挑战等级" textColor="white" textRender="bold16" autoWrap="true" enable="false"/>
+      <Container name="playerTable" leftTopWH="5 435 320 200" enable="false">
+        <Panel name="present" texture="present_good" leftTopWH="0 6 306 90" align="hcenter" alphaBlend="true"/>
+        <Panel name="presentPanel" texture="present_next" leftTopWH="0 102 306 90" align="hcenter" alphaBlend="true"/>
+        <Window name="itemPanel" leftTopWH="13 12 80 76" alphaBlend="true"/>
+        <Window name="itemPanel2" leftTopWH="13 108 80 76" alphaBlend="true"/>
+        <Label name="presentTitle" leftTopWH="106 6 200 38" multiLine="true" text="现阶段奖励" textColor="255 42 55 80" textRender="bold16" textAlign="left, vcenter" autoWrap="true" enable="false"/>
+        <Label name="presentName" leftTopWH="106 44 200 50" multiLine="true" text="" autoWrap="true" textColor="255 72 106 163" textRender="bold14" textAlign="left, vcenter" enable="false"/>
+        <Label name="presentnextTitle" leftTopWH="106 102 200 38" multiLine="true" text="下一阶段奖励" textColor="255 42 55 80" textRender="bold16" textAlign="left, vcenter" autoWrap="true" enable="false"/>
+        <Label name="presentnextName" leftTopWH="106 140 200 50" adjust="72 370" multiLine="true" text="" autoWrap="true" textColor="255 72 106 163" textRender="bold14" textAlign="left, vcenter" enable="false"/>
+      </Container>
+      <Container leftTopWH="0 -106 340 646" enable="false">
+        <Panel name="level1" texture="level_next" windowSize="298 30" adjust="16 389" alphaBlend="true">
+          <Panel name="levelwin1" texture="win@zz" windowSize="30 30" adjust="8 0" visible="false" alphaBlend="true"/>
+        </Panel>
+        <Panel name="level2" texture="level_next" windowSize="298 30" adjust="16 352" alphaBlend="true">
+          <Panel name="levelwin2" texture="win@zz" windowSize="30 30" adjust="8 0" visible="false" alphaBlend="true"/>
+        </Panel>
+        <Panel name="level3" texture="level_next" windowSize="298 30" adjust="16 315" alphaBlend="true">
+          <Panel name="levelwin3" texture="win@zz" windowSize="30 30" adjust="8 0" visible="false" alphaBlend="true"/>
+        </Panel>
+        <Panel name="level4" texture="level_next" windowSize="298 30" adjust="16 278" alphaBlend="true">
+          <Panel name="levelwin4" texture="win@zz" windowSize="30 30" adjust="8 0" visible="false" alphaBlend="true"/>
+        </Panel>
+        <Panel name="level5" texture="level_next" windowSize="298 30" adjust="16 241" alphaBlend="true">
+          <Panel name="levelwin5" texture="win@zz" windowSize="30 30" adjust="8 0" visible="false" alphaBlend="true"/>
+        </Panel>
+        <Panel name="level6" texture="level_next" windowSize="298 30" adjust="16 204" alphaBlend="true">
+          <Panel name="levelwin6" texture="win@zz" windowSize="30 30" adjust="8 0" visible="false" alphaBlend="true"/>
+        </Panel>
+        <Panel name="level7" texture="level_next" windowSize="298 30" adjust="16 167" alphaBlend="true">
+          <Panel name="levelwin7" texture="win@zz" windowSize="30 30" adjust="8 0" visible="false" alphaBlend="true"/>
+        </Panel>
+        <Panel name="currentlevel" texture="level_here" windowRect="16 389 314 419" alphaBlend="true"/>
+        <Label name="leveltitle1" windowSize="298 30" adjust="16 389" multiLine="true" text="1 阶段" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" enable="false"/>
+        <Label name="leveltitle2" windowSize="298 30" adjust="16 352" multiLine="true" text="2 阶段" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" enable="false"/>
+        <Label name="leveltitle3" windowSize="298 30" adjust="16 315" multiLine="true" text="3 阶段" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" enable="false"/>
+        <Label name="leveltitle4" windowSize="298 30" adjust="16 278" multiLine="true" text="4 阶段" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" enable="false"/>
+        <Label name="leveltitle5" windowSize="298 30" adjust="16 241" multiLine="true" text="5 阶段" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" enable="false"/>
+        <Label name="leveltitle6" windowSize="298 30" adjust="16 204" multiLine="true" text="6 阶段" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" enable="false"/>
+        <Label name="leveltitle7" windowSize="298 30" adjust="16 167" multiLine="true" text="7 阶段" textColor="255 42 55 80" textRender="bold16" textAlign="center" autoWrap="true" enable="false"/>
+      </Container>
+    </ImageBoard>
+  </Container>
+</Container>

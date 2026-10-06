@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="——扑通——扑通（心跳声）"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="小强" string="皮蛋，在干什么啊 ? |一副很紧张的表情?"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="(打嗝声) "/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="天哪，皮蛋！|你太紧张了，完全没了方向。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="那个……(打嗝声)|突然到了决赛时间，(打嗝声)|就忍不住的打嗝了！ (打嗝声)"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="胖墩" string="原来皮蛋也知道什么是紧张啊！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="不要取笑他了。|他已经那么紧张了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="胖墩" string="嘿嘿，抱歉。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop3"/>
+  <Msg name="小强" string="皮蛋！ 你做梦也在想的这一天终于来到了。|不要紧张，把到现在为止积累的实力都展示出来吧。|不要忘记，你能站在这个位置上，说明你是拥有足够实力的车手。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="小强……(打嗝声) "/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop6"/>
+  <Msg name="小强" string="今天在这里，我发挥出我的全部实力了。|千万别让我失望啊，皮蛋！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="那当然！ 不要担心！ |我赌上我皮蛋的名字，一定会尽最大的努力，和你决一胜负！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop2"/>
+  <Msg name="胖墩" string="噢吼? 不再打嗝了吗?"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="哈，果然是啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="12 0" emotion="stop4"/>
+  <Char id="mos" pos="8 0" emotion="stop5"/>
+  <Char id="kephi" pos="3 0" emotion="stop3"/>
+  <Msg name="胖墩/小强/黑妞" string="哈哈哈～"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="走吧，皮蛋！ 决赛的时间快到了。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="嗯，小强。我们来一场漂亮比拼吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop4"/>
+  <Char id="kephi" pos="3 0" emotion="stop3"/>
+  <Msg name="胖墩/黑妞" string="皮蛋，小强，大家加油！ |加油！"/>
+  <Enter/>
+</Scene>

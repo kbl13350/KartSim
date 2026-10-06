@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	   ForwardAccelForce='100.0'
+	   BackwardAccelForce='90.0'
+	   DragFactor='-0.051'
+	   SteerConstraint='1.8'
+	   DriftEscapeForce='150'
+	   CornerDrawFactor='0.045'
+
+           BoosterBlur='true'
+           EngineSound='pro'
+/>
+
+<!--중국 연습카트 PRO 20101230 수정 20110210-->

@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<KartEvent>
+		<RpLucciEvent subEventId='1' baseTextureName1='LucciX125_01' baseTextureName2='LucciX125_02' rpMulti='1.0' lucciMulti='1.2' />
+		<RpLucciEvent subEventId='2' baseTextureName1='RLx50_cn_01' baseTextureName2='RLx50_cn_02' rpMulti='1.5' lucciMulti='1.5' />
+		<RpLucciEvent subEventId='3' baseTextureName1='RLx100_cn_01' baseTextureName2='RLx100_cn_02' rpMulti='2.0' lucciMulti='2.0' />
+		<RpLucciEvent subEventId='4' baseTextureName1='RpLucciX3_01' baseTextureName2='RpLucciX3_02' rpMulti='3.0' lucciMulti='3.0' />
+		<RpLucciEvent subEventId='5' baseTextureName1='RLx40_cn_01' baseTextureName2='RLx40_cn_02' rpMulti='1.4' lucciMulti='1.4' />
+		<RpLucciEvent subEventId='6' baseTextureName1='RLx60_cn_01' baseTextureName2='RLx60_cn_02' rpMulti='1.6' lucciMulti='1.6' />
+		<RpLucciEvent subEventId='7' baseTextureName1='RLx70_cn_01' baseTextureName2='RLx70_cn_02' rpMulti='1.7' lucciMulti='1.7' />
+		<RpLucciEvent subEventId='8' baseTextureName1='RLx80_cn_01' baseTextureName2='RLx80_cn_02' rpMulti='1.8' lucciMulti='1.8' />
+		<RpLucciEvent subEventId='9' baseTextureName1='RLx90_cn_01' baseTextureName2='RLx90_cn_02' rpMulti='1.9' lucciMulti='1.9' />
+		<RpLucciEvent subEventId='10' baseTextureName1='RLx30_cn_01' baseTextureName2='RLx30_cn_02' rpMulti='1.3' lucciMulti='1.3' />
+		<RpLucciEvent subEventId='11' baseTextureName1='RLx10_cn_01' baseTextureName2='RLx10_cn_02' rpMulti='1.1' lucciMulti='1.1' />
+		<RpLucciEvent subEventId='12' baseTextureName1='RLx20_cn_01' baseTextureName2='RLx20_cn_02' rpMulti='1.2' lucciMulti='1.2' />
+		<RpLucciEvent subEventId='13' baseTextureName1='LUCCIbonus04_01' baseTextureName2='LUCCIbonus04_02' rpMulti='4.0' lucciMulti='4.0' />
+		<RpLucciEvent subEventId='14' baseTextureName1='LUCCIbonus_01' baseTextureName2='LUCCIbonus_02' rpMulti='2.5' lucciMulti='2.5' />
+		<RpLucciEvent subEventId='15' baseTextureName1='LUCCIbonus_01' baseTextureName2='LUCCIbonus_02' rpMulti='3.0' lucciMulti='3.0' />
+		<RpLucciEvent subEventId='16' baseTextureName1='LUCCIbonus_01' baseTextureName2='LUCCIbonus_02' rpMulti='4.0' lucciMulti='2.0' />
+		<RpLucciEvent subEventId='17' baseTextureName1='LUCCIbonus05_01' baseTextureName2='LUCCIbonus05_02' rpMulti='5.0' lucciMulti='5.0' />
+		<RpLucciEvent subEventId='18' baseTextureName1='LUCCIbonus06_01' baseTextureName2='LUCCIbonus06_02' rpMulti='6.0' lucciMulti='6.0' />
+		<RpLucciEvent subEventId='19' baseTextureName1='LUCCIbonus_01' baseTextureName2='LUCCIbonus_02' rpMulti='8.0' lucciMulti='8.0' />
+		<RpLucciEvent subEventId='21' baseTextureName1='LUCCIbonus03_01' baseTextureName2='LUCCIbonus03_02' rpMulti='3.0' lucciMulti='3.0' />
+		<TrackEvent subEventId='1' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='maple' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='3' baseTextureName1='Track_rpbonus_cn_300_01' baseTextureName2='Track_rpbonus_cn_300_02' mulRp='4.0' mulLucci='4.0'>
+				<trackList>
+						<track theme='china' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='4' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='village' />
+						<track theme='forest' />
+						<track theme='desert' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='5' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='china' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='6' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='forest' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='7' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='factory' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='8' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='desert' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='9' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='pirate' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='10' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='ice' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='12' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='village' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='13' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='gold' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='14' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='mine' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='15' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='wkc' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='16' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='moonhill' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='17' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='tomb' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='18' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='ice' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='19' baseTextureName1='Track_rpbonus_cn_300_01' baseTextureName2='Track_rpbonus_cn_300_02' mulRp='4.0' mulLucci='4.0'>
+				<trackList>
+						<track theme='fengshen' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='20' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='fairy' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='21' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='fengshen' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='22' baseTextureName1='Track_rpbonus_cn_200_01' baseTextureName2='Track_rpbonus_cn_200_02' mulRp='3.0' mulLucci='3.0'>
+				<trackList>
+						<track theme='northeu' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='23' baseTextureName1='Track_rpbonus_cn_300_01' baseTextureName2='Track_rpbonus_cn_300_02' mulRp='4.0' mulLucci='4.0'>
+				<trackList>
+						<track theme='china' />
+				</trackList>
+		</TrackEvent>
+		<TrackEvent subEventId='26' baseTextureName1='Track_rpbonus_cn_300_01' baseTextureName2='Track_rpbonus_cn_300_02' mulRp='4.0' mulLucci='4.0'>
+				<trackList>
+						<track theme='tomb' />
+				</trackList>
+		</TrackEvent>
+		<CoupleBonusEvent subEventId='1' rpMul='4.0' lucciMul='4.0' />
+		<CoupleBonusEvent subEventId='2' rpMul='3.0' lucciMul='3.0' />
+		<BuyEvent id='92' type='reward' giftAll='true' addToGarage='true' rewardStockId='32366' eventPeriod='2026-09-17T06:00:00~2026-10-01T05:59:59' eventMsg='感谢兑换飞行播放器礼包。|作为兑换福利，赠送“孔明灯(10 个)”。'>
+				<stock id='32345' />
+		</BuyEvent>
+		<BuyEvent id='95' type='reward' giftAll='true' addToGarage='true' rewardStockId='32372' eventPeriod='2026-10-01T06:00:00~2026-10-15T05:59:59' eventMsg='感谢兑换10月特别礼包。|作为兑换福利，赠送“孔明灯(10 个)+骰子兑换券(10 个)”。'>
+				<stock id='32364' />
+		</BuyEvent>
+		<BuyEvent id='96' type='reward' giftAll='true' addToGarage='true' rewardStockId='32372' eventPeriod='2026-10-01T06:00:00~2026-10-08T05:59:59' eventMsg='感谢兑换国庆节幸福礼包。|作为兑换福利，赠送“孔明灯(10 个)+骰子兑换券(10 个)”。'>
+				<stock id='32348' />
+		</BuyEvent>
+		<NewRiderEvent msg='欢迎欢迎！热烈欢迎！|跑跑卡丁车准备了“新/回归礼物箱”作为礼物~|内含丰富超值福利，请务必领取哦！|用“宝宝的金币宝石和初次约定凭证”可在商店邂逅特别道具！' eventType='3' rewardStockId='32310' eventPeriod='2026-08-27T06:00:00~2026-10-08T05:59:59' />
+		<Schedule>
+				<RpLucciEvent openPeriod='2026-09-25T10:00:00~2026-09-27T22:00:00' openTime='10:00~20:00' subEventId='4' />
+				<RpLucciEvent openPeriod='2026-09-25T10:00:00~2026-09-27T22:00:00' openTime='20:00~22:00' subEventId='18' />
+				<RpLucciEvent openPeriod='2026-10-01T10:00:00~2026-10-08T22:00:00' openTime='10:00~20:00' subEventId='4' />
+				<RpLucciEvent openPeriod='2026-10-01T10:00:00~2026-10-08T22:00:00' openTime='20:00~22:00' subEventId='18' />
+				<TimerGiftEvent openPeriod='2026-09-25T19:00:00~2026-09-25T19:09:59' giftStockId='31668' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-25T20:00:00~2026-09-25T20:09:59' giftStockId='31668' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-25T21:00:00~2026-09-25T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-26T19:00:00~2026-09-26T19:09:59' giftStockId='31668' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-26T20:00:00~2026-09-26T20:09:59' giftStockId='31668' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-26T21:00:00~2026-09-26T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-27T19:00:00~2026-09-27T19:09:59' giftStockId='31668' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-27T20:00:00~2026-09-27T20:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-27T21:00:00~2026-09-27T21:09:59' giftStockId='32361' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-01T19:00:00~2026-10-01T19:09:59' giftStockId='29376' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-01T20:00:00~2026-10-01T20:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-01T21:00:00~2026-10-01T21:09:59' giftStockId='30907' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-01T22:00:00~2026-10-01T22:09:59' giftStockId='31290' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-02T19:00:00~2026-10-02T19:09:59' giftStockId='29157' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-02T20:00:00~2026-10-02T20:09:59' giftStockId='29807' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-02T21:00:00~2026-10-02T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-03T19:00:00~2026-10-03T19:09:59' giftStockId='29378' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-03T20:00:00~2026-10-03T20:09:59' giftStockId='28986' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-03T21:00:00~2026-10-03T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-04T19:00:00~2026-10-04T19:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-04T20:00:00~2026-10-04T20:09:59' giftStockId='29377' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-04T21:00:00~2026-10-04T21:09:59' giftStockId='29157' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-05T19:00:00~2026-10-05T19:09:59' giftStockId='29900' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-05T20:00:00~2026-10-05T20:09:59' giftStockId='28986' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-05T21:00:00~2026-10-05T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-06T19:00:00~2026-10-06T19:09:59' giftStockId='29157' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-06T20:00:00~2026-10-06T20:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-06T21:00:00~2026-10-06T21:09:59' giftStockId='29899' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-07T19:00:00~2026-10-07T19:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-07T20:00:00~2026-10-07T20:09:59' giftStockId='29806' title='show time' />
+				<TimerGiftEvent openPeriod='2026-10-07T21:00:00~2026-10-07T21:09:59' giftStockId='28986' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-17T20:00:00~2026-09-17T20:09:59' giftStockId='32366' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-17T21:00:00~2026-09-17T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-18T20:00:00~2026-09-18T20:09:59' giftStockId='32366' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-18T21:00:00~2026-09-18T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-19T20:00:00~2026-09-19T20:09:59' giftStockId='32366' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-19T21:00:00~2026-09-19T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-20T20:00:00~2026-09-20T20:09:59' giftStockId='32366' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-20T21:00:00~2026-09-20T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-21T20:00:00~2026-09-21T20:09:59' giftStockId='32366' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-21T21:00:00~2026-09-21T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-22T20:00:00~2026-09-22T20:09:59' giftStockId='32366' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-22T21:00:00~2026-09-22T21:09:59' giftStockId='32329' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-23T20:00:00~2026-09-23T20:09:59' giftStockId='32366' title='show time' />
+				<TimerGiftEvent openPeriod='2026-09-23T21:00:00~2026-09-23T21:09:59' giftStockId='32329' title='show time' />
+		</Schedule>
+</KartEvent>

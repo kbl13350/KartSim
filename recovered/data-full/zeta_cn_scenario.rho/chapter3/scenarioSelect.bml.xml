@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="mapBackground" windowRect="0 0 1492 502">
+  <ImageBoard name="map" windowSize="1536 510" image="map_field"/>
+  <Panel name="start" windowRect="75 325 151 401" texture="startPoint" alphaTest="true" alphaBlend="true"/>
+  <BlinkButton name="step_1" windowRect="167 332 233 398" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_2" windowRect="169 169 235 235" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_3" windowRect="270 169 336 235" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_4" windowRect="312 251 378 317" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_5" windowRect="312 337 378 403" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_6" windowRect="441 337 507 403" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_7" windowRect="441 240 507 306" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_8" windowRect="440 153 506 219" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_9" windowRect="542 153 608 219" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_10" windowRect="645 154 711 220" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_11" windowRect="645 261 711 327" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_12" windowRect="758 158 824 224" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_13" windowRect="871 83 937 149" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_14" windowRect="901 195 967 261" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_15" windowRect="994 99 1060 165" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_16" windowRect="998 292 1064 358" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_17" windowRect="1093 194 1159 260" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_18" windowRect="1164 194 1230 260" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_19" windowRect="1262 102 1328 168" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <BlinkButton name="step_20" windowRect="1410 195 1476 261" blinkGap="300" alphaTest="true" alphaBlend="true" hasDisable="true" autoLoadImage="chapter_button_" enable="true" visible="true">
+    <Panel name="clear" windowRect="-2 8 69 60" texture="button_clear" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  </BlinkButton>
+  <Container name="dao" clientRect="73 323 153 405" enable="false">
+    <Panel name="dao_1" windowRect="0 0 80 82" texture="dao01" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+    <Panel name="dao_2" windowRect="0 0 80 82" texture="dao02" alphaTest="true" alphaBlend="true" enable="false"/>
+  </Container>
+  <Container name="static" windowRect="0 0 66 0">
+    <Label name="toolTip" windowRect="0 -24 80 -5" frame="DefaultTooltipNew" textRender="bold14" autoSizing="true" textAlign="hcenter" visible="false" enable="false" align="hcenter" textColor="white"/>
+  </Container>
+</Panel>

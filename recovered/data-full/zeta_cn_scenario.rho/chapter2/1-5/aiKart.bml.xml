@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <AiKart id="1" track="village_I01" isFixedKart="true" fixedKartId="919" isFixedChar="true" fixedCharId="2" laps="3" gameType="item">
+    <LevelContent level="0" item="Rocket;Booster;Magnet;Angel;WaterFly;Ufo;Shield" aiItemLevel="0">
+      <AiKart characterId="4" colorId="4" dyeId="4" kartId="875" balloonId="0" speed="50" accel="43" startTick="0"/>
+      <AiKart characterId="6" colorId="9" dyeId="9" kartId="888" balloonId="0" speed="48" accel="37" startTick="0"/>
+      <AiKart characterId="7" colorId="3" dyeId="3" kartId="943" balloonId="0" speed="52" accel="38" startTick="0"/>
+    </LevelContent>
+  </AiKart>
+</Root>

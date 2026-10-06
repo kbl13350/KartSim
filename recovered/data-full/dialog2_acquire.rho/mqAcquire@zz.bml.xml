@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowRect="0 0 364 408" caption="#sb(congratulation)" align="center" frame="CaptionDialog" setCloseButton="okButton">
+  <Panel name="transFillPlane" windowRect="0 10 304 160" texture="img_eventBG" align="hcenter" alphaBlend="true" enable="false">
+    <Window name="main" windowRect="0 0 304 150"/>
+    <Window name="tmpItemWindow" windowRect="0 0 304 150" visible="false"/>
+  </Panel>
+  <Container name="msgTitle" windowRect="0 160 314 190" align="hcenter">
+    <ColorLabel name="라이센스메세지" windowRect="0 0 1 1" text="루키(ROOKIE)라이센스를 취득 하였습니다." align="center" autoSizing="true"/>
+  </Container>
+  <ColorLabel name="라이센스설명" windowRect="0 190 338 302" align="hcenter" frame="DefaultEdit" multiLine="true" autoWrap="true" lineGap="4" textAlign="center"/>
+  <Container name="type1" windowRect="0 0 145 30" align="hcenter;bottom">
+    <Window windowRect="0 -10 336 -8" frame="VSection" align="hcenter"/>
+    <TextButton name="okButton" windowRect="0 0 87 30" align="center" text="#sb(ok)"/>
+  </Container>
+  <Container name="type2" windowRect="0 0 180 30" align="hcenter;bottom">
+    <Window windowRect="0 -10 336 -8" frame="VSection" align="hcenter"/>
+    <TextButton name="okButton" windowRect="0 0 117 30" text="#sb(gotoScenario)"/>
+    <TextButton name="cancelButton" windowRect="0 0 52 30" align="right" text="#sb(closeWindow)"/>
+  </Container>
+</CaptionWindow>

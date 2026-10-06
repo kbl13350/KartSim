@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ImageBoard name='b800' windowSize='800 600' align='center' alphaBlend='false' visible='true'>
+	<Panel texture='logo'  leftTopTex='0 0' alphaBlend='true'/>
+	<ImageBoard name='loadingImage' windowSize='800 600' adjust='0 0' align='hcenter' alphaBlend='false' visible='false'/>
+
+	<Label name='loadingNewHead' windowSize='30 30'  adjust='20 565' font='bold' textAlign='right' text='#sb(loadingNewsStr)' visible='false' textColor='255 255 100 65'/>
+	<Label name='loadingNew' windowSize='100 30'  adjust='50 565' font='bold' textAlign='left' visible='false' textColor='255 255 100 65'/>
+
+	<Label name='loadingTipHead' windowSize='30 30'  adjust='20 580' font='bold' textAlign='right' text='#sb(loadingTipsStr)' visible='true' textColor='black'/>
+	<Label name='loadingTip' windowSize='100 30'  adjust='50 580' font='bold' textAlign='left' visible='false' textColor='black'/>
+
+	<Label windowSize='100 50'  adjust='680 575' textRender='bigbold' textAlign='right' text='#sb(loadingIngStr)' visible='true' textColor='white'/>
+</ImageBoard>

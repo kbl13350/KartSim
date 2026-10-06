@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="goalSpeed">
+    <m c="kr" v="도전속도 : %dkm"/>
+    <m c="jp" v="挑戦速度 : %dkm"/>
+    <m c="vn" v="Tốc độ: %d km"/>
+    <m c="ru" v="Скорость : %dкм"/>
+    <m c="id" v="Speed Target : %dkm"/>
+    <m c="th" v="เวลาในการแข่ง : %dkm"/>
+  </k>
+  <k n="passedSpeed">
+    <m c="kr" v="성공속도 : %dkm"/>
+    <m c="jp" v="成功速度 : %dkm"/>
+    <m c="vn" v="Đạt: %d km"/>
+    <m c="ru" v="Необходимая скорость : %dкм"/>
+    <m c="id" v="Speed Pass : %dkm"/>
+    <m c="th" v="โอกาสชนะ : %dkm"/>
+  </k>
+  <k n="bonusTime">
+    <m c="kr" v="보너스타임 :+%d초"/>
+    <m c="jp" v="ボーナスタイム :+%d秒"/>
+    <m c="vn" v="T.Gian: +%d s"/>
+    <m c="ru" v="Бонус за время :+%dсек."/>
+    <m c="id" v="Bonus Time : +%d detik"/>
+    <m c="th" v="เวลาโบนัส :+%d초"/>
+  </k>
+</StringBag>

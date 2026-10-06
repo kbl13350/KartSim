@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="nym01"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="这里就是啊.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="11 0" emotion="normal"/>
+  <Char id="bazzi" pos="4 0" emotion="normal"/>
+  <Msg name="宝宝" string="什么都没有啊..|(难道不是这里..)"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop1"/>
+  <Msg name="鑫鑫" string="额，这是骷髅卡片.."/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="难道晚了一步.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop4"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="鑫鑫" string="格雷！|我绝对不会放过你！"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="鑫鑫..忍住..|我会报仇的！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="wenwen" pos="8 0" flip="true" emotion="stop7"/>
+  <Msg name="雯雯" string="这下怎么办？"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="小强" string="先去找皮蛋吧！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="对！不是约好在那里集合的吗..|(哪里来着？）"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop2"/>
+  <Msg name="鑫鑫" string="那里是哪里啊？"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="ani4"/>
+  <Msg name="宝宝" string="那里就是那里呗~|（怎么记不起来了..)"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="8 0" flip="true" emotion="ani1"/>
+  <Msg name="小强" string="额..先..|先去月光之城吧！"/>
+  <Enter/>
+</Scene>

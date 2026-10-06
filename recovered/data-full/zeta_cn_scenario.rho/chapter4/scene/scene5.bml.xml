@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill4"/>
+  <Char id="marid" pos="8 0" emotion="stop1"/>
+  <Msg name="蓝蓝" string="皮蛋回来啦！！"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="kephi" pos="8 0" emotion="ani1"/>
+  <Msg name="胖墩" string="皮蛋，恭喜你获胜！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="哈哈。|这不是理所当然的结果吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="marid" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="蓝蓝" string="但是，皮蛋|村里在发生了奇怪的事情。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="哈哈! 咦？什么事？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="marid" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="蓝蓝" string="有些人说看到了鬼…"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="10 0" emotion="stop6"/>
+  <Msg name="宝宝，黑妞" string="鬼？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" pos="8 0" flip="true" emotion="ani4"/>
+  <Msg name="蓝蓝" string="对，他们说在墓地附近看到过。|听说是，幽灵车手。"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="marid" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="幽灵车手的话？|应该是个赛车手？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="marid" pos="8 0" emotion="normal"/>
+  <Msg name="蓝蓝" string="好像是吧。|所以我们一直等着皮蛋回来呢。"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="marid" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="是吗？|那就去瞧一瞧吧。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="幽灵车手.. 嘿！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComboBox name="guildChatMembers" windowRect="45 7 220 25" textRender="bold" comboListLength="194" depthBias="256" listFrame="DefaultEdit">
+  <Label name="guildInfo" windowRect="2 -2 3 4" enable="false" text="#sb(guildChatRoom)" textRender="bold"/>
+</ComboBox>

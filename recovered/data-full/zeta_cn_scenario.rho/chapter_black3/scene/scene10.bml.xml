@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des3"/>
+  <Char id="totop" pos="7 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="现在唤醒星陨之石的力量吧？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop2"/>
+  <Msg name="格雷" string="从现在开始我们要效忠于黑暗组织。|哈哈哈"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop2"/>
+  <Char id="raptorR" pos="4 0" emotion="stop2"/>
+  <Msg name="黑杰克" string="马上我生平的愿望就会实现。|吼吼吼"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="7 0" emotion="stop4"/>
+  <Msg name="格雷" string="（愿望？不是统治世界吗..什么愿望呢？）"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="格雷格" string="哥！已经解决掉他们了~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop1"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="格雷" string="做得好！|现在世界就是我们的了！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorL" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="统治世界后~|我要跟着那帮小家伙，天天虐他们！"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="站住！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="格雷格！那帮家伙又回来了！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="raptorL" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="哇，真顽强！|刚才明明打的不能动了！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="totop" pos="7 0" emotion="stop2"/>
+  <Msg name="黑杰克" string="吼吼吼|已经来不及了。|星陨之石已经~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="stone" pos="8 0" emotion="stop6"/>
+  <Msg name="黑杰克" string="光~"/>
+  <Enter/>
+  <Char id="stone" remove="true"/>
+  <Shake time="500"/>
+  <Char id="light" pos="8 0" emotion="stop1"/>
+  <Msg name="格雷格" string="啊~真刺眼~"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="啊..不能就此结束.."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="totop" pos="7 0" emotion="stop1"/>
+  <Char id="light" pos="7 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="吼吼吼！|愿望要实现了！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="light" remove="true"/>
+  <Char id="raptorL" pos="4 0" emotion="stop4"/>
+  <Msg name="格雷格" string="额..老大的头.."/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="totop" pos="7 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="吼吼吼！|看这又优雅又华丽的发型~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop4"/>
+  <Msg name="格雷" string="发型？|不会是.."/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop4"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="那开始统治世界吧？|吼吼吼"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop3"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="格雷" string="现在？|难道愿望就是那所剩无几的头发.."/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorL" pos="4 0" emotion="stop4"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="格雷格" string="老大！|统治世界呢？"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="7 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="统治世界就等找到统治车辆后再一起实现吧~|吼吼吼"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="统治车辆？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="8 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="吼吼吼|得先处理那帮小家伙们~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="黑杰克~啊啊啊啊！！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑杰克" string="淡定！格雷~|这我会亲自处理！|你就看着吧！"/>
+  <Enter/>
+</Scene>

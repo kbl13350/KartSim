@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BlinkImage name="notice_guide" windowSize="64 56" image="guideNotice_s_1" blinkImage="guideNotice_s_2" blinkGap="400" autoStart="true" alphaBlend="true" enable="false" depthBias="1024.0"/>

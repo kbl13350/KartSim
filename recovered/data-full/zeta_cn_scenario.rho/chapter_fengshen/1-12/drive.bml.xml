@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Escape isFixedKart="true" fixedKartId="1523" fixedCharId="474" isFixedChar="true" kartId="1518" characterId="1" colorId="1" dyeId="1" characterName="宝宝">
+    <LevelContent level="0" track="china_R07" laps="2" ksv="1-12" distance="30" startOffset="-2500"/>
+  </Escape>
+</Root>

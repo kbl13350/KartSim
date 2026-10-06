@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Dynamics
+	Mass='100.0'
+	AirFriction='3.0'
+	DragFactor='0.79'
+	ForwardAccelForce='2900.0'
+	BackwardAccelForce='2175.0'
+	GripBrakeForce='2610.0'
+	SlipBrakeForce='1740.0'
+	MaxSteerAngle='10.0'
+	SteerConstraint='23.0'
+	FrontGripFactor='5.0'
+	RearGripFactor='5.0'
+	DriftTriggerFactor='0.2'
+	DriftTriggerTime='0.2'
+	DriftSlipFactor='0.2'
+	DriftEscapeForce='3700.0'
+	CornerDrawFactor='0.16'
+	DriftMaxGauge='6000.0'
+	TransAccelFactor='-0.005'
+/>
+<!-- 13.12.12 S3 가장빠름 속도 개편 -->

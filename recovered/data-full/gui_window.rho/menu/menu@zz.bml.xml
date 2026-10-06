@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Menu name="menu" windowSize="fullwidth 46">
+  <Container windowRect="0 8 800 40" align="right">
+    <Panel name="lucciInfo" leftTopTex="0 0" texture="img_lucciBG" alphaBlend="true" align="right" adjust="359 0">
+      <Label name="lucci" leftTopWH="25 3 114 32" text="0" textRender="bold16" textAlign="right;vcenter" textColor="white"/>
+      <Label leftTopWH="0 3 35 32" align="right" adjust="5 0" text="#sb(lucci)" textAlign="vcenter" textRender="medium16" textColor="255 186 192 196"/>
+    </Panel>
+    <Panel name="koinInfo" leftTopTex="0 0" texture="img_koinBG" alphaBlend="true" align="right" adjust="142 0">
+      <Label name="koin" leftTopWH="37 3 130 32" text="0" textRender="bold16" textAlign="right;vcenter" textColor="white"/>
+      <Label leftTopWH="0 3 35 32" align="right" adjust="6 0" text="#sb(koin)" textAlign="vcenter" textRender="medium16" textColor="255 186 192 196"/>
+      <ImageButton name="koinCharge" leftTopTex="0 2" autoLoadImage="btn_chargeKoin_" alphaBlend="true" align="right" adjust="2 0" visible="false"/>
+    </Panel>
+    <ImageButton name="cashInven" leftTopTex="0 0" autoLoadImage="btn_charge_new_" align="right" adjust="30 0" forceTooltip="false" alphaBlend="true">
+      <Label name="notice_alert" windowSize="20 21" align="left" adjust="-4 7" frame="AlertLabel" text="!" textAlign="center" textRender="bold" textColor="white" enable="false" visible="false" marginRect="0 -5 0 0"/>
+    </ImageButton>
+  </Container>
+  <Panel name="myInfo" leftTopTex="30 8" texture="img_levelBG" alphaBlend="true">
+    <Panel name="LvNoticeDialogPanel" windowRect="4 2 40 35" texture="level_notice_img1" alphaBlend="true" alphaTest="true" visible="false"/>
+    <Panel name="grove" windowRect="6 3 38 35" alphaBlend="true" enable="false"/>
+    <TextButton name="groveBtn" windowRect="6 2 38 34" frame="NoFrame" text="" alphaBlend="true" enable="true" altText="#sb(levelInfo)" altRelativePos="30 0"/>
+    <Label name="lv" leftTopWH="42 0 60 38" text="Lv.40" textRender="medium16" textAlign="left,vcenter" textColor="244 174 244 46"/>
+    <Label name="rid" leftTopWH="110 0 130 38" text="배드괭이" textRender="medium16" textAlign="center" textColor="white"/>
+    <ImageButton name="myInfoButton" leftTopTex="0 8" autoLoadImage="btn_charInfo_" align="right" adjust="8 0" alphaBlend="true" altText="#sb(riderInfo)" altRelativePos="20 0"/>
+  </Panel>
+  <Panel name="vipGradeTag" windowSize="32 24" adjust="334 16" visible="false" alphaBlend="true" altRelativePos="30 0"/>
+  <Panel name="addTimeNormalUI" leftTopTex="377 8" texture="playtime_gagebox" alphaBlend="true" visible="false">
+    <Label name="eventTitle" leftTopWH="8 3 100 32" text="#sb(addTimeEventTitle)" textRender="medium16" textColor="white"/>
+    <Label name="curStepIndex" leftTopWH="168 3 50 32" text="(0/0)" textAlign="right" textRender="medium16" textColor="255 130 206 255"/>
+    <Window name="gageCover" leftTopWH="8 28 210 5">
+      <Panel name="gage" leftTopWH="0 0 1 5" texture="playtime_gage_일반" alphaBlend="true"/>
+    </Window>
+  </Panel>
+  <Panel name="addTimePcCafeUI" leftTopTex="377 8" texture="playtime_gageboxPcroom@zz" alphaBlend="true" visible="false">
+    <Label name="eventTitle" leftTopWH="35 6 100 32" text="#sb(addTimeEventTitle)" textRender="medium16" textColor="white"/>
+    <Label name="curStepIndex" leftTopWH="125 6 50 32" text="(0/0)" textAlign="right" textRender="medium16" textColor="255 130 206 255"/>
+    <Window name="gageCover" leftTopWH="8 28 210 5">
+      <Panel name="gage" leftTopWH="0 0 1 5" texture="playtime_gage_pc방" alphaBlend="true"/>
+    </Window>
+  </Panel>
+  <ImageButton name="addTimeInfoBtn" leftTopTex="599 12" autoLoadImage="playtime_overbtn_" alphaBlend="true" visible="false">
+    <Panel name="curAddTimeInfoBox" leftTopTex="-226 35" texture="playtime_tooltipBg" alphaBlend="true" enable="false" visible="false">
+      <Panel name="pcCafeTag" leftTopTex="15 18" texture="playtime_iconPcroom@zz" alphaBlend="true" enable="false"/>
+      <Label name="eventTitle" leftTopWH="5 8 310 32" text="#sb(addTimeEventReward)" textRender="bold16" textColor="white" textAlign="center"/>
+      <Label leftTopWH="80 40 170 32" text="#sb(addTimeEventLeftTime)" textRender="medium16" textColor="255 133 174 216" textAlign="left,vcenter"/>
+      <Label name="leftTime" leftTopWH="140 40 170 32" text="99시간 59분" textRender="medium16" textColor="255 133 174 216" textAlign="right,vcenter"/>
+      <Panel leftTopTex="12 44" texture="playtime_itemslot_s" alphaBlend="true" enable="false">
+        <ItemWindow name="addTimeRewardItem" leftTopWH="0 0 67 64" align="center" stockId="0" enable="false"/>
+      </Panel>
+      <Label name="rewardName" leftTopWH="80 65 200 32" text="배찌배찌" textRender="bold16" textColor="white" textAlign="left,vcenter" autoWrap="true" multiLine="true"/>
+      <Label name="rewardPeriod" leftTopWH="80 85 200 32" text="배찌배찌" textRender="bold16" textColor="white" textAlign="left,vcenter" autoWrap="true" multiLine="true"/>
+    </Panel>
+    <Panel name="addTimeEventToolTip" leftTopTex="-226 35" texture="playtime_tooltipBg_02" alphaBlend="true" enable="false" visible="true">
+      <Label name="toolTip1" leftTopWH="0 10 320 32" text="." textRender="bold16" textColor="255 16 173 255" textAlign="center" autoWrap="true" multiLine="false"/>
+      <Label name="toolTip2" leftTopWH="0 35 320 32" text="." textRender="medium16" textColor="white" textAlign="center" autoWrap="true" multiLine="false"/>
+    </Panel>
+    <Label name="notice_alert" windowSize="20 21" align="right" adjust="-6 -6" frame="AlertLabel" text="!" textAlign="center" textRender="bold" textColor="white" enable="false" visible="false" marginRect="0 -5 0 0"/>
+  </ImageButton>
+  <StringBag>
+    <k n="lucci">
+      <m c="kr" v="루찌"/>
+      <m c="cn" v="金币"/>
+      <m c="tw" v="LUCCI"/>
+    </k>
+    <k n="koin">
+      <m c="kr" v="코인"/>
+      <m c="cn" v="酷币"/>
+      <m c="tw" v="KOIN"/>
+    </k>
+    <k n="koinCharge">
+      <m c="kr" v="코인 충전"/>
+      <m c="cn" v="酷币兑换"/>
+      <m c="tw" v="儲值KOIN"/>
+    </k>
+    <k n="cashInven">
+      <m c="kr" v="구입 확정"/>
+    </k>
+    <k n="minute">
+      <m c="kr" v="분"/>
+    </k>
+    <k n="hour">
+      <m c="kr" v="시간"/>
+    </k>
+    <k n="eventCurrentStep">
+      <m c="kr" v="현재 단계"/>
+    </k>
+    <k n="eventNextStep">
+      <m c="kr" v="다음 단계"/>
+    </k>
+    <k n="levelInfo">
+      <m c="kr" v="레벨정보"/>
+    </k>
+    <k n="riderInfo">
+      <m c="kr" v="라이더 정보"/>
+      <m c="jp" v="ライダー情報"/>
+      <m c="cn" v="车手资料"/>
+      <m c="tw" v="車手情報"/>
+      <m c="us" v="Rider Info"/>
+      <m c="vn" v="Thông tin"/>
+      <m c="ru" v="Информация о гонщике"/>
+      <m c="id" v="Info Rider"/>
+      <m c="th" v="ข้อมูลผู้เล่น"/>
+    </k>
+    <k n="addTimeEventTitle">
+      <m c="kr" v="누적 플레이 타임"/>
+      <m c="cn" v="累计游戏时间"/>
+      <m c="tw" v="累積遊戲時間"/>
+    </k>
+    <k n="addTimeEventReward">
+      <m c="kr" v="누적플레이타임 보상"/>
+      <m c="cn" v="累计游戏时间奖励"/>
+      <m c="tw" v="累積遊戲時間獎勵"/>
+    </k>
+    <k n="addTimeEventLeftTime">
+      <m c="kr" v="목표까지 남은 시간"/>
+      <m c="cn" v="达成目标剩余时间"/>
+      <m c="tw" v="距離目標所剩時間"/>
+    </k>
+  </StringBag>
+</Menu>

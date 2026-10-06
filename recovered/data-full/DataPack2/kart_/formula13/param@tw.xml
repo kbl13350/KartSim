@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.077'
+	SteerConstraint='2.1'
+	DriftEscapeForce='1850'
+	CornerDrawFactor='0.071'
+
+	BoosterBlur='true'
+	EngineSound='cotton8'
+	EnvMap='true'
+	WaveEffect='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.793'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.7'
+	StartBoosterTimeSpeed='1300'   
+
+	BoosterWaveType='boost8'
+	NormalBoosterTime = '-60'
+	TeamBoosterTime = '-120'
+	DriftMaxGauge = '-400'
+	DriftGaguePreservePercent='0.6'
+
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8sub'
+	BoosterType4='8sub'
+
+	Port0='mod2b1'
+	Port1='mod2b2'
+
+	FirePort0='mod2d'
+	FirePort1='mod2c1'
+	FirePort2='mod2c2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '49'
+	DescStability ='38'
+	DescEngineGrade='1.25'
+	DescCornering='10'
+	DescEnchantCap = '30'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2b1' trailPort1='mod2b2'/>
+</BodyParam>
+
+<!--대만 하운드 HT 140117 상점 코인 / 레어 등급 판매 -->

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container>
+  <Panel name="mission" windowSize="310 125" align="right;top" adjust="-243 25" texture="normal@zz" alphaBlend="true" visible="true">
+    <Panel name="type" windowSize="74 74" adjust="6 44" texture="normal_win" alphaBlend="true"/>
+    <Label name="missionText" windowSize="167 20" adjust="100 45" text="missionSummary" textColor="255 0 210 255" textAlign="left" textRender="bold14"/>
+    <Label name="missionType" windowSize="55 20" adjust="243 6" text="" textColor="255 0 221 254" textAlign="right" textRender="bold16"/>
+    <Label name="reward" windowSize="167 20" adjust="90 75" text="#sb(reward)" textColor="255 183 186 194" textAlign="left" textRender="bold14"/>
+    <Label name="missionReward" windowSize="167 20" adjust="90 95" text="missionReward" textColor="255 248 195 13" textAlign="left" textRender="bold14"/>
+  </Panel>
+  <Panel name="missionTextInfo" windowSize="250 50" align="right;vcenter" adjust="24 136" texture="ingame_mission_text_bg" alphaBlend="true" visible="false">
+    <ColorLabel name="missionSummary" windowSize="250 20" adjust="0 0" text="missionSummary" textColor="255 168 183 195" textAlign="hcenter" textRender="bold14"/>
+    <ColorLabel name="missionIng" windowSize="250 30" adjust="0 24" text="missionIng" textColor="255 255 255 255" textAlign="hcenter" textRender="bold16"/>
+  </Panel>
+</Container>

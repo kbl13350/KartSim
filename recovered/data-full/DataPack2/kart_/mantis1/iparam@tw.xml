@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.15'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.07'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+	
+	UseTransformBooster='true'
+	TransAccelFactor='1.695'
+	TransformTime='700'
+
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-350'
+	DriftMaxGauge = '-400'
+
+
+	StartBoosterTimeSpeed='1200'
+	StartForwardAccelFactorSpeed='1.25'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zeroplus'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zeroplus'
+	BoosterType3='zeroplus'
+	BoosterType4='zeroplus'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+	FirePort2='mod2a3'
+
+	TailLampSize='0.3'
+	TailLampColor='0 253 43 253'
+
+	EnvMap='true'
+
+	DescBalance= '45'
+	DescStability ='45'
+	DescEngineGrade='1.2'
+	DescCornering='4'
+	DescEnchantCap = '31'
+/>
+
+<!-- 대만 맨티스 Z7+ BE 빙고 가샤폰 120928-->

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="changerinfo" windowRect="0 0 280 20">
+  <FocusCard name="keyDisp" windowRect="0 0 21 20" texture="changer" focusedUv="0 0 21 20" ordinaryUv="0 0 21 20" disableUv="41 0 60 20" alphaBlend="true"/>
+  <FocusCard name="exist" windowRect="23 0 41 20" texture="changer" focusedUv="21 0 40 20" ordinaryUv="21 0 40 20" disableUv="61 0 80 20" alphaBlend="true"/>
+  <CharPanel name="changerNum" windowRect="41 2 101 19" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789x" fontPos="0 0" text="00" spaceOffset="-4"/>
+  <Panel name="infinity" windowRect="53 0 85 20" texture="changerItem_num_infinite" visible="false" alphaBlend="true"/>
+</Container>

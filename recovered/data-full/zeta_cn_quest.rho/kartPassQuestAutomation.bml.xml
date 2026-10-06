@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kartPassQuest questTime="6">
+  <kartPassQuestInfo seasonId="52" questGroupIndex="1" setCount="21" seasonPeriod="2026-09-24T06:00:00~2026-10-15T05:59:59" stepPoint="10,20,40">
+    <QuestSet id="1" presetList="1, 11, 12"/>
+    <QuestSet id="2" presetList="1, 11, 12"/>
+    <QuestSet id="3" presetList="1, 11, 12"/>
+    <QuestSet id="4" presetList="1, 11, 12"/>
+    <QuestSet id="5" presetList="1, 11, 12"/>
+    <QuestSet id="6" presetList="1, 11, 12"/>
+    <QuestSet id="7" presetList="1, 11, 12"/>
+    <QuestSet id="8" presetList="1, 11, 12"/>
+    <QuestSet id="9" presetList="1, 11, 12"/>
+    <QuestSet id="10" presetList="1, 11, 12"/>
+    <QuestSet id="11" presetList="1, 11, 12"/>
+    <QuestSet id="12" presetList="1, 11, 12"/>
+    <QuestSet id="13" presetList="1, 11, 12"/>
+    <QuestSet id="14" presetList="1, 11, 12"/>
+    <QuestSet id="15" presetList="1, 11, 12"/>
+    <QuestSet id="16" presetList="1, 11, 12"/>
+    <QuestSet id="17" presetList="1, 11, 12"/>
+    <QuestSet id="18" presetList="1, 11, 12"/>
+    <QuestSet id="19" presetList="1, 11, 12"/>
+    <QuestSet id="20" presetList="1, 11, 12"/>
+    <QuestSet id="21" presetList="1, 11, 12"/>
+  </kartPassQuestInfo>
+</kartPassQuest>

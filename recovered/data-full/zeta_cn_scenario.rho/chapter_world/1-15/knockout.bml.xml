@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="village_R12" laps="2" isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2" type="lap">
+    <LevelContent level="0" ksv="village_R12" startOffset="2000">
+      <ShadowKart characterId="190" kartId="872" colorId="59" dyeId="59" characterName="克莉丝"/>
+      <ShadowKart characterId="62" kartId="932" colorId="4" dyeId="4" characterName="格雷格"/>
+      <ShadowKart characterId="61" kartId="932" colorId="1" dyeId="1" characterName="格雷"/>
+      <ShadowKart characterId="60" kartId="932" colorId="8" dyeId="8" characterName="黑杰克"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

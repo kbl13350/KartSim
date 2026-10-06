@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot15"/>
+  <Char id="king_arthur" pos="10 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="本次卡美洛冠军赛冠军是~凯骑士~"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="kei" pos="7 0" flip="true" emotion="stop1"/>
+  <Char id="excalibur" pos="3 0" emotion="stop5"/>
+  <Char id="camelot_effect" pos="12 0" emotion="stop7"/>
+  <Msg name="凯" string="感谢大家~"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="kei" pos="7 0" emotion="stop1"/>
+  <Char id="excalibur" pos="3 0" emotion="stop5"/>
+  <Char id="camelot_effect" pos="12 0" emotion="stop7"/>
+  <Msg name="凯" string="通过本次冠军赛我也学到了很多东西。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="以为能拿冠军的……|没想到凯这么厉害~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="虽然有点可惜，但足够精彩了！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="stop1"/>
+  <Msg name="梅林" string="果然是一场精彩的比赛~恭喜你~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="凯，恭喜你！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="恭喜你获得冠军~"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="9 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="9 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="那~说说冠军愿望吧。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="kei" pos="4 0" flip="true" emotion="stop6"/>
+  <Msg name="凯" string="我……"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop6"/>
+  <Msg name="凯" string="我的愿望是……"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="凯" string="请释放莫德雷德吧！"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="merlin" pos="9 0" emotion="stop3"/>
+  <Msg name="梅林" string="！！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="6 0" flip="true" emotion="stop6"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="3 0" flip="true" emotion="stop5"/>
+  <Char id="dao" pos="7 0" flip="true" emotion="stop6"/>
+  <Char id="merlin" pos="11 0" emotion="stop3"/>
+  <Msg name="宝宝" string="！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="stop2"/>
+  <Msg name="梅林" string="怎么可以许这种愿望呢~|（还不如完成我的心愿……）"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋，宝宝" string="凯！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="凯" string="现在的莫德雷德已经没有任何力量了，而且还把我当自已的孩子养大。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop7"/>
+  <Msg name="凯" string="请您一定要实现我的愿望。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="果然，你参加本次比赛就是为了这件事。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop7"/>
+  <Msg name="凯" string="我想我的实力也通过本次比赛得到了验证。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop6"/>
+  <Msg name="凯" string="如果放过莫德雷德的话，我们会找个安静地地方继续生活。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="既然这么关心莫德雷德……好吧。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="9 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="9 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="把莫德雷德带过来……"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="camelot_soldier1" pos="9 0" flip="true" emotion="normal"/>
+  <Char id="camelot_soldier2" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="卡美洛士兵" string="是！！"/>
+  <Enter/>
+  <Char id="camelot_soldier1" remove="true"/>
+  <Char id="camelot_soldier2" remove="true"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="camelot_soldier1" pos="10 0" flip="true" emotion="normal"/>
+  <Char id="mordred" pos="7 0" flip="true" emotion="normal"/>
+  <Char id="camelot_soldier1" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="卡美洛士兵" string="陛下，已将莫德雷德带过来了。"/>
+  <Enter/>
+  <Char id="camelot_soldier1" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="camelot_soldier1" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋，宝宝" string="莫德雷德！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mordred" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="这又是哪一出戏？"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="凯在本次卡美洛冠军赛上拿了冠军，|作为奖励，他希望能释放你。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="mordred" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="莫德雷德" string="凯……"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="kei" pos="8 0" emotion="stop2"/>
+  <Msg name="凯" string="就算你不愿意，现在也只能随我了。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="是的。莫德雷德，现在的凯已经远远超过了你的实力。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="kei" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="凯" string="亚瑟王……"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="莫德雷德" string="……"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop4"/>
+  <Msg name="梅林" string="莫德雷德，如果你再敢乱来，|我们会随时赶到的……呵~呵~呵~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Msg name="宝宝" string="而且还有我烈焰勇士也在！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="好了，这事就到此为止了。庆祝冠军的美食也已经都准备好了，一起去庆祝吧！"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="merlin" pos="8 0" emotion="stop1"/>
+  <Msg name="梅林" string="也是~这么好的日子大家就应该庆祝一下~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="10 0" emotion="stop4"/>
+  <Msg name="宝宝" string="好饿~美食我来了！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="等我~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kei" pos="10 0" emotion="normal"/>
+  <Msg name="凯" string="莫德雷德……一起来吧~"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="莫德雷德" string="凯……你为什么许这种愿望，如果我在做坏事怎么办。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="kei" pos="10 0" emotion="stop1"/>
+  <Msg name="凯" string="别担心，到时候会由我来阻止你的~"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="呜呼呼呼……你能挡得住我吗~"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="kei" pos="10 0" emotion="normal"/>
+  <Msg name="凯" string="那当然！"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="莫德雷德" string="此话当真~"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="我还挺期待的~呜呼呼呼……"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <BackGround texture="camelot1"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="" string="[几天后]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="时间差不多了，是时候送你们回去了。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="很高兴能参加这么精彩的庆典！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Msg name="宝宝" string="美食也太好吃了~回味无穷啊。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="stop1"/>
+  <Msg name="梅林" string="能跟你们叙叙旧我也很开心~呵~呵~呵~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="kei" pos="8 0" emotion="normal"/>
+  <Msg name="凯" string="我会铭记与各位一起的时光。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="希望还能有再次见面的机会。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="以后还有庆典的话别忘了邀请我们~下次一定会拿到冠军的！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Msg name="宝宝" string="比赛就算了，我会来吃美食的~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="嗯~一定会，没问题~"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="9 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="9 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="好了，我用圣剑送你们回去吧。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" emotion="stop2"/>
+  <Msg name="皮蛋，宝宝" string="大家保重~再见~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="camelot_effect" pos="7 0" emotion="stop2"/>
+  <Msg name="" string="（唰唰唰唰唰，咻咻咻咻咻，嗡嗡嗡嗡嗡）"/>
+  <Enter/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="ghost" pos="4 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="我也要跟莫德雷德一起离开卡美洛了。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="9 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="9 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="嗯，希望你们也能幸福。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="stop1"/>
+  <Msg name="梅林" string="有事可以随时联系我们……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="stop4"/>
+  <Msg name="梅林" string="莫德雷德，希望你能洗心革面……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="mordred" pos="4 0" emotion="normal"/>
+  <Char id="kei" pos="9 0" flip="true" emotion="stop6"/>
+  <Msg name="莫德雷德" string="哼！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="mordred" pos="4 0" emotion="normal"/>
+  <Char id="kei" pos="8 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="那我们出发了。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <BackGround texture="camelot4"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="" string="凯和莫德雷德也离开了卡美洛，迈向了新生活的第一步。"/>
+  <Enter/>
+</Scene>

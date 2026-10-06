@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RiderCard name="riderCard" windowRect="0 0 192 172" texture="btn_singleEmptySlot1" riderNameRect="43 13 149 23" riderRect="6 31 186 166" alphaBlend="true">
+  <Panel name="glove" windowRect="9 8 29 28" alphaBlend="true" visible="false"/>
+  <ImageButton name="kick" windowRect="165 11 179 25" autoLoadImage="kick_" enable="false" alphaBlend="true" altText="#sb(kick)"/>
+  <ImageButton name="info" windowRect="162 33 182 55" autoLoadImage="btn_userInfo_" alphaBlend="true" altText="#sb(riderInfo)"/>
+  <Window name="vipTagSet" leftTopWH="152 50 40 40" visible="false">
+    <Panel name="vipTag" alphaBlend="true" enable="false" align="center"/>
+  </Window>
+  <Window name="coupleRingSet" leftTopWH="152 80 40 40" visible="false">
+    <Panel name="coupleRingBg" alphaBlend="true" enable="false" align="center"/>
+    <Panel name="coupleRing" alphaBlend="true" enable="false" align="center"/>
+  </Window>
+  <Panel windowRect="8 33 33 57" texture="img_slotEmblemBG" alphaBlend="true">
+    <Panel name="clubMark" windowRect="0 0 20 20" align="center" alphaBlend="true" visible="false">
+      <Panel name="clubFrame" windowSize="24 24" align="center" alphaBlend="true" alphaTest="true" visible="false" enable="false"/>
+    </Panel>
+  </Panel>
+  <Panel windowRect="8 58 33 83" texture="img_slotEmblemBG" alphaBlend="true">
+    <Panel name="emblem02" windowRect="0 0 20 20" align="center" alphaBlend="true" visible="false"/>
+  </Panel>
+  <Panel windowRect="8 84 33 109" texture="img_slotEmblemBG" alphaBlend="true">
+    <Panel name="emblem03" windowRect="0 0 20 20" align="center" alphaBlend="true" visible="false"/>
+  </Panel>
+  <ImageButton name="blockChat" windowRect="6 31 186 167" autoLoadImage="btn_mute_" alphaBlend="true" visible="false"/>
+  <Panel name="bossTag_me" windowRect="5 141 187 167" texture="slotMaster_me@zz" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="bossTag_other" windowRect="5 141 187 167" texture="slotMaster@zz" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="ready" windowRect="5 141 187 167" texture="slotReady@zz" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="changing" windowRect="5 141 187 167" texture="slotPitin@zz" alphaBlend="true" visible="false" enable="false"/>
+  <ImageButton name="closed" windowRect="6 31 186 167" autoLoadImage="btn_slotClose_" alphaBlend="true" visible="false"/>
+  <Panel name="reserved" windowRect="4 30 130 184" texture="img_slotWaiting@zz" alphaBlend="true" visible="false" enable="false"/>
+  <Container name="gpContainer" windowRect="30 195 98 205" enable="false">
+    <Label name="gp" windowRect="60 0 92 92" textRender="outline" textColor="255 0 255 0" autoSizing="true" align="center" text=""/>
+  </Container>
+  <ImageButton name="basicAi" windowRect="35 8 161 28" autoLoadImage="btn_aiPlayer_@zz" alphaBlend="true"/>
+</RiderCard>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="barricade">
+  <state name="StateUse" life="1000" firing="바리게이트_사용" firingFx="장애물 발사" size="70"/>
+  <state name="StateSet" life="266" item="바리게이트_시작" itemFx="장애물 등장" size="10"/>
+  <state name="StateActive" life="5000" item="바리게이트_진행" size="4.3"/>
+  <state name="StateEnd" life="500" item="바리게이트_끝" itemFx="장애물 피격"/>
+  <state name="StateAffect" life="500"/>
+  <state name="StateShield" life="1000" fired="쉴드방어" firedFx="shield"/>
+  <state name="StateSpecialShield" life="2000"/>
+</item>

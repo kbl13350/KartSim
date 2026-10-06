@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china1"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="[龙之圣地，城市中心]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="zindaru" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="阿哥" string="这条胡同真是完美保留了传统的风貌！|原封不动地保存着历史，真的是太棒了！"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="zindaru" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="lingling" pos="12 0" emotion="normal"/>
+  <Msg name="凌凌" string="好几天过去了，守护者气息到底在哪里啊…"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="draong2_stuff" pos="7 -1" emotion="normal"/>
+  <Msg name="龙之宝玉" string="（嗡嗡）"/>
+  <Enter/>
+  <Char id="draong2_stuff" remove="true"/>
+  <Char id="lingling" pos="11 0" emotion="stop3"/>
+  <Char id="zindaru" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="凌凌" string="咦？宝玉在震动诶！？|没错，肯定就是他！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop1"/>
+  <Char id="lingling" pos="10 0" emotion="stop3"/>
+  <Msg name="凌凌" string="那个…请问你知道关于龙之守护者的传说吗？"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop6"/>
+  <Char id="lingling" pos="10 0" emotion="normal"/>
+  <Msg name="阿哥" string="你是何人...？为何会突然向我询问关于传说的问题呢？"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop3"/>
+  <Char id="zindaru" pos="3 0" emotion="stop4"/>
+  <Msg name="凌凌" string="你好呀！我叫凌凌！|我对所谓的传说非常好奇呢~"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop6"/>
+  <Char id="lingling" pos="10 0" emotion="stop3"/>
+  <Msg name="阿哥" string="你好，我叫阿哥。|我所知道的传说是守护陷入混沌的龙之圣地的故事。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop2"/>
+  <Char id="zindaru" pos="3 0" emotion="stop4"/>
+  <Msg name="凌凌" string="对！就是那个故事！不过… 你语气好奇怪诶。"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop3"/>
+  <Char id="lingling" pos="10 0" emotion="stop2"/>
+  <Msg name="阿哥" string="（看起来比我还要小…但说话方式有些无理呢...）"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop7"/>
+  <Char id="lingling" pos="10 0" emotion="stop3"/>
+  <Msg name="阿哥" string="对于那个传说我也不是很清楚。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop4"/>
+  <Char id="lingling" pos="10 0" emotion="stop1"/>
+  <Msg name="凌凌" string="你果然不是一般人！|但是关于传说你知道的只有这些了吗？"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop3"/>
+  <Char id="lingling" pos="10 0" emotion="stop3"/>
+  <Msg name="阿哥" string="…我还有其他事情要去做。|先走了。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="1 0" flip="true" emotion="stop4"/>
+  <Char id="lingling" pos="8 0" emotion="stop2"/>
+  <Msg name="凌凌" string="等一下！还没有回答我呢~！"/>
+  <Enter/>
+</Scene>

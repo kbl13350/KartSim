@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Nemo3"/>
+  <Char id="nemodao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="呼~~总算摆脱她了！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="居然到最后一刻都不放弃~~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="皮蛋" string="你们都还好吧？？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="stop1"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="宝宝" string="咳咳！！累死了~~|（肚子还是很疼…）"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="黑妞" string="嗯！！差点就被麦迪娅抓住了！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="黑妞" string="可是次元之门在哪里啊？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="卡洛儿说是在这附近…"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="皮蛋" string="你们听到什么声音没有？？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="宝宝" string="嗯…好像是从那边传出来的！！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="黑妞" string="声音越来越大了！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="皮蛋" string="我们去那里看看吧！！|没准次元之门就在那里~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="皮蛋" string="卡洛儿说…|次元之门开启之后很快就会关闭！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="皮蛋" string="我们要在关闭之前尽快出去！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="stop2"/>
+  <Char id="nemodizini" pos="14 0" emotion="stop1"/>
+  <Msg name="宝宝" string="你说什么？？|这么重要的事情你怎么现在才说！！|（哎呦，我的肚子！）"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="stop2"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="皮蛋" string="哈哈~现在还来得及~~|赶紧走吧！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="2 0" emotion="normal"/>
+  <Char id="nemobazzi" pos="10 0" emotion="normal"/>
+  <Char id="nemodizini" pos="14 0" emotion="normal"/>
+  <Msg name="皮蛋" string="我们来啦！！|繁荣山丘~~"/>
+  <Enter/>
+</Scene>

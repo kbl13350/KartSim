@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='147.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.08'
+	SteerConstraint='3.2'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.07'
+	EngineSound='chicken1'
+	
+	StartForwardAccelFactorItem='1.7'
+	StartBoosterTimeItem='1300'
+
+	SpecialSlotCapacity='2'
+	ItemSlotCapacity='3'
+
+	UseExtendedAfterBooster='true'
+	BoosterAccelFactorItem ='1.65'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.715'
+	TransformTime='200'
+
+	NormalBoosterTime='0'
+	TeamBoosterTime='100'
+	DriftMaxGauge='-550'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon_gold'
+	BoosterType0='8soon_gold'
+	BoosterType1='8soon_gold'
+	BoosterType2='85main'
+	BoosterType3='85main'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+
+	FirePort0='mod4a1'
+	FirePort1='mod4b1'
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '45'
+	DescStability ='41'
+	DescEngineGrade='1.25'
+	DescCornering='5'
+	DescEnchantCap = '30'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod4a' trailPort1='mod4b'/>
+</BodyParam>
+
+<!--별그대 치킨런 HT+ 140320 준고가 패키지 레어-->

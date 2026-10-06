@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='50'
+	BackwardAccelForce='65'
+	DragFactor='-0.028'
+	SteerConstraint='0.83'
+	DriftEscapeForce='100'
+	CornerDrawFactor='0.027'
+
+	EngineSound='minicooper1'
+	EnvMap='true'
+		DescBalance= '28'
+/>
+<!-- MINI G3 -->

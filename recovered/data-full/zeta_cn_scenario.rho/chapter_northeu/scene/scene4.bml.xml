@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for3"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="来来~~来跑一圈？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="这次肯定是我赢~~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="没门~|你就跟着我的影子吧~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" pos="8 0" emotion="stop1"/>
+  <Msg name="奇奇" string="怎么这么吵啊，|看来是繁荣山丘的小伙伴~在干嘛呢？"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="taki" pos="8 0" emotion="stop1"/>
+  <Msg name="奇奇" string="（咻~~）快去看看！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奇奇" string="你们好~|在干嘛呢？"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="额！！！|是外…外星人~~~"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="你…你好！！！|我叫皮蛋！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奇奇" string="别害怕~|我是来自北奥行星的奇奇~"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="啊~~~~我们正在比赛。|就是用赛车进行比赛。"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="奇奇" string="哇~~~好像很好玩哦。"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="当然~非常好玩！|现在我们正在比赛呢~~"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="那我们下次见吧~~|宝宝~~快出发啊~~"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="8 0" emotion="stop4"/>
+  <Msg name="奇奇" string="啊…啊~~好！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="taki" pos="8 0" emotion="stop1"/>
+  <Msg name="奇奇" string="皮蛋~~下次教我赛车！"/>
+  <Enter/>
+</Scene>

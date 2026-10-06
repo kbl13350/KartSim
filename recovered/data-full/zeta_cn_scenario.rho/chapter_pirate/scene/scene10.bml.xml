@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mine1"/>
+  <Char id="mobi" pos="8 0" emotion="stop6"/>
+  <Msg name="吉米" string="呼.. 这里应该安全。"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="没想到你会救我们… 谢谢，吉米。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="你什么时候醒来的？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="早就醒了… 又睡了一会儿…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="tutu" pos="8 0" emotion="stop3"/>
+  <Msg name="嘟嘟" string="在那边！！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="不好！被发现了！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="tutu" pos="8 0" emotion="stop4"/>
+  <Msg name="嘟嘟" string="吉米，你这个叛徒！！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="mobi" pos="5 0" emotion="stop4"/>
+  <Msg name="吉米" string="嘟嘟你这个混蛋！等着瞧！！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Msg name="..." string="哔哔。前方50米左转。"/>
+  <Enter/>
+  <Char id="mobi" pos="7 0" flip="true" emotion="stop9"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Char id="dao" pos="1 0" emotion="stop6"/>
+  <Msg name="皮蛋，黑妞，吉米" string="这是什么？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="stop2"/>
+  <Msg name="小强" string="哈哈。为了不在陌生的地方迷路而制造的“导航2000”，|现在可以发挥作用了。|大家跟着我走。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="stop4"/>
+  <Msg name="小强" string="来吧！“导航2000”！"/>
+  <Enter/>
+</Scene>

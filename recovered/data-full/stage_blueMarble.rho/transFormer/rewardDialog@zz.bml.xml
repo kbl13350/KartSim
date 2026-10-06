@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window texture="desert_01" leftTopTex="0 0" align="center">
+  <Panel windowRect="-800 -600 800 600" color="200 0 0 0" alphaBlend="true"/>
+  <Panel name="bg_0" leftTopTex="0 0" texture="desert_01" visible="false" alphaBlend="true"/>
+  <Panel name="bg_1" leftTopTex="0 0" texture="desert_02" visible="false" alphaBlend="true"/>
+  <Panel name="bg_2" leftTopTex="0 0" texture="forest" visible="false" alphaBlend="true"/>
+  <Panel name="bg_3" leftTopTex="0 0" texture="ghost" visible="false" alphaBlend="true"/>
+  <Panel name="bg_4" leftTopTex="0 0" texture="ice_01" visible="false" alphaBlend="true"/>
+  <Panel name="bg_5" leftTopTex="0 0" texture="ice_02" visible="false" alphaBlend="true"/>
+  <Panel name="bg_6" leftTopTex="0 0" texture="pirate_01" visible="false" alphaBlend="true"/>
+  <Panel name="bg_7" leftTopTex="0 0" texture="pirate_02" visible="false" alphaBlend="true"/>
+  <Panel name="bg_8" leftTopTex="0 0" texture="vill_01" visible="false" alphaBlend="true"/>
+  <Panel name="bg_9" leftTopTex="0 0" texture="vill_02" visible="false" alphaBlend="true"/>
+  <Label name="title" leftTopWH="150 105 110 20" fillTrans="true" multiLine="false" autoWrap="true" lineGap="1" textColor="black" text="title" textAlign="center" textRender="bold"/>
+  <Label name="body" leftTopWH="60 135 290 50" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="body" textAlign="center"/>
+  <Label name="rewardName" leftTopWH="150 265 110 20" fillTrans="true" multiLine="false" autoWrap="true" lineGap="1" textColor="white" text="body" textAlign="center"/>
+  <ItemWindow name="item" windowRect="170 190 240 260" itemCategory="jewel" itemId="1"/>
+  <ImageButton name="okButton" text="#sb(ok)" autoLoadImage="ok_0" leftTopTex="275 330" alphaBlend="true" textColor="white" textRender="bold"/>
+</Window>

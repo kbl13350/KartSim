@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='145.0'
+           BackwardAccelForce='110.0'
+           DragFactor='-0.072'
+           SteerConstraint='2.6'
+           DriftEscapeForce='400'
+           CornerDrawFactor='0.06'
+           TransAccelFactor='1.62'
+           UseTransformBooster='true'
+
+           BoosterBlur='true'
+           EngineSound='cotton6'
+
+           BoosterType='cotton6'
+           BoosterType0='default'
+           BoosterType1='default'
+
+           Port0='mod1b1'
+           Port1='mod1b2'
+           FirePort0='mod1a1'
+           FirePort1='mod1a2'
+           FirePort2='mod1a3'
+           FirePort3='mod1a4'           
+
+
+	DescBalance= '33'
+	DescStability ='32'
+	DescCornering='3'
+
+/>
+<!-- 20101203 대만 스노모빌 SR 한정판매-->

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BodyParam
+	ForwardAccelForce='141.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.073'
+	SteerConstraint='2.2'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.065'
+
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+	DriftMaxGauge='-1200'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.66'
+	TransformTime='700'
+
+	StartForwardAccelFactorSpeed = '1.2'
+	StartBoosterTimeSpeed='1200'           
+
+	motorcycleType='true'
+	BoosterBlur='true'
+	EngineSound='bike'
+
+	TachometerType='Tacho1'
+	TachometerName='bike'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zero5'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='cotton6'
+	BoosterType3='zero5'
+	BoosterType4='zero5'
+	Port0='mod3a'
+	Port1='mod3b'
+	FirePort0='mod5b'
+	FirePort1='mod6a'
+	FirePort2='mod6b'
+
+	DescBalance= '37'
+	DescStability ='30'
+	DescEngineGrade='1.2'
+	DescCornering='5'
+	DescEnchantCap = '30'
+/>
+
+<!-- 중국 블랙 스톰블레이드 Z7 가샤폰 레어 111027-->

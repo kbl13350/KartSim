@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh3"/>
+  <Char id="paul" pos="8 0" emotion="stop1"/>
+  <Msg name="解说员" string="这里是月光城的GP赛事现场！|车手们的竞速欲望很强烈！"/>
+  <Enter/>
+  <Char id="paul" pos="10 0" emotion="stop1"/>
+  <Msg name="解说员" string="种子选手皮蛋也来了~"/>
+  <Enter/>
+  <BackGround texture="mh1"/>
+  <Char id="paul" remove="true"/>
+  <Char id="dao" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="这届赛事的冠军是我的！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="我不会轻易放弃的！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Msg name="黑妞" string="本届赛事是从预选赛开始吧？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="对，预选拿第一才能晋级决赛！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop3"/>
+  <Msg name="宝宝" string="一定要小心，不要在预选赛中落选！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="9 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="预选要开始了!"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="快快，大家在决赛中见面！"/>
+  <Enter/>
+</Scene>

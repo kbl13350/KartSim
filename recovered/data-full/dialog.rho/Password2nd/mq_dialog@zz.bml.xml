@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="fullscreen">
+  <CaptionWindow name="createWindow" frame="CaptionDialog" windowRect="100 150 510 390" align="center" setCloseButton="cancelButton" visible="false">
+    <Label windowRect="15 10 385 40" frame="DisabledEditLabel" enable="false" name="bodyLabel" textAlign="hcenter" align="hcenter" textColor="black"/>
+    <Container windowRect="20 20 145 120">
+      <Window windowRect="14 48 20 54" frame="Bullet"/>
+      <Label windowRect="30 45 100 60" text="#sb(inputPassword2nd)"/>
+      <Window windowRect="14 78 20 84" frame="Bullet"/>
+      <Label windowRect="30 75 100 90" text="#sb(confirmPassword2nd)"/>
+      <Edit name="newPasswordEdit" windowRect="150 40 300 60" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" maxChar="32" passEdit="true"/>
+      <Edit name="newPasswordEditConfirm" windowRect="150 70 300 90" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" maxChar="32" passEdit="true"/>
+    </Container>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 370 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="okButton" windowRect="0 0 87 30" text="#sb(ok)"/>
+      <TextButton name="cancelButton" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+    </Container>
+  </CaptionWindow>
+  <CaptionWindow name="changeWindow" frame="CaptionDialog" windowRect="100 150 510 390" align="center" visible="false">
+    <Label windowRect="15 5 385 35" frame="DisabledEditLabel" enable="false" name="bodyLabel" textAlign="hcenter" align="hcenter" textColor="black"/>
+    <Container windowRect="20 7 145 120">
+      <Window windowRect="14 48 20 54" frame="Bullet"/>
+      <Label windowRect="30 45 100 60" text="#sb(originalPassword2nd)"/>
+      <Window windowRect="14 78 20 84" frame="Bullet"/>
+      <Label windowRect="30 75 100 90" text="#sb(newPassword2nd)"/>
+      <Window windowRect="14 108 20 114" frame="Bullet"/>
+      <Label windowRect="30 105 100 120" text="#sb(confirmNewPassword2nd)"/>
+      <Edit name="orgPasswordEdit" windowRect="150 40 300 60" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" maxChar="32" passEdit="true"/>
+      <Edit name="newPasswordEdit" windowRect="150 70 300 90" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" maxChar="32" passEdit="true"/>
+      <Edit name="newPasswordEditConfirm" windowRect="150 100 300 120" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" maxChar="32" passEdit="true"/>
+    </Container>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 370 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="okButton" windowRect="0 0 87 30" text="#sb(ok)"/>
+      <TextButton name="cancelButton" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+    </Container>
+  </CaptionWindow>
+</Container>

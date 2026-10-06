@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="recNotice" leftTopWH="655 3 410 30" adjust="535 0" align="right" enable="false">
+  <Label name="text" windowSize="355 25" adjust="-10 0" text="(F3 종료)" textAlign="right;vcenter" textColor="white" textColor2="black" textRender="outline"/>
+  <CharPanel name="img" windowSize="45 20" adjust="352 3" texture="rec@zz" alphaBlend="true" fontSize="45 20" fontPos="0 0" fontStr="0123" text="0"/>
+</Window>

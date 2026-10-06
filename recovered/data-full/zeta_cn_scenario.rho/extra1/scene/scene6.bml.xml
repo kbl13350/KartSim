@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des2"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="呼！我说的吧，我是最强的！|哇哈哈哈哈哈哈哈哈哈!!"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="jakob1" pos="3 0" emotion="stop1"/>
+  <Msg name="波利斯 雅克布" string="居然……我们会输……|弟弟！第二套作战方案"/>
+  <Enter/>
+  <Char id="jakob2" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="波诺 雅克布" string="是！第二套作战方案"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="啊……|皮蛋！那两个卑鄙的家伙抢走了黄金指南针！"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="什么！|你们居然不遵守约定！！真不要脸！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="jakob1" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="波利斯 雅克布" string="哈哈，谢谢夸奖！谢谢你们的厚礼，哈哈，886|今天的帐下次见面的时候，再慢慢和你们算。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="这些卑鄙的家伙！|哪里逃！"/>
+  <Enter/>
+</Scene>

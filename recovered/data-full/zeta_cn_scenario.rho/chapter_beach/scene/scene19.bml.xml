@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach8"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="黑妞~|阿嘉还是无精打采？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="嗯。好像打击很大…|谁都没曾想美玲是…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="alma" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="路易" string="阿嘉一直很喜欢美玲…|所以打击更大…"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="但是阿嘉的车是不是还得去找啊？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="martin" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="对！不能就在这一蹶不振！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="吓我一跳！|阿嘉，看起来重新振作起来了吗！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="不能就此罢休！|美玲…肯定有什么难言之隐…"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop1"/>
+  <Msg name="黑妞" string="对~阿嘉！肯定有什么理由~|加油！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="好！我要重新和暴走联盟队长对决！|我要揭开事实…！"/>
+  <Enter/>
+</Scene>

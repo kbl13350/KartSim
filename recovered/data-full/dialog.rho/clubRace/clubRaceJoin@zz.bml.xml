@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <CaptionWindow name="bg" frame="CaptionDialog" windowRect="0 0 406 187" caption="#sb(clubRaceCaption)" captionColor="black" align="center" setCloseButton="" visible="false">
+    <Panel windowRect="0 23 350 22" align="hcenter" color="255 255 0 0" alphaBlend="true"/>
+    <ColorLabel name="matching" windowRect="0 23 350 22" align="hcenter" multiLine="true" autoWrap="true" lineGap="1" textRender="bold16" textColor="black" text="#sb(clubRaceWaitMatch)" textAlign="center"/>
+    <Window leftTopWH="0 0 350 1" frame="HSection" align="hcenter;bottom" adjust="0 63"/>
+    <TextButton name="cancelMatch" leftTopWH="0 0 132 42" text="#sb(cancel)" align="hcenter,bottom" adjust="0 6" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131" altTextRender="outline"/>
+  </CaptionWindow>
+</Container>

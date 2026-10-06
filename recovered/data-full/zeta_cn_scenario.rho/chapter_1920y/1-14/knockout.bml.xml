@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="mine_I03" laps="3" isFixedKart="true" fixedKartId="794" isFixedChar="true" fixedCharId="102" type="lap" isFixedCahr="true">
+    <LevelContent level="0" ksv="1920_1-14" startOffset="2000">
+      <ShadowKart characterId="5" uniformId="0" kartId="39" colorId="7" dyeId="7" characterName="胖墩"/>
+      <ShadowKart characterId="6" uniformId="0" kartId="40" colorId="9" dyeId="9" characterName="蓝蓝"/>
+      <ShadowKart characterId="3" uniformId="0" kartId="37" colorId="2" dyeId="2" characterName="黑妞"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="vpInfo" leftTopWH="2 8 100 100">
+  <Panel windowRect="-12 -16 340 425" color="230 255 255 255" alphaBlend="true"/>
+  <Window leftTopWH="-8 -14 350 71">
+    <Window windowRect="0 0 347 72">
+      <Panel leftTopWH="0 0 347 71" texture="myinfo@zz"/>
+      <Panel name="cur" leftTopWH="28 10 51 51" texture="" alphaBlend="true" visible="false"/>
+      <Panel name="curGrade" leftTopWH="175 15 37 17" texture="" alphaBlend="true" visible="false"/>
+      <CharPanel name="curVp" leftTopWH="272 15 60 15" texture="number_01" fontPos="0 0" fontSize="11 15" fontStr="1234567890" alphaBlend="true" text="9999" rightAlign="true"/>
+      <CharPanel name="win" leftTopWH="167 46 60 15" texture="number_01" fontPos="0 0" fontSize="11 15" fontStr="1234567890" alphaBlend="true" text="9999" rightAlign="true"/>
+      <CharPanel name="lose" leftTopWH="248 46 60 15" texture="number_01" fontPos="0 0" fontSize="11 15" fontStr="1234567890" alphaBlend="true" text="9999" rightAlign="true"/>
+    </Window>
+    <Window windowRect="0 0 347 72" name="gameLeftPanel">
+      <Panel leftTopWH="0 0 347 71" texture="myinfo_2@zz"/>
+      <CharPanel name="gameLeft" leftTopWH="157 38 50 21" texture="number_02" fontPos="0 0" fontSize="17 21" fontStr="0123456789" alphaBlend="true" text="99" rightAlign="true"/>
+    </Window>
+  </Window>
+  <Window name="rankingCont" leftTopWH="-8 60 346 400">
+    <Panel name="rankingBg" leftTopWH="0 33 344 305" align="hcenter" texture="ranking@zz" alphaBlend="true"/>
+    <Panel name="rankingLine" leftTopWH="8 86 321 227" texture="ranking_line" alphaBlend="true"/>
+    <Tab name="versusMode_pop" align="hcenter" windowSize="350 300">
+      <TabPage name="cat_topRank" leftTopWH="2 33 344 305">
+        <ColorLabel leftTopWH="2 7 44 10" text="#sb(rank)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <ColorLabel leftTopWH="45 7 34 10" text="#sb(grade)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <ColorLabel leftTopWH="75 7 110 10" text="#sb(rid)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <ColorLabel leftTopWH="179 7 49 10" text="#sb(point)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <ColorLabel leftTopWH="218 7 92 10" text="#sb(gameRecord)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <Window name="topSelect" windowRect="0 28 342 280">
+          <GridSelectorEx name="topList" leftTopWH="0 0 342 250" alignSize="1" maxLine="10" alignMargin="0 5" linePaging="false"/>
+          <ScrollBar name="topListBar" leftTopWH="0 0 12 239" align="right;vcenter" scrollType="vertical" visible="false"/>
+        </Window>
+      </TabPage>
+      <TabPage name="cat_nearRank" leftTopWH="2 33 344 305">
+        <ColorLabel leftTopWH="2 7 44 10" text="#sb(rank)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <ColorLabel leftTopWH="45 7 34 10" text="#sb(grade)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <ColorLabel leftTopWH="75 7 110 10" text="#sb(rid)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <ColorLabel leftTopWH="179 7 49 10" text="#sb(point)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <ColorLabel leftTopWH="218 7 92 10" text="#sb(gameRecord)" textAlign="center" textColor="255 252 252 252" textColor2="255 18 41 60" textRender="outline" font="scalex2" enable="false"/>
+        <Window name="nearSelect" windowRect="0 28 342 280">
+          <GridSelectorEx name="nearList" leftTopWH="0 0 342 250" alignSize="1" maxLine="10" alignMargin="0 5" linePaging="false"/>
+        </Window>
+      </TabPage>
+      <ImageBoard leftTopWH="3 27 344 2" alphaBlend="true" image="blueline" enable="false"/>
+      <TabMenu name="cats" leftTopWH="0 0 335 29" align="hcenter">
+        <ImageButton name="cat_topRank" leftTopTex="0 0" autoLoadImage="btn_tab2_" text="#sb(highRanker)" textAlign="center" textRender="bold" textColor="255 59 77 99" overTextColor="255 20 162 236" clickedTextColor="255 22 92 159" disabledTextColor="255 22 92 159" alphaBlend="true">
+          <Label name="tooltip_topRank" windowRect="0 -22 5 17" frame="DefaultTooltip" marginRect="0 0 0 -7" text="#sb(toolTipTopRank)" autoSizing="true" textColor="white" depthBias="1024.0" enable="false" visible="false" multiLine="true" align="hcenter"/>
+        </ImageButton>
+        <ImageButton name="cat_nearRank" leftTopTex="108 0" autoLoadImage="btn_tab2_" text="#sb(nearRanker)" textAlign="center" textRender="bold" textColor="255 59 77 99" overTextColor="255 20 162 236" clickedTextColor="255 22 92 159" disabledTextColor="255 22 92 159" alphaBlend="true">
+          <Label name="tooltip_nearRank" windowRect="0 -22 5 17" frame="DefaultTooltip" marginRect="0 0 0 -7" text="#sb(toolTipNearRank)" autoSizing="true" textColor="white" depthBias="1024.0" enable="false" visible="false" multiLine="true" align="hcenter"/>
+        </ImageButton>
+      </TabMenu>
+    </Tab>
+    <Panel name="vpDetailImage" leftTopWH="-3 -3 354 345" enable="false" visible="false" alphaTest="true"/>
+  </Window>
+</Container>

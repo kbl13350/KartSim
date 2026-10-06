@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="充满活力的一天" synopsis="经历了一个无所事事的夏天，|皮蛋决定从今天开始去小强的训练场完成一系列魔鬼特训。" howToClear="请完成指定的赛道" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="小强的训练场" synopsis="在小强的训练场，皮蛋遇到了久未见面的朋友们。|黑妞好像又变漂亮了…" howToClear="请在规定时间内完成比赛" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardStockId="1126"/>
+  </Step>
+  <Step id="3" type="32" mode="single" preConditionId="2" title="魔鬼训练第一课" synopsis="虽然完成了基本测试，但这样的训练强度是远远不够的，|魔鬼训练才刚刚开始。" howToClear="请在规定时间内通过所有检测点" missionText="通过所有检测点 %d回 / %d回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="4" type="31" mode="single" preConditionId="3" title="魔鬼训练第二课" synopsis="皮蛋终于追赶上了朋友们的训练进度。|但接下来的训练课程才是真正意义上的“魔鬼”。" howToClear="在不落后其它车手的情况下完成比赛。" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="5" type="1" mode="multi" preConditionId="4" title="蓝蓝的问候" synopsis="蓝蓝带来的点心为残酷的训练带来一些温馨之意，|朋友们在休息时间贪婪的享受着美味！" howToClear="请在多人游戏中行驶5回。" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="13598" achievementCount="5"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="魔鬼出现！" synopsis="睡梦中的皮蛋怎么也没想到正真的魔鬼不期而至，|海盗船长和手下们绑架了午睡中的朋友们！|在返回的途中，|一直较劲的吉米和嘟嘟决定来一场男人间的对决！" howToClear="请在跟嘟嘟的比赛中胜利。" missionText="比赛胜利 %d回 / %d回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="1760"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="睡不醒的宝宝" synopsis="宝宝张开惺忪的睡眼，海盗水手被他滑稽的形象逗乐了，|提出追逐赛要求。宝宝眨了眨眼镜，|欣然接受！" howToClear="请在规定时间内赶上海盗水手。|落后30米以上视为失败。" missionText="追赶成功 %d回 / %d回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="11732"/>
+  </Step>
+  <Step id="8" type="31" mode="single" preConditionId="7" title="吉米VS宝宝" synopsis="海盗水手万万没有想到宝宝睡眼惺忪的样子是生来就如此！|同时，嘟嘟也在刺激吉米和他进行第二场比赛… |他的脸上浮现出一丝诡异的笑容。" howToClear="请在规定时间内赶上吉米和海盗水手。" missionText="追赶成功 %d回/ %d回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="13868"/>
+  </Step>
+  <Step id="9" type="32" mode="single" preConditionId="8" title="嘟嘟的阴谋！" synopsis="吉米和宝宝英雄相惜。地面突然崩塌！这一定是嘟嘟的阴谋，|当务之急要带着皮蛋他们逃离陷阱。" howToClear="请以规定速度通过所有检测。" missionText="完成目标 %d回/ %d回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="1755"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="逃脱！" synopsis="糟糕！找不到出路了，这一定是嘟嘟的又一阴谋！关键时刻，|小强利用自己丰富的经验带领大家脱离了危机！" howToClear="请在规定时间内甩掉嘟嘟。|*距离0米时失败。" missionText="逃脱成功 %d回 / %d回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10">
+    <Level difficult="0" rewardStockId="1756"/>
+  </Step>
+  <Step id="11" type="30" mode="single" preConditionId="10" title="蓝蓝的决定" synopsis="意外之中，黑妞听到海盗船长和蓝蓝的对话。|暗恋皮蛋已久的蓝蓝居然作出了一个愚蠢的决定|——和海盗船长联手！得知蓝蓝在午餐中使用了安眠药后，|黑妞不顾一切的冲了出去……" howToClear="在规定时间内并少于撞击次数的情况下完成比赛" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="11">
+    <Level difficult="0" rewardStockId="1128"/>
+  </Step>
+  <Step id="12" type="30" mode="single" preConditionId="11" title="追击蓝蓝！" synopsis="眼看黑妞就要追上了蓝蓝，但葱头横空出现救走了她！" howToClear="请在跟葱头的比赛中胜利。" missionText="比赛胜利 %d回/ %d回" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="12">
+    <Level difficult="0" rewardLucci="2000"/>
+  </Step>
+  <Step id="13" type="15" mode="multi" preConditionId="12" title="逃！" synopsis="终于追上了蓝蓝，黑妞希望蓝蓝解释所发生的一切。|这时海盗船长悄然逼近！" howToClear="请在多人游戏中行驶30km以上。" missionText="目标 %.1fKm/%.1fKm" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="13">
+    <Level difficult="0" achievementCount="30" rewardStockId="13598"/>
+  </Step>
+  <Step id="14" type="34" mode="single" preConditionId="13" title="皮蛋的吊坠！" synopsis="皮蛋发现了海盗船长竟然带着自己父亲留下的吊坠。|这是皮蛋的宝贝，一定要抢回来！" howToClear="请在道具战中胜海盗团员。" missionText="胜利 %d回/ %d回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="14">
+    <Level difficult="0" rewardStockId="1762"/>
+  </Step>
+  <Step id="15" type="32" mode="single" preConditionId="14" title="权宜之计" synopsis="吉米劝告皮蛋君子报仇，十年不晚，|暂且逃离海贼岛再做打算。|皮蛋对吉米的友情感动不已，决定暂且离开，再做打算！" howToClear="请在规定时间内通过所有检测点。" missionText="通过所有检测点 %d回/ %d回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="15">
+    <Level difficult="0" rewardStockId="13869"/>
+  </Step>
+  <Step id="16" type="31" mode="single" preConditionId="15" title="爆发！胖墩！" synopsis="眼看朋友们要被嘟嘟一伙给追上了。|胖墩自告奋勇，为朋友们断后！" howToClear="请在规定时间内追上海盗团员。" missionText="追赶成功 %d回 / %d回" addToGarage="true" visualScene="scene16" readyStage="1-16" stepTitleId="16">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="17" type="34" mode="single" preConditionId="16" title="意外的发现！" synopsis="在逃脱的途中意外发现了海盗的藏宝之处！|绝不能把宝藏留给海盗危害百姓。|蓝蓝决定跟吉米周旋，让大家转移宝藏！" howToClear="请在道具战中胜利。" missionText="胜利 %d回 / %d回" addToGarage="true" visualScene="scene17" readyStage="1-17" stepTitleId="17">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="18" type="30" mode="single" preConditionId="17" title="海盗船长的追击" synopsis="听说宝藏被抢，海盗船长怎能甘心。|急红了眼的他使出看家本领疯狂的追赶皮蛋！" howToClear="请在规定时间内甩掉海盗船长。|*距离0米时失败。" missionText="逃脱成功 %d回 / %d回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="18">
+    <Level difficult="0" rewardStockId="13597"/>
+  </Step>
+  <Step id="19" type="31" mode="single" preConditionId="18" title="命运的岔口" synopsis="皮蛋他们遇到了道路的岔口。|该如何选择呢？这是至关重要的决定阿！" howToClear="请在跟海盗团员的比赛中胜利" missionText="胜利 %d回 / %d回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="19">
+    <Level difficult="0" rewardStockId="1759"/>
+  </Step>
+  <Step id="20" type="34" mode="single" preConditionId="19" title="最后的决战！" synopsis="这条路竟是吉米把关。吉米想偷偷放走皮蛋他们，|但海盗船长也追上来了！决战在所难免！" howToClear="请在道具赛中战胜海盗船长" missionText="胜利 %d回 / %d回" addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="20A" otherWayLockId="21" isFinalStep="true">
+    <Level difficult="0" rewardStockId="13595"/>
+  </Step>
+  <Step id="21" type="30" mode="single" preConditionId="19" title="最后的决战！" synopsis="这条路竟是吉米把关。吉米想偷偷放走皮蛋他们，|但海盗船长也追上来了！决战在所难免！" howToClear="请在跟海盗船长的比赛中胜利" missionText="比赛胜利 %d回 / %d回" addToGarage="true" visualScene="scene21" readyStage="1-21" stepTitleId="20B" otherWayLockId="20" isFinalStep="true">
+    <Level difficult="0" rewardStockId="13595"/>
+  </Step>
+</StepList>

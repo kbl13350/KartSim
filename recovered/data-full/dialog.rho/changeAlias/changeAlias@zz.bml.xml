@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="0 0 250 140" caption="#sb(aliasCaption)" captionPos="0 1" captionColor="black" align="center" setCloseButton="cancelButton">
+  <Label name="change_text" windowRect="8 6 9 20" text=""/>
+  <Label name="static1" windowRect="8 36 9 50" text="#sb(alias)"/>
+  <Edit name="AliasEdit" windowRect="35 30 238 52" maxChar="32"/>
+  <TextButton name="okButton" windowRect="10 55 112 77" text="#sb(ok)" altTextRender="outline"/>
+  <TextButton name="cancelButton" windowRect="135 55 215 77" text="#sb(cancel)" altTextRender="outline"/>
+</CaptionWindow>

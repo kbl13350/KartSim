@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Window name="mainBG" windowSize="800 600" align="center">
+    <ImageBoard name="backGround_newUser" windowSize="1076 840" image="backGround_newUser@zz" adjust="0 0" align="center" alphaBlend="true"/>
+    <Container name="dialogContainer" windowSize="1076 840" adjust="0 0" align="center">
+      <Window name="slots" windowSize="1042 458" adjust="0 254">
+        <Panel name="slot_1" windowSize="294 428" adjust="68 0" texture="slot_before" alphaBlend="true" align="left;center">
+          <Label name="attendCount" windowSize="294 40" adjust="0 0" enable="true" text="#sb(attendCount)" textRender="bold14" textColor="255 102 102 102" multiLine="false" autoWrap="true" textAlign="center"/>
+          <Panel name="missionProgressNormal" windowSize="290 191" adjust="0 42" texture="missionProgressPanel" alphaBlend="true" visible="false" align="top;center"/>
+          <ItemWindow name="normal" leftTopWH="0 40 180 180" stockId="1" visible="false" align="hcenter">
+            <Label name="normalRewardName" leftTopWH="0 160 290 20" enable="true" align="hcenter" textRender="bold14" textColor="255 64 75 95" multiLine="true" autoWrap="true" textAlign="center" textRolling="true"/>
+          </ItemWindow>
+          <Label name="rewardItemTypeNormal" windowSize="290 20" adjust="0 41" enable="true" visible="true" align="hcenter" text="#sb(attendItem)" textRender="bold14" textAlign="center" textColor="255 255 255 255"/>
+          <Panel name="alreadyGetRewardNormal" windowSize="290 191" adjust="2 42" texture="alreadyRewardGet@zz" alphaBlend="true" visible="false"/>
+          <Panel name="missionSuccess" windowSize="290 191" adjust="2 42" texture="slotMissionSuccess@zz" visible="false" alphaBlend="true"/>
+          <Panel name="missionProgressUpgrade" windowSize="290 191" adjust="0 2" texture="missionProgressPanel" alphaBlend="true" visible="false" align="bottom;center"/>
+          <ItemWindow name="upgrade" leftTopWH="0 234 180 180" stockId="1" visible="false" align="hcenter">
+            <Label name="upgradeRewardName" leftTopWH="0 160 290 20" enable="true" align="hcenter" textRender="bold14" textColor="255 64 75 95" multiLine="true" autoWrap="true" textAlign="center" textRolling="true"/>
+          </ItemWindow>
+          <Label name="rewardItemTypeUpgrade" windowSize="290 20" adjust="0 234" enable="true" visible="true" align="hcenter" text="#sb(missionSuccessItem)" textRender="bold14" textAlign="center" textColor="255 255 255 255"/>
+          <Panel name="alreadyGetRewardUpgrade" windowSize="290 191" adjust="2 235" texture="alreadyRewardGet@zz" alphaBlend="true" visible="false"/>
+          <Panel name="missionFail" windowSize="290 191" adjust="2 235" texture="slotMissionFail@zz" visible="false" alphaBlend="true"/>
+          <Panel name="today" windowSize="294 443" adjust="0 -14" texture="todayPointer@zz" alphaBlend="true" align="left;top" visible="false" enable="false"/>
+          <Panel name="tomorrow" windowSize="64 26" adjust="0 -14" texture="tomorrowPointer@zz" alphaBlend="true" align="center;top" visible="false"/>
+        </Panel>
+        <Panel name="slot_2" windowSize="294 428" adjust="0 0" texture="slot_curent" alphaBlend="true" align="center">
+          <Label name="attendCount" windowSize="294 40" adjust="0 0" enable="true" text="#sb(attendCount)" textRender="bold14" textColor="255 102 102 102" multiLine="false" autoWrap="true" textAlign="center"/>
+          <Panel name="missionProgressNormal" windowSize="290 191" adjust="0 42" texture="missionProgressPanel" alphaBlend="true" visible="false" align="top;center"/>
+          <ItemWindow name="normal" leftTopWH="0 40 180 180" stockId="1" visible="false" align="hcenter">
+            <Label name="normalRewardName" leftTopWH="0 160 290 20" enable="true" align="hcenter" textRender="bold14" textColor="255 64 75 95" multiLine="true" autoWrap="true" textAlign="center" textRolling="true"/>
+          </ItemWindow>
+          <Label name="rewardItemTypeNormal" windowSize="290 20" adjust="0 41" enable="true" visible="true" align="hcenter" text="#sb(attendItem)" textRender="bold14" textAlign="center" textColor="255 255 255 255"/>
+          <Panel name="alreadyGetRewardNormal" windowSize="290 191" adjust="2 42" texture="alreadyRewardGet@zz" alphaBlend="true" visible="false"/>
+          <Panel name="missionSuccess" windowSize="290 191" adjust="2 42" texture="slotMissionSuccess@zz" visible="false" alphaBlend="true"/>
+          <Play1SPanel name="normalReceiveEffect" scene="미션출석체크_보상연출" windowSize="290 191" adjust="0 42" align="hcenter" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3 0" defaultSpotPos="0 0 0" zoom="1.8" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false"/>
+          <Panel name="missionProgressUpgrade" windowSize="290 191" adjust="0 2" texture="missionProgressPanel" alphaBlend="true" visible="false" align="bottom;center"/>
+          <ItemWindow name="upgrade" leftTopWH="0 234 180 180" stockId="1" visible="false" align="hcenter">
+            <Label name="upgradeRewardName" leftTopWH="0 160 290 20" enable="true" align="hcenter" textRender="bold14" textColor="255 64 75 95" multiLine="true" autoWrap="true" textAlign="center" textRolling="true"/>
+          </ItemWindow>
+          <Label name="rewardItemTypeUpgrade" windowSize="290 20" adjust="0 234" enable="true" visible="true" align="hcenter" text="#sb(missionSuccessItem)" textRender="bold14" textAlign="center" textColor="255 255 255 255"/>
+          <Panel name="alreadyGetRewardUpgrade" windowSize="290 191" adjust="2 235" texture="alreadyRewardGet@zz" alphaBlend="true" visible="false"/>
+          <Panel name="missionFail" windowSize="290 191" adjust="2 235" texture="slotMissionFail@zz" visible="false" alphaBlend="true"/>
+          <Play1SPanel name="upgradeReceiveEffect" scene="미션출석체크_보상연출" windowSize="290 191" adjust="0 235" align="hcenter" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3 0" defaultSpotPos="0 0 0" zoom="1.8" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false"/>
+          <Panel name="today" windowSize="294 443" adjust="0 -14" texture="todayPointer@zz" alphaBlend="true" align="left;top" visible="false" enable="false"/>
+          <Panel name="tomorrow" windowSize="64 26" adjust="0 -14" texture="tomorrowPointer@zz" alphaBlend="true" align="center;top" visible="false"/>
+        </Panel>
+        <Panel name="slot_3" windowSize="294 428" adjust="68 0" texture="slot_after" alphaBlend="true" align="right;center">
+          <Label name="attendCount" windowSize="294 40" adjust="0 0" enable="true" text="#sb(attendCount)" textRender="bold14" textColor="255 102 102 102" multiLine="false" autoWrap="true" textAlign="center"/>
+          <Panel name="missionProgressNormal" windowSize="290 191" adjust="0 42" texture="missionProgressPanel" alphaBlend="true" visible="false" align="top;center"/>
+          <ItemWindow name="normal" leftTopWH="0 40 180 180" stockId="1" visible="false" align="hcenter">
+            <Label name="normalRewardName" leftTopWH="0 160 290 20" enable="true" align="hcenter" textRender="bold14" textColor="255 64 75 95" multiLine="true" autoWrap="true" textAlign="center" textRolling="true"/>
+          </ItemWindow>
+          <Label name="rewardItemTypeNormal" windowSize="290 20" adjust="0 41" enable="true" visible="true" align="hcenter" text="#sb(attendItem)" textRender="bold14" textAlign="center" textColor="255 255 255 255"/>
+          <Panel name="alreadyGetRewardNormal" windowSize="290 191" adjust="2 42" texture="alreadyRewardGet@zz" alphaBlend="true" visible="false"/>
+          <Panel name="missionSuccess" windowSize="290 191" adjust="2 42" texture="slotMissionSuccess@zz" visible="false" alphaBlend="true"/>
+          <Panel name="missionProgressUpgrade" windowSize="290 191" adjust="0 2" texture="missionProgressPanel" alphaBlend="true" visible="false" align="bottom;center"/>
+          <Play1SPanel name="missionUpgradeEffect" scene="m_지급예정" windowSize="290 191" adjust="0 235" align="hcenter" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3 0" defaultSpotPos="0 0 0" zoom="1.8" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false" playTick="2000"/>
+          <ItemWindow name="upgrade" leftTopWH="0 234 180 180" stockId="1" visible="false" align="hcenter">
+            <Label name="upgradeRewardName" leftTopWH="0 160 290 20" enable="true" align="hcenter" textRender="bold14" textColor="255 64 75 95" multiLine="true" autoWrap="true" textAlign="center" textRolling="true"/>
+          </ItemWindow>
+          <Label name="rewardItemTypeUpgrade" windowSize="290 20" adjust="0 234" enable="true" visible="true" align="hcenter" text="#sb(missionSuccessItem)" textRender="bold14" textAlign="center" textColor="255 255 255 255"/>
+          <Panel name="alreadyGetRewardUpgrade" windowSize="290 191" adjust="2 235" texture="alreadyRewardGet@zz" alphaBlend="true" visible="false"/>
+          <Panel name="missionFail" windowSize="290 191" adjust="2 235" texture="slotMissionFail@zz" visible="false" alphaBlend="true"/>
+          <Panel name="today" windowSize="294 443" adjust="0 -14" texture="todayPointer@zz" alphaBlend="true" align="left;top" visible="false" enable="false"/>
+          <Panel name="tomorrow" windowSize="64 26" adjust="0 -14" texture="tomorrowPointer@zz" alphaBlend="true" align="center;top" visible="false"/>
+        </Panel>
+        <Panel name="slotFirst" windowSize="294 428" adjust="68 0" texture="slotFirst" alphaBlend="true" align="left;center">
+          <Label windowSize="294 40" adjust="0 0" enable="true" text="#sb(missionAttendTip)" textRender="bold14" textColor="255 64 75 95" multiLine="false" autoWrap="true" textAlign="center"/>
+          <Window windowSize="294 180" adjust="0 240">
+            <Label name="missionAttendTip1" leftTopWH="0 6 294 40" multiLine="true" autoWrap="true" lineGap="1" textRender="bold16" textColor="255 72 106 163" text="#sb(missionAttendTip1)" textAlign="center"/>
+            <Label name="missionAttendDesc1" leftTopWH="0 40 294 40" multiLine="true" autoWrap="true" lineGap="1" textRender="bold14" textColor="255 88 105 129" text="#sb(missionAttendTipDesc1)" textAlign="center"/>
+            <Label name="missionAttendTip2" leftTopWH="0 84 294 40" multiLine="true" autoWrap="true" lineGap="1" textRender="bold16" textColor="255 72 106 163" text="#sb(missionAttendTip2)" textAlign="center"/>
+            <Label name="missionAttendDesc2" leftTopWH="0 120 294 40" multiLine="true" autoWrap="true" lineGap="1" textRender="bold14" textColor="255 88 105 129" text="#sb(missionAttendTipDesc2)" textAlign="center"/>
+          </Window>
+        </Panel>
+        <Panel name="slotLast" windowSize="294 428" adjust="68 0" texture="slotLast" alphaBlend="true" align="right;center">
+          <Label windowSize="294 40" adjust="0 0" enable="true" text="#sb(missionAttendTip)" textRender="bold14" textColor="255 64 75 95" multiLine="false" autoWrap="true" textAlign="center"/>
+          <Window windowSize="294 388" adjust="0 40">
+            <Label name="missionAttendEnd" leftTopWH="0 0 294 40" align="center" multiLine="true" autoWrap="true" lineGap="1" textRender="bold14" textColor="255 255 255 255" text="#sb(missionAttendEnd)" textAlign="center"/>
+          </Window>
+        </Panel>
+      </Window>
+      <ImageButton name="leftBtn" leftTopTex="44 74" adjust="-6 60" autoLoadImage="left_0" alphaBlend="true" alphaTest="true" align="left;center" visible="true"/>
+      <ImageButton name="rightBtn" leftTopTex="44 74" adjust="-6 60" autoLoadImage="right_0" alphaBlend="true" alphaTest="true" align="right;center" visible="true"/>
+      <Window name="missionInfoWnd" leftTopWH="16 710 1042 130">
+        <Label name="lblMissionTitle" windowSize="715 58" adjust="200 26" textRender="bold20" enable="true" textColor="255 95 76 16" multiLine="true" autoWrap="true" textAlign="center"/>
+        <Label name="lblMissionCount" windowSize="715 22" adjust="200 93" textRender="bold14" enable="false" textColor="255 255 226 72" autoWrap="true" multiLine="true" textAlign="center"/>
+        <Play1SPanel name="missionInfoWndEffect" scene="미션출석체크_하단" windowSize="715 58" adjust="200 26" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -7 0" defaultSpotPos="0 0 0" zoom="1.8" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false"/>
+        <Panel name="missionSuccessStar" leftTopTex="954 36" texture="missionSuccessStar" visible="true" alphaBlend="true"/>
+        <Label name="missionSuccessStr" windowSize="94 20" adjust="930 94" enable="true" text="#sb(missionSuccess)" textRender="bold14" textColor="255 119 92 4" autoWrap="true" multiLine="true" textAlign="center"/>
+        <Play1SPanel name="missionSuccessStarEffect" scene="m_star" windowSize="148 148" adjust="904 -15" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3 0" defaultSpotPos="0 0 0" zoom="2" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false" playTick="1000"/>
+      </Window>
+      <Container name="rewardBannerContainer" leftTopWH="392 74 614 168" visible="true">
+        <ColorLabel name="infoLabel_front" windowSize="476 34" adjust="-73 0" text="" textColor="255 87 49 12" textRender="bold16" textAlign="center" visible="true" enable="true"/>
+        <ColorLabel name="infoLabel_emphasis" windowSize="476 34" adjust="135 -1" text="" textColor="255 255 255 255" textColor2="255 104 52 20" textRender="outline16" textAlign="center" visible="true" enable="true"/>
+        <ColorLabel name="infoLabel_rest" windowSize="476 34" adjust="212 -1" text="" textColor="255 87 49 12" textRender="bold16" textAlign="center" visible="true" enable="true"/>
+        <ImageButton name="rewardBannerButton1" leftTopTex="5 42" autoLoadImage="banner_listitem_1_" alphaBlend="true" visible="true">
+          <ItemWindow name="rewardBannerItem" leftTopWH="0 0 200 122" stockId="27864" visible="true" align="center" enable="false">
+            <Label name="rewardBannerItemName" leftTopWH="0 0 200 20" adjust="0 4" enable="true" align="bottom;hcenter" textRender="outline14" textColor="white" textColor2="black" multiLine="true" autoWrap="true" text="StockName(100 个)" textAlign="center" textRolling="true"/>
+          </ItemWindow>
+          <Panel name="rewardBannerTagPanel" leftTopTex="1 1" texture="banner_listitem_1_tag" visible="true" alphaBlend="true"/>
+          <Panel name="rewardBannerTextPanel" leftTopTex="34 4" texture="banner_listitem_1_tagtext" visible="true" alphaBlend="true"/>
+          <CharPanel name="rewardBannerNumPanel" leftTopTex="13 2" texture="banner_listitem_1_num" alphaBlend="true" fontSize="16 22" fontPos="0 0" fontStr="1234567890" text="5" spaceOffset="-2"/>
+        </ImageButton>
+        <ImageButton name="rewardBannerButton2" leftTopTex="208 42" autoLoadImage="banner_listitem_2_" alphaBlend="true" visible="true">
+          <ItemWindow name="rewardBannerItem" leftTopWH="0 0 200 122" stockId="27829" visible="true" align="center" enable="false">
+            <Label name="rewardBannerItemName" leftTopWH="0 0 200 20" adjust="0 4" enable="true" align="bottom;hcenter" textRender="outline14" textColor="white" textColor2="black" multiLine="true" autoWrap="true" text="StockName(100 个)" textAlign="center" textRolling="true"/>
+          </ItemWindow>
+          <Panel name="rewardBannerTagPanel" leftTopTex="1 1" texture="banner_listitem_2_tag" visible="true" alphaBlend="true"/>
+          <Panel name="rewardBannerTextPanel" leftTopTex="34 4" texture="banner_listitem_2_tagtext" visible="true" alphaBlend="true"/>
+          <CharPanel name="rewardBannerNumPanel" leftTopTex="11 2" texture="banner_listitem_2_num" alphaBlend="true" fontSize="16 22" fontPos="0 0" fontStr="1234567890" text="10" spaceOffset="-2"/>
+        </ImageButton>
+        <ImageButton name="rewardBannerButton3" leftTopTex="412 42" autoLoadImage="banner_listitem_3_" alphaBlend="true" visible="true">
+          <ItemWindow name="rewardBannerItem" leftTopWH="0 0 200 122" stockId="27826" visible="true" align="center" enable="false">
+            <Label name="rewardBannerItemName" leftTopWH="0 0 200 20" adjust="0 4" enable="true" align="bottom;hcenter" textRender="outline14" textColor="white" textColor2="black" multiLine="true" autoWrap="true" text="StockName(100 个)" textAlign="center" textRolling="true"/>
+          </ItemWindow>
+          <Panel name="rewardBannerTagPanel" leftTopTex="1 1" texture="banner_listitem_3_tag" visible="true" alphaBlend="true"/>
+          <Panel name="rewardBannerTextPanel" leftTopTex="34 4" texture="banner_listitem_3_tagtext" visible="true" alphaBlend="true"/>
+          <CharPanel name="rewardBannerNumPanel" leftTopTex="13 2" texture="banner_listitem_3_num" alphaBlend="true" fontSize="16 22" fontPos="0 0" fontStr="1234567890" text="20" spaceOffset="-2"/>
+        </ImageButton>
+      </Container>
+      <Label name="upgradeRewardName" leftTopWH="0 0 130 20" enable="true" align="bottom;center" textColor="255 255 255 0" multiLine="true" autoWrap="true" textAlign="center"/>
+      <Label name="eventDate_newUser" leftTopWH="30 224 342 24" enable="true" textRender="bold14" textColor="255 244 255 68" textAlign="center" visible="true"/>
+      <ImageButton name="missionAttendReward_newUser" leftTopTex="0 0" adjust="72 79" autoLoadImage="attendSchedule_0@zz" alphaBlend="true" align="top;right" alphaTest="true" visible="true"/>
+      <ImageButton name="ok" leftTopTex="0 0" adjust="22 70" autoLoadImage="close_" alphaBlend="true" alphaTest="true" align="top;right" visible="true"/>
+    </Container>
+  </Window>
+</Panel>

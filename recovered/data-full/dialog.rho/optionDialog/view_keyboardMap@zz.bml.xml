@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="context" windowRect="0 0 920 648" align="hcenter">
+  <Window name="frame" windowSize="920 648" align="hcenter">
+    <Panel name="title" windowSize="888 32" adjust="16 10" texture="setting_titleBg2">
+      <Label windowSize="100 26" adjust="265 3" text="#sb(currentKey)" textColor="white" textAlign="center" textRender="bold16"/>
+      <Label windowSize="100 26" adjust="607 3" text="#sb(newKey)" textColor="white" textAlign="center" textRender="bold16"/>
+    </Panel>
+    <Window windowRect="0 53 920 594" align="hcenter">
+      <ViewportPanel name="viewPort" windowRect="0 0 920 527">
+        <Container name="keymapContainer">
+          <Label name="kartKey2" windowSize="132 26" adjust="36 0" text="#sb(kartKey0)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey2" windowSize="330 26" adjust="167 0" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey2" windowSize="330 26" adjust="507 0" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <KeyEdit name="orgKey12" windowSize="330 26" adjust="167 30" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey12" windowSize="330 26" adjust="507 30" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey1" windowSize="132 26" adjust="36 60" text="#sb(kartKey1)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey1" windowSize="330 26" adjust="167 60" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey1" windowSize="330 26" adjust="507 60" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <KeyEdit name="orgKey11" windowSize="330 26" adjust="167 90" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey11" windowSize="330 26" adjust="507 90" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey0" windowSize="132 26" adjust="36 120" text="#sb(kartKey2)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey0" windowSize="330 26" adjust="167 120" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey0" windowSize="330 26" adjust="507 120" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <KeyEdit name="orgKey10" windowSize="330 26" adjust="167 150" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey10" windowSize="330 26" adjust="507 150" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey3" windowSize="132 26" adjust="36 180" text="#sb(kartKey3)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey3" windowSize="330 26" adjust="167 180" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey3" windowSize="330 26" adjust="507 180" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <KeyEdit name="orgKey13" windowSize="330 26" adjust="167 210" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey13" windowSize="330 26" adjust="507 210" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey4" windowSize="132 26" adjust="36 240" text="#sb(kartKey4)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey4" windowSize="330 26" adjust="167 240" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey4" windowSize="330 26" adjust="507 240" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <KeyEdit name="orgKey14" windowSize="330 26" adjust="167 270" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey14" windowSize="330 26" adjust="507 270" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey5" windowSize="132 26" adjust="36 300" text="#sb(kartKey5)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey5" windowSize="330 26" adjust="167 300" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey5" windowSize="330 26" adjust="507 300" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <KeyEdit name="orgKey15" windowSize="330 26" adjust="167 330" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey15" windowSize="330 26" adjust="507 330" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey6" windowSize="132 26" adjust="36 360" text="#sb(kartKey6)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey6" windowSize="330 26" adjust="167 360" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey6" windowSize="330 26" adjust="507 360" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <KeyEdit name="orgKey16" windowSize="330 26" adjust="167 390" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey16" windowSize="330 26" adjust="507 390" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey7" windowSize="132 26" adjust="36 420" text="#sb(kartKey7)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey7" windowSize="330 26" adjust="167 420" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey7" windowSize="330 26" adjust="507 420" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <KeyEdit name="orgKey17" windowSize="330 26" adjust="167 450" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey17" windowSize="330 26" adjust="507 450" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey8" windowSize="132 26" adjust="36 480" text="#sb(kartKey8)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey8" windowSize="330 26" adjust="167 480" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey8" windowSize="330 26" adjust="507 480" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <KeyEdit name="orgKey20" windowSize="330 26" adjust="167 510" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey20" windowSize="330 26" adjust="507 510" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey9" windowSize="132 26" adjust="36 540" text="#sb(kartKey9)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey9" windowSize="330 26" adjust="167 540" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey9" windowSize="330 26" adjust="507 540" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey10" windowSize="132 26" adjust="36 570" text="#sb(kartKey10)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey21" windowSize="330 26" adjust="167 570" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey21" windowSize="330 26" adjust="507 570" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Label name="kartKey11" windowSize="132 26" adjust="36 600" text="#sb(kartKey11)" textAlign="left;hcenter" textRender="bold16" textColor="255 42 55 80" frame="NoFrame"/>
+          <KeyEdit name="orgKey22" windowSize="330 26" adjust="167 600" value="0x01" textAlign="center" textRender="bold16" textColor="255 42 55 80" enable="false"/>
+          <KeyEdit name="modKey22" windowSize="330 26" adjust="507 600" value="0x00" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+        </Container>
+      </ViewportPanel>
+      <ScrollBar name="keymapScroll" windowSize="13 528" adjust="13 -7" align="right;vcenter" scrollType="vertical"/>
+    </Window>
+    <Panel windowRect="16 591 904 592" color="255 170 176 190"/>
+    <TextButton name="defaultKeyMap" windowRect="0 0 100 38" align="right;bottom" adjust="16 8" text="#sb(setDefault)" textRender="bold16" textColor="255 42 55 80" altTextRender="outline"/>
+  </Window>
+</Container>

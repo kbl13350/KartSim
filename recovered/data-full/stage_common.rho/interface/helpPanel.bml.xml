@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel name="macroChatViewer" windowSize="180 203" texture="ingame_chatF1" align="right;vcenter" adjust="24 247" alphaBlend="true">
+    <Window name="desc" windowSize="180 20" align="top" adjust="0 0" alphaBlend="true"/>
+    <Container name="setting" windowSize="190 190" adjust="0 13"/>
+  </Panel>
+</Container>

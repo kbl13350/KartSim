@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tutorial name="tutorialScript">
+  <Page template="1" text="[color:yellow]工廠系統是什麼？？[/color]" font="scalex2" textColor="white"/>
+  <Page template="4" text="|提高卡丁車能力或增加卡丁車能力的 |[color:red]卡丁車強化系統。[/color]" font="gulim14" image="업그레이드@zz" textColor="black"/>
+  <Page template="1" text="[color:yellow]強化上需要的東西？[/color]" font="scalex2" textColor="white"/>
+  <Page template="2" text="|[color:yellow]能源方塊[/color]|| 在商城販賣" image="floater" showShopButton="true" font="scalex2" textColor="black"/>
+  <Page template="2" text="|[color:yellow]強化膠囊[/color]||在商城販賣" image="활성킷" showShopButton="true" font="scalex2" textColor="black"/>
+  <Page template="1" text="要正式學習嗎？" font="gulim14" textColor="white"/>
+  <Page template="2" text="|||在卡丁車頁面上選擇要強化的卡丁車～" image="plant_kartTab@zz" showShopButton="true" font="gulim14" textColor="black"/>
+  <Page template="4" text="|||選擇的話，會看到該畫面。" image="plant_ready@zz" font="gulim14"/>
+  <Page template="3" text="|裝置[color:red]點擊![/color]" image="plant_ready@zz" image2="plant_equip@zz" font="gulim14"/>
+  <Page template="4" text="|強化第一步驟所需的物品|能源方塊!||在商城上可購買" image="floater_select@zz" font="gulim14"/>
+  <Page template="4" text="||[color:yellow]裝置！[/color]" image="floater_select2@zz" font="scalex2"/>
+  <Page template="3" text="因為裝置能源方塊，故可以裝置2個強化功能！" font="gulim14" image="plant_enchant1@zz" image2="plant_enchant1_1@zz"/>
+  <Page template="3" text="|啟動[color:red]點擊![/color]" font="gulim14" image="plant_enchant1@zz" image2="plant_enchant1_2@zz"/>
+  <Page template="4" text="|強化第二步驟所需的物品|強化膠囊裝置~|||在商城上可購買" image="plant_enchant_select1@zz" font="gulim14"/>
+  <Page template="4" text="||強化結束～到底生成了什麼功能呢？" image="plant_enchant_select3@zz" font="gulim14"/>
+  <Page template="3" text="|哇～卡丁車變得更棒了～" font="gulim14" image="plant_enchant_select4@zz" image2="plant_enchant_select4_1@zz"/>
+  <Page template="4" text="||競速車功能變好|用紅色圖表示了呢~" image="graph@zz" font="gulim14"/>
+  <Page template="1" text="強化學習結束～" font="scalex2" textColor="white"/>
+  <Page template="3" text="|等一下！初始化？" font="gulim14" image="plant_enchant_select4@zz" image2="reset1@zz"/>
+  <Page template="1" text="初始化是想變更強化功能與數值時|[color:red]可再次給予強化的[/color]系統。" font="gulim14" textColor="white"/>
+  <Page template="2" text="|初始化需要改造扳手～" image="제로스패너" showShopButton="true" font="gulim14"/>
+  <Page template="3" text="|點擊!" font="gulim14" image="plant_enchant_select4@zz" image2="reset1@zz"/>
+  <Page template="4" text="||使用[color:red]改造扳手～[/color]|||沒有時，可至商城購買~" font="gulim14" image="reset_select@zz"/>
+  <Page template="3" text="|強化已經初始化~|現在就可以強化了吧?" font="gulim14" image="reset2@zz" image2="reset3@zz"/>
+  <Page template="1" text="強化學習結束～" font="scalex2" textColor="white"/>
+</Tutorial>

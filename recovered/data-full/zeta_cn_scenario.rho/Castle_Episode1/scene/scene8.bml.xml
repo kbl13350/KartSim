@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="庭院机器人克鲁伊到底在哪呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop1"/>
+  <Msg name="克鲁伊" string="哔哔哔哔！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="终于找到了！你就是克鲁伊吧。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop4"/>
+  <Msg name="克鲁伊" string="哔哔哔哔！你是谁啊？"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="你好，我叫皮蛋。|想问一个事，你是否见过我的朋友，他叫宝宝。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop3"/>
+  <Msg name="克鲁伊" string="宝宝？哔哔哔|是不是很胖的，还没有睡醒的那家伙？"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="对！对！就是他！|知道他现在在哪吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop1"/>
+  <Msg name="克鲁伊" string="哔哔哔哔，对|告诉你在哪吧。|但是有条件。"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="条件？？什么条件？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop2"/>
+  <Msg name="克鲁伊" string="跟我进行一场比赛吧，哔哔哔哔。"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="比赛？？"/>
+  <Enter/>
+</Scene>

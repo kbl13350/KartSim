@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152'
+	BackwardAccelForce='100'
+	DragFactor='-0.079'
+	SteerConstraint='3.2'
+	CornerDrawFactor='0.07'
+	DriftEscapeForce='1450'
+	
+	driftBoostMulAccelFactor='1.25'
+	chargeBoostBySpeed='300'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.79'
+	BoosterAccelFactorItem='1.65'
+	StartForwardAccelFactorItem='1.65'
+	StartBoosterTimeItem='1450'
+	
+	UseExtendedAfterBooster='true'
+	SpecialSlotCapacity='2'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	TransformTime='700'
+	
+	DescBalance='49'
+	DescStability='49'
+	DescEngineGrade='1.35'
+	DescCornering='7.5'
+	DescEnchantCap='25'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='9th'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	BoosterType='9soon'
+        BoosterType0='9soon'
+	BoosterType1='9soon'
+	BoosterType2='9main'
+	BoosterType3='9main'
+	BoosterType4='9sub'
+	BoosterType5='9sub'
+ 
+        Port0='mod1d1' 
+	Port1='mod1d2'
+
+        FirePort0='mod1a1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a3'
+	FirePort3='mod1a4'
+
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a3' trailPort1='mod1a4'/>
+</BodyParam>
+<!-- 사신 9 / 한국 / 일반 / 아이템 / 패키지 / 20171019 릴리즈 -->

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach8"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="电视声" string="嗯哼~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="电视声" string="现在播报早新闻。|上周发生的车辆部件走私案的疑犯已被警方抓获。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="paul" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="电视声" string="原本毫无头绪的本案，因名侦探福尔摩斯而侦破，|因此，福尔摩斯侦探再一次侦破了一件疑难案！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="paul" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="电视声" string="下面播报下一条新闻。目前正在进行在市长地下室里|发现的车辆设计图的复原工作…"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="paul" remove="true"/>
+  <BackGround texture="castle4"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Msg name="葱头" string="大清早开始就是福尔摩斯的新闻。|他可真是天生的侦探。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Msg name="葱头" string="好久没去过福尔摩斯的侦探所了，要不去看看？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <BackGround texture="cnboomhill3"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="葱头" string="噜啦啦~噜啦啦~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ethi" pos="4 0" emotion="stop4"/>
+  <Msg name="葱头" string="额？这是？|好像在哪里见过？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ethi" pos="4 0" emotion="stop4"/>
+  <Char id="kai" pos="11 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="葱头，你来啦。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ethi" pos="4 0" emotion="ani3"/>
+  <Char id="kai" pos="11 0" emotion="stop3"/>
+  <Msg name="葱头" string="嗯~想找你一起吃午餐。|这是新车子？新买的？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ethi" pos="4 0" emotion="ani3"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="不是，之前还没有来着…"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ethi" pos="4 0" emotion="stop2"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Msg name="葱头" string="啊~原来是有人送名侦探的礼物啊？~|看~这里还有个纸条。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="纸条" string="致名侦探福尔摩斯。1920宝物…"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="1920的宝物？！1920好像是说1920年。|1920年还有这种车辆？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="葱头" string="1920年？！这么说来这车的确与现在的车不一样~|可以启动吗？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="福尔摩斯" string="嗯，院子里有这个印迹…|果然是复古老爷车。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop2"/>
+  <Msg name="葱头" string="哦！真的~果然是名侦探！|好！车辆博士葱头我亲自来检查这车辆的性能！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="ani2"/>
+  <Msg name="福尔摩斯" string="（嗯…好像哪里奇怪）|慢点，葱头。"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="maple13"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋~~！！！你没事吧？没有受伤吧？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="黑妞！我没事。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="6 0" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="胖墩" string="皮蛋！还好你没有事！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop4"/>
+  <Char id="kephi" pos="7 0" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝" string="担心死了。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="toben" pos="8 0" emotion="stop3"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="短中分勇士" string="我也没事哦，哈哈！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="7 0" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Char id="bazzi" pos="12 0" emotion="stop4"/>
+  <Msg name="黑妞" string="嗯！大家都没事太好了！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="你们是怎么逃出来的呀？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="作为告诉奥尔卡能够离开这个地方的方法，让奥尔卡放我们走了。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="品克缤" string="奥尔卡竟然也没有办法从这里出去。。。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop1"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="stop1"/>
+  <Msg name="白雪人" string="把音乐盒都破坏了是不是就能从这里出去了呀？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop1"/>
+  <Char id="pinkbean" pos="3 0" emotion="stop1"/>
+  <Msg name="品克缤" string="还有多少个音乐盒呢。。。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="normal"/>
+  <Msg name="皮蛋" string="路西德！|她应该知道出去的方法吧？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="路西德！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="11 0" emotion="stop5"/>
+  <Char id="kephi" pos="7 0" emotion="stop4"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞, 宝宝, 胖墩" string="皮蛋，嘘！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="嗯？怎么了？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="yeti" pos="7 0" flip="true" emotion="stop1"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="嘘！不能被路西德发现。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="7 0" flip="true" emotion="stop1"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="先瞧瞧吧。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="lucid" pos="7 0" emotion="normal"/>
+  <Msg name="路西德" string="为什么希望从这完美的睡梦中醒来呢?"/>
+  <Enter/>
+  <Char id="lucid" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="居民" string="救救我们。。。！！！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="lucid" pos="7 0" emotion="stop2"/>
+  <Msg name="路西德" string="我希望各位都永远幸福。|永远沉睡于幸福之梦中吧。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="lucid" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="居民" string="才不是呢！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="？？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop6"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="被路西德抓到就会变成像他们一样的蝴蝶吧。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="把人变成蝴蝶吗？！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop5"/>
+  <Char id="kephi" pos="7 0" emotion="stop4"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞, 宝宝, 胖墩" string="嘘！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="lucid" pos="8 0" emotion="normal"/>
+  <Msg name="路西德" string="嗯？还有其他需要照顾的客人呢。"/>
+  <Enter/>
+  <Char id="lucid" remove="true"/>
+  <Char id="lucid" pos="4 0" emotion="normal"/>
+  <Msg name="路西德" string="在哪里~？"/>
+  <Enter/>
+  <Char id="lucid" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="她在朝我们走来了！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="我去引开路西德，你们继续破坏音乐盒吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="一个人太危险了！我跟你一起！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="7 0" emotion="stop2"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="胖墩" string="我也去！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop4"/>
+  <Char id="kephi" pos="7 0" emotion="stop2"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="宝宝" string="我也是！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="不能让大家都陷入危险，我自己去就好了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop4"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Char id="kephi" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞, 宝宝, 胖墩" string="（啧）"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（加速）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="嗯？大家？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="yeti" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="白雪人" string="白雪人也要去！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="yeti" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="短中分勇士" string="我也要！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="stop2"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="你们俩就在这里吧。又没有他们那么快。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="13 0" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="白雪人" string="白雪人不弱！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="13 0" emotion="stop4"/>
+  <Char id="toben" pos="8 0" emotion="stop2"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="我也想出一份力！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="13 0" emotion="stop4"/>
+  <Char id="toben" pos="8 0" emotion="stop2"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤" string="没有说你弱，只是说没有他们那么快呢！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="13 0" emotion="stop4"/>
+  <Char id="toben" pos="8 0" emotion="stop2"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤" string="还有你们要留下来跟我破坏音乐盒呀！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="皮蛋，音乐盒就交给我们吧！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="那拜托你们了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（加速）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Msg name="黑妞" string="路西德！我在这里！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="胖墩" string="不是不是，在这里呢！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="看哪里呢！|我在这里！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lucid" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="路西德" string="不要再开玩笑了！"/>
+  <Enter/>
+  <Char id="lucid" remove="true"/>
+  <Char id="lucid" pos="8 0" emotion="stop3"/>
+  <Msg name="路西德" string="没意思了！"/>
+  <Enter/>
+  <Char id="lucid" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（嗖）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="这里！|你的对手是我！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lucid" pos="12 0" emotion="stop1"/>
+  <Msg name="路西德" string="哈哈，那就从你开始吧！"/>
+  <Enter/>
+  <Char id="lucid" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="等你抓到我了再说吧！"/>
+  <Enter/>
+</Scene>

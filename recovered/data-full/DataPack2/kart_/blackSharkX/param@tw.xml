@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152'
+	BackwardAccelForce='100'
+	DragFactor='-0.08'
+	SteerConstraint='2.7'
+	CornerDrawFactor='0.072'
+	DriftEscapeForce='1820'
+	
+	driftBoostMulAccelFactor='1.31'
+	chargeBoostBySpeed='300'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.8544'
+	BoosterAccelFactorItem='1.7'
+	StartForwardAccelFactorItem='1.8'
+	StartBoosterTimeItem='1400'
+
+	UseExtendedAfterBooster='true'
+	SpecialSlotCapacity='2'
+	
+	DriftMaxGauge='-300'
+	NormalBoosterTime='-60'
+	TeamBoosterTime='-400'
+
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='X'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='60'
+	dualMulAccelFactor='1.1'
+	dualTransLowSpeed='100'
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10main1'
+	BoosterType3='10main1'
+	BoosterType4='10sub1'
+	BoosterType5='10sub1'
+	BoosterType6='10main'
+	BoosterType7='10main'
+
+
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1b1'
+	FirePort1='mod1b2'
+	FirePort2='mod1a3'
+	FirePort3='mod1a4'
+	FirePort4='mod1b3'
+	FirePort5='mod1b4'
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        	BoostBlurColor='255 77 77 77'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 255 0 0' trailPort0='mod1a3' trailPort1='mod1a4'/>
+</BodyParam>
+<!-- 블랙 샤크 X / 대만 / 레어 / 아이템 / 시간의상점 / 20200313 릴리즈 -->

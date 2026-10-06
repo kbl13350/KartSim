@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="useSpecialKit">
+    <m c="kr" v="%s 님이 필살기 아이템을 사용하였습니다"/>
+    <m c="jp" v="%sさんが必殺技アイテムを使用しました。"/>
+    <m c="cn" v="%s 使用了必杀技道具。"/>
+    <m c="tw" v="%s 使用必殺技道具."/>
+    <m c="vn" v="%s đã sử dụng kỹ năng đặc biệt!"/>
+    <m c="ru" v="%s, вы выбрали трофей «Смертельная техника"/>
+    <m c="id" v="%s telah menggunakan item Killer Move"/>
+    <m c="th" v="คุณ %s ได้ใช้ไอเทมท่าไม้ตาย"/>
+  </k>
+  <k n="usePetSpecialKit">
+    <m c="kr" v="%s 님의 펫이 필살기를 반격했습니다"/>
+    <m c="jp" v="%sさんのペットが必殺技に反撃しました。"/>
+    <m c="cn" v="%s的宠物回击了必杀技。"/>
+    <m c="tw" v="%s 使用必殺技道具."/>
+    <m c="vn" v="%s kích hoạt kỹ năng phòng ngự!"/>
+    <m c="ru" v="%s Использовал особый предмет"/>
+    <m c="id" v="Petnya %s telah membalas Killer Move"/>
+    <m c="th" v="คุณ %s ได้ใช้ไอเทมท่าไม้ตาย"/>
+  </k>
+  <k n="petCounterDefense">
+    <m c="kr" v="%s 님의 펫이 필살기를 방어했습니다"/>
+    <m c="tw" v="%您的寵物防禦了必殺技"/>
+    <m c="cn" v="%s的宠物防御了必杀技。"/>
+    <m c="jp" v="%sさんのペットが必殺技を防御しました。"/>
+    <m c="id" v="Petnya %s telah memblok Killer Move"/>
+  </k>
+</StringBag>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <KnockOut track="moonhill_I04" isFixedKart="true" fixedKartId="943" isFixedChar="true" fixedCharId="2" laps="3">
+    <LevelContent level="0" ksv="step_10">
+      <ShadowKart characterId="2" uniformId="23" kartId="943" colorId="4" dyeId="4" characterName="R军团士官"/>
+      <ShadowKart characterId="2" uniformId="26" kartId="888" colorId="6" dyeId="6" characterName="R军团上等兵"/>
+      <ShadowKart characterId="2" uniformId="45" kartId="919" colorId="2" dyeId="2" characterName="R军团列兵"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

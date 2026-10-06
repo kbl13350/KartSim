@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="Desktop" windowRect="fullscreen">
+  <Container name="whitePlane" windowRect="0 0 1024 768" color="40 255 255 255" alphaBlend="true" visible="false">
+    <ImageBoard name="scorePlane" windowRect="0 0 1024 768" align="center"/>
+  </Container>
+  <Container name="resultPanel" windowRect="0 0 800 600" align="center" visible="false">
+    <Panel name="observerEvent" windowRect="9 7 141 142" texture="GM당첨" uvRect="0 0 132 135" visible="false" alphaBlend="true"/>
+    <Container name="line0" windowRect="0 30 800 78">
+      <Container name="design" windowRect="0 0 800 39">
+        <Panel windowSize="400 39" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+          <Panel windowSize="400 39" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+        </Panel>
+        <Panel windowSize="400 1" adjust="0 48" texture="랭킹라인_01" alphaBlend="true">
+          <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+        </Panel>
+      </Container>
+      <Container name="idCont" windowRect="247 0 330 36" color="100 255 0 0" alphaBlend="true">
+        <Panel name="resultID" windowSize="50 26" align="center" texture="id@zz" alphaBlend="true"/>
+      </Container>
+      <Container name="lucciCont" windowRect="471 0 570 38" color="100 255 0 0" alphaBlend="true">
+        <Panel name="resultLucci" windowSize="99 24" align="center" texture="lucci@zz" alphaBlend="true"/>
+      </Container>
+      <Panel name="resultLuccon" windowRect="294 0 384 24" texture="luccon@zz" align="vcenter" alphaBlend="true" visible="false"/>
+    </Container>
+  </Container>
+</Container>

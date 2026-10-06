@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mechanic1"/>
+  <Char id="captain" pos="9 0" emotion="stop3"/>
+  <Msg name="海盗领袖" string="怎么样？|这个导弹还不错吧？"/>
+  <Enter/>
+  <Char id="captain" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="700"/>
+  <Char id="bazzi" pos="6 0" emotion="stop4"/>
+  <Msg name="宝宝" string="好像一下子就有了精神！|但是又不怎么疼？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="captain" pos="9 0" emotion="stop3"/>
+  <Msg name="海盗领袖" string="是的，|现在相信我了吧？"/>
+  <Enter/>
+  <Char id="captain" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Msg name="黑妞" string="是的，|以前一直对你不太好，真是不好意思。|还有，谢谢你！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="captain" pos="9 0" emotion="stop1"/>
+  <Msg name="海盗领袖" string="那么快点熟悉导弹发射，|还有为了应付实战，开始体力、技术的训练吧！"/>
+  <Enter/>
+  <Char id="captain" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="好吧，时间不多了|大家集中精神准备吧！"/>
+  <Enter/>
+</Scene>

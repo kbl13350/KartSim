@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='130'
+	BackwardAccelForce='100'
+	DragFactor='-0.07'
+	SteerConstraint='2.25'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.06'
+
+	BoosterType='protosix1'
+	BoosterBlur='true'
+	EngineSound='sigma'
+	EnvMap='true'
+			   
+	DescBalance= '30'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+
+/>
+
+
+<!--5.5단계 카트 프로토6-->

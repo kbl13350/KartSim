@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='95.0'
+	BackwardAccelForce='90.0'
+	DragFactor='-0.055'
+	SteerConstraint='1.5'
+	DriftEscapeForce='250'
+	CornerDrawFactor='0.05'
+
+	BoosterBlur='true'
+	EngineSound='pro'
+
+		
+	DescBalance= '24'
+	DescStability ='22'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '20'
+
+/>
+<!-- ID 팬더 PRO -->

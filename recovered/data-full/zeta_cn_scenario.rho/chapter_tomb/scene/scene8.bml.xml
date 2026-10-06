@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="tomb8"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop6" flip="true"/>
+  <Msg name="伊丽莎白" string="贝蒂！贝蒂！你到底在哪里？！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="baty" pos="11 0" emotion="stop6"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop6" flip="true"/>
+  <Msg name="贝蒂" string="耳朵都要震聋了。小姐，这么大声喊我做什么？"/>
+  <Enter/>
+  <Char id="baty" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop1" flip="true"/>
+  <Char id="baty" pos="11 0" emotion="stop6"/>
+  <Msg name="伊丽莎白" string="怎么才应声？先别说这个，出大事了！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="baty" remove="true"/>
+  <Char id="baty" pos="12 0" emotion="stop3"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop1" flip="true"/>
+  <Msg name="贝蒂" string="什么事啊？难不成又把红魔木偶师少爷的玩具弄坏了？"/>
+  <Enter/>
+  <Char id="baty" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop2" flip="true"/>
+  <Char id="baty" pos="12 0" emotion="stop3"/>
+  <Msg name="伊丽莎白" string="才没有！我来的路上发现，幽灵小镇上居然一个南瓜都没有了！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="baty" remove="true"/>
+  <Char id="baty" pos="12 0" emotion="stop4"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop2" flip="true"/>
+  <Msg name="贝蒂" string="南瓜？每年地里到处都是的老南瓜怎么没了？"/>
+  <Enter/>
+  <Char id="baty" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop1" flip="true"/>
+  <Char id="baty" pos="12 0" emotion="stop4"/>
+  <Msg name="伊丽莎白" string="必须查清楚缘由！肯定是因为没有庆典用南瓜，人类才取消庆典的！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="baty" remove="true"/>
+  <Char id="baty" pos="12 0" emotion="stop1"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop1" flip="true"/>
+  <Msg name="贝蒂" string="直接去南瓜田排查效率更高。|我去东边看看。"/>
+  <Enter/>
+  <Char id="baty" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop1"/>
+  <Char id="baty" pos="12 0" emotion="stop1"/>
+  <Msg name="伊丽莎白" string="好，那我去西边！这里面一定藏着天大的阴谋！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="baty" remove="true"/>
+  <Char id="baty" pos="12 0" emotion="stop4"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop1"/>
+  <Msg name="贝蒂" string="咳咳！什么阴谋，平时小说看太多了吧？"/>
+  <Enter/>
+</Scene>

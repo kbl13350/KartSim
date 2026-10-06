@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh3"/>
+  <Char id="bazzi" pos="11 0" emotion="normal"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Char id="dao" pos="3 0" emotion="normal"/>
+  <Msg name="皮蛋/黑妞/宝宝" string="头上顶着R字的混蛋!"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="reman3" pos="10 0" emotion="stop1"/>
+  <Msg name="R军团列兵" string="哈.. 还不错嘛..|但这次可不是我一个人"/>
+  <Enter/>
+  <Char id="reman3" remove="true"/>
+  <Shake time="400"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="!!!!???"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="reman2" pos="6 0" emotion="stop1"/>
+  <Char id="reman1" pos="9 0" emotion="stop1"/>
+  <Msg name="R军团士官/上等兵" string="嘎嘎嘎嘎..  我们可是正规的军队哦。|你们完蛋了~"/>
+  <Enter/>
+  <Char id="reman2" remove="true"/>
+  <Char id="reman1" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="被包围了！|先离开这里再说!他们休想困住我们！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="reman1" pos="10 0" emotion="stop1"/>
+  <Msg name="R军团士官" string="乳臭未干的小子!|不会让你们逃出去的!!"/>
+  <Enter/>
+</Scene>

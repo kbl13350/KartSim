@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="tomb1"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="呼~终于甩开这些幽灵了。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="等等…|幽灵峡谷的尽头，应该就是这附近啊…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="？？？|这是？亚伯特的墓地？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Msg name="墓碑" string="我亚伯特制作的敞篷老爷车只献给贫穷善良的贫民百姓"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="嗯…|贫穷而善良的百姓…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="有人留下了玫瑰与一封信…|亚伯特原来有女儿！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="跟着墓碑附近的印迹|应该就能找到亚伯特的女儿！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="8 0" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="印迹消失前得抓紧~"/>
+  <Enter/>
+</Scene>

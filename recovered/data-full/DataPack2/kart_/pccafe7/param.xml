@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='90.0'
+	BackwardAccelForce='85.0'
+	DragFactor='-0.06'
+	SteerConstraint='1.625'
+	DriftEscapeForce='240'
+	CornerDrawFactor='0.047'
+
+	BoosterBlur='true'
+	EngineSound='pro'
+/>
+<!-- CharacterKart : Mos -->

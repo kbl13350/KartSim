@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des4"/>
+  <Bgm theme="desert" file="desert_02"/>
+  <Shake time="700"/>
+  <Msg name="!!!" string="轰隆隆！吱～（发动机声，刹车声）"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="好久没来这里了。"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="第一次在这里，是和黑妞一起碰到胖墩……|并有勇无谋地向胖墩提出了挑战。"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="但是，正是因为这个，现在和胖墩，最强的维修师小强成为了朋友。"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="那个时候心里的紧张感至今还没有忘记。"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="normal"/>
+  <Msg name="皮蛋" string="但是，最近似乎很少能感觉到那个时候的心跳感觉了。|我……对胜负的热情渐渐冷却掉了吗？"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="好了好了……现在离繁荣山丘赛车大会已经没多少日子了。|再次以和胖墩第一次对决的心态，跑一次这个赛道。"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="和我自己的对决，现在再次开始！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="specialShield">
+  <state name="Use" life="500" itemFx="using"/>
+  <state name="Affect" life="5500" fired="디펜스킷" firedFx="affecting"/>
+  <state name="Defend" life="2000" firing="일반_방어효과" firingFx="defend"/>
+  <state name="DefendUfo" life="2000" fired="fired01" firing="일반_방어효과" firingFx="defend"/>
+  <state name="Use" life="500" itemFx="using"/>
+  <state name="Affect" life="5500" fired="오토봇필살기_진행" firedFx="affectingAutobot"/>
+  <state name="Defend" life="2000" firing="일반_방어효과" firingFx="defend"/>
+  <state name="DefendUfo" life="2000" fired="fired01" firing="일반_방어효과" firingFx="defend"/>
+</item>

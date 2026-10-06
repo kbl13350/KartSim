@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <Tracing isFixedKart="true" fixedKartId="1523" isFixedChar="true" fixedCharId="474" kartId="1523" colorId="5" dyeId="6" characterId="475" uniformId="0" characterName="道士姜太公">
+    <LevelContent level="0" track="ice_I04" laps="3" ksv="1-2" distance="30" startOffset="1500"/>
+  </Tracing>
+</Root>

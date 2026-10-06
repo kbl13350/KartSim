@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Delivery isFixedKart="true" fixedKartId="1220" isFixedChar="true" fixedCharId="314">
+    <LevelContent level="0" track="camelot_R01" collision="5" laps="2" timeLimit="150000"/>
+  </Delivery>
+</Root>

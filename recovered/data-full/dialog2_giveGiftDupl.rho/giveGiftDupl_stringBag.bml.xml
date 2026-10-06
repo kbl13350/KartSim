@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="giftDuplCaption">
+    <m c="kr" v="선물할 상품 중복 확인"/>
+    <m c="jp" v="プレゼントする商品の重複確認"/>
+    <m c="cn" v="确认礼物是否重复"/>
+    <m c="tw" v="確認禮物是否重複"/>
+    <m c="us" v="Check for any duplicate item(s) in your gift package"/>
+    <m c="vn" v="Kiểm tra vật phẩm trùng lặp"/>
+    <m c="ru" v="Проверить нет ли у гонщика этого предмета."/>
+    <m c="id" v="Konfirmasi duplikat item yang diberikan sebagai hadiah"/>
+    <m c="th" v="ตรวจสอบของขวัญที่จะส่งให้ว่าเพื่อป้องกันการซื้อซ้ำ"/>
+  </k>
+  <k n="giftDuplMesg">
+    <m c="kr" v="상품에 들어있는 아이템 중, 이미 상대 라이더의 차고나 선물함에 들어있는 아이템이 있습니다."/>
+    <m c="jp" v="商品に含まれるアイテムの中に、すでに相手のライダーのガレージやプレゼントボックスに入っているアイテムがあります。"/>
+    <m c="cn" v="要发送的道具中包含对方车手礼品盒中已拥有的道具"/>
+    <m c="tw" v="這項道具已在對方車手車庫或禮物盒中"/>
+    <m c="us" v="The Rider already has one or more of this item in their Garage or Gift Box. "/>
+    <m c="vn" v="Trong tủ đồ hoặc ngăn quà tặng của đối phương đã có vật phẩm này."/>
+    <m c="ru" v="У этого гонщика уже есть данный предмет."/>
+    <m c="id" v="Item ini sudah ada di gift box atau garage rider dipilih."/>
+    <m c="th" v="ของขวัญที่ซื้อให้นั้น ผู้ได้รับมีไอเทมชิ้นนี้อยู่แล้ว"/>
+  </k>
+  <k n="giftDuplItem">
+    <m c="kr" v="겹치는 아이템 : "/>
+    <m c="jp" v="重複するアイテム: "/>
+    <m c="cn" v="重复的道具"/>
+    <m c="tw" v="重複的道具："/>
+    <m c="us" v="Duplicate Items:"/>
+    <m c="vn" v="Trùng lặp"/>
+    <m c="ru" v="Предмет : "/>
+    <m c="id" v="Item dupilikat :"/>
+    <m c="th" v="ไอเทมที่มีซ้ำ"/>
+  </k>
+  <k n="giftDuplAsk">
+    <m c="kr" v="그래도 보내시겠습니까?"/>
+    <m c="jp" v="それでも送りますか？"/>
+    <m c="cn" v="要继续发送吗？"/>
+    <m c="tw" v="是否確定贈送？"/>
+    <m c="us" v="Do you still want to send the gift anyways?"/>
+    <m c="vn" v="Dù vậy bạn vẫn gửi chứ?"/>
+    <m c="ru" v="Все равно послать?"/>
+    <m c="id" v="Yakin mengirimnya?"/>
+    <m c="th" v="ยืนยันการซื้อให้"/>
+  </k>
+</StringBag>

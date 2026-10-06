@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="guildLevelUp" caption="#sb(levelUp)" windowRect="0 0 325 232" align="center" frame="CaptionDialog" setCloseButton="Cancel">
+    <Panel windowSize="16 21" adjust="137 25" texture="change" alphaBlend="true"/>
+    <Window windowRect="-10 68 299 147">
+      <Panel windowRect="10 5 48 43" texture="info" alphaBlend="true"/>
+      <Label name="notice" windowRect="52 8 288 60" text="" multiLine="true" autoWrap="true" textRender="bold"/>
+    </Window>
+    <Window windowRect="7 6 126 68" frame="GrayEdit">
+      <Panel windowRect="0 0 99 20" align="hcenter" texture="level@zz"/>
+      <Panel windowRect="10 22 65 41" texture="leveltext@zz" alphaBlend="true"/>
+      <CharPanel name="current" windowRect="70 23 84 41" texture="number" fontSize="14 18" fontPos="0 0" fontStr="0123456789" text="0" alphaBlend="true"/>
+    </Window>
+    <Window windowRect="162 6 281 68" frame="GrayEdit">
+      <Panel windowRect="0 0 99 20" align="hcenter" texture="nextlevel@zz"/>
+      <Panel windowRect="10 22 65 41" texture="leveltext@zz" alphaBlend="true"/>
+      <CharPanel name="next" windowRect="70 23 84 41" texture="number" fontSize="14 18" fontPos="0 0" fontStr="0123456789" text="0" alphaBlend="true"/>
+    </Window>
+    <Window name="static03" windowRect="-2 130 288 132" frame="Section"/>
+    <Container windowRect="0 0 145 33" align="hcenter;bottom">
+      <TextButton name="Ok" windowRect="0 0 87 30" text="#sb(ok)"/>
+      <TextButton name="Cancel" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

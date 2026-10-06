@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="USA4"/>
+  <Char id="raptorLs" pos="7 0" emotion="stop4"/>
+  <Msg name="格雷格" string="呼呼……（气喘吁吁）"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorLs" pos="7 0" emotion="stop4"/>
+  <Msg name="格雷格" string="这帮人真烦！|怎么总是紧追着我们不放？"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="totop" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="黑杰克" string="嗯……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="看来我们也要换一个地方了~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="Chris" pos="7 0" emotion="stop2"/>
+  <Msg name="克莉丝" string="哈哈哈哈哈哈哈|哎呀我的肚子……"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="7 0" emotion="stop1"/>
+  <Msg name="克莉丝" string="两个奇怪大叔之间的友谊……|真是太感人了！哈哈~"/>
+  <Enter/>
+  <BackGround texture="USA2"/>
+  <Char id="Chris" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="这次又跑到哪儿去了？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Sophia" pos="7 0" emotion="stop1"/>
+  <Msg name="索菲亚" string="……里约。巴西。"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <Char id="Brian" pos="7 0" emotion="stop4"/>
+  <Msg name="布莱恩" string="什么？巴西？我们怎么过去？|不管了，先动身吧！"/>
+  <Enter/>
+  <BackGround texture="Brazil1"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="天哪！这是什么情况……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="这也太复杂了吧？？？？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Char id="ethi" pos="1 0" emotion="stop5"/>
+  <Msg name="葱头" string="在这种全是小胡同的小村庄，|上哪去找他们去啊？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="ethi" pos="1 0" emotion="stop5"/>
+  <Msg name="黑妞" string="要在这捉迷藏的话，|是不是永远都找不到人了……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="Iri" pos="11 0" emotion="stop2"/>
+  <Msg name="艾丽" string="捉迷藏？|哈哈哈~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="Iri" pos="11 0" emotion="stop2"/>
+  <Msg name="艾丽" string="哈哈…… |里约我可是很熟悉的~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="Iri" pos="11 0" emotion="stop1"/>
+  <Msg name="黑妞" string="啊？真的吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Sophia" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="索菲亚" string="……故乡。艾丽。"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <Char id="Iri" pos="8 0" emotion="stop2"/>
+  <Msg name="艾丽" string="这里的居民对每个胡同都记得一清二楚！"/>
+  <Enter/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Iri" pos="8 0" emotion="stop1"/>
+  <Msg name="艾丽" string="我知道这里能藏身的地方在哪儿，跟我来吧！"/>
+  <Enter/>
+  <BackGround texture="Brazil2"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Chris" pos="12 0" emotion="stop1"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="艾丽" string="克莉丝！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Chris" pos="12 0" emotion="stop1"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="克莉丝" string="咦？艾丽~|我们又见面了！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Chris" pos="12 0" emotion="stop2"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="克莉丝" string="没了那种上不了台面的黑客技术，|你们又是怎么找上来的？"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Chris" pos="12 0" emotion="stop1"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="艾丽" string="克莉丝！收手吧！|"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Chris" pos="12 0" emotion="stop1"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="艾丽" string="这不是什么好玩的事情，|你这是在犯罪！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Chris" pos="8 0" emotion="stop1"/>
+  <Msg name="克莉丝" string="犯罪？"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="12 0" emotion="stop2"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="克莉丝" string="我才不管什么犯不犯罪的~"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Chris" pos="8 0" emotion="stop2"/>
+  <Msg name="克莉丝" string="好玩就行了呗。|嘻嘻~"/>
+  <Enter/>
+</Scene>

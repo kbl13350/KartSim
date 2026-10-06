@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="大赛邀请函！" synopsis="跑跑卡丁车世界锦标赛的举办方给皮蛋发送了大会邀请函。|快快把这个消息告诉皮蛋吧！" howToClear="请完成赛道。" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="500"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="世界锦标赛！" synopsis="在朋友们的鼓励下，皮蛋终于决定去参加世界锦标赛！|向着世界锦标赛第一场举办场地出发！|为及时赶到，加快脚步吧！" howToClear="请在规定时间内完成赛道。" missionText="完成行驶 目标%d回/%d回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardStockId="3301"/>
+  </Step>
+  <Step id="3" type="30" mode="single" preConditionId="2" title="奔向胜利！" synopsis="经过长途的奔波皮蛋按时来到了举办地，|在见识过专业选手的出色表现后感到非常些惊讶，|但不能丢失夺冠的信心，跟黑妞一起进行练习吧。" howToClear="在与黑妞的对决中获胜。" missionText="比赛胜利 %d回/%d回 " addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="4" type="31" mode="single" preConditionId="3" title="驰骋中的皮蛋！" synopsis="比赛终于开始了，因其他车手的实力很强，|皮蛋无法发挥自身实力。|但比赛的节奏还是要先把握住。" howToClear="与专业车手比赛中争夺第一。" missionText="达成目标 %d回/%d回 " addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="873"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="天才赛车手登场！" synopsis="在第一回比赛中，以自身实力取胜的皮蛋格外地高兴。|此时传说中的赛车手给了皮蛋一个忠告，|伤了自尊的皮蛋暗自下定决心一定要证明自己的实力。" howToClear="在规定时间内打败天才赛车手。" missionText="追击成功 %d回/%d回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="3302"/>
+  </Step>
+  <Step id="6" type="32" mode="single" preConditionId="5" title="对决的开始！" synopsis="第一场胜出的皮蛋在第二个赛场受到专业选手们的排斥，|但他相信自己的实力，不在乎专业选手们的排斥。" howToClear="请在规定时间内通过所有检查点。" missionText="通过检查点 %d回/%d回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="7" type="3" mode="multi" preConditionId="6" title="赛车手的资格！" synopsis="最终皮蛋在第二场比赛中惨败，|传说中的天才赛车手给予皮蛋建议，|因他的建议看到自身不足点的皮蛋重新反省自己，|并再次燃烧起战欲。" howToClear="在多人游戏中完成10回比赛。" missionText="多人游戏 %d回/%d回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" achievementCount="10" rewardStockId="3310"/>
+  </Step>
+  <Step id="8" type="34" mode="single" preConditionId="7" title="最后的机会！" synopsis="越靠近总决赛，越难猜测胜负结果。|在本次比赛中失败的话，皮蛋就会无缘世界锦标赛的冠军争夺。" howToClear="请在与专业车手们的竞速赛中胜出。" missionText="比赛胜利 %d回/%d回 " addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="9" type="31" mode="single" preConditionId="8" title="获胜者的荣誉！" synopsis="终于到了一决胜负的最后一场比赛了！|胜出的一方将会获得特别的殊荣。|最后赢家会是谁呢？" howToClear="与专业车手比赛中争夺第一。" missionText="达成目标 %d回/%d回 " addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="3304"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="冠军的诞生！" synopsis="皮蛋通过不断的努力，终于在锦标赛中获得胜利。|而传说中的天才赛车手因意外的失误被淘汰。|为了相互的友谊举办方特意加设了一场友谊赛。|皮蛋是否可以获胜？" howToClear="在与天才赛车手的对决中获胜。" missionText="比赛胜利 %d回/%d回 " addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10" isFinalStep="true">
+    <Level difficult="0" rewardStockId="3303"/>
+  </Step>
+</StepList>

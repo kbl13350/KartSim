@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="mainCaption">
+    <m c="kr" v="    Nexon Plug - Game Agent"/>
+    <m c="jp" v="    Nexon Plug - Game Agent"/>
+    <m c="cn" v="    好友系统"/>
+    <m c="tw" v=""/>
+    <m c="us" v="Nexon Plug - Game Agent"/>
+    <m c="vn" v="Khung điều khiển"/>
+    <m c="ru" v="Друзья"/>
+    <m c="id" v="    Nexon Plug - Game Agent"/>
+    <m c="th" v="0"/>
+  </k>
+  <k n="kartFriend">
+    <m c="kr" v="카트친구"/>
+    <m c="jp" v="カｰト友達"/>
+    <m c="cn" v="卡丁车"/>
+    <m c="tw" v="卡丁車"/>
+    <m c="us" v="Kart|Buddies"/>
+    <m c="vn" v="Bạn đua"/>
+    <m c="ru" v="Друзья"/>
+    <m c="id" v="Friend"/>
+    <m c="th" v="เพื่อน"/>
+  </k>
+  <k n="guildFriend">
+    <m c="kr" v="길드친구"/>
+    <m c="jp" v="ギルド友達"/>
+    <m c="cn" v="车队好友"/>
+    <m c="tw" v="車隊"/>
+    <m c="us" v="Guild|Buddies"/>
+    <m c="vn" v="Thành viên"/>
+    <m c="ru" v="Команда"/>
+    <m c="id" v="Guild"/>
+    <m c="th" v="เพื่อนกิลด์"/>
+  </k>
+  <k n="otherFriend">
+    <m c="kr" v="다른친구"/>
+    <m c="jp" v="他の友達"/>
+    <m c="cn" v="其他"/>
+    <m c="tw" v="其他"/>
+    <m c="us" v="Other|Buddies"/>
+    <m c="vn" v="Bạn khác"/>
+    <m c="ru" v="Другие"/>
+    <m c="id" v="Other"/>
+    <m c="th" v="เพื่อนอื่นๆ"/>
+  </k>
+  <k n="addFriend">
+    <m c="kr" v="친구추가"/>
+    <m c="jp" v="友達追加"/>
+    <m c="cn" v="添加好友"/>
+    <m c="tw" v="新增好友"/>
+    <m c="us" v="Add a Buddy"/>
+    <m c="vn" v="Kết bạn"/>
+    <m c="ru" v="+ Друг"/>
+    <m c="id" v="Tambah teman"/>
+    <m c="th" v="เพิ่มเพื่อน"/>
+  </k>
+  <k n="addGroup">
+    <m c="kr" v="그룹추가"/>
+    <m c="jp" v="グループ追加"/>
+    <m c="cn" v="添加分组"/>
+    <m c="tw" v="新增群組"/>
+    <m c="us" v="Add a Group"/>
+    <m c="vn" v="Tạo nhóm"/>
+    <m c="ru" v="+ Группа"/>
+    <m c="id" v="Tambah Grup"/>
+    <m c="th" v="เพิ่มกลุ่ม"/>
+  </k>
+  <k n="stateBlock">
+    <m c="kr" v="차단중"/>
+    <m c="jp" v="ブロック中"/>
+    <m c="cn" v="被阻止"/>
+    <m c="tw" v="封鎖"/>
+    <m c="us" v="Blocked"/>
+    <m c="vn" v="Đang chặn"/>
+    <m c="ru" v="Заблокирован"/>
+    <m c="id" v="Block"/>
+    <m c="th" v="กำลังแบน"/>
+  </k>
+  <k n="stateKart">
+    <m c="kr" v="카트라이더중"/>
+    <m c="jp" v="カートライダー中"/>
+    <m c="cn" v="行驶中"/>
+    <m c="tw" v="行駛中"/>
+    <m c="us" v="Playing Kart"/>
+    <m c="vn" v="Online"/>
+    <m c="ru" v="Ожидает"/>
+    <m c="id" v="Sedang Berkart"/>
+    <m c="th" v="กำล้งเล่นเกมอยู่"/>
+  </k>
+  <k n="stateGame">
+    <m c="kr" v="게임중"/>
+    <m c="jp" v="ゲーム中"/>
+    <m c="cn" v="游戏中"/>
+    <m c="tw" v="遊戲中"/>
+    <m c="us" v="Playing Game"/>
+    <m c="vn" v="Online"/>
+    <m c="ru" v="В игре"/>
+    <m c="id" v="Sedang bermarin"/>
+    <m c="th" v="กำล้งเล่นเกมอยู่"/>
+  </k>
+  <k n="stateBusy">
+    <m c="kr" v="바쁨"/>
+    <m c="jp" v="取り込み中"/>
+    <m c="cn" v="忙碌"/>
+    <m c="tw" v="忙碌"/>
+    <m c="us" v="Busy"/>
+    <m c="vn" v="Bận"/>
+    <m c="ru" v="Занят"/>
+    <m c="id" v="Sibuk"/>
+    <m c="th" v="ยุ่ง"/>
+  </k>
+  <k n="stateAway">
+    <m c="kr" v="자리비움"/>
+    <m c="jp" v="退席中"/>
+    <m c="cn" v="马上回来"/>
+    <m c="tw" v="馬上回來"/>
+    <m c="us" v="Away"/>
+    <m c="vn" v="Rời khỏi"/>
+    <m c="ru" v="Отошел"/>
+    <m c="id" v="Sedang tidak ada"/>
+    <m c="th" v="ไม่อยู่"/>
+  </k>
+  <k n="stateRegWait">
+    <m c="kr" v="등록대기중"/>
+    <m c="jp" v="登録待機中"/>
+    <m c="cn" v="等待接受"/>
+    <m c="tw" v="等待接受"/>
+    <m c="us" v="Waiting"/>
+    <m c="vn" v="Đang đợi"/>
+    <m c="ru" v="Сделан запрос"/>
+    <m c="id" v="Proses daftar"/>
+    <m c="th" v="รอลงทะเบียน"/>
+  </k>
+  <k n="blockAsk">
+    <m c="kr" v="라이더를 차단하시겠습니까?"/>
+    <m c="jp" v="ライダーをブロックしますか？"/>
+    <m c="cn" v="要阻止车手吗？"/>
+    <m c="tw" v="要封鎖車手嗎？"/>
+    <m c="us" v="Do you wish to block this Rider?"/>
+    <m c="vn" v="Bạn có muốn chặn?"/>
+    <m c="ru" v="Заблокировать гонщика?"/>
+    <m c="id" v="Ingin memblock Rider?"/>
+    <m c="th" v="จะบล็อคผู้เล่นใช่ไหม"/>
+  </k>
+  <k n="unblockAsk">
+    <m c="kr" v="라이더를 차단 해제 하시겠습니까?"/>
+    <m c="jp" v="ライダーをブロック解除しますか？"/>
+    <m c="cn" v="要解除阻止吗？"/>
+    <m c="tw" v="是否要解除封鎖？"/>
+    <m c="us" v="Do you wish to unblock this Rider?"/>
+    <m c="vn" v="Hủy ngăn chặn?"/>
+    <m c="ru" v="Разблокировать гонщика?"/>
+    <m c="id" v="Ingin membuka block Rider?"/>
+    <m c="th" v="จะยกเลิกการบล็อคใช่ไหม"/>
+  </k>
+  <k n="deleteAsk">
+    <m c="kr" v="라이더를 삭제하시겠습니까?"/>
+    <m c="jp" v="ライダーを削除しますか？"/>
+    <m c="cn" v="要删除车手吗？"/>
+    <m c="tw" v="是否確定刪除這位車手？"/>
+    <m c="us" v="Do you wish to delete this Rider?"/>
+    <m c="vn" v="Bạn có chắc chứ?"/>
+    <m c="ru" v="Удалить гонщика?"/>
+    <m c="id" v="Ingin menghapus Rider?"/>
+    <m c="th" v="จะลบผู้เล่นคนนี้ใช่ไหม"/>
+  </k>
+  <k n="alreadyExistGroup">
+    <m c="kr" v="이미 존재하는 그룹입니다."/>
+    <m c="jp" v="すでに存在するグループです。"/>
+    <m c="cn" v="已存在的分组"/>
+    <m c="tw" v="已存在的群組名稱。"/>
+    <m c="us" v="The group already exists."/>
+    <m c="vn" v="Nhóm đã tồn tại"/>
+    <m c="ru" v="Такая группа уже существует."/>
+    <m c="id" v="Grup yang sudah ada."/>
+    <m c="th" v="เป็นกลุ่มที่มีอยู่แล้ว"/>
+  </k>
+  <k n="deleteGroupAsk">
+    <m c="kr" v="정말 이 그룹을 삭제하시겠습니까?"/>
+    <m c="jp" v="本当にこのグループを削除しますか？"/>
+    <m c="cn" v="确定要删除这个分组吗？"/>
+    <m c="tw" v="是否確定刪除群組？"/>
+    <m c="us" v="Are you sure you want to delete this group?"/>
+    <m c="vn" v="Bạn muốn hủy nhóm?"/>
+    <m c="ru" v="Удалить эту группу?"/>
+    <m c="id" v="Ingin menghapus grup ini?"/>
+    <m c="th" v="จะลบกลุ่มนี้จริงๆใช่ไหม"/>
+  </k>
+  <k n="inviteMessage">
+    <m c="kr" v="%s 님께서 초대 메시지를 보내셨습니다."/>
+    <m c="jp" v="%sさんから招待メッセージが届きました。"/>
+    <m c="cn" v="%s发送了邀请信息"/>
+    <m c="tw" v="向%s 提出好友申請"/>
+    <m c="us" v="%s has sent you an invitation!"/>
+    <m c="vn" v="Đã gửi tin nhắn cho %s để thách thức đua."/>
+    <m c="ru" v="%s прислал приглашение."/>
+    <m c="id" v="Telah mengirim pesan undangan kepada %s"/>
+    <m c="th" v="ส่งข้อความเชิญแก่%sแล้ว"/>
+  </k>
+  <k n="sentInvite">
+    <m c="kr" v="초대 메시지를 보냈습니다."/>
+    <m c="jp" v="招待メッセージを送りました。"/>
+    <m c="cn" v="已发出邀请信息"/>
+    <m c="tw" v="已傳送申請訊息"/>
+    <m c="us" v="Your invitation has been sent!"/>
+    <m c="vn" v="Đã gửi tin nhắn."/>
+    <m c="ru" v="Приглашение отправлено."/>
+    <m c="id" v="Telah mengirim pesan undangan."/>
+    <m c="th" v="ส่งข้อความเชิญแล้ว"/>
+  </k>
+  <k n="recvInvite">
+    <m c="kr" v="%s 님께서 게임에 초대하셨습니다. 초대를 수락하시겠습니까?"/>
+    <m c="jp" v="%sさんからゲームに招待されました。招待をOKしますか？"/>
+    <m c="cn" v="%s邀请一起游戏，要同意吗？"/>
+    <m c="tw" v="%s邀請您一起進行遊戲，請問是否同意？"/>
+    <m c="us" v="%s has invited you to their game. Do you wish to accept their invitation?"/>
+    <m c="vn" v="%s mời bạn vào phòng đua.|Bạn có chấp nhận lời mời của bạn ây không?"/>
+    <m c="ru" v="%s пригласил в комнату. Принять?"/>
+    <m c="id" v="%s telah mengundang kamu ke game.Ingin menerimanya?"/>
+    <m c="th" v="%s ชวนเล่นเกม จะยอมรับคำเชิญไหม"/>
+  </k>
+  <k n="enterError">
+    <m c="kr" v="입장 오류"/>
+    <m c="jp" v="入場エラー"/>
+    <m c="cn" v="进入错误"/>
+    <m c="tw" v="進入錯誤"/>
+    <m c="us" v="Login error"/>
+    <m c="vn" v="Sai vị trí"/>
+    <m c="ru" v="Ошибка при входе"/>
+    <m c="id" v="Error Masuk"/>
+    <m c="th" v="เกิดความผิดพลาดในการเพิ่มเพื่อน"/>
+  </k>
+  <k n="addKartFriend">
+    <m c="kr" v="카트친구 추가"/>
+    <m c="jp" v="カート友達追加"/>
+    <m c="cn" v="添加好友"/>
+    <m c="tw" v="新增好友"/>
+    <m c="us" v="Add a Kart Buddy"/>
+    <m c="vn" v="thêm bạn"/>
+    <m c="ru" v="Пригласить"/>
+    <m c="id" v="Tambah Teman Kart"/>
+    <m c="th" v="เพิ่มเพื่อน"/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="jp" v="確認"/>
+    <m c="cn" v="确定"/>
+    <m c="tw" v="確認"/>
+    <m c="us" v="Ok"/>
+    <m c="th" v="ยืนยัน"/>
+    <m c="vn" v="Ok"/>
+    <m c="ru" v="Принять"/>
+    <m c="id" v="Konfirmasi"/>
+  </k>
+  <k n="doInvite">
+    <m c="kr" v="초대하기"/>
+    <m c="jp" v="招待する"/>
+    <m c="cn" v="邀请"/>
+    <m c="tw" v="邀請"/>
+    <m c="us" v="Invite"/>
+    <m c="vn" v="Mời"/>
+    <m c="ru" v="Пригласить"/>
+    <m c="id" v="Undang"/>
+    <m c="th" v="เชิญ"/>
+  </k>
+  <k n="doPlay">
+    <m c="kr" v="같이하기"/>
+    <m c="jp" v="一緒にプレイ"/>
+    <m c="cn" v="加入游戏"/>
+    <m c="tw" v="與好友共同遊戲"/>
+    <m c="us" v="Play together"/>
+    <m c="vn" v="Cùng đua"/>
+    <m c="ru" v="Перейти"/>
+    <m c="id" v="Bermain bersama"/>
+    <m c="th" v="เล่นด้วยกัน"/>
+  </k>
+  <k n="doChat">
+    <m c="kr" v="대화하기"/>
+    <m c="jp" v="チャット"/>
+    <m c="cn" v="对话"/>
+    <m c="tw" v="與好友對話"/>
+    <m c="us" v="Chat"/>
+    <m c="vn" v="Chat"/>
+    <m c="ru" v="Диалог"/>
+    <m c="id" v="Chat"/>
+    <m c="th" v="สนทนา"/>
+  </k>
+  <k n="doBlock">
+    <m c="kr" v="차단"/>
+    <m c="jp" v="ブロック"/>
+    <m c="cn" v="阻止"/>
+    <m c="tw" v="封鎖"/>
+    <m c="us" v="Block"/>
+    <m c="vn" v="Chặn"/>
+    <m c="ru" v="Заблокировать"/>
+    <m c="id" v="Block"/>
+    <m c="th" v="บล็อก"/>
+  </k>
+  <k n="doUnblock">
+    <m c="kr" v="차단 해제"/>
+    <m c="jp" v="ブロック解除"/>
+    <m c="cn" v="解除阻止"/>
+    <m c="tw" v="解除封鎖"/>
+    <m c="us" v="Unblock "/>
+    <m c="vn" v="Hủy"/>
+    <m c="ru" v="Разблокировать"/>
+    <m c="id" v="Buka Block"/>
+    <m c="th" v="ยกเลิกการบล็อค"/>
+  </k>
+  <k n="doDelete">
+    <m c="kr" v="삭제"/>
+    <m c="jp" v="削除"/>
+    <m c="cn" v="删除"/>
+    <m c="tw" v="刪除好友"/>
+    <m c="us" v="Delete"/>
+    <m c="vn" v="Xóa"/>
+    <m c="ru" v="Удалить"/>
+    <m c="id" v="Hapus"/>
+    <m c="th" v="ลบ"/>
+  </k>
+  <k n="doViewRiderInfo">
+    <m c="kr" v="라이더 정보"/>
+    <m c="jp" v="ライダー情報"/>
+    <m c="cn" v="车手情报"/>
+    <m c="tw" v="車手情報"/>
+    <m c="us" v="Rider information"/>
+    <m c="vn" v="Thông tin"/>
+    <m c="ru" v="Информация"/>
+    <m c="id" v="Info Rider"/>
+    <m c="th" v="ข้อมูลผู้เล่น"/>
+  </k>
+  <k n="doToAnotherGroup">
+    <m c="kr" v="다른 그룹으로 이동"/>
+    <m c="jp" v="他のグループに移動"/>
+    <m c="cn" v="移动到其他分组"/>
+    <m c="tw" v="移動到其他群組"/>
+    <m c="us" v="Move to another group"/>
+    <m c="vn" v="Di chuyển"/>
+    <m c="ru" v="Перейти к другой группе"/>
+    <m c="id" v="Pindah ke Grup lain"/>
+    <m c="th" v="ย้ายไปที่กลุ่มอื่น"/>
+  </k>
+  <k n="doChangeGroupName">
+    <m c="kr" v="그룹 이름 바꾸기"/>
+    <m c="jp" v="グループ名変更"/>
+    <m c="cn" v="变更分组名称"/>
+    <m c="tw" v="變更群組名稱"/>
+    <m c="us" v="Change the group game"/>
+    <m c="vn" v="Đổi tên nhóm"/>
+    <m c="ru" v="Сменить название"/>
+    <m c="id" v="Mengubah nama grup"/>
+    <m c="th" v="เปลี่ยนชื่อกลุ่ม"/>
+  </k>
+  <k n="doDeleteGroup">
+    <m c="kr" v="그룹 삭제"/>
+    <m c="jp" v="グループ削除"/>
+    <m c="cn" v="删除分组"/>
+    <m c="tw" v="刪除群組"/>
+    <m c="us" v="Delete a group"/>
+    <m c="vn" v="Hủy nhóm"/>
+    <m c="ru" v="Удалить группу"/>
+    <m c="id" v="Menghapus grup"/>
+    <m c="th" v="ลบกลุ่ม"/>
+  </k>
+  <k n="doAddGroup">
+    <m c="kr" v="다른 그룹 추가"/>
+    <m c="jp" v="他のグループ追加"/>
+    <m c="cn" v="添加另一个分组"/>
+    <m c="tw" v="增加群組"/>
+    <m c="us" v="Add another group"/>
+    <m c="vn" v="Tạo nhóm"/>
+    <m c="ru" v="Добавить другую группу"/>
+    <m c="id" v="Menambah grup lain"/>
+    <m c="th" v="เพิ่มกลุ่มอื่น"/>
+  </k>
+  <k n="doJoin">
+    <m c="kr" v="참여하기"/>
+    <m c="jp" v="参加する"/>
+    <m c="cn" v="参加"/>
+    <m c="tw" v="加入"/>
+    <m c="us" v=""/>
+    <m c="vn" v="Tham gia"/>
+    <m c="ru" v="Вступить"/>
+    <m c="id" v="Join"/>
+    <m c="th" v="เข้าร่วม"/>
+  </k>
+  <k n="chatTab">
+    <m c="kr" v="대화창"/>
+    <m c="jp" v="チャットウィンドウ"/>
+    <m c="cn" v="对话窗口"/>
+    <m c="tw" v="對話窗"/>
+    <m c="us" v="Chat window"/>
+    <m c="vn" v="Chat"/>
+    <m c="ru" v="Окно диалога"/>
+    <m c="id" v="Window Chat"/>
+    <m c="th" v="หน้าต่างพูดคุย"/>
+  </k>
+  <k n="chatCaption">
+    <m c="kr" v="%s 님과의 대화창"/>
+    <m c="jp" v="%sさんとのチャットウィンドウ"/>
+    <m c="cn" v="与%s的对话窗口"/>
+    <m c="tw" v="與%s的對話窗"/>
+    <m c="us" v="Chat window for %s"/>
+    <m c="vn" v="%s chat với bạn"/>
+    <m c="ru" v="Беседа с %s"/>
+    <m c="id" v="Window chat dengan %s"/>
+    <m c="th" v="หน้าต่างสนทนากับ %s"/>
+  </k>
+  <k n="multiChatCaption">
+    <m c="kr" v="대화창 (%d명)"/>
+    <m c="jp" v="チャットウィンドウ(%d人)"/>
+    <m c="cn" v="对话窗口 (%d人)"/>
+    <m c="tw" v="對話窗 (%d名)"/>
+    <m c="us" v="Chat window (%d users)"/>
+    <m c="vn" v="Khung chat"/>
+    <m c="ru" v="Окно диалога (%d чел.)"/>
+    <m c="id" v="Window Chat(%d orang)"/>
+    <m c="th" v="หน้าต่างสนทนากับ (%dคน)"/>
+  </k>
+  <k n="closeChat">
+    <m c="kr" v="대화창 닫기"/>
+    <m c="jp" v="チャットウィンドウ閉じる"/>
+    <m c="cn" v="关闭对话窗口"/>
+    <m c="tw" v="關閉對話窗"/>
+    <m c="us" v="Close the chat window"/>
+    <m c="vn" v="Tắt chat"/>
+    <m c="ru" v="Закрыть окно"/>
+    <m c="id" v="Tutup Window Chat"/>
+    <m c="th" v="ปิดหน้าต่างสนทนา"/>
+  </k>
+  <k n="inviteChatter">
+    <m c="kr" v="대화상대 초대하기"/>
+    <m c="jp" v="チャット相手を招待する"/>
+    <m c="cn" v="邀请聊天对象"/>
+    <m c="tw" v="邀請談話對象"/>
+    <m c="us" v="Invite a chat buddy"/>
+    <m c="vn" v="Mời chat"/>
+    <m c="ru" v="Пригласить собеседника"/>
+    <m c="id" v="Undang teman Chat"/>
+    <m c="th" v="เชิญสนทนา"/>
+  </k>
+  <k n="guildChatRoom">
+    <m c="kr" v="길드채팅방"/>
+    <m c="jp" v="ギルドチャットルーム"/>
+    <m c="cn" v="车队聊天室"/>
+    <m c="tw" v="車隊聊天室"/>
+    <m c="us" v=""/>
+    <m c="vn" v="Chat Đội"/>
+    <m c="ru" v="Окно чата гильдии"/>
+    <m c="id" v="Guild Chat Room"/>
+    <m c="th" v="ห้องแชทกิลด์"/>
+  </k>
+  <k n="notJoinGuild">
+    <m c="kr" v="가입하신 길드가 없습니다."/>
+    <m c="jp" v="加入したギルドがありません。"/>
+    <m c="cn" v="没有加入的车队。"/>
+    <m c="tw" v="你沒有加入車隊"/>
+    <m c="vn" v="Không tham gia Đội."/>
+    <m c="ru" v="У вас нет команды"/>
+    <m c="id" v="Tidak mempunyai guild."/>
+    <m c="th" v="คุณยังไม่ได้สมัครกิลด์"/>
+  </k>
+  <k n="guildChatCaption">
+    <m c="kr" v="길드채팅방 (%d명)"/>
+    <m c="jp" v="ギルドチャットルーム(%d人)"/>
+    <m c="cn" v="车队聊天室 (%d名)"/>
+    <m c="tw" v="車隊聊天室(%d名)"/>
+    <m c="vn" v="Họp Đội (%d người)"/>
+    <m c="ru" v="Комната чата гильдии (%d чел.)"/>
+    <m c="id" v="Guild Chat Room(%d orang)"/>
+    <m c="th" v="ห้องแชทกิลด์(%dคน)"/>
+  </k>
+  <k n="guildChatQuestion">
+    <m c="kr" v="길드채팅방 (??명)"/>
+    <m c="jp" v="ギルドチャットルーム(??人)"/>
+    <m c="cn" v="车队聊天室 (??名)"/>
+    <m c="tw" v="車隊聊天室(??名)"/>
+    <m c="vn" v="Phòng chat đội (?? người)"/>
+    <m c="ru" v="Комната чата гильдии (??чел.)"/>
+    <m c="id" v="Guild Chat Room(?? orang)"/>
+    <m c="th" v="ห้องแชทกิลด์(%dคน)"/>
+  </k>
+  <k n="guildChat">
+    <m c="kr" v="길드채팅"/>
+    <m c="jp" v="ギルドチャット"/>
+    <m c="cn" v="车队聊天"/>
+    <m c="tw" v="車隊聊天"/>
+    <m c="vn" v="Chat Đội"/>
+    <m c="ru" v="Чат Гильдии"/>
+    <m c="id" v="Guild Chat"/>
+    <m c="th" v="การสนทนากิลด์"/>
+  </k>
+  <k n="onlineRiderNum">
+    <m c="kr" v="%s(%d명)"/>
+    <m c="jp" v="%s(%d人)"/>
+    <m c="cn" v="%s(%d名)"/>
+    <m c="tw" v="%s(%d名)"/>
+    <m c="vn" v="%s (%d người)"/>
+    <m c="ru" v="%s(%d чел.)"/>
+    <m c="id" v="%s(%dorang)"/>
+    <m c="th" v="%s(%dคน)"/>
+  </k>
+  <k n="inviteCaption">
+    <m c="kr" v="    친구들을 선택후 초대버튼을 눌러주세요."/>
+    <m c="jp" v="    友達を選択して招待ボタンを押してください。"/>
+    <m c="cn" v="    选择好友后，点击邀请键"/>
+    <m c="tw" v="請點選要邀請的好友。"/>
+    <m c="us" v="Click invitation button after selecting buddies"/>
+    <m c="vn" v="Danh sách bạn Online"/>
+    <m c="ru" v="Выбери друзей и нажми &quot;Пригласить&quot;."/>
+    <m c="id" v="     Setelah memilih teman dan click tombol undang"/>
+    <m c="th" v="กรุณากดปุ่มเชิญ หลังจากเลือกเพื่อนแล้ว"/>
+  </k>
+  <k n="inviteButtonText">
+    <m c="kr" v="친구 초대"/>
+    <m c="jp" v="友達招待"/>
+    <m c="cn" v="邀请好友"/>
+    <m c="tw" v="邀請好友"/>
+    <m c="us" v="Invite a buddy"/>
+    <m c="vn" v="Mời"/>
+    <m c="ru" v="Пригласить"/>
+    <m c="id" v="Undang teman"/>
+    <m c="th" v="เชิญเพื่อน"/>
+  </k>
+  <k n="cannotJoinNewbie">
+    <m c="kr" v="초보 입문(배우기)단계에서는 같이하기를 할 수 없습니다."/>
+    <m c="jp" v="初心者入門(チュートリアル)段階では一緒にプレイをできません。"/>
+    <m c="cn" v="还没有完成指南，所以您无法和其他玩家一起比赛。"/>
+    <m c="tw" v="在新手入門階段裡無法一起進行遊戲哦！"/>
+    <m c="us" v=""/>
+    <m c="vn" v="Không thể tham gia đường đua dành cho những tay đua mới."/>
+    <m c="ru" v="На этапе обучения новичка перейти к игровой комнате нельзя."/>
+    <m c="id" v="Tidak dapat bergabung karena masih tahap pemula(belajar)."/>
+    <m c="th" v="มือใหม่ไม่สามารถเล่นด้วยกันได้"/>
+  </k>
+  <k n="yes">
+    <m c="kr" v="예"/>
+    <m c="jp" v="はい"/>
+    <m c="cn" v="是"/>
+    <m c="tw" v="是"/>
+    <m c="us" v="Yes"/>
+    <m c="th" v="ใช่"/>
+    <m c="vn" v="Đồng ý"/>
+    <m c="ru" v="Да"/>
+    <m c="id" v="Yes"/>
+  </k>
+  <k n="no">
+    <m c="kr" v="아니오"/>
+    <m c="jp" v="いいえ"/>
+    <m c="cn" v="否"/>
+    <m c="tw" v="否"/>
+    <m c="us" v="No"/>
+    <m c="th" v="ไม่ใช่"/>
+    <m c="vn" v="Không "/>
+    <m c="ru" v="Нет"/>
+    <m c="id" v="No"/>
+  </k>
+  <k n="needToJoinGuild">
+    <m c="kr" v="길드가 없습니다.|길드 가입 후 이용이 가능합니다."/>
+    <m c="cn" v="否"/>
+    <m c="tw" v="否"/>
+  </k>
+  <k n="recvFileWarn">
+    <m c="kr" v="이미지를 보냈습니다. 넥슨플러그 혹은 넥슨플레이에서 확인해주세요"/>
+  </k>
+  <k n="joinChat">
+    <m c="kr" v="%s 대화에 참여했습니다."/>
+  </k>
+  <k n="leaveChat">
+    <m c="kr" v="%s 대화에서 나갔습니다 "/>
+  </k>
+  <k n="error">
+    <m c="kr" v="오류"/>
+  </k>
+  <k n="myBlockUser">
+    <m c="kr" v="차단된 친구입니다."/>
+  </k>
+  <k n="alreadyFriend">
+    <m c="kr" v="이미 친구입니다"/>
+  </k>
+  <k n="invalidParameter">
+    <m c="kr" v="자신에게 친구 요청이 불가능 합니다."/>
+  </k>
+  <k n="userAccountInactive">
+    <m c="kr" v="상대방이 휴면 상태로 친구요청을 할 수 없습니다."/>
+  </k>
+  <k n="invalidRequest">
+    <m c="kr" v="유효하지 않은 요청입니다."/>
+  </k>
+  <k n="alreadyRequest">
+    <m c="kr" v="이미 요청한 친구입니다."/>
+  </k>
+  <k n="unknownFriend">
+    <m c="kr" v="대화상대 없음"/>
+  </k>
+  <k n="maxRequestLimit">
+    <m c="kr" v="하루 최대 500번까지 친구요청을 할 수 있습니다|내일 다시 시도해 주세요."/>
+  </k>
+  <k n="notExistUser">
+    <m c="kr" v="존재하지않는 유저입니다."/>
+  </k>
+  <k n="userBlockMe">
+    <m c="kr" v="요청을 완료 할 수 없는 상태입니다."/>
+  </k>
+  <k n="requestFriendError">
+    <m c="kr" v="유효하지 않은 요청입니다."/>
+  </k>
+  <k n="requestCanceled">
+    <m c="kr" v="유효하지 않은 요청입니다."/>
+  </k>
+</StringBag>

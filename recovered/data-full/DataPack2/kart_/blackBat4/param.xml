@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.0715'
+	SteerConstraint='2.25'
+	DriftEscapeForce='600'
+	CornerDrawFactor='0.064'
+	TransAccelFactor='1.62'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+	EnvMap='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='cotton6'
+	BoosterType3='cotton6'
+
+	Port0='mod1a' 
+	Port1='mod1b'
+
+	FirePort0='mod2a'
+	FirePort1='mod2b'
+
+
+	DescBalance= '35'
+	DescStability ='35'
+	DescEngineGrade='1'
+	DescCornering='4'
+	DescEnchantCap = '30'
+/>
+<!--대만 블랙배트 SR 가샤폰 레어101119 -->

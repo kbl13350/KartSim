@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='154'
+	BackwardAccelForce='100'
+	DragFactor='-0.087'
+	SteerConstraint='2.97'
+	CornerDrawFactor='0.083'
+	DriftEscapeForce='2240'
+	
+	driftBoostMulAccelFactor='1.4'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.8622'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+	BoostAccelFactor='1.54'
+	
+	DriftMaxGauge='-920'
+	NormalBoosterTime='-70'
+	TeamBoosterTime='-300'
+	
+	DriftGaguePreservePercent='0.7'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.10'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	TransformTime='700'
+	
+	TachometerType='V1GenTacho'
+	TachometerName='v1_exceed'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='V1_bike'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	PartsBoosterLock = 'true'
+
+	dualBoosterTickMin='10'
+	dualBoosterTickMax='20'
+	dualMulAccelFactor='1.065'
+	dualTransLowSpeed='50'
+
+	motorcycleType='true'
+	SpeedSlotCapacity='3'
+
+	OnCharacterSize='0.8'
+
+	chargeInstAccelGaugeByGrip = '0.06'
+	chargeInstAccelGaugeByBoost = '0.03'
+	chargeInstAccelGaugeByWall = '0.1'
+	instAccelFactor = '1.18'
+	instAccelGaugeLength = '1.5'
+	instAccelGaugeCooldownTime = '3.0'
+	instAccelGaugeMinUsable ='0.15'
+	instAccelGaugeMinVelLoss = '50'
+	instAccelGaugeMinVelBound = '0'
+
+	wallCollGaugeCooldownTime = '3.0'
+	wallCollGaugeMinVelBound = '210'
+	wallCollGaugeMinVelLoss = '50'
+	wallCollGaugeMaxVelLoss = '200'
+	useExtendedAfterBoosterMore = 'false'
+
+	ExceedWaveType='Exd_Wave_C'
+
+	BoosterType='11soon'
+	BoosterType0='11soon'
+	BoosterType1='11soon'
+	BoosterType2='11main1_b_yellow'
+    BoosterType3='11main1_b_yellow'
+	BoosterType4='11sub'
+    BoosterType5='11sub'
+	BoosterType6='11main2_solid'
+    BoosterType7='11main2_solid'
+
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1a3'
+            FirePort1='mod1a4'
+	FirePort2='mod1b1'
+            FirePort3='mod1b2'
+            FirePort4='mod1b3'
+            FirePort5='mod1b4'
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        	BoostBlurColor='255 0 138 255'
+
+            WheelFixed = 'true'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 201 24 30' trailPort0='mod1b1' trailPort1='mod1b2'/>
+</BodyParam>

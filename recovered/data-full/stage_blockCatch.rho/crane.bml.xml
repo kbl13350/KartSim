@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Crane name="crane" leftTopWH="0 50 148 159" enable="true" visible="false" depthBias="10">
+  <Window windowRect="109 -20 116 0">
+    <Panel name="craneWire" windowRect="0 0 7 20" align="bottom" texture="크레인줄" uvRect="0 0 7 2" alphaBlend="true"/>
+  </Window>
+  <Panel name="basic" leftTopTex="0 0" texture="daoCrane" alphaBlend="true" alphaTest="true" visible="true">
+    <Window name="craneArm" leftTopWH="38 0 110 123" enable="true"/>
+  </Panel>
+  <Panel name="catchFail" leftTopTex="0 0" texture="daoCatch_fail" alphaBlend="true" alphaTest="true" visible="false"/>
+  <Panel name="catchBronze" leftTopTex="0 0" texture="daoCatch_bronze" alphaBlend="true" alphaTest="true" visible="false"/>
+  <Panel name="catchSilver" leftTopTex="0 0" texture="daoCatch_silver" alphaBlend="true" alphaTest="true" visible="false"/>
+  <Panel name="catchGold" leftTopTex="0 0" texture="daoCatch_gold" alphaBlend="true" alphaTest="true" visible="false"/>
+  <Panel name="catchDiamond" leftTopTex="0 0" texture="daoCatch_diamond" alphaBlend="true" alphaTest="true" visible="false"/>
+</Crane>

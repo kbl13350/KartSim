@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god6"/>
+  <Char id="bazzi" pos="6 0" emotion="stop5"/>
+  <Msg name="宝宝" string="哇啊！还以为要成炸宝宝了呢……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop5"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="现在我们能回家了吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ms_thor" pos="12 0" emotion="stop2"/>
+  <Char id="bazzi" pos="6 0" emotion="stop5"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="托尔" string="呼呼，当然了！|那可是与雷神托尔的约定啊！哈哈哈"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="heimdall" pos="8 0" emotion="normal"/>
+  <Msg name="海姆达尔" string="好可疑的人，女孩，三个人"/>
+  <Enter/>
+  <Char id="heimdall" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="额额…那是什么？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="ms_thor" pos="10 0" flip="true" emotion="normal"/>
+  <Msg name="托尔" string="呼呼，别担心，等我一会~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="ms_thor" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="托尔" string="海姆达尔，好久不见！|我是托尔！哈哈哈"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="heimdall" pos="8 0" emotion="normal"/>
+  <Msg name="海姆达尔" string="女人，雷神之锤 X，无法确认身份。"/>
+  <Enter/>
+  <Char id="heimdall" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="海姆达尔！！说了我是托尔！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="heimdall" pos="11 0" emotion="normal"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="海姆达尔" string="回去吧，你们是不可能经过这个地方的。"/>
+  <Enter/>
+  <Char id="heimdall" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="heimdall" pos="11 0" emotion="normal"/>
+  <Msg name="托尔" string="海姆达尔！！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="heimdall" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="什么呀~你不是说你是托尔吗？这都什么呀~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_thor" pos="10 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="托尔" string="算了……既然这样就没别的办法了，|正面突破！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="什么~？就没有什么轻松点的方法吗？？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="dao" pos="10 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="哎，没办法……先跟上吧！！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="gBosster" clientRect="0 0 800 600">
+  <Panel name="frame" texture="giant_gb_default@zz" clientRect="162 534 482 550" alphaBlend="true">
+    <Panel name="step1" texture="giant_gb_01" clientRect="136 1 166 16" alphaBlend="true" visible="false"/>
+    <Panel name="step2" texture="giant_gb_02" clientRect="166 1 196 16" alphaBlend="true" visible="false"/>
+    <Panel name="step3" texture="giant_gb_03" clientRect="196 1 226 16" alphaBlend="true" visible="false"/>
+    <Panel name="step4" texture="giant_gb_04" clientRect="226 1 256 16" alphaBlend="true" visible="false"/>
+    <Panel name="step5" texture="giant_gb_05" clientRect="256 1 286 16" alphaBlend="true" visible="false"/>
+    <Panel name="step6" texture="giant_gb_06" clientRect="286 1 316 16" alphaBlend="true" visible="false"/>
+  </Panel>
+</Container>

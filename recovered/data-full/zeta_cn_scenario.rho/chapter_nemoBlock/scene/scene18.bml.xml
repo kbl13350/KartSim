@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Nemo8"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="呼~终于整理完了！|你们真是辛苦了~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="原来像素村是这个样子啊~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="这里本来是玩具居住的地方~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="不知道麦迪娅是怎么获得魔法的…"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="啊对了！！我现在告诉你们回到繁荣山丘的方法！"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="好啊好啊~~你快说！"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="像素村里有一个叫次元之门的地方！"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="次元之门？？？|是我们被吸进来的地方…是吗？"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="次元之门是圣诞老人移动到外部世界的通道~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="通过那个门，就可以回到繁荣山丘了~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="可是次元之门在哪里呢？"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="嗯…这个我也没有去过…|据说为了不让玩具通过那里，布下了很多陷阱！"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="你要小心才是~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="不会有问题的~|你放心吧~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="我还要留在这里做最后的工作~|不能把你们送到那里了！"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="那我现在告诉你们，|你们自己找过去吧~~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="我们自己能找到的~|我们以后还能再见吧？"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="卡洛儿" string="那当然~我们一定能再见的~|快把你的朋友叫上~一起出发吧~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="卡洛儿" string="次元之门马上就要开了~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="真的谢谢你~卡洛儿！！|我会想你的~"/>
+  <Enter/>
+</Scene>

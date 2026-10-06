@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Greece2"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="哈哈哈|难得有这么悠闲的日子。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="Chris" pos="11 0" emotion="stop4"/>
+  <Msg name="克莉丝" string="好无聊！彩色铅笔，要不要跟我一起玩？"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷" string="格雷格，你去跟她玩吧，让她安静一下。"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop3"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="他们相处的还不错呢~"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="7 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="我们先暂时休息一下，|等风头过去了，我们再行动。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <BackGround texture="Greece1"/>
+  <Char id="raptorLs" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷格" string="居然让我在这里当保姆…"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorLs" pos="4 0" emotion="stop3"/>
+  <Char id="Chris" pos="10 0" emotion="stop2"/>
+  <Msg name="克莉丝" string="不如这次就黑一下警察局吧？"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="Chris" remove="true"/>
+  <Char id="raptorLs" pos="4 0" emotion="stop4"/>
+  <Char id="Chris" pos="10 0" emotion="stop2"/>
+  <Msg name="格雷格" string="够了，小不点！"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="Chris" remove="true"/>
+  <BackGround texture="Greece2"/>
+  <Char id="raptorRs" pos="7 0" emotion="stop3"/>
+  <Msg name="格雷" string="黑杰克大人，|格雷格看起来很疲惫！"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop5"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop3"/>
+  <Msg name="黑杰克" string="哈哈哈|原来我们的格雷格也有疲惫的时候啊！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷" string="克莉丝又闯祸了。"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="哈哈哈|那请你和格雷格一起保护她吧~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop5"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop4"/>
+  <Msg name="格雷" string="……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="8 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="克莉丝对我们来说非常重要。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="totop" pos="10 0" emotion="stop4"/>
+  <Msg name="格雷" string="（恶狠狠地）我一定尽全力保护她！"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <BackGround texture="Greece1"/>
+  <Char id="Altair" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="？？？" string="喂，那个带假发的大叔！"/>
+  <Enter/>
+  <Char id="Altair" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop6"/>
+  <Msg name="黑杰克" string="带假发的大叔？你是谁？！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="Altair" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="阿泰尔" string="既然你想知道，那我就告诉你~|我的名字叫阿泰尔，我拥有世界上最多的石油。"/>
+  <Enter/>
+  <Char id="Altair" remove="true"/>
+  <Char id="Altair" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="totop" pos="12 0" emotion="stop6"/>
+  <Msg name="黑杰克" string="石油？难道你就是…中东首富阿泰尔？|我不管你是谁，你已经惹到我了！"/>
+  <Enter/>
+  <Char id="Altair" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="Altair" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="阿泰尔" string="唉~果然全世界都已经知道我的大名了~|哈哈哈"/>
+  <Enter/>
+  <Char id="Altair" remove="true"/>
+  <Char id="Altair" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="totop" pos="11 0" emotion="stop6"/>
+  <Msg name="黑杰克" string="你…|格雷！格雷格！快把他拖出去！"/>
+  <Enter/>
+  <Char id="Altair" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="Altair" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="阿泰尔" string="你一定是嫉妒我~|先不管这个，我想问你，你想征服世界吗？"/>
+  <Enter/>
+  <Char id="Altair" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="Altair" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="黑杰克" string="征服世界？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="Altair" remove="true"/>
+  <Char id="Altair" pos="7 0" emotion="stop2"/>
+  <Msg name="阿泰尔" string="我拥有这么多的财富，也不知道该怎么花~|所以我想做点有趣的事情~|你要是有想法的话，就跟我来吧~"/>
+  <Enter/>
+  <Char id="Altair" remove="true"/>
+  <Char id="totop" pos="7 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="阿泰尔…|好，那我就先跟着你看看。"/>
+  <Enter/>
+</Scene>

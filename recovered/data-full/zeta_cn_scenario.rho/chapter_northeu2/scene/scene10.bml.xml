@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu11"/>
+  <Char id="revaski" pos="7 0" emotion="stop3"/>
+  <Msg name="Q博士" string="哈哈，这些家伙！！"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="叔叔，对不起~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop1"/>
+  <Msg name="Q博士" string="没关系！奇奇就拜托你们了！"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="bazzi" pos="10 0" emotion="stop1"/>
+  <Char id="dao" pos="5 0" emotion="stop1"/>
+  <Msg name="皮蛋, 宝宝" string="嗯~！放心吧！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="revaski" pos="8 0" emotion="stop1"/>
+  <Msg name="Q博士" string="奇奇，爸爸要回到太空行星去了…"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="revaski" pos="8 0" emotion="stop3"/>
+  <Msg name="Q博士" string="有空带伙伴们到太空行星来玩吧。"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="taki" pos="8 0" emotion="stop3"/>
+  <Msg name="奇奇" string="嗯！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="太空行星？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="就是你的家？很帅的！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop1"/>
+  <Msg name="Q博士" string="太空行星也有很多出色的赛道！！！一定要来玩啊！"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop1"/>
+  <Char id="dao" pos="10 0" emotion="stop2"/>
+  <Msg name="皮蛋, 宝宝" string="哇~~好期待！！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop1"/>
+  <Msg name="Q博士" string="过几天就会想念你们，所以快来.."/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop3"/>
+  <Msg name="Q博士" string="那在地球再跑最后一次吧！！走了~~！！"/>
+  <Enter/>
+</Scene>

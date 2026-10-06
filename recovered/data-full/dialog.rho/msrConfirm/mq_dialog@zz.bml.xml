@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 295 240" caption="#sb(caption)" align="center" setCloseButton="cancelButton">
+    <Window windowRect="6 9 12 15" frame="Bullet"/>
+    <Label name="confirm_text" windowRect="20 6 120 20" text="#sb(registerAsk)"/>
+    <Label name="message" windowRect="0 33 260 54" frame="DefaultEdit" text="" align="hcenter"/>
+    <Window windowRect="0 66 260 68" frame="VSection" align="hcenter"/>
+    <Window windowRect="6 82 12 88" frame="Bullet"/>
+    <Label name="static0" windowRect="20 79 120 93" text="#sb(aliasAsk)"/>
+    <Label name="static1" windowRect="14 106 35 120" text="#sb(alias)"/>
+    <Edit name="AliasEdit" windowRect="35 100 238 122" maxChar="32" align="right"/>
+    <Container windowRect="0 0 260 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 260 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="okButton" windowRect="0 0 80 30" text="#sb(register)"/>
+      <TextButton name="cancelButton" windowRect="0 0 80 30" align="hcenter" text="#sb(cancel)"/>
+      <TextButton name="ignoreButton" windowRect="0 0 80 30" align="right" text="#sb(ignore)"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

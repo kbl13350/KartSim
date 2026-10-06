@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle5"/>
+  <Char id="dizini" pos="3 0" emotion="normal"/>
+  <Msg name="黑妞" string="啊！这不是刚才的玩具屋吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop1"/>
+  <Msg name="克鲁伊" string="路易！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="alma" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="路易" string="克鲁伊？|你怎么来我房间了？"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop1"/>
+  <Msg name="黑妞" string="你好，路易！|我叫黑妞。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="alma" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="路易" string="啊！黑妞！|你怎么来我家的？"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="说来话长…|宝宝在这城堡里失踪了…|能找到宝宝吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="alma" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="路易" string="宝宝失踪了！！|你们到底在我房间做了什么啊？"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="啊..这个…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="alma" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="路易" string="再好的朋友也不允许乱碰我的东西！|想找宝宝是吧？|那战胜我吧！"/>
+  <Enter/>
+</Scene>

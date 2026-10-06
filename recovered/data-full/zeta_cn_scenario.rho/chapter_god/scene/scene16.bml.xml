@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god2"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="7 0" emotion="stop1"/>
+  <Msg name="扬声器" string="这是谁都没有想到的结果！|本次G1联赛获胜者是洛基选手！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="loki" pos="8 0" emotion="stop1"/>
+  <Msg name="洛基" string="嘻嘻！|这次冠军奖杯|是我洛基的~"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="8 0" emotion="normal"/>
+  <Msg name="洛基" string="没有这个傻瓜哥哥|父亲的夸奖就由我承包了！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="8 0" emotion="stop1"/>
+  <Msg name="洛基" string="作为获胜纪念立个铜像！|嘻嘻嘻……"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="托尔" string="洛基！！！你这家伙~~~！！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="洛基" string="咦！！为什么傻托尔会在这里！！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="托尔" string="居然会在神圣的联赛开这种玩笑！！！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_thor" pos="5 0" flip="true" emotion="stop3"/>
+  <Char id="loki" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="托尔" string="给我站住！！！"/>
+  <Enter/>
+</Scene>

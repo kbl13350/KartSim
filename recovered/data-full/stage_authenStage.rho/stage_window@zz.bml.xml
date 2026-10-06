@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="0 0 800 600" color="255 255 255 255" alphaBlend="true">
+  <Container name="bg" windowRect="0 0 800 600" visible="false">
+    <Panel windowRect="0 0 512 512" texture="bg_01" uvRect="0 0 512 512" alphaBlend="true"/>
+    <Panel windowRect="512 0 800 512" texture="bg_02" uvRect="0 0 288 512" alphaBlend="true"/>
+    <Panel windowRect="0 512 512 600" texture="bg_03" uvRect="0 0 512 88" alphaBlend="true"/>
+    <Panel windowRect="512 512 800 600" texture="bg_04" uvRect="0 0 288 88" alphaBlend="true"/>
+  </Container>
+  <Panel name="MatrixAuthen" windowSize="253 220" adjust="275 190" texture="matrix_box" alphaBlend="true" visible="false">
+    <Label name="warning" windowSize="220 80" adjust="20 53" frameSet="NoFrame" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="#sb(matrixInfo)"/>
+    <Label name="matrixKeyTitle" windowSize="300 30" adjust="37 115" frameSet="NoFrame" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="#sb(matrixKeyTitle)"/>
+    <Label name="authenTitle" windowSize="300 30" adjust="37 137" frameSet="NoFrame" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="#sb(authenTitle)"/>
+    <Label name="authenKey" windowSize="300 30" adjust="110 116" frameSet="NoFrame" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text=""/>
+    <Edit name="key0" frame="NoFrame" textColor="white" textBgColor="none" windowSize="20 20" adjust="109 133" maxChar="2"/>
+    <Edit name="key1" frame="NoFrame" textColor="white" textBgColor="none" windowSize="20 20" adjust="152 133" maxChar="2"/>
+    <Edit name="key2" frame="NoFrame" textColor="white" textBgColor="none" windowSize="20 20" adjust="193 133" maxChar="2"/>
+    <ImageButton name="matrixOk" frame="NoFrame" windowSize="73 26" adjust="80 180" autoLoadImage="button_A_0" alphaBlend="true" altText=""/>
+    <ImageButton name="cancel" frame="NoFrame" windowSize="73 26" adjust="165 180" autoLoadImage="button_B_0" alphaBlend="true" altText=""/>
+  </Panel>
+  <Panel name="OtpAuthen" windowSize="253 180" adjust="275 190" texture="passpod_box" alphaBlend="true" visible="false">
+    <Label name="warning" windowSize="220 80" adjust="20 50" frameSet="NoFrame" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="warningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarnin" visible="false"/>
+    <Label name="optTitle" windowSize="400 30" adjust="37 62" frameSet="NoFrame" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="#sb(passpotTitle)"/>
+    <Edit name="key3" frame="NoFrame" textColor="white" textBgColor="none" windowSize="100 20" adjust="38 82" maxChar="8"/>
+    <ImageButton name="otpOk" frame="NoFrame" windowSize="73 26" adjust="80 135" autoLoadImage="button_A_0" alphaBlend="true" altText=""/>
+    <ImageButton name="cancel" frame="NoFrame" windowSize="73 26" adjust="165 135" autoLoadImage="button_B_0" alphaBlend="true" altText=""/>
+  </Panel>
+</Panel>

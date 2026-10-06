@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container windowRect="fullscreen" align="center">
+    <ImageBoard name="CountdownBoxBg_1400" windowSize="1400 1050" adjust="0 0" image="countdown_img_bg_1400" alphaBlend="true" align="center" alphaTest="true" visible="false"/>
+    <ImageBoard name="CountdownBoxBg_1600" windowSize="1600 900" adjust="0 0" image="countdown_img_bg_1600" alphaBlend="true" align="center" alphaTest="true" visible="false"/>
+    <ImageBoard name="CountdownBoxBg_1920" windowSize="1920 1080" adjust="0 0" image="countdown_img_bg_1920" alphaBlend="true" align="center" alphaTest="true" visible="false"/>
+    <Panel name="boxName" windowSize="436 118" adjust="0 68" align="hcenter;top" texture="boxGreen@zz" alphaBlend="true" alphaTest="true"/>
+    <Play1SPanel name="boxBasicGreen" scene="초록카운트다운상자_00" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Play1SPanel name="boxBasicBlue" scene="파랑카운트다운상자_00" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Play1SPanel name="boxBasicRed" scene="빨강카운트다운상자_00" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Play1SPanel name="boxBasicSilver" scene="실버카운트다운상자_00" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Play1SPanel name="boxBasicGold" scene="황금카운트다운상자_00" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Play1SPanel name="boxCanOpenGreen" scene="초록카운트다운상자_01" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Play1SPanel name="boxCanOpenBlue" scene="파랑카운트다운상자_01" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Play1SPanel name="boxCanOpenRed" scene="빨강카운트다운상자_01" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Play1SPanel name="boxCanOpenSilver" scene="실버카운트다운상자_01" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Play1SPanel name="boxCanOpenGold" scene="황금카운트다운상자_01" windowSize="320 320" adjust="0 -110" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0.5" efaultSpotPos="0.0 0.0 0.65" zoom="3.3" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+    <Window name="play1sCoord" leftTopWH="0 100 330 330"/>
+    <Window name="reward" windowRect="fullscreen" align="center">
+      <ItemWindow name="rewardWindow" windowSize="400 400" adjust="0 -70" align="center" stockId="15460" randAni="true" cameraZoom="8.0" enable="true"/>
+      <Window windowSize="500 230" adjust="0 156" align="hcenter;bottom">
+        <Panel leftTopTex="0 85" align="hcenter" texture="countdown_img_bgText2" alphaBlend="true" alphaTest="true"/>
+        <Label name="rewardItemName" windowSize="504 32" adjust="0 85" align="hcenter" text="ABCDEFG" textAlign="center" textColor="white" textRender="bold20" autoWrap="true" multiLine="true" lineGap="1"/>
+        <ImageButton name="ok" leftTopTex="2 144" align="hcenter" adjust="0 0" autoLoadImage="countdown_btn_confirm_@zz" alphaBlend="true"/>
+      </Window>
+    </Window>
+    <Window name="leftTime" windowSize="500 230" adjust="0 156" align="hcenter;bottom">
+      <CharPanel name="leftHour10" leftTopWH="47 16 38 48" adjust="0 0" texture="countdown_txt_num1" alphaBlend="true" fontSize="38 48" spaceOffset="0" fontStr="1234567890" text="-" rightAlign="true" enable="false" visible="true"/>
+      <CharPanel name="leftHour1" leftTopWH="85 16 38 48" adjust="0 0" texture="countdown_txt_num1" alphaBlend="true" fontSize="38 48" spaceOffset="0" fontStr="1234567890" text="-" rightAlign="true" enable="false" visible="true"/>
+      <Panel leftTopTex="143 22" texture="countdown_txt_hour@zz" alphaBlend="true" alphaTest="true"/>
+      <CharPanel name="leftMin10" leftTopWH="259 16 38 48" adjust="0 0" texture="countdown_txt_num1" alphaBlend="true" fontSize="38 48" spaceOffset="0" fontStr="1234567890" text="-" rightAlign="true" enable="false" visible="true"/>
+      <CharPanel name="leftMin1" leftTopWH="297 16 38 48" adjust="0 0" texture="countdown_txt_num1" alphaBlend="true" fontSize="38 48" spaceOffset="0" fontStr="1234567890" text="-" rightAlign="true" enable="false" visible="true"/>
+      <Panel leftTopTex="348 22" texture="countdown_txt_minute@zz" alphaBlend="true" alphaTest="true"/>
+      <Panel leftTopTex="0 85" align="hcenter" texture="countdown_img_bgText1" alphaBlend="true" alphaTest="true"/>
+      <Panel name="boxState" leftTopTex="0 85" align="hcenter" texture="processingBox@zz" alphaBlend="true" alphaTest="false"/>
+      <ImageButton name="openBoxNow" leftTopTex="2 144" align="hcenter" adjust="0 0" autoLoadImage="btn_boxOpenNow_@zz" alphaBlend="true" visible="false"/>
+      <ImageButton name="openBox" leftTopTex="2 144" align="hcenter" adjust="0 0" autoLoadImage="btn_boxOpen_@zz" alphaBlend="true" visible="false"/>
+    </Window>
+    <Panel name="openWithValuePanel" windowRect="fullscreen" align="center" color="200 0 0 0" alphaBlend="true" visible="false" enable="true">
+      <CaptionWindow frame="CaptionDialog" windowRect="0 0 480 300" caption="#sb(openBox)" align="center">
+        <Panel name="iconPanel" leftTopWH="0 16 44 44" align="hcenter" texture="대화상자정보" alphaBlend="true"/>
+        <Label name="valueInfoStr" leftTopWH="0 70 440 15" align="hcenter" textAlign="center" textColor="255 42 55 80" textRender="bold16" autoWrap="true" multiLine="true" lineGap="1"/>
+        <Container windowRect="0 0 300 50" align="hcenter;bottom">
+          <Window windowRect="0 -18 420 -17" frame="VSection" align="hcenter"/>
+          <TextButton name="openWithValueBtn" leftTopWH="0 0 132 42" text="#sb(openBox)" frame="DefaultFocusedButton" align="left" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+          <TextButton name="cancelWithValueBtn" leftTopWH="200 0 132 42" text="#sb(cancel)" align="right" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+        </Container>
+      </CaptionWindow>
+    </Panel>
+    <Window windowSize="800 120" align="bottom;hcenter">
+      <Label leftTopWH="0 30 800 22" textAlign="hcenter" text="#sb(countdownBoxDescription1)" textColor="255 84 100 129" textRender="bold16" autoWrap="true" multiLine="true" lineGap="1"/>
+      <Label leftTopWH="0 52 800 22" textAlign="hcenter" text="#sb(countdownBoxDescription2)" textColor="255 84 100 129" textRender="bold16" autoWrap="true" multiLine="true" lineGap="1"/>
+    </Window>
+  </Container>
+  <ImageButton name="goBackButton" windowSize="46 46" align="top;right" adjust="20 20" autoLoadImage="btn_close_" alphaBlend="true"/>
+</Container>

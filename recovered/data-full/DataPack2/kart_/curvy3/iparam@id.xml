@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BodyParam
+	ForwardAccelForce='100.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.055'
+	SteerConstraint='1.6'
+	DriftEscapeForce='180'
+	CornerDrawFactor='0.045'
+
+	BoosterBlur='true'
+	EngineSound='pro'
+
+	DescBalance= '25'
+	DescStability ='25'
+
+/>
+
+<!-- 인니 커비 PRO-->

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="fullscreen">
+  <CaptionWindow name="ChallengeDesktop" windowRect="0 0 800 575" caption="#sb(title)" frame="CaptionDialog" captionColor="black" align="center">
+    <Container name="menuPlane" windowSize="777 500" adjust="-6 4" enable="false">
+      <Container name="group" windowSize="746 497" adjust="0 5" align="hcenter">
+        <Panel name="back1" windowSize="512 465" texture="01" adjust="0 0" alphaBlend="true"/>
+        <Panel name="back2" windowSize="234 465" texture="02" adjust="512 0" alphaBlend="true"/>
+        <Panel name="title" windowSize="259 37" texture="select@zz" adjust="242 8" alphaBlend="true"/>
+        <Label name="notice" windowSize="177 15" adjust="285 418" multiLine="true" textColor="white" textAlign="center" autoWrap="true" enable="false" text="#sb(noticeStr)"/>
+      </Container>
+    </Container>
+    <Container name="playerTable" windowSize="765 250" adjust="0 100">
+      <StateButton name="card1" windowRect="25 0 185 202" windowSize="160 202" adjust="25 0" iconSet="card1@zz" iconInfix="" canDisable="true" alphaBlend="true">
+        <Panel name="select" windowSize="160 202" texture="card_select" adjust="0 0" alphaBlend="true" enable="false" visible="false"/>
+      </StateButton>
+      <StateButton name="card2" windowRect="210 0 370 202" windowSize="160 202" adjust="210 0" iconSet="card2@zz" iconInfix="" canDisable="true" alphaBlend="true">
+        <Panel name="select" windowSize="160 202" texture="card_select" adjust="0 0" alphaBlend="true" enable="false" visible="false"/>
+      </StateButton>
+      <StateButton name="card3" windowRect="395 0 555 202" windowSize="160 202" adjust="395 0" iconSet="card3@zz" iconInfix="" canDisable="true" alphaBlend="true">
+        <Panel name="select" windowSize="160 202" texture="card_select" adjust="0 0" alphaBlend="true" enable="false" visible="false"/>
+      </StateButton>
+      <StateButton name="card4" windowRect="580 0 740 202" windowSize="160 202" adjust="580 0" iconSet="card4@zz" iconInfix="" canDisable="true" alphaBlend="true">
+        <Panel name="select" windowSize="160 202" texture="card_select" adjust="0 0" alphaBlend="true" enable="false" visible="false"/>
+      </StateButton>
+      <Label name="rockNum" windowSize="100 20" adjust="220 140" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+      <Label name="paperNum" windowSize="100 20" adjust="385 140" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+    </Container>
+    <CharPanel name="countText" windowSize="52 62" adjust="350 358" texture="count_all" fontPos="0 0" fontSize="52 62" fontStr="012345" alphaBlend="true" text="5"/>
+  </CaptionWindow>
+</Container>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="maple3"/>
+  <Char id="lora" pos="11 0" emotion="stop4"/>
+  <Msg name="罗拉" string="注意！很遗憾，今年的“整蛊人类考试”取消了。"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop4" flip="true"/>
+  <Char id="lora" pos="11 0" emotion="stop4"/>
+  <Msg name="伊丽莎白" string="啊？！取消？！老师，这是什么意思！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="lora" remove="true"/>
+  <Char id="lora" pos="11 0" emotion="stop3"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop4" flip="true"/>
+  <Msg name="罗拉" string="今年人类停办了“南瓜庆典”，所以整蛊考试也没办法进行了。"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop6" flip="true"/>
+  <Char id="lora" pos="11 0" emotion="stop3"/>
+  <Msg name="伊丽莎白" string="为什么取消庆典？！我准备了新的整蛊方法，就等着这次考试的时候试试呢！！！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="lora" remove="true"/>
+  <Char id="lora" pos="11 0" emotion="stop1"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop6" flip="true"/>
+  <Msg name="罗拉" string="我也十分惋惜，但没办法。本次考试将换成我主讲的“药剂制作考试”。"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop3" flip="true"/>
+  <Char id="lora" pos="11 0" emotion="stop1"/>
+  <Msg name="伊丽莎白" string="捣草药和熬蘑菇的无聊考试，我才不想参加！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="lora" remove="true"/>
+  <Char id="lora" pos="11 0" emotion="stop6"/>
+  <Char id="elizabeth" pos="4 0" emotion="stop3" flip="true"/>
+  <Msg name="罗拉" string="伊丽莎白。有什么不满，跟我来教务室说吧。"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="elizabeth" pos="3 0" emotion="stop1"/>
+  <Char id="lora" pos="11 0" emotion="stop6"/>
+  <Msg name="伊丽莎白" string="我要亲自查清庆典取消的原因！"/>
+  <Enter/>
+  <Char id="elizabeth" remove="true"/>
+  <Char id="lora" remove="true"/>
+  <Char id="lora" pos="7 0" emotion="stop2"/>
+  <Msg name="罗拉" string="唉，这倔性子，谁能劝得住啊。"/>
+  <Enter/>
+</Scene>

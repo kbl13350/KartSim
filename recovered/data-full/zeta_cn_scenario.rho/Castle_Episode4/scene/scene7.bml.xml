@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle1"/>
+  <Char id="dona" pos="7 0" emotion="stop2"/>
+  <Msg name="当娜" string="什么？你不是小偷吗？？"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop3"/>
+  <Msg name="蓝蓝" string="皮德叔叔让我把这些蘑菇放到厨房的…"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dona" pos="11 0" emotion="stop3"/>
+  <Char id="marid" pos="3 0" emotion="stop3"/>
+  <Msg name="当娜" string="哦，对不起。我错怪你了。|你好，我是大城堡的仆人，叫当娜。"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop4"/>
+  <Msg name="蓝蓝" string="我是路易的朋友，叫蓝蓝。"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dona" pos="11 0" emotion="stop3"/>
+  <Msg name="当娜" string="哦，你是路易的朋友啊，厨房在地下室的上层。|彩虹蘑菇我替你拿过去吧，可是你能帮我个忙吗？"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop3"/>
+  <Msg name="蓝蓝" string="什么忙啊？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop3"/>
+  <Char id="dona" pos="11 0" emotion="stop2"/>
+  <Msg name="当娜" string="路易的生日快要到了，所以我准备了礼物…|可是我不敢送过去…|你能帮我偷偷的放到2楼路易的房间吗？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dona" remove="true"/>
+  <Char id="marid" pos="7 0" emotion="stop4"/>
+  <Msg name="蓝蓝" string="嘿嘿，让我当爱情的丘比特吗？|别担心，我来帮你吧。"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dona" pos="9 0" emotion="stop3"/>
+  <Msg name="当娜" string="真的？？！！|谢谢你，蓝蓝。"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="marid" pos="7 0" emotion="normal"/>
+  <Msg name="蓝蓝" string="先去楼上吧。"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="cloi" pos="10 0" emotion="stop4"/>
+  <Msg name="克鲁伊" string="哔哔哔哔!!|找到你了！庭院的入侵者！！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="marid" pos="4 0" emotion="stop6"/>
+  <Msg name="蓝蓝" string="哇啊啊！！那机器人找到这里了啊！！|没有办法了，让它瞧瞧我的实力！！"/>
+  <Enter/>
+</Scene>

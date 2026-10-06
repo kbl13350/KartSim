@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss3"/>
+  <Char id="bazzi" pos="9 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="累死了~终于回来了~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Msg name="黑妞" string="去的时候挺快的，回来真费时间……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="8 0" emotion="normal"/>
+  <Msg name="奈尔" string="不想被他们发现就只能绕远路了。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="你呢，接下来你怎么办？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="奈尔" string="虽然把姐姐一个人留在那里有点担心……但现在也只能先跟你们一起走了。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="嗯，先回去再想吧！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="喂，伙伴们，看那边海边！好像有人！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="确实有什么东西，太远了看不清……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="是海盗一伙和黑暗组织！好像是刚从阿比斯回来！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="7 0" emotion="normal"/>
+  <Msg name="奈尔" string="但是姐姐为什么会跟他们在一起？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="往这边来了，快躲起来！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" pos="8 0" emotion="stop2"/>
+  <Msg name="奈琳" string="把手放开！我们的军团兵上来后绝对不会放过你们的！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="5 0" emotion="stop2"/>
+  <Char id="Chris" pos="10 0" emotion="stop2"/>
+  <Msg name="克莉丝" string="你不是说那些军团兵不能上地面嘛~呼呼~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="Chris" remove="true"/>
+  <Char id="lodumani" pos="6 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="呵呵，你弟弟是跟那些菜鸟一起逃的，只要抓住你……"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="totop" pos="11 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="阿比斯的势力就无法威胁到我们，对吧~"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="narin" pos="8 0" emotion="stop3"/>
+  <Msg name="奈琳" string="呜呜呜！莫格瑞大人！奈尔奈尔啊~~！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="neoul" pos="11 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="冷，冷静！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="neoul" pos="11 0" emotion="stop2"/>
+  <Msg name="奈尔" string="唔！唔！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="stop2"/>
+  <Char id="dizini" pos="6 0" emotion="stop6"/>
+  <Msg name="黑妞" string="不行，现在出去会被抓住的……再等会。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="stop2"/>
+  <Char id="bazzi" pos="5 0" emotion="stop5"/>
+  <Msg name="宝宝" string="额，这家伙力气倒不小啊~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="还好，好像走远了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="8 0" emotion="stop2"/>
+  <Msg name="奈尔" string="我要去救姐姐！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="10 0" emotion="stop2"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="我们会帮你的！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" pos="10 0" emotion="normal"/>
+  <Msg name="奈尔" string="！！！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Msg name="黑妞" string="相信我们就对了~！这个地方我们很熟！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="先跟上他们吧，千万别被发现了~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="再不跟上去就跟不上了！快点！"/>
+  <Enter/>
+</Scene>

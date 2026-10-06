@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="mission" leftTopTex="24 0" align="bottom" adjust="24 24" texture="bg1" alphaBlend="true" visible="false">
+  <Panel name="collision" windowRect="10 5 97 72" texture="m_collide" alphaBlend="true" align="vcenter">
+    <CharPanel name="count" windowRect="54 14 73 37" texture="aw_02@zz" alphaBlend="true" fontSize="19 23" fontPos="0 88" fontStr="0123456789" text="5"/>
+  </Panel>
+  <Label name="missionText" leftTopWH="100 0 200 31" align="vcenter" textRender="outline16" textColor="white" textAlign="hcenter"/>
+</Panel>

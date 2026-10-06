@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="扬声器" string="这里是阿斯加德巡回赛！|现在进行的是排位赛。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="扬声器" string="本赛季的种子选手是|之前也获得过冠军的托尔选手。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="god2"/>
+  <Char id="thor" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="排位赛第一名将会是我，托尔！哈哈哈"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="托尔" string="光是在起跑线上，就有点兴奋了。"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <BackGround texture="god1"/>
+  <Char id="loki" pos="10 0" emotion="stop2"/>
+  <Msg name="洛基" string="呵呵…傻托尔|只要手握着方向盘就会变得神经兮兮的…"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="10 0" emotion="stop2"/>
+  <Msg name="洛基" string="虽然是我哥，但真的受够了…"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <BackGround texture="god2"/>
+  <Char id="thor" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="都给我闪开！|G1联赛冠军托尔要登场了！"/>
+  <Enter/>
+</Scene>

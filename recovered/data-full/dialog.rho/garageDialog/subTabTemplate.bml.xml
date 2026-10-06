@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextButton name="total" windowRect="0 0 70 39" frame="ComboSelectButton2" text="#sb(whole)" textColor="255 125 125 125" clickedTextColor="white" overTextColor="255 56 112 147" disabledTextColor="white" textRender="bold16" useDisableState="true" forceTooltip="false"/>

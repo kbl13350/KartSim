@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="pwd2ndMessageCaption">
+    <m c="kr" v="카트라이더 2차 비밀번호"/>
+  </k>
+  <k n="pwd2ndCreateError">
+    <m c="kr" v="2차 비밀번호 생성중 오류가 발생하였습니다."/>
+  </k>
+</StringBag>

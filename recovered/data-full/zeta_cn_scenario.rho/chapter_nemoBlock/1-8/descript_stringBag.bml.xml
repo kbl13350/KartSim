@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="女巫的计谋"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="女巫发现皮蛋毫无疑心地跟着她，而皮蛋并不知道这其实是女巫的计谋，他成功地追上了女巫。|女巫为了测试皮蛋的实力，开始将他引诱进陷阱里。皮蛋能从危险中顺利逃脱吗？"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="在指定时间内完成比赛。|"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="像素 魔法乐园"/>
+  </k>
+</StringBag>

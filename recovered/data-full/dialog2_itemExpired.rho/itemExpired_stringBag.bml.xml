@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="itemExpiredDialogCaption">
+    <m c="kr" v="아이템 사용 기간 만료"/>
+    <m c="jp" v="アイテム利用有効期間終了"/>
+    <m c="cn" v="道具使用已到期"/>
+    <m c="tw" v="道具使用期限已到期。"/>
+    <m c="us" v="The item has expired. "/>
+    <m c="th" v="ไอเทมชนิดนี้หมดอายุแล้ว"/>
+    <m c="vn" v="Vật phẩm đã hết hạn sử dụng."/>
+    <m c="ru" v="Окончание срока действия предмета."/>
+    <m c="id" v="Waktu Sisa Pemakaian Item Habis"/>
+  </k>
+  <k n="itemExpiredMsgFmt">
+    <m c="kr" v="[%s] 아이템의 사용 기간이 끝났습니다."/>
+    <m c="jp" v="[%s] アイテムの利用有効期間が終了しました。"/>
+    <m c="cn" v="[%s]道具使用已到期"/>
+    <m c="tw" v="[%s]道具使用期限已到期。"/>
+    <m c="us" v="[%s] item has expired. "/>
+    <m c="vn" v="[%s] đã hết hạn sử dụng."/>
+    <m c="ru" v="Срок действия предмета завершен:| &quot;%s&quot;"/>
+    <m c="id" v="Durasi item [%s] telah habis."/>
+    <m c="th" v="เวลาใช้ไอเทม [%s] หมดลงแล้ว"/>
+  </k>
+  <k n="itemExpiredMsgExtForRoomCard">
+    <m c="kr" v="마이룸의 스킨 설정이 빌리지 기본 스킨으로 변경됩니다."/>
+    <m c="jp" v="マイホームのスキン設定がビレッジ基本スキンに変更されます。"/>
+    <m c="vn" v="Thẻ trang trí phòng đã hết hạn, phòng trở lại hình dáng ban đầu."/>
+    <m c="ru" v="Фон вашей комнаты меняется на стандартный - Деревня."/>
+    <m c="id" v="Setting skin di My Room berubah menjadi standar skin, Village."/>
+    <m c="th" v="ตั้งค่าฉากหลังห้องส่วนตัวเป็นฉาก Village "/>
+  </k>
+  <k n="someItemsExpiredFmt">
+    <m c="kr" v="다음 %d 개 아이템의 사용 기간이 만료되었습니다."/>
+    <m c="jp" v="次の%d個のアイテムの利用有効期間が終了しました。"/>
+    <m c="cn" v="以下%d个道具的使用期限已结束。"/>
+    <m c="tw" v="下列 %d 個道具的使用期限已到期。"/>
+    <m c="id" v="Waktu penggunaan item %d telah habis."/>
+  </k>
+  <k n="aboutItemExpired">
+    <m c="kr" v="구입하기를 누르시면 상점에서 아이템을 재구입할 수 있습니다."/>
+    <m c="jp" v="購入するを押すと、ショップで再購入することができます。|(プラントアイテムはもう一度入手しないと装着できません。)"/>
+    <m c="cn" v="点击兑换按钮可移动到商店查看最新商品。"/>
+    <m c="tw" v="按下購入的話，在商城上可再度購入道具。|(加工廠道具再度獲得後才可裝置。)"/>
+    <m c="id" v="Tekan Buy untuk membeli Item kembali di Shop. (Plant Item harus didapatkan kembali untuk dipakai."/>
+  </k>
+  <k n="buy">
+    <m c="kr" v="재구매"/>
+    <m c="cn" v="兑换"/>
+    <m c="tw" v="再購買"/>
+  </k>
+  <k n="trade">
+    <m c="kr" v="교환"/>
+    <m c="cn" v="兑换"/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="닫기"/>
+    <m c="cn" v="确定"/>
+    <m c="tw" v="關閉"/>
+  </k>
+</StringBag>

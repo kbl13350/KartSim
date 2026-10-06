@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<List name="resultList" leftTopWH="24 10 702 535" scrollType="vertical" listGap="10" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollBarVisible="false" listMargin="10 10 0 0" align="vcenter" adjust="0 338">
+  <Skip>
+    <Window name="template" leftTopWH="0 0 664 262">
+      <ImageBoard name="backPanel" windowRect="0 0 664 262" texture="redBox@zz" alphaBlend="true" align="center"/>
+      <List name="list" leftTopWH="0 0 702 270" scrollType="vertical" listGap="0" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollBarVisible="false"/>
+    </Window>
+  </Skip>
+</List>

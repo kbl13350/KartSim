@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600" align="center">
+  <Panel windowRect="fullscreen" color="180 0 0 0" alphaBlend="true"/>
+  <Container windowRect="0 0 800 600" align="center">
+    <Panel leftTopTex="68 0" texture="승리백판_01@zz" alphaBlend="true"/>
+    <Panel leftTopTex="68 512" texture="승리백판_02@zz" alphaBlend="true"/>
+    <Panel leftTopTex="580 0" texture="승리백판_03@zz" alphaBlend="true"/>
+    <Panel leftTopTex="580 512" texture="승리백판_04@zz" alphaBlend="true"/>
+    <Window name="reward1" leftTopWH="510 280 100 100" alphaBlend="true" alphaTest="true">
+      <Label name="itemName" leftTopWH="-25 127 145 20" textAlign="center" textColor="white"/>
+    </Window>
+    <ImageButton name="okButton" leftTopTex="579 512" autoLoadImage="획득_0" alphaBlend="true">
+      <Label leftTopWH="8 20 50 20" text="#sb(ok)" textColor="white" textAlign="center"/>
+    </ImageButton>
+    <Label name="npcTalk" text="npcTalk" leftTopWH="145 250 200 80" textColor="white" textAlign="center" multiLine="true"/>
+  </Container>
+</Container>

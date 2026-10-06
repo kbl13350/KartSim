@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="dashboard" windowSize="185 91" align="right;bottom" alphaBlend="true">
+  <Container windowSize="288 51" adjust="-111 13">
+    <Panel leftTopTex="114 23" texture="tacho_TF1" alphaBlend="true" visible="true"/>
+    <CharPanel name="kmh" windowRect="109 -15 240 34" texture="transformerSpeedNum" alphaBlend="true" fontSize="41 50" fontStr="0123456789" fontPos="0 0" text="000" spaceOffset="-4"/>
+    <CharPanel name="speedGauge" windowRect="119 39 238 53" texture="tacho_light_TF1" alphaBlend="true" fontSize="11 14" fontStr="012" fontPos="0 0" text="1111111122" spaceOffset="-4"/>
+    <Panel name="bgpOff" leftTopTex="50 -18" texture="오토봇얼굴" alphaBlend="true" visible="true">
+      <Panel name="bgpOn" leftTopTex="1 16" texture="오토봇눈" alphaBlend="true" visible="false"/>
+    </Panel>
+  </Container>
+</Window>

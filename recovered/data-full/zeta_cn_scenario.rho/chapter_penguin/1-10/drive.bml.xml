@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0" checkWrongway="false" returnToPolePosOnReset="true"/>
+  <Delivery isFixedKart="true" fixedKartId="1539" isFixedChar="true" fixedCharId="1" isMinimapHide="true">
+    <LevelContent level="0" track="mine_S04" collision="5" laps="1" timeLimit="300000"/>
+  </Delivery>
+</Root>

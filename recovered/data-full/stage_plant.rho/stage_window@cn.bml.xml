@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <CaptionWindow name="퀘스트준비" windowRect="5 25 795 590" frame="CaptionWindow" captionPos="0 6" captionColor="black" caption="#sb(myPlant)" setCloseButton="goBackButton">
+    <RenderPanel name="renderPanel" clientRect="-5 -1 766 523" enable="false"/>
+    <Panel name="npcTalk" windowRect="0 0 71 52" alphaBlend="true" texture="npc_q" visible="false"/>
+    <Window name="Talk" windowSize="680 90" align="hcenter;bottom" adjust="25 10" frame="DefaultTooltip" visible="false">
+      <Panel name="brodi" windowRect="-70 -160 200 90" alphaBlend="true" texture="브로디_기본"/>
+      <Label name="system_desc" windowRect="220 0 660 50" align="vcenter" multiLine="true" autoWarp="true" textColor="white"/>
+      <TextButton name="talkBtn2" windowSize="60 22" adjust="535 10" text="#sb(ok)" align="bottom"/>
+      <TextButton name="talkBtn1" windowSize="60 22" adjust="600 10" text="#sb(ok)" align="bottom"/>
+    </Window>
+    <Container name="TalkDummy" windowSize="460 90" align="hcenter;bottom" adjust="0 10" visible="false">
+      <Container name="system_descDummy" windowRect="40 0 660 50"/>
+    </Container>
+    <Container name="faqContainer" visible="false">
+      <Panel name="npc_brodi" windowRect="0 0 127 134" alphaBlend="true" texture="brodi_talkbox" visible="false">
+        <Label text="#sb(themeBrodi)" textColor="white" windowRect="12 12 100 34"/>
+        <TextButton name="askEnergy" text="#sb(aboutEnergy)" frame="NoFrame" textColor="white" windowRect="16 38 111 58" forceTooltip="false" altTextRender="bold" altTextColor2="255 200 200 0" textShadowColor="none"/>
+        <TextButton name="askTuningParts" text="#sb(aboutParts)" frame="NoFrame" textColor="white" windowRect="16 60 111 80" forceTooltip="false" altTextRender="bold" altTextColor2="255 200 200 0" textShadowColor="none"/>
+      </Panel>
+      <Container name="npc_mos" windowRect="0 0 370 124" alphaBlend="true" visible="false">
+        <Panel name="npc_mosLeft" windowRect="0 0 127 124" alphaBlend="true" texture="brodi_talkbox">
+          <Label text="#sb(themeMos)" textColor="white" windowRect="12 12 100 34"/>
+          <TextButton name="partsDisassem" text="#sb(partsDisassem)" frame="NoFrame" textColor="white" windowRect="16 38 111 58" forceTooltip="false" altTextRender="bold" altTextColor2="255 200 200 0" textShadowColor="none"/>
+          <TextButton name="partsShop" text="#sb(partsShop)" frame="NoFrame" textColor="white" windowRect="16 60 111 80" forceTooltip="false" altTextRender="bold" altTextColor2="255 200 200 0" textShadowColor="none"/>
+        </Panel>
+        <Panel name="npc_mosRight" windowRect="130 0 257 109" alphaBlend="true" texture="mos_box">
+          <Label text="#sb(currentXenergy)" textColor="white" windowRect="20 12 200 30"/>
+          <Panel name="exImg" windowSize="50 48 " adjust="35 30" texture="ex" alphaBlend="true"/>
+          <Panel name="energyIconX" windowRect="20 78 36 96" texture="x" alphaBlend="true"/>
+          <CharPanel name="keepingXEnergy" clientRect="38 78 192 96" texture="number" alphaBlend="true" fontSize="14 18" fontPos="0 0" fontStr="0123456789" text="0"/>
+        </Panel>
+      </Container>
+    </Container>
+    <Panel name="workJob" windowRect="-7 0 763 102" texture="bg_shadow" alphaBlend="true">
+      <ImageButton name="exchangeEnergy" windowRect="15 15 157 62" autoLoadImage="b_parts_@zz" altText="#sb(exchangeEnergyTip)" altTextRender="outline" altRelativePos="100 -40" alphaBlend="true" enable="false"/>
+      <ImageButton name="equipParts" windowRect="15 62 157 109" autoLoadImage="i_equipParts_@zz" altText="#sb(equipPartsTip)" altTextRender="outline" altRelativePos="100 -40" alphaBlend="true"/>
+    </Panel>
+    <Panel name="jobInfo" windowRect="576 0 763 62" texture="bg_star_box" alphaBlend="true">
+      <Container name="lay" windowRect="25 7 187 62">
+        <BlinkButton name="energyIconLight" windowRect="0 -7 62 54" autoLoadImage="e_star_" blinkGap="200" autoStart="true" hasDisable="true" alphaBlend="true" enable="false"/>
+        <Panel name="energyIcon" windowRect="6 0 56 48" texture="e_star" alphaBlend="true" altText="#sb(energyTip)" altRelativePos="-45 -45" altRelativeLegAdj="40 -16"/>
+        <Panel name="energyIconX" windowRect="66 20 82 38" texture="x" alphaBlend="true"/>
+        <CharPanel name="keepingEnergy" clientRect="87 20 192 38" texture="number" alphaBlend="true" fontSize="14 18" fontPos="0 0" fontStr="0123456789" text="0"/>
+      </Container>
+      <BlinkButton name="genEnergy" windowRect="5 60 181 116" autoLoadImage="b_start_0@zz" blinkGap="800" autoStart="true" hasDisable="true" alphaBlend="true" altText="#sb(genEnergyTip)" altRelativePos="-25 -50" altRelativeLegAdj="15 -16"/>
+      <Panel name="generating" windowRect="0 55 185 121" texture="b_start_04@zz" alphaBlend="true" visible="false" altText="#sb(resultProgressTip)" altRelativePos="-17 -50" altRelativeLegAdj="15 -16"/>
+    </Panel>
+  </CaptionWindow>
+  <Panel name="resultProgress" windowSize="180 68" adjust="290 -80" texture="energy_start" alphaBlend="true" visible="false" altText="#sb(resultProgressTip)" altRelativePos="-16 -50" altRelativeLegAdj="15 -16" align="center">
+    <Label name="resultProgressStr" windowRect="0 10 180 30" text="#sb(genarator)" textRender="outline" textColor="white" textAlign="center"/>
+    <Panel name="progressBarBg" windowRect="11 42 172 56" texture="energy_bar_01" alphaBlend="true"/>
+    <Panel name="progressBar" windowRect="11 42 172 56" texture="energy_bar_02" alphaBlend="true"/>
+  </Panel>
+  <Panel name="exchange" windowRect="fullscreen" color="0 0 0 0" alphaBlend="true" visible="false">
+    <CaptionWindow name="exchangeNow" windowRect="0 0 465 295" align="center" frame="CaptionWindow" captionPos="0 6" captionColor="black" caption="#sb(exchange)">
+      <Label name="nowAvailable" windowRect="0 5 60 21" text="#sb(nowAvailable)" autoSizing="true"/>
+      <TabControl name="exchangegrid" windowRect="1 22 430 112" align="hcenter" frame="DefaultEdit" scrollButtonSize="15 80" viewMargin="-5 -5 0 0" tabGap="5" scrollType="horizon" rigidScroll="true" autoAlign="false" hideScrollAtNoScrollableArea="false" wantItemMouveMoveMsg="true"/>
+      <Label name="desc" windowRect="1 122 430 202" frame="DefaultEdit" align="hcenter" text="#sb(exchangeDefaultDesc)" marginRect="5 5 5 5" autoWarp="true" multiLine="true"/>
+      <Container windowSize="250 30" align="hcenter;bottom" adjust="0 -4">
+        <TextButton name="ok" windowRect="0 0 90 22" text="#sb(confirmExchange)" altTextRender="outline" useDisableState="true" disabledTextColor="gray"/>
+        <TextButton name="cancel" windowRect="160 0 250 22" text="#sb(cancel)" altTextRender="outline"/>
+      </Container>
+    </CaptionWindow>
+  </Panel>
+</Container>

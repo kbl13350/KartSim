@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china4"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="呼～呼～|他们个个实力都非同小可啊。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="wenwen" pos="3 0" emotion="stop5"/>
+  <Msg name="雯雯" string="你成功了，皮蛋！|真是了不起！|如此的天赋我还是第一次见到。|越来越羡慕你了（除了装酷的习惯外）"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="zindaru" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="阿哥" string="还在这里瞎晃啊。|你们不打算找最强龙之车手了吗？"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞" string="这不是刚才说着说着就跑掉的那个小个子吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="zindaru" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="阿哥" string="小个子？呜哈哈哈哈～|我可是龙之家族的传人！|准备好挑战我了吗？让我看看你们的实力，或许我会考虑一下告诉你线索。"/>
+  <Enter/>
+</Scene>

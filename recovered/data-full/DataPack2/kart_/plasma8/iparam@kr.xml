@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.1'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.068'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+    EnvMap='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor ='1.8'
+
+	BoosterType='plasma7'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	DriftMaxGauge='-1000'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+
+	Port0='mod2d1'
+	Port1='mod2d2'
+	FirePort0='mod2a2'
+	FirePort1='mod2a3'
+	FirePort2='mod2b'
+	FirePort3='mod2c'
+
+	DescBalance= '38'
+	DescStability ='35'
+	DescEngineGrade='1.1'
+	DescCornering='4'
+	DescEnchantCap = '20'
+/>
+
+<!--한국 플라즈마 EXW 110825 크로스셀링 보상-->

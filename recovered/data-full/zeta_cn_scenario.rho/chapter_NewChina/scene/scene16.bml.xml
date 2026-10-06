@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china1"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="看啊看啊！|美女们吵起来的话，我就要被冷落咯。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="3 0" flip="true" emotion="stop6"/>
+  <Char id="wenwen" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞, 雯雯" string="……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="rick" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="sharming" pos="8 0" flip="true" emotion="stop4"/>
+  <Char id="hantao" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="鑫鑫, 木兰, 门神" string="你们居然怀疑龙之车手的存在！|来见识一下吧！|我们就是龙之车手！"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop1"/>
+  <Msg name="宝宝" string="一起出现了。|很好，留给我吧！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="宝宝！不行！|你去有点危险。这次的比赛我来。|出现异常情况的话，你带着姑娘们离开。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="每次都是你当英雄。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="……"/>
+  <Enter/>
+</Scene>

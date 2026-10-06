@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Panel name="iconPanel" windowRect="0 0 376 192" texture="pop_2_box" align="center" alphaBlend="true">
+    <CaptionWindow frame="NoFrame" windowRect="0 0 376 192" caption="" captionPos="0 1" captionColor="white">
+      <Label name="textLabel" windowRect="25 127 355 205" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="#sb(gameOutWarning)" textAlign="hcenter"/>
+      <Container name="buttons" windowRect="0 0 210 32" align="hcenter;bottom">
+        <ImageButton name="ok" text="#sb(ok)" frame="NoFrame" windowSize="67 19" autoLoadImage="pop_button_" alphaBlend="true" textColor="white" forceTooltip="false"/>
+        <ImageButton name="cancel" text="#sb(cancel)" frame="NoFrame" windowSize="67 19" align="right" autoLoadImage="pop_button_" alphaBlend="true" textColor="white" forceTooltip="false"/>
+      </Container>
+    </CaptionWindow>
+  </Panel>
+</Panel>

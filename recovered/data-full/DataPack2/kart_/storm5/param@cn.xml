@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='146.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.078'
+	SteerConstraint='2.73'
+	DriftEscapeForce='1600'
+	CornerDrawFactor='0.068'
+
+	BoosterBlur='true'
+	EngineSound='cotton8'
+	EnvMap='true'
+	WaveEffect='true'
+
+	antiCollideBalance='0.9'
+	GripBrakeForce = '1000'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.795'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.7'
+	StartBoosterTimeSpeed='1300'   
+
+	NormalBoosterTime = '-50'
+	TeamBoosterTime = '-150'
+	DriftMaxGauge = '-440'
+	DriftGaguePreservePercent='0.6'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8main'
+	BoosterType4='8sub'
+	BoosterType5='8sub'
+
+	Port0='mod1c1'
+	Port1='mod1c2'
+
+	FirePort0='mod1a1'
+	FirePort1='mod1a4'
+	FirePort2='mod1a2'
+	FirePort3='mod1a3'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	secondColor='255 205 210 235'
+	secondHighColor='255 235 233 225'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '50'
+	DescStability ='49'
+	DescEngineGrade='1.25'
+	DescCornering='7'
+	DescEnchantCap = '31'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a2' trailPort1='mod1a3' />
+</BodyParam>
+
+
+<!-- 스톰 HT+ (뉴) 상시 가챠폰 레어 20140305-->

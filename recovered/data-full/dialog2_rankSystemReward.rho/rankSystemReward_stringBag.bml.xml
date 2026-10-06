@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="rankingReward">
+    <m c="kr" v="랭킹 등급 보상"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="getRankingRewardCount">
+    <m c="kr" v="%d개의 랭킹 보상을 획득 하셨습니다."/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="aboutItemDesc">
+    <m c="kr" v="랭킹 보상을 획득 하셨습니다.|내 엠블럼에서 확인 해보세요."/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="grade0">
+    <m c="kr" v="무지개 금메달 보상"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="grade1">
+    <m c="kr" v="S급 랭킹 보상"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="grade2">
+    <m c="kr" v="A급 랭킹 보상"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="grade3">
+    <m c="kr" v="B급 랭킹 보상"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="grade4">
+    <m c="kr" v="C급 랭킹 보상"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="grade5">
+    <m c="kr" v="D급 랭킹 보상"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="grade6">
+    <m c="kr" v="E급 랭킹 보상"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="cn" v="确认"/>
+    <m c="tw" v="確認"/>
+  </k>
+</StringBag>

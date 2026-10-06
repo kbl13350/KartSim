@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='135.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.07'
+	SteerConstraint='2.15'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.065'
+	NormalBoosterTime='-250'
+	TeamBoosterTime='-550'
+	DriftMaxGauge='-1200'
+	UseTransformBooster='true'
+	motorcycleType='true'
+	TransAccelFactor='1.6'
+
+	BoosterBlur='true'
+	EngineSound='bike'
+	TachometerType='Tacho1'
+	TachometerName='bike'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod3'
+	Port1='mod4'
+	FirePort0='mod1a'
+	FirePort1='mod1b'
+	FirePort2='mod1c'
+
+		DescBalance= '28'
+	DescStability ='23'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '20'
+
+/>
+
+<!-- 대만 붐붐바이크SR (캐시판매) -->

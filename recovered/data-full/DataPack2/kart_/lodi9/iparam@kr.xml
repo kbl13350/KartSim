@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+           SteerConstraint='2.2'
+           DriftEscapeForce='900'
+           CornerDrawFactor='0.07'
+
+           BoosterBlur='true'
+           EngineSound='lodi3'
+           EnvMap='true'
+
+           TachometerType='Tacho1'
+         TachometerName='pylon'
+
+           DescBalance= '38'
+           DescStability ='38'
+           DescEngineGrade='1'
+           DescCornering='6'
+           DescEnchantCap = '25'
+
+/>
+
+<!--로디 페르디 블레이즈 110804 클래식 패키지-->

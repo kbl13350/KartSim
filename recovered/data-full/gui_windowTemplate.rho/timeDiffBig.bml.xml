@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TonPanel name="timeDiffBig" windowRect="0 0 274 29" alphaBlend="true" textureOp="modulate" texture="timeDiffBgBig" panelAnimPack="slideInTimeDiff" isExcuteChildAnim="true">
+  <CharPanel name="rank" leftTopWH="16 0 100 50" texture="timeDiffNums@zz" alphaBlend="true" alphaTest="true" fontSize="52 28" fontPos="0 47" fontStr="01234567" text="0"/>
+  <Label name="rid" windowRect="91 8 231 31" textColor="white" textAlign="left" text="xxxxxxxx"/>
+  <CharPanel name="time" clientRect="128 4 260 24" texture="timeDiffNums@zz" alphaBlend="true" alphaTest="true" spaceOffset="-4.0" fontSize="16 20" fontPos="0 12" fontStr="0123456789+:QD-" text="0"/>
+</TonPanel>

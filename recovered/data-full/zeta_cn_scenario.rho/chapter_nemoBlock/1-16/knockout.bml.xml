@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="nemo_R02" laps="1" isFixedKart="true" fixedKartId="998" isFixedChar="true" fixedCharId="208" type="rank">
+    <LevelContent level="0" ksv="nemo_1-16" startOffset="2000">
+      <ShadowKart characterId="209" uniformId="0" kartId="999" colorId="1" dyeId="1" characterName="宝宝"/>
+      <ShadowKart characterId="210" uniformId="0" kartId="999" colorId="2" dyeId="2" characterName="黑妞"/>
+      <ShadowKart characterId="214" uniformId="0" kartId="1005" colorId="3" dyeId="3" characterName="卡洛儿"/>
+      <ShadowKart characterId="213" uniformId="0" kartId="1004" colorId="4" dyeId="4" characterName="里昂"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

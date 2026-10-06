@@ -1,0 +1,14 @@
+mirror/p3553/*.rho5 filter=lfs diff=lfs merge=lfs -text
+apk_analysis/ui_icons.zip filter=lfs diff=lfs merge=lfs -text
+apk_analysis/extracted/lib/arm64-v8a/libil2cpp.so filter=lfs diff=lfs merge=lfs -text
+mirror/p3553/*.rho filter=lfs diff=lfs merge=lfs -text
+apk_analysis/**/*.bin filter=lfs diff=lfs merge=lfs -text
+apk_analysis/**/*.zip filter=lfs diff=lfs merge=lfs -text
+apk_analysis/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
+apk_analysis/**/*.ttf filter=lfs diff=lfs merge=lfs -text
+apk_analysis/*.zip filter=lfs diff=lfs merge=lfs -text
+apk_analysis/**/*.so filter=lfs diff=lfs merge=lfs -text
+apk_analysis/**/*.dat filter=lfs diff=lfs merge=lfs -text
+apk_analysis/**/*.bytes filter=lfs diff=lfs merge=lfs -text
+apk_analysis/**/*.unity3d filter=lfs diff=lfs merge=lfs -text
+apk_analysis/**/*.dex filter=lfs diff=lfs merge=lfs -text

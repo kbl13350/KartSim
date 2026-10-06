@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle1"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="葱头" string="了不得？绝对不输给最近新出的车辆！！！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="葱头" string="真的是宝物！1920年既然还有这么好的车！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="嗯…"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Msg name="葱头" string="福尔摩斯？在想什么这么入神？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="你不觉得奇怪吗？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop4"/>
+  <Msg name="葱头" string="什么？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="福尔摩斯" string="如果1920年有如此杰出的车辆，那就会成为非常了不起的发明。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="福尔摩斯" string="应该会在车辆届留下历史遗迹。|但复古老爷车却无人知晓。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="葱头" string="听完你的话，果然如此。|怎么会有车辆博士葱头不知道的车辆呢！|复古老爷车是今天首次听到。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop1"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="福尔摩斯" string="嗯…|这好像是谁为了向世界公开复古老爷车而故意的…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="？" string="咣咣咣！|福尔摩斯！福尔摩斯！在吗？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="steve" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="葱头" string="你是谁？|咦？是罗杰。什么事？"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="steve" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="罗杰" string="新闻！看到新闻了吗！"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <BackGround texture="mh2"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="电视声" string="现在播报晚间新闻。在市长地下室发现的设计图|复原的敞篷老爷车首次公开的今天，跑跑卡丁车博物馆里出现了一张奇怪的宣告信。"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <BackGround texture="castle1"/>
+  <Char id="steve" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="罗杰" string="看到了吧？又是件怪案。|福尔摩斯，这次也得寻求你的帮助了。"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="steve" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="ethi" pos="12 0" emotion="stop5"/>
+  <Msg name="葱头" string="提前告知自己要盗窃的小偷…|不是省油的灯啊？这次也得福尔摩斯出面了！"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kai" pos="9 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="这家伙肯定有其他企图。|我去搜查周围，在博物馆见，罗杰。"/>
+  <Enter/>
+</Scene>

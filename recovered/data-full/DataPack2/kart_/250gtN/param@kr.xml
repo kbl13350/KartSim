@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.076'
+	SteerConstraint='2.7'
+	DriftEscapeForce='1500'
+	CornerDrawFactor='0.054'
+
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	EnvMap='true'
+	
+	GripBrakeForce = '1000'
+	SlipBrakeForce='-200'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.8325'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.65'
+	StartBoosterTimeSpeed='1200'   
+
+	NormalBoosterTime = '-100'
+	TeamBoosterTime = '-200'
+	DriftMaxGauge = '-600'
+	DriftGaguePreservePercent='0.5'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='8soon'
+	BoosterType4='8soon'
+
+	Port0='mod2a2' 
+	Port1='mod2a3'
+
+	FirePort0='mod2a1'
+	FirePort1='mod2b1'
+	FirePort2='mod2b2'
+	
+	secondColor='255 232 39 6'
+	secondHighColor='255 255 186 0'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '47'
+	DescStability ='50'
+	DescEngineGrade='1.25'
+	DescCornering='6'
+	DescEnchantCap = '25'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a1' trailPort1='mod1a2'/>
+</BodyParam>
+
+<!-- 250 GT N 테마 카트 2013-07-11 -->

@@ -1,0 +1,602 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<scene>
+	<campaign type='1' character='beast'>
+		<startScript msg='Battle melawan TEAM BEAST!Sang penjaga Hutan!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Groar~!|Hmm~Tampaknya lumayan!|Tidak akan mengalah lagi!'/>
+				<scripts msg='Tadi kami mengalah~|Sekarang baru dimulai!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='A-Ru sudah marah!|Teman-temannya tidak akan diam!'/>
+				<scripts msg='Tampaknya lumayan?|Tidak ada ampun untuk kalian!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Team kami kalah~|Team kaliah hebat~'/>
+				<scripts msg='Aduh!Tidak bisa percaya!|Kami yang kalah!'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Team kami kalah~|Team kaliah hebat~'/>
+				<scripts msg='Aduh!Tidak bisa percaya!|Kami yang kalah!'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Team kami kalah~|Team kaliah hebat~'/>
+				<scripts msg='Aduh!Tidak bisa percaya!|Kami yang kalah!'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Huhu!Sudah aku duga|Kalian masih belum bisa mengalahkan kami'/>
+				<scripts msg='Team kami memang kuat~|Coba datang lagi setelah latiihan lagi.'/>
+			</step>
+		</loseScript>
+	</campaign>
+	<campaign type='2' character='retiremanBoss'>
+		<startScript msg='Battle melawan TEAM RETIRE MAN!Sang Pembalap liar dalam kota!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Hmm|Boleh lah buat kesalahan satu kali!'/>
+				<scripts msg='Ha.Ha|Kali ini adalah latihan!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Sekarang…|Tidak boleh ada kesalahan lagi!'/>
+				<scripts msg='Ahhh!|Tidak boleh dibiarkan!|Dasar Pemula!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Bagaimana bisa..|Kami yang kalah.'/>
+				<scripts msg='Tidak..Tidak..|Tidak mungkin terjadi'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Bagaimana bisa..|Kami yang kalah.'/>
+				<scripts msg='Tidak..Tidak..|Tidak mungkin terjadi'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Bagaimana bisa..|Kami yang kalah.'/>
+				<scripts msg='Tidak..Tidak..|Tidak mungkin terjadi'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Hahaha!|Inilah kekuatan Team Retire Man'/>
+				<scripts msg='Kami tidak punya ampun!|Hahahaha!'/>
+			</step>
+		</loseScript>
+	</campaign>
+	<campaign type='3' character='godius'>
+		<startScript msg='Pertandingan melawan Godius Team! Sang miterius dari perabadan emas!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Anggap saja berkat dari dewa emas'/>
+				<scripts msg='Huuuu..'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Beraninya membuat aku Godius marah!'/>
+				<scripts msg='Akan ku tunjukkan kekuatan tersembunyi'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Bagaimana mungkin.|Aku kalah.'/>
+				<scripts msg='Hmm|Luar biasa..'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Bagaimana mungkin.|Aku kalah.'/>
+				<scripts msg='Hmm|Luar biasa..'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Bagaimana mungkin.|Aku kalah.'/>
+				<scripts msg='Hmm|Luar biasa..'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Hormati Godius Dewa Emas'/>
+				<scripts msg='Hahahah!|Takut dengan kekuatan Godius?'/>
+			</step>
+		</loseScript>
+	</campaign>
+
+	<campaign type='4' character='china'>
+		<startScript msg='Pertandingan melawan Dragon Team!Rider Naga Legendaris!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Ayo mulai pertandingan sesunguhnya!'/>
+				<scripts msg='Huu.. Bagaimana bisa!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Awas!|Tidak akan bermain-main lagi!'/>
+				<scripts msg='Silahkan sombong!|Tidak ada waktu lagi untuk senang!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Bisa kalahkan kami..|Tidak bisa dipercaya'/>
+				<scripts msg='Kami bisa kalah!|Siapakah kalian sesungguhnya?'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Bisa kalahkan kami..|Tidak bisa dipercaya'/>
+				<scripts msg='Kami bisa kalah!|Siapakah kalian sesungguhnya?'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Bisa kalahkan kami..|Tidak bisa dipercaya'/>
+				<scripts msg='Kami bisa kalah!|Siapakah kalian sesungguhnya?'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Ini adalah kemampuan sesungguhnya dari Rider Naga!'/>
+				<scripts msg='Segini saja?Hahahah!'/>
+			</step>
+		</loseScript>
+	</campaign>
+	<campaign type='5' character='northeu'>
+		<startScript msg='Pertandingan melawan Space Team yang pembalap liar di universe!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Pertandingan pemanasan yang bagus.'/>
+				<scripts msg='Ubah rencana ke rencana B!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Telah tiba saat nya untuk mengganti alat yang lebih canggih'/>
+				<scripts msg='Sudah kami duga untuk kondisi seperti ini!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Bagaimana bisa!|Rate kekalahan kami hanya 0.01%'/>
+				<scripts msg='Kalian siapa?|Tidak bisa dibuktikan dengan ilmu…'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Bagaimana bisa!|Rate kekalahan kami hanya 0.01%'/>
+				<scripts msg='Kalian siapa?|Tidak bisa dibuktikan dengan ilmu…'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Bagaimana bisa!|Rate kekalahan kami hanya 0.01%'/>
+				<scripts msg='Kalian siapa?|Tidak bisa dibuktikan dengan ilmu…'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Jika menantang lagi rate kekalahan kalian adalah 99.5%'/>
+				<scripts msg='Balapan juga harus dengan ilmu!Hahaha!'/>
+			</step>
+		</loseScript>
+	</campaign>
+	<campaign type='6' character='santa'>
+		<startScript msg='Santa Team yang diberkati oleh Christmas!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Merry Christmas~!'/>
+				<scripts msg='Anggap saja kado natal dari aku~!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='HoHoHo!|Kemampuan yang luar biasa!'/>
+				<scripts msg='Coba serius sekarang~?'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Bagus!Bagus sekali|HoHoHo!'/>
+				<scripts msg='Akhirnya team kami kalah juga~|HoHoHo!'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Bagus!Bagus sekali|HoHoHo!'/>
+				<scripts msg='Akhirnya team kami kalah juga~|HoHoHo!'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Bagus!Bagus sekali|HoHoHo!'/>
+				<scripts msg='Akhirnya team kami kalah juga~|HoHoHo!'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='HoHoHo|Kali ini team kami yang menang~!'/>
+				<scripts msg='Malam natal yang indah~!'/>
+			</step>
+		</loseScript>
+	</campaign>
+
+	<campaign type='7' character='Dynamite'>
+		<startScript msg='크리스마스의 선물! 산타 팀과의 대결! '/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='띠리리! 첫판은 시뮬레이션일뿐!'/>
+				<scripts msg='듣던대로 뛰어난 실력을 가지고 있군.'/>
+			</step>
+			<step number='2'>
+				<scripts msg='좋았어! 너희들에 대한 분석은 이제 다 끝났다!'/>
+				<scripts msg='띠리리! 이제 플랜 B를 작동한다!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='이럴수가! 도대체 어떻게 우리를 이길 수 있었던 거지?'/>
+				<scripts msg='삐리리! 삐리리!'/>
+			</step>
+			<step number='4'>
+				<scripts msg='이럴수가! 도대체 어떻게 우리를 이길 수 있었던 거지?'/>
+				<scripts msg='삐리리! 삐리리!'/>
+			</step>
+			<step number='5'>
+				<scripts msg='이럴수가! 도대체 어떻게 우리를 이길 수 있었던 거지?'/>
+				<scripts msg='삐리리! 삐리리!'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='하! 하! 하!'/>
+				<scripts msg='너희팀은 이미 모든걸 간파당했다!'/>
+			</step>
+		</loseScript>
+	</campaign>
+	<campaign type='8' character='Hammer'>
+		<startScript msg='크리스마스의 선물! 산타 팀과의 대결! '/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='삐비빅! 분석 진행중…'/>
+				<scripts msg='와우! 생각보다 강하다!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='좋았어! 시뮬레이션 대로 진행되고 있군.'/>
+				<scripts msg='삐비빅! 약간의 오차가 있었나?'/>
+			</step>
+			<step number='3'>
+				<scripts msg='이런 결과가 나오다니 말도 안되!'/>
+				<scripts msg='삐비빅! 삐비빅!'/>
+			</step>
+			<step number='4'>
+				<scripts msg='이런 결과가 나오다니 말도 안되!'/>
+				<scripts msg='삐비빅! 삐비빅!'/>
+			</step>
+			<step number='5'>
+				<scripts msg='이런 결과가 나오다니 말도 안되!'/>
+				<scripts msg='삐비빅! 삐비빅!'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='삐비빅! 너무 시시해…'/>
+				<scripts msg='너희들은 우릴 절대 이길 수 없어!'/>
+			</step>
+		</loseScript>
+	</campaign>
+
+	<campaign type='9' character='castle'>
+		<startScript msg='Pertandingan melawan Castle Team!Castle Family!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Pertandingan dimulai sekarang!'/>
+				<scripts msg='Apa?Aku sedang ketakutan?'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Aduh…Salah aku…'/>
+				<scripts msg='Hm Hm..No Komen!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Kekalahan aku,,Aku akui.'/>
+				<scripts msg='Kalah juga..Bisa bertanding sekali lagi?'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Kekalahan aku,,Aku akui.'/>
+				<scripts msg='Kalah juga..Bisa bertanding sekali lagi?'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Kekalahan aku,,Aku akui.'/>
+				<scripts msg='Kalah juga..Bisa bertanding sekali lagi?'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Ini adalah batas yang tidak dapa kalian lewati?'/>
+				<scripts msg='Tadi aku hanya tunjukkan 30% dari kemampuan aku.. Hahaha!'/>
+			</step>
+		</loseScript>
+	</campaign>
+
+
+	<campaign type='10' character='DynamiteRobot'>
+		<startScript msg='Pertandingan melawan Tim Robot Dao!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Pertandingan simulasi selesai!'/>
+				<scripts msg='Kemampuanmu |boleh juga!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Analisa kekuatan selesai!'/>
+				<scripts msg='Bip!Aktifkan rencana B!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Bagaimana bisa!Bagaimana kita bisa kalah?'/>
+				<scripts msg='Bip!Bip!'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Bagaimana bisa!Bagaimana kita bisa kalah?'/>
+				<scripts msg='Bip!Bip!'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Bagaimana bisa!Bagaimana kita bisa kalah?'/>
+				<scripts msg='Bip!Bip!'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Ha!Ha!Ha!'/>
+				<scripts msg='Team kalian sudah dibaca!'/>
+			</step>
+		</loseScript>
+	</campaign>
+	
+	<campaign type='11' character='HammerRobot'>
+		<startScript msg='Pertandingan melawan Tim Robot Bazzi!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Bip!Sedang analisa.'/>
+				<scripts msg='Wow!Lebih kuat dari pada dugaan!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Bagus!Berjalan sesuai simulasi.'/>
+				<scripts msg='Error terdeteksi!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Error terdeteksi!'/>
+				<scripts msg='Bip! Bip!'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Error terdeteksi!'/>
+				<scripts msg='Bip! Bip!'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Error terdeteksi!'/>
+				<scripts msg='Bip! Bip!'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Bip Bip!Membosankan'/>
+				<scripts msg='Kalian tidak akan bisa menang!'/>
+			</step>
+		</loseScript>
+	</campaign>
+	<campaign type='12' character='pirate'>
+		<startScript msg='Pertandingan melawan Lodumani Pirate yang tanpa ampun!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Anggap saja hadiah terakhir dari kami untuk kalian!!'/>
+				<scripts msg='Tidak ada kekalahan lagi~!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Tidak boleh mengotori harga diri Lodumani Pirate!!'/>
+				<scripts msg='Sekarang akan kami tunjukkan kekuatan Lodumani Pirate!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Tidak bisa!|Kami adalah Lodumani Pirate yang tidak tahu kekalahan!!!'/>
+				<scripts msg='Tidak bisa percaya!!|Ayo ulang lagi!Ayo!'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Tidak bisa!|Kami adalah Lodumani Pirate yang tidak tahu kekalahan!!!'/>
+				<scripts msg='Tidak bisa percaya!!|Ayo ulang lagi!Ayo!'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Tidak bisa!|Kami adalah Lodumani Pirate yang tidak tahu kekalahan!!!'/>
+				<scripts msg='Tidak bisa percaya!!|Ayo ulang lagi!Ayo!'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Sudah tahu kekuatan Lodumani Pirate?'/>
+				<scripts msg='Ini adalah kekuatan Lodumani Pirate!!!'/>
+			</step>
+		</loseScript>
+	</campaign>
+
+	<campaign type='13' character='ghost'>
+		<startScript msg='Pertandingan melawan Ghost Team yang menakutkan!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Kalian!Tidak takut dengan kami?'/>
+				<scripts msg='Mau siap-siap untuk pertandingan menakutkan?'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Hahahaha…|Kami masih punya senjata rahasia!'/>
+				<scripts msg='Kalian yang tidak tahu apa-apa…|Ketakutan sesungguhnya baru akan dimulai!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Bagaimana bisa…|Ghost Team kalah begini~!!!'/>
+				<scripts msg='Kalah….Gawat!|Papa aku akan marah-marah? T_T'/>
+			</step>
+			<step number='4'>
+				<scripts msg='Bagaimana bisa…|Ghost Team kalah begini~!!!'/>
+				<scripts msg='Kalah….Gawat!|Papa aku akan marah-marah? T_T'/>
+			</step>
+			<step number='5'>
+				<scripts msg='Bagaimana bisa…|Ghost Team kalah begini~!!!'/>
+				<scripts msg='Kalah….Gawat!|Papa aku akan marah-marah? T_T'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Khi Khi Khi!|Kali ini kami mengalah!|Bagaimana?Takut?'/>
+				<scripts msg='Ini adalah kekuatang kegelapan!|Khi Khi Khi'/>
+			</step>
+		</loseScript>
+	</campaign>
+
+	<campaign type='14' character='eagle'>
+		<startScript msg='Siapa? Battle dengan Hero Dao Team!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Hebat...Tepat waktu!'/>
+				<scripts msg='Bagus! Akan kukenalkan| seorang teman'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Kali ini kalah, |akan kami samakan kedudukan'/>
+				<scripts msg='Kita juga pernah kesana.|Kamu pikir kita siapa?'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Lain kali kita akan menang'/>
+				<scripts msg='Kita kalah, |kau tak perlu kasih tau Dizni'/>
+			</step>
+			<step number='4'>
+				<scripts msg=''/>
+				<scripts msg=''/>
+			</step>
+			<step number='5'>
+				<scripts msg=''/>
+				<scripts msg=''/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Jangan takut!'/>
+				<scripts msg='Saya jaga keamanan BoomHill juga ?'/>
+			</step>
+		</loseScript>
+	</campaign>
+
+	<campaign type='15' character='bike'>
+		<startScript msg='Pertandingan melawan tim Crazy Biker!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='Crazy Biker Team kalah dalam battle'/>
+				<scripts msg='Akan kutunjukkan |kemampuanku yang |sebenarnya!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='Mau bersiap-siap untuk balapan liar?'/>
+				<scripts msg='Sepertinya kamu tahu |cara menikmati |kecepatan'/>
+			</step>
+			<step number='3'>
+				<scripts msg='Mau masuk ke team kami?'/>
+				<scripts msg='Begini Crazy Biker Team kalah!!!'/>
+			</step>
+			<step number='4'>
+				<scripts msg=''/>
+				<scripts msg=''/>
+			</step>
+			<step number='5'>
+				<scripts msg=''/>
+				<scripts msg=''/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='Kami memang Speed Maniac'/>
+				<scripts msg='Inilah kecepatan yang|sesungguhnya! |Haha!'/>
+			</step>
+		</loseScript>
+	</campaign>
+<!--
+	<campaign type='14' character='boss'>
+		<startScript msg='보스팀과의 대결!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='으르렁~!|어쭈~. 생각보다 제법이다능!|이번에는 봐주지 않겠다능!'/>
+				<scripts msg='우리가 한번 봐준거라능~.|이제 부터 본격적으로 시작이라능!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='각오해!|이제 더이상 재미로 달리지 않겠어!'/>
+				<scripts msg='마음껏 우쭐대 보라구!|기뻐할 시간도 이제 얼마 남지 않았어!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='저의... 완패입니다. |인정하도록 하지요.'/>
+				<scripts msg='지고 말았네… |다시 한번 대결할 수 있을까요?'/>
+			</step>
+			<step number='4'>
+				<scripts msg='호호호!|대단한 실력이시군요!'/>
+				<scripts msg='이제 본격적으로 달려볼까요~?'/>
+			</step>
+			<step number='5'>
+				<scripts msg='우리에게 승리하다니…|도저히 믿을 수가 없어!'/>
+				<scripts msg='이렇게 무너지다니!|도대체 너희들의 정체는 뭐지?'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='후후! 내 이럴줄 알았다능|아직 우리에게 도전하기엔 멀었다능'/>
+				<scripts msg='역시 우리팀은 막강하다능~|좀더 준비하고 덤벼보라능.'/>
+			</step>
+		</loseScript>
+	</campaign>
+	<campaign type='15' character='boss'>
+		<startScript msg='보스팀과의 대결!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='흠흠.. |한번쯤은 실수를 할 수도 있지!'/>
+				<scripts msg='하...핫..|이번은 연습게임!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='아루 이제 화났다능!|동물 친구들이 가만 두지 않겠다능!'/>
+				<scripts msg='생각보다 잘한다능?|이제 너희들에게 자비란 없다능!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='말도 안돼!|우리는 패배를 모르는 로두마니|해적단이란 말이야!!!'/>
+				<scripts msg='패배를 인정할 수 없어!!|다시 결투다! 결투!'/>
+			</step>
+			<step number='4'>
+				<scripts msg='아루 이제 화났다능!|동물 친구들이 가만 두지 않겠다능!'/>
+				<scripts msg='생각보다 잘한다능?|이제 너희들에게 자비란 없다능!'/>
+			</step>
+			<step number='5'>
+				<scripts msg='말도 안돼!|우리는 패배를 모르는 로두마니|해적단이란 말이야!!!'/>
+				<scripts msg='패배를 인정할 수 없어!!|다시 결투다! 결투!'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='우캬캬캬!|이것이 리타이어맨팀의 힘이다! '/>
+				<scripts msg='우리에게 자비란 없다!|으하하하!'/>
+			</step>
+		</loseScript>
+	</campaign>
+	<campaign type='16' character='boss'>
+		<startScript msg='보스팀과의 대결!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='메리 크리스마스~!'/>
+				<scripts msg='제가 드리는 크리스마스|선물이라 생각하세요~!'/>
+			</step>
+			<step number='2'>
+				<scripts msg='이 고디우스님을 화나게 만들다니!'/>
+				<scripts msg='고디우스의 숨겨진 힘을 보여주마'/>
+			</step>
+			<step number='3'>
+				<scripts msg='저의... 완패입니다. |인정하도록 하지요.'/>
+				<scripts msg='지고 말았네… |다시 한번 대결할 수 있을까요?'/>
+			</step>
+			<step number='4'>
+				<scripts msg='이 고디우스님을 화나게 만들다니!'/>
+				<scripts msg='고디우스의 숨겨진 힘을 보여주마'/>
+			</step>
+			<step number='5'>
+				<scripts msg='저의... 완패입니다. |인정하도록 하지요.'/>
+				<scripts msg='지고 말았네… |다시 한번 대결할 수 있을까요?'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='호호호|이번에도 우리팀이 이겼군요~!'/>
+				<scripts msg='아름다운 크리스마스 밤이에요~!'/>
+			</step>
+		</loseScript>
+	</campaign>
+	<campaign type='17' character='boss'>
+		<startScript msg='보스팀과의 대결!'/>
+		<winScript>
+			<step number='1'>
+				<scripts msg='황금신의 축복이라 |생각해라…'/>
+				<scripts msg='으으으…'/>
+			</step>
+			<step number='2'>
+				<scripts msg='아… 내가 이런 실수를…'/>
+				<scripts msg='흠..흠.. 노코멘트!'/>
+			</step>
+			<step number='3'>
+				<scripts msg='말도 안돼!|우리는 패배를 모르는 로두마니|해적단이란 말이야!!!'/>
+				<scripts msg='패배를 인정할 수 없어!!|다시 결투다! 결투!'/>
+			</step>
+			<step number='4'>
+				<scripts msg='아… 내가 이런 실수를…'/>
+				<scripts msg='흠..흠.. 노코멘트!'/>
+			</step>
+			<step number='5'>
+				<scripts msg='말도 안돼!|우리는 패배를 모르는 로두마니|해적단이란 말이야!!!'/>
+				<scripts msg='패배를 인정할 수 없어!!|다시 결투다! 결투!'/>
+			</step>
+		</winScript>
+		<loseScript>
+			<step number='0'>
+				<scripts msg='황금의 신 고디우스에게 경배하라!'/>
+				<scripts msg='으하하하!|고디우스님의 위대한 힘에|겁을 먹은거냐?'/>
+			</step>
+		</loseScript>
+	</campaign>-->
+</scene>

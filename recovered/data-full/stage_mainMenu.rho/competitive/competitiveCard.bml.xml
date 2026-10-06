@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window leftTopWH="0 0 748 67">
+  <ImageBoard name="bg_off" leftTopWH="0 0 748 67" image="contest_entrance_listSubtractBG" visible="false" alphaBlend="true"/>
+  <ImageBoard name="bg_cur" leftTopWH="0 0 748 67" image="contest_entrance_currentWeekBG" visible="false" alphaBlend="true"/>
+  <Label name="week" leftTopWH="40 0 30 26" align="vcenter" textRender="bold16" textColor="255 84 100 129" textAlign="center"/>
+  <Label name="notReflected" leftTopWH="40 0 30 26" align="vcenter" adjust="0 18" text="#sb(notReflected)" textRender="bold14" textColor="255 84 100 129" textAlign="center" visible="false"/>
+  <Panel name="gradeIcon" leftTopWH="154 0 46 40" align="vcenter" adjust="0 2" texture="s_경쟁전_등급_미참여" alphaBlend="true"/>
+  <Label name="gradeText" leftTopWH="230 4 30 67" align="vcenter" text="#sb(competitiveGradeNone)" textRender="bold16" textColor="255 84 100 129" textAlign="center"/>
+  <Label name="rankPercentage" leftTopWH="437 3 30 67" align="vcenter" text="#sb(rankPercentageNone)" textRender="bold16" textColor="255 84 100 129" textAlign="center"/>
+  <Label name="record" leftTopWH="640 3 30 67" align="vcenter" text="0" textRender="bold16" textColor="255 84 100 129" textAlign="center"/>
+</Window>

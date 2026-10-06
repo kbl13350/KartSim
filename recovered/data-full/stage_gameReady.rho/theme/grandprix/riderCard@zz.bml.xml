@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RiderCard name="riderCard" windowRect="0 0 123 219" align="center" texture="ridercard" riderNameRect="9 28 114 57" riderRect="9 64 114 230" ordinaryUv="0 0 123 219" focusedUv="123 0 246 219" alphaBlend="true">
+  <Window name="vipTagSet" leftTopWH="152 50 40 40" visible="false">
+    <Panel name="vipTag" alphaBlend="true" enable="false" align="center"/>
+  </Window>
+  <Window name="coupleRingSet" leftTopWH="152 80 40 40" visible="false">
+    <Panel name="coupleRingBg" alphaBlend="true" enable="false" align="center"/>
+    <Panel name="coupleRing" alphaBlend="true" enable="false" align="center"/>
+  </Window>
+  <Panel name="closed" windowRect="37 110 87 160" texture="ui_02@zz" uvRect="36 0 86 50" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="ready" windowRect="28 185 96 205" texture="ui_02@zz" uvRect="109 175 177 195" alphaTest="true" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="changing" windowRect="28 185 96 205" texture="ui_02@zz" uvRect="109 218 177 238" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="reserved" windowRect="36 99 89 174" texture="ui_02@zz" uvRect="245 169 300 245" alphaBlend="true" visible="false" enable="false"/>
+  <Container name="gpContainer" windowRect="28 195 96 205" enable="false">
+    <Label name="gp" windowRect="60 0 92 92" textRender="outline" textColor="255 0 255 0" autoSizing="true" align="center" text=""/>
+  </Container>
+  <ImageButton name="basicAi" windowRect="76 6 89 19" autoLoadImage="ai_slec_" alphaBlend="true"/>
+  <ImageButton name="info" windowRect="91 6 104 19" autoLoadImage="사용자정보_" altText="#sb(riderInfo)"/>
+  <ImageButton name="kick" windowRect="106 6 119 19" autoLoadImage="강퇴_" enable="false" altText="#sb(kick)"/>
+  <Panel name="glove" windowRect="5 5 25 25" alphaBlend="true" visible="false"/>
+  <Panel name="clubMark" windowRect="25 5 45 25" alphaBlend="true" visible="false">
+    <Panel name="clubFrame" windowSize="24 24" align="center" alphaBlend="true" alphaTest="true" visible="false" enable="false"/>
+  </Panel>
+  <Panel name="emblem02" windowRect="46 5 66 25" alphaBlend="true" visible="false"/>
+  <Panel name="emblem03" windowRect="67 5 87 25" alphaBlend="true" visible="false"/>
+  <Panel name="blockChat" windowRect="8 64 116 211" texture="ignore" uvRect="0 0 108 147" alphaBlend="true" visible="false" enable="false"/>
+</RiderCard>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Tracing isFixedKart="true" fixedKartId="683" isFixedChar="true" fixedCharId="75" kartId="531" colorId="8" dyeId="8" characterId="21" uniformId="97" characterName="热血·火">
+    <LevelContent level="0" track="beach_I01" laps="3" ksv="beach_1-20" distance="20" startOffset="2000"/>
+  </Tracing>
+</Root>

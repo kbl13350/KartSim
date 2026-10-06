@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<timerSet>
+<!--
+	<timer type='tgt'>
+		<cpu>
+			<firstStr value='0x68747541'>  AMD
+				<versionInfo value='0x00100f43'/>
+			</firstStr>
+		</cpu>
+	</timer>
+-->
+	<timer type='qpc'>
+		<cpu>
+			<firstStr value='0x68747541'> <!-- AMD -->
+				<versionInfo value='0x6A0'/> <!-- Barton -->
+				<versionInfo value='0x681'/> <!-- Thoroughbred B -->
+				<versionInfo value='0x20FF0'/> <!-- Athlon 64 -->
+				<!-- Phenom II -->
+				<versionInfo mask='0xFFFFFFF0' value='0x00100F40'/>
+				<versionInfo mask='0xFFFFFFF0' value='0x00100F50'/>
+				<versionInfo mask='0xFFFFFFF0' value='0x00100F60'/>
+				<versionInfo mask='0xFFFFFFF0' value='0x00100FA0'/> <!-- Phenom II x 6 -->
+				<versionInfo mask='0xFFFFFFF0' value='0x00200F30'/>
+			</firstStr>
+			<firstStr value='0x756e6547'> <!-- Intel -->
+				<versionInfo value='0x00010676'/>
+				<versionInfo value='0x0001067A'/> <!-- wolfdale -->
+				<versionInfo value='0x00010677'/> <!-- Q9550 -->
+				<versionInfo value='0x000006FA'/>
+				<versionInfo value='0x000106A5'/> <!-- i7 -->
+				<versionInfo value='0x000106E5'/> <!-- i5 -->
+
+				<versionInfo value='0x0000067A'/>	<!-- Intel Pentium E5800 Wolfdale -->
+				<versionInfo value='0x000006FB'/>	<!-- Intel Core 2 Duo E6550 Conroe -->
+				<versionInfo value='0x000006A7'/>	<!-- Intel Core i5 2400 Sandy Bridge -->
+
+			</firstStr>
+		</cpu>
+	</timer>
+</timerSet>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="fishingRankReward">
+    <m c="kr" v="낚시 이벤트 보상"/>
+    <m c="tw" v=" "/>
+    <m c="cn" v=" "/>
+  </k>
+  <k n="getFishingRankRewardCount">
+    <m c="kr" v="%d개의 낚시 이벤트 보상을 획득 하셨습니다."/>
+    <m c="tw" v=" "/>
+    <m c="cn" v=" "/>
+  </k>
+  <k n="aboutItemDesc">
+    <m c="kr" v="낚시 이벤트 보상을 획득 하셨습니다.|내 아이템에서 확인 해보세요."/>
+    <m c="tw" v=" "/>
+    <m c="cn" v=" "/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="tw" v="確認"/>
+    <m c="cn" v="确认"/>
+  </k>
+</StringBag>

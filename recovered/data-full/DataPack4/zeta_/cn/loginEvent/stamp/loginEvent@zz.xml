@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Container name='shortAttendS2' clientRect='0 0 651 448' align='center'>
+	<Panel name='bg01' clientRect='0 0 326 448' texture='출첵판_01' alphaBlend='true' enable='false'/>
+	<Panel name='bg02' clientRect='0 0 325 448' texture='출첵판_02' alphaBlend='true' enable='false' align='right'/>
+
+	<Container name='top' windowRect='0 0 651 448'>
+		<Container name='board' windowRect='0 0 651 448'>
+			<Panel name='title' clientRect='115 15 341 59' texture='제목' alphaBlend='true' enable='false'/>		
+			<Label name='period' windowRect='350 15 591 61' text='9월 13일 ~ 9월 26일' textRender='du11bOutline' textColor='white' textColor2='255 89 42 0' textAlign='center' enable='false'/>
+			<Label name='tooltip' windowRect='150 90 407 141' text='#sb(tooltip)' textColor='255 218 24 24' textAlign='center' multiLine='true' autoWrap='true' enable='false'/>
+
+			<Container name='card0' windowRect='28 160 122 269'>
+				<ItemWindow name='reward' windowRect='0 0 94 94'/>
+				<Panel name='clear' windowRect='0 0 94 109' texture='도장_찍기전' alphaBlend='true' visible='false'/>
+				<Label name='dayStamp' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				
+				<!--<Label name='dayStamp_' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				<Label windowRect='9 88 86 102' text='BONUS' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>-->
+				
+				<Panel name='once' windowSize='246 218' texture='미니출첵_반짝' textureOp='modulate' alphaBlend='true' align='center' adjust='0 0' visible='false'/> 
+			</Container>
+			<Container name='card1' windowRect='129 160 223 269'>
+				<ItemWindow name='reward' windowRect='0 0 94 94'/>
+				<Panel name='clear' windowRect='0 0 94 109' texture='도장_찍기전' alphaBlend='true' visible='false'/>
+				<Label name='dayStamp' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				<!--
+				<Label name='dayStamp_' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				<Label windowRect='9 88 86 102' text='BONUS' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				-->
+				<Panel name='once' windowSize='246 218' texture='미니출첵_반짝' textureOp='modulate' alphaBlend='true' align='center' adjust='0 0' visible='false'/> 
+			</Container>
+			<Container name='card2' windowRect='230 160 324 269'>
+				<ItemWindow name='reward' windowRect='0 0 94 94'/>
+				<Panel name='clear' windowRect='0 0 94 109' texture='도장_찍기전' alphaBlend='true' visible='false'/>
+				<Label name='dayStamp' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				<Panel name='once' windowSize='246 218' texture='미니출첵_반짝' textureOp='modulate' alphaBlend='true' align='center' adjust='0 0' visible='false'/> 
+			</Container>
+			<Container name='card3' windowRect='331 160 425 269'>
+				<ItemWindow name='reward' windowRect='0 0 94 94'/>
+				<Panel name='clear' windowRect='0 0 94 109' texture='도장_찍기전' alphaBlend='true' visible='false'/>
+				<Label name='dayStamp' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				<Panel name='once' windowSize='246 218' texture='미니출첵_반짝' textureOp='modulate' alphaBlend='true' align='center' adjust='0 0' visible='false'/> 
+			</Container>
+
+			<Container name='card4' windowRect='28 278 122 387'>
+				<ItemWindow name='reward' windowRect='0 0 94 94'/>
+				<Panel name='clear' windowRect='0 0 94 109' texture='도장_찍기전' alphaBlend='true' visible='false'/>
+				<Label name='dayStamp' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				<Panel name='once' windowSize='246 218' texture='미니출첵_반짝' textureOp='modulate' alphaBlend='true' align='center' adjust='0 0' visible='false'/> 
+			</Container>
+			<Container name='card5' windowRect='129 278 223 387'>
+				<ItemWindow name='reward' windowRect='0 0 94 94'/>
+				<Panel name='clear' windowRect='0 0 94 109' texture='도장_찍기전' alphaBlend='true' visible='false'/>
+				<Label name='dayStamp' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				<Panel name='once' windowSize='246 218' texture='미니출첵_반짝' textureOp='modulate' alphaBlend='true' align='center' adjust='0 0' visible='false'/> 
+			</Container>
+			<Container name='card6' windowRect='230 278 324 387'>
+				<ItemWindow name='reward' windowRect='0 0 94 94'/>
+				<Panel name='clear' windowRect='0 0 94 109' texture='도장_찍기전' alphaBlend='true' visible='false'/>
+				<Label name='dayStamp' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				<Panel name='once' windowSize='246 218' texture='미니출첵_반짝' textureOp='modulate' alphaBlend='true' align='center' adjust='0 0' visible='false'/> 
+			</Container>
+			<Container name='card7' windowRect='331 278 425 387'>
+				<ItemWindow name='reward' windowRect='0 0 94 94'/>
+				<Panel name='clear' windowRect='0 0 94 109' texture='도장_찍기전' alphaBlend='true' visible='false'/>
+				<Label name='dayStamp' windowRect='9 88 86 102' text='' textRender='outline' textColor='white' textColor2='red' textAlign='center'/>
+				<Panel name='once' windowSize='246 218' texture='미니출첵_반짝' textureOp='modulate' alphaBlend='true' align='center' adjust='0 0' visible='false'/> 
+			</Container>
+
+			<Container name='rewardPreview1' windowRect='449 92 626 169'>
+				<Label name='label' windowRect='0 -22 77 0' text='' textAlign='center' textColor='white'/>
+				<ItemWindow name='reward' windowRect='-10 0 57 77'/>
+				<Label name='rewardStr' windowRect='50 0 170 77' text='' textAlign='center' textColor='white' multiLine='true' autoWrap='true'/>
+			</Container>
+			<Container name='rewardPreview2' windowRect='449 199 626 276'>
+				<Label name='label' windowRect='0 -22 77 0' text='' textAlign='center' textColor='white'/>
+				<ItemWindow name='reward' windowRect='-10 0 57 77'/>
+				<Label name='rewardStr' windowRect='50 0 170 77' text='' textAlign='center' textColor='white' multiLine='true' autoWrap='true'/>
+			</Container>
+			<Container name='rewardPreview3' windowRect='449 306 626 383'>
+				<Label name='label' windowRect='0 -22 77 0' text='' textAlign='center' textColor='white'/>
+				<ItemWindow name='reward' windowRect='-10 0 57 77'/>
+				<Label name='rewardStr' windowRect='50 0 170 77' text='' textAlign='center' textColor='white' multiLine='true' autoWrap='true'/>
+			</Container>
+		</Container>
+	</Container>
+
+	<Container name='buttonGroup' windowSize='300 50' align='hcenter;bottom'>
+		<ImageButton name='okButton' windowRect='0 0 78 23' autoLoadImage='확인_0' alphaBlend='true' align='center' text='#sb(ok)' textColor='white'/>
+	</Container>
+
+	<Panel name='rewardNotice' windowSize='302 373' adjust='420 16' texture='팝업창_바탕' align='vcenter' visible='false' alphaBlend='true'>
+		<!--<Panel name='day_1' clientRect='0 40 241 212' texture='팝업창_01' align='hcenter' visible='false' alphaBlend='true'/>
+		<Panel name='day_odd' clientRect='0 40 228 229' texture='팝업창_02' align='hcenter' visible='false' alphaBlend='true'/>
+		<Panel name='day_even' clientRect='0 40 228 237' texture='팝업창_03' align='hcenter' visible='false' alphaBlend='true'/>-->
+		<!-- 화면 가리는 문제로 인해 주석처리 됨. 문의는 리더님께 -->
+
+		<Label name='rewardStr' windowRect='0 140 302 333' textAlign='hcenter' multiLine='true' autoWrap='true' textColor='white'/>
+
+		<Panel name='rewardNot' windowSize='247 105' texture='팝업창_상품지급칸' align='hcenter' adjust='2 28' alphaBlend='true' visible='false'>
+			<ItemWindow name='reward' windowRect='20 10 107 97'/>
+			<Label name='rewardStr' windowRect='100 61 250 85' text='아이템 체인저 (50개) 슬롯 체인저 (50개)' textAlign='center' textColor='white' multiLine='true' autoWrap='true'/>
+		</Panel>
+		<Panel name='nextRewardNot' windowSize='228 73' texture='팝업창_상품예고칸' align='hcenter;bottom' adjust='0 56' alphaBlend='true'>
+			<Label name='nextRewardTitle' windowRect='31 17 138 30' text='#sb(nextReward)' textRender='outline' textColor='white' textColor2='255 180 0 1'/>
+			<ItemWindow name='nextReward' windowRect='145 0 222 77'/>
+			<Label name='nextRewardStr' windowRect='10 38 130 73' text='아이템 체인저 (50개) 슬롯 체인저 (50개)' textAlign='center' textColor='white' multiLine='true' autoWrap='true'/>
+		</Panel>
+
+		<ImageButton name='close' windowSize='31 31' adjust='0 22' align='hcenter;bottom' autoLoadImage='팝업창닫기_0' alphaBlend='true'/>
+	</Panel>
+</Container>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="tomb1"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="他们人呢？我有点怀疑他们的身份了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="wenwen" pos="3 0" emotion="stop6"/>
+  <Msg name="雯雯" string="嗯哼，不是这个问题。|墓地！墓地！|啊啊啊～～好可怕 T.T"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="先跑出这该死的地方！|皮蛋！不能停在这里！"/>
+  <Enter/>
+</Scene>

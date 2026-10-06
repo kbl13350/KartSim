@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="sword_R03" laps="2" isFixedKart="true" fixedKartId="1518" isFixedChar="true" fixedCharId="1" type="rank">
+    <LevelContent level="0" ksv="1-17" startOffset="1500">
+      <ShadowKart characterId="474" uniformId="0" kartId="1523" colorId="6" dyeId="43" characterName="妲己"/>
+      <ShadowKart characterId="476" uniformId="0" kartId="1523" colorId="6" dyeId="8" characterName="纣王"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

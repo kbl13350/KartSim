@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+表情动画管理器2.0 for wepop生成
+生成时间: 2018/4/16 22:10:51
+字母说明:
+r:framerate,t:texture
+x:横向格子数,y:纵向格子数
+s:起始帧,e:eyeID
+-->
+<root>
+  <main r="30" loop="0" />
+  <face t="m_0010_face.png" x="4" y="2" />
+  <eye t="m_0010_eye.png" x="4" y="4" />
+  <mouth t="m_0010_mouth.png" x="4" y="4" />
+  <anim s="0" b="2" e="9" m="8" />
+  <anim s="10" b="2" e="9" m="8" />
+</root>

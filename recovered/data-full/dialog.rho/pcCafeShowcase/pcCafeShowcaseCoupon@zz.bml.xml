@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="desktop" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <ImageBoard windowSize="525 437" adjust="0 0" align="center" alphaBlend="true" image="box_01">
+    <Label windowSize="100 25" adjust="45 235" textRender="bold" textColor="white" textAlign="center" text="#sb(pcCafeShowcaseCoupon)"/>
+    <Label name="couponNum" windowSize="300 25" adjust="180 235" textRender="bold" textColor="white" textAlign="center" text="0000-0000-0000-0000-0000"/>
+    <Label name="couponDesc" windowSize="440 50" adjust="0 283" align="hcenter" textRender="outline" textColor="white" textColor2="47 62 82 0" textAlign="center" multiLine="true" autoWrap="true"/>
+    <Label windowSize="440 40" adjust="0 333" align="hcenter" textRender="outline" textColor="white" textColor2="47 62 82 0" textAlign="center" text="#sb(pcCafeShowcaseCouponDesc2)" multiLine="true" autoWrap="true"/>
+    <TextButton name="okButton" windowSize="80 25" adjust="0 390" align="hcenter" frame="DefaultFocusedButton" textAlign="center" text="#sb(ok)"/>
+  </ImageBoard>
+</Panel>

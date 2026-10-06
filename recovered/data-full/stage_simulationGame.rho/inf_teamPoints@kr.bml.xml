@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="teamPoints" leftTopWH="fullscreen" align="hcenter" visible="true">
+  <ImageBoard name="score_2" windowSize="1920 60" align="hcenter top" adjust="0 0" image="simulation_ingame_score_top_Blue" alphaBlend="true" visible="false"/>
+  <ImageBoard name="score_1" windowSize="1920 60" align="hcenter top" adjust="0 0" image="simulation_ingame_score_top_Red" alphaBlend="true" visible="false"/>
+  <Container leftTopWH="0 218 587 64" align="hcenter top" adjust="0 0">
+    <Container name="player" align="left" leftTopWH="0 -1 127 52">
+      <Window name="red" align="left" leftTopWH="0 0 103 49" visible="false">
+        <Panel texture="주행중_red@zz" leftTopWH="223 4 54 54" alphaBlend="true"/>
+        <Label name="name" leftTopWH="-26 18 103 19" alphaBlend="true" text="" textAlign="right" textColor="255 255 209 214" textRender="bold16"/>
+      </Window>
+      <Window name="blue" align="left" leftTopWH="0 0 103 49" visible="false">
+        <Panel texture="주행중_blue@zz" leftTopWH="223 4 54 54" alphaBlend="true"/>
+        <Label name="name" leftTopWH="-26 18 103 19" alphaBlend="true" text="" textAlign="right" textColor="255 179 220 251" textRender="bold16"/>
+      </Window>
+      <CharPanel name="point" align="left" windowSize="58 41" adjust="92 10" texture="주행중_num" alphaBlend="true" text="0" fontSize="32 44" fontPos="0 0" fontStr=":0123456789" centerAlign="true"/>
+    </Container>
+    <Container name="rival" align="right" leftTopWH="0 -1 127 52">
+      <Window name="red" align="left" leftTopWH="0 0 103 49" visible="false">
+        <Panel texture="주행중_red@zz" leftTopWH="-149 4 54 54" alphaBlend="true"/>
+        <Label name="name" leftTopWH="48 18 103 19" alphaBlend="true" text="" textAlign="left" textColor="255 255 209 214" textRender="bold16"/>
+      </Window>
+      <Window name="blue" align="left" leftTopWH="0 0 103 49" visible="false">
+        <Panel texture="주행중_blue@zz" leftTopWH="-149 4 54 54" alphaBlend="true"/>
+        <Label name="name" leftTopWH="48 18 103 19" alphaBlend="true" text="" textAlign="left" textColor="255 179 220 251" textRender="bold16"/>
+      </Window>
+      <CharPanel name="point" align="right" windowSize="58 41" adjust="92 10" texture="주행중_num" alphaBlend="true" text="0" fontSize="32 44" fontPos="0 0" fontStr=":0123456789" centerAlign="true"/>
+    </Container>
+  </Container>
+</Container>

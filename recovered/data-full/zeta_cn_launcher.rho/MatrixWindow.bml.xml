@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="bg" windowRect="0 0 253 220">
+  <Window name="captchaBg" windowRect="0 0 253 220" texture="matrix_box"/>
+  <Label name="matrixTxt" windowRect="106 111 80 45" text=" " textColor="white"/>
+  <Edit id="750102" name="matrixEdit1" windowRect="104 135 125 151" limitText="2" textColor="white" isOnlyDigit="true" textBkColor="0 8 71 119" visible="false"/>
+  <Edit id="750103" name="matrixEdit2" windowRect="139 135 160 151" limitText="2" textColor="white" isOnlyDigit="true" textBkColor="0 8 71 119" visible="false"/>
+  <Edit id="750104" name="matrixEdit3" windowRect="174 135 195 151" limitText="2" textColor="white" isOnlyDigit="true" textBkColor="0 8 71 119" visible="false"/>
+  <GdiButton name="ok" windowRect="0 92 73 118" align="bottom" adjust="50 13" autoLoadImage="button_A_0"/>
+  <GdiButton name="cancel" windowRect="0 92 73 118" align="bottom" adjust="138 13" autoLoadImage="button_B_0"/>
+</Window>

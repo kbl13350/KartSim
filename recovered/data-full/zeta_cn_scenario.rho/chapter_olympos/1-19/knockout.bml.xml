@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="olympos_R02" laps="2" isFixedKart="true" fixedKartId="1273" isFixedChar="true" fixedCharId="327" type="lap">
+    <LevelContent level="0" ksv="1-19" startOffset="0">
+      <ShadowKart characterId="329" uniformId="0" kartId="1119" colorId="8" dyeId="8" characterName="哈迪斯"/>
+      <ShadowKart characterId="332" uniformId="0" kartId="1273" colorId="55" dyeId="55" characterName="宙斯"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

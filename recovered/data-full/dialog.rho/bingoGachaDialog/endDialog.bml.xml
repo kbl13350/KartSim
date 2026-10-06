@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window enable="true" leftTopWH="0 0 800 600" align="center">
+  <Panel windowRect="0 0 800 600" color="200 0 0 0" alphaBlend="true"/>
+  <Container leftTopWH="0 0 520 450" align="center">
+    <Panel name="bg_0" leftTopTex="0 0" texture="시작백판_01@zz" alphaBlend="true"/>
+    <Panel name="bg_1" leftTopTex="260 0" texture="시작백판_02@zz" alphaBlend="true"/>
+    <Panel name="led_0" leftTopTex="116 148" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_1" leftTopTex="76 171" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_2" leftTopTex="34 202" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_3" leftTopTex="35 244" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_4" leftTopTex="74 271" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_5" leftTopTex="115 297" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_6" leftTopTex="155 323" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_7" leftTopTex="196 352" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_8" leftTopTex="233 378" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_9" leftTopTex="271 377" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_10" leftTopTex="308 353" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_11" leftTopTex="348 324" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_12" leftTopTex="388 296" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_13" leftTopTex="429 268" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_14" leftTopTex="470 243" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_15" leftTopTex="468 200" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_16" leftTopTex="425 173" texture="달성조명_0" alphaBlend="true"/>
+    <Panel name="led_17" leftTopTex="385 149" texture="달성조명_0" alphaBlend="true"/>
+    <Label name="body" leftTopWH="115 162 290 150" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="#sb(endBody)" textAlign="center"/>
+    <ImageButton name="okButton" autoLoadImage="종료_0@zz" leftTopTex="200 300" alphaBlend="true" textColor="white" textRender="bold"/>
+  </Container>
+</Window>

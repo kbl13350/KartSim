@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="tomb1"/>
+  <Char id="mysteryMan" pos="4 0" emotion="stop1"/>
+  <Msg name="？？？" string="干的好。|短时间内，居然掌握了那么多东西。"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="都是前所未见的技巧。|虽然还没完全掌握，但是已经有所领悟。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mysteryMan" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="？？？" string="不能满足于此。|赛车场上高手如云！|你还要勤于练习，希望能在明天的冰雪极速赛车大会中有好成绩。"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="怪叔叔！|谢谢～"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mysteryMan" pos="4 0" emotion="stop1"/>
+  <Msg name="？？？" string="那么我先告辞了……|后会有期！"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Shake time="1000"/>
+  <Msg name="！！！" string="（发动机声音）"/>
+  <Enter/>
+  <Char id="kephi" pos="3 0" emotion="stop4"/>
+  <Msg name="胖墩" string="是谁？那个车手？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="这个……不清楚，应该是个世外高人。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="希望再次见面！那个隐士车手！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" emotion="stop1"/>
+  <Msg name="小强" string="来吧！现在这个并不重要。|当务之急，大会要到了。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="对啊！|这次大会中，我会有更出众的表现！"/>
+  <Enter/>
+</Scene>

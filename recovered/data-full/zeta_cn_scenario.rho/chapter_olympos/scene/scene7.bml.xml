@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss13"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[O.M.G 1 发电所附近树林]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="athena" pos="8 0" emotion="stop3"/>
+  <Msg name="雅典啊" string="休息一会再出发吧~"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop1"/>
+  <Char id="bazzi" pos="1 0" emotion="stop1"/>
+  <Char id="dizini" pos="14 0" emotion="stop1"/>
+  <Char id="ethi" pos="6 0" emotion="stop1"/>
+  <Msg name="宝宝，葱头，皮蛋，黑妞" string="好~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="athena" pos="13 0" flip="true" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="雅典啊" string="……是，找到了不错的帮手。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="13 0" flip="true" emotion="stop1"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="雅典啊" string="……啊？怎么会发生这种事……？|而且，要带回他的人造人需要？！"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="13 0" flip="true" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="雅典啊" string="…………是，明白了。|我会传达的。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="雅典娜，下个试练来了是吗？"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="雅典啊" string="是的，可是……"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="赫拉克勒斯" string="什么？！父亲真这么说？！不可能！"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop6"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋，葱头" string="等下！你们在说什么呢！试练？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="hercules" pos="9 0" emotion="stop1"/>
+  <Char id="athena" pos="12 0" emotion="stop1"/>
+  <Msg name="赫拉克勒斯，雅典娜" string="？！"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝，黑妞" string="发生什么事了？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop6"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="总觉得哪里不对！|能不能说明下啊！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Msg name="雅典啊" string="我来说吧。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Msg name="雅典啊" string="我们正在进行O.M.G公司的会长继承试练。|还有，各位是被选中的试练帮手。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop6"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Msg name="葱头，黑妞，皮蛋" string="啥？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Msg name="雅典啊" string="所以你们要帮赫拉克勒斯完成试练。|当然，没我带路，你们也回不去。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Msg name="宝宝" string="啊~啊~突然就没兴趣了~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Char id="hercules" pos="12 0" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="虽然雅典娜说的有点无情|但还是希望你们能帮到底。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Char id="hercules" pos="10 0" emotion="stop2"/>
+  <Msg name="赫拉克勒斯" string="拜托了。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hercules" pos="10 0" emotion="stop2"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Msg name="葱头" string="没办法了。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="hercules" pos="10 0" emotion="normal"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Msg name="赫拉克勒斯" string="感谢大伙，那我们赶紧出发吧。|我们需要把哈迪斯的服务型人造人带回来。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="hercules" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="赫拉克勒斯" string="名叫凯罗贝洛，蓝色头发的是凯罗，红色头发的是贝洛。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hercules" pos="12 0" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="雅典娜，定位到凯罗了吗？"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hercules" pos="12 0" emotion="stop4"/>
+  <Char id="athena" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="雅典啊" string="这边。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="啊……又被卷入到麻烦的……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <BackGround texture="brodi_02"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[O.M.G 1 发电所]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="kero" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="赫拉克勒斯" string="那里！"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="kero" pos="12 0" emotion="normal"/>
+  <Msg name="凯罗" string="赫拉克勒斯？有事吗？"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="kero" pos="12 0" emotion="normal"/>
+  <Msg name="赫拉克勒斯" string="凯罗，你得跟我走一趟。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="kero" pos="12 0" emotion="normal"/>
+  <Msg name="凯罗" string="为什么？我为什么要跟你走？"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="kero" pos="12 0" emotion="normal"/>
+  <Msg name="赫拉克勒斯" string="这个现在不能说，如果你不配合，那我只能强行带走你！"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="kero" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="kero" pos="12 0" emotion="normal"/>
+  <Msg name="凯罗" string="狂妄自大，那我就陪陪你吧。"/>
+  <Enter/>
+</Scene>

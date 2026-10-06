@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="chnageTeam" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="caption" frame="BigCaptionDialog" caption="#sb(selectTeam)" textRender="bold20" windowRect="0 0 432 224" align="center">
+    <Panel name="__" windowSize="340 100" align="center" color="0 255 0 0" alphaBlend="true"/>
+    <GridSelector name="teamPanel" windowSize="340 100" align="center" alignSize="4" maxLine="1" alignMargin="12 0" linePaging="false"/>
+  </CaptionWindow>
+</Panel>

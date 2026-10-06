@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<upgradeTable>
+	<upgrade mixId='1' srcCatId='3' srcId='26' kitId='1' dstCatId='3' dstId='56'/>
+	<upgrade mixId='2' srcCatId='3' srcId='28' kitId='2' dstCatId='3' dstId='57'/>
+	<upgrade mixId='3' srcCatId='3' srcId='33' kitId='3' dstCatId='3' dstId='58'/>
+	<upgrade mixId='4' srcCatId='3' srcId='65' kitId='4' dstCatId='3' dstId='66'/>
+	<upgrade mixId='5' srcCatId='3' srcId='66' kitId='5' dstCatId='3' dstId='67'/>
+	<upgrade mixId='6' srcCatId='3' srcId='67' kitId='6' dstCatId='3' dstId='68'/>
+	<upgrade mixId='7' srcCatId='3' srcId='74' kitId='7' dstCatId='3' dstId='84'/>
+	<upgrade mixId='8' srcCatId='3' srcId='68' kitId='8' dstCatId='3' dstId='99'/> 
+	<upgrade mixId='9' srcCatId='21' srcId='4' kitId='9' dstCatId='21' dstId='6'/>
+	<upgrade mixId='10' srcCatId='3' srcId='119' kitId='10' dstCatId='3' dstId='120'/>
+	<upgrade mixId='11' srcCatId='3' srcId='122' kitId='11' dstCatId='3' dstId='123'/>
+	<upgrade mixId='12' srcCatId='3' srcId='44' kitId='12' dstCatId='3' dstId='132'/>	<!--레트로 업글-->
+	<upgrade mixId='16' srcCatId='3' srcId='55' kitId='16' dstCatId='3' dstId='142'/>	<!--인팩터 업글-->
+	<upgrade mixId='17' srcCatId='3' srcId='146' kitId='17' dstCatId='3' dstId='147'/>
+	<upgrade mixId='18' srcCatId='21' srcId='16' kitId='18' dstCatId='21' dstId='15'/>	<!--목욕세트-->
+	<upgrade mixId='21' srcCatId='3' srcId='152' kitId='21' dstCatId='3' dstId='163'/>	<!--저스티스 R4 업글-->
+	<upgrade mixId='24' srcCatId='3' srcId='180' kitId='24' dstCatId='3' dstId='181'/>	<!--근두운 업그레이드-->
+	<upgrade mixId='25' srcCatId='3' srcId='130' kitId='25' dstCatId='3' dstId='185'/>		<!-- 루루 업글 중국 -->
+	<upgrade mixId='26' srcCatId='21' srcId='14' kitId='26' dstCatId='21' dstId='6'/>
+	<upgrade mixId='27' srcCatId='3' srcId='201' kitId='27' dstCatId='3' dstId='217'/>	<!-- 중국 황금 가디언 -->
+	<upgrade mixId='28' srcCatId='3' srcId='10'  kitId='28' dstCatId='3' dstId='221'/>	<!-- 세이버 PRO-G -->
+	<upgrade mixId='29' srcCatId='21' srcId='29'  kitId='29' dstCatId='21' dstId='30'/>		
+	<upgrade mixId='30' srcCatId='3' srcId='226'  kitId='30' dstCatId='3' dstId='231'/>	 <!--슈퍼바이크PRO 업그레이드킷-->
+	<upgrade mixId='32' srcCatId='3' srcId='120'  kitId='32' dstCatId='3' dstId='244'/>
+	<upgrade mixId='40' srcCatId='21' srcId='36'  kitId='40' dstCatId='21' dstId='37'/>
+	<upgrade mixId='41' srcCatId='21' srcId='12'  kitId='41' dstCatId='21' dstId='19'/> <!-- 조로 고양이 업그레이드 -->
+</upgradeTable>

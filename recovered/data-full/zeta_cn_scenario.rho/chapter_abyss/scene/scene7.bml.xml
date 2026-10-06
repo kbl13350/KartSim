@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for1"/>
+  <Char id="neoul" pos="12 0" emotion="normal"/>
+  <Char id="totop" pos="5 0" emotion="stop4"/>
+  <Msg name="奈尔" string="喂，那边那个大叔。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="neoul" pos="12 0" emotion="normal"/>
+  <Char id="totop" pos="5 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="……"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="neoul" pos="12 0" emotion="normal"/>
+  <Char id="totop" pos="5 0" emotion="stop4"/>
+  <Msg name="奈尔" string="大叔。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="neoul" pos="12 0" emotion="normal"/>
+  <Char id="totop" pos="5 0" flip="true" emotion="stop6"/>
+  <Msg name="黑杰克" string="哇塞，吓我一跳！你，你谁啊？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="neoul" pos="12 0" emotion="normal"/>
+  <Char id="raptorLs" pos="5 0" emotion="stop3"/>
+  <Msg name="格雷格" string="没见过你呀！你是追着我们过来的嘛！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="neoul" pos="5 0" emotion="normal"/>
+  <Char id="Chris" pos="11 0" emotion="stop2"/>
+  <Msg name="克莉丝" string="哇，这小孩长得好帅啊~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="5 0" emotion="stop2"/>
+  <Char id="raptorRs" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="……你不也是个小孩嘛！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="奈尔" string="大叔，那个……哦，对了，海盗船长，你认识吗？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="黑杰克" string="呼呼，怎么可能不认识海盗团的海盗船长~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="奈尔" string="海盗船长和我们老大现在在那边，想和你聊聊。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" pos="8 0" emotion="stop3"/>
+  <Msg name="格雷" string="海盗船长就在这附近……！"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="raptorRs" pos="10 0" emotion="stop3"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="黑杰克" string="虽然不知道找我们有何贵干……但我也很想见他一次~要不走一趟？"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="Chris" pos="8 0" emotion="stop1"/>
+  <Msg name="克莉丝" string="那边那个帅弟弟就跟姐姐一起玩吧~"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="11 0" emotion="stop1"/>
+  <Char id="neoul" pos="5 0" emotion="normal"/>
+  <Msg name="奈尔" string="……好像又多了一个姐姐。"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <BackGround texture="for2"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="abyss16"/>
+  <Char id="totop" pos="10 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="情况我已经了解的差不多了~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="只要能除掉他们，我也会帮忙的~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop5"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="呵呵~，那现在就闯进去吧！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="虽然闯进去也是个不错的选择，但那里是他们的主场！有可能会让他们跑掉！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="我们一起闯进去，他们怎么可能跑得掉！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Msg name="莫格瑞" string="虽说如此，但有完美的计划不是更好嘛！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="lodumani" pos="8 0" emotion="stop5"/>
+  <Char id="totop" pos="13 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="呼呼，难道你已经有什么计划了吗~？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop5"/>
+  <Char id="totop" pos="13 0" emotion="stop4"/>
+  <Char id="meoguri" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="把他们引诱到阿比斯后除掉他们，是绝对逃不掉的！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop2"/>
+  <Char id="totop" pos="13 0" emotion="stop4"/>
+  <Char id="meoguri" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="海盗船长" string="噢，那个阿比斯是在深海里……"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop2"/>
+  <Char id="totop" pos="12 0" emotion="stop4"/>
+  <Char id="meoguri" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="方法是不错，但怎么把他们骗到阿比斯啊~？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="5 0" flip="true" emotion="stop4"/>
+  <Char id="totop" pos="12 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="那倒不是问题，告诉他们举办GP赛的话不管是哪里，他们应该都会参加？呵呵！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="lodumani" pos="10 0" emotion="stop2"/>
+  <Char id="meoguri" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="海盗船长" string="莫格瑞，把那些小家伙借我用用！我需要有个邀请他们的人！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="10 0" emotion="stop2"/>
+  <Char id="meoguri" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="一个需要跟我在一起，那就把奈尔带走吧。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" pos="10 0" emotion="normal"/>
+  <Msg name="奈琳" string="嘤嘤嘤，奈尔奈尔呀，你一个人可以吗~？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="10 0" emotion="normal"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="没关系，姐姐你先回阿比斯吧。"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="lodumani" pos="7 0" emotion="stop1"/>
+  <Msg name="海盗船长" string="吉米！把奈尔带去繁荣山丘！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="4 0" emotion="stop1"/>
+  <Char id="mobi" pos="11 0" emotion="stop9"/>
+  <Msg name="吉米" string="船长，再怎么说，这也太恶劣了吧……"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="mobi" pos="11 0" emotion="stop9"/>
+  <Msg name="海盗船长" string="你别管，这是船长的命令！快点去！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="mobi" pos="5 0" emotion="stop8"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="吉米" string="哎，奈尔你跟我来吧……"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="Chris" pos="8 0" emotion="stop2"/>
+  <Msg name="克莉丝" string="哇，帅弟弟！我也要一起去！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="10 0" emotion="stop2"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="奈琳" string="别打我弟弟主意！你个丑女人！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="Chris" pos="10 0" emotion="stop4"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="克莉丝" string="你说我丑？眉毛都不会画的家伙，跳什么！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="8 0" emotion="normal"/>
+  <Msg name="奈尔" string="……某些方面还真是一个德行。"/>
+  <Enter/>
+</Scene>

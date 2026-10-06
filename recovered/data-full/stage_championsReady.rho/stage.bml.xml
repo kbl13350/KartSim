@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Stage className="ChampionsReadyStage" addResFolder="/stage/mqReady/;/stage/gameReady/;/stage/guildReady/;/stage/common/" topmostWindow="stage_window@zz" stringBag="stage_stringBag"/>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="slotGroup" leftTopWH="0 0 1376 126" visible="true">
+  <Window leftTopWH="0 0 1376 126" enable="false">
+    <ImageBoard name="gradeLight" leftTopWH="0 0 1376 126" alphaBlend="true" image="itemBar" visible="false"/>
+    <CharPanel name="gradeNum" leftTopWH="35 35 36 54" texture="upgradeGear_number1" alphaBlend="true" fontSize="36 54" spaceOffset="0" fontStr="12345" text="1" speedTick="5" rightAlign="true" enable="false"/>
+  </Window>
+  <Window name="slot0" windowSize="210 119" adjust="-463 -5" align="center" visible="true">
+    <Panel name="itemSelect" windowSize="104 89" align="left;top" adjust="43 5" alphaBlend="true" texture="slotSelect" visible="false"/>
+    <ItemWindow name="item" windowSize="144 100" adjust="23 3" align="left;top" stockId="0" visible="false"/>
+    <Panel name="itemNameTag" windowSize="166 28" texture="upgradeGear_nametag" adjust="12 0" align="bottom;left" alphaBlend="true">
+      <Label name="itemName" windowSize="144 28" align="center" text="" textAlign="center" textRender="outline16" textColor="255 202 210 220" textColor2="black" textRolling="true"/>
+    </Panel>
+    <Window name="itemPeriodTex" windowSize="40 20" align="right;top" adjust="30 5" visible="false">
+      <Label name="itemPeriod" windowSize="40 20" align="center" text="" textAlign="right" textRender="outline14" textColor="255 202 210 220" textColor2="black"/>
+    </Window>
+    <ImageBoard name="close" leftTopWH="-6 0 210 119" alphaBlend="true" image="slotClose0" visible="false"/>
+    <ImageBoard name="slotDisable" leftTopWH="0 -1 190 119" alphaBlend="true" image="slotDisable@zz" visible="false"/>
+  </Window>
+  <Window name="slot1" windowSize="210 119" adjust="-272 -5" align="center" visible="true">
+    <Panel name="itemSelect" windowSize="104 89" align="left;top" adjust="43 5" alphaBlend="true" texture="slotSelect" visible="false"/>
+    <ItemWindow name="item" windowSize="144 100" adjust="23 3" align="left;top" stockId="0" visible="false"/>
+    <Panel name="itemNameTag" windowSize="166 28" texture="upgradeGear_nametag" adjust="12 0" align="bottom;left" alphaBlend="true">
+      <Label name="itemName" windowSize="144 28" align="center" text="" textAlign="center" textRender="outline16" textColor="255 202 210 220" textColor2="black" textRolling="true"/>
+    </Panel>
+    <Window name="itemPeriodTex" windowSize="40 20" align="right;top" adjust="30 5" visible="false">
+      <Label name="itemPeriod" windowSize="40 20" align="center" text="" textAlign="right" textRender="outline14" textColor="255 202 210 220" textColor2="black"/>
+    </Window>
+    <ImageBoard name="close" leftTopWH="-6 0 210 119" alphaBlend="true" image="slotClose0" visible="false"/>
+    <ImageBoard name="slotDisable" leftTopWH="0 -1 190 119" alphaBlend="true" image="slotDisable@zz" visible="false"/>
+  </Window>
+  <Window name="slot2" windowSize="210 119" adjust="-81 -5" align="center" visible="true">
+    <Panel name="itemSelect" windowSize="104 89" align="left;top" adjust="43 5" alphaBlend="true" texture="slotSelect" visible="false"/>
+    <ItemWindow name="item" windowSize="144 100" adjust="23 3" align="left;top" stockId="0" visible="false"/>
+    <Panel name="itemNameTag" windowSize="166 28" texture="upgradeGear_nametag" adjust="12 0" align="bottom;left" alphaBlend="true">
+      <Label name="itemName" windowSize="144 28" align="center" text="" textAlign="center" textRender="outline16" textColor="255 202 210 220" textColor2="black" textRolling="true"/>
+    </Panel>
+    <Window name="itemPeriodTex" windowSize="40 20" align="right;top" adjust="30 5" visible="false">
+      <Label name="itemPeriod" windowSize="40 20" align="center" text="" textAlign="right" textRender="outline14" textColor="255 202 210 220" textColor2="black"/>
+    </Window>
+    <ImageBoard name="close" leftTopWH="-6 0 210 119" alphaBlend="true" image="slotClose0" visible="false"/>
+    <ImageBoard name="slotDisable" leftTopWH="0 -1 190 119" alphaBlend="true" image="slotDisable@zz" visible="false"/>
+  </Window>
+  <Window name="slot3" windowSize="210 119" adjust="110 -5" align="center" visible="true">
+    <Panel name="itemSelect" windowSize="104 89" align="left;top" adjust="43 5" alphaBlend="true" texture="slotSelect" visible="false"/>
+    <ItemWindow name="item" windowSize="144 100" adjust="23 3" align="left;top" stockId="0" visible="false"/>
+    <Panel name="itemNameTag" windowSize="166 28" texture="upgradeGear_nametag" adjust="12 0" align="bottom;left" alphaBlend="true">
+      <Label name="itemName" windowSize="144 28" align="center" text="" textAlign="center" textRender="outline16" textColor="255 202 210 220" textColor2="black" textRolling="true"/>
+    </Panel>
+    <Window name="itemPeriodTex" windowSize="40 20" align="right;top" adjust="30 5" visible="false">
+      <Label name="itemPeriod" windowSize="40 20" align="center" text="" textAlign="right" textRender="outline14" textColor="255 202 210 220" textColor2="black"/>
+    </Window>
+    <ImageBoard name="close" leftTopWH="-6 0 210 119" alphaBlend="true" image="slotClose0" visible="false"/>
+    <ImageBoard name="slotDisable" leftTopWH="0 -1 190 119" alphaBlend="true" image="slotDisable@zz" visible="false"/>
+  </Window>
+  <Window name="slot4" windowSize="210 119" adjust="301 -5" align="center" visible="true">
+    <Panel name="itemSelect" windowSize="104 89" align="left;top" adjust="43 5" alphaBlend="true" texture="slotSelect" visible="false"/>
+    <ItemWindow name="item" windowSize="144 100" adjust="23 3" align="left;top" stockId="0" visible="false"/>
+    <Panel name="itemNameTag" windowSize="166 28" texture="upgradeGear_nametag" adjust="12 0" align="bottom;left" alphaBlend="true">
+      <Label name="itemName" windowSize="144 28" align="center" text="" textAlign="center" textRender="outline16" textColor="255 202 210 220" textColor2="black" textRolling="true"/>
+    </Panel>
+    <Window name="itemPeriodTex" windowSize="40 20" align="right;top" adjust="30 5" visible="false">
+      <Label name="itemPeriod" windowSize="40 20" align="center" text="" textAlign="right" textRender="outline14" textColor="255 202 210 220" textColor2="black"/>
+    </Window>
+    <ImageBoard name="close" leftTopWH="-6 0 210 119" alphaBlend="true" image="slotClose0" visible="false"/>
+    <ImageBoard name="slotDisable" leftTopWH="0 -1 190 119" alphaBlend="true" image="slotDisable@zz" visible="false"/>
+  </Window>
+  <Window name="slot5" windowSize="210 119" adjust="492 -5" align="center" visible="true">
+    <Panel name="itemSelect" windowSize="104 89" align="left;top" adjust="43 5" alphaBlend="true" texture="slotSelect" visible="false"/>
+    <ItemWindow name="item" windowSize="144 100" adjust="23 3" align="left;top" stockId="0" visible="false"/>
+    <Panel name="itemNameTag" windowSize="166 28" texture="upgradeGear_nametag" adjust="12 0" align="bottom;left" alphaBlend="true">
+      <Label name="itemName" windowSize="144 28" align="center" text="" textAlign="center" textRender="outline16" textColor="255 202 210 220" textColor2="black" textRolling="true"/>
+    </Panel>
+    <Window name="itemPeriodTex" windowSize="40 20" align="right;top" adjust="30 5" visible="false">
+      <Label name="itemPeriod" windowSize="40 20" align="center" text="" textAlign="right" textRender="outline14" textColor="255 202 210 220" textColor2="black"/>
+    </Window>
+    <ImageBoard name="close" leftTopWH="-6 0 210 119" alphaBlend="true" image="slotClose1" visible="false"/>
+    <ImageBoard name="slotDisable" leftTopWH="0 -1 190 119" alphaBlend="true" image="slotDisable@zz" visible="false"/>
+  </Window>
+  <Window leftTopWH="0 0 1376 126" enable="false">
+    <Play1SPanel name="upgradeEF" scene="upgradeEF" windowSize="1376 126" adjust="0 -3" align="center" nearPlane="0.0" farPlane="1000" fov="90.0" defaultCameraPos="0 -650.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="1.056" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="false"/>
+  </Window>
+  <Window windowSize="76 54" align="right;center" adjust="20 0">
+    <ImageButton name="listPrevBtn" leftTopWH="0 0 40 54" autoLoadImage="L_bt_0" alphaBlend="true" visible="true"/>
+    <ImageButton name="listNextBtn" leftTopWH="45 0 40 54" autoLoadImage="R_bt_0" alphaBlend="true" visible="true"/>
+  </Window>
+</Window>

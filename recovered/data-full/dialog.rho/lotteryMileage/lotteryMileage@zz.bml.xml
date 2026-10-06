@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <Container name="prizeTemplate" leftTopWH="0 0 90 110" alphaBlend="true" visible="false">
+    <Panel name="prizeBg" texture="bingo_popup_reward" leftTopTex="0 0" alphaBlend="true" visible="true"/>
+    <Container name="prizeItem" leftTopWH="0 20 90 90" align="hcenter"/>
+    <Label name="prizeCount" leftTopWH="0 -2 97 20" text="" textRender="bold16" textColor="255 157 191 241" textAlign="center" align="hcenter"/>
+    <Label name="prizeName" leftTopWH="0 120 97 20" text="" textRender="bold14" textColor="255 32 40 53" textAlign="center" align="hcenter"/>
+  </Container>
+  <Container name="arrowTemplate" leftTopWH="0 0 90 110" alphaBlend="true" visible="false">
+    <Panel name="prizeArrow" texture="bingo_popup_arrow" leftTopTex="0 50" alphaBlend="true" align="center" visible="true"/>
+  </Container>
+  <CaptionWindow name="captionDlgFrame" windowRect="0 0 900 420" frame="CaptionDialog" captionPos="0 1" caption="#sb(lotteryMileagePrize)" align="center" setCloseButton="close">
+    <Container name="prizeCont" leftTopWH="45 54 0 110" alphaBlend="true" align="hcenter" visible="true"/>
+    <Panel name="lotteryMileageInfoDot1" texture="bingo_popup_dot" leftTopWH="30 236 4 4" alphaBlend="true" visible="true"/>
+    <Label name="lotteryMileageInfo1" text="#sb(lotteryMileageInfo_bingo_1)" leftTopWH="40 226 200 22" textRender="bold14" textColor="255 72 106 153" textAlign="left,vcenter"/>
+    <Panel name="lotteryMileageInfoDot2" texture="bingo_popup_dot" leftTopWH="30 258 4 4" alphaBlend="true" visible="true"/>
+    <Label name="lotteryMileageInfo2" text="#sb(lotteryMileageInfo_bingo_2)" leftTopWH="40 248 200 22" textRender="bold14" textColor="255 72 106 153" textAlign="left,vcenter"/>
+    <Panel name="lotteryMileageInfoDot3" texture="bingo_popup_dot" leftTopWH="30 280 4 4" alphaBlend="true" visible="true"/>
+    <Label name="lotteryMileageInfo3" text="#sb(lotteryMileageInfo_bingo_3)" leftTopWH="40 270 200 22" textRender="bold14" textColor="255 72 106 153" textAlign="left,vcenter"/>
+    <Window windowSize="840 1" frame="HSection" adjust="0 63" align="hcenter;bottom" depthBias="-1"/>
+    <Window name="yesNoButtonList" leftTopWH="0 0 400 40" adjust="0 6" align="hcenter;bottom" depthBias="-1">
+      <TextButton name="OK" windowSize="132 48" adjust="0 0" align="center" text="#sb(ok)" textRender="bold20" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+    </Window>
+  </CaptionWindow>
+</Panel>

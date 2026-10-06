@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600">
+  <CaptionWindow name="gameReadyStage" windowSize="810 585" adjust="0 -13" caption="" captionColor="black" align="center">
+    <Window windowRect="76 5 779 481" frame="InnerFrame"/>
+    <Window windowRect="76 485 779 515" frame="InnerFrame"/>
+  </CaptionWindow>
+  <Container name="titleCont" windowRect="300 10 531 18">
+    <Label name="title" autoSizing="true" align="center" textRender="bold" textColor="black"/>
+  </Container>
+  <Panel name="myInfo" windowRect="92 39 345 67" texture="myInfo" alphaBlend="true">
+    <Label name="myRid" windowRect="53 8 133 14" autoSizing="true" textColor="white" text=""/>
+  </Panel>
+  <Panel name="gameInfo" windowRect="345 39 783 67" texture="gameInfo" alphaBlend="true">
+    <Label name="gameInfoStr" windowRect="40 8 120 14" autoSizing="true" textColor="white" text=""/>
+  </Panel>
+  <Edit name="채팅" windowRect="98 515 779 535" caretColor="white" frame="GlassButton">
+    <ToolTipWindow name="chatNotice" windowSize="100 25" adjust="0 -50" frame="GrayBorderToolTip" regStyle="left" regPos="left" regPosv="0 0" multiLine="true" textColor="black" showEmoticon="false" autoSizing="true" visible="false" enable="false"/>
+  </Edit>
+  <Container name="readyGameCont" windowRect="15 43 800 567">
+    <Container frame="SectionGlass" fillTrans="true" windowRect="1 1 770 465">
+      <Window name="ridersBoard" frame="GlassButton" fillTrans="true" windowRect="74 0 770 461" alphaBlend="true">
+        <Container name="rider0" windowRect="-33 -9 246 373" enable="false">
+          <Panel name="myRiderBgImg" texture="player_box_basic" windowSize="182 222" adjust="38 30" alphaBlend="true" depthBias="-20"/>
+          <Panel name="feverUI" texture="fever_ready@zz" windowSize="182 222" adjust="38 30" alphaBlend="true" visible="false" depthBias="-20"/>
+          <Window name="coupleRingSet" leftTopWH="165 40 40 40" visible="false">
+            <Panel name="coupleRingBg" alphaBlend="true" alphaTest="true" enable="false" align="center"/>
+            <Panel name="coupleRing" alphaBlend="true" alphaTest="true" enable="false" align="center"/>
+          </Window>
+          <Panel name="ready" windowRect="83 195 190 227" texture="ui_02@zz" uvRect="0 173 107 205" alphaBlend="true" visible="false" enable="false"/>
+          <Panel name="changing" windowRect="86 195 190 227" texture="ui_02@zz" uvRect="3 213 107 246" alphaBlend="true" visible="false" enable="false"/>
+          <Container name="gpContainer" windowRect="83 212 175 227" enable="false">
+            <Label name="gp" windowRect="80 0 92 92" textRender="outline" textColor="255 0 255 0" autoSizing="true" align="center" text=""/>
+          </Container>
+          <Panel name="bossTagBig" windowRect="45 37 122 65" texture="roomboss@zz" alphaBlend="true" enable="false" visible="false"/>
+          <Panel name="glove" windowRect="48 6 68 26" alphaBlend="true"/>
+          <Panel name="clubMark" windowRect="220 6 240 26" alphaBlend="true" visible="false">
+            <Panel name="clubFrame" windowSize="24 24" align="center" alphaBlend="true" alphaTest="true" visible="false" enable="false"/>
+          </Panel>
+          <Panel name="emblem02" windowRect="241 6 261 26" alphaBlend="true" visible="false"/>
+          <Panel name="emblem03" windowRect="262 6 282 26" alphaBlend="true" visible="false"/>
+        </Container>
+        <Container name="rider1" windowRect="182 23 310 243"/>
+        <Container name="rider2" windowRect="309 23 437 243"/>
+        <Container name="rider3" windowRect="436 23 564 243"/>
+        <Container name="rider4" windowRect="563 23 692 243"/>
+        <Container name="rider5" windowRect="309 239 437 459"/>
+        <Container name="rider6" windowRect="436 239 564 459"/>
+        <Container name="rider7" windowRect="563 239 692 459"/>
+        <Container name="트랙카드Cont" windowRect="3 239 308 456">
+          <TrackCard name="트랙카드" windowRect="0 0 307 220" trackRect="14 48 295 212" trackNameRect="16 21 293 35" texture="trackcard" ordinaryUv="0 0 307 220" focusedUv="0 0 307 220" alphaBlend="true"/>
+        </Container>
+        <Panel name="bossTag" windowRect="20 0 97 28" texture="roomboss@zz" alphaBlend="true" enable="false" visible="false"/>
+        <Panel name="recording" windowRect="250 290 290 330" visible="false" enable="false" alphaBlend="true"/>
+        <Label name="recordingError" windowRect="200 225 340 305" frame="DefaultTooltip" enable="false" text="#sb(recordingError)" textColor="white" autoWrap="true" multiLine="true" visible="false" alphaBlend="true"/>
+        <ToolTipWindow name="talkBalloon0" windowRect="58 180 193 250" frame="GrayBorderToolTip" regStyle="upLeft" regPos="upRight" autoWrap="true" multiLine="true" vertAutoSizing="true" marginRect="0 20 0 -25" visible="false" zbufWrite="false" alphaBlend="true" color="200 255 255 255">
+          <Label name="nametag" frame="GlassButton" windowRect="0 0 112 10" alphaBlend="true" textColor="255 255 114 0" textRender="bold"/>
+        </ToolTipWindow>
+        <ToolTipWindow name="talkBalloon8" windowRect="200 0 500 80" marginRect="0 20 0 0" frame="GrayBorderToolTip" align="vcenter" autoWrap="true" multiLine="true" visible="false" alphaBlend="true" depthBias="256">
+          <Label name="라이더이름" frame="GlassButton" windowRect="0 0 280 20" autoWrap="true" multiLine="true" alphaBlend="true" text="#sb(eventGM)" textColor="blue" textRender="bold"/>
+        </ToolTipWindow>
+      </Window>
+      <Panel name="방장변경" windowRect="313 210 536 265" uvRect="0 0 223 55" texture="bosschange" visible="false" enable="false">
+        <Label name="rid" windowRect="62 13 218 50" textRender="bold" text="재빠 님으로" autoWrap="true" multiLine="true"/>
+      </Panel>
+      <Panel name="스타트안내" windowRect="0 0 284 55" texture="그랑프리스타트안내창@zz" visible="false" enable="false" align="center"/>
+      <Container name="lucconImage" windowRect="0 13 150 163" depthBias="20"/>
+    </Container>
+    <ToolTipWindow name="복불복공지" windowSize="340 100" align="center" frame="GrayBorderToolTip" alphaBlend="true" visible="false">
+      <Label name="내용" leftTopWH="-10 5 340 90" multiLine="true" alphaBlend="true" textRender="gulim14" autoWrap="true" text="#sb(bokbulbokNotice)" textAlign="center" lineGap="4"/>
+      <Label name="제목" leftTopWH="25 0 340 30" alphaBlend="true" textRender="gulim14" text="#sb(bokbulbokNoticeTitle)" textColor="blue"/>
+    </ToolTipWindow>
+  </Container>
+  <Container name="finalScene" windowRect="0 50 800 450" visible="false">
+    <Panel name="emotion" windowRect="187 129 673 364" alphaBlend="true" visible="false" texture="specialItemCutSc"/>
+  </Container>
+  <Container name="finalFullScene" windowRect="0 0 800 600" visible="false">
+    <ImageBoard name="fullSceneBoard" windowRect="0 0 800 600" alphaBlend="false" visible="false"/>
+  </Container>
+  <Container name="rightBtnMenu" windowRect="0 0 100 20" visible="false">
+    <TextButton name="changeRoomMaster" windowRect="0 0 100 20" text="방장 넘겨주기" Textalign="hcenter"/>
+  </Container>
+</Container>

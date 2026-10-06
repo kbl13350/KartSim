@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='30.0'
+	BackwardAccelForce='60.0'
+	DragFactor='-0.02'
+	SteerConstraint='0.25'
+	DriftEscapeForce='20'
+	CornerDrawFactor='0.015'
+
+	DescStability ='30'
+/>
+
+<!--코튼 E2 -->

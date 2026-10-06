@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="31" mode="single" preConditionId="0" title="重逢" synopsis="在O.M.G公司参观众多高科技产品的葱头，|回到繁荣山丘后就一直在研发他的新设计。|这时，雅典娜拜访了繁荣山丘，与皮蛋一伙重逢。" howToClear="获得胜利。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01"/>
+  <Step id="2" type="32" mode="single" preConditionId="1" title="再次邀请" synopsis="在赫拉克勒斯的努力下，O.M.G也终于稳定了下来。|雅典娜再次邀请皮蛋一伙前往奥林匹斯。|皮蛋一伙也欣然接受了雅典娜的邀请，除了很不情愿的宝宝。" howToClear="在指定时间内通过所有检查站。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0"/>
+  </Step>
+  <Step id="3" type="35" mode="single" preConditionId="2" title="哈迪斯的日常" synopsis="哈迪斯的日常变得更加疲惫。|因为，为了防止战力下降，将凯罗和贝洛分离后，没想到两个人造人天天在哈迪斯面前吵架。|最后，哈迪斯为了解决这一切，决定进行一场比赛。" howToClear="与NPC的道具赛对决中获得胜利。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03"/>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="赫拉克勒斯的日常" synopsis="终于，成功的让凯罗和贝洛安静了下来！|但是，意想不到的危险扑面而来。|另一边，从雅典娜那里得知皮蛋一伙已到达消息后，赫拉克勒斯前往殿堂，去迎接皮蛋一伙。" howToClear="在指定时间内完成比赛。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04"/>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="哈啦克勒斯vs皮蛋" synopsis="久违的赫拉克勒斯和皮蛋一伙。|向彼此问好时，赫拉克勒斯提起了上次跟皮蛋约定的1比1单挑赛。|皮蛋也表示期待已久，爽快的答应了。" howToClear="获得胜利。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05"/>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="新的试练" synopsis="皮蛋和赫拉克勒斯进行了一场精彩的比赛。|但还未来得及复盘，凯罗和贝洛急匆匆的来找他们了。|重聚的喜悦也没能长久，新的威胁即将到来。" howToClear="获得胜利。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06"/>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="战术后退" synopsis="宙斯被封印前所留下的野心，现已完成实体化，奥林匹斯再次陷入危机。|为躲避宙斯的暗影，赫拉克勒斯和皮蛋一伙决定暂且撤退到O.M.G 本部。" howToClear="在指定时间内完成比赛。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0"/>
+  </Step>
+  <Step id="8" type="31" mode="single" preConditionId="7" title="反击" synopsis="在O.M.G总部与雅典娜汇合的皮蛋一伙。|为击退暗影，与拥有神力的雅典娜一起开始了反击的号角。" howToClear="获得胜利。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0"/>
+  </Step>
+  <Step id="9" type="31" mode="single" preConditionId="8" title="危机与觉悟" synopsis="暗影们不断涌出。|这时，出现了被暗影本体附身的哈迪斯。|察觉到敌人强大气息的雅典娜，决定汇集伙伴们的力量来解除奥林匹斯的封印，用解封后的奥林匹斯与主体暗影决斗。" howToClear="获得胜利。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="向往的自由" synopsis="最终，赫拉克勒斯和皮蛋一伙成功战胜了暗影宙斯。|奥林匹斯再次回归和平。|但是，赫拉克勒斯将O.M.G托付给雅典娜和哈迪斯后，开启了寻找自由的旅行。" howToClear="在指定时间内完成比赛。" missionText="目标成功 0回/1回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10" isFinalStep="true">
+    <Level difficult="0"/>
+  </Step>
+</StepList>

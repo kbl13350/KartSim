@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Container name="backGround" windowSize="944 688" align="center">
+    <ImageBoard image="quest_img_baseBG@zz" windowSize="944 688" adjust="0 0" align="center"/>
+    <Label windowSize="944 30" adjust="0 2" text="#sb(questInfo)" textRender="bold20" textAlign="center" textColor="white"/>
+    <ImageButton name="cancelButton" windowSize="26 26" adjust="2 4" align="top;right" autoLoadImage="kick_" alphaBlend="true" altText="#sb(close)"/>
+    <Container name="rightQuestRewardDetail" windowSize="500 165" adjust="432 423">
+      <Label windowSize="480 36" adjust="0 -12" align="hcenter" text="#sb(reward)" textAlign="vcenter" textRender="bold14" textColor="255 42 55 80"/>
+      <Container name="rewardDisplay" windowSize="348 121" adjust="10 24">
+        <GridSelectorEx name="rewardList" windowSize="348 121" alignSize="2" maxLine="2" alignMargin="8 8" clientMargin="0 2 8 0" linePaging="false"/>
+      </Container>
+    </Container>
+    <Container name="questDetail" windowSize="500 364" adjust="432 47">
+      <Label name="QuestTitleCaption" windowSize="500 32" adjust="0 0" textRender="bold16" textColor="white" textAlign="center"/>
+      <Container name="questDescContainer" windowSize="500 332" adjust="0 32">
+        <Label windowSize="480 36" align="hcenter" text="#sb(period)" textAlign="vcenter" textRender="bold14" textColor="255 42 55 80"/>
+        <Label name="period" windowSize="480 36" align="hcenter" textAlign="right,vcenter" textRender="bold14" textColor="255 88 105 129"/>
+        <Label name="QuestDesc" windowSize="480 100" adjust="0 38" align="hcenter" multiLine="true" textRender="bold14" textColor="255 42 55 80" textAlign="vcenter" autoWrap="true" lineGap="1"/>
+        <Label name="CaptionQuestStatus" windowSize="500 110" adjust="0 222" textRender="bold14" text=" #sb(enableState)" textColor="255 88 105 129" marginRect="5 4 0 0">
+          <Label name="thisQuestStatus" windowSize="80 20" adjust="415 4" textRender="bold14" textColor="white" textAlign="center"/>
+          <Label name="lblEmptyConditions" windowSize="490 75" adjust="5 30" textRender="bold14" text="#sb(questEnableAll)" textColor="255 42 55 80" textAlign="center" visible="false"/>
+          <Container name="emptyContainer" windowSize="490 75" adjust="5 30"/>
+        </Label>
+        <Window windowSize="500 83" adjust="0 139" align="hcenter" alphaBlend="true">
+          <Label windowSize="480 36" align="hcenter" text="#sb(mission)" textAlign="vcenter" textRender="bold14" textColor="255 42 55 80"/>
+          <Container name="questProgressGageBar" windowSize="480 35" adjust="0 36" align="hcenter">
+            <Label name="QuestHowTo" windowSize="480 35" adjust="0 -1" multiLine="true" textRender="bold14" textColor="255 88 105 129" textAlign="left" autoWrap="true" lineGap="1"/>
+            <Panel name="questGageBG" windowSize="480 8" align="bottom" texture="img_questGageBG" alphaBlend="true" visible="false"/>
+            <Panel name="questGageOn" windowSize="480 8" align="bottom" texture="img_questGageOn" uvRect="0 0 480 8" alphaBlend="true" visible="false"/>
+            <Panel name="questGageBGDisable" windowSize="480 8" align="bottom" texture="img_questGageBG" alphaBlend="true" visible="false"/>
+            <Panel name="questGageOnDisable" windowSize="480 8" align="bottom" texture="img_questGageOn" alphaBlend="true" visible="false"/>
+            <ColorLabel name="questProgressLabel" windowSize="480 16" adjust="0 -1" textRender="bold14" textColor="255 88 105 129" textAlign="right,vcenter"/>
+            <TextButton name="challengeShadow" windowSize="96 34" adjust="-10 -2" frame="DefaultFocusedButton" align="right,bottom" text="#sb(challenge)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" visible="false"/>
+          </Container>
+          <ImageButton name="btn_trackInfo" windowSize="90 20" adjust="0 9" textAlign="bottom" text="#sb(trackInfo)" stringPos="26 0" autoLoadImage="ovrbtn_trackinfo_" alphaBlend="true" align="right" textRender="bold14" textColor="255 183 186 194" overTextColor="white" clickedTextColor="255 135 141 146" disabledTextColor="255 179 179 179" visible="false">
+            <Panel name="trackThumbBg" windowSize="226 162" adjust="-136 -165" texture="img_minmapBG" alphaBlend="true" visible="false">
+              <Panel name="trackThumb" windowSize="222 130" adjust="0 2" align="hcenter" alphaBlend="true" visible="false"/>
+              <Label name="trackName" windowSize="222 26" adjust="0 2" align="hcenter,bottom" textRender="bold14" textColor="255 21 29 44" textAlign="center" visible="false"/>
+            </Panel>
+          </ImageButton>
+        </Window>
+      </Container>
+    </Container>
+    <Container name="questList" windowSize="394 556" adjust="13 47">
+      <Container name="kartPassDailyList" leftTopWH="0 0 394 120">
+        <Label name="listZeroInfo" windowSize="390 30" adjust="0 31" textRender="bold14" textColor="255 84 100 129" textAlign="center" text="#sb(kartPassQuestListZero)" visible="true"/>
+        <Label leftTopWH="0 0 394 32" textRender="bold16" text="#sb(kartPassDaily)" textColor="white" textAlign="center"/>
+        <GridSelectorEx name="questList" windowSize="390 94" adjust="-1 29" alignStyle="horizontal" alignSize="1" maxLine="3" alignMargin="0 2"/>
+        <ImageButton name="infoBtn" windowSize="20 20" adjust="6 6" align="right" autoLoadImage="quest_btn_infoIcon_" alphaBlend="true">
+          <Panel name="guidePanel" windowSize="338 132" adjust="30 -6" texture="quest_img_tooltipBG_1" alphaBlend="true" visible="false">
+            <Label name="title" windowSize="333 30" adjust="15 1" textColor="white" textRender="bold14" textAlign="vcenter" text="#sb(kartPassDailyGuideTitle)" visible="false"/>
+            <Label name="desc1" windowSize="320 20" adjust="4 40" textColor="255 202 210 220" textRender="bold14" textAlign="center" text="#sb(kartPassDailyGuideDesc1)" visible="false"/>
+            <Label name="desc2" windowSize="320 20" adjust="4 60" textColor="255 202 210 220" textRender="bold14" textAlign="center" text="#sb(kartPassDailyGuideDesc2)" visible="false"/>
+            <Label name="desc3" windowSize="320 20" adjust="4 80" textColor="255 202 210 220" textRender="bold14" textAlign="center" text="#sb(kartPassDailyGuideDesc3)" visible="false"/>
+            <Label name="desc4" windowSize="320 20" adjust="4 100" textColor="255 202 210 220" textRender="bold14" textAlign="center" text="#sb(kartPassDailyGuideDesc4)" visible="false"/>
+          </Panel>
+        </ImageButton>
+      </Container>
+      <Container name="normalQuestList" leftTopWH="0 134 394 258">
+        <Label leftTopWH="0 0 394 32" textRender="bold16" text="#sb(normalQuest)" textColor="white" textAlign="center"/>
+        <GridSelectorEx name="questList" windowSize="390 94" adjust="-1 29" alignStyle="horizontal" alignSize="1" maxLine="7" alignMargin="0 2"/>
+        <ImageButton name="infoBtn" windowSize="20 20" adjust="6 6" align="right" autoLoadImage="quest_btn_infoIcon_" alphaBlend="true">
+          <Panel name="guidePanel" windowSize="338 123" adjust="30 -6" texture="quest_img_tooltipBG_3" alphaBlend="true" visible="false">
+            <Label name="title" windowSize="333 30" adjust="15 1" textColor="white" textRender="bold14" textAlign="vcenter" text="#sb(normalQuestGuideTitle)" visible="false"/>
+            <Label name="subTitle1" windowSize="50 20" adjust="20 32" textRender="bold14" textColor="255 202 210 220" text="#sb(daily)" visible="false"/>
+            <Label name="subTitle2" windowSize="50 20" adjust="20 54" textRender="bold14" textColor="255 202 210 220" text="#sb(weekly)" visible="false"/>
+            <Label name="subTitle3" windowSize="50 20" adjust="20 76" textRender="bold14" textColor="255 202 210 220" text="#sb(repeat)" visible="false"/>
+            <Label name="subTitle4" windowSize="50 20" adjust="20 98" textRender="bold14" textColor="255 202 210 220" text="#sb(onlyPCRoom)" visible="false"/>
+            <Label name="dailyDesc" windowSize="220 20" adjust="75 32" textRender="bold14" textColor="255 202 210 220" text="#sb(detailDailyQuest)" visible="false"/>
+            <Label name="weeklyDesc" windowSize="220 20" adjust="75 54" textRender="bold14" textColor="255 202 210 220" text="#sb(detailWeeklyQuest)" visible="false"/>
+            <Label name="repeatDesc" windowSize="220 20" adjust="75 76" textRender="bold14" textColor="255 202 210 220" text="#sb(detailRepeatlyQuest)" visible="false"/>
+            <Label name="onlyPCRoomDesc" windowSize="220 20" adjust="75 98" textRender="bold14" textColor="255 202 210 220" text="#sb(detailPCCafeQuest)" visible="false"/>
+          </Panel>
+        </ImageButton>
+      </Container>
+      <Container name="clubQuestList" leftTopWH="0 396 394 120">
+        <Label leftTopWH="0 0 394 32" textRender="bold16" text="#sb(clubQuest)" textColor="white" textAlign="center"/>
+        <GridSelectorEx name="questList" windowSize="390 94" adjust="-1 29" alignStyle="horizontal" alignSize="1" maxLine="3" alignMargin="0 2"/>
+      </Container>
+      <Panel name="clubDim" windowSize="394 132" adjust="0 392" texture="quest_img_clubDim" alphaBlend="true" visible="true">
+        <Label name="clubDimLabel" windowSize="394 32" adjust="0 66" textColor="white" textRender="bold14" textAlign="center" text="#sb(clubQuestNotOpen)"/>
+      </Panel>
+    </Container>
+    <ImageButton name="goKartPassBtn" windowSize="150 36" adjust="12 632" autoLoadImage="quest_btn_kartPassShortCut_" alphaBlend="true" align="left" text="#sb(goKartPass)" textRender="bold16" textColor="255 119 92 4" overTextColor="255 196 172 0" clickedTextColor="255 95 76 16" disabledTextColor="255 92 92 92"/>
+    <TextButton name="okButton" windowSize="132 42" text="#sb(ok)" align="hcenter" adjust="0 631" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+  </Container>
+</Panel>

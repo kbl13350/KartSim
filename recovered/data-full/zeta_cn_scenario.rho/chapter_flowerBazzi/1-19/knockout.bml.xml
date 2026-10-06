@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="wkc_R03" laps="2" isFixedKart="true" fixedKartId="524" isFixedChar="true" fixedCharId="91" type="rank">
+    <LevelContent level="0" ksv="event-19" startOffset="2000">
+      <ShadowKart characterId="90" uniformId="0" kartId="531" colorId="1" dyeId="1" characterName="道明宝宝"/>
+      <ShadowKart characterId="93" uniformId="0" kartId="528" colorId="9" dyeId="9" characterName="花泽皮蛋"/>
+      <ShadowKart characterId="92" uniformId="0" kartId="614" colorId="3" dyeId="3" characterName="西门吉米"/>
+      <ShadowKart characterId="94" uniformId="0" kartId="486" colorId="6" dyeId="6" characterName="美作奇奇"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

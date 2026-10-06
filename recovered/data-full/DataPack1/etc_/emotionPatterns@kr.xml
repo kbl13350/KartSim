@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<EmotionPatterns>
+
+	<Emotion petAniIndex='1' soundName='웃기'>
+		<Word text='(펫웃음)' hidden='true'/>
+		<Word text='펫^^' hidden='false'/>
+		<Word text='펫하하' hidden='false'/>
+		<Word text='펫^_^' hidden='false'/>
+		<Word text='펫ㅎㅎ' hidden='false'/>
+		<Word text='펫ㅋㅋ' hidden='false'/>
+		<Word text='펫:)' hidden='false'/>
+		<Word text='펫:-)' hidden='false'/>
+		<Word text='펫호호' hidden='false'/>
+		<Word text='펫히히' hidden='false'/>
+		<Word text='펫킥킥' hidden='false'/>
+		<Word text='펫케케' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='1' soundName='웃기'>
+		<Word text='(웃음)' hidden='true'/>
+		<Word text='^^' hidden='false'/>
+		<Word text='하하' hidden='false'/>
+		<Word text='^_^' hidden='false'/>
+		<Word text='ㅎㅎ' hidden='false'/>
+		<Word text='ㅋㅋ' hidden='false'/>
+		<Word text=':)' hidden='false'/>
+		<Word text=':-)' hidden='false'/>
+		<Word text='호호' hidden='false'/>
+		<Word text='히히' hidden='false'/>
+		<Word text='킥킥' hidden='false'/>
+		<Word text='케케' hidden='false'/>
+	</Emotion>
+
+	<Emotion petAniIndex='2' soundName='벙찌기'>
+		<Word text='(펫벙)' hidden='true'/>
+		<Word text='펫O_O' hidden='false'/>
+		<Word text='펫헉' hidden='false'/>
+		<Word text='펫허걱' hidden='false'/>
+		<Word text='펫호곡' hidden='false'/>
+		<Word text='펫띠용' hidden='false'/>
+		<Word text='펫으잉' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='2' soundName='벙찌기'>
+		<Word text='(벙)' hidden='true'/>
+		<Word text='O_O' hidden='false'/>
+		<Word text='헉' hidden='false'/>
+		<Word text='허걱' hidden='false'/>
+		<Word text='호곡' hidden='false'/>
+		<Word text='띠용' hidden='false'/>
+		<Word text='으잉' hidden='false'/>
+	</Emotion>
+
+	<Emotion petAniIndex='3' soundName='울기'>
+		<Word text='(펫울음)' hidden='true'/>
+		<Word text='펫뉴_뉴' hidden='false'/>
+		<Word text='펫ㅠ_ㅠ' hidden='false'/>
+		<Word text='펫ㅜ_ㅜ' hidden='false'/>
+		<Word text='펫휴_휴' hidden='false'/>
+		<Word text='펫유_유' hidden='false'/>
+		<Word text='펫ㅠ.ㅠ' hidden='false'/>
+		<Word text='펫ㅜㅜ' hidden='false'/>
+		<Word text='펫ㅠㅠ' hidden='false'/>
+		<Word text='펫T_T' hidden='false'/>
+		<Word text='펫흑흑' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='3' soundName='울기'>
+		<Word text='(울음)' hidden='true'/>
+		<Word text='뉴_뉴' hidden='false'/>
+		<Word text='ㅠ_ㅠ' hidden='false'/>
+		<Word text='ㅜ_ㅜ' hidden='false'/>
+		<Word text='휴_휴' hidden='false'/>
+		<Word text='유_유' hidden='false'/>
+		<Word text='ㅠ.ㅠ' hidden='false'/>
+		<Word text='ㅜㅜ' hidden='false'/>
+		<Word text='ㅠㅠ' hidden='false'/>
+		<Word text='T_T' hidden='false'/>
+		<Word text='흑흑' hidden='false'/>
+	</Emotion>
+
+	<Emotion petAniIndex='4' soundName='화내기'>
+		<Word text='(펫화남)' hidden='true'/>
+		<Word text='펫버럭' hidden='false'/>
+		<Word text='펫뭐야' hidden='false'/>
+		<Word text='펫융' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='4' soundName='화내기'>
+		<Word text='(화남)' hidden='true'/>
+		<Word text='버럭' hidden='false'/>
+		<Word text='뭐야' hidden='false'/>
+		<Word text='융' hidden='false'/>
+		<Word text='크릉' hidden='false'/>
+	</Emotion>
+
+	<Emotion petAniIndex='5' soundName='윙크'>
+		<Word text='(펫윙크)' hidden='true'/>
+		<Word text='펫^_-' hidden='false'/>
+		<Word text='펫-_^' hidden='false'/>
+		<Word text='펫;)' hidden='false'/>
+		<Word text='펫;-)' hidden='false'/>
+		<Word text='펫헷' hidden='false'/>
+		<Word text='펫어우야' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='5' soundName='윙크'>
+		<Word text='(윙크)' hidden='true'/>
+		<Word text='^_-' hidden='false'/>
+		<Word text='-_^' hidden='false'/>
+		<Word text=';)' hidden='false'/>
+		<Word text=';-)' hidden='false'/>
+		<Word text='헷' hidden='false'/>
+		<Word text='어우야' hidden='false'/>
+	</Emotion>
+
+	<Emotion petAniIndex='6' soundName='사랑해'>
+		<Word text='(펫사랑)' hidden='true'/>
+		<Word text='펫아잉' hidden='false'/>
+		<Word text='펫사랑해' hidden='false'/>
+		<Word text='펫사당해' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='6' soundName='사랑해'>
+		<Word text='(사랑)' hidden='true'/>
+		<Word text='아잉' hidden='false'/>
+		<Word text='사랑해' hidden='false'/>
+		<Word text='사당해' hidden='false'/>
+	</Emotion>
+
+	<Emotion petAniIndex='7' soundName='딴청'>
+		<Word text='(펫딴청)' hidden='true'/>
+		<Word text='(펫먼산)' hidden='true'/>
+		<Word text='펫~_~' hidden='false'/>
+		<Word text='펫글쎄' hidden='false'/>
+		<Word text='펫쳇' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='7' soundName='딴청'>
+		<Word text='(딴청)' hidden='true'/>
+		<Word text='(먼산)' hidden='true'/>
+		<Word text='~_~' hidden='false'/>
+		<Word text='글쎄' hidden='false'/>
+		<Word text='쳇' hidden='false'/>
+	</Emotion>
+
+	<Emotion petAniIndex='20' soundName='잠잘때'>
+		<Word text='(펫잠자기)' hidden='true'/>
+		<Word text='펫쿨쿨' hidden='false'/>
+		<Word text='펫zzz' hidden='false'/>
+		<Word text='펫졸려' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='20' soundName='잠잘때'>
+		<Word text='(잠자기)' hidden='true'/>
+		<Word text='쿨쿨' hidden='false'/>
+		<Word text='zzz' hidden='false'/>
+		<Word text='졸려' hidden='false'/>
+	</Emotion>
+
+</EmotionPatterns>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<promiseEventList>
+		<promiseEvent period='2026-08-27T06:00:00~2026-10-08T05:59:59' target='return'>
+				<promiseType openDays='8'>
+						<reward days='1' stockId='30025' />
+						<reward days='2' stockId='29079' specialStockId='29753' />
+						<reward days='3' stockId='27913' />
+						<reward days='4' stockId='30030' specialStockId='30040' />
+						<reward days='5' stockId='30037' specialStockId='30041' />
+				</promiseType>
+				<promiseType openDays='15' autoSelect='true'>
+						<reward days='1' stockId='30025' />
+						<reward days='2' stockId='29079' specialStockId='29753' />
+						<reward days='3' stockId='27913' />
+						<reward days='4' stockId='30040' />
+						<reward days='5' stockId='29178' />
+						<reward days='6' stockId='27881' />
+						<reward days='7' stockId='28978' specialStockId='30041' />
+						<reward days='8' stockId='32046' />
+						<reward days='9' stockId='30042' />
+						<reward days='10' stockId='30038' specialStockId='27800' />
+				</promiseType>
+				<promiseType openDays='20'>
+						<reward days='1' stockId='30025' />
+						<reward days='2' stockId='29079' specialStockId='29753' />
+						<reward days='3' stockId='27913' />
+						<reward days='4' stockId='27911' />
+						<reward days='5' stockId='29178' />
+						<reward days='6' stockId='30040' />
+						<reward days='7' stockId='29750' />
+						<reward days='8' stockId='30027' specialStockId='30042' />
+						<reward days='9' stockId='27881' />
+						<reward days='10' stockId='27800' />
+						<reward days='11' stockId='27879' />
+						<reward days='12' stockId='22665' />
+						<reward days='13' stockId='30043' specialStockId='32046' />
+						<reward days='14' stockId='30041' />
+						<reward days='15' stockId='30039' />
+				</promiseType>
+		</promiseEvent>
+		<promiseEvent period='2026-08-27T06:00:00~2026-10-08T05:59:59' target='newbie'>
+				<promiseType openDays='8'>
+						<reward days='1' stockId='30025' />
+						<reward days='2' stockId='29079' specialStockId='29753' />
+						<reward days='3' stockId='27913' />
+						<reward days='4' stockId='30030' specialStockId='30040' />
+						<reward days='5' stockId='30037' specialStockId='30041' />
+				</promiseType>
+				<promiseType openDays='15' autoSelect='true'>
+						<reward days='1' stockId='30025' />
+						<reward days='2' stockId='29079' specialStockId='29753' />
+						<reward days='3' stockId='27913' />
+						<reward days='4' stockId='30040' />
+						<reward days='5' stockId='29178' />
+						<reward days='6' stockId='27881' />
+						<reward days='7' stockId='28978' specialStockId='30041' />
+						<reward days='8' stockId='32046' />
+						<reward days='9' stockId='30042' />
+						<reward days='10' stockId='30038' specialStockId='27800' />
+				</promiseType>
+				<promiseType openDays='20'>
+						<reward days='1' stockId='30025' />
+						<reward days='2' stockId='29079' specialStockId='29753' />
+						<reward days='3' stockId='27913' />
+						<reward days='4' stockId='27911' />
+						<reward days='5' stockId='29178' />
+						<reward days='6' stockId='30040' />
+						<reward days='7' stockId='29750' />
+						<reward days='8' stockId='30027' specialStockId='30042' />
+						<reward days='9' stockId='27881' />
+						<reward days='10' stockId='27800' />
+						<reward days='11' stockId='27879' />
+						<reward days='12' stockId='22665' />
+						<reward days='13' stockId='30043' specialStockId='32046' />
+						<reward days='14' stockId='30041' />
+						<reward days='15' stockId='30039' />
+				</promiseType>
+		</promiseEvent>
+</promiseEventList>

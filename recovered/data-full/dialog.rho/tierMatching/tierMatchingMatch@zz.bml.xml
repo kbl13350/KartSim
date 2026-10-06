@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <ImageBoard name="b800" windowSize="800 600" adjust="0 0" align="center" alphaBlend="false" image="그랑프리로딩_800" visible="false">
+    <ColorLabel name="matching" windowSize="100 20" adjust="5 5" align="right;bottom" text="#sb(grandprixMatching)" textColor="yellow"/>
+    <ImageButton name="cancelMatch" windowSize="26 18" adjust="5 5" align="right;top" autoLoadImage="btn_닫기" alphaBlend="true"/>
+  </ImageBoard>
+  <ImageBoard name="b1024" windowSize="1024 768" adjust="0 0" align="center" alphaBlend="false" image="그랑프리로딩_1024" visible="false">
+    <ColorLabel name="matching" windowSize="100 20" adjust="10 10" align="right;bottom" text="#sb(grandprixMatching)" textColor="yellow"/>
+    <ImageButton name="cancelMatch" windowSize="26 18" adjust="10 10" align="right;top" autoLoadImage="btn_닫기" alphaBlend="true"/>
+  </ImageBoard>
+</Panel>

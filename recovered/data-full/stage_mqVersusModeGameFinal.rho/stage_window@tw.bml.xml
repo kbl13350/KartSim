@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="Desktop" windowRect="fullscreen">
+  <Container name="whitePlane" windowRect="0 0 1024 768" color="40 255 255 255" alphaBlend="true" visible="false">
+    <ImageBoard name="scorePlane" windowRect="0 0 1024 768" align="center"/>
+  </Container>
+  <CaptionWindow name="AbusePopup" visible="false" frame="CaptionDialog" windowRect="0 0 400 150" caption="#sb(timeAbuseCaption)" captionPos="0 1" captionColor="black" align="center">
+    <Label windowRect="0 -45 380 100" align="hcenter" textAlign="center" text="#sb(timeAbuseMsg)"/>
+    <Container windowRect="0 0 145 33" align="hcenter;bottom">
+      <TextButton name="AbusePopupOK" windowRect="0 0 87 30" text="#sb(ok)" align="center"/>
+    </Container>
+  </CaptionWindow>
+  <Panel name="observerEvent" windowRect="9 7 141 142" texture="GM당첨" uvRect="0 0 132 135" visible="false" alphaBlend="true"/>
+  <Panel name="gachaLotteryGet1" windowRect="0 520 309 591" align="hcenter" alphaBlend="true" visible="false"/>
+  <Panel name="gachaLotteryGet2" windowRect="0 520 309 591" align="hcenter" alphaBlend="true" visible="false"/>
+  <ControlWindow name="missionResult" windowSize="233 128" align="right" adjust="10 25" fadeInLength="2000" showLength="5000" fadeOutLength="0" visible="false">
+    <TonPanel name="missionResultPanel" windowSize="233 128" texture="success@zz" panelAnimPack="pop" textureOp="modulate" alphaBlend="true"/>
+  </ControlWindow>
+  <List name="bonusIcons" windowSize="fullwidth 105" align="right;bottom" scrollType="horizon" listGap="5" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollBarVisible="false" rightAlign="true" enable="false" depthBias="1024"/>
+  <Panel name="seasonGp" windowSize="354 53" align="center;bottom" adjust="5 5" texture="박스" alphaBlend="true" visible="false">
+    <Container name="rankCont" windowRect="27 0 68 25" align="vcenter">
+      <Panel windowSize="65 23" align="right" texture="위@tw" alphaBlend="true"/>
+      <CharPanel name="rank" windowSize="19 24" texture="결과창숫자" alphaBlend="true" fontSize="19 24" fontStr="0123456789+-()" text="1"/>
+    </Container>
+    <Panel windowSize="1 41" align="vcenter" adjust="73 0" texture="구분선" alphaBlend="true"/>
+    <Container name="winCont" windowRect="86 0 150 26" align="vcenter">
+      <CharPanel name="win" windowSize="19 24" texture="결과창숫자" alphaBlend="true" fontSize="19 24" fontStr="0123456789+-()" text="3"/>
+      <Panel windowSize="45 23" align="right" texture="연승@zz" alphaBlend="true"/>
+    </Container>
+    <Panel windowSize="1 41" align="vcenter" adjust="162 0" texture="구분선" alphaBlend="true"/>
+    <Container windowSize="171 24" align="right;vcenter" adjust="10 0">
+      <CharPanel name="pt" windowSize="171 24" texture="결과창숫자" alphaBlend="true" fontSize="19 24" fontStr="0123456789+-()" text="1500(+33)"/>
+    </Container>
+  </Panel>
+</Container>

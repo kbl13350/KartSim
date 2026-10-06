@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actionList>
+  <action name="start@zz"/>
+  <action name="wrongway" layer="2"/>
+  <action name="finish@zz"/>
+  <action name="finish카운트"/>
+  <action name="raceover@zz"/>
+</actionList>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BodyParam
+	ForwardAccelForce='75.0'
+	BackwardAccelForce='80.0'
+	DragFactor='-0.04'
+	SteerConstraint='1.25'
+	DriftEscapeForce='130'
+	CornerDrawFactor='0.035'
+/>
+
+<!-- 인니 캐논디 PRO 120426 --> 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="questInfoUX2ndDialog" windowRect="0 0 720 570" frame="CaptionDialog" caption="#sb(questInfo)" captionPos="0 1" align="center" setCloseButton="cancelButton" textRender="bold">
+    <Container windowSize="320 468" adjust="-2 5">
+      <Window frame="InnerFrame" windowSize="310 468" adjust="0 0" alphaBlend="true">
+        <Container windowSize="298 438" adjust="-2 0">
+          <Container name="container_doingList" windowRect="0 0 298 55" align="hcenter">
+            <CaptionWindow name="captionList" captionPos="0 1" captionColor="white" caption_align="left" windowRect="0 0 296 145" frame="CaptionWindowGrey" caption="#sb(doing)" align="hcenter" textRender="bold">
+              <GridSelectorEx name="questList" windowSize="298 300" adjust="-4 2" alignStyle="horizontal" alignSize="1" maxLine="14" alignMargin="0 3"/>
+              <Label name="lblEmpltyList" windowSize="298 0" adjust="0 24" textAlign="center" textRender="bold" text="#sb(theresNoQuestDoing)" textColor="black" visible="false"/>
+            </CaptionWindow>
+            <ImageButton name="openListBtn" leftTopTex="273 0" adjust="0 -15" autoLoadImage="btn_tapOpn_" alphaBlend="true" align="vcenter" visible="false"/>
+            <ImageButton name="closeListBtn" leftTopTex="273 0" adjust="0 -15" autoLoadImage="btn_tapClse_" alphaBlend="true" align="vcenter"/>
+          </Container>
+          <Container name="container_doneList" windowRect="0 265 298 320" align="hcenter">
+            <CaptionWindow name="captionList" captionPos="0 1" captionColor="white" caption_align="left" windowRect="0 0 296 145" frame="CaptionWindowGrey" caption="#sb(done)" align="hcenter" textRender="bold">
+              <GridSelectorEx name="questList" windowSize="298 300" adjust="-4 2" alignStyle="horizontal" alignSize="1" maxLine="14" alignMargin="0 3"/>
+              <Label name="lblEmpltyList" windowSize="298 0" adjust="0 24" textAlign="hcenter|vcenter" textRender="bold" text="#sb(theresNoCompleteQuest)" textColor="black" visible="false"/>
+            </CaptionWindow>
+            <ImageButton name="openListBtn" leftTopTex="273 0" adjust="0 -15" autoLoadImage="btn_tapOpn_" alphaBlend="true" align="vcenter" visible="false"/>
+            <ImageButton name="closeListBtn" leftTopTex="273 0" adjust="0 -15" autoLoadImage="btn_tapClse_" alphaBlend="true" align="vcenter"/>
+          </Container>
+        </Container>
+      </Window>
+    </Container>
+    <Container name="rightQuestRewardDetail" windowSize="368 151" adjust="317 319">
+      <Window frame="InnerFrame" windowSize="368 154" adjust="0 0" alphaBlend="true">
+        <Panel windowRect="0 0 11 18" adjust="-54 -15" align="hcenter;top" texture="img_rewardBG" uvRect="0 0 11 18" alphaBlend="true"/>
+        <Panel windowRect="0 0 100 18" adjust="0 -15" align="hcenter;top" texture="img_rewardBG" uvRect="12 0 13 18" alphaBlend="true"/>
+        <Panel windowRect="0 0 11 18" adjust="54 -15" align="hcenter;top" texture="img_rewardBG" uvRect="12 0 23 18" alphaBlend="true"/>
+        <Label windowRect="0 0 123 18" adjust="0 -15" align="hcenter;top" textRender="bold" text="#sb(reward)" textColor="white" textAlign="center"/>
+      </Window>
+      <Container name="rewardDisplay" windowSize="348 121" adjust="10 16">
+        <GridSelectorEx name="rewardList" windowSize="348 121" alignSize="2" maxLine="2" alignMargin="10 7" clientMargin="0 2 8 0" linePaging="false"/>
+      </Container>
+    </Container>
+    <Container name="questDetail" windowSize="366 302" adjust="319 7">
+      <Label name="QuestTitleCaption" windowSize="366 30" adjust="0 0" frame="TitleCap" textRender="bold" textColor="white" textAlign="center"/>
+      <Window frame="TitleCapBottomGrey" windowSize="368 273" adjust="-2 30" alphaBlend="true"/>
+      <Container name="questDescContainer" windowSize="368 273" adjust="-2 30">
+        <ImageBoard windowSize="246 18" adjust="0 6" image="img_periodBG" align="hcenter" alphaBlend="true">
+          <Label name="period" windowSize="246 18" adjust="0 0" multiLine="true" textAlign="center" textRender="bold" textColor="black"/>
+        </ImageBoard>
+        <Label name="QuestDesc" windowSize="338 50" adjust="0 32" multiLine="true" textColor="black" align="hcenter" autoWrap="true" lineGap="1"/>
+        <CaptionWindow name="CaptionQuestStatus" windowSize="344 80" adjust="0 90" frame="CaptionWindowRightSlot" textRender="bold" caption=" #sb(enableState)" textColor="white" captionPos="0 2" caption_align="left" align="hcenter">
+          <Label name="thisQuestStatus" windowSize="75 17" adjust="257 -19" textRender="bold" textColor="white" textAlign="center"/>
+          <Panel name="grayUnderLine1" windowSize="342 1" adjust="-5 18" texture="img_stateBarLine가로" alphaBlend="true" visible="false"/>
+          <Panel name="grayUnderLine2" windowSize="342 1" adjust="-5 37" texture="img_stateBarLine가로" alphaBlend="true" visible="false"/>
+          <Panel name="vLine1" windowSize="1 19" adjust="30 0" texture="img_stateBarLine세로" alphaBlend="true" visible="false"/>
+          <Panel name="vLine2" windowSize="1 19" adjust="130 19" texture="img_stateBarLine세로" alphaBlend="true" visible="false"/>
+          <Panel name="vLine3" windowSize="1 19" adjust="150 38" texture="img_stateBarLine세로" alphaBlend="true" visible="false"/>
+          <Label name="lblEmptyConditions" windowSize="344 50" adjust="0 0" textRender="bold" text="#sb(questEnableAll)" textColor="black" textAlign="center" visible="false"/>
+          <Container name="emptyContainer" windowSize="344 58" adjust="0 13"/>
+        </CaptionWindow>
+        <ImageBoard windowSize="342 30" adjust="0 176" image="img_도전과제BG" align="hcenter" alphaBlend="true">
+          <Label windowSize="342 30" adjust="0 -2" text="#sb(mission)" textRender="bold" textColor="white" textAlign="center"/>
+          <Label name="QuestHowTo" windowSize="270 22" adjust="0 26" multiLine="true" textRender="bold" textColor="black" align="vcenter" textAlign="left|vcenter" autoWrap="true" lineGap="1"/>
+          <Container name="questProgressGageBar" windowSize="274 22" adjust="0 26" align="hcenter">
+            <ImageBoard name="questGageBG" windowSize="274 22" adjust="0 34" image="img_questGageBG" align="hcenter" alphaBlend="true" visible="false"/>
+            <Panel name="questGageOn" windowSize="274 22" adjust="0 34" texture="img_questGageOn" uvRect="0 0 274 22" alphaBlend="true" visible="false"/>
+            <ImageBoard name="questGageBGDisable" windowSize="274 22" adjust="0 34" image="img_questGageBG_비활성" align="hcenter" alphaBlend="true" visible="false"/>
+            <Panel name="questGageOnDisable" windowSize="274 22" adjust="0 34" texture="img_questGageOn_비활성" uvRect="0 0 274 22" alphaBlend="true" visible="false"/>
+            <Label name="questProgressLabel" windowSize="274 22" adjust="0 34" textRender="outline" textColor="white" textAlign="center"/>
+            <ImageButton name="challengeShadow" windowSize="222 36 " adjust="0 34" alphaBlend="true" autoLoadImage="btn_도전하기tw_" align="vcenter|hcenter" visible="false"/>
+          </Container>
+          <TextButton name="btn_trackInfo" windowSize="53 20" adjust="0 35" text="#sb(trackInfo)" autoLoadImage="ovrbtn_trackinfo_" alphaBlend="true" align="right" visible="false">
+            <Panel name="trackThumbBg" windowSize="162 139" adjust="-102 18" texture="img_minmapBG" alphaBlend="true" visible="false">
+              <Panel name="trackThumb" windowSize="134 92" adjust="0 12" align="hcenter" alphaBlend="true" visible="false"/>
+              <Label name="trackName" windowSize="162 20" adjust="0 115" align="hcenter" textColor="white" textAlign="center" visible="false"/>
+            </Panel>
+          </TextButton>
+        </ImageBoard>
+      </Container>
+    </Container>
+    <TextButton name="btn_questTipGuide" windowSize="99 22" adjust="0 479" text="#sb(questTypeGuide)" autoLoadImage="ovrbtn_queInfo_" alphaBlend="true">
+      <Panel name="img_questTipGuide" windowSize="306 135" adjust="23 -145" texture="img_tipPopupBG" alphaBlend="true" visible="false">
+        <Label name="title" windowSize="306 26" adjust="0 0" textColor="white" textRender="bold" textAlign="center" text="#sb(questTypeGuide)" visible="false"/>
+        <Label name="daily" windowSize="50 26" adjust="0 27" textColor="black" textAlign="center" text="#sb(daily)" textRender="bold" visible="false"/>
+        <Label name="weekly" windowSize="50 26" adjust="0 53" textColor="black" textAlign="center" text="#sb(weekly)" textRender="bold" visible="false"/>
+        <Label name="repeat" windowSize="50 26" adjust="0 79" textColor="black" textAlign="center" text="#sb(repeat)" textRender="bold" visible="false"/>
+        <Label name="onlyPCRoom" windowSize="50 26" adjust="0 105" textColor="black" textAlign="center" text="#sb(onlyPCRoom)" textRender="bold" visible="false"/>
+        <Label name="dailyDesc" windowSize="256 26" adjust="58 27" textColor="black" textAlign="left|vcenter" text="#sb(detailDailyQuest)" visible="false"/>
+        <Label name="weeklyDesc" windowSize="256 26" adjust="58 53" textColor="black" textAlign="left|vcenter" text="#sb(detailWeeklyQuest)" visible="false"/>
+        <Label name="repeatDesc" windowSize="256 26" adjust="58 79" textColor="black" textAlign="left|vcenter" text="#sb(detailRepeatlyQuest)" visible="false"/>
+        <Label name="onlyPCRoomDesc" windowSize="256 26" adjust="58 105" textColor="black" textAlign="left|vcenter" text="#sb(detailPCCafeQuest)" visible="false"/>
+      </Panel>
+    </TextButton>
+    <TextButton name="okButton" windowRect="0 0 94 32" text="#sb(ok)" align="hcenter|bottom" textRender="bold"/>
+  </CaptionWindow>
+</Panel>

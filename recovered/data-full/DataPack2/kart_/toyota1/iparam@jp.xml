@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='110.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='1.8'
+	DriftEscapeForce='250'
+	CornerDrawFactor='0.045'
+	UseTransformBooster='true'
+	TransAccelFactor='1.6'
+	BoosterWaveType='effect_zero'
+
+/>
+<!--일본 도요타 86 -->

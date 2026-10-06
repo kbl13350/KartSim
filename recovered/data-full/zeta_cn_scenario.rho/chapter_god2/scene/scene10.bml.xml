@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="USA2"/>
+  <Char id="ms_thor" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="托尔" string="洛基，你这家伙……看来总算是清醒过来了……"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="就是……上次的事，吓我一跳！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="这变得也太突然了吧？？"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="托尔" string="还不是因为喜欢恶作剧~~心地还是善良的家伙！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_loki" pos="10 0" emotion="normal"/>
+  <Msg name="洛基" string="（愚蠢的哥哥……）"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="10 0" emotion="normal"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="托尔" string="孤身一人辛苦你了~~洛基！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="10 0" emotion="normal"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="托尔" string="以后就和我这个哥哥一起吧~"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="10 0" emotion="normal"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="洛基" string="（很好！大家都很信任我！！）"/>
+  <Enter/>
+</Scene>

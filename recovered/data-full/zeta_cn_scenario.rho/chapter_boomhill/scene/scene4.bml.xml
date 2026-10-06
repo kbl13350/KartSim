@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for1"/>
+  <Char id="coco" pos="12 0" emotion="stop3"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="莉亚" string="我们也需要练习的场所…|怎么办，莱恩!!!"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="莱恩" string="练习吗~~可以随便找个地方！！！"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="莉亚" string="对繁荣山丘路线也不熟悉啊~~"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="莉亚" string="去找皮蛋帮忙吧！！！"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="皮蛋！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="可以给我们找一个可以使用的练习场吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="嗯！！！！我想想看~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="啊~~正好有可以使用的地方…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="但是，好久都没有使用过！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="只告诉我们在哪里就可以！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="繁荣山丘附近有个空的练习场~|可以在那里练习~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="谢谢~~！！皮蛋"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="莱恩" string="（嗡）先走了~~皮蛋|莉亚快跟上！！"/>
+  <Enter/>
+</Scene>

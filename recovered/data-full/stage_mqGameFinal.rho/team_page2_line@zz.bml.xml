@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="line1" windowRect="0 0 664 66">
+  <ImageBoard name="bg" windowRect="0 0 664 66" alphaBlend="true" visible="false"/>
+  <Container name="colorBg" leftTopWH="0 0 664 64" visible="false">
+    <Panel leftTopWH="0 0 512 64" texture="me_2_team" alphaBlend="true" textureOp="modulate"/>
+    <Panel leftTopWH="512 0 152 64" texture="me_end" alphaBlend="true" textureOp="modulate"/>
+  </Container>
+  <ImageBoard name="meLine" leftTopWH="0 0 664 64" image="me_line" alphaBlend="true" visible="false"/>
+  <Container leftTopWH="7 0 292 64">
+    <Panel name="clubMark" leftTopWH="0 0 42 42" align="vcenter" alphaBlend="true">
+      <Panel name="clubFrame" windowSize="42 42" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+    </Panel>
+    <Label name="id" leftTopWH="50 10 195 21" textColor="white" textAlign="left;vcenter" textRender="outline16"/>
+    <Label name="gid" leftTopWH="50 30 195 21" textColor="white" textAlign="left;vcenter" textRender="outline16"/>
+    <Container leftTopWH="175 -2 140 66">
+      <Label name="gp" windowSize="140 66" textColor="white" textRender="outline16" textAlign="right;vcenter" align="center" text="GP 1500(+0)" adjust="0 0"/>
+    </Container>
+    <Container leftTopWH="329 -4 150 66">
+      <Label name="bonus" leftTopWH="0 12 150 21" text="#sb(bonus)" textColor="white" textRender="outline16" textAlign="left;vcenter" visible="false"/>
+      <Label name="bonusCharName" leftTopWH="0 33 150 21" textColor="white" textRender="outline16" textAlign="left;vcenter"/>
+    </Container>
+    <List name="bonusIcons" leftTopWH="384 12 55 44" scrollType="horizon" listGap="0" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollBarVisible="false"/>
+  </Container>
+  <Window name="coupleRingSet" windowRect="270 0 335 59" align="vcenter" visible="false">
+    <Panel name="coupleRing" windowRect="0 0 64 64" alphaBlend="true" align="center"/>
+  </Window>
+  <Container leftTopWH="225 -3 480 66">
+    <Container name="rankUserRp" leftTopWH="325 12 115 21" visible="false">
+      <Label name="rp" leftTopWH="10 12 60 21" textColor="255 255 222 0" textColor2="255 40 16 6" textRender="outline16" textAlign="right;vcenter" align="vcenter" text="9999"/>
+      <Label windowSize="30 21" text="#sb(rp)" textColor="255 255 222 0" textColor2="255 40 16 6" textRender="outline16" textAlign="vcenter" align="right" adjust="13 0"/>
+    </Container>
+    <Container name="normalUserRp" leftTopWH="325 12 115 21" visible="false">
+      <Label name="rp" leftTopWH="10 12 60 21" textColor="white" textAlign="right;vcenter" textRender="outline16" align="vcenter" text="9999"/>
+      <Label windowSize="30 21" text="#sb(rp)" textColor="white" textAlign="left,vcenter" textRender="outline16" align="right,vcenter" adjust="13 0"/>
+    </Container>
+    <Container leftTopWH="325 33 115 21">
+      <Label name="lucci" leftTopWH="10 12 60 21" textColor="white" textAlign="right;vcenter" textRender="outline16" align="vcenter" text="9999"/>
+      <Label windowSize="30 21" text="#sb(lucci)" textColor="white" textRender="outline16" textAlign="left,vcenter" align="right,vcenter" adjust="13 0"/>
+    </Container>
+  </Container>
+</Container>

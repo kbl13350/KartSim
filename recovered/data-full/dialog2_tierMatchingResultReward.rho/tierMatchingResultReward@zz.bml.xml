@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="caption" frame="CaptionDialog" windowRect="0 0 956 609" caption="#sb(tierMatchingRewardSpeed)" align="center" setCloseButton="cancelButton">
+    <ImageBoard leftTopWH="-11 -1 942 564" image="grade_popup_result" alphaBlend="true">
+      <Panel name="speedIcon" leftTopTex="367 21" texture="grade_popup_result_speed" alphaBlend="true" visible="false"/>
+      <Panel name="itemIcon" leftTopTex="369 24" texture="grade_popup_result_item" alphaBlend="true" visible="false"/>
+      <ColorLabel name="guideText" leftTopWH="326 157 300 48" textRender="outline16" textColor="255 255 255 255" text="#sb(guideText)" textAlign="hcenter"/>
+      <Label name="guideTextDefault" leftTopWH="325 209 300 48" textRender="outline14" textColor="255 180 212 246" text="#sb(guideText_defalut)" textAlign="hcenter"/>
+      <Label name="resultGrade" leftTopWH="42 271 300 48" textRender="bold14" textColor="255 221 232 255" text="#sb(resultGrade)" textAlign="hcenter"/>
+      <Panel name="gradeIcon" leftTopTex="20 312" texture="grade_0" alphaBlend="true">
+        <CharPanel name="gradeNum" leftTopTex="38 36" windowSize="28 42" texture="m_num" fontPos="0 0" fontSize="18 20" fontStr="12345" text="1" alphaBlend="true"/>
+      </Panel>
+      <ColorLabel name="gradeDetail" leftTopWH="79 327 200 30" textRender="bold24" textColor="255 155 79 40" text="黄金 1" textAlign="hcenter"/>
+      <Label name="curMp" leftTopWH="77 362 200 30" textRender="bold20" textColor="255 84 100 129" text="#sb(mp)" textAlign="hcenter"/>
+      <Label name="curRank" leftTopWH="209 337 200 60" textRender="bold16" textColor="225 84 100 129" text="#sb(curRank)" textAlign="hcenter"/>
+      <Label name="highestGrade" leftTopWH="516 271 300 48" textRender="bold14" textColor="255 255 226 72" text="#sb(highestGrade)" textAlign="hcenter"/>
+      <Panel name="higestIcon" leftTopTex="410 312" texture="grade_0" alphaBlend="true">
+        <CharPanel name="higestNum" leftTopTex="38 36" windowSize="28 42" texture="m_num" fontPos="0 0" fontSize="18 20" fontStr="12345" text="1" alphaBlend="true"/>
+      </Panel>
+      <ColorLabel name="higestDetail" leftTopWH="475 327 200 30" textRender="bold24" textColor="255 155 79 40" text="黄金 1" textAlign="hcenter"/>
+      <Label name="highestMp" leftTopWH="473 362 200 30" textRender="bold20" textColor="255 119 92 4" text="#sb(mp)" textAlign="hcenter"/>
+      <Label name="rewardText" leftTopWH="655 317 300 48" textRender="bold14" textColor="255 255 226 72" text="#sb(reward)" textAlign="hcenter"/>
+      <Label name="rewardBoxDesc" leftTopWH="327 441 300 48" textRender="bold14" textColor="255 72 106 163" text="#sb(rewardBoxDesc)" textAlign="hcenter"/>
+      <TextButton name="ok" windowRect="0 0 132 42" adjust="0 248" align="center" frame="TextButton" text="#sb(ok)" textRender="bold16"/>
+      <Container name="rewardFrame" leftTopWH="692 350 231 54">
+        <Container name="rewardBox" leftTopWH="0 0 54 54" align="center">
+          <Panel name="reward0" leftTopTex="0 0" texture="grade_popup_result_slot" alphaBlend="true" visible="false">
+            <Label name="rewardNum0" leftTopWH="2 26 50 30" text="" textAlign="center" textRender="outline14" depthBias="10" textColor="white"/>
+          </Panel>
+          <Panel name="reward1" leftTopTex="59 0" texture="grade_popup_result_slot" alphaBlend="true" visible="false">
+            <Label name="rewardNum1" leftTopWH="2 26 50 30" text="" textAlign="center" textRender="outline14" depthBias="10" textColor="white"/>
+          </Panel>
+          <Panel name="reward2" leftTopTex="118 0" texture="grade_popup_result_slot" alphaBlend="true" visible="false">
+            <Label name="rewardNum2" leftTopWH="2 26 50 30" text="" textAlign="center" textRender="outline14" depthBias="10" textColor="white"/>
+          </Panel>
+          <Panel name="reward3" leftTopTex="177 0" texture="grade_popup_result_slot" alphaBlend="true" visible="false">
+            <Label name="rewardNum3" leftTopWH="2 26 50 30" text="" textAlign="center" textRender="outline14" depthBias="10" textColor="white"/>
+          </Panel>
+        </Container>
+      </Container>
+    </ImageBoard>
+  </CaptionWindow>
+</Panel>

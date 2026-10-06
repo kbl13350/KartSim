@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="keyEmpty">
+    <m c="cn" v="验证码输入不完整。|请再次确认。"/>
+  </k>
+  <k n="wrongAnswer">
+    <m c="cn" v="验证码输入错误，错误次数3次时游戏将自动关闭。|[还剩 %d次]"/>
+  </k>
+  <k n="tryCountOver">
+    <m c="cn" v="验证失败次数已达3次，游戏自动关闭。"/>
+  </k>
+  <k n="passpotTitle">
+    <m c="cn" v="请输入动态密码:"/>
+  </k>
+  <k n="matrixInfo">
+    <m c="cn" v="请根据矩阵坐标，在输入框中输入相应的矩 阵码完成验证。"/>
+  </k>
+  <k n="matrixKeyTitle">
+    <m c="cn" v="矩阵坐标："/>
+  </k>
+  <k n="authenTitle">
+    <m c="cn" v="矩阵码："/>
+  </k>
+</StringBag>

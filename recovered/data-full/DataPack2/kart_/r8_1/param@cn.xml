@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='146.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.078'
+	SteerConstraint='2.2'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.07'
+
+	DriftMaxGauge = '-100'
+
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+	
+	UseTransformBooster='true'
+	TransAccelFactor='1.71'           
+	TransformTime='700'               
+	
+	StartBoosterTimeSpeed='1200'           
+	StartForwardAccelFactorSpeed = '1.2'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='cotton6'
+	BoosterType3='cotton6'
+	BoosterType4='zero5'
+
+	
+	Port0='mod1b1'
+	Port1='mod1b2'
+	FirePort0='mod1a1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a3'
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+ 	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '42'
+	DescStability ='42'
+	DescEngineGrade='1.2'
+	DescCornering='3'
+	DescEnchantCap = '31'
+
+/>
+
+<!--중국 R8 Z7 가샤폰 레전드 120119-->

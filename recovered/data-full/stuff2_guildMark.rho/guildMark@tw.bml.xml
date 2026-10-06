@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guildMark>
+  <guildMark level="1" frontMarkRange="1-20" backMarkRange="1-20"/>
+  <guildMark level="2" frontMarkRange="1-47" backMarkRange="1-22"/>
+  <guildMark level="3" frontMarkRange="1-48" backMarkRange="1-24"/>
+  <guildMark level="4" frontMarkRange="1-25" backMarkRange="1-14"/>
+  <guildMark level="5" frontMarkRange="0" backMarkRange="0"/>
+  <guildMark level="6" frontMarkRange="0" backMarkRange="0"/>
+</guildMark>

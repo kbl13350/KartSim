@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+		ForwardAccelForce='145.0'
+		BackwardAccelForce='100.0'
+		DragFactor='-0.078'
+		SteerConstraint='3.1'
+		DriftEscapeForce='1430'
+		CornerDrawFactor='0.069'
+
+		BoosterBlur='true'
+		EngineSound='cotton85'
+		EnvMap='true'
+		WaveEffect='true'
+
+		antiCollideBalance='0.85'
+		GripBrakeForce='1000'
+		SlipBrakeForce='-200'
+
+		UseTransformBooster='true'
+		TransAccelFactor='1.793'
+		TransformTime='100'
+
+		StartForwardAccelFactorSpeed = '2.0'
+		StartBoosterTimeSpeed='1000'   
+
+		NormalBoosterTime = '0'
+		TeamBoosterTime = '0'
+		DriftMaxGauge = '-430'
+		DriftGaguePreservePercent='0.6'
+
+		BoosterWaveType='boost8'
+		BoosterType='8soon_gold'
+		BoosterType0='8soon_gold'
+		BoosterType1='8soon_gold'
+		BoosterType2='85main'
+		BoosterType3='85sub'
+		BoosterType4='85sub'
+
+		Port0='mod2a3'
+		Port1='mod2a3'
+
+		FirePort0='mod2b1'
+		FirePort1='mod2a1'
+		FirePort2='mod2a2'
+
+		TailLampSize='0.1'
+		TailLampColor='255 150 15 18'
+		BoostBlurColor='255 77 77 77'
+
+		secondColor='255 243 243 243'
+		secondHighColor='255 255 255 255'
+
+		TachometerType='Tacho1'
+		TachometerName='ht'
+		itemSlotName='ht'
+		boostGaugeName='ht'
+
+		DescBalance='47'
+		DescStability='49'
+		DescEngineGrade='1.25'
+		DescCornering='8'
+		DescEnchantCap='25'
+
+addModelFolder='monster12'
+
+>
+	<ShortTrail TailLampSize='0.1' TailLampColor='255 140  56 239' trailPort0='mod2a1' trailPort1='mod2a2'/>
+</BodyParam>
+
+<!-- 8주년 기념 몬스터 HT+ 2014306 중국 한정 판매 -->

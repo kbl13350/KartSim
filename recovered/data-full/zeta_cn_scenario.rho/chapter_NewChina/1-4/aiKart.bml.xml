@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <AiKart id="1" track="china_I02" isFixedKart="true" fixedKartId="849" laps="3" gameType="item">
+    <LevelContent level="0" item="Rocket;WaterBomb;Booster;Magnet;Angel;WaterFly;Ufo;Shield" aiItemLevel="1">
+      <AiKart characterId="24" uniformId="41" kartId="943" colorId="1" dyeId="1" balloonId="0" speed="45" accel="40" startTick="0" characterName="木兰"/>
+      <AiKart characterId="2" uniformId="42" kartId="919" colorId="1" dyeId="1" balloonId="0" speed="42" accel="38" startTick="0" characterName="鑫鑫"/>
+    </LevelContent>
+  </AiKart>
+</Root>

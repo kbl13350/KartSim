@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextButton name="ItemTab_Total" windowRect="0 -39 60 0" frame="TabBlack2" text="#sb(pcCafe)" textRender="bold16" useDisableState="true" forceTooltip="false" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80">
+  <Panel name="newItem" leftTopTex="0 0" texture="icon_category_new" alphaBlend="true" visible="false" align="right,top" adjust="-1 -5"/>
+</TextButton>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <Shadow isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2" kartId="849" characterId="5" uniformId="0" colorId="7" dyeId="7" characterName="胖墩">
+    <LevelContent level="0" ksv="desert_I03_0" track="desert_I03" laps="3"/>
+    <LevelContent level="1" ksv="desert_I03_0" track="desert_I03" laps="3"/>
+  </Shadow>
+</Root>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <AiKart track="ice_I04" isFixedKart="true" fixedKartId="875" laps="3" gameType="item" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" item="Rocket;WaterBomb;Booster;WaterFly;Shield" aiItemLevel="1">
+      <AiKart characterId="9" uniformId="0" kartId="865" colorId="1" dyeId="1" balloonId="0" speed="50" accel="31" startTick="0" characterName="海盗船长"/>
+      <AiKart characterId="18" uniformId="0" kartId="888" colorId="8" dyeId="8" balloonId="0" speed="52" accel="28" startTick="0" characterName="嘟嘟"/>
+      <AiKart characterId="15" uniformId="58" kartId="849" colorId="6" dyeId="6" balloonId="0" speed="48" accel="29" startTick="0" characterName="海盗水手"/>
+    </LevelContent>
+  </AiKart>
+</Root>

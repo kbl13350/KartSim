@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bingoGachaSet>
+		<content eventId='16' lotteryItemId='1241' />
+		<setRewardList>
+				<set id='1'>
+						<reward>
+								<replaceReward stockId='10775' />
+								<completeReward>
+										<stock id='32337' />
+								</completeReward>
+								<lv1>
+										<reward id='28422' prob='1' />
+										<reward id='32340' prob='1' />
+										<reward id='29084' prob='1' />
+								</lv1>
+								<lv2>
+										<reward id='29027' prob='1' />
+										<reward id='29406' prob='1' />
+										<reward id='29494' prob='1' />
+										<reward id='29610' prob='1' />
+										<reward id='29242' prob='1' />
+										<reward id='32414' prob='1' />
+										<reward id='32415' prob='1' />
+										<reward id='30737' prob='1' />
+										<reward id='30325' prob='1' />
+										<reward id='29012' prob='1' />
+										<reward id='31422' prob='1' />
+										<reward id='27096' prob='1' />
+										<reward id='27095' prob='1' />
+										<reward id='30706' prob='1' />
+										<reward id='27016' prob='1' />
+										<reward id='21339' prob='1' />
+										<reward id='27713' prob='1' />
+										<reward id='27980' prob='1' />
+										<reward id='22628' prob='1' />
+										<reward id='4823' prob='1' />
+										<reward id='31572' prob='1' />
+										<reward id='29074' prob='1' />
+										<reward id='29079' prob='1' />
+								</lv2>
+						</reward>
+				</set>
+				<set id='2'>
+						<reward>
+								<replaceReward stockId='10775' />
+								<completeReward>
+										<stock id='32338' />
+								</completeReward>
+								<lv1>
+										<reward id='28422' prob='1' />
+										<reward id='32340' prob='1' />
+										<reward id='29084' prob='1' />
+								</lv1>
+								<lv2>
+										<reward id='29027' prob='1' />
+										<reward id='29406' prob='1' />
+										<reward id='29494' prob='1' />
+										<reward id='29610' prob='1' />
+										<reward id='29242' prob='1' />
+										<reward id='32414' prob='1' />
+										<reward id='32415' prob='1' />
+										<reward id='30737' prob='1' />
+										<reward id='30325' prob='1' />
+										<reward id='29012' prob='1' />
+										<reward id='31422' prob='1' />
+										<reward id='27096' prob='1' />
+										<reward id='27095' prob='1' />
+										<reward id='30706' prob='1' />
+										<reward id='27016' prob='1' />
+										<reward id='21339' prob='1' />
+										<reward id='27713' prob='1' />
+										<reward id='27980' prob='1' />
+										<reward id='22628' prob='1' />
+										<reward id='4823' prob='1' />
+										<reward id='31572' prob='1' />
+										<reward id='29074' prob='1' />
+										<reward id='29079' prob='1' />
+								</lv2>
+						</reward>
+				</set>
+				<set id='3'>
+						<reward>
+								<replaceReward stockId='10775' />
+								<completeReward>
+										<stock id='30415' />
+								</completeReward>
+								<lv1>
+										<reward id='28422' prob='1' />
+										<reward id='32340' prob='1' />
+										<reward id='29084' prob='1' />
+								</lv1>
+								<lv2>
+										<reward id='29027' prob='1' />
+										<reward id='29406' prob='1' />
+										<reward id='29494' prob='1' />
+										<reward id='29610' prob='1' />
+										<reward id='29242' prob='1' />
+										<reward id='32414' prob='1' />
+										<reward id='32415' prob='1' />
+										<reward id='30737' prob='1' />
+										<reward id='30325' prob='1' />
+										<reward id='29012' prob='1' />
+										<reward id='31422' prob='1' />
+										<reward id='27096' prob='1' />
+										<reward id='27095' prob='1' />
+										<reward id='30706' prob='1' />
+										<reward id='27016' prob='1' />
+										<reward id='21339' prob='1' />
+										<reward id='27713' prob='1' />
+										<reward id='27980' prob='1' />
+										<reward id='22628' prob='1' />
+										<reward id='4823' prob='1' />
+										<reward id='31572' prob='1' />
+										<reward id='29074' prob='1' />
+										<reward id='29079' prob='1' />
+								</lv2>
+						</reward>
+				</set>
+				<set id='4'>
+						<reward>
+								<replaceReward stockId='10775' />
+								<completeReward>
+										<stock id='30416' />
+								</completeReward>
+								<lv1>
+										<reward id='28422' prob='1' />
+										<reward id='32340' prob='1' />
+										<reward id='29084' prob='1' />
+								</lv1>
+								<lv2>
+										<reward id='29027' prob='1' />
+										<reward id='29406' prob='1' />
+										<reward id='29494' prob='1' />
+										<reward id='29610' prob='1' />
+										<reward id='29242' prob='1' />
+										<reward id='32414' prob='1' />
+										<reward id='32415' prob='1' />
+										<reward id='30737' prob='1' />
+										<reward id='30325' prob='1' />
+										<reward id='29012' prob='1' />
+										<reward id='31422' prob='1' />
+										<reward id='27096' prob='1' />
+										<reward id='27095' prob='1' />
+										<reward id='30706' prob='1' />
+										<reward id='27016' prob='1' />
+										<reward id='21339' prob='1' />
+										<reward id='27713' prob='1' />
+										<reward id='27980' prob='1' />
+										<reward id='22628' prob='1' />
+										<reward id='4823' prob='1' />
+										<reward id='31572' prob='1' />
+										<reward id='29074' prob='1' />
+										<reward id='29079' prob='1' />
+								</lv2>
+						</reward>
+				</set>
+				<set id='5'>
+						<reward>
+								<replaceReward stockId='10775' />
+								<completeReward>
+										<stock id='30132' />
+								</completeReward>
+								<lv1>
+										<reward id='28422' prob='1' />
+										<reward id='32340' prob='1' />
+										<reward id='29084' prob='1' />
+								</lv1>
+								<lv2>
+										<reward id='29027' prob='1' />
+										<reward id='29406' prob='1' />
+										<reward id='29494' prob='1' />
+										<reward id='29610' prob='1' />
+										<reward id='29242' prob='1' />
+										<reward id='32414' prob='1' />
+										<reward id='32415' prob='1' />
+										<reward id='30737' prob='1' />
+										<reward id='30325' prob='1' />
+										<reward id='29012' prob='1' />
+										<reward id='31422' prob='1' />
+										<reward id='27096' prob='1' />
+										<reward id='27095' prob='1' />
+										<reward id='30706' prob='1' />
+										<reward id='27016' prob='1' />
+										<reward id='21339' prob='1' />
+										<reward id='27713' prob='1' />
+										<reward id='27980' prob='1' />
+										<reward id='22628' prob='1' />
+										<reward id='4823' prob='1' />
+										<reward id='31572' prob='1' />
+										<reward id='29074' prob='1' />
+										<reward id='29079' prob='1' />
+								</lv2>
+						</reward>
+				</set>
+		</setRewardList>
+</bingoGachaSet>

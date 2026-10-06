@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="timeBonus">
+    <m c="kr" v="시간 [color:255 22 225 255]-%.1f%%[/color]"/>
+    <m c="cn" v="时间[color:255 22 225 255]-%.1f%%[/color]"/>
+    <m c="tw" v="time [color:255 22 225 255]-%.1f%%[/color]"/>
+  </k>
+  <k n="timeBonusNoreward">
+    <m c="kr" v="시간 [color:255 88 105 129]%.1f%%[/color]"/>
+    <m c="cn" v="时间[color:255 88 105 129]%.1f%%[/color]"/>
+    <m c="tw" v="time [color:255 88 105 129]%.1f%%[/color]"/>
+  </k>
+  <k n="rewardBonus">
+    <m c="kr" v="보상 [color:255 163 255 42]+%.1f%%[/color]"/>
+    <m c="cn" v="奖励[color:255 163 255 42]+%.1f%%[/color]"/>
+    <m c="tw" v="reward [color:255 163 255 42]+%.1f%%[/color]"/>
+  </k>
+  <k n="rewardBonusNoreward">
+    <m c="kr" v="보상 [color:255 88 105 129]%.1f%%[/color]"/>
+    <m c="cn" v="奖励[color:255 88 105 129]%.1f%%[/color]"/>
+    <m c="tw" v="reward [color:255 88 105 129]%.1f%%[/color]"/>
+  </k>
+  <k n="selectOrganizeCrew">
+    <m c="kr" v="탐험대 편성 선택"/>
+    <m c="cn" v="选择探险队编队"/>
+    <m c="tw" v="selectOrganizeCrew"/>
+  </k>
+  <k n="character">
+    <m c="kr" v="캐릭터"/>
+    <m c="cn" v="角色"/>
+    <m c="tw" v="character"/>
+  </k>
+  <k n="kartBody">
+    <m c="kr" v="카트바디"/>
+    <m c="cn" v="卡丁车"/>
+    <m c="tw" v="kartBody"/>
+  </k>
+  <k n="friend">
+    <m c="kr" v="친구"/>
+    <m c="cn" v="好友"/>
+    <m c="tw" v="friend"/>
+  </k>
+  <k n="unknownError">
+    <m c="kr" v="알 수 없는 오류가 발생하였습니다."/>
+    <m c="cn" v="发生未知的错误。"/>
+    <m c="tw" v="unknownError"/>
+  </k>
+  <k n="friendBonusUpdate">
+    <m c="kr" v="레이싱 탐험대 친구 보너스 확률 및 새로운 친구 목록은 매일 06:00에 갱신됩니다."/>
+    <m c="cn" v="赛车探险队好友加成值及新好友列表将在每天06:00更新。"/>
+    <m c="tw" v="Racing expedition friend bonus probability and new friend list are updated daily at 06:00."/>
+  </k>
+  <k n="noAvailableCharacters">
+    <m c="kr" v="레이싱 탐험대를 함께 할 수 있는 캐릭터가 없습니다."/>
+    <m c="cn" v="没有可参与赛车探险队的角色。"/>
+    <m c="tw" v="No available characters for the racing expedition."/>
+  </k>
+  <k n="noAvailableKarts">
+    <m c="kr" v="레이싱 탐험대를 함께 할 수 있는 카트바디가 없습니다."/>
+    <m c="cn" v="没有可参与赛车探险队的卡丁车。"/>
+    <m c="tw" v="No available karts for the racing expedition."/>
+  </k>
+  <k n="noAvailableFriends">
+    <m c="kr" v="레이싱 탐험대를 함께 할 수 있는 친구가 없습니다."/>
+    <m c="cn" v="没有可参与赛车探险队的好友。"/>
+    <m c="tw" v="No available friends for the racing expedition."/>
+  </k>
+  <k n="crewBonusUpdate">
+    <m c="kr" v="레이싱 탐험대 캐릭터는 특성과 보너스, 카트바디는 강화 단계에 따라 보너스 확률이 달라집니다."/>
+    <m c="cn" v="赛车探险队的角色根据属性获得加成值，卡丁车随强化等级变化获得加成值。"/>
+    <m c="tw" v="crewBonusUpdate"/>
+  </k>
+</StringBag>

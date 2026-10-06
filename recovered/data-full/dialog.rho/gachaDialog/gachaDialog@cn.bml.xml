@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="0 0 800 600" color="128 0 0 0" alphaBlend="true">
+  <Window name="backWindow" windowRect="0 0 800 600"/>
+  <Window name="dialogWindow" windowRect="0 0 470 360" align="center" enable="true" visible="false">
+    <Window name="itemPreview" windowRect="50 20 250 220" alphaBlend="false"/>
+    <Window name="itemPreview2" windowRect="220 20 420 220" alphaBlend="false"/>
+    <Window windowRect="0 294 600 385" align="hcenter">
+      <Label name="description" windowRect="10 8 600 59" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black"/>
+      <TextButton name="ok" windowRect="180 70 253 92" text="#sb(ok)" altTextRender="outline"/>
+      <TextButton name="cancel" windowRect="347 70 420 92" text="#sb(cancel)" altTextRender="outline"/>
+    </Window>
+    <Window name="effectWindow" windowRect="0 0 470 160"/>
+  </Window>
+</Panel>

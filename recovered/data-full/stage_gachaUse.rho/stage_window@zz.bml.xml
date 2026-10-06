@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="255 0 0 0" alphaBlend="true"/>
+  <Container windowRect="fullscreen" align="center">
+    <Play1SPanel name="bg1400" scene="가챠바탕_1400" leftTopWH="0 0 1400 1050" align="center" zoom="0.9745" clearZBefore="true" defaultCameraPos="0.0 -285.0 0.0" defaultSpotPos="0.0 0.0 0.0" visible="false" alphaBlend="true" loop="true"/>
+    <Play1SPanel name="bg1600" scene="가챠바탕_1600" leftTopWH="0 0 1600 900" align="center" zoom="0.88" clearZBefore="true" defaultCameraPos="0.0 -285.0 0.0" defaultSpotPos="0.0 0.0 0.0" visible="false" alphaBlend="true" loop="true"/>
+    <Play1SPanel name="bg1920" scene="가챠바탕_1920" leftTopWH="0 0 1920 1080" align="center" zoom="0.79" clearZBefore="true" defaultCameraPos="0.0 -285.0 0.0" defaultSpotPos="0.0 0.0 0.0" visible="false" alphaBlend="true" loop="true"/>
+    <Play1SPanel name="vipIcon" scene="dummy" leftTopWH="0 90 64 64" align="right" adjust="50 0" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.59 0.5" defaultSpotPos="0.0 0.0 0.65" zoom="2.8" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true">
+      <ColorLabel name="vipIconStr" leftTopWH="-30 70 130 20" align="hcenter" text="" textAlign="center" autoWrap="true" enalble="false" visible="true" textRender="bold"/>
+    </Play1SPanel>
+    <Container name="limitedFirstItemInfo" windowSize="308 184" align="vcenter" adjust="22 -350" visible="false">
+      <Panel leftTopWH="0 0 308 184" texture="상품창" alphaBlend="true"/>
+      <Label name="firstItemName" leftTopWH="0 0 308 23" textRender="bold14" textColor="white" textAlign="center" adjust="0 9" align="hcenter, bottom"/>
+      <ColorLabel name="firstItemCount" text="" leftTopWH="0 0 308 23" textRender="bold16" textColor="white" textAlign="center" adjust="0 10" align="hcenter, top"/>
+      <Panel name="soldOut" leftTopWH="8 8 292 168" texture="매진@zz" alphaBlend="true" visible="true"/>
+    </Container>
+    <Container name="mileagePrizeItemInfo" windowSize="308 184" align="vcenter" adjust="22 220" visible="false">
+      <Panel leftTopWH="0 0 308 184" texture="상품창_마일리지" alphaBlend="true"/>
+      <Label name="prizeItemName" leftTopWH="0 0 308 23" textRender="bold14" textColor="white" textAlign="center" adjust="0 9" align="hcenter, bottom"/>
+      <ColorLabel name="prizeInfo" text="" leftTopWH="0 0 308 23" textRender="bold16" textColor="white" textAlign="center" adjust="0 10" align="hcenter, top"/>
+    </Container>
+    <Container name="mileagePrizeItemListInfo" leftTopWH="0 0 400 120" visible="false" align="bottom,left">
+      <ColorLabel name="prizeInfo" text="" leftTopWH="15 0 308 23" textRender="bold16" textColor="white" textAlign="left" adjust="0 14" align="top"/>
+      <Panel name="mileageBarBg" leftTopWH="13 50 388 32" texture="mileagebar_bg" alphaBlend="true">
+        <Window name="stepWindow" leftTopWH="30 18 356 6" enable="true"/>
+        <Panel name="mileageBar" leftTopWH="30 18 356 6" texture="mileagebar" uvRect="0 0 356 6" alphaBlend="true" visible="false"/>
+      </Panel>
+      <Container name="prizeCountCont_2" leftTopWH="13 30 388 100" visible="false">
+        <Panel name="PrizeBg_0" leftTopWH="155 11 54 54" texture="mileage_slot_1" alphaBlend="true">
+          <Label name="PrizeCount" text="0" leftTopWH="0 54 54 23" textRender="bold14" textColor="white" textAlign="center"/>
+        </Panel>
+        <Panel name="PrizeBg_1" leftTopWH="0 11 54 54" texture="mileage_slot_1" alphaBlend="true" align="right">
+          <Label name="PrizeCount" text="0" leftTopWH="0 54 54 23" textRender="bold14" textColor="white" textAlign="center"/>
+        </Panel>
+        <Panel name="PrizeCheckBg_0" leftTopWH="155 11 54 54" texture="mileage_slot_check" alphaBlend="true" visible="false"/>
+        <Panel name="PrizeCheckBg_1" leftTopWH="0 11 54 54" texture="mileage_slot_check" alphaBlend="true" align="right" visible="false"/>
+      </Container>
+    </Container>
+    <Window name="defaultItemWindow" windowSize="220 300" align="center" adjust="0 -30" visible="false">
+      <Window name="itemPreview1" windowSize="200 200" alphaBlend="false" align="center"/>
+    </Window>
+    <Window name="gachaBoxItemWindow" windowSize="440 300" align="center" adjust="0 -30" visible="false">
+      <Window name="itemPreview1" windowSize="200 200" adjust="30 50" alphaBlend="false">
+        <Panel name="itemCountBg" windowSize="54 24" align="top;center" texture="갯수" alphaBlend="true"/>
+        <Label name="itemCount" windowSize="54 24" align="top;center" text="10" textRender="bold16" textColor="white" textAlign="center"/>
+      </Window>
+      <Window name="itemPreview2" windowSize="200 200" adjust="210 50" alphaBlend="false">
+        <Panel name="itemCountBg" windowSize="54 24" align="top;center" texture="갯수" alphaBlend="true"/>
+        <Label name="itemCount" windowSize="54 24" align="top;center" text="10" textRender="bold16" textColor="white" textAlign="center"/>
+      </Window>
+    </Window>
+    <Label name="itemUseful" windowSize="530 32" textRender="bold20" textColor="white" textAlign="center" adjust="0 178" align="bottom;hcenter" multiLine="true"/>
+    <Label name="itemGet" leftTopWH="330 600 140 30" textRender="bold16" textColor="white" textAlign="center" align="hcenter" multiLine="true" visible="false"/>
+    <Label name="itemAllUse" leftTopWH="330 600 140 30" textRender="bold16" textColor="white" textAlign="center" text="#sb(itemAllUse)" align="hcenter" multiLine="true" visible="false"/>
+    <Label name="itemNotExist" leftTopWH="330 600 140 30" textRender="bold16" textColor="white" textAlign="center" text="#sb(itemNotExist)" align="hcenter" multiLine="true" visible="false"/>
+    <Label name="itemBonusWarning" leftTopWH="330 600 140 30" textRender="bold16" textColor="white" textAlign="center" text="#sb(itemBonusWarning)" align="hcenter" multiLine="true" visible="false"/>
+    <ColorLabel name="itemMileagePrizeConfirmed" leftTopWH="440 700 530 30" textRender="bold20" textColor="white" textAlign="center" align="hcenter" multiLine="true" visible="false"/>
+    <Container name="itemNameInfo" windowSize="440 100" adjust="0 5" align="hcenter">
+      <Label name="itemName" leftTopWH="8 0 140 60" textRender="bold24" textColor="white" textAlign="center" align="hcenter" multiLine="true"/>
+      <Label name="itemUsePeriod" leftTopWH=" 8 54 140 30" textRender="bold16" textColor="255 0 221 254" textAlign="center" align="hcenter, bottom" multiLine="true"/>
+    </Container>
+    <Container name="itemSummaryInfo" leftTopWH="10 100 310 360" align="vcenter,left" adjust="10 -60">
+      <Label name="obtainableItem" leftTopWH="15 5 140 30" textRender="bold20" textColor="255 0 221 254" text="#sb(obtainableItem)" textAlign="left" align="top" multiLine="true"/>
+      <Label name="itemSummary" leftTopWH="15 50 140 30" textRender="bold16" textColor="255 237 241 247" textAlign="left" multiLine="true"/>
+      <Label name="getItemDesc" leftTopWH="15 267 140 30" textRender="bold16" textColor="white" alphaBlend="true" text="#sb(getItemDesc)" textAlign="left" align="bottom" multiLine="true"/>
+    </Container>
+    <Container name="itemSummaryInfoVerLimitedGacha" leftTopWH="10 100 310 360" align="vcenter,left" adjust="10 -60">
+      <List name="itemCountList" leftTopWH="15 50 310 260" scrollBarVisible="false"/>
+      <Label name="obtainableItem" leftTopWH="15 5 140 30" textRender="bold20" textColor="255 0 221 254" text="#sb(obtainableItem)" textAlign="left" align="top" multiLine="true"/>
+      <Label name="getItemDesc" leftTopWH="15 267 140 30" textRender="bold16" textColor="white" alphaBlend="true" text="#sb(getItemDesc)" textAlign="left" align="bottom" multiLine="true"/>
+    </Container>
+    <Container name="itemRewardInfo" leftTopWH="810 110 300 340" align="vcenter,right" adjust="5 -60">
+      <List name="listRewardItems" leftTopWH="0 30 300 270" listGap="1" listMargin="2 2 2 2" autoScroll="true"/>
+      <Label name="getItemCount" leftTopWH="0 267 270 21" textRender="bold20" textColor="255 0 211 254" textAlign="right" align="bottom" multiLine="true"/>
+    </Container>
+    <Container name="useButton" windowSize="530 66" adjust="0 95" align="bottom;hcenter">
+      <ImageButton name="oneUse" leftTopWH="0 0 258 66" autoLoadImage="multiUse_0" align="left" alphaBlend="true">
+        <CharPanel name="oneNum" leftTopWH="80 20 14 21" texture="num" alphaBlend="true" fontSize="16 28" spaceOffset="1" fontStr="0123456789" text="1" rightAlign="true" enable="false"/>
+        <Panel leftTopWH="102 1 26 28" texture="count@zz" alphaBlend="true" align="vcenter" enable="false"/>
+        <Panel leftTopWH="135 1 50 28" texture="use@zz" alphaBlend="true" align="vcenter" enable="false"/>
+      </ImageButton>
+      <ImageButton name="multiUse" leftTopWH="0 0 258 66" autoLoadImage="multiUse_0" align="right" alphaBlend="true">
+        <Container name="multiCountContain" windowSize="258 66" enable="false">
+          <CharPanel name="multiCount" leftTopWH="0 0 14 21" texture="num" alphaBlend="true" fontSize="16 28" spaceOffset="0" fontStr="0123456789" text="0" enable="false" align="vcenter"/>
+          <Panel name="multiCountPanel" leftTopWH="0 0 26 28" texture="count@zz" alphaBlend="true" align="vcenter" enable="false"/>
+          <Panel name="multiDefaultPanel" leftTopWH="0 0 50 28" texture="use@zz" alphaBlend="true" align="vcenter" enable="false"/>
+        </Container>
+      </ImageButton>
+    </Container>
+    <Container name="stopButton" windowSize="530 66" adjust="0 95" visible="false" align="bottom;hcenter">
+      <ImageButton name="stop" leftTopWH="0 0 246 66" align="hcenter" autoLoadImage="stop@zz" alphaBlend="true"/>
+    </Container>
+    <ImageButton name="quitButton" leftTopWH="0 0 54 54" autoLoadImage="btn_close_" alphaBlend="true" altText="#sb(close)" altRelativePos="5 54" align="right,top" adjust="20 20"/>
+    <Label name="itemUseDesc" windowSize="140 30" textRender="bold16" textColor="white" textAlign="center" adjust="0 45" align="bottom;hcenter" multiLine="true"/>
+    <Container name="buyCont" leftTopWH="0 -10 300 50" align="bottom;hcenter">
+      <Label name="itemBuyDesc" leftTopWH="0 04 140 40" textRender="bold16" textColor="white" textAlign="center" align="hcenter" multiLine="true"/>
+    </Container>
+    <ImageButton name="buyButton" windowSize="180 66" adjust="20 20" align="right;bottom" autoLoadImage="buy@zz" alphaBlend="true"/>
+  </Container>
+</Container>

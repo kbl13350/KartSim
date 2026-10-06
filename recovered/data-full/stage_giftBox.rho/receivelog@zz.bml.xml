@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="wndReceieveLog" windowRect="0 0 478 76">
+  <Panel windowSize="478 76" texture="gift_img_slotBG2" enable="false" alphaBlend="true"/>
+  <Label name="lblRcvdGiftTitle" windowSize="304 24" adjust="95 10" textRender="bold16" text="#sb(giftName)" textColor="255 42 55 80" textAlign="left" enable="false"/>
+  <Window name="pnlGiftBoxIcon" windowSize="80 62" adjust="7 0" align="vcenter" enable="false"/>
+  <Label name="lblRider" windowSize="70 20" adjust="95 45" text="#sb(sender)" textRender="bold14" textColor="255 135 146 167" enable="false"/>
+  <Label name="lblRcvdRider" windowSize="166 20" adjust="342 45" text="" textRender="bold14" textAlign="hcenter" textColor="255 36 129 255" enable="false"/>
+  <Label name="lblDate" windowRect="70 40 108 55" enable="false" text="#sb(receivedDate)" textColor="black" visible="false"/>
+  <Label name="lblRcvdDate" windowRect="70 40 108 55" enable="false" text="" textColor="black" visible="false"/>
+  <ImageButton name="btnRcvdRemove" autoLoadImage="gift_btn_delete2_" windowSize="22 24" adjust="7 7" align="right" alphaBlend="true" enabled="true" altText="#sb(logDelete)"/>
+</Window>

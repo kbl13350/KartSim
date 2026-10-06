@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel leftTopWH="0 0 416 146" texture="timeAttack_main_slotVsBG1" alphaBlend="true">
+  <Container name="portraitPanel" windowSize="164 118" adjust="11 13" visible="false">
+    <Panel name="portrait" windowSize="164 118" alphaBlend="true"/>
+    <Panel name="clearCover" windowSize="164 118" texture="timeAttack_enemy_slotBreak@zz" alphaBlend="true"/>
+  </Container>
+  <Container name="infoPanel" windowSize="208 50" adjust="190 13">
+    <Label name="step" windowSize="61 25" adjust="0 0" text="1 단계" textRender="bold14" textColor="255 220 231 242" textAlign="left"/>
+    <Label name="name" windowSize="147 25" adjust="0 25" text="구미호" textRender="bold16" textColor="255 220 231 242" textAlign="left"/>
+  </Container>
+  <Container name="rewardPanel" windowSize="216 68" adjust="188 66">
+    <Container windowSize="68 68" adjust="0 0">
+      <Container name="icon" windowSize="68 68"/>
+      <Label name="option" windowSize="60 15" align="right, bottom" adjust="3 0" text="100개" textRender="outline" textColor="white" textAlign="right" enable="false"/>
+      <Panel name="clearCover" windowSize="68 68" texture="timeAttack_main_slotVsClear" alphaBlend="true" enable="false"/>
+      <Panel name="emptyCover" windowSize="68 68" texture="timeAttack_main_slotVsEmpty"/>
+      <Play1SPanel name="special" scene="연습타임어택ef" windowSize="68 68" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0" defaultSpotPos="0 0 0" zoom="2.0" clearZBefore="true" clearZAfter="true" enable="false" visible="true" loop="true" depthBias="1000.0"/>
+    </Container>
+    <Container windowSize="68 68" adjust="74 0">
+      <Container name="icon" windowSize="68 68"/>
+      <Label name="option" windowSize="60 15" align="right, bottom" adjust="3 0" text="100개" textRender="outline" textColor="white" textAlign="right" enable="false"/>
+      <Panel name="clearCover" windowSize="68 68" texture="timeAttack_main_slotVsClear" alphaBlend="true" enable="false"/>
+      <Panel name="emptyCover" windowSize="68 68" texture="timeAttack_main_slotVsEmpty"/>
+      <Play1SPanel name="special" scene="연습타임어택ef" windowSize="68 68" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0" defaultSpotPos="0 0 0" zoom="2.0" clearZBefore="true" clearZAfter="true" enable="false" visible="true" loop="true" depthBias="1000.0"/>
+    </Container>
+    <Container windowSize="68 68" adjust="148 0" alphaBlend="true">
+      <Container name="icon" windowSize="68 68"/>
+      <Label name="option" windowSize="60 15" align="right, bottom" adjust="3 0" text="100개" textRender="outline" textColor="white" textAlign="right" enable="false"/>
+      <Panel name="clearCover" windowSize="68 68" texture="timeAttack_main_slotVsClear" alphaBlend="true" enable="false"/>
+      <Panel name="emptyCover" windowSize="68 68" texture="timeAttack_main_slotVsEmpty"/>
+      <Play1SPanel name="special" scene="연습타임어택ef" windowSize="68 68" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0" defaultSpotPos="0 0 0" zoom="2.0" clearZBefore="true" clearZAfter="true" enable="false" visible="true" loop="true" depthBias="1000.0"/>
+    </Container>
+  </Container>
+  <Label name="closeMsg" windowSize="240 146" align="right|vcenter" adjust="0 0" text="#sb(duelMissionCloseMessage)" textColor="255 179 179 179" textRender="bold16" textAlign="center"/>
+</Panel>

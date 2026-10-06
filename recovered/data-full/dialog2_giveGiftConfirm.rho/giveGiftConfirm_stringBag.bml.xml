@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="giftConfirmCaption">
+    <m c="kr" v="선물할 상품 확인"/>
+    <m c="jp" v="プレゼントする商品確認"/>
+    <m c="cn" v="确认要赠送的礼物"/>
+    <m c="tw" v="請確認要贈送的禮物"/>
+    <m c="us" v="Confirm the gift items"/>
+    <m c="vn" v="Kiểm tra quà tặng"/>
+    <m c="ru" v="Посмотреть подарки"/>
+    <m c="id" v="Konfirmasi item hadiah"/>
+    <m c="th" v="ยืนยันการส่งของขวัญ"/>
+  </k>
+  <k n="myCash">
+    <m c="kr" v="나의 캐시"/>
+    <m c="jp" v="マイNP"/>
+    <m c="cn" v="我的电池"/>
+    <m c="tw" v="我的GASH"/>
+    <m c="us" v="My Nexon Cash"/>
+    <m c="ru" v="Мои деньги"/>
+    <m c="id" v="My G-cash"/>
+    <m c="vn" v="Số Vcoin"/>
+  </k>
+  <k n="stockPrice">
+    <m c="kr" v="상품 가격"/>
+    <m c="jp" v="商品価格"/>
+    <m c="cn" v="商品价格"/>
+    <m c="tw" v="商品價格"/>
+    <m c="us" v="Item Price"/>
+    <m c="vn" v="Giá vật phẩm"/>
+    <m c="ru" v="Цена предмета"/>
+    <m c="id" v="Harga Item"/>
+    <m c="th" v="ราคาไอเทม"/>
+  </k>
+  <k n="stockName">
+    <m c="kr" v="상품 이름"/>
+    <m c="jp" v="商品名"/>
+    <m c="cn" v="商品名称"/>
+    <m c="tw" v="商品名稱"/>
+    <m c="us" v="Item Name"/>
+    <m c="vn" v="Tên vật phẩm"/>
+    <m c="ru" v="Название предмета"/>
+    <m c="id" v="Nama Item"/>
+    <m c="th" v="ชื่อไอเทม"/>
+  </k>
+  <k n="giveGiftAlert1">
+    <m c="kr" v="선물하시기 전에 아이템의 기한과 수량을 꼭 확인하여 주십시오.|또한, 선물 받을 상대방의 선물할 아이템 보유 상태를 확인해 주십시오.|(일부 아이템의 경우 보유 유무, 구입 상태에 따라 선물 수령이 불가능 합니다.)"/>
+    <m c="jp" v="プレゼントする前にアイテムの期限と数を必ずご確認ください。|また、プレゼントをもらう相手のプレゼントするアイテム保有状態を確認してください。(一部のアイテムは保有しているかどうかや購入状態によってプレゼントの受け取りが不可能になります。)|プレゼントするアイテムは購入取消や払戻しができませんので、慎重に購入してください。"/>
+    <m c="cn" v="赠送后不能取消或拿回"/>
+    <m c="tw" v="贈送後將無法取消或退回!|若收禮者丟棄禮物，禮物亦將無法返回給贈送禮物的玩家!"/>
+    <m c="us" v="The sent gift items cannot be refunded or cancelled."/>
+    <m c="vn" v="Quà tặng không được hủy bỏ và cũng không có khả năng hoàn lại."/>
+    <m c="ru" v="Отменить подарок или вернуть деньги нельзя."/>
+    <m c="id" v="Sebelum memberi hadiah silahkan periksa durasi item dan jumlahnya.|Dan apakah Rider tersebut sudah memiliki item itu.|Item tertentu tidak dapat di Gift.|Item yang telah diberikan tidak dapat dibatalkan"/>
+    <m c="th" v="เมื่อส่งของขวัญแล้ว ไม่สามารถยกเลิกหรือแลกเงินคืนได้"/>
+  </k>
+  <k n="giveGiftAlert2">
+    <m c="kr" v="라이더명 [%s] 님께 선물을 보내시겠습니까?"/>
+    <m c="jp" v="ライダー名 [%s] さんにプレゼントをしますか？"/>
+    <m c="cn" v="要给[%s]赠送礼物吗？"/>
+    <m c="tw" v="確定贈送禮物給[%s]嗎？"/>
+    <m c="us" v="Do you wish to send a gift to the Rider [%s]?"/>
+    <m c="vn" v="Gửi quà tặng đến tay đua [%s] ?"/>
+    <m c="ru" v="Послать подарок гонщику [%s]?"/>
+    <m c="id" v="Ingin memberi hadiah kepada Rider [%s]?"/>
+    <m c="th" v="จะส่งของขวัญให้แก่ %s ใช่ไหม"/>
+  </k>
+</StringBag>

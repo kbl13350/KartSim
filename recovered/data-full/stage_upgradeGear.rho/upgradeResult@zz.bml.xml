@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="150 0 0 0" alphaBlend="true">
+  <ImageBoard name="success" leftTopWH="0 0 1600 120" align="center" adjust="0 -10" alphaBlend="true" image="upgradeBg1" visible="false">
+    <Label name="successStr" windowSize="100 30" adjust="0 15" align="bottom;center" textAlign="center" text="#sb(upgradeSuccess)" textRender="outline16" textColor="255 119 92 4" textColor2="255 254 227 4" alphaBlend="true" enable="false"/>
+  </ImageBoard>
+  <ImageBoard name="fail" leftTopWH="0 0 1600 120" align="center" adjust="0 -8" alphaBlend="true" image="upgradeBg2" visible="false">
+    <Label name="failStr" windowSize="100 30" adjust="0 15" align="bottom;center" textAlign="center" text="#sb(upgradeFail)" textRender="outline16" textColor="255 180 212 246" textColor2="black" alphaBlend="true" enable="false"/>
+  </ImageBoard>
+  <TextButton name="okButton" windowSize="132 40" adjust="0 100" align="center" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+</Panel>

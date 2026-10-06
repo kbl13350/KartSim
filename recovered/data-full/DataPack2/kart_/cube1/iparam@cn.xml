@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'   
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.3'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.071'
+	UseTransformBooster='true'
+
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-350'
+	DriftMaxGauge = '-500'
+
+	EngineSound='cotton7'
+	BoosterBlur='true'
+	EnvMap='true'
+
+	TransAccelFactor='1.7'
+
+	StartBoosterTimeSpeed='1200'           
+	StartForwardAccelFactorSpeed = '1.25' 
+	TransformTime='700'               
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zerosub'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zeroplus'
+	BoosterType3='zeroplus'
+
+
+	Port0='mod2a'
+	Port1='mod2b'
+
+	FirePort0='mod2c'
+	FirePort1='mod2d'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 170 220'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '43'
+	DescStability ='41'
+	DescEngineGrade='1.2'
+	DescCornering='10'
+	DescEnchantCap = '30'
+
+/>
+
+<!--중국 러브 박스카 Z7+ 121101 커플 가샤폰 -->

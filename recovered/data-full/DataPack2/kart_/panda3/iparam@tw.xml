@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+
+	ForwardAccelForce='105.0'
+	BackwardAccelForce='95.0'
+	DragFactor='-0.05'
+	SteerConstraint='1.7'
+	DriftEscapeForce='220'
+	CornerDrawFactor='0.047'
+	BoosterBlur='true'
+	EngineSound='pro'
+	DescBalance= '25'
+	DescStability ='28'
+	DescEngineGrade='1'
+	DescCornering='1'
+	DescEnchantCap = '20'
+/>
+<!-- 로봇 판다 PRO  대만-->

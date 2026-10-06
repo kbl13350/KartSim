@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowSize="1296 743">
+  <ImageBoard name="promiseRewardWnd" image="returnUser_popup_2" alphaBlend="true" visible="false">
+    <ImageBoard windowSize="516 140" align="left" adjust="652 -10" image="returnUser_info1" alphaBlend="true">
+      <ColorLabel windowSize="350 30" align="center" adjust="75 -20" text="#sb(promiseInfo5)" textRender="bold16" textColor="255 42 55 80" textAlign="left"/>
+      <ColorLabel windowSize="350 30" align="center" adjust="70 3" text="#sb(promiseInfo6)" textRender="bold14" textColor="255 105 121 151" textAlign="left"/>
+      <ImageBoard windowSize="272 24" align="center" adjust="30 26" image="returnUser_info_daybg" alphaBlend="true" enable="false">
+        <Label name="promisePeriod" windowSize="272 24" align="center" text="#sb(promisePeriod)" textRender="bold14" textColor="white" textAlign="center"/>
+      </ImageBoard>
+    </ImageBoard>
+    <Container name="rewardAttachdWnd" leftTopTex="30 170"/>
+    <Container name="specialAttachWnd" leftTopTex="1080 224">
+      <Label windowSize="180 20" align="top" adjust="2 -60" text="#sb(promiseSpecialReward)" textColor="255 42 55 80" textRender="bold16" textAlign="center"/>
+      <Panel windowSize="128 20" align="top" adjust="26 -30" texture="returnUser_dayBg" alphaBlend="true" alphaTest="true">
+        <ColorLabel name="loginDaysLbl" windowSize="128 20" align="center" textRender="bold14" textColor="255 255 255 255" textAlign="center"/>
+      </Panel>
+    </Container>
+  </ImageBoard>
+  <ImageBoard name="promiseSelectWnd" image="returnUser_popup_1" alphaBlend="true" visible="false">
+    <ImageBoard windowSize="516 140" align="left" adjust="652 -10" image="returnUser_info1" alphaBlend="true">
+      <ColorLabel windowSize="350 30" align="center" adjust="70 -15" text="#sb(promiseInfo3)" textRender="bold16" textColor="255 42 55 80" textAlign="left"/>
+      <ColorLabel windowSize="350 30" align="center" adjust="70 10" text="#sb(promiseInfo4)" textRender="bold14" textColor="255 105 121 151" textAlign="left"/>
+    </ImageBoard>
+    <Container windowSize="1240 570" adjust="0 146">
+      <ColorLabel leftTopWH="0 18 1240 20" text="#sb(promiseInfo1)" textColor="255 95 53 0" textRender="bold20" textAlign="center"/>
+      <ColorLabel leftTopWH="0 50 1240 20" text="#sb(promiseInfo2)" textColor="255 155 79 40" textRender="bold16" textAlign="center"/>
+      <Window name="promiseType" windowSize="1240 570">
+        <ImageButton name="promiseType8" windowSize="274 262" adjust="-300 -42" align="center" autoLoadImage="returnUser_select_5day_" alphaBlend="true" text="" textColor="255 202 210 220" clickedTextColor="255 202 210 220" overTextColor="255 255 255 255" disabledTextColor="255 102 110 122" textAlign="center" textRender="bold16">
+          <ImageButton name="previewBtn8" windowSize="164 32" adjust="0 145" align="center" autoLoadImage="returnUser_rewardInfoBtn_" alphaBlend="true"/>
+          <ImageBoard name="effectImg" windowSize="274 262" image="returnUser_select_5day_2" alphaBlend="true" visible="false" enable="false"/>
+          <Window name="itemAttachWnd" windowSize="274 262" enable="false"/>
+          <Label name="stockNameLbl" windowSize="200 20" align="center;bottom" adjust="0 20" text="" textColor="255 95 53 0" textRender="bold14" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+          <ImageBoard name="shadowImg" windowSize="274 262" image="returnUser_select_shadow" alphaBlend="true" visible="false" enable="false"/>
+        </ImageButton>
+        <ImageButton name="promiseType15" windowSize="274 262" adjust="0 -42" align="center" autoLoadImage="returnUser_select_10day_" alphaBlend="true">
+          <ImageButton name="previewBtn15" windowSize="164 32" adjust="0 145" align="center" autoLoadImage="returnUser_rewardInfoBtn_" alphaBlend="true"/>
+          <ImageBoard name="effectImg" windowSize="274 262" image="returnUser_select_10day_2" alphaBlend="true" visible="false" enable="false"/>
+          <Window name="itemAttachWnd" windowSize="274 262" enable="false"/>
+          <Label name="stockNameLbl" windowSize="200 20" align="center;bottom" adjust="0 20" text="" textColor="255 95 53 0" textRender="bold14" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+          <ImageBoard name="shadowImg" windowSize="274 262" image="returnUser_select_shadow" alphaBlend="true" visible="false" enable="false"/>
+        </ImageButton>
+        <ImageButton name="promiseType20" windowSize="274 262" adjust="300 -42" align="center" autoLoadImage="returnUser_select_15day_" alphaBlend="true">
+          <ImageButton name="previewBtn20" windowSize="164 32" adjust="0 145" align="center" autoLoadImage="returnUser_rewardInfoBtn_" alphaBlend="true"/>
+          <ImageBoard name="effectImg" windowSize="274 262" image="returnUser_select_15day_2" alphaBlend="true" visible="false" enable="false"/>
+          <Window name="itemAttachWnd" windowSize="274 262" enable="false"/>
+          <Label name="stockNameLbl" windowSize="200 20" align="center;bottom" adjust="0 20" text="" textColor="255 95 53 0" textRender="bold14" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+          <ImageBoard name="shadowImg" windowSize="274 262" image="returnUser_select_shadow" alphaBlend="true" visible="false" enable="false"/>
+        </ImageButton>
+      </Window>
+      <ImageButton name="promiseSelectTypeBtn" windowSize="264 64" adjust="0 200" align="center" autoLoadImage="returnUser_selectBtn_" alphaBlend="true" textAlign="center" textColor="255 119 92 4" clickedTextColor="255 95 97 16" overTextColor="255 196 172 0" disabledTextColor="255 92 92 92" textRender="bold20" text="#sb(promiseSelectOpenDays)"/>
+      <Window name="promiseRewardAttachWnd" visible="true"/>
+    </Container>
+  </ImageBoard>
+  <ImageBoard windowSize="286 74" align="left" adjust="30 10" image="titleText_dizniPromise" alphaBlend="true"/>
+</Container>

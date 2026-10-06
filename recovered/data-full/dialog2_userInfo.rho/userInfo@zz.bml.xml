@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="180 0 0 0" alphaBlend="true">
+  <Window name="totalSet" leftTopWH="0 0 1094 630" align="center" visible="true">
+    <CaptionWindow leftTopWH="0 0 1094 630" frame="CaptionDialog" caption="#sb(riderInfo)" setCloseButton="exit" align="center">
+      <ImageBoard name="vipBg" windowSize="1080 519" adjust="0 -1" image="vip_riderBG" align="hcenter" alphaBlend="false" visible="true">
+        <Container name="userInfo1" leftTopWH="0 0 310 520">
+          <Window name="tempShopPreview" leftTopWH="0 0 540 460" depthBias="-100"/>
+          <Panel name="glove" windowSize="32 32" adjust="9 9" uvRect="0 0 32 32" alphaBlend="true" alphaTest="true"/>
+          <Label name="level" windowSize="50 20" adjust="45 16" text="Lv.99" textRender="bold16" textColor="255 174 244 46"/>
+          <Label name="rid" windowSize="275 20" adjust="100 16" textRender="bold16" textColor="white"/>
+          <Window name="markBox" leftTopWH="406 9 114 34" alphaBlend="true" depthBias="200">
+            <Panel name="markBg1" adjust="0 0" texture="riderInfo_emblemSlotBg" windowSize="36 36" alphaBlend="true" alphaTest="true"/>
+            <Panel name="markBg2" adjust="40 0" texture="riderInfo_emblemSlotBg" windowSize="36 36" alphaBlend="true" alphaTest="true"/>
+            <Panel name="markBg3" adjust="80 0" texture="riderInfo_emblemSlotBg" windowSize="36 36" alphaBlend="true" alphaTest="true"/>
+            <Panel name="clubMark" adjust="0 0" windowSize="36 36" alphaBlend="true" alphaTest="true" visible="false">
+              <Panel name="clubFrame" windowSize="24 24" align="center" alphaBlend="true" alphaTest="true" visible="false" enable="false"/>
+            </Panel>
+            <Panel name="mainEmblem1" adjust="40 0" windowSize="36 36" alphaBlend="true" alphaTest="true" visible="false"/>
+            <Panel name="mainEmblem2" adjust="80 0" windowSize="36 36" alphaBlend="true" alphaTest="true" visible="false"/>
+          </Window>
+          <Container name="gageSector" windowRect="0 380 540 430">
+            <Panel name="grayBoxBg" leftTopWH="18 39 504 94" texture="riderInfo_introduceBg" alphaBlend="true" visible="true"/>
+            <Container name="rp" leftTopWH="0 10 540 40" visible="false">
+              <Window windowSize="60 16" adjust="-12 -10">
+                <Label name="static" windowSize="58 20" adjust="17 14" text="#sb(rp)" textAlign="center" textColor="white" textRender="outline16"/>
+                <Panel name="rpBar_begin" windowRect="31 10 34 26" texture="exp_0%_" uvRect="0 0 6 16" alphaBlend="true" alphaTest="true" visible="false"/>
+                <Panel name="rpBar" windowRect="34 10 530 26" texture="exp_0%_" uvRect="3 0 81 16" alphaBlend="true" alphaTest="true" visible="false"/>
+                <Panel name="rpBar_end" windowRect="530 10 535 26" texture="exp_0%_" uvRect="81 0 84 16" alphaBlend="true" alphaTest="true" visible="false"/>
+                <Panel name="gauge_begin" windowRect="28 40 31 46" texture="vip_rpBar" uvRect="1 0 2 6" alphaBlend="true" alphaTest="true" visible="true"/>
+                <Panel name="gauge_mid" windowRect="31 40 330 46" texture="vip_rpBar" uvRect="6 0 14 6" alphaBlend="true" alphaTest="true" visible="true"/>
+                <Panel name="gauge_end" windowRect="330 40 535 46" texture="vip_rpBar" uvRect="501 502 6" alphaBlend="true" alphaTest="true" visible="true"/>
+                <Label name="gauge_Label" windowSize="200 16" adjust="334 14" text="1234567/11234567" textAlign="right" textColor="white" textColor2="255 42 55 80" textRender="outline16"/>
+              </Window>
+            </Container>
+            <Container name="pr" leftTopWH="23 8 310 28" visible="false">
+              <Panel name="gauge" leftTopWH="-8 -19 302 46" texture="rankRP_img_barBG" alphaBlend="true"/>
+              <Label name="static" windowSize="58 20" adjust="0 6" text="#sb(pr)" textAlign="center" textColor="255 255 222 0" textRender="bold"/>
+              <Panel name="gauge_mid" leftTopWH="57 8 232 16" texture="rankRP_img_barGuage" alphaBlend="true"/>
+              <Panel name="gauge_light" leftTopWH="53 4 9 24" texture="rankRP_img_barLinght" alphaBlend="true"/>
+              <Label name="gauge_Label" windowSize="200 16" adjust="88 -16" text="1234567/11234567" textAlign="right" textColor="255 255 222 0" textColor2="255 40 16 6" textRender="outline"/>
+              <Label name="gauge_Percent" windowSize="93 16" adjust="56 8" text="1234567/11234567" textAlign="center" textColor="white" textColor2="black" textRender="outline"/>
+              <Panel name="curRankMark" windowSize="80 80" adjust="0 -78" align="left" alphaBlend="true" visible="false"/>
+              <Panel name="rankUserGlove" windowSize="32 32" adjust="75 -26" align="left" alphaBlend="true" visible="false"/>
+            </Container>
+            <Window name="grayBox" leftTopWH="18 50 504 82">
+              <Label name="static" windowRect="5 0 20 20" text="#sb(riderCreateTime)  " textRender="bold" visible="false"/>
+              <Label name="createTime" windowRect="110 0 120 20" text="2005년 1월1일" visible="false"/>
+              <Label name="static" windowRect="5 20 20 40" text="#sb(Guild)  " textRender="bold" visible="false"/>
+              <Label name="guild" windowRect="110 20 120 40" text="2005년 1월1일" visible="false"/>
+              <Label name="static" leftTopWH="10 6 50 20" text="#sb(myIntro)  " textRender="bold14" textColor="white"/>
+              <Label name="intro" leftTopWH="0 30 504 52" text="#sb(defaultIntro)" textRender="bold14" textColor="255 207 221 240" textAlign="center" multiLine="true" autoWrap="true"/>
+              <Edit name="introEdit" leftTopWH="2 33 500 48" frame="DefaultEdit" maxChar="50" visible="false" textRender="bold14" multiLine="true"/>
+              <ImageButton name="editIntroBtn" leftTopTex="472 3" autoLoadImage="vip_modify" alphaBlend="true" alphaTest="true"/>
+            </Window>
+          </Container>
+        </Container>
+        <Window name="userInfo1Right" leftTopWH="540 0 540 520">
+          <Label name="myGrade" windowSize="540 20" adjust="0 2" text="#sb(premiumGrade)" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+          <Panel name="gradeEmblem" windowSize="158 160" adjust="42 34" alphaBlend="true"/>
+          <Panel name="gradeString" windowSize="116 68" adjust="254 60" alphaBlend="true"/>
+          <CharPanel name="vipPoint" leftTopWH="337 150 25 33" texture="vip_num" rightAlign="true" alphaBlend="true" fontSize="25 33" spaceOffset="0" fontStr="1234567890-" text="-" speedTick="5" enable="true" visible="true">
+            <ColorLabel windowSize="20 20" adjust="27 3" textColor="white" textColor2="255 42 55 80" autoWrap="false" vertAutoSizing="true" multiLine="true" text="#sb(pointUnit)" textRender="outline20"/>
+          </CharPanel>
+          <ImageButton name="vipInfo" leftTopTex="391 158" autoLoadImage="mg_0" alphaBlend="true" alphaTest="true" altText="#sb(detail)"/>
+          <Label windowSize="540 20" adjust="0 190" text="#sb(updateDayNotice)" textAlign="center" textRender="bold14" textColor="255 42 55 80"/>
+          <Window name="vipGradeInfo" windowSize="540 304" adjust="0 216">
+            <Window windowSize="540 50" adjust="0 0">
+              <Panel windowSize="38 38" adjust="28 7" texture="vip_mini_grade5@zz" alphaBlend="true"/>
+              <Label leftTopWH="76 14 50 20" text="#sb(vip)" textColor="255 254 227 4" textRender="outline16" textColor2="255 95 76 16"/>
+              <Label name="vipPointGradeLbl5" leftTopWH="150 14 150 20" text="" textColor="255 221 232 255" textRender="bold16"/>
+              <Panel windowSize="5 5" adjust="290 11" texture="vip_dot" alphaBlend="true">
+                <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc0)" textColor="255 179 195 228" textRender="bold14"/>
+                <Panel windowSize="30 17" adjust="135 -5" texture="vip_numBg_5" alphaBlend="true">
+                  <ColorLabel name="koinPerUnitLbl5" leftTopWH="0 0 30 17" text="0" align="center" adjust="0 -2" textAlign="center" textRender="bold14" textColor="255 255 255 4"/>
+                  <Label leftTopWH="36 -2 150 20" text="#sb(vipBenefitDesc1)" textColor="255 179 195 228" textRender="bold14"/>
+                </Panel>
+              </Panel>
+              <Panel windowSize="5 5" adjust="290 32" texture="vip_dot" alphaBlend="true">
+                <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc2_5)" textColor="255 179 195 228" textRender="bold14"/>
+              </Panel>
+              <ImageBoard name="vipSelect5" windowSize="539 50" adjust="0 0" image="vip_here" align="center" alphaBlend="false" visible="false"/>
+            </Window>
+            <Window windowSize="540 50" adjust="0 50">
+              <Panel windowSize="38 38" adjust="28 7" texture="vip_mini_grade4@zz" alphaBlend="true"/>
+              <Label leftTopWH="76 14 50 20" text="#sb(platinum)" textColor="255 226 17 212" textRender="bold16"/>
+              <Label name="vipPointGradeLbl4" leftTopWH="150 14 150 20" text="" textColor="255 221 232 255" textRender="bold16"/>
+              <Panel windowSize="5 5" adjust="290 11" texture="vip_dot" alphaBlend="true">
+                <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc0)" textColor="255 179 195 228" textRender="bold14"/>
+                <Panel windowSize="30 17" adjust="135 -5" texture="vip_numBg_4" alphaBlend="true">
+                  <ColorLabel name="koinPerUnitLbl4" leftTopWH="0 0 30 17" text="0" align="center" adjust="0 -2" textAlign="center" textRender="bold14" textColor="255 255 255 255"/>
+                  <Label leftTopWH="36 -2 150 20" text="#sb(vipBenefitDesc1)" textColor="255 179 195 228" textRender="bold14"/>
+                </Panel>
+              </Panel>
+              <Panel windowSize="5 5" adjust="290 32" texture="vip_dot" alphaBlend="true">
+                <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc2_4)" textColor="255 179 195 228" textRender="bold14"/>
+              </Panel>
+              <ImageBoard name="vipSelect4" windowSize="539 50" adjust="0 0" image="vip_here" align="center" alphaBlend="false" visible="false"/>
+            </Window>
+            <Window windowSize="540 50" adjust="0 100">
+              <Panel windowSize="38 38" adjust="28 7" texture="vip_mini_grade3@zz" alphaBlend="true"/>
+              <Label leftTopWH="76 14 50 20" text="#sb(gold)" textColor="255 218 164 0" textRender="bold16"/>
+              <Label name="vipPointGradeLbl3" leftTopWH="150 14 150 20" text="" textColor="255 221 232 255" textRender="bold16"/>
+              <Panel windowSize="5 5" adjust="290 22" texture="vip_dot" alphaBlend="true">
+                <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc0)" textColor="255 179 195 228" textRender="bold14"/>
+                <Panel windowSize="30 17" adjust="135 -5" texture="vip_numBg_3" alphaBlend="true">
+                  <ColorLabel name="koinPerUnitLbl3" leftTopWH="0 0 30 17" text="0" align="center" adjust="0 -2" textAlign="center" textRender="bold14" textColor="255 255 255 255"/>
+                  <Label leftTopWH="36 -2 150 20" text="#sb(vipBenefitDesc1)" textColor="255 179 195 228" textRender="bold14"/>
+                </Panel>
+              </Panel>
+              <ImageBoard name="vipSelect3" windowSize="539 50" adjust="0 0" image="vip_here" align="center" alphaBlend="false" visible="false"/>
+            </Window>
+            <Window windowSize="540 50" adjust="0 150">
+              <Panel windowSize="38 38" adjust="28 7" texture="vip_mini_grade2@zz" alphaBlend="true"/>
+              <Label leftTopWH="76 14 50 20" text="#sb(silver)" textColor="255 138 155 186" textRender="bold16"/>
+              <Label name="vipPointGradeLbl2" leftTopWH="150 14 150 20" text="" textColor="255 221 232 255" textRender="bold16"/>
+              <Panel windowSize="5 5" adjust="290 22" texture="vip_dot" alphaBlend="true">
+                <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc0)" textColor="255 179 195 228" textRender="bold14"/>
+                <Panel windowSize="30 17" adjust="135 -5" texture="vip_numBg_2" alphaBlend="true">
+                  <ColorLabel name="koinPerUnitLbl2" leftTopWH="0 0 30 17" text="0" align="center" adjust="0 -2" textAlign="center" textRender="bold14" textColor="255 255 255 255"/>
+                  <Label leftTopWH="36 -2 150 20" text="#sb(vipBenefitDesc1)" textColor="255 179 195 228" textRender="bold14"/>
+                </Panel>
+              </Panel>
+              <ImageBoard name="vipSelect2" windowSize="539 50" adjust="0 0" image="vip_here" align="center" alphaBlend="false" visible="false"/>
+            </Window>
+            <Window windowSize="540 50" adjust="0 200">
+              <Panel windowSize="38 38" adjust="28 7" texture="vip_mini_grade1@zz" alphaBlend="true"/>
+              <Label leftTopWH="76 14 50 20" text="#sb(family)" textColor="255 95 192 0" textRender="bold16"/>
+              <Label name="vipPointGradeLbl1" leftTopWH="150 14 150 20" text="" textColor="255 221 232 255" textRender="bold16"/>
+              <Panel windowSize="5 5" adjust="290 22" texture="vip_dot" alphaBlend="true">
+                <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc0)" textColor="255 179 195 228" textRender="bold14"/>
+                <Panel windowSize="30 17" adjust="135 -5" texture="vip_numBg_1" alphaBlend="true">
+                  <ColorLabel name="koinPerUnitLbl1" leftTopWH="0 0 30 17" text="0" align="center" adjust="0 -2" textAlign="center" textRender="bold14" textColor="255 255 255 255"/>
+                  <Label leftTopWH="36 -2 150 20" text="#sb(vipBenefitDesc1)" textColor="255 179 195 228" textRender="bold14"/>
+                </Panel>
+              </Panel>
+              <ImageBoard name="vipSelect1" windowSize="539 50" adjust="0 0" image="vip_here" align="center" alphaBlend="false" visible="false"/>
+            </Window>
+            <Window windowSize="540 50" adjust="0 250">
+              <Panel windowSize="38 38" adjust="28 7" texture="vip_mini_grade0@zz" alphaBlend="true"/>
+              <Label leftTopWH="76 14 50 20" text="#sb(normal)" textColor="255 135 141 146" textRender="bold16"/>
+              <Label name="vipPointGradeLbl0" leftTopWH="150 14 150 20" text="" textColor="255 221 232 255" textRender="bold16"/>
+              <Panel windowSize="5 5" adjust="290 22" texture="vip_dot" alphaBlend="true">
+                <Label leftTopWH="14 -8 150 20" text="#sb(vipBenefitDesc0)" textColor="255 179 195 228" textRender="bold14"/>
+                <Panel windowSize="30 17" adjust="135 -5" texture="vip_numBg_0" alphaBlend="true">
+                  <ColorLabel name="koinPerUnitLbl0" leftTopWH="0 0 30 17" text="0" align="center" adjust="0 -2" textAlign="center" textRender="bold14" textColor="255 255 255 255"/>
+                  <Label leftTopWH="36 -2 150 20" text="#sb(vipBenefitDesc1)" textColor="255 179 195 228" textRender="bold14"/>
+                </Panel>
+              </Panel>
+              <ImageBoard name="vipSelect0" windowSize="539 50" adjust="0 0" image="vip_here" align="center" alphaBlend="false" visible="false"/>
+            </Window>
+          </Window>
+        </Window>
+      </ImageBoard>
+      <ImageButton name="licenseInfo" leftTopTex="443 51" autoLoadImage="vip_LicenseBtn@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+      <ImageButton name="coupleInfo" leftTopTex="370 51" autoLoadImage="vip_coupleBtn" alphaBlend="true" alphaTest="true" visible="false"/>
+      <Panel name="itemTier" leftTopTex="266 130" texture="등급전_레전드" alphaBlend="true" alphaTest="true" visible="false">
+        <Label name="itemTierText" leftTopWH=" 0 49 100 20" text="아마추어1" textColor="255 255 255 255" textColor2="255 35 8 18" textRender="outline" textAlign="center" align="hcenter"/>
+      </Panel>
+      <Panel name="speedTier" leftTopTex="266 200" texture="등급전_레전드" alphaBlend="true" alphaTest="true" visible="false">
+        <Label name="speedTierText" leftTopWH=" 0 49 100 20" text="프로1" textColor="255 255 255 255" textColor2="255 35 8 18" textRender="outline" textAlign="center" align="hcenter"/>
+      </Panel>
+      <Container name="careerInfo" leftTopWH=" 7 51 154 24" visible="false">
+        <Panel name="myCareerPointBg" leftTopWH="0 0 154 24" texture="riderInfo_pointBg" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Label name="myCareerPoint" leftTopWH=" 2 2 150 20" text="0" textAlign="right;vcenter" textRender="bold16" textColor="white"/>
+      </Container>
+      <Container name="userInfoButtons" leftTopWH="0 518 1080 66" visible="true" align="hcenter">
+        <TextButton name="joinRoom" text="#sb(playTogether)" leftTopWH="332 0 94 40" align="vcenter" textRender="bold16" disabledTextColor="255 190 190 190"/>
+        <TextButton name="inviteRoom" text="#sb(doInvite)" leftTopWH="332 0 94 40" align="vcenter" textRender="bold16" disabledTextColor="255 190 190 190"/>
+        <TextButton name="addFriend" text="#sb(registerFriend)" leftTopWH="434 0 94 40" align="vcenter" textRender="bold16" disabledTextColor="255 190 190 190"/>
+        <TextButton name="joinGarage" text="#sb(gotoMyroom)" leftTopWH="536 0 94 40" align="vcenter" textRender="bold16" disabledTextColor="255 190 190 190"/>
+        <TextButton name="inviteCouple" text="#sb(inviteCouple)" leftTopWH="638 0 94 40" align="vcenter" textRender="bold16" disabledTextColor="255 190 190 190"/>
+      </Container>
+      <Panel name="versusModeInfo" leftTopWH="3 -80 325 44" texture="1vs1@zz" alphaBlend="true" visible="false">
+        <Container name="ranked" leftTopWH="0 0 325 44" adjust="0 2" align="vcenter" visible="false">
+          <Container windowSize="64 20" adjust="92 1" align="vcenter">
+            <Panel name="versusGrade" windowSize="20 20" texture="" alphaBlend="true" visible="false"/>
+          </Container>
+          <Label name="rankedVp" windowSize="160 28" adjust="114 1" text="#sb(versusMode_infoWait)" textColor="white" textColor2="255 35 8 18" textRender="outline" textAlign="right|vcenter" align="vcenter" autoWrap="true"/>
+          <ImageButton name="detailInfo" leftTopWH="283 1 30 30" align="vcenter" autoLoadImage="magnifying-glass_0" alphaBlend="true" alphaTest="true" altText="#sb(detail)" visible="false"/>
+        </Container>
+        <Container name="unranked" leftTopWH="0 0 325 44" visible="false">
+          <Label name="unrankedVp" windowSize="280 28" adjust="120 4" text="#sb(versusMode_unrankedMsg)" textColor="white" textColor2="255 35 8 18" textRender="outline" textAlign="left" align="vcenter" autoWrap="true" autoSizing="true" vertAutoSizing="true"/>
+        </Container>
+      </Panel>
+    </CaptionWindow>
+    <Container name="userInfo2" visible="false" leftTopWH="546 40 541 519">
+      <ImageBoard name="coupleBg" windowSize="541 519" image="vip_coupleBG" alphaBlend="true" alphaTest="true" visible="true" enable="false"/>
+      <Panel name="coupleBg2" texture="vip_coupleBG_2" windowSize="154 132" adjust="-75 191" alphaBlend="true"/>
+      <Label name="coupleGrade" leftTopWH="253 50 150 30" text="시간등등" textAlign="right" textColor="white" visible="true" textRender="outline16" textColor2="255 42 55 80"/>
+      <Label name="coupleDate" leftTopWH="372 78 150 30" text="시간등등" textAlign="right" textColor="white" visible="true" textRender="outline16" textColor2="255 42 55 80"/>
+      <Window leftTopWH="407 44 150 30">
+        <Panel name="heartBg" windowSize="110 20" adjust="6 10" texture="riderInfo_coupleHeartBG" alphaBlend="true" visible="true"/>
+        <Panel name="heart1" windowSize="18 16" adjust="8 12" texture="vip_coupleGradeIcon" alphaBlend="true" visible="false"/>
+        <Panel name="heart2" windowSize="18 16" adjust="30 12" texture="vip_coupleGradeIcon" alphaBlend="true" visible="false"/>
+        <Panel name="heart3" windowSize="18 16" adjust="52 12" texture="vip_coupleGradeIcon" alphaBlend="true" visible="false"/>
+        <Panel name="heart4" windowSize="18 16" adjust="74 12" texture="vip_coupleGradeIcon" alphaBlend="true" visible="false"/>
+        <Panel name="heart5" windowSize="18 16" adjust="96 12" texture="vip_coupleGradeIcon" alphaBlend="true" visible="false"/>
+      </Window>
+      <ItemWindow name="ringPanel" leftTopWH="-63 190 130 130" itemCategory="card" itemId="30015"/>
+      <Panel name="glove" windowSize="32 32" adjust="10 9" uvRect="0 0 32 32" alphaBlend="true" alphaTest="true"/>
+      <Label name="level" windowSize="50 20" adjust="46 16" text="Lv.99" textRender="bold16" textColor="255 174 244 46"/>
+      <Label name="rid" windowSize="275 20" adjust="101 16" textRender="bold16" textColor="white"/>
+      <Window name="tempShopPreview" leftTopWH="1 0 540 460" depthBias="0"/>
+      <Window name="markBox" leftTopWH="407 9 114 34" alphaBlend="true" depthBias="200">
+        <Panel name="markBg1" adjust="0 0" texture="riderInfo_emblemSlotBg" windowSize="36 36" alphaBlend="true" alphaTest="true"/>
+        <Panel name="markBg2" adjust="40 0" texture="riderInfo_emblemSlotBg" windowSize="36 36" alphaBlend="true" alphaTest="true"/>
+        <Panel name="markBg3" adjust="80 0" texture="riderInfo_emblemSlotBg" windowSize="36 36" alphaBlend="true" alphaTest="true"/>
+        <Panel name="clubMark" adjust="0 0" windowSize="36 36" alphaBlend="true" alphaTest="true" visible="false">
+          <Panel name="clubFrame" windowSize="24 24" align="center" alphaBlend="true" alphaTest="true" visible="false" enable="false"/>
+        </Panel>
+        <Panel name="mainEmblem1" adjust="40 0" windowSize="36 36" alphaBlend="true" alphaTest="true" visible="false"/>
+        <Panel name="mainEmblem2" adjust="80 0" windowSize="36 36" alphaBlend="true" alphaTest="true" visible="false"/>
+      </Window>
+      <Container name="coupleCareerInfo" leftTopWH=" 18 51 154 24" visible="false">
+        <Panel name="myCareerPointBg" leftTopWH="0 0 154 24" texture="riderInfo_pointBg" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Label name="coupleCareerPoint" leftTopWH=" 2 2 150 20" text="0" textAlign="right;vcenter" textRender="bold16" textColor="white"/>
+      </Container>
+      <Container name="gageSector" windowRect="-1 376 540 430">
+        <Panel name="grayBoxBg" leftTopWH="20 39 504 94" texture="riderInfo_introduceBg" alphaBlend="true" visible="true"/>
+        <Container name="rp" leftTopWH="0 10 540 40" visible="false">
+          <Window windowSize="60 16" adjust="-10 -10">
+            <Label name="static" windowSize="58 20" adjust="17 14" text="#sb(rp)" textAlign="center" textColor="white" textRender="outline16"/>
+            <Panel name="rpBar_begin" windowRect="31 10 34 26" texture="exp_0%_" uvRect="0 0 6 16" alphaBlend="true" alphaTest="true" visible="false"/>
+            <Panel name="rpBar" windowRect="34 10 530 26" texture="exp_0%_" uvRect="3 0 81 16" alphaBlend="true" alphaTest="true" visible="false"/>
+            <Panel name="rpBar_end" windowRect="530 10 535 26" texture="exp_0%_" uvRect="81 0 84 16" alphaBlend="true" alphaTest="true" visible="false"/>
+            <Panel name="gauge_begin" windowRect="28 40 31 46" texture="vip_rpBar" uvRect="1 0 4 6" alphaBlend="true" alphaTest="true" visible="true"/>
+            <Panel name="gauge_mid" windowRect="31 40 530 46" texture="vip_rpBar" uvRect="4 0 14 6" alphaBlend="true" alphaTest="true" visible="true"/>
+            <Panel name="gauge_end" windowRect="530 40 535 46" texture="vip_rpBar" uvRect="230 0 234 6" alphaBlend="true" alphaTest="true" visible="true"/>
+            <Label name="gauge_Label" windowSize="200 16" adjust="334 14" text="1234567/11234567" textAlign="right" textColor="white" textColor2="255 42 55 80" textRender="outline16"/>
+          </Window>
+        </Container>
+        <Container name="pr" leftTopWH="23 8 310 28" visible="false">
+          <Panel name="gauge" leftTopWH="-8 -19 302 46" texture="rankRP_img_barBG" alphaBlend="true"/>
+          <Label name="static" windowSize="58 20" adjust="0 6" text="#sb(pr)" textAlign="center" textColor="255 255 222 0" textRender="bold"/>
+          <Panel name="gauge_mid" leftTopWH="57 8 232 16" texture="rankRP_img_barGuage" alphaBlend="true"/>
+          <Panel name="gauge_light" leftTopWH="53 4 9 24" texture="rankRP_img_barLinght" alphaBlend="true"/>
+          <Label name="gauge_Label" windowSize="200 16" adjust="88 -16" text="1234567/11234567" textAlign="right" textColor="255 255 222 0" textColor2="255 40 16 6" textRender="outline"/>
+          <Label name="gauge_Percent" windowSize="93 16" adjust="56 8" text="1234567/11234567" textAlign="center" textColor="white" textColor2="black" textRender="outline"/>
+          <Panel name="curRankMark" windowSize="80 80" adjust="0 -78" align="left" alphaBlend="true" visible="false"/>
+          <Panel name="rankUserGlove" windowSize="32 32" adjust="75 -26" align="left" alphaBlend="true" visible="false"/>
+        </Container>
+        <Window name="grayBox" leftTopWH="18 50 504 82">
+          <Label name="static" windowRect="5 0 20 20" text="#sb(riderCreateTime)  " textRender="bold" visible="false"/>
+          <Label name="createTime" windowRect="110 0 120 20" text="2005년 1월1일" visible="false"/>
+          <Label name="static" windowRect="5 20 20 40" text="#sb(Guild)  " textRender="bold" visible="false"/>
+          <Label name="guild" windowRect="110 20 120 40" text="2005년 1월1일" visible="false"/>
+          <Label name="static" leftTopWH="10 6 50 20" text="#sb(myIntro)  " textRender="bold14" textColor="white"/>
+          <Label name="intro" leftTopWH="0 30 504 52" text="#sb(defaultIntro)" textRender="bold14" textColor="255 207 221 240" textAlign="center" multiLine="true" autoWrap="true"/>
+        </Window>
+      </Container>
+    </Container>
+    <Container name="userRankInfo" visible="false" leftTopWH="313 58 314 390">
+      <Panel name="rankGrade" leftTopTex="0 0" texture="rankRP_img_tooltipBG" alphaBlend="true"/>
+      <Label windowSize="318 24" textAlign="center" adjust="-1 2" text="#sb(rankInfo)" textRender="bold" textColor="255 222 243 255"/>
+      <Window name="grade1" windowSize="100 28" adjust="6 32">
+        <Panel name="curUserGrade" leftTopTex="-3 -5" texture="rankRP_img_rank1" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="151 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="176 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade2" windowSize="100 28" adjust="14 63">
+        <Panel name="curUserGrade" leftTopTex="-11 -8" texture="rankRP_img_rank2" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="151 0 100 28" textAlign="vcenter" text="#sb(rank_grade)" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="177 0 100 28" textAlign="vcenter" text="#sb(rank_gradeInfo)" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade3" windowSize="100 28" adjust="22 94">
+        <Panel name="curUserGrade" leftTopTex="-19 -8" texture="rankRP_img_rank3" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="151 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="176 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade4" windowSize="100 28" adjust="28 125">
+        <Panel name="curUserGrade" leftTopTex="-25 -8" texture="rankRP_img_rank4" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="151 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="176 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade5" windowSize="100 28" adjust="36 156">
+        <Panel name="curUserGrade" leftTopTex="-33 -8" texture="rankRP_img_rank5" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="151 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="176 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade6" windowSize="100 28" adjust="40 187">
+        <Panel name="curUserGrade" leftTopTex="-37 -8" texture="rankRP_img_rank6" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="151 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="176 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade0" windowSize="100 28" adjust="53 218">
+        <Panel name="curUserGrade" leftTopTex="-50 -8" texture="rankRP_img_rank7" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="151 0 100 28" textAlign="vcenter" text="#sb(maxLevelGloveName)" textRender="bold" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Label leftTopWH="0 245 314 24" textAlign="center" text="#sb(rank_dailyUpdateInfo)" textColor="255 153 172 191"/>
+      <Window name="prevRankInfo" leftTopWH="-2 258 159 145">
+        <Label leftTopWH="3 9 159 24" textAlign="center" text="#sb(prevSeason)" textRender="bold" textColor="255 222 243 255"/>
+        <Label name="rankPercentage" leftTopWH="2 107 159 28" textAlign="center" text="-" textColor="white"/>
+        <Panel name="rankMark" windowSize="80 80" adjust="2 2" texture="tempRankMark" align="center" alphaBlend="true" visible="false"/>
+      </Window>
+      <Window name="bestRankInfo" leftTopWH="151 258 159 145">
+        <Label leftTopWH="3 9 159 24" textAlign="center" text="#sb(bestSeason)" textRender="bold" textColor="255 222 243 255"/>
+        <Label name="rankPercentage" leftTopWH="2 107 159 28" textAlign="center" text="-" textColor="white"/>
+        <Panel name="rankMark" windowSize="80 80" adjust="2 2" texture="tempRankMark" align="center" alphaBlend="true" visible="false"/>
+      </Window>
+    </Container>
+  </Window>
+</Panel>

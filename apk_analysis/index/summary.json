@@ -1,0 +1,17 @@
+{
+  "apk": "10040714_com.tencent.tmgp.WePop_a2827207_1.27.2_ausg4b.apk",
+  "apk_sha256": "47407c2489bc3b2e4e2a584cd55e2968311907c5bf97cf250f300f4464f6cc61",
+  "entries_by_category": {
+    "native_library": 110,
+    "other": 611,
+    "unity_bundle": 16250,
+    "audio": 2,
+    "track_bin": 196,
+    "video": 3,
+    "image": 491,
+    "unity_data": 225,
+    "font": 2,
+    "dex": 3
+  },
+  "extracted_count": 930
+}

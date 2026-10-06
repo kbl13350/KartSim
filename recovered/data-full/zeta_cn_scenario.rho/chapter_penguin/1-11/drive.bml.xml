@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <Escape isFixedKart="true" fixedKartId="1539" fixedCharId="1" isFixedChar="true" kartId="1590" characterId="494" colorId="6" dyeId="3" characterName="企小帅">
+    <LevelContent level="0" track="mine_I03" laps="2" ksv="1-11" distance="30" startOffset="-2000"/>
+  </Escape>
+</Root>

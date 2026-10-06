@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.085'
+	SteerConstraint='2.8'
+	CornerDrawFactor='0.076'
+	DriftEscapeForce='2020'
+
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+
+	BoostAccelFactor='1.867'
+	TransAccelFactor='1.867'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+
+	DriftMaxGauge='-1100'
+	NormalBoosterTime='-300'
+	TeamBoosterTime='-600'
+
+	EngineSound='pro'
+
+	BoosterBlur='true'
+
+		DescBalance= '53'
+		DescStability ='51'
+		DescEngineGrade='1'
+		DescCornering='7.5'
+		DescEnchantCap = '31'
+
+
+	BoosterType='plasma1'
+
+
+/>
+<!-- 플라즈마 FT-R / 대만 / 레전드 / 스피드 / 시간의상점 / 2020717 릴리즈 -->

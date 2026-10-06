@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="receiveRewardItem">
+    <m c="kr" v="아이템 받기"/>
+    <m c="cn" v="领取道具"/>
+    <m c="tw" v="領取道具"/>
+  </k>
+  <k n="receiveRewardItemSuccess">
+    <m c="kr" v="아이템 받기 성공"/>
+    <m c="cn" v="成功领取道具"/>
+    <m c="tw" v="領取道具成功"/>
+  </k>
+  <k n="receiveRewardItemSuccessMsg">
+    <m c="kr" v="아이템 받기를 성공 했습니다.|(받은 아이템은 내아이템에서 확인 할 수 있습니다.)"/>
+    <m c="cn" v="已成功领取道具。|（领取的道具可以在我的道具中确认。）"/>
+    <m c="tw" v="已成功領取道具。|(領取的道具可於我的車庫中進行確認。)"/>
+  </k>
+  <k n="receiveRewardItemFail">
+    <m c="kr" v="아이템 받기 실패"/>
+    <m c="cn" v="领取道具失败"/>
+    <m c="tw" v="領取道具失敗"/>
+  </k>
+  <k n="receiveRewardItemFailMsg">
+    <m c="kr" v="아이템 받기를 실패 했습니다.|Code=[%d]"/>
+    <m c="cn" v="领取道具失败。|Code=[%d]"/>
+    <m c="tw" v="領取道具失敗。|Code=[%d]"/>
+  </k>
+  <k n="receivedTime">
+    <m c="kr" v="받은 날짜"/>
+    <m c="cn" v="奖励获得时间"/>
+    <m c="tw" v="領取日期"/>
+  </k>
+  <k n="giftDesc">
+    <m c="kr" v="아이템 설명"/>
+    <m c="cn" v="道具说明"/>
+    <m c="tw" v="道具說明"/>
+  </k>
+  <k n="storageTypeTitle">
+    <m c="kr" v="지급 경로"/>
+    <m c="cn" v="奖励来源"/>
+    <m c="tw" v="發放途徑"/>
+  </k>
+  <k n="storagePeriod">
+    <m c="kr" v="보관 기간"/>
+    <m c="cn" v="保管时间"/>
+    <m c="tw" v="保管時間"/>
+  </k>
+  <k n="storageDay">
+    <m c="kr" v="%d  일"/>
+    <m c="cn" v="%d 天"/>
+    <m c="tw" v="%d 日"/>
+  </k>
+  <k n="receive">
+    <m c="kr" v="받기"/>
+    <m c="cn" v="领取"/>
+    <m c="tw" v="領取"/>
+  </k>
+  <k n="helpMessage">
+    <m c="kr" v="이벤트, 퀘스트 등의 보상 아이템이 임시로 보관되는 공간입니다.|보관된 아이템은 보관 기간이 끝나면 자동으로 삭제되니 그 전에 아이템을 받아 주세요.|더 이상 기간을 늘릴 수 없는 기간제 아이템을 받을 경우, 해당 아이템은 사라집니다."/>
+    <m c="cn" v="临时保管通过活动、任务等获得的奖励道具空间。|保管的道具在保管时间结束后将自动删除，请在到期前领取道具。|领取无法延长期限的时限道具时，该道具将会消失。 "/>
+    <m c="tw" v="暫時保管活動和任務等的獎勵道具的空間。|保管的道具在保管時間結束時，自動會刪除，在被刪除前來領取道具吧。|領取道具時，若時間或數量達上限時，該道具就會消失。 "/>
+  </k>
+  <k n="pageReceive">
+    <m c="kr" v="페이지 받기"/>
+    <m c="cn" v="领取本页道具"/>
+    <m c="tw" v="整頁領取"/>
+  </k>
+  <k n="waitingMessage">
+    <m c="kr" v="잠시만 기다려 주세요."/>
+    <m c="cn" v="请稍等"/>
+    <m c="tw" v="請稍後"/>
+  </k>
+  <k n="receiveWaiting">
+    <m c="kr" v=" [내 아이템]으로 아이템 받는 중..."/>
+    <m c="cn" v="正在领取道具，请稍等。"/>
+    <m c="tw" v="[我的車庫]正在接收該道具..."/>
+  </k>
+  <k n="loadingError">
+    <m c="kr" v="로딩 오류"/>
+    <m c="cn" v="加载错误"/>
+    <m c="tw" v="載入錯誤"/>
+  </k>
+  <k n="tryAgain">
+    <m c="kr" v="다시 시도 해주세요."/>
+    <m c="cn" v="请稍后重试"/>
+    <m c="tw" v="請重新再試一次"/>
+  </k>
+  <k n="rewardMajorType0">
+    <m c="kr" v="플레이 타임"/>
+    <m c="cn" v="游戏时间"/>
+    <m c="tw" v="遊戲時間"/>
+  </k>
+  <k n="rewardMajorType1">
+    <m c="kr" v="접속"/>
+    <m c="cn" v="登录"/>
+    <m c="tw" v="登入"/>
+  </k>
+  <k n="rewardMajorType2">
+    <m c="kr" v="미니게임"/>
+    <m c="cn" v="迷你游戏"/>
+    <m c="tw" v="迷你遊戲"/>
+  </k>
+  <k n="rewardMajorType3">
+    <m c="kr" v="플레이 이벤트"/>
+    <m c="cn" v="游戏活动"/>
+    <m c="tw" v="遊戲活動"/>
+  </k>
+  <k n="rewardMajorType4">
+    <m c="kr" v="퀘스트"/>
+    <m c="cn" v="任务"/>
+    <m c="tw" v="任務"/>
+  </k>
+  <k n="rewardMajorType5">
+    <m c="kr" v="레벨업"/>
+    <m c="cn" v="升级"/>
+    <m c="tw" v="升级"/>
+  </k>
+  <k n="rewardMajorType6">
+    <m c="kr" v="그랑프리"/>
+    <m c="cn" v="GP模式"/>
+    <m c="tw" v="GP賽"/>
+  </k>
+  <k n="rewardMajorType7">
+    <m c="kr" v="1vs1모드"/>
+    <m c="cn" v="1vs1模式"/>
+  </k>
+  <k n="rewardMajorType8">
+    <m c="kr" v="보물상자"/>
+    <m c="cn" v="神秘礼物"/>
+    <m c="tw" v="時間寶箱"/>
+  </k>
+  <k n="rewardMajorType9">
+    <m c="kr" v="클럽 하우스"/>
+    <m c="cn" v="俱乐部基地"/>
+    <m c="tw" v="俱樂部基地"/>
+  </k>
+  <k n="rewardMajorType10">
+    <m c="kr" v="커리어 보상"/>
+    <m c="cn" v="成就奖励"/>
+    <m c="tw" v="成就獎勵"/>
+  </k>
+  <k n="rewardMajorType11">
+    <m c="kr" v="카트 패스"/>
+    <m c="cn" v="跑跑通行证"/>
+    <m c="tw" v="跑跑通行證"/>
+  </k>
+  <k n="rewardMajorType12">
+    <m c="kr" v="연습 타임 어택"/>
+    <m c="cn" v="练习计时赛"/>
+    <m c="tw" v="練習計時賽"/>
+  </k>
+  <k n="rewardMajorType13">
+    <m c="kr" v="등급전"/>
+    <m c="cn" v="等级赛奖励"/>
+    <m c="tw" v="等級賽獎勵"/>
+  </k>
+  <k n="rewardMajorType14">
+    <m c="kr" v="시뮬레이션"/>
+    <m c="cn" v="车队经理人模式"/>
+    <m c="tw" v="模擬"/>
+  </k>
+  <k n="rewardMajorType15">
+    <m c="kr" v="타임 어택 경쟁전"/>
+    <m c="cn" v="竞争排位赛"/>
+  </k>
+  <k n="rewardMajorType16">
+    <m c="kr" v="누적 충전(소비) 이벤트"/>
+    <m c="cn" v="累计充值(消费)活动"/>
+  </k>
+  <k n="rewardMajorType18">
+    <m c="kr" v="요일 모드"/>
+    <m c="cn" v="星期模式"/>
+  </k>
+  <k n="rewardMajorType19">
+    <m c="kr" v="디지니의 소원"/>
+    <m c="cn" v="黑妞的心愿"/>
+  </k>
+  <k n="rewardMajorType20">
+    <m c="kr" v="디지니와 접속 약속"/>
+    <m c="cn" v="黑妞的约定"/>
+  </k>
+  <k n="rewardMajorType21">
+    <m c="kr" v="라이더 가이드"/>
+    <m c="cn" v="车手引导"/>
+  </k>
+  <k n="rewardMinorType0">
+    <m c="kr" v="플레이타임 누적"/>
+    <m c="cn" v="游戏时间累计"/>
+    <m c="tw" v="累積遊戲時間"/>
+  </k>
+  <k n="rewardMinorType1">
+    <m c="kr" v="플레이타임 반복"/>
+    <m c="cn" v="游戏时间重复"/>
+    <m c="tw" v="累積上線活動"/>
+  </k>
+  <k n="rewardMinorType2">
+    <m c="kr" v="쇼타임"/>
+    <m c="cn" v="showtime"/>
+    <m c="tw" v="SHOWTIME"/>
+  </k>
+  <k n="rewardMinorType3">
+    <m c="kr" v="로그인 이벤트"/>
+    <m c="cn" v="登录活动"/>
+    <m c="tw" v="登入活動"/>
+  </k>
+  <k n="rewardMinorType4">
+    <m c="kr" v="미션 출석체크"/>
+    <m c="cn" v="签到任务"/>
+    <m c="tw" v="出席任務"/>
+  </k>
+  <k n="rewardMinorType5">
+    <m c="kr" v="가위바위보"/>
+    <m c="cn" v="猜拳游戏"/>
+    <m c="tw" v="剪刀石頭布"/>
+  </k>
+  <k n="rewardMinorType6">
+    <m c="kr" v="붐힐마블"/>
+    <m c="cn" v="大富翁"/>
+    <m c="tw" v="大富翁"/>
+  </k>
+  <k n="rewardMinorType7">
+    <m c="kr" v="빙고"/>
+    <m c="cn" v="Bingo"/>
+    <m c="tw" v="賓果"/>
+  </k>
+  <k n="rewardMinorType8">
+    <m c="kr" v="낚시"/>
+    <m c="cn" v="钓鱼"/>
+    <m c="tw" v="釣魚"/>
+  </k>
+  <k n="rewardMinorType9">
+    <m c="kr" v="유물조사단"/>
+    <m c="cn" v="古迹探险"/>
+    <m c="tw" v="遺跡寶藏調查團"/>
+  </k>
+  <k n="rewardMinorType10">
+    <m c="kr" v="OX 대박 트랙"/>
+    <m c="cn" v="OX夺金赛道"/>
+    <m c="tw" v="OX 勁爆跑道"/>
+  </k>
+  <k n="rewardMinorType11">
+    <m c="kr" v="대박 트랙"/>
+    <m c="cn" v="夺金赛道"/>
+    <m c="tw" v="勁爆跑道"/>
+  </k>
+  <k n="rewardMinorType12">
+    <m c="kr" v="대박 보스전"/>
+    <m c="cn" v="欢乐BOSS战"/>
+    <m c="tw" v="渾沌魔王戰"/>
+  </k>
+  <k n="rewardMinorType13">
+    <m c="kr" v="레이싱 미션"/>
+    <m c="cn" v="赛车任务"/>
+    <m c="tw" v="賽車挑戰"/>
+  </k>
+  <k n="rewardMinorType14">
+    <m c="kr" v="퀘스트"/>
+    <m c="cn" v="任务"/>
+    <m c="tw" v="任務"/>
+  </k>
+  <k n="rewardMinorType15">
+    <m c="kr" v="블록캐치"/>
+    <m c="cn" v="像素娃娃机"/>
+    <m c="tw" v="積木快手"/>
+  </k>
+  <k n="rewardMinorType16">
+    <m c="kr" v="그랑프리"/>
+    <m c="cn" v="GP模式"/>
+    <m c="tw" v="GP賽"/>
+  </k>
+  <k n="rewardMinorType17">
+    <m c="kr" v="레벨업"/>
+    <m c="cn" v="升级"/>
+    <m c="tw" v="升级"/>
+  </k>
+  <k n="rewardMinorType18">
+    <m c="kr" v="럭키팡"/>
+    <m c="cn" v="天降财神"/>
+    <m c="tw" v="Lucky Pang"/>
+  </k>
+  <k n="rewardMinorType19">
+    <m c="kr" v="합성체험"/>
+    <m c="cn" v="活动合成"/>
+    <m c="tw" v="合成"/>
+  </k>
+  <k n="rewardMinorType20">
+    <m c="kr" v="튜닝"/>
+    <m c="cn" v="升级活动奖励"/>
+    <m c="tw" v="改造活動獎勵"/>
+  </k>
+  <k n="rewardMinorType21">
+    <m c="kr" v="1vs1모드"/>
+    <m c="cn" v="1vs1模式"/>
+  </k>
+  <k n="rewardMinorType22">
+    <m c="kr" v="보물상자"/>
+    <m c="cn" v="神秘礼物"/>
+    <m c="tw" v="時間寶箱"/>
+  </k>
+  <k n="rewardMinorType23">
+    <m c="kr" v="레이싱 센터"/>
+    <m c="cn" v="赛事中心"/>
+    <m c="tw" v="賽事中心"/>
+  </k>
+  <k n="rewardMinorType24">
+    <m c="kr" v="커리어 보상"/>
+    <m c="cn" v="成就奖励"/>
+    <m c="tw" v="成就獎勵"/>
+  </k>
+  <k n="rewardMinorType25">
+    <m c="kr" v="일반 패스"/>
+    <m c="cn" v="普通通行证"/>
+    <m c="tw" v="一般通行證"/>
+  </k>
+  <k n="rewardMinorType26">
+    <m c="kr" v="보너스 패스"/>
+    <m c="cn" v="通行证福利任务"/>
+    <m c="tw" v="Bonus通行證"/>
+  </k>
+  <k n="rewardMinorType27">
+    <m c="kr" v="PC방 패스"/>
+    <m c="cn" v="通行证网吧任务"/>
+    <m c="tw" v="網咖通行證"/>
+  </k>
+  <k n="rewardMinorType28">
+    <m c="kr" v="프리미엄 패스"/>
+    <m c="cn" v="豪华通行证"/>
+    <m c="tw" v="高級通行證"/>
+  </k>
+  <k n="rewardMinorType29">
+    <m c="kr" v="히트팡팡"/>
+    <m c="cn" v="消消乐"/>
+    <m c="tw" v="快打高手"/>
+  </k>
+  <k n="rewardMinorType30">
+    <m c="kr" v="일반 패스"/>
+    <m c="cn" v="一般通行证"/>
+    <m c="tw" v="一般通行證"/>
+  </k>
+  <k n="rewardMinorType31">
+    <m c="kr" v="이벤트 패스"/>
+    <m c="cn" v="活动通行证"/>
+    <m c="tw" v="活動通行證"/>
+  </k>
+  <k n="rewardMinorType32">
+    <m c="kr" v="PC방 패스"/>
+    <m c="cn" v="网吧通行证"/>
+    <m c="tw" v="網咖通行證"/>
+  </k>
+  <k n="rewardMinorType33">
+    <m c="kr" v="프리미엄 패스"/>
+    <m c="cn" v="豪华通行证"/>
+    <m c="tw" v="高級通行證"/>
+  </k>
+  <k n="rewardMinorType34">
+    <m c="kr" v="럭셔리 패스"/>
+    <m c="cn" v="奢华通行证"/>
+    <m c="tw" v="華麗通行證"/>
+  </k>
+  <k n="rewardMinorType35">
+    <m c="kr" v="스페셜 패스"/>
+    <m c="cn" v="特殊通行证"/>
+    <m c="tw" v="特殊通行證"/>
+  </k>
+  <k n="rewardMinorType36">
+    <m c="kr" v="연습 목표"/>
+    <m c="cn" v="练习目标"/>
+    <m c="tw" v="練習目標"/>
+  </k>
+  <k n="rewardMinorType37">
+    <m c="kr" v="트랙 대결"/>
+    <m c="cn" v="赛道对决"/>
+    <m c="tw" v="賽道對決"/>
+  </k>
+  <k n="rewardMinorType38">
+    <m c="kr" v="등급전 보상"/>
+    <m c="cn" v="等级赛奖励"/>
+    <m c="tw" v="等級賽獎勵"/>
+  </k>
+  <k n="rewardMinorType39">
+    <m c="kr" v="시뮬레이션 보상"/>
+    <m c="cn" v="车队经理人模式奖励"/>
+    <m c="tw" v="模擬模式獎勵"/>
+  </k>
+  <k n="rewardMinorType40">
+    <m c="kr" v="타임 어택 경쟁전 "/>
+    <m c="cn" v="竞争排位赛"/>
+  </k>
+  <k n="rewardMinorType41">
+    <m c="kr" v="누적 충전(소비) 이벤트"/>
+    <m c="cn" v="累计充值(消费)活动"/>
+  </k>
+  <k n="rewardMinorType43">
+    <m c="kr" v="요일 모드"/>
+    <m c="cn" v="星期模式"/>
+  </k>
+  <k n="rewardMinorType44">
+    <m c="kr" v="요일 모드"/>
+    <m c="cn" v="星期模式"/>
+  </k>
+  <k n="rewardMinorType45">
+    <m c="kr" v="디지니의 소원"/>
+    <m c="cn" v="黑妞的心愿"/>
+  </k>
+  <k n="rewardMinorType46">
+    <m c="kr" v="디지니와 접속 약속"/>
+    <m c="cn" v="黑妞的约定"/>
+  </k>
+  <k n="rewardMinorType47">
+    <m c="kr" v="라이더 가이드"/>
+    <m c="cn" v="车手引导"/>
+  </k>
+</StringBag>

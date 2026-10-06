@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="conditions" windowSize="490 25" adjust="0 0" alphaBlend="true">
+  <Label name="lblCondition" windowSize="490 25" adjust="29 0" textRender="bold14" textColor="black" align="vcenter">
+    <Panel name="dotEnable" windowSize="16 16" adjust="-22 4" texture="img_pointPosible" alphaBlend="true"/>
+    <Panel name="dotDisable" windowSize="16 16" adjust="-22 4" texture="img_pointImposible" alphaBlend="true" visible="false"/>
+  </Label>
+</Window>

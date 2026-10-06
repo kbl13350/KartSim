@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BoomhillExchangeList closeNoticeDay='5' resetHour='6' resetWeeklyDay='thursday'>
+		<exchangeTab koinItemId='3' tabTitle='皮蛋兑换所' />
+		<exchangeTab koinItemId='5' tabTitle='葱头兑换所'>
+				<season id='1' seasonTitle='葱头兑换所' openPeriod='2024-12-05T06:00:00~*'>
+						<item stockId='28986' needKoinCount='30' exchangeCount='50' />
+						<item stockId='28982' needKoinCount='50' exchangeCount='320' />
+						<item stockId='28990' needKoinCount='100' exchangeCount='6' resetCycle='weekly' />
+						<item stockId='28992' needKoinCount='150' exchangeCount='6' resetCycle='weekly' />
+						<item stockId='29079' needKoinCount='60' exchangeCount='45' resetCycle='weekly' />
+						<item stockId='1071' needKoinCount='10' />
+				</season>
+		</exchangeTab>
+		<exchangeTab koinItemId='6' tabTitle='VIP兑换所'>
+				<season id='2' seasonTitle='VIP兑换所' openPeriod='2026-07-30T06:00:00~2027-01-28T05:59:59'>
+						<item stockId='28168' needKoinCount='100' exchangeCount='6' />
+						<item stockId='10778' needKoinCount='15' exchangeCount='6' />
+						<item stockId='10782' needKoinCount='10' exchangeCount='6' />
+						<item stockId='10779' needKoinCount='10' exchangeCount='6' />
+						<item stockId='10786' needKoinCount='2' exchangeCount='6' />
+						<item stockId='10784' needKoinCount='2' exchangeCount='6' />
+						<item stockId='10785' needKoinCount='2' exchangeCount='6' />
+						<item stockId='10783' needKoinCount='2' />
+						<item stockId='23319' needKoinCount='20' exchangeCount='6' />
+						<item stockId='29178' needKoinCount='20' exchangeCount='6' />
+						<item stockId='30907' needKoinCount='25' exchangeCount='6' />
+						<item stockId='31133' needKoinCount='300' exchangeCount='6' />
+						<item stockId='7847' needKoinCount='50' />
+						<item stockId='7855' needKoinCount='100' exchangeCount='6' />
+						<item stockId='31134' needKoinCount='10' />
+						<item stockId='29101' needKoinCount='5' exchangeCount='1' resetCycle='daily' />
+						<item stockId='28990' needKoinCount='20' exchangeCount='1' resetCycle='daily' />
+						<item stockId='28992' needKoinCount='30' exchangeCount='1' resetCycle='daily' />
+						<item stockId='29241' needKoinCount='500' exchangeCount='6' />
+						<item stockId='30132' needKoinCount='1500' exchangeCount='6' />
+						<item stockId='28501' needKoinCount='1' />
+						<item stockId='28502' needKoinCount='1' />
+						<item stockId='28503' needKoinCount='1' />
+				</season>
+		</exchangeTab>
+</BoomhillExchangeList>

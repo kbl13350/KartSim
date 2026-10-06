@@ -1,0 +1,512 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chattingScript>
+	<campaign type='1'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='Groar~!'/>
+			<scripts emotion='talk' msg='Akan tunjukkan kekuatan teman-teman binatang!'/>
+			<scripts emotion='smile' msg='Benar-benar pemula yang tidak tahu apa-apa!'/>
+			<scripts emotion='wink' msg='Jangan cemas tidak akan susah'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Aum~!'/>
+			<scripts emotion='talk' msg='Akan tunjukkan kehebatan Hoe!'/>
+			<scripts emotion='smile' msg='Tidak tahu diri,tidak pernah taku!'/>
+			<scripts emotion='wink' msg='Sudah makan belum?'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Kruk Kruk~'/>
+			<scripts emotion='talk' msg='Ciat!Saat nya tunjukkan kehebatan Uru?'/>
+			<scripts emotion='smile' msg='Saya berani kok kalau soal lari~'/>
+			<scripts emotion='wink' msg='Hati-hati yo!'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Plak~Plak'/>
+			<scripts emotion='talk' msg='Akan saya tunjukkan pose kemenangan Fu yang indah!'/>
+			<scripts emotion='smile' msg='Yakin kamu bukan pemula?'/>
+			<scripts emotion='wink' msg='Kelihatannya terlalu gampang~'/>
+		</slot>
+	</campaign>
+	<campaign type='2'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='Pernah dengar cerita kami?'/>
+			<scripts emotion='talk' msg='Ayo tunjukkan kekuatan grup Retire Man'/>
+			<scripts emotion='smile' msg='No Mercry'/>
+			<scripts emotion='wink' msg='Apa mengalah aja battle pertama?'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Retire Man No.2!'/>
+			<scripts emotion='talk' msg='Perampok dalam kota bukan hanya kata-kata!'/>
+			<scripts emotion='smile' msg='Hati-Hati!jangan sampai terluka!'/>
+			<scripts emotion='wink' msg='Cobalah berdoa?'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Retire Man No.3!'/>
+			<scripts emotion='talk' msg='Akan tunjukkan kemampuan pembalap sejati!'/>
+			<scripts emotion='smile' msg='Akan membuat kamu menangis!'/>
+			<scripts emotion='wink' msg='Saya berharap kamu punya waktu yang banyak'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Apa saya Retire Man No.4?'/>
+			<scripts emotion='talk' msg='Apa yang harus saya tunjukkan?'/>
+			<scripts emotion='smile' msg='Saya juga pasti akan menunjukkan sesuatu'/>
+			<scripts emotion='wink' msg='Fakta bahwa saya juga pemula itu rahasia!'/>
+		</slot>
+	</campaign>
+	<campaign type='3'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='Aku adalah dewa emas Godius.'/>
+			<scripts emotion='talk' msg='Mau menantang aku…'/>
+			<scripts emotion='smile' msg='Orang-orang lemah.'/>
+			<scripts emotion='wink' msg='Akan aku ampuni kalian yang lemah'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Akan aku tunjukkan magic Et le Feu'/>
+			<scripts emotion='talk' msg='Hormat untuk Godius~!'/>
+			<scripts emotion='smile' msg='Aku tertawa sendiri melihat penampilan kalian~'/>
+			<scripts emotion='wink' msg='Mungkin akan dimaafkan jika memberi hormat ke Godius..'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Aku adalah Pemburu Harta karun Borris Jacob!'/>
+			<scripts emotion='talk' msg='Apa kamu punya sesuatu yang dapat menghasilkan uang?'/>
+			<scripts emotion='smile' msg='Tampaknya aku tidak perlu maju?'/>
+			<scripts emotion='wink' msg='Cepat selesaikan dulu aku mau tidur lagi'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Aku adalah Pemburu Harta karun Bono Jacob!'/>
+			<scripts emotion='talk' msg='Untuk apa kalian menantang kami?'/>
+			<scripts emotion='smile' msg='Tidak akan ada pengecualian!'/>
+			<scripts emotion='wink' msg='Punya pengalaman balapan?'/>
+		</slot>
+	</campaign>
+
+	<campaign type='4'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='Akan tunjukkan kekuatan naga legenda!'/>
+			<scripts emotion='talk' msg='Aku adalah pembalap hebat dari Shangai Rig!'/>
+			<scripts emotion='smile' msg='Kami adalah pembalap hebat dari cina'/>
+			<scripts emotion='wink' msg='Jangan takut sekarang'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Ciat!Ciat!Ciat!'/>
+			<scripts emotion='talk' msg='Aku adalah buang Great Wall Shaming!'/>
+			<scripts emotion='smile' msg='Yahoo~!Mau aku tunjukkan kemampuan kungfu?'/>
+			<scripts emotion='wink' msg='Mungkin boleh menyerah sekali.'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Aku akan marah jika meremehkan aku!'/>
+			<scripts emotion='talk' msg='Aku adalah jagoan drama beijing Jindaru!'/>
+			<scripts emotion='smile' msg='Ayo kita balapan senang-senang!'/>
+			<scripts emotion='wink' msg='Tolong jangan kasar karena aku masih muda~.'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Ada batasnya juga untuk keterlaluan!'/>
+			<scripts emotion='talk' msg='Aku adalah jendral Hantao penjaga Qin Shi!'/>
+			<scripts emotion='smile' msg='Hahahah~.kalian lucu sekali'/>
+			<scripts emotion='wink' msg='Aku penyayang~'/>
+		</slot>
+	</campaign>
+	<campaign type='5'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='Aku adalah doctor yang terkenal Libajofu!'/>
+			<scripts emotion='talk' msg='Akan aku tunjukkan kekuatan ilmu terkini!'/>
+			<scripts emotion='smile' msg='Dasar pemula!Kalian tahu ilum alam?'/>
+			<scripts emotion='wink' msg='Dasar pemula!kalian mau aku upgrade kart kalian menjadi yang terbaru?'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Aku adalah ilumwan space yang tercantik Reine'/>
+			<scripts emotion='talk' msg='Mempunyai ilum yang banyak seperti kecantikan aku.'/>
+			<scripts emotion='smile' msg='Ups?Aku cantik?'/>
+			<scripts emotion='wink' msg='Aku malu jika kamu memandang aku seperti itu ~^^*'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Aku adalah juara kompetisi space Sparky!'/>
+			<scripts emotion='talk' msg='Akan aku kasih tahu siapa yang juara di universe!'/>
+			<scripts emotion='smile' msg='Bagaimana?sudah mulai takut?'/>
+			<scripts emotion='wink' msg='Akan aku buat semua retire!!!'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Jangan lari setelah melihat kemampuan aku yang hebat.'/>
+			<scripts emotion='talk' msg='Jangan mimpi menjadi juara jika masih ada Twinky'/>
+			<scripts emotion='smile' msg='Twinky terlalu keren~!'/>
+			<scripts emotion='wink' msg='Bagus!Ayo kita balapan!'/>
+		</slot>
+	</campaign>
+	<campaign type='6'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='Coba..lihat kebaikan kamu?'/>
+			<scripts emotion='talk' msg='Halo~Aku adalah santa .HoHoHo!'/>
+			<scripts emotion='smile' msg='Merry Christmas~!'/>
+			<scripts emotion='wink' msg='Sudah mulai senang~.HoHoHo'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Sibuk sekali jika sudah natal.'/>
+			<scripts emotion='talk' msg='Halo~.Aku adalah Rudolph'/>
+			<scripts emotion='smile' msg='Merry Christmas~!'/>
+			<scripts emotion='wink' msg='Tidak ingin tahu kenapa hidung aku merah?'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Apakah akan turun salju natal ini?'/>
+			<scripts emotion='talk' msg='Halo~.Aku adalah Doner'/>
+			<scripts emotion='smile' msg='Merry Christmas~!'/>
+			<scripts emotion='wink' msg='Seringkah kamu berbuat baik selama ini?'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Mau balapan yang menyenangkan~?!'/>
+			<scripts emotion='talk' msg='Halo~.Aku adalah Prance'/>
+			<scripts emotion='smile' msg='Merry Christmas~!'/>
+			<scripts emotion='wink' msg='Aku adalah rusa yang tercepat!'/>
+		</slot>
+	</campaign>
+
+	<campaign type='7'> <!-- 다오 -->
+		<slot number='1'>
+			<scripts emotion='angry' msg='띠리리! 띠리리!'/>
+			<scripts emotion='talk' msg='나는 로봇 천하무적 로봇 다오!'/>			
+			<scripts emotion='smile' msg='하! 하! 하!'/>
+			<scripts emotion='wink' msg='사! 랑! 해!'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='어리다고 놀리지 말아요!'/>
+			<scripts emotion='talk' msg='안녕 난 에띠야~.'/>
+			<scripts emotion='smile' msg='나는 누구보다 카트에 대해 해박한 지식을 가지고 있지.'/>
+			<scripts emotion='wink' msg='헤헤~ 그렇게 칭찬해주니까 고마운데?'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='배고파요! 배고파!'/>
+			<scripts emotion='talk' msg='안녕 난 케피라고 해~.'/>
+			<scripts emotion='smile' msg='먹을걸 주면 이번판에서 져줄 수도 있어~'/>
+			<scripts emotion='wink' msg='내 윙크를 한번 받아볼테야?'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='얏보면 큰코 다칠거에요!'/>
+			<scripts emotion='talk' msg='안녕 난 디지니야~ ♡'/>
+			<scripts emotion='smile' msg='어머! 그렇게 자꾸 쳐다보면 부끄러워~♡'/>
+			<scripts emotion='wink' msg='자 한번 저와 같이 달려보시겠어요?'/>
+		</slot>
+	</campaign>
+
+	<campaign type='8'>	<!-- 배찌 -->
+		<slot number='1'>
+			<scripts emotion='angry' msg='삐비빅! 삐비빅!'/>
+			<scripts emotion='talk' msg='나는 최첨단 기술로 만들어진 로봇 배찌!!'/>			
+			<scripts emotion='smile' msg='흐! 흐! 흥!'/>
+			<scripts emotion='wink' msg='아! 아! 앙!'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='기다려! 아직 카트 정비가 끝나지 않았다고!'/>
+			<scripts emotion='talk' msg='안녕 카트가 고장나면 나에게 연락하렴~.'/>
+			<scripts emotion='smile' msg='그 정도 카트로 우리랑 상대가 되겠어?'/>
+			<scripts emotion='wink' msg='레이싱은 과학이야!'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='우니! 우니!'/>
+			<scripts emotion='talk' msg='아아앙~'/>
+			<scripts emotion='smile' msg='헤헤헷~'/>
+			<scripts emotion='wink' msg='우우웅?'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='머야! 이 매너 없는 사람들은!'/>
+			<scripts emotion='talk' msg='꼬마들아~ 안녕~. 난 마리드라고 해~.'/>
+			<scripts emotion='smile' msg='어디 감히 마리드에게 도전을~!'/>
+			<scripts emotion='wink' msg='오~ 당신은 먼가 기품이 있어보이네요?'/>
+		</slot>
+	</campaign>
+
+	<campaign type='9'>	<!-- 대저택 -->
+		<slot number='1'>
+			<scripts emotion='angry' msg='Menantang aku!Rasakan kepahitannya!'/>
+			<scripts emotion='talk' msg='Hello.Aku adalah penerus keluarga Louis Louis Alma.'/>
+			<scripts emotion='smile' msg='Hahaha!'/>
+			<scripts emotion='wink' msg='Sudah terharu oleh kehebatan aku?'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Cepat!Sebentar lagi waktu makan!'/>
+			<scripts emotion='talk' msg='Ingin makan masakan yang enak?'/>
+			<scripts emotion='smile' msg='Aku jago balapan juga seperti jago masak.'/>
+			<scripts emotion='wink' msg='Sepertinya ada bau yang enak!'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Haiz!ups!Bagaimana kamu bisa berkata seperti itu!'/>
+			<scripts emotion='talk' msg='Hello~Aku adalah Dona yang imut dari Castle!'/>
+			<scripts emotion='smile' msg='Aku cantik dan imut kan?'/>
+			<scripts emotion='wink' msg='Haiz~Malu.'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Piririk!Mau melihat!'/>
+			<scripts emotion='talk' msg='Piririk!Aku adalah robot taman Castle.'/>
+			<scripts emotion='smile' msg='Senangnya bisa balapan bersama~.'/>
+			<scripts emotion='wink' msg='Apakah aku sudah boleh menunjukkan kemampuan aku?'/>
+		</slot>
+	</campaign>
+
+	<campaign type='10'>	<!-- 로봇다오팀 -->
+		<slot number='1'>
+			<scripts emotion='angry' msg='Bip Bip Bip!'/>
+			<scripts emotion='talk' msg='Aku Robot Dao yang tak terkalahkan!'/>
+			<scripts emotion='smile' msg='Ha!Ha!Ha!'/>
+			<scripts emotion='wink' msg='Aku!Sayang!Kamu!'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Bip Bip Bip!'/>
+			<scripts emotion='talk' msg='Aku Robot Dao yang tak terkalahkan!'/>
+			<scripts emotion='smile' msg='Ha!Ha!Ha!'/>
+			<scripts emotion='wink' msg='Aku!Sayang!Kamu!'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Bip Bip Bip!'/>
+			<scripts emotion='talk' msg='Aku Robot Dao yang tak terkalahkan!'/>
+			<scripts emotion='smile' msg='Ha!Ha!Ha!'/>
+			<scripts emotion='wink' msg='Aku!Sayang!Kamu!'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Bip Bip Bip!'/>
+			<scripts emotion='talk' msg='Aku Robot Dao yang tak terkalahkan!'/>
+			<scripts emotion='smile' msg='Ha!Ha!Ha!'/>
+			<scripts emotion='wink' msg='Aku!Sayang!Kamu!'/>
+		</slot>
+	</campaign>
+	<campaign type='11'>	<!-- 로봇배찌팀 -->
+		<slot number='1'>
+			<scripts emotion='angry' msg='Bip! Bip Bip !'/>
+			<scripts emotion='talk' msg='Aku adalah Robot Bazzi yang dibuat dengan teknik tinggi.'/>
+			<scripts emotion='smile' msg='Hu! Hu! Hung!'/>
+			<scripts emotion='wink' msg='Ah!Ah!Ah!'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Bip! Bip Bip !'/>
+			<scripts emotion='talk' msg='Aku adalah Robot Bazzi yang dibuat dengan teknik tinggi.'/>
+			<scripts emotion='smile' msg='Hu! Hu! Hung!'/>
+			<scripts emotion='wink' msg='Ah!Ah!Ah!'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Bip! Bip Bip !'/>
+			<scripts emotion='talk' msg='Aku adalah Robot Bazzi yang dibuat dengan teknik tinggi.'/>
+			<scripts emotion='smile' msg='Hu! Hu! Hung!'/>
+			<scripts emotion='wink' msg='Ah!Ah!Ah!'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Bip! Bip Bip !'/>
+			<scripts emotion='talk' msg='Aku adalah Robot Bazzi yang dibuat dengan teknik tinggi.'/>
+			<scripts emotion='smile' msg='Hu! Hu! Hung!'/>
+			<scripts emotion='wink' msg='Ah!Ah!Ah!'/>
+		</slot>
+	</campaign>
+	<campaign type='12'><!-- 해적 -->
+		<slot number='1'>
+			<scripts emotion='angry' msg='Aku adalah kaptin pirate Lodumani!'/>
+			<scripts emotion='talk' msg='Akan aku tunjukkan kekuatan pirate!'/>
+			<scripts emotion='smile' msg='Akan membuat semua retire!'/>
+			<scripts emotion='wink' msg='Serang~!Lodumani Pirate!!!'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Aku adalah Tutu pirate dari Lodumani!'/>
+			<scripts emotion='talk' msg='Dasar pemula!Mau macam-macam dengan aku Tutu?!'/>
+			<scripts emotion='smile' msg='Kelihatan kasihan sudah terlihat ketakutan~'/>
+			<scripts emotion='wink' msg='Boleh mulai menggunakan kekuatan?'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Aku adalah anak pirate Moby yang berani~!'/>
+			<scripts emotion='talk' msg='Akan aku tunjukkan harga diri dan keberanian pirate!'/>
+			<scripts emotion='smile' msg='Suatu saat nanti aku akan menjadi kaptin yang hebat seperti Lodumani~!'/>
+			<scripts emotion='wink' msg='Demi kejayaan Lodumani Pirate~!!'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Aku adalah pirate yang berani dari Lodumani Pirate!'/>
+			<scripts emotion='talk' msg='Ayo berikan kemenangan kepada kaptin Lodumani!!!'/>
+			<scripts emotion='smile' msg='Tidak ada kata mundur dari pirate Lodumani!'/>
+			<scripts emotion='wink' msg='Ayo maju ikuti Lodumani!Maju!'/>
+		</slot>
+	</campaign>
+	<campaign type='13'><!-- 유령 -->
+		<slot number='1'>
+			<scripts emotion='angry' msg='Aku adalah penerus dari keluarga dracula terkenal'/>
+			<scripts emotion='talk' msg='Aku tidak suka bau bawang!'/>
+			<scripts emotion='smile' msg='Aku tidak suka salib!'/>
+			<scripts emotion='wink' msg='Akan aku tunjukkan ketakutan sesungguhnya!'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='I&apos;m De..Mon'/>
+			<scripts emotion='talk' msg='Ketakutan,Putus asa'/>
+			<scripts emotion='smile' msg='Hidup…Gelap..'/>
+			<scripts emotion='wink' msg='Ghost…Team….Ketakutan!'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Ghost…Team….Ketakutan!'/>
+			<scripts emotion='talk' msg='Aku pasti dibutuhkan di kuburan umum yang gelap'/>
+			<scripts emotion='smile' msg='Mau aku buat kamu kaget setengah mati?'/>
+			<scripts emotion='wink' msg='Akan aku tunjukkan ketakutan dari Ghost Team'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Aku adalah Franken yang menakutkan!'/>
+			<scripts emotion='talk' msg='Aduh bagaimana!Ada baut yang lepas!'/>
+			<scripts emotion='smile' msg='Jangan sampai bikin aku marah!'/>
+			<scripts emotion='wink' msg='Akan aku tunjukkan ketakutan dari Ghost Team'/>
+		</slot>
+	</campaign>
+	<campaign type='14'>
+		<slot number='1'>
+			<scripts emotion='angry'	msg='Siapa Dao sebenarnya?'/>                 
+			<scripts emotion='talk'		msg='Hero Dao mengendarai motor'/>     
+			<scripts emotion='smile'	msg='Neo suka pinjam motor'/>         
+			<scripts emotion='wink'	msg='Hehe.Sudah seperti hero sekarang?'/>            
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry'	msg='Gaya sekali pakai Helm..'/>         
+			<scripts emotion='talk'		msg='Jubahnya terlalu panjang'/>      
+			<scripts emotion='smile'	msg='Hero Dao yang asli hanya '/>  
+			<scripts emotion='wink'	msg='Kamu datang untuk menangkapku'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry'	msg='Dimana Lodumani?'/>  
+			<scripts emotion='talk'		msg='Siapa Hero dao yang asli? hehe'/>                    
+			<scripts emotion='smile'	msg='Kamu tahu syarat jadi Hero?'/>                
+			<scripts emotion='wink'	msg='Ciaat! Akulah yang terkuat!'/>                
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry'	 msg='Jadi ingat waktu BoomHill hancur'/>   
+			<scripts emotion='talk'		 msg='Ingin terlihat seperti Dizni!'/>         
+			<scripts emotion='smile'	 msg='Semua memanggil '/>   
+			<scripts emotion='wink'	 msg='Tidak suka pemalas!'/>                   
+		</slot>
+	</campaign>
+	<campaign type='15'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='Akan aku tunjukkan balapan yang indah!'/>
+			<scripts emotion='talk' msg='Akan aku tunjukkan kecepatan tertinggi!'/>
+			<scripts emotion='smile' msg='Tin~Tin~TinTin.'/>
+			<scripts emotion='wink' msg='Akan aku tunjukkan kekuatan Crazy Biker Team'/>		
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='Suatu saat akan menjadi ketua!'/>
+			<scripts emotion='talk' msg='Cykey yang tidak tahu apa-apa!'/>
+			<scripts emotion='smile' msg='Ikuti belakang aku yang benar!'/>
+			<scripts emotion='wink' msg='Boleh aku tunjukkan kemampuan yang dulu?'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='Akan aku tunjukkan kemampuan rider asli!!'/>
+			<scripts emotion='talk' msg='Aku percayya ketua Sonz!'/>
+			<scripts emotion='smile' msg='Akan aku membuat semua retire!!!'/>
+			<scripts emotion='wink' msg='Lari yang cepat!!!'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='(Barmer)Ayo Kakak Cepat!!!'/>
+			<scripts emotion='talk' msg='Mau aku tunjukkan kemampuannya?'/>
+			<scripts emotion='smile' msg='Tin~Tin~TinTin.'/>
+			<scripts emotion='wink' msg='Aku adalah satu-satunya cewek di Crazy Biker Team'/>
+		</slot>
+	</campaign>
+	<!--
+	<campaign type='14'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='으르렁~!'/>
+			<scripts emotion='talk' msg='동물 친구들의 힘을 보여주겠다능!'/>
+			<scripts emotion='talk' msg='니가 아무리 잘해도 친구추가는 안해줄거라능!'/>
+			<scripts emotion='smile' msg='빌빌거리는 모습이 초짜가 분명하다능!'/>
+			<scripts emotion='wink' msg='살살해줄테니 너무 긴장하지말라능'/>
+			<scripts emotion='wink' msg='그냥 옆방이나 가서 달리라능~'/>
+			<scripts emotion='talk' msg='너희들 Hard로 하면 우리 못 이길껄?ㅋㅋ'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='어디.. 얼마나 착한일을 했나 볼까?'/>
+			<scripts emotion='talk' msg='안녕하세요~. 나는 산타랍니다. 호호호!'/>			
+			<scripts emotion='smile' msg='메리크리스마스~!'/>
+			<scripts emotion='wink' msg='벌써부터 두근두근 하군요~. 호호호'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='전설 속 용의 라이더들의 힘을 보여주마!'/>
+			<scripts emotion='talk' msg='나는 상해 최강의 라이더 릭!'/>			
+			<scripts emotion='smile' msg='우리는 중국 최강의 라이더들이다!'/>
+			<scripts emotion='wink' msg='우리는 중국 최강의 라이더들이다!'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='나에게 도전하다니! 쓴 맛을 보여주지!'/>
+			<scripts emotion='talk' msg='안녕하세요. 전 루이 가문의 정통 계승자 알마에요.'/>			
+			<scripts emotion='smile' msg='하하하! '/>
+			<scripts emotion='wink' msg='제 매력에 벌써 빠져버리신건가요?'/>
+		</slot>
+	</campaign>
+	<campaign type='15'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='으르렁~!'/>
+			<scripts emotion='talk' msg='동물 친구들의 힘을 보여주겠다능!'/>
+			<scripts emotion='talk' msg='니가 아무리 잘해도 친구추가는 안해줄거라능!'/>
+			<scripts emotion='smile' msg='빌빌거리는 모습이 초짜가 분명하다능!'/>
+			<scripts emotion='wink' msg='살살해줄테니 너무 긴장하지말라능'/>
+			<scripts emotion='wink' msg='그냥 옆방이나 가서 달리라능~'/>
+			<scripts emotion='talk' msg='너희들 Hard로 하면 우리 못 이길껄?ㅋㅋ'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='우리에 대한 소문은 들어봤겠지?'/>
+			<scripts emotion='talk' msg='리타이어맨 일당의 강력한 힘을 보여주지!'/>
+			<scripts emotion='smile' msg='우리에게 자비란 없다!'/>
+			<scripts emotion='wink' msg='첫판은 져 줄까나?'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='전설 속 용의 라이더들의 힘을 보여주마!'/>
+			<scripts emotion='talk' msg='나는 상해 최강의 라이더 릭!'/>			
+			<scripts emotion='smile' msg='우리는 중국 최강의 라이더들이다!'/>
+			<scripts emotion='wink' msg='우리는 중국 최강의 라이더들이다!'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='나는 위대한 해적선장 로두마니!'/>
+			<scripts emotion='talk' msg='로두마니 해적단의 무시무시한 힘을 보여주지!'/>			
+			<scripts emotion='smile' msg='모두 다 리타이어 시켜주마!'/>
+			<scripts emotion='wink' msg='돌격~! 로두마니 해적단!!!'/>
+		</slot>
+	</campaign>
+	<campaign type='16'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='어디.. 얼마나 착한일을 했나 볼까?'/>
+			<scripts emotion='talk' msg='안녕하세요~. 나는 산타랍니다. 호호호!'/>			
+			<scripts emotion='smile' msg='메리크리스마스~!'/>
+			<scripts emotion='wink' msg='벌써부터 두근두근 하군요~. 호호호'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='나는 황금의 신 고디우스다.'/>
+			<scripts emotion='talk' msg='나에게 거역하려 하는가…'/>
+			<scripts emotion='smile' msg='어리석은 자들..'/>
+			<scripts emotion='wink' msg='불쌍한 너희들에게 자비를 베풀어주마.'/>
+			<scripts emotion='talk' msg='Hard로는 우리를 이길 수 없을껄?'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='나에게 도전하다니! 쓴 맛을 보여주지!'/>
+			<scripts emotion='talk' msg='안녕하세요. 전 루이 가문의 정통 계승자 알마에요.'/>			
+			<scripts emotion='smile' msg='하하하! '/>
+			<scripts emotion='wink' msg='제 매력에 벌써 빠져버리신건가요?'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='나는 위대한 해적선장 로두마니!'/>
+			<scripts emotion='talk' msg='로두마니 해적단의 무시무시한 힘을 보여주지!'/>			
+			<scripts emotion='smile' msg='모두 다 리타이어 시켜주마!'/>
+			<scripts emotion='wink' msg='돌격~! 로두마니 해적단!!!'/>
+		</slot>
+	</campaign>
+	<campaign type='17'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='나는 황금의 신 고디우스다.'/>
+			<scripts emotion='talk' msg='나에게 거역하려 하는가…'/>
+			<scripts emotion='smile' msg='어리석은 자들..'/>
+			<scripts emotion='wink' msg='불쌍한 너희들에게 자비를 베풀어주마.'/>
+			<scripts emotion='talk' msg='Hard로는 우리를 이길 수 없을껄?'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='나에게 도전하다니! 쓴 맛을 보여주지!'/>
+			<scripts emotion='talk' msg='안녕하세요. 전 루이 가문의 정통 계승자 알마에요.'/>			
+			<scripts emotion='smile' msg='하하하! '/>
+			<scripts emotion='wink' msg='제 매력에 벌써 빠져버리신건가요?'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='나는 위대한 해적선장 로두마니!'/>
+			<scripts emotion='talk' msg='로두마니 해적단의 무시무시한 힘을 보여주지!'/>			
+			<scripts emotion='smile' msg='모두 다 리타이어 시켜주마!'/>
+			<scripts emotion='wink' msg='돌격~! 로두마니 해적단!!!'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='우리에 대한 소문은 들어봤겠지?'/>
+			<scripts emotion='talk' msg='리타이어맨 일당의 강력한 힘을 보여주지!'/>
+			<scripts emotion='smile' msg='우리에게 자비란 없다!'/>
+			<scripts emotion='wink' msg='첫판은 져 줄까나?'/>
+		</slot>
+	</campaign>
+	-->
+</chattingScript>

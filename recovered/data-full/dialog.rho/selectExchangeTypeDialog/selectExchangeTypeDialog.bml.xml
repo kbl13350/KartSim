@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" caption="#sb(selectExchangeType)" windowRect="0 0 786 527" textRender="outline" align="center" setCloseButton="cancel">
+    <ImageBoard image="img_banner@zz" leftTopWH="-7 4 764 472" alphaBlend="true" enable="false"/>
+    <ImageButton name="normalExchange" leftTopWH="0 260 212 82" adjust="38 0" align="left" autoLoadImage="btn_normalExchange_@zz" alphaBlend="true"/>
+    <ImageButton name="periodExchange" leftTopWH="0 260 212 82" adjust="38 0" align="right" autoLoadImage="btn_periodExchange_@zz" alphaBlend="true"/>
+  </CaptionWindow>
+</Panel>

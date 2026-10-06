@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Minimap name="observerMinimap" leftTopWH="0 0 250 250" adjust="50 50" align="right;bottom">
+  <Label name="alignDesc" windowRect="5 5 30 15" text="" textColor="white" textRender="outline16"/>
+</Minimap>

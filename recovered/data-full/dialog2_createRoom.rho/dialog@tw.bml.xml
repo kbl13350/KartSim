@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="createRoomContainer" windowRect="0 0 800 600">
+  <CaptionWindow name="방만들기" frame="CaptionDialog" caption="#sb(createRoomCaption)" captionPos="0 1" captionColor="black" windowRect="0 0 338 228" align="center" visible="false" enable="false" setCloseButton="cancelRoom">
+    <Container windowRect="0 10 303 143">
+      <Panel name="static" windowRect="4 7 17 18" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+      <Label name="gamestyleText" windowRect="21 6 22 15" text="#sb(selectGame)"/>
+      <Panel name="static" windowRect="4 32 17 43" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+      <Label name="static2" windowRect="21 31 22 40" text="#sb(roomName)"/>
+      <Panel name="static" windowRect="4 57 17 68" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+      <Label name="static3" windowRect="21 56 22 65" text="#sb(roomPeopleNumber)"/>
+      <Panel name="static" windowRect="4 82 17 93" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+      <Label name="static14" windowRect="21 81 22 90" text="#sb(privateRoom)"/>
+      <PlaneCheckButton name="isPassword" windowRect="73 79 89 95"/>
+      <Edit name="roomName" windowRect="73 26 298 46" text="" maxChar="18" marginRect="4 0 4 0"/>
+      <Label name="static4" windowRect="115 81 135 93" text="#sb(password)"/>
+      <Edit name="roomPassword" windowRect="185 76 298 96" text="" passEdit="true" maxChar="12"/>
+      <Panel name="sep" windowRect="101 76 102 96" color="255 79 80 84"/>
+      <Panel name="static_gs" windowRect="4 107 17 118" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+      <Label name="static_gs2" windowRect="21 106 22 109" text="#sb(gameSpeed)"/>
+      <TextButton name="createRoom" windowSize="72 22" align="left;bottom" adjust="40 -20" text="#sb(ok)" altTextRender="outline"/>
+      <TextButton name="cancelRoom" windowSize="72 22" align="right;bottom" adjust="40 -20" text="#sb(cancel)" altTextRender="outline"/>
+      <ComboBox name="gameSpeed" windowRect="185 101 298 121" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="83"/>
+      <ComboBox name="joinNum" windowRect="242 51 298 71" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="145" scrollBarVisible="false" visible="false">
+        <Skip>
+          <TextButton name="item1" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="2"/>
+          <TextButton name="item2" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="3"/>
+          <TextButton name="item3" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="4"/>
+          <TextButton name="item4" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="5"/>
+          <TextButton name="item5" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="6"/>
+          <TextButton name="item6" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="7"/>
+          <TextButton name="item7" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="8"/>
+        </Skip>
+      </ComboBox>
+      <ComboBox name="joinNumAi" windowRect="242 51 298 71" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="65" scrollBarVisible="false" visible="false">
+        <Skip>
+          <TextButton name="item1" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="2"/>
+          <TextButton name="item2" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="3"/>
+          <TextButton name="item3" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="4"/>
+        </Skip>
+      </ComboBox>
+      <ComboBox name="joinTeamGame" windowRect="242 51 298 71" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="85" scrollBarVisible="false" visible="false">
+        <Skip>
+          <TextButton name="item1" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="2"/>
+          <TextButton name="item2" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="4"/>
+          <TextButton name="item3" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="6"/>
+          <TextButton name="item4" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="8"/>
+        </Skip>
+      </ComboBox>
+      <ComboBox name="gameStyle" windowRect="170 1 298 21" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="124"/>
+      <ComboBox name="flagGameStyle" windowRect="185 1 298 21" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="42">
+        <Skip>
+          <TextButton name="FlagIndi" windowRect="0 0 93 20" frame="SelectBtn" textAlign="vcenter" stringPos="5 3" text="#sb(flagIndiGame)"/>
+          <TextButton name="FlagTeam" windowRect="0 0 93 20" frame="SelectBtn" textAlign="vcenter" stringPos="5 3" text="#sb(flagTeamGame)"/>
+        </Skip>
+      </ComboBox>
+      <ComboBox name="classicGameStyle" windowRect="185 1 298 21" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="42">
+        <Skip>
+          <TextButton name="ClassicIndi" windowRect="0 0 93 20" frame="SelectBtn" textAlign="vcenter" stringPos="5 3" text="#sb(classicIndiGame)"/>
+          <TextButton name="ClassicTeam" windowRect="0 0 93 20" frame="SelectBtn" textAlign="vcenter" stringPos="5 3" text="#sb(classicTeamGame)"/>
+        </Skip>
+      </ComboBox>
+      <ComboBox name="schoolGameStyle" windowRect="185 1 298 21" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="42">
+        <Skip>
+          <TextButton name="SchoolItem" windowRect="0 0 93 20" frame="SelectBtn" textAlign="vcenter" stringPos="5 3" text="#sb(itemIndiGame)"/>
+          <TextButton name="SchoolSpeed" windowRect="0 0 93 20" frame="SelectBtn" textAlign="vcenter" stringPos="5 3" text="#sb(speedIndiGame)"/>
+        </Skip>
+      </ComboBox>
+      <ComboBox name="guildGameStyle" windowRect="185 1 298 21" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="42">
+        <Skip>
+          <TextButton name="ItemMatch" windowRect="0 0 93 20" frame="SelectBtn" textAlign="vcenter" stringPos="5 3" text="#sb(itemMatch)"/>
+          <TextButton name="SpeedMatch" windowRect="0 0 93 20" frame="SelectBtn" textAlign="vcenter" stringPos="5 3" text="#sb(speedMatch)"/>
+        </Skip>
+      </ComboBox>
+      <ComboBox name="bbbGameTotalStyle" windowRect="185 1 298 21" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="83">
+        <Skip>
+          <TextButton name="BokbulbokItemIndi" windowRect="0 0 103 20" frame="SelectBtn" textAlign="vcenter" stringPos="0 3" text="#sb(bokbulbokItemIndi)"/>
+          <TextButton name="BokbulbokItemTeam" windowRect="0 0 103 20" frame="SelectBtn" textAlign="vcenter" stringPos="0 3" text="#sb(bokbulbokItemTeam)"/>
+          <TextButton name="BokbulbokSpeedIndi" windowRect="0 0 103 20" frame="SelectBtn" textAlign="vcenter" stringPos="0 3" text="#sb(bokbulbokSpeedIndi)"/>
+          <TextButton name="BokbulbokSpeedTeam" windowRect="0 0 103 20" frame="SelectBtn" textAlign="vcenter" stringPos="0 3" text="#sb(bokbulbokSpeedTeam)"/>
+        </Skip>
+      </ComboBox>
+      <ComboBox name="bbbGameItemStyle" windowRect="185 1 298 21" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="43">
+        <Skip>
+          <TextButton name="BokbulbokItemIndi" windowRect="0 0 103 20" frame="SelectBtn" textAlign="vcenter" stringPos="0 3" text="#sb(bokbulbokItemIndi)"/>
+          <TextButton name="BokbulbokItemTeam" windowRect="0 0 103 20" frame="SelectBtn" textAlign="vcenter" stringPos="0 3" text="#sb(bokbulbokItemTeam)"/>
+        </Skip>
+      </ComboBox>
+      <ComboBox name="bbbGameSpeedStyle" windowRect="185 1 298 21" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="43">
+        <Skip>
+          <TextButton name="BokbulbokSpeedIndi" windowRect="0 0 103 20" frame="SelectBtn" textAlign="vcenter" stringPos="0 3" text="#sb(bokbulbokSpeedIndi)"/>
+          <TextButton name="BokbulbokSpeedTeam" windowRect="0 0 103 20" frame="SelectBtn" textAlign="vcenter" stringPos="0 3" text="#sb(bokbulbokSpeedTeam)"/>
+        </Skip>
+      </ComboBox>
+    </Container>
+  </CaptionWindow>
+  <CaptionWindow name="방만들기챔피온스" frame="CaptionDialog" caption="#sb(createRoomCaption)" captionPos="0 1" captionColor="black" windowRect="0 0 310 130" align="center" visible="false" enable="false">
+    <Panel windowRect="4 9 17 21" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+    <Label windowRect="21 9 22 21" text="#sb(privateRoom)"/>
+    <PlaneCheckButton name="isPasswordChampions" windowRect="73 9 89 23"/>
+    <Label windowRect="115 9 135 21" text="#sb(password)"/>
+    <Edit name="roomPasswordChampions" windowRect="155 4 268 26" text="" passEdit="true" maxChar="12"/>
+    <Panel windowRect="101 4 102 26" color="255 79 80 84"/>
+    <TextButton name="createRoom" windowRect="30 35 102 57" text="#sb(ok)" altTextRender="outline"/>
+    <TextButton name="cancelRoom" windowRect="164 35 236 57" text="#sb(cancel)" altTextRender="outline"/>
+  </CaptionWindow>
+</Container>

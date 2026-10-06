@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.085'
+	SteerConstraint='2.7'
+	CornerDrawFactor='0.076'
+	DriftEscapeForce='2040'
+
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+
+	antiCollideBalance='0.88'
+
+	BoostAccelFactor='1.867'
+	TransAccelFactor='1.867'
+	TransformTime='700'
+
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400' 
+
+	DriftMaxGauge='-640'
+	NormalBoosterTime='-40'
+	TeamBoosterTime='-120'
+        
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+	UseTransformBooster='true'
+
+	BoosterType='cotton6'
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zero5'
+	
+	Port0='mod1a1'
+	Port1='mod1a2'
+	FirePort0='mod1b1'
+	FirePort1='mod1b2'
+	FirePort2='mod1b3'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+	EnvMap='1'
+
+	addModelFolder='saber9'
+
+	DescBalance= '53'
+	DescStability ='51'
+	DescEngineGrade='1'
+	DescCornering='7.5'
+	DescEnchantCap = '31'
+
+/>

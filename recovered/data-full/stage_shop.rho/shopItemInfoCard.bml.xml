@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="wndshopItemInfoWindow" frame="BlackEdit" enable="false" windowRect="0 0 280 365" addStyle="moveable" align="center;vcenter">
+  <Panel name="pnlTargetItem" windowRect="3 8 117 121" texture="정보창이미지박스1" uvRect="0 0 110 110" enable="false" alphaBlend="true">
+    <Window name="pnlTargetItem" windowRect="2 2 117 116"/>
+  </Panel>
+  <Label name="lblItemNameTitle" text="#sb(itemName)" windowRect="120 5 306 25" enable="false" textColor="white"/>
+  <Label name="lblItemName" text="#sb(underPreperation)" windowRect="120 20 306 40" enable="false" textColor="white" textRender="bold"/>
+  <Label name="lblSubInfoTitle" text="#sb(itemPrice)" windowRect="120 42 306 62" enable="false" textColor="white"/>
+  <Label name="lblSubInfo" text="0캐시" windowRect="120 57 306 77" multiLine="true" enable="false" textColor="white" textRender="bold"/>
+  <Label name="lblSubInfoTitle2" text="" windowRect="120 79 306 99" multiLine="true" enable="false" textColor="white"/>
+  <Label name="lblSubInfo2" text="" windowRect="120 94 306 114" multiLine="true" enable="false" textColor="white" textRender="bold"/>
+  <Label name="lblSubInfoTitle3" text="" windowRect="120 79 306 99" multiLine="true" enable="false" textColor="white"/>
+  <Label name="lblSubInfo3" text="" windowRect="120 94 306 114" multiLine="true" enable="false" textColor="white" textRender="bold"/>
+  <Label name="lblEnchantInfo" text="#sb(notAllowEnchant)" windowRect="10 12 106 52" multiLine="false" enable="false" textColor="yellow" textRender="outline" visible="false"/>
+  <Label name="lblDescription" adjust="7 130" windowSize="253 125" autoWrap="true" multiLine="true" enable="false" textColor="255 255 255 0"/>
+  <Label name="lblEffect" adjust="7 275" windowSize="253 -5" textRender="bold" autoWrap="true" multiLine="true" enable="false" textColor="255 255 255 0"/>
+  <Container name="wndStockContents" enable="false" visible="false" adjust="-8 335" windowSize="301 60">
+    <Label name="lblSetTitle" adjust="7 5" windowSize="253 16" autoWrap="true" multiLine="true" enable="false" textColor="255 255 255 255" text="#sb(setList)"/>
+    <Label name="lblSetDescription" adjust="7 21" windowSize="253 40" textRender="bold" autoWrap="true" multiLine="true" enable="false" textColor="white"/>
+  </Container>
+  <StringBag>
+    <k n="itemName">
+      <m c="kr" v="아이템 이름"/>
+      <m c="jp" v="アイテム名"/>
+      <m c="cn" v="道具名称"/>
+      <m c="tw" v="道具名稱"/>
+      <m c="us" v="Item Name"/>
+      <m c="vn" v="Tên vật phẩm"/>
+      <m c="ru" v="Название предмета"/>
+      <m c="id" v="Nama Item"/>
+      <m c="th" v="ชื่อไอเทม"/>
+    </k>
+    <k n="itemPrice">
+      <m c="kr" v="아이템 가격"/>
+      <m c="jp" v="アイテム価格"/>
+      <m c="cn" v="道具价格"/>
+      <m c="tw" v="道具價格"/>
+      <m c="us" v="Item Price"/>
+      <m c="vn" v="Giá vật phẩm"/>
+      <m c="ru" v="Цена"/>
+      <m c="id" v="Harga Item"/>
+      <m c="th" v="ราคาไอเทม"/>
+    </k>
+    <k n="underPreperation">
+      <m c="kr" v="준비중"/>
+      <m c="jp" v="準備中"/>
+      <m c="cn" v="准备中"/>
+      <m c="tw" v="準備中"/>
+      <m c="us" v="In progress"/>
+      <m c="vn" v="Chuẩn bị"/>
+      <m c="ru" v="В разработке"/>
+      <m c="id" v="Dalam persiapan"/>
+      <m c="th" v="กำลังเตรียม"/>
+    </k>
+    <k n="setList">
+      <m c="kr" v="세트 구성"/>
+      <m c="jp" v="セットリスト"/>
+      <m c="cn" v="套装列表"/>
+      <m c="tw" v="套裝列表"/>
+      <m c="us" v="Package items"/>
+      <m c="vn" v="D.Sách"/>
+      <m c="ru" v="Комплект"/>
+      <m c="id" v="Daftar Set"/>
+      <m c="th" v="เป็นชุด"/>
+    </k>
+    <k n="countUnit">
+      <m c="kr" v="개"/>
+      <m c="jp" v="個"/>
+      <m c="cn" v="个"/>
+      <m c="tw" v="個"/>
+      <m c="us" v="unit(s)"/>
+      <m c="vn" v="Cái"/>
+      <m c="ru" v="Ед."/>
+      <m c="id" v="Unit"/>
+      <m c="th" v="อัน"/>
+    </k>
+    <k n="dayUnit">
+      <m c="kr" v="일"/>
+      <m c="jp" v="日"/>
+      <m c="cn" v="天"/>
+      <m c="tw" v="日"/>
+      <m c="us" v="Day"/>
+      <m c="vn" v="Ngày"/>
+      <m c="ru" v="Дн."/>
+      <m c="id" v="Hari"/>
+      <m c="th" v="วัน"/>
+    </k>
+    <k n="remainCount">
+      <m c="kr" v="남은 개수"/>
+      <m c="jp" v="現在の個数"/>
+      <m c="cn" v="剩余数量"/>
+      <m c="tw" v="剩餘數量"/>
+      <m c="us" v="Remaining amount"/>
+      <m c="vn" v="Số hiện có:"/>
+      <m c="ru" v="Остаток"/>
+      <m c="id" v="Sisa Unit"/>
+      <m c="th" v="จำนวนที่เหลือ"/>
+    </k>
+    <k n="remainDay">
+      <m c="kr" v="남은 기간"/>
+      <m c="jp" v="残りの期間"/>
+      <m c="cn" v="剩余期限"/>
+      <m c="tw" v="剩餘時間"/>
+      <m c="us" v="Lease period"/>
+      <m c="vn" v="Còn lại"/>
+      <m c="ru" v="Срок действия"/>
+      <m c="id" v="Sisa waktu"/>
+      <m c="th" v="เวลาที่เหลือ"/>
+    </k>
+    <k n="unlimited">
+      <m c="kr" v="무제한"/>
+      <m c="jp" v="無制限"/>
+      <m c="cn" v="无限制"/>
+      <m c="tw" v="無限制"/>
+      <m c="us" v="Unlimited"/>
+      <m c="vn" v="Không giới hạn"/>
+      <m c="ru" v="Без ограничений"/>
+      <m c="id" v="Tidak terbatas"/>
+      <m c="th" v="ไม่จำกัด"/>
+    </k>
+    <k n="expired">
+      <m c="kr" v="사용 기한 만료"/>
+      <m c="jp" v="利用有効期間終了"/>
+      <m c="cn" v="使用期限已到"/>
+      <m c="tw" v="使用期限已到"/>
+      <m c="us" v="Expired"/>
+      <m c="vn" v="Vĩnh viễn"/>
+      <m c="ru" v="Закончился"/>
+      <m c="id" v="Expired"/>
+      <m c="th" v="หมดอายุ"/>
+    </k>
+    <k n="expireDayFmt">
+      <m c="kr" v="%d일 %d시간 남았습니다."/>
+      <m c="jp" v="残り%d日%d時間"/>
+      <m c="cn" v="剩余%d天 %d小时"/>
+      <m c="tw" v="剩餘%d天 %d小時"/>
+      <m c="us" v="%d days %d hours left."/>
+      <m c="vn" v="Còn lại %d ngày, %d giờ."/>
+      <m c="ru" v="Осталось %d дн. %d ч."/>
+      <m c="id" v="Tersisa %d Hari %d Jam."/>
+      <m c="th" v="เหลือ %d วัน %d ชั่วโมง"/>
+    </k>
+    <k n="expireHourFmt">
+      <m c="kr" v="%d시간 남았습니다."/>
+      <m c="jp" v="残り%d時間"/>
+      <m c="cn" v="剩余%d小时"/>
+      <m c="tw" v="剩餘%d小時"/>
+      <m c="us" v="%d hours left."/>
+      <m c="vn" v="%d gờ còn lại."/>
+      <m c="ru" v="Осталось %d ч."/>
+      <m c="id" v="Tersisa %d Jam."/>
+      <m c="th" v="เหลือ %d ชั่วโมง"/>
+    </k>
+    <k n="expireMinFmt">
+      <m c="kr" v="%d분 남았습니다."/>
+      <m c="jp" v="残り%d分"/>
+      <m c="cn" v="剩余%d分钟"/>
+      <m c="tw" v="剩餘%d分鐘"/>
+      <m c="us" v="%d min. left."/>
+      <m c="vn" v="%d phút còn lại."/>
+      <m c="ru" v="Осталось %d мин."/>
+      <m c="id" v="Tersisa %d Menit."/>
+      <m c="th" v="เหลือ %d นาที"/>
+    </k>
+    <k n="expireSecFmt">
+      <m c="kr" v="%d초 남았습니다."/>
+      <m c="jp" v="残り%d秒"/>
+      <m c="cn" v="剩余%d秒"/>
+      <m c="tw" v="剩餘%d秒"/>
+      <m c="us" v="%d sec. left."/>
+      <m c="vn" v="%d giây còn lại."/>
+      <m c="ru" v="Осталось %d сек."/>
+      <m c="id" v="Tersisa %d Detik."/>
+      <m c="th" v="เหลือ %d วินาที"/>
+    </k>
+    <k n="untilDisconnect">
+      <m c="kr" v="접속 종료시까지"/>
+      <m c="jp" v="接続終了時まで"/>
+      <m c="cn" v="活动结束后下线消失"/>
+      <m c="tw" v="直到連線結束為止"/>
+      <m c="us" v="Until logout"/>
+      <m c="vn" v="Mất kết nối"/>
+      <m c="ru" v="До завершения соединения"/>
+      <m c="id" v="Sampai Logout"/>
+      <m c="th" v="จนถึงออกจากเกม"/>
+    </k>
+    <k n="notAllowEnchant">
+      <m c="kr" v="강화 불가"/>
+      <m c="jp" v="強化不可"/>
+      <m c="cn" v="不可改装"/>
+      <m c="tw" v="無法強化"/>
+      <m c="id" v="Tidak bisa enhance"/>
+    </k>
+    <k n="itemUniqueLevel">
+      <m c="kr" v="아이템 등급"/>
+      <m c="cn" v="道具等级"/>
+      <m c="tw" v="道具等級"/>
+      <m c="jp" v="アイテムランク"/>
+    </k>
+  </StringBag>
+</Window>

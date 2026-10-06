@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Team>
+  <TeamDecoDefs>
+    <TeamDecoDef dyeId='1' teamColorId='1' alias="red" />
+    <TeamDecoDef dyeId='2' teamColorId='3' alias="yellow" />
+    <TeamDecoDef dyeId='4' teamColorId='4' alias="green" />
+    <TeamDecoDef dyeId='6' teamColorId='2' alias="blue" />
+  </TeamDecoDefs>
+
+  <TeamDefs>
+    <TeamDef maxTeam="4">
+      <DecoTable>
+        <item alias="red" />
+        <item alias="yellow" />
+        <item alias="green" />
+        <item alias="blue" />
+      </DecoTable>
+      <RankPointTable>
+        <item point="0" />
+        <item point="10" />
+        <item point="8" />
+        <item point="7" />
+        <item point="5" />
+        <item point="4" />
+        <item point="3" />
+        <item point="2" />
+        <item point="1" />
+      </RankPointTable>
+    </TeamDef>
+    <TeamDef maxTeam="2">
+      <DecoTable>
+        <item alias="red" />
+        <item alias="blue" />
+      </DecoTable>
+      <RankPointTable>
+        <item point="0" />
+        <item point="10" />
+        <item point="8" />
+        <item point="6" />
+        <item point="5" />
+        <item point="4" />
+        <item point="3" />
+        <item point="2" />
+        <item point="1" />
+      </RankPointTable>
+    </TeamDef>
+  </TeamDefs>
+</Team>

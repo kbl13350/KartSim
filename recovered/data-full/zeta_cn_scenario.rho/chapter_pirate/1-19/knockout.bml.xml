@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="pirate_I03" laps="3" isFixedKart="true" fixedKartId="875" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" ksv="result_20170427_1427">
+      <ShadowKart characterId="15" uniformId="58" kartId="891" colorId="1" dyeId="1" balloonId="0" speed="50" accel="35" startTick="0" characterName="海盗水手"/>
+      <ShadowKart characterId="15" uniformId="58" kartId="919" colorId="1" dyeId="1" balloonId="0" speed="49" accel="32" startTick="0" characterName="海盗水手"/>
+      <ShadowKart characterId="15" uniformId="58" kartId="888" colorId="1" dyeId="1" balloonId="0" speed="48" accel="33" startTick="0" characterName="海盗水手"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

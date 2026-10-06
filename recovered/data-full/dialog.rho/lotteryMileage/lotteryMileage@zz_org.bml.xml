@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Container name="prizeTemplate" leftTopWH="0 0 147 147" alphaBlend="true" visible="false" addStyle="toplevel control">
+    <ItemWindow name="prizeItem" leftTopWH="0 0 90 90" align="hcenter"/>
+    <Label name="prizeName" leftTopWH="0 97 97 20" text="" textRender="outline" textColor="white" textAlign="center" align="hcenter"/>
+    <TextButton name="prizeButton" text="받기" leftTopWH="0 117 97 30" alphaBlend="true" alphaTest="true" align="hcenter"/>
+  </Container>
+  <CaptionWindow name="captionDlgFrame" windowRect="0 0 480 230" frame="CaptionDialog" captionPos="0 1" caption="#sb(lotteryMileage)" align="center" setCloseButton="close">
+    <List name="prizeList" leftTopWH="0 0 440 170" listGap="8" listMargin="2 2 2 2" autoScroll="true" scrollType="horizontal"/>
+  </CaptionWindow>
+</Panel>

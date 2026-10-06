@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="selectItem">
+    <m c="kr" v="아이템 선택"/>
+    <m c="jp" v="アイテム選択"/>
+    <m c="cn" v="道具选择"/>
+    <m c="tw" v="選擇道具"/>
+    <m c="us" v="Select item"/>
+    <m c="vn" v="Chọn vật phẩm"/>
+    <m c="ru" v="Выбор предмета"/>
+    <m c="id" v="Pilih Item"/>
+    <m c="th" v="เลือกไอเทม"/>
+  </k>
+  <k n="expired">
+    <m c="kr" v="사용 기한 만료"/>
+    <m c="jp" v="利用有効期間終了"/>
+    <m c="cn" v="使用期限已到"/>
+    <m c="tw" v="使用期限已到"/>
+    <m c="us" v="Expired"/>
+    <m c="vn" v="Hạn sử dụng"/>
+    <m c="ru" v="Срок действия истек"/>
+    <m c="id" v="Expired"/>
+    <m c="th" v="หมดอายุ"/>
+  </k>
+  <k n="expireDayFmt">
+    <m c="kr" v="%d일 %d시간 남음"/>
+    <m c="jp" v="残り%d日%d時間"/>
+    <m c="cn" v="剩余%d天 %d小时"/>
+    <m c="tw" v="剩餘%d日 %d時間"/>
+    <m c="us" v="%d days %d hours left"/>
+    <m c="vn" v="Còn %dngày %dgiờ"/>
+    <m c="ru" v="Осталось %d дн. %d ч."/>
+    <m c="id" v="Sisa %d hari %d jam"/>
+    <m c="th" v="เหลือ %dวัน %dชั่วโมง"/>
+  </k>
+  <k n="expireHourFmt">
+    <m c="kr" v="%d시간 남음"/>
+    <m c="jp" v="残り%d時間"/>
+    <m c="cn" v="剩余%d小时"/>
+    <m c="tw" v="剩餘%d時間"/>
+    <m c="us" v="%d hours left"/>
+    <m c="vn" v="Còn lại %d giờ "/>
+    <m c="ru" v="Осталось %d ч."/>
+    <m c="id" v="Sisa %d jam"/>
+    <m c="th" v="เหลือ%d ชั่วโมง"/>
+  </k>
+  <k n="expireMinFmt">
+    <m c="kr" v="%d분 남음"/>
+    <m c="jp" v="残り%d分"/>
+    <m c="cn" v="剩余%d分钟"/>
+    <m c="tw" v="剩餘%d分"/>
+    <m c="us" v="%d minutes left"/>
+    <m c="vn" v="Còn lại %d phút"/>
+    <m c="ru" v="Осталось %d мин."/>
+    <m c="id" v="Sisa %d menit"/>
+    <m c="th" v="เหลือ%dนาที"/>
+  </k>
+  <k n="expireSecFmt">
+    <m c="kr" v="%d초 남음"/>
+    <m c="jp" v="残り%d秒"/>
+    <m c="cn" v="剩余%d秒"/>
+    <m c="tw" v="剩餘%d秒"/>
+    <m c="us" v="%d seconds left"/>
+    <m c="vn" v="Còn lại %d giây"/>
+    <m c="ru" v="Осталось %d сек."/>
+    <m c="id" v="Sisa %d detik"/>
+    <m c="th" v="เหลือ%d วินาที"/>
+  </k>
+  <k n="partsSeclect">
+    <m c="kr" v="파츠 선택"/>
+    <m c="jp" v="パーツ選択"/>
+    <m c="cn" v="选择改装部件"/>
+    <m c="tw" v="選擇改裝配件"/>
+    <m c="us" v="Parts Seclect"/>
+    <m c="vn" v="Chọn"/>
+    <m c="ru" v="Выбор детали"/>
+    <m c="id" v="Pilih Part"/>
+    <m c="th" v="เลือกอะไหล่รถ"/>
+  </k>
+  <k n="license">
+    <m c="kr" v="라이센스"/>
+    <m c="jp" v="ライセンス"/>
+    <m c="cn" v="驾照选择"/>
+    <m c="tw" v="執照"/>
+    <m c="us" v="License"/>
+    <m c="th" v="ใบขับขี่"/>
+    <m c="vn" v="Bằng lái"/>
+    <m c="ru" v="Права"/>
+    <m c="id" v="Lisensi"/>
+  </k>
+  <k n="warningDesc">
+    <m c="kr" v="옵션 다이얼로그의 메뉴보기 전환을 하셔서 올바르게 다이얼 로그창이 제대로 보이지 않습니다. 방에 재 입장하시면 올바르게 보여집니다."/>
+    <m c="jp" v="オプションダイアログのメニュー表示転換を行ったため、ダイアログウィンドウが適切に表示されていません。ルームに再入場すれば正常に表示されます。"/>
+    <m c="id" v="Dial Log Window tidak normal dikarenakan mengubah tampilan menu di Option Dial Log. Silahkan masuk ke room lagi untuk memperbaikinya."/>
+  </k>
+  <k n="searchTooltip">
+    <m c="kr" v="아이템 이름을 입력해주세요!!"/>
+    <m c="cn" v="请输入道具名称"/>
+    <m c="tw" v="請輸入道具名稱"/>
+  </k>
+</StringBag>

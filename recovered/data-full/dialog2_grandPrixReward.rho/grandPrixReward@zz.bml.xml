@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 550 600" caption="#sb(grandPrixReward)" align="center" setCloseButton="cancelButton">
+    <Label name="textLabel" windowSize="400 25" adjust="0 20" align="hcenter" text="#sb(getGrandPrixRewardCount)" textAlign="center" textRender="bold14" textColor="255 42 55 80"/>
+    <List name="expiredItemList" leftTopWH="5 55 510 360" frame="NewInnerFrame" listMargin="7 2 0 0" rigidScroll="true" fixButtonSize="12 25" scrollWidth="10" listGap="4" autoAlign="false"/>
+    <Label name="textLabel2" windowSize="400 30" adjust="0 425" align="hcenter" text="#sb(aboutItemDesc)" lineGap="5" multiLine="true" autoWrap="true" textAlign="center" textRender="bold14" textColor="255 42 55 80"/>
+    <Window leftTopWH="0 480 450 2" frame="VSection" align="hcenter"/>
+    <TextButton name="ok" leftTopWH="0 500 132 42" align="hcenter" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+  </CaptionWindow>
+</Panel>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="iceFly">
+  <state name="Use" life="2000" item="케피필살기_피격시작" itemFx="firing"/>
+  <state name="Affect" life="3000" item="케피필살기_피격전" fired="케피필살기_피격중" itemFx="fired"/>
+  <state name="Disappear" life="300" item="케피필살기_피격후" itemFx="disappear"/>
+  <state name="Use" life="2000" item="케피필살기_피격시작" itemFx="firing"/>
+  <state name="Affect" life="1000" item="케피필살기_피격전" fired="케피필살기_피격중" itemFx="fired"/>
+  <state name="Disappear" life="300" item="케피필살기_피격후" itemFx="disappear"/>
+</item>

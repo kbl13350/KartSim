@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eventMenuGachaMultiButton name="eventMenuGachaMultiButton" windowRect="0 0 254 308" autoLoadImage="gachaSlot_0" textColor="255 98 52 30" overTextColor="255 143 83 54" clickedTextColor="255 61 30 15" disabledTextColor="255 255 255 255" alphaBlend="true" textAlign="hcenter" stringPos="0 10">
+  <ImageButton name="gachaButton" autoLoadImage="gachaSlot_0" leftTopWH="0 0 250 288" text="" textColor="255 64 75 95" textRender="bold16" overTextColor="255 106 120 147" overTextRender="bold16" clickedTextColor="255 35 41 52" clickedTextRender="bold16" disabledTextColor="255 131 131 131" disabledTextRender="bold16" textAlign="vcenter" stringPos="50 0" align="center">
+    <Label name="itemName" windowSize="250 40" align="hcenter" adjust="0 0" text="" textRender="bold16" textColor="255 42 55 80" textAlign="center"/>
+    <ItemWindow name="itemPanel" windowSize="244 244" adjust="0 42" align="hcenter" enable="false" alphaBlend="true" itemCategory="jewel" itemId="1"/>
+    <Label name="itemPeriod" windowSize="250 20" adjust="0 41" text="~2024.01.01" textRender="bold14" textColor="255 255 255 255" textAlign="center"/>
+    <Label name="itemCount" windowSize="250 20" adjust="0 71" text="999" textRender="bold14" textColor="255 88 105 129" marginRect="-20 0 0 0" textAlign="right" visible="true"/>
+    <ColorLabel name="itemInfo" windowSize="250 40" align="hcenter" adjust="0 230" text="3141341|1241243141341|1241243141341|1241243141341|124124" autoWrap="true" textRender="bold14" textColor="255 64 75 95" textAlign="center"/>
+  </ImageButton>
+</eventMenuGachaMultiButton>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="park4"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="我是第一！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="…|皮蛋是傻瓜！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="为什么是我~|傻瓜应该是最后的宝宝才对！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="…|我才不是最后呢.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="stop2"/>
+  <Msg name="小强" string="哎呀，别吵了~|我们去看看庆典吧~"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="嗯~|快走吧~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="ani3"/>
+  <Msg name="宝宝" string="哇唔~快看那里~|熊在走路啊~|皮蛋~快看那里！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop5"/>
+  <Msg name="宝宝" string="嗯？|人呢？怎么都不见了.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="皮蛋！黑妞~小强|谁都不在..|难道就扔下我走了！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="要快点找到他们才行|（就扔下我要惩罚他们！！）"/>
+  <Enter/>
+</Scene>

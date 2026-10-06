@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.0745'
+	SteerConstraint='2.25'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.068'
+	UseTransformBooster='false'
+	StartBoosterTime='1200'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	BoosterWaveType='effect_dragon'
+	BoosterType='firecracker1'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod1a'
+	Port1='mod1b'
+	FirePort0='mod2c'
+	FirePort1='mod2d'
+	FirePort2='mod2a'
+	FirePort3='mod2b'
+
+		
+	DescBalance= '40'
+	DescStability ='38'
+	DescEngineGrade='1'
+	DescCornering='5'
+	DescEnchantCap = '25'
+/>
+<!-- 한국 폭죽카트Z7 (가샤폰) -->

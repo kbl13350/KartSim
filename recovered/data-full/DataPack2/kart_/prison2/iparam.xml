@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='75.0'
+	BackwardAccelForce='75.0'
+	DragFactor='-0.051'
+	SteerConstraint='1.1'
+	DriftEscapeForce='130'
+	CornerDrawFactor='0.031'
+
+	BoosterType='dragon1'
+
+		DescBalance= '25'
+	DescStability ='25'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '20'
+
+/>
+<!-- 중국 배찌 철창카트 R4 (이벤트 지급) -->

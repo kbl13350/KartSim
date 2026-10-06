@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='130.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.069'
+	SteerConstraint='2.1'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.069'
+	NormalBoosterTime='-250'
+	TeamBoosterTime='-550'
+	DriftMaxGauge='-1200'
+	TransAccelFactor='1.6'
+
+	UseTransformBooster='true'
+	motorcycleType='true'
+
+	BoosterBlur='true'
+	EngineSound='bike'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod2d1'
+	Port1='mod2d2'
+	FirePort0='mod2b1'
+	FirePort1='mod2b2'
+	FirePort2='mod2b3'
+	FirePort3='mod2b4'
+
+	TachometerType='Tacho1'
+	TachometerName='bike'
+
+	DescBalance= '30'
+	DescStability ='25'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '25'
+
+/>
+
+<!-- 대만 슈퍼바이크SR (판매용) -->

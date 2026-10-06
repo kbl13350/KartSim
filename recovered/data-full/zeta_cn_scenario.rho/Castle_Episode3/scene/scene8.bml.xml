@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle1"/>
+  <Char id="dona" pos="12 0" emotion="stop4"/>
+  <Msg name="当娜" string="站住！！！"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop7"/>
+  <Msg name="小强" string="哇啊啊啊！还在追啊！！往那逃！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach5"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="pink" pos="11 0" emotion="stop1"/>
+  <Msg name="普赛克" string="艾娜~|美玲是被罗杰抓住什么小辫子了吧？哼哼~"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <Char id="pink" remove="true"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="pink" pos="11 0" emotion="stop2"/>
+  <Msg name="艾娜" string="普赛克~难道你不知道？|罗杰知道了美玲父母的下落~"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <Char id="pink" remove="true"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="pink" pos="11 0" emotion="stop1"/>
+  <Msg name="普赛克" string="有这回事！|但，美玲不是孤儿吗？"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <Char id="pink" remove="true"/>
+  <Char id="pink" pos="11 0" emotion="stop2"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="艾娜" string="笨蛋！|就因为是孤儿所以才会任由罗杰摆布啊！"/>
+  <Enter/>
+  <Char id="pink" remove="true"/>
+  <Char id="psyki" remove="true"/>
+  <Char id="alma" pos="8 0" emotion="stop2"/>
+  <Msg name="路易" string="什么？父母？|原来美玲有这种事！|快去告诉阿嘉！"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <BackGround texture="castle3"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="阿嘉！加油！|美玲肯定有难言之隐！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="阿嘉" string="嗯！肯定有什么事瞒着我！|我都赢了…以为一切都结束了…!"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="8 0" emotion="stop2"/>
+  <Msg name="路易" string="阿嘉~！阿嘉~！|我知道了~！！"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="alma" pos="12 0" emotion="stop2"/>
+  <Msg name="皮蛋，黑妞" string="路易~知道了什么？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="alma" remove="true"/>
+  <Char id="alma" pos="8 0" emotion="stop2"/>
+  <Msg name="路易" string="美玲之所以与罗杰及暴走联盟在一起的缘由！"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="阿嘉" string="什么？真的？|快说说看！！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="8 0" emotion="stop2"/>
+  <Msg name="路易" string="听说罗杰知道了美玲父母的下落|利用父母在利用以为自己是孤儿的美玲！"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="这个坏蛋！|卑鄙！|我皮蛋不会放过你！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop3"/>
+  <Msg name="黑妞" string="皮蛋~冷静！|阿嘉，接下来怎么办？|不能就这么放下美玲不管？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="绝对不可以！！|一定要救回美玲！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="11 0" emotion="stop2"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="路易" string="肯定有什么办法？"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="11 0" emotion="stop2"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="阿嘉" string="我要重新与尼兹比一场！|条件是我赢了就放过美玲！"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="11 0" emotion="stop2"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="路易" string="什么？如果输了怎么办！|罗杰与暴走联盟不知道能做出什么！"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="11 0" emotion="stop2"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="阿嘉" string="我有自信！|我是阿嘉~！谁都不能阻拦我！"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="ani4"/>
+  <Msg name="宝宝" string="难道这就是爱情的力量吗！|好可怕~~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="阿嘉" string="美玲…|我肯定会救你出来！"/>
+  <Enter/>
+</Scene>

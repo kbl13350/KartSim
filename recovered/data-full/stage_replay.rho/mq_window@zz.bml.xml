@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen" name="replaystage">
+  <XmlFile file="minimap"/>
+  <Container name="cloud2Effect" windowRect="fullscreen"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false"/>
+  <Container name="consoleCon" windowRect="fullscreen" align="bottom" adjust="0 0">
+    <Window name="console" windowSize="426 122" align="left;bottom" adjust="20 15">
+      <Panel windowSize="426 122" texture="viewControl_bg" alphaBlend="true">
+        <Panel windowSize="118 30" adjust="12 4" texture="라이더뷰@zz" alphaBlend="true"/>
+        <StateButton name="선수고정" windowSize="66 20" adjust="152 9" iconSet="선수고정_비활성@zz" iconAlign="hcenter" iconPos="0 0" canDisable="false"/>
+        <StateButton name="라이더1" windowSize="30 30" adjust="14 42" iconSet="라이더1" iconAlign="hcenter" iconPos="0 5"/>
+        <StateButton name="라이더2" windowSize="30 30" adjust="71 42" iconSet="라이더2" iconAlign="hcenter" iconPos="0 5"/>
+        <StateButton name="라이더3" windowSize="30 30" adjust="128 42" iconSet="라이더3" iconAlign="hcenter" iconPos="0 5"/>
+        <StateButton name="라이더4" windowSize="30 30" adjust="185 42" iconSet="라이더4" iconAlign="hcenter" iconPos="0 5"/>
+        <StateButton name="라이더5" windowSize="30 30" adjust="14 78" iconSet="라이더5" iconAlign="hcenter" iconPos="0 5"/>
+        <StateButton name="라이더6" windowSize="30 30" adjust="71 78" iconSet="라이더6" iconAlign="hcenter" iconPos="0 5"/>
+        <StateButton name="라이더7" windowSize="30 30" adjust="128 78" iconSet="라이더7" iconAlign="hcenter" iconPos="0 5"/>
+        <StateButton name="라이더8" windowSize="30 30" adjust="185 78" iconSet="라이더8" iconAlign="hcenter" iconPos="0 5"/>
+        <Panel windowSize="1 102" adjust="227 10" texture="나누기" alphaBlend="true"/>
+        <Panel windowSize="197 120" adjust="228 1" texture="카메라시점틀@zz" alphaBlend="true"/>
+        <StateButton name="카메라A" windowSize="24 14" adjust="241 70" iconSet="카메라A" iconAlign="hcenter" iconPos="0 5">
+          <Graduation name="카메라시야" leftTopWH="24 -8 15 39" texture="카메라시야" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="0 20" depthBias="-10" defaultVal="0"/>
+        </StateButton>
+        <StateButton name="카메라S" windowSize="14 24" adjust="302 28" iconSet="카메라S" iconAlign="hcenter" iconPos="0 5">
+          <Graduation name="카메라시야" leftTopWH="6 9 15 39" texture="카메라시야" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="0 20" depthBias="-10" defaultVal="90" visible="false"/>
+        </StateButton>
+        <StateButton name="카메라Q" windowSize="24 14" adjust="330 70" iconSet="카메라Q" iconAlign="hcenter" iconPos="0 5">
+          <Graduation name="카메라시야" leftTopWH="24 -8 15 39" texture="카메라시야" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="0 20" depthBias="-10" defaultVal="0" visible="false"/>
+        </StateButton>
+        <StateButton name="카메라F" windowSize="26 20" adjust="365 42" iconSet="카메라F" iconAlign="hcenter" iconPos="0 5">
+          <Graduation name="카메라시야" leftTopWH="4 -1 15 39" texture="카메라시야" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="0 20" depthBias="-10" defaultVal="135" visible="false"/>
+        </StateButton>
+        <StateButton name="카메라D" windowSize="24 14" adjust="390 70" iconSet="카메라D" iconAlign="hcenter" iconPos="0 5">
+          <Graduation name="카메라시야" leftTopWH="0 -8 15 39" texture="카메라시야" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="0 20" depthBias="-10" defaultVal="180" visible="false"/>
+        </StateButton>
+        <StateButton name="카메라V" windowSize="26 20" adjust="365 85" iconSet="카메라V" iconAlign="hcenter" iconPos="0 5">
+          <Graduation name="카메라시야" leftTopWH="6 -9 15 39" texture="카메라시야" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="0 20" depthBias="-10" defaultVal="225" visible="false"/>
+        </StateButton>
+      </Panel>
+    </Window>
+    <ScrollBar name="timeBar" windowSize="1360 4" align="bottom;center" adjust="0 155" scrollType="horizon" scrollArea="ReplayHorizonScrollArea" scrollButton="ReplayHorizonScrollButton" fixButtonSize="14 14" minScrollButtonHeight="14"/>
+    <Panel name="progressBar" windowSize="16 4" align="bottom;left" adjust="120 155" texture="progressBar" enable="false"/>
+    <Window name="controlPanel" windowSize="406 100" align="bottom;center" adjust="0 30">
+      <StateButton name="play1" windowSize="100 100" align="left" adjust="0 0" iconSet="플레이1" iconAlign="hcenter" iconPos="0 0" canDisable="true"/>
+      <StateButton name="pause" windowSize="100 100" align="left" adjust="102 0" iconSet="플레이멈춤" iconAlign="hcenter" iconPos="0 0" canDisable="true"/>
+      <StateButton name="play05" windowSize="100 100" align="right" adjust="102 0" iconSet="플레이05" iconAlign="hcenter" iconPos="0 0" canDisable="true"/>
+      <StateButton name="play025" windowSize="100 100" align="right" adjust="0 0" iconSet="플레이025" iconAlign="hcenter" iconPos="0 0" canDisable="true"/>
+    </Window>
+  </Container>
+  <ImageBoard name="helpMessage" windowSize="670 488" image="helpPopupBg" visible="false" align="hcenter;vcenter" alphaBlend="true">
+    <Container leftTopWH="0 0 670 488">
+      <Label windowRect="40 46 80 70" adjust="0 5" textRender="bold16" textColor="white" text="#sb(help)" align="top;hcenter"/>
+      <StateButton name="helpClose" windowSize="26 26" adjust="5 5" iconSet="help닫기@zz" iconAlign="hcenter" iconPos="0 0" canDisable="false" align="right;top"/>
+      <Label windowRect="40 46 80 70" textRender="bold14" textColor="255 202 210 220" text="1~8, -/+" textAlign="hcenter"/>
+      <Label windowRect="40 70 80 94" textRender="bold14" textColor="255 202 210 220" text="L" textAlign="hcenter"/>
+      <Label windowRect="40 94 80 118" textRender="bold14" textColor="255 202 210 220" text="SPC" textAlign="hcenter"/>
+      <Label windowRect="40 118 80 142" textRender="bold14" textColor="255 202 210 220" text="BACK" textAlign="hcenter"/>
+      <Label windowRect="40 142 80 166" textRender="bold14" textColor="255 202 210 220" text="I" textAlign="hcenter"/>
+      <Label windowRect="40 166 80 190" textRender="bold14" textColor="255 202 210 220" text="F1" textAlign="hcenter"/>
+      <Label windowRect="40 190 80 214" textRender="bold14" textColor="255 202 210 220" text="A" textAlign="hcenter"/>
+      <Label windowRect="40 214 80 238" textRender="bold14" textColor="255 202 210 220" text="Q" textAlign="hcenter"/>
+      <Label windowRect="40 238 80 262" textRender="bold14" textColor="255 202 210 220" text="S" textAlign="hcenter"/>
+      <Label windowRect="40 262 80 286" textRender="bold14" textColor="255 202 210 220" text="D" textAlign="hcenter"/>
+      <Label windowRect="40 286 80 310" textRender="bold14" textColor="255 202 210 220" text="E" textAlign="hcenter"/>
+      <Label windowRect="40 310 80 334" textRender="bold14" textColor="255 202 210 220" text="F" textAlign="hcenter"/>
+      <Label windowRect="40 334 80 358" textRender="bold14" textColor="255 202 210 220" text="R" textAlign="hcenter"/>
+      <Label windowRect="40 358 80 382" textRender="bold14" textColor="255 202 210 220" text="V" textAlign="hcenter"/>
+      <Label windowRect="40 382 80 406" textRender="bold14" textColor="255 202 210 220" text="G" textAlign="hcenter"/>
+      <Label windowRect="40 406 80 430" textRender="bold14" textColor="255 202 210 220" text="T" textAlign="hcenter"/>
+      <Label windowRect="40 430 80 454" textRender="bold14" textColor="255 202 210 220" text="H" textAlign="hcenter"/>
+      <Label windowRect="40 454 80 478" textRender="bold14" textColor="255 202 210 220" text="Y" textAlign="hcenter"/>
+      <Label windowRect="115 46 580 70" textRender="bold14" textColor="255 202 210 220" text="#sb(selectPlayer)" textAlign="left"/>
+      <Label windowRect="115 70 580 94" textRender="bold14" textColor="255 202 210 220" text="#sb(eventCam)" textAlign="left"/>
+      <Label windowRect="115 94 580 118" textRender="bold14" textColor="255 202 210 220" text="#sb(rankLock)" textAlign="left"/>
+      <Label windowRect="115 118 580 142" textRender="bold14" textColor="255 202 210 220" text="#sb(stopCamWork)" textAlign="left"/>
+      <Label windowRect="115 142 580 166" textRender="bold14" textColor="255 202 210 220" text="#sb(screenUiOnOff)" textAlign="left"/>
+      <Label windowRect="115 166 580 190" textRender="bold14" textColor="255 202 210 220" text="#sb(helpScreen)" textAlign="left"/>
+      <Label windowRect="115 190 580 214" textRender="bold14" textColor="255 202 210 220" text="#sb(3rdCam)" textAlign="left"/>
+      <Label windowRect="115 214 580 238" textRender="bold14" textColor="255 202 210 220" text="#sb(firstPersonCam)" textAlign="left"/>
+      <Label windowRect="115 238 580 262" textRender="bold14" textColor="255 202 210 220" text="#sb(topCam)" textAlign="left"/>
+      <Label windowRect="115 262 580 286" textRender="bold14" textColor="255 202 210 220" text="#sb(frontCam)" textAlign="left"/>
+      <Label windowRect="115 286 580 310" textRender="bold14" textColor="255 202 210 220" text="#sb(frontRotCam)" textAlign="left"/>
+      <Label windowRect="115 310 580 334" textRender="bold14" textColor="255 202 210 220" text="#sb(leftViewCam)" textAlign="left"/>
+      <Label windowRect="115 334 580 358" textRender="bold14" textColor="255 202 210 220" text="#sb(rightViewCam)" textAlign="left"/>
+      <Label windowRect="115 358 580 382" textRender="bold14" textColor="255 202 210 220" text="#sb(lowViewCam)" textAlign="left"/>
+      <Label windowRect="115 382 580 406" textRender="bold14" textColor="255 202 210 220" text="#sb(lowFixCam)" textAlign="left"/>
+      <Label windowRect="115 406 580 430" textRender="bold14" textColor="255 202 210 220" text="#sb(highFixCam)" textAlign="left"/>
+      <Label windowRect="115 430 580 454" textRender="bold14" textColor="255 202 210 220" text="#sb(leftSideCam)" textAlign="left"/>
+      <Label windowRect="115 454 580 478" textRender="bold14" textColor="255 202 210 220" text="#sb(rightSideCam)" textAlign="left"/>
+      <Label windowRect="240 46 700 70" textRender="bold14" textColor="255 202 210 220" text="#sb(help1-8)" textAlign="left"/>
+      <Label windowRect="240 70 700 94" textRender="bold14" textColor="255 202 210 220" text="#sb(helpL)" textAlign="left"/>
+      <Label windowRect="240 94 700 118" textRender="bold14" textColor="255 202 210 220" text="#sb(helpSpc)" textAlign="left"/>
+      <Label windowRect="240 118 700 142" textRender="bold14" textColor="255 202 210 220" text="#sb(helpBack)" textAlign="left"/>
+      <Label windowRect="240 142 700 166" textRender="bold14" textColor="255 202 210 220" text="#sb(helpI)" textAlign="left"/>
+      <Label windowRect="240 166 700 190" textRender="bold14" textColor="255 202 210 220" text="#sb(helpF1)" textAlign="left"/>
+      <Label windowRect="240 190 700 214" textRender="bold14" textColor="255 202 210 220" text="#sb(helpA)" textAlign="left"/>
+      <Label windowRect="240 214 700 238" textRender="bold14" textColor="255 202 210 220" text="#sb(helpQ)" textAlign="left"/>
+      <Label windowRect="240 238 700 262" textRender="bold14" textColor="255 202 210 220" text="#sb(helpS)" textAlign="left"/>
+      <Label windowRect="240 262 700 286" textRender="bold14" textColor="255 202 210 220" text="#sb(helpD)" textAlign="left"/>
+      <Label windowRect="240 286 700 310" textRender="bold14" textColor="255 202 210 220" text="#sb(helpE)" textAlign="left"/>
+      <Label windowRect="240 310 700 334" textRender="bold14" textColor="255 202 210 220" text="#sb(helpF)" textAlign="left"/>
+      <Label windowRect="240 334 700 358" textRender="bold14" textColor="255 202 210 220" text="#sb(helpR)" textAlign="left"/>
+      <Label windowRect="240 358 700 382" textRender="bold14" textColor="255 202 210 220" text="#sb(helpV)" textAlign="left"/>
+      <Label windowRect="240 382 700 406" textRender="bold14" textColor="255 202 210 220" text="#sb(helpG)" textAlign="left"/>
+      <Label windowRect="240 406 700 430" textRender="bold14" textColor="255 202 210 220" text="#sb(helpT)" textAlign="left"/>
+      <Label windowRect="240 430 700 454" textRender="bold14" textColor="255 202 210 220" text="#sb(helpH)" textAlign="left"/>
+      <Label windowRect="240 454 700 478" textRender="bold14" textColor="255 202 210 220" text="#sb(helpY)" textAlign="left"/>
+    </Container>
+  </ImageBoard>
+  <StateButton name="나가기" windowSize="70 34" align="right" adjust="30 18" iconSet="나가기@zz" iconAlign="hcenter" canDisable="false"/>
+  <StateButton name="help" windowSize="70 34" adjust="30 18" align="left" iconSet="help@zz" iconAlign="hcenter"/>
+  <StateButton name="displayOnOff" windowSize="110 34" adjust="108 18 " align="left" iconSet="displayOff@zz" iconAlign="hcenter"/>
+  <XmlFile file="retryPopup_2btn"/>
+</Container>

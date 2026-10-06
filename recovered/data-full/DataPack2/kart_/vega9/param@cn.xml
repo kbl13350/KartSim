@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='148'
+	BackwardAccelForce='100'
+	DragFactor='-0.08'
+	SteerConstraint='2.3'
+	CornerDrawFactor='0.068'
+	DriftEscapeForce='1750'
+	
+	driftBoostMulAccelFactor='1.29'
+	chargeBoostBySpeed='340'
+	DriftLeanFactor='-0.012'
+	
+	TransAccelFactor='1.848'
+	StartForwardAccelFactorSpeed='1.7'
+	StartBoosterTimeSpeed='1500'
+	
+	DriftMaxGauge='-500'
+	NormalBoosterTime='-80'
+	TeamBoosterTime='-170'
+	
+	DriftGaguePreservePercent='0.6'
+	antiCollideBalance='0.91'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	TransformTime='700'
+	
+	DescBalance='50'
+	DescStability='50'
+	DescEngineGrade='1.375'
+	DescCornering='7.5'
+	DescEnchantCap='25'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='9th'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	BoosterType='9soon'
+	BoosterType0='9soon'
+	BoosterType1='9soon'
+	BoosterType2='9main'
+	BoosterType3='9sub'
+	BoosterType4='9sub'
+
+	Port0='mod5b' 
+	Port1='mod5b1'
+
+	FirePort0='mod2a4'
+	FirePort1='mod6a'
+	FirePort2='mod6b'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod6a' trailPort1='mod6b'/>
+</BodyParam>
+<!-- 베가 9 / 중국 / 레어 / 초호화 패키지 / 20160121 릴리즈 -->

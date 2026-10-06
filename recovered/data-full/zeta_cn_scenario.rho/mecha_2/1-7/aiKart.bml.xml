@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <AiKart id="1" track="mechanic_I01" isFixedKart="true" fixedKartId="24" isFixedChar="true" fixedCharId="44" laps="3" gameType="item">
+    <LevelContent level="0" item="Rocket" aiItemLevel="1">
+      <AiKart characterId="2" uniformId="0" characterName="皮蛋" kartId="14" colorId="6" dyeId="6" balloonId="0" speed="46" accel="40" startTick="0"/>
+      <AiKart characterId="1" uniformId="0" characterName="宝宝" kartId="19" colorId="1" dyeId="1" balloonId="0" speed="44" accel="38" startTick="0"/>
+    </LevelContent>
+  </AiKart>
+</Root>

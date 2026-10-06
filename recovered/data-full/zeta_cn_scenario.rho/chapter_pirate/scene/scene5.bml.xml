@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill1"/>
+  <Char id="kephi" pos="7 0" emotion="stop5"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Char id="uni" pos="12 0" emotion="stop5"/>
+  <Msg name="皮蛋，胖墩，小乖" string="呼呼！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="uni" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="好，下一个训练。"/>
+  <Enter/>
+  <Shake time="700"/>
+  <Char id="mos" remove="true"/>
+  <Char id="kephi" pos="8 0" emotion="stop4"/>
+  <Char id="uni" pos="5 0" emotion="stop6"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Msg name="皮蛋，小乖，胖墩" string="不是吧！！让我们休息一下！！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="uni" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="marid" pos="7 0" emotion="stop1"/>
+  <Msg name="蓝蓝" string="原来都在这儿~"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="蓝蓝！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="蓝蓝" string="你好，皮蛋~|听说你也在一起练习，我就准备了一些点心。|大家来尝尝~|葱头，拿出来。"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop4"/>
+  <Msg name="葱头" string="是，蓝蓝小姐。已经准备好了。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="uni" pos="7 0" emotion="stop4"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Char id="dao" pos="1 0" emotion="stop4"/>
+  <Msg name="皮蛋，宝宝，小乖" string="哇，那我们就不客气了。"/>
+  <Enter/>
+  <Shake time="700"/>
+  <Char id="uni" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="6 0" emotion="stop5"/>
+  <Msg name="胖墩" string="咯嘣！咯嘣！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="嗯.. 胖墩吃东西真可怕;|不愧是胖墩！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="好！吃完点心后大家来场比赛！"/>
+  <Enter/>
+</Scene>

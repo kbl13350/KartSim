@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- (2021.10.28 Update) 차이나 서안 병마용 / 모비 -> 팩토리 두 개의 공장 / 브로디로 변경 -->
+<!-- (2022.01.06 Update) 중국 통합 속도 반영 -->
+<!-- (2022.01.14 Update) 대만 통합 속도 반영 -->
+<!-- (2022.10.20 Update) 연습카트 V1 기준 기록 및 설정 반영 -->
+<!-- 캐릭터 : 브로디 / 탑승 카트 : 세이버 V1 -->
+<OutRun kartId='1364'	characterId='16' colorId='6' dyeId='2' track='factory_R03'	gameSpeed='7'>
+	<LevelContent level='7' ksv='L2_5_factory_R03_7'/>
+</OutRun>

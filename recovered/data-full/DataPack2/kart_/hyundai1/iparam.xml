@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--Pony-->
+<BodyParam
+		ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.25'
+	DriftEscapeForce='600'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='sigma'
+	EnvMap='true'
+/>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tutorial name="tutorialScript">
+  <Page template="1" text="[color:yellow]学习古迹探险活动[/color]" font="default" textColor="black"/>
+  <Page template="4" text="古迹探险活动是|通过掷骰子来寻找宝物|开始探险的|全新的活动。" font="default" image="유물조사단로고@zz" textColor="black"/>
+  <Page template="1" text="[color:yellow]骰子使用方法[/color]" font="default" textColor="black"/>
+  <Page template="3" text="骰子持有数量可在最上方确认！" image="전체@zz" image2="수량@zz" font="default"/>
+  <Page template="4" text="||骰子|使用方法" image="주사위" font="default" textColor="black"/>
+  <Page template="3" text="请按古迹探险掷骰子|按钮！" image="전체@zz" image2="굴리기@zz" font="default"/>
+  <Page template="4" text="||会自动开始|掷骰子！" image="자동굴리기" font="default"/>
+  <Page template="4" text="||根据掷骰子的结果|棋子会自动移动！" image="자동이동" font="default"/>
+  <Page template="4" text="|然后|骰子数字为1时|意味着双倍！" image="더블" font="default"/>
+  <Page template="4" text="|双倍是|移动完格子之后|免费再掷一次骰子！" image="자동굴리기" font="default"/>
+  <Page template="1" text="[color:yellow]现在就要尝试|升级奖励吗？[/color]" font="default" textColor="black"/>
+  <Page template="4" text="|到达遗址时|可以选择立即获得奖励的“获得”与|升级奖励的|“升级”按钮！" image="유적" font="default" textColor="black"/>
+  <Page template="3" text="获得按钮是获得目前奖励的按钮！" image="업그레이드팝업@zz" image2="확인@zz" font="default" textColor="black"/>
+  <Page template="3" text="升级按钮是|将奖励进行升级的按钮！" image="업그레이드팝업@zz" image2="업그레이드@zz" font="default" textColor="black"/>
+  <Page template="4" text="|选择升级时|虽然可以得到更高价值的奖励|但是需要再次到达时才可以获得！" image="유적" font="default" textColor="black"/>
+  <Page template="1" text="[color:yellow]隐藏的宝物是什么呢？[/color]" font="default" textColor="black"/>
+  <Page template="4" text="||隐藏的宝物在|放置宝箱的地方！" image="보물상자" font="default"/>
+  <Page template="4" text="||达到放置宝箱的地方时|可以获得意想不到的礼物！" image="보물상자1" font="default"/>
+  <Page template="4" text="||但是，宝箱位置会在|完成时变更！" image="보물상자" font="default"/>
+  <Page template="4" text="||找到宝箱后|取得宝物吧！" image="보물상자" font="default"/>
+  <Page template="1" text="[color:yellow]最后了解一下什么是完成吧。[/color]" font="default" textColor="black"/>
+  <Page template="4" text="|从起始位置开始后|再次回到起始位置就是完成！" image="시작" font="default"/>
+  <Page template="3" text="在最上方可以确认古迹探险的完成次数！" image="전체@zz" image2="완주횟수@zz" font="default"/>
+  <Page template="1" text="[color:yellow]现在开始寻找最棒的礼物|进行有趣的古迹探险吧！[/color]" font="default" textColor="black"/>
+</Tutorial>

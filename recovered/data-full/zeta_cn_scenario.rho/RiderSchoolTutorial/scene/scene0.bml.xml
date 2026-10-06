@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="riderSchool"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="你不是初学者吧？既然进步这么快就直接进入下一个阶段吧！要跟紧哦!嘻嘻"/>
+  <Enter/>
+</Scene>

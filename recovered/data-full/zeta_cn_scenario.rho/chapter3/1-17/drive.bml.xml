@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <Shadow kartId="943" characterId="20" uniformId="59" colorId="1" dyeId="1" isFixedKart="true" fixedKartId="943" isFixedChar="true" fixedCharId="2" characterName="谜之车手">
+    <LevelContent level="0" ksv="CH3_17" track="desert_I02" laps="3"/>
+  </Shadow>
+</Root>

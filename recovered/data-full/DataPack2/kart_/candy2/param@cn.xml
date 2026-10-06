@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.078'
+	SteerConstraint='2.8'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.07'
+
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	WaveEffect='true'
+	SpecialSlotCapacity='2'
+	ItemSlotCapacity='3'
+
+	StartForwardAccelFactorItem='1.7'
+	StartBoosterTimeItem='1300'
+
+	UseExtendedAfterBooster='true'
+	BoosterAccelFactorItem='1.6'
+	NormalBoosterTime='-70'
+	TeamBoosterTime='-200'
+	DriftMaxGauge='-450'
+	UseTransformBooster='true'
+	TransAccelFactor='1.715'
+	TransformTime='250'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85main'
+
+	Port0='mod5' 
+
+	FirePort0='mod4a'
+	FirePort1='mod4b'
+	FirePort2='mod3'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance='48'
+	DescStability='40'
+	DescEngineGrade='1.25'
+	DescCornering='7'
+	DescEnchantCap='30'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a3' trailPort1='mod1a4'/>
+</BodyParam>
+
+<!-- 중국 핑크 빵빵탄 HT+ 20131101 / VVIP 하트 패키지 / 레전드 -->

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='135'
+	BackwardAccelForce='110'
+	DragFactor='-0.07'
+	SteerConstraint='2.25'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	EnvMap='true'
+	UseTransformBooster='true'
+
+	BoosterType='protosix1'
+	BoosterType0='protosix1'
+	BoosterType2='cotton6'
+	BoosterType3='cotton6'
+	BoosterType4='cotton6'
+	BoosterType5='cotton6'
+	BoosterType6='cotton6'
+	BoosterType7='cotton6'
+	Port0='mod2a'	
+	FirePort0='mod3a'
+	FirePort1='mod4a'		
+	FirePort2='mod1a'
+	FirePort3='mod1b'
+	FirePort4='mod1c'
+	FirePort5='mod1d'
+
+	DescBalance= '30'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+/>
+
+
+<!--프로토SIX 업그레이드 프로토SR-->

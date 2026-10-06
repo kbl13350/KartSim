@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="maple14"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Char id="toben" pos="8 0" emotion="normal"/>
+  <Char id="kephi" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="奥尔卡" string="抓住了！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="stop4"/>
+  <Char id="kephi" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Msg name="短中分勇士" string="放开我！！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="stop4"/>
+  <Char id="kephi" pos="2 0" emotion="stop4"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Msg name="胖墩" string="我不想成为实验材料~~！！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Char id="kephi" pos="2 0" emotion="stop4"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="奥尔卡" string="（这个紫色的家伙怎么这么沉。。。）"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="把他们放开！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Msg name="奥尔卡" string="肯定是不能白白放开的。|做个协商怎么样？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="答应我的条件，我就放开这个紫色的家伙。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop6"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="什么？！都放开！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop6"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="哼，说我是傀儡的这个家伙我肯定是不会放开的。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="你的条件是什么？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="我的条件就是用你来换这个紫色的家伙。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop3"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="好！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop3"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋！等等！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="dao" pos="13 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝, 黑妞, 皮蛋" string="（嘀咕）"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="在嘀咕什么呢？！再墨迹我就走了？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="orchid" pos="11 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="我不会再说一遍，想好了没？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Char id="orchid" pos="11 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="好，我来跟胖墩换！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Char id="orchid" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="奥尔卡" string="哈哈，真的令人很感动的友情呢。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="皮蛋，没有必要为我这样！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kephi" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="奥尔卡！你直接带走我吧！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kephi" pos="10 0" flip="true" emotion="stop4"/>
+  <Char id="orchid" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="奥尔卡" string="我们的协商已经结束了。（你太重了！）"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="kephi" pos="10 0" flip="true" emotion="stop4"/>
+  <Char id="orchid" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="奥尔卡" string="如果你不愿回去的话，那我就一并都带走！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Char id="orchid" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="胖墩" string="什么？无赖。。。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Char id="orchid" pos="5 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="胖墩，我没事的。其他伙伴就拜托你了。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="orchid" pos="5 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop3"/>
+  <Msg name="胖墩" string="可是，皮蛋！！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="orchid" pos="5 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="没事的，快走胖墩！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="orchid" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="8 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="真是催泪呀！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="为什么不阻止皮蛋？！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Msg name="黑妞" string="我也想。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Msg name="黑妞" string="皮蛋说会找个机会自己逃出来的。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Char id="bazzi" pos="2 0" emotion="stop4"/>
+  <Msg name="宝宝" string="皮蛋早已想好了后面的计划呢。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop2"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Char id="bazzi" pos="2 0" emotion="stop4"/>
+  <Msg name="胖墩" string="原来是这样！果然皮蛋都是有计划的呢！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop2"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Char id="bazzi" pos="2 0" emotion="stop4"/>
+  <Msg name="黑妞" string="当然！我的皮蛋长得帅又体贴还聪明勇敢呢！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="又开始了。。。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="yeti" pos="12 0" emotion="stop1"/>
+  <Msg name="白雪人" string="白雪人看不下去。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <BackGround texture="maple14"/>
+  <Char id="orchid" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="嗬。。。（好累，感觉我的力量在这里不管用呢？）"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="是不是有点奇怪？还没有意识到吗？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="。。。少废话。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="不觉得一直在原地踏步吗？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="没空跟实验材料聊天呢。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="已经第10次返回到这里了，不会还没有意识到吧？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="。。。怎么回事？你知道为什么吗？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="我知道这个地方的秘密。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="什么？什么秘密？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="从这里出去的方法！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="奥尔卡" string="怎样？？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="没想到吧？我也是协商达人！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="哈哈哈，我为什么要跟你协商呢？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="那再转10圈后再说吧。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="10 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="奥尔卡" string="等等。。。！你的条件是什么？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="10 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="把我们放了。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="10 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="你的意思是要把我的实验材料全部放走？没门！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="10 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="那没办法，再转个几十圈到时候想法变了我们再说。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（。。。）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="已经20圈了。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="再来10圈吗？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="奥尔卡" string="算了！答应你的条件。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="好！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="我们之所以走不出这个地方是因为红雾。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="这我也知道！因为红雾都没有办法找到出路。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="制造红雾的就是音乐盒。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="音乐盒？刚刚还有几个呢？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop1"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="是的，把音乐盒破坏掉就会消除红雾。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop1"/>
+  <Char id="toben" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="2 0" emotion="stop3"/>
+  <Msg name="短中分勇士" string="我们验证过的！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Char id="toben" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="2 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="好，原来是这样。。。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Char id="toben" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="2 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="但是音乐盒的数量非常多。。。|所以，我希望你帮助我们破坏这些音乐盒！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Char id="toben" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="2 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="那好，我也想快点从这里出去。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Char id="toben" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="2 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="我负责这边，你们负责那边怎么样？五五分开做吧！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Char id="toben" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="2 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="好！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Char id="toben" pos="7 0" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop4"/>
+  <Msg name="短中分勇士" string="（原来协商是这样做的，果然是我的老师！）"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Char id="toben" pos="7 0" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="等等，谁是五？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Char id="toben" pos="7 0" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Msg name="奥尔卡" string="这是什么话？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="normal"/>
+  <Char id="toben" pos="7 0" emotion="stop1"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Msg name="短中分勇士" string="老师，五五就是一半一半做的意思。。。。。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Char id="toben" pos="7 0" emotion="stop1"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Msg name="奥尔卡" string="。。。愚蠢的家伙，我能相信你吗？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop3"/>
+  <Char id="toben" pos="7 0" emotion="stop1"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="少废话，赶紧开始吧！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="orchid" pos="13 0" flip="true" emotion="stop3"/>
+  <Char id="toben" pos="7 0" emotion="stop1"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Msg name="奥尔卡" string="希望你们能完成自己负责的部分。|要不然就等着变成我的实验材料吧！"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="toben" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="终于从奥尔卡手中逃出来了。|一个人貌似有点费劲，我来教你使用道具的方法吧。"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="toben" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="短中分勇士" string="好的！老师。"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="toben" pos="11 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="我来当你的训练对象吧！"/>
+  <Enter/>
+</Scene>

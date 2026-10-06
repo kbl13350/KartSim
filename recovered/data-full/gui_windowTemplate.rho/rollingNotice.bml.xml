@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageBoard name="notiPanel" windowRect="0 0 1420 26" image="scrolling_bg" align="hcenter" alphaBlend="true" visible="true" depthBias="1024" adjust="0 50">
+  <Label name="notiLabel" leftTopWH="0 0 100 26" autoSizing="true" textAlign="center" text="" textRender="default16" textColor="white" textColor2="0 0 0 0" visible="true"/>
+  <Window name="notiView" windowSize="1192 26" adjust="100 0" visible="false"/>
+</ImageBoard>

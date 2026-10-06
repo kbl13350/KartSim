@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Tracing isFixedKart="true" fixedKartId="82" kartId="95" isFixedChar="true" fixedCharId="1" characterId="25" uniformId="0" colorId="1" dyeId="1" characterName="雯雯">
+    <LevelContent level="0" track="china_I02" laps="3" ksv="black_2-5" distance="20" startOffset="500"/>
+  </Tracing>
+</Root>

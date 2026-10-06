@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="cokeRocket">
+  <state name="Aim" life="0" auxFx0="aiming" auxFx1="inrange" auxFx2="ontarget" auxFx3="misfire"/>
+  <state name="Use" life="1500" item="item01" itemFx="shooting"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" itemFx="exploding"/>
+  <state name="Alert" life="0"/>
+  <state name="AfterBoost" life="0"/>
+  <state name="5" life="1500" item="item01" itemFx="shooting"/>
+  <state name="AffectSmall" life="1000" item="미사일폭발" fired="fired03" itemFx="exploding"/>
+  <state name="Shield" life="1000" item="쉴드방어" fired="쉴드방어" firedFx="shield"/>
+  <state name="SpecialShield" life="500"/>
+  <state name="Aim" life="0" auxFx0="aiming" auxFx1="inrange" auxFx2="ontarget" auxFx3="misfire"/>
+  <state name="Use" life="1500" item="item01_worldcup" itemFx="shooting"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" itemFx="exploding"/>
+  <state name="Alert" life="0"/>
+  <state name="AfterBoost" life="0"/>
+  <state name="5" life="1500" item="item01_worldcup" itemFx="shooting"/>
+  <state name="AffectSmall" life="1000" item="미사일폭발" fired="fired03" itemFx="exploding"/>
+  <state name="Shield" life="1000" item="쉴드방어" fired="쉴드방어" firedFx="shield"/>
+  <state name="SpecialShield" life="500"/>
+</item>

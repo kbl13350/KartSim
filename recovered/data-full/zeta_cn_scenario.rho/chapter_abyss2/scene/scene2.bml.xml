@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss10"/>
+  <Char id="meoguri" pos="8 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="我记得就在这附近啊。"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="？？？" string="呜呼呼，这是谁啊？|这不是莫格瑞吗？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="meoguri" pos="8 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="快点出来，魔女！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="？？？" string="真没礼貌，|你不知道我的名字吗？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="meoguri" pos="8 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="连名字都不知道我会来找你？|我们做个交易，赫凯特！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="normal"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="赫凯特" string="交易？看来你有急事啊！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="normal"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="要不然也不会来找你。"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="normal"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="赫凯特" string="所以你到底要干吗？|你也知道，我也没办法让你上地面。"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" pos="9 0" emotion="normal"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="时间不多了，我就长话短说。"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="hekate" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="赫凯特" string="既然出现了拥有这种能力的孩子……|这我倒没想到。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="怎么样，了解的差不多了吧？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="赫凯特" string="所以你到底想干什么？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="meoguri" pos="11 0" emotion="stop2"/>
+  <Msg name="莫格瑞" string="去地面，把那些叛徒抓回来！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="stop2"/>
+  <Msg name="赫凯特" string="呜呼呼，这都不是事儿，|在那之前……"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="知道了，你想要什么？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="赫凯特" string="给我白鲸。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="stop2"/>
+  <Msg name="莫格瑞" string="……白鲸是阿比斯的宝物也是阿比斯的象征！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="stop2"/>
+  <Msg name="赫凯特" string="就因为他是阿比斯的象征，我才想要。|其他东西就免谈！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="呃……好吧……只要能到地面……"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="赫凯特" string="呜呼呼，白鲸终于要到手了！|别担心，我会给你代替白鲸的座驾。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="那好，我们现在就出发吧。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="4 0" emotion="stop1"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="赫凯特" string="久违的外面世界……"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="addItemWarningMsg1">
+    <m c="kr" v="상품에 들어있는 아이템 중 이미 가지고 있는 아이템이 있습니다."/>
+    <m c="jp" v="商品に入っているアイテムの中に、すでに持っているアイテムがあります。"/>
+    <m c="cn" v="已拥有包含在商品内的道具"/>
+    <m c="tw" v="已擁有該道具"/>
+    <m c="us" v="The following changes will occur if you proceed."/>
+    <m c="vn" v="Trong tủ đồ đã có vật phẩm tương tự."/>
+    <m c="ru" v="У вас уже есть один из предметов данного комплекта."/>
+    <m c="id" v="Ada item yang sudah kamu miliki di daftar item."/>
+    <m c="th" v="มีไอเทมชนิดนี้อยู่แล้ว"/>
+  </k>
+  <k n="addItemWarningMsg2">
+    <m c="kr" v="상품 구성은 다음과 같습니다. 내아이템의 변경사항을 확인해주세요."/>
+    <m c="jp" v="商品構成は次の通りです。マイホームの変更事項を確認してください。"/>
+    <m c="cn" v="商品组成如下，请确认车库的变更部分"/>
+    <m c="tw" v="商品組成如下，請至車庫進行確認"/>
+    <m c="us" v="Check your garage for changes."/>
+    <m c="vn" v="Xin vui lòng kiểm tra lại!"/>
+    <m c="ru" v="Вы приобрели нижеприведенные предметы. Проверьте покупки в своей комнате."/>
+    <m c="id" v="Isi Item seperti di bawah ini.Silahkan cek perubahan My room"/>
+    <m c="th" v="รายการไอเทมมีดังนี้ . กรุณายืนยันการใช้งานไอเทม"/>
+  </k>
+  <k n="leaseWarning">
+    <m c="kr" v="※ 기간제 아이템의 사용 제한 기간은 최대 %d일까지 누적 가능합니다."/>
+    <m c="jp" v="※ アイテムの利用有効期間は最大%d日まで延長可能です。"/>
+    <m c="cn" v="※ 拥有时间限制的道具使用期限最长可累积到%d日"/>
+    <m c="tw" v="※ 有期限的道具其使用期限最長可累積到%d日"/>
+    <m c="us" v="Item can be extended up to the maximum of %d days.|Consumable items are available up to 90 days after purchase."/>
+    <m c="vn" v="* Có thể gia hạn tối đa %d ngày."/>
+    <m c="ru" v="* Максимальный срок действия предмета - %d дн."/>
+    <m c="id" v="* Total durasi untuk item berdurasi dapat diakmulasikan sampai %d hari."/>
+    <m c="th" v="ไอเทมมีเวลาการใช้งานสูงสุด %d วัน"/>
+  </k>
+  <k n="leaseWarning2">
+    <m c="kr" v="※ 개수 아이템의 보유 수량은 최대 %d개 까지 누적 가능합니다."/>
+    <m c="cn" v="※ 个数道具最高可累积至%d个。"/>
+    <m c="tw" v="※ 道具的數量最多能累積到%d個。"/>
+    <m c="jp" v="※ 消費アイテムの保有数は最大%d個まで所持可能です。"/>
+    <m c="id" v="* Total jumlah untuk item berjumlah dapat diakmulasikan sampai %d pcs."/>
+  </k>
+  <k n="addConfirmMsg">
+    <m c="kr" v="이 상품을 구입하시면 해당 내역과 같이 변경됩니다.|정말 해당 아이템을 받으시겠습니까?"/>
+    <m c="jp" v="この商品を購入すると、該当の内容の通りに変更されます。|本当にこのアイテムを受け取りますか？"/>
+    <m c="cn" v="进行此操作后将发生如上变更，确定继续操作吗？"/>
+    <m c="tw" v="購買這項商品時將會有以上的變更，是否要繼續？"/>
+    <m c="us" v="Purchasing this item will make the appropriate changes. Proceed?"/>
+    <m c="vn" v="Nếu mua vật phẩm này thì sẽ gia hạn thêm thời gian.| Có thật là bạn sẽ mua món hàng đó chứ?"/>
+    <m c="ru" v="Если вы купите этот предмет, срок действия - продлится."/>
+    <m c="id" v="Jika membeli item ini akan ada perubahan seperti dibawah ini.|Yakin ingin mengambil item tersebut?"/>
+    <m c="th" v="ถ้าได้รับไอเทมชิ้นนี้จะสวมใส่ทันทีดังนี้ ต้องการจะรับไอเทมนี้หรือไม่"/>
+  </k>
+  <k n="addError">
+    <m c="kr" v="이미 가지고 있는 아이템의 추가 획득이 불가능 합니다."/>
+    <m c="jp" v="すでに持っているアイテムの追加獲得ができません。"/>
+    <m c="cn" v="无法延长已拥有道具的使用期限"/>
+    <m c="tw" v="無法延長已擁有的道具使用期限"/>
+    <m c="us" v="You cannot extend the expiration date for this item any further."/>
+    <m c="vn" v="Không thể gia hạn thêm thời gian."/>
+    <m c="ru" v="Срок действия купленного предмета продлить нельзя."/>
+    <m c="id" v="Tidak dapat mendapatkan item yang sudah dimiliki."/>
+    <m c="th" v="ไม่สามารถเพิ่มจำนวนวันของไอเทมนี้ได้"/>
+  </k>
+  <k n="forceAddWarning">
+    <m c="kr" v="이 상품을 받게 되면 해당 내역과 같이 변경됩니다.|그래도 해당 아이템을 받으시겠습니까? "/>
+    <m c="jp" v="この商品を受け取ると、該当の内容の通りに変更されます。|本当にこのアイテムを受け取りますか？"/>
+    <m c="cn" v="进行此操作后将发生如上变更，确定继续操作吗？"/>
+    <m c="tw" v="接受這項商品時將會有以上的變更，是否要繼續？"/>
+    <m c="us" v="Receiving this item will make the appropriate changes. Proceed?"/>
+    <m c="vn" v="Nếu nhận vật phẩm này thì sẽ gia hạn thêm thời gian.| Có thật là bạn sẽ nhận món hàng đó chứ?"/>
+    <m c="ru" v="При покупке этого предмета, будут применены следующие функции.|Завершить покупку? "/>
+    <m c="id" v="Jika membeli item ini akan ada perubahan seperti dibawah ini.|Yakin ingin mengambil item tersebut?"/>
+    <m c="th" v="ถ้าได้รับไอเทมชิ้นนี้จะสวมใส่ทันทีดังนี้ ต้องการจะรับไอเทมนี้หรือไม่"/>
+  </k>
+  <k n="forceAddConfirmMsg">
+    <m c="kr" v="변경사항 확인 이후에는 환불 또는 복구가 |불가능합니다. 정말 해당 상품을 받으시겠습니까?"/>
+    <m c="jp" v="変更事項を確認した後では払戻しや元に戻すことが |不可能になります。本当にこの商品を受け取りますか？"/>
+    <m c="cn" v="确认变更部分以后就不能进行退换，还要接收相应道具吗？"/>
+    <m c="tw" v="確定變更事項後，將無法退換或復原，是否確定接受？"/>
+    <m c="us" v="Refund or restoration is not available once this item effect is applied.  Proceed?"/>
+    <m c="vn" v="Sau khi đã quyết định gia hạn thời gian sử dụng thì sẽ không có khả năng hoàn trả và phục hồi."/>
+    <m c="ru" v="После завершения покупки вернуть его или восстановить состояние нельзя. Завершить покупку?"/>
+    <m c="id" v="Setelah konfirmasi perubahan,tidak dapat dikembalikan atau diperbaiki|.Yakin ingin mengambil item tersebut?"/>
+    <m c="th" v="หลังจากทำการยืนยันแล้ว ไม่สามารถเปลี่ยนคืน|เป็นเงิน หรือกลับมาแก้ไขได้ ต้องการยืนยันเพื่อรับ|ไอเทมจริงๆ ใช่หรือไม่"/>
+  </k>
+  <k n="myCash">
+    <m c="kr" v="현재 캐시"/>
+    <m c="cn" v="我的电池"/>
+    <m c="tw" v="我的樂豆點"/>
+  </k>
+  <k n="cashAfterBuying">
+    <m c="kr" v="구입 후 캐시"/>
+    <m c="jp" v="購入後のNP"/>
+    <m c="cn" v="剩余电池"/>
+    <m c="tw" v="購買後剩餘樂豆點"/>
+    <m c="us" v="Nexon Cash Left"/>
+    <m c="vn" v="Trả Vcoin"/>
+    <m c="ru" v="Остаток"/>
+    <m c="id" v="Sisa G-cash setelah membeli"/>
+    <m c="th" v="DE คงเหลือ"/>
+  </k>
+  <k n="myLucci">
+    <m c="kr" v="현재 루찌"/>
+    <m c="cn" v="我的金币"/>
+    <m c="tw" v="我的LUCCI"/>
+  </k>
+  <k n="lucciAfterBuying">
+    <m c="kr" v="구입 후 루찌"/>
+    <m c="jp" v="購入後のルッチ"/>
+    <m c="cn" v="剩余金币"/>
+    <m c="tw" v="購買後剩餘LUCCI"/>
+    <m c="us" v="Lucci Remaining"/>
+    <m c="vn" v="Lucci còn lại"/>
+    <m c="ru" v="Остаток Луцци"/>
+    <m c="id" v="Sisa Lucci setelah membeli"/>
+    <m c="th" v="Lucci คงเหลือ"/>
+  </k>
+  <k n="myLuccon">
+    <m c="kr" v="현재 루콘"/>
+  </k>
+  <k n="lucconAfterBuying">
+    <m c="kr" v="구입 후 루콘"/>
+  </k>
+  <k n="myKoin">
+    <m c="kr" v="현재 코인"/>
+    <m c="cn" v="我的酷币"/>
+    <m c="tw" v="我的KOIN"/>
+  </k>
+  <k n="koinAfterBuying">
+    <m c="kr" v="구입 후 코인"/>
+    <m c="cn" v="剩余酷币"/>
+    <m c="tw" v="購物後KOIN"/>
+  </k>
+  <k n="myGcoin">
+    <m c="kr" v="현재 부품"/>
+    <m c="cn" v="current Gcoin"/>
+    <m c="tw" v="current Gcoin"/>
+  </k>
+  <k n="gcoinAfterBuying">
+    <m c="kr" v="구입 후 부품"/>
+    <m c="cn" v="AfterBuying Gcoin"/>
+    <m c="tw" v="AfterBuying Gcoin"/>
+  </k>
+  <k n="alreadyHave">
+    <m c="kr" v="이미 가지고 있는 아이템의 추가 획득이 불가능합니다."/>
+    <m c="cn" v="无法获得更多已持有道具"/>
+    <m c="tw" v="已持有的道具無法追加獲得。"/>
+  </k>
+  <k n="mixWarning1">
+    <m c="kr" v="결과에 들어있는 아이템 중 이미 가지고 있는 아이템이 있습니다."/>
+    <m c="cn" v="可组合获得的道具中存在已持有道具"/>
+    <m c="tw" v="結果物的道具中有已持有的道具。"/>
+  </k>
+  <k n="mixWarning2">
+    <m c="kr" v="구성은 다음과 같습니다. 내 아이템의 변경사항을 확인해주세요."/>
+    <m c="cn" v="请确认以下可组合获得道具的具体变更事项。"/>
+    <m c="tw" v="構成如下，請確認我的道具的變更事項。"/>
+  </k>
+</StringBag>

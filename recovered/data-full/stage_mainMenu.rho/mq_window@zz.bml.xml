@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="mainmenu" windowRect="fullscreen">
+  <Panel windowRect="fullscreen" texture="img_mainSideBG" alphaBlend="true" enable="false"/>
+  <Panel name="premiumPc" texture="premium_pc@zz" windowSize="128 128" adjust="-20 10" alphaBlend="true" visible="false" align="left;bottom"/>
+  <Container align="vcenter" windowSize="fullwidth-10 505" adjust="10 0">
+    <Container leftTopWH="0 0 376 508" align="right">
+      <Panel windowRect="0 0 366 508" texture="img_noticeBG" align="hcenter" alphaBlend="true">
+        <Label name="noticeCaption" windowRect="0 13 366 25" text="#sb(viewMainNotice)" textRender="outline" textColor="white" textAlign="hcenter"/>
+        <ColorLabel name="viewNotice" windowRect="20 46 348 268" text="" textColor="white" vertAutoSizing="true" multiLine="true" autoWrap="true"/>
+        <List name="mainNotice" windowRect="20 46 348 268" listGap="0"/>
+      </Panel>
+      <Window windowRect="0 282 376 508">
+        <Container name="promotionHolder" windowSize="344 200" align="hcenter" adjust="0 1">
+          <Container name="promotionNew" windowRect="0 0 344 200"/>
+          <Container name="promotionRadioGroup" windowRect="300 205 344 230"/>
+        </Container>
+      </Window>
+    </Container>
+  </Container>
+  <Container name="eventmenu_pop" align="left|vcenter" windowSize="400 505" adjust="10 50">
+    <GridSelector name="이벤트메뉴" windowRect="0 20 400 200" alignStyle="horizontal" alignSize="10" alignMargin="20 0" clientMargin="10 -10 10 80" useAlphaFade="true"/>
+  </Container>
+  <Tab name="multiplay_pop" align="left|vcenter" windowSize="fullwidth-10 505" adjust="10 0" visible="false">
+    <Panel name="selectOutline" leftTopTex="0 0" texture="img_tabOver" alphaBlend="true" visible="false" depthBias="10"/>
+    <Container leftTopWH="414 -15 376 505" align="right">
+      <CaptionWindow windowRect="0 0 376 298" frame="CaptionDialogTop" caption="#sb(multiPlay)" captionPos="0 7">
+        <Panel windowRect="0 3 348 256" texture="img_explainBG@zz" alphaBlend="true" align="hcenter">
+          <Window windowRect="9 5 52 249">
+            <Label windowRect="60 0 100 48" textRender="bold" text="#sb(itemGame)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="60 49 100 97" textRender="bold" text="#sb(speedGame)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="60 98 100 146" textRender="bold" text="#sb(rookie)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="60 147 100 195" textRender="bold" text="#sb(guild)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="60 196 100 244" textRender="bold" text="#sb(etc)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 0 200 48" text="#sb(aboutItemGame)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 49 200 97" text="#sb(aboutSpeedGame)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 98 200 146" text="#sb(aboutRookie)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 147 200 195" text="#sb(aboutGuild)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 196 200 244" text="#sb(aboutEtc)" textColor="255 82 49 4" textAlign="vcenter"/>
+          </Window>
+        </Panel>
+      </CaptionWindow>
+      <Window windowRect="0 298 376 525" frame="CaptionDialogBottom">
+        <Panel windowRect="0 0 342 15" color="230 255 255 255" align="bottom" alphaBlend="true"/>
+      </Window>
+    </Container>
+    <Container name="카테고리전체" leftTopWH="0 88 406 440">
+      <TabPage name="초보카테고리" leftTopWH="0 0 386 420" align="hcenter">
+        <Panel name="leftBG" windowRect="0 -23 406 417" align="hcenter" texture="leftbg" alphaBlend="true"/>
+        <Container name="catList" leftTopWH="-4 -10 386 414 ">
+          <ImageButton name="itemTeamNewbie" leftTopTex="0 0" autoLoadImage="btn_itemTeam_" alphaBlend="true"/>
+          <ImageButton name="itemIndiNewbie" leftTopTex="0 69" autoLoadImage="btn_itemIndi_" alphaBlend="true"/>
+          <ImageButton name="speedTeamNewbie" leftTopTex="190 0" autoLoadImage="btn_speedTeam_" alphaBlend="true"/>
+          <ImageButton name="speedIndiNewbie" leftTopTex="190 69" autoLoadImage="btn_speedIndi_" alphaBlend="true"/>
+        </Container>
+      </TabPage>
+      <TabPage name="아이템카테고리" leftTopWH="0 0 386 420" align="hcenter">
+        <Panel name="leftBG" windowRect="0 -23 406 417" align="hcenter" texture="leftbg" alphaBlend="true"/>
+        <Container name="catList" leftTopWH="-4 -10 386 414 ">
+          <ImageButton name="itemIndi" leftTopTex="0 0" autoLoadImage="btn_itemIndi_" alphaBlend="true"/>
+          <ImageButton name="itemIndiFast" leftTopTex="0 69" autoLoadImage="btn_itemIndiFast_" alphaBlend="true"/>
+          <ImageButton name="itemIndiEnchant" leftTopTex="0 138" autoLoadImage="btn_itemIndiEnchant_" alphaBlend="true"/>
+          <ImageButton name="itemIndiFastest2Enchant" leftTopTex="0 207" autoLoadImage="btn_itemIndiFastest2Enchant_" alphaBlend="true"/>
+          <ImageButton name="itemTeam" leftTopTex="190 0" autoLoadImage="btn_itemTeam_" alphaBlend="true"/>
+          <ImageButton name="itemTeamFast" leftTopTex="190 69" autoLoadImage="btn_itemTeamFast_" alphaBlend="true"/>
+          <ImageButton name="itemTeamEnchant" leftTopTex="190 138" autoLoadImage="btn_itemTeamEnchant_" alphaBlend="true"/>
+          <ImageButton name="itemTeamFastest2Enchant" leftTopTex="190 207" autoLoadImage="btn_itemTeamFastest2Enchant_" alphaBlend="true"/>
+        </Container>
+      </TabPage>
+      <TabPage name="스피드카테고리" leftTopWH="0 0 386 420" align="hcenter">
+        <Panel name="leftBG" windowRect="0 -23 406 417" align="hcenter" texture="leftbg" alphaBlend="true"/>
+        <Container name="catList" leftTopWH="-4 -10 386 414 ">
+          <ImageButton name="speedIndi" leftTopTex="0 0" autoLoadImage="btn_speedIndi_" alphaBlend="true"/>
+          <ImageButton name="speedIndiFast" leftTopTex="0 69" autoLoadImage="btn_speedIndi2_" alphaBlend="true"/>
+          <ImageButton name="speedIndiFastest" leftTopTex="0 138" autoLoadImage="btn_speedIndi3_" alphaBlend="true"/>
+          <ImageButton name="speedIndiFastest2" leftTopTex="0 207" autoLoadImage="btn_speedIndi4_" alphaBlend="true"/>
+          <ImageButton name="speedTeam" leftTopTex="190 0" autoLoadImage="btn_speedTeam_" alphaBlend="true"/>
+          <ImageButton name="speedTeamFast" leftTopTex="190 69" autoLoadImage="btn_speedTeam2_" alphaBlend="true"/>
+          <ImageButton name="speedTeamFastest" leftTopTex="190 138" autoLoadImage="btn_speedTeam3_" alphaBlend="true"/>
+          <ImageButton name="speedTeamFastest2" leftTopTex="190 207" autoLoadImage="btn_speedTeam4_" alphaBlend="true"/>
+          <ImageButton name="speedTeamInfinit" leftTopTex="0 276" autoLoadImage="btn_speed12_" alphaBlend="true"/>
+        </Container>
+      </TabPage>
+      <TabPage name="길드카테고리" leftTopWH="0 0 386 420" align="hcenter">
+        <Panel name="leftBG" windowRect="0 -23 406 417" align="hcenter" texture="leftbg" alphaBlend="true"/>
+        <Container name="catList" leftTopWH="-4 -10 386 414 ">
+          <ImageButton name="guilditemEnchant" leftTopTex="0 0" autoLoadImage="btn_guildItemEnchant_" alphaBlend="true"/>
+          <ImageButton name="guildspeedFastest" leftTopTex="190 0" autoLoadImage="btn_guildSpeed3_" alphaBlend="true"/>
+        </Container>
+      </TabPage>
+      <TabPage name="기타카테고리" leftTopWH="0 0 386 420" align="hcenter">
+        <Panel name="leftBG" windowRect="0 -23 406 417" align="hcenter" texture="leftbg" alphaBlend="true"/>
+        <Container name="catList" leftTopWH="-4 -10 386 414 ">
+          <ImageButton name="championsMaster" leftTopTex="0 0" autoLoadImage="btn_chms_master_" alphaBlend="true"/>
+          <ImageButton name="battle" leftTopTex="0 69" autoLoadImage="btn_battle_" alphaBlend="true"/>
+          <ImageButton name="flagIndi" leftTopTex="0 138" autoLoadImage="btn_flagIndi_" alphaBlend="true"/>
+          <ImageButton name="fomula" leftTopTex="0 207" autoLoadImage="btn_fomula_" alphaBlend="true"/>
+          <ImageButton name="championsRoyal" leftTopTex="190 0" autoLoadImage="btn_chms_royal_" alphaBlend="true"/>
+          <ImageButton name="boss" leftTopTex="190 69" autoLoadImage="btn_boss_" alphaBlend="true"/>
+          <ImageButton name="flagTeam" leftTopTex="190 138" autoLoadImage="btn_flagTeam_" alphaBlend="true"/>
+        </Container>
+      </TabPage>
+    </Container>
+    <TabMenu name="cats" leftTopWH="0 -8 406 80">
+      <ImageButton name="초보카테고리" leftTopTex="0 0" autoLoadImage="cat_newbie_" alphaBlend="true">
+        <Panel name="showNotice" texture="icon_notice_s" windowSize="14 14 " adjust="3 -3" alphaBlend="true" visible="false" enable="false" align="right"/>
+      </ImageButton>
+      <ImageButton name="아이템카테고리" leftTopTex="80 0" autoLoadImage="cat_item_" alphaBlend="true">
+        <Panel name="showNotice" texture="icon_notice_s" windowSize="14 14 " adjust="3 -3" alphaBlend="true" visible="false" enable="false" align="right"/>
+      </ImageButton>
+      <ImageButton name="스피드카테고리" leftTopTex="160 0" autoLoadImage="cat_speed_" alphaBlend="true">
+        <Panel name="showNotice" texture="icon_notice_s" windowSize="14 14 " adjust="3 -3" alphaBlend="true" visible="false" enable="false" align="right"/>
+      </ImageButton>
+      <ImageButton name="길드카테고리" leftTopTex="240 0" autoLoadImage="cat_guild_" alphaBlend="true">
+        <Panel name="showNotice" texture="icon_notice_s" windowSize="14 14 " adjust="3 -3" alphaBlend="true" visible="false" enable="false" align="right"/>
+      </ImageButton>
+      <ImageButton name="기타카테고리" leftTopTex="320 0" autoLoadImage="cat_etc_" alphaBlend="true">
+        <Panel name="showNotice" texture="icon_notice_s" windowSize="14 14 " adjust="3 -3" alphaBlend="true" visible="false" enable="false" align="right"/>
+      </ImageButton>
+    </TabMenu>
+  </Tab>
+  <Tab name="singleplay_pop" align="left|vcenter" windowSize="fullwidth-10 505" adjust="10 0" visible="false">
+    <Container leftTopWH="414 -15 376 508" align="right">
+      <CaptionWindow windowRect="0 0 376 298" frame="CaptionDialogTop" caption="#sb(singlePlay)" captionPos="0 7">
+        <Panel windowRect="0 3 348 256" texture="img_explainBG@zz" alphaBlend="true" align="hcenter">
+          <Panel windowRect="9 5 53 249" texture="img_mainInfo" alphaBlend="true">
+            <Label windowRect="60 0 100 48" textRender="bold" text="#sb(timeAttack)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="60 49 100 97" textRender="bold" text="#sb(challenge)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="60 98 100 146" textRender="bold" text="#sb(scenario)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="60 147 100 195" textRender="bold" text="#sb(replay)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="60 196 100 244" textRender="bold" text="#sb(riderSchool)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 0 200 48" text="#sb(aboutTimeAttack)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 49 200 97" text="#sb(aboutChallenge)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 98 200 146" text="#sb(aboutScenario)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 147 200 195" text="#sb(aboutReplay)" textColor="255 82 49 4" textAlign="vcenter"/>
+            <Label windowRect="140 196 200 244" text="#sb(aboutRiderSchool)" textColor="255 82 49 4" textAlign="vcenter"/>
+          </Panel>
+        </Panel>
+      </CaptionWindow>
+      <Window windowRect="0 298 376 525" frame="CaptionDialogBottom">
+        <Panel windowRect="0 0 342 15" color="230 255 255 255" align="bottom" alphaBlend="true"/>
+      </Window>
+    </Container>
+    <TabPage name="cat_timeAttack" windowSize="fullwidth-10 505">
+      <Panel name="leftBG" windowRect="0 64 406 495" texture="leftbg" alphaBlend="true"/>
+      <Tab name="timeAttackPop" windowRect="0 0 406 505">
+        <TabMenu name="cats" leftTopWH="0 83 406 400">
+          <ImageButton name="timeAttack_train" leftTopTex="0 0" autoLoadImage="btn_timeAttack01_" alphaBlend="true" align="hcenter"/>
+          <ImageButton name="timeAttack_ranking" leftTopTex="0 68" autoLoadImage="btn_timeAttack02_" alphaBlend="true" align="hcenter"/>
+        </TabMenu>
+      </Tab>
+      <Container leftTopWH="0 -15 376 505" align="right">
+        <CaptionWindow frame="CaptionDialogTop" windowRect="0 0 376 298" caption="#sb(timeAttack)" captionPos="0 7">
+          <Window windowRect="0 3 348 256" frame="InnerFrame" align="hcenter">
+            <Panel windowRect="0 10 316 38" texture="img_titleBlue" alphaBlend="true" align="hcenter">
+              <Label windowRect="0 0 316 28" textRender="bold" text="#sb(aboutTrainning)" textColor="white" textAlign="center"/>
+            </Panel>
+            <Label windowRect="0 40 316 140" text="#sb(trainningDetail)" multiLine="true" autoWrap="true"/>
+            <Panel windowRect="0 120 316 148" texture="img_titleRed" alphaBlend="true" align="hcenter">
+              <Label windowRect="0 0 316 28" textRender="bold" text="#sb(aboutRanking)" textColor="white" textAlign="center"/>
+            </Panel>
+            <Label windowRect="0 150 316 250" text="#sb(rankingDetail)" multiLine="true" autoWrap="true"/>
+          </Window>
+        </CaptionWindow>
+        <Window windowRect="0 298 376 525" frame="CaptionDialogBottom">
+          <Panel windowRect="0 0 342 15" color="230 255 255 255" align="bottom" alphaBlend="true"/>
+        </Window>
+      </Container>
+    </TabPage>
+    <TabPage name="cat_scenario" windowSize="fullwidth-10 505">
+      <Panel name="leftBG" windowRect="0 64 406 495" texture="leftbg" alphaBlend="true"/>
+      <Container leftTopWH="0 -15 376 505" align="right">
+        <CaptionWindow frame="CaptionDialog" windowRect="0 0 376 525" caption="#sb(scenario)">
+          <Window windowRect="0 10 344 465" frame="InnerFrame" align="hcenter">
+            <GridSelector name="scenario_grid" windowRect="0 0 340 430" alignSize="1" maxLine="3" clientMargin="0 -1 0 0" alignMargin="5 3" align="hcenter"/>
+            <ImageButton name="prev" windowRect="0 0 160 24" align="bottom" adjust="0 -2" autoLoadImage="btn_left_" alphaBlend="true"/>
+            <ImageButton name="next" windowRect="0 0 160 24" align="right;bottom" adjust="0 -2" autoLoadImage="btn_right_" alphaBlend="true"/>
+          </Window>
+        </CaptionWindow>
+      </Container>
+      <List name="scenario_list" leftTopWH="0 72 386 414" listGap="-10" scrollBarVisible="true"/>
+    </TabPage>
+    <TabPage name="cat_replay" windowSize="fullwidth-10 505">
+      <Panel name="leftBG" windowRect="0 64 406 495" texture="leftbg" alphaBlend="true"/>
+      <Tab name="replayPop" windowSize="fullwidth-10 505">
+        <TabPage name="replay_my" windowSize="376 505" align="right" adjust="0 -15">
+          <CaptionWindow name="my" frame="CaptionDialog" windowRect="0 0 376 525" caption="#sb(replay)">
+            <Window windowRect="0 10 344 465" frame="InnerFrame" align="hcenter">
+              <GridSelector name="grid" windowRect="0 0 340 430" alignSize="1" maxLine="4" clientMargin="0 -1 0 0" alignMargin="5 3" align="hcenter"/>
+              <ImageButton name="prev" windowRect="0 0 160 24" align="bottom" adjust="0 -2" autoLoadImage="btn_left_" alphaBlend="true"/>
+              <ImageButton name="next" windowRect="0 0 160 24" align="right;bottom" adjust="0 -2" autoLoadImage="btn_right_" alphaBlend="true"/>
+            </Window>
+          </CaptionWindow>
+        </TabPage>
+        <TabPage name="replay_league" windowSize="376 505" align="right" adjust="0 -15">
+          <CaptionWindow name="league" frame="CaptionDialog" windowRect="0 0 376 525" caption="#sb(replay)">
+            <Window windowRect="0 10 344 465" frame="InnerFrame" align="hcenter">
+              <GridSelector name="grid" windowRect="0 0 340 430" alignSize="1" maxLine="4" clientMargin="0 -1 0 0" alignMargin="5 3" align="hcenter"/>
+              <ImageButton name="prev" windowRect="0 0 160 24" align="bottom" adjust="0 -2" autoLoadImage="btn_left_" alphaBlend="true"/>
+              <ImageButton name="next" windowRect="0 0 160 24" align="right;bottom" adjust="0 -2" autoLoadImage="btn_right_" alphaBlend="true"/>
+            </Window>
+          </CaptionWindow>
+        </TabPage>
+        <TabPage name="replay_other" windowSize="376 505" align="right" adjust="0 -15">
+          <CaptionWindow name="other" frame="CaptionDialog" windowRect="0 0 376 525" caption="#sb(replay)">
+            <Window windowRect="0 10 344 465" frame="InnerFrame" align="hcenter">
+              <GridSelector name="grid" windowRect="0 0 340 430" alignSize="1" maxLine="4" clientMargin="0 -1 0 0" alignMargin="5 3" align="hcenter"/>
+              <ImageButton name="prev" windowRect="0 0 160 24" align="bottom" adjust="0 -2" autoLoadImage="btn_left_" alphaBlend="true"/>
+              <ImageButton name="next" windowRect="0 0 160 24" align="right;bottom" adjust="0 -2" autoLoadImage="btn_right_" alphaBlend="true"/>
+            </Window>
+          </CaptionWindow>
+        </TabPage>
+        <TabMenu name="cats" leftTopWH="0 83 406 400">
+          <ImageButton name="replay_my" leftTopTex="0 0" autoLoadImage="btn_replay01_" alphaBlend="true" align="hcenter"/>
+          <ImageButton name="replay_league" leftTopTex="0 68" autoLoadImage="btn_replay02_" alphaBlend="true" align="hcenter"/>
+          <ImageButton name="replay_other" leftTopTex="0 136" autoLoadImage="btn_replay03_" alphaBlend="true" align="hcenter"/>
+        </TabMenu>
+      </Tab>
+    </TabPage>
+    <TabPage name="cat_riderSchool" windowSize="fullwidth-10 505">
+      <Panel name="leftBG" windowRect="0 64 406 495" texture="leftbg" alphaBlend="true"/>
+      <Tab name="riderSchoolPop" windowSize="fullwidth-10 505">
+        <TabPage name="riderSchool_rookie" windowSize="376 505" align="right" adjust="0 -15">
+          <CaptionWindow name="rookie" frame="CaptionDialog" windowRect="0 0 376 525" caption="#sb(riderSchool)">
+            <Window windowRect="0 10 344 465" frame="InnerFrame" align="hcenter">
+              <GridSelector name="grid" windowRect="0 0 340 430" alignSize="3" maxLine="3" clientMargin="0 -1 0 0" alignMargin="5 3" align="hcenter"/>
+              <ImageButton name="prev" windowRect="0 0 160 24" align="bottom" adjust="0 -2" autoLoadImage="btn_left_" alphaBlend="true"/>
+              <ImageButton name="next" windowRect="0 0 160 24" align="right;bottom" adjust="0 -2" autoLoadImage="btn_right_" alphaBlend="true"/>
+            </Window>
+          </CaptionWindow>
+        </TabPage>
+        <TabPage name="riderSchool_item" windowSize="376 505" align="right" adjust="0 -15">
+          <CaptionWindow name="item" frame="CaptionDialog" windowRect="0 0 376 525" caption="#sb(riderSchool)">
+            <Window windowRect="0 10 344 465" frame="InnerFrame" align="hcenter">
+              <GridSelector name="grid" windowRect="0 0 340 430" alignSize="3" maxLine="3" clientMargin="0 -1 0 0" alignMargin="5 3" align="hcenter"/>
+              <ImageButton name="prev" windowRect="0 0 160 24" align="bottom" adjust="0 -2" autoLoadImage="btn_left_" alphaBlend="true"/>
+              <ImageButton name="next" windowRect="0 0 160 24" align="right;bottom" adjust="0 -2" autoLoadImage="btn_right_" alphaBlend="true"/>
+            </Window>
+          </CaptionWindow>
+        </TabPage>
+        <TabPage name="riderSchool_speed" windowSize="376 505" align="right" adjust="0 -15">
+          <CaptionWindow name="speed" frame="CaptionDialog" windowRect="0 0 376 525" caption="#sb(riderSchool)">
+            <Window windowRect="0 10 344 465" frame="InnerFrame" align="hcenter">
+              <GridSelector name="grid" windowRect="0 0 340 430" alignSize="3" maxLine="3" clientMargin="0 -1 0 0" alignMargin="5 3" align="hcenter"/>
+              <ImageButton name="prev" windowRect="0 0 160 24" align="bottom" adjust="0 -2" autoLoadImage="btn_left_" alphaBlend="true"/>
+              <ImageButton name="next" windowRect="0 0 160 24" align="right;bottom" adjust="0 -2" autoLoadImage="btn_right_" alphaBlend="true"/>
+            </Window>
+          </CaptionWindow>
+        </TabPage>
+        <TabMenu name="cats" leftTopWH="0 83 406 400">
+          <ImageButton name="riderSchool_rookie" leftTopTex="0 0" autoLoadImage="btn_riderSchool01_" alphaBlend="true" align="hcenter"/>
+          <ImageButton name="riderSchool_item" leftTopTex="0 68" autoLoadImage="btn_riderSchool02_" alphaBlend="true" align="hcenter"/>
+          <ImageButton name="riderSchool_speed" leftTopTex="0 136" autoLoadImage="btn_riderSchool03_" alphaBlend="true" align="hcenter"/>
+        </TabMenu>
+      </Tab>
+    </TabPage>
+    <TabMenu name="singleplay_cats" leftTopWH="0 -8 406 80">
+      <ImageButton name="cat_timeAttack" leftTopTex="0 0" autoLoadImage="cat_timeAttack_" alphaBlend="true"/>
+      <ImageButton name="cat_challenger" leftTopTex="80 0" autoLoadImage="cat_challenger_" alphaBlend="true"/>
+      <ImageButton name="cat_scenario" leftTopTex="160 0" autoLoadImage="cat_scenirio_" alphaBlend="true"/>
+      <ImageButton name="cat_replay" leftTopTex="240 0" autoLoadImage="cat_replay_" alphaBlend="true"/>
+      <ImageButton name="cat_riderSchool" leftTopTex="320 0" autoLoadImage="cat_riderSchool_" alphaBlend="true"/>
+    </TabMenu>
+  </Tab>
+  <CaptionWindow name="rightMenu" align="right|vcenter" frame="CaptionDialog" windowSize="376 525" adjust="0 -5" visible="false">
+    <Window name="roomslotBg" frame="GrayPanel" leftTopWH="-7 2 343 410"/>
+    <Container name="rooms" leftTopWH="2 8 100 100">
+      <ImageButton name="room0" leftTopTex="0 0" autoLoadImage="roomSlot_" alphaBlend="true">
+        <Panel name="trackIcon" leftTopWH="7 7 62 51" texture="hotRandomThumb1@zz" alphaBlend="true" enable="false"/>
+        <Label name="trackName" leftTopWH="75 45 1 1" text="트랙이름" autoSizing="true" enable="false"/>
+        <Label name="roomTitle" leftTopWH="75 15 1 1" text="방제목" font="scalex2" autoSizing="true" enable="false"/>
+        <Panel name="campaignBg" leftTopTex="0 0" texture="campaignBg_disable" alphaBlend="true" enable="false">
+          <Label name="level" windowRect="427 45 100 25" text="레벨" textColor="white" textRender="outline" font="scalex2" textAlign="hcenter" enable="false"/>
+        </Panel>
+        <Panel name="lock" leftTopWH="292 45 26 15" texture="lock" alphaBlend="true" enable="false"/>
+        <ColorLabel name="userCnt" leftTopWH="290 14 1 1" text="8/8" textColor="red" font="scalex2" autoSizing="true" enable="false"/>
+      </ImageButton>
+      <ImageButton name="room1" leftTopTex="0 70" autoLoadImage="roomSlot_" alphaBlend="true">
+        <Panel name="trackIcon" leftTopWH="7 7 62 51" texture="hotRandomThumb1@zz" alphaBlend="true" enable="false"/>
+        <Label name="trackName" leftTopWH="75 45 1 1" text="트랙이름" autoSizing="true" enable="false"/>
+        <Label name="roomTitle" leftTopWH="75 10 1 1" text="방제목" font="scalex2" autoSizing="true" enable="false"/>
+        <Panel name="lock" leftTopWH="292 45 26 15" texture="lock" alphaBlend="true" enable="false"/>
+        <Panel name="campaignBg" leftTopTex="0 0" texture="campaignBg_disable" alphaBlend="true" enable="false">
+          <Label name="level" windowRect="427 45 100 25" text="레벨" textColor="white" textRender="outline" font="scalex2" textAlign="hcenter" enable="false"/>
+        </Panel>
+        <ColorLabel name="userCnt" leftTopWH="290 14 1 1" text="8/8" textColor="red" font="scalex2" autoSizing="true" enable="false"/>
+      </ImageButton>
+      <ImageButton name="room2" leftTopTex="0 140" autoLoadImage="roomSlot_" alphaBlend="true">
+        <Panel name="trackIcon" leftTopWH="7 7 62 51" texture="hotRandomThumb1@zz" alphaBlend="true" enable="false"/>
+        <Label name="trackName" leftTopWH="75 45 1 1" text="트랙이름" autoSizing="true" enable="false"/>
+        <Label name="roomTitle" leftTopWH="75 10 1 1" text="방제목" font="scalex2" autoSizing="true" enable="false"/>
+        <Panel name="lock" leftTopWH="292 45 26 15" texture="lock" alphaBlend="true" enable="false"/>
+        <Panel name="campaignBg" leftTopTex="0 0" texture="campaignBg_disable" alphaBlend="true" enable="false">
+          <Label name="level" windowRect="427 45 100 25" text="레벨" textColor="white" textRender="outline" font="scalex2" textAlign="hcenter" enable="false"/>
+        </Panel>
+        <ColorLabel name="userCnt" leftTopWH="290 14 1 1" text="8/8" textColor="red" font="scalex2" autoSizing="true" enable="false"/>
+      </ImageButton>
+      <ImageButton name="room3" leftTopTex="0 210" autoLoadImage="roomSlot_" alphaBlend="true">
+        <Panel name="trackIcon" leftTopWH="7 7 62 51" texture="hotRandomThumb1@zz" alphaBlend="true" enable="false"/>
+        <Label name="trackName" leftTopWH="75 45 1 1" text="트랙이름" autoSizing="true" enable="false"/>
+        <Label name="roomTitle" leftTopWH="75 10 1 1" text="방제목" font="scalex2" autoSizing="true" enable="false"/>
+        <Panel name="lock" leftTopWH="292 45 26 15" texture="lock" alphaBlend="true" enable="false"/>
+        <Panel name="campaignBg" leftTopTex="0 0" texture="campaignBg_disable" alphaBlend="true" enable="false">
+          <Label name="level" windowRect="427 45 100 25" text="레벨" textColor="white" textRender="outline" font="scalex2" textAlign="hcenter" enable="false"/>
+        </Panel>
+        <ColorLabel name="userCnt" leftTopWH="290 14 1 1" text="8/8" textColor="red" font="scalex2" autoSizing="true" enable="false"/>
+      </ImageButton>
+      <ImageButton name="room4" leftTopTex="0 280" autoLoadImage="roomSlot_" alphaBlend="true">
+        <Panel name="trackIcon" leftTopWH="7 7 62 51" texture="hotRandomThumb1@zz" alphaBlend="true" enable="false"/>
+        <Label name="trackName" leftTopWH="75 45 1 1" text="트랙이름" autoSizing="true" enable="false"/>
+        <Label name="roomTitle" leftTopWH="75 10 1 1" text="방제목" font="scalex2" autoSizing="true" enable="false"/>
+        <Panel name="lock" leftTopWH="292 45 26 15" texture="lock" alphaBlend="true" enable="false"/>
+        <Panel name="campaignBg" leftTopTex="0 0" texture="campaignBg_disable" alphaBlend="true" enable="false">
+          <Label name="level" windowRect="427 45 100 25" text="레벨" textColor="white" textRender="outline" font="scalex2" textAlign="hcenter" enable="false"/>
+        </Panel>
+        <ColorLabel name="userCnt" leftTopWH="290 14 1 1" text="8/8" textColor="red" font="scalex2" autoSizing="true" enable="false"/>
+      </ImageButton>
+      <ImageButton name="roomLeft" leftTopTex="0 370" autoLoadImage="left_" alphaBlend="true"/>
+      <ImageButton name="roomRight" leftTopTex="165 370" autoLoadImage="right_" alphaBlend="true"/>
+    </Container>
+    <Container name="infoHolder" leftTopWH="2 8 100 100" visible="false"/>
+    <Container name="gpInfoHolder" leftTopWH="2 8 100 100" visible="false"/>
+    <Container name="champions" leftTopWH="2 8 100 100" visible="false">
+      <CaptionWindow leftTopWH="-7 -5 350 408" frame="GrayPopupWindow" caption=" " captionColor="white" caption_align="center" visible="true">
+        <Label name="chanpionName" text=" " textColor="white" leftTopWH="0 -20 350 20" adjust="0 0" textAlign="center"/>
+        <Panel leftTopWH="0 5 160 20" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+        <Label text="#sb(chMaster)" textRender="bold" leftTopWH="0 5 160 20" adjust="0 0" textAlign="center"/>
+        <Panel leftTopWH="0 31 160 20" uvRect="0 0 160 20" texture="count@zz">
+          <Label text="#sb(totalGameCount)" textRender="bold" leftTopWH="30 5 10 10" textAlign="center"/>
+          <Label name="totalGameMaster" leftTopWH="110 5 10 10" text="0" textAlign="right"/>
+        </Panel>
+        <Panel leftTopWH="0 50 160 20" uvRect="0 0 160 20" texture="count@zz">
+          <Label text="#sb(winGameCount)" textRender="bold" leftTopWH="30 5 10 10" textAlign="center"/>
+          <Label name="winGameMaster" leftTopWH="110 5 10 10" text="0" textAlign="right"/>
+        </Panel>
+        <Panel leftTopWH="175 5 160 20" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+        <Label text="#sb(chLoyale)" textRender="bold" leftTopWH="180 5 160 20" adjust="0 0" textAlign="center"/>
+        <Panel leftTopWH="175 31 160 20" texture="count@zz">
+          <Label text="#sb(totalGameCount)" textRender="bold" leftTopWH="30 5 10 10" textAlign="center"/>
+          <Label name="totalGameLoyale" leftTopWH="110 5 10 10" text="0" textAlign="right"/>
+        </Panel>
+        <Panel leftTopWH="175 50 160 20" texture="count@zz">
+          <Label text="#sb(winGameCount)" textRender="bold" leftTopWH="30 5 10 10" textAlign="center"/>
+          <Label name="winGameLoyale" leftTopWH="110 5 10 10" text="0" textAlign="right"/>
+        </Panel>
+        <Panel leftTopWH="0 80 335 40" uvRect="0.95 0.5 15.05 15.5" texture="img_textBox02">
+          <Label text="#sb(championsDesc)" leftTopWH="10 7 300 40" textAlign="left" multiLine="true"/>
+        </Panel>
+        <Window leftTopWH="0 130 330 1" frame="VSection" align="hcenter"/>
+        <Panel windowRect="0 140 160 160" uvRect="0 0 160 20" texture="count@zz">
+          <Panel leftTopWH="0 0 100 20" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+          <Label text="#sb(yellowJewel)" textRender="bold" leftTopWH="40 5 10 10" textAlign="center"/>
+          <Label name="yellowJewelCount" leftTopWH="120 5 10 10" text="0" textAlign="right"/>
+        </Panel>
+        <Panel windowRect="175 140 335 160" uvRect="0 0 160 20" texture="count@zz">
+          <Panel leftTopWH="0 0 100 20" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+          <Label text="#sb(rainbowJewel)" textRender="bold" leftTopWH="45 5 10 10" textAlign="center"/>
+          <Label name="rainbowJewelCount" leftTopWH="120 5 10 10" text="0" textAlign="right"/>
+        </Panel>
+        <Panel name="itemPreview1" leftTopWH="20 170 120 120" texture="img_itemTooltopBoxBG">
+          <Play1SPanel scene="노란장갑보석" leftTopWH="10 35 100 100" zoom="2.5" clearZAfter="true" defaultCameraPos="-1.0 -4.0 0.0" defaultSpotPos="0.0 0.0 0.0" visible="true" alphaBlend="true"/>
+        </Panel>
+        <Panel name="itemPreview2" leftTopWH="195 170 120 120" texture="img_itemTooltopBoxBG">
+          <Play1SPanel scene="무지개장갑보석" leftTopWH="10 35 100 100" zoom="2.5" clearZAfter="true" defaultCameraPos="-1.0 -4.0 0.0" defaultSpotPos="0.0 0.0 0.0" visible="true" alphaBlend="true"/>
+        </Panel>
+        <Panel leftTopWH="0 300 335 40" uvRect="0.95 0.5 15.05 15.5" texture="img_textBox02">
+          <Label text="#sb(championsJewelDesc)" leftTopWH="10 7 300 40" textAlign="left" multiLine="true" enable="true"/>
+        </Panel>
+        <TextButton name="howToUseZena" windowRect="30 350 130 380" frame="DefaultStaticButton" text="#sb(jewelList)"/>
+        <TextButton name="useZena" windowRect="200 350 300 380" frame="DefaultStaticButton" text="#sb(jewelBoxGo)"/>
+      </CaptionWindow>
+    </Container>
+    <Container name="guildInfo" leftTopWH="2 8 100 100" visible="false">
+      <CaptionWindow leftTopWH="-7 -5 350 408" frame="GrayPopupWindow" caption=" " captionColor="white" caption_align="center" visible="true">
+        <Label text="#sb(howToGuild)" textColor="white" leftTopWH="0 -20 350 20" adjust="0 0" textAlign="center"/>
+        <Panel leftTopWH="0 30 335 50" uvRect="0.95 0.5 15.05 15.5" texture="img_textBox02" align="hcenter">
+          <Label text="#sb(guildGameDesc)" leftTopWH="10 7 300 40" textAlign="left" multiLine="true"/>
+        </Panel>
+        <Window leftTopWH="0 110 330 1" frame="VSection" align="hcenter"/>
+        <Container name="길드없음" leftTopWH="0 140 10 10" align="hcenter">
+          <Window name="holder" leftTopWH="0 -2 300 195" frame="NoFrame" align="hcenter">
+            <Panel leftTopWH="0 4 335 50" uvRect="0.95 0.5 15.05 15.5" texture="img_textBox02" align="hcenter">
+              <Label text="#sb(noGuild)" leftTopWH="10 7 300 40" textAlign="center" multiLine="true" align="hcenter"/>
+            </Panel>
+          </Window>
+        </Container>
+        <Container name="길드정보" leftTopWH="0 140 10 10" visible="false" align="hcenter">
+          <Window name="holder" leftTopWH="0 -2 300 195" frame="NoFrame" align="hcenter">
+            <Panel leftTopTex="198 10" texture="길드마크박스" alphaBlend="true">
+              <Panel name="길드마크" leftTopWH="0 0 60 60" alphaBlend="true" align="center"/>
+            </Panel>
+            <Container leftTopWH="0 28 200 200">
+              <Panel leftTopWH="0 -25 180 25" uvRect="0 0 160 20" texture="count@zz">
+                <Panel leftTopWH="0 0 90 25" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+                <Label text="#sb(guildName)" textRender="bold" leftTopWH="10 0 10 25" textAlign="vcenter"/>
+                <Label name="길드명" leftTopWH="100 0 10 25" text="0" textAlign="vcenter"/>
+              </Panel>
+              <Panel leftTopWH="0 0 180 25" uvRect="0 0 160 20" texture="count@zz">
+                <Panel leftTopWH="0 0 90 25" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+                <Label text="#sb(guildMaster)" textRender="bold" leftTopWH="10 0 10 25" textAlign="vcenter"/>
+                <Label name="길드마스터" leftTopWH="100 0 10 25" text="0" textAlign="vcenter"/>
+              </Panel>
+              <Panel leftTopWH="0 25 180 25" uvRect="0 0 160 20" texture="count@zz">
+                <Panel leftTopWH="0 0 90 25" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+                <Label text="#sb(guildLevel)" textRender="bold" leftTopWH="10 0 10 25" textAlign="vcenter"/>
+                <Label name="길드레벨" leftTopWH="100 0 10 25" text="0" textAlign="vcenter"/>
+              </Panel>
+              <Panel leftTopWH="0 50 180 25" uvRect="0 0 160 20" texture="count@zz">
+                <Panel leftTopWH="0 0 90 25" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+                <Label text="#sb(guildNumOfPersons)" textRender="bold" leftTopWH="10 0 10 25" textAlign="vcenter"/>
+                <Label name="길드인원" leftTopWH="100 0 10 25" text="0" textAlign="vcenter"/>
+              </Panel>
+              <Panel leftTopWH="0 75 180 25" uvRect="0 0 160 20" texture="count@zz">
+                <Panel leftTopWH="0 0 90 25" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+                <Label text="#sb(joinType)" textRender="bold" leftTopWH="10 0 10 25" textAlign="vcenter"/>
+                <Label name="joinType" leftTopWH="100 0 10 25" text="0" textAlign="vcenter"/>
+              </Panel>
+              <Panel leftTopWH="0 100 180 25" uvRect="0 0 160 20" texture="count@zz">
+                <Panel leftTopWH="0 0 90 25" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+                <Label text="#sb(clanPoint)" textRender="bold" leftTopWH="10 0 10 25" textAlign="vcenter"/>
+                <Label name="누적CP" leftTopWH="100 0 10 25" text="0" textAlign="vcenter"/>
+              </Panel>
+              <Panel leftTopWH="0 125 180 25" uvRect="0 0 160 20" texture="count@zz">
+                <Panel leftTopWH="0 0 90 25" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+                <Label text="#sb(seasonSpeedCP)" textRender="bold" leftTopWH="10 0 10 25" textAlign="vcenter"/>
+                <Label name="시즌스피드CP" leftTopWH="100 0 10 25" text="0" textAlign="vcenter"/>
+              </Panel>
+              <Panel leftTopWH="0 150 180 25" uvRect="0 0 160 20" texture="count@zz">
+                <Panel leftTopWH="0 0 90 25" texture="count@zz" uvRect="1 1 50 20" visible="true"/>
+                <Label text="#sb(seasonItemCP)" textRender="bold" leftTopWH="10 0 10 25" textAlign="vcenter"/>
+                <Label name="시즌아이템CP" leftTopWH="100 0 10 25" text="0" textAlign="vcenter"/>
+              </Panel>
+            </Container>
+          </Window>
+        </Container>
+      </CaptionWindow>
+    </Container>
+    <ImageButton name="quickJoin" leftTopTex="-5 420" autoLoadImage="빠른시작_" alphaBlend="true"/>
+    <ImageButton name="createRoom" leftTopTex="217 428" autoLoadImage="방만들기_" alphaBlend="true"/>
+    <ImageButton name="myItem" leftTopTex="217 428" autoLoadImage="btn_myItem_" alphaBlend="true"/>
+    <ImageButton name="gpHelp" leftTopTex="217 428" autoLoadImage="도움말_0" alphaBlend="true" visible="false"/>
+  </CaptionWindow>
+  <Window name="LevelUpNoticeTalk">
+    <Label name="LevelUp5PercentNotice" frame="TalkBalloonRightBottom" text="#sb(MqLevelUp5PercentNotice)" windowRect="30 30 230 100" alphaBlend="true" alphaTest="true" visible="false" multiLine="true" autoWrap="true" lineGap="1" textColor="white" textAlign="center"/>
+    <Label name="LevelUp90PercentNotice" frame="TalkBalloonRightBottom" text="#sb(MqLevelUp90PercentNotice)" windowRect="30 30 230 100" alphaBlend="true" alphaTest="true" visible="false" multiLine="true" autoWrap="true" lineGap="1" textColor="white" textAlign="center"/>
+  </Window>
+</Container>

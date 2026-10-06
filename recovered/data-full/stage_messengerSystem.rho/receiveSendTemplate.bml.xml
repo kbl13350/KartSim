@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="receiveSendCard" leftTopWH="0 0 388 60">
+  <MsgrReceiveInfoButton name="friendReceiveComponent" leftTopWH="0 0 388 60" autoLoadImage="msg_mail_list" alphaBlend="true" visible="false">
+    <Panel name="icon" leftTopWH="6 6 47 47" texture="msg_icon_friend_0" alphaBlend="true" enable="false"/>
+    <ColorLabel name="infoStr" leftTopWH="60 3 260 32" textRender="bold14" textAlign="vcenter" text="" textColor="255 42 55 80" autoWrap="true" indent="0 -5"/>
+    <ColorLabel name="expireTime" leftTopWH="60 36 260 15" textRender="bold14" text="" textColor="255 168 183 195"/>
+    <ImageButton name="acceptBtn" leftTopWH="325 15 29 29" autoLoadImage="btn_accept_" alphaBlend="true"/>
+    <ImageButton name="refuseBtn" leftTopWH="355 15 29 29" autoLoadImage="btn_refuse_" alphaBlend="true"/>
+  </MsgrReceiveInfoButton>
+  <MsgrSendInfoButton name="friendSendComponent" leftTopWH="0 0 388 60" autoLoadImage="msg_mail_list" alphaBlend="true" visible="false">
+    <Panel name="icon" leftTopWH="6 6 47 47" texture="msg_icon_friend_0" alphaBlend="true" enable="false"/>
+    <ColorLabel name="infoStr" leftTopWH="60 3 260 32" textRender="bold14" textAlign="vcenter" text="" textColor="255 42 55 80" autoWrap="true" indent="0 -5"/>
+    <ColorLabel name="expireTime" leftTopWH="60 36 260 15" textRender="bold14" text="" textColor="255 168 183 195"/>
+    <ImageButton name="addCancelBtn" leftTopWH="355 15 29 29" autoLoadImage="btn_cancel_" alphaBlend="true" visible="false"/>
+  </MsgrSendInfoButton>
+</Container>

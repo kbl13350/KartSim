@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="itemCard" leftTopWH="0 0 80 80" texture="btn_markSelect_1" enable="false" visible="true" alphaBlend="true">
+  <ImageButton name="itemCardBtn" windowSize="80 80" adjust="0 0" autoLoadImage="btn_markSelect_@zz" alphaBlend="true" enable="false">
+    <ItemWindow name="previewWnd" leftTopWH="0 0 80 80" stockId="0" enable="false" visible="true"/>
+  </ImageButton>
+</Panel>

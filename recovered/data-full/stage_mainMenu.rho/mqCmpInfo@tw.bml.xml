@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="cmpInfo" leftTopWH="2 8 100 100">
+  <Panel windowRect="-12 -16 340 425" color="230 255 255 255" alphaBlend="true"/>
+  <Window leftTopWH="-8 -14 350 71">
+    <Window windowRect="0 0 350 410">
+      <Panel leftTopWH="0 0 350 410" texture="clubRacing_img_clubInfoBG"/>
+      <Label name="seasonText" leftTopWH="0 2 350 26" text="" textColor="255 255 255 255" textRender="bold" textAlign="center"/>
+      <Container name="record" windowRect="12 45 338 71">
+        <Label leftTopWH="-1 0 97 26" text="#sb(myGameRecord)" textColor="255 60 60 60" textRender="bold" textAlign="center"/>
+        <Label name="winCount" leftTopWH="100 0 103 26" text="0" textColor="255 60 60 60" textRender="bold" textAlign="center"/>
+        <Label leftTopWH="170 0 26 26" text="#sb(unitWin)" textColor="255 100 100 100" textAlign="center"/>
+        <Label name="loseCount" leftTopWH="188 0 103 26" text="0" textColor="255 60 60 60" textRender="bold" textAlign="center"/>
+        <Label leftTopWH="258 0 26 26" text="#sb(unitLose)" textColor="255 100 100 100" textAlign="center"/>
+      </Container>
+      <Container name="clubInfo" windowRect="0 84 350 300">
+        <Container name="clubMarkInfo" windowRect="12 70 133 224">
+          <Panel name="clubMark" leftTopWH="10 10 101 101" alphaBlend="true" visible="false"/>
+          <Label leftTopWH="-6 125 133 26" text="#sb(clubMark)" textColor="255 180 200 215" textRender="bold" textAlign="center"/>
+        </Container>
+        <Label leftTopWH="0 0 350 26" text="#sb(clubInfo)" textColor="255 180 200 215" textRender="bold" textAlign="center"/>
+        <Label name="clubName" leftTopWH="0 31 350 26" text="-" textColor="255 60 60 60" textRender="bold" textAlign="center"/>
+        <Label leftTopWH="136 70 103 26" text="#sb(clubMaster)" textColor="255 60 60 60" textRender="bold" textAlign="center"/>
+        <Label name="clubMasterRid" leftTopWH="230 70 103 26" text="-" textColor="255 60 60 60" textAlign="center"/>
+        <Label leftTopWH="136 102 103 26" text="#sb(clubLevel)" textColor="255 60 60 60" textRender="bold" textAlign="center"/>
+        <Label name="clubLevel" leftTopWH="230 102 103 26" text="0" textColor="255 60 60 60" textAlign="center"/>
+        <Label leftTopWH="136 134 103 26" text="#sb(clubCrewCount)" textColor="255 60 60 60" textRender="bold" textAlign="center"/>
+        <Label name="clubCrewCount" leftTopWH="230 134 103 26" text="0" textColor="255 60 60 60" textAlign="center"/>
+        <Label leftTopWH="136 166 103 26" text="#sb(riderCrewGrade)" textColor="255 60 60 60" textRender="bold" textAlign="center"/>
+        <Label name="riderClubGrade" leftTopWH="230 166 103 26" text="-" textColor="255 60 60 60" textAlign="center"/>
+        <Label leftTopWH="136 198 103 26" text="#sb(clubTotalCs)" textColor="255 60 60 60" textRender="bold" textAlign="center"/>
+        <Label name="clubTotalCs" leftTopWH="230 198 103 26" text="0" textColor="255 60 60 60" textAlign="center"/>
+      </Container>
+      <Label leftTopWH="10 333 340 81" text="#sb(clubRaceHelp)" textColor="255 60 60 60"/>
+    </Window>
+  </Window>
+</Container>

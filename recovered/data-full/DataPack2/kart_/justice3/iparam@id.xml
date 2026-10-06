@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BodyParam
+	ForwardAccelForce='105.0'
+	BackwardAccelForce='90.0'
+	DragFactor='-0.051'
+	SteerConstraint='1.8'
+	DriftEscapeForce='220'
+	CornerDrawFactor='0.041'
+	EnvMap='true'
+/>
+
+<!-- 인니 저스티스 PRO LE 버전 -->

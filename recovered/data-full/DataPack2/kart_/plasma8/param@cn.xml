@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='135'
+	BackwardAccelForce='100'
+	DragFactor='-0.07' 
+	SteerConstraint='2'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.06'
+	TransAccelFactor='1.62'
+
+	DriftMaxGauge='-800'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-450'
+
+	UseTransformBooster='true'
+	EnvMap='true'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod2d1'
+	Port1='mod2d2'
+	FirePort0='mod2a2'
+	FirePort1='mod2a3'
+	FirePort2='mod2b'
+	FirePort3='mod2c'
+
+			DescBalance= '35'
+		DescStability ='30'
+		DescEngineGrade='1.1'
+		DescCornering='2'
+		DescEnchantCap = '25'
+/>
+
+<!-- 20101202중국 플라즈마 EXT 퀘스트 파츠 업그레이드 형-->

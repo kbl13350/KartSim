@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god2"/>
+  <Char id="thor" pos="4 0" emotion="normal"/>
+  <Msg name="托尔" string="呼呼！不就是排位赛嘛~太轻松了！"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="这次也获胜的话是连续888回冠军吗？哈哈！"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="12 0" emotion="normal"/>
+  <Msg name="奥丁" string="托尔！托尔你这家伙！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="odin" pos="12 0" emotion="normal"/>
+  <Msg name="托尔" string="父亲大人！您找我有事吗？"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="原来在这里啊！|卫冕冠军不去赛前庆典，在这里干嘛呢！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="托尔" string="赛前庆典净是些麻烦事儿！|对我来说练习更为重要。"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="哈哈…自已说那种话，不觉得羞愧吗？"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="拥有雷神之锤 X的你应该是最接近胜利的神吧，为什么这么……"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="就算没有雷神之锤 X冠军还是|我托尔的。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Msg name="奥丁" string="有自信虽然是件好事，但是如果大意的话|洛基也有可能获胜！"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Msg name="托尔" string="任何神都无法战胜我，|获胜的肯定我雷神托尔。"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="好了！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="既然你不愿意|那只能找洛基去赛前庆典了！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="5 0" emotion="stop1"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="托尔" string="哈哈！父亲请慢走~|为了获胜，我就继续练习了~"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <BackGround texture="god1"/>
+  <Char id="loki" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="洛基" string="你看！哎…真单纯！|傻托尔，都不知道什么是放松~"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="话说回来，父亲既然离开了，那就有意思了！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="洛基" string="借这个机会去耍一下托尔|我就能拿冠军了！|嘻嘻嘻"/>
+  <Enter/>
+</Scene>

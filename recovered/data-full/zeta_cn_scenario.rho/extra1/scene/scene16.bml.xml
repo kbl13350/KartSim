@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold2"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="这次心服口服了吧！|快把黄金指南针还给我们！"/>
+  <Enter/>
+  <Char id="jakob2" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="波诺 雅克布" string="嘿嘿嘿，这次你们又白跑了一趟！|黄金指南针在我大哥那里。真笨！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" pos="3 0" emotion="stop2"/>
+  <Msg name="波利斯 雅克布" string="笨小子们！|黄金之门终于打开了！"/>
+  <Enter/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="葱头" string="快！皮蛋！|他正在开门！赶快！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="看……看这里！爱德爷爷说过，用黄金指南针做钥匙是不行的"/>
+  <Enter/>
+</Scene>

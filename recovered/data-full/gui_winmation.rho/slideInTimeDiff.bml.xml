@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WindowAni name="slide">
+  <Show>
+    <PositionTon>
+      <Phase at="1" tick="0" translate="0.0 0.0 0.0"/>
+      <Phase at="2" tick="200" translate="315.0 0.0 0.0"/>
+      <Phase at="3" tick="2200" translate="315.0 0.0 0.0"/>
+      <Phase at="4" tick="2400" translate="0.0 0.0 0.0"/>
+    </PositionTon>
+  </Show>
+</WindowAni>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Label name="distance" visible="false"/>
+    <XmlFile file="missionTimer"/>
+    <Container name="tracingPanel" windowRect="0 0 342 112" align="hcenter" visible="false">
+      <Container windowRect="0 80 342 108">
+        <Panel name="tracingText" windowRect="0 0 237 29" align="center" texture="sn_거리@zz" alphaBlend="true">
+          <CharPanel name="tracingLeft" windowRect="105 0 162 26" align="vcenter" texture="sn_카운트숫자" alphaBlend="true" fontSize="20 26" fontStr="0123456789+" text="000"/>
+        </Panel>
+      </Container>
+    </Container>
+    <XmlFile file="collisionMission"/>
+  </Container>
+  <XmlFile file="retryPopup_2btn"/>
+</Container>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china3"/>
+  <Char id="rick" pos="4 0" emotion="stop1"/>
+  <Msg name="鑫鑫" string="那~现在怎么办呢？"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="wenwen" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="雯雯" string="都去各自调查吧|我去找阿哥帮忙！"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="stop1"/>
+  <Msg name="小强" string="好！那各自调查好|在这里集合！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="轮到我宝宝大展身手了！哈哈哈！！|待会儿见！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop7"/>
+  <Msg name="小强" string="应该不会有事情.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <BackGround texture="china1"/>
+  <Char id="bazzi" pos="8 0" emotion="ani1"/>
+  <Msg name="宝宝" string="嗯~得调查哪里呢！|叮咚~~灵感来了~那边！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <BackGround texture="china5"/>
+  <Char id="bazzi" pos="3 0" emotion="stop4"/>
+  <Msg name="宝宝" string="哇~真神奇~再看看那边~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <BackGround texture="china4"/>
+  <Char id="raptorR" pos="11 0" emotion="stop1"/>
+  <Msg name="格雷" string="应该在等我。"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop5"/>
+  <Msg name="宝宝" string="额~！是格雷兄弟！！！|但是，到底是弟弟啊还是哥哥啊.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop5"/>
+  <Msg name="宝宝" string="哎~真不好区分~|先跟踪再说！"/>
+  <Enter/>
+</Scene>

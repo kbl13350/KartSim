@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<clubRaceSeason>
+	<!--
+		====================================================
+		!!!!  아래에 추가/수정이 필요하다면 반드시 읽어주세요  !!!! 
+		====================================================
+
+		====================================================
+		클럽 신규 시즌오픈 등의 이유로 클럽 시즌이 변경되어야 한다면, 
+		쿼리를 통해 반드시 이전 시즌 정보를 마이그레이션 해야 합니다. 
+		첫 작업이시라면, 해당 사항은 다른 파트원 분들에게 문의하세요. 
+		====================================================
+	-->
+	<clubRace
+		id='4'
+		seasonId='2'
+		icon='보상'
+		channelCat='clubRace_item'
+		openDateTime='2020-02-06T06:00:00~*'
+		seasonDateTime='2020-02-06T06:00:00~2020-06-25T05:59:59'
+		openTime='20:00~22:00'
+		gameSpeed='7'
+		gameType='ClubRaceItemTeam'
+		startUserCount='4'
+		lapCount='0'
+		minSteps='2'
+		minPlays='1'
+	>
+		<!-- min/max attributes 선언이 없으면, 범위 외 기본 트랙 그룹으로 지정됨 -->
+		<!-- e.g. CMP 0~900, 901~1200 외의 범위는 기본 트랙 그룹을 사용 -->
+		<group>
+			<track id='castle_I02' reverse='false' /> 	<!--대저택 루이의 장난감 천국-->
+			<track id='china_C01' reverse='false' /> 	<!--차이나 서안 병마용(아이템)-->
+			<track id='desert_I01' reverse='false' /> 	<!--사막 지옥의 모래구덩이-->
+			<track id='factory_I07' reverse='false' /> 	<!--팩토리 핀저의 위험한 적재소-->
+			<track id='fairy_I04' reverse='false' /> 	<!--동화 카드왕국의 미로-->
+			<track id='mine_I04' reverse='false' /> 	<!--광산 무너지는 금광-->
+			<track id='god_I01' reverse='false' /> 		<!--신화 꺼지지 않는 불꽃-->
+			<track id='gold_I05' reverse='false' /> 	<!--황금문명 신비의 황금 콘도르-->
+			<track id='moonhill_I05' reverse='false' />	<!--문힐시티 덜컹덜컹 지하철 탈출-->
+			<track id='pirate_I03' reverse='false' /> 	<!--해적 어질어질 부둣가-->
+			<track id='tomb_I02' reverse='false' /> 	<!--공동묘지 공포의 외길-->
+			<track id='china_I11' reverse='false' /> 	<!--차이나 아름다운 해안도시의 잔교-->
+			<track id='china_I12' reverse='false' /> 	<!--차이나 청두 천하영웅들의 안식처-->
+			<track id='fengshen_I01' reverse='false' />	<!--봉신전설 천지일월의 구슬-->
+			<track id='desert_I02' reverse='false' /> 	<!--사막 피라미드 탐험-->
+			<track id='village_I14' reverse='false' /> 	<!--빌리지 풍차마을 기찻길-->
+			<track id='ice_I05' reverse='false' /> 		<!--아이스 신나는 하프파이프-->
+			<track id='ice_I07' reverse='false' /> 		<!--아이스 짜릿한 동계 훈련장-->
+		</group>
+	</clubRace>
+	<clubRace
+		id='3'
+		seasonId='2'
+		icon='보상'
+		channelCat='clubRace_speed'
+		openDateTime='2020-02-06T06:00:00~*'
+		seasonDateTime='2020-02-06T06:00:00~2020-06-25T05:59:59'
+		openTime='20:00~22:00'
+		gameSpeed='7'
+		gameType='ClubRaceSpeedTeam'
+		startUserCount='4'
+		lapCount='0'
+		minSteps='2'
+		minPlays='1'
+	>
+		<!-- min/max attributes 선언이 없으면, 범위 외 기본 트랙 그룹으로 지정됨 -->
+		<!-- e.g. CMP 0~900, 901~1200 외의 범위는 기본 트랙 그룹을 사용 -->
+		<group>
+			<track id='china_R01' reverse='false' /> 	<!--차이나 서안 병마용-->
+			<track id='world_R10' reverse='false' /> 	<!--월드 두바이 다운타운-->
+			<track id='world_R02' reverse='false' /> 	<!--월드 리오 다운힐-->
+			<track id='sword_R01' reverse='false' /> 	<!--도검 구름의 협곡-->
+			<track id='village_R03' reverse='false' /> 	<!--빌리지 붐힐터널-->
+			<track id='china_I02' reverse='false' />	<!--차이나 상해 동방명주-->
+			<track id='pirate_R01' reverse='false' /> 	<!--해적 로비 절벽의 전투-->
+			<track id='wkc_R01' reverse='false' /> 		<!--WKC 싱가폴 서킷-->
+			<track id='god_R01' reverse='false' /> 		<!--신화 오딘의 궁전-->
+			<track id='ice_I01' reverse='false' /> 		<!--아이스 갈라진 빙산-->
+			<track id='sword_R02' reverse='false' />	<!--도검 야외 수련관-->
+			<track id='pirate_R03' reverse='false' /> 	<!--해적 가파른 감시탑-->
+			<track id='moonhill_R01' reverse='false' /> <!--문힐시티 폭우속의 질주-->
+			<track id='forest_R05' reverse='false' /> 	<!--포레스트 오싹한 공중다리-->
+			<track id='mine_R04' reverse='false' /> 	<!--광산 3개의 지름길-->
+			<track id='china_R12' reverse='false' /> 	<!--차이나 천문산 다운힐-->
+			<track id='fengshen_R01' reverse='false' /> <!--봉신전설 천외선경-->
+			<track id='china_R11' reverse='false' /> 	<!--차이나 무당산 무위자연의 정취-->
+		</group>
+	</clubRace>
+	<clubRace
+		id='2'
+		seasonId='1'
+		icon='보상'
+		channelCat='clubRace_item'
+		openDateTime='2019-04-18T06:00:00~2020-02-06T05:59:59'
+		seasonDateTime='2019-04-18T06:00:00~2019-11-30T23:59:59'
+		openTime='00:00~23:59'
+		gameSpeed='2'
+		gameType='ClubRaceItemTeam'
+		startUserCount='4'
+		lapCount='0'
+		minSteps='2'
+		minPlays='1'
+	>
+		<!-- min/max attributes 선언이 없으면, 범위 외 기본 트랙 그룹으로 지정됨 -->
+		<!-- e.g. CMP 0~900, 901~1200 외의 범위는 기본 트랙 그룹을 사용 -->
+		<group min='0' max='1000'>
+			<track id='ice_I04' reverse='false' />	<!-- 아이스 투명동굴 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+		<group min='1001' max='1400'>
+			<track id='ice_I04' reverse='false' />	<!-- 아이스 투명동굴 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+		<group min='1401' max='1900'>
+			<track id='ice_I04' reverse='false' />	<!-- 아이스 투명동굴 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+		<group min='1901' max='2500'>
+			<track id='ice_I04' reverse='false' />	<!-- 아이스 투명동굴 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+		<group>
+			<track id='ice_I04' reverse='false' />	<!-- 아이스 투명동굴 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+	</clubRace>
+	<clubRace
+		id='1'
+		seasonId='1'
+		icon='보상'
+		channelCat='clubRace_speed'
+		openDateTime='2019-04-18T06:00:00~2020-02-06T05:59:59'
+		seasonDateTime='2019-04-18T06:00:00~2019-11-30T23:59:59'
+		openTime='00:00~23:59'
+		gameSpeed='1'
+		gameType='ClubRaceSpeedTeam'
+		startUserCount='4'
+		lapCount='0'
+		minSteps='2'
+		minPlays='1'
+	>
+		<!-- min/max attributes 선언이 없으면, 범위 외 기본 트랙 그룹으로 지정됨 -->
+		<!-- e.g. CMP 0~900, 901~1200 외의 범위는 기본 트랙 그룹을 사용 -->
+		<group min='0' max='1000'>
+			<track id='nemo_I01' reverse='false' />	<!-- 네모 네모난 마을 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+		<group min='1001' max='1400'>
+			<track id='nemo_I01' reverse='false' />	<!-- 네모 네모난 마을 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+		<group min='1401' max='1900'>
+			<track id='nemo_I01' reverse='false' />	<!-- 네모 네모난 마을 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+		<group min='1901' max='2500'>
+			<track id='nemo_I01' reverse='false' />	<!-- 네모 네모난 마을 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+		<group>
+			<track id='nemo_I01' reverse='false' />	<!-- 네모 네모난 마을 -->
+			<track id='sword_I01' reverse='false' />	<!-- 도검 월하문 -->
+			<track id='village_I03' reverse='false' />	<!-- 빌리지 두개의 관문 -->
+			<track id='village_I04' reverse='false' />	<!-- 빌리지 운하 -->
+		</group>
+	</clubRace>
+</clubRaceSeason>

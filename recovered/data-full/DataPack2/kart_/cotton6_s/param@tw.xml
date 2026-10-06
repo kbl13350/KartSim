@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='135.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.072'
+	SteerConstraint='2.3'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.056'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+	TransAccelFactor='1.65'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod1c'
+	Port1='mod1d'
+	FirePort0='mod1a1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a3'
+	FirePort3='mod2a'
+	FirePort4='mod2b'
+
+
+	DescBalance= '35'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '20'
+
+/>
+
+<!-- 대만 cotton SR Type–S -->

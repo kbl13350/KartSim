@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle4"/>
+  <Char id="dao" pos="4 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="打扰一下，您在找什么呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop3"/>
+  <Msg name="当娜" string="恩？你是谁？啊！没时间跟你聊天了。|主人要我去拿茶水，可是我丢了茶匙。"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="茶匙？什么样的啊？|我来帮你找吧。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop3"/>
+  <Msg name="当娜" string="真的吗?很乖的孩子哪。|茶匙是银质的..手柄部分画着一朵花。"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="OK！我是找东西专家！|等我好消息吧。"/>
+  <Enter/>
+</Scene>

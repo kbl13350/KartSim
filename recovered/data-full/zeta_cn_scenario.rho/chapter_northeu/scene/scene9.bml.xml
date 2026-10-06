@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill3"/>
+  <Char id="mos" pos="8 0" emotion="stop2"/>
+  <Msg name="小强" string="飞碟改装完毕！！！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="stop2"/>
+  <Msg name="小强" string="轮胎也安装了，|可以参加赛车了~"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="奇奇" string="谢谢~小强！！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="小强" string="或许可能会出现问题，|先测试一下吧！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="小强" string="那边有一个可以测试性能的练习场。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="小强" string="去那里确认一下是否完美改装吧。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="奇奇" string="嗯…有点不安…改装时真的没出问题吧？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="小强" string="那是，我是谁啊！！！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="小强" string="我先进行试验，你在这里等着吧！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="奇奇" string="知道了~拜托了！！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="simInfo" leftTopWH="0 0 776 586">
+  <ImageBoard leftTopTex="0 0" image="lobby_right_bg"/>
+  <ImageBoard name="infoImg" leftTopWH="0 0 776 36" image="simul_rankingInfoBG@cn" alphaBlend="true">
+    <CharPanel name="myWin" leftTopWH="286 10 60 18" texture="simul_img_number" fontPos="0 0" fontSize="12 18" fontStr="1234567890-" alphaBlend="true" text="9999" rightAlign="true"/>
+    <CharPanel name="myRank" leftTopWH="674 10 60 18" texture="simul_img_number" fontPos="0 0" fontSize="12 18" fontStr="1234567890-" alphaBlend="true" text="9999" rightAlign="true"/>
+  </ImageBoard>
+  <Tab name="tabMenu" windowSize="734 383" adjust="14 42">
+    <TabPage name="simRankInfo" leftTopWH="7 64 734 383">
+      <ImageBoard leftTopTex="-7 -28" image="simul_rankingListBG" alphaBlend="true"/>
+      <Label leftTopWH="5 -27 50 20" text="#sb(rank)" textAlign="center" textRender="bold16" textColor="255 245 247 250"/>
+      <Label leftTopWH="135 -27 130 20" text="#sb(rid)" textAlign="center" textRender="bold16" textColor="255 245 247 250"/>
+      <Label leftTopWH="497 -27 50 20" text="#sb(win)" textAlign="center" textRender="bold16" textColor="255 245 247 250"/>
+      <Label leftTopWH="624 -27 50 20" text="#sb(dp)" textAlign="center" textRender="bold16" textColor="255 245 247 250"/>
+      <Label leftTopWH="18 329 50 20" color="255 255 0 0" text="#sb(simGameRankMsg1)" textAlign="left;vcenter" textRender="bold14" textColor="255 72 106 163"/>
+      <Label leftTopWH="18 353 50 20" color="255 0 255 0" text="#sb(simGameRankMsg2)" textAlign="left;vcenter" textRender="bold14" textColor="255 72 106 163"/>
+      <GridSelector name="selectTheme" leftTopWH="0 0 734 325" alignStyle="vertical" alignSize="1" maxLine="1" linePaging="true" alignMargin="0 0"/>
+      <ScrollBar name="selectThemeListBar" leftTopWH="734 10 12 250" scrollType="vertical" minScrollButtonHeight="25" rigidMove="true"/>
+    </TabPage>
+    <TabPage name="simRewardInfo" windowRect="7 64 734 383">
+      <ImageBoard leftTopTex="-7 -28" image="simul_rankingRewardBG" alphaBlend="true"/>
+      <Panel leftTopTex="75 -28" texture="simul_rankingReward_NumText@zz" alphaBlend="true"/>
+      <Container name="simRankReward">
+        <Container leftTopWH="364 -22 370 72">
+          <Label name="name" leftTopWH="0 0 126 72" text="테스트테스트" align="hcenter" adjust="-36 0" textAlign="center" textRender="bold16" textColor="255 85 100 122"/>
+          <ItemWindow name="reward" windowSize="72 72" align="right" itemCategory="jewel" itemId="143"/>
+        </Container>
+        <Container leftTopWH="364 60 370 72">
+          <Label name="name" leftTopWH="0 0 126 66" text="테스트테스트" align="hcenter" adjust="-36 0" textAlign="center" textRender="bold16" textColor="255 85 100 122"/>
+          <ItemWindow name="reward" windowSize="72 72" align="right" itemCategory="jewel" itemId="143"/>
+        </Container>
+        <Container leftTopWH="364 142 370 72">
+          <Label name="name" leftTopWH="0 0 126 66" text="테스트테스트" align="hcenter" adjust="-36 0" textAlign="center" textRender="bold16" textColor="255 85 100 122"/>
+          <ItemWindow name="reward" windowSize="72 72" align="right" itemCategory="jewel" itemId="143"/>
+        </Container>
+        <Container leftTopWH="364 224 370 72">
+          <Label name="name" leftTopWH="0 0 126 66" text="테스트테스트" align="hcenter" adjust="-36 0" textAlign="center" textRender="bold16" textColor="255 85 100 122"/>
+          <ItemWindow name="reward" windowSize="72 72" align="right" itemCategory="jewel" itemId="143"/>
+        </Container>
+        <Container leftTopWH="364 306 370 72">
+          <Label name="name" leftTopWH="0 0 126 66" text="테스트테스트" align="hcenter" adjust="-36 0" textAlign="center" textRender="bold16" textColor="255 85 100 122"/>
+          <ItemWindow name="reward" windowSize="72 72" align="right" itemCategory="jewel" itemId="143"/>
+        </Container>
+      </Container>
+    </TabPage>
+    <TabMenu name="cats" leftTopWH="0 0 748 30">
+      <ImageButton name="simRankInfo" leftTopTex="0 0" autoLoadImage="btn_tab2_" text="#sb(simRankInfo)" textRender="bold16" textColor="255 95 103 155" overTextColor="255 106 153 177" clickedTextColor="255 255 255 255" disabledTextColor="155 125 125 125" alphaBlend="true"/>
+      <ImageButton name="simRewardInfo" leftTopTex="374 0" autoLoadImage="btn_tab2_" text="#sb(simRewardInfo)" textRender="bold16" textColor="255 95 103 155" overTextColor="255 106 153 177" clickedTextColor="255 255 255 255" disabledTextColor="155 125 125 125" alphaBlend="true"/>
+    </TabMenu>
+  </Tab>
+  <ImageBoard name="simHelpWnd" leftTopWH="14 42 748 448" image="simul_helpBG@zz" alphaBlend="true" visible="false"/>
+  <ImageButton name="simGameEnter" leftTopTex="164 499" autoLoadImage="simul_btn_enter_" alphaBlend="true"/>
+  <ImageButton name="simHelpBtn" leftTopTex="436 499" autoLoadImage="btn_info_" alphaBlend="true"/>
+</Container>

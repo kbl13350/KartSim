@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="tomb3"/>
+  <Char id="light" pos="8 0" emotion="stop1"/>
+  <Msg name="" string="光"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="啊…"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="这里是哪？|墓地？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="我追着伪装成我的盗窃敞篷老爷车的真凶，|来到了火车站，突然进入到一束奇怪的光圈里…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Msg name="？" string="嗯，刚才看到了时光穿梭的光。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="幽灵车手" string="咦，没人不知道幽灵车手啊。|你是谁？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="我是侦探福尔摩斯。|刚才在火车站突然进入到奇怪的光圈里，|然后睁眼就是这里…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="幽灵车手" string="火车站…奇怪的光圈…|应该是时空穿梭！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="幽灵车手" string="用时间轴制作的护目镜，在火车站行驶就会时空穿梭。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="时空穿梭？我穿越了？|那现在是几几年…?"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="幽灵车手" string="1920年。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop1"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="1920年？？？|那可以见到亚伯特吗？？？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="幽灵车手" string="嗯…|到幽灵峡谷的尽头就能见到他了。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="谢谢。|幽灵峡谷不管什么时候都这么阴森。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="幽灵车手" string="小心点。|闻到陌生人气味的幽灵，会为难你。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop3"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="谢谢。|那我就出发了…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghostracer" remove="true"/>
+  <Char id="ghostracer" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="幽灵车手" string="嗯…从未来穿越过来的侦探…|亚伯特的遗憾终于可以解开了吧？"/>
+  <Enter/>
+</Scene>

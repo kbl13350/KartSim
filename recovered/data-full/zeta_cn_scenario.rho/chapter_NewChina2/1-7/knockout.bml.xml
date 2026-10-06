@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <KnockOut track="village_I05" laps="2" isFixedKart="true" fixedKartId="1336" isFixedChar="true" fixedCharId="2" type="lap">
+    <LevelContent level="0" ksv="1-7" startOffset="1500">
+      <ShadowKart characterId="1" uniformId="0" kartId="1356" colorId="1" dyeId="1" characterName="宝宝"/>
+      <ShadowKart characterId="3" uniformId="0" kartId="1349" colorId="2" dyeId="2" characterName="黑妞"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

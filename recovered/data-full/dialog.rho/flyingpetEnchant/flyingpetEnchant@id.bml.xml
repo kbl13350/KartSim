@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600">
+  <Panel name="bg" windowRect="0 0 800 600" enable="false" visible="true" color="100 0 0 0" alphaBlend="true" alphaTest="true"/>
+  <Container name="mainwindow" windowSize="386 537" adjust="0 0" align="center">
+    <Panel windowRect="0 0 386 269" texture="플라잉펫선택_백판_01" enable="false" alphaTest="true" alphaBlend="true"/>
+    <Panel windowRect="0 269 386 537" texture="플라잉펫선택_백판_02" enable="false" alphaTest="true" alphaBlend="true"/>
+    <List name="upgradeItemList" windowRect="6 90 366 425" scrollWidth="14" listMargin="18 0 0 0" listGap="0" rigidScroll="true" autoAlign="false" visible="true" scrollArea="DefaultVerticalScrollAreaSlip" visibleUpDownButton="false"/>
+    <Label name="topLabel" windowRect="0 57 386 80" text="FlyingPet Upgrade" textRender="bigbold" textColor="255 255 255 255" align="hcenter" textAlign="center"/>
+    <Label name="bodyLabel" windowRect="0 425 386 465" text="FlyingPet Upgrade|FlyingPet UpgraFlyingPet Upgrade|FlyingPet UpgraFlyingPet Upgrade|FlyingPet UpgraFlyingPet Upgrade|FlyingPet UpgraFlyingPet Upgrade|FlyingPet Upgra" textRender="bold" textColor="255 255 255 255" align="hcenter" multiLine="true" autoWrap="true" textAlign="center"/>
+    <TextButton name="upgrade" windowRect="0 480 70 500" text="#sb(grow)" altTextRender="outline" align="hcenter"/>
+    <ImageButton name="goBackButton" leftTopTex="354 2" autoLoadImage="off_0" alphaBlend="true"/>
+  </Container>
+</Container>

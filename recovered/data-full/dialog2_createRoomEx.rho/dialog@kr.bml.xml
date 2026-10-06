@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="방만들기" frame="CaptionDialog" caption="#sb(createRoomCaption)" captionPos="0 1" captionColor="black" windowRect="0 0 649 330" align="center" setCloseButton="cancelRoom">
+  <Panel name="메인메뉴" windowRect="0 24 624 250" color="255 202 202 210" frame="GrayBorderPanel"/>
+  <Panel name="메인메뉴" windowRect="10 50 614 100" color="255 132 133 136">
+    <MenuButton name="novice" windowRect="5 2 55 49" frame="MenuSelectButton" iconSetRecur="novice@zz" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="0"/>
+    <MenuButton name="rookieIntro" windowRect="55 2 105 49" frame="MenuSelectButton" iconSetRecur="rookieIntro@zz" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="1"/>
+    <MenuButton name="rookie" windowRect="105 2 155 49" frame="MenuSelectButton" iconSetRecur="rookie@zz" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="2"/>
+    <MenuButton name="lv3" windowRect="155 2 205 49" frame="MenuSelectButton" iconSetRecur="lv3@zz" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="3"/>
+    <MenuButton name="lv2" windowRect="205 2 255 49" frame="MenuSelectButton" iconSetRecur="lv2@zz" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="4"/>
+    <MenuButton name="lv1" windowRect="255 2 305 49" frame="MenuSelectButton" iconSetRecur="lv1@zz" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="5"/>
+    <MenuButton name="free_rookie" windowRect="305 2 355 49" frame="MenuSelectButton" iconSetRecur="freeR@zz" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="6"/>
+    <MenuButton name="free_l3" windowRect="355 2 405 49" frame="MenuSelectButton" iconSetRecur="freeL3@zz" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="7"/>
+    <MenuButton name="flag" windowRect="405 2 455 49" frame="MenuSelectButton" iconSetRecur="flag" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="8"/>
+    <MenuButton name="bokbulbok" windowRect="455 2 505 49" frame="MenuSelectButton" iconSetRecur="bbb" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="9"/>
+    <MenuButton name="classic" windowRect="405 2 455 49" frame="MenuSelectButton" iconSetRecur="classic" iconInfix="_" iconAlign="hcenter" iconPos="0 5" foldType="mouseOn" data="10"/>
+  </Panel>
+  <Label name="infoText" windowRect="5 6 6 15" text="#sb(infoText)" textRender="bold"/>
+  <Panel name="static" windowRect="4 32 17 43" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+  <Label name="static2" windowRect="21 31 22 40" text="#sb(gameMode)" textRender="bold"/>
+  <Panel name="static" windowRect="4 110 17 121" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+  <Label name="static3" windowRect="21 109 22 118" text="#sb(selectGame)" textRender="bold"/>
+  <Panel name="static" windowRect="4 165 17 176" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+  <Label name="static4" windowRect="21 164 22 173" text="#sb(roomName)" textRender="bold"/>
+  <Edit name="roomName" windowRect="150 162 613 182" text="" maxChar="18" marginRect="4 0 4 0"/>
+  <Panel name="static" windowRect="4 200 17 211" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+  <Label name="static3" windowRect="21 199 22 208" text="#sb(roomPeopleNumber)" textRender="bold"/>
+  <ComboBox name="joinNum" windowRect="444 190 613 210" comboListLength="145" scrollBarVisible="false">
+    <Skip>
+      <TextButton name="item1" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="2"/>
+      <TextButton name="item2" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="3"/>
+      <TextButton name="item3" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="4"/>
+      <TextButton name="item4" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="5"/>
+      <TextButton name="item5" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="6"/>
+      <TextButton name="item6" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="7"/>
+      <TextButton name="item7" windowRect="0 0 36 20" frame="SelectBtn" textAlign="vcenter" stringPos="12 3" text="8"/>
+    </Skip>
+  </ComboBox>
+  <Panel name="static" windowRect="4 226 17 237" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+  <Label name="static14" windowRect="21 225 22 234" text="#sb(privateRoom)" textRender="bold"/>
+  <PlaneCheckButton name="isPassword" windowRect="115 222 132 243"/>
+  <Panel name="sep" windowRect="140 222 141 242" color="255 79 80 84"/>
+  <Label name="static4" windowRect="150 225 170 236" text="#sb(password)" textRender="bold"/>
+  <Edit name="roomPassword" windowRect="280 222 613 242" text="" passEdit="true" maxChar="12"/>
+  <TextButton name="createRoom" windowRect="214 255 286 277" text="#sb(ok)"/>
+  <TextButton name="cancelRoom" windowRect="344 255 416 277" text="#sb(cancel)"/>
+</CaptionWindow>

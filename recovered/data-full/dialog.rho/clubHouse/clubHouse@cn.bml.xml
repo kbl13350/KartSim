@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Window name="facility0" leftTopWH="0 0 0 0" adjust="0 188" align="center" visible="false">
+    <ImageBoard windowSize="996 254" image="clubHouse_bg0" align="center" alphaBlend="true"/>
+    <Label windowRect="-180 -80 -86 -60" text="#sb(clubUpgrade)" textColor="255 160 180 190" textRender="bold" textAlign="center"/>
+    <Label windowRect="106 -80 170 -60" text="#sb(clubName)" textColor="255 160 180 190" textRender="bold" textAlign="center"/>
+    <Label windowRect="346 -80 410 -60" text="#sb(clubMark)" textColor="255 160 180 190" textRender="bold" textAlign="center"/>
+    <Container windowRect="-248 -38 260 220">
+      <Label windowRect="76 0 150 20" text="#sb(clubUpgrade_condition)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label windowRect="50 29 100 49" text="#sb(clubCS)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label name="clubCS" windowRect="110 29 180 49" text="#sb(upgradeBaseStr)" textColor="255 230 230 230" textAlign="right;vcenter"/>
+      <Label windowRect="50 45 100 75" text="#sb(clubCapital)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label name="clubCapital" windowRect="110 45 180 75" text="#sb(upgradeBaseStr)" textColor="255 230 230 230" textAlign="right;vcenter"/>
+      <Label windowRect="50 74 100 94" text="#sb(clubCrew)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label name="clubCrew" windowRect="110 74 140 94" text="#sb(upgradeBaseStr)" textColor="255 230 230 230" textAlign="right;vcenter"/>
+      <Label windowRect="145 74 165 94" text="#sb(clubUpgrade_crewFormat)" textColor="255 230 230 230" textAlign="left;vcenter"/>
+    </Container>
+    <ImageButton name="upgrade" leftTopTex="-234 73" autoLoadImage="clubHouse_btn_select1_" alphaBlend="true" textAlign="center" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" textRender="bold" text="#sb(clubUpgrade)"/>
+    <Label name="clubName" windowSize="140 20" adjust="66 12" text="" textColor="255 67 67 72" textRender="bold" textAlign="center"/>
+    <ImageButton name="changeClubName" leftTopTex="46 73" autoLoadImage="clubHouse_btn_select2_" alphaBlend="true" textAlign="center" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" textRender="bold" text="#sb(changeClubName)"/>
+    <Panel name="clubMark" windowSize="66 66" adjust="345 -25" texture="" enable="false" visible="true" alphaBlend="true">
+      <Panel name="clubFrame" windowSize="100 100" align="center" alphaBlend="true" alphaTest="true" visible="true" texture="clubFrame_2"/>
+    </Panel>
+    <ImageButton name="changeClubMark" leftTopTex="286 73" autoLoadImage="clubHouse_btn_select2_" alphaBlend="true" textAlign="center" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" textRender="bold" text="#sb(changeClubMark)"/>
+  </Window>
+  <Window name="facility1" leftTopWH="0 0 0 0" adjust="0 188" align="center" visible="false">
+    <ImageBoard windowSize="996 254" image="clubHouse_bg1" align="center" alphaBlend="true"/>
+    <Window name="slot0" windowSize="130 132" adjust="-180 21" align="center" alphaBlend="true">
+      <ItemWindow name="item" windowSize="124 116" adjust="0 -11" align="center" stockId="0" enable="false"/>
+      <Label name="stockName" windowSize="130 35" adjust="1 49" align="center" textAlign="center" textColor="255 255 255 255" autoWrap="true" multiLine="true" lineGap="1" enable="false"/>
+      <ImageButton name="rewardButton0" windowSize="126 30" adjust="0 49" align="center" autoLoadImage="clubHouse_btn_select3_" textRender="bold" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" text="#sb(racingCenter_rewardItem)" alphaBlend="true" enable="true" visible="false"/>
+      <ImageBoard name="received" windowSize="130 132" adjust="0 0" image="clubHouse_img_coverLock" align="center" alphaBlend="true" visible="false" enable="true"/>
+      <ImageBoard name="closed" windowSize="130 132" adjust="0 0" image="cn_clubHouse_img_coverLevel2" align="center" alphaBlend="true" visible="false" enable="false"/>
+    </Window>
+    <Window name="slot1" windowSize="130 132" adjust="-36 21" align="center" alphaBlend="true">
+      <ItemWindow name="item" windowSize="124 116" adjust="0 -11" align="center" stockId="0" enable="false"/>
+      <Label name="stockName" windowSize="130 35" adjust="1 49" align="center" textAlign="center" textColor="255 255 255 255" autoWrap="true" multiLine="true" lineGap="1" enable="false"/>
+      <ImageButton name="rewardButton1" windowSize="126 30" adjust="0 49" align="center" autoLoadImage="clubHouse_btn_select3_" textRender="bold" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" text="#sb(racingCenter_rewardItem)" alphaBlend="true" enable="true" visible="false"/>
+      <ImageBoard name="received" windowSize="130 132" adjust="0 0" image="clubHouse_img_coverLock" align="center" alphaBlend="true" visible="false" enable="true"/>
+      <ImageBoard name="closed" windowSize="130 132" adjust="0 0" image="cn_clubHouse_img_coverLevel3" align="center" alphaBlend="true" visible="false" enable="false"/>
+    </Window>
+    <Window name="slot2" windowSize="130 132" adjust="108 21" align="center" alphaBlend="true">
+      <ItemWindow name="item" windowSize="124 116" adjust="0 -11" align="center" stockId="0" enable="false"/>
+      <Label name="stockName" windowSize="130 35" adjust="1 49" align="center" textAlign="center" textColor="255 255 255 255" autoWrap="true" multiLine="true" lineGap="1" enable="false"/>
+      <ImageButton name="rewardButton2" windowSize="126 30" adjust="0 49" align="center" autoLoadImage="clubHouse_btn_select3_" textRender="bold" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" text="#sb(racingCenter_rewardItem)" alphaBlend="true" enable="true" visible="false"/>
+      <ImageBoard name="received" windowSize="130 132" adjust="0 0" image="clubHouse_img_coverLock" align="center" alphaBlend="true" visible="false" enable="true"/>
+      <ImageBoard name="closed" windowSize="130 132" adjust="0 0" image="cn_clubHouse_img_coverLevel4" align="center" alphaBlend="true" visible="false" enable="false"/>
+    </Window>
+    <Window name="slot3" windowSize="130 132" adjust="252 21" align="center" alphaBlend="true">
+      <ItemWindow name="item" windowSize="124 116" adjust="0 -11" align="center" stockId="0" enable="false"/>
+      <Label name="stockName" windowSize="130 35" adjust="1 49" align="center" textAlign="center" textColor="255 255 255 255" autoWrap="true" multiLine="true" lineGap="1" enable="false"/>
+      <ImageButton name="rewardButton3" windowSize="126 30" adjust="0 49" align="center" autoLoadImage="clubHouse_btn_select3_" textRender="bold" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" text="#sb(racingCenter_rewardItem)" alphaBlend="true" enable="true" visible="false"/>
+      <ImageBoard name="received" windowSize="130 132" adjust="0 0" image="clubHouse_img_coverLock" align="center" alphaBlend="true" visible="false" enable="true"/>
+      <ImageBoard name="closed" windowSize="130 132" adjust="0 0" image="cn_clubHouse_img_coverLevel5" align="center" alphaBlend="true" visible="false" enable="false"/>
+    </Window>
+    <Window name="slot4" windowSize="130 132" adjust="414 21" align="center" alphaBlend="true">
+      <ItemWindow name="item" windowSize="124 116" adjust="0 -11" align="center" stockId="0" enable="false"/>
+      <Label name="stockName" windowSize="130 35" adjust="1 49" align="center" textAlign="center" textColor="255 255 255 255" autoWrap="true" multiLine="true" lineGap="1" enable="false"/>
+      <ImageButton name="rewardButton4" windowSize="126 30" adjust="0 49" align="center" autoLoadImage="clubHouse_btn_select3_" textRender="bold" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" text="#sb(racingCenter_rewardItem)" alphaBlend="true" enable="true" visible="false"/>
+      <ImageBoard name="received" windowSize="130 132" adjust="0 0" image="clubHouse_img_coverLock" align="center" alphaBlend="true" visible="false" enable="true"/>
+      <ImageBoard name="closed" windowSize="130 132" adjust="0 0" image="cn_clubHouse_img_coverEvent" align="center" alphaBlend="true" visible="false" enable="false"/>
+    </Window>
+    <Label windowRect="1 -79 81 -59" text="#sb(racingCenter_item)" textColor="255 160 180 190" textRender="bold" textAlign="center"/>
+    <Label windowRect="375 -79 455 -59" text="#sb(racingCenter_eventItem)" textColor="255 160 180 190" textRender="bold" textAlign="center"/>
+    <Label name="facilityHelp" windowRect="-124 98 200 118" text="#sb(racingCenter_info)" textColor="255 160 170 180" textAlign="center"/>
+  </Window>
+  <Window name="facility2" leftTopWH="0 0 0 0" adjust="0 188" align="center" visible="false">
+    <ImageBoard windowSize="996 254" image="clubHouse_bg2" align="center" alphaBlend="true"/>
+    <Label windowRect="-180 -80 -86 -60" text="#sb(clubUpgrade)" textColor="255 160 180 190" textRender="bold" textAlign="center"/>
+    <Label windowRect="210 -80 300 -60" text="#sb(racingCenter_level)" textColor="255 160 180 190" textRender="bold" textAlign="center"/>
+    <Container windowRect="-248 -38 320 120">
+      <Label windowRect="76 0 150 20" text="#sb(clubUpgrade_condition)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label windowRect="50 38 100 58" text="#sb(clubCS)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label name="clubCS" windowRect="110 38 180 58" text="-" textColor="255 230 230 230" textAlign="right;vcenter"/>
+      <Label windowRect="50 65 100 85" text="#sb(clubCapital)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label name="clubCapital" windowRect="110 65 180 85" text="-" textColor="255 230 230 230" textAlign="right;vcenter"/>
+      <Label windowSize="100 10" adjust="382 -2" text="#sb(clubLevel5)" textColor="255 160 180 190" textRender="bold" textAlign="left;vcenter"/>
+      <Label windowSize="100 10" adjust="382 32" text="#sb(clubLevel4)" textColor="255 160 180 190" textRender="bold" textAlign="left;vcenter"/>
+      <Label windowSize="100 10" adjust="382 66" text="#sb(clubLevel3)" textColor="255 160 180 190" textRender="bold" textAlign="left;vcenter"/>
+      <Label windowSize="100 10" adjust="382 100" text="#sb(clubLevel2)" textColor="255 160 180 190" textRender="bold" textAlign="left;vcenter"/>
+      <Label windowSize="100 10" adjust="382 134" text="#sb(clubLevel1)" textColor="255 160 180 190" textRender="bold" textAlign="left;vcenter"/>
+      <Label windowSize="100 10" adjust="498 -3" text="#sb(riderCenter_crew5)" textColor="255 205 220 225" textAlign="left;vcenter"/>
+      <Label windowSize="100 10" adjust="498 31" text="#sb(riderCenter_crew4)" textColor="255 205 220 225" textAlign="left;vcenter"/>
+      <Label windowSize="100 10" adjust="498 64" text="#sb(riderCenter_crew3)" textColor="255 205 220 225" textAlign="left;vcenter"/>
+      <Label windowSize="100 10" adjust="498 99" text="#sb(riderCenter_crew2)" textColor="255 205 220 225" textAlign="left;vcenter"/>
+      <Label windowSize="100 10" adjust="498 133" text="#sb(riderCenter_crew1)" textColor="255 205 220 225" textAlign="left;vcenter"/>
+    </Container>
+    <ImageButton name="upgrade" leftTopTex="-234 73" autoLoadImage="clubHouse_btn_select1_" alphaBlend="true" textAlign="center" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" textRender="bold" text="#sb(clubUpgrade)"/>
+  </Window>
+  <Window name="facility3" leftTopWH="0 0 0 0" adjust="0 188" align="center" visible="false">
+    <ImageBoard windowSize="996 254" image="clubHouse_bg3" align="center" alphaBlend="true"/>
+    <Label leftTopWH="-122 -82 20 20" text="#sb(clubBank_Info)" textRender="bold" textColor="255 160 180 190" textAlign="center"/>
+    <Label leftTopWH="256 -82 20 20" text="#sb(clubBank_supportInfo)" textRender="bold" textColor="255 160 180 190" textAlign="center"/>
+    <Container windowRect="-268 -52 260 220">
+      <Label windowRect="50 0 100 20" text="#sb(clubBank_capital)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label name="clubCapital" windowRect="130 0 228 20" text="0" textColor="255 230 230 230" textAlign="right;vcenter"/>
+      <Label windowRect="234 0 254 20" text="#sb(lucciUnit)" textColor="255 230 230 230" textAlign="left;vcenter"/>
+      <Label windowRect="50 30 100 50" text="#sb(clubBank_rank)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label name="supportRankRid" windowRect="160 30 260 50" text="" textColor="255 230 230 230" textAlign="center"/>
+      <Label windowRect="50 60 100 80" text="#sb(clubBank_totalSupport)" textColor="255 160 180 190" textAlign="left;vcenter"/>
+      <Label name="totalSupportLucci" windowRect="130 60 228 80" text="0" textColor="255 230 230 230" textAlign="right;vcenter"/>
+      <Label windowRect="234 60 254 80" text="#sb(lucciUnit)" textColor="255 230 230 230" textAlign="left;vcenter"/>
+    </Container>
+    <Container windowRect="-232 42 260 20">
+      <ImageCheckButton name="checkBtn0" leftTopWH="0 0 20 20" autoImage="myClub_btn_radioBox_" alphaBlend="true"/>
+      <Label name="supportLucci0" leftTopWH="26 0 16 20" text="#sb(supportLucciFormat)" textColor="255 230 230 230" textAlign="left;vcenter"/>
+      <ImageCheckButton name="checkBtn1" leftTopWH="60 0 20 20" autoImage="myClub_btn_radioBox_" alphaBlend="true"/>
+      <Label name="supportLucci1" leftTopWH="86 0 16 20" text="#sb(supportLucciFormat)" textColor="255 230 230 230" textAlign="left;vcenter"/>
+      <ImageCheckButton name="checkBtn2" leftTopWH="120 0 20 20" autoImage="myClub_btn_radioBox_" alphaBlend="true"/>
+      <Label name="supportLucci2" leftTopWH="146 0 16 20" text="#sb(supportLucciFormat)" textColor="255 230 230 230" textAlign="left;vcenter"/>
+      <ImageCheckButton name="checkBtn3" leftTopWH="180 0 20 20" autoImage="myClub_btn_radioBox_" alphaBlend="true"/>
+      <Label name="supportLucci3" leftTopWH="206 0 16 20" text="#sb(supportLucciFormat)" textColor="255 230 230 230" textAlign="left;vcenter"/>
+    </Container>
+    <ImageButton name="support" leftTopTex="-214 73" autoLoadImage="clubHouse_btn_select1_" alphaBlend="true" textAlign="center" textColor="255 85 65 5" overTextColor="255 85 65 5" overTextColor2="255 85 65 5" clickedTextColor="255 85 65 5" clickedTextColor2="255 85 65 5" textRender="bold" text="#sb(clubBank_support)"/>
+    <Container windowRect="116 -42 260 220">
+      <Label name="supportDate0" leftTopTex="0 0" adjust="0 0" text="" textColor="255 160 180 190" textRender="bold" textAlign="left" align="left;top"/>
+      <Label name="supportRid0" leftTopTex="0 0" adjust="104 0" text="" autoSizing="true" textRender="bold" textColor="white" textAlign="left" align="left;top" visible="false">
+        <Label leftTopTex="0 0" adjust="-110 0" text="#sb(clubBank_supportMsg)" textColor="255 175 175 175" textAlign="left" align="right"/>
+      </Label>
+      <Label name="supportDate1" leftTopTex="0 0" adjust="0 34" text="" textColor="255 160 180 190" textRender="bold" textAlign="left" align="left;top"/>
+      <Label name="supportRid1" leftTopTex="0 0" adjust="104 34" text="" autoSizing="true" textRender="bold" textColor="white" textAlign="left" align="left;top" visible="false">
+        <Label leftTopTex="0 0" adjust="-110 0" text="#sb(clubBank_supportMsg)" textColor="255 175 175 175" textAlign="left" align="right"/>
+      </Label>
+      <Label name="supportDate2" leftTopTex="0 0" adjust="0 68" text="" textColor="255 160 180 190" textRender="bold" textAlign="left" align="left;top"/>
+      <Label name="supportRid2" leftTopTex="0 0" adjust="104 68" text="" autoSizing="true" textRender="bold" textColor="white" textAlign="left" align="left;top" visible="false">
+        <Label leftTopTex="0 0" adjust="-110 0" text="#sb(clubBank_supportMsg)" textColor="255 175 175 175" textAlign="left" align="right"/>
+      </Label>
+      <Label name="supportDate3" leftTopTex="0 0" adjust="0 102" text="" textColor="255 160 180 190" textRender="bold" textAlign="left" align="left;top"/>
+      <Label name="supportRid3" leftTopTex="0 0" adjust="104 102" text="" autoSizing="true" textRender="bold" textColor="white" textAlign="left" align="left;top" visible="false">
+        <Label leftTopTex="0 0" adjust="-110 0" text="#sb(clubBank_supportMsg)" textColor="255 175 175 175" textAlign="left" align="right"/>
+      </Label>
+      <Label name="supportDate4" leftTopTex="0 0" adjust="0 136" text="" textColor="255 160 180 190" textRender="bold" textAlign="left" align="left;top"/>
+      <Label name="supportRid4" leftTopTex="0 0" adjust="104 136" text="" autoSizing="true" textRender="bold" textColor="white" textAlign="left" align="left;top" visible="false">
+        <Label leftTopTex="0 0" adjust="-110 0" text="#sb(clubBank_supportMsg)" textColor="255 175 175 175" textAlign="left" align="right"/>
+      </Label>
+    </Container>
+  </Window>
+  <Container windowSize="1024 768" align="center" enable="false">
+    <ImageBoard name="facilityImg" leftTopTex="0 0" adjust="-443 150" align="center" image="clubHQ1" alphaBlend="true"/>
+    <Label name="facilityLv" windowRect="77 458 110 478" text="" textRender="bold" textColor="white" textAlign="left"/>
+    <Label name="facilityName" windowRect="110 458 150 478" text="" textRender="bold" textColor="white" textAlign="left"/>
+    <Label name="facilityInfo" windowRect="292 458 500 478" text="" textColor="255 255 206 9" textAlign="left"/>
+    <ColorLabel name="facilityUse" windowRect="15 671 265 691" text="" textColor="255 160 170 175" textAlign="center" autoWrap="true"/>
+    <ImageButton name="close" leftTopTex="0 0" adjust="25 454" autoLoadImage="clubHouse_btn_close_" alphaBlend="true" alphaTest="true" align="top;right" visible="true"/>
+  </Container>
+  <ImageButton name="close" leftTopTex="0 0" adjust="477 80" autoLoadImage="clubHouse_btn_close_" alphaBlend="true" alphaTest="true" align="center" visible="true"/>
+</Panel>

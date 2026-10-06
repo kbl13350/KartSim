@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+		ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.3'
+	CornerDrawFactor='0.062'
+	DriftEscapeForce='600'
+	StartForwardAccelFactor = '2'
+
+	UseTransformBooster='false'
+	EngineSound='cotton7'
+
+	StartBoosterTime='1200'
+
+	BoosterType='zero5'
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+	FirePort0='mod5a'
+	FirePort1='mod5b'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+	EnvMap='1'
+
+	WheelFixed = 'true'
+	WheelPosition='0.8'
+
+	DescBalance= '39'
+	DescStability ='37'
+	DescEngineGrade='1.2'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+/>
+
+<!-- 스켈레톤Z7 GT -->

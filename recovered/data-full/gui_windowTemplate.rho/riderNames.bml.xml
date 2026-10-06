@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="ridernamecard" windowRect="0 0 200 30" visible="false">
+  <Label name="rid" windowSize="200 33" adjust="0 0" align="center" textRender="outline16" textAlign="center" autoSizing="true">
+    <Panel name="riderBG" clientRect="0 -3 124 31" texture="riderBG" alphaBlend="true" textureOp="modulate" align="hcenter" visible="false"/>
+    <Panel name="team" clientRect="-14 8 -4 18" texture="spot10" alphaBlend="true" textureOp="modulate"/>
+    <Label name="extra" windowSize="200 33" textRender="outline16" textColor="lime" textAlign="left" autoSizing="true"/>
+  </Label>
+  <Label name="gid" windowSize="230 33" adjust="0 20" align="center" textRender="default16" textAlign="center" autoSizing="true"/>
+  <Panel name="teamColor" clientRect="88 -12 112 12" texture="big_playerSymbol2" alphaBlend="true" textureOp="modulate">
+    <Panel clientRect="0 0 24 24" texture="big_playerSymbol1" alphaBlend="true"/>
+  </Panel>
+</Container>

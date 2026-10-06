@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="jewelFromTo">
+  <state preload="true" name="Use" life="1000" item="Mkey_상점" firing="Mkey_firing" itemFx="007_아이템날아오기"/>
+  <state preload="true" name="Eaten" life="3000" fired="Mkey_획득" firedFx="008_아이템획득"/>
+  <state preload="true" name="Disappear" life="2000"/>
+</item>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SubCategoryStringBag>
+  <Category name="cat.character" link="캐릭터" iconSet="character" inFix="_">
+    <SubCat catId="0" cc="themeWhole" content="itemCatCharacter" classic="true"/>
+  </Category>
+  <Category name="cat.kartBody" link="카트" iconSet="kart" inFix="_">
+    <SubCat catId="0" cc="themeWhole" content="itemCatKart"/>
+    <SubCat catId="1" cc="burst" content="itemCatKart"/>
+    <SubCat catId="2" cc="saber" content="itemCatKart"/>
+    <SubCat catId="3" cc="cotton" content="itemCatKart"/>
+    <SubCat catId="4" cc="solid" content="itemCatKart"/>
+    <SubCat catId="5" cc="marathon" content="itemCatKart"/>
+    <SubCat catId="7" cc="etc" content="itemCatKart"/>
+  </Category>
+  <Category name="cat.wearItem" link="착용" iconSet="wearItem" inFix="_">
+    <SubCat catId="11" cc="headband" content="itemCatHeadBand"/>
+    <SubCat catId="8" cc="goggle" content="itemCatGoggle"/>
+    <SubCat catId="12" cc="camera" content="itemCatHeadPhone"/>
+    <SubCat catId="9" cc="balloon" content="itemCatBalloon" classic="true"/>
+    <SubCat catId="16" cc="handGearL" content="itemCatHandGearL" classic="true"/>
+  </Category>
+  <Category name="cat.decoItem" link="치장" iconSet="decoItem" inFix="_">
+    <SubCat catId="2" cc="paint" content="itemCatPaint" classic="true"/>
+    <SubCat catId="4" cc="plate" content="itemCatPlate" classic="true"/>
+  </Category>
+  <Category name="cat.license" link="invenLicense" iconSet="lcard" inFix="_">
+    <SubCat catId="6" cc="themeWhole" content="itemCatLicense"/>
+  </Category>
+</SubCategoryStringBag>

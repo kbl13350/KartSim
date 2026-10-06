@@ -1,0 +1,580 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chattingScript>
+	<campaign type='1'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='不要因为是动物就掉以轻心！'/>
+			<scripts emotion='talk' msg='让你见识一下动物们的可怕！'/>
+			<scripts emotion='talk' msg='快点~！所有人都跟紧我~'/>
+			<scripts emotion='smile' msg='见过野兽开车吗~'/>
+			<scripts emotion='wink' msg='不知好歹的东西~'/>
+			<scripts emotion='wink' msg='就在我们后面跟着吧~'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='嗷呜~！怕不怕~？'/>
+			<scripts emotion='talk' msg='是不是之前见过？'/>
+			<scripts emotion='talk' msg='哪里来的家伙？'/>
+			<scripts emotion='smile' msg='第一次见！不要紧张'/>
+			<scripts emotion='wink' msg='你们要小心了~'/>
+			<scripts emotion='wink' msg='为什么要被当成动物~汪！汪！'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='好像不是我能应付的对手~'/>
+			<scripts emotion='talk' msg='不要浪费时间~汪！汪！'/>
+			<scripts emotion='talk' msg='我需要休息~'/>
+			<scripts emotion='smile' msg='我就当没看见了~'/>
+			<scripts emotion='wink' msg='好像很紧张啊~'/>
+			<scripts emotion='wink' msg='跟我合不来啊~'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='不用太在意'/>
+			<scripts emotion='talk' msg='我们是不是在哪里见过？'/>
+			<scripts emotion='talk' msg='你们都是新手吧？'/>
+			<scripts emotion='smile' msg='本来就是慢慢来才是最快的~'/>
+			<scripts emotion='wink' msg='我自己就够了^^'/>
+			<scripts emotion='wink' msg='听说过我们的传说吧？'/>
+		</slot>
+	</campaign>
+	<campaign type='2'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='选择我们是明智的~'/>
+			<scripts emotion='angry' msg='是时候展示士兵军团的强大实力了！'/>
+			<scripts emotion='talk' msg='我们不会怜悯别人！'/>
+			<scripts emotion='smile' msg='来露一手啊^^'/>
+			<scripts emotion='wink' msg='士兵1号！'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='士兵是从来不会失败的！'/>
+			<scripts emotion='angry' msg='除了跑还要做什么呢？'/>
+			<scripts emotion='talk' msg='小心，不要受伤！'/>
+			<scripts emotion='smile' msg='来求饶啊？'/>
+			<scripts emotion='wink' msg='士兵2号！'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='都挺好的，没有你就更好了'/>
+			<scripts emotion='angry' msg='是时候展示车手真正的实力了！'/>
+			<scripts emotion='talk' msg='是时候虐哭你了！'/>
+			<scripts emotion='smile' msg='时间过的有意义就好了'/>
+			<scripts emotion='wink' msg='我是士兵3号？'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='士兵失败了！？'/>
+			<scripts emotion='angry' msg='先走吧~我已经没戏了…'/>
+			<scripts emotion='talk' msg='我会做点什么的'/>
+			<scripts emotion='smile' msg='害怕就后撤吧！'/>
+			<scripts emotion='wink' msg='我是黄金之神高迪奥斯'/>
+		</slot>
+	</campaign>
+	<campaign type='3'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='居然敢违抗我…'/>
+			<scripts emotion='talk' msg='你们不是我的对手！'/>
+			<scripts emotion='smile' msg='可怜的家伙，是时候让你们解脱了'/>
+			<scripts emotion='wink' msg='凭那点实力还想赢？'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='是时候展示祭祀长大人的魔法了！'/>
+			<scripts emotion='talk' msg='高迪奥斯大人！我自己就足够了'/>
+			<scripts emotion='smile' msg='狼狈的样子真是好笑~'/>
+			<scripts emotion='wink' msg='高迪奥斯大人~饶过他们吧^^'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='我是寻宝猎人波利斯！'/>
+			<scripts emotion='talk' msg='有什么值钱的东西吗？'/>
+			<scripts emotion='smile' msg='我好像没必要出手了？'/>
+			<scripts emotion='wink' msg='我得快点结束之后回去睡觉'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='我是寻宝猎人波诺！'/>
+			<scripts emotion='talk' msg='竟敢挑战我们？'/>
+			<scripts emotion='smile' msg='绝不会手下留情'/>
+			<scripts emotion='wink' msg='知道什么是赛车吗？'/>
+		</slot>
+	</campaign>
+	<campaign type='4'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='是时候展示传说中龙骑士的力量了！'/>
+			<scripts emotion='talk' msg='我是上海最强的车手鑫鑫！'/>
+			<scripts emotion='smile' msg='我们是中国最强的车手！'/>
+			<scripts emotion='wink' msg='我们是中国最强的车手！'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='嘿！哈！尝尝我们的厉害~'/>
+			<scripts emotion='talk' msg='我是万里长城之花木兰！'/>
+			<scripts emotion='smile' msg='像我的功夫一样，我对赛车也很有自信~'/>
+			<scripts emotion='wink' msg='还是能让你一下的！'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='太小看我的话，我会生气的！'/>
+			<scripts emotion='talk' msg='我是北京京剧第一人恶魔阿哥！'/>
+			<scripts emotion='smile' msg='让我们愉快的跑一把！'/>
+			<scripts emotion='wink' msg='都挺好的，没有你就更好了'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='我的忍耐是有限度的！'/>
+			<scripts emotion='talk' msg='我是守护秦始皇陵的韩将军！'/>
+			<scripts emotion='smile' msg='呃哈哈哈~小可爱们'/>
+			<scripts emotion='wink' msg='赛车使我变得心胸宽广~'/>
+		</slot>
+	</campaign>
+	<campaign type='5'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='我是伟大的佐拉博士！'/>
+			<scripts emotion='talk' msg='是时候展示最尖端的科技了！'/>
+			<scripts emotion='smile' msg='无知的家伙们！你们懂科学？'/>
+			<scripts emotion='wink' msg='要把你的卡丁车升级成最尖端的车吗？'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='我是宇宙最美的科学家囡囡公主'/>
+			<scripts emotion='talk' msg='我的知识如同我的美貌一般~'/>
+			<scripts emotion='smile' msg='嗯？这么快就迷恋上我了？'/>
+			<scripts emotion='wink' msg='是否被我的魅力所折服？'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='由我来支配宇宙行星之间的赛车！'/>
+			<scripts emotion='talk' msg='是时候展示宇宙最强的实力啦~'/>
+			<scripts emotion='smile' msg='可悲的家伙，竟然敢挑战我~'/>
+			<scripts emotion='wink' msg='希望你们能跟紧~'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='不要被我的实力吓到'/>
+			<scripts emotion='talk' msg='还是把冠军梦收起来吧'/>
+			<scripts emotion='smile' msg='小呆好帅~！'/>
+			<scripts emotion='wink' msg='好！来比一场！'/>
+		</slot>
+	</campaign>
+	<campaign type='6'>
+		<slot number='1'>
+			<scripts emotion='talk' msg='哈哈哈！圣诞快乐~！'/>
+			<scripts emotion='talk' msg='爱哭的孩子没有礼物哦~'/>
+			<scripts emotion='smile' msg='呵呵呵呵呵呵呵'/>
+			<scripts emotion='smile' msg='不哭~ 不哭~'/>
+			<scripts emotion='wink' msg='这次圣诞节会不会下雪呢？'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='红鼻子驯鹿的鼻子原来就是红色的~~'/>
+			<scripts emotion='talk' msg='你好~我是红鼻子驯鹿'/>
+			<scripts emotion='smile' msg='圣诞快乐~！'/>
+			<scripts emotion='wink' msg='在白雪中滑着雪橇~♬'/>
+			<scripts emotion='wink' msg='红鼻子驯鹿的鼻子~♬'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='这次圣诞节会不会下雪呢？'/>
+			<scripts emotion='talk' msg='这次圣诞节也会很忙啊'/>
+			<scripts emotion='smile' msg='圣诞快乐~！'/>
+			<scripts emotion='wink' msg='这次圣诞节会充满幸福~'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='让我们尽情的行驶吧~？'/>
+			<scripts emotion='talk' msg='让我们一起骑红鼻子驯鹿吧？'/>
+			<scripts emotion='smile' msg='圣诞快乐~！'/>
+			<scripts emotion='wink' msg='我是比谁都要快的驯鹿！'/>
+		</slot>
+	</campaign>
+	<!-- <campaign type='7'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='我现在很生气！'/>
+			<scripts emotion='talk' msg='我们队跑的最快~'/>
+			<scripts emotion='smile' msg='哈！哈！哈！'/>
+			<scripts emotion='wink' msg='黑妞~ ♥ 我喜欢~！'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='不要耍我！我生气了会很恐怖~'/>
+			<scripts emotion='talk' msg='你好，我是葱头~'/>
+			<scripts emotion='smile' msg='我拥有渊博的知识'/>
+			<scripts emotion='wink' msg='嘿嘿~很感谢你能那么夸我'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='饿！好饿！'/>
+			<scripts emotion='talk' msg='你好，我是胖墩~'/>
+			<scripts emotion='smile' msg='不要用吃的诱惑我~'/>
+			<scripts emotion='wink' msg='想一睹我的风采？'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='小看我的话会吃苦头哦！'/>
+			<scripts emotion='talk' msg='你好，我是黑妞~ ♡'/>
+			<scripts emotion='smile' msg='哎呀！老是盯着人家看会害羞的~♡'/>
+			<scripts emotion='wink' msg='来跟我比一场？'/>
+		</slot>
+	</campaign>
+	<campaign type='8'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='我需要休息！'/>
+			<scripts emotion='talk' msg='跑跑卡丁车真有意思 ^^'/>
+			<scripts emotion='smile' msg='害怕就往后退吧！'/>
+			<scripts emotion='wink' msg='大家~不要大意！'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='居然用没有维护过的卡丁车~'/>
+			<scripts emotion='talk' msg='赛车即是科学~'/>
+			<scripts emotion='smile' msg='那种程度的卡丁车怎么会是我们的对手？'/>
+			<scripts emotion='wink' msg='如果卡丁车出故障了就联系我~'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='小乖！小乖！'/>
+			<scripts emotion='talk' msg='啊啊啊~'/>
+			<scripts emotion='smile' msg='嘿嘿嘿~'/>
+			<scripts emotion='wink' msg='额嗯？'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='什么！这帮无礼的家伙！'/>
+			<scripts emotion='talk' msg='哦~你看起来气度非凡啊'/>
+			<scripts emotion='smile' msg='居然敢挑战我蓝蓝~'/>
+			<scripts emotion='wink' msg='你好~我是蓝蓝~'/>
+		</slot>
+	</campaign> -->
+	<campaign type='9'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='居然敢挑战我！得让你尝尝苦头！'/>
+			<scripts emotion='talk' msg='我是路易家族正统继承人'/>
+			<scripts emotion='smile' msg='哈哈哈！'/>
+			<scripts emotion='wink' msg='这么快就被我的魅力所折服了吗？'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='赶快！快到吃饭时间了！'/>
+			<scripts emotion='talk' msg='想吃好吃的吗？'/>
+			<scripts emotion='smile' msg='吃过饭了吗~ ^^'/>
+			<scripts emotion='wink' msg='跑完得赶快去做吃的了~'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='哎呀！哎呀！居然对我说这么过分的话！'/>
+			<scripts emotion='talk' msg='你好~我是大城堡的小宝贝当娜！'/>
+			<scripts emotion='smile' msg='想被我迷倒吗~'/>
+			<scripts emotion='wink' msg='让着我的话会给你联系方式哦~'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='哔哩哩！不会让着你的！'/>
+			<scripts emotion='talk' msg='哔哩哩！我是大城堡的庭院机器人克鲁伊'/>
+			<scripts emotion='smile' msg='能跑就已经很幸福了！'/>
+			<scripts emotion='wink' msg='来看看你的水平吧！哔哩哩！'/>
+		</slot>
+	</campaign>
+	<campaign type='10'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='嘀哩哩！嘀哩哩！'/>
+			<scripts emotion='talk' msg='我是天下无敌的机器人皮蛋！'/>
+			<scripts emotion='smile' msg='嘀哩哩！很好~'/>
+			<scripts emotion='wink' msg='我！爱！你！'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='停！！嘀哩哩！！'/>
+			<scripts emotion='talk' msg='我们是天下无敌的机器人皮蛋！'/>
+			<scripts emotion='smile' msg='哈！哈！哈！'/>
+			<scripts emotion='wink' msg='一切准备就绪！嘀哩哩！'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='嘀哩哩！嘀哩哩！'/>
+			<scripts emotion='talk' msg='不要小看机器人！嘀哩哩！'/>
+			<scripts emotion='smile' msg='哔哩哩！喜欢你~'/>
+			<scripts emotion='wink' msg='哔哩哩！和我一起吧~'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='故障故障！！要爆炸了！！'/>
+			<scripts emotion='talk' msg='我是天下无敌的机器人皮蛋！'/>
+			<scripts emotion='smile' msg='正在计算行驶时间'/>
+			<scripts emotion='wink' msg='一切准备就绪！'/>
+		</slot>
+	</campaign>
+	<campaign type='11'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='哔哔吡！哔哔吡！'/>
+			<scripts emotion='talk' msg='我是最尖端的机器人宝宝！'/>
+			<scripts emotion='smile' msg='我们能从朋…朋友开始做起吗？'/>
+			<scripts emotion='wink' msg='啊！啊！啊！'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='哔哔吡！哔哔吡！'/>
+			<scripts emotion='talk' msg='我是最尖端的机器人宝宝！'/>
+			<scripts emotion='smile' msg='开始作战'/>
+			<scripts emotion='wink' msg='啊！啊！啊！'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='哔哔吡！哔哔吡！'/>
+			<scripts emotion='talk' msg='我是最尖端的机器人宝宝！'/>
+			<scripts emotion='smile' msg='开始分析'/>
+			<scripts emotion='wink' msg='呵！呵！哼！'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='哔哔吡！哔哔吡！'/>
+			<scripts emotion='talk' msg='我是最尖端的机器人宝宝！'/>
+			<scripts emotion='smile' msg='从概率上看，我们不可能赢'/>
+			<scripts emotion='wink' msg='呵！呵！哼！'/>
+		</slot>
+	</campaign>
+	<campaign type='12'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='我是伟大的海盗船长！'/>
+			<scripts emotion='talk' msg='是时候展示海贼团的实力了！'/>
+			<scripts emotion='smile' msg='我要让你们全都失败！'/>
+			<scripts emotion='wink' msg='前进~！海贼团！！！'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='我是海贼团的行动队长嘟嘟大人！'/>
+			<scripts emotion='talk' msg='还没开始呢，不要紧张！'/>
+			<scripts emotion='smile' msg='已经开始发抖了~哈哈'/>
+			<scripts emotion='wink' msg='要来一把？'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='我是勇敢的小海盗吉米~！'/>
+			<scripts emotion='talk' msg='是时候展示海贼团的荣耀和自豪啦！'/>
+			<scripts emotion='smile' msg='我以后也会成为伟大的海盗船长~！'/>
+			<scripts emotion='wink' msg='身上有金币吗？'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='我是海贼团忠实的一员！'/>
+			<scripts emotion='talk' msg='对我们来说，活着就是幸福的！'/>
+			<scripts emotion='smile' msg='海盗船长海贼团！听过我们的名字吗~'/>
+			<scripts emotion='wink' msg='海盗船长是慈悲的~ 只对自己人~'/>
+		</slot>
+	</campaign>
+	<!-- 유령 -->
+		<!-- <campaign type='13'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='哎哟，你这是在挑衅我吗？'/>
+			<scripts emotion='talk' msg='和我来一场真正的对决吧！'/>
+			<scripts emotion='smile' msg='太好笑了，啊哈哈！'/>
+			<scripts emotion='wink' msg='那个那个，要不要加入幽灵军团？'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='气的我脸红！虽然我没脸 骨骨！'/>
+			<scripts emotion='talk' msg='哎呀呀，脑袋好疼 骨骨…'/>
+			<scripts emotion='smile' msg='嘿嘿，减肥后发现肉全没了~'/>
+			<scripts emotion='wink' msg='给糖的话我会考虑放你一马~？'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='惹我生气了会让你好看！'/>
+			<scripts emotion='talk' msg='来黑暗的墓地~ '/>
+			<scripts emotion='smile' msg='不要惹我生气~'/>
+			<scripts emotion='wink' msg='让你尝尝幽灵军团的恐怖'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='我是恐怖的无情金属人！'/>
+			<scripts emotion='talk' msg='这怎么办！螺丝好像松了！'/>
+			<scripts emotion='smile' msg='我要让你吓一大跳'/>
+			<scripts emotion='wink' msg='万圣节的主角是我们！'/>
+		</slot>
+	</campaign> -->
+	<!-- 유령 프라이데이 추가 버전 -->
+		<campaign type='13'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='哎哟，你这是在挑衅我吗？'/>
+			<scripts emotion='talk' msg='和我来一场真正的对决吧！'/>
+			<scripts emotion='smile' msg='太好笑了，啊哈哈！'/>
+			<scripts emotion='wink' msg='那个那个，要不要加入幽灵军团？'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='气的我脸红！虽然我没脸 骨骨！'/>
+			<scripts emotion='talk' msg='哎呀呀，脑袋好疼 骨骨…'/>
+			<scripts emotion='smile' msg='嘿嘿，减肥后发现肉全没了~'/>
+			<scripts emotion='wink' msg='给糖的话我会考虑放你一马~？'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='惹我生气了会让你好看！'/>
+			<scripts emotion='talk' msg='来黑暗的墓地~ '/>
+			<scripts emotion='smile' msg='不要惹我生气~'/>
+			<scripts emotion='wink' msg='让你尝尝幽灵军团的恐怖'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='Friday~night！！我要拼死到底~~~'/>
+			<scripts emotion='talk' msg='13号的星期五还是小心为好哦~'/>
+			<scripts emotion='smile' msg='会感受到真正的恐怖~~呼呼！'/>
+			<scripts emotion='wink' msg='万圣节怎么可以少了我呢！'/>
+		</slot>
+	</campaign>
+
+	<campaign type='14'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='猜猜我们中真正的皮蛋是几号？'/>
+			<scripts emotion='talk' msg='我呀~我是无所畏惧的皮蛋超人！'/>
+			<scripts emotion='smile' msg='哈哈哈哈！我很强！'/>
+			<scripts emotion='talk' msg='嗨呀！~我现在像英雄吗？哈哈'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='戴着头盔好难受…'/>
+			<scripts emotion='talk' msg='披风好像太长了，踩到了'/>
+			<scripts emotion='smile' msg='我们中只有1个是真正的皮蛋，哼…'/>
+			<scripts emotion='talk' msg='英雄一向是在最后才登场~'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='猜猜我们谁才是真正的皮蛋？哈哈'/>
+			<scripts emotion='talk' msg='皮蛋超人是不会放弃的~'/>
+			<scripts emotion='smile' msg='皮蛋超人是不会放弃的~'/>
+			<scripts emotion='talk' msg='哈哈，比看起来还呆啊？'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='我想让黑妞看到我帅气的样子！'/>
+			<scripts emotion='talk' msg='万圣节的主角是我们！'/>
+			<scripts emotion='smile' msg='大家都说自己是真正的皮蛋'/>
+			<scripts emotion='talk' msg='大家打起精神！'/>
+		</slot>
+	</campaign>
+	<campaign type='15'>
+		<slot number='1'>
+			<scripts emotion='angry' msg='给你展示梦幻疾驰！'/>
+			<scripts emotion='talk' msg='给你展示最快的速度！'/>
+			<scripts emotion='smile' msg='我不会听弱者的命令！'/>
+			<scripts emotion='wink' msg='热血·风！热血·山！热血·琳！准备好了吗？'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='今后我也会成为首领！'/>
+			<scripts emotion='talk' msg='单纯无知的热血·山！'/>
+			<scripts emotion='smile' msg='你们就跟在我后面吧！'/>
+			<scripts emotion='wink' msg='现在开始展示真正的实力吧？'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='是时候展示真正的赛车实力了！'/>
+			<scripts emotion='talk' msg='只相信热血·火首领！'/>
+			<scripts emotion='smile' msg='我要让你们全都失败！！'/>
+			<scripts emotion='wink' msg='热血·火首领真的很伟大！'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='哎呀~在看哪里~'/>
+			<scripts emotion='talk' msg='让我看看你的实力吧~'/>
+			<scripts emotion='smile' msg='去换换心情~'/>
+			<scripts emotion='wink' msg='我是热血暴走团的一点红！热血·琳~'/>
+		</slot>
+	</campaign>
+	<campaign type='16'>
+		<slot number='1'>
+			<scripts emotion='talk' msg='想不想实现更大的梦想？'/>
+			<scripts emotion='smile' msg='是否想加入黑暗组织？呵呵呵~'/>
+			<scripts emotion='wink' msg='你知道星陨之石吗？'/>
+			<scripts emotion='angry' msg='最终还是出现了妨碍我们的人~！'/>
+			<scripts emotion='smile' msg='要不要和我们一起征服世界？'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='talk' msg='没想到就这点实力…好无聊~'/>
+			<scripts emotion='angry' msg='L！来处理这帮小子！'/>
+			<scripts emotion='wink' msg='黑杰克大人！请相信我们兄弟俩！'/>
+			<scripts emotion='angry' msg='烦人的家伙~简直像是飞蛾扑火！'/>
+			<scripts emotion='talk' msg='烦人的鼻涕！呼哧！'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='自觉点，躲开吧~'/>
+			<scripts emotion='talk' msg='哥！叫我了吗？'/>
+			<scripts emotion='talk' msg='那什么~先停下！你会赛车？'/>
+			<scripts emotion='smile' msg='黑暗组织会支配世界！！呵呵呵！'/>
+			<scripts emotion='angry' msg='我是L！我有痣！'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='smile' msg='黑暗组织秘密成员登场！'/>
+			<scripts emotion='talk' msg='竟然有这种家伙~'/>
+			<scripts emotion='talk' msg='记得不~我们好像在哪里见过！'/>
+			<scripts emotion='angry' msg='生平第一次受到这样的屈辱！'/>
+			<scripts emotion='talk' msg='你们并不配当黑杰克大人的对手'/>
+		</slot>
+	</campaign>
+
+	<campaign type='17'> <!-- 보스팀-->
+		<slot number='1'>
+			<scripts emotion='angry' msg='我是伟大的海盗船长！'/>
+			<scripts emotion='talk' msg='是时候展示海贼团的实力了！'/>
+			<scripts emotion='smile' msg='我要让你们全都失败！'/>
+			<scripts emotion='smile' msg='已经开始发抖了~哈哈'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='angry' msg='不要因为是动物就掉以轻心！'/>
+			<scripts emotion='smile' msg='见过野兽开车吗~'/>
+			<scripts emotion='wink' msg='不知好歹的东西~'/>
+			<scripts emotion='wink' msg='就在我们后面跟着吧~'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='angry' msg='居然敢挑战我！得让你尝尝苦头！'/>
+			<scripts emotion='talk' msg='我是路易家族正统继承人'/>
+			<scripts emotion='smile' msg='哈哈哈！'/>
+			<scripts emotion='wink' msg='这么快就被我的魅力所折服了吗？'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='angry' msg='嘀哩哩！嘀哩哩！'/>
+			<scripts emotion='talk' msg='我是天下无敌的机器人皮蛋！'/>
+			<scripts emotion='smile' msg='嘀哩哩！很好~'/>
+			<scripts emotion='wink' msg='我！爱！你！'/>
+		</slot>
+	</campaign>
+
+	<campaign type='19'>
+		<slot number='1'>
+			<scripts emotion='smile' msg='我就是阿比斯的支配者莫格瑞！'/>
+			<scripts emotion='talk' msg='你们是陆地上的人类吗？'/>
+			<scripts emotion='angry' msg='我是来找回我的陆地的！'/>
+			<scripts emotion='angry' msg='竟敢挑战我！让你见识下什么叫实力差距！'/>
+			<scripts emotion='wink' msg='对付你们？简直不要太简单！'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='talk' msg='陆地上的人都这么丑吗？'/>
+			<scripts emotion='angry' msg='敢欺负我弟弟！我绝对不会轻易饶恕你们！'/>
+			<scripts emotion='smile' msg='我家奈尔奈尔是不是很可爱啊？哈哈！'/>
+			<scripts emotion='wink' msg='就凭你们的实力是无法战胜我的！'/>
+			<scripts emotion='smile' msg='不会吧不会吧~该不会真的以为能战胜我吧？'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='smile' msg='我来自深渊之都-阿比斯。'/>
+			<scripts emotion='wink' msg='我的名字叫奈尔。'/>
+			<scripts emotion='angry' msg='不要重复叫我的名字！'/>
+			<scripts emotion='talk' msg='虽然不想和你们吵架……'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='smile' msg='不许在伟大的莫格瑞大人面前放肆！'/>
+			<scripts emotion='talk' msg='喂，小朋友们！快准备进攻吧！'/>
+			<scripts emotion='wink' msg='莫格瑞大人，臣与您同在！'/>
+			<scripts emotion='angry' msg='不知好歹的人类！就让我来对付你们吧！'/>
+		</slot>
+	</campaign>
+	<campaign type='20'>
+		<slot number='1'>
+			<scripts emotion='talk' msg='你好呀？我来自童话世界！'/>
+			<scripts emotion='smile' msg='要不要试试我的魔法帽子~？'/>
+			<scripts emotion='wink' msg='那就开始吧~？'/>
+			<scripts emotion='angry' msg='分出胜负的方法不仅限于实力哦！'/>
+			<scripts emotion='talk' msg='世界上还是有善良的魔女……'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='talk' msg='我是来自像素世界的麦迪娅！'/>
+			<scripts emotion='wink' msg='让我见识下你们的实力吧~'/>
+			<scripts emotion='smile' msg='呼呼呼，让你们见识下我的实力！'/>
+			<scripts emotion='smile' msg='现在逃跑还来得及！'/>
+			<scripts emotion='angry' msg='就由我麦迪娅亲自上阵吧！'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='wink' msg='呦！就凭你们这些小朋友，能行吗？'/>
+			<scripts emotion='talk' msg='现在的孩子，也就那样~不比也知道。'/>
+			<scripts emotion='angry' msg='就这点实力？还来挑战魔女？'/>
+			<scripts emotion='smile' msg='对付你们这些小朋友，我一个人就够了。'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='talk' msg='我是幽灵军团旗下的卡米拉，也是魔女协会的会员~'/>
+			<scripts emotion='smile' msg='呼呼呼！竟敢来挑战我，勇气可嘉！'/>
+			<scripts emotion='wink' msg='哇啊！这可爱的头饰是在哪里买的啊？'/>
+			<scripts emotion='angry' msg='小瞧我是要付出代价的哦！'/>
+		</slot>
+	</campaign>
+	<campaign type='21'>	<!-- 삼국지 팀 -->
+		<slot number='1'>
+			<scripts emotion='smile' msg='关羽在此！'/>
+			<scripts emotion='angry' msg='青龙偃月刀已等候多时！'/>
+			<scripts emotion='talk' msg='张飞，是时候该展现我们的力量了！'/>
+			<scripts emotion='talk' msg='酒且斟下，某去便来！'/>
+			<scripts emotion='angry' msg='不要试图阻挡我前进的道路！'/>
+		</slot>
+		<slot number='2'>
+			<scripts emotion='smile' msg='张飞！登！场！谁能挑战我！'/>
+			<scripts emotion='talk' msg='哈哈！让你们见识什么是真正的将帅气概！'/>
+			<scripts emotion='smile' msg='关兄~是不是想张飞老弟了？'/>
+			<scripts emotion='smile' msg='尽早结束，喝杯浊酒吧！'/>
+			<scripts emotion='angry' msg='能挑战我是你的荣幸！'/>
+		</slot>
+		<slot number='3'>
+			<scripts emotion='talk' msg='天下终将折服于我！'/>
+			<scripts emotion='angry' msg='挡吾者死！'/>
+			<scripts emotion='smile' msg='竟敢挑战我，勇气可嘉！'/>
+			<scripts emotion='smile' msg='吾就是貂蝉之夫，吕布也！'/>
+			<scripts emotion='wink' msg='让吾日日夜夜想念的貂蝉~'/>
+		</slot>
+		<slot number='4'>
+			<scripts emotion='smile' msg='小女就是貂蝉。'/>
+			<scripts emotion='talk' msg='我愿告别龙争虎斗爱好和平。。。'/>
+			<scripts emotion='angry' msg='还请不要阻挡我们的道路。'/>
+			<scripts emotion='wink' msg='如同外貌，我的实力也不容小觑哦。'/>
+			<scripts emotion='talk' msg='吕布可不是坏人呢。'/>
+		</slot>
+	</campaign>
+</chattingScript>

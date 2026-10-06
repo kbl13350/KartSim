@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" alphaBlend="true">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+    <ImageBoard name="mainFrame" windowSize="804 664" image="scenarioBg" alphaBlend="true" align="center">
+      <Label name="chapter" windowSize="100 28" adjust="22 24" text="#sb(chapter)" multiLine="true" autoWrap="true" textAlign="vcenter" textColor="255 209 183 145" textRender="bold20" align="top"/>
+      <Panel name="divide" windowSize="1 16" adjust="118 32" texture="img_scenario_main_TitleDivide" alphaBlend="true"/>
+      <Label name="title" windowSize="300 28" adjust="124 24" text="" multiLine="true" autoWrap="true" textAlign="vcenter" textColor="255 255 255 255" textRender="bold20" align="top"/>
+      <ImageBoard name="scenarioBg" windowSize="754 364" adjust="0 70" image="scenario_CutsceneBg" alphaBlend="true" align="hcenter">
+        <Container windowSize="750 360" align="center">
+          <Panel name="Background1" clientRect="0 0 512 360"/>
+          <Panel name="Background2" clientRect="512 0 750 360"/>
+          <ImageBoard name="Background" windowRect="0 0 750 360"/>
+          <ViewportPanel name="sceneContainer" windowRect="0 0 750 360"/>
+        </Container>
+      </ImageBoard>
+      <Window name="DialogueWindow" adjust="0 20" windowSize="754 190" align="hcenter;bottom">
+        <Panel clientRect="0 0 210 24" texture="namebox" alphaBlend="true">
+          <Label name="msgName" clientRect="10 0 200 24" textColor="255 255 255 255" textRender="bold16" textAlign="left"/>
+        </Panel>
+        <Label name="msg" windowRect="0 48 730 120" align="hcenter" textColor="255 50 48 48" textColor2="255 255 255 255" multiLine="true" autoWrap="true" textRender="outline14" textAlign="left" lineGap="6"/>
+        <ImageButton name="next" leftTopTex="0 0" align="right;bottom" autoLoadImage="확인버튼@zz" alphaBlend="true"/>
+      </Window>
+      <Label name="script" clientRect="50 50 750 450" textColor="white" multiLine="true" autoWrap="true" visible="false"/>
+      <ImageButton name="goBackButton" leftTopTex="0 0" align="top;right" adjust="0 -40" autoLoadImage="close_" alphaBlend="true" altText="#sb(close)"/>
+    </ImageBoard>
+  </Panel>
+</Panel>

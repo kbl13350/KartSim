@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowSize="674 fullheight">
+  <List name="background" leftTopWH="0 0 308 86" align="right,vcenter" adjust="0 -315" scrollType="horizon" listGap="0" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollWidth="0" scrollBarVisible="false">
+    <Panel name="bgTemplate" leftTopWH="0 0 308 86" texture="scoreBox@zz" alphaBlend="true"/>
+  </List>
+  <List name="scoreBox" leftTopWH="0 28 308 58" align="right,vcenter" adjust="0 -301" scrollType="horizon" listGap="0" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollWidth="0" scrollBarVisible="false">
+    <Container name="tpBoardTemplate" leftTopWH="0 0 154 58">
+      <TpBoard name="board" windowSize="90 40" texture="teamNum" alphaBlend="true" fontSize="30 40" fontPos="0 0" fontStr="0123456789-" charNum="3" maxSpinSpeed="200" breakVal="300" minStopSpeed="100" minSpinSpeed="80" slowestSpinSpeed="40" slowestBreakVal="40" align="center"/>
+    </Container>
+  </List>
+</Container>

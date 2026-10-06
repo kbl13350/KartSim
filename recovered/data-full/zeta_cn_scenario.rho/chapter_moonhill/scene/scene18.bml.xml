@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh1"/>
+  <Char id="zipi" pos="8 0" emotion="stop1"/>
+  <Msg name="卡尔市长" string="咳咳… 还是让你找到了.. 尼欧|我很欣赏你的能力..咳咳.."/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="月光之城的恶党果然是你!!"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neo" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="尼欧" string="卡尔!!!|今天.. 是你的末日!!"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="neo" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="zipi" pos="12 0" emotion="stop3"/>
+  <Msg name="卡尔市长" string="咳咳.. 尼欧..|就算我完了，你也不可能回到从前的样子..|这点你应该更清楚。"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="zipi" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Char id="neo" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="尼欧..|他到底在说什么??"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neo" remove="true"/>
+  <Char id="zipi" pos="8 0" emotion="stop1"/>
+  <Msg name="卡尔市长" string="咳咳! 嗯..简单点说~ 尼欧也是R军团的人|他是上次大赛冠军，背叛我之前他是个漂亮的杰作。呼呼.."/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="rex" pos="11 0" emotion="stop2"/>
+  <Msg name="R军团少尉" string="市长，那种不良品就交给我吧!!|我才是您的最得意的杰作!"/>
+  <Enter/>
+  <Char id="rex" remove="true"/>
+  <Char id="neo" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="尼欧" string="皮蛋，R军团少尉.. 就交给我，你们去对付卡尔。"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="reman2" pos="9 0" emotion="stop1"/>
+  <Char id="reman3" pos="12 0" emotion="stop1"/>
+  <Msg name="R军团上等兵/列兵" string="现在还不是卡尔市长的出场时间.. 先追上我们再说。"/>
+  <Enter/>
+  <Char id="reman2" remove="true"/>
+  <Char id="reman3" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="哎.. 又是你们?!!|给我让开，我们要对付的人是卡尔!!"/>
+  <Enter/>
+</Scene>

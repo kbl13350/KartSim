@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="optionDialog" windowRect="0 0 934 807" caption="#sb(option)" align="center" frame="CaptionDialog" setCloseButton="cancel">
+    <TextButton name="ok" windowSize="132 42" adjust="-71 6" text="#sb(ok)" align="hcenter;bottom" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+    <Container windowRect="0 8 498 46" align="hcenter">
+      <Window name="tabBox" leftTopWH="-211 -9 920 47" frame="TabBoxLarge" enable="false"/>
+      <Window name="frameTab" leftTopWH="-211 34 920 648" frame="GrayInnerFrame" enable="false"/>
+      <Container name="tab_cont" windowRect="-197 -5 498 49">
+        <TextButton name="view_graphicsOption@zz" windowRect="0 0 223 36" frame="TabBlack2" text="#sb(graphicsOption)" useDisableState="true" forceTooltip="false" textRender="bold16" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80"/>
+        <TextButton name="view_gameOption@zz" windowRect="0 0 223 36" frame="TabBlack2" text="#sb(gameOption)" useDisableState="true" forceTooltip="false" textRender="bold16" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80"/>
+        <TextButton name="view_keyboardMap@zz" windowRect="0 0 223 36" frame="TabBlack2" text="#sb(gameKeyMap)" useDisableState="true" forceTooltip="false" textRender="bold16" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80"/>
+        <TextButton name="view_joypadMap@zz" windowRect="0 0 223 36" frame="TabBlack2" text="#sb(gameJoystickMap)" useDisableState="true" forceTooltip="false" textRender="bold16" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80"/>
+        <TextButton name="view_macroChatDefine@zz" windowRect="0 0 223 36" frame="TabBlack2" text="#sb(macroChat)" useDisableState="true" forceTooltip="false" textRender="bold16" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80"/>
+        <TextButton name="view_debugOption@zz" windowRect="0 0 123 36" frame="TabBlack2" text="#sb(debugOption)" useDisableState="true" forceTooltip="false" textRender="bold16" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80"/>
+        <TextButton name="view_gmOption@zz" windowRect="0 0 223 36" frame="TabBlack2" text="#sb(gmOption)" useDisableState="true" textRender="bold16" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80"/>
+        <TextButton name="view_consol@zz" windowRect="0 0 123 36" frame="TabBlack2" text="Console" useDisableState="true" textRender="bold16" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80"/>
+        <TextButton name="view_observer@zz" windowRect="0 0 223 36" frame="Tab" text="#sb(observerOption)" useDisableState="true" textRender="bold16" textColor="255 135 146 167" clickedTextColor="255 42 55 80" overTextColor="255 16 136 199" disabledTextColor="255 42 55 80"/>
+      </Container>
+    </Container>
+    <Window name="context" leftTopWH="-11 42 920 648"/>
+    <TextButton name="cancel" windowSize="132 42" adjust="71 6" align="hcenter;bottom" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+  </CaptionWindow>
+</Panel>

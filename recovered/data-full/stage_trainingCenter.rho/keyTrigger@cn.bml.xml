@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="keyTrigger" windowRect="fullscreen" enable="false">
+  <Container name="startBooster" windowSize="222 152" align="center" adjust="0 -270" enable="false" visible="false">
+    <Panel name="bottomBase" windowSize="70 73" align="bottom;hcenter" texture="key_btm_base" alphaBlend="true"/>
+    <Panel name="leftBase" windowSize="70 73" align="left;bottom" texture="key_left_base" alphaBlend="true"/>
+    <Panel name="rightBase" windowSize="70 73" align="right;bottom" texture="key_right_base" alphaBlend="true"/>
+    <Panel name="topPush" windowSize="70 73" align="top;hcenter" texture="key_top_5" alphaBlend="true" visible="false"/>
+    <BlinkButton name="topBlink" windowSize="70 73" align="top;hcenter" autoLoadImage="key_top_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+  </Container>
+  <Container name="endDrift" windowSize="222 152" align="center" adjust="0 -270" enable="false" visible="false">
+    <Panel name="topBase" windowSize="70 73" align="top;hcenter" texture="key_top_base" alphaBlend="true"/>
+    <Panel name="bottomBase" windowSize="70 73" align="bottom;hcenter" texture="key_btm_base" alphaBlend="true"/>
+    <Panel name="leftBase" windowSize="70 73" align="left;bottom" texture="key_left_base" alphaBlend="true"/>
+    <Panel name="rightBase" windowSize="70 73" align="right;bottom" texture="key_right_base" alphaBlend="true"/>
+    <BlinkButton name="leftBlink" windowSize="70 73" align="left;bottom" autoLoadImage="key_left_" blinkGap="500" autoStart="true" alphaBlend="true" visible="false"/>
+    <BlinkButton name="rightBlink" windowSize="70 73" align="right;bottom" autoLoadImage="key_right_" blinkGap="500" autoStart="true" alphaBlend="true" visible="false"/>
+  </Container>
+  <Container name="adbooster" windowSize="222 152" align="center" adjust="0 -270" enable="false" visible="false">
+    <Panel name="bottomBase" windowSize="70 73" align="bottom;hcenter" texture="key_btm_base" alphaBlend="true"/>
+    <Panel name="leftBase" windowSize="70 73" align="left;bottom" texture="key_left_base" alphaBlend="true"/>
+    <Panel name="rightBase" windowSize="70 73" align="right;bottom" texture="key_right_base" alphaBlend="true"/>
+    <BlinkButton name="topBlink" windowSize="70 73" align="top;hcenter" autoLoadImage="key_top_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+  </Container>
+  <Container name="normalBooster" windowSize="222 152" align="center" adjust="0 -270" alphaBlend="true" enable="false" visible="false">
+    <BlinkButton windowSize="124 73" align="center" autoLoadImage="key_ctrl_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+  </Container>
+  <Container name="shift" windowSize="222 152" align="center" adjust="0 -270" alphaBlend="true" enable="false" visible="false">
+    <BlinkButton windowSize="182 73" align="center" autoLoadImage="key_shift_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+  </Container>
+  <Container name="shiftShort" windowSize="222 152" align="center" adjust="0 -270" alphaBlend="true" enable="false" visible="false">
+    <BlinkButton windowSize="182 73" align="center" autoLoadImage="key_shift_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+    <BlinkButton windowSize="70 28" align="bottom;hcenter" adjust="0 115" autoLoadImage="key_text_short_cn_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+  </Container>
+  <Container name="cutting" windowSize="430 152" align="center" adjust="0 -270" enable="false" visible="false">
+    <BlinkButton windowSize="70 28" align="bottom;hcenter" adjust="-110 75" autoLoadImage="key_text_short_cn_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+    <BlinkButton windowSize="182 73" align="bottom;hcenter" adjust="-110 0" autoLoadImage="key_shift_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+    <Container windowSize="222 152" align="center" adjust="110 0" enable="false">
+      <Panel name="topBase" windowSize="70 73" align="top;hcenter" texture="key_top_base" alphaBlend="true"/>
+      <Panel name="bottomBase" windowSize="70 73" align="bottom;hcenter" texture="key_btm_base" alphaBlend="true"/>
+      <Panel name="leftBase" windowSize="70 73" align="left;bottom" texture="key_left_base" alphaBlend="true" visible="false"/>
+      <Panel name="rightBase" windowSize="70 73" align="right;bottom" texture="key_right_base" alphaBlend="true" visible="false"/>
+      <BlinkButton name="leftBlink" windowSize="70 73" align="left;bottom" autoLoadImage="key_left_" blinkGap="500" autoStart="true" alphaBlend="true" visible="false"/>
+      <BlinkButton name="rightBlink" windowSize="70 73" align="right;bottom" autoLoadImage="key_right_" blinkGap="500" autoStart="true" alphaBlend="true" visible="false"/>
+    </Container>
+  </Container>
+  <Container name="shortCutting" windowSize="430 152" align="center" adjust="0 -270" enable="false" visible="false">
+    <BlinkButton windowSize="70 28" align="bottom;hcenter" adjust="-110 75" autoLoadImage="key_text_hold_cn_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+    <Panel windowSize="182 73" align="bottom;hcenter" adjust="-110 0" texture="key_shift_5" alphaBlend="true"/>
+    <Container windowSize="222 152" align="center" adjust="110 0" enable="false">
+      <BlinkButton name="leftBlink" windowSize="70 73" align="left;bottom" autoLoadImage="key_left_" blinkGap="500" autoStart="true" alphaBlend="true" visible="false"/>
+      <Panel name="leftPanel" windowSize="70 73" align="left;bottom" texture="key_left_5" alphaBlend="true" visible="false">
+        <BlinkButton windowSize="70 28" align="hcenter" adjust="0 -30" autoLoadImage="key_text_hold_cn_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+      </Panel>
+      <BlinkButton name="rightBlink" windowSize="70 73" align="right;bottom" autoLoadImage="key_right_" blinkGap="500" autoStart="true" alphaBlend="true" visible="false"/>
+      <Panel name="rightPanel" windowSize="70 73" align="right;bottom" texture="key_right_5" alphaBlend="true" visible="false">
+        <BlinkButton windowSize="70 28" align="hcenter" adjust="0 -30" autoLoadImage="key_text_hold_cn_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="70 73" align="top;hcenter" texture="key_top_5" alphaBlend="true">
+        <BlinkButton windowSize="70 28" align="hcenter" adjust="0 -30" autoLoadImage="key_text_hold_cn_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bottomBase" windowSize="70 73" align="bottom;hcenter" texture="key_btm_base" alphaBlend="true"/>
+    </Container>
+  </Container>
+  <Container name="dragDrift" windowSize="222 152" align="center" adjust="0 -270" enable="false" visible="false">
+    <Panel name="topBase" windowSize="70 73" align="top;hcenter" texture="key_top_base" alphaBlend="true"/>
+    <Panel name="bottomBase" windowSize="70 73" align="bottom;hcenter" texture="key_btm_base" alphaBlend="true"/>
+    <Panel name="leftBase" windowSize="70 73" align="left;bottom" texture="key_left_base" alphaBlend="true" visible="false"/>
+    <Panel name="rightBase" windowSize="70 73" align="right;bottom" texture="key_right_base" alphaBlend="true" visible="false"/>
+    <BlinkButton name="leftBlink" windowSize="70 73" align="left;bottom" autoLoadImage="key_left_" blinkGap="500" autoStart="true" alphaBlend="true" visible="false">
+      <BlinkButton windowSize="70 28" align="center" adjust="0 -50" autoLoadImage="key_text_hit_cn_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+    </BlinkButton>
+    <BlinkButton name="rightBlink" windowSize="70 73" align="right;bottom" autoLoadImage="key_right_" blinkGap="500" autoStart="true" alphaBlend="true" visible="false">
+      <BlinkButton windowSize="70 28" align="center" adjust="0 -50" autoLoadImage="key_text_hit_cn_" blinkGap="500" autoStart="true" alphaBlend="true"/>
+    </BlinkButton>
+  </Container>
+</Container>

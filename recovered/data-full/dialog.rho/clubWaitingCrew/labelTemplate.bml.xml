@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="waitingCrewWnd" frame="ComboBox" leftTopWH="0 0 580 50">
+  <Panel name="glove" frame="GrayInputBox" leftTopWH="10 5 32 32" alphaBlend="true" enable="false"/>
+  <Label name="level" leftTopWH="54 0 70 32" enable="true" textColor="255 42 55 80" multiLine="false" autoWrap="true" textRender="bold16" align="vcenter" textAlign="left;vcenter"/>
+  <Label name="rid" leftTopWH="110 0 70 32" enable="true" textColor="255 42 55 80" multiLine="false" autoWrap="true" textRender="bold16" align="vcenter" textAlign="left;vcenter"/>
+  <TextButton name="accept" leftTopWH="412 0 74 28" align="vcenter" text="#sb(accept)" textColor="255 64 75 95" textRender="bold16" alphaBlend="true" visible="true"/>
+  <TextButton name="rejection" leftTopWH="490 0 74 28" align="vcenter" text="#sb(rejection)" textColor="255 64 75 95" textRender="bold16" alphaBlend="true" visible="true"/>
+</Window>

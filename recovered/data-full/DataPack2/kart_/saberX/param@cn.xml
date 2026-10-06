@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.08'
+	SteerConstraint='2.4'
+	CornerDrawFactor='0.072'
+	DriftEscapeForce='1800'
+	
+	driftBoostMulAccelFactor='1.31'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.85'
+	StartForwardAccelFactorSpeed='1.7'
+	StartBoosterTimeSpeed='1500'
+	
+	DriftMaxGauge='-590'
+	NormalBoosterTime='-80'
+	TeamBoosterTime='-170'
+	
+	DriftGaguePreservePercent='0.5'
+	antiCollideBalance='0.91'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.1'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='X'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='60'
+	dualMulAccelFactor='1.1'
+	dualTransLowSpeed='100'
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10main1'
+	BoosterType3='10sub1'
+	BoosterType4='10sub1'
+	BoosterType5='10main'
+	BoosterType6='10main'
+
+	Port0='mod2a1' 
+	Port1='mod2a2'
+
+	FirePort0='mod2b1'
+	FirePort1='mod2a3'
+	FirePort2='mod2a4'
+	FirePort3='mod2b2'
+	FirePort4='mod2b3'
+
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 19 121 219'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 19 121 219' trailPort0='mod2a3' trailPort1='mod2a4'/>
+</BodyParam>
+<!-- 세이버 X / 중국 / 일반 / 스피드 / 패키지 / 20191226 릴리즈 -->

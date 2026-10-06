@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ButtonAni name="hitPangScore">
+  <Active>
+    <PositionTon>
+      <Phase at="1" tick="0" translate="0.0 0.0 0.0"/>
+      <Phase at="2" tick="300" translate="0.0 -30 0.0"/>
+    </PositionTon>
+  </Active>
+</ButtonAni>

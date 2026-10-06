@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach4"/>
+  <Char id="barmer" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="鲍勃" string="普赛克~抓住那个傻乎乎的红胖子了吗？"/>
+  <Enter/>
+  <Char id="barmer" remove="true"/>
+  <Char id="psyki" pos="11 0" emotion="stop1"/>
+  <Msg name="普赛克" string="跟丢了~|逃跑的速度到挺快~"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <Char id="barmer" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="鲍勃" string="你做事也就如此！|先把这家伙放到那边墙角去！"/>
+  <Enter/>
+  <Char id="barmer" remove="true"/>
+  <Char id="lena" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="美玲" string="这帮蠢货好像刚把人打了…|先悄悄跟过去看看"/>
+  <Enter/>
+  <Char id="lena" remove="true"/>
+  <Char id="psyki" pos="11 0" emotion="stop1"/>
+  <Char id="barmer" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="普赛克" string="这家伙好像晕过去了？|还说自己是男子汉！"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <Char id="barmer" remove="true"/>
+  <Char id="psyki" pos="11 0" emotion="stop1"/>
+  <Char id="barmer" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="鲍勃" string="先撤！|罗杰说了最近要小心谨慎！"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <Char id="barmer" remove="true"/>
+  <Char id="psyki" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="普赛克" string="好重！|丢在这应该自己会处理~"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <Char id="lena" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="美玲" string="是这个地方？|天！好像被打的很严重"/>
+  <Enter/>
+  <Char id="lena" remove="true"/>
+  <Char id="martin" pos="8 0" emotion="stop4"/>
+  <Msg name="阿嘉" string="咳咳……"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="lena" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="美玲" string="看起来很严重！|先送去医院再说"/>
+  <Enter/>
+</Scene>

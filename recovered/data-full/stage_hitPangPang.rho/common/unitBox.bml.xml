@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HitPangUnit name="unitBox" leftTopWH="960 144 124 124" enable="true" visible="false">
+  <Panel name="unitBg" texture="hitpang_enemy_bg_normal" leftTopWH="0 20 124 85" align="center" alphaBlend="true">
+    <Panel name="unitImg" texture="hitpang_enemy_cha_02" leftTopWH="0 0 124 85" align="center" alphaBlend="true"/>
+    <Panel name="unitglossy" texture="hitpang_enemy_glossy_normal" leftTopTex="0 0 124 85" align="center" alphaBlend="true"/>
+    <Window name="collisionBox" leftTopWH="0 0 50 50" align="center" enable="true"/>
+    <Container name="namePlate" leftTopWH="0 70 124 20">
+      <Panel name="mid" leftTopWH="0 0 108 20" texture="icon_itemNameBg" uvRect="9 0 24 22" alphaBlend="true"/>
+      <Panel name="left" leftTopWH="0 0 8 20" adjust="5 0" texture="icon_itemNameBg" uvRect="0 0 8 22" alphaBlend="true"/>
+      <Panel name="right" leftTopWH="0 0 8 20" adjust="-5 0" texture="icon_itemNameBg" uvRect="25 0 33 22" alphaBlend="true"/>
+      <Label name="unitName" leftTopWH="0 -1 124 20" align="hcenter" textRender="bold14" textColor="white" textAlign="center"/>
+    </Container>
+  </Panel>
+  <Play1SPanel name="affect" scene="HT_booster" leftTopWH="0 -35 100 100" align="hcenter" defaultCameraPos="-1.0 -4.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="2.0" clearZBefore="true" clearZAfter="true" visible="true" stop="true"/>
+  <Play1SPanel name="effect" scene="HT_물풍선" leftTopWH="0 0 250 250" align="center" defaultCameraPos="0.0 -1.3 0.0" defaultSpotPos="0.0 2.0 0.0" zoom="0.7" clearZBefore="true" clearZAfter="true" visible="false" stop="true"/>
+  <Play1SPanel name="effect2" scene="HT_폭파" leftTopWH="-35 -35 200 200" defaultCameraPos="0 0.1 12" defaultSpotPos="0.0 0.0 0.0" zoom="0.7" clearZBefore="true" clearZAfter="true" visible="false" stop="true"/>
+  <TonPanel name="scoreEffect" leftTopWH="0 50 124 26" alphaBlend="true" textureOp="modulate" isExcuteChildAnim="true" visible="false">
+    <TonCharPanel name="scoreChar" leftTopWH="0 0 124 26" texture="ingame_score" centerAlign="true" fontSize="21 28" fontPos="0 0" fontStr="1234567890" text="10" alphaBlend="true" textureOp="modulate" panelAnimPack="hitPangScore" spaceOffset="-3"/>
+  </TonPanel>
+</HitPangUnit>

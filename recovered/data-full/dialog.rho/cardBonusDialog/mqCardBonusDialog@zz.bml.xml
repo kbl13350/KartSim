@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen" visible="false">
+  <Container windowRect="0 0 800 600" align="center">
+    <Panel name="background" windowRect="fullscreen" color="150 0 0 0" alphaBlend="true" align="center"/>
+    <Container name="effectset" leftTopWH="0 0 800 300" visible="true" enable="false">
+      <Play1SPanel name="card1Effect" leftTopWH="13 38 187 400" alphaBlend="true" scene="base" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.59 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.3" stop="false" enable="false" clearZAfter="true">
+        <ItemWindow name="itemPanel1" leftTopWH="0 0 210 210" visible="false" align="center"/>
+        <Label name="itemName1" leftTopWH="0 273 200 50" visible="false" textColor="white" align="hcenter" textAlign="center"/>
+      </Play1SPanel>
+      <Play1SPanel name="card2Effect" leftTopWH="209 38 187 400" alphaBlend="true" scene="base" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.59 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.3" stop="true" enable="false" clearZAfter="true">
+        <ItemWindow name="itemPanel2" leftTopWH="0 0 210 210" visible="false" align="center"/>
+        <Label name="itemName2" leftTopWH="0 273 200 50" visible="false" textColor="white" align="hcenter" textAlign="center"/>
+      </Play1SPanel>
+      <Play1SPanel name="card3Effect" leftTopWH="406 38 187 400" alphaBlend="true" scene="base" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.59 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.3" stop="true" enable="false" clearZAfter="true">
+        <ItemWindow name="itemPanel3" leftTopWH="0 0 210 210" visible="false" align="center"/>
+        <Label name="itemName3" leftTopWH="0 273 200 50" visible="false" textColor="white" align="hcenter" textAlign="center"/>
+      </Play1SPanel>
+      <Play1SPanel name="card4Effect" leftTopWH="601 38 187 400" alphaBlend="true" scene="base" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.59 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.3" stop="true" enable="false" clearZAfter="true">
+        <ItemWindow name="itemPanel4" leftTopWH="0 0 210 210" visible="false" align="center"/>
+        <Label name="itemName4" leftTopWH="0 273 200 50" visible="false" textColor="white" align="hcenter" textAlign="center"/>
+      </Play1SPanel>
+    </Container>
+    <Container name="ui" leftTopWH="0 0 800 600" depthBias="512.0" enable="true">
+      <Panel name="title" leftTopWH="0 10 498 121" texture="title@zz" alphaBlend="true" align="hcenter"/>
+      <Panel name="time5" leftTopWH="0 380 66 77" texture="5" alphaBlend="true" align="hcenter" visible="false"/>
+      <Panel name="time4" leftTopWH="0 380 66 77" texture="4" alphaBlend="true" align="hcenter" visible="false"/>
+      <Panel name="time3" leftTopWH="0 380 66 77" texture="3" alphaBlend="true" align="hcenter" visible="false"/>
+      <Panel name="time2" leftTopWH="0 380 66 77" texture="2" alphaBlend="true" align="hcenter" visible="false"/>
+      <Panel name="time1" leftTopWH="0 380 66 77" texture="1" alphaBlend="true" align="hcenter" visible="false"/>
+      <Container name="normal" leftTopWH="0 0 800 50" visible="true">
+        <Panel leftTopWH="310 473 156 31" texture="select@zz" alphaBlend="true"/>
+        <Panel leftTopWH="473 475 19 27" texture="select1" alphaBlend="true"/>
+      </Container>
+      <Container name="pcCafe" leftTopWH="0 0 800 50" visible="false">
+        <Panel leftTopWH="225 473 156 31" texture="select@zz" alphaBlend="true"/>
+        <Panel leftTopWH="0 475 19 27" texture="select2" alphaBlend="true" align="hcenter"/>
+        <Panel leftTopWH="415 473 156 31" texture="pcCafe@zz" alphaBlend="true" visible="true"/>
+      </Container>
+      <ImageButton name="ok" leftTopWH="0 520 190 50" autoLoadImage="버튼_@zz" alphaBlend="true" align="hcenter"/>
+    </Container>
+    <Container name="cardset" leftTopWH="0 0 800 300" visible="true" depthBias="512.0">
+      <ImageButton name="card1" leftTopWH="13 109 188 258" alphaBlend="true" useDisableState="true"/>
+      <ImageButton name="card2" leftTopWH="209 109 188 258" alphaBlend="true" useDisableState="true"/>
+      <ImageButton name="card3" leftTopWH="406 109 188 258" alphaBlend="true" useDisableState="true"/>
+      <ImageButton name="card4" leftTopWH="601 109 188 258" alphaBlend="true" useDisableState="true"/>
+    </Container>
+  </Container>
+</Container>

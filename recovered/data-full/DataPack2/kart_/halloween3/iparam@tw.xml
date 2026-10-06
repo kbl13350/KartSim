@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.7'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.063'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.68'           
+	TransformTime='700'               
+	
+	StartBoosterTimeItem='1200'           
+	StartForwardAccelFactorItem = '1.2'
+
+	SpecialSlotCapacity = '2'
+	
+	EngineSound='cotton7'
+	BoosterBlur='true'
+	EnvMap='true'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zero5'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType3='cotton6'
+	BoosterType4='cotton6'
+	Port0='mod5a'
+	Port1='mod5b'
+	FirePort0='mod6'
+	ExtWheel0='mod1a'
+	ExtWheel1='mod1b'
+	ExtWheelSpeed='5'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '35'
+	DescStability ='38'
+	DescEngineGrade='1.2'
+	DescCornering='1'
+	DescEnchantCap = '25'
+/>
+<!--대만 슈퍼 호박 카트 Z7 111027 퀘스트 보상 조합-->

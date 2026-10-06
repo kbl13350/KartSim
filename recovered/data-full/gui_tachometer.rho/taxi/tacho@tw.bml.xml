@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="taxi" windowRect="0 0 386 89" align="hcenter;bottom" enable="false">
+  <Window name="dashboard" leftTopWH="0 0 386 89" alphaBlend="true" align="hcenter;bottom">
+    <Panel name="bg1" leftTopTex="0 0" texture="택시_타코미터BG@tw" alphaBlend="true" align="hcenter;bottom"/>
+    <Panel name="bg2" leftTopTex="237 22" texture="택시_문자1@tw" alphaBlend="true"/>
+    <Panel name="draft" leftTopTex="61 26" texture="택시_드래프트1@tw" alphaBlend="true">
+      <Panel name="on" leftTopTex="0 0" texture="택시_드래프트2@tw" alphaBlend="true"/>
+    </Panel>
+    <Panel name="incGauge" leftTopTex="114 26" texture="택시_충전1@tw" alphaBlend="true">
+      <Panel name="on" leftTopTex="0 0" texture="택시_충전2@tw" alphaBlend="true"/>
+    </Panel>
+    <Panel name="horse1" leftTopTex="-10071 -10048" texture="택시_말애니1" alphaBlend="true" visible="false"/>
+    <Panel name="horse2" leftTopTex="-10071 -10048" texture="택시_말애니2" alphaBlend="true" visible="false"/>
+    <Panel name="horse3" leftTopTex="-10071 -10048" texture="택시_말애니3" alphaBlend="true" visible="false"/>
+    <Panel name="horse4" leftTopTex="-10071 -10048" texture="택시_말애니4" alphaBlend="true" visible="false"/>
+    <Panel name="horse5" leftTopTex="-10071 -10048" texture="택시_말애니5" alphaBlend="true" visible="false"/>
+    <CharPanel name="kmh" leftTopWH="202 26 100 33" texture="택시_숫자1@tw" alphaBlend="true" fontSize="11 16" fontPos="0 0" fontStr="0123456789" text="000" spaceOffset="-2"/>
+    <CharPanel name="price" leftTopWH="125 46 100 33" texture="택시_숫자2@tw" alphaBlend="true" fontSize="24 29" fontPos="0 0" fontStr="0123456789" text="00000" spaceOffset="-2"/>
+    <Label name="price_local" text="70" visible="false"/>
+    <Label name="price_localAdd" text="25" visible="false"/>
+  </Window>
+</Container>

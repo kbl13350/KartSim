@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152'
+	BackwardAccelForce='100'
+	DragFactor='-0.078'
+	SteerConstraint='2.7'
+	CornerDrawFactor='0.07'
+	DriftEscapeForce='1450'
+	
+	driftBoostMulAccelFactor='1.25'
+	chargeBoostBySpeed='300'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.79'
+	BoosterAccelFactorItem='1.65'
+	StartForwardAccelFactorItem='1.65'
+	StartBoosterTimeItem='1450'
+	
+	UseExtendedAfterBooster='true'
+	SpecialSlotCapacity='2'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	TransformTime='700'
+	
+	DescBalance='49'
+	DescStability='49'
+	DescEngineGrade='1.35'
+	DescCornering='7.5'
+	DescEnchantCap='25'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='9th'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1b1'/>
+</BodyParam>
+<!-- 아이템 마트카트 9 / 한국 / 일반 / 아이템 / 이벤트 / 20180118 릴리즈 -->

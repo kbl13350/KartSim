@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="captionDlgFrame" windowRect="0 5 509 510" frame="CaptionDialog" align="center" caption="#sb(howToZena)" captionPos="0 1" captionColor="black" setCloseButton="cancelButton">
+    <Panel windowSize="483 413" adjust="0 0" color="0 210 211 216" enable="false"/>
+    <Panel windowSize="13 11" adjust="0 5" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+    <Panel windowSize="13 11" adjust="245 5" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+    <Panel name="info" texture="desc@zz" windowSize="483 393" adjust="0 20" alphaBlend="true"/>
+    <Label windowSize="13 20" adjust="20 0" text="#sb(tradeZena)" textAlign="vcenter" textRender="bold"/>
+    <Label windowSize="13 20" adjust="265 0" text="#sb(getZena)" textAlign="vcenter" textRender="bold"/>
+    <TextButton name="okButton" windowSize="90 23" adjust="100 417" text="#sb(useZena)" altTextRender="outline"/>
+    <TextButton name="cancelButton" windowSize="90 23" adjust="295 417" text="#sb(outDialog)" altTextRender="outline"/>
+  </CaptionWindow>
+  <StringBag>
+    <k n="howToZena">
+      <m c="kr" v="제나 사용법"/>
+      <m c="jp" v="ジェナ調査"/>
+      <m c="cn" v="查看宝石"/>
+      <m c="tw" v="使用說明"/>
+      <m c="ru" v="Узнать о Зене"/>
+      <m c="th" v="เรียนรู้เจน่า"/>
+      <m c="id" v="Mencari Zena"/>
+      <m c="vn" v="Tìm hiểu Zena"/>
+    </k>
+    <k n="useZena">
+      <m c="kr" v="제나 사용하기"/>
+      <m c="jp" v="ジェナ使用"/>
+      <m c="cn" v="使用宝石"/>
+      <m c="tw" v="使用寶石"/>
+      <m c="ru" v="Использовать Зену"/>
+      <m c="th" v="ใช้เจน่า"/>
+      <m c="id" v="Menggunakan Zena"/>
+      <m c="vn" v="Sử dụng Zena"/>
+    </k>
+    <k n="outDialog">
+      <m c="kr" v="나가기"/>
+      <m c="jp" v="出る"/>
+      <m c="cn" v="退出"/>
+      <m c="tw" v="離開"/>
+      <m c="ru" v="Выйти"/>
+      <m c="th" v="ออก"/>
+      <m c="id" v="Keluar"/>
+      <m c="vn" v="Thoát"/>
+    </k>
+    <k n="tradeZena">
+      <m c="kr" v="제나 변환하기"/>
+      <m c="jp" v="ジェナ変換"/>
+      <m c="cn" v="变换宝石"/>
+      <m c="tw" v="寶石合成"/>
+      <m c="ru" v="Сменить Зену"/>
+      <m c="th" v="การเปลี่ยนเจน่า"/>
+      <m c="id" v="Mengubah Zena"/>
+      <m c="vn" v="Giao dịch Zena"/>
+    </k>
+    <k n="getZena">
+      <m c="kr" v="제나 획득하기"/>
+      <m c="jp" v="ジェナ入手"/>
+      <m c="cn" v="获得宝石"/>
+      <m c="tw" v="獲得寶石"/>
+      <m c="ru" v="Получить Зену"/>
+      <m c="th" v="การเก็บเจน่า"/>
+      <m c="id" v="Mendapat Zena"/>
+      <m c="vn" v="Đạt được Zena"/>
+    </k>
+  </StringBag>
+</Panel>

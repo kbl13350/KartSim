@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='120.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.05'
+	SteerConstraint='2.3'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.07'
+
+	StartForwardAccelFactor = '2'
+
+	BoostAccelFactor='1.4'
+	TransAccelFactor='1.85'
+	StartBoosterTime='1200'           
+	TransformTime='700'               
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	UseTransformBooster='true'
+
+	BoosterType='zero5'
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='cotton6'
+	BoosterType3='cotton6'
+	BoosterType4='zero5'
+	BoosterType5='zero5'
+
+	Port0='mod3a'
+	Port1='mod3b'
+	FirePort0='mod2b1'
+	FirePort1='mod2b2'
+	FirePort2='mod2b3'
+	FirePort3='mod2b4'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '35'
+	DescStability ='38'
+	DescEngineGrade='1.2'
+	DescCornering='0'
+	DescEnchantCap = '20'
+
+
+/>
+
+<!-- KEG Z7 -->

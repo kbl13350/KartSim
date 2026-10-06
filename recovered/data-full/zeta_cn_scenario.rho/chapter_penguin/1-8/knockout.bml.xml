@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="ice_R07" laps="2" isFixedKart="true" fixedKartId="1589" isFixedChar="true" fixedCharId="495" type="rank">
+    <LevelContent level="0" ksv="1-8" startOffset="2000">
+      <ShadowKart characterId="1" uniformId="0" kartId="1539" colorId="1" dyeId="1" characterName="宝宝"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

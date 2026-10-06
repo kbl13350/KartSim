@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window windowSize="80 140" adjust="0 0" align="left" enable="true" visible="true">
+  <Panel name="emblem" windowSize="38 38" adjust="0 -12" texture="vip_mini_grade0@zz" align="center" alphaBlend="true" visible="true"/>
+  <ImageBoard windowSize="60 60" adjust="0 40" image="rewardSlot" alphaBlend="true" align="center">
+    <ItemWindow name="rewardItemWnd" windowSize="70 70" adjust="0 0" align="center" stockId="0" enable="false" visible="true"/>
+    <Label name="countLbl" windowSize="60 20" text="" adjust="0 19" align="center" textRender="outline14" textColor="255 255 255 255" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+    <Panel name="checkWnd" windowSize="60 60" adjust="0 0" align="center" texture="rewardSlot_check" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+    <Panel name="dimWnd" windowSize="60 60" adjust="0 0" align="center" texture="rewardSlot_dim" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+    <Panel name="outLineWnd" windowSize="68 68" adjust="0 0" align="center" texture="rewardSlot_frame" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+  </ImageBoard>
+</Window>

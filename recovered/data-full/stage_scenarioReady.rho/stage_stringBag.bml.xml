@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="emphasizeStart">
+    <m c="kr" v="시작하시려면 시작버튼을 눌러주세요."/>
+    <m c="jp" v="始めるには開始ボタンを押してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Чтобы начать – нажми «Старт»."/>
+    <m c="id" v="Jika ingin mulai silahkan klik tombol start."/>
+  </k>
+  <k n="howtoClearTitle">
+    <m c="kr" v="도전과제 수행 방법"/>
+    <m c="jp" v="挑戦ミッション進行方法"/>
+    <m c="cn" v="执行条件"/>
+    <m c="tw" v="執行條件"/>
+    <m c="us" v="To Beat the Mission"/>
+    <m c="vn" v="Mục tiêu"/>
+    <m c="ru" v="Задание"/>
+    <m c="id" v="Cara Menyelesaikan misi tantangan"/>
+    <m c="th" v="วิธีการขับ"/>
+  </k>
+  <k n="synopsisTitle">
+    <m c="kr" v="스토리 시놉시스"/>
+    <m c="jp" v="ストーリーシノプシス"/>
+    <m c="cn" v="故事介绍"/>
+    <m c="tw" v="劇情簡介"/>
+    <m c="us" v="Story Synopsis"/>
+    <m c="vn" v="Nội dung"/>
+    <m c="ru" v="Предыстория"/>
+    <m c="id" v="Story Synopsis"/>
+    <m c="th" v="เรื่องราว"/>
+  </k>
+  <k n="prize">
+    <m c="kr" v="도전과제 완료보상"/>
+    <m c="cn" v="挑战阶段完成奖励"/>
+    <m c="tw" v="挑戰階段完成獎勵"/>
+  </k>
+</StringBag>

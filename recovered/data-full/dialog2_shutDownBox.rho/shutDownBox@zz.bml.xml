@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Container name="shutdownMenu" windowSize="912 630" align="center" alphaBlend="true">
+    <ImageBoard name="shutdownBg" windowSize="912 630" image="popup_loginReward_bg" align="center" alphaBlend="true"/>
+    <ImageBoard name="shutdownBg2" windowSize="718 630" image="popup_loginReward_bg2" align="center" alphaBlend="true"/>
+    <Label name="quitNotice" windowSize="912 30" textAlign="center" adjust="0 58" text="#sb(quitNotice)" textColor="white" textColor2="black" textRender="outline20" align="top" alphaBlend="true"/>
+    <Panel name="daoBubble" windowSize="166 106" texture="popup_loginReward_bubbleL" adjust="-125 -30" align="top;center" alphaBlend="true">
+      <Label name="daoBubbleStr" windowRect="0 0 120 60" adjust="0 0" align="center" text="#sb(daoShutDownBasic)" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textRender="bold14" textColor="255 42 55 80"/>
+    </Panel>
+    <Panel name="bazziBubble" windowSize="166 106" texture="popup_loginReward_bubbleR" adjust="120 -30" align="top;center" alphaBlend="true">
+      <Label name="bazziBubbleStr" windowRect="0 0 120 60" adjust="0 0" align="center" text="#sb(bazziShutDownBasic)" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textRender="bold14" textColor="255 42 55 80"/>
+    </Panel>
+    <Panel name="daoRewardBubble" windowSize="166 106" texture="popup_loginReward_bubbleL" adjust="-55 -30" align="top;center" alphaBlend="true">
+      <Label name="daoBubbleStr" windowRect="0 0 120 60" adjust="0 0" align="center" text="#sb(daoShutDownReward)" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textRender="bold14" textColor="255 42 55 80"/>
+    </Panel>
+    <Window name="gaugeWindow" windowRect="0 0 400 80" align="top;center" adjust="0 105" alphaBlend="true">
+      <Window name="gaugeBaseSize" windowSize="400 75" adjust="0 15" visible="true" align="hcenter">
+        <ColorLabel name="shutdownNotice" windowSize="400 20" adjust="0 0" textAlign="center" textColor="255 42 55 80" textRender="bold16" text="" autoWrap="true" multiLine="true" visible="true"/>
+        <Panel name="gaugeBase" leftTopWH="0 30 400 16" texture="popup_turnOff_progressBg" alphaBlend="true" alphaTest="true" visible="true" align="hcenter"/>
+        <Panel name="gauge" leftTopWH="1 31 398 14" texture="popup_turnOff_progressBar" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Label name="percentStr" windowSize="400 14" adjust="0 26" textColor="white" textColor2="255 42 55 80" textAlign="center" textRender="outline14" visible="true" align="hcenter"/>
+      </Window>
+    </Window>
+    <Container name="questNoticeCon" windowRect="0 0 400 80" align="top;center" adjust="0 105" alphaBlend="true" visible="false">
+      <ColorLabel name="questNotice" windowSize="400 60" adjust="0 0" textAlign="center" textColor="255 42 55 80" textRender="bold14" text="#sb(questNotice)" autoWrap="true" multiLine="true" visible="true"/>
+      <ColorLabel name="missionAttendGuide" windowSize="400 20" adjust="0 60" textAlign="center" textColor="255 72 106 163" textRender="bold14" text="#sb(missionAttendGuide)" autoWrap="true" multiLine="true" visible="true"/>
+    </Container>
+    <Label name="nextMissionAttendNotice" windowRect="0 0 350 30" adjust="40 130" align="top;center" text="#sb(missionAttendGuide)" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textRender="bold16" textColor="255 42 55 80" visible="false"/>
+    <ImageBoard name="noticeTextbg" windowSize="800 39" image="popup_loginReward_textbg" align="center" adjust="0 -94" alphaBlend="true">
+      <Label name="LevelUpNoticeText" windowSize="800 39" textAlign="center" adjust="0 3" textColor="white" textRender="bold16" text="#sb(MqLevelUpNoticeText)" autoWrap="true" multiLine="true" visible="true"/>
+      <Label name="burningNoticeText" windowSize="800 39" textAlign="center" adjust="0 3" textColor="white" textRender="bold16" text="#sb(MqBurningNoticeText)" autoWrap="true" multiLine="true" visible="false"/>
+      <Label name="playtimeNoticeText" windowSize="800 39" textAlign="center" adjust="0 3" textColor="white" textRender="bold16" text="#sb(MqPlaytimeNoticeText)" autoWrap="true" multiLine="true" visible="false"/>
+    </ImageBoard>
+    <ImageBoard name="level_present" leftTopWH="0 250 650 174" adjust="0 50" alphaBlend="true" alphaTest="true" visible="true" align="center">
+      <Window name="itemWindow" windowRect="-3 -20 392 152"/>
+      <Window name="itemWindow2" windowRect="40 -20 330 152"/>
+      <Window name="itemPreview1" windowSize="130 130" adjust="10 -15" visible="false" alphaBlend="true"/>
+      <Window name="itemPreview3" windowSize="130 130" adjust="0 -15" visible="false" alphaBlend="true"/>
+      <Window name="itemPreview2" windowSize="130 130" adjust="10 -15" visible="false" alphaBlend="true"/>
+      <Window name="itemBackPanel1" leftTopWH="0 0 121 22" adjust="10 30" alphaBlend="true" alphaTest="true" visible="false" align="bottom;left">
+        <Label name="description1" windowRect="0 0 120 30" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textRender="bold14" textColor="255 42 55 80"/>
+      </Window>
+      <Window name="itemBackPanel2" leftTopWH="0 0 121 22" adjust="0 30" texture="level_present_textbox_1" alphaBlend="true" alphaTest="true" visible="false" align="bottom;right">
+        <Label name="description3" windowRect="0 0 120 30" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textRender="bold14" textColor="255 42 55 80"/>
+      </Window>
+      <Window name="itemBackPanel3" leftTopWH="0 0 121 22" adjust="10 30" texture="level_present_textbox_1" alphaBlend="true" alphaTest="true" visible="false" align="bottom">
+        <Label name="description2" windowRect="0 0 120 30" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textRender="bold14" textColor="255 42 55 80"/>
+      </Window>
+    </ImageBoard>
+    <Container name="questPanelCon" leftTopWH="0 250 700 300" adjust="0 40" alphaBlend="true" align="center" visible="false">
+      <Window name="questPanel1" windowSize="230 288" align="center" adjust="0 0" visible="true" alphaBlend="true"/>
+      <Window name="questPanel2" windowSize="230 288" align="center" adjust="0 0" visible="true" alphaBlend="true"/>
+      <Window name="questPanel3" windowSize="230 288" align="center" adjust="0 0" visible="true" alphaBlend="true"/>
+    </Container>
+    <Panel name="rankInfo" leftTopWH="-3 10 395 277" texture="rankRP_img_closeBG" alphaBlend="true" visible="false">
+      <Label windowSize="395 24" textAlign="center" adjust="1 0" text="#sb(currentRankGrade)" textRender="bold" textColor="255 222 243 255"/>
+      <Window name="grade1" windowSize="100 28" adjust="73 35">
+        <Panel name="curUserGrade" leftTopTex="-3 -8" texture="rankRP_img_closeRank1" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="165 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="190 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade2" windowSize="100 3" adjust="81 66">
+        <Panel name="curUserGrade" leftTopTex="-11 -8" texture="rankRP_img_closeRank2" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="165 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="191 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade3" windowSize="100 34" adjust="89 97">
+        <Panel name="curUserGrade" leftTopTex="-19 -8" texture="rankRP_img_closeRank3" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="165 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="190 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade4" windowSize="100 28" adjust="95 128">
+        <Panel name="curUserGrade" leftTopTex="-25 -8" texture="rankRP_img_closeRank4" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="165 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="190 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade5" windowSize="100 28" adjust="103 159">
+        <Panel name="curUserGrade" leftTopTex="-33 -8" texture="rankRP_img_closeRank5" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="165 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="190 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade6" windowSize="100 28" adjust="107 190">
+        <Panel name="curUserGrade" leftTopTex="-37 -8" texture="rankRP_img_closeRank6" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="165 0 100 28" textAlign="vcenter" text="" textRender="bold" textColor="255 197 203 208" textColor2="255 241 249 254"/>
+        <Label name="info" leftTopWH="190 0 100 28" textAlign="vcenter" text="" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Window name="grade0" windowSize="100 28" adjust="120 221">
+        <Panel name="curUserGrade" leftTopTex="-50 -8" texture="rankRP_img_closeRank7" alphaBlend="true" visible="false"/>
+        <Label name="name" leftTopWH="165 0 100 28" textAlign="vcenter" text="#sb(maxLevelGloveName)" textRender="bold" textColor="255 162 182 200" textColor2="255 198 223 244"/>
+      </Window>
+      <Panel name="curRankGrade" leftTopWH="34 30 80 80" alphaBlend="true" visible="false"/>
+      <Label name="curRankPercentage" leftTopWH="40 105 80 28" text="" textAlign="vcenter" textColor="white"/>
+      <Panel name="rankUserGlove" leftTopWH="50 102 32 32" align="left" alphaBlend="true"/>
+      <Label leftTopWH="0 252 395 24" textAlign="center" text="#sb(rank_dailyUpdateInfo)" textColor="255 153 172 191"/>
+    </Panel>
+    <Window name="cardWindow" windowRect="-3 115 392 287">
+      <Panel name="cardPreview1" windowRect="0 40 98 140" texture="burningl_gage_base" alphaBlend="true" alphaTest="true" visible="false"/>
+      <Panel name="cardPreview2" windowRect="98 40 196 140" texture="burningl_gage_base" alphaBlend="true" alphaTest="true" visible="false"/>
+      <Panel name="cardPreview3" windowRect="196 40 294 140" texture="burningl_gage_base" alphaBlend="true" alphaTest="true" visible="false"/>
+      <Panel name="cardPreview4" windowRect="294 40 392 140" texture="burningl_gage_base" alphaBlend="true" alphaTest="true" visible="false"/>
+    </Window>
+    <Container name="quitText" windowSize="912 20" adjust="0 519">
+      <Label name="MqAskLevelUpQuit" windowSize="912 20" textColor="255 42 55 80" textRender="bold16" text="#sb(MqAskLevelUpQuit)" autoWrap="true" textAlign="center" multiLine="true" visible="false" align="hcenter"/>
+      <Label name="MqAskBurningQuit" windowSize="912 20" textColor="255 42 55 80" textRender="bold16" text="#sb(MqAskBurningQuit)" autoWrap="true" textAlign="center" multiLine="true" visible="false" align="hcenter"/>
+      <Label name="MqAskPlaytimeQuit" windowSize="912 20" textColor="255 42 55 80" textRender="bold16" text="#sb(MqAskPlaytimeQuit)" autoWrap="true" textAlign="center" multiLine="true" visible="false" align="hcenter"/>
+      <ColorLabel name="MqAskRewardQuit" windowSize="912 20" textColor="255 42 55 80" textRender="bold16" text="#sb(MqAskRewardQuit)" autoWrap="true" textAlign="center" multiLine="true" visible="false" align="hcenter"/>
+    </Container>
+    <Window name="yesNoButtonList" leftTopWH="0 0 400 40" adjust="0 16" align="hcenter;bottom">
+      <TextButton name="returnGame" windowSize="132 40" adjust="-70 0" align="center" text="#sb(returnGame)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+      <TextButton name="doQuit" windowSize="132 40" adjust="70 0" align="center" text="#sb(doQuitGame)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Window>
+  </Container>
+  <CaptionWindow name="shutdownGrandprix" frame="CaptionDialog" windowRect="0 0 350 164" caption="#sb(quit)" align="center" setCloseButton="doCancelGrandprix" visible="false">
+    <Window windowRect="0 7 310 60" frame="DefaultEdit" align="hcenter">
+      <Panel name="iconPanel" windowRect="0 0 31 30" texture="대화상자물음" alphaBlend="true" align="vcenter"/>
+      <Label name="textLabel" windowRect="46 0 290 40" multiLine="true" autoWrap="true" lineGap="6" textColor="black" text="#sb(quitGrandprixWarning)" textAlign="vcenter"/>
+    </Window>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 306 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="doQuitGrandprix" windowRect="0 0 87 30" text="#sb(yes)" altTextRender="outline"/>
+      <TextButton name="doCancelGrandprix" windowRect="0 0 52 30" align="right" text="#sb(no)" altTextRender="outline"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

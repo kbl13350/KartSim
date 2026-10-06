@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="synopsis">
+    <m c="cn" v="通过几场比赛，|看到其他车手的技术令人吃惊的成长后，皮蛋决定开始猛练了。|通过森林中的训练，能够有技术上的突破吗？"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="在规定的时间内，通过所有的计时点|"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="森林发夹"/>
+  </k>
+</StringBag>

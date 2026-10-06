@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="brodi_01"/>
+  <Char id="a8" pos="8 0" emotion="stop1"/>
+  <Msg name="A8" string="…"/>
+  <Enter/>
+  <Char id="a8" remove="true"/>
+  <Char id="a8" pos="11 0" emotion="stop1"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="小强" string="你认识神秘工头吗？"/>
+  <Enter/>
+  <Char id="a8" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="a8" pos="11 0" emotion="stop1"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="A8" string="嘀嘀嘀嘀嘀嘀|（神秘工头大人的位置是秘密。）"/>
+  <Enter/>
+  <Char id="a8" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop7"/>
+  <Char id="a8" pos="11 0" emotion="stop1"/>
+  <Msg name="小强" string="嘀嘀嘀？难道不会说话……"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="a8" remove="true"/>
+  <Char id="a8" pos="8 0" emotion="stop1"/>
+  <Msg name="A8" string="嘀嘀嘀嘀...|（好像没听懂我在说什么）"/>
+  <Enter/>
+  <Char id="a8" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="咳。这该怎么办才好……"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="果然哪都找不到他……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="我这里也是，|机器人好像不会说话。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="这可怎么办？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="???" string="今天的生产达成率是80%。嘀！|请大家再加把劲。嘀！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="???" string="如果能达成100%，我会向大家发放A+润滑剂。嘀！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="刚刚的声音...|你们也听到了吧？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Char id="ethi" pos="2 0" emotion="stop5"/>
+  <Msg name="葱头，小强" string="嗯！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="好像是从那边的播放器中传出来的！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="normal"/>
+  <Msg name="葱头" string="有人在利用播放器指使机器人！|但并不是神秘工头的声音！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani1"/>
+  <Msg name="皮蛋" string="我们快去找找那个声音的主人吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="好，肯定跟神秘工头的失踪有关系的！"/>
+  <Enter/>
+</Scene>

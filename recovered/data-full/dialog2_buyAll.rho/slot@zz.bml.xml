@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageCheckButton name="item" windowRect="0 0 512 50" autoImage="slot_" alphaBlend="true">
+  <PlaneCheckButton name="selected" windowRect="8 0 26 18" align="vcenter" checked="true"/>
+  <Panel name="itemPanel" windowRect="33 0 75 42" texture="f_koin" align="vcenter" alphaBlend="true">
+    <ItemWindow name="itemWindow" windowRect="0 0 42 42"/>
+  </Panel>
+  <Window windowRect="80 6 160 43">
+    <Label name="itemName" windowRect="0 3 85 21" textRender="bold" textAlign="center" text="프로토 z7"/>
+    <Panel name="infoIcon" windowRect="10 20 26 36" texture="img_infoicon" alphaBlend="true"/>
+    <Label name="resultMsg" windowRect="30 19 310 37" multiLine="true" text="누적되거나 말거나" textAlign="vcenter"/>
+  </Window>
+  <Window windowRect="200 6 500 43">
+    <Label name="warnMsg" windowRect="0 19 310 37" multiLine="true"/>
+  </Window>
+  <ComboBox name="cmbStock" windowSize="158 22" adjust="7 0" frame="ComboBox" listFrame="ComboList" comboListLength="10" autoComboListSizing="true" align="right;vcenter"/>
+</ImageCheckButton>

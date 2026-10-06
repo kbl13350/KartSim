@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow windowRect="0 0 350 200" frame="CaptionDialog" caption="#sb(aboutPlant)" captionColor="black" align="center" setCloseButton="cancel">
+    <Panel name="iconPanel" windowRect="5 20 65 80" texture="mplant_1@zz" alphaBlend="true"/>
+    <Label name="textLabel" windowRect="80 24 310 94" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="#sb(noticeGeneratorOff)"/>
+    <Container windowRect="46 0 300 34" align="bottom">
+      <TextButton name="startPlant" windowRect="0 0 76 24" text="#sb(startPlant)" align="vcenter" altTextRender="outline"/>
+      <TextButton name="gotoMyPlant" windowRect="0 0 76 24" text="#sb(gotoMyPlant)" align="center" altTextRender="outline"/>
+      <TextButton name="cancel" windowRect="0 0 76 24" text="#sb(ok)" align="right;vcenter" altTextRender="outline"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

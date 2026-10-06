@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss5"/>
+  <Char id="hekate" pos="6 0" flip="true" emotion="stop4"/>
+  <Msg name="赫凯特" string="就这？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="tiera" pos="11 0" emotion="stop3"/>
+  <Msg name="茜茜" string="还没结束呢！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="tiera" pos="11 0" emotion="stop3"/>
+  <Msg name="赫凯特" string="呜呼呼，该轮到我了。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="tiera" pos="12 0" emotion="stop3"/>
+  <Msg name="茜茜" string="额，看来你这年龄也没白长啊……！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <BackGround texture="abyss8"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="stop6"/>
+  <Msg name="黑妞" string="奈琳，快醒醒，是我，是黑妞啊！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="narin" pos="9 0" emotion="stop6"/>
+  <Msg name="奈琳" string="莫格瑞，大人，敌人……消灭。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="narin" pos="9 0" emotion="stop6"/>
+  <Msg name="黑妞" string="哎呀！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="narin" pos="8 0" emotion="stop6"/>
+  <Msg name="奈琳" string="消灭，敌人。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="narin" pos="8 0" emotion="stop6"/>
+  <Msg name="黑妞" string="呼，没办法了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="narin" pos="8 0" emotion="stop6"/>
+  <Msg name="" string="打击！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="narin" pos="10 0" emotion="stop6"/>
+  <Msg name="奈琳" string="好,痛……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="narin" pos="10 0" emotion="stop6"/>
+  <Msg name="黑妞" string="额……不是打击头部就能唤醒吗？书上都是这么写的啊……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="narin" pos="10 0" emotion="stop6"/>
+  <Msg name="黑妞" string="果然打一下还是不够啊。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="narin" pos="9 0" emotion="stop6"/>
+  <Msg name="奈琳" string="现实，是，现实，不是，书。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Char id="narin" pos="9 0" emotion="stop6"/>
+  <Msg name="黑妞" string="奈琳，我先给你道歉了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Char id="narin" pos="9 0" emotion="stop6"/>
+  <Msg name="奈琳" string="……？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop5"/>
+  <Char id="narin" pos="9 0" emotion="stop6"/>
+  <Msg name="黑妞" string="现在开始打你也只能算是正当防卫吧？"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="？？？" string="格雷|听说南海海贼宝藏里有星陨之石。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷" string="嗯，辛苦了。|继续调查吧！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="？？？" string="是.那我就先告辞了！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="raptorR" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷" string="格雷格！！！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="raptorL" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷格" string="哥！你叫我？"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="raptorL" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷" string="知道了星陨之石的藏身之处了。"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorL" pos="4 0" emotion="stop2"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷格" string="哇，真的~嘿嘿|那我就让我小弟去回收~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="raptorL" pos="4 0" emotion="stop2"/>
+  <Msg name="格雷" string="不！|格雷格！你要亲自去！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorL" pos="7 0" emotion="stop4"/>
+  <Msg name="格雷格" string="额..哥..|很麻烦的~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="raptorL" pos="4 0" emotion="stop4"/>
+  <Msg name="格雷" string="格雷格！！！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorL" pos="4 0" emotion="stop4"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="知道了.."/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <BackGround texture="pirate5"/>
+  <Char id="raptorL" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷格" string="哎~可真远~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorL" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷格" string="哥嘱咐过要小心行事.."/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷格" string="想个好办法~"/>
+  <Enter/>
+</Scene>

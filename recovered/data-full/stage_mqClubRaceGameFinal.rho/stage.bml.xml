@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Stage className="ClubRaceGameFinalStage" addResFolder="/stage/common/;/stage/gameFinalIndi/;/stage/gameReady/;/stage/common/mission;/stage/mqGameFinal/;" topmostWindow="stage_window@zz" stringBag="stage_stringBag"/>

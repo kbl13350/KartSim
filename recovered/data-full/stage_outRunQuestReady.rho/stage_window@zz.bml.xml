@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600">
+  <CaptionWindow name="퀘스트준비" windowRect="10 30 790 580" frame="CaptionWindow" captionPos="0 6" captionColor="black" caption="#sb(quest)">
+    <Container windowRect="0 0 770 483">
+      <Panel name="charBg" windowRect="89 7 355 258" texture="circle" uvRect="120 120 411 370"/>
+      <Window name="window" windowRect="88 6 356 259" frame="EmptyFill" enable="false"/>
+      <Window name="설명창" windowRect="84 10 780 493" enable="false">
+        <Container name="캐릭터창" windowRect="10 -25 286 374"/>
+      </Window>
+    </Container>
+    <ImageButton name="시작" windowRect="70 0 134 50" autoLoadImage="btn_singleStart_" alphaBlend="true">
+      <Label windowRect="0 53 64 64" textRender="bold" text="#sb(start)" textColor="255 64 72 83" textAlign="center"/>
+    </ImageButton>
+  </CaptionWindow>
+</Container>

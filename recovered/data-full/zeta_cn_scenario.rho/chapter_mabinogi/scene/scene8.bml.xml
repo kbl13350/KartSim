@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mabi1"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="茉莉安" string="原来如此。。。很可惜，|马赫已经降临了。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="11 0" flip="true" emotion="stop2"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋，黑妞，娜儿" string="真的吗？！？！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="morrigan" pos="11 0" emotion="stop1"/>
+  <Msg name="茉莉安" string="在你们到来之前，我能强烈的感觉得到马赫的力量。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="那宝宝会怎么样？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" pos="8 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="娜儿" string="爱琳呢？！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="茉莉安" string="幸运的是，现在还没有事。|到马赫恢复力量之前，还有些时间。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="morrigan" pos="10 0" emotion="normal"/>
+  <Msg name="茉莉安" string="在那之前重新封印她的话，就能解救出你们的朋友和爱琳。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="想封印马赫，我们应该做什么呢？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="茉莉安" string="只有有能力与神对抗的人才能重新封印在预言书上。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="我们可没有那种力量。。。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="morrigan" pos="8 0" emotion="normal"/>
+  <Msg name="茉莉安" string="只有被承认为正义的光之骑士，帕拉丁的人，才能拥有与神对抗的力量。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="morrigan" pos="8 0" emotion="stop1"/>
+  <Msg name="茉莉安" string="虽然我知道这会让你们为难。。。|但是还请成为帕拉丁解救爱琳吧。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="只要能救出宝宝，什么事我都可以做！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="morrigan" pos="8 0" emotion="normal"/>
+  <Msg name="茉莉安" string="想要成为帕拉丁，必须要执行许多艰难的任务。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="morrigan" pos="9 0" flip="true" emotion="stop1"/>
+  <Msg name="茉莉安" string="在此过程中，有很多人都没有能够回来。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="10 0" emotion="stop6"/>
+  <Msg name="皮蛋，黑妞" string="？！？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="为了宝宝，我接受这个挑战。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="太危险了，我不能再失去你！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="相信我，我一定会成为光之骑士救出宝宝的！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="皮蛋…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="morrigan" pos="9 0" flip="true" emotion="normal"/>
+  <Msg name="茉莉安" string="很好。。我佩服你的勇气。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="morrigan" pos="9 0" emotion="normal"/>
+  <Msg name="茉莉安" string="在你们执行任务之前，我还有个请求。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="嗯？什么请求?"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="茉莉安" string="请帮助我去侦查村庄，锁孔是否有异常的动静。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="没有问题！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（引擎声）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="morrigan" pos="8 0" emotion="normal"/>
+  <Msg name="茉莉安" string="这里的路你可能不熟悉。。请一定要小心。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="normal"/>
+  <Msg name="娜儿" string="他好像已经出发了…|怎…怎么办呢？"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" pos="8 0" emotion="stop1"/>
+  <Msg name="茉莉安" string="还请…，那还请小心…"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="tierMatchingRewardSpeed">
+    <m c="kr" v="스피드 등급전 결과"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="竞速等级赛结果"/>
+  </k>
+  <k n="tierMatchingRewardItem">
+    <m c="kr" v="아이템 등급전 결과"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="道具等级赛结果"/>
+  </k>
+  <k n="guideText">
+    <m c="kr" v="[color:255 28 220 255]라이더 %s님[/color]!! 등급전에 참여해 주셔서 감사합니다.|[color:255 254 227 4]{아이템/스피드}등급전[/color] 시즌 최고 등급에 따라 보상을 지급하였습니다."/>
+    <m c="tw" v=""/>
+    <m c="cn" v="[color:255 28 220 255]%s[/color]车手！！感谢您参与等级赛。|已根据[color:255 254 227 4]%s等级赛[/color]赛季最高等级发放奖励。"/>
+  </k>
+  <k n="guideText_defalut">
+    <m c="kr" v="등급이 높아질 수록 더 좋은 보상을 획득할 수 있습니다.|최종 순위에 따라 랭킹 보상도 주어지니 높은 랭킹을 노려보세요."/>
+    <m c="tw" v=""/>
+    <m c="cn" v="等级越高，就可以获得更好的奖励。|根据最终排名，还会发放排名奖励，所以一起挑战更高的排名吧。"/>
+  </k>
+  <k n="rewardBoxDesc">
+    <m c="kr" v="이미 보상을 획득하였습니다.|보상함을 확인해 주세요."/>
+    <m c="tw" v=""/>
+    <m c="cn" v="已获取该奖励。|请前往奖励箱确认奖励。"/>
+  </k>
+  <k n="resultGrade">
+    <m c="kr" v="시즌 최종 등급"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="赛季最终等级"/>
+  </k>
+  <k n="highestGrade">
+    <m c="kr" v="시즌 최고 등급"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="赛季最高等级"/>
+  </k>
+  <k n="curRank">
+    <m c="kr" v="%d위|(상위 %.2f%%)"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="%d名|(前%.2f%%)"/>
+  </k>
+  <k n="mp">
+    <m c="kr" v="점수%d"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="分数%d"/>
+  </k>
+  <k n="speed">
+    <m c="kr" v="스피드"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="竞速"/>
+  </k>
+  <k n="item">
+    <m c="kr" v="아이템"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="道具"/>
+  </k>
+  <k n="reward">
+    <m c="kr" v="보상"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="奖励"/>
+  </k>
+  <k n="grade_5">
+    <m c="kr" v="[color:255 232 53 42]레전드[/color]"/>
+    <m c="cn" v="[color:255 232 53 42]王者[/color]"/>
+  </k>
+  <k n="grade_4">
+    <m c="kr" v="[color:255 13 139 160 ]마스터 %d[/color]"/>
+    <m c="cn" v="[color:255 13 139 160 ]钻石 %d[/color]"/>
+  </k>
+  <k n="grade_3">
+    <m c="kr" v="[color:255 118 114 210]프로 %d[/color]"/>
+    <m c="cn" v="[color:255 118 114 210]铂金 %d[/color]"/>
+  </k>
+  <k n="grade_2">
+    <m c="kr" v="[color:255 199 122 0]아마추어 %d[/color]"/>
+    <m c="cn" v="[color:255 199 122 0]黄金 %d[/color]"/>
+  </k>
+  <k n="grade_1">
+    <m c="kr" v="[color:255 132 139 172]시니어 %d[/color]"/>
+    <m c="cn" v="[color:255 132 139 172]白银 %d[/color]"/>
+  </k>
+  <k n="grade_0">
+    <m c="kr" v="[color:255 155 79 40]주니어 %d[/color]"/>
+    <m c="cn" v="[color:255 155 79 40]黄铜 %d[/color]"/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="tw" v=""/>
+    <m c="cn" v="确认"/>
+  </k>
+</StringBag>

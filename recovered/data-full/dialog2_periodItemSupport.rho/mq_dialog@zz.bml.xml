@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="captionDlgFrame" windowSize="1026 830" frame="CaptionDialog" captionPos="0 1" caption="#sb(sys_dialogTitle)" align="center" setCloseButton="dialogCloseButton">
+    <Window name="previewWindow" leftTopTex="0 15" windowSize="302 267">
+      <Panel name="bg" windowSize="302 267" adjust="-3 -10" texture="support_img_leftPreviewBG" enable="false" alphaBlend="true">
+        <Label windowRect="0 5 302 30" text="#sb(sys_myCharacter)" textColor="white" textRender="bold16" textAlign="center"/>
+        <GaragePreview name="charKartPreview" windowRect="0 31 228 255" align="center"/>
+      </Panel>
+      <Label name="lbl_periodTitle" windowSize="83 20" adjust="0 234" text="#sb(sys_supportPeriod)" textColor="255 179 195 228" textAlign="right;vcenter" textRender="bold14"/>
+      <Label name="lbl_periodDetail" windowSize="210 20" adjust="102 234" text="#sb(sys_supportPeriod)" textColor="255 255 226 72" textAlign="left;vcenter" textRender="bold14"/>
+      <Panel name="bg_supportItemItemOnPanel" windowSize="302 435" adjust="-3 257" texture="support_img_leftListBG" enable="false" alphaBlend="true">
+        <Label windowSize="302 32" adjust="0 7" text="#sb(sys_todayItemSupportState)" autoSizing="true" align="hcenter" autoWrap="true" textColor="255 42 55 80" textRender="bold16"/>
+        <Window name="previewItemOnDetail" windowRect="-6 38 109 354">
+          <Label windowRect="0 0 109 35" text="#sb(catSub_speedKart)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 32 109 75" text="#sb(catSub_itemKart)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 64 109 115" text="#sb(catSub_character)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 96 109 155" text="#sb(catSub_pet)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 128 109 195" text="#sb(catSub_flyingPet)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 160 109 235" text="#sb(catSub_balloon)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 192 109 275" text="#sb(catSub_goggle)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 224 109 315" text="#sb(catSub_headBand)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 256 109 355" text="#sb(catSub_changer)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 288 109 395" text="#sb(catSub_aura)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label windowRect="0 320 109 435" text="#sb(catSub_paint)" textColor="255 135 141 146" textRender="bold14" textAlign="vcenter;right"/>
+          <Label name="supportingItem_speedKart" windowRect="145 0 234 35" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_itemKart" windowRect="145 32 234 75" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_character" windowRect="145 64 234 115" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_pet" windowRect="145 96 234 155" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_flyingPet" windowRect="145 128 234 195" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_balloon" windowRect="145 160 234 235" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_goggle" windowRect="145 192 234 275" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_headBand" windowRect="145 224 234 315" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_changer" windowRect="145 256 234 355" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_aura" windowRect="145 288 234 395" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+          <Label name="supportingItem_paint" windowRect="145 320 234 435" text="" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter;left"/>
+        </Window>
+      </Panel>
+    </Window>
+    <Window name="itemWindow" windowRect="309 17 854 670">
+      <Container name="container_itemWindow" windowSize="854 671">
+        <ImageBoard name="bg_itemWindow" windowSize="854 701" adjust="-4 -12" image="support_img_rightSlotBG" alphaBlend="true"/>
+        <Tab name="catsTabsParent" align="hcenter;top" windowSize="854 35">
+          <TabMenu name="catsTabs" windowSize="854 35" align="hcenter;top">
+            <ImageButton name="tabCat_kartSupport" leftTopTex="2 -8" text="#sb(catMain_kart)" textColor="255 135 146 167" overTextColor="255 16 136 199" clickedTextColor="255 42 55 80" disabledTextColor="255 200 200 200" textAlign="center" textRender="bold16" autoLoadImage="support_btn_tab_" alphaBlend="true"/>
+            <ImageButton name="tabCat_characterSupport" leftTopTex="171 -8" text="#sb(catMain_character)" textColor="255 135 146 167" overTextColor="255 16 136 199" clickedTextColor="255 42 55 80" disabledTextColor="255 200 200 200" textAlign="center" textRender="bold16" autoLoadImage="support_btn_tab_" alphaBlend="true"/>
+            <ImageButton name="tabCat_equipSupport" leftTopTex="340 -8" text="#sb(catMain_equip)" textColor="255 135 146 167" overTextColor="255 16 136 199" clickedTextColor="255 42 55 80" disabledTextColor="255 200 200 200" textAlign="center" textRender="bold16" autoLoadImage="support_btn_tab_" alphaBlend="true"/>
+            <ImageButton name="tabCat_useOrDressUpSupport" leftTopTex="509 -8" text="#sb(catMain_useOrDressUp)" textColor="255 135 146 167" overTextColor="255 16 136 199" clickedTextColor="255 42 55 80" disabledTextColor="255 200 200 200" textAlign="center" textRender="bold16" autoLoadImage="support_btn_tab_" alphaBlend="true"/>
+          </TabMenu>
+        </Tab>
+        <Container name="catKart" windowRect="4 22 854 600">
+          <Panel name="titleEnable_speedKart" windowSize="88 32" adjust="5 14" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_speedKart)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_speedKart" windowSize="88 32" adjust="5 14" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_speedKart)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_speedKart" leftTopTex="3 50" alignStyle="horizontal" alignSize="4" maxLine="2" alignMargin="6 6"/>
+          <Panel name="bgLine_itemWindow" windowSize="660 2" adjust="6 335" texture="support_img_divisionLine" uvRect="300 0 310 2" enable="true" alphaBlend="true"/>
+          <Panel name="titleEnable_itemKart" windowSize="88 32" adjust="5 345" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_itemKart)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_itemKart" windowSize="88 32" adjust="5 345" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_itemKart)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_itemKart" leftTopTex="3 381" alignStyle="horizontal" alignSize="4" maxLine="2" alignMargin="6 6"/>
+        </Container>
+        <Container name="catCharacter" windowRect="4 22 854 600" visible="false">
+          <Panel name="titleEnable_character" windowSize="88 32" adjust="5 27" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_character)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_character" windowSize="88 32" adjust="5 27" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_character)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_character" leftTopTex="3 63" alignStyle="horizontal" alignSize="4" maxLine="1" alignMargin="6 6"/>
+          <Panel name="bgLine_itemWindow" windowSize="660 2" adjust="6 213" texture="support_img_divisionLine" uvRect="300 0 310 2" enable="false" alphaBlend="true"/>
+          <Panel name="titleEnable_pet" windowSize="88 32" adjust="5 230" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_pet)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_pet" windowSize="88 32" adjust="5 230" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_pet)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_pet" leftTopTex="3 269" alignStyle="horizontal" alignSize="4" maxLine="1" alignMargin="6 6"/>
+          <Panel name="bgLine_itemWindow" windowSize="660 2" adjust="6 419" texture="support_img_divisionLine" uvRect="300 0 310 2" enable="false" alphaBlend="false"/>
+          <Panel name="titleEnable_flyingPet" windowSize="88 32" adjust="5 436" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_flyingPet)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_flyingPet" windowSize="88 32" adjust="5 436" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_flyingPet)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_flyingPet" leftTopTex="3 475" alignStyle="horizontal" alignSize="4" maxLine="1" alignMargin="6 6"/>
+        </Container>
+        <Container name="catEquip" windowRect="4 22 854 600" visible="false">
+          <Panel name="titleEnable_itemBalloon" windowSize="88 32" adjust="5 27" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_balloon)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_balloon" windowSize="88 32" adjust="5 27" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_balloon)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_balloon" leftTopTex="3 63" alignStyle="horizontal" alignSize="4" maxLine="1" alignMargin="6 6"/>
+          <Panel name="bgLine_itemWindow" windowSize="660 2" adjust="6 213" texture="support_img_divisionLine" uvRect="300 0 310 2" enable="false" alphaBlend="false"/>
+          <Panel name="titleEnable_goggle" windowSize="88 32" adjust="5 230" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -1" text="#sb(catSub_goggle)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_goggle" windowSize="88 32" adjust="5 230" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_goggle)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_goggle" leftTopTex="3 269" alignStyle="horizontal" alignSize="4" maxLine="1" alignMargin="6 6"/>
+          <Panel name="bgLine_itemWindow" windowSize="660 2" adjust="6 419" texture="support_img_divisionLine" uvRect="300 0 310 2" enable="false" alphaBlend="false"/>
+          <Panel name="titleEnable_headBand" windowSize="88 32" adjust="5 436" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_headBand)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_headBand" windowSize="88 32" adjust="5 436" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_headBand)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_headBand" leftTopTex="3 475" alignStyle="horizontal" alignSize="4" maxLine="1" alignMargin="6 6"/>
+        </Container>
+        <Container name="catUseOrDressUp" windowRect="4 22 854 600" visible="false">
+          <Panel name="titleEnable_changer" windowSize="88 32" adjust="5 27" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_changer)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_changer" windowSize="88 32" adjust="5 27" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_changer)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_changer" leftTopTex="3 63" alignStyle="horizontal" alignSize="4" maxLine="1" alignMargin="6 6"/>
+          <Panel name="bgLine_itemWindow" windowSize="660 2" adjust="6 213" texture="support_img_divisionLine" uvRect="300 0 310 2" enable="false" alphaBlend="false"/>
+          <Panel name="titleEnable_aura" windowSize="88 32" adjust="5 230" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_aura)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_aura" windowSize="88 32" adjust="5 230" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_aura)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_aura" leftTopTex="3 269" alignStyle="horizontal" alignSize="4" maxLine="1" alignMargin="6 6"/>
+          <Panel name="bgLine_itemWindow" windowSize="660 2" adjust="6 419" texture="support_img_divisionLine" uvRect="300 0 310 2" enable="false" alphaBlend="false"/>
+          <Panel name="titleEnable_paint" windowSize="88 32" adjust="5 436" texture="support_img_partTitle_1" enable="false" alphaBlend="true">
+            <Label name="lbl_titleEnable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_paint)" textColor="255 38 19 0" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <Panel name="titleDisable_paint" windowSize="88 32" adjust="5 436" texture="support_img_partTitle_2" enable="false" alphaBlend="true" visible="false">
+            <Label name="lbl_titleDisable" windowSize="88 32" adjust="0 -2" text="#sb(catSub_paint)" textColor="255 81 85 90" textRender="bold14" textAlign="center"/>
+          </Panel>
+          <GridSelectorDivLoad name="grid_paint" leftTopTex="3 475" alignStyle="horizontal" alignSize="4" maxLine="1" alignMargin="6 6"/>
+        </Container>
+      </Container>
+    </Window>
+    <Container name="bottonInfo" windowSize="995 70" align="bottom,vcenter" adjust="0 -7">
+      <Panel windowSize="14 14" adjust="10 14" texture="collect_img_noticeICON" align="left" enable="false" alphaBlend="true"/>
+      <ColorLabel windowSize="350 30" adjust="31 5" text="#sb(sys_supportInfoDetail_1)" align="left" textRender="bold14" textAlign="vcenter" textColor="255 135 146 167"/>
+      <Panel windowSize="14 14" adjust="10 41" texture="collect_img_noticeICON" align="left" enable="false" alphaBlend="true"/>
+      <ColorLabel windowSize="350 30" adjust="31 32" text="#sb(sys_supportInfoDetail_2)" align="left" textRender="bold14" textAlign="vcenter" textColor="255 135 146 167"/>
+      <ImageButton name="goTrainingCenterBtn" windowSize="228 50" adjust="12 0" autoLoadImage="support_tc_@zz" align="right,vcenter" alphaBlend="true"/>
+    </Container>
+    <Panel windowSize="995 1" adjust="-3 712" texture="support_img_divisionLine" uvRect="300 0 310 2" alphaBlend="true"/>
+  </CaptionWindow>
+</Panel>

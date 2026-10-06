@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BigBonus>
+	<BonusIcon01 texture='ice_01_01' texture2='ice_01_02'/>
+	<BonusIcon02 texture='ice_02_01' texture2='ice_02_02'/>
+	<BonusIcon03 texture='ice_03_01' texture2='ice_03_02'/>
+	<BonusIcon04 texture='ice_04_01' texture2='ice_04_02'/>
+	<BonusIcon05 texture='gotch_gem_5_01' texture2='gotch_gem_5_02'/>
+</BigBonus>
+
+

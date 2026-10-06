@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="mpInfo" leftTopWH="0 0 776 586">
+  <ImageBoard leftTopWH="0 0 776 586" image="lobby_right_bg">
+    <ImageBoard leftTopWH="14 10 748 480" image="basicbox">
+      <Label name="topLabel" leftTopWH="40 57 172 74" text="#sb(curGrade)" textAlign="center" textRender="medium16" textColor="255 163 204 244"/>
+      <Label name="bottomLabel" leftTopWH="258 57 172 74" text="#sb(curGp)" textAlign="center" textRender="medium16" textColor="255 163 204 244"/>
+      <Label name="rankLabel" leftTopWH="258 170 172 74" text="#sb(curRank)" textAlign="center" textRender="medium16" textColor="255 163 204 244"/>
+    </ImageBoard>
+    <Panel name="currTierIcon" leftTopWH="44 106 198 221" texture="등급없음" alphaBlend="true"/>
+    <Container name="currTierImage" leftTopWH="58 320 182 150">
+      <Panel name="currTierImageText" leftTopWH="0 10 112 48" alphaBlend="true" visible="false" align="left"/>
+      <Panel name="currTierImageText2" leftTopWH="118 17 64 34" alphaBlend="true" visible="false" align="right"/>
+      <Panel name="currTierImageText3" leftTopWH="37 10 112 48" alphaBlend="true" visible="false"/>
+      <Panel name="currTierNoGameCountImageText" leftTopWH="30 0 132 56" texture="등급없음_cn" alphaBlend="true" visible="false" align="hcenter"/>
+    </Container>
+    <Container name="currPTCount" leftTopWH="280 130 150 150">
+      <CharPanel name="targetCount" windowSize="28 42" adjust="30 11" texture="등급전_숫자" fontPos="0 0" fontSize="28 42" fontStr="1234567890" alphaBlend="true" text="" visible="true" align="hcenter"/>
+      <CharPanel name="currentCount" windowSize="28 42" adjust="-30 11" texture="등급전_숫자" fontPos="0 0" fontSize="28 42" fontStr="1234567890" alphaBlend="true" text="" visible="true" align="hcenter"/>
+      <Panel leftTopTex="0 15" texture="구분선" alphaBlend="true" visible="true" align="hcenter"/>
+    </Container>
+    <Container name="inSeason" leftTopWH="11 408 748 55">
+      <ColorLabel name="seasonText" leftTopWH="0 0 348 29" text="" align="hcenter" textAlign="center" textRender="bold24" textColor="white"/>
+      <Label name="seasonTimeText" leftTopWH="0 34 348 29" text="" align="hcenter" textAlign="center" textRender="bold20" textColor="255 80 153 224"/>
+    </Container>
+    <Container name="outSeason" leftTopWH="11 408 748 55" visible="false">
+      <ColorLabel name="mpEndText" leftTopWH="0 0 348 29" text="#sb(seasonMpEnd)" align="hcenter" textAlign="center" textRender="bold24" textColor="white"/>
+      <Label name="rewardTimeText" leftTopWH="0 34 348 29" text="#sb(seasonRewardTimeDescFmt)" align="hcenter" textAlign="center" textRender="bold16" textColor="255 80 153 224"/>
+    </Container>
+  </ImageBoard>
+  <Window leftTopWH="290 140 137 155">
+    <CharPanel name="curMp_0" clientRect="0 0 137 73" centerAlign="true" texture="주니어_num" fontPos="0 0" fontSize="30 42" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_1" clientRect="0 0 137 73" centerAlign="true" texture="시니어_num" fontPos="0 0" fontSize="30 42" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_2" clientRect="0 0 137 73" centerAlign="true" texture="아마추어_num" fontPos="0 0" fontSize="30 42" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_3" clientRect="0 0 137 73" centerAlign="true" texture="프로_num" fontPos="0 0" fontSize="30 42" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_4" clientRect="0 0 137 73" centerAlign="true" texture="마스터_num" fontPos="0 0" fontSize="30 42" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_5" clientRect="0 0 137 73" centerAlign="true" texture="레전드_num" fontPos="0 0" fontSize="30 42" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <Panel name="currTierNoGameCountImageBar" leftTopTex="0 19" texture="등급없음_순위" alphaBlend="true" visible="false" align="hcenter"/>
+    <Panel name="placementTestText" leftTopTex="-219 183" texture="배치중@zz" alphaBlend="true" visible="false"/>
+    <Panel name="noneAttendText" leftTopTex="-219 183" texture="미참가" alphaBlend="true" visible="false"/>
+  </Window>
+  <Play1SPanel name="gradeUp" scene="매칭등급업효과" leftTopWH="-90 -45 510 387" zoom="1.0" clearZBefore="true" defaultCameraPos="0.0 -2.0 0.0" defaultSpotPos="0.0 0.0 0.0" visible="false" alphaBlend="true"/>
+  <Panel name="mpReward" leftTopWH="485 41 274 352" texture="basicbox_reward_bg" visible="true">
+    <Label name="seasonRewardLabel" leftTopWH="0 -3 274 30" text="#sb(seasonMpReward)" textAlign="center" textRender="bold14" textColor="white"/>
+    <Label name="achieveRewardLabel" leftTopWH="8 274 274 30" text="#sb(achieveMpReward)" textAlign="left" textRender="bold14" textColor="white"/>
+    <Label name="nextGradeMpReward" leftTopWH="27 35 270 30" text="#sb(nextGradeMpReward)" textAlign="left" textRender="outline16" textColor="255 245 227 4"/>
+    <Panel name="nextGrade" leftTopTex="160 32" texture="주니어" alphaBlend="true"/>
+    <ColorLabel name="nextGradeText" leftTopWH="200 36 100 30" text="" textAlign="left" textRender="outline16" textColor="255 155 79 40"/>
+    <Panel name="nextItem_bg0" leftTopTex="36 69" texture="basicbox_reward_slot_2" alphaBlend="true"/>
+    <Label name="nextItem_num0" leftTopWH="41 102 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+    <Panel name="nextItem_bg1" leftTopTex="106 69" texture="basicbox_reward_slot_2" alphaBlend="true"/>
+    <Label name="nextItem_num1" leftTopWH="111 102 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+    <Panel name="nextItem_bg2" leftTopTex="176 69" texture="basicbox_reward_slot_2" alphaBlend="true"/>
+    <Label name="nextItem_num2" leftTopWH="181 102 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+    <Panel name="rewardArrow" leftTopTex="0 135" texture="basicbox_reward_arrow" alphaBlend="true" align="hcenter"/>
+    <Label name="gainMpReward" leftTopWH="13 167 270 30" text="#sb(gainMpReward)" textAlign="left" textRender="outline16" textColor="255 168 183 195"/>
+    <Panel name="curGrade" leftTopTex="160 163" texture="주니어" alphaBlend="true"/>
+    <ColorLabel name="curGradeText" leftTopWH="200 167 100 30" text="" textAlign="left" textRender="outline16" textColor="255 155 79 40"/>
+    <Panel name="curItem_bg0" leftTopTex="36 202" texture="basicbox_reward_slot_1" alphaBlend="true"/>
+    <Label name="curItem_num0" leftTopWH="41 235 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+    <Panel name="curItem_bg1" leftTopTex="106 202" texture="basicbox_reward_slot_1" alphaBlend="true"/>
+    <Label name="curItem_num1" leftTopWH="111 235 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+    <Panel name="curItem_bg2" leftTopTex="176 202" texture="basicbox_reward_slot_1" alphaBlend="true"/>
+    <Label name="curItem_num2" leftTopWH="181 235 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+    <Panel name="nextAchieveGrade" leftTopTex="60 306" texture="주니어" alphaBlend="true"/>
+    <ColorLabel name="nextAchieveGradeText" leftTopWH="100 311 100 30" text="" textAlign="left" textRender="outline16" textColor="255 155 79 40"/>
+    <Panel name="achieveItem_bg" leftTopTex="204 282" texture="basicbox_reward_slot_1" alphaBlend="true"/>
+    <Label name="achieveItem_num" leftTopWH="209 315 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+  </Panel>
+  <Panel name="mpReward_final" leftTopWH="485 41 274 352" texture="basicbox_reward_final" visible="false">
+    <Label name="seasonRewardLabel_final" leftTopWH="0 -3 274 30" text="#sb(seasonMpReward)" textAlign="center" textRender="bold14" textColor="white"/>
+    <Label name="achieveRewardLabel_final" leftTopWH="8 274 274 30" text="#sb(achieveMpRewardFinal)" textAlign="left" textRender="bold14" textColor="white"/>
+    <Label name="gainMpReward_final" leftTopWH="9 169 270 30" text="#sb(gainMpReward)" textAlign="left" textRender="outline16" textColor="255 254 227 4"/>
+    <Panel name="legendGrade1" leftTopTex="156 164" texture="레전드" alphaBlend="true"/>
+    <Label name="legendDetail1" leftTopWH="162 166 100 30" text="王者" textAlign="center" textRender="outline16" textColor="255 232 53 42"/>
+    <Panel name="curItemFinal_bg0" leftTopTex="36 202" texture="basicbox_reward_slot_2" alphaBlend="true"/>
+    <Label name="curItemFinal_num0" leftTopWH="41 235 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+    <Panel name="curItemFinal_bg1" leftTopTex="106 202" texture="basicbox_reward_slot_2" alphaBlend="true"/>
+    <Label name="curItemFinal_num1" leftTopWH="111 235 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+    <Panel name="curItemFinal_bg2" leftTopTex="176 202" texture="basicbox_reward_slot_2" alphaBlend="true"/>
+    <Label name="curItemFinal_num2" leftTopWH="181 235 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+    <Panel name="legendGrade2" leftTopTex="63 303" texture="레전드" alphaBlend="true"/>
+    <Label name="legendDetail2" leftTopWH="71 307 100 30" text="王者" textAlign="center" textRender="outline16" textColor="255 232 53 42"/>
+    <Panel name="achieveItemFinal_bg" leftTopTex="204 282" texture="basicbox_reward_slot_2" alphaBlend="true"/>
+    <Label name="achieveItemFinal_num" leftTopWH="209 315 50 30" text="" textAlign="center" textRender="outline14" textColor="white"/>
+  </Panel>
+  <Container leftTopWH="270 239 172 74">
+    <ColorLabel name="rankInfo" leftTopWH="5 0 172 30" text="" textRender="bold20" textAlign="center" textColor="white" visible="true"/>
+    <Label name="percentInfo" leftTopWH="5 25 172 30" text="" textRender="bold20" textAlign="center" textColor="white" visible="true"/>
+    <Label name="rankCounting" leftTopWH="0 6 172 50" text="" textRender="bold24" textColor="255 135 146 167" textAlign="center" visible="false"/>
+  </Container>
+  <ImageButton name="top100" leftTopTex="265 330" autoLoadImage="등급전_btn_top100_" alphaBlend="true"/>
+  <Container name="mpPractice" leftTopWH="0 0 776 586" visible="false">
+    <ImageBoard leftTopWH="14 10 746 480" image="등급전_트랙리스트bg"/>
+    <Tab name="mpPractice_pop">
+      <TabMenu name="grade" leftTopWH="17 40 748 36">
+        <ImageButton name="grade_0" leftTopTex="0 0" autoLoadImage="gradeTab_01_0@zz" alphaBlend="true"/>
+        <ImageButton name="grade_1" leftTopTex="124 0" autoLoadImage="gradeTab_02_0@zz" alphaBlend="true"/>
+        <ImageButton name="grade_2" leftTopTex="248 0" autoLoadImage="gradeTab_03_0@zz" alphaBlend="true"/>
+        <ImageButton name="grade_3" leftTopTex="372 0" autoLoadImage="gradeTab_04_0@zz" alphaBlend="true"/>
+        <ImageButton name="grade_4" leftTopTex="496 0" autoLoadImage="gradeTab_05_0@zz" alphaBlend="true"/>
+        <ImageButton name="grade_5" leftTopTex="620 0" autoLoadImage="gradeTab_06_0@zz" alphaBlend="true"/>
+      </TabMenu>
+      <Container name="desc" leftTopWH="205 73 748 70">
+        <TabPage name="grade_0" leftTopWH="0 0 748 70">
+          <Panel name="gradeMark_0" leftTopWH="-75 0 36 36" align="vcenter" texture="grade_0" alphaBlend="true"/>
+          <Label name="gradeName_0" leftTopWH="-40 0 36 70" textRender="bold20" textColor="255 183 98 54" textAlign="vcenter" text="黄铜"/>
+        </TabPage>
+        <TabPage name="grade_1" leftTopWH="0 0 748 70">
+          <Panel name="gradeMark_1" leftTopWH="-75 0 36 36" align="vcenter" texture="grade_1" alphaBlend="true"/>
+          <Label name="gradeName_1" leftTopWH="-40 0 36 70" textRender="bold20" textColor="255 183 201 207" textAlign="vcenter" text="白银"/>
+        </TabPage>
+        <TabPage name="grade_2" leftTopWH="0 0 748 70">
+          <Panel name="gradeMark_2" leftTopWH="-75 0 36 36" align="vcenter" texture="grade_2" alphaBlend="true"/>
+          <Label name="gradeName_2" leftTopWH="-40 0 36 70" textRender="bold20" textColor="255 248 214 45" textAlign="vcenter" text="黄金"/>
+        </TabPage>
+        <TabPage name="grade_3" leftTopWH="0 0 748 70">
+          <Panel name="gradeMark_3" leftTopWH="-75 0 36 36" align="vcenter" texture="grade_3" alphaBlend="true"/>
+          <Label name="gradeName_3" leftTopWH="-40 0 36 70" textRender="bold20" textColor="255 184 126 244" textAlign="vcenter" text="铂金"/>
+        </TabPage>
+        <TabPage name="grade_4" leftTopWH="0 0 748 70">
+          <Panel name="gradeMark_4" leftTopWH="-75 0 36 36" align="vcenter" texture="grade_4" alphaBlend="true"/>
+          <Label name="gradeName_4" leftTopWH="-40 0 36 70" textRender="bold20" textColor="255 13 177 200" textAlign="vcenter" text="钻石"/>
+        </TabPage>
+        <TabPage name="grade_5" leftTopWH="0 0 748 70">
+          <Panel name="gradeMark_5" leftTopWH="-75 0 36 36" align="vcenter" texture="grade_5" alphaBlend="true"/>
+          <Label name="gradeName_5" leftTopWH="-40 0 36 70" textRender="bold20" textColor="255 242 16 3" textAlign="vcenter" text="王者"/>
+        </TabPage>
+        <Label name="trackNum" leftTopWH="96 -2 748 70" textRender="bold20" textColor="255 28 220 255" text="12" textAlign="vcenter"/>
+        <Label leftTopWH="0 0 748 70" textRender="bold16" textColor="white" textAlign="vcenter" text="等级包含如下         赛道。                               即可进行练习。"/>
+        <Label leftTopWH="119 -2 748 70" textRender="bold20" textColor="255 28 220 255" textAlign="vcenter" text="个        点击下列中的赛道"/>
+      </Container>
+    </Tab>
+    <Container name="thumbPractice" leftTopWH="15 144 748 345">
+      <GridSelector name="thumbList" leftTopWH="17 0 748 355" alignStyle="vertical" alignSize="3" maxLine="2" alignMargin="2 2"/>
+      <ScrollBar name="thumbListBar" leftTopWH="0 0 5 327" align="vcenter,right" adjust="23 0" scrollType="vertical" scrollButton="GradeVerticalScrollButton" scrollArea="GradeVerticalScrollArea" visible="false" minScrollButtonHeight="20" rigidMove="true"/>
+    </Container>
+  </Container>
+</Container>

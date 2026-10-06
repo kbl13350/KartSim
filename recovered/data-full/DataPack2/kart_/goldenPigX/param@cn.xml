@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.079'
+	SteerConstraint='2.28'
+	CornerDrawFactor='0.07'
+	DriftEscapeForce='1500'
+	
+	driftBoostMulAccelFactor='1.31'
+	chargeBoostBySpeed='300'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.85'
+	BoosterAccelFactorItem='1.7'
+	StartForwardAccelFactorItem='1.65'
+	StartBoosterTimeItem='1450'
+
+	UseExtendedAfterBooster='true'
+	SpecialSlotCapacity='2'
+	
+	DriftMaxGauge='-300'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+
+	antiCollideBalance='0.92'
+
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='pig1'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='60'
+	dualMulAccelFactor='1.1'
+	dualTransLowSpeed='100'
+
+
+>
+
+</BodyParam>
+<!-- 황금 복돼지 X / 한국 / 일반 / 스피드 / 상점 / 20181227 릴리즈 -->

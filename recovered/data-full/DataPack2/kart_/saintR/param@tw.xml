@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152'
+	BackwardAccelForce='100'
+	DragFactor='-0.081'
+	SteerConstraint='2.92'
+	CornerDrawFactor='0.072'
+	DriftEscapeForce='1500'
+
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+
+	BoosterBlur='true'
+	EngineSound='cotton8'
+	WaveEffect='true'
+	SpecialSlotCapacity='2'
+	ItemSlotCapacity='3'
+
+	BoostAccelFactor='1.85'
+	TransAccelFactor='1.85'
+	BoosterAccelFactorItem='1.71'
+	StartForwardAccelFactorItem='1.8'
+	StartBoosterTimeItem='1400'
+
+	UseExtendedAfterBooster='true'
+
+	DriftMaxGauge='-300'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+
+	UseTransformBooster='true'
+	TransformTime='250'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+    BoosterType3='85main'
+	BoosterType4='85sub'
+	BoosterType5='85sub'
+
+	Port0='mod2b1'
+	Port1='mod2b2'
+
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+	FirePort2='mod2a3'
+	FirePort3='mod2a4'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '48'
+	DescStability ='44'
+	DescEngineGrade='1.25'
+	DescCornering='5'
+	DescEnchantCap = '30'
+
+	addModelFolder='saint'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2a3' trailPort1='mod2a4'/>
+</BodyParam>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="brodi_02"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="找到了？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="再怎么找也找不到神秘工头。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="神秘工头是绝对不会离开工厂的。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop7"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="工厂发生了这么大的变化，但神秘工头却不在。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="只有很多奇怪的机器人在工作……"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="难道神秘工头消失了吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="不觉得有点可疑吗？|神秘工头不在这里，工厂又变成这副模样了！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="嗯！确实能感觉到不详的气息！！！|（放屁声）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop7"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Msg name="小强" string="严肃的说话，居然也能放屁。|天啊。。。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="（哎呀。。。这个味道。。。）|不管怎么样，神秘工头好像失踪了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="我们再找找神秘工头吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="那好！我去问问机器人神秘工头在哪！"/>
+  <Enter/>
+</Scene>

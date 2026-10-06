@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold7"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="现在只要通过最后的测试，就能和朋友们一起回家了!"/>
+  <Enter/>
+  <Char id="jakob1" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="波利斯 雅克布" string="小屁孩的运气真的是太好了。 |但是不管你再怎么挣扎，我将会成为黄金眼镜的主人，这个事实是不会改变的！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="godius" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="高迪奥斯" string="挑战者们啊，现在只剩下最后的测试了。|最后的测试是就是和我比赛！！|只要能胜过我，就能得到黄金眼镜了。"/>
+  <Enter/>
+  <Char id="godius" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="(虽然心中非常害怕和担心，但是为了朋友们，决不能放弃。使出全力一定要通过最后的测试！|胖墩，葱头，我的黑妞……给我力量吧！)"/>
+  <Enter/>
+</Scene>

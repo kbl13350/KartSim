@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for2"/>
+  <Char id="hekate" pos="9 0" emotion="normal"/>
+  <Msg name="赫凯特" string="话说，那姐弟俩长什么样？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="hekate" pos="11 0" emotion="normal"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="姐姐是蓝色双马尾发型，至于弟弟嘛……"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="赫凯特" string="你说长得像他们吗？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="莫格瑞" string="对，跟她长得一模一样……啊？？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <BackGround texture="for1"/>
+  <Char id="dao" pos="5 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="都说了，这不是我的错。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="不对，我不会记错的~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="我记得我们说好“我们俩”出来玩的。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="是，是奈琳一直粘着我，要一起来！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Char id="dizini" pos="13 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="奈琳" string="皮蛋大人去哪！我就去哪！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞" string="（叹气）我真服了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="9 0" emotion="stop1"/>
+  <Msg name="莫格瑞" string="看来没必要去繁荣山丘了！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="meoguri" pos="9 0" emotion="stop1"/>
+  <Char id="hekate" pos="13 0" emotion="stop1"/>
+  <Msg name="赫凯特" string="呜呼呼。"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Char id="dizini" pos="8 0" emotion="stop6"/>
+  <Msg name="皮蛋, 黑妞" string="莫，莫格瑞？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Char id="dizini" pos="12 0" emotion="stop6"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="奈琳" string="莫格瑞大人你怎么会在这？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="9 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="我当然是来抓你和奈尔的！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="奈琳" string="如，如果我现在撤回我的能力的话您恐怕动都动不了！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="莫格瑞" string="你以为我没想过这些？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="那就对不起了……哎！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="" string="..."/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="stop1"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="额~结束了？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="stop1"/>
+  <Char id="narin" pos="2 0" flip="true" emotion="stop4"/>
+  <Msg name="奈琳" string="为，为什么不管用？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="hekate" pos="10 0" emotion="stop4"/>
+  <Char id="narin" pos="2 0" flip="true" emotion="stop4"/>
+  <Msg name="赫凯特" string="哎呦，小朋友，你是不是有很多问号？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="hekate" pos="10 0" emotion="stop4"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="奈琳" string="看来是这个阿姨动了手脚！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="hekate" pos="10 0" emotion="stop2"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="赫凯特" string="阿……我不是阿姨，我叫赫凯特。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="hekate" pos="3 0" emotion="normal"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Msg name="莫格瑞" string="是已经活了数百年的深海魔女！|只要有赫凯特的魔法，你们就什么都做不了！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="10 0" emotion="stop3"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="奈琳" string="数百年？那就连阿姨都不是了，是老妖怪啊！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="hekate" pos="10 0" emotion="stop2"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="赫凯特" string="你这小鬼……是不是欠揍啊？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="危险！我们先躲到繁荣山丘吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="黑妞" string="嗯，感觉那位魔女阿姨有点不对劲！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="hekate" pos="7 0" emotion="stop2"/>
+  <Msg name="赫凯特" string="还叫阿姨！绝对不会放过你们！"/>
+  <Enter/>
+</Scene>

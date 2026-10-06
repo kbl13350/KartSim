@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="0 0 800 600" align="center">
+  <Container name="dialogWindow" windowRect="24 10 794 565">
+    <Container name="mainPage" windowRect="185 20 752 475" align="vcenter">
+      <Panel name="number" leftTopWH="400 150 67 67" visible="false" alphaBlend="true"/>
+      <Window name="suffleCont" windowRect="0 0 485 315" align="hcenter">
+        <Window name="itemPreview" windowRect="40 88 240 288" alphaBlend="false" alphaTest="true"/>
+        <Window name="itemPreview2" windowRect="250 88 450 288" alphaBlend="false" alphaTest="true"/>
+        <Window name="openEffect" windowRect="0 0 504 388"/>
+        <Label name="description" windowRect="20 335 435 429" text="#sb(openLotteryCheck)" textColor="white" autoWrap="true" multiLine="true" marginRect="25 25 25 25"/>
+        <Container name="buttonGroup" windowRect="0 385 485 439">
+          <Container name="group_okcancel" windowRect="0 0 280 22" align="center">
+            <TextButton name="ok" windowRect="0 0 86 22" align="center" text="#sb(ok)" altTextRender="outline" useDisableState="false" disabledTextColor="gray"/>
+            <TextButton name="cancel" windowRect="0 0 86 22" align="right" text="#sb(cancel)" altTextRender="outline" useDisableState="false" disabledTextColor="gray"/>
+          </Container>
+        </Container>
+      </Window>
+    </Container>
+  </Container>
+</Container>

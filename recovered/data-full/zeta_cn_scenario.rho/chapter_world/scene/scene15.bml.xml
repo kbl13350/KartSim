@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china9"/>
+  <Char id="Brian" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="布莱恩" string="皮蛋！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="布莱恩" string="怎么样了？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="Brian" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="对不起……呜呜……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="Brian" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="本来差一点就追上了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="Brian" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="结果在交叉路口错开了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="布莱恩" string="已经发生的事情就不要再想了！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="7 0" emotion="stop5"/>
+  <Msg name="布莱恩" string="那接下来我们去哪里？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Sophia" pos="11 0" emotion="stop1"/>
+  <Msg name="索菲亚" string="……不知道。"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <Char id="Sophia" pos="11 0" emotion="stop1"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="艾丽" string="嗯？索菲亚？"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Sophia" pos="11 0" emotion="stop1"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="艾丽" string="这话什么意思？"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Sophia" pos="11 0" emotion="stop1"/>
+  <Char id="Iri" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="艾丽" string="怎么会不知道呢？"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Sophia" pos="8 0" emotion="stop1"/>
+  <Msg name="索菲亚" string="没有。情报。"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Msg name="黑妞" string="难道我们进入克莉丝电脑的事情，|被她发现了？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="葱头" string="没有情报的话，那就是被他们故意屏蔽掉了。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="Brian" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="布莱恩" string="那现在怎么办？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Sophia" pos="8 0" emotion="stop1"/>
+  <Msg name="索菲亚" string="韩国……最后的情报……"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="要是到韩国再查不到下一个目的地的话，|那这事就糟糕了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Iri" pos="8 0" emotion="stop1"/>
+  <Msg name="艾丽" string="我有一个办法。"/>
+  <Enter/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Iri" pos="8 0" emotion="stop3"/>
+  <Msg name="艾丽" string="以前和克莉丝做过一个跟踪器，"/>
+  <Enter/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Iri" pos="8 0" emotion="stop3"/>
+  <Msg name="艾丽" string="装上这个跟踪器，就可以查出他们的位置了！"/>
+  <Enter/>
+  <Char id="Iri" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="嗯……用克莉丝制作的设备来抓克莉丝，"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="听起来怪怪的……-_-;;"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" pos="7 0" emotion="stop3"/>
+  <Msg name="布莱恩" string="管不了那么多了，先出发吧！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <BackGround texture="vill9"/>
+  <Char id="ethi" pos="7 0" emotion="stop1"/>
+  <Msg name="葱头" string="韩国到了！！~~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop1"/>
+  <Msg name="葱头" string="原来只是听说过韩国这个地方，|没想到会有机会亲眼看到……|好神奇~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="Iri" pos="7 0" emotion="stop3"/>
+  <Msg name="艾丽" string="这次再失败就完了~|只许成功，不许失败！"/>
+  <Enter/>
+  <Char id="Iri" remove="true"/>
+  <BackGround texture="vill10"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="唉！看那里！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="他们好像要坐缆车过去！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Brian" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="布莱恩" string="站住！|你们已经无路可逃了！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="totop" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="啧啧~又是你们！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="你们不会真以为能抓到我吧？|哈哈哈！"/>
+  <Enter/>
+</Scene>

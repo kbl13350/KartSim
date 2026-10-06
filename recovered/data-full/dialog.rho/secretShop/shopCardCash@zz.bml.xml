@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="shopCard" windowRect="0 0 121 170">
+  <Panel windowSize="121 145" adjust="0 0" texture="캐쉬슬롯" alphaBlend="true">
+    <Label name="stockCardName" windowSize="121 20" adjust="0 18" align="hcenter" textAlign="center" text="TOP 100 기어" textColor="255 255 216 0"/>
+    <Container name="itemPanel" windowSize="100 100" adjust="0 22" align="hcenter"/>
+    <Panel windowSize="18 19" adjust="20 101" texture="img_cashSmallIcon" alphaBlend="true"/>
+    <Label name="price" windowSize="121 20" adjust="0 101" align="hcenter" textAlign="center" textColor="255 255 216 0" textRender="bold" text="1000"/>
+    <Label name="countLimited" windowSize="121 20" adjust="0 123" align="hcenter" textAlign="center" textColor="255 255 216 0" text="/">
+      <Label name="count" windowSize="60 20" adjust="-35 0" align="hcenter" textAlign="vcenter;right" textColor="255 255 216 0" text="10"/>
+      <Label name="countMax" windowSize="60 20" adjust="35 0" align="hcenter" textAlign="vcenter;left" textColor="255 255 216 0" text="10"/>
+    </Label>
+    <Label name="countUnlimited" windowSize="121 20" adjust="0 123" align="hcenter" textAlign="center" textColor="255 255 216 0" text="#sb(secretShopCountUnlimited)"/>
+    <Panel name="soldOut" windowSize="118 23" adjust="3 122" texture="soldout@zz" alphaBlend="true" visible="false"/>
+  </Panel>
+  <ImageButton name="buyItem" windowSize="78 30" adjust="0 90" align="hcenter" autoLoadImage="btn_itemBuy_" text="#sb(buy)" textRender="outline" textColor="white" textColor2="255 212 135 0" overTextRender="outline" overTextColor="white" overTextColor2="255 245 213 0" clickedTextRender="outline" clickedTextColor="255 255 243 198" clickedTextColor2="255 201 146 2" disabledTextRender="outline" disabledTextColor="255 210 210 210" disabledTextColor2="255 125 125 125" alphaBlend="true" visible="false"/>
+  <Panel name="limitCount" windowSize="121 25" adjust="0 145" texture="한번구매창" alphaBlend="true" visible="false">
+    <Label windowSize="121 25" adjust="0 0" align="hcenter" textAlign="center" textColor="255 255 216 0" text="#sb(secretShopCountLimit)"/>
+  </Panel>
+</Container>

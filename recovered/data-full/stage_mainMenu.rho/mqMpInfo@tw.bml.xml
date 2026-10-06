@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="mpInfo" leftTopWH="2 8 100 100">
+  <Window leftTopWH="-10 -14 350 410" frame="InnerFrame">
+    <Window leftTopWH="-7 -8 348 29" frame="TitleCap"/>
+    <Label name="seasonText" leftTopWH="-7 -8 348 29" text="아오빡처" textAlign="center" textRender="bold" textColor="white"/>
+  </Window>
+  <Window leftTopWH="-10 16 359 389">
+    <Panel leftTopWH="2 0 348 277" texture="basicbox_01">
+      <Label name="topLabel" leftTopWH="0 0 172 74" text="#sb(curGp)" textAlign="center" textRender="bold" textColor="232 232 232 255"/>
+      <Label name="bottomLabel" leftTopWH="0 0 172 297" text="#sb(curGrade)" textAlign="center" textRender="bold" textColor="232 232 232 255"/>
+    </Panel>
+    <Panel leftTopWH="2 277 348 102" texture="basicbox_02"/>
+    <Panel name="currTierIcon" leftTopWH="148 10 198 221" alphaBlend="true" visible="false"/>
+    <Container name="currTierImage" windowRect="15 170 165 320">
+      <Panel name="currTierImageText" leftTopWH="0 10 98 48" alphaBlend="true" visible="false" align="left"/>
+      <Panel name="currTierImageText2" leftTopWH="0 20 46 36" alphaBlend="true" visible="false" align="right"/>
+      <Panel name="currTierImageText3" leftTopWH="10 0 132 56" alphaBlend="true" visible="false"/>
+      <Panel name="currTierNoGameCountImageText" leftTopWH="30 0 132 56" texture="등급없음_tw" alphaBlend="true" visible="false" align="hcenter"/>
+    </Container>
+    <Container name="currPTCount" windowRect="15 170 165 320">
+      <CharPanel name="targetCount" windowSize="29 17" adjust="36 11" texture="등급전_숫자" fontPos="0 0" fontSize="25 36" fontStr="1234567890" alphaBlend="true" text="" visible="true" align="hcenter"/>
+      <CharPanel name="currentCount" windowSize="29 17" adjust="-34 11" texture="등급전_숫자" fontPos="0 0" fontSize="25 36" fontStr="1234567890" alphaBlend="true" text="" visible="true" align="hcenter"/>
+      <Panel leftTopWH="0 15 15 30" texture="구분선" alphaBlend="true" visible="true" align="hcenter"/>
+    </Container>
+    <Panel name="mpInfoImage" leftTopWH="2 277 348 102" enable="false" visible="true"/>
+  </Window>
+  <Window leftTopWH="8 80 137 155">
+    <CharPanel name="curMp_0" clientRect="0 0 137 73" centerAlign="true" texture="주니어_num" fontPos="0 0" fontSize="36 63" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_1" clientRect="0 0 137 73" centerAlign="true" texture="시니어_num" fontPos="0 0" fontSize="36 63" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_2" clientRect="0 0 137 73" centerAlign="true" texture="아마추어_num" fontPos="0 0" fontSize="36 63" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_3" clientRect="0 0 137 73" centerAlign="true" texture="프로_num" fontPos="0 0" fontSize="36 63" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_4" clientRect="0 0 137 73" centerAlign="true" texture="마스터_num" fontPos="0 0" fontSize="36 63" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <CharPanel name="curMp_5" clientRect="0 0 137 73" centerAlign="true" texture="레전드_num" fontPos="0 0" fontSize="36 63" fontStr="0123456789" alphaBlend="true" text="" visible="false"/>
+    <Panel name="currTierNoGameCountImageBar" leftTopWH="0 19 36 11" texture="등급없음_순위" alphaBlend="true" visible="false" align="hcenter"/>
+    <Panel name="placementTestText" leftTopWH="5 -6 132 56" texture="배치중@zz" alphaBlend="true" visible="false"/>
+    <Panel name="mpDetailImage" leftTopWH="-16 -64 348 277" enable="false" visible="false"/>
+  </Window>
+  <Play1SPanel name="gradeUp" scene="매칭등급업효과" leftTopWH="-90 -45 510 387" zoom="1.0" clearZBefore="true" defaultCameraPos="0.0 -2.0 0.0" defaultSpotPos="0.0 0.0 0.0" visible="false" alphaBlend="true"/>
+</Container>

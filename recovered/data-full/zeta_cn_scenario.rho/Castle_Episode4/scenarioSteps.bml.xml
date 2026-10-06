@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="华丽的城堡！" synopsis="被城堡的华丽布局所吸引的蓝蓝准备独自参观城堡。" howToClear="请完成赛道。" missionText="目标 0回/1回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="失踪的宝宝！" synopsis="从伙伴那里听说到宝宝失踪之后，|黑妞准备从城堡外面开始寻找。" howToClear="请在规定时间内完成赛道。" missionText="完成游戏 0回/1回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardLucci="500"/>
+  </Step>
+  <Step id="3" type="30" mode="single" preConditionId="2" title="庭院的魔术师！" synopsis="在庭院寻找宝宝的蓝蓝发现了庭院机器人克鲁伊，|正准备跟克鲁伊打招呼的时候因蓝蓝，|因为弄乱了庭院，所以克鲁伊开始追赶蓝蓝了。" howToClear="在规定时间内打败克鲁伊。|* 注意 差距0m时就失败。" missionText="逃脱成功 0回/1回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="2713"/>
+  </Step>
+  <Step id="4" type="15" mode="multi" preConditionId="3" title="幻想料理材料！" synopsis="逃脱的蓝蓝在树林里迷失了方向…|这时在树林里发现了寻找幻想料理材料的皮德。" howToClear="在多人游戏中行驶30Km。" missionText="目标 %.1fKm/%.1fKm" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" achievementCount="30" rewardStockId="2716"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="护送料理材料！" synopsis="皮德希望蓝蓝能帮助他把料理材料送到厨房，|蓝蓝能把材料安全送到厨房吗？" howToClear="请在规定时间内完成游戏。" missionText="完成游戏 0回/1回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="2729"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="误会！" synopsis="蓝蓝为了寻找城堡的厨房，竟然走到了地下室，|这时当娜把蓝蓝误认为小偷。" howToClear="在与当娜的对决中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="7" type="34" mode="single" preConditionId="6" title="当娜的礼物！" synopsis="解开误会后蓝蓝把料理材料给了当娜，|蓝蓝受当娜的委托，要偷偷的给路易送礼物。|可这时蓝蓝却碰到了庭院机器人克鲁伊。" howToClear="使用道具战胜克鲁伊。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="2715"/>
+  </Step>
+  <Step id="8" type="1" mode="multi" preConditionId="7" title="管家的说明！" synopsis="送完礼物出来的蓝蓝在门口碰到了管家皮欧，|皮欧告诉了蓝蓝关于宝宝失踪的全部过程。" howToClear="在多人游戏中行驶10回。" missionText="目标 %d/%d" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" achievementCount="10" rewardStockId="1245"/>
+  </Step>
+  <Step id="9" type="30" mode="single" preConditionId="8" title="大城堡的秘密！" synopsis="路易家族中流传下来的机器人玩具，|据说有神奇的用途，|找到路易的蓝蓝是否能解开其中的秘密，|找出宝宝呢？" howToClear="在与路易对决中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="2718"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="重逢宝宝！" synopsis="再次碰面后宝宝竟然说无法控制车辆，|赛车一直开往地下室深处…" howToClear="在规定时间内追上宝宝。|* 注意 差距超过20m就失败。" missionText="追击成功 0回/1回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10" extraScene="scene11" isFinalStep="true">
+    <Level difficult="0" rewardStockId="2730"/>
+  </Step>
+</StepList>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="scoretimeinfo" leftTopWH="0 24 348 68" align="hcenter" visible="true">
+  <Container name="lefttime" leftTopWH="0 0 348 68" align="hcenter">
+    <CharPanel name="min" leftTopWH="0 0 104 68" texture="big_num_추가" alphaBlend="true" fontSize="56 68" fontStr="0123456789:" text="00" spaceOffset="-8" allowVertical="true"/>
+    <Panel leftTopWH="87 0 56 68" uvRect="56 68 112 136" texture="big_num_추가" alphaBlend="true"/>
+    <CharPanel name="sec" leftTopWH="122 0 104 68" texture="big_num_추가" alphaBlend="true" fontSize="56 68" fontStr="0123456789:" text="00" spaceOffset="-8" allowVertical="true"/>
+    <Panel leftTopWH="209 0 56 68" uvRect="56 68 112 136" texture="big_num_추가" alphaBlend="true"/>
+    <CharPanel name="mil" leftTopWH="244 0 104 68" texture="big_num_추가" alphaBlend="true" fontSize="56 68" fontStr="0123456789:" text="00" spaceOffset="-8" allowVertical="true"/>
+  </Container>
+</Window>

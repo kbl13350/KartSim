@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<StringBag>
+	<k n='loadingNewsStr'>
+		<m c='kr' v='NEWS : '/>
+		<m c='cn' v='新闻 : '/>
+	</k>
+	<k n='loadingTipsStr'>
+		<m c='kr' v='TIP : '/>
+		<m c='cn' v='指南 : '/>
+	</k>
+	<k n='loadingIngStr'>
+		<m c='kr' v='잠시 후 게임이 시작됩니다.'/>
+		<m c='cn' v='游戏即将开始，稍等一下哦~。'/>
+	</k>
+</StringBag>

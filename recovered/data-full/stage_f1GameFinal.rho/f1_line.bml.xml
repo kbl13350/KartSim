@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="line" windowRect="0 128 800 161" depthBias="100">
+  <Container name="mySlot" windowRect="15 -9 786 36" visible="false">
+    <Panel name="01" windowRect="0 0 23 45" texture="mtSlot01" alphaBlend="true" textureOp="modulate"/>
+    <Panel name="02" windowRect="23 0 353 45" texture="mySlot02" alphaBlend="true" textureOp="modulate"/>
+    <Panel name="03" windowRect="353 0 376 45" texture="mySlot03" alphaBlend="true" textureOp="modulate"/>
+  </Container>
+  <Panel name="netUser" windowSize="254 44" adjust="27 -6" texture="tagNet" alphaBlend="true" visible="false"/>
+  <Panel name="rankIcon" windowSize="33 33" adjust="34 -2" texture="result@zz" uvRect="33 0 66 33" alphaBlend="true"/>
+  <CharPanel name="rankVar" windowSize="26 27" adjust="76 1" texture="rank_icon" alphaBlend="true" fontSize="26 27" fontPos="0 0" fontStr="ud-" text="1"/>
+  <Label name="ud" windowSize="40 30" adjust="90 1" textRender="outline" textColor="white" textAlign="center" text=""/>
+  <Label name="id" windowSize="100 30" adjust="149 0" textRender="outline" textColor="yellow" textAlign="center" text="kartrider"/>
+  <Label name="wp" windowSize="100 30" adjust="273 0" textRender="outline" textColor="yellow" textAlign="center" text="100(100)"/>
+</Container>

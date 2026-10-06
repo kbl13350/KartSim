@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="plantTune" windowRect="fullscreen">
+  <Container name="quickEquip" windowRect="22 36 773 539" align="center">
+    <Window name="fakeTalk" windowSize="680 90" align="bottom" adjust="25 10" frame="DefaultTooltip">
+      <Panel name="brodi" windowRect="-70 -160 200 90" alphaBlend="true" texture="브로디_측면"/>
+      <Label name="talk" windowRect="220 -10 660 50" align="vcenter" multiLine="true" autoWarp="true" textColor="white"/>
+      <TextButton name="ok" windowRect="500 0 590 22" text="#sb(openEquipDialog)" align="bottom" altTextRender="outline"/>
+      <TextButton name="cancel" windowRect="600 0 660 22" text="#sb(ok)" align="bottom" altTextRender="outline"/>
+    </Window>
+  </Container>
+  <CaptionWindow name="plantTuning" windowSize="450 360" caption="#sb(plantTune)" align="center" adjust="100 -30" frame="CaptionDialog" captionColor="black">
+    <Panel name="itemCont" windowRect="0 10 140 150" texture="uniqueLevel_0" alphaBlend="true" enable="false"/>
+    <Container name="infos" windowRect="160 30 340 140">
+      <Label name="itemName" windowRect="0 0 10 15" text="카보의 핸들" autoSizing="true" textRender="bold"/>
+      <Label name="uniqueLevel" windowRect="0 20 10 35" text="레어" autoSizing="true"/>
+      <Label name="itemDesc" windowRect="0 40 190 130" text="레어" multiLine="true" autoWrap="true"/>
+    </Container>
+    <Label name="messageStr" windowRect="0 160 420 255" frame="DefaultEdit" text="획득했습니다." multiLine="true" autoWrap="true" align="hcenter" marginRect="5 5 5 5"/>
+    <Container name="buttons" windowRect="0 0 225 40" align="hcenter;bottom">
+      <TextButton name="cancel" windowRect="0 0 85 22" text="#sb(ok)" align="center" altTextRender="outline"/>
+    </Container>
+  </CaptionWindow>
+</Container>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="업적리스트" caption="#sb(careerCaption)" windowSize="313 588" adjust="30 0" frame="CaptionDialog" align="vcenter" setCloseButton="ok">
+    <Window windowSize="286 493" adjust="0 4" frame="InnerFrame" align="hcenter">
+      <CaptionWindow windowRect="0 0 270 80" frame="PopupWindow" caption="#sb(careerStateText)" textRender="bold" align="hcenter">
+        <Window windowRect="0 3 248 20" align="hcenter">
+          <Panel name="pointBack" windowSize="58 16" adjust="0 3" texture="point" uvRect="0 0 58 16" alphaBlend="true">
+            <Label windowSize="58 16" text="#sb(point)" textAlign="center" textColor="white" textRender="bold"/>
+          </Panel>
+          <Panel name="pointBg" windowSize="186 16" adjust="62 3" color="255 164 179 198" alphaBlend="true"/>
+          <CharPanel name="point" windowSize="184 14" adjust="62 3" texture="number" fontPos="0 0" fontSize="17 14" fontStr="0123456789" alphaBlend="true" text="12345678900"/>
+        </Window>
+        <Window windowRect="0 25 248 45" align="hcenter">
+          <Panel name="careerButton" windowSize="58 18" adjust="0 2" texture="career_box" uvRect="0 0 58 20" alphaBlend="true">
+            <Label windowSize="58 16" text="#sb(career)" textAlign="center" textColor="white" textRender="bold"/>
+          </Panel>
+          <Panel name="careerBar_begin" windowRect="62 3 65 19" texture="exp_0%" uvRect="0 0 3 16" alphaBlend="true"/>
+          <Panel name="careerBar_middle" windowRect="65 3 245 19" texture="exp_0%" uvRect="3 0 81 16" alphaBlend="true"/>
+          <Panel name="careerBar_end" windowRect="245 3 248 19" texture="exp_0%" uvRect="81 0 84 16" alphaBlend="true"/>
+          <Panel name="careerGauge_begin" windowRect="62 3 65 19" texture="exp_100%" uvRect="0 0 3 16" alphaBlend="true"/>
+          <Panel name="careerGauge_middle" windowRect="65 3 245 19" texture="exp_100%" uvRect="3 0 81 16" alphaBlend="true"/>
+          <Panel name="careerGauge_end" windowRect="245 3 248 19" texture="exp_100%" uvRect="81 0 84 16" alphaBlend="true"/>
+          <Label name="careerLabel" windowSize="186 16" adjust="70 2" text="1234567/11234567" textAlign="center"/>
+        </Window>
+      </CaptionWindow>
+      <CaptionWindow name="findArea" windowRect="0 84 270 214" frame="PopupWindow" caption="#sb(careerCategoryText)" textRender="bold" align="hcenter">
+        <Window windowRect="0 8 248 30" align="hcenter">
+          <Edit name="findEdit" windowSize="200 22" text=""/>
+          <StateButton name="findButt" windowSize="22 22" adjust="203 0" iconSet="find" iconInfix="" canDisable="true" alphaBlend="true"/>
+          <StateButton name="catButt" windowSize="22 22" adjust="226 0" iconSet="arrow" iconInfix="" canDisable="true" alphaBlend="true"/>
+        </Window>
+        <Window frame="GrayPanel" windowSize="248 30" adjust="0 34" align="hcenter">
+          <PlaneCheckButton name="onAbleCareer" windowSize="20 20" align="vcenter"/>
+          <Label windowSize="220 22" text="#sb(ableCareer)" textAlign="vcenter;right" align="vcenter;right"/>
+        </Window>
+        <Window frame="GrayPanel" windowSize="248 30" adjust="0 66" align="hcenter">
+          <PlaneCheckButton name="onCompletedCareer" windowSize="20 20" align="vcenter"/>
+          <Label windowSize="220 22" text="#sb(completedCareer)" textAlign="vcenter;right" align="vcenter;right"/>
+        </Window>
+      </CaptionWindow>
+      <CaptionWindow name="findArea" windowRect="0 218 270 475" frame="PopupWindow" caption="#sb(careerlistText)" textRender="bold" align="hcenter">
+        <Window frame="GrayPanel" windowSize="254 197" adjust="0 4" alphaBlend="true">
+          <GridSelectorEx name="careerList" windowSize="218 190" adjust="0 -2" alignStyle="horizontal" alignSize="1" maxLine="6" alignMargin="0 4" clientMargin="7 0 4 0"/>
+        </Window>
+        <Container windowSize="120 20" adjust="0 1" align="hcenter;bottom">
+          <Label name="page" windowSize="77 10" text="0 / 0" textRender="bold" textColor="255 96 109 125" autoSizing="true" align="center"/>
+          <TextButton name="prevPage" windowSize="20 20" frame="BulletLeftButton" useDisableState="true"/>
+          <TextButton name="nextPage" windowSize="20 20" frame="BulletRightButton" useDisableState="true" align="right"/>
+        </Container>
+      </CaptionWindow>
+    </Window>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <TextButton name="ok" windowRect="0 0 87 30" align="center" text="#sb(ok)"/>
+    </Container>
+    <TonPopupMenu name="popup" leftTopWH="174 150 87 30" visible="false" caption=""/>
+  </CaptionWindow>
+  <CaptionWindow name="challengeWithReward" caption="#sb(careerCaption)" windowSize="375 588" adjust="340 0" frame="CaptionDialog" visible="false" align="vcenter" setCloseButton="close">
+    <Window windowSize="342 178" frame="GrayPanel" adjust="0 8" align="hcenter">
+      <Window frame="PopupWindow" windowRect="0 0 324 160" align="center" caption="missionTitleText" textRender="bold">
+        <Label name="title" windowRect="0 -17 300 -7" align="hcenter" textRender="bold" text="" textColor="white" textAlign="center"/>
+        <Window name="careerMethod" windowRect="0 16 290 290" align="hcenter">
+          <Window windowSize="6 6" adjust="2 9" frame="Bullet"/>
+          <Label name="methodText" text="#sb(methodText)" windowSize="100 22" adjust="10 0" textRender="bold" textAlign="vcenter"/>
+          <Label name="missionTitle" text="" windowSize="320 100" adjust="10 24" multiLine="true" autoWrap="true"/>
+        </Window>
+      </Window>
+    </Window>
+    <CaptionWindow name="careerState" windowRect="0 195 342 268" frame="PopupWindow" align="hcenter" caption="#sb(missionStateText)" textRender="bold">
+      <Label name="missionTextName" text="" windowSize="100 20" adjust="10 2" textRender="bold" textAlign="vcenter"/>
+      <Label name="missionText" text="" windowSize="290 40" textAlign="center" align="center"/>
+    </CaptionWindow>
+    <Window name="rewardPoint" frame="GrayPanel" windowSize="342 90" adjust="0 276" align="hcenter">
+      <Window name="pointBox" windowSize="190 60" adjust="7 0" align="vcenter">
+        <Window windowSize="60 60" frame="ItemPanel">
+          <ItemWindow name="resultPoint" windowSize="51 51" adjust="0 0" itemCategory="jewel" itemId="143" align="center"/>
+        </Window>
+        <Panel windowSize="3 3" adjust="72 8" texture="블릿"/>
+        <Label text="#sb(point)" windowSize="100 20" adjust="80 0" textRender="bold" textAlign="vcenter"/>
+        <Label name="pointText" text="" windowSize="90 20" adjust="82 20" textAlign="vcenter"/>
+      </Window>
+    </Window>
+    <Window name="reward" frame="GrayPanel" windowSize="342 90" adjust="0 373" align="hcenter">
+      <Window name="rewardBox" windowSize="190 60" adjust="7 0" align="vcenter">
+        <Window windowSize="60 60" frame="ItemPanel">
+          <Panel name="resultEmblem" color="red" windowSize="51 51" adjust="0 0" alphaBlend="true" align="center"/>
+          <ItemWindow name="resultItem" windowSize="51 51" adjust="0 0" itemCategory="kart" itemId="1" align="center" visible="false"/>
+        </Window>
+        <Panel windowSize="3 3" adjust="72 8" texture="블릿"/>
+        <Label text="#sb(reward)" windowSize="100 20" adjust="80 0" textRender="bold" textAlign="vcenter"/>
+        <Label name="rewardText" text="" windowSize="250 50" adjust="77 20" multiLine="true" autoWrap="true"/>
+      </Window>
+    </Window>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 342 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="도전" windowRect="0 0 87 30" align="center" text="#sb(challengeText)" visible="false"/>
+      <TextButton name="포기" windowRect="0 0 87 30" align="center" text="#sb(giveupText)" visible="false"/>
+      <TextButton name="완료" windowRect="0 0 87 30" align="center" text="#sb(completeText)" visible="false"/>
+      <TextButton name="체크" windowRect="0 0 87 30" align="center" text="#sb(checkText)" visible="false"/>
+      <TextButton name="보상" windowRect="0 0 87 30" align="center" text="#sb(rewardText)" visible="false"/>
+      <TextButton name="refresh" windowRect="0 0 87 30" align="center" text="#sb(refresh)" visible="false"/>
+    </Container>
+    <Panel name="clearIconBig" windowSize="128 128 " adjust="10 0" texture="clear_stamp_big@zz" enable="false" alphaBlend="true" align="right;vcenter" visible="false"/>
+  </CaptionWindow>
+  <CaptionWindow name="challengeWithoutReward" caption="#sb(careerCaption)" windowSize="375 588" adjust="340 0" frame="CaptionDialog" visible="false" align="vcenter" setCloseButton="close">
+    <Window windowSize="342 258" frame="GrayPanel" adjust="0 8" align="hcenter">
+      <Window frame="PopupWindow" windowRect="0 0 324 240" align="center" caption="missionTitleText" textRender="bold">
+        <Label name="title" windowRect="0 -17 300 -7" align="hcenter" textRender="bold" text="" textColor="white" textAlign="center"/>
+        <Window name="careerMethod" windowRect="0 16 290 290" align="hcenter">
+          <Window windowSize="6 6" adjust="2 9" frame="Bullet"/>
+          <Label name="methodText" text="#sb(methodText)" windowSize="100 22" adjust="10 0" textRender="bold" textAlign="vcenter"/>
+          <Label name="missionTitle" text="" windowSize="320 100" adjust="10 24" multiLine="true" autoWrap="true"/>
+        </Window>
+      </Window>
+    </Window>
+    <CaptionWindow name="careerState" windowRect="0 274 342 360" frame="PopupWindow" align="hcenter" caption="#sb(missionStateText)" textRender="bold">
+      <Label name="missionTextName" text="" windowSize="100 20" adjust="10 2" textRender="bold" textAlign="vcenter"/>
+      <Label name="missionText" text="" windowSize="290 40" textAlign="center" align="center"/>
+    </CaptionWindow>
+    <Window name="rewardPoint" frame="GrayPanel" windowSize="342 90" adjust="0 366" align="hcenter">
+      <Window name="pointBox" windowSize="190 60" adjust="7 0" align="vcenter">
+        <Window windowSize="60 60" frame="ItemPanel">
+          <ItemWindow name="resultPoint" windowSize="51 51" adjust="0 0" itemCategory="jewel" itemId="143" align="center"/>
+        </Window>
+        <Window windowSize="6 6" adjust="80 6" frame="Bullet"/>
+        <Label text="#sb(point)" windowRect="90 0 100 20" textRender="bold" textAlign="vcenter"/>
+        <Label name="pointText" text="" windowRect="90 20 90 40" textAlign="vcenter"/>
+      </Window>
+    </Window>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 342 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="도전" windowRect="0 0 87 30" align="center" text="#sb(challengeText)" visible="false"/>
+      <TextButton name="포기" windowRect="0 0 87 30" align="center" text="#sb(giveupText)" visible="false"/>
+      <TextButton name="완료" windowRect="0 0 87 30" align="center" text="#sb(completeText)" visible="false"/>
+      <TextButton name="체크" windowRect="0 0 87 30" align="center" text="#sb(checkText)" visible="false"/>
+      <TextButton name="보상" windowRect="0 0 87 30" align="center" text="#sb(rewardText)" visible="false"/>
+      <TextButton name="refresh" windowRect="0 0 87 30" align="center" text="#sb(refresh)" visible="false"/>
+    </Container>
+    <Panel name="clearIconBig" windowSize="128 128 " adjust="10 0" texture="clear_stamp_big@zz" enable="false" alphaBlend="true" align="right;vcenter" visible="false"/>
+  </CaptionWindow>
+  <CaptionWindow name="checkWithReward" caption="#sb(careerCaption)" windowSize="375 588" adjust="340 0" frame="CaptionDialog" visible="false" align="vcenter" setCloseButton="closes">
+    <Window windowSize="342 258" frame="GrayPanel" adjust="0 8" align="hcenter">
+      <Window frame="PopupWindow" windowRect="0 0 324 240" align="center" caption="missionTitleText" textRender="bold">
+        <Label name="title" windowRect="0 -17 300 -7" align="hcenter" textRender="bold" text="" textColor="white" textAlign="center"/>
+        <Window name="careerMethod" windowRect="0 16 290 290" align="hcenter">
+          <Window windowSize="6 6" adjust="2 9" frame="Bullet"/>
+          <Label name="methodText" text="#sb(methodText)" windowSize="100 22" adjust="10 0" textRender="bold" textAlign="vcenter"/>
+          <Label name="missionTitle" text="" windowSize="320 100" adjust="10 24" multiLine="true" autoWrap="true"/>
+        </Window>
+      </Window>
+    </Window>
+    <Window name="rewardPoint" frame="GrayPanel" windowSize="342 90" adjust="0 274" align="hcenter">
+      <Window name="pointBox" windowSize="190 60" adjust="7 0" align="vcenter">
+        <Window windowSize="60 60" frame="ItemPanel">
+          <ItemWindow name="resultPoint" windowSize="51 51" adjust="0 0" itemCategory="jewel" itemId="143" align="center"/>
+        </Window>
+        <Window windowSize="6 6" adjust="80 6" frame="Bullet"/>
+        <Label text="#sb(point)" windowRect="90 0 100 20" textRender="bold" textAlign="vcenter"/>
+        <Label name="pointText" text="" windowRect="90 20 90 40" textAlign="vcenter"/>
+      </Window>
+    </Window>
+    <Window name="reward" frame="GrayPanel" windowSize="342 90" adjust="0 372" align="hcenter">
+      <Window name="rewardBox" windowSize="190 60" adjust="7 0" align="vcenter">
+        <Window windowSize="60 60" frame="ItemPanel">
+          <Panel name="resultEmblem" color="red" windowSize="51 51" adjust="0 0" alphaBlend="true" align="center"/>
+          <ItemWindow name="resultItem" windowSize="51 51" adjust="0 0" itemCategory="kart" itemId="1" align="center" visible="false"/>
+        </Window>
+        <Window windowSize="6 6" adjust="80 6" frame="Bullet"/>
+        <Label text="#sb(reward)" windowRect="90 0 100 20" textRender="bold" textAlign="vcenter"/>
+        <Label name="rewardText" text="" windowRect="90 20 90 40" textAlign="vcenter"/>
+      </Window>
+    </Window>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 342 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="도전" windowRect="0 0 87 30" align="center" text="#sb(challengeText)" visible="false"/>
+      <TextButton name="포기" windowRect="0 0 87 30" align="center" text="#sb(giveupText)" visible="false"/>
+      <TextButton name="완료" windowRect="0 0 87 30" align="center" text="#sb(completeText)" visible="false"/>
+      <TextButton name="체크" windowRect="0 0 87 30" align="center" text="#sb(checkText)" visible="false"/>
+      <TextButton name="보상" windowRect="0 0 87 30" align="center" text="#sb(rewardText)" visible="false"/>
+      <TextButton name="refresh" windowRect="0 0 87 30" align="center" text="#sb(refresh)" visible="false"/>
+    </Container>
+    <Panel name="clearIconBig" windowSize="128 128 " adjust="10 0" texture="clear_stamp_big@zz" enable="false" alphaBlend="true" align="right;vcenter" visible="false"/>
+  </CaptionWindow>
+  <CaptionWindow name="checkWithoutReward" caption="#sb(careerCaption)" windowSize="375 588" adjust="340 0" frame="CaptionDialog" visible="false" align="vcenter" setCloseButton="close">
+    <Window windowSize="342 258" frame="GrayPanel" adjust="0 8" align="hcenter">
+      <Window frame="PopupWindow" windowRect="0 0 324 240" align="center" caption="missionTitleText" textRender="bold">
+        <Label name="title" windowRect="0 -17 300 -7" align="hcenter" textRender="bold" text="" textColor="white" textAlign="center"/>
+        <Window name="careerMethod" windowRect="0 16 290 290" align="hcenter">
+          <Window windowSize="6 6" adjust="2 9" frame="Bullet"/>
+          <Label name="methodText" text="#sb(methodText)" windowSize="100 22" adjust="10 0" textRender="bold" textAlign="vcenter"/>
+          <Label name="missionTitle" text="" windowSize="320 100" adjust="10 24" multiLine="true" autoWrap="true"/>
+        </Window>
+      </Window>
+    </Window>
+    <Window name="rewardPoint" frame="GrayPanel" windowSize="342 90" adjust="0 274" align="hcenter">
+      <Window name="pointBox" windowSize="190 60" adjust="7 0" align="vcenter">
+        <Window windowSize="60 60" frame="ItemPanel">
+          <ItemWindow name="resultPoint" windowSize="51 51" adjust="0 0" itemCategory="jewel" itemId="143" align="center"/>
+        </Window>
+        <Window windowSize="6 6" adjust="80 6" frame="Bullet"/>
+        <Label text="#sb(point)" windowRect="90 0 100 20" textRender="bold" textAlign="vcenter"/>
+        <Label name="pointText" text="" windowRect="90 20 90 40" textAlign="vcenter"/>
+      </Window>
+    </Window>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 342 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="도전" windowRect="0 0 87 30" align="center" text="#sb(challengeText)" visible="false"/>
+      <TextButton name="포기" windowRect="0 0 87 30" align="center" text="#sb(giveupText)" visible="false"/>
+      <TextButton name="완료" windowRect="0 0 87 30" align="center" text="#sb(completeText)" visible="false"/>
+      <TextButton name="체크" windowRect="0 0 87 30" align="center" text="#sb(checkText)" visible="false"/>
+      <TextButton name="보상" windowRect="0 0 87 30" align="center" text="#sb(rewardText)" visible="false"/>
+      <TextButton name="refresh" windowRect="0 0 87 30" align="center" text="#sb(refresh)" visible="false"/>
+    </Container>
+    <Panel name="clearIconBig" windowSize="128 128 " adjust="10 0" texture="clear_stamp_big@zz" enable="false" alphaBlend="true" align="right;vcenter" visible="false"/>
+  </CaptionWindow>
+</Panel>

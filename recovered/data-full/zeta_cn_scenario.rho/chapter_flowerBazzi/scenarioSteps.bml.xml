@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="美好的一天" synopsis="生活虽艰辛，但依然很坚强的杉雯雯|在炸鸡店担当外卖员，并且已经成为外卖达人！|对于她来说时间就是金钱！|来考验一下她的达人实力吧？" howToClear="指定时间完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardStockId="7762"/>
+  </Step>
+  <Step id="2" type="32" mode="single" preConditionId="1" title="忙碌的一天！" synopsis="今天有WKC竞技！|所以今天点炸鸡外卖的人格外多|外卖达人杉雯雯可以顺利送达吗？" howToClear="指定时间通过所有检查站" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardLucci="500"/>
+  </Step>
+  <Step id="3" type="30" mode="single" preConditionId="2" title="小偷！" synopsis="送完外卖返回的路途！|遇到了盗窃麦德斯核心技术后仓皇而逃的格雷格|正义的杉雯雯立马紧追格雷格！" howToClear="追上格雷格|*注意距离超过20m以上挑战失败" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="7763"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="我的词典中没有迟到" synopsis="得到杉雯雯帮助的麦德斯集团|打算自助杉雯雯进入私家中学！|因激动整晚失眠的杉雯雯今天不幸起晚了！|但是雯雯的词典里没有迟到两字！" howToClear="指定时间完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardRp="300"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="道明宝宝，站住！" synopsis="险些迟到的杉雯雯|被驾驶一辆豪华跑车的凤梨头突然插了进来，险些出车祸|凤梨头不仅没有道歉，还很傲娇的走开，|制止他，立马让他道歉！" howToClear="追上道明宝宝|*注意距离超过20m以上挑战失败" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="7764"/>
+  </Step>
+  <Step id="6" type="34" mode="single" preConditionId="5" title="艰险的学校生活" synopsis="道明宝宝被眼前对自己大吼大叫的女人吓了一跳！|并对杉雯雯下了挑战书，学校学生们突然开始为难杉雯雯|杉雯雯当然不会就此罢休|一定要打败F4！" howToClear="在挑战赛打败学生们" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="4720"/>
+  </Step>
+  <Step id="7" type="32" mode="single" preConditionId="6" title="隐藏的实力" synopsis="平时注视杉雯雯的花泽皮蛋提议让杉雯雯进行赛车测试|在完美雕刻男面前，杉雯雯是否可以顺利通过呢？" howToClear="用指定速度以上通过所有检查站" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="7765"/>
+  </Step>
+  <Step id="8" type="31" mode="single" preConditionId="7" title="打败F4" synopsis="想给杉雯雯赋予自信心的花泽皮蛋，|提议与F4进行赛车对决，|展现杉雯雯实力的时刻到了！" howToClear="与F4的对决上第一" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="7766"/>
+  </Step>
+  <Step id="9" type="31" mode="single" preConditionId="8" title="花泽皮蛋离杉雯雯远点" synopsis="赛车比赛以后，道明宝宝对杉雯雯产生莫名兴趣，|当每次花泽皮蛋与杉雯雯一起练车时，就会吃醋，|所以，每次看到他们在练习就会去阻碍！" howToClear="与花泽皮蛋&amp;杉雯雯的比赛中|不要淘汰完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="6910"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="道明宝宝vs花泽皮蛋" synopsis="看出道明宝宝小心思的花泽皮蛋，|提议展开光明正大的比赛，|道明宝宝是否可以赢得比赛，取得杉雯雯的认可呢？" howToClear="与花泽皮蛋的比赛上胜利" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10">
+    <Level difficult="0" rewardRp="300"/>
+  </Step>
+  <Step id="11" type="30" mode="single" preConditionId="10" title="抓住他" synopsis="正打算去表白的道明宝宝，|听到杉雯雯被诬蔑的消息。格雷把盗窃|麦德斯核心技术的罪名，嫁祸给杉雯雯。|不知为何格雷后面一直跟着美作奇奇。" howToClear="指定时间追上格雷|*注意距离超过20m以上挑战失败" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="11">
+    <Level difficult="0" rewardStockId="7767"/>
+  </Step>
+  <Step id="12" type="34" mode="single" preConditionId="11" title="还杉雯雯清白" synopsis="盗窃核心技术真正的凶手是格雷。|正要报警时，格雷格出现并进行阻碍。|道明宝宝是否可以从格雷兄弟的围堵中逃脱，还杉雯雯的清白呢？" howToClear="在道具赛打败格雷兄弟" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="12">
+    <Level difficult="0" rewardStockId="7768"/>
+  </Step>
+  <Step id="13" type="37" mode="single" preConditionId="12" title="第一次约会！" synopsis="还杉雯雯清白的道明宝宝终于打动了杉雯雯的芳心，|他们的第一次约会，|道明宝宝是否可以不迟到准时赴约呢？" howToClear="指定时间到达约定地点后维持3秒" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="13">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="14" type="30" mode="single" preConditionId="13" title="秘密通道" synopsis="杉雯雯并没有到达约定地点，反而有一张绑架杉雯雯的纸条。|绑架杉雯雯的就是黑暗组织的BOSS黑杰克。|为了营救杉雯雯F4决定通过秘密通道潜入黑暗组织的营地！" howToClear="指定时间完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="14">
+    <Level difficult="0" rewardStockId="7769"/>
+  </Step>
+  <Step id="15" type="32" mode="single" preConditionId="14" title="潜入黑暗组织" synopsis="成功潜入的F4！虽然美作奇奇解除了安全装置，但维持不了多久，|要在安全装置重新启动前，进入到黑暗组织内部。" howToClear="指定时间通过所有检查站" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="15">
+    <Level difficult="0" rewardStockId="7770"/>
+  </Step>
+  <Step id="16" type="34" mode="single" preConditionId="15" title="格雷兄弟" synopsis="进入黑暗组织的F4面前出现了格雷兄弟，|格雷兄弟再次向F4发出挑战，|这次由西门吉米来对付他们。" howToClear="在道具赛打败格雷兄弟" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene16" readyStage="1-16" stepTitleId="16">
+    <Level difficult="0" rewardStockId="4720"/>
+  </Step>
+  <Step id="17" type="30" mode="single" preConditionId="16" title="解救杉雯雯" synopsis="黑杰克终于出现，为了营救杉雯雯|必须要打败黑杰克，但黑杰克也不是一个省油的灯|这次由花泽皮蛋来对付黑杰克。" howToClear="与黑杰克的对决上胜利" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene17" readyStage="1-17" stepTitleId="17">
+    <Level difficult="0" rewardStockId="7771"/>
+  </Step>
+  <Step id="18" type="30" mode="single" preConditionId="17" title="赶往医院~" synopsis="虽然打败了黑杰克营救了杉雯雯，|但杉雯雯失去了意识，|要赶紧把杉雯雯送往医院。" howToClear="指定时间完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="18">
+    <Level difficult="0" rewardStockId="2069"/>
+  </Step>
+  <Step id="19" type="31" mode="single" preConditionId="18" title="打起精神！杉雯雯！" synopsis="杉雯雯终于苏醒。|但因为惊吓过度而失去了记忆，|为了找回杉雯雯的记忆，F4决定与以往一样与杉雯雯进行赛车比赛。|杉雯雯是否可以找回记忆？" howToClear="与F4的对决上第一" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="19">
+    <Level difficult="0" rewardStockId="7772"/>
+  </Step>
+  <Step id="20" type="30" mode="single" preConditionId="19" title="甜蜜的约会" synopsis="在F4的帮助下，杉雯雯终于找回了记忆，|也与道明宝宝开始了真正的约会。" howToClear="与杉雯雯的对决上胜利" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="20" isFinalStep="true">
+    <Level difficult="0" rewardStockId="7773"/>
+  </Step>
+</StepList>

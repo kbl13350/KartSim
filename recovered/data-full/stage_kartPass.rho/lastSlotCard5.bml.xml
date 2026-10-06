@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="stepInfo" leftTopWH="0 0 206 200" enable="true" visible="true">
+  <Label name="step" leftTopWH="0 0 206 33" text="" textColor="255 234 219 238" textRender="bold16" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+  <ImageButton name="reward" leftTopWH="0 33 206 167" autoLoadImage="kartPass_main_slotSpecialLast_" alphaBlend="true" visible="true" enable="true">
+    <ImageButton name="btn_reward" windowSize="210 32" adjust="0 3" align="center;bottom" autoLoadImage="kartPass_btnAccept_0" text="#sb(receive)" textColor="255 130 80 5" overTextColor="255 130 80 5" clickedTextColor="255 130 80 5" textRender="bold" alphaBlend="true" enable="true" visible="false">
+      <Label name="rewardInfo" leftTopWH="0 80 120 20" text="rewardInfo" textColor="black" textAlign="center" autoWrap="true" visible="true"/>
+    </ImageButton>
+    <Panel name="checked" windowSize="40 40" adjust="1 1" align="left" texture="kartPass_main_slotSpecialCheck" alphaBlend="true" alphaTest="true" visible="false"/>
+  </ImageButton>
+  <ItemWindow name="rewardStockItem" windowSize="190 152" adjust="0 15" align="center" stockId="0" enable="false" visible="false"/>
+  <Label name="rewardCountStr" leftTopWH="37 37 160 20" text="" textRender="bold14" textColor="255 84 68 110" textAlign="right" autoWrap="true" visible="false"/>
+  <Panel name="locked" windowSize="30 30" adjust="0 34" align="left" texture="kartPass_common_slotLock" alphaBlend="true" alphaTest="true" visible="false"/>
+</Window>

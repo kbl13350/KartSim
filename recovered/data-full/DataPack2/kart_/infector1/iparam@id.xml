@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2'
+	DriftEscapeForce='400'
+	CornerDrawFactor='0.048'
+
+	EngineSound='pro'
+	BoosterBlur='true'                                          
+
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='infector1'
+
+	DescBalance= '25'
+	DescStability ='22'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '20'
+
+/>
+<!-- 인니 Infector PRO 120719 퀘스트 제공-->

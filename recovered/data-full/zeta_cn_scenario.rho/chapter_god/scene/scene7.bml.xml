@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill7"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="你的意思是，你来自叫做阿斯加德的地方？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Msg name="托尔" string="我都说几次了！！真烦人……"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="bazzi" pos="2 0" emotion="stop4"/>
+  <Msg name="宝宝" string="如果你是神，那我就是王！哈哈哈"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_thor" pos="8 0" emotion="stop3"/>
+  <Msg name="托尔" string="哎……来，看好！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_thor" pos="8 0" emotion="stop3"/>
+  <Msg name="托尔" string="这是只有神才能驾驶的雷神之锤 X|它是能证明我是雷神的最好证据。"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_thor" pos="8 0" emotion="normal"/>
+  <Msg name="托尔" string="不信你可以试着驾驶看看！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="咦？？真的开不动哦……|是不是坏掉了？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" pos="11 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Msg name="托尔" string="我说什么了，我是雷神托尔！现在该相信我了吧？"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="ms_thor" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="托尔" string="虽然现在是这副模样……|只要能回去，就把洛基这家伙……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="ani2"/>
+  <Msg name="宝宝" string="哇~ 皮蛋你看这个~ 哈哈哈"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop4"/>
+  <Msg name="宝宝" string="这个好好玩，好像橡皮锤哦~|还会转呢~ 嘿嘿"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="……你看他，不是开的好好的吗？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop6"/>
+  <Char id="ms_thor" pos="12 0" emotion="stop1"/>
+  <Msg name="托尔" string="……那边那个红头，你是什么神？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="好可怜…… 头部伤的好像比想象的还严重哦……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="葱头" string="大伙，等下！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="葱头" string="这女孩说的|不一定全是谎话。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="什么意思？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="葱头" string="这独特的图案……"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="葱头" string="以前在巴黎图书馆|见过和这个类似的图案。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="是吗？我还是不怎么相信……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="葱头" string="如果她说的是实话|这真是一个惊人的发现！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="托尔" string="对对，哈哈哈！这才说的过去嘛！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="葱头" string="要不，我们去找下线索，怎么样？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop4"/>
+  <Msg name="黑妞" string="皮蛋…… 她看起来好可怜，我们就帮帮她吧~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop4"/>
+  <Char id="dao" pos="11 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="嗯嗯~ 黑妞都这么说了~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="别呀~ 我不想去…|那就你们自已去吧~ 我走了！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Char id="bazzi" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="说什么呢！你也必.须.要.一起去哦~"/>
+  <Enter/>
+</Scene>

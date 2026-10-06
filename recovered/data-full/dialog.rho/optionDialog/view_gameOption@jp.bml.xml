@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="context" windowRect="0 0 496 470" align="hcenter">
+  <Window windowRect="10 50 420 130" frame="DefaultPanel" align="hcenter">
+    <Label clientRect="5 -24 130 1" text="#sb(gameOption)" frame="TabSelectorVert" textRender="bold" autoSizing="true" marginRect="10 3 10 2"/>
+    <Container name="onAutoReadyCont" windowRect="5 10 350 26" altText="#sb(onAutoReady)">
+      <PlaneCheckButton name="onAutoReady" windowRect="0 0 16 16" align="vcenter" enable="false"/>
+      <Label windowRect="20 0 30 12" align="vcenter" text="#sb(onAutoReady)" textAlign="left" autoSizing="true"/>
+    </Container>
+    <Container name="timerChangeCont" windowRect="5 30 650 56" altText="#sb(timerChange)">
+      <PlaneCheckButton name="timerChange" windowRect="0 0 16 16" align="vcenter" enable="false"/>
+      <Label windowRect="20 0 30 12" align="vcenter" text="#sb(timerChange)" textAlign="left" autoSizing="true"/>
+    </Container>
+  </Window>
+  <Window name="gameDisplay" windowRect="10 160 420 240" frame="DefaultPanel" align="hcenter">
+    <Label clientRect="5 -24 130 1" text="#sb(imgameHelpDisplay)" frame="TabSelectorVert" textRender="bold" autoSizing="true" marginRect="10 3 10 2"/>
+    <Label windowRect="15 10 55 20" text="#sb(aboutDispIngameItemInfoCard)"/>
+    <Container name="dispIngameItemInfoCardCont" windowRect="5 30 350 46" altText="#sb(dispIngameItemInfoCard)">
+      <PlaneCheckButton name="dispIngameItemInfoCard" windowRect="0 0 16 16" align="vcenter" enable="false"/>
+      <Label windowRect="20 0 30 12" align="vcenter" text="#sb(dispIngameItemInfoCard)" textAlign="left" autoSizing="true"/>
+    </Container>
+  </Window>
+  <Window name="recOption1" windowRect="10 270 420 350" frame="DefaultPanel" align="hcenter">
+    <Label clientRect="5 -24 130 1" text="#sb(bandiCamOp)" frame="TabSelectorVert" textRender="bold" autoSizing="true" marginRect="10 3 10 2"/>
+    <Label windowRect="10 10 60 20" text="#sb(recQuality)" textRender="bold"/>
+    <PlaneCheckButton name="highQ" windowRect="110 8 126 24">
+      <TextButton name="highQBtn" windowRect="20 2 40 16" frame="NoFrame" text="#sb(highQuality)" textAlign="left" altText="#sb(recDesc1)"/>
+    </PlaneCheckButton>
+    <PlaneCheckButton name="midQ" windowRect="180 8 196 24">
+      <TextButton name="midQBtn" windowRect="20 2 40 16" frame="NoFrame" text="#sb(midQuality)" textAlign="left" altText="#sb(recDesc2)"/>
+    </PlaneCheckButton>
+    <PlaneCheckButton name="lowQ" windowRect="250 8 266 24">
+      <TextButton name="lowQBtn" windowRect="20 2 40 16" frame="NoFrame" text="#sb(lowQuality)" textAlign="left" altText="#sb(recDesc3)"/>
+    </PlaneCheckButton>
+    <Label name="recDesc" windowRect="110 29 190 46" text="#sb(recDesc)"/>
+  </Window>
+</Container>

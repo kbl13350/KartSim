@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="1" checkWrongway="false" setResetPosToLastCheckPoint="true"/>
+  <ItemAttackCheckPoint isFixedKart="true" fixedKartId="1528" isFixedChar="true" fixedCharId="5" isMinimapHide="true">
+    <LevelContent level="0" track="tomb_S02" useItemId="6" laps="1" RocketCount="0" timeValue="9000;15000;15000;" timeLimit="20000"/>
+  </ItemAttackCheckPoint>
+</Root>

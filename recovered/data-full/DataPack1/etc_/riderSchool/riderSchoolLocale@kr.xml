@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+	<!-- (2021.10.28 Update) 라이센스 미션 트랙 변경 / 통합 속도 적용 / 마엠블 기록 수정-->
+	<!-- (2022.02.17 Update) PRO 라이센스 B/C 트랙 Set 변경 (33~36), 3개국 적용 -->
+	<!-- (2022.06.23 Update) PRO 라이센스 미션 Set 확장 (37~42 추가), 3개국 일괄 적용-->
+
+<itemList>
+	<category catLevel='0'> <!-- New : 등급없음. 라이더 생성 시 듀토리얼에서 사용된다. 쉐도우는 사용 불가 -->
+		<item step='1' />
+		<item step='2' />
+	</category>
+	<category catLevel='1' guideURL='https://www.youtube.com/watch?v=XiPbbWPpMcs&amp;list=PLioLzQ5wchosLKbgQW3T-DgRB7aDmY2vo'> <!-- Beginner : 초보 -->
+		<item step='1'		name='주행 연습'				rewardStockId='2233' />			<!-- 5000 루찌 카드 / 5000 루찌 카드 -->
+		<item step='2'		name='아이템 획득'			rewardStockId='22732' />		<!-- 루루 X / 루루 X(7 일) -->
+		<item step='3'		name='커브 연습 1'			rewardStockId='13978' />		<!-- 블루 하트 풍선 / 블루하트풍선(30개) -->
+		<item step='4'		name='미사일 연습'			rewardStockId='13979' />		<!-- 쥐돌이 전자파밴드 / 쥐돌이 전자파밴드 (30개) -->
+		<item step='5'		name='자석 연습'				rewardStockId='1643' />			<!-- 루찌 100% 카드 / 루찌 100% 카드(7일) -->
+		<item step='6'		name='드리프트 1'				rewardStockId='20414' />		<!-- 코튼 X / 코튼 X(7 일) -->
+	</category>
+	<category catLevel='2' guideURL='https://www.youtube.com/watch?v=XiPbbWPpMcs&amp;list=PLioLzQ5wchosLKbgQW3T-DgRB7aDmY2vo'> <!-- Rookie : 루키 -->	
+		<item step='7'		name='커브 연습 2'			rewardStockId='23462' />		<!-- 봄나비 고글 / 봄나비 고글(7 일) -->
+		<item step='8'		name='슬롯 체인저'			rewardStockId='171' />			<!-- 슬롯 체인저 / 슬롯 체인저 50개 -->
+		<item step='9'		name='쉴드 연습'				rewardStockId='14140' />		<!-- 야구공 전자파밴드 / 야구공 전자파밴드(30개) -->
+		<item step='10'		name='드리프트 2'				rewardStockId='21895' />		<!-- 루루 X / 루루 X(30 일) -->
+		<item step='11'		name='물폭탄 연습'			rewardStockId='14997' />		<!-- 미니 티이라 펫 / 미니 티이라 펫(30 일) -->
+		<item step='12'		name='타임 어택 1'			rewardStockId='20377' />		<!-- 코튼 X / 코튼 X(30일) -->
+	</category>
+	<category catLevel='3' guideURL='https://www.youtube.com/watch?v=XiPbbWPpMcs&amp;list=PLioLzQ5wchosLKbgQW3T-DgRB7aDmY2vo'> <!-- L3 -->
+		<item step='13'		name='물폭탄 탈출'			rewardStockId='15092' />		<!-- 코코 펫 / 코코 펫(30 일) -->
+		<item step='14'		name='대마왕 돌파'			rewardStockId='17207' />		<!-- 봄나비 고글 / 봄나비 고글(30 일) -->
+		<item step='15'		name='아이템 팀전'			rewardStockId='3754' />			<!-- 아이템 체인저 / 아이템 체인저(50개) -->
+		<item step='16'		name='커브 연습 3'			rewardStockId='1641' />			<!-- RP 100% 카드 / RP 100% 카드(7일) -->
+		<item step='17'		name='점프 드리프트'			rewardStockId='56' />			<!-- 배찌 / 배찌(30일) -->
+		<item step='18'		name='타임 어택 2'			rewardStockId='13670' />		<!-- 플라잉 미사일 골드 / 플라잉 미사일 골드(7 일) -->
+	</category>
+	<category catLevel='4' guideURL='https://www.youtube.com/watch?v=EFSzr4LEUK0&amp;list=PLioLzQ5wchosLKbgQW3T-DgRB7aDmY2vo&amp;index=6'> <!-- L2 -->
+		<item step='19'		name='아이템 체인저'			rewardStockId='10364' />		<!-- 코인 / 20 코인 -->
+		<item step='20'		name='연속 미사일'			rewardStockId='10364' />		<!-- 코인 / 20 코인 -->
+		<item step='21'		name='크리스와 대결'			rewardStockId='10364' />		<!-- 코인 / 20 코인 -->
+		<item step='22'		name='로두마니 잡기'			rewardStockId='10364' />		<!-- 코인 / 20 코인 -->
+		<item step='23'		name='브로디와 대결'			rewardStockId='10364' />		<!-- 코인 / 20 코인 -->
+		<item step='24'		name='타임 어택 3'			rewardStockId='10364' />		<!-- 코인 / 20 코인 -->
+	</category>
+	<category catLevel='5' guideURL='https://www.youtube.com/watch?v=EFSzr4LEUK0&amp;list=PLioLzQ5wchosLKbgQW3T-DgRB7aDmY2vo&amp;index=6'> <!-- L1 -->
+		<item step='25'		name='대마왕 방해'			rewardStockId='10333' />		<!-- 코인 / 50 코인 -->
+		<item step='26'		name='로두마니 일당 견제'	rewardStockId='10333' />		<!-- 코인 / 50 코인 -->
+		<item step='27'		name='고가 도로 공략'		rewardStockId='10333' />		<!-- 코인 / 50 코인 -->
+		<item step='28'		name='다운힐 공략'			rewardStockId='10333' />		<!-- 코인 / 50 코인 -->
+		<item step='29'		name='로두마니와 대결'		rewardStockId='10333' />		<!-- 코인 / 50 코인 -->
+		<item step='30'		name='타임 어택 4'			rewardStockId='10333' />		<!-- 코인 / 50 코인 -->
+	</category>
+	<category catLevel='6'> <!-- PRO -->
+		<item step='31'		name='타임 어택 5'			rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='32'		name='키홀과 대결'		rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='33'		name='타임 어택 5'			rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='34'		name='월희와 대결'		rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='35'		name='타임 어택 5'			rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='36'		name='머구리와 대결'			rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='37'		name='타임 어택 5'			rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='38'		name='제우스와 대결'			rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='39'		name='타임 어택 5'			rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='40'		name='메디아와 대결'		rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='41'		name='타임 어택 5'			rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+		<item step='42'		name='루시드와 대결'		rewardStockId='10343' />		<!-- 코인 / 100 코인 -->
+	</category>
+
+
+	<!-- 엠블럼 획득 미션 -->
+	<proCategory emblemId='8524'>
+		<item track='mine_R01'	gameSpeed='7' timeLimit='72000'/>					<!-- 광산 꼬불꼬불 다운힐 / 매빠 71000 | (변경) 통합 1:12:00 이내 72000 -->
+		<item track='forest_R02'	gameSpeed='7' timeLimit='132000'/>					<!-- 포레스트 지그재그 / 매빠 130000 | (변경) 통합 2:12:00 이내 132000 -->
+		<item track='village_R03'	gameSpeed='7' timeLimit='70000'/>					<!-- 빌리지 붐힐터널 / 매빠 69000 | (변경) 통합 1:10:00 이내 70000 -->
+	</proCategory>
+</itemList>

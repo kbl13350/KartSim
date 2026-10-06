@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="forceZone">
+  <state name="Use" life="500" item="item00" itemFx="firing"/>
+  <state name="Set" life="30000" item="item01" size="3.0"/>
+  <state name="Affect" life="500" item="fired00" itemFx="fired"/>
+  <state name="Eat" life="3000" firing="바나나먹기" firingFx="eat"/>
+  <state name="Disappear" life="3000"/>
+  <state name="EatBonus" life="3000" firing="바나나먹기" item="루찌획득" firingFx="eat"/>
+  <state name="Shield" life="2000"/>
+</item>

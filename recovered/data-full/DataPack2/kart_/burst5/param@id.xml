@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='100.0'
+	BackwardAccelForce='90.0'
+	DragFactor='-0.05'
+	SteerConstraint='1.8'
+	DriftEscapeForce='180'
+	CornerDrawFactor='0.042'
+	BoosterBlur='true'
+	EngineSound='pro'
+
+	DescBalance= '20'
+	DescStability ='25'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '20'
+/>
+
+<!--인니 버스트 PRO -->

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="0 0 800 600">
+  <Panel leftTopWH="10 34 294 211" texture="img_moneyInfo@zz" alphaBlend="true">
+    <Container leftTopWH="150 14 70 32">
+      <Label name="curKoin" leftTopWH="0 0 70 32" text="0" textRender="bold" textAlign="vcenter;right" textColor="yellow"/>
+      <ImageButton name="shopKoinCharge" leftTopWH="105 4 22 22" autoLoadImage="btn_plus_" alphaBlend="true" altText="#sb(charge)" visible="false"/>
+      <Label leftTopWH="75 0 40 32" text="#sb(koin)" textAlign="vcenter" textColor="yellow"/>
+    </Container>
+    <Container leftTopWH="150 49 70 32">
+      <Label name="curCash" leftTopWH="0 0 70 32" text="Unknown" textRender="bold" textAlign="vcenter;right" textColor="yellow"/>
+      <ImageButton name="shopCashCharge" leftTopWH="105 4 22 22" autoLoadImage="btn_plus_" alphaBlend="true" altText="#sb(charge)" visible="false"/>
+      <Label leftTopWH="75 0 40 32" text="#sb(cash)" textAlign="vcenter" textColor="yellow"/>
+    </Container>
+    <Container leftTopWH="150 84 70 32">
+      <Label name="curLucci" leftTopWH="0 0 70 32" text="0" textRender="bold" textAlign="vcenter;right" textColor="yellow"/>
+      <Label leftTopWH="75 0 40 32" text="#sb(lucci)" textAlign="vcenter" textColor="yellow"/>
+    </Container>
+    <ImageButton name="shopCoupon" leftTopWH="10 120 134 80" autoLoadImage="btn_couponInput_" alphaBlend="true" text="#sb(shopCoupon)" textRender="bold" textAlign="hcenter" stringPos="0 62"/>
+    <ImageButton name="shopCashInven" leftTopWH="150 120 134 80" autoLoadImage="btn_buyDecide_" alphaBlend="true" text="#sb(shopCashInven)" textRender="bold" textAlign="hcenter" stringPos="0 62" visible="false"/>
+  </Panel>
+  <Container windowRect="20 513 295 547">
+    <ImageButton name="reset" windowSize="134 34" adjust="0 0" align="left" autoLoadImage="btn_reset_" alphaBlend="true" stringPos="50 0" textAlign="vcenter" text="#sb(reset)" textRender="outline" textColor="white" textColor2="255 0 128 218" overTextRender="outline" overTextColor="white" overTextColor2="255 0 168 255" clickedTextRender="outline" clickedTextColor="255 212 237 254" clickedTextColor2="255 7 124 226" disabledTextRender="outline" disabledTextColor="255 210 210 210" disabledTextColor2="255 125 125 125"/>
+    <ImageButton name="buyAll" windowSize="134 34" adjust="0 0" align="right" autoLoadImage="btn_allBuy_" alphaBlend="true" stringPos="31 0" textAlign="vcenter" text="#sb(buyAll)" textRender="outline" textColor="white" textColor2="255 208 177 0" overTextRender="outline" overTextColor="white" overTextColor2="255 255 162 0" clickedTextRender="outline" clickedTextColor="255 255 242 198" clickedTextColor2="255 190 98 0" disabledTextRender="outline" disabledTextColor="255 210 210 210" disabledTextColor2="255 125 125 125" visible="false"/>
+  </Container>
+  <ImageButton name="gachaProbPage" windowSize="134 28" adjust="0 0" align="right" autoLoadImage="btn_gachaOpenResult_0" alphaBlend="true" textAlign="center" text="#sb(ProbPage)" textRender="outline" textColor="white" textColor2="255 17 107 190" overTextRender="outline" overTextColor="white" overTextColor2="255 17 107 190" clickedTextRender="outline" clickedTextColor="white" clickedTextColor2="255 17 107 190" disabledTextRender="outline" disabledTextColor="white" disabledTextColor2="255 17 107 190" enable="true" visible="true"/>
+  <Container name="shopItems" windowRect="305 34 800 570">
+    <Panel windowRect="0 60 494 515" texture="img_shopSlotBG" alphaBlend="true" enable="false"/>
+    <Window windowRect="0 0 494 62" frame="TabBox">
+      <Container name="itemCatTab" windowRect="0 -28 482 1">
+        <TextButton name="recommand" windowRect="0 0 60 27" frame="Tab" text="#sb(recommand)" forceTooltip="false"/>
+        <TextButton name="kartPass" leftTopWH="60 0 70 27" frame="Tab" text="#sb(kartPass)" forceTooltip="false"/>
+        <TextButton name="kartBody" leftTopWH="130 0 65 27" frame="Tab" text="#sb(kartBody)" forceTooltip="false"/>
+        <TextButton name="character" leftTopWH="195 0 55 27" frame="Tab" text="#sb(character)" forceTooltip="false"/>
+        <TextButton name="equip" leftTopWH="250 0 40 27" frame="Tab" text="#sb(equip)" forceTooltip="false"/>
+        <TextButton name="useful" leftTopWH="290 0 40 27" frame="Tab" text="#sb(useful)" forceTooltip="false"/>
+        <TextButton name="deco" leftTopWH="330 0 55 27" frame="Tab" text="#sb(deco)" forceTooltip="false"/>
+        <TextButton name="package" leftTopWH="385 0 55 27" frame="Tab" text="#sb(package)" forceTooltip="false"/>
+        <TextButton name="couple" leftTopWH="440 0 40 27" frame="Tab" text="#sb(couple)" forceTooltip="false"/>
+      </Container>
+      <Container name="itemSubCatTab" windowRect="-1 2 481 24">
+        <TextButton name="total" windowRect="1 0 59 22" frame="ComboSelectButton2" text="#sb(whole)" textColor="255 30 30 30" useDisableState="true" disabledTextColor="white" overTextColor="white" forceTooltip="false"/>
+        <TextButton name="itemKart" windowRect="61 0 119 22" frame="ComboSelectButton2" text="#sb(itemKart)" textColor="255 30 30 30" useDisableState="true" disabledTextColor="white" overTextColor="white" forceTooltip="false"/>
+        <TextButton name="speedKart" windowRect="121 0 179 22" frame="ComboSelectButton2" text="#sb(speedkart)" textColor="255 30 30 30" useDisableState="true" disabledTextColor="white" overTextColor="white" forceTooltip="false"/>
+        <TextButton name="speedKart" windowRect="181 0 239 22" frame="ComboSelectButton2" text="#sb(speedkart)" textColor="255 30 30 30" useDisableState="true" disabledTextColor="white" overTextColor="white" forceTooltip="false"/>
+        <TextButton name="speedKart" windowRect="241 0 299 22" frame="ComboSelectButton2" text="#sb(speedkart)" textColor="255 30 30 30" useDisableState="true" disabledTextColor="white" overTextColor="white" forceTooltip="false"/>
+        <TextButton name="speedKart" windowRect="301 0 359 22" frame="ComboSelectButton2" text="#sb(speedkart)" textColor="255 30 30 30" useDisableState="true" disabledTextColor="white" overTextColor="white" forceTooltip="false"/>
+        <TextButton name="speedKart" windowRect="361 0 419 22" frame="ComboSelectButton2" text="#sb(speedkart)" textColor="255 30 30 30" useDisableState="true" disabledTextColor="white" overTextColor="white" forceTooltip="false"/>
+      </Container>
+      <Container name="itemListCont" windowRect="0 30 475 470">
+        <GridSelectorDivLoad name="itemList" windowRect="-1 -1 475 800" alignSize="3" maxLine="3" alignMargin="2 2" linePaging="true"/>
+        <ScrollBar name="itemListBar" leftTopWH="0 5 12 435" align="right" scrollType="vertical" visible="false"/>
+      </Container>
+      <ImageButton name="searchBtn" windowSize="60 22" adjust="419 2" autoLoadImage="btn_shopSearch_" alphaBlend="true" stringPos="25 0" textAlign="vcenter" textColor="white" text="#sb(search)" visible="false">
+        <Edit name="searchEdit" windowSize="150 22" adjust="-90 22" text="" altRelativeLegAdj="25 -16" altRelativePos="-55 -30" maxChar="10" visible="false" forceTooltip="false"/>
+        <Label name="searchEditTooltip" windowSize="150 42" adjust="-130 -20" text="#sb(searchTooltip)" frame="TalkBalloonLeftTop" autoSizing="true" align="hcenter" autoWrap="true" textColor="white" visible="false"/>
+      </ImageButton>
+    </Window>
+  </Container>
+  <ImageButton name="gotoSecretShop" windowSize="139 133" adjust="585 -83" align="bottom" autoLoadImage="상점버튼_0@zz" alphaBlend="true" visible="false"/>
+  <Label name="mouseOver" windowRect="-2 34 307 500" frame="BlackEdit" vertAutoSizing="true" marginRect="0 115 0 -115" multiLine="true" autoWrap="true" textColor="white" visible="false" enable="false">
+    <Label name="stockName" windowRect="0 0 5 17" text="" textRender="bold" autoSizing="true" align="hcenter" textColor="yellow"/>
+    <Panel windowRect="0 19 146 105" texture="img_slot2" alphaBlend="true">
+      <ItemWindow name="itemWindow" windowRect="0 0 146 86"/>
+    </Panel>
+    <Label name="stocks" windowRect="151 20 279 104" frame="DisabledEditLabel" text="" multiLine="true" autoWrap="true"/>
+  </Label>
+</Container>

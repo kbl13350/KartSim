@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="caption" windowRect="0 0 58 380" caption="#sb(dialogTitle)" align="center" frame="CaptionDialog" setCloseButton="Close">
+    <List name="growthKartListWnd" windowRect="0 5 32 210" adjust="0 -50" align="center" frame="GrayInputBox" scrollType="horizon" scrollBarVisible="false" listGap="0" listMargin="0 0 0 0" rigidScroll="true"/>
+    <Window name="tempBg" windowRect="0 15 20 195" adjust="0 -60" align="center" visible="true"/>
+    <Label name="dialogDesc" windowSize="300 30" adjust="0 75" text="#sb(dialogDesc)" textColor="255 72 106 163" align="hcenter;bottom" textAlign="center" multiLine="true" autoWrap="true" enable="false" textRender="bold14"/>
+    <Window windowSize="696 1" frame="HSection" adjust="0 58" align="hcenter;bottom"/>
+    <Window name="yesNoButtonList" leftTopWH="0 0 400 40" adjust="0 6" align="hcenter;bottom">
+      <TextButton name="buy" windowSize="132 40" adjust="-70 0" align="center" text="#sb(shopBuy)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+      <TextButton name="cancel" windowSize="132 40" adjust="70 0" align="center" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Window>
+  </CaptionWindow>
+</Panel>

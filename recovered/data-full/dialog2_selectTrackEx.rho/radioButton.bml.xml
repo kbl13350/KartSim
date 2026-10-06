@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container leftTopWH="196 54 822 35" depthBias="256">
+  <Window name="normalRadioButton">
+    <PlaneCheckButton name="radio.item" leftTopWH="12 8 20 20" frame="DefaultCheckButton" checked="true">
+      <Label leftTopWH="28 -7 20 20" text="#sb(track_item)" textRender="bold16" textAlign="vcenter" textColor="255 216 221 230"/>
+    </PlaneCheckButton>
+    <PlaneCheckButton name="radio.speed" leftTopWH="100 8 20 20" frame="DefaultCheckButton" checked="true">
+      <Label leftTopWH="28 -7 20 20" text="#sb(track_speed)" textRender="bold16" textAlign="vcenter" textColor="255 216 221 230"/>
+    </PlaneCheckButton>
+  </Window>
+  <Window name="randomRadioButton" visible="false">
+    <ImageCheckButton name="randomRadio.item" leftTopWH="108 8 20 20" autoImage="trackSelect_btn_radio_" alphaBlend="true">
+      <Label windowRect="28 0 90 14" textColor="255 230 240 245" frame="NoFrame" text="#sb(itemGame)" textRender="bold16" autoSizing="true" align="vcenter"/>
+    </ImageCheckButton>
+    <ImageCheckButton name="randomRadio.speed" leftTopWH="202 8 20 20" autoImage="trackSelect_btn_radio_" alphaBlend="true">
+      <Label windowRect="28 0 90 14" textColor="255 230 240 245" frame="NoFrame" text="#sb(speedGame)" textRender="bold16" autoSizing="true" align="vcenter"/>
+    </ImageCheckButton>
+  </Window>
+  <Label name="searchTotalTrack" leftTopWH="750 3 153 30" text="#sb(searchTotalTrack)" textColor="255 202 216 228" textRender="bold16" textAlign="center"/>
+  <Label name="helpString" leftTopWH="895 3 277 30" text="#sb(fvrTrack_helpstring)" textRender="bold16" textColor="255 124 129 139" textAlign="center"/>
+  <Edit name="searchEdit" leftTopWH="935 3 237 30" textRender="bold16" textColor="white" textBgColor="none" frame="NoFrame" maxChar="14" visible="true" enable="true"/>
+</Container>

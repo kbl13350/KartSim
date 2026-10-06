@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='147'
+	BackwardAccelForce='100'
+	DragFactor='-0.0765'
+	TransAccelFactor='1.8'
+	SteerConstraint='3'
+	CornerDrawFactor='0.064'
+	antiCollideBalance='0.92'
+	StartForwardAccelFactorSpeed='1.65'
+	StartBoosterTimeSpeed='1300'
+	NormalBoosterTime='-100'
+	TeamBoosterTime='-200'
+	
+	DriftMaxGauge='-500'
+	DriftEscapeForce='1500'
+	DriftGaguePreservePercent='0.5'
+	DriftLeanFactor='-0.005'
+	
+	draftMulAccelFactor='1.15'
+	draftTick='2000'
+	driftBoostMulAccelFactor='1.15'
+	driftBoostTick='500'
+	chargeBoostBySpeed='300'
+	TransformTime='700'
+	autoChargeLowSpeed='100'
+	
+	DescBalance='48'
+	DescStability='50'
+	DescEngineGrade='1.35'
+	DescCornering='7'
+	DescEnchantCap='25'
+	
+	BoosterWaveType='boost8'
+	BoosterType='9soon'
+	BoosterType0='9soon'
+	BoosterType1='9soon'
+	BoosterType2='9main'
+	BoosterType3='9main'
+	BoosterType4='9soon'
+	BoosterType5='9soon'
+	BoosterType6='9soon'
+	BoosterType7='9soon'
+	
+	Port0='mod2c1'
+	Port1='mod2c2'
+	FirePort0='mod1c1'
+	FirePort1='mod1c2'
+	FirePort2='mod1d1'
+	FirePort3='mod1d2'
+	FirePort4='mod4a'
+	FirePort5='mod4b'
+	
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	
+	EngineSound='9th'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	EnvMap='true'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2b3' trailPort1='mod2b4'/>
+</BodyParam>
+
+<!-- 프로토 9 / 대만 / 20140919 릴리즈 / 이벤트 및 합성 지급 -->

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="0 0 531 516" caption="#sb(slotOption)" captionPos="0 1" align="center" setCloseButton="ok">
+  <Label windowRect="0 0 228 50" align="top;center" adjust="5 10" textColor="255 42 55 80" textRender="bold16" textAlign="center" text="#sb(slotOption_setTitleGuide)"/>
+  <Edit name="slotTitleEdit" leftTopWH="0 70 228 40" align="hcenter" maxChar="20" textAlign="center" textRender="bold16" textColor="255 84 100 129"/>
+  <Window leftTopWH="0 125 480 1" align="hcenter" frame="HSection"/>
+  <Label windowRect="0 0 228 34" adjust="-5 -75" align="center" textColor="255 42 55 80" textRender="bold16" text="#sb(slotOption_setIconGuide)"/>
+  <Window name="iconList" frame="InputBoxBg2" windowSize="388 208" adjust="0 180" align="hcenter">
+    <Panel name="ItemIndi_BG" windowSize="90 90" adjust="-100 -50" align="center" alphaBlend="true" texture="preset_settingpopup_itemslot">
+      <Panel name="ItemIndi" windowSize="76 76" align="center" alphaBlend="true" altText="#sb(slotIcon_ItemIndi)" altRelativePos="0 65" texture="preset_icon_ItemInd">
+        <Panel name="checked" windowSize="26 26" adjust="52 52" alphaBlend="true" texture="btn_checkBox" visible="false" enable="false"/>
+        <Window name="selected" windowSize="98 98" align="center" alphaBlend="true" frame="GreenBorderLinePanel" visible="false" enable="false"/>
+      </Panel>
+    </Panel>
+    <Panel name="SpeedIndi_BG" windowSize="90 90" adjust="0 -50" align="center" alphaBlend="true" texture="preset_settingpopup_itemslot">
+      <Panel name="SpeedIndi" windowSize="76 76" align="center" alphaBlend="true" altText="#sb(slotIcon_SpeedIndi)" altRelativePos="0 65" texture="preset_icon_SpeedInd">
+        <Panel name="checked" windowSize="26 26" adjust="52 52" alphaBlend="true" texture="btn_checkBox" visible="false" enable="false"/>
+        <Window name="selected" windowSize="98 98" align="center" alphaBlend="true" frame="GreenBorderLinePanel" visible="false" enable="false"/>
+      </Panel>
+    </Panel>
+    <Panel name="TimeAttack_BG" windowSize="90 90" adjust="100 -50" align="center" alphaBlend="true" texture="preset_settingpopup_itemslot">
+      <Panel name="TimeAttack" windowSize="76 76" align="center" alphaBlend="true" altText="#sb(slotIcon_TimeAttack)" altRelativePos="0 65" texture="preset_icon_TimeAttack">
+        <Panel name="checked" windowSize="26 26" adjust="52 52" alphaBlend="true" texture="btn_checkBox" visible="false" enable="false"/>
+        <Window name="selected" windowSize="98 98" align="center" alphaBlend="true" frame="GreenBorderLinePanel" visible="false" enable="false"/>
+      </Panel>
+    </Panel>
+    <Panel name="ItemTeam_BG" windowSize="90 90" adjust="-100 50" align="center" alphaBlend="true" texture="preset_settingpopup_itemslot">
+      <Panel name="ItemTeam" windowSize="76 76" align="center" alphaBlend="true" altText="#sb(slotIcon_ItemTeam)" altRelativePos="0 65" texture="preset_icon_ItemTeam">
+        <Panel name="checked" windowSize="26 26" adjust="52 52" alphaBlend="true" texture="btn_checkBox" visible="false" enable="false"/>
+        <Window name="selected" windowSize="98 98" align="center" alphaBlend="true" frame="GreenBorderLinePanel" visible="false" enable="false"/>
+      </Panel>
+    </Panel>
+    <Panel name="SpeedTeam_BG" windowSize="90 90" adjust="0 50" align="center" alphaBlend="true" texture="preset_settingpopup_itemslot">
+      <Panel name="SpeedTeam" windowSize="76 76" align="center" alphaBlend="true" altText="#sb(slotIcon_SpeedTeam)" altRelativePos="0 65" texture="preset_icon_SpeedTeam">
+        <Panel name="checked" windowSize="26 26" adjust="52 52" alphaBlend="true" texture="btn_checkBox" visible="false" enable="false"/>
+        <Window name="selected" windowSize="98 98" align="center" alphaBlend="true" frame="GreenBorderLinePanel" visible="false" enable="false"/>
+      </Panel>
+    </Panel>
+    <Panel name="BattleTeam_BG" windowSize="90 90" adjust="100 50" align="center" alphaBlend="true" texture="preset_settingpopup_itemslot">
+      <Panel name="BattleTeam" windowSize="76 76" align="center" alphaBlend="true" altText="#sb(slotIcon_TeamBattle)" altRelativePos="0 65" texture="preset_icon_TeamBattle">
+        <Panel name="checked" windowSize="26 26" adjust="52 52" alphaBlend="true" texture="btn_checkBox" visible="false" enable="false"/>
+        <Window name="selected" windowSize="98 98" align="center" alphaBlend="true" frame="GreenBorderLinePanel" visible="false" enable="false"/>
+      </Panel>
+    </Panel>
+  </Window>
+  <Container windowSize="300 46" adjust="0 10" align="hcenter;bottom">
+    <TextButton name="okButton" text="#sb(ok)" windowSize="146 46" align="left" textRender="bold16"/>
+    <TextButton name="cancelButton" text="#sb(cancel)" windowSize="146 46" align="right" textRender="bold16"/>
+  </Container>
+</CaptionWindow>

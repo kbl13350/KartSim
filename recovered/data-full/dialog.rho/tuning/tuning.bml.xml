@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowSize="1076 642" alphaBlend="true" align="center">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" align="center"/>
+  <ImageBoard name="tuneBasic" windowSize="1076 642" align="center" image="popup_bg_factory" alphaBlend="true">
+    <Label name="title" windowRect="0 0 1076 37" text="#sb(factory)" textRender="bold20" textColor="white" textColor2="black" textAlign="center"/>
+    <Panel name="centerR" windowSize="54 264" align="center" adjust="243 0" texture="플로터동작윈도우_02" alphaBlend="true" enable="false" visible="false"/>
+    <Panel name="centerL" windowSize="512 264" align="center" adjust="-27 0" texture="플로터동작윈도우_01" alphaBlend="true" enable="false" visible="false"/>
+    <Container name="forSocket" windowSize="820 300" align="center" visible="false">
+      <Container name="baseItem" windowSize="330 300" align="center" adjust="-220 0" enable="false">
+        <Label name="itemName" windowRect="0 0 315 33" textRender="bold16" textColor="white" textAlign="center"/>
+        <Container name="itemCont" windowRect="0 28 315 268"/>
+      </Container>
+      <Container name="addItem" windowSize="330 300" align="center" adjust="220 0" enable="false">
+        <Label name="itemName" windowRect="0 0 315 33" textRender="bold16" textColor="white" textAlign="center"/>
+        <Container name="itemCont" windowRect="0 28 315 268"/>
+      </Container>
+    </Container>
+    <Label name="desc" windowSize="130 36" adjust="0 95" text="#sb(confirm)" textRender="bold16" textColor="white" textAlign="center" align="center|bottom" visible="false"/>
+    <Window name="yesNoButtonList" leftTopWH="0 0 400 40" adjust="0 36" align="hcenter;bottom" visible="false">
+      <TextButton name="ok" windowSize="132 40" adjust="-70 0" align="center" text="#sb(doMix)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+      <TextButton name="cancel" windowSize="132 40" adjust="70 0" align="center" text="#sb(close)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Window>
+  </ImageBoard>
+</Container>

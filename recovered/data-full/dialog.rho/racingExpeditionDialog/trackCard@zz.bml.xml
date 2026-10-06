@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="trackCard" leftTopWH="0 0 222 130" alphaBlend="true" visible="false" enable="false">
+  <ColorLabel name="trackName" windowSize="142 34" adjust="52 0" textColor="255 42 55 80" textRender="bold16" textAlign="vcenter|left"/>
+  <Panel name="thumb" leftTopWH="10 42 222 130"/>
+  <Container name="trackThumbDifficulty" windowSize="222 130" adjust="478 -2"/>
+  <Panel leftTopWH="10 42 222 130" texture="trackFrame" alphaBlend="true" enable="false"/>
+  <Panel name="rvs" leftTopWH="110 95 36 36" texture="작은리버스트랙" alphaBlend="true" visible="false"/>
+  <Panel name="crz" leftTopWH="110 95 36 36" texture="crazyMark" alphaBlend="true" visible="false"/>
+</Container>

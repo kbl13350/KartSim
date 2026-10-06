@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Container name="fishingRank" clientRect="0 0 1106 656" align="center">
+    <ImageBoard name="bg" clientRect="0 0 1106 656" image="fish_popup_BG" alphaBlend="true" enable="true"/>
+    <ImageButton name="close" windowSize="32 32" adjust="20 15" align="right;top" autoLoadImage="fish_popup_close_" alphaBlend="true"/>
+    <ImageButton name="prev" windowSize="214 24" adjust="120 31" align="hcenter;bottom" autoLoadImage="fish_popup_arrow2_" alphaBlend="true"/>
+    <ImageButton name="next" windowSize="214 24" adjust="420 31" align="hcenter;bottom" autoLoadImage="fish_popup_arrow1_" alphaBlend="true"/>
+    <Panel name="tabNameImg" windowSize="253 44" adjust="35 -35" texture="cn_fish_popup_txtTitle2@zz" align="left;top" alphaBlend="true"/>
+    <Panel name="myBestFishImg" windowSize="458 326" adjust="-268 0" texture=" " align="hcenter;vcenter" alphaBlend="true" visible="false"/>
+    <Panel name="myBestFishInfo" windowSize="352 34" adjust="108 30" texture="cn_fish_popup_txtTitle2_2@zz" align="left;top" alphaBlend="true"/>
+    <Label name="myBestFishName" windowRect="0 0 77 24" adjust="-260 230" text=" " align="hcenter;vcenter" textAlign="center" textColor="white" visible="false" textRender="bold20"/>
+    <Label name="myBestFishSize" windowRect="0 0 77 24" adjust="-260 260" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 254 227 4" visible="false" textRender="bold16"/>
+    <Label name="myFishListTitle" windowRect="0 0 77 24" adjust="80 -264" text="#sb(totalRanking)" align="hcenter;vcenter" textAlign="center" textColor="255 104 83 64" textRender="bold16"/>
+    <Label name="catRank" windowRect="0 0 77 24" adjust="73 -234" text="#sb(ranking)" align="hcenter;vcenter" textAlign="center" textColor="255 233 228 224" textRender="bold14"/>
+    <Label name="catRider" windowRect="0 0 77 24" adjust="193 -234" text="#sb(riderName)" align="hcenter;vcenter" textAlign="center" textColor="255 233 228 224" textRender="bold14"/>
+    <Label name="catFishName" windowRect="0 0 77 24" adjust="383 -234" text="#sb(fishName)" align="hcenter;vcenter" textAlign="center" textColor="255 233 228 224" textRender="bold14"/>
+    <Panel name="rankDisplayImg" windowSize="208 36" adjust="185 83" texture="fish_popup_BG_grade" align="left;top" alphaBlend="true">
+      <Label name="rankDisplay" windowRect="0 0 108 36" adjust="0 3" text=" " align="center" textAlign="center" textColor="255 42 55 80" textRender="bold16"/>
+    </Panel>
+    <Label name="rank1" windowRect="0 0 77 24" adjust="73 -210" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank2" windowRect="0 0 77 24" adjust="73 -186" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank3" windowRect="0 0 77 24" adjust="73 -162" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank4" windowRect="0 0 77 24" adjust="73 -138" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank5" windowRect="0 0 77 24" adjust="73 -114" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank6" windowRect="0 0 77 24" adjust="73 -90" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank7" windowRect="0 0 77 24" adjust="73 -66" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank8" windowRect="0 0 77 24" adjust="73 -42" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank9" windowRect="0 0 77 24" adjust="73 -18" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank10" windowRect="0 0 77 24" adjust="73 6" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank11" windowRect="0 0 77 24" adjust="73 30" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank12" windowRect="0 0 77 24" adjust="73 54" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank13" windowRect="0 0 77 24" adjust="73 78" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank14" windowRect="0 0 77 24" adjust="73 102" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank15" windowRect="0 0 77 24" adjust="73 126" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank16" windowRect="0 0 77 24" adjust="73 150" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank17" windowRect="0 0 77 24" adjust="73 174" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank18" windowRect="0 0 77 24" adjust="73 198" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank19" windowRect="0 0 77 24" adjust="73 222" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rank20" windowRect="0 0 77 24" adjust="73 246" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider1" windowRect="0 0 77 24" adjust="193 -210" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider2" windowRect="0 0 77 24" adjust="193 -186" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider3" windowRect="0 0 77 24" adjust="193 -162" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider4" windowRect="0 0 77 24" adjust="193 -138" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider5" windowRect="0 0 77 24" adjust="193 -114" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider6" windowRect="0 0 77 24" adjust="193 -90" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider7" windowRect="0 0 77 24" adjust="193 -66" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider8" windowRect="0 0 77 24" adjust="193 -42" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider9" windowRect="0 0 77 24" adjust="193 -18" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider10" windowRect="0 0 77 24" adjust="193 6" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider11" windowRect="0 0 77 24" adjust="193 30" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider12" windowRect="0 0 77 24" adjust="193 54" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider13" windowRect="0 0 77 24" adjust="193 78" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider14" windowRect="0 0 77 24" adjust="193 102" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider15" windowRect="0 0 77 24" adjust="193 126" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider16" windowRect="0 0 77 24" adjust="193 150" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider17" windowRect="0 0 77 24" adjust="193 174" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider18" windowRect="0 0 77 24" adjust="193 198" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider19" windowRect="0 0 77 24" adjust="193 222" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="rider20" windowRect="0 0 77 24" adjust="193 246" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name1" windowRect="0 0 77 24" adjust="383 -210" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name2" windowRect="0 0 77 24" adjust="383 -186" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name3" windowRect="0 0 77 24" adjust="383 -162" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name4" windowRect="0 0 77 24" adjust="383 -138" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name5" windowRect="0 0 77 24" adjust="383 -114" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name6" windowRect="0 0 77 24" adjust="383 -90" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name7" windowRect="0 0 77 24" adjust="383 -66" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name8" windowRect="0 0 77 24" adjust="383 -42" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name9" windowRect="0 0 77 24" adjust="383 -18" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name10" windowRect="0 0 77 24" adjust="383 6" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name11" windowRect="0 0 77 24" adjust="383 30" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name12" windowRect="0 0 77 24" adjust="383 54" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name13" windowRect="0 0 77 24" adjust="383 78" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name14" windowRect="0 0 77 24" adjust="383 102" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name15" windowRect="0 0 77 24" adjust="383 126" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name16" windowRect="0 0 77 24" adjust="383 150" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name17" windowRect="0 0 77 24" adjust="383 174" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name18" windowRect="0 0 77 24" adjust="383 198" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name19" windowRect="0 0 77 24" adjust="383 222" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="name20" windowRect="0 0 77 24" adjust="383 246" text=" " align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold14" visible="false"/>
+    <Label name="page" windowRect="0 0 77 24" adjust="272 284" text="0/0" align="hcenter;vcenter" textAlign="center" textColor="255 76 65 57" textRender="bold16"/>
+    <Label name="rankNotice" windowRect="0 0 110 30" adjust="30 55" text="#sb(rankNotice)" align="right;top" textAlign="right" textColor="255 158 113 72" textRender="bold14"/>
+  </Container>
+</Panel>

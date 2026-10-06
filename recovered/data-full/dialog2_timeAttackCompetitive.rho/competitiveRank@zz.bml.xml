@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="captionDlgFrame" windowRect="0 0 542 738" frame="CaptionDialog" captionPos="0 1" caption="#sb(rankTitle)" align="center" setCloseButton="ok">
+    <ImageBoard leftTopWH="-5 5 514 30" image="contest_img_seasonTitleBG" alphaBlend="true">
+      <Label name="curInfo" windowSize="514 30" textAlign="center" textRender="bold" textColor="white"/>
+    </ImageBoard>
+    <ImageBoard leftTopWH="-5 40 514 642" image="contest_img_listRankBG" alphaBlend="true">
+      <Window name="tabs" leftTopWH="0 0 514 32">
+        <ImageButton name="weekBtn" leftTopWH="2 2 254 30" autoLoadImage="contest_btn_tab_" alphaBlend="true" text="#sb(week)" textRender="bold" textColor="255 233 238 241" overTextColor="255 22 86 148" checkedTextColor="255 22 86 148" uncheckedTextColor="255 22 86 148"/>
+        <ImageButton name="seasonBtn" leftTopWH="258 2 254 30" autoLoadImage="contest_btn_tab_" alphaBlend="true" text="#sb(season)" textRender="bold" textColor="255 233 238 241" overTextColor="255 22 86 148" checkedTextColor="255 22 86 148" uncheckedTextColor="255 22 86 148"/>
+      </Window>
+      <Label leftTopWH="19 55 30 10" text="#sb(myRank)" textRender="bold" textColor="white"/>
+      <Panel name="gradeIcon" leftTopWH="95 40 46 40" alphaBlend="true"/>
+      <Panel name="gradeTextIcon" leftTopWH="154 48 80 24" alphaBlend="true"/>
+      <Label name="rankInfo" leftTopWH="282 55 100 10" textAlign="hcenter" textRender="bold" textColor="white"/>
+      <Label name="point" leftTopWH="395 55 100 10" textAlign="hcenter,right" textRender="bold" textColor="white"/>
+      <ImageButton name="allRankBtn" leftTopWH="8 92 120 34" text="#sb(overallRanking)" textRender="bold" autoLoadImage="contest_btn_allRanking_" alphaBlend="true" textColor="255 90 90 90"/>
+      <Label name="helpString" leftTopWH="380 97 126 20" text="#sb(ridEditHelp)" textColor="255 175 180 185" textAlign="center"/>
+      <Edit name="ridEdit" leftTopWH="380 97 126 20" textColor="white" textBgColor="none" frame="NoFrame" maxChar="14" visible="true" enable="true"/>
+      <Label leftTopWH="-17 136 100 10" text="#sb(rank)" textAlign="hcenter" textRender="bold" textColor="255 210 211 230"/>
+      <Label leftTopWH="74 136 100 10" text="#sb(rider)" textAlign="hcenter" textRender="bold" textColor="255 210 211 230"/>
+      <Label leftTopWH="217 136 100 10" text="#sb(grade)" textAlign="hcenter" textRender="bold" textColor="255 210 211 230"/>
+      <Label leftTopWH="344 136 100 10" text="#sb(point)" textAlign="hcenter" textRender="bold" textColor="255 210 211 230"/>
+      <Label leftTopWH="426 136 100 10" text="+" textAlign="hcenter" textRender="bold" textColor="255 210 211 230"/>
+      <GridSelector name="rankGrid" windowRect="0 150 514 450" alignSize="1" alignMargin="-2 0" clientMargin="0 0 0 0" maxLine="10"/>
+      <ImageButton name="prevPage" leftTopWH="50 610 160 24" autoLoadImage="btn_left_" alphaBlend="true"/>
+      <ImageButton name="nextPage" leftTopWH="300 610 160 24" autoLoadImage="btn_right_" alphaBlend="true"/>
+      <Label name="page" leftTopWH="206 616 100 34" text="1 / 1" textAlign="hcenter" textRender="bold" textColor="white"/>
+    </ImageBoard>
+  </CaptionWindow>
+</Panel>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowRect="0 0 353 230" captionPos="0 1" captionColor="black" frame="CaptionDialog" caption="#sb(selectPartsQuantity)" align="center">
+  <Label windowRect="8 16 9 30" text="#sb(enterPartsQuantity)" align="hcenter" textAlign="center" textColor="255 42 55 80" textRender="bold16"/>
+  <Container windowRect="0 0 160 20" align="center" adjust="0 -10">
+    <Edit frame="DefaultEdit" align="left;vcenter" windowRect="0 0 114 30" maxChar="20" enable="false"/>
+    <Edit name="edit" frame="NoFrame" align="left;vcenter" textAlign="right" windowRect="0 0 90 30" maxChar="9" textColor="255 42 55 80" textRender="bold16"/>
+    <Label text="#sb(countUnit)" windowRect="0 0 20 20" align="center" adjust="20 0" textAlign="center" textColor="255 42 55 80" textRender="bold16"/>
+    <ImageButton name="decreaseButton" windowSize="24 24" adjust="-10 0" align="right;vcenter" autoLoadImage="common_btn_minus_0" alphaBlend="true" alphaTest="true" visible="true"/>
+    <ImageButton name="increaseButton" windowSize="24 24" adjust="18 0" align="right;vcenter" autoLoadImage="common_btn_plus_0" alphaBlend="true" alphaTest="true" visible="true"/>
+  </Container>
+  <Window windowSize="255 1" frame="HSection" adjust="0 63" align="hcenter;bottom"/>
+  <Window name="yesNoButtonList" leftTopWH="0 0 400 40" adjust="0 6" align="hcenter;bottom">
+    <TextButton name="okButton" windowSize="132 40" adjust="-70 0" align="center" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+    <TextButton name="cancelButton" windowSize="132 40" adjust="70 0" align="center" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+  </Window>
+</CaptionWindow>

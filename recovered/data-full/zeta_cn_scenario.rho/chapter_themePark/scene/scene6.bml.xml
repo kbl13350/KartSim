@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="park3"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="呜哇~|看那里~|还有水上公园呢！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="2 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="应该会很有趣！|我们~去那儿看看吧~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop1"/>
+  <Msg name="黑妞" string="这里好像有很多好玩的呢！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="ani2"/>
+  <Msg name="小强" string="快去玩吧~！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="嗯~那里好像是麻吉啊！|去打声招呼吧！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="麻吉~麻吉！！|等等我~！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pierrot" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="麻吉" string="得快点走！"/>
+  <Enter/>
+  <Char id="pierrot" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Msg name="宝宝" string="这么着急是去哪儿呢？|得跟着去打个招呼！"/>
+  <Enter/>
+</Scene>

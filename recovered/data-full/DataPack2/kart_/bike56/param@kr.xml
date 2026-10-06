@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.081'
+	SteerConstraint='2.4'
+	CornerDrawFactor='0.072'
+	DriftEscapeForce='1760'
+	
+	driftBoostMulAccelFactor='1.32'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.854'
+	StartForwardAccelFactorSpeed='1.7'
+	StartBoosterTimeSpeed='1500'
+	BoostAccelFactor='1.53'
+	
+	DriftMaxGauge='-990'
+	NormalBoosterTime='-280'
+	TeamBoosterTime='-500'
+	
+	DriftGaguePreservePercent='0.5'
+	antiCollideBalance='0.91'
+	OnCharacterSize='0.8'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.1'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='X'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='60'
+	dualMulAccelFactor='1.11'
+	dualTransLowSpeed='100'
+
+	motorcycleType='true'
+	SpeedSlotCapacity='3'
+
+	PartsEngineLock='true'
+	PartsWheelLock='true'
+	PartsSteeringLock='true'
+	PartsBoosterLock='true'
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10main1'
+	BoosterType3='10main1'
+	BoosterType4='10main'
+	BoosterType5='10main'
+
+	Port0='mod1b1' 
+	Port1='mod1b2'
+
+	FirePort0='mod1a3'
+	FirePort1='mod1a4'
+	FirePort2='mod1a1'
+	FirePort3='mod1a2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 19 121 219'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 255 222 0' trailPort0='mod2a1' trailPort1='mod2a2'/>
+</BodyParam>
+<!-- 프로토 바이크 X / 한국 / 일반 / 아이템 / 이벤트 / 20200625 릴리즈 -->

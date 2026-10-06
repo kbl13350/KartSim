@@ -1,0 +1,705 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chattingScript>
+　
+	<campaign type='1'>
+<condition type='0'>
+<scripts msg='不要因为是动物就掉以轻心！'/>
+<scripts msg='欢迎来到动物王国~'/>
+<scripts msg='你们上次输了之后又来了？'/>
+<scripts msg='最终还是我们的胜利！'/>
+</condition>
+<condition type='1'>
+<scripts msg='啊~ 根本看不到'/>
+<scripts msg='呵呵呵…只是笑笑而已…'/>
+<scripts msg='[UserRID]不要太得意忘形'/>
+<scripts msg='[UserRID]听起来好像需要帮助'/>
+<scripts msg='[AiRID]！！你是我们的希望'/>
+<scripts msg='[UserRID]希望你继续休息！'/>
+<scripts msg='是时候展示真正的实力了'/>
+<scripts msg='还是跟不上啊~555'/>
+<scripts msg='你让我感受到屈辱'/>
+</condition>
+<condition type='2'>
+<scripts msg='该死，被摆了一道~'/>
+<scripts msg='先走吧~ 我已经没戏了…'/>
+<scripts msg='不想难堪的话，赶紧放弃吧'/>
+<scripts msg='我要告你虐待动物~'/>
+<scripts msg='就是现在！[AiRID]'/>
+<scripts msg='看我的必杀技！！'/>
+</condition>
+<condition type='3'>
+<scripts msg='[AiRID]！抄近道！'/>
+<scripts msg='来场公平的较量吧！'/>
+<scripts msg='好像会变成很有趣的比赛~'/>
+<scripts msg='好像在哪里见过~'/>
+<scripts msg='10秒前不是说好来这吗~'/>
+<scripts msg='我们这次也会胜利的~'/>
+<scripts msg='哈哈，比看起来还呆啊？'/>
+<scripts msg='这是场能让我兴奋的比赛！'/>
+</condition>
+<condition type='4'>
+<scripts msg='[UserRID]！从你身上能看出优秀车手的潜质！'/>
+<scripts msg='使用加速器吧~'/>
+<scripts msg='禁止互相残杀！！小心完成不了！！'/>
+<scripts msg='我们未完成？嗯？'/>
+<scripts msg='[UserRID]你用脚比赛呢？'/>
+</condition>
+</campaign>
+<campaign type='2'>
+　
+		
+　
+		
+　
+　		
+　
+　		<condition type='0'>
+<scripts msg='准备好失败了吗~'/>
+<scripts msg='为了完胜！！'/>
+<scripts msg='要输也不是这样输的~'/>
+<scripts msg='10秒前不是说好来这吗~'/>
+<scripts msg='我们在闭着眼睛开车！'/>
+<scripts msg='是时候展示真正的实力了'/>
+<scripts msg='应该很难跟上~'/>
+</condition>
+<condition type='1'>
+<scripts msg='我已经没戏了~你们快走~'/>
+<scripts msg='警告！警告！他们出现了~'/>
+<scripts msg='竟然让士兵未完成~'/>
+<scripts msg='[UserRID]，请稍等一下'/>
+<scripts msg='你们是最强的队伍'/>
+<scripts msg='我们是士兵军团！'/>
+</condition>
+<condition type='2'>
+<scripts msg='不要浪费时间'/>
+<scripts msg='不要太得意忘形'/>
+<scripts msg='真的是…没有风度'/>
+<scripts msg='[UserRID]…刚才路过的人…！！'/>
+<scripts msg='都挺好的，没有你就更好了'/>
+<scripts msg='当卡丁车车手太有意思啦！！'/>
+<scripts msg='来一场公平的较量吧！'/>
+</condition>
+<condition type='3'>
+<scripts msg='感觉会变成很有趣的比赛~ '/>
+<scripts msg='我们胜利了！'/>
+<scripts msg='[AiRID]！！防守就交给你了~'/>
+<scripts msg='在后面跟紧我~'/>
+<scripts msg='好久没遇到这么有意思的对手了，哈哈！'/>
+<scripts msg='看你的实力应该是在哪练过！'/>
+<scripts msg='竟敢挑战黄金之神！'/>
+</condition>
+<condition type='4'>
+<scripts msg='我自己就足够了！'/>
+<scripts msg='神一样的操作！！'/>
+<scripts msg='[UserRID]…用脚比赛的人…'/>
+<scripts msg='愚蠢的家伙…'/>
+<scripts msg='我要让你们全都完成不了！'/>
+</condition>
+</campaign>
+<campaign type='3'>
+　
+		
+　
+　		
+　
+		<condition type='0'>
+<scripts msg='[UserRID]真没有风度！'/>
+<scripts msg='[UserRID]，再练一练之后过来吧~'/>
+<scripts msg='是时候展示真正的实力了'/>
+<scripts msg='完全跟不上啊~555'/>
+<scripts msg='[UserRID]！跑的不错啊？！'/>
+</condition>
+<condition type='1'>
+<scripts msg='好像很难跟上啊~'/>
+<scripts msg='[UserRID]！你让我感受到屈辱'/>
+<scripts msg='竟然惹黄金神生气~'/>
+<scripts msg='不要浪费时间！'/>
+<scripts msg='来露一手？'/>
+</condition>
+<condition type='2'>
+<scripts msg='黄金之神！高迪奥斯~'/>
+<scripts msg='所有人都服从高迪奥斯大人吧'/>
+<scripts msg='你们将会得到正义的审判~'/>
+<scripts msg='不进行公正的比赛会被惩罚！'/>
+<scripts msg='感觉会变成很有意思的比赛~'/>
+<scripts msg='我们胜利了！'/>
+</condition>
+<condition type='3'>
+<scripts msg='[UserRID]，留你一条活路吧~'/>
+<scripts msg='愚蠢的家伙 '/>
+<scripts msg='是时候展示龙骑士的伟大力量了~'/>
+<scripts msg='我们是传说中的龙骑士！'/>
+<scripts msg='能和我们较量是你的荣幸~'/>
+<scripts msg='别把我们排除之后讨论谁是最强的'/>
+</condition>
+<condition type='4'>
+<scripts msg='我们是被龙选中的人！'/>
+<scripts msg='害怕得发抖了吗~'/>
+<scripts msg='这才是龙骑士真正的实力！'/>
+<scripts msg='[UserRID]，你再这样我会很伤心~'/>
+<scripts msg='我们还没开始呢~'/>
+</condition>
+</campaign>
+<campaign type='4'>
+<condition type='0'>
+<scripts msg='这就是龙的力量！'/>
+<scripts msg='难道是故意放水？'/>
+<scripts msg='[UserRID]真是难以摸透啊~'/>
+<scripts msg='玩耍的时间结束了'/>
+</condition>
+<condition type='1'>
+<scripts msg='[UserRID]，超速的话会出事的~'/>
+<scripts msg='对不起，我刚要出发！'/>
+<scripts msg='还没开始呢~'/>
+<scripts msg='该死，被摆了一道~'/>
+<scripts msg='[AiRID]！先走~我已经没戏了…'/>
+</condition>
+<condition type='2'>
+<scripts msg='我才没有掉以轻心，我这叫游刃有余！'/>
+<scripts msg='[AiRID]！！防守就交给我吧！'/>
+<scripts msg='哇哦~！就是现在！'/>
+<scripts msg='是发射狂乱爆竹的时机吗？'/>
+<scripts msg='第一场就让着你吧！'/>
+<scripts msg='已准备好龙的力量！'/>
+</condition>
+<condition type='3'>
+<scripts msg='我会让你后悔选择我们~'/>
+<scripts msg='[AiRID]！！后面就交给你了！'/>
+<scripts msg='我会用实力说话！'/>
+<scripts msg='启动时空加速器！'/>
+<scripts msg='都已经准备好了！开始吧！'/>
+</condition>
+<condition type='4'>
+<scripts msg='我自己就足够了！'/>
+<scripts msg='我会向前突破，后面就交给你了！'/>
+<scripts msg='要不要现在开始向后跑啊？'/>
+<scripts msg='[AiRID]！！稍微放点水~'/>
+</condition>
+</campaign>
+<campaign type='5'>
+<condition type='0'>
+<scripts msg='脚用太久了，腿有点抽筋啊'/>
+<scripts msg='才这点实力，好失望！'/>
+<scripts msg='[UserRID]还不放弃？'/>
+<scripts msg='哇呜！[UserRID]你挺能干的啊？'/>
+</condition>
+<condition type='1'>
+<scripts msg='好样的，要不要加入我们队？'/>
+<scripts msg='无法相信！[UserRID]很厉害啊？'/>
+<scripts msg='不可能想到那种方法啊~'/>
+<scripts msg='能稍等一会儿吗？'/>
+<scripts msg='利用科学胜利吧！'/>
+</condition>
+<condition type='2'>
+<scripts msg='害怕的话就后退吧！！'/>
+<scripts msg='按喇叭就踩扁你了~'/>
+<scripts msg='跑跑卡丁车在宇宙也有很高的人气~'/>
+<scripts msg='时空战队是宇宙最强的！'/>
+<scripts msg='时空战队出发！！'/>
+</condition>
+<condition type='3'>
+<scripts msg='圣诞快乐~！'/>
+<scripts msg='银装素裹的美丽冬夜~'/>
+<scripts msg='叮叮当，叮叮当，铃儿响叮当~~'/>
+<scripts msg='今年有没有做好事？'/>
+<scripts msg='不能哭~不能哭~'/>
+<scripts msg='[UserRID]！稍等一会！'/>
+</condition>
+<condition type='4'>
+<scripts msg='这会是一个孤独的圣诞节！'/>
+<scripts msg='我来给你像样的圣诞礼物'/>
+<scripts msg='听说爱哭的孩子收不到礼物~'/>
+</condition>
+</campaign>
+<campaign type='6'>
+<condition type='0'>
+<scripts msg='这次圣诞节也是自己过？'/>
+<scripts msg='我才没有掉以轻心，我这叫游刃有余！'/>
+<scripts msg='[UserRID]！稍等我一下！求你了~'/>
+<scripts msg='啊！这是圣诞节的噩梦！'/>
+<scripts msg='[UserRID]，我要把你挖走！'/>
+</condition>
+<condition type='1'>
+<scripts msg='这次圣诞节前夕会不会下雪呢？'/>
+<scripts msg='下雪了，路上小心啊！'/>
+<scripts msg='红鼻子驯鹿鲁道夫，有一个发光的红色鼻子~'/>
+<scripts msg='今年好像也是忙碌的圣诞节'/>
+<scripts msg='这次圣诞节会不会下雪呢？'/>
+<scripts msg='我们是天下无敌的皮蛋队！'/>
+</condition>
+<condition type='2'>
+<scripts msg='给你展示真正的漂移！'/>
+<scripts msg='现在跑一把？'/>
+<scripts msg='我第一次跑这个跑道~怎么办呢？'/>
+<scripts msg='我们完胜了？'/>
+</condition>
+<condition type='3'>
+<scripts msg='[UserRID]！我看到你在自相残杀了！'/>
+<scripts msg='我会等你的！快进来！'/>
+</condition>
+<condition type='4'>
+<scripts msg='[UserRID]别太紧张！'/>
+<scripts msg='[AiRID]！好像需要休息啊！'/>
+<scripts msg='愚蠢的家伙们~~~'/>
+</condition>
+</campaign>
+<campaign type='7'>
+<condition type='0'>
+<scripts msg='现在开始用脚了！'/>
+<scripts msg='平生第一次感受到今天这样的屈辱！'/>
+<scripts msg='[UserRID]！别那样，稍等会儿！'/>
+<scripts msg='抄近道！'/>
+<scripts msg='[AiRID]！你怎么连道具都不会用啊~'/>
+</condition>
+<condition type='2'>
+<scripts msg='快使用必杀技！现在，马上！'/>
+<scripts msg='等等！[AiRID]，我去吧'/>
+<scripts msg='我才是真正的第一！'/>
+<scripts msg='我们是不是在哪里见过？'/>
+</condition>
+<condition type='1'>
+<scripts msg='来一场绅士游戏吧！'/>
+<scripts msg='我们是天下无敌的宝宝队！'/>
+<scripts msg='给你展示真正的漂移！'/>
+<scripts msg='要不要开始比赛？'/>
+<scripts msg='这个跑道，我很有自信！'/>
+<scripts msg='[AiRID]！近道在这边！'/>
+</condition>
+<condition type='3'>
+<scripts msg='我们完胜了？'/>
+<scripts msg='[UserRID]！竟然自相残杀！'/>
+</condition>
+<condition type='4'>
+<scripts msg='这是圣诞节的噩梦！'/>
+<scripts msg='就当我什么也没看见~'/>
+<scripts msg='10秒前不是说好在这见吗~'/>
+</condition>
+</campaign>
+<campaign type='8'>
+<condition type='0'>
+<scripts msg='唉~没用必杀技就赢了~'/>
+<scripts msg='不会这么没礼貌，先进去了吧？'/>
+<scripts msg='[UserRID]！不能等一等吗？'/>
+<scripts msg='[AiRID]！就是现在，必杀技！'/>
+<scripts msg='[AiRID]！我们的希望~'/>
+</condition>
+<condition type='2'>
+<scripts msg='[AiRID]！抄近道！'/>
+<scripts msg='等等！[AiRID]，我去吧'/>
+<scripts msg='我们才是真正的冠军！'/>
+<scripts msg='我们是不是在哪里见过？'/>
+</condition>
+<condition type='1'>
+<scripts msg='我们来一场绅士游戏吧~！ '/>
+<scripts msg='我们是大城堡家族！'/>
+<scripts msg='[UserRID]！不羡慕我们的卡丁车吗？'/>
+<scripts msg='[UserRID]！有高手的气息！'/>
+<scripts msg='绝不容许失误！'/>
+<scripts msg='来展示我们的实力吧！'/>
+</condition>
+<condition type='3'>
+<scripts msg='距离好像越拉越大了？哈哈哈'/>
+<scripts msg='现在只有我们在跑？'/>
+</condition>
+<condition type='4'>
+<scripts msg='没有怜悯！继续推进~'/>
+<scripts msg='就这点实力还敢来挑战我们~'/>
+<scripts msg='希望你们继续休息！'/>
+</condition>
+</campaign>
+<campaign type='9'>
+<condition type='0'>
+<scripts msg='啊~好无聊，除了你们还有别的队吗？'/>
+<scripts msg='[UserRID]！你很擅长道具赛啊！'/>
+<scripts msg='完全没办法前进！'/>
+<scripts msg='[AiRID]！快使用水苍蝇！'/>
+<scripts msg='好，现在开始就是表演时间！'/>
+</condition>
+<condition type='1'>
+<scripts msg='现在马上就要出发了！'/>
+<scripts msg='[AiRID]！就是现在，必杀技！'/>
+<scripts msg='来展示大城堡家族的实力吧！'/>
+<scripts msg='[UserRID]！做好享受的准备了吗？'/>
+<scripts msg='[AiRID]！别太紧张！'/>
+<scripts msg='哔哩哩哩！哔哩哩哩！'/>
+</condition>
+<condition type='2'>
+<scripts msg='一切准备就绪'/>
+<scripts msg='计算机器人皮蛋的行驶时间'/>
+<scripts msg='所有任务分配完毕'/>
+<scripts msg='已设定使用必杀技的时间'/>
+</condition>
+<condition type='3'>
+<scripts msg='距离开始拉大'/>
+<scripts msg='全部都在按计算进行'/>
+</condition>
+<condition type='4'>
+<scripts msg='[UserRID]从危险对象排除'/>
+<scripts msg='[AiRID]！警告！敌人正在接近'/>
+</condition>
+</campaign>
+<campaign type='10'>
+<condition type='0'>
+<scripts msg='[UserRID]！开始集中攻击'/>
+<scripts msg='重新计算行驶时间'/>
+<scripts msg='[AiRID]！预料之外的跑法'/>
+<scripts msg='哔哩哩哩！已准备好必杀技'/>
+<scripts msg='[AiRID]！发动必杀技！'/>
+</condition>
+<condition type='1'>
+<scripts msg='[AiRID]！转换为防守模式！'/>
+<scripts msg='从概率上来算，不可能赢过我们 '/>
+<scripts msg='开始分析[UserRID]'/>
+<scripts msg='设定初始化'/>
+</condition>
+<condition type='2'>
+<scripts msg='哔哩哩哩！哔哩哩哩！'/>
+<scripts msg='一切准备就绪'/>
+<scripts msg='开始计算机器人宝宝的行驶时间'/>
+<scripts msg='所有任务分配完毕'/>
+</condition>
+<condition type='3'>
+<scripts msg='已设定使用必杀技的时间'/>
+<scripts msg='距离开始拉大'/>
+</condition>
+<condition type='4'>
+<scripts msg='全部都在按计算进行'/>
+<scripts msg='[UserRID]从危险对象排除'/>
+<scripts msg='[AiRID]！警告！敌人正在接近'/>
+</condition>
+</campaign>
+<campaign type='11'>
+<condition type='0'>
+<scripts msg='[UserRID]！开始集中攻击'/>
+<scripts msg='重新计算行驶时间'/>
+<scripts msg='[AiRID]！意料之外的跑法'/>
+<scripts msg='哔哩哩哩！已准备好必杀技'/>
+<scripts msg='[AiRID]！发动必杀技！'/>
+</condition>
+<condition type='1'>
+<scripts msg='[AiRID]！转换为防守模式！'/>
+<scripts msg='从概率上来算，不可能赢我们'/>
+<scripts msg='开始分析[UserRID]'/>
+<scripts msg='设定初始化'/>
+</condition>
+<condition type='2'>
+<scripts msg='为了海贼团的荣耀~！！！'/>
+<scripts msg='是时候展示海贼团的恐怖了！'/>
+<scripts msg='[UserRID]！交出所有金币~'/>
+<scripts msg='现在开始掠夺吧！'/>
+</condition>
+<condition type='3'>
+<scripts msg='不赢就去死吧！！！'/>
+<scripts msg='现在知道海贼团的恐怖了？ '/>
+</condition>
+<condition type='4'>
+<scripts msg='[AiRID]！现在开始往后面跑！！'/>
+<scripts msg='停止攻击！[UserRID]在哭'/>
+<scripts msg='能不能让我听到你卡丁车很厉害的传闻？ '/>
+</condition>
+</campaign>
+<campaign type='12'>
+<condition type='0'>
+<scripts msg='好无聊的比赛，都打哈欠了~！！'/>
+<scripts msg='不知不觉的哼了一曲~'/>
+<scripts msg='给我集中攻击[UserRID]~！'/>
+<scripts msg='要不要加入我们海贼团？ '/>
+<scripts msg='[AiRID]！在后面干什么呢！！！'/>
+</condition>
+<condition type='1'>
+<scripts msg='[AiRID]！直接进攻！进攻！进攻！'/>
+<scripts msg='[AiRID]！给你展示海贼伟大的力量！'/>
+<scripts msg='[AiRID]！现在就是逆转的时机！！'/>
+<scripts msg='好像收集了挺多金币~'/>
+</condition>
+<condition type='2'>
+<scripts msg='我们是从不怜悯别人的海盗船长海贼团！！'/>
+<scripts msg='觉悟吧！我们从不怜悯别人！！！'/>
+<scripts msg='让你感受到真正的恐怖~！！！'/>
+<scripts msg='已经开始发抖了吗？ '/>
+<scripts msg='[UserRID]！害怕的话就后退吧~'/>
+<scripts msg='让他们感受到绝望吧！'/>
+</condition>
+<condition type='3'>
+<scripts msg='让他陷入黑暗的影子！'/>
+<scripts msg='你想一辈子活在恐惧中吗~ 呵呵呵'/>
+</condition>
+<condition type='4'>
+<scripts msg='他们已经害怕得发抖了吗~'/>
+<scripts msg='[UserRID]你在哭吗？呵呵呵 '/>
+<scripts msg='黑暗的力量在祝福着我们！'/>
+</condition>
+</campaign>
+<campaign type='13'>
+<condition type='0'>
+<scripts msg='让它彻底的结束吧！'/>
+<scripts msg='向[UserRID]展示我们的恐怖吧！'/>
+<scripts msg='[UserRID]你不怕我们吗？ '/>
+<scripts msg='我们现在才开始！'/>
+<scripts msg='为什么把我当成幽灵？'/>
+</condition>
+<condition type='1'>
+<scripts msg='给你展示幽灵军团的恐怖吧！'/>
+<scripts msg='愚蠢的家伙们！'/>
+<scripts msg='竟敢挑战我们~'/>
+<scripts msg='现在就让你感受到恐惧！'/>
+<scripts msg='听说过我们的传闻吗？'/>
+</condition>
+<condition type='2'>
+<scripts msg='还没开始呢~就开始发抖了？'/>
+<scripts msg='会让你搞到恐怖，绝望，痛苦！'/>
+<scripts msg='无所畏惧的皮蛋超人！'/>
+<scripts msg='[UserRID]！要不要一起守护繁荣？'/>
+<scripts msg='[UserRID]！猜猜谁是真的~'/>
+</condition>
+<condition type='3'>
+<scripts msg='英雄一向是在最后才登场~'/>
+<scripts msg='带着头盔好难受…'/>
+<scripts msg='10秒前不是说过在这见吗~'/>
+</condition>
+<condition type='4'>
+<scripts msg='能和黑妞一起跑就好了~'/>
+<scripts msg='选择我们是明智的选择'/>
+<scripts msg='照这样下去，我们会赢的~~'/>
+</condition>
+</campaign>
+<campaign type='14'>
+<condition type='0'>
+<scripts msg='都去哪儿了~都去哪里了！'/>
+<scripts msg='[UserRID]下次一起去冒险吧！'/>
+<scripts msg='[AiRID]！快点，抓住[UserRID]！'/>
+<scripts msg='披风好像太长了，被踩到了'/>
+<scripts msg='好，现在开始是表演时间！'/>
+</condition>
+<condition type='1'>
+<scripts msg='虽然有些不安，但我们是不会输的吧？'/>
+<scripts msg='你不是他的对手！'/>
+<scripts msg='好久没遇到这样的对手，好开心！'/>
+<scripts msg='不要那么紧张~'/>
+<scripts msg='[UserRID]来猜猜谁是真的皮蛋~！'/>
+</condition>
+<condition type='2'>
+<scripts msg='哈哈，比看起来还呆啊？'/>
+<scripts msg='[UserRID]！来试试实力？'/>
+<scripts msg='为了热血暴走团的胜利！'/>
+<scripts msg='哥哥快跑~加油~！！'/>
+<scripts msg='听说过我们的名字吗？'/>
+<scripts msg='我先往前突破，后面就交给你了！'/>
+</condition>
+<condition type='3'>
+<scripts msg='第一次赛车吗~'/>
+<scripts msg='[AiRID]！！别太认真！'/>
+</condition>
+<condition type='4'>
+<scripts msg='终点就在眼前了！'/>
+<scripts msg='你们有跟紧吗？'/>
+<scripts msg='想憋着不笑原来这么难~'/>
+</condition>
+</campaign>
+<campaign type='15'>
+<condition type='0'>
+<scripts msg='为了完胜！！'/>
+<scripts msg='该死，被摆了一道~'/>
+<scripts msg='最近我很低迷~'/>
+<scripts msg='[UserRID]，竟然有这种家伙'/>
+<scripts msg='感到非常愤怒！！'/>
+</condition>
+<condition type='1'>
+<scripts msg='是时候慢慢展示我们的实力了'/>
+<scripts msg='看起来好像需要帮助'/>
+<scripts msg='快进来吧~'/>
+<scripts msg='让你知道什么是真正的赛车~'/>
+<scripts msg='[UserRID]！公平较量？ 那是什么！'/>
+<scripts msg='来露一手啊~'/>
+</condition>
+<condition type='2'>
+<scripts msg='黑暗组织将支配世界！'/>
+<scripts msg='星陨之石归黑暗组织所有！'/>
+<scripts msg='无法保障你的性命！'/>
+<scripts msg='征！服！世！界！'/>
+</condition>
+<condition type='3'>
+<scripts msg='[UserRID]！我还以为是小孩~'/>
+<scripts msg='黑暗组织一直在胜利！'/>
+</condition>
+<condition type='4'>
+<scripts msg='黑暗组织从未失败过！'/>
+<scripts msg='[UserRID]！就只能看着我们的后背'/>
+</condition>
+</campaign>
+<campaign type='16'>
+<condition type='0'>
+<scripts msg='好~非常好~愉快的时间！'/>
+<scripts msg='[UserRID]！现在开始吧！'/>
+<scripts msg='[UserRID]！你是最好的间谍！'/>
+<scripts msg='[UserRID]！跟我们一起吧？'/>
+<scripts msg='得找一找星陨之石！'/>
+</condition>
+<condition type='1'>
+<scripts msg='黑暗组织从未失败过！'/>
+<scripts msg='是时候展示真正的实力了'/>
+<scripts msg='我才没有掉以轻心，我这叫游刃有余！'/>
+<scripts msg='[UserRID]！稍微休息一会再走，如何？'/>
+<scripts msg='黑暗组织将支配世界！'/>
+</condition>
+<condition type='2'>
+<scripts msg='我们要征服世界！！'/>
+<scripts msg='我无法保障你的性命！'/>
+<scripts msg='我们是最强BOSS！特攻队~'/>
+<scripts msg='只有顶级的人，才能跟我们较量~'/>
+<scripts msg='害怕的话赶紧抛弃吧~'/>
+</condition>
+<condition type='3'>
+<scripts msg='海盗船长！比尔！路易！机器人皮蛋！'/>
+<scripts msg='为了最强BOSS~'/>
+<scripts msg='胜利属于我们~'/>
+<scripts msg='[UserRID]！自相残杀~愚蠢的家伙~'/>
+<scripts msg='[AiRID]！赶紧停止吧！'/>
+</condition>
+<condition type='4'>
+<scripts msg='休息10秒再走啊~'/>
+<scripts msg='好无聊~这样没什么意思！'/>
+</condition>
+</campaign>
+<campaign type='17'>
+<condition type='0'>
+<scripts msg='[UserRID]！快跟上我~'/>
+<scripts msg='失败属于你们~胜利属于我们~！'/>
+<scripts msg='[AiRID]跑啊！快点跑！'/>
+<scripts msg='等会！还没开始！'/>
+<scripts msg='集中攻击[UserRID]！'/>
+</condition>
+<condition type='1'>
+<scripts msg='[AiRID]！按照作战计划行动！'/>
+<scripts msg='[AiRID]现在开始按照我的作战计划进行！'/>
+<scripts msg='各自为战的话，作战计划还有什么用！'/>
+<scripts msg='现在开始作战！执行A计划！'/>
+<scripts msg='觉悟吧！我们不会怜悯别人！'/>
+</condition>
+<condition type='2'>
+<scripts msg='[UserRID]！快背叛，自相残杀吧~'/>
+<scripts msg='是时候展示真正的实力了'/>
+<scripts msg='需要背叛者的表现！[UserRID]'/>
+<scripts msg='把[UserRID]集中标记下~'/>
+<scripts msg='从概率上来算，赢我们的几率是0~'/>
+</condition>
+<condition type='3'>
+<scripts msg='我们是最强的！BOSS队~'/>
+<scripts msg='钱已经打到你的账户了~[UserRID]！'/>
+<scripts msg='[UserRID]背叛要抓住时机~'/>
+<scripts msg='[UserRID]！确认下金币看看！'/>
+<scripts msg='好累啊~快点结束吧~'/>
+</condition>
+<condition type='4'>
+<scripts msg='[AiRID]！目标锁定[UserRID]'/>
+<scripts msg='攻击！攻击！千万不要手软！'/>
+<scripts msg='背叛者表现的时候到了！[UserRID]，开始吧！'/>
+</condition>
+</campaign>
+	<campaign type='19'> <!-- 어비스 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='[UserRID]！准备好为你傲慢付出代价了吧？'/>
+			<scripts msg='[UserRID]，先教训你把！'/>
+			<scripts msg='你们已经无路可逃了！'/>
+			<scripts msg='为了重建阿比斯，你就给我消失吧！'/>
+			<scripts msg='为了阿比斯进军陆地的梦想！'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='这就是阿比斯的实力！'/>
+			<scripts msg='[UserRID]！不过如此啊。'/>
+			<scripts msg='这也太简单了吧！'/>
+			<scripts msg='[UserRID] 陆地上的代表？就这？'/>
+			<scripts msg='你们这些人类，真让人无语。'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='再这样下去搞不好会输啊！'/>
+			<scripts msg='看来是低估他们了！'/>
+			<scripts msg='[UserRID]！还挺厉害的吗？'/>
+			<scripts msg='是我们太小瞧他们了吗？'/>
+			<scripts msg='[UserRID]！让你们见识下阿比斯的实力！'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='你们已经被包围了！'/>
+			<scripts msg='[UserRID]，可否让个道？'/>
+			<scripts msg='[UserRID]，真碍眼，给我让开。'/>
+			<scripts msg='投降吧！你们已经没有任何胜算了！'/>
+			<scripts msg='[UserRID]！竟敢妨碍我！'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='让你见识下阿比斯军团的实力！'/>
+			<scripts msg='劝你还是投降吧！'/>
+			<scripts msg='这次就彻底解决掉你吧！'/>
+		</condition>
+	</campaign>
+
+	<campaign type='20'> <!-- 마녀협회 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='对[UserRID]施什么魔法好呢？'/>
+			<scripts msg='我可不会手下留情的！'/>
+			<scripts msg='借此机会，让你见识下魔女的可怕之处！'/>
+			<scripts msg='让你见识下魔法的厉害~呼呼！'/>
+			<scripts msg='放马过来~。'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='小看魔女可是要付出代价的~！'/>
+			<scripts msg='[UserRID]，就这？'/>
+			<scripts msg='[UserRID]，就这？不用魔法也能赢吧？'/>
+			<scripts msg='闭着眼睛跑车也应该比[UserRID]快吧！哈哈哈！'/>
+			<scripts msg='见识到魔法的伟大了吧？'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='魔法扫帚加速！呀~'/>
+			<scripts msg='绝对不会输的！'/>
+			<scripts msg='[UserRID]！绝对不会被你甩开！'/>
+			<scripts msg='[AiRID]，有点不对劲啊？'/>
+			<scripts msg='[AiRID]，没有念错咒语吧？'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='差不多就放弃吧！'/>
+			<scripts msg='[UserRID]，你就不怕魔女吗？'/>
+			<scripts msg='要不先把[UserRID]变成青蛙？'/>
+			<scripts msg='[UserRID]，竟敢惹怒魔女！'/>
+			<scripts msg='[AiRID]！别放弃！比赛还没结束！'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='看来你是不知道魔女有多可怕！'/>
+			<scripts msg='现在投降还来得及。'/>
+			<scripts msg='不会再放水了哦。'/>
+		</condition>
+	</campaign>
+	<campaign type='21'> <!-- 삼국지 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='祝你能在此对决中胜利！'/>
+			<scripts msg='让我来看看你们的实力！'/>
+			<scripts msg='[AiRID]! 就是现在！'/>
+			<scripts msg='[UserRID]! 我来跟你一决高下！'/>
+			<scripts msg='[UserRID]! 任何都无法阻挡我们！'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='胜利就在眼前！'/>
+			<scripts msg='[UserRID]! 胆小的将领只会让整个团队陷入危险中'/>
+			<scripts msg='[UserRID], 就这么点实力吗？哈哈！'/>
+			<scripts msg='[UserRID], 你的努力我还是会记住的！'/>
+			<scripts msg='青龙偃月刀还没有派上用场呢！'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='不要退步！战斗吧！战斗！'/>
+			<scripts msg='[UserRID]! 我不会就此善罢甘休的！'/>
+			<scripts msg='局势不妙。。。'/>
+			<scripts msg='先抓住[UserRID]！'/>
+			<scripts msg='[AiRID]! 直到最后也不要放弃！'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='初生牛犊不怕虎！'/>
+			<scripts msg='[UserRID]! 主动投降怎么样？'/>
+			<scripts msg='[UserRID]! 做好与我对决的觉悟了吗？'/>
+			<scripts msg='[UserRID], 让我们一决高下吧！'/>
+			<scripts msg='[AiRID]! 突击！'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='这场对决势必要拿下！'/>
+			<scripts msg='现在投降还不晚呢。'/>
+			<scripts msg='这次不会再心慈手软了。'/>
+		</condition>
+	</campaign>
+</chattingScript>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animalBoosterList>
+  <animalBooster kartId="56" iconId="80" prob="-1"/>
+  <animalBooster kartId="80" iconId="80" prob="50"/>
+  <animalBooster kartId="97" iconId="97"/>
+  <animalBooster kartId="100" iconId="100"/>
+  <animalBooster kartId="107" iconId="107"/>
+  <animalBooster kartId="112" iconId="266" prob="100"/>
+  <animalBooster kartId="113" iconId="266"/>
+  <animalBooster kartId="115" iconId="115"/>
+  <animalBooster kartId="119" iconId="119"/>
+  <animalBooster kartId="120" iconId="119"/>
+  <animalBooster kartId="122" iconId="119"/>
+  <animalBooster kartId="123" iconId="119"/>
+  <animalBooster kartId="129" iconId="129"/>
+  <animalBooster kartId="131" iconId="131"/>
+  <animalBooster kartId="141" iconId="141"/>
+  <animalBooster kartId="155" iconId="80"/>
+  <animalBooster kartId="158" iconId="158"/>
+  <animalBooster kartId="159" iconId="159"/>
+  <animalBooster kartId="160" iconId="80"/>
+  <animalBooster kartId="180" iconId="180"/>
+  <animalBooster kartId="181" iconId="180"/>
+  <animalBooster kartId="186" iconId="197"/>
+  <animalBooster kartId="197" iconId="197"/>
+  <animalBooster kartId="199" iconId="202" prob="-1"/>
+  <animalBooster kartId="202" iconId="202"/>
+  <animalBooster kartId="203" iconId="158"/>
+  <animalBooster kartId="206" iconId="158"/>
+  <animalBooster kartId="208" iconId="208"/>
+  <animalBooster kartId="209" iconId="100"/>
+  <animalBooster kartId="213" iconId="209"/>
+  <animalBooster kartId="217" iconId="197"/>
+  <animalBooster kartId="218" iconId="218"/>
+  <animalBooster kartId="223" iconId="209"/>
+  <animalBooster kartId="227" iconId="218"/>
+  <animalBooster kartId="228" iconId="115"/>
+  <animalBooster kartId="234" iconId="141"/>
+  <animalBooster kartId="236" iconId="141" prob="80"/>
+  <animalBooster kartId="241" iconId="241" prob="-1"/>
+  <animalBooster kartId="243" iconId="241" prob="-1"/>
+  <animalBooster kartId="244" iconId="119"/>
+  <animalBooster kartId="247" iconId="129"/>
+  <animalBooster kartId="250" iconId="241" prob="-1"/>
+  <animalBooster kartId="253" iconId="218"/>
+  <animalBooster kartId="254" iconId="241" prob="-1"/>
+  <animalBooster kartId="255" iconId="255"/>
+  <animalBooster kartId="259" iconId="259"/>
+  <animalBooster kartId="260" iconId="262" prob="-1"/>
+  <animalBooster kartId="262" iconId="262"/>
+  <animalBooster kartId="266" iconId="266"/>
+  <animalBooster kartId="267" iconId="266"/>
+  <animalBooster kartId="268" iconId="202"/>
+  <animalBooster kartId="273" iconId="273"/>
+  <animalBooster kartId="275" iconId="273"/>
+  <animalBooster kartId="276" iconId="218"/>
+  <animalBooster kartId="279" iconId="180"/>
+  <animalBooster kartId="286" iconId="209"/>
+  <animalBooster kartId="287" iconId="129"/>
+  <animalBooster kartId="288" iconId="273"/>
+  <animalBooster kartId="289" iconId="274"/>
+  <animalBooster kartId="301" iconId="141"/>
+  <animalBooster kartId="312" iconId="119"/>
+  <animalBooster kartId="314" iconId="218"/>
+  <animalBooster kartId="319" iconId="97"/>
+  <animalBooster kartId="320" iconId="100"/>
+  <animalBooster kartId="366" iconId="197"/>
+  <animalBooster kartId="367" iconId="335"/>
+  <animalBooster kartId="379" iconId="336"/>
+  <animalBooster kartId="386" iconId="80"/>
+  <animalBooster kartId="399" iconId="197"/>
+  <animalBooster kartId="412" iconId="197"/>
+  <animalBooster kartId="417" iconId="416"/>
+  <animalBooster kartId="426" iconId="335" prob="-1"/>
+  <animalBooster kartId="427" iconId="335" prob="-1"/>
+  <animalBooster kartId="430" iconId="273"/>
+  <animalBooster kartId="452" iconId="80"/>
+  <animalBooster kartId="469" iconId="100" prob="-1"/>
+  <animalBooster kartId="478" iconId="80"/>
+  <animalBooster kartId="492" iconId="119"/>
+  <animalBooster kartId="498" iconId="197"/>
+  <animalBooster kartId="514" iconId="218"/>
+  <animalBooster kartId="530" iconId="218"/>
+  <animalBooster kartId="533" iconId="273" prob="-1"/>
+  <animalBooster kartId="538" iconId="538"/>
+  <animalBooster kartId="569" iconId="197"/>
+  <animalBooster kartId="572" iconId="262"/>
+  <animalBooster kartId="585" iconId="197" prob="-1"/>
+  <animalBooster kartId="597" iconId="538"/>
+  <animalBooster kartId="613" iconId="335" prob="-1"/>
+  <animalBooster kartId="675" iconId="335" prob="-1"/>
+  <animalBooster kartId="697" iconId="241" prob="-1"/>
+  <animalBooster kartId="698" iconId="259"/>
+  <animalBooster kartId="699" iconId="273"/>
+  <animalBooster kartId="707" iconId="707"/>
+  <animalBooster kartId="727" iconId="218"/>
+  <animalBooster kartId="731" iconId="119"/>
+  <animalBooster kartId="769" iconId="100"/>
+  <animalBooster kartId="770" iconId="100"/>
+  <animalBooster kartId="772" iconId="100"/>
+  <animalBooster kartId="773" iconId="100"/>
+  <animalBooster kartId="774" iconId="100"/>
+  <animalBooster kartId="781" iconId="262"/>
+  <animalBooster kartId="797" iconId="797"/>
+  <animalBooster kartId="822" iconId="197"/>
+  <animalBooster kartId="842" iconId="241"/>
+  <animalBooster kartId="858" iconId="197"/>
+  <animalBooster kartId="866" iconId="266"/>
+  <animalBooster kartId="882" iconId="197"/>
+  <animalBooster kartId="889" iconId="797"/>
+  <animalBooster kartId="922" iconId="197"/>
+  <animalBooster kartId="940" iconId="797"/>
+  <animalBooster kartId="949" iconId="797"/>
+  <animalBooster kartId="950" iconId="797"/>
+  <animalBooster kartId="951" iconId="797"/>
+  <animalBooster kartId="958" iconId="180"/>
+  <animalBooster kartId="964" iconId="197"/>
+  <animalBooster kartId="966" iconId="197"/>
+  <animalBooster kartId="971" iconId="971"/>
+  <animalBooster kartId="995" iconId="797"/>
+  <animalBooster kartId="1050" iconId="797"/>
+  <animalBooster kartId="1060" iconId="797"/>
+  <animalBooster kartId="1065" iconId="80"/>
+  <animalBooster kartId="1073" iconId="241"/>
+  <animalBooster kartId="1086" iconId="100"/>
+  <animalBooster kartId="1087" iconId="100"/>
+  <animalBooster kartId="1105" iconId="180"/>
+  <animalBooster kartId="1110" iconId="797"/>
+  <animalBooster kartId="1124" iconId="119"/>
+  <animalBooster kartId="1128" iconId="335"/>
+  <animalBooster kartId="1139" iconId="197"/>
+  <animalBooster kartId="1145" iconId="119"/>
+  <animalBooster kartId="1274" iconId="80"/>
+  <animalBooster kartId="1281" iconId="797"/>
+  <animalBooster kartId="1282" iconId="797"/>
+  <animalBooster kartId="1283" iconId="797"/>
+  <animalBooster kartId="1298" iconId="202"/>
+  <animalBooster kartId="1315" iconId="197"/>
+  <animalBooster kartId="1342" iconId="141"/>
+  <animalBooster kartId="1353" iconId="335"/>
+  <animalBooster kartId="1377" iconId="797"/>
+  <animalBooster kartId="1395" iconId="197"/>
+  <animalBooster kartId="1404" iconId="1404"/>
+  <animalBooster kartId="1436" iconId="262" prob="100"/>
+  <animalBooster kartId="1464" iconId="241" prob="100"/>
+  <animalBooster kartId="1469" iconId="80" prob="100"/>
+  <animalBooster kartId="1484" iconId="119" prob="100"/>
+  <animalBooster kartId="1489" iconId="241" prob="100"/>
+  <animalBooster kartId="1494" iconId="335" prob="100"/>
+  <animalBooster kartId="1496" iconId="208" prob="100"/>
+  <animalBooster kartId="1507" iconId="797"/>
+  <animalBooster kartId="1522" iconId="266"/>
+  <animalBooster kartId="1543" iconId="159"/>
+  <animalBooster kartId="1561" iconId="335" prob="100"/>
+  <animalBooster kartId="1567" iconId="335" prob="100"/>
+  <animalBooster kartId="1579" iconId="797" prob="100"/>
+  <animalBooster kartId="1591" iconId="266" prob="100"/>
+  <animalBooster kartId="1601" iconId="797" prob="100"/>
+  <animalBooster kartId="1622" iconId="241" prob="100"/>
+  <animalBooster kartId="1631" iconId="262" prob="100"/>
+</animalBoosterList>

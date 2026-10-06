@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="USA2"/>
+  <Char id="ms_thor" pos="8 0" emotion="stop3"/>
+  <Msg name="托尔" string="洛基~！！！！你这家伙到底躲到哪去了！|原来在那啊！！最好别让我抓到！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="3 0" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="洛基" string="啊啊啊！！救救洛基！！！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="托尔" string="你给我站住！！！！|你看看你都做了些什么！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="托尔" string="以托尔的名义，绝不会饶恕你！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="洛基" string="哥…，对不起~~原谅我一次！就一次！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="洛基" string="我再也不敢了^求你了~"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="2 0" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="托尔" string="说什么都晚了！！别让我逮到！！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="2 0" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="洛基" string="哎！！！三十六计走位上策~~"/>
+  <Enter/>
+</Scene>

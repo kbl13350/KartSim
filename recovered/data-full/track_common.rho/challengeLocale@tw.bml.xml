@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<challengeList>
+  <passMsg k="0_yet" v="成功了！可以學習下一堂課程了哦"/>
+  <passMsg k="0_get" v="您已經可以在新手頻道中與其它車手進行多人遊戲您也可以嚐試挑戰初級駕駛執照的考試，加油了！"/>
+  <passMsg k="1_yet" v="成功了！可以挑戰初級駕照了哦"/>
+  <passMsg k="1_get" v="成功了！可以在初級賽區和其它車手進行多人遊戲了哦"/>
+  <passMsg k="2_yet" v="成功了！可以挑戰L3駕照了哦"/>
+  <passMsg k="2_get" v="成功了！可以在L3賽區和其它車手進行多人遊戲了哦"/>
+  <passMsg k="3_yet" v="成功了！可以挑戰L2駕照了哦"/>
+  <passMsg k="3_get" v="成功了！可以在L2賽區和其它車手進行多人遊戲了哦"/>
+  <passMsg k="4_yet" v="成功了！可以挑戰L1駕照了哦"/>
+  <passMsg k="4_get" v="獲得考取L1駕照的紀念禮 (L1氣球50個)。可以在L1頻道和其他車手進行多人遊戲了哦！"/>
+  <challenge id="0x00" name="練習行駛"/>
+  <challenge id="0x01" name="練習獲得道具箱"/>
+  <challenge id="0x02" name="練習使用加速器"/>
+  <challenge id="0x03" name="練習彎道1"/>
+  <challenge id="0x04" name="練習使用飛彈"/>
+  <challenge id="0x05" name="練習行駛環形賽道"/>
+  <challenge id="0x10" name="練習彎道2"/>
+  <challenge id="0x11" name="練習使用水炸彈"/>
+  <challenge id="0x12" name="練習使用盾牌"/>
+  <challenge id="0x13" name="練習行駛"/>
+  <challenge id="0x14" name="練習使用磁鐵"/>
+  <challenge id="0x15" name="計時賽1"/>
+  <challenge id="0x16" name="練習使用道具換位卡" passMsg="成功了！獲得50個道具換位卡" rewardStockId="53" nextStage="LobbyStage" nextStageParam="LobbyParam:&lt;param gameCat=&quot;kMultiPlay&quot;/&gt;" needToUpdateChData="true"/>
+  <challenge id="0x17" isValid="false"/>
+  <challenge id="0x20" name="練習彎道3" lucciPrice="200"/>
+  <challenge id="0x21" name="擊退大魔王" lucciPrice="200"/>
+  <challenge id="0x22" name="練習甩尾1" lucciPrice="200"/>
+  <challenge id="0x23" name="脫離水炸彈" lucciPrice="200"/>
+  <challenge id="0x24" name="甩尾U" lucciPrice="200"/>
+  <challenge id="0x25" name="計時賽2" lucciPrice="200" nextStage="LobbyStage" nextStageParam="LobbyParam:&lt;param gameCat=&quot;kMultiPlay&quot;/&gt;" needToUpdateChData="true"/>
+  <challenge id="0x30" name="練習甩尾2" lucciPrice="300"/>
+  <challenge id="0x31" name="練習使用飛彈" lucciPrice="300"/>
+  <challenge id="0x32" name="跳躍甩尾" lucciPrice="300"/>
+  <challenge id="0x33" name="追捕海盜船長" lucciPrice="300"/>
+  <challenge id="0x34" name="練習團體道具賽" lucciPrice="300"/>
+  <challenge id="0x35" name="計時賽3" lucciPrice="300" nextStage="LobbyStage" nextStageParam="LobbyParam:&lt;param gameCat=&quot;kMultiPlay&quot;/&gt;" needToUpdateChData="true"/>
+  <challenge id="0x41" name="大魔王的妨礙" lucciPrice="300" require="0x35" time="2000"/>
+  <challenge id="0x42" name="阻擋海盜軍團" lucciPrice="300" time="2000"/>
+  <challenge id="0x43" name="高速公路攻略" lucciPrice="300" time="2000"/>
+  <challenge id="0x44" name="滑坡攻略" lucciPrice="300" time="2000"/>
+  <challenge id="0x45" name="計時賽 4" rewardStockId="1259" nextStage="LobbyStage" nextStageParam="LobbyParam:&lt;param gameCat=&quot;kMultiPlay&quot;/&gt;" needToUpdateChData="true" track="northeu_R01" time="46000"/>
+</challengeList>

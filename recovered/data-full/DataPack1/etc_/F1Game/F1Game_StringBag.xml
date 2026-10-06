@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8'?> 
+<StringBag>
+
+<!-- 공용 문자열 -->
+	<k n='count'>
+		<m c='kr' v='%d 회'/>
+		<m c='jp' v='%d回'/>
+		<m c='cn' v='%d 回'/>
+		<m c='tw' v='%d 回'/>
+		<m c='ru' v='%d Кол-во'/>
+		<m c='id' v='%d Kali'/>
+		<m c='th' v='%d ครั้ง'/>
+	</k> 	
+	<k n='point'>
+		<m c='kr' v='%d 점'/>
+		<m c='jp' v='%d点'/>
+		<m c='cn' v='%d 分'/>
+		<m c='tw' v='%d 點'/>
+		<m c='ru' v='%d Очки'/>
+		<m c='id' v='%d pts'/>
+		<m c='th' v='%d คะแนน'/>
+	</k> 	
+	<k n='rank'>
+		<m c='kr' v='%d 위'/>
+		<m c='jp' v='%d位'/>
+		<m c='cn' v='%d 名'/>
+		<m c='tw' v='%d 名'/>
+		<m c='ru' v='%d Ранг'/>
+		<m c='id' v='Juara %d'/>
+		<m c='th' v='%d ลำดับที่'/>
+	</k> 	
+
+	<k n='countFinal'>
+		<m c='kr' v='%d 회 / %d 회 이상'/>
+		<m c='jp' v='%d回 / %d回以上'/>
+		<m c='cn' v='%d 回 / %d 回 以上'/>
+		<m c='tw' v='%d 回 / %d 回 以上'/>
+		<m c='ru' v='%d / %d раз и более'/>
+		<m c='id' v=' %d Kali/ lebih dari %d Kali'/>
+		<m c='th' v='%d ครั้ง / %d ครั้งขึ้นไป'/>
+	</k> 	
+	<k n='pointFinal'>
+		<m c='kr' v='%d 점 / %d 점 이상'/>
+		<m c='jp' v='%d点 / %d点以上'/>
+		<m c='cn' v='%d 分 / %d 分 以上'/>
+		<m c='tw' v='%d 點 / %d 點 以上'/>
+		<m c='ru' v='%d / %d очков и более'/>
+		<m c='id' v='%d pts / lebih dari %d pts'/>
+		<m c='th' v='%d คะแนน/ %d คะแนนขึ้นไป'/>
+	</k> 	
+	<k n='rankFinal'>
+		<m c='kr' v='%d 위 / %d 위 이상'/>
+		<m c='jp' v='%d位 / %d位以上'/>
+		<m c='cn' v='%d 名 / %d 名 以上'/>
+		<m c='tw' v='%d 名 / %d 名 以上'/>
+		<m c='ru' v='%d / %d и более'/>
+		<m c='id' v='Juara  %d / lebih dari Juara %d'/>
+		<m c='th' v='ที่ %d / ที่ %d ขึ้นไป'/>
+	</k>
+	<k n='levelFinal'>
+		<m c='kr' v='%s / %s 이상'/>
+		<m c='jp' v='%s / %s以上'/>
+		<m c='cn' v='%s / %s 以上'/>
+		<m c='tw' v='%s / %s 以上'/>
+		<m c='ru' v='%s / %s Более'/>
+		<m c='id' v='%s / lebih dari %s'/>
+		<m c='th' v='%s / %s คนขึ้นไป'/>
+	</k> 	
+	
+	<k n='over'>
+		<m c='kr' v='이상'/>
+		<m c='jp' v='以上'/>
+		<m c='cn' v='以上'/>
+		<m c='tw' v='以上'/>
+		<m c='ru' v='Более'/>
+		<m c='id' v='lebih dari'/>
+		<m c='th' v='คนขึ้นไป'/>
+	</k> 		
+
+	<k n='overTwo'>
+		<m c='kr' v='2명 이상'/>
+		<m c='jp' v='2人以上'/>
+		<m c='cn' v='2名 以上'/>
+		<m c='tw' v='2名 以上'/>
+		<m c='ru' v='Более 2-х человек'/>
+		<m c='id' v='lebih dari 2 player'/>
+		<m c='th' v='2 คนขึ้นไป'/>
+	</k> 		
+
+	<k n='level_1'>
+		<m c='kr' v='VERYEASY'/>
+		<m c='jp' v='VERYEASY'/>
+		<m c='cn' v='极易'/>
+		<m c='tw' v='新手入門'/>
+		<m c='ru' v='ОЧЕНЬ ЛЕГКИЙ'/>
+		<m c='id' v='Very Easy'/>
+		<m c='th' v='VERYEASY'/>
+	</k> 	
+	<k n='level_2'>
+		<m c='kr' v='EASY'/>
+		<m c='jp' v='EASY'/>
+		<m c='cn' v='容易'/>
+		<m c='tw' v='簡單'/>
+		<m c='ru' v='ЛЕГКИЙ'/>
+		<m c='id' v='Easy'/>
+		<m c='th' v='EASY'/>
+	</k> 	
+	<k n='level_3'>
+		<m c='kr' v='NORMAL'/>
+		<m c='jp' v='NORMAL'/>
+		<m c='cn' v='普通'/>
+		<m c='tw' v='普通'/>
+		<m c='ru' v='НОРМАЛЬНЫЙ'/>
+		<m c='id' v='Normal'/>
+		<m c='th' v='NORMAL'/>
+	</k> 	
+	<k n='level_4'>
+		<m c='kr' v='HARD'/>
+		<m c='jp' v='HARD'/>
+		<m c='cn' v='困难'/>
+		<m c='tw' v='困難'/>
+		<m c='ru' v='СЛОЖНЫЙ'/>
+		<m c='id' v='Hard'/>
+		<m c='th' v='HARD'/>
+	</k> 	
+
+<!-- NPC 이름 팀ID_인덱스 포멧 -->
+	<k n='1_1'>
+		<m c='kr' v='네오'/>
+		<m c='jp' v='ネオ'/>
+		<m c='cn' v='尼欧'/>
+		<m c='tw' v='尼歐'/>
+		<m c='ru' v='Нео'/>
+		<m c='id' v='Legend Racer'/>
+		<m c='th' v='Neo'/>
+	</k> 	
+	<k n='1_2'>
+		<m c='kr' v='MR. 블랙'/>
+		<m c='jp' v='MR.ブラック'/>
+		<m c='cn' v='MR. SUN'/>
+		<m c='tw' v='MR. SUN'/>
+		<m c='ru' v='М-р Блэк'/>
+		<m c='id' v='MR. Black'/>
+		<m c='th' v='MR. SUN'/>
+	</k> 	
+	<k n='1_3'>
+		<m c='kr' v='하이퍼모터'/>
+		<m c='jp' v='ハイパーモーター'/>
+		<m c='cn' v='HyperMotor'/>
+		<m c='tw' v='超級快車手'/>
+		<m c='ru' v='Гипердрайв'/>
+		<m c='id' v='Hyper Motor'/>
+		<m c='th' v='Hyper Motor'/>
+	</k> 	
+	<k n='1_4'>
+		<m c='kr' v='C-Dragon'/>
+		<m c='jp' v='C-Dragon'/>
+		<m c='cn' v='C-Dragon'/>
+		<m c='tw' v='酷龍'/>
+		<m c='ru' v='Дракон'/>
+		<m c='id' v='C-Dragon'/>
+		<m c='th' v='C-Dragon'/>
+	</k> 	
+	<k n='1_5'>
+		<m c='kr' v='배드스킬'/>
+		<m c='jp' v='バッドスキル'/>
+		<m c='cn' v='Badskill'/>
+		<m c='tw' v='壞技師'/>
+		<m c='ru' v='Неумеха'/>
+		<m c='id' v='Bad Skill'/>
+		<m c='th' v='Badskill'/>
+	</k> 	
+	<k n='1_6'>
+		<m c='kr' v='라이더 루'/>
+		<m c='jp' v='ライダールゥ'/>
+		<m c='cn' v='骑士'/>
+		<m c='tw' v='賽車手 盧比'/>
+		<m c='ru' v='Анонимус'/>
+		<m c='id' v='Rider Liu'/>
+		<m c='th' v='Rider Roo'/>
+	</k> 	
+	<k n='1_7'>
+		<m c='kr' v='P.Y.K'/>
+		<m c='jp' v='P.Y.H'/>
+		<m c='cn' v='P.Y.K'/>
+		<m c='tw' v='P.Y.K'/>
+		<m c='ru' v='Ветрогон'/>
+		<m c='id' v='P.Y.K'/>
+		<m c='th' v='P.Y.K'/>
+	</k> 	
+	<k n='1_8'>
+		<m c='kr' v='엉클라이스'/>
+		<m c='jp' v='アンクルライス'/>
+		<m c='cn' v='Um Pro'/>
+		<m c='tw' v='Um Pro'/>
+		<m c='ru' v='Новичок'/>
+		<m c='id' v='Luki'/>
+		<m c='th' v='Um Pro'/>
+	</k> 	
+	<k n='1_9'>
+		<m c='kr' v='카왕'/>
+		<m c='jp' v='カワン'/>
+		<m c='cn' v='卡丁车王'/>
+		<m c='tw' v='卡丁車之王'/>
+		<m c='ru' v='Король'/>
+		<m c='id' v='KartRider King'/>
+		<m c='th' v='KARTRIDER King'/>
+	</k> 	
+	<k n='1_10'>
+		<m c='kr' v='라이더 넥'/>
+		<m c='jp' v='ライダーネック'/>
+		<m c='cn' v='尼克'/>
+		<m c='tw' v='賽車手 尼克'/>
+		<m c='ru' v='Немус'/>
+		<m c='id' v='Rider Nek'/>
+		<m c='th' v='Rider Next'/>
+	</k> 	
+	<k n='1_11'>
+		<m c='kr' v='로미'/>
+		<m c='jp' v='ロミ'/>
+		<m c='cn' v='罗密'/>
+		<m c='tw' v='羅米'/>
+		<m c='ru' v='Ромео'/>
+		<m c='id' v='Romi'/>
+		<m c='th' v='Rome'/>
+	</k> 	
+	<k n='1_12'>
+		<m c='kr' v='신난어린이'/>
+		<m c='jp' v='浮かれる子供'/>
+		<m c='cn' v='大话王'/>
+		<m c='tw' v='臭屁仔'/>
+		<m c='ru' v='Фантом'/>
+		<m c='id' v='Anak kecil yang gembira'/>
+		<m c='th' v='Gaka'/>
+	</k> 	
+	<k n='1_13'>
+		<m c='kr' v='로드'/>
+		<m c='jp' v='ロード'/>
+		<m c='cn' v='鲁德'/>
+		<m c='tw' v='洛迪'/>
+		<m c='ru' v='Расшибай'/>
+		<m c='id' v='Rod'/>
+		<m c='th' v='Juliet'/>
+	</k> 	
+	<k n='1_14'>
+		<m c='kr' v='입카트'/>
+		<m c='jp' v='口カート'/>
+		<m c='cn' v='Jean'/>
+		<m c='tw' v='賽車手 哈利'/>
+		<m c='ru' v='Зубастик'/>
+		<m c='id' v='Fussy'/>
+		<m c='th' v='Lie'/>
+	</k> 	
+	<k n='1_15'>
+		<m c='kr' v='미녀라이더'/>
+		<m c='jp' v='美女ライダー'/>
+		<m c='cn' v='宝滥'/>
+		<m c='tw' v='寶嵐'/>
+		<m c='ru' v='Красотка'/>
+		<m c='id' v='Beauty Rider'/>
+		<m c='th' v='Linzy'/>
+	</k> 	
+	<k n='1_16'>
+		<m c='kr' v='욕삼이'/>
+		<m c='jp' v='悪口王'/>
+		<m c='cn' v='凯特'/>
+		<m c='tw' v='愛罵人的人'/>
+		<m c='ru' v='Проклинатор'/>
+		<m c='id' v='Grumpy'/>
+		<m c='th' v='Mobee'/>
+	</k> 	
+	<k n='1_17'>
+		<m c='kr' v='OTL'/>
+		<m c='jp' v='OTL'/>
+		<m c='cn' v='小五'/>
+		<m c='tw' v='決賽選手'/>
+		<m c='ru' v='Забияка'/>
+		<m c='id' v='Fighter'/>
+		<m c='th' v='OTL'/>
+	</k> 	
+	<k n='1_18'>
+		<m c='kr' v='덕후'/>
+		<m c='jp' v='オタク'/>
+		<m c='cn' v='特德'/>
+		<m c='tw' v='泰迪'/>
+		<m c='ru' v='Тед'/>
+		<m c='id' v='Ted'/>
+		<m c='th' v='Teddy'/>
+	</k> 	
+	<k n='1_19'>
+		<m c='kr' v='용춘'/>
+		<m c='jp' v='龍春'/>
+		<m c='cn' v='龙'/>
+		<m c='tw' v='龍'/>
+		<m c='ru' v='Динозубр'/>
+		<m c='id' v='Dragon'/>
+		<m c='th' v='Dragon power'/>
+	</k> 	
+</StringBag>
+

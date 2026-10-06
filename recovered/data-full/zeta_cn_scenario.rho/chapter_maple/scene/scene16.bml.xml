@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="maple14"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="到底有多少个音乐盒？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="黑妞" string="感觉一点也没有减少呢。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="白雪人" string="白雪人需要休息。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="好，大家就在这里稍微休息一下吧！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="pinkbean" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="这就不行了？随你们咯~"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="kephi" pos="9 0" flip="true" emotion="stop4"/>
+  <Char id="orchid" pos="16 0" emotion="stop2"/>
+  <Msg name="胖墩" string="我怎么觉得后面有阴森的感觉。。。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="kephi" pos="9 0" flip="true" emotion="stop4"/>
+  <Char id="bazzi" pos="3 0" emotion="stop4"/>
+  <Char id="orchid" pos="15 0" emotion="stop2"/>
+  <Msg name="宝宝" string="额？又是你！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="哈哈。原来大家在这里~？"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" pos="2 0" flip="true" emotion="stop5"/>
+  <Msg name="短中分勇士" string="黑魔法师的傀儡！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="toben" pos="2 0" flip="true" emotion="stop5"/>
+  <Msg name="品克缤" string="你怎么会在这里？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="orchid" pos="12 0" emotion="stop2"/>
+  <Char id="toben" pos="2 0" flip="true" emotion="stop4"/>
+  <Msg name="奥尔卡" string="我也是通过你的传送门来的呀。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="orchid" pos="11 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="好不容易找到的实验材料可不能错过哦！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="pinkbean" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="orchid" pos="9 0" emotion="stop2"/>
+  <Msg name="奥尔卡" string="好了，现在可以跟我走一趟了吧？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="orchid" remove="true"/>
+  <Char id="kephi" pos="4 0" emotion="stop4"/>
+  <Msg name="胖墩" string="你刚才竟然叫我们是实验材料？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kephi" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="9 0" emotion="stop6"/>
+  <Msg name="黑妞" string="我看有点不正常呢！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="大家快跑！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（加速！）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="orchid" pos="8 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="又要逃跑吗？真的很烦。"/>
+  <Enter/>
+  <Char id="orchid" remove="true"/>
+  <Char id="orchid" pos="5 0" emotion="stop3"/>
+  <Msg name="奥尔卡" string="随便你们怎么逃跑~|终究是逃不过的。"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageBoard name="miniInfo" windowSize="609 537" adjust="0 -50" image="itemminiinfo@zz" alphaBlend="true" align="center" visible="false">
+  <Container name="itemCount3" windowSize="530 100" adjust="35 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="145 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="235 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="325 45" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="152 51" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="242 51" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="332 51" alphaBlend="true"/>
+  </Container>
+  <Container name="itemCount4" windowSize="530 100" adjust="35 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="100 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="190 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="280 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="370 45" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="107 51" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="197 51" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="287 51" alphaBlend="true"/>
+    <Panel name="item3" windowSize="64 64" texture="" adjust="377 51" alphaBlend="true"/>
+  </Container>
+  <Container name="itemCount5" windowSize="530 100" adjust="35 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="55 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="145 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="235 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="325 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="415 45" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="62 51" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="152 51" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="242 51" alphaBlend="true"/>
+    <Panel name="item3" windowSize="64 64" texture="" adjust="332 51" alphaBlend="true"/>
+    <Panel name="item4" windowSize="64 64" texture="" adjust="422 51" alphaBlend="true"/>
+  </Container>
+  <Container name="itemCount6" windowSize="530 100" adjust="35 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="10 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="100 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="190 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="280 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="370 45" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="460 45" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="17 51" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="107 51" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="197 51" alphaBlend="true"/>
+    <Panel name="item3" windowSize="64 64" texture="" adjust="287 51" alphaBlend="true"/>
+    <Panel name="item4" windowSize="64 64" texture="" adjust="377 51" alphaBlend="true"/>
+    <Panel name="item5" windowSize="64 64" texture="" adjust="467 51" alphaBlend="true"/>
+  </Container>
+  <Container name="itemCount7" windowSize="530 100" adjust="35 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="145 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="235 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="325 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="100 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="190 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="280 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="370 85" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="152 6" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="242 6" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="332 6" alphaBlend="true"/>
+    <Panel name="item3" windowSize="64 64" texture="" adjust="107 91" alphaBlend="true"/>
+    <Panel name="item4" windowSize="64 64" texture="" adjust="197 91" alphaBlend="true"/>
+    <Panel name="item5" windowSize="64 64" texture="" adjust="287 91" alphaBlend="true"/>
+    <Panel name="item6" windowSize="64 64" texture="" adjust="377 91" alphaBlend="true"/>
+  </Container>
+  <Container name="itemCount8" windowSize="530 100" adjust="35 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="100 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="190 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="280 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="370 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="100 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="190 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="280 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="370 85" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="107 6" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="197 6" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="287 6" alphaBlend="true"/>
+    <Panel name="item3" windowSize="64 64" texture="" adjust="377 6" alphaBlend="true"/>
+    <Panel name="item4" windowSize="64 64" texture="" adjust="107 91" alphaBlend="true"/>
+    <Panel name="item5" windowSize="64 64" texture="" adjust="197 91" alphaBlend="true"/>
+    <Panel name="item6" windowSize="64 64" texture="" adjust="287 91" alphaBlend="true"/>
+    <Panel name="item7" windowSize="64 64" texture="" adjust="377 91" alphaBlend="true"/>
+  </Container>
+  <Container name="itemCount9" windowSize="530 100" adjust="35 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="100 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="190 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="280 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="370 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="55 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="145 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="235 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="325 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="415 85" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="107 6" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="197 6" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="287 6" alphaBlend="true"/>
+    <Panel name="item3" windowSize="64 64" texture="" adjust="377 6" alphaBlend="true"/>
+    <Panel name="item4" windowSize="64 64" texture="" adjust="62 91" alphaBlend="true"/>
+    <Panel name="item5" windowSize="64 64" texture="" adjust="152 91" alphaBlend="true"/>
+    <Panel name="item6" windowSize="64 64" texture="" adjust="242 91" alphaBlend="true"/>
+    <Panel name="item7" windowSize="64 64" texture="" adjust="332 91" alphaBlend="true"/>
+    <Panel name="item8" windowSize="64 64" texture="" adjust="422 91" alphaBlend="true"/>
+  </Container>
+  <Container name="itemCount10" windowSize="530 100" adjust="35 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="55 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="145 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="235 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="325 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="415 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="55 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="145 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="235 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="325 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="415 85" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="62 6" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="152 6" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="242 6" alphaBlend="true"/>
+    <Panel name="item3" windowSize="64 64" texture="" adjust="332 6" alphaBlend="true"/>
+    <Panel name="item4" windowSize="64 64" texture="" adjust="422 6" alphaBlend="true"/>
+    <Panel name="item5" windowSize="64 64" texture="" adjust="62 91" alphaBlend="true"/>
+    <Panel name="item6" windowSize="64 64" texture="" adjust="152 91" alphaBlend="true"/>
+    <Panel name="item7" windowSize="64 64" texture="" adjust="242 91" alphaBlend="true"/>
+    <Panel name="item8" windowSize="64 64" texture="" adjust="332 91" alphaBlend="true"/>
+    <Panel name="item9" windowSize="64 64" texture="" adjust="422 91" alphaBlend="true"/>
+  </Container>
+  <Container name="itemCount11" windowSize="530 100" adjust="35 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="55 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="145 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="235 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="325 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="415 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="10 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="100 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="190 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="280 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="370 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="460 85" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="62 6" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="152 6" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="242 6" alphaBlend="true"/>
+    <Panel name="item3" windowSize="64 64" texture="" adjust="332 6" alphaBlend="true"/>
+    <Panel name="item4" windowSize="64 64" texture="" adjust="422 6" alphaBlend="true"/>
+    <Panel name="item5" windowSize="64 64" texture="" adjust="17 91" alphaBlend="true"/>
+    <Panel name="item6" windowSize="64 64" texture="" adjust="107 91" alphaBlend="true"/>
+    <Panel name="item7" windowSize="64 64" texture="" adjust="197 91" alphaBlend="true"/>
+    <Panel name="item8" windowSize="64 64" texture="" adjust="287 91" alphaBlend="true"/>
+    <Panel name="item9" windowSize="64 64" texture="" adjust="377 91" alphaBlend="true"/>
+    <Panel name="item10" windowSize="64 64" texture="" adjust="467 91" alphaBlend="true"/>
+  </Container>
+  <Container name="itemCount12" windowSize="530 100" adjust="30 250" visible="false">
+    <Panel windowSize="75 75" texture="itemback" adjust="10 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="100 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="190 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="280 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="370 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="460 0" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="10 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="100 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="190 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="280 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="370 85" alphaBlend="true"/>
+    <Panel windowSize="75 75" texture="itemback" adjust="460 85" alphaBlend="true"/>
+    <Panel name="item0" windowSize="64 64" texture="" adjust="17 6" alphaBlend="true"/>
+    <Panel name="item1" windowSize="64 64" texture="" adjust="107 6" alphaBlend="true"/>
+    <Panel name="item2" windowSize="64 64" texture="" adjust="197 6" alphaBlend="true"/>
+    <Panel name="item3" windowSize="64 64" texture="" adjust="287 6" alphaBlend="true"/>
+    <Panel name="item4" windowSize="64 64" texture="" adjust="377 6" alphaBlend="true"/>
+    <Panel name="item5" windowSize="64 64" texture="" adjust="467 6" alphaBlend="true"/>
+    <Panel name="item6" windowSize="64 64" texture="" adjust="17 91" alphaBlend="true"/>
+    <Panel name="item7" windowSize="64 64" texture="" adjust="107 91" alphaBlend="true"/>
+    <Panel name="item8" windowSize="64 64" texture="" adjust="197 91" alphaBlend="true"/>
+    <Panel name="item9" windowSize="64 64" texture="" adjust="287 91" alphaBlend="true"/>
+    <Panel name="item10" windowSize="64 64" texture="" adjust="377 91" alphaBlend="true"/>
+    <Panel name="item11" windowSize="64 64" texture="" adjust="467 91" alphaBlend="true"/>
+  </Container>
+  <Container name="onItem" windowSize="120 100" adjust="250 400">
+    <Label name="onKart" windowSize="40 20" adjust="8 35" textRender="outline" text="#sb(onKart)" textColor="white" textAlign="right;center"/>
+    <Label name="onCat3Name" windowSize="80 20" adjust="70 35" textRender="outline" text="테스트 카트이름9" textColor="white" textAlign="center"/>
+    <Label name="onPet" windowSize="40 20" adjust="8 55" textRender="outline" text="#sb(onPet)" textColor="white" textAlign="right;center"/>
+    <Label name="onCat21Name" windowSize="80 20" adjust="70 55" textRender="outline" text="착용불가" textColor="white" textAlign="center"/>
+    <Label name="onFlyingPet" windowSize="40 20" adjust="8 75" textRender="outline" text="#sb(onFlyingPet)" textColor="white" textAlign="right;center"/>
+    <Label name="onCat52Name" windowSize="80 20" adjust="70 75" textRender="outline" text="플라잉 미사일 화이트" textColor="white" textAlign="center"/>
+  </Container>
+</ImageBoard>

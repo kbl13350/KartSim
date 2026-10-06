@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill1"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="怎么样? 道具的使用方法，现在有点了解了吧?"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="当然！ |本皮蛋大人就算闭着眼睛也能使用导弹。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="小强" string="好！ 那么马上开始实战练习吧。|皮蛋的道具实力！ 一起来期待下~"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="等……等下！|我还没做好心理准备……"/>
+  <Enter/>
+</Scene>

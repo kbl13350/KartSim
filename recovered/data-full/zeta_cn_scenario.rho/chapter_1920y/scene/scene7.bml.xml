@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate1"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="等等。|海盗船长那家伙肯定是知道了些关于复古老爷车的消息…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="？！|是海盗船长。先看看再说。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="海盗船长" string="嗯哈哈哈哈哈"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="lodumani" pos="10 0" emotion="stop1"/>
+  <Msg name="海盗船长" string="我海盗船长的眼光是没错的~~"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="还有这美味的红酒~|来看看我心爱的宝物吧~"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="哈哈！！！果然！！！|漂亮！真漂亮！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="这！这不是敞篷老爷车吗！？|海盗船长应该不是发信及偷车的罪犯。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="海盗船长！！！好久不见？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop3"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="海盗船长" string="哈哈哈…这是谁呀？|大侦探福尔摩斯。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop3"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="海盗船长，宝物不错嘛？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="卓越的眼光和小摸小偷的行为依旧如此吗。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="这…总觉得事情太顺利了。|绝对不能被抢。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="海盗船长！站住！！！"/>
+  <Enter/>
+</Scene>

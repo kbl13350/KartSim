@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god8"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="不对啊~~这里是哪里啊？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="是我住的地方~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="到底是什么事情，都把我带到这来了？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="现在就把我的计划告诉你吧。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="黑杰克~你说征服世界是你的目标，对吧？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="呼呼呼！！漂亮的小姐姐！！|再告诉你一次吧。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="要说我黑杰克……征服世界……（叽叽歪歪……）"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="洛基" string="（我倒……）等……等下……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="征服世界就算了……你看征服宇宙怎么样啊？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="我看你肯定可以~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="呼呼呼！！！你可真有眼光~~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="这次要开的G1联赛……（嘀嘀咕咕）"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop6"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="我说~~哪那些家伙胆敢！！！就交给我吧……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop6"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="黑杰克！！先冷静下！|以你现在的样过去会有危险，你先~~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop6"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="pung" pos="11 0" emotion="normal"/>
+  <Msg name="..." string="嘣！！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="pung" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Msg name="黑杰克" string="我说……你对我做了什么~这愚蠢的脸型是谁啊？？"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Msg name="洛基" string="（我……这家伙……）"/>
+  <Enter/>
+</Scene>

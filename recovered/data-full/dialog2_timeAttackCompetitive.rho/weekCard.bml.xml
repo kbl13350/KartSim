@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window leftTopWH="0 0 942 112">
+  <ImageBoard name="bg_on" leftTopWH="0 0 942 112" image="contest_img_myRankListBG1" alphaBlend="true" visible="false"/>
+  <ImageBoard name="bg_off" leftTopWH="0 0 942 112" image="contest_img_myRankListBG2" alphaBlend="true" visible="false"/>
+  <ImageBoard name="bg_cur" leftTopWH="0 0 942 112" image="contest_img_myRankListBG3" alphaBlend="true" visible="false"/>
+  <Label name="week" leftTopWH="-9 45 100 18" textAlign="hcenter" textRender="bold16" textColor="255 95 76 16"/>
+  <Label name="notReflected" text="#sb(notReflected)" leftTopWH="-9 64 100 18" textRender="bold16" textAlign="hcenter" textColor="255 95 76 16" visible="false"/>
+  <Panel name="gradeIcon" leftTopWH="160 38 46 40" texture="s_경쟁전_등급_미참여" alphaBlend="true"/>
+  <Label name="gradeText" leftTopWH="190 48 100 18" textRender="bold14" text="#sb(competitiveGradeNone)" textAlign="hcenter" textColor="255 84 100 129"/>
+  <Label name="rankPercentage" leftTopWH="375 38 100 18" textRender="bold14" text="#sb(rankPercentageNone)" textAlign="hcenter" textColor="255 84 100 129"/>
+  <Label name="point" leftTopWH="515 48 100 18" text="0" textRender="bold14" textAlign="hcenter" textColor="255 84 100 129"/>
+  <Window name="pointDetailInfo" leftTopWH="640 0 100 112">
+    <Label name="trackName1" leftTopWH="0 10 100 23" textRender="bold14" textAlign="left" textColor="255 84 100 129"/>
+    <Label name="trackName2" leftTopWH="0 33 100 23" textRender="bold14" textAlign="left" textColor="255 84 100 129"/>
+    <Label name="trackName3" leftTopWH="0 56 100 23" textRender="bold14" textAlign="left" textColor="255 84 100 129"/>
+    <Label name="detailInfoJoinBonus" leftTopWH="0 79 100 18" text="#sb(joinBonus)" textRender="bold14" textAlign="left" textColor="255 84 100 129"/>
+    <Label name="trackPoint1" leftTopWH="208 10 70 23" text="0" textRender="bold14" textAlign="right|hcenter" textColor="255 84 100 129"/>
+    <Label name="trackPoint2" leftTopWH="208 33 70 23" text="0" textRender="bold14" textAlign="right|hcenter" textColor="255 84 100 129"/>
+    <Label name="trackPoint3" leftTopWH="208 56 70 23" text="0" textRender="bold14" textAlign="right|hcenter" textColor="255 84 100 129"/>
+    <Label name="joinBonus" leftTopWH="208 79 70 23" text="0" textRender="bold14" textAlign="right|hcenter" textColor="255 84 100 129"/>
+  </Window>
+</Window>

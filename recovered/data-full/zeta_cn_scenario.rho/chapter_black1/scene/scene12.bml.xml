@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold10"/>
+  <Char id="raptorL" pos="10 0" emotion="stop4"/>
+  <Msg name="格雷格" string="别以为这就结束了！|哼~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="哇，真能跑.."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mobi" pos="4 0" flip="true" emotion="stop8"/>
+  <Msg name="吉米" string="要赶紧找到宝物交给船长…|(要不然就要一直被唠叨…..)"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="先找卡帕去吧"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="normal"/>
+  <Msg name="葱头" string="对，先找到卡帕听听原委！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="mobi" pos="8 0" emotion="stop1"/>
+  <Msg name="吉米" string="卡帕好像去了那边~"/>
+  <Enter/>
+</Scene>

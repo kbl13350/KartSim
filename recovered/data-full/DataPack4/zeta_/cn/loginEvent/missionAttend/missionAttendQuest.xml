@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Quest>
+		<QuestItem id='20113' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20112' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20111' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20110' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20109' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20108' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20107' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20106' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20105' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20104' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20103' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20102' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20101' name='20261021' eventDateTime='2026-10-08T00:00:00~2026-10-21T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20013' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20012' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20011' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20010' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20009' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20008' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20007' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20006' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20005' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20004' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20003' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20002' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+		<QuestItem id='20001' name='20260923' eventDateTime='2026-09-10T00:00:00~2026-09-23T23:59:59'>
+				<Step type='3' restriction='onSVIP' achievementCount='3' missionTitle='装备SVIP通行证手杖后，多人游戏完成3回' missionText='目前 %d回 / 目标 %d回' />
+		</QuestItem>
+</Quest>

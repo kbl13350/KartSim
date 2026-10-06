@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="uiEffect" windowRect="fullscreen"/>
+  <Minimap name="minimap" windowSize="180 180" adjust="17 0" align="right;vcenter">
+    <Window windowRect="0 10 180 11" frame="ShineLine">
+      <Label name="alignDesc" windowRect="5 5 30 15" text="" textColor="white"/>
+      <Window windowSize="180 1" frame="ShineLine" adjust="0 169"/>
+    </Window>
+  </Minimap>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Panel name="mission" windowSize="167 100" align="bottom" adjust="10 10" texture="bg1" uvRect="0 0 167 100" alphaBlend="true" visible="false">
+      <Panel name="collision" windowRect="40 5 127 72" texture="m_collide" alphaBlend="true">
+        <CharPanel name="count" windowRect="54 14 73 37" texture="aw_02@zz" alphaBlend="true" fontSize="19 23" fontPos="0 88" fontStr="0123456789" text="5"/>
+      </Panel>
+      <Panel name="textBG" windowRect="10 71 158 93" texture="text_bg" uvRect="0 0 148 22" alphaBlend="true" enable="false">
+        <Label name="missionText" windowRect="0 5 148 20" textRender="outline" textColor="white" textColor2="black" textAlign="hcenter"/>
+      </Panel>
+    </Panel>
+    <Window name="distanceCont" windowRect="0 55 342 50" align="hcenter" visible="false">
+      <Container windowRect="0 0 342 50">
+        <Panel windowRect="0 0 226 32" align="center" texture="상단바" alphaBlend="true"/>
+        <Panel name="tracingText" windowRect="0 0 237 29" align="center" texture="sn_거리@zz" textureOp="modulate" alphaBlend="true">
+          <CharPanel name="tracingLeft" windowRect="105 0 162 26" align="vcenter" textureOp="modulate" alphaBlend="true" fontSize="20 26" fontStr="0123456789+" text="  0" texture="sn_카운트숫자"/>
+        </Panel>
+        <Panel name="stressText" windowRect="0 0 237 29" align="center" texture="추격전_거리_red@zz" textureOp="modulate" alphaBlend="true" color="0 255 255 255">
+          <CharPanel name="stressLeft" windowRect="105 0 162 26" align="vcenter" textureOp="modulate" alphaBlend="true" fontSize="20 26" fontStr="0123456789+" text="  0" texture="추격전_카운트숫자_red" color="0 255 255 255"/>
+          <Window name="setStressBlendable" visible="false"/>
+        </Panel>
+        <Play1SPanel name="caughtPanel" visible="false" align="vcenter" adjust="253 0" windowSize="128 32" scene="추격전_추월중" clearZBefore="true" clearZAfter="true" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -5.0 0" defaultSpotPos="0 0 0" zoom="1.0" loop="false"/>
+      </Container>
+    </Window>
+    <Window name="guidePanel" windowRect="fullscreen">
+      <ImageBoard name="start_common" leftTopTex="0 0" align="vcenter" textureOp="modulate" alphaBlend="true" visible="false" image="추격전_시작팝업_대결@zz" color="0 255 255 255"/>
+      <ImageBoard name="start_escape" leftTopTex="0 0" align="vcenter" textureOp="modulate" alphaBlend="true" visible="false" image="추격전_시작팝업_탈주@zz" color="0 255 255 255"/>
+      <ImageBoard name="start_tracing" leftTopTex="0 0" align="vcenter" textureOp="modulate" alphaBlend="true" visible="false" image="추격전_시작팝업_추격@zz" color="0 255 255 255"/>
+    </Window>
+    <StressMirror name="stressMirror"/>
+    <CutEffect name="cutEffect"/>
+  </Container>
+</Container>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="160 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 468 344" caption="#sb(buyItemPresetSlotTitle)" captionPos="0 1" align="center">
+    <Label windowSize="290 10" adjust="0 5" align="hcenter" text="#sb(askBuyItemPresetSlot)" textRender="bold16" textAlign="hcenter" textColor="255 42 55 80"/>
+    <Window name="stockInfoCash" windowSize="424 30" adjust="0 35" align="hcenter" frame="DefaultEdit">
+      <Label name="buySlotNumber" windowSize="100 20" adjust="5 -3" text="#sb(buySlotNumber)" textAlign="vcenter|left" textRender="bold16" textColor="255 88 105 129"/>
+      <Label name="stockPrice" windowSize="70 20" adjust="300 0" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right" textColor="255 42 55 80"/>
+      <Label windowSize="30 20" adjust="375 0" align="vcenter" text="#sb(cash)" textColor="255 42 55 80" textAlign="vcenter"/>
+    </Window>
+    <Window name="stockInfoLucci" windowSize="424 30" adjust="0 35" align="hcenter" frame="DefaultEdit">
+      <Label name="buySlotNumber" windowSize="100 20" adjust="5 -3" text="#sb(buySlotNumber)" textAlign="vcenter|left" textRender="bold16" textColor="255 88 105 129"/>
+      <Label name="stockPrice" windowSize="70 20" adjust="300 0" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right" textColor="255 42 55 80"/>
+      <Label windowSize="30 20" adjust="375 0" align="vcenter" text="#sb(lucci)" textColor="255 42 55 80" textAlign="vcenter"/>
+    </Window>
+    <Window name="stockInfoKoin" windowSize="424 30" adjust="0 35" align="hcenter" frame="DefaultEdit">
+      <Label name="buySlotNumber" windowSize="100 20" adjust="5 -3" text="#sb(buySlotNumber)" textAlign="vcenter|left" textRender="bold16" textColor="255 88 105 129"/>
+      <Label name="stockPrice" windowSize="70 20" adjust="300 0" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right" textColor="255 42 55 80"/>
+      <Label windowSize="30 20" adjust="375 0" align="vcenter" text="#sb(koin)" textColor="255 42 55 80" textRender="bold16" textAlign="vcenter"/>
+    </Window>
+    <Window name="descTemp" windowSize="424 60" adjust="0 -40" align="center">
+      <Label windowSize="20 20" text="*" textColor="255 72 106 163" enable="false" textRender="bold14" textAlign="center"/>
+      <Label windowSize="200 20" adjust="20 0" text="#sb(buyGuideTxt_1)" textColor="255 72 106 163" multiLine="true" autoWrap="true" lineGap="0" textRender="bold14"/>
+      <Label windowSize="20 20" adjust="0 40" text="*" textColor="255 72 106 163" enable="false" textRender="bold14" textAlign="center"/>
+      <Label windowSize="200 20" adjust="20 40" text="#sb(buyGuideTxt_2)" textColor="255 72 106 163" multiLine="true" autoWrap="true" lineGap="2" textRender="bold14"/>
+    </Window>
+    <Window name="cashPanel" windowSize="290 60" adjust="0 150" align="hcenter" frame="DefaultEdit" visible="false">
+      <Label windowSize="100 20" adjust="5 -15" align="vcenter" text="#sb(myCash)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="myCash" windowSize="70 20" adjust="300 -15" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="245 -15" align="vcenter" text="#sb(cash)" textColor="255 42 55 80" textAlign="vcenter"/>
+      <Window windowSize="400 1" adjust="0 3" align="center" frame="HSection"/>
+      <Label windowSize="100 20" adjust="5 15" align="vcenter" text="#sb(cashAfterBuying)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="afterCash" windowSize="70 20" adjust="300 15" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="375 15" align="vcenter" text="#sb(cash)" textColor="255 42 55 80" textAlign="vcenter"/>
+    </Window>
+    <Window name="lucciPanel" windowSize="290 60" adjust="0 150" align="hcenter" frame="DefaultEdit" visible="false">
+      <Label windowSize="100 20" adjust="5 -15" align="vcenter" text="#sb(myLucci)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="myLucci" windowSize="70 20" adjust="300 -15" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="245 -15" align="vcenter" text="#sb(lucci)" textColor="255 42 55 80" textAlign="vcenter"/>
+      <Window windowSize="400 1" adjust="0 3" align="center" frame="HSection"/>
+      <Label windowSize="100 20" adjust="5 15" align="vcenter" text="#sb(lucciAfterBuying)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="afterLucci" windowSize="70 20" adjust="300 15" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="375 15" align="vcenter" text="#sb(lucci)" textColor="255 42 55 80" textAlign="vcenter"/>
+    </Window>
+    <Window name="koinPanel" windowSize="424 60" adjust="0 150" align="hcenter" frame="DefaultEdit" visible="false">
+      <Label windowSize="100 20" adjust="5 -15" align="vcenter" text="#sb(myKoin)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="myKoin" windowSize="70 20" adjust="300 -15" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="375 -15" align="vcenter" text="#sb(koin)" textColor="255 42 55 80" textRender="bold16" textAlign="vcenter"/>
+      <Window windowSize="400 1" adjust="0 3" align="center" frame="HSection"/>
+      <Label windowSize="100 20" adjust="5 15" align="vcenter" text="#sb(koinAfterBuying)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="afterKoin" windowSize="70 20" adjust="300 15" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="375 15" align="vcenter" text="#sb(koin)" textColor="255 42 55 80" textRender="bold16" textAlign="vcenter"/>
+    </Window>
+    <Window windowSize="424 1" frame="HSection" adjust="0 63" align="hcenter;bottom"/>
+    <Window name="yesNoButtonList" leftTopWH="0 0 400 40" adjust="0 6" align="hcenter;bottom">
+      <TextButton name="okButton" windowSize="132 40" adjust="-70 0" align="center" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+      <TextButton name="cancelButton" windowSize="132 40" adjust="70 0" align="center" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Window>
+  </CaptionWindow>
+</Panel>

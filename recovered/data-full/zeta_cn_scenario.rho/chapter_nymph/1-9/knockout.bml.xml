@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <KnockOut track="nymph_I02" laps="3" isFixedKart="true" fixedKartId="20" type="rank" isFixedChar="true" fixedCharId="1">
+    <LevelContent level="0" ksv="Nymph_I02_01" startOffset="700">
+      <ShadowKart characterId="18" uniformId="0" kartId="85" colorId="8" dyeId="8" characterName="嘟嘟"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

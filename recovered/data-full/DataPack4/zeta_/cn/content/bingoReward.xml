@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BingoReward>
+		<lineReward stockId='12196' />
+		<lineReward stockId='4783' />
+		<lineReward stockId='4782' />
+		<lineReward stockId='4781' />
+		<lineReward stockId='4781' />
+		<randReward stockId='4757' />
+		<randReward stockId='23024' />
+		<randReward stockId='4169' />
+		<randReward rp='100' />
+		<randReward stockId='74' />
+</BingoReward>

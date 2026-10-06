@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach4"/>
+  <Char id="thonz" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="尼兹" string="小毛孩~！|以为是吓得躲起来了~哈哈|怎么？有自信了？"/>
+  <Enter/>
+  <Char id="thonz" remove="true"/>
+  <Char id="martin" pos="11 0" emotion="stop1"/>
+  <Msg name="阿嘉" string="自信？我可是阿嘉！|是你该认输吧！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="thonz" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="尼兹" string="你觉得你能赢得过我？！|比赛后看你还能不能嚣张！"/>
+  <Enter/>
+  <Char id="thonz" remove="true"/>
+  <Char id="martin" pos="11 0" emotion="stop1"/>
+  <Msg name="阿嘉" string="废话少说，比赛吧！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="thonz" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="尼兹" string="好！|叫你看看什么是真正的实力！"/>
+  <Enter/>
+  <Char id="thonz" remove="true"/>
+  <Char id="lena" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="美玲" string="（阿嘉…对不起…一定要赢…)"/>
+  <Enter/>
+</Scene>

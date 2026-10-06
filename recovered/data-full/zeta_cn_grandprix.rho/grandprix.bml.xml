@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpList>
+  <gpAbuseObstacle enable="true" limitCount="5" duration="180000"/>
+  <gpLimitKart id="795"/>
+  <gp id="72" name="国庆节组队道具GP赛" icon="20220922_국경절GP_cn" motto="国庆节组队道具GP赛" desc="" rankUrl="http://apppopkart.tiancity.com/kartorder/gprank.aspx" showInfo="true" channelCat="grandprix_itemNewItemTeam" gameType="ItemTeam" startUserCount="8" openDateTime="2022-10-06T10:00:00~2022-10-19T21:59:59" rewardDateTime="2022-10-20T00:00:00~2022-10-27T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="1">
+    <track id="nemo_I01"/>
+    <track id="beach_I02"/>
+    <track id="china_C01"/>
+    <track id="china_I01"/>
+    <track id="china_I02"/>
+    <track id="china_I04"/>
+    <track id="china_I07"/>
+    <track id="maple_I01"/>
+    <track id="maple_I03"/>
+    <track id="fairy_I01"/>
+    <track id="sword_I01"/>
+    <track id="desert_I05"/>
+    <track id="forest_I05"/>
+    <track id="village_I01"/>
+    <track id="northeu_I05"/>
+    <track id="china_I02_crz"/>
+  </gp>
+  <gp id="73" name="国庆节个人竞速GP赛" icon="20220922_국경절GP_cn" motto="国庆节个人竞速GP赛" desc="" rankUrl="http://apppopkart.tiancity.com/kartorder/gprank.aspx" showInfo="true" channelCat="grandprix_speedIndi" gameType="SpeedIndi" startUserCount="8" openDateTime="2022-10-06T10:00:00~2022-10-19T21:59:59" rewardDateTime="2022-10-20T00:00:00~2022-10-27T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="1">
+    <track id="god_R02"/>
+    <track id="beach_R01"/>
+    <track id="china_I01"/>
+    <track id="china_I02"/>
+    <track id="china_R03"/>
+    <track id="china_R04"/>
+    <track id="china_R05"/>
+    <track id="maple_R01"/>
+    <track id="sword_I02"/>
+    <track id="castle_R01"/>
+    <track id="forest_I07"/>
+    <track id="forest_R02"/>
+    <track id="village_R07"/>
+    <track id="northeu_R03"/>
+    <track id="jurassic_R04"/>
+    <track id="china_R02_rvs"/>
+  </gp>
+  <gp id="74" name="2023春节个人道具GP赛" icon="20230112_춘절아이템팀전GP" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemIndi" gameType="ItemIndi" startUserCount="8" openDateTime="2023-01-19T10:00:00~2023-02-01T21:59:59" rewardDateTime="2023-02-02T00:00:00~2023-02-08T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="2">
+    <track id="ice_I05"/>
+    <track id="gold_I02"/>
+    <track id="nemo_I01"/>
+    <track id="tomb_I06"/>
+    <track id="fairy_I01"/>
+    <track id="nymph_I04"/>
+    <track id="nymph_I05"/>
+    <track id="sword_I02"/>
+    <track id="castle_I02"/>
+    <track id="desert_I02"/>
+  </gp>
+  <gp id="75" name="2023春节组队竞速GP赛" icon="20230112_춘절스피드팀전GP" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedTeam" gameType="SpeedTeam" startUserCount="8" openDateTime="2023-01-26T10:00:00~2023-02-08T21:59:59" rewardDateTime="2023-02-09T00:00:00~2023-02-15T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="3">
+    <track id="wkc_R03"/>
+    <track id="nemo_R02"/>
+    <track id="brodi_R01"/>
+    <track id="world_R01"/>
+    <track id="world_R10"/>
+    <track id="sword_R02"/>
+    <track id="village_I02"/>
+    <track id="northeu_R02"/>
+    <track id="northeu_R03"/>
+    <track id="jurassic_R04"/>
+  </gp>
+  <gp id="76" name="17周年个人无限加速GP赛" icon="17주년무한부스터개인전GP" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedIndiInfinit" gameType="SpeedIndi" startUserCount="8" openDateTime="2023-03-16T10:00:00~2023-03-29T21:59:59" rewardDateTime="2023-03-30T00:00:00~2023-04-05T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="4" gpType="match" seasonId="4">
+    <track id="god_R02"/>
+    <track id="beach_R01"/>
+    <track id="beach_R04"/>
+    <track id="china_I01"/>
+    <track id="china_I02"/>
+    <track id="china_R01"/>
+    <track id="china_R03"/>
+    <track id="china_R07"/>
+    <track id="maple_I01"/>
+    <track id="fairy_I01"/>
+    <track id="maple_R01"/>
+    <track id="brodi_R01"/>
+    <track id="nymph_I01"/>
+    <track id="world_R01"/>
+    <track id="desert_I02"/>
+    <track id="village_I14"/>
+    <track id="village_I08"/>
+    <track id="village_R12"/>
+    <track id="jurassic_R03"/>
+    <track id="jurassic_R04"/>
+  </gp>
+  <gp id="77" name="迎春组队道具GP赛" icon="77" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemTeam" gameType="ItemTeam" startUserCount="8" openDateTime="2023-03-23T10:00:00~2023-04-05T21:59:59" rewardDateTime="2023-04-06T00:00:00~2023-04-12T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="5">
+    <track id="nemo_C02"/>
+    <track id="nemo_I01"/>
+    <track id="nemo_I02"/>
+    <track id="fairy_I01"/>
+    <track id="fairy_I02"/>
+    <track id="fairy_I03"/>
+    <track id="forest_I01"/>
+    <track id="forest_I02"/>
+    <track id="forest_I03"/>
+    <track id="forest_I04"/>
+    <track id="forest_I05"/>
+    <track id="forest_I06"/>
+    <track id="forest_I07"/>
+    <track id="forest_I09"/>
+    <track id="forest_I01_rvs"/>
+    <track id="forest_I03_rvs"/>
+    <track id="forest_I04_rvs"/>
+    <track id="forest_I05_rvs"/>
+    <track id="forest_I07_rvs"/>
+  </gp>
+  <gp id="78" name="夏日庆典个人竞速GP赛" icon="20230629_여름페스티벌그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedIndi" gameType="SpeedIndi" startUserCount="8" openDateTime="2023-06-29T10:00:00~2023-07-12T21:59:59" rewardDateTime="2023-07-13T00:00:00~2023-07-19T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="6">
+    <track id="wkc_R03"/>
+    <track id="beach_R01"/>
+    <track id="beach_R02"/>
+    <track id="beach_R03"/>
+    <track id="beach_R04"/>
+    <track id="china_R01"/>
+    <track id="china_R02"/>
+    <track id="china_R04"/>
+    <track id="china_R05"/>
+    <track id="china_R07"/>
+    <track id="world_R01"/>
+    <track id="world_R10"/>
+    <track id="world_R02"/>
+    <track id="world_R05"/>
+  </gp>
+  <gp id="79" name="夏日庆典个人道具GP赛" icon="20230629_여름페스티벌그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemIndi" gameType="ItemIndi" startUserCount="8" openDateTime="2023-06-29T10:00:00~2023-07-12T21:59:59" rewardDateTime="2023-07-13T00:00:00~2023-07-19T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="6">
+    <track id="beach_I01"/>
+    <track id="beach_I02"/>
+    <track id="beach_I03"/>
+    <track id="china_I01"/>
+    <track id="china_I02"/>
+    <track id="china_I04"/>
+    <track id="china_I05"/>
+    <track id="china_I07"/>
+    <track id="world_I01"/>
+    <track id="world_I02"/>
+    <track id="world_I03"/>
+    <track id="world_I05"/>
+    <track id="sword_I01"/>
+    <track id="sword_I02"/>
+  </gp>
+  <gp id="80" name="母亲节无限加速个人GP赛" icon="20240425_어머니의날그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedIndiInfinit" gameType="SpeedIndi" startUserCount="8" openDateTime="2024-05-09T10:00:00~2024-05-22T21:59:59" rewardDateTime="2024-05-23T00:00:00~2024-05-29T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="4" gpType="match" seasonId="7">
+    <track id="nemo_I01"/>
+    <track id="nemo_I02"/>
+    <track id="nemo_I03"/>
+    <track id="park_R01"/>
+    <track id="nemo_R01"/>
+    <track id="nemo_R02"/>
+    <track id="nemo_R03"/>
+    <track id="maple_R01"/>
+    <track id="maple_R02"/>
+    <track id="maple_R03"/>
+    <track id="fairy_R01"/>
+    <track id="fairy_R02"/>
+    <track id="fairy_R03"/>
+    <track id="jurassic_R01"/>
+    <track id="jurassic_R03"/>
+    <track id="jurassic_R04"/>
+  </gp>
+  <gp id="81" name="中秋节无限加速个人GP赛" icon="20240905_중추절무한부스터GP" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedIndiInfinit" gameType="SpeedIndi" startUserCount="8" openDateTime="2024-09-05T10:00:00~2024-09-18T21:59:59" rewardDateTime="2024-09-19T00:00:00~2024-09-25T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="4" gpType="match" seasonId="6">
+    <track id="wkc_R12"/>
+    <track id="mine_I06"/>
+    <track id="gold_R03"/>
+    <track id="beach_R04"/>
+    <track id="china_I01"/>
+    <track id="china_I02"/>
+    <track id="china_R01"/>
+    <track id="china_R10"/>
+    <track id="china_R12"/>
+    <track id="china_R04"/>
+    <track id="china_R05"/>
+    <track id="china_R07"/>
+    <track id="forest_I10"/>
+    <track id="village_I15"/>
+    <track id="moonhill_I06"/>
+  </gp>
+  <gp id="82" name="重阳节道具GP赛（个人赛）" icon="20241010_중양절아이템GP개인전" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemIndi" gameType="ItemIndi" startUserCount="8" openDateTime="2024-10-10T10:00:00~2024-10-23T21:59:59" rewardDateTime="2024-10-24T00:00:00~2024-10-30T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="8">
+    <track id="mine_I06"/>
+    <track id="china_I01"/>
+    <track id="china_I02"/>
+    <track id="forest_I10"/>
+    <track id="forest_I05"/>
+    <track id="camelot_I03"/>
+    <track id="village_I01"/>
+    <track id="village_I15"/>
+    <track id="moonhill_I06"/>
+    <track id="china_I05_rvs"/>
+  </gp>
+  <gp id="83" name="重阳节竞速GP赛（个人赛）" icon="20241010_중양절스피드GP개인전" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedIndi" gameType="SpeedIndi" startUserCount="8" openDateTime="2024-10-10T10:00:00~2024-10-23T21:59:59" rewardDateTime="2024-10-24T00:00:00~2024-10-30T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="9">
+    <track id="god_R02"/>
+    <track id="wkc_R12"/>
+    <track id="gold_R03"/>
+    <track id="china_I01"/>
+    <track id="china_I02"/>
+    <track id="china_R11"/>
+    <track id="china_R03"/>
+    <track id="china_R04"/>
+    <track id="china_R05"/>
+    <track id="abyss_R05"/>
+    <track id="world_R01"/>
+    <track id="village_I02"/>
+    <track id="village_R01"/>
+    <track id="village_R04"/>
+  </gp>
+  <gp id="84" name="道具GP赛（个人赛）" icon="20250619_아이템그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemIndi" gameType="ItemIndi" startUserCount="8" openDateTime="2025-06-19T10:00:00~2025-06-25T21:59:59" rewardDateTime="2025-06-26T00:00:00~2025-07-02T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="10">
+    <track id="beach_I01"/>
+    <track id="beach_I02"/>
+    <track id="beach_I03"/>
+    <track id="nymph_I01"/>
+    <track id="nymph_I02"/>
+    <track id="moonhill_I02"/>
+    <track id="moonhill_I03"/>
+    <track id="moonhill_I06"/>
+    <track id="moonhill_I05_rvs"/>
+  </gp>
+  <gp id="85" name="封神传说道具GP赛（个人赛）" icon="20250724_봉신전설아이템그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemIndi" gameType="ItemIndi" startUserCount="8" openDateTime="2025-07-24T17:00:00~2025-08-06T21:59:59" rewardDateTime="2025-08-07T00:00:00~2025-08-13T23:59:59" openTime="17:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="11">
+    <track id="china_I01"/>
+    <track id="china_I10"/>
+    <track id="china_I02"/>
+    <track id="china_I11"/>
+    <track id="china_I03"/>
+    <track id="china_I05"/>
+    <track id="china_I06"/>
+    <track id="china_I07"/>
+    <track id="china_I09"/>
+    <track id="fengshen_I01"/>
+    <track id="fengshen_I02"/>
+    <track id="fengshen_I03"/>
+    <track id="china_I01_rvs"/>
+    <track id="china_I04_rvs"/>
+    <track id="china_I05_rvs"/>
+    <track id="china_I06_rvs"/>
+  </gp>
+  <gp id="86" name="封神传说竞速GP赛（个人赛）" icon="20250731_봉신전설스피드그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedIndi" gameType="SpeedIndi" startUserCount="8" openDateTime="2025-08-07T17:00:00~2025-08-20T21:59:59" rewardDateTime="2025-08-21T00:00:00~2025-08-27T23:59:59" openTime="17:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="12">
+    <track id="china_R01"/>
+    <track id="china_R10"/>
+    <track id="china_R11"/>
+    <track id="china_R12"/>
+    <track id="china_R04"/>
+    <track id="china_R05"/>
+    <track id="china_R06"/>
+    <track id="china_R07"/>
+    <track id="china_R08"/>
+    <track id="fengshen_R01"/>
+    <track id="fengshen_R02"/>
+    <track id="china_R04_rvs"/>
+    <track id="china_R07_rvs"/>
+  </gp>
+  <gp id="87" name="中秋国庆道具GP赛（组队赛）" icon="20250619_아이템그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemTeam" gameType="ItemTeam" startUserCount="8" openDateTime="2025-10-02T10:00:00~2025-10-15T21:59:59" rewardDateTime="2025-10-16T00:00:00~2025-10-22T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="13">
+    <track id="china_I01"/>
+    <track id="china_I10"/>
+    <track id="china_I02"/>
+    <track id="china_I11"/>
+    <track id="china_I12"/>
+    <track id="china_I06"/>
+    <track id="china_I07"/>
+    <track id="china_I09"/>
+    <track id="sword_I01"/>
+    <track id="sword_I02"/>
+    <track id="northeu_I01"/>
+    <track id="northeu_I02"/>
+    <track id="northeu_I03"/>
+    <track id="northeu_I05"/>
+    <track id="northeu_I10_kd"/>
+  </gp>
+  <gp id="88" name="中秋国庆竞速GP赛（组队赛）" icon="20250925_스피드그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedTeam" gameType="SpeedTeam" startUserCount="8" openDateTime="2025-10-02T10:00:00~2025-10-15T21:59:59" rewardDateTime="2025-10-16T00:00:00~2025-10-22T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="13">
+    <track id="china_R01"/>
+    <track id="china_R10"/>
+    <track id="china_R02"/>
+    <track id="china_R11"/>
+    <track id="china_R04"/>
+    <track id="china_R06"/>
+    <track id="china_R08"/>
+    <track id="china_R09"/>
+    <track id="sword_R01"/>
+    <track id="sword_R02"/>
+    <track id="sword_R03"/>
+    <track id="fengshen_R01"/>
+    <track id="fengshen_R02"/>
+    <track id="china_R03_rvs"/>
+    <track id="china_R07_rvs"/>
+  </gp>
+  <gp id="89" name="道具GP赛（个人赛）" icon="아이템그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemIndi" gameType="ItemIndi" startUserCount="8" openDateTime="2026-01-01T10:00:00~2026-01-14T21:59:59" rewardDateTime="2026-01-15T00:00:00~2026-01-21T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="13">
+    <track id="ice_I02"/>
+    <track id="ice_I03"/>
+    <track id="ice_I04"/>
+    <track id="ice_I05"/>
+    <track id="ice_I06"/>
+    <track id="ice_I07"/>
+    <track id="ice_I08"/>
+    <track id="mine_I01"/>
+    <track id="mine_I02"/>
+    <track id="mine_I03"/>
+    <track id="mine_I04"/>
+    <track id="mine_I05"/>
+    <track id="mine_I06"/>
+    <track id="ice_I04_rvs"/>
+    <track id="ice_I05_rvs"/>
+  </gp>
+  <gp id="90" name="竞速GP赛（个人赛）" icon="스피드그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedIndi" gameType="SpeedIndi" startUserCount="8" openDateTime="2026-01-01T10:00:00~2026-01-14T21:59:59" rewardDateTime="2026-01-15T00:00:00~2026-01-21T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="13">
+    <track id="ice_R01"/>
+    <track id="ice_R02"/>
+    <track id="ice_R03"/>
+    <track id="ice_R04"/>
+    <track id="ice_R05"/>
+    <track id="mine_R01"/>
+    <track id="mine_R02"/>
+    <track id="mine_R03"/>
+    <track id="mine_R04"/>
+    <track id="mine_R05"/>
+  </gp>
+  <gp id="91" name="混战GP赛（个人赛）（自动加速器）" icon="20260319_크로스오버그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_crossoverAutoIndi" gameType="CrossoverAutoIndi" startUserCount="8" openDateTime="2026-03-26T10:00:00~2026-04-08T21:59:59" rewardDateTime="2026-04-09T00:00:00~2026-04-15T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="13">
+    <track id="ice_I04"/>
+    <track id="ice_I05"/>
+    <track id="gold_I02"/>
+    <track id="gold_I04"/>
+    <track id="tomb_I07"/>
+    <track id="china_I11"/>
+    <track id="china_I13"/>
+    <track id="china_I07"/>
+    <track id="china_R13"/>
+    <track id="brodi_I01"/>
+    <track id="brodi_I02"/>
+    <track id="castle_I04"/>
+    <track id="castle_I05"/>
+    <track id="pirate_I02"/>
+    <track id="olympos_I02"/>
+    <track id="olympos_I03"/>
+    <track id="tomb_I01_rvs"/>
+    <track id="fengshen_I03"/>
+    <track id="fengshen_I05"/>
+    <track id="pirate_I04_rvs"/>
+  </gp>
+  <gp id="92" name="道具GP赛（个人赛）" icon="아이템그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemIndi" gameType="ItemIndi" startUserCount="8" openDateTime="2026-04-23T10:00:00~2026-05-20T21:59:59" rewardDateTime="2026-05-21T00:00:00~2026-05-27T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="16">
+    <track id="gold_I03"/>
+    <track id="gold_I04"/>
+    <track id="mine_I07"/>
+    <track id="mine_I08"/>
+    <track id="mine_I09"/>
+    <track id="beach_I01"/>
+    <track id="beach_I03"/>
+    <track id="desert_I11"/>
+    <track id="desert_I03"/>
+    <track id="pirate_I01"/>
+    <track id="pirate_I03"/>
+    <track id="forest_I10"/>
+    <track id="forest_I07"/>
+    <track id="jurassic_I02"/>
+    <track id="pirate_I04_rvs"/>
+  </gp>
+  <gp id="93" name="竞速GP赛（个人赛）" icon="스피드그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedIndi" gameType="SpeedIndi" startUserCount="8" openDateTime="2026-04-23T10:00:00~2026-05-20T21:59:59" rewardDateTime="2026-05-21T00:00:00~2026-05-27T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="16">
+    <track id="gold_R03"/>
+    <track id="mine_R02"/>
+    <track id="beach_R01"/>
+    <track id="beach_R02"/>
+    <track id="beach_R04"/>
+    <track id="abyss_R03"/>
+    <track id="abyss_R04"/>
+    <track id="abyss_R05"/>
+    <track id="steam_R01"/>
+    <track id="steam_R02"/>
+    <track id="desert_R04"/>
+    <track id="desert_R06"/>
+    <track id="forest_R07"/>
+    <track id="jurassic_R03"/>
+    <track id="jurassic_R04"/>
+  </gp>
+  <gp id="94" name="道具GP赛（个人赛）" icon="아이템그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_itemNewItemIndi" gameType="ItemIndi" startUserCount="8" openDateTime="2026-09-24T10:00:00~2026-10-07T21:59:59" rewardDateTime="2026-10-08T00:00:00~2026-10-14T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="16">
+    <track id="tomb_I10"/>
+    <track id="tomb_I04"/>
+    <track id="tomb_I06"/>
+    <track id="tomb_I08"/>
+    <track id="china_I10"/>
+    <track id="china_I12"/>
+    <track id="china_I04"/>
+    <track id="china_I05"/>
+    <track id="china_I06"/>
+    <track id="china_I07"/>
+    <track id="maple_I01"/>
+    <track id="maple_I02"/>
+    <track id="sword_I02"/>
+    <track id="fengshen_I01"/>
+    <track id="fengshen_I03"/>
+    <track id="fengshen_I05"/>
+  </gp>
+  <gp id="95" name="竞速GP赛（个人赛）" icon="스피드그랑프리" motto="" desc="" rankUrl="" showInfo="true" channelCat="grandprix_speedIndi" gameType="SpeedIndi" startUserCount="8" openDateTime="2026-09-24T10:00:00~2026-10-07T21:59:59" rewardDateTime="2026-10-08T00:00:00~2026-10-14T23:59:59" openTime="10:00~21:59" ingamePplRequestUrl="" gameSpeed="7" gpType="match" seasonId="16">
+    <track id="tomb_R01"/>
+    <track id="tomb_R06"/>
+    <track id="tomb_R07"/>
+    <track id="china_R10"/>
+    <track id="china_R03"/>
+    <track id="china_R06"/>
+    <track id="china_R07"/>
+    <track id="china_R08"/>
+    <track id="maple_R01"/>
+    <track id="maple_R02"/>
+    <track id="sword_R02"/>
+    <track id="sword_R03"/>
+    <track id="fengshen_R01"/>
+  </gp>
+</gpList>

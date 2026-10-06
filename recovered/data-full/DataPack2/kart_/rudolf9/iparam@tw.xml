@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='3.2'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.067'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.68'
+	TransformTime='700'               
+
+	StartBoosterTimeItem='1200'           
+	StartForwardAccelFactorItem = '1.25'
+
+	SpecialSlotCapacity='2'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zerosub'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zerosub'
+	BoosterType3='zerosub'
+	BoosterType4='zeroplus'
+
+	Port0='mod2a3'
+	Port1='mod2a4'
+
+	FirePort0='mod2a2'
+	FirePort1='mod2a1'
+	FirePort2='mod2b3'
+
+	TailLampSize='0.1'
+	TailLampColor='0 255 246 0'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '40'
+	DescStability ='42'
+	DescEngineGrade='1.25'
+	DescCornering='4'
+	DescEnchantCap = '25'
+
+/>
+<!--대만 루돌프 Z7+ -->

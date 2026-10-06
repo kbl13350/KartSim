@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for2"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="大家好，好久不见了~！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop3"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Char id="uni" pos="12 0" emotion="stop2"/>
+  <Msg name="胖墩，宝宝，小乖" string="哇~皮蛋~！|好久不见了阿！！！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="uni" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Msg name="黑妞" string="一点消息都没有。|哼~！你来干吗~！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="不是的，黑妞~|我一直都在想你~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="讨厌~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="normal"/>
+  <Msg name="小强" string="(干咳声！）|什么风把你吹到我这了，皮蛋？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="一个人练太无聊了!|所以就……|绝对不是想看..想看黑妞才来的~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop4"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞，皮蛋" string="皮蛋~|黑妞~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="1 0" emotion="stop4"/>
+  <Char id="bazzi" pos="10 0" emotion="stop3"/>
+  <Char id="uni" pos="6 0" emotion="stop5"/>
+  <Msg name="胖墩，小乖，宝宝" string="…|喔…;;;"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="uni" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="stop1"/>
+  <Msg name="小强" string="皮蛋！！！|你不会是一直在偷懒的吧？大家已经完成很多训练了哦！|先让我试试你能不能跟得上我们的训练！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="好！我也是一直拼命练习的！|让你们看看我的实力！！"/>
+  <Enter/>
+</Scene>

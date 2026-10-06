@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<emotion>
+	<beast>
+		<scene type='start' texture='ready_ani_beast'/>
+		<scene type='win' texture='beast_youwin'/>
+		<scene type='lose' texture='beast_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</beast>	
+
+	<retiremanBoss>
+		<scene type='start' texture='ready_ani_rman'/>
+		<scene type='win' texture='rman_youwin'/>
+		<scene type='lose' texture='rman_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</retiremanBoss>
+
+	<godius>
+		<scene type='start' texture='ready_ani_gold'/>
+		<scene type='win' texture='gold_youwin'/>
+		<scene type='lose' texture='gold_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</godius>
+
+	<china>
+		<scene type='start' texture='ready_ani_china'/>
+		<scene type='win' texture='china_youwin'/>
+		<scene type='lose' texture='china_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</china>
+
+	<northeu>
+		<scene type='start' texture='ready_ani_northeu'/>
+		<scene type='win' texture='northeu_youwin'/>
+		<scene type='lose' texture='northeu_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</northeu>
+
+	<santa>
+		<scene type='start' texture='ready_ani_santa'/>
+		<scene type='win' texture='santa_youwin'/>
+		<scene type='lose' texture='santa_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</santa>
+
+	<Dynamite>
+		<scene type='start' texture='ready_ani_Dynamite'/>
+		<scene type='win' texture='Dynamite_youwin'/>
+		<scene type='lose' texture='Dynamite_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</Dynamite>
+
+	<Hammer>
+		<scene type='start' texture='ready_ani_Hammer'/>
+		<scene type='win' texture='Hammer_youwin'/>
+		<scene type='lose' texture='Hammer_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</Hammer>
+
+	<castle>
+		<scene type='start' texture='ready_ani_castle'/>
+		<scene type='win' texture='castle_youwin'/>
+		<scene type='lose' texture='castle_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</castle>
+
+	<DynamiteRobot>
+		<scene type='start' texture='ready_ani_DynamiteRobot'/>
+		<scene type='win' texture='DynamiteRobot_youwin'/>
+		<scene type='lose' texture='DynamiteRobot_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</DynamiteRobot>
+
+	<HammerRobot>
+		<scene type='start' texture='ready_ani_HammerRobot'/>
+		<scene type='win' texture='HammerRobot_youwin'/>
+		<scene type='lose' texture='HammerRobot_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</HammerRobot>
+	<pirate>
+		<scene type='start' texture='ready_ani_pirate'/>
+		<scene type='win' texture='pirate_youwin'/>
+		<scene type='lose' texture='pirate_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</pirate>
+	<ghost>
+		<scene type='start' texture='ready_ani_ghost'/>
+		<scene type='win' texture='ghost_youwin'/>
+		<scene type='lose' texture='ghost_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</ghost>
+	<boss>
+		<scene type='start' texture='ready_ani_boss'/>
+		<scene type='win' texture='boss_youwin'/>
+		<scene type='lose' texture='boss_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</boss>
+	<eagle>
+		<scene type='start' texture='ready_ani_eagle'/>
+		<scene type='win' texture='eagle_youwin'/>
+		<scene type='lose' texture='eagle_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</eagle>
+	<bike>
+		<scene type='start' texture='ready_ani_bike'/>
+		<scene type='win' texture='bike_youwin'/>
+		<scene type='lose' texture='bike_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</bike>
+	<twotop>
+		<scene type='start' texture='ready_ani_twotop'/>
+		<scene type='win' texture='twotop_youwin'/>
+		<scene type='lose' texture='twotop_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</twotop>
+	<transformer>
+		<scene type='start' texture='ready_ani_transformer'/>
+		<scene type='win' texture='transformer_youwin'/>
+		<scene type='lose' texture='transformer_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</transformer>
+	<decepticon>
+		<scene type='start' texture='ready_ani_decepticon'/>
+		<scene type='win' texture='decepticon_youwin'/>
+		<scene type='lose' texture='decepticon_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</decepticon>
+	<abyss>
+		<scene type='start' texture='ready_ani_abyss'/>
+		<scene type='win' texture='abyss_youwin'/>
+		<scene type='lose' texture='abyss_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</abyss>
+	<witchUnion>
+		<scene type='start' texture='ready_ani_witchUnion'/>
+		<scene type='win' texture='witchUnion_youwin'/>
+		<scene type='lose' texture='witchUnion_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</witchUnion>
+	<threeKingdoms>
+		<scene type='start' texture='ready_ani_threeKingdoms'/>
+		<scene type='win' texture='threeKingdoms_youwin'/>
+		<scene type='lose' texture='threeKingdoms_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</threeKingdoms>
+	<korea>
+		<scene type='start' texture='ready_ani_korea'/>
+		<scene type='win' texture='korea_youwin'/>
+		<scene type='lose' texture='korea_youlose'/>
+		<scene type='winBack' texture='youwin1' texture2='youwin2'/>
+		<scene type='loseBack' texture='youlose1' texture2='youlose2'/>
+	</korea>
+</emotion>

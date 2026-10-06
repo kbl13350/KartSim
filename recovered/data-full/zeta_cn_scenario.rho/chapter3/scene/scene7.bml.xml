@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="tomb1"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="黑妞！谢谢。|我的小命差点玩完！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="你刚才说，一伙海盗抢了你爸爸留下的坠饰！为什么呢？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="这个…我也不晓得。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="肯定还没有离开村子，我们去追！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="恩！就算把山丘翻过来，也不能放过他们！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="12 0" emotion="stop1"/>
+  <Msg name="黑妞" string="你先出发。|我去找朋友们，随后就到！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="好的，黑妞！|稍后汇合！"/>
+  <Enter/>
+</Scene>

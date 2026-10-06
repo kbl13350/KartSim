@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="fengshen2"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="normal"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="stop2"/>
+  <Msg name="道士姜太公" string="出大事了！我的鱼竿不见了！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop3"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="stop2"/>
+  <Msg name="哪吒" string="不过是丢了根鱼竿，这么急着叫我过来。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop3"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="stop4"/>
+  <Msg name="道士姜太公" string="其实，那不止是根普通的鱼竿。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop3"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="normal"/>
+  <Msg name="道士姜太公" string="那是残留着申公豹部分力量的诛仙四剑之一。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop2"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="normal"/>
+  <Msg name="哪吒" string="诛仙四剑？？你竟然还保管着这么危险的东西？！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop2"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="stop4"/>
+  <Msg name="道士姜太公" string="当年申公豹的计谋失败被封印之时，女娲娘娘把它托付给了我。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop2"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="normal"/>
+  <Msg name="道士姜太公" string="所以我才把它伪装成鱼竿，一直保管着。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop2"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="normal"/>
+  <Msg name="雷震子" string="这么重要的东西，说丢就丢了？！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop3"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="normal"/>
+  <Msg name="哪吒" string="真是……太不像话了。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="20 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop3"/>
+  <Char id="Taoisttaigong" pos="12 0" emotion="stop3"/>
+  <Msg name="道士姜太公" string="没几个人知道它是诛仙四剑！|况且我就稍微走开了一小会儿，转眼间就没了啊！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="哪吒" string="等等，这气息？"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Nezha" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="korea_stuff2" pos="10 0" emotion="normal"/>
+  <Msg name="哪吒" string="是那狐狸精的气息！"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="korea_stuff2" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="道士姜太公" string="狐狸精？莫非……"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="korea_stuff2" pos="10 0" emotion="normal"/>
+  <Msg name="哪吒" string="原来是那狐狸还偷走了鱼竿，又偷走了妲己幻尾草！|这回绝不能饶了她！"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="korea_stuff2" remove="true"/>
+  <Char id="Fengshen2_stuff" pos="7 -2" emotion="stop3"/>
+  <Char id="Leizhenzi" pos="8 0" flip="true" emotion="stop4"/>
+  <Msg name="雷震子" string="我先去追寻她的踪迹。"/>
+  <Enter/>
+</Scene>

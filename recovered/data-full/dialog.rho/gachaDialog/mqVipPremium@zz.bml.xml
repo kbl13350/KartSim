@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="desktop" windowRect="fullscreen" color="230 0 0 0" alphaBlend="true">
+  <ImageBoard name="mainWindow" windowSize="1196 452" image="vip_boxPopupBG@zz" align="center" alphaBlend="true" phaBlend="true">
+    <Window name="item1" windowSize="1050 300" adjust="0 75" enable="false" alphaBlend="true" align="hcenter">
+      <Window windowSize="226 310" align="center" adjust="-440 0" texture="" enable="true" alphaBlend="true">
+        <Panel name="vipTag4" windowSize="206 280" adjust="10 10" texture="vip_tag_V@zz" alphaBlend="true" visible="true"/>
+        <Label name="itemName4" windowSize="140 30" align="bottom;center" adjust="0 32" text="" textRender="outline16" textAlign="center" textColor="white" textColor2="black" visible="false"/>
+        <Label name="itemCount4" windowSize="140 30" align="bottom;center" adjust="0 65" text="30일" textRender="bold16" textAlign="center" textColor="255 15 82 133" visible="false"/>
+        <Window name="reward4" windowSize="165 165" align="center" adjust="0 -10" texture="" enable="true" alphaBlend="true"/>
+        <Play1SPanel name="effect_basic4" scene="VIP보상활성_V" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_false4" scene="VIP보상_비활성_V" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_open4" scene="VIP보상_반짝_5" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false"/>
+      </Window>
+      <Window windowSize="226 310" align="center" adjust="-220 0" texture="" enable="true" alphaBlend="true">
+        <Panel name="vipTag3" windowSize="206 280" adjust="10 10" texture="vip_tag_P@zz" alphaBlend="true" visible="true"/>
+        <Label name="itemName3" windowSize="140 30" align="bottom;center" adjust="0 32" text="" textRender="outline16" textAlign="center" textColor="white" textColor2="black" visible="false"/>
+        <Label name="itemCount3" windowSize="140 30" align="bottom;center" adjust="0 65" text="30일" textRender="bold16" textAlign="center" textColor="255 15 82 133" visible="false"/>
+        <Window name="reward3" windowSize="165 165" align="center" adjust="0 -10" texture="" enable="true" alphaBlend="true"/>
+        <Play1SPanel name="effect_basic3" scene="VIP보상활성_P" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_false3" scene="VIP보상_비활성_P" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_open3" scene="VIP보상_반짝_4" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false"/>
+      </Window>
+      <Window windowSize="226 310" align="center" adjust="0 0" texture="" enable="true" alphaBlend="true">
+        <Panel name="vipTag2" windowSize="206 280" adjust="10 10" texture="vip_tag_G@zz" alphaBlend="true" visible="true"/>
+        <Label name="itemName2" windowSize="140 30" align="bottom;center" adjust="0 32" text="" textRender="outline16" textAlign="center" textColor="white" textColor2="black" visible="false"/>
+        <Label name="itemCount2" windowSize="140 30" align="bottom;center" adjust="0 65" text="30일" textRender="bold16" textAlign="center" textColor="255 15 82 133" visible="false"/>
+        <Window name="reward2" windowSize="165 165" align="center" adjust="0 -10" texture="" enable="true" alphaBlend="true"/>
+        <Play1SPanel name="effect_basic2" scene="VIP보상활성_G" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_false2" scene="VIP보상_비활성_G" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_open2" scene="VIP보상_반짝_3" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false"/>
+      </Window>
+      <Window windowSize="226 310" align="center" adjust="220 0" texture="" enable="true" alphaBlend="true">
+        <Panel name="vipTag1" windowSize="206 280" adjust="10 10" texture="vip_tag_S@zz" alphaBlend="true" visible="true"/>
+        <Label name="itemName1" windowSize="140 30" align="bottom;center" adjust="0 32" text="" textRender="outline16" textAlign="center" textColor="white" textColor2="black" visible="false"/>
+        <Label name="itemCount1" windowSize="140 30" align="bottom;center" adjust="0 65" text="30일" textRender="bold16" textAlign="center" textColor="255 15 82 133" visible="false"/>
+        <Window name="reward1" windowSize="165 165" align="center" adjust="0 -10" texture="" enable="true" alphaBlend="true"/>
+        <Play1SPanel name="effect_basic1" scene="VIP보상활성_S" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_false1" scene="VIP보상_비활성_S" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_open1" scene="VIP보상_반짝_2" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false"/>
+      </Window>
+      <Window windowSize="226 310" align="center" adjust="440 0" texture="" enable="true" alphaBlend="true">
+        <Panel name="vipTag0" windowSize="206 280" adjust="10 10" texture="vip_tag_F@zz" alphaBlend="true" visible="true"/>
+        <Label name="itemName0" windowSize="140 30" align="bottom;center" adjust="0 32" text="" textRender="outline16" textAlign="center" textColor="white" textColor2="black" visible="false"/>
+        <Label name="itemCount0" windowSize="140 30" align="bottom;center" adjust="0 65" text="30일" textRender="bold16" textAlign="center" textColor="255 15 82 133" visible="false"/>
+        <Window name="reward0" windowSize="165 165" align="center" adjust="0 -10" texture="" enable="true" alphaBlend="true"/>
+        <Play1SPanel name="effect_basic0" scene="VIP보상활성_F" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_false0" scene="VIP보상_비활성_F" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="true"/>
+        <Play1SPanel name="effect_open0" scene="VIP보상_반짝_1" leftTopWH="0 0 226 310" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.5 0.67" defaultSpotPos="0.0 0.0 0.67" zoom="5.0" clearZBefore="true" clearZAfter="true" enable="true" visible="false" loop="false"/>
+      </Window>
+      <Window name="itemPreview" windowRect="-170 -57 200 200" alphaBlend="true" visible="false"/>
+    </Window>
+    <Window name="underBody" windowSize="284 42" align="center" adjust="0 190">
+      <ImageButton name="ok" windowSize="132 42" adjust="0 0" autoLoadImage="vip_btn_0" alphaBlend="true" text="#sb(useBox)" textRender="bold16" textColor="255 119 92 4" overTextColor="255 196 172 0" clickedTextColor="255 95 76 16" disabledTextColor="255 92 92 92"/>
+      <TextButton name="cancel" windowSize="132 42" adjust="152 0" alphaBlend="true" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+      <ImageButton name="vipDlgClose" windowSize="132 42" autoLoadImage="vip_btn_0" alphaBlend="true" text="#sb(close)" textRender="bold16" textColor="255 119 92 4" overTextColor="255 196 172 0" clickedTextColor="255 95 76 16" disabledTextColor="255 92 92 92" visible="false"/>
+    </Window>
+  </ImageBoard>
+</Panel>

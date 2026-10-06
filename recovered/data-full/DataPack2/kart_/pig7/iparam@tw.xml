@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.9'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.064'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.68'           
+	TransformTime='700'               
+
+	StartBoosterTimeItem='1200'           
+	StartForwardAccelFactorItem = '1.2'
+
+	SpecialSlotCapacity = '2'
+	  
+	EngineSound='cotton7'
+	BoosterBlur='true'
+	EnvMap='true'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zero5'
+	BoosterType3='zero5'
+	BoosterType4='cotton6'
+	BoosterType5='cotton6'
+	BoosterType6='cotton6'
+	BoosterType7='cotton6'
+
+	Port0='mod1c1' 
+	Port1='mod1c2'
+
+	FirePort0='mod1d1'
+	FirePort1='mod1d2'
+	FirePort2='mod2a1'
+	FirePort3='mod2a2'
+	FirePort4='mod2a3'
+	FirePort5='mod2a4'
+
+	TailLampSize='0.1'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '39'
+	DescStability ='38'
+	DescEngineGrade='1.2'
+	DescCornering='2'
+	DescEnchantCap = '25'
+
+/>
+
+<!-- 대만 비행 복돼지 상점 캐시 무제한 120203 -->

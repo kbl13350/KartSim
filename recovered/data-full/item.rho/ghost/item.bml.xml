@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="ghost">
+  <state name="Use" fired="fired00" life="500" firedFx="using"/>
+  <state name="Affect" fired="fired01" life="9000"/>
+  <state name="Use" life="500" fired="effect_tigerEye" firedFx="usingTiger"/>
+  <state name="Affect" life="7000"/>
+</item>

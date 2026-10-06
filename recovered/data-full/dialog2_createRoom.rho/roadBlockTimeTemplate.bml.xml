@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window windowRect="0 0 50 14">
+  <ImageCheckButton name="timeBtn" windowRect="0 0 14 14" align="vcenter" autoImage="btn_radio_" alphaBlend="true">
+    <TextButton name="timeTxt" windowRect="20 0 30 14" frame="NoFrame" text="3분" autoSizing="true" align="vcenter" forceTooltip="false"/>
+  </ImageCheckButton>
+</Window>

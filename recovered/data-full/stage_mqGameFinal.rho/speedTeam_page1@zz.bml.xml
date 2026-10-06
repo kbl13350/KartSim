@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="Desktop" windowRect="fullscreen">
+  <List name="resultList" leftTopWH="0 0 702 535" frame="NoFrame" scrollType="vertical" listGap="0" upButton="NoFrame" downButton="NoFrame" upButtonBullet="NoFrame" downButtonBullet="NoFrame" scrollButton="NoFrame" scrollArea="NoFrame" scrollBarVisible="false" listMargin="10 10 0 0" align="vcenter"/>
+</Container>

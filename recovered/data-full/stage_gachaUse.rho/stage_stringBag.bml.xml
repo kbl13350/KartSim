@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="soldout">
+    <m c="kr" v=""/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="saleExpired">
+    <m c="kr" v=""/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="stockError">
+    <m c="kr" v=""/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="usePeriodExpired">
+    <m c="kr" v="기간 만료"/>
+    <m c="jp" v="期間終了"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+    <m c="id" v="Expired"/>
+  </k>
+  <k n="periodFormatBegin">
+    <m c="kr" v="%d.%d.%d 부터"/>
+    <m c="jp" v="%d.%d.%dまで"/>
+    <m c="cn" v="%d.%d.%d开始"/>
+    <m c="tw" v="%d.%d.%d"/>
+    <m c="id" v="%d.%d.%d"/>
+  </k>
+  <k n="periodFormat">
+    <m c="kr" v="%d.%d.%d 까지"/>
+    <m c="jp" v="%d.%d.%dまで"/>
+    <m c="cn" v="%d.%d.%d截止"/>
+    <m c="tw" v="%d.%d.%d"/>
+    <m c="id" v="%d.%d.%d"/>
+  </k>
+  <k n="usingLotteryItemWithKey">
+    <m c="kr" v="[:key] 아이템을 사용해 [:main] 아이템을 열 수 있습니다.|"/>
+    <m c="jp" v="[:key]を使用して[:main]を開くことができます。|"/>
+    <m c="cn" v="使用[:key]可以开启[:main]。|"/>
+    <m c="tw" v="必須使用[:key]才能開啟 [:main]|"/>
+    <m c="id" v="Menggunakan [:key] dapat membuka item [:main] .|"/>
+  </k>
+  <k n="selectItemWithKey">
+    <m c="kr" v=""/>
+    <m c="cn" v="|确定使用[:key]开启[:main]吗？"/>
+    <m c="tw" v="|您確定要使用[:key]開啟 [:main]嗎？"/>
+    <m c="id" v=""/>
+  </k>
+  <k n="usingLotteryItem">
+    <m c="kr" v="[:main] 아이템을 사용할 수 있습니다."/>
+    <m c="jp" v="[:main]を使用できます。"/>
+    <m c="cn" v="可以使用[:main]。"/>
+    <m c="tw" v="可使用[:main]。"/>
+    <m c="id" v="Dapat menggunakan item [:main]"/>
+  </k>
+  <k n="selectItem">
+    <m c="kr" v="|[:main] 아이템을 사용하시겠습니까?"/>
+    <m c="jp" v="|[:main]を使用しますか？"/>
+    <m c="cn" v="|确定使用[:main]吗？"/>
+    <m c="tw" v="|您確定要使用[:main]道具嗎？"/>
+    <m c="id" v="|Ingin menggunakan item [:main] ?"/>
+  </k>
+  <k n="confirmRetryCount">
+    <m c="kr" v="%d번 재도전이 가능하며 "/>
+    <m c="jp" v="%d回再挑戦が可能で"/>
+    <m c="cn" v="您还可以继续挑战%d次，"/>
+    <m c="tw" v="可再挑戰 %d 次。"/>
+    <m c="id" v="Dapat menantang sebanyak %d"/>
+  </k>
+  <k n="confirmRetryWarnWithKey">
+    <m c="kr" v="[color:red][:main] 아이템 1개와 [:key] 아이템 1개가 소멸됩니다.[/color]"/>
+    <m c="jp" v="[color:red][:main]1個と[:key]1個を消耗します。[/color]"/>
+    <m c="cn" v="继续挑战将消耗1个[color:red][:main][/color]。"/>
+    <m c="tw" v="確認挑戰後，會消耗[color:red] [:main] (1個)[/color]。"/>
+    <m c="id" v="[color:red]Item [:main] 1 dan item [:key] 1 pcs akan hilang.[/color]"/>
+  </k>
+  <k n="confirmRetryWarn">
+    <m c="kr" v="[color:red][:key] 아이템 1개가 소멸됩니다.[/color]"/>
+    <m c="jp" v="[color:red][:main]1個を消耗します。[/color]"/>
+    <m c="cn" v="继续挑战将消耗1个[color:red][:key][/color]。"/>
+    <m c="tw" v="確認挑戰後，會消耗[color:red] [:key] (1個)[/color]。"/>
+    <m c="id" v="[color:red]Item [:main] 1 pcs akan terpakai.[/color]"/>
+  </k>
+  <k n="confirmRetryWarnForBurning">
+    <m c="kr" v="[color:red][:key] 아이템 1개가 소멸됩니다. |획득한 아이템 등급에 따라 버닝 포인트가 증가합니다.|버닝 포인트를 35P 획득하면 버닝 비밀상자를 이용할 수 있습니다.[/color]"/>
+    <m c="jp" v="[color:red][:main]1個を消耗します。[/color]"/>
+    <m c="cn" v="[color:red]开启幸运石板时需要消耗1个[:key]。|根据所获得的道具级别，会增加燃烧积分。|获得35点燃烧积分就可以参加燃烧系统。[/color]"/>
+    <m c="tw" v="[color:red][:key] 消耗1個道具。 |依據獲得道具的等級來增加烈燄點數。|獲得烈燄點數35P，可使用烈燄秘密箱。[/color]"/>
+    <m c="id" v="[color:red]Item [:main] 1 pcs akan terpakai.[/color]"/>
+  </k>
+  <k n="confirmRetryItem">
+    <m c="kr" v="남은 %d개의 [:main] 아이템으로 재도전 하시겠습니까?|"/>
+    <m c="jp" v="残り%d個の[:main]で再挑戦しますか？|"/>
+    <m c="cn" v="需要使用剩余的%d个[:main]继续挑战吗？|"/>
+    <m c="tw" v="使用剩下的 %d 個 [:main] 道具，還要再次挑戰嗎？|"/>
+    <m c="id" v="Ingin mencoba lagi dengan item [:main] yang tersisa %d pcs?|"/>
+  </k>
+  <k n="retryExpired">
+    <m c="kr" v="재도전 기회를 모두 사용했습니다.| 처음부터 다시하기 버튼을 누르시면 새로운 아이템으로 다시 시작됩니다."/>
+    <m c="jp" v="再挑戦のチャンスをすべて使用しました。| 確認ボタンを押すと新しいアイテムで再開されます。"/>
+    <m c="cn" v="已经使用了全部的再挑战机会。|点击重新开始按键时，会变为全新道具重新开始。"/>
+    <m c="tw" v="再挑戰的機會已經使用完畢。| 點選重新開始按鈕，以新的輪迴再重新開始。"/>
+    <m c="id" v="Kesempatan telah habis.|Jika tekan tombol konfirmasi akan dimulai lagi dengan item baru."/>
+  </k>
+  <k n="pauseForShopBuy">
+    <m c="kr" v="[:key] 아이템이 없어 재도전 할 수 없습니다.|구입하기 버튼으로 [:key] 아이템을 구입하시면| 지금 상태로 재도전이 가능합니다."/>
+    <m c="jp" v="[:key]が無いため再挑戦できません。|購入ボタンで[:key]を購入すると今の状態で再挑戦が可能です。"/>
+    <m c="cn" v="没有[:key]，无法继续挑战。|通过兑换按钮购买[:key]后可以继续挑战。"/>
+    <m c="tw" v="您目前缺少：[:key]的緣故無法再挑戰。|可透過【購買】按鈕購買 [:key]再進行挑戰喔！。"/>
+    <m c="id" v="Tidak dapat mencoba lagi karena tidak ada item [:key] .|Jika membeli [:key] dengan cara menekan tombol Membeli dapat mencoba lagi dengan kondisi sekarang."/>
+  </k>
+  <k n="titleSelectItem">
+    <m c="kr" v="마음에 드는 %s 아이템을 선택하세요."/>
+    <m c="jp" v="気に入った%sアイテムを選択してください。"/>
+    <m c="cn" v="请选择要开启的%s。"/>
+    <m c="tw" v="請選擇想要的 %s　。"/>
+    <m c="id" v="Silahkan memilih Item %s yang kamu suka."/>
+  </k>
+  <k n="titleRetryItem">
+    <m c="kr" v="남은 %s 아이템으로 재도전 하시겠습니까?"/>
+    <m c="jp" v="残りの%sで再挑戦しますか？"/>
+    <m c="cn" v="需要使用剩余的%s继续挑战吗？"/>
+    <m c="tw" v="使用剩下的 %s  再挑戰嗎?"/>
+    <m c="id" v="Ingin mencoba lagi dengan item %s yang tersisa?"/>
+  </k>
+  <k n="titleRetryExpired">
+    <m c="kr" v="재도전 기회를 모두 사용했습니다."/>
+    <m c="jp" v="再挑戦のチャンスをすべて使用しました。"/>
+    <m c="cn" v="已使用了全部继续挑战机会。"/>
+    <m c="tw" v="再次挑戰的機會都已經使用完畢。"/>
+    <m c="id" v="Kesempatan telah habis semua."/>
+  </k>
+  <k n="noItem">
+    <m c="kr" v="%s 아이템을 가지고 있지 않습니다."/>
+    <m c="jp" v="%sを持っていません。"/>
+    <m c="cn" v="您的%s持有数量不足。"/>
+    <m c="tw" v="你的身上沒有 %s。"/>
+    <m c="id" v="Tidak memiliki item %s."/>
+  </k>
+  <k n="buyItem">
+    <m c="kr" v="|%s 아이템은 상점에서 구입할 수 있습니다."/>
+    <m c="jp" v="|%sはショップで購入できます。"/>
+    <m c="cn" v="|%s可在商店中兑换。"/>
+    <m c="tw" v="|在商城可購買%s 。"/>
+    <m c="id" v="|%s Item dapat dibeli di Shop."/>
+  </k>
+  <k n="kBuyItem">
+    <m c="kr" v="아이템 구입"/>
+    <m c="cn" v="获得活动道具"/>
+    <m c="tw" v="確定購買道具"/>
+  </k>
+  <k n="questItem">
+    <m c="kr" v="|%s 아이템은 멀티플레이 채널에서 퀘스트를 통해 획득 할 수 있습니다.|확인 버튼을 누르시면 멀티플레이 채널로 이동합니다."/>
+    <m c="jp" v="|%sはマルチプレイチャンネルでクエストを通じて入手できます。|確認ボタンを押すとマルチプレイチャンネルへ移動します。"/>
+    <m c="id" v="|%s Item dapat diperoleh melalui Quest di Multiplay channel.|Jika click konfirmasi akan berpindah ke Multiplay channel."/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="youCanBuyItem">
+    <m c="kr" v="|구입하기 버튼으로 %s 아이템을 바로 구입하실 수 있습니다."/>
+    <m c="jp" v="|購入ボタンを押すと %sをすぐに購入することができます。"/>
+    <m c="cn" v="|通过兑换按钮可立即兑换%s。"/>
+    <m c="tw" v="|透過『購買』按鈕可直接購買 %s 。"/>
+    <m c="id" v="|Dengan click tombol membeli dapat membeli item %s langsung."/>
+  </k>
+  <k n="countFormat">
+    <m c="kr" v="%d"/>
+    <m c="jp" v="%d"/>
+    <m c="cn" v="%d"/>
+    <m c="tw" v="%d"/>
+    <m c="id" v="%d"/>
+  </k>
+  <k n="retry">
+    <m c="kr" v="처음부터 다시하기"/>
+    <m c="jp" v="最初から"/>
+    <m c="cn" v="重新开启"/>
+    <m c="tw" v="重新開始"/>
+    <m c="id" v="Mulai dari awal"/>
+  </k>
+  <k n="goBurning">
+    <m c="kr" v="버닝 비밀상자"/>
+    <m c="cn" v="燃烧宝箱"/>
+    <m c="tw" v="烈燄秘密箱"/>
+  </k>
+  <k n="emptyItem">
+    <m c="kr" v="진행 중인 이벤트 비밀 상자가 없습니다.|곧 추가될 이벤트 비밀 상자를 기대해주세요."/>
+    <m c="jp" v="進行中のイベントシークレットボックスがありません。|間もなく追加されるイベントシークレットボックスにご期待ください。"/>
+    <m c="cn" v="目前没有进行中的魔法饼干活动。|下次魔法饼干活动即将上市，大家期待哦~！"/>
+    <m c="tw" v="目前無進行中的【紅福奇餅】。| 即將要開始下一輪【紅福奇餅】。是不是很期待呢？"/>
+    <m c="id" v="Tidak ada Event Secret box yang sedang berlangsung.|Silahkan menunggu event berikutnya."/>
+  </k>
+  <k n="titleEmptyItem">
+    <m c="kr" v="진행 중인 이벤트 비밀 상자가 없습니다."/>
+    <m c="jp" v="進行中のイベントシークレットボックスがありません。"/>
+    <m c="cn" v="限时进行的幸运小锅活动已结束，请期待下一次活动。"/>
+    <m c="tw" v="目前無進行中的紅福奇餅。"/>
+    <m c="id" v="Tidak ada Event Secret box yang sedang berlangsung."/>
+  </k>
+  <k n="nolongerGetItem">
+    <m c="kr" v="[:key] 의 판매가 종료되었습니다.|다른 종류의 비밀상자를 열어보세요~"/>
+    <m c="jp" v="[:key]が手に入らないため、これ以上進行できません。|他の種類のシークレットボックスを開いてみてください。"/>
+    <m c="cn" v="目前没有进行中的[:key]活动。"/>
+    <m c="tw" v="目前無進行中的[:key]。"/>
+    <m c="id" v="Tidak dapat dilanjutkan karena tidak bisa mendapatkan item [:key].|Silahkan coba box yang lain~"/>
+  </k>
+  <k n="lotteryExceedTrialCount">
+    <m c="kr" v="이미 보유하고 있는 아이템 입니다. 다시 시도해주세요."/>
+    <m c="jp" v="一時的なネットワーク異常により正常に動作しませんでした。|アイテムは減っていません。もう一度お試しください。"/>
+    <m c="cn" v="您已持有该道具，请重新尝试。"/>
+    <m c="tw" v="網路暫時性異常發生，操作失敗|道具未被消耗，請再次嘗試使用。"/>
+    <m c="id" v="Terjadi error sementar karena network.|Item tidak berkurang.silahkan coba lagi"/>
+  </k>
+  <k n="lotteryNotInPeriod">
+    <m c="kr" v="사용 기간이 아닙니다."/>
+    <m c="jp" v="利用有効期間ではありません。"/>
+    <m c="cn" v="不在使用期之内"/>
+    <m c="tw" v="非使用期間"/>
+    <m c="us" v="This item cannot be used yet. "/>
+    <m c="vn" v="Vĩnh viễn"/>
+    <m c="ru" v="Сейчас не время действия."/>
+    <m c="id" v="Bukan periode pemakaian"/>
+    <m c="th" v="ไม่ใช่เวลาที่ใช้"/>
+  </k>
+  <k n="lotteryNotEnoughQuantity">
+    <m c="kr" v="아이템 개수가 부족하여 사용할 수가 없습니다."/>
+    <m c="cn" v="道具数量不足，无法使用"/>
+    <m c="jp" v="%sの個数が足りないため、使用できません。|%sをオープンするには%d個必要です。"/>
+    <m c="tw" v=" 道具數量不足"/>
+    <m c="id" v="Tidak dapat menggunakannya karena kurang %s pcs|Jika ingin membuka %s membutuhkan total %d pcs."/>
+  </k>
+  <k n="unknownError">
+    <m c="kr" v="알 수 없는 오류가 발생했습니다."/>
+    <m c="jp" v="原因不明のエラーが発生しました。"/>
+    <m c="cn" v="发生了未知错误"/>
+    <m c="tw" v="禮物盒開啟失敗(禮物盒不會遭到消耗)，請嘗試再次開啟禮物盒。"/>
+    <m c="us" v="An unknown error occurred. "/>
+    <m c="vn" v="Không xác định được lỗi."/>
+    <m c="ru" v="Обнаружена неизвестная ошибка."/>
+    <m c="id" v="Telah terjadi error yang tidak terduga"/>
+    <m c="th" v="เกิดข้อบกพร่องที่ไม่สามารถระบุได้"/>
+  </k>
+  <k n="anyCountUse">
+    <m c="kr" v="%d개 사용"/>
+    <m c="cn" v="使用%d个"/>
+    <m c="tw" v="使用%d個"/>
+  </k>
+  <k n="useCountAvailable">
+    <m c="kr" v="%s %d개 사용 가능"/>
+    <m c="cn" v="%s可使用%d个"/>
+    <m c="tw" v="可使用%s %d個"/>
+  </k>
+  <k n="limitedItemCount">
+    <m c="kr" v="%d개"/>
+    <m c="cn" v="%d个"/>
+    <m c="tw" v="%d個"/>
+  </k>
+  <k n="unlimitedItemCount">
+    <m c="kr" v="무한정"/>
+    <m c="cn" v="不限量"/>
+    <m c="tw" v="無限制"/>
+  </k>
+  <k n="limitedItemZeroCount">
+    <m c="kr" v="매진"/>
+    <m c="cn" v="售罄"/>
+    <m c="tw" v="售完"/>
+  </k>
+  <k n="limitedItemAllSoldOut">
+    <m c="kr" v="이번 한정 수량 아이템은 모두 매진 되었습니다.|다음 시간 한정 수량 아이템을 기대해 주세요."/>
+    <m c="cn" v="限量道具已售罄，|请期待下一次的活动！"/>
+    <m c="tw" v="本次的限定數量道具已全部銷售完畢。|請期待下個時間的限定數量道具吧!"/>
+  </k>
+  <k n="soldOut">
+    <m c="kr" v="매진"/>
+    <m c="cn" v="售罄"/>
+    <m c="tw" v="售完"/>
+  </k>
+  <k n="itemUseDesc">
+    <m c="kr" v="사용 시 %s 1개를 소모합니다."/>
+    <m c="cn" v="使用时%s消耗1个。"/>
+    <m c="tw" v="使用時消耗%s 1個"/>
+  </k>
+  <k n="itemUseDesc_needOther">
+    <m c="kr" v="사용 시 %s 아이템과 %s 아이템 1개를 소모합니다."/>
+    <m c="cn" v="使用时消耗1个%s和%s。"/>
+    <m c="tw" v="使用時，會消耗%s道具和%s道具1個。"/>
+  </k>
+  <k n="itemBuyDesc">
+    <m c="kr" v="구입하기를 통해 %s 추가 구매가 가능합니다."/>
+    <m c="cn" v="通过兑换按钮进行%s的兑换。"/>
+    <m c="tw" v="透過購買鍵可追加購買%s "/>
+  </k>
+  <k n="quit">
+    <m c="kr" v="종료"/>
+    <m c="cn" v="结束"/>
+    <m c="tw" v="結束"/>
+  </k>
+  <k n="obtainableItem">
+    <m c="kr" v="획득가능아이템"/>
+    <m c="cn" v="可获得道具"/>
+    <m c="tw" v="可獲得道具"/>
+  </k>
+  <k n="obtainableItemCount">
+    <m c="kr" v="수량"/>
+    <m c="cn" v="数量"/>
+    <m c="tw" v="數量"/>
+  </k>
+  <k n="getItemDesc">
+    <m c="kr" v="위 아이템 이외에 다수의 아이템 등장"/>
+    <m c="cn" v="除以上道具外还会出现更多道具"/>
+    <m c="tw" v="除了上面的道具會出現多樣的道具"/>
+  </k>
+  <k n="getItemCount">
+    <m c="kr" v="획득 아이템 %d 개"/>
+    <m c="cn" v="已获得%d个道具"/>
+    <m c="tw" v="獲得道具%d 個"/>
+  </k>
+  <k n="itemAllUse">
+    <m c="kr" v="모두 사용 하셨습니다."/>
+    <m c="cn" v="已全部使用。"/>
+    <m c="tw" v="全使用完畢"/>
+  </k>
+  <k n="itemNotExist">
+    <m c="kr" v="아이템이 없습니다."/>
+    <m c="cn" v="因没有道具无法开启"/>
+    <m c="tw" v="因沒有道具無法開啟"/>
+  </k>
+  <k n="itemBonusWarning">
+    <m c="kr" v="보너스 보상의 최대 보유 가능 수량이 초과되어,|해당 아이템 획득이 불가능합니다"/>
+    <m c="cn" v="已超出该道具最大持有数量，|无法获得该道具"/>
+    <m c="tw" v="由於已超過Bonus獎勵的最大持有數量，|無法獲得該道具。"/>
+  </k>
+  <k n="getItem">
+    <m c="kr" v="%s 획득!"/>
+    <m c="cn" v="获得%s！"/>
+    <m c="tw" v="獲得%s !..."/>
+  </k>
+  <k n="item">
+    <m c="kr" v="아이템"/>
+    <m c="cn" v="道具"/>
+    <m c="tw" v="道具"/>
+  </k>
+  <k n="vipIcon2">
+    <m c="kr" v="[color:255 223 242 246]프리미엄 증가 적용[/color]"/>
+    <m c="cn" v="[color:255 223 242 246]白银专享[/color]"/>
+    <m c="tw" v="[color:255 223 242 246]銀牌等級機率增加[/color]"/>
+  </k>
+  <k n="vipIcon3">
+    <m c="kr" v="[color:255 255 204 1]프리미엄 증가 적용[/color]"/>
+    <m c="cn" v="[color:255 255 204 1]黄金专享[/color]"/>
+    <m c="tw" v="[color:255 255 204 1]金牌等級機率增加[/color]"/>
+  </k>
+  <k n="vipIcon4">
+    <m c="kr" v="[color:255 255 0 246]프리미엄 증가 적용[/color]"/>
+    <m c="cn" v="[color:255 255 0 246]水晶专享[/color]"/>
+    <m c="tw" v="[color:255 255 0 246]白金等級機率增加[/color]"/>
+  </k>
+  <k n="vipIcon5">
+    <m c="kr" v="[color:255 253 217 1]프리미엄 증가 적용[/color]"/>
+    <m c="cn" v="[color:255 253 217 1]VIP专享[/color]"/>
+    <m c="tw" v="[color:255 253 217 1]VIP 等級機率增加[/color]"/>
+  </k>
+  <k n="prizeInfoString">
+    <m c="kr" v="[color:255 255 87 21]%d[/color]회 이내 100% 획득"/>
+    <m c="cn" v="[color:255 255 87 21]%d[/color]次以内必得"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="prizeConfirmed">
+    <m c="kr" v="[color:255 255 87 21]%s[/color] 100% 획득!"/>
+    <m c="cn" v="必得[color:255 255 87 21]%s[/color]"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="limitedCountUnit">
+    <m c="kr" v="[color:255 255 87 21]%d[/color]개 한정수량"/>
+    <m c="cn" v="[color:255 255 87 21]%d[/color]个限定数量"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="limitedCountSoldOut">
+    <m c="kr" v="한정수량"/>
+    <m c="cn" v="限定数量"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="lastPrizeInfo">
+    <m c="kr" v="[color:255 255 87 21]%d[/color]회 마다 [color:255 255 87 21]%s[/color] 획득"/>
+    <m c="cn" v="每[color:255 255 87 21]%d[/color]次获得[color:255 255 87 21]%s[/color]"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="prizeInfoStringNew">
+    <m c="kr" v="앞으로 [color:255 255 87 21]%d[/color] 회"/>
+    <m c="cn" v="剩余[color:255 255 87 21]%d[/color]次"/>
+    <m c="tw" v=""/>
+  </k>
+</StringBag>

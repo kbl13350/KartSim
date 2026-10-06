@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des1"/>
+  <Bgm theme="desert" file="desert_02"/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="皮蛋经过了特训，行驶实力似乎变得相当稳定了。"/>
+  <Enter/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="对的，看起来一个人拼命练习了。|练习得都不想见我了啊？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="啊，怎么会？当然想见的。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="胖墩" string="皮蛋脸都红了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="11 0" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop4"/>
+  <Char id="mos" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋/黑妞/胖墩" string="哈哈哈"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="700"/>
+  <Msg name="???" string="咚！ 咚！ 咚！"/>
+  <Enter/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="是谁？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Msg name="???" string="我来找皮蛋。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="啊！是谁来找我？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="marid" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="蓝蓝" string="你好。 皮蛋，好久不见。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="啊！ 你是上次我递送赛车过去的蓝蓝！|来这里干嘛？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop7"/>
+  <Msg name="小强" string="是上次送过去的车子有问题吗？|这种事情绝对不会有的。"/>
+  <Enter/>
+  <Char id="marid" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="蓝蓝" string="不是，不是赛车的问题。|我是来见皮蛋的。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞" string="皮蛋，这女孩是谁？"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="她是……上次完成小强的条件的时候，偶然遇到的蓝蓝。|我也不知道为什么来找我。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="蓝蓝" string="上次分别的时候，不是约好了再见的吗。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="marid" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="蓝蓝" string="不过话说回来，你是谁啊，居然对皮蛋发火？"/>
+  <Enter/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="我是谁？ |这个你没必要知道！"/>
+  <Enter/>
+  <Shake time="700"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="marid" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞/蓝蓝" string="哼~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="今天都是初次见面……|都给我安静。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Shake time="700"/>
+  <Char id="dizini" pos="3 0" emotion="normal"/>
+  <Char id="marid" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="黑妞/蓝蓝" string="让你安静点！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="呼！ 到底该怎么办才好……"/>
+  <Enter/>
+  <Char id="marid" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="蓝蓝" string="皮蛋，看起来这个女孩是你的女朋友吧？|看来你的眼光真差。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="什么！"/>
+  <Enter/>
+  <Char id="marid" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="蓝蓝" string="黑妞，与其这么无意义的吵架，我们还不如通过比赛来决定谁成为皮蛋的女朋友。"/>
+  <Enter/>
+  <Char id="dizini" pos="3 0" emotion="normal"/>
+  <Msg name="黑妞" string="很好！正有此意！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="喂~完全不考虑我的意见啊？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="皮蛋啊！ 黑妞的手受伤了的，现在和蓝蓝对决似乎太勉强了。 |不管怎么说，也是该由你和蓝蓝对决，来解决微妙的三角关系比较好。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="嗯， 看来也只有这样了。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="蓝蓝！ 黑妞现在有伤，没办法和你对决。|由我来代替她和你进行对决，来解决问题如何？"/>
+  <Enter/>
+  <Char id="marid" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="蓝蓝" string="虽然想直接和黑妞决胜负，压压她的煞气……|不过，只要你答应我，如果我胜利的话和我交往就行了。|皮蛋！肯答应吗？"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="嗯，好吧。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="皮蛋！"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="黑妞，不要生气，要相信皮蛋，我比谁都清楚皮蛋的实力。"/>
+  <Enter/>
+  <Char id="dizini" pos="3 0" emotion="normal"/>
+  <Msg name="黑妞" string="可是……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="marid" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="蓝蓝" string="来吧，现在就开始爱的比赛！|准备好了吗？"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="嗯！ 马上开始吧！"/>
+  <Enter/>
+</Scene>

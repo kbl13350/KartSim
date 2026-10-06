@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window windowRect="0 0 250 45" frame="DefaultEdit">
+  <PlaneCheckButton name="stockCheck" windowSize="20 20" adjust="2 0" align="vcenter" frame="DefaultCheckButton"/>
+  <Window windowSize="35 35" adjust="30 0" align="vcenter" frame="GrayEdit">
+    <ItemWindow name="itemWindow" leftTopWH="-5 -5 35 35"/>
+  </Window>
+  <Label name="stockStr" windowSize="100 27" adjust="75 3" align="vcenter" text="stockStr" textColor="255 100 100 150" textAlign="top"/>
+  <Label name="notRefundableStr" windowSize="100 27" adjust="75 3" align="vcenter" text="(구입취소 불가)" textColor="255 255 100 100" textAlign="bottom" visible="false"/>
+</Window>

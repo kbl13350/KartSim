@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window leftTopWH="0 0 724 350" enable="true" visible="true">
+  <GaragePreview name="kartPreview" windowSize="350 350" adjust="-150 0" align="hcenter" visible="false" enable="true"/>
+  <ItemWindow name="itemPreview" windowSize="350 350" adjust="-150 40" align="hcenter" visible="false" enable="true"/>
+  <Panel texture="pass_img_itemInfoLine" leftTopTex="306 126" alphaBlend="true" visible="true" enable="false"/>
+  <ColorLabel name="previewLv" leftTopWH="602 126 100 20" text="" textColor="black" textRender="bold" textAlign="right" visible="true"/>
+  <Label name="previewName" leftTopWH="408 126 300 20" text="" textColor="255 255 255 255" textRender="bold" textAlign="left"/>
+  <ColorLabel name="previewDesc" leftTopWH="394 153 310 100" text="" textColor="255 255 255 255" vertAutoSizing="true" multiLine="true" textRender="bold" autoWrap="true" lineGap="4"/>
+</Window>

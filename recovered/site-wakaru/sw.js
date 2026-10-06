@@ -1,0 +1,1 @@
+../../mirror/sw.js

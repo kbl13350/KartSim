@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Escape isFixedKart="true" fixedKartId="1140" fixedCharId="318" isFixedChar="true" kartId="1219" characterId="315" colorId="57" dyeId="57" characterName="亚瑟王">
+    <LevelContent level="0" track="camelot_R03" laps="2" ksv="1-3" distance="20" startOffset="-1000"/>
+  </Escape>
+</Root>

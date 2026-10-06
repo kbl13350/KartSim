@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="0 0 0 0" alphaBlend="true">
+  <Panel name="noneSkill_1" windowSize="116 116" texture="tuning_selectperform_slotBg2_i" alphaBlend="true" visible="false"/>
+  <Panel windowSize="116 116" texture="tuning_selectperform_slotBg_i" alphaBlend="true"/>
+  <Panel name="selectPerform_1" windowSize="116 116" texture="tuning_selectperform_slotBg_c" alphaBlend="true" visible="false"/>
+  <Panel name="skillIcon" windowSize="70 70" adjust="23 13" texture="" alphaBlend="true"/>
+  <Panel name="noneSkill_2" windowSize="116 116" texture="tuning_selectperform_slotBg_dim" alphaBlend="true" visible="false" altText="#sb(alreadyUse)" altRelativePos="10 90"/>
+  <Panel name="curSkillSlotTag" adjust="69 14" windowSize="24 18" texture="tuning_slotNum1_i" alphaBlend="true" enable="false" visible="false"/>
+  <Panel name="lockSkillTag" adjust="71 18" windowSize="22 22" texture="tuning_icon_lock" alphaBlend="true" enable="false" visible="false"/>
+  <Panel name="selectPerform_2" windowSize="116 116" texture="tuning_selectperform_slotBg_c_effect" alphaBlend="true" enable="false" visible="false"/>
+  <Label name="skillName" windowSize="116 30" adjust="0 100" align="vcenter" textAlign="center" text="" textRender="bold14" textColor="white"/>
+  <Label name="restrictSkill" windowSize="116 30" adjust="0 100" align="vcenter" textAlign="center" text="#sb(restrictSkill)" textRender="outline14" textColor="white" visible="false"/>
+  <Label name="alreadyUse" windowSize="116 30" adjust="0 100" align="vcenter" textAlign="center" text="#sb(alreadyUse)" textRender="outline14" textColor="white" visible="false"/>
+</Panel>

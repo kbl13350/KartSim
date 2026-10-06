@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <Shadow isFixedKart="true" fixedKartId="24" isFixedChar="true" fixedCharId="3" kartId="9" characterId="32" uniformId="0" colorId="8" dyeId="8" characterName="美美">
+    <LevelContent level="0" ksv="nymph_I03_1" track="nymph_I03" laps="3"/>
+  </Shadow>
+</Root>

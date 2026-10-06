@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Shadow kartId="919" characterId="24" uniformId="40" colorId="1" dyeId="1" isFixedKart="true" fixedKartId="875" characterName="阿哥">
+    <LevelContent level="0" ksv="리부트_9단계_china_I02_1분50초" track="china_I02" laps="3"/>
+  </Shadow>
+</Root>

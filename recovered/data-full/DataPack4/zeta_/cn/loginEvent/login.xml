@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- id 1 : 뽀꼬뽀꼬, 2 : 짧은 출첵 -->
+<LoginEvent>
+	<Event id='1' name='뽀꼬뽀꼬' period='2014-09-25T06:00:00~2014-10-15T23:59:59' type='expire' slotCount='30' addTryCount='1' questId='444' theme='original'>
+		<Reward order='ackRandom' rawardOnce='true'>
+		
+			<reward stockId='9808'  requireMinTryCount='21' special='true' /> <!-- 선녀 첸첸 仙女雯雯(无限制) -->
+			<reward stockId='9809'  requireMinTryCount='12' special='true'/> <!-- 행운의 빨간종 红色神钟(5 个) -->
+			<reward stockId='9810'  requireMinTryCount='8'/> <!-- 행운의 빨간종 红色神钟(2 个) -->
+			<reward stockId='9787'  requireMinTryCount='10' special='true'/> <!-- 시간의 모래시계 时间沙漏(5 个) -->
+			<reward stockId='9752'  requireMinTryCount='5'/> <!-- 시간의 모래시계 时间沙漏(1个) -->
+			<reward stockId='9160'  requireMinTryCount='12'/> <!-- 프리즘 기어 彩色齿轮(打折) (5个) -->
+			<reward stockId='9572'  requireMinTryCount='8'/> <!-- 프리즘 기어 彩色齿轮(3 个) -->
+			<reward stockId='9573'  requireMinTryCount='8'/> <!-- 골드 기어 黄金齿轮(3 个) -->
+			<reward stockId='9124'  requireMinTryCount='4'/> <!-- 골드 기어 黄金齿轮(1个) -->
+			<reward stockId='5751'  /> <!-- 우니 필살기 小乖必杀技 (30个) -->
+			<reward stockId='1128'  /> <!-- 루찌 100% 카드 双倍金币卡(3天) -->
+			<reward stockId='73'  /> <!-- 슬롯 체인저 道具换位卡(20个) -->
+			<reward stockId='61'  requireMinTryCount='4'/> <!-- 슬롯 체인저 道具换位卡(50个) -->
+			<reward stockId='3310'  /> <!-- 아이템 체인저 道具变更卡(20个) -->
+			<reward stockId='3242'  requireMinTryCount='4'/> <!-- 아이템 체인저 道具变更卡(50个) -->
+			<reward stockId='9427'  /> <!-- 옵티머스 프라임 풍선 擎天柱气球(50 个) -->
+			<reward stockId='9811'  /> <!-- 범블비 풍선 大黄蜂气球(50 个) -->
+			<reward stockId='9812'  /> <!-- 사운드웨이브 풍선 声波气球(50 个) -->
+			<reward stockId='9813'  /> <!-- 사운드웨이브 밴드 声波头饰(20 天) -->
+			<reward stockId='9814'  /> <!-- 범블비 밴드 大黄蜂头饰(20 天) -->
+			<reward stockId='9576'  /> <!-- 오토봇 밴드 博派头饰(20 天) -->
+			<reward stockId='9577'  /> <!-- 디셉티콘 밴드 狂派头饰(20 天) -->
+			<reward stockId='9578'  /> <!-- 오토봇 핸드봉 博派手杖(20 天) -->
+			<reward stockId='9579'  /> <!-- 디셉티콘 핸드봉 狂派手杖(20 天) -->
+			<reward stockId='1072'  /> <!-- 1000 루찌 金币卡(1000) -->
+			<reward stockId='2069'  requireMinTryCount='8'/> <!-- 10000 루찌 金币卡(1万金币) -->
+			<reward stockId='1923'  /> <!-- 검정 오라 黑钻炫光(10天) -->
+			<reward stockId='1926'  /> <!-- 무지개 오라 幻彩炫光(10天) -->
+			<reward stockId='9153'  /> <!-- 은하수 스키드 银河印迹 (10天) -->
+			<reward stockId='1228'  /> <!-- 불꽃 스키드 风火轮(10天) -->
+		</Reward>
+		<RewardSubSet>
+			<reward stockId='9815'/>   <!-- 우니 필살기 (5개)  小乖必杀技-->
+		</RewardSubSet>
+	</Event>
+	<!-- 짧은 출첵은 period의 시작점-현재시간 으로 차이나는 날짜 계산을 하기 때문에
+	무조건 시작 시간은 00:00:00 이어야 합니다.-->
+	 <Event id='2' name='짧은출첵' period='2016-03-03T00:00:00~2016-03-10T05:59:59' type='once' slotCount='8' addTryCount='1' bonus='1'>
+		<Reward>			
+			<reward stockId='11002' requireMinTryCount='2'/>	<!-- TOP 150 카트기어 1개 -->
+			<reward stockId='7914' requireMinTryCount='4'/>	<!-- 코인 10개 -->
+			<reward stockId='3277' requireMinTryCount='6'/>	<!-- 활성킷 S 1개 -->
+			<reward stockId='10994' requireMinTryCount='8'/>	<!-- TOP 50 카트기어 1개 -->
+		</Reward>
+	</Event> 
+</LoginEvent>

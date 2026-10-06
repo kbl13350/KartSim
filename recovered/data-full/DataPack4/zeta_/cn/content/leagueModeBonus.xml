@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<leagueModeBonus>
+	<level id='0' consecutiveCount='0' rpMulti='1' lucciMulti='1'/>
+	<level id='1' consecutiveCount='2' rpMulti='1.1' lucciMulti='1.1'/>
+	<level id='2' consecutiveCount='5' rpMulti='1.15' lucciMulti='1.15'/>
+	<level id='3' consecutiveCount='10' rpMulti='1.2' lucciMulti='1.2'/>
+	<level id='4' consecutiveCount='20' rpMulti='1.5' lucciMulti='1.5'/>
+</leagueModeBonus>

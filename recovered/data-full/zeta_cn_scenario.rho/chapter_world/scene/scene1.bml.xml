@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="dizini" pos="8 0" emotion="ani2"/>
+  <Msg name="黑妞" string="皮蛋！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="要来不及了！！|你快一点！！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="感觉要准备的东西好多啊，呜呜~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="哎！真是的~|你就不能早点做准备嘛！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="葱头怎么还不来？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="&lt;电话铃声&gt;" string="滴铃铃铃铃铃~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="喂？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="cnboomhill3"/>
+  <Char id="ethi" pos="11 0" emotion="stop1"/>
+  <Msg name="葱头" string="是我~葱头~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <BackGround texture="vill5"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="嗯~是你啊，葱头~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="cnboomhill3"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="我有话跟你说~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="葱头" string="我之前跟神秘工头一起做研究的电脑， |出了问题……"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="葱头" string="这次的旅行……|我恐怕不能跟你们一起去了。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <BackGround texture="vill5"/>
+  <Char id="dao" pos="5 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="啊~真的吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="太可惜了，我还以为你能跟我们一起去呢~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="cnboomhill3"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="葱头" string="嗯~|等我解决好了再跟你们联系。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <BackGround texture="vill5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="黑妞" string="皮蛋！！！！！！！|我们快走吧！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="黑妞" string="再这样就赶不上飞机了！！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="好了，我们现在就出发吧！"/>
+  <Enter/>
+</Scene>

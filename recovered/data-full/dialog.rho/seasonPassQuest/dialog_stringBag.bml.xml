@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="seasonPassLvFormat">
+    <m c="kr" v="LV %d"/>
+    <m c="cn" v="LV %d"/>
+    <m c="tw" v="LV %d"/>
+  </k>
+  <k n="pcCafeQuestTitle">
+    <m c="kr" v="pc방 플레이"/>
+    <m c="cn" v="网吧在线"/>
+    <m c="tw" v="網咖遊戲"/>
+  </k>
+  <k n="pcCafeQuestDesc">
+    <m c="kr" v="누적 시간 %d시 %d분"/>
+    <m c="cn" v="累积在线时长%d小时 %d分钟"/>
+    <m c="tw" v="累積時間%d點%d分"/>
+  </k>
+  <k n="bonusMin">
+    <m c="kr" v="시작"/>
+    <m c="cn" v="开始"/>
+    <m c="tw" v="開始"/>
+  </k>
+  <k n="bonusCountFormat">
+    <m c="kr" v="%d회"/>
+    <m c="cn" v="%d回"/>
+    <m c="tw" v="%d回"/>
+  </k>
+  <k n="bonusQuestFormat">
+    <m c="kr" v="%d단계 누적 주행 %d회"/>
+    <m c="cn" v="%d阶段累计行驶%d回"/>
+    <m c="tw" v="%d階段累積行駛%d回"/>
+  </k>
+  <k n="seasonPassQuestComplete">
+    <m c="kr" v=" [완료]"/>
+    <m c="cn" v=" [完成]"/>
+    <m c="tw" v=" [完成]"/>
+  </k>
+  <k n="seasonPassQuestHelp0">
+    <m c="kr" v="하루에 1번 완료 가능 (매일 0시 초기화)"/>
+    <m c="cn" v="此任务每日仅限1次（每天0点重置）"/>
+    <m c="tw" v="一天可完成1次(每日0點初始化)"/>
+  </k>
+  <k n="seasonPassQuestHelp1">
+    <m c="kr" v="일반 패스를 모두 완료해야 진행 가능"/>
+    <m c="cn" v="普通通行证达到满级后可进行此任务"/>
+    <m c="tw" v="一般通行證必須全部完成才能進行"/>
+  </k>
+  <k n="seasonPassQuestHelp2">
+    <m c="kr" v="PC방에서만 진행 가능한 미션"/>
+    <m c="cn" v="此任务仅限网吧进行"/>
+    <m c="tw" v="只可在網咖進行的任務"/>
+  </k>
+  <k n="seasonPassQuestHelp3">
+    <m c="kr" v="최고 레벨 도달. 진행 가능한 미션이 없습니다."/>
+    <m c="cn" v="已到达满级，暂无任务"/>
+    <m c="tw" v="到達最高等級。沒有可進行的任務。"/>
+  </k>
+  <k n="passEnterFailNotOpenPeriod">
+    <m c="kr" v="시즌 패스 이벤트 기간이 아닙니다."/>
+    <m c="cn" v="目前不是活动期间"/>
+    <m c="tw" v="非賽季通行證活動時間。"/>
+  </k>
+  <k n="passEnterFail">
+    <m c="kr" v="입장 불가 (%d)"/>
+    <m c="cn" v="无法进入(%d)"/>
+    <m c="tw" v="無法進場(%d)"/>
+  </k>
+  <k n="seasonPassPeriod">
+    <m c="kr" v="[ 시즌 패스 기간 %s ]"/>
+    <m c="cn" v="[活动时间 %s]"/>
+    <m c="tw" v="[賽季通行證時間%s]"/>
+  </k>
+</StringBag>

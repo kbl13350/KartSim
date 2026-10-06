@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill4"/>
+  <Char id="ethi" pos="8 0" emotion="normal"/>
+  <Msg name="葱头" string="找到了吗？？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="没有，到底是在哪制作的啊？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="真的。没法知道！|是在哪制作的，是从哪运过来的。。。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="ani2"/>
+  <Msg name="宝宝" string="找到了！！！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="找到了？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" flip="true" emotion="stop7"/>
+  <Msg name="小强" string="嗯？真的？？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="真的！！找到了！我和皮蛋在观赏部件……|不，寻找的时候！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="偶然听见老板在订单！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="normal"/>
+  <Char id="bazzi" pos="4 0" emotion="normal"/>
+  <Msg name="宝宝" string="是向工厂订的单！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop5"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="哪个？神秘工头的工厂？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="神秘工头。。。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani1"/>
+  <Msg name="皮蛋" string="有什么需要考虑的！去找神秘工头吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani1"/>
+  <Msg name="皮蛋" string="好了，出发！！！！走走走走！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="stop7"/>
+  <Msg name="小强" string="唉。。。又是自己一决定就出发。。。|我们也出发吧。。。"/>
+  <Enter/>
+</Scene>

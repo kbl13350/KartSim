@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.35'
+	DriftEscapeForce='850'
+	CornerDrawFactor='0.063'
+	UseTransformBooster='false'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	EnvMap='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod1b1'
+	Port1='mod1b2'
+              FirePort0='mod1a1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a3'
+	FirePort3='mod1a4'
+
+	
+	DescBalance= '30'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '20'
+            
+/>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='156.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.083'
+	SteerConstraint='2.85'
+	DriftEscapeForce='1850'
+	CornerDrawFactor='0.074'
+
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	antiCollideBalance='0.79'
+	
+	UseTransformBooster='true'
+	TransAccelFactor='1.821'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.7'
+	StartBoosterTimeSpeed='1400'   
+
+	NormalBoosterTime = '0'
+	TeamBoosterTime = '250' 
+	DriftMaxGauge = '-600'
+	DriftGaguePreservePercent='0.65'
+
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85sub'
+	BoosterType4='85sub'
+
+	Port0='mod3a'
+	Port1='mod3b'
+
+	FirePort0='mod1c1'
+	FirePort1='mod1d1'
+	FirePort2='mod1d2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	secondColor='255 40 40 40'
+	secondHighColor='255 150 152 161'
+
+	WheelFixed = 'true'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '47'
+	DescStability ='60'
+	DescEngineGrade='1.25'
+	DescCornering='7'
+	DescEnchantCap = '30'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1d2' trailPort1='mod1d1'/>
+</BodyParam>
+
+
+<!-- 브루터스 HT+ 이벤트 가챠폰 레어 20140523-->

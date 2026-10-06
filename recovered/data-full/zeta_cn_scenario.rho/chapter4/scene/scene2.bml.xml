@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="ice1"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="pirate1" pos="11 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="唔哈哈！总决赛马上要开始啦？|冠军是属于我的，哈哈哈！！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="pirate1" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="海盗船长！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="要还我奖牌的约定没有忘记吧！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="哇哈哈哈！当然啦，|但你确信你能赢我吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="任命吧，哇哈哈哈！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="我会让你尝到失败的滋味的！"/>
+  <Enter/>
+</Scene>

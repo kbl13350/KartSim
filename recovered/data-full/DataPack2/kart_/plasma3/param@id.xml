@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='105.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='1.65'
+	DriftEscapeForce='600'
+	CornerDrawFactor='0.046'
+
+	BoosterType='plasma3'
+	BoosterBlur='true'
+	EngineSound='pro'
+
+	SpeedSlotCapacity='3'
+
+	DriftMaxGauge='-2200'
+	NormalBoosterTime='-1000'
+	TeamBoosterTime='-1200'
+
+		
+		DescBalance= '25'
+		DescStability ='25'
+		DescEngineGrade='1'
+		DescCornering='2'
+		DescEnchantCap = '25'
+/>
+<!-- Plasma FXT -->

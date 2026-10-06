@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150.0'   
+	BackwardAccelForce='100.0'
+	DragFactor='-0.077'
+	SteerConstraint='2.3'
+	DriftEscapeForce='1100'
+	CornerDrawFactor='0.071'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.69'
+	TransformTime='700'   
+
+	StartForwardAccelFactorSpeed = '1.2' 
+	StartBoosterTimeSpeed='1200'           
+
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-350'
+	DriftMaxGauge = '-400'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zerosub'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zeroplus'
+
+	Port0='mod1d1'
+	Port1='mod1d2'
+
+	FirePort0='mod1b4'
+	FirePort1='mod1c1'
+	FirePort2='mod1c2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 253 43 253'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '43'
+	DescStability ='43'
+	DescEngineGrade='1.2'
+	DescCornering='4'
+	DescEnchantCap = '30'
+
+/>
+
+<!--중국 F724 120920 빙고 가샤폰 레어 -->

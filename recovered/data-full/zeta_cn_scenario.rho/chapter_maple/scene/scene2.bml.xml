@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot21"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="传送门怎么这么小！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <BackGround texture="maple2"/>
+  <Char id="pinkbean" pos="12 0" emotion="ani1"/>
+  <Msg name="品克缤" string="啊！抽不出身子了。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="ani1"/>
+  <Msg name="品克缤" string="（努力）"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <BackGround texture="camelot21"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="怎么还受到了降级的诅咒呢？！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤" string="用力！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <BackGround texture="maple2"/>
+  <Char id="pinkbean" pos="12 0" emotion="ani1"/>
+  <Msg name="品克缤" string="再用力点身子就能抽出来了！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop5"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="粉色豆豆？|是怪物吗？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop5"/>
+  <Char id="yeti" pos="8 0" flip="true" emotion="stop4"/>
+  <Msg name="" string="（砰）"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <BackGround texture="camelot21"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤" string="啊！是谁？？？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <BackGround texture="maple2"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop5"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="白雪人" string="能说话的豆豆？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop6"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="不是豆豆。。。|我叫品克缤！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop5"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="品克缤？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop5"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="。。。粉色豆豆？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <BackGround texture="camelot21"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤" string="不是粉色豆豆，都说了是品克缤！！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="话说回来，|好熟悉的声音？！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="是不是那个毛毛怪？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤" string="快把我从这里救出来！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <BackGround texture="maple2"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop5"/>
+  <Char id="yeti" pos="5 0" emotion="normal"/>
+  <Msg name="白雪人" string="白雪人，修炼！很忙！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop6"/>
+  <Char id="yeti" pos="3 0" emotion="normal"/>
+  <Msg name="品克缤" string="等等，先别走！|救我出来，我就给你个神奇的道具！！！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop5"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="神奇道具？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop6"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="是啊！| 在这里绝对得不到的异世界道具！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop5"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="白雪人，思考。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop6"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="想什么！你不是在修炼吗？|只要有了异世界道具，就会变得很厉害！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop5"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="知道了，我要帮你。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop6"/>
+  <Char id="yeti" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤, 白雪人" string="喝！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="stop4"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="" string="（Biu）"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop2"/>
+  <Msg name="品克缤" string="终于挣脱出来了！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="normal"/>
+  <Msg name="白雪人" string="你就是粉色豆豆？！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop4"/>
+  <Msg name="品克缤" string="都说了是品克缤！！|果然是你！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="normal"/>
+  <Msg name="品克缤" string="我们当时也是在射手村。。。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="normal"/>
+  <Msg name="白雪人" string="别废话了！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop1"/>
+  <Msg name="品克缤" string="你不记得了吗？|我们约定好了修炼完变强之后要一决高下。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="stop4"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop1"/>
+  <Msg name="白雪人" string="白雪人还在修炼当中。|赶紧给我道具！！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="stop4"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop4"/>
+  <Msg name="品克缤" string="别吵，烦死了！|等下。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="normal"/>
+  <Msg name="品克缤" string="给什么呢~？|想想。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="" string="（翻兜子）"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="normal"/>
+  <Msg name="白雪人" string="看到了奇怪的东西。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop2"/>
+  <Msg name="品克缤" string="神奇吧~|第一次看到异世界的道具吧？"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="stop2"/>
+  <Msg name="白雪人" string="有奇怪的东西！|在你后面！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" emotion="normal"/>
+  <Msg name="品克缤" string="有什么？"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="" string="（转身）"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="是因为强行从传送门里出来吗？|次元破裂了。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="" string="（咻！嘁！）"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="品克缤" string="哇！|那是什么东西？"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="品克缤" string="我要亲自去看一看！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Char id="pinkbean" pos="15 0" flip="true" emotion="stop3"/>
+  <Msg name="" string="（嗖~）"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="maplestory_stuff" pos="12 0" emotion="stop1"/>
+  <Msg name="白雪人" string="？？？"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="maplestory_stuff" remove="true"/>
+  <Char id="yeti" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="白雪人" string="站住！|还我道具！"/>
+  <Enter/>
+</Scene>

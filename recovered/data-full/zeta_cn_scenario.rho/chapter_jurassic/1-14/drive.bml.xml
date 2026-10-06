@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <Escape isFixedKart="true" fixedKartId="869" isFixedChar="true" fixedCharId="145" kartId="865" characterId="9" colorId="1" dyeId="1" characterName="海盗船长">
+    <LevelContent level="0" track="mine_I05" laps="3" ksv="Jurassic_1-14" distance="30" startOffset="-2000"/>
+  </Escape>
+</Root>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <AiKart id="1" track="olympos_I01" isFixedKart="true" fixedKartId="1119" isFixedChar="true" fixedCharId="329" laps="3" gameType="item">
+    <LevelContent level="0" isAiItemFree="false" item="Rocket;WaterBomb;Booster;WaterFly" aiItemLevel="1">
+      <AiKart characterId="330" uniformId="" kartId="1119" colorId="65" dyeId="65" characterName="凯罗" balloonId="" speed="45" accel="32" startTick=""/>
+      <AiKart characterId="331" uniformId="" kartId="1119" colorId="65" dyeId="65" characterName="贝洛" balloonId="" speed="44" accel="31" startTick=""/>
+    </LevelContent>
+  </AiKart>
+</Root>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.082'
+	SteerConstraint='2.27'
+	DriftEscapeForce='1550'
+	CornerDrawFactor='0.06'
+	
+	EngineSound='bike8'
+
+	WaveEffect='true'
+	motorcycleType='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.835'
+	TransformTime='150'
+
+	StartForwardAccelFactorSpeed = '1.65'
+	StartBoosterTimeSpeed='1400'           
+
+	NormalBoosterTime = '-200'
+	TeamBoosterTime = '-420'
+	DriftMaxGauge = '-1250'
+	DriftGaguePreservePercent='0.4'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8sub'
+	BoosterType3='8sub'
+	BoosterType4='8main'
+	BoosterType5='8main'
+
+	Port0='mod2b3'
+	Port1='mod2b4'
+
+	FirePort0='mod2b1'
+	FirePort1='mod2b2'
+	FirePort2='mod2d1'
+	FirePort3='mod2d2'
+
+	EnvMap='true'
+	WheelFixed = 'true'
+	SpeedSlotCapacity='3'
+
+	DescBalance='45'
+	DescStability='38'
+	DescEngineGrade='1.25'
+	DescCornering='3'
+	DescEnchantCap='25'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+>
+<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2d1' trailPort1='mod2d2'/>
+</BodyParam>
+
+
+<!-- 베이스 HT+
+20140905 상점 / 골드 카트 기어 -->

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="olympos5"/>
+  <Char id="zeus" pos="10 0" emotion="stop3"/>
+  <Char id="olympos_effect" pos="10 0" emotion="stop1"/>
+  <Msg name="宙斯" string="呃呃！还，还没结束！"/>
+  <Enter/>
+  <Char id="zeus" remove="true"/>
+  <Char id="olympos_effect" remove="true"/>
+  <Char id="zeus" pos="10 0" emotion="stop3"/>
+  <Char id="olympos_effect" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="hades" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="哈迪斯" string="非常可惜，游戏已经结束了~"/>
+  <Enter/>
+  <Char id="zeus" remove="true"/>
+  <Char id="olympos_effect" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="portal" pos="11 -1" emotion="normal"/>
+  <Char id="zeus" pos="10 0" emotion="stop3"/>
+  <Char id="olympos_effect" pos="10 0" emotion="stop1"/>
+  <Char id="hades" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="" string="（呱唧唧唧唧唧唧）"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="zeus" remove="true"/>
+  <Char id="olympos_effect" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="portal" pos="11 -1" emotion="normal"/>
+  <Char id="zeus" pos="11 0" emotion="stop3"/>
+  <Char id="olympos_effect" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="hades" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="宙斯" string="这是？！哈迪斯，你个混蛋！！！"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="zeus" remove="true"/>
+  <Char id="olympos_effect" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="portal" pos="11 -1" emotion="normal"/>
+  <Char id="zeus" pos="12 0" emotion="stop3"/>
+  <Char id="olympos_effect" pos="12 0" emotion="stop1"/>
+  <Char id="hades" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="哈迪斯" string="呼呼，在地狱好好休息吧~"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="zeus" remove="true"/>
+  <Char id="olympos_effect" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="portal" pos="11 -1" emotion="normal"/>
+  <Char id="zeus" pos="11 0" emotion="stop3"/>
+  <Char id="olympos_effect" pos="11 0" emotion="normal"/>
+  <Char id="hades" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="宙斯" string="哈迪斯！！！！"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="zeus" remove="true"/>
+  <Char id="olympos_effect" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="portal" pos="11 -1" emotion="normal"/>
+  <Char id="hades" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="" string="（呱唧唧唧唧唧唧）"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="赫拉克勒斯" string="成功了吗？"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="hades" pos="12 0" emotion="stop2"/>
+  <Msg name="哈迪斯" string="封印完毕~"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="bazzi" pos="1 0" emotion="ani2"/>
+  <Char id="dao" pos="10 0" emotion="ani2"/>
+  <Char id="dizini" pos="14 0" emotion="ani2"/>
+  <Char id="ethi" pos="6 0" emotion="ani2"/>
+  <Msg name="皮蛋，葱头，宝宝，黑妞" string="哇啊~结束了~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="normal"/>
+  <Msg name="雅典娜" string="宙斯的野心也就到此为止了。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="normal"/>
+  <Char id="hades" pos="13 0" emotion="normal"/>
+  <Msg name="哈迪斯" string="赫拉克勒斯，不错呦。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="normal"/>
+  <Char id="hades" pos="13 0" emotion="normal"/>
+  <Char id="hercules" pos="2 0" flip="true" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="哈迪斯，如果没有你的帮助……"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="normal"/>
+  <Char id="hades" pos="13 0" emotion="stop3"/>
+  <Char id="hercules" pos="2 0" flip="true" emotion="stop4"/>
+  <Msg name="哈迪斯" string="呼呼，害臊之言就不用多讲，我听不下去。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="bero" pos="12 0" emotion="stop2"/>
+  <Char id="hades" pos="3 0" emotion="normal"/>
+  <Msg name="贝洛" string="你这家伙！主人都听得不自在了！"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="bero" pos="12 0" emotion="stop2"/>
+  <Char id="hades" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="哈迪斯" string="贝洛。"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="bero" pos="12 0" emotion="stop2"/>
+  <Char id="hades" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="哈迪斯" string="黑暗马上就要降临了。"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="bero" pos="12 0" emotion="normal"/>
+  <Char id="hades" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="贝洛" string="？！"/>
+  <Enter/>
+  <Char id="bero" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（噗嘘嘘嘘嘘嘘嘘嘘嘘）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="kero" pos="12 0" emotion="normal"/>
+  <Msg name="凯罗" string="呼唔……终于回来了。"/>
+  <Enter/>
+  <Char id="kero" remove="true"/>
+  <Char id="kero" pos="12 0" emotion="normal"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Msg name="葱头" string="不是？！哈迪斯！|跟纸条里写的不一样啊！"/>
+  <Enter/>
+  <Char id="kero" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Char id="hades" pos="12 0" emotion="stop3"/>
+  <Msg name="哈迪斯" string="啊？是吗？呼呼呼？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="葱头" string="上当了……"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop3"/>
+  <Msg name="哈迪斯" string="充满野心的会长已经被封印在地狱了，呼呼。|以后就要由继承者赫拉克勒斯带领O.M.G和奥林匹斯了啊。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Char id="athena" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="雅典娜" string="哈迪斯，你来接手不行吗？"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop2"/>
+  <Char id="athena" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="哈迪斯" string="我不适合这个位置。|而且，那里不就有一个很合适的人选吗？"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="hades" pos="12 0" emotion="stop2"/>
+  <Msg name="赫拉克勒斯" string="我吗？"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="哈迪斯" string="剩下的你们自已整理好后告诉我吧，|我还有事，先走了。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="3 0" emotion="stop2"/>
+  <Char id="portal" pos="12 -1" emotion="normal"/>
+  <Char id="hades" pos="12 0" emotion="stop3"/>
+  <Msg name="" string="（呱唧唧唧唧唧唧）"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="portal" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <BackGround texture="olympos7"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Msg name="雅典娜" string="是时候说再见了。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="normal"/>
+  <Msg name="雅典娜" string="感谢各位帮O.M.G和奥林匹斯脱离危险。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="normal"/>
+  <Char id="hercules" pos="13 0" emotion="stop2"/>
+  <Msg name="赫拉克勒斯" string="如果没有你们的帮助，我也不可能战胜宙斯，谢谢你们。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="normal"/>
+  <Char id="hercules" pos="13 0" emotion="normal"/>
+  <Msg name="雅典娜" string="谢谢各位。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="normal"/>
+  <Char id="hercules" pos="13 0" emotion="normal"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="虽然经历了很多困难，但能帮到你们，我们也很开心！是吧~大伙？"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="ani2"/>
+  <Char id="ethi" pos="12 0" emotion="ani2"/>
+  <Char id="bazzi" pos="7 0" emotion="ani2"/>
+  <Msg name="皮蛋，葱头，宝宝" string="嗯~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="hercules" pos="12 0" emotion="normal"/>
+  <Msg name="赫拉克勒斯" string="我已经通过了你们的出入申请|欢迎随时来玩。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hercules" pos="12 0" emotion="stop2"/>
+  <Msg name="赫拉克勒斯" string="下次来的时候，奥林匹斯和O.M.G必定是一个和平自由的国度。"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hercules" pos="12 0" emotion="stop2"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝" string="知道了知道了~|我想赶紧回家~"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="normal"/>
+  <Msg name="雅典娜" string="好的。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="stop3"/>
+  <Msg name="雅典娜" string="我给你们带路吧~"/>
+  <Enter/>
+</Scene>

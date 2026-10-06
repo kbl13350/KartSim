@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Line name="line" leftTopWH="0 650 1080 69" enable="true" visible="true">
+  <ImageBoard windowSize="1080 69" adjust="0 0" image="rail" alphaBlend="true" visible="true"/>
+</Line>

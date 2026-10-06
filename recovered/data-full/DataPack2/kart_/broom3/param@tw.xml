@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.0782'
+	TransAccelFactor='1.845'
+	SteerConstraint='3'
+	CornerDrawFactor='0.065'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1350'
+	NormalBoosterTime='-100'
+	TeamBoosterTime='-200'
+	
+	DriftMaxGauge='-530'
+	DriftEscapeForce='1550'
+	DriftGaguePreservePercent='0.5'
+	DriftLeanFactor='-0.005'
+	
+	draftMulAccelFactor='1.15'
+	draftTick='2000'
+	driftBoostMulAccelFactor='1.15'
+	driftBoostTick='500'
+	chargeBoostBySpeed='300'
+	TransformTime='700'
+	autoChargeLowSpeed='100'
+	
+	DescBalance='47'
+	DescStability='49'
+	DescEngineGrade='1.365'
+	DescCornering='8'
+	DescEnchantCap='25'
+
+	BoosterWaveType='boost8'
+	BoosterType='9soon'
+	BoosterType0='9main'
+	BoosterType1='9soon'
+
+	Port0='mod1c1' 
+	FirePort1='mod1c2'
+	
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	
+	EngineSound='9th'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1c1'/>
+</BodyParam>
+<!-- 악마의 지팡이 9 / 대만 / 조합 / 20141024 릴리즈 -->

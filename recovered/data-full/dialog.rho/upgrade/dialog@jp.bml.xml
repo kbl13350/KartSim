@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 604 368" align="center" caption="#sb(upgradeKit)" captionPos="0 1" captionColor="black" setCloseButton="quit">
+    <Panel name="static" windowRect="15 72 555 73" color="255 0 0 0"/>
+    <Panel name="static" windowRect="15 73 555 74" color="255 255 255 255"/>
+    <Window name="main" frame="DefaultEdit" windowRect="15 80 555 280"/>
+    <Container name="container" windowRect="25 10 545 231">
+      <Panel windowRect="157 97 370 222" texture="업그레이드@zz" enable="false" alphaBlend="true"/>
+      <TonPanel windowRect="0 0 38 38" texture="업그레이드정보" enable="false" alphaBlend="true" panelAnimPack="watchMe"/>
+      <Label windowRect="50 1 10 21" text="- #sb(atOnce)" textRender="bold" textColor="255 0 0 0"/>
+      <Label windowRect="50 15 10 35" text="- #sb(disappearItem)" textRender="bold" textColor="255 0 0 0"/>
+      <Label windowRect="50 29 10 39" text="- #sb(mixRule)" textRender="bold" textColor="255 0 0 0"/>
+      <Label name="enchantInfo" windowRect="78 38 10 48" text="- #sb(enchantInfo)" textRender="bold" textColor="255 0 0 0" visible="false"/>
+    </Container>
+    <TextButton name="upgrade" windowRect="135 284 255 305" text="#sb(goUpgrade)" altTextRender="outline"/>
+    <TextButton name="quit" windowRect="335 284 405 305" text="#sb(cancel)" altTextRender="outline"/>
+  </CaptionWindow>
+</Container>

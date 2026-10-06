@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true"/>
+  <ImageBoard windowSize="810 512" adjust="0 0" image="koreaPopup@zz" align="center" alphaBlend="true" visible="true">
+    <Label name="blueMarbleDesc1Title" leftTopWH="220 185 220 20" text="#sb(blueMarbleDesc)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textRender="bold" textAlign="center" textColor="255 19 38 59"/>
+    <Label name="blueMarbleDesc1" leftTopWH="220 210 220 130" text="#sb(blueMarbleDescBody)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textColor="255 19 38 59"/>
+    <Label name="blueMarbleDesc2Title" leftTopWH="463 185 145 20" text="#sb(blueMarbleUsage)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textRender="bold" textAlign="center" textColor="255 19 38 59"/>
+    <Label name="blueMarbleDesc2" leftTopWH="463 215 145 50" text="#sb(blueMarbleUsageBody)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="255 19 38 59"/>
+    <Label name="blueMarbleDesc3Title" leftTopWH="463 270 145 20" text="#sb(blueMarbleDice)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textRender="bold" textAlign="center" textColor="255 19 38 59"/>
+    <Label name="blueMarbleDesc3" leftTopWH="463 285 150 60" text="#sb(blueMarbleDiceBody)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textColor="255 19 38 59"/>
+    <ImageButton name="cancelButton" leftTopTex="655 0" autoLoadImage="koreaCancel_0@zz" alphaBlend="true"/>
+    <ImageButton name="gotoBlueMarble" leftTopTex="255 400" autoLoadImage="koreaStart_0@zz" align="hcenter" alphaBlend="true"/>
+  </ImageBoard>
+</Window>

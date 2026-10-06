@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for3"/>
+  <fxSound file="Story_A"/>
+  <Shake time="700"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Msg name="宝宝" string="（哐！）终于抓到了！|你这个臭铁皮机器！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="disorder" pos="8 0" emotion="stop1"/>
+  <Msg name="迪斯欧德" string="我只是迪斯欧德，|只不过是实行卡奥斯大人的计划而已，而已。"/>
+  <Enter/>
+  <Char id="disorder" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Msg name="黑妞" string="说什么呢？卡奥斯?|对了，你有没有在城镇里看到一个戴着眼镜叫葱头的人？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="disorder" pos="8 0" emotion="stop2"/>
+  <Msg name="迪斯欧德" string="卡奥斯大人脱了眼镜后变得越来越强大了，强大了。|黑暗时代马上就要来了，就要来了。（咻！）"/>
+  <Enter/>
+  <Char id="disorder" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Msg name="黑妞" string="啊，估计是没电了，关掉了。|但是完全不知道他在说什么。|卡奥斯...会不会和葱头有点关系？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="我也是这么认为的。|应该和葱头的失踪有关系。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="虽然现在攻击停止了，但是城镇里已经一团乱了，|你们去城镇看看，再去找一找我们的葱头。"/>
+  <Enter/>
+</Scene>

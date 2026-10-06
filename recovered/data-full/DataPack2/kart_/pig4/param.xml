@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='130.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.075'
+	SteerConstraint='2.25'
+	DriftEscapeForce='500'
+	CornerDrawFactor='0.067'
+
+	BoosterBlur='true'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	EngineSound='cotton6'
+	EnvMap='true'
+
+	Port0='mod3a'
+	Port1='mod3b'
+	FirePort0='mod4a'
+	FirePort1='mod4b'
+	FirePort2='mod6a'
+	FirePort3='mod6b'
+/>
+<!-- 황금돼지 카트 SR (업그레이드) -->

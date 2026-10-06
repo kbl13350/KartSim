@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Panel name='loginEventPoko' windowRect='fullscreen' color='128 0 0 0' alphaBlend='true'>
+	<Panel texture='pop_01' windowRect='0 0 365 416' align='center' alphaBlend='true'>
+		<ImageButton name='cancelButton' windowRect='297 16 333 53' autoLoadImage='close_0' alphaBlend='true'/>
+
+		<Label windowRect='35 287 328 330' textRender='bold' text='#sb(pokoEvent)' textColor='white' textAlign='vcenter' autoWrap='true' multiLine='true'/>
+
+		<ImageButton name='okButton' windowRect='167 352 317 391' autoLoadImage='start_0' alphaBlend='true'/>
+	</Panel>
+
+	<StringBag>
+		<k n='pokoEvent'>
+			<m c='kr' v='뽀꼬뽀꼬 이벤트가 진행 중입니다.|매일 매일 다른 아이템을 획득할 수 있는 기회를 놓치지 마세요!'/> 
+			<m c='cn' v='噗卡大作战正在进行中。|每天可获得丰富的道具，不要错过机会！'/> 
+		</k>
+	</StringBag>
+</Panel>

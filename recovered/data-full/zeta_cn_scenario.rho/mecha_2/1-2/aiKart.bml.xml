@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <AiKart id="1" track="desert_I01" isFixedKart="true" fixedKartId="19" isFixedChar="true" fixedCharId="1" laps="3" gameType="item" miniNpc="true">
+    <LevelContent level="0" item="Rocket;WaterBomb;Booster;Magnet;WaterFly;Shield;Ufo" aiItemLevel="1">
+      <AiKart characterId="1" uniformId="41" kartId="413" colorId="1" dyeId="1" balloonId="0" speed="45" accel="32" startTick="0" characterName="迪斯欧德R"/>
+      <AiKart characterId="1" uniformId="43" kartId="414" colorId="6" dyeId="6" balloonId="0" speed="42" accel="30" startTick="0" characterName="迪斯欧德B"/>
+    </LevelContent>
+  </AiKart>
+</Root>

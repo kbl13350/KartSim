@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	
+	ForwardAccelForce='110.0'
+	BackwardAccelForce='90.0'
+	DragFactor='-0.06'
+	SteerConstraint='1.5'
+	DriftEscapeForce='210'
+	CornerDrawFactor='0.045'
+	BoosterType='dragon1'
+	BoosterWaveType='effect_dragon'
+	BoosterBlur='true'
+	EngineSound='pro'
+/>
+<!-- 골드드래곤 pro 대만 -->

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate1"/>
+  <Char id="lodumani" pos="9 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="（哐哐哐！）|哈哈哈！太好了！！竟然敢看我们的笑话！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="tutu" pos="6 0" emotion="stop3"/>
+  <Msg name="嘟嘟" string="海盗船长大人！|听说那些家伙们逃走了？"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="lodumani" pos="9 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="哼，好像逃走了2个？|全部抓回来！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="mobi" pos="5 0" emotion="stop2"/>
+  <Msg name="吉米" string="呵呵，船长的脾气完全爆发了。|所以说为什么要去拔睡着的狮子的鼻毛呢..."/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="lodumani" pos="9 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="吉米，给你下达特别命令。|你亲自出动去把机器人抓回来！|知道了吗？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="mobi" pos="6 0" emotion="stop4"/>
+  <Msg name="吉米" string="是，船长！|（砰！）"/>
+  <Enter/>
+</Scene>

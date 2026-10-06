@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 350 190" caption="#sb(modifyInfo)" align="center" setCloseButton="cancelButton">
+    <Container windowRect="0 18 310 38" align="hcenter">
+      <Window windowSize="6 6" frame="Bullet" align="vcenter" enable="false"/>
+      <Label windowRect="12 0 29 11" align="vcenter" text="#sb(title)" enable="false"/>
+      <Edit name="title" windowRect="0 0 265 22" align="vcenter;right" maxChar="27"/>
+    </Container>
+    <Container windowRect="0 58 310 78" align="hcenter">
+      <Window windowSize="6 6" frame="Bullet" align="vcenter" enable="false"/>
+      <Label windowRect="12 0 29 11" align="vcenter" text="#sb(desc)" enable="false"/>
+      <Edit name="description" windowRect="0 0 265 22" align="vcenter;right" maxChar="145"/>
+    </Container>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 310 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="okButton" windowRect="0 0 87 30" text="#sb(ok)"/>
+      <TextButton name="cancelButton" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="notOpenPeriod">
+    <m c="kr" v="오픈 기간이 아닙니다."/>
+    <m c="cn" v="暂未开放。"/>
+    <m c="tw" v="非開啟時間"/>
+  </k>
+  <k n="fishing">
+    <m c="kr" v="낚시터"/>
+    <m c="cn" v="钓鱼池"/>
+    <m c="tw" v="釣魚場"/>
+  </k>
+  <k n="riderCount">
+    <m c="kr" v="%d명의 라이더 접속"/>
+    <m c="jp" v="%d人のライダー接続"/>
+    <m c="cn" v="目前有%d名车手在小屋中"/>
+    <m c="tw" v="%d位車手"/>
+    <m c="us" v="%d Drivers on My Garage"/>
+    <m c="th" v="ผู้เล่น %d คนล็อกอิน"/>
+    <m c="vn" v="%d tay đua"/>
+    <m c="ru" v="Подключено гонщиков %d"/>
+    <m c="id" v="Rider yang akses total %d"/>
+  </k>
+  <k n="item">
+    <m c="kr" v="내 아이템"/>
+    <m c="jp" v="マイアイテム"/>
+    <m c="cn" v="我的物品"/>
+    <m c="tw" v="我的道具"/>
+    <m c="us" v="My Items"/>
+    <m c="th" v="ไอเทมของฉัน"/>
+    <m c="vn" v="Tủ đồ"/>
+    <m c="ru" v="Предметы"/>
+    <m c="id" v="My Item"/>
+  </k>
+  <k n="openFishBasket">
+    <m c="kr" v="낚시바구니"/>
+    <m c="cn" v="钓鱼桶"/>
+    <m c="tw" v="釣魚籃子"/>
+  </k>
+  <k n="openFindRider">
+    <m c="kr" v="낚시터 이동"/>
+    <m c="cn" v="寻找钓鱼池"/>
+    <m c="tw" v="移動釣魚場"/>
+  </k>
+  <k n="openRandomvisit">
+    <m c="kr" v="랜덤이동"/>
+    <m c="cn" v="随机进入"/>
+    <m c="tw" v="隨機進入"/>
+  </k>
+  <k n="openRank">
+    <m c="kr" v="점수판"/>
+    <m c="cn" v="排行榜"/>
+    <m c="tw" v="分數表"/>
+  </k>
+  <k n="alreadyPlayWith">
+    <m c="kr" v="이미 %s님과 같이 플레이 중입니다."/>
+    <m c="cn" v="正在和%s进行游戏。"/>
+    <m c="tw" v="已經和%s玩家進行遊戲中."/>
+  </k>
+  <k n="friendNotOnline">
+    <m c="kr" v="%s님이 온라인 상태가 아닙니다."/>
+    <m c="cn" v="%s处于离线状态。"/>
+    <m c="tw" v="%s玩家非上線狀態."/>
+  </k>
+  <k n="friendNotInFP">
+    <m c="kr" v="%s님이 낚시터에 있지 않습니다."/>
+    <m c="cn" v="%s不在钓鱼池。"/>
+    <m c="tw" v="%s玩家沒有在釣魚場."/>
+  </k>
+  <k n="friendFPIsFull">
+    <m c="kr" v="%s님의 낚시터에 빈자리가 없습니다."/>
+    <m c="cn" v="%s的钓鱼池里没有空位。"/>
+    <m c="tw" v="%s玩家的釣魚場內沒有空位."/>
+  </k>
+  <k n="timeout">
+    <m c="kr" v="시간만료 되었습니다."/>
+    <m c="cn" v="连接超时。"/>
+    <m c="tw" v="時間已到期."/>
+  </k>
+  <k n="failEtc">
+    <m c="kr" v="알 수 없는 오류입니다."/>
+    <m c="cn" v="发生未知错误。"/>
+    <m c="tw" v="無法知道的錯誤."/>
+  </k>
+  <k n="failNotExistUser">
+    <m c="kr" v="존재하지 않는 유저입니다."/>
+    <m c="cn" v="不存在的车手。"/>
+    <m c="tw" v="沒有存在的玩家."/>
+  </k>
+  <k n="failEnterFPSession">
+    <m c="kr" v="입장에 실패하였습니다."/>
+    <m c="cn" v="进入失败。"/>
+    <m c="tw" v="進入失敗."/>
+  </k>
+  <k n="cannotEnterRandomRoom">
+    <m c="kr" v="랜덤 입장에 실패하였습니다."/>
+    <m c="cn" v="随机进入失败"/>
+    <m c="tw" v="隨機進入聊天室失敗"/>
+  </k>
+  <k n="notifyLeave">
+    <m c="kr" v="&apos;%s&apos;님이 퇴장하셨습니다."/>
+    <m c="jp" v="%s&apos;さんが退場しました。"/>
+    <m c="cn" v="%s离开小屋"/>
+    <m c="tw" v="%s離開聊天室"/>
+    <m c="us" v="%s has left the garage."/>
+    <m c="th" v="คุณ %s ออกจากห้อง"/>
+    <m c="vn" v="%s&apos; đã rời khỏi"/>
+    <m c="ru" v="%s&apos; вышел."/>
+    <m c="id" v="&apos;%s&apos; keluar."/>
+  </k>
+  <k n="notifyEnter">
+    <m c="kr" v="&apos;%s&apos;님이 입장하셨습니다."/>
+    <m c="jp" v="%s&apos;さんが入場しました。"/>
+    <m c="cn" v="%s进入小屋"/>
+    <m c="tw" v="%s進入聊天室"/>
+    <m c="us" v="%s has entered the garage."/>
+    <m c="th" v="คุณ %s เข้าห้อง"/>
+    <m c="vn" v="%s&apos; đã vào phòng."/>
+    <m c="ru" v="%s&apos; вошел."/>
+    <m c="id" v="&apos;%s&apos; masuk."/>
+  </k>
+  <k n="notifyStartFishing">
+    <m c="kr" v="키보드의 SPACE 버튼을 누르면 낚시를 시작합니다."/>
+    <m c="cn" v="按空格键开始钓鱼。"/>
+    <m c="tw" v="點擊SPACE按鍵時,開始釣魚."/>
+  </k>
+  <k n="hide">
+    <m c="kr" v="숨기기"/>
+    <m c="jp" v="隠す"/>
+    <m c="cn" v=""/>
+    <m c="tw" v="隱藏"/>
+    <m c="us" v="Hide"/>
+    <m c="th" v="ซ่อน"/>
+    <m c="vn" v="Ẩn"/>
+    <m c="ru" v="Скрыть"/>
+    <m c="id" v="Hide"/>
+  </k>
+  <k n="open">
+    <m c="kr" v="펼치기"/>
+    <m c="jp" v="開く"/>
+    <m c="cn" v=""/>
+    <m c="tw" v="展開"/>
+    <m c="us" v="Show"/>
+    <m c="th" v="เปิด"/>
+    <m c="vn" v="Mở "/>
+    <m c="ru" v="Отобразить"/>
+    <m c="id" v="Open"/>
+  </k>
+  <k n="defaultChat">
+    <m c="kr" v="Enter키 또는 클릭 후, 채팅을 입력하세요."/>
+    <m c="cn" v="按下Enter键或点击此处，可输入聊天内容"/>
+    <m c="tw" v="按下Enter鍵或滑鼠點擊後，可以輸入聊天。"/>
+  </k>
+  <k n="helpChat">
+    <m c="kr" v="Enter키 또는 ESC키 누르면 입력 해제 가능해요."/>
+    <m c="cn" v="按下Enter键或ESC键，可结束聊天"/>
+    <m c="tw" v="按下Enter鍵或ESC鍵可取消輸入。"/>
+  </k>
+</StringBag>

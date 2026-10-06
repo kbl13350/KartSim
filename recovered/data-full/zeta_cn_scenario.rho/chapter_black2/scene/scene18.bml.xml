@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh1"/>
+  <Char id="neo" pos="8 0" emotion="stop1"/>
+  <Msg name="尼欧" string="终于到了！"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="可以见到伙伴们了吗.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="皮蛋~~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="ani1"/>
+  <Msg name="葱头" string="是宝宝和伙伴们~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="宝宝~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="呜呜，皮蛋~星陨之石都被抢走了.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="ani4"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="什么！！！被谁！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="事情是这样的..回来的路上，看到了格雷格，为了抓住他.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neo" pos="11 0" emotion="stop1"/>
+  <Msg name="尼欧" string="后面我来讲吧！"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="neo" pos="11 0" emotion="stop1"/>
+  <Msg name="黑妞" string="尼欧？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neo" remove="true"/>
+  <Char id="neo" pos="8 0" emotion="stop1"/>
+  <Msg name="尼欧" string="是我救了掉进黑暗组织陷阱的他们！"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="要不是尼欧，我们就危险了.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neo" pos="11 0" emotion="stop1"/>
+  <Msg name="尼欧" string="但是，我救他们时|星陨之石已经被抢走了。"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="neo" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="大事不妙..|但，不要放弃，还有我们找到的星陨之石！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neo" remove="true"/>
+  <Char id="neo" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="尼欧" string="嗯..先去阻挡黑暗组织吧.."/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="找到黑暗组织的总部了吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neo" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="尼欧" string="嗯，找到了黑暗组织的总部与目的！"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Msg name="黑妞" string="真的？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neo" pos="11 0" emotion="stop1"/>
+  <Msg name="尼欧" string="黑暗组织的目的是|通过星陨之石，统治世界，然后.."/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="ani4"/>
+  <Char id="neo" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="然后？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neo" remove="true"/>
+  <Char id="neo" pos="8 0" emotion="stop1"/>
+  <Msg name="尼欧" string="然后世界就成为黑暗组织BOSS黑杰克的天下。"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="果然..统治世界是目的.."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neo" pos="8 0" emotion="stop1"/>
+  <Msg name="尼欧" string="黑暗组织的总部离这里不远！|先去那里吧！"/>
+  <Enter/>
+</Scene>

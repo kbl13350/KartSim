@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="tutorialBoard" windowSize="372 200" align="center" adjust="0 215" alphaBlend="true">
+  <Panel name="img1" windowSize="75 76" align="center" adjust="0 -35" texture="aprilFoolDayWarning@zz" alphaBlend="true" visible="true"/>
+  <Panel windowSize="372 63" align="center" adjust="0 33" texture="aprilFoolDayWarningMsg@zz" alphaBlend="true" visible="true"/>
+</Container>

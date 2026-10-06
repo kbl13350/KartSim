@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MultiStage>
+  <revolution className="SnCheckPointStage" addResFolder="/stage/common/;/stage/common/icon;/stage/riderSchoolItem" topmostWindow="stage_window" stringBag="stage_stringBag"/>
+  <monocoque className="SnCheckPointStage" addResFolder="/stage/common/;/stage/common/icon;/stage/speedIndiGame/;/stage/itemIndiGame/" topmostWindow="mq_window@zz" stringBag="stage_stringBag"/>
+</MultiStage>

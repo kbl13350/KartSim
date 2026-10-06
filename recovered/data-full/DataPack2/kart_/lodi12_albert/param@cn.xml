@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.0792'
+	SteerConstraint='2.1'
+	DriftEscapeForce='1550'
+	CornerDrawFactor='0.068'
+
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	
+	antiCollideBalance='1.1'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.7923'
+	TransformTime='90'
+
+	StartForwardAccelFactorSpeed = '1.8'
+	StartBoosterTimeSpeed='1250'   
+
+	NormalBoosterTime = '-100'
+	TeamBoosterTime = '-220'
+	DriftMaxGauge = '-620'
+	DriftGaguePreservePercent='0.5'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85sub'
+	BoosterType4='85sub'
+	BoosterType5='85sub'
+	BoosterType6='85sub'
+
+	Port0='mod2c1'
+	Port1='mod2c2'
+
+	FirePort0='mod2a1'
+	FirePort1='mod2b1'
+	FirePort2='mod2b2'
+	FirePort3='mod2b3'
+	FirePort4='mod2b4'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+
+	secondColor='255 235 220 175'
+	secondHighColor='255 255 250 230'
+
+	TachometerType='Tacho1'
+	TachometerName='pylon'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+
+	DescBalance= '44'
+	DescStability ='41'
+	DescEngineGrade='1.25'
+	DescCornering='4'
+	DescEnchantCap = '25'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2b1' trailPort1='mod2b2' trailPort2='mod2b3' trailPort3='mod2b4'/>
+</BodyParam>
+
+<!-- 중국 로디 알베르 140116 테마카트 -->

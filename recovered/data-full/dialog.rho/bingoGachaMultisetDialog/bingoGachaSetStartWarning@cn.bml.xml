@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <CaptionWindow name="BingoGachaSetStartWarningDialog" leftTopWH="0 0 722 406" frame="CaptionDialog" align="center" caption="#sb(bingo)" setCloseButton="closeButton">
+    <ImageBoard leftTopTex="-68 -1" image="bingo_noticePopup" alphaBlend="true"/>
+    <Label leftTopWH="243 85 400 180" text="#sb(warnChangeBingoSet)" textColor="255 53 39 39" textRender="bold16" textAlign="center" autoWrap="true"/>
+    <Container name="buttonGroup" leftTopWH="208 314 264 42" center="hcenter">
+      <TextButton name="ok" leftTopWH="0 0 132 42" text="#sb(useLottery)" textColor="255 255 255 255" textRender="bold16" overTextColor="255 255 255 255" overTextRender="bold16" clickedTextColor="255 24 55 104" clickedTextRender="bold16" disabledTextColor="255 220 220 220" disabledTextRender="bold16" useDisableState="false"/>
+      <ImageButton name="changeBingoSet" autoLoadImage="bingoPopup_btn_change_0" leftTopWH="142 0 138 42" text="#sb(changeBingoSet)" textColor="255 64 75 95" textRender="bold16" overTextColor="255 106 120 147" overTextRender="bold16" clickedTextColor="255 35 41 52" clickedTextRender="bold16" disabledTextColor="255 131 131 131" disabledTextRender="bold16" textAlign="vcenter" stringPos="50 0"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

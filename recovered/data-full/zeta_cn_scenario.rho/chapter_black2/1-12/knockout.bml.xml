@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="nymph_I03" laps="3" isFixedKart="true" fixedKartId="95" isFixedChar="true" fixedCharId="1" type="lap" isFixedCahr="true">
+    <LevelContent level="0" ksv="black_2-12">
+      <ShadowKart characterId="2" uniformId="42" kartId="117" colorId="1" dyeId="1" characterName="鑫鑫"/>
+      <ShadowKart characterId="25" uniformId="0" kartId="103" colorId="1" dyeId="1" characterName="雯雯"/>
+      <ShadowKart characterId="7" uniformId="0" kartId="95" colorId="3" dyeId="3" characterName="小强"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

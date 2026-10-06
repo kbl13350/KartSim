@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for1"/>
+  <Char id="mysteryMan" pos="4 0" emotion="stop1"/>
+  <Msg name="???" string="如何?现在该明白了吧！|这就是实力差距！"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="嗯……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop3"/>
+  <Msg name="小强" string="这个车手果然实力过人!|只能望其项背……"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="我..我…居然就这样一败涂地了……|这就是我吗……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mysteryMan" pos="4 0" emotion="stop1"/>
+  <Msg name="？？？" string="..."/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="mysteryMan" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="？？？" string="你叫皮蛋？|当然不能放弃。"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="但是…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mysteryMan" pos="4 0" emotion="stop1"/>
+  <Msg name="？？？" string="我会指导你。|快，跟我来。"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="dao" pos="12 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="哈！真的？|好！你是好人！|怪叔叔！"/>
+  <Enter/>
+</Scene>

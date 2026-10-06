@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StateButton windowRect="0 0 750 74" frame="RiderSchoolButton" iconSet="missionIcon_beginner_1_drive" iconPos="-41 2" textAlign="vcenter" stringPos="83 0" intersectAll="true" textColor="255 42 55 80" textRender="bold20" overTextColor="255 16 136 199" overTextRender="bold20" clickedTextColor="255 48 73 81" clickedTextRender="bold20" disabledTextColor="255 103 103 103" disabledTextRender="bold20">
+  <Panel name="clear" windowRect="0 0 70 70" align="right;bottom" adjust="-40 -1" texture="img_clearIcon_list" alphaBlend="true" visible="false"/>
+</StateButton>

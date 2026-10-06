@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="plantTune">
+    <m c="kr" v="튜닝파츠 획득"/>
+    <m c="tw" v="改裝配件裝置獲得"/>
+    <m c="cn" v="兑换强化部件"/>
+    <m c="jp" v="チューニングパーツ入手"/>
+    <m c="id" v="Dapatkan Tuning Parts"/>
+  </k>
+  <k n="getItemStr">
+    <m c="kr" v="%s 아이템을 획득했습니다."/>
+    <m c="tw" v="%s 已獲得道具。"/>
+    <m c="cn" v="获得了 [%s] 新道具。"/>
+    <m c="jp" v="%sを入手しました。"/>
+    <m c="id" v="Telah mendapatkan Item %s"/>
+  </k>
+  <k n="openEquipDialog">
+    <m c="kr" v="장착 바로가기"/>
+    <m c="tw" v="立即裝備"/>
+    <m c="cn" v="装备"/>
+    <m c="jp" v="すぐに装着する"/>
+    <m c="id" v="Shortcut Equip"/>
+  </k>
+  <k n="rewardNpcTalk">
+    <m c="kr" v="이야~ 행운의 라이더구나!|%s 등급 아이템을 만들 수 있었어~ 모두가 부러워 하겠는걸?|획득한 튜닝파츠는 튜닝파츠 장착 버튼을 눌러 장착할 수 있어!"/>
+    <m c="tw" v="哎呀~你可是最幸運的車手呢!|%s等級的道具已經可以製作了~這樣下去全部的車手都會很羨慕你的吧?|將獲得的改裝零件按下裝備按鈕的話，即可進行裝備!"/>
+    <m c="cn" v="哇！你真是幸运！|竟然制作了%s级道具，真是太了不起了。|获得的强化部件可以通过装备按钮进行装备！"/>
+    <m c="jp" v="%s ランクのアイテムができたぞ！みんなにうらやましがられるんじゃないか？|入手したチューニングパーツは装着ボタンを押せば装着できるからな！"/>
+    <m c="id" v="Whoaa~ Rider yang beruntung!|Kayaknya bakal banyak yang iri karena dapat membuat Item dengan Rank (RANK)|Equip sekarang dengan menekan tombol EQUIP."/>
+  </k>
+</StringBag>

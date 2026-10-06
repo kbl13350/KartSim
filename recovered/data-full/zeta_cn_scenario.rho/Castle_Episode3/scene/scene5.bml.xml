@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle4"/>
+  <Char id="mos" pos="3 0" emotion="stop7"/>
+  <Msg name="小强" string="啊！别追我！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop2"/>
+  <Msg name="皮德" string="嘿，朋友！等等我！"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop7"/>
+  <Msg name="小强" string="朋友？那不是鬼了？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop4"/>
+  <Msg name="皮德" string="什么啊？！大城堡的厨师长怎么成鬼了啊！"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop3"/>
+  <Msg name="小强" string="啊…对不起，因为太暗，没看出来555"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop1"/>
+  <Msg name="皮德" string="恩恩…没事没事！对了，你能帮我个忙吗？"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop5"/>
+  <Msg name="小强" string="恩..？要我帮什么啊？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop2"/>
+  <Msg name="皮德" string="需要寻找晚餐时要用到的葡萄汁。|可是忘了葡萄汁放哪了，能帮我在地下室找一下吗？"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="葡萄汁？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop3"/>
+  <Msg name="皮德" string="恩，黄色标签的葡萄汁，很香的！"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop6"/>
+  <Msg name="小强" string="啊！好的！我会帮你找到的。"/>
+  <Enter/>
+</Scene>

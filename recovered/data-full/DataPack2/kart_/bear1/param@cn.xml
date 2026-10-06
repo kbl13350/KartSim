@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='146.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.078'
+	SteerConstraint='3.1'
+	DriftEscapeForce='1300'
+	CornerDrawFactor='0.068'
+	EngineSound='bear1'
+	
+	StartForwardAccelFactorItem='1.7'
+	StartBoosterTimeItem='1300'
+
+	UseExtendedAfterBooster='true'
+	BoosterAccelFactorItem ='1.65'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.715'
+	TransformTime='200'
+
+	NormalBoosterTime='0'
+	TeamBoosterTime='100'
+	DriftMaxGauge='-550'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85main'
+	BoosterType4='85sub'
+	BoosterType5='85sub'
+
+	Port0='mod5a'
+	Port1='mod5b'
+
+	FirePort0='mod3a'
+	FirePort1='mod3b'
+	FirePort2='mod3a1'
+	FirePort3='mod3b1'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '45'
+	DescStability ='45'
+	DescEngineGrade='1.25'
+	DescCornering='6'
+	DescEnchantCap = '30'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	SpecialSlotCapacity='2'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod3a1' trailPort1='mod3b1'/>
+</BodyParam>
+
+<!--아픈 그리즐리 HT+ 140326 이벤트 가챠폰 레어-->

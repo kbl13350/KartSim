@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss6"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="居然想在繁荣山丘重建阿比斯……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="在这里生活的好好的怎么突然想上地面了？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈尔" string="本来阿比斯的人民离开海洋后是无法呼吸的。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="宝宝" string="嗯？你在地面的时候不是一点事没有嘛~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈尔" string="我和姐姐俩个人比较特别，莫格瑞就是想利用我们的特殊能力。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈尔" string="但我不想让莫格瑞一直利用我们。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="哦，就像你能让我们在海中呼吸一样~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="相反的让阿比斯的人可以在地面上呼吸，对吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="8 0" emotion="normal"/>
+  <Msg name="奈尔" string="对，既然除掉你们的计划失败了，下一步……"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="8 0" emotion="normal"/>
+  <Msg name="奈尔" string="阿比斯的军团兵会进军地面。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop6"/>
+  <Char id="dizini" pos="6 0" emotion="stop6"/>
+  <Char id="bazzi" pos="2 0" emotion="stop5"/>
+  <Msg name="皮蛋, 黑妞, 宝宝" string="！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neoul" pos="8 0" emotion="normal"/>
+  <Msg name="奈尔" string="虽然靠姐姐一个人，需要花费一段时间才能让那些军团兵上地面……"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Msg name="黑妞" string="但到时候肯定伤亡惨重！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="对，我们必须在那之前阻止他们！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop3"/>
+  <Msg name="宝宝" string="但我们还得应付海盗船长和黑暗组织啊~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="先回地面再说吧，这里太危险了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈尔" string="我给你们带路吧，因为是一条密道，所以有点复杂。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop4"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="这你别担心，再复杂也能跟得上~"/>
+  <Enter/>
+</Scene>

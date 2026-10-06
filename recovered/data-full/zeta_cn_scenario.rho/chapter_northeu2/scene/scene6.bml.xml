@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu10"/>
+  <Char id="taki" pos="5 0" emotion="stop4"/>
+  <Msg name="奇奇" string="额..彻夜找线索，赛道上只有到处翻掉的R标志…"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop4"/>
+  <Msg name="奇奇" string="就凭这些无法知道来历，也无法知道原因。"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="bazzi" pos="10 0" emotion="stop1"/>
+  <Msg name="宝宝" string="站住！！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="往那边逃跑了！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop5"/>
+  <Msg name="奇奇" string="吓我一跳！！谁呀…?"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop1"/>
+  <Msg name="宝宝" string="站住，你这个酒糟鼻！！！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop4"/>
+  <Msg name="奇奇" string="什么！？酒糟鼻？？"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="藏到哪里去了？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="奇奇！！你原来在这里啊！！|有个酒糟鼻博士在破坏赛道！！那家伙就是犯人！！看到没？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop6"/>
+  <Msg name="奇奇" string="酒糟鼻的话…就是那家伙！！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="嗯？难道认识那个酒糟鼻？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop6"/>
+  <Msg name="奇奇" string="肯定是那家伙！！刚才跟我炫耀是他做得，然后消失了！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="7 0" flip="true" emotion="stop6"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋, 宝宝" string="什么！！！ "/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop4"/>
+  <Msg name="奇奇" string="没错…肯定是他…称自己为博士……"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop3"/>
+  <Msg name="奇奇" string="说自己是！！！！！酒糟鼻博士！！！|不是吗？难道是博士酒糟鼻？酒糟博士？|啊…是什么来着~"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Shake time="1000"/>
+  <Char id="dr.r" pos="8 0" emotion="stop3"/>
+  <Msg name="R博士" string="喂！！！我叫R博士！！！！"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop5"/>
+  <Char id="taki" pos="8 0" emotion="stop5"/>
+  <Msg name="皮蛋, 宝宝, 奇奇" string="啊！！出现了！！！快抓住他！！！！！"/>
+  <Enter/>
+</Scene>

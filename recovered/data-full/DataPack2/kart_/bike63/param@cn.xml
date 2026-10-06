@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.082'
+	SteerConstraint='2.72'
+	CornerDrawFactor='0.074'
+	DriftEscapeForce='1940'
+	
+	driftBoostMulAccelFactor='1.32'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.857'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+	BoostAccelFactor='1.535'
+	
+	DriftMaxGauge='-1000'
+	NormalBoosterTime='-220'
+	TeamBoosterTime='-350'
+	
+	DriftGaguePreservePercent='0.6'
+	antiCollideBalance='0.9'
+	OnCharacterSize='0.8'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.1'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='X'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='60'
+	dualMulAccelFactor='1.11'
+	dualTransLowSpeed='100'
+
+	motorcycleType='true'
+	SpeedSlotCapacity='3'
+
+	PartsBoosterLock='true'
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10main1'
+	BoosterType3='10main1'
+            BoosterType4='10sub1'
+	BoosterType5='10sub1'
+	BoosterType6='10main'
+	BoosterType7='10main'
+
+	Port0='mod2a1'
+	Port1='mod2a2'
+
+	FirePort0='mod2a3'
+	FirePort1='mod2a4'
+	FirePort2='mod2b1'
+	FirePort3='mod2b2'
+	FirePort4='mod2b3'
+	FirePort5='mod2b4'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 19 121 219'
+
+	WheelFixed = 'true'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 255 156 0' trailPort0='mod2b1' trailPort1='mod2b2'/>
+</BodyParam>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TonCharPanel name="crushCnt" windowRect="86 3 155 29" alphaBlend="true" fontSize="23 26" fontStr="0123456789" text="18" textureOp="modulate" panelAnimPack="f1CrushCnt" spaceOffset="-7"/>

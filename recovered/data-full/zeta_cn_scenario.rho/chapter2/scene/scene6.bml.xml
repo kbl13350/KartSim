@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="祝贺你！ 皮蛋！ |终于获得了繁荣山丘大赛的冠军了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop3"/>
+  <Msg name="小强" string="太精彩了！ 今天你的驾驶…… |虽然在和你的比赛中输掉了，不过这次比赛真的很开心，很难忘。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="谢谢！ 托你们帮忙的福，终于实现了我的梦想。|今天的优胜，是你们送给我的礼物。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop5"/>
+  <Msg name="胖墩" string="今天得了冠军，不要忘记请客哦！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" pos="12 0" emotion="stop5"/>
+  <Char id="mos" pos="8 0" emotion="stop6"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋/小强/黑妞" string="哈哈哈~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Shake time="1000"/>
+  <Msg name="！！！" string="呜～呜呜～呜！（引擎转动声）"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="啊泣！ 啊泣！ （喷嚏声）"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="到底是谁啊？|驾驶的时候，扬起那么多灰尘！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="uni" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="???" string="伊～"/>
+  <Enter/>
+  <Char id="uni" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="小……小屁孩？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="小强" string="噢……真了不起！|这么小的孩子，已经开着卡丁车到处跑了……|"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="小屁孩啊，小心点！|对你这么小的孩子来说，卡丁车是非常危险的……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Shake time="1000"/>
+  <Msg name="！！！" string="呜～呜呜～呜！（引擎转动声）"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="..."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="这个臭小子！|居然不听从繁荣山丘大赛冠军皮蛋大人的忠告，就这么走了！|我可不能就这么站着！"/>
+  <Enter/>
+</Scene>

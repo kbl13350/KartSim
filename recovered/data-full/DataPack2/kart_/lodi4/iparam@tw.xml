@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.2'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.063'
+	UseTransformBooster='true'
+	TransAccelFactor='1.62'
+
+	BoosterBlur='true'
+	EngineSound='lodi4'
+	EnvMap='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod2d1'
+	Port1='mod2d2'
+	FirePort0='mod5b'
+	FirePort1='mod5b1'
+	FirePort2='mod5a'
+	FirePort3='mod5a1'
+	FirePort4='mod6a'
+	FirePort5='mod6a1'
+
+	TachometerType='Tacho1'
+	TachometerName='pylon'
+
+	DescBalance= '38'
+	DescStability ='35'
+	DescEngineGrade='1'
+	DescCornering='6'
+	DescEnchantCap = '25'
+
+/>
+<!-- 대만 로디 파이론 SR -->
+

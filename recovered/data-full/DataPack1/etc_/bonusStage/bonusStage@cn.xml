@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BonusStage>
+		<stage subEventId='1' gameTypes='BattleTeam' bonusStageType='4' bonusStageSubType='GoldDisorder' />
+		<schedule>
+				<bonusSatgeEvent subEventId='1' openPeriod='2026-04-16T06:00:00~2026-04-30T05:59:59' />
+		</schedule>
+</BonusStage>

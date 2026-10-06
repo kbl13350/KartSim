@@ -1,0 +1,10 @@
+{
+  "assets": [
+    "prefabs/kart_race/r_0045",
+    "assets/res/common/guide/flagman/flagman.fbx",
+    "assets/res/cabinres/house_fairy/fbx/house_fairy_ch3x1.fbx"
+  ],
+  "meshes": 8,
+  "textures": 7,
+  "failed_objects": 5
+}

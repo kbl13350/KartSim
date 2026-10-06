@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="uiEffect" windowRect="fullscreen"/>
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Panel name="deadAp" windowRect="fullscreen" texture="blood" textureOp="modulate" alphaBlend="true" alphaTest="false" enable="false" visible="false" color="0 255 255 255"/>
+    <XmlFile file="collisionMission"/>
+    <Container name="item" windowRect="0 0 280 75"/>
+    <StressMirror name="stressMirror"/>
+    <CutEffect name="cutEffect"/>
+    <CutEffect name="cutEffect2"/>
+  </Container>
+</Container>

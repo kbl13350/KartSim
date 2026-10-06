@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="timeFlyBomb">
+  <state name="Use" life="1500" itemFx="firing"/>
+  <state name="Set" life="1000" item="item01" size="15.0" itemFx="set"/>
+  <state name="Affect" life="1000" fired="물방울갇힘_일반" firedFx="trapped"/>
+  <state name="EscapeAffect" life="2000" fired="물방울갇힘_일반" firedFx="trapped" firing="파란방패"/>
+  <state name="SpecialShield" life="2000"/>
+  <state name="AfterBoost" life="0"/>
+</item>

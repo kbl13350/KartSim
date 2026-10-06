@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='100'
+	BackwardAccelForce='90'
+	DragFactor='-0.055'
+	SteerConstraint='2.125'
+	DriftEscapeForce='250'
+	CornerDrawFactor='0.05'
+
+	BoosterBlur='true'
+	EngineSound='minicooper2'
+	EnvMap='true'
+
+				
+	DescBalance= '30'
+	DescStability ='28'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+/>

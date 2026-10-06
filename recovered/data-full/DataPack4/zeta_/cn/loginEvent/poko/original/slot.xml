@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Container name='boardSlot' windowRect='0 0 80 68'>
+	<ImageButton name='slot' windowRect='0 0 80 68' autoLoadImage='다오카드' alphaBlend='true' textColor='white'/>
+	<Panel name='reward' windowRect='0 0 80 68' texture='다오카드뒷면' alphaBlend='true' visible='false'>
+		<ItemWindow name='item' windowRect='5 18 74 60' stockId='1' enable='false'/>
+	</Panel>
+	<Panel windowRect='0 0 80 68' texture='다오카드수정' alphaBlend='true' enable='false'/>
+</Container>

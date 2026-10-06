@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<QuestSystem>
+	<Restriction preset='pcCafeLogin'/>
+
+	<!-- 기타 -->
+	<Restriction amICouple='couple:1' />
+	<Restriction solo='couple:0' />
+	<Restriction withCouple='couple'/>
+	<Restriction onKartLevel1='kartLevel:1'/>
+	<Restriction onKartLevel2='kartLevel:2'/>
+	<Restriction onKartLevel3='kartLevel:3'/>
+	<Restriction onKartLevel4='kartLevel:4'/>
+	<Restriction existAI='aiCount:4' />
+	<!-- lagacy
+	<Restriction L2Channel_LevelL2='channel:lv2|level:3'/>
+	<Restriction L1Channel_pcCafe='channel:lv1|pcCafeLogin'/>
+	<Restriction goldGrade='pcCafeGrade:3|riderCount:8'/>
+	<Restriction silverGrade='pcCafeGrade:2|riderCount:8'/>
+	<Restriction bronzeGrade='pcCafeGrade:1|riderCount:8'/>
+	<Restriction preset='activeAttend'/>
+	<Restriction coupleFullRoom='couple|riderCount:8' />
+	<Restriction preset='rpMatchUpNext'/>
+	<Restriction superiorRoom='rp:+10000;riderCount:random+4'/>
+	<Restriction juniorRoom='rp:-10000;riderCount:max'/>
+	<Restriction matchRoom='riderCount:+6' teamMatchRoom='gameType:SpeedTeam;ItemTeam|riderCount:+6' singleTestMatchRoom='gameType:ItemIndi|riderCount:=1'/>
+	<Restriction fullRiderInxyyThema='riderCount:8|theme:xyy'/>
+	<Restriction fullRider='riderCount:8'/>
+	<Restriction lv2SpeedIndi='kartLevel:2|gameType:SpeedIndi'/>
+	<Restriction lv3SpeedTeam='kartLevel:3|gameType:SpeedTeam'/>
+	-->
+
+	<!-- channel -->
+	<Restriction Ch_IndiInfinit='channel:speedIndiInfinit'/>
+	<Restriction Ch_TeamInfinit='channel:speedTeamInfinit'/>
+	<Restriction Ch_TeamInfinit_PCCafe='channel:speedTeamInfinit|pcCafeLogin'/>	
+	<Restriction Ch_Infinit='channel:speedIndiInfinit;speedTeamInfinit'/>
+	<Restriction Ch_BBBSpeedIndi='channel:bokbulbokSpeedIndi'/>
+	<Restriction Ch_BBBSpeedTeam='channel:bokbulbokSpeedTeam'/>
+	<Restriction Ch_speedGp='channel:grandprix_speed'/>
+	<Restriction Ch_itemGp='channel:grandprix_item'/>
+	<Restriction Ch_speedTierMatching='channel:tierMatching_speedIndi;tierMatching_speedTeam'/>
+	<Restriction Ch_speedTierMatchingIndi='channel:tierMatching_speedIndi'/>
+	<Restriction Ch_speedTierMatchingTeam='channel:tierMatching_speedTeam'/>
+	<Restriction Ch_itemTierMatching='channel:tierMatching_itemNewItemIndi;tierMatching_itemNewItemTeam'/>
+	<Restriction Ch_itemTierMatchingIndi='channel:tierMatching_itemNewItemIndi'/>
+	<Restriction Ch_itemTierMatchingTeam='channel:tierMatching_itemNewItemTeam'/>
+	<Restriction Ch_ShadowIndiInfinit='channel:speedIndiShadowInfinit'/>
+	<Restriction Ch_Tier='channel:tierMatching_speedIndi;tierMatching_speedTeam;tierMatching_itemNewItemIndi;tierMatching_itemNewItemTeam'/>
+	
+	<!-- gameType-->
+	<Restriction Type_Speed='gameType:SpeedIndi;SpeedTeam;SpeedMatch;BokbulbokSpeedTeam;BokbulbokSpeedIndi;SpeedIndiGrip;SpeedTeamGrip;VersusModeIndi;ClubRaceSpeedTeam'/>
+	<Restriction Type_Item='gameType:ItemIndi;ItemTeam;BokbulbokItemTeam;BokbulbokItemIndi;ClubRaceItemTeam;ItemMiniIndi;ItemMiniTeam'/>
+	<Restriction Type_Item_PCCafe='gameType:ItemIndi;ItemTeam;BokbulbokItemTeam;BokbulbokItemIndi;ClubRaceItemTeam;ItemMiniIndi;ItemMiniTeam|pcCafeLogin'/>
+	<Restriction Type_Team='gameType:ItemTeam;SpeedTeam;BattleTeam;FlagTeam;BossGame;SpeedTeamGrip;ClubRaceSpeedTeam;ClubRaceItemTeam'/>
+	<Restriction Type_Indi='gameType:SpeedIndi;ItemIndi;BokbulbokItemIndi;BokbulbokSpeedIndi'/>
+	<Restriction Type_speedTeam='gameType:SpeedTeam;BokbulbokSpeedTeam'/>
+	<Restriction Type_speedIndi='gameType:SpeedIndi;BokbulbokSpeedIndi'/>
+	<Restriction Type_speedIndi_PCCafe='gameType:SpeedIndi;BokbulbokSpeedIndi|pcCafeLogin'/>
+	<Restriction Type_itemIndi='gameType:ItemIndi;BokbulbokItemIndi'/>
+	<Restriction Type_ItemTeam='gameType:ItemTeam;BokbulbokItemTeam;ClubRaceItemTeam'/>
+	<Restriction Type_BattleTeam='gameType:BattleTeam'/>
+	<Restriction Type_Shadow='gameType:SpeedIndiShadow;SpeedTeamShadow'/>
+	<Restriction Type_BBBSpeed='gameType:BokbulbokSpeedIndi;BokbulbokSpeedTeam'/>
+	<Restriction Type_BBBItem='gameType:BokbulbokItemIndi;BokbulbokItemTeam'/>
+	<Restriction Type_BBB='gameType:BokbulbokItemIndi;BokbulbokItemTeam;BokbulbokSpeedIndi;BokbulbokSpeedTeam'/>
+	<Restriction Type_BBB_PCCafe='gameType:BokbulbokItemIndi;BokbulbokItemTeam;BokbulbokSpeedIndi;BokbulbokSpeedTeam|pcCafeLogin'/>
+	<Restriction Type_Crossover='gameType:CrossoverIndi'/>
+	
+	<!-- 테마 -->
+	<Restriction Theme_nemo='theme:nemo'/>
+	<Restriction Theme_china='theme:china'/>
+	<Restriction Theme_forest='theme:forest'/>
+	<Restriction Theme_camelot='theme:camelot'/>
+	<Restriction Theme_olympos='theme:olympos'/>
+	<Restriction Theme_mabi='theme:mabi'/>
+	<Restriction Track_desert_I07='track:desert_I07'/>
+
+	<!-- 일회성 : 미사용은 삭제나 주석처리 해주세요 -->
+	<!--
+	<Restriction itemTeamWithCouple='gameType:ItemTeam;ItemMatch;BokbulbokItemTeam|couple'/>
+	<Restriction Track_CrazyInItemType='track:Crazy|gameType:ItemIndi;ItemTeam;ItemMatch;BokbulbokItemTeam;BokbulbokItemIndi'/>
+	<Restriction Inven_jurrasicJewel='inventory:34-327'/>
+	<Restriction On_sprout='itemOn:16-403'/>
+	-->
+	<Restriction onSVIP='itemOn:16-364'/> <!-- SVIP 패스 핸드봉 -->
+
+	<!-- 
+		Type
+		1	: 주행
+		2	: 보석
+			itemId='' : dataraw/item/jewel/item.xml 에 설정된 effect번호,
+			jewelGne='' : /zeta/cc/content/jewelGen.xml 에 설정된 jewelGen name
+		3	: 완주 (보스 게임은 완주 체크에서 무조건 제외됨)
+		4  : 주행 (유효한 레이싱 체크)
+		7	: 출첵
+			tempParam='Everyday' : 매일보상지급
+		10	: 미션
+		12	: 쉐도우
+		15 : 거리 누적
+			achievementCount : 거리 * 10
+		16 : 배틀(3step성공)
+		17 : 순위 체크가능 achievementRank를 사용합니다
+			- 3등까지 가능하다면 해당 등수 -1  즉 achievementRank='2' 이런식으로 적으시면 됩니다.
+		18 : 리타이어
+		19: 팀전 승리
+		20 : 아이템 사용
+					- giantMode Press의 param 규칙
+					-		targetEventId =  ''		press(사용) 는 0, pressed(적중) 는 1
+					-		targetUserType ='all'	all 과 otherTeam 만 체크됨
+					-		targetItemId='59'		GameItemConst.h 의 kGiGiantModePressing를 참고
+		24 : 아이템 사용 
+					- 게임 내에서 특정 아이템을 제일 많이 쓴 사람
+					- type 20과 동일한 속성 값들을 사용 (카운팅이 제일 많이 된 사람)
+		25 : 보스전 클리어 : 배틀모드와 동일한 property
+					- clearCampaignId 만 사용
+		26 : F1 모드 크러시
+					- clearCampaignLevel 사용 (veryeasy 1 ~ hard 4)
+		27 : F1 모드 최종 몇위 이상
+					- finalRank 이 순위 이상
+					- clearCampaignLevel 사용 (veryeasy 1 ~ hard 4)
+		28 : 체이싱 모드 킬	
+					- achievementCount : 킬수
+	-->
+</QuestSystem>

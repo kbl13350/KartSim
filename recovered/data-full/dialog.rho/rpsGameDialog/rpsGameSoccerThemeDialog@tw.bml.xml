@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="fullscreen" align="center">
+  <Panel name="bg" windowRect="fullscreen" enable="false" color="200 0 0 0" alphaBlend="true"/>
+  <Container windowRect="0 0 800 600" align="center">
+    <Container windowRect="10 118 550 367" enable="false">
+      <Panel texture="soccerEvent01" windowRect="0 0 512 244" enable="false" alphaBlend="true"/>
+      <Panel texture="soccerEvent02" windowRect="512 4 549 244" enable="false" alphaBlend="true"/>
+      <Label name="npcName" windowSize="100 10" adjust="40 6" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+      <Label name="playerName" windowSize="100 10" adjust="392 223" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+      <Container name="npc" windowRect="28 40 174 209">
+        <Panel name="npc_select" windowRect="0 0 146 169" texture="soccerNpc_event_card_3" alphaBlend="true" visible="false" enable="false"/>
+      </Container>
+      <Container name="player" windowRect="370 40 516 209">
+        <Panel name="player_select" windowRect="0 0 146 169" texture="soccerPc_event_card_3" alphaBlend="true" visible="false" enable="false"/>
+      </Container>
+      <Panel name="result" windowRect="0 0 540 272" texture="soccerResult_0@zz" alphaBlend="true" visible="false" enable="false"/>
+    </Container>
+    <Container name="npcTable" windowRect="3 10 797 128" enable="false">
+      <Panel name="npcbg1" texture="soccerCut01" windowRect="0 0 512 103" enable="false" alphaBlend="true"/>
+      <Panel name="npcbg2" texture="soccerCut02" windowRect="512 0 793 103" enable="false" alphaBlend="true"/>
+      <Panel name="previewRps0" windowRect="125 -10 218 105" alphaBlend="true" visible="false" enable="false"/>
+      <Panel name="previewRps1" windowRect="125 -10 218 105" alphaBlend="true" visible="false"/>
+      <Panel name="previewRps2" windowRect="125 -10 218 105" alphaBlend="true" visible="false"/>
+      <Container name="npcInfo" windowRect="3 0 797 128" enable="false">
+        <Panel name="npcFace" windowSize="220 124" adjust="548 -20" alphaBlend="true" enable="false"/>
+        <Panel name="textbg" windowSize="237 116" adjust="330 -10" texture="soccerText" alphaBlend="true" enable="false"/>
+        <Label name="npcmsg" windowSize="150 40" adjust="350 15" multiLine="true" textColor="white" textRender="bold" autoWrap="true" enable="false"/>
+      </Container>
+    </Container>
+    <Container name="playerTable" windowRect="10 360 549 600" enable="false">
+      <Panel name="playerbg1" texture="soccerMycardback_01" windowRect="0 0 512 235" enable="false" alphaBlend="true"/>
+      <Panel name="playerbg2" texture="soccerMycardback_02" windowRect="512 0 549 235" enable="false" alphaBlend="true"/>
+      <ImageButton name="scissors" windowSize="142 147" adjust="35 15" autoLoadImage="soccerPc_jji0" alphaBlend="true"/>
+      <ImageButton name="rock" windowSize="142 147" adjust="200 15" autoLoadImage="soccerPc_muk0" alphaBlend="true"/>
+      <ImageButton name="paper" windowSize="142 147" adjust="365 15" autoLoadImage="soccerPc_ppa0" alphaBlend="true"/>
+      <Label name="scissorsNum" windowSize="100 20" adjust="55 113" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+      <Label name="rockNum" windowSize="100 20" adjust="220 113" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+      <Label name="paperNum" windowSize="100 20" adjust="385 113" multiLine="true" textColor="white" textAlign="center" textRender="bold" autoWrap="true" enable="false"/>
+    </Container>
+    <Panel windowRect="565 120 795 583" texture="soccerLevel_back" alphaBlend="true">
+      <Label name="levelTitle" windowSize="80 10" adjust="92 22" multiLine="true" text="#sb(challengeLevel)" textColor="white" textRender="bold" autoWrap="true" enable="false"/>
+      <Container windowRect="17 52 212 352" enable="false">
+        <Panel name="present" texture="soccerPresent_good" windowRect="2 275 193 333" alphaBlend="true"/>
+        <Panel name="presentPanel" texture="soccerPresent_next" windowRect="2 337 193 395" alphaBlend="true"/>
+        <Window name="itemPanel" windowRect="17 280 49 325" alphaBlend="true"/>
+        <Window name="itemPanel2" windowRect="17 345 49 387" alphaBlend="true"/>
+        <Label name="presentTitle" windowSize="100 20" adjust="92 286" multiLine="true" text="#sb(currentReward)" textColor="white" autoWrap="true" enable="false"/>
+        <Label name="presentName" windowSize="130 20" adjust="69 310" multiLine="true" text="" autoWrap="true" textColor="yellow" textRender="outline" enable="false"/>
+        <Label name="presentnextTitle" windowSize="100 20" adjust="92 346" multiLine="true" text="#sb(nextReward)" textColor="white" autoWrap="true" enable="false"/>
+        <Label name="presentnextName" windowSize="120 20" adjust="69 370" multiLine="true" text="" autoWrap="true" textColor="white" enable="false"/>
+        <Panel name="level1" texture="soccerLevel_next" windowSize="181 23" adjust="5 185" alphaBlend="true"/>
+        <Panel name="levelwin1" texture="soccerLevel_done_win" windowSize="181 23" adjust="5 184" visible="false" alphaBlend="true"/>
+        <Panel name="level2" texture="soccerLevel_next" windowSize="181 23" adjust="5 155" alphaBlend="true"/>
+        <Panel name="levelwin2" texture="soccerLevel_done_win" windowSize="181 23" adjust="5 154" visible="false" alphaBlend="true"/>
+        <Panel name="level3" texture="soccerLevel_next" windowSize="181 23" adjust="5 125" alphaBlend="true"/>
+        <Panel name="levelwin3" texture="soccerLevel_done_win" windowSize="181 23" adjust="5 124" visible="false" alphaBlend="true"/>
+        <Panel name="level4" texture="soccerLevel_next" windowSize="181 23" adjust="5 95" alphaBlend="true"/>
+        <Panel name="levelwin4" texture="soccerLevel_done_win" windowSize="181 23" adjust="5 94" visible="false" alphaBlend="true"/>
+        <Panel name="level5" texture="soccerLevel_next" windowSize="181 23" adjust="5 65" alphaBlend="true"/>
+        <Panel name="levelwin5" texture="soccerLevel_done_win" windowSize="181 23" adjust="5 64" visible="false" alphaBlend="true"/>
+        <Panel name="level6" texture="soccerLevel_next" windowSize="181 23" adjust="5 35" alphaBlend="true"/>
+        <Panel name="levelwin6" texture="soccerLevel_done_win" windowSize="181 23" adjust="5 34" visible="false" alphaBlend="true"/>
+        <Panel name="level7" texture="soccerLevel_next" windowSize="181 23" adjust="5 5" alphaBlend="true"/>
+        <Panel name="levelwin7" texture="soccerLevel_done_win" windowSize="181 23" adjust="5 4" visible="false" alphaBlend="true"/>
+        <Panel name="currentlevel" texture="soccerLevel_here" windowRect="5 183 186 205" alphaBlend="true"/>
+        <Label name="leveltitle1" windowSize="50 20" adjust="80 191" multiLine="true" text="第一階段" autoWrap="true" enable="false"/>
+        <Label name="leveltitle2" windowSize="50 20" adjust="80 161" multiLine="true" text="第二階段" autoWrap="true" enable="false"/>
+        <Label name="leveltitle3" windowSize="50 20" adjust="80 131" multiLine="true" text="第三階段" autoWrap="true" enable="false"/>
+        <Label name="leveltitle4" windowSize="50 20" adjust="80 101" multiLine="true" text="第四階段" autoWrap="true" enable="false"/>
+        <Label name="leveltitle5" windowSize="50 20" adjust="80 71" multiLine="true" text="第五階段" autoWrap="true" enable="false"/>
+        <Label name="leveltitle6" windowSize="50 20" adjust="80 41" multiLine="true" text="第六階段" autoWrap="true" enable="false"/>
+        <Label name="leveltitle7" windowSize="50 20" adjust="80 11" multiLine="true" text="第七階段" autoWrap="true" enable="false"/>
+      </Container>
+    </Panel>
+  </Container>
+</Container>

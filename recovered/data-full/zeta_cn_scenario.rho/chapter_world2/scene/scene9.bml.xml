@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="England2"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="黑杰克" string="格雷，格雷格，你们去确定一下克莉丝的位置！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="raptorLs" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="raptorRs" pos="9 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷兄弟" string="是！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="7 0" flip="true" emotion="stop6"/>
+  <Msg name="黑杰克" string="唉~|尽是烦心事。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="找出克莉丝的位置了。"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="raptorLs" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑杰克" string="哈哈哈|那我们出发吧~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <BackGround texture="England3"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷" string="就是这里。"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="格雷格，去把我们的摇钱树…|不是，把我们的伙伴请出来吧。|哈哈哈"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="格雷格" string="为什么让我去…|我要去折磨一下她。"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="Chris" pos="7 0" emotion="stop2"/>
+  <Msg name="克莉丝" string="真是不错的经历~|警察局的饭还蛮好吃的~"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="raptorLs" pos="4 0" emotion="stop3"/>
+  <Char id="Chris" pos="11 0" emotion="stop2"/>
+  <Msg name="格雷格" string="安静点，小不点！|都是因为你才搞的我们这么累！"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="Chris" remove="true"/>
+  <Char id="totop" pos="8 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="格雷格，辛苦你了！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="10 0" emotion="stop5"/>
+  <Char id="raptorRs" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="黑杰克大人，他们来了。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="哈哈哈，我们去跟他们打个招呼吧~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="3 0" flip="true" emotion="stop5"/>
+  <Char id="raptorLs" pos="8 0" flip="true" emotion="stop1"/>
+  <Char id="raptorRs" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="Chris" pos="14 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="你好啊~朋友们~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="Chris" remove="true"/>
+  <Char id="totop" pos="3 0" flip="true" emotion="stop5"/>
+  <Char id="raptorLs" pos="8 0" flip="true" emotion="stop1"/>
+  <Char id="raptorRs" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="Chris" pos="14 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="我们来接我们的伙伴了~|哈哈哈~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="Chris" remove="true"/>
+  <Char id="totop" pos="8 0" flip="true" emotion="stop5"/>
+  <Char id="raptorLs" pos="13 0" emotion="stop1"/>
+  <Char id="raptorRs" pos="16 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="我们先告辞了~|哈哈哈~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="Chris" pos="11 0" emotion="stop2"/>
+  <Msg name="克莉丝" string="哦，对了，艾丽！今天玩的很开心~|下次再一起玩吧~"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="11 0" emotion="stop1"/>
+  <Msg name="克莉丝" string="还有你索菲亚！|回去把技术练一练再来~^^"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Brian" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="布莱恩" string="别跑！！|黑暗组织！！！！！！！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="？？？" string="噗哈哈哈！|这帮家伙还挺有趣的~|我要跟过去看看~"/>
+  <Enter/>
+</Scene>

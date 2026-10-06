@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 550 184">
+  <ImageBoard windowSize="550 184" adjust="0 0" align="left" image="shop_chargePoint_bg" alphaBlend="true" visible="true"/>
+  <Window windowSize="76 100" adjust="20 40">
+    <Panel windowSize="76 86" adjust="0 0" texture="shop_chargePoint_battery_bg" alphaBlend="true" alphaTest="true">
+      <Panel name="pointProgress" windowSize="66 64" adjust="5 9" align="bottom" texture="shop_chargePoint_battery_progress" alphaBlend="true" visible="false"/>
+      <Label name="tcCashPointStr" windowSize="120 20" adjust="0 52" align="center" text="#sb(tcCashPoint0)" textRender="bold14" textColor="255 52 60 86" textAlign="center" autoWrap="true"/>
+      <Label name="tcCashPoint" windowSize="60 40" adjust="0 -4" align="center" text="0" textAlign="center" textRender="outline20" textColor="white" textColor2="black"/>
+      <Panel windowSize="14 18" adjust="0 16" align="center" texture="shop_chargePoint_icon" alphaBlend="true" visible="true"/>
+    </Panel>
+  </Window>
+  <Container windowSize="440 15" adjust="93 80" align="left;top">
+    <Panel windowSize="438 10" adjust="0 0" align="left" texture="shop_chargePoint_progress_bg" alphaBlend="true" visible="true"/>
+    <Panel name="progressBar" windowSize="440 6" adjust="0 2" align="left" texture="shop_chargePoint_progress_bar" uvRect="0 0 440 6" alphaBlend="true" visible="false"/>
+  </Container>
+  <Panel name="title" windowSize="164 24" adjust="30 3" align="left;top" texture="" alphaBlend="true" alphaTest="true" enable="false" visible="true"/>
+  <Label name="period" windowSize="300 20" adjust="8 2" align="right;top" text="" textAlign="right" textRender="bold14" textColor="255 187 198 215" textColor2="0 0 0 0"/>
+  <Label name="help" windowSize="550 15" adjust="0 158" align="left" text="#sb(tcCashEventHelp0)" textAlign="center" textRender="bold14" textColor="255 52 60 86" textColor2="0 0 0 0"/>
+  <Window name="stepWindow" windowSize="440 0" adjust="93 0" enable="true"/>
+</Container>

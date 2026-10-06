@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot21"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[梅林的梦境]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <BackGround texture="camelot21"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Shengongbao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="申公豹" string="把那柄剑交出来。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Shengongbao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Msg name="梅林" string="你想用圣剑做什么？？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Shengongbao" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Msg name="申公豹" string="区区人类，没资格让我解释。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Shengongbao" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="11 0" emotion="stop3"/>
+  <Msg name="梅林" string="呃！不行！！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <BackGround texture="castle1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[卡美洛，梅林办公室]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="merlin" pos="11 0" emotion="normal"/>
+  <Char id="king_arthur" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="亚瑟" string="叔叔~睡觉要回家睡啊！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="merlin" pos="11 0" emotion="normal"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="亚瑟" string="在这种地方睡觉不做噩梦才怪了！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="castle1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="merlin" pos="11 0" emotion="stop3"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="（惊醒）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Msg name="梅林" string="陛下！大事不好了！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Msg name="亚瑟" string="吓我一跳！陛下什么陛下，不是说过只有我们两个人的时候随意点嘛~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="merlin" pos="10 0" emotion="stop2"/>
+  <Msg name="梅林" string="亚瑟！有人要来偷圣剑！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="merlin" pos="10 0" emotion="stop2"/>
+  <Msg name="亚瑟" string="圣剑？别担心！我先用我的力量处理看看。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Msg name="梅林" string="是个散发着惊人威压感的神级存在！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="merlin" pos="10 0" emotion="stop4"/>
+  <Msg name="梅林" string="恐怕不是我们能对付的存在。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="10 0" emotion="stop4"/>
+  <Msg name="亚瑟" string="那怎么办？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="梅林" string="暂时把圣剑托付给烈焰勇士比较好。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="亚瑟" string="这样没问题吗？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="10 0" emotion="stop4"/>
+  <Msg name="梅林" string="这是唯一可能取胜的方法。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="merlin" pos="10 0" emotion="stop4"/>
+  <Msg name="亚瑟" string="明白了。我相信叔叔。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="merlin" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="那就跟过来吧。"/>
+  <Enter/>
+</Scene>

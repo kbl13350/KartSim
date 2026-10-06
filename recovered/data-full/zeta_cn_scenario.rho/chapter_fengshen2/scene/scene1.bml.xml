@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="fengshen2"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[仙界]"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="妲己" string="得赶紧找到妲己幻尾草，好回到魔界。"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="8 0" emotion="stop2"/>
+  <Msg name="哼唱声" string="（哼~哼哼~）"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="8 0" emotion="stop3"/>
+  <Msg name="妲己" string="谁这么悠闲？真想给他找点苦头尝尝！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="12 0" emotion="stop5"/>
+  <Msg name="妲己" string="先躲起来看看情况……"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Taoisttaigong" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="道士姜太公" string="真是久违的清闲时光！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="道士姜太公" string="今天非得把鲲鹏给钓上来不可~"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="妲己" string="把我害成这副样子，还有闲情逸致钓鱼？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="妲己" string="休想得逞！"/>
+  <Enter/>
+</Scene>

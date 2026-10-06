@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Window name="준비" frame="CaptionDialog" leftTopWH="0 0 1328 787" adjust="0 -10" align="center">
+    <Label name="scenarioChapterTitle" leftTopWH="0 -36 200 34" align="hcenter" textRender="bold20" textColor="white" textAlign="center"/>
+    <Container name="캐릭터창" windowRect="0 0 600 500" adjust="0 -110" align="center"/>
+    <ImageBoard name="img_playerBG" image="img_playerBG" leftTopWH="0 -1 1314 514" align="hcenter" alphaBlend="true" visible="true">
+      <Panel name="step" windowRect="0 0 96 52" adjust="10 10" align="left,top" alphaBlend="true"/>
+      <Panel name="scenarioMainTitleBg" leftTopWH="960 10 338 36" texture="img_scenario_main_TitleBg" alphaBlend="true">
+        <Label name="scenarioTitle" windowRect="10 0 338 36" textRender="bold16" text="#sb(scenarioTitle)" textColor="white" textAlign="left,vcenter"/>
+      </Panel>
+      <Panel name="missionImage" leftTopWH="960 56 338 162" alphaBlend="true"/>
+      <Panel name="missionSynopsisBg" leftTopWH="960 228 338 36" texture="img_scenario_main_synopsis@zz" alphaBlend="true"/>
+      <Label name="synopsis" leftTopWH="960 274 338 240" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline14" text="#sb(synopsis)" multiLine="true" autoWrap="true"/>
+    </ImageBoard>
+    <ImageBoard name="trackInfoCover" image="timeAttack_main_trackInfoCover1" leftTopWH="0 -1 1314 226" adjust="0 -8" align="hcenter,bottom" alphaBlend="true" visible="true">
+      <Container name="트랙카드Cont" leftTopWH="0 0 348 202" adjust="12 12" enable="true" align="left,bottom">
+        <TrackCard name="trackInfoCard" windowRect="0 0 348 202" alphaBlend="true" trackRect="0 0 348 202" trackNameRect="30 120 215 130" trackNameTextRender="bold" trackNameTextColor="0 0 0 0" enable="false" difficultyAdjust="14 10" difficultyAlign="right,bottom"/>
+        <Label name="out_trackName" leftTopWH="40 168 150 30" textRender="outline16" textColor="white" textColor2="black" textAlign="left,vcenter" enable="false"/>
+        <Panel name="trackTheme" leftTopWH="6 166 30 30" texture="btn_teamChange_red_1" alphaBlend="true" enable="false"/>
+      </Container>
+      <Label leftTopWH="382 11 348 28" textRender="bold16" textColor="white" textAlign="left,vcenter" text="#sb(howtoClearTitle)"/>
+      <Label name="howtoClear" textRender="bold16" leftTopWH="392 60 348 44" textColor="255 42 55 80" textAlign="vcenter" text="#sb(howtoClear)" multiLine="true" autoWrap="true"/>
+      <Label name="missionText" textRender="bold16" leftTopWH="695 60 338 44" textColor="255 72 106 153" textAlign="right,vcenter" text="#sb(missionText)" multiLine="true" autoWrap="true"/>
+      <Window leftTopWH="375 130 670 102">
+        <Panel name="itemSlotBg" texture="itemSlotBg" leftTopWH="10 10 64 64" alphaBlend="true">
+          <Panel name="emblem" leftTopWH="0 0 51 51" uvRect="0 0 51 51" visible="false" align="center" alphaBlend="true"/>
+        </Panel>
+        <ItemWindow name="itemPanel" leftTopWH="10 10 64 64"/>
+        <Panel name="prizeTitleBg" texture="img_titleGrey" leftTopWH="90 10 166 22" alphaBlend="true">
+          <Label windowSize="166 28" adjust="5 0" textRender="bold14" textColor="white" textAlign="left,vcenter" text="#sb(prize)" align="vcenter"/>
+        </Panel>
+        <Label name="lblPrize" windowRect="90 0 600 100" align="vcenter" textRender="bold16" autoWrap="true" multiLine="true" enable="false" textColor="255 42 55 80" textAlign="left,vcenter"/>
+        <Panel name="clearStep" texture="itemSlot_clear_stamp@zz" leftTopWH="10 10 64 64" alphaBlend="true"/>
+      </Window>
+      <Container name="buttons" windowRect="3 239 288 455" align="right, bottom" adjust="11 0">
+        <ImageButton name="시작" windowRect="0 0 248 108" autoLoadImage="btn_singleStart_@zz" adjust="0 0" align="right" alphaBlend="true"/>
+        <ImageButton name="아이템배틀" windowRect="0 0 248 108" autoLoadImage="btn_singleItem_@zz" adjust="0 2" align="right, bottom" alphaBlend="true"/>
+      </Container>
+    </ImageBoard>
+    <ImageButton name="goBackButton" windowRect="0 0 20 20" align="right,top" adjust="-4 -28" autoLoadImage="kick_" alphaBlend="true" altText="#sb(close)"/>
+  </Window>
+</Panel>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="makeGuildmark">
+    <m c="kr" v="길드 마크 등록"/>
+    <m c="jp" v="ギルドマーク登録"/>
+    <m c="cn" v="修改车队标志"/>
+    <m c="tw" v="車隊徽章登錄"/>
+    <m c="vn" v="Đăng ký Đội"/>
+    <m c="ru" v="Ввести логотип Гильдии"/>
+    <m c="id" v="Daftar Guild Mark"/>
+    <m c="th" v="สร้างตรากิลด์"/>
+  </k>
+  <k n="success">
+    <m c="kr" v="길드 마크가 등록되었습니다."/>
+    <m c="jp" v="ギルドマークが登録されました。"/>
+    <m c="cn" v="车队标志修改成功。"/>
+    <m c="tw" v="車隊徽章已登錄"/>
+    <m c="vn" v="Đăng ký Đội thành công"/>
+    <m c="ru" v="Логотип Гильдии успешно добавлен."/>
+    <m c="id" v="Telah mendaftar guild mark"/>
+    <m c="th" v="สร้างตรากิลด์แล้ว"/>
+  </k>
+  <k n="levelMismatch">
+    <m c="kr" v="길드 레벨에 맞지 않는 마크입니다."/>
+    <m c="jp" v="ギルドレベルに合わないマークです。"/>
+    <m c="cn" v="你选择的车队标志与您的车队等级不符。"/>
+    <m c="tw" v="該徽章等級不符"/>
+    <m c="vn" v="Cấp độ Đội không phù hợp."/>
+    <m c="ru" v="Логотип не соответствует уровню Гильдии."/>
+    <m c="id" v="Mark yang tidak sesuai level guild."/>
+    <m c="th" v="ตรากิลด์ไม่ตรงกับเลเวลกิลด์"/>
+  </k>
+  <k n="unknown">
+    <m c="kr" v="알 수 없는 오류가 발생했습니다."/>
+    <m c="jp" v="原因不明のエラーが発生しました。"/>
+    <m c="cn" v="发生未知错误"/>
+    <m c="tw" v="發生不明錯誤"/>
+    <m c="vn" v="Không rõ"/>
+    <m c="ru" v="Обнаружена неизвестная ошибка."/>
+    <m c="id" v="Telah terjadi error yang tidak dikenal"/>
+    <m c="th" v="เกิดความผิดพลาดขึ้น"/>
+  </k>
+  <k n="masterOnly">
+    <m c="kr" v="길드 마스터 고유 권한입니다."/>
+    <m c="jp" v="ギルドマスター固有の権限です。"/>
+    <m c="cn" v="车队长的特有权限"/>
+    <m c="tw" v="隊長權限"/>
+    <m c="vn" v="Chủ Đội có quyền lực tuyệt đối."/>
+    <m c="ru" v="Эта функция доступна только Главе Гильдии."/>
+    <m c="id" v="Hak hanya untuk Guild master."/>
+    <m c="th" v="ต้องเป็นหัวหน้ากิลด์เท่านั้น"/>
+  </k>
+  <k n="notFindGuild">
+    <m c="kr" v="길드 정보를 찾을 수 없습니다."/>
+    <m c="jp" v="ギルド情報が見つかりません。"/>
+    <m c="cn" v="找不到该车队的信息"/>
+    <m c="tw" v="查無此車隊"/>
+    <m c="vn" v="Không tìm thấy Đội."/>
+    <m c="ru" v="Невозможно найти информацию о Гильдии."/>
+    <m c="id" v="Tidak dapat mencari info guild"/>
+    <m c="th" v="ไม่พบกิลด์ที่ค้นหา"/>
+  </k>
+  <k n="requireSelect">
+    <m c="kr" v="길드 마크의 배경과 로고를 지정해 주세요."/>
+    <m c="jp" v="ギルドマークの背景とロゴを指定してください。"/>
+    <m c="cn" v="请选择车队标志的背景和图标。"/>
+    <m c="tw" v="請選擇車隊徽章的背景及樣式"/>
+    <m c="vn" v="Hãy thay đổi logo và phong nền của Đội"/>
+    <m c="ru" v="Выберите фон и марку логотипа."/>
+    <m c="id" v="Silahkan memilih background Guild mark dan logo."/>
+    <m c="th" v="เลือกโลโก้และพื้นหลังของตรากิลด์"/>
+  </k>
+  <k n="nonPermitted">
+    <m c="kr" v="길드 마크를 변경할 수 없습니다."/>
+    <m c="jp" v="ギルドマークを変更できません。"/>
+    <m c="cn" v="无法更改车队标志"/>
+    <m c="tw" v="無法變更車隊徽章"/>
+    <m c="vn" v="Bạn không có quyền"/>
+    <m c="ru" v="Невозможно изменить логотип Гильдии."/>
+    <m c="id" v="Tidak dapat mengubah guild mark."/>
+    <m c="th" v="ไม่สามารถเปลี่ยนตรากิลด์ได้"/>
+  </k>
+  <k n="noChangeItem">
+    <m c="kr" v="길드 마크 변경권이 필요합니다."/>
+    <m c="jp" v="ギルドマーク変更チケットが必要です。"/>
+    <m c="cn" v="修改车队标志需要 “车队标志更换卡” 道具。"/>
+    <m c="tw" v="需要車隊徽章變更卡"/>
+    <m c="vn" v="Bạn không có quyền"/>
+    <m c="ru" v="Вы должны обладать правом на изменение логотипа"/>
+    <m c="id" v="Membutuhkan Guild Mark Change"/>
+    <m c="th" v="ต้องใช้ไอเทมตรากิลด์ในการเปลี่ยน"/>
+  </k>
+  <k n="beforeMark">
+    <m c="kr" v="변경 전 마크"/>
+    <m c="jp" v="変更前のマーク"/>
+    <m c="cn" v="修改前的标志"/>
+    <m c="tw" v="變更前徽章"/>
+    <m c="vn" v="Trước"/>
+    <m c="ru" v="Логотип до изменения"/>
+    <m c="id" v="Mark sebelum diubah"/>
+    <m c="th" v="ก่อนเปลี่ยน"/>
+  </k>
+  <k n="afterMark">
+    <m c="kr" v="변경 후 마크"/>
+    <m c="jp" v="変更後のマーク"/>
+    <m c="cn" v="修改后的标志"/>
+    <m c="tw" v="變更後徽章"/>
+    <m c="vn" v="Sau"/>
+    <m c="ru" v="Логотип после изменения"/>
+    <m c="id" v="Mark setelah diubah"/>
+    <m c="th" v="หลังเปลี่ยน"/>
+  </k>
+  <k n="modify">
+    <m c="kr" v="변경"/>
+    <m c="jp" v="変更"/>
+    <m c="cn" v="修改"/>
+    <m c="tw" v="變更"/>
+    <m c="vn" v="Sửa"/>
+    <m c="ru" v="Изменить"/>
+    <m c="id" v="Ubah"/>
+    <m c="th" v="เปลี่ยน"/>
+  </k>
+  <k n="close">
+    <m c="kr" v="닫기"/>
+    <m c="jp" v="閉じる"/>
+    <m c="cn" v="关闭"/>
+    <m c="tw" v="關閉"/>
+    <m c="vn" v="Đóng"/>
+    <m c="ru" v="Закрыть"/>
+    <m c="id" v="Tutup"/>
+    <m c="th" v="ปิด"/>
+  </k>
+  <k n="Level_1">
+    <m c="kr" v="Level_1"/>
+    <m c="jp" v="Level_1"/>
+    <m c="cn" v="1级"/>
+    <m c="tw" v="Level_1"/>
+    <m c="vn" v="Cấp 1"/>
+    <m c="ru" v="Level_1"/>
+    <m c="id" v="Level_1"/>
+    <m c="th" v="Level_1"/>
+  </k>
+  <k n="Level_2">
+    <m c="kr" v="Level_2"/>
+    <m c="jp" v="Level_2"/>
+    <m c="cn" v="2级"/>
+    <m c="tw" v="Level_2"/>
+    <m c="vn" v="Cấp 2"/>
+    <m c="ru" v="Level_2"/>
+    <m c="id" v="Level_2"/>
+    <m c="th" v="Level_2"/>
+  </k>
+  <k n="Level_3">
+    <m c="kr" v="Level_3"/>
+    <m c="jp" v="Level_3"/>
+    <m c="cn" v="3级"/>
+    <m c="tw" v="Level_3"/>
+    <m c="vn" v="Cấp 3"/>
+    <m c="ru" v="Level_3"/>
+    <m c="id" v="Level_3"/>
+    <m c="th" v="Level_3"/>
+  </k>
+  <k n="Level_4">
+    <m c="kr" v="Level_4"/>
+    <m c="jp" v="Level_4"/>
+    <m c="cn" v="4级"/>
+    <m c="tw" v="Level_4"/>
+    <m c="vn" v="Cấp 4"/>
+    <m c="ru" v="Level_4"/>
+    <m c="id" v="Level_4"/>
+    <m c="th" v="Level_4"/>
+  </k>
+  <k n="Level_5">
+    <m c="kr" v="Level_5"/>
+    <m c="jp" v="Level_5"/>
+    <m c="cn" v="5级"/>
+    <m c="tw" v="Level_5"/>
+    <m c="vn" v="Cấp 5"/>
+    <m c="ru" v="Level_5"/>
+    <m c="id" v="Level_5"/>
+    <m c="th" v="Level_5"/>
+  </k>
+  <k n="Level_6">
+    <m c="kr" v="Level_6"/>
+    <m c="jp" v="Level_6"/>
+    <m c="cn" v="6级"/>
+    <m c="tw" v="Level_6"/>
+    <m c="vn" v="Cấp 6"/>
+    <m c="ru" v="Level_6"/>
+    <m c="id" v="Level_6"/>
+    <m c="th" v="Level_6"/>
+  </k>
+  <k n="useGuildMarkCard">
+    <m c="kr" v="길드마크 생성후 길드마크 변경 시|&quot;길드마크 변경권&quot; 아이템이 하나 소모됩니다.|길드마크를 변경하시겠습니까? "/>
+    <m c="jp" v="ギルドマーク作成後にギルドマークを変更する場合、|&quot;ギルドマーク変更チケット&quot;を１つ消耗します。|ギルドマークを変更しますか？ "/>
+    <m c="cn" v="修改完车队标志后需消耗一个|&quot;车队标志更换卡&quot;的道具。|确认修改车队标志吗？"/>
+    <m c="tw" v="變更後即無法回復!!|變更時會消耗一張[車隊徽章變更卡],|確定要變更嗎?"/>
+    <m c="vn" v="Để thay đổi cần sử dụng thẻ. Bạn có chắc muốn thay đổi ? "/>
+    <m c="ru" v="При каждом изменении логотипа Гильдии|требуется предмет &quot;Смена логотипа&quot;.|Изменить логотип Гильдии? "/>
+    <m c="id" v="Setelah membuat guild mark dan|saat mengubah guild mark akan membutuhkan |1 item &quot;Guild Mark Change&quot;,Ingin mengubah guild mark?"/>
+    <m c="th" v="เมื่อเปลี่ยนตรากิลด์หลังจากสร้างตราแล้ว|ไอเทม&quot;ตรากิลด์&quot; จะหายไป 1 ชิ้น|จะเปลี่ยนตรากิลด์ใช่ไหม "/>
+  </k>
+</StringBag>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.45'
+	DriftEscapeForce='1300'
+	CornerDrawFactor='0.069'
+
+	BoosterBlur='true'
+	EngineSound='bike8'
+
+	WaveEffect='true'
+	motorcycleType='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.74'
+	TransformTime='200'
+
+	StartForwardAccelFactorSpeed = '1.7'
+	StartBoosterTimeSpeed='1200'           
+  
+	NormalBoosterTime = '-200'
+	TeamBoosterTime = '-500'
+	DriftMaxGauge = '-1300'
+	DriftGaguePreservePercent='0.4'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8sub'
+	BoosterType3='8sub'
+	BoosterType4='8main'
+	BoosterType5='8main'
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1b3'
+	FirePort1='mod1b4'
+	FirePort2='mod1b1'
+	FirePort3='mod1b2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 77 77 77'
+
+	EnvMap='true'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+	
+	DescBalance= '46'
+	DescStability ='37'
+	DescEngineGrade='1.25'
+	DescCornering='3'
+	DescEnchantCap = '25'
+>
+<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1b3' trailPort1='mod1b4'/>
+</BodyParam>
+
+<!--대만 렉키 HT 120412 상점 판매-->

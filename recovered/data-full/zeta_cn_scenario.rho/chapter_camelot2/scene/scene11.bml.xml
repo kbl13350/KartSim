@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot15"/>
+  <Char id="merlin" pos="10 0" emotion="stop2"/>
+  <Msg name="梅林" string="这怎么可能~我居然被淘汰了……哎~还是跑不过年轻人呀……|再年轻10年就好了……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="真是一场精彩的比赛呢。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="就剩决赛了！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="话说爷爷你的愿望是什么啊？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="梅林" string="你过来下……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="梅林" string="不能告诉别人……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="梅林" string="其实，我……脱发比较严重……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="那……那……您穿带帽的长袍也是因为这个原因吗！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop2"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Msg name="梅林" string="嘘！！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="king_arthur" pos="8 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="8 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="各位~"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="8 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="8 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="参加决赛的两位选手……"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="亚瑟王" string="烈焰勇士宝宝！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kei" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="亚瑟王" string="卡美洛骑士凯！！"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="8 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="8 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="最后的决赛是1vs1机械战车比赛！"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="宝宝，让他们见识一下繁荣山丘第一车手的实力！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="哈哈哈……承认我是第一了吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" pos="9 0" emotion="stop1"/>
+  <Msg name="梅林" string="凯爵士，让他们见识下卡美洛骑士的实力~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="king_arthur" pos="8 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="8 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="凯，我知道，你有这个实力。|会是一场精彩的比赛。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="kei" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="凯" string="好的！我会尽全力比赛。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="7 0" flip="true" emotion="stop1"/>
+  <Char id="camelot_effect" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="亚瑟王" string="当然，也希望宝宝勇士也能尽全力比赛。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="那当然！我要拿冠军！冠军！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="king_arthur" pos="7 0" flip="true" emotion="stop1"/>
+  <Char id="camelot_effect" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="亚瑟王" string="我已感受到了两位对冠军的渴望。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="8 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="8 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="那么，卡美洛庆典冠军赛决赛~现在开始！"/>
+  <Enter/>
+</Scene>

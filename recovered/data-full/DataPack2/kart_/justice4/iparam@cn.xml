@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='120.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.05'
+	SteerConstraint='2.35'
+	DriftEscapeForce='500'
+	CornerDrawFactor='0.068'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+	TransAccelFactor='1.62'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod2c1'
+	Port1='mod2c2'
+	FirePort0='mod2b'
+	FirePort1='mod2a1'
+	FirePort2='mod2a2'
+	FirePort3='mod2a3'
+	FirePort4='mod2a4'
+
+	DescBalance= '30'
+	DescStability ='33'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+/>
+
+<!-- 중국 저스티스 SR-W파츠 -->

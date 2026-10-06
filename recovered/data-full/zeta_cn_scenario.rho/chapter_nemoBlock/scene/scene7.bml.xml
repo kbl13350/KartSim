@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Nemo15"/>
+  <Char id="nemodao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="嗯……|（好像有点奇怪…）"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodao" pos="4 0" emotion="stop1"/>
+  <Char id="nemodizini" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="怎么了皮蛋？发生什么事了？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="4 0" emotion="stop1"/>
+  <Char id="nemodizini" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="从刚才开始就感觉怪怪的~|总觉得有人在盯着我们！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <BackGround texture="Nemo14"/>
+  <Char id="medea" pos="8 0" emotion="stop1"/>
+  <Msg name="？？？" string="嘿嘿~~|（应该就是他们吧？）"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodao" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="nemodizini" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="黑妞" string="皮…皮蛋~~那边！！|那里有个人~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="nemodizini" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="好奇怪啊~|为了总是盯着我们看呢？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="nemodizini" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="你…你是谁！？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="medea" pos="11 0" emotion="normal"/>
+  <Msg name="？？？" string="哈哈！！|（要不要试一试呢？）"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodao" pos="10 0" flip="true" emotion="normal"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="额…好像要走了…|黑妞~我们跟过去看看吧！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="皮蛋！！站住~~|我们还是待在这里吧！！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="没准能找到什么线索~|我们赶紧跟过去吧！！！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="我们都不知道这是哪里…|不会有问题吧？"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="别担心，黑妞~|我会保护你的~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="我一定要跟过去看看！！|喂！你等等~~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞" string="皮蛋~！！"/>
+  <Enter/>
+</Scene>

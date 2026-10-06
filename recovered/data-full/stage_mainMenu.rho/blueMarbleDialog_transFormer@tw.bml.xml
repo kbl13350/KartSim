@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window texture="transPopup@zz" windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true"/>
+  <Panel name="blueMarblePopup" leftTopTex="0 0" alphaBlend="true" texture="transPopup@zz" align="center">
+    <Label name="blueMarbleDesc1Title" leftTopWH="24 135 220 20" text="#sb(blueMarbleDesc)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textRender="bold" textAlign="center" textColor="white"/>
+    <Label name="blueMarbleDesc1" leftTopWH="21 176 220 100" text="#sb(blueMarbleDescBody)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textColor="white"/>
+    <Label name="blueMarbleDesc2Title" leftTopWH="256 131 145 20" text="#sb(blueMarbleUsage)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textRender="bold" textAlign="center" textColor="white"/>
+    <Label name="blueMarbleDesc2" leftTopWH="256 155 145 50" text="#sb(blueMarbleUsageBody)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white"/>
+    <Label name="blueMarbleDesc3Title" leftTopWH="256 222 145 20" text="#sb(blueMarbleDice)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textRender="bold" textAlign="center" textColor="white"/>
+    <Label name="blueMarbleDesc3" leftTopWH="252 240 150 50" text="#sb(blueMarbleDiceBody)" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" textColor="white"/>
+    <ImageButton name="cancelButton" leftTopTex="370 -20" autoLoadImage="transCancel_0@zz" alphaBlend="true"/>
+    <ImageButton name="gotoBlueMarble" leftTopTex="113 300" autoLoadImage="transStart_0@zz" alphaBlend="true"/>
+  </Panel>
+</Window>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot16"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="梅林" string="还好你们都跟上了，|只要过前面那个门就到了。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop4"/>
+  <Msg name="宝宝" string="（呼…呼…虽然有点累，但我是烈焰勇士……）|这种程度，对烈焰勇士来说不算什么，哈哈哈……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="arthur" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="亚瑟" string="咳咳……能不能开慢点？累死我了。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="梅林" string="亚瑟呀，再加把劲，马上就到了。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="10 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="休息的差不多了，我们继续吧。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="嗯，快点动身吧，我想尽快回家。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="哇，又先走掉了……等等我！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" pos="11 0" emotion="stop2"/>
+  <Msg name="凯" string="那边那个，你是谁！这儿可不是想来就能来的地方！"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="亚瑟" string="（不好！被发现了。咦，那家伙不是凯吗……怎么办……）"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="爷爷……亚瑟好像被人发现了……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="stop4"/>
+  <Msg name="梅林" string="额……这孩子是……难道这也是命运安排吗……|我们先躲起来看看情况吧。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="kei" pos="12 0" emotion="stop4"/>
+  <Msg name="亚瑟" string="哈……哈喽，之前在市区里见过，是吧。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="kei" pos="12 0" emotion="stop3"/>
+  <Char id="arthur" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="你不是在市区里撞我的那女孩嘛！！|你怎么会在这？是来偷东西的吗……"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="kei" pos="12 0" emotion="normal"/>
+  <Msg name="亚瑟" string="哦，对了！还记得这个吗？这次还能抓到我的话就还给你！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="kei" pos="12 0" emotion="stop2"/>
+  <Msg name="凯" string="父亲的遗物……就算你再漂亮也不会放过你的！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="亚瑟" string="（啥？说我漂亮……）"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="kei" pos="12 0" emotion="stop2"/>
+  <Msg name="亚瑟" string="说什么呢！这次你绝对抓不到的！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="kei" pos="12 0" emotion="stop1"/>
+  <Msg name="凯" string="哈哈哈哈……你确定能在我的宫殿里逃走？"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="kei" pos="12 0" emotion="normal"/>
+  <Msg name="亚瑟" string="呵呵，上次是我小看你了。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="kei" pos="11 0" emotion="stop2"/>
+  <Msg name="凯" string="现在后悔还来得及，只要交出遗物，我就放过你……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="arthur" pos="2 0" flip="true" emotion="stop1"/>
+  <Char id="kei" pos="11 0" emotion="stop2"/>
+  <Msg name="亚瑟" string="哈哈……我有点忙，拜拜。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="kei" pos="8 0" emotion="stop2"/>
+  <Msg name="凯" string="又要逃跑啊，给我站住！"/>
+  <Enter/>
+</Scene>

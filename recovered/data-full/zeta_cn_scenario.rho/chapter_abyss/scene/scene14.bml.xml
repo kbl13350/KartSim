@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss2"/>
+  <Char id="narin" pos="8 0" emotion="normal"/>
+  <Msg name="奈琳" string="好了，到地面了~拜拜~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="4 0" emotion="normal"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="哼哼，走之前有个问题想问你！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Msg name="奈琳" string="什么问题？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Msg name="海盗船长" string="刚才莫格瑞说会带军团兵上来，军团兵有多少啊？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Msg name="奈琳" string="啊~数量我也不知道，但可能需要一点时间~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="totop" pos="12 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="需要一段时间？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="totop" pos="12 0" emotion="stop4"/>
+  <Msg name="奈琳" string="嗯，除了我和奈尔奈尔他们都无法在地面上呼吸~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="totop" pos="12 0" emotion="stop4"/>
+  <Msg name="奈琳" string="所以需要借助我们的力量才能到地面上~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="lodumani" pos="5 0" emotion="stop2"/>
+  <Msg name="海盗船长, 黑杰克" string="（！！！这么说来……）"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="lodumani" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="呵呵呵，看来你想的跟我一样。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop5"/>
+  <Char id="lodumani" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="黑杰克" string="呼呼，不愧是海盗船长，那就没什么好犹豫的了吧？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="什，什么，干嘛突然笑的这么邪恶？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="lodumani" pos="5 0" emotion="stop2"/>
+  <Char id="totop" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长, 黑杰克" string="赶紧把那小孩抓住！|把奈琳给抓了！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="narin" pos="8 0" emotion="stop4"/>
+  <Msg name="奈琳" string="什，什么！你们这是干什么！放开我！！！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="8 0" emotion="stop4"/>
+  <Char id="tutu" pos="12 0" emotion="stop8"/>
+  <Msg name="嘟嘟" string="哼，早就看你不顺眼了！竟敢叫我鲶鱼馒头？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="narin" pos="7 0" flip="true" emotion="stop3"/>
+  <Char id="tutu" pos="12 0" emotion="stop8"/>
+  <Msg name="奈琳" string="知，知道了！馒头取消，就叫你鲶鱼吧，放开我！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="narin" pos="7 0" flip="true" emotion="stop3"/>
+  <Char id="tutu" pos="12 0" emotion="stop10"/>
+  <Msg name="嘟嘟" string="还嘴硬！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="narin" pos="10 0" flip="true" emotion="stop3"/>
+  <Char id="tutu" pos="14 0" emotion="stop10"/>
+  <Char id="totop" pos="4 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="呼呼，奈琳，对不住了，先跟我们走一趟吧~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="lodumani" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="那些菜鸟没抓住就算了，至少不能让竞争对手再多出来一个吧，哇哈哈！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="mobi" pos="9 0" emotion="stop5"/>
+  <Msg name="吉米" string="我，我们船长实在是太心狠手辣了……"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop1"/>
+  <Char id="totop" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="格雷" string="太聪明了，不愧是黑杰克大人！"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop1"/>
+  <Char id="totop" pos="10 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="那先回去再谈谈之后的计划？"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="lodumani" pos="9 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="这附近有我们的基地，去那吧~"/>
+  <Enter/>
+</Scene>

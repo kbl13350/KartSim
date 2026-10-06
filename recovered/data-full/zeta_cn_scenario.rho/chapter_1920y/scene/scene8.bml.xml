@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate3"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="福尔摩斯！我是冤枉的！！！冤枉！！！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="去警察局说吧！|只不过，你聘用了新的手下？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="什么意思？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="在博物馆盗窃敞篷老爷车的人|伪装成了我的样子。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="但你的手下中没有可以伪装成我|还能盗窃敞篷老爷车本事的家伙啊。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="对！！！果然是大侦探！！|我们海盗团没有盗窃敞篷老爷车。"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="那就是你们从那人手里又偷了过来？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="海盗船长" string="没有偷！！！|这次是正当买卖，用金币买的！！！冤枉！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="是啊，冤枉死了。|为了买敞篷老爷车，收购赃物不是罪吗？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="？" string="嗡"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="lodumani" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="？！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="lodumani" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="海盗船长" string="你看有人在驾驶敞篷老爷车？！|喂？喂？我的敞篷老爷车！！！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="lodumani" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="海盗船长" string="等等，那人是？！|福尔摩斯！那不是你吗？简直一模一样！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="lodumani" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="终于露出尾巴了。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="lodumani" pos="11 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="抱歉，海盗船长，下次陪你玩。|我要先去追敞篷老爷车去了。"/>
+  <Enter/>
+</Scene>

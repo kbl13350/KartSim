@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.35'
+	DriftEscapeForce='600'
+	CornerDrawFactor='0.062'
+	EngineSound='cotton6'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterBlur='true'
+
+	Port0='mod3a'
+	Port1='mod3b'
+	FirePort0='mod2a'
+	FirePort1='mod2b'
+	FirePort2='mod2c'
+	ExtWheel1='mod1'
+	Lamp0='mod4a'
+	Lamp1='mod4b'
+
+	ExtWheelSpeed='20'
+
+			   
+	DescBalance= '37'
+	DescStability ='32'
+	DescEngineGrade='1'
+	DescCornering='1'
+	DescEnchantCap = '20'
+
+/>
+
+<!-- 슈퍼 호버크래프트 -->

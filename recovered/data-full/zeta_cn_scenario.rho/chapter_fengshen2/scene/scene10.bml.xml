@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill2"/>
+  <Char id="merlin" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="烈焰勇士啊！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Msg name="宝宝" string="咦？梅林爷爷~您怎么会到这儿来呀？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="梅林" string="这个世界的末日即将来临！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="6 0" flip="true" emotion="stop6"/>
+  <Char id="dizini" pos="18 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="啊？现在明明这么太平，怎么突然就？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="merlin" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="有股邪恶势力正要来夺取圣剑！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="6 0" flip="true" emotion="stop6"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="圣剑不是谁都能拿走的吧？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="merlin" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="梅林" string="他不是人类。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="6 0" flip="true" emotion="stop5"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="不是人类？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="merlin" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="他来自神之领域。|而且，还散发着邪神的气息。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="6 0" flip="true" emotion="stop5"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="居然是邪神……好可怕！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="merlin" pos="7 0" flip="true" emotion="normal"/>
+  <Char id="excalibur" pos="10 -3" emotion="normal"/>
+  <Msg name="梅林" string="所以，我想把圣剑暂时托付给烈焰勇士。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="托付给我？？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="6 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="对方可是神啊，宝宝真的能阻止他吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="merlin" pos="7 0" flip="true" emotion="normal"/>
+  <Char id="excalibur" pos="10 -3" emotion="stop1"/>
+  <Msg name="梅林" string="这是唯一的办法了。|相信我。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="那……就交给我吧。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" pos="7 0" flip="true" emotion="stop3"/>
+  <Char id="excalibur" pos="10 -3" emotion="normal"/>
+  <Msg name="梅林" string="他已经来了！！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="申公豹" string="倒是个敏锐的人类。"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="申公豹" string="呵呵，那就把剑交出来吧。"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="bazzi" pos="-12 0" emotion="stop1"/>
+  <Char id="bazzi" pos="7 0" emotion="stop1"/>
+  <Char id="excalibur" pos="9 -3" emotion="normal"/>
+  <Msg name="宝宝" string="你说的是这个吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="申公豹" string="你这小子什么时候拿走的！？"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Char id="excalibur" pos="9 -3" emotion="normal"/>
+  <Msg name="宝宝" string="可不能给你哦~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop4"/>
+  <Msg name="宝宝" string="（咻~）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="申公豹" string="你给我站住！！"/>
+  <Enter/>
+</Scene>

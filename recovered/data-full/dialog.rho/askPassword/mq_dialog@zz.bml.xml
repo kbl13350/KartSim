@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="newStyleCaption" frame="CaptionDialog" windowRect="0 0 406 283" align="center" setCloseButton="cancelButton">
+    <Label name="bodyLabel" leftTopWH="0 9 350 26" multiLine="true" autoWrap="true" lineGap="1" textColor="255 42 55 80" textRender="bold16" align="hcenter" textAlign="center"/>
+    <Edit name="passwordEdit" leftTopWH="0 41 350 26" multiLine="true" autoWrap="true" lineGap="1" textColor="255 42 55 80" text="" textRender="bold16" maxChar="32" passEdit="true" align="hcenter"/>
+    <Container name="birthNameCont" leftTopWH="0 0 239 100" visible="false">
+      <Edit name="nameEdit" leftTopWH="0 25 230 22" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" maxChar="32" passEdit="false" align="hcenter"/>
+      <Edit name="birthEdit" leftTopWH="0 77 230 22" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" maxChar="8" passEdit="false" align="hcenter"/>
+      <Label name="nameExample" leftTopWH="10 30 100 12" multiLine="true" autoWrap="true" autoSizing="true" lineGap="1" textColor="gray" text="#sb(nameExample)"/>
+      <Label name="birthExample" leftTopWH="10 82 100 12" multiLine="true" autoWrap="true" autoSizing="true" lineGap="1" textColor="gray" text="#sb(birthExample)"/>
+    </Container>
+    <Container name="askOnlyOneCont" windowRect="0 -30 150 0" adjust="-13 55" align="hcenter;bottom" visible="false">
+      <PlaneCheckButton name="askOnlyOneCheckBtn" windowRect="0 0 20 20" align="vcenter" enable="true"/>
+      <Label windowRect="25 0 100 20" text="#sb(dontAskLogout)" textRender="bold14" autoSizing="true" align="vcenter"/>
+    </Container>
+    <Window leftTopWH="0 0 350 1" frame="HSection" align="hcenter;top" adjust="0 83"/>
+    <Container windowRect="0 0 274 42" align="hcenter;bottom" adjust="0 6">
+      <TextButton name="okButton" leftTopWH="0 0 132 42" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <TextButton name="cancelButton" leftTopWH="0 0 132 42" align="right" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Container>
+    <Container name="sizeDefault" windowRect="0 0 406 199" visible="false"/>
+    <Container name="sizeBirthName" windowRect="100 150 375 355" visible="false"/>
+  </CaptionWindow>
+</Panel>

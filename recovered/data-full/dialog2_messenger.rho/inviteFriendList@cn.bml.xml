@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MsrInviteFriendList name="inviteWindow" windowRect="-360 -32 0 300" frame="CaptionDialog" captionPos="0 1" captionColor="black" caption="#sb(inviteCaption)" friendItemSize="237 19">
+  <Panel name="conMsrIcon" windowRect="2 -23 16 -6" texture="plusTool_1" uvRect="0 0 14 14" alphaBlend="true"/>
+  <Panel name="bgPlane" windowRect="-2 2 325 275" texture="kPlane1" alphaBlend="true">
+    <Window name="frame" windowRect="12 11 315 250" frame="DefaultEdit"/>
+    <List name="friendList" windowRect="12 15 312 245" autoScroll="false" listGap="5"/>
+    <MsrStateButton name="inviteFriend" windowRect="12 250 93 266" iconSet="button3" iconInfix="" canDisable="false" iconPos="0 0" stateText="#sb(inviteButtonText)" textPos="19 0" textAlign="vcenter" textColor="black"/>
+    <MsrStateButton name="close" windowRect="310 -24 226 -8" iconSet="close" iconInfix="" canDisable="false" iconPos="0 0"/>
+  </Panel>
+</MsrInviteFriendList>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='85.0'
+           BackwardAccelForce='90.0'
+           DragFactor='-0.06'
+           SteerConstraint='1.6'
+           DriftEscapeForce='250'
+           CornerDrawFactor='0.044'
+
+           BoosterBlur='true'
+           EngineSound='pro'
+/>
+<!-- 인니 박스터 PRO 120524 -->

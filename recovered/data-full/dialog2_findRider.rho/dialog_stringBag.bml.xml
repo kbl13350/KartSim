@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="findRiderCaption">
+    <m c="kr" v="라이더 찾기"/>
+    <m c="jp" v="ライダー探し"/>
+    <m c="cn" v="查找车手"/>
+    <m c="tw" v="尋找車手"/>
+    <m c="us" v="Find a Rider"/>
+    <m c="th" v="ค้นหาผู้เล่น"/>
+    <m c="vn" v="Tìm tay đua"/>
+    <m c="ru" v="Поиск"/>
+    <m c="id" v="Mencari Rider"/>
+  </k>
+  <k n="inputRiderName">
+    <m c="kr" v="라이더 이름을 입력하세요."/>
+    <m c="jp" v="ライダー名を入力してください."/>
+    <m c="cn" v="请输入车手名称"/>
+    <m c="tw" v="請輸入車手名稱"/>
+    <m c="us" v="Type in the Rider&apos;s name."/>
+    <m c="th" v="กรอกชื่อผู้เล่น"/>
+    <m c="vn" v="Nhập tên của tay đua"/>
+    <m c="ru" v="Ввести имя гонщика"/>
+    <m c="id" v="Silahkan masukkan nama Rider"/>
+  </k>
+  <k n="msrFind">
+    <m c="kr" v="친구 찾기"/>
+    <m c="jp" v="友達探し"/>
+    <m c="cn" v="查找好友"/>
+    <m c="tw" v="尋找好友"/>
+    <m c="us" v="Find a Buddy"/>
+    <m c="th" v="ค้นหาเพื่อน"/>
+    <m c="vn" v="Tìm đồng đội"/>
+    <m c="ru" v="Найти друга"/>
+    <m c="id" v="Mencari teman"/>
+  </k>
+  <k n="msrFindCaption">
+    <m c="kr" v="친구 목록에서 추가"/>
+    <m c="jp" v="友達リストに追加"/>
+    <m c="cn" v="添加到好友目录"/>
+    <m c="tw" v="新增至好友名單中"/>
+    <m c="us" v="Add from a Buddy&apos; list"/>
+    <m c="th" v="เพิ่มเพื่อนในรายการ"/>
+    <m c="vn" v="Đã thêm vào danh sách"/>
+    <m c="ru" v="Добавить в список друзей"/>
+    <m c="id" v="Menambah dari daftar teman"/>
+  </k>
+  <k n="msrFriendHasNoRider">
+    <m c="kr" v="선택한 ID의 사용자는 라이더를 가지고 있지 않습니다."/>
+    <m c="jp" v="選択したIDの使用者はライダーを持っていません。"/>
+    <m c="cn" v="所选用户没有车手"/>
+    <m c="tw" v="所選擇的用戶並沒有車手"/>
+    <m c="us" v="The selected user is not a registered Rider."/>
+    <m c="th" v="ผู้ใช้ของไอดีที่เลือกไม่มีผู้เล่น"/>
+    <m c="vn" v="Không tìm đuợc tay đua"/>
+    <m c="ru" v="Пользователь с таким ID еще не создал гонщика."/>
+    <m c="id" v="User ID tersebut tidak memiliki Rider"/>
+  </k>
+</StringBag>

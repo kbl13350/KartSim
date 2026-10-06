@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='151'
+	BackwardAccelForce='100'
+	DragFactor='-0.081'
+	SteerConstraint='2.6'
+	CornerDrawFactor='0.076'
+	DriftEscapeForce='2100'
+	
+	driftBoostMulAccelFactor='1.25'
+	chargeBoostBySpeed='300'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.846'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1450'
+	
+	DriftMaxGauge='-620'
+	NormalBoosterTime='-90'
+	TeamBoosterTime='-180'
+	
+	DriftGaguePreservePercent='0.55'
+	antiCollideBalance='0.79'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	
+	DescBalance='50'
+	DescStability='50'
+	DescEngineGrade='1.365'
+	DescCornering='8'
+	DescEnchantCap='30'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine오토봇'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='9th'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	
+	isTransformAutoCharge='false'
+	WheelFixed='true'
+	BoosterWaveType='오토봇'
+
+	BoosterType='오토봇'
+	BoosterType0='오토봇'
+	BoosterType1='오토봇'
+
+	Port0='mod2b1'
+	Port1='mod2b2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2b3' trailPort1='mod2b4'/>
+</BodyParam>
+<!-- 하운드 / 중국 / 일반 / 스피드 / 시상 실버 / 20150521 릴리즈 -->

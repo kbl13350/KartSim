@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='8000'
+	DragFactor='-0.07'
+	SteerConstraint='2.25'
+	DriftEscapeForce='1500'
+	CornerDrawFactor='0.07'
+
+	antiCollideBalance='1.7'
+
+	BoostAccelFactor='0.8'
+	BoosterAccelFactorItem ='0.8'
+
+	WaveEffect='true'
+	
+	BoosterWaveType='effect_zero'
+	ItemSlotCapacity='3'
+
+	StartForwardAccelFactorSpeed = '1.2'
+	StartBoosterTimeSpeed='2500'   
+
+	NormalBoosterTime = '200'
+	TeamBoosterTime = '300'
+	DriftMaxGauge = '-2500'
+
+	BoosterBlur='true'
+	EnvMap='true'
+/>
+
+<!--페이스북 카트라넥 -->

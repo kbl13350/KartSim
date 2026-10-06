@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="惬意的暑假！" synopsis="路易发来邀请函！|邀请伙伴们到度假胜地黄金海岸！|被喜悦冲昏头脑的皮蛋与伙伴们！|冲向黄金海岸吧！" howToClear="完成赛道。" missionText="目标 0回/1回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="500"/>
+  </Step>
+  <Step id="2" type="31" mode="single" preConditionId="1" title="危险的行驶" synopsis="到达黄金海岸的皮蛋与伙伴们的面前出现了|横冲直撞、危险行驶的车手们|不能就此放过他们的危险行为|要阻止他们.." howToClear="请在与车手们的对决中不被淘汰完成比赛。" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardStockId="2459"/>
+  </Step>
+  <Step id="3" type="34" mode="single" preConditionId="2" title="警长罗杰登场" synopsis="警长罗杰以参与非法飙车为由|准备逮捕皮蛋。|要救出帮忙阻挡飙车还要背黑锅的皮蛋。" howToClear="请在与罗杰的道具赛中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="4720"/>
+  </Step>
+  <Step id="4" type="31" mode="single" preConditionId="3" title="职业冲浪手阿嘉" synopsis="通过路易的帮忙逃脱危机的皮蛋与伙伴们！|为了缓解情绪来到了海边|遇到了路易的朋友职业冲浪手阿嘉！与阿嘉度过愉快时光的皮蛋与伙伴们！" howToClear="请在与伙伴们的比赛中获得第一。" missionText="完成目标 0回/1回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="6572"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="发生盗窃事件" synopsis="阿嘉的爱车被偷。|无端消失的阿嘉的Spyder HT ！|阿嘉的爱车去哪里了呢？|一起去找找吧" howToClear="完成赛道。" missionText="目标 0回/1回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="6573"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="发现阿嘉的爱车" synopsis="终于发现了阿嘉的爱车。|但是，发现阿嘉爱车的地点是|进行飙车的现场！|比赛已经开始，为了寻找爱车，紧追其后的阿嘉！" howToClear="请在指定时间追上普赛克。|*注意 距离超过20m以上，挑战失败。" missionText="追击成功 0回/1回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="6574"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="甩开暴走联盟！" synopsis="要告诉伙伴们阿嘉正在被暴走联盟教训。|暴走联盟的普赛克为了阻挡告密，正在追赶。|甩开普赛克赶快去告诉皮蛋与伙伴们吧！" howToClear="请在指定时间内甩开普赛克。|*注意 距离在0m以下，挑战失败。" missionText="逃脱成功 0回/1回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="6575"/>
+  </Step>
+  <Step id="8" type="30" mode="single" preConditionId="7" title="解救阿嘉！" synopsis="悄悄跟随暴走联盟的美玲|发现了鼻青脸肿的阿嘉。|伤势严重，需要抓紧送医院。" howToClear="请在指定时间内完成赛道。" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="6576"/>
+  </Step>
+  <Step id="9" type="32" mode="single" preConditionId="8" title="阿嘉宣布参加飙车赛" synopsis="因丢失爱车而难过的阿嘉|宣布要参加街头飙车。|为了寻找爱车刻苦练习！|虽然是练习车，但阿嘉今天也依然努力进行着练习。" howToClear="请以指定速度通过所有检查站。" missionText="通过检查站 0回/1回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="10" type="34" mode="single" preConditionId="9" title="罗杰的阻碍" synopsis="罗杰出现在宣布参加街头飙车的阿嘉面前。|威胁说只要参加，就让阿嘉蹲监狱。|阿嘉可以顺利避开罗杰|参加街头飙车吗？" howToClear="请在与罗杰的道具赛中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10">
+    <Level difficult="0" rewardStockId="6577"/>
+  </Step>
+  <Step id="11" type="30" mode="single" preConditionId="10" title="美玲的帮助" synopsis="美玲听说阿嘉要参加街头飙车！|告诉阿嘉靠目前的车子绝对不会赢|并且提议打败她就把自己的车子借给阿嘉。|美玲很担心阿嘉，她隐藏了怎样的心事呢？" howToClear="请在与美玲的对决中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="11">
+    <Level difficult="0" rewardStockId="6578"/>
+  </Step>
+  <Step id="12" type="31" mode="single" preConditionId="11" title="阿嘉，打响你的名气吧！" synopsis="在街头飙车出名|才可以与暴走联盟一决高下。|为了能与暴走联盟对决而来的阿嘉！|为了打响名气而战！" howToClear="请在与车手们的比赛中获得第一。" missionText="完成目标 0回/1回" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="12">
+    <Level difficult="0" rewardStockId="6579"/>
+  </Step>
+  <Step id="13" type="31" mode="single" preConditionId="12" title="阿嘉的挑战" synopsis="在街头飙车已经打响名气的阿嘉！|终于可以见到暴走联盟。|但是，无视阿嘉的暴走联盟！|阿嘉可以与暴走联盟比赛吗？" howToClear="请在与暴走联盟的比赛中不被淘汰完成比赛。" missionText="完成目标 0回/1回" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="13">
+    <Level difficult="0" rewardStockId="6592"/>
+  </Step>
+  <Step id="14" type="30" mode="single" preConditionId="13" title="与鲍勃的对决" synopsis="在飙车界出了名的阿嘉！|终于可以和暴走联盟进行比赛了。|第一个对手就是带着红头巾的鲍勃！|打败第一个对手吧！" howToClear="请在与鲍勃的比赛中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="14">
+    <Level difficult="0" rewardStockId="72"/>
+  </Step>
+  <Step id="15" type="30" mode="single" preConditionId="14" title="与普赛克的对决" synopsis="打败了第一个对手。|现在开始第二场对决。|第二个对手是印象深刻的绿头发普赛克！|不能因赢了第一局而轻视！" howToClear="请在与普赛克的比赛中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="15">
+    <Level difficult="0" rewardStockId="6580"/>
+  </Step>
+  <Step id="16" type="30" mode="single" preConditionId="15" title="与艾娜的对决" synopsis="能与暴走联盟队长对决的距离仅差一步。|第三个对手是粉色头盔金发碧眼的艾娜！|小心嫉妒心极强的艾娜！" howToClear="请在与艾娜的比赛中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene16" readyStage="1-16" stepTitleId="16">
+    <Level difficult="0" rewardStockId="4869"/>
+  </Step>
+  <Step id="17" type="30" mode="single" preConditionId="16" title="罗杰的追击" synopsis="第三场比赛也完胜！现在只剩下打败暴走联盟的队长！|但，此时罗杰突然出现，以参加非法赛车的名义|要抓捕阿嘉。|快逃，不要被罗杰抓到！" howToClear="请在指定时间内甩开罗杰。|*注意 0m以下时，挑战失败。" missionText="逃脱成功 0回/1回" addToGarage="true" visualScene="scene17" readyStage="1-17" stepTitleId="17">
+    <Level difficult="0" rewardStockId="6581"/>
+  </Step>
+  <Step id="18" type="30" mode="single" preConditionId="17" title="盗窃事件的原委" synopsis="阿嘉得知盗窃事件的元凶是美玲！|虽然亲自去问过美玲，但美玲答案竟然是对不起！|不要让美玲离开！" howToClear="请在指定时间追上美玲。|*注意 超过20m以上，挑战失败。" missionText="追击成功 0回/1回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="18">
+    <Level difficult="0" rewardStockId="6578"/>
+  </Step>
+  <Step id="19" type="32" mode="single" preConditionId="18" title="决战前的练习" synopsis="决定了与暴走联盟队长比赛的日期。|实力相当的队长尼兹！|为了打败他，需要不断练习！" howToClear="请在指定时间内通过所有检查站。" missionText="通过检查站 0回/1回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="19">
+    <Level difficult="0" rewardStockId="6582"/>
+  </Step>
+  <Step id="20" type="30" mode="single" preConditionId="19" title="与暴走联盟队长的对决" synopsis="决赛终于到来！|只要打败暴走联盟的队长|就可以找回阿嘉的Spyder HT。|一定要胜利。" howToClear="请在指定时间追上尼兹。|*注意 超过20m以上，挑战失败。" missionText="追击成功 0回/1回" addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="20">
+    <Level difficult="0" rewardStockId="6583"/>
+  </Step>
+  <Step id="21" type="34" mode="single" preConditionId="20" title="罗杰登场" synopsis="警官罗杰再次出现在比赛场。|想要阻止比赛的罗杰！|虽然不知道他的真正目的|但为了结束这最后一场比赛，要阻止罗杰。" howToClear="请在与罗杰的道具赛中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene21" readyStage="1-21" stepTitleId="21">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="22" type="30" mode="single" preConditionId="21" title="重新开始的比赛" synopsis="终于甩开了罗杰，可以重新开始比赛了。|只要打败尼兹，就可以找回Spyder HT。|精彩绝伦的决赛开始了！" howToClear="请在与尼兹的比赛中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene22" readyStage="1-22" stepTitleId="22">
+    <Level difficult="0" rewardStockId="6584"/>
+  </Step>
+  <Step id="23" type="30" mode="single" preConditionId="22" title="美玲的不理睬" synopsis="打败尼兹的阿嘉！|终于找回了自己的爱车。|虽然高兴…但美玲竟然和暴走联盟走了。|不能就此不管，要阻止美玲！" howToClear="请在指定时间追上美玲。|*注意 超过20m以上，挑战失败。" missionText="追击成功 0回/1回" addToGarage="true" visualScene="scene23" readyStage="1-23" stepTitleId="23">
+    <Level difficult="0" rewardStockId="6585"/>
+  </Step>
+  <Step id="24" type="30" mode="single" preConditionId="23" title="准备最后的决战" synopsis="阿嘉终于知道了美玲的苦衷！|为了救回美玲，决定与尼兹再来最后一局！|阿嘉懊恼自己误会了美玲！" howToClear="请在指定时间内完成赛道。" missionText="完成赛道 目标0回/1回" addToGarage="true" visualScene="scene24" readyStage="1-24" stepTitleId="24">
+    <Level difficult="0" rewardLucci="2000"/>
+  </Step>
+  <Step id="25" type="32" mode="single" preConditionId="24" title="神秘人员保罗登场" synopsis="为了逮捕卑劣警察罗杰与破坏和谐的暴走联盟|蓄势待发的情报机关神秘人员保罗！|保罗想确认阿嘉的实力！|给保罗展现自己的实力吧！" howToClear="请以指定速度通过所有检查站。" missionText="通过检查站 0回/1回" addToGarage="true" visualScene="scene25" readyStage="1-25" stepTitleId="25">
+    <Level difficult="0" rewardStockId="6586"/>
+  </Step>
+  <Step id="26" type="30" mode="single" preConditionId="25" title="最终检查" synopsis="保罗认定了阿嘉的实力！|现在剩下的只有不断的练习。|为了在最后的决赛上可以按保罗的计划逮捕他们|努力练习吧！" howToClear="请在指定时间内完成赛道。" missionText="完成赛道 目标 0回/1回" addToGarage="true" visualScene="scene26" readyStage="1-26" stepTitleId="26">
+    <Level difficult="0" rewardStockId="6587"/>
+  </Step>
+  <Step id="27" type="30" mode="single" preConditionId="26" title="最后一战" synopsis="为了救回美玲的最后一战开始。|听说暴走联盟的队长为了此次比赛下了不少功夫。|证明自己爱情的力量吧！" howToClear="请在与尼兹的对决中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene27" readyStage="1-27" stepTitleId="27">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="28" type="31" mode="single" preConditionId="27" title="阻挡罗杰！" synopsis="虽然打败了尼兹|但罗杰又出现在大家面前|按照保罗的计划，赶快引导罗杰进入陷阱吧！" howToClear="请在罗杰与暴走联盟的对决中获得第一。" missionText="完成目标 0回/1回" addToGarage="true" visualScene="scene28" readyStage="1-28" stepTitleId="28">
+    <Level difficult="0" rewardStockId="1126"/>
+  </Step>
+  <Step id="29" type="31" mode="single" preConditionId="28" title="城市追击战" synopsis="成功引入罗杰与暴走联盟进入陷阱！|但是，他们开始逃窜！|为了逮捕他们的最后追击战开战了！" howToClear="请在与暴走联盟的对决中不被淘汰完成比赛。" missionText="追击成功 0回/1回" addToGarage="true" visualScene="scene29" readyStage="1-29" stepTitleId="29">
+    <Level difficult="0" rewardStockId="6588"/>
+  </Step>
+  <Step id="30" type="30" mode="single" preConditionId="29" title="爱情的力量" synopsis="抓捕了罗杰与暴走联盟，这个城市终于和谐了。|但是，还有一件头疼的事情。|美玲准备出国。|在美玲到达机场前，追上她，向她表白吧。" howToClear="请在与美玲的对决中胜利。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene30" readyStage="1-30" stepTitleId="30" isFinalStep="true">
+    <Level difficult="0" rewardStockId="6589"/>
+  </Step>
+</StepList>

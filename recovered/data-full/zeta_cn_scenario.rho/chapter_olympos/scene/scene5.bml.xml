@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="olympos3"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="干嘛跑那么快？！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="还行，能跟得上吧~？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="ethi" pos="3 0" emotion="stop4"/>
+  <Msg name="葱头" string="得亏我平时除了研究还会练车。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop3"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="啊~我想慢慢欣赏啊~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="athena" pos="13 0" emotion="normal"/>
+  <Char id="hercules" pos="9 0" emotion="normal"/>
+  <Msg name="赫拉克勒斯" string="（以为我跑的够快了。|知道雅典娜为什么带他们过来了。）"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="13 0" emotion="normal"/>
+  <Char id="hercules" pos="9 0" flip="true" emotion="normal"/>
+  <Msg name="雅典娜" string="赫拉克勒斯，干嘛跑这么快？"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="13 0" emotion="normal"/>
+  <Char id="hercules" pos="9 0" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="我也是想确认下他们的实力。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="13 0" emotion="stop1"/>
+  <Char id="hercules" pos="9 0" emotion="stop4"/>
+  <Msg name="雅典娜" string="如果是这样，你应该提前告诉我啊。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="13 0" emotion="normal"/>
+  <Char id="hercules" pos="9 0" emotion="stop2"/>
+  <Msg name="赫拉克勒斯" string="原来如此，既然这样测试下其他部分。|雅典娜，你帮我安排下。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" pos="13 0" emotion="normal"/>
+  <Char id="hercules" pos="9 0" emotion="normal"/>
+  <Msg name="雅典娜" string="好吧。"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="stop3"/>
+  <Char id="hercules" pos="13 0" emotion="stop4"/>
+  <Msg name="雅典娜" string="各位~奥林匹斯的风景还可以吗~？"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="葱头" string="这里也太帅了吧！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop2"/>
+  <Char id="bazzi" pos="3 0" emotion="stop2"/>
+  <Msg name="宝宝" string="还可以吧~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop2"/>
+  <Char id="bazzi" pos="3 0" emotion="stop2"/>
+  <Char id="dizini" pos="8 0" emotion="stop2"/>
+  <Msg name="黑妞" string="对呀！我快要沦陷了！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="athena" pos="9 0" emotion="stop3"/>
+  <Char id="hercules" pos="13 0" emotion="stop4"/>
+  <Msg name="雅典娜" string="哈哈，精彩的还在后面呢~|我和赫拉克勒斯给大家准备了特别活动~"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="活动？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞" string="竟然还有活动~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="stop3"/>
+  <Msg name="雅典娜" string="在见习期间只要超过我们|就能获得奥林匹斯定制商品哦~"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="normal"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝" string="是吃的吗~？"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="stop3"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="雅典娜" string="哈哈，那倒不是~|只能告诉你是O.M.G的宙斯会长非常爱惜的东西哦~"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="athena" pos="12 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="好呀！大伙准备好了吧！"/>
+  <Enter/>
+  <Char id="athena" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="hercules" pos="12 0" emotion="normal"/>
+  <Msg name="赫拉克勒斯" string="（哼，这次可没那么容易。）"/>
+  <Enter/>
+</Scene>

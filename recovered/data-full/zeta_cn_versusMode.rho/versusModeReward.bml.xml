@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RewardList>
+  <RewardList versusModeId="15">
+    <Reward grade="1" stockId="26468"/>
+    <Reward grade="2" stockId="26469"/>
+    <Reward grade="3" stockId="26469"/>
+    <Reward grade="4" stockId="26469"/>
+    <Reward grade="5" stockId="26469"/>
+    <Reward grade="6" stockId="26469"/>
+    <Reward grade="7" stockId="26470"/>
+    <Reward grade="8" stockId="26470"/>
+    <Reward grade="9" stockId="26470"/>
+    <Reward grade="10" stockId="26470"/>
+    <Reward grade="11" stockId="26470"/>
+    <Reward grade="12" stockId="26471"/>
+    <Reward grade="13" stockId="26471"/>
+    <Reward grade="14" stockId="26471"/>
+    <Reward grade="15" stockId="26471"/>
+    <Reward grade="16" stockId="26471"/>
+    <Reward grade="17" stockId="26472"/>
+    <Reward grade="18" stockId="26472"/>
+    <Reward grade="19" stockId="26472"/>
+    <Reward grade="20" stockId="26472"/>
+    <Reward grade="21" stockId="26472"/>
+    <Reward grade="22" stockId="26473"/>
+    <Reward grade="23" stockId="26473"/>
+    <Reward grade="24" stockId="26473"/>
+    <Reward grade="25" stockId="26473"/>
+    <Reward grade="26" stockId="26473"/>
+    <Reward grade="27" stockId="7914"/>
+  </RewardList>
+</RewardList>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	 ForwardAccelForce='120'
+	 BackwardAccelForce='100.0'
+	 DragFactor='-0.05'
+	 SteerConstraint='2.35'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+
+	BoosterType='zero5'
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	
+	Port0='mod1a'
+	Port1='mod1b'
+	FirePort0='mod2a'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 138 190'
+        BoostBlurColor='255 77 77 77'
+
+	WheelFixed = 'true'
+
+/>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="context" windowRect="0 0 396 470" align="hcenter">
+  <Window windowRect="0 0 143 21" frame="ThickFrameWhiteBgWindow">
+    <Panel clientRect="20 1 123 17">
+      <Label text="#sb(observerOption)" textRender="bold" autoSizing="true" align="center;vcenter"/>
+    </Panel>
+  </Window>
+  <Label windowRect="5 126 138 148" text="#sb(finalAd)" textRender="bold"/>
+  <ComboBox name="cmbObserverResult" windowRect="5 146 138 168" comboListLength="95">
+    <Panel name="pnlDropDownButtonObsResult" windowRect="110 0 126 16" texture="dropDownButton" uvRect="0 0 16 16" enable="false"/>
+  </ComboBox>
+  <Label windowRect="5 56 138 78" text="#sb(fenceAd)" textRender="bold"/>
+  <ComboBox name="cmbObserverIngame" windowRect="5 76 138 98" comboListLength="95">
+    <Panel name="pnlDropDownButtonObsIngame" windowRect="110 0 126 16" texture="dropDownButton" uvRect="0 0 16 16" enable="false"/>
+  </ComboBox>
+</Container>

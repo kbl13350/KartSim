@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ShopPreview>
+  <Default name="default" defaultCameraPos="-1.4 -3.4 1.6" defaultSpotPos="0.0 0.0 0.3" zoom="2.0"/>
+  <UserInfo name="userInfo" defaultCameraPos="-1.4 -3.7 1.8" defaultSpotPos="0.0 0.0 1.3" zoom="1.75"/>
+</ShopPreview>

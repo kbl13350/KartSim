@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="versusModeReward">
+    <m c="kr" v="1vs1 보상"/>
+    <m c="cn" v="1vs1奖励"/>
+    <m c="tw" v="1vs1決鬥獎勵"/>
+  </k>
+  <k n="getVersusModeRewardCount">
+    <m c="kr" v="%d개의 1vs1 보상을 획득 하셨습니다."/>
+    <m c="cn" v="获得%d个1vs1奖励。"/>
+  </k>
+  <k n="aboutItemDesc">
+    <m c="kr" v="1vs1 보상을 획득 하셨습니다.|보상함에서 확인 해보세요."/>
+    <m c="cn" v="已获得1vs1奖励。|请移动至奖励箱确认。"/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="cn" v="确认"/>
+    <m c="tw" v="確認"/>
+  </k>
+</StringBag>

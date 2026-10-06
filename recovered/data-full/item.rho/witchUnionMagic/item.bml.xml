@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="witchUnionMagic">
+  <state name="Use" life="2660" fired="마녀협회배틀팀필살기_발동" firedFx="마녀협회_필살기 피격"/>
+  <state name="Affect" life="5000" fired="마녀협회배틀팀필살기_지속"/>
+  <state name="Shield" life="1000" fired="쉴드방어" firedFx="shield"/>
+  <state name="End" life="10"/>
+</item>

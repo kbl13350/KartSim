@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LampFlare name="litUpLamp">
+  <lampFlare0 texture="front" isLitUp="on"/>
+  <lampFlare1 texture="front"/>
+  <lampFlare2 texture="front"/>
+  <lampFlare3 texture="front"/>
+</LampFlare>

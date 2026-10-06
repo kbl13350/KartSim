@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="xyy2"/>
+  <Char id="wolf" pos="8 0" emotion="stop4"/>
+  <Msg name="灰太狼" string="我竟然被…我...|我还会回来的！"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="xyy1" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="喜羊羊" string="皮蛋，谢谢你啊！|幸亏你才救出了懒羊羊！"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="不用谢！"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="恩？那地方好眼熟啊…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" pos="8 0" emotion="stop1"/>
+  <Msg name="喜羊羊" string="那是哪里啊？"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <BackGround texture="for3"/>
+  <Char id="dao" pos="8 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="啊啊啊…那是森林！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="xyy2"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="xyy1" pos="11 0" emotion="stop1"/>
+  <Msg name="喜羊羊" string="森林??"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="xyy1" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="多亏喜羊羊，我才找到了回家的路！！|谢谢你！"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="4 0" emotion="stop2"/>
+  <Msg name="喜羊羊" string="祝贺你，皮蛋！"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" pos="8 0" emotion="stop2"/>
+  <Msg name="喜羊羊" string="赶紧回去吧！朋友们应该都在等你呢！"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="喜羊羊，再见！"/>
+  <Enter/>
+</Scene>

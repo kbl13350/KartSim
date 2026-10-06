@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <KnockOut track="forest_R02" laps="2" isFixedKart="true" fixedKartId="943" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" ksv="forest_R02">
+      <ShadowKart characterId="4" uniformId="0" colorId="4" dyeId="4" kartId="943" characterName="葱头"/>
+      <ShadowKart characterId="5" uniformId="0" kartId="943" colorId="7" dyeId="7" characterName="胖墩"/>
+    </LevelContent>
+    <LevelContent level="1" ksv="forest_R02">
+      <ShadowKart characterId="4" uniformId="0" colorId="4" dyeId="4" kartId="943" characterName="葱头"/>
+      <ShadowKart characterId="5" uniformId="0" kartId="943" colorId="7" dyeId="7" characterName="胖墩"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

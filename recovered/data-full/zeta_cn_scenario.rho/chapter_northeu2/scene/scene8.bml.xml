@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu9"/>
+  <Char id="taki" pos="6 0" emotion="stop3"/>
+  <Msg name="奇奇" string="额！！真可惜"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="这次我赢了，奇奇"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="6 0" emotion="stop1"/>
+  <Msg name="奇奇" string="气愤！！！呜呜，以后要更加努力！！绝对不能输！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dr.r" pos="10 0" emotion="stop1"/>
+  <Msg name="R博士" string="赛车有那么好吗？"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="normal"/>
+  <Msg name="宝宝" string="你？是刚才那个酒糟鼻？怎么还不走？？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" pos="6 0" emotion="stop1"/>
+  <Msg name="奇奇" string="谢谢你给我们做了这么好玩的赛道！R博士！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dr.r" pos="10 0" emotion="stop4"/>
+  <Msg name="R博士" string="我本来是为了搞破坏的…"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="taki" pos="6 0" emotion="stop3"/>
+  <Msg name="奇奇" string="托你的福，赛车变得更有趣了"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dr.r" pos="10 0" emotion="stop4"/>
+  <Msg name="R博士" string="嗯……………………"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="dr.r" pos="10 0" emotion="stop1"/>
+  <Msg name="R博士" string="那…竟然赛车那么有趣，跟我来一把怎么样？"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="taki" pos="6 0" emotion="stop1"/>
+  <Msg name="奇奇" string="你会驾驶赛车吗？"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dr.r" pos="10 0" emotion="stop2"/>
+  <Msg name="R博士" string="吼吼，输了就别哭！！"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="taki" pos="6 0" emotion="stop3"/>
+  <Msg name="奇奇" string="好！赛车不管跟谁都好玩！！那来跑一把吧！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dr.r" pos="10 0" emotion="stop1"/>
+  <Msg name="R博士" string="吼吼，跑一次吧~不知为何好开心~"/>
+  <Enter/>
+</Scene>

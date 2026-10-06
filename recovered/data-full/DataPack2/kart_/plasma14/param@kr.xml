@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='142.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.079'
+	SteerConstraint='3.5'
+	DriftEscapeForce='1500'
+	CornerDrawFactor='0.069'
+
+	EngineSound='cotton85'
+	EnvMap='true'
+	antiCollideBalance='1.05'
+	
+	GripBrakeForce = '500'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.831'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.65'
+	StartBoosterTimeSpeed='1400'   
+
+	NormalBoosterTime = '-230'
+	TeamBoosterTime = '-500'
+	DriftMaxGauge = '-1570'
+	DriftGaguePreservePercent='0.5'
+
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='plasma7'
+	BoosterType4='plasma7'
+
+	Port0='mod2c1' 
+	Port1='mod2c2'
+
+	FirePort0='mod2b1'
+	FirePort1='mod2b2'
+	FirePort2='mod2b3'
+	
+	TailLampSize='0.2'
+	TailLampColor='0 255 246 0'
+    BoostBlurColor='255 77 77 77'
+
+	secondColor='255 0 0 0'
+	secondHighColor='255 100 100 100'
+	
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '48'
+	DescStability ='40'
+	DescEngineGrade='1.25'
+	DescCornering='6'
+	DescEnchantCap = '25'
+
+	defaultSocket='3'
+	addModelFolder='plasma12'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a1' trailPort1='mod1a2'/>
+</BodyParam>
+
+<!--플라즈마 HTF-B 130530 상시 가샤폰-->

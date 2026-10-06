@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="itemCube">
+  <state name="Stay" life="0" size="2.0"/>
+  <state name="Eaten" life="2000" fired="fired01" firedFx="eaten"/>
+  <state name="Stay" life="0" size="2.0"/>
+  <state name="Eaten" life="2000" fired="fired01" firedFx="eaten"/>
+  <state name="Stay" life="0" size="2.0"/>
+  <state name="Eaten" life="2000" fired="fired01" firedFx="eaten"/>
+</item>

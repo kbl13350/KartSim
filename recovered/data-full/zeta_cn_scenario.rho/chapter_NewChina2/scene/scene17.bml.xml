@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china23"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="[龙之圣地高山]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="lingling" pos="4 0" emotion="normal"/>
+  <Msg name="凌凌" string="你应该就是雯雯吧？|听说你就是最强龙之车手！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="wenwen" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="雯雯" string="不...不敢当…"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="lingling" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="凌凌" string="门神告诉我跟你对决一定要全力应付才有胜算呢！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="wenwen" pos="10 0" flip="true" emotion="stop7"/>
+  <Msg name="雯雯" string="说有个非常厉害的车手会过来找我，莫非就是你吧？"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="（咔）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="等等我！再怎么着急也是不能就这么走掉！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lingling" pos="11 0" emotion="stop6"/>
+  <Msg name="凌凌" string="是跟我跟到这里了吗？|对不起，但现在是最重要的时刻呢！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="知…知道了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lingling" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="凌凌" string="果然宝玉有反应呢。|守护者气息肯定就在龙之车手们的身上！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="wenwen" pos="4 0" emotion="stop4"/>
+  <Msg name="雯雯" string="真的有守护者气息这种东西吗？|我可以看看长什么样子吗？"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="lingling" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="light" pos="15 -4" emotion="stop1"/>
+  <Msg name="凌凌" string="给你看一看~|好不容易集齐了4个，还差最后一个…嗯？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="light" remove="true"/>
+  <Char id="lingling" pos="12 0" flip="true" emotion="stop2"/>
+  <Char id="light" pos="15 -4" emotion="stop1"/>
+  <Msg name="凌凌" string="一个，两个，三个…一个，两个，三个？还有一个哪去了？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="light" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Msg name="宝宝" string="闪闪发光的红豆包~一个，两个，三个~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lingling" pos="11 0" emotion="stop2"/>
+  <Msg name="凌凌" string="明明…分明…集齐了4个的？！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop4"/>
+  <Msg name="凌凌" string="啊啊~到底哪去了！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="bazzi" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="宝宝" string="好像就是诶？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop1"/>
+  <Msg name="凌凌" string="嗯？你说什么？！到你那去了呀！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="闪亮的红豆包？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop2"/>
+  <Msg name="凌凌" string="那是什么？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="ani2"/>
+  <Msg name="宝宝" string="就是你拿着的闪亮的红豆包呀。|消失了一个的闪烁的~红豆包！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lingling" pos="11 0" emotion="stop3"/>
+  <Msg name="凌凌" string="什么…你看得见气息吗？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop5"/>
+  <Msg name="宝宝" string="所以这就是守护者气息呀！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop4"/>
+  <Char id="light" pos="9 -5" emotion="stop1"/>
+  <Msg name="宝宝" string="这是刚才捡到的。|是你的吧？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="light" remove="true"/>
+  <Char id="lingling" pos="11 0" emotion="stop2"/>
+  <Msg name="凌凌" string="额？！怎么会在这里。"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="bazzi" pos="6 0" flip="true" emotion="stop2"/>
+  <Msg name="宝宝" string="暖呼呼的还会闪烁！所以我以为是个会发光的红豆包呢！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" flip="true" emotion="stop6"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop6"/>
+  <Char id="wenwen" pos="13 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋，雯雯，黑妞" string="为什么我什么都看不见？！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop2"/>
+  <Msg name="凌凌" string="是要还给我吗？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop3"/>
+  <Msg name="宝宝" string="你不是说你的不见了嘛~|当然是归还给主人啦~！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lingling" pos="9 0" emotion="stop3"/>
+  <Msg name="凌凌" string="……"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="9 0" emotion="stop5"/>
+  <Msg name="凌凌" string="那个…刚才提出的挑战现在还有效吗？|我想答谢你~"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="bazzi" pos="6 0" flip="true" emotion="stop2"/>
+  <Msg name="宝宝" string="额！？好诶好诶！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="wenwen" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="雯雯" string="那个…为了远道而来的朋友，那就你们先来吧。"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="lingling" pos="9 0" emotion="normal"/>
+  <Msg name="凌凌" string="谢谢~"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop4"/>
+  <Msg name="宝宝" string="那就即刻开始吧？！"/>
+  <Enter/>
+</Scene>

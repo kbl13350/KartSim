@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="1"/>
+  <Delivery isFixedKart="true" fixedKartId="794" isFixedChar="true" fixedCharId="102">
+    <LevelContent level="0" track="steam_R01" collision="2" laps="3" timeLimit="210000"/>
+  </Delivery>
+</Root>

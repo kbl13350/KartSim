@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<periodExchangeSystem>
+
+	<!-- periodExchangeCard: 기간제 합성을 할 수 있게 해주는 아이템, isUseExchangeCard='false'일 경우 이 아이템 없이도 기간제 합성을 할 수 있다. -->
+	<!-- protectionLock: 보호 자물쇠로 사용할 아이템 -->
+
+	<exchangeItem>
+		<item engineGrade='0'>
+			<periodExchangeCard itemCatId='23' itemId='77' />
+			<protectionLock itemCatId='23' itemId='76' />
+		</item>
+		<item engineGrade='9'>
+			<periodExchangeCard itemCatId='23' itemId='110' />
+			<protectionLock itemCatId='23' itemId='109' />
+		</item>
+	</exchangeItem>
+	
+	<!-- 기간제 합성에 포함될 수 있는 카트의 조건은 최소 10일 이상 남았어야 하고 엔진등급이 5등급 이상이어야 한다. -->
+	<inclusionCondition minRemainingDays='10' minEngineGrade='5'/>
+
+	<scheduling showPeriod='2026-08-20T06:00:00~2026-09-03T05:59:59' useLucciValue='500' koinLevel1='3' koinLevel2='6' koinLevel3='9' isUseExchangeCard='true'/>
+
+	<exchangePoint engineGrade='1' point='0'/>
+	<exchangePoint engineGrade='2' point='0'/>
+	<exchangePoint engineGrade='3' point='0'/>
+	<exchangePoint engineGrade='4' point='1'/>
+	<exchangePoint engineGrade='5' point='3'/>
+	<exchangePoint engineGrade='6' point='6'/>
+	<exchangePoint engineGrade='7' point='8'/>
+	<exchangePoint engineGrade='8' point='10'/>
+	<exchangePoint engineGrade='9' point='4'/>
+
+</periodExchangeSystem>

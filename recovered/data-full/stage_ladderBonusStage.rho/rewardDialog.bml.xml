@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="back" clientRect="0 0 800 600" align="center">
+  <Window name="rewardPanel" windowSize="800 600" adjust="0 0" align="center" depthBias="250" visible="false">
+    <Window name="size" windowRect="0 0 800 600"/>
+    <Window name="textArea" windowSize="155 180" adjust="145 200" visible="false" alphaBlend="true">
+      <Label name="cardTitle" windowSize="155 25" adjust="0 -15" textColor="black" text="#sb(cardText)" autoWrap="true" multiLine="true" textAlign="center"/>
+      <ItemWindow name="itemPanel" windowRect="0 7 100 107" itemCategory="jewel" itemId="143" align="hcenter"/>
+      <Label name="rewardText" windowSize="114 50" adjust="18 110" textColor="black" text="#sb(rewardlucci)" autoWrap="true" multiLine="true" textAlign="center"/>
+    </Window>
+    <Window name="textAreaRight" windowSize="155 180" adjust="500 200" visible="false" alphaBlend="true">
+      <Label name="cardTitle" windowSize="155 25" adjust="0 -15" textColor="black" text="#sb(cardText)" autoWrap="true" multiLine="true" textAlign="center"/>
+      <ItemWindow name="itemPanel" windowRect="0 7 100 107" itemCategory="jewel" itemId="143" align="hcenter"/>
+      <Label name="rewardText" windowSize="114 50" adjust="18 110" textColor="black" text="#sb(rewardlucci)" autoWrap="true" multiLine="true" textAlign="center"/>
+    </Window>
+  </Window>
+</Window>

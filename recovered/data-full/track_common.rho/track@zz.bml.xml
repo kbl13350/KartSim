@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trackList>
+  <track id="forest_B01" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track id="forest_B02" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track id="forest_F01" gameType="flag" laps="0" level="0" difficulty="1"/>
+  <track id="forest_I01" gameType="item" laps="3" level="1" difficulty="1" length="60" battle="true" battleDifficulty="4"/>
+  <track id="forest_I10" gameType="item" laps="3" difficulty="3" length="50"/>
+  <track id="forest_I02" gameType="item" laps="2" level="2" difficulty="2" length="52" battle="true" battleDifficulty="7"/>
+  <track id="forest_I03" gameType="item" laps="3" level="1" difficulty="1" length="75" f1speed="50" battle="true" battleDifficulty="1"/>
+  <track id="forest_I04" gameType="item" laps="3" level="1" difficulty="2" length="54" f1speed="241" battle="true" battleDifficulty="6"/>
+  <track id="forest_I05" gameType="item" laps="3" level="2" difficulty="2" length="44" f1speed="241" battle="true" battleDifficulty="6"/>
+  <track id="forest_I06" gameType="item" laps="3" level="3" difficulty="3" length="66"/>
+  <track id="forest_I07" gameType="item" laps="3" level="1" difficulty="1" length="60" f1speed="114" battle="true" battleDifficulty="3"/>
+  <track id="forest_I08" gameType="item" laps="3" level="2" difficulty="2" length="50"/>
+  <track id="forest_I09" gameType="item" laps="3" level="2" difficulty="2" length="59" basicAi="true" battle="true" texTheme="gold"/>
+  <track id="forest_R02" gameType="speed" laps="2" level="3" difficulty="4" length="92"/>
+  <track id="forest_R03" gameType="speed" laps="2" level="3" difficulty="4" length="83" texTheme="beach"/>
+  <track id="forest_R04" gameType="speed" laps="1" level="3" difficulty="5" length="72"/>
+  <track id="forest_R05" gameType="speed" laps="2" level="3" difficulty="4" length="92"/>
+  <track id="forest_R06" gameType="speed" laps="1" level="3" difficulty="4" length="84"/>
+  <track id="forest_R07" gameType="speed" laps="2" level="0" difficulty="3" length="75" basicAi="false"/>
+  <track id="desert_F01" gameType="flag" laps="0" level="0" difficulty="1"/>
+  <track id="desert_I01" gameType="item" laps="3" level="1" difficulty="2" length="51" battle="true" battleDifficulty="6"/>
+  <track id="desert_I10" gameType="item" laps="2" level="2" difficulty="2" length="67" battle="false" texTheme="pirate"/>
+  <track id="desert_I02" gameType="item" laps="3" level="2" difficulty="2" length="63" battle="true" battleDifficulty="6"/>
+  <track id="desert_I11" gameType="item" laps="3" level="2" difficulty="2" length="58" basicAi="true" battle="true"/>
+  <track id="desert_I03" gameType="item" laps="3" level="1" difficulty="1" length="60" battle="true" battleDifficulty="1"/>
+  <track id="desert_I04" gameType="item" laps="3" level="1" difficulty="1" length="54" battle="true" battleDifficulty="2"/>
+  <track id="desert_I05" gameType="item" laps="3" level="2" difficulty="3" length="66" battle="true" battleDifficulty="5"/>
+  <track id="desert_I06" gameType="item" laps="3" level="2" difficulty="2" length="66" battle="true" battleDifficulty="3"/>
+  <track id="desert_I07" gameType="item" laps="3" level="2" difficulty="2" length="61"/>
+  <track id="desert_I08" gameType="item" laps="3" level="2" difficulty="2" length="63"/>
+  <track id="desert_I09" gameType="item" laps="3" level="2" difficulty="2" length="60"/>
+  <track id="desert_R01" gameType="speed" laps="2" level="3" difficulty="4" length="82"/>
+  <track id="desert_R02" gameType="speed" laps="2" level="2" difficulty="4" length="74"/>
+  <track id="desert_R03" gameType="speed" laps="1" level="2" difficulty="5" length="116"/>
+  <track id="desert_R04" gameType="speed" laps="2" level="3" difficulty="3" length="74"/>
+  <track id="desert_R05" gameType="speed" laps="5" level="3" difficulty="3" length="105" folder="desert_I02"/>
+  <track id="desert_R06" gameType="speed" laps="2" level="3" difficulty="3" length="112"/>
+  <track id="village_B01" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track id="village_B02" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track id="village_B03" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track id="village_C01" gameType="item" laps="3" level="2" difficulty="3" length="60" isOnlyItemTrack="true"/>
+  <track id="village_B04" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track id="village_F01" gameType="flag" laps="0" level="0" difficulty="1"/>
+  <track id="village_I01" gameType="item" laps="3" level="2" difficulty="2" length="63" battle="true" battleDifficulty="7"/>
+  <track id="village_I10" gameType="item" laps="3" level="2" difficulty="2" length="63" battle="true" battleDifficulty="7"/>
+  <track id="village_I02" gameType="speed" laps="3" level="2" difficulty="3" length="60"/>
+  <track id="village_I11" gameType="item" laps="1" level="1" difficulty="0" length="1" texTheme="china|world"/>
+  <track id="village_I03" gameType="item" laps="3" level="1" difficulty="1" length="69" battle="true" battleDifficulty="1"/>
+  <track id="village_I12" gameType="item" laps="3" level="2" difficulty="2" length="48"/>
+  <track id="village_I04" gameType="item" laps="3" level="1" difficulty="1" length="48" f1speed="113" battle="true" battleDifficulty="2"/>
+  <track id="village_I13" gameType="item" laps="3" level="2" difficulty="2" length="48"/>
+  <track id="village_I05" gameType="item" laps="3" level="1" difficulty="2" length="60" battle="true" battleDifficulty="6"/>
+  <track id="village_I14" gameType="item" laps="3" level="2" difficulty="2" length="53" battle="true"/>
+  <track id="village_I06" gameType="item" laps="3" level="2" difficulty="3" length="63" choosable="false"/>
+  <track id="village_I15" gameType="item" laps="3" difficulty="2" length="68"/>
+  <track id="village_I07" gameType="item" laps="3" level="1" difficulty="2" length="75"/>
+  <track id="village_I08" gameType="item" laps="3" level="2" difficulty="2" length="63"/>
+  <track id="village_R01" gameType="speed" laps="2" level="2" difficulty="2" length="74" f1speed="308"/>
+  <track id="village_R10" gameType="speed" laps="3" level="2" difficulty="3" length="60"/>
+  <track id="village_R02" gameType="speed" laps="2" level="3" difficulty="4" length="76"/>
+  <track id="village_R11" gameType="speed" laps="1" level="2" difficulty="4" length="55" texTheme="china|forest"/>
+  <track id="village_R03" gameType="speed" laps="1" level="3" difficulty="4" length="53"/>
+  <track id="village_R12" gameType="speed" laps="2" level="1" difficulty="2" length="82" texTheme="forest"/>
+  <track id="village_R04" gameType="speed" laps="2" level="3" difficulty="4" length="78" texTheme="forest"/>
+  <track id="village_R13" gameType="speed" laps="1" level="5" difficulty="5" length="167"/>
+  <track id="village_R05" gameType="speed" laps="2" level="2" difficulty="3" length="74"/>
+  <track id="village_R14" gameType="speed" laps="2" level="3" difficulty="3" length="99" basicAi="true"/>
+  <track id="village_R06" gameType="speed" laps="2" level="2" difficulty="2" length="72"/>
+  <track id="village_R07" gameType="speed" laps="2" level="2" difficulty="3" length="94" folder="village_A07"/>
+  <track id="village_R08" gameType="speed" laps="2" level="2" difficulty="3" length="72"/>
+  <track id="village_R09" gameType="speed" laps="2" level="2" difficulty="2" length="87"/>
+  <track id="ice_B01" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track id="ice_D01" gameType="death" laps="0" level="0" difficulty="2"/>
+  <track id="ice_F01" gameType="flag" laps="0" level="0" difficulty="1"/>
+  <track id="ice_I01" gameType="speed" laps="3" level="3" difficulty="4" length="75"/>
+  <track id="ice_I10" gameType="item" laps="3" difficulty="3" length="55"/>
+  <track id="ice_I02" gameType="item" laps="3" level="1" difficulty="1" length="58" battle="true" battleDifficulty="3"/>
+  <track id="ice_I11" gameType="item" laps="3" difficulty="3" length="59"/>
+  <track id="ice_I03" gameType="item" laps="3" level="1" difficulty="1" length="66" battle="true" battleDifficulty="2"/>
+  <track id="ice_I04" gameType="item" laps="3" level="1" difficulty="1" length="60" battle="true" battleDifficulty="1"/>
+  <track id="ice_I05" gameType="item" laps="3" level="2" difficulty="2" length="63" battle="true" battleDifficulty="3"/>
+  <track id="ice_I06" gameType="item" laps="3" level="2" difficulty="2" length="72" battle="true" battleDifficulty="4"/>
+  <track id="ice_I07" gameType="item" laps="2" level="3" difficulty="2" length="86" f1speed="242" battle="true" battleDifficulty="7"/>
+  <track id="ice_I08" gameType="item" laps="1" level="5" difficulty="3" length="88"/>
+  <track id="ice_I09" gameType="item" laps="3" difficulty="3" length="62"/>
+  <track id="ice_R01" gameType="speed" laps="2" level="3" difficulty="5" length="100"/>
+  <track id="ice_R02" gameType="speed" laps="2" level="3" difficulty="5" length="86"/>
+  <track id="ice_R03" gameType="speed" laps="2" level="3" difficulty="4" length="94"/>
+  <track id="ice_R04" gameType="speed" laps="2" level="3" difficulty="3" length="56"/>
+  <track id="ice_R05" gameType="speed" laps="2" level="2" difficulty="2" length="101"/>
+  <track id="ice_R07" gameType="speed" laps="2" difficulty="3" length="123"/>
+  <track id="ice_R08" gameType="speed" laps="2" difficulty="3" length="90" texTheme="world|mine|beach|village"/>
+  <track id="tomb_B01" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track id="tomb_F01" gameType="flag" laps="0" level="0" difficulty="1"/>
+  <track id="tomb_I01" gameType="item" laps="3" level="3" difficulty="3" length="75" battle="true" battleDifficulty="6"/>
+  <track id="tomb_I10" gameType="item" laps="3" difficulty="3" length="60" basicAi="false" texTheme="camelot"/>
+  <track id="tomb_I02" gameType="item" laps="3" level="2" difficulty="2" length="63" choosable="false"/>
+  <track id="tomb_I03" gameType="item" laps="3" level="2" difficulty="2" length="63" battle="true" battleDifficulty="5"/>
+  <track id="tomb_I04" gameType="item" laps="3" level="2" difficulty="1" length="57" battle="true" battleDifficulty="2"/>
+  <track id="tomb_I05" gameType="item" laps="3" level="2" difficulty="2" length="63"/>
+  <track id="tomb_I06" gameType="item" laps="3" level="2" difficulty="2" length="59"/>
+  <track id="tomb_I07" gameType="item" laps="1" level="3" difficulty="3" length="64"/>
+  <track id="tomb_I08" gameType="item" laps="3" difficulty="2" length="58"/>
+  <track id="tomb_I09" gameType="item" laps="3" difficulty="2" length="61" blocked="false"/>
+  <track id="tomb_R01" gameType="speed" laps="3" level="3" difficulty="3" length="63"/>
+  <track id="tomb_R02" gameType="speed" laps="2" level="3" difficulty="5" length="78"/>
+  <track id="tomb_R03" gameType="speed" laps="2" level="2" difficulty="4" length="105"/>
+  <track id="tomb_R04" gameType="speed" laps="1" level="5" difficulty="6" length="155"/>
+  <track id="tomb_R05" gameType="speed" laps="2" difficulty="4" length="80" blocked="false"/>
+  <track id="tomb_R06" gameType="speed" laps="2" difficulty="2" length="74" basicAi="true"/>
+  <track id="tomb_R07" gameType="speed" laps="2" difficulty="3" length="80"/>
+  <track id="mine_C04" gameType="item" laps="3" level="3" difficulty="4" length="67" isOnlyItemTrack="true"/>
+  <track id="mine_I01" gameType="item" laps="3" level="3" difficulty="3" length="75" battle="true" battleDifficulty="4"/>
+  <track id="mine_I02" gameType="item" laps="3" level="3" difficulty="3" length="54" battle="true" battleDifficulty="6"/>
+  <track id="mine_I03" gameType="item" laps="3" level="2" difficulty="2" length="66" battle="true" battleDifficulty="6"/>
+  <track id="mine_I04" gameType="item" laps="3" level="2" difficulty="2" length="57"/>
+  <track id="mine_I05" gameType="item" laps="3" level="2" difficulty="2" length="60"/>
+  <track id="mine_I06" gameType="item" laps="3" difficulty="2" length="59" basicAi="false"/>
+  <track id="mine_I07" gameType="item" laps="3" difficulty="3" length="63" texTheme="pirate"/>
+  <track id="mine_I08" gameType="item" laps="3" difficulty="3" length="64"/>
+  <track id="mine_I09" gameType="item" laps="3" difficulty="3" length="44" texTheme="moonhill"/>
+  <track id="mine_R01" gameType="speed" laps="1" level="3" difficulty="5" length="52"/>
+  <track id="mine_R02" gameType="speed" laps="3" level="3" difficulty="3" length="66"/>
+  <track id="mine_R03" gameType="speed" laps="2" level="3" difficulty="5" length="98"/>
+  <track id="mine_R04" gameType="speed" laps="3" level="3" difficulty="4" length="67"/>
+  <track id="mine_R05" gameType="speed" laps="1" level="5" difficulty="6" length="171"/>
+  <track id="mine_R06" gameType="speed" laps="2" difficulty="4" length="74"/>
+  <track id="mine_R07" gameType="speed" laps="3" difficulty="4" length="68" texTheme="moonhill"/>
+  <track id="mine_R08" gameType="speed" laps="1" difficulty="4" length="126" texTheme="ice|moonhill|village|wkc|world|beach"/>
+  <track id="northeu_D01" gameType="death" laps="0" level="0" difficulty="1"/>
+  <track id="northeu_I01" gameType="item" laps="3" level="3" difficulty="2" length="60"/>
+  <track id="northeu_I02" gameType="item" laps="3" level="3" difficulty="2" length="63"/>
+  <track id="northeu_I03" gameType="item" laps="3" level="3" difficulty="2" length="39"/>
+  <track id="northeu_I04" gameType="item" laps="3" level="3" difficulty="2" length="60"/>
+  <track id="northeu_I05" gameType="item" laps="3" level="2" difficulty="2" length="54"/>
+  <track id="northeu_I06" gameType="item" laps="3" level="2" difficulty="2" length="66"/>
+  <track id="northeu_I07" gameType="item" laps="3" level="2" difficulty="1" length="51"/>
+  <track id="northeu_I08" gameType="item" laps="3" level="2" difficulty="1" length="57"/>
+  <track id="northeu_I09" gameType="item" laps="3" level="2" difficulty="2" length="54"/>
+  <track id="northeu_R01" gameType="speed" laps="1" level="3" difficulty="5" length="88"/>
+  <track id="northeu_R02" gameType="speed" laps="2" level="3" difficulty="3" length="78"/>
+  <track id="northeu_R03" gameType="speed" laps="2" level="3" difficulty="3" length="91"/>
+  <track id="northeu_I10_kd" name="노르테유 우주선 이륙준비" gameType="item" laps="3" difficulty="2" length="60" basicAi="false"/>
+  <track id="factory_D01" gameType="death" laps="0" level="0" difficulty="2"/>
+  <track id="factory_I01" gameType="item" laps="2" level="3" difficulty="3" length="56"/>
+  <track id="factory_I02" gameType="item" laps="2" level="3" difficulty="3" length="58"/>
+  <track id="factory_I03" gameType="item" laps="3" level="3" difficulty="3" length="69"/>
+  <track id="factory_I04" gameType="item" laps="3" level="1" difficulty="1" length="63"/>
+  <track id="factory_I05" gameType="item" laps="3" level="2" difficulty="2" length="63"/>
+  <track id="factory_I06" gameType="item" laps="3" level="2" difficulty="2" length="54"/>
+  <track id="factory_I07" gameType="item" laps="2" level="3" difficulty="4" length="60"/>
+  <track id="factory_I08" gameType="item" laps="3" level="3" difficulty="3" length="63"/>
+  <track id="factory_R01" gameType="speed" laps="1" level="3" difficulty="5" length="57"/>
+  <track id="factory_R02" gameType="speed" laps="3" level="3" difficulty="3" length="75"/>
+  <track id="factory_R03" gameType="speed" laps="2" level="2" difficulty="4" length="82"/>
+  <track id="pirate_I01" gameType="item" laps="3" level="2" difficulty="2" length="69" battle="true" battleDifficulty="2"/>
+  <track id="pirate_I02" gameType="item" laps="3" level="2" difficulty="2" length="69"/>
+  <track id="pirate_I03" gameType="item" laps="3" level="1" difficulty="3" length="69" battle="true" battleDifficulty="4"/>
+  <track id="pirate_I04" gameType="item" laps="3" level="2" difficulty="2" length="75" battle="true" battleDifficulty="4"/>
+  <track id="pirate_I05" gameType="item" laps="3" level="3" difficulty="2" length="69" battle="true" battleDifficulty="4"/>
+  <track id="pirate_R01" gameType="speed" laps="2" level="3" difficulty="4" length="88"/>
+  <track id="pirate_R02" gameType="speed" laps="2" level="2" difficulty="5" length="88"/>
+  <track id="pirate_R03" gameType="speed" laps="2" level="2" difficulty="4" length="80"/>
+  <track id="pirate_R04" gameType="speed" laps="2" level="2" difficulty="4" length="95"/>
+  <track id="pirate_R05" gameType="speed" laps="1" level="2" difficulty="6" length="148"/>
+  <track id="pirate_R06_kd" gameType="speed" laps="2" difficulty="5" length="79" texTheme="maple|camelot|abyss"/>
+  <track id="fairy_B01" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track id="fairy_I01" gameType="item" laps="3" level="2" difficulty="2" length="96"/>
+  <track id="fairy_I02" gameType="item" laps="3" level="2" difficulty="2" length="66" battle="true" battleDifficulty="5"/>
+  <track id="fairy_I03" gameType="item" laps="3" level="1" difficulty="2" length="51" battle="true" battleDifficulty="7"/>
+  <track id="fairy_I04" gameType="item" laps="3" level="3" difficulty="3" length="63" battle="true" battleDifficulty="5"/>
+  <track id="fairy_I05" gameType="item" laps="3" level="2" difficulty="2" length="63" battleDifficulty="12"/>
+  <track id="fairy_I06" gameType="item" laps="3" level="2" difficulty="2" length="51"/>
+  <track id="fairy_R01" gameType="speed" laps="2" level="3" difficulty="4" length="92"/>
+  <track id="fairy_R02" gameType="speed" laps="2" level="3" difficulty="3" length="72"/>
+  <track id="fairy_R03" gameType="speed" laps="2" level="2" difficulty="3" length="86"/>
+  <track id="moonhill_I01" gameType="item" laps="3" level="2" difficulty="2" length="57" battle="true" battleDifficulty="6"/>
+  <track id="moonhill_I02" gameType="item" laps="3" level="3" difficulty="2" length="63" f1speed="225" battle="true" battleDifficulty="5"/>
+  <track id="moonhill_I03" gameType="item" laps="3" level="2" difficulty="2" length="60" f1speed="242" battle="true" battleDifficulty="2"/>
+  <track id="moonhill_I04" gameType="item" laps="3" level="2" difficulty="2" length="69" battle="true" battleDifficulty="2"/>
+  <track id="moonhill_I05" gameType="item" laps="3" level="3" difficulty="2" length="56"/>
+  <track id="moonhill_I06" gameType="item" laps="3" level="2" difficulty="2" length="64" basicAi="true"/>
+  <track id="moonhill_R01" gameType="speed" laps="2" level="2" difficulty="3" length="68"/>
+  <track id="moonhill_R02" gameType="speed" laps="2" level="3" difficulty="5" length="82"/>
+  <track id="moonhill_R04" gameType="speed" laps="3" level="1" difficulty="3" length="79"/>
+  <track id="moonhill_R05" gameType="speed" laps="3" level="2" difficulty="3" length="79"/>
+  <track id="gold_I01" gameType="item" laps="3" level="2" difficulty="2" length="54"/>
+  <track id="gold_I02" gameType="item" laps="3" level="2" difficulty="2" length="57"/>
+  <track id="gold_I03" gameType="item" laps="3" level="2" difficulty="1" length="57" battle="true" battleDifficulty="3"/>
+  <track id="gold_I04" gameType="item" laps="3" level="2" difficulty="2" length="60"/>
+  <track id="gold_I05" gameType="item" laps="3" level="3" difficulty="2" length="54" battle="true" battleDifficulty="7"/>
+  <track id="gold_I06" gameType="item" laps="3" level="3" difficulty="2" length="63"/>
+  <track id="gold_R01" gameType="speed" laps="2" level="3" difficulty="4" length="72"/>
+  <track id="gold_R02" gameType="speed" laps="2" level="2" difficulty="4" length="85"/>
+  <track id="gold_R03" gameType="speed" laps="2" difficulty="3" length="63"/>
+  <track id="china_C01" gameType="item" laps="2" level="2" difficulty="4" length="74" f1speed="132" isOnlyItemTrack="true"/>
+  <track id="china_I01" gameType="item" laps="3" level="1" difficulty="2" length="63" f1speed="497" battle="true" battleDifficulty="4"/>
+  <track id="china_I10" gameType="item" laps="2" level="1" difficulty="2" length="58" basicAi="true" battle="false"/>
+  <track id="china_I02" gameType="item" laps="3" level="1" difficulty="2" length="66" f1speed="242"/>
+  <track id="china_I11" gameType="item" laps="3" level="1" difficulty="3" length="65" bpLevelMin="19" bpLevelMax="28" basicAi="true"/>
+  <track id="china_I03" gameType="item" laps="3" level="2" difficulty="2" length="55" f1speed="129" basicAi="true" battle="true" battleDifficulty="7"/>
+  <track id="china_I12" gameType="item" laps="3" difficulty="2" length="68" basicAi="true"/>
+  <track id="china_I04" gameType="item" laps="3" level="2" difficulty="2" length="54" battle="false"/>
+  <track id="china_I13" gameType="item" laps="1" level="2" difficulty="2" length="42"/>
+  <track id="china_I05" gameType="item" laps="2" level="2" difficulty="3" length="56" texTheme="ice"/>
+  <track id="china_I06" gameType="item" laps="3" level="1" difficulty="2" length="60"/>
+  <track id="china_I07" gameType="item" laps="3" level="3" difficulty="2" length="66"/>
+  <track id="china_I08" gameType="item" laps="3" level="2" difficulty="2" length="66"/>
+  <track id="china_I09" gameType="item" laps="1" level="3" difficulty="3" length="87"/>
+  <track id="china_R01" gameType="speed" laps="2" level="2" difficulty="4" length="74" f1speed="132"/>
+  <track id="china_R10" gameType="speed" laps="2" difficulty="2" length="61" basicAi="true"/>
+  <track id="china_R02" gameType="speed" laps="2" level="3" difficulty="4" length="96"/>
+  <track id="china_R11" gameType="speed" laps="1" level="0" difficulty="4" length="70" texTheme="forest|sword|korea"/>
+  <track id="china_R03" gameType="speed" laps="2" level="2" difficulty="3" length="66"/>
+  <track id="china_R12" gameType="speed" laps="1" level="1" difficulty="3" length="70" basicAi="true" texTheme="world|korea"/>
+  <track id="china_R04" gameType="speed" laps="2" level="2" difficulty="2" length="92"/>
+  <track id="china_R13" gameType="speed" laps="2" level="3" difficulty="3" length="81"/>
+  <track id="china_R05" gameType="speed" laps="1" level="3" difficulty="3" length="67"/>
+  <track id="china_R06" gameType="speed" laps="2" level="2" difficulty="2" length="77"/>
+  <track id="china_R07" gameType="speed" laps="2" level="3" difficulty="2" length="86"/>
+  <track id="china_R08" gameType="speed" laps="2" level="2" difficulty="3" length="88"/>
+  <track id="china_R09" gameType="speed" laps="1" level="5" difficulty="5" length="136"/>
+  <track id="castle_I01" gameType="item" laps="3" level="3" difficulty="2" length="54"/>
+  <track id="castle_I02" gameType="item" laps="3" level="2" difficulty="3" length="60"/>
+  <track id="castle_I03" gameType="item" laps="3" level="2" difficulty="2" length="54"/>
+  <track id="castle_I04" gameType="item" laps="3" level="2" difficulty="2" length="60"/>
+  <track id="castle_I05" gameType="item" laps="3" level="3" difficulty="3" length="58"/>
+  <track id="castle_I06" gameType="item" laps="3" level="2" difficulty="2" length="60"/>
+  <track id="castle_R01" gameType="speed" laps="2" level="3" difficulty="4" length="90"/>
+  <track id="castle_R02" gameType="speed" laps="2" level="2" difficulty="2" length="56"/>
+  <track id="nymph_I01" gameType="item" laps="3" level="1" difficulty="2" length="60"/>
+  <track id="nymph_I02" gameType="item" laps="3" level="2" difficulty="2" length="54"/>
+  <track id="nymph_I03" gameType="item" laps="3" level="3" difficulty="2" length="61"/>
+  <track id="nymph_I04" gameType="item" laps="3" level="2" difficulty="2" length="61"/>
+  <track id="nymph_I05" gameType="item" laps="3" level="2" difficulty="2" length="76"/>
+  <track id="nymph_R01" gameType="speed" laps="2" level="2" difficulty="3" length="134"/>
+  <track id="nymph_R02" gameType="speed" laps="3" level="2" difficulty="2" length="61"/>
+  <track id="mechanic_I01" gameType="item" laps="3" level="2" difficulty="2" length="60" f1speed="498" battle="true" battleDifficulty="7"/>
+  <track id="mechanic_I02" gameType="item" laps="3" level="2" difficulty="2" length="69" f1speed="242" battle="true" battleDifficulty="7"/>
+  <track id="mechanic_K01" gameType="bossGame" laps="1" level="0" difficulty="1" length="48"/>
+  <track id="mechanic_K02" gameType="bossGame" laps="1" level="0" difficulty="1" length="82"/>
+  <track id="mechanic_K03" gameType="bossGame" laps="1" level="0" difficulty="1" length="96"/>
+  <track id="mechanic_R01" gameType="speed" laps="2" level="3" difficulty="3" length="84" f1speed="132"/>
+  <track id="xyy_I01" gameType="item" laps="3" level="2" difficulty="1" length="66"/>
+  <track id="xyy_R01" gameType="speed" laps="2" level="2" difficulty="2" length="82"/>
+  <track id="xyy_R02" gameType="speed" laps="2" level="3" difficulty="3" length="86"/>
+  <track id="wkc_D01" gameType="death" laps="0" level="0" difficulty="2"/>
+  <track id="wkc_I01" gameType="item" laps="3" level="1" difficulty="2" length="33"/>
+  <track id="wkc_I02" gameType="item" laps="1" level="1" difficulty="1" length="15" choosable="false"/>
+  <track id="wkc_R01" gameType="speed" laps="2" level="1" difficulty="2" length="92" f1speed="244"/>
+  <track id="wkc_R02" gameType="speed" laps="1" level="3" difficulty="4" length="64" f1speed="452"/>
+  <track id="wkc_R11" gameType="speed" laps="2" level="2" difficulty="2" length="71" texTheme="village|world|moonhill"/>
+  <track id="wkc_R03" gameType="speed" laps="2" level="2" difficulty="3" length="72" f1speed="196" texTheme="village"/>
+  <track id="wkc_R12" gameType="speed" laps="2" difficulty="2" length="72" basicAi="true" texTheme="world|village"/>
+  <track id="wkc_R04" gameType="speed" laps="2" level="2" difficulty="2" length="87" f1speed="226" texTheme="village"/>
+  <track id="wkc_R05" gameType="speed" laps="2" level="3" difficulty="4" length="82" texTheme="village"/>
+  <track id="wkc_R06" gameType="speed" laps="2" level="2" difficulty="4" length="88" basicAi="true" texTheme="village"/>
+  <track id="wkc_R07" gameType="speed" laps="3" level="1" difficulty="3" length="85" texTheme="village"/>
+  <track id="wkc_R09" gameType="speed" laps="2" level="2" difficulty="2" length="74" texTheme="village"/>
+  <track id="brodi_I01" gameType="item" laps="3" level="3" difficulty="2" length="50"/>
+  <track id="brodi_I02" gameType="item" laps="3" level="2" difficulty="1" length="73"/>
+  <track id="brodi_R01" gameType="speed" laps="2" level="2" difficulty="3" length="105"/>
+  <track id="brodi_R02" gameType="speed" laps="3" level="3" difficulty="3" length="53"/>
+  <track id="park_I01" gameType="item" laps="3" level="1" difficulty="2" length="79"/>
+  <track id="park_R01" gameType="speed" laps="3" level="1" difficulty="2" length="69"/>
+  <track id="park_R02" gameType="speed" laps="2" level="2" difficulty="2" length="63"/>
+  <track id="beach_I01" gameType="item" laps="3" level="3" difficulty="2" length="93"/>
+  <track id="beach_I02" gameType="item" laps="3" level="1" difficulty="2" length="70"/>
+  <track id="beach_I03" gameType="item" laps="3" level="3" difficulty="2" length="62"/>
+  <track id="beach_R01" gameType="speed" laps="2" level="3" difficulty="2" length="99"/>
+  <track id="beach_R02" gameType="speed" laps="3" level="1" difficulty="2" length="104"/>
+  <track id="beach_R03" gameType="speed" laps="3" level="1" difficulty="2" length="71"/>
+  <track id="beach_R04" gameType="speed" laps="1" level="1" difficulty="2" length="35"/>
+  <track id="steam_I01" gameType="item" laps="3" level="2" difficulty="2" length="95"/>
+  <track id="steam_R01" gameType="speed" laps="2" level="3" difficulty="2" length="86"/>
+  <track id="steam_R02" gameType="speed" laps="2" level="3" difficulty="3" length="105"/>
+  <track id="transFormer_I01" gameType="item" laps="2" level="3" difficulty="2" length="84" texTheme="mechanic"/>
+  <track id="transFormer_R01" gameType="speed" laps="3" level="3" difficulty="3" length="86" texTheme="mechanic"/>
+  <track id="transFormer_R02" gameType="speed" laps="1" level="3" difficulty="2" length="76" texTheme="mechanic"/>
+  <track id="jurassic_I01" gameType="item" laps="3" level="3" difficulty="3" length="72"/>
+  <track id="jurassic_I02" gameType="item" laps="3" level="3" difficulty="3" length="63"/>
+  <track id="jurassic_R01" gameType="speed" laps="2" level="3" difficulty="4" length="84"/>
+  <track id="jurassic_R03" gameType="speed" laps="2" level="3" difficulty="3" length="86"/>
+  <track id="jurassic_R04" gameType="speed" laps="2" level="3" difficulty="2" length="85"/>
+  <track id="world_C02" gameType="item" laps="1" level="2" difficulty="2" length="57" isOnlyItemTrack="true"/>
+  <track id="world_I01" gameType="item" laps="2" level="2" difficulty="2" length="66"/>
+  <track id="world_I02" gameType="item" laps="3" level="3" difficulty="2" length="58"/>
+  <track id="world_I03" gameType="item" laps="2" level="2" difficulty="2" length="60"/>
+  <track id="world_I04" gameType="item" laps="2" level="3" difficulty="3" length="60"/>
+  <track id="world_I05" gameType="item" laps="2" level="2" difficulty="2" length="62"/>
+  <track id="world_R01" gameType="speed" laps="1" level="2" difficulty="3" length="69"/>
+  <track id="world_R10" gameType="speed" laps="2" level="3" difficulty="3" length="84"/>
+  <track id="world_R02" gameType="speed" laps="1" level="2" difficulty="2" length="57"/>
+  <track id="world_R03" gameType="speed" laps="2" level="3" difficulty="3" length="75"/>
+  <track id="world_R04" gameType="speed" laps="3" level="3" difficulty="2" length="79"/>
+  <track id="world_R05" gameType="speed" laps="2" level="2" difficulty="3" length="74"/>
+  <track id="world_R06" gameType="speed" laps="1" level="3" difficulty="3" length="47"/>
+  <track id="nemo_C02" gameType="item" laps="1" level="3" difficulty="3" length="62" isOnlyItemTrack="true"/>
+  <track id="nemo_I01" gameType="item" laps="3" level="2" difficulty="2" length="72"/>
+  <track id="nemo_I02" gameType="item" laps="3" level="3" difficulty="2" length="60"/>
+  <track id="nemo_I03" gameType="item" laps="3" level="3" difficulty="2" length="78"/>
+  <track id="nemo_R01" gameType="speed" laps="2" level="3" difficulty="4" length="82"/>
+  <track id="nemo_R02" gameType="speed" laps="1" level="3" difficulty="3" length="62"/>
+  <track id="nemo_R03" gameType="speed" laps="2" level="2" difficulty="3" length="87"/>
+  <track id="sword_F01" gameType="flag" laps="0" level="0" difficulty="1"/>
+  <track id="sword_I01" gameType="item" laps="3" level="1" difficulty="1" length="53"/>
+  <track id="sword_I02" gameType="item" laps="1" level="3" difficulty="3" length="51"/>
+  <track id="sword_R01" gameType="speed" laps="2" level="3" difficulty="4" length="82"/>
+  <track id="sword_R02" gameType="speed" laps="2" level="2" difficulty="2" length="71"/>
+  <track id="sword_R03" gameType="speed" laps="2" level="2" difficulty="3" length="100"/>
+  <track id="god_D01" gameType="death" laps="0" level="0" difficulty="2"/>
+  <track id="god_I01" gameType="item" laps="3" level="2" difficulty="2" length="53"/>
+  <track id="god_I02" gameType="item" laps="2" level="2" difficulty="2" length="61"/>
+  <track id="god_I03" gameType="item" laps="3" level="2" difficulty="2" length="75"/>
+  <track id="god_R01" gameType="speed" laps="2" level="2" difficulty="3" length="83"/>
+  <track id="god_R02" gameType="speed" laps="1" level="3" difficulty="3" length="69"/>
+  <track id="god_R03" gameType="speed" laps="2" level="2" difficulty="2" length="65" texTheme="world|beach|china|mechanic|moonhill"/>
+  <track id="abyss_I01" gameType="item" laps="3" level="2" difficulty="2" length="90" texTheme="pirate"/>
+  <track id="abyss_I02" gameType="item" laps="3" level="2" difficulty="2" length="80"/>
+  <track id="abyss_I03" gameType="item" laps="3" level="2" difficulty="2" length="39" texTheme="pirate|nemo|brodi"/>
+  <track id="abyss_R01" gameType="speed" laps="2" level="2" difficulty="4" length="82"/>
+  <track id="abyss_R02" gameType="speed" laps="2" level="2" difficulty="4" length="76" texTheme="pirate"/>
+  <track id="abyss_R03" gameType="speed" laps="2" level="2" difficulty="3" length="86"/>
+  <track id="abyss_R04" gameType="speed" laps="2" level="2" difficulty="2" length="66" texTheme="pirate"/>
+  <track id="abyss_R05" gameType="speed" laps="6" level="2" difficulty="1" length="44"/>
+  <track id="camelot_I01" gameType="item" laps="2" level="2" difficulty="2" length="55" texTheme="world"/>
+  <track id="camelot_I02" gameType="item" laps="3" level="2" difficulty="2" length="58" texTheme="world|sword|pirate|beach"/>
+  <track id="camelot_I03" gameType="item" laps="5" level="1" difficulty="1" length="42" texTheme="wkc"/>
+  <track id="camelot_R01" gameType="speed" laps="2" level="3" difficulty="3" length="76" texTheme="sword|god|world"/>
+  <track id="camelot_R02" gameType="speed" laps="2" level="3" difficulty="3" length="79" texTheme="world|god|sword"/>
+  <track id="camelot_R03" gameType="speed" laps="2" level="3" difficulty="3" length="76" texTheme="sword|god|world"/>
+  <track id="olympos_I01" gameType="item" laps="3" level="2" difficulty="2" length="49"/>
+  <track id="olympos_I02" gameType="item" laps="3" level="2" difficulty="2" length="75" texTheme="world|abyss|mechanic"/>
+  <track id="olympos_I03" gameType="item" laps="3" level="2" difficulty="2" length="70" texTheme="jurassic"/>
+  <track id="olympos_R01" gameType="speed" laps="2" level="4" difficulty="4" length="105" texTheme="camelot|god"/>
+  <track id="olympos_R02" gameType="speed" laps="2" level="3" difficulty="3" length="80" texTheme="northeu"/>
+  <track id="korea_I01" gameType="item" laps="2" level="3" difficulty="3" length="71"/>
+  <track id="korea_I02" gameType="item" laps="2" level="2" difficulty="2" length="84" texTheme="olympos|world" bgmTheme="lotte"/>
+  <track id="korea_I03" gameType="item" laps="2" level="3" difficulty="3" length="68"/>
+  <track id="korea_I04" gameType="item" laps="2" level="2" difficulty="2" length="58"/>
+  <track id="korea_I05" gameType="item" laps="3" level="3" difficulty="3" length="62" battle="true" texTheme="world"/>
+  <track id="korea_R01" gameType="speed" laps="1" level="3" difficulty="3" length="66"/>
+  <track id="korea_R02" gameType="speed" laps="2" level="3" difficulty="3" length="82"/>
+  <track id="korea_R03" gameType="speed" laps="1" level="2" difficulty="2" length="56" texTheme="world|beach"/>
+  <track id="korea_R04"/>
+  <track id="mabi_I01" gameType="item" laps="2" level="2" difficulty="2" length="53" bgmTheme="mabi"/>
+  <track id="mabi_I02" gameType="item" laps="3" level="2" difficulty="2" length="56" bgmTheme="mabi"/>
+  <track id="mabi_R01" gameType="speed" laps="2" level="3" difficulty="3" length="75" bgmTheme="mabi"/>
+  <track id="mabi_R02" gameType="speed" laps="2" level="4" difficulty="4" length="77" bgmTheme="mabi_2"/>
+  <track id="maple_I01" gameType="item" laps="3" level="2" difficulty="2" length="60" battle="true" bgmTheme="maple"/>
+  <track id="maple_I02" gameType="item" laps="3" level="1" difficulty="1" length="49" battle="true" bgmTheme="maple"/>
+  <track id="maple_I03" gameType="item" laps="3" level="2" difficulty="2" length="71" battle="true" bgmTheme="maple_2"/>
+  <track id="maple_R01" gameType="speed" laps="2" level="2" difficulty="2" length="64" bgmTheme="maple"/>
+  <track id="maple_R02" gameType="speed" laps="2" level="2" difficulty="2" length="60" texTheme="camelot" bgmTheme="maple"/>
+  <track id="maple_R03" gameType="speed" laps="2" level="3" difficulty="3" length="86" bgmTheme="maple_2"/>
+  <track id="fengshen_I01" gameType="item" laps="3" difficulty="3" length="70"/>
+  <track id="fengshen_I02" gameType="item" laps="3" difficulty="3" length="60" texTheme="abyss|sword"/>
+  <track id="fengshen_I03" gameType="item" laps="3" difficulty="3" length="65" basicAi="true"/>
+  <track id="fengshen_I04" gameType="item" laps="3" difficulty="3" length="76"/>
+  <track id="fengshen_I05" gameType="item" laps="3" difficulty="1" length="50"/>
+  <track id="fengshen_R01" gameType="speed" laps="2" difficulty="3" length="94"/>
+  <track id="fengshen_R02" gameType="speed" laps="2" difficulty="4" length="125"/>
+  <track id="ice_S02"/>
+  <track id="ice_S03"/>
+  <track id="tomb_S02" texTheme="camelot"/>
+  <track id="tomb_S04"/>
+  <track id="mine_S04" texTheme="moonhill"/>
+  <track id="camelot_S01" texTheme="sword|god|world"/>
+  <track id="camelot_S02" texTheme="world"/>
+  <track id="camelot_S03" texTheme="world|god|sword"/>
+  <track id="camelot_S04" texTheme="god"/>
+  <track id="camelot_S05"/>
+  <track id="camelot_S06" texTheme="world"/>
+  <track id="camelot_S07" texTheme="sword|world"/>
+  <track id="olympos_S01" texTheme="northeu"/>
+  <track id="olympos_S02" texTheme="world|abyss|mechanic"/>
+  <track id="olympos_S03" texTheme="jurassic"/>
+  <track id="olympos_S04" texTheme="world|abyss|mechanic"/>
+  <track id="korea_S01"/>
+  <track id="korea_S02"/>
+  <track id="mabi_S01" bgmTheme="mabi"/>
+  <track id="mabi_S02" bgmTheme="mabi_2"/>
+  <track id="maple_S01" bgmTheme="maple"/>
+  <track id="maple_S02" bgmTheme="maple"/>
+  <track id="maple_S03" bgmTheme="maple_2"/>
+  <track id="china_S02"/>
+  <track id="fengshen_S03"/>
+  <track id="fengshen_S04"/>
+  <track id="fengshen_S05"/>
+  <track id="fengshen_S06" texTheme="abyss|sword"/>
+  <track id="fengshen_S07"/>
+  <track_crz refId="forest_I03" level="2" difficulty="2" length="75"/>
+  <track_crz refId="desert_I03" laps="3" level="2" difficulty="2" length="60"/>
+  <track_crz refId="village_I04" laps="3" level="2" difficulty="2" length="48"/>
+  <track_crz refId="ice_I03" level="2" difficulty="2" length="66"/>
+  <track_crz refId="factory_I04" laps="3" level="2" difficulty="2" length="63"/>
+  <track_crz refId="gold_I03" laps="3" level="2" difficulty="2" length="57"/>
+  <track_crz refId="china_I02" laps="3" level="2" difficulty="2" length="66"/>
+  <track_crz refId="beach_I02" laps="3" level="2" difficulty="2" length="70"/>
+  <track_crz refId="world_I03" laps="2" level="2" difficulty="2" length="60"/>
+  <track_rvs refId="forest_B02" gameType="bigTrack" laps="0" level="0" difficulty="1"/>
+  <track_rvs refId="forest_I01" level="1" length="60" battle="true" battleDifficulty="5"/>
+  <track_rvs refId="forest_I02" level="2" length="52" battle="true" battleDifficulty="5"/>
+  <track_rvs refId="forest_I03" level="1" difficulty="2" length="75" battle="true" battleDifficulty="5"/>
+  <track_rvs refId="forest_I04" level="1" length="54" battle="true" battleDifficulty="5"/>
+  <track_rvs refId="forest_I05" level="2" length="44"/>
+  <track_rvs refId="forest_I07" level="2" difficulty="2"/>
+  <track_rvs refId="forest_R02" level="3" difficulty="5" length="92"/>
+  <track_rvs refId="desert_I01" level="1" length="51" battle="true" battleDifficulty="7"/>
+  <track_rvs refId="desert_I02" level="2" length="63" battle="true" battleDifficulty="2"/>
+  <track_rvs refId="desert_I03" level="1" difficulty="1" length="60" battle="true" battleDifficulty="2"/>
+  <track_rvs refId="desert_I04" level="2" length="54" battle="true" battleDifficulty="4"/>
+  <track_rvs refId="desert_I05" level="3" difficulty="3" length="66" battle="true" battleDifficulty="4"/>
+  <track_rvs refId="desert_R01" level="3" difficulty="5" length="82"/>
+  <track_rvs refId="village_I01" level="2" difficulty="3" length="63" battle="true" battleDifficulty="4"/>
+  <track_rvs refId="village_I02" level="2" difficulty="3" length="60"/>
+  <track_rvs refId="village_I03" level="1" difficulty="1" length="69" battle="true" battleDifficulty="3"/>
+  <track_rvs refId="village_I04" level="1" length="48" battle="true" battleDifficulty="4"/>
+  <track_rvs refId="village_I13" level="2" length="48"/>
+  <track_rvs refId="village_I05" level="1" length="60" battle="true" battleDifficulty="6"/>
+  <track_rvs refId="village_R01" level="1" difficulty="3" length="74"/>
+  <track_rvs refId="village_R03" level="2" difficulty="4" length="53"/>
+  <track_rvs refId="ice_I01" level="3" difficulty="5" length="75"/>
+  <track_rvs refId="ice_I02" level="1" difficulty="2" length="58" battle="true" battleDifficulty="5"/>
+  <track_rvs refId="ice_I03" level="1" length="66" battle="true" battleDifficulty="3"/>
+  <track_rvs refId="ice_I04" level="1" length="60" battleDifficulty="2"/>
+  <track_rvs refId="ice_I05" level="2" difficulty="3" length="63" battle="true" battleDifficulty="3"/>
+  <track_rvs refId="tomb_I01" level="3" length="75" battle="true" battleDifficulty="6"/>
+  <track_rvs refId="tomb_R01" level="3" length="63"/>
+  <track_rvs refId="mine_I01" level="3" length="75" battle="true" battleDifficulty="5"/>
+  <track_rvs refId="mine_I02" level="2" length="54" battle="true" battleDifficulty="3"/>
+  <track_rvs refId="northeu_I01" level="2" length="60"/>
+  <track_rvs refId="northeu_I02" level="3" length="63"/>
+  <track_rvs refId="northeu_I03" level="3" length="39"/>
+  <track_rvs refId="northeu_I04" level="2" length="60"/>
+  <track_rvs refId="northeu_I05" level="2" length="54"/>
+  <track_rvs refId="northeu_I06" level="2" length="66"/>
+  <track_rvs refId="northeu_I07" level="2" difficulty="2" length="51"/>
+  <track_rvs refId="factory_I01" laps="2" level="2" difficulty="3" length="56"/>
+  <track_rvs refId="factory_I02" level="2" length="58"/>
+  <track_rvs refId="factory_I03" level="2" length="69"/>
+  <track_rvs refId="factory_I04" laps="3" level="1" difficulty="2" length="63"/>
+  <track_rvs refId="pirate_I01" laps="3" level="2" length="69" battle="true" battleDifficulty="6"/>
+  <track_rvs refId="pirate_I02" laps="3" level="2" length="69" battle="true" battleDifficulty="4"/>
+  <track_rvs refId="pirate_I04" gameType="item" laps="3" level="2" difficulty="2" length="75"/>
+  <track_rvs refId="pirate_R01" level="3" length="88"/>
+  <track_rvs refId="pirate_R02" gameType="speed" laps="2" level="2" difficulty="5" length="88"/>
+  <track_rvs refId="fairy_I02" level="2" length="66" battle="true" battleDifficulty="5"/>
+  <track_rvs refId="fairy_I03" laps="3" level="1" length="51" battle="true" battleDifficulty="7"/>
+  <track_rvs refId="fairy_R02" gameType="speed" laps="2" difficulty="3" length="72"/>
+  <track_rvs refId="moonhill_I01" laps="3" level="3" difficulty="3" length="57"/>
+  <track_rvs refId="moonhill_I02" name="[R] 문힐시티 도시의 두 얼굴" gameType="item" laps="3" difficulty="3" length="69" basicAi="false"/>
+  <track_rvs refId="moonhill_I04" laps="3" level="2" difficulty="3" length="69"/>
+  <track_rvs refId="moonhill_I05" name="[R] 문힐시티 덜컹덜컹 지하철 탈출" gameType="item" laps="3" difficulty="2" length="56"/>
+  <track_rvs refId="moonhill_R01" laps="2" level="3" length="68"/>
+  <track_rvs refId="china_I01" gameType="item" laps="3" level="2" difficulty="2" length="63"/>
+  <track_rvs refId="china_I04" gameType="item" laps="3" level="2" difficulty="2" length="55"/>
+  <track_rvs refId="china_I05" name="[R] 차이나 빙등축제" gameType="item" laps="2" level="3" difficulty="3" length="56" texTheme="ice"/>
+  <track_rvs refId="china_I06" name="[R] 차이나 끝이 없는 도로" gameType="item" laps="3" difficulty="2" length="60"/>
+  <track_rvs refId="china_R01" gameType="speed" laps="2" level="4" difficulty="4" length="74"/>
+  <track_rvs refId="china_R02" laps="2" level="4" difficulty="4" length="96"/>
+  <track_rvs refId="china_R03" gameType="speed" laps="2" level="3" difficulty="3" length="66"/>
+  <track_rvs refId="china_R04" gameType="speed" laps="2" difficulty="2" length="92" basicAi="true"/>
+  <track_rvs refId="china_R07" gameType="speed" laps="2" level="3" difficulty="2" length="86"/>
+  <track_rvs refId="china_R08" gameType="speed" laps="2" level="0" difficulty="3" length="88" basicAi="false" texTheme="forest|beach"/>
+  <track_rvs refId="abyss_R02" laps="2" level="4" difficulty="4" length="76" texTheme="pirate"/>
+  <track_rvs refId="korea_I01" laps="2" level="3" length="71"/>
+  <track_rvs refId="korea_I03" laps="2" level="3" length="68"/>
+  <track_rvs refId="korea_R01" laps="1" level="3" length="66"/>
+  <track_rvs refId="korea_R02" laps="2" level="3" length="82"/>
+  <track_rvs refId="korea_R03" laps="1" level="2" length="56"/>
+  <track_rvs refId="mabi_I01" laps="2" level="2" length="53"/>
+  <track_rvs refId="mabi_R01" laps="2" level="3" length="75"/>
+</trackList>

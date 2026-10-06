@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu11"/>
+  <Char id="dr.r" pos="10 0" emotion="stop1"/>
+  <Msg name="R博士" string="好厉害！！我输了，奇奇！"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="taki" pos="6 0" emotion="stop4"/>
+  <Msg name="奇奇" string="额！！怎么会知道我的名字？？"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="为什么！！要阻碍我们？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="虽然从结果上来看是帮助了我们，呵呵呵呵"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dr.r" pos="9 0" emotion="stop1"/>
+  <Msg name="R博士" string="奇奇…其实"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="bazzi" pos="10 0" emotion="stop5"/>
+  <Msg name="皮蛋, 宝宝" string="难道！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dr.r" pos="10 0" emotion="stop1"/>
+  <Msg name="R博士" string="其实我！！！"/>
+  <Enter/>
+  <Char id="dr.r" remove="true"/>
+  <Shake time="1000"/>
+  <Char id="revaski" pos="9 0" emotion="stop1"/>
+  <Msg name="Q博士" string="我！！是你爸爸！！|虽然想隐藏身份，但怎么就认不出来呢！！"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop5"/>
+  <Msg name="奇奇" string="哇！！！爸爸！！！|您什么时候来的？还有，您在这干嘛呀~！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop2"/>
+  <Msg name="Q博士" string="你这家伙再怎么无聊！！|出去玩也要打声招呼啊！！"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop2"/>
+  <Msg name="Q博士" string="再怎么有趣也要联系家里人啊~"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop4"/>
+  <Msg name="奇奇" string="因为太好玩，所以…"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop1"/>
+  <Msg name="Q博士" string="深陷在赛车当中，根本不想着回家…"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop1"/>
+  <Msg name="Q博士" string="想着如果不能再赛车了就以为可以解决问题。"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop3"/>
+  <Msg name="Q博士" string="所以都弄翻了赛道，哈哈哈哈"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop5"/>
+  <Char id="taki" pos="8 0" emotion="stop5"/>
+  <Msg name="皮蛋, 宝宝, 奇奇" string="额！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop1"/>
+  <Msg name="Q博士" string="但是看到你们不仅没放弃反而更加努力，我很惊讶。"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop3"/>
+  <Msg name="奇奇" string="真的很好玩~"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop3"/>
+  <Msg name="Q博士" string="哈哈！！看到你如此积极，如此喜欢，没有理由再拦着你了！"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop1"/>
+  <Msg name="Q博士" string="既然要做就尽最大努力吧！！"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="taki" pos="6 0" emotion="stop1"/>
+  <Msg name="奇奇" string="真的吗？谢谢爸爸！！！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop1"/>
+  <Msg name="Q博士" string="但是！一定要努力！！偶尔也回回家！ "/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="taki" pos="6 0" emotion="stop3"/>
+  <Msg name="奇奇" string="嗯！！！！"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="9 0" emotion="stop1"/>
+  <Msg name="Q博士" string="嗯…不管怎么说，这些家伙们…"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="bazzi" pos="12 0" emotion="normal"/>
+  <Char id="taki" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋, 宝宝, 奇奇" string="？？？？？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Shake time="1000"/>
+  <Char id="revaski" pos="8 0" emotion="stop2"/>
+  <Msg name="Q博士" string="既然说我是酒糟鼻！！！！！"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop5"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="taki" pos="8 0" emotion="stop5"/>
+  <Msg name="皮蛋, 宝宝, 奇奇" string="额…"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop2"/>
+  <Msg name="Q博士" string="你们这些家伙~！！！！！"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop5"/>
+  <Char id="taki" pos="8 0" emotion="stop5"/>
+  <Msg name="皮蛋, 宝宝, 奇奇" string="哇~对不起~~快跑！！！！！"/>
+  <Enter/>
+</Scene>

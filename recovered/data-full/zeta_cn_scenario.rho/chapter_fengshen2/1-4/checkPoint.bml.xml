@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <MaxSpeed track="fengshen_S07" laps="2" isFixedKart="true" fixedKartId="1562" isFixedChar="true" fixedCharId="474">
+    <LevelContent level="0" speedValue="220;220;250;260;160;200;220;220;250;260;160;200;" timeLimit="145000"/>
+  </MaxSpeed>
+</Root>

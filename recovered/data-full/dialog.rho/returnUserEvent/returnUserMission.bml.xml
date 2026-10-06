@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowSize="1240 570">
+  <Panel name="missionTitle" windowSize="286 74" align="left;top" adjust="0 -140" texture="titleText_dizniWish" alphaBlend="true"/>
+  <Window name="missionCardCon" windowSize="1020 570" align="left" adjust="5 0" alphaBlend="true">
+    <Window name="missionCardAttach0" windowSize="328 100" align="left;center"/>
+    <Window name="missionCardAttach1" windowSize="328 100" align="center"/>
+    <Window name="missionCardAttach2" windowSize="328 100" align="right;center"/>
+  </Window>
+  <Window name="addCountCon" windowSize="180 570" align="right;center" adjust="8 -5">
+    <Panel name="addCountTitleBg" windowSize="138 26" align="top;center" adjust="0 10" texture="returnUser_deco1" alphaBlend="true">
+      <Label name="addCountTitle" windowSize="138 26" align="center" text="#sb(addCountTitle)" textAlign="center" textRender="bold14" textColor="white"/>
+      <ColorLabel name="addCount" windowSize="138 26" align="center" adjust="0 25" text="#sb(addMissionCountTotal)" textAlign="center" textRender="bold14" textColor="255 95 53 0"/>
+    </Panel>
+    <Panel name="addCountProgressBarBg" windowSize="10 405" align="top;center" adjust="44 95" texture="returnUser_bar_bg" alphaBlend="true">
+      <Panel name="addCountProgressBarCover" windowSize="6 405" align="top;center" adjust="0 0" texture="returnUser_bar" alphaBlend="true"/>
+    </Panel>
+    <Window name="addCountRewardCon1" windowSize="160 70" align="center" adjust="0 -190"/>
+    <Window name="addCountRewardCon2" windowSize="160 70" align="center" adjust="0 -110"/>
+    <Window name="addCountRewardCon3" windowSize="160 70" align="center" adjust="0 -25"/>
+    <Window name="addCountRewardCon4" windowSize="160 70" align="center" adjust="0 55"/>
+    <Window name="addCountRewardCon5" windowSize="160 70" align="center" adjust="0 135"/>
+    <Window name="addCountRewardCon6" windowSize="160 70" align="center" adjust="0 215"/>
+    <Label name="rewardGuide" windowSize="150 20" align="bottom;center" text="#sb(addMissionRewardBox)" textAlign="center" textRender="bold14" textColor="255 154 100 53"/>
+  </Window>
+  <ImageBoard name="diziniInfo_Mission" windowSize="516 140" align="top;center" adjust="260 -160" image="returnUser_info2" alphaBlend="true">
+    <Label name="diziniGuide_Desc1" windowSize="350 30" align="center" adjust="75 -20" text="#sb(returnMissionGuide1)" textRender="bold16" textColor="255 42 55 80" textAlign="left"/>
+    <ColorLabel name="diziniGuide_Desc2" windowSize="350 30" align="center" adjust="75 3" text="#sb(returnMissionGuide2)" textRender="bold14" textColor="255 105 121 151" textAlign="left"/>
+    <Panel name="missionPeriodLastBg" windowSize="272 24" align="center" adjust="30 26" texture="returnUser_info_daybg" alphaBlend="true">
+      <Label name="missionPeriodLast" windowSize="272 24" align="center" text="period : from ~ to ~" textRender="bold14" textColor="white" textAlign="center"/>
+    </Panel>
+  </ImageBoard>
+</Container>

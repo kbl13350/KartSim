@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trackList>
+  <track id="forest_F01" name="森林 隱密的草原"/>
+  <track id="forest_I01" name="森林 木桶" bpLevelMin="0" bpLevelMax="22" f1speed="49" basicAi="true"/>
+  <track id="forest_I02" name="森林 蘑菇洞穴" bpLevelMin="0" bpLevelMax="19" basicAi="true"/>
+  <track id="forest_I03" name="森林 山谷" bpLevelMin="0" bpLevelMax="16" f1speed="114" basicAi="true"/>
+  <track id="forest_I04" name="森林 奇石" bpLevelMin="1" bpLevelMax="16" f1speed="241" basicAi="true"/>
+  <track id="forest_I05" name="森林 瀑布" bpLevelMin="0" bpLevelMax="19" f1speed="241" basicAi="true"/>
+  <track id="forest_I06" name="森林 游擊場" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="forest_I07" name="森林 幸福熊貓村" bpLevelMin="0" bpLevelMax="16" blocked="true" basicAi="true"/>
+  <track id="forest_R02" name="森林 髮夾彎" allowed1vs1="true" basicAi="true"/>
+  <track id="forest_R04" name="森林 迷幻的下坡道" allowed1vs1="true" basicAi="true"/>
+  <track id="forest_R05" name="森林 恐怖空中吊橋" allowed1vs1="true" basicAi="true"/>
+  <track id="forest_R06" name="森林 大山嶺牧羊場" allowed1vs1="true"/>
+  <track id="desert_F01" name="沙漠 戰場"/>
+  <track id="desert_I01" name="沙漠 地獄沙丘" bpLevelMin="12" bpLevelMax="22" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="desert_I10" name="沙漠 法老王的安息之地"/>
+  <track id="desert_I02" name="沙漠 金字塔" bpLevelMin="15" bpLevelMax="29" f1speed="113" basicAi="true"/>
+  <track id="desert_I03" name="沙漠 綠洲" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="desert_I04" name="沙漠 市場" bpLevelMin="1" bpLevelMax="16" basicAi="true"/>
+  <track id="desert_I05" name="沙漠 水庫" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="desert_I06" name="沙漠 人面獅身" bpLevelMin="12" bpLevelMax="22" basicAi="true"/>
+  <track id="desert_I07" name="沙漠隱藏的輸送管" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="desert_I08" name="沙漠 遺跡2" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="desert_I09" name="沙漠 跑跑人綠洲" choosable="false" allowed1vs1="true"/>
+  <track id="desert_R01" name="沙漠 旋轉工地" allowed1vs1="true" basicAi="true"/>
+  <track id="desert_R02" name="沙漠 渠道" allowed1vs1="true" basicAi="true"/>
+  <track id="desert_R03" name="沙漠 被遺忘的沙之記憶" allowed1vs1="true" basicAi="false"/>
+  <track id="desert_R04" name="沙漠 驚人的恐龍遺跡" allowed1vs1="true" basicAi="true"/>
+  <track id="village_C01" name="城鎮 手指(道具模式)" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="village_F01" name="城鎮 競技場"/>
+  <track id="village_I01" name="城鎮 鐘樓" bpLevelMin="12" bpLevelMax="22" basicAi="true"/>
+  <track id="village_I02" name="城鎮 手指" allowed1vs1="true" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="village_I03" name="城鎮 環道" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="village_I12" name="城鎮 跑跑人運河" choosable="false" allowed1vs1="true"/>
+  <track id="village_I04" name="城鎮 運河" bpLevelMin="0" bpLevelMax="16" f1speed="241" basicAi="true"/>
+  <track id="village_I13" name="城鎮鐘樓運河" blocked="true" allowed1vs1="true"/>
+  <track id="village_I05" name="城鎮 水路" bpLevelMin="1" bpLevelMax="16" basicAi="true"/>
+  <track id="village_I06" name="城鎮 噴泉廣場" choosable="true"/>
+  <track id="village_I07" name="城鎮 水壩上的對決" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="village_I08" name="殘破 的城鎮中心" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="village_R01" name="城鎮 高速公路" f1speed="372" allowed1vs1="true" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="village_R10" name="城鎮 遭破壞的手指" allowed1vs1="true"/>
+  <track id="village_R02" name="城鎮 手指 2" allowed1vs1="true" basicAi="true"/>
+  <track id="village_R11" name="城鎮 村落九份" allowed1vs1="true" basicAi="true"/>
+  <track id="village_R03" name="城鎮 公路" allowed1vs1="true" basicAi="true"/>
+  <track id="village_R12" name="城鎮 城鎮南山" allowed1vs1="true" basicAi="true"/>
+  <track id="village_R04" name="城鎮 天下第一關" allowed1vs1="true" basicAi="true"/>
+  <track id="village_R13" name="城鎮 繁榮山丘兜風" allowed1vs1="true" basicAi="false"/>
+  <track id="village_R05" name="城鎮 水上翹翹板" allowed1vs1="true" basicAi="true"/>
+  <track id="village_R06" name="城鎮 高速公路2" allowed1vs1="true" basicAi="true"/>
+  <track id="village_R07" name="城鎮 命運之橋" allowed1vs1="true" basicAi="true"/>
+  <track id="village_R08" name="城鎮 上海F1賽道" blocked="true" allowed1vs1="true" basicAi="true"/>
+  <track id="village_R09" name="城鎮 韓國F1賽道" blocked="true" allowed1vs1="true" basicAi="true"/>
+  <track id="ice_D01" name="死鬥 雪球保齡球"/>
+  <track id="ice_F01" name="冰河 洞穴旋律的傳說"/>
+  <track id="ice_I01" name="冰河 裂谷" allowed1vs1="true" basicAi="true"/>
+  <track id="ice_I02" name="冰河 墓地" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="ice_I03" name="冰河 企鵝島" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="ice_I04" name="冰河 晶洞穴" bpLevelMin="1" bpLevelMax="16" f1speed="242" basicAi="true"/>
+  <track id="ice_I05" name="冰河 冰山極速" bpLevelMin="12" bpLevelMax="29" f1speed="242" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="ice_I06" name="冰河 冰山企鵝戰士" bpLevelMin="9" bpLevelMax="29" basicAi="true"/>
+  <track id="ice_I07" name="冰河 冰山冬季訓練場" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="ice_I08" name="越獄" basicAi="false"/>
+  <track id="ice_R01" name="冰河 冰山滑雪場" allowed1vs1="true" basicAi="true"/>
+  <track id="ice_R02" name="冰河 破碎的冰山" allowed1vs1="true" basicAi="true"/>
+  <track id="ice_R03" name="冰河 冰山停機坪飛越" allowed1vs1="true" basicAi="true"/>
+  <track id="ice_R04" name="冰河 驚險的越野滑雪" isAllowedRoadBlock="true"/>
+  <track id="ice_R05" name="冰河 刺激的高空彈跳" allowed1vs1="true" basicAi="false"/>
+  <track id="tomb_F01" name="墓園 骷髏大亂鬥"/>
+  <track id="tomb_I01" name="墓園 幽靈峽谷" bpLevelMin="15" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="tomb_I02" name="墓園 恐怖之路" basicAi="false"/>
+  <track id="tomb_I03" name="墓園 神秘修道院" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="tomb_I04" name="墓園 幽靈鬼域" bpLevelMin="0" bpLevelMax="19" basicAi="true"/>
+  <track id="tomb_I05" name="墓園 幽暗的蝙蝠城"/>
+  <track id="tomb_I06" name="墓園 骷髏祭壇" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="tomb_I07" name="墓園 幽靈的慶典"/>
+  <track id="tomb_R01" name="墓園 骷髏手指" allowed1vs1="true" league="true" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="tomb_R02" name="墓園 魔王的邀請" allowed1vs1="true" basicAi="true"/>
+  <track id="tomb_R03" name="墓園 骷髏城大探險" level="3" allowed1vs1="true" basicAi="true"/>
+  <track id="tomb_R04" name="絕望的地下墓穴" allowed1vs1="true" basicAi="false"/>
+  <track id="mine_C04" name="礦山 捷徑探險(道具模式)" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="mine_I01" name="礦山 寶石開採場" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="mine_I02" name="礦山 岩漿洞" bpLevelMin="15" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="mine_I03" name="礦山 瀑布" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="mine_I04" name="礦山 熔岩小徑"/>
+  <track id="mine_I05" name="礦山 雲霄飛車" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="mine_R01" name="礦山 曲折滑坡" allowed1vs1="true" basicAi="true"/>
+  <track id="mine_R02" name="礦山 奪魂鐵道" allowed1vs1="true" basicAi="true"/>
+  <track id="mine_R03" name="礦山 危險的精煉廠" allowed1vs1="true" basicAi="true"/>
+  <track id="mine_R04" name="礦山 捷徑探險" allowed1vs1="true" basicAi="true"/>
+  <track id="mine_R05" name="礦山的支配者" allowed1vs1="true" basicAi="false"/>
+  <track id="northeu_D01" name="死鬥恐怖的宇宙競技場"/>
+  <track id="northeu_I01" name="太空 立橋" bpLevelMin="25" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I02" name="太空 險道" bpLevelMin="25" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I03" name="太空 懸空分岔跑道" bpLevelMin="29" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I04" name="太空 宇宙船賽道" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="northeu_I05" name="太空 彈跳" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I06" name="太空 加速區占領作戰" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I07" name="太空 驛站" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="northeu_I08" name="太空 加速跳台" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="northeu_I09" name="太空 窒息隧道逃脫" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="northeu_R01" name="太空 蜿蜒跑道" allowed1vs1="true" basicAi="true"/>
+  <track id="northeu_R02" name="太空 戰鬥飛行場" allowed1vs1="true" basicAi="true"/>
+  <track id="northeu_R03" name="太空 空中走廊" allowed1vs1="true"/>
+  <track id="factory_D01" name="死鬥 機器人的襲擊"/>
+  <track id="factory_I01" name="工廠 任性的布羅帝" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_I02" name="工廠 巨大齒輪的威脅" bpLevelMin="25" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_I03" name="工廠 砰砰砰大冒險"/>
+  <track id="factory_I04" name="工廠 探險開始" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_I05" name="工廠 推進器的秘密工廠" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_I06" name="工廠 可疑的蒸氣裝置" basicAi="false"/>
+  <track id="factory_I07" name="工廠 危險的運載所" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="factory_I08" name="工廠 跑跑人探險" choosable="false" allowed1vs1="true"/>
+  <track id="factory_R01" name="工廠 未完成第5禁區" allowed1vs1="true" league="true"/>
+  <track id="factory_R02" name="工廠 傻瓜陷阱" allowed1vs1="true"/>
+  <track id="factory_R03" name="工廠 工廠中的雙工廠" allowed1vs1="true" basicAi="true"/>
+  <track id="pirate_I01" name="海盜 危機大逃亡" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="pirate_I02" name="海盜 刺激的高空飛行" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="pirate_I03" name="海盜 暈眩碼頭" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="pirate_I04" name="海盜 風暴" bpLevelMin="12" bpLevelMax="29" blocked="true" basicAi="true"/>
+  <track id="pirate_I05" name="海賊 船寶物奪取" blocked="true"/>
+  <track id="pirate_R01" name="海盜 懸崖上的決鬥" allowed1vs1="true" league="true" basicAi="true"/>
+  <track id="pirate_R02" name="海盜 海盜的祕寶" allowed1vs1="true" basicAi="true"/>
+  <track id="pirate_R03" name="海盜 要塞瞭望塔" f1speed="132" allowed1vs1="true" basicAi="true"/>
+  <track id="pirate_R04" name="海盜 鯊魚島的秘密" allowed1vs1="true" basicAi="false"/>
+  <track id="pirate_R05" name="海盜 大海賊海盜船長" allowed1vs1="true" basicAi="false"/>
+  <track id="fairy_I01" name="童話 藍寶與魔豆" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="fairy_I02" name="童話 青蛙澡堂" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="fairy_I03" name="童話 木馬樂園" bpLevelMin="9" bpLevelMax="19" f1speed="241" basicAi="true"/>
+  <track id="fairy_I04" name="童話 撲克牌的迷宮仙境" bpLevelMin="15" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="fairy_R01" name="童話 奇幻世界之門" allowed1vs1="true" basicAi="true"/>
+  <track id="fairy_R02" name="童話 森林中沉睡的巨人" allowed1vs1="true" basicAi="true"/>
+  <track id="fairy_R03" name="童話 魔女之城" allowed1vs1="true" basicAi="true"/>
+  <track id="moonhill_I01" name="月光 未完成大樓" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="moonhill_I02" name="月光 環道" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="moonhill_I03" name="月光 隧道" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="moonhill_I04" name="月光 鐵路" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="moonhill_I05" name="月光 地下鐵大逃亡" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="moonhill_R01" name="月光 水城" f1speed="196" allowed1vs1="true" basicAi="true"/>
+  <track id="moonhill_R02" name="月光 遺落的地下巷道" allowed1vs1="true" basicAi="true"/>
+  <track id="moonhill_R04" name="月光 市政府廣場" blocked="true" allowed1vs1="true"/>
+  <track id="moonhill_R05" name="月光 飆風台北城" allowed1vs1="true" basicAi="true"/>
+  <track id="gold_I01" name="黃金文明 勇闖黃金城" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="gold_I02" name="黃金文明 危機四伏 " bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="gold_I03" name="黃金文明 大怒神" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="gold_I04" name="黃金文明 傳說熔爐" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="gold_I05" name="黃金文明 笑傲飛鷹" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="gold_I06" name="黃金文明 阿茲特克" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="gold_R01" name="黃金文明 黃金座標" allowed1vs1="true" basicAi="true"/>
+  <track id="gold_R02" name="黃金文明 危險機關" allowed1vs1="true" basicAi="true"/>
+  <track id="china_C01" name="中華主題 兵馬俑陵寢(道具模式)"/>
+  <track id="china_I01" name="中華主題 激鬥紫禁城" bpLevelMin="0" bpLevelMax="19" basicAi="true"/>
+  <track id="china_I02" name="中華主題 東方明珠" bpLevelMin="1" bpLevelMax="22" f1speed="0" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="china_I03" name="中華主題 中華運動公園" blocked="true"/>
+  <track id="china_I04" name="中華主題 中華賽道練習場" blocked="true"/>
+  <track id="china_I05" name="中華主題 月光冰燈城" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="china_I07" name="中華主題 東方明珠之夜"/>
+  <track id="china_I08" name="中華主題 跑跑人東方明珠" choosable="false" allowed1vs1="true"/>
+  <track id="china_R01" name="中華主題 兵馬俑陵寢" allowed1vs1="true" basicAi="true"/>
+  <track id="china_R02" name="中華主題 中華胡同" level="1" allowed1vs1="true" basicAi="true"/>
+  <track id="china_R03" name="中華主題 兵馬俑陵寢2" level="0" f1speed="100" allowed1vs1="true" basicAi="true"/>
+  <track id="china_R04" name="中華主題 龍之運河" allowed1vs1="true" basicAi="true"/>
+  <track id="china_R05" name="中華主題 黃山" allowed1vs1="true" basicAi="true"/>
+  <track id="china_R07" name="中華主題 拉薩" allowed1vs1="true" basicAi="true"/>
+  <track id="china_R08" name="中華主題 晴空萬里的西湖" allowed1vs1="true"/>
+  <track id="castle_I01" name="城堡 冒煙廚房"/>
+  <track id="castle_I02" name="城堡 玩具的天堂" bpLevelMin="15" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="castle_I03" name="城堡 華麗浴缸" bpLevelMin="12" bpLevelMax="29" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="castle_I04" name="城堡 路易的密室" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="castle_I05" name="城堡路易的書房" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="castle_I06" name="城堡路易的庭院" allowed1vs1="false" isAllowedRoadBlock="true"/>
+  <track id="castle_R01" name="城堡 隱藏的密室" allowed1vs1="true" basicAi="true"/>
+  <track id="castle_R02" name="城堡 午後的假日" allowed1vs1="true"/>
+  <track id="nymph_I01" name="精靈 精靈部落的邀請" bpLevelMin="1" bpLevelMax="22" basicAi="true"/>
+  <track id="nymph_I02" name="精靈 神木的捷徑" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="nymph_I03" name="精靈 月光庭園" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="nymph_I04" name="精靈火山" bpLevelMin="9" bpLevelMax="19" allowed1vs1="false" basicAi="true"/>
+  <track id="nymph_I05" name="精靈月光泉水邊" bpLevelMin="9" bpLevelMax="28" allowed1vs1="false" basicAi="true"/>
+  <track id="nymph_R01" name="精靈 海底城的秘密" allowed1vs1="true" basicAi="true"/>
+  <track id="nymph_R02" name="精靈 木頭驚險跳躍" allowed1vs1="true" basicAi="false"/>
+  <track id="mechanic_I01" name="機械戰爭 前線戰場" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="mechanic_K01" name="機械戰爭反擊的開始"/>
+  <track id="mechanic_K02" name="機械戰爭兩大災難"/>
+  <track id="mechanic_K03" name="機械戰爭最終戰場"/>
+  <track id="mechanic_R01" name="機械戰爭 失落都市" allowed1vs1="true" basicAi="true"/>
+  <track id="wkc_D01" name="死鬥 巨大的沙穴地獄"/>
+  <track id="wkc_I01" name="WKC 瘋狂 10"/>
+  <track id="wkc_R01" name="WKC 新加坡 F1 賽道" allowed1vs1="true" basicAi="true"/>
+  <track id="wkc_R02" name="WKC 越野拉力賽道" allowed1vs1="true" basicAi="true"/>
+  <track id="wkc_R11" name="WKC 新加坡濱海灣賽道" allowed1vs1="true" basicAi="true"/>
+  <track id="wkc_R03" name="WKC 上海 F1 賽道" allowed1vs1="true" basicAi="true"/>
+  <track id="wkc_R04" name="WKC 韓國 F1 賽道" allowed1vs1="true" basicAi="true"/>
+  <track id="wkc_R05" name="WKC 巴西 F1 賽道" allowed1vs1="true" league="true" basicAi="true"/>
+  <track id="wkc_R07" name="WKC 日本F1賽道" allowed1vs1="true" basicAi="true"/>
+  <track id="wkc_R09" name="WKC 澳洲 F1 賽道" allowed1vs1="true"/>
+  <track id="brodi_I01" name="布羅帝 能量生產機" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="brodi_I02" name="布羅帝 能量的來源" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="brodi_R01" name="布羅帝 秘密的研究所" allowed1vs1="true"/>
+  <track id="brodi_R02" name="布羅帝 壓力工廠" allowed1vs1="true"/>
+  <track id="park_I01" name="遊樂園 刺激破百軌道特急" allowed1vs1="false"/>
+  <track id="park_R01" name="遊樂園360度高塔" allowed1vs1="true" isAllowedRoadBlock="true"/>
+  <track id="beach_I01" name="海濱 水上飛機基地" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="beach_I02" name="海濱 貨櫃碼頭" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="beach_I03" name="海濱 愉快的暑期假日"/>
+  <track id="beach_R01" name="海濱 大道" allowed1vs1="true" league="true" basicAi="true"/>
+  <track id="beach_R02" name="海濱 遊艇俱樂部" allowed1vs1="true"/>
+  <track id="beach_R03" name="海濱 海灘簡易車站" allowed1vs1="true"/>
+  <track id="beach_R04" name="賽道 9" allowed1vs1="true" basicAi="true"/>
+  <track id="steam_I01" name="1920 奇怪的蒸氣加工廠" isAllowedRoadBlock="true"/>
+  <track id="steam_R01" name="1920 車站的奔馳" allowed1vs1="true" basicAi="true"/>
+  <track id="steam_R02" name="1920驚險飛機場" allowed1vs1="true"/>
+  <track id="jurassic_I01" name="侏儸紀 恐龍島的拓荒邀請" bpLevelMin="20" bpLevelMax="29" basicAi="true"/>
+  <track id="jurassic_I02" name="侏儸紀火山歷險" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="jurassic_R01" name="侏儸紀 恐龍島大冒險" allowed1vs1="true" isAllowedRoadBlock="true" basicAi="true"/>
+  <track id="jurassic_R03" name="侏儸紀 恐龍格鬥場" allowed1vs1="true" basicAi="true"/>
+  <track id="jurassic_R04" name="侏儸紀 恐龍墳墓" allowed1vs1="true" basicAi="true"/>
+  <track id="world_C02" name="世界 里約的村落(道具模式)" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="world_I01" name="世界 巴黎的兜風" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="world_I02" name="世界 倫敦的夜晚"/>
+  <track id="world_I03" name="世界 希臘的假日" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="world_I04" name="世界 跑跑人希臘" choosable="false" allowed1vs1="true"/>
+  <track id="world_I05" name="世界 巴西神聖殿堂" bpLevelMin="15" bpLevelMax="29"/>
+  <track id="world_R01" name="世界 紐約大疾走" allowed1vs1="true" league="true" basicAi="true"/>
+  <track id="world_R10" name="世界 杜拜的市中心" allowed1vs1="true" basicAi="true"/>
+  <track id="world_R02" name="世界 里約的村落" allowed1vs1="true" basicAi="true"/>
+  <track id="world_R03" name="世界 義大利的旅行" allowed1vs1="true"/>
+  <track id="world_R04" name="世界 大遊走" allowed1vs1="true" basicAi="true"/>
+  <track id="world_R05" name="世界 巴黎艾菲爾鐵塔" allowed1vs1="true"/>
+  <track id="world_R06" name="世界 比薩旋轉斜塔" allowed1vs1="true" league="true"/>
+  <track id="nemo_C02" name="積木樂園 玩具禮物工廠(道具模式)" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="nemo_I01" name="積木樂園 積木村莊" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="nemo_I02" name="積木樂園 梅蒂兒的藏身處" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="nemo_I03" name="積木樂園 咕咕巢穴" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="nemo_R01" name="積木樂園 聖誕老人的秘密基地" allowed1vs1="true" league="true" basicAi="true"/>
+  <track id="nemo_R02" name="積木樂園 玩具禮物工廠" allowed1vs1="true" basicAi="true"/>
+  <track id="nemo_R03" name="積木樂園 鋼鐵熔爐" allowed1vs1="true" basicAi="true"/>
+  <track id="sword_F01" name="刀劍 天下武林比武場"/>
+  <track id="sword_I01" name="刀劍 月下門" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="sword_I02" name="刀劍 龍之路" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="sword_R01" name="刀劍 雲中峽谷" allowed1vs1="true" league="true" basicAi="true"/>
+  <track id="sword_R02" name="刀劍 野外修練館" allowed1vs1="true" basicAi="true"/>
+  <track id="sword_R03" name="刀劍 雙龍" allowed1vs1="true"/>
+  <track id="god_D01" name="死鬥 翻騰熔岩地帶"/>
+  <track id="god_I01" name="神域 不滅的火焰"/>
+  <track id="god_I02" name="神域 光之路" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="god_I03" name="神域 挑戰的殿堂" bpLevelMin="12" bpLevelMax="29" basicAi="true"/>
+  <track id="god_R01" name="神域 奧汀神殿" allowed1vs1="true"/>
+  <track id="god_R02" name="神域 諸神世界" allowed1vs1="true" league="true" basicAi="true"/>
+  <track id="god_R03" name="神域 次元之門" allowed1vs1="true" basicAi="true"/>
+  <track id="abyss_I01" name="深海 征服陸地" basicAi="false"/>
+  <track id="abyss_I02" name="深海 指引者之路" basicAi="true"/>
+  <track id="abyss_I03" name="深海 鋸齒密道" basicAi="false"/>
+  <track id="abyss_R01" name="深海 龐克章魚" basicAi="false"/>
+  <track id="abyss_R02" name="深海 崎嶇海峽" basicAi="false"/>
+  <track id="abyss_R03" name="深海 大漩渦" basicAi="false"/>
+  <track id="abyss_R04" name="深海 命運交叉路" basicAi="false"/>
+  <track id="abyss_R05" name="深海 決鬥競技場" basicAi="true"/>
+  <track id="camelot_I01" name="史詩 騎士團訓練場" basicAi="false"/>
+  <track id="camelot_I02" name="史詩 海口卸貨場" basicAi="false"/>
+  <track id="camelot_I03" name="史詩 戰車追擊戰" basicAi="false"/>
+  <track id="camelot_R01" name="史詩 城外巡查路" basicAi="false"/>
+  <track id="camelot_R02" name="史詩 菲恩龍城" basicAi="false"/>
+  <track id="camelot_R03" name="史詩 城外反向巡查路" basicAi="false"/>
+  <track id="olympos_I01" name="奧林帕斯 抉擇之門" bpLevelMin="9" bpLevelMax="22" basicAi="true"/>
+  <track id="olympos_I02" name="奧林帕斯 冥界入口" basicAi="false"/>
+  <track id="olympos_I03" name="奧林帕斯 女神的庇護所" bpLevelMin="9" bpLevelMax="29" basicAi="true"/>
+  <track id="olympos_R01" name="奧林帕斯 空中神殿" allowed1vs1="true" basicAi="true"/>
+  <track id="olympos_R02" name="奧林帕斯 宙斯城" allowed1vs1="true" basicAi="true"/>
+  <track id="korea_I01" name="韓國 全州韓屋村" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="korea_I02" name="韓國 樂天世界大冒險" basicAi="true"/>
+  <track id="korea_I03" name="韓國 仁川中央公園" bpLevelMin="15" bpLevelMax="29" basicAi="true"/>
+  <track id="korea_I04" name="韓國 韓國民俗村" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="korea_R01" name="韓國 繁華的首爾" basicAi="true"/>
+  <track id="korea_R02" name="韓國 釜山的夜晚" basicAi="true"/>
+  <track id="korea_R03" name="韓國 濟州日出下坡路" basicAi="true"/>
+  <track id="korea_R04" name="韓國 釜山夜海的逆行" blocked="true" basicAi="false"/>
+  <track id="mabi_I01" name="新瑪奇 堤爾克那" bpLevelMin="0" bpLevelMax="16" basicAi="true"/>
+  <track id="mabi_I02" name="新瑪奇 杜巴頓" bpLevelMin="0" bpLevelMax="22" basicAi="true"/>
+  <track id="mabi_R01" name="新瑪奇 艾明馬夏" basicAi="true"/>
+  <track id="mabi_R02" name="新瑪奇 巴爾地下城" basicAi="false"/>
+  <track id="mine_S02" name="神域 穆斯貝爾海姆" allowed1vs1="true"/>
+  <track id="camelot_S01" name="史詩 城外巡查路" blocked="true" basicAi="false"/>
+  <track id="camelot_S02" name="史詩 神秘場所" blocked="true" basicAi="false"/>
+  <track id="camelot_S03" name="史詩 燃燒的村莊" blocked="true" basicAi="false"/>
+  <track id="camelot_S04" name="史詩 無限迴廊" blocked="true" basicAi="false"/>
+  <track id="camelot_S05" name="史詩 心眼" blocked="true" basicAi="false"/>
+  <track id="camelot_S06" name="史詩 弩弓發射台" blocked="true" basicAi="false"/>
+  <track id="camelot_S07" name="史詩 煩惱山坡" blocked="true" basicAi="false"/>
+  <track id="olympos_S01" name="奧林帕斯 宙斯城" blocked="true" basicAi="false"/>
+  <track id="olympos_S02" name="奧林帕斯 冥界入口" blocked="true" basicAi="false"/>
+  <track id="olympos_S03" name="奧林帕斯 女神的庇護所" blocked="true" basicAi="false"/>
+  <track id="olympos_S04" name="奧林帕斯 軌道上的疾行" blocked="true" basicAi="false"/>
+  <track id="korea_S01" name="韓國 繁華的首爾" blocked="true" basicAi="false"/>
+  <track id="korea_S02" name="韓國 悄悄潛入" blocked="true" basicAi="false"/>
+  <track id="mabi_S01" name="新瑪奇 艾明馬夏" blocked="true" basicAi="false"/>
+  <track id="mabi_S02" name="新瑪奇 錫古的憤怒" blocked="true" basicAi="false"/>
+  <track_crz refId="forest_I03" name="森林 瘋狂山谷"/>
+  <track_crz refId="desert_I03" name="沙漠 瘋狂綠洲"/>
+  <track_crz refId="village_I04" name="城鎮 瘋狂運河"/>
+  <track_crz refId="ice_I03" name="冰河 瘋狂企鵝島"/>
+  <track_crz refId="factory_I04" name="工廠 瘋狂探險開始"/>
+  <track_crz refId="gold_I03" name="黃金 瘋狂文明之大怒神"/>
+  <track_crz refId="china_I02" name="中華主題 瘋狂東方明珠"/>
+  <track_crz refId="beach_I02" name="海濱 瘋狂貨櫃碼頭"/>
+  <track_crz refId="world_I03" name="世界 瘋狂希臘的假日"/>
+  <track_rvs refId="forest_F01" blocked="true"/>
+  <track_rvs refId="forest_I01" isAllowedRoadBlock="true" basicAi="true"/>
+  <track_rvs refId="forest_I02" basicAi="true"/>
+  <track_rvs refId="forest_I03" basicAi="true"/>
+  <track_rvs refId="forest_I04" basicAi="true"/>
+  <track_rvs refId="forest_I05" isAllowedRoadBlock="true"/>
+  <track_rvs refId="forest_I07" isAllowedRoadBlock="true" isOnlyRoadBlockTrack="true"/>
+  <track_rvs refId="forest_R02"/>
+  <track_rvs refId="desert_F01" blocked="true"/>
+  <track_rvs refId="desert_I01" blocked="true" basicAi="true"/>
+  <track_rvs refId="desert_I02" blocked="true" basicAi="true"/>
+  <track_rvs refId="desert_I03" basicAi="true"/>
+  <track_rvs refId="desert_I04" f1speed="113" basicAi="true"/>
+  <track_rvs refId="desert_I05" basicAi="true"/>
+  <track_rvs refId="desert_R01"/>
+  <track_rvs refId="village_F01" blocked="true"/>
+  <track_rvs refId="village_I01" isAllowedRoadBlock="true" basicAi="true"/>
+  <track_rvs refId="village_I02"/>
+  <track_rvs refId="village_I03" blocked="true" basicAi="true"/>
+  <track_rvs refId="village_I04"/>
+  <track_rvs refId="village_I13" isAllowedRoadBlock="true"/>
+  <track_rvs refId="village_I05" basicAi="true"/>
+  <track_rvs refId="village_R01"/>
+  <track_rvs refId="village_R03"/>
+  <track_rvs refId="ice_I01"/>
+  <track_rvs refId="ice_I02" isAllowedRoadBlock="true" basicAi="true"/>
+  <track_rvs refId="ice_I03" basicAi="true"/>
+  <track_rvs refId="ice_I04" isAllowedRoadBlock="true" basicAi="true"/>
+  <track_rvs refId="ice_I05"/>
+  <track_rvs refId="ice_R01" blocked="true"/>
+  <track_rvs refId="tomb_F01" blocked="true"/>
+  <track_rvs refId="tomb_I01" basicAi="true"/>
+  <track_rvs refId="tomb_I02" blocked="true"/>
+  <track_rvs refId="tomb_I03" blocked="true"/>
+  <track_rvs refId="tomb_R01" blocked="true"/>
+  <track_rvs refId="mine_I01" basicAi="true"/>
+  <track_rvs refId="mine_I02" blocked="true" basicAi="true"/>
+  <track_rvs refId="mine_R01" blocked="true"/>
+  <track_rvs refId="northeu_I01"/>
+  <track_rvs refId="northeu_I02" blocked="true"/>
+  <track_rvs refId="northeu_I03"/>
+  <track_rvs refId="northeu_I04" isAllowedRoadBlock="true" isOnlyRoadBlockTrack="true"/>
+  <track_rvs refId="northeu_I05"/>
+  <track_rvs refId="factory_I01"/>
+  <track_rvs refId="factory_I04"/>
+  <track_rvs refId="pirate_I01"/>
+  <track_rvs refId="pirate_I02" blocked="true" basicAi="true"/>
+  <track_rvs refId="pirate_I03" blocked="true"/>
+  <track_rvs refId="pirate_I04" blocked="true"/>
+  <track_rvs refId="pirate_R01"/>
+  <track_rvs refId="fairy_I03" basicAi="true"/>
+  <track_rvs refId="moonhill_I01"/>
+  <track_rvs refId="moonhill_R01"/>
+  <track_rvs refId="korea_I01"/>
+  <track_rvs refId="korea_I03"/>
+  <track_rvs refId="korea_R01"/>
+  <track_rvs refId="korea_R02"/>
+  <track_rvs refId="korea_R03"/>
+  <track_rvs refId="mabi_I01" basicAi="true"/>
+  <track_rvs refId="mabi_R01" basicAi="true"/>
+</trackList>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <KnockOut track="village_I08" laps="3" isFixedKart="true" fixedKartId="10" isFixedChar="true" fixedCharId="9">
+    <LevelContent level="0" ksv="result_20101230_1610">
+      <ShadowKart characterId="2" uniformId="0" kartId="15" colorId="6" dyeId="6"/>
+      <ShadowKart characterId="3" uniformId="0" kartId="25" colorId="2" dyeId="2"/>
+      <ShadowKart characterId="1" uniformId="0" kartId="20" colorId="1" dyeId="1"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

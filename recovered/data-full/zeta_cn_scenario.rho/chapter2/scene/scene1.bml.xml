@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="dizini" pos="3 0" emotion="stop2"/>
+  <Msg name="黑妞" string="&quot;驾驶得真漂亮, 皮蛋！&quot;"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="真了不起啊，皮蛋！ 不知不觉间实力变强了！ "/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="谢谢。都是托了你们的福啊。"/>
+  <Enter/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="可惜的是，胖墩被淘汰了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="唉……要是能一起进入决赛就好了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="但是，今天胖墩的比赛，是至今为止开得最好的！ |别泄气胖墩！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop5"/>
+  <Msg name="胖墩" string="因为这种事情而泄气的话，我就不是胖墩大人了哈！ |走着瞧！下次，我一定也要进入决赛。"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="很好，胖墩！  "/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="胜利的喜悦就到此为止吧！ |对和我的决战就一点都不担心吗?"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="噢~ 小强！ 你也进入决赛了吗? "/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="嗯。 |怎么说也得先战胜我了才能得第一啊！ "/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="对不起了，黑妞。 |但是一决胜负是要靠冷静的。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞" string="真讨厌，小强！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="12 0" emotion="stop4"/>
+  <Char id="mos" pos="8 0" emotion="stop5"/>
+  <Char id="kephi" pos="3 0" emotion="stop3"/>
+  <Msg name="胖墩/小强/皮蛋" string="哈哈哈。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="小强" string="不过决赛中都是最厉害的车手。 |要是紧张的话是不行的。 |为了夺冠，今天开始就练习！练习！"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="好！ |一直到决赛之前都要努力准备，在这次决赛中一定要获得优胜！ |小强！ 现在马上开始练习吧~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="果然~ 皮蛋就是皮蛋啊。|很好！ 我准备了特别练习，现在马上开始吧~"/>
+  <Enter/>
+</Scene>

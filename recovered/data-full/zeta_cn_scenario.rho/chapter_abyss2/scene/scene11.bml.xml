@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss5"/>
+  <Char id="hekate" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="赫凯特" string="虽然过于简单，但还挺有意思的，小鬼。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Msg name="茜茜" string="……"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Msg name="赫凯特" string="怎么？都没力气说话了吗？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Msg name="茜茜" string="……"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Msg name="赫凯特" string="怎么了？你要投降吗？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Msg name="茜茜" string="……"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="7 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Msg name="赫凯特" string="小鬼，你倒是说话啊。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="7 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="12 0" emotion="stop3"/>
+  <Msg name="茜茜" string="不管了！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="tiera" pos="12 0" emotion="stop3"/>
+  <Char id="hekate" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="" string="打击！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Char id="hekate" pos="5 0" flip="true" emotion="stop5"/>
+  <Msg name="赫凯特" string="你，你竟然用魔杖敲我？"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="11 0" emotion="normal"/>
+  <Char id="hekate" pos="5 0" flip="true" emotion="stop5"/>
+  <Msg name="茜茜" string="呼~我赢了。"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="11 0" emotion="normal"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop5"/>
+  <Msg name="赫凯特" string="你，你竟然在神圣的魔女对决里……！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="11 0" emotion="normal"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop5"/>
+  <Msg name="茜茜" string="魔女对决法则。|魔法帽先掉落的一方为败者！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="11 0" emotion="stop1"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop5"/>
+  <Msg name="茜茜" string="既然你的魔法帽已经掉了，那不就是我赢了吗？"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="11 0" emotion="stop1"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="赫凯特" string="我无法认同！|你这是使诈，不是堂堂正正用魔法对决！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="11 0" emotion="normal"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="茜茜" string="对于新一代魔女来说防身术可是必修课哦！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="10 0" emotion="normal"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="茜茜" string="高傲的古代魔女，|该不会不认输吧？"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="10 0" emotion="normal"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="赫凯特" string="额，我竟然会犯这种失误……"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="9 0" emotion="normal"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="茜茜" string="好了，说说怎么办吧？"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="9 0" emotion="normal"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="赫凯特" string="知，知道了！这次算我输了！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="9 0" emotion="normal"/>
+  <Char id="hekate" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="茜茜" string="那就把所有魔法都解了吧！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="9 0" emotion="normal"/>
+  <Char id="hekate" pos="3 0" emotion="stop4"/>
+  <Msg name="赫凯特" string="……都解开了！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="茜茜" string="不好，我拖太久了。|希望黑妞和奈尔能撑住。"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <BackGround texture="abyss8"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="narin" pos="10 0" emotion="stop6"/>
+  <Msg name="黑妞" string="奈琳！（敲打）你快！（敲打）给我！（敲打）醒来！（敲打）"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="stop6"/>
+  <Msg name="奈琳" string="呃……好痛啊……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="stop6"/>
+  <Msg name="黑妞" string="呼~好像还挺解压的……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Char id="narin" pos="12 0" emotion="stop6"/>
+  <Msg name="黑妞" string="不，不对，这都是为了奈琳！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Char id="narin" pos="12 0" emotion="stop6"/>
+  <Msg name="奈琳" string="……消，敌人，咦？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="stop6"/>
+  <Msg name="黑妞" string="咦？怎么停了？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="normal"/>
+  <Msg name="奈琳" string="这，这里是？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop4"/>
+  <Char id="narin" pos="12 0" emotion="normal"/>
+  <Msg name="黑妞" string="终于醒过来了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop4"/>
+  <Char id="narin" pos="12 0" emotion="stop4"/>
+  <Msg name="奈琳" string="黑，黑妞？这里不是阿比斯吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Char id="narin" pos="12 0" emotion="stop4"/>
+  <Msg name="黑妞" string="嗯，你被魔女控制了。|幸好你醒过来了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Char id="narin" pos="12 0" emotion="normal"/>
+  <Msg name="奈琳" string="虽然有点摸不清头脑……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="normal"/>
+  <Msg name="黑妞" string="之后我再跟你细说吧，奈尔现在很危险！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="stop4"/>
+  <Msg name="奈琳" string="我家奈尔奈尔吗？！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="6 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="stop4"/>
+  <Msg name="黑妞" string="嗯，快去奈尔那边吧！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="6 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="normal"/>
+  <Msg name="奈琳" string="可是我脸好痛啊……怎么回事啊？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="5 0" flip="true" emotion="stop6"/>
+  <Char id="narin" pos="12 0" emotion="normal"/>
+  <Msg name="黑妞" string="现，现在没时间管这些了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <BackGround texture="abyss6"/>
+  <Char id="meoguri" pos="5 0" emotion="normal"/>
+  <Char id="merman" pos="12 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="呼呼，已经没地方逃了吧！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="5 0" emotion="normal"/>
+  <Char id="merman" pos="12 0" emotion="stop1"/>
+  <Msg name="莫曼" string="你跑得可快啊！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="……到此为止了吗？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="tiera" pos="9 0" emotion="normal"/>
+  <Msg name="茜茜" string="别放弃！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="茜茜？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" pos="7 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="她怎么会在这？难道赫凯特她……！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="tiera" pos="8 0" emotion="normal"/>
+  <Msg name="茜茜" string="莫格瑞的保护魔法消失了！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="12 0" emotion="normal"/>
+  <Msg name="奈尔" string="这么说来……"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="13 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="不，不要啊！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="13 0" emotion="normal"/>
+  <Msg name="奈尔" string="……来结束这一切吧，莫格瑞。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="meoguri" pos="8 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="感，感觉到能力在消失了……"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" pos="8 0" emotion="stop1"/>
+  <Msg name="莫曼" string="莫格瑞大人，还没有结束！|只要抓住那家伙……！"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop1"/>
+  <Char id="narin" pos="11 0" emotion="normal"/>
+  <Msg name="奈琳, 黑妞" string="奈尔，这里！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="7 0" emotion="stop1"/>
+  <Msg name="奈尔" string="姐姐，你醒啦！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="merman" pos="4 0" emotion="stop1"/>
+  <Char id="meoguri_soldier" pos="11 0" emotion="normal"/>
+  <Char id="meoguri_soldier2" pos="14 0" emotion="normal"/>
+  <Msg name="莫曼" string="不行，一定要抓住他！"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri_soldier" remove="true"/>
+  <Char id="meoguri_soldier2" remove="true"/>
+  <Char id="neoul" pos="9 0" emotion="stop1"/>
+  <Msg name="奈尔" string="都结束了！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="9 0" emotion="stop1"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="奈琳" string="嗯，回地面去吧！"/>
+  <Enter/>
+</Scene>

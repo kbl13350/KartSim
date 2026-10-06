@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Tracing isFixedKart="true" fixedKartId="95" kartId="117" isFixedChar="true" fixedCharId="1" characterId="61" uniformId="0" colorId="4" dyeId="4" characterName="格雷格">
+    <LevelContent level="0" track="moonhill_R04" laps="3" ksv="black_2-15" distance="20" startOffset="1000"/>
+  </Tracing>
+</Root>

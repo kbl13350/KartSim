@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='10.0'
+	BackwardAccelForce='50.0'
+
+	DescBalance= '20'
+	DescStability ='20'
+	DescEngineGrade='1'
+	DescCornering='1'
+	DescEnchantCap = '20'
+/>

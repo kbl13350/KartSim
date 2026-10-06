@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+  <item name="cloud" idx="0" highrank="39"/>
+  <item name="banana" idx="8" highrank="25"/>
+  <item name="shield" idx="10" highrank="22"/>
+  <item name="emp" idx="12" highrank="11"/>
+  <item name="booster" idx="6" highrank="3" midrank="11" lowrank="42"/>
+  <item name="rocket" idx="7" midrank="22" lowrank="8"/>
+  <item name="waterFly" idx="4" midrank="11" lowrank="13"/>
+  <item name="magnet" idx="5" midrank="17" lowrank="20"/>
+  <item name="booster" idx="6" midrank="11" lowrank="42"/>
+  <item name="waterBomb" idx="9" midrank="19" lowrank="10"/>
+  <item name="ufo" idx="3" midrank="6"/>
+  <item name="guideRocket" idx="33" midrank="10" lowrank="7"/>
+  <item name="areaUfo" idx="26" midrank="4"/>
+</items>

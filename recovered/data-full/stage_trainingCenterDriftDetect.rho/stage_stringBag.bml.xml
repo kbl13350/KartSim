@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="useShortDrift">
+    <m c="kr" v="숏 드리프트"/>
+    <m c="cn" v="点漂"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="shortGuide">
+    <m c="kr" v="[color:255 254 227 4]왼쪽[/color] 방향 혹은 [color:255 254 227 4]오른쪽[/color] 방향 드리프트 짧게 입력"/>
+    <m c="cn" v="[color:255 254 227 4]向左[/color]或[color:255 254 227 4]向右[/color]方向轻点漂移键"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="goalInLimitTime">
+    <m c="kr" v="제한 시간 내 완주"/>
+    <m c="cn" v="规定时间内完成"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="CompleteInLimit">
+    <m c="kr" v="제한 시간 내 완료"/>
+    <m c="cn" v="规定时间内完成"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="crashLimit">
+    <m c="kr" v="충돌 횟수 제한"/>
+    <m c="cn" v="撞击次数限制"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="useOptimalDrift">
+    <m c="kr" v="최적화 드리프트"/>
+    <m c="cn" v="最佳化漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="tryOptimalDrift">
+    <m c="kr" v="최적화 드리프트 시도"/>
+    <m c="cn" v="尝试最佳化漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="driftEnd">
+    <m c="kr" v="드리프트 종료 (카운터)"/>
+    <m c="cn" v="结束漂移 (反方向键)"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="optimalGuide1">
+    <m c="kr" v="스키드마크가 평행하도록 드리프트키 입력 감도 조절"/>
+    <m c="cn" v="先按行驶方向按下方向键，再开始漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="optimalGuide2">
+    <m c="kr" v="스키드마크를 평행하게 유지하여 드리프트 탈출"/>
+    <m c="cn" v="保持车胎印迹平行，按反方向键结束漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="useShortFullDrift">
+    <m c="kr" v="숏+풀 드리프트"/>
+    <m c="cn" v="点漂接长漂"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="tryShortDrift">
+    <m c="kr" v="숏 드리프트 시도"/>
+    <m c="cn" v="尝试点漂"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="execFullDrift">
+    <m c="kr" v="풀 드리프트 실행"/>
+    <m c="cn" v="进行长漂"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="shortFullGuide1">
+    <m c="kr" v="[color:255 254 227 4]왼쪽[/color] 혹은 [color:255 254 227 4]오른쪽[/color] 방향 드리프트 짧게 입력"/>
+    <m c="cn" v="[color:255 254 227 4]向左[/color]或[color:255 254 227 4]向右[/color]方向轻点漂移键"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="shortFullGuide2">
+    <m c="kr" v="[color:255 254 227 4]동일 방향[/color]으로 드리프트 추가 실행"/>
+    <m c="cn" v="继续向[color:255 254 227 4]相同方向[/color]追加漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="useCuttingDrift">
+    <m c="kr" v="커팅 드리프트"/>
+    <m c="cn" v="断位漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="tryDrift">
+    <m c="kr" v="드리프트 시도"/>
+    <m c="cn" v="尝试漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="driftEndCutting">
+    <m c="kr" v="드리프트 종료 및 커팅"/>
+    <m c="cn" v="结束漂移及断位漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="cuttingGuide1">
+    <m c="kr" v="[color:255 254 227 4]왼쪽[/color] 혹은 [color:255 254 227 4]오른쪽[/color] 방향 드리프트"/>
+    <m c="cn" v="[color:255 254 227 4]向左[/color]或[color:255 254 227 4]向右[/color]漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="cuttingGuide2">
+    <m c="kr" v="드리프트 진행 중 [color:255 254 227 4]반대[/color] 방향키와 드리프트 [color:255 254 227 4]짧게[/color] 입력"/>
+    <m c="cn" v="漂移过程中，[color:255 254 227 4]轻点反方向键与漂移键[/color]"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="useShortCutDrift">
+    <m c="kr" v="숏커팅 드리프트"/>
+    <m c="cn" v="快拉"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="driftEndShortCut">
+    <m c="kr" v="드리프트 종료 및 숏커팅"/>
+    <m c="cn" v="结束漂移及快拉"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="shortCutGuide2">
+    <m c="kr" v="드리프트 진행 중 [color:255 254 227 4]반대[/color] 방향키 입력 및 [color:255 255 126 0]기존 키입력 유지[/color]"/>
+    <m c="cn" v="漂移过程中，保持原按键的状态下，按下反方向键"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="useDragDrift">
+    <m c="kr" v="끌기 드리프트"/>
+    <m c="cn" v="拖漂"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="execDragDrift">
+    <m c="kr" v="끌기 실행"/>
+    <m c="cn" v="进行拖漂"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="dragGuide2">
+    <m c="kr" v="[color:255 254 227 4]드리프트 방향키 연타[/color]로 끌기 실행 및 유지|Tip: 끌기 전 [color:255 254 227 4]반대 방향키[/color]를 입력하면|더 쉽게 끌기 드리프트를 시작할 수 있습니다."/>
+    <m c="cn" v="通过[color:255 254 227 4]连按漂移方向键[/color]，进行并保持拖漂状态|小贴士：在拖漂前先按一下[color:255 254 227 4]反方向键[/color]，|能更轻松地开始拖漂哦。"/>
+    <m c="tw" v=""/>
+  </k>
+</StringBag>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="寻找黄金指南针"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="多人游戏"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="虽然追到了波诺 雅克布，|但是黄金指南针已经被移交到了波利斯 雅克布那里。|翻遍所有的地方，也要把黄金指南针找出来！"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="多人比赛中，请进行 40km 以上的比赛。|"/>
+  </k>
+</StringBag>

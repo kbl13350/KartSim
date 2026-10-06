@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="promiseEventReward" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" visible="false">
+  <ImageBoard image="returnUser_rewardinfoPopup" windowSize="1262 620" adjust="0 16" align="center" alphaBlend="true">
+    <ImageBoard image="icon_rewardinfo" windowSize="26 26" adjust="520 12" align="left" alphaBlend="true">
+      <Label name="popupNameLbl" windowSize="100 40" adjust="32 -4" align="left" textAlign="left" textRender="outline20" textColor="white" text="#sb(promiseRewardView)"/>
+    </ImageBoard>
+  </ImageBoard>
+  <Window windowSize="1296 743" align="center">
+    <Container name="popupRewardAttachdWnd" leftTopTex="30 142"/>
+    <Container name="popupSpecialAttachWnd" leftTopTex="1080 196"/>
+    <Container leftTopTex="1080 196">
+      <Label windowSize="180 20" align="top" adjust="2 -60" text="#sb(promiseSpecialReward)" textColor="255 42 55 80" textRender="bold16" textAlign="center"/>
+      <Panel windowSize="128 20" align="top" adjust="26 -30" texture="returnUser_dayBg" alphaBlend="true" alphaTest="true">
+        <ColorLabel windowSize="128 20" align="center" text="#sb(previewLoginDays)" textRender="bold14" textColor="255 255 255 255" textAlign="center"/>
+      </Panel>
+    </Container>
+  </Window>
+  <ImageButton name="exitBtn" windowSize="38 38" adjust="602 -270" align="center" autoLoadImage="btn_close_" alphaBlend="true"/>
+</Panel>

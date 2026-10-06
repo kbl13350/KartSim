@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='148.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.076'
+	SteerConstraint='3.2'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.063'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.69'
+	TransformTime='700'
+
+	StartForwardAccelFactorItem = '1.25'
+	StartBoosterTimeItem='1200'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	EnvMap='1'
+
+	SpecialSlotCapacity='2'
+
+	WheelFixed = 'true'
+	WheelPosition='0.8'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zeroplus'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+	FirePort0='mod5a'
+	FirePort1='mod5b'
+
+	TailLampSize='0.2'
+	TailLampColor='0 253 43 253'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '43'
+	DescStability ='45'
+	DescEngineGrade='1.2'
+	DescCornering='3'
+	DescEnchantCap = '30'
+
+/>
+
+<!-- 중국 골든 스켈레톤Z7 20110721 가샤폰 레어 -->

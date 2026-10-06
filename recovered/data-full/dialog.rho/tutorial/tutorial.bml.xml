@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="tutorial" windowRect="0 0 760 434" frame="CaptionDialog" caption="#sb(title)" captionPos="0 1" captionColor="black" align="center" setCloseButton="ok">
+  <Container name="context" windowRect="0 -2 746 328" align="hcenter"/>
+  <StateButton name="gotoShop" windowSize="93 26" adjust="380 123" iconSet="메인메뉴구입@zz"/>
+  <Container name="buttonGroup1" windowRect="0 0 360 45" align="hcenter;bottom" visible="false">
+    <TextButton name="prev" windowSize="132 40" adjust="-70 0" align="center" text="#sb(previous)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+    <TextButton name="ok" windowSize="132 40" adjust="70 0" align="center" text="#sb(ok)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+  </Container>
+  <Container name="buttonGroup" windowRect="0 0 360 45" align="hcenter;bottom">
+    <TextButton name="prev" windowSize="132 40" align="center" adjust="-140 0" text="#sb(previous)" altTextRender="outline" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    <TextButton name="next" windowSize="132 40" align="center" text="#sb(next)" altTextRender="outline" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    <TextButton name="ok" windowSize="132 40" align="center" adjust="140 0" text="#sb(close)" altTextRender="outline" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+  </Container>
+</CaptionWindow>

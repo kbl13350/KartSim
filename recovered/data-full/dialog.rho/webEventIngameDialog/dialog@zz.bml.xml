@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="captionWindow" windowSize="10 10" adjust="0 13" frame="CaptionDialog" captionPos="0 1" captionColor="black" caption="#sb(webDialog)" align="center">
+  <Label windowSize="200 20" adjust="0 8" text="#sb(enterESC)" autoSizing="true" textColor="255 0 0 0" align="hcenter;bottom" textRender="bold"/>
+  <StringBag>
+    <k n="webDialog">
+      <m c="kr" v="웹 이벤트"/>
+    </k>
+  </StringBag>
+</CaptionWindow>

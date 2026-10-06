@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowRect="0 0 338 592" caption="#sb(riderInfo)" frame="CaptionDialog" align="center" setCloseButton="okButton">
+  <Panel leftTopTex="0 10" align="hcenter" texture="img_characterBG" alphaBlend="true"/>
+  <Window name="main" windowRect="0 0 258 300" frame="DefaultEdit" visible="false"/>
+  <Window name="tempShopPreview" windowRect="0 10 302 276" align="hcenter"/>
+  <Container name="emblemBox" windowRect="7 15 257 38">
+    <Panel name="glove" windowRect="3 -2 35 30" uvRect="0 0 32 32" alphaBlend="true" visible="false"/>
+    <Panel windowRect="2 4 38 40" texture="img_slotEmblemBG" alphaBlend="true">
+      <Panel name="mainEmblem0" windowRect="0 0 36 36" align="center" texture="basicAiEmblem" alphaBlend="true"/>
+    </Panel>
+    <Panel windowRect="2 42 38 78" texture="img_slotEmblemBG" alphaBlend="true">
+      <Panel name="mainEmblem1" windowRect="0 0 36 36" align="center" alphaBlend="true" visible="false"/>
+    </Panel>
+    <Panel windowRect="2 80 38 116" texture="img_slotEmblemBG" alphaBlend="true">
+      <Panel name="mainEmblem2" windowRect="0 0 36 36" align="center" alphaBlend="true" visible="false"/>
+    </Panel>
+  </Container>
+  <Panel leftTopTex="0 288" align="hcenter" texture="popup_profileTextBg" alphaBlend="true"/>
+  <Label name="static" windowRect="26 300 308 450" align="hcenter" multiLine="true" autoWrap="true" lineGap="3" text="ai설명바꾸세요" textRender="bold14" textColor="255 88 105 129"/>
+  <Container windowRect="4 -22 148 30" align="hcenter;bottom">
+    <Window windowRect="0 -10 302 -9" frame="VSection" align="hcenter"/>
+    <TextButton name="okButton" windowRect="0 0 140 42" align="center" text="#sb(ok)" textRender="bold14"/>
+  </Container>
+</CaptionWindow>

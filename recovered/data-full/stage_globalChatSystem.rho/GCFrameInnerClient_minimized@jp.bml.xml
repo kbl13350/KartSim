@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="chatWindow" windowRect="760 346 800 405">
+  <Panel name="chatInGameMini" windowSize="37 62" align="right;vcenter" texture="side_small_back_img" alphaBlend="true">
+    <ImageButton name="mainWindowClose" windowSize="20 20" align="hcenter" adjust="2 34" autoLoadImage="b_close_" alphaBlend="true" altTextRender="outline" altText="#sb(chat_close)" altRelativePos="-30 -30" altRelativeLegAdj="20 -16"/>
+    <ImageButton name="maximize" windowSize="20 20" align="hcenter" adjust="2 10" autoLoadImage="b_maximize_" alphaBlend="true" altTextRender="outline" altText="#sb(chat_maximize)" altRelativePos="-30 -30" altRelativeLegAdj="20 -16"/>
+  </Panel>
+</Container>

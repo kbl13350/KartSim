@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="wkc1"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="这次比赛我也要获胜！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="皮蛋！还记得上次给你忠告的那个车手吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="就是那个傲气冲天的车手？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="恩，听别人说..他就是…|持有世界锦标赛最多冠军记录的传说中的天才赛车手！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="传说中的天才赛车手？那个傲气冲天的车手？|哇哈哈哈！看来他被我的实力吓到了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="racer1" pos="8 0" emotion="stop1"/>
+  <Msg name="骑士" string="第一场比赛获胜就那么高兴啊？|还是小心为好，比赛才刚刚开始！"/>
+  <Enter/>
+  <Char id="racer1" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="哎呀，被我的实力吓到的人真不少啊！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Msg name="黑妞" string="皮蛋…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="这次也让你们见识一下我的实力！"/>
+  <Enter/>
+</Scene>

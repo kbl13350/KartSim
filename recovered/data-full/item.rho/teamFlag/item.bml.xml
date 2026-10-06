@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="flag">
+  <state name="Stay" life="0" item="zoneFlag"/>
+  <state name="Eaten" life="500" fired="fired01" firedFx="eaten"/>
+  <state name="Hang" life="0" fired="GreenFlag_kart"/>
+  <state name="Drop" life="1500" item="GreenFlag" itemFx="drop"/>
+  <state name="Reset" life="2000"/>
+  <state name="Stay" life="0" item="zoneFlag"/>
+  <state name="Eaten" life="500" fired="fired01" firedFx="eaten"/>
+  <state name="Hang" life="0" fired="GreenFlag_kart"/>
+  <state name="Drop" life="1500" item="GreenFlag" itemFx="drop"/>
+  <state name="Reset" life="2000"/>
+  <state name="Stay" life="0" item="zoneFlag"/>
+  <state name="Eaten" life="500" fired="fired01" firedFx="eaten"/>
+  <state name="Hang" life="0" fired="GreenFlag_kart"/>
+  <state name="Drop" life="1500" item="GreenFlag" itemFx="drop"/>
+  <state name="Reset" life="2000"/>
+</item>

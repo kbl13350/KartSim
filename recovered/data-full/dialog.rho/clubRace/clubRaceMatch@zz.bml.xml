@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Container name="b800" leftTopWH="0 0 800 600" visible="false">
+    <Panel leftTopTex="0 0" texture="매칭_800x600_01@zz"/>
+    <Panel leftTopTex="512 0" texture="매칭_800x600_02@zz"/>
+    <Panel leftTopTex="0 512" texture="매칭_800x600_03@zz"/>
+    <Panel leftTopTex="512 512" texture="매칭_800x600_04@zz"/>
+    <ColorLabel name="matching" windowSize="100 20" adjust="5 5" align="right;bottom" text="#sb(grandprixMatching)" textColor="yellow"/>
+    <ImageButton name="cancelMatch" windowSize="26 18" adjust="5 5" align="right;top" autoLoadImage="btn_닫기" alphaBlend="true"/>
+  </Container>
+  <Container name="b1024" leftTopWH="112 112 800 600" visible="false">
+    <Panel leftTopTex="0 0" texture="매칭_800x600_01@zz"/>
+    <Panel leftTopTex="512 0" texture="매칭_800x600_02@zz"/>
+    <Panel leftTopTex="0 512" texture="매칭_800x600_03@zz"/>
+    <Panel leftTopTex="512 512" texture="매칭_800x600_04@zz"/>
+    <ColorLabel name="matching" windowSize="100 20" adjust="10 10" align="right;bottom" text="#sb(grandprixMatching)" textColor="yellow"/>
+    <ImageButton name="cancelMatch" windowSize="26 18" adjust="10 10" align="right;top" autoLoadImage="btn_닫기" alphaBlend="true"/>
+  </Container>
+</Panel>

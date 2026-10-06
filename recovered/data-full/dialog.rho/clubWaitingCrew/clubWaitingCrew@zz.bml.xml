@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <CaptionWindow leftTopWH="0 0 650 700" frame="CaptionDialog" align="center" caption="#sb(requestClubJoin)">
+    <Window name="waitingCrewLists" leftTopWH="10 10 600 580" frame="GrayInputBox">
+      <GridSelector name="storageGridSelector" leftTopWH="10 10 580 300" alignStyle="horizontal" alignSize="1" maxLine="10" alignMargin="9 3" clientMargin="0 0 0 0">
+        <Window name="waitingCrew_0" leftTopWH="20 20 400 50"/>
+        <Window name="waitingCrew_1" leftTopWH="20 80 400 50"/>
+        <Window name="waitingCrew_2" leftTopWH="20 140 400 50"/>
+        <Window name="waitingCrew_3" leftTopWH="20 200 400 50"/>
+        <Window name="waitingCrew_4" leftTopWH="20 260 400 50"/>
+        <Window name="waitingCrew_5" leftTopWH="20 320 400 50"/>
+        <Window name="waitingCrew_6" leftTopWH="20 380 400 50"/>
+        <Window name="waitingCrew_7" leftTopWH="20 440 400 50"/>
+        <Window name="waitingCrew_8" leftTopWH="20 500 400 50"/>
+        <Window name="waitingCrew_9" leftTopWH="20 560 400 50"/>
+      </GridSelector>
+    </Window>
+    <Container leftTopWH="10 554 600 30">
+      <Label name="page" leftTopWH="0 0 60 11" text="0 / 0" align="center" textAlign="center" textRender="bold16" textColor="255 42 55 80" autoSizing="true" enable="false"/>
+      <ImageButton name="prevPage" leftTopWH="0 0 240 24" align="bottom,hcenter" adjust="-170 3" frame="BorderLineStaticButton" arrowDir="left" alphaBlend="true" arrowColor="255 85 100 122" overArrowColor="255 179 195 228" clickedArrowColor="255 84 100 129" disabledArrowColor="255 125 125 125"/>
+      <ImageButton name="nextPage" leftTopWH="0 0 240 24" align="bottom,hcenter" adjust="170 3" frame="BorderLineStaticButton" arrowDir="right" alphaBlend="true" arrowColor="255 85 100 122" overArrowColor="255 179 195 228" clickedArrowColor="255 84 100 129" disabledArrowColor="255 125 125 125"/>
+      <TextButton name="ok" leftTopWH="0 50 130 40" adjust="0 0" align="hcenter" text="#sb(ok)" textRender="bold16" alphaBlend="true" visible="true"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

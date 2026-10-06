@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="dao" pos="7.5 0" emotion="stop1"/>
+  <Msg name="다오" string="안녕~! 난 다오라고 해.|붐힐 마을의 최고의 라이더지!"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop2"/>
+  <Msg name="다오" string="하핫. 사실 아직까지는 아니고… 곧 그렇게 될거야!"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="normal"/>
+  <Msg name="다오" string="나는 지금 아버지를 도와 붐힐 마을에 우유배달하는 일을 하고 있어.|우유배달을 하면서 처음으로 카트를 타는법을 배웠지."/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop2"/>
+  <Msg name="다오" string="처음에는 카트 운전이 서툴러서 사고도 많이 내고, 아버지께 꾸중도 많이 들었지만.|지금은 꼬불꼬불 복잡한 산길도 거침없이 달릴 수 있는 운전실력을 가지고 있다구!"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop7"/>
+  <Msg name="다오" string="카트를 타고 길게 뻗은 도로를 힘껏 내달리거나... |커브길을 아찔하게 돌아 내려올때면…|가슴속 깊은곳에서 심장이 마구 고동치는 듯한 기분이 들기도해. "/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop1"/>
+  <Msg name="다오" string="혹시 너도 그런 기분을 느껴본적 있니?"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="normal"/>
+  <Msg name="다오" string="느껴본 적이 없다고? |음.. 이거 실망인데? |너라면 이해해줄 수 있을것 같았는데…"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop7"/>
+  <Msg name="다오" string="그건 그렇고 말이야. 얼마전 커다란 사건이 있었어!|어제 붐힐 시장에 우유배달을 갔었는데 말이야. |붐힐 마을 레이싱대회가 열린다는 포스터가 붙어 있더라구."/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop1"/>
+  <Msg name="다오" string="3년 마다 열리는 커다란 행사인데, |이때가 되면 붐힐 마을의 최고의 라이더들을 한자리에서 모두 볼 수 있는 자리이기도해."/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop6"/>
+  <Msg name="다오" string="그 포스터를 보고 얼마나 가슴이 뛰던지… |최고의 라이더들을 가까이서 보고 싶은 마음에 |나도 모르게 접수처로 달려가 대회 출전 등록을 해버렸지 모야."/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop2"/>
+  <Msg name="다오" string="이 일때문에 아버지한테 많이 꾸중을 듣기도 했지만, |조르고 졸라 결국에는 아버지에게 출전해도 좋다는 승락을 받아냈어."/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="normal"/>
+  <Msg name="다오" string="마을 사람들은 우리 아버지도 예전엔 대회에 많이 출전하셨던 유명한 라이더라고 하시던데, |어찌된 일인지 난 지금까지 아버지가 카트를 타시는 모습을 한번도 본적이 없어."/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop5"/>
+  <Msg name="다오" string="아차차! |지금 시간이 어떻게나 됐지?"/>
+  <Enter/>
+  <Shake time="1000"/>
+  <Char id="dao" pos="7.5 0" emotion="stop6"/>
+  <Msg name="다오" string="헉! |카트연습시간을 할 시간이 넘어버렸자나!"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop1"/>
+  <Msg name="다오" string="오늘부터 카트대회 출전을 위해 맹연습을 시작 하기로 했거든. |오늘 못한 이야기는 다음에 만나면 또 하기로해!"/>
+  <Enter/>
+  <Char id="dao" pos="7.5 0" emotion="stop2"/>
+  <Msg name="다오" string="그럼 안녕! 난 이제 연습하러 간다~!"/>
+  <Enter/>
+</Scene>

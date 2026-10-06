@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window windowSize="240 220" align="hcenter">
+  <ItemWindow name="itemWindow" windowSize="444 247" align="center" adjust="3 -30" viewSizeAdjust="308 147" zoomAdjust="0.5">
+    <ImageBoard name="mixLimitCountPanel" leftTopWH="274 5 168 24" image="mix_img_limittextbg" alphaBlend="true" visible="false">
+      <Label name="mixLimitCountLabel" text="#sb(mixLimitCount)" windowSize="168 24" adjust="0 -1" textColor="255 255 255 255" textRender="bold14" textAlign="center"/>
+    </ImageBoard>
+  </ItemWindow>
+  <Panel name="emblemPanel" windowSize="51 51" adjust="0 10" alphaBlend="true" visible="false" align="center"/>
+  <Panel name="disableIcon" windowSize="23 23" adjust="111 6" texture="mix_img_notice_info" alphaBlend="true" visible="true" altRelativePos="0 -40"/>
+  <Label name="itemNameLabel" windowSize="134 27" adjust="55 212" textColor="255 255 255 255" textRender="bold14" textAlign="center"/>
+  <Label name="countPeriodLabel" windowSize="134 27" adjust="55 232" textColor="255 255 255 255" textRender="bold14" textAlign="center"/>
+</Window>

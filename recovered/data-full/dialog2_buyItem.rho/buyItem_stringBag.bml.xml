@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="itemName">
+    <m c="kr" v="아이템 이름"/>
+    <m c="jp" v="アイテム名"/>
+    <m c="cn" v="道具名称"/>
+    <m c="tw" v="道具名稱"/>
+    <m c="us" v="Item Name"/>
+    <m c="vn" v="Tên vật phẩm"/>
+    <m c="ru" v="Название"/>
+    <m c="id" v="Nama Item"/>
+    <m c="th" v="ชื่อไอเทม"/>
+  </k>
+  <k n="itemPrice">
+    <m c="kr" v="아이템 가격"/>
+    <m c="jp" v="アイテム価格"/>
+    <m c="cn" v="道具价格"/>
+    <m c="tw" v="道具價格"/>
+    <m c="us" v="Item Price"/>
+    <m c="vn" v="Giá vật phẩm"/>
+    <m c="ru" v="Цена"/>
+    <m c="id" v="Harga Item"/>
+    <m c="th" v="ราคาไอเทม"/>
+  </k>
+  <k n="cash">
+    <m c="kr" v="캐시"/>
+    <m c="cn" v="个"/>
+    <m c="tw" v="樂豆點"/>
+  </k>
+  <k n="myCash">
+    <m c="kr" v="현재 캐시"/>
+    <m c="cn" v="我的电池"/>
+    <m c="tw" v="我的樂豆點"/>
+  </k>
+  <k n="cashAfterBuying">
+    <m c="kr" v="구입 후 캐시"/>
+    <m c="jp" v="購入後のNP"/>
+    <m c="cn" v="剩余电池"/>
+    <m c="tw" v="購買後剩餘樂豆點"/>
+    <m c="us" v="Nexon Cash Left"/>
+    <m c="vn" v="Trả Vcoin"/>
+    <m c="ru" v="Остаток"/>
+    <m c="id" v="Sisa G-cash setelah membeli"/>
+    <m c="th" v="DE คงเหลือ"/>
+  </k>
+  <k n="myLucci">
+    <m c="kr" v="현재 루찌"/>
+    <m c="cn" v="我的金币"/>
+    <m c="tw" v="我的LUCCI"/>
+  </k>
+  <k n="lucciAfterBuying">
+    <m c="kr" v="구입 후 루찌"/>
+    <m c="jp" v="購入後のルッチ"/>
+    <m c="cn" v="剩余金币"/>
+    <m c="tw" v="購買後剩餘LUCCI"/>
+    <m c="us" v="Lucci Remaining"/>
+    <m c="vn" v="Lucci còn lại"/>
+    <m c="ru" v="Остаток Луцци"/>
+    <m c="id" v="Sisa Lucci setelah membeli"/>
+    <m c="th" v="Lucci คงเหลือ"/>
+  </k>
+  <k n="myLuccon">
+    <m c="kr" v="현재 루콘"/>
+  </k>
+  <k n="lucconAfterBuying">
+    <m c="kr" v="구입 후 루콘"/>
+    <m c="jp" v="購入後のルコン"/>
+    <m c="cn" v="剩余幸运币"/>
+    <m c="tw" v="購買後剩LUCCON"/>
+    <m c="ru" v="Купоны после покупки"/>
+    <m c="id" v="Sisa Lucon setelah membeli"/>
+    <m c="th" v="Luccon คงเหลือ"/>
+    <m c="vn" v="Luccon còn lại"/>
+  </k>
+  <k n="askBuy">
+    <m c="kr" v="상점에서 구매한 상품은 취소가 되지 않습니다.|내용을 신중히 확인하신 후 구매해주세요."/>
+    <m c="cn" v="要兑换所选道具吗？|请在阅读并同意用户协议后进行兑换。适当娱乐，理性消费。"/>
+    <m c="tw" v="在商城購買商品後,無法取消。|請仔細確認購買內容後在購買"/>
+  </k>
+  <k n="infoGachaProbPage">
+    <m c="kr" v="캐시 판매 아이템의 확률 정보는 웹페이지 &gt; 확률형 아이템 페이지에서 확인 가능합니다."/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="initialWarning">
+    <m c="kr" v="(구입한 이니셜은 모든 번호판에 적용됩니다.)"/>
+    <m c="jp" v="(購入したイニシャルはすべてのナンバープレートに適用されます。)"/>
+    <m c="cn" v="兑换的车牌文字可以在所有显示牌上显示"/>
+    <m c="tw" v="購買的車牌可以顯示在所有車體上"/>
+    <m c="us" v="(Initials you have chosen will apply to all license plates.)"/>
+    <m c="vn" v="Tên của người mua sẽ được ghi lên tất cả các vật phẩm"/>
+    <m c="ru" v="(Выбранные инициалы будут применены ко всем номерным знакам.)"/>
+    <m c="id" v="(Initial yang dibeli akan berlaku untuk semua Plat Nomor.)"/>
+    <m c="th" v="(เปลี่ยนชื่อป้ายทะเบียนรถ)"/>
+  </k>
+  <k n="rechargeCash">
+    <m c="kr" v="캐시 충전하기"/>
+    <m c="jp" v="NPチャージ"/>
+    <m c="cn" v="电池兑换"/>
+    <m c="tw" v="儲值樂豆點點數"/>
+    <m c="us" v="Charge Nexon Cash"/>
+    <m c="vn" v="Nạp Vcoin"/>
+    <m c="ru" v="Внести деньги"/>
+    <m c="id" v="Isi G-cash"/>
+    <m c="th" v="เติม DE"/>
+  </k>
+  <k n="buy">
+    <m c="kr" v="구입"/>
+    <m c="jp" v="購入"/>
+    <m c="cn" v="兑换"/>
+    <m c="tw" v="我同意"/>
+    <m c="us" v="Buy"/>
+    <m c="vn" v="Mua"/>
+    <m c="ru" v="Купить"/>
+    <m c="id" v="Beli"/>
+    <m c="th" v="ซื้อ"/>
+  </k>
+  <k n="cancel">
+    <m c="kr" v="취소"/>
+    <m c="jp" v="取消"/>
+    <m c="cn" v="取消"/>
+    <m c="tw" v="我不同意"/>
+    <m c="us" v="Cancel"/>
+    <m c="th" v="ยกเลิก"/>
+    <m c="vn" v="Hủy bỏ"/>
+    <m c="ru" v="Отменить"/>
+    <m c="id" v="Batal"/>
+  </k>
+  <k n="unknown">
+    <m c="kr" v="알수없음"/>
+    <m c="jp" v="不明"/>
+    <m c="cn" v="未知"/>
+    <m c="tw" v="取消"/>
+    <m c="us" v="Unknown"/>
+    <m c="vn" v="Không rõ"/>
+    <m c="ru" v="Неизвестно"/>
+    <m c="id" v="Tidak diketahui"/>
+    <m c="th" v="ไม่ปรากฏข้อมูล"/>
+  </k>
+  <k n="buyItem">
+    <m c="kr" v="아이템 구입"/>
+    <m c="jp" v="アイテム購入"/>
+    <m c="cn" v="获得活动道具"/>
+    <m c="tw" v="確定購買道具"/>
+    <m c="us" v="Buy Item(s)"/>
+    <m c="vn" v="Mua vật phẩm"/>
+    <m c="ru" v="Купить предмет"/>
+    <m c="id" v="Membeli Item"/>
+    <m c="th" v="ซื้อไอเทม"/>
+  </k>
+  <k n="buyItemWarning">
+    <m c="kr" v="* 구입하시기 전에 선물함 아이템 보유 유무 및 아이템의 기한과 수량을 꼭 확인하여 주십시오. |* [구입확정함]에서 구입확정 후 아이템 사용이 가능합니다. 구입 후 7일 기간 내 구입취소를 할 수 있습니다.|* 구입 후 7일 이내에 구입확정 또는 취소를 하지 않은 경우, 내 아이템으로 자동 수령됩니다.|* 판매기간이 한정된 아이템의 경우 판매기간이 지나면 구입취소가 불가능 합니다.|* 일부 아이템은 구입 후 구입취소가 불가능 합니다."/>
+    <m c="jp" v="* 購入する前にギフトアイテムを保有していないか、アイテムの期間と数を必ずご確認ください。"/>
+    <m c="cn" v="根据用户协议，兑换了该商品后将无法取消或退还。|您确定要兑换该商品吗？"/>
+    <m c="tw" v="購買後的道具無法取消購買或退費！ 請問是否要購買？"/>
+    <m c="us" v="Buying this item will cost Lucci. Continue?"/>
+    <m c="vn" v="Bạn muốn mua vật phẩm này chứ?"/>
+    <m c="ru" v="Вернуть купленный предмет будет |нельзя. Продолжить?"/>
+    <m c="id" v="*Periksa jumlah dan durasi item sebelum membeli."/>
+    <m c="th" v="ไอเทมที่ซื้อแล้ว คืนหรือยกเลิกไม่ได้|กรุณากดยืนยันเพื่อซื้อ"/>
+  </k>
+  <k n="duplicateItemError1">
+    <m c="kr" v="상품에 들어있는 아이템 중 아래와 같은 아이템을 이미 가지고 있으므로, 상품을 구입할 수 없습니다."/>
+    <m c="jp" v="商品に入っているアイテムの中で、下記のアイテムはすでに持っているので、商品を購入できません。"/>
+    <m c="cn" v="您已拥有下列道具，无法再兑换"/>
+    <m c="tw" v="目前已擁有此項道具, 因此無法購買。"/>
+    <m c="us" v="You cannot buy the following items as you already possess them. Please make another selection."/>
+    <m c="vn" v="Bạn đã chọn mua vật phẩm này rồi."/>
+    <m c="ru" v="У вас уже есть один из предметов комплекта, поэтому покупка комплекта невозможна."/>
+    <m c="id" v="Tidak dapat membeli item karena sudah memiliki item yang sama"/>
+    <m c="th" v="คุณมีไอเทมนี้อยู่แล้ว ไม่สามารถซื้อซ้ำได้"/>
+  </k>
+  <k n="duplicateItemError2">
+    <m c="kr" v="이 상품을 구입하시려면 먼저 차고에서 중복되는 아이템을 버려주세요."/>
+    <m c="jp" v="この商品を購入するには、まずガレージにある重複するアイテムを捨ててください。"/>
+    <m c="cn" v="想要兑换此道具，请先在车库中丢弃重复的道具"/>
+    <m c="tw" v="若要購買此道具請先到車庫內將重複的道具刪除."/>
+    <m c="us" v="You already have the selected items in your Garage. Please discard them before buying new ones."/>
+    <m c="vn" v="Để mua được vật phẩm này, hãy hủy bỏ vật phẩm tương tự có trong túi đồ của bạn."/>
+    <m c="ru" v="Для того чтобы купить этот предмет необходимо выбросить старый."/>
+    <m c="id" v="Jika ingin membeli item ini silahkan membuang item yang sama di bagasi terlebih dahulu."/>
+    <m c="th" v="ถ้าต้องการซื้อไอเทมนี้ กรุณาเลือกทิ้งไอเทมที่ซ้ำออกก่อน"/>
+  </k>
+  <k n="askRechargeCash">
+    <m c="kr" v="캐시가 부족합니다. 캐시 충전 페이지로 이동할까요?"/>
+    <m c="jp" v="NPが足りません。NPチャージページに移動しますか？"/>
+    <m c="cn" v="电池不足，是否要移动到兑换页面？"/>
+    <m c="tw" v="樂豆點點數不足！是否要前往樂豆點儲值頁面？"/>
+    <m c="us" v="Not enough Nexon Cash. Do you wish to visit the website to charge Nexon Cash?"/>
+    <m c="vn" v="Không đủ Vcoin. Bạn muốn chuyển sang trang nạp Vcoin không?"/>
+    <m c="ru" v="У вас не хватает денег. Перейти к странице внесения денег?"/>
+    <m c="id" v="G-cash kamu kurang.Ingin ke halaman Isi G-Cash?"/>
+    <m c="th" v="คุณมีเงิน DE ไม่พอ|ต้องการเติมเงิน DE ตอนนี้ใช่หรือไม่"/>
+  </k>
+  <k n="modifyInitial">
+    <m c="kr" v="이니셜 변경"/>
+    <m c="jp" v="イニシャル変更"/>
+    <m c="cn" v="变更车牌文字"/>
+    <m c="tw" v="變更車牌代碼"/>
+    <m c="us" v="Change initials"/>
+    <m c="vn" v="Thay đổi tên"/>
+    <m c="ru" v="Сменить инициалы"/>
+    <m c="id" v="Mengubah Initial"/>
+    <m c="th" v="เปลี่ยนชื่อป้ายทะเบียนรถ"/>
+  </k>
+  <k n="buyInitialBrief">
+    <m c="kr" v="이니셜 변경 %d캐시"/>
+    <m c="jp" v="イニシャル変更%dNP"/>
+    <m c="cn" v="变更车牌文字%d电池"/>
+    <m c="tw" v="變更車牌代碼%d樂豆點"/>
+    <m c="us" v="Change initials %d Cash"/>
+    <m c="vn" v="Thay đổi tên bằng Vcoin %d"/>
+    <m c="ru" v="Сменить инициалы за %d руб."/>
+    <m c="id" v="Mengubah Initial %d G-cash"/>
+    <m c="th" v="DE %d เปลี่ยนชื่อป้ายทะเบียนรถ"/>
+  </k>
+  <k n="modifyInitialWarning">
+    <m c="kr" v="이니셜을 변경하게 되면 기존의 이니셜은 더 이상 사용할 수 없습니다. 정말 이니셜을 변경하시겠습니까?"/>
+    <m c="jp" v="イニシャルを変更すると、これまでのイニシャルは使用できなくなります。本当にイニシャルを変更しますか？"/>
+    <m c="cn" v="变更车牌文字后就不能再使用目前的车牌文字了，要继续吗？"/>
+    <m c="tw" v="變更車牌代碼後，將無法再使用目前的車牌代碼，是否要繼續？"/>
+    <m c="us" v="You cannot use your old initials once you change them. Do you still wish to change your initials?"/>
+    <m c="vn" v="Nếu tên bị thay đổi thì sẽ không thể sử dụng tên này được nữa. Bạn có chắc chắn muốn thay đổi tên không?"/>
+    <m c="ru" v="Если сменить инициалы, прежние использовать нельзя. Вы правда хотите сменить инициалы?"/>
+    <m c="id" v="Jik mengubah initial tidak dapat menggunakan initial yang lama.Yakin ingin mengubah initial?"/>
+    <m c="th" v="ถ้าเปลี่ยนชื่อแล้ว จะไม่สามารถเปลี่ยนเป็นชื่อเดิมได้อีก"/>
+  </k>
+  <k n="selectStr">
+    <m c="kr" v="선택해주세요"/>
+    <m c="jp" v="選択してください"/>
+    <m c="cn" v="选择期限"/>
+    <m c="tw" v="請選擇期限"/>
+    <m c="us" v="Select One"/>
+    <m c="vn" v="Số ngày muốn mua"/>
+    <m c="ru" v="Выбрать"/>
+    <m c="id" v="Silahkan memilih"/>
+    <m c="th" v="กรุณาเลือก"/>
+  </k>
+  <k n="selectError">
+    <m c="kr" v="구매하려는 상품을 선택해 주시기 바랍니다."/>
+    <m c="jp" v="購入する商品を選択してください。"/>
+    <m c="cn" v="请选择要兑换道具的使用期限"/>
+    <m c="tw" v="請選擇想要購買的道具使用期限"/>
+    <m c="us" v="Please select the items you wish to purchase. "/>
+    <m c="vn" v="Xin bạn hãy chọn món hàng mà mình muốn mua."/>
+    <m c="ru" v="Выберите желаемый предмет"/>
+    <m c="id" v="Silahkan memilih item yang ingin dibeli."/>
+    <m c="th" v="กรุณาเลือกไอเทมที่ต้องการซื้อ"/>
+  </k>
+  <k n="goodsName">
+    <m c="kr" v="상품명"/>
+    <m c="jp" v="商品名"/>
+    <m c="cn" v="道具名称"/>
+    <m c="tw" v="道具名稱"/>
+    <m c="us" v="Goods name"/>
+    <m c="vn" v="Tên vật phẩm:"/>
+    <m c="ru" v="Название предмета"/>
+    <m c="id" v="Nama Item"/>
+    <m c="th" v="ชื่อไอเทม"/>
+  </k>
+  <k n="goodsPrice">
+    <m c="kr" v="상품 가격"/>
+    <m c="jp" v="商品価格"/>
+    <m c="cn" v="道具价格"/>
+    <m c="tw" v="道具價格"/>
+    <m c="us" v="Goods price"/>
+    <m c="vn" v="Giá vật phẩm:"/>
+    <m c="ru" v="Цена"/>
+    <m c="id" v="Harga Item"/>
+    <m c="th" v="ราคาไอเทม"/>
+  </k>
+  <k n="paymentMethod">
+    <m c="kr" v="구입 방법"/>
+    <m c="jp" v="購入方法"/>
+    <m c="cn" v="兑换方式"/>
+    <m c="tw" v="購買方式"/>
+    <m c="vn" v="Trả bằng"/>
+    <m c="ru" v="Способ приобретения"/>
+    <m c="id" v="Cara Pembelian"/>
+    <m c="th" v="วิธีการซื้อ"/>
+  </k>
+  <k n="deficitCash">
+    <m c="kr" v="캐시가 부족합니다."/>
+    <m c="jp" v="NPが足りません。"/>
+    <m c="id" v="G-cash kurang"/>
+  </k>
+  <k n="deficitLucci">
+    <m c="kr" v="루찌가 부족합니다."/>
+    <m c="jp" v="ルッチが足りません。"/>
+    <m c="id" v="Lucci kurang"/>
+  </k>
+  <k n="notRefundableWarningMsg">
+    <m c="kr" v="해당 상품은 구입 후 청약 철회가 불가능한 상품입니다. 선택한 아이템을 구입하시겠습니까?"/>
+  </k>
+  <k n="myKoin">
+    <m c="kr" v="현재 코인"/>
+    <m c="cn" v="我的酷币"/>
+    <m c="tw" v="我的KOIN"/>
+  </k>
+  <k n="koinAfterBuying">
+    <m c="kr" v="구입 후 코인"/>
+    <m c="cn" v="剩余酷币"/>
+    <m c="tw" v="購物後KOIN"/>
+  </k>
+  <k n="seasonPassBuyHelp">
+    <m c="kr" v="[일반/프리미엄/럭셔리 패스 레벨에만 적용되며,|구입 확정함에 보관된 수량은 포함되지 않습니다.]"/>
+    <m c="cn" v="[只适用于一般/豪华/奢华通行证等级。]"/>
+    <m c="tw" v="[只套用在一般/高級/華麗通行證等級]"/>
+  </k>
+  <k n="userStep">
+    <m c="kr" v="현재 패스 LV %s"/>
+    <m c="cn" v="目前等级%s"/>
+    <m c="tw" v="目前通行證LV %s"/>
+  </k>
+  <k n="userStepAfterBuying">
+    <m c="kr" v="구입 후 패스 LV %s"/>
+    <m c="cn" v="兑换后等级%s"/>
+    <m c="tw" v="購買後通行證LV %s"/>
+  </k>
+  <k n="userStepSpecialPass">
+    <m c="kr" v="현재 스페셜 패스 LV %s"/>
+    <m c="cn" v="目前特殊等级%s"/>
+    <m c="tw" v="目前通行證LV %s"/>
+  </k>
+  <k n="userStepAfterBuyingSpecialPass">
+    <m c="kr" v="구입 후 스페셜 패스 LV %s"/>
+    <m c="cn" v="兑换后特殊等级%s"/>
+    <m c="tw" v="購買後通行證LV %s"/>
+  </k>
+  <k n="max">
+    <m c="kr" v="MAX"/>
+    <m c="cn" v="最大值"/>
+    <m c="tw" v="MAX"/>
+  </k>
+  <k n="myPassPoint">
+    <m c="kr" v="%d / %d"/>
+    <m c="cn" v="%d / %d"/>
+    <m c="tw" v="%d / %d"/>
+  </k>
+  <k n="targetPointAfterBuying">
+    <m c="kr" v=" / %d"/>
+    <m c="cn" v=" / %d"/>
+    <m c="tw" v=" / %d"/>
+  </k>
+  <k n="returnMissionItemGuide_text">
+    <m c="kr" v="소원의 정수는 소원을 변경하거나 즉시 달성에 소모됩니다."/>
+    <m c="cn" v="更换心愿或立即达成心愿时会消耗心愿精粹。"/>
+  </k>
+</StringBag>

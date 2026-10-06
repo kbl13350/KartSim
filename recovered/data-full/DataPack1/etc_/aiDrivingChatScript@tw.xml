@@ -1,0 +1,689 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chattingScript>
+	<campaign type='1'>
+		<condition type='0'>
+			<scripts msg='不要小看動物!'/>
+			<scripts msg='歡迎來到動物的王國~'/>
+			<scripts msg='你們上次輸了還來?'/>
+			<scripts msg='結果我們贏啦!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='啊~看不到了呢'/>
+			<scripts msg='呵呵呵…很好笑吧…'/>
+			<scripts msg='[UserRID] 不要碰我。'/>
+			<scripts msg='[UserRID] 聽到你好像需要一點援助。'/>
+			<scripts msg='[AiRID]!!你是我們的希望'/>
+			<scripts msg='[UserRID] 請你繼續休息吧!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='發揮真實力的時間到了。'/>
+			<scripts msg='啊完全無法跟上啊 T_T '/>
+			<scripts msg='你羞辱了我'/>
+			<scripts msg='可惡上當了~'/>
+			<scripts msg='先走~我已經失誤了…'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='不想輸的太難看的話，現在馬上放棄吧'/>
+			<scripts msg='我要向動保所申告~'/>
+			<scripts msg='就是現在! [AiRID]'/>
+			<scripts msg='必殺技GoGoGo!!'/>
+			<scripts msg='[AiRID]! 快使用捷徑!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='來場公平的比賽吧!'/>
+			<scripts msg='感覺應該是一場有趣的比賽~'/>
+			<scripts msg='好像在哪裡見過~'/>
+			<scripts msg='10秒前不是來這裡了嗎~'/>
+			<scripts msg='這次也是我們勝利啦~'/>
+		</condition>
+	</campaign>
+	<campaign type='2'>
+		<condition type='0'>
+			<scripts msg='哈哈。你的實力只有這樣!?'/>
+			<scripts msg='刺激!令人流手汗的ㄧ局啊!'/>
+			<scripts msg='[UserRID]! 讓我看頂尖車手的水準吧!'/>
+			<scripts msg='快使用加速器~'/>
+			<scripts msg='禁止攻擊自己人!!不要輸了這場比賽了!'/>
+			<scripts msg='敗仗是我們的?嗯?'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='[UserRID]是用腳跑嗎?'/>
+			<scripts msg='準備好失敗了嗎~'/>
+			<scripts msg='完美GoGo!!'/>
+			<scripts msg='失敗可不是這樣做的~'/>
+			<scripts msg='10秒前不是說好來這了嗎~'/>
+			<scripts msg='我們閉著眼睛玩!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='該展現真實力的時候到了。'/>
+			<scripts msg='有點難跟上呢~'/>
+			<scripts msg='我完蛋了~大家快走~'/>
+			<scripts msg='報告!報告!他們出現了~'/>
+			<scripts msg='竟想讓R軍團嚐下敗仗~'/>
+			<scripts msg='[UserRID]，等等我啊'/>
+			<scripts msg='你們是最強的隊伍'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='我們是R!軍團!'/>
+			<scripts msg='不要浪費時間。'/>
+			<scripts msg='不要碰到我。'/>
+			<scripts msg='真是…一點風度也沒有。'/>
+			<scripts msg='[UserRID]… 擦身而過的那位…!!'/>
+			<scripts msg='都很好啊。如果沒有你的話。'/>
+			<scripts msg='跑跑卡丁車真是有趣!!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='來場公平的比賽吧!'/>
+			<scripts msg='感覺應該是一場有趣的比賽~'/>
+			<scripts msg='勝利是我們的!'/>
+			<scripts msg='[AiRID]!! 防禦就拜託你了~'/>
+			<scripts msg='就乖乖跟在我後面吧~'/>
+		</condition>
+	</campaign>
+	<campaign type='3'>
+		<condition type='0'>
+			<scripts msg='隔了好久終於遇到有趣的對手了，呵!'/>
+			<scripts msg='看來是有一定的水準呢!'/>
+			<scripts msg='竟敢想挑戰黃金神!'/>
+			<scripts msg='我一個人也可以!'/>
+			<scripts msg='神所下達的控制!!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='[UserRID] 用腳在跑的人..'/>
+			<scripts msg='一群蠢蛋們..'/>
+			<scripts msg='看來實力要加強了!'/>
+			<scripts msg='[UserRID] 真是一點禮貌也沒有!'/>
+			<scripts msg='[UserRID] 多練練再來吧~'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='看來到了默默展現實力的時間了。'/>
+			<scripts msg='啊完全跟不上了呢 T_T'/>
+			<scripts msg='[UserRID]! 還不錯嘛??'/>
+			<scripts msg='因該很難跟上我吧~'/>
+			<scripts msg='[UserRID]! 你讓我感到受辱'/>
+			<scripts msg='竟然讓高狄生氣~'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='不要浪費時間!'/>
+			<scripts msg='要來見識一下我的實力嗎?'/>
+			<scripts msg='黃金神!高狄~'/>
+			<scripts msg='大家都來向高狄服從吧'/>
+			<scripts msg='就用審判的拳頭來懲罰你們~'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='沒有公平的比賽的話，可是要接受處罰的!'/>
+			<scripts msg='感覺會是一場有趣的比賽~'/>
+			<scripts msg='勝利是我們的!'/>
+			<scripts msg='[UserRID]饒你一命~'/>
+			<scripts msg='一群蠢蛋們'/>
+		</condition>
+	</campaign>
+	<campaign type='4'>
+		<condition type='0'>
+			<scripts msg='讓你們見識一下龍之車手的偉大力量~'/>
+			<scripts msg='我們是傳說中的龍之車手!'/>
+			<scripts msg='和我們的對決可要感到榮幸~。'/>
+			<scripts msg='可別排除我們爭第一啊'/>
+			<scripts msg='我們是由龍所選擇的人!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='原來是因為害怕在發抖啊~'/>
+			<scripts msg='這就是真正的龍之車手的實力!'/>
+			<scripts msg='[UserRID] 你再這樣我會藍瘦香菇~'/>
+			<scripts msg='我們連開始都還沒呢~'/>
+			<scripts msg='這就是龍的力量!'/>
+			<scripts msg='該不會是故意輸給我的吧?'/>
+			<scripts msg='[UserRID]你這傢伙真讓人摸不透啊~'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='現在我可不會放水給你了。'/>
+			<scripts msg='[UserRID] 超速可是會發生車禍啊~。'/>
+			<scripts msg='抱歉，我現在才正要出發!'/>
+			<scripts msg='現在還沒有開始呢~'/>
+			<scripts msg='糟糕完蛋了~'/>
+			<scripts msg='[AiRID]! 先走吧~ 我已經失誤了…'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='放心?這根本很輕鬆阿!!'/>
+			<scripts msg='[AiRID]!! 防禦就交給我吧!'/>
+			<scripts msg='呀呵~!就是現在!'/>
+			<scripts msg='現在是發射瘋狂爆竹的時間嗎?'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='剛開始先別太刺激!'/>
+			<scripts msg='我準備好龍的力量了!'/>
+			<scripts msg='我會讓你後悔選擇了我們~'/>
+			<scripts msg='[AiRID]!!後面就交給你了!'/>
+			<scripts msg='讓你見識一下實力!'/>
+		</condition>
+	</campaign>
+	<campaign type='5'>
+		<condition type='0'>
+			<scripts msg='發動史佩斯加速器!'/>
+			<scripts msg='所有準備都完成了!開始吧!'/>
+			<scripts msg='我一個人就夠了!'/>
+			<scripts msg='我先往前走後面就交給你了!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='現在開始要跑在後面嗎?'/>
+			<scripts msg='[AiRID]!!我們合作一下吧~'/>
+			<scripts msg='好久沒用腳跑了腳抽筋了。'/>
+			<scripts msg='實力才這樣真是讓人失望!'/>
+			<scripts msg='[UserRID]還不放棄嗎?'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='哇嗚! [UserRID]真是有一手啊?'/>
+			<scripts msg='真是厲害。有想加入到我們的隊伍嗎?'/>
+			<scripts msg='真不敢相信! [UserRID]蠻厲害的嘛?'/>
+			<scripts msg='誰會想到這種奧步~'/>
+			<scripts msg='不能稍微等等我嗎?'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='以科學來決勝負吧!'/>
+			<scripts msg='驚慌失措的話可是會駐足不前的!!'/>
+			<scripts msg='警笛聲響時，就要使勁衝啊~'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='跑跑卡丁車在宇宙也是相當有人氣的喔~'/>
+			<scripts msg='我們是最強史佩斯!'/>
+			<scripts msg='史佩斯團出動!!'/>
+		</condition>
+	</campaign>
+	<campaign type='6'>
+		<condition type='0'>
+			<scripts msg='聖誕節快樂~!'/>
+			<scripts msg='白雪覆蓋美麗的冬季夜晚~。'/>
+			<scripts msg='叮鈴鐺~叮鈴鐺~'/>
+			<scripts msg='今年有做了很多好事嗎?'/>
+			<scripts msg='別哭~別哭~'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='[UserRID]!等我一下下!'/>
+			<scripts msg='今年的聖誕節應該會很孤單!'/>
+			<scripts msg='我代替來送你超棒的聖誕節禮物。'/>
+			<scripts msg='禮物是不會發給在哭的孩子喔~'/>
+			<scripts msg='這次的聖誕節也要一個人過嗎?'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='放心? 根本輕而易舉啊!!'/>
+			<scripts msg='[UserRID]!等我一下! 拜託拜託~'/>
+			<scripts msg='啊!這是聖誕節的惡夢啊!'/>
+			<scripts msg='[UserRID] 應該要立馬挖角才行!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='今年的平安夜會下雪嗎?'/>
+			<scripts msg='小心下雪的道路!呵'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='麋鹿的鼻子是很閃亮的鼻子~'/>
+			<scripts msg='今年的聖誕節應該也會很忙。'/>
+			<scripts msg='今年的聖誕節會下雪嗎?'/>
+		</condition>
+	</campaign>
+	<campaign type='7'>
+		<condition type='0'>
+			<scripts msg='我們是天下無敵的藍寶團!'/>
+			<scripts msg='給你見識一下真正的甩尾!'/>
+			<scripts msg='現在要在哪開始跑啊?'/>
+			<scripts msg='我第一次完這個賽道耶~怎麼辦才好?'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='我們百分之百會贏的吧?'/>
+			<scripts msg='[UserRID]! 我看到他在攻擊自己人了!'/>
+			<scripts msg='我會等你!快追上我啊~來啊~'/>
+			<scripts msg='[UserRID]不要緊張!'/>
+			<scripts msg='[AiRID]!感覺需要休息一下!'/>
+			<scripts msg='一群蠢蛋們~~~'/>
+			<scripts msg='現在開始我用腳跟你跑!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='出生以來初次受到這樣的屈辱!'/>
+			<scripts msg='[UserRID]!等我一下嘛!'/>
+			<scripts msg='使用捷徑啊!'/>
+			<scripts msg='[AiRID]!無法順利使用道具~ ㅜㅜ '/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='使用必殺技!趁現在!'/>
+			<scripts msg='等一下![AiRID]。我先過去'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='我們是真正的冠軍隊伍!'/>
+			<scripts msg='我們是不是有在哪見過?'/>
+			<scripts msg='來場有風度的遊戲吧!'/>
+		</condition>
+	</campaign>
+	<campaign type='8'>
+		<condition type='0'>
+			<scripts msg='我們是天下無敵的睏寶團!'/>
+			<scripts msg='給你見識一下真正的甩尾!'/>
+			<scripts msg='現在要在哪開始跑啊?'/>
+			<scripts msg='這賽道我相當有自信!'/>
+			<scripts msg='[AiRID]!捷徑在這裡! '/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='我們能完美勝利嗎?'/>
+			<scripts msg='[UserRID]!攻擊一下自己的隊友吧!'/>
+			<scripts msg='這是聖誕節的惡夢啊!'/>
+			<scripts msg='我會當作什麼都沒看到的~'/>
+			<scripts msg='不是10秒前會來這裡嗎~'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='疑~好像不用使用必殺技也可以獲勝呢~'/>
+			<scripts msg='不會沒禮貌的想先進去吧?'/>
+			<scripts msg='[UserRID]!不能等我一下嗎?'/>
+			<scripts msg='[AiRID]!就是現在必殺技! '/>
+			<scripts msg='[AiRID]!是我們的希望~'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='[AiRID]使用捷徑!'/>
+			<scripts msg='等一下! [AiRID]。我先走啦'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='我們是真正的冠軍隊伍!'/>
+			<scripts msg='我們是不是有在哪見過面?'/>
+			<scripts msg='我們來玩莊園遊戲吧~!'/>
+		</condition>
+	</campaign>
+	<campaign type='9'>
+		<condition type='0'>
+			<scripts msg='我們是城堡家族!'/>
+			<scripts msg='[UserRID]!不羨慕我們的車款嗎?'/>
+			<scripts msg='[UserRID]!似乎聞到高手的味道!'/>
+			<scripts msg='失誤0容忍!'/>
+			<scripts msg='讓你見識我們的實力吧!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='距離好像越拉越遠了?呵呵呵'/>
+			<scripts msg='現在只有我們在奔馳嗎?'/>
+			<scripts msg='不會放水的!繼續全力衝刺~'/>
+			<scripts msg='這程度也想向我們挑戰~'/>
+			<scripts msg='請繼續休息!'/>
+			<scripts msg='啊~真無趣，除了你們沒有其它隊伍了嗎?'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='[UserRID]!還蠻會玩道具賽的嘛!'/>
+			<scripts msg='完全無法超前!'/>
+			<scripts msg='[AiRID]! 快一點水蒼蠅!'/>
+			<scripts msg='來吧現在開始Show Time!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='現在正要出發!'/>
+			<scripts msg='[AiRID]!就是現在必殺技!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='讓你見識一下城堡家族的實力!'/>
+			<scripts msg='[UserRID]!準備好開始享受比賽了嗎?'/>
+			<scripts msg='[AiRID]!不要太緊張!'/>
+		</condition>
+	</campaign>
+	<campaign type='10'>
+		<condition type='0'>
+			<scripts msg='嗶哩嗶哩!嗶哩哩哩!'/>
+			<scripts msg='所有準備已完成。'/>
+			<scripts msg='計算藍寶機器人的行駛時間。'/>
+			<scripts msg='所有角色配分已完成。'/>
+			<scripts msg='已設定好必殺技使用時間。'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='開始拉開距離了。'/>
+			<scripts msg='所有東西都依照計算進行。'/>
+			<scripts msg='[UserRID]從危險對象中排除。'/>
+			<scripts msg='[AiRID]!警告!敵人們接近。'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='[UserRID]!開始集中攻擊。'/>
+			<scripts msg='再次計算行駛時間。'/>
+			<scripts msg='[AiRID]!真是異想不到的行駛啊。'/>
+			<scripts msg='嗶哩哩哩!必殺技準備完成。'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='[AiRID]!開始發動必殺技!'/>
+			<scripts msg='[AiRID]!轉換防禦模式!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='機率上沒有贏我們的可能性。'/>
+			<scripts msg='[UserRID]的分析開始進行。 '/>
+			<scripts msg='設定進行初始化。'/>
+		</condition>
+	</campaign>
+	<campaign type='11'>
+		<condition type='0'>
+			<scripts msg='嗶哩哩哩!嗶哩哩哩!'/>
+			<scripts msg='所有準備已完成。'/>
+			<scripts msg='計算睏寶機器人的行駛時間。'/>
+			<scripts msg='所有角色分配已完成。'/>
+			<scripts msg='必殺技使用時間已進行設定。'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='開始拉開距離了。'/>
+			<scripts msg='所有事物都依照計算在進行。'/>
+			<scripts msg='[UserRID]從危險對象中排除。'/>
+			<scripts msg='[AiRID]!警告!敵人們接近。'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='[UserRID]!開始進行集中攻擊。'/>
+			<scripts msg='再次計算行駛時間。'/>
+			<scripts msg='[AiRID]!真是異想不到的行駛啊。'/>
+			<scripts msg='嗶哩哩哩!已準備好必殺技。'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='[AiRID]!開始發動必殺技!'/>
+			<scripts msg='[AiRID]!轉換防禦模式!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='機率上沒有贏我們的可能性。'/>
+			<scripts msg='[UserRID]的分析開始進行。 '/>
+			<scripts msg='設定進行初始化。'/>
+		</condition>
+	</campaign>
+	<campaign type='12'>
+		<condition type='0'>
+			<scripts msg='為了海賊團的榮耀~!!!'/>
+			<scripts msg='向你展現無敵的海賊團!'/>
+			<scripts msg='[UserRID]!Lucci全都交出來~'/>
+			<scripts msg='現在開始進行掠奪吧!'/>
+			<scripts msg='沒有獲勝的話就交出你的小命吧!!!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='現在了解海賊團員的無比力量了吧?'/>
+			<scripts msg='[AiRID]!現在開始後退吧!! '/>
+			<scripts msg='攻擊中止! [UserRID]正在哭。'/>
+			<scripts msg='你可以聽到車子需要保養的聲音了嗎?'/>
+			<scripts msg='比賽真是沒什麼意思都打哈欠了~!!'/>
+			<scripts msg='不自覺開始哼起歌來了呢~'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='對[UserRID]集中攻擊吧~! '/>
+			<scripts msg='想不想加入我們的海賊團啊?'/>
+			<scripts msg='[AiRID]!在後面做什麼啊!!! '/>
+			<scripts msg='[AiRID]!無條件攻擊!攻擊!攻擊! '/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='[AiRID]!讓你見識海賊的力量吧!'/>
+			<scripts msg='[AiRID]!就是現在逆轉時間到!!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='身上好像有收集到很多的Lucci~'/>
+			<scripts msg='我們是冷血的海盜船長海賊團!!'/>
+			<scripts msg='覺悟吧!我們可不會放水的!!!'/>
+		</condition>
+	</campaign>
+	<campaign type='13'>
+		<condition type='0'>
+			<scripts msg='當然要讓你感受一下真正的恐怖~!!!'/>
+			<scripts msg='這麼快就開始發抖了嗎?'/>
+			<scripts msg='[UserRID]!害怕的話就留在後面吧~'/>
+			<scripts msg='讓這些傢伙們感受到絕望吧!'/>
+			<scripts msg='我要讓你們掉入闇黑的影子中!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='想要一輩子都受恐懼而發抖嗎~呵呵呵'/>
+			<scripts msg='原來這麼快這些傢伙都因太害怕在發抖了啊~'/>
+			<scripts msg='[UserRID]你現在在哭嗎?呵呵呵'/>
+			<scripts msg='黑暗的力量是在祝福我們!'/>
+			<scripts msg='來好好的結束吧!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='向[UserRID]展現我們的恐怖吧! '/>
+			<scripts msg='[UserRID] 你不怕我們嗎? '/>
+			<scripts msg='我們現在開始!'/>
+			<scripts msg='為何要把我當作幽靈?'/>
+			<scripts msg='讓你見識一下幽冥軍團的恐懼!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='一群愚蠢的傢伙們!'/>
+			<scripts msg='竟敢向我們挑戰~'/>
+			<scripts msg='現在立馬讓你感到害怕!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='你應該有聽過我們的傳聞吧?'/>
+			<scripts msg='還沒開始呢~你在發抖嗎?'/>
+			<scripts msg='&quot;這就讓你感到恐怖,絕望,難過! &quot;'/>
+		</condition>
+	</campaign>
+	<campaign type='14'>
+		<condition type='0'>
+			<scripts msg='無所畏懼的英雄藍寶!'/>
+			<scripts msg='[UserRID]!要一起守護繁榮山丘嗎?'/>
+			<scripts msg='[UserRID]!猜一下誰才是真的吧~'/>
+			<scripts msg='通常英雄都是最晚出來的~'/>
+			<scripts msg='帶著安全帽好不舒服啊…'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='10秒前不是要來這裡嗎~'/>
+			<scripts msg='如果能和痞子妹奔馳的話就好了~'/>
+			<scripts msg='選擇我們是正確的選擇。'/>
+			<scripts msg='再這樣下去我們就要贏了~~'/>
+			<scripts msg='大家去哪了~大家都去哪了!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='[UserRID]下次一起去冒險吧!'/>
+			<scripts msg='[AiRID]!快點抓住[UserRID]!'/>
+			<scripts msg='斗篷太長好像快踩到了。'/>
+			<scripts msg='現在開始Show Time!'/>
+			<scripts msg='雖然有點不放心，我們應該不會輸吧?'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='你不是我的對手!'/>
+			<scripts msg='這樣的對手真是難得啊~開心!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='不要這麼緊張~'/>
+			<scripts msg='[UserRID]來猜猜誰是真的藍寶~!'/>
+			<scripts msg='哈哈。比看起來還二百五?'/>
+		</condition>
+	</campaign>
+	<campaign type='15'>
+		<condition type='0'>
+			<scripts msg='[UserRID]!要從哪裡測試實力呢?'/>
+			<scripts msg='為了暴走族的勝利!'/>
+			<scripts msg='歐爸快點~♬GoGoGo~!!'/>
+			<scripts msg='有聽過我們的名字嗎?'/>
+			<scripts msg='我先往前後面就交給你囉!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='是第一次騎嗎~'/>
+			<scripts msg='[AiRID]!!狡猾一點!'/>
+			<scripts msg='終點就在眼前了!'/>
+			<scripts msg='你們有跟上來嗎?'/>
+			<scripts msg='沒想到忍注不笑這麼難~'/>
+			<scripts msg='完美GoGo!!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='可惡上當了~'/>
+			<scripts msg='最近我進入低潮期~'/>
+			<scripts msg='[UserRID]原來也有這種傢伙'/>
+			<scripts msg='感受到了劇烈的憤怒!!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='看來到了默默展現實力的時間了。'/>
+			<scripts msg='我好像聽到你需要援助的樣子。'/>
+			<scripts msg='過來吧~過來吧~'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='什麼是真正的甩尾就由我來告訴你吧~'/>
+			<scripts msg='[UserRID]!公平的比賽?可以吃嗎!'/>
+		</condition>
+	</campaign>
+	<campaign type='16'>
+		<condition type='0'>
+			<scripts msg='要從哪展現我的實力呢~'/>
+			<scripts msg='闇影勢力支配這個世界!'/>
+			<scripts msg='星石碎片由闇影勢力來獲得!'/>
+			<scripts msg='我無法保障你的性命!'/>
+			<scripts msg='世!界!征!服!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='[UserRID]!以為你只是單純的小鬼~'/>
+			<scripts msg='闇影勢力從來沒輸過!'/>
+			<scripts msg='闇影勢力的字典沒有輸!'/>
+			<scripts msg='[UserRID]!竟然看得到我們的車尾燈!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='很好~超棒的~真是有趣的時間!'/>
+			<scripts msg='[UserRID]!現在開始!'/>
+			<scripts msg='[UserRID]!你是最強的間諜!'/>
+			<scripts msg='[UserRID]!要和我們一起嗎?'/>
+			<scripts msg='看來要找找星石碎片了!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='闇影勢力的字典沒有輸!'/>
+			<scripts msg='看來到了默默展現實力的時間了。'/>
+			<scripts msg='放心?根本游刃有餘啊!'/>
+			<scripts msg='[UserRID]!休息一下再走如何啊?'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='闇影勢力支配世界!'/>
+			<scripts msg='征服世界!!就交給我們~'/>
+			<scripts msg='我無法保障你的性命!'/>
+		</condition>
+	</campaign>
+	<campaign type='17'> <!-- 보스팀-->
+		<condition type='0'>
+			<scripts msg='我們是最強魔王!特攻隊~'/>
+			<scripts msg='只有最強者能和我們一起比賽~'/>
+			<scripts msg='如果害怕的話馬上放棄吧~'/>
+			<scripts msg='海盜船長!阿魯!路易艾瑪!藍寶機器人!'/>
+			<scripts msg='為了最強魔王~'/>
+			<scripts msg='勝利是我們的~'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='[UserRID]!攻擊隊友啊~蠢蛋~'/>
+			<scripts msg='[AiRID]!到這裡為止吧!'/>
+			<scripts msg='要休息10秒再走嗎~'/>
+			<scripts msg='真是無趣~這樣一點都不好玩!'/>
+			<scripts msg='[UserRID]!快點跟上~'/>
+			<scripts msg='你們失敗~我們勝利~!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='[AiRID]衝啊!衝快一點!'/>
+			<scripts msg='等等吧!我還沒開始呢!'/>
+			<scripts msg='集中攻擊[UserRID]!'/>
+			<scripts msg='[AiRID]!依照作戰行動!'/>
+			<scripts msg='[AiRID]現在開始跟著我的作戰吧!'/>
+			<scripts msg='各自行動的話，作戰有什麼用啊!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='現在開始作戰!計劃A'/>
+			<scripts msg='覺悟吧!我們可不會放水的!!!'/>
+			<scripts msg='[UserRID]!快點背叛攻擊隊友吧~'/>
+			<scripts msg='看來到了默默展現實力的時間了。'/>
+			<scripts msg='需要背叛者的活躍![UserRID]'/>
+			<scripts msg='好好看著[UserRID]~'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='以機率來看贏我們的機率為0%~'/>
+			<scripts msg='我們是最強魔王軍團!'/>
+			<scripts msg='匯錢完畢~[UserRID]!'/>
+			<scripts msg='[UserRID]背叛只是時間的問題啊~'/>
+			<scripts msg='[UserRID]!確認一下Lucci吧!'/>
+			<scripts msg='我累了~快點結束吧~'/>
+		</condition>
+	</campaign>
+
+	<campaign type='19'> <!-- 어비스 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='[UserRID]!已覺悟對自己放肆的態度付出代價了嗎?'/>
+			<scripts msg='[UserRID]，先教訓你!'/>
+			<scripts msg='現在你們哪裡都別想逃了!'/>
+			<scripts msg='為了深海之城的再興，都消失吧!'/>
+			<scripts msg='為了深海之城的登陸!'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='這就是深海之城的力量!'/>
+			<scripts msg='[UserRID]實力不怎麼樣呢。'/>
+			<scripts msg='也太輕鬆了吧。'/>
+			<scripts msg='[UserRID]地上人類都這麼無聊嗎?'/>
+			<scripts msg='真失望，你們這些地上人類們。'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='再這樣下去可能會輸啊?'/>
+			<scripts msg='比想像中還不簡單呢。'/>
+			<scripts msg='[UserRID]!身為地上的人類，實力還不賴嘛?'/>
+			<scripts msg='是我太小看你了嗎?'/>
+			<scripts msg='[UserRID]!讓你見識深海之城的力量!'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='你們被包圍了!'/>
+			<scripts msg='[UserRID]，可以滾開嗎?'/>
+			<scripts msg='[UserRID]，別礙事去旁邊。'/>
+			<scripts msg='投降吧!這場你們沒勝算!'/>
+			<scripts msg='[UserRID]!竟敢妨礙我!'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='讓你見識深海之城的力量!'/>
+			<scripts msg='趁現在投降吧!'/>
+			<scripts msg='這次我將完美解決你!'/>
+		</condition>
+	</campaign>
+
+	<campaign type='20'> <!-- 마녀협회 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='要對[UserRID]施予什麼魔法呢~?'/>
+			<scripts msg='絕不放過你~!'/>
+			<scripts msg='透過這次機會，讓你知道魔女的可怕!'/>
+			<scripts msg='讓你看看魔法的力量~呼呼!'/>
+			<scripts msg='就來比比看吧~'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='低估魔女可是會碰得一鼻子灰的喔~!'/>
+			<scripts msg='[UserRID]，就這點程度呀?'/>
+			<scripts msg='[UserRID]這程度沒用魔法應該也可以贏呢~?'/>
+			<scripts msg='閉著眼睛開，應該也比[UserRID]還快!呵呵!'/>
+			<scripts msg='現在知道魔法的厲害了吧~?'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='掃帚啊變快吧!嘿吚~'/>
+			<scripts msg='絕對不會輸的!'/>
+			<scripts msg='[UserRID]!我不會放過你的!'/>
+			<scripts msg='[AiRID]，似乎有什麼問題呢?'/>
+			<scripts msg='[AiRID]。咒語有念對吧?'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='現在就放棄怎麼樣啊?'/>
+			<scripts msg='[UserRID]，不害怕魔女嗎?'/>
+			<scripts msg='從[UserRID]開始變成青蛙怎麼樣?'/>
+			<scripts msg='[UserRID]，竟敢踩魔女的自尊心!'/>
+			<scripts msg='[AiRID]! 別放棄!還沒結束!'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='看來你不知道魔女的可怕呀?'/>
+			<scripts msg='現在投降對你比較好喔。'/>
+			<scripts msg='不再放過你了。'/>
+		</condition>
+	</campaign>
+		<campaign type='21'> <!-- 삼국지 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='在這次對決中一定要取得勝利後回歸!'/>
+			<scripts msg='瞧瞧你們這些人的實力!'/>
+			<scripts msg='[AiRID]!現在就是機會!'/>
+			<scripts msg='[UserRID]!你由我來解決!'/>
+			<scripts msg='[UserRID]!無法阻擋我們的!'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='勝利就在眼前!繼續前進!'/>
+			<scripts msg='[UserRID]!膽小的將帥會使戰局陷入危機!'/>
+			<scripts msg='[UserRID]，你的實力就這樣嗎!哈哈!'/>
+			<scripts msg='[UserRID]，我會記得你的努力!'/>
+			<scripts msg='根本不需用到靑龍偃月刀呢!'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='不要退縮!奮戰!到底!'/>
+			<scripts msg='[UserRID]!不會讓你就這樣輕易取勝!'/>
+			<scripts msg='情勢不太樂觀啊…. '/>
+			<scripts msg='先抓住[UserRID]!'/>
+			<scripts msg='[AiRID]!不到最後不要放棄啊!'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='[UserRID]!自行撤退如何啊?'/>
+			<scripts msg='[UserRID]!做好與我對抗的準備了?'/>
+			<scripts msg='[UserRID]，讓我們好好較量吧。'/>
+			<scripts msg='[AiRID]!突擊!'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='初生之犢不畏虎呢!'/>
+			<scripts msg='還是現在趕快投降比較好吧。'/>
+			<scripts msg='這次不會放水了。'/>
+		</condition>
+	</campaign>
+</chattingScript>

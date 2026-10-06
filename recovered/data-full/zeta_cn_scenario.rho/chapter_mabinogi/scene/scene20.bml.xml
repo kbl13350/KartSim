@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mabi1"/>
+  <Char id="morrigan" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="茉莉安" string="感谢守护爱琳，非常感谢。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="morrigan" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="托您的福，我们也找回了宝宝！"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="什么啊，不是红头发的姐姐呢。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="嗯？我好像也见到过那个闭着眼睛说话的姐姐呢？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="morrigan" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="茉莉安" string="你还记得吗？"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="morrigan" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="嗯…额…啊…|我们在哪里见过吗？"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="你们两个人见过吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="morrigan" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="茉莉安" string="是因为我不知道红色容器的位置，所以在梦里给你发出了信息。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="morrigan" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="对！是在梦里见到过！"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="morrigan" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="分明是梦里…|那这里是在梦里吗？"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="morrigan" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="茉莉安" string="不幸的是你没有注意到我的信息呢。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="morrigan" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="额…好像是我做错了什么呢？"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="morrigan" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="茉莉安" string="不管怎样，幸好大家都没事。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="没错！最重要的是大家都没事！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="morrigan" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="茉莉安" string="那么，你们要回到你们自己的世界吗？"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop1"/>
+  <Char id="dizini" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋，黑妞" string="是的！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="我们赶紧回家吧。|感觉好疲劳。。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="nao" pos="8 0" emotion="stop1"/>
+  <Msg name="娜儿" string="如果你们想来爱琳，随时告诉我！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" pos="8 0" flip="true" emotion="normal"/>
+  <Msg name="茉莉安" string="一路小心。|我会向众神祈求祝福你们的！"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <BackGround texture="Northeu5"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="(…) "/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="ani2"/>
+  <Char id="dizini" pos="11 0" emotion="ani2"/>
+  <Msg name="皮蛋，黑妞" string="终于回到了繁荣山丘~~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="总觉得好久没有回来了？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="stop7"/>
+  <Msg name="小强" string="什么！你们一直都在一起吗？！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="stop3"/>
+  <Msg name="小强" string="因为你们俩我都翻遍了整个山丘呢！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="哎呀，忘了告诉小强！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="大家都没事吗？|不会发生什么事情了吧？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="是发生了很多事情~"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop7"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="什么呀~说说有什么事情？！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop7"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="说来话长~"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="小强" string="幸好大家都没事！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="好久没有一起赛车了！来一场吧？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="谁输了谁买冰淇淋！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="stop3"/>
+  <Msg name="小强" string="宝宝不会又在说赌谁买冰淇淋吧？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="我们不是在赌谁买冰淇淋吗！不是吗？！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop5"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="小强" string="没错！那再来一盘？！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop5"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="宝宝" string="很好！这次我一定要吃冰淇淋！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="我绝对不会输！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="stop2"/>
+  <Msg name="小强" string="我可不会让着你们~"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop5"/>
+  <Msg name="黑妞" string="这一次我可不会当最后一名！"/>
+  <Enter/>
+</Scene>

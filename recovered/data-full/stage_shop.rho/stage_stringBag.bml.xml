@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="freeday">
+    <m c="kr" v="프리데이"/>
+    <m c="jp" v="フリーデー"/>
+    <m c="cn" v="元旦狂欢日"/>
+    <m c="tw" v="免費道具"/>
+    <m c="us" v="FreeDay"/>
+    <m c="vn" v="Ngày nghỉ"/>
+    <m c="ru" v="Свободный день"/>
+    <m c="id" v="Free Day"/>
+    <m c="th" v="ฟรีเดย์"/>
+  </k>
+  <k n="errItemAlreadyExist">
+    <m c="kr" v="차고에 같은 종류의 아이템이 있습니다."/>
+    <m c="jp" v="ガレージに同じ種類のアイテムがあります。"/>
+    <m c="cn" v="车库中已有相同的道具"/>
+    <m c="tw" v="車庫中已有相同的道具"/>
+    <m c="us" v="You already have these items in the Garage."/>
+    <m c="vn" v="Có vật phẩm cùng loại trong Gara"/>
+    <m c="ru" v="У вас уже есть предмет этого типа"/>
+    <m c="id" v="Sudah ada item yang sama di garage"/>
+    <m c="th" v="มีไอเทมชนิดเดียวกันอยู่ในโรงรถ"/>
+  </k>
+  <k n="errNotFreeday">
+    <m c="kr" v="프리데이 이벤트 기간이 아닙니다. 구매에 실패했습니다."/>
+    <m c="jp" v="フリーデーイベント期間ではありません。 購入できませんでした。"/>
+    <m c="cn" v="不在元旦狂欢日活动期间，无法兑换活动道具。"/>
+    <m c="tw" v="現在不是免費日活動期間，無法購買。"/>
+    <m c="us" v="Purchase error. Only available during the FreeDay event."/>
+    <m c="vn" v="Vật phẩm của sự kiện không thể mua bán."/>
+    <m c="ru" v="Сейчас не свободный день. Ошибка при покупке."/>
+    <m c="id" v="Bukan periode free day event.Gagal membeli item."/>
+    <m c="th" v="ไม่ใช่ช่วงเวลากิจกรรมฟรีเดย์ การซื้อล้มเหลว"/>
+  </k>
+  <k n="errMsgGiveFreedayGift">
+    <m c="kr" v="프리데이 아이템은 선물할 수 없습니다."/>
+    <m c="jp" v="フリーデーアイテムはプレゼントできません。"/>
+    <m c="cn" v="元旦狂欢日道具不能赠送！"/>
+    <m c="tw" v="免費日活動道具不能作為禮物"/>
+    <m c="us" v="FreeDay items cannot be sent as a gift. "/>
+    <m c="vn" v="Vật phẩm có hạng dùng không thể tặng"/>
+    <m c="ru" v="Предметы свободного дня нельзя подарить"/>
+    <m c="id" v="Free day item tidak dapat di-gift."/>
+    <m c="th" v="ไม่สามารถให้ไอเทมฟรีเดย์เป็นของขวัญได้"/>
+  </k>
+  <k n="unknown">
+    <m c="kr" v="알수없음"/>
+    <m c="jp" v="不明"/>
+    <m c="cn" v="未知"/>
+    <m c="tw" v="未知"/>
+    <m c="us" v="Unknown"/>
+    <m c="vn" v="0"/>
+    <m c="ru" v="Неизвестно"/>
+    <m c="id" v="Tidak dikenal"/>
+    <m c="th" v="0"/>
+  </k>
+  <k n="giveGiftFail">
+    <m c="kr" v="선물 실패"/>
+    <m c="jp" v="プレゼント失敗"/>
+    <m c="cn" v="赠送礼物失败"/>
+    <m c="tw" v="贈送禮物失敗"/>
+    <m c="us" v="Gift error"/>
+    <m c="vn" v="Thất bại"/>
+    <m c="ru" v="Ошибка при подарке"/>
+    <m c="id" v="Gagal memberik gift"/>
+    <m c="th" v="ให้ของขวัญล้มเหลว"/>
+  </k>
+  <k n="limitedGoodsNotice">
+    <m c="kr" v="한정판매 오픈시간|%s"/>
+    <m c="jp" v="限定販売オープン時間|%s"/>
+    <m c="cn" v="???"/>
+    <m c="tw" v="???"/>
+    <m c="us" v="???"/>
+    <m c="vn" v="Giới hạn thời gian bán hàng hóa %s"/>
+    <m c="ru" v="Количество ограничено|%s"/>
+    <m c="id" v="Periode penjualan terbatas |%s"/>
+    <m c="th" v="จำกัดจำนวนในการจำหน่าย  |%s"/>
+  </k>
+  <k n="miniCooperBuyErrMsg">
+    <m c="kr" v="이 아이템은 구매가 불가능하며, 미니 쿠퍼 카트바디의 업그레이드를 통해 얻을 수 있습니다."/>
+    <m c="jp" v="このアイテムは購入できません。ミニクーパーカートボディのアップグレードを行うことで、入手することができます。"/>
+    <m c="cn" v="不能兑换的商品，只能通过 Mini Cooper 升级来获得"/>
+    <m c="tw" v="不能購買的商品，只能透過 Mini Cooper 升級來獲得"/>
+    <m c="us" v="The selected item cannot be purchased. You can only get it by upgrading the Mini Cooper Kart."/>
+    <m c="vn" v="Vật phẩm không thể giao dịch."/>
+    <m c="ru" v="Данный предмет нельзя купить, его можно получить, модифицировав карт &quot;Мини купер&quot;."/>
+    <m c="id" v="Item ini tidak dapat dibeli,bisa diperoleh dengan cara mengupgrade kart body mini cooper."/>
+    <m c="th" v="ไอเทมชนิดนี้ไม่สามารถซื้อได้ ได้รับจากการเพิ่มอัพเกรดตัวรถรุ่นมินิคูเปอร์เท่านั้น"/>
+  </k>
+  <k n="freedayBuyWarning">
+    <m c="kr" v="구매한 프리데이 상품은 접속을 종료할 때까지 사용할 수 있습니다. 구매하시겠습니까?"/>
+    <m c="jp" v="購入したフリーデー商品は接続を終了するまで使用できます。 購入しますか？"/>
+    <m c="cn" v="兑换的元旦狂欢日道具在下线时将会消失，确定兑换吗？"/>
+    <m c="tw" v="選擇的免費日活動商品能使用到退出遊戲為止，要購買嗎？"/>
+    <m c="us" v="The purchased Free-day items can be used until logout. Do you wish to purchase them?"/>
+    <m c="vn" v="vật phẩm mua bán có hạn dùng trong ngày có thể dùng được đến khi ngắt kết nối. Bạn sẽ mau chứ?"/>
+    <m c="ru" v="Купленный предмет свободного дня можно использовать до завершения подключения. Купить?"/>
+    <m c="id" v="Item free day yang dibeli dapat digunakan sampai logoff.Ingin membeli item?"/>
+    <m c="th" v="ไอเทมฟรีเดย์ที่ซื้อสามารถใช้ได้จนถึงออกจากเกม จะซื้อไหม"/>
+  </k>
+  <k n="onePointSet">
+    <m c="kr" v="구매 이력이 없는 유저에게만 판매되는 상품입니다."/>
+    <m c="jp" v="購入履歴の無いユーザーのみ購入可能な商品です。"/>
+    <m c="cn" v=""/>
+    <m c="tw" v="特別為第一次在跑跑卡丁車中使用GASH購買道具的玩家所準備的超優惠商品。每位玩家限購買一次，並且無法送禮喔!!"/>
+    <m c="us" v=""/>
+    <m c="vn" v="Lý lịch vật phẩm được bán"/>
+    <m c="ru" v="Данный предмет предоставляется игрокам, которые еще не совершали покупки."/>
+    <m c="id" v="Item yang hanya dijual pada player yang tidak pernah membeli item"/>
+    <m c="th" v="ไอเทมนี้ขายให้ผู้เล่นที่ยังไม่มีประวัติซื้อเท่านั้น"/>
+  </k>
+  <k n="itemAlreadyExist">
+    <m c="kr" v="이미 구입한 아이템입니다."/>
+    <m c="jp" v="すでに購入したアイテムです。"/>
+    <m c="cn" v="已兑换的道具"/>
+    <m c="tw" v="已購買的道具"/>
+    <m c="us" v="Items already in possession."/>
+    <m c="vn" v="Vật phẩm đã được đặt mua"/>
+    <m c="ru" v="Вы уже купили этот предмет"/>
+    <m c="id" v="Item yang telah dibeli."/>
+    <m c="th" v="เป็นไอเทมที่ซื้อแล้ว"/>
+  </k>
+  <k n="buyLicenseWarning">
+    <m c="kr" v="이미 취득한 라이센스입니다.|그래도 구입하시겠습니까?"/>
+    <m c="jp" v="すでに取得したライセンスです。|それでも購入しますか？"/>
+    <m c="cn" v="您已拥有此等级正式驾驶执照，还要继续吗？"/>
+    <m c="tw" v="您已擁有此等級正式駕駛執照，還要繼續嗎？"/>
+    <m c="us" v="You already have this license. l Do you still wish to purchase it?"/>
+    <m c="vn" v="Mua bằng lái tạm thời. |Bạn sẽ mua chứ?"/>
+    <m c="ru" v="Вы уже получили эти права.|Купить все равно?"/>
+    <m c="id" v="License yang telah dimiliki.|Ingin membeli lagi?"/>
+    <m c="th" v="คุณสอบใบขับขี่ระดับนี้ผ่านแล้ว|ยืนยันการซื้อใบขับขี่ชั่วคราวใช่ไหม"/>
+  </k>
+  <k n="buyTempLicense">
+    <m c="kr" v="임시 라이센스 구입"/>
+    <m c="jp" v="臨時ライセンス購入"/>
+    <m c="cn" v="兑换临时驾驶执照"/>
+    <m c="tw" v="購買臨時駕駛執照"/>
+    <m c="us" v="Purchase the Temporary license "/>
+    <m c="vn" v="Bằng lái tạm thời"/>
+    <m c="ru" v="Купить временные права"/>
+    <m c="id" v="Membeli Temporary License"/>
+    <m c="th" v="ซื้อใบขับขี่ชั่วคราว"/>
+  </k>
+  <k n="buyChapterKeyWarning">
+    <m c="kr" v="이미 챕터 오픈을 위한 열쇠 아이템을 가지고 있습니다. 그래도 구입하시겠습니까?"/>
+    <m c="jp" v="すでにチャプターオープンのためのキーアイテムを持っています。 それでも購入しますか？"/>
+    <m c="cn" v="你已经拥有了打开新章节的钥匙道具，仍然要进行兑换吗？"/>
+    <m c="tw" v="已經擁有可以打開新章節的鑰匙道具，還需要再購買嗎？"/>
+    <m c="vn" v="Mua vật phẩm mở khóa"/>
+    <m c="ru" v="У вас уже есть ключ для открытия главы. Купить еще?"/>
+    <m c="id" v="Item Key yang untuk membuka chapter sudah ada.Ingin membeli lagi?"/>
+    <m c="th" v="มีไอเทมกุญแจเพื่อเข้า Chapter อยู่แล้ว จะซื้ออีกหรือไม่"/>
+  </k>
+  <k n="buyChapterKey">
+    <m c="kr" v="시나리오 열쇠 구입"/>
+    <m c="jp" v="シナリオキー購入"/>
+    <m c="cn" v="兑换魔法之匙"/>
+    <m c="tw" v="購買劇場鑰匙"/>
+    <m c="vn" v="Mua mã khóa"/>
+    <m c="ru" v="Купить ключ сценария"/>
+    <m c="id" v="Membeli Scenario Key"/>
+    <m c="th" v="ซื้อกุญแจ Scenario "/>
+  </k>
+  <k n="preview">
+    <m c="kr" v="미리보기"/>
+    <m c="jp" v="プレビュー"/>
+    <m c="cn" v="预览"/>
+    <m c="tw" v="預覽"/>
+    <m c="us" v="Preview"/>
+    <m c="vn" v="Xem lại"/>
+    <m c="ru" v="Просмотр"/>
+    <m c="id" v="Preview"/>
+    <m c="th" v="ดูตัวอย่าง"/>
+  </k>
+  <k n="buyAll">
+    <m c="kr" v="모두 구입하기"/>
+    <m c="jp" v="すべて購入"/>
+    <m c="cn" v="全部兑换"/>
+    <m c="tw" v="全部購買"/>
+    <m c="us" v="Buy all"/>
+    <m c="vn" v="Mua hết"/>
+    <m c="ru" v="Купить все"/>
+    <m c="id" v="Beli Semua"/>
+    <m c="th" v="ซื้อทั้งหมด"/>
+  </k>
+  <k n="reset">
+    <m c="kr" v="원래대로"/>
+    <m c="jp" v="元に戻す"/>
+    <m c="cn" v="初始状态"/>
+    <m c="tw" v="初始狀態"/>
+    <m c="us" v="Reset"/>
+    <m c="vn" v="Mặc Định"/>
+    <m c="ru" v="Сбросить"/>
+    <m c="id" v="Reset"/>
+    <m c="th" v="ตามเดิม"/>
+  </k>
+  <k n="useCoupon">
+    <m c="kr" v="쿠폰 사용"/>
+    <m c="jp" v="クーポン使用"/>
+    <m c="cn" v="使用兑换券"/>
+    <m c="tw" v="使用兌換券"/>
+    <m c="us" v="Use a coupon"/>
+    <m c="vn" v="Sử dụng"/>
+    <m c="ru" v="Купить купон"/>
+    <m c="id" v="Menggunakan Kupon"/>
+    <m c="th" v="ใช้ไอเทมโค้ด"/>
+  </k>
+  <k n="item">
+    <m c="kr" v="아이템"/>
+    <m c="jp" v="アイテム"/>
+    <m c="cn" v="道具"/>
+    <m c="tw" v="道具"/>
+    <m c="us" v="Items"/>
+    <m c="vn" v="V.Phẩm"/>
+    <m c="ru" v="Предмет"/>
+    <m c="id" v="Item"/>
+    <m c="th" v="ไอเทม"/>
+  </k>
+  <k n="initial">
+    <m c="kr" v="이니셜"/>
+    <m c="jp" v="イニシャル"/>
+    <m c="cn" v="车牌文字"/>
+    <m c="tw" v="車牌代碼"/>
+    <m c="us" v="Initials"/>
+    <m c="vn" v="Đầu tiên"/>
+    <m c="ru" v="Инициал"/>
+    <m c="id" v="Initial"/>
+    <m c="th" v="ชื่อในป้ายทะเบียน"/>
+  </k>
+  <k n="charDecoration">
+    <m c="kr" v="캐릭터치장"/>
+    <m c="jp" v="キャラアバター"/>
+    <m c="cn" v="人物装饰"/>
+    <m c="tw" v="裝扮人物"/>
+    <m c="us" v="Character decorations"/>
+    <m c="vn" v="Phụ tùng"/>
+    <m c="ru" v="Оформление персонажа"/>
+    <m c="id" v="Dekorasi Character"/>
+    <m c="th" v="ตกแต่งตัวละคร"/>
+  </k>
+  <k n="new">
+    <m c="kr" v="NEW"/>
+    <m c="jp" v="NEW"/>
+    <m c="cn" v="新商品"/>
+    <m c="tw" v="新商品"/>
+    <m c="us" v="New items"/>
+    <m c="vn" v="Mới"/>
+    <m c="ru" v="Новые"/>
+    <m c="id" v="NEW"/>
+    <m c="th" v="ไอเทมใหม่"/>
+  </k>
+  <k n="hitItems">
+    <m c="kr" v="인기상품"/>
+    <m c="jp" v="人気商品"/>
+    <m c="id" v="Hit Item"/>
+  </k>
+  <k n="moohanItems">
+    <m c="kr" v="무한도전"/>
+    <m c="jp" v="無限挑戦"/>
+    <m c="id" v="Unlimited"/>
+  </k>
+  <k n="buyItem">
+    <m c="kr" v="아이템 구입"/>
+    <m c="jp" v="アイテム購入"/>
+    <m c="cn" v="兑换道具"/>
+    <m c="tw" v="確定購買道具"/>
+    <m c="us" v="Buy items"/>
+    <m c="vn" v="Mua"/>
+    <m c="ru" v="Купить предмет"/>
+    <m c="id" v="Membeli Item"/>
+    <m c="th" v="ซื้อไอเทม"/>
+  </k>
+  <k n="NoPcCafeGiveItem">
+    <m c="kr" v="이 상품은 PC방에서만 받기 가능합니다.|가까운 PC방을 이용해 주세요."/>
+    <m c="jp" v="この商品はネットカフェでのみ受取可能です。|近くのネットカフェをご利用ください。"/>
+    <m c="cn" v="??????"/>
+    <m c="tw" v="??????"/>
+    <m c="us" v="This item can be used only at a PC café.  Please visit your nearest PC café. "/>
+    <m c="ru" v="Этот предмет можно получить только в PC-клубе.|Обратитесь в ближайший РС-клуб."/>
+    <m c="th" v="ไอเทมพิเศษนี้ ใช้ได้เฉพาะร้านเน็ตของ iCafe Plus เท่านั้น"/>
+  </k>
+  <k n="searchTooltip">
+    <m c="kr" v="아이템 이름을 입력해주세요!!"/>
+    <m c="cn" v="请输入道具名称"/>
+    <m c="tw" v="請輸入道具名稱"/>
+  </k>
+</StringBag>

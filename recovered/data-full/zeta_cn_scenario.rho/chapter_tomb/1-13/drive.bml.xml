@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Escape isFixedKart="true" fixedKartId="1630" fixedCharId="226" isFixedChar="true" kartId="1630" characterId="501" colorId="9" dyeId="84" characterName="罗拉">
+    <LevelContent level="0" track="fairy_R01" laps="2" ksv="1-13" distance="30" startOffset="-3000"/>
+  </Escape>
+</Root>

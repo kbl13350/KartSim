@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="synopsis">
+    <m c="cn" v="这就是最强龙之车手居住的森林？|宝宝有种不祥的预感,|迷路了！|在天黑之前一定要找到出路！"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="请在规定的时间内通过所有的计时点。|"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="森林蘑菇洞穴"/>
+  </k>
+</StringBag>

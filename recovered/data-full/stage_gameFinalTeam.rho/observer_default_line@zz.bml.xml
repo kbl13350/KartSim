@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="line1" windowRect="0 0 342 52">
+  <Label name="id" windowSize="70 31" textRender="bold20" textColor="200 255 255 255" autoSizing="true" align="center"/>
+</Container>

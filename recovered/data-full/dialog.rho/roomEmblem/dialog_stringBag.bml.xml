@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="dialogTitle">
+    <m c="kr" v="엠블럼 구경하기"/>
+    <m c="jp" v="エンブレムを見る"/>
+    <m c="cn" v="查看徽章"/>
+    <m c="tw" v="瀏覽徽章"/>
+    <m c="vn" v="Biểu tượng"/>
+    <m c="ru" v="Просмотр эмблем"/>
+    <m c="id" v="View Emblem"/>
+    <m c="th" v="เข้าไปดู Emblem"/>
+  </k>
+  <k n="dialogMyTitle">
+    <m c="kr" v="내 엠블럼 보기"/>
+    <m c="jp" v="マイエンブレム表示"/>
+    <m c="cn" v="查看我的徽章"/>
+    <m c="tw" v="查詢我的徽章"/>
+    <m c="vn" v="Xem"/>
+    <m c="ru" v="Моя эмблема"/>
+    <m c="id" v="View My Emblem"/>
+    <m c="th" v="ดู Emblem ส่วนตัว"/>
+  </k>
+  <k n="comment">
+    <m c="kr" v="보유하고 있는 엠블럼을 구경할 수 있습니다."/>
+    <m c="jp" v="保有しているエンブレムを見ることができます。"/>
+    <m c="cn" v="可以浏览已拥有的徽章"/>
+    <m c="tw" v="瀏覽擁有的所有徽章"/>
+    <m c="vn" v="Có thể xem các biểu tượng đang sở hữu "/>
+    <m c="ru" v="Ты можешь просмотреть имеющиеся эмблемы."/>
+    <m c="id" v="Kamu dapat melihat emblem yang kamu miliki."/>
+    <m c="th" v="สามารถดู Emblem ทั้งหมดที่มีอยู่ได้"/>
+  </k>
+  <k n="emblemCount">
+    <m c="kr" v="보유 엠블럼수 : %d개"/>
+    <m c="jp" v="保有エンブレム数 : %d個"/>
+    <m c="cn" v="拥有徽章数量 ： %d个"/>
+    <m c="tw" v="擁有徽章數量 : %d個"/>
+    <m c="vn" v="Có: %d cái"/>
+    <m c="ru" v="Всего эмблем : %dед."/>
+    <m c="id" v="Emblem dimiliki : %d pcs"/>
+    <m c="th" v="จำนวน Emblem ที่มี : %d อัน"/>
+  </k>
+  <k n="alreadyEmblem">
+    <m c="kr" v="이미 선택한 엠블럼입니다."/>
+    <m c="jp" v="すでに選択したエンブレムです。"/>
+    <m c="cn" v="已选择的徽章"/>
+    <m c="tw" v="已經選擇的徽章"/>
+    <m c="vn" v="Biểu tượng đã chọn"/>
+    <m c="ru" v="Вы уже выбрали эту эмблему."/>
+    <m c="id" v="Emblem yang telah dipilih."/>
+    <m c="th" v="เป็น Emblem ที่เลือกอยู่แล้ว"/>
+  </k>
+  <k n="notEmptySlot">
+    <m c="kr" v="빈 슬롯이 없습니다. 사용하지 않을 대표 엠블럼을 먼저 선택해 주세요."/>
+    <m c="jp" v="空きスロットがありません。使用しない代表エンブレムを先に選択してください。"/>
+    <m c="cn" v="没有多余的徽章槽。"/>
+    <m c="tw" v="沒有空欄位.請先選擇不使用的代表徽章"/>
+    <m c="vn" v="Không còn chỗ trống. Hãy chọn các biểu tượng chưa sử dụng."/>
+    <m c="ru" v="У вас нет свободных ячеек. Сначала выберите эмблему, которая вам больше не нужна."/>
+    <m c="id" v="Tidak ada slot kosong.Silahkan pilih emblem yang tidak digunakan terlebih dahulu."/>
+    <m c="th" v="กรุณาเลือก &quot;Emblem ประจำตัว&quot; |ที่ต้องการจะเปลี่ยนก่อน |เนื่องจากไม่มีช่องว่างให้ใส่่"/>
+  </k>
+  <k n="emptyEmblem">
+    <m c="kr" v="앞 부분에 비어 있는 엠블럼이 있으면 안됩니다."/>
+    <m c="jp" v="前の部分に空いているエンブレムがあってはなりません。"/>
+    <m c="cn" v="前面徽章槽不能为空"/>
+    <m c="tw" v="前面不可以有空的徽章"/>
+    <m c="vn" v="Không được để biểu tượng trống."/>
+    <m c="ru" v="Нельзя, чтобы в передней части не было эмблем."/>
+    <m c="id" v="Tidak boleh ada emblem yang kosong di depan."/>
+    <m c="th" v="ห้ามให้ &quot;Emblem ประจำตัว&quot; ช่องซ้ายสุดว่าง"/>
+  </k>
+  <k n="success">
+    <m c="kr" v="수정되었습니다."/>
+    <m c="jp" v="修正されました。"/>
+    <m c="cn" v="修改成功"/>
+    <m c="tw" v="已修改"/>
+    <m c="vn" v="Thành công"/>
+    <m c="ru" v="Изменено."/>
+    <m c="id" v="Telah berubah."/>
+    <m c="th" v="ทำการแก้ไขแล้ว"/>
+  </k>
+  <k n="mainEmblemComment">
+    <m c="kr" v="사용할 대표 엠블럼"/>
+    <m c="jp" v="使用する代表エンブレム"/>
+    <m c="cn" v="要使用的代表徽章"/>
+    <m c="tw" v="要使用的代表徽章"/>
+    <m c="vn" v="Biểu tượng chính"/>
+    <m c="ru" v="Эмблема"/>
+    <m c="id" v="Emblem yang akan digunakan"/>
+    <m c="th" v="Emblem ประจำตัว"/>
+  </k>
+  <k n="desc">
+    <m c="kr" v="* 보유 엠블럼을 클릭하여 &quot;대표 엠블럼&quot;을 |선택 할 수 있습니다.||* 선택된 &quot;대표 엠블럼&quot;을 바꾸려면 해당 |엠블럼을 클릭하세요."/>
+    <m c="jp" v="* 保有エンブレムをクリックすると|  &quot;代表エンブレム&quot;を選択できます。||* 選択した&quot;代表エンブレム&quot;を変えるには|  このエンブレムをクリックしてください。"/>
+    <m c="cn" v="*可以通过点击拥有徽章，选择“代表徽章”|*要想更换“代表徽章”，请点击相应徽章"/>
+    <m c="tw" v="點選擁有徽章可選擇”代表徽章”|要更換”代表徽章”請點選欲更換的徽章"/>
+    <m c="vn" v="Chọn biểu tượng.|Nhấp vào biểu tượng muốn thay đổi."/>
+    <m c="ru" v="  * Ты можешь выбрать эмблему.||  * Ты можешь сделать ее основной."/>
+    <m c="id" v="* Klik &quot;Main Emblem&quot; |jika ingin digunakan.||*Klik &quot; jika ingin mengubahnya."/>
+    <m c="th" v="* คลิก Emblem ที่จะใช้ เพื่อติดตั้งเป็น|&quot;Emblem ประจำตัว&quot;||* กรุณาเลือก &quot;Emblem ประจำตัว&quot; |ที่ต้องการจะเปลี่ยน"/>
+  </k>
+</StringBag>

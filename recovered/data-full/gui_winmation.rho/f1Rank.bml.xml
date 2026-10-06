@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ButtonAni name="rankUp">
+  <Active>
+    <ScaleTon>
+      <Phase at="1" tick="0" scale="1.0 1.0 1.0"/>
+      <Phase at="2" tick="100" scale="2.0 2.0 2.0"/>
+      <Phase at="3" tick="150" scale="1.0 1.0 1.0"/>
+    </ScaleTon>
+    <PositionTon>
+      <Phase at="1" tick="0" translate="0.0 0.0 0.0"/>
+      <Phase at="2" tick="100" translate="-20.0 -20.0 0.0"/>
+      <Phase at="3" tick="150" translate="0.0 0.0 0.0"/>
+    </PositionTon>
+  </Active>
+</ButtonAni>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu5"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="黑杰克" string="哦呼呼！！既然是漂亮小姐姐的请求！！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="黑杰克" string="格雷兄弟们！！|我跟你们说的都准备好了吧！！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="raptorLs" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="raptorRs" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="当然！！随时叫我们就行。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="raptorLs" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="raptorRs" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="是的！老大！！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="raptorLs" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="raptorRs" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="黑杰克" string="哦豁~很好！|呼呼呼"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="raptorLs" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="raptorRs" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="但是，这事跟征服世界有关系吗？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="raptorLs" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="raptorRs" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="格雷格你在说什么呢！！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="raptorLs" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="raptorRs" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="黑杰克" string="没关系~时间也差不多了格雷|要抓紧时间了……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <BackGround texture="god9"/>
+  <Char id="light" pos="10 0" emotion="stop1"/>
+  <Msg name="..." string="嘣！！！！！"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="light" pos="8 0" emotion="stop1"/>
+  <Char id="totop" pos="3 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="希望小姐姐能满意吧！呼呼呼"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorLs" pos="6 0" emotion="stop4"/>
+  <Char id="raptorRs" pos="2 0" emotion="stop4"/>
+  <Msg name="格雷" string="（小姐姐？？？？？难道……又……）"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="这到底是怎么回事啊！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="钟楼着火了！！这可怎么办啊……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="ms_thor" pos="1 0" flip="true" emotion="stop3"/>
+  <Msg name="托尔" string="洛基……难道是真的~~"/>
+  <Enter/>
+</Scene>

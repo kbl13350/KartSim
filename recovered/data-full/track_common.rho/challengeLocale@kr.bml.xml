@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<challengeList>
+  <passMsg k="0_yet" v="성공하셨습니다! 새로운 배우기에 도전 할 수 있습니다."/>
+  <passMsg k="0_get" v="성공하셨습니다! 초보채널에서 다른 라이더들과 멀티플레이를 할 수 있습니다."/>
+  <passMsg k="1_yet" v="성공하셨습니다! 새로운 루키 라이센스에 도전 할 수 있습니다."/>
+  <passMsg k="1_get" v="성공하셨습니다! 루키채널에서 다른 라이더들과 멀티플레이를 할 수 있습니다."/>
+  <passMsg k="2_yet" v="성공하셨습니다! 새로운 L3 라이센스에 도전 할 수 있습니다."/>
+  <passMsg k="2_get" v="성공하셨습니다! L3 채널에서 다른 라이더들과 멀티플레이를 할 수 있습니다."/>
+  <passMsg k="3_yet" v="성공하셨습니다! 새로운 L2 라이센스에 도전 할 수 있습니다."/>
+  <passMsg k="3_get" v="성공하셨습니다! L2 채널에서 다른 라이더들과 멀티플레이를 할 수 있습니다."/>
+  <passMsg k="4_yet" v="성공하셨습니다! 새로운 L1 라이센스에 도전 할 수 있습니다."/>
+  <passMsg k="4_get" v="성공하셨습니다! L1 채널에서 다른 라이더들과 멀티플레이를 할 수 있습니다."/>
+  <challenge id="0x00" name="주행 연습"/>
+  <challenge id="0x01" name="아이템큐브 획득 연습"/>
+  <challenge id="0x02" name="부스터 연습"/>
+  <challenge id="0x03" name="커브 연습 1"/>
+  <challenge id="0x04" name="유도탄 연습"/>
+  <challenge id="0x05" name="뱅크 트랙 돌기"/>
+  <challenge id="0x10" name="커브 연습 2"/>
+  <challenge id="0x11" name="물폭탄 연습"/>
+  <challenge id="0x12" name="쉴드 연습"/>
+  <challenge id="0x13" name="주행 연습"/>
+  <challenge id="0x14" name="자석 연습"/>
+  <challenge id="0x15" name="타임어택 1"/>
+  <challenge id="0x16" name="슬롯체인져 연습" passMsg="성공하셨습니다! 슬롯 체인저 50개를 획득하셨습니다." rewardStockId="171"/>
+  <challenge id="0x17" name="연습카트 업그레이드" passMsg="미스트폴 팩토리에 숨겨져 있는 연습카트 블랙라인을 획득하였습니다. 연습카트 블랙라인은 G3급 엔진을 장착한 업그레이드 연습카트입니다. 기존의 연습카트는 새로운 연습카트로 대체되어 연습카트 블랙라인만 사용가능합니다."/>
+  <challenge id="0x18" name="블랙라인 업그레이드" passMsg="연습카트 블레이드를 획득 하였습니다. 연습카트 블레이드는 R4급 엔진을 장착한 업그레이드 연습카트 입니다. 연습카트 블레이드를 타고 더욱 더 스피디한 레이싱을 펼쳐보세요~." nextStage="LobbyStage" nextStageParam="LobbyParam:&lt;param gameCat=&quot;kMultiPlay&quot;/&gt;" needToUpdateChData="true" rewardStockId="1365"/>
+  <challenge id="0x20" name="커브 연습 3" lucciPrice="0"/>
+  <challenge id="0x21" name="대마왕 돌파" lucciPrice="0"/>
+  <challenge id="0x22" name="드리프트 연습 1" lucciPrice="0"/>
+  <challenge id="0x23" name="물폭탄 탈출" lucciPrice="0"/>
+  <challenge id="0x24" name="드리프트 U" lucciPrice="0"/>
+  <challenge id="0x25" name="타임어택 2" lucciPrice="0"/>
+  <challenge id="0x26" name="플래그전 연습" passMsg="성공하셨습니다! 풍선 50개를 획득하셨습니다." rewardStockId="218" nextStage="LobbyStage" nextStageParam="LobbyParam:&lt;param gameCat=&quot;kMultiPlay&quot;/&gt;" needToUpdateChData="true"/>
+  <challenge id="0x30" name="드리프트 연습 2" lucciPrice="0"/>
+  <challenge id="0x31" name="연속 유도탄" lucciPrice="0"/>
+  <challenge id="0x32" name="점프 드리프트" lucciPrice="0"/>
+  <challenge id="0x33" name="로두마니 잡기" lucciPrice="0"/>
+  <challenge id="0x34" name="아이템 팀전 연습" lucciPrice="0"/>
+  <challenge id="0x35" name="타임어택 3" lucciPrice="0" nextStage="LobbyStage" nextStageParam="LobbyParam:&lt;param gameCat=&quot;kMultiPlay&quot;/&gt;" needToUpdateChData="true"/>
+  <challenge id="0x40" name="자격심사" lucciPrice="0"/>
+  <challenge id="0x41" name="대마왕 방해" lucciPrice="0"/>
+  <challenge id="0x42" name="로두마니 일당 견제" lucciPrice="0"/>
+  <challenge id="0x43" name="고가 도로 공략" lucciPrice="0"/>
+  <challenge id="0x44" name="다운힐 공략" lucciPrice="0"/>
+  <challenge id="0x45" name="타임어택 4" nextStage="LobbyStage" nextStageParam="LobbyParam:&lt;param gameCat=&quot;kMultiPlay&quot;/&gt;" needToUpdateChData="true" rewardLicense1="757" rewardLicense2="758" rewardLicense3="759" gift1="760" gift2="747" gift3="761" lucciPrice="0"/>
+  <challenge id="0x46" name="L1 라이센스 마스터" nextStage="LobbyStage" nextStageParam="LobbyParam:&lt;param gameCat=&quot;kMultiPlay&quot;/&gt;" needToUpdateChData="true" lucciPrice="0"/>
+</challengeList>

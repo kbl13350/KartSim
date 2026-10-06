@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="createRoomCaption">
+    <m c="kr" v="방 만들기"/>
+    <m c="jp" v="ルーム作成"/>
+    <m c="cn" v="创建房间"/>
+    <m c="tw" v="開設房間"/>
+    <m c="us" v="Create a Room"/>
+    <m c="th" v="สร้างห้อง"/>
+    <m c="vn" v="Tạo phòng"/>
+    <m c="ru" v="Создать комнату"/>
+    <m c="id" v="Buat Room"/>
+  </k>
+  <k n="selectGame">
+    <m c="kr" v="게임 선택"/>
+    <m c="jp" v="ゲーム選択"/>
+    <m c="cn" v="选择游戏类型"/>
+    <m c="tw" v="選擇遊戲"/>
+    <m c="us" v="Choose a game"/>
+    <m c="th" v="เลือกเกม"/>
+    <m c="vn" v="Chọn kiểu đua"/>
+    <m c="ru" v="Выбрать тип игры"/>
+    <m c="id" v="Pilih Game"/>
+  </k>
+  <k n="roomName">
+    <m c="kr" v="방 이름"/>
+    <m c="jp" v="ルーム名"/>
+    <m c="cn" v="房间名称"/>
+    <m c="tw" v="房間名稱"/>
+    <m c="us" v="Name"/>
+    <m c="th" v="ชื่อห้อง"/>
+    <m c="vn" v="Tên"/>
+    <m c="ru" v="Название"/>
+    <m c="id" v="Nama Room"/>
+  </k>
+  <k n="roomPeopleNumber">
+    <m c="kr" v="방 인원"/>
+    <m c="jp" v="ルームメンバー"/>
+    <m c="cn" v="房间人数"/>
+    <m c="tw" v="房間人數"/>
+    <m c="us" v="Number of Riders"/>
+    <m c="th" v="สมาชิกในห้อง"/>
+    <m c="vn" v="Số người"/>
+    <m c="ru" v="Кол-во человек"/>
+    <m c="id" v="Jumlah Pemain"/>
+  </k>
+  <k n="privateRoom">
+    <m c="kr" v="비공개 방"/>
+    <m c="jp" v="非公開ルーム"/>
+    <m c="cn" v="房间加密"/>
+    <m c="tw" v="房間加密"/>
+    <m c="us" v="Private"/>
+    <m c="th" v="ห้องลับเฉพาะ"/>
+    <m c="vn" v="Khóa"/>
+    <m c="ru" v="Закрытая комната"/>
+    <m c="id" v="Private Room"/>
+  </k>
+  <k n="infoText">
+    <m c="kr" v="채팅 방에 있는 플레이어들을 초대하여 함께 게임을 시작합니다."/>
+    <m c="jp" v="チャットルームにいるプレイヤーたちを招待して、一緒にゲームを始めます。"/>
+    <m c="cn" v="邀请小屋里的玩家一起进行比赛"/>
+    <m c="tw" v="邀請在聊天室的玩家一起進行比賽"/>
+    <m c="us" v="You may invite drivers from the chat room to start a game."/>
+    <m c="th" v="เชิญผู้เล่นที่อยู่ในห้องแชทติ้งเริ่มเล่นเกม"/>
+    <m c="vn" v="Mời người chơi trong phòng chat cùng tham gia đua xe"/>
+    <m c="ru" v="Пригласить игроков комнаты чата в комнату и начать игру."/>
+    <m c="id" v="Undang player yang ada di Chatting Room untuk main bersama."/>
+  </k>
+  <k n="gameMode">
+    <m c="kr" v="게임 모드"/>
+    <m c="jp" v="ゲームモード"/>
+    <m c="cn" v="选择频道"/>
+    <m c="tw" v="遊戲頻道"/>
+    <m c="us" v="Game Mode"/>
+    <m c="th" v="โหมดเกม"/>
+    <m c="vn" v="Kiểu Đua"/>
+    <m c="ru" v="Тип игры"/>
+    <m c="id" v="Game Mode"/>
+  </k>
+</StringBag>

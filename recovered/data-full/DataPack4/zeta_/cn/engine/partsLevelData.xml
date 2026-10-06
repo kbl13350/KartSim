@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<partsLevelData>
+    <levelupInfo failAddProbUnit='1' failAddProbLimit='30'>
+        <partsInfo grade='4' needEthisItemId='5'>
+            <parts levelTo='2' needPartsPieceCount='6' needEthisItemCount='2' needLucci='2000' prob='100'/>
+            <parts levelTo='3' needPartsPieceCount='15' needEthisItemCount='5' needLucci='2000' prob='90'/>
+            <parts levelTo='4' needPartsPieceCount='30' needEthisItemCount='10' needLucci='2000' prob='80'/>
+            <parts levelTo='5' needPartsPieceCount='50' needEthisItemCount='16' needLucci='2000' prob='70'/>
+            <parts levelTo='6' needPartsPieceCount='80' needEthisItemCount='25' needLucci='2000' prob='55'/>
+            <parts levelTo='7' needPartsPieceCount='120' needEthisItemCount='50' needLucci='2000' prob='40'/>
+            <parts levelTo='8' needPartsPieceCount='150' needEthisItemCount='80' needLucci='2000' prob='25'/>
+            <parts levelTo='9' needPartsPieceCount='200' needEthisItemCount='120' needLucci='2000' prob='10'/>
+            <parts levelTo='10' needPartsPieceCount='300' needEthisItemCount='200' needLucci='2000' prob='5'/>
+        </partsInfo>
+        <partsInfo grade='3' needEthisItemId='5'>
+            <parts levelTo='2' needPartsPieceCount='7' needEthisItemCount='5' needLucci='2000' prob='100'/>
+            <parts levelTo='3' needPartsPieceCount='18' needEthisItemCount='12' needLucci='2000' prob='90'/>
+            <parts levelTo='4' needPartsPieceCount='36' needEthisItemCount='24' needLucci='2000' prob='80'/>
+            <parts levelTo='5' needPartsPieceCount='60' needEthisItemCount='38' needLucci='2000' prob='70'/>
+            <parts levelTo='6' needPartsPieceCount='96' needEthisItemCount='60' needLucci='2000' prob='55'/>
+            <parts levelTo='7' needPartsPieceCount='144' needEthisItemCount='120' needLucci='2000' prob='40'/>
+            <parts levelTo='8' needPartsPieceCount='180' needEthisItemCount='192' needLucci='2000' prob='25'/>
+            <parts levelTo='9' needPartsPieceCount='240' needEthisItemCount='288' needLucci='2000' prob='10'/>
+            <parts levelTo='10' needPartsPieceCount='360' needEthisItemCount='480' needLucci='2000' prob='5'/>
+        </partsInfo>
+        <partsInfo grade='2' needEthisItemId='5'>
+            <parts levelTo='2' needPartsPieceCount='12' needEthisItemCount='8' needLucci='2000' prob='100'/>
+            <parts levelTo='3' needPartsPieceCount='30' needEthisItemCount='20' needLucci='2000' prob='90'/>
+            <parts levelTo='4' needPartsPieceCount='60' needEthisItemCount='40' needLucci='2000' prob='80'/>
+            <parts levelTo='5' needPartsPieceCount='100' needEthisItemCount='64' needLucci='2000' prob='70'/>
+            <parts levelTo='6' needPartsPieceCount='160' needEthisItemCount='100' needLucci='2000' prob='55'/>
+            <parts levelTo='7' needPartsPieceCount='240' needEthisItemCount='200' needLucci='2000' prob='40'/>
+            <parts levelTo='8' needPartsPieceCount='300' needEthisItemCount='320' needLucci='2000' prob='25'/>
+            <parts levelTo='9' needPartsPieceCount='400' needEthisItemCount='480' needLucci='2000' prob='10'/>
+            <parts levelTo='10' needPartsPieceCount='600' needEthisItemCount='800' needLucci='2000' prob='5'/>
+        </partsInfo>
+        <partsInfo grade='1' needEthisItemId='5'>
+            <parts levelTo='2' needPartsPieceCount='18' needEthisItemCount='12' needLucci='2000' prob='100'/>
+            <parts levelTo='3' needPartsPieceCount='45' needEthisItemCount='30' needLucci='2000' prob='90'/>
+            <parts levelTo='4' needPartsPieceCount='90' needEthisItemCount='60' needLucci='2000' prob='80'/>
+            <parts levelTo='5' needPartsPieceCount='150' needEthisItemCount='96' needLucci='2000' prob='70'/>
+            <parts levelTo='6' needPartsPieceCount='240' needEthisItemCount='150' needLucci='2000' prob='55'/>
+            <parts levelTo='7' needPartsPieceCount='360' needEthisItemCount='300' needLucci='2000' prob='40'/>
+            <parts levelTo='8' needPartsPieceCount='450' needEthisItemCount='480' needLucci='2000' prob='25'/>
+            <parts levelTo='9' needPartsPieceCount='600' needEthisItemCount='720' needLucci='2000' prob='10'/>
+            <parts levelTo='10' needPartsPieceCount='900' needEthisItemCount='1200' needLucci='2000' prob='5'/>
+        </partsInfo>
+    </levelupInfo>
+
+    <partsLevelInitInfo>
+        <initInfo grade='4' needEthisItemId='2' returnEthisItemId='5'>
+            <parts levelFrom='1' needEthisItemCount='0' needLucci='0' returnPartsPieceCount='0' returnEthisItemCount='0'/>
+            <parts levelFrom='2' needEthisItemCount='2' needLucci='2000' returnPartsPieceCount='6' returnEthisItemCount='2'/>
+            <parts levelFrom='3' needEthisItemCount='6' needLucci='2000' returnPartsPieceCount='21' returnEthisItemCount='7'/>
+            <parts levelFrom='4' needEthisItemCount='14' needLucci='2000' returnPartsPieceCount='51' returnEthisItemCount='17'/>
+            <parts levelFrom='5' needEthisItemCount='28' needLucci='2000' returnPartsPieceCount='101' returnEthisItemCount='33'/>
+            <parts levelFrom='6' needEthisItemCount='50' needLucci='2000' returnPartsPieceCount='181' returnEthisItemCount='58'/>
+            <parts levelFrom='7' needEthisItemCount='87' needLucci='2000' returnPartsPieceCount='301' returnEthisItemCount='108'/>
+            <parts levelFrom='8' needEthisItemCount='138' needLucci='2000' returnPartsPieceCount='451' returnEthisItemCount='188'/>
+            <parts levelFrom='9' needEthisItemCount='210' needLucci='2000' returnPartsPieceCount='651' returnEthisItemCount='308'/>
+            <parts levelFrom='10' needEthisItemCount='324' needLucci='2000' returnPartsPieceCount='951' returnEthisItemCount='508'/>
+        </initInfo>
+        <initInfo grade='3' needEthisItemId='2' returnEthisItemId='5'>
+            <parts levelFrom='1' needEthisItemCount='0' needLucci='0' returnPartsPieceCount='0' returnEthisItemCount='0'/>
+            <parts levelFrom='2' needEthisItemCount='3' needLucci='2000' returnPartsPieceCount='7' returnEthisItemCount='5'/>
+            <parts levelFrom='3' needEthisItemCount='10' needLucci='2000' returnPartsPieceCount='25' returnEthisItemCount='17'/>
+            <parts levelFrom='4' needEthisItemCount='23' needLucci='2000' returnPartsPieceCount='61' returnEthisItemCount='41'/>
+            <parts levelFrom='5' needEthisItemCount='45' needLucci='2000' returnPartsPieceCount='121' returnEthisItemCount='79'/>
+            <parts levelFrom='6' needEthisItemCount='81' needLucci='2000' returnPartsPieceCount='217' returnEthisItemCount='139'/>
+            <parts levelFrom='7' needEthisItemCount='143' needLucci='2000' returnPartsPieceCount='361' returnEthisItemCount='259'/>
+            <parts levelFrom='8' needEthisItemCount='233' needLucci='2000' returnPartsPieceCount='541' returnEthisItemCount='451'/>
+            <parts levelFrom='9' needEthisItemCount='362' needLucci='2000' returnPartsPieceCount='781' returnEthisItemCount='739'/>
+            <parts levelFrom='10' needEthisItemCount='571' needLucci='2000' returnPartsPieceCount='1141' returnEthisItemCount='1219'/>
+        </initInfo>
+        <initInfo grade='2' needEthisItemId='2' returnEthisItemId='5'>
+            <parts levelFrom='1' needEthisItemCount='0' needLucci='0' returnPartsPieceCount='0' returnEthisItemCount='0'/>
+            <parts levelFrom='2' needEthisItemCount='5' needLucci='2000' returnPartsPieceCount='12' returnEthisItemCount='8'/>
+            <parts levelFrom='3' needEthisItemCount='16' needLucci='2000' returnPartsPieceCount='42' returnEthisItemCount='28'/>
+            <parts levelFrom='4' needEthisItemCount='39' needLucci='2000' returnPartsPieceCount='102' returnEthisItemCount='68'/>
+            <parts levelFrom='5' needEthisItemCount='76' needLucci='2000' returnPartsPieceCount='202' returnEthisItemCount='132'/>
+            <parts levelFrom='6' needEthisItemCount='135' needLucci='2000' returnPartsPieceCount='362' returnEthisItemCount='232'/>
+            <parts levelFrom='7' needEthisItemCount='238' needLucci='2000' returnPartsPieceCount='602' returnEthisItemCount='432'/>
+            <parts levelFrom='8' needEthisItemCount='388' needLucci='2000' returnPartsPieceCount='902' returnEthisItemCount='752'/>
+            <parts levelFrom='9' needEthisItemCount='604' needLucci='2000' returnPartsPieceCount='1302' returnEthisItemCount='1232'/>
+            <parts levelFrom='10' needEthisItemCount='952' needLucci='2000' returnPartsPieceCount='1902' returnEthisItemCount='2032'/>
+        </initInfo>
+        <initInfo grade='1' needEthisItemId='2' returnEthisItemId='5'>
+            <parts levelFrom='1' needEthisItemCount='0' needLucci='0' returnPartsPieceCount='0' returnEthisItemCount='0'/>
+            <parts levelFrom='2' needEthisItemCount='7' needLucci='2000' returnPartsPieceCount='18' returnEthisItemCount='12'/>
+            <parts levelFrom='3' needEthisItemCount='24' needLucci='2000' returnPartsPieceCount='63' returnEthisItemCount='42'/>
+            <parts levelFrom='4' needEthisItemCount='58' needLucci='2000' returnPartsPieceCount='153' returnEthisItemCount='102'/>
+            <parts levelFrom='5' needEthisItemCount='114' needLucci='2000' returnPartsPieceCount='303' returnEthisItemCount='198'/>
+            <parts levelFrom='6' needEthisItemCount='202' needLucci='2000' returnPartsPieceCount='543' returnEthisItemCount='348'/>
+            <parts levelFrom='7' needEthisItemCount='357' needLucci='2000' returnPartsPieceCount='903' returnEthisItemCount='648'/>
+            <parts levelFrom='8' needEthisItemCount='580' needLucci='2000' returnPartsPieceCount='1353' returnEthisItemCount='1128'/>
+            <parts levelFrom='9' needEthisItemCount='906' needLucci='2000' returnPartsPieceCount='1953' returnEthisItemCount='1848'/>
+            <parts levelFrom='10' needEthisItemCount='1428' needLucci='2000' returnPartsPieceCount='2853' returnEthisItemCount='3048'/>
+        </initInfo>
+    </partsLevelInitInfo>
+</partsLevelData>

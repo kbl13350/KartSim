@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="0 0 235 425" align="center">
+  <CaptionWindow name="captionWindow" frame="CaptionDialog" windowRect="0 0 235 425" caption="#sb(rewardStockCaption2)" captionPos="0 1" captionColor="black" align="center" phaBlend="true" setCloseButton="close">
+    <Window name="item1" frame="DefaultRoundPanel" windowRect="0 10 200 210" enable="false" alphaBlend="true" align="hcenter">
+      <Window name="itemPreview" windowRect="0 0 200 200" alphaBlend="true"/>
+    </Window>
+    <Window name="underBody" windowRect="0 221 200 282" align="hcenter">
+      <Panel name="static" windowRect="0 0 200 1" color="255 0 0 0" enable="false" align="hcenter"/>
+      <Panel name="static" windowRect="0 1 200 2" color="255 255 255 255" enable="false" align="hcenter"/>
+      <Label name="description" windowRect="2 10 200 59" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="#sb(getReward)" textAlign="hcenter"/>
+      <Panel name="static2" windowRect="0 109 200 110" color="255 0 0 0" enable="false" align="hcenter"/>
+      <Panel name="static2" windowRect="0 110 200 111" color="255 255 255 255" enable="false" align="hcenter"/>
+      <TextButton name="ok" windowRect="15 116 88 138" text="#sb(ok)" altTextRender="outline"/>
+      <TextButton name="cancel" windowRect="110 116 183 138" text="#sb(cancel)" altTextRender="outline"/>
+    </Window>
+  </CaptionWindow>
+</Container>

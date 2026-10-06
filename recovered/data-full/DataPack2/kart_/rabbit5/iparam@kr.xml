@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.25'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.071'
+	UseTransformBooster='false'
+	EngineSound='cotton7'
+	StartBoosterTime='1200'
+
+	BoosterBlur='true'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType4='zero5'
+	BoosterWaveType='effect_zero'
+
+	Port0='mod3'
+	FirePort0='mod4'
+	FirePort1='mod5'
+	FirePort2='mod6'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+	EnvMap='1'
+
+	DescBalance= '38'
+	DescStability ='38'
+	DescEngineGrade='1.2'
+	DescCornering='3'
+	DescEnchantCap = '20'
+/>
+<!-- 한국 황금토끼Z7 (퀘스트 보상) -->

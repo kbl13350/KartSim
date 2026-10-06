@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="fixedRewardWnd" windowSize="400 400" visible="true" alphaBlend="true">
+  <Play1SPanel name="fixedRewardBg" scene="확정아이템획득" windowSize="512 512" adjust="0 0" align="center" nearPlane="1" farPlane="1000" fov="90.0" defaultCameraPos="0 -3.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" clearZBefore="true" clearZAfter="true" enable="false" visible="true" loop="false"/>
+  <Window name="itemPanel" windowSize="400 400"/>
+  <Label name="stockName" windowSize="170 40" adjust="0 40" align="center;bottom" text="" textColor="white" textRender="outline24" textAlign="center"/>
+</Window>

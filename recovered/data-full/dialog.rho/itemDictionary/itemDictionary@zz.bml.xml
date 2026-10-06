@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Container windowRect="0 0 1358 774" align="center" visible="true">
+    <Window name="mainBG" windowSize="1358 774" align="center">
+      <ImageBoard windowSize="1358 774" image="collect_img_mainFrameBG" adjust="0 0" align="center" alphaBlend="true">
+        <ImageBoard name="totalCollectBar" windowSize="1144 8" image="collect_img_totalBarBG" adjust="15 40" alphaBlend="true"/>
+        <Panel name="totalCollectPercent" leftTopTex="15 40" texture="collect_img_totalBarPiece" enable="true" alphaBlend="true"/>
+        <Panel leftTopWH="30 10 96 20" texture="collect_txt_mainTitle@zz" enable="true" alphaBlend="true"/>
+        <Window name="mainPage" leftTopWH="0 0 1358 774" enable="true">
+          <TextButton name="rewardBtn" frame="DefaultFocusedButton" windowSize="130 42" adjust="62 10" text="#sb(getReward)" align="right" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+          <Label name="totalItemStr" leftTopWH="900 11 100 20" multiLine="false" text="#sb(totalItemStatus)" autoWrap="true" textAlign="center" textColor="255 221 232 255" textRender="bold14" enable="true"/>
+          <Label name="registedItemCount" leftTopWH="1010 11 50 20" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textColor="255 27 176 254" textRender="bold14" enable="true"/>
+          <Label name="totalItemCount" leftTopWH="1080 11 50 20" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" textColor="255 221 232 255" enable="true"/>
+          <Window leftTopWH="0 50 1000 500">
+            <ImageBoardButton name="kartGroupBtn" leftTopTex="24 24" autoLoadImageBoard="collect_btn_card1_@zz" alphaBlend="true" alphaTest="true" visible="true">
+              <Graduation name="totalKartGauge" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circle1_blue" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="totalKartMask0" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="totalKartMask1" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="totalKartMask2" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="totalKartMask3" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="totalKartMaskOver" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleCover1_blue" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalKartPer" leftTopWH="71 245 45 19" texture="collect_img_percentNum1_blue" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" visible="true" enable="false"/>
+              <Panel leftTopTex="117 245" texture="collect_img_percent1_blue" alphaBlend="true" enable="false"/>
+              <Label name="registedKartCount" leftTopWH="60 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textRender="bold14" textAlign="vcenter;right" enable="false"/>
+              <Label name="totalKartCount" leftTopWH="108 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textRender="bold14" textAlign="vcenter;left" enable="false"/>
+              <Graduation name="speedKartGauge" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circle1_blue" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="speedKartMask0" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="speedKartMask1" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="speedKartMask2" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="speedKartMask3" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="speedKartMaskOver" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleCover1_blue" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalSpeedKartPer" leftTopWH="278 245 45 19" texture="collect_img_percentNum1_blue" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="324 245" texture="collect_img_percent1_blue" enable="false" alphaBlend="true"/>
+              <Label name="registedSpeedKartCount" leftTopWH="267 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalSpeedKartCount" leftTopWH="315 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+              <Graduation name="itemKartGauge" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circle1_blue" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="itemKartMask0" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="itemKartMask1" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="itemKartMask2" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="itemKartMask3" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="itemKartMaskOver" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleCover1_blue" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalItemKartPer" leftTopWH="486 245 45 19" texture="collect_img_percentNum1_blue" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="532 245" texture="collect_img_percent1_blue" enable="false" alphaBlend="true"/>
+              <Label name="registedItemKartCount" leftTopWH="475 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalItemKartCount" leftTopWH="523 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+            </ImageBoardButton>
+            <ImageBoardButton name="characterGroupBtn" leftTopTex="686 24" autoLoadImageBoard="collect_btn_card2_@zz" alphaBlend="true" alphaTest="true" visible="true">
+              <Graduation name="characterGauge" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circle3_red" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="characterMask0" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="characterMask1" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="characterMask2" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="characterMask3" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="characterMaskOver" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleCover3_red" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalCharacterPer" leftTopWH="71 245 45 19" texture="collect_img_percentNum2_red" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="117 245" texture="collect_img_percent2_red" enable="false" alphaBlend="true"/>
+              <Label name="registedCharacterCount" leftTopWH="60 270 50 20" textColor="255 42 55 80" multiLine="false" text="- " autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalCharacterCount" leftTopWH="108 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+              <Graduation name="petGauge" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circle3_red" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="petMask0" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="petMask1" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="petMask2" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="petMask3" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="petMaskOver" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleCover3_red" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalPetPer" leftTopWH="278 245 45 19" texture="collect_img_percentNum2_red" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="324 245" texture="collect_img_percent2_red" enable="false" alphaBlend="true"/>
+              <Label name="registedPetCount" leftTopWH="267 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalPetCount" leftTopWH="315 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+              <Graduation name="flyingPetGauge" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circle3_red" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="flyingPetMask0" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="flyingPetMask1" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="flyingPetMask2" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="flyingPetMask3" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="flyingPetMaskOver" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleCover3_red" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalFlyingPetPer" leftTopWH="486 245 45 19" texture="collect_img_percentNum2_red" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="532 245" texture="collect_img_percent2_red" enable="false" alphaBlend="true"/>
+              <Label name="registedFlyingPetCount" leftTopWH="475 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalFlyingPetCount" leftTopWH="523 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+            </ImageBoardButton>
+            <ImageBoardButton name="equipGroupBtn" leftTopTex="24 352" autoLoadImageBoard="collect_btn_card3_@zz" alphaBlend="true" alphaTest="true" visible="true">
+              <Graduation name="balloonGauge" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circle4_orange" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="balloonMask0" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="balloonMask1" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="balloonMask2" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="balloonMask3" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="balloonMaskOver" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleCover4_orange" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalBalloonPer" leftTopWH="71 245 45 19" texture="collect_img_percentNum3_orange" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="117 245" texture="collect_img_percent3_orange" enable="false" alphaBlend="true"/>
+              <Label name="registedBalloonCount" leftTopWH="60 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalBalloonCount" leftTopWH="108 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+              <Graduation name="headBandGauge" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circle4_orange" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="headBandMask0" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="headBandMask1" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="headBandMask2" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="headBandMask3" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="headBandMaskOver" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleCover4_orange" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalHeadBandPer" leftTopWH="278 245 45 19" texture="collect_img_percentNum3_orange" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="324 245" texture="collect_img_percent3_orange" enable="false" alphaBlend="true"/>
+              <Label name="registedHeadBandCount" leftTopWH="267 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalHeadBandCount" leftTopWH="315 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+              <Graduation name="goggleGauge" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circle4_orange" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="goggleMask0" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="goggleMask1" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="goggleMask2" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="goggleMask3" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="goggleMaskOver" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleCover4_orange" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalGogglePer" leftTopWH="486 245 45 19" texture="collect_img_percentNum3_orange" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="532 245" texture="collect_img_percent3_orange" enable="false" alphaBlend="true"/>
+              <Label name="registedGoggleCount" leftTopWH="475 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalGoggleCount" leftTopWH="523 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+            </ImageBoardButton>
+            <ImageBoardButton name="decoGroupBtn" leftTopTex="686 352" autoLoadImageBoard="collect_btn_card4_@zz" alphaBlend="true" alphaTest="true" visible="true">
+              <Graduation name="auraGauge" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circle5_pink" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="auraMask0" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="auraMask1" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="auraMask2" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="auraMask3" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="auraMaskOver" leftTopTex="47 97" uvRect="0 0 140 140" texture="collect_img_circleCover5_pink" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalAuraPer" leftTopWH="71 245 45 19" texture="collect_img_percentNum4_pink" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="117 245" texture="collect_img_percent4_pink" enable="false" alphaBlend="true"/>
+              <Label name="registedAuraCount" leftTopWH="60 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalAuraCount" leftTopWH="108 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+              <Graduation name="paintGauge" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circle5_pink" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="paintMask0" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="paintMask1" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="paintMask2" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="paintMask3" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="paintMaskOver" leftTopTex="255 97" uvRect="0 0 140 140" texture="collect_img_circleCover5_pink" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalPaintPer" leftTopWH="278 245 45 19" texture="collect_img_percentNum4_pink" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="324 245" texture="collect_img_percent4_pink" enable="false" alphaBlend="true"/>
+              <Label name="registedPaintCount" leftTopWH="267 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalPaintCount" leftTopWH="315 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+              <Graduation name="skidMarkGauge" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circle5_pink" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="skidMarkMask0" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask1" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="skidMarkMask1" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask2" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="skidMarkMask2" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask3" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="skidMarkMask3" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleMask4" alphaBlend="true" minDegree="0" maxDegree="90" minValue="0" maxValue="25" axis="70 70" defaultValue="0" visible="true" enable="false"/>
+              <Graduation name="skidMarkMaskOver" leftTopTex="463 97" uvRect="0 0 140 140" texture="collect_img_circleCover5_pink" alphaBlend="true" minDegree="0" maxDegree="360" minValue="0" maxValue="360" axis="70 70" defaultValue="0" visible="false" enable="false"/>
+              <CharPanel name="totalSkidMarkPer" leftTopWH="486 245 45 19" texture="collect_img_percentNum4_pink" rightAlign="true" alphaBlend="true" fontSize="14 19" spaceOffset="-1" fontStr="1234567890" text="0" speedTick="5" enable="false" visible="true"/>
+              <Panel leftTopTex="532 245" texture="collect_img_percent4_pink" enable="false" alphaBlend="true"/>
+              <Label name="registedSkidMarkCount" leftTopWH="475 270 50 20" textColor="255 42 55 80" multiLine="false" text="-" autoWrap="true" textAlign="vcenter;right" textRender="bold14" enable="false"/>
+              <Label name="totalSkidMarkCount" leftTopWH="523 270 50 20" textColor="255 135 146 167" multiLine="false" text=" / -" autoWrap="true" textAlign="vcenter;left" textRender="bold14" enable="false"/>
+            </ImageBoardButton>
+          </Window>
+        </Window>
+        <Container name="repItem3_0" windowSize="126 126" adjust="80 180" visible="true"/>
+        <Container name="repItem3_2" windowSize="126 126" adjust="285 180" visible="true"/>
+        <Container name="repItem3_1" windowSize="126 126" adjust="495 180" visible="true"/>
+        <Container name="repItem1" windowSize="126 126" adjust="740 175" visible="true"/>
+        <Container name="repItem21" windowSize="126 126" adjust="945 175" visible="true"/>
+        <Container name="repItem52" windowSize="126 126" adjust="1155 175" visible="true"/>
+        <Container name="repItem9" windowSize="126 126" adjust="80 510" visible="true"/>
+        <Container name="repItem11" windowSize="126 126" adjust="285 510" visible="true"/>
+        <Container name="repItem8" windowSize="126 126" adjust="495 510" visible="true"/>
+        <Container name="repItem26" windowSize="126 126" adjust="740 510" visible="true"/>
+        <Container name="repItem2" windowSize="126 126" adjust="945 510" visible="true"/>
+        <Container name="repItem27" windowSize="126 126" adjust="1155 510" visible="true"/>
+      </ImageBoard>
+      <ImageBoard name="itemTabGroup" windowSize="1358 718" image="collect_img_itemMenuBG" adjust="0 29" align="center" alphaBlend="true" visible="false">
+        <ImageButton name="homBtn" leftTopTex="0 0" autoLoadImage="btn_charge_" text="홈으로" alphaBlend="true" alphaTest="true" visible="false"/>
+        <Window name="tabBtnGroup" leftTopWH="0 0">
+          <ImageButton name="kartTabBtn" leftTopTex="0 0" autoLoadImage="collect_btn_1depthMenu1_@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+          <ImageButton name="characterTabBtn" leftTopTex="106 0" autoLoadImage="collect_btn_1depthMenu2_@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+          <ImageButton name="equipTabBtn" leftTopTex="212 0" autoLoadImage="collect_btn_1depthMenu3_@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+          <ImageButton name="decoTabBtn" leftTopTex="318 0" autoLoadImage="collect_btn_1depthMenu4_@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+          <ImageButton name="backBtn" leftTopTex="427 0" autoLoadImage="collect_btn_1depthBack_" alphaBlend="true" alphaTest="true" visible="true"/>
+        </Window>
+        <Container name="catRegisterStat" leftTopWH="850 40 400 70">
+          <Label name="catName" leftTopWH="12 8 100 20" textColor="255 135 146 167" text="#sb(registed)" multiLine="false" autoWrap="false" textRender="bold14" enable="true"/>
+          <Label name="curCnt" leftTopWH="210 8 50 20" textColor="255 27 176 254" multiLine="false" textAlign="right" autoWrap="false" textRender="bold14" enable="true"/>
+          <Label leftTopWH="270 8 5 20" textColor="255 135 146 167" multiLine="false" text="/" autoWrap="false" textRender="bold14" enable="true"/>
+          <Label name="totalCnt" leftTopWH="280 8 50 20" textColor="255 135 146 167" multiLine="false" textAlign="left" autoWrap="false" textRender="bold14" enable="true"/>
+          <Panel name="curCollectPercent" leftTopWH="80 17 150 7" texture="collect_img_itemBar" enable="true" alphaBlend="true"/>
+          <Edit name="searchEdit" leftTopWH="345 10 150 25" textColor="white" textBgColor="none" frame="NoFrame" maxChar="10" textRender="bold14" visible="true" enable="true"/>
+        </Container>
+        <Window name="itemTab" leftTopWH="0 104 1358 620" enable="true">
+          <GridSelectorDivLoad name="itemSelector" windowRect="0 0 1358 620" alignSize="9" maxLine="4" alignMargin="3 3" linePaging="false"/>
+          <ScrollBar name="itemListBar" leftTopWH="1340 5 12 520" scrollType="vertical" visible="true" minScrollButtonHeight="50"/>
+        </Window>
+        <Window name="subTabBtnGroup" leftTopWH="5 41 500 76">
+          <ImageButton name="subTab_0" leftTopWH="0 0 122 38" alphaBlend="true" alphaTest="true" visible="true"/>
+          <ImageButton name="subTab_1" leftTopWH="122 0 122 38" alphaBlend="true" alphaTest="true" visible="true"/>
+          <ImageButton name="subTab_2" leftTopWH="244 0 122 38" alphaBlend="true" alphaTest="true" visible="true"/>
+          <ImageBoard name="kartEngineGradeBar" windowSize="1358 26" image="collect_img_3depthMenuBG" adjust="-4 38" alphaBlend="true" enable="true">
+            <ImageButton name="leftGrade" leftTopWH="0 0 453 26" autoLoadImage="collect_btn_3depthLeft_" textRender="bold14" textColor="255 65 106 166" textColor2="255 0 119 255" alphaBlend="true" alphaTest="true" enable="true" visible="true"/>
+            <ImageButton name="rightGrade" leftTopWH="905 0 453 26" autoLoadImage="collect_btn_3depthRight_" textRender="bold14" textColor="255 65 106 166" textColor2="255 0 119 255" alphaBlend="true" alphaTest="true" enable="true" visible="true"/>
+            <ComboBox name="gradeListBox" leftTopWH="453 0 453 26" comboListLength="22" frame="NoFrame" listFrame="DefaultEdit" scrollBarVisible="false" animation="true" showDropDownButton="false"/>
+          </ImageBoard>
+        </Window>
+      </ImageBoard>
+      <Panel leftTopWH="305 745 14 14" texture="collect_img_noticeICON" enable="true" alphaBlend="true"/>
+      <Label leftTopWH="325 740 100 20" multiLine="false" text="#sb(dictionaryNotice1)" autoWrap="true" textAlign="left" textRender="bold14" textColor="255 135 146 167" enable="false"/>
+      <Panel leftTopWH="708 745 14 14" texture="collect_img_noticeICON" enable="true" alphaBlend="true"/>
+      <Label leftTopWH="728 740 100 20" multiLine="false" text="#sb(dictionaryNotice2)" autoWrap="true" textAlign="left" textRender="bold14" textColor="255 135 146 167" enable="false"/>
+    </Window>
+    <ImageButton name="close" leftTopTex="1320 12" autoLoadImage="collect_btn_wndClose_" alphaBlend="true" alphaTest="true" visible="true"/>
+  </Container>
+</Panel>

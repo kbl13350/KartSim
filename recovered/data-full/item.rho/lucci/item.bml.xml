@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="lucci">
+  <state name="Stay" life="0" item="item00" size="2.0"/>
+  <state name="Eaten" life="2000" fired="item01" firedFx="eaten"/>
+  <state name="Wait" life="3600000"/>
+  <state name="Stay" life="0" item="item02" size="2.6"/>
+  <state name="Eaten" life="2000" fired="item03" firedFx="eaten"/>
+  <state name="Wait" life="3600000"/>
+  <state name="Stay" life="0" item="item04" size="2.0"/>
+  <state name="Eaten" life="2000" fired="item05" firedFx="eaten"/>
+  <state name="Wait" life="3600000"/>
+  <state name="Stay" life="0" item="item06" size="2.6"/>
+  <state name="Eaten" life="2000" fired="item07" firedFx="eaten"/>
+  <state name="Wait" life="3600000"/>
+  <state name="Stay" life="0" item="item00" size="2.0"/>
+  <state name="Eaten" life="2000" fired="루찌획득" firedFx="eaten"/>
+  <state name="Wait" life="3600000"/>
+  <state name="Stay" life="0" item="item00" size="3.5"/>
+  <state name="Eaten" life="2000" fired="item01" firedFx="eaten"/>
+  <state name="Wait" life="3600000"/>
+  <state name="Cached" life="8000" item="item00"/>
+  <state name="Eaten2" life="2000" fired="item01" firedFx="eaten"/>
+  <state name="Drop" life="600" item="item00"/>
+</item>

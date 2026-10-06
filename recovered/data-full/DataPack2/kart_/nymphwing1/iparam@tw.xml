@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.2'
+	DriftEscapeForce='500'
+	CornerDrawFactor='0.066'
+	UseTransformBooster='false'
+	EngineSound='cotton6'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterBlur='true'
+
+	EnvMap='true'
+
+	Port0='mod1a'
+	Port1='mod1b'
+	FirePort0='mod2a'
+	FirePort1='mod2b'
+	FirePort2='mod2c'
+	FirePort3='mod2d'
+
+	ExtWheelSpeed='10'
+	DescBalance= '31'
+	DescStability ='35'
+	DescEngineGrade='1'
+	DescEnchantCap = '20'
+
+
+/>
+
+<!-- 대만 님프윙 SR (시나리오 보상) -->

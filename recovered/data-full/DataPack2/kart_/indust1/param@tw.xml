@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	 ForwardAccelForce='95.0'
+	 BackwardAccelForce='90.0'
+	 DragFactor='-0.057'
+	 SteerConstraint='1.85'
+	 DriftEscapeForce='160'
+	 CornerDrawFactor='0.042'
+
+	 BoosterBlur='true'
+	 EngineSound='pro'
+	 ExtWheelType='0'
+	 ExtWheelSpeed='5'
+
+	 	DescBalance= '22'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescEnchantCap = '20'
+
+/>
+
+<!-- 인더스트 PRO-->

@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="kItemOn">
+    <m c="kr" v="%s 장착"/>
+    <m c="cn" v="%s 装备"/>
+    <m c="tw" v="%s 裝備"/>
+  </k>
+  <k n="kItemOnOR">
+    <m c="kr" v="퀘스트 설정 아이템 장착"/>
+    <m c="cn" v="装备任务指定道具"/>
+  </k>
+  <k n="kInventory">
+    <m c="kr" v="%s 소지"/>
+    <m c="cn" v="%s 持有"/>
+    <m c="tw" v="%s 持有"/>
+  </k>
+  <k n="kPcCafeGrade">
+    <m c="kr" v="PC방 접속"/>
+    <m c="cn" v="网吧登录"/>
+    <m c="tw" v="網咖登入"/>
+  </k>
+  <k n="kKartLevel">
+    <m c="kr" v="튜닝 Lv %d"/>
+    <m c="cn" v="车辆升级%d等级"/>
+    <m c="tw" v="車輛升級%d等級"/>
+  </k>
+  <k n="kCoupleJoin">
+    <m c="kr" v="커플 상태"/>
+    <m c="cn" v="情侣状态"/>
+    <m c="tw" v="情侶狀態"/>
+  </k>
+  <k n="kCoupleNotJoin">
+    <m c="kr" v="커플없음 상태"/>
+    <m c="cn" v="无情侣状态"/>
+    <m c="tw" v="單身狀態"/>
+  </k>
+  <k n="kGuildJoined">
+    <m c="kr" v="길드가입 상태"/>
+    <m c="cn" v="已加入车队状态"/>
+    <m c="tw" v="已加入車隊狀態"/>
+  </k>
+  <k n="kGuildNotJoined">
+    <m c="kr" v="길드없음 상태"/>
+    <m c="cn" v="无车队状态"/>
+    <m c="tw" v="無車隊狀態"/>
+  </k>
+  <k n="kTheme">
+    <m c="kr" v="%s 테마"/>
+    <m c="cn" v="%s 主题"/>
+    <m c="tw" v="%s 主題"/>
+  </k>
+  <k n="kTrackHash">
+    <m c="kr" v="%s 트랙"/>
+    <m c="cn" v="%s 赛道"/>
+    <m c="tw" v="%s 赛道"/>
+  </k>
+  <k n="kRiderCount">
+    <m c="kr" v="%d 명"/>
+    <m c="cn" v="%d 名"/>
+    <m c="tw" v="%d 名"/>
+  </k>
+  <k n="kRiderCountBelow">
+    <m c="kr" v="%d 명 이하"/>
+    <m c="cn" v="%d 名 以下"/>
+    <m c="tw" v="%d 名 以下"/>
+  </k>
+  <k n="kRiderCountMore">
+    <m c="kr" v="%d 명 이상"/>
+    <m c="cn" v="%d 名 以上"/>
+    <m c="tw" v="%d 名 以上"/>
+  </k>
+  <k n="kPremium">
+    <m c="kr" v="프리미엄 등급 %s 이상"/>
+    <m c="cn" v="VIP等级 %s 以上"/>
+    <m c="tw" v="VIP等级 %s 以上"/>
+  </k>
+  <k n="kRiderLevelMore">
+    <m c="kr" v="%d 레벨 이상"/>
+    <m c="cn" v="%d 等级以上"/>
+    <m c="tw" v="%d 等级以上"/>
+  </k>
+  <k n="kRiderLevelBelow">
+    <m c="kr" v="%d 레벨 이하"/>
+    <m c="cn" v="%d 等级以下"/>
+    <m c="tw" v="%d 等级以下"/>
+  </k>
+  <k n="kPrevQuestComplete">
+    <m c="kr" v="[%s] 퀘스트 완료"/>
+    <m c="cn" v="[%s] 完成任务"/>
+    <m c="tw" v="[%s] 完成任務"/>
+  </k>
+  <k n="questInfo">
+    <m c="kr" v="퀘스트 정보"/>
+    <m c="cn" v="任务信息"/>
+    <m c="tw" v="任務情報"/>
+  </k>
+  <k n="questTypeGuide">
+    <m c="kr" v="퀘스트 종류 안내"/>
+    <m c="cn" v="任务种类说明"/>
+    <m c="tw" v="任務種類說明"/>
+  </k>
+  <k n="doing">
+    <m c="kr" v="진행 중(%d)"/>
+    <m c="cn" v="进行中(%d)"/>
+    <m c="tw" v="進行中(%d)"/>
+  </k>
+  <k n="done">
+    <m c="kr" v="완료(%d)"/>
+    <m c="cn" v="完成(%d)"/>
+    <m c="tw" v="完成(%d)"/>
+  </k>
+  <k n="none">
+    <m c="kr" v="일반"/>
+    <m c="cn" v="一般"/>
+    <m c="tw" v="一般"/>
+  </k>
+  <k n="repeat">
+    <m c="kr" v="반복"/>
+    <m c="cn" v="重复"/>
+    <m c="tw" v="重覆"/>
+  </k>
+  <k n="daily">
+    <m c="kr" v="일일"/>
+    <m c="cn" v="每日"/>
+    <m c="tw" v="每日"/>
+  </k>
+  <k n="weekly">
+    <m c="kr" v="주간"/>
+    <m c="cn" v="每周"/>
+    <m c="tw" v="每週"/>
+  </k>
+  <k n="onlyCounting">
+    <m c="kr" v="이벤트"/>
+    <m c="cn" v="活动"/>
+    <m c="tw" v="活動"/>
+  </k>
+  <k n="onlyPCRoom">
+    <m c="kr" v="PC방"/>
+    <m c="cn" v="网吧"/>
+    <m c="tw" v="網咖"/>
+  </k>
+  <k n="enableState">
+    <m c="kr" v="진행 가능 상태"/>
+    <m c="cn" v="可进行状态"/>
+    <m c="tw" v="可進行任務的狀態"/>
+  </k>
+  <k n="possible">
+    <m c="kr" v="가능"/>
+    <m c="cn" v="可以"/>
+    <m c="tw" v="可進行"/>
+  </k>
+  <k n="impossible">
+    <m c="kr" v="불가능"/>
+    <m c="cn" v="不可以"/>
+    <m c="tw" v="無法進行"/>
+  </k>
+  <k n="mission">
+    <m c="kr" v="도전과제"/>
+    <m c="cn" v="任务详情"/>
+    <m c="tw" v="挑戰任務"/>
+  </k>
+  <k n="reward">
+    <m c="kr" v="보   상"/>
+    <m c="cn" v="奖励"/>
+    <m c="tw" v="獎勵"/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="cn" v="确认"/>
+    <m c="tw" v="確認"/>
+  </k>
+  <k n="theresNoQuestDoing">
+    <m c="kr" v="진행 중인 퀘스트가 없습니다."/>
+    <m c="cn" v="无可进行的任务"/>
+    <m c="tw" v="沒有可進行的任務。"/>
+  </k>
+  <k n="theresNoCompleteQuest">
+    <m c="kr" v="완료한 퀘스트가 없습니다"/>
+    <m c="cn" v="无已完成的任务"/>
+    <m c="tw" v="無完成的任務。"/>
+  </k>
+  <k n="trackInfo">
+    <m c="kr" v="트랙정보"/>
+    <m c="cn" v="赛道信息"/>
+    <m c="tw" v="賽道資訊"/>
+  </k>
+  <k n="detailDailyQuest">
+    <m c="kr" v="하루 1 번 보상 획득 가능 (0시 초기화)"/>
+    <m c="cn" v="每天可获得1次奖励（6点初始化）"/>
+    <m c="tw" v="每日可獲得1次獎勵(10點初始化)"/>
+  </k>
+  <k n="detailWeeklyQuest">
+    <m c="kr" v="일주일에 1 번 보상 획득 가능 (목요일 0시 초기화)"/>
+    <m c="cn" v="每周可获得1次奖励（周四6点初始化）"/>
+    <m c="tw" v="每週可獲得 1次獎勵(週五10點初始化)"/>
+  </k>
+  <k n="detailRepeatlyQuest">
+    <m c="kr" v="퀘스트 기간 내에 반복해서 보상 획득 가능"/>
+    <m c="cn" v="任务期间内可重复获得奖励"/>
+    <m c="tw" v="於任務期間，可重覆獲得獎勵"/>
+  </k>
+  <k n="detailPCCafeQuest">
+    <m c="kr" v="PC방에서만 진행할 수 있는 퀘스트"/>
+    <m c="cn" v="仅在欢乐行网吧中可进行的任务"/>
+    <m c="tw" v="只能在網咖進行的任務"/>
+  </k>
+  <k n="questEnableAll">
+    <m c="kr" v="누구든지 퀘스트에 참여할 수 있습니다."/>
+    <m c="cn" v="所有人均可参与任务。"/>
+    <m c="tw" v="任何玩家都可參與。"/>
+  </k>
+  <k n="questDisableInReadyStage">
+    <m c="kr" v="대기실에서는 도전이 불가능합니다."/>
+    <m c="cn" v="无法在房间内进行挑战。"/>
+    <m c="tw" v="在遊戲房中，無法進行挑戰。"/>
+  </k>
+  <k n="questComplete">
+    <m c="kr" v="진행 완료"/>
+    <m c="cn" v="完成"/>
+    <m c="tw" v="完成"/>
+  </k>
+  <k n="questEnable">
+    <m c="kr" v="진행 가능"/>
+    <m c="cn" v="可以"/>
+    <m c="tw" v="可進行"/>
+  </k>
+  <k n="questDisable">
+    <m c="kr" v="진행 불가능"/>
+    <m c="cn" v="不可以"/>
+    <m c="tw" v="無法進行"/>
+  </k>
+  <k n="prerequisites_needCouple">
+    <m c="kr" v="커플 상태"/>
+    <m c="cn" v="情侣"/>
+    <m c="tw" v="情侶"/>
+  </k>
+  <k n="prerequisites_needSingle">
+    <m c="kr" v="커플없음 상태"/>
+    <m c="cn" v="无情侣"/>
+    <m c="tw" v="單身"/>
+  </k>
+  <k n="prerequisites_needGuild">
+    <m c="kr" v="길드가입 상태"/>
+    <m c="cn" v="加入车队"/>
+    <m c="tw" v="已加入車隊"/>
+  </k>
+  <k n="prerequisites_needLonely">
+    <m c="kr" v="길드없음 상태"/>
+    <m c="cn" v="无车队"/>
+    <m c="tw" v="無車隊"/>
+  </k>
+  <k n="prerequisites_premiumState">
+    <m c="kr" v="프리미엄등급"/>
+    <m c="cn" v="VIP等级"/>
+    <m c="tw" v="VIP等級"/>
+  </k>
+  <k n="prerequisites_premiumFamilyMore">
+    <m c="kr" v="패밀리 이상"/>
+    <m c="cn" v="会员以上"/>
+    <m c="tw" v="家族以上"/>
+  </k>
+  <k n="prerequisites_premiumSilverMore">
+    <m c="kr" v="실버 이상"/>
+    <m c="cn" v="白银以上"/>
+    <m c="tw" v="銀牌以上"/>
+  </k>
+  <k n="prerequisites_premiumGoldMore">
+    <m c="kr" v="골드 이상"/>
+    <m c="cn" v="黄金以上"/>
+    <m c="tw" v="金牌以上"/>
+  </k>
+  <k n="prerequisites_premiumPlatinumMore">
+    <m c="kr" v="플래티넘 이상"/>
+    <m c="cn" v="水晶以上"/>
+    <m c="tw" v="白金以上"/>
+  </k>
+  <k n="prerequisites_premiumVIPMore">
+    <m c="kr" v="VIP 이상"/>
+    <m c="cn" v="VIP以上"/>
+    <m c="tw" v="VIP以上"/>
+  </k>
+  <k n="prerequisites_needLevelMore">
+    <m c="kr" v="레벨 이상"/>
+    <m c="cn" v="等级以上"/>
+    <m c="tw" v="等级以上"/>
+  </k>
+  <k n="prerequisites_needLevelBelow">
+    <m c="kr" v="레벨 이하"/>
+    <m c="cn" v="等级以下"/>
+    <m c="tw" v="等级以下"/>
+  </k>
+  <k n="prerequisites_needItemHave">
+    <m c="kr" v="소지"/>
+    <m c="cn" v="持有"/>
+    <m c="tw" v="持有"/>
+  </k>
+  <k n="prerequisites_needItemOn">
+    <m c="kr" v="착용"/>
+    <m c="cn" v="装备"/>
+    <m c="tw" v="裝備"/>
+  </k>
+  <k n="prerequisites_needCompleteQuest">
+    <m c="kr" v="퀘스트 완료"/>
+    <m c="cn" v="完成任务"/>
+    <m c="tw" v="完成任务"/>
+  </k>
+  <k n="missionTextDefault">
+    <m c="kr" v="현재 %d회 / 목표 %d회"/>
+    <m c="cn" v="[color:255 36 129 255]目前 %d回[/color] / 目标 %d回"/>
+    <m c="tw" v="目前 %d回 /目標 %d回"/>
+  </k>
+  <k n="missionTextDistance">
+    <m c="kr" v="현재 %.1fkm / 목표 %.1fkm"/>
+    <m c="cn" v="[color:255 36 129 255]目前 %.1fkm[/color] / 目标 %.1fkm"/>
+    <m c="tw" v="目前 %.1fkm / 目標 %.1fkm"/>
+  </k>
+  <k n="missionTextDefaultOnlyCounting">
+    <m c="kr" v="현재 %d회"/>
+    <m c="cn" v="[color:255 36 129 255]目前 %d回[/color]"/>
+    <m c="tw" v="目前 %d回"/>
+  </k>
+  <k n="missionTextDistanceOnlyCounting">
+    <m c="kr" v="현재 %.1fkm"/>
+    <m c="cn" v="[color:255 36 129 255]目前 %.1fkm[/color]"/>
+    <m c="tw" v="目前 %.1fkm"/>
+  </k>
+  <k n="dateTimeFormat">
+    <m c="kr" v="%1!d!-%2!d!-%3!d! %4!d!:%5!02d!"/>
+    <m c="cn" v="%1!d!-%2!d!-%3!d! %4!d!:%5!02d!"/>
+    <m c="tw" v="%1!d!-%2!d!-%3!d! %4!d!:%5!02d!"/>
+  </k>
+  <k n="lucci">
+    <m c="kr" v="루찌"/>
+    <m c="cn" v="金币"/>
+    <m c="tw" v="LUCCI"/>
+  </k>
+  <k n="completeGetRewardMsg">
+    <m c="kr" v="퀘스트를 완료하였습니다.|보상함에서 보상을 확인하세요~!"/>
+    <m c="cn" v="任务已完成。|请在奖励箱中确认奖励~！"/>
+    <m c="tw" v="已完成任務，|請在保管箱中確認獎勵吧~!"/>
+  </k>
+  <k n="exitForOutrunWarningReadyStage">
+    <m c="kr" v="퀘스트 대결을 위해 대기실에서 나가시겠습니까?"/>
+    <m c="cn" v="要离开房间进行任务对决吗？"/>
+    <m c="tw" v="為了挑戰任務，確定要離開待機室嗎?"/>
+  </k>
+  <k n="exitForOutrunWarningMyRoomStage">
+    <m c="kr" v="퀘스트 대결을 위해 마이룸에서 나가시겠습니까?"/>
+    <m c="cn" v="要离开小屋进行任务对决吗？"/>
+    <m c="tw" v="為了挑戰任務，確定要離開聊天室嗎?"/>
+  </k>
+  <k n="exitForOutrunWarningCaption">
+    <m c="kr" v="알림"/>
+    <m c="cn" v="通知"/>
+    <m c="tw" v="告知"/>
+  </k>
+  <k n="vs">
+    <m c="kr" v="대결"/>
+    <m c="cn" v="对决"/>
+    <m c="tw" v="對決"/>
+  </k>
+  <k n="club">
+    <m c="kr" v="클럽"/>
+    <m c="cn" v="俱乐部"/>
+    <m c="tw" v="俱樂部"/>
+  </k>
+  <k n="CS">
+    <m c="kr" v="CS"/>
+    <m c="cn" v="活跃度"/>
+    <m c="tw" v="CS"/>
+  </k>
+  <k n="kClubJoined">
+    <m c="kr" v="클럽 가입"/>
+    <m c="cn" v="加入俱乐部"/>
+    <m c="tw" v="俱樂部加入"/>
+  </k>
+  <k n="kClubNotJoined">
+    <m c="kr" v="클럽 미가입"/>
+    <m c="cn" v="未加入俱乐部"/>
+    <m c="tw" v="俱樂部未加入"/>
+  </k>
+  <k n="kartPassDaily">
+    <m c="kr" v="카트 패스 일일 퀘스트"/>
+    <m c="cn" v="跑跑通行证每日任务"/>
+    <m c="tw" v="跑跑通行證每日任務"/>
+  </k>
+  <k n="kartPassWeekly">
+    <m c="kr" v="카트 패스 주간 퀘스트"/>
+    <m c="cn" v="跑跑通行证周任务"/>
+    <m c="tw" v="跑跑通行證週間任務 "/>
+  </k>
+  <k n="normalQuest">
+    <m c="kr" v="일반 퀘스트"/>
+    <m c="cn" v="普通任务"/>
+    <m c="tw" v="一般任務"/>
+  </k>
+  <k n="kartPassDailyGuideTitle">
+    <m c="kr" v="카트 패스 일일 퀘스트 도움말"/>
+    <m c="cn" v="跑跑通行证每日任务帮助"/>
+    <m c="tw" v="跑跑通行證每日任務說明"/>
+  </k>
+  <k n="kartPassDailyGuideDesc1">
+    <m c="kr" v="1단계부터 클리어하면 다음 단계 퀘스트가 열립니다."/>
+    <m c="cn" v="从1阶段开始完成，解锁下一阶段任务。"/>
+    <m c="tw" v="從1階段開始完成時，開啟下個階段任務。"/>
+  </k>
+  <k n="kartPassDailyGuideDesc2">
+    <m c="kr" v="1단계&gt;2단계&gt;3단계"/>
+    <m c="cn" v="1阶段&gt;2阶段&gt;3阶段"/>
+    <m c="tw" v="1階段&gt;2階段&gt;3階段"/>
+  </k>
+  <k n="kartPassDailyGuideDesc3">
+    <m c="kr" v="각 퀘스트 당 하루 1번 완료할 수 있습니다."/>
+    <m c="cn" v="每个任务每天只能完成1次。"/>
+    <m c="tw" v="每個任務一天可完成1次。"/>
+  </k>
+  <k n="kartPassDailyGuideDesc4">
+    <m c="kr" v="(매일 0시 초기화)"/>
+    <m c="cn" v="（每日6点进行重置）"/>
+    <m c="tw" v="(每日10點初始化)"/>
+  </k>
+  <k n="kartPassWeeklyGuideTitle">
+    <m c="kr" v="카트 패스 주간 퀘스트 도움말"/>
+    <m c="cn" v="跑跑通行证每周任务帮助"/>
+    <m c="tw" v="跑跑通行證週間任務說明"/>
+  </k>
+  <k n="kartPassWeeklyGuideDesc1">
+    <m c="kr" v="스페셜 퀘스트는 1주일에 1번 완료할 수 있습니다. "/>
+    <m c="cn" v="特别任务每周只能完成1次。"/>
+    <m c="tw" v="特殊任務1週可完成1次。"/>
+  </k>
+  <k n="kartPassWeeklyGuideDesc2">
+    <m c="kr" v="(목요일 0시 초기화)"/>
+    <m c="cn" v="（周四6点进行重置）"/>
+    <m c="tw" v="(每週五10點初始化)"/>
+  </k>
+  <k n="kartPassWeeklyGuideDesc3">
+    <m c="kr" v="1~4주차 퀘스트는 매주 1개씩 오픈되며, 시즌 종료"/>
+    <m c="cn" v="第1~4周任务每周开放1个"/>
+    <m c="tw" v="第1~4週任務為每週開啟1個, Season時間結束前,"/>
+  </k>
+  <k n="kartPassWeeklyGuideDesc4">
+    <m c="kr" v="일까지 각 주간 퀘스트당 1번 완료할 수 있습니다."/>
+    <m c="cn" v="直到赛季结束为止每周任务能完成1次。"/>
+    <m c="tw" v="每個週間任務可完成1次。"/>
+  </k>
+  <k n="kartPassWeeklyGuideSubTitle1">
+    <m c="kr" v="1주차"/>
+    <m c="cn" v="第1周"/>
+    <m c="tw" v="第1週"/>
+  </k>
+  <k n="kartPassWeeklyGuideSubTitle2">
+    <m c="kr" v="2주차"/>
+    <m c="cn" v="第2周"/>
+    <m c="tw" v="第2週"/>
+  </k>
+  <k n="kartPassWeeklyGuideSubTitle3">
+    <m c="kr" v="3주차"/>
+    <m c="cn" v="第3周"/>
+    <m c="tw" v="第3週"/>
+  </k>
+  <k n="kartPassWeeklyGuideSubTitle4">
+    <m c="kr" v="4주차"/>
+    <m c="cn" v="第4周"/>
+    <m c="tw" v="第4週"/>
+  </k>
+  <k n="normalQuestGuideTitle">
+    <m c="kr" v="일반 퀘스트 도움말"/>
+    <m c="cn" v="一般任务帮助"/>
+    <m c="tw" v="一般任務說明"/>
+  </k>
+  <k n="CloseDaily">
+    <m c="kr" v="이전 단계 클리어 시 오픈됩니다."/>
+    <m c="cn" v="完成前阶段任务时开放"/>
+    <m c="tw" v="前一階段完成時開啟。"/>
+  </k>
+  <k n="CloseWeekly">
+    <m c="kr" v="해당 주차에 오픈됩니다."/>
+    <m c="cn" v="在当周开放"/>
+    <m c="tw" v="在該週次開啟。"/>
+  </k>
+  <k n="KartPassWeekly">
+    <m c="kr" v="주차"/>
+    <m c="cn" v="周"/>
+    <m c="tw" v="週次"/>
+  </k>
+  <k n="KartPassDaily">
+    <m c="kr" v="단계"/>
+    <m c="cn" v="阶段"/>
+    <m c="tw" v="階段"/>
+  </k>
+  <k n="goKartPass">
+    <m c="kr" v="카트 패스 바로 가기"/>
+    <m c="cn" v="进入跑跑通行证系统"/>
+    <m c="tw" v="跑跑通行證立即前往"/>
+  </k>
+  <k n="questDisableInKartPassStage">
+    <m c="kr" v="카트 패스 스테이지에서는 도전이 불가능합니다."/>
+    <m c="cn" v="无法在跑跑通行证界面进行"/>
+    <m c="tw" v="在跑跑通行證頁面中，無法挑戰。"/>
+  </k>
+  <k n="kartPassPoint">
+    <m c="kr" v="패스 포인트"/>
+    <m c="cn" v="通行证积分"/>
+    <m c="tw" v="通行證點數"/>
+  </k>
+  <k n="completeGetRewardkartPassMsg">
+    <m c="kr" v="퀘스트를 완료하였습니다.|카트 패스에서 누적된 패스 포인트를 확인해보세요!"/>
+    <m c="cn" v="已完成任务。|赶紧来确认跑跑通行证积分吧！"/>
+    <m c="tw" v="已完成任務。|請確認在跑跑通行證中累積的通行證點數吧!"/>
+  </k>
+  <k n="kartPassQuestLoadingFailed">
+    <m c="kr" v="잠시 후 다시 시도해주세요."/>
+    <m c="cn" v="请稍后再尝试"/>
+    <m c="tw" v="請稍後再試。"/>
+  </k>
+  <k n="weelkyQuestListZero">
+    <m c="kr" v="다음 시즌 준비 중"/>
+    <m c="cn" v="下一赛季正在准备中"/>
+    <m c="tw" v="下個Season準備中"/>
+  </k>
+  <k n="kartPassQuestListZero">
+    <m c="kr" v="새로운 카트 패스 시즌을 기다려주세요."/>
+    <m c="cn" v="请期待即将到来的跑跑通行证新赛季"/>
+    <m c="tw" v="請等待新的跑跑通行證賽季。"/>
+  </k>
+  <k n="challenge">
+    <m c="kr" v="도전하기"/>
+    <m c="cn" v="挑战"/>
+    <m c="tw" v="挑戰"/>
+  </k>
+  <k n="period">
+    <m c="kr" v="기간"/>
+    <m c="cn" v="任务时间"/>
+  </k>
+  <k n="clubQuest">
+    <m c="kr" v="클럽 퀘스트"/>
+    <m c="cn" v="俱乐部任务"/>
+  </k>
+  <k n="clubQuestNotOpen">
+    <m c="kr" v="클럽 가입 시 오픈됩니다."/>
+    <m c="cn" v="加入俱乐部时开放。"/>
+  </k>
+</StringBag>

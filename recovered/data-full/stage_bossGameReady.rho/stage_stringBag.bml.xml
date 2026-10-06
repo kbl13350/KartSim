@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="emphasizeStart">
+    <m c="kr" v="시작하시려면 버튼을 눌러주세요."/>
+    <m c="jp" v="開始するにはボタンを押してください。"/>
+    <m c="cn" v="请按开始按钮"/>
+    <m c="tw" v="請按開始鈕"/>
+    <m c="us" v="Press Start to begin."/>
+    <m c="th" v="กดปุ่ม Start เพื่อเริ่มเกม"/>
+    <m c="vn" v="Vui lòng nhấn nút bắt đầu."/>
+    <m c="ru" v="Нажмите старт, чтобы начать"/>
+    <m c="id" v="Jika ingin memulai silahkan tekan tombol"/>
+  </k>
+  <k n="selectBoss">
+    <m c="kr" v="보스"/>
+    <m c="jp" v="ボス"/>
+    <m c="cn" v="BOSS"/>
+    <m c="tw" v="魔王"/>
+    <m c="id" v="Boss"/>
+    <m c="th" v="BOSS"/>
+  </k>
+  <k n="bossChangeFormatStr">
+    <m c="kr" v="%s 님으로|방장이 바뀌었습니다."/>
+    <m c="jp" v="%sさんに|ルームマスターが変更されました。"/>
+    <m c="cn" v="房主更改为|%s"/>
+    <m c="tw" v="%s成為室長"/>
+    <m c="us" v="%s |is new Captain."/>
+    <m c="vn" v="Chủ phòng đã được|chuyển cho %s"/>
+    <m c="ru" v="%s стал главой комнаты."/>
+    <m c="id" v="Room Master|telah berubah ke %s."/>
+    <m c="th" v="เปลี่ยนหัวหน้าห้องเป็นคุณ %s"/>
+  </k>
+  <k n="nowResultingStr">
+    <m c="kr" v="시상식이 진행 중입니다.|잠시만 기다려 주세요."/>
+    <m c="jp" v="表彰式中です。|しばらくお待ちください。"/>
+    <m c="cn" v="正在进行颁奖典礼，请稍候"/>
+    <m c="tw" v="正在進行頒獎典禮，請稍候"/>
+    <m c="us" v="Award ceremony|in progress.|Please wait."/>
+    <m c="vn" v="Đang trao thưởng! Vui lòng đợi trong giây lát"/>
+    <m c="ru" v="Идет награждение. |Подождите..."/>
+    <m c="id" v="Sedang menghitung skoe.|Mohon menunggu."/>
+    <m c="th" v="อยู่ระหว่างการดำเนินพิธีมอบรางวัล กรุณารอสักครู่"/>
+  </k>
+  <k n="warnAllReady">
+    <m c="kr" v="모두 레디인 상태에서 시작이 가능합니다."/>
+    <m c="jp" v="全員が準備OKボタンを押して「READY」になっていないと開始できません。"/>
+    <m c="cn" v="在全部玩家都准备的状态下才能开始游戏。"/>
+    <m c="tw" v="所有玩家都已準備好的狀態下，才能開始遊戲"/>
+    <m c="us" v="Everyone needs to be ready to start the game."/>
+    <m c="vn" v="Tất cả phải sẵn sàng mới có thể bắt đầu!"/>
+    <m c="ru" v="Начать гонку можно, |если все гонщики будут готовы."/>
+    <m c="id" v="Dapat dimulai jika semua sudah ready."/>
+    <m c="th" v="ต้องอยู่ในสถานะพร้อมทั้งหมดจึงจะเริ่มเกมได้"/>
+  </k>
+  <k n="warnAlone">
+    <m c="kr" v="2명 이상이 있어야 멀티플레이가 가능합니다."/>
+    <m c="jp" v="マルチプレイを開始するには2人以上必要です。"/>
+    <m c="cn" v="2人以上才可以进行多人游戏。"/>
+    <m c="tw" v="2人以上才可進行多人遊戲"/>
+    <m c="us" v="Multiplayer mode needs a minimum of two riders."/>
+    <m c="vn" v="Phải có từ 2 người trở lên mới có thể bắt đầu."/>
+    <m c="ru" v="Сетевой режим доступен, если в комнате |более 2-х гонщиков."/>
+    <m c="id" v="Dapat multyplay jika ada orang lebih dari 2 orang."/>
+    <m c="th" v="ต้องมีตั้งแต่ 2 คนขึ้นไปจึงจะเล่น Multi Play ได้"/>
+  </k>
+  <k n="warnMin4Count">
+    <m c="kr" v="4명의 플레이어가 모두 준비되어야 시작 할 수 있습니다."/>
+    <m c="jp" v="4人のプレイヤー全員が準備できると開始できます。"/>
+    <m c="tw" v="4個玩家都準備的狀態下才可以進行比賽。"/>
+    <m c="ru" v="Все 4 гонщика должны быть готовы, чтобы начать гонку."/>
+    <m c="id" v="Dapat dimulai jika 4 orang semua ready."/>
+    <m c="vn" v="Số tay đua là 4 thì tấc cả phải chuẩn bị sẵn sàng mới bắt đầu được."/>
+  </k>
+  <k n="warnUnmatchTeam">
+    <m c="kr" v="팀 인원수가 맞아야 시작이 가능합니다."/>
+    <m c="jp" v="チーム人数が合わないと開始できません。"/>
+    <m c="cn" v="两组人数相同才能开始游戏。"/>
+    <m c="tw" v="兩組人數必須相同才能開始遊戲"/>
+    <m c="us" v="The game can start after the selected number of riders join the room."/>
+    <m c="vn" v="Số lượng thành viên trongnhóm phải phù hợp mới có thể bắt đầu."/>
+    <m c="ru" v="Количество гонщиков в команде должно совпадать."/>
+    <m c="id" v="Dapat dimulai jika jumlah anggota team sama."/>
+    <m c="th" v="จำนวนสมาชิกในทีมเท่ากันก่อน จึงจะเริ่มเกมได้"/>
+  </k>
+  <k n="warnCannotReady">
+    <m c="kr" v="레디를 할 수 없습니다."/>
+    <m c="jp" v="準備OKボタンを押せません。"/>
+    <m c="cn" v="目前不能READY"/>
+    <m c="tw" v="目前無法準備"/>
+    <m c="us" v="You cannot press &quot;Ready&quot; yet."/>
+    <m c="vn" v="Không thể sẵn sàng"/>
+    <m c="ru" v="Вы не можете сменить статус на &quot;Готов&quot;."/>
+    <m c="id" v="Tidak bisa ready."/>
+    <m c="th" v="ยังไม่พร้อม"/>
+  </k>
+  <k n="eventGM">
+    <m c="kr" v="이벤트진행자"/>
+    <m c="jp" v="イベント進行者"/>
+    <m c="cn" v="跑跑卡丁车GM"/>
+    <m c="tw" v="遊戲管理員"/>
+    <m c="us" v="Event NPC"/>
+    <m c="vn" v="Quản lý sự kiện"/>
+    <m c="ru" v="Ведущий ивента"/>
+    <m c="id" v="GMEvent"/>
+    <m c="th" v="GM ดูแลกิจกรรม"/>
+  </k>
+  <k n="bossInfo">
+    <m c="kr" v="보스 정보"/>
+    <m c="jp" v="ボス情報"/>
+    <m c="cn" v="BOSS信息"/>
+    <m c="tw" v="魔王情報"/>
+    <m c="id" v="Info Boss"/>
+    <m c="th" v="ข้อมูล BOSS"/>
+  </k>
+  <k n="titanLoader">
+    <m c="kr" v="타이탄로더"/>
+    <m c="jp" v="タイタンローダ―"/>
+    <m c="cn" v="泰坦领主"/>
+    <m c="tw" v="泰坦 戰神"/>
+    <m c="id" v="Titan Loader"/>
+    <m c="th" v="TITAN LORDER"/>
+  </k>
+  <k n="titanLoaderSpec">
+    <m c="kr" v="크기 : 30m / 무게 : 200t"/>
+    <m c="jp" v="サイズ : 30m / 重さ : 200t"/>
+    <m c="cn" v="大小：30米 / 重量：200吨"/>
+    <m c="tw" v="全長：30公尺 / 重量：200公噸"/>
+    <m c="id" v="Ukuran : 30cm / Berat : 200t"/>
+    <m c="th" v="สูง: 30m / น้ำหนัก: 200t"/>
+  </k>
+  <k n="titanLoaderInfo">
+    <m c="kr" v="버려진 마을에서 발견된 거대 메카닉 로봇입니다.|강력한 힘과 무기를 보유하고 있는 이 로봇이 붐힐을 다시 공격하기 전에 친구들과 힘을 합쳐 물리치세요~!"/>
+    <m c="jp" v="捨てられた町で発見された巨大メカニックロボットです。|強い力と武器を持つこのロボットがブームヒルを再び攻撃する前に、みんなで力を合わせて退治してください！"/>
+    <m c="cn" v="在无名城市发现了巨型机器人，在机器人即将毁灭繁荣山丘之前，大家一举将它打败吧！"/>
+    <m c="tw" v="如廢墟般的城鎮中發現了巨大的鋼鐵機械人。擁有強力武器與力量的機械人再次攻擊繁榮山丘之前，和好朋友們一起同心協力打敗他吧~!"/>
+    <m c="id" v="Giant Robot Mekanik yang ditemukan di desa yang diabaikan.|Silahkan menghancurkan robot ini dengan bantuan teman teman kamu sebelum robot ini menyerang kota Boomhill~!"/>
+    <m c="th" v="หุ่นยนต์ Mechanic|ขนาดยักษ์ที่มีพลัง|มหาศาล พร้อมอาวุธ|ทำลายล้างที่มี|อานุภาพร้ายแรง"/>
+  </k>
+  <k n="roomMasterChange">
+    <m c="kr" v="방장 넘겨주기"/>
+    <m c="cn" v="提升为房主"/>
+    <m c="tw" v="轉移房長"/>
+    <m c="id" v="Hak room master"/>
+  </k>
+  <k n="exit">
+    <m c="kr" v="나가기"/>
+    <m c="cn" v="退出"/>
+    <m c="tw" v="離開"/>
+  </k>
+</StringBag>

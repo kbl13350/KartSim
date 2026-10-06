@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="simRankPage" windowRect="0 0 734 319">
+  <Container windowRect="0 0 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container windowRect="0 32 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container windowRect="0 64 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container windowRect="0 96 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container windowRect="0 128 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container windowRect="0 160 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container windowRect="0 192 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container windowRect="0 224 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container windowRect="0 256 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container windowRect="0 288 734 31">
+    <Label name="rank" leftTopWH="1 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="rid" leftTopWH="100 1 130 20" text="WWWWWWWWWWWW" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="left.vcenter"/>
+    <Label name="win" leftTopWH="496 1 50 20" text="9999승" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="dp" leftTopWH="620 1 50 20" text="9999" enable="true" textRender="bold16" textColor="255 41 64 86" multiLine="false" autoWrap="true" textAlign="center"/>
+    <ImageButton name="viewRankInfo" leftTopTex="697 2" autoLoadImage="mg_0" alphaBlend="true" visible="true"/>
+  </Container>
+</Container>

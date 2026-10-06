@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="element_%d" leftTopWH="0 0 1233 126">
+  <Panel name="final_0" texture="03_win_tip@zz" leftTopWH="0 0 112 32" alphaBlend="true" visible="false"/>
+  <Panel name="final_1" texture="04_lose_tip@zz" leftTopWH="0 0 112 32" alphaBlend="true" visible="false"/>
+  <Panel name="final_2" texture="05_draw_tip@zz" leftTopWH="0 0 112 32" alphaBlend="true" visible="false"/>
+  <CharPanel name="score" leftTopWH="90 5 72 21" align="hcenter" centerAlign="true" texture="number_score" alphaBlend="true" fontSize="14 21" spaceOffset="2" fontStr=":1234567890" text="0:0"/>
+  <ImageBoard name="bg_win" leftTopWH="0  34 1230 90" image="bg_win" alphaBlend="true" visible="true"/>
+  <ImageBoard name="bg_lose" leftTopWH="0 34 1230 90" image="bg_lose" alphaBlend="true" visible="false"/>
+  <Label name="track_0" leftTopWH="90 43 200 15" text="" align="hcenter" textColor="white" textAlign="center" textRender="bold14"/>
+  <Label name="track_1" leftTopWH="90 67 200 15" text="" align="hcenter" textColor="white" textAlign="center" textRender="bold14"/>
+  <Label name="track_2" leftTopWH="90 91 200 15" text="" align="hcenter" textColor="white" textAlign="center" textRender="bold14"/>
+  <Label name="logTime" align="right top" adjust="90 5" windowSize="100 15" text="" textColor="255 108 125 157" textAlign="right" textRender="bold14"/>
+  <Label name="vpDiff" align="right top" adjust="17 5" windowSize="100 15" text="" textColor="255 108 125 157" textAlign="right" textRender="bold14"/>
+  <Container name="mine" windowSize="313 92" align="left">
+    <Panel name="grade" align="left top" adjust="98 45" windowSize="20 20" texture="" alphaBlend="true" visible="false"/>
+    <Label name="rid" align="left top" adjust="61 68" windowSize="88 15" text="" textColor="white" textColor2="255 0 0 0" textAlign="center" textRender="outline16"/>
+    <Label name="kartName" align="left top" adjust="61 88" windowSize="88 15" text="" textColor="255 208 208 208" textColor2="255 0 0 0" textAlign="center" textRender="outline14"/>
+    <Container name="team" align="left top" adjust="413 -2" windowSize="62 36">
+      <Panel name="blue" align="right top" windowSize="62 36" texture="05_blue_s@zz" alphaBlend="true" visible="false"/>
+      <Panel name="red" align="right top" windowSize="62 36" texture="06_red_s@zz" alphaBlend="true" visible="false"/>
+    </Container>
+    <Container name="result" align="left top" adjust="445 46" windowSize="36 52">
+      <Panel name="round_00" align="hcenter" leftTopWH="0 0 36 18" texture="01_win@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_01" align="hcenter" leftTopWH="0 0 36 18" texture="02_lose@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_02" align="hcenter" leftTopWH="0 0 36 18" texture="03_draw@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_10" align="hcenter" leftTopWH="0 24 36 18" texture="01_win@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_11" align="hcenter" leftTopWH="0 24 36 18" texture="02_lose@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_12" align="hcenter" leftTopWH="0 24 36 18" texture="03_draw@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_20" align="hcenter" leftTopWH="0 48 36 18" texture="01_win@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_21" align="hcenter" leftTopWH="0 48 36 18" texture="02_lose@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_22" align="hcenter" leftTopWH="0 48 36 18" texture="03_draw@zz" alphaBlend="true" visible="false"/>
+    </Container>
+    <Label name="record_0" align="left top" adjust="378 43" windowSize="50 15" text="" textColor="white" textAlign="center" textRender="bold14"/>
+    <Label name="record_1" align="left top" adjust="378 67" windowSize="50 15" text="" textColor="white" textAlign="center" textRender="bold14"/>
+    <Label name="record_2" align="left top" adjust="378 91" windowSize="50 15" text="" textColor="white" textAlign="center" textRender="bold14"/>
+  </Container>
+  <Container name="others" windowSize="513 92" align="right">
+    <Panel name="grade" align="right top" adjust="83 45" windowSize="20 20" texture="" alphaBlend="true" visible="false"/>
+    <Label name="rid" align="right top" adjust="50 68" windowSize="88 15" text="" textColor="white" textColor2="255 0 0 0" textAlign="center" textRender="outline16"/>
+    <Label name="kartName" align="right top" adjust="50 88" windowSize="88 15" text="" textColor="255 208 208 208" textColor2="255 0 0 0" textAlign="center" textRender="outline14"/>
+    <Container name="team" align="right top" adjust="419 -2" windowSize="62 36">
+      <Panel name="blue" align="left top" windowSize="62 36" texture="05_blue_s@zz" alphaBlend="true" visible="false"/>
+      <Panel name="red" align="left top" windowSize="62 36" texture="06_red_s@zz" alphaBlend="true" visible="false"/>
+    </Container>
+    <Container name="result" align="right top" adjust="450 46" windowSize="36 52">
+      <Panel name="round_00" align="hcenter" leftTopWH="0 0 36 18" texture="01_win@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_01" align="hcenter" leftTopWH="0 0 36 18" texture="02_lose@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_02" align="hcenter" leftTopWH="0 0 36 18" texture="03_draw@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_10" align="hcenter" leftTopWH="0 24 36 18" texture="01_win@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_11" align="hcenter" leftTopWH="0 24 36 18" texture="02_lose@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_12" align="hcenter" leftTopWH="0 24 36 18" texture="03_draw@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_20" align="hcenter" leftTopWH="0 48 36 18" texture="01_win@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_21" align="hcenter" leftTopWH="0 48 36 18" texture="02_lose@zz" alphaBlend="true" visible="false"/>
+      <Panel name="round_22" align="hcenter" leftTopWH="0 48 36 18" texture="03_draw@zz" alphaBlend="true" visible="false"/>
+    </Container>
+    <Label name="record_0" align="right top" adjust="382 43" windowSize="50 15" text="" textColor="white" textAlign="center" textRender="bold14"/>
+    <Label name="record_1" align="right top" adjust="382 67" windowSize="50 15" text="" textColor="white" textAlign="center" textRender="bold14"/>
+    <Label name="record_2" align="right top" adjust="382 91" windowSize="50 15" text="" textColor="white" textAlign="center" textRender="bold14"/>
+  </Container>
+</Container>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="sword2"/>
+  <Char id="il_young" pos="11 0" emotion="stop4"/>
+  <Msg name="日影" string="见过师傅。|弟子正在休息，听说师傅在找我，就马上过来了。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wor_ha" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="月下门主" string="你这家伙…让你休息，你却偷偷修炼，还说得这么理直气壮~"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="Wol_hee" pos="11 0" emotion="normal"/>
+  <Msg name="月熙" string="师傅！"/>
+  <Enter/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="Wor_ha" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="月下门主" string="吼吼…算了。|既然都来了，那我有个故事要跟你们讲。"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" pos="11 0" emotion="normal"/>
+  <Char id="Wol_hee" pos="13 0" emotion="normal"/>
+  <Msg name="月熙，日影" string="故事？"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="Wor_ha" pos="4 0" emotion="normal"/>
+  <Char id="il_young" pos="11 0" emotion="normal"/>
+  <Char id="Wol_hee" pos="13 0" emotion="normal"/>
+  <Msg name="月下门主" string="现在我也老了，|是时候定一下继承人了…"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="il_young" pos="11 0" emotion="stop1"/>
+  <Msg name="日影" string="师傅…|您还年轻！"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wor_ha" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="il_young" pos="11 0" emotion="stop1"/>
+  <Char id="Wol_hee" pos="13 0" emotion="normal"/>
+  <Msg name="月下门主" string="这家伙！！（呼…还是别说了…）|弟子听命！"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="il_young" pos="11 0" emotion="normal"/>
+  <Char id="Wol_hee" pos="13 0" emotion="normal"/>
+  <Msg name="月熙，日影" string="遵命！"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="Wor_ha" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="月下门主" string="我将选拔下一任月下门门主。"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="Wor_ha" pos="8 0" emotion="normal"/>
+  <Char id="light" pos="3 0" emotion="stop1"/>
+  <Char id="weapon2" pos="2 0" emotion="normal"/>
+  <Msg name="月下门主" string="你们当中获得银月剑的庇护|可以守护月下门的人就是新的门主。"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="light" remove="true"/>
+  <Char id="weapon2" remove="true"/>
+  <Char id="Wor_ha" pos="5 0" emotion="normal"/>
+  <Msg name="月下门主" string="新的门主会通过比武来决定。"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="Wor_ha" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="月下门主" string="为了能够接受银月剑和月下门的使命，你们要更加努力。"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="Wor_ha" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="il_young" pos="11 0" emotion="normal"/>
+  <Char id="Wol_hee" pos="13 0" emotion="normal"/>
+  <Msg name="月熙，日影" string="遵命！"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="Wor_ha" pos="4 0" emotion="normal"/>
+  <Char id="il_young" pos="11 0" emotion="normal"/>
+  <Char id="Wol_hee" pos="13 0" emotion="normal"/>
+  <Msg name="月下门主" string="吼吼…（怎么搞的…）"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <BackGround texture="sword1"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="日影" string="月熙…|我不会输给你的。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" pos="11 0" emotion="normal"/>
+  <Msg name="月熙" string="日影师姐…"/>
+  <Enter/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="Wol_hee" pos="11 0" emotion="normal"/>
+  <Msg name="日影" string="期待与你一决胜负…"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="Wol_hee" pos="11 0" emotion="normal"/>
+  <Msg name="月熙" string="好吧…我也会全力以赴的。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="il_young" pos="5 0" emotion="normal"/>
+  <Msg name="日影" string="那么我就去修炼了！比武时见~"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" pos="7 0" emotion="stop3"/>
+  <Msg name="月熙" string="日影师姐…"/>
+  <Enter/>
+</Scene>

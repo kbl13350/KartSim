@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='130.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.068'
+	SteerConstraint='2.1'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.065'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+	DriftMaxGauge='-1550'
+	UseTransformBooster='false'
+	motorcycleType='true'
+
+	BoosterBlur='true'
+	EngineSound='bike'
+	TachometerType='Tacho1'
+	TachometerName='bike'
+
+    BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod3'
+   	Port1='mod4'
+   	FirePort0='mod1a'
+	FirePort1='mod1b'
+    FirePort2='mod1c'
+
+	DescBalance= '28'
+	DescStability ='23'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '20'
+/>
+
+<!--붐붐 바이크-->

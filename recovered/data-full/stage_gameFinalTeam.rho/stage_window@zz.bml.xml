@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="Desktop" windowRect="fullscreen">
+  <Container name="resultPanel" windowRect="0 0 1600 900" align="center" visible="true">
+    <List name="teamBox" leftTopWH="0 147 800 110" align="hcenter" scrollType="horizon" listGap="0" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollWidth="0" scrollBarVisible="false"/>
+  </Container>
+</Container>

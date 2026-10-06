@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="tomb3"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="果然…|幽灵车手不见踪影了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="不愧是幽灵啊。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="他肯定在周围留下了痕迹。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="对，大家都搜寻一下吧。|肯定能找到什么东西。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="stop1"/>
+  <Msg name="小强" string="没时间了。|大家快点吧！！"/>
+  <Enter/>
+</Scene>

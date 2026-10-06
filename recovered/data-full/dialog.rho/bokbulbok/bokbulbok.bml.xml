@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel name="boxOpen" windowRect="fullscreen" color="150 20 20 20" alphaBlend="true" alphaTest="true">
+    <Play1SPanel scene="복불복상자(선물펑)" windowRect="0 40 800 640" zoom="1.0" stop="false" clearZBefore="true" align="center"/>
+  </Panel>
+  <CaptionWindow windowRect="0 0 525 465" caption="#sb(mainCaption)" name="noticeDlg" align="center" frame="CaptionDialog" visible="false" captionColor="black">
+    <Panel name="꽝" windowRect="0 4 490 248" texture="꽝@zz" enable="false" visible="true"/>
+    <Panel name="당첨" windowRect="0 4 490 248" texture="당첨@zz" enable="false" visible="false">
+      <Play1SPanel scene="반짝반짝눈이부셔" windowRect="0 0 300 300" zoom="1.0" stop="true" clearZBefore="true" defaultCameraPos="1 -15 6" defaultSpotPos="1 0 6"/>
+    </Panel>
+    <Window name="main" windowRect="24 110 236 232"/>
+    <Panel name="설명" windowRect="0 257 490 400" frame="DefaultEdit" enable="false">
+      <Container leftTopWH="0 0 360 150">
+        <Label name="카트이름" leftTopWH="0 0 350 30" align="hcenter" textAlign="hcenter" autoSizing="true" text="슈퍼 왕문어" textRender="bold16"/>
+        <Label name="카트설명" leftTopWH="0 30 345 105" textAlign="hcenter" autoSizing="false" textRender="bold14" multiLine="true" autoWrap="true" lineGap="4" text="물폭탄을 독성물폭탄으로 업그레이드 |독성물폭탄은 루루가 물파리로 압축 불가 |맞은 상대는 잠시 동안 아이템 사용 불가"/>
+      </Container>
+      <Panel name="section" leftTopWH="350 0 2 140" color="255 208 208 208" enable="false"/>
+      <Container leftTopWH="350 0 140 100">
+        <Label name="기타 아이템" leftTopWH="0 0 120 30" align="hcenter" textAlign="hcenter" autoSizing="true" text="" multiLine="true" lineGap="6" textRender="bold16"/>
+      </Container>
+    </Panel>
+  </CaptionWindow>
+</Container>

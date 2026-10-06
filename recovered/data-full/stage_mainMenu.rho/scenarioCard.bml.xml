@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageButton name="onChapter1" leftTopWH="0 0 272 134" autoLoadImage="btn_scenirio00_" alphaBlend="true">
+  <Panel name="chapterSelected" texture="선택박스" windowSize="333 78" adjust="0 0" alphaBlend="true" visible="false"/>
+  <Panel name="chapterCompleted" texture="클리어라벨" windowSize="70 70" adjust="0 0" alphaBlend="true"/>
+  <BlinkButton name="chapterNew" windowSize="52 20" align="right" adjust="0 -2" autoLoadImage="scenario_new_0" alphaBlend="true" enable="false" visible="false" hasDisable="true" blinkGap="500" autoStart="true" depthBias="11"/>
+</ImageButton>

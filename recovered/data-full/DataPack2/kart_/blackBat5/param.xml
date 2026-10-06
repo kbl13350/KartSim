@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='110.0'
+	DragFactor='-0.074'
+	SteerConstraint='2.3'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.073'
+
+	StartBoosterTime='1200' 
+	StartForwardAccelFactorItem='1.6'
+
+	TransformTime='700' 
+	TransAccelFactor='1.85'
+	UseTransformBooster='true'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'   
+
+	BoosterWaveType='effect_zero'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zero5'
+	BoosterType3='zero5'
+
+	Port0='mod1a' 
+	Port1='mod1b'
+
+	FirePort0='mod2a'
+	FirePort1='mod2b'
+
+	EnvMap='true'
+
+	TailLampSize='0.1'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '40'
+	DescStability ='35'
+	DescEngineGrade='1.2'
+	DescCornering='4'
+	DescEnchantCap = '25'
+/>
+
+<!-- 한국 가샤폰 레어 블랙팬텀 Z7 20101209 -->

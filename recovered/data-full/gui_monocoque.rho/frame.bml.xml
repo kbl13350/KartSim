@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameList>
+  <NoFrame>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Disabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Blink texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </NoFrame>
+  <NoFrameWarn>
+    <Normal texture="frame01" clientUV="252 252 253 253" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="252 252 253 253" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="252 252 253 253" clientType="transFill" alphaBlend="true"/>
+    <Disabled texture="frame01" clientUV="252 252 253 253" clientType="transFill" alphaBlend="true"/>
+    <Blink texture="frame01" clientUV="252 252 253 253" clientType="transFill" alphaBlend="true"/>
+  </NoFrameWarn>
+  <DefaultCaptionWindow>
+    <Activated texture="frame01" captionUV="219 0 256 40" captionLeftMargin="15" captionRightMargin="15" leftUV="219 40 234 46" rightUV="241 40 256 46" clientUV="234 40 241 46" clientType="fill" bottomUV="219 46 256 63" bottomLeftMargin="15" bottomRightMargin="15" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="219 0 256 40" captionLeftMargin="15" captionRightMargin="15" leftUV="219 40 234 46" rightUV="241 40 256 46" clientUV="234 40 241 46" clientType="fill" bottomUV="219 46 256 63" bottomLeftMargin="15" bottomRightMargin="15" alphaBlend="true"/>
+  </DefaultCaptionWindow>
+  <CaptionDialog>
+    <Activated texture="frame01" captionUV="182 63 219 104" captionLeftMargin="18" captionRightMargin="18" leftUV="182 104 200 105" rightUV="201 104 219 105" clientUV="200 104 201 105" clientType="fill" bottomUV="182 105 219 118" bottomLeftMargin="18" bottomRightMargin="18" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="182 63 219 104" captionLeftMargin="18" captionRightMargin="18" leftUV="182 104 200 105" rightUV="201 104 219 105" clientUV="200 104 201 105" clientType="fill" bottomUV="182 105 219 118" bottomLeftMargin="18" bottomRightMargin="18" alphaBlend="true"/>
+  </CaptionDialog>
+  <BigCaptionDialog>
+    <Activated texture="CaptionDialog_new" captionUV="0 0 37 52" captionLeftMargin="18" captionRightMargin="18" leftUV="0 52 18 53" rightUV="19 52 37 53" clientUV="18 52 19 53" clientType="fill" bottomUV="0 53 37 62" bottomLeftMargin="18" bottomRightMargin="18" alphaBlend="true"/>
+    <Deactivated texture="CaptionDialog_new" captionUV="0 0 37 52" captionLeftMargin="18" captionRightMargin="18" leftUV="0 52 18 53" rightUV="19 52 37 53" clientUV="18 52 19 53" clientType="fill" bottomUV="0 53 37 62" bottomLeftMargin="18" bottomRightMargin="18" alphaBlend="true"/>
+  </BigCaptionDialog>
+  <FlagCaptionDialog>
+    <Activated texture="frame_new01" captionUV="0 0 356 52" captionLeftMargin="354" captionRightMargin="1" leftUV="0 52 18 53" rightUV="345 52 356 53" clientUV="18 52 345 53" clientType="fill" bottomUV="0 53 356 62" bottomLeftMargin="18" bottomRightMargin="18" alphaBlend="true"/>
+    <Deactivated texture="frame_new01" captionUV="0 0 356 52" captionLeftMargin="354" captionRightMargin="1" leftUV="0 52 18 53" rightUV="345 52 356 53" clientUV="18 52 345 53" clientType="fill" bottomUV="0 53 356 62" bottomLeftMargin="18" bottomRightMargin="18" alphaBlend="true"/>
+  </FlagCaptionDialog>
+  <CaptionDialogTop>
+    <Activated texture="frame01" captionUV="182 63 219 104" captionLeftMargin="18" captionRightMargin="18" leftUV="182 104 200 105" rightUV="201 104 219 105" clientUV="200 104 201 105" clientType="fill" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="182 63 219 104" captionLeftMargin="18" captionRightMargin="18" leftUV="182 104 200 105" rightUV="201 104 219 105" clientUV="200 104 201 105" clientType="fill" alphaBlend="true"/>
+  </CaptionDialogTop>
+  <CaptionDialogBottom>
+    <Activated texture="frame01" leftUV="182 104 199 105" rightUV="202 104 219 105" bottomUV="182 105 219 118" bottomLeftMargin="17" bottomRightMargin="17" alphaBlend="true"/>
+    <Deactivated texture="frame01" leftUV="182 104 199 105" rightUV="202 104 219 105" bottomUV="182 105 219 118" bottomLeftMargin="17" bottomRightMargin="17" alphaBlend="true"/>
+  </CaptionDialogBottom>
+  <CaptionWindow>
+    <Activated texture="frame01" captionUV="182 0 219 40" captionLeftMargin="15" captionRightMargin="15" leftUV="182 40 197 46" rightUV="204 40 219 46" clientUV="197 40 204 46" clientType="fill" bottomUV="182 46 219 63" bottomLeftMargin="15" bottomRightMargin="15" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="182 0 219 40" captionLeftMargin="15" captionRightMargin="15" leftUV="182 40 197 46" rightUV="204 40 219 46" clientUV="197 40 204 46" clientType="fill" bottomUV="182 46 219 63" bottomLeftMargin="15" bottomRightMargin="15" alphaBlend="true"/>
+  </CaptionWindow>
+  <CaptionInnerWindow>
+    <Activated texture="frame02" captionUV="0 442 39 485" captionLeftMargin="14" captionRightMargin="14" leftUV="0 486 14 496" rightUV="25 486 39 496" clientUV="12 486 26 497" clientType="transFill" bottomUV="0 498 39 511" bottomLeftMargin="14" bottomRightMargin="14" alphaBlend="true"/>
+    <Deactivated texture="frame02" captionUV="0 442 39 485" captionLeftMargin="14" captionRightMargin="14" leftUV="0 486 14 496" rightUV="25 486 39 496" clientUV="12 486 26 497" clientType="transFill" bottomUV="0 498 39 511" bottomLeftMargin="14" bottomRightMargin="14" alphaBlend="true"/>
+  </CaptionInnerWindow>
+  <BlackCaptionWindow>
+    <Activated texture="common_menuBg" captionUV="0 0 20 40" captionLeftMargin="8" captionRightMargin="8" leftUV="0 0 10 20" rightUV="10 20 10 20" clientUV="8 50 10 54" clientType="transFill" bottomUV="5 50 10 55" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Deactivated texture="common_menuBg" captionUV="0 0 20 40" captionLeftMargin="8" captionRightMargin="8" leftUV="0 0 10 20" rightUV="10 20 10 20" clientUV="8 50 10 54" clientType="transFill" bottomUV="5 50 10 55" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </BlackCaptionWindow>
+  <BlackTransCaptionWindow>
+    <Activated texture="frame01" captionUV="219 63 244 91" captionLeftMargin="7" captionRightMargin="7" leftUV="219 91 226 98" rightUV="237 91 244 98" clientUV="226 91 238 98" clientType="transFill" bottomUV="219 98 245 105" bottomLeftMargin="7" bottomRightMargin="7" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="219 63 244 91" captionLeftMargin="7" captionRightMargin="7" leftUV="219 63 226 91" rightUV="238 63 245 91" clientUV="226 91 238 98" clientType="transFill" bottomUV="219 98 245 105" bottomLeftMargin="7" bottomRightMargin="7" alphaBlend="true"/>
+  </BlackTransCaptionWindow>
+  <TextButton>
+    <Normal texture="frame_new01" captionUV="260 62 284 68" captionLeftMargin="4" captionRightMargin="4" leftUV="260 66 264 104" rightUV="280 66 284 104" clientUV="270 66 271 104" clientType="fill" bottomUV="260 104 284 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <MouseOn texture="frame_new01" captionUV="284 62 308 68" captionLeftMargin="4" captionRightMargin="4" leftUV="284 66 288 104" rightUV="304 66 308 104" clientUV="294 66 295 104" clientType="fill" bottomUV="284 104 308 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Clicked texture="frame_new01" captionUV="308 62 332 68" captionLeftMargin="4" captionRightMargin="4" leftUV="308 66 312 104" rightUV="328 66 332 104" clientUV="318 66 319 104" clientType="fill" bottomUV="308 104 332 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Disabled texture="frame_new01" captionUV="332 62 356 68" captionLeftMargin="4" captionRightMargin="4" leftUV="332 66 336 104" rightUV="352 66 356 104" clientUV="342 66 343 104" clientType="fill" bottomUV="332 104 356 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </TextButton>
+  <DefaultStaticButton>
+    <Normal texture="frame_new01" captionUV="260 62 284 68" captionLeftMargin="4" captionRightMargin="4" leftUV="260 66 264 104" rightUV="280 66 284 104" clientUV="270 66 271 104" clientType="fill" bottomUV="260 104 284 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <MouseOn texture="frame_new01" captionUV="284 62 308 68" captionLeftMargin="4" captionRightMargin="4" leftUV="284 66 288 104" rightUV="304 66 308 104" clientUV="294 66 295 104" clientType="fill" bottomUV="284 104 308 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Clicked texture="frame_new01" captionUV="308 62 332 68" captionLeftMargin="4" captionRightMargin="4" leftUV="308 66 312 104" rightUV="328 66 332 104" clientUV="318 66 319 104" clientType="fill" bottomUV="308 104 332 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Disabled texture="frame_new01" captionUV="332 62 356 68" captionLeftMargin="4" captionRightMargin="4" leftUV="332 66 336 104" rightUV="352 66 356 104" clientUV="342 66 343 104" clientType="fill" bottomUV="332 104 356 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </DefaultStaticButton>
+  <DefaultStaticButton_SelectedBlue>
+    <Normal texture="frame_new01" captionUV="260 62 284 68" captionLeftMargin="4" captionRightMargin="4" leftUV="260 66 264 104" rightUV="280 66 284 104" clientUV="270 66 271 104" clientType="fill" bottomUV="260 104 284 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <MouseOn texture="frame_new01" captionUV="284 62 308 68" captionLeftMargin="4" captionRightMargin="4" leftUV="284 66 288 104" rightUV="304 66 308 104" clientUV="294 66 295 104" clientType="fill" bottomUV="284 104 308 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Clicked texture="frame_new01" captionUV="308 62 332 68" captionLeftMargin="4" captionRightMargin="4" leftUV="308 66 312 104" rightUV="328 66 332 104" clientUV="318 66 319 104" clientType="fill" bottomUV="308 104 332 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Disabled texture="frame_new01" captionUV="332 62 356 68" captionLeftMargin="4" captionRightMargin="4" leftUV="332 66 336 104" rightUV="352 66 356 104" clientUV="342 66 343 104" clientType="fill" bottomUV="332 104 356 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </DefaultStaticButton_SelectedBlue>
+  <DefaultAlphaStaticButton>
+    <Normal texture="frame01" clientUV="5 251 10 256" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="10 251 15 256" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="15 251 20 256" clientType="transFill" alphaBlend="true"/>
+    <Disabled texture="frame01" clientUV="20 251 25 256" clientType="transFill" alphaBlend="true"/>
+  </DefaultAlphaStaticButton>
+  <DefaultFocusedButton>
+    <Normal texture="frame_new01" captionUV="164 62 188 68" captionLeftMargin="4" captionRightMargin="4" leftUV="164 66 168 104" rightUV="184 66 188 104" clientUV="168 66 184 104" clientType="fill" bottomUV="164 104 188 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <MouseOn texture="frame_new01" captionUV="188 62 212 68" captionLeftMargin="4" captionRightMargin="4" leftUV="188 66 192 104" rightUV="208 66 212 104" clientUV="192 66 208 104" clientType="fill" bottomUV="188 104 212 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Clicked texture="frame_new01" captionUV="212 62 236 68" captionLeftMargin="4" captionRightMargin="4" leftUV="212 66 216 104" rightUV="232 66 236 104" clientUV="216 66 232 104" clientType="fill" bottomUV="212 104 236 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Disabled texture="frame_new01" captionUV="236 62 260 68" captionLeftMargin="4" captionRightMargin="4" leftUV="236 66 242 104" rightUV="243 66 260 104" clientUV="240 66 256 104" clientType="fill" bottomUV="236 104 260 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </DefaultFocusedButton>
+  <BlueStaticButton>
+    <Normal texture="frame01" captionUV="0 0 9 4" captionLeftMargin="4" captionRightMargin="4" leftUV="0 4 4 22" rightUV="5 4 9 22" clientUV="4 4 5 22" clientType="fill" bottomUV="0 22 9 28" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="0 28 9 32" captionLeftMargin="4" captionRightMargin="4" leftUV="0 32 4 50" rightUV="5 32 9 50" clientUV="4 32 5 50" clientType="fill" bottomUV="0 50 9 56" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="0 56 9 60" captionLeftMargin="4" captionRightMargin="4" leftUV="0 60 4 78" rightUV="5 60 9 78" clientUV="4 60 5 78" clientType="fill" bottomUV="0 78 9 84" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="0 84 9 88" captionLeftMargin="4" captionRightMargin="4" leftUV="0 88 4 106" rightUV="5 88 9 106" clientUV="4 88 5 106" clientType="fill" bottomUV="0 106 9 112" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </BlueStaticButton>
+  <UpButton>
+    <Normal texture="frame01" clientUV="9 21 22 34" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="22 21 35 34" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="35 21 48 34" clientType="transFill" alphaBlend="true"/>
+    <Diabled texture="frame01" clientUV="48 21 61 34" clientType="transFill" alphaBlend="true"/>
+  </UpButton>
+  <DownButton>
+    <Normal texture="frame01" clientUV="9 8 22 21" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="22 8 35 21" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="35 8 48 21" clientType="transFill" alphaBlend="true"/>
+    <Diabled texture="frame01" clientUV="48 8 61 21" clientType="transFill" alphaBlend="true"/>
+  </DownButton>
+  <DefaultScrollUpButton>
+    <Normal texture="frame01" clientUV="0 0 0 0" clientType="fill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="0 0 0 0" clientType="fill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="0 0 0 0" clientType="fill" alphaBlend="true"/>
+    <Diabled texture="frame01" clientUV="0 0 0 0" clientType="fill" alphaBlend="true"/>
+  </DefaultScrollUpButton>
+  <DefaultScrollDownButton>
+    <Normal texture="frame01" clientUV="0 0 0 0" clientType="fill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="0 0 0 0" clientType="fill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="0 0 0 0" clientType="fill" alphaBlend="true"/>
+    <Diabled texture="frame01" clientUV="0 0 0 0" clientType="fill" alphaBlend="true"/>
+  </DefaultScrollDownButton>
+  <DefaultVerticalScrollButton>
+    <Normal texture="frame01" captionUV="162 94 174 105" captionLeftMargin="5" captionRightMargin="5" leftUV="162 105 167 107" rightUV="169 105 174 107" clientUV="167 105 169 107" clientType="fill" bottomUV="162 107 174 119" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="138 94 150 105" captionLeftMargin="5" captionRightMargin="5" leftUV="138 105 143 107" rightUV="145 105 150 107" clientUV="143 105 145 107" clientType="fill" bottomUV="138 107 150 119" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="150 94 162 105" captionLeftMargin="5" captionRightMargin="5" leftUV="150 105 155 107" rightUV="157 105 162 107" clientUV="155 105 157 107" clientType="fill" bottomUV="150 107 162 119" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="126 94 138 105" captionLeftMargin="5" captionRightMargin="5" leftUV="126 105 131 107" rightUV="133 105 138 107" clientUV="131 105 133 107" clientType="fill" bottomUV="126 107 138 119" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+  </DefaultVerticalScrollButton>
+  <DefaultVerticalScrollArea>
+    <Normal texture="frame01" captionUV="105 48 118 53" captionLeftMargin="6" captionRightMargin="5" leftUV="105 53 111 55" rightUV="113 53 118 55" clientUV="111 53 113 55" clientType="transFill" bottomUV="105 55 118 60" bottomLeftMargin="6" bottomRightMargin="5" alphaBlend="true"/>
+  </DefaultVerticalScrollArea>
+  <DefaultHorizonScrollButton>
+    <Normal texture="frame01" captionUV="135 131 161 136" leftUV="135 136 142 146" rightUV="154 136 161 146" clientUV="142 136 154 146" bottomUV="135 146 161 151" captionLeftMargin="7" captionRightMargin="7" bottomLeftMargin="7" bottomRightMargin="7" clientType="fill" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="161 131 187 136" leftUV="161 136 168 146" rightUV="180 136 187 146" clientUV="168 136 180 146" bottomUV="161 146 187 151" captionLeftMargin="7" captionRightMargin="7" bottomLeftMargin="7" bottomRightMargin="7" clientType="fill" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="187 131 213 136" leftUV="187 136 194 146" rightUV="206 136 213 146" clientUV="194 136 206 146" bottomUV="187 146 213 151" captionLeftMargin="7" captionRightMargin="7" bottomLeftMargin="7" bottomRightMargin="7" clientType="fill" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="213 131 239 136" leftUV="213 136 220 146" rightUV="232 136 239 146" clientUV="220 136 232 146" bottomUV="213 146 239 151" captionLeftMargin="7" captionRightMargin="7" bottomLeftMargin="7" bottomRightMargin="7" clientType="fill" alphaBlend="true"/>
+  </DefaultHorizonScrollButton>
+  <DefaultHorizonScrollArea>
+    <Normal texture="frame01" captionUV="239 131 242 138" captionLeftMargin="1" captionRightMargin="1" leftUV="239 138 240 146" rightUV="241 138 242 146" clientUV="240 138 241 146" clientType="fill" bottomUV="239 146 242 153" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </DefaultHorizonScrollArea>
+  <MiniScrollUpButton>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Diabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </MiniScrollUpButton>
+  <MiniScrollDownButton>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Diabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </MiniScrollDownButton>
+  <MiniVerticalScrollButton>
+    <Normal texture="frame01" captionUV="9 0 17 3" captionLeftMargin="3" captionRightMargin="3" leftUV="9 3 12 5" rightUV="14 3 17 5" clientUV="12 3 14 5" clientType="fill" bottomUV="9 5 17 8" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="17 0 25 3" captionLeftMargin="3" captionRightMargin="3" leftUV="17 3 20 5" rightUV="22 3 25 5" clientUV="20 3 22 5" clientType="fill" bottomUV="17 5 25 8" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="25 0 33 3" captionLeftMargin="3" captionRightMargin="3" leftUV="25 3 28 5" rightUV="30 3 33 5" clientUV="28 3 30 5" clientType="fill" bottomUV="25 5 33 8" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="9 0 17 3" captionLeftMargin="3" captionRightMargin="3" leftUV="9 3 12 5" rightUV="14 4 17 5" clientUV="12 3 14 5" clientType="fill" bottomUV="9 5 17 8" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+  </MiniVerticalScrollButton>
+  <MiniVerticalScrollArea>
+    <Normal texture="frame01" captionUV="46 34 54 38" captionLeftMargin="3" captionRightMargin="3" leftUV="46 38 49 39" rightUV="51 38 54 39" clientUV="49 38 51 39" clientType="fill" bottomUV="46 39 54 43" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+  </MiniVerticalScrollArea>
+  <MiniScrollLeftButton>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Diabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </MiniScrollLeftButton>
+  <MiniScrollRightButton>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Diabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </MiniScrollRightButton>
+  <MiniHorizonScrollButton>
+    <Normal texture="frame01" captionUV="9 0 17 3" captionLeftMargin="3" captionRightMargin="3" leftUV="9 3 12 5" rightUV="14 3 17 5" clientUV="12 3 14 5" clientType="fill" bottomUV="9 5 17 8" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="17 0 25 3" captionLeftMargin="3" captionRightMargin="3" leftUV="17 3 20 5" rightUV="22 3 25 5" clientUV="20 3 22 5" clientType="fill" bottomUV="17 5 25 8" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="25 0 33 3" captionLeftMargin="3" captionRightMargin="3" leftUV="25 3 28 5" rightUV="30 3 33 5" clientUV="28 3 30 5" clientType="fill" bottomUV="25 5 33 8" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="9 0 17 3" captionLeftMargin="3" captionRightMargin="3" leftUV="9 3 12 5" rightUV="14 4 17 5" clientUV="12 3 14 5" clientType="fill" bottomUV="9 5 17 8" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+  </MiniHorizonScrollButton>
+  <MiniHorizonScrollArea>
+    <Normal texture="frame01" captionUV="46 34 54 38" captionLeftMargin="3" captionRightMargin="3" leftUV="46 38 49 39" rightUV="51 38 54 39" clientUV="49 38 51 39" clientType="fill" bottomUV="46 39 54 43" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+  </MiniHorizonScrollArea>
+  <ComboBox>
+    <Normal texture="frame01" captionUV="151 50 162 55" captionLeftMargin="5" captionRightMargin="5" leftUV="151 55 156 56" rightUV="157 55 162 56" clientUV="156 55 157 56" clientType="fill" bottomUV="151 56 162 61" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="151 50 162 55" captionLeftMargin="5" captionRightMargin="5" leftUV="151 55 156 56" rightUV="157 55 162 56" clientUV="156 55 157 56" clientType="fill" bottomUV="151 56 162 61" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+  </ComboBox>
+  <ComboList>
+    <Normal texture="frame01" captionUV="37 102 54 110" captionLeftMargin="8" captionRightMargin="8" leftUV="37 110 45 111" rightUV="46 110 54 111" clientUV="45 110 46 111" clientType="fill" bottomUV="37 111 54 120" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="37 102 54 110" captionLeftMargin="8" captionRightMargin="8" leftUV="37 110 45 111" rightUV="46 110 54 111" clientUV="45 110 46 111" clientType="fill" bottomUV="37 111 54 120" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </ComboList>
+  <ComboInnerDropDownButton>
+    <Normal texture="frame01" captionUV="61 0 81 5" captionLeftMargin="5" captionRightMargin="5" leftUV="61 5 66 15" rightUV="76 5 81 15" clientUV="66 5 76 15" clientType="fill" bottomUV="61 15 81 20" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="81 0 101 5" captionLeftMargin="5" captionRightMargin="5" leftUV="81 5 86 15" rightUV="96 5 101 15" clientUV="86 5 96 15" clientType="fill" bottomUV="81 15 101 20" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="101 0 121 5" captionLeftMargin="5" captionRightMargin="5" leftUV="101 5 106 15" rightUV="116 5 121 15" clientUV="106 5 116 15" clientType="fill" bottomUV="101 15 121 20" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="121 0 141 5" captionLeftMargin="5" captionRightMargin="5" leftUV="121 5 126 15" rightUV="136 5 141 15" clientUV="126 5 136 15" clientType="fill" bottomUV="121 15 141 20" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+  </ComboInnerDropDownButton>
+  <SelectBtn>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="26 52 37 56" captionLeftMargin="5" captionRightMargin="5" leftUV="26 56 31 58" rightUV="32 56 37 58" clientUV="31 56 32 58" clientType="fill" bottomUV="26 58 37 63" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="26 52 37 56" captionLeftMargin="5" captionRightMargin="5" leftUV="26 56 31 58" rightUV="32 56 37 58" clientUV="31 56 32 58" clientType="fill" bottomUV="26 58 37 63" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Disabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </SelectBtn>
+  <SelectBtn_Selected>
+    <Normal texture="frame01" captionUV="26 52 37 56" captionLeftMargin="5" captionRightMargin="5" leftUV="26 56 31 58" rightUV="32 56 37 58" clientUV="31 56 32 58" clientType="fill" bottomUV="26 58 37 63" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+  </SelectBtn_Selected>
+  <ComboSelectButton>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="26 52 37 56" captionLeftMargin="5" captionRightMargin="5" leftUV="26 56 31 58" rightUV="32 56 37 58" clientUV="31 56 32 58" clientType="fill" bottomUV="26 58 37 63" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="26 52 37 56" captionLeftMargin="5" captionRightMargin="5" leftUV="26 56 31 58" rightUV="32 56 37 58" clientUV="31 56 32 58" clientType="fill" bottomUV="26 58 37 63" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Disabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </ComboSelectButton>
+  <ComboSelectButton2>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV=" 168 232 179 243 " leftUV=" 168 243 173 244 " clientUV=" 173 243 174 244 " rightUV=" 174 243 179 244 " bottomUV=" 168 244 179 255 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV=" 179 232 190 243 " leftUV=" 179 243 184 244 " rightUV=" 185 243 190 244 " clientUV=" 184 243 185 244 " bottomUV=" 179 244 190 255 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV=" 179 232 190 243 " leftUV=" 179 243 184 244 " rightUV=" 185 243 190 244 " clientUV=" 184 243 185 244 " bottomUV=" 179 244 190 255 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+  </ComboSelectButton2>
+  <DefaultEdit>
+    <Activated texture="frame01" captionUV="141 0 154 6" captionLeftMargin="6" captionRightMargin="6" leftUV="141 6 147 7" rightUV="148 6 154 7" clientUV="147 6 148 7" clientType="fill" bottomUV="141 7 154 13" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="151 40 160 44" captionLeftMargin="4" captionRightMargin="4" leftUV="151 44 155 45" rightUV="156 44 160 45" clientUV="155 44 156 45" clientType="fill" bottomUV="151 45 160 50" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </DefaultEdit>
+  <GrayEdit>
+    <Activated texture="frame01" captionUV="33 34 46 40" captionLeftMargin="6" captionRightMargin="6" leftUV="33 40 39 41" rightUV="40 40 46 41" clientUV="39 40 40 41" clientType="fill" bottomUV="33 41 46 47" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="33 34 46 40" captionLeftMargin="6" captionRightMargin="6" leftUV="33 40 39 41" rightUV="40 40 46 41" clientUV="39 40 40 41" clientType="fill" bottomUV="33 41 46 47" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </GrayEdit>
+  <BlackEdit>
+    <Activated texture="frame01" captionUV="61 22 105 32" captionLeftMargin="10" captionRightMargin="10" leftUV="61 32 71 55" rightUV="95 32 105 55" clientUV="71 32 95 55" clientType="transFill" bottomUV="61 55 105 65" bottomLeftMargin="10" bottomRightMargin="10" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="61 22 105 32" captionLeftMargin="10" captionRightMargin="10" leftUV="61 32 71 55" rightUV="95 32 105 55" clientUV="71 32 95 55" clientType="transFill" bottomUV="61 55 105 65" bottomLeftMargin="10" bottomRightMargin="10" alphaBlend="true"/>
+  </BlackEdit>
+  <DisabledEditLabel>
+    <Noramal texture="frame01" captionUV="151 40 160 44" captionLeftMargin="4" captionRightMargin="4" leftUV="151 44 155 45" rightUV="156 44 160 45" clientUV="155 44 156 45" clientType="fill" bottomUV="151 45 160 50" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </DisabledEditLabel>
+  <DefaultTooltip>
+    <Activated texture="frame01" captionUV="105 22 118 28" captionLeftMargin="6" captionRightMargin="6" leftUV="105 28 111 42" rightUV="112 28 118 42" clientUV="111 28 112 42" clientType="transFill" bottomUV="105 42 118 48" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </DefaultTooltip>
+  <DefaultTooltipNew>
+    <Activated texture="common_textTooltipBg" captionUV="2 2 15 8" captionLeftMargin="1" captionRightMargin="1" leftUV="2 14 10 16" rightUV="12 14 20 16" clientUV="12 12 15 16" clientType="transFill" bottomUV="2 17 15 21" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </DefaultTooltipNew>
+  <OneLineToolTip>
+    <Activated texture="frame01" captionUV="105 22 118 28" captionLeftMargin="6" captionRightMargin="6" leftUV="105 28 111 42" rightUV="112 28 118 42" clientUV="111 28 112 42" clientType="transFill" bottomUV="105 42 118 48" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </OneLineToolTip>
+  <StatusFocusWindow>
+    <Activated texture="frame01" captionUV="9 56 26 89" captionLeftMargin="8" captionRightMargin="8" leftUV="9 89 17 90" rightUV="18 89 26 90" clientUV="17 89 18 90" clientType="fill" bottomUV="9 90 26 118" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="9 56 26 89" captionLeftMargin="8" captionRightMargin="8" leftUV="9 89 17 90" rightUV="18 89 26 90" clientUV="17 89 18 90" clientType="fill" bottomUV="9 90 26 118" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </StatusFocusWindow>
+  <Tab>
+    <Normal texture="frame_new01" captionUV="260 62 284 68" captionLeftMargin="4" captionRightMargin="4" leftUV="260 66 264 104" rightUV="280 66 284 104" clientUV="270 66 271 104" clientType="fill" bottomUV="260 104 284 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <MouseOn texture="frame_new01" captionUV="188 62 212 68" captionLeftMargin="4" captionRightMargin="4" leftUV="188 66 192 104" rightUV="208 66 212 104" clientUV="192 66 208 104" clientType="fill" bottomUV="188 104 212 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Clicked texture="frame_new01" captionUV="212 62 236 68" captionLeftMargin="4" captionRightMargin="4" leftUV="212 66 216 104" rightUV="232 66 236 104" clientUV="216 66 232 104" clientType="fill" bottomUV="212 104 236 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Disabled texture="frame_new01" captionUV="164 62 188 68" captionLeftMargin="4" captionRightMargin="4" leftUV="164 66 168 104" rightUV="184 66 188 104" clientUV="168 66 184 104" clientType="fill" bottomUV="164 104 188 110" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </Tab>
+  <TabClear>
+    <Normal texture="frame01" captionUV="135 153 153 164" captionLeftMargin="8" captionRightMargin="8" leftUV="135 161 143 171" rightUV="145 161 153 171" clientUV="143 161 145 171" clientType="fill" bottomUV="135 168 153 182" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="153 153 171 161" captionLeftMargin="8" captionRightMargin="8" leftUV="153 161 161 168" rightUV="163 161 171 168" clientUV="161 161 163 168" clientType="fill" bottomUV="153 168 171 182" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="171 153 189 161" captionLeftMargin="8" captionRightMargin="8" leftUV="171 161 179 168" rightUV="181 161 189 168" clientUV="179 161 181 168" clientType="fill" bottomUV="171 168 189 182" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="189 153 207 161" captionLeftMargin="8" captionRightMargin="8" leftUV="189 161 197 168" rightUV="199 161 207 168" clientUV="197 161 199 168" clientType="fill" bottomUV="189 168 207 182" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </TabClear>
+  <TalkBalloonRightTop>
+    <Normal texture="frame01" captionUV="0 131 17 139" captionLeftMargin="8" captionRightMargin="8" leftUV="0 139 8 140" rightUV="9 139 17 140" clientUV="8 139 9 140" clientType="fill" bottomUV="17 152 48 171" bottomLeftMargin="22" bottomRightMargin="8" alphaBlend="true"/>
+  </TalkBalloonRightTop>
+  <TalkBalloonLeftLeg>
+    <Normal texture="frame01" captionUV="0 131 17 139" captionLeftMargin="8" captionRightMargin="8" leftUV="0 139 8 140" rightUV="9 139 17 140" clientUV="8 139 9 140" clientType="fill" bottomUV="17 152 48 171" bottomLeftMargin="8" bottomRightMargin="23" alphaBlend="true"/>
+  </TalkBalloonLeftLeg>
+  <TalkBalloonRightBottom>
+    <Normal texture="frame01" captionUV="17 131 48 152" captionLeftMargin="22" captionRightMargin="8" leftUV="0 139 8 140" rightUV="9 139 17 140" clientUV="8 139 9 140" clientType="fill" bottomUV="0 140 17 148" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </TalkBalloonRightBottom>
+  <TalkBalloonLeftTop>
+    <Normal texture="frame01" captionUV="0 131 17 139" captionLeftMargin="8" captionRightMargin="8" leftUV="0 139 8 140" rightUV="9 139 17 140" clientUV="8 139 9 140" clientType="fill" bottomUV="48 152 79 171" bottomLeftMargin="8" bottomRightMargin="22" alphaBlend="true"/>
+  </TalkBalloonLeftTop>
+  <TalkBalloonLeftBottom>
+    <Normal texture="frame01" captionUV="48 131 79 152" captionLeftMargin="8" captionRightMargin="22" leftUV="0 139 8 140" rightUV="9 139 17 140" clientUV="8 139 9 140" clientType="fill" bottomUV="0 140 17 148" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </TalkBalloonLeftBottom>
+  <TalkBalloonRightBottom2>
+    <Normal texture="levelup_tooltipBg" captionUV="0 0 190 16" captionLeftMargin="32" captionRightMargin="8" leftUV="0 17 14 18" rightUV="176 17 190 18" clientUV="9 17 34 18" clientType="fill" bottomUV="0 67 190 74" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </TalkBalloonRightBottom2>
+  <TabSelector>
+    <Normal texture="frame01" captionUV="94 92 126 106" captionLeftMargin="14" captionRightMargin="14" leftUV="94 105 108 106" rightUV="112 105 126 106" clientUV="108 105 112 106" clientType="fill" bottomUV="94 106 126 120" bottomLeftMargin="14" bottomRightMargin="14" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="94 92 126 106" captionLeftMargin="14" captionRightMargin="14" leftUV="94 105 108 106" rightUV="112 105 126 106" clientUV="108 105 112 106" clientType="fill" bottomUV="94 106 126 120" bottomLeftMargin="14" bottomRightMargin="14" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="94 92 126 106" captionLeftMargin="14" captionRightMargin="14" leftUV="94 105 108 106" rightUV="112 105 126 106" clientUV="108 105 112 106" clientType="fill" bottomUV="94 106 126 120" bottomLeftMargin="14" bottomRightMargin="14" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="94 92 126 106" captionLeftMargin="14" captionRightMargin="14" leftUV="94 105 108 106" rightUV="112 105 126 106" clientUV="108 105 112 106" clientType="fill" bottomUV="94 106 126 120" bottomLeftMargin="14" bottomRightMargin="14" alphaBlend="true"/>
+  </TabSelector>
+  <Selectored>
+    <Normal texture="btn_slotSelect" captionUV="0 0 154 11" captionLeftMargin="11" captionRightMargin="11" leftUV="0 11 11 129" rightUV="143 11 154 129" clientUV="11 11 143 129" clientType="fill" bottomUV="0 129 154 140" bottomLeftMargin="11" bottomRightMargin="11" alphaBlend="true"/>
+    <MouseOn texture="btn_slotSelect" captionUV="0 0 154 11" captionLeftMargin="11" captionRightMargin="11" leftUV="0 11 11 129" rightUV="143 11 154 129" clientUV="11 11 143 129" clientType="fill" bottomUV="0 129 154 140" bottomLeftMargin="11" bottomRightMargin="11" alphaBlend="true"/>
+    <Clicked texture="btn_slotSelect" captionUV="0 0 154 11" captionLeftMargin="11" captionRightMargin="11" leftUV="0 11 11 129" rightUV="143 11 154 129" clientUV="11 11 143 129" clientType="fill" bottomUV="0 129 154 140" bottomLeftMargin="11" bottomRightMargin="11" alphaBlend="true"/>
+    <Disabled texture="btn_slotSelect" captionUV="0 0 154 11" captionLeftMargin="11" captionRightMargin="11" leftUV="0 11 11 129" rightUV="143 11 154 129" clientUV="11 11 143 129" clientType="fill" bottomUV="0 129 154 140" bottomLeftMargin="11" bottomRightMargin="11" alphaBlend="true"/>
+  </Selectored>
+  <DefaultCheckButton>
+    <NotChecked texture="frame01" captionUV="17 171 37 176" captionLeftMargin="5" captionRightMargin="5" leftUV="17 176 22 186" rightUV="32 176 37 186" clientUV="22 176 32 186" clientType="fill" bottomUV="17 186 37 191" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Checked texture="frame01" captionUV="37 171 57 176" captionLeftMargin="5" captionRightMargin="5" leftUV="37 176 42 186" rightUV="52 176 57 186" clientUV="42 176 52 186" clientType="fill" bottomUV="37 186 57 191" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <NotCheckedOver texture="frame01" captionUV="17 191 37 196" captionLeftMargin="5" captionRightMargin="5" leftUV="17 196 22 206" rightUV="32 196 37 206" clientUV="22 196 32 206" clientType="fill" bottomUV="17 206 37 211" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <CheckedOver texture="frame01" captionUV="37 191 57 196" captionLeftMargin="5" captionRightMargin="5" leftUV="37 196 42 206" rightUV="52 196 57 206" clientUV="42 196 52 206" clientType="fill" bottomUV="37 206 57 211" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="57 171 77 176" captionLeftMargin="5" captionRightMargin="5" leftUV="57 176 62 186" rightUV="72 176 77 186" clientUV="62 176 72 186" clientType="fill" bottomUV="57 186 77 191" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+  </DefaultCheckButton>
+  <InnerFrame>
+    <Normal texture="frame01" captionUV="161 1 179 10" captionLeftMargin="9" captionRightMargin="9" leftUV="161 8 170 9" rightUV="170 8 179 9" clientUV="168 7 170 13" clientType="fill" bottomUV="161 11 179 19" bottomLeftMargin="9" bottomRightMargin="9" alphaBlend="true"/>
+  </InnerFrame>
+  <NewInnerFrame>
+    <Normal texture="frame01" captionUV="138 20 141 21" captionLeftMargin="1" captionRightMargin="1" leftUV="138 21 139 22" rightUV="140 21 141 22" clientUV="139 21 140 22" clientType="fill" bottomUV="138 22 141 23" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </NewInnerFrame>
+  <Taskbar>
+    <Normal texture="img_underBar" captionUV="0 0 34 3" captionLeftMargin="1" captionRightMargin="1" leftUV="0 3 1 29" rightUV="33 3 34 29" clientUV="1 3 33 29" clientType="transFill" alphaBlend="true"/>
+  </Taskbar>
+  <GrayUnderLine>
+    <Normal texture="frame01" bottomUV="39 0 40 1" alphaBlend="true"/>
+  </GrayUnderLine>
+  <ShineLine>
+    <Normal texture="minimaP_box" captionUV="0 0 147 1" captionLeftMargin="1" captionRightMargin="1" alphaBlend="true"/>
+  </ShineLine>
+  <ShineBox>
+    <Normal texture="minimaP_box" captionUV="0 0 147 1" captionLeftMargin="1" captionRightMargin="1" leftUV="0 1 1 147" rightUV="146 1 147 147" clientUV="1 1 146 147" clientType="fill" bottomUV="0 147 147 148" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </ShineBox>
+  <TabCheckButtonStyle>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="129 40 140 46" captionLeftMargin="5" captionRightMargin="5" leftUV="129 46 134 56" rightUV="135 46 140 56" clientUV="134 46 135 56" clientType="fill" bottomUV="129 56 140 61" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="129 40 140 46" captionLeftMargin="5" captionRightMargin="5" leftUV="129 46 134 56" rightUV="135 46 140 56" clientUV="134 46 135 56" clientType="fill" bottomUV="129 56 140 61" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="118 40 129 46" captionLeftMargin="5" captionRightMargin="5" leftUV="118 46 123 56" rightUV="124 46 129 56" clientUV="123 46 124 56" clientType="fill" bottomUV="118 56 129 61" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+  </TabCheckButtonStyle>
+  <BulletLeftButton>
+    <Normal texture="frame01" textureOp="modulate" captionUV="0 211 20 216 " leftUV="0 216 5 226 " rightUV="15 216 20 226 " clientUV="5 216 15 226 " bottomUV="0 226 20 231 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="20 211 40 216 " leftUV="20 216 25 226 " rightUV="35 216 40 226 " clientUV="25 216 35 226 " bottomUV="20 226 40 231 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="40 211 60 216 " leftUV="40 216 45 226 " rightUV="55 216 60 226 " clientUV="45 216 55 226 " bottomUV="40 226 60 231 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="60 211 80 216 " leftUV="60 216 65 226 " rightUV="75 216 80 226 " clientUV="65 216 75 226 " bottomUV="60 226 80 231 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+  </BulletLeftButton>
+  <BulletRightButton>
+    <Normal texture="frame01" captionUV="0 231 20 236 " leftUV="0 236 5 246 " rightUV="15 236 20 246 " clientUV="5 236 15 246 " bottomUV="0 246 20 251 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="20 231 40 236 " leftUV="20 236 25 246 " rightUV="35 236 40 246 " clientUV="25 236 35 246 " bottomUV="20 246 40 251 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="40 231 60 236 " leftUV="40 236 45 246 " rightUV="55 236 60 246 " clientUV="45 236 55 246 " bottomUV="40 246 60 251 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="60 231 80 236 " leftUV="60 236 65 246 " rightUV="75 236 80 246 " clientUV="65 236 75 246 " bottomUV="60 246 80 251 " captionLeftMargin="5" captionRightMargin="5" bottomLeftMargin="5" bottomRightMargin="5" clientType="fill" alphaBlend="true"/>
+  </BulletRightButton>
+  <MenuSelectButton>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="149 0 160 5" captionLeftMargin="5" captionRightMargin="5" leftUV="149 5 154 6" rightUV="155 5 160 6" clientUV="154 5 155 6" clientType="fill" bottomUV="149 6 160 11" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="149 0 160 5" captionLeftMargin="5" captionRightMargin="5" leftUV="149 5 154 6" rightUV="155 5 160 6" clientUV="154 5 155 6" clientType="fill" bottomUV="149 6 160 11" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="149 0 160 5" captionLeftMargin="5" captionRightMargin="5" leftUV="149 5 154 6" rightUV="155 5 160 6" clientUV="154 5 155 6" clientType="fill" bottomUV="149 6 160 11" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+  </MenuSelectButton>
+  <GrayPanel>
+    <Normal texture="frame01" captionUV="161 1 179 10" captionLeftMargin="9" captionRightMargin="9" leftUV="161 8 170 9" rightUV="170 8 179 9" clientUV="168 7 170 13" clientType="fill" bottomUV="161 11 179 19" bottomLeftMargin="9" bottomRightMargin="9" alphaBlend="true"/>
+  </GrayPanel>
+  <LightGrayPanel>
+    <Normal texture="frame01" captionUV="13 118 25 120" captionLeftMargin="2" captionRightMargin="2" leftUV="13 120 15 129" rightUV="24 120 26 129" clientUV="14 120 23 129" clientType="fill" bottomUV="13 129 25 131" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+  </LightGrayPanel>
+  <BrownPanel>
+    <Normal texture="frame01" captionUV="134 65 160 77" captionLeftMargin="13" captionRightMargin="13" leftUV="134 77 147 79" rightUV="147 77 160 79" clientUV="144 76 150 81" clientType="fill" bottomUV="134 80 160 92" bottomLeftMargin="13" bottomRightMargin="13" alphaBlend="true"/>
+  </BrownPanel>
+  <Section>
+    <Normal texture="frame01" clientUV="39 4 40 6" clientType="transFill" alphaBlend="true"/>
+  </Section>
+  <VSection>
+    <Normal texture="frame01" clientUV="39 2 41 4" clientType="transFill" alphaBlend="true"/>
+  </VSection>
+  <HSection>
+    <Normal texture="frame01" clientUV="39 2 41 4" clientType="transFill" alphaBlend="true"/>
+  </HSection>
+  <BlueSelectButton>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="26 102 37 108" captionLeftMargin="4" captionRightMargin="4" leftUV="26 108 30 121" rightUV="33 108 37 121" clientUV="30 108 33 121" clientType="fill" bottomUV="26 121 37 127" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="26 102 37 108" captionLeftMargin="4" captionRightMargin="4" leftUV="26 108 30 121" rightUV="33 108 37 121" clientUV="30 108 33 121" clientType="fill" bottomUV="26 121 37 127" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Disabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </BlueSelectButton>
+  <CommonSelectButton>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="common_menuSelected" captionUV="0 0 188 11" captionLeftMargin="0" captionRightMargin="0" leftUV="0 12 10 22" rightUV="178 12 188 22" clientUV="30 12 50 22" clientType="fill" bottomUV="0 20 188 33" bottomLeftMargin="0" bottomRightMargin="0" alphaBlend="true"/>
+    <Clicked texture="common_menuSelected" captionUV="0 0 188 11" captionLeftMargin="0" captionRightMargin="0" leftUV="0 12 10 22" rightUV="178 12 188 22" clientUV="30 12 50 22" clientType="fill" bottomUV="0 20 188 33" bottomLeftMargin="0" bottomRightMargin="0" alphaBlend="true"/>
+    <Disabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </CommonSelectButton>
+  <Bullet>
+    <Normal texture="frame01" textureOp="modulate" clientUV="34 1 38 5" clientType="transFill" alphaBlend="true"/>
+  </Bullet>
+  <ItemSlotWindow>
+    <Normal texture="frame01" captionUV="19 34 33 40" captionLeftMargin="6" captionRightMargin="6" leftUV="19 40 25 42" rightUV="27 40 33 42" clientUV="25 40 27 42" clientType="fill" bottomUV="19 42 33 48" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </ItemSlotWindow>
+  <ItemPanel>
+    <Normal texture="frame01" captionUV="19 34 33 40" captionLeftMargin="6" captionRightMargin="6" leftUV="19 40 25 42" rightUV="27 40 33 42" clientUV="25 40 27 42" clientType="fill" bottomUV="19 42 33 48" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </ItemPanel>
+  <TabBox>
+    <Normal texture="frame01" captionUV="162 20 182 52" captionLeftMargin="9" captionRightMargin="9" leftUV="162 52 171 53" rightUV="173 52 182 53" clientUV="171 52 173 53" clientType="fill" bottomUV="162 53 182 58" bottomLeftMargin="9" bottomRightMargin="9" alphaBlend="true"/>
+  </TabBox>
+  <TabBlack>
+    <Normal texture="frame02" clientUV="256 35 257 36" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame02" captionUV="256 35 274 41" captionLeftMargin="8" captionRightMargin="8" leftUV="256 41 264 59" rightUV="266 41 274 59" clientUV="264 41 266 59" clientType="fill" bottomUV="256 59 274 64" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Clicked texture="frame02" captionUV="274 35 292 41" captionLeftMargin="8" captionRightMargin="8" leftUV="274 41 282 59" rightUV="284 41 292 59" clientUV="282 41 284 59" clientType="fill" bottomUV="274 59 292 64 " bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Disabled texture="frame02" captionUV="274 35 292 41" captionLeftMargin="8" captionRightMargin="8" leftUV="274 41 282 59" rightUV="284 41 292 59" clientUV="282 41 284 59" clientType="fill" bottomUV="274 59 292 64 " bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </TabBlack>
+  <TabBlack2>
+    <Normal texture="frame02" clientUV="0 0 1 1" clientType="fill" alphaBlend="true"/>
+    <MouseOn texture="frame02" captionUV="256 35 274 41" captionLeftMargin="8" captionRightMargin="8" leftUV="256 41 264 59" rightUV="266 41 274 59" clientUV="264 41 266 59" clientType="fill" bottomUV="256 59 274 64" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Clicked texture="frame02" captionUV="274 35 292 41" captionLeftMargin="8" captionRightMargin="8" leftUV="274 41 282 59" rightUV="284 41 292 59" clientUV="282 41 284 59" clientType="fill" bottomUV="274 59 292 64 " bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Disabled texture="frame02" captionUV="274 35 292 41" captionLeftMargin="8" captionRightMargin="8" leftUV="274 41 282 59" rightUV="284 41 292 59" clientUV="282 41 284 59" clientType="fill" bottomUV="274 59 292 64 " bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </TabBlack2>
+  <TabBoxBlack>
+    <Normal texture="frame02" captionUV="256 64 276 96" captionLeftMargin="9" captionRightMargin="9" leftUV="256 96 266 97" rightUV="266 96 276 97" clientUV="264 96 267 97" clientType="fill" bottomUV="256 96 276 102" bottomLeftMargin="10" bottomRightMargin="10" alphaBlend="true"/>
+  </TabBoxBlack>
+  <TabBoxLarge>
+    <Normal texture="frame02" captionUV="51 0 71 40" captionLeftMargin="9" captionRightMargin="9" leftUV="51 40 60 42" rightUV="62 40 71 42" clientUV="60 40 62 42" clientType="fill" bottomUV="51 40 71 47" bottomLeftMargin="9" bottomRightMargin="9" alphaBlend="true"/>
+  </TabBoxLarge>
+  <PopupWindow>
+    <Activated texture="frame01" captionUV="80 65 94 92" captionLeftMargin="2" captionRightMargin="2" leftUV="80 92 82 96" rightUV="92 92 94 96" clientUV="82 92 92 96" clientType="fill" bottomUV="80 96 94 98" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="80 65 94 88" captionLeftMargin="6" captionRightMargin="6" leftUV="80 88 86 90" rightUV="88 88 94 90" clientUV="86 88 88 90" clientType="fill" bottomUV="80 90 94 98" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </PopupWindow>
+  <GrayPopupWindow>
+    <Activated texture="frame01" captionUV="80 65 94 86" captionLeftMargin="6" captionRightMargin="6" leftUV="33 40 39 41" rightUV="40 40 46 41" clientUV="39 40 40 41" clientType="fill" bottomUV="33 41 46 47" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Deactivated texture="frame01" captionUV="80 65 94 88" captionLeftMargin="6" captionRightMargin="6" leftUV="33 40 39 41" rightUV="40 40 46 41" clientUV="39 40 40 41" clientType="fill" bottomUV="33 41 46 47" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </GrayPopupWindow>
+  <PopupButton>
+    <Normal texture="frame01" captionUV="80 198 102 223" captionLeftMargin="6" captionRightMargin="6" leftUV="80 223 86 246" rightUV="96 223 102 246" clientUV="86 223 96 246" clientType="fill" bottomUV="80 246 102 255" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="102 198 124 223" captionLeftMargin="6" captionRightMargin="6" leftUV="102 223 108 246" rightUV="118 223 124 246" clientUV="108 223 118 246" clientType="fill" bottomUV="102 246 124 255" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="124 198 146 223" captionLeftMargin="6" captionRightMargin="6" leftUV="124 223 130 246" rightUV="140 223 146 246" clientUV="130 223 140 246" clientType="fill" bottomUV="124 246 146 255" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="146 198 168 223" captionLeftMargin="6" captionRightMargin="6" leftUV="146 223 152 246" rightUV="162 223 168 246" clientUV="152 223 162 246" clientType="transFill" bottomUV="146 246 168 255" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </PopupButton>
+  <TitleCap>
+    <Normal texture="frame01" captionUV="162 58 182 65" captionLeftMargin="6" captionRightMargin="6" leftUV="162 65 168 83" rightUV="176 65 182 83" clientUV="168 65 176 83" clientType="fill" bottomUV="162 83 182 87" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </TitleCap>
+  <TitleCapBottomGrey>
+    <Normal texture="frame01" captionUV="0 0 0 0" captionLeftMargin="0" captionRightMargin="0" leftUV="161 8 170 9" rightUV="170 8 179 9" clientUV="168 7 170 13" clientType="fill" bottomUV="161 11 179 19" bottomLeftMargin="9" bottomRightMargin="9" alphaBlend="true"/>
+  </TitleCapBottomGrey>
+  <Linebox>
+    <Normal texture="frame01" captionUV="40 0 45 1" captionLeftMargin="1" captionRightMargin="1" leftUV="44 1 45 2" rightUV="44 1 45 2" clientUV="0 0 1 1" clientType="transFill" bottomUV="40 3 45 4" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </Linebox>
+  <ChatInGameWindow>
+    <Normal texture="InGameChatFrame" captionUV="145 0 170 42" captionLeftMargin="6" captionRightMargin="6" leftUV="80 80 100 100" rightUV="320 80 400 100" clientUV="10 70 30 100" clientType="transFill" bottomUV="5 130 10 140" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Disable texture="InGameChatFrame" captionUV="145 0 170 42" captionLeftMargin="6" captionRightMargin="6" leftUV="80 80 100 100" rightUV="320 80 400 100" clientUV="10 70 30 100" clientType="transFill" bottomUV="5 130 10 140" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </ChatInGameWindow>
+  <ChatInGameBox>
+    <Normal texture="InGameChatFrame" captionUV="145 0 170 42" captionLeftMargin="6" captionRightMargin="6" leftUV="80 70 100 100" rightUV="320 70 400 100" clientUV="10 70 30 100" clientType="transFill" bottomUV="5 160 10 190" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Disable texture="InGameChatFrame" captionUV="145 0 170 42" captionLeftMargin="6" captionRightMargin="6" leftUV="80 80 100 100" rightUV="320 80 400 100" clientUV="10 70 30 100" clientType="transFill" bottomUV="5 180 10 185" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </ChatInGameBox>
+  <ChatEditBox>
+    <Normal texture="InGameChatFrame" captionUV="150 170 160 180" captionLeftMargin="6" captionRightMargin="6" leftUV="15 165 20 170" rightUV="370 165 375 170" clientUV="180 170 190 180" clientType="transFill" bottomUV="5 180 10 185" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Disable texture="InGameChatFrame" captionUV="150 160 170 180" captionLeftMargin="6" captionRightMargin="6" leftUV="30 170 50 190" rightUV="320 170 350 190" clientUV="180 170 200 180" clientType="transFill" bottomUV="170 180 180 190" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </ChatEditBox>
+  <ChatWhisperEditBox>
+    <Normal texture="frame02" captionUV="38 0 51 6" captionLeftMargin="6" captionRightMargin="6" leftUV="38 6 44 7" rightUV="45 6 51 7" clientUV="44 6 45 7" clientType="transFill" bottomUV="38 7 51 13" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Disable texture="frame02" captionUV="38 0 51 6" captionLeftMargin="6" captionRightMargin="6" leftUV="38 6 44 7" rightUV="45 6 51 7" clientUV="44 6 45 7" clientType="transFill" bottomUV="38 7 51 13" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </ChatWhisperEditBox>
+  <ChatScrollUpButton>
+    <Normal texture="frame02" clientUV="0 208 14 222" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame02" clientUV="14 208 28 222" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame02" clientUV="28 208 42 222" clientType="transFill" alphaBlend="true"/>
+    <Diabled texture="frame02" clientUV="42 208 56 222" clientType="transFill" alphaBlend="true"/>
+  </ChatScrollUpButton>
+  <ChatScrollDownButton>
+    <Normal texture="frame02" clientUV="0 222 14 236" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="frame02" clientUV="14 222 28 236" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="frame02" clientUV="28 222 42 236" clientType="transFill" alphaBlend="true"/>
+    <Diabled texture="frame02" clientUV="42 222 56 236" clientType="transFill" alphaBlend="true"/>
+  </ChatScrollDownButton>
+  <ChatVerticalScrollButton>
+    <Normal texture="frame02" captionUV="0 181 13 191" captionLeftMargin="6" captionRightMargin="6" leftUV="0 191 6 200" rightUV="7 191 13 200" clientUV="6 191 7 200" clientType="transFill" bottomUV="0 200 13 208" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <MouseOn texture="frame02" captionUV="13 181 26 191" captionLeftMargin="6" captionRightMargin="6" leftUV="13 191 19 200" rightUV="20 191 26 200" clientUV="19 191 20 200" clientType="transFill" bottomUV="13 200 26 208" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Clicked texture="frame02" captionUV="26 181 39 191" captionLeftMargin="6" captionRightMargin="6" leftUV="26 191 32 200" rightUV="33 191 39 200" clientUV="32 191 33 200" clientType="transFill" bottomUV="26 200 39 208" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+    <Disabled texture="frame02" captionUV="39 181 52 191" captionLeftMargin="6" captionRightMargin="6" leftUV="39 191 45 200" rightUV="46 191 52 200" clientUV="45 191 46 200" clientType="transFill" bottomUV="39 200 52 208" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </ChatVerticalScrollButton>
+  <ChatVerticalScrollArea>
+    <Default texture="frame02" captionUV="0 236 11 241" captionLeftMargin="5" captionRightMargin="5" leftUV="0 241 5 242" rightUV="6 241 11 242" clientUV="5 241 6 242" clientType="transFill" bottomUV="0 242 11 247" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+  </ChatVerticalScrollArea>
+  <GameReadyTitle>
+    <Normal texture="frame01" captionUV="94 65 106 70" captionLeftMargin="5" captionRightMargin="5" leftUV="94 70 99 85" rightUV="101 70 106 85" clientUV="99 70 101 85" clientType="transFill" bottomUV="94 85 106 91" bottomLeftMargin="5" bottomRightMargin="5" alphaBlend="true"/>
+  </GameReadyTitle>
+  <GameReadyTitleEdit>
+    <Normal texture="frame01" captionUV="106 65 116 69" captionLeftMargin="4" captionRightMargin="4" leftUV="106 69 110 81" rightUV="112 69 116 81" clientUV="110 69 112 81" clientType="fill" bottomUV="106 81 116 85" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </GameReadyTitleEdit>
+  <YellowTalkBalloon>
+    <Normal texture="frame01" captionUV="207 153 248 162" captionLeftMargin="9" captionRightMargin="6" leftUV="207 162 216 164" rightUV="242 162 248 164" clientUV="216 162 242 164" clientType="fill" bottomUV="207 164 248 187" bottomLeftMargin="34" bottomRightMargin="6" alphaBlend="true"/>
+  </YellowTalkBalloon>
+  <YellowTalkBalloonReverse>
+    <Normal texture="frame01" captionUV="207 153 248 162" captionLeftMargin="6" captionRightMargin="9" leftUV="207 162 213 164" rightUV="242 162 248 164" clientUV="216 162 242 164" clientType="fill" bottomUV="207 187 248 210" bottomLeftMargin="6" bottomRightMargin="34" alphaBlend="true"/>
+  </YellowTalkBalloonReverse>
+  <ThinDialog>
+    <Normal texture="frame01" captionUV="54 94 79 106" captionLeftMargin="12" captionRightMargin="12" leftUV="54 106 66 107" rightUV="67 106 79 107" clientUV="66 106 67 107" clientType="fill" bottomUV="54 107 79 119" bottomLeftMargin="12" bottomRightMargin="12" alphaBlend="true"/>
+    <Normal texture="frame01" captionUV="54 94 79 106" captionLeftMargin="12" captionRightMargin="12" leftUV="54 106 66 107" rightUV="67 106 79 107" clientUV="66 106 67 107" clientType="fill" bottomUV="54 107 79 119" bottomLeftMargin="12" bottomRightMargin="12" alphaBlend="true"/>
+  </ThinDialog>
+  <AlertLabel>
+    <Normal texture="frame01" captionUV="168 211 188 220" captionLeftMargin="9" captionRightMargin="9" leftUV="168 220 177 222" rightUV="179 220 188 222" clientUV="177 220 179 222" clientType="fill" bottomUV="168 222 188 232" bottomLeftMargin="9" bottomRightMargin="9" alphaBlend="true"/>
+  </AlertLabel>
+  <StaticButtonLabelButton>
+    <Normal texture="frame02" captionUV="88 0 175 37" captionLeftMargin="66" captionRightMargin="11" leftUV="88 37 154 53" rightUV="165 37 175 53" clientUV="154 37 165 53" clientType="fill" bottomUV="88 53 175 66" bottomLeftMargin="66" bottomRightMargin="11" alphaBlend="true"/>
+    <MouseOn texture="frame02" captionUV="88 66 175 103" captionLeftMargin="66" captionRightMargin="11" leftUV="88 103 154 119" rightUV="165 103 175 119" clientUV="154 103 165 119" clientType="fill" bottomUV="88 119 175 132" bottomLeftMargin="66" bottomRightMargin="11" alphaBlend="true"/>
+    <Clicked texture="frame02" captionUV="88 132 175 169" captionLeftMargin="66" captionRightMargin="11" leftUV="88 169 154 185" rightUV="165 169 175 185" clientUV="154 169 165 185" clientType="fill" bottomUV="88 185 175 198" bottomLeftMargin="66" bottomRightMargin="11" alphaBlend="true"/>
+    <Disabled texture="frame02" captionUV="0 94 88 131" captionLeftMargin="66" captionRightMargin="11" leftUV="0 131 66 147" rightUV="77 37 88 147" clientUV="66 131 77 147" clientType="fill" bottomUV="0 147 88 160" bottomLeftMargin="66" bottomRightMargin="11" alphaBlend="true"/>
+  </StaticButtonLabelButton>
+  <ImeComposition>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </ImeComposition>
+  <ImeCompositionSelected>
+    <Normal texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </ImeCompositionSelected>
+  <ImeReading>
+    <Normal texture="frame01" clientUV="31 56 32 58" clientType="fill" alphaBlend="true" alphaTest="true"/>
+  </ImeReading>
+  <ImeCandidateBase>
+    <Normal texture="frame01" clientUV="156 55 157 56" clientType="fill" alphaBlend="true" alphaTest="true"/>
+  </ImeCandidateBase>
+  <ImeCandidateUnselected>
+    <Disabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </ImeCandidateUnselected>
+  <ImeCandidateSelected>
+    <Normal texture="frame01" clientUV="25 40 27 42" clientType="fill" alphaBlend="true" alphaTest="true"/>
+    <MouseOn texture="frame01" clientUV="25 40 27 42" clientType="fill" alphaBlend="true" alphaTest="true"/>
+    <Clicked texture="frame01" clientUV="25 40 27 42" clientType="fill" alphaBlend="true" alphaTest="true"/>
+    <Disabled texture="frame01" clientUV="25 40 27 42" clientType="fill" alphaBlend="true" alphaTest="true"/>
+  </ImeCandidateSelected>
+  <BlueGuage>
+    <Default texture="frame02" captionUV="155 386 177 386" captionLeftMargin="0" captionRightMargin="0" leftUV="155 386 163 404" rightUV="169 386 177 404" clientUV="162 386 169 404" clientType="fill" bottomUV="155 397 177 397" bottomLeftMargin="0" bottomRightMargin="0" alphaBlend="true" alphaTest="true"/>
+  </BlueGuage>
+  <WideLeftButton>
+    <Normal texture="wideLeftRight" captionUV="0 0 24 4" captionLeftMargin="4" captionRightMargin="4" leftUV="0 4 4 98" rightUV="20 4 24 98" clientUV="4 4 20 98" clientType="transFill" bottomUV="0 98 24 102" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <MouseOn texture="wideLeftRight" captionUV="24 0 48 4" captionLeftMargin="4" captionRightMargin="4" leftUV="24 4 28 98" rightUV="44 4 48 98" clientUV="28 4 44 98" clientType="transFill" bottomUV="24 98 46 102" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Clicked texture="wideLeftRight" captionUV="48 0 72 4" captionLeftMargin="4" captionRightMargin="4" leftUV="48 4 52 98" rightUV="68 4 72 98" clientUV="52 4 68 98" clientType="transFill" bottomUV="48 98 72 102" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Disable texture="wideLeftRight" captionUV="72 0 96 4" captionLeftMargin="4" captionRightMargin="4" leftUV="72 4 76 98" rightUV="92 4 96 98" clientUV="76 4 92 98" clientType="transFill" bottomUV="72 98 96 102" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </WideLeftButton>
+  <WideRightButton>
+    <Normal texture="wideLeftRight" captionUV="0 102 24 106" captionLeftMargin="4" captionRightMargin="4" leftUV="0 106 4 200" rightUV="20 106 24 200" clientUV="4 106 20 200" clientType="transFill" bottomUV="0 200 24 204" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <MouseOn texture="wideLeftRight" captionUV="24 102 48 106" captionLeftMargin="4" captionRightMargin="4" leftUV="24 106 28 200" rightUV="44 106 48 200" clientUV="28 106 44 200" clientType="transFill" bottomUV="24 200 48 204" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Clicked texture="wideLeftRight" captionUV="48 102 72 106" captionLeftMargin="4" captionRightMargin="4" leftUV="48 106 52 200" rightUV="68 106 72 200" clientUV="52 106 68 200" clientType="transFill" bottomUV="48 200 72 204" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+    <Disable texture="wideLeftRight" captionUV="72 102 96 106" captionLeftMargin="4" captionRightMargin="4" leftUV="72 106 76 200" rightUV="92 106 96 200" clientUV="76 106 92 200" clientType="transFill" bottomUV="72 200 96 204" bottomLeftMargin="4" bottomRightMargin="4" alphaBlend="true"/>
+  </WideRightButton>
+  <GlowBorderPanel>
+    <Normal texture="frame01" captionUV="190 216 226 233" captionLeftMargin="17" captionRightMargin="17" leftUV="190 233 207 235" rightUV="209 233 226 235" clientUV="207 233 209 235" clientType="transFill" bottomUV="190 235 226 256" bottomLeftMargin="17" bottomRightMargin="17" alphaBlend="true"/>
+  </GlowBorderPanel>
+  <YellowLineBrownPanel>
+    <Normal texture="frame01" captionUV="118 20 138 27" captionLeftMargin="9" captionRightMargin="9" leftUV="118 27 127 29" rightUV="129 27 138 29" clientUV="127 29 129 31" clientType="fill" bottomUV="118 31 138 40" bottomLeftMargin="9" bottomRightMargin="9" alphaBlend="true"/>
+  </YellowLineBrownPanel>
+  <DarkgreenLineBlackPanel>
+    <Normal texture="frame01" captionUV="226 221 245 245" captionLeftMargin="8" captionRightMargin="8" leftUV="226 245 234 247" rightUV="237 245 245 247" clientUV="234 245 237 247" clientType="fill" bottomUV="226 247 245 256" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </DarkgreenLineBlackPanel>
+  <Help>
+    <Normal texture="frame02" captionUV="57 200 112 215" captionLeftMargin="17" captionRightMargin="17" leftUV="57 216 74 240" rightUV="95 216 112 240" clientUV="75 216 94 240" clientType="fill" bottomUV="57 241 112 254" bottomLeftMargin="17" bottomRightMargin="17" alphaBlend="true"/>
+  </Help>
+  <LineboxSky>
+    <Normal texture="frame01" captionUV="45 0 46 1" captionLeftMargin="1" captionRightMargin="1" leftUV="45 0 46 1" rightUV="45 0 46 1" clientUV="0 0 1 1" clientType="transFill" bottomUV="45 0 46 1" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </LineboxSky>
+  <LineboxYellow>
+    <Normal texture="frame01" captionUV="46 0 47 1" captionLeftMargin="1" captionRightMargin="1" leftUV="46 0 47 1" rightUV="46 0 47 1" clientUV="0 0 1 1" clientType="transFill" bottomUV="46 0 47 1" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </LineboxYellow>
+  <CaptionWindowGrey>
+    <Activated texture="frame02" captionUV="257 0 277 26" captionLeftMargin="6" captionRightMargin="6" leftUV="257 27 263 28" rightUV="271 27 277 28" clientUV="266 28 267 29" clientType="fill" bottomUV="257 28 277 34" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </CaptionWindowGrey>
+  <ChatBox>
+    <Normal texture="chatbox" captionUV="0 0 347 1" clientUV="0 2 347 3" clientType="transFill" bottomUV="0 0 347 1" alphaBlend="true"/>
+  </ChatBox>
+  <upgradeGearToolTip>
+    <Default texture="toolTip" leftUV="0 0 4 20" rightUV="7 0 11 20" clientUV="5 0 6 20" clientType="transFill" alphaBlend="true"/>
+  </upgradeGearToolTip>
+  <CaptionWindowRightSlot>
+    <Activated texture="img_stateBarBG" captionUV="0 0 344 22" captionLeftMargin="6" captionRightMargin="56" leftUV="0 23 6 24" rightUV="336 23 344 24" clientUV="110 27 111 28" clientType="fill" bottomUV="0 24 344 29" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </CaptionWindowRightSlot>
+  <KartPassVerticalScrollButton>
+    <Normal texture="kartPass_popup_rewardAllScroll_1" captionUV="0 0 10 2" captionLeftMargin="2" captionRightMargin="2" leftUV="0 3 2 8" rightUV="8 3 10 8" clientUV="4 4 6 6" clientType="transFill" bottomUV="0 8 10 10" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+    <MouseOn texture="kartPass_popup_rewardAllScroll_2" captionUV="0 0 10 2" captionLeftMargin="2" captionRightMargin="2" leftUV="0 3 2 8" rightUV="8 3 10 8" clientUV="4 4 6 6" clientType="transFill" bottomUV="0 8 10 10" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+    <Clicked texture="kartPass_popup_rewardAllScroll_2" captionUV="0 0 10 2" captionLeftMargin="2" captionRightMargin="2" leftUV="0 3 2 8" rightUV="8 3 10 8" clientUV="4 4 6 6" clientType="transFill" bottomUV="0 8 10 10" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+    <Disabled texture="kartPass_popup_rewardAllScroll_1" captionUV="0 0 10 2" captionLeftMargin="2" captionRightMargin="2" leftUV="0 3 2 8" rightUV="8 3 10 8" clientUV="4 4 6 6" clientType="transFill" bottomUV="0 8 10 10" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+  </KartPassVerticalScrollButton>
+  <EventPassPanel>
+    <Normal texture="img_popupFrame" captionUV="0 0 36 6" captionLeftMargin="6" captionRightMargin="6" leftUV="0 7 6 22" rightUV="30 7 36 22" clientUV="6 6 30 22" clientType="transFill" bottomUV="0 25 36 34" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </EventPassPanel>
+  <MixVerticalScrollButton>
+    <Normal texture="mix_img_scroll" captionUV="0 0 4 1" captionLeftMargin="1" captionRightMargin="1" leftUV="0 2 1 14" rightUV="3 1 4 14" clientUV="1 2 2 14" clientType="transFill" bottomUV="0 15 4 18" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+    <MouseOn texture="mix_img_scroll" captionUV="0 0 4 3" captionLeftMargin="1" captionRightMargin="1" leftUV="0 4 1 14" rightUV="3 4 4 14" clientUV="1 3 2 14" clientType="transFill" bottomUV="0 15 4 17" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+    <Clicked texture="mix_img_scroll" captionUV="0 0 4 3" captionLeftMargin="1" captionRightMargin="1" leftUV="0 4 1 14" rightUV="3 4 4 14" clientUV="1 3 2 14" clientType="transFill" bottomUV="0 15 4 17" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+    <Disabled texture="mix_img_scroll" captionUV="0 0 4 3" captionLeftMargin="1" captionRightMargin="1" leftUV="0 4 1 14" rightUV="3 4 4 14" clientUV="1 3 2 14" clientType="transFill" bottomUV="0 15 4 17" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </MixVerticalScrollButton>
+  <MixVerticalScrollArea>
+    <Normal texture="mix_img_scroll_bg" captionUV="0 0 4 3" captionLeftMargin="1" captionRightMargin="1" leftUV="0 4 1 14" rightUV="3 4 4 14" clientUV="1 3 2 14" clientType="transFill" bottomUV="0 15 4 17" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </MixVerticalScrollArea>
+  <DefaultCheckButton2>
+    <NotChecked texture="btn_checkBox2_1" captionUV="0 0 16 3" captionLeftMargin="3" captionRightMargin="3" leftUV="0 3 3 13" rightUV="13 3 16 13" clientUV="3 3 13 13" clientType="fill" bottomUV="0 13 16 16" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <Checked texture="btn_checkBox2_2" captionUV="0 0 16 3" captionLeftMargin="3" captionRightMargin="3" leftUV="0 3 3 13" rightUV="13 3 16 13" clientUV="3 3 13 13" clientType="fill" bottomUV="0 13 16 16" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <NotCheckedOver texture="btn_checkBox2_1" captionUV="0 0 16 3" captionLeftMargin="3" captionRightMargin="3" leftUV="0 3 3 13" rightUV="13 3 16 13" clientUV="3 3 13 13" clientType="fill" bottomUV="0 13 16 16" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <CheckedOver texture="btn_checkBox2_2" captionUV="0 0 16 3" captionLeftMargin="3" captionRightMargin="3" leftUV="0 3 3 13" rightUV="13 3 16 13" clientUV="3 3 13 13" clientType="fill" bottomUV="0 13 16 16" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+    <Disabled texture="btn_checkBox2_1" captionUV="0 0 16 3" captionLeftMargin="3" captionRightMargin="3" leftUV="0 3 3 13" rightUV="13 3 16 13" clientUV="3 3 13 13" clientType="fill" bottomUV="0 13 16 16" bottomLeftMargin="3" bottomRightMargin="3" alphaBlend="true"/>
+  </DefaultCheckButton2>
+  <ReplayHorizonScrollArea>
+    <Normal texture="progressBar_bg" captionUV="0 0 1360 1" captionLeftMargin="1" captionRightMargin="1" leftUV="0 1 1 3" rightUV="1359 1 1360 3" clientUV="1 1 1359 3" clientType="transFill" bottomUV="0 3 1360 4" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </ReplayHorizonScrollArea>
+  <ReplayHorizonScrollButton>
+    <Normal texture="progressBar_handle_normal" captionUV="0 0 0 0" captionLeftMargin="0" captionRightMargin="0" leftUV="0 0 0 0" rightUV="0 0 0 0" clientUV="1 1 15 15" clientType="transFill" bottomUV="0 0 0 0" bottomLeftMargin="0" bottomRightMargin="0" alphaBlend="true"/>
+    <MouseOn texture="progressBar_handle_normal" captionUV="0 0 0 0" captionLeftMargin="0" captionRightMargin="0" leftUV="0 0 0 0" rightUV="0 0 0 0" clientUV="1 1 15 15" clientType="transFill" bottomUV="0 0 0 0" bottomLeftMargin="0" bottomRightMargin="0" alphaBlend="true"/>
+    <Clicked texture="progressBar_handle_press" captionUV="0 0 0 0" captionLeftMargin="0" captionRightMargin="0" leftUV="0 0 0 0" rightUV="0 0 0 0" clientUV="1 1 15 15" clientType="transFill" bottomUV="0 0 0 0" bottomLeftMargin="0" bottomRightMargin="0" alphaBlend="true"/>
+    <Disabled texture="progressBar_handle_normal" captionUV="0 0 0 0" captionLeftMargin="0" captionRightMargin="0" leftUV="0 0 0 0" rightUV="0 0 0 0" clientUV="1 1 15 15" clientType="transFill" bottomUV="0 0 0 0" bottomLeftMargin="0" bottomRightMargin="0" alphaBlend="true"/>
+  </ReplayHorizonScrollButton>
+  <RiderSchoolButton>
+    <Normal texture="riderSchool_list_01" captionUV="0 0 110 3" captionLeftMargin="46" captionRightMargin="46" leftUV="0 3 46 70" rightUV="64 3 110 70" clientUV="47 3 63 70" clientType="transFill" bottomUV="0 70 110 74" bottomLeftMargin="46" bottomRightMargin="46" alphaBlend="true"/>
+    <MouseOn texture="riderSchool_list_02" captionUV="0 0 110 3" captionLeftMargin="46" captionRightMargin="46" leftUV="0 3 46 70" rightUV="64 3 110 70" clientUV="47 3 63 70" clientType="transFill" bottomUV="0 70 110 74" bottomLeftMargin="46" bottomRightMargin="46" alphaBlend="true"/>
+    <Clicked texture="riderSchool_list_03" captionUV="0 0 110 3" captionLeftMargin="46" captionRightMargin="46" leftUV="0 3 46 70" rightUV="64 3 110 70" clientUV="47 3 63 70" clientType="transFill" bottomUV="0 70 110 74" bottomLeftMargin="46" bottomRightMargin="46" alphaBlend="true"/>
+    <Disabled texture="riderSchool_list_04" captionUV="0 0 110 3" captionLeftMargin="46" captionRightMargin="46" leftUV="0 3 46 70" rightUV="64 3 110 70" clientUV="47 3 63 70" clientType="transFill" bottomUV="0 70 110 74" bottomLeftMargin="46" bottomRightMargin="46" alphaBlend="true"/>
+  </RiderSchoolButton>
+  <GreenBorderLinePanel>
+    <Normal texture="frame01" captionUV="0 118 13 124" captionLeftMargin="6" captionRightMargin="6" leftUV="0 124 6 125" rightUV="7 124 13 125" clientUV="6 124 7 125" clientType="fill" bottomUV="0 125 13 131" bottomLeftMargin="6" bottomRightMargin="6" alphaBlend="true"/>
+  </GreenBorderLinePanel>
+  <DarkGrayPanel>
+    <Normal texture="frame01" captionUV="0 112 6 114" captionLeftMargin="2" captionRightMargin="2" leftUV="0 114 2 116" rightUV="4 114 6 116" clientUV="2 114 4 116" clientType="transFill" bottomUV="0 116 6 118" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+  </DarkGrayPanel>
+  <DarkLineGrayPanel>
+    <Normal texture="frame01" captionUV="0 251 5 253" captionLeftMargin="2" captionRightMargin="2" leftUV="0 253 2 254" rightUV="3 253 5 254" clientUV="3 253 4 254" clientType="transFill" bottomUV="0 254 5 256" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+  </DarkLineGrayPanel>
+  <BorderLineStaticButton>
+    <Normal texture="frame01" captionUV="25 251 30 253" captionLeftMargin="2" captionRightMargin="2" leftUV="25 253 27 254" rightUV="28 253 30 254" clientUV="27 253 28 254" clientType="fill" bottomUV="25 254 30 256" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+    <MouseOn texture="frame01" captionUV="30 251 35 253" captionLeftMargin="2" captionRightMargin="2" leftUV="30 253 32 254" rightUV="33 253 35 254" clientUV="32 253 33 254" clientType="fill" bottomUV="30 254 35 256" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+    <Clicked texture="frame01" captionUV="35 251 40 253" captionLeftMargin="2" captionRightMargin="2" leftUV="35 253 37 254" rightUV="38 253 40 254" clientUV="37 253 38 254" clientType="fill" bottomUV="35 254 40 256" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+    <Disabled texture="frame01" captionUV="40 251 45 253" captionLeftMargin="2" captionRightMargin="2" leftUV="40 253 42 254" rightUV="43 253 45 254" clientUV="42 253 43 254" clientType="fill" bottomUV="40 254 45 256" bottomLeftMargin="2" bottomRightMargin="2" alphaBlend="true"/>
+  </BorderLineStaticButton>
+  <NewTab>
+    <Normal texture="frame02" captionUV="202 0 228 2" captionLeftMargin="8" captionRightMargin="8" leftUV="202 2 210 41" rightUV="220 2 228 41" clientUV="210 2 220 41" clientType="fill" bottomUV="202 41 228 44" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <MouseOn texture="frame02" captionUV="228 0 254 2" captionLeftMargin="8" captionRightMargin="8" leftUV="228 2 236 41" rightUV="246 2 254 41" clientUV="236 2 246 41" clientType="fill" bottomUV="228 41 254 44" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Clicked texture="frame02" captionUV="202 44 228 46" captionLeftMargin="8" captionRightMargin="8" leftUV="202 46 210 85" rightUV="220 46 228 85" clientUV="210 46 220 85" clientType="fill" bottomUV="202 85 228 88" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+    <Disabled texture="frame02" captionUV="228 44 254 46" captionLeftMargin="8" captionRightMargin="8" leftUV="228 46 236 85" rightUV="246 46 254 85" clientUV="236 46 246 85" clientType="fill" bottomUV="228 85 254 88" bottomLeftMargin="8" bottomRightMargin="8" alphaBlend="true"/>
+  </NewTab>
+  <GrayInputBox>
+    <Normal texture="frame01" captionUV="141 13 154 14" captionLeftMargin="1" captionRightMargin="1" leftUV="141 14 142 25" rightUV="153 14 154 25" clientUV="142 14 153 25" clientType="fill" bottomUV="141 25 154 26" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </GrayInputBox>
+  <GrayInnerFrame>
+    <Normal texture="frame01" captionUV="141 26 154 27" captionLeftMargin="1" captionRightMargin="1" leftUV="141 27 142 38" rightUV="153 27 154 38" clientUV="142 27 153 38" clientType="fill" bottomUV="141 38 154 39" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </GrayInnerFrame>
+  <NewHorizonScrollButton>
+    <Normal texture="setting_gaugeBar_key_1" captionUV="0 0 8 1" captionLeftMargin="1" captionRightMargin="1" leftUV="0 1 1 19" rightUV="7 1 8 19" clientUV="1 1 7 19" clientType="transFill" bottomUV="0 19 8 20" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+    <MouseOn texture="setting_gaugeBar_key_2" captionUV="0 0 8 1" captionLeftMargin="1" captionRightMargin="1" leftUV="0 1 1 19" rightUV="7 1 8 19" clientUV="1 1 7 19" clientType="transFill" bottomUV="0 19 8 20" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+    <Clicked texture="setting_gaugeBar_key_3" captionUV="0 0 8 1" captionLeftMargin="1" captionRightMargin="1" leftUV="0 1 1 19" rightUV="7 1 8 19" clientUV="1 1 7 19" clientType="transFill" bottomUV="0 19 8 20" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+    <Disabled texture="setting_gaugeBar_key_4" captionUV="0 0 8 1" captionLeftMargin="1" captionRightMargin="1" leftUV="0 1 1 19" rightUV="7 1 8 19" clientUV="1 1 7 19" clientType="transFill" bottomUV="0 19 8 20" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </NewHorizonScrollButton>
+  <NewHorizonScrollArea>
+    <Normal texture="setting_gaugeBar_bg" captionUV="0 0 174 1" captionLeftMargin="1" captionRightMargin="1" leftUV="0 1 1 13" rightUV="173 1 174 13" clientUV="1 1 173 13" clientType="fill" bottomUV="0 13 174 14" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </NewHorizonScrollArea>
+  <ObserverMsgBox>
+    <Normal texture="observerChatBox" leftUV="0 0 7 154" rightUV="607 0 614 154" clientUV="100 0 101 154" clientType="transFill" alphaBlend="true"/>
+  </ObserverMsgBox>
+  <InputBoxBg2>
+    <Normal texture="common_inputBox_bg2" captionUV="0 0 10 1" captionLeftMargin="1" captionRightMargin="1" leftUV="0 1 1 9" rightUV="9 1 10 9" clientUV="2 2 8 8" clientType="transFill" bottomUV="0 9 10 10" bottomLeftMargin="1" bottomRightMargin="1" alphaBlend="true"/>
+  </InputBoxBg2>
+  <GradeVerticalScrollButton>
+    <Normal texture="grade_srcollbar" captionUV="0 0 1 1" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="grade_srcollbar" captionUV="0 0 1 1" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="grade_srcollbar" captionUV="0 0 1 1" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <Disabled texture="grade_srcollbar" captionUV="0 0 1 1" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </GradeVerticalScrollButton>
+  <GradeVerticalScrollArea>
+    <Normal texture="grade_srcollbar_bg" captionUV="0 0 1 1" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </GradeVerticalScrollArea>
+  <MpTopRankTabButton>
+    <Normal texture="mpRank_tabbtn_1" captionUV="0 0 1 1" clientUV="0 0 1 1" clientType="fill" alphaBlend="true"/>
+    <MouseOn texture="mpRank_tabbtn_2" captionUV="0 0 1 1" clientUV="0 0 1 1" clientType="fill" alphaBlend="true"/>
+    <Clicked texture="mpRank_tabbtn_3" captionUV="0 0 1 1" clientUV="0 0 1 1" clientType="fill" alphaBlend="true"/>
+    <Disabled texture="mpRank_tabbtn_4" captionUV="0 0 1 1" clientUV="0 0 1 1" clientType="fill" alphaBlend="true"/>
+  </MpTopRankTabButton>
+  <MsgrStatusDropBoxButton>
+    <Normal texture="mpRank_tabbtn_3" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="msg_condition_over" clientUV="0 0 100 28" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="msg_condition_over" clientUV="0 0 100 28" clientType="transFill" alphaBlend="true"/>
+    <Disabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </MsgrStatusDropBoxButton>
+  <MsgrQuickMenuButton>
+    <Normal texture="mpRank_tabbtn_3" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+    <MouseOn texture="msg_quickmenu_over" clientUV="0 0 134 28" clientType="transFill" alphaBlend="true"/>
+    <Clicked texture="msg_quickmenu_over" clientUV="0 0 134 28" clientType="transFill" alphaBlend="true"/>
+    <Disabled texture="frame01" clientUV="0 0 1 1" clientType="transFill" alphaBlend="true"/>
+  </MsgrQuickMenuButton>
+  <DropBoxBg>
+    <Normal texture="msg_condition_bg" captionUV="0 0 1 1" leftUV="0 0 1 1" rightUV="0 0 1 1" clientUV="1 1 5 5" clientType="transFill" bottomUV="0 0 1 1" alphaBlend="true"/>
+  </DropBoxBg>
+</FrameList>

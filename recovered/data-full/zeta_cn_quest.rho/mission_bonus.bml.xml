@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<missionBonus>
+  <bonus id="0" type="20" rpPlus="50" weight="12"/>
+  <bonus id="1" type="20" rpPlus="100" weight="5"/>
+  <bonus id="2" type="20" lucciPlus="50" rpPlus="50" weight="8"/>
+  <bonus id="3" type="20" lucciPlus="50" weight="16"/>
+  <bonus id="4" type="20" lucciPlus="100" weight="8"/>
+  <bonus id="5" type="20" lucciPlus="100" rpPlus="100" weight="1"/>
+</missionBonus>

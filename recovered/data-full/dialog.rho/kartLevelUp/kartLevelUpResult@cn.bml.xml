@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="desktop" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Container name="success" windowSize="680 528" adjust="0 0" align="center" visible="false">
+    <Play1SPanel name="preEffect" windowSize="680 528" adjust="0 0" alphaBlend="true" scene="튜닝시스템결과_성공" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -4.38 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.11" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <ImageBoard name="main" windowSize="680 528" adjust="0 0" image="img_tuningSuccessPopup2" alphaBlend="true" alphaTest="true" visible="false">
+      <Label windowSize="680 51" adjust="0 0" align="hcenter" textAlign="center" text="#sb(levelUpResult)" textRender="bold20" textColor="white"/>
+      <Panel windowSize="170 44" adjust="0 70" align="hcenter" texture="img_successTXT_cn" alphaBlend="true" alphaTest="true"/>
+      <Panel windowSize="162 58" adjust="1 63" align="right" texture="img_levelBG1" alphaBlend="true" alphaTest="true">
+        <CharPanel name="kartLevel" windowSize="32 40" adjust="112 7" texture="img_levelNUM" alphaBlend="true" fontSize="32 40" fontPos="0 0" fontStr="0123456789"/>
+      </Panel>
+      <ItemWindow name="bonusStockPanel" windowSize="120 100" adjust="140 120" align="hcenter"/>
+      <ColorLabel name="kartName" windowSize="270 25" adjust="0 320" align="hcenter" textAlign="center" textRender="outline20" textColor="white"/>
+      <ColorLabel name="kartDesc" windowSize="680 88" adjust="0 355" align="hcenter" multiLine="true" lineGap="5" autoWrap="true" textRender="bold16" textColor="white" textAlign="center"/>
+      <TextButton name="okButton" windowSize="146 46" adjust="0 20" align="bottom,hcenter" text="#sb(ok)" textRender="bold20" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+    </ImageBoard>
+    <ItemWindow name="itemPanel" leftTopWH="0 55 400 300" adjust="0 -55" align="center" visible="false"/>
+  </Container>
+  <Container name="failure" windowSize="680 528" adjust="0 0" align="center" visible="false">
+    <Play1SPanel name="preEffect" windowSize="680 528" adjust="0 0" alphaBlend="true" scene="튜닝시스템결과_실패" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -4.38 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.11" stop="true" enable="false" clearZAfter="false" visible="false"/>
+    <ImageBoard name="main" windowSize="680 528" adjust="0 0" image="img_tuningFailurePopup2" alphaBlend="true" alphaTest="true" visible="false">
+      <Label windowSize="680 51" adjust="0 0" align="hcenter" textAlign="center" text="#sb(levelUpResult)" textRender="bold20" textColor="white"/>
+      <Panel windowSize="170 44" adjust="0 70" align="hcenter" texture="img_failureTXT_cn" alphaBlend="true" alphaTest="true"/>
+      <Panel windowSize="162 58" adjust="1 63" align="right" texture="img_levelBG2" alphaBlend="true" alphaTest="true">
+        <CharPanel name="kartLevel" windowSize="32 40" adjust="112 7" texture="img_levelNUM" alphaBlend="true" fontSize="32 40" fontPos="0 0" fontStr="0123456789"/>
+      </Panel>
+      <ItemWindow name="bonusStockPanel" windowSize="120 120" adjust="560 240"/>
+      <ColorLabel name="kartName" windowSize="270 25" adjust="0 320" align="hcenter" textAlign="center" textRender="outline20" textColor="white"/>
+      <ColorLabel name="kartDesc" windowSize="680 88" adjust="0 355" align="hcenter" multiLine="true" lineGap="5" autoWrap="true" textRender="bold16" textColor="white" textAlign="center"/>
+      <TextButton name="okButton" windowSize="146 46" adjust="0 20" align="bottom,hcenter" text="#sb(ok)" textRender="bold20" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+    </ImageBoard>
+    <ItemWindow name="itemPanel" leftTopWH="0 55 400 300" adjust="0 -55" align="hcenter" visible="false"/>
+  </Container>
+</Panel>

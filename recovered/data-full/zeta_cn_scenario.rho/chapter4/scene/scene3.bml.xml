@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="ice2"/>
+  <Char id="dizini" pos="8 0" emotion="stop2"/>
+  <Msg name="黑妞" string="哇噻!皮蛋，你获胜啦！！|你是最棒的！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="我输了..我，竟然输了？|这不可能！！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="把奖牌还给我吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="靠!! 我无法接受！|这不可能，这是欺诈！我们重新再来！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="ani5"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="到底哪一点是欺诈.|快点遵守诺言吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="靠，是不想要奖牌了吗？|必须再比一次我才会考虑还给你!你能把我怎样？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="竟然不守信用，卑鄙..|那好，这次就让你败得心服口服."/>
+  <Enter/>
+</Scene>

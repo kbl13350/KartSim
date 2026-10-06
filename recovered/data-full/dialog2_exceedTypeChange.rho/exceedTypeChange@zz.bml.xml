@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="desktop" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="exceedTypeChange" windowRect="0 0 1244 748" align="center" adjust="0 -40" frame="CaptionDialog" caption="#sb(exceedTypeChangeCaption)" setCloseButton="closeButton">
+    <ImageBoard leftTopWH="-11 -1 1230 771" image="tuning_changeExceedPopupBg" alphaBlend="true">
+      <Container name="selectedTarget" leftTopWH="0 0 520 410">
+        <Panel name="ingredientKartNoneBg" adjust="64 105" windowSize="160 160" texture="tuning_changeExceed_none" alphaBlend="true"/>
+        <Panel name="targetKartBg" adjust="262 72" windowSize="226 226" texture="tuning_changeExceed_selectedKart" alphaBlend="true"/>
+        <Play1SPanel name="kartbg1s" scene="익시드변경_선택" leftTopWH="-83 -6 700 380" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -6.61 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" clearZBefore="true" clearZAfter="true" loop="true" alphaBlend="true" enable="false" visible="false"/>
+        <Label windowSize="200 25" adjust="43 40" text="#sb(ingredient)" textAlign="center" textRender="outline14" textColor="255 254 189 163" textColor2="255 42 55 80"/>
+        <Label windowSize="200 25" adjust="275 40" text="#sb(targetKart)" textAlign="center" textRender="outline14" textColor="255 198 233 251" textColor2="255 42 55 80"/>
+        <Label name="ingredientKartName" windowSize="200 25" adjust="43 63" text="" textAlign="center" textRender="outline16" textColor="white" textColor2="255 42 55 80"/>
+        <Label name="targetKartName" windowSize="200 25" adjust="275 63" text="" textAlign="center" textRender="outline16" textColor="white" textColor2="255 42 55 80"/>
+        <ItemWindow name="ingredientItemView" windowSize="200 150" adjust="43 114" alphaBlend="true"/>
+        <ItemWindow name="targetItemView" windowSize="230 180" adjust="260 97" alphaBlend="true"/>
+        <Panel name="ingredientExceedType_s" windowSize="35 35" adjust="84 105" alphaBlend="true" visible="false"/>
+        <Panel name="targetExceedType_s" windowSize="35 35" adjust="289 105" alphaBlend="true"/>
+        <Panel name="targetKartLevel" windowSize="36 36" adjust="441 105" alphaBlend="true" visible="false"/>
+      </Container>
+      <Container name="unselectedState" leftTopWH="0 285 520 260">
+        <Label windowSize="76 25" adjust="0 -75" align="center" text="#sb(selectSlotStr)" textAlign="center" textRender="bold16" textColor="255 187 198 215"/>
+        <Panel windowSize="158 14" texture="tuning_exceedProgressbar_00" adjust="57 165" alphaBlend="true"/>
+        <Panel windowSize="158 14" texture="tuning_exceedProgressbar_00" adjust="308 165" alphaBlend="true"/>
+        <Panel windowSize="158 14" texture="tuning_exceedProgressbar_00" adjust="57 222" alphaBlend="true"/>
+        <Panel windowSize="158 14" texture="tuning_exceedProgressbar_00" adjust="308 222" alphaBlend="true"/>
+      </Container>
+      <Container name="selectedIngredient" leftTopWH="0 285 520 260" visible="false">
+        <Panel name="targetExceedType" windowSize="76 76" texture="icon_exceedB_2" adjust="106 5" alphaBlend="true"/>
+        <Label windowSize="76 25" adjust="105 78" text="#sb(type)" textAlign="center" textRender="outline20" textColor="white" textColor2="255 42 55 80"/>
+        <CharPanel name="arrow0" adjust="0 32" windowSize="72 28" align="hcenter" fontSize="72 28" fontStr="012" text="1" texture="tuning_arrow_b" alphaBlend="true"/>
+        <Panel name="ingredientExceedType" windowSize="76 76" texture="icon_exceedB_2" adjust="342 5" alphaBlend="true"/>
+        <Label windowSize="76 25" adjust="342 78" text="#sb(type)" textAlign="center" textRender="outline20" textColor="white" textColor2="255 42 55 80"/>
+        <Panel name="targetExceedAccelGauge" windowSize="158 14" texture="tuning_exceedProgressbar_01" adjust="57 165" alphaBlend="true"/>
+        <CharPanel name="arrow1" adjust="0 162" windowSize="52 20" align="hcenter" fontSize="52 20" fontStr="012" text="1" texture="tuning_arrow_b_s" alphaBlend="true"/>
+        <Panel name="ingredientExceedAccelGauge" windowSize="158 14" texture="tuning_exceedProgressbar_00" adjust="308 165" alphaBlend="true">
+          <Panel name="deltaExceedAccelGauge2" windowSize="58 14" texture="tuning_exceedProgressbar_2" adjust="50 0" alphaBlend="true" visible="false" enable="false"/>
+          <Panel name="deltaExceedAccelGauge1" windowSize="58 14" texture="tuning_exceedProgressbar_2" adjust="100 0" alphaBlend="true" visible="false" enable="false"/>
+          <Panel name="randomExceedIcon1" windowSize="35 35" texture="icon_exceedS_random" adjust="60 -12" alphaBlend="true" visible="false" enable="false"/>
+        </Panel>
+        <Panel name="targetExceedTimeGauge" windowSize="158 14" texture="tuning_exceedProgressbar_01" adjust="57 222" alphaBlend="true"/>
+        <CharPanel name="arrow2" adjust="0 216" windowSize="52 20" align="hcenter" fontSize="52 20" fontStr="012" text="1" texture="tuning_arrow_b_s" alphaBlend="true"/>
+        <Panel name="ingredientExceedTimeGauge" windowSize="158 14" texture="tuning_exceedProgressbar_00" adjust="308 222" alphaBlend="true">
+          <Panel name="deltaExceedTimeGauge2" windowSize="58 14" texture="tuning_exceedProgressbar_2" adjust="50 0" alphaBlend="true" visible="false" enable="false"/>
+          <Panel name="deltaExceedTimeGauge1" windowSize="58 14" texture="tuning_exceedProgressbar_2" adjust="100 0" alphaBlend="true" visible="false" enable="false"/>
+          <Panel name="randomExceedIcon2" windowSize="35 35" texture="icon_exceedS_random" adjust="60 -12" alphaBlend="true" visible="false" enable="false"/>
+        </Panel>
+      </Container>
+      <Label leftTopWH="56 416 100 32" text="#sb(exceedAccel)" textAlign="left,vcenter" textRender="bold16" textColor="white"/>
+      <Label leftTopWH="56 470 100 32" text="#sb(exceedTime)" textAlign="left,vcenter" textRender="bold16" textColor="white"/>
+      <Container name="feeInfo" leftTopWH="0 542 520 125">
+        <Label windowSize="76 25" adjust="13 8" text="#sb(changeIngredient)" textAlign="left,vcenter" textRender="bold16" textColor="white"/>
+        <Label windowSize="50 25" adjust="114 8" text="#sb(holdingAmount)" textAlign="left,vcenter" textRender="bold14" textColor="255 207 221 240"/>
+        <Panel windowSize="34 34" adjust="180 5" texture="icon_ethisSpanner" alphaBlend="true"/>
+        <Label name="haveEthisSpannerNum" windowSize="100 25" adjust="371 9" text="0" textAlign="right,vcenter" textRender="bold16" textColor="255 42 55 80"/>
+        <ImageButton name="buyEthisSpannerBtn" windowSize="22 22" adjust="479 11" autoLoadImage="btn_plus_0" alphaBlend="true"/>
+        <Label name="ethisSpannerStr" windowSize="100 25" adjust="13 51" text="#sb(ethisSpanner)" textAlign="center" textRender="bold16" textColor="255 84 100 129"/>
+        <Panel name="ethisSpannerLack" windowSize="14 14" adjust="107 49" texture="tuning_infomark_2" alphaBlend="true"/>
+        <Panel windowSize="34 34" adjust="180 47" texture="icon_ethisSpanner" alphaBlend="true"/>
+        <Label name="needEthisSpannerNum" windowSize="100 25" adjust="396 51" text="0" textAlign="right,vcenter" textRender="bold16" textColor="255 42 55 80"/>
+        <Label name="lucciStr" windowSize="100 25" adjust="23 85" text="#sb(charge)" textAlign="left,vcenter" textRender="bold16" textColor="255 84 100 129"/>
+        <Panel name="lucciChargeLack" windowSize="14 14" adjust="76 83" texture="tuning_infomark_2" alphaBlend="true"/>
+        <Panel windowSize="26 26" adjust="184 85" texture="icon_lucci" alphaBlend="true"/>
+        <Label name="needLucciNum" windowSize="100 25" adjust="396 85" text="0" textAlign="right,vcenter" textRender="bold16" textColor="255 42 55 80"/>
+      </Container>
+      <Container name="kartList" windowSize="682 578" adjust="534 0">
+        <Label leftTopWH="0 12 100 32" text="#sb(targetKart)" textAlign="center" textRender="bold16" textColor="white"/>
+        <Label name="kartCount" leftTopWH="475 11 200 32" text="#sb(kartCount)" textAlign="right,vcenter" textRender="bold16" textColor="255 207 221 240"/>
+        <GridSelectorDivLoad name="kartSelector" windowSize="0 0 400 400" adjust="0 48" alignStyle="horizontal" alignSize="4" maxLine="4" alignMargin="6 4" clientMargin="0 1 0 0"/>
+        <Label name="pageInfo" leftTopWH="0 0 100 32" align="bottom,hcenter" adjust="0 5" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+        <ImageButton name="preItemList" leftTopWH="0 0 270 24" align="bottom;left" adjust="0 5" frame="BorderLineStaticButton" arrowDir="left" alphaBlend="true" arrowColor="255 85 100 122" overArrowColor="255 179 195 228" clickedArrowColor="255 84 100 129" disabledArrowColor="255 125 125 125"/>
+        <ImageButton name="nextItemList" leftTopWH="0 0 270 24" align="bottom;right" adjust="0 5" frame="BorderLineStaticButton" arrowDir="right" alphaBlend="true" arrowColor="255 85 100 122" overArrowColor="255 179 195 228" clickedArrowColor="255 84 100 129" disabledArrowColor="255 125 125 125"/>
+      </Container>
+      <Container name="helpStr" leftTopWH="538 579 720 80" enable="false">
+        <Panel windowSize="14 14" adjust="5 11" texture="tuning_infomark_1" alphaBlend="true" alphaTest="true"/>
+        <Label windowSize="200 20" adjust="25 7" text="#sb(helpStr1)" textRender="bold14" textColor="255 42 50 80"/>
+        <Panel windowSize="14 14" adjust="5 33" texture="tuning_infomark_1" alphaBlend="true" alphaTest="true"/>
+        <Label windowSize="200 20" adjust="25 29" text="#sb(helpStr2)" textRender="bold14" textColor="255 42 50 80"/>
+        <Panel windowSize="14 14" adjust="5 55" texture="tuning_infomark_2" alphaBlend="true" alphaTest="true"/>
+        <Label windowSize="200 20" adjust="25 51" text="#sb(helpStr3)" textRender="bold14" textColor="255 240 105 58"/>
+      </Container>
+      <ImageButton name="exceedTypeChangeStart" windowSize="262 76" adjust="0 17" align="bottom,hcenter" autoLoadImage="tuningpopup_changeExceed_" alphaBlend="true" alphaTest="true" enable="false"/>
+      <Panel name="exceedTypeChangeCheck" leftTopWH="0 -50 1402 821" color="100 0 0 0" alphaBlend="true" visible="false">
+        <CaptionWindow windowRect="0 0 564 535" align="center" adjust="0 -40" frame="CaptionDialog" caption="#sb(exceedTypeChangeCaption)" setCloseButton="checkCloseButton">
+          <ImageBoard leftTopWH="-11 -1 550 535" image="tuning_changeExceedPopupBg2" alphaBlend="true">
+            <Container name="selectedTargetCheck" leftTopWH="0 0 520 410" align="hcenter">
+              <Play1SPanel name="exceedChoose1s" scene="익시드변경_선택" leftTopWH="-82 -11 700 380" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -6.59 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" clearZBefore="true" clearZAfter="true" loop="true" alphaBlend="true" enable="false"/>
+              <Play1SPanel name="exceedProgress1s" scene="익시드변경_진행" leftTopWH="-82 -11 700 380" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -6.59 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" clearZBefore="true" clearZAfter="true" loop="false" alphaBlend="true" visible="false" enable="false"/>
+              <Label windowSize="200 25" adjust="43 40" text="#sb(ingredient)" textAlign="center" textRender="outline14" textColor="255 254 189 163" textColor2="255 42 55 80"/>
+              <Label windowSize="200 25" adjust="275 40" text="#sb(targetKart)" textAlign="center" textRender="outline14" textColor="255 198 233 251" textColor2="255 42 55 80"/>
+              <Label name="ingredientKartName" windowSize="200 25" adjust="43 63" text="" textAlign="center" textRender="outline16" textColor="white" textColor2="255 42 55 80"/>
+              <Label name="targetKartName" windowSize="200 25" adjust="275 63" text="" textAlign="center" textRender="outline16" textColor="white" textColor2="255 42 55 80"/>
+              <ItemWindow name="ingredientItemView" windowSize="200 145" adjust="43 114" alphaBlend="true"/>
+              <ItemWindow name="targetItemView" windowSize="230 175" adjust="260 97" alphaBlend="true"/>
+              <Panel name="ingredientExceedType_s" windowSize="35 35" adjust="84 100" alphaBlend="true"/>
+              <Panel name="targetExceedType_s" windowSize="35 35" adjust="289 100" alphaBlend="true"/>
+              <Panel name="targetKartLevel" windowSize="36 36" adjust="441 100" alphaBlend="true"/>
+            </Container>
+            <Container name="selectedIngredientCheck" leftTopWH="0 247 520 110" align="hcenter">
+              <Panel name="targetExceedType" windowSize="76 76" texture="icon_exceedB_2" adjust="106 5" alphaBlend="true"/>
+              <Label windowSize="76 25" adjust="105 78" text="#sb(type)" textAlign="center" textRender="outline20" textColor="white" textColor2="255 42 55 80"/>
+              <CharPanel name="arrow3" adjust="0 32" windowSize="72 28" align="hcenter" fontSize="72 28" fontStr="012" text="1" texture="tuning_arrow_b" alphaBlend="true"/>
+              <Panel name="ingredientExceedType" windowSize="76 76" texture="icon_exceedB_2" adjust="342 5" alphaBlend="true"/>
+              <Label windowSize="76 25" adjust="342 78" text="#sb(type)" textAlign="center" textRender="outline20" textColor="white" textColor2="255 42 55 80"/>
+              <Play1SPanel name="exceedProgress1s_2" scene="익시드변경_반짝" leftTopWH="-82 -258 700 380" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -6.59 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" clearZBefore="true" clearZAfter="true" loop="false" alphaBlend="true" visible="false" enable="false"/>
+            </Container>
+            <ColorLabel name="changeDesc" windowSize="250 90" text="#sb(exceedTypeChangeCheckStr)" adjust="0 368" align="hcenter" textAlign="center" textRender="bold14" textColor="white" lineGap="4"/>
+            <TextButton name="changeOkButton" leftTopWH="122 478 146 42" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+            <TextButton name="changeCancelButton" leftTopWH="280 478 146 42" text="#sb(cancel)" textColor="255 64 75 95" textRender="bold16" overTextColor="255 106 120 147" overTextRender="bold16" clickedTextColor="255 34 41 52" clickedTextRender="bold16" disabledTextColor="255 131 131 131" disabledTextRender="bold16"/>
+          </ImageBoard>
+        </CaptionWindow>
+      </Panel>
+      <Panel name="exceedTypeChangeResult" leftTopWH="0 -50 1402 821" color="100 0 0 0" alphaBlend="true" visible="false">
+        <CaptionWindow windowRect="0 0 564 535" align="center" adjust="0 -40" frame="CaptionDialog" caption="#sb(exceedTypeChangeCaption)" setCloseButton="resultCloseButton">
+          <ImageBoard leftTopWH="-11 -1 550 535" image="tuning_changeExceedPopupBg2" alphaBlend="true">
+            <Play1SPanel scene="익시드변경_결과" leftTopWH="75 -21 400 380" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -6.5 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.6" clearZBefore="true" clearZAfter="true" loop="true" alphaBlend="true" enable="false"/>
+            <Label windowSize="200 25" adjust="0 25" text="#sb(targetKart)" textAlign="center" textRender="outline14" textColor="255 198 233 251" textColor2="255 42 55 80" align="hcenter"/>
+            <Label name="resultKartName" windowSize="200 42" adjust="0 45" text="" textAlign="center" textRender="outline16" textColor="white" textColor2="255 42 55 80" align="hcenter"/>
+            <ItemWindow name="resultItemView" windowSize="230 175" adjust="0 75" alphaBlend="true" align="hcenter"/>
+            <Panel name="resultExceedType_s" windowSize="35 35" adjust="194 100" alphaBlend="true"/>
+            <Panel name="resultExceedType" windowSize="76 76" adjust="0 246" texture="icon_exceedB_2" align="hcenter" alphaBlend="true"/>
+            <Label windowSize="76 25" adjust="0 318" align="hcenter" text="#sb(type)" textAlign="center" textRender="outline20" textColor="white" textColor2="255 42 55 80"/>
+            <ColorLabel name="changeDesc" windowSize="250 30" text="#sb(exceedTypeChangeResultStr)" adjust="0 400" align="hcenter" textAlign="center" textRender="bold14" textColor="white"/>
+            <TextButton name="resultOkButton" leftTopWH="0 478 146 42" align="hcenter" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+          </ImageBoard>
+        </CaptionWindow>
+      </Panel>
+    </ImageBoard>
+  </CaptionWindow>
+</Panel>

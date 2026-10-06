@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="favoriteChannelCaption">
+    <m c="kr" v="빠른시작 설정"/>
+    <m c="cn" v="快速开始设置"/>
+    <m c="tw" v="快速開始設定"/>
+  </k>
+  <k n="favoriteChannelSlotCaption">
+    <m c="kr" v="빠른시작"/>
+    <m c="cn" v="快速开始"/>
+    <m c="tw" v="快速開始"/>
+  </k>
+</StringBag>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill8"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="太热了!! 繁荣山丘简直跟蒸笼一样。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="11 0" emotion="stop4" flip="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="胖墩" string="天太热，肚子也饿，一点力气都没有了……"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="11 0" emotion="stop5" flip="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="胖墩" string="冰淇淋拿出来也转眼就化了！！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="咱们找一处能让人凉快的地方避暑怎么样？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="凉快的地方？是哪里啊？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="就是传说中幽灵出没的幽灵小镇！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Msg name="黑妞" string="幽灵？！那也太吓人了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop4" flip="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="别怕，黑妞！我会陪着你！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="8 0" emotion="normal"/>
+  <Msg name="胖墩" string="嗯……虽说凉快是很好……但那边有好吃的卖吗？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop4"/>
+  <Msg name="宝宝" string="听说幽灵小镇有不少稀有又好吃的零食。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" pos="7 0" emotion="stop1"/>
+  <Msg name="胖墩" string="真的？！只要有好吃的，再吓人我也扛得住！赶紧出发吧！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kephi" pos="7 0" emotion="stop1"/>
+  <Msg name="胖墩" string="嗖~"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="哎？好像不是那个方向啊……"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MultiStage>
+  <revolution className="ChaserIndiGameStage" addResFolder="/stage/common/" topmostWindow="stage_window@zz"/>
+  <monocoque className="ChaserIndiGameStage" addResFolder="/stage/common/" topmostWindow="mq_window@zz"/>
+</MultiStage>

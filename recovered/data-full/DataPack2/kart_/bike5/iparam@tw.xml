@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.1'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.068'
+	NormalBoosterTime='-250'
+	TeamBoosterTime='-550'
+	DriftMaxGauge='-1200'
+	UseTransformBooster='true'
+	motorcycleType='true'
+	TransAccelFactor='1.6'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	EnvMap='true'
+	BoosterBlur='true'
+	EngineSound='bike'
+	TachometerType='Tacho1'
+	TachometerName='angel'
+
+	Port0='mod3a'
+	Port1='mod3b'
+	FirePort0='mod5'
+	FirePort1='mod1a'
+	FirePort2='mod1b'
+	FirePort3='mod1c'
+	FirePort4='mod1d'
+
+	DescBalance= '32'
+	DescStability ='23'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+/>
+
+<!--대만 엔젤 스쿠터 110211 1&2주한정 판매-->

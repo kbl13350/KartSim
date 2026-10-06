@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <Container name="desktop" windowRect="0 0 1014 562" align="center" adjust="20 0">
+    <ImageBoard name="bgPanel" windowSize="1014 562" image="bg@cn" alphaBlend="true" enable="false"/>
+    <Label name="titleMsg" windowSize="1014 60" adjust="0 -125" align="center" multiLine="true" textColor="255 113 66 41" text="" textAlign="center" autoWrap="true" textRender="bold24" enable="false"/>
+    <DashboardPanel name="curPoint" windowSize="574 70" adjust="-22 -26" align="center" texture="num" alphaBlend="true" fontSize="33 44" fontPos="0 0" fontStr="0123456789" text="9 23 45 67 8" spaceOffset="39"/>
+    <Label name="systemMsg" windowSize="444 170" adjust="0 95" align="center" multiLine="true" textRender="bold16" textColor="255 97 45 17" text="" textAlign="center" autoWrap="true" enable="false"/>
+    <ImageButton name="okButton" text="#sb(ok)" autoLoadImage="ok_button_" windowSize="226 54" adjust="0 48" align="bottom,hcenter" textRender="bold24" textColor="255 104 79 6" overTextColor="255 129 101 10" clickedTextColor="255 70 54 5" disabledTextColor="255 67 67 67" alphaBlend="true"/>
+  </Container>
+</Panel>

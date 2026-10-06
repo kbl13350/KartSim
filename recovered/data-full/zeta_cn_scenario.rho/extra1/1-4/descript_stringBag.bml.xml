@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="逃离雅克布兄弟的追击"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="在使用黄金指南针寻找黄金文明的途中，|皮蛋和朋友们遇到了雅克布兄弟。|雅克布兄弟胁迫他们留下黄金指南针！|请尽快离开雅克布兄弟。 "/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="在规定的时间内完成赛道。|"/>
+  </k>
+</StringBag>

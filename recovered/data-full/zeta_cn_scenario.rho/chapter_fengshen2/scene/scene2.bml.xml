@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="fengshen1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[仙界湖泊]"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Fengshen_stuff" pos="8 -1" emotion="stop4"/>
+  <Msg name="姜太公的鱼竿" string="（咯吱咯吱）"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Fengshen_stuff" pos="8 -1" emotion="stop4"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="道士姜太公" string="嚯！上钩了。"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Fengshen_stuff" pos="8 -1" emotion="stop3"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="道士姜太公" string="这股气息，错不了，准是鲲鹏！！"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Fengshen2_stuff" pos="7 -1" emotion="stop1"/>
+  <Msg name="鲲鹏" string="（啪嗒啪嗒）"/>
+  <Enter/>
+  <Char id="Fengshen2_stuff" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" flip="true" emotion="stop2"/>
+  <Msg name="道士姜太公" string="终于！！钓着鲲鹏了！！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" flip="true" emotion="stop2"/>
+  <Char id="Daji" pos="2 0" flip="true" emotion="stop3"/>
+  <Msg name="妲己" string="（要不……干脆把那条鲲鹏抢过来放了？）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" flip="true" emotion="stop1"/>
+  <Char id="Daji" pos="2 0" flip="true" emotion="stop3"/>
+  <Msg name="道士姜太公" string="得赶紧去炫耀一番！！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Taoisttaigong" pos="12 0" flip="true" emotion="stop1"/>
+  <Char id="Daji" pos="2 0" flip="true" emotion="stop3"/>
+  <Msg name="道士姜太公" string="（嗖~）"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="妲己" string="诶？等等！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="妲己" string="这就走了？！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="妲己" string="怎么给那老头点颜色看看呢？"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Fengshen_stuff" pos="7 0" emotion="stop4"/>
+  <Msg name="姜太公的鱼竿" string="……"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="妲己" string="有了，把他的鱼竿拿走！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="妲己" string="没了鱼竿，看他还怎么钓他心爱的鱼~"/>
+  <Enter/>
+</Scene>

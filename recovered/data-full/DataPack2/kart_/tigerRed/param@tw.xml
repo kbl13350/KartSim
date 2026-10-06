@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.076'
+	SteerConstraint='3.2'
+	DriftEscapeForce='1700'
+	CornerDrawFactor='0.071'
+
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	ItemSlotCapacity='3'
+	SpecialSlotCapacity='2'
+
+	StartForwardAccelFactorItem = '1.8'
+	StartBoosterTimeItem='1250'
+
+	UseExtendedAfterBooster='true'
+	TransAccelFactor='1.73'
+	TransformTime='250'
+
+	NormalBoosterTime = '-100'
+	TeamBoosterTime = '-200'
+	DriftMaxGauge = '-450'
+	BoosterAccelFactorItem ='1.65'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85sub'
+	BoosterType4='85sub'
+
+	Port0='mod1c1'
+	Port1='mod1c2'
+
+	FirePort0='mod2a3'
+	FirePort1='mod2a1'
+	FirePort2='mod2a2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	secondColor='255 127 10 13'
+	secondHighColor='255 223 0 0'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '48'
+	DescStability ='44'
+	DescEngineGrade='1.25'
+	DescCornering='2'
+	DescEnchantCap = '30'
+
+	addModelFolder='tiger' 
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2a1' trailPort1='mod2a2'/>
+</BodyParam>
+<!--대만 적호 가챠폰 레어 140425 -->

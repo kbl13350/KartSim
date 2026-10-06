@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" alphaBlend="true">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+    <ImageBoard name="scenarioBg" windowSize="804 664" image="scenarioBg" alphaBlend="true" align="center">
+      <ImageBoard name="scenarioMapBg" windowSize="768 510" adjust="0 56" image="scenario_MapBg" align="hcenter" alphaBlend="true">
+        <ViewportPanel name="mapHolder" windowSize="764 506" adjust="0 0" align="center"/>
+      </ImageBoard>
+      <ImageButton name="goBackButton" leftTopTex="0 0" align="top;right" adjust="0 -40" autoLoadImage="close_" alphaBlend="true"/>
+      <ImageButton name="scrLeft" leftTopTex="44 74" adjust="-60 0" autoLoadImage="left_0" alphaBlend="true" alphaTest="true" align="left;center" visible="true"/>
+      <ImageButton name="scrRight" leftTopTex="44 74" adjust="-60 0" autoLoadImage="right_0" alphaBlend="true" alphaTest="true" align="right;center" visible="true"/>
+      <Label name="chapter" windowSize="100 28" adjust="22 24" text="#sb(chapter)" multiLine="true" autoWrap="true" textAlign="vcenter" textColor="255 209 183 145" textRender="bold20" align="top"/>
+      <Panel name="divide" windowSize="1 16" adjust="118 32" texture="img_scenario_main_TitleDivide" alphaBlend="true"/>
+      <Label name="title" windowSize="300 28" adjust="124 24" text="시나리오 제목" multiLine="true" autoWrap="true" textAlign="vcenter" textColor="255 255 255 255" textRender="bold20" align="top"/>
+      <Label name="story" windowSize="760 90" adjust="0 8" text="" multiLine="true" autoWrap="true" textAlign="vcenter" textColor="255 50 48 48" textColor2="255 255 255 255" textRender="outline14" align="bottom,hcenter"/>
+      <Panel name="chapterClear" windowRect="0 0 142 88" adjust="10 10" texture="clear_stamp@zz" alphaTest="true" align="top;right" alphaBlend="true" visible="false"/>
+    </ImageBoard>
+  </Panel>
+</Panel>

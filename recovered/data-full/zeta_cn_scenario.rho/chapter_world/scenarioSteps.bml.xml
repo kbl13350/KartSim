@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="出发！环游世界！" synopsis="皮蛋、黑妞和葱头原本计划一起去环游世界。|没想到正在研究中的电脑出现了问题，|葱头只好一个人留下来。|皮蛋和黑妞的旅行！让我们一起出发吧！" howToClear="请完成赛道。" missionText="完成赛道 0回 / 1回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="3000"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="第一个目的地，英国" synopsis="终于到达英国的皮蛋和黑妞，|决定先到伦敦的各个旅游景点去看一看。|跟随皮蛋和黑妞的脚步观赏一下伦敦的夜景吧！" howToClear="在指定时间内完成比赛。" missionText="完成赛道 0回 / 1回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardStockId="11896"/>
+  </Step>
+  <Step id="3" type="30" mode="single" preConditionId="2" title="孽缘的开始" synopsis="在法国游览埃菲尔铁塔的皮蛋和黑妞，|偶然遇见格雷格和一个神秘的少女在一起。|黑暗组织究竟是在搞什么阴谋？" howToClear="在指定时间内追赶格雷格。|* 注意：距离超过50米以上，挑战失败。" missionText="追击成功 0回 / 1回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="11897"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="在意大利碰见的黑暗组织" synopsis="在意大利的比萨斜塔重逢的格雷格和神秘少女！没有时间了，赶快去追！|黑暗组织！这次绝对不能让你们逃走！" howToClear="与神秘少女的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="11898"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="与布莱恩的初次见面" synopsis="正当皮蛋和黑妞追击格雷格和神秘少女时，|调查黑客事件的布莱恩刑警出现在了他们面前。|原来神秘少女就是黑暗组织的黑客克莉丝！|布莱恩要求皮蛋和黑妞协助案件的调查。" howToClear="在指定时间内甩开布莱恩。|* 注意：距离在0米时，挑战失败。" missionText="逃脱成功 0回 / 1回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="11899"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="掌握案件线索的少女" synopsis="这时一个自称艾丽的绿眼睛少女出现了。|她说她知道找到克莉丝的方法，让他们跟着自己。|跟上艾丽，从她手中获取情报吧。" howToClear="与艾丽的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="11900"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="拜访索菲亚" synopsis="阻止克莉丝的网络攻击需要一位专业的黑客。|为了寻找专业黑客，|艾丽和皮蛋他们决定去拜访住在法国的索菲亚。" howToClear="在指定时间内完成比赛。" missionText="完成赛道 0回 / 1回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="11901"/>
+  </Step>
+  <Step id="8" type="32" mode="single" preConditionId="7" title="葱头，我们需要你！" synopsis="当得知黑暗组织分为两队而感到头疼的皮蛋，|决定找葱头帮忙，|为了加入皮蛋的队伍，葱头出发了。" howToClear="在指定时间内通过所有检查站。" missionText="通过检查站 0回 / 1回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="12016"/>
+  </Step>
+  <Step id="9" type="30" mode="single" preConditionId="8" otherWayLockId="10" title="在埃及遇见的犯罪分子们" synopsis="到达埃及的布莱恩和索菲亚，|在那里遇见了黑杰克和格雷。|他们能追上这两个罪犯吗？" howToClear="指定时间及碰撞次数内完成比赛。" missionText="完成赛道 0回 / 1回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="09A">
+    <Level difficult="0" rewardStockId="11903"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="8" otherWayLockId="9" title="紧急出动！" synopsis="皮蛋和他的伙伴们找到了格雷格和克莉丝，|艾丽想劝说她的朋友克莉丝。|必须要趁黑暗组织不注意的时候，|把克莉丝的电脑偷偷拿过来。" howToClear="在指定时间内完成比赛。" missionText="完成赛道 0回 / 1回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09B">
+    <Level difficult="0" rewardStockId="11902"/>
+  </Step>
+  <Step id="11" type="32" mode="single" preConditionId="9" title="阻止恶意代码！" synopsis="虽然最终还是跟丢了黑杰克和格雷，|但幸好布莱恩他们成功阻止了恶意代码的植入，|他们决定向黑暗组织的下一个目的地——中国出发。" howToClear="以指定速度通过所有检查站。" missionText="通过检查站 0回 / 1回" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="10A">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="12" type="32" mode="single" preConditionId="10" title="物归原处" synopsis="虽然最终还是跟丢了克莉丝和格雷格，|但幸好皮蛋他们成功阻止了恶意代码的植入，|他们决定向黑暗组织的下一个目的地——中国出发。" howToClear="以指定速度通过所有检查站。" missionText="通过检查站 0回 / 1回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="10B">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="13" type="30" mode="single" preConditionId="12|11" title="去往北京的路" synopsis="黑暗组织打算入侵北京地区的电脑，|在那里散播恶意代码，|必须赶快到北京阻止恶意代码扩散！" howToClear="在指定时间内追赶鑫鑫。|* 注意：距离超过20米以上，挑战失败。" missionText="追击成功 0回 / 1回" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="11">
+    <Level difficult="0" rewardStockId="74"/>
+  </Step>
+  <Step id="14" type="30" mode="single" preConditionId="13" title="逃跑的克莉丝" synopsis="克莉丝在得知索菲亚入侵自己的电脑，|将信息提供给皮蛋他们的事情后，|删除了电脑中的所有信息逃走了。|得赶快追上克莉丝！" howToClear="与克莉丝的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="12">
+    <Level difficult="0" rewardStockId="11904"/>
+  </Step>
+  <Step id="15" type="30" mode="single" preConditionId="14" title="南山追击战" synopsis="为了掌握黑暗组织和克莉丝的下一个目的地，|必须要在黑暗组织的成员身上，|悄悄绑定追踪器。|他们能成功吗？" howToClear="与黑杰克的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="13">
+    <Level difficult="0" rewardStockId="1127"/>
+  </Step>
+  <Step id="16" type="30" mode="single" preConditionId="15" title="快跑，再快一点！" synopsis="黑暗组织的下一个目的地就是纽约！|赶快去纽约将黑暗组织抓捕归案吧！" howToClear="在指定时间内完成比赛。" missionText="完成赛道 0回 / 1回" addToGarage="true" visualScene="scene16" readyStage="1-16" stepTitleId="14">
+    <Level difficult="0" rewardStockId="11905"/>
+  </Step>
+  <Step id="17" type="30" mode="single" preConditionId="16" title="纽约之行" synopsis="刚到纽约皮蛋和他的伙伴们就碰上了黑暗组织！|这次他们究竟能不能将黑暗组织绳之以法呢？" howToClear="与格雷的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene17" readyStage="1-17" stepTitleId="15">
+    <Level difficult="0" rewardStockId="11906"/>
+  </Step>
+  <Step id="18" type="30" mode="single" preConditionId="17" title="案件解决？！" synopsis="艾丽的故乡是里约，|多亏她的帮助顺利找到了克莉丝。|但敏捷的克莉丝很快就逃走了！|必须抓住克莉丝，阻止她继续做违法的事情。" howToClear="与克莉丝的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="16">
+    <Level difficult="0" rewardStockId="12017"/>
+  </Step>
+  <Step id="19" type="34" mode="single" preConditionId="18" title="逃亡的黑暗组织" synopsis="被皮蛋他们捉住的克莉丝，|在黑暗组织的协助下成功逃脱。|赶快追上黑暗组织将他们一网打尽吧！|这是阻止他们犯罪的最后一次机会了！" howToClear="与黑暗组织的道具赛中获得第一。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="17">
+    <Level difficult="0" rewardStockId="4169"/>
+  </Step>
+  <Step id="20" type="31" mode="single" preConditionId="19" title="旅行结束" synopsis="最终也没能抓获黑暗组织和克莉丝的布莱恩，|决定回到警局重新设立专案组，|而结束旅行的皮蛋和他们小伙伴们又重新回到了繁荣山丘。" howToClear="与黑妞，葱头的对决中获得胜利。" missionText="对决胜利 0回 / 1回" addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="18" isFinalStep="true">
+    <Level difficult="0" rewardStockId="12018"/>
+  </Step>
+</StepList>

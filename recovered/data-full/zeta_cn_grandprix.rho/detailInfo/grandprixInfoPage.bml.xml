@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grandprixInfoPageList>
+  <grandprixInfoPage id="47" viewportHeight="350">
+    <row>
+      <col texture="47_1"/>
+    </row>
+    <row>
+      <col texture="47_2"/>
+    </row>
+  </grandprixInfoPage>
+  <grandprixInfoPage id="46" viewportHeight="350">
+    <row>
+      <col texture="46_1"/>
+    </row>
+    <row>
+      <col texture="46_2"/>
+    </row>
+  </grandprixInfoPage>
+</grandprixInfoPageList>

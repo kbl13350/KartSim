@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<challengeList>
+  <challenge id="0x00" type="2" icon="병아리주행" track="village_C005" itemSlotCnt="1" time="0" showTimeUI="false" hideMiniMap="true" wrongWayOff="true"/>
+  <challenge id="0x01" type="1" icon="배우기큐브" require="0x00" track="village_L01_02" time="10000" itemSlotCnt="1" cubeItem="booster" wrongWayOff="true"/>
+  <challenge id="0x02" type="1" icon="병아리아이템" require="0x01" track="village_C001" itemSlotCnt="1" time="10000" itemslot0="booster" wrongWayOff="true"/>
+  <challenge id="0x03" type="1" icon="배우기커브" require="0x02" track="village_L01_04" time="20000" wrongWayOff="true"/>
+  <challenge id="0x04" type="1" icon="병아리아이템" require="0x03" track="village_C005" time="30000" itemSlotCnt="1" itemslot0="rocket" targetName="target2" hideMiniMap="true" showTimeUI="false" wrongWayOff="true" targetArrow="true"/>
+  <challenge id="0x05" type="1" icon="병아리루찌" require="0x04" track="village_C101" lap="1" time="180000" needConfirm="true" isGetLicense="true"/>
+  <challenge id="0x10" type="1" icon="루키연속코너" itemSlotCnt="1" require="0x05" track="village_L02_01" time="40000"/>
+  <challenge id="0x11" type="1" icon="루키아이템사용" require="0x10" itemSlotCnt="1" itemslot0="waterBomb" track="village_C108" time="11000" targetArrow="true" goalArrow="true"/>
+  <challenge id="0x12" type="1" icon="루키천사" require="0x11" itemSlotCnt="1" itemslot0="shield" wrongWayOff="true" track="village_L02_03" time="15000"/>
+  <challenge id="0x13" type="2" icon="루키타임" require="0x12" track="village_I04" arrow="true" goalArrow="true" time="45000"/>
+  <challenge id="0x14" type="1" icon="루키아이템사용" require="0x13" itemSlotCnt="1" itemslot0="magnet" track="village_C107" time="8000" goalArrow="true" targetName="iron"/>
+  <challenge id="0x15" type="2" icon="루키타임" require="0x14" track="forest_I01" lap="3" time="140000" isGetLicense="true"/>
+  <challenge id="0x16" type="1" icon="루키보너스" itemslot0="timeBomb" itemslot1="magnet" require="0x15" oneTime="true" track="village_C107" goalArrow="true" lap="1" time="8000" targetName="iron"/>
+  <challenge id="0x17" type="1" icon="루키연카업그레이드" require="0x15" oneTime="true" track="factory_C001" time="60000" targetArrow="true" cubeItem="rocket"/>
+  <challenge id="0x18" type="2" icon="루키연카업그레이드" require="0x17" oneTime="true" track="village_L02_09" arrow="true" goalArrow="true" time="25000"/>
+  <challenge id="0x20" type="2" icon="라이센스3코너돌기" require="0x15" lucciPrice="0" track="village_L03_01" time="20000" wrongWayOff="true"/>
+  <challenge id="0x21" type="1" icon="라이센스3대마왕" require="0x20" lucciPrice="0" track="village_L03_02" time="18000" wrongWayOff="true"/>
+  <challenge id="0x22" type="2" icon="라이센스3드리프트" require="0x21" lucciPrice="0" track="village_L03_03" time="60000"/>
+  <challenge id="0x23" type="1" icon="라이센스3물폭탄" require="0x22" lucciPrice="0" track="village_L03_04" time="15000" wrongWayOff="true"/>
+  <challenge id="0x24" type="2" icon="라이센스3드리프트" require="0x23" lucciPrice="0" track="village_L03_05" time="30000"/>
+  <challenge id="0x25" type="2" icon="라이센스3타임" require="0x24" bonus="true" track="village_R01" time="150000" lap="2" isGetLicense="true"/>
+  <challenge id="0x26" type="3" icon="라이센스3플래그" require="0x25" oneTime="true" bonus="true" track="village_C113" time="60000" flagPractice="true"/>
+  <challenge id="0x30" type="2" icon="라이센스2드리프트" require="0x25" lucciPrice="0" track="village_L04_01" time="30000" showLapUI="false" showTimeUI="false" showBestTimeUI="false" wrongWayOff="true"/>
+  <challenge id="0x31" type="1" icon="라이센스2아이템" require="0x30" lucciPrice="0" track="village_L04_02" time="27000" cubeItem="rocket" wrongWayOff="true"/>
+  <challenge id="0x32" type="2" icon="라이센스2드리프트" require="0x31" lucciPrice="0" track="village_L04_03" time="25000" showLapUI="false" showTimeUI="false" showBestTimeUI="false" showArrow="true" wrongWayOff="true"/>
+  <challenge id="0x33" type="1" icon="라이센스2아이템" require="0x32" lucciPrice="0" track="village_C110" time="45000" cubeItem="rocket" wrongWayOff="true"/>
+  <challenge id="0x34" type="1" icon="라이센스2천사" require="0x33" lucciPrice="0" track="village_L04_05" time="22000" cubeItem="emp" wrongWayOff="true"/>
+  <challenge id="0x35" type="2" icon="라이센스2타임어택" require="0x34" lucciPrice="0" track="desert_R01" lap="2" time="166000" isGetLicense="true"/>
+  <challenge id="0x40" type="4" icon="라이센스1자격심사" require="0x35" lucciPrice="50" oneTime="true" effectName="돋보기" judgment="true"/>
+  <challenge id="0x41" type="4" icon="라이센스1대마왕" require="0x40" lucciPrice="300" track="village_C114" time="42000" showLapUI="false" showTimeUI="false" showBestTimeUI="false" wrongWayOff="true" secondPerLevel="1000"/>
+  <challenge id="0x42" type="4" icon="라이센스1로두마니" require="0x41" lucciPrice="300" track="village_C116" time="40000" useDriftBooster="false" showLapUI="false" showTimeUI="false" showBestTimeUI="false" loadItem="waterbomb,angel,rocket" cubeItem="waterbomb,angel,rocket" eatItemCube="true" setCubeSize="4" existAI="true" AIcharacter="dizni" AIkart="marathon5" AIteam="0" AIspeed="60" AIaccel="20" secondPerLevel="0"/>
+  <challenge id="0x43" type="4" icon="라이센스1고가" require="0x42" lucciPrice="300" track="village_C115" time="37000" showLapUI="false" showTimeUI="false" showBestTimeUI="false" wrongWayOff="true" secondPerLevel="1000"/>
+  <challenge id="0x44" type="4" icon="라이센스1다운힐" require="0x43" lucciPrice="300" track="ice_C001" time="55000" arrow="true" disappearArrowIdx="10" showLapUI="false" showTimeUI="false" showBestTimeUI="false" wrongWayOff="true" secondPerLevel="1000"/>
+  <challenge id="0x45" type="4" icon="라이센스1타임어택" require="0x44" lucciPrice="300" track="factory_R01" time="110000" isGetLicense="true" secondPerLevel="2000"/>
+  <challenge id="0x46" type="4" icon="라이센스1타임어택" oneTime="true" require="0x45" lucciPrice="1000" track="forest_R04" time="127000" isGetLicense="true"/>
+</challengeList>

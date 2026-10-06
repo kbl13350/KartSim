@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="ice1"/>
+  <Shake time="500"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="(嚓!)|现在可以把奖牌还给我了吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="这不可能…|我怎么可能连续输掉了呢…"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="lodumani" pos="11 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="爸爸的奖牌..|在这里！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="啊…|皮蛋，我们走着瞧！(开车离开）"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="ani2"/>
+  <Msg name="黑妞" string="皮蛋，你真是太棒了！|现在应该是最顶级的车手了吧？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="谢谢，哈哈哈！|我们就直接回到村子怎么样？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="就这样回去多没意思呀？|我们来个友谊赛如何？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="好的呀，|我先出发啦！！(出发！)"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" flip="true" emotion="stop7"/>
+  <Msg name="小强" string="皮蛋，你耍赖！|竟然先出发。"/>
+  <Enter/>
+</Scene>

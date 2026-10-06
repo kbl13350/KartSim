@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <TimeAttack track="olympos_S02" laps="2" isFixedKart="true" fixedKartId="1119" isFixedChar="true" fixedCharId="329">
+    <LevelContent level="0" timeLimit="25000" timeValue="11000;10000;9000;10000;10000;9000;8000;9000;10000"/>
+  </TimeAttack>
+</Root>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="无聊的生活" synopsis="奇奇在北奥行星过着无聊的生活。|某一天，想独自闯荡全新世界的奇奇偷偷开始了自己的旅行。" howToClear="在规定时间内甩掉Q博士|* 距离差距0M时挑战失败" missionText="成功逃脱 %d回/%d回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardStockId="4292"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="奇奇的旅行" synopsis="奇奇离开北奥行星之后开始了宇宙旅行，|独自出发的奇奇是否会安全呢？" howToClear="请在规定时间内完成游戏" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="3" type="30" mode="single" preConditionId="2" title="到达繁荣山丘" synopsis="奇奇独自一人漫无目的的旅行时到达了繁荣山丘，|因此开始探索了这片陌生的世界。" howToClear="请在规定时间内完成游戏" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="1506"/>
+  </Step>
+  <Step id="4" type="31" mode="single" preConditionId="3" title="遇见伙伴" synopsis="探索繁荣山丘的时候发现了玩卡丁车的其他小伙伴，|当看到其他小伙伴们快乐的行驶在赛道时，|奇奇也莫名的想参加他们的比赛当中。" howToClear="每圈都不是最后一名并完成赛道" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="61"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="友谊赛" synopsis="沉浸在卡丁车世界的奇奇，因想要跟朋友们一起玩卡丁车，|所以跟其他小伙伴们提出卡丁车对决的要求。" howToClear="请在规定时间内赶上皮蛋。|落后20米以上视为失败。" missionText="追赶成功 %d回 / %d回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="3242"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="不可进行的比赛" synopsis="只有飞碟的奇奇。|因为只有卡丁车可以在赛道上行驶，|所以这次比赛无法进行,奇奇到底能不能参加比赛呢？" howToClear="在指定时间与碰撞次数内完成赛道。" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardLucci="2000"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="小强的帮助" synopsis="小强在一旁看到了奇奇所面临的困难，|可是改装飞碟时需要很多部件。" howToClear="请在规定时间内完成游戏" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="14910"/>
+  </Step>
+  <Step id="8" type="30" mode="single" preConditionId="7" title="改装飞碟" synopsis="因小强要为自己改装飞碟，所以奇奇为小强收集了所需部件。|因此小强也开始了改装飞碟的大工程。" howToClear="请在规定时间内完成游戏" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="4295"/>
+  </Step>
+  <Step id="9" type="30" mode="single" preConditionId="8" title="性能测试" synopsis="因小强的帮助，飞碟成功改装成卡丁车了。|其性能到底如何呢？需要去试试新车性能了。" howToClear="请在与小强的对决上胜利。" missionText="对决胜利%d圈/%d圈" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="14911"/>
+  </Step>
+  <Step id="10" type="31" mode="single" preConditionId="9" title="Q博士的出现" synopsis="在繁荣山丘驾驶着飞碟正沉浸在卡丁车世界的奇奇，|生气的Q博士决定来繁荣山丘找奇奇。|奇奇和伙伴们还不知道即将要发生的事情，|Q博士找到奇奇之后会怎么说奇奇呢？" howToClear="每圈都不是最后一名并完成赛道" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10" isFinalStep="true">
+    <Level difficult="0" rewardStockId="7804"/>
+  </Step>
+</StepList>

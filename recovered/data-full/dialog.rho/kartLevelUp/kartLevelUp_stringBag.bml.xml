@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="kartLevelUpCaption">
+    <m c="kr" v="카트바디 레벨 업"/>
+    <m c="tw" v="車款升級"/>
+    <m c="cn" v="车辆升级"/>
+  </k>
+  <k n="kartCount">
+    <m c="kr" v="보유 카트 : %d 대"/>
+    <m c="tw" v="持有車款: %d台"/>
+    <m c="cn" v="持有车辆： %d 辆"/>
+  </k>
+  <k n="successProb">
+    <m c="kr" v="성공 확률"/>
+    <m c="tw" v="成功機率"/>
+    <m c="cn" v="当前幸运"/>
+  </k>
+  <k n="probUp">
+    <m c="kr" v="행운 상승"/>
+    <m c="tw" v="幸運提升"/>
+    <m c="cn" v="幸运点等级"/>
+  </k>
+  <k n="targetKart">
+    <m c="kr" v="레벨업 대상 카트바디"/>
+    <m c="tw" v="欲升級車款"/>
+    <m c="cn" v="升级车辆"/>
+  </k>
+  <k n="materialKart">
+    <m c="kr" v="레벨업 재료 카트바디"/>
+    <m c="tw" v="升級材料車款"/>
+    <m c="cn" v="材料车辆"/>
+  </k>
+  <k n="selectTargetKart">
+    <m c="kr" v="레벨업 대상 카트를 선택해 주세요"/>
+    <m c="tw" v="請選擇欲升級車款"/>
+    <m c="cn" v="请选择升级车辆"/>
+  </k>
+  <k n="selectMaterialKart">
+    <m c="kr" v="레벨업 재료 카트를 선택해 주세요"/>
+    <m c="tw" v="請選擇升級材料車款"/>
+    <m c="cn" v="请选择材料车辆"/>
+  </k>
+  <k n="ableToKartLevelUp">
+    <m c="kr" v="레벨업 시작 가능합니다 (진행시 재료 카트 소멸)"/>
+    <m c="tw" v="可開始升級"/>
+    <m c="cn" v="可以进行升级"/>
+  </k>
+  <k n="invest">
+    <m c="kr" v="추가 투자"/>
+    <m c="tw" v="追加投資"/>
+    <m c="cn" v="提高幸运点"/>
+  </k>
+  <k n="price">
+    <m c="kr" v="수수료"/>
+    <m c="tw" v="手續費"/>
+    <m c="cn" v="手续费"/>
+  </k>
+  <k n="levelUpResult">
+    <m c="kr" v="레벨업 결과"/>
+    <m c="tw" v="升級結果"/>
+    <m c="cn" v="升级结果"/>
+  </k>
+  <k n="resultSuccessKartName">
+    <m c="kr" v="%s [color:255 244 55 55][LV %d][/color]"/>
+    <m c="tw" v="%s [color:255 244 55 55][LV %d][/color]"/>
+    <m c="cn" v="%s [color:255 244 55 55][LV %d][/color]"/>
+  </k>
+  <k n="resultSuccessKartDesc1">
+    <m c="kr" v="레벨업에 성공하였습니다.|기존 [color:255 55 244 55]레벨 %d[/color] 에서 [color:255 244 55 55]레벨 %d[/color] 으로 레벨업하여|[color:255 244 244 55]+%d[/color] 의 포인트 획득 및 [color:255 244 244 55]추가 기능[/color]을 사용할 수 있습니다."/>
+    <m c="tw" v="已成功升級|從原本的[color:255 55 244 55]%d[/color]等級,提升到[color:255 244 55 55]%d[/color]等級後,可獲得[color:255 244 244 55]+%d[/color] 的點數及可使用 [color:255 244 244 55][/color]的追加功能"/>
+    <m c="cn" v="升级成功|[color:255 55 244 55]%d级[/color]升级为[color:255 244 55 55]%d级[/color]|获得[color:255 244 244 55]+%d[/color]强化点并可使用[color:255 244 244 55]附加属性[/color]"/>
+  </k>
+  <k n="resultSuccessKartDesc2">
+    <m c="kr" v="레벨업에 성공하였습니다.|기존 [color:255 55 244 55]레벨 %d[/color] 에서 [color:255 244 55 55]레벨 %d[/color] 으로 레벨업하여|[color:255 244 244 55]+%d[/color] 의 포인트를 획득하였습니다."/>
+    <m c="tw" v="已成功升級|從原本的[color:255 55 244 55]%d[/color]等級,提升到[color:255 244 55 55]%d[/color]等級後,已獲得|[color:255 244 244 55]+%d[/color]的點數"/>
+    <m c="cn" v="升级成功|[color:255 55 244 55] %d级[/color]升级为[color:255 244 55 55]%d级[/color]|获得[color:255 244 244 55]+%d[/color]强化点"/>
+  </k>
+  <k n="resultFailureKartName">
+    <m c="kr" v="%s [color:255 55 244 55][LV %d][/color]"/>
+    <m c="tw" v="%s [color:255 55 244 55][LV %d][/color]"/>
+    <m c="cn" v="%s [color:255 55 244 55][LV %d][/color]"/>
+  </k>
+  <k n="resultFailureKartDesc">
+    <m c="kr" v="레벨업에 실패하였습니다.|기존에 [color:255 55 244 55]레벨 %d[/color] 이 계속 유지됩니다.|[color:255 244 244 55]0[/color] 의 포인트를 획득하였습니다."/>
+    <m c="tw" v="升級失敗.|原本[color:255 55 244 55]等級 %d[/color]會繼續維持.已獲得|[color:255 244 244 55]0[/color]的點數."/>
+    <m c="cn" v="升级失败|[color:255 55 244 55]%d级[/color]会保持|无法获得强化点"/>
+  </k>
+  <k n="kartLevelUpHelp">
+    <m c="kr" v="1. 레벨업 시스템을 이용하여 카트바디의 레벨을 상승 시킬 수 있습니다.|2. 레벨업 재료 카트바디는 레벨업 진행 시 소멸됩니다.|3. 레벨업 진행 시 각 확률에 따라 성공, 실패할 수 있습니다.|4. 레벨업 성공 시 카트바디의 레벨이 상승하며, 실패할 경우 별도의 레벨 하락은 발생하지 않습니다.|5. 레벨업 성공 시 각 레벨마다 튜닝 시 사용 가능한 포인트를 획득할 수 있습니다.|6. 높은 엔진의 카트바디를 재료로 사용할수록 성공 확률이 올라갑니다.|7. 코인을 사용하여 추가 투자를 할 경우 성공 확률을 높일 수 있습니다.|8. 레벨업 진행시에는 일정량의 루찌가 필요합니다."/>
+    <m c="tw" v="1. 使用升級系統後,能提高車款的等級|2. 當作升級材料的車款,升級時會被消耗|3. 進行升級時,會成功或失敗|4. 成功升級時,車款的等級會上升；升級失敗時,不會使等級下降|5. 成功升級時,依據各等級可獲得一定的點數|6. 使用高的引擎車款為材料車款時,成功機率會提高|7. 使用KOIN追加投資時,能提高成功機率|8. 進行升級時,需要一定數量的LUCCI"/>
+    <m c="cn" v="1. 利用升级系统可提升车辆等级|2. 升级时材料车辆将被消耗|3. 进行升级时有可能会失败|4. 升级成功时车辆等级会提升, 失败时不会降级|5. 成功升级后会获得强化点|6. 引擎等级将影响升级成功与否|7. 使用酷币可提高幸运点|8. 升级时消耗一定的金币"/>
+  </k>
+  <k n="maxKartLevel">
+    <m c="kr" v="[color:255 255 55 55]레벨업 불가[/color]"/>
+    <m c="tw" v="[color:255 255 55 55]無法升級[/color]"/>
+    <m c="cn" v="[color:255 255 55 55]无法升级[/color]"/>
+  </k>
+  <k n="illegalMaterial">
+    <m c="kr" v="해당 카트바디는 재료로 사용할 수 없습니다."/>
+    <m c="tw" v="該車款無法當做材料使用"/>
+    <m c="cn" v="该车辆无法作为材料使用"/>
+  </k>
+  <k n="kartLevelUpNeedMoreLucci">
+    <m c="kr" v="%d루찌가 부족하여 레벨업을 진행할 수 없습니다."/>
+    <m c="tw" v="&quot;%dLUCCI不足,無法進行升級&quot;"/>
+    <m c="cn" v="金币不足%d，无法进行升级"/>
+  </k>
+  <k n="kartLevelUpTimeSync">
+    <m c="kr" v="잠시 후에 다시 시도해보세요."/>
+    <m c="cn" v="请稍候再试"/>
+    <m c="tw" v="請稍候再試"/>
+  </k>
+  <k n="kartLevelUpEventTitle">
+    <m c="kr" v="튜닝 이벤트 보상"/>
+    <m c="cn" v="升级活动奖励"/>
+    <m c="tw" v="改造活動獎勵"/>
+  </k>
+  <k n="kartLevelUpEventDesc">
+    <m c="kr" v="축하합니다. 튜닝 레벨업 달성 이벤트를 완료했습니다.|[color:255 55 244 55]&quot;%s&quot;[/color]을 획득했습니다.|보상함에서 보상을 확인하세요~! "/>
+    <m c="cn" v="恭喜，已完成升级达成活动|获得了[color:255 55 244 55]&quot;%s&quot;[/color].|请在我的小屋内进行确认"/>
+    <m c="tw" v="恭喜您~完成改造升級活動。|獲得[color:255 55 244 55]&quot;%s&quot;[/color]。|確認我的車庫吧!"/>
+  </k>
+  <k n="help">
+    <m c="kr" v="도움말"/>
+    <m c="cn" v="帮助"/>
+    <m c="tw" v="說明"/>
+  </k>
+</StringBag>

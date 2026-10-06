@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 게임상에서 사용하는 id형식: groupId*100 + tuneId -->
+
+<!-- 기존에 출시된 카트/아이템 기능의 변환 테이블 -->
+<!-- name 은 디버그로 사용됩니다. 게임에서는 개발중일 경우 외에는 보여주지 않습니다. -->
+
+<CompatibilityList>
+
+	<TuneGroup id='1' restrictGroupId='0' managed='kManagedOrigin'>
+		<Tune id='1' key='iceBanana'
+			name='아이스 테마에서 바나나 아이템 방어'
+		>
+			<EnchanterShield itemId='banana' prob='100' theme='ice'/>
+		</Tune>
+		<Tune id='2' key='mine'
+			name='지뢰, 바나나 방어'
+		>
+			<EnchanterShield itemId='mine' prob='70'/>
+			<EnchanterShield itemId='banana' prob='50'/>
+		</Tune>
+		<Tune id='3' key='forceZone'
+			name='지뢰(포스존) 방어'
+		>
+			<EnchanterShield itemId='forceZone' prob='100'/>
+		</Tune>
+		<Tune id='4' key='lucciItemCube'
+			name='루찌획득'
+		>
+			<EnchanterGetLucci itemId='lucci' prob='10' gameType='itemGame'/>
+		</Tune>
+		<Tune id='5' key='onlyWaterBomb'
+			name='물폭탄(만) 방어'
+		>
+			<EnchanterShield itemId='waterBomb' prob='100'/>
+		</Tune>
+		<Tune id='6' key='waterfly'
+			name='밴틀 모드에서 물파리 방어(80%)'
+		>
+			<EnchanterShield itemId='waterFly' prob='80' gameType='aiGame'/>
+		</Tune>
+		<Tune id='7' key='rocket'
+			name='미사일 방어 (20%)'
+		>
+			<EnchanterShield itemId='rocket' prob='20'/>
+			<EnchanterShield itemId='cokeRocket' prob='20'/>
+			<EnchanterShield itemId='goldRocket' prob='20'/>
+		</Tune>
+		<Tune id='8' key='waterBomb'
+			name='물폭탄류 방어(40%)'
+		>
+			<EnchanterShield itemId='waterBomb' prob='40'/>
+			<EnchanterShield itemId='timeBomb' prob='40'/>
+			<EnchanterShield itemId='rollingBomb' prob='40'/>
+			<EnchanterShield itemId='cokeBomb' prob='40'/>
+			<EnchanterShield itemId='timeCokeBomb' prob='40'/>
+			<EnchanterShield itemId='rollingCokeBomb' prob='40'/>
+			<EnchanterShield itemId='infectedBomb' prob='40'/>
+			<EnchanterShield itemId='timeInfectedBomb' prob='40'/>
+			<EnchanterShield itemId='rollingInfectedBomb' prob='40'/>
+			<EnchanterShield itemId='snowBomb' prob='40'/>
+			<EnchanterShield itemId='timeSnowBomb' prob='40'/>
+		</Tune>
+		<Tune id='9' key='waterfly'
+			name='물파리 방어(30%)'
+		>
+			<EnchanterShield itemId='waterFly' prob='30'/>
+		</Tune>
+		<Tune id='10' key='mine'
+			name='지뢰 방어'
+		>
+			<EnchanterShield itemId='mine' prob='100'/>
+		</Tune>
+		<Tune id='11' key='mine'
+			name='지뢰 포스존 방어'
+		>
+			<EnchanterShield itemId='mine' prob='100'/>
+			<EnchanterShield itemId='forceZone' prob='100'/>
+		</Tune>
+		<Tune id='15' key='rocket'
+			name='미사일 방어(25%)'
+		>
+			<EnchanterShield itemId='rocket' prob='25'/>
+			<EnchanterShield itemId='cokeRocket' prob='25'/>
+			<EnchanterShield itemId='goldRocket' prob='25'/>
+		</Tune>
+		<Tune id='16' key='rocket'
+			name='미사일 방어(15%)'
+		>
+			<EnchanterShield itemId='rocket' prob='15'/>
+			<EnchanterShield itemId='cokeRocket' prob='15'/>
+			<EnchanterShield itemId='goldRocket' prob='15'/>
+		</Tune>
+		<Tune id='17' key='rocket'
+			name='미사일 방어(30%)'
+		>
+			<EnchanterShield itemId='rocket' prob='30'/>
+			<EnchanterShield itemId='cokeRocket' prob='30'/>
+			<EnchanterShield itemId='goldRocket' prob='30'/>
+		</Tune>
+
+		<Tune id='18' key='waterfly'
+			name='물파리 방어(20%, 80%)'
+		>
+			<EnchanterShield itemId='waterFly' prob='20' gameType='itemGame'/>
+			<EnchanterShield itemId='waterFly' prob='80' gameType='aiGame'/>
+		</Tune>
+		<Tune id='19'
+			name='물파리 방어(15%)'
+		>
+			<EnchanterShield itemId='waterFly' prob='15'/>
+		</Tune>
+		<Tune id='20'
+			name='물파리 방어(20%)'
+		>
+			<EnchanterShield itemId='waterFly' prob='20'/>
+		</Tune>
+	</TuneGroup>
+
+	<!-- 펫 필살기 반격 -->
+	<TuneGroup id='2' restrictGroupId='0' managed='kManagedOrigin'>
+		<Tune id='1' key='special'
+			name='펫 필살기 방어(2)'
+		>
+			<EnchanterPetSpecial specialId='2' prob='20' gameType='aiGame'/>
+		</Tune>
+		<Tune id='2' key='special'
+			name='펫 필살기 방어(3)'
+		>
+			<EnchanterPetSpecial specialId='3' prob='20' gameType='aiGame'/>
+		</Tune>
+		<Tune id='3' key='special'
+			name='펫 필살기 방어(6), 로켓 방어'
+		>
+			<EnchanterShield itemId='rocket' prob='20'/>
+			<EnchanterShield itemId='cokeRocket' prob='20'/>
+			<EnchanterShield itemId='goldRocket' prob='20'/>
+			<EnchanterPetSpecial specialId='6' prob='20' gameType='aiGame'/>
+		</Tune>
+	</TuneGroup>
+
+	<!-- 이것은 새로운 타입 -->
+	<TuneGroup id='3' restrictGroupId='0' managed='kManagedOrigin'>
+		<Tune id='1' key='lucciForceZoneBonusCard'
+			name='지뢰, 포스존 먹을 떄 보너스'
+		>
+			<EnchanterBonus bonusCard='1' kart='71' itemId='mine' prob='100'/>
+			<EnchanterBonus bonusCard='1' kart='153' itemId='mine' prob='100'/>
+			<EnchanterBonus bonusCard='1' kart='154' itemId='mine' prob='100'/>
+			<EnchanterBonus bonusCard='1' kart='173' itemId='mine' prob='100'/>
+			<EnchanterBonus bonusCard='1' kart='153' itemId='forceZone' prob='100'/>
+			<EnchanterBonus bonusCard='1' kart='154' itemId='forceZone' prob='100'/>
+		</Tune>
+
+		<Tune id='2' key='lucciUfoBonusCard'
+			name='UFO 보너스'
+		>
+			<EnchanterBonus bonusCard='1' itemId='ufo' lucci='10' prob='100'/>
+			<EnchanterBonus bonusCard='1' itemId='areaUfo' lucci='10' prob='100'/>
+		</Tune>
+	</TuneGroup>
+
+	<!-- enchant 와 중복되지만 고유 기능임에 분리 -->
+	<TuneGroup id='4' restrictGroupId='0' managed='kManagedOrigin'>
+		<Tune id='1'
+			name='물폭탄류 빠른 탈출'
+		>
+			<EnchanterWaterEscape prob='100'/>
+		</Tune>
+		<Tune id='2'
+			name='대마왕 방어'
+		>
+			<EnchanterShield itemId='devil' prob='100'/>
+			<EnchanterShield itemId='drrMine' prob='100'/>
+			<EnchanterShield itemId='newDevil' prob='100'/>
+		</Tune>
+		<Tune id='3'
+			name='미사일 2발 발사'
+		>
+			<EnchanterTwoRocket prob='100'/>
+		</Tune>
+		<Tune id='4'
+			name='바나나 방어'
+		>
+			<EnchanterShield itemId='banana' prob='100'/>
+		</Tune>
+	</TuneGroup>
+
+
+</CompatibilityList>

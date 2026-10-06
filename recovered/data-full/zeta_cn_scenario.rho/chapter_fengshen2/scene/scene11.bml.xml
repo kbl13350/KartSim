@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="Shengongbao" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="申公豹" string="连我的道行都抓不住你！"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="申公豹" string="你到底是什么来头！"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="大叔你当赛车手的天赋怕是一点都没有啊~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="申公豹" string="本想留着点力气以备后患……看来得用法术。"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Nezha" pos="11 0" emotion="stop4"/>
+  <Char id="Shengongbao" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="哪吒" string="申公豹！！既然在受罚，就该乖乖反省。"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Nezha" pos="11 0" emotion="stop3"/>
+  <Char id="Shengongbao" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="哪吒" string="你还想再犯什么罪孽！"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="normal"/>
+  <Msg name="皮蛋" string="哪吒！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Shengongbao" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="Nezha" pos="11 0" emotion="normal"/>
+  <Msg name="申公豹" string="哪吒……这次也想妨碍我吗？"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Shengongbao" pos="4 0" emotion="stop2"/>
+  <Char id="Nezha" pos="11 0" emotion="normal"/>
+  <Msg name="申公豹" string="这狐狸到底什么时候才来？"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="dao" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="狐狸……莫非是？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="妲己" string="在等我吗~？"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="又是她？看来还没清醒啊~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="妲己" string="你说什么？？"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="Shengongbao" pos="11 0" emotion="normal"/>
+  <Msg name="申公豹" string="狐狸啊，我让你带的东西都带来了吧？"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop5"/>
+  <Char id="Shengongbao" pos="11 0" emotion="normal"/>
+  <Msg name="妲己" string="那是自然。也不看看我是谁~|还有，我叫妲己，不叫狐狸！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Daji" pos="6 0" emotion="stop3"/>
+  <Char id="Shengongbao" pos="11 0" emotion="normal"/>
+  <Msg name="妲己" string="为了把这老头带来，你知道我费了多大劲吗！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Daji" pos="6 0" emotion="stop3"/>
+  <Char id="Shengongbao" pos="11 0" emotion="normal"/>
+  <Char id="Taoisttaigong" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="道士姜太公" string="呃呃……"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" pos="8 0" emotion="stop4"/>
+  <Msg name="哪吒" string="姜太公！！"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Daji" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="Shengongbao" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="Taoisttaigong" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="妲己" string="别再靠近了~"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Daji" pos="6 0" flip="true" emotion="stop3"/>
+  <Char id="Shengongbao" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="Taoisttaigong" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="妲己" string="再过来，就先在这老头身上试试剑的威力！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Daji" pos="6 0" flip="true" emotion="stop3"/>
+  <Char id="Shengongbao" pos="11 0" emotion="stop1"/>
+  <Char id="Taoisttaigong" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="申公豹" string="狐狸你这家伙，有点本事啊。"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Daji" pos="6 0" flip="true" emotion="stop3"/>
+  <Char id="Shengongbao" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="Taoisttaigong" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="申公豹" string="行了，把剑交出来吧！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="怎么办？？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Nezha" pos="8 0" emotion="normal"/>
+  <Msg name="哪吒" string="没办法了……宝宝，把剑给他。"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop3"/>
+  <Char id="excalibur" pos="5 -3" emotion="normal"/>
+  <Msg name="宝宝" string="算了，不管了。给你！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" flip="true" emotion="stop1"/>
+  <Char id="excalibur" pos="10 -3" emotion="normal"/>
+  <Msg name="申公豹" string="哈哈哈！！现在只要背出法诀，诛仙四剑就到手了。"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" flip="true" emotion="stop1"/>
+  <Char id="excalibur" pos="10 -3" emotion="normal"/>
+  <Char id="Daji" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="妲己" string="哦~那我有什么好处？"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" emotion="stop1"/>
+  <Char id="excalibur" pos="10 -3" emotion="normal"/>
+  <Char id="Daji" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="申公豹" string="等集齐诛仙四剑后，抢来的道行分你一些。"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Shengongbao" pos="7 0" emotion="stop1"/>
+  <Char id="excalibur" pos="10 -3" emotion="normal"/>
+  <Char id="Daji" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="妲己" string="太好了~那赶紧走！"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="申公豹，妲己" string="（嗖的一声～）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="这下世界会变成什么样啊？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Nezha" pos="8 0" emotion="normal"/>
+  <Msg name="哪吒" string="姜太公让我们所有人都去仙界。"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="爷爷刚才不是被抓去当人质了吗？！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Nezha" pos="8 0" emotion="stop1"/>
+  <Msg name="哪吒" string="道术果然还是很厉害。"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <BackGround texture="fengshen9"/>
+  <Char id="Taoisttaigong" pos="8 0" flip="true" emotion="stop2"/>
+  <Msg name="伪装成姜太公的杨戬" string="上次是坐牢，这次是人质吗……"/>
+  <Enter/>
+</Scene>

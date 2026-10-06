@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+		ForwardAccelForce='148.0'
+		BackwardAccelForce='100.0'
+		DragFactor='-0.079'
+		SteerConstraint='2.9'
+		DriftEscapeForce='1700'
+		CornerDrawFactor='0.069'
+
+		EngineSound='cotton85'
+		SlipBrakeForce='-100'
+
+		UseTransformBooster='true'
+		TransAccelFactor='1.793'
+		TransformTime='100'
+
+		StartForwardAccelFactorSpeed = '1.7'
+		StartBoosterTimeSpeed='1300'   
+
+		NormalBoosterTime = '-70'
+		TeamBoosterTime = '-200'
+		DriftMaxGauge = '-450'
+		DriftGaguePreservePercent='0.6'
+
+		BoosterWaveType='boost8'
+		BoosterType='8soon'
+		BoosterType0='8soon'
+		BoosterType1='8soon'
+		BoosterType2='85main'
+		BoosterType3='85main'
+		BoosterType4='85sub'
+		BoosterType5='85sub'
+
+		Port0='mod1d1'
+		Port1='mod1d2'
+
+		FirePort0='mod1a1'
+		FirePort1='mod1a2'
+		FirePort2='mod1a3'
+		FirePort3='mod1a4'
+
+		TailLampSize='0.2'
+		TailLampColor='0 255 100 100'
+		BoostBlurColor='255 77 77 77'
+
+		EnvMap='true'
+
+		secondColor='255 224 12 0'
+		secondHighColor='255 255 50 0'
+
+		TachometerType='Tacho1'
+		TachometerName='ht'
+		itemSlotName='ht'
+		boostGaugeName='ht'
+
+		DescBalance= '55'
+		DescStability ='45'
+		DescEngineGrade='1.25'
+		DescCornering='4'
+		DescEnchantCap = '25'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a3' trailPort1='mod1a4'/>
+</BodyParam>
+
+<!-- 비밀의 피아노 HT+ (화이트 버전 / 뉴) 커플 가챠폰 레어 20140213-->

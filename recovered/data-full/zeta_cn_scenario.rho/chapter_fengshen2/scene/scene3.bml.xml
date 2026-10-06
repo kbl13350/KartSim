@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="fengshen3"/>
+  <Char id="Ghost" pos="12 -1" emotion="stop5"/>
+  <Msg name="" string="[仙界，女娲的秘密庭院]"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="妲己" string="趁他还没发现鱼竿丢了，赶紧找到妲己幻尾草溜走才行。"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Fengshen_stuff" pos="10 -1" emotion="stop5"/>
+  <Char id="Daji" pos="6 0" flip="true" emotion="stop5"/>
+  <Msg name="妲己" string="（窸窸窣窣）"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="妲己" string="怎么就剩这么点了？！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="妲己" string="就这点，根本不够我恢复妖力的，怎么办？"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="妲己" string="嗯……"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="妲己" string="对了！还有个法子！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="妲己" string="把它种在魔界，应该要不了多久就能长成了。"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="妲己" string="赶快去魔界……"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Nezha" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="哪吒" string="（吧嗒吧嗒）"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Daji" pos="11 0" emotion="stop2"/>
+  <Msg name="妲己" string="又是这小子！先躲起来再说。"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Nezha" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="哪吒" string="该死的妲己幻尾草！明明都拔光了，怎么还有。"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Nezha" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="哪吒" string="今天非得把剩下的烧个干净不可！"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Nezha" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="哪吒" string="咦？哪去了？"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Nezha" pos="11 0" flip="true" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="雷震子" string="原来你在这儿！听说姜太公正急着找你呢。"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" pos="11 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="哪吒" string="这妲己幻尾草，莫非是你处理的？"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" pos="11 0" emotion="stop2"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="stop5"/>
+  <Msg name="雷震子" string="妲己……什么？"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" pos="11 0" emotion="stop4"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="stop5"/>
+  <Msg name="哪吒" string="明明还剩几株的……"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" pos="11 0" emotion="stop4"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="雷震子" string="姜太公说有天大的急事。"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" pos="11 0" emotion="stop4"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="雷震子" string="草回头再找，先和我去一趟吧！"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" pos="11 0" emotion="normal"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="哪吒" string="总觉得哪里不对劲……"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" pos="11 0" emotion="normal"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="雷震子" string="快走吧！"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Nezha" pos="8 0" emotion="normal"/>
+  <Char id="Leizhenzi" pos="4 0" emotion="stop4"/>
+  <Msg name="哪吒" string="知道了，走！"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="雷震子，哪吒" string="（嗖~）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" pos="10 0" emotion="stop2"/>
+  <Msg name="妲己" string="呼，差点就被发现了。"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Daji" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="妲己" string="得赶紧去魔界了！"/>
+  <Enter/>
+</Scene>

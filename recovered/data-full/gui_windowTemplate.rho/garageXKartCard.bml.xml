@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GarageCard name="garageCardTemplate" windowRect="0 0 166 126" texture="garage_img_kartSelectBG" selectedTexture="garage_img_kartSelectBG2" alphaBlend="true">
+  <Window name="shopItemContainer" leftTopWH="0 0 166 126" align="center" adjust="0 0" enable="false"/>
+  <Container name="itemNameContainer" windowRect="0 0 76 76" enable="false" visible="false">
+    <Label name="itemNameLabel" align="center" autoSizing="true"/>
+  </Container>
+  <Panel name="kartLevel" windowSize="26 18" align="top;right" adjust="10 10" texture="turning_enhancedBG" alphaBlend="true" enable="false" visible="false">
+    <Label name="kartLevelStr" leftTopWH="0 0 26 18" align="center" textAlign="center" text="+0" textRender="outline" textColor="white" textColor2="255 113 0 0" alphaBlend="true" enable="false"/>
+  </Panel>
+  <Panel name="12TuningLevel" windowSize="30 28" align="top;right" adjust="8 8" texture="tuning_mark_s_1" alphaBlend="true" enable="false" visible="false"/>
+  <Panel name="growthKartIcon" windowSize="24 24" align="top;right" adjust="11 11" texture="icon_upgradekart_ongoing_2" alphaBlend="true" altText="#sb(growthKart)" altRelativePos="0 0" visible="false"/>
+  <Window name="dummy_growthKartIcon" windowSize="24 24" align="top;right" adjust="11 38" visible="false"/>
+  <Window name="origin_growthKartIcon" windowSize="24 24" align="top;right" adjust="5 5" visible="false"/>
+  <Label name="riderOn" windowSize="186 40" align="bottom;hcenter" autoSizing="false" text="#sb(itemOn)" textAlign="center" textRender="outline16" textColor="white" visible="false"/>
+</GarageCard>

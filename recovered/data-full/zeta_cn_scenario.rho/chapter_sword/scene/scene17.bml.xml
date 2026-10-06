@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="cnboomhill1"/>
+  <Char id="Jang_bi" pos="11 0" emotion="normal"/>
+  <Msg name="张飞" string="啊哈，小毛孩你还有点用嘛！"/>
+  <Enter/>
+  <Char id="Jang_bi" remove="true"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="日影" string="您让着我|我才能追得上的。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="咳咳…为什么我们很累呢…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Jang_bi" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="张飞" string="我现在很烦了~|你去找二哥吧！"/>
+  <Enter/>
+  <Char id="Jang_bi" remove="true"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Jang_bi" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="日影" string="是，知道了，师傅。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Jang_bi" remove="true"/>
+  <Char id="Jang_bi" pos="11 0" emotion="stop1"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="张飞" string="谁是你师傅！|是关羽哥拜托我，我才会做这种事。|（她叫我师傅，哈哈哈）"/>
+  <Enter/>
+  <Char id="Jang_bi" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <BackGround texture="Northeu6"/>
+  <Char id="il_young" pos="11 0" emotion="normal"/>
+  <Msg name="日影" string="就这么去的话会很无聊的！|皮蛋，你和我对决吧！"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="我？啊哈，是挑战！|接受小毛孩挑战！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="il_young" pos="12 0" emotion="stop1"/>
+  <Msg name="日影" string="呼！是跟张飞师傅学的吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="这话不太适合皮蛋…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="2 0" emotion="stop5"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="宝宝" string="像个傻瓜…"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="ani5"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="bazzi" pos="2 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="说什么！|我可是在GP赛中也会胜利的人！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="il_young" pos="12 0" emotion="stop1"/>
+  <Msg name="日影" string="和你们在一起很开心。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="il_young" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="日影" string="月熙还好吗…"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani1"/>
+  <Msg name="皮蛋" string="月熙？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="il_young" pos="11 0" emotion="stop3"/>
+  <Msg name="日影" string="额额！抱歉~|那么就和我对决吧。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="你知道吗？结果还是我胜利！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="il_young" pos="12 0" emotion="stop1"/>
+  <Msg name="日影" string="呼！那么开始吧~？"/>
+  <Enter/>
+</Scene>

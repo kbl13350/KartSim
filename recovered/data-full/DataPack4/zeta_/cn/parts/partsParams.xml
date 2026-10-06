@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- 
+	TransAccelFactor				가속도
+	DriftEscapeForce				드리프트
+	SteerConstraint				회전각도
+	CornerDrawFactor			회전가속
+	NormalBoosterTime			부스터시간
+
+	||||| 추후 추가될지도 모를 리스트 |||||
+		draftMulAccelFactor
+		draftTick
+		driftBoostMulAccelFactor
+		driftBoostTick
+		chargeBoostBySpeed
+		DragFactor
+		ForwardAccelForce
+		BackwardAccelForce
+		GripBrakeForce
+		SlipBrakeForce
+		DriftLeanFactor
+		TeamBoosterTime
+
+	* 사용법 *
+	- 파츠는 최대 3개까지의 param만 가질 수 있습니다.
+	- 카트바디 spec 수치값만 param 으로 추가합니다. 카트 spec 수치에만 영향줍니다. 그래서 아이템 기능(물파리 방어 확률) 등은 제외합니다.
+	- 각 param 의 값은 파츠 획득 시, 확률적으로 서버에서 결정되어 DB에 저장됩니다.
+	- 신규 param 추가 시, 소스에서 해당 계산공식 추가가 필요하니 기획파트에 요청주세요.
+	
+	* 참고사항
+	파츠에 등급/세부수치값이 설정되게되면서, 여러 파츠아이템이 필요치 않아...파츠 카테고리별 아이템은 1개만 존재합니다.
+	혹시 itemTable 에 신규 파츠를 추가 시, 아래 아이템 목록에도 함께 추가해주세요.
+-->
+
+<PartsParamList>
+	<!-- 엔진 start -->
+	<itemCategory id='63'>
+		<Info itemId='1'>	
+			<Param name='TransAccelFactor'/>
+		</Info>	<!-- 10단계 엔진 -->
+		<Info itemId='2'>	
+			<Param name='TransAccelFactor'/>
+		</Info>	<!-- 11단계 엔진 -->
+	</itemCategory>
+	<!-- 엔진 end -->
+
+	<!-- 핸들 start -->
+	<itemCategory id='64'>
+		<Info itemId='1'>
+			<Param name='SteerConstraint'/>
+		</Info>	<!-- 10단계 핸들 -->
+		<Info itemId='2'>
+			<Param name='SteerConstraint'/>
+		</Info>	<!-- 11단계 핸들 -->
+	</itemCategory>
+	<!-- 핸들 end -->
+
+	<!-- 바퀴 start -->
+	<itemCategory id='65'>
+		<Info itemId='1'>	
+			<Param name='DriftEscapeForce'/>
+		</Info>	<!-- 10단계 바퀴 -->
+		<Info itemId='2'>	
+			<Param name='DriftEscapeForce'/>
+		</Info>	<!-- 11단계 바퀴 -->
+	</itemCategory>
+	<!-- 바퀴 end -->
+
+	<!-- 부스터 start -->
+	<itemCategory id='66'>
+		<Info itemId='1'>	
+			<Param name='NormalBoosterTime'/>
+		</Info>	<!-- 10단계 부스터 -->
+		<Info itemId='2'>	
+			<Param name='NormalBoosterTime'/>
+		</Info>	<!-- 11단계 부스터 -->
+	</itemCategory>
+	<!-- 부스터 end -->
+
+</PartsParamList>

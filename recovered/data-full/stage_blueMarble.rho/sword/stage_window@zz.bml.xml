@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true"/>
+  <Container windowRect="0 0 800 600" align="center">
+    <Panel name="bg01" leftTopTex="12 10" texture="swordBg_01@zz" alphaBlend="true" enable="false"/>
+    <Panel name="bg02" leftTopTex="524 10" texture="swordBg_02@zz" alphaBlend="true" enable="false"/>
+    <Panel name="bg03" leftTopTex="12 522" texture="swordBg_03@zz" alphaBlend="true" enable="false"/>
+    <Panel name="bg04" leftTopTex="524 522" texture="swordBg_04@zz" alphaBlend="true" enable="false"/>
+    <Container name="" windowRect="2 0 802 600">
+      <Window name="slot0" leftTopWH="683 513 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="start_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="start_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot0)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot1" leftTopWH="588 513 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="yellow_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="yellow_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot1)" textAlign="center" textRender="bold" textColor="white"/>
+        <Panel name="active" leftTopTex="-7 -4" texture="대박보상도장@zz" alphaBlend="true" visible="false"/>
+      </Window>
+      <Window name="slot2" leftTopWH="493 513 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot2)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot3" leftTopWH="398 513 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot3)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot4" leftTopWH="303 513 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot4)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot5" leftTopWH="208 513 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot5)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot6" leftTopWH="113 513 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot6)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot7" leftTopWH="18 513 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot7)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot8" leftTopWH="18 439 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot8)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot9" leftTopWH="18 365 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot9)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot10" leftTopWH="18 291 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="yellow_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="yellow_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot10)" textAlign="center" textRender="bold" textColor="white"/>
+        <Panel name="active" leftTopTex="-7 -4" texture="대박보상도장@zz" alphaBlend="true" visible="false"/>
+      </Window>
+      <Window name="slot11" leftTopWH="18 217 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot11)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot12" leftTopWH="18 143 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot12)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot13" leftTopWH="18 69 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot13)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot14" leftTopWH="113 69 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot14)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot15" leftTopWH="208 69 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot15)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot16" leftTopWH="303 69 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot16)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot17" leftTopWH="398 69 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="yellow_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="yellow_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot17)" textAlign="center" textRender="bold" textColor="white"/>
+        <Panel name="active" leftTopTex="-7 -4" texture="대박보상도장@zz" alphaBlend="true" visible="false"/>
+      </Window>
+      <Window name="slot18" leftTopWH="493 69 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot18)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot19" leftTopWH="588 69 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot19)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot20" leftTopWH="683 69 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot20)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot21" leftTopWH="683 143 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot21)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot22" leftTopWH="683 217 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot22)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot23" leftTopWH="683 291 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="purple_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot23)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Window name="slot24" leftTopWH="683 365 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="yellow_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="yellow_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot24)" textAlign="center" textRender="bold" textColor="white"/>
+        <Panel name="active" leftTopTex="-7 -4" texture="대박보상도장@zz" alphaBlend="true" visible="false"/>
+      </Window>
+      <Window name="slot25" leftTopWH="683 439 94 72">
+        <Panel name="default" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Panel name="enable" leftTopTex="0 0" texture="blue_box_01" alphaBlend="true" visible="false"/>
+        <Label name="desc" windowRect="0 0 94 72" multiLine="true" text="#sb(slot25)" textAlign="center" textRender="bold" textColor="white"/>
+      </Window>
+      <Panel name="arrow" leftTopTex="653 548" texture="worldArrow" alphaBlend="true"/>
+    </Container>
+    <Label name="jewelCnt" leftTopWH="150 25 100 30" multiLine="true" text="0" textAlign="right" textRender="scalex2" textColor="white"/>
+    <Label name="loopCnt" leftTopWH="435 25 100 30" multiLine="true" text="0" textAlign="right" textRender="scalex2" textColor="white"/>
+    <Label name="blueMarbleDesc" leftTopWH="141 172 300 20" multiLine="true" text="#sb(blueMarbleDesc)" textAlign="left" textRender="bold" textColor="white"/>
+    <Label name="blueMarbleDescBody" leftTopWH="138 190 300 70" multiLine="true" text="#sb(blueMarbleDescBody)" textAlign="left" textColor="white"/>
+    <ItemWindow name="peice" windowRect="0 0 94 72" itemCategory="character" itemId="9" randAni="true" cameraFrom="-0.15 -4.5 1.5" cameraTo="0.0 0.0 1.0" cameraZoom="1.7"/>
+    <ImageButton name="cancel" leftTopTex="685 17" autoLoadImage="off_01" alphaBlend="true" textRender="bold" textColor="white"/>
+    <ImageButton name="rollDice" leftTopTex="482 414" autoLoadImage="dice_button_01@zz" alphaBlend="true" textRender="bold" textColor="white" useDisableState="true"/>
+    <Window name="diceAcc" windowRect="400 0.3 0 0" visible="false"/>
+    <CaptionWindow name="rewardItemDialog" frame="CaptionDialog" visible="false" windowSize="363 420" caption="아이템보상" align="center">
+      <ItemWindow name="lucci" windowRect="0 0 70 70" itemCategory="jewel" itemId="13" visible="false"/>
+      <ItemWindow name="rp" windowRect="0 0 70 70" itemCategory="jewel" itemId="58" visible="false"/>
+      <ItemWindow name="stock" windowRect="0 0 70 70" itemCategory="lottery" itemId="249" visible="false"/>
+      <Label name="desc" windowRect="10 100 294 120" multiLine="true" text="내용" textAlign="center" textRender="bold" textColor="white"/>
+      <TextButton name="confirm" windowSize="72 22" text="#sb(confirm)" align="bottom" adjust="180 -16"/>
+    </CaptionWindow>
+    <CaptionWindow name="rewardDialog" frame="CaptionDialog" visible="false" windowSize="363 420" caption="꽝" align="center">
+      <TextButton name="confirm" windowSize="72 22" text="#sb(confirm)" align="bottom" adjust="180 -16"/>
+    </CaptionWindow>
+  </Container>
+</Container>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="midTermResult" windowRect="fullscreen" visible="true">
+  <ImageBoard windowSize="580 60" align="hcenter top" adjust="0 0" image="clubRacing_ingame_score_top" alphaBlend="true"/>
+  <Container windowSize="580 60" align="hcenter top" adjust="0 0">
+    <Container align="left" leftTopWH="0 3 290 54">
+      <CharPanel name="blueTp" leftTopWH="0 5 135 44" texture="주행중_num" alphaBlend="true" fontSize="32 44" fontPos="0 0" fontStr=":0123456789" centerAlign="true" text="0" align="left" adjust="36 0"/>
+      <Panel name="blue" align="right" leftTopWH="0 0 55 55" texture="주행중_blue@zz" alphaBlend="true" adjust="13 3" visible="false"/>
+      <Label name="blueName" align="hcenter" leftTopWH="0 41 127 19" alphaBlend="true" text="" textAlign="center" textColor="white" textColor2="255 0 144 222" textRender="outline"/>
+    </Container>
+    <Container align="right" leftTopWH="0 3 290 55">
+      <CharPanel name="redTp" leftTopWH="36 5 135 44" texture="주행중_num" alphaBlend="true" fontSize="32 44" fontPos="0 0" fontStr=":0123456789" centerAlign="true" text="0" align="right" adjust="36 0"/>
+      <Panel name="red" align="left" leftTopWH="0 0 55 55" texture="주행중_red@zz" alphaBlend="true" adjust="13 3" visible="false"/>
+      <Label name="redName" align="left" leftTopWH="0 41 103 19" alphaBlend="true" text="" textAlign="center" textColor="white" textColor2="255 194 23 136" textRender="outline"/>
+    </Container>
+  </Container>
+</Container>

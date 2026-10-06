@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='147.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.08'
+	SteerConstraint='3.1'
+	DriftEscapeForce='2200'
+	CornerDrawFactor='0.077'
+
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	antiCollideBalance='1'
+	
+	UseTransformBooster='true'
+	TransAccelFactor='1.83'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.72'
+	StartBoosterTimeSpeed='1400'
+
+	NormalBoosterTime = '-60'
+	TeamBoosterTime = '-210'
+	DriftMaxGauge = '-650'
+	DriftGaguePreservePercent='0.55'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+    BoosterType2='8main_gold'
+	BoosterType3='8main_gold'
+	BoosterType4='85sub'
+	BoosterType5='85sub'
+	BoosterType6='85sub'
+
+	Port0='mod2c1'
+	Port1='mod2c2'
+
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+	FirePort2='mod2b1'
+	FirePort3='mod2b2'
+	FirePort4='mod2b3'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 77 77 77'
+        
+	secondColor='255 0 90 210'
+	secondHighColor='255 0 190 255'
+
+	DescBalance= '50'
+	DescStability ='50'
+	DescEngineGrade='1.25'
+	DescCornering='8'
+	DescEnchantCap = '25'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2b1' trailPort1='mod2b2' trailPort2='mod2b3'/>
+</BodyParam>
+
+<!--중국 골드 세이버 HT+ 20140709 -->

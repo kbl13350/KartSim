@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statueList>
+  <statue relName="tf00" itemCatId="3" itemId="838" resPath="갈바트론"/>
+  <statue relName="tf01" itemCatId="3" itemId="843" resPath="락다운"/>
+  <statue relName="tf02" itemCatId="3" itemId="847" resPath="네메시스"/>
+  <statue relName="tf03" itemCatId="3" itemId="853" resPath="사운드웨이브"/>
+  <statue relName="tf04" itemCatId="3" itemId="873" resPath="브라울"/>
+  <statue relName="tf05" itemCatId="3" itemId="837" resPath="옵티머스"/>
+  <statue relName="tf06" itemCatId="3" itemId="845" resPath="범블비G1"/>
+  <statue relName="tf07" itemCatId="3" itemId="856" resPath="라쳇"/>
+  <statue relName="tf08" itemCatId="3" itemId="863" resPath="드리프트"/>
+  <statue relName="tf09" itemCatId="3" itemId="880" resPath="하운드"/>
+</statueList>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="desktop" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="partsReinforce" windowRect="0 0 1269 801" align="center" frame="CaptionDialog" caption="#sb(partsReinfoceCaption)" setCloseButton="closeButton">
+    <ImageBoard leftTopWH="-13 -1 1258 801" image="popupBg_reinforce" alphaBlend="true"/>
+    <Container name="targetParts" windowSize="490 430" align="left;top" adjust="0 0">
+      <Container windowSize="170 200" align="center;top" adjust="-142 74">
+        <Label windowSize="20 14" align="top;center" adjust="0 5" text="#sb(targetParts)" textRender="bold14" textColor="white" textAlign="center"/>
+        <Window name="attachTargetParts" windowSize="150 50" align="top;center" adjust="-14 25"/>
+        <Label name="targetPartsLevel" windowSize="170 30" align="bottom;center" adjust="0 -10" text="#sb(partsLevel)" textRender="bold24" textColor="255 179 195 228" textAlign="center"/>
+      </Container>
+      <Container windowSize="170 200" align="center;top" adjust="144 74">
+        <Label windowSize="20 14" align="top;center" adjust="0 5" text="#sb(result)" textRender="bold14" textColor="white" textAlign="center"/>
+        <Window name="attachResultParts" windowSize="150 50" align="top;center" adjust="-14 25"/>
+        <Label name="resultPartsLevel" windowSize="170 30" align="bottom;center" adjust="0 -10" text="#sb(partsLevel)" textRender="bold24" textColor="255 179 195 228" textAlign="center"/>
+      </Container>
+      <CharPanel name="arrow0" adjust="0 155" windowSize="72 28" align="hcenter" fontSize="72 28" fontStr="012" texture="tuning_arrow_g" alphaBlend="true"/>
+      <Label name="targetParam" windowSize="20 14" align="bottom;left" adjust="25 81" text="" textRender="bold14" textColor="white" textAlign="left"/>
+      <Label name="currentValue" windowSize="100 30" align="bottom;left" adjust="50 33" text="" textRender="bold24" textColor="255 124 174 255" textAlign="center"/>
+      <ColorLabel name="resultValue" windowSize="100 30" align="bottom;right" adjust="50 33" text="" textRender="bold24" textColor="255 124 174 255" textAlign="center"/>
+      <CharPanel name="arrow1" adjust="0 370" windowSize="72 28" align="hcenter" fontSize="72 28" fontStr="012" texture="tuning_arrow_g" alphaBlend="true"/>
+    </Container>
+    <Container name="beforePartsSelect" windowSize="490 430" align="left;top" adjust="2 -2" visible="false">
+      <ImageBoard windowSize="519 428" align="center" adjust="0 0" image="popupBg_reinforce_beforeSelect" alphaBlend="true"/>
+      <Container windowSize="170 200" align="center;top" adjust="-142 74">
+        <ImageBoard name="popup_slot_dim1" windowSize="180 152" align="center" adjust="0 2" image="popup_slot_dim1" alphaBlend="true"/>
+      </Container>
+      <Container windowSize="170 200" align="center;top" adjust="144 74">
+        <ImageBoard name="popup_slot_dim2" windowSize="180 152" align="center" adjust="0 2" image="popup_slot_dim2" alphaBlend="true"/>
+      </Container>
+      <Label windowSize="140 16" align="center" adjust="0 98" text="#sb(selectPartsForReinforcing)" textRender="bold16" textColor="255 187 198 215" textAlign="center"/>
+      <Label windowSize="140 16" align="center" adjust="0 237" text="#sb(reinforcePercentageInit)" textRender="bold20" textColor="255 102 110 122" textAlign="center"/>
+    </Container>
+    <Container name="allPartsMaxLevel" windowSize="490 430" align="left;top" adjust="2 -2" visible="false">
+      <ImageBoard windowSize="519 428" align="center" adjust="0 0" image="popupBg_reinforce_levelMax@zz" alphaBlend="true"/>
+      <Label windowSize="140 16" align="center" adjust="0 98" text="#sb(allPartsMaxLevel)" textRender="bold16" textColor="255 187 198 215" textAlign="center"/>
+      <Label windowSize="140 16" align="center" adjust="0 237" text="#sb(reinforcePercentageInit)" textRender="bold20" textColor="255 102 110 122" textAlign="center"/>
+    </Container>
+    <Container name="thisPartsMaxLevel" windowSize="490 430" align="left;top" adjust="2 -2" visible="false">
+      <ImageBoard windowSize="519 428" align="center" adjust="0 0" image="popupBg_reinforce_levelMax@zz" alphaBlend="true"/>
+      <Label windowSize="140 16" align="center" adjust="0 98" text="#sb(thisPartsMaxLevel)" textRender="bold16" textColor="255 187 198 215" textAlign="center"/>
+      <Label windowSize="140 16" align="center" adjust="0 237" text="#sb(reinforcePercentageInit)" textRender="bold20" textColor="255 102 110 122" textAlign="center"/>
+    </Container>
+    <Container name="reinforceProb" windowSize="490 100" align="left;center" adjust="0 110">
+      <ColorLabel name="reinforcePercentage" windowSize="100 20" align="top;center" adjust="0 10" text="#sb(reinforcePercentage)" textRender="bold20" textColor="white" textAlign="center"/>
+      <Container name="probGauges" windowSize="342 8" align="center" adjust="3 3">
+        <Panel name="acuumProbGauge" windowSize="342 8" adjust="0 0" texture="tuning_upgradePopupBg_bar_green" alphaBlend="true"/>
+        <Panel name="probGauge" windowSize="342 8" adjust="0 0" texture="tuning_upgradePopupBg_bar_blue" alphaBlend="true"/>
+      </Container>
+      <ColorLabel name="reinforcePercentageDetail" windowSize="150 14" align="bottom;center" adjust="10 20" text="#sb(reinforcePercentageDetail)" textRender="bold14" textColor="255 27 176 254" textAlign="center"/>
+    </Container>
+    <Container windowSize="500 150" align="left;center" adjust="0 240">
+      <Label windowSize="20 16" align="left;top" adjust="25 8" text="#sb(itemRequired)" textAlign="center" textRender="bold16" textColor="white"/>
+      <Label windowSize="15 14" align="left;top" adjust="130 8" text="#sb(itemPossessing)" textAlign="center" textRender="bold14" textColor="255 207 221 240"/>
+      <Container windowSize="320 25" align="top;center" adjust="75 10">
+        <Panel windowSize="34 34" align="left;center" adjust="4 -1" texture="icon_sinparts" alphaBlend="true"/>
+        <Label name="12PartsPieceLeft" windowSize="120 16" align="top;left" adjust="20 -1" text="0" textAlign="right" textColor="255 42 55 80" textRender="bold16"/>
+        <Panel windowSize="34 34" align="right;center" adjust="134 -1" texture="icon_ethisBolt" alphaBlend="true"/>
+        <Label name="ethisBoltLeft" windowSize="140 16" align="right;center" adjust="25 -5" text="0" textAlign="right" textColor="255 42 55 80" textRender="bold16"/>
+        <ImageButton name="buyEthisVoltSetBtn" windowSize="22 22" align="right;center" adjust="-2 -1" autoLoadImage="btn_plus_0" alphaBlend="true"/>
+      </Container>
+      <Container windowSize="500 75" align="bottom;center">
+        <Label name="12PartsPiece" windowSize="100 16" align="left;center" adjust="10 -54" text="#sb(tag12PartsPiece)" textRender="bold16" textColor="255 84 100 129" textAlign="left">
+          <Panel name="12PartsPieceAlert" windowSize="14 14" align="right;top" adjust="-5 -5" texture="tuning_infomark_2" alphaBlend="true" visible="false"/>
+        </Label>
+        <Label name="EthisBolt" windowSize="100 16" align="left;center" adjust="10 -20" text="#sb(tagEthisBolt)" textRender="bold16" textColor="255 84 100 129" textAlign="left">
+          <Panel name="EthisBoltAlert" windowSize="14 14" align="right;top" adjust="-5 -5" texture="tuning_infomark_2" alphaBlend="true" visible="false"/>
+        </Label>
+        <Label name="Lucci" windowSize="65 16" align="left;center" adjust="10 15" text="#sb(price)" textRender="bold16" textColor="255 84 100 129" textAlign="left">
+          <Panel name="LucciAlert" windowSize="14 14" align="right;top" adjust="-5 -5" texture="tuning_infomark_2" alphaBlend="true" visible="false"/>
+        </Label>
+        <Panel windowSize="34 34" align="center" adjust="-65 -50" texture="icon_sinparts" alphaBlend="true"/>
+        <Panel windowSize="34 34" align="center" adjust="-63 -15" texture="icon_ethisBolt" alphaBlend="true"/>
+        <Panel windowSize="26 26" align="center" adjust="-63 19" texture="icon_lucci" alphaBlend="true"/>
+        <Label name="12PartsPieceRequired" windowSize="200 16" align="right;center" adjust="20 -54" text="0" textRender="bold16" textColor="255 84 100 129" textAlign="right"/>
+        <Label name="EthisBoltRequired" windowSize="200 16" align="right;center" adjust="20 -20" text="0" textRender="bold16" textColor="255 84 100 129" textAlign="right"/>
+        <Label name="LucciRequired" windowSize="200 16" align="right;center" adjust="20 15" text="0" textRender="bold16" textColor="255 84 100 129" textAlign="right"/>
+      </Container>
+    </Container>
+    <Container name="selectedKart" windowSize="700 360" align="right;top" adjust="8 10">
+      <Label windowSize="20 16" align="top;center" adjust="0 1" text="#sb(selectedKart)" textRender="bold16" textColor="white" textAlign="center"/>
+      <Container windowSize="700 250" align="center" adjust="0 50">
+        <Label name="kartName" windowSize="100 20" align="left;top" adjust="30 -25" text="kartName" textRender="bold20" textColor="white" textAlign="left"/>
+        <Label name="kartType" windowSize="100 16" align="left;top" adjust="30 5" text="type / rarity" textRender="bold16" textColor="white" textAlign="left"/>
+        <Container windowSize="300 160" align="left;center" adjust="20 -4">
+          <Label windowSize="100 16" adjust="10 0" text="#sb(accel)" textRender="outline16" textColor="white" textAlign="left"/>
+          <Label windowSize="100 16" adjust="10 32" text="#sb(cornering)" textRender="outline16" textColor="white" textAlign="left"/>
+          <Label windowSize="100 16" adjust="10 64" text="#sb(drift)" textRender="outline16" textColor="white" textAlign="left"/>
+          <Label windowSize="100 16" adjust="10 96" text="#sb(boostCapacity)" textRender="outline16" textColor="white" textAlign="left"/>
+          <Label windowSize="100 16" adjust="10 128" text="#sb(boostCharging)" textRender="outline16" textColor="white" textAlign="left"/>
+          <Label name="baseAccel" windowSize="60 16" align="right;top" adjust="80 0" text="1000" textRender="outline16" textColor="white" textAlign="right"/>
+          <CharPanel name="addedAccel" windowSize="60 16" align="right;top" adjust="5 6" texture="garage_img_num_2_2" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0"/>
+          <Label name="baseCornering" windowSize="60 16" align="right;top" adjust="80 32" text="1000" textRender="outline16" textColor="white" textAlign="right"/>
+          <CharPanel name="addedCornering" windowSize="60 16" align="right;top" adjust="5 38" texture="garage_img_num_2_2" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0"/>
+          <Label name="baseDrift" windowSize="60 16" align="right;top" adjust="80 64" text="1000" textRender="outline16" textColor="white" textAlign="right"/>
+          <CharPanel name="addedDrift" windowSize="60 16" align="right;top" adjust="5 70" texture="garage_img_num_2_2" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0"/>
+          <Label name="baseBoostCapacity" windowSize="60 16" align="right;top" adjust="80 96" text="1000" textRender="outline16" textColor="white" textAlign="right"/>
+          <CharPanel name="addedBoostCapacity" windowSize="60 16" align="right;top" adjust="5 102" texture="garage_img_num_2_2" alphaBlend="true" fontSize="10 16" spaceOffset="1" fontStr="-+1234567890()" text="0"/>
+          <Label name="baseBoostCharge" windowSize="60 16" align="right;top" adjust="80 128" text="1000" textRender="outline16" textColor="white" textAlign="right"/>
+        </Container>
+      </Container>
+      <GaragePreview name="kartPreview" windowSize="360 300" adjust="0 -45" align="right;center" preset="PartsReinforce" enable="true" visible="true"/>
+    </Container>
+    <Container windowSize="700 210" align="right;center" adjust="8 110">
+      <Label windowSize="20 16" align="top;center" adjust="0 1" text="#sb(equippedParts)" textRender="bold16" textColor="white" textAlign="center"/>
+      <Container windowSize="700 180" align="bottom;center" adjust="0 0">
+        <Panel name="tagEngine_selected" windowSize="172 24" texture="popup_reinforce_slot_selected_Title" align="left;top" adjust="1 2" visible="false"/>
+        <Window name="selectEngine" windowSize="172 144" align="left;top" adjust="-3 28">
+          <Label name="tagEngine" windowSize="172 20" adjust="0 -25" text="#sb(targetedParts_Engine)" textRender="bold14" textColor="white" textAlign="center"/>
+          <Window name="partsEngine12" windowSize="172 144"/>
+        </Window>
+        <Panel name="tagHandle_selected" windowSize="172 24" texture="popup_reinforce_slot_selected_Title" align="center;top" adjust="-87 2" visible="false"/>
+        <Window name="selectHandle" windowSize="172 144" align="center;top" adjust="-91 28">
+          <Label name="tagHandle" windowSize="172 20" adjust="0 -25" text="#sb(targetedParts_Handle)" textRender="bold14" textColor="white" textAlign="center"/>
+          <Window name="partsHandle12" windowSize="172 144"/>
+        </Window>
+        <Panel name="tagWheel_selected" windowSize="172 24" texture="popup_reinforce_slot_selected_Title" align="center;top" adjust="89 2" visible="false"/>
+        <Window name="selectWheel" windowSize="172 144" align="center;top" adjust="86 28">
+          <Label name="tagWheel" windowSize="172 20" adjust="0 -25" text="#sb(targetedParts_Wheel)" textRender="bold14" textColor="white" textAlign="center"/>
+          <Window name="partsWheel12" windowSize="172 144"/>
+        </Window>
+        <Panel name="tagBooster_selected" windowSize="172 24" texture="popup_reinforce_slot_selected_Title" align="right;top" adjust="-1 2" visible="false"/>
+        <Window name="selectBooster" windowSize="172 144" align="right;top" adjust="2 28">
+          <Label name="tagBooster" windowSize="172 20" adjust="0 -25" text="#sb(targetedParts_Booster)" textRender="bold14" textColor="white" textAlign="center"/>
+          <Window name="partsBooster12" windowSize="172 144"/>
+        </Window>
+      </Container>
+    </Container>
+    <Container name="reinforceGuide" windowSize="550 100" align="bottom;center" adjust="190 60">
+      <Panel name="reinforceGuide1_Mark" windowSize="14 14" texture="tuning_infomark_1" align="left;center" adjust="5 -22"/>
+      <Label name="reinforceGuide1" windowSize="500 14" align="left;center" adjust="25 -26" text="#sb(reinforceGuide1)" textAlign="left" textRender="bold14" textColor="255 42 55 80"/>
+      <Panel name="reinforceGuide2_Mark" windowSize="14 14" texture="tuning_infomark_1" align="left;center" adjust="5 0"/>
+      <Label name="reinforceGuide2" windowSize="500 14" align="left;center" adjust="25 -4" text="#sb(reinforceGuide2)" textAlign="left" textRender="bold14" textColor="255 42 55 80"/>
+      <Panel name="reinforceGuide3_Mark" windowSize="14 14" texture="tuning_infomark_1" align="left;center" adjust="5 22"/>
+      <Label name="reinforceGuide3" windowSize="500 14" align="left;center" adjust="25 18" text="#sb(reinforceGuide3)" textAlign="left" textRender="bold14" textColor="255 42 55 80"/>
+    </Container>
+    <ImageButton name="executeReinforce" windowSize="262 76" adjust="0 -37" align="bottom;center" autoLoadImage="popupbtn_reinforce_0@zz" enable="false" visible="true" alphaBlend="true"/>
+  </CaptionWindow>
+  <Panel name="reinforceSuccess" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" enable="false" visible="false">
+    <Play1SPanel name="reinforceSuccessScene" scene="파츠강화_성공" windowSize="1400 600" adjust="0 -100" align="center" clearZAfter="true" defaultCameraPos="0.0 -77.0 0.0" defaultSpotPos="0.0 0.0 0.0" alphaBlend="true" zoom="1.0" visible="false"/>
+    <Window name="result" windowRect="fullscreen" align="center" adjust="0 -70" visible="false">
+      <Label windowSize="25 20" align="center" adjust="0 93" text="#sb(tagPartsLevel)" textRender="outline16" textColor="255 119 92 4" textColor2="255 254 227 4" textAlign="center"/>
+      <CharPanel name="currentLevel_Success" windowSize="70 48" align="center" adjust="-93 126" texture="garage_reinforce_successNum_1" centerAlign="true" fontSize="39 48" fontPos="0 0" fontStr="0123456789" text="7" alphaBlend="true"/>
+      <CharPanel name="resultLevel_Success" windowSize="70 48" align="center" adjust="93 125" texture="garage_reinforce_successNum_2" centerAlign="true" fontSize="39 48" fontPos="0 0" fontStr="0123456789" text="8" alphaBlend="true"/>
+      <Label name="paramName_Success" windowSize="100 20" align="center" adjust="0 173" text="drift" textRender="bold16" textColor="255 240 216 151" textAlign="center"/>
+      <Label name="currentParamValue_Success" windowSize="50 24" align="center" adjust="-93 190" text="1171" textRender="bold24" textColor="255 255 250 158" textAlign="center"/>
+      <ColorLabel name="resultParamValue_Success" windowSize="50 24" align="center" adjust="103 190" text="#sb(resultParamValue_Success)" textRender="bold24" textColor="white" textAlign="center"/>
+    </Window>
+  </Panel>
+  <Panel name="reinforceFail" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" enable="false" visible="false">
+    <Play1SPanel name="reinforceFailScene" scene="파츠강화_실패" windowSize="1400 600" adjust="0 -100" align="center" clearZAfter="true" defaultCameraPos="0.0 -77.0 0.0" defaultSpotPos="0.0 0.0 0.0" alphaBlend="true" zoom="1.0" visible="false"/>
+    <Window name="result" windowRect="fullscreen" align="center" adjust="0 -70" visible="false">
+      <Label windowSize="25 20" align="center" adjust="0 92" text="#sb(tagPartsLevel)" textRender="outline16" textColor="255 187 198 215" textColor2="255 42 55 80" textAlign="center"/>
+      <CharPanel name="currentLevel_Fail" windowSize="70 48" align="center" adjust="-93 126" texture="garage_reinforce_failNum_1" centerAlign="true" fontSize="39 48" fontPos="0 0" fontStr="0123456789" text="7" alphaBlend="true"/>
+      <CharPanel name="resultLevel_Fail" windowSize="70 48" align="center" adjust="93 127" texture="garage_reinforce_failNum_2" centerAlign="true" fontSize="39 48" fontPos="0 0" fontStr="0123456789" text="7" alphaBlend="true"/>
+      <ColorLabel name="guideAddedMaxProb" windowSize="200 24" align="center" adjust="0 180" text="#sb(guideAddedMaxProb)" textRender="bold24" textColor="255 168 183 195" textAlign="center"/>
+    </Window>
+  </Panel>
+</Panel>

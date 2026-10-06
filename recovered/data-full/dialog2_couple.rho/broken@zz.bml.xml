@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="0 0 520 470" caption="#sb(couple)" captionPos="0 1" captionColor="black" align="center">
+  <Panel windowRect="0 5 485 292" texture="badluck_dao"/>
+  <Panel windowRect="0 308 485 309" color="255 0 0 0" enable="false"/>
+  <Panel windowRect="0 309 485 310" color="255 255 255 255" enable="false"/>
+  <Label name="lblMsg" windowRect="0 310 485 375" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="Message" textAlign="center"/>
+  <Panel windowRect="0 375 485 376" color="255 0 0 0" enable="false"/>
+  <Panel windowRect="0 376 485 377" color="255 255 255 255" enable="false"/>
+  <TextButton name="okButton" text="#sb(ok)" windowRect="200 382 280 404" altTextRender="outline"/>
+</CaptionWindow>

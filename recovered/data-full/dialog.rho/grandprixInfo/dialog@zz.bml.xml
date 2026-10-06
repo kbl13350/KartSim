@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowSize="fullscreen" align="center">
+  <CaptionWindow name="captionDlgFrame" windowRect="0 0 700 600" frame="CaptionDialog" align="center" caption="#sb(viewGrandprixInfoCaption)" captionPos="0 1" captionColor="black">
+    <ViewportPanel name="innerViewport" windowRect="2 4 628 455"/>
+    <ScrollBar name="infoScroll" windowRect="601 0 617 300" scrollType="vertical"/>
+    <TextButton name="okButton" align="hcenter" windowRect="0 470 82 492" text="#sb(ok)" altTextRender="outline"/>
+  </CaptionWindow>
+  <StringBag>
+    <k n="viewGrandprixInfoCaption">
+      <m c="kr" v="대회정보 보기"/>
+      <m c="jp" v="大会情報表示"/>
+      <m c="cn" v="查看GP信息"/>
+      <m c="tw" v="GP大賽情報"/>
+      <m c="us" v="View Grand Prix Info"/>
+      <m c="vn" v="Thông tin"/>
+      <m c="ru" v="Информация о соревнованиях"/>
+      <m c="id" v="Tampilkan informasi kompetisi"/>
+      <m c="th" v="ดูข้อมูลการแข่ง"/>
+    </k>
+  </StringBag>
+</Container>

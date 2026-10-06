@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	 ForwardAccelForce='120'
+	 BackwardAccelForce='100.0'
+	 DragFactor='-0.05'
+	 	SteerConstraint='2.1'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.069'
+
+	BoosterBlur='true'
+	EngineSound='bike8'
+	EnvMap='true'
+	WaveEffect='true'
+	motorcycleType='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.815'
+	TransformTime='200'
+
+	StartForwardAccelFactorSpeed = '2.1'
+	StartBoosterTimeSpeed='1200'           
+
+	NormalBoosterTime = '-200'
+	TeamBoosterTime = '-500'
+	DriftMaxGauge = '-1050'
+	DriftGaguePreservePercent='0.5'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8sub'
+	BoosterType3='8sub'
+	BoosterType4='8main'
+
+	Port0='mod3a'
+	Port1='mod3b'
+
+	FirePort0='mod4a'
+	FirePort1='mod4b'
+	FirePort2='mod6a'
+
+	TailLampSize='0.3'
+	TailLampColor='0 100 200 255'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '43'
+	DescStability ='36'
+	DescEngineGrade='1.25'
+	DescCornering='5'
+	DescEnchantCap = '30'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod4a' trailPort1='mod4b'/>
+</BodyParam>
+
+<!--한국 블랙 스톰 블레이드 HT 111229 가샤폰 레어 -->

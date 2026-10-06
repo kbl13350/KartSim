@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss15"/>
+  <Char id="dao" pos="8 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="呃啊啊……以为甩掉了呢，还在追呢。|他们真执着啊……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop2"/>
+  <Msg name="梅林" string="哎…难道我多年的等待，就因为莫德雷德，要化为泡影吗……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋，想想办法，这样下去要被抓住了啊。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="那就在这儿甩掉他们吧！|宝宝，你来保护爷爷和亚瑟！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="啊……我感觉我会肚子疼……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="宝宝！现在不是偷懒的时候！你可是烈焰勇士啊！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Msg name="宝宝" string="啊，好吧！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="ani2"/>
+  <Msg name="宝宝" string="知道了！交给我了。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop4"/>
+  <Msg name="梅林" string="苍蓝勇士，你和我年轻时很像啊……|想当年我也文武双全。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop3"/>
+  <Msg name="梅林" string="卡美洛士兵的数量这么多，而且莫德雷德也在这，|那宫殿里应该没多少兵力了。."/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="10 0" emotion="stop4"/>
+  <Msg name="梅林" string="趁现在，我们去卡米洛特宫殿寻找圣剑吧。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="9 0" emotion="normal"/>
+  <Msg name="梅林" string="来，接住……是卡美洛的地图……|甩掉他们后，在卡米洛特见。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="好的！爷爷，别担心。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop1"/>
+  <Msg name="黑妞" string="不用担心我们，有地图的话甩掉他们应该没问题！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="stop1"/>
+  <Msg name="葱头" string="不用担心我们，您先去宫殿等我们吧。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="merlin" pos="9 0" emotion="stop4"/>
+  <Msg name="梅林" string="看到你们就不禁想起年轻时的我……想当年……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="6 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="又来了！梅林叔叔，快点走吧！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="6 0" emotion="normal"/>
+  <Msg name="亚瑟" string="大伙，谢谢了！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="梅林" string="好……好吧。那烈焰勇士我们走这边……|可能路有点不好走，要穿过那片树林。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="好吧！就让你们见识下冠军宝宝真正的实力吧！！"/>
+  <Enter/>
+</Scene>

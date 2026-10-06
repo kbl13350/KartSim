@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="gameRetire">
+    <m c="kr" v="리타이어 위로"/>
+    <m c="tw" v="加油!"/>
+  </k>
+  <k n="challengerMode">
+    <m c="kr" v="챌린지 모드 클리어 기념"/>
+    <m c="tw" v="完成挑戰者模式紀念"/>
+  </k>
+  <k n="countLogin">
+    <m c="kr" v="로그인 기념"/>
+    <m c="tw" v="登入紀念"/>
+  </k>
+  <k n="buyShop">
+    <m c="kr" v="상점 구매 기념"/>
+    <m c="tw" v="商店購買紀念"/>
+  </k>
+  <k n="enterShop">
+    <m c="kr" v="상점 입장 기념"/>
+    <m c="tw" v="拜訪商店紀念"/>
+  </k>
+  <k n="tuning">
+    <m c="kr" v="카트 레벨업 기념"/>
+    <m c="tw" v="改造紀念"/>
+  </k>
+  <k n="exchange">
+    <m c="kr" v="합성 기념"/>
+    <m c="tw" v="合成紀念"/>
+  </k>
+  <k n="coupleGradeUp">
+    <m c="kr" v="커플 등급업 기념"/>
+    <m c="tw" v="情侶等級提升紀念"/>
+  </k>
+  <k n="coupleSuccess">
+    <m c="kr" v="커플 성사 기념"/>
+    <m c="tw" v="情侶誕生紀念"/>
+  </k>
+  <k n="gameGoalIn">
+    <m c="kr" v="완주 기념"/>
+    <m c="tw" v="完成行駛紀念"/>
+  </k>
+  <k n="gameJoin">
+    <m c="kr" v="주행 기념"/>
+    <m c="tw" v="行駛紀念"/>
+  </k>
+  <k n="returnUser">
+    <m c="kr" v="복귀 기념"/>
+    <m c="tw" v="回流紀念"/>
+  </k>
+  <k n="anniversary">
+    <m c="kr" v="기념일"/>
+    <m c="tw" v="跑跑卡丁車日紀念"/>
+  </k>
+  <k n="levelUp">
+    <m c="kr" v="레벨업 기념"/>
+    <m c="tw" v="等級提升紀念"/>
+  </k>
+  <k n="nonPayingUser">
+    <m c="kr" v="최초 구매를 위한"/>
+    <m c="tw" v="初次購買的"/>
+  </k>
+  <k n="titleBar">
+    <m c="kr" v="특별 구매 찬스!"/>
+    <m c="tw" v="特別購買機會!"/>
+  </k>
+  <k n="DescChance">
+    <m c="kr" v="%s 특별 구매 찬스!|아이템은 한 번만 구매 가능하니 신중하게 선택하세요.|구매하신 상품은 구입 확정함에서 확인 가능합니다."/>
+    <m c="tw" v="%s 特別購買機會!|道具僅限購買一次，請慎重挑選。"/>
+  </k>
+  <k n="exit">
+    <m c="kr" v="나가기"/>
+    <m c="tw" v="離開"/>
+  </k>
+  <k n="buy">
+    <m c="kr" v="구매하기"/>
+    <m c="cn" v="购买"/>
+    <m c="tw" v="購買"/>
+  </k>
+  <k n="buyNow">
+    <m c="kr" v="구입하기"/>
+    <m c="jp" v="購入"/>
+    <m c="cn" v="购买"/>
+    <m c="tw" v="購買"/>
+    <m c="id" v="Membeli"/>
+  </k>
+  <k n="giveGift">
+    <m c="kr" v="선물하기"/>
+    <m c="cn" v="赠送"/>
+    <m c="tw" v="贈送"/>
+  </k>
+  <k n="buyItem">
+    <m c="kr" v="알림"/>
+    <m c="cn" v="通知"/>
+    <m c="tw" v="告知"/>
+  </k>
+  <k n="recommand">
+    <m c="kr" v="추천"/>
+    <m c="cn" v="推荐"/>
+    <m c="tw" v="推薦"/>
+  </k>
+  <k n="item">
+    <m c="kr" v="아이템"/>
+    <m c="cn" v="道具"/>
+    <m c="tw" v="道具"/>
+  </k>
+  <k n="kItemPrice">
+    <m c="kr" v="아이템 가격"/>
+    <m c="cn" v="道具价格"/>
+    <m c="tw" v="道具價格"/>
+  </k>
+  <k n="koin">
+    <m c="kr" v="코인"/>
+    <m c="cn" v="酷币"/>
+    <m c="tw" v="KOIN"/>
+  </k>
+  <k n="cash">
+    <m c="kr" v="캐시"/>
+    <m c="cn" v="电池"/>
+    <m c="tw" v="樂豆點"/>
+  </k>
+  <k n="lucci">
+    <m c="kr" v="루찌"/>
+    <m c="cn" v="金币"/>
+    <m c="tw" v="LUCCI"/>
+  </k>
+  <k n="shopCashInven">
+    <m c="kr" v="구입 확정"/>
+    <m c="cn" v="确认购买"/>
+    <m c="tw" v="確定購買"/>
+  </k>
+  <k n="notAllowEnchant">
+    <m c="kr" v="강화 불가"/>
+    <m c="cn" v="不可改装"/>
+    <m c="tw" v="無法強化"/>
+  </k>
+  <k n="new">&gt;
+    <m c="kr" v="NEW"/>
+    <m c="cn" v="新商品"/>
+    <m c="tw" v="新商品"/>
+  </k>
+  <k n="cashInvenBatch_receiveCashInvenItemWarning">
+    <m c="kr" v="- 해당 아이템은 구입확정 후 즉시 사용이 가능하며 구입확정 후에는 구입취소가 불가능 합니다.||아이템 보유 최대 기간, 개수 초과 시에는 구입확정이 불가능 하며 보유 중이던 기간, 개수가 소진되어 보유가 가능할 때 구입확정함에서 다시 구입확정을 통해 아이템을 사용할 수 있습니다.(단, 구입 후 일주일이 지나면 구입취소가 불가능하며, 내 아이템으로 자동 수령됩니다.)|또한, 구입확정 시 일부 아이템의 경우 선물함 아이템 보유 및 수령 상태에 따라 구매확정, 선물함 아이템 수령 등이 불가능할 수 있으니 선물함 보유 아이템 확인 후 진행하시기 바랍니다.||구입확정을 하시겠습니까?"/>
+    <m c="jp" v="- このアイテムは購入確定後、すぐに使用することができ、購入確定すると購入取消が不可能になります。||アイテム保有最長期間、最大個数を超えたときには購入確定ができず、保有していた期間、個数を消耗して保有が可能になったら購入確定ボックスで改めて購入確定を行ってください。(ただし、購入後一週間が過ぎた場合、購入取消は不可能です。)|また、購入確定時に一部アイテムでプレゼントボックスのアイテム保有と受取状態により購入確定、プレゼントボックスのアイテム受取などが不可能な場合がありますので、プレゼントボックスの保有アイテムを確認してから進行してください。||購入を確定しますか？"/>
+    <m c="id" v="- Item tersebut dapat digunakan langsung setelah konfirmasi pembelian,setelah konfirmasi tidak dapat dibatalkan.||Jika melebihi maksimal jumlah atau uni item,tidak dapat melakukan konfirmasih pembelian namun pada saat durasi atau unit item berkurang dapat melakukan konfirmasi pembelian lagi di Kotak konfirmasi.(Namun,Setelah 1 minggu pembelian tidak dapat dibatalkan pembeliannya.)|Dan,  tertentu pada saat konfirmasi pembelian tidak dapat konfirmasi atau menerima item gift tergantung ada nya item tersebut di Gift box dan jumlah unitnya oleh karena itu silahkan periksa status gift box kamu terlebih dahulu sebelum pembelian item.||Ingin konfirmasi pembelian?"/>
+  </k>
+  <k n="cashInvenBatch_receiveItemOk">
+    <m c="kr" v="구입확정이 완료 되었습니다."/>
+    <m c="jp" v="購入確定が完了しました。"/>
+    <m c="id" v="Konfirmasi pembelian selesai."/>
+  </k>
+  <k n="cashInvenBatch_receiveItemFail">
+    <m c="kr" v="구입확정에 실패 했습니다.|구매확정함에서 다시 시도해보세요."/>
+    <m c="jp" v="購入確定に失敗 しました。|購入確定ボックスでもう一度お試しください。"/>
+    <m c="id" v="Gagal konfirmasi pembelian.|Silahkan coba lagi."/>
+  </k>
+  <k n="buyFail">
+    <m c="kr" v="구입 실패"/>
+    <m c="cn" v="购买失败"/>
+    <m c="tw" v="購買失敗"/>
+  </k>
+  <k n="notInSalePeriodMsg">
+    <m c="kr" v="판매 중인 상품이 아닙니다."/>
+    <m c="cn" v="目前没有在商店销售的道具"/>
+    <m c="tw" v="非販售的商品"/>
+  </k>
+</StringBag>

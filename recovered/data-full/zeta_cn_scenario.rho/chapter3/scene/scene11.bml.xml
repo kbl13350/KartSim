@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill3"/>
+  <Char id="pirate1" pos="12 0" emotion="stop4"/>
+  <Msg name="海盗团员" string="呼！呼！|真难缠！"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="小子！|识相的快把东西还回来！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="pirate1" pos="12 0" emotion="stop3"/>
+  <Msg name="海盗团员" string="你说还就还？那我多没面子！跑一把再说！"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="什么！比赛？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="那家伙坏点子多。|皮蛋…来者不善！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="嗯…我也这样想，但是…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="你说是比赛对吧！|很好，我就满足你！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="pirate1" pos="12 0" emotion="stop3"/>
+  <Msg name="海盗团员" string="好，我也满足你！|输了后可别哭鼻子！"/>
+  <Enter/>
+</Scene>

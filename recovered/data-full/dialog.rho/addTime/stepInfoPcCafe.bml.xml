@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepInfo name="stepInfo" leftTopWH="0 0 148 146" enable="true" visible="true">
+  <Panel leftTopTex="0 0" texture="playtime_itemslot_pc방_일반" alphaBlend="true" alphaTest="true" visible="true">
+    <Label name="needTime" leftTopWH="0 3 148 20" text="777분" textColor="black" textRender="bold" textAlign="center" autoWrap="true" visible="true"/>
+    <ItemWindow name="rewardStockItem" leftTopWH="0 20 148 106" align="center" stockId="0" enable="true" visible="true"/>
+    <Label name="rewardStockName" leftTopWH="0 126 148 20" text="배찌(777일)" textColor="255 31 31 31" textAlign="center" autoWrap="true" visible="true"/>
+  </Panel>
+</StepInfo>

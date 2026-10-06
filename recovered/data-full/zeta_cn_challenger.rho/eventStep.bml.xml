@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step stepId="10" subIndexId="1" openPeriod="2021-12-16T06:00:00~2021-12-30T05:59:59" rewardLucci="0" rewardRp="0" retryItem="false" rewardItemStocks="24854" EventString="与娜儿的比赛中胜利!|2021-12-16 06:00:00 ~ 2021-12-30 05:59:59">
+    <SubStep/>
+  </Step>
+  <Step stepId="20" subIndexId="1" openPeriod="2021-12-16T06:00:00~2021-12-30T05:59:59" rewardLucci="0" rewardRp="0" retryItem="false" rewardItemStocks="24856" EventString="与茉莉安的比赛中胜利!|2021-12-16 06:00:00 ~ 2021-12-30 05:59:59">
+    <SubStep/>
+  </Step>
+  <Step stepId="30" subIndexId="1" openPeriod="2021-12-16T06:00:00~2021-12-30T05:59:59" rewardLucci="0" rewardRp="0" retryItem="false" rewardItemStocks="24733" EventString="与马赫的比赛中胜利!|2021-12-16 06:00:00 ~ 2021-12-30 05:59:59">
+    <SubStep/>
+  </Step>
+</StepList>

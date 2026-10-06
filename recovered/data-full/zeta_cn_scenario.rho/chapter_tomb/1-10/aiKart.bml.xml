@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <AiKart id="1" track="tomb_I10" isFixedKart="true" fixedKartId="1629" isFixedChar="true" fixedCharId="500" laps="3" gameType="item">
+    <LevelContent level="0" isAiItemFree="false" item="Rocket;WaterBomb;Booster;WaterFly" aiItemLevel="1">
+      <AiKart characterId="226" uniformId="0" kartId="1630" colorId="9" dyeId="7" balloonId="0" speed="45" accel="32" startTick="0" characterName="卡米拉"/>
+    </LevelContent>
+  </AiKart>
+</Root>

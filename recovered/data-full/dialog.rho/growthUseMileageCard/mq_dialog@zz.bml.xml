@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="160 0 0 0" alphaBlend="true">
+  <CaptionWindow windowRect="0 0 400 510" caption="#sb(useItem)" align="center" frame="CaptionDialog" setCloseButton="close">
+    <Panel leftTopWH="0 13 220 150" texture="img_slot2" align="hcenter" alphaBlend="true">
+      <ItemWindow name="mileageCardItem" leftTopWH="0 0 220 150" adjust="0 0" align="center"/>
+      <Label name="itemCount" adjust="0 20" windowSize="146 10" text="100 개" align="bottom;hcenter" textRender="outline16" textAlign="center" textColor="white"/>
+    </Panel>
+    <Label name="msg" leftTopWH="0 0 312 10" adjust="0 -45" align="center" text="#sb(useItemMsg)" textRender="bold16" textAlign="center" textColor="255 42 55 80"/>
+    <Window name="growthDistPanel" adjust="0 88" windowSize="352 137" align="center" enable="false" frame="GrayInputBox" visible="true">
+      <Panel name="line" adjust="0 0" windowSize="322 1" enable="false" align="center" texture="popup_useItem_divideLine" alphaBlend="true"/>
+      <Window name="curGrowth" adjust="0 10" windowSize="350 10" align="top" enable="false" alphaBlend="true" visible="true">
+        <Label name="curDistance" adjust="15 -5" windowSize="268 6" text="#sb(curDistance)" textRender="bold16" textColor="255 88 105 129"/>
+        <Label name="distanceLabel" adjust="44 -5" windowSize="40 6" text="0" align="right" textAlign="right" textRender="bold16" textColor="255 42 55 80"/>
+        <Label name="km" adjust="16 -5" windowSize="40 10" text="km" align="right" textAlign="right" textRender="bold16" textColor="255 42 55 80"/>
+        <Panel name="progressBar_bg" adjust="0 27" windowSize="320 8" align="hcenter" enable="false" texture="popup_useItem_gaugeBar_bg" alphaBlend="true"/>
+        <Panel name="progressBar" adjust="16 28" windowSize="318 6" uvRect="0 0 318 6" enable="false" texture="popup_useItem_gaugeBar" alphaBlend="true"/>
+      </Window>
+      <Window name="nextGrowth" adjust="0 32" windowSize="350 10" align="bottom" enable="false" alphaBlend="true" visible="true">
+        <Label name="nextDistance" adjust="15 -12" windowSize="268 6" text="#sb(nextDistance)" textRender="bold16" textColor="255 88 105 129"/>
+        <ColorLabel name="distanceLabel" adjust="44 -12" windowSize="40 10" text="0" align="right" textAlign="right" textRender="bold16" textColor="255 42 55 80"/>
+        <Label name="km" adjust="16 -12" windowSize="40 10" text="km" align="right" textAlign="right" textRender="bold16" textColor="255 42 55 80"/>
+        <Panel name="progressBar_bg" adjust="0 20" windowSize="320 8" align="hcenter" enable="false" texture="popup_useItem_gaugeBar_bg" alphaBlend="true"/>
+        <Panel name="progressBar" adjust="16 21" windowSize="318 6" uvRect="0 0 318 6" enable="false" texture="popup_useItem_gaugeBar" alphaBlend="true"/>
+      </Window>
+    </Window>
+    <Panel name="line" adjust="0 58" windowSize="350 1" enable="false" align="bottom;hcenter" texture="popup_useItem_divideLine" alphaBlend="true"/>
+    <Container name="type2" leftTopWH="0 0 400 30" adjust="0 16" align="hcenter;bottom">
+      <TextButton name="use" windowSize="132 40" adjust="62 0" align="left" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <TextButton name="cancel" windowSize="132 40" adjust="62 0" align="right" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Container>
+    <Container leftTopWH="0 0 312 10" adjust="0 -5" align="center">
+      <ComboBox name="cmbItemList" windowRect="135 0 308 22" align="center" comboListLength="145" scrollBarVisible="true"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

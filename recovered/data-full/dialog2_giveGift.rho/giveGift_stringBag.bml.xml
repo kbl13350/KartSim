@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="itemName">
+    <m c="kr" v="아이템 이름"/>
+    <m c="jp" v="アイテム名"/>
+    <m c="cn" v="道具名称"/>
+    <m c="tw" v="道具名稱"/>
+    <m c="us" v="Item Name"/>
+    <m c="vn" v="Tên vật phẩm"/>
+    <m c="ru" v="Название предмета"/>
+    <m c="id" v="Nama Item"/>
+    <m c="th" v="ชื่อไอเทม"/>
+  </k>
+  <k n="itemPrice">
+    <m c="kr" v="아이템 가격"/>
+    <m c="jp" v="アイテム価格"/>
+    <m c="cn" v="道具价格"/>
+    <m c="tw" v="道具價格"/>
+    <m c="us" v="Item Price"/>
+    <m c="vn" v="Giá vật phẩm"/>
+    <m c="ru" v="Цена"/>
+    <m c="id" v="Harga Item"/>
+    <m c="th" v="ราคาไอเทม"/>
+  </k>
+  <k n="cashAfterBuying">
+    <m c="kr" v="구입 후 캐시"/>
+    <m c="jp" v="購入後のNP"/>
+    <m c="cn" v="剩余电池"/>
+    <m c="tw" v="購買後剩餘樂豆點"/>
+    <m c="us" v="Nexon Cash Left"/>
+    <m c="vn" v="Vcoin còn lại"/>
+    <m c="ru" v="Остаток денег"/>
+    <m c="id" v="G-Cash setelah beli"/>
+    <m c="th" v="DE คงเหลือ"/>
+  </k>
+  <k n="lucciAfterBuying">
+    <m c="kr" v="구입 후 루찌"/>
+    <m c="jp" v="購入後のルッチ"/>
+    <m c="cn" v="剩余金币"/>
+    <m c="tw" v="購買後剩餘LUCCI"/>
+    <m c="us" v="Lucci Balance"/>
+    <m c="vn" v="Lucci còn lại"/>
+    <m c="ru" v="Остаток луцци"/>
+    <m c="id" v="Lucci setelah beli"/>
+    <m c="th" v="Lucci คงเหลือ"/>
+  </k>
+  <k n="targetRider">
+    <m c="kr" v="선물 받을 라이더명"/>
+    <m c="jp" v="プレゼントをもらう"/>
+    <m c="cn" v="接收人"/>
+    <m c="tw" v="接收人"/>
+    <m c="us" v="Recipient Name"/>
+    <m c="vn" v="Tên tay đua"/>
+    <m c="ru" v="Имя гонщика"/>
+    <m c="id" v="Rider penerima"/>
+    <m c="th" v="ชื่อผู้รับ"/>
+  </k>
+  <k n="targetRiderDesc">
+    <m c="kr" v=""/>
+    <m c="jp" v="      ライダー名"/>
+    <m c="cn" v=""/>
+    <m c="tw" v="(請輸入對方車手名稱)"/>
+    <m c="us" v=""/>
+    <m c="th" v="เลือกผู้รับของขวัญ"/>
+    <m c="vn" v="Danh sách bạn hữu"/>
+    <m c="ru" v=""/>
+  </k>
+  <k n="giftMsg">
+    <m c="kr" v="선물 메시지"/>
+    <m c="jp" v="プレゼントメッセージ"/>
+    <m c="cn" v="寄语"/>
+    <m c="tw" v="輸入留言訊息"/>
+    <m c="us" v="Gift message"/>
+    <m c="vn" v="Tin nhắn"/>
+    <m c="ru" v="Сообщение"/>
+    <m c="id" v="Pesan Hadiah"/>
+    <m c="th" v="ส่งข้อความ"/>
+  </k>
+  <k n="nexonPassword">
+    <m c="kr" v="넥슨닷컴 비밀번호"/>
+    <m c="jp" v="NEXON IDパスワード"/>
+    <m c="cn" v="密码"/>
+    <m c="tw" v="密碼"/>
+    <m c="us" v="Nexon.net PW"/>
+    <m c="vn" v="Mật khẩu"/>
+    <m c="ru" v="Пароль от игры"/>
+    <m c="id" v="Pssword Nexon.com"/>
+    <m c="th" v="พาสเวิร์ด"/>
+  </k>
+  <k n="nexonBirth">
+    <m c="kr" v="생년월일"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="nexonName">
+    <m c="kr" v="실제 이름"/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="askGiveGift">
+    <m c="kr" v="선택한 아이템을 선물하시겠습니까?"/>
+    <m c="jp" v="選択したアイテムをプレゼントしますか？"/>
+    <m c="cn" v="赠送所选道具吗？|请在阅读并同意用户协议后进行兑换。|适当娱乐，理性消费。"/>
+    <m c="tw" v="確定要贈送所選擇的道具嗎？|購買前請先詳細閱讀並同意服務合約書"/>
+    <m c="us" v="Would you like to send the selected items as a gift?"/>
+    <m c="vn" v="Bạn có chắc muốn trao tặng món quà này chứ ?"/>
+    <m c="ru" v="Подарить выбранный предмет?"/>
+    <m c="id" v="Ingin memberi item yang dipilih sebagai hadiah?"/>
+    <m c="th" v="จะส่งไอเทมนี้เป็นของขวัญใช่ไหม"/>
+  </k>
+  <k n="giveGiftToFriend">
+    <m c="kr" v="친구에게 선물"/>
+    <m c="jp" v="友達にプレゼント"/>
+    <m c="cn" v="赠送给好友"/>
+    <m c="tw" v="送禮給好友"/>
+    <m c="us" v="Gift to a Buddy"/>
+    <m c="vn" v="Xin hãy lựa chọn"/>
+    <m c="ru" v="Подарок другу"/>
+    <m c="id" v="Memberi hadiah kepada teman"/>
+    <m c="th" v="ให้ของขวัญเพื่อน"/>
+  </k>
+  <k n="msrFind">
+    <m c="kr" v="친구에게 선물"/>
+    <m c="jp" v="友達にプレゼント"/>
+    <m c="cn" v="赠送给好友"/>
+    <m c="tw" v="送禮給好友"/>
+    <m c="us" v="Gift to a Buddy"/>
+    <m c="vn" v="Xin hãy lựa chọn"/>
+    <m c="ru" v="Подарок другу"/>
+    <m c="id" v="Memberi hadiah kepada teman"/>
+    <m c="th" v="ให้ของขวัญเพื่อน"/>
+  </k>
+  <k n="unknownRider">
+    <m c="kr" v="등록되지 않은 라이더 입니다."/>
+    <m c="jp" v="登録されていないライダーです。"/>
+    <m c="cn" v="不存在的车手"/>
+    <m c="tw" v="這位車手並不存在"/>
+    <m c="us" v="The Rider is not registered."/>
+    <m c="vn" v="Không xác định đuợc tay đua này"/>
+    <m c="ru" v="Незарегистрированный гонщик"/>
+    <m c="id" v="Rider yang tidak terdaftar"/>
+    <m c="th" v="เป็นผู้เล่นที่ไม่ได้ลงทะเบียน"/>
+  </k>
+  <k n="addFromFriendList">
+    <m c="kr" v="친구 목록에서 추가"/>
+    <m c="jp" v="友達リストから追加"/>
+    <m c="cn" v="在好友列表中添加"/>
+    <m c="tw" v="從好友名單中選擇"/>
+    <m c="us" v="Add from a friends&apos; list"/>
+    <m c="vn" v="Nhập tên từ danh sách bạn hữu"/>
+    <m c="ru" v="Добавить в список друзей"/>
+    <m c="id" v="Tambah ke daftar teman"/>
+    <m c="th" v="เพิ่มจากรายการเพื่อน"/>
+  </k>
+  <k n="giveGift">
+    <m c="kr" v="선물하기"/>
+    <m c="jp" v="プレゼントする"/>
+    <m c="cn" v="赠送礼物"/>
+    <m c="tw" v="贈送禮物"/>
+    <m c="us" v="Send a gift"/>
+    <m c="vn" v="Tặng quà"/>
+    <m c="ru" v="Подарить"/>
+    <m c="id" v="Memberi hadiah"/>
+    <m c="th" v="ส่งของขวัญ"/>
+  </k>
+  <k n="passwordMisMatched">
+    <m c="kr" v="비밀번호가 틀렸습니다."/>
+    <m c="jp" v="パスワードに誤りがあります。"/>
+    <m c="cn" v="密码错误"/>
+    <m c="tw" v="密碼錯誤"/>
+    <m c="us" v="Invalid password."/>
+    <m c="vn" v="Sai mật khẩu"/>
+    <m c="ru" v="Неверный пароль."/>
+    <m c="id" v="Password salah."/>
+    <m c="th" v="พาสเวิร์ดผิด"/>
+  </k>
+  <k n="passwordDontKnow">
+    <m c="kr" v="비밀번호를 확인할 수 없습니다. nexon.com 로그인을 다시 해보세요."/>
+    <m c="jp" v="パスワードを確認できません。 もう１度ログインし直して下さい。"/>
+    <m c="cn" v="密码错误(dontKnow)"/>
+    <m c="tw" v="密碼錯誤"/>
+    <m c="us" v="Invalid password. Please log into nexon.net again."/>
+    <m c="vn" v="Không thể xác nhận mật khẩu. Hãy thử vào trang paygate.vtc.vn."/>
+    <m c="ru" v="Проверить пароль нельзя. Повторите вход на сайте nexon.com."/>
+    <m c="id" v="Tidak dapat konfirmasi password.Silakan coba login gemsool.com"/>
+    <m c="th" v="ไม่สามารถยืนยันพาสเวิร์ดได้ กรุณาล็อกอิน www.gg.in.th อีกครั้ง"/>
+  </k>
+  <k n="giveGiftSuccess">
+    <m c="kr" v="선물하기 성공"/>
+    <m c="jp" v="プレゼント成功"/>
+    <m c="cn" v="赠送礼物成功"/>
+    <m c="tw" v="禮物贈送成功"/>
+    <m c="us" v="Gift has been sent successfully. "/>
+    <m c="vn" v="Tặng quà thành công"/>
+    <m c="ru" v="Подарок отправлен"/>
+    <m c="id" v="Telah berhasil memberi hadiah"/>
+    <m c="th" v="การส่งของขวัญสำเร็จ"/>
+  </k>
+  <k n="giveGiftSuccessMsgFormat">
+    <m c="kr" v="[%1!s!] 라이더에게 [%2!s!] 선물을 보냈습니다."/>
+    <m c="jp" v="[%1!s!] ライダーに[%2!s!]をプレゼントしました。"/>
+    <m c="cn" v="[%1!s!] 的礼物 [%2!s!] 已经送出"/>
+    <m c="tw" v="[%1!s!] 贈送禮物 [%2!s!] 禮物已送出"/>
+    <m c="us" v="[%1!s!] Gift sent successfully [%2!s!] to the Rider!"/>
+    <m c="vn" v="Đã tặng [%2!s!] cho [%1!s!] thành công."/>
+    <m c="ru" v="Гонщику [%1!s!] отправлен подарок| &quot;[%2!s!]&quot;"/>
+    <m c="id" v="Telah memberi hadiah [%2!s!] kepada [%1!s!]."/>
+    <m c="th" v="ส่ง [%2!s!] ให้กับ [%1!s!]|เรียบร้อยแล้ว"/>
+  </k>
+  <k n="giveGiftAllSuccessMsgFormat">
+    <m c="kr" v="구매 이벤트 혜택으로 [%1!s!]이 [%2!s!]에게 추가로 지급되었습니다."/>
+    <m c="cn" v="活动赠送的奖励[%1!s!]已赠送给[%2!s!]，感谢您的参加。"/>
+    <m c="tw" v="由於購買活動的優惠, [%1!s!]已追加贈送給[%2!s!]玩家."/>
+  </k>
+  <k n="giveGiftSuccessMsg1">
+    <m c="kr" v="라이더에게"/>
+    <m c="jp" v="ライダーに"/>
+    <m c="cn" v="的礼物"/>
+    <m c="tw" v="贈送禮物"/>
+    <m c="us" v="Gift sent successfully"/>
+    <m c="vn" v="Đã gửi quà"/>
+    <m c="ru" v="Гонщику"/>
+    <m c="id" v="Ke Rider"/>
+    <m c="th" v="ส่ง"/>
+  </k>
+  <k n="giveGiftSuccessMsg2">
+    <m c="kr" v="선물을 보냈습니다."/>
+    <m c="jp" v="プレゼントを送りました。"/>
+    <m c="cn" v="已经送出"/>
+    <m c="tw" v="禮物已送出"/>
+    <m c="us" v="to the Rider!"/>
+    <m c="vn" v="Món quà đã được gửi đi."/>
+    <m c="ru" v="Отправлен подарок"/>
+    <m c="id" v="Telah memberi hadiah."/>
+    <m c="th" v="ให้เพื่อนเรียบร้อยแล้ว"/>
+  </k>
+  <k n="unknown">
+    <m c="kr" v="알수없음"/>
+    <m c="jp" v="不明"/>
+    <m c="cn" v="未知"/>
+    <m c="tw" v="無法確認"/>
+    <m c="us" v="Unknown"/>
+    <m c="vn" v="Không rõ"/>
+    <m c="ru" v="Неизвестно"/>
+    <m c="id" v="Tidak diketahui"/>
+    <m c="th" v="0"/>
+  </k>
+  <k n="giveGiftFail">
+    <m c="kr" v="선물하기 실패"/>
+    <m c="jp" v="プレゼント失敗"/>
+    <m c="cn" v="赠送礼物失败"/>
+    <m c="tw" v="禮物贈送失敗"/>
+    <m c="us" v="Gift delivery unsuccessful. Please try again."/>
+    <m c="vn" v="Tặng quà thất bại"/>
+    <m c="ru" v="Ошибка при покупке"/>
+    <m c="id" v="Gagal memberi hadiah"/>
+    <m c="th" v="การส่งของขวัญล้มเหลว"/>
+  </k>
+  <k n="duplicateGift">
+    <m c="kr" v="이 상품이 이미 상대 라이더의 차고나 선물함에 들어있습니다."/>
+    <m c="jp" v="この商品がすでに相手ライダーのガレージやプレゼントボックスに入っています。"/>
+    <m c="cn" v="对方车手的车库或礼品盒中已拥有此商品"/>
+    <m c="tw" v="這項商品已在對方的車庫或禮物盒中"/>
+    <m c="us" v="The Rider already has these items in their Garage | or Gift Box."/>
+    <m c="vn" v="Món quà này đã được tặng vào tủ đồ của đối phương hay ngăn quà tặng."/>
+    <m c="ru" v="У данного персонажа уже есть этот предмет."/>
+    <m c="id" v="Item ini sudah ada di gift box atau garage rider dipilih."/>
+    <m c="th" v="อีกฝ่ายมีไอเทมนี้อยู่ในโรงรถอยู่แล้ว"/>
+  </k>
+  <k n="duplicateItemErrMsgFmt">
+    <m c="kr" v="이미 상대방이 선물함에 아이템 [%s] 이 담긴 선물을 갖고 있습니다."/>
+    <m c="jp" v="すでに相手がプレゼントボックスにアイテム[%s]の入ったプレゼントを持っています。"/>
+    <m c="cn" v="对方的礼品盒中已存在包含道具[%s]的礼物"/>
+    <m c="tw" v="對方的禮物盒中已存在包含道具[%s]的禮物"/>
+    <m c="us" v="The Rider already has the selected items [%s] in the Gift Box."/>
+    <m c="vn" v="Ngăn quà tặng của đối phương đã chứa [%s]"/>
+    <m c="ru" v="Гонщик уже обладает предметом [%s]."/>
+    <m c="id" v="Di gift box rider dipilih sudah ada hadiah berupa item [%s]."/>
+    <m c="th" v="อีกฝ่ายมีไอเทม[%s] อยู่แล้ว "/>
+  </k>
+  <k n="giveGiftWarning">
+    <m c="kr" v="현재 아이템을 선물 하시면 남은 캐시(루찌)에서 아이템 가격만큼 빠져 나갑니다. 정말 구입하시겠습니까?"/>
+    <m c="jp" v="現在のアイテムをプレゼントすると、残りのNP(ルッチ)からアイテム価格分が支払われます。本当に購入しますか？"/>
+    <m c="cn" v="兑换道具后会减去相应金额的电池或金币，要继续吗？"/>
+    <m c="tw" v="購買道具時將會直接從樂豆點或LUCCI中扣除。是否確定要購買？"/>
+    <m c="us" v="If you send the selected items as a gift, you will be charged accordingly from your Cash(Lucci). | Do you still wish to send the gift?"/>
+    <m c="vn" v="Nếu tặng món đồ hiện tại thì Vcoin (Lucci) sẽ giảm bớt. Có thật là bạn sẽ mua chứ?"/>
+    <m c="ru" v="Подарив данный предмет, с вашего счета| будет снята сумма равная его цене.| Купить?"/>
+    <m c="id" v="Jika memberi hadiah sekarang Lucci yang tersisa akan dipotong sesuai harga item.Ingin membelinya?"/>
+    <m c="th" v="ถ้าจะซื้อไอเทมให้เป็นของขวัญ เงิน DE หรือ Lucci |จะลดไปเท่ากับราคาไอเทม จะซื้อจริงใช่ไหม"/>
+  </k>
+  <k n="askGiveDuplicateItem">
+    <m c="kr" v="상대가 이 아이템을 가지고 있습니다. 그래도 보내시겠습니까?"/>
+    <m c="jp" v="相手がこのアイテムを持っています。 それでも送りますか？"/>
+    <m c="cn" v="对方已拥有此道具，还要继续吗？"/>
+    <m c="tw" v="對方已擁有這項道具。是否確定要贈送？"/>
+    <m c="us" v="This Rider already has the selected items. Do you still wish to send them as a gift?"/>
+    <m c="vn" v="Đối phương đã có vật phẩm này, dù vậy bạn vẫn gửi tặng cho đối phương phải không?"/>
+    <m c="ru" v="Гонщик уже обладает этим предметом. Все равно послать?"/>
+    <m c="id" v="Rider yang dipilih telah memiliki item tersebut.Yakin memberikannya?"/>
+    <m c="th" v="อีกฝ่ายมีไอเทมอยู่แล้ว จะส่งไอเทมใช่ไหม"/>
+  </k>
+  <k n="selfGiftError">
+    <m c="kr" v="자기 자신에게 선물할 수 없습니다."/>
+    <m c="jp" v="自分にはプレゼントできません。"/>
+    <m c="cn" v="不能自己给自己送礼物"/>
+    <m c="tw" v="無法送禮給自己。"/>
+    <m c="us" v="You cannot send a gift to yourself. ^_^"/>
+    <m c="vn" v="Không thể tặng quà cho bản thân!"/>
+    <m c="ru" v="Сделать подарок самому себе нельзя."/>
+    <m c="id" v="Tidak dapat memberi hadiah kepda diri kamu sendiri."/>
+    <m c="th" v="ไม่สามารถให้ของขวัญตัวเองได้"/>
+  </k>
+  <k n="invalidRider">
+    <m c="kr" v="존재하지 않거나 삭제된 라이더입니다."/>
+    <m c="jp" v="存在しないか、削除されたライダーです。"/>
+    <m c="cn" v="不存在或已删除的车手"/>
+    <m c="tw" v="車手不存在或是已刪除的車手。"/>
+    <m c="us" v="This Rider does not exist or has been deleted."/>
+    <m c="vn" v="Tay đua này không tồn tại."/>
+    <m c="ru" v="Данный гонщик не существует или удален"/>
+    <m c="id" v="Rider tersebut tidak ada atau telah dihapus."/>
+    <m c="th" v="เป็นผู้เล่นที่ลบออกไปแล้ว หรือไม่มีอยู่ในรายการ"/>
+  </k>
+  <k n="selectStr">
+    <m c="kr" v="선택해주세요"/>
+    <m c="jp" v="選択してください。"/>
+    <m c="cn" v="选择期限"/>
+    <m c="tw" v="請選擇期限"/>
+    <m c="us" v="Please select. "/>
+    <m c="vn" v="Xin hãy lựa chọn"/>
+    <m c="ru" v="Выберите"/>
+    <m c="id" v="Silahkan memilih"/>
+    <m c="th" v="กรุณาเลือก"/>
+  </k>
+  <k n="selectError">
+    <m c="kr" v="구매하려는 상품을 선택해 주시기 바랍니다."/>
+    <m c="jp" v="購入する商品を選択してください。"/>
+    <m c="cn" v="请选择要兑换道具的使用期限"/>
+    <m c="tw" v="請選擇要購買的道具使用期限"/>
+    <m c="us" v="Please select the item you wish to purchase."/>
+    <m c="vn" v="Hãy chọn vật phẩm muốn mua"/>
+    <m c="ru" v="Выберите желаемый предмет."/>
+    <m c="id" v="Silahkan memilih item yang ingin dibeli."/>
+    <m c="th" v="กรุณาเลือกไอเทมที่จะซื้อ"/>
+  </k>
+  <k n="changedRidWarning">
+    <m c="kr" v="[%s]의 라이더명이 [%s]로 변경되었습니다. 계속 진행하시겠습니까?"/>
+    <m c="jp" v="[%s]のライダー名が[%s]に変更されました。このまま進行しますか？"/>
+    <m c="cn" v="[%s]的车手名称变更为[%s]. 要继续吗?"/>
+    <m c="tw" v="查無此人，請確認輸入的角色名稱是否正確！」"/>
+    <m c="us" v="Your Rider name [%s] was changed to [%s].  Continue?"/>
+    <m c="vn" v="Tên [%s] tay đua đã được thay đổi thành [%s]. Bạn vẫn tiến hành chứ ?"/>
+    <m c="ru" v="Вы сменили имя [%s] на [%s]. Продолжить?"/>
+    <m c="id" v="Nama Rider [%s] berubah menjadi [%s].Yakin melanjutkannya?"/>
+    <m c="th" v="ชื่อผู้เล่นของ[%s]เปลี่ยนเป็น [%s] จะดำเนินการต่อไปใช่ไหม"/>
+  </k>
+  <k n="friendCntLack">
+    <m c="kr" v="친구 숫자가 부족하여 선물을 보내지 못했습니다.|친구를 3명까지 만들어 주세요."/>
+  </k>
+  <k n="myCashLucci">
+    <m c="kr" v="내 캐시/루찌"/>
+    <m c="cn" v="我的电池/金币"/>
+  </k>
+  <k n="beforeBuying">
+    <m c="kr" v="현재"/>
+    <m c="cn" v="持有"/>
+  </k>
+  <k n="afterBuying">
+    <m c="kr" v="구입 후"/>
+    <m c="cn" v="剩余"/>
+  </k>
+</StringBag>

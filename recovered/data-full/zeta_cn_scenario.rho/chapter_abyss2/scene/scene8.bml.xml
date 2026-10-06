@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss1"/>
+  <Char id="neoul" pos="8 0" emotion="normal"/>
+  <Msg name="奈尔" string="莫格瑞就在里面。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Char id="tiera" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="茜茜" string="探索魔法，这里边有，|2……不对是3个人。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Msg name="黑妞" string="应该是莫格瑞和赫凯特带着奈琳！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="8 0" emotion="normal"/>
+  <Msg name="奈尔" string="好，我们走吧！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <BackGround texture="abyss10"/>
+  <Char id="meoguri" pos="8 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="终于来了，叛徒！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="meoguri" pos="6 0" emotion="normal"/>
+  <Char id="hekate" pos="11 0" emotion="stop1"/>
+  <Msg name="赫凯特" string="哎呀，有说过让你带着别的伙伴吗？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="……我来了，请你守约。"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="嗯？我们之间有什么约定吗？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="快点放了皮蛋和奈琳！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="hekate" pos="11 0" emotion="stop1"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="赫凯特" string="呜呼呼，真是个急性子。|按照约定你的男朋友应该很快就会醒来。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="hekate" pos="9 0" emotion="stop1"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="meoguri" pos="13 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="但我可没说过会放奈琳哦！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="9 0" emotion="stop1"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="13 0" emotion="normal"/>
+  <Msg name="奈尔" string="你不放姐姐，我就要收回你的能力了。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="9 0" emotion="stop1"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="13 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="哈哈！只要赫凯特在这里，你什么都做不了！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="9 0" emotion="stop1"/>
+  <Char id="meoguri" pos="12 0" emotion="stop1"/>
+  <Char id="tiera" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="茜茜" string="大叔，你可不要太相信魔女哦！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="9 0" emotion="stop1"/>
+  <Char id="meoguri" pos="12 0" emotion="normal"/>
+  <Char id="tiera" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="嗯？没见过这个小鬼……"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="tiera" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="hekate" pos="9 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="12 0" emotion="normal"/>
+  <Msg name="赫凯特" string="小心，她身上有魔力！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="tiera" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="hekate" pos="11 0" emotion="normal"/>
+  <Msg name="茜茜" string="被你发现了？阿姨，魔女就应该跟魔女打，不是吗？"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="hekate" pos="11 0" emotion="normal"/>
+  <Msg name="赫凯特" string="哎呦，一看就知道是个乳臭未干的小魔女，你要跟我打？"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="hekate" pos="11 0" emotion="normal"/>
+  <Msg name="茜茜" string="对，依照古代魔女的律法，正式向你申请对决！"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="hekate" pos="11 0" emotion="stop4"/>
+  <Msg name="赫凯特" string="既然是正式申请，也不好拒绝啊。"/>
+  <Enter/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="赫凯特" string="莫格瑞，看来我要离开一下，去对付那个小鬼头。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="hekate" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="无所谓，奈尔根本不是我的对手！"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="黑妞" string="哼，我会帮奈尔的！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="莫格瑞" string="嗯？啊，我都把你忘了。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="hekate" pos="12 0" emotion="stop1"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="赫凯特" string="小鬼，你的对手不是我。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="hekate" pos="12 0" emotion="stop1"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="奈尔" string="不是你？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="hekate" pos="12 0" emotion="stop1"/>
+  <Char id="dizini" pos="2 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="对手？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="hekate" pos="8 0" emotion="stop4"/>
+  <Msg name="赫凯特" string="呜呼呼，是时候了，出来吧奈琳~"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="hekate" pos="7 0" emotion="stop4"/>
+  <Char id="narin" pos="11 0" emotion="stop6"/>
+  <Msg name="奈琳" string="……"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="narin" pos="11 0" emotion="stop6"/>
+  <Msg name="奈尔" string="姐姐？没受伤吧！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="narin" pos="10 0" emotion="stop6"/>
+  <Msg name="奈琳" string="发现，敌人。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="narin" pos="10 0" emotion="stop6"/>
+  <Char id="dizini" pos="1 0" emotion="stop6"/>
+  <Msg name="黑妞" string="奈尔，快闪开！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="10 0" emotion="stop6"/>
+  <Msg name="奈尔" string="姐，姐姐居然会攻击我。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="9 0" emotion="stop6"/>
+  <Msg name="奈琳" string="消灭，敌人。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="hekate" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="你们对奈琳做了什么？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="hekate" remove="true"/>
+  <Char id="hekate" pos="7 0" emotion="stop1"/>
+  <Char id="narin" pos="11 0" emotion="stop6"/>
+  <Msg name="赫凯特" string="呜呼呼，啊哈哈哈！我只是教育了她一下，好让她听话。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="hekate" pos="7 0" flip="true" emotion="stop1"/>
+  <Char id="narin" pos="11 0" emotion="stop6"/>
+  <Msg name="赫凯特" string="奈琳，你去对付那个小女孩。"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="hekate" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="narin" pos="5 0" emotion="stop6"/>
+  <Msg name="奈琳" string="优先消灭对象已变更……"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Char id="narin" pos="3 0" emotion="stop6"/>
+  <Msg name="莫格瑞" string="哇呜，还挺积极的。|她俩是不是本来就关系不好？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="奈尔" string="莫格瑞！还我姐姐！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="stop1"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="莫格瑞" string="束手就擒的话我会考虑考虑，哇哈哈！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="7 0" flip="true" emotion="stop2"/>
+  <Char id="tiera" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="茜茜" string="别担心，|只要打败赫凯特，就会恢复正常的。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="10 0" emotion="stop1"/>
+  <Char id="tiera" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="赫凯特" string="呜呼呼，那得看你能不能打败我~"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" pos="8 0" emotion="normal"/>
+  <Msg name="奈尔" string="我来挡住莫格瑞，姐姐就交给你了。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="9 0" emotion="normal"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="别担心，奈琳就交给我！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="tiera" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="茜茜" string="你们只要拖延时间就可以了。！我会打败赫凯特的。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="hekate" pos="9 0" emotion="stop4"/>
+  <Msg name="赫凯特" string="好了，狂妄的小鬼，准备好接受教训了吗？"/>
+  <Enter/>
+  <Char id="hekate" remove="true"/>
+  <Char id="hekate" pos="11 0" emotion="stop4"/>
+  <Char id="tiera" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="茜茜" string="我绝不会输的！"/>
+  <Enter/>
+</Scene>

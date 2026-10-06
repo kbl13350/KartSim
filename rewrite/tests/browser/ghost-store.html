@@ -1,0 +1,46 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Ghost store browser smoke</title>
+<pre id="result">running</pre>
+<script type="module">
+  import { GhostRecordStore } from "/src/game/ghost/record-store.ts";
+  const output = document.querySelector("#result");
+  const store = new GhostRecordStore();
+  const key = "codex:ghost-store-smoke:frames";
+  const rawKey = "codex:ghost-store-smoke:raw";
+  const frame = { time: 123, x: -100, y: 900, z: -40, w: 1, qx: 2, qy: 3, qz: 4, status: 65535 };
+  try {
+    await store.put(key, {
+      zCeiling: 1500,
+      timeBase: "countdown",
+      participants: [{ equipment: { kart: "browser-smoke" }, record: { stamps: [frame] } }],
+    });
+    const record = await store.get(key);
+    if (JSON.stringify(record?.participants[0]?.record.stamps[0]) !== JSON.stringify(frame)) {
+      throw new Error("frame round trip did not match");
+    }
+    await store.putRaw(rawKey, {
+      metadata: { timeBase: "countdown", equipment: { kart: "raw-smoke" } },
+      frames: [],
+    }, Uint8Array.of(1, 2, 3));
+    const raw = await store.get(rawKey);
+    if (raw?.schemaVersion !== 3 || String(raw.originalKsvBytes) !== "1,2,3") {
+      throw new Error("raw KSV bytes did not round trip");
+    }
+    const listed = await store.list();
+    if (!listed.some(item => item.key === key) || !listed.some(item => item.key === rawKey)) {
+      throw new Error("list omitted a stored record");
+    }
+    await store.delete(key);
+    await store.delete(rawKey);
+    if (await store.get(key) !== undefined || await store.get(rawKey) !== undefined) {
+      throw new Error("delete left a stored record");
+    }
+    output.textContent = "PASS: IndexedDB put/get/list/delete, frame and raw KSV bytes";
+  } catch (error) {
+    output.textContent = `FAIL: ${error?.stack || error}`;
+  } finally {
+    await store.delete(key);
+    await store.delete(rawKey);
+  }
+</script>

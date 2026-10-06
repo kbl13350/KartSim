@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="preview">
+    <m c="kr" v="미리보기"/>
+    <m c="jp" v="プレビュー"/>
+    <m c="cn" v="预览"/>
+    <m c="tw" v="預覽"/>
+    <m c="us" v="Preview"/>
+    <m c="vn" v="Xem trước"/>
+    <m c="ru" v="Предпросмотр"/>
+    <m c="id" v="Preview"/>
+    <m c="th" v="ดูตัวอย่าง"/>
+  </k>
+  <k n="charDecoration">
+    <m c="kr" v="캐릭터 치장"/>
+    <m c="jp" v="キャラアバター"/>
+    <m c="cn" v="人物装饰"/>
+    <m c="tw" v="裝扮人物"/>
+    <m c="us" v="Character"/>
+    <m c="vn" v="Phụ tùng"/>
+    <m c="ru" v="Декорировать персонажа"/>
+    <m c="id" v="Dekorasi Character"/>
+    <m c="th" v="แต่งตัวละคร"/>
+  </k>
+  <k n="decoration">
+    <m c="kr" v="치장"/>
+    <m c="jp" v="アバター"/>
+    <m c="cn" v="装饰"/>
+    <m c="tw" v="裝扮"/>
+    <m c="us" v="Mods"/>
+    <m c="vn" v="Phụ tùng"/>
+    <m c="ru" v="Декорации"/>
+    <m c="id" v="Dekorasi"/>
+    <m c="th" v="แต่งรถ"/>
+  </k>
+  <k n="item">
+    <m c="kr" v="아이템"/>
+    <m c="jp" v="アイテム"/>
+    <m c="cn" v="道具"/>
+    <m c="tw" v="道具"/>
+    <m c="us" v="Items"/>
+    <m c="vn" v="Vật phẩm"/>
+    <m c="ru" v="Предмет"/>
+    <m c="id" v="Item"/>
+    <m c="th" v="ไอเทม"/>
+  </k>
+  <k n="itemTitle">
+    <m c="kr" v="아이템"/>
+    <m c="jp" v="アイテム"/>
+    <m c="cn" v="道具"/>
+    <m c="tw" v="道具"/>
+    <m c="us" v="Items"/>
+    <m c="vn" v="Tên"/>
+    <m c="ru" v="Предметы"/>
+    <m c="id" v="Item"/>
+    <m c="th" v="ชื่อไอเทม"/>
+  </k>
+  <k n="dlgTitle">
+    <m c="kr" v="%s 님의 아이템"/>
+    <m c="jp" v="%sさんのアイテム"/>
+    <m c="cn" v="道具"/>
+    <m c="tw" v="道具"/>
+    <m c="us" v="Items"/>
+    <m c="vn" v="Vật phẩm của %s"/>
+    <m c="ru" v="Предмет игрока %s"/>
+    <m c="id" v="Item %s"/>
+    <m c="th" v="ไอเทมของคุณ %s "/>
+  </k>
+  <k n="invalidUpgradeItem">
+    <m c="kr" v="잘못된 업그레이드 아이템입니다."/>
+    <m c="jp" v="誤ったアップグレードアイテムです。"/>
+    <m c="cn" v="错误的升级道具"/>
+    <m c="tw" v="錯誤的升級道具"/>
+    <m c="us" v="Invalid upgrade items."/>
+    <m c="vn" v="Vật phẩm nâng cấp không hợp lệ."/>
+    <m c="ru" v="Неверный предмет."/>
+    <m c="id" v="Item yang salah upgrade"/>
+    <m c="th" v="เป็นไอเทมที่อัพเกรดผิดพลาด"/>
+  </k>
+  <k n="notEnoughItem">
+    <m c="kr" v="아이템이 없거나 부족합니다."/>
+    <m c="jp" v="アイテムが無いか、足りません。"/>
+    <m c="cn" v="道具不存在或不足"/>
+    <m c="tw" v="道具不存在或不足"/>
+    <m c="us" v="None or not enough items available."/>
+    <m c="vn" v="Vật phẩm không có hoặc thiếu."/>
+    <m c="ru" v="У вас нет или не хватает предметов."/>
+    <m c="id" v="Tidak ada item atau kurang"/>
+    <m c="th" v="ไม่มีไอเทมหรือไอเทมไม่เพียงพอ"/>
+  </k>
+  <k n="notEnoughUpgradeKit">
+    <m c="kr" v="업그레이드킷이 없거나 부족합니다."/>
+    <m c="jp" v="アップグレードキットが無いか、足りません。"/>
+    <m c="cn" v="升级工具箱不存在或不足"/>
+    <m c="tw" v="升級工具箱不存在或不足"/>
+    <m c="us" v="None or not enough upgrade kits available."/>
+    <m c="ru" v="У вас нет устройства для улучшения или его не хватает."/>
+    <m c="id" v="Tidak ada Upgrade kit atau kurang."/>
+    <m c="vn" v="Không đủ bộ dụng cụ nâng cấp."/>
+  </k>
+  <k n="alreadyExistUpgradedItem">
+    <m c="kr" v="이미 해당 아이템을 가지고 있습니다.|&lt;내 차고&gt;에서 확인해 보세요."/>
+    <m c="jp" v="すでにこのアイテムを持っています。|&lt;マイガレージ&gt;で確認してください。"/>
+    <m c="cn" v="已拥有相应道具，请在&lt;我的车库&gt;进行确认"/>
+    <m c="tw" v="已擁經有此道具，請在&lt;我的車庫&gt;進行確認"/>
+    <m c="us" v="You already have the selected items. l View them at &lt;My Garage&gt;."/>
+    <m c="vn" v="Vật phẩm đã tồn tại.| Hãy kiểm tra lại trong gara xe."/>
+    <m c="ru" v="У вас уже есть данный предмет.|Проверьте во вкладке &lt;Мой гараж&gt;."/>
+    <m c="id" v="Sudah memiliki item tersebut.|Silahkan cek di &lt;My Garage&gt;."/>
+    <m c="th" v="มีไอเทมอยู่แล้ว|กรุณาตรวจสอบจาก&lt;โรงรถส่วนตัว&gt;"/>
+  </k>
+  <k n="upgradeFail">
+    <m c="kr" v="업그레이드에 실패했습니다."/>
+    <m c="jp" v="アップグレードに失敗しました。"/>
+    <m c="cn" v="升级失败"/>
+    <m c="tw" v="升級失敗"/>
+    <m c="us" v="Upgrade error."/>
+    <m c="vn" v="Nâng cấp thất bại."/>
+    <m c="ru" v="Ошибка во время улучшения."/>
+    <m c="id" v="Gagal mengupgrade"/>
+    <m c="th" v="การอัพเกรดล้มเหลว"/>
+  </k>
+  <k n="cannotUpgrade">
+    <m c="kr" v="사용할 수 없습니다.| 사용 조건을 확인해 주세요."/>
+    <m c="jp" v="このキットではアップグレードできません。"/>
+    <m c="cn" v="不能用这个工具箱进行升级"/>
+    <m c="tw" v="無法使用此工具箱進行升級"/>
+    <m c="us" v="This kit cannot upgrade this item."/>
+    <m c="vn" v="Bạn không thể nâng cấp vật phẩm này."/>
+    <m c="ru" v="С помощью данного устройства улучшение невозможно"/>
+    <m c="id" v="Tidak dapat upgrade dengan kit ini"/>
+    <m c="th" v="ไม่สามารถอัพเกรดจากรถพื้นฐานนี้ได้ "/>
+  </k>
+  <k n="special">
+    <m c="kr" v="스페셜"/>
+    <m c="jp" v="スペシャル"/>
+    <m c="cn" v="特殊"/>
+    <m c="tw" v="其他"/>
+    <m c="us" v="Special"/>
+    <m c="vn" v="Đặc biệt"/>
+    <m c="ru" v="Особый"/>
+    <m c="id" v="Special"/>
+    <m c="th" v="เควสท์"/>
+  </k>
+  <k n="dropItemWarnMsgFormat">
+    <m c="kr" v="삭제된 아이템은 환불 및 복구가 불가능합니다. [%s] 아이템을 정말 버리시겠습니까?"/>
+    <m c="jp" v="削除したアイテムは払戻したり、元に戻すことができません。 [%s] アイテムを本当に捨てますか？"/>
+    <m c="cn" v="被删除的道具将无法返还 [%s] 真的要丢弃吗？"/>
+    <m c="tw" v="刪除的道具無法退還或回復GASH [%s] 確定要丟棄道具嗎?"/>
+    <m c="us" v="Deleted items cannot be restored or refunded. [%s] Are you sure you want to discard the items?"/>
+    <m c="vn" v="Một khi đã xóa bỏ thì không hồi phục lại đuợc. Bạn có chắc muốn bỏ [%s] không ? "/>
+    <m c="ru" v="Хотите выбросить предмет?|[%s]?"/>
+    <m c="id" v="Item yang dihapus tidak dapat dikembalikan atau diperbaiki.Yakin ingin membuang item [%s]?"/>
+    <m c="th" v="ไอเทมที่ทิ้งไม่สามารถคืนเป็นเงินหรือนำคืนกลับมา|ได้ โปรดยืนยันการทิ้งไอเทม [%s]"/>
+  </k>
+  <k n="dropItemWarn1">
+    <m c="kr" v="삭제된 아이템은 환불 및 복구가 불가능합니다."/>
+    <m c="jp" v="削除したアイテムは払戻したり、元に戻すことができません。"/>
+    <m c="cn" v="被删除的道具将无法返还"/>
+    <m c="tw" v="刪除的道具無法退還或回復GASH"/>
+    <m c="us" v="Deleted items cannot be restored or refunded."/>
+    <m c="vn" v="Một khi đã xóa bỏ thì không hồi phục lại đuợc."/>
+    <m c="ru" v="Удаленный предмет вернуть или восстановить нельзя."/>
+    <m c="id" v="Item yang dihapus tidak dapat dikembalikan atau diperbaiki."/>
+    <m c="th" v="ไอเทมที่ลบไม่สามารถคืนเป็นเงินหรือนำคืนกลับมาได้"/>
+  </k>
+  <k n="dropItemWarn2">
+    <m c="kr" v="아이템을 정말 버리시겠습니까?"/>
+    <m c="jp" v="アイテムを本当に捨てますか？"/>
+    <m c="cn" v="真的要丢弃吗？"/>
+    <m c="tw" v="確定要丟棄道具嗎?"/>
+    <m c="us" v="Are you sure you want to discard the items?"/>
+    <m c="vn" v="Bạn có chắc muốn xóa không ? "/>
+    <m c="ru" v="Вы правда хотите удалить предмет?"/>
+    <m c="id" v="Yakin ingin membuang item?"/>
+    <m c="th" v="ต้องการทิ้งไอเทมจริงๆใช่ไหม"/>
+  </k>
+  <k n="dropItem">
+    <m c="kr" v="아이템 버리기"/>
+    <m c="jp" v="アイテムを捨てる"/>
+    <m c="cn" v="丢弃道具"/>
+    <m c="tw" v="丟棄道具"/>
+    <m c="us" v="Discard the items"/>
+    <m c="vn" v="Xóa vật phẩm"/>
+    <m c="ru" v="Выбросить предмет"/>
+    <m c="id" v="Membuang Item"/>
+    <m c="th" v="ทิ้งไอเทม"/>
+  </k>
+  <k n="dropPlateWarn1">
+    <m c="kr" v="번호판을 모두 버리면 새 번호판을 구입할 때까지 기존의 이니셜을 사용할 수 없습니다. 이 번호판을 버리시겠습니까?"/>
+    <m c="jp" v="ナンバープレートをすべて捨てると、新しいナンバープレートを購入するまでこれまでのイニシャルを使用できなくなります。 このナンバープレートを捨てますか？"/>
+    <m c="cn" v="丢弃所有显示牌就不能显示车牌文字了，要丢弃此显示牌吗？"/>
+    <m c="tw" v="丟棄車牌後，在未獲得新的車牌前，卡丁車將裝備最原始的車牌，是否要丟棄？"/>
+    <m c="us" v="If you discard all the license plates, you cannot use your current initials until you purchase a new plate. Do you wish to discard all plates?"/>
+    <m c="vn" v="Nếu bỏ mã số mua bán thì không thể sử dụng được tên hiện thời cho đến khi mua đươc mã số mới. Bạn có muốn bỏ thật không?"/>
+    <m c="ru" v="Выбросив номерные знаки, вы не сможете использовать инициалы до покупки нового номерного знака. Выбросить номерные знаки?"/>
+    <m c="id" v="Jika membuang semua Plat Nomor,tidak dapat menggunakan initial sampai membeli Plat Nomor baru,Yakin ingin membuang Plat Nomor tersebut?"/>
+    <m c="th" v="ถ้าทิ้งป้ายทะเบียนทั้งหมดจะไม่สามารถใช้ชื่อในป้ายได้ จนกว่าจะซื้อป้ายทะเบียนใหม่ จะทิ้งป้ายทะเบียนใช่ไหม"/>
+  </k>
+  <k n="dropPlateWarn2">
+    <m c="kr" v="이 번호판을 버려도 기존의 이니셜은 그대로 유지됩니다. 이 번호판을 버리시겠습니까?"/>
+    <m c="jp" v="このナンバープレートを捨ててもこれまでのイニシャルはそのまま維持されます。このナンバープレートを捨てますか？"/>
+    <m c="cn" v="丢弃此显示牌车牌文字还会继续保留，要丢弃此显示牌吗？"/>
+    <m c="tw" v="丟棄此車牌後並不會影響其它車牌.是否要丟棄？"/>
+    <m c="us" v="Even if you discard the license plate, the initials will be kept. Do you wish to discard it?"/>
+    <m c="vn" v="Cho dù bỏ mã số buôn bán này thì tên vẫn được lưu lại. Bạn có muốn bỏ mã số này không?"/>
+    <m c="ru" v="Если выбросить этот номерной знак, инициалы останутся прежними. Выбросить номерной знак?"/>
+    <m c="id" v="Initial yang lama masih tetap ada walau membuang Plat Nomor ini.Ingin membuang Plat Nomor ini?"/>
+    <m c="th" v="ถึงแม้จะทิ้งป้ายทะเบียนนี้ไปแล้ว แต่ชื่อในป้ายก็ยังคงอยู่เหมือนเดิม จะทิ้งป้ายทะเบียนใช่ไหม"/>
+  </k>
+  <k n="dropRoomCardWarn1">
+    <m c="kr" v="이 마이룸 스킨을 버리면 마이룸의 스킨 설정이 빌리지 기본 스킨으로 변경 됩니다. 이 마이룸 스킨을 버리시겠습니까?"/>
+    <m c="jp" v="このマイホームスキンを捨てると、マイホームのスキン設定がビレッジ基本スキンに変更されます。このマイホームスキンを捨てますか？"/>
+    <m c="vn" v="Nếu bỏ trang trí phòng thì hình dáng bề ngoài sẽ bị thay đổi theo hình dáng cơ bản có sẵn. Bạn có muốn bỏ không? "/>
+    <m c="ru" v="Если выбросить этот фон комнаты, то он сменится на стандартный - &quot;Деревня&quot;. Выбросить этот фон?"/>
+    <m c="id" v="Jika membuang skin My Room ini,skin My Room akan berubah Village skin default.Ingin membuang skin My Room ini?"/>
+    <m c="th" v="ถ้าทิ้งฉากหลังที่ห้องส่วนตัว จะเปลี่ยนเป็นฉากหลังเริ่มต้นแบบ จะทิ้งฉากหลังของห้องส่วนตัวนี้ใช่ไหม"/>
+  </k>
+  <k n="inputPassword">
+    <m c="kr" v="비밀번호를 입력해 주세요."/>
+    <m c="jp" v="パスワードを入力してください。"/>
+    <m c="cn" v="请输入密码"/>
+    <m c="tw" v="請輸入密碼"/>
+    <m c="us" v="Type in the password."/>
+    <m c="vn" v="Hãy đăng nhập mật khẩu."/>
+    <m c="ru" v="Введите пароль."/>
+    <m c="id" v="Silahkan masukkan password"/>
+    <m c="th" v="กรุณากรอกพาสเวิร์ด"/>
+  </k>
+  <k n="inputSsn">
+    <m c="kr" v="주민등록번호의 뒷자리 7자리를 입력해주세요."/>
+    <m c="jp" v="住民登録番号の下7桁を入力してください。"/>
+    <m c="cn" v="请输入身份证号码后7位数字"/>
+    <m c="tw" v="請輸入身分證後7碼"/>
+    <m c="us" v="Type in the last 7 digits of Social Security Numbers."/>
+    <m c="vn" v="Hãy đăng nhập 7 số cuối của CMND."/>
+    <m c="ru" v="Введите 7 последних цифр ID гражданина."/>
+    <m c="id" v="Silahkan masukkan 7 digit terakhir no.KTP"/>
+    <m c="th" v="กรุณากรอกเลขบัตรประชาชนตัวท้าย 7 หลัก"/>
+  </k>
+  <k n="itemWasDroped">
+    <m c="kr" v="아이템을 삭제했습니다."/>
+    <m c="jp" v="アイテムを削除しました。"/>
+    <m c="cn" v="已删除道具"/>
+    <m c="tw" v="道具已刪除"/>
+    <m c="us" v="The item is deleted."/>
+    <m c="vn" v="Vật phẩm đã bị xóa"/>
+    <m c="ru" v="Предмет удален."/>
+    <m c="id" v="Item telah dihapus"/>
+    <m c="th" v="ลบไอเทมแล้ว"/>
+  </k>
+  <k n="modifyInitial">
+    <m c="kr" v="이니셜 변경"/>
+    <m c="jp" v="イニシャル変更"/>
+    <m c="cn" v="变更车牌文字"/>
+    <m c="tw" v="變更車牌代碼"/>
+    <m c="us" v="Change Initials"/>
+    <m c="vn" v="Thay đổi tên"/>
+    <m c="ru" v="Инициалы изменены"/>
+    <m c="id" v="Mengubah Initial"/>
+    <m c="th" v="เปลี่ยนแปลงชื่อป้ายทะเบียนรถ"/>
+  </k>
+  <k n="noPlateError">
+    <m c="kr" v="번호판을 구매하셔야 이니셜 입력 아이템을 사용하실 수 있습니다."/>
+    <m c="jp" v="ナンバープレートを購入しないとイニシャル入力アイテムを使用できません。"/>
+    <m c="cn" v=""/>
+    <m c="tw" v="購買車牌才能輸入代碼並使用此道具"/>
+    <m c="us" v="You need to purchase a plate to use the Initial item. "/>
+    <m c="vn" v="Phải mua mã số mới có thể sử dụng được."/>
+    <m c="ru" v="Вы должны купить номерной знак, чтобы использовать инициалы."/>
+    <m c="id" v="Dapat menggunakan item initial karena telah membeli Plat Nomor,"/>
+    <m c="th" v="ต้องซื้อป้ายทะเบียนก่อน จึงจะใช้ไอเทมเปลี่ยนชื่อป้ายทะเบียนได้"/>
+  </k>
+  <k n="lotteryNotInPeriod">
+    <m c="kr" v="사용 기간이 아닙니다."/>
+    <m c="jp" v="利用有効期間ではありません。"/>
+    <m c="cn" v="目前不是该道具的使用期."/>
+    <m c="tw" v="非使用期間."/>
+    <m c="us" v="The item cannot be used at this time. "/>
+    <m c="vn" v="Vĩnh viễn"/>
+    <m c="ru" v="Данная функция сейчас недоступна."/>
+    <m c="id" v="Bukan periode pemakaian"/>
+    <m c="th" v="ไอเทมนี้เกินกำหนดวันและเวลาใช้งานแล้ว"/>
+  </k>
+  <k n="needOtherItem">
+    <m c="kr" v="또 다른 아이템이 필요합니다."/>
+    <m c="jp" v="他のアイテムが必要です。"/>
+    <m c="cn" v="还需要其他道具配合才能使用."/>
+    <m c="tw" v="還需要其他道具配合才能使用."/>
+    <m c="us" v="You need the other item. "/>
+    <m c="vn" v="Cần thêm vật phẩm khác"/>
+    <m c="ru" v="Вам необходим другой предмет."/>
+    <m c="id" v="Membutuhkan item lain"/>
+    <m c="th" v="จำเป็นไอเทมตัวอื่น"/>
+  </k>
+  <k n="lotteryUnderRpLimit">
+    <m c="kr" v="사용하기 위한 RP가 부족합니다."/>
+    <m c="jp" v="使用するためのRPが足りません。"/>
+    <m c="cn" v="用户未达到使用本商品的经验值。"/>
+    <m c="tw" v="您的手套等級尚無法開啟寶箱！"/>
+    <m c="vn" v="Cấp găng tay (RP) của bạn chưa đủ để mở hộp quà"/>
+    <m c="ru" v="Недостаточно очков опыта"/>
+    <m c="id" v="Kurang RP yang digunakan."/>
+    <m c="th" v="เลเวลของคุณยังไม่ถึงตามที่กำหนด"/>
+  </k>
+  <k n="lotteryPcCafeOnly">
+    <m c="kr" v="PC방에서만 사용 가능한 아이템입니다."/>
+    <m c="jp" v="ネットカフェでのみ使用可能なアイテムです。"/>
+    <m c="id" v="Item yang hanya dapat digunakan di warnet"/>
+  </k>
+  <k n="partsSeclect">
+    <m c="kr" v="파츠 선택"/>
+    <m c="jp" v="パーツ選択"/>
+    <m c="cn" v="选择改装部件"/>
+    <m c="tw" v="選擇改裝配件"/>
+    <m c="us" v="Parts Select"/>
+    <m c="ru" v="Выбрать часть"/>
+    <m c="th" v="เลือกชิ้นส่วน"/>
+    <m c="id" v="Memilih Part"/>
+    <m c="vn" v="Chọn phần"/>
+  </k>
+  <k n="l1TimeAttackTrialErrorCaption">
+    <m c="kr" v="도전 3회 초과"/>
+    <m c="jp" v="挑戦３回オーバー"/>
+    <m c="vn" v="Quá 3 lần"/>
+    <m c="ru" v="Вы совершили 3 попытки"/>
+    <m c="id" v="Melebihi 3 x percobaan"/>
+    <m c="th" v="เกิน 3 รอบ"/>
+  </k>
+  <k n="l1TimeAttackTrialError">
+    <m c="kr" v="L1 타임어택은 하루에 3번까지만 도전할 수 있습니다"/>
+    <m c="jp" v="L1タイムアタックは一日に3回まで挑戦できます。"/>
+    <m c="vn" v="Với bằng lái L1, chỉ có thể thử thách 3 lần trong ngày."/>
+    <m c="ru" v="В день доступно 3 попытки выполнения задания &quot;L1 гонка на время&quot;"/>
+    <m c="id" v="L1 Time Attack hanya dapat 3 x maksimal dalam 1 hari"/>
+    <m c="th" v="สามารถเล่นโหมด L1 time attack ได้วันละ 3 ครั้งเท่านั้น"/>
+  </k>
+  <k n="warningCaption">
+    <m c="kr" v="알림"/>
+    <m c="jp" v="お知らせ"/>
+    <m c="cn" v="注意"/>
+    <m c="tw" v="公告"/>
+    <m c="vn" v="Thông báo"/>
+    <m c="ru" v="Объявление"/>
+    <m c="id" v="Notice"/>
+    <m c="th" v="คำแนะนำ"/>
+  </k>
+  <k n="guildMarkWarning">
+    <m c="kr" v="길드마크 변경권은 길드 채널에서 사용가능 합니다.|길드 채널로 이동하시겠습니까?"/>
+    <m c="jp" v="ギルドマーク変更チケットはギルドチャンネルで使用できます。|ギルドチャンネルへ移動しますか？"/>
+    <m c="cn" v="车队标志更换卡可以在车队频道中使用。|现在进入车队频道吗？"/>
+    <m c="tw" v="車隊徽章變更卡可以在車隊頻道使用.|要移動到車隊頻道嗎?"/>
+    <m c="vn" v="Chuyển đến kênh Đội để thực hiện các thao tác trong Đội.| Bạn có muốn chuyển đến kênh Đội ? "/>
+    <m c="ru" v="Сменить логотип Гильдии можно только в канале Гильдии.|Перейти на канал Гильдии?"/>
+    <m c="id" v="Perubahan Guild Mark hanya dapat dilakukan di Channel Guild.|Ingin ke Channel Guild?"/>
+    <m c="th" v="สามารถใช้ไอเทม Guild Mark ได้ในโหมดกิลด์"/>
+  </k>
+  <k n="guildLevelUpWarning">
+    <m c="kr" v="길드레벨업 카드는 길드 채널에서 사용가능 합니다.|길드 채널로 이동하시겠습니까?"/>
+    <m c="jp" v="ギルドレベルアップカードはギルドチャンネルで使用できます。|ギルドチャンネルへ移動しますか？"/>
+    <m c="cn" v="车队升级卡可以在车队频道中使用。|现在进入车队频道吗？"/>
+    <m c="tw" v="車隊升級卡可以在車隊頻道使用.|要移動到車隊頻道嗎?"/>
+    <m c="ru" v="Карта увеличения уровня Гильдии доступна только в канале Гильдии.|Перейти на канал Гильдии?"/>
+    <m c="id" v="Guild Level up Card hanya dapat digunakan di Channel Guild.|Ingin ke Channel Guild?"/>
+    <m c="vn" v="Thẻ nâng cấp Đội chỉ có thể sử dụng ở kênh Đội.| Bạn có muốn chuyển đến kênh Đội ? "/>
+  </k>
+  <k n="goToGuildIntro">
+    <m c="kr" v="바로가기"/>
+    <m c="jp" v="すぐに移動"/>
+    <m c="cn" v="现在进入"/>
+    <m c="tw" v="馬上移動"/>
+    <m c="vn" v="Tiến tới"/>
+    <m c="ru" v="Войти"/>
+    <m c="id" v="Pindah langsung"/>
+    <m c="th" v="ไปกิลด์"/>
+  </k>
+  <k n="gachaNotInPeriodCaption">
+    <m c="kr" v="사용불가"/>
+    <m c="jp" v="使用不可"/>
+    <m c="vn" v="Không có dịch vụ này"/>
+    <m c="ru" v="Использовать нельзя"/>
+    <m c="id" v="Tidak dapat digunakan"/>
+    <m c="th" v="ไม่สามารถใช้ได้"/>
+    <m c="tw" v="使用不可"/>
+  </k>
+  <k n="gachaNotInPeriod">
+    <m c="kr" v="사용기간이 아닙니다."/>
+    <m c="jp" v="利用有効期間ではありません。"/>
+    <m c="vn" v="Quá thời hạn quy định"/>
+    <m c="ru" v="Сейчас это недоступно."/>
+    <m c="id" v="Bukan periode pemakaian"/>
+    <m c="th" v="ไม่อยู่ในเวลาที่ใช้ได้"/>
+    <m c="tw" v="非使用期間"/>
+  </k>
+  <k n="breakCoupleCaption">
+    <m c="kr" v="커플링 파기"/>
+    <m c="jp" v="ペアリング破棄"/>
+    <m c="cn" v="丢弃情侣戒指"/>
+    <m c="tw" v="刪除對戒"/>
+    <m c="vn" v="Hủy bỏ kết đôi"/>
+    <m c="ru" v="Разорвать отношения"/>
+    <m c="id" v="Menghancurkan couple ring"/>
+    <m c="th" v="ทิ้งแหวนแทนใจ"/>
+  </k>
+  <k n="warnBreakCouple">
+    <m c="kr" v="커플링 아이템을 삭제하고 커플 관계를 파기 하시겠습니까?"/>
+    <m c="jp" v="ペアリングアイテムを削除してカップル関係を終了させますか？"/>
+    <m c="cn" v="想要丢弃情侣戒指，解除情侣关系吗？"/>
+    <m c="tw" v="你確定要刪除對戒且結束情侶關係嗎?"/>
+    <m c="vn" v="Xóa bỏ Nhẫn Kết Đôi sẽ hủy quan hệ kết đôi! Bạn có đồng ý xóa?"/>
+    <m c="ru" v="Удалить кольца и разорвать отношения?"/>
+    <m c="id" v="Ingin menghancurkan couple ring dan mengakhiri hubungan couple?"/>
+    <m c="th" v="ท่านจะทิ้งไอเทมแหวนแทนใจและ|ยกเลิกการเป็นคู่รักกันใช่ไหม?"/>
+  </k>
+  <k n="errorCannotDeclareLove">
+    <m c="kr" v="커플이거나 커플 고백 중에는 사용할 수 없습니다."/>
+    <m c="jp" v="カップルになっていたり、カップル告白中には使用できません。"/>
+    <m c="cn" v="已经是情侣的状态或正在告白中无法使用"/>
+    <m c="tw" v="已經是情侶或情侶告白中，所以無法使用哦！"/>
+    <m c="vn" v="Trong trạng thái kết đôi, không thể tỏ tình."/>
+    <m c="ru" v="Недоступно, если вы уже состоите в паре или сделали кому-то признание."/>
+    <m c="id" v="Tidak dapat digunakan saat sedang bercouple atau sedang melamar cinta."/>
+    <m c="th" v="คุณกำลังรอการตอบรับรักหรือมีคู่รักแล้ว|จึงไม่สามารถใช้ได้"/>
+  </k>
+  <k n="errorDeclareLoveAtMyRoom">
+    <m c="kr" v="마이룸에서만 사랑 고백을 할 수 있습니다."/>
+    <m c="jp" v="マイホームでのみ愛の告白をできます。"/>
+    <m c="cn" v="只能在小屋中进行告白"/>
+    <m c="tw" v="只在聊天室展開愛的告白"/>
+    <m c="vn" v="Chỉ có thể bày tỏ tình cảm trong nhà của tôi."/>
+    <m c="ru" v="Признаться в любви можно только во вкладке &quot;Моя страница&quot;."/>
+    <m c="id" v="Hanya dapat melamar cinta di My Room"/>
+    <m c="th" v="สามารถบอกรักได้ในห้องส่วนตัวเท่านั้น"/>
+  </k>
+  <k n="errorEmptyCandidatesOfLove">
+    <m c="kr" v="고백할 대상이 없습니다."/>
+    <m c="jp" v="告白する対象がいません。"/>
+    <m c="cn" v="没有告白的对象"/>
+    <m c="tw" v="沒有告白對象"/>
+    <m c="vn" v="Không có đối tượng bày tỏ."/>
+    <m c="ru" v="Вы не выбрали цель."/>
+    <m c="id" v="Tidak ada pasangan."/>
+    <m c="th" v="ไม่มีใครให้บอกรักในห้องนี้"/>
+  </k>
+  <k n="secretParts">
+    <m c="cn" v="6月19日 魔怪降临|请期待!"/>
+  </k>
+  <k n="secretPartsTitle">
+    <m c="cn" v="未知的部件"/>
+  </k>
+  <k n="useLucciResultMsgFmt">
+    <m c="kr" v="%1!d! 루찌를 획득하였습니다.|%2!d!루찌에서 %3!d!루찌가 되었습니다."/>
+    <m c="jp" v="%1!d!ルッチを入手しました。|%2!d!ルッチから%3!d!ルッチになりました。"/>
+    <m c="cn" v="获得%1!d!金币，金币数量由%2!d!变为%3!d!"/>
+    <m c="tw" v="獲得%1!d! LUCCI，自|%2!d! LUCCI增加為 %3!d! LUCCI囉~"/>
+    <m c="th" v="ได้รับ Lucci เพิ่ม %1!d! | จาก %2!d! Lucci เป็น %3!d! Lucci"/>
+    <m c="vn" v="Đã đạt được %1!d! Lucci.|%2!d! Lucci đã tăng lên %3!d! Lucci  ."/>
+    <m c="id" v="Telah mendapat %1!d! Lucci.| Dari %2!d! Lucci menjadi %3!d!Lucci."/>
+    <m c="ru" v="%1!d! Луцци получено.|Количество Луцци увеличено с %2!d! до %3!d!."/>
+  </k>
+  <k n="useLucconItemResultMsgFmt">
+    <m c="kr" v="%1!d! 루찌를 획득하였습니다.|%2!d!루찌에서 %3!d!루찌가 되었습니다."/>
+    <m c="cn" v="获得%1!d!幸运币，幸运币数量由%2!d!变为%3!d!"/>
+  </k>
+  <k n="mixItemError0">
+    <m c="kr" v=""/>
+  </k>
+  <k n="mixItemError1">
+    <m c="kr" v=""/>
+  </k>
+  <k n="mixItemError2">
+    <m c="kr" v="조합하기 위해서 필요한 아이템이 부족합니다."/>
+    <m c="jp" v="合成するのに必要なアイテムが足りません。"/>
+    <m c="tw" v="組合的道具零件不足"/>
+    <m c="ru" v="У вас не хватает предметов, неоходимых для модификации."/>
+    <m c="id" v="Kurang item untuk kombinasi."/>
+    <m c="vn" v="Thiếu vật phẩm để kết hợp"/>
+  </k>
+  <k n="mixItemError3">
+    <m c="kr" v=""/>
+    <m c="cn" v="您持有的本商品已是无限制，无法继续合成。"/>
+    <m c="tw" v="組合的道具零件不足"/>
+  </k>
+  <k n="mixItemError5">
+    <m c="kr" v="아이템을 사용할 수 있는 기간이 아닙니다."/>
+    <m c="jp" v="アイテムを使用できる期間ではありません。"/>
+    <m c="id" v="Bukan periode pemakaian"/>
+  </k>
+  <k n="mixItemCaption">
+    <m c="kr" v="아이템 조합"/>
+    <m c="jp" v="合成"/>
+    <m c="cn" v="组合道具"/>
+    <m c="tw" v="道具組合"/>
+    <m c="ru" v="Модификация"/>
+    <m c="th" v="รวม"/>
+    <m c="id" v="Kombinasi"/>
+    <m c="vn" v="Kết hợp"/>
+  </k>
+  <k n="mixItemResultStrFmt">
+    <m c="kr" v="%1!s! 을/를 획득하셨습니다."/>
+    <m c="jp" v="%1!s! を入手しました。"/>
+    <m c="cn" v="获得了%1!s!。"/>
+    <m c="tw" v="已獲得%1!s! ， 請至道具欄中確認"/>
+    <m c="ru" v="Вы получили %1!s!."/>
+    <m c="th" v="ได้รับ %1!s! แล้ว"/>
+    <m c="id" v="Telah mendapat %1!s!"/>
+    <m c="vn" v="Đã đạt được %1!s! "/>
+  </k>
+  <k n="AttendRestroeFail">
+    <m c="kr" v="출석퀘스트가 없거나 결석이 없거나 3회 복구를  모두 다 하여 출석 복구를 할 수 없습니다."/>
+    <m c="jp" v="出席クエストがないか欠席がない、もしくは3回の復旧を終えたため出席復旧をできません。"/>
+    <m c="cn" v="无法再次补盖印章。|请确认下是否没有缺席。"/>
+    <m c="id" v="Tidak ada Quest Absen atau tidak ada absen atau sudah 3 kali perbaikan maka tidak dapat perbaikan absen."/>
+  </k>
+  <k n="useAttendRestroe">
+    <m c="kr" v="출석도장을 사용하면 결석 1회를 복구 할 수 있습니다. |사용하시겠습니까?"/>
+    <m c="jp" v="出席スタンプを使用すると欠席1回を復旧できます。 |使用しますか？"/>
+    <m c="cn" v="使用印章道具可以补盖1回。|您打算使用吗？"/>
+    <m c="id" v="Jika menggunakan segel absen dapat memperbaiki 1 kali absen.|Ingin menggunakannya?"/>
+  </k>
+  <k n="useAttendRestroeError">
+    <m c="kr" v="알 수 없는 error로 아이템을 사용할 수 없습니다."/>
+    <m c="jp" v="原因不明のerrorによりアイテムを使用できません。"/>
+    <m c="cn" v="出现未知的错误，无法使用印章道具。"/>
+    <m c="id" v="Tidak dapat menggunakan item karena error yang tidak tahu."/>
+  </k>
+  <k n="notFoundAttendQuest">
+    <m c="kr" v="출석 퀘스트가 없습니다."/>
+    <m c="jp" v="出席クエストがありません。"/>
+    <m c="cn" v="没有可以使用该道具的任务。"/>
+    <m c="id" v="Tidak ada quest absen."/>
+  </k>
+  <k n="notUsedAttendRestoreItem">
+    <m c="kr" v="출석 도장을 사용 할 수 없습니다."/>
+    <m c="jp" v="出席スタンプを使用できません。"/>
+    <m c="cn" v="无法使用印章道具。"/>
+    <m c="id" v="Tidak dapat menggunakan segel absen."/>
+  </k>
+  <k n="extend_noRelatedItem">
+    <m c="kr" v="기간/개수 증가가 가능한 아이템이 없어 사용이 불가능합니다."/>
+    <m c="jp" v="期間延長/個数増加の可能なアイテムが無いため、使用できません。"/>
+    <m c="cn" v="没有可以增加期限/个数的游戏道具。"/>
+    <m c="id" v="Tidak dapat digunakan karena tidak ada item yang perpanjang durasi/jumlah."/>
+  </k>
+  <k n="extendMsgKey0">
+    <m c="kr" v="기간/개수 증가에 성공했습니다"/>
+    <m c="jp" v="期間延長/個数増加に成功しました。"/>
+    <m c="cn" v="期限/个数增加成功。"/>
+    <m c="id" v="Telah berhasil memperpanjang durasi/jumlah."/>
+  </k>
+  <k n="extendMsgKey1">
+    <m c="kr" v="올바르지 않은 기간/개수 증가 아이템을 사용하셨습니다"/>
+    <m c="jp" v="誤りのある期間延長/個数増加アイテムを使用しました。"/>
+    <m c="cn" v="使用了错误的期限/个数增加道具。"/>
+    <m c="id" v="Telah menggunakan item perpanjang durasi/jumlah yang tidak benar."/>
+  </k>
+  <k n="extendMsgKey2">
+    <m c="kr" v="대상 아이템 선택이 잘못되었습니다"/>
+    <m c="jp" v="対象アイテム選択に誤りがあります。"/>
+    <m c="cn" v="道具选择错误。"/>
+    <m c="id" v="Salah memilih item lawan."/>
+  </k>
+  <k n="extendMsgKey3">
+    <m c="kr" v="기간/개수 증가 아이템이 부족합니다."/>
+    <m c="jp" v="期間延長/個数増加アイテムが足りません。"/>
+    <m c="cn" v="期限/个数增加道具不足。"/>
+    <m c="id" v="Item perpanjang durasi/jumlah kurang."/>
+  </k>
+  <k n="extendMsgKey4">
+    <m c="kr" v="대상 아이템 선택이 잘못되었습니다"/>
+    <m c="jp" v="対象アイテム選択に誤りがあります。"/>
+    <m c="cn" v="道具选择错误。"/>
+    <m c="id" v="Salah memilih item lawan."/>
+  </k>
+  <k n="extendMsgKey5">
+    <m c="kr" v="기간/개수를 증가시킬 수 없는 대상 아이 템입니다"/>
+    <m c="jp" v="期間/個数を増加させられない対象アイテムです。"/>
+    <m c="cn" v="该道具无法增加期限/个数。"/>
+    <m c="id" v="Item yang tidak dapat diperpanjang durasi/jumlah"/>
+  </k>
+  <k n="extendMsgKey6">
+    <m c="kr" v="지원되지 않는 기능입니다."/>
+    <m c="jp" v="対応していない機能です。"/>
+    <m c="cn" v="该功能无法实现。"/>
+    <m c="id" v="Fitur yang tidak didukung"/>
+  </k>
+</StringBag>

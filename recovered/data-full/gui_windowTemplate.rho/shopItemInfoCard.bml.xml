@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="wndshopItemInfoWindow" frame="BlackTransCaptionWindow" enable="false" windowRect="0 0 320 365" addStyle="moveable" align="center">
+  <Container name="layer1" windowSize="310 130" adjust="0 0">
+    <Label name="isEquiped" windowSize="50 23" adjust="10 -26" enable="false" textColor="255 255 222 0" textRender="bold" textAlign="center" visible="false"/>
+    <Label name="lblItemName" text="#sb(underPreperation)" windowSize="320 23" adjust="0 -26" enable="false" textColor="white" textRender="bold" textAlign="center"/>
+    <Panel name="pnlTargetItem" windowSize="114 114" adjust="5 5" texture="img_itemTooltopBoxBG" enable="false" alphaBlend="true"/>
+    <Label name="lblEnchantInfo" text="#sb(notAllowEnchant)" windowRect="10 10 106 50" multiLine="false" enable="false" textColor="yellow" textRender="outline" visible="false"/>
+    <Panel name="kartLevel" windowSize="26 18" adjust="95 8" texture="turning_enhancedBG" alphaBlend="true" enable="false" visible="false">
+      <Label name="kartLevelStr" leftTopWH="0 0 26 18" align="center" textAlign="center" text="+0" textRender="outline" textColor="white" textColor2="255 113 0 0" alphaBlend="true" enable="false"/>
+    </Panel>
+    <Container name="remainPeriod" windowSize="114 21" adjust="5 98" visible="false">
+      <Panel windowSize="21 21" adjust="4 0" texture="기간제아이콘_1" enable="false" alphaBlend="true"/>
+      <Label name="remainPeriodText" windowSize="83 30" adjust="31 -13" enable="false" textColor="white" textRender="bold" textAlign="bottom"/>
+    </Container>
+    <Container name="remainCount" windowSize="114 21" adjust="5 98" visible="false">
+      <Label name="remainCountText" windowSize="114 21" adjust="0 0" enable="false" textColor="white" textRender="bold" textAlign="center"/>
+    </Container>
+    <Container name="kartSpecX" windowSize="120 120" adjust="95 5">
+      <Panel windowSize="177 112" adjust="30 0" texture="garage_img_toolTipStatsBG" enable="false" alphaBlend="true">
+        <Label name="subInfoKartClassStr" windowSize="177 20" textRender="bold" enable="false" textAlign="center" textColor="255 230 230 232"/>
+        <Label name="ultimateKartClassStr" windowSize="177 20" textRender="outline" enable="false" visible="false" textAlign="center" textColor="255 230 230 232" textColor2="255 175 0 0"/>
+        <ColorLabel name="clblSpecName" leftTopWH="22 24 150 15" textAlign="left" textColor="255 230 230 255" lineGap="6"/>
+        <ColorLabel name="clblSpecValue" leftTopWH="-5 24 150 15" textAlign="right" textRender="bold" textColor="white" lineGap="6"/>
+      </Panel>
+    </Container>
+    <Panel name="growthKartIcon" leftTopWH="95 8 18 18" texture="icon_upgradekart_ongoing" alphaBlend="true" enable="false" visible="false"/>
+  </Container>
+  <Container name="layer2" windowSize="310 0" adjust="0 0">
+    <Container name="subInfoStockCard" windowSize="310 0" adjust="0 0">
+      <Panel windowSize="87 18" adjust="10 0" texture="img_itemTooltipTitleBG" enable="false" alphaBlend="true">
+        <Label windowRect="5 0 87 18" enable="false" text="#sb(itemPrice)" textColor="255 210 220 232" textRender="bold" textAlign="vcenter"/>
+      </Panel>
+      <Label name="subInfoStockCardStr" windowSize="290 0" adjust="20 23" vertAutoSizing="true" autoWrap="true" multiLine="true" enable="false" textRender="bold" textColor="white"/>
+    </Container>
+    <Container name="subInfoPlantTuneV1" windowSize="310 118" adjust="10 0" visible="false"/>
+    <Container name="subInfoPlantTune" windowSize="310 80" adjust="10 0" visible="false">
+      <Container name="tuneEnginePatch" leftTopWH="0 0 150 30">
+        <Container name="item" leftTopWH="0 0 30 30" visible="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 30 30" alphaBlend="true" alphaTest="true"/>
+          <Panel name="parts" leftTopWH="0 0 24 24" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 24 24" align="center">
+            <Panel name="lock" texture="garage_img_partsBG2_lock" leftTopWH="-1 -1 26 27" alphaBlend="true" alphaTest="true" visible="false"/>
+          </ItemWindow>
+        </Container>
+        <Label name="catName" leftTopWH="37 1 150 15" text="#sb(tuneEnginePatch)" textAlign="vcenter" textColor="white"/>
+        <ColorLabel name="itemName" leftTopWH="37 16 150 15" text="#sb(emptyTune)" textAlign="vcenter" textColor="255 150 150 150"/>
+      </Container>
+      <Container name="tuneHandle" leftTopWH="150 0 150 30">
+        <Container name="item" leftTopWH="0 0 30 30" visible="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 30 30" alphaBlend="true" alphaTest="true"/>
+          <Panel name="parts" leftTopWH="0 0 24 24" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 24 24" align="center">
+            <Panel name="lock" texture="garage_img_partsBG2_lock" leftTopWH="-1 -1 26 27" alphaBlend="true" alphaTest="true" visible="false"/>
+          </ItemWindow>
+        </Container>
+        <Label name="catName" leftTopWH="37 1 150 15" text="#sb(tuneHandle)" textAlign="vcenter" textColor="white"/>
+        <ColorLabel name="itemName" leftTopWH="37 16 150 15" text="#sb(emptyTune)" textAlign="vcenter" textColor="255 150 150 150"/>
+      </Container>
+      <Container name="tuneWheel" leftTopWH="0 35 200 30">
+        <Container name="item" leftTopWH="0 0 30 30" visible="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 30 30" alphaBlend="true" alphaTest="true"/>
+          <Panel name="parts" leftTopWH="0 0 24 24" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 24 24" align="center">
+            <Panel name="lock" texture="garage_img_partsBG2_lock" leftTopWH="-1 -1 26 27" alphaBlend="true" alphaTest="true" visible="false"/>
+          </ItemWindow>
+        </Container>
+        <Label name="catName" leftTopWH="37 1 150 15" text="#sb(tuneWheel)" textAlign="vcenter" textColor="white"/>
+        <ColorLabel name="itemName" leftTopWH="37 16 150 15" text="#sb(emptyTune)" textAlign="vcenter" textColor="255 150 150 150"/>
+      </Container>
+      <Container name="tuneSupportKit" leftTopWH="150 35 200 30">
+        <Container name="item" leftTopWH="0 0 30 30" visible="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 30 30" alphaBlend="true" alphaTest="true"/>
+          <Panel name="parts" leftTopWH="0 0 24 24" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 24 24" align="center">
+            <Panel name="lock" texture="garage_img_partsBG2_lock" leftTopWH="-1 -1 26 27" alphaBlend="true" alphaTest="true" visible="false"/>
+          </ItemWindow>
+        </Container>
+        <Label name="catName" leftTopWH="37 1 150 15" text="#sb(tuneSupportKit)" textAlign="vcenter" textColor="white"/>
+        <ColorLabel name="itemName" leftTopWH="37 16 150 15" text="#sb(emptyTune)" textAlign="vcenter" textColor="255 150 150 150"/>
+      </Container>
+      <Container name="partsCoating" leftTopWH="0 71 200 30">
+        <Container name="item" leftTopWH="0 0 30 30" visible="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 30 30" alphaBlend="true" alphaTest="true"/>
+          <Panel name="parts" leftTopWH="0 0 24 24" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 24 24" align="center">
+            <Panel name="lock" texture="garage_img_partsBG2_lock" leftTopWH="-1 -1 26 27" alphaBlend="true" alphaTest="true" visible="false"/>
+          </ItemWindow>
+        </Container>
+        <Label name="catName" leftTopWH="37 1 150 15" text="#sb(partsCoating)" textAlign="vcenter" textColor="white"/>
+        <ColorLabel name="itemName" leftTopWH="37 16 150 15" text="#sb(emptyParts)" textAlign="vcenter" textColor="255 150 150 150"/>
+      </Container>
+      <Container name="partsTailLamp" leftTopWH="150 71 200 30">
+        <Container name="item" leftTopWH="0 0 30 30" visible="false">
+          <Panel name="uniqueLevel" leftTopWH="0 0 30 30" alphaBlend="true" alphaTest="true"/>
+          <Panel name="parts" leftTopWH="0 0 24 24" align="center" alphaBlend="true" alphaTest="true" visible="false"/>
+          <ItemWindow name="itemView" leftTopWH="0 0 24 24" align="center">
+            <Panel name="lock" texture="garage_img_partsBG2_lock" leftTopWH="-1 -1 26 27" alphaBlend="true" alphaTest="true" visible="false"/>
+          </ItemWindow>
+        </Container>
+        <Label name="catName" leftTopWH="37 1 150 15" text="#sb(partsTailLamp)" textAlign="vcenter" textColor="white"/>
+        <ColorLabel name="itemName" leftTopWH="37 16 150 15" text="#sb(emptyLamp)" textAlign="vcenter" textColor="255 150 150 150"/>
+      </Container>
+    </Container>
+    <Container name="subInfoPlantCat" windowSize="310 50" adjust="0 0">
+      <Panel windowSize="87 18" adjust="10 0" texture="img_itemTooltipTitleBG" enable="false" alphaBlend="true">
+        <Label windowRect="5 0 87 18" enable="false" text="#sb(plantCatName)" textColor="255 210 220 232" textRender="bold" textAlign="vcenter"/>
+      </Panel>
+      <Label name="subInfoPlantCatStr" windowSize="87 18" adjust="20 23" enable="false" textColor="255 230 230 232"/>
+    </Container>
+  </Container>
+  <Container name="layer3" windowSize="310 0" adjust="0 0">
+    <Window name="kartClassBasicPos" windowSize="300 10"/>
+    <Container name="subInfoKartClass" windowSize="310 50" adjust="0 0">
+      <Panel windowSize="87 18" adjust="10 0" texture="img_itemTooltipTitleBG" enable="false" alphaBlend="true">
+        <Label windowRect="5 0 87 18" enable="false" text="#sb(plantCatName)" textColor="255 210 220 232" textRender="bold" textAlign="vcenter"/>
+      </Panel>
+      <Label name="subInfoKartClassStr" windowSize="87 18" adjust="20 23" enable="false" textColor="255 230 230 232"/>
+    </Container>
+    <Label name="lblDescription" windowSize="290 0" align="hcenter" adjust="0 0" vertAutoSizing="true" autoWrap="true" multiLine="true" enable="false" textColor="255 202 211 219">
+      <Panel windowSize="300 2" align="hcenter" adjust="0 -8" texture="img_itemTooltipLine" enable="false" alphaBlend="true" uvRect="0 0 2 2"/>
+    </Label>
+    <Label name="lblEffect" windowSize="290 0" align="hcenter" adjust="0 0" vertAutoSizing="true" textRender="bold" autoWrap="true" multiLine="true" enable="false" textColor="255 255 237 84">
+      <Panel windowSize="300 2" align="hcenter" adjust="0 -8" texture="img_itemTooltipLine" enable="false" alphaBlend="true" uvRect="0 0 2 2"/>
+    </Label>
+    <ColorLabel name="lblTuningState" windowSize="290 0" align="hcenter" adjust="0 0" vertAutoSizing="true" autoWrap="true" multiLine="true" enable="false" textColor="white">
+      <Panel windowSize="300 2" align="hcenter" adjust="0 -8" texture="img_itemTooltipLine" enable="false" alphaBlend="true" uvRect="0 0 2 2"/>
+    </ColorLabel>
+    <ColorLabel name="lblTuningDesc" windowSize="280 0" align="hcenter" adjust="0 0" vertAutoSizing="true" autoWrap="true" multiLine="true" enable="false" textColor="white"/>
+  </Container>
+  <StringBag>
+    <k n="itemName">
+      <m c="kr" v="아이템 이름"/>
+      <m c="jp" v="アイテム名"/>
+      <m c="cn" v="道具名称"/>
+      <m c="tw" v="道具名稱"/>
+      <m c="us" v="Item Name"/>
+      <m c="vn" v="Tên vật phẩm"/>
+      <m c="ru" v="Название предмета"/>
+      <m c="id" v="Nama Item"/>
+      <m c="th" v="ชื่อไอเทม"/>
+    </k>
+    <k n="itemPrice">
+      <m c="kr" v="아이템 가격"/>
+      <m c="jp" v="アイテム価格"/>
+      <m c="cn" v="道具价格"/>
+      <m c="tw" v="道具價格"/>
+      <m c="us" v="Item Price"/>
+      <m c="vn" v="Giá vật phẩm"/>
+      <m c="ru" v="Цена"/>
+      <m c="id" v="Harga Item"/>
+      <m c="th" v="ราคาไอเทม"/>
+    </k>
+    <k n="underPreperation">
+      <m c="kr" v="준비중"/>
+      <m c="jp" v="準備中"/>
+      <m c="cn" v="准备中"/>
+      <m c="tw" v="準備中"/>
+      <m c="us" v="In progress"/>
+      <m c="vn" v="Chuẩn bị"/>
+      <m c="ru" v="В разработке"/>
+      <m c="id" v="Dalam persiapan"/>
+      <m c="th" v="กำลังเตรียม"/>
+    </k>
+    <k n="setList">
+      <m c="kr" v="세트 구성"/>
+      <m c="jp" v="セットリスト"/>
+      <m c="cn" v="套装列表"/>
+      <m c="tw" v="套裝列表"/>
+      <m c="us" v="Package items"/>
+      <m c="vn" v="D.Sách"/>
+      <m c="ru" v="Комплект"/>
+      <m c="id" v="Daftar Set"/>
+      <m c="th" v="เป็นชุด"/>
+    </k>
+    <k n="countUnit">
+      <m c="kr" v="개"/>
+      <m c="jp" v="個"/>
+      <m c="cn" v="个"/>
+      <m c="tw" v="個"/>
+      <m c="us" v="unit(s)"/>
+      <m c="vn" v="Cái"/>
+      <m c="ru" v="Ед."/>
+      <m c="id" v="Unit"/>
+      <m c="th" v="อัน"/>
+    </k>
+    <k n="dayUnit">
+      <m c="kr" v="일"/>
+      <m c="jp" v="日"/>
+      <m c="cn" v="天"/>
+      <m c="tw" v="日"/>
+      <m c="us" v="Day"/>
+      <m c="vn" v="Ngày"/>
+      <m c="ru" v="Дн."/>
+      <m c="id" v="Hari"/>
+      <m c="th" v="วัน"/>
+    </k>
+    <k n="remainCount">
+      <m c="kr" v="남은 개수"/>
+      <m c="jp" v="現在の個数"/>
+      <m c="cn" v="剩余数量"/>
+      <m c="tw" v="剩餘數量"/>
+      <m c="us" v="Remaining amount"/>
+      <m c="vn" v="Số hiện có:"/>
+      <m c="ru" v="Остаток"/>
+      <m c="id" v="Sisa Unit"/>
+      <m c="th" v="จำนวนที่เหลือ"/>
+    </k>
+    <k n="remainDay">
+      <m c="kr" v="남은 기간"/>
+      <m c="jp" v="残りの期間"/>
+      <m c="cn" v="剩余期限"/>
+      <m c="tw" v="剩餘時間"/>
+      <m c="us" v="Lease period"/>
+      <m c="vn" v="Còn lại"/>
+      <m c="ru" v="Срок действия"/>
+      <m c="id" v="Sisa waktu"/>
+      <m c="th" v="เวลาที่เหลือ"/>
+    </k>
+    <k n="unlimited">
+      <m c="kr" v="무제한"/>
+      <m c="jp" v="無制限"/>
+      <m c="cn" v="无限制"/>
+      <m c="tw" v="無限制"/>
+      <m c="us" v="Unlimited"/>
+      <m c="vn" v="Không giới hạn"/>
+      <m c="ru" v="Без ограничений"/>
+      <m c="id" v="Tidak terbatas"/>
+      <m c="th" v="ไม่จำกัด"/>
+    </k>
+    <k n="expired">
+      <m c="kr" v="사용 기한 만료"/>
+      <m c="jp" v="利用有効期間終了"/>
+      <m c="cn" v="使用期限已到"/>
+      <m c="tw" v="使用期限已到"/>
+      <m c="us" v="Expired"/>
+      <m c="vn" v="Vĩnh viễn"/>
+      <m c="ru" v="Закончился"/>
+      <m c="id" v="Expired"/>
+      <m c="th" v="หมดอายุ"/>
+    </k>
+    <k n="expireDayFmt">
+      <m c="kr" v="%d일 %d시간"/>
+      <m c="jp" v="残り%d日%d時間"/>
+      <m c="cn" v="%d天 %d小时"/>
+      <m c="tw" v="%d天 %d小時"/>
+      <m c="us" v="%d days %d hours left."/>
+      <m c="vn" v="Còn lại %d ngày, %d giờ."/>
+      <m c="ru" v="Осталось %d дн. %d ч."/>
+      <m c="id" v="Tersisa %d Hari %d Jam."/>
+      <m c="th" v="เหลือ %d วัน %d ชั่วโมง"/>
+    </k>
+    <k n="expireHourFmt">
+      <m c="kr" v="%d시간"/>
+      <m c="jp" v="残り%d時間"/>
+      <m c="cn" v="剩余%d小时"/>
+      <m c="tw" v="剩餘%d小時"/>
+      <m c="us" v="%d hours left."/>
+      <m c="vn" v="%d gờ còn lại."/>
+      <m c="ru" v="Осталось %d ч."/>
+      <m c="id" v="Tersisa %d Jam."/>
+      <m c="th" v="เหลือ %d ชั่วโมง"/>
+    </k>
+    <k n="expireMinFmt">
+      <m c="kr" v="%d분"/>
+      <m c="jp" v="残り%d分"/>
+      <m c="cn" v="剩余%d分钟"/>
+      <m c="tw" v="剩餘%d分鐘"/>
+      <m c="us" v="%d min. left."/>
+      <m c="vn" v="%d phút còn lại."/>
+      <m c="ru" v="Осталось %d мин."/>
+      <m c="id" v="Tersisa %d Menit."/>
+      <m c="th" v="เหลือ %d นาที"/>
+    </k>
+    <k n="expireSecFmt">
+      <m c="kr" v="%d초"/>
+      <m c="jp" v="残り%d秒"/>
+      <m c="cn" v="剩余%d秒"/>
+      <m c="tw" v="剩餘%d秒"/>
+      <m c="us" v="%d sec. left."/>
+      <m c="vn" v="%d giây còn lại."/>
+      <m c="ru" v="Осталось %d сек."/>
+      <m c="id" v="Tersisa %d Detik."/>
+      <m c="th" v="เหลือ %d วินาที"/>
+    </k>
+    <k n="untilDisconnect">
+      <m c="kr" v="접속 종료시까지"/>
+      <m c="jp" v="接続終了時まで"/>
+      <m c="cn" v="活动结束后下线消失"/>
+      <m c="tw" v="直到連線結束為止"/>
+      <m c="us" v="Until logout"/>
+      <m c="vn" v="Mất kết nối"/>
+      <m c="ru" v="До завершения соединения"/>
+      <m c="id" v="Sampai Logout"/>
+      <m c="th" v="จนถึงออกจากเกม"/>
+    </k>
+    <k n="notAllowEnchant">
+      <m c="kr" v="강화 불가"/>
+      <m c="jp" v="強化不可"/>
+      <m c="cn" v="不可改装"/>
+      <m c="tw" v="無法強化"/>
+      <m c="id" v="Tidak bisa enhance"/>
+    </k>
+    <k n="plantCatName">
+      <m c="kr" v="아이템 종류"/>
+      <m c="cn" v="种类/等级"/>
+      <m c="tw" v="種類/等級"/>
+    </k>
+    <k n="plantCatNameForm">
+      <m c="kr" v="%s / %s"/>
+      <m c="cn" v="%s / %s"/>
+      <m c="tw" v="%s / %s"/>
+    </k>
+    <k n="partsCatNameDrift">
+      <m c="kr" v="[color:255 202 211 219]드리프트[/color]"/>
+      <m c="cn" v="[color:255 202 211 219]漂移[/color]"/>
+      <m c="tw" v="[color:255 202 211 219]甩尾[/color]"/>
+    </k>
+    <k n="partsCatNameAccel">
+      <m c="kr" v="[color:255 202 211 219]가속력[/color]"/>
+      <m c="cn" v="[color:255 202 211 219]加速度[/color]"/>
+      <m c="tw" v="[color:255 202 211 219]加速度[/color]"/>
+    </k>
+    <k n="partsCatNameCorner">
+      <m c="kr" v="[color:255 202 211 219]코너링[/color]"/>
+      <m c="cn" v="[color:255 202 211 219]弯道[/color]"/>
+      <m c="tw" v="[color:255 202 211 219]彎道性能[/color]"/>
+    </k>
+    <k n="partsCatNameBoosterTime">
+      <m c="kr" v="[color:255 202 211 219]부스터 시간[/color]"/>
+      <m c="cn" v="[color:255 202 211 219]加速时间[/color]"/>
+      <m c="tw" v="[color:255 202 211 219]推進器時間[/color]"/>
+    </k>
+    <k n="partsCatNameDriftGauge">
+      <m c="kr" v="[color:255 202 211 219]부스터 충전량[/color]"/>
+      <m c="cn" v="[color:255 202 211 219]集气速度[/color]"/>
+      <m c="tw" v="[color:255 202 211 219]甩尾集氣量[/color]"/>
+    </k>
+    <k n="partsBasic">
+      <m c="kr" v="기본"/>
+      <m c="cn" v="基本"/>
+      <m c="tw" v="基本"/>
+    </k>
+    <k n="emptyLamp">
+      <m c="kr" v="기본 램프"/>
+      <m c="cn" v="基础车灯"/>
+      <m c="tw" v="基本尾燈"/>
+    </k>
+    <k n="emptyParts">
+      <m c="kr" v="미장착"/>
+      <m c="cn" v="未装备"/>
+      <m c="tw" v="未裝備"/>
+    </k>
+  </StringBag>
+</Window>

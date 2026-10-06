@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.052'
+	SteerConstraint='2.35'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.04'
+	motorcycleType='true'
+	EnvMap='true'
+
+	TachometerType='Tacho1'
+	TachometerName='bike'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.6'
+
+	BoosterBlur='true'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	EngineSound='bike'
+
+	Port0='mod1a'
+	Port1='mod1b'
+	FirePort0='mod2a'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 138 190'        
+
+	BoostBlurColor='255 77 77 77'
+
+	WheelFixed = 'true'
+
+	DescBalance= '30'
+	DescStability ='25'
+	DescEngineGrade='1'
+	DescCornering='4'
+	DescEnchantCap = '25'
+
+/>
+<!-- 일본 헬로키티 스쿠터-S 120621 캐시 판매-->

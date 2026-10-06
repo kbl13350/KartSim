@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mine1"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Msg name="福尔摩斯" string="矿山的规模不比工厂小啊。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop1"/>
+  <Msg name="福尔摩斯" string="市长…到底霸占了多少…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kephi" pos="4 0" emotion="stop4"/>
+  <Msg name="胖墩" string="哎呀，我的腰。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="您好！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Msg name="黑妞" string="你是？|好像第一次见？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop2"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="marid" pos="2 0" emotion="ani3"/>
+  <Msg name="蓝蓝" string="是啊？从哪里来的？|是市长派来的？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop3"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="marid" pos="2 0" emotion="ani3"/>
+  <Msg name="福尔摩斯" string="我是来传达市长命令的侦探福尔摩斯。|市长邀请你们参加派对。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="kephi" pos="6 0" emotion="stop1"/>
+  <Msg name="胖墩" string="派对？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="marid" pos="2 0" emotion="ani4"/>
+  <Msg name="福尔摩斯" string="是为了慰劳辛苦的你们而准备的派对，|现场也会公开一个大秘密。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="marid" pos="2 0" emotion="stop2"/>
+  <Msg name="蓝蓝" string="秘密？？？|呼，难道又有其他事情了？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop2"/>
+  <Char id="marid" pos="2 0" emotion="stop2"/>
+  <Char id="dizini" pos="6 0" emotion="stop6"/>
+  <Msg name="黑妞" string="是啊…现在矿山的事情已经让我们超负荷了。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kai" pos="12 0" emotion="stop4"/>
+  <Char id="marid" pos="2 0" emotion="stop2"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="去看就知道了。|去了就会知道这期间市长为什么不愿公开他的工厂…"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="7 0" emotion="ani1"/>
+  <Msg name="胖墩" string="不公开的原因？|这次市长为了我们肯定也做了不少事情~"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kai" pos="11 0" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="大家会吓一跳。|跟我来吧，各位。"/>
+  <Enter/>
+</Scene>

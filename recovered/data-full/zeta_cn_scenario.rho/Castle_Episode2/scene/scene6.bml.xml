@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle1"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="这里是书房吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="咚咚咚！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop1"/>
+  <Msg name="皮欧" string="谁啊？"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop2"/>
+  <Msg name="黑妞" string="您好，您是管家皮欧叔叔吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop4"/>
+  <Msg name="皮欧" string="是啊…|可是你是？|你是怎么进来的啊？"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="啊…您好..我们是…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop4"/>
+  <Msg name="皮欧" string="你们很奇怪啊！"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="啊..我不是那种人！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop4"/>
+  <Msg name="皮欧" string="厨师长皮德！！|赶紧把这少女给抓起来！"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="啊！怎么会！！"/>
+  <Enter/>
+</Scene>

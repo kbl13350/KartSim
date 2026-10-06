@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600">
+  <ImageBoard name="backgroundImage" windowRect="0 0 800 600" alphaBlend="true" visible="false"/>
+  <CaptionWindow name="ChallengeDesktop" windowRect="0 0 800 575" caption="#sb(title)" frame="CaptionDialog" captionColor="black">
+    <Label name="title" windowRect="0 0 10 10" textColor="black" textAlign="center" textRender="bold" alphaBlend="true"/>
+    <Container name="menuPlane" windowSize="777 500" adjust="-6 4" enable="false">
+      <Container name="group" windowSize="765 497" adjust="7 5">
+        <Panel name="back1" windowSize="512 497" texture="frame_01" adjust="0 0" alphaBlend="true"/>
+        <Panel name="back2" windowSize="253 497" texture="frame_02" adjust="512 0" alphaBlend="true"/>
+        <Panel name="myLucciBack" windowSize="133 29" texture="마이루찌@zz" adjust="486 303" alphaBlend="true"/>
+        <Panel name="clearImage11" windowSize="298 193" texture="clearImage1_01@zz" adjust="123 28" alphaBlend="true"/>
+        <Panel name="clearImage21" windowSize="298 193" texture="clearImage2_01@zz" adjust="421 28" alphaBlend="true"/>
+        <Panel name="clearImage12" windowSize="298 193" texture="clearImage1_02@zz" adjust="123 28" alphaBlend="true"/>
+        <Panel name="clearImage22" windowSize="298 193" texture="clearImage2_02@zz" adjust="421 28" alphaBlend="true"/>
+        <CountBoard name="countBoard" windowSize="216 42" adjust="427 338" texture="루찌카운트" alphaBlend="true" fontSize="27 42" fontPos="0 0" fontStr="1234567890" charNum="7" maxSpinSpeed="160" breakVal="150" minStopSpeed="50" minSpinSpeed="40" slowestSpinSpeed="50" slowestBreakVal="40"/>
+      </Container>
+    </Container>
+    <Panel name="bonusIconPos" windowRect="677 450 777 545" color="white" uvRect="0 0 100 95" alphaBlend="true" visible="false"/>
+  </CaptionWindow>
+</Container>

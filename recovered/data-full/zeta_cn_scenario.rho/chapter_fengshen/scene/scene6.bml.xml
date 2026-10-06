@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china2"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[人界，商朝]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Yangjian" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="杨戬" string="听说纣王最近实行暴政……"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Yangjian" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="杨戬" string="我得伪装成臣子，亲自探探传闻是否属实。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <BackGround texture="china20"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[商朝皇宫]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Yangjian" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Zhou" pos="10 0" emotion="normal"/>
+  <Char id="Daji" pos="13 0" emotion="normal"/>
+  <Msg name="杨戬" string="陛下，百姓传生活困苦，已无力献任何贡品。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Yangjian" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Zhou" pos="10 0" emotion="stop2"/>
+  <Char id="Daji" pos="13 0" emotion="normal"/>
+  <Msg name="纣王" string="你说什么？！！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Yangjian" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Zhou" pos="10 0" emotion="stop2"/>
+  <Char id="Daji" pos="13 0" emotion="stop3"/>
+  <Msg name="妲己" string="陛下，对于那些不遵旨意的，应当抓起来以儆效尤。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Yangjian" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Zhou" pos="10 0" emotion="stop3"/>
+  <Char id="Daji" pos="13 0" emotion="stop3"/>
+  <Msg name="纣王" string="来人哪！凡不交出贡品者，皆贬为奴婢，一并没收其财产！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Yangjian" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="Zhou" pos="10 0" emotion="stop3"/>
+  <Char id="Daji" pos="13 0" emotion="stop3"/>
+  <Msg name="杨戬" string="陛下，他们连可供没收的财产都没有啊！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Yangjian" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="Zhou" pos="10 0" emotion="stop3"/>
+  <Char id="Daji" pos="13 0" emotion="stop5"/>
+  <Msg name="妲己" string="陛下宽厚，才留他们一命……"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Yangjian" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="Zhou" pos="10 0" emotion="stop3"/>
+  <Char id="Daji" pos="13 0" emotion="stop3"/>
+  <Msg name="妲己" string="陛下，他竟敢无视您的命令。|如此下去，日后恐将惹来大祸！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Yangjian" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="Zhou" pos="10 0" emotion="stop3"/>
+  <Char id="Daji" pos="13 0" emotion="stop3"/>
+  <Msg name="纣王" string="从现在开始，剥夺他的官职，没收其财产！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Yangjian" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="Zhou" pos="10 0" emotion="stop3"/>
+  <Char id="Daji" pos="13 0" emotion="stop3"/>
+  <Msg name="杨戬" string="陛下？？？！！冤枉啊！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <BackGround texture="fengshen7"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Msg name="杨戬" string="那么贤明的纣王竟被妲己所迷惑，施行暴政……"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" emotion="normal"/>
+  <Msg name="哪吒" string="杨戬，你在那做什么呢？"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" emotion="normal"/>
+  <Msg name="杨戬" string="哪吒？！你又怎会出现在这里？"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" emotion="stop3"/>
+  <Msg name="哪吒" string="有人偷走了仙界的妲己幻尾草，我用追踪术一看，原来是妲己这家伙干的。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" emotion="normal"/>
+  <Msg name="哪吒" string="你的变身术也很精彩。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" emotion="normal"/>
+  <Msg name="杨戬" string="我的变身术不赖吧。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="哪吒" string="先不说这个，我得立刻把妲己这个妖女……！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="杨戬" string="冷静点，现在妲己可是皇后，稍有不慎容易伤到周围无辜的凡人。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" emotion="stop3"/>
+  <Msg name="哪吒" string="那怎么办？"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" emotion="stop3"/>
+  <Msg name="杨戬" string="听说不久前姜太公在仙界得到了女娲娘娘的法宝。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" emotion="normal"/>
+  <Msg name="哪吒" string="就是说女娲娘娘把这个法宝托付给姜太公了……"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="12 0" emotion="normal"/>
+  <Msg name="杨戬" string="那你快去道士姜太公那里。|我就留在这，观察妲己的一举一动。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="Nezha" pos="13 0" flip="true" emotion="normal"/>
+  <Msg name="杨戬" string="哎呦，在这之前先把我给解开……"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Msg name="哪吒" string="（哗啦啦）"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="Yangjian" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="camelot_effect" pos="4 0" flip="true" emotion="stop6"/>
+  <Msg name="杨戬" string="这下麻烦了…这次变身成什么逃出去呢？"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <BackGround texture="fengshen1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[仙界]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="道士姜太公" string="现在去钓鱼~"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="Nezha" pos="12 0" emotion="normal"/>
+  <Msg name="哪吒" string="喂，姜太公！听说那个东西在你手上……"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="Nezha" pos="12 0" emotion="normal"/>
+  <Msg name="道士姜太公" string="哎呦，吓死我了！|不分青红皂白地找上来，你有什么东西放我这了？"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="Nezha" pos="12 0" emotion="stop3"/>
+  <Msg name="哪吒" string="妲己偷走了妲己幻尾草，逃到人界作恶呢。|没有时间了，快告诉我东西在哪儿。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="Nezha" pos="12 0" emotion="stop3"/>
+  <Msg name="道士姜太公" string="（难道这是女娲娘娘的意思？？）"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="Nezha" pos="12 0" emotion="stop3"/>
+  <Msg name="道士姜太公" string="妲己偷走了妲己幻尾草，逃到人界作恶呢。|没有时间了，快告诉我东西在哪儿。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="哪吒" string="（哗啦啦）"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="道士姜太公" string="我知道你很急，但是你连话都不听完就走了?!"/>
+  <Enter/>
+</Scene>

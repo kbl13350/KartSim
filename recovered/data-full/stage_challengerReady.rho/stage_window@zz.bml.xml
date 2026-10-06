@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600" name="scenario">
+  <Window windowSize="1024 768" align="center">
+    <Panel windowRect="0 0 512 512" texture="bg_bg_1024_01" alphaBlend="true" alphaTest="true"/>
+    <Panel windowRect="512 0 1024 512" texture="bg_bg_1024_02" alphaBlend="true" alphaTest="true"/>
+    <Panel windowRect="0 512 512 768" texture="bg_bg_1024_03" alphaBlend="true" alphaTest="true"/>
+    <Panel windowRect="512 512 1024 768" texture="bg_bg_1024_04" alphaBlend="true" alphaTest="true"/>
+  </Window>
+  <CaptionWindow name="준비" windowRect="10 10 790 575" frame="DefaultCaptionWindow" captionPos="0 6" captionColor="black" caption="#sb(challengerCaption)">
+    <Window windowRect="73 7 745 495" frame="InnerFrame"/>
+    <Container windowRect="0 0 780 483">
+      <Panel name="charBg" windowRect="83 16 370 243" texture="circle" uvRect="120 120 411 370">
+        <Window name="window" windowRect="0 0 289 227" frame="EmptyFill" enable="false"/>
+      </Panel>
+      <Window name="설명창" windowRect="78 10 770 483">
+        <Container name="캐릭터창" windowRect="10 -30 320 370"/>
+        <Panel name="tag_S1" texture="S1@zz" windowRect="9 12 289 39" alphaTest="true" alphaBlend="true" visible="true"/>
+        <Window name="lucciRect" windowRect="4 236 295 266" frame="GrayPanel">
+          <Panel name="lucciText" windowRect="0 -1 99 22" texture="mylucci@zz" alphaTest="true" alphaBlend="true"/>
+          <Panel windowRect="103 2 280 18" texture="number_back" alphaBlend="true" alphaTest="true"/>
+        </Window>
+        <Window name="minimap" windowRect="4 271 295 478" frame="NoFrame">
+          <Edit windowRect="3 3 282 30 "/>
+          <Label name="trackName" windowRect="3 4 283 28" enable="false" textAlign="center" text=""/>
+          <Panel name="trackImage" windowRect="3 32 282 200" alphaBlend="true" alphaTest="true"/>
+          <Panel name="reverseImage" windowSize="177 116" adjust="50 24" texture="큰리버스트랙" alphaBlend="true" alphaTest="true" visible="false"/>
+        </Window>
+        <Container windowRect="0 0 696 483">
+          <Window name="BestRecord" windowRect="315 5 645 165" frame="CaptionWindow" enable="false" alphaTest="true" alphaBlend="true">
+            <Label name="BestRecordCaption" windowRect="0 -17 360 -6" textRender="bold" text="#sb(bestrecord)" textAlign="center"/>
+            <Window name="static" windowRect="7 11 17 21" frame="GrayPanel"/>
+            <Label name="currentRecord" windowRect="22 10 100 26" frame="GlassButton" textRender="bold" text="#sb(currentRecord) :"/>
+            <Window name="static" windowRect="7 36 17 46" frame="GrayPanel"/>
+            <Label windowRect="22 35 100 115" frame="GlassButton" textRender="bold" text="#sb(myRecord)">
+              <TextButton windowRect="0 20 70 36" frame="NoFrame" text="#sb(gameSpeed)" enable="false" textAlign="left"/>
+              <TextButton name="replayGameSpeed" windowRect="90 20 320 36" frame="NoFrame" enable="false" textAlign="left"/>
+              <TextButton windowRect="0 36 70 52" frame="NoFrame" text="#sb(kartBody)" altTextRender="outline" enable="false" textAlign="left"/>
+              <TextButton name="replayKart" windowRect="90 36 320 52" frame="NoFrame" enable="false" textAlign="left"/>
+              <TextButton windowRect="0 52 70 70" frame="NoFrame" text="#sb(track)" enable="false" textAlign="left"/>
+              <TextButton name="replayTrack" windowRect="90 52 320 70" frame="NoFrame" enable="false" textAlign="left"/>
+            </Label>
+          </Window>
+          <Window name="charecterBg" windowRect="300 175 645 532" frame="NoFrame" enable="true" alphaTest="true" alphaBlend="true">
+            <Panel name="trackImage" windowRect="0 -171 360 303" texture="bg_02" alphaBlend="true" alphaTest="true"/>
+            <Panel name="contenderString" windowRect="132  -51 230 -21" texture="도전자@zz" alphaBlend="true" alphaTest="true"/>
+            <Panel name="npcSpeak" windowRect="10 10 227  130" texture="대화창_01" alphaBlend="true" alphaTest="true">
+              <Label name="charSay" windowRect="10 10 10 10" text="" textColor="white" autoSizing="true" visible="true" textRender="bold" enable="true" multiLine="true"/>
+            </Panel>
+            <Window windowRect="5  200 358 301" texture="bg" alphaBlend="true" alphaTest="true">
+              <Panel name="openEventString" windowRect="0 0 353 101" texture="이벤트_big" alphaBlend="true" alphaTest="true" visible="false"/>
+              <Panel name="openString" windowRect="0 0 353 101" texture="도전_big" alphaBlend="true" alphaTest="true" visible="false"/>
+              <Panel name="clearString" windowRect="0 0 353 101" texture="완료_big" alphaBlend="true" alphaTest="true" visible="false"/>
+              <Panel name="clearEventString" windowRect="0 0 353 101" texture="이벤트잠김_big" alphaBlend="true" alphaTest="true" visible="false"/>
+              <Window windowRect="11 24  100 100">
+                <CharPanel name="stepBigNum" windowRect="10 0 45 50" texture="contender_num_bing" fontSize="35 50" fontPos="0 0" fontStr="0123456789" text="" alphaTest="true" alphaBlend="true" visible="false"/>
+              </Window>
+              <Window windowRect="18 15  100 100">
+                <Panel name="eventclear" windowRect="0 0 70 67" texture="star_02" alphaBlend="true" alphaTest="true" visible="false"/>
+                <Panel name="eventOpen" windowRect="0 0 70 67" texture="star_01" alphaBlend="true" alphaTest="true" visible="false"/>
+              </Window>
+              <Window windowRect="100 10  258 151">
+                <Label name="charDesc" windowRect="11 15 11 15" text="" textColor="white" autoSizing="true" visible="true" textRender="bold" enable="true"/>
+                <Label name="trackDesc" windowRect="11 33 11 33" text="" textColor="white" autoSizing="true" visible="true" textRender="bold" enable="true"/>
+                <Label name="clearDesc" windowRect="11 50 11 50" text="" textColor="white" autoSizing="true" visible="true" textRender="bold" enable="true"/>
+              </Window>
+              <Container name="npcCharecter" windowSize="300 300" adjust="50 24" alphaBlend="true" alphaTest="true" visible="true"/>
+            </Window>
+          </Window>
+        </Container>
+      </Window>
+    </Container>
+  </CaptionWindow>
+</Container>

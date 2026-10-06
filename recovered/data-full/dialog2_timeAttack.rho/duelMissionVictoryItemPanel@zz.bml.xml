@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container leftTopWH="0 0 68 68" alphaBlend="true">
+  <ImageBoard name="slot" windowSize="68 68" align="hcenter" image="timeAttack_popup_아이템박스" alphaBlend="true"/>
+  <Label name="name" windowSize="150 32" adjust="-40 75" textRender="bold16" multiLine="true" lineGap="0" text="-" textColor="255 42 55 80" textAlign="center"/>
+  <Play1SPanel name="special" scene="연습타임어택ef" windowSize="68 68" align="top,hcenter" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0" defaultSpotPos="0 0 0" zoom="2.0" clearZBefore="true" clearZAfter="true" enable="false" visible="true" loop="true" depthBias="1000.0"/>
+</Container>

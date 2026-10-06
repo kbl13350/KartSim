@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<vipConfig>
+	<vipBenefit
+		name='Black'
+		grade='5'
+		gradePoint='200000'
+		beforeBonusPoint='10000'
+		koinPerUnitX10='20'
+		gradeUpRewardItemCount='5'
+	>
+	</vipBenefit>
+	<vipBenefit
+		name='Purple'
+		grade='4'
+		gradePoint='120000'
+		beforeBonusPoint='5000'
+		koinPerUnitX10='17'
+		gradeUpRewardItemCount='4'
+	>
+	</vipBenefit>
+	<vipBenefit
+		name='Gold'
+		grade='3'
+		gradePoint='70000'
+		beforeBonusPoint='3000'
+		koinPerUnitX10='15'
+		gradeUpRewardItemCount='3'
+	>
+	</vipBenefit>
+	<vipBenefit
+		name='Silver'
+		grade='2'
+		gradePoint='35000'
+		beforeBonusPoint='2000'
+		koinPerUnitX10='13'
+		gradeUpRewardItemCount='2'
+	>
+	</vipBenefit>
+	<vipBenefit
+		name='Green'
+		grade='1'
+		gradePoint='10000'
+		beforeBonusPoint='1000'
+		koinPerUnitX10='12'
+		gradeUpRewardItemCount='1'
+	>
+	</vipBenefit>
+	<vipBenefit
+		name='Yellow'
+		grade='0'
+		koinPerUnitX10='10'
+	/>
+
+	<vipRewardItem itemCatId='56' itemId='6' />
+	<vipMileage attendMileage='10' attendMileageDayLimit='20' 
+				playtimeCheckIntervalMinute='10' playtimeMileage='2' playtimeMileageDayLimit='60'
+				playCntMileage='2' playCntMileageDayLimit='200'
+				playMileageLimit='8680'
+				cashMileage='50'
+				rewardMileageUnit='1000'/>
+	<vipGradePoint cashGradePoint='50'/>
+</vipConfig>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <Window enable="true" leftTopWH="0 0 535 550" align="center">
+    <Panel name="bg_0" leftTopTex="0 0" texture="기념일_01" alphaBlend="true"/>
+    <Panel name="bg_1" leftTopTex="267 0" texture="기념일_02" alphaBlend="true"/>
+    <Panel name="bg_2" leftTopTex="0 407" texture="기념일_03" alphaBlend="true"/>
+    <Panel name="bg_3" leftTopTex="267 407" texture="기념일_04" alphaBlend="true"/>
+    <Label name="title" leftTopWH="218 26 110 20" fillTrans="true" multiLine="false" autoWrap="true" lineGap="1" textColor="black" text="#sb(congratulation)" textAlign="center" textRender="bold"/>
+    <Label name="body" leftTopWH="35 278 450 65" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="#sb(coupleUpBody)" textAlign="center"/>
+    <Label name="coupleItemDesc" leftTopWH="43 428 450 65" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" text="#sb(coupleOnlyItems)" textAlign="center"/>
+    <Container name="lv2" leftTopWH="0 0 1 1" visible="false">
+      <Panel name="bg_3" leftTopTex="24 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item1" leftTopWH="30 -3 90 90" stockId="6480" visible="true"/>
+      </Panel>
+      <Panel name="bg_3" leftTopTex="188 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item2" leftTopWH="30 -3 90 90" stockId="6490" visible="true"/>
+      </Panel>
+      <Panel name="bg_3" leftTopTex="352 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item3" leftTopWH="30 -3 90 90" stockId="6499" visible="true"/>
+      </Panel>
+    </Container>
+    <Container name="lv3" leftTopWH="0 0 1 1" visible="false">
+      <Panel name="bg_3" leftTopTex="24 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item1" leftTopWH="30 -3 90 90" stockId="6482" visible="true"/>
+      </Panel>
+      <Panel name="bg_3" leftTopTex="188 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item2" leftTopWH="30 -3 90 90" stockId="6492" visible="true"/>
+      </Panel>
+      <Panel name="bg_3" leftTopTex="352 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item3" leftTopWH="30 -3 90 90" stockId="6500" visible="true"/>
+      </Panel>
+    </Container>
+    <Container name="lv4" leftTopWH="0 0 1 1" visible="false">
+      <Panel name="bg_3" leftTopTex="24 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item1" leftTopWH="30 -3 90 90" stockId="6484" visible="true"/>
+      </Panel>
+      <Panel name="bg_3" leftTopTex="188 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item2" leftTopWH="30 -3 90 90" stockId="6494" visible="true"/>
+      </Panel>
+      <Panel name="bg_3" leftTopTex="352 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item3" leftTopWH="30 -3 90 90" stockId="6501" visible="true"/>
+      </Panel>
+    </Container>
+    <Container name="lv5" leftTopWH="0 0 1 1" visible="false">
+      <Panel name="bg_3" leftTopTex="24 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item1" leftTopWH="30 -3 90 90" stockId="6486" visible="true"/>
+      </Panel>
+      <Panel name="bg_3" leftTopTex="188 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item2" leftTopWH="30 -3 90 90" stockId="6496" visible="true"/>
+      </Panel>
+      <Panel name="bg_3" leftTopTex="352 348" texture="기념일선물_백판공통" alphaBlend="true">
+        <ItemWindow name="item3" leftTopWH="30 -3 90 90" stockId="6502" visible="true"/>
+      </Panel>
+    </Container>
+    <TextButton name="okButton" text="#sb(ok)" leftTopWH="238 485 50 30" alphaBlend="true" textRender="bold"/>
+  </Window>
+</Panel>

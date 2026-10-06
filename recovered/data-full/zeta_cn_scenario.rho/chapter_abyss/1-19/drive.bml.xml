@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Shadow isFixedKart="true" fixedKartId="1107" fixedCharId="2" isFixedChar="true" kartId="1175" characterId="290" colorId="60" dyeId="60" characterName="奈琳">
+    <LevelContent level="0" ksv="1-19" track="abyss_R03" laps="2"/>
+  </Shadow>
+</Root>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="遇见卡洛儿"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="和朋友们分开的皮蛋在追赶来历不明的怪物时，遇见了卡洛儿。卡洛儿说，这里是玩具村，外部的人不可以进来。卡洛儿听了皮蛋的故事之后明白出了问题，她想必须要将这一切恢复原样。"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="以指定速度通过所有检查站。|"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="像素 极限坡道"/>
+  </k>
+</StringBag>

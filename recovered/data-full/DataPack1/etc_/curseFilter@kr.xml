@@ -1,0 +1,1452 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<filter>
+
+<!-- 즐 -->
+	<word from='즐드셈' to='아이져아'/>
+	<word from='즐드샘' to='아이져아'/>
+	<word from='님즐' to='아이져아'/>
+	<word from='님 즐' to='아이져아'/>
+	<word from='님아즐' to='아이져아'/>
+	<word from='니마즐' to='아이져아'/>
+	<word from='님아 즐' to='아이져아'/>
+	<word from='니마 즐' to='아이져아'/>
+
+<!-- 니이미 -->
+	<word from='니미' to='에이'/>
+	<word from='니기미' to='에이'/>
+	<word from='닝기미' to='에이'/>
+
+<!-- 개새끼 -->
+	<word from='개스키' to='나쁜애'/>
+	<word from='개새끼' to='나쁜애'/>
+	<word from='개.새.끼' to='나쁜애'/>
+	<word from='게새끼' to='나쁜애'/>
+	<word from='게.새.끼' to='나쁜애'/>
+	<word from='개세끼' to='나쁜애'/>
+	<word from='게세끼' to='나쁜애'/>
+	<word from='개쉐끼' to='나쁜애'/>
+	<word from='개새' to='나쁜애'/>
+	<word from='개세' to='나쁜애'/>
+	<word from='개쉐' to='나쁜애'/>
+	<word from='개자' to='나쁜애'/>
+	<word from='개놈' to='나쁜사람'/>
+	<word from='개넘' to='나쁜사람'/>
+	<word from='개년' to='나쁜사람'/>
+	<word from='개.년' to='나쁜사람'/>
+	<word from='개쇅캬' to='나쁜애'/>
+	<word from='개쉑캬' to='나쁜애'/>
+	<word from='개쒝캬' to='나쁜애'/>
+	<word from='개쇅꺄' to='나쁜애'/>
+	<word from='개쉑꺄' to='나쁜애'/>
+	<word from='개쒝꺄' to='나쁜애'/>
+	<word from='개쇅갸' to='나쁜애'/>
+	<word from='개쉑갸' to='나쁜애'/>
+	<word from='개쒝갸' to='나쁜애'/>
+	<word from='개쇅키' to='나쁜애'/>
+	<word from='개쉑키' to='나쁜애'/>
+	<word from='개쒝키' to='나쁜애'/>
+	<word from='개쇅끼' to='나쁜애'/>
+	<word from='개쉑끼' to='나쁜애'/>
+	<word from='개쒝끼' to='나쁜애'/>
+	<word from='개쇅기' to='나쁜애'/>
+	<word from='개쉑기' to='나쁜애'/>
+	<word from='개쒝기' to='나쁜애'/>
+	<word from='개쇅' to='나쁜사람'/>
+	<word from='개쉑' to='나쁜사람'/>
+	<word from='개쒝' to='나쁜사람'/>
+	<word from='개쉐리' to='나쁜애'/>
+	<word from='개쒜리' to='나쁜애'/>
+
+<!-- 씹새끼 -->
+	<word from='씹새끼' to='나쁜애'/>
+	<word from='씹.새.끼' to='나쁜애'/>
+	<word from='씹새키' to='나쁜애'/>
+	<word from='씹.새.키' to='나쁜애'/>
+	<word from='씹쌔키' to='나쁜애'/>
+	<word from='씹씨키' to='나쁜애'/>
+	<word from='씹새꺄' to='나쁜애'/>
+	<word from='씹쎄끼' to='나쁜애'/>
+	<word from='씹세끼' to='나쁜애'/>
+	<word from='씹색끼' to='나쁜애'/>
+	<word from='씹시끼' to='나쁜애'/>
+	<word from='씹쌔끼' to='나쁜애'/>
+	<word from='씹때끼' to='나쁜애'/>
+	<word from='십새끼' to='나쁜애'/>
+	<word from='십새키' to='나쁜애'/>
+	<word from='십쌔키' to='나쁜애'/>
+	<word from='십씨키' to='나쁜애'/>
+	<word from='십새꺄' to='나쁜애'/>
+	<word from='십쎄끼' to='나쁜애'/>
+	<word from='십세끼' to='나쁜애'/>
+	<word from='십색끼' to='나쁜애'/>
+	<word from='십시끼' to='나쁜애'/>
+	<word from='십쌔끼' to='나쁜애'/>
+	<word from='십때끼' to='나쁜애'/>
+	<word from='씹새' to='나쁜애'/>
+	<word from='씹.새' to='나쁜애'/>
+	<word from='씹쉐' to='나쁜애'/>
+	<word from='십새' to='나쁜애'/>
+	<word from='십쉐' to='나쁜애'/>
+
+<!-- 썅 -->
+	<word from='썅' to='저런'/>
+	<word from='쌍년' to='나쁜사람'/>
+	<word from='쌍.년' to='나쁜사람'/>
+	<word from='쌍넌' to='나쁜사람'/>
+	<word from='창녀' to='나쁜애'/>
+	<word from='창.녀' to='나쁜애'/>
+
+<!-- 씨발 -->
+	<word from='띠이발' to='아이잉'/>
+	<word from='띠.이.발' to='아이잉'/>
+	<word from='띠이방' to='아이잉'/>
+	<word from='띠이벌' to='아이잉'/>
+	<word from='띠이불' to='아이잉'/>
+	<word from='띠이붕' to='아이잉'/>
+	<word from='띠이팔' to='아이잉'/>
+	<word from='띠이펄' to='아이잉'/>
+	<word from='띠이풀' to='아이잉'/>
+	<word from='시이발' to='어우잉'/>
+	<word from='시이벌' to='어우잉'/>
+	<word from='시이불' to='어우잉'/>
+	<word from='시이붕' to='어우잉'/>
+	<word from='시이팔' to='어우잉'/>
+	<word from='시이펄' to='어우잉'/>
+	<word from='시이풀' to='어우잉'/>
+	<word from='쉬이발' to='아잉'/>
+	<word from='쉬이방' to='아잉'/>
+	<word from='쉬이벌' to='아잉'/>
+	<word from='쉬이불' to='아잉'/>
+	<word from='쉬이붕' to='아잉'/>
+	<word from='쉬이빨' to='아잉'/>
+	<word from='쉬이팔' to='아잉'/>
+	<word from='쉬이펄' to='아잉'/>
+	<word from='쉬이풀' to='아잉'/>
+	<word from='쓰으벌' to='아잉'/>
+	<word from='씨이발' to='아잉'/>
+	<word from='씨이방' to='아잉'/>
+	<word from='씨이벌' to='아잉'/>
+	<word from='씨이불' to='아잉'/>
+	<word from='씨이붕' to='아잉'/>
+	<word from='씨이빨' to='아잉'/>
+	<word from='씨이팔' to='아잉'/>
+	<word from='씨이펄' to='아잉'/>
+	<word from='씨이풀' to='아잉'/>
+	<word from='쒸이발' to='아잉'/>
+	<word from='쒸이방' to='아잉'/>
+	<word from='쒸이벌' to='아잉'/>
+	<word from='쒸이불' to='아잉'/>
+	<word from='쒸이붕' to='아잉'/>
+	<word from='쒸이빨' to='아잉'/>
+	<word from='쒸이팔' to='아잉'/>
+	<word from='쒸이펄' to='아잉'/>
+	<word from='쒸이풀' to='아잉'/>
+	<word from='띠발' to='좋아'/>
+	<word from='띠방' to='아잉'/>
+	<word from='띠벌' to='아잉'/>
+	<word from='띠불' to='아잉'/>
+	<word from='띠붕' to='아잉'/>
+	<word from='띠팔' to='아잉'/>
+	<word from='띠펄' to='아잉'/>
+	<word from='띠풀' to='아잉'/>
+	<word from='쉬발' to='에이'/>
+	<word from='쉬방' to='에이'/>
+	<word from='쉬벌' to='에이'/>
+	<word from='쉬불' to='에이'/>
+	<word from='쉬붕' to='에이'/>
+	<word from='쉬빨' to='에이'/>
+	<word from='쉬팔' to='에이'/>
+	<word from='쉬펄' to='에이'/>
+	<word from='쉬풀' to='에이'/>
+	<word from='스펄' to='에이'/>
+	<word from='시발' to='에이'/>
+	<word from='시벌' to='쩝'/>
+	<word from='시불' to='쩝'/>
+	<word from='시붕' to='쩝'/>
+	<word from='싯팔' to='쩝'/>
+	<word from='시팔' to='쩝'/>
+	<word from='시펄' to='쩝'/>
+	<word from='시풀' to='쩝'/>
+	<word from='씨바' to='어우'/>
+	<word from='쓰봉' to='에이'/>
+	<word from='씨발' to='저런'/>
+	<word from='씨.발' to='저런'/>
+	<word from='씨방' to='저런'/>
+	<word from='씨벌' to='저런'/>
+	<word from='씨불' to='저런'/>
+	<word from='씨붕' to='저런'/>
+	<word from='씨빨' to='저런'/>
+	<word from='씨팔' to='저런'/>
+	<word from='씨펄' to='저런'/>
+	<word from='씨풀' to='저런'/>
+	<word from='쓰벌' to='쯧쯧'/>
+	<word from='쓰불' to='쯧쯧'/>
+	<word from='쒸발' to='쯧쯧'/>
+	<word from='쒸방' to='쯧쯧'/>
+	<word from='쒸벌' to='쯧쯧'/>
+	<word from='쒸불' to='쯧쯧'/>
+	<word from='쒸붕' to='쯧쯧'/>
+	<word from='쒸빨' to='쯧쯧'/>
+	<word from='쒸팔' to='쯧쯧'/>
+	<word from='쒸펄' to='쯧쯧'/>
+	<word from='쒸풀' to='쯧쯧'/>
+
+<!-- 새끼 -->
+	<word from='새끼' to='강냉이'/>
+	<word from='새키' to='강냉이'/>
+	<word from='쌔키' to='강냉이'/>
+	<word from='씨키' to='강냉이'/>
+	<word from='새꺄' to='강냉이'/>
+	<word from='쎄끼' to='강냉이'/>
+	<word from='세끼' to='강냉이'/>
+	<word from='색끼' to='강냉이'/>
+	<word from='시끼' to='강냉이'/>
+	<word from='쌔끼' to='강냉이'/>
+	<word from='때끼' to='애'/>
+
+<!-- 지랄 -->
+	<word from='지랄하는' to='심한'/>
+	<word from='지랄해' to='심해'/>
+	<word from='지랄하' to='심하'/>
+	<word from='지랄이' to='어우'/>
+	<word from='찌랄이' to='어우'/>
+	<word from='지랄' to='어우'/>
+	<word from='지.랄' to='어우'/>
+	<word from='찌랄' to='어우'/>
+
+<!-- 병신 -->
+	<word from='병신' to='쩝쩝'/>
+	<word from='병.신' to='쩝쩝'/>
+	<word from='븅신' to='쩝쩝'/>
+	<word from='빙신' to='쩝쩝'/>
+	<word from='병쉰' to='쩝쩝'/>
+	<word from='븅쉰' to='쩝쩝'/>
+	<word from='빙쉰' to='쩝쩝'/>
+	<word from='병맛' to='쩝쩝'/>
+
+<!-- 미친 -->
+	<word from='미친놈' to='나쁜사람'/>
+	<word from='미.친.놈' to='나쁜사람'/>
+	<word from='미췬놈' to='나쁜사람'/>
+	<word from='미친년' to='나쁜사람'/>
+	<word from='미.친.년' to='나쁜사람'/>
+	<word from='미췬년' to='나쁜사람'/>
+	<word from='미췬' to='나쁜'/>
+	<word from='미친' to='나쁜'/>
+
+<!-- 섹스 -->
+	<word from='섹스' to='그거'/>
+	<word from='색스' to='그거'/>
+	<word from='쎅스' to='그거'/>
+	<word from='쌕스' to='그거'/>
+	<word from='쉑스' to='그거'/>
+	<word from='쇅스' to='그거'/>
+	<word from='쒝스' to='그거'/>
+	<word from='쐑스' to='그거'/>
+	<word from='섹수' to='그거'/>
+	<word from='색수' to='그거'/>
+	<word from='쎅수' to='그거'/>
+	<word from='쌕수' to='그거'/>
+	<word from='쉑수' to='그거'/>
+	<word from='쇅수' to='그거'/>
+	<word from='쒝수' to='그거'/>
+	<word from='쐑수' to='그거'/>
+	<word from='섹쓰' to='그거'/>
+	<word from='색쓰' to='그거'/>
+	<word from='쎅쓰' to='그거'/>
+	<word from='쌕쓰' to='그거'/>
+	<word from='쉑쓰' to='그거'/>
+	<word from='쇅쓰' to='그거'/>
+	<word from='쒝쓰' to='그거'/>
+	<word from='쐑쓰' to='그거'/>
+	<word from='섹쑤' to='그거'/>
+	<word from='색쑤' to='그거'/>
+	<word from='쎅쑤' to='그거'/>
+	<word from='쌕쑤' to='그거'/>
+	<word from='쉑쑤' to='그거'/>
+	<word from='쇅쑤' to='그거'/>
+	<word from='쒝쑤' to='그거'/>
+	<word from='쐑쑤' to='그거'/>
+	<word from='빠구리' to='그거'/>
+	<word from='빠굴' to='그거'/>
+	<word from='번섹' to='그거'/>
+	<word from='번쎅' to='그거'/>
+	<word from='번쌕' to='그거'/>
+	<word from='섹파' to='그거'/>
+	<word from='섹.파' to='그거'/>
+	<word from='섹.스' to='그거'/>
+
+<!-- 좆 -->
+	<word from='존나게' to='많이'/>
+	<word from='전나게' to='아주'/>
+	<word from='쫀나' to='매우'/>
+	<word from='존나' to='매우'/>
+	<word from='전나' to='매우'/>
+	<word from='젓나' to='매우'/>
+	<word from='절라' to='매우'/>
+	<word from='졸라' to='매우'/>
+	<word from='좆나' to='매우'/>
+	<word from='쪼까튼' to='거시기한'/>
+	<word from='젓같은' to='거시기한'/>
+	<word from='젓가튼' to='거시기한'/>
+	<word from='좆까는' to='안좋은'/>
+	<word from='좃까는' to='안좋은'/>
+	<word from='조까는' to='안좋은'/>
+	<word from='젓까는' to='안좋은'/>
+	<word from='젖까는' to='안좋은'/>
+	<word from='저까는' to='안좋은'/>
+	<word from='좆까' to='살살해'/>
+	<word from='좃까' to='살살해'/>
+	<word from='조까' to='살살해'/>
+	<word from='젓까' to='살살해'/>
+	<word from='젖까' to='살살해'/>
+	<word from='저까' to='살살해'/>
+	<word from='젓밥' to='만만'/>
+	<word from='젖밥' to='만만'/>
+	<word from='좃밥' to='만만'/>
+	<word from='족밥' to='만만'/>
+	<word from='좆밥' to='만만'/>
+	<word from='좃' to='거기'/>
+	<word from='좆' to='거기'/>
+	<word from='좇' to='거기'/>
+	<word from='자지' to='저기'/>
+	<word from='애미보지' to=''/>
+	<word from='개보지' to=''/>
+	<word from='보지' to='거기'/>
+	<word from='잠지' to='거기'/>
+	<word from='탱구리' to='거'/>
+	<word from='씹탱' to='아앙'/>
+	<word from='씺' to='그'/>
+	<word from='씝' to='그'/>
+	<word from='씞' to='그'/>
+	<word from='귀두' to='거기'/>
+	<word from='꼬츄' to='거기'/>
+	<word from='꼬.츄' to='거기'/>
+	<word from='고츄' to='거기'/>
+	<word from='고.츄' to='거기'/>
+
+<!-- 애자 -->
+	<word from='애자' to='쫄쫄이'/>
+	<word from='ㅇㅐ자' to='쫄쫄이'/>
+	<word from='ㅇㅐㅈㅏ' to='쫄쫄이'/>
+	<word from='ㅇ ㅐ자' to='쫄쫄이'/>
+	<word from='ㅇ ㅐㅈㅏ' to='쫄쫄이'/>
+	<word from='ㅇ ㅐㅈ ㅏ' to='쫄쫄이'/>
+	<word from='ㅇ ㅐ ㅈ ㅏ' to='쫄쫄이'/>
+
+<!-- 기타 -->
+	<word from='또라이' to='한심이'/>
+	<word from='자빠졌네' to='있네'/>
+	<word from='뒈지' to='끝나'/>
+	<word from='뒈져' to='끝나'/>
+	<word from='아가리' to='입'/>
+	<word from='아구지' to='입'/>
+	<word from='아구창' to='입'/>
+	<word from='아구통' to='입'/>
+	<word from='대갈' to='머리'/>
+	<word from='대가리' to='머리'/>
+	<word from='눈깔' to='눈'/>
+	<word from='꺼져' to='사라져'/>
+	<word from='짜져' to='사라져'/>
+	<word from='닥쳐' to='살살해'/>
+	<word from='닥쵸' to='살살해'/>
+	<word from='닭쳐' to='조용해'/>
+	<word from='닭쵸' to='조용해'/>
+	<word from='쳐먹어' to='드셔'/>
+	<word from='쳐먹' to='드시'/>
+	<word from='까발리' to='드러내'/>
+	<word from='까발려' to='드러내'/>
+	<word from='까대' to='떠드'/>
+	<word from='까댄' to='떠든'/>
+	<word from='죽어' to='그만해'/>
+	<word from='뒤져' to='그만해'/>
+	<word from='당근이지' to='당연하지'/>
+	<word from='말밥' to='당연'/>
+	<word from='짜증나' to='답답해'/>
+	<word from='짱나' to='답답해'/>
+	<word from='뻘쭘' to='어색'/>
+	<word from='허접해' to='후졌어'/>
+	<word from='허접하' to='후진이'/>
+	<word from='허접한' to='후진'/>
+	<word from='허접' to='후진'/>
+	<word from='애미' to='엄마'/>
+	<word from='애비' to='아빠'/>
+	<word from='뽀작' to='끝장'/>
+	<word from='아작' to='끝장'/>
+
+	<word from='2컴' to='아잉' />
+	<word from='2c8' to='아잉' />
+	<word from='2c팔' to='아잉' />
+	<word from='2com' to='아잉' />
+	<word from='ㄱh뇬' to='아잉' />
+	<word from='갈보' to='아잉' />
+	<word from='강간' to='아잉' />
+	<word from='개 새 끼' to='나쁜애' />
+	<word from='개 새끼' to='나쁜애' />
+	<word from='개꼬치' to='나쁜애' />
+	<word from='개넌' to='나쁜애' />
+	<word from='개눔' to='나쁜애' />
+	<word from='개도라이' to='나쁜애' />
+	<word from='개때꺄' to='나쁜애' />
+	<word from='개때끼' to='나쁜애' />
+	<word from='개또라이' to='나쁜애' />
+	<word from='개부랄' to='아잉' />
+	<word from='개부럴' to='아잉' />
+	<word from='개불알' to='아잉' />
+	<word from='개뼈다구' to='아잉' />
+	<word from='개뼈다귀' to='아잉' />
+	<word from='개뼉다구' to='아잉' />
+	<word from='개뼉따구' to='아잉' />
+	<word from='개새 끼' to='나쁜애' />
+	<word from='개새꺄' to='나쁜애' />
+	<word from='개새리' to='나쁜애' />
+	<word from='개새이' to='나쁜애' />
+	<word from='개색' to='나쁜애' />
+	<word from='개색기' to='나쁜애' />
+	<word from='개색꺄' to='나쁜애' />
+	<word from='개색끼' to='나쁜애' />
+	<word from='개색히' to='나쁜애' />
+	<word from='개샛킹' to='나쁜애' />
+	<word from='개샠' to='나쁜애' />
+	<word from='개세이' to='나쁜애' />
+	<word from='개섹' to='나쁜애' />
+	<word from='개쇄끼' to='나쁜애' />
+	<word from='개쉐이' to='나쁜애' />
+	<word from='개쉑히' to='나쁜애' />
+	<word from='개쉬리' to='나쁜애' />
+	<word from='개쉽' to='나쁜애' />
+	<word from='개시키' to='나쁜애' />
+	<word from='개쌍년' to='나쁜애' />
+	<word from='개쌍놈' to='나쁜애' />
+	<word from='개쌔꺄' to='나쁜애' />
+	<word from='개쌔끼' to='나쁜애' />
+	<word from='개쌕끼' to='나쁜애' />
+	<word from='개썅년' to='나쁜애' />
+	<word from='개쒹기' to='나쁜애' />
+	<word from='개씨발' to='나쁜애' />
+	<word from='개씹창' to='나쁜애' />
+	<word from='개아이' to='나쁜애' />
+	<word from='개염창' to='나쁜애' />
+	<word from='개자슥' to='나쁜애' />
+	<word from='개자식' to='나쁜애' />
+	<word from='개자지' to='나쁜애' />
+	<word from='개젓' to='아잉' />
+	<word from='개젖' to='아잉' />
+	<word from='개졋' to='아잉' />
+	<word from='개졎' to='아잉' />
+	<word from='개조또' to='아잉' />
+	<word from='개찌질이' to='아잉' />
+	<word from='개후랄' to='아잉' />
+	<word from='개후레' to='아잉' />
+	<word from='개후장' to='아잉' />
+	<word from='거시기' to='아잉' />
+	<word from='거지새끼' to='아잉' />
+	<word from='거지쉐뀌' to='아잉' />
+	<word from='거지쎄끼' to='아잉' />
+	<word from='거지쒜리' to='아잉' />
+	<word from='걸래' to='아잉' />
+	<word from='걸레' to='아잉' />
+	<word from='겁탈' to='아잉' />
+	<word from='게년' to='아잉' />
+	<word from='게뇬' to='아잉' />
+	<word from='게눔' to='아잉' />
+	<word from='게새리' to='아잉' />
+	<word from='게색' to='아잉' />
+	<word from='게색기' to='아잉' />
+	<word from='게색끼' to='아잉' />
+	<word from='게세' to='아잉' />
+	<word from='게섹' to='아잉' />
+	<word from='게섹놈아' to='아잉' />
+	<word from='게쉐' to='아잉' />
+	<word from='게시끼' to='아잉' />
+	<word from='게시퀴' to='아잉' />
+	<word from='게쌔기' to='아잉' />
+	<word from='게쌕끼' to='아잉' />
+	<word from='계약애인' to='아잉' />
+	<word from='계약앤' to='아잉' />
+	<word from='고추' to='아잉' />
+	<word from='골통' to='아잉' />
+	<word from='공알' to='아잉' />
+	<word from='교환부부' to='아잉' />
+	<word from='그룹섹' to='아잉' />
+	<word from='그지새끼' to='아잉' />
+	<word from='그지새키' to='아잉' />
+	<word from='그지좃밥' to='아잉' />
+	<word from='그지좃빱' to='아잉' />
+	<word from='근친상간' to='아잉' />
+	<word from='깐죽' to='아잉' />
+	<word from='깝쳐' to='아잉' />
+	<word from='깝치네' to='아잉' />
+	<word from='깝친다' to='아잉' />
+	<word from='깝칠래' to='아잉' />
+	<word from='꼬추' to='아잉' />
+	<word from='꼴깝' to='아잉' />
+	<word from='꼴려' to='아잉' />
+	<word from='꼴리는' to='아잉' />
+	<word from='꼴리다' to='아잉' />
+	<word from='꼴통' to='아잉' />
+	<word from='꽁까' to='아잉' />
+	<word from='꽃뱀' to='아잉' />
+	<word from='난교' to='아잉' />
+	<word from='넴병' to='아잉' />
+	<word from='노브라' to='아잉' />
+	<word from='노팬츠' to='아잉' />
+	<word from='노팬티' to='아잉' />
+	<word from='누드' to='아잉' />
+	<word from='뉘미' to='아잉' />
+	<word from='뉘미럴' to='아잉' />
+	<word from='뉘잉기미' to='아잉' />
+	<word from='늬귀미' to='아잉' />
+	<word from='늬믜창' to='아잉' />
+	<word from='늬미' to='아잉' />
+	<word from='니귀미' to='아잉' />
+	<word from='니믜' to='아잉' />
+	<word from='니미랄' to='아잉' />
+	<word from='니미럴' to='아잉' />
+	<word from='니미롤' to='아잉' />
+	<word from='니미룰' to='아잉' />
+	<word from='니미를' to='아잉' />
+	<word from='니애미' to='아잉' />
+	<word from='니앰' to='아잉' />
+	<word from='니에미' to='아잉' />
+	<word from='니엠' to='아잉' />
+	<word from='니이미' to='아잉' />
+	<word from='니죠때' to='아잉' />
+	<word from='니죶데' to='아잉' />
+	<word from='니주가리' to='아잉' />
+	<word from='돌림빵' to='아잉' />
+	<word from='동거' to='아잉' />
+	<word from='동거녀' to='아잉' />
+	<word from='동침' to='아잉' />
+	<word from='되가리' to='아잉' />
+	<word from='되질래' to='아잉' />
+	<word from='뒈져라' to='아잉' />
+	<word from='뒈진다' to='아잉' />
+	<word from='뒈질래' to='아잉' />
+	<word from='뒤죠' to='아잉' />
+	<word from='뒤질래' to='아잉' />
+	<word from='드응신' to='아잉' />
+	<word from='등신' to='아잉' />
+	<word from='디랄' to='아잉' />
+	<word from='디럴' to='아잉' />
+	<word from='디져라' to='아잉' />
+	<word from='디진다' to='아잉' />
+	<word from='디질래' to='아잉' />
+	<word from='딜도' to='아잉' />
+	<word from='따굴' to='아잉' />
+	<word from='따먹기' to='아잉' />
+	<word from='따먹는' to='아잉' />
+	<word from='따먹어' to='아잉' />
+	<word from='따무라' to='아잉' />
+	<word from='따묵기' to='아잉' />
+	<word from='딸따뤼' to='아잉' />
+	<word from='딸따리' to='아잉' />
+	<word from='딸딸이' to='아잉' />
+	<word from='딸치는' to='아잉' />
+	<word from='때꺄' to='아잉' />
+	<word from='떠라이' to='아잉' />
+	<word from='떡치기' to='아잉' />
+	<word from='떵싸구' to='아잉' />
+	<word from='똘봉년' to='아잉' />
+	<word from='똥고' to='아잉' />
+	<word from='똥구멍' to='아잉' />
+	<word from='똥꼬' to='아잉' />
+	<word from='똥꾸녕' to='아잉' />
+	<word from='똥닦다' to='아잉' />
+	<word from='똥대가리' to='아잉' />
+	<word from='똥물' to='아잉' />
+	<word from='똥싸' to='아잉' />
+	<word from='똥쳐먹다' to='아잉' />
+	<word from='뜁새' to='아잉' />
+	<word from='띠바' to='아잉' />
+	<word from='띠박' to='아잉' />
+	<word from='띠밸' to='아잉' />
+	<word from='띠이바' to='아잉' />
+	<word from='띠이밸' to='아잉' />
+	<word from='띱새' to='아잉' />
+	<word from='레즈' to='아잉' />
+	<word from='ㅁl친' to='아잉' />
+	<word from='매춘' to='아잉' />
+	<word from='머/팩' to='아잉' />
+	<word from='머/펙' to='아잉' />
+	<word from='머니팩' to='아잉' />
+	<word from='머니펙' to='아잉' />
+	<word from='머팩' to='아잉' />
+	<word from='머펙' to='아잉' />
+	<word from='멀/펙' to='아잉' />
+	<word from='몰카' to='아잉' />
+	<word from='몸파는' to='아잉' />
+	<word from='몸파라' to='아잉' />
+	<word from='뭬친놈' to='아잉' />
+	<word from='뮈친' to='아잉' />
+	<word from='믜친' to='아잉' />
+	<word from='미륀놈' to='아잉' />
+	<word from='미찬놈' to='아잉' />
+	<word from='미칀' to='아잉' />
+	<word from='미틴' to='아잉' />
+	<word from='민증위조' to='아잉' />
+	<word from='밑구녕' to='아잉' />
+	<word from='밑창' to='아잉' />
+	<word from='바구리' to='아잉' />
+	<word from='박을년' to='아잉' />
+	<word from='발기' to='아잉' />
+	<word from='뱅쉰' to='아잉' />
+	<word from='뱅싄' to='아잉' />
+	<word from='뱅신' to='아잉' />
+	<word from='버짓물' to='아잉' />
+	<word from='번색' to='아잉' />
+	<word from='벼엉신' to='아잉' />
+	<word from='변섹' to='아잉' />
+	<word from='변ㅌㅐ' to='아잉' />
+	<word from='변태' to='아잉' />
+	<word from='변녀' to='아잉' />
+	<word from='변.녀' to='아잉' />
+	<word from='벼언녀' to='아잉' />
+	<word from='변테' to='아잉' />
+	<word from='변퇘' to='아잉' />
+	<word from='변퇴' to='아잉' />
+	<word from='변퉤' to='아잉' />
+	<word from='변틔' to='아잉' />
+	<word from='변티' to='아잉' />
+	<word from='병싡' to='아잉' />
+	<word from='병씮' to='아잉' />
+	<word from='보쥐' to='아잉' />
+	<word from='보짓' to='아잉' />
+	<word from='보g' to='아잉' />
+	<word from='보z' to='아잉' />
+	<word from='봉알' to='아잉' />
+	<word from='뵤지' to='아잉' />
+	<word from='뵨태' to='아잉' />
+	<word from='뵹싄' to='아잉' />
+	<word from='뵹신' to='아잉' />
+	<word from='부랄' to='아잉' />
+	<word from='불륜' to='아잉' />
+	<word from='불알' to='아잉' />
+	<word from='붕신' to='아잉' />
+	<word from='붕알' to='아잉' />
+	<word from='붱신' to='아잉' />
+	<word from='뷩신' to='아잉' />
+	<word from='뷰웅신' to='아잉' />
+	<word from='븅싄' to='아잉' />
+	<word from='븽신' to='아잉' />
+	<word from='비1' to='아잉' />
+	<word from='비잉신' to='아잉' />
+	<word from='빙시' to='아잉' />
+	<word from='ㅃㅏ구ㄹㅣ' to='아잉' />
+	<word from='빠굴이' to='아잉' />
+	<word from='빠꾸리' to='아잉' />
+	<word from='빠돌이' to='아잉' />
+	<word from='빠라조' to='아잉' />
+	<word from='빠라줘' to='아잉' />
+	<word from='빠러' to='아잉' />
+	<word from='빠르너' to='아잉' />
+	<word from='빠수니' to='아잉' />
+	<word from='빠순이' to='아잉' />
+	<word from='빠큐' to='아잉' />
+	<word from='빡촌' to='아잉' />
+	<word from='빡큐' to='아잉' />
+	<word from='빤스' to='아잉' />
+	<word from='빤쮸' to='아잉' />
+	<word from='빨기' to='아잉' />
+	<word from='빨께' to='아잉' />
+	<word from='빨라줘' to='아잉' />
+	<word from='빨아줘' to='아잉' />
+	<word from='빨어' to='아잉' />
+	<word from='빨통' to='아잉' />
+	<word from='빽보지' to='아잉' />
+	<word from='빽자지' to='아잉' />
+	<word from='뻐르노' to='아잉' />
+	<word from='뻐큐' to='아잉' />
+	<word from='뻑큐' to='아잉' />
+	<word from='뽀 르 노' to='아잉' />
+	<word from='뽀르노' to='아잉' />
+	<word from='뽀지' to='아잉' />
+	<word from='뽀큐' to='아잉' />
+	<word from='뽁큐' to='아잉' />
+	<word from='뽈노' to='아잉' />
+	<word from='뽈로노' to='아잉' />
+	<word from='뽕알' to='아잉' />
+	<word from='사갈탱이' to='아잉' />
+	<word from='사까시' to='아잉' />
+	<word from='사까치' to='아잉' />
+	<word from='사정하' to='아잉' />
+	<word from='사정할' to='아잉' />
+	<word from='사정했' to='아잉' />
+	<word from='사창가' to='아잉' />
+	<word from='삽입' to='아잉' />
+	<word from='삽질' to='아잉' />
+	<word from='삿깟시' to='아잉' />
+	<word from='상년' to='아잉' />
+	<word from='상노무' to='아잉' />
+	<word from='새끠' to='아잉' />
+	<word from='새뤼' to='아잉' />
+	<word from='색갸' to='아잉' />
+	<word from='색걸' to='아잉' />
+	<word from='색골' to='아잉' />
+	<word from='색광' to='아잉' />
+	<word from='색기' to='아잉' />
+	<word from='색꺄' to='아잉' />
+	<word from='색남' to='아잉' />
+	<word from='색녀' to='아잉' />
+	<word from='색마' to='아잉' />
+	<word from='색히' to='아잉' />
+	<word from='생리' to='아잉' />
+	<word from='생양아치' to='아잉' />
+	<word from='샹년' to='아잉' />
+	<word from='샹놈' to='아잉' />
+	<word from='샹늠' to='아잉' />
+	<word from='성감대' to='아잉' />
+	<word from='성겨육' to='아잉' />
+	<word from='성경험' to='아잉' />
+	<word from='성관계' to='아잉' />
+	<word from='성교' to='아잉' />
+	<word from='성교제' to='아잉' />
+	<word from='성기구' to='아잉' />
+	<word from='성방' to='아잉' />
+	<word from='성상담' to='아잉' />
+	<word from='성생활' to='아잉' />
+	<word from='성섹스' to='아잉' />
+	<word from='성숙녀' to='아잉' />
+	<word from='성욕구' to='아잉' />
+	<word from='성인공간' to='아잉' />
+	<word from='성인대화' to='아잉' />
+	<word from='성인만화' to='아잉' />
+	<word from='성인물' to='아잉' />
+	<word from='성인방' to='아잉' />
+	<word from='성인방송' to='아잉' />
+	<word from='성인사진' to='아잉' />
+	<word from='성인소설' to='아잉' />
+	<word from='성인야동' to='아잉' />
+	<word from='성인야사' to='아잉' />
+	<word from='성인야캠' to='아잉' />
+	<word from='성인엽기' to='아잉' />
+	<word from='성인영화' to='아잉' />
+	<word from='성인영화관' to='아잉' />
+	<word from='성인용' to='아잉' />
+	<word from='성인용품' to='아잉' />
+	<word from='성인유머' to='아잉' />
+	<word from='성인잡지' to='아잉' />
+	<word from='성인전용' to='아잉' />
+	<word from='성인카페' to='아잉' />
+	<word from='성인포탈' to='아잉' />
+	<word from='성체위' to='아잉' />
+	<word from='성체험' to='아잉' />
+	<word from='성추행' to='아잉' />
+	<word from='성충동' to='아잉' />
+	<word from='성클리닉' to='아잉' />
+	<word from='성태크닉' to='아잉' />
+	<word from='성테크닉' to='아잉' />
+	<word from='성폭행' to='아잉' />
+	<word from='성행위' to='아잉' />
+	<word from='세꺄' to='아잉' />
+	<word from='세끠' to='아잉' />
+	<word from='세액스' to='아잉' />
+	<word from='세엑스' to='아잉' />
+	<word from='세키' to='아잉' />
+	<word from='섹걸' to='아잉' />
+	<word from='섹골' to='아잉' />
+	<word from='섹남' to='아잉' />
+	<word from='섹녀' to='아잉' />
+	<word from='섹무비' to='아잉' />
+	<word from='섹보지' to='아잉' />
+	<word from='섹소리' to='아잉' />
+	<word from='섹슈' to='아잉' />
+	<word from='섹파트너' to='아잉' />
+	<word from='섹하자' to='아잉' />
+	<word from='섹하장' to='아잉' />
+	<word from='섹할' to='아잉' />
+	<word from='섹해' to='아잉' />
+	<word from='섹히' to='아잉' />
+	<word from='쇄끼' to='아잉' />
+	<word from='쇅끼' to='아잉' />
+	<word from='수간' to='아잉' />
+	<word from='수음' to='아잉' />
+	<word from='쉐끼' to='아잉' />
+	<word from='쉐리' to='아잉' />
+	<word from='쉐이' to='아잉' />
+	<word from='쉐키' to='아잉' />
+	<word from='쉑히' to='아잉' />
+	<word from='쉣더뻑' to='아잉' />
+	<word from='쉬바' to='아잉' />
+	<word from='쉬밸' to='아잉' />
+	<word from='쉬부' to='아잉' />
+	<word from='쉬빠' to='아잉' />
+	<word from='쉬빡' to='아잉' />
+	<word from='쉬이바' to='아잉' />
+	<word from='쉬이밸' to='아잉' />
+	<word from='쉬이빡' to='아잉' />
+	<word from='쉬팍' to='아잉' />
+	<word from='쉭셰리' to='아잉' />
+	<word from='쉽새' to='아잉' />
+	<word from='쉽생구리' to='아잉' />
+	<word from='쉽알' to='아잉' />
+	<word from='쉽할이' to='아잉' />
+	<word from='스너프' to='아잉' />
+	<word from='스발' to='아잉' />
+	<word from='스와핑' to='아잉' />
+	<word from='스트립쑈' to='아잉' />
+	<word from='스팔' to='아잉' />
+	<word from='싀발' to='아잉' />
+	<word from='싀방' to='아잉' />
+	<word from='싀봉' to='아잉' />
+	<word from='싀팔' to='아잉' />
+	<word from='시댕' to='아잉' />
+	<word from='시뎅' to='아잉' />
+	<word from='시바' to='아잉' />
+	<word from='시발넘' to='아잉' />
+	<word from='시발년' to='아잉' />
+	<word from='시발놈' to='아잉' />
+	<word from='시발뇬' to='아잉' />
+	<word from='시방새' to='아잉' />
+	<word from='시방세' to='아잉' />
+	<word from='시방쉐' to='아잉' />
+	<word from='시벨넘' to='아잉' />
+	<word from='시벨새키' to='아잉' />
+	<word from='시부랄' to='아잉' />
+	<word from='시부럴' to='아잉' />
+	<word from='시부리' to='아잉' />
+	<word from='시브랄' to='아잉' />
+	<word from='시빨' to='아잉' />
+	<word from='시빨년' to='아잉' />
+	<word from='시이방' to='아잉' />
+	<word from='시이밸' to='아잉' />
+	<word from='시이빡' to='아잉' />
+	<word from='시팍' to='아잉' />
+	<word from='십8' to='아잉' />
+	<word from='십녀' to='아잉' />
+	<word from='십때꺄' to='아잉' />
+	<word from='십떼끼' to='아잉' />
+	<word from='십물' to='아잉' />
+	<word from='십색꺄' to='아잉' />
+	<word from='십색히' to='아잉' />
+	<word from='십쇡기' to='아잉' />
+	<word from='십쉐리' to='아잉' />
+	<word from='십쉐이' to='아잉' />
+	<word from='십쉑' to='아잉' />
+	<word from='십쉑히' to='아잉' />
+	<word from='십쌔' to='아잉' />
+	<word from='십쌔꺄' to='아잉' />
+	<word from='십알' to='아잉' />
+	<word from='십좌지' to='아잉' />
+	<word from='십창' to='아잉' />
+	<word from='십팔' to='아잉' />
+	<word from='십할' to='아잉' />
+	<word from='싶알' to='아잉' />
+	<word from='ㅆ1발' to='아잉' />
+	<word from='ㅆ1팔' to='아잉' />
+	<word from='ㅆㅂㄹ ㅁ' to='아잉' />
+	<word from='ㅆㅂㄻ' to='아잉' />
+	<word from='ㅆi발' to='아잉' />
+	<word from='ㅆl발' to='아잉' />
+	<word from='ㅆl팔' to='아잉' />
+	<word from='싸가지' to='아잉' />
+	<word from='싹수' to='아잉' />
+	<word from='싹아지' to='아잉' />
+	<word from='쌈치기' to='아잉' />
+	<word from='쌉년' to='아잉' />
+	<word from='쌍넘' to='아잉' />
+	<word from='쌍놈' to='아잉' />
+	<word from='쌍놈아' to='아잉' />
+	<word from='쌍뇬' to='아잉' />
+	<word from='쌔꺄' to='아잉' />
+	<word from='쌔리' to='아잉' />
+	<word from='쌕걸' to='아잉' />
+	<word from='쌩쇼' to='아잉' />
+	<word from='쌩쑈' to='아잉' />
+	<word from='쌩아다' to='아잉' />
+	<word from='썅넌' to='아잉' />
+	<word from='썅넘' to='아잉' />
+	<word from='썅년' to='아잉' />
+	<word from='썅놈' to='아잉' />
+	<word from='썅뇬' to='아잉' />
+	<word from='썌꺄' to='아잉' />
+	<word from='써벌' to='아잉' />
+	<word from='썩을년' to='아잉' />
+	<word from='쎄꺄' to='아잉' />
+	<word from='쎄끈' to='아잉' />
+	<word from='쎄엑' to='아잉' />
+	<word from='쎄엑스' to='아잉' />
+	<word from='쒸바' to='아잉' />
+	<word from='쒸밸' to='아잉' />
+	<word from='쒸부' to='아잉' />
+	<word from='쒸빡' to='아잉' />
+	<word from='쒸이' to='아잉' />
+	<word from='쒸이바' to='아잉' />
+	<word from='쒸이밸' to='아잉' />
+	<word from='쒸이부' to='아잉' />
+	<word from='쒸이빡' to='아잉' />
+	<word from='쓉쎄끼' to='아잉' />
+	<word from='쓋파라' to='아잉' />
+	<word from='쓰바' to='아잉' />
+	<word from='쓰발' to='아잉' />
+	<word from='쓰방' to='아잉' />
+	<word from='쓰밸' to='아잉' />
+	<word from='쓰부' to='아잉' />
+	<word from='쓰붕' to='아잉' />
+	<word from='쓰빡' to='아잉' />
+	<word from='쓰으방' to='아잉' />
+	<word from='쓰이바' to='아잉' />
+	<word from='쓰이발' to='아잉' />
+	<word from='쓰이방' to='아잉' />
+	<word from='쓰이밸' to='아잉' />
+	<word from='쓰이벌' to='아잉' />
+	<word from='쓰이부' to='아잉' />
+	<word from='쓰이불' to='아잉' />
+	<word from='쓰이붕' to='아잉' />
+	<word from='쓰이빡' to='아잉' />
+	<word from='쓰이팔' to='아잉' />
+	<word from='쓰이펄' to='아잉' />
+	<word from='쓰이풀' to='아잉' />
+	<word from='쓰팍' to='아잉' />
+	<word from='쓰팔' to='아잉' />
+	<word from='쓰펄' to='아잉' />
+	<word from='쓰풀' to='아잉' />
+	<word from='씁새끼' to='아잉' />
+	<word from='씁알' to='아잉' />
+	<word from='씌발' to='아잉' />
+	<word from='씌방' to='아잉' />
+	<word from='씌벌' to='아잉' />
+	<word from='씌팔' to='아잉' />
+	<word from='씝년' to='아잉' />
+	<word from='씝알' to='아잉' />
+	<word from='씝알놈' to='아잉' />
+	<word from='씝탱' to='아잉' />
+	<word from='씝할' to='아잉' />
+	<word from='씨8' to='아잉' />
+	<word from='씨꽈랄' to='아잉' />
+	<word from='씨끼' to='아잉' />
+	<word from='씨댕' to='아잉' />
+	<word from='씨뎅' to='아잉' />
+	<word from='씨박새끼' to='아잉' />
+	<word from='씨발넘' to='아잉' />
+	<word from='씨발년' to='아잉' />
+	<word from='씨발놈' to='아잉' />
+	<word from='씨발놈아' to='아잉' />
+	<word from='씨방새' to='아잉' />
+	<word from='씨방세' to='아잉' />
+	<word from='씨방쉐' to='아잉' />
+	<word from='씨밸' to='아잉' />
+	<word from='씨밸년' to='아잉' />
+	<word from='씨밸놈' to='아잉' />
+	<word from='씨뱅' to='아잉' />
+	<word from='씨뱅놈' to='아잉' />
+	<word from='씨뱅아' to='아잉' />
+	<word from='씨벨' to='아잉' />
+	<word from='씨봉알' to='아잉' />
+	<word from='씨부' to='아잉' />
+	<word from='씨부랄' to='아잉' />
+	<word from='씨부럴' to='아잉' />
+	<word from='씨부렁' to='아잉' />
+	<word from='씨부리' to='아잉' />
+	<word from='씨브랄' to='아잉' />
+	<word from='씨빠' to='아잉' />
+	<word from='씨빡' to='아잉' />
+	<word from='씨뽀랄' to='아잉' />
+	<word from='씨이바' to='아잉' />
+	<word from='씨이밸' to='아잉' />
+	<word from='씨이부' to='아잉' />
+	<word from='씨이빡' to='아잉' />
+	<word from='씨입년' to='아잉' />
+	<word from='씨입뇬' to='아잉' />
+	<word from='씨파' to='아잉' />
+	<word from='씨팍' to='아잉' />
+	<word from='씹8' to='아잉' />
+	<word from='씹갓길' to='아잉' />
+	<word from='씹넘' to='아잉' />
+	<word from='씹년' to='아잉' />
+	<word from='씹뇬' to='아잉' />
+	<word from='씹딱꿍' to='아잉' />
+	<word from='씹때꺄' to='아잉' />
+	<word from='씹물' to='아잉' />
+	<word from='씹보지' to='아잉' />
+	<word from='씹보지년' to='아잉' />
+	<word from='씹빡' to='아잉' />
+	<word from='씹새캬' to='아잉' />
+	<word from='씹색꺄' to='아잉' />
+	<word from='씹색히' to='아잉' />
+	<word from='씹샛길' to='아잉' />
+	<word from='씹생알' to='아잉' />
+	<word from='씹세' to='아잉' />
+	<word from='씹세이' to='아잉' />
+	<word from='씹셋나루' to='아잉' />
+	<word from='씹쉐리' to='아잉' />
+	<word from='씹쉐이' to='아잉' />
+	<word from='씹쉑' to='아잉' />
+	<word from='씹쉑히' to='아잉' />
+	<word from='씹쌔' to='아잉' />
+	<word from='씹쌔기' to='아잉' />
+	<word from='씹쌔꺄' to='아잉' />
+	<word from='씹알' to='아잉' />
+	<word from='씹자지년' to='아잉' />
+	<word from='씹질' to='아잉' />
+	<word from='씹창' to='아잉' />
+	<word from='씹탱구리' to='아잉' />
+	<word from='씹팔' to='아잉' />
+	<word from='씹펄' to='아잉' />
+	<word from='씹풀' to='아잉' />
+	<word from='씹할' to='아잉' />
+	<word from='씻퐁' to='아잉' />
+	<word from='아갈이' to='아잉' />
+	<word from='아갈통' to='아잉' />
+	<word from='아이템매니아' to='아잉' />
+	<word from='아이템메니아' to='아잉' />
+	<word from='아이템베이' to='아잉' />
+	<word from='알몸공개' to='아잉' />
+	<word from='알몸사진' to='아잉' />
+	<word from='알몸쇼' to='아잉' />
+	<word from='애널' to='아잉' />
+	<word from='애로' to='아잉' />
+	<word from='애무' to='아잉' />
+	<word from='애액' to='아잉' />
+	<word from='애쟈' to='아잉' />
+	<word from='앰창' to='아잉' />
+	<word from='앵벌이' to='아잉' />
+	<word from='야겜' to='아잉' />
+	<word from='야녀' to='아잉' />
+	<word from='야담' to='아잉' />
+	<word from='야덩' to='아잉' />
+	<word from='야동' to='아잉' />
+	<word from='야똥' to='아잉' />
+	<word from='야사' to='아잉' />
+	<word from='야설' to='아잉' />
+	<word from='야섹' to='아잉' />
+	<word from='야시녀' to='아잉' />
+	<word from='야오이' to='아잉' />
+	<word from='야자료' to='아잉' />
+	<word from='야캠' to='아잉' />
+	<word from='야한' to='아잉' />
+	<word from='양아치' to='아잉' />
+	<word from='얼간이' to='아잉' />
+	<word from='엄창' to='아잉' />
+	<word from='에로' to='아잉' />
+	<word from='에믜' to='아잉' />
+	<word from='엑스터시' to='아잉' />
+	<word from='엠창' to='아잉' />
+	<word from='염병' to='아잉' />
+	<word from='옘병' to='아잉' />
+	<word from='오까마' to='아잉' />
+	<word from='오랄' to='아잉' />
+	<word from='오럴' to='아잉' />
+	<word from='오르가슴' to='아잉' />
+	<word from='오르가즘' to='아잉' />
+	<word from='올가즘' to='아잉' />
+	<word from='요씨댕' to='아잉' />
+	<word from='우라질' to='아잉' />
+	<word from='원조교재' to='아잉' />
+	<word from='원조교제' to='아잉' />
+	<word from='원초적' to='아잉' />
+	<word from='월경' to='아잉' />
+	<word from='유방' to='아잉' />
+	<word from='육봉' to='아잉' />
+	<word from='윤간' to='아잉' />
+	<word from='윤락' to='아잉' />
+	<word from='음경' to='아잉' />
+	<word from='음담패설' to='아잉' />
+	<word from='음란' to='아잉' />
+	<word from='음모' to='아잉' />
+	<word from='이시끼' to='아잉' />
+	<word from='一進' to='아잉' />
+	<word from='일진회' to='아잉' />
+	<word from='一進會' to='아잉' />
+	<word from='ㅈl랄' to='아잉' />
+	<word from='자위' to='아잉' />
+	<word from='자쥐' to='아잉' />
+	<word from='자ji' to='아잉' />
+	<word from='작방' to='아잉' />
+	<word from='잠방' to='아잉' />
+	<word from='잡년' to='아잉' />
+	<word from='잡놈' to='아잉' />
+	<word from='잡뇬' to='아잉' />
+	<word from='재랄' to='아잉' />
+	<word from='저까튼' to='아잉' />
+	<word from='저년' to='아잉' />
+	<word from='저빠지게' to='아잉' />
+	<word from='저빱' to='아잉' />
+	<word from='저샤키' to='아잉' />
+	<word from='저주글' to='아잉' />
+	<word from='전나구려' to='아잉' />
+	<word from='절라게' to='아잉' />
+	<word from='접밥' to='아잉' />
+	<word from='젓나게' to='아잉' />
+	<word from='젓마난' to='아잉' />
+	<word from='젓만한' to='아잉' />
+	<word from='젓빠지게' to='아잉' />
+	<word from='정력' to='아잉' />
+	<word from='정자' to='아잉' />
+	<word from='젖가튼' to='아잉' />
+	<word from='젖같은' to='아잉' />
+	<word from='젖고픈' to='아잉' />
+	<word from='젖꼭지' to='아잉' />
+	<word from='젖나' to='아잉' />
+	<word from='젖나게' to='아잉' />
+	<word from='젖도' to='아잉' />
+	<word from='젖마난' to='아잉' />
+	<word from='젖만한' to='아잉' />
+	<word from='젖빠지게' to='아잉' />
+	<word from='젖통' to='아잉' />
+	<word from='제긜' to='아잉' />
+	<word from='제기랄' to='아잉' />
+	<word from='제기럴' to='아잉' />
+	<word from='제기룰' to='아잉' />
+	<word from='제길' to='아잉' />
+	<word from='젝일' to='아잉' />
+	<word from='젠장' to='아잉' />
+	<word from='젱장' to='아잉' />
+	<word from='조건만남' to='아잉' />
+	<word from='조까라' to='아잉' />
+	<word from='조까튼' to='아잉' />
+	<word from='조또' to='아잉' />
+	<word from='조빠' to='아잉' />
+	<word from='조빠지게' to='아잉' />
+	<word from='조빱' to='아잉' />
+	<word from='조쟁이' to='아잉' />
+	<word from='조지냐' to='아잉' />
+	<word from='조진다' to='아잉' />
+	<word from='조질래' to='아잉' />
+	<word from='족딸' to='아잉' />
+	<word from='존니' to='아잉' />
+	<word from='존마난' to='아잉' />
+	<word from='존만한' to='아잉' />
+	<word from='졸라게' to='아잉' />
+	<word from='좀물' to='아잉' />
+	<word from='좁년' to='아잉' />
+	<word from='좁밥' to='아잉' />
+	<word from='좃가튼' to='아잉' />
+	<word from='좃같은' to='아잉' />
+	<word from='좃까라' to='아잉' />
+	<word from='좃나' to='아잉' />
+	<word from='좃나게' to='아잉' />
+	<word from='좃도' to='아잉' />
+	<word from='좃마난' to='아잉' />
+	<word from='좃만이' to='아잉' />
+	<word from='좃만한' to='아잉' />
+	<word from='좃빠지게' to='아잉' />
+	<word from='좃이나' to='아잉' />
+	<word from='죤나' to='아잉' />
+	<word from='죤니' to='아잉' />
+	<word from='죤만년' to='아잉' />
+	<word from='죤만놈' to='아잉' />
+	<word from='죨라' to='아잉' />
+	<word from='죳나' to='아잉' />
+	<word from='죶가튼' to='아잉' />
+	<word from='죶같은' to='아잉' />
+	<word from='죶나' to='아잉' />
+	<word from='죶니' to='아잉' />
+	<word from='죶댓까면서' to='아잉' />
+	<word from='죶마난' to='아잉' />
+	<word from='죶빠지게' to='아잉' />
+	<word from='죷맹구' to='아잉' />
+	<word from='주둥아리' to='아잉' />
+	<word from='주민등록번호생성기' to='아잉' />
+	<word from='주민등록생성기' to='아잉' />
+	<word from='쥐랄' to='아잉' />
+	<word from='쥐럴' to='아잉' />
+	<word from='쥐롤' to='아잉' />
+	<word from='쥐뢀' to='아잉' />
+	<word from='즉발' to='아잉' />
+	<word from='즤랄' to='아잉' />
+	<word from='즤랄떠냐' to='아잉' />
+	<word from='지럴' to='아잉' />
+	<word from='지롤' to='아잉' />
+	<word from='지미랄' to='아잉' />
+	<word from='지미럴' to='아잉' />
+	<word from='질알' to='아잉' />
+	<word from='질질싸' to='아잉' />
+	<word from='집어쳐' to='아잉' />
+	<word from='짜지' to='아잉' />
+	<word from='짬지' to='아잉' />
+	<word from='쪼갈' to='아잉' />
+	<word from='쫍밥' to='아잉' />
+	<word from='쫒같' to='아잉' />
+	<word from='찌끄래기' to='아잉' />
+	<word from='찌찌' to='아잉' />
+	<word from='찐따' to='아잉' />
+	<word from='창녀촌' to='아잉' />
+	<word from='창년' to='아잉' />
+	<word from='창뇬' to='아잉' />
+	<word from='챵녀' to='아잉' />
+	<word from='챵년' to='아잉' />
+	<word from='챵뇬' to='아잉' />
+	<word from='처녀막' to='아잉' />
+	<word from='청부살인' to='아잉' />
+	<word from='청부폭력' to='아잉' />
+	<word from='체모' to='아잉' />
+	<word from='체위' to='아잉' />
+	<word from='최음제' to='아잉' />
+	<word from='추천인' to='아잉' />
+	<word from='추친인' to='아잉' />
+	<word from='컴섹' to='아잉' />
+	<word from='컴쌕' to='아잉' />
+	<word from='콘돔' to='아잉' />
+	<word from='콩까' to='아잉' />
+	<word from='콩까자' to='아잉' />
+	<word from='크리토리스' to='아잉' />
+	<word from='클리토리스' to='아잉' />
+	<word from='퇴폐' to='아잉' />
+	<word from='투컴' to='아잉' />
+	<word from='패니스' to='아잉' />
+	<word from='패티쉬' to='아잉' />
+	<word from='패티시' to='아잉' />
+	<word from='팰라치오' to='아잉' />
+	<word from='퍼/방' to='아잉' />
+	<word from='퍼르노' to='아잉' />
+	<word from='퍼방' to='아잉' />
+	<word from='퍼팩/방' to='아잉' />
+	<word from='퍼팩방' to='아잉' />
+	<word from='퍼펙/방' to='아잉' />
+	<word from='퍼펙방' to='아잉' />
+	<word from='퍽큐' to='아잉' />
+	<word from='펀색' to='아잉' />
+	<word from='펀섹' to='아잉' />
+	<word from='페니스' to='아잉' />
+	<word from='페미돔' to='아잉' />
+	<word from='페티걸' to='아잉' />
+	<word from='페티쉬' to='아잉' />
+	<word from='페티시' to='아잉' />
+	<word from='포로노' to='아잉' />
+	<word from='포르너' to='아잉' />
+	<word from='포르노' to='아잉' />
+	<word from='포르느' to='아잉' />
+	<word from='포르로' to='아잉' />
+	<word from='포온섹' to='아잉' />
+	<word from='폰떽' to='아잉' />
+	<word from='폰번호' to='아잉' />
+	<word from='폰색' to='아잉' />
+	<word from='폰섹' to='아잉' />
+	<word from='폰즈' to='아잉' />
+	<word from='폰팅' to='아잉' />
+	<word from='풋잡' to='아잉' />
+	<word from='프리섹스' to='아잉' />
+	<word from='핸타이' to='아잉' />
+	<word from='허뎝' to='아잉' />
+	<word from='허벌' to='아잉' />
+	<word from='허벌창' to='아잉' />
+	<word from='헤로인' to='아잉' />
+	<word from='헨타이' to='아잉' />
+	<word from='헴타이' to='아잉' />
+	<word from='호냥년' to='아잉' />
+	<word from='호로새' to='아잉' />
+	<word from='호로색' to='아잉' />
+	<word from='호로쉑' to='아잉' />
+	<word from='호로자' to='아잉' />
+	<word from='호모섹기' to='아잉' />
+	<word from='호모쎄끼' to='아잉' />
+	<word from='호봉세씨' to='아잉' />
+	<word from='호봉쎄끼' to='아잉' />
+	<word from='호봉쒜리' to='아잉' />
+	<word from='호빠' to='아잉' />
+	<word from='호스트바' to='아잉' />
+	<word from='호스트빠' to='아잉' />
+	<word from='호스티스' to='아잉' />
+	<word from='호양년' to='아잉' />
+	<word from='호테스바' to='아잉' />
+	<word from='호테스빠' to='아잉' />
+	<word from='혼음' to='아잉' />
+	<word from='혼탕' to='아잉' />
+	<word from='화냥년' to='아잉' />
+	<word from='화양년' to='아잉' />
+	<word from='후까시' to='아잉' />
+	<word from='후라질' to='아잉' />
+	<word from='후래아' to='아잉' />
+	<word from='후래자식' to='아잉' />
+	<word from='후레자식' to='아잉' />
+	<word from='후장' to='아잉' />
+	<word from='흥분제' to='아잉' />
+	<word from='히로뽕' to='아잉' />
+	<word from='ac발' to='아잉' />
+	<word from='asshole' to='아잉' />
+	<word from='bbagoori' to='아잉' />
+	<word from='bbagury' to='아잉' />
+	<word from='bitch' to='아잉' />
+	<word from='bo지' to='아잉' />
+	<word from='bogy' to='아잉' />
+	<word from='boji' to='아잉' />
+	<word from='bojy' to='아잉' />
+	<word from='bozi' to='아잉' />
+	<word from='bozy' to='아잉' />
+	<word from='bunsec' to='아잉' />
+	<word from='bunsek' to='아잉' />
+	<word from='byuntae' to='아잉' />
+	<word from='c8' to='아잉' />
+	<word from='c발' to='아잉' />
+	<word from='c팔' to='아잉' />
+	<word from='ccibal' to='아잉' />
+	<word from='ce발' to='아잉' />
+	<word from='cibal' to='아잉' />
+	<word from='comesek' to='아잉' />
+	<word from='comsek' to='아잉' />
+	<word from='condom' to='아잉' />
+	<word from='dildo' to='아잉' />
+	<word from='ecstasy' to='아잉' />
+	<word from='fetish' to='아잉' />
+	<word from='fuck' to='아잉' />
+	<word from='fuckup' to='아잉' />
+	<word from='hentai' to='아잉' />
+	<word from='ja위' to='아잉' />
+	<word from='ja지' to='아잉' />
+	<word from='jaji' to='아잉' />
+	<word from='jamji' to='아잉' />
+	<word from='jasal' to='아잉' />
+	<word from='jawe' to='아잉' />
+	<word from='jawi' to='아잉' />
+	<word from='jazi' to='아잉' />
+	<word from='jazy' to='아잉' />
+	<word from='ji랄' to='아잉' />
+	<word from='jiral' to='아잉' />
+	<word from='jot' to='아잉' />
+	<word from='lesbien' to='아잉' />
+	<word from='masturbati' to='아잉' />
+	<word from='molca' to='아잉' />
+	<word from='nigimi' to='아잉' />
+	<word from='nomo' to='아잉' />
+	<word from='nude' to='아잉' />
+	<word from='penis' to='아잉' />
+	<word from='pennis' to='아잉' />
+	<word from='pons' to='아잉' />
+	<word from='ponsec' to='아잉' />
+	<word from='ponsek' to='아잉' />
+	<word from='ponz' to='아잉' />
+	<word from='porno' to='아잉' />
+	<word from='prno' to='아잉' />
+	<word from='sex' to='아잉' />
+	<word from='shit' to='아잉' />
+	<word from='sibal' to='아잉' />
+	<word from='sipal' to='아잉' />
+	<word from='sival' to='아잉' />
+	<word from='ssibal' to='아잉' />
+	<word from='ssipal' to='아잉' />
+	<word from='ssival' to='아잉' />
+	<word from='suck' to='아잉' />
+	<word from='suicide' to='아잉' />
+	<word from='swaping' to='아잉' />
+	<word from='twocom' to='아잉' />
+	<word from='zasal' to='아잉' />
+	<word from='zazi' to='아잉' />
+	<word from='zot' to='아잉' />
+
+	<word from='잠짓' to='아잉' />
+	<word from='정액' to='아잉' />
+	<word from='슴가' to='아잉' />
+	<word from='anal' to='아잉' />
+	<word from='cunt' to='아잉' />
+	<word from='damn' to='아잉' />
+	<word from='ㅅㅂ' to='아잉' />
+	<word from='ㅁㅊ' to='아잉' />
+	<word from='ㅈㄹ' to='아잉' />
+	<word from='ㅁㅍ' to='아잉' />
+	<word from='시ㅣ발' to='아잉' />
+	<word from='나쁜놈' to='아잉' />
+	<word from='ㅅㅍ' to='아잉' />
+
+	<word from='기집년' to='아잉' />
+	<word from='기집뇬' to='아잉' />
+	<word from='까진년' to='아잉' />
+	<word from='니애비' to='아잉' />
+	<word from='대가뤼' to='아잉' />
+	<word from='대가빡' to='아잉' />
+	<word from='대굴빡' to='아잉' />
+	<word from='대딸' to='아잉' />
+	<word from='도촬' to='아잉' />
+	<word from='돌은년' to='아잉' />
+	<word from='돌은놈' to='아잉' />
+	<word from='따구리' to='아잉' />
+	<word from='띨빵' to='아잉' />
+	<word from='맛간년' to='아잉' />
+	<word from='맛간뇬' to='아잉' />
+	<word from='맛이간년' to='아잉' />
+	<word from='맛이간뇬' to='아잉' />
+	<word from='메조키스트' to='아잉' />
+	<word from='미씨촌' to='아잉' />
+	<word from='발정' to='아잉' />
+	<word from='빠가' to='아잉' />
+	<word from='빡아' to='아잉' />
+	<word from='뺑이' to='아잉' />
+	<word from='생까' to='아잉' />
+	<word from='썁색' to='아잉' />
+	<word from='씨가랭넘' to='아잉' />
+	<word from='씨가랭년' to='아잉' />
+	<word from='씨가랭놈' to='아잉' />
+	<word from='씨가랭뇬' to='아잉' />
+	<word from='씹자슥' to='아잉' />
+	<word from='씹자식' to='아잉' />
+	<word from='육시랄' to='아잉' />
+	<word from='육시럴' to='아잉' />
+	<word from='육실할' to='아잉' />
+	<word from='육실헐' to='아잉' />
+	<word from='잡탱년' to='아잉' />
+	<word from='정욕' to='아잉' />
+	<word from='조센징' to='아잉' />
+	<word from='후라려' to='아잉' />
+
+<!-- 2011/11/3 추가 -->
+	<word from='찌질이' to='귀염둥이' />
+	<word from='짱깨' to='짜장면' />
+	<word from='몸파실' to='심심한' />
+	<word from='키스방' to='게임방' />
+	<word from='안마방' to='게임방' />
+	<word from='마약' to='사탕' />
+	<word from='대마초' to='사탕' />
+	<word from='몸캠' to='카트' />
+	<word from='스섹' to='그거' />
+	<word from='게이' to='친구' />
+	<word from='게.이' to='친구' />
+	<word from='이반' to='친구' />
+	<word from='이.반' to='친구' />
+	<word from='아날' to='아잉' />
+	<word from='부카케' to='아잉' />
+	<word from='파이즈리' to='아잉' />
+	<word from='떼씹' to='아잉' />
+	<word from='ㅄ' to='응' />
+	<word from='싸는거보실' to='심심하신' />
+	<word from='노예녀' to='여자친구' />
+	<word from='섻' to='그거' />
+	<word from='섹여' to='그거' />
+	<word from='신음' to='목소리' />
+	<word from='ㅆㅂ' to='허허' />
+	<word from='보 ㅈ ㅣ' to='아잉' />
+	<word from='ㅈㅏ지' to='아잉' />
+	<word from='ㅂㅅ' to='한심' />
+	<word from='죶밥' to='한심' />
+	<word from='닥처' to='조용' />
+	<word from='씨밣련' to='못난' />
+	<word from='색파' to='친구' />
+	<word from='쎾스' to='아잉' />
+	<word from='썎스' to='아잉' />
+	<word from='호9' to='친구' />
+	<word from='딸쳐' to='잠자' />
+	<word from='십것' to='그것' />
+	<word from='애날' to='아잉' />
+	<word from='잦이' to='아잉' />
+	<word from='조개' to='어패류' />
+	<word from='암컷' to='여성' />
+	<word from='남창' to='허허' />
+
+	<word from='010-3544-0070' to='아잉'/>
+	<word from='01035440070' to='아잉'/>
+	<word from='010.3544.0070' to='아잉'/>
+	<word from='010 3544 0070' to='아잉'/>
+	<word from='010*3544*0070' to='아잉'/>
+
+	<word from='강호순' to='아잉'/>
+	<word from='조두순' to='아잉'/>
+	<word from='나영이' to='아잉'/>
+	<word from='김길태' to='아잉'/>
+	<word from='고영욱' to='아잉'/>
+	<word from='에로' to='아잉'/>
+	<word from='에로마사지' to='아잉'/>
+	<word from='GM' to='아잉'/>
+	<word from='선승진' to='아잉'/>
+	<word from='조재윤' to='아잉'/>
+
+	<word from='010-9511-0150' to='아잉'/>
+	<word from='01095110150' to='아잉'/>
+	<word from='010.9511.0150' to='아잉'/>
+	<word from='010 9511 0150' to='아잉'/>
+	<word from='010*9511*0150' to='아잉'/>	
+
+	<word from='육변기' to='아잉'/>	
+
+	<word from='JangYeeun' to='아잉'/>	
+</filter>
+
+		

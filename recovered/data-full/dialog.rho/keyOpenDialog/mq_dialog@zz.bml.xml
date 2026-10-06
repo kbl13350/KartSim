@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 242 390" caption="#sb(keyOpenCaption)" align="center" alphaBlend="true">
+    <Window name="item1" windowRect="0 10 200 210" frame="ItemPanel" alphaBlend="true" align="hcenter" enable="false">
+      <Window name="itemPreview" windowRect="0 0 200 200" alphaBlend="true"/>
+    </Window>
+    <Label name="description" windowRect="0 220 200 285" frame="DefaultEdit" align="hcenter" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="#sb(getReward)" textAlign="center"/>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 200 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="ok" windowRect="0 0 87 30" text="#sb(moveNow)"/>
+      <TextButton name="cancel" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

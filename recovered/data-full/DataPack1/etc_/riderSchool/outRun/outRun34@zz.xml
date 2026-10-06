@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- (2021.10.28 Update) 네모 산타의 비밀공간 / 메디아 / 이온 X  (기존 사항) -->
+<!-- (2022.01.06 Update) 중국 통합 속도 반영 -->
+<!-- (2022.01.14 Update) 대만 통합 속도 반영 -->
+<!-- (2022.02.17 Update) 올림포스 하늘의 신전 / 제우스 / 올림포스 X  적용 -->
+<!-- (2022.10.20 Update) 연습카트 V1 기준 기록 및 설정 반영 -->
+<!-- 월희 / 나이트 세이버 V1 / 도검 구름의 협곡 -->
+<OutRun kartId='1365'	characterId='241'	colorId='56' dyeId='64'	track='sword_R01'	gameSpeed='7'>
+	<LevelContent level='7' ksv='PRO_4_sword_R01_7'/>
+</OutRun>

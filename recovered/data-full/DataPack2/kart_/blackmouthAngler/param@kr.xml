@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+ForwardAccelForce='150.0'
+BackwardAccelForce='100.0'
+DragFactor='-0.078'
+SteerConstraint='3.0'
+DriftEscapeForce='1450'
+CornerDrawFactor='0.069'
+EngineSound='cotton85'
+
+StartForwardAccelFactorItem = '1.7'
+StartBoosterTimeItem='1300'           
+
+SpecialSlotCapacity='2'
+ItemSlotCapacity='3'
+
+UseExtendedAfterBooster='true'
+BoosterAccelFactorItem ='1.6'
+
+UseTransformBooster='true'
+TransAccelFactor='1.7'
+TransformTime='100'
+
+BoosterWaveType='boost8'
+BoosterType='dimenter1'
+BoosterType0='dimenter1'
+BoosterType1='dimenter1'
+BoosterType2='85main'
+BoosterType3='85main'
+
+Port0='mod1a1'
+Port1='mod1a2'
+
+FirePort0='mod1a3'
+FirePort1='mod1a4'
+
+TailLampSize='0.2'
+TailLampColor='255   0 180 230'
+BoostBlurColor='255 77 77 77'
+
+TachometerType='Tacho1'
+TachometerName='ht'
+itemSlotName='ht'
+boostGaugeName='ht'
+
+DescBalance= '48'
+DescStability ='46'
+DescEngineGrade='1.25'
+DescCornering='6'
+DescEnchantCap = '30'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a3' trailPort1='mod1a4'/>
+</BodyParam>
+
+<!-- 초롱아귀 20140528 상시 가샤폰 레어 / 아이템 -->

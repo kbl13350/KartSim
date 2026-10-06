@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RankSlot name="myRider" windowRect="2 0 301 24">
+  <Panel name="riderBG" windowRect="0 0 220 34" adjust="-2 0" texture="옵저버순위표시" align="left;center" alphaBlend="true"/>
+  <Window windowRect="27 0 51 24">
+    <Panel name="spot" clientRect="0 0 24 24" texture="rank_slot_observer2" alphaBlend="true" textureOp="modulate" color="white" align="center" visible="true">
+      <Panel clientRect="0 0 24 24" texture="rank_slot_observer" alphaBlend="true"/>
+    </Panel>
+    <CharPanel name="rankStr" windowRect="6 0 19 17" texture="digit_rank_basic" fontSize="13 17" fontStr="0123456789X" text="2" align="vcenter" alphaBlend="true" visible="true"/>
+  </Window>
+  <Label name="rid" windowRect="70 0 200 22" text="#sb(kartRider)" textRender="outline" textColor="white" textAlign="center">
+    <Panel name="tracer" leftTopTex="0 0" adjust="-16 0" align="left;vcenter" texture="tag_chaser@zz" alphaBlend="true" visible="false"/>
+  </Label>
+  <CharPanel name="ping" windowRect="200 5 213 17" texture="ping" fontSize="4 12" fontPos="0 0" fontStr="210abc" text="0" visible="false"/>
+  <Panel name="logout" leftTopTex="201 5" texture="out" alphaBlend="true" visible="false"/>
+</RankSlot>

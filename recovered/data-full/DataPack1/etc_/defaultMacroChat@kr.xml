@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<defaultMacroChat>
+	<defaultMacroChatList type='0'>
+		<macroChat slotId='0' str='멋진 승부였어요!!' />
+		<macroChat slotId='1' str='즐거운 레이싱~^^' />
+		<macroChat slotId='2' str='아이고 배야~~ㅋㅋ' />
+		<macroChat slotId='3' str='감사합니다~(__)' />
+		<macroChat slotId='4' str='미안해요ㅠㅠ' />
+		<macroChat slotId='5' str='괜찮아요~~' />
+		<macroChat slotId='6' str='조심하세요~!!!!' />
+		<macroChat slotId='7' str='아 망했다!!!!!' />
+		<macroChat slotId='8' str='양보 부탁 드려요~' />
+		<macroChat slotId='9' str='먼저 가세요..ㅠㅠ' />
+	</defaultMacroChatList>
+	<defaultMacroChatList type='1'>
+		<macroChat slotId='0' str='필살기 써주세요!' />
+		<macroChat slotId='1' str='천사 써주세요!' />
+		<macroChat slotId='2' str='자물쇠 써주세요!' />
+		<macroChat slotId='3' str='벼락 써주세요!' />
+		<macroChat slotId='4' str='상대팀 천사에요!' />
+		<macroChat slotId='5' str='자폭 쓸게요!' />
+		<macroChat slotId='6' str='바닥 조심!' />
+		<macroChat slotId='7' str='물폭탄 조심!' />
+		<macroChat slotId='8' str='1등 저격해주세요!' />
+		<macroChat slotId='9' str='블로킹 해주세요!' />
+	</defaultMacroChatList>
+</defaultMacroChat>

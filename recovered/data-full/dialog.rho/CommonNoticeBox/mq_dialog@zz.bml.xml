@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="captionDlgFrame" windowRect="0 0 550 360" frame="CaptionDialog" align="center" caption="#sb(viewTestServer)">
+    <Label name="testDesc" windowRect="0 0 530 258" multiLine="true" autoWrap="true" align="hcenter" lineGap="2" enable="false"/>
+    <List name="testDescList" frame="DefaultEdit" windowRect="-5 5 518 267" listGap="0"/>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <TextButton name="okButton" windowSize="82 29" adjust="0 0" text="#sb(ok)" align="center"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

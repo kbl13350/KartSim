@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.078'
+	SteerConstraint='2.7'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.075'
+
+	UseTransformBooster='true'
+	TransAccelFactor ='1.7'
+	TransformTime='650'    
+
+	StartBoosterTimeSpeed='1200'           
+	StartForwardAccelFactorSpeed = '1.25'
+		
+	NormalBoosterTime = '-100'
+	TeamBoosterTime = '-300'
+	DriftMaxGauge = '-500'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	BoosterType='zeroplus'
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zerosub'
+	BoosterType3='zerosub'
+	BoosterType4='zerosub'
+	BoosterType5='zerosub'
+	BoosterType6='zeroplus'
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1b1'
+	FirePort1='mod1b2'
+	FirePort2='mod1b3'
+	FirePort3='mod1b4'
+	FirePort4='mod2a1'
+
+	TailLampSize='0.1'
+	TailLampColor='0 255 246 0'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '42'
+	DescStability ='46'
+	DescEngineGrade='1.2'
+	DescCornering='5'
+	DescEnchantCap = '25'
+
+/>
+<!--대만 박스터 z7+ 20121105 라인업 상시 판매 -->

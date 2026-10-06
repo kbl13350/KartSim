@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="completeCareerCard" windowSize="484 94" adjust="0 0" texture="career_img_completeBar" visible="true" alphaBlend="true">
+  <ImageBoard name="completeCareerIcon" windowSize="84 84" adjust="14 14" image="s_career_01_015" alphaBlend="true" visible="true" adaptWindowSize="true"/>
+  <Label name="completeCareerName" leftTopWH="100 20 250 20" text="careerName" textColor="255 42 55 80" textRender="bold16" textAlign="left"/>
+  <Label name="completeCareerDate" leftTopWH="100 45 250 20" text="1999. 01. 01" textColor="255 135 146 167" textRender="bold14" textAlign="left"/>
+</Panel>

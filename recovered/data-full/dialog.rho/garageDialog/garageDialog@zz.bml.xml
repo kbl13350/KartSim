@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="captionDlgFrame" windowRect="0 0 968 822" frame="BigCaptionDialog" caption="#sb(itemTitle)" align="center" setCloseButton="ok">
+    <Panel name="itemBox" windowSize="954 687" adjust="-11 -1" color="255 160 170 184">
+      <Window name="itemCatTabHolder" windowSize="954 79" adjust="0 -1" frame="TabBoxLarge"/>
+      <Window name="itemSubCatHolder" windowSize="522 60" adjust="0 38"/>
+      <Window name="itemSelect" windowSize="954 609" adjust="0 77">
+        <GridSelectorDivLoad name="itemList" windowRect="5 5 440 425" alignStyle="horizontal" alignSize="4" maxLine="3" alignMargin="0 0"/>
+        <ScrollBar name="itemListBar" windowRect="0 0 14 588" adjust="4 0" align="right;vcenter" scrollType="vertical" visible="false" minScrollButtonHeight="25"/>
+      </Window>
+      <CaptionWindow name="upgradeKart" windowRect="0 0 135 310" frame="CaptionDialog" captionPos="0 1" captionColor="black" caption="#sb(partsSeclect)" visible="false">
+        <Container name="parts" windowRect="0 0 136 258"/>
+        <ScrollBar name="partsScroll" windowRect="87 7 99 243" scrollType="vertical" enable="false"/>
+      </CaptionWindow>
+    </Panel>
+    <Container name="xx" windowRect="0 0 304 48" align="center;bottom" adjust="0 9">
+      <TextButton name="ok" leftTopWH="0 0 146 48" text="#sb(ok)" align="left" textRender="bold20"/>
+      <TextButton name="cancel" leftTopWH="0 0 146 48" text="#sb(cancel)" align="right" textRender="bold20"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

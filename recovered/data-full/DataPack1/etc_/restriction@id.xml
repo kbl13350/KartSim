@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- local specific restriction -->
+<!--
+* Restriction element
+; format
+<Restriction name='xxxx' value='xxxx' />
+name := non-duplicated texts
+value := restriction object [& restriction object]*
+restriction object := ...
+; itemHave(itemId,itemId,...)
+; pcCafeGrade:1
+-->
+<RestrictionList cc='id'>
+<!--
+	samples
+-->
+	<Restriction name='eventTemp0' value='eventTemp:id0,0x00000100=0' />
+
+	<Restriction name='EventTemp0_Event2_couple' value='eventTemp:id0,0x00000200=0&amp;couple:1' />
+	<Restriction name='EventTemp0_Event3_couple' value='eventTemp:id0,0x00000400=0&amp;couple:1' />
+	<Restriction name='EventTemp0_Event4_couple' value='eventTemp:id0,0x00000800=0&amp;couple:1' />
+	<Restriction name='EventTemp0_Event5_couple' value='eventTemp:id0,0x00001000=0&amp;couple:1' />
+	<Restriction name='eventTemp0_Event6' value='eventTemp:id0,0x00002000=0' />
+	<Restriction name='yellowJewel' value='itemHave(34-143)'/>
+
+	<Restriction name='underRedHand' value='rp:under9899'/>	<!-- over가 먼저 걸림 (이상) -->
+	<Restriction name='overRedHand' value='rp:over9900' />	<!-- over가 먼저 걸림 (이상) -->
+	<Restriction name='couple' value='couple:1'/>
+
+	<Restriction name='EventTemp3_8thEvent1' value='eventTemp:id3,0x00010000=0' />
+</RestrictionList>

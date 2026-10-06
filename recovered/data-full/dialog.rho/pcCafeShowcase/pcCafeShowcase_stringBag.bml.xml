@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="pcCafeShowcaseRewardDesc">
+    <m c="kr" v="축하합니다.|카트라이더 체험 이벤트에 참여 하셨습니다.|지금 카트라이더에 로그인 하시면|[TOP 카트 기어 패키지]를 선물로 받을 수 있습니다.|카트라이더에 접속해서 선물을 받아가세요!"/>
+  </k>
+  <k n="pcCafeShowcaseCoupon">
+    <m c="kr" v="쿠폰번호"/>
+  </k>
+  <k n="pcCafeShowcaseCouponType_0">
+    <m c="kr" v="카트 아이템"/>
+  </k>
+  <k n="pcCafeShowcaseCouponType_1">
+    <m c="kr" v="넥슨 캐시"/>
+  </k>
+  <k n="pcCafeShowcaseCouponType_2">
+    <m c="kr" v="넥슨 캐시"/>
+  </k>
+  <k n="pcCafeShowcaseCouponDesc">
+    <m c="kr" v="PC방 체험 이벤트에 참여해 주셔서 감사합니다.|카트라이더도 즐기고 [%s] 쿠폰도 사용해 보세요!|쿠폰은 아래와 같은 방법으로 사용이 가능합니다."/>
+  </k>
+  <k n="pcCafeShowcaseCouponDesc2">
+    <m c="kr" v="카트라이더 아이템 쿠폰: 상점 -&gt; 쿠폰  입력|쿠폰 번호는 넥슨 쪽지에서 재 확인이 가능합니다."/>
+  </k>
+</StringBag>

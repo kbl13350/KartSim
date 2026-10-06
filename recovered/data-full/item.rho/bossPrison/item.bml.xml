@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="bossPrison">
+  <state name="Use" life="100" item="item00" itemFx="firing"/>
+  <state name="Affect" life="500" fired="fired01" firedFx="fired"/>
+  <state name="AffectDrag" life="600000" fired="fired01" firedFx="fired"/>
+  <state name="EscapeTerm" life="2500" item="firing00" firedFx="trapped" firing="파란방패"/>
+  <state name="SpecialShield" life="2000"/>
+</item>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='130.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.065'
+	SteerConstraint='2.35'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+	ItemSlotCapacity='3'
+
+	BoosterBlur='true'
+	EngineSound='sigma'
+/>
+<!-- CharacterKart : PC방 UPgrade -->

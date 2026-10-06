@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="contenderNotReady">
+    <m c="kr" v="아직 도전하실 수 없습니다."/>
+    <m c="cn" v="还不能挑战哦。"/>
+    <m c="tw" v="目前還無法挑戰."/>
+  </k>
+</StringBag>

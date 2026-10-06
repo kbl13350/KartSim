@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600" align="center">
+  <Panel windowRect="fullscreen" color="180 0 0 0" alphaBlend="true"/>
+  <Container windowRect="0 0 800 600" align="center">
+    <Panel leftTopTex="118 193" texture="라인보상백판_01@zz" alphaBlend="true"/>
+    <Panel leftTopTex="630 193" texture="라인보상백판_02@zz" alphaBlend="true"/>
+    <ImageButton name="okButton" leftTopTex="561 386" autoLoadImage="획득_0" alphaBlend="true">
+      <Label leftTopWH="8 20 50 20" text="#sb(ok)" textColor="white" textAlign="center"/>
+    </ImageButton>
+    <Container name="rewardSet1" visible="false">
+      <Panel name="reward1" leftTopTex="343 74" texture="보상백판_01" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+    </Container>
+    <Container name="rewardSet2" visible="false">
+      <Panel name="reward1" leftTopTex="199 106" texture="보상백판_01" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+      <Panel name="reward2" leftTopTex="466 106" texture="보상백판_02" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+    </Container>
+    <Container name="rewardSet3" visible="false">
+      <Panel name="reward1" leftTopTex="343 68" texture="보상백판_01" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+      <Panel name="reward2" leftTopTex="162 206" texture="보상백판_01" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+      <Panel name="reward3" leftTopTex="519 206" texture="보상백판_02" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+    </Container>
+    <Container name="rewardSet4" visible="false">
+      <Panel name="reward1" leftTopTex="252 70" texture="보상백판_01" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+      <Panel name="reward2" leftTopTex="438 70" texture="보상백판_02" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+      <Panel name="reward3" leftTopTex="162 206" texture="보상백판_01" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+      <Panel name="reward4" leftTopTex="519 206" texture="보상백판_02" alphaBlend="true">
+        <Label name="itemName" leftTopWH="15 115 120 20" textAlign="center" textColor="white"/>
+      </Panel>
+    </Container>
+    <Label name="npcTalk" text="npcTalk" leftTopWH="134 379 178 70" textColor="white" textAlign="center" multiLine="true"/>
+  </Container>
+</Container>

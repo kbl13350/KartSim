@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Minimap name="minimap" windowSize="180 180" adjust="17 0" align="right;vcenter">
+    <Window windowRect="0 10 180 11" frame="ShineLine">
+      <Label name="alignDesc" windowRect="5 5 30 15" text="" textColor="white"/>
+      <Window windowSize="180 1" frame="ShineLine" adjust="0 169"/>
+    </Window>
+    <Panel name="miniInfo" windowSize="180 28" align="bottom" adjust="0 -34" texture="timeAttack_ingame_infoBoxBG" alphaBlend="true">
+      <ColorLabel name="summary" windowSize="180 28" text="" textColor="white" textRender="bold" textAlign="center"/>
+    </Panel>
+    <Panel name="miniInfo_competitive" leftTopWH="0 186 180 78" texture="contest_img_ingameInfoBoxBG" alphaBlend="true">
+      <ColorLabel leftTopWH="0 0 180 26" text="#sb(driveBonus)" textColor="white" textRender="bold" textAlign="center"/>
+      <ColorLabel leftTopWH="0 26 50 26" text="#sb(crashBonus)" textColor="white" textRender="bold" textAlign="center"/>
+      <ColorLabel name="crashCount" leftTopWH="60 26 60 26" textColor="white" textRender="bold" textAlign="center"/>
+      <ColorLabel name="crashPoint" leftTopWH="125 26 60 26" textColor="white" textRender="bold" textAlign="center"/>
+      <ColorLabel leftTopWH="0 52 50 26" text="#sb(boosterBonus)" textColor="white" textRender="bold" textAlign="center"/>
+      <ColorLabel name="boosterCount" leftTopWH="60 52 60 26" textColor="white" textRender="bold" textAlign="center"/>
+      <ColorLabel name="boosterPoint" leftTopWH="125 52 60 26" textColor="white" textRender="bold" textAlign="center"/>
+    </Panel>
+  </Minimap>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <XmlFile file="missionTimer"/>
+    <Container name="item" windowRect="0 0 280 75"/>
+    <StressMirror name="stressMirror"/>
+    <CutEffect name="cutEffect"/>
+  </Container>
+  <ControlWindow name="newRecord" windowSize="303 68" align="center" adjust="0 -80" fadeInLength="100" showLength="2700" fadeOutLength="12000" visible="false">
+    <TonPanel windowSize="303 68" adjust="0 0" texture="2d_1S_통합@zz" uvRect="0 136 303 204" textureOp="modulate" color="255 255 255 255" alphaBlend="true" panelAnimPack="pop"/>
+  </ControlWindow>
+  <Container name="resultPanel" windowRect="fullscreen">
+    <Container name="trainingResultPanel" windowRect="fullscreen">
+      <Panel name="newrecord_time" windowSize="218 43" align="center" adjust="0 0" alphaBlend="true" color="100 0 0 0" visible="false">
+        <Window windowSize="218 1" frame="ShineLine"/>
+        <Window windowSize="218 1" frame="ShineLine" align="bottom"/>
+        <Container name="timeinfo" windowRect="107 3 215 20">
+          <Panel leftTopTex="-85 -3" texture="laptime_time@zz" alphaBlend="true"/>
+          <CharPanel name="min" windowRect="0 0 30 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel windowRect="19 0 34 17" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+          <CharPanel name="sec" windowRect="27 0 57 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel windowRect="45 0 60 16" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+          <CharPanel name="mil" windowRect="53 0 83 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+        </Container>
+        <Container name="bestinfo" windowRect="107 23 215 40">
+          <Panel leftTopTex="-85 -3" texture="laptime_best@zz" alphaBlend="true"/>
+          <CharPanel name="min" windowRect="0 0 30 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel windowRect="19 0 34 17" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+          <CharPanel name="sec" windowRect="27 0 57 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel windowRect="45 0 60 16" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+          <CharPanel name="mil" windowRect="53 0 83 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+        </Container>
+      </Panel>
+      <Panel name="driveInfo" windowSize="218 43" align="center" adjust="0 44" alphaBlend="true" color="100 0 0 0" visible="false">
+        <Window windowSize="218 1" frame="ShineLine"/>
+        <Window windowSize="218 1" frame="ShineLine" align="bottom"/>
+        <Container name="crashInfo" windowRect="107 3 186 20">
+          <Panel windowSize="80 22" align="left,vcenter" adjust="-85 0" texture="lapinfo_countCrash@zz" alphaBlend="true"/>
+          <CharPanel name="count" windowSize="56 22" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" rightAlign="true" spaceOffset="-4"/>
+          <Panel windowSize="19 22" align="right,vcenter" texture="lapinfo_countTXT@zz" alphaBlend="true"/>
+        </Container>
+        <Container name="boosterInfo" windowRect="107 23 186 40">
+          <Panel windowSize="80 22" align="left,vcenter" adjust="-85 0" texture="lapinfo_countBooster@zz" alphaBlend="true"/>
+          <CharPanel name="count" windowSize="56 22" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" rightAlign="true" spaceOffset="-4"/>
+          <Panel windowSize="19 22" align="right,vcenter" texture="lapinfo_countTXT@zz" alphaBlend="true"/>
+        </Container>
+      </Panel>
+      <Panel name="reward_timeAttack" windowSize="218 23" align="center" adjust="0 78" alphaBlend="true" color="100 0 0 0" visible="false">
+        <Window windowSize="218 1" frame="ShineLine"/>
+        <Window windowSize="218 1" frame="ShineLine" align="bottom"/>
+        <Container name="bonusMark" windowRect="220 0 254 22"/>
+        <Container name="timeinfo" windowRect="107 3 215 20">
+          <CharPanel name="RP" windowRect="-101 0 -56 17" texture="reward_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789+" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel leftTopTex="-54 -3" texture="time_rp@zz" alphaBlend="true"/>
+          <CharPanel name="Lucci" windowRect="2 0 47 17" texture="reward_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789+" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel leftTopTex="49 -3" texture="time_lucci@zz" alphaBlend="true"/>
+        </Container>
+      </Panel>
+    </Container>
+    <Container name="rankingResultPanel" windowRect="fullscreen">
+      <Panel name="newrecord_time" windowSize="218 43" align="center" adjust="0 10" alphaBlend="true" color="100 0 0 0" visible="false">
+        <Window windowSize="218 1" frame="ShineLine"/>
+        <Window windowSize="218 1" frame="ShineLine" align="bottom"/>
+        <Container name="timeinfo" windowRect="107 3 215 20">
+          <Panel leftTopTex="-85 -3" texture="laptime_time@zz" alphaBlend="true"/>
+          <CharPanel name="min" windowRect="0 0 30 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel windowRect="19 0 34 17" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+          <CharPanel name="sec" windowRect="27 0 57 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel windowRect="45 0 60 16" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+          <CharPanel name="mil" windowRect="53 0 83 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+        </Container>
+        <Container name="bestinfo" windowRect="107 23 215 40">
+          <Panel leftTopTex="-85 -3" texture="laptime_best@zz" alphaBlend="true"/>
+          <CharPanel name="min" windowRect="0 0 30 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel windowRect="19 0 34 17" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+          <CharPanel name="sec" windowRect="27 0 57 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel windowRect="45 0 60 16" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+          <CharPanel name="mil" windowRect="53 0 83 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+        </Container>
+      </Panel>
+      <Panel name="reward_timeAttack" windowSize="218 23" align="center" adjust="0 60" alphaBlend="true" color="100 0 0 0" visible="false">
+        <Window windowSize="218 1" frame="ShineLine"/>
+        <Window windowSize="218 1" frame="ShineLine" align="bottom"/>
+        <Container name="bonusMark" windowRect="220 0 254 22"/>
+        <Container name="timeinfo" windowRect="107 3 215 20">
+          <CharPanel name="RP" windowRect="-101 0 -56 17" texture="reward_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789+" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel leftTopTex="-54 -3" texture="time_rp@zz" alphaBlend="true"/>
+          <CharPanel name="Lucci" windowRect="2 0 47 17" texture="reward_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789+" fontPos="0 0" text="00" spaceOffset="-4"/>
+          <Panel leftTopTex="49 -3" texture="time_lucci@zz" alphaBlend="true"/>
+        </Container>
+      </Panel>
+    </Container>
+  </Container>
+  <Panel name="메뉴" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" visible="false">
+    <CaptionWindow frame="CaptionDialog" caption="#sb(menu)" windowRect="0 0 230 160" align="center">
+      <ImageButton name="cancelButton" windowSize="20 20" align="right" adjust="0 -25" autoLoadImage="close_" alphaBlend="true" altText="#sb(close)"/>
+      <Container windowRect="0 12 150 81" align="hcenter">
+        <StateButton name="다시시도" windowRect="0 0 64 74" iconSet="btn_singleAgain" iconAlign="hcenter" text="#sb(retry)" textAlign="hcenter" stringPos="0 55" canDisable="true"/>
+        <StateButton name="싱글플레이" windowRect="0 0 64 74" align="right" iconSet="btn_menu" iconAlign="hcenter" text="#sb(goToMenu)" textAlign="hcenter" stringPos="0 55"/>
+      </Container>
+      <Window windowRect="0 90 190 92" frame="VSection" align="hcenter"/>
+    </CaptionWindow>
+  </Panel>
+</Container>

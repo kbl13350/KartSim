@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="totalItemStatus">
+    <m c="kr" v="총 아이템 등록량"/>
+    <m c="cn" v="道具收藏总数量"/>
+    <m c="tw" v="總道具登錄數量"/>
+  </k>
+  <k n="registedItemStatus">
+    <m c="kr" v="%d / %d"/>
+    <m c="cn" v="%d / %d"/>
+    <m c="tw" v="%d / %d"/>
+  </k>
+  <k n="totalItemCount">
+    <m c="kr" v=" / %d"/>
+    <m c="cn" v=" / %d"/>
+    <m c="tw" v=" / %d"/>
+  </k>
+  <k n="totalKartStatus">
+    <m c="kr" v="전체 카트바디 등록량"/>
+    <m c="cn" v="车辆收藏总数量"/>
+    <m c="tw" v="全部車款登錄數量"/>
+  </k>
+  <k n="speedKartStatus">
+    <m c="kr" v="스피드 카트바디 등록량"/>
+    <m c="cn" v="竞速车辆收藏数量"/>
+    <m c="tw" v="競速車款登錄數量"/>
+  </k>
+  <k n="itemKartStatus">
+    <m c="kr" v="아이템 카트바디 등록량"/>
+    <m c="cn" v="道具车辆收藏数量"/>
+    <m c="tw" v="道具車款登錄數量"/>
+  </k>
+  <k n="characterStatus">
+    <m c="kr" v="캐릭터 등록량"/>
+    <m c="cn" v="角色收藏数量"/>
+    <m c="tw" v="角色登錄數量"/>
+  </k>
+  <k n="petStatus">
+    <m c="kr" v="펫 등록량"/>
+    <m c="cn" v="宠物收藏数量"/>
+    <m c="tw" v="寵物登錄數量"/>
+  </k>
+  <k n="flyingPetStatus">
+    <m c="kr" v="플라잉펫 등록량"/>
+    <m c="cn" v="飞行宠物收藏数量"/>
+    <m c="tw" v="飛寵登錄數量"/>
+  </k>
+  <k n="balloonStatus">
+    <m c="kr" v="풍선 등록량"/>
+    <m c="cn" v="气球收藏数量"/>
+    <m c="tw" v="氣球登錄數量"/>
+  </k>
+  <k n="headBandStatus">
+    <m c="kr" v="전자파밴드 등록량"/>
+    <m c="cn" v="头饰收藏数量"/>
+    <m c="tw" v="頭飾登錄數量"/>
+  </k>
+  <k n="goggleStatus">
+    <m c="kr" v="고글 등록량"/>
+    <m c="cn" v="护目镜收藏数量"/>
+    <m c="tw" v="護目鏡登錄數量"/>
+  </k>
+  <k n="auraStatus">
+    <m c="kr" v="오라 등록량"/>
+    <m c="cn" v="炫光收藏数量"/>
+    <m c="tw" v="炫光登錄數量"/>
+  </k>
+  <k n="paintStatus">
+    <m c="kr" v="페인트 등록량"/>
+    <m c="cn" v="喷漆收藏数量"/>
+    <m c="tw" v="噴漆登錄數量"/>
+  </k>
+  <k n="skidmarkStatus">
+    <m c="kr" v="스키드 등록량"/>
+    <m c="cn" v="印迹收藏数量"/>
+    <m c="tw" v="胎痕登錄數量"/>
+  </k>
+  <k n="giveItemName">
+    <m c="kr" v="아이템명을 입력하세요"/>
+    <m c="cn" v="请输入道具名称"/>
+    <m c="tw" v="請輸入道具名稱"/>
+  </k>
+  <k n="getReward">
+    <m c="kr" v="보상 받기"/>
+    <m c="cn" v="领取奖励"/>
+    <m c="tw" v="領取獎勵"/>
+  </k>
+  <k n="engineGrade0">
+    <m c="kr" v="전체 엔진"/>
+    <m c="cn" v="全部引擎"/>
+    <m c="tw" v="全部引擎"/>
+  </k>
+  <k n="engineGrade1">
+    <m c="kr" v="C1 엔진"/>
+    <m c="cn" v="C1引擎"/>
+    <m c="tw" v="C1引擎"/>
+  </k>
+  <k n="engineGrade2">
+    <m c="kr" v="E2 엔진"/>
+    <m c="cn" v="E2引擎"/>
+    <m c="tw" v="E2引擎"/>
+  </k>
+  <k n="engineGrade3">
+    <m c="kr" v="G3 엔진"/>
+    <m c="cn" v="G3引擎"/>
+    <m c="tw" v="G3引擎"/>
+  </k>
+  <k n="engineGrade4">
+    <m c="kr" v="R4 엔진"/>
+    <m c="cn" v="R4引擎"/>
+    <m c="tw" v="R4引擎"/>
+  </k>
+  <k n="engineGrade5">
+    <m c="kr" v="PRO 엔진"/>
+    <m c="cn" v="PRO引擎"/>
+    <m c="tw" v="PRO引擎"/>
+  </k>
+  <k n="engineGrade6">
+    <m c="kr" v="SR 엔진"/>
+    <m c="cn" v="SR引擎"/>
+    <m c="tw" v="SR引擎"/>
+  </k>
+  <k n="engineGrade7">
+    <m c="kr" v="Z7 엔진"/>
+    <m c="cn" v="Z7引擎"/>
+    <m c="tw" v="Z7引擎"/>
+  </k>
+  <k n="engineGrade8">
+    <m c="kr" v="HT 엔진"/>
+    <m c="cn" v="HT引擎"/>
+    <m c="tw" v="HT引擎"/>
+  </k>
+  <k n="engineGrade9">
+    <m c="kr" v="뉴 엔진"/>
+    <m c="cn" v="HT+引擎"/>
+    <m c="tw" v="HT+引擎"/>
+  </k>
+  <k n="engineGrade10">
+    <m c="kr" v="JIU 엔진"/>
+    <m c="cn" v="JIU引擎"/>
+    <m c="tw" v="JIU引擎"/>
+  </k>
+  <k n="engineGrade11">
+    <m c="kr" v="X 엔진"/>
+    <m c="cn" v="X引擎"/>
+    <m c="tw" v="X引擎"/>
+  </k>
+  <k n="engineGrade12">
+    <m c="kr" v="V1 엔진"/>
+    <m c="cn" v="V1引擎"/>
+    <m c="tw" v="V1引擎"/>
+  </k>
+  <k n="engineGrade13">
+    <m c="kr" v="Xun 엔진"/>
+    <m c="cn" v="迅引擎"/>
+    <m c="tw" v="迅引擎"/>
+  </k>
+  <k n="registed">
+    <m c="kr" v="등록량"/>
+    <m c="cn" v="收藏数量"/>
+    <m c="tw" v="登錄數量"/>
+  </k>
+  <k n="underCountToServer">
+    <m c="kr" v="서버와 전체 도감 아이템 갯수가 맞지 않습니다."/>
+    <m c="cn" v="道具图鉴总数与服务器数据不符。"/>
+    <m c="tw" v="伺服和整體圖鑑道具數量不符。"/>
+  </k>
+  <k n="overCountToServer">
+    <m c="kr" v="서버와 전체 도감 아이템 갯수가 맞지 않습니다."/>
+    <m c="cn" v="道具图鉴总数与服务器数据不符。"/>
+    <m c="tw" v="伺服和整體圖鑑道具數量不符。"/>
+  </k>
+  <k n="initializeYet">
+    <m c="kr" v="아직 도감이 활성화 되지 않았습니다."/>
+    <m c="cn" v="暂未激活此图鉴。"/>
+    <m c="tw" v="圖鑑尚未啟用。"/>
+  </k>
+  <k n="addRewardError">
+    <m c="kr" v="보상 지급에 실패하였습니다."/>
+    <m c="cn" v="奖励领取失败。"/>
+    <m c="tw" v="獎勵發放失敗。"/>
+  </k>
+  <k n="noMoreGetRewardItem">
+    <m c="kr" v="더 이상 보상을 받을 수 없습니다."/>
+    <m c="cn" v="无法领取更多奖励。"/>
+    <m c="tw" v="無法再領取獎勵。"/>
+  </k>
+  <k n="newDictionaryItemZero">
+    <m c="kr" v="새로 등록된 아이템이 없습니다."/>
+    <m c="cn" v="暂无新收藏道具。"/>
+    <m c="tw" v="沒有新登錄的道具。"/>
+  </k>
+  <k n="getRewardSuccess">
+    <m c="kr" v="도감 보상 [%s] %d개 지급 되었습니다."/>
+    <m c="cn" v="发放图鉴奖励[%s] %d个。"/>
+    <m c="tw" v="已發放圖鑑獎勵[%s] %d個。"/>
+  </k>
+  <k n="dictionaryNotice1">
+    <m c="kr" v="한 번 도감에 등록된 아이템은 도감에서 삭제되지 않습니다."/>
+    <m c="cn" v="已收藏过的道具无法从图鉴中删除。"/>
+    <m c="tw" v="登錄在圖鑑的道具無法從圖鑑中刪除。"/>
+  </k>
+  <k n="dictionaryNotice2">
+    <m c="kr" v="도감에 등록한 아이템의 숫자에 따라 보상을 받을 수 있습니다."/>
+    <m c="cn" v="可根据图鉴中收藏的道具数量领取相应的奖励。"/>
+    <m c="tw" v="依照登錄在圖鑑的道具數字，可領取獎勵。"/>
+  </k>
+  <k n="waitingMessage">
+    <m c="kr" v="도감 정보를 가져오고 있습니다."/>
+    <m c="cn" v="正在获取图鉴信息。"/>
+    <m c="tw" v="正在輸出圖鑑資訊中。　"/>
+  </k>
+</StringBag>

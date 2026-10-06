@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="noticeItemWindow" windowRect="0 0 200 65">
+  <IconButton name="notice" windowRect="0 8 238 53" frame="NoFrame" textRender="bold" text="" stringPos="56 5" textAlign="none">
+    <Panel name="stepBg" windowRect="0 -2 50 48" alphaBlend="true"/>
+    <Label name="text" windowRect="56 0 250 45" text="" multiLine="true" textAlign="vcenter" textRender="bold"/>
+    <Window name="seperator" windowRect="0 56 262 57" frame="Section"/>
+  </IconButton>
+</Window>

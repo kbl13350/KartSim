@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill8"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="小强！找到宝宝了吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="mos" pos="11 0" emotion="stop3"/>
+  <Msg name="小强" string="没有。|我再去找一找！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="这可出大事了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="不要太担心了，可能在哪里一个人玩着呢。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="嗯？！那个。。。|不是刚才的那个人吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <BackGround texture="vill7"/>
+  <Char id="nao" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="娜儿" string="怎么也没找到锁孔。。。|是不是来错了？。。。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="nao" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="黑妞" string="请你稍等！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Char id="nao" pos="11 0" emotion="stop2"/>
+  <Msg name="娜儿" string="额！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="nao" pos="11 0" emotion="stop2"/>
+  <Msg name="黑妞" string="你到底在鬼鬼祟祟找什么呢？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Msg name="娜儿" string="你可能误会了，我不是怪人！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="nao" pos="11 0" emotion="normal"/>
+  <Msg name="娜儿" string="我叫娜儿，来自爱琳世界，正在寻找魔族之神的行踪。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="nao" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="你不会是哪里不舒服吧？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="nao" pos="11 0" emotion="stop2"/>
+  <Msg name="娜儿" string="啊，并不是！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Msg name="娜儿" string="我说的是真的！魔族之神想从你们这里带走一个人。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="10 0" emotion="stop6"/>
+  <Msg name="皮蛋,黑妞" string="你说要带走一个人吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" pos="8 0" emotion="normal"/>
+  <Msg name="娜儿" string="是的，他正在找能够使破坏之神马赫降临的人选-红色容器。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Char id="nao" pos="12 0" emotion="normal"/>
+  <Msg name="皮蛋" string="红色容器？是宝宝吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="nao" pos="12 0" emotion="stop3"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Msg name="娜儿" string="宝宝是谁？"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Char id="nao" pos="12 0" emotion="normal"/>
+  <Msg name="黑妞" string="宝宝是我们的朋友，他消失了，我们一直在找他。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="nao" pos="8 0" emotion="stop2"/>
+  <Msg name="娜儿" string="什么！原来是锁孔已经找到了红色容器并带回去了啊！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="nao" pos="12 0" emotion="stop3"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop3"/>
+  <Msg name="娜儿" string="你们的朋友可能会有危险！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="12 0" emotion="stop3"/>
+  <Char id="dizini" pos="6 0" emotion="stop6"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="宝宝是被你说的那个人抓走了吗？"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="10 0" flip="true" emotion="normal"/>
+  <Msg name="娜儿" string="我想跟你们细说，但是现在没有时间了。|我先回去确认一下。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="nao" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="我也想跟你一起去！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="娜儿" string="不行的！这样你们也有可能陷入危险！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="只要能找到宝宝，再危险也没关系！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop7"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋，你真的相信她说的话吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="我感觉她并不是在撒谎，宝宝至今也没有现身。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop3"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="既然她说可能会有危险，|要不小强和黑妞再回去仔细找一找山丘吧。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Msg name="黑妞" string="那我也要跟你们一起去！|虽然很可疑。。但宝宝也有可能真的很危险。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Msg name="娜儿" string="既然你们这么说，那只好这样了。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="nao" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="娜儿" string="请跟紧我，详细的事在路上说~"/>
+  <Enter/>
+</Scene>

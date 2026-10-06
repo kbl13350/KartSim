@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Tracing isFixedKart="true" fixedKartId="875" isFixedChar="true" fixedCharId="1" kartId="849" colorId="6" dyeId="6" characterId="2" uniformId="0" characterName="皮蛋">
+    <LevelContent level="0" track="village_R03" laps="1" ksv="black_1-4" distance="50" startOffset="3000"/>
+  </Tracing>
+</Root>

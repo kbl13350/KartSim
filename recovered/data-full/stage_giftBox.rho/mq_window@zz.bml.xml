@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="fullscreen">
+  <CaptionWindow name="garageWindow" windowRect="0 0 1008 592" frame="CaptionDialog" caption="#sb(giftBox)" align="center" setCloseButton="cancelButton">
+    <ImageBoard windowSize="727 62" adjust="-11 -1" image="gift_img_textBG" alphaBlend="true" enable="true" visible="true">
+      <Label name="Label" windowSize="600 80" textColor="255 207 221 240" textColor2="255 42 55 80" textRender="outline14" adjust="85 5" text="#sb(helpMessage)" textAlign="hCenter"/>
+    </ImageBoard>
+    <Window name="ContentTab" windowSize="994 466" adjust="0 80" frame="GrayInnerFrame" align="hcenter">
+      <Window name="tabBox" windowSize="994 30" adjust="0 10">
+        <TextButton name="Tab_Incoming" windowSize="483 30" align="left" adjust="14 0" frame="Tab" text="#sb(receivedGift)" useDisableState="true" textRender="bold16" textColor="255 95 103 115" overTextColor="255 106 153 177" clickedTextColor="255 125 125 125" disabledTextColor="255 255 255 255"/>
+        <TextButton name="Tab_ReceiveLog" windowSize="483 30" align="right" adjust="14 0" frame="Tab" text="#sb(hadReceivedGift)" useDisableState="true" textRender="bold16" textColor="255 95 103 115" overTextColor="255 106 153 177" clickedTextColor="255 125 125 125" disabledTextColor="255 255 255 255"/>
+      </Window>
+      <Container name="InnerCanvas" windowRect="0 45 1000 456">
+        <Window name="containerIncoming" windowRect="13 0 1000 456">
+          <GridSelector name="giftGridSelector" windowRect="1 0 1000 356" alignStyle="horizontal" alignSize="2" maxLine="4" alignMargin="6 6" clientMargin="0 0 0 0">
+            <GiftBoxCard name="incoming1" cardTemplate="giftcard@zz"/>
+            <GiftBoxCard name="incoming2" cardTemplate="giftcard@zz"/>
+            <GiftBoxCard name="incoming3" cardTemplate="giftcard@zz"/>
+            <GiftBoxCard name="incoming4" cardTemplate="giftcard@zz"/>
+            <GiftBoxCard name="incoming5" cardTemplate="giftcard@zz"/>
+            <GiftBoxCard name="incoming6" cardTemplate="giftcard@zz"/>
+            <GiftBoxCard name="incoming7" cardTemplate="giftcard@zz"/>
+            <GiftBoxCard name="incoming8" cardTemplate="giftcard@zz"/>
+          </GridSelector>
+          <Container windowSize="456 22" adjust="-5 55" align="hcenter;bottom">
+            <Label name="page" windowRect="0 0 60 11" align="center" text="0 / 0" textAlign="center" textRender="bold16" textColor="255 42 55 80" autoSizing="true" enable="false"/>
+            <ImageButton name="prevPage" leftTopTex="-130 0" autoLoadImage="garage_btn_pageLeft_" alphaBlend="true"/>
+            <ImageButton name="nextPage" leftTopTex="280 0" autoLoadImage="garage_btn_pageRight_" alphaBlend="true"/>
+          </Container>
+        </Window>
+        <Container name="containerReceiveLog" windowRect="13 0 1000 456" visible="false">
+          <GridSelector name="giftGridSelector" windowRect="1 0 1000 356" alignStyle="horizontal" alignSize="2" maxLine="5" alignMargin="6 6" clientMargin="0 0 0 0">
+            <GiftReceiveLog name="receiveLog1" cardTemplate="receivelog@zz"/>
+            <GiftReceiveLog name="receiveLog2" cardTemplate="receivelog@zz"/>
+            <GiftReceiveLog name="receiveLog3" cardTemplate="receivelog@zz"/>
+            <GiftReceiveLog name="receiveLog4" cardTemplate="receivelog@zz"/>
+            <GiftReceiveLog name="receiveLog5" cardTemplate="receivelog@zz"/>
+            <GiftReceiveLog name="receiveLog6" cardTemplate="receivelog@zz"/>
+            <GiftReceiveLog name="receiveLog7" cardTemplate="receivelog@zz"/>
+            <GiftReceiveLog name="receiveLog8" cardTemplate="receivelog@zz"/>
+            <GiftReceiveLog name="receiveLog9" cardTemplate="receivelog@zz"/>
+            <GiftReceiveLog name="receiveLog10" cardTemplate="receivelog@zz"/>
+          </GridSelector>
+        </Container>
+        <Label name="giftDesc" windowRect="0 0 478 100" frame="DarkGrayPanel" marginRect="8 20 8 -40" textColor="white" vertAutoSizing="false" autoWrap="true" multiLine="true" depthBias="1024" text="" visible="false">
+          <Panel name="itemGradeColorPanel" windowSize="476 30" adjust="-1 -1" color="255 202 202 202" alphaBlend="true">
+            <Label name="giftItemNameI" text="" align="hcenter" windowSize="456 32" enable="false" textColor="255 42 55 80" textRender="bold20" textAlign="left,vcenter"/>
+          </Panel>
+          <Container name="containerReceivedTime" windowSize="476 51" adjust="0 35" enable="false" visible="true">
+            <Panel name="receivedTimePanel" windowSize="134 26" adjust="4 0" texture="img_itemTooltipTitleBG" enable="false" alphaBlend="true">
+              <Label text="#sb(receivedTime)" windowRect="5 0 87 18" enable="false" textColor="255 210 220 232" textRender="bold14" textAlign="vcenter"/>
+            </Panel>
+            <Label name="lblReceivedTime" text="" windowSize="476 20" adjust="8 25" enable="false" textRender="bold14" textColor="white" vertAutoSizing="true" autoWrap="true" multiLine="true"/>
+          </Container>
+          <Container name="containerMessage" windowSize="476 51" adjust="0 95" enable="false" visible="true">
+            <Panel name="messagePanel" windowSize="134 26" adjust="4 0" texture="img_itemTooltipTitleBG" enable="false" alphaBlend="true">
+              <Label text="#sb(message)" windowRect="5 0 87 18" enable="false" textColor="255 210 220 232" textRender="bold14" textAlign="vcenter"/>
+            </Panel>
+            <Label name="lblMessage" text="" windowSize="476 20" adjust="8 25" enable="false" textRender="bold14" textColor="white" vertAutoSizing="true" autoWrap="true" multiLine="true"/>
+          </Container>
+          <Container name="containerGiftDesc" windowSize="476 138" adjust="0 165" enable="false" visible="true">
+            <Panel name="giftDescPanel" windowSize="134 26" adjust="4 0" texture="img_itemTooltipTitleBG" enable="false" alphaBlend="true">
+              <Label text="#sb(giftDesc)" windowRect="5 0 87 18" enable="false" textColor="255 210 220 232" textRender="bold14" textAlign="vcenter"/>
+            </Panel>
+            <Label name="lblGiftDesc" text="" windowSize="476 20" adjust="8 25" enable="false" textRender="bold14" textColor="white" vertAutoSizing="true" autoWrap="true" multiLine="true"/>
+          </Container>
+        </Label>
+      </Container>
+    </Window>
+  </CaptionWindow>
+</Container>

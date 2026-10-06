@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="resultPanel" windowSize="1600 900" align="center" visible="false">
+  <Panel name="resultBg" windowSize="1920 1080" adjust="-160 -90" enable="true" color="255 0 0 0" alphaBlend="true" visible="true"/>
+  <Panel name="observerEvent" windowRect="9 7 141 142" texture="GM당첨" uvRect="0 0 132 135" visible="false" alphaBlend="true"/>
+  <Panel leftTopTex="0 185" texture="result@zz" alphaBlend="true" align="hcenter"/>
+  <Container name="line0" leftTopWH="0 250 1600 36">
+    <Panel leftTopWH="0 0 810 36" color="100 0 0 0" alphaBlend="true" align="hcenter">
+      <Panel name="resultID" leftTopTex="130 0" texture="id@zz" alphaBlend="true" align="vcenter"/>
+      <Panel name="resultTime" leftTopTex="375 0" texture="GameOverTime@zz" alphaBlend="true" align="vcenter"/>
+      <Panel name="resultRP" leftTopTex="76 0" texture="rp@zz" alphaBlend="true" align="vcenter"/>
+      <Panel name="resultLucci" leftTopTex="99 0" texture="lucci@zz" alphaBlend="true" align="vcenter"/>
+      <Panel name="resultPT" leftTopTex="675 0" texture="point@zz" alphaBlend="true" visible="false" align="vcenter"/>
+      <Panel name="resultGP" windowSize="44 24" adjust="330 0" align="vcenter" texture="gp@zz" alphaBlend="true" visible="false"/>
+      <Panel name="resultLuccon" windowRect="294 0 384 24" texture="luccon@zz" align="vcenter" alphaBlend="true" visible="false"/>
+    </Panel>
+  </Container>
+  <Panel name="gachaLotteryGet1" windowRect="0 520 309 591" align="hcenter" alphaBlend="true" visible="false"/>
+  <Panel name="gachaLotteryGet2" windowRect="0 520 309 591" align="hcenter" alphaBlend="true" visible="false"/>
+</Container>

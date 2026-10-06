@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="topMessenger" windowSize="406 600" adjust="20 75" align="right;bottom" alphaBlend="true">
+  <Panel name="messengerCaption" windowSize="406 32" adjust="0 -70" texture="msg_title" alphaBlend="true">
+    <Label leftTopWH="10 4 100 24" textAlign="vcenter" text="#sb(messenger)" textRender="bold16" textColor="white"/>
+    <ImageButton name="leftMoveBtn" leftTopWH="353 4 22 24" autoLoadImage="moveLeft" alphaBlend="true"/>
+    <ImageButton name="rightMoveBtn" leftTopWH="353 4 22 24" autoLoadImage="moveRight" alphaBlend="true" visible="false"/>
+    <ImageButton name="hideBtn" leftTopWH="378 4 22 24" autoLoadImage="hide" alphaBlend="true"/>
+  </Panel>
+  <ImageButton name="myInfo" windowSize="406 38" adjust="0 -38" autoLoadImage="msg_me_" alphaBlend="true">
+    <Panel name="myLevelMark" leftTopWH="8 3 32 32" alphaBlend="true"/>
+    <Label name="myLevelStr" leftTopWH="50 0 60 38" text="Lv.120" textRender="bold14" textAlign="left;vcenter" textColor="255 95 192 0"/>
+    <Label name="myRid" leftTopWH="105 0 100 38" text="ruppyj" textRender="bold14" textAlign="left;vcenter" textColor="255 42 55 80"/>
+    <Label name="myStatusStr" leftTopWH="240 0 100 38" text="#sb(online)" textRender="bold14" textAlign="right;vcenter" textColor="255 84 100 129"/>
+    <Panel name="myStatusMark" leftTopWH="348 14 12 12" texture="msg_condition_online" alphaBlend="true"/>
+  </ImageButton>
+  <ImageBoard name="messenger_bg" windowSize="406 600" image="msg_tab_friends_bg" alphaBlend="true"/>
+  <Tab name="msgrTab" windowSize="406 600">
+    <TabMenu name="msgrType" windowSize="406 40" adjust="0 0">
+      <ImageButton name="friendPage" leftTopWH="16 10 175 32" autoLoadImage="msg_tab_friends_" text="#sb(friend)" textAlign="vcenter" stringPos="85 0" textRender="bold16" textColor="255 64 75 95" clickedTextColor="white" overTextColor="white" alphaBlend="true">
+        <Panel name="friend_alert" leftTopWH="166 -1 14 14" texture="icon_notice_s" alphaBlend="true" enable="false" visible="false"/>
+      </ImageButton>
+      <ImageButton name="chatPage" leftTopWH="213 10 175 32" autoLoadImage="msg_tab_message_" text="#sb(chat)" textAlign="vcenter" stringPos="62 0" textRender="bold16" textColor="255 64 75 95" clickedTextColor="white" overTextColor="white" alphaBlend="true" enable="false">
+        <Panel name="chat_alert" leftTopWH="166 -1 14 14" texture="icon_notice_s" alphaBlend="true" enable="false" visible="false"/>
+      </ImageButton>
+    </TabMenu>
+    <TabPage name="friendPage" leftTopWH="0 48 406 550">
+      <Tab name="friendTab" windowSize="406 540" adjust="0 1">
+        <ImageButton name="addFriendBtn" leftTopWH="254 0 34 36" autoLoadImage="msg_btn_addFriend_" alphaBlend="true"/>
+        <TabMenu name="friendType" windowSize="406 36" adjust="291 0">
+          <ImageButton name="friendListPage" leftTopWH="1 0 34 36" autoLoadImage="msg_tab2_list_" alphaBlend="true"/>
+          <ImageButton name="mailBoxPage" leftTopWH="36 0 34 36" autoLoadImage="msg_tab2_mailbox_" alphaBlend="true">
+            <Panel name="mail_alert" leftTopWH="22 0 14 14" texture="icon_notice_s" alphaBlend="true" enable="false" visible="false"/>
+          </ImageButton>
+          <ImageButton name="settingPage" leftTopWH="71 0 34 36" autoLoadImage="msg_tab2_setting_" alphaBlend="true"/>
+        </TabMenu>
+        <TabPage name="friendListPage" leftTopWH="6 34 388 510">
+          <GridSelector name="friendList" leftTopWH="0 0 388 510" alignSize="1" maxLine="15" alignMargin="0 0" scrollType="vertical" linePaging="false" visible="true"/>
+          <ScrollBar name="friendScrollBar" leftTopWH="391 5 5 495" scrollType="vertical" minScrollButtonHeight="50" scrollButton="MixVerticalScrollButton" scrollArea="MixVerticalScrollArea"/>
+          <ChatEdit name="friendSearchEdit" leftTopWH="28 -30 170 23" maxChar="16" textRender="bold14" textColor="255 84 100 129" caretColor="255 84 100 129" textBgColor="0 0 0 0" frame="NoFrame"/>
+          <Label name="searchGuideStr" leftTopWH="28 -30 170 23" text="#sb(searchFriend)" textRender="bold14" textColor="255 135 146 167" enable="false"/>
+        </TabPage>
+        <TabPage name="mailBoxPage" leftTopWH="0 38 406 510">
+          <Tab name="mailBoxTab" windowSize="406 510" adjust="0 1">
+            <TabMenu name="mailType" windowSize="406 30" adjust="0 0">
+              <ImageButton name="receivePage" leftTopWH="10 0 191 25" autoLoadImage="msg_tab2_" text="#sb(receive)" textAlign="center" textRender="bold14" textColor="255 95 103 115" clickedTextColor="white" overTextColor="255 106 153 177" disabledTextColor="225 125 125 125" alphaBlend="true">
+                <Panel name="receive_alert" leftTopWH="175 2 14 14" texture="icon_notice_s" alphaBlend="true" enable="false" visible="false"/>
+              </ImageButton>
+              <ImageButton name="sendPage" leftTopWH="205 0 191 25" autoLoadImage="msg_tab2_" text="#sb(send)" textAlign="center" textRender="bold14" textColor="255 95 103 115" clickedTextColor="white" overTextColor="255 106 153 177" disabledTextColor="225 125 125 125" alphaBlend="true"/>
+            </TabMenu>
+            <TabPage name="receivePage" leftTopWH="0 29 406 480">
+              <GridSelector name="receiveList" leftTopWH="5 -5 388 480" alignSize="1" maxLine="8" alignMargin="0 0" scrollType="vertical" linePaging="false" visible="true"/>
+              <ScrollBar name="receiveScrollBar" leftTopWH="397 0 5 465" scrollType="vertical" minScrollButtonHeight="50" scrollButton="MixVerticalScrollButton" scrollArea="MixVerticalScrollArea"/>
+            </TabPage>
+            <TabPage name="sendPage" leftTopWH="0 29 406 480">
+              <Panel leftTopWH="9 0 388 57" texture="msg_list_top" alphaBlend="true">
+                <Label leftTopWH="14 0 230 57" text="#sb(bulkDeleteHelpStr)" textAlign="vcenter" textRender="bold14" textColor="255 49 80 134" autoWrap="true"/>
+                <ImageButton name="bulkDeleteBtn" leftTopWH="273 14 110 32" autoLoadImage="btn_DeleteAll_" text="#sb(bulkDelete)" textAlign="vcenter" stringPos="28 0" textRender="bold14" textColor="white" clickedTextColor="255 24 55 104" overTextColor="white" disabledTextColor="225 220 220 220" alphaBlend="true"/>
+              </Panel>
+              <GridSelector name="sendList" leftTopWH="5 55 388 420" alignSize="1" maxLine="7" alignMargin="0 0" scrollType="vertical" linePaging="false" visible="true"/>
+              <ScrollBar name="sendScrollBar" leftTopWH="397 60 5 415" scrollType="vertical" minScrollButtonHeight="50" scrollButton="MixVerticalScrollButton" scrollArea="MixVerticalScrollArea"/>
+            </TabPage>
+          </Tab>
+        </TabPage>
+        <TabPage name="settingPage" leftTopWH="0 38 406 510">
+          <Tab name="settingTab" windowSize="406 510" adjust="0 1">
+            <TabMenu name="settingType" windowSize="406 30" adjust="0 0">
+              <ImageButton name="normalSettingPage" leftTopWH="10 0 191 25" autoLoadImage="msg_tab2_" text="#sb(friendSetting)" textAlign="center" textRender="bold14" textColor="255 95 103 115" clickedTextColor="white" overTextColor="255 106 153 177" disabledTextColor="225 125 125 125" alphaBlend="true"/>
+              <ImageButton name="blockSettingPage" leftTopWH="205 0 191 25" autoLoadImage="msg_tab2_" text="#sb(blockSetting)" textAlign="center" textRender="bold14" textColor="255 95 103 115" clickedTextColor="white" overTextColor="255 106 153 177" disabledTextColor="225 125 125 125" alphaBlend="true"/>
+            </TabMenu>
+            <TabPage name="normalSettingPage" leftTopWH="0 29 406 480">
+              <GridSelector name="normalOptList" leftTopWH="9 0 388 476" alignSize="1" maxLine="14" alignMargin="0 0" scrollType="vertical" linePaging="false" visible="true"/>
+              <ScrollBar name="normalOptScrollBar" leftTopWH="397 5 5 461" scrollType="vertical" minScrollButtonHeight="50" scrollButton="MixVerticalScrollButton" scrollArea="MixVerticalScrollArea"/>
+            </TabPage>
+            <TabPage name="blockSettingPage" leftTopWH="0 29 406 480">
+              <GridSelector name="blockOptList" leftTopWH="9 0 388 374" alignSize="1" maxLine="11" alignMargin="0 0" scrollType="vertical" linePaging="false" visible="true"/>
+              <ScrollBar name="blockOptScrollBar" leftTopWH="397 5 5 359" scrollType="vertical" minScrollButtonHeight="50" scrollButton="MixVerticalScrollButton" scrollArea="MixVerticalScrollArea"/>
+            </TabPage>
+          </Tab>
+        </TabPage>
+      </Tab>
+    </TabPage>
+    <TabPage name="chatPage" leftTopWH="0 48 406 550">
+      <Container name="existChat" leftTopWH="0 0 406 550" visible="false">
+        <ColorLabel name="fullRoomName" leftTopWH="10 3 87 39" textRender="bold14" textAlign="left;vcenter" textColor="white"/>
+        <ImageButton name="addFriend2Chat" leftTopWH="291 9 29 29" autoLoadImage="btn_inviteFriend_" alphaBlend="true"/>
+        <ImageButton name="exitChat" leftTopWH="332 5 75 36" autoLoadImage="msg_exit_" alphaBlend="true"/>
+        <ChatEdit name="chatInput" leftTopWH="128 524 220 23" maxChar="30" textRender="bold14" textColor="255 42 55 80" caretColor="255 42 55 80" textBgColor="0 0 0 0" frame="NoFrame"/>
+        <Label name="guideStr" windowRect="130 524 220 23" text="#sb(inputGuide)" textRender="bold14" textColor="255 135 146 167" enable="false"/>
+        <ImageButton name="eraseChat" leftTopWH="353 525 22 22" autoLoadImage="eraser_0" alphaBlend="true"/>
+        <ImageButton name="emoticon" leftTopWH="378 525 22 22" autoLoadImage="icon_emoticon_0" alphaBlend="true"/>
+        <GridSelector name="chatList" leftTopWH="-2 42 350 300" alignSize="1" maxLine="10" alignMargin="0 1" scrollType="vertical" linePaging="false"/>
+      </Container>
+      <ImageBoard name="notExistChat" leftTopWH="0 4 406 548" image="msg_tab_message_firstPage" alphaBlend="true" visible="true">
+        <Label leftTopWH="0 180 406 50" align="hcenter" textAlign="center" text="#sb(chatHelp1)" textRender="bold16" textColor="255 168 183 195"/>
+        <ColorLabel name="chatHelp2" leftTopWH="68 230 270 100" align="hcenter" textAlign="center" text="#sb(chatHelp2)" textRender="bold14" textColor="255 168 183 195" autoWrap="true"/>
+        <ImageButton name="initCreateChat" align="hcenter" leftTopWH="0 330 168 36" autoLoadImage="msg_inviteBtn_" text="#sb(invite)" textAlign="vcenter" stringPos="75 0" textRender="bold14" textColor="white" clickedTextColor="255 24 55 104" overTextColor="white" disabledTextColor="225 220 220 220" alphaBlend="true"/>
+      </ImageBoard>
+      <ImageBoard name="AddInviteChat" leftTopWH="0 4 406 548" image="msg_tab_message_popupbg" alphaBlend="true" visible="false">
+        <Label leftTopWH="180 24 150 30" textAlign="vcenter" text="#sb(inviteFriend)" textRender="bold16" textColor="white"/>
+        <Label leftTopWH="30 59 250 50" textAlign="vcenter" text="#sb(inviteFriendHelpStr)" textRender="bold14" textColor="255 135 146 167"/>
+        <Label leftTopWH="275 58 100 30" textAlign="center" text="#sb(inviteEnableNum)" textRender="bold14" textColor="255 135 146 167"/>
+        <Label name="enableInviteNum" leftTopWH="275 78 100 30" textAlign="center" text="#sb(UserNum)" textRender="bold14" textColor="255 84 100 129"/>
+        <GridSelector name="addInviteList" leftTopWH="24 111 354 340" alignSize="1" maxLine="10" alignMargin="0 0" scrollType="vertical" linePaging="false" visible="true"/>
+        <ScrollBar name="addInviteListScrollBar" leftTopWH="382 95 4 350" scrollType="vertical" minScrollButtonHeight="50" scrollButton="MixVerticalScrollButton" scrollArea="MixVerticalScrollArea"/>
+        <TextButton name="addInviteOk" leftTopWH="65 465 135 50" frame="DefaultFocusedButton" alphaBlend="true" alphaTest="true" text="#sb(invite)" textRender="bold16" textAlign="center" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+        <TextButton name="addInviteCancel" leftTopWH="210 465 135 50" alphaBlend="true" alphaTest="true" text="#sb(cancel)" textRender="bold16" textAlign="center" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+      </ImageBoard>
+    </TabPage>
+  </Tab>
+  <Window name="statusDropBox" leftTopWH="270 4 102 58" frame="DropBoxBg" visible="false">
+    <ImageButton name="selctOnline" leftTopWH="0 0 100 28" frame="MsgrStatusDropBoxButton" text="#sb(online)       " textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="right;vcenter" alphaBlend="true">
+      <Panel name="myStatusMark" leftTopWH="80 7 12 12" texture="msg_condition_online" alphaBlend="true"/>
+    </ImageButton>
+    <ImageButton name="selectOffline" leftTopWH="0 28 100 28" frame="MsgrStatusDropBoxButton" text="#sb(offline)       " textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="right;vcenter" alphaBlend="true">
+      <Panel name="myStatusMark" leftTopWH="80 7 12 12" texture="msg_condition_offline" alphaBlend="true"/>
+    </ImageButton>
+  </Window>
+  <Window name="quickMenu0" leftTopWH="0 0 136 58" frame="DropBoxBg" visible="false">
+    <ImageButton name="selectAddFriend" leftTopWH="0 0 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(addFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInfo" leftTopWH="0 28 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(info)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+  </Window>
+  <Window name="quickMenu1" leftTopWH="0 0 136 198" frame="DropBoxBg" visible="false">
+    <ImageButton name="selectChat" leftTopWH="0 0 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(startChat)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="addFavorite" leftTopWH="0 28 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(addFavorite)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true" visible="false"/>
+    <ImageButton name="deleteFavorite" leftTopWH="0 28 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(deleteFavorite)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true" visible="false"/>
+    <ImageButton name="selectFollow" leftTopWH="0 56 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(followGame)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInviteGame" leftTopWH="0 84 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(InviteGame)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" disabledTextColor="255 183 186 194" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectBlocked" leftTopWH="0 112 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(blockFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectDelete" leftTopWH="0 140 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(deleteFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInfo" leftTopWH="0 168 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(info)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+  </Window>
+  <Window name="quickMenu2" leftTopWH="0 0 136 114" frame="DropBoxBg" visible="false">
+    <ImageButton name="addFavorite" leftTopWH="0 0 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(addFavorite)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true" visible="false"/>
+    <ImageButton name="deleteFavorite" leftTopWH="0 0 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(deleteFavorite)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true" visible="false"/>
+    <ImageButton name="selectBlocked" leftTopWH="0 28 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(blockFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectDelete" leftTopWH="0 56 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(deleteFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInfo" leftTopWH="0 84 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(info)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+  </Window>
+  <Window name="quickMenu3" leftTopWH="0 0 136 114" frame="DropBoxBg" visible="false">
+    <ImageButton name="addFavorite" leftTopWH="0 0 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(addFavorite)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectBlocked" leftTopWH="0 28 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(blockFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectDelete" leftTopWH="0 56 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(deleteFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInfo" leftTopWH="0 84 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(info)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+  </Window>
+  <Window name="quickMenu4" leftTopWH="0 0 136 114" frame="DropBoxBg" visible="false">
+    <ImageButton name="selectAddFriend" leftTopWH="0 0 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(addFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectFollow" leftTopWH="0 28 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(followGame)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInviteGame" leftTopWH="0 56 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(InviteGame)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" disabledTextColor="255 183 186 194" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInfo" leftTopWH="0 84 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(info)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+  </Window>
+  <Window name="quickMenuChat1" leftTopWH="0 0 136 170" frame="DropBoxBg" visible="false">
+    <ImageButton name="addFavorite" leftTopWH="0 0 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(addFavorite)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true" visible="false"/>
+    <ImageButton name="deleteFavorite" leftTopWH="0 0 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(deleteFavorite)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true" visible="false"/>
+    <ImageButton name="selectFollow" leftTopWH="0 28 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(followGame)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInviteGame" leftTopWH="0 56 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(InviteGame)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" disabledTextColor="255 183 186 194" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectBlocked" leftTopWH="0 84 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(blockFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" disabledTextColor="255 183 186 194" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectDelete" leftTopWH="0 112 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(deleteFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInfo" leftTopWH="0 140 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(info)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+  </Window>
+  <Window name="quickMenuChat2" leftTopWH="0 0 136 114" frame="DropBoxBg" visible="false">
+    <ImageButton name="selectAddFriend" leftTopWH="0 0 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(addFriend)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectFollow" leftTopWH="0 28 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(followGame)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInviteGame" leftTopWH="0 56 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(InviteGame)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" disabledTextColor="255 183 186 194" textAlign="vcenter" alphaBlend="true"/>
+    <ImageButton name="selectInfo" leftTopWH="0 84 134 28" frame="MsgrQuickMenuButton" stringPos="10 0" text="#sb(info)" textRender="bold14" textColor="255 42 55 80" overTextColor="white" clickedTextColor="white" textAlign="vcenter" alphaBlend="true"/>
+  </Window>
+  <Panel name="mainBlock" windowSize="406 670" adjust="0 -70" color="0 50 50 50" alphaBlend="true" enable="true"/>
+  <Panel name="mainview" windowSize="406 600" adjust="0 0" color="0 50 50 50" align="right;bottom" alphaBlend="true" visible="false">
+    <Window name="GCEmoticonSelect" windowRect="220 425 218 122" visible="true"/>
+  </Panel>
+  <Label name="tooltip" windowSize="5 20" frame="DefaultTooltipNew" text="" autoSizing="true" textRender="bold14" textColor="255 241 244 248" textAlign="center" depthBias="1024.0" enable="false" visible="false"/>
+</Container>

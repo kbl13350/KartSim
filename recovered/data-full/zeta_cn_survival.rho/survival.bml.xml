@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<survival>
+  <openTime time="16:00~21:59"/>
+  <survivalInfo ingamePplRequestUrl="survival" resultPplRequestUrl="" channelSpec="L2" startUserCount="8"/>
+  <luccon type="normal" fee="2">
+    <reward raceUserCount="1">
+      <reward rank="1" luccon="16"/>
+      <reward rank="2" luccon="0"/>
+      <reward rank="3" luccon="0"/>
+    </reward>
+    <reward raceUserCount="2">
+      <reward rank="1" luccon="12"/>
+      <reward rank="2" luccon="4"/>
+      <reward rank="3" luccon="0"/>
+    </reward>
+    <reward raceUserCount="3">
+      <reward rank="1" luccon="10"/>
+      <reward rank="2" luccon="4"/>
+      <reward rank="3" luccon="2"/>
+    </reward>
+    <reward raceUserCount="4">
+      <reward rank="1" luccon="10"/>
+      <reward rank="2" luccon="4"/>
+      <reward rank="3" luccon="2"/>
+    </reward>
+    <reward raceUserCount="5">
+      <reward rank="1" luccon="10"/>
+      <reward rank="2" luccon="4"/>
+      <reward rank="3" luccon="2"/>
+    </reward>
+    <reward raceUserCount="6">
+      <reward rank="1" luccon="10"/>
+      <reward rank="2" luccon="4"/>
+      <reward rank="3" luccon="2"/>
+    </reward>
+    <reward raceUserCount="7">
+      <reward rank="1" luccon="10"/>
+      <reward rank="2" luccon="4"/>
+      <reward rank="3" luccon="2"/>
+    </reward>
+    <reward raceUserCount="8">
+      <reward rank="1" luccon="10"/>
+      <reward rank="2" luccon="4"/>
+      <reward rank="3" luccon="2"/>
+    </reward>
+  </luccon>
+  <luccon type="premium" fee="10">
+    <reward raceUserCount="1">
+      <reward rank="1" luccon="80"/>
+      <reward rank="2" luccon="0"/>
+      <reward rank="3" luccon="0"/>
+    </reward>
+    <reward raceUserCount="2">
+      <reward rank="1" luccon="60"/>
+      <reward rank="2" luccon="20"/>
+      <reward rank="3" luccon="0"/>
+    </reward>
+    <reward raceUserCount="3">
+      <reward rank="1" luccon="50"/>
+      <reward rank="2" luccon="20"/>
+      <reward rank="3" luccon="10"/>
+    </reward>
+    <reward raceUserCount="4">
+      <reward rank="1" luccon="50"/>
+      <reward rank="2" luccon="20"/>
+      <reward rank="3" luccon="10"/>
+    </reward>
+    <reward raceUserCount="5">
+      <reward rank="1" luccon="50"/>
+      <reward rank="2" luccon="20"/>
+      <reward rank="3" luccon="10"/>
+    </reward>
+    <reward raceUserCount="6">
+      <reward rank="1" luccon="50"/>
+      <reward rank="2" luccon="20"/>
+      <reward rank="3" luccon="10"/>
+    </reward>
+    <reward raceUserCount="7">
+      <reward rank="1" luccon="50"/>
+      <reward rank="2" luccon="20"/>
+      <reward rank="3" luccon="10"/>
+    </reward>
+    <reward raceUserCount="8">
+      <reward rank="1" luccon="50"/>
+      <reward rank="2" luccon="20"/>
+      <reward rank="3" luccon="10"/>
+    </reward>
+  </luccon>
+</survival>

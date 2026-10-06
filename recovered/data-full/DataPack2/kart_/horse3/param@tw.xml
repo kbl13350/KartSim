@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='143.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.072'
+           SteerConstraint='2.2'
+           DriftEscapeForce='600'
+           CornerDrawFactor='0.064'
+           BoosterBlur='true'
+           EngineSound='cotton6'
+           UseTransformBooster='true'
+TransAccelFactor='1.62'
+
+           BoosterType='cotton6'
+           BoosterType0='default'
+           BoosterType1='default'
+           Port0='mod1a1'
+           Port1='mod1a2'
+           FirePort0='mod1b1'
+           FirePort1='mod1b2'
+           FirePort2='mod1b3'
+           FirePort3='mod1b4'
+
+		   	DescBalance= '37'
+	DescStability ='31'
+	DescEngineGrade='1'
+	DescCornering='4'
+	DescEnchantCap = '25'
+/>
+
+<!-- 대만 얼룩말카트 SR 판매 이벤트용 20101105-->

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="0 0 0 0" align="center" alphaBlend="true">
+  <Container name="rewardDialog" windowRect="0 0 770 454" adjust="0 -16" visible="true" enable="true" align="center">
+    <TextButton name="rewardOK" windowSize="132 42" text="#sb(ok)" align="hcenter" adjust="0 476" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" visible="false"/>
+  </Container>
+</Panel>

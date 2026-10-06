@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" title="初来乍到" synopsis="为了出战繁荣山丘赛车大会，皮蛋今天开始了练习。|在陌生的赛道上，皮蛋能够安然无事的完成吗？" howToClear="请完成比赛。" missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" prize="经验 50" rewardRp="50" prizeCatId="15" prizeId="58"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="让黑妞认可你的行驶能力吧！" synopsis="皮蛋要向怀疑自己实力的黑妞证实下自己的行驶能力。|皮蛋到底能不能向黑妞漂亮地展示自己的实力呢？" howToClear="请在规定的时间内完成赛道." missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" prize="皮蛋气球(30个)" rewardStockId="14690" prizeCatId="9" prizeId="71"/>
+  </Step>
+  <Step id="3" type="30" mode="single" preConditionId="2" title="和黑妞对决" synopsis="黑妞赌上自己的名誉，向皮蛋正式提出挑战。|在这激烈的比赛中，到底谁能获胜呢？" howToClear="请在和黑妞的对决中获胜" missionText="对决胜利 %d回/%d回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" prize="黑妞气球(30个)" rewardStockId="14691" prizeCatId="9" prizeId="74"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="练习！ 练习！" synopsis="皮蛋按着黑妞的忠告，为了成为更出色的车手，|开始在冰雪企鹅岛中进行练习。" howToClear="제请在规定的时间内完成赛道" missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" prize="蓝色喷漆 (10天)" rewardStockId="14692" prizeCatId="2" prizeId="6"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="赛道的路霸胖墩！" synopsis="皮蛋和黑妞在练习途中，遇到了赛道的路霸胖墩……|皮蛋果敢得向胖墩投去了挑战书，在沙漠中，到底胜负结果如何呢？" howToClear="请在和胖墩的对决中获胜" missionText="对决胜利 %d回/%d回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" prize="胖墩气球 (30个)" rewardStockId="14693" prizeCatId="9" prizeId="279"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="小强的课题" synopsis="按照胖墩的介绍，找到了小强的皮蛋一行人，|向他讨教了车子相关的问题。|小强提出必须完成自己的考验才会告诉他们。" howToClear="请在规定的时间内完成赛道." missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" prize="防尘眼镜 B款式 (10天)" rewardStockId="14694" prizeCatId="8" prizeId="1"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="去沙漠市场陷阱之路的赛车快递" synopsis="小强向成功解决了第一个考验的皮蛋，提出了第二个考验。|也就是在规定的时间内送快递的任务。|皮蛋到底能否解决第二个考验呢？" howToClear="在规定的时间和碰撞次数之内，完成递送。" missionText="递送成果 %d回/%d回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="8" type="30" mode="single" preConditionId="7" title="真正的实力认证！" synopsis="完成了俩个考验后，小强向皮蛋提出了最后一个考验。也就是在和其他车手的比赛中，让他充分见识自己的成绩。皮蛋到底能否解决难题，获得作为车手获得小强的认可呢？" howToClear="在规定的时间内超过胖墩|落后20米以上时，挑战失败" missionText="追击成功%d次/共%d次" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" prize="双倍经验卡 (3天)" rewardStockId="1126" prizeCatId="32" prizeId="1"/>
+  </Step>
+  <Step id="9" type="30" mode="single" preConditionId="8" title="小强的隐藏实力！" synopsis="解决了3个难题之后，|小强答应把自己关于赛车的知识全部传授给皮蛋。|然后，小强向皮蛋提出了自己最后的请求。|这个请求到底是什么呢？" howToClear="请在和小强的对决中获胜" missionText="对决胜利 %d回/%d回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" prize="扳手头饰 (3天)" rewardStockId="14695" prizeCatId="11" prizeId="125"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="我们自己的赛车大会！" synopsis="和小强成为了朋友的皮蛋一行人，为了体验到更高水准的比赛，|决定在城镇高速公路上进行练习。|皮蛋到底能否在更高水准的赛道中发挥自己的实力呢？" howToClear="请在规定的时间内完成赛道." missionText="赛道完成 %d回/%d回" otherWayLockId="11" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10A">
+    <Level difficult="0" prize="金币  1000" rewardLucci="1000" prizeCatId="15" prizeId="13"/>
+  </Step>
+  <Step id="11" type="31" mode="single" preConditionId="9" title="朋友之间的比赛！" synopsis="和小强成为了朋友的皮蛋一行人，为了体验到更高水准的比赛，|决定在城镇高速公路上进行比赛。|皮蛋到底能否在更高水准的赛道中发挥自己的实力呢？" howToClear="在和其他车手的比赛中，不掉队并完成赛道" missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="10B" otherWayLockId="10">
+    <Level difficult="0" prize="金币  1000" rewardLucci="1000" prizeCatId="15" prizeId="13"/>
+  </Step>
+  <Step id="12" type="32" mode="single" preConditionId="10|11" title="无尽的行驶之路！" synopsis="在和朋友们进行了比较后，|皮蛋发现自己练习过的行驶距离相当的不足。|回顾自己之前样子，皮蛋决定开始更卖力的猛练。" howToClear="请在规定的时间内，通过所有的计时点。" missionText="计时点通过%d次/共%d次" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="11">
+    <Level difficult="0" prize="经验 500" rewardRp="500" prizeCatId="15" prizeId="58"/>
+  </Step>
+  <Step id="13" type="30" mode="single" preConditionId="12" title="嫉妒的化身 蓝蓝登场" synopsis="对皮蛋一见钟情的蓝蓝找到了皮蛋。|但是看到了已经成为皮蛋女朋友的黑妞，|激起了妒忌心，提出了决斗。|皮蛋代替受伤的黑妞，和蓝蓝进行对决。" howToClear="请在和蓝蓝的对决中获胜" missionText="对决胜利 %d回/%d回" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="12">
+    <Level difficult="0" prize="双倍金币卡 (3天)" rewardStockId="1128" prizeCatId="32" prizeId="2"/>
+  </Step>
+  <Step id="14" type="30" mode="single" preConditionId="13" title="挑战自己" synopsis="结束了火热的对决，终于能有自己的时间了的皮蛋，|想起了之前在沙漠中和胖墩的对决。|皮蛋回想起了那个时候自己纯粹的心灵，再次下定决心。" howToClear="请在规定的时间内完成赛道." missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="13">
+    <Level difficult="0" rewardStockId="15012"/>
+  </Step>
+  <Step id="15" type="30" mode="single" preConditionId="14" title="蓝蓝的维修师葱头！" synopsis="蓝蓝和她的维修师葱头一起再次找到了皮蛋一行。|蓝蓝想通过让葱头和他对决来报复。|皮蛋当然接受了挑战。维修师葱头的实力到底如何呢？" howToClear="请在和葱头的对决中获胜" missionText="对决胜利 %d回/%d回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="14">
+    <Level difficult="0" prize="圣诞企鹅 (10天)" rewardStockId="1109" prizeCatId="21" prizeId="35"/>
+  </Step>
+  <Step id="16" type="31" mode="single" preConditionId="15" title="成为最强车手之路" synopsis="结束了和葱头的激烈的对决之后，|葱头给了他们今后进一步成长的忠告。|皮蛋按照葱头的忠告开始了练习。" howToClear="在和其他车手的比赛中，不掉队并完成赛道" missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene16" readyStage="1-16" stepTitleId="15">
+    <Level difficult="0" prize="防尘眼镜 B款式 (10天)" rewardStockId="14694" prizeCatId="8" prizeId="1"/>
+  </Step>
+  <Step id="17" type="30" mode="single" preConditionId="16" title="病危的黑妞！" synopsis="专心于练习的皮蛋，收到了黑妞感冒了的信。|为了病重的黑妞，皮蛋买了感冒药，|飞快得赶往黑妞所在的地方。" howToClear="在规定时间和碰撞次数内完成递送." missionText="递送成功 %d回/%d回" addToGarage="true" visualScene="scene17" readyStage="1-17" stepTitleId="16">
+    <Level difficult="0" prize="道具换位卡 (20个)" rewardStockId="9379" prizeCatId="7" prizeId="1"/>
+  </Step>
+  <Step id="18" type="30" mode="single" preConditionId="17" title="超越传说中的记录！" synopsis="离大会没几天了，为了体验实战经验，|皮蛋和朋友们访问了森林发夹赛道。|挑战赛道传说中的纪录的皮蛋和朋友们，|到底能否达成目标呢？" howToClear="请在规定的时间内完成赛道." missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="17">
+    <Level difficult="0" prize="道具变更卡 (20个)" rewardStockId="3310" prizeCatId="7" prizeId="2"/>
+  </Step>
+  <Step id="19" type="30" mode="single" preConditionId="18" title="新的挑战！" synopsis="皮蛋通过苦练，发现自己现在充满了胜利的自信感。|为了获得更多对胜利的自信感，|皮蛋想再次和其他车手进行反复的竞争。" howToClear="请在规定的时间内完成赛道." missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="18">
+    <Level difficult="0" rewardStockId="1126"/>
+  </Step>
+  <Step id="20" type="31" mode="single" preConditionId="19" title="激战！繁荣山丘卡丁车大会！" synopsis="终于繁荣山丘大会开始了，皮蛋和朋友们一起出战了。|和这些从一开始就很厉害的对手进行对决的皮蛋，|到底能否进入到决赛呢？" howToClear="在和别的车手的比赛中不掉队并完成赛道。" missionText="赛道完成 %d回/%d回" addToGarage="true" visualScene="scene20" readyStage="1-20" isFinalStep="true" stepTitleId="19">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+</StepList>

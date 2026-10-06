@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='110.0'
+	DragFactor='-0.076'
+	SteerConstraint='2.2'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.067'
+	UseTransformBooster='false'
+	EngineSound='cotton7'
+
+	BoosterBlur='true'
+	BoosterWaveType='effect_zero'
+	BoosterType='zero5'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType4='cotton6'
+	BoosterType5='cotton6'
+	Port0='mod6a'
+	Port1='mod6b'
+	FirePort0='mod1a'
+	FirePort1='mod1b'
+	FirePort2='mod1c'
+	FirePort3='mod1d'
+
+	BoostAccelFactor='1.5'           
+	TransAccelFactor='1.85'           
+	StartBoosterTime='1200'           
+	TransformTime='700'               
+	NormalBoosterTime='0'           
+	DriftMaxGauge='0'                   
+
+	TailLampSize='0.4'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '30'
+	DescStability ='35'
+	DescEngineGrade='1.2'
+	DescCornering='3'
+	DescEnchantCap = '20'
+
+/>
+
+<!--냐옹이 Z7 -->

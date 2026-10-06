@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="0 0 234 215" caption="#sb(GuildprixTutorial)" captionPos="0 1" captionColor="black" align="center" alphaBlend="true" setCloseButton="closeButton">
+  <Panel name="HowToImg" windowRect="0 5 200 105" alphaBlend="true"/>
+  <Panel name="sec" windowRect="0 228 512 229" color="255 200 200 200" align="hcenter"/>
+  <Panel name="sec" windowRect="0 229 512 230" color="255 255 255 255" align="hcenter"/>
+  <Window name="underBody" windowRect="0 120 240 143" align="hcenter">
+    <TextButton name="cancel" windowRect="0 5 90 25" text="#sb(cancel)" altTextRender="outline"/>
+    <TextButton name="ok" windowRect="150 5 240 25" text="#sb(next)" altTextRender="outline"/>
+  </Window>
+</CaptionWindow>

@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="expeditionCaption">
+    <m c="kr" v="레이싱 탐험대"/>
+    <m c="cn" v="赛车探险队"/>
+    <m c="tw" v="expeditionCaption"/>
+  </k>
+  <k n="expeditionSysStr_1">
+    <m c="kr" v="카트바디의 강화, 캐릭터 특성, 다양한 친구, 이와 함께 충분한 탐험대가 구성되면 버프 효과가 크게 발생합니다."/>
+    <m c="cn" v="通过强化卡丁车、匹配的角色属性、好友助力，组建出强力的探险队即可获得大幅增益效果。"/>
+    <m c="tw" v="expeditionSysStr_1"/>
+  </k>
+  <k n="expeditionSysStr_2">
+    <m c="kr" v="탐험대 미션은 매 주 10개와 미션 추가를 통해 최대 20개까지 수행 할 수 있으며, [color:255 22 225 255]목요일 6시[/color]에 초기화됩니다."/>
+    <m c="cn" v="探险队任务每周默认10个，通过添加任务最多可完成20个，[color:255 22 225 255]每周四6点[/color]重置。"/>
+    <m c="tw" v="expeditionSysStr_2"/>
+  </k>
+  <k n="expeditionMission">
+    <m c="kr" v="탐험대 미션"/>
+    <m c="cn" v="探险队任务"/>
+    <m c="tw" v="expeditionMission"/>
+  </k>
+  <k n="weeklyLimit">
+    <m c="kr" v="주간 제한"/>
+    <m c="cn" v="每周限制次数"/>
+    <m c="tw" v="weeklyLimit"/>
+  </k>
+  <k n="difficulty">
+    <m c="kr" v="난이도"/>
+    <m c="cn" v="难度"/>
+    <m c="tw" v="difficulty"/>
+  </k>
+  <k n="bonusReward">
+    <m c="kr" v="보상"/>
+    <m c="cn" v="奖励"/>
+    <m c="tw" v="bonusReward"/>
+  </k>
+  <k n="organizeCrew">
+    <m c="kr" v="탐험대 편성"/>
+    <m c="cn" v="探险队编队"/>
+    <m c="tw" v="organizeCrew"/>
+  </k>
+  <k n="expeditionCrewMember1">
+    <m c="kr" v="탐험 대원1"/>
+    <m c="cn" v="队员1"/>
+    <m c="tw" v="expeditionCrewMember1"/>
+  </k>
+  <k n="expeditionCrewMember2">
+    <m c="kr" v="탐험 대원2"/>
+    <m c="cn" v="队员2"/>
+    <m c="tw" v="expeditionCrewMember2"/>
+  </k>
+  <k n="expeditionCrewMember3">
+    <m c="kr" v="탐험 대원3"/>
+    <m c="cn" v="队员3"/>
+    <m c="tw" v="expeditionCrewMember3"/>
+  </k>
+  <k n="expeditionFriend">
+    <m c="kr" v="탐험대 친구"/>
+    <m c="cn" v="探险队好友"/>
+    <m c="tw" v="expeditionFriend"/>
+  </k>
+  <k n="time">
+    <m c="kr" v="시간"/>
+    <m c="cn" v="小时"/>
+    <m c="tw" v="time"/>
+  </k>
+  <k n="timeBonus">
+    <m c="kr" v="시간 [color:255 22 225 255]-%.1f%%[/color]"/>
+    <m c="cn" v="时间[color:255 22 225 255]-%.1f%%[/color]"/>
+    <m c="tw" v="time [color:255 22 225 255]-%.1f%%[/color]"/>
+  </k>
+  <k n="timeBonusNoreward">
+    <m c="kr" v="시간 [color:255 202 210 220]%.1f%%[/color]"/>
+    <m c="cn" v="时间[color:255 202 210 220]%.1f%%[/color]"/>
+    <m c="tw" v="time [color:255 202 210 220]%.1f%%[/color]"/>
+  </k>
+  <k n="rewardBonus">
+    <m c="kr" v="보상 [color:255 163 255 42]+%.1f%%[/color]"/>
+    <m c="cn" v="奖励[color:255 163 255 42]+%.1f%%[/color]"/>
+    <m c="tw" v="reward [color:255 163 255 42]+%.1f%%[/color]"/>
+  </k>
+  <k n="rewardBonusNoreward">
+    <m c="kr" v="보상 [color:255 202 210 220]%.1f%%[/color]"/>
+    <m c="cn" v="奖励[color:255 202 210 220]%.1f%%[/color]"/>
+    <m c="tw" v="reward [color:255 202 210 220]%.1f%%[/color]"/>
+  </k>
+  <k n="reward">
+    <m c="kr" v="보상"/>
+    <m c="cn" v="奖励"/>
+    <m c="tw" v="reward"/>
+  </k>
+  <k n="expeditionPlain">
+    <m c="kr" v="탐험대"/>
+    <m c="cn" v="探险队"/>
+    <m c="tw" v="expeditionPlain"/>
+  </k>
+  <k n="boomHill">
+    <m c="kr" v="붐힐"/>
+    <m c="cn" v="都市"/>
+    <m c="tw" v="boomHill"/>
+  </k>
+  <k n="world">
+    <m c="kr" v="세계"/>
+    <m c="cn" v="世界"/>
+    <m c="tw" v="world"/>
+  </k>
+  <k n="earth">
+    <m c="kr" v="대지"/>
+    <m c="cn" v="大地"/>
+    <m c="tw" v="earth"/>
+  </k>
+  <k n="forest">
+    <m c="kr" v="산림"/>
+    <m c="cn" v="森林"/>
+    <m c="tw" v="forest"/>
+  </k>
+  <k n="ocean">
+    <m c="kr" v="바다"/>
+    <m c="cn" v="海洋"/>
+    <m c="tw" v="ocean"/>
+  </k>
+  <k n="legend">
+    <m c="kr" v="전설"/>
+    <m c="cn" v="传说"/>
+    <m c="tw" v="legend"/>
+  </k>
+  <k n="mystery">
+    <m c="kr" v="신비"/>
+    <m c="cn" v="神秘"/>
+    <m c="tw" v="mystery"/>
+  </k>
+  <k n="special">
+    <m c="kr" v="특수"/>
+    <m c="cn" v="特殊"/>
+    <m c="tw" v="special"/>
+  </k>
+  <k n="inProgress">
+    <m c="kr" v="진행중"/>
+    <m c="cn" v="进行中"/>
+    <m c="tw" v="inProgress"/>
+  </k>
+  <k n="beforeStart">
+    <m c="kr" v="진행전"/>
+    <m c="cn" v="未开始"/>
+    <m c="tw" v="beforeStart"/>
+  </k>
+  <k n="cannotProgress">
+    <m c="kr" v="진행불가"/>
+    <m c="cn" v="无法进行"/>
+    <m c="tw" v="cannotProgress"/>
+  </k>
+  <k n="replaceMission">
+    <m c="kr" v="미션교체"/>
+    <m c="cn" v="更换任务"/>
+    <m c="tw" v="replaceMission"/>
+  </k>
+  <k n="addMission">
+    <m c="kr" v="미션추가"/>
+    <m c="cn" v="添加任务"/>
+    <m c="tw" v="addMission"/>
+  </k>
+  <k n="addMissionDesc_1">
+    <m c="kr" v="미션 추가는 최대 %d회까지 가능합니다."/>
+    <m c="cn" v="最多可添加%d次任务。"/>
+    <m c="tw" v="addMissionDesc_1"/>
+  </k>
+  <k n="addMissionDesc_2">
+    <m c="kr" v="진행전 미션을 시작하면 미션을 새로 추가 할 수 있습니다."/>
+    <m c="cn" v="开启未开始状态的任务后，即可添加新任务。"/>
+    <m c="tw" v="addMissionDesc_2"/>
+  </k>
+  <k n="addMissionDesc_3">
+    <m c="kr" v="미션 추가 최대 10회를 모두 소진하였습니다."/>
+    <m c="cn" v="任务添加次数已全部用完。"/>
+    <m c="tw" v="addMissionDesc_3"/>
+  </k>
+  <k n="add">
+    <m c="kr" v="추가"/>
+    <m c="cn" v="添加"/>
+    <m c="tw" v="add"/>
+  </k>
+  <k n="autoFill">
+    <m c="kr" v="자동 채우기"/>
+    <m c="cn" v="自动填充"/>
+    <m c="tw" v="autoFill"/>
+  </k>
+  <k n="autoFillOff">
+    <m c="kr" v="전체 해제"/>
+    <m c="cn" v="全部解除"/>
+    <m c="tw" v="autoFillOff"/>
+  </k>
+  <k n="startExpedition">
+    <m c="kr" v="탐험대 출발"/>
+    <m c="cn" v="探险队出发"/>
+    <m c="tw" v="startExpedition"/>
+  </k>
+  <k n="racingExpeditionInProgress">
+    <m c="kr" v="레이싱 탐험 진행 중…"/>
+    <m c="cn" v="赛车探险进行中……"/>
+    <m c="tw" v="racingExpeditionInProgress"/>
+  </k>
+  <k n="remain">
+    <m c="kr" v="남음"/>
+    <m c="cn" v="剩余"/>
+    <m c="tw" v="remain"/>
+  </k>
+  <k n="shortenTime">
+    <m c="kr" v="시간 단축"/>
+    <m c="cn" v="缩短时间"/>
+    <m c="tw" v="shortenTime"/>
+  </k>
+  <k n="complete">
+    <m c="kr" v="진행완료"/>
+    <m c="cn" v="探险完成"/>
+    <m c="tw" v="complete"/>
+  </k>
+  <k n="completeNow">
+    <m c="kr" v="바로 완료"/>
+    <m c="cn" v="立即完成"/>
+    <m c="tw" v="completeNow"/>
+  </k>
+  <k n="racingExpeditionReward">
+    <m c="kr" v="레이싱 탐험 보상"/>
+    <m c="cn" v="赛车探险奖励"/>
+    <m c="tw" v="racingExpeditionReward"/>
+  </k>
+  <k n="racingExpeditionSuccess">
+    <m c="kr" v="레이싱 탐험을 성공적으로 완수했습니다!"/>
+    <m c="cn" v="成功完成赛车探险！"/>
+    <m c="tw" v="racingExpeditionSuccess"/>
+  </k>
+  <k n="confirmButton">
+    <m c="kr" v="확인"/>
+    <m c="cn" v="确认"/>
+    <m c="tw" v="confirmButton"/>
+  </k>
+  <k n="expeditionComplete">
+    <m c="kr" v="레이싱 탐험 완료"/>
+    <m c="cn" v="赛车探险完成"/>
+    <m c="tw" v="expeditionComplete"/>
+  </k>
+  <k n="expeditionCompleteDesc">
+    <m c="kr" v="주간 탐험대 추가 미션까지 모두 완료했습니다.|새로운 주간 미션이 시작될 때까지 기다려 주세요."/>
+    <m c="cn" v="已完成包含追加任务在内的所有每周探险队任务。|请等待新一轮每周任务开启。"/>
+    <m c="tw" v="expeditionComplete"/>
+  </k>
+  <k n="expeditionNoMission">
+    <m c="kr" v="탐험대 미션 없음"/>
+    <m c="cn" v="暂无探险队任务"/>
+    <m c="tw" v="expeditionNoMission"/>
+  </k>
+  <k n="expeditionNoMissionDesc">
+    <m c="kr" v="선택 또는 진행 가능한 탐험대 미션이 없습니다."/>
+    <m c="cn" v="当前无可选或可进行的探险队任务。"/>
+    <m c="tw" v="expeditionNoMissionDesc"/>
+  </k>
+  <k n="selectOrganizeCrew">
+    <m c="kr" v="탐험대 편성 선택"/>
+    <m c="cn" v="选择探险队编队"/>
+    <m c="tw" v="selectOrganizeCrew"/>
+  </k>
+  <k n="character">
+    <m c="kr" v="캐릭터"/>
+    <m c="cn" v="角色"/>
+    <m c="tw" v="character"/>
+  </k>
+  <k n="kartBody">
+    <m c="kr" v="카트바디"/>
+    <m c="cn" v="卡丁车"/>
+    <m c="tw" v="kartBody"/>
+  </k>
+  <k n="friend">
+    <m c="kr" v="친구"/>
+    <m c="cn" v="好友"/>
+    <m c="tw" v="friend"/>
+  </k>
+  <k n="useRacingToken">
+    <m c="kr" v="레이싱 토큰 사용하기"/>
+    <m c="cn" v="使用探险币"/>
+    <m c="tw" v="useRacingToken"/>
+  </k>
+  <k n="racingTokenUseFail">
+    <m c="kr" v="레이싱 토큰 사용 실패"/>
+    <m c="cn" v="探险币使用失败"/>
+    <m c="tw" v="racingTokenUseFail"/>
+  </k>
+  <k n="racingTokenUseFailDesc">
+    <m c="kr" v="사용 시간이 달라져 레이싱 토큰 사용에 실패했습니다.|다시 시도해 주세요."/>
+    <m c="cn" v="由于使用时间发生变化，探险币使用失败。|请重新尝试。"/>
+    <m c="tw" v="racingTokenUseFailDesc"/>
+  </k>
+  <k n="racingTokenDescReduce30Min">
+    <m c="kr" v="레이싱 토큰을 사용하여 레이싱 탐험대 미션 시간을| [color:255 36 129 255]30분씩[/color] 단축 할 수 있습니다."/>
+    <m c="cn" v="每使用1个探险币，|可将探险队任务时间缩短[color:255 36 129 255]30分钟。[/color]"/>
+    <m c="tw" v="racingTokenDescReduce30Min"/>
+  </k>
+  <k n="racingTokenDescReplaceMission">
+    <m c="kr" v="[color:255 36 129 255]레이싱 토큰 2개[/color]를 사용하여 현재 선택된 레이싱 탐험대 미션을 새로운 다른 미션으로 교체합니다."/>
+    <m c="cn" v="[color:255 36 129 255]使用2个[/color]探险币，可将当前探险队任务更换为新任务。"/>
+    <m c="tw" v="racingTokenDescReplaceMission"/>
+  </k>
+  <k n="racingTokenDescAddWeeklyMission">
+    <m c="kr" v="[color:255 36 129 255]레이싱 토큰 3개[/color]를 사용하여 레이싱 탐험대 미션을 추가로 진행 할 수 있습니다.|주간미션 초기화 전까지 최대 10회까지 구매 가능합니다."/>
+    <m c="cn" v="[color:255 36 129 255]使用3个[/color]探险币，可额外进行探险队任务。|每周任务重置前最多可额外进行10次。"/>
+    <m c="tw" v="racingTokenDescAddWeeklyMission"/>
+  </k>
+  <k n="useCount">
+    <m c="kr" v="사용 수량"/>
+    <m c="cn" v="使用数量"/>
+    <m c="tw" v="useCount"/>
+  </k>
+  <k n="ownedCount">
+    <m c="kr" v="보유"/>
+    <m c="cn" v="持有数量"/>
+    <m c="tw" v="ownedCount"/>
+  </k>
+  <k n="remainingAfterUse">
+    <m c="kr" v="사용 후"/>
+    <m c="cn" v="剩余数量"/>
+    <m c="tw" v="remainingAfterUse"/>
+  </k>
+  <k n="useButton">
+    <m c="kr" v="사용하기"/>
+    <m c="cn" v="使用"/>
+    <m c="tw" v="useButton"/>
+  </k>
+  <k n="cancelButton">
+    <m c="kr" v="취소"/>
+    <m c="cn" v="取消"/>
+    <m c="tw" v="cancelButton"/>
+  </k>
+  <k n="insufficientRacingToken">
+    <m c="kr" v="레이싱 토큰이 부족합니다"/>
+    <m c="cn" v="探险币不足"/>
+    <m c="tw" v="insufficientRacingToken"/>
+  </k>
+  <k n="insufficientRacingTokenDesc">
+    <m c="kr" v="보유하신 레이싱 토큰이 부족합니다. 계속 이용을 원하시면 구매하기를 선택해 주세요."/>
+    <m c="cn" v="持有的探险币不足。如需继续使用，请选择兑换。"/>
+    <m c="tw" v="insufficientRacingTokenDesc"/>
+  </k>
+  <k n="purchaseButton">
+    <m c="kr" v="구매하기"/>
+    <m c="cn" v="兑换"/>
+    <m c="tw" v="purchaseButton"/>
+  </k>
+  <k n="cancelPurchase">
+    <m c="kr" v="취소"/>
+    <m c="cn" v="取消"/>
+    <m c="tw" v="cancelPurchase"/>
+  </k>
+  <k n="cannotGetReward">
+    <m c="kr" v="보상 획득 불가"/>
+    <m c="cn" v="无法获得奖励"/>
+    <m c="tw" v="cannotGetReward"/>
+  </k>
+  <k n="cannotGetRewardDesc">
+    <m c="kr" v="보유량 최대값에 도달하여 해당 보상을 획득할 수 없습니다."/>
+    <m c="cn" v="已达持有上限，无法获得该奖励。"/>
+    <m c="tw" v="cannotGetRewardDesc"/>
+  </k>
+  <k n="confirmReward">
+    <m c="kr" v="확인"/>
+    <m c="cn" v="确认"/>
+    <m c="tw" v="confirmReward"/>
+  </k>
+  <k n="canChargeRacingTokenNow">
+    <m c="kr" v="레이싱 토큰을 즉시 충전할 수 있습니다."/>
+    <m c="cn" v="可立即兑换探险币。"/>
+    <m c="tw" v="canChargeRacingTokenNow"/>
+  </k>
+  <k n="racingTokenUseReplaceMission">
+    <m c="kr" v="레이싱 토큰 사용 시 새로운 레이싱 미션으로 변경됩니다."/>
+    <m c="cn" v="使用探险币，更换为新的探险队任务。"/>
+    <m c="tw" v="racingTokenUseReplaceMission"/>
+  </k>
+  <k n="racingTokenUseAddWeeklyMission">
+    <m c="kr" v="레이싱 토큰 사용 시 주간 미션을 추가로 수행할 수 있습니다."/>
+    <m c="cn" v="使用探险币，可额外进行每周任务。"/>
+    <m c="tw" v="racingTokenUseAddWeeklyMission"/>
+  </k>
+  <k n="racingTokenUseReduce30Min">
+    <m c="kr" v="레이싱 토큰 사용 시 남은 시간이 즉시 30분 감소됩니다."/>
+    <m c="cn" v="使用探险币，剩余时间将立即减少30分钟。"/>
+    <m c="tw" v="racingTokenUseReduce30Min"/>
+  </k>
+  <k n="racingTokenUseClearRemainTime">
+    <m c="kr" v="레이싱 토큰 사용 시 남은 시간이 모두 소멸됩니다."/>
+    <m c="cn" v="使用探险币，剩余时间将全部清零。"/>
+    <m c="tw" v="racingTokenUseClearRemainTime"/>
+  </k>
+  <k n="expeditionStartCondition">
+    <m c="kr" v="최소 하나 이상의 특성이 일치하는 캐릭터와 카트를 설정해야 탐험대 출발이 가능합니다."/>
+    <m c="cn" v="需设置至少一项属性匹配的角色与卡丁车，才能出发探险。"/>
+    <m c="tw" v="expeditionStartCondition"/>
+  </k>
+  <k n="racingToken">
+    <m c="kr" v="레이싱 토큰"/>
+    <m c="cn" v="探险币"/>
+    <m c="tw" v="racingToken"/>
+  </k>
+  <k n="missionTotalCount">
+    <m c="kr" v="[color:255 22 225 255]%d[/color]/%d"/>
+    <m c="cn" v="[color:255 22 225 255]%d[/color]/%d"/>
+    <m c="tw" v="[color:255 22 225 255]%d[/color]/%d"/>
+  </k>
+  <k n="unknownError">
+    <m c="kr" v="알 수 없는 오류가 발생하였습니다."/>
+    <m c="cn" v="发生未知的错误。"/>
+    <m c="tw" v="unknownError"/>
+  </k>
+  <k n="day">
+    <m c="kr" v="일"/>
+    <m c="cn" v="天"/>
+    <m c="tw" v="日"/>
+  </k>
+  <k n="minute">
+    <m c="kr" v="분"/>
+    <m c="cn" v="分"/>
+    <m c="tw" v="分"/>
+  </k>
+  <k n="hour">
+    <m c="kr" v="시간"/>
+    <m c="cn" v="小时"/>
+    <m c="tw" v="小時"/>
+  </k>
+  <k n="lessThan1Minute">
+    <m c="kr" v="1분 미만"/>
+    <m c="cn" v="不到1分钟"/>
+    <m c="tw" v="不到1分鐘"/>
+  </k>
+  <k n="tryAgainLater">
+    <m c="kr" v="잠시 후 다시 시도해 주세요."/>
+    <m c="cn" v="请稍后再试。"/>
+    <m c="tw" v="請稍候再試。"/>
+  </k>
+  <k n="cannotGetAllRewards">
+    <m c="kr" v="일부 보상 보유량 최대값에 도달하여 보상을 모두 획득할 수 없습니다. 확인 시 해당 보상을 포기하고 획득합니다."/>
+    <m c="cn" v="部分奖励已达持有上限，无法全部领取。点击确认时将自动放弃对应奖励，只领取其余奖励。"/>
+    <m c="tw" v="cannotGetAllRewards"/>
+  </k>
+  <k n="crewFriendSelectInfo">
+    <m c="kr" v="탐험 대원1~3을 선택해 보유한 캐릭터와 카트바디 선택 가능|탐험대 친구를 선택해 친구 또는 커플 선택 가능"/>
+    <m c="cn" v="队员1~3：可选择已持有的角色与车辆|探险队好友：可选择好友或情侣"/>
+    <m c="tw" v="crewFriendSelectInfo"/>
+  </k>
+  <k n="tutorialExpeditionSelectMission_Desc">
+    <m c="kr" v="여기를 클릭하여 먼저 [color:255 36 129 255]탐험대 미션[/color]을 선택하세요! |그리고 우측 페이지에서 해당 미션을 맡길 [color:255 36 129 255]탐험대원[/color]을 선택하여 탐험대를 출발시키세요!"/>
+    <m c="cn" v="请先点击此处选择[color:255 36 129 255]探险队任务[/color]！|然后在右侧页面指定[color:255 36 129 255]探险队员[/color]并出发！"/>
+    <m c="tw" v="tutorialExpeditionSelectMission_Desc"/>
+  </k>
+</StringBag>

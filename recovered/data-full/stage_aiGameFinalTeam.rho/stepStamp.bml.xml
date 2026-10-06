@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="0 0 800 600" color="128 0 0 0" alphaBlend="true">
+  <Play1SPanel name="resultStep" scene="stagerank" windowSize="512 512" adjust="144 44" defaultCameraPos="0.0 -512.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="2.0" stop="true" clearZBefore="true"/>
+</Panel>

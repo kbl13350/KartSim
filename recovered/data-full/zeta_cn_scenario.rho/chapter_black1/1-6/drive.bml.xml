@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <TimeAttack isFixedKart="true" fixedKartId="103" isFixedChar="true" fixedCharId="2" isMinimapHide="true">
+    <LevelContent level="0" track="pirate_I04_sn04" laps="1" timeLimit="18000"/>
+  </TimeAttack>
+</Root>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="160 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 524 465" caption="#sb(buyItem)" textRender="bold20" captionPos="0 -3" caption_align="center" align="center" setCloseButton="cancelButton">
+    <Panel leftTopWH="10 13 220 150" texture="img_slot2" alphaBlend="true">
+      <ItemWindow name="itemPanel" windowRect="0 0 220 150" align="center"/>
+    </Panel>
+    <Window name="cashPanel" windowSize="468 62" adjust="0 177" align="hcenter" frame="DefaultEdit" visible="false">
+      <Label windowSize="100 20" adjust="7 -17" align="vcenter" text="#sb(myCash)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="myCash" windowSize="70 20" adjust="345 -17" align="vcenter" text="0 " textRender="bold16" textColor="255 42 55 80" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="422 -17" align="vcenter" text="#sb(cash)" textRender="bold16" textColor="255 42 55 80" textAlign="vcenter"/>
+      <Window windowSize="444 1" adjust="0 0" align="center" frame="HSection"/>
+      <Label windowSize="100 20" adjust="7 13" align="vcenter" text="#sb(cashAfterBuying)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="afterCash" windowSize="70 20" adjust="345 13" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="422 13" align="vcenter" text="#sb(cash)" textRender="bold16" textColor="255 42 55 80" textAlign="vcenter"/>
+    </Window>
+    <Window name="lucciPanel" windowSize="468 62" adjust="0 177" align="hcenter" frame="DefaultEdit" visible="false">
+      <Label windowSize="100 20" adjust="7 -17" align="vcenter" text="#sb(myLucci)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="myLucci" windowSize="70 20" adjust="345 -17" align="vcenter" text="0 " textRender="bold16" textColor="255 42 55 80" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="422 -17" align="vcenter" text="#sb(lucci)" textRender="bold16" textColor="255 42 55 80" textAlign="vcenter"/>
+      <Window windowSize="444 1" adjust="0 0" align="center" frame="HSection"/>
+      <Label windowSize="100 20" adjust="7 13" align="vcenter" text="#sb(lucciAfterBuying)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="afterLucci" windowSize="70 20" adjust="345 13" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="422 13" align="vcenter" text="#sb(lucci)" textRender="bold16" textColor="255 42 55 80" textAlign="vcenter"/>
+    </Window>
+    <Window name="lucconPanel" windowSize="468 62" adjust="0 177" align="hcenter" frame="DefaultEdit" visible="false">
+      <Label windowSize="100 20" adjust="7 -17" align="vcenter" text="#sb(myLuccon)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="myLuccon" windowSize="70 20" adjust="345 -17" align="vcenter" text="0 " textRender="bold16" textColor="255 42 55 80" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="422 -17" align="vcenter" text="#sb(luccon)" textRender="bold16" textColor="255 42 55 80" textAlign="vcenter"/>
+      <Window windowSize="444 1" adjust="0 0" align="center" frame="HSection"/>
+      <Label windowSize="100 20" adjust="7 13" align="vcenter" text="#sb(lucconAfterBuying)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="afterLuccon" windowSize="70 20" adjust="345 13" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="422 13" align="vcenter" text="#sb(luccon)" textRender="bold16" textColor="255 42 55 80" textAlign="vcenter"/>
+    </Window>
+    <Window name="koinPanel" windowSize="468 62" adjust="0 177" align="hcenter" frame="DefaultEdit" visible="false">
+      <Label windowSize="100 20" adjust="7 -17" align="vcenter" text="#sb(myKoin)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="myKoin" windowSize="70 20" adjust="345 -17" align="vcenter" text="0 " textRender="bold16" textColor="255 42 55 80" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="422 -17" align="vcenter" text="#sb(koin)" textRender="bold16" textColor="255 42 55 80" textAlign="vcenter"/>
+      <Window windowSize="444 1" adjust="0 0" align="center" frame="HSection"/>
+      <Label windowSize="100 20" adjust="7 13" align="vcenter" text="#sb(koinAfterBuying)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="afterKoin" windowSize="70 20" adjust="345 13" align="vcenter" text="0 " textRender="bold16" textAlign="vcenter;right"/>
+      <Label windowSize="30 20" adjust="422 13" align="vcenter" text="#sb(koin)" textRender="bold16" textColor="255 42 55 80" textAlign="vcenter"/>
+    </Window>
+    <Window name="seasonPassPanel" adjust="0 303" windowSize="468 140" align="hcenter" enable="false" frame="InputBoxBg2" alphaBlend="true" visible="false">
+      <Window name="passPoint" adjust="2 10" windowSize="443 78" enable="false" alphaBlend="true" visible="true">
+        <Label name="userPoint" adjust="33 0" windowSize="40 6" text="0" align="right" textAlign="right" textRender="bold16" textColor="255 113 117 126"/>
+        <Label name="levelPoint" adjust="-6 0" windowSize="40 6" text="/ 0" align="right" textAlign="right" textRender="bold16" textColor="255 113 117 126"/>
+        <Window name="helpProgressBar" windowRect="0 0 438 6" enable="false" alphaBlend="true" visible="false"/>
+        <Panel adjust="10 29" windowSize="440 8" enable="false" texture="kartPass_LevelGuageCover" alphaBlend="true"/>
+        <Panel name="progressBar" adjust="11 30" windowSize="438 6" uvRect="0 0 438 6" enable="true" texture="kartPass_LevelGuage_1" alphaBlend="true"/>
+      </Window>
+      <Window name="okCancelHSection" windowSize="440 1" adjust="0 68" align="hcenter" frame="HSection"/>
+      <Window name="passPointAfterBuying" adjust="2 80" windowSize="443 62" enable="false" alphaBlend="true" visible="true">
+        <Label name="userPoint" adjust="33 0" windowSize="40 6" text="0" align="right" textAlign="right" textRender="bold16" textColor="skyBlue"/>
+        <Label name="levelPoint" adjust="-6 0" windowSize="40 6" text="/ 0" align="right" textAlign="right" textRender="bold16" textColor="255 113 117 126"/>
+        <Window name="helpProgressBar" windowRect="0 0 438 6" enable="false" alphaBlend="true" visible="false"/>
+        <Panel adjust="10 29" windowSize="440 8" enable="false" texture="kartPass_LevelGuageCover" alphaBlend="true"/>
+        <Panel name="progressBar" adjust="11 30" windowSize="438 6" uvRect="0 0 438 6" enable="true" texture="kartPass_LevelGuage_1" alphaBlend="true"/>
+      </Window>
+      <Label name="userStep" adjust="11 10" windowSize="468 6" textRender="bold16" textColor="255 113 117 126"/>
+      <Label name="userStepAfterBuying" adjust="11 80" windowSize="468 6" textRender="bold16" textColor="255 113 117 126"/>
+    </Window>
+    <Label leftTopWH="9 253 20 100" text="*" textRender="bold14" textColor="255 72 106 163" enable="false"/>
+    <Label name="lblAskBuy" leftTopWH="21 251 470 45" text="#sb(askBuy)" textRender="bold14" textColor="255 72 106 163" multiLine="true" lineGap="0" enable="false"/>
+    <Window name="returnMissionItemGuide" windowSize="420 20" align="left;center" adjust="8 118" visible="false">
+      <Label name="returnMissionItemGuide_star" windowSize="10 20" align="left;center" adjust="0 0" text="*" textAlign="center" textColor="255 72 106 163" textRender="bold14" visible="true"/>
+      <Label name="returnMissionItemGuide_text" windowSize="468 20" align="left;center" adjust="12 -3" text="#sb(returnMissionItemGuide_text)" textAlign="left" textColor="255 72 106 163" textRender="bold14" visible="true"/>
+    </Window>
+    <Container name="okCancelGrp" leftTopWH="0 0 512 74" align="hcenter|bottom">
+      <Window name="okCancelHSection" windowSize="468 1" adjust="0 0" align="hcenter" frame="HSection"/>
+      <TextButton name="okButton" text="#sb(ok)" windowSize="132 42" adjust="-75 0" align="center" textColor="white" textRender="bold16" overTextColor="white" overTextRender="bold16" clickedTextColor="255 24 55 104" clickedTextRender="bold16" disabledTextColor="255 220 220 220" disabledTextRender="bold16"/>
+      <TextButton name="cancelButton" text="#sb(cancel)" windowSize="132 42" adjust="75 0" align="center" textColor="255 64 75 95" textRender="bold16" overTextColor="255 106 120 147" overTextRender="bold16" clickedTextColor="255 34 41 52" clickedTextRender="bold16" disabledTextColor="255 131 131 131" disabledTextRender="bold16"/>
+    </Container>
+    <Container name="stock" leftTopWH="250 26 320 104">
+      <Panel leftTopWH="0 7 4 4" frame="Bullet" color="255 42 55 80"/>
+      <Label leftTopWH="12 -5 100 25" text="#sb(itemName)" textRender="bold16" textColor="255 42 55 80"/>
+      <Window windowRect="0 24 228 50" frame="DefaultEdit"/>
+      <Label name="itemName" leftTopWH="10 25 100 20" text="" textRender="bold16" textColor="255 42 55 80"/>
+      <Panel leftTopWH="0 81 4 4" frame="Bullet" color="255 42 55 80"/>
+      <Label leftTopWH="12 69 100 25" text="#sb(itemPrice)" textRender="bold16" textColor="255 42 55 80"/>
+      <ComboBox name="cmbStock" windowRect="0 98 228 124" frame="DefaultEdit" enable="true" listFrame="DefaultEdit" comboListLength="10" autoComboListSizing="true"/>
+    </Container>
+  </CaptionWindow>
+  <Container windowRect="fullwidth fullheight 2048 2048" visible="false">
+    <Container name="paymentCash" visible="false">
+      <Container name="methodCash">
+        <StateButton name="useCash" windowSize="89 20" adjust="40 162" canDisable="true" iconSet="bt_cash" iconAlign="hcenter" iconPos="0 0">
+          <Label text="#sb(cash)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+          <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+        </StateButton>
+      </Container>
+      <Container name="methodLuccon">
+        <StateButton name="useLuccon" windowSize="89 20" adjust="170 162" canDisable="true" iconSet="bt_luccon" iconAlign="hcenter" iconPos="0 0">
+          <Label text="#sb(luccon)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+          <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+        </StateButton>
+      </Container>
+    </Container>
+    <Container name="paymentLucci" visible="false">
+      <Container name="methodLucci">
+        <StateButton name="useLucci" windowSize="89 20" adjust="40 162" canDisable="true" iconSet="bt_lucci" iconAlign="hcenter" iconPos="0 0">
+          <Label text="#sb(lucci)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+          <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+        </StateButton>
+      </Container>
+      <Container name="methodLuccon">
+        <StateButton name="useLuccon" windowSize="89 20" adjust="170 162" canDisable="true" iconSet="bt_luccon" iconAlign="hcenter" iconPos="0 0">
+          <Label text="#sb(luccon)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+          <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+        </StateButton>
+      </Container>
+    </Container>
+    <Container name="paymentLuccon" visible="false">
+      <Container name="methodLuccon">
+        <StateButton name="useLuccon" windowSize="89 20" adjust="40 162" canDisable="true" iconSet="bt_luccon" iconAlign="hcenter" iconPos="0 0">
+          <Label text="#sb(luccon)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+          <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+        </StateButton>
+      </Container>
+    </Container>
+    <Container name="paymentKoin" visible="false">
+      <Container name="methodKoin">
+        <StateButton name="useKoin" windowSize="89 20" adjust="40 162" canDisable="true" iconSet="bt_luccon" iconAlign="hcenter" iconPos="0 0">
+          <Label text="#sb(koin)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+          <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+        </StateButton>
+      </Container>
+    </Container>
+    <TextButton name="cashButton" text="#sb(rechargeCash)" windowRect="12 334 123 356" disabledTextColor="gray" useDisableState="true"/>
+  </Container>
+</Panel>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="parent" leftTopWH="0 0 746 708" align="right;top" adjust="630 0" color="0 0 0 0" alphaBlend="true">
+  <Container name="container" leftTopWH="0 0 746 708" align="center" adjust="0 0">
+    <ImageBoard name="skillTuning_bg" leftTopWH="0 0 746 708" image="tuning_selectperformPopupBg_i" alphaBlend="true"/>
+    <ImageButton name="closeButton" leftTopWH="0 0 32 32" align="top,right" adjust="6 6" autoLoadImage="tuningPopup_x_" alphaBlend="true"/>
+    <ColorLabel name="skillTuningCaption" windowSize="170 30" adjust="0 15" align="hcenter" textAlign="center" text="#sb(skillTuningCaption)" textRender="bold20" textColor="white"/>
+    <Panel windowSize="34 34" adjust="14 90" texture="icon_ethisTuning_1" alphaBlend="true" enable="false"/>
+    <ImageButton name="buyStudyDataBtn" windowSize="22 22" adjust="223 96" autoLoadImage="btn_plus_0" alphaBlend="true" alphaTest="true" enable="true"/>
+    <Label name="haveStudyData" windowSize="200 22" adjust="15 96" text="100000" textAlign="right,hcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <Panel windowSize="34 34" adjust="255 90" texture="icon_ethisTuning_2" alphaBlend="true" enable="false"/>
+    <ImageButton name="buyDeepStudyDataBtn" windowSize="22 22" adjust="464 96" autoLoadImage="btn_plus_0" alphaBlend="true" alphaTest="true" enable="true"/>
+    <Label name="haveDeepStudyData" windowSize="200 22" adjust="256 96" text="100000" textAlign="right,hcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <Panel windowSize="34 34" adjust="497 90" texture="icon_ethisSpanner" alphaBlend="true" enable="false"/>
+    <ImageButton name="buyEthisSpannerBtn" windowSize="22 22" adjust="705 96" autoLoadImage="btn_plus_0" alphaBlend="true" alphaTest="true" enable="true"/>
+    <Label name="haveEthisSpannerData" windowSize="200 22" adjust="497 96" text="100000" textAlign="right,hcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <Tab name="skillTuning">
+      <TabMenu name="gameType" leftTopWH="15 53 718 34">
+        <ImageButton name="speedPage" leftTopWH="0 0 354 34" autoLoadNoDisable="tuning_selectperformPopup_tab_" alphaBlend="true" text="#sb(speed)" textRender="bold16" textColor="255 95 103 115" overTextColor="255 22 86 148" clickedTextColor="255 255 255 255"/>
+        <ImageButton name="itemPage" leftTopWH="364 0 354 34" autoLoadNoDisable="tuning_selectperformPopup_tab_" alphaBlend="true" text="#sb(item)" textRender="bold16" textColor="255 95 103 115" overTextColor="255 22 86 148" clickedTextColor="255 255 255 255"/>
+      </TabMenu>
+      <TabPage name="speedPage" leftTopWH="0 120 798 618">
+        <Container name="skillLine1" leftTopWH="0 4 798 151">
+          <Panel windowSize="76 76" adjust="100 53" texture="tuning_selectperform_mark1" alphaBlend="true"/>
+          <Container name="1" leftTopWH="290 20 0 0"/>
+          <Container name="2" leftTopWH="425 20 0 0"/>
+          <Container name="3" leftTopWH="560 20 0 0"/>
+        </Container>
+        <Container name="skillLine2" leftTopWH="0 155 798 151">
+          <Panel windowSize="76 76" adjust="100 53" texture="tuning_selectperform_mark2" alphaBlend="true"/>
+          <Container name="4" leftTopWH="290 20 0 0"/>
+          <Container name="5" leftTopWH="425 20 0 0"/>
+          <Container name="6" leftTopWH="560 20 0 0"/>
+          <ImageBoard name="skillLineLock" leftTopWH="3 -89 792 236" image="tuning_selectperformPopup_lock1" alphaBlend="true" enable="false"/>
+          <ImageButton name="unlockBtn" leftTopWH="79 70 150 50" autoLoadImage="tuning_selectperformLock_" alphaBlend="true" text="#sb(unlock)" textAlign="left,vcenter" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220">
+            <Panel windowSize="34 34" adjust="49 7" texture="icon_ethisTuning_1" alphaBlend="true" enable="false"/>
+            <Label name="needStudyData" windowSize="70 23" adjust="67 14" text="100000" textAlign="right,hcenter" textRender="bold14" textColor="white"/>
+          </ImageButton>
+          <Play1SPanel name="unlockTuning" scene="튜닝해금" leftTopWH="0 -15 800 180" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -7.5 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" clearZBefore="true" clearZAfter="true" loop="false" alphaBlend="true" visible="false" enable="false"/>
+        </Container>
+        <Container name="skillLine3" leftTopWH="0 307 798 151">
+          <Panel windowSize="76 76" adjust="100 53" texture="tuning_selectperform_mark3" alphaBlend="true"/>
+          <Container name="7" leftTopWH="290 20 0 0"/>
+          <Container name="8" leftTopWH="425 20 0 0"/>
+          <Container name="9" leftTopWH="560 20 0 0"/>
+          <ImageBoard name="skillLineLock" leftTopWH="3 -89 792 236" image="tuning_selectperformPopup_lock2" alphaBlend="true" enable="false"/>
+          <ImageButton name="unlockBtn" leftTopWH="79 70 150 50" autoLoadImage="tuning_selectperformLock_" alphaBlend="true" text="#sb(unlock)" textAlign="left,vcenter" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220">
+            <Panel windowSize="34 34" adjust="49 7" texture="icon_ethisTuning_2" alphaBlend="true" enable="false"/>
+            <Label name="needDeepStudyData" windowSize="70 23" adjust="67 14" text="100000" textAlign="right,hcenter" textRender="bold14" textColor="white"/>
+          </ImageButton>
+          <Play1SPanel name="unlockTuning" scene="튜닝해금" leftTopWH="0 -15 800 180" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -7.5 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" clearZBefore="true" clearZAfter="true" loop="false" alphaBlend="true" visible="false" enable="false"/>
+        </Container>
+      </TabPage>
+      <TabPage name="itemPage" leftTopWH="0 120 798 618">
+        <Container name="skillLine1" leftTopWH="0 4 798 151">
+          <Panel windowSize="76 76" adjust="100 53" texture="tuning_selectperform_mark1" alphaBlend="true"/>
+          <Container name="10" leftTopWH="207 20 0 0"/>
+          <Container name="11" leftTopWH="327 20 0 0"/>
+          <Container name="12" leftTopWH="447 20 0 0"/>
+          <Container name="13" leftTopWH="567 20 0 0"/>
+        </Container>
+        <Container name="skillLine2" leftTopWH="0 155 798 151">
+          <Panel windowSize="76 76" adjust="100 53" texture="tuning_selectperform_mark2" alphaBlend="true"/>
+          <Container name="14" leftTopWH="207 20 0 0"/>
+          <Container name="15" leftTopWH="327 20 0 0"/>
+          <Container name="16" leftTopWH="447 20 0 0"/>
+          <Container name="17" leftTopWH="567 20 0 0"/>
+          <ImageBoard name="skillLineLock" leftTopWH="3 -89 792 236" image="tuning_selectperformPopup_lock1" alphaBlend="true" enable="false"/>
+          <ImageButton name="unlockBtn" leftTopWH="79 70 150 50" autoLoadImage="tuning_selectperformLock_" alphaBlend="true" text="#sb(unlock)" textAlign="left,vcenter" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220">
+            <Panel windowSize="34 34" adjust="49 7" texture="icon_ethisTuning_1" alphaBlend="true" enable="false"/>
+            <Label name="needStudyData" windowSize="70 23" adjust="67 14" text="100000" textAlign="right,hcenter" textRender="bold14" textColor="white"/>
+          </ImageButton>
+          <Play1SPanel name="unlockTuning" scene="튜닝해금" leftTopWH="0 -15 800 180" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -7.5 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" clearZBefore="true" clearZAfter="true" loop="false" alphaBlend="true" visible="false" enable="false"/>
+        </Container>
+        <Container name="skillLine3" leftTopWH="0 307 798 151">
+          <Panel windowSize="76 76" adjust="100 53" texture="tuning_selectperform_mark3" alphaBlend="true"/>
+          <Container name="18" leftTopWH="207 20 0 0"/>
+          <Container name="19" leftTopWH="327 20 0 0"/>
+          <Container name="20" leftTopWH="447 20 0 0"/>
+          <Container name="21" leftTopWH="567 20 0 0"/>
+          <ImageBoard name="skillLineLock" leftTopWH="3 -89 792 236" image="tuning_selectperformPopup_lock2" alphaBlend="true" enable="false"/>
+          <ImageButton name="unlockBtn" leftTopWH="79 70 150 50" autoLoadImage="tuning_selectperformLock_" alphaBlend="true" text="#sb(unlock)" textAlign="left,vcenter" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220">
+            <Panel windowSize="34 34" adjust="49 7" texture="icon_ethisTuning_2" alphaBlend="true" enable="false"/>
+            <Label name="needDeepStudyData" windowSize="70 23" adjust="67 14" text="100000" textAlign="right,hcenter" textRender="bold14" textColor="white"/>
+          </ImageButton>
+          <Play1SPanel name="unlockTuning" scene="튜닝해금" leftTopWH="0 -15 800 180" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -7.5 0" defaultSpotPos="0.0 0.0 0.0" zoom="0.5" clearZBefore="true" clearZAfter="true" loop="false" alphaBlend="true" visible="false" enable="false"/>
+        </Container>
+      </TabPage>
+    </Tab>
+    <Panel leftTopWH="226 597 4 4" texture="tuning_dot1" alphaBlend="true"/>
+    <Panel leftTopWH="226 617 4 4" texture="tuning_dot1" alphaBlend="true"/>
+    <ColorLabel windowSize="250 50" adjust="-35 587" align="hcenter" textAlign="left,hcenter" text="#sb(helpDesc)" textRender="bold14" textColor="255 179 195 228"/>
+    <ImageButton name="tuningChangeBtn" leftTopWH="225 655 146 42" autoLoadImage="tuningpopupBtn_spanner_" alphaBlend="true" text="#sb(change)" textAlign="left,vcenter" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220">
+      <Label name="needEthisSpanner" windowSize="70 23" adjust="64 10" text="100000" textAlign="right,hcenter" textRender="bold14" textColor="white"/>
+    </ImageButton>
+    <TextButton name="okButton" leftTopWH="225 655 146 42" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+    <TextButton name="cancelButton" text="#sb(cancel)" windowSize="146 42" adjust="380 655" textColor="255 64 75 95" textRender="bold16" overTextColor="255 106 120 147" overTextRender="bold16" clickedTextColor="255 34 41 52" clickedTextRender="bold16" disabledTextColor="255 131 131 131" disabledTextRender="bold16"/>
+  </Container>
+</Panel>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu8"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="关羽" string="你来了？"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="日影" string="谢谢师傅。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="关羽" string="说的什么话？|我又没教过你。"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="日影" string="多亏了师傅|我才跟吕布、张飞师傅学了很多。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="日影" string="还有明白了朋友、战友的宝贵和|快乐。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="关羽" string="日影小姐已经是强大的人了…"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="关羽" string="不知道是不是还想|变得更强。"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="关羽" string="强大不是说武功强大，|而是有宝贵东西的人才强大。"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="日影" string="宝贵的…"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="关羽" string="为了宝贵的可以牺牲的话，|还需要什么呢？"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="Jang_bi" pos="11 0" emotion="stop1"/>
+  <Msg name="张飞" string="二哥，不要说这种听不懂的话了，来喝一杯吧！"/>
+  <Enter/>
+  <Char id="Jang_bi" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="关羽" string="这像个傻瓜一样的弟弟也是为了刘备大哥|和我才这样牺牲的，不是吗。"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Gyan_woo" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="日影" string="宝贵的…"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Char id="light" pos="4 0" emotion="stop1"/>
+  <Char id="weapon1" pos="4 0" emotion="normal"/>
+  <Msg name="关羽" string="哈哈哈，来，接着。"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="light" remove="true"/>
+  <Char id="weapon1" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="日影" string="这……"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="关羽" string="飞龙刀是我来到这里的时候|唯一带来的东西。"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="light" pos="10 0" emotion="stop1"/>
+  <Char id="weapon1" pos="10 0" emotion="normal"/>
+  <Msg name="日影" string="这么贵重的东西怎么能给我…"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="light" remove="true"/>
+  <Char id="weapon1" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="关羽" string="反正是已经丢过一次的东西了，|有没有也无所谓。"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="哇！可真羡慕日影。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Jang_bi" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="张飞" string="要是给我就好了~|快去喝一杯吧！"/>
+  <Enter/>
+  <Char id="Jang_bi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="关羽" string="拿着这个保护宝贵的人，|快乐地生活下去，这就够了。"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="日影" string="师傅，请受我一拜。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="关羽" string="去拜真正抚养你长大的师傅吧。|我只是个过客。"/>
+  <Enter/>
+  <Char id="Gyan_woo" remove="true"/>
+  <Char id="il_young" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Gyan_woo" pos="11 0" emotion="normal"/>
+  <Msg name="日影" string="真的谢谢。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Gyan_woo" remove="true"/>
+  <BackGround texture="Northeu5"/>
+  <Char id="dao" pos="7 0" emotion="normal"/>
+  <Msg name="皮蛋" string="日影现在要做什么呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="il_young" pos="12 0" emotion="normal"/>
+  <Msg name="日影" string="我打算回到月下门。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="月下门？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="il_young" pos="12 0" emotion="normal"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="日影" string="故乡，有宝贵缘分的地方，|我应该在的地方。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="il_young" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="你要走吗？"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="il_young" pos="7 0" emotion="stop4"/>
+  <Msg name="日影" string="之前谢谢了！|多亏了你们我才能获得很大的帮助！"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="好吧，我们一定会再见的！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="il_young" pos="8 0" emotion="stop4"/>
+  <Msg name="日影" string="我会联系你们的！|以后和朋友们一起来玩啊！"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <BackGround texture="Northeu7"/>
+  <Char id="il_young" pos="4 0" emotion="stop1"/>
+  <Msg name="日影" string="去月下门！"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="等等！|把我的宝物还给我！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Msg name="日影" string="晕…真是执着的大叔！|（我承认他的毅力！）"/>
+  <Enter/>
+</Scene>

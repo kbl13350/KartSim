@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <step1>
+    <Img texture="Nov-1-0"/>
+    <Emotion texture="dao1"/>
+    <Text value="欢迎您来到跑跑卡丁车赛车世界！|首先让我们来练习基本的操作吧。|使用键盘右下角的方向键跟着指示一起做吧。"/>
+    <Enter/>
+    <Img texture="Nov-1-1"/>
+    <Emotion texture="dao5"/>
+    <Text value="按向上键会前进！|向前GO!GO!"/>
+    <Enter/>
+    <Img texture="Nov-1-2"/>
+    <Emotion texture="dao6"/>
+    <Text value="按向下键会后退！|行驶时也可以减速。"/>
+    <Enter/>
+    <Img texture="Nov-1-3"/>
+    <Emotion texture="dao1"/>
+    <Text value="同时按向上键和右方向键可以右转弯，|拐弯时必要的操作！"/>
+    <Enter/>
+    <Img texture="Nov-1-4"/>
+    <Emotion texture="dao2"/>
+    <Text value="同时按向上键和左方向键可以左转弯，|学得差不多了吗？那再好好地练习吧！"/>
+    <Enter/>
+  </step1>
+  <step2>
+    <Img texture="Nov-2-1"/>
+    <Emotion texture="dao4"/>
+    <Text value="道具赛中赛道上分布着很多道具箱|按不同主题道具箱的外观也不同，|所以不要惊慌哦！"/>
+    <Enter/>
+    <Img texture="Nov-2-2"/>
+    <Emotion texture="dao2"/>
+    <Text value="撞到道具箱的话会获得特别的道具。"/>
+    <Enter/>
+    <Img texture="Nov-2-3"/>
+    <Emotion texture="dao5"/>
+    <Text value="获得道具后通过CTRL键使用。|道具在道具赛中很重要，|所以一定要努力获得道具！"/>
+    <Enter/>
+  </step2>
+  <step3>
+    <Img texture="Nov-4-1"/>
+    <Emotion texture="dao2"/>
+    <Text value="行驶中出现左转，右转也不要惊慌。|好好练习当初学习过的左转弯和右转弯就可以了。"/>
+    <Enter/>
+    <Img texture="Nov-4-2"/>
+    <Emotion texture="dao3"/>
+    <Text value="前进时试着按右方向键看看|是不是很容易？"/>
+    <Enter/>
+    <Img texture="Nov-4-3"/>
+    <Emotion texture="dao4"/>
+    <Text value="指定时间内通过终点就完成了！！"/>
+    <Enter/>
+  </step3>
+  <step4>
+    <Img texture="Nov-5-1"/>
+    <Emotion texture="dao5"/>
+    <Text value="这是使用导弹攻击前面玩家的教程。|如果获得了导弹道具的话按一下CTRL吧。|是不是能看到绿色准星？|哎，一定要按住CTRL键哦！"/>
+    <Enter/>
+    <Img texture="Nov-5-2"/>
+    <Emotion texture="dao1"/>
+    <Text value="&quot;左右移动时绿色准星会变成红色！！！|放开CTRL键！发射,导弹！&quot;"/>
+    <Enter/>
+    <Img texture="Nov-5-3"/>
+    <Emotion texture="dao3"/>
+    <Text value="被击中的玩家会飞上天，这时超越他！！|加油！！"/>
+    <Enter/>
+  </step4>
+  <step11>
+    <Img texture="Roo-2-1"/>
+    <Emotion texture="dao4"/>
+    <Text value="是否道具赛中的水炸弹不太会使用？|水炸弹是用来攻击比自己靠前的玩家。|先确认前面玩家的位置。"/>
+    <Enter/>
+    <Img texture="Roo-2-2"/>
+    <Emotion texture="dao5"/>
+    <Text value="达到一定距离的时候！|使用CTRL键发射水炸弹！！"/>
+    <Enter/>
+    <Img texture="Roo-2-3"/>
+    <Emotion texture="dao6"/>
+    <Text value="水炸弹的使用需要长时间的练习，|才能把握水炸弹的距离。|跟其他玩家一起练习吧。"/>
+    <Enter/>
+  </step11>
+  <step13>
+    <Img texture="L3-4-1"/>
+    <Emotion texture="dao3"/>
+    <Text value="被水炸弹击中的时候别惊慌，|通过左，右方向键来回按的话会提前逃脱！"/>
+    <Enter/>
+    <Img texture="L3-4-2"/>
+    <Emotion texture="dao1"/>
+    <Text value="被水苍蝇击中时别惊慌，|通过左，右方向键来回按的话也会提前逃脱！"/>
+    <Enter/>
+    <Img texture="L3-4-3"/>
+    <Emotion texture="dao2"/>
+    <Text value="指定时间内逃脱两个道具后达到终点！"/>
+    <Enter/>
+  </step13>
+  <step9>
+    <Img texture="Roo-3-1"/>
+    <Emotion texture="dao1"/>
+    <Text value="赛道中可以看到有显示水苍蝇道具的时候。|经过此区域时会受到水苍蝇道具的攻击。"/>
+    <Enter/>
+    <Img texture="Roo-3-2"/>
+    <Emotion texture="dao3"/>
+    <Text value="听到水苍蝇声音时|迅速按CTRL键使用盾牌道具吧。"/>
+    <Enter/>
+    <Img texture="Roo-3-3"/>
+    <Emotion texture="dao5"/>
+    <Text value="盾牌道具不仅可以防御水苍蝇，其他玩家攻击的道具|也可以防御一次！一次机会可以逆转整个比赛哦！！"/>
+    <Enter/>
+  </step9>
+  <step5>
+    <Img texture="Roo-5-1"/>
+    <Emotion texture="dao1"/>
+    <Text value="教你如何使用磁铁道具吧。|获得磁铁道具时按住CTRL的话可以瞄准。|来瞄准其他玩家吧。"/>
+    <Enter/>
+    <Img texture="Roo-5-2"/>
+    <Emotion texture="dao4"/>
+    <Text value="准星变成红色的话就是瞄准了，|放开CTRL键就可以了。"/>
+    <Enter/>
+    <Img texture="Roo-5-3"/>
+    <Emotion texture="dao2"/>
+    <Text value="使用成功后会以惊人的速度驶向被瞄准的玩家。|冲击的过程车辆会比较难控制！"/>
+    <Enter/>
+  </step5>
+  <step8>
+    <Img texture="Roo-7-1"/>
+    <Emotion texture="dao2"/>
+    <Text value="想使用的道具是第二个道具栏而不能使用，|这时用道具换位卡来解决吧。|是不是自爆道具在前面，磁铁道具在后面？"/>
+    <Enter/>
+    <Img texture="Roo-7-2"/>
+    <Emotion texture="dao4"/>
+    <Text value="按ALT键来使用道具换位卡吧。|是不是磁铁道具换到前面了？"/>
+    <Enter/>
+    <Img texture="Roo-7-3"/>
+    <Emotion texture="dao1"/>
+    <Text value="使用磁铁道具到达终点吧！"/>
+    <Enter/>
+  </step8>
+  <step14>
+    <Img texture="L3-2-1"/>
+    <Emotion texture="dao1"/>
+    <Text value="道具赛中最难防御的是大魔王道具！！|通过这次的练习来克服大魔王道具吧。"/>
+    <Enter/>
+    <Img texture="L3-2-2"/>
+    <Emotion texture="dao4"/>
+    <Text value="受到大魔王攻击的话左右方向键会倒过来。|右转时按左方向键，|左转时按右方向键就可以了。"/>
+    <Enter/>
+    <Img texture="L3-2-3"/>
+    <Emotion texture="dao1"/>
+    <Text value="第一次会很难，多练几次吧。|加油！！"/>
+    <Enter/>
+  </step14>
+  <step15>
+    <Img texture="L2-5-1"/>
+    <Emotion texture="dao3"/>
+    <Text value="组队道具赛中可以获得非常重要的天使道具，|你现在跟黑妞一伙，所以需要保护她！|黑妞使用自爆时你必须要使用天使！"/>
+    <Enter/>
+    <Img texture="L2-5-2"/>
+    <Emotion texture="dao4"/>
+    <Text value="使用自爆攻击海盗船长和胖墩，使黑妞逃脱自爆的攻击！"/>
+    <Enter/>
+    <Img texture="L2-5-3"/>
+    <Emotion texture="dao6"/>
+    <Text value="如果海盗船长使用飞碟的话|那么你要使用电磁波来保护黑妞让她拿到第一！|组队赛是大家一起配合的模式！"/>
+    <Enter/>
+  </step15>
+  <step7>
+    <Img texture="Roo-1-1"/>
+    <Emotion texture="dao1"/>
+    <Text value="现在是不是适应了跟别的玩家一起游戏了呢？|这次是比较有难度的教程。|还记得右转的方法把？"/>
+    <Enter/>
+    <Img texture="Roo-1-2"/>
+    <Emotion texture="dao2"/>
+    <Text value="右转后会出现左转弯，所以要小心了！"/>
+    <Enter/>
+    <Img texture="Roo-1-3"/>
+    <Emotion texture="dao3"/>
+    <Text value="指定时间内完成吧！"/>
+    <Enter/>
+  </step7>
+  <step16>
+    <Img texture="L3-1-1"/>
+    <Emotion texture="dao5"/>
+    <Text value="赛道中有时会出现很大的拐弯。"/>
+    <Enter/>
+    <Img texture="L3-1-2"/>
+    <Emotion texture="dao3"/>
+    <Text value="U型拐弯中减速的话会很容易完成。|同时按住向上键和方向键进入弯道后|轻轻的放开向上键减速拐弯的话会很轻松。"/>
+    <Enter/>
+    <Img texture="L3-1-3"/>
+    <Emotion texture="dao2"/>
+    <Text value="一直按住向上键也是不可行的，|那我们来一起试试吧！"/>
+    <Enter/>
+  </step16>
+  <step12>
+    <Img texture="Roo-6-1"/>
+    <Emotion texture="dao3"/>
+    <Text value="需要完成森林木桶赛道。"/>
+    <Enter/>
+    <Img texture="Roo-6-2"/>
+    <Emotion texture="dao1"/>
+    <Text value="森林木桶赛道中需要注意赛道中间的木桶和掉网。"/>
+    <Enter/>
+    <Img texture="Roo-6-3"/>
+    <Emotion texture="dao4"/>
+    <Text value="指定时间内完成赛道！|可能会有难度，应该没有问题吧？"/>
+    <Enter/>
+  </step12>
+  <step6>
+    <Img texture="L3-3-1"/>
+    <Emotion texture="dao3"/>
+    <Text value="连续的漂移是高手的必备技能，在弯道中不减速，|是快速转弯的入门技术。"/>
+    <Enter/>
+    <Img texture="L3-3-2"/>
+    <Emotion texture="dao5"/>
+    <Text value="右方向漂移时右转按键同时再按SHIFT键就可以了。|第一次可能会很难，所以要多加练习！"/>
+    <Enter/>
+    <Img texture="L3-3-3"/>
+    <Emotion texture="dao2"/>
+    <Text value="弯道结束后放开SHIFT键，再轻轻的按一下左方向键的话会是一个漂亮的漂移。"/>
+    <Enter/>
+    <Img texture="L3-3-4"/>
+    <Emotion texture="dao6"/>
+    <Text value="漂移时会积攒加速器，记住最后跳跃区域要使用加速器！"/>
+    <Enter/>
+  </step6>
+  <step10>
+    <Img texture="L3-5-1"/>
+    <Emotion texture="dao4"/>
+    <Text value="大概知道漂移了吗？|跟高手比赛的时候需要使用漂亮的漂移技能。|我们一起练一下稍微有难度的漂移吧！"/>
+    <Enter/>
+    <Img texture="L3-5-2"/>
+    <Emotion texture="dao5"/>
+    <Text value="右方向漂移时右转按键同时再按SHIFT键就可以了。|第一次可能会很难，所以要多加练习！"/>
+    <Enter/>
+    <Img texture="L3-5-3"/>
+    <Emotion texture="dao2"/>
+    <Text value="弯道结束后放开SHIFT键，再轻轻的按一下左方向键的话会是一个漂亮的漂移。"/>
+    <Enter/>
+    <Img texture="L3-5-4"/>
+    <Emotion texture="dao6"/>
+    <Text value="漂移时会积攒加速器，记住最后跳跃区域要使用加速器！"/>
+    <Enter/>
+  </step10>
+  <step17>
+    <Img texture="L2-3-1"/>
+    <Emotion texture="dao1"/>
+    <Text value="不是所有的漂移都一样。|跳跃区域中漂移的话，着陆时会很容易控制方向。"/>
+    <Enter/>
+    <Img texture="L2-3-2"/>
+    <Emotion texture="dao3"/>
+    <Text value="像我一样，试一下跳跃前飘移。|就像滑过去一样！"/>
+    <Enter/>
+    <Img texture="L2-3-3"/>
+    <Emotion texture="dao5"/>
+    <Text value="着陆后记住按一下反方向键来控制车辆！！|失败是成功之母！！"/>
+    <Enter/>
+    <Img texture="L2-3-4"/>
+    <Emotion texture="dao6"/>
+    <Text value="跳跃漂移时会积攒加速器|记住最后的跳跃区使用加速器！！"/>
+    <Enter/>
+  </step17>
+  <step18>
+    <Img texture="L3-6-1"/>
+    <Emotion texture="dao3"/>
+    <Text value="城镇高速是竞速赛的专用赛道。|一直玩道具赛的话可能会有点难度，所以要注意了。"/>
+    <Enter/>
+    <Img texture="L3-6-2"/>
+    <Emotion texture="dao4"/>
+    <Text value="之前学过的漂移最好在大型弯道中使用。|过多的漂移可能会带来负面作用。"/>
+    <Enter/>
+    <Img texture="L3-6-3"/>
+    <Emotion texture="dao5"/>
+    <Text value="指定时间内完成赛道！！好了，加油吧！！"/>
+    <Enter/>
+  </step18>
+</Scene>

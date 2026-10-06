@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for3"/>
+  <Char id="mos" pos="3 0" emotion="stop1"/>
+  <Msg name="小强" string="喏！这是你说的零件！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop3"/>
+  <Msg name="克鲁伊" string="哔哔哔哔！非常感谢！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop3"/>
+  <Msg name="克鲁伊" string="呲呲呲呲~！！！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop3"/>
+  <Msg name="克鲁伊" string="咻！多亏你帮忙，要不然就不能动了。"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop5"/>
+  <Msg name="小强" string="嘿嘿，大惊小怪。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="啊，对了！克鲁伊对吧？|我朋友在这城堡里失踪了，能帮我吗？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop1"/>
+  <Msg name="克鲁伊" string="哔哔哔哔！朋友失踪了？"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop3"/>
+  <Msg name="克鲁伊" string="哔哔哔哔！你找过地下仓库了吗？"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop6"/>
+  <Msg name="小强" string="地下仓库？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop1"/>
+  <Msg name="克鲁伊" string="哔哔哔哔！可能会在那里。|跟我来吧。"/>
+  <Enter/>
+</Scene>

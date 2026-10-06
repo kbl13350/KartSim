@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill1"/>
+  <Char id="dao" pos="5 0" emotion="normal"/>
+  <Char id="mos" pos="10 0" emotion="normal"/>
+  <Msg name="皮蛋，小强" string="葱头！！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="ethi" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="葱头" string="咦？突然怎么了！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="marid" pos="8 0" emotion="stop2"/>
+  <Msg name="蓝蓝" string="吓了一跳！|不要大声嚷嚷的！吓死我了！"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop7"/>
+  <Char id="marid" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="对不起！原来蓝蓝也在啊。|葱头，你有没有见过这种东西？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="normal"/>
+  <Msg name="葱头" string="东西？咦！这好像是车辆的部件啊。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="就因为这个部件，现在都闹翻了！|好像能把车辆的性能提升的相当高啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="normal"/>
+  <Msg name="葱头" string="哦，真的啊！！|小强！一起来分析看看吧！|真的很好奇是个什么样的部件。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="小强" string="我也只是听说而已，但似乎是个非常不错的部件！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="嗯嗯嗯。还要等多久啊？|太好奇啦！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="normal"/>
+  <Msg name="葱头" string="哇！这个真是不可思议啊！！！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="小强" string="居然可以这样启动！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="嗯？？什么意思啊！|详细的说明一下！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="啊，这个好像是用来改良加速器的性能，|以便达到提升加速器持续时间的部件！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="加速器时间！！|真的啊……那么那个就装在我的车辆上吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="哎哟！|不管怎么样，这个真是太棒了！会是谁制作的呢？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="ani1"/>
+  <Msg name="葱头" string="不要那么傻站着！！|我们去打听一下这个部件是谁制作的吧！"/>
+  <Enter/>
+</Scene>

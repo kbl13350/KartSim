@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill3"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="恭喜~~莱恩!"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="第一次参赛就胜利了~|了不起啊~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="是啊~|果然是名不虚传~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="len" pos="8 0" emotion="stop2"/>
+  <Msg name="莱恩" string="哈哈哈~！！（得意）|很明显的结果~~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="11 0" emotion="stop1"/>
+  <Msg name="莉亚" string="哎~~|看你得意的~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="coco" pos="9 0" emotion="stop1"/>
+  <Msg name="莉亚" string="皮蛋，宝宝~给了很多帮助~|谢谢~"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="我也要好好准备准备，在下次大赛上获胜~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="宝宝，你也得获胜一次啊！|我起码也有过获胜经历！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="coco" pos="9 0" emotion="stop1"/>
+  <Msg name="莉亚" string="莱恩！！不要因为获胜了就过分骄傲~"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="对啊~世界上还有很多实力超群的车手~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="len" pos="8 0" emotion="stop1"/>
+  <Msg name="莱恩" string="知道了~知道了~~~~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="len" pos="8 0" emotion="stop2"/>
+  <Msg name="莱恩" string="我也会努力练习~|在下次大赛上再获得胜利~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="len" pos="8 0" emotion="stop2"/>
+  <Msg name="莱恩" string="大家再见~|在下次大赛上见吧！！"/>
+  <Enter/>
+</Scene>

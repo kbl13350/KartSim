@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tutorial name="tutorialScript">
+  <Page template="1" text="[color:yellow]Pelajari Event Relic Hunter[/color]" font="default" textColor="black"/>
+  <Page template="4" text="Event Relic Hunter adalah event |pertualangan dengan melempar dadu| untuk mencari harta karun." font="default" image="유물조사단로고@zz" textColor="black"/>
+  <Page template="1" text="[color:yellow]Cara mendapatkan dan menggunakan dadu[/color]" font="default" textColor="black"/>
+  <Page template="4" text="Cara mendapatkan dadu" font="default" image="주사위" textColor="black"/>
+  <Page template="3" text="Item Mode saat mendapatkan Item Cube~" image="큐브1@zz" image2="큐브2@zz" font="default"/>
+  <Page template="4" text="Speed Mode saat Drift~" image="드리프트" font="default"/>
+  <Page template="4" text="Dapat mendapatkan Dadu" image="주사위" font="default" textColor="black"/>
+  <Page template="4" text="Kamu dapat mendapatkan dadu ketika Drift atau mendapatkan Cube saat Mode yang lain!" image="주사위" font="default" textColor="black"/>
+  <Page template="3" text="Banyak dadu yang dapat digunakan|dapat dilihat pada pojok kiri atas." image="전체@zz" image2="수량@zz" font="default"/>
+  <Page template="4" text="Cara menggunakan Dadu" image="주사위" font="default" textColor="black"/>
+  <Page template="3" text="Tekan tombol Melempar Dadu Relic Hunter" image="전체@zz" image2="굴리기@zz" font="default"/>
+  <Page template="4" text="Dapat menjalankan Melempar Dadu secara otomatis" image="자동굴리기" font="default"/>
+  <Page template="4" text="Kuda akan bergerak secara otomatis sesuai hasil lemparan dadu!" image="자동이동" font="default"/>
+  <Page template="4" text="Lalu angka 1 pada dadu berarti Double!" image="더블" font="default"/>
+  <Page template="4" text="Double dapat membuat melempar dadu sekali lagi setelah berpindah!!" image="자동굴리기" font="default"/>
+  <Page template="1" text="[color:yellow]Hadiah telah di upgrade?[/color]" font="default" textColor="black"/>
+  <Page template="4" text="&quot;Bila kamu sampai di tempat slot, kamu dapat memilih tombol &quot;&quot;Dapatkan&quot;&quot; untuk mendapatkan Kompensasi  dan tombol &quot;&quot;Upgrade&quot;&quot; untuk mengupgrade Kompensasi!&quot;" image="유적" font="default" textColor="black"/>
+  <Page template="3" text="Tombol Dapatkan adalah tombol untuk mendapatkan Kompensasi!" image="업그레이드팝업@zz" image2="확인@zz" font="default" textColor="black"/>
+  <Page template="3" text="Upgrade adalah cara untuk mendapatkan Kompensasi yang lebih baik!!" image="업그레이드팝업@zz" image2="업그레이드@zz" font="default" textColor="black"/>
+  <Page template="4" text="&quot;Bila kamu lakukan Upgrade, kamu bisa mendapatkan  yang lebih berharga namun kamu harus sampai lagi untuk mendapatkan Kompensasi!&quot;" image="유적" font="default" textColor="black"/>
+  <Page template="1" text="[color:yellow]Apa itu harta yang terumpat?[/color]" font="default" textColor="black"/>
+  <Page template="4" text="Harta yang diumpatkan berada pada tempat dimana kotak harta karun berada!!" image="보물상자" font="default"/>
+  <Page template="4" text="Kamu bisa dapatkan karta karun yang mengejutkan bila kamu sampai di tempat kotak harta karun berada!" image="보물상자1" font="default"/>
+  <Page template="4" text="&quot;Tetapi, letak kotak harta karun dapat berubah saat kamu menyelesaikan putaran.&quot;" image="보물상자" font="default"/>
+  <Page template="4" text="Dapatkan harta karun yang terumpat dengan mencari kotak harta karun!" image="보물상자" font="default"/>
+  <Page template="1" text="&quot;[color:yellow]Untuk yang terakhir, mau cari tahu tentang Penyelesaian Putara?[/color]&quot;" font="default" textColor="black"/>
+  <Page template="4" text="Penyelesaian Putaran adalah saat mulai dari titik Start dan melewati titik Start kembali." image="시작" font="default"/>
+  <Page template="3" text="Silahkan cek jumlah menyelesaikan putaran pada bagian Jumlah Penyelesaian Putaran di bagian paling atas." image="전체@zz" image2="완주횟수@zz" font="default"/>
+  <Page template="1" text="[color:yellow]Cari harta karun terbaik lalu nikmati Relic Hunter!![/color]" font="default" textColor="black"/>
+</Tutorial>

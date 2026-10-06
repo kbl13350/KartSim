@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='143.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.073'
+	SteerConstraint='2.1'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.067'
+
+	NormalBoosterTime='-100'
+	TeamBoosterTime='-350'
+	DriftMaxGauge='-1100'
+	DriftGaguePreservePercent='0.4'
+
+	StartForwardAccelFactorSpeed = '1.65'
+	StartBoosterTimeSpeed='1200'           
+	
+	UseTransformBooster='true'
+	TransAccelFactor='1.81'
+	TransformTime='100'  
+	
+	motorcycleType='true'
+	WaveEffect='true'
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	BoosterWaveType='boost8'
+	BoosterType='8main'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+	FirePort0='mod1b1'
+	FirePort1='mod1b2'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '45'
+	DescStability ='35'
+	DescEngineGrade='1.25'
+	DescCornering='4'
+	DescEnchantCap = '25'
+
+	TailLampSize='0.03'
+	TailLampColor='0 105 100 100'
+	BoostBlurColor='255 77 77 77'
+
+/>
+
+<!--한국 미니 스쿠터 HT 상점 판매 120419-->

@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BonusRewardSet>
+	
+	<!--	reward type : lucci 
+								rp 
+								stock 
+
+			isNoticeItem : 레어템 일 경우 표시 
+
+			defaultRewardType = [lucci | rp | stock] : stock의 경우 줄 수있는 아이템을 못 찾았을 때 default 는 0 루찌
+	-->
+
+
+
+	<!-- 카드 뒤집기 -->
+	<rewardSet name='lucciReward' id='2'>
+		<subSet name='card'>
+			<reward type='lucci' value='500'		prob='2100'	lureProb='120' />
+			<reward type='lucci' value='800'		prob='1800'	lureProb='120' />
+			<reward type='lucci' value='1000'		prob='1600'	lureProb='120' />
+			<reward type='lucci' value='1500'		prob='1500'  lureProb='120' />
+			<reward type='lucci' value='3000'		prob='500'  lureProb='120' />
+			<reward type='lucci' value='10000'		prob='300'  lureProb='100' />
+			<reward type='lucci' value='100000'	prob='10'  lureProb='100' />
+			<reward stockId='3880' prob='500' lureProb='120' /> <!-- RP 50% 카드 經驗加乘卡(1日) -->
+			<reward stockId='3878' prob='500' lureProb='120' /> <!-- 루찌 50% 카드 LUCCI加乘卡(1日) -->
+			<reward stockId='6837' prob='300' lureProb='100' /> <!-- 블루 상자 藍色寶箱(1 個) -->
+			<reward stockId='6839' prob='300' lureProb='100' /> <!-- 블루 플랜트 상자 藍色加工廠廠寶箱(1 個) -->
+			<reward stockId='6577' prob='200' lureProb='100' /> <!-- 행운의 무지개 물풍선 彩虹水炸彈(1 個) -->
+			<reward stockId='6879' prob='150' lureProb='100' /> <!-- 코인 KOIN(1 個) -->
+			<reward stockId='6840' prob='70' lureProb='100' /> <!-- 레드 플랜트 상자 紅色加工廠廠寶箱(1 個) -->
+			<reward stockId='6838' prob='70' lureProb='100' /> <!-- 레드 상자 紅色寶箱(1 個) -->
+			<reward stockId='7569' prob='30' lureProb='100' /> <!-- 행운의 순은 물풍선 白色水炸彈(3 個) -->
+			<reward stockId='904' prob='30' lureProb='80' /> <!-- RP 100% 카드 經驗加倍卡(1日) -->
+			<reward stockId='1245' prob='10' lureProb='80' /> <!-- 루찌 100% 카드 LUCCI 加倍卡(1日) -->
+			<reward stockId='6903' prob='10' lureProb='80' /> <!-- 코인 KOIN(3 個) -->
+			<reward stockId='6921' prob='10' lureProb='80' /> <!-- 코인 KOIN(5 個) -->
+			<reward stockId='6881' prob='10' lureProb='80' /> <!-- 코인 KOIN(10 個) -->
+		</subSet>
+	</rewardSet>
+
+	<!-- 사다리 타기 -->
+	<rewardSet name='lucciReward' id='3'>
+		<subSet name='up'>
+			<reward type='lucci' value='200' prob='50' />
+			<reward type='lucci' value='400' prob='25' />
+			<reward type='lucci' value='800' prob='10' />
+			<reward type='lucci' value='1600' prob='5'  needToNotice='true'/>
+			<reward type='lucci' value='1700' prob='4'  needToNotice='true'/>
+			<reward type='lucci' value='1800' prob='3'  needToNotice='true'/>
+			<reward type='lucci' value='1900' prob='2'  needToNotice='true'/>
+			<reward type='lucci' value='2000' prob='1'  needToNotice='true'/>
+		</subSet>
+		<subSet name='down' defaultRewardStock='3532'>
+			<reward stockId='3521' prob='10' /> <!-- 미니컵 강아지 펫 咖比犬(1 日) -->
+			<reward stockId='3522' prob='4' /> <!-- 미니컵 강아지 펫 咖比犬(10 日) -->
+			<reward stockId='843' prob='7' /> <!-- 다오 필살기 藍寶必殺技(10個) -->
+			<reward stockId='907' prob='7' /> <!-- 배찌 필살기 睏寶必殺技(10個) -->
+			<reward stockId='1105' prob='7' /> <!-- 에띠 필살기 栗子必殺技(10個) -->
+			<reward stockId='845' prob='7' /> <!-- 디지니 필살기 痞子妹必殺技(10個) -->
+			<reward stockId='3523' prob='10' /> <!-- 황금돼지 풍선 黃金肥肥氣球(10 個) -->
+			<reward stockId='3524' prob='5' /> <!-- 황금돼지 풍선 黃金肥肥氣球(20 個) -->
+			<reward stockId='3525' prob='5' /> <!-- 돼지 고글 黃金肥肥護目鏡(5 日) -->
+			<reward stockId='3526' prob='3' /> <!-- 돼지 고글 黃金肥肥護目鏡(10 日) -->
+			<reward stockId='3527' prob='5' /> <!-- 황금돼지 전자파밴드 黃金肥肥頭飾(5 日) -->
+			<reward stockId='3528' prob='3' /> <!-- 황금돼지 전자파밴드 黃金肥肥頭飾(10 日) -->
+			<reward stockId='3529' prob='10' /> <!-- 황금 복돼지Z7 업글킷 黃金肥肥Z7升級箱(1 個) -->
+			<reward stockId='768' prob='10' /> <!-- 네임펜 보라 幻彩奇異筆-紫色(7日) -->
+			<reward stockId='773' prob='7' /> <!-- 네임펜 보라 幻彩奇異筆-紫色(30日) -->
+		</subSet>
+	</rewardSet>		
+
+	<!-- 도둑 잡기 클리어 보상 -->
+	<rewardSet name='robbersTeamClear' id='4'>
+		<subSet name='f'>
+			<reward type='lucci' value='10' prob='30'/>
+		</subSet>
+
+		<subSet name='c'>
+			<reward type='lucci' value='30' prob='10'/>
+			<reward type='lucci' value='20' prob='20'/>
+			<reward type='lucci' value='10' prob='40'/>
+			<reward type='rp' value='20' prob='10'/>
+			<reward type='rp' value='10' prob='40'/>
+		</subSet>
+
+		<subSet name='b'>
+			<reward type='lucci' value='50' prob='10'/>
+			<reward type='lucci' value='30' prob='25'/>
+			<reward type='lucci' value='10' prob='35'/>
+			<reward type='rp' value='30' prob='10'/>
+			<reward type='rp' value='20' prob='30'/>
+		</subSet>
+
+		<subSet name='a'>
+			<reward type='lucci' value='100' prob='10'/>
+			<reward type='lucci' value='80' prob='25'/>
+			<reward type='lucci' value='70' prob='35'/>
+			<reward type='rp' value='60' prob='10'/>
+			<reward type='rp' value='40' prob='30'/>
+			<reward stockId='4102' prob='10'/>
+			<reward stockId='4105' prob='10'/>
+		</subSet>
+
+		<subSet name='s'>
+			<reward type='lucci' value='150' prob='10'/>
+			<reward type='lucci' value='80' prob='25'/>
+			<reward type='lucci' value='70' prob='20'/>
+			<reward type='rp' value='80' prob='10'/>
+			<reward type='rp' value='50' prob='20'/>
+			<reward stockId='4106' prob='10'/>
+			<reward stockId='4103' prob='10'/>
+		</subSet>
+
+		<subSet name='sss'>
+			<reward type='lucci' value='200' prob='10'/>
+			<reward type='lucci' value='100' prob='25'/>
+			<reward type='lucci' value='90' prob='20'/>
+			<reward type='rp' value='100' prob='10'/>
+			<reward type='rp' value='70' prob='25'/>
+			<reward type='rp' value='50' prob='15'/>
+			<reward stockId='4104' prob='10'/>
+			<reward stockId='4106' prob='10'/>
+			<reward stockId='4103' prob='10'/>
+		</subSet>
+	</rewardSet>
+
+
+</BonusRewardSet>
+

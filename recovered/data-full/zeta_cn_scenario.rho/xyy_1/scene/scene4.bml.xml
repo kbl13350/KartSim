@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="xyy3"/>
+  <Char id="wolf" pos="8 0" emotion="stop2"/>
+  <Msg name="灰太狼" string="啦啦啦啦…"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="wolf" pos="11 0" emotion="stop2"/>
+  <Char id="xyy3" pos="4 0" emotion="stop1"/>
+  <Msg name="灰太狼" string="今天可以吃到羊肉火锅了！"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="xyy3" remove="true"/>
+  <Char id="wolf" pos="11 0" emotion="stop1"/>
+  <Char id="xyy3" pos="4 0" emotion="stop1"/>
+  <Msg name="懒羊羊" string="灰太狼先生…|我好像不够您吃的吧？"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="xyy3" remove="true"/>
+  <Char id="wolf" pos="11 0" emotion="stop2"/>
+  <Char id="xyy3" pos="4 0" emotion="stop1"/>
+  <Msg name="灰太狼" string="先吃了你再吃别的羊就可以了啊！没关系的。|啦啦啦啦…"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="xyy3" remove="true"/>
+  <Char id="xyy3" pos="8 0" emotion="stop1"/>
+  <Msg name="懒羊羊" string="想要我告诉你怎样才能吃饱的方法吗？"/>
+  <Enter/>
+  <Char id="xyy3" remove="true"/>
+  <Char id="wolf" pos="8 0" emotion="stop3"/>
+  <Msg name="灰太狼" string="啊…真有这种方法吗？"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="wolf" pos="11 0" emotion="stop3"/>
+  <Char id="xyy3" pos="4 0" emotion="stop1"/>
+  <Msg name="懒羊羊" string="我知道一个地方。|去那里可以抓到很多羊。"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="xyy3" remove="true"/>
+  <Char id="wolf" pos="11 0" emotion="stop4"/>
+  <Char id="xyy3" pos="4 0" emotion="stop1"/>
+  <Msg name="灰太狼" string="没骗我吧！|真有这种地方？"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="xyy3" remove="true"/>
+  <Char id="xyy3" pos="8 0" emotion="stop1"/>
+  <Msg name="懒羊羊" string="真的！我们有秘密场所！|就是从这里往南走，再往西走，再往北走…"/>
+  <Enter/>
+  <Char id="xyy3" remove="true"/>
+  <Char id="wolf" pos="8 0" emotion="stop2"/>
+  <Msg name="灰太狼" string="哦…真的吗？哈哈。"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="xyy3" pos="8 0" emotion="stop1"/>
+  <Msg name="懒羊羊" string="。。。我还没说完呢！"/>
+  <Enter/>
+</Scene>

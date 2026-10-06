@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<filter>
+
+<!-- 넥슨 -->
+	<word from='넥슨'/>
+	<word from='넥순'/>
+	<word from='낵슨'/>
+	<word from='nexon'/>
+
+<!-- 운영 -->
+	<word from='운영'/>
+	<word from='영자'/>
+
+<!-- 경찰 -->
+	<word from='경찰'/>
+	<word from='형사'/>
+	<word from='경관'/>
+	<word from='순경'/>
+
+	<word from='GM'/>
+	<word from='gm'/>
+	<word from='Gm'/>
+	<word from='gM'/>
+	
+	<word from='강호순'/>
+	<word from='조두순'/>
+	<word from='나영이'/>
+	<word from='김길태'/>
+	<word from='고영욱'/>
+	<word from='에로'/>
+	<word from='에로마사지'/>
+	<word from='GM'/>
+	<word from='선승진'/>
+	<word from='조재윤'/>
+	
+	<word from='01095110150'/>
+
+	<word from='육변기'/>
+	<word from='JangYeeun'/>
+	
+<!--
+	<word prefix='GM' />
+	<word suffix='GM'/>-->
+</filter>
+

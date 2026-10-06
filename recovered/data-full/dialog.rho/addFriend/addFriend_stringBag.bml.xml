@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="mainCaption">
+    <m c="kr" v="친구 요청하기"/>
+    <m c="jp" v="友達登録"/>
+    <m c="cn" v="加为好友"/>
+    <m c="tw" v="加為好友"/>
+    <m c="us" v="Add a Buddy"/>
+    <m c="vn" v="Kết bạn"/>
+    <m c="ru" v="Добавить друга"/>
+    <m c="id" v="Add Friend"/>
+    <m c="th" v="ลงทะเบียนเพื่อน"/>
+  </k>
+  <k n="registerRid">
+    <m c="kr" v="친구 요청할 라이더 이름 또는 ID를 입력하세요."/>
+    <m c="jp" v="登録する友達のライダーIDを入力してください。"/>
+    <m c="cn" v="请输入请求添加为好友的|车手名或账号。"/>
+    <m c="tw" v="請輸入車手ID"/>
+    <m c="us" v="Type in your buddy&apos;s Rider ID."/>
+    <m c="vn" v="Nhập tên tay đua"/>
+    <m c="ru" v="Введите имя пользователя"/>
+    <m c="id" v="Silahkan masukkan id Rider teman yang mau didaftar."/>
+    <m c="th" v="กรอกชื่อเพื่อนที่ต้องการเพิ่ม"/>
+  </k>
+  <k n="registerMessage">
+    <m c="kr" v="메시지"/>
+    <m c="jp" v="メッセージ"/>
+    <m c="cn" v="消息"/>
+    <m c="tw" v="輸入訊息"/>
+    <m c="us" v="Message"/>
+    <m c="vn" v="Tin nhắn"/>
+    <m c="ru" v="Сообщение"/>
+    <m c="id" v="Message"/>
+    <m c="th" v="ข้อความ"/>
+  </k>
+  <k n="aliasAsk">
+    <m c="kr" v="친구를 기억할 수 있는 메모를 입력해주세요."/>
+    <m c="jp" v="友達を思い出せるメモを入力してください。"/>
+    <m c="cn" v="请填写好友备注"/>
+    <m c="tw" v="請填寫好友備註"/>
+    <m c="us" v="Type in a brief description of your buddy."/>
+    <m c="vn" v="Hãy điền biệt hiệu mà bạn có thể nhớ được"/>
+    <m c="ru" v="Введите пометку персонажа"/>
+    <m c="id" v="Silahkan masukkan memo untuk mengingat teman."/>
+    <m c="th" v="กรุณาระบุข้อความถึงเพื่อน"/>
+  </k>
+  <k n="registerOk">
+    <m c="kr" v="친구 요청"/>
+    <m c="jp" v="友達申請"/>
+    <m c="cn" v="申请好友"/>
+    <m c="tw" v="申請好友"/>
+    <m c="us" v="Buddy request"/>
+    <m c="vn" v="Đồng ý"/>
+    <m c="ru" v="Послать запрос"/>
+    <m c="id" v="Request Friend"/>
+    <m c="th" v="ขอเป็นเพื่อน"/>
+  </k>
+  <k n="guideStr">
+    <m c="kr" v="여기에 라이더 이름 또는 ID를 입력하세요."/>
+    <m c="cn" v="请在此输入车手名或账号。"/>
+  </k>
+  <k n="notExistRider">
+    <m c="kr" v="라이더를 찾을 수 없습니다."/>
+    <m c="cn" v="无法找到该车手。"/>
+  </k>
+</StringBag>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="normalReward">
+    <m c="kr" v="기본 선물"/>
+    <m c="cn" v="基础奖励"/>
+    <m c="tw" v="基本獎勵"/>
+  </k>
+  <k n="upgradeReward">
+    <m c="kr" v="업그레이드 선물"/>
+    <m c="cn" v="升级奖励"/>
+    <m c="tw" v="升級獎勵"/>
+  </k>
+  <k n="attendDayTitle">
+    <m c="kr" v="출석일수"/>
+    <m c="cn" v="签到次数"/>
+    <m c="tw" v="出席天數"/>
+  </k>
+  <k n="attendDay">
+    <m c="kr" v="%d 회차"/>
+    <m c="cn" v="第%d次"/>
+    <m c="tw" v="第%d次"/>
+  </k>
+  <k n="missionAttendRewardTitle">
+    <m c="kr" v="출석 선물 확인"/>
+    <m c="cn" v="査看奖励信息"/>
+  </k>
+</StringBag>

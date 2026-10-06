@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="straightRocket">
+  <state name="Aim" life="0" auxFx0="aiming" auxFx1="inrange" auxFx2="ontarget" auxFx3="misfire"/>
+  <state name="Use" life="500" item="거대미사일_set" itemFx="shooting"/>
+  <state name="Set" life="30000" item="거대미사일_set" itemFx="shooting" size="3.0"/>
+  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" itemFx="003_큰폭발피격"/>
+  <state name="Shield" life="1000" fired="쉴드방어" firedFx="shield"/>
+</item>

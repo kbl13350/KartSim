@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.075'
+	SteerConstraint='2.1'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.067'
+	UseTransformBooster='false'
+
+	BoosterBlur='true'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	EngineSound='cotton6'
+	EnvMap='true'
+
+	Port0='mod4a'
+	Port1='mod4b'
+	FirePort0='mod5'
+	FirePort1='mod6'
+	FirePort2='mod5a'
+	FirePort3='mod5b'
+
+	DescBalance= '35'
+	DescStability ='35'
+	DescEngineGrade='1'
+	DescCornering='4'
+	DescEnchantCap = '25'
+/>
+
+<!-- 블랙 샤크 -->

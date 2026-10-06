@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="小强！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="皮蛋，你来了啊！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="车辆制作得怎么样了？|我想尽早开上新的车辆！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="哈哈！快完成了。|但是缺少重要的部件，所以可能要晚点。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="嗯？部件?|到村庄大街上的部件商店兑换不就可以了吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="正有此意，|完成手头上的工作就去."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="现在就去吧！！出发！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" flip="true" emotion="stop7"/>
+  <Msg name="小强" string="喂.皮蛋！！！！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="快点，快点走吧！|出发！（启动）"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="哎！真是无可救药。"/>
+  <Enter/>
+</Scene>

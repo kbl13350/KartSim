@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss1"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈尔" string="这里就是阿比斯。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="海底竟然有个这么大的城市啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="9 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="原来海盗团的地盘里还有这么一条神秘通道啊~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Msg name="黑妞" string="而且在水里也能正常呼吸，太神奇了~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈尔" string="那是因为我给你们分了一些特殊能力，短时间内应该没问题。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop5"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="哇，这里的人们都像你一样具有特殊能力吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop5"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈尔" string="那倒不是，那是我和我……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop5"/>
+  <Char id="neoul" pos="10 0" emotion="normal"/>
+  <Char id="narin" pos="13 0" emotion="stop1"/>
+  <Msg name="奈琳" string="呀，回来了啊~奈尔奈尔呀~姐姐好担心你！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="13 0" emotion="stop1"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="……这是我姐姐，只有我们俩有特殊能力。"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="奈琳" string="哦，是奈尔奈尔带来的客人啊！欢迎~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="名，名字有点特别啊。奈尔奈尔啊……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="neoul" pos="12 0" emotion="stop3"/>
+  <Msg name="奈尔" string="不，不是的，我叫奈尔。但姐姐她总是……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" pos="1 0" emotion="stop5"/>
+  <Char id="neoul" pos="9 0" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="stop1"/>
+  <Msg name="奈琳" string="哼，还不是因为我家奈尔奈尔太可爱了~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="narin" pos="12 0" emotion="stop1"/>
+  <Msg name="奈尔" string="好了……姐姐，GP赛准备好了吗？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="narin" pos="11 0" emotion="stop4"/>
+  <Msg name="奈琳" string="哦，差点忘了！请跟我来~GP赛马上就会开始~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop4"/>
+  <Msg name="宝宝" string="这姐姐挺有意思~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop4"/>
+  <Char id="dao" pos="11 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="那就去漂一圈呗！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop4"/>
+  <Char id="dao" pos="12 0" emotion="stop4"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Msg name="黑妞" string="就算是皮蛋，我也不会手下留情哦~"/>
+  <Enter/>
+</Scene>

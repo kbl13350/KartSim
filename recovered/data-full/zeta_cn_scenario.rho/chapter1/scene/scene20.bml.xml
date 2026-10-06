@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for1"/>
+  <Bgm theme="forest" file="forest_03"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="繁荣山丘赛车大会终于开始了！|人真多啊。|看起来都是拥有很厉害实力的高手啊？"/>
+  <Enter/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="是啊。真的到了大赛开始的日子，还真紧张啊。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="小强" string="啊哈！ 现在才来啊？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="啊！ 是小强和胖墩！|一大早就来了吗？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="嗯，激动得我几乎没能睡着觉。|不过话说回来，皮蛋，你和胖墩编在了一个组内了。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="啊，真的？|胖墩！我们是第几组？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="胖墩" string="皮蛋和我是预选赛第1组，|好像每个组都有3人参加。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="真的？ 那么剩下的1人是？"/>
+  <Enter/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="这个么， |之前和蓝蓝一起来的葱头还记得吧？|他也和我们是一组的，|那时看到他的实力了，真是厉害。|和皮蛋和葱头一起比赛。啊！预选就碰到了强敌啦！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="别谦虚了……|胖墩你现在的技术不是比起谁都杰出的么？|我到是反而担心起来了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="小强啊，那么我是第几组？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="黑妞你是第3组，我是第5组。|似乎一开始不会遇到了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="是那样啊，别的车手的实力到底如何呢？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="不要急…… |马上就能知道真正的比赛是什么样子的了。|还是不要想别的事情了，集中精力进行比赛吧。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="700"/>
+  <Msg name="赛会广播" string="预选赛第1组！预选赛第1组的选手们！请你们到赛道前面来集中！"/>
+  <Enter/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="哇！大赛已经开始了。|皮蛋，我们也赶快准备吧。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="是啊！ 黑妞！ 小强！ 都要努力比赛哦，过会再见！ "/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop5"/>
+  <Char id="mos" pos="3 0" emotion="stop5"/>
+  <Msg name="小强/黑妞" string="嗯， 皮蛋！ 胖墩！ 大家加油！"/>
+  <Enter/>
+</Scene>

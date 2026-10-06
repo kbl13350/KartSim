@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="哎，好累呀！|今天就到此为止吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="是皮蛋！！！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="皮蛋！皮蛋！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="是黑妞和宝宝呀。出什么事了吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="皮蛋！！这里有你的邀请函！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="啊？邀请函？谁要过生日了吗？|（不好啦..我的零花钱早就用光了。）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="什么生日呀！！|是世界锦标赛举办事务局给你发来了邀请函！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="生日礼物要买..啊？|世界锦标赛！！！！！真的吗！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop2"/>
+  <Msg name="黑妞" string="恩，真的！你现在是名副其实的专业车手啦！|果然我男朋友是最棒的！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="哈哈！真不敢相信我竟然可以去参加世界锦标赛。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="但是以我的实力能行吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="你在担心什么呀！|一直以来你都是用你的实力战胜一切困难的！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="依我看！皮蛋的实力是无人能及的！|只要能去参加，冠军肯定是皮蛋的！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="感谢你们支持我！！我会鼓起勇气的！|我要让全世界人都看到我的实力，我一定要夺冠！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="可是...皮蛋！！|你再不出发就来不及了。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="ani5"/>
+  <Msg name="皮蛋" string="晕。不行！！|我们马上出发！！GOGOGO!!"/>
+  <Enter/>
+</Scene>

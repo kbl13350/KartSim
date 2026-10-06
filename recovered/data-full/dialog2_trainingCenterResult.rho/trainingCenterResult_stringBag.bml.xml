@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="completeTitle">
+    <m c="kr" v="%s 미션 완료"/>
+    <m c="cn" v="%s 任务完成"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="tcMissionComplete">
+    <m c="kr" v="[color:255 36 129 255]%s[/color] 미션을 성공적으로 완료했습니다!"/>
+    <m c="cn" v="成功完成[color:255 36 129 255]%s[/color]任务！"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="tcNextTry1">
+    <m c="kr" v="다음 기본 주행 스킬인 [color:255 36 129 255]%s[/color] 미션에 도전해 보세요!"/>
+    <m c="cn" v="挑战下一个基础驾驶技巧——[color:255 36 129 255]%s[/color]任务吧！"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="tcNextTry2">
+    <m c="kr" v="다음 고급 주행 스킬인 [color:255 36 129 255]%s[/color] 미션에 도전해 보세요!"/>
+    <m c="cn" v="挑战下一个高级驾驶技巧——[color:255 36 129 255]%s[/color]任务吧！"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="tcNextTry3">
+    <m c="kr" v="다음 특수 주행 스킬인 [color:255 36 129 255]%s[/color] 미션에 도전해 보세요!"/>
+    <m c="cn" v="挑战下一个特殊驾驶技巧——[color:255 36 129 255]%s[/color]任务吧！"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="tcAllComplete">
+    <m c="kr" v="축하합니다! 트레이닝센터 모든 미션을 완료했습니다!"/>
+    <m c="cn" v="恭喜您！已完成车手学院所有任务！"/>
+    <m c="tw" v=""/>
+  </k>
+</StringBag>

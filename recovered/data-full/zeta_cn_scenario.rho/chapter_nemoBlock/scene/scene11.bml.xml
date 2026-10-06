@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Nemo5"/>
+  <Char id="nemodao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="怎么不见了…|哪儿去了呢？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="明明是往这个方向走的啊~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="carol" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="吓死我了~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="normal"/>
+  <Msg name="卡洛儿" string="你在这找什么呢？|你看起来不像是像素世界的玩家啊？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="carol" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="你有没有见到一个怪兽从这边过去？|（究竟是谁呢？)"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="卡洛儿" string="怪物？？？？|是不是只有一只眼睛的？？蓝颜色的？？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="嗯，对！就是那个怪兽！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="卡洛儿" string="哈哈哈！！|你看里昂了呀~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="卡洛儿" string="不过你是怎么进来的？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="（这…这我也想知道……）|我也不知道~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="我猜应该是一个叫麦迪娅的女巫，|把我们带到这里的~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop2"/>
+  <Msg name="卡洛儿" string="麦迪娅？|她果然还是惹事了~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="carol" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="不过…你是？？？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="卡洛儿" string="啊对！！忘了做自我介绍了。|我是像素世界的守护人卡洛儿~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="卡洛儿" string="见到你很高兴！|（像素世界一定是出了什么问题…）"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="（守护人？？）|我叫皮蛋~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="卡洛儿" string="皮蛋！我需要你的帮助~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="嗯？？？|貌似需要帮助的是我呀…"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="卡洛儿" string="好了~我们先去像素村吧！！|我们要快一点，你跟紧了！|咕咕咕~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="9 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="那个…卡洛儿！！|（管不了那么多了！）|一起走~~"/>
+  <Enter/>
+</Scene>

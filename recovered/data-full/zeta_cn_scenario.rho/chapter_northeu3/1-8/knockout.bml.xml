@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="northeu_R01" laps="1" isFixedKart="true" fixedKartId="1055" isFixedChar="true" fixedCharId="10" type="rank">
+    <LevelContent level="0" ksv="1-8" startOffset="2000">
+      <ShadowKart characterId="2" uniformId="0" kartId="943" colorId="6" dyeId="6" characterName="皮蛋"/>
+      <ShadowKart characterId="1" uniformId="0" kartId="849" colorId="1" dyeId="1" characterName="宝宝"/>
+      <ShadowKart characterId="10" uniformId="55" kartId="1055" colorId="6" dyeId="6" characterName="闪电凯奇"/>
+      <ShadowKart characterId="13" uniformId="54" kartId="1055" colorId="8" dyeId="8" characterName="佐拉博士"/>
+      <ShadowKart characterId="10" uniformId="56" kartId="1055" colorId="5" dyeId="5" characterName="小呆助理"/>
+      <ShadowKart characterId="3" uniformId="0" kartId="875" colorId="2" dyeId="2" characterName="黑妞"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

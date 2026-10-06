@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu2"/>
+  <Char id="taki" pos="7 0" emotion="stop4"/>
+  <Msg name="奇奇" string="其实我… |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="erini" pos="7 0" emotion="stop3"/>
+  <Msg name="陌生女人" string="所以我说！|回来了就通知一声吗！ |"/>
+  <Enter/>
+  <Char id="erini" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop7"/>
+  <Msg name="黑妞" string="啊~好像是奇奇.. |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="黑妞~奇奇好像不在那边~ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="黑妞" string="那边好像有奇奇！ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="真的~是奇奇~快去看看~ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop4"/>
+  <Msg name="奇奇" string="对不起… |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="erini" pos="7 0" emotion="stop3"/>
+  <Msg name="陌生女人" string="哼！ |"/>
+  <Enter/>
+  <Char id="erini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop1"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋，黑妞" string="奇奇~~ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop2"/>
+  <Char id="dizini" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="咦~！是上次在宇宙停车站帮助我的那人~|您好~但是怎么会与奇奇一起… |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="erini" pos="7 0" emotion="stop3"/>
+  <Msg name="陌生女人" string="… |"/>
+  <Enter/>
+  <Char id="erini" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop4"/>
+  <Msg name="奇奇" string="皮蛋，黑妞~ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="dizini" pos="11 0" emotion="stop1"/>
+  <Msg name="黑妞" string="什么事~！没关系吧？|大赛马上就开始了~要抓紧！ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop4"/>
+  <Msg name="奇奇" string="没事，没关系！！|正在与我女朋友聊天~ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋，黑妞" string="什么？？ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="erini" pos="7 0" emotion="stop2"/>
+  <Msg name="妮妮" string="你好！|又见面了~我是奇奇的女朋友~妮妮！吼吼吼吼~ |"/>
+  <Enter/>
+  <Char id="erini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="dizini" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="上次那个~~ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="erini" pos="4 0" emotion="stop1"/>
+  <Char id="taki" pos="11 0" emotion="stop4"/>
+  <Msg name="妮妮" string="是的！|因为太久没见到奇奇了~~正在谈感情呢~ |"/>
+  <Enter/>
+  <Char id="erini" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="erini" pos="4 0" emotion="stop3"/>
+  <Char id="taki" pos="11 0" emotion="stop4"/>
+  <Msg name="妮妮" string="这算什么…谈感情…| |"/>
+  <Enter/>
+  <Char id="erini" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="erini" pos="4 0" emotion="stop1"/>
+  <Char id="taki" pos="11 0" emotion="stop4"/>
+  <Msg name="妮妮" string="吼吼吼…奇奇，嘘~|就是吗~就是谈感情吗~ |"/>
+  <Enter/>
+  <Char id="erini" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞，皮蛋" string="………………… |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞，皮蛋" string="啊，对了！不能就这么呆着，大赛马上就要开始了~ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop1"/>
+  <Char id="dizini" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="对~要抓紧~ |"/>
+  <Enter/>
+</Scene>

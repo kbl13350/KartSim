@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Nemo11"/>
+  <Char id="nemodao" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="卡洛儿！！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Msg name="卡洛儿" string="皮蛋~找到你的朋友了？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="多亏了你才能找到他们！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" pos="4 0" emotion="normal"/>
+  <Char id="carol" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="黑妞~宝宝！！|她就是我说的卡洛儿~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodizini" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="1 0" flip="true" emotion="normal"/>
+  <Char id="carol" pos="12 0" emotion="stop1"/>
+  <Msg name="黑妞/宝宝" string="你好啊~卡洛儿~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="carol" remove="true"/>
+  <Char id="carol" pos="12 0" emotion="stop1"/>
+  <Char id="nemodizini" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="1 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="听说你们去追麦迪娅了？真勇敢~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="carol" pos="12 0" emotion="stop1"/>
+  <Char id="nemodizini" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="1 0" flip="true" emotion="normal"/>
+  <Msg name="黑妞" string="我们发现了女巫麦迪娅的藏身处~|好不容易才逃出来~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Char id="carol" pos="8 0" emotion="stop1"/>
+  <Msg name="卡洛儿" string="差点就出大事了！！|啊~对了，皮蛋！！！"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="carol" pos="8 0" emotion="stop1"/>
+  <Msg name="卡洛儿" string="我有一个好消息！！！|我想到了让你们回到繁荣山丘的方法~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="normal"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="嗯？？真的吗？？？|我们要怎么做？"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="哈哈哈，不要急！！还需要一点时间~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="normal"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="你们先帮帮我怎么样~我需要你们的帮助^^"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="11 0" emotion="normal"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="没问题啊~只要能回到繁荣山丘~"/>
+  <Enter/>
+  <Char id="carol" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="carol" pos="12 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="卡洛儿" string="好~|准备好了就跟我来吧~"/>
+  <Enter/>
+</Scene>

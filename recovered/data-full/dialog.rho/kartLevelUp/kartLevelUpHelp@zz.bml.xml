@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowSize="430 345" adjust="0 0" frame="CaptionDialog" caption="#sb(helpTitle)" align="center" captionPos="0 0" setCloseButton="closeButton">
+  <Label windowSize="400 295" adjust="0 3" align="center" text="#sb(kartLevelUpHelp)" multiLine="true" lineGap="15" textAlign="left|vcenter" textColor="black" autoWrap="true" indent="10 -8" textRender="bold14"/>
+</CaptionWindow>

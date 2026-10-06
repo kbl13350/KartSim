@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="dashboard" windowSize="225 175" adjust="4 6" align="right;bottom" uvRect="0 0 225 175" texture="aw_01@zz" alphaBlend="true">
+  <CharPanel name="kmh" windowRect="134 105 221 143" texture="aw_02@zz" alphaBlend="true" fontSize="29 38" fontPos="0 0" fontStr="0123456789" text="000"/>
+  <Panel windowRect="106 125 145 141" uvRect="119 175 158 191" texture="aw_01@zz" alphaBlend="true"/>
+  <Graduation name="hand" windowRect="9 89 81 105" texture="aw_01@zz" alphaBlend="true" uvRect="0 176 72 192" minDegree="-90" maxDegree="180" minValue="0" maxValue="360" axis="70.5 8" defaultValue="0"/>
+  <Panel name="handMark" windowRect="66 84 92 109" uvRect="93 175 119 200" texture="aw_01@zz" alphaBlend="true"/>
+  <DashboardPanel name="LucciNum" windowRect="134 153 223 168" texture="aw_02@zz" alphaBlend="true" fontSize="10 15" fontPos="345 0" fontStr="0123456789" text="     "/>
+</Panel>

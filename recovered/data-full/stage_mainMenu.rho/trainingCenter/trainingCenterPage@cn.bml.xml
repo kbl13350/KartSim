@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageBoard leftTopWH="0 48 776 586" image="lobby_right_bg" align="hcenter">
+  <GridSelector name="grid" leftTopWH="0 10 750 360" alignSize="1" maxLine="6" clientMargin="0 3 0 0" alignMargin="5 4" align="hcenter"/>
+  <Label leftTopWH="17 505 300 10" text="#sb(trainingCenterInfo0)" textAlign="left" textRender="bold16" textColor="255 42 55 80"/>
+  <Panel leftTopWH="14 487 748 1" texture="common_list_line"/>
+</ImageBoard>

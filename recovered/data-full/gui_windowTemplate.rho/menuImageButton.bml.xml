@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageButton name="eventButton" windowRect="0 0 84 82" alphaBlend="true">
+  <Panel name="btnAlert" windowSize="20 20" texture="icon_notice" align="right" adjust="-2 -2" enable="false"/>
+  <Label name="buttonText" windowRect="0 0 1 1" text="#sb(scenario)" textRender="outline14" adjust="0 29" textColor="white" autoSizing="true" align="center" enable="false"/>
+  <ImageBoard name="boomHillExchangeBg" leftTopWH="1 1 61 15" image="event_exchangeTag" alphaBlend="true" enable="false" visible="false">
+    <CharPanel name="boomHillExchangeNum" leftTopWH="28 1 9 13" texture="event_exchangeTagNum" rightAlign="true" alphaBlend="true" fontSize="9 13" spaceOffset="-1" fontStr="12345" text="5" enable="false"/>
+  </ImageBoard>
+</ImageButton>

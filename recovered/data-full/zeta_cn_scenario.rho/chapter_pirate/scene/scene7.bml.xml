@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate1"/>
+  <Msg name="黑妞，胖墩，小乖" string="呼噜噜！"/>
+  <Enter/>
+  <Char id="pirate1" pos="11 0" emotion="stop2"/>
+  <Msg name="海盗水手" string="这帮家伙还睡的挺踏实..|给我起来！"/>
+  <Enter/>
+  <Shake time="700"/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="uni" pos="8 0" emotion="stop5"/>
+  <Char id="kephi" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="1 0" emotion="stop6"/>
+  <Msg name="黑妞，胖墩，小乖" string="嗯..? 这..这是什么地方！？"/>
+  <Enter/>
+  <Char id="uni" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="pirate1" pos="11 0" emotion="stop3"/>
+  <Msg name="海盗水手" string="这里就是诞生伟大海盗的大本营！哇哈哈哈！"/>
+  <Enter/>
+  <Shake time="700"/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="uni" pos="9 0" emotion="stop5"/>
+  <Char id="kephi" pos="5 0" emotion="stop4"/>
+  <Char id="mos" pos="2 0" emotion="stop7"/>
+  <Msg name="小强，胖墩，小乖" string="海盗船长！！！|不好！身子被绑上了。"/>
+  <Enter/>
+  <Char id="uni" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="pirate1" pos="11 0" emotion="stop3"/>
+  <Msg name="海盗水手" string="你们就是被绑架的。哇哈哈哈"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="kephi" pos="6 0" emotion="stop4"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Msg name="黑妞，胖墩" string="你在开玩笑？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="pirate1" pos="11 0" emotion="stop3"/>
+  <Msg name="海盗水手" string="冷场了～|这样吧，来场比赛，你们要是赢了就放你们走人，输了就扔到海里喂鲨鱼去！|哇哈哈哈！"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="体力还没恢复.. 而且皮蛋和宝宝都还没醒过来;;|该怎么办！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop1"/>
+  <Msg name="宝宝" string="让我来！"/>
+  <Enter/>
+  <Shake time="700"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pirate1" pos="11 0" emotion="stop2"/>
+  <Msg name="海盗水手" string="哇！你不是睡觉的嘛！！|你的眼睛还没睁开呢就比赛？"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="少废话！"/>
+  <Enter/>
+</Scene>

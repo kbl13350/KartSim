@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china1"/>
+  <Char id="totop" pos="8 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="嗯……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="8 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="你有没有觉得这件事很奇怪……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="8 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="我们每到一个地方，|就有妨碍我们的人出现……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" pos="7 0" emotion="stop3"/>
+  <Msg name="格雷" string="您说的对。"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop3"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="格雷" string="就好像早就知道我们要去哪儿一样……"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="Chris" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="克莉丝" string="等等。"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="7 0" emotion="stop3"/>
+  <Msg name="克莉丝" string="咦？？？？|这是什么？？？"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="totop" pos="8 0" flip="true" emotion="stop4"/>
+  <Msg name="黑杰克" string="怎么了？|出什么问题了吗？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="Chris" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="克莉丝" string="有人黑了我的电脑！|哇哦……"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="raptorRs" pos="7 0" emotion="stop3"/>
+  <Msg name="格雷" string="是谁干的？？？？？？？？"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop1"/>
+  <Char id="raptorLs" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="格雷格" string="哥！让我去教训他！！！！！"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop3"/>
+  <Char id="raptorLs" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷" string="你淡定一点！！|我们先等等看。"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="Chris" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="克莉丝" string="嗯？……|我知道是谁了。"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="克莉丝" string="吼吼吼……索菲亚？|居然在我的电脑做手脚！"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="克莉丝" string="就这点实力，|还敢在我面前卖弄~呵呵~"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Chris" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="克莉丝" string="如果我把这个电脑上的数据全都删掉会怎样？？？"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="Chris" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="totop" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="那他们就再也找不到我们了。|哈哈哈……"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <BackGround texture="china2"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Char id="rick" pos="10 0" flip="true" emotion="stop2"/>
+  <Char id="wenwen" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="鑫鑫！|太谢谢你了~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="rick" remove="true"/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Char id="rick" pos="10 0" flip="true" emotion="stop2"/>
+  <Char id="wenwen" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="多亏你们帮忙~！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="rick" remove="true"/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Char id="rick" pos="10 0" flip="true" emotion="stop2"/>
+  <Char id="wenwen" pos="13 0" flip="true" emotion="stop5"/>
+  <Msg name="雯雯" string="客气什么~~虽然不知道是什么事，|不过还是希望你们能顺利解决！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="rick" remove="true"/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="raptorLs" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷格" string="这帮家伙，|怎么也在这里？？？"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorLs" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷格" string="而且居然比我们还快？？？"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="Brian" pos="11 0" emotion="stop2"/>
+  <Msg name="布莱恩" string="嗯？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="7 0" emotion="stop4"/>
+  <Msg name="布莱恩" string="站住！！！|这次绝对不会放过你们！！！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Chris" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="Brian" pos="12 0" emotion="stop3"/>
+  <Msg name="克莉丝" string="跟过来也没有用，|你们是得不到想要的东西的~"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Chris" pos="4 0" emotion="stop1"/>
+  <Char id="Brian" pos="12 0" emotion="stop3"/>
+  <Msg name="克莉丝" string="好了~|那我就先走一步了！~"/>
+  <Enter/>
+  <Char id="Chris" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="4 0" emotion="stop3"/>
+  <Char id="Iri" pos="11 0" emotion="stop4"/>
+  <Msg name="布莱恩" string="站住！！！！！！！！！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Iri" pos="10 0" emotion="stop4"/>
+  <Msg name="艾丽" string="克莉丝！！！！|你知不知道你现在在做什么！！！！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Iri" remove="true"/>
+  <Char id="Brian" pos="-1 0" emotion="stop1"/>
+  <Char id="Iri" pos="8 0" emotion="stop4"/>
+  <Msg name="艾丽" string="别再把事情闹大了！！！！"/>
+  <Enter/>
+</Scene>

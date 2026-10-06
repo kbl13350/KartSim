@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowSize="340 277" adjust="0 0" align="center" frame="CaptionDialog" caption="#sb(koinReconfirmCaption)" captionPos="0 1" captionColor="white">
+  <Label windowSize="270 30" adjust="0 10" align="hcenter" multiLine="true" autoWrap="true" lineGap="4" text="#sb(koinReconfirmText1)" textAlign="hcenter"/>
+  <Window windowSize="240 60" adjust="0 50" align="hcenter" frame="GrayEdit">
+    <Window windowSize="220 46" adjust="0 0" align="center" frame="DefaultEdit">
+      <Panel windowSize="38 38" adjust="0 0" align="vcenter" texture="img_koinBox" alphaBlend="true"/>
+      <Label name="stockName" windowSize="191 44" adjust="0 -5" align="right" text="코인" textColor="255 100 100 150" textRender="bold" textAlign="center"/>
+    </Window>
+  </Window>
+  <Label windowSize="15 15" adjust="5 120" text="*" textAlign="left"/>
+  <Label windowSize="15 15" adjust="5 135" text="*" textAlign="left"/>
+  <Label windowSize="15 15" adjust="5 150" text="*" textAlign="left"/>
+  <Label windowSize="295 15" adjust="10 120" align="hcenter" multiLine="true" autoWrap="true" lineGap="4" text="#sb(koinReconfirmText2)" textAlign="left"/>
+  <Label windowSize="295 15" adjust="10 135" align="hcenter" multiLine="true" autoWrap="true" lineGap="4" text="#sb(koinReconfirmText3)" textAlign="left"/>
+  <Label windowSize="295 15" adjust="10 150" align="hcenter" multiLine="true" autoWrap="true" lineGap="4" text="#sb(koinReconfirmText4)" textAlign="left"/>
+  <Window windowSize="310 2" adjust="0 190" align="hcenter" frame="HSection"/>
+  <TextButton name="okButton" windowSize="82 28" adjust="-30 197" align="hcenter" frame="DefaultFocusedButton" text="#sb(confirm)"/>
+  <TextButton name="cancelButton" windowSize="52 28" adjust="45 197" align="hcenter" frame="DefaultStaticButton" text="#sb(cancel)"/>
+</CaptionWindow>

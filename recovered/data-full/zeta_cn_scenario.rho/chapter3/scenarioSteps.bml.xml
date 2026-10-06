@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" synopsis="繁荣山丘上，皮蛋和朋友们在勤练车技！|一群神秘人悄悄潜入……" addToGarage="true" howToClear="请在和其他玩家的比赛中获胜." missionText="比赛胜利 %d回/%d回" title="出现在繁荣山丘的谜之恶党" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" restriction="overRp70" restrictionMsg="RP 70" rewardStockId="14700"/>
+  </Step>
+  <Step id="2" type="34" mode="single" synopsis="神秘人计划掠走小乖!他们得逞了吗?" addToGarage="true" howToClear="请在和神秘人的道具赛中获胜." missionText="比赛胜利 %d回/%d回" title="欺负小乖?!" preConditionId="1" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" restriction="overRp70" restrictionMsg="RP 70" rewardRp="500"/>
+  </Step>
+  <Step id="3" type="30" mode="single" synopsis="听到小乖被欺负！|皮蛋和朋友们开始在繁荣山丘的各处巡查.|繁荣山丘巡查队能否找出这群恶人吗?" addToGarage="true" howToClear="请完成赛道" missionText="目标%d回/%d回" title="繁荣山丘巡查队！" preConditionId="2" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" restriction="overRp70" restrictionMsg="RP 70" rewardStockId="948"/>
+  </Step>
+  <Step id="4" type="30" mode="single" synopsis="神秘的强盗声东击西，引开了皮蛋！|他们乘着夜色潜入皮蛋家中，偷走了爸爸的挂饰！|及时赶来的皮蛋和朋友们与强盗团伙展开了一场夜间追逐战！" addToGarage="true" howToClear="请在规定的时间内，追上侵入者.|* 注意，落后 20m 以上的话，就算失败。" missionText="追击成功 %d回/%d回" title="被夺走的挂坠" preConditionId="3" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="5" type="34" mode="single" synopsis="&quot;和侵入者的距离还是那么远,|皮蛋使用了导弹进行攻击……&quot;" addToGarage="true" howToClear="&quot;使用道具,在和其他人的比赛中获胜.&quot;" missionText="比赛胜利 %d回/%d回" title="一整夜的追击战" preConditionId="4" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="6" type="30" mode="single" synopsis="&quot;追击侵入者的皮蛋,掉入了陷阱之中.|侵入者设置了定时炸弹，妄图置他于死地！|危险！朋友们，你们在哪？&quot;" addToGarage="true" howToClear="请在规定的时间内完成赛道." missionText="完成赛道目标 %d回/%d回" title="前所未有的危险!" preConditionId="5" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="7" type="30" mode="single" synopsis="皮蛋不堪忍受如此大的侮辱，|他要报仇！搜遍每一处角落！" addToGarage="true" howToClear="在规定的时间和碰撞次数之内，完成递送。" missionText="递送成果 %d回/%d回" title="寻找侵入者的痕迹" preConditionId="6" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="14701"/>
+  </Step>
+  <Step id="8" type="30" mode="single" synopsis="小强带来了新的发现，|他们把目标锁定在一个入侵者身上！|悄悄地尾随！ " addToGarage="true" howToClear="请在规定的时间内完成赛道" missionText="目标 %d回/%d回" title="发现头绪!" preConditionId="7" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="9" type="30" mode="single" synopsis="入侵者感觉大事不妙，|他开始加速逃跑！|皮蛋他们怎么容忍坏人从自己眼皮下溜走呢？" addToGarage="true" howToClear="请在规定的时间内，追上侵入者。|注意，落后20m以上的话，就算失败。" missionText="追击成功 %d回/%d回" title="大追击战!" preConditionId="8" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="14702"/>
+  </Step>
+  <Step id="10" type="30" mode="single" synopsis="入侵者提出了比赛的要求，赌注是说出坠饰的下落。|皮蛋虽然将信将疑，但也别无他法！" addToGarage="true" howToClear="请在和海盗水手的比赛中获胜" missionText="对决胜利 %d回/%d回" title="和侵入者的对决" preConditionId="9" visualScene="scene10" readyStage="1-10" stepTitleId="10A" otherWayLockId="11">
+    <Level difficult="0" rewardStockId="14703"/>
+  </Step>
+  <Step id="11" type="30" mode="single" synopsis="入侵者提出了比赛的要求，赌注是说出坠饰的下落。|皮蛋虽然将信将疑，但也别无他法！" addToGarage="true" howToClear="请在规定的时间内完成赛道." missionText="完成赛道目标 %d回/%d回" title="海盗水手的提议" preConditionId="9" visualScene="scene11" readyStage="1-11" stepTitleId="10B" otherWayLockId="10">
+    <Level difficult="0" rewardStockId="14703"/>
+  </Step>
+  <Step id="12" type="34" mode="single" synopsis="在皮蛋的追问下，海盗水手话语露出破绽，情况很明朗了！|但是去参加赛车大会需要良好的道具使用技术！" addToGarage="true" howToClear="请使用导弹道具，在和其他车手的比赛中获胜.." missionText="比赛胜利 %d回/%d回" title="道具战练习!" preConditionId="10|11" visualScene="scene12" readyStage="1-12" stepTitleId="11">
+    <Level difficult="0" rewardStockId="1126"/>
+  </Step>
+  <Step id="13" type="34" mode="single" synopsis="过于自负的皮蛋无视小强的忠告，|冒然和其他车手比赛！" addToGarage="true" howToClear="在和其他车手的道具赛中获得胜利。" missionText="对决胜利%d次/共%d次" title="不成熟的想法" preConditionId="12" visualScene="scene13" readyStage="1-13" stepTitleId="12">
+    <Level difficult="0" rewardStockId="1128"/>
+  </Step>
+  <Step id="14" type="31" mode="single" synopsis="结束了和其他车手们的激烈比赛之后，皮蛋再次意识到，|在道具赛中，基本的驾驶技术也是非常重要的。|在旁边一直默默关注着的黑妞和葱头等人，|为了皮蛋，决定做他的陪练。" addToGarage="true" howToClear="请在和其他车手们的比赛中，获得胜利。" missionText="比赛胜利 %d回/%d回" title="友情支撑" preConditionId="13" visualScene="scene14" readyStage="1-14" stepTitleId="13">
+    <Level difficult="0" rewardStockId="14702"/>
+  </Step>
+  <Step id="15" type="34" mode="single" synopsis="经过了小强的充电，皮蛋有了再次挑战的想法。|这回在比赛中，能否有所长进呢？" addToGarage="true" howToClear="请在和其他车手的道具赛中获胜。" missionText="比赛胜利 %d回/%d回" title="实战练习!" preConditionId="14" visualScene="scene15" readyStage="1-15" stepTitleId="14A" otherWayLockId="16">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="16" type="34" mode="single" synopsis="经过了小强的充电，皮蛋有了再次挑战的想法。|这回在比赛中，能否有所长进呢？" addToGarage="true" howToClear="请在和其他车手的道具赛中获胜。" missionText="比赛胜利 %d回/%d回" title="动真格的实战练习" preConditionId="14" visualScene="scene16" readyStage="1-16" stepTitleId="14B" otherWayLockId="15">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="17" type="30" mode="single" synopsis="一位谜一样的车手，他似乎拥有深不见底的实力！|一向自负的皮蛋怎肯放过这个挑战的机会？|它想和这位谜之车手一决高下！" addToGarage="true" howToClear="请在和谜之车手的比赛中获胜." missionText="比赛胜利 %d回/%d回" title="谜一样的车手" preConditionId="15|16" visualScene="scene17" readyStage="1-17" stepTitleId="15">
+    <Level difficult="0" rewardStockId="954"/>
+  </Step>
+  <Step id="18" type="34" mode="single" synopsis="虽然在竞速赛中获胜了，但是对手实力，|皮蛋无法准确预测。|于是开始的第2场比赛！|这次的道具赛，可不是皮蛋的强项！" addToGarage="true" howToClear="请在和谜之车手进行的道具赛中获胜。" missionText="比赛胜利 %d回/%d回" title="和谜之车手较量!" preConditionId="17" visualScene="scene18" readyStage="1-18" stepTitleId="16">
+    <Level difficult="0" rewardStockId="74"/>
+  </Step>
+  <Step id="19" type="30" mode="single" synopsis="和海盗船长决战的日子就在眼前了。|皮蛋加紧一切时间练习，做最后的战前准备！" addToGarage="true" howToClear="请在规定的时间内完成赛道。" missionText="完成赛道 %d回/%d回" title="最后的准备" preConditionId="18" visualScene="scene19" readyStage="1-19" stepTitleId="17">
+    <Level difficult="0" rewardStockId="4169"/>
+  </Step>
+  <Step id="20" type="30" mode="single" synopsis="想要打败海盗船长，必须进入决赛。|来不及想那么多了，比赛开始了！|坠饰能否失而复得？" addToGarage="true" howToClear="请在和其他车手的比赛中获胜。" missionText="比赛胜利 %d回/%d回" title="冰雪极速赛车大会" preConditionId="19" visualScene="scene20" readyStage="1-20" isFinalStep="true" stepTitleId="18">
+    <Level difficult="0" rewardStockId="3992"/>
+  </Step>
+</StepList>

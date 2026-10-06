@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <KnockOut track="pirate_R02" laps="2" isFixedKart="true" fixedKartId="875" type="rank" isFixedChar="true" fixedCharId="5">
+    <LevelContent level="0" ksv="result_20170425_0253" startOffset="1000">
+      <ShadowKart characterId="18" uniformId="0" kartId="957" colorId="8" dyeId="8" characterName="多多"/>
+      <ShadowKart characterId="15" uniformId="58" kartId="881" colorId="1" dyeId="1" characterName="海盜小嘍囉"/>
+      <ShadowKart characterId="15" uniformId="58" kartId="888" colorId="1" dyeId="1" characterName="海盜小嘍囉"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

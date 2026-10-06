@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="crewContainer" windowRect="0 0 164 186" adjust="0 0" visible="true" enable="true">
+  <Container name="crewInfoContainer" windowSize="164 186" adjust="0 0" visible="true" enable="true">
+    <Label name="crewItemId" visible="false" enable="false"/>
+    <Label name="kartSubItemId" visible="false" enable="false"/>
+    <ImageButton name="crewBtn" windowSize="164 186" adjust="0 0" autoLoadImage="slotItem_character_" alphaBlend="true"/>
+    <ImageBoard name="specificIcon" image="tag_theme_0@zz" windowSize="42 22" adjust="0 0" alphaBlend="true" visible="false" enable="false"/>
+    <Panel name="12TuningLevel" windowSize="30 28" align="top;right" adjust="10 10" texture="tuning_mark_s_1" alphaBlend="true" enable="false" visible="false"/>
+    <ItemWindow name="myCrew" windowSize="164 156" adjust="0 0" enable="false" alphaBlend="true"/>
+    <ColorLabel name="bonusAmountLbl" windowSize="164 50" adjust="0 144" text="0(-)" textColor="255 255 255 255" textRender="bold14" textAlign="center" visible="true" enable="false"/>
+    <ImageBoard name="crewCardSelectedBg" image="slot_selected" windowSize="172 194" adjust="-3 -3" alphaBlend="true" visible="false" enable="false"/>
+  </Container>
+</Container>

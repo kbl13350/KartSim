@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <AiKart id="1" track="village_I01" isFixedKart="true" fixedKartId="82" laps="3" gameType="item" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" item="Rocket;WaterBomb;WaterFly;Shield" aiItemLevel="1">
+      <AiKart characterId="61" uniformId="0" kartId="95" colorId="4" dyeId="4" balloonId="0" speed="49" accel="31" startTick="0" characterName="???"/>
+    </LevelContent>
+  </AiKart>
+</Root>

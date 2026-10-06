@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.074'
+	SteerConstraint='2.9'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.063'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.7'
+	TransformTime='250'   
+
+	StartForwardAccelFactorItem = '1.7'
+	StartBoosterTimeItem='1200'       
+
+	UseExtendedAfterBooster='true'
+	BoosterAccelFactorItem ='1.6'
+
+	EngineSound='cotton8'
+
+	WaveEffect='true'
+	SpecialSlotCapacity='2'
+
+	BoosterWaveType='boost8'
+	BoosterType='default'
+	BoosterType0='8soon'
+
+	DescBalance= '38'
+	DescStability ='36'
+	DescEngineGrade='1.25'
+	DescCornering='5'
+	DescEnchantCap = '20'
+
+	addModelFolder='pot1' 
+
+/>
+<!-- 아이템 카트 평준화 20130711 루루 R / HT 급 성능 추가 -->

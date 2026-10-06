@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='147'
+	BackwardAccelForce='100'
+	DragFactor='-0.0768'
+	TransAccelFactor='1.842'
+	SteerConstraint='3'
+	CornerDrawFactor='0.064'
+	antiCollideBalance='0.92'
+	StartForwardAccelFactorSpeed='1.65'
+	StartBoosterTimeSpeed='1500'
+	NormalBoosterTime='-100'
+	TeamBoosterTime='-200'
+	
+	DriftMaxGauge='-500'
+	DriftEscapeForce='1500'
+	DriftGaguePreservePercent='0.5'
+	DriftLeanFactor='-0.005'
+	
+	draftMulAccelFactor='1.15'
+	draftTick='2000'
+	driftBoostMulAccelFactor='1.15'
+	driftBoostTick='500'
+	chargeBoostBySpeed='300'
+	TransformTime='700'
+	autoChargeLowSpeed='100'
+	
+	DescBalance='48'
+	DescStability='50'
+	DescEngineGrade='1.35'
+	DescCornering='7'
+	DescEnchantCap='25'
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10sub1'
+	BoosterType3='10sub1'
+	BoosterType4='10main1'
+	BoosterType5='10main'
+            BoosterType6='10main'
+
+	Port0='mod2d1' 
+	Port1='mod2d2'
+
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+	FirePort2='mod2a3'
+            FirePort3='mod2c1'
+            FirePort4='mod2c2'
+
+	TailLampSize='0.13'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	WheelFixed = 'true'
+
+	addModelFolder='bike61'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 11 189 0' trailPort0='mod2a1' trailPort1='mod2a2'/>
+</BodyParam>

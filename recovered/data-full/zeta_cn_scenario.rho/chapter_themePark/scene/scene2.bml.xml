@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill8"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="所以说~在这里这么做.."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="不是~这儿要这么做~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="嘿~伙伴们~~~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="吓我一跳！|宝宝！你干嘛呀~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop4"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="惊吓成功|哈哈哈！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="黑妞" string="宝宝！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="不好意思..|开个玩笑.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="什么事？|这么一惊一乍的~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="真是的~|是好消息~ 好消息！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="normal"/>
+  <Char id="mos" pos="7 0" emotion="normal"/>
+  <Msg name="小强" string="好消息？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="嗯~ 好消息！|不是别的！|是这~附近正在施工，你们也知道吧？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="normal"/>
+  <Char id="mos" pos="4 0" emotion="normal"/>
+  <Msg name="小强/皮蛋" string="嗯！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="ani2"/>
+  <Msg name="宝宝" string="听说那里会开叫做跑跑游乐场的游乐场！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="黑妞" string="游乐场？？？？|真的！！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="当然！！|还有为了开业纪念在村庄会举行庆典！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="哇唔~ 游乐场还有庆典~|应该会很好玩~ 我们也去吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="stop1"/>
+  <Msg name="小强" string="真的~ 应该很有趣！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="那出发吧~！|谁来晚了就是傻瓜~|嗡嗡嗡~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop6"/>
+  <Msg name="黑妞" string="....."/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="皮蛋一起去啊~~~~"/>
+  <Enter/>
+</Scene>

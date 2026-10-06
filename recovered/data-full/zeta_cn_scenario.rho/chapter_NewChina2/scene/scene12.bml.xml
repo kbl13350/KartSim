@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china20"/>
+  <Char id="sharming" pos="3 0" emotion="stop4"/>
+  <Msg name="木兰" string="看来真的是用实力打败的他们呢？！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="lingling" pos="11 0" emotion="stop1"/>
+  <Msg name="凌凌" string="最近真是自信心上涨呢！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="5 0" emotion="stop4"/>
+  <Msg name="木兰" string="小小年纪怎么会有这么好的实力呢？"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" pos="4 0" emotion="stop1"/>
+  <Msg name="门神" string="真是令人惊讶！|有没有想法成为龙之车手呢？我会帮助你！"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop5"/>
+  <Msg name="凌凌" string="暂时还没有想法呢！不过感谢你认可我的实力~"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="hantao" pos="5 0" emotion="stop1"/>
+  <Msg name="门神" string="如果想法有变，可以随时来找我哦~"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" pos="5 0" emotion="stop2"/>
+  <Msg name="木兰" string="虽然有实力，但是龙之车手可不是那么轻易就能成为的哦~小妹妹。"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop1"/>
+  <Msg name="凌凌" string="相比成为龙之车手，我现在的首要目标是顺利完成传承仪式呢。"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="5 0" emotion="stop1"/>
+  <Msg name="木兰" string="话说回来！既然通过了门神的试炼，你的实力我也是非常认可呢。"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="sharming" pos="5 0" emotion="stop2"/>
+  <Msg name="木兰" string="怎么样，小妹妹？有没有兴趣跟我比一次呢？"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="lingling" pos="10 0" emotion="stop6"/>
+  <Msg name="凌凌" string="我才不是小妹妹呢！我是凌凌！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="hantao" pos="5 0" emotion="stop2"/>
+  <Msg name="门神" string="那就由我来公平的督战咯！"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="hantao" pos="5 0" emotion="stop1"/>
+  <Char id="lingling" pos="11 0" emotion="stop5"/>
+  <Msg name="凌凌" string="谢谢！那么我们开始吧~"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="5 0" emotion="stop4"/>
+  <Msg name="木兰" string="我也会全力应付的哟！不要放松！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="sharming" pos="6 0" emotion="stop2"/>
+  <Msg name="木兰" string="看好了！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <BackGround texture="china29"/>
+  <Char id="ghost" pos="1 0" emotion="stop1"/>
+  <Msg name="" string="（咻咻）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="china30"/>
+  <Char id="ghost" pos="4 0" emotion="stop1"/>
+  <Msg name="" string="（咻~咻）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="china20"/>
+  <Char id="lingling" pos="9 0" emotion="stop2"/>
+  <Msg name="凌凌" string="额？！变成好几个人了！怎么做到的？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="hantao" pos="5 0" emotion="stop3"/>
+  <Msg name="门神" string="预备，开始！"/>
+  <Enter/>
+</Scene>

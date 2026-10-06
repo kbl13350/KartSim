@@ -1,0 +1,1992 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<itemtable>
+		<character id='10' lucciUfo='100' />
+		<character id='16' lucciMine='100' lucciForceZone='100' />
+		<character id='56' name='contender_cn' orgColorId='3' />
+		<character id='63' name='innerWearSonogong_Red' orgColorId='1' sound='sonogong' goggleType='b' />
+		<character id='64' name='innerWearWonwon_Red' orgColorId='1' sound='wonwon' />
+		<character id='71' name='homrunDao_cn' sound='homrunDao' />
+		<character id='94' lucciUfo='10' />
+		<character id='219' lucciUfo='100' />
+		<character id='403' sound='pinkbin_cn' />
+		<character id='404' sound='tobenHero_cn' />
+		<character id='405' sound='dao' />
+		<character id='406' sound='yeti_cn' />
+		<character id='407' sound='orchid_cn' />
+		<character id='408' sound='lucid_cn' />
+		<kart id='32' iceBanana='100' />
+		<kart id='36' enchant='true' />
+		<kart id='37' enchant='true' />
+		<kart id='38' enchant='true' />
+		<kart id='39' enchant='true' />
+		<kart id='40' enchant='true' />
+		<kart id='41' enchant='true' />
+		<kart id='55' grade='4' enchant='false' />
+		<kart id='62' mine='70' banana='50' />
+		<kart id='64' waterAngel='100' />
+		<kart id='74' grade='6' engineGrade='2' />
+		<kart id='75' devil='100' />
+		<kart id='85' useTwoRocket='100' />
+		<kart id='97' uniqueLevel='3' />
+		<kart id='98' devil='100' />
+		<kart id='102' banana='100' />
+		<kart id='104' uniqueLevel='3' />
+		<kart id='110' uniqueLevel='3' />
+		<kart id='112' banana='100' />
+		<kart id='114' uniqueLevel='2' />
+		<kart id='115' uniqueLevel='3' />
+		<kart id='135' uniqueLevel='3' orgColorId='6' baseKart='0' addonId='0' />
+		<kart id='136' uniqueLevel='3' baseKart='0' addonId='0' />
+		<kart id='138' uniqueLevel='3' />
+		<kart id='139' uniqueLevel='3' baseKart='0' addonId='0' />
+		<kart id='149' uniqueLevel='3' orgColorId='8' baseKart='0' addonId='0' />
+		<kart id='153' eatMine='100' mine='100' eatForceZone='100' forceZone='100' />
+		<kart id='154' eatMine='100' mine='100' eatForceZone='100' forceZone='100' />
+		<kart id='158' uniqueLevel='3' />
+		<kart id='172' uniqueLevel='3' />
+		<kart id='178' uniqueLevel='3' />
+		<kart id='183' uniqueLevel='3' />
+		<kart id='196' banana='100' />
+		<kart id='198' uniqueLevel='3' />
+		<kart id='215' uniqueLevel='3' />
+		<kart id='220' uniqueLevel='3' />
+		<kart id='229' uniqueLevel='3' />
+		<kart id='230' uniqueLevel='3' />
+		<kart id='243' uniqueLevel='3' />
+		<kart id='246' uniqueLevel='3' />
+		<kart id='250' uniqueLevel='3' />
+		<kart id='256' uniqueLevel='3' />
+		<kart id='257' uniqueLevel='2' />
+		<kart id='268' banana='100' />
+		<kart id='273' lucciItemCube='10' />
+		<kart id='278' uniqueLevel='3' />
+		<kart id='280' uniqueLevel='2' />
+		<kart id='292' uniqueLevel='3' />
+		<kart id='295' uniqueLevel='3' />
+		<kart id='297' uniqueLevel='3' />
+		<kart id='299' uniqueLevel='2' />
+		<kart id='304' baseKart='302' addonId='60' />
+		<kart id='309' uniqueLevel='3' banana='100' />
+		<kart id='310' uniqueLevel='3' />
+		<kart id='315' grade='7' engineGrade='3' />
+		<kart id='319' uniqueLevel='3' />
+		<kart id='326' uniqueLevel='2' />
+		<kart id='329' uniqueLevel='2' />
+		<kart id='330' grade='6' engineGrade='2' />
+		<kart id='333' useTwoRocket='100' />
+		<kart id='338' uniqueLevel='2' />
+		<kart id='340' baseKart='339' addonId='53' />
+		<kart id='362' devil='100' />
+		<kart id='363' waterAngel='40' />
+		<kart id='364' uniqueLevel='3' waterAngel='40' />
+		<kart id='372' uniqueLevel='3' />
+		<kart id='373' uniqueLevel='3' grade='9' engineGrade='5' waterAngel='100' />
+		<kart id='374' devil='100' />
+		<kart id='376' uniqueLevel='3' t1ImageName='1_cn' enchant='true' />
+		<kart id='380' uniqueLevel='3' orgColorId='8' />
+		<kart id='388' grade='6' engineGrade='2' banana='100' />
+		<kart id='390' uniqueLevel='2' />
+		<kart id='392' uniqueLevel='3' />
+		<kart id='393' uniqueLevel='3' />
+		<kart id='395' grade='6' engineGrade='2' banana='100' />
+		<kart id='409' baseKart='285' addonId='57' />
+		<kart id='411' uniqueLevel='3' />
+		<kart id='412' uniqueLevel='3' />
+		<kart id='416' grade='6' engineGrade='2' />
+		<kart id='417' grade='6' engineGrade='2' />
+		<kart id='418' grade='6' engineGrade='2' />
+		<kart id='419' grade='6' engineGrade='2' />
+		<kart id='423' uniqueLevel='2' />
+		<kart id='427' banana='100' />
+		<kart id='430' lucciItemCube='10' />
+		<kart id='432' waterfly='-1,80' />
+		<kart id='433' uniqueLevel='2' grade='9' engineGrade='5' />
+		<kart id='440' uniqueLevel='2' />
+		<kart id='441' uniqueLevel='3' />
+		<kart id='442' uniqueLevel='3' />
+		<kart id='443' uniqueLevel='3' />
+		<kart id='444' uniqueLevel='3' waterAngel='40' />
+		<kart id='446' banana='100' />
+		<kart id='447' uniqueLevel='3' grade='9' engineGrade='5' waterAngel='100' />
+		<kart id='455' uniqueLevel='3' engineGrade='3' banana='100' />
+		<kart id='461' uniqueLevel='2' />
+		<kart id='462' uniqueLevel='3' />
+		<kart id='466' orgColorId='1' />
+		<kart id='468' uniqueLevel='3' />
+		<kart id='471' kartType='1' />
+		<kart id='472' uniqueLevel='3' />
+		<kart id='478' uniqueLevel='3' />
+		<kart id='482' uniqueLevel='3' engineGrade='3' />
+		<kart id='483' uniqueLevel='2' />
+		<kart id='484' uniqueLevel='2' />
+		<kart id='486' uniqueLevel='3' />
+		<kart id='487' waterfly='20,80' />
+		<kart id='494' uniqueLevel='3' />
+		<kart id='498' uniqueLevel='2' />
+		<kart id='499' uniqueLevel='2' />
+		<kart id='500' uniqueLevel='2' />
+		<kart id='501' grade='7' engineGrade='3' />
+		<kart id='512' grade='7' engineGrade='3' />
+		<kart id='513' grade='7' engineGrade='3' />
+		<kart id='514' grade='7' engineGrade='3' />
+		<kart id='515' uniqueLevel='3' />
+		<kart id='517' uniqueLevel='2' />
+		<kart id='520' banana='100' />
+		<kart id='521' uniqueLevel='3' grade='7' engineGrade='3' />
+		<kart id='523' grade='7' engineGrade='3' kartType='1' />
+		<kart id='524' grade='7' engineGrade='3' />
+		<kart id='525' uniqueLevel='2' grade='7' engineGrade='3' />
+		<kart id='526' uniqueLevel='2' />
+		<kart id='528' uniqueLevel='2' />
+		<kart id='533' grade='7' engineGrade='3' devil='100' />
+		<kart id='535' uniqueLevel='3' />
+		<kart id='538' grade='7' engineGrade='3' />
+		<kart id='539' grade='7' engineGrade='3' />
+		<kart id='540' uniqueLevel='2' />
+		<kart id='544' uniqueLevel='2' />
+		<kart id='546' grade='7' engineGrade='3' />
+		<kart id='547' uniqueLevel='2' />
+		<kart id='548' grade='7' engineGrade='3' banana='100' />
+		<kart id='554' uniqueLevel='3' grade='7' engineGrade='3' banana='100' />
+		<kart id='555' uniqueLevel='3' />
+		<kart id='561' grade='7' engineGrade='3' rocket='20' />
+		<kart id='567' name='g3700' subCat='7' uniqueLevel='2' grade='7' engineGrade='3' orgColorId='8' kartType='2' enchant='true' />
+		<kart id='568' name='vise4W' subCat='7' uniqueLevel='3' grade='7' engineGrade='3' orgColorId='26' kartType='2' enchant='true' />
+		<kart id='569' name='horus3' subCat='7' uniqueLevel='3' grade='7' engineGrade='3' orgColorId='1' kartType='1' enchant='true' />
+		<kart id='570' name='slrProGold' subCat='7' uniqueLevel='2' grade='7' engineGrade='3' orgColorId='1' kartType='2' enchant='true' />
+		<kart id='571' name='tank1' subCat='7' grade='7' engineGrade='3' orgColorId='10' kartType='1' enchant='true' mine='100' banana='100' />
+		<kart id='572' name='pumpkin2' subCat='7' grade='7' engineGrade='3' orgColorId='4' kartType='1' enchant='true' onlyWaterBomb='40' />
+		<kart id='574' name='volt3' subCat='7' grade='7' engineGrade='3' orgColorId='10' kartType='2' enchant='true' />
+		<kart id='575' name='rudolf9' subCat='7' grade='7' engineGrade='3' orgColorId='1' kartType='1' enchant='true' rocket='20' />
+		<kart id='576' name='cube1' subCat='7' grade='7' engineGrade='3' orgColorId='10' kartType='2' enchant='true' />
+		<kart id='579' name='zeno4' subCat='7' uniqueLevel='2' grade='7' engineGrade='3' orgColorId='6' kartType='2' enchant='true' />
+		<kart id='580' name='zeno5' subCat='7' uniqueLevel='2' grade='7' engineGrade='3' orgColorId='8' kartType='2' enchant='true' />
+		<kart id='581' name='protosix5' subCat='7' grade='8' orgColorId='24' kartType='2' enchant='true' />
+		<kart id='582' name='saber15' subCat='7' grade='7' engineGrade='3' orgColorId='1' kartType='2' enchant='true' />
+		<kart id='583' name='aegis1' subCat='7' grade='8' orgColorId='10' t1ImageName='1_cn' kartType='1' enchant='true' mine='100' banana='100' />
+		<kart id='584' name='mafia1' subCat='7' grade='8' orgColorId='8' kartType='1' enchant='true' useTwoRocket='100' />
+		<kart id='585' name='blackShark3' subCat='7' uniqueLevel='2' grade='8' orgColorId='1' kartType='1' enchant='true' onlyWaterBomb='100' />
+		<kart id='587' name='cotton18' subCat='7' uniqueLevel='2' grade='8' orgColorId='8' kartType='2' enchant='true' />
+		<kart id='588' name='snake1' subCat='7' uniqueLevel='3' grade='8' orgColorId='1' kartType='2' enchant='true' />
+		<kart id='589' name='snake2' subCat='7' uniqueLevel='3' grade='8' orgColorId='9' kartType='1' enchant='true' />
+		<kart id='592' uniqueLevel='3' grade='9' engineGrade='5' enchant='true' />
+		<kart id='593' uniqueLevel='2' />
+		<kart id='594' uniqueLevel='3' grade='9' engineGrade='5' />
+		<kart id='601' uniqueLevel='3' />
+		<kart id='606' uniqueLevel='0' />
+		<kart id='608' name='tank2' subCat='7' grade='8' orgColorId='8' kartType='1' enchant='true' rocket='0,80' useTwoRocket='100' />
+		<kart id='609' uniqueLevel='0' />
+		<kart id='610' uniqueLevel='3' banana='100' mineWithEggMine='100' />
+		<kart id='611' uniqueLevel='3' />
+		<kart id='615' uniqueLevel='3' />
+		<kart id='619' grade='7' engineGrade='3' />
+		<kart id='620' uniqueLevel='2' />
+		<kart id='622' banana='50' devil='100' />
+		<kart id='624' engineGrade='5' enchant='true' />
+		<kart id='626' uniqueLevel='0' />
+		<kart id='630' uniqueLevel='3' enchant='true' />
+		<kart id='631' uniqueLevel='3' defaultEnchant='703,603,102' />
+		<kart id='632' uniqueLevel='3' defaultEnchant='503,803,702' />
+		<kart id='634' fixedPlateId='221' defaultEnchant='703,602,101' />
+		<kart id='635' fixedPlateId='221' defaultEnchant='503,802,701' />
+		<kart id='636' uniqueLevel='3' />
+		<kart id='637' defaultEnchant='703,603' />
+		<kart id='638' defaultEnchant='503,803' />
+		<kart id='639' name='vulture' subCat='7' grade='8' engineGrade='4' orgColorId='1' kartType='2' enchant='true' />
+		<kart id='640' uniqueLevel='3' enchant='true' rocket='40' />
+		<kart id='651' defaultEnchant='603,903,702' />
+		<kart id='652' defaultEnchant='703,603,102' />
+		<kart id='653' defaultEnchant='503,803,602' />
+		<kart id='661' uniqueLevel='3' defaultEnchant='703,603,102' />
+		<kart id='662' uniqueLevel='2' defaultEnchant='603,903,702' />
+		<kart id='663' uniqueLevel='3' defaultEnchant='503,803,602' />
+		<kart id='664' uniqueLevel='3' banana='100' />
+		<kart id='666' enchant='true' />
+		<kart id='667' defaultEnchant='703,603,102' />
+		<kart id='668' defaultEnchant='503,803,702' />
+		<kart id='669' uniqueLevel='3' defaultEnchant='703,603,102' />
+		<kart id='670' uniqueLevel='3' defaultEnchant='503,803,702' />
+		<kart id='671' uniqueLevel='3' defaultEnchant='603,903,702' />
+		<kart id='682' grade='8' engineGrade='4' enchant='true' />
+		<kart id='683' grade='8' engineGrade='4' enchant='true' />
+		<kart id='684' uniqueLevel='2' enchant='true' />
+		<kart id='685' uniqueLevel='2' engineGrade='4' enchant='true' />
+		<kart id='686' grade='8' engineGrade='4' defaultEnchant='503,803,702' />
+		<kart id='688' grade='8' engineGrade='4' defaultEnchant='703,603,102' />
+		<kart id='689' grade='8' engineGrade='4' defaultEnchant='503,803,702' />
+		<kart id='690' enchant='true' waterAngel='100' />
+		<kart id='701' uniqueLevel='3' defaultEnchant='903,702,602' />
+		<kart id='702' grade='8' engineGrade='4' defaultEnchant='703,603,102' />
+		<kart id='706' orgColorId='5' enchant='true' />
+		<kart id='712' uniqueLevel='3' defaultEnchant='703,603,102' />
+		<kart id='715' defaultEnchant='703,603,102' />
+		<kart id='716' defaultEnchant='703,603,102' />
+		<kart id='717' defaultEnchant='703,603,102' />
+		<kart id='718' uniqueLevel='3' defaultEnchant='503,803,702' />
+		<kart id='721' uniqueLevel='2' enchant='true' />
+		<kart id='722' grade='9' engineGrade='5' enchant='true' />
+		<kart id='723' uniqueLevel='2' enchant='true' />
+		<kart id='739' name='sprint5' subCat='7' grade='8' orgColorId='10' kartType='2' enchant='true' />
+		<kart id='744' defaultEnchant='703,603,102' />
+		<kart id='745' defaultEnchant='503,803,702' />
+		<kart id='747' grade='9' engineGrade='5' enchant='true' devil='100' />
+		<kart id='750' uniqueLevel='3' defaultEnchant='903,702,602' />
+		<kart id='752' uniqueLevel='3' enchant='true' />
+		<kart id='753' uniqueLevel='3' defaultEnchant='703,603' />
+		<kart id='754' uniqueLevel='3' defaultEnchant='503,803' />
+		<kart id='755' uniqueLevel='2' enchant='true' />
+		<kart id='756' grade='9' engineGrade='5' enchant='true' />
+		<kart id='757' uniqueLevel='2' enchant='true' />
+		<kart id='758' uniqueLevel='2' enchant='true' />
+		<kart id='759' uniqueLevel='2' defaultEnchant='703,603,102' />
+		<kart id='760' uniqueLevel='2' defaultEnchant='503,803,702' />
+		<kart id='761' uniqueLevel='2' defaultEnchant='603,903,702' />
+		<kart id='762' uniqueLevel='2' defaultEnchant='903,702,602' />
+		<kart id='763' uniqueLevel='2' onlyWaterBomb='100' />
+		<kart id='764' enchant='true' />
+		<kart id='767' uniqueLevel='2' defaultEnchant='703,603,102' />
+		<kart id='768' uniqueLevel='2' defaultEnchant='503,803,702' />
+		<kart id='769' enchant='true' />
+		<kart id='770' uniqueLevel='3' enchant='true' />
+		<kart id='771' uniqueLevel='3' enchant='true' />
+		<kart id='772' uniqueLevel='3' enchant='true' waterfly='20,80' />
+		<kart id='773' uniqueLevel='3' enchant='true' />
+		<kart id='774' uniqueLevel='2' enchant='true' />
+		<kart id='781' grade='9' engineGrade='5' enchant='true' onlyWaterBomb='40' />
+		<kart id='782' enchant='true' />
+		<kart id='783' uniqueLevel='2' enchant='true' />
+		<kart id='784' uniqueLevel='2' enchant='true' lucciItemCube='10' />
+		<kart id='785' uniqueLevel='2' enchant='true' />
+		<kart id='787' uniqueLevel='3' defaultEnchant='603,903,702' />
+		<kart id='788' uniqueLevel='3' defaultEnchant='903,702,602' />
+		<kart id='789' uniqueLevel='3' enchant='true' />
+		<kart id='791' enchant='true' />
+		<kart id='792' grade='9' engineGrade='5' enchant='true' />
+		<kart id='794' name='lodi12_albert' subCat='7' grade='8' orgColorId='5' t1ImageName='1_cn' kartType='2' enchant='true' />
+		<kart id='795' enchant='false' />
+		<kart id='796' enchant='true' />
+		<kart id='797' kartType='1' enchant='true' />
+		<kart id='798' uniqueLevel='2' enchant='true' />
+		<kart id='799' uniqueLevel='2' engineGrade='5' kartType='1' eatMine='100' mine='100' banana='100' mineWithEggMine='100' mineWithKindOfEgg='100' />
+		<kart id='800' enchant='true' />
+		<kart id='802' uniqueLevel='3' defaultEnchant='903,702,602' />
+		<kart id='803' uniqueLevel='3' defaultEnchant='603,903,702' />
+		<kart id='804' enchant='true' />
+		<kart id='805' enchant='true' />
+		<kart id='806' enchant='true' />
+		<kart id='807' uniqueLevel='3' enchant='true' />
+		<kart id='809' uniqueLevel='3' enchant='true' />
+		<kart id='810' uniqueLevel='2' enchant='true' />
+		<kart id='811' enchant='true' />
+		<kart id='812' enchant='true' />
+		<kart id='813' uniqueLevel='3' enchant='true' />
+		<kart id='814' uniqueLevel='3' enchant='true' />
+		<kart id='817' uniqueLevel='3' enchant='true' />
+		<kart id='818' uniqueLevel='3' enchant='true' />
+		<kart id='819' enchant='true' />
+		<kart id='820' enchant='true' devil='100' />
+		<kart id='821' enchant='true' />
+		<kart id='822' uniqueLevel='3' enchant='true' />
+		<kart id='823' uniqueLevel='2' enchant='true' />
+		<kart id='824' enchant='true' />
+		<kart id='826' uniqueLevel='3' enchant='true' eatMine='100' mine='100' banana='100' useTwoRocket='100' mineWithEggMine='100' mineWithKindOfEgg='100' waterMine='100' />
+		<kart id='827' uniqueLevel='3' enchant='true' />
+		<kart id='828' uniqueLevel='3' enchant='true' />
+		<kart id='829' enchant='true' />
+		<kart id='830' enchant='true' />
+		<kart id='831' uniqueLevel='1' enchant='true' />
+		<kart id='832' uniqueLevel='2' enchant='true' />
+		<kart id='833' enchant='true' />
+		<kart id='834' enchant='true' waterAngel='100' />
+		<kart id='835' uniqueLevel='2' enchant='true' />
+		<kart id='837' enchant='true' />
+		<kart id='838' enchant='true' />
+		<kart id='839' uniqueLevel='3' enchant='true' />
+		<kart id='840' uniqueLevel='2' enchant='true' />
+		<kart id='841' uniqueLevel='2' enchant='true' />
+		<kart id='842' uniqueLevel='3' engineGrade='5' kartType='1' enchant='true' waterAngel='100' />
+		<kart id='843' enchant='true' />
+		<kart id='844' enchant='true' />
+		<kart id='845' enchant='true' />
+		<kart id='846' enchant='true' disassemble='false' />
+		<kart id='847' enchant='true' />
+		<kart id='849' enchant='true' />
+		<kart id='850' enchant='true' />
+		<kart id='852' uniqueLevel='2' grade='10' engineGrade='6' enchant='true' waterAngel='100' />
+		<kart id='853' enchant='true' devil='100' waterAngel='100' />
+		<kart id='854' uniqueLevel='2' enchant='true' />
+		<kart id='855' uniqueLevel='3' enchant='true' />
+		<kart id='856' enchant='true' banana='100' />
+		<kart id='858' enchant='true' />
+		<kart id='859' enchant='true' />
+		<kart id='860' uniqueLevel='3' enchant='true' />
+		<kart id='862' enchant='true' waterAngel='100' />
+		<kart id='863' enchant='true' />
+		<kart id='864' uniqueLevel='3' enchant='true' />
+		<kart id='865' enchant='true' />
+		<kart id='866' enchant='true' banana='100' waterAngel='100' />
+		<kart id='867' enchant='true' />
+		<kart id='868' enchant='true' useTwoRocket='100' />
+		<kart id='869' enchant='true' />
+		<kart id='871' uniqueLevel='3' enchant='true' />
+		<kart id='872' uniqueLevel='2' enchant='true' />
+		<kart id='873' enchant='true' rocket='40' useTwoRocket='100' />
+		<kart id='874' enchant='true' />
+		<kart id='875' enchant='true' />
+		<kart id='877' enchant='true' />
+		<kart id='878' uniqueLevel='2' enchant='true' onlyWaterBomb='40' />
+		<kart id='879' uniqueLevel='3' enchant='true' />
+		<kart id='880' enchant='true' />
+		<kart id='881' enchant='true' devil='100' />
+		<kart id='882' uniqueLevel='3' enchant='true' />
+		<kart id='883' uniqueLevel='3' enchant='true' />
+		<kart id='884' enchant='true' />
+		<kart id='885' enchant='true' />
+		<kart id='887' uniqueLevel='3' enchant='true' />
+		<kart id='888' enchant='true' />
+		<kart id='889' enchant='true' disassemble='false' />
+		<kart id='890' enchant='true' disassemble='false' />
+		<kart id='891' uniqueLevel='2' enchant='true' />
+		<kart id='894' enchant='true' />
+		<kart id='895' enchant='true' banana='100' />
+		<kart id='896' enchant='true' />
+		<kart id='899' enchant='true' />
+		<kart id='900' enchant='true' />
+		<kart id='901' uniqueLevel='3' enchant='true' banana='100' waterAngel='100' />
+		<kart id='902' uniqueLevel='3' enchant='true' />
+		<kart id='903' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='904' enchant='true' onlyWaterBomb='100' />
+		<kart id='905' uniqueLevel='2' enchant='true' />
+		<kart id='906' enchant='true' />
+		<kart id='907' enchant='true' />
+		<kart id='909' enchant='true' />
+		<kart id='910' enchant='true' banana='100' />
+		<kart id='911' enchant='true' banana='100' />
+		<kart id='913' uniqueLevel='1' enchant='true' />
+		<kart id='919' enchant='true' />
+		<kart id='920' enchant='true' />
+		<kart id='922' uniqueLevel='3' enchant='true' />
+		<kart id='925' fixedPlateId='221' devil='100' />
+		<kart id='927' enchant='true' />
+		<kart id='928' enchant='true' banana='100' />
+		<kart id='929' enchant='true' waterfly='20,80' waterAngel='100' />
+		<kart id='930' enchant='true' />
+		<kart id='931' enchant='true' rocket='20' onlyWaterBomb='40' />
+		<kart id='932' enchant='true' />
+		<kart id='933' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='935' uniqueLevel='2' enchant='true' />
+		<kart id='936' uniqueLevel='3' enchant='true' onlyWaterBomb='100' />
+		<kart id='937' uniqueLevel='2' enchant='true' />
+		<kart id='938' uniqueLevel='3' enchant='true' waterfly='20,80' />
+		<kart id='939' uniqueLevel='3' enchant='true' />
+		<kart id='940' enchant='true' useTwoRocket='100' />
+		<kart id='941' enchant='true' />
+		<kart id='942' enchant='true' banana='100' />
+		<kart id='943' enchant='true' />
+		<kart id='944' enchant='true' />
+		<kart id='945' enchant='true' />
+		<kart id='946' enchant='true' />
+		<kart id='947' enchant='true' />
+		<kart id='948' enchant='true' />
+		<kart id='949' enchant='true' waterfly='20,80' />
+		<kart id='950' enchant='true' onlyWaterBomb='40' />
+		<kart id='951' enchant='true' />
+		<kart id='952' enchant='true' banana='100' devil='100' />
+		<kart id='953' uniqueLevel='3' enchant='true' />
+		<kart id='955' uniqueLevel='2' enchant='true' />
+		<kart id='956' enchant='true' />
+		<kart id='957' enchant='true' />
+		<kart id='958' enchant='true' rocket='40' />
+		<kart id='959' enchant='true' />
+		<kart id='960' enchant='true' banana='100' useTwoRocket='100' />
+		<kart id='961' enchant='true' />
+		<kart id='962' enchant='true' />
+		<kart id='963' uniqueLevel='2' enchant='true' />
+		<kart id='967' enchant='true' />
+		<kart id='972' enchant='true' onlyWaterBomb='40' />
+		<kart id='973' enchant='true' />
+		<kart id='974' uniqueLevel='3' enchant='true' mine='100' banana='100' waterMine='100' />
+		<kart id='975' enchant='true' waterAngel='100' useTwoRocket='100' />
+		<kart id='976' enchant='true' waterAngel='100' />
+		<kart id='977' uniqueLevel='2' enchant='true' />
+		<kart id='978' uniqueLevel='1' enchant='true' />
+		<kart id='979' enchant='true' banana='100' />
+		<kart id='981' enchant='true' onlyWaterBomb='40' />
+		<kart id='982' enchant='true' />
+		<kart id='983' enchant='true' lucciItemCube='10' />
+		<kart id='984' enchant='true' />
+		<kart id='997' enchant='true' banana='100' />
+		<kart id='998' enchant='true' />
+		<kart id='999' enchant='true' rocket='20' onlyWaterBomb='40' />
+		<kart id='1001' uniqueLevel='2' enchant='true' />
+		<kart id='1002' enchant='true' rocket='30' />
+		<kart id='1003' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='1004' enchant='true' />
+		<kart id='1005' uniqueLevel='3' enchant='true' />
+		<kart id='1006' enchant='true' />
+		<kart id='1007' uniqueLevel='2' enchant='true' />
+		<kart id='1008' uniqueLevel='2' enchant='true' waterAngel='100' />
+		<kart id='1009' uniqueLevel='3' enchant='true' />
+		<kart id='1010' enchant='true' />
+		<kart id='1012' uniqueLevel='3' waterfly='20,80' />
+		<kart id='1013' enchant='true' />
+		<kart id='1014' enchant='false' />
+		<kart id='1017' uniqueLevel='2' enchant='true' />
+		<kart id='1018' uniqueLevel='3' enchant='true' waterfly='20,80' waterAngel='100' />
+		<kart id='1019' uniqueLevel='3' enchant='true' />
+		<kart id='1020' enchant='true' waterAngel='100' onlyWaterBomb='20' />
+		<kart id='1021' uniqueLevel='3' enchant='true' />
+		<kart id='1022' uniqueLevel='3' enchant='true' />
+		<kart id='1023' uniqueLevel='3' enchant='true' />
+		<kart id='1024' uniqueLevel='3' enchant='true' />
+		<kart id='1029' uniqueLevel='2' enchant='true' />
+		<kart id='1030' enchant='true' />
+		<kart id='1031' uniqueLevel='2' enchant='true' />
+		<kart id='1032' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='1033' enchant='true' />
+		<kart id='1034' uniqueLevel='2' enchant='true' />
+		<kart id='1035' uniqueLevel='2' enchant='true' />
+		<kart id='1036' enchant='true' />
+		<kart id='1037' enchant='true' />
+		<kart id='1040' uniqueLevel='3' enchant='true' />
+		<kart id='1041' enchant='true' />
+		<kart id='1042' enchant='true' />
+		<kart id='1044' uniqueLevel='2' enchant='true' />
+		<kart id='1045' uniqueLevel='1' enchant='true' />
+		<kart id='1046' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='1048' enchant='true' onlyWaterBomb='40' />
+		<kart id='1050' enchant='true' />
+		<kart id='1051' enchant='true' />
+		<kart id='1052' uniqueLevel='3' enchant='true' />
+		<kart id='1053' enchant='true' mine='100' banana='100' waterMine='100' />
+		<kart id='1054' uniqueLevel='2' enchant='true' />
+		<kart id='1055' enchant='true' />
+		<kart id='1056' uniqueLevel='3' enchant='true' />
+		<kart id='1057' uniqueLevel='3' enchant='true' />
+		<kart id='1058' uniqueLevel='3' enchant='true' />
+		<kart id='1059' enchant='true' />
+		<kart id='1060' enchant='true' banana='100' />
+		<kart id='1061' uniqueLevel='2' enchant='true' />
+		<kart id='1062' uniqueLevel='3' enchant='true' useTwoRocket='100' />
+		<kart id='1064' uniqueLevel='3' enchant='true' />
+		<kart id='1065' enchant='true' />
+		<kart id='1066' uniqueLevel='3' enchant='true' devil='100' />
+		<kart id='1067' uniqueLevel='3' enchant='true' />
+		<kart id='1068' uniqueLevel='2' enchant='true' waterAngel='100' />
+		<kart id='1069' uniqueLevel='2' enchant='true' />
+		<kart id='1070' uniqueLevel='4' enchant='true' />
+		<kart id='1071' uniqueLevel='2' enchant='true' mine='100' banana='100' waterAngel='100' waterMine='100' />
+		<kart id='1072' uniqueLevel='3' enchant='true' />
+		<kart id='1073' uniqueLevel='3' enchant='true' />
+		<kart id='1074' uniqueLevel='2' enchant='true' />
+		<kart id='1075' uniqueLevel='3' enchant='true' mine='100' banana='100' waterMine='100' />
+		<kart id='1077' enchant='true' rocket='40' useTwoRocket='100' />
+		<kart id='1078' uniqueLevel='2' enchant='true' />
+		<kart id='1083' uniqueLevel='4' enchant='true' />
+		<kart id='1085' uniqueLevel='3' enchant='true' />
+		<kart id='1086' uniqueLevel='4' enchant='true' banana='100' />
+		<kart id='1087' uniqueLevel='3' enchant='true' />
+		<kart id='1089' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='1090' uniqueLevel='3' enchant='true' />
+		<kart id='1091' enchant='true' />
+		<kart id='1092' enchant='true' />
+		<kart id='1093' uniqueLevel='3' enchant='true' waterAngel='100' onlyWaterBomb='20' />
+		<kart id='1094' enchant='true' />
+		<kart id='1096' uniqueLevel='4' enchant='true' disassemble='false' />
+		<kart id='1097' uniqueLevel='4' enchant='true' disassemble='false' />
+		<kart id='1098' uniqueLevel='1' enchant='true' />
+		<kart id='1100' uniqueLevel='3' enchant='true' />
+		<kart id='1103' uniqueLevel='2' enchant='true' />
+		<kart id='1104' uniqueLevel='2' enchant='true' />
+		<kart id='1105' uniqueLevel='4' enchant='true' onlyWaterBomb='40' />
+		<kart id='1107' uniqueLevel='4' enchant='true' />
+		<kart id='1108' uniqueLevel='4' enchant='true' />
+		<kart id='1109' uniqueLevel='4' enchant='true' />
+		<kart id='1110' uniqueLevel='4' enchant='true' />
+		<kart id='1111' uniqueLevel='4' enchant='true' />
+		<kart id='1112' uniqueLevel='3' enchant='true' />
+		<kart id='1113' uniqueLevel='4' enchant='true' banana='100' />
+		<kart id='1114' uniqueLevel='4' enchant='true' />
+		<kart id='1115' uniqueLevel='4' enchant='true' />
+		<kart id='1117' uniqueLevel='4' enchant='true' />
+		<kart id='1118' uniqueLevel='4' enchant='true' />
+		<kart id='1119' uniqueLevel='3' enchant='true' />
+		<kart id='1121' uniqueLevel='3' enchant='true' />
+		<kart id='1122' uniqueLevel='4' enchant='true' />
+		<kart id='1123' uniqueLevel='4' enchant='true' waterAngel='100' />
+		<kart id='1124' uniqueLevel='4' enchant='true' devil='100' />
+		<kart id='1125' uniqueLevel='4' enchant='true' />
+		<kart id='1126' uniqueLevel='2' enchant='true' />
+		<kart id='1128' uniqueLevel='4' enchant='true' lucciItemCube='10' />
+		<kart id='1129' uniqueLevel='2' enchant='true' mine='100' banana='100' waterMine='100' />
+		<kart id='1130' uniqueLevel='4' enchant='true' devil='100' waterAngel='100' />
+		<kart id='1131' uniqueLevel='2' />
+		<kart id='1132' uniqueLevel='3' enchant='true' />
+		<kart id='1133' uniqueLevel='2' enchant='true' />
+		<kart id='1135' enchant='true' />
+		<kart id='1138' uniqueLevel='3' enchant='true' />
+		<kart id='1139' uniqueLevel='3' enchant='true' />
+		<kart id='1140' uniqueLevel='2' enchant='true' />
+		<kart id='1141' uniqueLevel='3' enchant='true' waterfly='20,80' />
+		<kart id='1142' uniqueLevel='4' enchant='true' />
+		<kart id='1143' uniqueLevel='4' enchant='true' waterAngel='100' onlyWaterBomb='20' />
+		<kart id='1146' uniqueLevel='3' enchant='true' />
+		<kart id='1147' uniqueLevel='4' enchant='true' waterAngel='100' />
+		<kart id='1148' uniqueLevel='2' enchant='true' />
+		<kart id='1149' uniqueLevel='2' enchant='true' waterAngel='100' />
+		<kart id='1159' uniqueLevel='4' enchant='true' />
+		<kart id='1160' uniqueLevel='2' enchant='true' />
+		<kart id='1161' uniqueLevel='3' enchant='true' />
+		<kart id='1162' uniqueLevel='4' enchant='true' waterAngel='100' useTwoRocket='100' />
+		<kart id='1164' uniqueLevel='3' enchant='true' mine='100' banana='100' useTwoRocket='100' waterMine='100' />
+		<kart id='1165' uniqueLevel='4' enchant='true' />
+		<kart id='1168' uniqueLevel='3' enchant='true' />
+		<kart id='1169' uniqueLevel='4' enchant='true' />
+		<kart id='1170' uniqueLevel='2' enchant='true' />
+		<kart id='1172' uniqueLevel='2' />
+		<kart id='1173' uniqueLevel='4' enchant='true' waterAngel='100' />
+		<kart id='1174' uniqueLevel='4' enchant='true' onlyWaterBomb='100' waterflyToWaterBomb='100' />
+		<kart id='1175' uniqueLevel='4' enchant='true' />
+		<kart id='1176' uniqueLevel='2' enchant='true' />
+		<kart id='1177' uniqueLevel='4' enchant='true' />
+		<kart id='1178' uniqueLevel='2' enchant='true' />
+		<kart id='1184' uniqueLevel='2' enchant='true' onlyWaterBomb='30' />
+		<kart id='1185' uniqueLevel='3' enchant='true' />
+		<kart id='1186' enchant='true' />
+		<kart id='1187' uniqueLevel='4' enchant='true' />
+		<kart id='1188' uniqueLevel='4' enchant='true' />
+		<kart id='1189' uniqueLevel='3' enchant='true' onlyWaterBomb='100' allflyToAllBomb='100' />
+		<kart id='1190' uniqueLevel='4' enchant='true' banana='100' />
+		<kart id='1191' uniqueLevel='3' enchant='true' />
+		<kart id='1192' uniqueLevel='4' enchant='true' />
+		<kart id='1193' uniqueLevel='3' enchant='true' />
+		<kart id='1194' uniqueLevel='3' enchant='true' />
+		<kart id='1196' uniqueLevel='2' enchant='true' />
+		<kart id='1197' uniqueLevel='4' enchant='true' useTwoRocket='100' />
+		<kart id='1198' uniqueLevel='4' enchant='true' mine='100' banana='100' waterAngel='100' mineWithEggMine='100' waterMine='100' />
+		<kart id='1199' uniqueLevel='2' enchant='true' />
+		<kart id='1200' uniqueLevel='4' enchant='true' />
+		<kart id='1201' uniqueLevel='4' enchant='true' rocket='40,80' />
+		<kart id='1203' uniqueLevel='1' enchant='true' />
+		<kart id='1204' uniqueLevel='1' enchant='true' />
+		<kart id='1208' uniqueLevel='2' enchant='true' />
+		<kart id='1209' uniqueLevel='4' enchant='true' />
+		<kart id='1210' uniqueLevel='3' enchant='true' devil='100' waterAngel='100' />
+		<kart id='1211' uniqueLevel='3' enchant='true' />
+		<kart id='1213' uniqueLevel='2' enchant='true' waterAngel='100' />
+		<kart id='1214' uniqueLevel='3' enchant='true' />
+		<kart id='1215' uniqueLevel='2' enchant='true' />
+		<kart id='1217' uniqueLevel='4' enchant='true' />
+		<kart id='1218' uniqueLevel='3' enchant='true' />
+		<kart id='1219' uniqueLevel='4' enchant='true' />
+		<kart id='1220' uniqueLevel='4' enchant='true' />
+		<kart id='1223' uniqueLevel='3' enchant='true' />
+		<kart id='1224' uniqueLevel='4' enchant='true' />
+		<kart id='1227' uniqueLevel='1' />
+		<kart id='1228' uniqueLevel='4' enchant='true' />
+		<kart id='1229' uniqueLevel='3' enchant='true' />
+		<kart id='1230' uniqueLevel='3' enchant='true' waterAngel='100' lucciItemCube='10' />
+		<kart id='1231' uniqueLevel='4' enchant='true' />
+		<kart id='1232' uniqueLevel='3' enchant='true' />
+		<kart id='1233' uniqueLevel='2' enchant='true' />
+		<kart id='1234' uniqueLevel='3' grade='6' engineGrade='2' enchant='true' />
+		<kart id='1235' uniqueLevel='3' enchant='true' />
+		<kart id='1236' uniqueLevel='4' enchant='true' />
+		<kart id='1238' uniqueLevel='2' enchant='true' />
+		<kart id='1246' uniqueLevel='3' enchant='true' />
+		<kart id='1247' uniqueLevel='1' enchant='true' />
+		<kart id='1248' uniqueLevel='2' enchant='true' />
+		<kart id='1249' uniqueLevel='3' enchant='true' />
+		<kart id='1250' uniqueLevel='1' enchant='true' />
+		<kart id='1258' uniqueLevel='4' enchant='true' mine='100' banana='100' waterMine='100' />
+		<kart id='1259' uniqueLevel='2' enchant='true' />
+		<kart id='1260' uniqueLevel='2' grade='8' engineGrade='5' enchant='true' mine='100' banana='100' mineWithEggMine='100' waterMine='100' />
+		<kart id='1262' enchant='true' />
+		<kart id='1263' uniqueLevel='3' enchant='true' />
+		<kart id='1265' uniqueLevel='2' enchant='true' />
+		<kart id='1266' uniqueLevel='2' enchant='true' />
+		<kart id='1267' uniqueLevel='3' enchant='true' waterfly='30,80' waterAngel='100' />
+		<kart id='1269' uniqueLevel='2' enchant='true' />
+		<kart id='1270' uniqueLevel='3' grade='9' enchant='true' devil='100' />
+		<kart id='1271' uniqueLevel='3' grade='7' enchant='true' />
+		<kart id='1272' uniqueLevel='3' enchant='true' />
+		<kart id='1273' uniqueLevel='3' enchant='true' />
+		<kart id='1274' uniqueLevel='3' enchant='true' />
+		<kart id='1275' uniqueLevel='3' enchant='true' />
+		<kart id='1276' uniqueLevel='1' enchant='true' />
+		<kart id='1277' uniqueLevel='2' enchant='true' />
+		<kart id='1278' uniqueLevel='4' enchant='true' />
+		<kart id='1279' uniqueLevel='4' enchant='true' />
+		<kart id='1280' uniqueLevel='4' enchant='true' />
+		<kart id='1281' uniqueLevel='4' enchant='true' waterfly='30' />
+		<kart id='1282' uniqueLevel='4' enchant='true' onlyWaterBomb='30' />
+		<kart id='1283' uniqueLevel='4' enchant='true' />
+		<kart id='1284' uniqueLevel='3' enchant='true' />
+		<kart id='1285' uniqueLevel='2' enchant='true' />
+		<kart id='1286' uniqueLevel='2' enchant='true' />
+		<kart id='1287' uniqueLevel='3' enchant='true' />
+		<kart id='1288' uniqueLevel='3' enchant='true' />
+		<kart id='1289' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='1299' uniqueLevel='3' enchant='true' />
+		<kart id='1300' uniqueLevel='2' enchant='true' waterAngel='100' />
+		<kart id='1302' uniqueLevel='3' enchant='true' />
+		<kart id='1303' uniqueLevel='2' enchant='true' />
+		<kart id='1304' uniqueLevel='2' enchant='true' />
+		<kart id='1305' uniqueLevel='4' enchant='true' disassemble='false' />
+		<kart id='1306' uniqueLevel='4' enchant='true' />
+		<kart id='1307' uniqueLevel='2' enchant='true' />
+		<kart id='1308' uniqueLevel='4' enchant='true' />
+		<kart id='1309' uniqueLevel='2' enchant='true' />
+		<kart id='1310' uniqueLevel='4' enchant='true' disassemble='false' />
+		<kart id='1311' uniqueLevel='4' enchant='true' disassemble='false' />
+		<kart id='1336' uniqueLevel='4' enchant='true' />
+		<kart id='1337' uniqueLevel='4' enchant='true' />
+		<kart id='1338' uniqueLevel='1' enchant='true' />
+		<kart id='1340' uniqueLevel='4' enchant='true' />
+		<kart id='1341' uniqueLevel='4' enchant='true' />
+		<kart id='1342' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='1343' uniqueLevel='4' enchant='true' />
+		<kart id='1344' uniqueLevel='3' enchant='true' />
+		<kart id='1345' uniqueLevel='4' enchant='true' waterAngel='100' />
+		<kart id='1346' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='1347' uniqueLevel='2' enchant='true' />
+		<kart id='1348' uniqueLevel='1' enchant='true' />
+		<kart id='1349' uniqueLevel='4' enchant='true' />
+		<kart id='1350' uniqueLevel='3' enchant='true' />
+		<kart id='1351' uniqueLevel='3' enchant='true' />
+		<kart id='1352' uniqueLevel='4' enchant='true' />
+		<kart id='1353' uniqueLevel='4' enchant='true' devil='100' />
+		<kart id='1356' uniqueLevel='4' enchant='true' />
+		<kart id='1357' uniqueLevel='3' enchant='true' />
+		<kart id='1358' uniqueLevel='3' enchant='true' mine='100' banana='100' waterMine='100' />
+		<kart id='1359' name='estocV1_gold' uniqueLevel='6' orgColorId='10' enchant='true' disassemble='false' />
+		<kart id='1360' uniqueLevel='3' enchant='true' />
+		<kart id='1361' uniqueLevel='2' enchant='true' />
+		<kart id='1362' uniqueLevel='2' enchant='true' />
+		<kart id='1364' uniqueLevel='4' enchant='true' />
+		<kart id='1365' uniqueLevel='3' enchant='true' />
+		<kart id='1366' uniqueLevel='4' enchant='true' />
+		<kart id='1367' uniqueLevel='3' enchant='true' disassemble='false' />
+		<kart id='1368' uniqueLevel='3' enchant='true' devil='100' />
+		<kart id='1369' uniqueLevel='3' enchant='true' />
+		<kart id='1370' uniqueLevel='3' enchant='true' />
+		<kart id='1371' uniqueLevel='4' enchant='true' />
+		<kart id='1372' uniqueLevel='3' enchant='true' />
+		<kart id='1375' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='1376' uniqueLevel='3' enchant='true' />
+		<kart id='1379' uniqueLevel='6' enchant='true' disassemble='false' />
+		<kart id='1380' uniqueLevel='3' enchant='true' useTwoRocket='100' />
+		<kart id='1381' uniqueLevel='3' enchant='true' />
+		<kart id='1382' uniqueLevel='4' enchant='true' />
+		<kart id='1383' uniqueLevel='3' enchant='true' />
+		<kart id='1384' uniqueLevel='3' enchant='true' />
+		<kart id='1385' uniqueLevel='3' enchant='true' />
+		<kart id='1386' uniqueLevel='2' enchant='true' />
+		<kart id='1387' uniqueLevel='2' enchant='true' />
+		<kart id='1388' uniqueLevel='2' enchant='true' waterAngel='100' />
+		<kart id='1389' uniqueLevel='3' enchant='true' />
+		<kart id='1390' uniqueLevel='3' enchant='true' />
+		<kart id='1391' uniqueLevel='3' enchant='true' />
+		<kart id='1393' uniqueLevel='3' enchant='true' />
+		<kart id='1394' uniqueLevel='3' enchant='true' />
+		<kart id='1395' uniqueLevel='3' enchant='true' />
+		<kart id='1396' uniqueLevel='5' enchant='true' />
+		<kart id='1397' uniqueLevel='5' enchant='true' />
+		<kart id='1398' uniqueLevel='3' enchant='true' />
+		<kart id='1399' uniqueLevel='3' enchant='true' mine='100' banana='100' devil='100' waterMine='100' />
+		<kart id='1400' uniqueLevel='3' enchant='true' />
+		<kart id='1401' uniqueLevel='2' enchant='true' />
+		<kart id='1402' uniqueLevel='2' enchant='true' waterAngel='100' />
+		<kart id='1403' uniqueLevel='5' enchant='true' />
+		<kart id='1404' uniqueLevel='5' enchant='true' useTwoGoldRocket='100' />
+		<kart id='1405' uniqueLevel='3' enchant='true' />
+		<kart id='1406' uniqueLevel='3' enchant='true' />
+		<kart id='1407' uniqueLevel='4' enchant='true' />
+		<kart id='1408' uniqueLevel='4' enchant='true' banana='100' />
+		<kart id='1409' uniqueLevel='3' enchant='true' banana='100' />
+		<kart id='1410' uniqueLevel='2' enchant='true' mine='100' banana='100' waterMine='100' />
+		<kart id='1411' uniqueLevel='5' enchant='true' />
+		<kart id='1412' uniqueLevel='3' kartType='1' enchant='true' rocket='40' useTwoRocket='100' />
+		<kart id='1413' uniqueLevel='3' enchant='true' />
+		<kart id='1415' uniqueLevel='4' enchant='true' />
+		<kart id='1417' uniqueLevel='3' enchant='true' banana='100' />
+		<kart id='1418' name='taegeukV1_zz' uniqueLevel='3' orgColorId='8' enchant='true' />
+		<kart id='1419' name='taegeukV1Legend_zz' uniqueLevel='2' orgColorId='85' enchant='true' />
+		<kart id='1420' uniqueLevel='3' enchant='true' />
+		<kart id='1421' uniqueLevel='3' enchant='true' />
+		<kart id='1422' uniqueLevel='4' enchant='true' onlyWaterBomb='100' waterflyToWaterBomb='100' />
+		<kart id='1423' uniqueLevel='3' enchant='true' onlyWaterBomb='100' allflyToAllBomb='100' />
+		<kart id='1424' uniqueLevel='2' enchant='true' onlyWaterBomb='100' allflyToAllBomb='100' />
+		<kart id='1425' uniqueLevel='3' enchant='true' />
+		<kart id='1426' uniqueLevel='3' enchant='true' waterfly='20,80' />
+		<kart id='1428' uniqueLevel='3' enchant='true' waterAngel='100' />
+		<kart id='1430' uniqueLevel='2' enchant='true' />
+		<kart id='1431' uniqueLevel='2' enchant='true' />
+		<kart id='1432' uniqueLevel='3' enchant='true' />
+		<kart id='1433' uniqueLevel='3' enchant='true' />
+		<kart id='1435' uniqueLevel='3' enchant='true' />
+		<kart id='1436' enchant='true' devil='100' />
+		<kart id='1438' enchant='true' />
+		<kart id='1439' enchant='true' waterAngel='100' useTwoRocket='100' />
+		<kart id='1440' uniqueLevel='2' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1442' uniqueLevel='3' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1443' uniqueLevel='3' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1444' uniqueLevel='3' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1445' uniqueLevel='3' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1446' uniqueLevel='3' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1447' uniqueLevel='3' grade='12' engineGrade='8' t1ImageName='1_cn' enchant='true' />
+		<kart id='1448' uniqueLevel='3' grade='12' engineGrade='8' t1ImageName='1_cn' enchant='true' mine='100' banana='100' waterMine='100' />
+		<kart id='1449' uniqueLevel='3' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1450' uniqueLevel='2' grade='12' engineGrade='8' enchant='true' waterAngel='100' />
+		<kart id='1451' uniqueLevel='3' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1452' uniqueLevel='2' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1453' uniqueLevel='3' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1454' uniqueLevel='3' grade='12' engineGrade='8' enchant='true' />
+		<kart id='1455' grade='12' engineGrade='8' mine='100' banana='100' mineWithEggMine='100' waterMine='100' />
+		<kart id='1457' grade='12' engineGrade='8' mine='100' banana='100' waterMine='100' siren='100' />
+		<kart id='1460' grade='12' engineGrade='8' devil='100' />
+		<kart id='1462' grade='12' engineGrade='8' waterAngel='100' />
+		<kart id='1467' grade='12' engineGrade='8' waterAngel='100' />
+		<kart id='1469' grade='12' engineGrade='8' mine='100' banana='100' waterMine='100' />
+		<kart id='1477' grade='12' engineGrade='8' devil='100' />
+		<kart id='1482' grade='12' engineGrade='8' siren='100' />
+		<kart id='1484' grade='12' engineGrade='8' devil='100' />
+		<kart id='1487' grade='12' engineGrade='8' mine='100' banana='100' mineWithEggMine='100' waterMine='100' />
+		<kart id='1494' grade='12' engineGrade='8' devil='100' />
+		<kart id='1497' grade='12' engineGrade='8' waterfly='80,80' mine='100' banana='100' waterMine='100' />
+		<kart id='1500' grade='12' engineGrade='8' waterAngel='100' />
+		<kart id='1502' grade='12' engineGrade='8' waterMine='100' />
+		<kart id='1505' grade='12' engineGrade='8' waterAngel='100' />
+		<kart id='1507' grade='12' engineGrade='8' useTwoRocket='100' />
+		<kart id='1511' uniqueLevel='3' grade='12' engineGrade='8' mine='100' banana='100' waterMine='100' />
+		<kart id='1513' uniqueLevel='4' grade='13' engineGrade='9' orgColorId='50' kartType='1' waterAngel='100' useTwoRocket='100' />
+		<kart id='1522' grade='13' engineGrade='9' banana='100' />
+		<kart id='1524' grade='13' engineGrade='9' waterfly='30' onlyWaterBomb='30' waterMine='100' />
+		<kart id='1526' grade='13' engineGrade='9' devil='100' waterAngel='100' />
+		<kart id='1536' grade='13' engineGrade='9' devil='100' />
+		<kart id='1543' grade='13' engineGrade='9' mine='100' banana='100' waterAngel='100' waterMine='100' />
+		<kart id='1554' grade='13' engineGrade='9' banana='100' devil='100' useTwoRocket='100' />
+		<kart id='1555' grade='13' engineGrade='9' waterAngel='100' />
+		<kart id='1557' uniqueLevel='3' grade='13' engineGrade='9' kartType='1' devil='100' />
+		<kart id='1565' grade='13' engineGrade='9' mine='100' banana='100' waterMine='100' />
+		<kart id='1567' grade='13' engineGrade='9' waterAngel='100' />
+		<kart id='1569' grade='13' engineGrade='9' useTwoRocket='100' />
+		<kart id='1571' grade='13' engineGrade='9' mine='100' banana='100' waterMine='100' />
+		<kart id='1573' grade='13' engineGrade='9' devil='100' />
+		<kart id='1575' grade='13' engineGrade='9' waterAngel='100' />
+		<kart id='1579' grade='13' engineGrade='9' onlyWaterBomb='30' />
+		<kart id='1581' grade='13' engineGrade='9' kartType='1' banana='100' />
+		<kart id='1585' grade='13' engineGrade='9' devil='100' waterAngel='100' />
+		<kart id='1588' grade='13' engineGrade='9' useTwoGoldRocket='100' />
+		<kart id='1590' grade='13' engineGrade='9' waterAngel='100' />
+		<kart id='1591' grade='13' engineGrade='9' devil='100' />
+		<kart id='1592' grade='13' engineGrade='9' devil='100' />
+		<kart id='1594' grade='13' engineGrade='9' banana='100' />
+		<kart id='1597' grade='13' engineGrade='9' waterAngel='100' />
+		<kart id='1600' grade='13' engineGrade='9' mine='100' banana='100' mineWithEggMine='100' waterMine='100' />
+		<kart id='1605' grade='13' engineGrade='9' useTwoRocket='100' />
+		<kart id='1607' grade='13' engineGrade='9' banana='100' />
+		<kart id='1610' grade='13' engineGrade='9' onlyWaterBomb='40' />
+		<kart id='1612' grade='13' engineGrade='9' rocket='40,80' />
+		<kart id='1613' grade='13' engineGrade='9' waterfly='20,80' />
+		<kart id='1615' grade='13' engineGrade='9' mine='100' banana='100' waterMine='100' />
+		<kart id='1620' grade='13' engineGrade='9' devil='100' waterAngel='100' />
+		<kart id='1625' grade='13' engineGrade='9' banana='100' />
+		<kart id='1627' grade='13' engineGrade='9' onlyWaterBomb='100' allflyToAllBomb='100' />
+		<kart id='1631' grade='13' engineGrade='9' devil='100' />
+		<kart id='1633' grade='13' engineGrade='9' waterAngel='100' />
+		<kart id='1638' grade='13' engineGrade='9' banana='100' />
+		<plate id='227' name='7주년기념번호판@cn' />
+		<goggle id='3' trans='0.85' />
+		<goggle id='4' trans='0.85' />
+		<goggle id='6' trans='0.7' />
+		<goggle id='12' trans='0.7' />
+		<goggle id='14' trans='0.7' />
+		<goggle id='15' trans='0.7' />
+		<goggle id='16' trans='0.7' />
+		<goggle id='17' trans='0.85' />
+		<goggle id='19' trans='0.85' />
+		<goggle id='21' trans='0.7' />
+		<goggle id='22' trans='0.7' />
+		<goggle id='23' trans='0.85' />
+		<goggle id='24' trans='0.7' />
+		<goggle id='27' trans='0.85' />
+		<goggle id='30' trans='0.7' />
+		<goggle id='31' trans='0.7' />
+		<goggle id='32' trans='0.7' />
+		<goggle id='34' trans='0.7' />
+		<goggle id='35' trans='0.85' />
+		<goggle id='37' trans='0.85' />
+		<goggle id='38' trans='0.7' />
+		<goggle id='42' trans='0.85' />
+		<goggle id='45' trans='0.7' />
+		<goggle id='46' trans='0.7' />
+		<goggle id='47' trans='0.85' />
+		<goggle id='48' trans='0.7' />
+		<goggle id='50' trans='0.7' />
+		<goggle id='52' trans='0.7' />
+		<goggle id='53' trans='0.7' />
+		<goggle id='54' trans='0.7' />
+		<goggle id='55' trans='0.7' />
+		<goggle id='56' trans='0.7' />
+		<goggle id='57' trans='0.7' />
+		<goggle id='59' trans='0.7' />
+		<goggle id='60' trans='0.7' />
+		<goggle id='61' trans='0.7' />
+		<goggle id='62' trans='0.7' />
+		<goggle id='63' trans='0.7' />
+		<goggle id='69' trans='0.7' />
+		<goggle id='74' trans='0.7' />
+		<goggle id='80' trans='0.7' />
+		<goggle id='82' trans='0.7' />
+		<goggle id='94' trans='0.7' />
+		<goggle id='95' trans='0.7' />
+		<goggle id='96' trans='0.7' />
+		<goggle id='99' trans='0.7' />
+		<goggle id='107' trans='0.7' />
+		<goggle id='110' trans='0.7' />
+		<goggle id='116' trans='0.7' />
+		<goggle id='118' trans='0.7' />
+		<goggle id='134' trans='0.7' />
+		<goggle id='135' trans='0.7' />
+		<goggle id='149' trans='0.7' />
+		<goggle id='151' trans='0.7' />
+		<goggle id='152' trans='0.7' />
+		<goggle id='153' trans='0.7' />
+		<goggle id='155' trans='0.7' />
+		<goggle id='157' trans='0.7' />
+		<goggle id='158' trans='0.7' />
+		<goggle id='161' trans='0.7' />
+		<goggle id='163' trans='0.7' />
+		<goggle id='164' trans='0.7' />
+		<goggle id='165' trans='0.7' />
+		<goggle id='167' trans='0.7' />
+		<goggle id='170' trans='0.7' />
+		<goggle id='171' trans='0.7' />
+		<goggle id='172' trans='0.7' />
+		<goggle id='173' trans='0.7' />
+		<goggle id='174' trans='0.7' />
+		<goggle id='175' trans='0.7' />
+		<goggle id='176' trans='0.7' />
+		<goggle id='177' trans='0.7' />
+		<goggle id='179' trans='0.7' />
+		<goggle id='180' trans='0.7' />
+		<goggle id='186' trans='0.7' />
+		<goggle id='187' trans='0.7' />
+		<goggle id='193' trans='0.7' />
+		<goggle id='194' trans='0.7' />
+		<goggle id='201' trans='0.7' />
+		<goggle id='202' trans='0.7' />
+		<goggle id='203' trans='0.7' />
+		<goggle id='204' trans='0.7' />
+		<goggle id='210' trans='0.7' />
+		<goggle id='211' trans='0.7' />
+		<goggle id='212' trans='0.7' />
+		<goggle id='214' trans='0.7' />
+		<goggle id='215' trans='0.7' />
+		<goggle id='217' trans='0.7' />
+		<goggle id='218' trans='0.7' />
+		<goggle id='219' trans='0.7' />
+		<goggle id='220' trans='0.7' />
+		<goggle id='221' trans='0.7' />
+		<goggle id='222' trans='0.7' />
+		<goggle id='223' trans='0.7' />
+		<goggle id='224' trans='0.7' />
+		<goggle id='225' trans='0.7' />
+		<goggle id='226' trans='0.7' />
+		<goggle id='227' trans='0.7' />
+		<goggle id='228' trans='0.7' />
+		<goggle id='229' trans='0.7' />
+		<goggle id='230' trans='0.7' />
+		<goggle id='231' trans='0.7' />
+		<goggle id='232' trans='0.7' />
+		<goggle id='236' trans='0.7' />
+		<goggle id='237' trans='0.7' />
+		<goggle id='250' trans='0.7' />
+		<goggle id='30000' trans='0.7' />
+		<goggle id='30001' trans='0.7' />
+		<goggle id='30002' trans='0.7' />
+		<goggle id='30003' trans='0.7' />
+		<goggle id='30004' trans='0.7' />
+		<goggle id='30005' trans='0.7' />
+		<goggle id='30006' trans='0.7' />
+		<goggle id='30007' trans='0.7' />
+		<goggle id='30008' trans='0.7' />
+		<goggle id='30009' trans='0.7' />
+		<balloon id='1' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='2' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='3' effect='1' />
+		<balloon id='11' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='12' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='15' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='34' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='45' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='46' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='47' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' effect='1' />
+		<balloon id='50' effect='1' />
+		<balloon id='51' effect='2' />
+		<balloon id='52' effect='1' />
+		<balloon id='55' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='57' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='59' effect='4' />
+		<balloon id='60' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='69' effect='1' />
+		<balloon id='71' effect='2' />
+		<balloon id='74' effect='2' />
+		<balloon id='76' effect='2' />
+		<balloon id='80' effect='2' />
+		<balloon id='84' effect='2' />
+		<balloon id='96' effect='1' />
+		<balloon id='101' effect='1' />
+		<balloon id='118' effect='1' />
+		<balloon id='119' effect='1' />
+		<balloon id='122' effect='1' />
+		<balloon id='123' effect='2' />
+		<balloon id='125' effect='2' />
+		<balloon id='128' effect='1' />
+		<balloon id='136' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='137' effect='2' />
+		<balloon id='139' effect='2' />
+		<balloon id='140' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='142' effect='1' />
+		<balloon id='143' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' />
+		<balloon id='162' pos='0 0.7 1.5' floatingForce='120.0' viscousDrag='3.0' wireLengthLimit='1.5' effect='1' />
+		<balloon id='174' effect='3' />
+		<balloon id='175' effect='2' />
+		<balloon id='180' effect='2' />
+		<balloon id='182' effect='2' />
+		<balloon id='184' effect='2' />
+		<balloon id='185' effect='2' />
+		<balloon id='186' effect='1' />
+		<balloon id='187' effect='2' />
+		<balloon id='195' effect='2' />
+		<balloon id='196' effect='2' />
+		<balloon id='199' effect='2' />
+		<balloon id='206' effect='2' />
+		<balloon id='209' effect='1' />
+		<balloon id='210' effect='1' />
+		<balloon id='211' effect='1' />
+		<balloon id='212' effect='1' />
+		<balloon id='214' effect='2' />
+		<balloon id='223' effect='2' />
+		<balloon id='225' effect='1' />
+		<balloon id='234' effect='1' />
+		<balloon id='251' effect='2' />
+		<balloon id='252' effect='2' />
+		<balloon id='263' effect='2' />
+		<balloon id='265' effect='1' />
+		<balloon id='267' effect='1' />
+		<balloon id='270' effect='3' />
+		<balloon id='279' effect='2' />
+		<balloon id='310' effect='1' />
+		<balloon id='311' effect='1' />
+		<balloon id='312' effect='2' />
+		<balloon id='324' effect='1' />
+		<balloon id='333' effect='3' />
+		<balloon id='334' effect='2' />
+		<balloon id='337' effect='1' />
+		<balloon id='366' effect='2' prob='88' />
+		<balloon id='367' effect='3' />
+		<balloon id='368' effect='3' />
+		<balloon id='387' effect='1' />
+		<balloon id='423' effect='2' />
+		<balloon id='424' effect='2' />
+		<balloon id='437' effect='1' />
+		<balloon id='442' />
+		<balloon id='445' name='중국5주년기념풍선' effect='1' />
+		<balloon id='480' effect='3' />
+		<balloon id='486' effect='2' />
+		<balloon id='490' effect='4' />
+		<balloon id='505' effect='2' />
+		<balloon id='506' effect='1' />
+		<balloon id='527' effect='2' />
+		<balloon id='570' effect='2' />
+		<balloon id='573' effect='2' />
+		<balloon id='574' effect='2' />
+		<balloon id='575' effect='2' />
+		<balloon id='595' effect='3' />
+		<balloon id='596' effect='3' />
+		<balloon id='597' effect='3' />
+		<balloon id='598' effect='3' />
+		<balloon id='601' effect='2' />
+		<balloon id='626' effect='4' />
+		<balloon id='627' effect='1' />
+		<balloon id='645' effect='1' />
+		<balloon id='649' effect='2' />
+		<balloon id='673' effect='2' />
+		<balloon id='678' effect='3' />
+		<balloon id='679' effect='3' />
+		<balloon id='700' effect='3' />
+		<balloon id='701' effect='3' />
+		<balloon id='702' effect='3' />
+		<balloon id='741' effect='1' />
+		<balloon id='762' effect='1' />
+		<balloon id='784' effect='3' />
+		<balloon id='786' effect='3' />
+		<balloon id='794' effect='1' />
+		<balloon id='795' effect='1' />
+		<balloon id='796' effect='1' />
+		<balloon id='798' effect='1' />
+		<balloon id='807' effect='1' />
+		<balloon id='810' effect='1' />
+		<balloon id='812' effect='1' />
+		<balloon id='819' effect='1' />
+		<balloon id='825' effect='3' />
+		<balloon id='828' effect='2' />
+		<balloon id='848' effect='1' />
+		<balloon id='855' effect='1' />
+		<balloon id='861' effect='1' />
+		<balloon id='870' effect='1' />
+		<balloon id='872' effect='1' />
+		<balloon id='873' effect='1' />
+		<balloon id='875' effect='1' />
+		<balloon id='876' effect='1' />
+		<balloon id='886' effect='1' />
+		<balloon id='894' effect='1' />
+		<balloon id='900' effect='1' />
+		<balloon id='904' effect='2' />
+		<balloon id='912' effect='1' />
+		<balloon id='913' effect='1' />
+		<balloon id='914' effect='2' />
+		<balloon id='917' effect='2' />
+		<balloon id='927' effect='2' />
+		<balloon id='965' effect='1' />
+		<balloon id='976' effect='2' />
+		<balloon id='983' effect='4' />
+		<balloon id='984' effect='4' />
+		<balloon id='985' effect='4' />
+		<balloon id='986' effect='4' />
+		<balloon id='987' effect='4' />
+		<balloon id='998' effect='4' />
+		<balloon id='1007' effect='2' />
+		<balloon id='1020' effect='2' prob='80' />
+		<balloon id='1022' effect='2' prob='80' />
+		<balloon id='1030' effect='2' />
+		<balloon id='1034' effect='2' />
+		<balloon id='1035' effect='2' />
+		<balloon id='1036' effect='2' />
+		<balloon id='1038' effect='2' />
+		<balloon id='1039' effect='2' />
+		<balloon id='1040' effect='2' />
+		<balloon id='1041' effect='2' />
+		<balloon id='1042' effect='2' />
+		<balloon id='1045' effect='2' />
+		<balloon id='1046' effect='2' />
+		<balloon id='1051' effect='2' />
+		<balloon id='1052' effect='2' />
+		<balloon id='1053' effect='2' />
+		<balloon id='1063' effect='3' />
+		<balloon id='1065' effect='1' />
+		<balloon id='1066' effect='1' />
+		<balloon id='1067' effect='1' />
+		<balloon id='1070' effect='1' />
+		<balloon id='1085' effect='1' />
+		<balloon id='1093' effect='2' />
+		<balloon id='1094' effect='2' />
+		<balloon id='1097' effect='1' />
+		<balloon id='1099' effect='2' />
+		<balloon id='1105' effect='2' />
+		<balloon id='1111' effect='2' />
+		<balloon id='1112' effect='2' />
+		<balloon id='1113' effect='1' />
+		<balloon id='1114' effect='1' />
+		<balloon id='1118' effect='2' />
+		<balloon id='1119' effect='2' />
+		<balloon id='1125' effect='2' />
+		<balloon id='1126' effect='2' />
+		<balloon id='1128' effect='2' />
+		<balloon id='1129' effect='2' />
+		<balloon id='1130' effect='2' />
+		<balloon id='1131' effect='2' />
+		<balloon id='1132' effect='2' />
+		<balloon id='1133' effect='2' />
+		<balloon id='1134' effect='1' prob='20' />
+		<balloon id='1135' effect='2' prob='80' />
+		<balloon id='1136' effect='1' prob='80' />
+		<balloon id='1137' effect='1' prob='80' />
+		<balloon id='1138' effect='1' prob='80' />
+		<balloon id='1142' effect='2' />
+		<balloon id='1144' effect='2' />
+		<balloon id='1146' effect='2' />
+		<balloon id='1147' effect='1' />
+		<balloon id='1148' effect='1' />
+		<balloon id='1149' effect='1' />
+		<balloon id='1150' effect='1' />
+		<balloon id='1151' effect='1' />
+		<balloon id='1152' effect='1' />
+		<balloon id='1153' effect='1' />
+		<balloon id='1154' effect='2' />
+		<balloon id='1156' effect='2' />
+		<balloon id='1166' effect='1' />
+		<balloon id='1178' effect='2' />
+		<balloon id='1195' effect='2' />
+		<balloon id='1197' effect='1' />
+		<balloon id='1212' effect='1' />
+		<balloon id='1216' effect='1' />
+		<balloon id='1222' effect='1' />
+		<balloon id='1229' effect='2' />
+		<balloon id='1230' effect='2' />
+		<balloon id='1245' effect='1' />
+		<balloon id='1246' effect='1' />
+		<balloon id='1247' effect='1' />
+		<balloon id='1248' effect='1' />
+		<balloon id='1249' effect='1' />
+		<balloon id='1250' effect='2' />
+		<balloon id='1251' effect='2' />
+		<balloon id='1260' effect='1' />
+		<balloon id='1261' effect='1' />
+		<balloon id='1262' effect='1' />
+		<balloon id='1263' effect='2' />
+		<balloon id='1264' effect='2' />
+		<balloon id='1265' effect='1' />
+		<balloon id='1266' effect='1' />
+		<balloon id='1270' effect='2' />
+		<balloon id='1283' effect='1' />
+		<balloon id='1284' effect='2' />
+		<balloon id='1286' effect='2' />
+		<balloon id='1289' effect='2' />
+		<balloon id='1290' effect='2' />
+		<balloon id='1291' effect='2' />
+		<balloon id='1293' effect='2' />
+		<balloon id='1294' effect='1' />
+		<balloon id='1295' effect='2' />
+		<balloon id='1296' effect='1' />
+		<balloon id='1297' effect='2' />
+		<balloon id='1298' effect='2' />
+		<balloon id='1299' effect='2' />
+		<balloon id='1300' effect='1' />
+		<balloon id='1301' effect='2' />
+		<balloon id='1312' effect='2' />
+		<balloon id='1313' effect='2' />
+		<balloon id='1322' effect='1' />
+		<balloon id='1323' effect='1' />
+		<balloon id='1324' effect='1' />
+		<balloon id='1325' effect='1' />
+		<balloon id='1326' effect='1' />
+		<balloon id='1327' effect='1' />
+		<balloon id='1328' effect='1' />
+		<balloon id='1329' effect='2' />
+		<balloon id='1330' effect='2' />
+		<balloon id='1331' effect='2' />
+		<balloon id='1332' effect='1' />
+		<balloon id='1333' effect='2' />
+		<balloon id='1334' effect='2' />
+		<balloon id='1335' effect='2' />
+		<balloon id='1340' effect='2' />
+		<balloon id='1341' effect='2' />
+		<balloon id='1344' effect='2' />
+		<balloon id='1346' effect='2' />
+		<balloon id='1348' effect='2' />
+		<balloon id='1349' effect='2' />
+		<balloon id='1352' effect='2' />
+		<balloon id='1353' effect='2' />
+		<balloon id='1355' effect='2' />
+		<balloon id='1356' effect='1' />
+		<balloon id='1357' effect='2' />
+		<balloon id='1358' effect='2' />
+		<balloon id='1360' effect='2' />
+		<balloon id='1362' effect='2' />
+		<balloon id='1427' name='대나무팬더풍선' effect='2' />
+		<balloon id='30008' effect='2' />
+		<balloon id='30011' effect='2' prob='85' />
+		<balloon id='30012' effect='2' prob='85' />
+		<balloon id='30013' effect='2' prob='90' />
+		<balloon id='30041' effect='1' />
+		<balloon id='30042' effect='2' prob='88' />
+		<headBand id='3' probability='50' />
+		<headBand id='4' probability='50' />
+		<headBand id='8' probability='50' />
+		<headBand id='9' probability='50' />
+		<headBand id='10' probability='50' />
+		<headBand id='11' probability='50' />
+		<headBand id='12' probability='50' />
+		<headBand id='15' probability='50' />
+		<headBand id='17' probability='50' />
+		<headBand id='18' probability='50' />
+		<headBand id='19' probability='50' />
+		<headBand id='20' probability='50' />
+		<headBand id='22' probability='50' />
+		<headBand id='24' probability='50' />
+		<headBand id='25' probability='50' />
+		<headBand id='26' probability='50' />
+		<headBand id='28' probability='50' />
+		<headBand id='34' probability='50' />
+		<headBand id='35' probability='50' />
+		<headBand id='36' probability='50' />
+		<headBand id='44' probability='50' />
+		<headBand id='45' probability='50' />
+		<headBand id='47' probability='50' />
+		<headBand id='49' probability='50' />
+		<headBand id='50' probability='50' />
+		<headBand id='53' probability='50' />
+		<headBand id='63' probability='50' />
+		<headBand id='65' probability='50' />
+		<headBand id='66' probability='50' />
+		<headBand id='68' probability='50' />
+		<headBand id='69' probability='50' />
+		<headBand id='71' probability='50' />
+		<headBand id='73' probability='50' />
+		<headBand id='74' probability='50' />
+		<headBand id='76' probability='50' />
+		<headBand id='77' probability='50' />
+		<headBand id='78' probability='50' />
+		<headBand id='79' probability='50' />
+		<headBand id='81' probability='50' />
+		<headBand id='84' probability='50' />
+		<headBand id='88' probability='50' />
+		<headBand id='90' probability='50' />
+		<headBand id='91' probability='50' />
+		<headBand id='92' probability='50' />
+		<headBand id='93' probability='50' />
+		<headBand id='94' probability='50' />
+		<headBand id='95' probability='50' />
+		<headBand id='96' probability='50' />
+		<headBand id='97' probability='50' />
+		<headBand id='98' probability='50' />
+		<headBand id='101' probability='50' />
+		<headBand id='104' probability='100' />
+		<headBand id='105' probability='50' />
+		<headBand id='106' probability='50' />
+		<headBand id='107' probability='50' />
+		<headBand id='108' probability='50' />
+		<headBand id='111' probability='50' />
+		<headBand id='112' probability='50' />
+		<headBand id='119' probability='50' />
+		<headBand id='120' probability='50' />
+		<headBand id='121' probability='50' />
+		<headBand id='130' probability='50' />
+		<headBand id='131' probability='50' />
+		<headBand id='132' probability='50' />
+		<headBand id='135' probability='50' />
+		<headBand id='140' probability='50' />
+		<headBand id='141' probability='50' />
+		<headBand id='142' probability='50' />
+		<headBand id='146' probability='50' />
+		<headBand id='147' probability='100' />
+		<headBand id='150' probability='50' />
+		<headBand id='157' probability='50' />
+		<headBand id='158' probability='50' />
+		<headBand id='161' probability='70' />
+		<headBand id='162' probability='50' />
+		<headBand id='163' probability='50' />
+		<headBand id='164' probability='50' />
+		<headBand id='169' probability='50' />
+		<headBand id='172' probability='50' />
+		<headBand id='175' probability='50' />
+		<headBand id='180' probability='50' />
+		<headBand id='184' probability='50' />
+		<headBand id='189' probability='50' />
+		<headBand id='191' probability='50' />
+		<headBand id='192' probability='50' />
+		<headBand id='193' probability='50' />
+		<headBand id='198' probability='50' />
+		<headBand id='205' probability='50' />
+		<headBand id='209' probability='50' />
+		<headBand id='210' probability='50' />
+		<headBand id='228' probability='50' />
+		<headBand id='229' probability='50' />
+		<headBand id='230' probability='50' />
+		<headBand id='232' probability='50' />
+		<headBand id='234' probability='50' />
+		<headBand id='236' probability='50' />
+		<headBand id='239' probability='50' />
+		<headBand id='241' probability='50' />
+		<headBand id='244' probability='50' />
+		<headBand id='245' probability='50' />
+		<headBand id='246' probability='50' />
+		<headBand id='247' probability='50' />
+		<headBand id='251' probability='50' />
+		<headBand id='252' probability='50' />
+		<headBand id='254' probability='50' />
+		<headBand id='259' probability='50' />
+		<headBand id='260' probability='50' />
+		<headBand id='261' probability='50' />
+		<headBand id='263' probability='50' />
+		<headBand id='264' probability='50' />
+		<headBand id='269' probability='50' />
+		<headBand id='270' probability='50' />
+		<headBand id='272' probability='50' />
+		<headBand id='275' name='7주년머리띠cn' probability='50' />
+		<headBand id='276' probability='50' />
+		<headBand id='277' probability='50' />
+		<headBand id='278' probability='50' />
+		<headBand id='284' probability='50' />
+		<headBand id='286' probability='50' />
+		<headBand id='291' probability='50' />
+		<headBand id='297' probability='50' />
+		<headBand id='298' probability='50' />
+		<headBand id='308' probability='50' />
+		<headBand id='313' probability='50' />
+		<headBand id='315' probability='50' />
+		<headBand id='319' probability='50' />
+		<headBand id='320' probability='50' />
+		<headBand id='321' probability='50' />
+		<headBand id='322' probability='50' />
+		<headBand id='327' probability='50' />
+		<headBand id='331' probability='50' />
+		<headBand id='332' probability='50' />
+		<headBand id='334' probability='50' />
+		<headBand id='339' probability='50' />
+		<headBand id='344' probability='50' />
+		<headBand id='347' probability='50' />
+		<headBand id='348' probability='50' />
+		<headBand id='349' probability='50' />
+		<headBand id='362' name='커플반지밴드' probability='50' />
+		<headBand id='376' probability='50' />
+		<headBand id='377' probability='50' />
+		<headBand id='378' probability='50' />
+		<headBand id='379' probability='50' />
+		<headBand id='380' probability='50' />
+		<headBand id='392' probability='50' />
+		<headBand id='397' probability='50' />
+		<headBand id='404' probability='50' />
+		<headBand id='415' probability='50' />
+		<headBand id='417' probability='50' />
+		<headBand id='436' probability='50' />
+		<headBand id='439' probability='50' />
+		<headBand id='440' probability='50' />
+		<headBand id='441' probability='50' />
+		<headBand id='449' probability='50' />
+		<headBand id='455' probability='50' />
+		<headBand id='459' probability='50' />
+		<headBand id='467' probability='70' />
+		<headBand id='469' probability='50' />
+		<headBand id='471' probability='50' />
+		<headBand id='475' probability='50' />
+		<headBand id='476' probability='50' />
+		<headBand id='477' probability='50' />
+		<headBand id='478' probability='50' />
+		<headBand id='479' probability='50' />
+		<headBand id='480' probability='50' />
+		<headBand id='481' probability='50' />
+		<headBand id='482' probability='70' />
+		<headBand id='483' probability='50' />
+		<headBand id='496' probability='50' />
+		<headBand id='499' probability='50' />
+		<headBand id='501' probability='50' />
+		<headBand id='502' probability='50' />
+		<headBand id='505' probability='50' />
+		<headBand id='506' probability='50' />
+		<headBand id='508' probability='50' />
+		<headBand id='509' probability='50' />
+		<headBand id='510' probability='50' />
+		<headBand id='511' probability='50' />
+		<headBand id='512' probability='50' />
+		<headBand id='515' probability='50' />
+		<headBand id='517' probability='50' />
+		<headBand id='518' probability='50' />
+		<headBand id='519' probability='50' />
+		<headBand id='522' probability='50' />
+		<headBand id='523' probability='50' />
+		<headBand id='524' probability='50' />
+		<headBand id='527' probability='50' />
+		<headBand id='529' probability='50' />
+		<headBand id='530' probability='50' />
+		<headBand id='531' probability='50' />
+		<headBand id='532' probability='70' />
+		<headBand id='533' probability='70' />
+		<headBand id='534' probability='70' />
+		<headBand id='535' probability='50' />
+		<headBand id='536' probability='50' />
+		<headBand id='537' probability='50' />
+		<headBand id='538' probability='50' />
+		<headBand id='539' probability='50' />
+		<headBand id='540' probability='50' />
+		<headBand id='541' probability='50' />
+		<headBand id='544' probability='50' />
+		<headBand id='551' probability='50' />
+		<headBand id='555' probability='50' />
+		<headBand id='562' probability='50' />
+		<headBand id='564' probability='50' />
+		<headBand id='565' probability='50' />
+		<headBand id='566' probability='50' />
+		<headBand id='574' probability='50' />
+		<headBand id='575' probability='50' />
+		<headBand id='576' probability='50' />
+		<headBand id='577' probability='50' />
+		<headBand id='586' probability='50' />
+		<headBand id='587' probability='50' />
+		<headBand id='602' probability='50' />
+		<headBand id='604' probability='50' />
+		<headBand id='607' probability='100' />
+		<headBand id='608' probability='50' />
+		<headBand id='609' probability='50' />
+		<headBand id='610' probability='50' />
+		<headBand id='611' probability='50' />
+		<headBand id='612' probability='50' />
+		<headBand id='613' probability='50' />
+		<headBand id='614' probability='50' />
+		<headBand id='616' probability='50' />
+		<headBand id='623' probability='50' />
+		<headBand id='624' probability='50' />
+		<headBand id='625' probability='50' />
+		<headBand id='626' probability='50' />
+		<headBand id='627' probability='50' />
+		<headBand id='628' probability='50' />
+		<headBand id='629' probability='50' />
+		<headBand id='630' probability='50' />
+		<headBand id='633' probability='50' />
+		<headBand id='634' probability='50' />
+		<headBand id='635' probability='50' />
+		<headBand id='637' probability='50' />
+		<headBand id='638' probability='50' />
+		<headBand id='639' probability='50' />
+		<headBand id='640' probability='50' />
+		<headBand id='30000' probability='50' />
+		<headBand id='30001' probability='50' />
+		<headBand id='30002' probability='50' />
+		<headBand id='30003' probability='50' />
+		<headBand id='30004' probability='50' />
+		<headBand id='30005' probability='60' />
+		<headBand id='30006' probability='60' />
+		<headBand id='30007' probability='70' />
+		<headBand id='30016' probability='70' />
+		<upgradeKit id='46' checkBaseItem='false' />
+		<jewel id='9' removable='false' />
+		<jewel id='10' removable='false' />
+		<jewel id='11' removable='false' />
+		<jewel id='49' subCat='2' />
+		<jewel id='115' removable='false' />
+		<jewel id='133' removable='false' />
+		<jewel id='134' removable='false' />
+		<jewel id='135' removable='false' />
+		<jewel id='137' removable='false' />
+		<jewel id='219' name='월드테마보석@cn' />
+		<jewel id='243' removable='false' />
+		<jewel id='244' removable='false' />
+		<jewel id='245' removable='false' />
+		<handGearL id='191' removable='false' />
+		<handGearL id='193' removable='false' />
+		<handGearL id='244' name='7주년핸드봉@cn' />
+		<handGearL id='404' shopModel='아령핸드봉_상점' />
+		<pet id='3' rocket='20' />
+		<pet id='5' waterfly='20' />
+		<pet id='6' rocket='20' />
+		<pet id='8' rocket='20' />
+		<pet id='10' rocket='20' />
+		<pet id='11' rocket='20' />
+		<pet id='13' rocket='20' />
+		<pet id='14' rocket='20' />
+		<pet id='15' rocket='20' />
+		<pet id='16' rocket='20' />
+		<pet id='17' rocket='20' />
+		<pet id='18' rocket='20' />
+		<pet id='19' rocket='20' />
+		<pet id='20' rocket='20' />
+		<pet id='21' rocket='20' />
+		<pet id='22' rocket='20' />
+		<pet id='23' rocket='20' />
+		<pet id='24' rocket='20' />
+		<pet id='25' rocket='20' />
+		<pet id='26' rocket='20' />
+		<pet id='27' rocket='20' />
+		<pet id='28' rocket='20' />
+		<pet id='29' rocket='20' />
+		<pet id='30' rocket='20' />
+		<pet id='31' rocket='20' />
+		<pet id='32' rocket='20' />
+		<pet id='33' rocket='20' />
+		<pet id='34' rocket='20' />
+		<pet id='35' waterBomb='40' />
+		<pet id='37' waterBomb='40' />
+		<pet id='38' rocket='20' />
+		<pet id='39' waterBomb='40' />
+		<pet id='41' waterBomb='40' />
+		<pet id='42' special='20' specialID='2' />
+		<pet id='43' waterBomb='40' />
+		<pet id='44' waterBomb='40' />
+		<pet id='45' waterBomb='40' />
+		<pet id='46' rocket='20' />
+		<pet id='47' rocket='20' />
+		<pet id='48' rocket='20' />
+		<pet id='49' special='20' specialID='3' />
+		<pet id='50' rocket='20' />
+		<pet id='51' special='20' specialID='7' />
+		<pet id='52' waterBomb='40' />
+		<pet id='53' rocket='20' />
+		<pet id='54' special='20' specialID='2' />
+		<pet id='55' rocket='20' />
+		<pet id='56' waterBomb='40' />
+		<pet id='57' waterBomb='20' />
+		<pet id='58' rocket='20' />
+		<pet id='59' waterfly='20' />
+		<pet id='60' rocket='20' />
+		<pet id='61' rocket='20' />
+		<pet id='62' rocket='20' />
+		<pet id='63' rocket='25' />
+		<pet id='64' rocket='20' />
+		<pet id='66' rocket='20' />
+		<pet id='67' waterfly='20' />
+		<pet id='68' waterBomb='40' />
+		<pet id='69' special='20' specialID='3' />
+		<pet id='70' rocket='20' />
+		<pet id='71' rocket='20,80' />
+		<pet id='72' rocket='40' />
+		<pet id='74' rocket='20' />
+		<pet id='75' rocket='20' />
+		<pet id='76' rocket='20,50' />
+		<pet id='77' waterBomb='40' />
+		<pet id='78' waterBomb='40' />
+		<pet id='79' rocket='20,50' />
+		<pet id='81' waterfly='20,50' />
+		<pet id='82' waterBomb='40' />
+		<pet id='83' rocket='40' />
+		<pet id='85' waterfly='20' />
+		<pet id='86' specialID='1' npcSpecialAttackUse='15' />
+		<pet id='87' devil='100' />
+		<pet id='88' rocket='20' />
+		<pet id='89' rocket='40,80' />
+		<pet id='90' rocket='20' />
+		<pet id='91' waterBomb='40' />
+		<pet id='93' rocket='20' />
+		<pet id='95' rocket='40' />
+		<pet id='97' waterfly='20' />
+		<pet id='98' rocket='20' />
+		<pet id='99' rocket='40' />
+		<pet id='100' rocket='20' />
+		<pet id='101' rocket='40' />
+		<pet id='102' rocket='20' />
+		<pet id='103' rocket='40' />
+		<pet id='104' waterBomb='40' />
+		<pet id='105' waterfly='20' />
+		<pet id='107' waterBomb='40' />
+		<pet id='108' waterBomb='40' />
+		<pet id='109' devil='100' />
+		<pet id='110' waterfly='20' devil='0,100' />
+		<pet id='111' rocket='40,80' />
+		<pet id='112' waterBomb='40' />
+		<pet id='113' waterBomb='50' />
+		<pet id='114' rocket='0,80' devil='100' />
+		<pet id='115' waterfly='20' />
+		<pet id='116' waterfly='20' />
+		<pet id='117' waterfly='20' />
+		<pet id='118' devil='100' />
+		<pet id='119' waterfly='40' />
+		<pet id='120' rocket='40' />
+		<pet id='121' rocket='0,80' waterfly='20' />
+		<pet id='122' rocket='20' />
+		<pet id='124' rocket='20' />
+		<pet id='125' waterBomb='40' />
+		<pet id='126' devil='100' />
+		<pet id='127' rocket='25' />
+		<pet id='128' rocket='25' />
+		<pet id='129' devil='100' />
+		<pet id='130' waterBomb='30' />
+		<pet id='131' devil='100' />
+		<pet id='132' waterfly='20,80' />
+		<pet id='133' waterBomb='30' />
+		<pet id='134' rocket='40' />
+		<pet id='135' rocket='20' />
+		<pet id='137' waterfly='40' />
+		<pet id='138' devil='100' />
+		<pet id='139' rocket='20' />
+		<pet id='140' rocket='20' />
+		<pet id='141' waterfly='20' />
+		<pet id='142' waterfly='20' />
+		<pet id='143' rocket='20' />
+		<pet id='144' rocket='30' />
+		<pet id='145' waterfly='20' />
+		<pet id='146' waterfly='35' />
+		<pet id='147' rocket='20' />
+		<pet id='148' rocket='20,80' />
+		<pet id='149' rocket='20' />
+		<pet id='150' rocket='30,80' />
+		<pet id='152' waterfly='20' />
+		<pet id='153' devil='100' />
+		<pet id='154' rocket='25' />
+		<pet id='155' devil='100' />
+		<pet id='157' rocket='20' />
+		<pet id='158' rocket='20' />
+		<pet id='159' rocket='20' />
+		<pet id='160' waterfly='25' />
+		<pet id='161' rocket='20' />
+		<pet id='162' rocket='20' />
+		<pet id='163' rocket='20' />
+		<pet id='164' waterfly='30' />
+		<pet id='165' rocket='30' />
+		<pet id='167' waterBomb='25' />
+		<pet id='168' rocket='30' />
+		<pet id='169' devil='100' />
+		<pet id='170' rocket='20' waterfly='30' />
+		<pet id='171' rocket='30' />
+		<pet id='172' rocket='30,80' />
+		<pet id='173' waterfly='20' />
+		<pet id='174' rocket='30' />
+		<pet id='175' waterBomb='30' />
+		<pet id='176' rocket='20' />
+		<pet id='177' devil='100,100' />
+		<pet id='178' waterBomb='30' waterfly='0,80' snowBomb='30' />
+		<pet id='179' rocket='30' />
+		<pet id='180' waterBomb='30' />
+		<pet id='181' waterfly='20' />
+		<pet id='182' devil='100' />
+		<pet id='183' waterBomb='30' />
+		<pet id='184' rocket='20' />
+		<pet id='185' waterfly='20' />
+		<pet id='186' waterBomb='30' />
+		<pet id='187' rocket='20' />
+		<pet id='188' devil='100' />
+		<pet id='189' waterBomb='30' />
+		<pet id='190' rocket='30' />
+		<pet id='191' waterfly='20' />
+		<pet id='192' waterBomb='30' />
+		<pet id='193' rocket='30' />
+		<pet id='194' devil='100,100' />
+		<pet id='195' waterfly='20' />
+		<pet id='196' rocket='30' />
+		<pet id='197' devil='100' />
+		<pet id='198' waterBomb='30' />
+		<pet id='199' rocket='30' />
+		<pet id='30000' waterfly='35' />
+		<pet id='30002' waterBomb='40' />
+		<pet id='30003' rocket='20' />
+		<pet id='30005' waterfly='35' />
+		<pet id='30006' waterBomb='40' />
+		<pet id='30007' rocket='40,80' />
+		<card id='94' removable='false' />
+		<card id='95' removable='false' />
+		<card id='102' removable='false' />
+		<lottery id='185' type='2' />
+		<lottery id='189' type='2' />
+		<lottery id='235' type='1' />
+		<lottery id='242' type='1' />
+		<lottery id='243' type='2' />
+		<lottery id='246' type='1' />
+		<lottery id='249' type='1' />
+		<lottery id='250' type='2' />
+		<lottery id='258' type='1' />
+		<lottery id='259' type='2' />
+		<lottery id='324' type='2' />
+		<lottery id='325' type='1' />
+		<lottery id='340' type='1' />
+		<lottery id='343' type='2' />
+		<lottery id='345' type='1' />
+		<lottery id='346' type='2' />
+		<lottery id='375' type='1' />
+		<lottery id='378' type='2' />
+		<lottery id='379' type='2' />
+		<lottery id='397' type='2' />
+		<lottery id='398' type='1' />
+		<lottery id='415' type='1' />
+		<lottery id='419' type='1' />
+		<lottery id='420' type='2' />
+		<lottery id='429' type='1' />
+		<lottery id='441' type='2' />
+		<lottery id='445' type='1' />
+		<lottery id='446' type='2' />
+		<lottery id='449' type='1' />
+		<lottery id='450' type='2' />
+		<lottery id='462' type='1' />
+		<lottery id='463' type='2' />
+		<lottery id='464' />
+		<lottery id='465' />
+		<lottery id='466' />
+		<lottery id='467' />
+		<lottery id='470' name='럭키백가차폰@zz' />
+		<lottery id='473' type='1' />
+		<lottery id='474' type='1' />
+		<lottery id='475' type='1' />
+		<lottery id='476' type='1' />
+		<lottery id='478' type='1' />
+		<lottery id='479' />
+		<lottery id='484' type='1' />
+		<lottery id='485' type='2' />
+		<lottery id='510' type='2' />
+		<lottery id='511' type='2' />
+		<lottery id='512' type='2' />
+		<lottery id='513' type='2' />
+		<lottery id='514' type='2' />
+		<lottery id='519' type='1' />
+		<lottery id='520' type='1' />
+		<lottery id='521' type='1' />
+		<lottery id='522' type='1' />
+		<lottery id='523' type='2' />
+		<lottery id='524' type='2' />
+		<lottery id='525' type='2' />
+		<lottery id='526' type='2' />
+		<lottery id='529' type='1' />
+		<lottery id='530' type='2' />
+		<lottery id='538' type='1' />
+		<lottery id='539' type='2' />
+		<lottery id='544' type='1' />
+		<lottery id='546' type='2' />
+		<lottery id='550' type='1' />
+		<lottery id='553' type='2' />
+		<lottery id='618' name='신369카트기어' type='3' />
+		<lottery id='671' removable='false' />
+		<lottery id='740' name='카트캡슐키_Red_G' subCat='3' type='3' />
+		<lottery id='742' name='카트캡슐키_Red_N' subCat='3' type='3' />
+		<lottery id='743' name='카트캡슐_Red_N' subCat='3' type='4' />
+		<lottery id='750' name='카트캡슐키_Yellow_G' subCat='3' type='3' />
+		<lottery id='752' name='카트캡슐키_Yellow_N' subCat='3' type='3' />
+		<lottery id='769' name='카트캡슐키_green_G' subCat='3' type='3' />
+		<lottery id='771' name='카트캡슐키_green_N' subCat='3' type='3' />
+		<lottery id='794' name='카트캡슐키_Blue_G' subCat='3' type='3' />
+		<lottery id='796' name='카트캡슐키_Blue_N' subCat='3' type='3' />
+		<lottery id='797' name='카트캡슐_Blue_N' subCat='3' type='4' />
+		<lottery id='807' type='3' />
+		<lottery id='809' type='2' />
+		<lottery id='810' name='카트캡슐키_Violet_G' subCat='3' type='3' />
+		<lottery id='812' name='카트캡슐키_Violet_N' subCat='3' type='3' />
+		<lottery id='843' name='용보석_무지개' type='3' />
+		<lottery id='849' name='카트캡슐키_Flu_G' subCat='3' type='3' />
+		<lottery id='851' name='카트캡슐키_Flu_N' subCat='3' type='3' />
+		<lottery id='852' name='카트캡슐_Flu_N' subCat='3' type='4' />
+		<lottery id='886' name='카트캡슐_white_N' subCat='3' type='4' />
+		<lottery id='937' name='카트캡슐키_Pink_G' subCat='3' type='3' />
+		<lottery id='939' name='카트캡슐키_Pink_N' subCat='3' type='3' />
+		<lottery id='945' name='엠블보석_네오' type='3' />
+		<lottery id='1046' />
+		<lottery id='30001' type='2' />
+		<lottery id='30002' type='1' />
+		<lottery id='30015' type='2' />
+		<lottery id='30016' type='1' />
+		<lottery id='30021' type='1' />
+		<lottery id='30028' type='2' />
+		<lottery id='30032' type='1' />
+		<lottery id='30036' type='2' />
+		<roomCard id='2' />
+		<roomCard id='3' />
+		<roomCard id='6' />
+		<roomCard id='7' />
+		<roomCard id='8' />
+		<roomCard id='9' />
+		<roomCard id='13' />
+		<roomCard id='15' />
+		<roomCard id='16' />
+		<roomCard id='17' />
+		<roomCard id='18' />
+		<roomCard id='20' />
+		<roomCard id='22' />
+		<roomCard id='23' />
+		<roomCard id='25' />
+		<roomCard id='26' />
+		<roomCard id='27' />
+		<roomCard id='28' />
+		<roomCard id='29' />
+		<roomCard id='30' removable='false' />
+		<roomCard id='31' />
+		<roomCard id='32' />
+		<roomCard id='33' />
+		<roomCard id='34' />
+		<roomCard id='36' />
+		<roomCard id='37' />
+		<roomCard id='38' />
+		<roomCard id='42' />
+		<roomCard id='43' />
+		<roomCard id='44' />
+		<roomCard id='50' />
+		<roomCard id='51' />
+		<roomCard id='52' />
+		<roomCard id='53' />
+		<roomCard id='54' />
+		<roomCard id='55' />
+		<roomCard id='56' />
+		<roomCard id='57' />
+		<roomCard id='58' />
+		<roomCard id='59' />
+		<roomCard id='60' />
+		<roomCard id='61' />
+		<roomCard id='62' />
+		<roomCard id='63' />
+		<roomCard id='30000' />
+		<material id='4' removable='false' />
+		<material id='5' removable='false' />
+		<material id='6' removable='false' />
+		<material id='304' />
+		<material id='305' />
+		<material id='306' />
+		<material id='307' />
+		<material id='308' />
+		<material id='313' removable='false' />
+		<material id='314' removable='false' />
+		<material id='498' removable='false' />
+		<material id='499' removable='false' />
+		<material id='513' removable='false' />
+		<material id='514' removable='false' />
+		<material id='526' removable='false' />
+		<material id='560' removable='false' />
+		<material id='576' name='카트카드_JIU@cn' />
+		<material id='578' name='카트카드_HT@cn' />
+		<material id='579' name='카트카드_Z7@cn' />
+		<material id='580' name='카트카드_SR@cn' />
+		<material id='581' name='카트카드_Classic@cn' />
+		<material id='598' removable='false' />
+		<material id='600' removable='false' />
+		<material id='606' removable='false' />
+		<material id='620' removable='false' />
+		<material id='633' removable='false' />
+		<material id='672' removable='false' />
+		<material id='679' name='카트카드_X@cn' />
+		<material id='685' name='카트카드_X@cn' />
+		<material id='737' />
+		<material id='747' name='경쟁전참여권' />
+		<extend id='1' validPeriod='*~*' type='period' value='0' relateItem='3-342' />
+		<extend id='2' validPeriod='*~*' type='period' value='0' relateItem='3-213' />
+		<extend id='4' validPeriod='*~*' type='period' value='0' relateItem='21-37' />
+		<extend id='5' validPeriod='*~*' type='period' value='1' relateItem='21-75' />
+		<extend id='7' validPeriod='*~*' type='period' value='0' relateItem='21-78' />
+		<extend id='9' validPeriod='*~*' type='period' value='0' relateItem='3-378' />
+		<extend id='11' validPeriod='*~*' type='period' value='0' relateItem='3-10,3-12,3-16,3-55,3-100,3-197' />
+		<extend id='12' validPeriod='*~*' type='period' value='10' relateItem='3-508' />
+		<extend id='13' validPeriod='*~*' type='period' value='0' relateItem='3-508' />
+		<extend id='15' validPeriod='*~*' type='period' value='0' relateItem='3-501,3-507' />
+		<extend id='20' validPeriod='*~*' type='period' value='0' relateItem='3-571' />
+		<extend id='21' validPeriod='*~*' type='period' value='0' relateItem='3-606' />
+		<extend id='22' validPeriod='*~*' type='period' value='0' relateItem='3-584' />
+		<extend id='23' validPeriod='*~*' type='period' value='0' relateItem='3-396' />
+		<extend id='24' validPeriod='*~*' type='period' value='0' relateItem='3-74' />
+		<extend id='25' validPeriod='*~*' type='period' value='0' relateItem='3-240' />
+		<extend id='26' validPeriod='*~*' type='period' value='0' relateItem='3-95' />
+		<extend id='27' validPeriod='*~*' type='period' value='0' relateItem='3-103' />
+		<extend id='28' validPeriod='*~*' type='period' value='0' relateItem='3-325' />
+		<extend id='29' validPeriod='*~*' type='period' value='0' relateItem='3-117' />
+		<extend id='30' validPeriod='*~*' type='period' value='0' relateItem='3-82' />
+		<extend id='31' validPeriod='*~*' type='period' value='0' relateItem='3-344' />
+		<extend id='32' validPeriod='*~*' type='period' value='0' relateItem='3-369' />
+		<extend id='33' validPeriod='*~*' type='period' value='0' relateItem='3-495' />
+		<extend id='34' validPeriod='*~*' type='period' value='0' relateItem='3-479' />
+		<extend id='35' validPeriod='*~*' type='period' value='0' relateItem='3-474' />
+		<extend id='36' validPeriod='*~*' type='period' value='0' relateItem='3-354' />
+		<extend id='37' validPeriod='*~*' type='period' value='0' relateItem='3-457' />
+		<extend id='38' validPeriod='*~*' type='period' value='0' relateItem='3-458' />
+		<extend id='39' validPeriod='*~*' type='period' value='0' relateItem='3-438' />
+		<extend id='40' validPeriod='*~*' type='period' value='0' relateItem='3-375' />
+		<extend id='41' validPeriod='*~*' type='period' value='0' relateItem='3-431' />
+		<extend id='42' validPeriod='*~*' type='period' value='0' relateItem='3-302' />
+		<extend id='43' validPeriod='*~*' type='period' value='0' relateItem='3-361' />
+		<extend id='44' validPeriod='*~*' type='period' value='0' relateItem='3-357' />
+		<extend id='45' validPeriod='*~*' type='period' value='0' relateItem='3-571' />
+		<extend id='46' validPeriod='*~*' type='period' value='0' relateItem='3-574' />
+		<extend id='47' validPeriod='*~*' type='period' value='0' relateItem='3-546' />
+		<extend id='48' validPeriod='*~*' type='period' value='0' relateItem='3-512' />
+		<extend id='49' validPeriod='*~*' type='period' value='0' relateItem='3-562' />
+		<extend id='50' validPeriod='*~*' type='period' value='0' relateItem='3-470' />
+		<extend id='51' validPeriod='*~*' type='period' value='0' relateItem='3-539' />
+		<extend id='52' validPeriod='*~*' type='period' value='0' relateItem='3-313' />
+		<extend id='56' validPeriod='*~*' type='period' value='0' relateItem='3-623' />
+		<extend id='57' validPeriod='*~*' type='period' value='0' relateItem='21-101' />
+		<extend id='58' validPeriod='*~*' type='period' value='0' relateItem='3-644' />
+		<extend id='62' validPeriod='*~*' type='period' value='0' relateItem='3-494' />
+		<extend id='63' validPeriod='*~*' type='period' value='0' relateItem='3-509' />
+		<extend id='64' validPeriod='*~*' type='period' value='0' relateItem='3-610' />
+		<extend id='65' validPeriod='*~*' type='period' value='0' relateItem='3-746' />
+		<extend id='66' validPeriod='*~*' type='period' value='0' relateItem='3-620' />
+		<extend id='74' validPeriod='2021-09-30T06:00:00~2021-10-21T05:59:59' type='period' value='0' relateItem='1-1,1-2,1-3,1-4,1-5,1-6,1-7,1-8,1-9,1-10,1-11,1-12,1-13,1-14,1-15,1-16,1-17,1-18,1-19,1-20,1-21,1-23,1-24,1-25,1-27,1-28,1-29,1-30,1-31,1-32,1-36,1-37,1-44,1-46,1-49,1-50,1-51,1-53,1-54,1-55,1-57,1-58,1-59,1-61,1-62,1-63,1-64,1-66,1-68,1-69,1-71,1-72,1-73,1-74,1-75,1-76,1-77,1-78,1-79,1-80,1-81,1-82,1-83,1-85,1-86,1-87,1-88,1-89,1-90,1-91,1-92,1-93,1-94,1-95,1-96,1-101,1-102,1-104,1-109,1-111,1-113,1-114,1-115,1-120,1-121,1-122,1-126,1-127,1-136,1-139,1-140,1-141,1-142,1-145,1-146,1-151,1-152,1-153,1-154,1-155,1-162,1-163,1-178,1-179,1-182,1-186,1-187,1-188,1-189,1-190,1-191,1-198,1-199,1-200,1-201,1-204,1-205,1-206,1-207,1-208,1-209,1-210,1-211,1-212,1-213,1-214,1-215,1-216,1-217,1-218,1-219,1-220,1-221,1-222,1-223,1-224,1-225,1-226,1-227,1-228,1-229,1-230,1-232,1-234,1-235,1-236,1-237,1-238,1-240,1-241,1-242,1-243,1-244,1-248,1-250,1-251,1-256,1-257,1-258,1-259,1-260,1-261,1-262,1-263,1-264,1-267,1-268,1-269,1-270,1-271,1-281,1-284,1-285,1-288,1-289,1-290,1-291,1-293,1-294,1-297,1-298,1-299,1-300,1-303,1-304,1-305,1-306,1-307,1-308,1-309,1-310,1-311,1-312,1-313' />
+		<extend id='77' validPeriod='2021-09-30T06:00:00~2021-10-21T05:59:59' type='period' value='0' relateItem='3-1,3-2,3-3,3-4,3-5,3-6,3-7,3-8,3-9,3-10,3-11,3-12,3-13,3-14,3-15,3-16,3-17,3-18,3-19,3-20,3-21,3-22,3-23,3-24,3-25,3-26,3-27,3-28,3-29,3-30,3-31,3-32,3-33,3-34,3-36,3-37,3-38,3-39,3-40,3-41,3-44,3-45,3-46,3-47,3-48,3-49,3-50,3-51,3-52,3-53,3-54,3-55,3-56,3-57,3-59,3-62,3-63,3-64,3-70,3-74,3-75,3-80,3-81,3-82,3-84,3-85,3-95,3-97,3-98,3-100,3-101,3-102,3-103,3-104,3-106,3-108,3-110,3-111,3-112,3-113,3-114,3-115,3-116,3-117,3-118,3-119,3-120,3-121,3-124,3-130,3-133,3-134,3-135,3-136,3-138,3-139,3-140,3-141,3-148,3-149,3-150,3-151,3-153,3-154,3-155,3-157,3-158,3-159,3-169,3-170,3-171,3-172,3-178,3-182,3-183,3-184,3-185,3-186,3-187,3-188,3-189,3-190,3-191,3-192,3-193,3-194,3-195,3-196,3-197,3-198,3-199,3-201,3-203,3-204,3-208,3-209,3-211,3-213,3-214,3-215,3-216,3-217,3-218,3-219,3-220,3-221,3-222,3-223,3-225,3-226,3-227,3-228,3-229,3-230,3-231,3-233,3-235,3-236,3-237,3-238,3-239,3-240,3-241,3-242,3-243,3-244,3-246,3-250,3-252,3-253,3-254,3-255,3-256,3-257,3-258,3-261,3-262,3-263,3-264,3-265,3-266,3-267,3-268,3-269,3-273,3-277,3-278,3-279,3-280,3-281,3-285,3-292,3-295,3-296,3-297,3-299,3-301,3-302,3-303,3-304,3-306,3-307,3-308,3-309,3-310,3-311,3-312,3-313,3-315,3-318,3-319,3-322,3-324,3-325,3-326,3-328,3-329,3-330,3-332,3-333,3-334,3-335,3-336,3-337,3-338,3-339,3-340,3-341,3-342,3-343,3-344,3-354,3-355,3-356,3-357,3-359,3-361,3-362,3-363,3-364,3-367,3-369,3-371,3-372,3-373,3-375,3-376,3-378,3-380,3-384,3-387,3-388,3-390,3-392,3-393,3-395,3-396,3-402,3-403,3-404,3-409,3-410,3-411,3-412,3-416,3-417,3-418,3-419,3-420,3-421,3-423,3-426,3-427,3-428,3-429,3-430,3-431,3-433,3-434,3-435,3-436,3-438,3-440,3-441,3-442,3-443,3-444,3-447,3-453,3-455,3-457,3-458,3-459,3-461,3-462,3-466,3-467,3-468,3-469,3-470,3-471,3-472,3-473,3-474,3-475,3-477,3-478,3-479,3-481,3-482,3-483,3-484,3-486,3-487,3-488,3-489,3-494,3-495,3-498,3-499,3-500,3-501,3-504,3-506,3-507,3-508,3-509,3-512,3-513,3-514,3-515,3-517,3-518,3-519,3-521,3-522,3-523,3-524,3-525,3-526,3-528,3-530,3-531,3-533,3-535,3-537,3-538,3-539,3-540,3-541,3-543,3-544,3-546,3-547,3-548,3-550,3-554,3-555,3-556,3-559,3-561,3-562,3-563,3-564,3-565,3-567,3-568,3-569,3-570,3-571,3-572,3-574,3-575,3-576,3-579,3-580,3-581,3-582,3-583,3-584,3-585,3-587,3-588,3-589,3-592,3-593,3-594,3-601,3-602,3-604,3-606,3-608,3-609,3-610,3-611,3-614,3-615,3-619,3-620,3-622,3-623,3-624,3-625,3-626,3-630,3-631,3-632,3-634,3-635,3-636,3-637,3-638,3-639,3-640,3-643,3-644,3-651,3-652,3-653,3-660,3-661,3-662,3-663,3-664,3-665,3-666,3-667,3-668,3-669,3-670,3-671,3-674,3-675,3-676,3-682,3-683,3-684,3-685,3-686,3-687,3-688,3-689,3-690,3-701,3-702,3-706,3-712,3-714,3-715,3-716,3-717,3-718,3-721,3-722,3-723,3-739,3-743,3-744,3-745,3-746,3-747,3-748,3-749,3-750,3-752,3-753,3-754,3-755,3-756,3-757,3-758,3-759,3-760,3-761,3-762,3-763,3-764,3-765,3-767,3-768,3-769,3-770,3-771,3-772,3-773,3-774,3-781,3-782,3-783,3-784,3-785,3-787,3-788,3-789,3-791,3-792,3-794,3-796,3-797,3-798,3-799,3-800,3-802,3-803,3-804,3-805,3-806,3-807,3-809,3-810,3-811,3-812,3-813,3-814,3-817,3-818,3-819,3-820,3-821,3-822,3-823,3-826,3-827,3-828,3-829,3-830,3-831,3-832,3-833,3-834,3-835,3-839,3-840,3-841,3-842,3-844,3-846,3-849,3-850,3-852,3-854,3-855,3-857,3-858,3-859,3-862,3-864,3-865,3-866,3-867,3-868,3-869,3-871,3-872,3-874,3-875,3-877,3-878,3-879,3-881,3-882,3-883,3-884,3-885,3-887,3-888,3-889,3-890,3-891,3-894,3-895,3-896,3-899,3-900,3-901,3-902,3-903,3-904,3-905,3-906,3-907,3-909,3-910,3-911,3-913,3-919,3-920,3-922,3-927,3-928,3-929,3-930,3-931,3-932,3-933,3-935,3-936,3-937,3-938,3-939,3-940,3-941,3-942,3-943,3-944,3-945,3-946,3-947,3-948,3-949,3-950,3-951,3-952,3-953,3-955,3-956,3-957,3-958,3-959,3-960,3-961,3-962,3-963,3-967,3-972,3-973,3-974,3-975,3-976,3-977,3-978,3-979,3-981,3-982,3-983,3-984,3-997,3-998,3-999,3-1001,3-1002,3-1003,3-1004,3-1005,3-1006,3-1007,3-1008,3-1009,3-1010,3-1013,3-1014,3-1017,3-1018,3-1019,3-1020,3-1021,3-1022,3-1023,3-1024,3-1029,3-1030,3-1031,3-1032,3-1033,3-1034,3-1035,3-1036,3-1037,3-1040,3-1041,3-1042,3-1044,3-1045,3-1046,3-1048,3-1050,3-1051,3-1052,3-1053,3-1054,3-1055,3-1056,3-1057,3-1058,3-1059,3-1060,3-1061,3-1062,3-1064,3-1065,3-1066,3-1067,3-1068,3-1069,3-1070,3-1071,3-1072,3-1073,3-1074,3-1075,3-1077,3-1078,3-1083,3-1085,3-1086,3-1087,3-1089,3-1090,3-1091,3-1092,3-1093,3-1094,3-1096,3-1097,3-1098,3-1100,3-1103,3-1105,3-1107,3-1108,3-1109,3-1110,3-1111,3-1112,3-1113,3-1114,3-1115,3-1117,3-1118,3-1119,3-1121,3-1122,3-1123,3-1124,3-1125,3-1126,3-1128,3-1129,3-1130,3-1131,3-1132,3-1133,3-1135,3-1138,3-1139,3-1140,3-1141,3-1142,3-1143,3-1146,3-1147,3-1148,3-1149,3-1159,3-1160,3-1161,3-1162,3-1164,3-1165,3-1168,3-1169,3-1170,3-1173,3-1174,3-1175,3-1176,3-1177,3-1184,3-1185,3-1186,3-1187,3-1188,3-1189,3-1190,3-1191,3-1192,3-1196,3-1197,3-1200,3-1201' />
+		<extend id='80' validPeriod='2021-09-30T06:00:00~2021-10-21T05:59:59' type='period' value='0' relateItem='21-2,21-3,21-5,21-6,21-8,21-10,21-11,21-13,21-14,21-15,21-16,21-17,21-18,21-19,21-20,21-21,21-22,21-23,21-24,21-25,21-26,21-27,21-28,21-29,21-30,21-31,21-32,21-33,21-34,21-35,21-37,21-38,21-39,21-41,21-42,21-43,21-44,21-45,21-46,21-47,21-48,21-49,21-50,21-51,21-52,21-53,21-54,21-55,21-57,21-61,21-62,21-63,21-64,21-65,21-66,21-67,21-68,21-69,21-70,21-71,21-72,21-74,21-75,21-76,21-78,21-80,21-81,21-82,21-83,21-84,21-86,21-87,21-89,21-90,21-93,21-95,21-97,21-98,21-99,21-100,21-101,21-103,21-104,21-108,21-109,21-110,21-111,21-112,21-113,21-116,21-117,21-118,21-119,21-121,21-124,21-125,21-128,21-130,21-131,21-132,21-133,21-134,21-135,21-137,21-138,21-139,21-142,21-144,21-145,21-146,21-147,21-149,21-152,21-153,21-157,21-158,21-159,21-30000,21-30002,21-30003,21-30004,21-30005,21-30006,21-30007,21-30008' />
+		<extend id='81' validPeriod='*~2018-06-07T05:59:59' type='period' value='0' relateItem='1-240,3-1087' />
+		<extend id='30001' validPeriod='*~*' type='period' value='10' relateItem='52-2,52-3,52-4,52-5,52-6,52-8,52-9,52-10,52-11,52-12,52-14,52-15,52-16,52-17,52-18' />
+		<extend id='30002' validPeriod='*~*' type='period' value='30' relateItem='52-2,52-3,52-4,52-5,52-6,52-8,52-9,52-10,52-11,52-12,52-14,52-15,52-16,52-17,52-18' />
+		<extend id='30003' validPeriod='*~*' type='period' value='365' relateItem='52-2,52-3,52-4,52-5,52-6,52-8,52-9,52-10,52-11,52-12,52-13,52-14,52-15,52-16,52-17,52-18' />
+		<extend id='30005' validPeriod='*~*' type='period' value='0' relateItem='3-580' />
+		<extend id='30008' validPeriod='*~*' type='period' value='0' relateItem='3-608' />
+		<tuneEnginePatch id='1' uniqueLevel='1' />
+		<tuneEnginePatch id='2' uniqueLevel='2' />
+		<tuneEnginePatch id='3' uniqueLevel='2' />
+		<tuneEnginePatch id='4' uniqueLevel='3' />
+		<tuneEnginePatch id='5' uniqueLevel='3' />
+		<tuneEnginePatch id='6' uniqueLevel='3' />
+		<tuneEnginePatch id='7' uniqueLevel='3' />
+		<tuneEnginePatch id='8' uniqueLevel='4' />
+		<tuneEnginePatch id='9' uniqueLevel='4' />
+		<tuneEnginePatch id='10' uniqueLevel='4' />
+		<tuneEnginePatch id='11' uniqueLevel='4' />
+		<tuneEnginePatch id='12' uniqueLevel='4' />
+		<tuneEnginePatch id='13' uniqueLevel='4' />
+		<tuneEnginePatch id='14' uniqueLevel='4' />
+		<tuneEnginePatch id='15' uniqueLevel='4' />
+		<tuneEnginePatch id='16' uniqueLevel='4' />
+		<tuneEnginePatch id='17' uniqueLevel='4' />
+		<tuneEnginePatch id='18' uniqueLevel='4' />
+		<tuneEnginePatch id='19' uniqueLevel='4' />
+		<tuneEnginePatch id='20' uniqueLevel='3' />
+		<tuneEnginePatch id='21' uniqueLevel='3' />
+		<tuneEnginePatch id='22' uniqueLevel='2' />
+		<tuneEnginePatch id='23' uniqueLevel='1' />
+		<tuneHandle id='1' uniqueLevel='1' />
+		<tuneHandle id='2' uniqueLevel='2' />
+		<tuneHandle id='3' uniqueLevel='2' />
+		<tuneHandle id='4' uniqueLevel='3' />
+		<tuneHandle id='5' uniqueLevel='3' />
+		<tuneHandle id='6' uniqueLevel='3' />
+		<tuneHandle id='7' uniqueLevel='3' />
+		<tuneHandle id='8' uniqueLevel='4' />
+		<tuneHandle id='9' uniqueLevel='4' />
+		<tuneHandle id='10' uniqueLevel='4' />
+		<tuneHandle id='11' uniqueLevel='4' />
+		<tuneHandle id='12' uniqueLevel='4' />
+		<tuneHandle id='13' uniqueLevel='4' />
+		<tuneHandle id='14' uniqueLevel='4' />
+		<tuneHandle id='15' uniqueLevel='4' />
+		<tuneWheel id='1' uniqueLevel='1' />
+		<tuneWheel id='2' uniqueLevel='2' />
+		<tuneWheel id='3' uniqueLevel='2' />
+		<tuneWheel id='4' uniqueLevel='3' />
+		<tuneWheel id='5' uniqueLevel='3' />
+		<tuneWheel id='6' uniqueLevel='3' />
+		<tuneWheel id='7' uniqueLevel='3' />
+		<tuneWheel id='8' uniqueLevel='4' />
+		<tuneWheel id='9' uniqueLevel='4' />
+		<tuneWheel id='10' uniqueLevel='4' />
+		<tuneWheel id='11' uniqueLevel='4' />
+		<tuneWheel id='12' uniqueLevel='4' />
+		<tuneWheel id='13' uniqueLevel='4' />
+		<tuneWheel id='14' uniqueLevel='4' />
+		<tuneWheel id='15' uniqueLevel='4' />
+		<tuneWheel id='16' uniqueLevel='4' />
+		<tuneWheel id='17' uniqueLevel='4' />
+		<tuneWheel id='18' uniqueLevel='4' />
+		<tuneWheel id='19' uniqueLevel='4' />
+		<tuneWheel id='20' uniqueLevel='3' />
+		<tuneWheel id='21' uniqueLevel='3' />
+		<tuneWheel id='22' uniqueLevel='2' />
+		<tuneWheel id='23' uniqueLevel='1' />
+		<tuneSupportKit id='1' uniqueLevel='1' />
+		<tuneSupportKit id='2' uniqueLevel='1' />
+		<tuneSupportKit id='3' uniqueLevel='2' />
+		<tuneSupportKit id='4' uniqueLevel='2' />
+		<tuneSupportKit id='5' uniqueLevel='2' />
+		<tuneSupportKit id='6' uniqueLevel='2' />
+		<tuneSupportKit id='7' uniqueLevel='3' />
+		<tuneSupportKit id='8' uniqueLevel='3' />
+		<tuneSupportKit id='9' uniqueLevel='3' />
+		<tuneSupportKit id='10' uniqueLevel='3' />
+		<tuneSupportKit id='11' uniqueLevel='3' />
+		<tuneSupportKit id='12' uniqueLevel='3' />
+		<tuneSupportKit id='13' uniqueLevel='3' />
+		<tuneSupportKit id='14' uniqueLevel='3' />
+		<tuneSupportKit id='15' uniqueLevel='4' />
+		<tuneSupportKit id='16' uniqueLevel='4' />
+		<tuneSupportKit id='17' uniqueLevel='4' />
+		<tuneSupportKit id='18' uniqueLevel='4' />
+		<tuneSupportKit id='19' uniqueLevel='4' />
+		<tuneSupportKit id='20' uniqueLevel='4' />
+		<tuneSupportKit id='21' uniqueLevel='4' />
+		<tuneSupportKit id='22' uniqueLevel='4' />
+		<tuneSupportKit id='23' uniqueLevel='4' />
+		<tuneSupportKit id='24' uniqueLevel='4' />
+		<tuneSupportKit id='25' uniqueLevel='4' />
+		<tuneSupportKit id='26' uniqueLevel='4' />
+		<tuneSupportKit id='27' uniqueLevel='4' />
+		<tuneSupportKit id='28' uniqueLevel='4' />
+		<tuneSupportKit id='29' uniqueLevel='4' />
+		<tuneSupportKit id='30' uniqueLevel='4' />
+		<flyingPet id='2' tuneGroupId='201' />
+		<flyingPet id='3' tuneGroupId='202' />
+		<flyingPet id='4' tuneGroupId='203' />
+		<flyingPet id='5' tuneGroupId='204' />
+		<flyingPet id='6' tuneGroupId='205' />
+		<flyingPet id='8' tuneGroupId='201' />
+		<flyingPet id='9' tuneGroupId='202' />
+		<flyingPet id='10' tuneGroupId='203' />
+		<flyingPet id='11' tuneGroupId='204' />
+		<flyingPet id='12' tuneGroupId='206' />
+		<flyingPet id='14' tuneGroupId='201' />
+		<flyingPet id='15' tuneGroupId='202' />
+		<flyingPet id='16' tuneGroupId='203' />
+		<flyingPet id='17' tuneGroupId='204' />
+		<flyingPet id='18' tuneGroupId='205' />
+		<flyingPet id='82' name='flyingBook_cn' />
+		<tachometer id='1' name='택시타코미터카드@cn' />
+</itemtable>

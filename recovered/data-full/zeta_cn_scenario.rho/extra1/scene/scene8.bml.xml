@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold5"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="唉~可惜。还是让“波利斯”给逃跑了"/>
+  <Enter/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="就是这样……虽然仔仔细细的找了，但还是完全找不到……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop4"/>
+  <Msg name="胖墩" string="呜呼……没有黄金指南针的话，我们现在该怎么办？|呜哇～ 肚子好饿～"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="别哭了，胖墩。我们一定会找到黄金文明，变成富翁才会回去的……"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="葱头" string="嗯…… 嗯…… 嗯……|那个……伙伴们！快过来！"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="怎么了？找到“雅克布兄弟”了吗?"/>
+  <Enter/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="不是，但是依我看来，比起那个，我找到了更惊人的东西。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="gold3"/>
+  <Msg name="黄金文明" string="!!!"/>
+  <Enter/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="kephi" pos="8 0" emotion="stop4"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Msg name="皮蛋/黑妞/胖墩" string="哇！这个地方是？！？！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop4"/>
+  <Msg name="葱头" string="哇！只在爱德爷爷故事中听说的黄金文明，原来真的存在啊！ |我们真是踏破铁鞋无觅处，得来全不费功夫！哈哈！"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="哇，真厉害…… 建筑物都散发着黄金光芒！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop5"/>
+  <Msg name="黑妞" string="好美"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="胖墩" string="呜哇！发财了！发财了！呜哇！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Msg name="???" string="悉悉悉"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="什么声音？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Msg name="???" string="悉悉悉"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop4"/>
+  <Msg name="胖墩" string="啊……刚才什么东西过去了？是狮……狮子吗？|该……该怎么办？好可怕啊！！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kaphae" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="???" string="如果你的眼里只有黄金的话，你们是被禁止的！"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="你是谁啊？"/>
+  <Enter/>
+  <Char id="kaphae" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="???" string="你没资格知道！你们这帮淘金队！纳命来！"/>
+  <Enter/>
+</Scene>

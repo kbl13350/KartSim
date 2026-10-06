@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.0765'
+	TransAccelFactor='1.845'
+	SteerConstraint='3'
+	CornerDrawFactor='0.063'
+	StartForwardAccelFactorItem='1.8'
+	StartBoosterTimeItem='1400'
+	
+	DriftEscapeForce='1450'
+	DriftLeanFactor='-0.005'
+	
+	draftMulAccelFactor='1.15'
+	draftTick='2000'
+	driftBoostMulAccelFactor='1.15'
+	driftBoostTick='500'
+	chargeBoostBySpeed='300'
+	TransformTime='700'
+	autoChargeLowSpeed='100'
+
+	UseExtendedAfterBooster='true'
+	BoosterAccelFactorItem ='1.65'
+	SpecialSlotCapacity='2'
+	
+	DescBalance='47'
+	DescStability='49'
+	DescEngineGrade='1.355'
+	DescCornering='7'
+	DescEnchantCap='25'
+
+	BoosterWaveType='boost8'
+	BoosterType='9soon'
+	BoosterType0='9main'
+	BoosterType1='9soon'
+
+	Port0='mod3a1' 
+	FirePort1='mod3b1'
+	
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	
+	EngineSound='9th'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod3a1'/>
+</BodyParam>
+<!-- 천사의 지팡이 9 / 중국 / 조합 / 20141023 릴리즈 -->

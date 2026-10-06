@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="warnResultAtNoviceChannel0">
+    <m c="kr" v="-- 초보채널은 나오지 않습니다 --"/>
+    <m c="jp" v="-- 初心者チャンネルは出ません --"/>
+    <m c="cn" v="-- 新手驾驶执照中不增加经验 --"/>
+    <m c="tw" v="新手駕駛執照中不會增加經驗值"/>
+    <m c="us" v=" -- Race Points and Lucci are not available at the Beginner&apos;s channel --"/>
+    <m c="vn" v="Cấp độ không phù hợp"/>
+    <m c="ru" v="-- Канал для новичков недоступен --"/>
+    <m c="id" v="-- Channel Newbie tidak muncul --"/>
+    <m c="th" v="Channel มือใหม่ไม่ปรากฏ"/>
+  </k>
+  <k n="warnResultAtNoviceChannel1">
+    <m c="kr" v="-- 루키 라이센스에 도전하세요 --"/>
+    <m c="jp" v="-- ルーキーライセンスに挑戦してください。 --"/>
+    <m c="cn" v="-- 请您挑战初级驾驶执照！ --"/>
+    <m c="tw" v="請您挑戰初級駕駛執照！"/>
+    <m c="us" v=" -- Go for the Rookie license! --"/>
+    <m c="vn" v="Hãy tham gia kênh Tay Đua Trẻ"/>
+    <m c="ru" v="-- Попробуйте получить права для новобранца --"/>
+    <m c="id" v="-- Challenge Lisensi Rookie --"/>
+    <m c="th" v="ลองทำใบขับขี่ Rookie ดูสิ"/>
+  </k>
+  <k n="bigTrackQuestComplete">
+    <m c="kr" v="님이 퀘스트를 완료했습니다"/>
+    <m c="jp" v="さんがクエストを完了しました。"/>
+    <m c="cn" v="完成任务"/>
+    <m c="tw" v="已經完成任務"/>
+    <m c="us" v="has completed the quest. You will be taken to bonus track."/>
+    <m c="vn" v="Hoàn thành nhiệm vụ giải thưởng lớn"/>
+    <m c="ru" v="выполнил квест"/>
+    <m c="id" v="telah menyelesaikan Quest"/>
+    <m c="th" v="ทำเควสสำเร็จแล้ว"/>
+  </k>
+  <k n="rank">
+    <m c="kr" v="/순위"/>
+  </k>
+  <k n="id">
+    <m c="kr" v="/라이더"/>
+  </k>
+  <k n="time">
+    <m c="kr" v="/기록"/>
+  </k>
+  <k n="title">
+    <m c="kr" v="/업적"/>
+  </k>
+  <k n="tp">
+    <m c="kr" v="/팀 포인트"/>
+  </k>
+  <k n="timeAbuseCaption">
+    <m c="kr" v="비정상 기록"/>
+    <m c="cn" v="非正常记录"/>
+    <m c="tw" v="非正常記錄"/>
+  </k>
+  <k n="timeAbuseMsg">
+    <m c="kr" v="불법 프로그램 사용으로 인하여 자동으로 게임이 종료됩니다.|불법 프로그램 종료 후, 게임을 다시 시작해주세요."/>
+    <m c="cn" v="由于您使用了非法程序，游戏即将自动关闭。|请关闭非法程序后，重新登录。"/>
+    <m c="tw" v="因使用不法程式，遊戲自動終止。|結束不法程式後，再次開始遊戲吧。"/>
+  </k>
+  <k n="vp">
+    <m c="kr" v="VP"/>
+    <m c="cn" v="胜点"/>
+    <m c="tw" v="VP"/>
+  </k>
+  <k n="versusModeCalculating">
+    <m c="kr" v="실력 측정 중"/>
+    <m c="cn" v="正在评定实力"/>
+    <m c="tw" v="等級判定中"/>
+  </k>
+  <k n="versusModeInviting">
+    <m c="kr" v="친선 대전 종료"/>
+    <m c="cn" v="友谊赛结束"/>
+    <m c="tw" v="友誼決鬥結束"/>
+  </k>
+  <k n="noRecord">
+    <m c="kr" v="기록없음"/>
+    <m c="cn" v="无记录"/>
+    <m c="tw" v="沒有記錄"/>
+  </k>
+  <k n="totalTp">
+    <m c="kr" v="종합 점수"/>
+    <m c="cn" v="综合分数"/>
+    <m c="tw" v="綜合分數"/>
+  </k>
+  <k n="unitPoint">
+    <m c="kr" v="점"/>
+    <m c="cn" v="分"/>
+    <m c="tw" v="分"/>
+  </k>
+  <k n="noClub">
+    <m c="kr" v="가입클럽없음"/>
+    <m c="cn" v="尚未加入俱乐部"/>
+    <m c="tw" v="未加入俱樂部"/>
+  </k>
+</StringBag>

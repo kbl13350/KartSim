@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='95.0'
+	BackwardAccelForce='90.0'
+	DragFactor='-0.053'
+	SteerConstraint='1.5'
+	DriftEscapeForce='150'
+	CornerDrawFactor='0.043'
+	 
+	BoosterBlur='true'
+	EngineSound='pro'
+/>
+<!-- 대만 사자 카트 pro -->
+
+

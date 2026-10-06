@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="久远的设计图" synopsis="大量的宝物正在被挖掘|在市长家中发现了古老的设计图！|发现不明设计图的葱头拿着设计图来到了研究所。" howToClear="请在规定的时间内完成比赛" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardStockId="8274"/>
+  </Step>
+  <Step id="2" type="32" mode="single" preConditionId="1" title="1920的宝物" synopsis="闲暇的周末，名侦探福尔摩斯的侦探所里|突然出现了一个1920的宝物。古典的设计外加卓越性能的复古老爷车，|由卡丁车博士葱头亲自测试。" howToClear="指定时间通过所有检查点" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="3" type="32" mode="single" preConditionId="2" title="奇怪的宣告书" synopsis="复古车辆，敞篷老爷车首次公开当天，|跑跑卡丁车博物馆收到一张，要盗窃敞篷老爷车的宣告信。|警察无奈下寻求侦探福尔摩斯的帮助。|在指定时间搜索周围看看有没有可疑人物吧。" howToClear="指定时间通过所有检查点" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="8275"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="侦探福尔摩斯是犯人？" synopsis="发宣告信的犯人盗窃了敞篷老爷车。|通过监控录像发现犯人不是别人，正是侦探福尔摩斯！|不知消失的敞篷老爷车与复古老爷车是同一款车的|罗杰把怀疑对象指定为侦探福尔摩斯！" howToClear="请在指定时间甩开罗杰|*注意 距离0m以下挑战失败" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardRp="300"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="美丽的女子" synopsis="被怀疑为犯人的福尔摩斯面前出现了一位美丽女子|想要甩开罗杰的话比较可疑，|但现在眼前的任务是甩开罗杰！" howToClear="请在指定时间内追上可疑女人|*注意 距离超过30m就挑战失败" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="8276"/>
+  </Step>
+  <Step id="6" type="31" mode="single" preConditionId="5" title="可疑的海贼团" synopsis="跟着可疑女子来到码头的福尔摩斯|见到了海盗船长海贼团！|福尔摩斯怀疑恰好在敞篷老爷车亮相当天出现的海贼团，|决定潜伏在海贼船探个究竟！" howToClear="逃脱海贼团的追击完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="抓住海盗船长！" synopsis="按照福尔摩斯的推测，敞篷老爷车|正在收集狂海盗船长的海贼船上。|要抓住海盗船长探个究竟才行！" howToClear="与海盗船长的对决上胜利" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="8277"/>
+  </Step>
+  <Step id="8" type="30" mode="single" preConditionId="7" title="真正的犯人登场" synopsis="偷车疑犯将敞篷老爷车卖给了海盗船长，|为了引诱福尔摩斯上海盗船后，|再一次偷了敞篷老爷车！|必须要抓住真凶！" howToClear="指定时间内抓住犯人|*注意 距离超过30m则挑战失败" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="8278"/>
+  </Step>
+  <Step id="9" type="34" mode="single" preConditionId="8" title="回到1920年" synopsis="福尔摩斯在追犯人的途中，进到了一束奇怪的光圈里|他来到了1920年的墓地|福尔摩斯从幽灵车手处了解到只要到达幽灵峡谷的尽头就能见到此次事件的关键人物亚伯特…" howToClear="请在与幽灵们的道具赛中胜利" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="4720"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="敞篷老爷车的墓地" synopsis="在幽灵峡谷尽头的亚伯特的墓地。|在亚伯特墓地前寻找到线索开始推理的福尔摩斯，|打算到附近村庄寻找亚伯特的女儿。" howToClear="完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10">
+    <Level difficult="0" rewardStockId="8277"/>
+  </Step>
+  <Step id="11" type="30" mode="single" preConditionId="10" title="月光之城市长的邀请" synopsis="随着亚伯特的线索来到城市的福尔摩斯！|注视着福尔摩斯驾驶的复古老爷车的市长，邀请福尔摩斯到自己的工厂…" howToClear="请在指定时间完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="11">
+    <Level difficult="0" rewardStockId="4869"/>
+  </Step>
+  <Step id="12" type="30" mode="single" preConditionId="11" title="奇怪的工厂" synopsis="到达市长工厂的侦探福尔摩斯！|要赶快甩开同样穿越并成为市长部下的|海贼团，并逃出这个工厂！" howToClear="请在指定时间以及碰撞次数内完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="12">
+    <Level difficult="0" rewardStockId="4720"/>
+  </Step>
+  <Step id="13" type="30" mode="single" preConditionId="12" title="阿尔贝特的真实身份" synopsis="出现在福尔摩斯面前的阿尔贝特。|福尔摩斯终于知道了阿尔贝特与亚伯特的关系，|决定向所有市民曝光市长的恶行。" howToClear="请在指定时间内完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="13">
+    <Level difficult="0" rewardRp="300"/>
+  </Step>
+  <Step id="14" type="31" mode="single" preConditionId="13" title="矿山的劳动人民" synopsis="福尔摩斯找到被市长谎言所欺骗的大家！|要赶快带领在苦难中挣扎的大家离开这里！" howToClear="在与市民的比赛中不要淘汰完成比赛" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="14">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="15" type="30" mode="single" preConditionId="14" title="杂乱无章的派对" synopsis="霸占了电车、轨道、矿山、工厂甚至敞篷老爷车的|市长恶行慢慢显露。|愤怒的人们开始反抗，|决定教训市长与他的团伙。" howToClear="请在指定时间完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="15">
+    <Level difficult="0" rewardStockId="4720"/>
+  </Step>
+  <Step id="16" type="30" mode="single" preConditionId="15" title="坚守设计图！" synopsis="拿着敞篷老爷车设计图逃跑的市长|与在他后面紧追的阿尔贝特！|必须要从市长手里抢回爸爸的设计图！" howToClear="请在指定时间内追上市长|*注意 距离超过20m则失败" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene16" readyStage="1-16" stepTitleId="16">
+    <Level difficult="0" rewardLucci="2000"/>
+  </Step>
+  <Step id="17" type="31" mode="single" preConditionId="16" title="1920敞篷老爷车派对" synopsis="所有的误会已经解开，市民决定生产敞篷老爷车。|兴奋的市民决定举办一场敞篷老爷车赛车大会，|而侦探福尔摩斯则等待着阿尔贝特为自己加油打气..." howToClear="在与市民的比赛中获得第一" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene17" readyStage="1-17" stepTitleId="17">
+    <Level difficult="0" rewardStockId="8278"/>
+  </Step>
+  <Step id="18" type="30" mode="single" preConditionId="17" title="福尔摩斯的真心" synopsis="解决敞篷老爷车失窃事件，决定回到2013年，|可放不下阿尔贝特的福尔摩斯，|决定向阿尔贝特告白自己的真心…" howToClear="请在指定时间内完成赛道" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="18">
+    <Level difficult="0" rewardStockId="8279"/>
+  </Step>
+  <Step id="19" type="32" mode="single" preConditionId="18" title="回到2013！" synopsis="阿尔贝特决定与福尔摩斯一起回到2013年！|要在指定时间内在火车道行驶|穿越到2013年！" howToClear="请用指定速度以上速度通过所有检查点" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="19">
+    <Level difficult="0" rewardStockId="8316"/>
+  </Step>
+  <Step id="20" type="31" mode="single" preConditionId="19" title="2013敞篷老爷车派对" synopsis="回归的2013年。阿尔贝特在福尔摩斯的建议下，|决定参加2013年敞篷老爷车派对的赛车比赛。|阿尔贝特是否可以驾驶爸爸设计的车辆，|在比赛上获得胜利的果实呢？" howToClear="与车手们的比赛上获得第一" missionText="目标成功 %d回/%d回" addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="20" isFinalStep="true">
+    <Level difficult="0" rewardStockId="7797"/>
+  </Step>
+</StepList>

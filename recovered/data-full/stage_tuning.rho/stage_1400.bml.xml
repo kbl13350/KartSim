@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="fullscreen">
+  <ImageBoard name="backGround_1920" windowSize="1920 1080" adjust="0 0" image="차고배경_1920x1080" alphaBlend="true" align="center" alphaTest="true" visible="true"/>
+  <ImageBoard name="bg" windowSize="1400 1050" align="center" image="garage_img_floterBG_1400" alphaBlend="true" visible="true">
+    <Window name="menuTab" leftTopWH="0 54 744 44" align="hcenter" visible="true">
+      <ImageButton name="partsInstall" leftTopTex="0 0" align="vcenter" autoLoadImage="garage_btn_menuTab1_" alphaBlend="true" text="#sb(partsInstall)" textAlign="vcenter" stringPos="60 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white"/>
+      <ImageButton name="partsDisassemble" leftTopTex="124 0" align="vcenter" autoLoadImage="garage_btn_menuTab2_" alphaBlend="true" text="#sb(partsDisassemble)" textAlign="vcenter" stringPos="60 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white"/>
+      <ImageButton name="kartLevelUp" leftTopTex="248 0" align="vcenter" autoLoadImage="garage_btn_menuTab3_" alphaBlend="true" text="#sb(tunningStr)" textAlign="vcenter" stringPos="60 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white"/>
+      <ImageButton name="partsComposite" leftTopTex="372 0" align="vcenter" autoLoadImage="garage_btn_menuTab4_" alphaBlend="true" text="#sb(partsComposite)" textAlign="vcenter" stringPos="60 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white"/>
+      <ImageButton name="partsFactory" leftTopTex="496 0" align="vcenter" autoLoadImage="garage_btn_menuTab5_" alphaBlend="true" text="#sb(factory)" textAlign="vcenter" stringPos="50 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white" enable="false"/>
+      <ImageButton name="growthKart" leftTopTex="620 0" align="vcenter" autoLoadImage="garage_btn_menuTab6_" alphaBlend="true" text="#sb(upgrade)" textAlign="vcenter" stringPos="38 0" textRender="bold16" textColor="255 135 141 146" overTextRender="bold16" overTextColor="255 6 172 255" clickedTextRender="bold16" clickedTextColor="white" disabledTextRender="bold16" disabledTextColor="white" visible="false">
+        <ImageBoard name="growthAlert" windowSize="20 20" align="right" adjust="-6 -6" image="icon_notice" alphaBlend="true" visible="false"/>
+      </ImageButton>
+      <Panel name="growthLock" leftTopWH="620 0 124 44" alphaBlend="true" visible="true" altText="#sb(growthTabLock)" altRelativePos="5 35" texture="garage_btn_menuTab6_0">
+        <Label windowSize="124 44" text="#sb(upgrade)" align="center" textAlign="center" textColor="255 135 141 146" textRender="bold16"/>
+      </Panel>
+    </Window>
+    <Window name="client" windowSize="1400 885" adjust="0 16" align="center">
+      <Window name="infoBLock" windowSize="770 885" adjust="0 0">
+        <Label name="selectedKart" windowSize="124 30" adjust="30 21" textRender="bold24" text="#sb(selectedKart)" textColor="white" textAlign="left|vcenter"/>
+        <Label name="subjectName" windowSize="300 40" align="right;top" adjust="20 95" textRender="bold20" text="#sb(kartInfo)" textColor="white" textAlign="left|vcenter"/>
+        <Window name="itemInfo" windowSize="768 510" align="top" adjust="0 0">
+          <Window name="tuneCardAttach" windowSize="485 268" align="center" adjust="-140 20"/>
+          <Container name="kartSpecX" windowSize="300 210" align="right;vcenter" adjust="20 -20">
+            <Label name="subInfoKartClassStr" windowSize="300 35" textRender="bold16" enable="false" textAlign="left|vcenter" textColor="white"/>
+            <ColorLabel name="clblSpecName" leftTopWH="10 41 300 16" textAlign="left" textRender="bold16" textColor="white" lineGap="9"/>
+            <ColorLabel name="clblSpecValue" leftTopWH="-18 41 300 16" textAlign="right" textRender="bold16" textColor="white" lineGap="9"/>
+          </Container>
+        </Window>
+        <Label name="itemInfo_abilityDesc" windowRect="20 515 750 603" adjust="20 312" multiLine="true" autoWrap="true" textColor="255 207 221 240" textRender="bold14" lineGap="3" enable="false"/>
+        <List name="itemInfo_abilityDescList" windowRect="20 515 750 603" adjust="20 312" listGap="3" listMargin="0 0 0 0"/>
+        <Window name="tuneState" windowSize="770 282" adjust="0 602">
+          <Label leftTopWH="30 12 750 35" textRender="bold16" text="#sb(tuneState)" textColor="white"/>
+          <ImageButton name="tutorial" windowSize="146 30" adjust="606 9" autoLoadImage="tutorial_@zz" alphaBlend="true"/>
+          <Window name="itemSocket" windowSize="146 116" adjust="33 10" align="vcenter" alphaBlend="true">
+            <Panel name="empty" texture="플로터없음이미지01" windowSize="126 126" adjust="20 5" alphaBlend="true"/>
+            <Play1SPanel name="enableTune" scene="floater_비활성_상점" windowSize="110 110" align="hcenter" adjust="10 18" defaultCameraPos="0.0 -2 0.55" defaultSpotPos="0.0 0.0 0.55" zoom="2.0" clearZBefore="true" clearZAfter="true" visible="false" enable="false"/>
+            <Play1SPanel name="enableReset" scene="floater_활성_상점" windowSize="110 110" align="hcenter" adjust="10 18" defaultCameraPos="0.0 -2 0.5" defaultSpotPos="0.0 0.0 0.5" zoom="2.0" clearZBefore="true" clearZAfter="true" visible="false" enable="false"/>
+          </Window>
+          <Window name="itemSocket" windowSize="494 116" adjust="240 50">
+            <ColorLabel name="abilityTitle" text="" multiLine="true" marginRect="8 8 5 5" autoWrap="true" lineGap="2" enable="false" textColor="white" adjust="0 0" windowSize="373 20" textRender="bold14"/>
+            <ColorLabel name="abilityDesc" text="" multiLine="true" marginRect="8 8 5 5" autoWrap="true" lineGap="0" enable="false" textColor="white" adjust="0 31" windowSize="400 126" textRender="bold14"/>
+          </Window>
+          <TextButton name="tunning" windowSize="144 40" adjust="20 15" align="bottom;right" text="#sb(tunning)" textRender="bold16" visible="false"/>
+          <TextButton name="equip" frame="DefaultFocusedButton" windowSize="144 40" adjust="20 15" align="bottom;right" text="#sb(equip)" textRender="bold16" textColor="white" textAlign="center" alphaBlend="true" visible="false"/>
+          <TextButton name="protectEnchantDouble" frame="DefaultFocusedButton" windowSize="144 40" align="bottom;right" adjust="330 15" text="#sb(protectEnchantDouble)" textRender="bold16" visible="false" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+          <TextButton name="protectEnchant" frame="DefaultFocusedButton" windowSize="144 40" align="bottom;right" adjust="175 15" text="#sb(protectEnchant)" textRender="bold16" visible="false"/>
+          <TextButton name="reset" windowSize="144 40" align="bottom;right" adjust="20 15" text="#sb(reset)" textRender="bold16" visible="false"/>
+        </Window>
+      </Window>
+      <Window name="ContentTab" windowSize="600 700" adjust="785 27">
+        <Container windowSize="600 34" adjust="0 0" align="top">
+          <ImageButton name="tab_kart" windowSize="299 34" align="left" autoLoadImage="floter_btn_Tab_" text="#sb(mqKarts)" textColor="255 135 146 167" textRender="bold16" overTextRender="bold16" overTextColor="255 16 136 199" clickedTextRender="bold16" clickedTextColor="255 42 55 80" disabledTextRender="bold16" disabledTextColor="255 22 92 159" alphaBlend="true"/>
+          <ImageButton name="tab_parts" windowSize="299 34" align="right" autoLoadImage="floter_btn_Tab_" text="#sb(mqParts)" textColor="255 135 146 167" textRender="bold16" overTextRender="bold16" overTextColor="255 16 136 199" clickedTextRender="bold16" clickedTextColor="255 42 55 80" disabledTextRender="bold16" disabledTextColor="255 22 92 159" alphaBlend="true"/>
+        </Container>
+        <Container name="container" windowSize="600 780" adjust="0 55" align="top">
+          <GridSelectorDivLoad name="itemGrid" windowRect="0 0 720 670" alignStyle="horizontal" alignSize="3" maxLine="6" alignMargin="9 9" clientMargin="0 0 0 0"/>
+          <ImageButton name="preItemList" leftTopTex="0 0" align="bottom;hcenter" adjust="-46 17" autoLoadImage="arrowL_" alphaBlend="true" alphaTest="true" enable="true"/>
+          <Label name="pageInfo" windowSize="50 24" align="bottom;hcenter" adjust="0 17" text=" 1/2 " textRender="bold16" textColor="white" textAlign="center"/>
+          <ImageButton name="nextItemList" leftTopTex="0 0" align="bottom;hcenter" adjust="46 17" autoLoadImage="arrowR_" alphaBlend="true" alphaTest="true" enable="true"/>
+        </Container>
+        <Container name="bottomLayout" windowRect="0 0 130 33" align="hcenter;bottom" visible="false">
+          <TextButton name="prevPage" windowSize="31 32" align="left;vcenter" frame="BulletLeftButton" useDisableState="true"/>
+          <TextButton name="nextPage" windowSize="31 32" align="right;vcenter" frame="BulletRightButton" useDisableState="true"/>
+        </Container>
+      </Window>
+    </Window>
+  </ImageBoard>
+</Container>

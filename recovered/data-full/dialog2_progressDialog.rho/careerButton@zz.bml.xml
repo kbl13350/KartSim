@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextButton windowRect="0 0 308 65" text="할로윈 축제의 방해꾼">
+  <Panel name="complete" windowRect="1 0 51 50" align="vcenter" texture="img_careerIncomplete" alphaBlend="true"/>
+  <Panel name="icon" windowRect="60 0 70 10" texture="img_questClose" align="vcenter" alphaBlend="true"/>
+</TextButton>

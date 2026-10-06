@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <XmlFile file="minimap"/>
+  <Container name="cloud2Effect" windowRect="fullscreen"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Container name="item" windowRect="0 0 280 75"/>
+    <StressMirror name="stressMirror"/>
+    <CutEffect name="cutEffect"/>
+    <CutEffect name="cutEffect2"/>
+    <Container name="goldenflag" windowSize="132 58" adjust="24 24" align="right" visible="false">
+      <Panel name="gf_1" leftTopTex="0 0" texture="골든플래그_미니_01@zz" alphaBlend="true"/>
+      <Panel name="gf_2" leftTopTex="0 0" texture="골든플래그_미니_02@zz" alphaBlend="true"/>
+    </Container>
+  </Container>
+</Container>

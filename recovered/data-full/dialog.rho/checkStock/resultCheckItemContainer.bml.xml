@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 558 51">
+  <Window windowRect="0 4 558 56" frame="NoFrame">
+    <Panel windowRect="0 -3 44 41" color="255 67 68 62">
+      <Panel windowRect="2 2 42 42" color="255 206 201 195">
+        <ItemWindow name="itemPanel" windowRect="1 1 41 41"/>
+      </Panel>
+    </Panel>
+    <Window windowRect="46 2 163 4">
+      <Label name="itemName" windowRect="46 2 163 4" autoSize="true" textRender="bold" textAlign="hcenter" align="hcenter"/>
+      <Label name="stockAttr" windowRect="46 18 163 4" autoSize="true" textRender="bold" textAlign="hcenter" align="hcenter"/>
+    </Window>
+    <Panel windowRect="164 -1 165 36" color="gray"/>
+    <Panel windowRect="165 -1 166 36" color="white"/>
+    <Panel name="iconPanel" windowRect="180 3 210 33" uvRect="0 0 30 30" texture="대화상자정보" alphaBlend="true"/>
+    <Label name="resultMsg" windowRect="220 5 227 4" multiLine="true"/>
+    <Label name="warnMsg" windowRect="220 21 227 4" multiLine="true"/>
+  </Window>
+</Container>

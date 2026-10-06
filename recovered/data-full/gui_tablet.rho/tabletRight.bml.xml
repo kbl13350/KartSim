@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="bg" windowRect="fullscreen" texture="BG">
+  <GraphicButton name="help" windowRect="42 51 256 109" autoLoadImage="help_0"/>
+  <GraphicButton name="auto" windowRect="42 290 256 348" autoLoadImage="auto_0" align="right;bottom" adjust="43 420" style="check"/>
+  <Window name="base" windowRect="0 0 214 363" align="bottom" adjust="43 116">
+    <GraphicButton name="reset" windowRect="0 0 214 58" autoLoadImage="r_0"/>
+    <Window name="base2" windowRect="0 130 214 270">
+      <GraphicButton name="drift" windowRect="0 0 106 68" autoLoadImage="drift_0"/>
+      <GraphicButton name="item" windowRect="109 0 215 68" autoLoadImage="item_0"/>
+      <GraphicButton name="slotChanger" windowRect="0 71 106 139" autoLoadImage="slotchanger_0"/>
+      <GraphicButton name="itemChanger" windowRect="109 71 215 139" autoLoadImage="itemchanger_0"/>
+    </Window>
+    <GraphicButton name="space" windowRect="0 304 214 362" autoLoadImage="space_0" visible="false"/>
+  </Window>
+  <Container name="rightCont" windowRect="0 0 214 230" align="right;bottom" adjust="43 163">
+    <GraphicButton name="upleft" windowRect="0 0 61 78" autoLoadImage="FL_0"/>
+    <GraphicButton name="up" windowRect="66 0 151 78" autoLoadImage="D_F_0"/>
+    <GraphicButton name="upright" windowRect="156 0 217 78" autoLoadImage="FR_0"/>
+    <Window name="up_blink" windowRect="65 0 150 78" texture="D_F_03" visible="false" enable="false"/>
+    <GraphicButton name="left" windowRect="-1 82 105 149" autoLoadImage="D_L_0"/>
+    <GraphicButton name="right" windowRect="110 82 216 149" autoLoadImage="D_R_0"/>
+    <GraphicButton name="downleft" windowRect="0 154 61 232" autoLoadImage="BL_0"/>
+    <GraphicButton name="down" windowRect="66 154 151 232" autoLoadImage="D_B_0"/>
+    <GraphicButton name="downright" windowRect="156 154 217 232" autoLoadImage="BR_0"/>
+  </Container>
+  <GraphicButton name="esc" windowRect="42 51 256 109" autoLoadImage="esc_0" align="right" adjust="43 0"/>
+</Window>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="penguin2"/>
+  <Char id="jakob1" pos="8 0" emotion="normal"/>
+  <Msg name="波利斯 雅克布" string="好久没见这些宝物，突然冒出个想法。"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob2" pos="8 0" flip="true" emotion="normal"/>
+  <Msg name="波诺 雅克布" string="什么想法？？"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" pos="8 0" emotion="stop2"/>
+  <Msg name="波利斯 雅克布" string="咱们得去找找新的宝藏才行！！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" pos="8 0" emotion="stop2"/>
+  <Msg name="波诺 雅克布" string="对啊！！不过去哪儿找呢？"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" pos="8 0" emotion="normal"/>
+  <Msg name="波利斯 雅克布" string="说到宝藏，那必须是金字塔啊！我要去沙漠。"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" pos="8 0" emotion="stop4"/>
+  <Msg name="波诺 雅克布" string="哦对对对！！那咱们去沙漠吧！"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="jakob2" pos="4 0" emotion="stop3"/>
+  <Msg name="波利斯 雅克布" string="沙漠我自己去，你找找别的地方吧。"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="jakob2" pos="4 0" emotion="stop1"/>
+  <Msg name="波诺 雅克布" string="我一个人？？？"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob2" pos="7 0" emotion="stop1"/>
+  <Msg name="波诺 雅克布" string="哥？！"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob2" pos="7 0" emotion="stop3"/>
+  <Msg name="波诺 雅克布" string="那我去哪儿呢？"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob2" pos="7 0" emotion="normal"/>
+  <Msg name="波诺 雅克布" string="宝藏的话就是钻石，钻石……对，矿山！"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob2" pos="7 0" emotion="stop2"/>
+  <Msg name="波诺 雅克布" string="好！那我就去矿山！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" title="小强的特训" synopsis="顺利得通过了繁荣山丘预选大会的皮蛋，|为了将要进行决赛，开始接受小强的特训。|小强准备的特训到底是什么呢？" howToClear="请在规定的时间内完成赛道" missionText="赛道完成 %d次/ 目标%d次" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardStockId="14696"/>
+  </Step>
+  <Step id="2" type="32" mode="single" preConditionId="1" title="艰难的挑战" synopsis="小强又给了皮蛋一个特训的项目。|通过更高难度的挑战，皮蛋能否学到更漂亮的驾驶技术呢？" howToClear="在指定以上的速度，通过所有的计时点。" missionText="计时点 通过%d次/共%d次" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="3" type="34" mode="single" preConditionId="2" title="新的比赛方法" synopsis="知道了繁荣山丘决赛是以道具赛来进行的皮蛋，|在小强的帮助下学习道具的使用方法。|在新的行驶模式中，皮蛋也能发挥出实力吗？" howToClear="아使用道具，并在和其他车手的比赛中获得胜利。" missionText="对决胜利%d次/共%d次" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="5917"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="为了胜利而做的练习" synopsis="充分熟悉了道具使用方法的皮蛋，|为了熟悉更多的技术，打算进行更多的对决。" howToClear="请在规定时间内完成赛道。" missionText="赛道完成%d次/目标%d次" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="1126"/>
+  </Step>
+  <Step id="5" type="34" mode="single" preConditionId="4" title="繁荣山丘决赛终于来临" synopsis="终于到了繁荣山丘决赛的这一天。|皮蛋通过特训获得了参加比赛的自信感。|在决赛中，到底谁会获得最终的优胜呢？" howToClear="请在和其他车手的道具赛中获胜。" missionText="对决胜利%d次/目前%d次" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="6" type="32" mode="single" preConditionId="5" title="小屁孩车手登场" synopsis="因获得繁荣山丘决赛优胜而喜悦着的皮蛋，遇到了小屁孩车手。|这个小屁孩车手以出色的驾驶技术，让大家都吃了一惊。" howToClear="请在规定的时间内，通过所有的计时点。" missionText="计时点通过%d次/共%d次" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="14697"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="自尊心之对决" synopsis="赌上作为繁荣山丘大赛冠军的自尊心，|皮蛋和小屁孩车手小乖决定进行一盘比赛。|在紧张激烈的对决中，到底谁会获胜呢？" howToClear="请在和小乖车手的对决中获胜。" missionText="对决胜利%d次/ 共%d次" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="8" type="31" mode="single" preConditionId="7" title="针尖对麦芒的决斗" synopsis="皮蛋和朋友们通过比赛，成为了更成熟的车手。|现在他们之间的比赛，可谓是针尖对麦芒的决斗。" howToClear="请在和其他车手的比赛中不被甩掉并完成赛道。" missionText="赛道完成 %d次 /共%d次" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="08A" otherWayLockId="9">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="9" type="30" mode="single" preConditionId="7" title="竞速的最强者" synopsis="通过经验的积累，成为了优秀的车手的皮蛋和朋友们，|为了达到竞速的最强者，而开始了火热的比赛。" howToClear="请在规定时间内完成赛道。" missionText="赛道完成%d次/目标%d次" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="08B" otherWayLockId="8">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="8|9" title="带着奶瓶逃跑" synopsis="因为过度练习驾驶而饥饿难耐的胖墩，|拿着小乖的奶瓶开始了逃窜。|请在胖墩喝光小乖的牛奶前拦住他。" howToClear="在规定的时间内超过胖墩|落后20米以上时，挑战失败" missionText="追击成功%d次/共%d次" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="09">
+    <Level difficult="0" rewardStockId="14698"/>
+  </Step>
+  <Step id="11" type="30" mode="single" preConditionId="10" title="胖墩的惩罚 " synopsis="因为胖墩制造了麻烦，所以需要惩罚他。|胖墩通过这个惩罚，能够认识到错误吗？" howToClear="在规定的时间和碰撞次数之内，完成递送。" missionText="递送成果 %d回/%d回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="10">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="12" type="34" mode="single" preConditionId="11" title="一起进行的练习" synopsis="皮蛋和朋友们聚集在一起，进行了好久未能进行的练习赛。|虽然是为了增进友谊而进行的比赛，|但是所有的人为了达到胜利而干劲十足" howToClear="请在个人道具赛中获得胜利" missionText="对决胜利%d次/共%d次" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="11">
+    <Level difficult="0" rewardStockId="1128"/>
+  </Step>
+  <Step id="13" type="30" mode="single" preConditionId="12" title="黑妞的挑战" synopsis="通过刻苦的练习实力大增的黑妞，突然向皮蛋提出挑战。|惊讶于黑妞实力的皮蛋，到底能否获得胜利呢？" howToClear="请在和黑妞的比赛中，不落后并完成比赛。" missionText="赛道完成%d次/共%d次" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="12">
+    <Level difficult="0" rewardStockId="14699"/>
+  </Step>
+  <Step id="14" type="30" mode="single" preConditionId="13" title="黑妞的热情" synopsis="为了黑妞的实力增长，大家都鼓起了掌。|在朋友们的声援下，黑妞充满了动力，再次向皮蛋提出挑战。" howToClear="请在和黑妞的对决中获得胜利。" missionText="对决胜利%d次/共%d次" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="13">
+    <Level difficult="0" rewardRp="500"/>
+  </Step>
+  <Step id="15" type="30" mode="single" preConditionId="14" title="迷之车手登场" synopsis="皮蛋和朋友们在驾驶练习中，遇到了一位陌生的车手。|带着神秘气息的这个车手，到底是谁呢？" howToClear="在规定的时间内，完成赛道。" missionText="赛道完成%d次/目标%d次" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="14">
+    <Level difficult="0" rewardStockId="3246"/>
+  </Step>
+  <Step id="16" type="34" mode="single" preConditionId="15" title="宝宝令人吃惊的实力" synopsis="说话和行动看起来有点害羞的宝宝，|但显然是个有着相当实力的车手。|皮蛋能否在和宝宝的对决中获得胜利呢？" howToClear="请在和宝宝的道具赛中获得胜利" missionText="对决胜利%d次/共%d次" addToGarage="true" visualScene="scene16" readyStage="1-16" stepTitleId="15">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="17" type="30" mode="single" preConditionId="16" title="最终的决战" synopsis="一直等待着的最终的决战，现在已经没剩下多少时间了。|皮蛋和朋友们带着各自的梦想等待着这次的比赛。|为了出战这次大会，大家准备得如何呢？" howToClear="在规定的时间和碰撞次数之内，完成递送。" missionText="递送成果 %d回/%d回" addToGarage="true" visualScene="scene17" readyStage="1-17" stepTitleId="16">
+    <Level difficult="0" rewardStockId="1504"/>
+  </Step>
+  <Step id="18" type="34" mode="single" preConditionId="17" title="沙漠拉力赛" synopsis="每年在沙漠中举办的拉力赛中，|会有无数的车手，带着夺取冠军的梦想而来参赛。|皮蛋在这次的大会中，也能获得优胜吗？" howToClear="在和其他车手的道具赛中获得胜利。" missionText="对决胜利%d次/共%d次" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="17A" otherWayLockId="19">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="19" type="34" mode="single" preConditionId="17" title="墓地道具赛" synopsis="每年在墓地中举办的比赛中，|会有无数的车手带着夺取冠军的梦想而来参赛。|皮蛋在这次的大会中，也能获得优胜吗？" howToClear="请在和其他车手的道具赛中获得胜利。" missionText="对决胜利%d次/共%d次" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="17B" otherWayLockId="18">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="20" type="32" mode="single" preConditionId="18|19" title="森林中的猛练" synopsis="通过几场比赛，|看到其他车手的技术令人吃惊的成长后，皮蛋决定开始猛练了。|通过森林中的训练，能够有技术上的突破吗？" howToClear="在规定的时间内，通过所有的计时点" missionText="计时点通过%d次/共%d次" addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="18" isFinalStep="true">
+    <Level difficult="0" rewardStockId="7804"/>
+  </Step>
+</StepList>

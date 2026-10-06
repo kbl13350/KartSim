@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <TimeAttack isFixedKart="true" fixedKartId="10" kartId="273">
+    <LevelContent level="0" track="village_R01" laps="2"/>
+  </TimeAttack>
+</Root>

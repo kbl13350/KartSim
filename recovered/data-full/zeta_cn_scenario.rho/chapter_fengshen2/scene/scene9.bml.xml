@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[卡美洛王宫，亚瑟办公室]"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="申公豹" string="奇怪。明明应该在这里的……"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" flip="true" emotion="stop5"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="亚瑟" string="来者何人！"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" flip="true" emotion="stop5"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="未经许可擅闯王的办公室，好大的胆子！"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" emotion="normal"/>
+  <Char id="king_arthur" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="申公豹" string="小鬼，原来放在这里的剑哪去了？"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" emotion="normal"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="小鬼！？我可是卡美洛的王。"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="申公豹" string="啊是嘛~卡美洛的王啊。|我现在问的是剑在哪里。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" emotion="stop1"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="亚瑟" string="剑？什么剑？"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" emotion="normal"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="申公豹" string="装傻是吧……算了！也不需要你的帮助。"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" emotion="stop4"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="申公豹" string="追踪术！"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="申公豹" string="看到剑的踪迹了。|过去看看吧~"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="站住！！"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" emotion="stop2"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="申公豹" string="可真烦人。|只要弹个响指，就什么都记不得的家伙……"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="Shengongbao" pos="11 0" emotion="normal"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="申公豹" string="（啪！）"/>
+  <Enter/>
+  <Char id="Shengongbao" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="king_arthur" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="亚瑟" string="咦？我刚刚好像在和谁说话来着……"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="king_arthur" pos="5 0" emotion="normal"/>
+  <Msg name="亚瑟" string="我为什么会来这里？"/>
+  <Enter/>
+</Scene>

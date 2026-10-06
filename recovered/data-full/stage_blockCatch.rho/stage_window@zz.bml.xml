@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="effect1s" windowRect="fullscreen" align="center"/>
+  <Container name="inner" leftTopWH="0 0 1400 900" align="center">
+    <ImageBoard name="bg" windowSize="1400 900" image="블록캐치bg" align="center" alphaBlend="true" visible="true"/>
+    <Window name="line0Pos" leftTopWH="-520 479 1080 69" enable="false"/>
+    <Window name="line1Pos" leftTopWH="520 629 1080 69" enable="false"/>
+    <Window name="line2Pos" leftTopWH="-520 774 1080 69" enable="false"/>
+    <ImageBoard name="bg2" windowSize="130 492" align="right,center" adjust="0 162" alphaBlend="true" visible="true" enable="true"/>
+    <Panel name="manager_01" leftTopWH="0 610 254 290" alphaBlend="true" alphaTest="true" visible="true"/>
+    <Panel name="manager_02" leftTopWH="0 610 254 290" alphaBlend="true" alphaTest="true" visible="false"/>
+    <Panel name="manager_03" leftTopWH="0 610 254 290" alphaBlend="true" alphaTest="true" visible="false"/>
+  </Container>
+  <ImageBoard name="letterBox" windowSize="1920 1080" align="center" image="blockCatchBg_letterbox" alphaBlend="true"/>
+  <Container leftTopWH="0 0 1400 900" align="center">
+    <ImageButton name="goBackButton" windowSize="32 32" adjust="1355 17" autoLoadImage="btn_x_0" alphaBlend="true"/>
+  </Container>
+</Container>

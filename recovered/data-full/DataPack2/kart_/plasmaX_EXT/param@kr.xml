@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152'
+	BackwardAccelForce='100'
+	DragFactor='-0.084'
+	SteerConstraint='2.95'
+	CornerDrawFactor='0.074'
+	DriftEscapeForce='2040'
+	
+	driftBoostMulAccelFactor='1.32'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.8584'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+	BoostAccelFactor='1.535'
+	
+	DriftMaxGauge='-900'
+	NormalBoosterTime='-100'
+	TeamBoosterTime='-180'
+	
+	DriftGaguePreservePercent='0.7'
+	antiCollideBalance='0.9'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.1'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='X'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='60'
+	dualMulAccelFactor='1.1'
+	dualTransLowSpeed='100'
+
+	PartsBoosterLock='true'
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10main1'
+	BoosterType3='10sub1'
+	BoosterType4='10sub1'
+	BoosterType5='10main'
+	BoosterType6='10main'
+
+	Port0='mod2a1' 
+	Port1='mod2a2'
+
+	FirePort0='mod2a3'
+	FirePort1='mod2b1'
+	FirePort2='mod2b2'
+	FirePort3='mod2b3'
+	FirePort4='mod2b4'
+
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 232  39   6'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 255 0 0' trailPort0='mod2b1' trailPort1='mod2b2'/>
+</BodyParam>
+<!-- 플라즈마 X EXT / 한국 / 레전드 / 스피드 / 시즌패스 / 20200820 릴리즈 -->

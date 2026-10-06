@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='144.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.074'
+           SteerConstraint='2.4'
+           DriftEscapeForce='900'
+           CornerDrawFactor='0.068'
+
+
+           BoosterBlur='true'
+           EngineSound='formula1'
+           EnvMap='true'
+           OnCharacterSize='0.9'
+
+           UseTransformBooster='true'
+           TransAccelFactor='1.68'
+           TransformTime='700'                         
+
+           StartForwardAccelFactorSpeed = '1.2'
+           StartBoosterTimeSpeed ='1200'           
+
+           BoosterWaveType='effect_zero'
+           BoosterType0='default'
+           BoosterType1='default'
+           BoosterType2='cotton6'
+           BoosterType3='cotton6'
+           BoosterType4='zero5'
+
+           Port0='mod1a1'
+           Port1='mod1a2'
+           FirePort0='mod1a3'
+           FirePort1='mod1a4'
+           FirePort2='mod2b3'
+
+           TailLampSize='0.3'
+           TailLampColor='0 255 100 100'
+           BoostBlurColor='255 77 77 77'
+
+           DescBalance= '40'
+           DescStability ='42'
+           DescEngineGrade='1.2'
+           DescEnchantCap = '25'
+           DescCornering='7'
+
+
+/>
+<!-- 대만 블랙마크 Z7 테마 상시 110715-->

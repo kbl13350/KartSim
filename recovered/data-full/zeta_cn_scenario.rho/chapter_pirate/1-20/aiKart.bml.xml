@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <AiKart id="1" track="pirate_I01_rvs" isFixedKart="true" fixedKartId="875" laps="3" gameType="item" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" item="Rocket;WaterBomb;Booster;Magnet;WaterFly;Shild;Ufo" aiItemLevel="2">
+      <AiKart characterId="18" uniformId="0" kartId="957" colorId="8" dyeId="8" balloonId="0" speed="52" accel="22" startTick="0" characterName="多多"/>
+      <AiKart characterId="15" uniformId="0" kartId="904" colorId="3" dyeId="3" balloonId="0" speed="53" accel="21" startTick="0" characterName="摩比"/>
+      <AiKart characterId="9" uniformId="0" kartId="927" colorId="8" dyeId="8" balloonId="0" speed="54" accel="20" startTick="0" characterName="海盜船長"/>
+      <AiKart characterId="15" uniformId="58" kartId="881" colorId="8" dyeId="8" balloonId="0" speed="51" accel="20" startTick="0" characterName="海盜小嘍囉"/>
+    </LevelContent>
+  </AiKart>
+</Root>

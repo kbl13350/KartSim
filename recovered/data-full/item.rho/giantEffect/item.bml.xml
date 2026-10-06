@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="giantEffect">
+  <state name="Affect" life="1000" fired="fired00" itemFx="affect"/>
+  <state name="Affect" life="30000" item="arrow"/>
+</item>

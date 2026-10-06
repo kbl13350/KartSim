@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="220 0 0 0" alphaBlend="true" align="center"/>
+  <ImageBoard name="bg" windowRect="0 0 1024 768" alphaBlend="false" image="bg_1024" visible="true"/>
+  <Container windowRect="0 0 800 600" align="center">
+    <Container name="keyUseCont" leftTopWH="267 433 262 78">
+      <ImageButton name="autoUseOn" leftTopTex="3 2" autoLoadImage="btn_autoUse_0@zz" alphaBlend="true" forceTooltip="false"/>
+      <ImageButton name="autoUseCancel" leftTopTex="3 2" autoLoadImage="btn_autoUseStop_0@zz" alphaBlend="true" forceTooltip="false" visible="false"/>
+      <ImageButton name="useKey" leftTopTex="134 2" autoLoadImage="btn_use_0@zz" alphaBlend="true" alphaTest="true">
+        <ItemWindow name="useItem1" leftTopWH="25 40 50 25" stockId="0" enable="false" visible="true"/>
+        <CharPanel name="reduceItemCount" leftTopWH="79 44 40 17" centerAlign="true" texture="magicHat_number1" alphaBlend="true" fontSize="14 17" spaceOffset="0" fontStr="0123456789" text="0" speedTick="5" enable="false"/>
+        <CharPanel name="reduceItemCountHighLight" leftTopWH="79 44 40 17" centerAlign="true" texture="magicHat_number2" alphaBlend="true" fontSize="14 17" spaceOffset="0" fontStr="0123456789" text="0" speedTick="5" visible="false" enable="false"/>
+        <CharPanel name="reduceItemCountDisable" leftTopWH="79 44 40 17" centerAlign="true" texture="magicHat_number3" alphaBlend="true" fontSize="14 17" spaceOffset="0" fontStr="0123456789" text="0" speedTick="5" visible="false" enable="false"/>
+      </ImageButton>
+    </Container>
+    <Container name="keyCountCont" leftTopWH="267 510 262 25">
+      <Panel texture="curCount@zz" leftTopTex="40 5" alphaBlend="true"/>
+      <ItemWindow name="useItem2" leftTopWH="133 0 35 25" align="vcenter" stockId="0" enable="true" visible="false"/>
+      <Panel texture="magicHat_img_x" leftTopTex="168 0" align="vcenter" alphaBlend="true"/>
+      <CharPanel name="reduceItemLeftCount" leftTopWH="183 5 54 17" centerAlign="true" texture="magicHat_number4" alphaBlend="true" fontSize="14 17" spaceOffset="0" fontStr="0123456789" text="0" speedTick="5" enable="false"/>
+      <ImageButton name="buy" leftTopTex="0 0" align="vcenter;right" adjust="-2 2" autoLoadImage="btn_buy_0" alphaBlend="true" enable="false" visible="true"/>
+    </Container>
+    <ColorLabel name="explanation" leftTopWH="265 543 268 35" multiLine="true" lineGap="5" textAlign="center" textColor="white"/>
+    <Container name="catalogCont">
+      <Container name="slot0" leftTopWH="69 8 175 166" visible="true"/>
+      <Container name="slot1" leftTopWH="231 8 175 166" visible="true"/>
+      <Container name="slot2" leftTopWH="393 8 175 166" visible="true"/>
+      <Container name="slot3" leftTopWH="556 8 175 166" visible="true"/>
+      <Container name="slot4" leftTopWH="69 154 175 166" visible="true"/>
+      <Container name="slot5" leftTopWH="231 154 175 166" visible="true"/>
+      <Container name="slot6" leftTopWH="393 154 175 166" visible="true"/>
+      <Container name="slot7" leftTopWH="556 154 175 166" visible="true"/>
+      <Container name="slot8" leftTopWH="69 300 175 166" visible="true"/>
+      <Container name="slot9" leftTopWH="556 300 175 166" visible="true"/>
+      <Container name="slot10" leftTopWH="69 446 175 166" visible="true"/>
+      <Container name="slot11" leftTopWH="556 446 175 166" visible="true"/>
+    </Container>
+  </Container>
+  <ImageButton name="close" windowSize="64 20" align="right" adjust="5 3" autoLoadImage="btn_exit_" alphaBlend="true">
+    <Label name="sessionStateStr" windowRect="22 0 60 22" align="vcenter" text="#sb(exit)" textColor="white" textRender="bold" textAlign="center"/>
+  </ImageButton>
+  <Panel name="rewardBg" windowRect="fullscreen" enable="true" visible="false" color="0 0 0 0" alphaBlend="true" alphaTest="true">
+    <ImageBoard name="rewardDlgBg1024" leftTopWH="0 0 1024 768" alphaBlend="true" image="black_bg_1024" visible="false"/>
+    <Container windowRect="0 0 800 600" align="center">
+      <ImageBoard name="rewardDlgBg800" leftTopWH="0 0 800 600" alphaBlend="true" image="black_bg_800" visible="false"/>
+      <Container leftTopWH="267 433 262 78">
+        <ImageButton name="autoUseCancel" leftTopTex="3 2" autoLoadImage="btn_autoUseStop_0@zz" alphaBlend="true" forceTooltip="false" visible="false"/>
+      </Container>
+    </Container>
+  </Panel>
+  <Panel name="onInitBg" windowRect="fullscreen" enable="true" visible="false" color="100 0 0 0" alphaBlend="true" alphaTest="true">
+    <Panel leftTopTex="0 0" texture="onInit" align="center" alphaBlend="true">
+      <Label name="goldSlotSoldout" windowSize="260 90" text="#sb(isOnInitByGoldSoldout)" align="hcenter" adjust="0 130" textRender="gulim14" textColor="yellow" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" visible="false"/>
+      <Label name="scheduled" windowSize="260 90" text="#sb(isOnInitByScheduled)" align="hcenter" adjust="0 130" textRender="gulim14" textColor="yellow" multiLine="true" autoWrap="true" lineGap="1" textAlign="center" visible="false"/>
+    </Panel>
+  </Panel>
+  <Container name="rewardDialog" windowSize="404 303" adjust="0 -65" visible="false" enable="true" align="center">
+    <Window name="rewardStockItemView" leftTopWH="0 -50 400 300" alphaBlend="true" align="hcenter"/>
+    <Window name="rewardStockItemView_1024" leftTopWH="0 -85 400 300" alphaBlend="true" align="hcenter"/>
+    <Panel name="goldNameTag" texture="goldNameTag" leftTopTex="0 37" alphaBlend="true" align="hcenter" visible="false">
+      <Label name="rewardString" windowSize="280 20" align="center" text="" textColor="white" textRender="bold" autoWrap="true" textAlign="center"/>
+    </Panel>
+    <Panel name="goldNameTag_1024" texture="goldNameTag" leftTopTex="0 0" alphaBlend="true" align="hcenter" visible="false">
+      <Label name="rewardString" windowSize="280 20" align="center" text="" textColor="white" textRender="bold" autoWrap="true" textAlign="center"/>
+    </Panel>
+    <Panel name="silverNameTag" texture="silverNameTag" leftTopTex="0 37" alphaBlend="true" align="hcenter" visible="false">
+      <Label name="rewardString" windowSize="280 20" align="center" text="" textColor="white" textRender="bold" autoWrap="true" textAlign="center"/>
+    </Panel>
+    <Panel name="silverNameTag_1024" texture="silverNameTag" leftTopTex="0 0" alphaBlend="true" align="hcenter" visible="false">
+      <Label name="rewardString" windowSize="280 20" align="center" text="" textColor="white" textRender="bold" autoWrap="true" textAlign="center"/>
+    </Panel>
+    <ImageButton name="rewardOK" leftTopTex="165 281" autoLoadImage="ok_0" alphaBlend="true" visible="false" align="hcenter">
+      <Label windowSize="40 22" align="center" text="#sb(ok)" textColor="white" textColor2="164 50 0 0" textRender="outline" textAlign="center"/>
+    </ImageButton>
+    <ImageButton name="rewardOK_1024" leftTopTex="165 295" autoLoadImage="ok_0" alphaBlend="true" visible="false" align="hcenter">
+      <Label windowSize="40 22" align="center" text="#sb(ok)" textColor="white" textColor2="164 50 0 0" textRender="outline" textAlign="center"/>
+    </ImageButton>
+    <ImageBoard name="goldSelectorBg" windowSize="512 63" adjust="0 32" align="hcenter;bottom" image="goldSelectorBg" visible="false" alphaBlend="true"/>
+    <ImageBoard name="silverSelectorBg" windowSize="512 63" adjust="0 32" align="hcenter;bottom" image="silverSelectorBg" visible="false" alphaBlend="true"/>
+    <Container name="itemSelectorCont" windowSize="512 63" adjust="0 32" align="hcenter;bottom">
+      <GridSelectorDivLoad name="itemSelector" leftTopWH="43 -3 310 80" alignSize="4" maxLine="1" alignMargin="1 0" linePaging="true"/>
+      <ImageButton name="itemSelectorLeft" windowSize="54 20" adjust="3 0" align="left;vcenter" autoLoadImage="L_0" alphaBlend="true"/>
+      <ImageButton name="itemSelectorRight" windowSize="54 20" adjust="3 0" align="right;vcenter" autoLoadImage="R_0" alphaBlend="true"/>
+    </Container>
+  </Container>
+</Container>

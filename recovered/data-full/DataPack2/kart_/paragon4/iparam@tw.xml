@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.3'
+	DriftEscapeForce='1100'
+	CornerDrawFactor='0.071'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	TransAccelFactor='1.69'
+	UseTransformBooster='true'
+	TransformTime='650'
+	
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-350'
+	DriftMaxGauge = '-400'
+
+	StartForwardAccelFactorSpeed = '1.25'
+	StartBoosterTimeSpeed='1200'     
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zerosub'
+	BoosterType0='zeroplus'
+	BoosterType1='default'
+	BoosterType2='default'
+	BoosterType3='zerosub'
+	BoosterType4='zerosub'
+
+	Port0='mod1a'
+	Port1='mod1b'
+
+	FirePort0='mod1c'
+	FirePort1='mod2a'
+	FirePort2='mod2b'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 246 0'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '42'
+	DescStability ='42'
+	DescEngineGrade='1.2'
+	DescCornering='8'
+	DescEnchantCap = '25'
+>
+
+</BodyParam>
+
+<!--대만 파라곤 Z7+ 121019 가샤폰 레전드-->

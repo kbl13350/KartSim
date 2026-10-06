@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="jurassic2"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="怎么样，这还不能参加吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="carno" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="卡诺" string="基础实力还不错。|但人类绝不能参加。"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="carno" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="什么？不说好跑完赛道就能参加吗！"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="carno" pos="6 0" flip="true" emotion="stop2"/>
+  <Msg name="卡诺" string="我没说过！哈哈！"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="naru" pos="8 0" emotion="stop1"/>
+  <Msg name="纳鲁" string="这水平能参加。|我允许你参加。"/>
+  <Enter/>
+  <Char id="naru" remove="true"/>
+  <Char id="carno" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="卡诺" string="谁敢找茬...|呵…这老头怎么来了？"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="naru" pos="10 0" emotion="stop1"/>
+  <Char id="carno" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="纳鲁" string="已经听露西说了，|替我参加比赛没有问题！"/>
+  <Enter/>
+  <Char id="naru" remove="true"/>
+  <Char id="carno" remove="true"/>
+  <Char id="carno" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="卡诺" string="呵呵，无所谓。|反正都是我赢。"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="rachi" pos="10 0" emotion="stop2"/>
+  <Msg name="露西" string="谢谢爸爸！"/>
+  <Enter/>
+  <Char id="rachi" remove="true"/>
+  <Char id="carno" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="卡诺" string="但还有一个条件你要遵守，|大赛只能用我们的车！"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="rachi" pos="9 0" emotion="stop3"/>
+  <Msg name="露西" string="不行…皮蛋从没驾驶过我们的赛车！"/>
+  <Enter/>
+  <Char id="rachi" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="rachi" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="没关系，露西只要是车辆就没问题。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="rachi" remove="true"/>
+  <Char id="carno" pos="5 0" emotion="stop1"/>
+  <Msg name="卡诺" string="呵呵，还挺有自信的，我看你能撑到什么时候。|比赛马上要开始了赶紧去练练吧!"/>
+  <Enter/>
+</Scene>

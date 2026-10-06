@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.066'
+	SteerConstraint='2.30'
+	DriftEscapeForce='850'
+	CornerDrawFactor='0.065'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod1c'
+	Port1='mod1d'
+	FirePort0='mod1a1'
+	FirePort1='mod2a'
+	FirePort2='mod2b'
+	FirePort3='mod2c'
+	FirePort4='mod2d'
+
+	TachometerType='Tacho1'
+	TachometerName='cotton'
+
+	DescBalance= '30'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '20'
+
+/>
+<!-- 코튼 SR Type-B -->

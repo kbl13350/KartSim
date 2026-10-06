@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window leftTopWH="0 0 958 101">
+  <Label name="criterion" leftTopWH="60 34 100 10" textAlign="hcenter" textRender="bold16" textColor="255 84 100 129"/>
+  <Container name="rewardPanel1" leftTopWH="260 8 80 80"/>
+  <Container name="rewardPanel2" leftTopWH="347 8 80 80"/>
+  <Container name="rewardPanel3" leftTopWH="435 8 80 80"/>
+</Window>

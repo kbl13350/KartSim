@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.2'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.07'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.68'   
+	TransformTime='700'               
+
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+	DriftMaxGauge='-1200'
+
+	StartForwardAccelFactorSpeed = '1.25'
+	StartBoosterTimeSpeed ='1200'           
+
+	BoosterBlur='true'
+	EngineSound='bike'
+	EnvMap='true'
+	motorcycleType='true'
+
+	TachometerType='Tacho1'
+	TachometerName='bike'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zerosub'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zeroplus'
+	BoosterType3='zeroplus'
+
+	Port0='mod1d1'
+	Port1='mod1d2'
+
+	FirePort0='mod1a3'
+	FirePort1='mod1a4'
+	FirePort2='mod1a1'
+	FirePort3='mod1a2'
+
+	TailLampSize='0.4'
+	TailLampColor='0 253 43 253'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '44'
+	DescStability ='38'
+	DescEngineGrade='1.2'
+	DescCornering='4'
+	DescEnchantCap = '25'
+/>
+
+<!--중국 저스티스 바이크 Z7+ 120927 상시 판매 -->

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MultiStage>
+  <revolution className="MainMenuStage" addResFolder="/stage/common/" topmostWindow="stage_window@zz" stringBag="stage_stringBag"/>
+  <monocoque className="MainMenuStage" addResFolder="/stage/common/;/zeta/kr/stage/mainMenu/;/dialog2/selectTrackEx/" topmostWindow="mq_window@zz" stringBag="stage_stringBag"/>
+</MultiStage>

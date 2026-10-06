@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="myInfo">
+    <m c="kr" v="내 정보"/>
+    <m c="jp" v="マイ情報"/>
+    <m c="cn" v="我的资料"/>
+    <m c="tw" v="我的個人資料"/>
+    <m c="us" v="My Info"/>
+    <m c="vn" v="Thông tin  "/>
+    <m c="ru" v="Моя информация"/>
+    <m c="id" v="My Info"/>
+    <m c="th" v="ข้อมูลส่วนตัว"/>
+  </k>
+  <k n="myLicenseCard">
+    <m c="kr" v="내 라이센스 카드"/>
+    <m c="jp" v="マイライセンスカード"/>
+    <m c="cn" v="我的驾驶执照"/>
+    <m c="tw" v="我的駕駛執照"/>
+    <m c="us" v="My License"/>
+    <m c="vn" v="Bằng lái"/>
+    <m c="ru" v="Права"/>
+    <m c="id" v="My License Card"/>
+    <m c="th" v="ใบขับขี่ส่วนตัว"/>
+  </k>
+  <k n="myGuild">
+    <m c="kr" v="내 길드"/>
+    <m c="jp" v="マイギルド"/>
+    <m c="cn" v="我的车队"/>
+    <m c="tw" v="我的車隊"/>
+    <m c="us" v="My Race Club"/>
+    <m c="vn" v="Đội của tôi"/>
+    <m c="ru" v="Моя Гильдия"/>
+    <m c="id" v="My Guild"/>
+    <m c="th" v="ชื่อกิลด์"/>
+  </k>
+  <k n="noviceLicenseCard">
+    <m c="kr" v="초보(NOVICE) 라이센스 카드"/>
+    <m c="jp" v="初心者(NOVICE) ライセンスカード"/>
+    <m c="cn" v="新手驾驶执照"/>
+    <m c="tw" v="新手 駕駛執照"/>
+    <m c="us" v="Beginner&apos;s license card"/>
+    <m c="vn" v="Bằng lái Hạng Hạng Gà"/>
+    <m c="ru" v="Права (Новичок)"/>
+    <m c="id" v="Novice License Card"/>
+    <m c="th" v="ใบขับขี่ NOVICE"/>
+  </k>
+  <k n="rookieLicenseCard">
+    <m c="kr" v="루키(ROOKIE) 라이센스 카드"/>
+    <m c="jp" v="ルーキー(ROOKIE) ライセンスカード"/>
+    <m c="cn" v="初级驾驶执照"/>
+    <m c="tw" v="初級 駕駛執照"/>
+    <m c="us" v="Rookie license card"/>
+    <m c="vn" v="Bằng lái Tay Đua Trẻ"/>
+    <m c="ru" v="Права (Ученик)"/>
+    <m c="id" v="Rookie License Card"/>
+    <m c="th" v="ใบขับขี่ ROOKIE"/>
+  </k>
+  <k n="l3LicenseCard">
+    <m c="kr" v="레벨3(L-3) 라이센스 카드"/>
+    <m c="jp" v="レベル3(L-3) ライセンスカード"/>
+    <m c="cn" v="L3驾驶执照"/>
+    <m c="tw" v="L3 駕駛執照"/>
+    <m c="us" v="Level 3 (L-3) license card"/>
+    <m c="vn" v="Bằng lái L3"/>
+    <m c="ru" v="Права (L-3)"/>
+    <m c="id" v="Level 3(L-3) License Card"/>
+    <m c="th" v="ใบขับขี่ L-3"/>
+  </k>
+  <k n="l2LicenseCard">
+    <m c="kr" v="레벨2(L-2) 라이센스 카드"/>
+    <m c="jp" v="レベル2(L-2) ライセンスカード"/>
+    <m c="cn" v="L2驾驶执照"/>
+    <m c="tw" v="L2 駕駛執照"/>
+    <m c="us" v="Level 2 (L-2) license card"/>
+    <m c="vn" v="Bằng lái L2"/>
+    <m c="ru" v="Права (L-2)"/>
+    <m c="id" v="Level 2(L-2) License Card"/>
+    <m c="th" v="ใบขับขี่ L-2"/>
+  </k>
+  <k n="l1LicenseCard">
+    <m c="kr" v="레벨1(L-1) 라이센스 카드"/>
+    <m c="jp" v="レベル1(L-1) ライセンスカード"/>
+    <m c="cn" v="L1驾驶执照"/>
+    <m c="tw" v="L1 駕駛執照"/>
+    <m c="us" v="Level 1 (L-1) license card"/>
+    <m c="vn" v="Bằng lái L1"/>
+    <m c="ru" v="Права (L-1)"/>
+    <m c="id" v="Level 1(L-1) License Card"/>
+    <m c="th" v="ใบขับขี่ L-1"/>
+  </k>
+  <k n="proLicenseCard">
+    <m c="kr" v="프로(Pro) 라이센스 카드"/>
+    <m c="jp" v="プロ(Pro) ライセンスカード"/>
+    <m c="cn" v="专业驾驶执照"/>
+    <m c="tw" v="職業 駕駛執照"/>
+    <m c="us" v="Pro license card"/>
+    <m c="vn" v="Bằng lái Hạng Siêu Đẳng"/>
+    <m c="ru" v="Права (Профессионал)"/>
+    <m c="id" v="Pro License Card"/>
+    <m c="th" v="ใบขับขี่ Pro"/>
+  </k>
+  <k n="tempRookieLicenseCard">
+    <m c="kr" v="루키(ROOKIE) 임시 라이센스 카드"/>
+    <m c="jp" v="ルーキー(ROOKIE) 臨時ライセンスカード"/>
+    <m c="cn" v="初级 临时驾驶执照"/>
+    <m c="tw" v="初級 臨時駕駛執照"/>
+    <m c="us" v="Temporary Rookie license card"/>
+    <m c="vn" v="Chứng nhận Tay Đua Trẻ"/>
+    <m c="ru" v="Временные права (Ученик)"/>
+    <m c="id" v="Rookie Temp.Licence Card"/>
+    <m c="th" v="ใบขับขี่ ROOKIE ชั่วคราว "/>
+  </k>
+  <k n="tempL3LicenseCard">
+    <m c="kr" v="레벨3(L-3) 임시 라이센스 카드"/>
+    <m c="jp" v="レベル3(L-3) 臨時ライセンスカード"/>
+    <m c="cn" v="L3 临时驾驶执照"/>
+    <m c="tw" v="L3 臨時駕駛執照"/>
+    <m c="us" v="Temporary Level 3 (L-3) license card"/>
+    <m c="vn" v="Chứng nhận Hạng L3"/>
+    <m c="ru" v="Временные права (L-3)"/>
+    <m c="id" v="Level 3(L-3) Temp.License Card"/>
+    <m c="th" v="ใบขับขี่ L-3 ชั่วคราว "/>
+  </k>
+  <k n="tempL2LicenseCard">
+    <m c="kr" v="레벨2(L-2) 임시 라이센스 카드"/>
+    <m c="jp" v="レベル2(L-2) 臨時ライセンスカード"/>
+    <m c="cn" v="L2 临时驾驶执照"/>
+    <m c="tw" v="L2 臨時駕駛執照"/>
+    <m c="us" v="Temporary Level 2 (L-2) license card"/>
+    <m c="vn" v="Chứng nhận Hạng L2"/>
+    <m c="ru" v="Временные права (L-2)"/>
+    <m c="id" v="Level 2(L-2) Temp.License Card"/>
+    <m c="th" v="ใบขับขี่ L-2 ชั่วคราว "/>
+  </k>
+  <k n="tempL1LicenseCard">
+    <m c="kr" v="레벨1(L-1) 임시 라이센스 카드"/>
+    <m c="jp" v="レベル1(L-1) 臨時ライセンスカード"/>
+    <m c="cn" v="L1 临时驾驶执照"/>
+    <m c="tw" v="L1 臨時駕駛執照"/>
+    <m c="us" v="Temporary Level 1 (L-1) license card"/>
+    <m c="vn" v="Chứng nhận Hạng L1"/>
+    <m c="ru" v="Временные права (L-1)"/>
+    <m c="id" v="Level 1(L-1) Temp.License Card"/>
+    <m c="th" v="ใบขับขี่ L-1 ชั่วคราว "/>
+  </k>
+  <k n="tempProLicenseCard">
+    <m c="kr" v="프로(Pro) 임시 라이센스 카드"/>
+    <m c="jp" v="プロ(Pro) 臨時ライセンスカード"/>
+    <m c="cn" v="专业 临时驾驶执照"/>
+    <m c="tw" v="職業 臨時駕駛執照"/>
+    <m c="us" v="Temporary Pro license card"/>
+    <m c="vn" v="Chứng nhận Hạng Siêu Cấp"/>
+    <m c="ru" v="Временные права (Профессионал)"/>
+    <m c="id" v="Pro Temp.License Card"/>
+    <m c="th" v="ใบขับขี่ Pro ชั่วคราว "/>
+  </k>
+  <k n="coupleLabel">
+    <m c="kr" v="커플 라이더"/>
+    <m c="jp" v="カップルライダー"/>
+    <m c="cn" v="情侣车手"/>
+    <m c="tw" v="情侶車手"/>
+    <m c="vn" v="Bạn"/>
+    <m c="ru" v="Партнер"/>
+    <m c="id" v="Couple Rider"/>
+    <m c="th" v="ชื่อคู่รัก"/>
+  </k>
+  <k n="campaignLabel">
+    <m c="kr" v="캠페인전적"/>
+    <m c="jp" v="キャンペーン戦績"/>
+    <m c="cn" v="??????"/>
+    <m c="tw" v="??????"/>
+    <m c="ru" v="Статистика по кампании"/>
+    <m c="id" v="Rekor Campaign"/>
+    <m c="vn" v="Tham gia"/>
+  </k>
+  <k n="campaignWinLose">
+    <m c="kr" v="%d승 %d패 , 승률 %d%%"/>
+    <m c="jp" v="%d勝 %d敗、勝率%d%%"/>
+    <m c="cn" v="??????"/>
+    <m c="tw" v="??????"/>
+    <m c="ru" v="%d побед, %проигрышей , отношение %d%%"/>
+    <m c="id" v="%d Win %d Lose, Win Rate %d%%"/>
+    <m c="vn" v="%d thắng, %d thua"/>
+  </k>
+  <k n="career">
+    <m c="kr" v="업적"/>
+    <m c="jp" v="業績"/>
+    <m c="id" v="Career"/>
+  </k>
+</StringBag>

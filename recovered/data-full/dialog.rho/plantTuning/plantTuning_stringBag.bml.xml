@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="plantTune">
+    <m c="kr" v="튜닝파츠 장착"/>
+    <m c="cn" v="装备强化部件"/>
+    <m c="tw" v="改裝配件裝置"/>
+    <m c="jp" v="チューニングパーツ装着"/>
+    <m c="id" v="Equip Tuning Parts"/>
+  </k>
+  <k n="t_engine">
+    <m c="kr" v="엔진패치"/>
+    <m c="cn" v="引擎"/>
+    <m c="tw" v="能量配件"/>
+    <m c="jp" v="エンジン"/>
+    <m c="id" v="Engine"/>
+  </k>
+  <k n="t_handle">
+    <m c="kr" v="핸들"/>
+    <m c="cn" v="方向盘"/>
+    <m c="tw" v="方向盤"/>
+    <m c="jp" v="ハンドル"/>
+    <m c="id" v="Handle"/>
+  </k>
+  <k n="t_wheel">
+    <m c="kr" v="바퀴"/>
+    <m c="cn" v="车轮"/>
+    <m c="tw" v="輪胎"/>
+    <m c="jp" v="タイヤ"/>
+    <m c="id" v="Tire"/>
+  </k>
+  <k n="t_kit">
+    <m c="kr" v="킷"/>
+    <m c="cn" v="部件"/>
+    <m c="tw" v="工具箱"/>
+    <m c="jp" v="キット"/>
+    <m c="id" v="Kit"/>
+  </k>
+  <k n="changeKart">
+    <m c="kr" v="카트 변경"/>
+    <m c="cn" v="更换车辆"/>
+    <m c="tw" v="變更卡丁車"/>
+    <m c="jp" v="カート変更"/>
+    <m c="id" v="Ubah Kart"/>
+  </k>
+  <k n="equipParts">
+    <m c="kr" v="장착 항목"/>
+    <m c="cn" v="装备选项"/>
+    <m c="tw" v="裝置項目"/>
+    <m c="jp" v="装着項目"/>
+    <m c="id" v=""/>
+  </k>
+  <k n="getItemStr">
+    <m c="kr" v="%s 아이템을 획득했습니다."/>
+    <m c="cn" v="%s 获得了新道具。"/>
+    <m c="tw" v="%s 已獲得道具。"/>
+    <m c="jp" v="%sを入手しました。"/>
+    <m c="id" v="Telah mendapatkan Item %s"/>
+  </k>
+  <k n="warning">
+    <m c="kr" v="연습카트에서는 기능이 정상 작동되지 않을 수 있습니다.|다른 카트에 장착 중인 튜닝파츠 장착 시 기존 장착이 해제 됩니다."/>
+    <m c="tw" v="一個改裝配件不可以同時裝備在兩台以上的卡丁車。|選擇已經裝備中的改裝配件時，會從已安裝的卡丁車上解除。"/>
+    <m c="cn" v="一个强化部件无法同时装备到两辆赛车，|选择已装备强化部件时会解除之前车辆的强化属性。"/>
+    <m c="jp" v="他のカートに装着しているチューニングパーツを装着すると、以前の装着は解除されます。"/>
+    <m c="id" v=" Tidak bisa Training Kart"/>
+  </k>
+  <k n="equipedBaseItem">
+    <m c="kr" v="%s 에 장착 중"/>
+    <m c="jp" v="%s に装着中"/>
+  </k>
+</StringBag>

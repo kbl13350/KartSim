@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold1"/>
+  <Char id="godius" pos="3 0" emotion="normal"/>
+  <Msg name="高迪奥斯" string="恭喜你！你通过了所有的考验！|你是这付黄金眼镜的主人！ "/>
+  <Enter/>
+  <Char id="godius" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="尊贵高迪奥斯阁下，我不想要这付眼镜！|我参加考验的原因，是想阻止雅克布兄弟得到这个眼镜去做坏事！|但是，我有一个请求，拜托您把在测试中失败的朋友们，都变回来吧！他们对我来说更重要！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="godius" pos="3 0" emotion="stop1"/>
+  <Msg name="高迪奥斯" string="恩！好孩子！如果你这么想的话，那么我将继续保管黄金眼镜。|不过，我也答应你，会把你那些被变成黄金的朋友们都变回原来的样子的。|以黄金神的名义，为你祝福……"/>
+  <Enter/>
+  <Char id="godius" remove="true"/>
+  <Shake time="1000"/>
+  <Msg name="!!!" string="咕嘞嘞嘞嘞嘞!!!"/>
+  <Enter/>
+  <Char id="ethi" pos="9 0" emotion="stop4"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Char id="kephi" pos="2 0" emotion="stop3"/>
+  <Msg name="黑妞/胖墩/葱头" string="皮蛋！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="呼呜~ 太好了！你们终于恢复了！|啊~ 累死我了~ 唉  唉."/>
+  <Enter/>
+  <Char id="kaphae" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="卡帕" string="但我却无能为力，这是黄金之门的规矩，只有打开的人才能参加高迪奥斯的考验！非常抱歉！"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="艾佛德" string="卡帕！！你什么时候来的？"/>
+  <Enter/>
+  <Char id="kaphae" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="卡帕" string="其实从黄金之门开启时候我就到了……|但我却无能为力，这是黄金之门的规矩，只有打开的人才能参加黄金神的考验！非常抱歉！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="erphod" pos="3 0" emotion="normal"/>
+  <Msg name="艾佛德" string="对不起了，皮蛋，我误会你们了。|就像卡帕所说的，你们是一群心地善良的孩子们。|请原谅我的过错吧！"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="祭祀长大人！|虽然开始的时候怪罪过祭祀长大人，但是通过考验终于明白了。|为了保护这宝物，如果不是象祭祀长大人这样严格的，一定会出问题的！|真的是紧张刺激的探险啊，一辈子也不会忘记的……是我一辈子的财富！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="erphod" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="啊！那两个恶棍怎么样了？逃走了吗？"/>
+  <Enter/>
+  <Char id="kaphae" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="卡帕" string="放心吧，他们没能逃掉，被我抓住了！|对于这些心中只有贪婪的家伙们，我的爸爸会好好的教化他们的。|呵呵"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="jakob1" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="波利斯 雅克布" string="走着瞧吧！你们这些不懂家教的小屁孩们！|今天的耻辱以后一定会还给你们的！"/>
+  <Enter/>
+  <Char id="jakob2" pos="3 0" emotion="stop5"/>
+  <Msg name="波诺 雅克布" string="不会忘记，一定会还给你们的！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <BackGround texture="gold3"/>
+  <Char id="erphod" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="艾佛德" string="但是皮蛋啊……|这个黄金指南针是哪里得到的呢?"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="第一次见面的时候跟您说过的，看起来一点都没把我的话当回事嘛！|是繁荣山丘探险家爱德爷爷给我的！"/>
+  <Enter/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="erphod" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="艾佛德" string="探险家爱德！ "/>
+  <Enter/>
+  <Char id="erphod" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞 " string="咦？祭祀长大人也认识爱德爷爷吗？"/>
+  <Enter/>
+  <Char id="erphod" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="艾佛德" string="是我在卡帕这个年纪的时候，在这里碰到的朋友……他也是一个好人！|你可以代我向爱德问好吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="erphod" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="是！一定转达。我想爱德爷爷也会非常开心的。|卡帕，认识你很高兴！欢迎你以后来繁荣山丘玩！"/>
+  <Enter/>
+  <Char id="kaphae" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="卡帕" string="恩！我也是！你们以后想来玩的时候随时欢迎你们！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop1"/>
+  <Msg name="葱头" string="嗯……那么我们现在就回家吧！|这段旅程真好！丰富精彩，我要回去好好记录下来！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop4"/>
+  <Char id="ethi" pos="9 0" emotion="stop4"/>
+  <Char id="dizini" pos="6 0" emotion="stop5"/>
+  <Char id="kephi" pos="2 0" emotion="stop3"/>
+  <Msg name="皮蛋/黑妞/胖墩/葱头" string="那么我们走了！|卡帕！祭祀长大人！多多保重！！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kaphae" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="erphod" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="卡帕/艾佛德" string="恩！再见！朋友们！路上小心！一路顺风！|后会有期！|愿黄金神高迪奥斯的恩宠和你们永远在一起……"/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="erphod" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="(卡帕！我能感觉到我们以后一定会再次见面的，一定要再见面！一定！)"/>
+  <Enter/>
+  <Char id="kaphae" pos="3 0" emotion="normal"/>
+  <Msg name="卡帕" string="(我不会忘记和你们在一起的时间！就算是为了你们，我一定会好好守护这个黄金文明的！)"/>
+  <Enter/>
+</Scene>

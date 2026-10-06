@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <ImageBoard name="expeditionBg" windowSize="1334 762" adjust="0 0" align="center" image="explore_bg@zz" alphaBlend="true">
+    <ImageButton name="close" windowSize="32 32" adjust="8 75" autoLoadImage="btn_close_" alphaBlend="true" alphaTest="true" align="top;right"/>
+    <ImageBoard leftTopWH="266 86 14 14" image="collect_img_noticeICON" alphaBlend="true">
+      <ColorLabel windowSize="830 24" adjust="20 0" text="#sb(expeditionSysStr_1)" textColor="255 221 232 255" textColor2="255 0 0 0" textRender="outline14" align="vcenter" textAlign="vcenter|left"/>
+    </ImageBoard>
+    <ImageBoard leftTopWH="266 111 14 14" image="collect_img_noticeICON" alphaBlend="true">
+      <ColorLabel windowSize="830 24" adjust="20 0" text="#sb(expeditionSysStr_2)" textColor="255 221 232 255" textColor2="255 0 0 0" textRender="outline14" align="vcenter" textAlign="vcenter|left"/>
+    </ImageBoard>
+    <Container name="myTokenContainer" windowSize="174 36" adjust="1100 88">
+      <ImageBoard windowSize="26 26" adjust="4 0" image="icon_racingToken" alphaBlend="true" align="left|vcenter" altText="#sb(racingToken)" altRelativePos="25 -40"/>
+      <ColorLabel name="myTokenLbl" windowSize="106 24" adjust="32 0" text="000" textColor="255 255 242 0" textRender="bold16" align="vcenter" textAlign="vcenter|right"/>
+      <ImageButton name="buyTokenBtn" windowSize="26 26" adjust="2 0" autoLoadImage="btn_purchase_" align="right|vcenter" alphaBlend="true" altText="#sb(canChargeRacingTokenNow)" altRelativePos="-55 -40" enable="false"/>
+    </Container>
+    <Container name="missionCountContainer" windowSize="604 36" adjust="12 152">
+      <ColorLabel windowSize="114 36" adjust="20 1" text="#sb(expeditionMission)" textColor="255 221 232 255" textRender="bold16" align="vcenter|left" textAlign="vcenter|left"/>
+      <ColorLabel windowSize="106 24" adjust="36 -1" text="#sb(weeklyLimit)" textColor="255 179 195 228" textRender="bold14" align="vcenter|right" textAlign="vcenter"/>
+      <ColorLabel name="missionCountLbl" windowSize="30 24" adjust="16 0" text="" textColor="255 179 195 228" textRender="bold14" align="vcenter|right" textAlign="vcenter|left"/>
+    </Container>
+    <Container windowSize="698 36" adjust="626 152">
+      <ColorLabel windowSize="114 36" adjust="20 1" text="#sb(organizeCrew)" textColor="255 221 232 255" textRender="bold16" align="vcenter|left" textAlign="vcenter|left"/>
+      <ImageButton windowSize="22 22" adjust="669 8" autoLoadImage="btn_userInfo_" alphaBlend="true" altRelativePos="-252 -5" altText="#sb(crewFriendSelectInfo)"/>
+    </Container>
+    <Container windowSize="604 560" adjust="11 192">
+      <GridSelector name="missionList" windowRect="0 0 300 250" alignStyle="vertical" alignSize="1" maxLine="3" alignMargin="0 8"/>
+    </Container>
+    <Container name="expeditionContainer" windowSize="682 448" adjust="634 194">
+      <Container name="selectedExpeditionCrewCon_0" windowSize="338 220" adjust="0 0">s				
+        <Label windowSize="338 30" adjust="0 0" text="#sb(expeditionCrewMember1)" textColor="255 42 55 80" textRender="bold14" textAlign="center"/>
+        <ImageButton name="selectCrewBtn" windowSize="330 186" adjust="3 30" autoLoadImage="slot_add_" alphaBlend="true" visible="false"/>
+        <ImageButton name="deleteCrewBtn" windowSize="24 24" adjust="308 4" autoLoadImage="slot_close_" alphaBlend="true"/>
+        <ImageButton name="selectCrewBgBtn" windowSize="164 186" adjust="3 30" autoLoadImage="slotItem_character_" alphaBlend="true" visible="false">
+          <ItemWindow name="selectedCrew" windowSize="164 156" adjust="0 0" enable="false" alphaBlend="true"/>
+          <ColorLabel name="bonusDesc" windowSize="156 24" adjust="0 157" text="0(-)" textColor="255 255 255 255" textRender="bold14" align="hcenter" textAlign="center"/>
+          <ImageBoard name="specificIcon" image="tag_theme_0@zz" windowSize="42 22" adjust="0 0" alphaBlend="true" enable="false"/>
+        </ImageButton>
+        <ImageButton name="selectKartBgBtn" windowSize="164 186" adjust="168 30" autoLoadImage="slotItem_kart_" alphaBlend="true" visible="false">
+          <ItemWindow name="selectedCrew" windowSize="164 156" adjust="0 0" enable="false"/>
+          <ColorLabel name="bonusDesc" windowSize="156 24" adjust="0 157" text="0(-)" textColor="255 255 255 255" textRender="bold14" align="hcenter" textAlign="center"/>
+          <ImageBoard name="specificIcon" image="tag_theme_0@zz" windowSize="42 22" adjust="0 0" alphaBlend="true" enable="false" visible="false"/>
+          <Panel name="12TuningLevel" windowSize="30 28" align="top;right" adjust="10 10" texture="tuning_mark_s_1" alphaBlend="true" enable="false" visible="false"/>
+        </ImageButton>
+      </Container>
+      <Container name="selectedExpeditionCrewCon_1" windowSize="338 220" adjust="344 0">
+        <Label windowSize="338 30" adjust="0 0" text="#sb(expeditionCrewMember2)" textColor="255 42 55 80" textRender="bold14" textAlign="center"/>
+        <ImageButton name="selectCrewBtn" windowSize="330 186" adjust="3 30" autoLoadImage="slot_add_" alphaBlend="true" visible="false"/>
+        <ImageButton name="deleteCrewBtn" windowSize="24 24" adjust="308 4" autoLoadImage="slot_close_" alphaBlend="true"/>
+        <ImageButton name="selectCrewBgBtn" windowSize="164 186" adjust="3 30" autoLoadImage="slotItem_character_" alphaBlend="true" visible="false">
+          <ItemWindow name="selectedCrew" windowSize="164 156" adjust="0 0" enable="false" alphaBlend="true"/>
+          <ColorLabel name="bonusDesc" windowSize="156 24" adjust="0 157" text="0(-)" textColor="255 255 255 255" textRender="bold14" align="hcenter" textAlign="center"/>
+          <ImageBoard name="specificIcon" image="tag_theme_0@zz" windowSize="42 22" adjust="0 0" alphaBlend="true" enable="false" visible="false"/>
+        </ImageButton>
+        <ImageButton name="selectKartBgBtn" windowSize="164 186" adjust="168 30" autoLoadImage="slotItem_kart_" alphaBlend="true" visible="false">
+          <ItemWindow name="selectedCrew" windowSize="164 156" adjust="0 0" enable="false"/>
+          <ColorLabel name="bonusDesc" windowSize="156 24" adjust="0 157" text="0(-)" textColor="255 255 255 255" textRender="bold14" align="hcenter" textAlign="center"/>
+          <ImageBoard name="specificIcon" image="tag_theme_0@zz" windowSize="42 22" adjust="0 0" alphaBlend="true" enable="false" visible="false"/>
+          <Panel name="12TuningLevel" windowSize="30 28" align="top;right" adjust="10 10" texture="tuning_mark_s_1" alphaBlend="true" enable="false" visible="false"/>
+        </ImageButton>
+      </Container>
+      <Container name="selectedExpeditionCrewCon_2" windowSize="338 220" adjust="0 224">
+        <Label windowSize="338 30" adjust="0 0" text="#sb(expeditionCrewMember3)" textColor="255 42 55 80" textRender="bold14" textAlign="center"/>
+        <ImageButton name="selectCrewBtn" windowSize="330 186" adjust="3 30" autoLoadImage="slot_add_" alphaBlend="true" visible="false"/>
+        <ImageButton name="deleteCrewBtn" windowSize="24 24" adjust="308 4" autoLoadImage="slot_close_" alphaBlend="true"/>
+        <ImageButton name="selectCrewBgBtn" windowSize="164 186" adjust="3 30" autoLoadImage="slotItem_character_" alphaBlend="true" visible="false">
+          <ItemWindow name="selectedCrew" windowSize="164 156" adjust="0 0" enable="false" alphaBlend="true"/>
+          <ColorLabel name="bonusDesc" windowSize="156 24" adjust="0 157" text="0(-)" textColor="255 255 255 255" textRender="bold14" align="hcenter" textAlign="center"/>
+          <ImageBoard name="specificIcon" image="tag_theme_0@zz" windowSize="42 22" adjust="0 0" alphaBlend="true" enable="false" visible="false"/>
+        </ImageButton>
+        <ImageButton name="selectKartBgBtn" windowSize="164 186" adjust="168 30" autoLoadImage="slotItem_kart_" alphaBlend="true" visible="false">
+          <ItemWindow name="selectedCrew" windowSize="164 156" adjust="0 0" enable="false"/>
+          <ColorLabel name="bonusDesc" windowSize="156 24" adjust="0 157" text="0(-)" textColor="255 255 255 255" textRender="bold14" align="hcenter" textAlign="center"/>
+          <ImageBoard name="specificIcon" image="tag_theme_0@zz" windowSize="42 22" adjust="0 0" alphaBlend="true" enable="false" visible="false"/>
+          <Panel name="12TuningLevel" windowSize="30 28" align="top;right" adjust="10 10" texture="tuning_mark_s_1" alphaBlend="true" enable="false" visible="false"/>
+        </ImageButton>
+      </Container>
+      <Container name="selectedExpeditionFriendCon" windowSize="338 220" adjust="344 224">
+        <Label windowSize="338 30" adjust="0 0" text="#sb(expeditionFriend)" textColor="255 42 55 80" textRender="bold14" textAlign="center"/>
+        <ImageButton name="deleteFriendBtn" windowSize="24 24" adjust="308 4" autoLoadImage="slot_close_" alphaBlend="true"/>
+        <ImageButton name="selectFriendBtn" windowSize="330 186" adjust="3 30" autoLoadImage="slot_addFriend_" alphaBlend="true"/>
+        <ImageButton name="selectFriendBgBtn" windowSize="330 186" adjust="3 32" autoLoadImage="slotItem_friend_reward_" alphaBlend="true" visible="false">
+          <GaragePreview name="selectedFriend" windowSize="300 156" adjust="0 0" align="hcenter" preset="UserInfo" enable="false" alphaBlend="true">
+            <ColorLabel name="friendNameLbl" windowSize="100 15" adjust="0 15" align="hcenter" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline14" textAlign="left|vcenter" visible="true" enable="false">
+              <ImageBoard name="coupleIcon" image="slotIcon_heart" windowSize="24 24" adjust="-28 0" alphaBlend="true" visible="false" enable="false"/>
+            </ColorLabel>
+          </GaragePreview>
+          <ColorLabel name="bonusDesc" windowSize="322 24" adjust="0 157" text="0(-)" textColor="255 255 255 255" textRender="bold14" align="hcenter" textAlign="center"/>
+        </ImageButton>
+      </Container>
+    </Container>
+    <Container name="bonusTimeRewardContainer" windowSize="698 26" adjust="624 644">
+      <ColorLabel name="bonusTime" windowSize="698 26" adjust="370 0" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" align="vcenter|right" textAlign="vcenter|right"/>
+      <ColorLabel name="bonusReward" windowSize="698 26" adjust="364 0" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" align="vcenter|left" textAlign="vcenter|left"/>
+    </Container>
+    <Container name="expeditionInprogressContainer" windowSize="698 512" adjust="625 152" visible="false">
+      <ImageBoard image="explore_progress_dimBg" windowSize="698 518" adjust="0 0" alphaBlend="true" enable="false"/>
+      <ImageBoard image="explore_progress_img" leftTopWH="0 0 418 166" adjust="0 -58" align="center" alphaBlend="true" enable="false"/>
+      <Label name="missionTrackName" leftTopWH="0 270 284 60" adjust="-156 0" text="[vilage]" textColor="255 22 225 255" textColor2="255 0 0 0" textRender="outline16" align="hcenter" textAlign="right|vcenter"/>
+      <Label leftTopWH="0 270 284 60" adjust="130 0" text="#sb(racingExpeditionInProgress)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" align="hcenter" textAlign="left|vcenter"/>
+      <ImageBoard name="missionProgressBarBg" image="progressL_bg" windowSize="324 14" adjust="0 324" alphaBlend="true" enable="false" align="hcenter"/>
+      <Panel name="missionProgressBar" texture="progressL_y" leftTopWH="188 324 324 14" alphaBlend="true" enable="false"/>
+      <ColorLabel name="missionTime" windowSize="88 22" adjust="0 345" text="10h" textColor="255 221 232 255" textColor2="255 0 0 0" textRender="outline16" align="hcenter" textAlign="center"/>
+      <ImageButton name="missionReduceTimeBtn" windowSize="138 38" adjust="-95 395" align="hcenter" autoLoadImage="btn_timeShorten_@zz" alphaBlend="true" text="1" textRender="bold14" textAlign="vcenter|right" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 183 169 154" disabledTextColor="255 179 179 179" stringPos="138 0" altText="#sb(racingTokenUseReduce30Min)" altRelativePos="25 -40"/>
+      <ImageButton name="missionCompleteBtn" windowSize="138 38" adjust="95 395" align="hcenter" autoLoadImage="btn_immediate_@zz" alphaBlend="true" text="0" textRender="bold14" textAlign="vcenter|right" textColor="255 255 69 69" overTextColor="255 255 255 255" clickedTextColor="255 183 169 154" disabledTextColor="255 179 179 179" stringPos="138 0" altText="#sb(racingTokenUseClearRemainTime)" altRelativePos="25 -40"/>
+    </Container>
+    <Container name="expeditionWaitForGetRewardContainer" windowSize="698 512" adjust="625 152" visible="false">
+      <ImageBoard image="explore_rewardBg@zz" windowSize="698 518" adjust="0 0" alphaBlend="true" enable="false"/>
+      <Container name="rewardContainer_Rp" leftTopWH="0 200 284 60" adjust="-140 0" align="hcenter">
+        <ImageBoard image="itemslot" windowSize="108 108" adjust="0 0" align="center" alphaBlend="true" enable="false"/>
+        <ItemWindow name="rewardPanel" windowSize="108 108" adjust="0 0" align="center" enable="false" alphaBlend="true"/>
+        <ColorLabel name="bonusDesc" windowSize="322 24" adjust="0 95" text="0(-)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" align="hcenter" textAlign="center"/>
+      </Container>
+      <Container name="rewardContainer_Lucci" leftTopWH="0 200 284 60" adjust="0 0" align="hcenter">
+        <ImageBoard image="itemslot" windowSize="108 108" adjust="0 0" align="center" alphaBlend="true" enable="false"/>
+        <ItemWindow name="rewardPanel" windowSize="108 108" adjust="0 0" align="center" enable="false" alphaBlend="true"/>
+        <ColorLabel name="bonusDesc" windowSize="322 24" adjust="0 95" text="0(-)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" align="hcenter" textAlign="center"/>
+      </Container>
+      <Container name="rewardContainer_Stock" leftTopWH="0 200 284 60" adjust="140 0" align="hcenter">
+        <ImageBoard image="itemslot" windowSize="108 108" adjust="0 0" align="center" alphaBlend="true" enable="false"/>
+        <ItemWindow name="rewardPanel" windowSize="108 108" adjust="0 0" align="center" enable="false" alphaBlend="true"/>
+        <ColorLabel name="bonusDesc" windowSize="322 24" adjust="0 95" text="0(-)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" align="hcenter" textAlign="center"/>
+      </Container>
+      <Label leftTopWH="0 335 284 20" adjust="0 0" text="#sb(racingExpeditionSuccess)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" align="hcenter" textAlign="center"/>
+      <TextButton name="getReward" leftTopWH="0 400 130 48" text="#sb(ok)" align="hcenter" textRender="bold16" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+    </Container>
+    <Container name="expeditionAllCompleteMissionContainer" windowSize="698 512" adjust="625 152" visible="false">
+      <ImageBoard image="explore_progress_dimBg" windowSize="698 518" adjust="0 0" alphaBlend="true" enable="false"/>
+      <ImageBoard image="explore_allComplete_img" leftTopWH="0 0 418 166" adjust="0 -10" align="center" alphaBlend="true" enable="false"/>
+      <ImageBoard image="explore_allComplete@zz" windowSize="324 46" adjust="0 -135" align="center" alphaBlend="true" enable="false"/>
+      <ImageBoard name="missionResetProgressBarBg" image="progressL_bg" windowSize="324 14" adjust="0 350" alphaBlend="true" enable="false" align="hcenter"/>
+      <Panel name="missionResetProgressBar" texture="progressL_y" leftTopWH="188 350 324 14" alphaBlend="true" enable="false"/>
+      <ColorLabel name="missionResetTime" windowSize="88 22" adjust="0 366" text="test" textColor="255 221 232 255" textColor2="255 0 0 0" textRender="outline16" align="hcenter" textAlign="center"/>
+      <Label leftTopWH="0 265 284 60" adjust="0 180" text="#sb(expeditionCompleteDesc)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" align="center" textAlign="center"/>
+    </Container>
+    <Container name="expeditionNoAvailableMissionContainer" windowSize="698 512" adjust="625 152" visible="false">
+      <ImageBoard image="explore_nomission@zz" windowSize="324 46" adjust="0 0" align="hcenter" alphaBlend="true" enable="false"/>
+      <ImageBoard image="explore_progress_dimBg" windowSize="698 518" adjust="0 0" alphaBlend="true" enable="false"/>
+      <Label leftTopWH="0 265 284 60" adjust="0 0" text="#sb(expeditionNoMissionDesc)" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline16" align="hcenter" textAlign="right|vcenter"/>
+    </Container>
+    <ImageButton name="autoFillBtn" windowSize="344 72" adjust="624 680" autoLoadImage="btn_auto_" alphaBlend="true" text="#sb(autoFill)" textRender="bold24" textAlign="center" textColor="255 105 121 151" overTextColor="255 151 172 197" clickedTextColor="255 102 110 122" disabledTextColor="255 119 119 119" enable="false"/>
+    <ImageButton name="autoFillOffBtn" windowSize="344 72" adjust="624 680" autoLoadImage="btn_auto_" alphaBlend="true" text="#sb(autoFillOff)" textRender="bold24" textAlign="center" textColor="255 105 121 151" overTextColor="255 151 172 197" clickedTextColor="255 102 110 122" disabledTextColor="255 119 119 119" visible="false" enable="false"/>
+    <ImageButton name="startBtn" windowSize="344 72" adjust="979 680" autoLoadImage="btn_startExplore_" alphaBlend="true" text="#sb(startExpedition)" textRender="bold24" textAlign="vcenter" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" stringPos="140 0"/>
+  </ImageBoard>
+</Panel>

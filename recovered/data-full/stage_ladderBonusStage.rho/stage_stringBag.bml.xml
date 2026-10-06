@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="title">
+    <m c="kr" v="배틀 모드 클리어!! 보너스 획득!!"/>
+    <m c="jp" v="バトル モードクリア!! ボーナス獲得!!"/>
+    <m c="cn" v="挑战完成！获得奖励！"/>
+    <m c="tw" v="恭喜獲得挑戰激鬥模式的紅利！"/>
+    <m c="id" v="Battle Mode Clear!! Mendapatkan Bonus!!"/>
+    <m c="ru" v="Режим Битвы пройден! Время выбора!"/>
+  </k>
+  <k n="noticeStr">
+    <m c="kr" v="보너스 카드를 선택하세요"/>
+    <m c="jp" v="ボーナスカードを選択してください。"/>
+    <m c="cn" v="请选择奖励卡！"/>
+    <m c="tw" v="請選擇紅利卡片！"/>
+    <m c="id" v="Silahkan pilih Bonus Card"/>
+    <m c="ru" v="Выбери бонусную карту!"/>
+  </k>
+  <k n="rewardlucci">
+    <m c="kr" v="축하합니다.|%d 루찌"/>
+    <m c="jp" v="おめでとうございます。|%d ルッチ"/>
+    <m c="cn" v="祝贺你！|获得 %d 金币"/>
+    <m c="tw" v="LUCCI|%d"/>
+    <m c="id" v="Selamat.|%d Lucci"/>
+    <m c="ru" v="Ура! +%d ЛУЦЦИ!"/>
+  </k>
+  <k n="rewardRp">
+    <m c="kr" v="축하합니다.|%d RP를 받으셨습니다."/>
+    <m c="jp" v="おめでとうございます。|%d RPを受け取りました。"/>
+    <m c="cn" v="祝贺你！|获得 %d 经验值"/>
+    <m c="tw" v="經驗值|+%d"/>
+    <m c="id" v="Selamat.|Telah mendapatkan %d EXP."/>
+    <m c="ru" v="Ух ты! +%d очков опыта!"/>
+  </k>
+  <k n="rewardStock">
+    <m c="kr" v="축하합니다.|%s을(를) 받으셨습니다."/>
+    <m c="jp" v="%s"/>
+    <m c="cn" v="祝贺你！|获得 %s 道具"/>
+    <m c="tw" v="%s"/>
+    <m c="id" v="Selamat.|Telah mendapatkan %s."/>
+    <m c="ru" v="Твой выигрыш"/>
+  </k>
+  <k n="cardText">
+    <m c="kr" v="BONUS CARD"/>
+    <m c="jp" v="BONUS CARD"/>
+    <m c="cn" v="奖励卡！"/>
+    <m c="tw" v="紅利卡片"/>
+    <m c="id" v="BONUS CARD"/>
+    <m c="ru" v="БОНУСНАЯ КАРТА"/>
+  </k>
+</StringBag>

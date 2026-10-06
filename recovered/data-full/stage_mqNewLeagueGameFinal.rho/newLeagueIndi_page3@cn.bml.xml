@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<List name="resultList" leftTopWH="0 216 438 498" align="hcenter" frame="NoFrame" scrollType="vertical" listGap="2" upButton="NoFrame" downButton="NoFrame" upButtonBullet="NoFrame" downButtonBullet="NoFrame" scrollButton="NoFrame" scrollArea="NoFrame" scrollBarVisible="false" listMargin="0 0 0 0">
+  <ImageBoard name="bgWindow" leftTopWH="0 -121 438 618" alphaBlend="true" image="grade_leagueIndi_resultBg@zz" textureOp="modulate" color="255 255 255 255" visible="true" depthBias="-1"/>
+</List>

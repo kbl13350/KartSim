@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china5"/>
+  <Char id="bazzi" pos="3 0" emotion="stop2"/>
+  <Msg name="宝宝" string="追了这么久。|龙之国度还真是广阔啊！|这里有张纸条。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="wenwen" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="雯雯" string="这些龙之车手，是不是在耍我们啊。"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="只要打破这个记录，就能找到最强的龙之车手了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="你怎么知道的 -_-;;"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="没有时间了！|你们都愿意帮助我吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="当然！皮蛋！把龙之车手们 -_- 打败吧！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window frame="BlackBorderPanel" windowRect="0 0 266 108" addStyle="moveable">
+  <Container adjust="6 3" windowSize="260 105" enable="false">
+    <Panel name="itemPanelBg" windowRect="3 3 92 92" texture="선물함_박스" uvRect="0 61 88 149" alphaBlend="true"/>
+    <Label name="stockName" windowSize="8 12" adjust="100 18" enable="false" text="" textColor="black"/>
+  </Container>
+  <TextButton name="btnReceive" windowRect="104 73 177 95" text="#sb(confirm)" altText="#sb(confirmAltText)"/>
+  <TextButton name="btnRefund" windowRect="184 73 257 95" text="#sb(cancel)" useDisableState="true" disabledTextColor="gray" altText="#sb(cancelAltText)"/>
+</Window>

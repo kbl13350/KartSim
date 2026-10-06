@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach6"/>
+  <Char id="dao" pos="8 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="呼~终于逃过来了|但这么逃跑也没事吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="没关系！|罗杰肯定和暴走联盟有勾结！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="8 0" emotion="stop2"/>
+  <Msg name="路易" string="阿嘉…!|不知道这种话该不该说…|总觉得你也要知道…!"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="阿嘉" string="什么意思？|说说看~"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="11 0" emotion="stop2"/>
+  <Msg name="路易" string="刚才逃跑时听到了罗杰与美玲的对话…"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="阿嘉" string="嗯？什么话~|快说吧~没关系~！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="11 0" emotion="stop2"/>
+  <Msg name="路易" string="罗杰对美玲说…|如果她再出面就以偷车罪逮捕她…"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="什么？不可能！|美玲怎么可能偷我的车！|让我相信这种话？"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="11 0" emotion="stop2"/>
+  <Msg name="路易" string="但是，阿嘉！|我们确实不清楚美玲是什么人啊|"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="不…不会！不可能！|我亲自去问问美玲！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="alma" pos="8 0" emotion="stop2"/>
+  <Msg name="路易" string="阿嘉~阿嘉~！|好像很激动|早知道不和阿嘉说了"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <BackGround texture="beach5"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="lena" pos="11 0" emotion="stop1"/>
+  <Msg name="阿嘉" string="美玲~|我有话要问你！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="lena" remove="true"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="lena" pos="11 0" emotion="stop1"/>
+  <Msg name="美玲" string="想知道什么？"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="lena" remove="true"/>
+  <Char id="martin" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="lena" pos="11 0" emotion="stop1"/>
+  <Msg name="阿嘉" string="听到了奇怪的传言~|我虽然相信你，但是…|你了解我车被偷的事情吗？"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="lena" remove="true"/>
+  <Char id="lena" pos="8 0" emotion="stop3"/>
+  <Msg name="美玲" string="阿嘉…|对不起…"/>
+  <Enter/>
+  <Char id="lena" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="你骗我的对不对？不可能！|不可能是你美玲！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="lena" pos="8 0" emotion="stop3"/>
+  <Msg name="美玲" string="对不起…"/>
+  <Enter/>
+  <Char id="lena" remove="true"/>
+  <Char id="martin" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="阿嘉" string="等等！话还没有说完！|我并不把你当罪犯！|美玲！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.076'
+	SteerConstraint='3.2'
+	DriftEscapeForce='1700'
+	CornerDrawFactor='0.071'
+
+	EngineSound='cotton8'
+
+	StartForwardAccelFactorItem = '1.5'
+	StartBoosterTimeItem='1200'           
+
+	UseExtendedAfterBooster='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.7'
+	TransformTime='250'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8sub'
+	BoosterType4='8sub'
+
+	Port0='mod1c1'
+	Port1='mod1c2'
+
+	FirePort0='mod2a3'
+	FirePort1='mod2a1'
+	FirePort2='mod2a2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	secondColor='255 255 130 0'
+	secondHighColor='255 255 186  82'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '48'
+	DescStability ='44'
+	DescEngineGrade='1.25'
+	DescCornering='2'
+	DescEnchantCap = '20'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2a1' trailPort1='mod2a2'/>
+</BodyParam>
+<!--한국 호랑이 130905-->

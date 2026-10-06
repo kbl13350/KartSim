@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+		SteerConstraint='1.9'
+		DriftEscapeForce='800'
+		CornerDrawFactor='0.06'
+		BoosterBlur='true'
+		EngineSound='cotton7'
+		UseTransformBooster='true'
+		StartForwardAccelFactorSpeed = '2'
+
+		BoosterWaveType='effect_zero'
+		BoosterType='zero5'
+		BoosterType0='default'
+		BoosterType1='default'
+		Port0='mod3a'
+		Port1='mod3b'
+		FirePort0='mod4'
+
+		TransAccelFactor='1.85'           
+		StartBoosterTimeSpeed='1200'   
+		TransformTime='700'               
+															  
+		TailLampSize='0.3'
+		TailLampColor='0 255 100 100'
+		BoostBlurColor='255 77 77 77'
+		EnvMap='true'
+
+		DescBalance= '32'
+		DescStability ='39'
+		DescEngineGrade='1.2'
+		DescCornering='2'
+		DescEnchantCap = '20'
+
+/>
+
+<!-- Cotton Z7-Star 20110411 서울랜드 쿠폰 선물-->

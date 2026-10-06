@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="maple3"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[位于冒险岛明珠港的一个教室中]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="老师" string="黑魔法师至今还在试图摧毁我们的世界，|对此众多英雄和冒险家们一直致力于对抗他们。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="老师" string="至此，大家已完成冒险岛世界的勇士初学者全部课程。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="老师" string="如果有对勇士中学者课程感兴趣的学生，|还请参考信息商店中的招生公告。|课堂结束，大家可以解散了。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="我终于不是初学者了！？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="短中分勇士" string="虽然有点辛苦，但还是挺有成就的嘛。哈哈哈！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="可我才学完初学者的课程。。。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="短中分勇士" string="要想成为真正的勇士还有很长一段路要走呢。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="toben" pos="10 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="要不试一试勇士中学者课程？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <BackGround texture="maple4"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[明珠港情报商店]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="toben" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="招生公告在哪里呢？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="找到了！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="公告" string="能够听传说中的骑士团所属骑士和魔法协会所属魔法师们讲课的机会！|要想成为真正的勇士，勇士中学者课程必不可少！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="公告" string="具体申请报名方法，请咨询相关射手村老师们。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="公告" string="骑士身穿深海般蓝色的盔甲，|魔法师则穿着晚霞般粉红色的长袍。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="老师们竟然是传说中的骑士团和魔法师协会的人！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="短中分勇士" string="看来中学者课程非听不可了！|射手村我来了！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <BackGround texture="maple1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[冒险岛世界射手村附近]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="终于到了！"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="toben" pos="7 0" emotion="normal"/>
+  <Msg name="短中分勇士" string="老师们会在哪里呢？"/>
+  <Enter/>
+  <Char id="toben" remove="true"/>
+  <Char id="toben" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="说是穿着蓝色的盔甲，粉红色的长袍。。。"/>
+  <Enter/>
+</Scene>

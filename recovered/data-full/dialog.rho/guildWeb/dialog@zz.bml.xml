@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="captionWindow" windowSize="566 455" adjust="0 10" frame="CaptionDialog" captionPos="0 1" captionColor="black" caption="guildWebDialog" align="center">
+    <Label windowRect="0 375 200 380" text="#sb(enterESC)" autoSizing="true" textColor="255 0 0 0" align="hcenter" textRender="bold"/>
+    <StringBag>
+      <k n="guildWebDialog">
+        <m c="kr" v="길드웹다이얼로그"/>
+        <m c="jp" v="ギルドウェブダイアログ"/>
+        <m c="cn" v="车队"/>
+        <m c="tw" v="車隊網頁對話"/>
+        <m c="vn" v="Nhật ký Đội"/>
+        <m c="ru" v="Веб-диалог гильдии"/>
+        <m c="id" v="Guild Web Dialog"/>
+        <m c="th" v="Guild Web Dialog"/>
+      </k>
+    </StringBag>
+  </CaptionWindow>
+</Panel>

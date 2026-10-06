@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Escape isFixedKart="true" fixedKartId="1055" isFixedChar="true" fixedCharId="10" kartId="1055" characterId="13" colorId="9" dyeId="9" characterName="Q博士">
+    <LevelContent level="0" track="northeu_I07" laps="1" ksv="northeu_I07" distance="20" startOffset="-1500"/>
+  </Escape>
+</Root>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="repondInfo" windowSize="444 70" align="hcenter">
+  <Container name="addPoint" visible="false">
+    <Panel name="respondGauge_back" leftTopTex="0 110" texture="deathMatch_img_respawn1_1@zz" alphaBlend="true"/>
+    <Panel name="respondGauge_front" leftTopTex="0 110" texture="deathMatch_img_respawn1_2@zz" alphaBlend="true"/>
+  </Container>
+  <Container name="notPoint" visible="false">
+    <Panel name="respondGauge_back" leftTopTex="0 110" texture="deathMatch_img_respawn2_1@zz" alphaBlend="true"/>
+    <Panel name="respondGauge_front" leftTopTex="0 110" texture="deathMatch_img_respawn2_2@zz" alphaBlend="true"/>
+  </Container>
+</Container>

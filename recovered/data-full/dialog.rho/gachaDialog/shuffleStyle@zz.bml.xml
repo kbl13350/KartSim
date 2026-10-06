@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="0 0 800 600" align="center">
+  <Container name="dialogWindow" windowRect="24 10 794 565">
+    <Container name="mainPage" windowRect="210 20 777 475" align="vcenter">
+      <Panel name="number" leftTopWH="400 150 67 67" visible="false" alphaBlend="true"/>
+      <Window name="suffleCont" windowRect="0 0 485 315" align="hcenter">
+        <Window name="itemPreview" leftTopWH="60 130 200 200" alphaBlend="false" alphaTest="true"/>
+        <Window name="itemPreview2" leftTopWH="270 130 200 200" alphaBlend="false" alphaTest="true"/>
+        <Window name="openEffect" leftTopWH="0 20 517 376"/>
+        <Container leftTopWH="45 400 310 70" alphaBlend="true">
+          <Label name="description" leftTopWH="0 2 310 30" align="hcenter" textAlign="hcenter" text="" multiLine="true" textRender="gulim13" textColor="white" autoWrap="true"/>
+          <Container name="buttonGroup" leftTopWH="1 30 310 40">
+            <Container name="group_okcancel" leftTopWH="0 0 310 40" align="center">
+              <TextButton name="ok" windowRect="0 0 86 22" align="left" adjust="60 0" text="#sb(ok)" altTextRender="outline" useDisableState="false" disabledTextColor="gray"/>
+              <TextButton name="cancel" windowRect="0 0 86 22" align="right" adjust="60 0" text="#sb(cancel)" altTextRender="outline" useDisableState="false" disabledTextColor="gray"/>
+            </Container>
+          </Container>
+        </Container>
+      </Window>
+    </Container>
+  </Container>
+</Container>

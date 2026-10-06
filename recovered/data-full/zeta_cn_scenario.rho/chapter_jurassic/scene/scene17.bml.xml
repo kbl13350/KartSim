@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="jurassic3"/>
+  <Char id="carno" pos="9 0" emotion="stop2"/>
+  <Msg name="卡诺" string="哈哈，族长车拿来了吧？"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="rachi" pos="6 0" flip="true" emotion="stop3"/>
+  <Msg name="露西" string="呵呵，你不会有机会驾驶这辆车的！"/>
+  <Enter/>
+  <Char id="rachi" remove="true"/>
+  <Char id="carno" pos="9 0" emotion="stop2"/>
+  <Msg name="卡诺" string="看结果吧！"/>
+  <Enter/>
+  <Char id="carno" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="露西加油！发挥平常实力就行！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="carno" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="卡诺" string="你觉得只练习一周就能赢下我吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="carno" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="carno" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="我觉得露西会赢你！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="carno" remove="true"/>
+  <Char id="carno" pos="7 0" emotion="stop1"/>
+  <Msg name="卡诺" string="看结果再说？|准备好，开始了!"/>
+  <Enter/>
+</Scene>

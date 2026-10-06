@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='105.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.055'
+	SteerConstraint='2'
+	DriftEscapeForce='400'
+	CornerDrawFactor='0.04'
+	UseTransformBooster='true'
+    TransAccelFactor = '1.6'
+
+	BoosterBlur='true'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	EngineSound='cotton6'
+	EnvMap='true'
+
+	Port0='mod4a'
+	Port1='mod4b'
+	FirePort0='mod5'
+	FirePort1='mod6'
+	FirePort2='mod5a'
+	FirePort3='mod5b'
+
+	DescBalance= '35'
+	DescStability ='35'
+	DescEngineGrade='1'
+	DescCornering='4'
+	DescEnchantCap = '25'
+/>
+
+<!-- 일본 블랙 샤크 SR 120621-->

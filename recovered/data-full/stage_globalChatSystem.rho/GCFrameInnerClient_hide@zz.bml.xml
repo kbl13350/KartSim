@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="chatWindowHide" adjust="0 115" windowSize="40 40" align="right;vcenter;">
+  <Panel name="chatInGameMini" windowSize="37 39" align="right;vcenter" texture="보이기버튼백판" alphaBlend="true">
+    <ImageButton name="hide" windowSize="20 20" align="hcenter" adjust="2 10" autoLoadImage="보이기_0" alphaBlend="true" altTextRender="outline" altText="#sb(chat_chatShow)" altRelativePos="-30 -30" altRelativeLegAdj="20 -16"/>
+  </Panel>
+</Container>

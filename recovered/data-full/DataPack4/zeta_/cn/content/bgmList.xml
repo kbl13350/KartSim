@@ -1,0 +1,182 @@
+<customBgm>
+  <bgmList>
+    <bgm id='149'	priority='1'	theme='tomb2'	    name='tomb_04'/>
+    <bgm id='150'	priority='1'	theme='tomb2'	    name='tomb_05'/>
+    <bgm id='151'	priority='1'	theme='tomb2'	    name='tomb_06'/>
+
+    <bgm id='148'	priority='1'	theme='main'	    name='Kart_20th_Anniversary'/>
+    <bgm id='144'	priority='1'	theme='ice'		    name='ice_04'/>
+    <bgm id='145'	priority='1'	theme='ice'		    name='ice_05'/>
+    <bgm id='146'	priority='1'	theme='mine'      name='mine_05'/>
+    <bgm id='147'	priority='1'	theme='mine'      name='mine_06'/>
+    <bgm id='140'	priority='1'	theme='fengshen'	name='fengshen_05'/>
+    <bgm id='141'	priority='1'	theme='fengshen'	name='fengshen_06'/>
+    <bgm id='142'	priority='1'	theme='fengshen'	name='fengshen_07'/>
+    <bgm id='143'	priority='1'	theme='fengshen'	name='fengshen_08'/>
+    <bgm id='136'	priority='1'	theme='fengshen'	name='fengshen_01'/>
+    <bgm id='137'	priority='1'	theme='fengshen'	name='fengshen_02'/>
+    <bgm id='138'	priority='1'	theme='fengshen'	name='fengshen_03'/>
+    <bgm id='139'	priority='1'	theme='fengshen'	name='fengshen_04'/>
+
+    <bgm id='131'	priority='1'	theme='facelift'	name='facelift_04'/>
+    <bgm id='1'		priority='1'	theme='main'	    name='title'/>
+    <bgm id='135'	priority='1'	theme='main'	    name='Kart_18th_Anniversary'/>
+    	
+    <bgm id='118'	priority='1'	theme='maple'	    name='maple_01'/>
+    <bgm id='119'	priority='1'	theme='maple'	    name='maple_02'/>
+    <bgm id='120'	priority='1'	theme='maple'	    name='maple_03'/>
+    <bgm id='121'	priority='1'	theme='maple'	    name='maple_04'/>
+    <bgm id='126'	priority='1'	theme='maple_2'	  name='maple_05'/>
+    <bgm id='127'	priority='1'	theme='maple_2'	  name='maple_06'/>
+    <bgm id='122'	priority='1'	theme='maple'	    name='maple_07'/>
+    <bgm id='123'	priority='1'	theme='maple'	    name='maple_08'/>
+    <bgm id='124'	priority='1'	theme='maple'	    name='maple_09'/>
+    <bgm id='125'	priority='1'	theme='maple'	    name='maple_10'/>
+	
+    <bgm id='117'	priority='1'	theme='mabi'		  name='mabi_01'/>
+    <bgm id='116'	priority='1'	theme='mabi'		  name='mabi_02'/>
+    <bgm id='115'	priority='1'	theme='mabi'		  name='mabi_03'/>
+    <bgm id='114'	priority='1'	theme='mabi_2'		name='mabi_04'/>
+    <bgm id='113'	priority='1'	theme='mabi'		  name='mabi_05'/>
+    <bgm id='112'	priority='1'	theme='mabi_2'		name='mabi_06'/>
+    <bgm id='111'	priority='1'	theme='mabi'		  name='mabi_07'/>
+    
+    <bgm id='106'	priority='1'	theme='olympos'	  name='olympos_01'/>
+    <bgm id='107'	priority='1'	theme='olympos'	  name='olympos_02'/>
+    <bgm id='108'	priority='1'	theme='olympos'	  name='olympos_03'/>
+    <bgm id='109'	priority='1'	theme='olympos'	  name='olympos_04'/>
+    <bgm id='110'	priority='1'	theme='olympos'	  name='olympos_05'/>
+	  <bgm id='101'	priority='1'	theme='camelot'	  name='camelot_01'/>
+    <bgm id='102'	priority='1'	theme='camelot'	  name='camelot_02'/>
+    <bgm id='103'	priority='1'	theme='camelot'	  name='camelot_03'/>
+    <bgm id='104'	priority='1'	theme='camelot'	  name='camelot_04'/>
+    <bgm id='105'	priority='1'	theme='camelot'	  name='camelot_05'/>
+    <bgm id='2'		priority='1'	theme='abyss'	    name='abyss_01'/>
+    <bgm id='3'		priority='1'	theme='abyss'	    name='abyss_02'/>
+    <bgm id='4'		priority='1'	theme='abyss'	    name='abyss_03'/>
+    <bgm id='5'		priority='1'	theme='abyss'	    name='abyss_04'/>
+    <bgm id='6'		priority='1'	theme='abyss'	    name='abyss_05'/>
+    <bgm id='7'		priority='1'	theme='god'		    name='god_01'/>
+    <bgm id='8'		priority='1'	theme='god'		    name='god_02'/>
+    <bgm id='9'		priority='1'	theme='god'		    name='god_03'/>
+    <bgm id='10'	priority='1'	theme='god'		    name='god_04'/>
+    <bgm id='11'	priority='1'	theme='sword'	    name='sword_01'/>
+    <bgm id='12'	priority='1'	theme='sword'	    name='sword_02'/>
+    <bgm id='13'	priority='1'	theme='sword'	    name='sword_03'/>
+    <bgm id='14'	priority='1'	theme='sword'	    name='sword_04'/>
+    <bgm id='15'	priority='1'	theme='nemo'	    name='nemo_00'/>
+    <bgm id='16'	priority='1'	theme='nemo'	    name='nemo_01'/>
+    <bgm id='17'	priority='1'	theme='nemo'	    name='nemo_02'/>
+    <bgm id='18'	priority='1'	theme='nemo'	    name='nemo_03'/>
+    <bgm id='19'	priority='1'	theme='nemo'	    name='nemo_04'/>
+    <bgm id='20'	priority='1'	theme='world'	    name='world_01'/>
+    <bgm id='21'	priority='1'	theme='world'	    name='world_02'/>
+    <bgm id='22'	priority='1'	theme='world'	    name='world_03'/>
+    <bgm id='23'	priority='1'	theme='world'	    name='world_04'/>
+    <bgm id='24'	priority='1'	theme='world'	    name='world_05'/>
+    <bgm id='25'	priority='1'	theme='jurassic'	name='jurassic_01'/>
+    <bgm id='26'	priority='1'	theme='jurassic'	name='jurassic_02'/>
+    <bgm id='27'	priority='1'	theme='jurassic'	name='jurassic_03'/>
+    <bgm id='28'	priority='1'	theme='steam'	    name='steam_01'/>
+    <bgm id='29'	priority='1'	theme='steam'	    name='steam_02'/>
+    <bgm id='30'	priority='1'	theme='steam'	    name='steam_03'/>
+<!--<bgm id='31'	priority='1'	theme='beach'	    name='beach_01'/>-->
+    <bgm id='31'	priority='1'	theme='beach'	    name='beach_02'/>
+<!--<bgm id='33'	priority='1'	theme='beach'	    name='beach_03'/>-->
+    <bgm id='32'	priority='1'	theme='beach'	    name='beach_04'/>
+    <bgm id='33'	priority='1'	theme='beach'	    name='beach_05'/>
+    <bgm id='34'	priority='1'	theme='park'	    name='017_Themepark_3'/>
+    <bgm id='35'	priority='1'	theme='brodi'	    name='brodi_01'/>
+    <bgm id='36'	priority='1'	theme='brodi'	    name='brodi_02'/>
+    <bgm id='37'	priority='1'	theme='wkc'		    name='wkc_01'/>
+    <bgm id='38'	priority='1'	theme='wkc'		    name='wkc_02'/>
+    <bgm id='39'	priority='1'	theme='mechanic2'	name='city_03'/>
+    <bgm id='40'	priority='1'	theme='mechanic'	name='city_01'/>
+    <bgm id='41'	priority='1'	theme='mechanic'	name='city_02'/>
+    <bgm id='42'	priority='1'	theme='nymph'	    name='Nymph_01'/>
+    <bgm id='43'	priority='1'	theme='nymph'	    name='Nymph_02'/>
+    <bgm id='44'	priority='1'	theme='castle2'	  name='castle_01_re'/>
+    <bgm id='45'	priority='1'	theme='castle'	  name='castle_01'/>
+    <bgm id='46'	priority='1'	theme='castle'	  name='castle_02'/>
+    <bgm id='47'	priority='1'	theme='china2'	  name='china_01_re'/>
+    <bgm id='48'	priority='1'	theme='china'	    name='china_01'/>
+    <bgm id='49'	priority='1'	theme='china'	    name='china_02'/>
+    <bgm id='50'	priority='1'	theme='china'	    name='china_03'/>
+    <bgm id='132'	priority='1'	theme='china'	    name='china_04'/>
+    <bgm id='133'	priority='1'	theme='china'	    name='china_05'/>
+    <bgm id='134'	priority='1'	theme='china'	    name='china_06'/>
+    <bgm id='51'	priority='1'	theme='gold2'	    name='Gold_04'/>
+    <bgm id='52'	priority='1'	theme='gold'	    name='Gold_01'/>
+    <bgm id='53'	priority='1'	theme='gold'	    name='Gold_02'/>
+    <bgm id='54'	priority='1'	theme='gold'	    name='Gold_03'/>
+    <bgm id='55'	priority='1'	theme='moonhill2'	name='moonhill_02_re'/>
+    <bgm id='56'	priority='1'	theme='moonhill'	name='moonhill_01'/>
+    <bgm id='57'	priority='1'	theme='moonhill'	name='moonhill_02'/>
+    <bgm id='58'	priority='1'	theme='moonhill'	name='moonhill_03'/>
+    <bgm id='59'	priority='1'	theme='fairy2'	  name='fairy_04'/>
+    <bgm id='60'	priority='1'	theme='fairy'	    name='fairy_01'/>
+    <bgm id='61'	priority='1'	theme='fairy'	    name='fairy_02'/>
+    <bgm id='62'	priority='1'	theme='fairy'	    name='fairy_03'/>
+    <bgm id='63'	priority='1'	theme='pirate2'	  name='Pirate_03_re'/>
+    <bgm id='64'	priority='1'	theme='pirate'	  name='pirate_01'/>
+    <bgm id='65'	priority='1'	theme='pirate'	  name='pirate_02'/>
+    <bgm id='66'	priority='1'	theme='pirate'	  name='priate_03'/>
+    <bgm id='67'	priority='1'	theme='factory2'	name='factory_04'/>
+    <bgm id='68'	priority='1'	theme='factory'		name='BGM-공장01'/>
+    <bgm id='69'	priority='1'	theme='factory'		name='BGM-공장02'/>
+    <bgm id='70'	priority='1'	theme='factory'		name='BGM-공장03'/>
+    <bgm id='71'	priority='1'	theme='northeu2'	name='northeu_01_re'/>
+    <bgm id='72'	priority='1'	theme='northeu'		name='northeu_01'/>
+    <bgm id='73'	priority='1'	theme='northeu'		name='northeu_02'/>
+    <bgm id='74'	priority='1'	theme='northeu'		name='northeu_03'/>
+    <bgm id='75'	priority='1'	theme='mine'	    name='mine_01'/>
+    <bgm id='76'	priority='1'	theme='mine'	    name='mine_02'/>
+    <bgm id='77'	priority='1'	theme='mine'	    name='mine_03'/>
+    <bgm id='78'	priority='1'	theme='mine2'	    name='mine_04'/>
+    <bgm id='79'	priority='1'	theme='tomb2'	    name='tomb_03_re'/>
+    <bgm id='80'	priority='1'	theme='tomb'	    name='tomb_01'/>
+    <bgm id='81'	priority='1'	theme='tomb'	    name='tomb_02'/>
+    <bgm id='82'	priority='1'	theme='tomb'	    name='tomb_03'/>
+    <bgm id='83'	priority='1'	theme='ice2'	    name='ice_02_re'/>
+    <bgm id='84'	priority='1'	theme='ice'		    name='ice_01'/>
+    <bgm id='85'	priority='1'	theme='ice'		    name='ice_02'/>
+    <bgm id='86'	priority='1'	theme='ice'		    name='ice_03'/>
+    <bgm id='128'	priority='1'	theme='facelift'	name='facelift_01'/>
+    <bgm id='87'	priority='1'	theme='village2'	name='village_03_re'/>
+    <bgm id='88'	priority='1'	theme='village'		name='village_01'/>
+    <bgm id='89'	priority='1'	theme='village'		name='village_02'/>
+    <bgm id='90'	priority='1'	theme='village'		name='village_03'/>
+    <bgm id='91'	priority='1'	theme='village'		name='village_04'/>
+    <bgm id='130'	priority='1'	theme='facelift'	name='facelift_03'/>
+    <bgm id='92'	priority='1'	theme='desert2'		name='desert_03_re'/>
+    <bgm id='93'	priority='1'	theme='desert'		name='desert_01'/>
+    <bgm id='94'	priority='1'	theme='desert'		name='desert_02'/>
+    <bgm id='95'	priority='1'	theme='desert'		name='desert_03'/>
+    <bgm id='96'	priority='1'	theme='desert'		name='desert_04'/>
+    <bgm id='129'	priority='1'	theme='facelift'	name='facelift_02'/>
+    <bgm id='97'	priority='1'	theme='forest2'		name='forest_02_re'/>
+    <bgm id='98'	priority='1'	theme='forest'		name='forest_01'/>
+    <bgm id='99'	priority='1'	theme='forest'		name='forest_02'/>
+    <bgm id='100'	priority='1'	theme='forest'		name='forest_03'/>
+  </bgmList>
+  <defaultBgmList>  
+    <defaultBgm stage='MainMenuEx'              id='149' />
+    <defaultBgm stage='MyRoomStage'             ref='MainMenuEx'/>
+
+    <defaultBgm stage='GarageXStage'            ref='MainMenuEx'/>
+    <defaultBgm stage='DisassembleStage'        ref='MainMenuEx'/>
+    <defaultBgm stage='KartuneStage'            ref='MainMenuEx'/>
+    <defaultBgm stage='GameReadyStage'          theme='main' name='multi'/>
+    <defaultBgm stage='ReplayReadyStage'        theme='main' name='single'/>
+    <defaultBgm stage='ScenarioReadyStage'      theme='main' name='single'/>
+    <defaultBgm stage='ChallengerReadyStage'    theme='main' name='single'/>
+    <defaultBgm stage='TimeAttackReadyStage'    theme='main' name='single'/>
+    <defaultBgm stage='RankingTimeAttackReadyStage' theme='main' name='single'/>
+    <defaultBgm stage='RiderSchoolReadyStage'   theme='main' name='single'/>
+    <defaultBgm stage='MqShopStage'             theme='main' name='shop' period='2022-12-22T06:00:00 ~*'>
+      <eventBgm theme='main' name='ShopBGM_Edit' period='*~2022-12-22T05:59:59'/>
+    </defaultBgm>
+    <defaultBgm stage='ChallengerSelectStage'   theme='main' name='single'/>
+    <defaultBgm stage='CashInventoryStage'      theme='main' name='shop'/>
+  </defaultBgmList>
+</customBgm>

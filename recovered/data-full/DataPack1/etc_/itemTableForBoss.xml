@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<itemtable>
+
+	<!-- 보스 몸통 -->
+	<!--
+		id : 고유 번호(bossBody 안에서 중복되는 숫자가 있어선 안됌)
+		name : 보스 이름
+		modelNo : 보스 모델 번호(0, 1, 2)
+	-->
+	<bossBody id='0' name='titanLoader' modelNo='0'/>
+	<bossBody id='1' name='titanLoader' modelNo='1'/>
+	<bossBody id='2' name='titanLoader' modelNo='2'/>
+
+	<!-- 보스 왼팔 -->
+	<!--
+		id : 고유 번호(bossLeftArm 안에서 중복되는 숫자가 있어선 안됌)
+		name : 보스 이름
+		modelNo : 보스 모델 번호(0, 1, 2)
+	-->
+	<bossLeftArm id='0' name='titanLoader' modelNo='0'/>
+	<bossLeftArm id='1' name='titanLoader' modelNo='1'/>
+	<bossLeftArm id='2' name='titanLoader' modelNo='2'/>
+
+	<!-- 보스 오른팔 -->
+	<!--
+		id : 고유 번호(bossRightArm 안에서 중복되는 숫자가 있어선 안됌)
+		name : 보스 이름
+		modelNo : 보스 모델 번호(0, 1, 2)
+	-->
+	<bossRightArm id='0' name='titanLoader' modelNo='0'/>
+	<bossRightArm id='1' name='titanLoader' modelNo='1'/>
+	<bossRightArm id='2' name='titanLoader' modelNo='2'/>
+
+	<!-- 색상 -->
+	<!--
+		id : 고유 번호(color 안에서 중복되는 숫자가 있어선 안됌)
+		name : 색상 이름
+		base : 광택(t0) 텍스쳐와 혼합될 색상
+		high : 메인(t1) 텍스쳐와 혼합될 색상
+		rank : 여기선 쓰이지 않음
+	-->
+	<color id='0' name='빨강' base='255 232  39   6' high='255 255 186   0' rank='255 251   2  10'/>
+	<color id='1' name='노랑' base='255 255 186   0' high='255 255 255   0' rank='255 255 204  27'/>
+	<color id='2' name='주황' base='255 255 130   0' high='255 255 186  82' rank='255 254 153   3'/>
+	<color id='3' name='녹색' base='255  58 174  25' high='255 210 255   0' rank='255 149 203  65'/>
+	<color id='4' name='밝은옥색' base='255   0 199 206' high='255 255 255 255' rank='255  48 210 212'/>
+	<color id='5' name='파랑' base='255  19 121 219' high='255   0 252 255' rank='255   0 134 246'/>
+	<color id='6' name='보라' base='255 140  56 239' high='255 255 255 255' rank='255 141  56 238'/>
+	<color id='7' name='검정'  base='255  40  40  40' high='255 150 150 150' rank='255   0   0   0'/>
+	<color id='8' name='분홍' base='255 248   1 122' high='255 255 190 190' rank='255 255   0 168'/>
+	<color id='9' name='하양' base='255 243 243 243' high='255 255 255 255' rank='255 255 255 255'/>
+	<color id='10' name='아쿠아블루' base='255   0 180 230' high='255 150 255 255' rank='255 0 180 230'/>
+	<color id='11' name='로맨틱핑크' base='255 252  45  86' high='255 243 131 153' rank='255 252 45 86'/>
+	<color id='12' name='파비아페인트' base='255 223 109 39 ' high='255 225 130 0 ' rank='255 223 109 39'/>
+
+	<!-- Attack Effect -->
+	<!--
+		id : 고유 번호(attackEffect 안에서 중복되는 숫자가 있어선 안됌)
+		name : 이펙트 이름
+	-->
+	<attackEffect id='0' name='body_fire'/>
+	<attackEffect id='1' name='leftArm_fire'/>
+
+	<!-- Explode Effect -->
+	<!--
+		id : 고유 번호(explodeEffect 안에서 중복되는 숫자가 있어선 안됌)
+		name : 이펙트 이름
+	-->
+	<explodeEffect id='0' name='exp_body'/>
+	<explodeEffect id='1' name='exp_la'/>
+	<explodeEffect id='2' name='exp_ra'/>
+
+	<!-- Smoke Effect -->
+	<!--
+		id : 고유 번호(smokeEffect 안에서 중복되는 숫자가 있어선 안됌)
+		name : 이펙트 이름
+	-->
+	<smokeEffect id='0' name='smoke_body'/>
+	<smokeEffect id='1' name='smoke_LA'/>
+	<smokeEffect id='2' name='smoke_RA'/>
+
+	<!-- Spark Effect -->
+	<!--
+		id : 고유 번호(sparkEffect 안에서 중복되는 숫자가 있어선 안됌)
+		name : 이펙트 이름
+	-->
+	<sparkEffect id='0' name='dam_body'/>
+	<sparkEffect id='1' name='dam_LA'/>
+	<sparkEffect id='2' name='dam_RA'/>
+
+	<!--Aura -->
+	<!--
+		id : 고유 번호(aura 안에서 중복되는 숫자가 있어선 안됌)
+		name : 오라 이름
+	-->
+	<aura id='0' name='노랑'/>
+	<aura id='1' name='녹색'/>
+	<aura id='2' name='파랑'/>
+	<aura id='3' name='빨강'/>
+	<aura id='4' name='검정'/>
+	<aura id='5' name='무지개'/>
+	<aura id='6' name='별오라'/>
+	<aura id='7' name='뉴별오라'/>
+	<aura id='8' name='2탄오라노랑'/>
+	<aura id='9' name='2탄오라빨강'/>
+	<aura id='10' name='하트오라'/>
+	<aura id='11' name='눈결정'/>
+	<aura id='12' name='폭죽오라'/>
+	<aura id='13' name='하트오라2'/>		<!-- 하트오라2 -->
+	<aura id='14' name='꽃잎오라'/> 
+	<aura id='15' name='크로바'/>			<!-- 네잎크로바 오라 -->
+	<aura id='16' name='황사오라'/>
+	<aura id='17' name='스파크오라'/>
+	<aura id='18' name='유령오라'/>
+	<aura id='19' name='오륜오라'/>
+	<aura id='20' name='화염오라'/>		<!-- 화염 오라 -->
+	<aura id='21' name='단풍오라'/>
+	<aura id='22' name='아이스오라'/>
+	<aura id='23' name='뉴폭죽오라'/>		<!-- 폭죽오라2 -->
+	<aura id='24' name='암흑오라'/> 
+	<aura id='25' name='챔피언오라'/> 
+	<aura id='26' name='개나리오라'/>		<!-- 개나리 오라 -->
+	<aura id='27' name='축복기원'/>		<!-- 축복의 기원 -->
+	<aura id='28' name='용오름오라'/>
+	<aura id='29' name='열공오라'/>
+	<aura id='30' name='해적오라'/>
+	<aura id='31' name='부자오라'/>		<!-- 부자 오라 -->
+	<aura id='32' name='용오름오라red'/>
+	<aura id='33' name='오리오라'/>
+	<aura id='34' name='감마니아'/>
+</itemtable> 

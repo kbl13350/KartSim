@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god4"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="托尔" string="洛基你这家伙！！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="洛基" string="啊！哥~开个玩笑！|先把我放下！好痛啊！！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Msg name="奥丁" string="你们两个！！！立马给我住手！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="父，父亲大人！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="loki" pos="7 0" flip="true" emotion="stop2"/>
+  <Char id="ms_thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="洛基" string="父，父亲！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Msg name="奥丁" string="你们两个家伙这到底是在干什么！！|还有，托尔你这身打扮是怎么回事？？"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Msg name="洛基" string="父亲~ 哥哥偷了永恒之枪 X……"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Char id="loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="洛基你这家伙！！我已经知道这一切了！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="洛基" string="呵…… 好吧……"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="odin" pos="10 0" emotion="normal"/>
+  <Msg name="奥丁" string="你们两个以为G1联赛是玩游戏呢！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="10 0" emotion="stop1"/>
+  <Msg name="奥丁" string="就因为你俩，现在阿斯加德乱成一团了！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="heimdall" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="海姆达尔" string="奥丁大人！|我把入侵者抓来了。"/>
+  <Enter/>
+  <Char id="heimdall" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Char id="heimdall" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="海姆达尔！|你这个守护者|来这里干什么？"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="heimdall" remove="true"/>
+  <Char id="heimdall" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Msg name="海姆达尔" string="非常抱歉……"/>
+  <Enter/>
+  <Char id="heimdall" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_thor" pos="12 0" emotion="stop2"/>
+  <Msg name="托尔" string="原来你们都没事啊！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop5"/>
+  <Char id="ms_thor" pos="12 0" emotion="stop2"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="对不起，托尔，我们也被抓住了……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="托尔，洛基！|给你们定侮辱神圣的G1联赛和|扰乱阿斯加德的罪。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="pung" pos="5 0" emotion="normal"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="…" string="砰！！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="pung" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="洛基" string="额，额啊啊，怎么回事！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="海姆达尔！|把他们放逐到人类世界！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Msg name="奥丁" string="在你们改过自新前|别想回来！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="洛基" string="父亲~！！我是冤枉的~~！！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="还有那三个！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop6"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Msg name="皮蛋，黑妞，宝宝" string="在，干嘛？？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="都怪我儿子，你们也受了不少苦，|这是小小的礼物，之后我的孩子们就拜托你们了。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="不对……|应该是女儿吧？"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="呼呼……反正，这里不是人类可以逗留的地方|你们也一起回去吧！"/>
+  <Enter/>
+</Scene>

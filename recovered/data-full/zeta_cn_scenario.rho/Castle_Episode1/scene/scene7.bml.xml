@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle4"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="找找找…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="找到了！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop1"/>
+  <Msg name="当娜" string="哦?真的吗？"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="您找的是这个茶匙吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop3"/>
+  <Msg name="当娜" string="对！对！现在可以给主人准备茶水了。|该怎么感谢你呢？"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="嘿嘿，小事而已。|对了！城堡里我弄丢了我的伙伴..|不知道有没有人可以帮我？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop2"/>
+  <Msg name="当娜" string="真为你担心。|恩…"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop1"/>
+  <Msg name="当娜" string="啊，对了！|去找一下管理庭院的庭院机器人克鲁伊。|克鲁伊在庭院里走来走去，可能会看过你的朋友。"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="啊！庭院机器人克鲁伊！|谢谢您。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop3"/>
+  <Msg name="当娜" string="我更感谢你。希望你能找到伙伴。|那我去忙我的了！"/>
+  <Enter/>
+</Scene>

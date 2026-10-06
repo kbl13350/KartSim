@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='110.0'
+	BackwardAccelForce='95.0'
+	DragFactor='-0.045'
+	SteerConstraint='1.875'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.043'
+
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='infector1'
+	BoosterType3='infector1'
+	BoosterBlur='true'
+	EngineSound='pro'
+
+	DriftMaxGauge='1500'
+	NormalBoosterTime='2000'
+	TeamBoosterTime='1000'
+
+		
+		DescBalance= '30'
+		DescStability ='25'
+		DescEngineGrade='1.1'
+		DescCornering='2'
+		DescEnchantCap = '20'
+/>

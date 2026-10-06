@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="questInfoDialog" windowRect="70 80 729 550" frame="CaptionDialog" caption="#sb(questInfo)" align="center" setCloseButton="cancelButton">
+    <Window name="ContentTab" windowRect="0 33 625 367" frame="InnerFrame">
+      <Window name="static" windowRect="60 0 325 317" frame="ThinDialog">
+        <Panel name="titleBg" windowRect="3 3 244 213" uvRect="0 0 241 210" texture="none" align="hcenter">
+          <ImageButton name="extButton" windowRect="15 15 123 45" autoLoadImage="button_" textRender="bold" alphaBlend="true" visible="false"/>
+        </Panel>
+        <Window windowRect="3 221 244 293" frame="InnerFrame" enable="false" align="hcenter">
+          <Panel name="prizeTag0" windowRect="75 0 187 17" texture="prize_0@zz" alphaBlend="true"/>
+          <Panel name="prizeTag1" windowRect="75 0 187 17" texture="prize_1@zz" alphaBlend="true" visible="false"/>
+          <ItemWindow name="itemPanel" windowRect="-2 0 58 60" frame="ItemPanel" align="vcenter"/>
+          <Panel name="emblem" windowRect="3 5 54 56" uvRect="0 0 51 51" visible="false" alphaBlend="true"/>
+          <Label name="lblPrize" windowRect="80 20 230 50" textRender="bold" textAlign="vcenter" autoWrap="true" multiLine="true" enable="false" textColor="255 0 0 0"/>
+        </Window>
+      </Window>
+      <Window name="static" windowRect="330 2 613 319">
+        <ScrollBar name="infoScroll" windowRect="245 2 261 305" scrollType="vertical"/>
+        <ViewportPanel name="innerViewport" windowRect="0 2 242 309" enable="false">
+          <Window name="infoPanel" windowRect="0 0 241 307">
+            <Panel name="questTitleImage" windowRect="0 0 241 39" uvRect="0 0 241 39" texture="none" alphaBlend="true"/>
+            <Panel name="pnlTitle" windowRect="0 0 241 39" uvRect="0 0 241 39" texture="lblTitleBg" alphaBlend="true">
+              <Label name="lblTitle" windowSize="241 39" adjust="0 4" textColor="white" textAlign="hcenter;vcenter" textRender="bold"/>
+            </Panel>
+            <Panel name="questCap" windowRect="0 39 241 77" uvRect="0 0 241 38" texture="bg_01@zz" alphaBlend="true"/>
+            <Panel name="questDesc" windowRect="0 77 241 194" uvRect="0 0 241 8" texture="bg_02" alphaBlend="true">
+              <Label name="lblDate" windowRect="15 10 225 20" enable="false" textColor="255 0 0 0"/>
+              <Label name="lblDesc" windowRect="15 30 225 117" autoWrap="true" multiLine="true" enable="false" textColor="255 0 0 0"/>
+            </Panel>
+            <Window name="downWindow">
+              <Panel name="questBodyImage" windowRect="0 194 241 241" ubRect="0 0 241 47" texture="bg_03@zz" alphaBlend="true"/>
+              <Panel name="questText" windowRect="0 241 241 287" ubRect="0 0 241 8" texture="bg_02" alphaBlend="true">
+                <Label name="lblMissionTitle" windowRect="15 10 225 25" textRender="bold" enable="false" textColor="255 0 0 0" multiLine="true" autoWrap="true"/>
+                <Label name="lblMission" windowRect="15 28 225 55" enable="false" textColor="255 0 0 0" autoWrap="true" multiLine="true"/>
+              </Panel>
+              <Panel name="questCloseImage" windowRect="0 287 241 307" ubRect="0 0 241 20" texture="bg_04" alphaBlend="true"/>
+            </Window>
+          </Window>
+        </ViewportPanel>
+      </Window>
+    </Window>
+    <Window windowRect="7 43 60 359">
+      <Window name="stepPage1" windowRect="0 20 50 278" align="hcenter">
+        <StateButton name="step1" windowRect="0 0 50 50" iconSet="step1@zz" canDisable="false"/>
+        <Panel name="step1_desc" windowRect="0 0 50 50" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+        <StateButton name="step2" windowRect="0 55 50 105" iconSet="step2@zz" canDisable="false"/>
+        <Panel name="step2_desc" windowRect="0 55 50 105" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+        <StateButton name="step3" windowRect="0 110 50 160" iconSet="step3@zz" canDisable="false"/>
+        <Panel name="step3_desc" windowRect="0 110 50 160" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+        <StateButton name="step4" windowRect="0 165 50 215" iconSet="step4@zz" canDisable="false"/>
+        <Panel name="step4_desc" windowRect="0 165 50 215" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+        <StateButton name="step5" windowRect="0 220 50 270" iconSet="step5@zz" canDisable="false"/>
+        <Panel name="step5_desc" windowRect="0 220 50 270" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+      </Window>
+      <Window name="stepPage2" visible="false" windowRect="0 50 50 288" align="hcenter">
+        <StateButton name="step6" windowRect="0 0 50 50" iconSet="step6@zz" canDisable="false"/>
+        <Panel name="step6_desc" windowRect="0 0 50 50" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+        <StateButton name="step7" windowRect="0 55 50 105" iconSet="step7@zz" canDisable="false"/>
+        <Panel name="step7_desc" windowRect="0 55 50 105" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+        <StateButton name="step8" windowRect="0 110 50 160" iconSet="step8@zz" canDisable="false"/>
+        <Panel name="step8_desc" windowRect="0 110 50 160" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+        <StateButton name="step9" windowRect="0 165 50 215" iconSet="step9@zz" canDisable="false"/>
+        <Panel name="step9_desc" windowRect="0 165 50 215" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+        <StateButton name="step10" windowRect="0 220 50 270" iconSet="step10@zz" canDisable="false"/>
+        <Panel name="step10_desc" windowRect="0 220 50 270" uvRect="0 0 50 50" texture="clear@zz" alphaBlend="true" enable="false" visible="false"/>
+      </Window>
+      <StateButton name="pageUp" windowRect="0 0 53 18" iconSet="pageUp"/>
+      <StateButton name="pageDown" windowRect="0 310 53 328" iconSet="pageDown" align="bottom"/>
+    </Window>
+    <Window name="TabCover" windowRect="0 2 626 40" frame="TabBox" enable="false"/>
+    <Container name="tabsContainer" windowRect="10 5 655 34"/>
+    <Container windowRect="0 0 400 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 600 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="goAttend" windowRect="0 0 117 30" text="#sb(goAttend)"/>
+      <TextButton name="goBigTrack" windowRect="0 0 117 30" text="#sb(goBigTrack)"/>
+      <TextButton name="goOutrun" windowRect="0 0 117 30" text="#sb(goOutrun)"/>
+      <TextButton name="okButton" windowRect="0 0 87 30" align="center" text="#sb(ok)"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

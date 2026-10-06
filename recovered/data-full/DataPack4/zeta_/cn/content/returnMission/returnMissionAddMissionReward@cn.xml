@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<AddMissionReward>
+	<reward missionCount='2' rewardStockId='27879'/>
+	<reward missionCount='4' rewardStockId='27882'/>
+	<reward missionCount='7' rewardStockId='29178'/>
+	<reward missionCount='8' rewardStockId='29807'/>
+	<reward missionCount='10' rewardStockId='27881'/>
+	<reward missionCount='12' rewardStockId='29753'/>
+</AddMissionReward>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="line3" windowRect="0 0 438 60">
+  <Panel name="bg" leftTopWH="0 0 438 60" alphaBlend="true" textureOp="modulate" color="0 0 0 0"/>
+  <Panel name="me" leftTopWH="0 0 438 60" texture="grade_leagueIndi_resultBg_me" alphaBlend="true" textureOp="modulate" color="0 0 0 0" visible="false"/>
+  <CharPanel name="rank" leftTopWH="19 0 19 24" texture="oldRankNum" alphaBlend="true" fontSize="19 24" fontStr="12345678x" text="0" align="vcenter"/>
+  <Container leftTopWH="50 0 160 58" visible="true">
+    <Label name="id" leftTopWH="0 0 160 26" textRender="outline16" textColor="white" textAlign="center" align="vcenter"/>
+    <Panel name="perfect" leftTopWH="79 0 62 20" texture="grade_leagueIndi_result_perfect" alphaBlend="true" textureOp="modulate" visible="false"/>
+  </Container>
+  <Container leftTopWH="227 0 78 58" visible="true">
+    <Label name="score" leftTopWH="0 0 39 26" textRender="outline16" textColor="white" textAlign="right;vcenter" align="vcenter" text="0"/>
+    <Label windowSize="39 26" adjust="39 0" text="#sb(scoreUnit)" textRender="outline16" textColor="white" textAlign="vcenter" align="vcenter"/>
+  </Container>
+  <Container leftTopWH="323 0 113 58" visible="true">
+    <Label name="mp" leftTopWH="0 0 113 26" textRender="outline16" textColor="white" textAlign="center" align="vcenter" text="MP 1500(+0)"/>
+  </Container>
+</Container>

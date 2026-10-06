@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="receiveGift">
+    <m c="kr" v="선물 받기"/>
+    <m c="jp" v="プレゼント受取"/>
+    <m c="cn" v="接收礼物"/>
+    <m c="tw" v="接收禮物"/>
+    <m c="us" v="Accept gift"/>
+    <m c="vn" v="Nhận quà"/>
+    <m c="ru" v="Получить подарок"/>
+    <m c="id" v="Terima hadiah"/>
+    <m c="th" v="รับของขวัญ"/>
+  </k>
+  <k n="receiveGiftSuccess">
+    <m c="kr" v="선물 받기 성공"/>
+    <m c="jp" v="プレゼント受取成功"/>
+    <m c="cn" v="接收礼物成功"/>
+    <m c="tw" v="接收禮物成功"/>
+    <m c="us" v="Your gift was successfully delivered!"/>
+    <m c="vn" v="Đã nhận được quà"/>
+    <m c="ru" v="Подарок получен"/>
+    <m c="id" v="Sukses terima hadiah"/>
+    <m c="th" v="รับของขวัญสำเร็จ"/>
+  </k>
+  <k n="receiveGiftSuccessMsg">
+    <m c="kr" v="선물 받기를 성공 했습니다.|(받은 선물은 내아이템에서 확인 할 수 있습니다.)"/>
+    <m c="jp" v="プレゼント受取に成功 しました。|(もらったプレゼントはマイホームで確認できます。)"/>
+    <m c="cn" v="成功接收礼物|（收到的礼物可以在车库进行确认）"/>
+    <m c="tw" v="禮物已成功接收|(收到的禮物可以在聊天室內進行確認)"/>
+    <m c="us" v="Your new gift has arrived!|You can view the gift at the Garage."/>
+    <m c="vn" v="Đã nhận được quà. |(Xin vui lòng kiểm tra trong tủ đồ)"/>
+    <m c="ru" v="Вы получили подарок.|(Список полученных подарков доступен| из вашей комнаты.)"/>
+    <m c="id" v="Sukses terima Hadiah.|(Hadiah yang diterima dapat cek di My Room.)"/>
+    <m c="th" v="รับของขวัญสำเร็จแล้ว "/>
+  </k>
+  <k n="receiveGiftFail">
+    <m c="kr" v="선물 받기 실패"/>
+    <m c="jp" v="プレゼント受取失敗"/>
+    <m c="cn" v="接收礼物失败"/>
+    <m c="tw" v="接收禮物失敗"/>
+    <m c="us" v="The gift has not been delivered due to an unknown error."/>
+    <m c="vn" v="Không nhận được quà"/>
+    <m c="ru" v="Ошибка при получении подарка"/>
+    <m c="id" v="Gagal terima hadiah"/>
+    <m c="th" v="การรับของขวัญล้มเหลว"/>
+  </k>
+  <k n="alreadyExistItem">
+    <m c="kr" v="이미 가지고 있는 아이템입니다."/>
+    <m c="jp" v="すでに持っているアイテムです。"/>
+    <m c="cn" v="已拥有的道具"/>
+    <m c="tw" v="已擁有的道具"/>
+    <m c="us" v="You already have the items."/>
+    <m c="vn" v="Đã có vật phẩm này"/>
+    <m c="ru" v="Этот предмет у вас уже есть"/>
+    <m c="id" v="Sudah memiliki item ini."/>
+    <m c="th" v="เป็นไอเทมที่มีอยู่แล้ว"/>
+  </k>
+  <k n="dropGiftSuccess">
+    <m c="kr" v="선물 버리기 성공"/>
+    <m c="jp" v="プレゼント廃棄"/>
+    <m c="cn" v="礼物丢弃成功"/>
+    <m c="tw" v="禮物丟棄成功"/>
+    <m c="us" v="Gift discarded."/>
+    <m c="vn" v="Từ chối quà thành công"/>
+    <m c="ru" v="Вы выбросили подарок"/>
+    <m c="id" v="Berhasil delete hadiah"/>
+    <m c="th" v="ทิ้งของขวัญสำเร็จ"/>
+  </k>
+  <k n="dropGiftSuccessMsg">
+    <m c="kr" v="선물을 성공적으로 버렸습니다."/>
+    <m c="jp" v="プレゼントを捨てました"/>
+    <m c="cn" v="成功丢弃礼物"/>
+    <m c="tw" v="成功丟棄禮物"/>
+    <m c="us" v="You successfully discarded the gift."/>
+    <m c="vn" v="Từ chối quà thành công"/>
+    <m c="ru" v="Подарок выброшен"/>
+    <m c="id" v="Berhasil delete hadiah."/>
+    <m c="th" v="ทิ้งของขวัญสำเร็จแล้ว"/>
+  </k>
+  <k n="dropGiftFail">
+    <m c="kr" v="선물 버리기 실패"/>
+    <m c="jp" v="プレゼント廃棄失敗"/>
+    <m c="cn" v="礼物丢弃失败"/>
+    <m c="tw" v="禮物丟棄失敗"/>
+    <m c="us" v="The gift has not been discarded."/>
+    <m c="vn" v="Từ chối quà không thành công"/>
+    <m c="ru" v="Ошибка при выбросе подарка"/>
+    <m c="id" v="Gagal delete hadiah"/>
+    <m c="th" v="ทิ้งของขวัญล้มเหลว"/>
+  </k>
+  <k n="dropGiftFailMsg">
+    <m c="kr" v="선물을 버리는 과정에서 오류가 생겼습니다."/>
+    <m c="jp" v="プレゼントを捨てる過程でエラーが発生しました。"/>
+    <m c="cn" v="在丢弃过程中出现错误"/>
+    <m c="tw" v="在丟棄過程中出現錯誤"/>
+    <m c="us" v="Error in discarding the gift."/>
+    <m c="vn" v="Xuất hiện lỗi khi từ chối nhận quà."/>
+    <m c="ru" v="Ошибка в процессе выброса подарка"/>
+    <m c="id" v="Terjadi error saat delete hadiah."/>
+    <m c="th" v="เกิดความผิดพลาดในการทิ้งของขวัญ"/>
+  </k>
+  <k n="checkDuplicateItemMsg1">
+    <m c="kr" v="이 선물에 들어있는 아이템 중 아래와 같은 아이템을 이미 갖고 있습니다."/>
+    <m c="jp" v="このプレゼントに入っているアイテムの中の、次のアイテムをすでに持っています。"/>
+    <m c="cn" v="礼物中的下列道具是已拥有的道具"/>
+    <m c="tw" v="禮物裡的下列道具是已經擁有的道具"/>
+    <m c="us" v="You already have the following gift items in possession."/>
+    <m c="vn" v="Kiểm tra vật phẩm trong Gara."/>
+    <m c="ru" v="У вас уже есть один из предметов, находящихся в подарочной коробке."/>
+    <m c="id" v="Kamu sudah memiliki salah satu item dari hadiah."/>
+    <m c="th" v="มีไอเทมที่เหมือนกับข้างล่างในไอเทมที่อยู่ในของขวัญนี้"/>
+  </k>
+  <k n="checkDuplicateItemMsg2">
+    <m c="kr" v="선물에 들어있는 상품을 받으시려면 먼저 내아이템에서 중복되는 아이템을 버려주세요."/>
+    <m c="jp" v="プレゼントに入っている商品を受け取るには、まずマイホームの重複するアイテムを捨ててください。"/>
+    <m c="cn" v="要想接收礼物，请先在车库中丢掉重复的道具"/>
+    <m c="tw" v="若想接收禮物，必須先在聊天室中丟掉重複的道具"/>
+    <m c="us" v="You already have the gift items in the Garage. Please delete them before accepting your new gift."/>
+    <m c="vn" v="Nếu bạn định nhận vật phẩm có trong hộp quà thì trước tiên phải xóa bỏ vật phẩm đang có ở trong Gara."/>
+    <m c="ru" v="Если вы хотите получить подарок, то сначала выбросьте предмет, находящийся в вашей комнате."/>
+    <m c="id" v="Untuk menerima hadiah, buang item yang sama di My Room."/>
+    <m c="th" v="ถ้าจะรับของขวัญนี้ต้องทิ้งไอเทมที่ซ้ำกันในห้องส่วนตัวก่อน"/>
+  </k>
+  <k n="receiveGiftFreedayError">
+    <m c="kr" v="상품에 들어있는 아이템 중 프리데이 이벤트에 포함된 아이템이 있습니다.|이 선물은 프리데이 이벤트 기간이 끝난 후에 받을 수 있습니다."/>
+    <m c="jp" v="商品に肺いているアイテムの中にフリーデーイベントに含まれるアイテムがあります。|このプレゼントはフリーデー イベント期間が終わった後で受け取ることができます。"/>
+    <m c="cn" v="暑期狂欢日的免费道具中包含了该礼物中的道具，请在暑期狂欢日活动结束后再接收该礼物"/>
+    <m c="tw" v="商品列表中包含了屬於免費活動的道具。這個道具可以在免費活動結束後再接收"/>
+    <m c="us" v="Some of the items are being offered during the Free-day event. l You can get the gift after the event is over."/>
+    <m c="vn" v="Trong các vật phẩm sử dụng thì có cả vật phẩm sự kiện  vì vậy phải đợi khi nó hết hạn sử dụng mới có thể nhận được."/>
+    <m c="ru" v="Среди покупаемых предметов есть предмет, включенный в ивент свободного дня.|Этот подарок можно получить после завершения ивента &quot;Свободный день&quot;."/>
+    <m c="id" v="Ada item dari Event Freeday di salah satu item dalam hadiah.|Hadiah ini dapat diterima setelah Event Freeday selesai."/>
+    <m c="th" v="เป็นไอเทมที่มีรวมอยู่ในกิจกรรมฟรีเดย์ ของขวัญนี้จะได้รับหลังจากผ่านกิจกรรมฟรีเดย์ไปแล้ว"/>
+  </k>
+  <k n="askDropGift">
+    <m c="kr" v="선물을 버리시겠습니까?"/>
+    <m c="jp" v="プレゼントを捨てますか？"/>
+    <m c="cn" v="要丢弃礼物吗？"/>
+    <m c="tw" v="要丟棄禮物嗎？"/>
+    <m c="us" v="Do you wish to discard the gift?"/>
+    <m c="vn" v="Bạn từ chối nhận quà phải không?"/>
+    <m c="ru" v="| Выбросить подарок?"/>
+    <m c="id" v="Mau delete hadiah?"/>
+    <m c="th" v="จะทิ้งของขวัญไหม"/>
+  </k>
+  <k n="dropGift">
+    <m c="kr" v="선물 버리기"/>
+    <m c="jp" v="プレゼントを捨てる"/>
+    <m c="cn" v="丢弃礼物"/>
+    <m c="tw" v="丟棄禮物"/>
+    <m c="us" v="Gift Discarded."/>
+    <m c="vn" v="Không nhận quà"/>
+    <m c="ru" v="Выбросить"/>
+    <m c="id" v="Delete hadiah"/>
+    <m c="th" v="ทิ้งของขวัญ"/>
+  </k>
+  <k n="dropGiftWarnMsg">
+    <m c="kr" v="선물을 버려도, 선물을 보낸  라이더가 사용한 캐시(루찌)는 환불되지 않으며 다시 찾을 수 없습니다. 정말 버리시겠습니까?"/>
+    <m c="jp" v="を捨ててもプレゼントを送ったライダーが使用したNP(ルッチ)は払い戻すことができません。本当に捨てますか？"/>
+    <m c="cn" v="丢弃礼物也不能把电池或金币返还给赠送人。真的要继续吗？"/>
+    <m c="tw" v="丟棄禮物無法把LUCCI或GASH退還給贈送人。是否要繼續？"/>
+    <m c="us" v="Even if you discard the gift, the sender cannot receive a refund nor claim back the items. Discard it anyway?"/>
+    <m c="vn" v="sẽ bị hủy nếu bạn không nhận. Bạn có muốn hủy hay không?"/>
+    <m c="ru" v="| Потраченные деньги (луцци)| не возвращаются. Продолжить?"/>
+    <m c="id" v="Klik Yes untuk menghapus item. |Lucci yang digunakan oleh pengirim |tidak dapat dikembalikan."/>
+    <m c="th" v="ถึงแม้จะทิ้งของขวัญก็จะไม่ได้รับเงิน Lucci คืน และไม่ได้ของคืนกลับมาอีก จะทิ้งจริงๆใช่ไหม"/>
+  </k>
+  <k n="inputPassword">
+    <m c="kr" v="넥슨ID 비밀번호를 입력해 주세요."/>
+    <m c="jp" v="パスワードを入力してください。"/>
+    <m c="cn" v="请输入密码"/>
+    <m c="tw" v="請輸入密碼"/>
+    <m c="us" v="Type in the password."/>
+    <m c="vn" v="Nhập mật khẩu"/>
+    <m c="ru" v="Введите пароль от игры"/>
+    <m c="id" v="Masukan password."/>
+    <m c="th" v="กรุณากรอกพาสเวิร์ด"/>
+  </k>
+  <k n="inputSsn">
+    <m c="kr" v="주민등록번호의 뒷자리 7자리를 입력해주세요."/>
+    <m c="jp" v="住民登録番号の下7桁を入力してください。"/>
+    <m c="cn" v="请输入身份证号码后7位数字"/>
+    <m c="tw" v="請輸入身分證號碼後7碼"/>
+    <m c="us" v="Type in the last 7 digits of Social Security Numbers."/>
+    <m c="vn" v="Hãy nhập 7 số cuối của CMND đăng ký."/>
+    <m c="ru" v="Введите последние 7 цифр ID гражданина"/>
+    <m c="id" v="Silahkan masukkan 7 digit terakhir no.KTP"/>
+    <m c="th" v="กรุณากรอกเลขบัตรประชาชนตัวท้าย 7 หลัก"/>
+  </k>
+  <k n="hadReceivedGift">
+    <m c="kr" v="받았던 선물"/>
+    <m c="jp" v="ヒストリー"/>
+    <m c="cn" v="已接受礼物 "/>
+    <m c="tw" v="已接受的禮物 "/>
+    <m c="us" v="Gifts Received"/>
+    <m c="vn" v="Đã nhận"/>
+    <m c="ru" v="Список"/>
+    <m c="id" v="Kotak Hadiah"/>
+    <m c="th" v="ประวัติ"/>
+  </k>
+  <k n="receivedGift">
+    <m c="kr" v="받은 선물"/>
+    <m c="jp" v="プレゼント"/>
+    <m c="cn" v="接收的礼物"/>
+    <m c="tw" v="接收的禮物"/>
+    <m c="us" v="Accepted Gifts"/>
+    <m c="vn" v="Nhận quà"/>
+    <m c="ru" v="Подарок"/>
+    <m c="id" v="Hadiah diterima"/>
+    <m c="th" v="ของขวัญ"/>
+  </k>
+  <k n="giftName">
+    <m c="kr" v="선물 이름"/>
+    <m c="jp" v="プレゼント名"/>
+    <m c="cn" v="礼物名称"/>
+    <m c="tw" v="禮物名稱"/>
+    <m c="us" v="Gift name"/>
+    <m c="vn" v="Quà"/>
+    <m c="ru" v="Название подарка"/>
+    <m c="id" v="Nama hadiah"/>
+    <m c="th" v="ชื่อของขวัญ"/>
+  </k>
+  <k n="sender">
+    <m c="kr" v="보낸 라이더"/>
+    <m c="jp" v="送ったライダー"/>
+    <m c="cn" v="赠送人"/>
+    <m c="tw" v="贈送人"/>
+    <m c="us" v="Sent Rider"/>
+    <m c="vn" v="Người gửi"/>
+    <m c="ru" v="Отправитель"/>
+    <m c="id" v="Pengirim"/>
+    <m c="th" v="ผู้เล่นที่ส่ง"/>
+  </k>
+  <k n="receivedTime">
+    <m c="kr" v="받은 날짜"/>
+    <m c="jp" v="もらった日"/>
+    <m c="cn" v="接收日期"/>
+    <m c="tw" v="接收日期"/>
+    <m c="us" v="Received date"/>
+    <m c="vn" v="Ngày nhận"/>
+    <m c="ru" v="Дата получения"/>
+    <m c="id" v="Tanggal terima"/>
+    <m c="th" v="วันที่รับ"/>
+  </k>
+  <k n="receivedListWarning">
+    <m c="kr" v="* 받았던 선물 목록은, 최근에 도착한 10개까지만 표시됩니다."/>
+    <m c="jp" v="* これまでにもらったプレゼントリストは、最近到着した10個まで表示されます。"/>
+    <m c="cn" v="已接收列表只能显示最近接收的10个礼物"/>
+    <m c="tw" v="* 已接收的列表中只能顯示最近接收的10個禮物"/>
+    <m c="us" v="* You can view the last 10 received and accepted items on the gift list. "/>
+    <m c="vn" v="Danh sách 10 món quà đã được nhận."/>
+    <m c="ru" v="* В списке полученных подарков можно увидеть последние 10."/>
+    <m c="id" v="* List hadiah yang sudah diterima akan disimpan sampai 10 unit terbaru."/>
+    <m c="th" v="แสดงรายการของขวัญที่ได้รับล่าสุด 10 ชิ้นเท่านั้น"/>
+  </k>
+  <k n="sendTime">
+    <m c="kr" v="보낸 날짜"/>
+    <m c="jp" v="送った日"/>
+    <m c="cn" v="赠送日期"/>
+    <m c="tw" v="贈送日期"/>
+    <m c="us" v="Sent date"/>
+    <m c="vn" v="Ngày gửi"/>
+    <m c="ru" v="Дата отправления"/>
+    <m c="id" v="Tanggal kirim"/>
+    <m c="th" v="วันที่ส่ง"/>
+  </k>
+  <k n="isReceived">
+    <m c="kr" v="수신 여부"/>
+    <m c="jp" v="受信状況"/>
+    <m c="cn" v="收信与否"/>
+    <m c="tw" v="收信與否"/>
+    <m c="us" v="Delivery status"/>
+    <m c="vn" v="Nhận không?"/>
+    <m c="ru" v="Получение"/>
+    <m c="id" v="Status"/>
+    <m c="th" v="รับไม่รับ"/>
+  </k>
+  <k n="sendListWarning">
+    <m c="kr" v="* 보낸 선물 목록은, 최근에 도착한 10개까지만 표시됩니다."/>
+    <m c="jp" v="* 送ったプレゼントリストは、最近到着した10個まで表示されます。"/>
+    <m c="cn" v="已赠送列表只能显示最近赠送的10个礼物"/>
+    <m c="tw" v="* 已贈送的列表中只能顯示最近贈送的10個禮物"/>
+    <m c="us" v="* You can view up to 10 latest sent and accepted items on the gift list. "/>
+    <m c="vn" v="Danh sách 10 món quà đã được gửi đi"/>
+    <m c="ru" v="* В списке отправленных подарков можно увидеть последние 10."/>
+    <m c="id" v="* List hadiah yang sudah diterima akan disimpan sampai 10 unit terbaru."/>
+    <m c="th" v="แสดงรายการของขวัญที่ได้รับล่าสุด 10 ชิ้นเท่านั้น"/>
+  </k>
+  <k n="receivedDate">
+    <m c="kr" v="선물 받은 날짜"/>
+    <m c="jp" v="プレゼントをもらった日"/>
+    <m c="cn" v="接收时间"/>
+    <m c="tw" v="接收時間"/>
+    <m c="us" v="Gift received date"/>
+    <m c="vn" v="Ngày nhận"/>
+    <m c="ru" v="Дата получения подарка"/>
+    <m c="id" v="Tanggal terima hadiah"/>
+    <m c="th" v="วันรับของขวัญ"/>
+  </k>
+  <k n="message">
+    <m c="kr" v="메시지"/>
+    <m c="jp" v="メッセージ"/>
+    <m c="cn" v="短信息"/>
+    <m c="tw" v="訊息"/>
+    <m c="us" v="Message"/>
+    <m c="vn" v="Tin nhắn"/>
+    <m c="ru" v="Сообщение"/>
+    <m c="id" v="Message"/>
+    <m c="th" v="ข้อความ"/>
+  </k>
+  <k n="giftDesc">
+    <m c="kr" v="아이템 설명"/>
+    <m c="cn" v="道具说明"/>
+    <m c="tw" v="道具說明"/>
+  </k>
+  <k n="logDelete">
+    <m c="kr" v="기록삭제"/>
+    <m c="cn" v="删除记录"/>
+    <m c="tw" v="記錄刪除"/>
+  </k>
+  <k n="helpMessage">
+    <m c="kr" v="받은 선물은 내아이템에서 확인 할 수 있습니다.|선물에 들어있는 상품을 받으시려면 먼저 내아이템에서 중복되는 아이템을 버려주세요.|받았던 선물 목록은, 최근에 도착한 10개까지만 표시됩니다."/>
+    <m c="cn" v="收到的礼物可以在车库进行确认.|要想接收礼物，请先在车库中丢掉重复的道具.|已接收列表只能显示最近接收的10个礼物."/>
+    <m c="tw" v="收到的禮物可以在聊天室內進行確認.|若想接收禮物，必須先在聊天室中丟掉重複的道具.|已接收的列表中只能顯示最近接收的10個禮物."/>
+  </k>
+</StringBag>

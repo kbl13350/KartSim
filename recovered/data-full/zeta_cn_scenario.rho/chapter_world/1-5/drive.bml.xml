@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <Escape isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2" kartId="931" characterId="188" colorId="57" dyeId="57" characterName="布莱恩">
+    <LevelContent level="0" track="village_I07" laps="3" ksv="village_I07_0" distance="20" startOffset="-2000"/>
+  </Escape>
+</Root>

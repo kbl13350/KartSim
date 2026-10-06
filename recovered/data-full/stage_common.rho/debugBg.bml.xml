@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="debugBg" windowRect="fullscreen" adjust="0 0" alphaBlend="true" color="black" depthBias="512">
+  <Edit name="debugIme" leftTopWH="0 0 600 20" adjust="5 5" align="left;bottom" maxChar="120"/>
+</Panel>

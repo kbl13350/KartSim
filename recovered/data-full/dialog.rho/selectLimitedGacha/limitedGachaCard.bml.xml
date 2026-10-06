@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="limitedGachaCard" windowRect="0 0 110 110" visible="true">
+  <Panel leftTopWH="0 0 110 110" texture="»óÇ°Ã¢" alphaBlend="true"/>
+</Window>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" align="center"/>
+  <CaptionWindow name="timeAttack" frame="CaptionDialog" caption="#sb(timeAttack)" windowSize="1328 785" adjust="0 -10" align="center" setCloseButton="exit">
+    <ImageBoard name="contentPanel" windowSize="1314 514" align="hcenter" adjust="0 -1" image="timeAttack_main_bg" alphaBlend="true">
+      <ImageBoard windowSize="416 44" adjust="891 8" image="timeAttack_main_tabBg" alphaBlend="true">
+        <Label windowSize="416 44" adjust="15 0" text="#sb(trainingGoal)" textRender="bold20" textAlign="left|vcenter" textColor="255 255 255 255"/>
+      </ImageBoard>
+      <Container name="modelPanel" windowSize="1314 226">
+        <Container name="캐릭터창" windowSize="586 480" align="center" adjust="-360 150"/>
+        <Container name="캐릭터창_training" windowSize="586 480" align="center" adjust="180 0"/>
+        <Container name="duelInfoPanel" windowSize="586 348">
+          <Panel windowSize="32 32" adjust="15 10" texture="timeAttack_main_periodBG" alphaBlend="true">
+            <Label windowSize="80 20" adjust="46 7" text="#sb(duelMissionPeriod)" textRender="outline16" textAlign="center" textColor="255 255 226 72"/>
+            <Label name="period" windowSize="280 20" adjust="155 7" text="2021-12-09 00:00:00 ~ 2021-12-09 00:00:00" textAlign="left" textRender="outline16" textColor="white"/>
+          </Panel>
+          <Container name="counterPartPanel" windowSize="420 380" align="center" adjust="400 95">
+            <Container name="riderPanel" windowSize="420 360"/>
+          </Container>
+        </Container>
+        <ImageBoard name="vsIconOn" windowSize="73 49" align="center" adjust="-167 167" image="timeAttack_match_iconVS" alphaBlend="true" visible="false"/>
+        <Panel name="clearPanel" windowSize="292 58" align="center" adjust="0 167" texture="timeAttack_match_iconVsComplete@zz" alphaBlend="true" visible="false"/>
+      </Container>
+      <Container name="missionPanel" windowSize="416 514" adjust="891 10">
+        <Container name="content" windowSize="416 514" adjust="0 37" alphaBlend="true">
+          <Container name="training" windowSize="416 330" alphaBlend="true" visible="false">
+            <GridSelector name="missionListPanel" windowSize="416 330" align="hcenter" adjust="0 10" alignSize="1" maxLine="4" alignMargin="0 0" clientMargin="0 0 0 0" linePaging="false" visible="true"/>
+            <Panel name="randomInfoText" windowSize="416 48" adjust="0 115" texture="timeAttack_main_randomInfoText@cn" alphaBlend="true" visible="false"/>
+          </Container>
+          <Container name="duel" windowSize="416 330" alphaBlend="true" visible="true">
+            <GridSelector name="missionListPanel" windowSize="416 330" align="hcenter" adjust="0 6" alignSize="1" maxLine="4" alignMargin="0 0" clientMargin="0 0 0 0" linePaging="false" visible="true"/>
+          </Container>
+        </Container>
+        <Container name="tabs" windowSize="416 42">
+          <Container name="dualTabBtnPanel" windowSize="416 42" align="center" visible="false">
+            <ImageButton name="duelBtn" windowSize="205 40" align="left" adjust="2 0" autoLoadImage="timeAttack_main_tabBtn_" text="#sb(trackDuel)" textRender="bold20" overTextRender="bold20" checkedTextRender="bold20" uncheckedTextRender="bold20" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 135 141 146" uncheckedTextColor="255 135 141 146" alphaBlend="true"/>
+            <ImageButton name="trainingBtn" windowSize="205 40" align="right" adjust="2 0" autoLoadImage="timeAttack_main_tabBtn_" text="#sb(trainingGoal)" textRender="bold20" overTextRender="bold20" checkedTextRender="bold20" uncheckedTextRender="bold20" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 135 141 146" uncheckedTextColor="255 135 141 146" alphaBlend="true"/>
+          </Container>
+        </Container>
+      </Container>
+    </ImageBoard>
+    <Container name="optionPanel" windowSize="1314 226" adjust="0 514" align="hcenter">
+      <ImageBoard name="background" windowSize="1314 226" image="timeAttack_main_trackInfoCover" alphaBlend="true"/>
+      <Container name="trackCardPanel" windowSize="350 205" adjust="11 11">
+        <Panel name="thumb" windowSize="350 205"/>
+        <Panel name="rvs" windowSize="350 205" align="center" texture="큰리버스트랙" alphaBlend="true" visible="false"/>
+        <Container name="trackInfoPanel" windowSize="260 20" adjust="2 6" align="bottom|left">
+          <Panel name="icon" windowSize="30 30" adjust="3 -9" alphaBlend="true"/>
+          <Label name="name" windowSize="240 20" adjust="42 -6" textColor="white" textRender="outline16" textAlign="left,vcenter"/>
+        </Container>
+      </Container>
+      <Container name="recordInfoPanel" windowSize="304 226" adjust="390 0">
+        <Label name="title" windowSize="304 44" text="#sb(myRecord)" textColor="255 42 55 80" textRender="bold16" textAlign="center"/>
+        <Container name="setting" windowSize="236 34" adjust="0 46">
+          <Label windowSize="76 34" adjust="22 0" text="#sb(trackSetting)" textColor="255 85 90 100" textRender="bold14" textAlign="left,vcenter"/>
+          <Label name="value" windowSize="130 34" adjust="160 0" text="빠름 [일반 부스터]" textColor="255 60 60 60" textRender="bold14" textAlign="right,vcenter"/>
+        </Container>
+        <Container name="record" windowSize="236 34" adjust="0 82">
+          <Label windowSize="76 34" adjust="22 0" text="#sb(bestRecord)" textColor="255 85 90 100" textRender="bold14" textAlign="left,vcenter"/>
+          <Label name="value" windowSize="130 34" adjust="160 0" text="01&apos;52&apos;21" textColor="255 60 60 60" textRender="bold14" textAlign="right,vcenter"/>
+        </Container>
+        <Container name="kart" windowSize="236 34" adjust="0 114">
+          <Label windowSize="76 34" adjust="22 0" text="#sb(recordKart)" textColor="255 85 90 100" textRender="bold14" textAlign="left,vcenter"/>
+          <Label name="value" windowSize="130 34" adjust="160 0" text="골드 스톰 블레이드 V1" textColor="255 60 60 60" textRender="bold14" textAlign="right,vcenter"/>
+        </Container>
+        <Container name="crash" windowSize="236 34" adjust="0 148">
+          <Label windowSize="76 34" adjust="22 0" text="#sb(crashCount)" textColor="255 85 90 100" textRender="bold14" textAlign="left,vcenter"/>
+          <Label name="value" windowSize="130 34" adjust="160 0" text="18 회" textColor="255 60 60 60" textRender="bold14" textAlign="right,vcenter"/>
+        </Container>
+        <Container name="booster" windowSize="236 34" adjust="0 182">
+          <Label windowSize="76 34" adjust="22 0" text="#sb(boosterCount)" textColor="255 85 90 100" textRender="bold14" textAlign="left,vcenter"/>
+          <Label name="value" windowSize="130 34" adjust="160 0" text="44 회" textColor="255 60 60 60" textRender="bold14" textAlign="right,vcenter"/>
+        </Container>
+      </Container>
+      <Container name="gameOption" windowSize="304 226" adjust="726 0">
+        <Label name="title" windowSize="304 44" adjust="0 0" text="#sb(option)" textRender="bold16" textColor="255 42 55 80" textAlign="center"/>
+        <Container name="speed" windowSize="200 54" adjust="6 47">
+          <Panel name="icon" windowSize="71 52" adjust="-10 0" align="vcenter" texture="timeAttack_main_iconMode1" alphaBlend="true"/>
+          <Label name="title" windowSize="110 60" adjust="60 -5" text="#sb(trackSpeed)" textRender="bold14" textAlign="left|vcenter" textColor="255 84 100 129"/>
+          <Container name="controlPanel" windowSize="134 26" adjust="161 14">
+            <Container name="btnPanel" windowSize="134 26">
+              <Container name="speedBtnPanel" windowSize="134 26">
+                <ImageButton name="S7" windowSize="67 26" align="left" autoLoadImage="timeAttack_main_btnOptionLeft_" text="#sb(speedS7)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+                <ImageButton name="S4" windowSize="67 26" align="right" autoLoadImage="timeAttack_main_btnOptionRight_" text="#sb(speedS4)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+              </Container>
+            </Container>
+            <Label name="desc" windowSize="134 26" adjust="-1 0" text="-" textRender="bold14" textColor="white" textAlign="center"/>
+          </Container>
+        </Container>
+        <Container name="booster" windowSize="200 54" adjust="6 104">
+          <Panel name="icon" windowSize="71 52" adjust="-10 0" align="vcenter" texture="timeAttack_main_iconBooster1" alphaBlend="true"/>
+          <Label name="title" windowSize="110 60" adjust="60 -3" text="#sb(boosterMode)" textRender="bold14" textAlign="left|vcenter" textColor="255 84 100 129"/>
+          <Container name="controlPanel" windowSize="134 26" adjust="161 14">
+            <Container name="btnPanel" windowSize="134 26">
+              <Container name="boosterBtnPanel" windowSize="134 26">
+                <ImageButton name="indiBoosterBtn" windowSize="67 26" align="left" autoLoadImage="timeAttack_main_btnOptionLeft_" text="#sb(indiGame)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+                <ImageButton name="teamBoosterBtn" windowSize="67 26" align="right" autoLoadImage="timeAttack_main_btnOptionRight_" text="#sb(teamGame)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+              </Container>
+            </Container>
+            <Label name="desc" windowSize="134 26" adjust="-1 0" text="-" textRender="bold14" textColor="white" textAlign="center"/>
+          </Container>
+        </Container>
+        <Container name="shadow" windowSize="200 54" adjust="6 160">
+          <Panel name="icon" windowSize="71 52" adjust="-10 0" align="vcenter" texture="timeAttack_main_iconGhost1" alphaBlend="true"/>
+          <Label name="title" windowSize="110 60" adjust="60 -3" text="#sb(showShadow)" textRender="bold14" textAlign="left|vcenter" textColor="255 84 100 129"/>
+          <Container name="controlPanel" windowSize="134 26" adjust="161 14">
+            <Container name="btnPanel" windowSize="134 26">
+              <Container name="shadowBtnPanel" windowSize="134 26" adjust="0 1">
+                <ImageButton name="onBtn" windowSize="67 26" align="left" autoLoadImage="timeAttack_main_btnOptionLeft_" text="#sb(on)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+                <ImageButton name="offBtn" windowSize="67 26" align="right" autoLoadImage="timeAttack_main_btnOptionRight_" text="#sb(off)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+              </Container>
+            </Container>
+            <Label name="desc" windowSize="134 26" adjust="-1 0" text="#sb(invalidShadow)" textRender="bold14" textColor="white" textAlign="center"/>
+          </Container>
+        </Container>
+        <Container name="difficulty" windowSize="200 54" adjust="6 160">
+          <Container windowSize="80 54">
+            <Panel name="icon" windowSize="71 52" adjust="-10 0" align="vcenter" texture="timeAttack_main_iconLevel0" alphaBlend="true"/>
+          </Container>
+          <Container windowSize="134 26">
+            <Label name="title" windowSize="110 60" adjust="60 -3" text="#sb(duelMissionDifficultyTitle)" textRender="bold14" textAlign="left|vcenter"/>
+            <Container name="controlPanel" windowSize="132 28" adjust="161 14">
+              <Label name="desc" windowSize="134 26" adjust="-1 0" text="-" textRender="bold14" textColor="white" textAlign="center"/>
+            </Container>
+          </Container>
+        </Container>
+      </Container>
+      <Container name="buttonPanel" windowSize="196 66" align="right" adjust="35 8">
+        <Container name="startBtnPanel" windowSize="196 66">
+          <ImageButton name="training" windowSize="196 66" autoLoadImage="btn_gameStart_@zz" alphaBlend="true"/>
+          <ImageButton name="duel" windowSize="196 66" autoLoadImage="timeAttack_main_btnVsMatching_@zz" alphaBlend="true"/>
+        </Container>
+        <ImageButton name="myItemBtn" windowSize="196 66" align="right" adjust="0 72" autoLoadImage="btn_singleItem2_@zz" alphaBlend="true"/>
+        <ImageButton name="selectTrackBtn" windowSize="196 66" align="right" adjust="0 144" autoLoadImage="btn_myItem_trackSelect_@zz" alphaBlend="true"/>
+      </Container>
+    </Container>
+  </CaptionWindow>
+  <Container name="selectGameSpeed" windowRect="0 0 970 600" align="center" visible="false"/>
+</Container>

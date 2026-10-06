@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='118.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.058'
+	SteerConstraint='2.15'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.048'
+
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-400'
+	DriftMaxGauge='-1000'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.65'
+	motorcycleType='true'
+
+	BoosterBlur='true'
+	EngineSound='bike'
+
+	TachometerType='Tacho1'
+	TachometerName='bike'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod6a'
+	Port1='mod6b'
+	FirePort0='mod2a'
+	FirePort1='mod2b'
+	FirePort2='mod2c'
+	FirePort3='mod2d'
+
+	DescBalance= '37'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '25'
+/>
+
+<!-- 인니 저스티스 바이크 SR 120830 캐시 판매-->

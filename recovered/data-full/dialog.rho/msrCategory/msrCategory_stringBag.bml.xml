@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="mainCaption0">
+    <m c="kr" v="새 그룹 만들기"/>
+    <m c="jp" v="新しいグループ作成"/>
+    <m c="cn" v="添加分组"/>
+    <m c="tw" v="新增群組"/>
+    <m c="us" v="Create a new group"/>
+    <m c="vn" v="Tạo nhóm"/>
+    <m c="ru" v="Новая группа"/>
+    <m c="id" v="Membuat grup baru"/>
+    <m c="th" v="สร้างกลุ่มใหม่"/>
+  </k>
+  <k n="mainCaption1">
+    <m c="kr" v="그룹 이름 변경"/>
+    <m c="jp" v="グループ名変更"/>
+    <m c="cn" v="变更群名称"/>
+    <m c="tw" v="變更群組名稱"/>
+    <m c="us" v="Change the group&apos;s name"/>
+    <m c="vn" v="Đổi tên nhóm"/>
+    <m c="ru" v="Изменить Название"/>
+    <m c="id" v="Mengubah nama grup"/>
+    <m c="th" v="เปลี่ยนชื่อกลุ่ม"/>
+  </k>
+  <k n="groupName">
+    <m c="kr" v="그룹 이름"/>
+    <m c="jp" v="グループ名"/>
+    <m c="cn" v="分组名称"/>
+    <m c="tw" v="群組名稱"/>
+    <m c="us" v="Group name"/>
+    <m c="vn" v="Tên nhóm"/>
+    <m c="ru" v="Название"/>
+    <m c="id" v="Nama grup"/>
+    <m c="th" v="ชื่อกลุ่ม"/>
+  </k>
+</StringBag>

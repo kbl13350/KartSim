@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='100.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2'
+	DriftEscapeForce='250'
+	CornerDrawFactor='0.04'
+	BoosterBlur='true'
+	EngineSound='pro'
+
+	DescBalance= '25'
+	DescStability ='28'
+	DescEngineGrade='1'
+	DescCornering='1'
+	DescEnchantCap = '20'
+/>
+<!-- 인니 로봇팬더 PRO 120621 이벤트 지급-->

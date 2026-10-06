@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="nym01"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="终于逃出来了…幻幻没能逃出来啊！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="不行，必需要救他出来！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="皮蛋，冷静。他们有精灵的纹章，我们赢不了的。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="shylph" pos="7 0" emotion="stop1"/>
+  <Msg name="琳琳" string="就这么去的话是不行的。"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="那怎么办？总不能就这么干等吧？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="shylph" pos="7 0" emotion="stop1"/>
+  <Msg name="琳琳" string="有一个方法。据说在精灵森林里有棵树，树里有个袋子，当中存放着精灵的眼泪。有精灵的眼泪的话，就能抑制精灵纹章的力量了。"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop2"/>
+  <Msg name="黑妞" string="那赶快去吧！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="好！一定要找到精灵的眼泪，去救出他们，然后回家！"/>
+  <Enter/>
+</Scene>

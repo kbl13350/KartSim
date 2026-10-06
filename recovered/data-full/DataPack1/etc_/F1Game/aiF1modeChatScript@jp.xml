@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+type 설명
+0 : drive
+1 : endScene
+2 : crash
+3 : overtack
+4 : overtaken
+10: rankIn
+-->
+<chattingScript>
+	<F1RiderGroup id='1'>
+		<scripts type='0' msg='悪口王 : 何だ？お前！くそ、くそっ！'/>
+		<scripts type='0' msg='ネオ : 怪しいな…。この大会には何か隠されているのか…'/>
+		<scripts type='0' msg='ハイパーモーター : 俺はコースの支配者ハイパーモーター様だ！ブラックモーターなんて時代遅れなんだよ'/>
+		<scripts type='0' msg='ロード : [UserRID]'/>
+		<scripts type='0' msg='ライダールゥ : 龍のオーラを感じられるのか？走れ、龍!!'/>
+		<scripts type='0' msg='ろろみ : クラッシュブースターは他の車の後ろにくっついてるとチャージされるんだよー。'/>
+		<scripts type='0' msg='ライダーネック : 今年は急に実力が上がったな…おかしい…'/>
+		<scripts type='0' msg='ライダーネック : ルゥ！この大会を調べてみよう'/>
+		<scripts type='0' msg='バッドスキル : 車が思い通りに動くぞ!! 俺がこんなにうまいわけないのに！'/>
+		<scripts type='0' msg='MR.ブラック : … 時が近い…'/>
+		<scripts type='0' msg='MR.ブラック : フェアプレイ？そんなの教科書にのみ存在する言葉だ'/>
+		<scripts type='0' msg='[AiRID] : [UserRID] 一緒に遊ぼ！'/>
+		<scripts type='0' msg='ロード :'/>
+		<scripts type='0' msg='カートライダー王 : 私はカートライダーの王!! 誰も私を負かすことはできない！はずなんだけど…？'/>
+		<scripts type='0' msg='格闘家 : うおっ！うおうお～(訳 : [UserRID]！ちょっと付いて来い )'/>
+		<scripts type='0' msg='美女ライダー : あら～[UserRID]、好きになっちゃうかも'/>
+		<scripts type='0' msg='おくちゃん : 慣性ドリフトの後にリンクをして、連打で決める！ボクって天才！'/>
+		<scripts type='0' msg='悪口王 : ネオ、お前この野郎！この野郎！'/>
+		<scripts type='0' msg='ろろみ : [UserRID] PITに入ってみて～クラッシュブースターが一気にチャージされるよ！'/>
+		<scripts type='0' msg='ろろみ : ロード～気を付けて(;_:)'/>
+		<scripts type='0' msg='MR.ブラック :うふふふふふふふ'/>
+		<scripts type='0' msg='悪口王 : クソ～ッwwwwwwww'/>
+		<scripts type='0' msg='ロード : ろろみ～気をつけろ～(;_:)'/>
+		<scripts type='0' msg='ろろみ : クラッシュをたくさんすると、報酬カードをもらえるよ！'/>
+		<scripts type='0' msg='ろろみ : 勝点は3ラウンドの合計で計算されるんだ～。報酬カードGO GO！'/>
+		<scripts type='0' msg='おくちゃん : あっ！[UserRID]～、お前のせいでまともに走れないじゃないか！'/>
+		<scripts type='0' msg='おくちゃん : 連打もできない奴らに負けるなんて！何もかも[UserRID]のせいだ！'/>
+		<scripts type='0' msg='C-Dragon : 今日はなんか気が向いて[UserRID]と街に行ったんだ～'/>
+		<scripts type='0' msg='[AiRID] : [UserRID]！クラッシュブースターを使って衝突すると吹き飛ばしができる伝説のクラッシュ技を使うのか?!'/>
+		<scripts type='0' msg='[AiRID] : [UserRID]？初めて聞く名前だな…うまいし…'/>
+		<scripts type='0' msg='龍 : これは龍のオーラ?!'/>
+
+		<!-- type1은 AiRid값을 현재는 사용할 수 없음 -->
+		<scripts type='1' msg='ライダールゥ : 面白いゲームだったぜ、フフフ.!!!!'/>
+		<scripts type='1' msg='おくちゃん : [UserRID]がクラッシュしなければ、ボクが優勝してたのに…'/>
+		<scripts type='1' msg='美女ライダー : [UserRID]…魅力的だわ…フフッ'/>
+		<scripts type='1' msg='MR.ブラック : 今のうちに喜んでおけ…間もなくあの方がいらっしゃる…'/>
+		<scripts type='1' msg='MR.ブラック : チッ…罠にはまらなかったか'/>
+		<scripts type='1' msg='テッド : 負けてもたのすぃー'/>
+		<scripts type='1' msg='ろろみ : ミッションで素晴らしい結果を残せば、さらに良いカードをもらえるんですよ～'/>
+		<scripts type='1' msg='バッドスキル : あれは俺が走ったんじゃない！こわい…誰かが俺を操ってる…'/>
+		<scripts type='1' msg='ネオ : 気を付けろ…陰謀があるみたいだ…'/>
+		<scripts type='1' msg='ネオ : MR.ブラック…聖なる黒を汚すな…'/>
+		<scripts type='1' msg='格闘家 : うおおおおおお！'/>
+		<scripts type='1' msg='ハイパーモーター : 終わったから、軽く油でも飲むか？'/>
+		<scripts type='1' msg='悪口王 : ああ、もう、クソックソッ！'/>
+		<scripts type='1' msg='P.Y.H : [UserRID]、彗星のような登場だな…'/>
+		<scripts type='1' msg='龍 : クラッシュ？恐ろしい技術だな…'/>
+		<scripts type='1' msg='C-Dragon : [UserRID]、うちのメンバーにならないか？'/>
+		<scripts type='1' msg='ライダーネック : 今年の優勝は無理だな'/>
+		<scripts type='1' msg='カートライダー王 : [UserRID]！私の部下になれば王子にしてやろう！いらないって？…本気か？'/>
+
+
+		<!--AI를 크러시 -->
+		<scripts type='2' msg='何するんだよーTT'/>
+		<scripts type='2' msg='あ～～～もう～～～!!!!!!!!!!'/>
+		<scripts type='2' msg='くぅううう！私をけん制するとは'/>
+		<scripts type='2' msg='[UserRID] …あなたのこと、覚えておきましょう'/>
+		<scripts type='2' msg='[UserRID]！絶対に復讐してやる！'/>
+
+		<!--AI를 추월 -->
+		<scripts type='3' msg='[UserRID]、お前とこのまま別れるわけにはいかない。戻ってきてくれ～!!'/>
+		<scripts type='3' msg='あ…あれ??'/>
+		<scripts type='3' msg='ぐぐっ！ただじゃすまさないぞ(;_:)'/>
+		<scripts type='3' msg='俺をふみ台にしてトップを取るんだ、[UserRID]！'/>
+		<scripts type='3' msg='僕は安全運転なんだ'/>
+		<scripts type='3' msg='[UserRID]、ミスしろ！ミスしろ！ミスしろ！'/>
+	
+		<!--AI가 유저를 추월 -->
+		<scripts type='4' msg='おさきに～[UserRID]'/>
+		<scripts type='4' msg='[UserRID]、どいてくれる？'/>
+		<scripts type='4' msg='ちくしょーおぼえてろよ、次のコーナーで！'/>
+		<scripts type='4' msg='もうちょっと急いでくださ～い'/>
+		<scripts type='4' msg='[UserRID]さん、いつも譲ってくれてありがとう(ペコリン)'/>
+		<scripts type='4' msg='[UserRID]、TV見ながらプレイでもしてるのか？'/>
+		<scripts type='4' msg='どけ!!もれる～！トイレ～!!'/>
+
+		<!--특정 순위가 됨 -->
+		<scripts type='10' rank='1' msg='[UserRID]！待ってくれたら合コンしてやるぞ！'/>
+		<scripts type='10' rank='1' msg='調子に乗るな！すぐに追いついてやる!!'/>
+		<scripts type='10' rank='1' msg='[UserRID]、お前って奴は…カッコいいな…'/>
+		<scripts type='10' rank='1' msg='僕の師匠になってください！[UserRID]！'/>
+		<scripts type='10' rank='1' msg='[UserRID]は天才だ…'/>
+		<scripts type='10' rank='5' msg='[UserRID]さん、一緒に行きましょうよ～。デヘヘ'/>
+		<scripts type='10' rank='5' msg='[UserRID]、才能ありますね。'/>
+		<scripts type='10' rank='5' msg='[UserRID]、友達に操作してもらってるのか？'/>
+		<scripts type='10' rank='5' msg='앗! [UserRID]、いつの間にあんなに速く…。'/>
+		<scripts type='10' rank='5' msg='[AiRID]! [UserRID] 道をふさげ！'/>
+		<scripts type='10' rank='5' msg='[UserRID]！このモードのために生まれたようだな！'/>
+		<scripts type='10' rank='9' msg='[UserRID]、3年前の私を見ているようだ'/>
+		<scripts type='10' rank='9' msg='[UserRID]、なかなかやるな。でも、まだまだだ！'/>
+		<scripts type='10' rank='9' msg='[UserRID] …やるじゃないか。'/>
+		<scripts type='10' rank='9' msg='[UserRID]、いつも中途半端だな？'/>
+		<scripts type='10' rank='9' msg='[UserRID]さん、また会いましたね～'/>
+		<scripts type='10' rank='15' msg='[UserRID]～！ゲームに集中しろ！'/>
+		<scripts type='10' rank='15' msg='[UserRID]、足で操作しているわりにはうまいな！'/>
+		<scripts type='10' rank='15' msg='[UserRID]、才能はあるけど練習不足だ'/>
+		<scripts type='10' rank='15' msg='運転ってそうやるんじゃないよ～'/>
+		<scripts type='10' rank='15' msg='[UserRID]、安全運転だな…感動したぞ。'/>
+		<scripts type='10' rank='15' msg='[UserRID]！根性を見せろ！まだ終わってないぞ！'/>
+		<scripts type='10' rank='15' msg='[UserRID] wwwwwwwwwwwwwww'/>
+	</F1RiderGroup>
+
+	<F1RiderGroup id='2'>
+		<scripts type='0' msg='悪口王 : 何だ？お前！くそ、くそっ！'/>
+		<scripts type='0' msg='ネオ : 怪しいな…。この大会には何か隠されているのか…'/>
+		<scripts type='0' msg='ハイパーモーター : 俺はコースの支配者ハイパーモーター様だ！ブラックモーターなんて時代遅れなんだよ'/>
+		<scripts type='0' msg='ロード : [UserRID]'/>
+		<scripts type='0' msg='ライダールゥ : 龍のオーラを感じられるのか？走れ、龍!!'/>
+		<scripts type='0' msg='ろろみ : クラッシュブースターは他の車の後ろにくっついてるとチャージされるんだよー。'/>
+		<scripts type='0' msg='ライダーネック : 今年は急に実力が上がったな…おかしい…'/>
+		<scripts type='0' msg='ライダーネック : ルゥ！この大会を調べてみよう'/>
+		<scripts type='0' msg='バッドスキル : 車が思い通りに動くぞ!! 俺がこんなにうまいわけないのに！'/>
+		<scripts type='0' msg='MR.ブラック : … 時が近い…'/>
+		<scripts type='0' msg='MR.ブラック : フェアプレイ？そんなの教科書にのみ存在する言葉だ'/>
+		<scripts type='0' msg='[AiRID] : [UserRID] 一緒に遊ぼ！'/>
+		<scripts type='0' msg='ロード :'/>
+		<scripts type='0' msg='カートライダー王 : 私はカートライダーの王!! 誰も私を負かすことはできない！はずなんだけど…？'/>
+		<scripts type='0' msg='格闘家 : うおっ！うおうお～(訳 : [UserRID]！ちょっと付いて来い )'/>
+		<scripts type='0' msg='美女ライダー : あら～[UserRID]、好きになっちゃうかも'/>
+		<scripts type='0' msg='おくちゃん : 慣性ドリフトの後にリンクをして、連打で決める！ボクって天才！'/>
+		<scripts type='0' msg='悪口王 : ネオ、お前この野郎！この野郎！'/>
+		<scripts type='0' msg='ろろみ : [UserRID] PITに入ってみて～クラッシュブースターが一気にチャージされるよ！'/>
+		<scripts type='0' msg='ろろみ : ロード～気を付けて(;_:)'/>
+		<scripts type='0' msg='MR.ブラック :うふふふふふふふ'/>
+		<scripts type='0' msg='悪口王 : クソ～ッwwwwwwww'/>
+		<scripts type='0' msg='ロード : ろろみ～気をつけろ～(;_:)'/>
+		<scripts type='0' msg='ろろみ : クラッシュをたくさんすると、報酬カードをもらえるよ！'/>
+		<scripts type='0' msg='ろろみ : 勝点は3ラウンドの合計で計算されるんだ～。報酬カードGO GO！'/>
+		<scripts type='0' msg='おくちゃん : あっ！[UserRID]～、お前のせいでまともに走れないじゃないか！'/>
+		<scripts type='0' msg='おくちゃん : 連打もできない奴らに負けるなんて！何もかも[UserRID]のせいだ！'/>
+		<scripts type='0' msg='C-Dragon : 今日はなんか気が向いて[UserRID]と街に行ったんだ～'/>
+		<scripts type='0' msg='[AiRID] : [UserRID]！クラッシュブースターを使って衝突すると吹き飛ばしができる伝説のクラッシュ技を使うのか?!'/>
+		<scripts type='0' msg='[AiRID] : [UserRID]？初めて聞く名前だな…うまいし…'/>
+		<scripts type='0' msg='龍 : これは龍のオーラ?!'/>
+
+		<!-- type1은 AiRid값을 현재는 사용할 수 없음 -->
+		<scripts type='1' msg='ライダールゥ : 面白いゲームだったぜ、フフフ.!!!!'/>
+		<scripts type='1' msg='おくちゃん : [UserRID]がクラッシュしなければ、ボクが優勝してたのに…'/>
+		<scripts type='1' msg='美女ライダー : [UserRID]…魅力的だわ…フフッ'/>
+		<scripts type='1' msg='MR.ブラック : 今のうちに喜んでおけ…間もなくあの方がいらっしゃる…'/>
+		<scripts type='1' msg='MR.ブラック : チッ…罠にはまらなかったか'/>
+		<scripts type='1' msg='テッド : 負けてもたのすぃー'/>
+		<scripts type='1' msg='ろろみ : ミッションで素晴らしい結果を残せば、さらに良いカードをもらえるんですよ～'/>
+		<scripts type='1' msg='バッドスキル : あれは俺が走ったんじゃない！こわい…誰かが俺を操ってる…'/>
+		<scripts type='1' msg='ネオ : 気を付けろ…陰謀があるみたいだ…'/>
+		<scripts type='1' msg='ネオ : MR.ブラック…聖なる黒を汚すな…'/>
+		<scripts type='1' msg='格闘家 : うおおおおおお！'/>
+		<scripts type='1' msg='ハイパーモーター : 終わったから、軽く油でも飲むか？'/>
+		<scripts type='1' msg='悪口王 : ああ、もう、クソックソッ！'/>
+		<scripts type='1' msg='P.Y.H : [UserRID]、彗星のような登場だな…'/>
+		<scripts type='1' msg='龍 : クラッシュ？恐ろしい技術だな…'/>
+		<scripts type='1' msg='C-Dragon : [UserRID]、うちのメンバーにならないか？'/>
+		<scripts type='1' msg='ライダーネック : 今年の優勝は無理だな'/>
+		<scripts type='1' msg='カートライダー王 : [UserRID]！私の部下になれば王子にしてやろう！いらないって？…本気か？'/>
+
+
+		<!--AI를 크러시 -->
+		<scripts type='2' msg='何するんだよーTT'/>
+		<scripts type='2' msg='あ～～～もう～～～!!!!!!!!!!'/>
+		<scripts type='2' msg='くぅううう！私をけん制するとは'/>
+		<scripts type='2' msg='[UserRID] …あなたのこと、覚えておきましょう'/>
+		<scripts type='2' msg='[UserRID]！絶対に復讐してやる！'/>
+
+		<!--AI를 추월 -->
+		<scripts type='3' msg='[UserRID]、お前とこのまま別れるわけにはいかない。戻ってきてくれ～!!'/>
+		<scripts type='3' msg='あ…あれ??'/>
+		<scripts type='3' msg='ぐぐっ！ただじゃすまさないぞ(;_:)'/>
+		<scripts type='3' msg='俺をふみ台にしてトップを取るんだ、[UserRID]！'/>
+		<scripts type='3' msg='僕は安全運転なんだ'/>
+		<scripts type='3' msg='[UserRID]、ミスしろ！ミスしろ！ミスしろ！'/>
+	
+		<!--AI가 유저를 추월 -->
+		<scripts type='4' msg='おさきに～[UserRID]'/>
+		<scripts type='4' msg='[UserRID]、どいてくれる？'/>
+		<scripts type='4' msg='ちくしょーおぼえてろよ、次のコーナーで！'/>
+		<scripts type='4' msg='もうちょっと急いでくださ～い'/>
+		<scripts type='4' msg='[UserRID]さん、いつも譲ってくれてありがとう(ペコリン)'/>
+		<scripts type='4' msg='[UserRID]、TV見ながらプレイでもしてるのか？'/>
+		<scripts type='4' msg='どけ!!もれる～！トイレ～!!'/>
+
+		<!--특정 순위가 됨 -->
+		<scripts type='10' rank='1' msg='[UserRID]！待ってくれたら合コンしてやるぞ！'/>
+		<scripts type='10' rank='1' msg='調子に乗るな！すぐに追いついてやる!!'/>
+		<scripts type='10' rank='1' msg='[UserRID]、お前って奴は…カッコいいな…'/>
+		<scripts type='10' rank='1' msg='僕の師匠になってください！[UserRID]！'/>
+		<scripts type='10' rank='1' msg='[UserRID]は天才だ…'/>
+		<scripts type='10' rank='5' msg='[UserRID]さん、一緒に行きましょうよ～。デヘヘ'/>
+		<scripts type='10' rank='5' msg='[UserRID]、才能ありますね。'/>
+		<scripts type='10' rank='5' msg='[UserRID]、友達に操作してもらってるのか？'/>
+		<scripts type='10' rank='5' msg='앗! [UserRID]、いつの間にあんなに速く…。'/>
+		<scripts type='10' rank='5' msg='[AiRID]! [UserRID] 道をふさげ！'/>
+		<scripts type='10' rank='5' msg='[UserRID]！このモードのために生まれたようだな！'/>
+		<scripts type='10' rank='9' msg='[UserRID]、3年前の私を見ているようだ'/>
+		<scripts type='10' rank='9' msg='[UserRID]、なかなかやるな。でも、まだまだだ！'/>
+		<scripts type='10' rank='9' msg='[UserRID] …やるじゃないか。'/>
+		<scripts type='10' rank='9' msg='[UserRID]、いつも中途半端だな？'/>
+		<scripts type='10' rank='9' msg='[UserRID]さん、また会いましたね～'/>
+		<scripts type='10' rank='15' msg='[UserRID]～！ゲームに集中しろ！'/>
+		<scripts type='10' rank='15' msg='[UserRID]、足で操作しているわりにはうまいな！'/>
+		<scripts type='10' rank='15' msg='[UserRID]、才能はあるけど練習不足だ'/>
+		<scripts type='10' rank='15' msg='運転ってそうやるんじゃないよ～'/>
+		<scripts type='10' rank='15' msg='[UserRID]、安全運転だな…感動したぞ。'/>
+		<scripts type='10' rank='15' msg='[UserRID]！根性を見せろ！まだ終わってないぞ！'/>
+		<scripts type='10' rank='15' msg='[UserRID] wwwwwwwwwwwwwww'/>
+	</F1RiderGroup>
+</chattingScript>

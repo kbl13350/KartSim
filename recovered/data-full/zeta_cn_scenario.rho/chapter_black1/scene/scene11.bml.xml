@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold6"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="那里是卡帕！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Char id="mobi" pos="6 0" flip="true" emotion="stop8"/>
+  <Msg name="吉米" string="等等~！|旁边有人欺负他！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="额~那不是格雷格吗！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <BackGround texture="gold2"/>
+  <Char id="raptorL" pos="4 0" emotion="stop2"/>
+  <Msg name="格雷格" string="快说！|现在的痛苦都是小的~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="kaphae" pos="8 0" emotion="stop1"/>
+  <Msg name="卡帕" string="不行！|我死都不和你们说！额啊啊"/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <BackGround texture="gold6"/>
+  <Char id="ethi" pos="4 0" emotion="stop6"/>
+  <Msg name="葱头" string="卡帕好像很痛苦.."/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="卡帕好可怜 呜.."/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="mobi" pos="11 0" emotion="stop8"/>
+  <Msg name="吉米" string="得先救卡帕！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop6"/>
+  <Char id="mobi" pos="11 0" emotion="stop8"/>
+  <Msg name="葱头" string="对！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <BackGround texture="gold2"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="格雷格~住手！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷格" string="嗯？|这是谁啊~那不是上次的小朋友吗！"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="kaphae" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="卡帕先躲开|我们会对付格雷格的！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="kaphae" pos="8 0" emotion="stop1"/>
+  <Msg name="卡帕" string="啊..|谢谢.."/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="mobi" pos="4 0" flip="true" emotion="stop8"/>
+  <Msg name="吉米" string="偷走我们船长宝物的人是你？"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="mobi" pos="4 0" flip="true" emotion="stop8"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="这傻瓜是谁啊！！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="伙伴们先抓住他"/>
+  <Enter/>
+</Scene>

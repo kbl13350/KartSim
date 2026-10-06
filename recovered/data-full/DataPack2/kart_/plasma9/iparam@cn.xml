@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+    
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.16'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.06'
+	TransAccelFactor='1.63'
+
+	DriftMaxGauge='-800'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-450'
+
+	UseTransformBooster='true'
+
+	EnvMap='true'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+
+	BoosterType='plasma7'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod2d1'
+	Port1='mod2d2'
+
+	FirePort0='mod2a2'
+	FirePort1='mod2a3'
+	FirePort2='mod2b'
+	FirePort3='mod2c'
+
+	DescBalance= '44'
+	DescStability ='35'
+	DescEngineGrade='1.1'
+	DescCornering='7'
+	DescEnchantCap = '20'
+/>
+
+<!-- 골든 플라즈마 EXT 중국 이벤트 지급 20120308 -->

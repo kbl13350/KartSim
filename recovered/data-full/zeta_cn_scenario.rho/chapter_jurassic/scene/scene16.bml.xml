@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="jurassic7"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="知道你有潜力，但似乎超出想象。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="rachi" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="露西" string="怎么了？皮蛋。"/>
+  <Enter/>
+  <Char id="rachi" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="rachi" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="没事，只是觉得你的学习进度太快了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="rachi" remove="true"/>
+  <Char id="rachi" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="露西" string="真的？我的实力有提高吗？"/>
+  <Enter/>
+  <Char id="rachi" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="比几天前确实进步了很多！|照这样下去肯定会赢卡诺的！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="rachi" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="露西" string="那就再加把劲吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="rachi" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop3"/>
+  <Char id="rachi" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="时间不多了，来最后的练习吧！"/>
+  <Enter/>
+</Scene>

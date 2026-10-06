@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.07'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.68'
+	TransformTime='700'   
+
+	StartForwardAccelFactorItem = '1.2'
+	StartBoosterTimeItem='1200'           
+
+	SpecialSlotCapacity = '2'
+	ItemSlotCapacity='3'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+
+	BoosterWaveType='effect_zero'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zero5'
+	BoosterType3='zero5'
+	BoosterType4='cotton6'
+	BoosterType5='cotton6'
+	BoosterType6='cotton6'
+
+	Port0='mod3a'
+	Port1='mod3b'
+
+	FirePort0='mod4a'
+	FirePort1='mod4b'
+	FirePort2='mod5a'
+	FirePort3='mod5b'
+	FirePort4='mod6a'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '41'
+	DescStability ='40'
+	DescEngineGrade='1.2'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2b1' trailPort1='mod2b2'/>
+</BodyParam>
+
+<!--란양양 Z7 120329 상점 캐시-->

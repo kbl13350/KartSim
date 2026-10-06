@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600" align="center">
+  <Panel windowRect="fullscreen" color="180 0 0 0" alphaBlend="true"/>
+  <CaptionWindow leftTopWH="200 200 400 280" caption="#sb(bingoRule)" align="center" captionColor="black">
+    <Window name="rules" leftTopWH="10 10 335 160" frame="InnerFrame">
+      <Label name="rules1" leftTopWH="0 0 325 50" text="#sb(bingoRules1)" textColor="black" multiLine="true" autoWrap="true"/>
+      <Label name="rules2" leftTopWH="0 55 325 120" text="#sb(bingoRules2)" textColor="black" multiLine="true" autoWrap="true"/>
+    </Window>
+    <TextButton name="okButton" leftTopWH="150 180 50 30" text="#sb(ok)" align="hcenter"/>
+  </CaptionWindow>
+</Container>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Escape isFixedKart="true" fixedKartId="1122" fixedCharId="260" isFixedChar="true" kartId="1107" characterId="2" colorId="6" dyeId="6" characterName="皮蛋">
+    <LevelContent level="0" track="village_I01" laps="3" ksv="1-5" distance="20" startOffset="-1500"/>
+  </Escape>
+</Root>

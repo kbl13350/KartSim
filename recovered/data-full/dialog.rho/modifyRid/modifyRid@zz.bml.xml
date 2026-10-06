@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="0 0 395 375" caption="#sb(modifyRidCaption)" captionPos="0 1" captionColor="black" align="center" setCloseButton="cancelButton">
+  <Panel name="iconPanel" windowRect="10 8 41 38" uvRect="0 0 31 30" texture="대화상자정보" alphaBlend="true"/>
+  <Label windowRect="52 17 53 23" textRender="bold" text="#sb(warningBold0)"/>
+  <Label windowRect="52 43 53 49" textColor="red" text="#sb(warningDetail0)"/>
+  <Label windowRect="52 56 53 62" textColor="red" text="#sb(warningDetail1)"/>
+  <Label windowRect="52 69 53 75" textColor="red" text="#sb(warningDetail2)"/>
+  <Label windowRect="52 82 53 88" textColor="red" text="#sb(warningDetail3)"/>
+  <Window windowRect="0 109 354 110" frame="Section"/>
+  <Label windowRect="16 132 179 152" textRender="bold" text="#sb(riderName)"/>
+  <Edit name="editRiderName" windowRect="196 128 337 148" maxChar="12"/>
+  <Label windowRect="0 163 354 169" textColor="red" text="#sb(consultDetail0)" textAlign="center"/>
+  <Panel windowRect="-5 196 360 197" color="255 0 0 0"/>
+  <Panel windowRect="-5 197 360 198" color="255 255 255 255"/>
+  <Label windowRect="16 216 179 273 " textRender="bold" multiLine="true" text="#sb(warningBold1)" lineGap="3"/>
+  <TextButton name="okButton" windowRect="79 284 152 306" text="#sb(ok)" align="leftCenter" altTextRender="outline"/>
+  <TextButton name="cancelButton" windowRect="202 284 275 306" text="#sb(cancel)" altTextRender="outline"/>
+</CaptionWindow>

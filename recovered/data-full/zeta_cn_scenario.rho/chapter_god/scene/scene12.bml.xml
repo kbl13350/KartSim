@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god5"/>
+  <Char id="bazzi" pos="5 0" emotion="stop5"/>
+  <Msg name="宝宝" string="我好害怕~55|大伙我们回去吧~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="5 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="再这样下去，要成烤宝宝了~！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="托尔！到底还要走多久啊？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="托尔" string="哈哈！没剩多少了！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_thor" pos="11 0" emotion="normal"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="托尔" string="从这里开始非常危险|跟紧我哦！"/>
+  <Enter/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="9 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="之前也足够危险了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="9 0" emotion="stop6"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="大伙，小心！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ms_thor" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="托尔" string="呼呼，向阿斯加德！！|冲啊！！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh2"/>
+  <Char id="neo" pos="10 0" emotion="stop1"/>
+  <Msg name="???" string="这里不是你们这些小家伙来的地方..|快回去吧.."/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="这么酷？|他到底是谁？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="那个家伙!!说谁是小家伙!!|嚣张之极，已经拿回奖金了。|回去卡尔市长那边吧"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="zipi" pos="10 0" emotion="stop1"/>
+  <Msg name="卡尔市长" string="咳咳..|你们怎么回来了?R军团的人呢？"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop5"/>
+  <Msg name="黑妞" string="一个黑色车手救了我们。|阿~太帅了~♡"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="zipi" pos="10 0" emotion="stop3"/>
+  <Msg name="卡尔市长" string="什么！！！黑色车手？？！！|要尽快消灭他才行….！！"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="zipi" pos="10 0" emotion="stop1"/>
+  <Msg name="卡尔市长" string="呜.. 咳咳..|他是恶党中的恶党，月光城市的敌人。|为了城市的和平，需要尽早把他赶出去才行。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="果然是个可疑的家伙..|我现在马上去找他!"/>
+  <Enter/>
+</Scene>

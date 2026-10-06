@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss1"/>
+  <Char id="merman" pos="10 0" emotion="normal"/>
+  <Msg name="莫曼" string="莫格瑞大人，真的要前往地面吗？"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="merman" pos="12 0" emotion="normal"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="进军陆地是阿比斯历代……不对，咳咳，|是我莫格瑞长久以来愿望！"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" pos="12 0" emotion="normal"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫曼" string="但以我们阿比斯人民现在的身体是无法到达地面上的啊……"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" pos="12 0" emotion="normal"/>
+  <Char id="meoguri" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="那一点，我也一样！但现在不同了，|现在我们有那对姐弟了！"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="就是~莫格瑞大人说没错,|你得感谢我和我弟弟！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="neoul" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="…"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="7 0" emotion="stop1"/>
+  <Char id="neoul" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="呀！我家的奈尔奈尔，|真是越看越可爱，不是吗？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="7 0" emotion="stop1"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="别重复叫我名字。"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="7 0" emotion="stop1"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="merman" pos="13 0" emotion="stop1"/>
+  <Msg name="莫曼" string="小家伙们，在莫格瑞大人面前，|你们不要太放肆了！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="merman" pos="13 0" emotion="stop1"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="narin" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="奈琳" string="哼，你个臭鱼就别说话了呗？"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="narin" pos="7 0" flip="true" emotion="stop2"/>
+  <Char id="merman" pos="12 0" emotion="stop1"/>
+  <Msg name="莫曼" string="你个小家伙，莫格瑞大人宠着你，|你就没大没小了！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="莫曼，我没在意，话说奈琳你那边准备好了吗？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" pos="11 0" emotion="stop1"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="是的，莫格瑞大人，当然好了，|莫格瑞大人也可以像我们一样前往地面了~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="narin" pos="11 0" emotion="stop1"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="neoul" pos="13 0" emotion="normal"/>
+  <Msg name="奈尔" string="……虽然现在只能出去一小会。"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="neoul" pos="13 0" emotion="normal"/>
+  <Char id="narin" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="奈琳" string="哎呀，奈尔奈尔呀，不是跟你说了嘛，|要对莫格瑞大人说敬语~"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="neoul" pos="13 0" emotion="normal"/>
+  <Char id="narin" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="奈尔" string="……跟你说了别那样叫我。"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="14 0" emotion="normal"/>
+  <Char id="narin" pos="10 0" emotion="normal"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="没关系！反正只是出去看看情况，马上就会回来！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="normal"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫曼" string="莫格瑞大人，独自出行实在是太危险了，|实在不行就带上那两个小家伙吧！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="narin" pos="10 0" emotion="normal"/>
+  <Msg name="奈琳" string="哼，我们当然也会跟着一起去啊！"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="narin" pos="10 0" emotion="normal"/>
+  <Char id="neoul" pos="12 0" emotion="normal"/>
+  <Msg name="奈尔" string="特殊能力的转移还不够稳定，|所以我们也要一起去。"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="meoguri" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="好吧，那就一起去吧，奈琳、奈尔跟我来！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="meoguri" pos="15 0" flip="true" emotion="normal"/>
+  <Msg name="莫曼" string="一路顺风！小的们，|赶紧给莫格瑞大人敬礼！"/>
+  <Enter/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="meoguri_soldier" pos="9 0" flip="true" emotion="normal"/>
+  <Char id="meoguri_soldier" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="meoguri_soldier" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="军兵团们" string="莫格瑞大人万岁！"/>
+  <Enter/>
+</Scene>

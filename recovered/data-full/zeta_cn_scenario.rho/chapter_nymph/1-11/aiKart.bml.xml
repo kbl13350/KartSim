@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <AiKart id="1" track="pirate_I03" isFixedKart="true" fixedKartId="5" laps="3" gameType="item" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" item="Rocket;WaterBomb;Booster;Magnet;WaterFly;Shild;Ufo" aiItemLevel="2">
+      <AiKart characterId="18" uniformId="0" kartId="85" colorId="8" dyeId="8" balloonId="0" speed="49" accel="38" startTick="0" characterName="嘟嘟"/>
+      <AiKart characterId="15" uniformId="0" kartId="64" colorId="8" dyeId="8" balloonId="0" speed="48" accel="37" startTick="0" characterName="吉米"/>
+      <AiKart characterId="9" uniformId="0" kartId="27" colorId="8" dyeId="8" balloonId="0" speed="49" accel="37" startTick="0" characterName="海盗船长"/>
+      <AiKart characterId="15" uniformId="58" kartId="75" colorId="8" dyeId="8" balloonId="0" speed="49" accel="39" startTick="0" characterName="海盗水手"/>
+    </LevelContent>
+  </AiKart>
+</Root>

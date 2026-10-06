@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="cnboomhill2"/>
+  <Char id="f4chen" pos="9 0" emotion="stop4"/>
+  <Msg name="杉雯雯" string="想走~！？|下次小心点！|不然其他人也会受伤的！！！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="道明宝宝" string="我道明宝宝的词典里没有道歉两字！！！|我是F4的领袖！！是麦德斯集团的继承人…道明…!!!"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="9 0" emotion="stop4"/>
+  <Msg name="杉雯雯" string="我管你是谁！总之，以后小心点！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="道明宝宝" string="（这小丫头到底是谁？|第一次有女人敢对我这么大吼大叫…她究竟是什么来历？！"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="stop6"/>
+  <Char id="marid" pos="3 0" emotion="stop6"/>
+  <Msg name="吉米" string="金秘书，这里交给我们吧…|那里~!|道明宝宝！我们来救你了！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="stop6"/>
+  <Char id="marid" pos="3 0" emotion="stop6"/>
+  <Char id="f4chen" pos="13 0" emotion="stop1"/>
+  <Msg name="蓝蓝" string="不识抬举，竟敢惹我们的道明宝宝！！！|看我怎么教训你！！！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Shake time="500"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="..." string="嗡"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Shake time="500"/>
+  <Char id="f4chen" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="marid" pos="2 0" emotion="stop6"/>
+  <Char id="mos" pos="0 0" emotion="stop4"/>
+  <Msg name="杉雯雯" string="请帮帮忙！我不认识后面这些人，可他们一直追着我不放！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="f4dao" pos="8 0" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="嗯？怎么回事？"/>
+  <Enter/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4chen" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="f4dao" pos="11 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="不知道，他们就莫名其妙的追我。。"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4dao" pos="11 0" emotion="stop1"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="嘿嘿，这帮小子又在欺负人了……|先跟我来|这边！！！"/>
+  <Enter/>
+</Scene>

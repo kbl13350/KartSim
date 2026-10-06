@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="luckyPangRewardNotice">
+    <m c="kr" v="럭키 팡 이벤트 참여자 상품을 선택하세요!|선택한 아이템을 상품으로 드립니다!"/>
+    <m c="jp" v="ラッキーパンイベント参加者の皆さんに商品をプレゼントします！"/>
+    <m c="cn" v="恭喜您！您获得了天降财神活动的幸运奖！"/>
+    <m c="tw" v="給予參與命運輪盤活動的獎勵品！"/>
+  </k>
+  <k n="luckyPangRewardResultOk">
+    <m c="kr" v="%s 아이템을 받았습니다."/>
+    <m c="jp" v="%s アイテムを受け取りました。"/>
+    <m c="cn" v="获取了%s道具。"/>
+    <m c="tw" v="%s 道具已領取。"/>
+  </k>
+  <k n="luckyPangRewardResultFail">
+    <m c="kr" v="%s 아이템을 받을 수 없습니다."/>
+    <m c="jp" v="%s アイテムをもらえません。"/>
+    <m c="cn" v="无法获取%s道具。"/>
+    <m c="tw" v="%s 道具已無法領取。"/>
+  </k>
+</StringBag>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="normalPass">
+    <m c="kr" v="시즌 패스"/>
+    <m c="cn" v="赛季通行证"/>
+    <m c="tw" v="賽季通行證"/>
+  </k>
+  <k n="pcCafePass">
+    <m c="kr" v="PC방 패스"/>
+    <m c="cn" v="通行证网吧任务"/>
+    <m c="tw" v="網咖通行證"/>
+  </k>
+  <k n="seasonPass">
+    <m c="kr" v="시즌 패스"/>
+    <m c="cn" v="赛季通行证"/>
+    <m c="tw" v="賽季通行證"/>
+  </k>
+  <k n="normalPoint">
+    <m c="kr" v="패스 포인트"/>
+    <m c="cn" v="通行证积分"/>
+    <m c="tw" v="通行證點數"/>
+  </k>
+  <k n="pcCafePoint">
+    <m c="kr" v="pc방 포인트"/>
+    <m c="cn" v="网吧积分"/>
+    <m c="tw" v="網咖點數"/>
+  </k>
+  <k n="bonusPoint">
+    <m c="kr" v="보너스 포인트"/>
+    <m c="cn" v="福利积分"/>
+    <m c="tw" v="Bonus點數"/>
+  </k>
+  <k n="seasonPassPeriod">
+    <m c="kr" v="[ 시즌 패스 기간 %s ]"/>
+    <m c="cn" v="[赛季通行证活动时间%s]"/>
+    <m c="tw" v="[賽季通行證時間%s]"/>
+  </k>
+  <k n="seasonPassQuestNormal">
+    <m c="kr" v="일일 패스 미션"/>
+    <m c="cn" v="通行证每日任务"/>
+    <m c="tw" v="每日通行證任務"/>
+  </k>
+  <k n="seasonPassQuestBonus">
+    <m c="kr" v="시즌 패스 보너스 미션"/>
+    <m c="cn" v="赛季通行证福利任务"/>
+    <m c="tw" v="賽季通行證Bonus任務"/>
+  </k>
+  <k n="seasonPassQuestNone">
+    <m c="kr" v="진행 가능한 미션 없음"/>
+    <m c="cn" v="暂无任务"/>
+    <m c="tw" v="沒有可進行的任務"/>
+  </k>
+  <k n="seasonPassQuest">
+    <m c="kr" v="시즌 패스 미션 정보"/>
+    <m c="cn" v="赛季通行证任务栏"/>
+    <m c="tw" v="賽季通行證任務資訊"/>
+  </k>
+  <k n="seasonPassRewardMsg">
+    <m c="kr" v="시즌 패스 보상 획득"/>
+    <m c="cn" v="领取成功"/>
+    <m c="tw" v="賽季通行證獎勵獲得"/>
+  </k>
+  <k n="seasonPassRewardError">
+    <m c="kr" v="시즌 패스 보상 획득 실패"/>
+    <m c="cn" v="领取失败"/>
+    <m c="tw" v="賽季通行證獎勵獲得失敗"/>
+  </k>
+  <k n="seasonPassQuestClear0">
+    <m c="kr" v="시즌 패스 확인하기 성공. %d 포인트 획득"/>
+    <m c="cn" v="成功确认赛季通行证，获得%d通行证积分"/>
+    <m c="tw" v="賽季通行證確認成功。%d點數獲得"/>
+  </k>
+  <k n="passEnterFailNotOpenPeriod">
+    <m c="kr" v="시즌 패스 이벤트 기간이 아닙니다."/>
+    <m c="cn" v="目前不是活动期间"/>
+    <m c="tw" v="並非賽季通行證活動時間。"/>
+  </k>
+  <k n="passEnterFail">
+    <m c="kr" v="입장 불가 (%d)"/>
+    <m c="cn" v="无法进入(%d)"/>
+    <m c="tw" v="無法進場(%d)"/>
+  </k>
+  <k n="seasonPassReward">
+    <m c="kr" v="시즌 패스 보상"/>
+    <m c="cn" v="赛季通行证奖励"/>
+    <m c="tw" v="賽季通行證獎勵"/>
+  </k>
+  <k n="rewardStrFormat">
+    <m c="kr" v="시즌 패스 보상을 획득!|%s 아이템을 획득하였습니다."/>
+    <m c="cn" v="成功领取赛季通行证奖励！|恭喜获得%s"/>
+    <m c="tw" v="獲得賽季通行證獎勵!|已獲得%s道具。"/>
+  </k>
+  <k n="rewardAll">
+    <m c="kr" v="보상 모두 받기"/>
+    <m c="cn" v="领取所有奖励"/>
+    <m c="tw" v="獎勵全部領取"/>
+  </k>
+  <k n="stop">
+    <m c="kr" v="그만 받기"/>
+    <m c="cn" v="停止领取"/>
+    <m c="tw" v="結束領取"/>
+  </k>
+  <k n="passLevel">
+    <m c="kr" v="레벨"/>
+    <m c="cn" v="等级"/>
+    <m c="tw" v="等級"/>
+  </k>
+  <k n="seasonPassHelp1">
+    <m c="kr" v="프리미엄권을 구매하면 무료 보상 이외에도 단계에 따른 프리미엄 보상을 얻을 수 있어요! 시즌 종료 후 패스의 보상은 받을 수 없습니다. 꼭 시즌 종료 전 보상 수령을 확인해 주세요."/>
+    <m c="cn" v="兑换豪华通行证可获得普通奖励以外的额外奖励！赛季结束后无法获得通行证奖励，请务必在赛季内领取所有奖励！"/>
+    <m c="tw" v="購買高級券時，除了免費獎勵外，也可獲得依照階段的高級獎勵喔!賽季結束後，無法領取通行證的獎勵。請務必在賽季結束前領取獎勵喔。"/>
+  </k>
+  <k n="seasonPassState0">
+    <m c="kr" v="다음 레벨업에 필요한 패스"/>
+    <m c="cn" v="升级所需积分"/>
+    <m c="tw" v="到下一等級需要的通行證"/>
+  </k>
+  <k n="seasonPassState2">
+    <m c="kr" v="최종 레벨 도달"/>
+    <m c="cn" v="已到达满级"/>
+    <m c="tw" v="最終等級到達"/>
+  </k>
+  <k n="seasonPassState3">
+    <m c="kr" v="%s 부터 보너스 패스 진행 가능"/>
+    <m c="cn" v="%s开始可进行福利任务"/>
+    <m c="tw" v="從%s開始可進行Bonus通行證"/>
+  </k>
+  <k n="seasonPassState7">
+    <m c="kr" v="보너스 패스는 프리미엄권 보유 시 진행 가능합니다."/>
+    <m c="cn" v="拥有豪华通行证，可进行福利任务"/>
+    <m c="tw" v="Bonus通行證在持有高級券時，可進行。"/>
+  </k>
+  <k n="autoRewardFail">
+    <m c="kr" v="획득 가능한 보상이 없습니다."/>
+    <m c="cn" v="暂无可领取奖励"/>
+    <m c="tw" v="沒有可獲得的獎勵。"/>
+  </k>
+  <k n="seasonPassLvFormat">
+    <m c="kr" v="Lv %d"/>
+    <m c="cn" v="Lv %d"/>
+    <m c="tw" v="Lv %d"/>
+  </k>
+  <k n="bonusLvFormat">
+    <m c="kr" v="보너스 %d"/>
+    <m c="cn" v="福利 %d"/>
+    <m c="tw" v="Bonus %d"/>
+  </k>
+  <k n="bonusLvFormat1">
+    <m c="kr" v="보너스패스"/>
+    <m c="cn" v="福利任务"/>
+    <m c="tw" v="Bonus通行"/>
+  </k>
+  <k n="seasonPassLvNone">
+    <m c="kr" v="-"/>
+    <m c="cn" v="-"/>
+    <m c="tw" v="-"/>
+  </k>
+  <k n="bonusLvNone">
+    <m c="kr" v="보너스"/>
+    <m c="cn" v="福利"/>
+    <m c="tw" v="Bonus"/>
+  </k>
+  <k n="seasonPassLvMax">
+    <m c="kr" v="Lv Max"/>
+    <m c="cn" v="Lv Max"/>
+    <m c="tw" v="Lv Max"/>
+  </k>
+  <k n="bonusLvMax">
+    <m c="kr" v="보너스"/>
+    <m c="cn" v="福利"/>
+    <m c="tw" v="Bonus"/>
+  </k>
+  <k n="seasonPassMaxLvFormat">
+    <m c="kr" v="MAX LV %d"/>
+    <m c="cn" v="MAX LV %d"/>
+    <m c="tw" v="MAX LV %d"/>
+  </k>
+  <k n="pcCafeQuestTitle">
+    <m c="kr" v="pc방 플레이"/>
+    <m c="cn" v="网吧累积在线"/>
+    <m c="tw" v="網咖遊戲"/>
+  </k>
+  <k n="pcCafeQuestDesc">
+    <m c="kr" v="%d시간 %d분"/>
+    <m c="cn" v="%d小时 %d分钟"/>
+    <m c="tw" v="%d時%d分"/>
+  </k>
+  <k n="hourFormat">
+    <m c="kr" v="%d시간"/>
+    <m c="cn" v="%d小时"/>
+    <m c="tw" v="%d小時"/>
+  </k>
+  <k n="minFormat">
+    <m c="kr" v=" %d분"/>
+    <m c="cn" v="%d分钟"/>
+    <m c="tw" v=" %d分鐘"/>
+  </k>
+  <k n="rewardFormat0">
+    <m c="kr" v="[color:255 215 240 255]LEVEL %d 일반 보상[/color]"/>
+    <m c="cn" v="[color:255 215 240 255]等级%d普通奖励[/color]"/>
+    <m c="tw" v="[color:255 215 240 255]LEVEL %d一般獎勵[/color]"/>
+  </k>
+  <k n="rewardFormat1">
+    <m c="kr" v="[color:255 215 240 255]LEVEL %d 보너스 보상[/color]"/>
+    <m c="cn" v="[color:255 215 240 255]等级%d福利奖励[/color]"/>
+    <m c="tw" v="[color:255 215 240 255]LEVEL %dBonus獎勵[/color]"/>
+  </k>
+  <k n="rewardFormat2">
+    <m c="kr" v="[color:255 215 240 255]LEVEL %d PC방 보상[/color]"/>
+    <m c="cn" v="[color:255 215 240 255]等级%d网吧奖励[/color]"/>
+    <m c="tw" v="[color:255 215 240 255]LEVEL %d網咖獎勵[/color]"/>
+  </k>
+  <k n="rewardFormat3">
+    <m c="kr" v="[color:255 255 215 30]LEVEL %d 프리미엄 보상[/color]"/>
+    <m c="cn" v="[color:255 255 215 30]等级%d豪华奖励[/color]"/>
+    <m c="tw" v="[color:255 255 215 30]LEVEL %d高級獎勵[/color]"/>
+  </k>
+  <k n="buyItemStr0_0">
+    <m c="kr" v="프리미엄권을 구매하고 풍성한 보상을 획득하세요."/>
+    <m c="cn" v="兑换豪华通行证，领取更多奖励吧！"/>
+    <m c="tw" v="請購買高級券，獲得豐富獎勵吧。"/>
+  </k>
+  <k n="buyItemStr1_0">
+    <m c="kr" v="프리미엄권과 패스 티켓을 할인된 가격에 구매가능한 패키지입니다."/>
+    <m c="cn" v="豪华通行证优惠礼包"/>
+    <m c="tw" v="可以折扣價格購買高級券和通行券的產包。"/>
+  </k>
+  <k n="buyItemStr0_1">
+    <m c="kr" v="[ 프리미엄 패스 업그레이드 ]"/>
+    <m c="cn" v="[ 升级豪华通行证 ]"/>
+    <m c="tw" v="[ 高級通行證升級 ]"/>
+  </k>
+  <k n="buyItemStr1_1">
+    <m c="kr" v="[ 프리미엄 패스 업그레이드]|[ 구매 시 패스 티켓 %d개 추가 지급 ]"/>
+    <m c="cn" v="[ 升级豪华通行证]|[ 兑换时额外赠送赛季券%d个 ]"/>
+    <m c="tw" v="[ 高級通行證升級]|[購買時通行券%d個額外發放]"/>
+  </k>
+  <k n="buyItemStr0_2">
+    <m c="kr" v="프리미엄권 / 시즌 패스 패키지 중 1개만 구매할 수 있습니다."/>
+    <m c="cn" v="豪华通行证/赛季通行证礼包仅限兑换一种"/>
+    <m c="tw" v="高級券 / 賽季通行證產包中只可購買1個。"/>
+  </k>
+</StringBag>

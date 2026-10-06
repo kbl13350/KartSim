@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.04'
+	SteerConstraint='2'
+	DriftEscapeForce='150'
+	CornerDrawFactor='0.04'
+	BoosterBlur='true'
+
+	EngineSound='pro'
+
+	DescBalance= '20'
+	DescStability ='25'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '20'
+/>

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<EmotionPatterns>
+
+	<Emotion animationIndex='1' soundName='웃기'>
+		<Word text='(笑)' hidden='true'/>
+		<Word text='（笑）' hidden='true'/>
+		<Word text='^^' hidden='false'/>
+		<Word text='哈哈' hidden='false'/>
+		<Word text='^_^' hidden='false'/>
+		<Word text='呵呵' hidden='false'/>
+		<Word text='xixi' hidden='false'/>
+		<Word text=':)' hidden='false'/>
+		<Word text=':-)' hidden='false'/>
+		<Word text='hoho' hidden='false'/>
+		<Word text='嘻嘻' hidden='false'/>
+		<Word text='嘎嘎' hidden='false'/>
+		<Word text='嘿嘿' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='2' soundName='벙찌기'>
+		<Word text='(惊吓)' hidden='true'/>
+		<Word text='（惊吓）' hidden='true'/>
+		<Word text='O_O' hidden='false'/>
+		<Word text='吓死了' hidden='false'/>
+		<Word text='怕怕' hidden='false'/>
+		<Word text='恐怖' hidden='false'/>
+		<Word text='啊啊啊' hidden='false'/>
+		<Word text='天哪' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='3' soundName='울기'>
+		<Word text='(哭)' hidden='true'/>
+		<Word text='（哭）' hidden='true'/>
+		<Word text='TT' hidden='false'/>
+		<Word text='T T' hidden='false'/>
+		<Word text='T_T' hidden='false'/>
+		<Word text='T.T' hidden='false'/>
+		<Word text='555' hidden='false'/>
+		<Word text='哇哇' hidden='false'/>
+		<Word text='呜呜' hidden='false'/>
+		<Word text='~~~&gt;_&lt;~~~' hidden='false'/>
+		<Word text='~~&gt;_&lt;~~' hidden='false'/>
+		<Word text='~&gt;_&lt;~' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='4' soundName='화내기'>
+		<Word text='(生气)' hidden='true'/>
+		<Word text='（生气）' hidden='true'/>
+		<Word text='气死了' hidden='false'/>
+		<Word text='怒' hidden='false'/>
+		<Word text='哼' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='5' soundName='윙크'>
+		<Word text='(打招呼)' hidden='true'/>
+		<Word text='（打招呼）' hidden='true'/>
+		<Word text='^_-' hidden='false'/>
+		<Word text='-_^' hidden='false'/>
+		<Word text=';)' hidden='false'/>
+		<Word text=';-)' hidden='false'/>
+		<Word text='hi' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='6' soundName='사랑해'>
+		<Word text='(爱)' hidden='true'/>
+		<Word text='（爱）' hidden='true'/>
+		<Word text='love u' hidden='false'/>
+		<Word text='喜欢' hidden='false'/>
+		<Word text='我爱你' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='7' soundName='딴청'>
+		<Word text='(装傻)' hidden='true'/>
+		<Word text='（装傻）' hidden='true'/>
+		<Word text='(汗)' hidden='true'/>
+		<Word text='~_~' hidden='false'/>
+		<Word text='- -!' hidden='false'/>
+	</Emotion>
+
+	<Emotion animationIndex='20' soundName='잠잘때'>
+		<Word text='(睡觉)' hidden='true'/>
+		<Word text='（睡觉）' hidden='true'/>
+		<Word text='呼呼' hidden='false'/>
+		<Word text='zzz' hidden='false'/>
+		<Word text='犯困' hidden='false'/>
+		<Word text='ZZZ' hidden='false'/>
+	</Emotion>
+
+	<Emotion petAniIndex='1' soundName='웃기'>
+		<Word text='(p1) ' hidden='true'/>
+	</Emotion>
+
+	<Emotion petAniIndex='2' soundName='벙찌기'>
+		<Word text='(p2)' hidden='true'/>
+	</Emotion>
+
+	<Emotion petAniIndex='3' soundName='울기'>
+		<Word text='(p3)' hidden='true'/>
+	</Emotion>
+
+	<Emotion petAniIndex='4' soundName='화내기'>
+		<Word text='(p4)' hidden='true'/>
+	</Emotion>
+
+	<Emotion petAniIndex='5' soundName='윙크'>
+		<Word text='(p5)' hidden='true'/>
+	</Emotion>
+
+	<Emotion petAniIndex='6' soundName='사랑해'>
+		<Word text='(p6)' hidden='true'/>
+	</Emotion>
+
+	<Emotion petAniIndex='7' soundName='딴청'>
+		<Word text='(p7)' hidden='true'/>
+	</Emotion>
+
+	<Emotion petAniIndex='20' soundName='잠잘때'>
+		<Word text='(p8)' hidden='true'/>
+	</Emotion>
+</EmotionPatterns>

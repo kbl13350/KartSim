@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="0 0 331 420" caption="#sb(buyItem)" captionPos="0 1" captionColor="black" align="center" setCloseButton="cancelButton">
+  <Window name="itemPanel" windowRect="6 6 120 119" frame="ItemSlotWindow"/>
+  <Label windowRect="131 11 132 12" text="#sb(itemName)" textRender="bold"/>
+  <Label name="itemName" windowRect="131 33 122 34" text=""/>
+  <Label windowRect="131 72 132 73" text="#sb(itemPrice)" textRender="bold"/>
+  <ComboBox name="cmbStock" windowRect="130 98 297 118" comboListLength="95"/>
+  <Panel adjust="4 137" windowSize="13 11" enable="false" texture="내정보분류아이콘" alphaBlend="true"/>
+  <Label adjust="23 137" windowSize="1 1" enable="false" text="#sb(paymentMethod)" textRender="bold"/>
+  <Container name="paymentCash" visible="false">
+    <Container name="methodCash">
+      <StateButton name="useCash" windowSize="89 20" adjust="40 162" canDisable="true" iconSet="bt_cash" iconAlign="hcenter" iconPos="0 0">
+        <Label text="#sb(cash)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+        <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+      </StateButton>
+    </Container>
+    <Container name="methodLuccon">
+      <StateButton name="useLuccon" windowSize="89 20" adjust="170 162" canDisable="true" iconSet="bt_luccon" iconAlign="hcenter" iconPos="0 0">
+        <Label text="#sb(luccon)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+        <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+      </StateButton>
+    </Container>
+  </Container>
+  <Container name="paymentLucci" visible="false">
+    <Container name="methodLucci">
+      <StateButton name="useLucci" windowSize="89 20" adjust="40 162" canDisable="true" iconSet="bt_lucci" iconAlign="hcenter" iconPos="0 0">
+        <Label text="#sb(lucci)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+        <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+      </StateButton>
+    </Container>
+    <Container name="methodLuccon">
+      <StateButton name="useLuccon" windowSize="89 20" adjust="170 162" canDisable="true" iconSet="bt_luccon" iconAlign="hcenter" iconPos="0 0">
+        <Label text="#sb(luccon)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+        <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+      </StateButton>
+    </Container>
+  </Container>
+  <Container name="paymentLuccon" visible="false">
+    <Container name="methodLuccon">
+      <StateButton name="useLuccon" windowSize="89 20" adjust="40 162" canDisable="true" iconSet="bt_luccon" iconAlign="hcenter" iconPos="0 0">
+        <Label text="#sb(luccon)" windowSize="70 20" adjust="30 0" textAlign="vcenter"/>
+        <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+      </StateButton>
+    </Container>
+  </Container>
+  <Container name="cashPanel" visible="false">
+    <Panel adjust="4 207" windowSize="13 11" enable="false" texture="내정보분류아이콘" alphaBlend="true"/>
+    <Label windowSize="1 1" adjust="21 207" enable="false" text="#sb(cash)" textRender="bold"/>
+    <Panel adjust="4 230" windowSize="13 11" enable="false" texture="내정보분류아이콘" alphaBlend="true"/>
+    <Label windowSize="1 1" adjust="21 230" enable="false" text="#sb(cashAfterBuying)" textRender="bold"/>
+    <Window windowRect="125 200 297 222" enable="false" frame="DefaultEdit">
+      <Label name="cashStatic" windowRect="6 4 7 5" enable="false" text="#sb(cash)"/>
+      <Label name="myCash" windowRect="1 1 2 2" autoSizing="true" align="vcenter;right" text="0 "/>
+    </Window>
+    <Window windowRect="125 227 297 249" enable="false" frame="DefaultEdit">
+      <Label name="afterCashStatic" windowRect="6 4 7 5" enable="false" text="#sb(cash)" textColor="blue"/>
+      <Label name="afterCash" windowRect="1 1 2 2" autoSizing="true" align="vcenter;right" text="0 " textColor="blue"/>
+    </Window>
+  </Container>
+  <Container name="lucciPanel" visible="false">
+    <Panel adjust="4 207" windowSize="13 11" enable="false" texture="내정보분류아이콘" alphaBlend="true"/>
+    <Label windowSize="1 1" adjust="21 207" enable="false" text="#sb(lucci)" textRender="bold"/>
+    <Panel adjust="4 230" windowSize="13 11" enable="false" texture="내정보분류아이콘" alphaBlend="true"/>
+    <Label windowSize="1 1" adjust="21 230" enable="false" text="#sb(lucciAfterBuying)" textRender="bold"/>
+    <Window windowRect="125 200 297 222" enable="false" frame="DefaultEdit">
+      <Label name="lucciStatic" windowRect="6 4 7 5" enable="false" text="#sb(lucci)"/>
+      <Label name="myLucci" windowRect="1 1 2 2" autoSizing="true" align="vcenter;right" text="0 "/>
+    </Window>
+    <Window windowRect="125 227 297 249" enable="false" frame="DefaultEdit">
+      <Label name="afterLucciStatic" windowRect="6 4 7 5" enable="false" text="#sb(lucci)" textColor="blue"/>
+      <Label name="afterLucci" windowRect="1 1 2 2" autoSizing="true" align="vcenter;right" text="0 " textColor="blue"/>
+    </Window>
+  </Container>
+  <Container name="lucconPanel" visible="false">
+    <Panel adjust="4 205" windowSize="13 11" enable="false" texture="내정보분류아이콘" alphaBlend="true"/>
+    <Label windowSize="1 1" adjust="21 207" enable="false" text="#sb(luccon)" textRender="bold"/>
+    <Panel adjust="4 228" windowSize="13 11" enable="false" texture="내정보분류아이콘" alphaBlend="true"/>
+    <Label windowSize="1 1" adjust="21 230" enable="false" text="#sb(lucconAfterBuying)" textRender="bold"/>
+    <Window windowRect="125 200 297 222" enable="false" frame="DefaultEdit">
+      <Label name="lucciStatic" windowRect="6 4 7 5" enable="false" text="#sb(luccon)"/>
+      <Label name="myLuccon" windowRect="1 1 2 2" autoSizing="true" align="vcenter;right" text="0 "/>
+    </Window>
+    <Window windowRect="125 227 297 249" enable="false" frame="DefaultEdit">
+      <Label name="afterLucconStatic" windowRect="6 4 7 5" enable="false" text="#sb(luccon)" textColor="blue"/>
+      <Label name="afterLuccon" windowRect="1 1 2 2" autoSizing="true" align="vcenter;right" text="0 " textColor="blue"/>
+    </Window>
+  </Container>
+  <Label windowRect="20 270 292 279" enable="false" text="#sb(askBuy)" multiLine="true" autoWrap="true" lineGap="1"/>
+  <TextButton name="cashButton" text="#sb(rechargeCash)" windowRect="12 334 123 356" altTextRender="outline" disabledTextColor="gray" useDisableState="true"/>
+  <TextButton name="okButton" text="#sb(buy)" windowRect="128 334 200 356" altTextRender="outline"/>
+  <TextButton name="cancelButton" text="#sb(cancel)" windowRect="207 334 279 356" altTextRender="outline"/>
+</CaptionWindow>

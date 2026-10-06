@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="progressDialog">
+    <m c="kr" v="진행 상태 알림"/>
+  </k>
+  <k n="completeProgress">
+    <m c="kr" v="달성률"/>
+  </k>
+  <k n="questPrize">
+    <m c="kr" v="퀘스트 완료 보상"/>
+  </k>
+  <k n="quest_method">
+    <m c="kr" v="퀘스트 내용"/>
+  </k>
+  <k n="careerPoint">
+    <m c="kr" v="완료시 지급 보너스"/>
+  </k>
+  <k n="careerPrize">
+    <m c="kr" v="커리어 추가 보상"/>
+  </k>
+  <k n="career_method">
+    <m c="kr" v="미션 수행 방법"/>
+    <m c="tw" v="双人组队特别奖励"/>
+  </k>
+  <k n="challenge">
+    <m c="kr" v="도전과제"/>
+  </k>
+  <k n="scenario_method">
+    <m c="kr" v="도전과제 수행방법"/>
+  </k>
+  <k n="emptyScenario">
+    <m c="kr" v="카트라이더 속 흥미진진한 이야기"/>
+  </k>
+  <k n="wayToScenario">
+    <m c="kr" v="카트라이더 속 흥미진진한 이야기"/>
+  </k>
+  <k n="careerPointFmt">
+    <m c="kr" v="%d 포인트"/>
+  </k>
+</StringBag>

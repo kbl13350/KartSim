@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="ScreenUI" windowRect="fullscreen" enable="false">
+  <Panel windowRect="fullscreen" texture="ingame_shadow" alphaBlend="true"/>
+  <CharPanel name="recording" windowSize="108 38" align="right" adjust="28 172" texture="녹화중@zz" alphaBlend="true" fontSize="108 38" fontPos="0 0" fontStr="012" text=" 0"/>
+  <Panel name="teamWarn" windowSize="102 102" adjust="0 80" texture="crash_01" alphaBlend="true" align="hcenter" enable="false" visible="false">
+    <Panel name="light" windowRect="20 14 52 46" texture="crash_02" textureOp="modulate" alphaBlend="true"/>
+  </Panel>
+  <Container name="hpInfo" windowSize="352 54" align="hcenter" adjust="0 25" alphaBlend="true">
+    <Container name="hpStage1" visible="false">
+      <Panel name="hpInfo_0" windowSize="352 54" adjust="0 0" texture="hpbox_1" alphaBlend="true">
+        <Panel name="hp0" windowSize="234 34" adjust="113 3" uvRect="0 0 234 34" texture="hp_1" alphaBlend="true"/>
+        <Panel name="face" windowSize="160 74" adjust="0 -20" texture="disorder1" alphaBlend="true"/>
+      </Panel>
+    </Container>
+    <Container name="hpStage2" visible="false">
+      <Panel name="hpInfo_0" windowSize="352 54" adjust="56 0" texture="hpbox_1" alphaBlend="true">
+        <Panel name="hp0" windowSize="234 34" adjust="118 0" uvRect="0 0 234 34" texture="hp_1" alphaBlend="true"/>
+        <Panel name="face" windowSize="160 74" adjust="0 -20" texture="disorder1" alphaBlend="true"/>
+      </Panel>
+      <Panel name="hpInfo_1" windowSize="352 54" adjust="56 0" texture="hpbox_1" alphaBlend="true">
+        <Panel name="hp0" windowSize="234 34" adjust="118 0" uvRect="0 0 234 34" texture="hp_1" alphaBlend="true"/>
+        <Panel name="face" windowSize="160 74" adjust="0 -20" texture="disorder1" alphaBlend="true"/>
+      </Panel>
+    </Container>
+    <Container name="hpStage3" visible="false">
+      <Panel name="hpInfo_0" windowRect="0 9 232 54" texture="hpbox_0" alphaBlend="true">
+        <Panel name="hp2" windowRect="76 18 227 27" uvRect="0 0 151 9" texture="hp_1_3" alphaBlend="true"/>
+        <Panel name="hp1" windowRect="76 18 227 27" uvRect="0 0 151 9" texture="hp_1_2" alphaBlend="true"/>
+        <Panel name="hp0" windowRect="76 18 227 27" uvRect="0 0 151 9" texture="hp_1_1" alphaBlend="true"/>
+        <Panel name="face" windowRect="5 5 74 40 " texture="titanLoader" alphaBlend="true"/>
+      </Panel>
+    </Container>
+    <Container windowSize="352 54">
+      <Container windowSize="160 74" adjust="0 -20">
+        <Panel name="npcName" windowSize="126 22" adjust="-10 0" align="bottom|hcenter" texture="disorder1_t@zz" alphaBlend="true"/>
+      </Container>
+    </Container>
+  </Container>
+  <Window name="rankboard" leftTopWH="0 0 229 80" align="vcenter" adjust="0 -200">
+    <CharPanel name="myrank" leftTopWH="24 2 64 80" texture="big_num" alphaBlend="true" fontSize="64 80" fontStr="0123456789" text="1" fontPos="0 0" allowVertical="true"/>
+    <CharPanel name="st" leftTopWH="83 2 40 28" texture="st" alphaBlend="true" fontSize="40 28" fontStr="1230" fontPos="0 0" text="0" align="bottom"/>
+    <Panel leftTopTex="115 20" texture="diagonal" alphaBlend="true" align="bottom" adjust="0 2"/>
+    <CharPanel name="riderCount" leftTopWH="135 21 26 34" texture="small_num" alphaBlend="true" fontSize="26 34" fontStr="0123456789" fontPos="0 0" text="8" spaceOffset="0" align="bottom"/>
+    <RankList name="ranklist" leftTopWH="0 100 229 462"/>
+  </Window>
+</Container>

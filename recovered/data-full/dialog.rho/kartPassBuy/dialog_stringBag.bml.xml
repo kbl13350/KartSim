@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="buyFail5_0">
+    <m c="kr" v="스페셜권 구매 조건을 만족하지 않아 구매할 수 없습니다."/>
+    <m c="cn" v="未满足特殊通行证兑换条件无法进行兑换。"/>
+    <m c="tw" v="未滿足特殊券購買條件，無法購買。"/>
+  </k>
+  <k n="buyFail5_1">
+    <m c="kr" v="[color:255 255 180 10]|카트 패스 최고 레벨이 아닙니다.[/color]"/>
+    <m c="cn" v="跑跑通行证未达到满级。"/>
+    <m c="tw" v="非跑跑通行證最高等級。"/>
+  </k>
+  <k n="buyFail5_2">
+    <m c="kr" v="[color:255 255 180 10]|프리미엄권이 없습니다.[/color]"/>
+    <m c="cn" v="无豪华通行证。"/>
+    <m c="tw" v="沒有高級券。"/>
+  </k>
+  <k n="buyWarningTitle">
+    <m c="kr" v="중복 구매 불가 알림"/>
+    <m c="cn" v="无法重复购买提示"/>
+    <m c="tw" v="不可重覆購買提醒"/>
+  </k>
+  <k n="buyWarningMsg0">
+    <m c="kr" v="[%s] 구매 시"/>
+    <m c="cn" v="兑换[%s]时"/>
+    <m c="tw" v="[%s]購買時，"/>
+  </k>
+  <k n="buyWarningMsg1">
+    <m c="kr" v="[color:255 245 15 15]|[%s]을(를) 구매하실 수 없습니다.[/color]"/>
+    <m c="cn" v="[color:255 245 15 15]|无法兑换[%s]。[/color]"/>
+    <m c="tw" v="[color:255 245 15 15]|無法購買特價商品[%s]。[/color]"/>
+  </k>
+  <k n="buyWarningMsg2">
+    <m c="kr" v="|구매하시겠습니까?"/>
+    <m c="cn" v="|是否继续够兑换？"/>
+    <m c="tw" v="|確定要購買嗎?"/>
+  </k>
+</StringBag>

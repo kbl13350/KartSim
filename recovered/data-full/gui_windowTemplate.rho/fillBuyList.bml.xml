@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextButton name="fillBuyList" windowRect="0 0 200 20" frame="SelectBtn" text=" " stringPos="8 3" textAlign="vcenter" textRender="bold16" textColor="255 42 55 80"/>

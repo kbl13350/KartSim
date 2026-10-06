@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<contentList>
+		<content name='playTimeEvent' enable='true'>
+				<eventItem id='48' openPeriod='2026-10-01T18:00:00~2026-10-15T22:00:00' openTime='18:00~22:00' achievementMinute='35'>
+						<normalType title='国庆节在线活动' baseNotice='在线每满35分钟，发放“孔明灯(2 个)+骰子兑换券(2 个)”！' completeNotice='在线已满35分钟！|点击迷你提示窗，可领取奖励。'>
+								<reward rewardStockId='32404' />
+						</normalType>
+				</eventItem>
+		</content>
+		<content name='jackPotEvent' enable='true'>
+				<eventItem id='39' type='2' openPeriod='2026-10-08T18:00:00~2026-10-14T22:00:00' openTime='18:00~22:00' rewardType='stock' commaArrange='3' noticeDialogMsg='你是幸运儿吗！大奖在等着你哦！' rollingMsgWarning1='天降财神倒计时！财神即将来临。' rollingMsgWarning2='财神将要来临！再加把劲吧！' rollingMsgBegin='天降财神活动的幸运儿诞生，大家都祝贺一下吧！' rollingMsgEnd='恭喜您，您被选为天降财神的幸运儿。'>
+						<jackpotReward rank='1,2,3,4,5' rewardStockId='32403' />
+						<allUserReward rewardStockId='10661' />
+				</eventItem>
+		</content>
+		<content name='blueMarble' enable='true' value='2026-10-01T06:00:00~2026-10-15T05:59:59' />
+		<content name='blueMarbleTheme' enable='true' value='default' />
+		<content name='blueMarbleUseJewel' enable='false' />
+		<content name='missionAttend' enable='true' value='2026-09-10T00:00:00~2026-09-23T23:59:59' />
+		<content name='missionAttend' enable='true' value='2026-10-08T00:00:00~2026-10-21T23:59:59' />
+		<content name='blockCatch' enable='true' value='2026-09-10T06:00:00~2026-09-24T05:59:59' useItemId='482' />
+		<content name='bingoGacha' enable='true' value='2026-09-17T06:00:00~2026-10-22T05:59:59' />
+		<content name='boomhillExchange' enable='true' />
+		<content name='boomhillExchange' enable='true' />
+		<content name='boomhillExchange' enable='true' />
+</contentList>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='148.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.08'
+	SteerConstraint='2.8'
+	DriftEscapeForce='1480'
+	CornerDrawFactor='0.067'
+
+	BoosterBlur='true'
+	EngineSound='cotton8'
+	EnvMap='true'
+	WaveEffect='true'
+	antiCollideBalance ='1.04'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.833'
+	TransformTime='95'
+
+	StartForwardAccelFactorSpeed = '1.72'
+	StartBoosterTimeSpeed='1450'   
+	
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-100'
+	DriftMaxGauge = '-620'
+	DriftGaguePreservePercent='0.65'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85sub'
+	BoosterType4='85sub'
+
+	Port0='mod2d1'
+	Port1='mod2d2'
+
+	FirePort0='mod1a3'
+	FirePort1='mod1a1'
+	FirePort2='mod1a2'
+
+	TailLampSize='0.2'
+	TailLampColor='255 120 120 140'
+	BoostBlurColor='255 77 77 77'
+
+	secondColor='255 120 120 140'
+	secondHighColor='255 255 255 255'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '42'
+	DescStability ='45'
+	DescEngineGrade='1.25'
+	DescCornering='9'
+	DescEnchantCap = '31'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a1' trailPort1='mod1a2'/>
+</BodyParam>
+
+
+<!--뉴 흑기사 가샤폰 업데이트 140123-->

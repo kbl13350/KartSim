@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="useCouponContainer" windowRect="0 0 328 590" align="center">
+  <CaptionWindow name="couponNoWindow" frame="CaptionDialog" windowSize="430 470" caption="#sb(couponNoCaption)" align="center" setCloseButton="btnCancel">
+    <Label windowRect="0 12 328 27" text="#sb(enterCouponNo)" autoSizing="true" enable="false" align="hcenter"/>
+    <Container windowSize="255 22" align="hcenter" adjust="-6 35">
+      <Edit name="couponNo" windowRect="12 0 255 22" maxChar="30"/>
+    </Container>
+    <Container windowSize="145 30" align="hcenter" adjust="0 75">
+      <Window windowRect="0 -10 255 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="btnConfirm" windowRect="0 0 87 30" text="#sb(ok)"/>
+      <TextButton name="btnCancel" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+    </Container>
+    <Container windowSize="300 300" align="hcenter" adjust="-35 135">
+      <List name="couponHistory" windowRect="0 0 378 223" frame="BlackEdit" framePreset="Default" scrollWidth="11" viewPortProjectionSize="600 600" listMargin="0 0 0 10" listGap="5"/>
+      <Label windowSize="0 308" adjust="-5 -17" text="* 보유 쿠폰 정보" autoSizing="true" enable="false" align="left"/>
+      <Label windowSize="0 308" adjust="-5 230" text="- 이벤트 등을 통해 지급받은 쿠폰 번호만 확인이 가능합니다." autoSizing="true" enable="false" align="left"/>
+      <Label windowSize="0 308" adjust="-5 248" text="- 쿠폰번호의 사용 여부는 쿠폰함에서 확인할 수 없습니다." autoSizing="true" enable="false" align="left"/>
+      <Label windowSize="0 308" adjust="-5 265" text="- 타 게임의 쿠폰번호의 경우 해당 게임에 접속 후 사용 가능합니다." autoSizing="true" enable="false" align="left"/>
+    </Container>
+  </CaptionWindow>
+  <CaptionWindow enable="false" name="couponConfirmWindow" frame="CaptionDialog" windowRect="0 0 280 412" caption="#sb(couponUseCaption)" align="center" visible="false">
+    <Panel name="pnlTargetItem" frame="DefaultEdit" windowRect="0 10 245 254"/>
+    <Label windowRect="2 270 261 303" autoSizing="true" enable="false" name="couponDescription" text="" align="hcenter" textColor="255 0 0 255"/>
+    <Label windowRect="2 286 271 290" autoSizing="true" enable="false" name="couponInquire" text="#sb(couponUseConfirmAsk)" align="hcenter"/>
+    <Container windowRect="0 0 145 33" align="hcenter;bottom">
+      <Window windowRect="0 -10 250 -8" frame="Section" align="hcenter" enable="false"/>
+      <TextButton name="btnReceive" windowRect="0 0 87 30" text="#sb(ok)"/>
+      <TextButton name="btnCancelReceive" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+    </Container>
+  </CaptionWindow>
+  <ToolTipWindow name="contents" windowRect="0 0 200 100" frame="DefaultTooltip" marginRect="0 0  -5 -10" textColor="white" vertAutoSizing="true" autoWrap="true" multiLine="true" depthBias="1024" text="ABCD" visible="false"/>
+</Container>

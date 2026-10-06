@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Missions>
+  <Type0 id="0" value_UInt4="1" missionText="获得第一名" difficulty="2" userCount="4" serverCheck="true" icon="m_rank1"/>
+  <Type0 id="1" value_UInt4="2" missionText="获得第二名以上" difficulty="2" userCount="5" serverCheck="true" icon="m_rank2"/>
+  <Type0 id="2" value_UInt4="3" missionText="获得第三名以上" difficulty="1" userCount="6" serverCheck="true" icon="m_rank3"/>
+  <Type0 id="3" value_UInt4="4" missionText="获得第四名以上" difficulty="1" userCount="6" serverCheck="true" icon="m_rank4"/>
+  <Type1 id="0" value_String="win" missionText="获得团队胜利" difficulty="1" userCount="4" serverCheck="true" icon="m_win"/>
+  <Type1 id="1" value_String="perfect" missionText="获得“完胜”" difficulty="3" userCount="6" serverCheck="true" icon="m_perfect"/>
+  <Type2 id="0" value_String="Banana" missionText="持有香蕉完成比赛" difficulty="2" icon="m_bananaH"/>
+  <Type2 id="1" value_String="Cloud" missionText="持有乌云完成比赛" difficulty="1" icon="m_cloudH"/>
+  <Type2 id="2" value_String="Shield" missionText="持有盾牌完成比赛" difficulty="2" icon="m_shieldH"/>
+  <Type2 id="3" value_String="Magnet" missionText="持有磁铁完成比赛" difficulty="1" icon="m_magnetH"/>
+  <Type2 id="4" value_String="Rocket" missionText="持有导弹完成比赛" difficulty="1" icon="m_rocketH"/>
+  <Type2 id="5" value_String="WaterBomb" missionText="持有水炸弹完成比赛" difficulty="1" icon="m_waterbombH"/>
+  <Type2 id="6" value_String="WaterFly" missionText="持有水苍蝇完成比赛" difficulty="1" icon="m_waterflyH"/>
+  <Type2 id="7" value_String="Booster" missionText="持有加速器完成比赛" difficulty="1" icon="m_boosterH"/>
+  <Type3 id="0" value_UInt4="5" missionText="5초 이상 플래그 소지" difficulty="1" icon="m_holdflag"/>
+  <Type4 id="0" value_UInt4="2" missionText="2포인트 이상 획득" difficulty="2" icon="m_pointflag"/>
+  <Type5 id="0" value_String="Banana" value_UInt4="2" missionText="用香蕉击中对手2次" difficulty="2" icon="m_banana" displayNum="true"/>
+  <Type5 id="1" value_String="Shield" value_UInt4="2" missionText="用盾牌防御对手2次" difficulty="2" icon="m_shield" displayNum="true"/>
+  <Type5 id="2" value_String="Magnet" value_UInt4="2" missionText="用磁铁击中对手2次" difficulty="1" icon="m_magnet" displayNum="true"/>
+  <Type5 id="3" value_String="Rocket" value_UInt4="2" missionText="用导弹击中对手2次" difficulty="1" icon="m_rocket" displayNum="true"/>
+  <Type5 id="4" value_String="Booster" value_UInt4="2" missionText="成功使用2次加速器" difficulty="1" icon="m_booster" displayNum="true"/>
+  <Type5 id="5" value_String="WaterBomb" value_UInt4="2" missionText="用水炸弹击中对手2次" difficulty="1" icon="m_waterbomb" displayNum="true"/>
+  <Type6 id="0" value_String="wall" value_UInt4="5" missionText="少于5次撞击完成比赛" icon="m_collide" displayNum="true"/>
+  <Type6 id="1" value_String="wall" value_UInt4="9" missionText="少于9次撞击完成比赛" icon="m_collide" displayNum="true"/>
+  <Type7 id="0" value_UInt4="8" missionText="必须完成比赛" difficulty="1" userCount="4" serverCheck="true" icon="m_rankRetire@zz"/>
+  <Type8 id="0" value_UInt4="1" missionText="1위로 1Lap 통과" difficulty="2" userCount="4" icon="m_1LapRank1"/>
+  <Type8 id="1" value_UInt4="2" missionText="2위 이내로 1Lap 통과" difficulty="1" userCount="5" icon="m_1LapRank2"/>
+  <Type8 id="2" value_UInt4="3" missionText="3위 이내로 1Lap 통과" difficulty="1" userCount="6" icon="m_1LapRank3"/>
+  <Type8 id="3" value_UInt4="4" missionText="4위 이내로 1Lap 통과" difficulty="1" userCount="6" icon="m_1LapRank4"/>
+  <Type9 id="0" missionText="%s(을)를 이겨라" difficulty="1" userCount="4" serverCheck="true" icon="m_win"/>
+</Missions>

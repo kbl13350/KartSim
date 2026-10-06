@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+           SteerConstraint='2.2'
+           DriftEscapeForce='950'
+           CornerDrawFactor='0.07'
+
+           NormalBoosterTime = '-50'
+           TeamBoosterTime = '-100'
+           DriftMaxGauge = '-100'
+
+           UseTransformBooster='true'
+           TransAccelFactor='1.85'
+           TransformTime='700'   
+
+           StartForwardAccelFactorSpeed = '2'
+           StartBoosterTimeSpeed='1200'           
+
+           BoosterBlur='true'
+           EngineSound='cotton7'
+           SpeedSlotCapacity='3'
+
+
+           BoosterType='cotton6'
+           BoosterType0='default'
+           BoosterType1='default'
+           BoosterType2='zero5'
+           BoosterType3='zero5'
+           BoosterType4='cotton6'
+           BoosterType5='cotton6'
+
+           Port0='mod1a1'
+           Port1='mod1a2'
+
+           FirePort0='mod2a1'
+           FirePort1='mod2a2'
+           FirePort2='mod2a3'
+           FirePort3='mod2a4'
+
+           TailLampSize='0.3'
+           TailLampColor='0 255 100 100'
+           BoostBlurColor='255 77 77 77'
+
+           DescBalance= '43'
+           DescStability ='40'
+           DescEngineGrade='1.2'
+           DescCornering='5'
+           DescEnchantCap = '30'
+
+
+/>
+<!-- 한국 솔리드 z7 LE 가샤폰 레어 110818-->

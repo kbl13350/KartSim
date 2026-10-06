@@ -1,0 +1,17 @@
+{
+  "selection": {
+    "prefixes": [
+      "image/karticon/",
+      "image/charheadicon/",
+      "image/trackthumbnail/",
+      "image/theme/bg/"
+    ]
+  },
+  "selected_assets": 458,
+  "exported_pngs": 458,
+  "failed_assets": 0,
+  "object_types_seen": {
+    "AssetBundle": 458,
+    "Texture2D": 458
+  }
+}

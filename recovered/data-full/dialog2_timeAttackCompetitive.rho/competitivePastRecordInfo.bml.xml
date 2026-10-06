@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="captionDlgFrame" windowRect="0 0 730 674" frame="CaptionDialog" caption="#sb(pastReocrdInfoTitle)" align="center" setCloseButton="ok">
+    <ImageBoard leftTopWH="-11 -2 716 630" image="contest_img_pastRecordBG" alphaBlend="true">
+      <Label leftTopWH="8 6 224 28" text="#sb(season)" textAlign="center" textRender="bold16" textColor="255 245 247 250"/>
+      <Label leftTopWH="230 6 254 28" text="#sb(grade)" textAlign="center" textRender="bold16" textColor="255 245 247 250"/>
+      <Label leftTopWH="484 6 224 28" text="#sb(rank)" textAlign="center" textRender="bold16" textColor="255 245 247 250"/>
+      <GridSelector name="rankGrid" windowRect="0 30 716 528" alignSize="1" alignMargin="0 0" clientMargin="0 0 0 0" maxLine="8"/>
+      <Container name="bottomLayout" leftTopWH="0 2 716 48" align="hcenter;bottom">
+        <ImageButton name="prevPage" windowSize="300 24" adjust="5 0" align="left;vcenter" autoLoadImage="garage_btn_pageLeft_" alphaBlend="true" alphaTest="true" enable="true"/>
+        <Label name="page" windowSize="100 48" adjust="0 0" text="1 / 1" align="hcenter" textAlign="center" textRender="bold16" textColor="255 84 100 129"/>
+        <ImageButton name="nextPage" windowSize="300 24" adjust="5 0" align="right;vcenter" autoLoadImage="garage_btn_pageRight_" alphaBlend="true" alphaTest="true" enable="true"/>
+      </Container>
+      <Label name="page" leftTopWH="152 419 100 34" text="1 / 1" textAlign="hcenter" textRender="bold" textColor="white"/>
+    </ImageBoard>
+  </CaptionWindow>
+</Panel>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- 랭킹다이얼로그의 랭킹페이지 최대노출수치 조절하려면,
+	spRiderGetFishingRank 에서 TOP(카운트)를 수정하면 된다 -->
+
+<fishingGame>
+	<phase1 timeLimit='12' speed='1,2,3,4,5'/>
+	
+	<phase2 timeLimit='22' timePenalty='2'> <!-- areaMul 1.0이상 설정 불가-->
+		<gameLevel lv='1' hp='180' speed='1,2' areaMul='1.0'/> <!-- bronze -->
+		<gameLevel lv='2' hp='270' speed='2,3,4' areaMul='0.75'/> <!-- silver -->
+		<gameLevel lv='3' hp='360' speed='3,4,5' areaMul='0.5'/> <!-- gold -->
+	</phase2>
+
+	<poleInfo>
+		<pole id='1' bot='0' mid='20' top='70' probBronze='75' probSilver='20' probGold='5'/>
+		<pole id='2' bot='0' mid='30' top='80' probBronze='55' probSilver='35' probGold='10'/>
+		<pole id='3' bot='0' mid='40' top='90' probBronze='30' probSilver='50' probGold='20'/>
+	</poleInfo>
+
+	<reward defaultRp='10' defaultLucci='100' length='10000000.0' stockId='15276' rewardDateTime='2014-01-01T00:00:00~2014-01-01T23:59:59' noticeMsg='myBestFishNoticeMsg'>
+		<bronze lotteryId='603'/>
+		<silver lotteryId='602'/>
+		<gold lotteryId='601'/>
+	</reward>
+</fishingGame>

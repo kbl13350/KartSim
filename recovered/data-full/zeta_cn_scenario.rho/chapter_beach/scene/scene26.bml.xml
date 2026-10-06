@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach3"/>
+  <Char id="paul" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="神秘人员" string="实力不错！|我们会潜伏在你和他们的比赛场~|只要把他们引入到那里就可以！"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <Char id="martin" pos="11 0" emotion="stop2"/>
+  <Msg name="阿嘉" string="这对于我就是小菜一碟~！|哈哈哈"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="paul" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="神秘人员" string="嗯，很满意这种自信！|（真看不顺眼！）|但，也不要过分骄傲，好好练习！"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <Char id="martin" pos="11 0" emotion="stop2"/>
+  <Msg name="阿嘉" string="不自满就是我阿嘉的优点！|"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="paul" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="神秘人员" string="嗯~态度不错！|（谁信！）"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <Char id="martin" pos="11 0" emotion="stop1"/>
+  <Msg name="阿嘉" string="重新开始练习吧！|大家一起跑一圈！|把练习当做实战！开！始！"/>
+  <Enter/>
+  <Char id="martin" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop5"/>
+  <Msg name="宝宝" string="阿嘉~等等我！|先让我吃个饭再练习吗！"/>
+  <Enter/>
+</Scene>

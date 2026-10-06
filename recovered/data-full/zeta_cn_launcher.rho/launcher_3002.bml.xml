@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GdiWindow windowRect="0 -1 1008 630" texture="bg">
+  <GdiButton id="2004" name="IDC_MINIMUMBTN" leftTopWH="836 50 46 44" autoLoadImage="mini_bt_0"/>
+  <GdiButton id="2005" name="IDC_EXITBTN" leftTopWH="885 50 46 44" autoLoadImage="close_bt_0"/>
+  <GdiButton id="2007" name="IDC_HOMEPAGEBTN" leftTopWH="213 71 76 48" autoLoadImage="home_bt_0"/>
+  <GdiButton id="2002" name="IDC_NEWUSERDBTN" leftTopWH="289 71 76 48" autoLoadImage="Register_bt_0"/>
+  <GdiButton id="2012" name="IDC_SUPPORTBTN" leftTopWH="365 71 76 48" autoLoadImage="Service_bt_0"/>
+  <GdiButton id="2011" name="IDC_BBSBTN" leftTopWH="593 71 76 48" autoLoadImage="BBS_bt_0"/>
+  <GdiButton id="2021" name="IDC_SAFTYBTN" leftTopWH="669 71 76 48" autoLoadImage="Safty_bt_0"/>
+  <GdiButton id="2008" name="IDC_CHARGEBTN" leftTopWH="745 71 76 48" autoLoadImage="Pay_bt_0"/>
+  <GdiEdit id="2018" name="IDC_IDEDIT" leftTopWH="403 483 172 31" limitText="24" textColor="255 0 0 0" textBkColor="255 255 255 255"/>
+  <GdiEdit id="2019" name="IDC_PASSEDIT" leftTopWH="403 515 172 31" limitText="24" textColor="255 0 0 0" style="passward" textBkColor="255 255 255 255"/>
+  <GdiButton id="2001" name="IDC_PASSWARDFINDBTN" leftTopWH="373 548 49 12" autoLoadImage="forget_password_0"/>
+  <GdiButton id="2003" name="IDC_PATCHBTN" leftTopWH="435 548 49 12" autoLoadImage="Patch-download_bt_0"/>
+  <GdiButton id="2022" name="IDC_REMEMBERCHECKBTN" leftTopWH="504 544 15 16" autoLoadImage="check_0" style="check"/>
+  <GdiButton id="2000" name="IDC_STARTBTN" leftTopWH="648 479 228 74" autoLoadImage="main_bt_0"/>
+</GdiWindow>

@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="jewel">
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_coke" firedFx="eaten_coke"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_classic" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_mini" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_K" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_A" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_R" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_T" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_broom" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_tear" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_pocket" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01_L1timeAttackCard" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="lucci" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="hae" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="bok" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="man" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="ie" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="bat" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="eu" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="se" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="yo" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국새해1" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국새해2" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국새해3" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국새해4" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국새해5" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국새해6" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국새해7" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국새해8" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="하트주행" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="네오상자" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="황금상자회전" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="녹색보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="red" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="yellow" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="green" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="blue" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="purple" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="red_skull" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="orange_skull" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="yellow_skull" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="green_skull" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="blue_skull" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_red" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_yellow" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_green" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_blue" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_purple" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="종쯔이펙트" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="milk" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="brush" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="lucci" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="캡슐보석이펙트" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="캡슐보석이펙트" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="청룡언월보석이펙트" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="월병보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="4차캡슐보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="lucci" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="푸조보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="호박보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="회중시계보석이펙트" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="모스캐릭터보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="우니캐릭터보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="화장실브러쉬이펙트" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="화장지이펙트" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="Red_bell" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="Orange_bell" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="Green_bell" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="Blue_bell" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="Purple_bell" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="자유의여신보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="에펠탑보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="황금테마금괴" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="황금테마보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="godius_gp" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="redenvelope_j" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="노란꽃씨보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="빨간꽃씨보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="푸조407보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="음표보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="음표보석파랑" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="olympic_blue" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="olympic_black" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="olympic_red" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="olympic_yellow" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="olympic_green" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="플루피주행중이펙트" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="원기버섯_빨강" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="원기버섯_보라" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="원기버섯_파랑" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="원기버섯_노랑" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="원기버섯_녹색" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="1" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="황금기어장치보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="스패너보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="dragon" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="dragon" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="goldmedal" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="silvermedal" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="bronzemedal" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="GG보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="주행중이펙트" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="빨강양말보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="08복주머니" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="gamania_j(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="gamania_j(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="gamania_j(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="gamania_j(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="gamania_j(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="루이조각상" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="lotus" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="bamboo" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="bear" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="bear" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="바람요정보석획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="물요정보석획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="나무요정보석획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="step_e2" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="step_g3" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="step_r4" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="step_pro" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="step_sr" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="e-sports보석(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="8th_red(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cracker" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="9th_gasha_jg" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="빼빼로_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="뼈다귀보석획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="장미보석(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="복불복파란상자(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="egg" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="banhchung_j(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국R4보석(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국Pro보석(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="중국SR보석(주행중)" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="독수리보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="블럭펑" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="행운보석_주행" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="원서보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="얼음보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="얼음보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="lotus" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="러브보석함획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_red01_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_red02_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_red03_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_red04_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="cj_red05_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="땅보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="물보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="바람보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="물보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="바람보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="획득_가위보석" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="획득_바위보석" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="획득_보보석" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="보름달보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="LY보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="빨강양말보석" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="5주년보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state singleProcessContent="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state singleProcessContent="true" name="Eaten" life="5000" fired="선물상자_획득_Dao" firedFx="eaten"/>
+  <state singleProcessContent="true" name="Disappear" life="2000"/>
+  <state singleProcessContent="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state singleProcessContent="true" name="Eaten" life="5000" fired="선물상자_획득_Bazzi" firedFx="eaten"/>
+  <state singleProcessContent="true" name="Disappear" life="2000"/>
+  <state singleProcessContent="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state singleProcessContent="true" name="Eaten" life="5000" fired="선물상자_획득_Uni" firedFx="eaten"/>
+  <state singleProcessContent="true" name="Disappear" life="2000"/>
+  <state singleProcessContent="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state singleProcessContent="true" name="Eaten" life="5000" fired="선물상자_획득_Mos" firedFx="eaten"/>
+  <state singleProcessContent="true" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="흑심가챠폰_상자_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="2번공획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="3번공획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="4번공획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="5번공획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="6번공획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="1번공획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state singleProcessContent="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state singleProcessContent="true" name="Eaten" life="5000" fired="부루마블_획득" firedFx="eaten"/>
+  <state singleProcessContent="true" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="콜라병_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="g_egg" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="별보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="범퍼카보석번개_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="범퍼카보석별_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state singleProcessContent="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state singleProcessContent="true" name="Eaten" life="5000" fired="빙고볼보석" firedFx="eaten"/>
+  <state singleProcessContent="true" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="범퍼카보석번개_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="범퍼카보석별_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state singleProcessContent="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state singleProcessContent="true" name="Eaten" life="5000" fired="보름달보석2_획득" firedFx="eaten"/>
+  <state singleProcessContent="true" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="전광판보석엘로_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="브로디사진_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="별보석_주행중획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="트리보석_주행중획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="Red_bell" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="얼음보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="야구공보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="야구공보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="야구공보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="선생님사랑해요보석_획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="가위보석_빨강_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="바위보석_보라_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="보보석_파랑_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="퍼즐상자_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="룬보석_거름_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="룬보석_태양_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="별보석_주행중획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="별보석_주행중획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="별보석_주행중획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="별보석_주행중획득" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="해적왕증표1_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="false" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="false" name="Eaten" life="5000" fired="item01" firedFx="eaten"/>
+  <state preload="false" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="영국_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="프랑스_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="그리스_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="이탈리아_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="브라질_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="대만_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="중국_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="6보석획득_1" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="6보석획득_2" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="6보석획득_3" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="6보석획득_4" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="6보석획득_5" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="6보석획득_6" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="6보석획득_6" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="7사탕보석_빨획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="7사탕보석_주획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="7사탕보석_노획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="7사탕보석_초획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="7사탕보석_파획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="7사탕보석_남획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="7사탕보석_보획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="한국_S_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="영국_S_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="프랑스_S_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="그리스_S_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="이탈리아_S_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="브라질_S_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="대만_S_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="중국_S_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="영국_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="프랑스_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="그리스_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="이탈리아_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="브라질_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="대만_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+  <state preload="true" name="Stay" life="0" item="item00" size="2.0"/>
+  <state preload="true" name="Eaten" life="5000" fired="중국_G_획득" firedFx="eaten"/>
+  <state preload="true" name="Disappear" life="2000"/>
+</item>

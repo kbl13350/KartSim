@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="160 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 532 432" caption="#sb(useRacingToken)" textRender="bold20" captionPos="0 0" caption_align="center" align="center" setCloseButton="cancelButton">
+    <ColorLabel windowSize="524 94" text="#sb(racingTokenDescReduce30Min)" textColor="255 42 55 80" textRender="bold16" align="hcenter" textAlign="center"/>
+    <ImageBoard name="tokenSelectOptionPanel" image="popup_useRacingToken_bg" windowSize="468 136" adjust="0 92" align="hcenter">
+      <ColorLabel name="missionTime_before" windowSize="88 22" adjust="-84 22" align="hcenter" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter|right"/>
+      <CharPanel name="arrow0" adjust="0 26" text="2" windowSize="38 15" align="hcenter" fontSize="38 15" fontStr="012" texture="useRacingToken_img_arrow" alphaBlend="true"/>
+      <ColorLabel name="missionTime_after" windowSize="88 22" adjust="84 22" align="hcenter" textColor="255 88 105 129" textRender="bold14" textAlign="vcenter|left"/>
+      <ImageBoard name="missionProgressBarBg" image="progressL_bg" windowSize="324 14" adjust="0 52" alphaBlend="true" enable="false" align="hcenter"/>
+      <Panel name="missionProgressBar_b" texture="progressL_b" leftTopWH="72 52 324 14" alphaBlend="true" enable="false"/>
+      <Panel name="missionProgressBar_y" texture="progressL_y" leftTopWH="72 52 324 14" alphaBlend="true" enable="false"/>
+      <ImageButton name="subCountBtn" windowSize="36 34" adjust="210 86" autoLoadImage="popup_minus_" alphaBlend="true"/>
+      <Label name="countTokenLbl" leftTopWH="246 86 114 32" text="1" textColor="255 88 105 129" textRender="bold24" textAlign="center"/>
+      <ImageButton name="addCountBtn" windowSize="36 34" adjust="361 86" autoLoadImage="popup_plus_" alphaBlend="true"/>
+      <ImageBoard image="icon_racingToken" windowSize="26 26" adjust="73 90" alphaBlend="true" enable="false"/>
+      <Label leftTopWH="105 90 100 26" text="#sb(useCount)" textColor="255 88 105 129" textRender="bold16" textAlign="left|vcenter"/>
+    </ImageBoard>
+    <Window name="tokenPanel" windowSize="468 62" adjust="0 238" align="hcenter" frame="DefaultEdit">
+      <Label windowSize="100 20" adjust="7 -17" align="vcenter" text="#sb(ownedCount)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="myToken" windowSize="70 20" adjust="340 -17" align="vcenter" textRender="bold16" textColor="255 42 55 80" textAlign="vcenter;right"/>
+      <ImageBoard image="icon_racingToken_2" windowSize="20 20" adjust="8 0" align="right" alphaBlend="true" enable="false"/>
+      <Window windowSize="444 1" adjust="0 0" align="center" frame="HSection"/>
+      <Label windowSize="100 20" adjust="7 13" align="vcenter" text="#sb(remainingAfterUse)" textRender="bold16" textColor="255 88 105 129" textAlign="vcenter"/>
+      <Label name="afterToken" windowSize="70 20" adjust="340 13" align="vcenter" textColor="255 36 129 255" textRender="bold16" textAlign="vcenter;right"/>
+      <ImageBoard image="icon_racingToken_2" windowSize="20 20" adjust="8 31" align="right" alphaBlend="true" enable="false"/>
+    </Window>
+    <Container name="okCancelGrp" leftTopWH="0 312 532 72" align="hcenter">
+      <Window name="okCancelHSection" windowSize="468 1" adjust="0 0" align="hcenter" frame="HSection"/>
+      <TextButton name="okButton" text="#sb(useButton)" windowSize="132 42" adjust="-75 0" align="center" textColor="white" textRender="bold16" overTextColor="white" overTextRender="bold16" clickedTextColor="255 24 55 104" clickedTextRender="bold16" disabledTextColor="255 220 220 220" disabledTextRender="bold16"/>
+      <TextButton name="cancelButton" text="#sb(cancel)" windowSize="132 42" adjust="75 0" align="center" textColor="255 64 75 95" textRender="bold16" overTextColor="255 106 120 147" overTextRender="bold16" clickedTextColor="255 34 41 52" clickedTextRender="bold16" disabledTextColor="255 131 131 131" disabledTextRender="bold16"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

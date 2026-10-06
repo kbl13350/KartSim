@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="fengshen5"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="呃，怎么是蚯蚓鱼饵！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="还是我来吧！（微笑）"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="果然还是皮蛋！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Char id="Fengshen_stuff" pos="10 -2" emotion="stop4"/>
+  <Msg name="宝宝的鱼竿" string="（咯吱咯吱）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop4"/>
+  <Char id="Fengshen_stuff" pos="11 -2" emotion="stop3"/>
+  <Msg name="宝宝" string="哦？！我感觉到了很大的力气！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="dao" pos="9 0" emotion="stop4"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="是鱼的力气太大了？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="9 0" emotion="stop4"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Msg name="黑妞" string="看这鱼竿都弯了！看起来不寻常呢！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop5"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Msg name="宝宝" string="大家一起齐心协力拉一下！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="9 0" emotion="stop5"/>
+  <Char id="bazzi" pos="6 0" emotion="stop4"/>
+  <Char id="Fengshen_stuff" pos="12 -2" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋，黑妞，宝宝" string="嘿呦！嘿呦！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop5"/>
+  <Char id="bazzi" pos="7 0" emotion="stop4"/>
+  <Char id="Fengshen_stuff" pos="13 -2" emotion="stop3"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="黑妞" string="什么鱼的力气这么大？？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="11 0" emotion="stop6"/>
+  <Char id="bazzi" pos="8 0" emotion="stop4"/>
+  <Char id="Fengshen_stuff" pos="14 -2" emotion="stop3"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="我们在被鱼拉着走呢？！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="12 0" emotion="stop6"/>
+  <Char id="bazzi" pos="9 0" emotion="stop4"/>
+  <Char id="Fengshen_stuff" pos="15 -2" emotion="stop3"/>
+  <Char id="dizini" pos="6 0" emotion="stop6"/>
+  <Msg name="黑妞" string="宝宝！快把鱼竿放下！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="13 0" emotion="stop6"/>
+  <Char id="bazzi" pos="10 0" emotion="stop5"/>
+  <Char id="Fengshen_stuff" pos="16 -1" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="宝宝" string="我也想啊，但是放不下来！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="13 0" emotion="stop6"/>
+  <Char id="bazzi" pos="10 0" emotion="stop5"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="Fengshen_stuff" pos="16 -1" emotion="stop3"/>
+  <Msg name="黑妞，宝宝，皮蛋" string="啊啊啊！？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Fengshen_stuff" pos="7 0" emotion="stop6"/>
+  <Msg name="湖泊" string="扑通！！"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Fengshen_stuff" pos="7 0" emotion="stop6"/>
+  <Char id="dizini" pos="4 -3" emotion="stop1"/>
+  <Char id="bazzi" pos="7 -3" emotion="stop2"/>
+  <Char id="dao" pos="11 -3" emotion="stop1"/>
+  <Msg name="黑妞，宝宝，皮蛋" string="噗噗！！"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="china5"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="大家都没事吧？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="宝宝" string="早知道就穿泳衣来钓鱼了。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Char id="dizini" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="黑妞" string="还好大家都会游泳。|不过大冬天掉进湖里，也不是很冷呢？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Char id="dizini" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="但是，这是哪里啊？？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Char id="dizini" pos="12 0" emotion="stop3"/>
+  <Msg name="黑妞" string="还能是哪儿，当然…不是冰钓场了？！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Char id="dizini" pos="12 0" emotion="stop6"/>
+  <Msg name="黑妞" string="湖跟别的地方连起来了吗？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Char id="dizini" pos="12 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="我们找找回去的路吧。"/>
+  <Enter/>
+</Scene>

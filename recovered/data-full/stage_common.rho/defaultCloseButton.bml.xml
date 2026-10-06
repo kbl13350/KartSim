@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageButton name="cancel" windowSize="20 20" align="right" adjust="0 -26" autoLoadImage="close_" alphaBlend="true" altText="#sb(close)"/>

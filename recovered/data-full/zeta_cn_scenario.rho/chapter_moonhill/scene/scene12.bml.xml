@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Char id="neo" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="尼欧" string="你们的老家在哪!!|快说!!"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop5"/>
+  <Char id="neo" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="黑妞" string="哇~ 好有魄力，好帅阿~♡"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neo" remove="true"/>
+  <Char id="reman3" pos="12 0" emotion="stop1"/>
+  <Msg name="R军团列兵" string="呃呃呃.. |离这里不远处有个R军团的工厂.. 咳.."/>
+  <Enter/>
+  <Char id="reman3" remove="true"/>
+  <Char id="neo" pos="3 0" emotion="stop1"/>
+  <Msg name="尼欧" string="喂!! 朋友们..|拜托你们去探下工厂，我去找其他R军团成员和卡尔。"/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="neo" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="宝宝" string="哼!!尼欧!!|你是不是不敢去R军团的窝点啊？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neo" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="宝宝!!|你说什么风凉话，尼欧不可能是那种人!!"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="知道了，尼欧!!|卡尔市长就交给你了，我们去找工厂。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="neo" pos="12 0" emotion="stop1"/>
+  <Msg name="尼欧" string="………… |拜托了..皮..蛋.."/>
+  <Enter/>
+</Scene>

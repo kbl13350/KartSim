@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<versusModeGradeList>
+  <IconNameFormat large="등급아이콘51_%s" small="등급아이콘20_%s" text="ranking_%s"/>
+  <Grade minValue="3500" sbKey="S" color="magenta"/>
+  <Grade minValue="3400" sbKey="A1" color="yellow"/>
+  <Grade minValue="3300" sbKey="A2" color="yellow"/>
+  <Grade minValue="3200" sbKey="A3" color="yellow"/>
+  <Grade minValue="3100" sbKey="A4" color="yellow"/>
+  <Grade minValue="3000" sbKey="A5" color="yellow"/>
+  <Grade minValue="2900" sbKey="B1" color="skyBlue"/>
+  <Grade minValue="2800" sbKey="B2" color="skyBlue"/>
+  <Grade minValue="2700" sbKey="B3" color="skyBlue"/>
+  <Grade minValue="2600" sbKey="B4" color="skyBlue"/>
+  <Grade minValue="2500" sbKey="B5" color="skyBlue"/>
+  <Grade minValue="2400" sbKey="C1" color="white"/>
+  <Grade minValue="2300" sbKey="C2" color="white"/>
+  <Grade minValue="2200" sbKey="C3" color="white"/>
+  <Grade minValue="2100" sbKey="C4" color="white"/>
+  <Grade minValue="2000" sbKey="C5" color="white"/>
+  <Grade minValue="1900" sbKey="D1" color="white"/>
+  <Grade minValue="1800" sbKey="D2" color="white"/>
+  <Grade minValue="1700" sbKey="D3" color="white"/>
+  <Grade minValue="1600" sbKey="D4" color="white"/>
+  <Grade minValue="1500" sbKey="D5" color="white"/>
+  <Grade minValue="1400" sbKey="E1" color="white"/>
+  <Grade minValue="1300" sbKey="E2" color="white"/>
+  <Grade minValue="1200" sbKey="E3" color="white"/>
+  <Grade minValue="1100" sbKey="E4" color="white"/>
+  <Grade minValue="0" sbKey="E5" color="white"/>
+</versusModeGradeList>

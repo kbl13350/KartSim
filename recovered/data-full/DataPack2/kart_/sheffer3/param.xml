@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='140.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.074'
+           SteerConstraint='2.2'
+           DriftEscapeForce='1000'
+           CornerDrawFactor='0.075'
+
+           NormalBoosterTime = '-50'
+           TeamBoosterTime = '-100'
+           DriftMaxGauge = '-100'
+
+           UseTransformBooster='true'
+           TransAccelFactor='1.85'
+           TransformTime='700'   
+
+           BoosterBlur='true'
+           EngineSound='cotton7'
+           SpeedSlotCapacity='3'
+
+           StartForwardAccelFactorSpeed = '1.6'
+           StartBoosterTimeSpeed='1200'           
+           
+           BoosterWaveType='effect_zero'
+           BoosterType='cotton6'
+           BoosterType0='default'
+           BoosterType1='default'
+           BoosterType2='cotton6'
+           BoosterType3='cotton6'
+           BoosterType4='zero5'
+           
+           Port0='mod1a1'
+           Port1='mod1a2'
+           FirePort0='mod1a3'
+           FirePort1='mod1a4'
+           FirePort2='mod2a1'
+
+           TailLampSize='0.3'
+           TailLampColor='0 255 100 100'
+          BoostBlurColor='255 77 77 77'
+
+           DescBalance= '43'
+           DescStability ='40'
+           DescEngineGrade='1.2'
+           DescCornering='7'
+           DescEnchantCap = '25'
+/>
+
+<!--한국 쉐퍼 z7 상점 캐시 110811 -->

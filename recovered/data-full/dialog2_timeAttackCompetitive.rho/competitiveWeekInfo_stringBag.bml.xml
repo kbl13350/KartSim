@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="weekInfoTitle">
+    <m c="kr" v="주간 랭킹 상세 정보"/>
+    <m c="cn" v="每周排名详细信息"/>
+  </k>
+  <k n="weekExpectedRank">
+    <m c="kr" v="주간 예상 랭킹"/>
+    <m c="cn" v="每周预想排名"/>
+  </k>
+  <k n="pointFormat">
+    <m c="kr" v="%d 점"/>
+    <m c="cn" v="%d 分"/>
+  </k>
+  <k n="trackPoint">
+    <m c="kr" v="트랙 점수"/>
+    <m c="cn" v="赛道分数"/>
+  </k>
+  <k n="bestRacingTime">
+    <m c="kr" v="최고 기록"/>
+    <m c="cn" v="最佳纪录"/>
+  </k>
+  <k n="crashCount">
+    <m c="kr" v="충돌 횟수"/>
+    <m c="cn" v="撞击次数"/>
+  </k>
+  <k n="boosterCount">
+    <m c="kr" v="부스터 사용"/>
+    <m c="cn" v="加速次数"/>
+  </k>
+  <k n="grade">
+    <m c="kr" v="등급"/>
+    <m c="cn" v="等级"/>
+  </k>
+  <k n="rank">
+    <m c="kr" v="순위"/>
+    <m c="cn" v="排名"/>
+  </k>
+  <k n="accumulatedScore">
+    <m c="kr" v="누적 점수"/>
+    <m c="cn" v="累计分数"/>
+  </k>
+  <k n="reportMsg">
+    <m c="kr" v="핵/버그 악용이 의심되는 기록을 신고할 수 있습니다.|해당 기록을 신고하시겠습니까?| |라이더명: %s|트랙: %s|기록: %s"/>
+  </k>
+  <k n="reportMsgOk">
+    <m c="kr" v="%s 라이더의 기록이 신고되었습니다.|일일 신고 가능 횟수가 %d회 남았습니다."/>
+  </k>
+  <k n="reportWarning1">
+    <m c="kr" v="오늘 신고 가능한 횟수를 모두 사용하셨습니다.|과도한 신고 방지를 위해 신고 횟수는 일일 %d회로|제한되어 있습니다."/>
+  </k>
+  <k n="reportWarning2">
+    <m c="kr" v="이미 신고 완료한 기록입니다."/>
+  </k>
+  <k n="reportWarning3">
+    <m c="kr" v="자신은 신고할 수 없습니다."/>
+  </k>
+  <k n="reportWarning4">
+    <m c="kr" v="신고할 기록이 존재하지 않습니다."/>
+  </k>
+  <k n="reportError">
+    <m c="kr" v="잠시후 다시 시도해주세요."/>
+  </k>
+  <k n="racingTimeFormat">
+    <m c="kr" v="%02d&apos;%02d&apos;%02d"/>
+    <m c="cn" v="%02d&apos;%02d&apos;%02d"/>
+  </k>
+  <k n="racingTimeNone">
+    <m c="kr" v="??&apos;??&apos;??"/>
+    <m c="cn" v="??&apos;??&apos;??"/>
+  </k>
+</StringBag>

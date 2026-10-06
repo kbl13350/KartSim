@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="partsPieceExchangeDlgFrame" windowRect="0 0 254 190" frame="CaptionDialog" captionPos="0 1" caption="#sb(titleV1PartsExchange)" align="center">
+    <Label name="partsPieceText" adjust="0 15" windowSize="222 30" textAlign="center" text="#sb(descV1PartsExchange)"/>
+    <Window name="changeBox_X" adjust="0 -5" windowSize="158 24" align="center">
+      <Edit name="acquirePartsPieceCount" adjust="0 0" windowSize="110 24" align="vcenter" maxChar="10"/>
+      <ImageButton name="addCountBtn" windowSize="20 20" adjust="115 2" autoLoadImage="addPoint_" alphaBlend="true"/>
+      <ImageButton name="subCountBtn" windowSize="20 20" adjust="137 2" autoLoadImage="subtractPoint_" alphaBlend="true"/>
+    </Window>
+    <Window windowSize="220 2" adjust="0 90" frame="VSection" align="hcenter"/>
+    <Container windowSize="145 33" adjust="0 0" align="hcenter;bottom">
+      <TextButton name="okButton" windowRect="0 0 87 30" text="#sb(ok)"/>
+      <TextButton name="cancelButton" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

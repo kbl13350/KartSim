@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Stage className="GameFinalBonusStage" addResFolder="/stage/common/;/stage/gameFinalIndi/" topmostWindow="stage_window" stringBag="stage_stringBag"/>

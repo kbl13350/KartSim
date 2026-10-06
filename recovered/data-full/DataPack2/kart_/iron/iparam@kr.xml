@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.18'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.071'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.83'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '2.1'
+	StartBoosterTimeSpeed='1200'           
+
+	NormalBoosterTime = '-50'
+	TeamBoosterTime = '-100'
+	DriftMaxGauge = '-400'
+	DriftGaguePreservePercent='0.5'
+
+	WaveEffect='true'
+	BoosterBlur='true'
+	EngineSound='cotton8'
+
+	BoosterWaveType='boost8'
+	BoosterType='8sub'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8sub'
+	BoosterType4='8sub'
+
+	Port0='mod1a1'
+	Port1='mod1a3'
+
+	FirePort0='mod1d1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a4'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '40'
+	DescStability ='45'
+	DescEngineGrade='1.25'
+	DescCornering='7'
+	DescEnchantCap = '25'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a4' trailPort1='mod1a2'/>
+</BodyParam>
+
+<!--한국 아이언 HT 120329 상점 상시 -->

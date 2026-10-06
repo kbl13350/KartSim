@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+           SteerConstraint='2.15'
+           DriftEscapeForce='1000'
+           CornerDrawFactor='0.066'
+           UseTransformBooster='true'
+           TransAccelFactor='1.62'
+
+           BoosterBlur='true'
+           EngineSound='cotton6'
+
+           BoosterType='cotton6'
+           BoosterType0='default'
+           BoosterType1='default'
+           Port0='mod2c1'
+           Port1='mod2c2'
+		   FirePort0='mod2b1'
+           FirePort1='mod2b2'
+           FirePort2='mod2b3'
+           FirePort3='mod2b4'
+
+		   	DescBalance= '40'
+	DescStability ='40'
+	DescEngineGrade='1'
+	DescCornering='7'
+	DescEnchantCap = '30'
+/>
+
+<!-- 대만 세이버 SR- Lighting 가샤폰 레어 101119-->

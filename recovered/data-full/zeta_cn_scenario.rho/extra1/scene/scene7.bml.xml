@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des2"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="你们这帮家伙！居然敢用抢的！|快还给我！！！！"/>
+  <Enter/>
+  <Char id="jakob1" pos="3 0" emotion="stop4"/>
+  <Msg name="波诺 雅克布" string="嘿嘿……别再跟过来了……|好吧，看你那么执着的份上，我真想还给你！只是我现在想给也给不了你。"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="什么？怎么回事？"/>
+  <Enter/>
+  <Char id="jakob1" pos="3 0" emotion="stop2"/>
+  <Msg name="波诺 雅克布" string="哈哈，你们被耍了！其实，黄金指南针早就给我大哥了！"/>
+  <Enter/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="什么！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="葱头" string="先别管这个了，应该走不了多远……|不管怎样，我们快去追吧！"/>
+  <Enter/>
+  <Char id="kephi" pos="3 0" emotion="stop5"/>
+  <Msg name="胖墩" string="是啊！皮……皮蛋|先去找黄金指南针吧，快点找到，我就要去吃饭了……我饿了……"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="你们两个可恶的家伙！|好，决定了！我一定会亲手抓住那些两个家伙，夺回黄金指南针！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<hitPangPangUnit>
+	<!-- 캐릭터 : 2021.08.26 Update-->
+	<unit type='0'	id='0'		key='皮蛋'				texture='hitpang_enemy_cha_01'/>			<!-- 다오 -->						
+	<unit type='0'	id='1'		key='黑妞'				texture='hitpang_enemy_cha_02'/>			<!-- 디지니 -->						
+	<unit type='0'	id='2'		key='小强'				texture='hitpang_enemy_cha_03'/>			<!-- 모스 -->						
+	<unit type='0'	id='3'		key='胖墩'				texture='hitpang_enemy_cha_04'/>			<!-- 케피 -->						
+	<unit type='0'	id='4'		key='蓝蓝'				texture='hitpang_enemy_cha_05'/>			<!-- 마리드 -->						
+	<unit type='0'	id='5'		key='宝宝'				texture='hitpang_enemy_cha_06'/>			<!-- 배찌 -->						
+	<unit type='0'	id='6'		key='小乖'				texture='hitpang_enemy_cha_07'/>			<!-- 우니 -->						
+	<unit type='0'	id='7'		key='葱头'				texture='hitpang_enemy_cha_08'/>			<!-- 에띠 -->						
+	<unit type='0'	id='8'		key='海盗船长'			texture='hitpang_enemy_cha_09'/>			<!-- 로두마니 -->						
+	<unit type='0'	id='9'		key='吉米'				texture='hitpang_enemy_cha_10'/>			<!-- 모비 -->						
+	<unit type='0'	id='10'	key='嘟嘟'				texture='hitpang_enemy_cha_11'/>			<!-- 투투 -->						
+	<unit type='0'	id='11'	key='神秘工头'			texture='hitpang_enemy_cha_12'/>			<!-- 브로디 -->						
+	<unit type='0'	id='12'	key='茜茜'				texture='hitpang_enemy_cha_13'/>			<!-- 티이라 -->						
+	<unit type='0'	id='13'	key='尼欧'				texture='hitpang_enemy_cha_14'/>			<!-- 네오 -->						
+	<unit type='0'	id='14'	key='雯雯'				texture='hitpang_enemy_cha_15'/>			<!-- 첸첸 -->						
+	<unit type='0'	id='15'	key='卡洛儿'			texture='hitpang_enemy_cha_16'/>			<!-- 캐롤 -->						
+	<unit type='0'	id='16'	key='莉亚'				texture='hitpang_enemy_cha_17'/>			<!-- 코코 -->						
+	<unit type='0'	id='17'	key='奈琳'				texture='hitpang_enemy_cha_18'/>			<!-- 나린 -->						
+	<unit type='0'	id='18'	key='奈尔'				texture='hitpang_enemy_cha_19'/>			<!-- 너울 -->						
+	<unit type='0'	id='19'	key='亚瑟'				texture='hitpang_enemy_cha_20'/>			<!-- 아서 -->						
+	<unit type='0'	id='20'	key='亚瑟王'			texture='hitpang_enemy_cha_21'/>			<!-- 킹아서 -->						
+	<unit type='0'	id='21'	key='梅林'				texture='hitpang_enemy_cha_22'/>			<!-- 멀린 -->						
+	<unit type='0'	id='22'	key='莫德雷德'			texture='hitpang_enemy_cha_23'/>			<!-- 모드레드 -->						
+	<unit type='0'	id='23'	key='凯'					texture='hitpang_enemy_cha_24'/>			<!-- 케이 -->						
+	<unit type='0'	id='24'	key='领袖黑杰克'		texture='hitpang_enemy_cha_25'/>			<!-- 투탑 -->						
+	<unit type='0'	id='25'	key='克莉丝'			texture='hitpang_enemy_cha_26'/>			<!-- 크리스 -->						
+	<unit type='0'	id='26'	key='布蕾'				texture='hitpang_enemy_cha_27'/>			<!-- 프레이 -->						
+	<unit type='0'	id='27'	key='天使加百列'		texture='hitpang_enemy_cha_28'/>			<!-- 가브리엘 -->						
+	<unit type='0'	id='28'	key='托尔'				texture='hitpang_enemy_cha_29'/>			<!-- 토르 -->						
+	<unit type='0'	id='29'	key='洛基'				texture='hitpang_enemy_cha_30'/>			<!-- 로키 -->						
+	<unit type='0'	id='30'	key='奇奇'				texture='hitpang_enemy_cha_31'/>			<!-- 타키 -->						
+	<unit type='0'	id='31'	key='卡米拉'				texture='hitpang_enemy_cha_32'/>			<!-- 카밀라 -->						
+	<unit type='0'	id='32'	key='艾丽'				texture='hitpang_enemy_cha_33'/>			<!-- 아이리 -->						
+	<unit type='0'	id='33'	key='月熙'				texture='hitpang_enemy_cha_34'/>			<!-- 월희 -->						
+	<unit type='0'	id='34'	key='日影'				texture='hitpang_enemy_cha_35'/>			<!-- 일영 -->						
+	<unit type='0'	id='35'	key='阿星'				texture='hitpang_enemy_cha_36'/>			<!-- 레이 -->						
+	<unit type='0'	id='36'	key='辕飞佐助'			texture='hitpang_enemy_cha_37'/>			<!-- 토비 -->						
+	<unit type='0'	id='37'	key='阿泰尔'				texture='hitpang_enemy_cha_38'/>			<!-- 알타이르 -->						
+	<unit type='0'	id='38'	key='赫凯特'			texture='hitpang_enemy_cha_39'/>			<!-- 헤카테 -->						
+	<unit type='0'	id='39'	key='莫曼'				texture='hitpang_enemy_cha_40'/>			<!-- 머맨 -->						
+	<unit type='0'	id='40'	key='莫格瑞'				texture='hitpang_enemy_cha_41'/>			<!-- 머구리 -->						
+	<unit type='0'	id='41'	key='奥丁'				texture='hitpang_enemy_cha_42'/>			<!-- 오딘 -->						
+	<unit type='0'	id='42'	key='海姆达尔'			texture='hitpang_enemy_cha_43'/>			<!-- 헤임달 -->						
+	<unit type='0'	id='43'	key='麦迪娅'			texture='hitpang_enemy_cha_44'/>			<!-- 메디아 -->						
+	<unit type='0'	id='44'	key='美美'				texture='hitpang_enemy_cha_45'/>			<!-- 나이아드 -->						
+	<unit type='0'	id='45'	key='黛芙'				texture='hitpang_enemy_cha_46'/>			<!-- 데브 -->						
+	<unit type='0'	id='46'	key='赫拉克勒斯'		texture='hitpang_enemy_cha_47'/>			<!-- 헤라클레스 -->						
+	<unit type='0'	id='47'	key='宙斯'				texture='hitpang_enemy_cha_48'/>			<!-- 제우스 -->						
+	<unit type='0'	id='48'	key='雅典娜'				texture='hitpang_enemy_cha_49'/>			<!-- 아테나 -->						
+	<unit type='0'	id='49'	key='哈迪斯'				texture='hitpang_enemy_cha_50'/>			<!-- 하데스 -->						
+	<unit type='0'	id='50'	key='凯罗'				texture='hitpang_enemy_cha_51'/>			<!-- 케로 -->						
+	<unit type='0'	id='51'	key='贝洛'				texture='hitpang_enemy_cha_52'/>			<!-- 베로 -->	
+	<unit type='0'	id='52'	key='田禹治'			texture='hitpang_enemy_cha_53'/>		<!-- 전우치 중국 미출시 사용금지-->
+	<unit type='0'	id='53'	key='洪吉同'			texture='hitpang_enemy_cha_54'/>		<!-- 홍길동 중국 미출시 사용금지-->
+	<unit type='0'	id='54'	key='一枝梅'			texture='hitpang_enemy_cha_55'/>		<!-- 일지매 -->
+	<unit type='0'	id='55'	key='九尾狐'			texture='hitpang_enemy_cha_56'/>		<!-- 구미호 -->
+	<unit type='0'	id='56'	key='萨维奇'			texture='hitpang_enemy_cha_57'/>		<!-- 새비지 -->
+	<unit type='0'	id='57'	key='古代君主'			texture='hitpang_enemy_cha_58'/>		<!-- 파라오 -->
+	<unit type='0'	id='58'	key='少尉'			texture='hitpang_enemy_cha_59'/>		<!-- 렉스 -->
+	<unit type='0'	id='59'	key='莉莉'			texture='hitpang_enemy_cha_60'/>		<!-- 리리 사용금지-->
+	<unit type='0'	id='60'	key='奈珑'			texture='hitpang_enemy_cha_61'/>		<!-- 나일론 -->
+	<unit type='0'	id='61'	key='暗夜骑士'		texture='hitpang_enemy_cha_62'/>		<!-- 데스 나이트 -->
+	<unit type='0'	id='62'	key='泽因'			texture='hitpang_enemy_cha_63'/>		<!-- 제인 -->
+	<unit type='0'	id='63'	key='黑鸟医生'		texture='hitpang_enemy_cha_64'/>		<!-- 까마귀 의사 -->
+
+	<!-- 카트 바디 : 2021.08.26 Update-->
+	<unit type='1'	id='0'	key='练习用卡丁车'	texture='hitpang_enemy_kart_01'/>		<!-- 연습카트 / X 엔진 -->						
+	<unit type='1'	id='1'	key='棉花糖'				texture='hitpang_enemy_kart_02'/>		<!-- 코튼 / X 엔진 -->						
+	<unit type='1'	id='2'	key='爆烈'				texture='hitpang_enemy_kart_03'/>		<!-- 버스트 / X 엔진 -->						
+	<unit type='1'	id='3'	key='合金'				texture='hitpang_enemy_kart_04'/>		<!-- 솔리드 / X 엔진 -->						
+	<unit type='1'	id='4'	key='马拉松'			texture='hitpang_enemy_kart_05'/>		<!-- 마라톤 / X 엔진 -->						
+	<unit type='1'	id='5'	key='尖锋'				texture='hitpang_enemy_kart_06'/>		<!-- 세이버 / X 엔진 -->						
+	<unit type='1'	id='6'	key='黑骑士'			texture='hitpang_enemy_kart_07'/>		<!-- 흑기사 / X 엔진 -->						
+	<unit type='1'	id='7'	key='光明骑士'			texture='hitpang_enemy_kart_08'/>		<!-- 백기사 / X 엔진 -->						
+	<unit type='1'	id='8'	key='黄金骑士'			texture='hitpang_enemy_kart_09'/>		<!-- 황금기사 / X 엔진 -->						
+	<unit type='1'	id='9'	key='游侠'				texture='hitpang_enemy_kart_10'/>		<!-- 파라곤 / X 엔진 -->						
+	<unit type='1'	id='10'	key='R8'					texture='hitpang_enemy_kart_11'/>		<!-- 스펙터 / X 엔진 -->						
+	<unit type='1'	id='11'	key='怪物'				texture='hitpang_enemy_kart_12'/>		<!-- 스팅레이 / X 엔진 -->						
+	<unit type='1'	id='12'	key='巨兽'				texture='hitpang_enemy_kart_13'/>		<!-- 베히모스 / X 엔진 -->						
+	<unit type='1'	id='13'	key='海德拉'				texture='hitpang_enemy_kart_14'/>		<!-- 히드라 / X 엔진 -->						
+	<unit type='1'	id='14'	key='熔岩'				texture='hitpang_enemy_kart_15'/>		<!-- 마그마 / X 엔진 -->						
+	<unit type='1'	id='15'	key='等离子'				texture='hitpang_enemy_kart_16'/>		<!-- 플라즈마 / X 엔진 -->						
+	<unit type='1'	id='16'	key='离子'				texture='hitpang_enemy_kart_17'/>		<!-- 이온 / X 엔진 -->						
+	<unit type='1'	id='17'	key='敞篷跑车'			texture='hitpang_enemy_kart_18'/>		<!-- 로디 / X 엔진 -->						
+	<unit type='1'	id='18'	key='王者之剑'			texture='hitpang_enemy_kart_19'/>		<!-- 엑스칼리버 / X 엔진 -->						
+	<unit type='1'	id='19'	key='突袭'				texture='hitpang_enemy_kart_20'/>		<!-- 스트라이크 / X 엔진 -->						
+	<unit type='1'	id='20'	key='贝斯特'			texture='hitpang_enemy_kart_21'/>		<!-- 바스테트 / X 엔진 -->						
+	<unit type='1'	id='21'	key='弩车'				texture='hitpang_enemy_kart_22'/>		<!-- 채리엇 / X 엔진 -->						
+	<unit type='1'	id='22'	key='黑手党'				texture='hitpang_enemy_kart_23'/>		<!-- 마피아 / X 엔진 -->						
+	<unit type='1'	id='23'	key='马桶车'			texture='hitpang_enemy_kart_24'/>		<!-- 루루 / X 엔진 -->						
+	<unit type='1'	id='24'	key='毛笔'				texture='hitpang_enemy_kart_25'/>		<!-- 붓 / X 엔진 -->						
+	<unit type='1'	id='25'	key='黑狐'				texture='hitpang_enemy_kart_26'/>		<!-- 폭스 / X 엔진 -->						
+	<unit type='1'	id='26'	key='电音'				texture='hitpang_enemy_kart_27'/>		<!-- 비트 / X 엔진 -->						
+	<unit type='1'	id='27'	key='星陨'				texture='hitpang_enemy_kart_28'/>		<!-- 페이라 / X 엔진 -->						
+	<unit type='1'	id='28'	key='地狱犬'			texture='hitpang_enemy_kart_29'/>		<!-- 켈베로스 / X 엔진 -->						
+	<unit type='1'	id='29'	key='胶鞋车'			texture='hitpang_enemy_kart_30'/>		<!-- 곰신 / X 엔진 -->						
+	<unit type='1'	id='30'	key='魔力花篮车'		texture='hitpang_enemy_kart_31'/>		<!-- 꽃마차 / X 엔진 -->						
+	<unit type='1'	id='31'	key='白鲸'				texture='hitpang_enemy_kart_32'/>		<!-- 모비딕 / X 엔진 -->						
+	<unit type='1'	id='32'	key='刀锋'				texture='hitpang_enemy_kart_33'/>		<!-- 쉐퍼 / X 엔진 -->						
+	<unit type='1'	id='33'	key='影刺'				texture='hitpang_enemy_kart_34'/>		<!-- 멘티스 / X 엔진 -->						
+	<unit type='1'	id='34'	key='阿特密斯'			texture='hitpang_enemy_kart_35'/>		<!-- 아르테미스 / X 엔진 -->						
+	<unit type='1'	id='35'	key='黑色甲虫'			texture='hitpang_enemy_kart_36'/>		<!-- 블랙비틀 /  -->						
+	<unit type='1'	id='36'	key='天蝎'				texture='hitpang_enemy_kart_37'/>		<!-- 스토커 / JIU 엔진 -->						
+	<unit type='1'	id='37'	key='黯泣'				texture='hitpang_enemy_kart_38'/>		<!-- 홍련 / JIU 엔진 -->						
+	<unit type='1'	id='38'	key='消防车'			texture='hitpang_enemy_kart_39'/>		<!-- 소방차 / JIU 엔진 -->						
+	<unit type='1'	id='39'	key='咕咕鸡'			texture='hitpang_enemy_kart_40'/>		<!-- 금계 / JIU 엔진 -->						
+	<unit type='1'	id='40'	key='马格南'			texture='hitpang_enemy_kart_41'/>		<!-- 매그넘 / JIU 엔진 -->						
+	<unit type='1'	id='41'	key='黑鲨'				texture='hitpang_enemy_kart_42'/>		<!-- 블랙샤크 / X 엔진 -->						
+	<unit type='1'	id='42'	key='猩猩'				texture='hitpang_enemy_kart_43'/>		<!-- 고릴라 / X 엔진 -->						
+	<unit type='1'	id='43'	key='轰炸机'			texture='hitpang_enemy_kart_44'/>		<!-- 에이스 / X 엔진 -->						
+	<unit type='1'	id='44'	key='机械鲨鱼'			texture='hitpang_enemy_kart_45'/>		<!-- 기계상어 / X 엔진 -->						
+	<unit type='1'	id='45'	key='纵帆海盗船'		texture='hitpang_enemy_kart_46'/>		<!-- 스쿠너 / X 엔진 -->						
+	<unit type='1'	id='46'	key='足球'				texture='hitpang_enemy_kart_47'/>		<!-- 축구공 / X 엔진 -->						
+	<unit type='1'	id='47'	key='亥伯龙神'			texture='hitpang_enemy_kart_48'/>		<!-- 히페리온 / X 엔진 -->						
+	<unit type='1'	id='48'	key='博特'				texture='hitpang_enemy_kart_49'/>		<!-- 볼트 / X 엔진 -->						
+	<unit type='1'	id='49'	key='针嘴兽'			texture='hitpang_enemy_kart_50'/>		<!-- 가피시 / X 엔진 -->						
+	<unit type='1'	id='50'	key='正义'				texture='hitpang_enemy_kart_51'/>		<!-- 저스티스 / X 엔진 -->						
+	<unit type='1'	id='51'	key='低音'				texture='hitpang_enemy_kart_52'/>		<!-- 우퍼 / X 엔진 -->						
+	<unit type='1'	id='52'	key='奶酪'				texture='hitpang_enemy_kart_53'/>		<!-- 치즈 / X 엔진 -->						
+	<unit type='1'	id='53'	key='音律'				texture='hitpang_enemy_kart_54'/>		<!-- 웨이브 / X 엔진 -->						
+	<unit type='1'	id='54'	key='永恒之枪'			texture='hitpang_enemy_kart_55'/>		<!-- 궁니르 / X 엔진 -->						
+	<unit type='1'	id='55'	key='雷神之锤'			texture='hitpang_enemy_kart_56'/>		<!-- 묠니르 / X 엔진 -->						
+	<unit type='1'	id='56'	key='鹦鹉螺'			texture='hitpang_enemy_kart_57'/>		<!-- 앵무조개 / X 엔진 -->						
+	<unit type='1'	id='57'	key='奥林匹斯'			texture='hitpang_enemy_kart_58'/>		<!-- 올림포스 / X 엔진 -->						
+	<unit type='1'	id='58'	key='电光'				texture='hitpang_enemy_kart_59'/>		<!-- 라이트닝 / X 엔진 -->						
+	<unit type='1'	id='59'	key='黑色甲虫'			texture='hitpang_enemy_kart_60'/>		<!-- 블랙비틀 / X 엔진 -->						
+	<unit type='1'	id='60'	key='影刺'				texture='hitpang_enemy_kart_61'/>		<!-- 멘티스 / X 엔진 -->						
+	<unit type='1'	id='61'	key='刀锋'				texture='hitpang_enemy_kart_62'/>		<!-- 쉐퍼 / X 엔진 -->						
+	<unit type='1'	id='62'	key='棉花糖'				texture='hitpang_enemy_kart_63'/>		<!-- 코튼 / V1 엔진 -->						
+	<unit type='1'	id='63'	key='爆烈'				texture='hitpang_enemy_kart_64'/>		<!-- 버스트 / V1 엔진 -->						
+	<unit type='1'	id='64'	key='马桶车'			texture='hitpang_enemy_kart_65'/>		<!-- 루루 / V1 엔진 -->						
+	<unit type='1'	id='65'	key='合金'				texture='hitpang_enemy_kart_66'/>		<!-- 솔리드 / V1 엔진 -->						
+	<unit type='1'	id='66'	key='电音'				texture='hitpang_enemy_kart_67'/>		<!-- 비트 / V1 엔진 -->						
+	<unit type='1'	id='67'	key='马拉松'			texture='hitpang_enemy_kart_68'/>		<!-- 마라톤 / V1 엔진 -->						
+	<unit type='1'	id='68'	key='月兔'			texture='hitpang_enemy_kart_69'/>		<!-- 달토끼 V1 -->
+	<unit type='1'	id='69'	key='尖锋'			texture='hitpang_enemy_kart_70'/>		<!-- 세이버 V1 -->
+	<unit type='1'	id='70'	key='先驱者'		texture='hitpang_enemy_kart_71'/>		<!-- 에스토크 V1 -->
+	<unit type='1'	id='71'	key='胶鞋车'			texture='hitpang_enemy_kart_72'/>		<!-- 곰신 V1 -->
+	<unit type='1'	id='72'	key='鬼火'		texture='hitpang_enemy_kart_73'/>		<!-- 도깨비불 V1 -->
+	<unit type='1'	id='73' key='黑虎'		    texture='hitpang_enemy_kart_74'/>		<!-- 흑호 -->
+	<unit type='1'	id='74' key='威龙'		    texture='hitpang_enemy_kart_75'/>		<!-- 스톰 -->
+	<unit type='1'	id='75' key='黑狐'		    texture='hitpang_enemy_kart_76'/>		<!-- 폭스 -->
+	<unit type='1'	id='76' key='掠夺者虎啸'		texture='hitpang_enemy_kart_77'/>		<!-- 그믐 산군 -->
+	<unit type='1'	id='77' key='黑暗裁决者'		    texture='hitpang_enemy_kart_78'/>		<!-- 어벤저 -->
+	<unit type='1'	id='78' key='光明裁决者'		    texture='hitpang_enemy_kart_79'/>		<!-- 리벤저 -->
+	<unit type='1'	id='79' key='蒸汽火车'		    texture='hitpang_enemy_kart_80'/>		<!-- 트레인 -->
+	<unit type='1'	id='80' key='涂鸦'		texture='hitpang_enemy_kart_81'/>		<!-- 그래피티 -->
+	<unit type='1'	id='81' key='魔怪'		    texture='hitpang_enemy_kart_82'/>		<!-- 몬스터 -->
+	<unit type='1'	id='82' key='塞贝克'		    texture='hitpang_enemy_kart_83'/>		<!-- 세베크 -->
+	<unit type='1'	id='83' key='囚车'		    texture='hitpang_enemy_kart_84'/>		<!-- 귀양 -->
+	<unit type='1'	id='84' key='离子'		    texture='hitpang_enemy_kart_85'/>		<!-- 이온 -->
+	<unit type='1'	id='85' key='R8'		    texture='hitpang_enemy_kart_86'/>		<!-- 스펙터 -->
+	<unit type='1'	id='86' key='骷髅骑兵'		    texture='hitpang_enemy_kart_87'/>		<!-- 골머리 -->
+	<unit type='1'	id='87' key='正义'		texture='hitpang_enemy_kart_88'/>		<!-- 저스티스 -->
+	<unit type='1'	id='88' key='等离子'		texture='hitpang_enemy_kart_89'/>		<!-- 플라즈마 -->
+	<unit type='1'	id='89' key='吉甘蒂斯'		texture='hitpang_enemy_kart_90'/>		<!-- 기간테스 -->
+	<unit type='1'	id='90' key='轰炸机'		    texture='hitpang_enemy_kart_91'/>		<!-- 에이스 -->
+	<unit type='1'	id='91' key='地狱犬'		texture='hitpang_enemy_kart_92'/>		<!-- 켈베로스 -->
+	<unit type='1'	id='92' key='赛博银翼'		    texture='hitpang_enemy_kart_93'/>		<!-- 사이버 실버 윙즈 -->
+	<unit type='1'	id='93' key='利维坦'		texture='hitpang_enemy_kart_94'/>		<!-- 레비아탄 -->
+	<unit type='1'	id='94' key='雷霆'		    texture='hitpang_enemy_kart_95'/>		<!-- 박스터 -->
+	<unit type='1'	id='95' key='冲浪板'		texture='hitpang_enemy_kart_96'/>		<!-- 서핑 보드 -->
+	<unit type='1'	id='96' key='小提琴'		texture='hitpang_enemy_kart_97'/>		<!-- 바이올린 -->
+	<unit type='1'	id='97' key='黑骑士'		    texture='hitpang_enemy_kart_98'/>		<!-- 흑기사 -->
+	<unit type='1'	id='98' key='音律'		    texture='hitpang_enemy_kart_99'/>		<!-- 웨이브 -->
+	<unit type='1'	id='99' key='猩猩'		    texture='hitpang_enemy_kart_100'/>		<!-- 고릴라 -->
+	<unit type='1'	id='100' key='猎影敞篷跑车'	texture='hitpang_enemy_kart_101'/>		<!-- 로디 크로스 -->
+	<unit type='1'	id='101' key='天浪'		    texture='hitpang_enemy_kart_102'/>		<!-- 렉키 -->
+	<unit type='1'	id='102' key='未上市'		texture='hitpang_enemy_kart_103'/>		<!-- 데몬플레임 중국 미출시 사용금지 -->
+	<unit type='1'	id='103' key='石磨'		    texture='hitpang_enemy_kart_104'/>		<!-- 맷돌 -->
+	<unit type='1'	id='104' key='南瓜糖果'		texture='hitpang_enemy_kart_105'/>		<!-- 호박 캔디 -->
+
+	<!-- 아이템 -->
+	<unit type='2'	id='0'		key='水苍蝇'			texture='hitpang_enemy_item_01'/>											<!-- 물파리 -->
+	<unit type='2'	id='1'		key='水炸弹'			texture='hitpang_enemy_item_04' range='135'/>							<!-- 물폭탄 -->
+	<unit type='2'	id='2'		key='乌云'				texture='hitpang_enemy_item_07' duration='3000'/>						<!-- 먹구름 -->
+	<unit type='2'	id='3'		key='大魔王'				texture='hitpang_enemy_item_03' duration='1000' range='0'/>			<!-- 대마왕 -->
+	<unit type='2'	id='4'		key='加速器'				texture='hitpang_enemy_item_02' duration='2000'/>						<!-- 부스터 -->
+	<unit type='2'	id='5'		key='飞碟'				texture='hitpang_enemy_item_05' duration='2000'/>						<!-- 우주선 -->
+	<unit type='2'	id='6'		key='闪电'				texture='hitpang_enemy_item_06'/>											<!-- 벼락 -->	
+		
+
+</hitPangPangUnit>

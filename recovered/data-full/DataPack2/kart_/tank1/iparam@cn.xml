@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='3.2'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='tank1'
+
+	SpecialSlotCapacity='2'
+	EnvMap='true'
+
+	UseTransformBooster='true'	
+	TransAccelFactor='1.68'
+	TransformTime='700'
+
+	StartForwardAccelFactorItem='1.2'
+	StartBoosterTimeItem='1200'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zerosub'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zeroplus'
+	BoosterType3='zeroplus'
+
+	Port0='mod2a3'
+	Port1='mod2a4'
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 246 0'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '40'
+	DescStability ='43'
+	DescEngineGrade='1.2'
+	DescCornering='3'
+	DescEnchantCap = '25'
+
+/>
+
+<!--중국 케피탱크 Z7+ 상점 판매 121016 -->

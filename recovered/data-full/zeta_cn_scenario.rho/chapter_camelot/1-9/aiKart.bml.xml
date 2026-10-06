@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <AiKart id="1" track="forest_I05" isFixedKart="true" fixedKartId="1220" isFixedChar="true" fixedCharId="314" laps="3" gameType="item">
+    <LevelContent level="0" isAiItemFree="false" item="Rocket;WaterBomb;Booster;WaterFly" aiItemLevel="1">
+      <AiKart characterId="317" uniformId="0" kartId="1140" colorId="84" dyeId="84" balloonId="0" speed="45" accel="32" startTick="0" characterName="莫德雷德"/>
+      <AiKart characterId="319" uniformId="0" kartId="1220" colorId="1" dyeId="1" balloonId="0" speed="44" accel="31" startTick="0" characterName="卡美洛士兵"/>
+      <AiKart characterId="319" uniformId="0" kartId="1220" colorId="1" dyeId="1" balloonId="0" speed="44" accel="32" startTick="0" characterName="卡美洛士兵"/>
+      <AiKart characterId="319" uniformId="0" kartId="1220" colorId="1" dyeId="1" balloonId="0" speed="43" accel="33" startTick="0" characterName="卡美洛士兵"/>
+    </LevelContent>
+  </AiKart>
+</Root>

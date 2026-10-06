@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <ImageBoard name="backGround" windowRect="fullscreen" image="clubList_img_baseBG" alphaBlend="true"/>
+  <Panel name="menuTab" leftTopWH="400 44 226 38" texture="club_img_menuBG1" alphaBlend="true" visible="true">
+    <ImageButton name="myClub" leftTopTex="0 0" align="vcenter" autoLoadImage="club_btn_menuTab2_" alphaBlend="true" text="#sb(myClub)" textAlign="vcenter" stringPos="40 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148"/>
+    <ImageButton name="createClub" leftTopTex="0 0" align="vcenter" autoLoadImage="club_btn_menuTab1_" alphaBlend="true" text="#sb(createClub)" textAlign="vcenter" stringPos="40 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148"/>
+    <ImageButton name="clubList" leftTopTex="114 0" align="vcenter" autoLoadImage="club_btn_menuTab3_" alphaBlend="true" text="#sb(clubList)" textAlign="vcenter" stringPos="40 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148" enable="false"/>
+  </Panel>
+  <Window name="clubInfoTab" leftTopWH="0 95 310 35">
+    <ImageButton name="selectClubInfo" leftTopTex="0 0" align="vcenter" autoLoadImage="club_btn_tab2_" alphaBlend="true" text="#sb(selectClubInfo)" textAlign="center" stringPos="0 0" textRender="bold" textColor="255 230 240 247" overTextRender="bold" overTextColor="255 22 92 159" clickedTextRender="bold" clickedTextColor="255 22 92 159" disabledTextRender="bold" disabledTextColor="255 22 92 159" enable="false"/>
+  </Window>
+  <Window name="clubInfoWindow" leftTopWH="0 130 355 580">
+    <Panel name="clubMark" leftTopWH="0 56 100 100" align="hcenter" alphaBlend="true" visible="false"/>
+    <Label name="clubName" leftTopWH="0 15 250 15" align="hcenter" text="" textAlign="center" textRender="bold" textColor="white"/>
+    <Label leftTopWH="20 180 50 15" text="#sb(clubLevel)" textAlign="vcenter" textRender="bold" textColor="255 90 101 113"/>
+    <Label name="clubLevel" leftTopWH="0 180 330 15" adjust="20 0" text="" textAlign="right" textRender="bold" textColor="255 60 60 60"/>
+    <Label leftTopWH="20 215 250 15" text="#sb(clubLeader)" textAlign="vcenter" textRender="bold" textColor="255 90 101 113"/>
+    <Label name="clubMasterName" leftTopWH="0 215 330 15" text="" textAlign="right" textRender="bold" textColor="255 60 60 60"/>
+    <Label leftTopWH="20 248 50 15" text="#sb(clubMemberCount)" textAlign="vcenter" textRender="bold" textColor="255 90 101 113"/>
+    <Label name="currentMemberCount" leftTopWH="0 248 280 15" adjust="40 0" text="" textAlign="right" textRender="bold" textColor="255 60 60 60"/>
+    <Label name="maxMemberCount" leftTopWH="0 248 330 15" adjust="-10 0" text="" textAlign="right" textRender="bold" textColor="255 110 110 110"/>
+    <Label leftTopWH="20 280 250 15" text="#sb(clubCreateDate)" textAlign="vcenter" textRender="bold" textColor="255 90 101 113"/>
+    <Label name="clubCreateDate" leftTopWH="0 280 330 15" text="" textAlign="right" textRender="bold" textColor="255 60 60 60"/>
+    <Label leftTopWH="20 317 50 15" text="#sb(clubActivityPointWeeklyLb)" textAlign="vcenter" textRender="bold" textColor="255 90 101 113"/>
+    <Panel name="activityPointGauge" leftTopWH="157 311 178 20" texture="myClub_img_gaugeBar" alphaBlend="true" alphaTest="true" visible="true"/>
+    <Label name="currClubAp" leftTopWH="160 315 75 15" adjust="20 0" text="" enable="true" textColor="255 255 255 255" textRender="bold" multiLine="false" autoWrap="true" textAlign="right;vcenter"/>
+    <Label name="divClubAp" leftTopWH="230 315 30 15" adjust="40 0" text="/" enable="true" textColor="255 255 255 255" textRender="bold" multiLine="false" autoWrap="true" textAlign="center"/>
+    <Label name="maxClubAp" leftTopWH="255 315 75 15" adjust="50 0" text="" enable="true" textColor="255 255 255 255" textRender="bold" multiLine="false" autoWrap="true" textAlign="left;vcenter"/>
+    <Label leftTopWH="20 350 50 15" text="#sb(clubIntroduce)" textAlign="vcenter" textRender="bold" textColor="255 90 101 113"/>
+    <Label name="clubIntroStr" leftTopWH="19 370 319 100" text="#sb(defaultClubIntro)" textColor="255 60 60 60" textAlign="center" multiLine="true" autoWrap="true"/>
+    <Label name="clubJoinState" leftTopWH="20 482 320 15" text="" textAlign="vcenter;right" textRender="bold" textColor="255 90 101 113"/>
+    <ImageButton name="clubJoin" leftTopTex="2 517" align="hcenter" autoLoadImage="club_btn_select2_@zz" alphaBlend="true" enable="false"/>
+  </Window>
+  <Container leftTopWH="360 133 390 22" adjust="0 0">
+    <Label leftTopWH="22 0 660 27" text="#sb(registClubList)" textRender="bold" textAlign="vcenter" textColor="255 230 243 254"/>
+    <Label leftTopWH="36 30 106 27" text="#sb(clubName)" textAlign="vcenter" textColor="255 225 240 250"/>
+    <Edit name="clubNameEdit" leftTopWH="25 57 210 25" textColor="white" textBgColor="none" frame="NoFrame" textAlign="center"/>
+    <Label leftTopWH="291 30 106 27" text="#sb(clubMasterName)" textAlign="vcenter" textColor="255 225 240 250"/>
+    <Edit name="clubMasterEdit" leftTopWH="278 57 210 25" textColor="white" textBgColor="none" frame="NoFrame" textAlign="center"/>
+    <ImageButton name="clubSearch" leftTopTex="515 33" autoLoadImage="clubList_btn_searching_@zz" alphaBlend="true" enable="true">
+      <Label leftTopWH="30 0 106 48" text="#sb(find)" textRender="bold" textAlign="hcenter;vcenter" textColor="255 230 240 245"/>
+    </ImageButton>
+  </Container>
+  <Window name="clubInfoLists" leftTopWH="363 222 658 417">
+    <Label name="header_1" leftTopWH="12 0 150 27" text="#sb(clubName)" textColor="255 184 198 210" textAlign="center"/>
+    <Container leftTopWH="164 0 60 27" text="#sb(clubLevel)" altText="#sb(clubHelpGuide_clubLv)" adjust="0 0">
+      <Panel texture="club_img_questionMark" leftTopWH="47 0 10 10" align="vcenter" alphaBlend="true" enable="false"/>
+      <Label name="header_2" leftTopWH="0 0 60 27" text="#sb(clubLv)" altRelativePos="0 -30" textColor="255 184 198 210" textAlign="center"/>
+    </Container>
+    <Container leftTopWH="214 0 105 27" text="#sb(clubActivityPoint)" altText="#sb(clubHelpGuide_clubCS)" adjust="0 0">
+      <Panel texture="club_img_questionMark" leftTopWH="83 0 10 10" align="vcenter" alphaBlend="true" enable="false"/>
+      <Label name="header_3" leftTopWH="0 0 105 27" text="#sb(clubActivityPoint)" altText="#sb(clubHelpGuide_clubCS)" altRelativePos="0 -30" textColor="255 184 198 210" textAlign="center"/>
+    </Container>
+    <Container leftTopWH="309 0 85 27" text="#sb(clubActivityPointWeekly)" altText="#sb(clubHelpGuide_clubCSWeekly)" adjust="0 0">
+      <Panel texture="club_img_questionMark" leftTopWH="66 0 10 10" align="vcenter" alphaBlend="true" enable="false"/>
+      <Label name="header_4" leftTopWH="0 0 85 27" text="#sb(clubActivityPointWeekly)" altText="#sb(clubHelpGuide_clubCSWeekly)" altRelativePos="0 -30" textColor="255 184 198 210" textAlign="center"/>
+    </Container>
+    <Label name="header_5" leftTopWH="402 0 95 27" text="#sb(clubLeader)" textColor="255 184 198 210" textAlign="center"/>
+    <Label name="header_6" leftTopWH="497 0 75 27" text="#sb(clubMemberCount)" textColor="255 184 198 210" textAlign="center"/>
+    <Label name="header_7" leftTopWH="572 0 85 27" text="#sb(clubCreateDate)" textColor="255 184 198 210" textAlign="center"/>
+    <GridSelector name="storageGridSelector" leftTopWH="-1 29 600 540" alignStyle="horizontal" alignSize="1" maxLine="12" alignMargin="1 0" clientMargin="0 0 0 0">
+      <Window name="clubInfo_0" leftTopWH="0 0 600 30"/>
+      <Window name="clubInfo_1" leftTopWH="0 30 600 30"/>
+      <Window name="clubInfo_2" leftTopWH="0 60 600 30"/>
+      <Window name="clubInfo_3" leftTopWH="0 90 600 30"/>
+      <Window name="clubInfo_4" leftTopWH="0 120 600 30"/>
+      <Window name="clubInfo_5" leftTopWH="0 150 600 30"/>
+      <Window name="clubInfo_6" leftTopWH="0 180 600 30"/>
+      <Window name="clubInfo_7" leftTopWH="0 210 600 30"/>
+      <Window name="clubInfo_8" leftTopWH="0 240 600 30"/>
+      <Window name="clubInfo_9" leftTopWH="0 270 600 30"/>
+      <Window name="clubInfo_10" leftTopWH="0 300 600 30"/>
+      <Window name="clubInfo_11" leftTopWH="0 330 600 30"/>
+    </GridSelector>
+    <Container leftTopWH="0 0 146 22" adjust="0 0" align="hcenter;bottom">
+      <Label name="currPage" windowRect="10 5 68 11" text="1" textAlign="right" textRender="bold" textColor="255 255 255 255" autoSizing="false" enable="false"/>
+      <Label name="divPage" windowRect="0 0 30 11" align="center" text="/" textAlign="center" textRender="bold" textColor="255 186 197 208" autoSizing="false" enable="false"/>
+      <Label name="maxPage" windowRect="78 5 80 11" text="1" textAlign="left" textRender="bold" textColor="255 186 197 208" autoSizing="false" enable="false"/>
+      <ImageButton name="prevPage" leftTopTex="0 0" autoLoadImage="club_btn_pageLeft1_" alphaBlend="true"/>
+      <ImageButton name="nextPage" leftTopTex="0 0" align="right" autoLoadImage="club_btn_pageRight1_" alphaBlend="true"/>
+    </Container>
+  </Window>
+  <Container name="myClubInfo" leftTopWH="363 650 658 58">
+    <Label leftTopWH="19 0 660 25" text="#sb(myClubInfo)" textRender="bold" textAlign="vcenter" textColor="255 230 243 254"/>
+    <Window name="myClubInfo_empty" leftTopWH="-2 25 660 33" visible="false">
+      <ImageBoard name="myClubCoverPanel" image="club_img_myClubCover" alphaBlend="true" visible="true">
+        <Label leftTopWH="0 0 660 33" text="#sb(notJonedClub)" textAlign="hcenter;vcenter" textColor="255 175 185 195"/>
+      </ImageBoard>
+    </Window>
+    <Window name="myClubInfo_wait" leftTopWH="-2 25 658 33" visible="false">
+      <Panel name="myClub_clubMark" text="1" windowSize="20 20" adjust="14 6" alphaBlend="true" enable="true" visible="true"/>
+      <Label name="myClub_Name" text="1" windowSize="95 27" adjust="48 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="left;vcenter"/>
+      <Label name="myClub_Level" text="1" windowSize="50 27" adjust="177 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="center"/>
+      <Label name="myClub_APTotal" text="1" windowSize="90 27" adjust="220 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="right;vcenter"/>
+      <Label name="myClub_APWeekly" text="1" windowSize="70 27" adjust="324 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="right;vcenter"/>
+      <Label name="myClub_MasterRid" text="1" windowSize="95 27" adjust="403 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="center"/>
+      <Label name="myClub_State" text="#sb(club_Assessmenting)" windowSize="75 27" adjust="500 4" enable="true" textColor="255 59 240 0" multiLine="false" autoWrap="true" textAlign="center"/>
+      <ImageButton name="clubJoinCancel" leftTopTex="579 4" autoLoadImage="clubList_btn_joinCancel_" alphaBlend="true">
+        <Label text="#sb(clubJoin_Cancel)" windowSize="70 24" textAlign="right;vcenter" textRender="bold" textColor="255 81 91 101"/>
+      </ImageButton>
+    </Window>
+    <Window name="myClubInfo_Joined" leftTopWH="0 25 658 33" visible="false">
+      <Panel name="myClub_clubMark" text="1" windowSize="20 20" adjust="14 6" alphaBlend="true" enable="true" visible="true"/>
+      <Label name="myClub_Name" text="1" windowSize="95 27" adjust="48 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="left;vcenter"/>
+      <Label name="myClub_Level" text="1" windowSize="50 27" adjust="177 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="center"/>
+      <Label name="myClub_APTotal" text="1" windowSize="90 27" adjust="220 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="right;vcenter"/>
+      <Label name="myClub_APWeekly" text="1" windowSize="70 27" adjust="324 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="right;vcenter"/>
+      <Label name="myClub_MasterRid" text="1" windowSize="95 27" adjust="403 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="center"/>
+      <Label name="myClub_RealCrewCount" text="1" windowSize="25 27" adjust="505 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="right;vcenter"/>
+      <Label name="myClub_div" windowSize="10 27" adjust="530 4" text="/" enable="true" textColor="255 186 197 208" multiLine="false" autoWrap="true" textAlign="center"/>
+      <Label name="myClub_MaxCrewCount" text="1" windowSize="25 27" adjust="540 4" enable="true" textColor="255 186 197 208" multiLine="false" autoWrap="true" textAlign="left;vcenter"/>
+      <Label name="myClub_CreateDate" text="1" windowSize="85 27" adjust="575 4" enable="true" textColor="255 227 235 242" multiLine="false" autoWrap="true" textAlign="center"/>
+    </Window>
+  </Container>
+</Container>

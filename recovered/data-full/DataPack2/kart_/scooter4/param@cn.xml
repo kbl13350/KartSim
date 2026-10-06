@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='146.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.079'
+	SteerConstraint='2.9'
+	DriftEscapeForce='1700'
+	CornerDrawFactor='0.069'
+
+	BoosterBlur='true'
+	EngineSound='bike8'
+
+	WaveEffect='true'
+	motorcycleType='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.788'
+	TransformTime='200'
+
+	StartForwardAccelFactorSpeed = '1.8'
+	StartBoosterTimeSpeed='1250'           
+
+	NormalBoosterTime = '-200'
+	TeamBoosterTime = '-500'
+	DriftMaxGauge = '-1400'
+	DriftGaguePreservePercent='0.5'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8main'
+	BoosterType4='8sub'
+	BoosterType5='8sub'
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1b1'
+	FirePort1='mod1b2'
+	FirePort2='mod1b3'
+	FirePort3='mod1b4'
+
+	TailLampSize='0.1'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '40'
+	DescStability ='40'
+	DescEngineGrade='1.25'
+	DescCornering='2'
+	DescEnchantCap = '30'
+	
+	SpeedSlotCapacity='3'
+
+>
+	<ShortTrail TailLampSize='0.1' TailLampColor='0 0 255 255' trailPort3='mod1b3' trailPort4='mod1b4'/>
+</BodyParam>
+
+
+<!--스티어 HT 120808 고가 가챠폰 레어-->

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="exceedTypeChangeCaption">
+    <m c="kr" v="익시드 타입 변경"/>
+    <m c="cn" v="超负荷类型变更"/>
+  </k>
+  <k n="type">
+    <m c="kr" v="타입"/>
+    <m c="cn" v="类型"/>
+  </k>
+  <k n="ingredient">
+    <m c="kr" v="재료"/>
+    <m c="cn" v="材料车辆"/>
+  </k>
+  <k n="targetKart">
+    <m c="kr" v="대상 카트바디"/>
+    <m c="cn" v="变更车辆"/>
+  </k>
+  <k n="exceedAccel">
+    <m c="kr" v="익시드 가속도"/>
+    <m c="cn" v="超负荷加速度"/>
+  </k>
+  <k n="exceedTime">
+    <m c="kr" v="익시드 시간"/>
+    <m c="cn" v="超负荷时间"/>
+  </k>
+  <k n="changeIngredient">
+    <m c="kr" v="변경 재료"/>
+    <m c="cn" v="变更材料"/>
+  </k>
+  <k n="kartCount">
+    <m c="kr" v="보유 카트 : %d대"/>
+    <m c="cn" v="持有车辆： %d辆"/>
+  </k>
+  <k n="ethisSpanner">
+    <m c="kr" v="에띠의 스패너"/>
+    <m c="cn" v="葱头的扳手"/>
+  </k>
+  <k n="charge">
+    <m c="kr" v="수수료"/>
+    <m c="cn" v="手续费"/>
+  </k>
+  <k n="holdingAmount">
+    <m c="kr" v="보유량"/>
+    <m c="cn" v="持有数量"/>
+  </k>
+  <k n="selectSlotStr">
+    <m c="kr" v="재료 카트바디를 선택해주세요."/>
+    <m c="cn" v="请选择材料车辆"/>
+  </k>
+  <k n="helpStr1">
+    <m c="kr" v="대상 카트바디와 동일한 등급 이상의 카트바디를 재료로 사용해서 익시드 타입을 변경할 수 있어."/>
+    <m c="cn" v="可使用与变更车辆相同或及其以上等级的车辆为材料变更超负荷类型。"/>
+  </k>
+  <k n="helpStr2">
+    <m c="kr" v="대상 카트바디의 익시드 타입은 재료 카트바디의 익시드 타입으로 변경돼."/>
+    <m c="cn" v="当前车辆的超负荷类型将变更为材料车辆的超负荷类型。"/>
+  </k>
+  <k n="helpStr3">
+    <m c="kr" v="익시드 타입 변경에 사용된 재료 카트바디는 사라진다는 점 명심해."/>
+    <m c="cn" v="记住！作为超负荷类型更改材料的车辆将会消失哦！"/>
+  </k>
+  <k n="exceedTypeChangeCheckStr">
+    <m c="kr" v="[color:255 179 195 228]대상 카트바디의 익시드 타입을[/color] %s[color:255 179 195 228]로 변경합니다. [/color]|[color:255 240 105 58]기존 익시드 타입의 기능 및 재료는 사라집니다.[/color]"/>
+    <m c="cn" v="[color:255 179 195 228]将车辆的超负荷类型变更为[/color]%s[color:255 179 195 228]。[/color]|[color:255 240 105 58]原有的超负荷类型功能及材料将消失。[/color]"/>
+  </k>
+  <k n="rankdomExceedTypeChangeCheckStr">。
+    <m c="kr" v="[color:255 179 195 228]대상 카트바디의 익시드 타입이[/color] 확률에 따라 S/L/B중 하나로 랜덤[color:255 179 195 228]으로 변경되며, 재료는 사라집니다.[/color]|[color:255 240 105 58]주의: S/L/B외 특수 익시드 타입(L시간, B충돌, S가속 등)은|변경 후 되돌릴 수 없습니다.[/color]"/>
+    <m c="cn" v="[color:255 179 195 228]根据概率[/color]随机[color:255 179 195 228]变更超负荷类型为S/L/B其中一种，材料车辆将消失。[/color]|[color:255 240 105 58]注意：S/L/B之外的特殊类型（如：L时间/B碰撞/S加速等）|被变更后，将无法变更回去。[/color]"/>
+  </k>
+  <k n="exceedTypeChangeResultStr">
+    <m c="kr" v="[color:255 179 195 228]익시드 타입이[/color] %s[color:255 179 195 228]로 변경되었습니다.[/color]"/>
+    <m c="cn" v="[color:255 179 195 228]超负荷类型已变更为[/color]%s[color:255 179 195 228]。[/color]"/>
+  </k>
+</StringBag>

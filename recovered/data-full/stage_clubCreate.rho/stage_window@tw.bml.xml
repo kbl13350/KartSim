@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <ImageBoard name="backGround" windowRect="fullscreen" image="club_img_createBG" alphaBlend="true"/>
+  <Panel name="menuTab" leftTopWH="400 44 226 38" texture="club_img_menuBG1" alphaBlend="true" visible="true">
+    <ImageButton name="createClub" leftTopTex="0 0" align="vcenter" autoLoadImage="club_btn_menuTab1_" alphaBlend="true" text="#sb(createClub)" textAlign="vcenter" stringPos="40 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148" enable="false"/>
+    <ImageButton name="clubList" leftTopTex="114 0" align="vcenter" autoLoadImage="club_btn_menuTab3_" alphaBlend="true" text="#sb(clubList)" textAlign="vcenter" stringPos="40 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148"/>
+  </Panel>
+  <Panel name="clubCreateTitle" leftTopTex="390 84" texture="club_img_CreateTXT1@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+  <Container windowSize="405 450" adjust="95 150">
+    <Panel name="clubMarkSelectTitle" leftTopTex="5 23" texture="club_img_CreateTXT2@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+    <Window name="clubMarkSlotList" leftTopWH="0 52 400 400">
+      <GridSelector name="storageGridSelector" leftTopWH="0 14 600 540" alignStyle="horizontal" alignSize="3" maxLine="3" alignMargin="11 12" clientMargin="0 0 0 0">
+        <Window name="clubMarkSlot_0" leftTopWH="0 0 120 120"/>
+        <Window name="clubMarkSlot_1" leftTopWH="0 0 120 120"/>
+        <Window name="clubMarkSlot_2" leftTopWH="0 0 120 120"/>
+        <Window name="clubMarkSlot_3" leftTopWH="0 0 120 120"/>
+        <Window name="clubMarkSlot_4" leftTopWH="0 0 120 120"/>
+        <Window name="clubMarkSlot_5" leftTopWH="0 0 120 120"/>
+        <Window name="clubMarkSlot_6" leftTopWH="0 0 120 120"/>
+        <Window name="clubMarkSlot_7" leftTopWH="0 0 120 120"/>
+        <Window name="clubMarkSlot_8" leftTopWH="0 0 120 120"/>
+      </GridSelector>
+    </Window>
+  </Container>
+  <Container windowSize="450 450" adjust="500 160">
+    <Panel name="clubMarkTitle" leftTopTex="28 15" texture="club_img_CreateTXT3@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+    <Panel name="selectedClubMark" leftTopTex="173 68" texture="" alphaBlend="true" alphaTest="true" visible="true"/>
+    <Panel name="clubNameTitle" leftTopTex="28 194" texture="club_img_CreateTXT4@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+    <Edit name="clubNameEdit" windowRect="40 235 404 269" maxChar="10" marginRect="4 4 4 4" textColor="white" textBgColor="none" frame="NoFrame"/>
+    <Label name="clubNameGuide" windowRect="30 235 414 270" text="#sb(clubNameGuide)" textColor="255 144 153 163" marginRect="8 8 8 8"/>
+    <Panel name="clubInfoTitle" leftTopTex="28 285" texture="club_img_CreateTXT5@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+    <Edit name="clubInfoEdit" windowRect="40 336 404 426" maxChar="150" marginRect="4 4 4 4" textAlign="top" multiLine="true" autoWrap="true" textColor="white" textBgColor="none" frame="NoFrame"/>
+    <Label name="clubInfoGuide" windowRect="30 326 414 351" text="#sb(clubInfoGuide)" textColor="255 144 153 163" marginRect="8 8 8 8"/>
+  </Container>
+  <ImageButton name="createClubBtn" leftTopTex="0 620" align="hcenter" autoLoadImage="club_btn_createStart_@zz" alphaBlend="true" enable="true"/>
+</Container>

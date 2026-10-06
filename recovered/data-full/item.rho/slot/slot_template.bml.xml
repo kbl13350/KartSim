@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itemSlotSizeFormat>
+  <Slot type="0" rc="0 0 30 30" uvRc="0 98 30 128" itemNumPanelRc="0 0 0 0" adjustValue="0" showItemNumPanel="false"/>
+  <Slot type="1" rc="0 0 72 72" uvRc="0 0 72 72" itemNumPanel="36 30 16 22" adjustValue="4" showItemNumPanel="true"/>
+  <Slot type="2" rc="0 0 92 92" uvRc="72 0 164 92" itemNumPanel="52 46 16 22" adjustValue="4" showItemNumPanel="true"/>
+</itemSlotSizeFormat>

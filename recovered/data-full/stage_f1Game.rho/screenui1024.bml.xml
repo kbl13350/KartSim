@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 1024 768">
+  <Panel leftTopWH="0 0 1024 768" texture="ingame_shadow" alphaBlend="true"/>
+  <CharPanel name="recording" windowSize="108 38" align="right" adjust="40 164" texture="녹화중@zz" alphaBlend="true" fontSize="108 38" fontPos="0 0" fontStr="012" text=" 0"/>
+  <XmlFile file="timeInfo@zz"/>
+  <Window name="digit2" windowSize="218 136" align="right;top" adjust="0 20">
+    <Container name="crushInfo" windowRect="109 136 217 153">
+      <Panel leftTopTex="-85 -3" texture="laptime_crush@zz" alphaBlend="true"/>
+      <CharPanel name="crushCnt" windowRect="0 0 60 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    </Container>
+  </Window>
+  <Window name="rankboard" windowRect="0 149 229 200">
+    <TonCharPanel name="myrank10" windowRect="0 -6 43 46" texture="big_num" alphaBlend="true" fontSize="43 52" fontStr="0123456789" text="1" fontPos="0 0"/>
+    <TonCharPanel name="myrank" windowRect="36 -6 79 46" texture="big_num" alphaBlend="true" fontSize="43 52" fontStr="0123456789" text="1" fontPos="0 0"/>
+    <Panel leftTopTex="80 20" texture="diagonal" alphaBlend="true"/>
+    <CharPanel name="riderCount" windowRect="86 21 126 46" texture="small_num" alphaBlend="true" fontSize="20 25" fontStr="0123456789" fontPos="0 0" text="20" spaceOffset="0"/>
+    <RankList name="ranklist" windowRect="0 71 229 515"/>
+  </Window>
+</Container>

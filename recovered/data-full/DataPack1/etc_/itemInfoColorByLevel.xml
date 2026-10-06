@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ItemInfoColor>
+	<type name='itemNameLabel' value='0'>	<!-- 이름 -->
+		<itemColor grade='7' color='255 255 143 26' />
+		<itemColor grade='6' color='255 255 222 0' />
+		<itemColor grade='5' color='255 10 250 240' />
+		<itemColor grade='4' color='255 150 150 150' />
+		<itemColor grade='3' color='255 255 42 255' />
+		<itemColor grade='2' color='255 255 167 29' />
+		<itemColor grade='1' color='255 232 39 6' />
+		<itemColor grade='0' color='255 150 150 150' />
+	</type>
+	<type name='itemTitlePanel' value='1'>	<!-- 타이틀패널 색상 -->
+		<itemColor grade='7' color='255 255 143 26' />
+		<itemColor grade='6' color='255 186 0 0' />
+		<itemColor grade='5' color='255 89 228 217' />
+		<itemColor grade='4' color='255 202 202 202' />
+		<itemColor grade='3' color='255 230 91 248' />
+		<itemColor grade='2' color='255 254 219 0' />
+		<itemColor grade='1' color='255 248 72 54' />
+		<itemColor grade='0' color='255 202 202 202' />
+	</type>
+	<type name='garageMainItemNameLabel' value='2'>	<!-- 차고 메인 아이템 색상 -->
+		<itemColor grade='7' color='255 255 120 0' color2='255 98 44 5'/>
+		<itemColor grade='6' color='255 209 0 0' color2='255 81 4 4'/>
+		<itemColor grade='5' color='255 10 250 240' color2='255 0 114 118'/>
+		<itemColor grade='4' color='255 150 150 150' color2='255 57 57 57'/>
+		<itemColor grade='3' color='255 253 93 255' color2='255 169 14 175'/>
+		<itemColor grade='2' color='255 255 167 29' color2='255 109 70 8'/>
+		<itemColor grade='1' color='255 255 78 54' color2='255 156 19 0'/>
+		<itemColor grade='0' color='255 150 150 150' color2='255 57 57 57'/>
+	</type>
+</ItemInfoColor>

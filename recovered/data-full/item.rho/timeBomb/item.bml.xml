@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="timeBomb">
+  <repaint texture="water_돔"/>
+  <repaint texture="water_돔1"/>
+  <repaint texture="water_돔02"/>
+  <repaint texture="waterdrop1@zz"/>
+  <repaint texture="w-boom"/>
+  <repaint texture="w-boom_02"/>
+  <repaint texture="wdome@zz"/>
+  <repaint texture="wdome_boom@zz"/>
+  <repaint texture="wdome1@zz"/>
+  <repaint texture="물풍선03"/>
+  <state name="Use" life="3000" itemFx="firing"/>
+  <state name="Set" life="1000" item="물방울터짐" size="15.0" itemFx="set"/>
+  <state name="Affect" life="2000" fired="물방울갇힘_일반" firedFx="trapped"/>
+  <state name="EscapeAffect" life="2000" fired="물방울갇힘_일반" firedFx="trapped" firing="파란방패"/>
+  <state name="SpecialShield" life="2000"/>
+  <state name="AfterBoost" life="0"/>
+  <state name="Use" life="100" firing="emp_firing"/>
+  <state name="Set" life="1000" item="emp_affect" size="15.0" itemFx="001_EMP 발동"/>
+  <state name="Affect" life="2000" firedFx="002_EMP피격"/>
+  <state name="EscapeAffect" life="2000" firing="파란방패"/>
+  <state name="SpecialShield" life="2000"/>
+  <state name="AfterBoost" life="0"/>
+  <state name="Use" life="100" firing="emp_firing"/>
+  <state name="Set" life="1000" item="emp_affect" size="15.0" itemFx="001_EMP 발동"/>
+  <state name="Affect" life="2000" fired="물방울갇힘_일반" firedFx="trapped"/>
+  <state name="EscapeAffect" life="2000" fired="물방울갇힘_일반" firedFx="trapped" firing="파란방패"/>
+  <state name="SpecialShield" life="2000"/>
+  <state name="AfterBoost" life="0"/>
+</item>

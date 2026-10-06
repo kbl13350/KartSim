@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot15"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="就我一个人被淘汰了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="merlin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="梅林" string="我不是跟你说过不要太大意嘛~呵~呵~呵~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop4"/>
+  <Msg name="宝宝" string="皮蛋，我会拿下冠军的，不要太失望了~哈哈"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kei" pos="10 0" emotion="normal"/>
+  <Msg name="凯" string="现在只剩我们3人了。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="13 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="13 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="是的，现在只剩梅林，凯和宝宝勇士3位了。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="12 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="12 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="接下来进行通往决赛的最后阶段！"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="正赛4阶段主题是[烦恼之丘]。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="躲避斜坡上的障碍物到达终点就算成功。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="normal"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="最终阶段会淘汰一名选手，优先完成的两位先手将晋级决赛。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="凯，没想到你能进入最终阶段。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="kei" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="只是运气好而已。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="运气再好也是需要一定是实力的~|期待你能取得好成绩。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="kei" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="凯" string="我会尽力的。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="10 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="10 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="准备好了吗？"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="merlin" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="梅林" string="是，随时准备完毕~"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="准备完毕！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kei" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="凯" string="是。"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="8 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="8 0" emotion="stop5"/>
+  <Msg name="亚瑟王" string="正赛最终阶段正式开始。"/>
+  <Enter/>
+</Scene>

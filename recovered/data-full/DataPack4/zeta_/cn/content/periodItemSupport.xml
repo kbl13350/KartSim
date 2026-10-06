@@ -1,0 +1,743 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<itemSetList>
+		<itemSet id='1'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30019' />
+						<item stockId='30011' />
+						<item stockId='30012' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+						<item stockId='31294' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30015' />
+						<item stockId='30016' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='30018' />
+						<item stockId='29996' />
+						<item stockId='29994' />
+				</itemKart>
+				<character>
+						<item stockId='27023' />
+						<item stockId='23671' />
+						<item stockId='27024' />
+						<item stockId='4120' />
+				</character>
+				<pet>
+						<item stockId='29012' />
+						<item stockId='19144' />
+						<item stockId='16977' />
+						<item stockId='4056' />
+				</pet>
+				<flyingPet>
+						<item stockId='12370' />
+						<item stockId='12372' />
+						<item stockId='12374' />
+						<item stockId='12371' />
+				</flyingPet>
+				<balloon>
+						<item stockId='28948' />
+						<item stockId='30630' />
+						<item stockId='29563' />
+						<item stockId='29564' />
+				</balloon>
+				<goggle>
+						<item stockId='15690' />
+						<item stockId='17155' />
+						<item stockId='22798' />
+						<item stockId='21067' />
+				</goggle>
+				<headBand>
+						<item stockId='26891' />
+						<item stockId='21520' />
+						<item stockId='23653' />
+						<item stockId='24178' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='19202' />
+						<item stockId='21458' />
+						<item stockId='28380' />
+						<item stockId='16272' />
+				</aura>
+				<paint>
+						<item stockId='27521' />
+						<item stockId='27519' />
+						<item stockId='28429' />
+						<item stockId='115' />
+				</paint>
+		</itemSet>
+		<itemSet id='2'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30008' />
+						<item stockId='30019' />
+						<item stockId='30011' />
+						<item stockId='30012' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30015' />
+						<item stockId='30016' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='30018' />
+						<item stockId='29996' />
+						<item stockId='29995' />
+				</itemKart>
+				<character>
+						<item stockId='27838' />
+						<item stockId='29171' />
+						<item stockId='31295' />
+						<item stockId='31296' />
+				</character>
+				<pet>
+						<item stockId='6095' />
+						<item stockId='3529' />
+						<item stockId='21342' />
+						<item stockId='1810' />
+				</pet>
+				<flyingPet>
+						<item stockId='12373' />
+						<item stockId='21648' />
+						<item stockId='19857' />
+						<item stockId='19858' />
+				</flyingPet>
+				<balloon>
+						<item stockId='29159' />
+						<item stockId='29169' />
+						<item stockId='27834' />
+						<item stockId='31080' />
+				</balloon>
+				<goggle>
+						<item stockId='20816' />
+						<item stockId='23491' />
+						<item stockId='21101' />
+						<item stockId='17297' />
+				</goggle>
+				<headBand>
+						<item stockId='22675' />
+						<item stockId='22676' />
+						<item stockId='17369' />
+						<item stockId='17371' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='19205' />
+						<item stockId='953' />
+						<item stockId='1945' />
+						<item stockId='7304' />
+				</aura>
+				<paint>
+						<item stockId='4442' />
+						<item stockId='28431' />
+						<item stockId='16286' />
+						<item stockId='21289' />
+				</paint>
+		</itemSet>
+		<itemSet id='3'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30008' />
+						<item stockId='30019' />
+						<item stockId='30011' />
+						<item stockId='30012' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30016' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='30018' />
+						<item stockId='29996' />
+						<item stockId='29994' />
+						<item stockId='30020' />
+				</itemKart>
+				<character>
+						<item stockId='27023' />
+						<item stockId='23671' />
+						<item stockId='30172' />
+						<item stockId='4115' />
+				</character>
+				<pet>
+						<item stockId='29012' />
+						<item stockId='21342' />
+						<item stockId='1810' />
+						<item stockId='4056' />
+				</pet>
+				<flyingPet>
+						<item stockId='12370' />
+						<item stockId='12372' />
+						<item stockId='19856' />
+						<item stockId='19859' />
+				</flyingPet>
+				<balloon>
+						<item stockId='28948' />
+						<item stockId='30630' />
+						<item stockId='3322' />
+						<item stockId='27846' />
+				</balloon>
+				<goggle>
+						<item stockId='15690' />
+						<item stockId='17155' />
+						<item stockId='23652' />
+						<item stockId='24100' />
+				</goggle>
+				<headBand>
+						<item stockId='26891' />
+						<item stockId='21520' />
+						<item stockId='11951' />
+						<item stockId='17409' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='19202' />
+						<item stockId='21458' />
+						<item stockId='15539' />
+						<item stockId='1939' />
+				</aura>
+				<paint>
+						<item stockId='27521' />
+						<item stockId='27519' />
+						<item stockId='4431' />
+						<item stockId='2841' />
+				</paint>
+		</itemSet>
+		<itemSet id='4'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30008' />
+						<item stockId='30011' />
+						<item stockId='30012' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+						<item stockId='30528' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30015' />
+						<item stockId='30016' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='30018' />
+						<item stockId='29996' />
+						<item stockId='29994' />
+				</itemKart>
+				<character>
+						<item stockId='27023' />
+						<item stockId='27024' />
+						<item stockId='27838' />
+						<item stockId='31295' />
+				</character>
+				<pet>
+						<item stockId='6095' />
+						<item stockId='19144' />
+						<item stockId='28422' />
+						<item stockId='21342' />
+				</pet>
+				<flyingPet>
+						<item stockId='12370' />
+						<item stockId='12374' />
+						<item stockId='12373' />
+						<item stockId='19857' />
+				</flyingPet>
+				<balloon>
+						<item stockId='28948' />
+						<item stockId='29563' />
+						<item stockId='29159' />
+						<item stockId='27834' />
+				</balloon>
+				<goggle>
+						<item stockId='15690' />
+						<item stockId='22798' />
+						<item stockId='20816' />
+						<item stockId='21101' />
+				</goggle>
+				<headBand>
+						<item stockId='26891' />
+						<item stockId='23653' />
+						<item stockId='22675' />
+						<item stockId='17369' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='19202' />
+						<item stockId='28380' />
+						<item stockId='19205' />
+						<item stockId='1945' />
+				</aura>
+				<paint>
+						<item stockId='27521' />
+						<item stockId='28429' />
+						<item stockId='4442' />
+						<item stockId='16286' />
+				</paint>
+		</itemSet>
+		<itemSet id='5'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30008' />
+						<item stockId='30019' />
+						<item stockId='30012' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+						<item stockId='31294' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30015' />
+						<item stockId='30016' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='30018' />
+						<item stockId='29996' />
+						<item stockId='29994' />
+				</itemKart>
+				<character>
+						<item stockId='23671' />
+						<item stockId='4120' />
+						<item stockId='29171' />
+						<item stockId='31296' />
+				</character>
+				<pet>
+						<item stockId='29012' />
+						<item stockId='16977' />
+						<item stockId='3529' />
+						<item stockId='13148' />
+				</pet>
+				<flyingPet>
+						<item stockId='12372' />
+						<item stockId='12371' />
+						<item stockId='21648' />
+						<item stockId='19858' />
+				</flyingPet>
+				<balloon>
+						<item stockId='30630' />
+						<item stockId='29564' />
+						<item stockId='29169' />
+						<item stockId='31080' />
+				</balloon>
+				<goggle>
+						<item stockId='17155' />
+						<item stockId='21067' />
+						<item stockId='23491' />
+						<item stockId='17297' />
+				</goggle>
+				<headBand>
+						<item stockId='21520' />
+						<item stockId='24178' />
+						<item stockId='22676' />
+						<item stockId='17371' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='21458' />
+						<item stockId='16272' />
+						<item stockId='953' />
+						<item stockId='7304' />
+				</aura>
+				<paint>
+						<item stockId='27519' />
+						<item stockId='115' />
+						<item stockId='28431' />
+						<item stockId='21289' />
+				</paint>
+		</itemSet>
+		<itemSet id='6'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30008' />
+						<item stockId='30019' />
+						<item stockId='30011' />
+						<item stockId='30012' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30015' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='30018' />
+						<item stockId='29996' />
+						<item stockId='29994' />
+						<item stockId='29995' />
+				</itemKart>
+				<character>
+						<item stockId='4120' />
+						<item stockId='29171' />
+						<item stockId='31296' />
+						<item stockId='4115' />
+				</character>
+				<pet>
+						<item stockId='16977' />
+						<item stockId='3529' />
+						<item stockId='13148' />
+						<item stockId='4056' />
+				</pet>
+				<flyingPet>
+						<item stockId='12371' />
+						<item stockId='21648' />
+						<item stockId='19858' />
+						<item stockId='19859' />
+				</flyingPet>
+				<balloon>
+						<item stockId='29564' />
+						<item stockId='29169' />
+						<item stockId='31080' />
+						<item stockId='27846' />
+				</balloon>
+				<goggle>
+						<item stockId='21067' />
+						<item stockId='23491' />
+						<item stockId='17297' />
+						<item stockId='24100' />
+				</goggle>
+				<headBand>
+						<item stockId='24178' />
+						<item stockId='22676' />
+						<item stockId='17371' />
+						<item stockId='17409' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='16272' />
+						<item stockId='953' />
+						<item stockId='7304' />
+						<item stockId='1939' />
+				</aura>
+				<paint>
+						<item stockId='115' />
+						<item stockId='28431' />
+						<item stockId='21289' />
+						<item stockId='2841' />
+				</paint>
+		</itemSet>
+		<itemSet id='7'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30008' />
+						<item stockId='30019' />
+						<item stockId='30011' />
+						<item stockId='30012' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30015' />
+						<item stockId='30016' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='29996' />
+						<item stockId='29994' />
+						<item stockId='30020' />
+				</itemKart>
+				<character>
+						<item stockId='27023' />
+						<item stockId='27024' />
+						<item stockId='27838' />
+						<item stockId='31295' />
+				</character>
+				<pet>
+						<item stockId='29012' />
+						<item stockId='16977' />
+						<item stockId='3529' />
+						<item stockId='13148' />
+				</pet>
+				<flyingPet>
+						<item stockId='12374' />
+						<item stockId='12373' />
+						<item stockId='19857' />
+						<item stockId='19856' />
+				</flyingPet>
+				<balloon>
+						<item stockId='29564' />
+						<item stockId='29169' />
+						<item stockId='31080' />
+						<item stockId='27846' />
+				</balloon>
+				<goggle>
+						<item stockId='22798' />
+						<item stockId='20816' />
+						<item stockId='21101' />
+						<item stockId='23652' />
+				</goggle>
+				<headBand>
+						<item stockId='24178' />
+						<item stockId='22676' />
+						<item stockId='17371' />
+						<item stockId='17409' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='28380' />
+						<item stockId='19205' />
+						<item stockId='1945' />
+						<item stockId='15539' />
+				</aura>
+				<paint>
+						<item stockId='115' />
+						<item stockId='28431' />
+						<item stockId='21289' />
+						<item stockId='2841' />
+				</paint>
+		</itemSet>
+		<itemSet id='8'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30008' />
+						<item stockId='30019' />
+						<item stockId='30011' />
+						<item stockId='30012' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30015' />
+						<item stockId='30016' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='30018' />
+						<item stockId='29996' />
+						<item stockId='29994' />
+				</itemKart>
+				<character>
+						<item stockId='23671' />
+						<item stockId='27838' />
+						<item stockId='31296' />
+						<item stockId='4115' />
+				</character>
+				<pet>
+						<item stockId='19144' />
+						<item stockId='28422' />
+						<item stockId='3529' />
+						<item stockId='1810' />
+				</pet>
+				<flyingPet>
+						<item stockId='12370' />
+						<item stockId='12371' />
+						<item stockId='19857' />
+						<item stockId='19859' />
+				</flyingPet>
+				<balloon>
+						<item stockId='30630' />
+						<item stockId='29159' />
+						<item stockId='31080' />
+						<item stockId='27846' />
+				</balloon>
+				<goggle>
+						<item stockId='15690' />
+						<item stockId='22798' />
+						<item stockId='23491' />
+						<item stockId='23652' />
+				</goggle>
+				<headBand>
+						<item stockId='26891' />
+						<item stockId='24178' />
+						<item stockId='17369' />
+						<item stockId='17409' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='21458' />
+						<item stockId='19205' />
+						<item stockId='7304' />
+						<item stockId='1939' />
+				</aura>
+				<paint>
+						<item stockId='27521' />
+						<item stockId='28429' />
+						<item stockId='28431' />
+						<item stockId='4431' />
+				</paint>
+		</itemSet>
+		<itemSet id='9'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30008' />
+						<item stockId='30019' />
+						<item stockId='30011' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+						<item stockId='30528' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30015' />
+						<item stockId='30016' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='30018' />
+						<item stockId='29996' />
+						<item stockId='29994' />
+				</itemKart>
+				<character>
+						<item stockId='23671' />
+						<item stockId='27024' />
+						<item stockId='31296' />
+						<item stockId='30172' />
+				</character>
+				<pet>
+						<item stockId='6095' />
+						<item stockId='16977' />
+						<item stockId='3529' />
+						<item stockId='21342' />
+				</pet>
+				<flyingPet>
+						<item stockId='12372' />
+						<item stockId='12374' />
+						<item stockId='19858' />
+						<item stockId='19856' />
+				</flyingPet>
+				<balloon>
+						<item stockId='29564' />
+						<item stockId='29159' />
+						<item stockId='29169' />
+						<item stockId='27834' />
+				</balloon>
+				<goggle>
+						<item stockId='17155' />
+						<item stockId='22798' />
+						<item stockId='17297' />
+						<item stockId='23652' />
+				</goggle>
+				<headBand>
+						<item stockId='24178' />
+						<item stockId='22675' />
+						<item stockId='22676' />
+						<item stockId='17369' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='21458' />
+						<item stockId='28380' />
+						<item stockId='7304' />
+						<item stockId='15539' />
+				</aura>
+				<paint>
+						<item stockId='115' />
+						<item stockId='4442' />
+						<item stockId='28431' />
+						<item stockId='16286' />
+				</paint>
+		</itemSet>
+		<itemSet id='10'>
+				<speedKart>
+						<item stockId='27434' />
+						<item stockId='30014' />
+						<item stockId='30008' />
+						<item stockId='30019' />
+						<item stockId='30011' />
+						<item stockId='30012' />
+						<item stockId='30013' />
+						<item stockId='30021' />
+				</speedKart>
+				<itemKart>
+						<item stockId='27433' />
+						<item stockId='30015' />
+						<item stockId='30016' />
+						<item stockId='27844' />
+						<item stockId='30017' />
+						<item stockId='30018' />
+						<item stockId='29996' />
+						<item stockId='29994' />
+				</itemKart>
+				<character>
+						<item stockId='27023' />
+						<item stockId='4120' />
+						<item stockId='29171' />
+						<item stockId='4115' />
+				</character>
+				<pet>
+						<item stockId='29012' />
+						<item stockId='16977' />
+						<item stockId='21342' />
+						<item stockId='1810' />
+				</pet>
+				<flyingPet>
+						<item stockId='12374' />
+						<item stockId='12373' />
+						<item stockId='19858' />
+						<item stockId='19859' />
+				</flyingPet>
+				<balloon>
+						<item stockId='28948' />
+						<item stockId='29564' />
+						<item stockId='29169' />
+						<item stockId='3322' />
+				</balloon>
+				<goggle>
+						<item stockId='22798' />
+						<item stockId='20816' />
+						<item stockId='17297' />
+						<item stockId='24100' />
+				</goggle>
+				<headBand>
+						<item stockId='26891' />
+						<item stockId='24178' />
+						<item stockId='22676' />
+						<item stockId='11951' />
+				</headBand>
+				<changer>
+						<item stockId='27483' />
+						<item stockId='27482' />
+				</changer>
+				<aura>
+						<item stockId='21458' />
+						<item stockId='19205' />
+						<item stockId='7304' />
+						<item stockId='1939' />
+				</aura>
+				<paint>
+						<item stockId='27521' />
+						<item stockId='28429' />
+						<item stockId='28431' />
+						<item stockId='4431' />
+				</paint>
+		</itemSet>
+</itemSetList>

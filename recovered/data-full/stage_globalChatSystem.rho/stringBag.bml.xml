@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="chat_selectChannel">
+    <m c="kr" v="%s. 채널을 선택해 주세요."/>
+    <m c="jp" v="チャンネルを選択してください。"/>
+    <m c="cn" v="%s. 请选择频道"/>
+    <m c="tw" v="%s. 請選擇聊天頻道。"/>
+    <m c="id" v="%s. Silahkan memilih channel."/>
+  </k>
+  <k n="chat_selectServer">
+    <m c="kr" v="서버를 선택해 주세요."/>
+    <m c="jp" v="サーバーを選択してください。"/>
+    <m c="cn" v="请选择服务器"/>
+    <m c="tw" v="請選擇伺服器"/>
+    <m c="id" v="Silahkan memilih Server"/>
+  </k>
+  <k n="chat_serverSelect">
+    <m c="kr" v="서버 선택"/>
+    <m c="jp" v="サーバー選択"/>
+    <m c="cn" v="更换服务器"/>
+    <m c="tw" v="請選擇聊天伺服器"/>
+    <m c="id" v="Pilih Server"/>
+  </k>
+  <k n="chat_dialogClose">
+    <m c="kr" v="닫기"/>
+    <m c="jp" v="閉じる"/>
+    <m c="cn" v="关闭"/>
+    <m c="tw" v="關閉"/>
+    <m c="id" v="Tutup"/>
+  </k>
+  <k n="chat_nocrowd">
+    <m c="kr" v="원활"/>
+    <m c="jp" v="快適"/>
+    <m c="cn" v="空闲"/>
+    <m c="tw" v="順暢"/>
+    <m c="id" v="Normal"/>
+  </k>
+  <k n="chat_crowd">
+    <m c="kr" v="혼잡"/>
+    <m c="jp" v="混雑"/>
+    <m c="cn" v="拥挤"/>
+    <m c="tw" v="擁擠"/>
+    <m c="id" v="Busy"/>
+  </k>
+  <k n="chat_verycrowd">
+    <m c="kr" v="포화"/>
+    <m c="jp" v="満員"/>
+    <m c="cn" v="爆满"/>
+    <m c="tw" v="滿載"/>
+    <m c="id" v="Full"/>
+  </k>
+  <k n="sendTo0">
+    <m c="kr" v="모두에게"/>
+    <m c="jp" v="全員へ"/>
+    <m c="cn" v="所有人"/>
+    <m c="tw" v="整體"/>
+    <m c="id" v="Semua"/>
+  </k>
+  <k n="sendTo1">
+    <m c="kr" v="귓말하기"/>
+    <m c="jp" v="ささやく"/>
+    <m c="cn" v="悄悄话"/>
+    <m c="tw" v="悄悄話"/>
+    <m c="id" v="Wisper"/>
+  </k>
+  <k n="sendTo2">
+    <m c="kr" v="확성기"/>
+    <m c="jp" v="メガホン"/>
+    <m c="cn" v="喇叭"/>
+    <m c="tw" v="大聲公"/>
+    <m c="id" v="Megaphone"/>
+  </k>
+  <k n="selectSendTo">
+    <m c="kr" v="대상 변경"/>
+    <m c="jp" v="対象変更"/>
+    <m c="cn" v="变更聊天对象"/>
+    <m c="tw" v="變更聊天對象"/>
+    <m c="id" v="Ubah lawan"/>
+  </k>
+  <k n="chat_tabSwitch">
+    <m c="kr" v="[TAB]으로 채팅 대상 변경"/>
+    <m c="jp" v="[TAB]でチャット対象変更"/>
+    <m c="cn" v="可用[Tab]来更换聊天状态"/>
+    <m c="tw" v="請以[Tab]變更聊天對象"/>
+    <m c="id" v="[TAB] untuk mengubah lawan chatting"/>
+  </k>
+  <k n="chat_cantSendMegaphone">
+    <m c="kr" v="보유하고 있는 확성기가 없습니다. 확성기는 상점에서 구입하실 수 있습니다."/>
+    <m c="jp" v="保有しているメガホンがありません。 メガホンはショップで購入できます。"/>
+    <m c="cn" v="喇叭数量不足，喇叭可在商店中兑换。"/>
+    <m c="tw" v="您的角色並沒有持有聊天道具「大聲公」。可於商城購買「大聲公」。"/>
+    <m c="id" v="Tidak ada item megaphone.Item tersebut dapat dibeli di shop"/>
+  </k>
+  <k n="chat_notEnoughMegaphones">
+    <m c="kr" v="%s 을(를) 모두 사용했습니다."/>
+    <m c="jp" v="%sをすべて使用しました。"/>
+    <m c="cn" v="%s 已使用完。"/>
+    <m c="tw" v="已經用完全部的[%s]"/>
+    <m c="id" v="Telah menggunakan semua %s."/>
+  </k>
+  <k n="chat_noMoreMegaphones">
+    <m c="kr" v="확성기 없음"/>
+    <m c="jp" v="メガホンなし"/>
+    <m c="cn" v="喇叭已用完"/>
+    <m c="tw" v="目前沒有「大聲公」"/>
+    <m c="id" v="Tidak ada Megaphone"/>
+  </k>
+  <k n="chat_whisperPostfix">
+    <m c="kr" v="님에게"/>
+    <m c="jp" v="さんへ"/>
+    <m c="cn" v="发送给"/>
+    <m c="tw" v="給"/>
+    <m c="id" v="Kepada"/>
+  </k>
+  <k n="chat_whisperChatResultPrefix">
+    <m c="kr" v="%s님에게"/>
+    <m c="jp" v="%sさんへ"/>
+    <m c="cn" v="%s 发送给"/>
+    <m c="tw" v="%s 給"/>
+    <m c="id" v="Kepada %s"/>
+  </k>
+  <k n="chat_recvWhisperPostfix">
+    <m c="kr" v="%s 님의 귓말"/>
+    <m c="jp" v="%sさんのささやき"/>
+    <m c="cn" v="%s 的悄悄话"/>
+    <m c="tw" v="%s 的悄悄話"/>
+    <m c="id" v="Wisper dari %s"/>
+  </k>
+  <k n="chat_defaultWhisper">
+    <m c="kr" v="귓말 대상"/>
+    <m c="jp" v="ささやき対象"/>
+    <m c="cn" v="悄悄话对象"/>
+    <m c="tw" v="悄悄話對象"/>
+    <m c="id" v="Lawan Wisper"/>
+  </k>
+  <k n="chat_setWhisperRid">
+    <m c="kr" v="귓말을 보낼 라이더명을 입력하세요."/>
+    <m c="jp" v="ささやきを送るライダー名を入力してください。"/>
+    <m c="cn" v="请输入对方名称。"/>
+    <m c="tw" v="請輸入要傳送悄悄話的角色名稱"/>
+    <m c="id" v="Silahkan masukkan nama rider yang ingin kamu bisik."/>
+  </k>
+  <k n="chat_system">
+    <m c="kr" v="시스템"/>
+    <m c="jp" v="システム"/>
+    <m c="cn" v="系统"/>
+    <m c="tw" v="系統"/>
+    <m c="id" v="Sistem"/>
+  </k>
+  <k n="chat_notInSession">
+    <m c="kr" v="채팅채널에 접속중이 아닙니다."/>
+    <m c="jp" v="チャットチャンネルに接続中ではありません。"/>
+    <m c="cn" v="未连接聊天频道。"/>
+    <m c="tw" v="目前並未連線至聊天頻道中。"/>
+    <m c="id" v="Tidak sedang terhubung ke chatting channel"/>
+  </k>
+  <k n="chat_riderNotExist">
+    <m c="kr" v="%s님이 현재 채널에 없습니다."/>
+    <m c="jp" v="%sさんが現在のチャンネルにいません。"/>
+    <m c="cn" v="%s对方不在当前频道中。"/>
+    <m c="tw" v="%s 玩家並未在頻道上。"/>
+    <m c="id" v="%s sedang tidak berada di channel"/>
+  </k>
+  <k n="chat_cantSendWhisperToMe">
+    <m c="kr" v="본인에게는 귓말을 보낼 수 없습니다."/>
+    <m c="jp" v="自分にはささやきを送れません。"/>
+    <m c="cn" v="无法给自己发送悄悄话"/>
+    <m c="tw" v="無法傳送悄悄話給自己"/>
+    <m c="id" v="Tidak dapat wispe ke diri kamu sendiri."/>
+  </k>
+  <k n="chat_enterSuccess">
+    <m c="kr" v="%s %d채널에 입장하셨습니다.|다함께 즐거운 채팅을 해 보아요~!!"/>
+    <m c="jp" v="%s %dチャンネルに入場しました。|みんな楽しくチャットをしてみましょう!!"/>
+    <m c="cn" v="进入了%s服务器%d频道。"/>
+    <m c="tw" v="已經進入%s伺服器%d頻道，請和朋友們一起聊天吧～"/>
+    <m c="id" v="%s telah masuk ke %d channerl.|Silahkan coba chatting ~!!"/>
+  </k>
+  <k n="chat_warn10secBlock">
+    <m c="kr" v="채팅창 도배 방지를 위해 10초간 채팅이 금지됩니다."/>
+    <m c="jp" v="チャット連続発言防止のため、10秒間チャットが禁止されます。"/>
+    <m c="cn" v="为防止刷屏，聊天禁止10秒。"/>
+    <m c="tw" v="您的發言頻率太頻繁，因此於10秒內禁止發話聊天。"/>
+    <m c="id" v="Untuk mencegah spamming akan block chat selama 10 detik."/>
+  </k>
+  <k n="chat_notSupportOutWindow">
+    <m c="kr" v="지원하지 않는 기능입니다."/>
+    <m c="jp" v="未対応の機能です。"/>
+    <m c="cn" v="仅在窗口模式中支持。"/>
+    <m c="tw" v="只有視窗模式才支援此功能。"/>
+    <m c="id" v="Fitur yang tidak ada."/>
+  </k>
+  <k n="chat_closeReconfirm">
+    <m c="kr" v="채팅을 완전히 종료하시겠습니까?"/>
+    <m c="jp" v="チャットを終了しますか？"/>
+    <m c="cn" v="确定结束聊天吗？"/>
+    <m c="tw" v="要結束全部的聊天嗎？"/>
+    <m c="id" v="Ingin menutup semua chatting?"/>
+  </k>
+  <k n="chat_help">
+    <m c="kr" v="도움말"/>
+    <m c="jp" v="ヘルプ"/>
+    <m c="cn" v="帮助"/>
+    <m c="tw" v="小幫手"/>
+    <m c="id" v="Help"/>
+  </k>
+  <k n="chat_minimize">
+    <m c="kr" v="최소화"/>
+    <m c="jp" v="最小化"/>
+    <m c="cn" v="最小化"/>
+    <m c="tw" v="縮小"/>
+    <m c="id" v="Minimize"/>
+  </k>
+  <k n="chat_maximize">
+    <m c="kr" v="최대화"/>
+    <m c="jp" v="最大化"/>
+    <m c="cn" v="最大化"/>
+    <m c="tw" v="放大"/>
+    <m c="id" v="Maxmize"/>
+  </k>
+  <k n="chat_switch_addon">
+    <m c="kr" v="위치 변경"/>
+    <m c="jp" v="位置変更"/>
+    <m c="cn" v="位置变更"/>
+    <m c="tw" v="變更所在位置"/>
+    <m c="id" v="Ubah posisi"/>
+  </k>
+  <k n="chat_close">
+    <m c="kr" v="채팅 종료"/>
+    <m c="jp" v="チャット終了"/>
+    <m c="cn" v="结束聊天"/>
+    <m c="tw" v="結束聊天"/>
+    <m c="id" v="Tutup Chat"/>
+  </k>
+  <k n="chat_emo">
+    <m c="kr" v="이모티콘"/>
+    <m c="jp" v="絵文字"/>
+    <m c="cn" v="表情"/>
+    <m c="tw" v="表情符號"/>
+    <m c="id" v="Emoticon"/>
+  </k>
+  <k n="chat_curPos">
+    <m c="kr" v="현재 위치"/>
+    <m c="jp" v="現在の位置"/>
+    <m c="cn" v="目前位置"/>
+    <m c="tw" v="現在位置"/>
+    <m c="id" v="Lokasi sekarang"/>
+  </k>
+  <k n="chat_hide">
+    <m c="kr" v="숨기기"/>
+    <m c="jp" v="隠す"/>
+    <m c="cn" v="隐藏"/>
+    <m c="tw" v="隱藏"/>
+    <m c="id" v="Hide"/>
+  </k>
+  <k n="chat_chatHide">
+    <m c="kr" v="채팅 숨기기"/>
+    <m c="jp" v="チャット隠す"/>
+    <m c="cn" v="隐藏"/>
+    <m c="tw" v="隱藏聊天視窗"/>
+    <m c="id" v="Hide Chat"/>
+  </k>
+  <k n="chat_chatShow">
+    <m c="kr" v="채팅 보이기"/>
+    <m c="jp" v="チャット表示する"/>
+    <m c="cn" v="显示"/>
+    <m c="tw" v="解除隱藏聊天視窗"/>
+    <m c="id" v="Show Chat"/>
+  </k>
+  <k n="chat_erase">
+    <m c="kr" v="채팅  지우기"/>
+    <m c="jp" v="チャット消去"/>
+    <m c="cn" v="删除聊天记录"/>
+    <m c="tw" v="清除聊天內容"/>
+    <m c="id" v="Hapus Chat"/>
+  </k>
+  <k n="chat_disconnectFromChatServer">
+    <m c="kr" v="클럽 채팅 연결이 종료되었습니다."/>
+    <m c="jp" v="チャットサーバーとの接続が終了しました。"/>
+    <m c="cn" v="断开聊天链接。"/>
+    <m c="tw" v="與聊天伺服器連線中止。"/>
+    <m c="id" v="Koneksi ke Chatting server telah terputus."/>
+  </k>
+  <k n="chat_notSession">
+    <m c="kr" v="접속안됨(재접속)"/>
+    <m c="jp" v="接続できず(再接続)"/>
+    <m c="cn" v="无法连接（重新连接）"/>
+    <m c="tw" v="無法連線（再連線）"/>
+    <m c="id" v="Terputus(Retry)"/>
+  </k>
+  <k n="chat_inGame">
+    <m c="kr" v="채팅"/>
+    <m c="jp" v="チャット"/>
+    <m c="cn" v="聊天"/>
+    <m c="tw" v="聊天"/>
+    <m c="id" v="Chatting"/>
+  </k>
+  <k n="chat_back">
+    <m c="kr" v="뒤로가기"/>
+    <m c="jp" v="戻る"/>
+    <m c="cn" v="返回"/>
+    <m c="tw" v="上一頁"/>
+    <m c="id" v="Back"/>
+  </k>
+  <k n="chat_chatServerNotRunning">
+    <m c="kr" v="클럽 채팅에 연결되지 않았습니다."/>
+    <m c="cn" v="无法连接至聊天"/>
+  </k>
+  <k n="chat_chatServerConnect">
+    <m c="kr" v="클럽 채팅에 연결되었습니다"/>
+    <m c="cn" v="已连接至聊天"/>
+  </k>
+  <k n="chat_notFoundClub">
+    <m c="kr" v="가입되어 있는 클럽이 없습니다."/>
+    <m c="cn" v="没有可连接的聊天"/>
+  </k>
+  <k n="chat_defaultInput">
+    <m c="kr" v="채팅 내용을 입력하세요."/>
+    <m c="jp" v="チャット内容を入力してください。"/>
+    <m c="cn" v="请输入聊天内容"/>
+    <m c="tw" v="請輸入聊天內容"/>
+    <m c="id" v="Silahkan masukkan isi chatting."/>
+  </k>
+  <k n="chat_inputChatMsg">
+    <m c="kr" v="내용을 입력하세요."/>
+    <m c="jp" v="内容を入力してください。"/>
+    <m c="cn" v="请输入内容"/>
+    <m c="tw" v="請輸入內容"/>
+    <m c="id" v="Silahkan masukkan isi."/>
+  </k>
+  <k n="chat_connecting">
+    <m c="kr" v="채널 이동 중 입니다."/>
+    <m c="jp" v="チャンネル移動中です。"/>
+    <m c="cn" v="正在连接频道。"/>
+    <m c="tw" v="切換聊天頻道中。"/>
+    <m c="id" v="Sedang berpindah channel."/>
+  </k>
+  <k n="chat_connectFailed">
+    <m c="kr" v="채널 이동에 실패했습니다."/>
+    <m c="jp" v="チャンネル移動に失敗しました。"/>
+    <m c="cn" v="频道连接失败。"/>
+    <m c="tw" v="切換聊天頻道失敗。"/>
+    <m c="id" v="Gagal berpindah channel."/>
+  </k>
+  <k n="chat_session">
+    <m c="kr" v="%s(%d채널) - %d명"/>
+    <m c="jp" v="%s(%d) %d人"/>
+    <m c="cn" v="%s(%d) %d名"/>
+    <m c="tw" v="%s(%d) %d名"/>
+    <m c="id" v="%s(%dChannel) - %dOrang"/>
+  </k>
+  <k n="chat_sessionList">
+    <m c="kr" v="채널%d"/>
+    <m c="jp" v="チャンネル%d"/>
+    <m c="cn" v="频道%d"/>
+    <m c="tw" v="頻道%d"/>
+    <m c="id" v="Channel%d"/>
+  </k>
+  <k n="chat_prohibitCursedString">
+    <m c="kr" v="금지어가 포함되어 있습니다."/>
+    <m c="jp" v="禁止用語が含まれています。"/>
+    <m c="cn" v="聊天内容包含禁语。"/>
+    <m c="tw" v="您輸入的聊天文字中包含禁語。"/>
+    <m c="id" v="Ada kata-kata tidak senonoh."/>
+  </k>
+  <k n="chat_help_desc">
+    <m c="kr" v="단축키|[color:255 136 193 136][Scroll Lock][/color] : 채팅창 여닫기||명령어|[color:255 136 193 136]/이모티콘이름/[/color] : 이모티콘 입력"/>
+    <m c="jp" v="ショートカットキー|[color:255 136 193 136][tab][/color] : チャット対象を変更|[color:255 136 193 136][F2][/color] : チャットウィンドウを最小化||コマンド|[color:255 136 193 136]/w ID内容[/color] :入力したIDにささやく|[color:255 136 193 136]/ささやき ID 内容[/color] :入力したIDにささやく|[color:255 136 193 136]/絵文字名/[/color] : 絵文字入力"/>
+    <m c="cn" v="快捷键|[color:255 95 192 0][Scroll Lock][/color]：聊天窗最小化，弹出窗口中无法使用。|命令语|[color:255 95 192 0]/表情名称/[/color]：输入该表情。"/>
+    <m c="tw" v="快捷鍵|[color:255 136 193 136][tab][/color] : 變更聊天對象。|[color:255 136 193 136][F2][/color] : 縮小聊天視窗。||指令|[color:255 136 193 136]/w 內容[/color] : 把悄悄話傳送給所輸入的ID。|[color:255 136 193 136]/悄悄話 ID 內容[/color] : 把悄悄話傳送給所輸入的ID。|[color:255 136 193 136]/表情符號名稱/[/color] : 輸入該表情符號。"/>
+    <m c="id" v="Shortkey|[color:255 136 193 136][tab][/color] : Ubah lawan chatting|[color:255 136 193 136][F2][/color] : Minimize Chatting||Command|[color:255 136 193 136]/w Isi ID[/color] : Wisper ke ID tersebut|[color:255 136 193 136]/t Isi ID[/color] : Wisper ke ID tersebut|[color:255 136 193 136]/w Isi ID[/color] : Wisper ke ID tersebut|[color:255 136 193 136]/Nama Emoticon/[/color] : Masukkan Emoticon"/>
+  </k>
+  <k n="chat_whisperPrefix_0">
+    <m c="kr" v="/w "/>
+    <m c="jp" v="/w "/>
+    <m c="cn" v="/w"/>
+    <m c="tw" v="/w"/>
+    <m c="id" v="/w "/>
+  </k>
+  <k n="chat_whisperPrefix_1">
+    <m c="kr" v="/ㅈ "/>
+    <m c="jp" v="/w "/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+    <m c="id" v="/t"/>
+  </k>
+  <k n="chat_whisperPrefix_2">
+    <m c="kr" v="/r "/>
+    <m c="jp" v="/r "/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+    <m c="id" v="/r "/>
+  </k>
+  <k n="chat_whisperPrefix_3">
+    <m c="kr" v="/ㄱ "/>
+    <m c="jp" v="/r "/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+    <m c="id" v="/g"/>
+  </k>
+  <k n="chat_whisperPrefix_4">
+    <m c="kr" v="/귓말 "/>
+    <m c="jp" v="/ささやき"/>
+    <m c="cn" v="/悄悄话"/>
+    <m c="tw" v="/悄悄話"/>
+    <m c="id" v="/wispe"/>
+  </k>
+  <k n="chat_whisperPrefix_5">
+    <m c="kr" v="/W "/>
+    <m c="jp" v="/W "/>
+    <m c="cn" v="/W"/>
+    <m c="tw" v="/W"/>
+    <m c="id" v="/W"/>
+  </k>
+  <k n="chat_whisperPrefix_6">
+    <m c="kr" v="/R "/>
+    <m c="jp" v="/R "/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+    <m c="id" v="/r "/>
+  </k>
+  <k n="joinRider">
+    <m c="kr" v="입장"/>
+    <m c="tw" v="進場"/>
+    <m c="cn" v="进入"/>
+  </k>
+  <k n="leaveRider">
+    <m c="kr" v="퇴장"/>
+    <m c="tw" v="退場"/>
+    <m c="cn" v="退出"/>
+  </k>
+  <k n="allChat">
+    <m c="kr" v="전체채팅"/>
+    <m c="tw" v="全體聊天"/>
+    <m c="cn" v="全部聊天"/>
+  </k>
+  <k n="guildChat">
+    <m c="kr" v="길드채팅"/>
+    <m c="tw" v="車隊聊天"/>
+    <m c="cn" v="车队聊天"/>
+  </k>
+  <k n="clubChat">
+    <m c="kr" v="클럽 채팅"/>
+    <m c="cn" v="俱乐部聊天"/>
+    <m c="tw" v="俱樂部聊天"/>
+  </k>
+  <k n="chat_server_1">
+    <m c="kr" v="자유서버"/>
+    <m c="jp" v="フリートーク"/>
+    <m c="cn" v="新手交流(Ⅰ)"/>
+    <m c="tw" v="自由"/>
+    <m c="id" v="Free Server"/>
+  </k>
+  <k n="chat_server_1_desc">
+    <m c="kr" v="아무 얘기나 자유롭게~"/>
+    <m c="jp" v="どんな話でもご自由に～"/>
+    <m c="cn" v="想成高手？想走捷径？"/>
+    <m c="tw" v="可以自在的聊天"/>
+    <m c="id" v="Chatting bebas~"/>
+  </k>
+  <k n="chat_server_2">
+    <m c="kr" v="친목서버"/>
+    <m c="jp" v="フレンドリー"/>
+    <m c="cn" v="新手交流(Ⅱ)"/>
+    <m c="tw" v="和睦"/>
+    <m c="id" v="Friendly Server"/>
+  </k>
+  <k n="chat_server_2_desc">
+    <m c="kr" v="친목다지기 인맥넓히기"/>
+    <m c="jp" v="フレンドリーに友達"/>
+    <m c="cn" v="想成高手？想走捷径？"/>
+    <m c="tw" v="敦睦親鄰，累積人脈"/>
+    <m c="id" v="Mencari teman"/>
+  </k>
+  <k n="chat_server_3">
+    <m c="kr" v="연애서버"/>
+    <m c="jp" v="ラブトーク"/>
+    <m c="cn" v="道具交流(Ⅰ)"/>
+    <m c="tw" v="戀愛"/>
+    <m c="id" v="Couple Server"/>
+  </k>
+  <k n="chat_server_3_desc">
+    <m c="kr" v="수다의 진수 연애수다"/>
+    <m c="jp" v="ラブトーク"/>
+    <m c="cn" v="讨厌导弹？请教高手！"/>
+    <m c="tw" v="真摯的愛情"/>
+    <m c="id" v="Master of chat chatting couple"/>
+  </k>
+  <k n="chat_server_4">
+    <m c="kr" v="카트서버"/>
+    <m c="jp" v="カートトーク"/>
+    <m c="cn" v="道具交流(Ⅱ)"/>
+    <m c="tw" v="車"/>
+    <m c="id" v="Kart Server"/>
+  </k>
+  <k n="chat_server_4_desc">
+    <m c="kr" v="카트에 관한 모든것!"/>
+    <m c="jp" v="カートのすべて！"/>
+    <m c="cn" v="讨厌导弹？请教高手！"/>
+    <m c="tw" v="有關車子的所有事情！"/>
+    <m c="id" v="Semua tentang Kart!"/>
+  </k>
+  <k n="chat_server_5">
+    <m c="kr" v="취미서버"/>
+    <m c="jp" v="趣味トーク"/>
+    <m c="cn" v="竞速交流(Ⅰ)"/>
+    <m c="tw" v="興趣"/>
+    <m c="id" v="Hobby Server"/>
+  </k>
+  <k n="chat_server_5_desc">
+    <m c="kr" v="덕이 쌓이는 취미이야기"/>
+    <m c="jp" v="気の合う仲間と趣味トーク"/>
+    <m c="cn" v="连飘段位不在是浮云。"/>
+    <m c="tw" v="累積興趣的故事"/>
+    <m c="id" v="Cerita Hobby yang menarik"/>
+  </k>
+  <k n="chat_server_6">
+    <m c="kr" v="고민서버"/>
+    <m c="jp" v="お悩みトーク"/>
+    <m c="cn" v="竞速交流(Ⅱ)"/>
+    <m c="tw" v="煩惱"/>
+    <m c="id" v="Curhat Server"/>
+  </k>
+  <k n="chat_server_6_desc">
+    <m c="kr" v="나의 고민좀 들어주세요~"/>
+    <m c="jp" v="悩みを聞いて～"/>
+    <m c="cn" v="连飘段位不在是浮云。"/>
+    <m c="tw" v="請聽聽我的煩惱～"/>
+    <m c="id" v="Dengarkan curhat aku~"/>
+  </k>
+  <k n="chat_server_7">
+    <m c="kr" v="채팅서버3"/>
+    <m c="jp" v="チャットサーバー3"/>
+    <m c="cn" v="改装交流(Ⅰ)"/>
+    <m c="tw" v="模式"/>
+    <m c="id" v="Chatting Server 3"/>
+  </k>
+  <k n="chat_server_7_desc">
+    <m c="kr" v="채팅서버2 설명"/>
+    <m c="jp" v="チャットサーバー2説明"/>
+    <m c="cn" v="竞速车改装成了道具车？"/>
+    <m c="tw" v="各模式遊戲的成長心得"/>
+    <m c="id" v="Deskripsi Chatting Server 2"/>
+  </k>
+  <k n="chat_server_8">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="改装交流(Ⅱ)"/>
+    <m c="tw" v="強化"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_8_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="竞速车改装成了道具车？"/>
+    <m c="tw" v="有關強化的所有心得交流"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_9">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="车队约战(Ⅰ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_9_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="车队间约战的空间。"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_10">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="车队约战(Ⅱ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_10_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="车队间约战的空间。"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_11">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="个人对战(Ⅰ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_11_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="感受一下孤独求败吧！"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_12">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="个人对战(Ⅱ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_12_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="感受一下孤独求败吧！"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_13">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="交友空间(Ⅰ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_13_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="海量好友从中结识。"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_14">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="交友空间(Ⅱ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_14_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="海量好友从中结识。"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_15">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="新车试驾(Ⅰ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_15_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="冲动不再是魔鬼！"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_16">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="新车试驾(Ⅱ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_16_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="冲动不再是魔鬼！"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_17">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="PVE交流(Ⅰ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_17_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="PVE不在是一个人的战斗。"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_18">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="PVE交流(Ⅱ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_18_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="PVE不在是一个人的战斗。"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_19">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="休闲自由(Ⅰ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_19_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="闲杂聊天，自由发言。"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_20">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="休闲自由(Ⅱ)"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_20_desc">
+    <m c="kr" v="unknown"/>
+    <m c="jp" v="unknown"/>
+    <m c="cn" v="闲杂聊天，自由发言。"/>
+    <m c="tw" v="unknown"/>
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_65535">
+    <m c="id" v="unknown"/>
+  </k>
+  <k n="chat_server_65535_desc">
+    <m c="id" v="unknown"/>
+  </k>
+</StringBag>

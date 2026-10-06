@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="rewardStockCard" windowRect="0 0 274 26" visible="true">
+  <Panel name="rewardStockBg" windowSize="274 26" texture="labelbox_2" alphaBlend="true" visible="false"/>
+  <Label name="rewardStockLabel" windowSize="264 26" textRender="bold16" textColor="255 255 255 255" textAlign="vcenter,right" marginRect="0 0 0 0"/>
+  <Label name="bonusStockCardWndPtr" windowSize="264 26" textRender="bold16" textColor="255 255 255 255" textAlign="vcenter,right" marginRect="0 26 0 0"/>
+</Window>

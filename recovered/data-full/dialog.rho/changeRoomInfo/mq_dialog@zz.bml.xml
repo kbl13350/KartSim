@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="createRoomContainer" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="방설정변경" frame="CaptionDialog" caption="#sb(changeRoomInfoCaption)" windowRect="0 0 480 240" align="center" setCloseButton="cancel" visible="false">
+    <Container leftTopWH="0 0 424 41" align="hcenter">
+      <Panel leftTopWH="0 22 4 4" frame="Bullet" color="255 72 106 163"/>
+      <Label leftTopWH="0 0 90 26" align="left,top" adjust="13 11" textRender="bold16" text="#sb(selectGame)" textColor="255 72 106 163" textAlign="vcenter"/>
+      <Panel leftTopWH="0 0 424 1" color="255 72 106 163" align="bottom" enable="false"/>
+      <Label name="gameType" windowRect="0 0 90 26" align="right,top" adjust="0 11" textRender="bold16" text="#sb(selectGame)" textColor="255 72 106 163" textAlign="right"/>
+    </Container>
+    <Container leftTopWH="0 53 424 26" align="hcenter">
+      <Panel leftTopWH="0 0 4 4" frame="Bullet" color="255 84 100 129" align="vcenter"/>
+      <Label leftTopWH="0 0 90 26" align="vcenter,left" adjust="13 0" text="#sb(roomName)" textRender="bold16" textAlign="vcenter" textColor="255 84 100 129"/>
+      <Edit name="roomName" leftTopWH="0 0 326 26" align="right" text="" textRender="bold16" textColor="255 72 106 163" maxChar="18" marginRect="4 0 4 0"/>
+      <Panel name="warningGreenAuth" leftTopTex="0 0" align="right" texture="img_popupInput_dimBg" alphaBlend="true" enable="false" visible="false"/>
+    </Container>
+    <Container name="passwordCont" leftTopWH="0 83 424 26" align="hcenter">
+      <Panel leftTopWH="0 0 4 4" frame="Bullet" color="255 84 100 129" align="vcenter"/>
+      <Label leftTopWH="0 0 90 26" align="vcenter,left" adjust="13 0" text="#sb(privateRoom)" textRender="bold16" textAlign="vcenter" textColor="255 84 100 129"/>
+      <PlaneCheckButton name="isPassword" leftTopWH="98 0 20 20" align="vcenter"/>
+      <Edit name="roomPassword" windowRect="0 0 136 26" align="right" text="" passEdit="true" maxChar="12" textRender="bold16" textColor="255 72 106 163"/>
+    </Container>
+    <Container name="clubRaceCont" leftTopWH="0 113 424 26" align="hcenter" visible="false">
+      <Panel leftTopWH="0 0 4 4" frame="Bullet" color="255 84 100 129" align="vcenter"/>
+      <Label leftTopWH="0 0 90 26" align="vcenter,left" adjust="13 0" text="#sb(sameClubOnly)" textRender="bold16" textAlign="vcenter" textColor="255 84 100 129"/>
+      <PlaneCheckButton name="isOnlyCrew" leftTopWH="98 0 20 20" align="right, vcenter"/>
+    </Container>
+    <Container windowRect="0 0 424 42" align="hcenter;bottom" adjust="0 6">
+      <ImageButton name="checkGreenAuth" windowRect="0 0 132 42" align="left" autoLoadImage="btn_greenUser_0" alphaBlend="true" visible="false"/>
+      <TextButton name="change" windowRect="0 0 132 42" align="center" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+      <TextButton name="cancel" windowRect="0 0 132 42" align="right" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Container>
+    <Window leftTopWH="0 0 424 1" frame="HSection" align="hcenter;bottom" adjust="0 63"/>
+  </CaptionWindow>
+  <CaptionWindow name="방설정변경막자" frame="CaptionDialog" caption="#sb(changeRoomInfoCaption)" windowRect="0 0 372 244" align="center" setCloseButton="cancel" visible="false">
+    <Container windowRect="0 10 332 20" align="hcenter">
+      <Window windowRect="8 0 14 6" frame="Bullet" color="255 62 117 181" align="vcenter"/>
+      <Label windowRect="21 0 22 10" align="vcenter" textRender="bold" text="#sb(selectGame)" textColor="255 62 117 181"/>
+      <Panel windowRect="0 20 332 21" color="255 62 117 181" enable="false"/>
+      <Panel windowRect="0 21 332 22" color="white" enable="false"/>
+      <Label name="gameTypeRoadBlock" windowRect="0 0 98 10" align="right" textAlign="right" textRender="bold" textColor="255 62 117 181"/>
+    </Container>
+    <Container windowRect="0 39 324 61" align="hcenter">
+      <Window windowRect="8 0 14 6" frame="Bullet" align="vcenter"/>
+      <Label windowRect="21 0 22 10" align="vcenter" text="#sb(roomName)" textRender="bold" textColor="255 102 120 140"/>
+      <Edit name="roomNameRoadBlock" windowRect="0 0 248 22" align="right" text="" textColor="255 90 90 90" maxChar="18" marginRect="4 0 4 0"/>
+    </Container>
+    <Container windowRect="0 66 324 88" align="hcenter">
+      <Window windowRect="8 0 14 6" frame="Bullet" align="vcenter"/>
+      <Label windowRect="21 0 22 10" align="vcenter" text="#sb(privateRoom)" textRender="bold" textColor="255 102 120 140"/>
+      <PlaneCheckButton name="isPasswordRoadBlock" windowRect="76 1 96 21"/>
+      <Edit name="roomPasswordRoadBlock" windowRect="0 0 124 22" align="right" text="" passEdit="true" maxChar="12"/>
+    </Container>
+    <Container name="roadBlockModeTime" windowRect="0 93 324 115" align="hcenter" visible="true">
+      <Window windowRect="8 0 14 6" frame="Bullet" align="vcenter"/>
+      <Label windowRect="21 0 22 10" align="vcenter" text="#sb(timeLimit)" textRender="bold" textColor="255 102 120 140"/>
+      <ImageCheckButton name="timeBtn_0" windowRect="76 0 14 14" align="vcenter" autoImage="btn_radio_" alphaBlend="true">
+        <TextButton name="timeTxt_0" windowRect="0 0 50 14" frame="NoFrame" text="3분" autoSizing="true" align="vcenter" forceTooltip="false"/>
+      </ImageCheckButton>
+      <ImageCheckButton name="timeBtn_1" windowRect="126 0 14 14" align="vcenter" autoImage="btn_radio_" alphaBlend="true">
+        <TextButton name="timeTxt_1" windowRect="0 0 50 14" frame="NoFrame" text="4분" autoSizing="true" align="vcenter" forceTooltip="false"/>
+      </ImageCheckButton>
+      <ImageCheckButton name="timeBtn_2" windowRect="176 0 14 14" align="vcenter" autoImage="btn_radio_" alphaBlend="true">
+        <TextButton name="timeTxt_2" windowRect="0 0 50 14" frame="NoFrame" text="5분" autoSizing="true" align="vcenter" forceTooltip="false"/>
+      </ImageCheckButton>
+    </Container>
+    <Container name="runnerHandicap" windowRect="0 120 324 142" align="hcenter">
+      <Window windowRect="8 0 14 6" frame="Bullet" align="vcenter"/>
+      <Label windowRect="21 0 22 10" align="vcenter" text="#sb(runnerHandicap)" textRender="bold" textColor="255 102 120 140"/>
+      <PlaneCheckButton name="isHandicap" windowRect="128 1 148 21"/>
+    </Container>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 332 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="change" windowRect="0 0 87 30" text="#sb(ok)"/>
+      <TextButton name="cancel" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

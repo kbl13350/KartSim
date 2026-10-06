@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.08'
+	SteerConstraint='2.5'
+	CornerDrawFactor='0.076'
+	DriftEscapeForce='2000'
+	
+	driftBoostMulAccelFactor='1.25'
+	chargeBoostBySpeed='300'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.845'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+	
+	DriftMaxGauge='-620'
+	NormalBoosterTime='-100'
+	TeamBoosterTime='-200'
+	
+	DriftGaguePreservePercent='0.55'
+	antiCollideBalance='0.79'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	
+	DescBalance='50'
+	DescStability='50'
+	DescEngineGrade='1.36'
+	DescCornering='8'
+	DescEnchantCap='30'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine오토봇'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='9th'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	isTransformAutoCharge='false'
+	WheelFixed='true'
+
+	BoosterWaveType='오토봇'
+	BoosterType='오토봇'
+	BoosterType0='오토봇'
+	BoosterType1='오토봇'
+
+	Port0='mod1c1'
+	Port1='mod1c2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255'/>
+</BodyParam>
+
+<!-- 드리프트 / 대만 / 9세대 스피드 / 20141114 상점 한정 판매 -->

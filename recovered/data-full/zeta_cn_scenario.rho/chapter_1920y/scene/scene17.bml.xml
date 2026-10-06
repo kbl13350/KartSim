@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Char id="dizini" pos="4 0" emotion="stop5"/>
+  <Msg name="黑妞" string="胖墩~别再玩了~|敞篷老爷车就那么好？！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop5"/>
+  <Char id="kephi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="胖墩" string="嗯！！！只听市长的一面之词，|竟然把这么好的车当做怪物…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="ani4"/>
+  <Char id="kephi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="嗯，工厂也有了，|只要有了设计图，就可以制作敞篷老爷车了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="rose" pos="12 0" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="那个…|敞篷老爷车的设计图在这里。"/>
+  <Enter/>
+  <Char id="rose" remove="true"/>
+  <Char id="rose" pos="12 0" emotion="stop1"/>
+  <Char id="dizini" pos="5 0" emotion="stop5"/>
+  <Char id="kephi" pos="1 0" emotion="stop2"/>
+  <Msg name="黑妞" string="阿尔贝特！！！|这期间我们误会你了，对不起。"/>
+  <Enter/>
+  <Char id="rose" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="rose" pos="12 0" emotion="stop1"/>
+  <Char id="dizini" pos="5 0" emotion="stop5"/>
+  <Char id="kephi" pos="1 0" emotion="stop2"/>
+  <Msg name="胖墩" string="对不起，阿尔贝特。"/>
+  <Enter/>
+  <Char id="rose" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="marid" pos="7 0" emotion="stop1"/>
+  <Msg name="蓝蓝" string="好~可以做。|设计图也有了，这下可以生产敞篷老爷车了！"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="rose" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="ani5"/>
+  <Char id="kephi" pos="2 0" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="真的？"/>
+  <Enter/>
+  <Char id="rose" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="marid" pos="8 0" emotion="ani1"/>
+  <Msg name="蓝蓝" string="那~今天会成为|以我们的力量生产敞篷老爷车的历史性时刻吗？~"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="kephi" pos="2 0" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="rose" pos="13 0" emotion="stop1"/>
+  <Msg name="胖墩" string="哈哈~|这种历史性时刻怎么可能少了派对呢~"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kephi" pos="2 0" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Char id="rose" pos="13 0" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="派对？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="marid" pos="7 0" emotion="ani1"/>
+  <Msg name="蓝蓝" string="好~那就进行赛车大会吧。"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="marid" pos="8 0" emotion="stop1"/>
+  <Msg name="蓝蓝" string="今天~展开首届亚伯特赛车大会。|丰富的奖品等着大家哦，踊跃报名吧~"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop1"/>
+  <Char id="dizini" pos="7 0" emotion="stop1"/>
+  <Char id="rose" pos="13 0" emotion="stop1"/>
+  <Msg name="黑妞" string="我！！！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop1"/>
+  <Char id="dizini" pos="7 0" emotion="stop1"/>
+  <Char id="rose" pos="13 0" emotion="stop1"/>
+  <Msg name="胖墩" string="还有我！！！还有我！！！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="rose" remove="true"/>
+  <Char id="rose" pos="12 0" emotion="stop1"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="我也要参加。"/>
+  <Enter/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" pos="12 0" emotion="stop3"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="福尔摩斯你也参加？"/>
+  <Enter/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" pos="12 0" emotion="stop1"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="嗯，不知为何，我也想参加。|你会为我加油吧，阿尔贝特？"/>
+  <Enter/>
+  <Char id="rose" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="rose" pos="12 0" emotion="stop2"/>
+  <Char id="kai" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="阿尔贝特" string="那是当然！加油，福尔摩斯"/>
+  <Enter/>
+</Scene>

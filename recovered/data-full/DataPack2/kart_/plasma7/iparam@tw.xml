@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.15'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.065'
+
+	NormalBoosterTime='-150'
+	TeamBoosterTime='-400'
+	DriftMaxGauge='-1000'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.62'
+
+	EnvMap='true'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+
+	BoosterType='plasma7'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod2d1'
+	Port1='mod2d2'
+	FirePort0='mod2a2'
+	FirePort1='mod2a3'
+	FirePort2='mod2b'
+	FirePort3='mod2c'
+
+	DescBalance= '44'
+	DescStability ='35'
+	DescEngineGrade='1.1'
+	DescCornering='5'
+	DescEnchantCap = '30'
+
+/>
+
+<!-- 대만 플라즈마 ext 가샤폰 레어 111111 -->

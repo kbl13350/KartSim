@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LampFlare name="rudolf4">
+  <lampFlare0 texture="front"/>
+  <lampFlare1 texture="front"/>
+  <lampFlare2 texture="back"/>
+  <lampFlare3 texture="back"/>
+</LampFlare>

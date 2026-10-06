@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel name="macroChatViewer" windowSize="180 200" align="right,bottom" adjust="17 75" color="74 0 0 0" alphaBlend="true">
+    <Panel name="desc" windowSize="180 20" align="top" adjust="0 0" color="38 216 208 208" alphaBlend="true">
+      <Label name="key" windowSize="20 20" align="left,vcenter" adjust="7 0" text="F1" textAlign="left" textColor="white" autoSizing="true"/>
+    </Panel>
+    <Container name="chat" windowSize="180 180" adjust="0 20"/>
+  </Panel>
+</Container>

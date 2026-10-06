@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="dbgConsol" windowRect="0 0 350 600">
+  <Window name="bgFrame" leftTopWH="0 0 350 600"/>
+  <Panel name="section" leftTopWH="0 0 350 600" color="255 0 0 0" enable="false"/>
+  <Container name="normalBody" leftTopWH="0 0 350 600">
+    <List name="consolHistory" leftTopWH="0 0 350 560" upButton="ChatScrollUpButton" downButton="ChatScrollDownButton" scrollButton="ChatVerticalScrollButton" scrollArea="ChatVerticalScrollArea" scrollWidth="14" autoScroll="true" listMargin="0 0 0 10"/>
+    <Edit name="input" windowSize="350 25" align="bottom" maxChar="255" text="" textBgColor="none"/>
+  </Container>
+</Container>

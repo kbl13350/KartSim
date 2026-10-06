@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="caption">
+    <m c="kr" v="사랑 고백 메시지"/>
+    <m c="jp" v="愛の告白メッセージ"/>
+    <m c="cn" v="情书内容"/>
+    <m c="tw" v="愛的告白訊息"/>
+    <m c="vn" v="Tin nhắn tình yêu"/>
+    <m c="ru" v="Признание в любви"/>
+    <m c="id" v="Surat cinta"/>
+    <m c="th" v="ข้อความสารภาพรัก"/>
+  </k>
+  <k n="accept">
+    <m c="kr" v="고백 수락"/>
+    <m c="jp" v="告白をOKする"/>
+    <m c="cn" v="接受告白"/>
+    <m c="tw" v="接收告白"/>
+    <m c="vn" v="Chấp nhận"/>
+    <m c="ru" v="Согласиться"/>
+    <m c="id" v="Menerima cinta"/>
+    <m c="th" v="ยอมรับ"/>
+  </k>
+  <k n="decline">
+    <m c="kr" v="거절 하기"/>
+    <m c="jp" v="ことわる"/>
+    <m c="cn" v="拒绝告白"/>
+    <m c="tw" v="拒絕告白"/>
+    <m c="vn" v="Từ chối"/>
+    <m c="ru" v="Отказаться"/>
+    <m c="id" v="Menolak cinta"/>
+    <m c="th" v="ปฎิเสธ"/>
+  </k>
+</StringBag>

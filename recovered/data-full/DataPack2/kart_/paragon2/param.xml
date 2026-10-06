@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+ForwardAccelForce='137.0'
+BackwardAccelForce='100.0'
+DragFactor='-0.071'
+SteerConstraint='1.9'
+DriftEscapeForce='600'
+CornerDrawFactor='0.057'
+BoosterBlur='true'
+EngineSound='cotton6'
+UseTransformBooster='true'
+TransAccelFactor='1.62'
+BoosterType='cotton6'
+BoosterType0='default'
+BoosterType1='default'
+
+Port0='mod2a' 
+Port1='mod2b'
+
+FirePort0='mod1a1'
+FirePort1='mod1a2'
+FirePort2='mod1a3'
+FirePort3='mod1a4'
+FirePort4='mod1b'
+
+EnvMap='true'
+
+DescBalance= '33'
+DescStability ='33'
+DescEngineGrade='1'
+DescCornering='8'
+DescEnchantCap = '25'
+
+/>
+
+<!-- paragon SR-XE 중국 한정 판매(크리스마스 버전) 101216-->

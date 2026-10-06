@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="index" windowSize="180 19" align="top" adjust="0 0">
+  <Label name="symbol" windowSize="16 19" align="left" adjust="5 -2" text="symbol" textRender="bold14" textAlign="left" textColor="255 210 214 216"/>
+  <Label name="text" windowSize="151 19" align="left" adjust="18 -2" text="text" textRender="bold14" textAlign="left" textColor="255 210 214 216"/>
+</Container>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.0795'
+	SteerConstraint='2.5'
+	CornerDrawFactor='0.069'
+	DriftEscapeForce='1550'
+	
+	driftBoostMulAccelFactor='1.25'
+	chargeBoostBySpeed='300'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.845'
+	StartForwardAccelFactorSpeed='1.65'
+	StartBoosterTimeSpeed='1500'
+	
+	DriftMaxGauge='-550'
+	NormalBoosterTime='-100'
+	TeamBoosterTime='-200'
+	
+	DriftGaguePreservePercent='0.5'
+	antiCollideBalance='0.9'
+
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	TransformTime='700'
+	
+	DescBalance='49'
+	DescStability='50'
+	DescEngineGrade='1.365'
+	DescCornering='8'
+	DescEnchantCap='30'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='9th'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	BoosterType='9soon'
+	BoosterType0='9soon'
+	BoosterType1='9soon'
+	BoosterType2='9main'
+	BoosterType3='9sub'
+	BoosterType4='9sub'
+
+	Port0='mod2a1' 
+	Port1='mod2a2'
+
+	FirePort0='mod2b1'
+	FirePort1='mod2a3'
+	FirePort2='mod2a4'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2a3' trailPort1='mod2a4'/>
+</BodyParam>
+<!-- 원티드 9 / 한국 / 일반 / 스피드 / 기어 / 20151210 릴리즈 -->

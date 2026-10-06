@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="resultPanel" windowSize="1600 900" align="center">
+    <Panel name="resultBg" windowSize="1920 1080" adjust="-160 -90" enable="true" color="50 0 0 0" alphaBlend="true" visible="true"/>
+    <Panel leftTopTex="0 200" texture="result" alphaBlend="true" align="hcenter"/>
+    <Panel name="line0" leftTopWH="0 250 541 36" color="100 0 0 0" alphaBlend="true" align="hcenter">
+      <Panel name="resultID" leftTopTex="120 0" texture="id@zz" align="vcenter" alphaBlend="true"/>
+      <Panel name="resultTime" leftTopTex="86 0" texture="GameOverTime@zz" align="vcenter" alphaBlend="true" visible="false"/>
+      <Panel name="resultRP" leftTopTex="76 0" texture="rp@zz" align="vcenter" alphaBlend="true" visible="false"/>
+      <Panel name="resultLucci" leftTopTex="99 0" texture="lucci@zz" align="vcenter" alphaBlend="true" visible="false"/>
+      <Panel leftTopTex="385 0" texture="pt" align="vcenter" alphaBlend="true"/>
+      <Panel leftTopTex="420 0" texture="total@zz" align="vcenter" alphaBlend="true"/>
+      <Panel name="resultScore" windowRect="372 0 460 23" texture="aw_05@zz" align="vcenter" uvRect="132 226 220 251" alphaBlend="true" visible="false"/>
+      <Panel name="resultLuccon" windowRect="294 0 384 24" texture="luccon@zz" align="vcenter" alphaBlend="true" visible="false"/>
+    </Panel>
+  </Container>
+</Container>

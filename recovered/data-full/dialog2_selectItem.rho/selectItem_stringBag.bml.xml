@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="selectItem">
+    <m c="kr" v="아이템 선택"/>
+    <m c="jp" v="アイテム選択"/>
+    <m c="cn" v="选择道具"/>
+    <m c="id" v="Pilih Item"/>
+  </k>
+</StringBag>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for1"/>
+  <Char id="ms_loki" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="看来我一个人是什么都做不了了……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="难道就没什么办法能接近皮蛋一伙？"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="看来没那么容易……|只能试试看了……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <BackGround texture="for4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="嘿！！！你叫皮蛋是吧？"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="……那家伙不是……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="找我们会有什么事啊？|皮蛋~别靠近他~~"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="洛基" string="等……等一下……先听我说"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="洛基" string="如果我们能做伙伴感觉也不错啊……|帮帮我吧！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="看你之前的所作所为，好像有什么阴谋啊……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="洛基" string="怎么可能~~~我只是想跟你们做伙伴而已！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="不对不对！！肯定有阴谋！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="宝宝说的对！！目前为止还信不过你……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ms_loki" pos="2 0" emotion="stop1"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="洛基" string="哼！！果然没那么好骗啊！！！|还是先溜再说吧……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="还是帮帮那漂亮的小姐姐吧！！|呼呼呼~"/>
+  <Enter/>
+</Scene>

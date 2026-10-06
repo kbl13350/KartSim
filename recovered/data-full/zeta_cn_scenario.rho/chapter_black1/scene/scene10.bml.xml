@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold3"/>
+  <Char id="ethi" pos="4 0" emotion="stop6"/>
+  <Msg name="葱头" string="到底卡帕在哪儿呢.."/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="卡帕！！|我们来了！卡帕出来~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="卡帕" string="救~命~~！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="什么声音…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="卡帕" string="额啊啊啊~~~！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="mobi" pos="8 0" emotion="stop1"/>
+  <Msg name="吉米" string="皮蛋|好像有惊呼声？"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="mobi" pos="11 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="惊呼声？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Shake time="500"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="那是卡帕的声音！|快去找卡帕！"/>
+  <Enter/>
+</Scene>

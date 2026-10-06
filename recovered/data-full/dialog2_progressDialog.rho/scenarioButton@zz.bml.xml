@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StateButton windowRect="0 0 308 65" frame="StaticButtonLabelButton" iconSet="btn_questLevel4" iconAlign="none" iconPos="-58 -30" alphaBlend="true" text="할로윈 축제의 방해꾼" textAlign="none" stringPos="70 15" intersectAll="true">
+  <Label windowRect="3 0 13 10" align="vcenter" text="#sb(challenge)" textRender="bold" textColor="255 101 122 139" autoSizing="true"/>
+  <Label name="current" windowRect="0 0 10 10" align="center" text="" textRender="bold" textColor="255 1 118 234" autoSizing="true"/>
+  <Label name="mission" windowRect="0 0 10 10" align="right;vcenter" textRender="bold" text="#sb(currentForm)" textColor="255 1 118 234" autoSizing="true"/>
+</StateButton>

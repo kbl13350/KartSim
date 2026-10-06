@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle5"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="杉雯雯" string="嗯嗯…"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" pos="10 0" emotion="stop3"/>
+  <Msg name="道明宝宝" string="杉雯雯！！！！醒了？？？"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4bazzi" pos="10 0" emotion="stop3"/>
+  <Msg name="杉雯雯" string="你是？"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Msg name="道明宝宝" string="是我！|道明宝宝！！！F4的领袖！！！皇太子道明宝宝！！！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Msg name="杉雯雯" string="谁？这里是哪儿？我怎么会在这里？"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Msg name="道明宝宝" string="杉雯雯！不会是…"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4mobi" pos="10 0" emotion="stop1"/>
+  <Msg name="西门吉米" string="如果我没猜错的话，杉雯雯好像失去了记忆…"/>
+  <Enter/>
+  <Char id="f4mobi" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Char id="f4chen" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="道明宝宝" string="怎么会这样！！！雯雯！！！！"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4dao" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Msg name="花泽皮蛋" string="喂喂~道明宝宝淡定点！|我们来帮杉雯雯找回记忆吧！！！"/>
+  <Enter/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Char id="f4dao" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="道明宝宝" string="怎么找回？？？"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Char id="f4dao" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="让杉雯雯去赛车~|杉雯雯因为从小就送外卖|所以只要骑车应该会想起点什么！"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4taki" pos="11 0" emotion="stop1"/>
+  <Msg name="美作奇奇" string="OK~~~GOOD~~|那我们F4全员出发！|帮助杉雯雯找回记忆。|"/>
+  <Enter/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4taki" pos="11 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="嗯？去哪儿啊？"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4taki" pos="11 0" emotion="stop1"/>
+  <Msg name="美作奇奇" string="去你拿手的赛车~|虽然你不记得~但你很有赛车潜力~~~"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4taki" pos="11 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="我？|"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4taki" pos="13 0" emotion="stop1"/>
+  <Char id="f4dao" pos="10 0" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="和我们一起跑几圈，应该会想起点什么！|走吧！杉雯雯！追上我们|"/>
+</Scene>

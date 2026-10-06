@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="krShopWindow" windowRect="260 9 790 559" frame="CaptionWindowBlankClient" caption="#sb(shop)" useCaptionLabel="true" captionPos="0 3" captionLabelMargin="12" setCloseButton="goBackButton">
+  <Window name="menuPlane" windowRect="-1 -2 72 490" frame="CaptionWindowBlankClientFill" enable="false"/>
+  <Window name="transFillPlane" windowRect="70 0 500 490" frame="CaptionWindowBlankClientTransFill" enable="false"/>
+  <Window name="ContentTab" windowRect="65 -2 507 490" frame="TabFrame">
+    <TextButton name="prevPage" windowRect="153 440 178 465" frame="BulletLeftButton" useDisableState="true"/>
+    <TextButton name="nextPage" windowRect="236 440 261 465" frame="BulletRightButton" useDisableState="true"/>
+    <Label name="page" windowRect="178 445 236 463" text="0 / 0" textRender="outline" textColor="yellow" textColor2="black" textAlign="hcenter"/>
+  </Window>
+  <MenuButton name="Tab_new" windowRect="-4 -5 61 57" frame="MenuSelectButton" menuName="subTab_new" iconSetRecur="신상품@zz" iconInfix="_" iconPos="0 5" iconAlign="hcenter" text="#sb(new)" stringPos="0 45" textAlign="hcenter" textColor="black" data="9999" isFirst="true"/>
+  <MenuButton name="Tab_char" windowRect="0 0 65 62" frame="MenuSelectButton" menuName="subTab_char" iconSetRecur="캐릭터" iconInfix="_" iconAlign="hcenter" iconPos="0 5" text="#sb(character)" textAlign="hcenter" stringPos="0 45" foldType="mouseOn" data="1"/>
+  <MenuButton name="Tab_kart" windowRect="0 0 65 62" frame="MenuSelectButton" menuName="subTab_kart" iconSetRecur="카트" iconInfix="_" iconAlign="hcenter" iconPos="0 5" text="#sb(kartBody)" textAlign="hcenter" stringPos="0 45" foldType="mouseOn" data="2">
+    <GridSelector name="subTab_kart" windowRect="62 0 80 200" frame="BlackBorderPanel" alignStyle="horizontal" alignSize="1" alignMargin="1 1" clientMargin="5 5 5 5" useAlphaFade="true">
+      <TextButton name="subTab_kartBurst" windowRect="0 145 80 169" frame="SelectBtn" text="#sb(burst)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_kartSaber" windowRect="0 145 80 169" frame="SelectBtn" text="#sb(saber)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_kartCotton" windowRect="0 145 80 169" frame="SelectBtn" text="#sb(cotton)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_kartSolid" windowRect="0 145 80 169" frame="SelectBtn" text="#sb(solid)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_kartMarathon" windowRect="0 145 80 169" frame="SelectBtn" text="#sb(marathon)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_kartPlasma" windowRect="0 145 80 169" frame="SelectBtn" text="#sb(plasma)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_kartEvent" windowRect="0 145 80 169" frame="SelectBtn" text="#sb(etc)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_kartUpgrade" windowRect="0 145 80 169" frame="SelectBtn" text="#sb(kartUpgradeKit)" textAlign="vcenter" stringPos="10 0"/>
+    </GridSelector>
+  </MenuButton>
+  <MenuButton name="Tab_item" windowRect="0 0 65 62" frame="MenuSelectButton" menuName="subTab_item" iconSetRecur="아이템" iconInfix="_" iconAlign="hcenter" iconPos="0 5" text="#sb(wearItem)" textAlign="hcenter" stringPos="0 45" foldType="mouseOn" data="3">
+    <GridSelector name="subTab_item" windowRect="62 0 80 200" frame="BlackBorderPanel" alignStyle="horizontal" alignSize="1" alignMargin="1 1" clientMargin="5 5 5 5" useAlphaFade="true">
+      <TextButton name="subTab_headband" windowRect="0 0 80 24" frame="SelectBtn" text="#sb(headband)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_goggle" windowRect="0 29 80 53" frame="SelectBtn" text="#sb(goggle)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_headPhone" windowRect="0 58 80 82" frame="SelectBtn" text="#sb(camera)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_balloon" windowRect="0 145 80 169" frame="SelectBtn" text="#sb(balloon)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_handGearL" windowRect="0 87 80 111" frame="SelectBtn" text="#sb(handGearL)" textAlign="vcenter" stringPos="10 0"/>
+    </GridSelector>
+  </MenuButton>
+  <MenuButton name="Tab_makeup" windowRect="0 0 65 62" frame="MenuSelectButton" menuName="subTab_makeup" iconSetRecur="치장" iconInfix="_" iconAlign="hcenter" iconPos="0 5" text="#sb(decoItem)" textAlign="hcenter" stringPos="0 45" foldType="mouseOn" data="4">
+    <GridSelector name="subTab_makeup" windowRect="62 0 80 200" frame="BlackBorderPanel" alignStyle="horizontal" alignSize="1" alignMargin="1 1" clientMargin="5 5 5 5" useAlphaFade="true">
+      <TextButton name="subTab_Paint" windowRect="0 29 80 53" frame="SelectBtn" text="#sb(paint)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_Decal" windowRect="0 58 80 82" frame="SelectBtn" text="#sb(decal)" textAlign="vcenter" stringPos="10 0"/>
+      <TextButton name="subTab_Plate" windowRect="0 87 80 111" frame="SelectBtn" text="#sb(plate)" textAlign="vcenter" stringPos="10 0"/>
+    </GridSelector>
+  </MenuButton>
+  <MenuButton name="Tab_goods" windowRect="0 0 65 62" frame="MenuSelectButton" menuName="subTab_item" iconSetRecur="라이센스" iconInfix="_" iconAlign="hcenter" iconPos="0 5" text="#sb(stuffItem)" textAlign="hcenter" stringPos="0 45" foldType="mouseOn" data="5"/>
+  <MenuButton name="Tab_pet" windowRect="0 0 65 62" frame="MenuSelectButton" menuName="subTab_item" iconSetRecur="펫" iconInfix="_" iconAlign="hcenter" iconPos="0 5" text="#sb(pet)" textAlign="hcenter" stringPos="0 45" foldType="mouseOn" data="6"/>
+  <MenuButton name="Tab_eventGoods" windowRect="0 0 65 62" frame="MenuSelectButton" icon="Normal(월드컵);Disable(월드컵_4)" iconPos="0 1" iconAlign="hcenter" text="응원패키지" stringPos="0 45" textAlign="hcenter" textColor="black" data="9998" isFirst="true"/>
+</CaptionWindow>

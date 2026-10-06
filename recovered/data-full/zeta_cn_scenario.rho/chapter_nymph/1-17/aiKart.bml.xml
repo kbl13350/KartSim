@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <AiKart id="1" track="nymph_I03" isFixedKart="true" fixedKartId="25" laps="3" gameType="item" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" item="Rocket;WaterBomb;Magnet;WaterFly;Shild;Ufo" aiItemLevel="2" isAiItemFree="false">
+      <AiKart characterId="32" uniformId="0" kartId="5" colorId="8" dyeId="8" balloonId="0" speed="50" accel="40" startTick="0" characterName="美美"/>
+    </LevelContent>
+  </AiKart>
+</Root>

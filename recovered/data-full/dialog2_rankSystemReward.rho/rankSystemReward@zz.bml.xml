@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 430 500" caption="#sb(rankingReward)" align="center">
+    <Label name="textLabel" windowRect="5 10 230 25" text="#sb(getRankingRewardCount)"/>
+    <List name="expiredItemList" windowRect="0 30 393 360" framePreset="Default" listMargin="8 0 0 0" listGap="5" frame="InnerFrame" rigidScroll="true" autoAlign="false"/>
+    <Label name="textLabel2" windowRect="0 370 400 400" text="#sb(aboutItemDesc)" lineGap="5" multiLine="true" autoWrap="true" textAlign="center" align="hcenter"/>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 380 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="ok" windowRect="0 0 52 30" align="center" frame="TextButton" text="#sb(ok)" altTextRender="outline"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

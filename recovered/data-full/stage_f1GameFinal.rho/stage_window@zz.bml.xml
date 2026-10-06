@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="Desktop" windowRect="0 0 800 600" align="center">
+    <Container name="f1ResultTitle" windowRect="0 0 800 600" visible="false" enable="false">
+      <Panel name="race1" windowSize="213 38" texture="1st@zz" align="hcenter" adjust="0 26" alphaBlend="true"/>
+      <Panel name="race2" windowSize="228 38" texture="2nd@zz" align="hcenter" adjust="0 26" alphaBlend="true"/>
+      <Panel name="race3" windowSize="262 36" texture="final@zz" align="hcenter" adjust="0 27" alphaBlend="true"/>
+    </Container>
+    <Container name="f1ResultPage1" windowRect="0 0 800 600" visible="false" enable="false">
+      <Panel name="bonusIconPos" windowRect="690 500 718 523" texture="bazzi2@zz" uvRect="0 0 28 23" alphaBlend="true" visible="false"/>
+      <Panel name="frmSum1" windowRect="10 76 70 258" texture="frame_01" alphaBlend="true"/>
+      <Panel name="frmSum2" windowRect="70 76 730 258" texture="frame_05" alphaBlend="true"/>
+      <Panel name="frmSum3" windowRect="730 76 790 258" texture="frame_02" alphaBlend="true"/>
+      <Panel name="frmSum4" windowRect="10 258 70 410" texture="frame_01" uvRect="0 181 60 182" alphaBlend="true"/>
+      <Panel name="frmSum5" windowRect="70 258 730 410" texture="frame_05" uvRect="0 181 1 182" alphaBlend="true"/>
+      <Panel name="frmSum6" windowRect="730 258 790 410" texture="frame_02" uvRect="0 181 60 182" alphaBlend="true"/>
+      <Panel name="frmSum7" windowRect="10 410 70 499" texture="frame_03" alphaBlend="true"/>
+      <Panel name="frmSum8" windowRect="70 410 730 499" texture="frame_06" alphaBlend="true"/>
+      <Panel name="frmSum9" windowRect="730 410 790 499" texture="frame_04" alphaBlend="true"/>
+      <Container name="line0" windowRect="0 82 800 112">
+        <Panel name="resultRank" windowSize="103 30" adjust="29 -1" texture="icon_rank@zz" alphaBlend="true"/>
+        <Panel name="resultID" windowSize="110 30" adjust="199 -1" texture="icon_id@zz" alphaBlend="true"/>
+        <Panel name="resultTime" windowSize="110 30" adjust="324 -1" texture="icon_time@zz" alphaBlend="true"/>
+        <Panel name="resultRp" windowSize="110 30" adjust="464 -1" texture="icon_rp@zz" alphaBlend="true"/>
+        <Panel name="resultLucci" windowSize="110 30" adjust="626 -1" texture="icon_lucci@zz" alphaBlend="true"/>
+      </Container>
+    </Container>
+    <Container name="f1ResultPage2" windowRect="0 0 800 600" visible="false" enable="false">
+      <Panel name="frmSum1" windowRect="10 76 70 258" texture="frame_01" alphaBlend="true"/>
+      <Panel name="frmSum2" windowRect="70 76 335 258" texture="frame_05" alphaBlend="true"/>
+      <Panel name="frmSum3" windowRect="335 76 395 258" texture="frame_02" alphaBlend="true"/>
+      <Panel name="frmSum4" windowRect="10 258 70 410" texture="frame_01" uvRect="0 181 60 182" alphaBlend="true"/>
+      <Panel name="frmSum5" windowRect="70 258 335 410" texture="frame_05" uvRect="0 181 1 182" alphaBlend="true"/>
+      <Panel name="frmSum6" windowRect="335 258 395 410" texture="frame_02" uvRect="0 181 60 182" alphaBlend="true"/>
+      <Panel name="frmSum7" windowRect="10 410 70 499" texture="frame_03" alphaBlend="true"/>
+      <Panel name="frmSum8" windowRect="70 410 335 499" texture="frame_06" alphaBlend="true"/>
+      <Panel name="frmSum9" windowRect="335 410 395 499" texture="frame_04" alphaBlend="true"/>
+      <Container name="line0" windowRect="0 82 800 112">
+        <Panel name="resultRank" windowRect="19 0 122 30" texture="icon_totalrank@zz" alphaBlend="true"/>
+        <Panel name="resultID" windowRect="145 0 255 30" texture="icon_id@zz" alphaBlend="true"/>
+        <Panel name="resultWp" windowRect="265 0 375 30" texture="icon_wp@zz" alphaBlend="true"/>
+      </Container>
+      <Panel name="frmSum1" windowRect="405 76 465 258" texture="frame_02_1" alphaBlend="true"/>
+      <Panel name="frmSum2" windowRect="465 76 730 258" texture="frame_02_2" uvRect="0 0 1 182" alphaBlend="true"/>
+      <Panel name="frmSum3" windowRect="730 76 790 258" texture="frame_02_2" alphaBlend="true"/>
+      <Panel name="frmSum4" windowRect="405 258 465 410" texture="frame_01" uvRect="0 181 60 182" alphaBlend="true"/>
+      <Panel name="frmSum5" windowRect="465 258 730 410" texture="frame_05" uvRect="0 181 1 182" alphaBlend="true"/>
+      <Panel name="frmSum6" windowRect="730 258 790 410" texture="frame_02" uvRect="0 181 60 182" alphaBlend="true"/>
+      <Panel name="frmSum7" windowRect="405 410 465 499" texture="frame_03" alphaBlend="true"/>
+      <Panel name="frmSum8" windowRect="465 410 730 499" texture="frame_06" alphaBlend="true"/>
+      <Panel name="frmSum9" windowRect="730 410 790 499" texture="frame_04" alphaBlend="true"/>
+      <Container name="cardPanel" windowRect="414 79 780 489">
+        <Container name="awardCard1" windowRect="0 0 186 200" visible="false">
+          <Panel name="card" windowRect="0 0 186 198" texture="rank_1@zz" alphaBlend="true" fontSize="102 130" align="center"/>
+          <Label name="awt1" windowSize="100 30" adjust="0 0" textRender="outline" textColor="yellow" autoSizing="true" align="hcenter;bottom" text="kartrider"/>
+          <Label name="award" windowRect="34 133 150 166" textColor="black" textAlign="center" multiLine="true" text="kartrider" visible="false"/>
+        </Container>
+        <Container name="awardCard2" windowRect="177 0 363 200" visible="false">
+          <Panel name="card" windowRect="0 0 186 198" texture="race1_1@zz" alphaBlend="true" fontSize="102 130" align="center"/>
+          <Label name="awt2" windowSize="100 30" adjust="0 0" textRender="outline" textColor="yellow" autoSizing="true" align="hcenter;bottom" text="kartrider"/>
+          <Label name="award" windowRect="34 133 150 166" textColor="black" textAlign="center" multiLine="true" text="kartrider" visible="false"/>
+        </Container>
+        <Container name="awardCard3" windowRect="0 203 186 405" visible="false">
+          <Panel name="card" windowRect="0 0 186 198" texture="crush_1@zz" alphaBlend="true" fontSize="102 130" align="center"/>
+          <Label name="awt3" windowSize="100 30" adjust="0 0" textRender="outline" textColor="yellow" autoSizing="true" align="hcenter;bottom" text="kartrider"/>
+          <Label name="award" windowRect="34 133 150 166" textColor="black" textAlign="center" multiLine="true" text="kartrider" visible="false"/>
+        </Container>
+        <Container name="awardCard4" windowRect="177 203 363 405" visible="false">
+          <Panel name="card" windowRect="0 0 186 198" texture="pc_1@zz" alphaBlend="true" fontSize="102 130" align="center"/>
+          <Label name="awt4" windowSize="100 30" adjust="0 0" textRender="outline" textColor="yellow" autoSizing="true" align="hcenter;bottom" text="kartrider"/>
+          <Label name="award" windowRect="34 133 150 166" textColor="black" textAlign="center" multiLine="true" text="kartrider" visible="false"/>
+        </Container>
+        <Container name="awardCard5" windowRect="177 203 363 405" visible="false">
+          <Panel name="card" windowRect="0 0 186 198" texture="user_1@zz" alphaBlend="true" fontSize="102 130" align="center"/>
+          <Label name="awt5" windowSize="100 30" adjust="0 0" textRender="outline" textColor="yellow" autoSizing="true" align="hcenter;bottom" text="kartrider"/>
+          <Label name="award" windowRect="34 133 150 166" textColor="black" textAlign="center" multiLine="true" text="kartrider" visible="false"/>
+        </Container>
+      </Container>
+    </Container>
+  </Container>
+</Container>

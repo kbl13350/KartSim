@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 500 560" caption="#sb(modifyRidCaption)" align="center" setCloseButton="cancelButton">
+    <Panel name="iconPanel" leftTopWH="0 0 36 36" adjust="0 7" align="hcenter;top" texture="대화상자정보" alphaBlend="true"/>
+    <Label windowRect="0 48 460 53" textAlign="center" textRender="bold16" textColor="255 42 55 80" text="#sb(warningBold0)"/>
+    <Window windowRect="0 75 460 195" frame="DisabledEditLabel" align="hcenter">
+      <Label windowRect="15 7 460 17" textColor="255 255 69 69" textRender="bold14" text="#sb(warningDetail0)"/>
+      <Label windowRect="15 32 460 42" textColor="255 255 69 69" textRender="bold14" text="#sb(warningDetail1)"/>
+      <Label windowRect="15 57 460 67" textColor="255 255 69 69" textRender="bold14" text="#sb(warningDetail2)"/>
+      <Label windowRect="15 82 460 92" textColor="255 255 69 69" textRender="bold14" text="#sb(warningDetail3)"/>
+    </Window>
+    <CaptionWindow windowRect="0 205 460 310" frame="PopupWindow" caption="#sb(modifyRidCaption)" textRender="bold16" align="hcenter">
+      <Label windowSize="220 30" adjust="30 9" textRender="bold14" textColor="255 88 105 129" text="#sb(riderName)" textAlign="vcenter" align="left"/>
+      <Edit name="editRiderName" windowSize="220 30" adjust="30 9" textRender="bold14" textColor="255 42 55 80" textAlign="center" maxChar="12" align="right"/>
+      <Label windowRect="0 0 460 30" textColor="255 255 69 69" textRender="bold14" text="#sb(consultDetail0)" textAlign="center" align="bottom"/>
+    </CaptionWindow>
+    <Label windowRect="0 320 460 430" frame="DefaultEdit" multiLine="true" text="#sb(warningBold1)" lineGap="3" align="hcenter" textAlign="center" textRender="bold14" textColor="255 88 105 129"/>
+    <Window windowSize="460 1" adjust="0 439" frame="VSection" align="hcenter"/>
+    <Container windowSize="250 50" align="hcenter;bottom">
+      <TextButton name="okButton" windowRect="0 0 120 45" text="#sb(ok)" textRender="bold16"/>
+      <TextButton name="cancelButton" windowRect="0 0 120 45" align="right" text="#sb(cancel)" textRender="bold16"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

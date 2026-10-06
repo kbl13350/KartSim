@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god1"/>
+  <Char id="loki" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="洛基" string="居然要重开G1联赛……"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="洛基" string="看来还是要叫上那家伙~~"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="洛基" string="既然不能以现在的模样过去……"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="6 0" flip="true" emotion="stop1"/>
+  <Char id="pung" pos="7 0" emotion="normal"/>
+  <Msg name="洛基" string="那就变个身吧~|嘣！！"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="pung" remove="true"/>
+  <Char id="ms_loki" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="果然又可以使用魔法了！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="就悄悄的去一趟吧……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="还是用秘密通道过去吧……以免被海姆达尔发现……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <BackGround texture="for2"/>
+  <Char id="ms_loki" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="好像就在这附近……找到了！！！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="有一段时间没见到你了……找了好久~|话说回来，许久未见还是这么漂亮啊！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="洛基" string="为了躲避皮蛋一伙，这几天就没怎么出来。"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="洛基" string="黑杰克！我有事要请你帮忙~~"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="失踪了这么久，刚见面就要我帮你做事啊~"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="洛基" string="我也找你找了很久了。|黑杰克~这事你一定要帮我才行啊 ^^"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" pos="2 0" emotion="normal"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Msg name="洛基" string="快点，跟我来~"/>
+  <Enter/>
+</Scene>

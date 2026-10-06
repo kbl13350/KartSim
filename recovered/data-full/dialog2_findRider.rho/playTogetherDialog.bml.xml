@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="0 0 227 193" caption="#sb(playTogetherCaption)" captionPos="0 1" captionColor="black" align="center" setCloseButton="cancelButton">
+  <Label name="confirm_text" windowRect="5 10 196 21" multiLine="true" autoWrap="true" lineGap="1" text="#sb(inputRiderName)"/>
+  <Edit name="RiderEdit" windowRect="7 45 194 67" maxChar="16"/>
+  <TextButton name="playTogetherButton" windowRect="20 107 92 129" text="#sb(playTogeter)"/>
+  <TextButton name="cancelButton" windowRect="111 107 183 129" text="#sb(cancel)"/>
+  <ComboBox name="cmbFriendList" windowRect="7 73 194 95" comboListLength="145" scrollBarVisible="true"/>
+</CaptionWindow>

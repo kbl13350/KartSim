@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container depthBias="256">
+  <Button name="radio.itemIndi" windowRect="16 127 110 156" frame="NoFrame" iconSetRecur="itemIndi@zz" iconInfix="_0">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.itemTeam" windowRect="118 127 212 156" frame="NoFrame" iconSetRecur="itemTeam@zz" iconInfix="_0">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.speedIndi" windowRect="218 127 312 156" frame="NoFrame" iconSetRecur="speedIndi@zz" iconInfix="_0">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.speedTeam" windowRect="318 127 412 156" frame="NoFrame" iconSetRecur="speedTeam@zz" iconInfix="_0">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.aiItemTeam" windowRect="418 127 512 156" frame="NoFrame" iconSetRecur="campaign@zz" iconInfix="_0" visible="false">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.deadRacingTeam" windowRect="518 127 612 156" frame="NoFrame" iconSetRecur="deadRacingTeam@zz" iconInfix="_0" visible="false">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.flagIndi" windowRect="16 127 110 156" frame="NoFrame" iconSetRecur="flagIndi@zz" iconInfix="_0" visible="false">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.flagTeam" windowRect="118 127 212 156" frame="NoFrame" iconSetRecur="flagTeam@zz" iconInfix="_0" visible="false">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.classicIndi" windowRect="16 127 110 156" frame="NoFrame" iconSetRecur="classicIndi@zz" iconInfix="_0" visible="false">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.classicTeam" windowRect="118 127 212 156" frame="NoFrame" iconSetRecur="classicTeam@zz" iconInfix="_0" visible="false">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.bokbulbokIndi" windowRect="16 127 110 156" frame="NoFrame" iconSetRecur="bokbulbokIndi@zz" iconInfix="_0" visible="false">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+  <Button name="radio.bokbulbokTeam" windowRect="118 127 212 156" frame="NoFrame" iconSetRecur="bokbulbokTeam@zz" iconInfix="_0" visible="false">
+    <Panel name="checkMark" windowRect="3 -9 25 17" texture="선택체크" enable="false" alphaBlend="true" visible="false"/>
+  </Button>
+</Container>

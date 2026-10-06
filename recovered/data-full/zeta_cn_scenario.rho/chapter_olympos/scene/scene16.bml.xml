@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="olympos8"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="哈迪斯" string="不错~"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="果然实力非凡！"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop1"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="哈迪斯" string="气势如虹，你们的意志我充分理解。|但这还不足以对付宙斯。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop1"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="……"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="哈迪斯" string="让我也助你们一臂之力吧。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Char id="athena" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="雅典娜" string="真的吗？！"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop2"/>
+  <Char id="athena" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="哈迪斯" string="因为仅凭你们是无法战胜宙斯的，所以用这副身躯来帮助你们吧。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop2"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="哈迪斯。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="哈迪斯" string="不过，有个条件。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop1"/>
+  <Char id="athena" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="雅典娜" string="什么条件？"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop3"/>
+  <Char id="athena" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="哈迪斯" string="把我的人造人凯罗贝洛从监狱中救出来。|这件事就交给那些圆圆的憨憨们吧，呼呼。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="ethi" pos="11 0" emotion="stop6"/>
+  <Msg name="葱头" string="说我们是圆圆的憨憨！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="11 0" emotion="stop6"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="过分了？！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" pos="11 0" emotion="stop6"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝" string="突然想吃豆沙包了~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="哈迪斯" string="爱咋咋地，不过你们要是救不出来，我们的合作也就免谈。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Char id="hercules" pos="12 0" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="皮蛋。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Char id="hercules" pos="12 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="如果救出来了，可以撤回刚刚你所说的话吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="哈迪斯" string="嗯~可以啊，到时候再想想吧。|这是具体位置和注意事项。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="皮蛋" string="好了！我们出发吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="hades" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop2"/>
+  <Char id="bazzi" pos="12 0" emotion="stop1"/>
+  <Char id="ethi" pos="7 0" emotion="stop1"/>
+  <Msg name="黑妞，葱头，宝宝" string="出发！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（哧哧哧哧~哧哧哧哧~）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop1"/>
+  <Msg name="哈迪斯" string="好了，该轮到你了。|赫拉克勒斯，先给你看个东西。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" pos="7 0" flip="true" emotion="stop1"/>
+  <Char id="athena" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="雅典娜，赫拉克勒斯" string="这是？！"/>
+  <Enter/>
+  <Char id="hercules" remove="true"/>
+  <Char id="athena" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="normal"/>
+  <Msg name="哈迪斯" string="没错，正是[奥林匹斯]。|所有的设置都已经调整到最佳了。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop2"/>
+  <Msg name="哈迪斯" string="没点东西怎么能赢宙斯，还有……"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop1"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="赫拉克勒斯" string="还有？"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop2"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="哈迪斯" string="刚才跟你说过吧？这些还不足以战胜宙斯。|现在开始你用[奥林匹斯]和我进行特殊训练。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop2"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="赫拉克勒斯" string="好吧。不就特训吗？分分钟给你结束掉。"/>
+  <Enter/>
+  <Char id="hades" remove="true"/>
+  <Char id="hercules" remove="true"/>
+  <Char id="hades" pos="12 0" emotion="stop3"/>
+  <Char id="hercules" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="哈迪斯" string="能不能如你所愿呢？呼呼"/>
+  <Enter/>
+</Scene>

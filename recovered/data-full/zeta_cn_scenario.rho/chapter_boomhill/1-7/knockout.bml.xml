@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="forest_I04" laps="3" isFixedKart="true" fixedKartId="25" isFixedChar="true" fixedCharId="54" type="rank">
+    <LevelContent level="0" ksv="boomhill_7_1" startOffset="2000">
+      <ShadowKart characterId="1" uniformId="0" kartId="5" colorId="1" dyeId="1" characterName="皮蛋"/>
+      <ShadowKart characterId="53" uniformId="0" kartId="15" colorId="9" dyeId="9" characterName="莉亚"/>
+      <ShadowKart characterId="2" uniformId="0" kartId="20" colorId="6" dyeId="6" characterName="宝宝"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

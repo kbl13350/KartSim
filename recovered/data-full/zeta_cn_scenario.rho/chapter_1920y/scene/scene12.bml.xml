@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="steam5"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Msg name="市长" string="你来了？福尔摩斯。|来的过程不容易吧？"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop2"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="是啊，工厂太大了，不太好找。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop2"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="市长" string="是吗？|虽然还是有些不足，但在附近已经是最大的了。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop2"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="为了这工厂，应该投了不少资金吧。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="市长" string="哈哈哈哈。|但这工厂也没有辜负我的期望。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="福尔摩斯" string="是啊，我可以到处看看嘛？"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="zipi" pos="11 0" emotion="stop1"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="市长" string="请，福尔摩斯先生。|我吩咐下人给您泡上等的茶。"/>
+  <Enter/>
+  <Char id="zipi" remove="true"/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="我看看是做什么部件的工厂？|轮胎？！引擎？！是制作车的？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Msg name="福尔摩斯" string="等等，1920年的车就是敞篷…!"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="mobi" pos="10 0" emotion="stop8"/>
+  <Char id="tutu" pos="13 0" emotion="stop7"/>
+  <Msg name="吉米" string="咦！这不是福尔摩斯吗？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="mobi" pos="10 0" emotion="stop8"/>
+  <Char id="tutu" pos="13 0" emotion="stop10"/>
+  <Msg name="福尔摩斯" string="吉米！嘟嘟！你们怎么会在这里？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop2"/>
+  <Char id="mobi" pos="10 0" emotion="stop8"/>
+  <Char id="tutu" pos="13 0" emotion="stop7"/>
+  <Msg name="嘟嘟" string="不知道。按海盗船长的命令在追你的时候|进入到了奇怪的光圈里。"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="mobi" pos="10 0" emotion="stop8"/>
+  <Char id="tutu" pos="13 0" emotion="stop8"/>
+  <Msg name="福尔摩斯" string="（这帮家伙也穿越了）嗯…那你们怎么会在市长的工厂里？"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="mobi" pos="10 0" emotion="stop6"/>
+  <Char id="tutu" pos="13 0" emotion="stop8"/>
+  <Msg name="吉米" string="只要给我们好东西，随时都会成为朋友~"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="mobi" pos="10 0" emotion="stop8"/>
+  <Char id="tutu" pos="13 0" emotion="stop8"/>
+  <Msg name="嘟嘟" string="是啊，福尔摩斯~只要你不惹麻烦，马上就会有以我们名字命名的矿山了~|"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="mobi" pos="10 0" emotion="stop8"/>
+  <Char id="tutu" pos="13 0" emotion="stop10"/>
+  <Msg name="福尔摩斯" string="傻啊~|你们现在被市长利用了！！！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="mobi" pos="10 0" emotion="stop6"/>
+  <Char id="tutu" pos="13 0" emotion="stop8"/>
+  <Msg name="嘟嘟" string="在这里还以为自己是侦探的你才傻。|别动！福尔摩斯！"/>
+  <Enter/>
+  <Char id="kai" remove="true"/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="kai" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="mobi" pos="10 0" emotion="stop8"/>
+  <Char id="tutu" pos="13 0" emotion="stop8"/>
+  <Msg name="福尔摩斯" string="那真抱歉~|工厂看的也差不多了，先离开这里再说。"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window enable="true" leftTopWH="0 0 800 600" align="center">
+  <Container leftTopWH="160 88 800 600">
+    <Label name="축하" leftTopWH="138 198 169 27" textAlign="center" textColor="white" text="#sb(rewardMsg1)"/>
+    <Label name="축하2" leftTopWH="138 212 169 27" textAlign="center" textColor="white" text="#sb(rewardMsg2)"/>
+    <ItemWindow name="item" leftTopWH="176 105 100 100" stockId="1" visible="true"/>
+    <Label name="itemName" leftTopWH="142 252 169 27" textAlign="center" textColor="white" textRender="bigbold"/>
+    <ImageButton name="okButton" leftTopTex="180 296" autoLoadImage="btn_confirm_0" alphaBlend="true" textAlign="center" textColor="white" textRender="bigbold" text="#sb(okBt)"/>
+  </Container>
+</Window>

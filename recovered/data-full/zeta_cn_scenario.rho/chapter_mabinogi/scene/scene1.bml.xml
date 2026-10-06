@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot21"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="?" string="听得到吗？。。。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="（什么？）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="？" string="看来你能听到我的声音。。。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="宝宝" string="（嗯？什么呀，说话不睁眼吗？）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="？" string="魔族之神正在找你。|千万要藏好自己。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <BackGround texture="cnboomhill3"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="嗯？。。。|好奇怪的梦。。。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <BackGround texture="mabi1"/>
+  <Char id="morrigan" pos="10 0" emotion="normal"/>
+  <Msg name="茉莉安" string="作为引导者的生活如何？"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="12 0" emotion="normal"/>
+  <Msg name="娜儿" string="看着探险家们适应爱琳的生活，我感到非常高兴！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="morrigan" pos="12 0" emotion="normal"/>
+  <Msg name="娜儿" string="特别是大家聚集在篝火旁演奏的时候。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="茉莉安" string="看来这段时间你过的很好，真是万幸。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="娜儿" string="我们能够自由自在的生活在爱琳世界，多亏于您的守护！ "/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="娜儿" string="如果当时不是您把马赫封印在预言书，|爱琳世界早已成为了魔族的地盘。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="茉莉安" string="魔族之神锁孔和破坏之神马赫侵入爱琳世界已经过了这么多年。。。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="morrigan" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="娜儿" string="当时您失去的力量到现在也无法完全恢复，这让我非常担心。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="茉莉安" string="我的力量正在逐渐削弱当中。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="娜儿" string="什么？！还在继续恶化吗？"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="morrigan" pos="11 0" emotion="stop1"/>
+  <Msg name="茉莉安" string="是的，很遗憾。。。|我可能无法继续守护爱琳世界"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="娜儿" string="请您不要太担心。|因为自从上一次的战争之后，魔族便完全销声匿迹了~！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="11 0" emotion="stop1"/>
+  <Msg name="茉莉安" string="和平即将分裂。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="10 0" emotion="stop1"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="茉莉安" string="因此，爱琳世界现在需要能够代替我的光之骑士。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="morrigan" pos="10 0" emotion="stop1"/>
+  <Msg name="娜儿" string="您这是什么意思。。。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="morrigan" pos="10 0" flip="true" emotion="normal"/>
+  <Msg name="茉莉安" string="随着我自身力量的减弱，马赫的封也逐渐变得减弱。|锁孔也知晓了这个事实。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="morrigan" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="娜儿" string="锁孔也知道了吗？！！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="morrigan" pos="11 0" emotion="stop1"/>
+  <Msg name="茉莉安" string="正如预言书上所写的那样，锁孔为了寻找能够让马赫降临的最佳人选-红色容器，|前往了这个世界。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="morrigan" pos="11 0" emotion="stop1"/>
+  <Msg name="娜儿" string="那么按照预言。。。马赫降临的话，爱琳世界真的会被摧毁吗？！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="茉莉安" string="是的，预言不会说谎。所以我们要阻止锁孔找到那个红色容器。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="娜儿" string="我知道您今天为什么叫我来了。。。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="11 0" emotion="stop1"/>
+  <Msg name="茉莉安" string="请你找出锁孔的行踪，找出红色容器并保护他。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="morrigan" pos="11 0" emotion="stop1"/>
+  <Msg name="娜儿" string="有没有办法知道所指的红色容器是谁呢？"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="茉莉安" string="预言书会告诉这个问题，|所以现在只有锁孔知道。"/>
+  <Enter/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="11 0" emotion="normal"/>
+  <Msg name="娜儿" string="那只好找出锁孔的行踪并追踪他了。|我怎样才能去到他所在的地方呢？"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="10 0" emotion="normal"/>
+  <Msg name="茉莉安" string="请将这张通行证放在迪尔科内尔广场的树前，|它将会指引你到锁孔在的地方。"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="morrigan" pos="10 0" emotion="stop1"/>
+  <Msg name="茉莉安" string="在这个世界魔法的力量是行不通的，请一定要小心！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="morrigan" remove="true"/>
+  <Char id="nao" pos="4 0" emotion="normal"/>
+  <Char id="morrigan" pos="10 0" emotion="normal"/>
+  <Msg name="娜儿" string="我明白了，后会有期！"/>
+  <Enter/>
+</Scene>

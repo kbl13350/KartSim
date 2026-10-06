@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill3"/>
+  <Char id="dizini" pos="5 0" flip="true" emotion="stop2"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞/宝宝" string="飞啊 飞啊 飞机~♪|好开心~ 哟呼~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="嘿嘿.. 大家真早..|那个.. 对不起..我的机票被妖风吃了！|但请帖还在，不要担心…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Shake time="300"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop6"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞/宝宝" string="妖风？你骗骗傻瓜吧！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞" string="那怎么去月光之城？不坐飞机啦?"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="我觉得车手就应该开车过去..|嘿嘿嘿.. 这样才能显示出我们的诚意！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="啊？你居然说的像没事一样！！|你知道我多想坐飞机吗!!给我站住!!"/>
+  <Enter/>
+</Scene>

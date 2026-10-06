@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="pastReocrdInfoTitle">
+    <m c="kr" v="내 지난 시즌 기록"/>
+    <m c="cn" v="我的以往赛季纪录"/>
+  </k>
+  <k n="season">
+    <m c="kr" v="시즌"/>
+    <m c="cn" v="赛季"/>
+  </k>
+  <k n="grade">
+    <m c="kr" v="등급"/>
+    <m c="cn" v="等级"/>
+  </k>
+  <k n="rank">
+    <m c="kr" v="순위"/>
+    <m c="cn" v="排名"/>
+  </k>
+  <k n="rankPercentageFormat">
+    <m c="kr" v="%d위|상위 %.2f%%"/>
+    <m c="cn" v="第%d名|前%.2f%%"/>
+  </k>
+  <k n="chapterSeasonFormat">
+    <m c="kr" v="챕터%d 시즌%d"/>
+    <m c="cn" v="第%d章 第%d赛季"/>
+  </k>
+</StringBag>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="xyy1"/>
+  <Char id="wolf" pos="8 0" emotion="stop1"/>
+  <Msg name="灰太狼" string="恩？在哪呢？"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="wolf" pos="8 0" emotion="stop4"/>
+  <Msg name="灰太狼" string="...|又骗我..没有羊啊？"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="xyydao" pos="8 0" emotion="stop1"/>
+  <Msg name="皮蛋扮羊" string="..."/>
+  <Enter/>
+  <Char id="xyydao" remove="true"/>
+  <Char id="wolf" pos="8 0" emotion="stop2"/>
+  <Msg name="灰太狼" string="找到了，是羊！！|羊肉火锅！"/>
+  <Enter/>
+  <Char id="wolf" remove="true"/>
+  <Char id="wolf" pos="8 0" emotion="stop4"/>
+  <Msg name="灰太狼" string="站住！！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss2"/>
+  <Char id="portal" pos="8 0" emotion="normal"/>
+  <Msg name="" string="（嗡~)"/>
+  <Enter/>
+  <Char id="portal" remove="true"/>
+  <Char id="neoul" pos="8 0" emotion="normal"/>
+  <Msg name="奈尔" string="正好到入口了。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Char id="tiera" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="茜茜" string="那太好了，叫奈尔是吧？|就麻烦你带路了。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="tiera" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="跟我来。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <BackGround texture="abyss4"/>
+  <Char id="meoguri_soldier" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="meoguri_soldier2" pos="10 0" emotion="normal"/>
+  <Char id="meoguri_soldier3" pos="13 0" emotion="normal"/>
+  <Msg name="阿比斯军团" string="警惕！警惕！再警惕！莫格瑞大人万岁！"/>
+  <Enter/>
+  <Char id="meoguri_soldier" remove="true"/>
+  <Char id="meoguri_soldier2" remove="true"/>
+  <Char id="meoguri_soldier3" remove="true"/>
+  <Char id="meoguri_soldier" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="meoguri_soldier2" pos="10 0" emotion="normal"/>
+  <Char id="meoguri_soldier3" pos="13 0" emotion="normal"/>
+  <Msg name="阿比斯军团" string="莫格瑞大人万岁！"/>
+  <Enter/>
+  <Char id="meoguri_soldier" remove="true"/>
+  <Char id="meoguri_soldier2" remove="true"/>
+  <Char id="meoguri_soldier3" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="从这里开始戒备森严。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="黑妞" string="看起来不好偷摸进去……"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="tiera" pos="11 0" emotion="stop3"/>
+  <Msg name="茜茜" string="稍等下，咻~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="tiera" pos="11 0" emotion="stop3"/>
+  <Msg name="奈尔" string="……你这是在干吗？"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dizini" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="tiera" pos="11 0" emotion="stop3"/>
+  <Msg name="黑妞" string="好像也没什么变化啊……"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Msg name="茜茜" string="给你们施了隐身魔法。|只要不发声，应该没问题。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Char id="neoul" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="那就有办法进去了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop5"/>
+  <Char id="tiera" pos="12 0" emotion="normal"/>
+  <Char id="neoul" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="黑妞" string="嗯，千万不要出声啊！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="tiera" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" pos="2 0" emotion="stop5"/>
+  <Char id="tiera" pos="8 0" emotion="normal"/>
+  <Char id="neoul" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="跟上我。"/>
+  <Enter/>
+</Scene>

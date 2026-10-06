@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <CaptionWindow leftTopWH="0 0 480 270" frame="CaptionDialog" align="center" textRender="bold16" caption="#sb(manageClubCrew)">
+    <Label name="rid" leftTopWH="80 12 100 20" textAlign="center" textRender="bold16" textColor="255 36 129 255"/>
+    <Label name="crewGrade" leftTopWH="180 12 200 20" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+    <ImageCheckButton name="managerGradeBtn" leftTopWH="40 55 14 14" autoImage="btn_radio_" alphaBlend="true">
+      <Label leftTopWH="25 -4 100 20" text="#sb(manager)" textRender="bold14" textAlign="left" textColor="255 42 55 80"/>
+      <Label leftTopWH="105 -4 100 20" text="#sb(managerExplain)" textRender="bold14" textAlign="left" textColor="255 42 55 80"/>
+    </ImageCheckButton>
+    <ImageCheckButton name="firstMemberGradeBtn" leftTopWH="40 85 14 14" autoImage="btn_radio_" alphaBlend="true">
+      <Label leftTopWH="25 -4 100 20" text="#sb(firstMember)" textRender="bold14" textAlign="left" textColor="255 42 55 80"/>
+    </ImageCheckButton>
+    <ImageCheckButton name="memberGradeBtn" leftTopWH="40 115 14 14" autoImage="btn_radio_" alphaBlend="true">
+      <Label leftTopWH="25 -4 100 20" text="#sb(member)" textRender="bold14" textAlign="left" textColor="255 42 55 80"/>
+    </ImageCheckButton>
+    <Window windowSize="421 1" frame="HSection" adjust="0 63" align="hcenter;bottom"/>
+    <Window name="yesNoButtonList" leftTopWH="0 0 400 40" adjust="0 6" align="hcenter;bottom">
+      <TextButton name="kickOut" windowSize="132 40" adjust="-140 0" text="#sb(kickOut)" align="center" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+      <TextButton name="ok" windowSize="132 40" adjust="0 0" align="center" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefualtFocusedButton"/>
+      <TextButton name="cancel" windowSize="132 40" adjust="140 0" align="center" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Window>
+  </CaptionWindow>
+</Panel>

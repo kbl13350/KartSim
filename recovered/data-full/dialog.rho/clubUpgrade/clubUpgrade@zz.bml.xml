@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="upgradeTitle" windowRect="0 0 520 550" frame="CaptionDialog" caption="#sb(clubUpgrade)" captionPos="0 1" align="center" textRender="bold16">
+    <Panel name="upgradeImg" windowSize="240 180" adjust="0 20" align="hcenter;top" texture="" alphaBlend="true" alphaTest="true" visible="true"/>
+    <Container name="upgradeCost" windowSize="360 360" adjust="0 -20" align="center">
+      <Window windowSize="468 62" adjust="0 65" frame="DefaultEdit" align="center" alphaBlend="true">
+        <Window windowSize="444 1" adjust="0 0" align="center" frame="HSection"/>
+      </Window>
+      <Label leftTopWH="-40 220 40 20" text="#sb(clubCS)" textColor="255 88 105 129" textRender="bold16" textAlign="left"/>
+      <Label name="cs" leftTopWH="270 220 80 20" text="" textColor="255 42 55 80" textRender="bold16" textAlign="right"/>
+      <Label leftTopWH="355 220 40 20" text="#sb(cs)" textColor="255 42 55 80" textRender="bold16" textAlign="left"/>
+      <Label leftTopWH="-40 247 40 20" text="#sb(clubCapital)" textColor="255 88 105 129" textRender="bold16" textAlign="left"/>
+      <Label name="lucci" leftTopWH="270 247 80 20" text="" textColor="255 42 55 80" textRender="bold16" textAlign="right"/>
+      <Label leftTopWH="355 247 40 20" text="#sb(lucci)" textColor="255 42 55 80" textRender="bold16" textAlign="left"/>
+    </Container>
+    <Container name="upgradeInfo" windowSize="468 100" adjust="0 100" align="center">
+      <Label name="info1" windowSize="200 20" adjust="20 0" align="left;vcenter" text="#sb(upgradeInfo1_0)" textColor="255 42 55 80" textAlign="left" textRender="bold14"/>
+      <Label name="info2" windowSize="200 20" adjust="20 20" align="left;vcenter" text="#sb(upgradeInfo2_0)" textColor="255 42 55 80" textAlign="left" textRender="bold14"/>
+      <Label name="info3" windowSize="200 20" adjust="0 55" align="center" text="#sb(clubUpgradeInfo0)" textColor="255 72 106 163" textAlign="center" textRender="bold14"/>
+    </Container>
+    <Label name="level" windowSize="200 20" adjust="0 220" align="hcenter;top" text="" textColor="255 80 80 80" textAlign="center" textRender="bold16"/>
+    <Window windowSize="468 1" frame="HSection" adjust="0 63" align="hcenter;bottom"/>
+    <Window name="yesNoButtonList" leftTopWH="0 0 400 40" adjust="0 6" align="hcenter;bottom">
+      <TextButton name="ok" windowSize="132 40" adjust="-70 0" align="center" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+      <TextButton name="cancel" windowSize="132 40" adjust="70 0" align="center" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Window>
+  </CaptionWindow>
+</Panel>

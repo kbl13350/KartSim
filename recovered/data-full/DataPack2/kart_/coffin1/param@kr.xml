@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.076'
+	SteerConstraint='2.5'
+	DriftEscapeForce='1700'
+	CornerDrawFactor='0.075'
+
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	
+	UseTransformBooster='true'
+	TransAccelFactor='1.832'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.65'
+	StartBoosterTimeSpeed='1200'   
+
+	NormalBoosterTime = '-100'
+	TeamBoosterTime = '-200'
+	DriftMaxGauge = '-600'
+	DriftGaguePreservePercent='0.4'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85sub'
+	BoosterType4='85sub'
+
+	Port0='mod1c1'
+	Port1='mod1c2'
+
+	FirePort0='mod1a4'
+	FirePort1='mod1d1'
+	FirePort2='mod1d2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '44'
+	DescStability ='42'
+	DescEngineGrade='1.25'
+	DescCornering='5'
+	DescEnchantCap = '20'
+
+	secondColor='255 32 29 38'
+	secondHighColor='255 127 119 137'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1d1' trailPort1='mod1d2'/>
+</BodyParam>
+<!--블라드 한국 할로윈 스피드 카트 루찌 131024-->

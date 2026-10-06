@@ -1,0 +1,7 @@
+{
+  "format": "unknown",
+  "strategy": "structural",
+  "modules": {
+    "index-DoW2rQpI.js": {"input": "mirror/assets/index-DoW2rQpI.js", "ranges": [[0,5118505]], "extraction": "structural"}
+  }
+}

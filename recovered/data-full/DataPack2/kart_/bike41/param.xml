@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='130.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.067'
+	SteerConstraint='2.4'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='lodi4'
+	UseTransformBooster='true'
+	motorcycleType='true'
+
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+        BoosterType3='8main'
+	BoosterType4='8sub'
+	BoosterType5='8sub'
+
+	Port0='mod4a'
+	Port1='mod4b'
+
+	FirePort0='mod6a'
+	FirePort1='mod6b'
+	FirePort2='mod5a'
+	FirePort3='mod5b'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+	EnvMap='true'
+        WheelFixed = 'true'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod5a' trailPort1='mod5b'/>
+</BodyParam>

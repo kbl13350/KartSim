@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TonPanel name="bossDamageCriFx" windowRect="0 0 329 54" alphaBlend="true" textureOp="modulate" panelAnimPack="criticalHit" isExcuteChildAnim="true" texture="critical@zz">
+  <TonCharPanel name="static_char" windowRect="170 63 371 63" texture="cricnt2630" fontSize="60 71" fontPos="0 0" fontStr="-1234567|890" alphaBlend="true" align="hcenter" textureOp="modulate" panelAnimPack="damageHitChild"/>
+</TonPanel>

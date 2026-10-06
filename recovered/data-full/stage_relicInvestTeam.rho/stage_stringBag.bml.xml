@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="relicInvestTeam">
+    <m c="kr" v="유물조사단"/>
+    <m c="tw" v="遺跡寶藏調查團"/>
+    <m c="cn" v="古迹探险"/>
+    <m c="id" v="Relic Hunter"/>
+  </k>
+  <k n="myDiceTitle">
+    <m c="kr" v="내 주사위"/>
+    <m c="tw" v="我的骰子"/>
+    <m c="cn" v="我的骰子"/>
+    <m c="id" v="Daduku"/>
+  </k>
+  <k n="raceCountTitle">
+    <m c="kr" v="완주 횟수"/>
+    <m c="tw" v="完成圈數"/>
+    <m c="cn" v="完成次数"/>
+    <m c="id" v="Lap"/>
+  </k>
+  <k n="unitRaceCount">
+    <m c="kr" v="회"/>
+    <m c="tw" v="回"/>
+    <m c="cn" v="回"/>
+    <m c="id" v="kali"/>
+  </k>
+  <k n="upgrade">
+    <m c="kr" v="업그레이드"/>
+    <m c="tw" v="升級"/>
+    <m c="cn" v="升级"/>
+    <m c="id" v="Upgrade"/>
+  </k>
+  <k n="upgradeConfirm">
+    <m c="kr" v="획득 버튼은 활성화되어 있는 보상을 획득할 수 있으며|업그레이드 버튼은 다음번 도착 시 받는 보상을 업그레이드할 수 있습니다.|단, 업그레이드 선택 시 현재 보상은 포기하게 됩니다."/>
+    <m c="tw" v="點下獲得按鍵就能得到獎勵|升級按鈕於下一次到達升級格時，可進行得到獎勵的升級|而選擇升級後，必須放棄現有的獎勵道具"/>
+    <m c="cn" v="获得按钮可以获得已激活的奖励|升级按钮可以将在下次到达时所获得奖励进行升级。|但，选择升级时将会放弃本次奖励。"/>
+    <m c="id" v="Tombol Dapatkan dapat mengambil Reward yang aktif|Tombol Upgrade dapat digunakan untuk mengupgrade Reward yang bisa di dapatkan pada kunjungan berikut.|Namun, saat memilih Upgrade, Reward untuk kali ini tidak dapat didapatkan."/>
+  </k>
+  <k n="rewardItem">
+    <m c="kr" v="%s 획득"/>
+    <m c="tw" v="%s 獲得"/>
+    <m c="cn" v="获得%s"/>
+    <m c="id" v="Mendapatkan %s"/>
+  </k>
+  <k n="confirm">
+    <m c="kr" v="획득"/>
+    <m c="tw" v="獲得"/>
+    <m c="cn" v="获得"/>
+  </k>
+</StringBag>

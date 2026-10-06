@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600">
+  <CaptionWindow name="준비" windowRect="0 0 800 600" frame="DefaultCaptionWindow" captionPos="0 6" captionColor="black" caption="#sb(scenario)">
+    <StateButton name="시작" windowRect="-4 0 68 72" frame="MenuSelectButton" iconSet="시작" iconAlign="hcenter" iconPos="0 5" idleBlink="250" text="#sb(start)" textAlign="hcenter" stringPos="0 55" depthBias="100"/>
+    <StateButton name="goBackButton" windowRect="-4 80 68 152" frame="MenuSelectButton" iconSet="뒤로가기퀵" iconAlign="hcenter" iconPos="0 15" idleBlink="250" text="#sb(goBack)" textAlign="hcenter" stringPos="0 55" depthBias="100"/>
+    <Container windowRect="0 0 770 483">
+      <Panel name="charBg" windowRect="74 5 365 253" texture="circle" uvRect="120 120 411 370">
+        <Window name="window" windowRect="0 0 291 250" frame="EmptyFill" enable="false"/>
+      </Panel>
+      <Window name="설명창" windowRect="74 0 770 483" enable="false">
+        <Container name="캐릭터창" windowRect="5 3 285 374"/>
+        <Container windowRect="0 0 696 483">
+          <Container name="titleBar" clientRect="3 16 287 41">
+            <Panel name="bar" windowRect="0 0 279 25" alphaBlend="true"/>
+            <Panel name="step" windowRect="237 -8 290 20" alphaBlend="true"/>
+          </Container>
+          <CaptionWindow name="minimap" windowRect="-1 260 291 473" frame="CaptionWindow" captionColor="black" caption="" captionPos="0 3">
+            <Panel name="trackImage" windowRect="-2 1 279 165" texture="미니맵이미지" alphaBlend="true"/>
+            <Panel name="reverseImage" windowSize="177 116" adjust="50 24" texture="큰리버스트랙" alphaBlend="true" visible="false"/>
+          </CaptionWindow>
+          <Window name="desc" windowRect="310 3 673 474" frame="ShadowedPanel">
+            <Panel windowRect="-1 0 347 21" texture="타이틀박스" alphaBlend="true">
+              <Label name="scenarioTitle" windowRect="0 0 348 21" textRender="bold" textColor="black" textAlign="center" text="#sb(scenarioTitle)"/>
+            </Panel>
+            <Panel name="missionImage" windowRect="-1 26 347 198" alphaBlend="true"/>
+            <Panel windowRect="-1 198 347 376" texture="시놉박스" alphaBlend="true">
+              <Label windowRect="0 -9 348 26" textRender="bold" textColor="white" textAlign="center" text="#sb(synopsisTitle)"/>
+              <Label name="synopsis" windowRect="0 12 348 100" textColor="black" textAlign="center" text="#sb(synopsis)" multiLine="true" autoWrap="true"/>
+              <Label windowRect="0 96 348 127" textRender="bold" textColor="white" textAlign="center" text="#sb(howtoClearTitle)"/>
+              <Label name="missionText" windowRect="0 131 348 160" textColor="black" textAlign="center" text="#sb(howtoClear)" multiLine="true" autoWrap="true"/>
+            </Panel>
+            <Panel windowRect="-1 381 347 453" texture="보상박스" alphaBlend="true">
+              <Panel name="prizeTag0" windowRect="75 9 227 26" texture="도전과제보상_0@zz" alphaBlend="true"/>
+              <Panel name="prizeTag1" windowRect="75 9 227 26" texture="도전과제보상_1@zz" alphaBlend="true" visible="false"/>
+              <ItemWindow name="itemPanel" windowRect="8 8 67 62"/>
+              <Panel name="emblem" windowRect="29 26 49 46" uvRect="0 0 20 20" visible="false" alphaBlend="true"/>
+              <Label name="lblPrize" windowRect="80 31 290 59" textRender="bold" autoWrap="true" multiLine="true" enable="false" textColor="255 0 0 0"/>
+              <Panel name="clearStep" windowRect="-13 -15 80 95" texture="클리어@zz" alphaBlend="true"/>
+            </Panel>
+          </Window>
+        </Container>
+      </Window>
+    </Container>
+  </CaptionWindow>
+</Container>

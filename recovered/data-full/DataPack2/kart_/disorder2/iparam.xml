@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='100.0'
+	BackwardAccelForce='90.0'
+	DragFactor='-0.05'
+	SteerConstraint='1.75'
+	DriftEscapeForce='150'
+	CornerDrawFactor='0.045'
+	BoosterBlur='true'
+
+	EngineSound='pro'
+	BoosterType='cotton6'
+
+        BoosterType0='default'
+        BoosterType1='default'
+	BoosterType2='cotton6'
+	BoosterType3='cotton6'
+	BoosterType4='cotton6'
+	BoosterType5='cotton6'
+	
+	Port0='mod3'
+	Port1='mod4'
+
+	EnvMap='1'
+/>

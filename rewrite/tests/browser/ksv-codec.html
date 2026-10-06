@@ -1,0 +1,44 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>KSV browser smoke</title>
+<pre id="result">running</pre>
+<script type="module">
+  import { Ff, ph0 } from "/src/generated/timeattack.js";
+  const output = document.querySelector("#result");
+  const equipment = {
+    character: 1, kartPaint: 2, characterColor: 3, kart: 4, plate: 5,
+    goggle: 6, balloon: 7, equ2: 8, headband: 9, replay: 10,
+    cane: 11, equ3: 12, apparel: 13, equ4: 14, plateText: "测试",
+    startSlot: 0, unknownPlayerFlag: 0, equ5: 15, equ6: 16,
+    equ7: 17, equ8: 18, equ9: 19, equ10: 20, equ11: 21, equ12: 22,
+  };
+  const frame = {
+    time: 123, x: -100, y: 900, z: -40, w: 1,
+    qx: 2, qy: 3, qz: 4, status: 65535,
+  };
+  const recording = {
+    headerVersion: 12, recordTitle: "浏览器测试", regionCode: 0,
+    unknown1_1: 255, contestType: 9, playerNameHash: 0, unknown1_2: 0,
+    recorderAccount: "", recorderName: "测试", recordingDateDays: 0,
+    recordingDateTime: 0, recordChecksum: 0, isOfficial: false,
+    description: "", trackName: "village_r01", unknown3: 0,
+    bestTimeMs: 12345, contestImg: "", opaqueBlob: Uint8Array.of(0, 0, 0, 0),
+    unknown6: 0, speed: 7, unknown7: 0,
+    players: [{ playerName: "测试", clubName: "", equipment }],
+    recordVersion: 12, records: [{ stamps: [frame] }],
+  };
+  try {
+    const file = ph0(recording, 1500);
+    const restored = Ff(file, 1500);
+    if (file[4] !== 83 || file[5] !== 3) throw new Error("KRData header mismatch");
+    if (JSON.stringify(restored.records[0].stamps[0]) !== JSON.stringify(frame)) {
+      throw new Error("frame did not round trip");
+    }
+    if (restored.players[0].equipment.plateText !== "测试") {
+      throw new Error("equipment did not round trip");
+    }
+    output.textContent = `PASS: generated Ff/ph0 with release zlib (${file.length} bytes)`;
+  } catch (error) {
+    output.textContent = `FAIL: ${error?.stack || error}`;
+  }
+</script>

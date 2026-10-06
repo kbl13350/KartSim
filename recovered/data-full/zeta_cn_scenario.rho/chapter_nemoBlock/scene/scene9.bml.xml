@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Nemo2"/>
+  <Char id="nemodao" pos="7 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="怎么办，又跟丢了！|到底去哪了~"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="皮蛋！！！|你就这么一个人追过去怎么行呢！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="对不起…黑妞~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="我以为只要抓到麦迪娅，所有问题就都解决了~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="麦迪娅？？"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="嗯！就是我们看到的那个女巫~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="（呃啊！）|你们小心！！！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="nemodao" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="黑妞" string="啊啊！！救命啊！！！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="lion" pos="8 0" emotion="normal"/>
+  <Msg name="？？？？" string="我来了！！|让我来帮助你们吧！"/>
+  <Enter/>
+  <Char id="lion" remove="true"/>
+  <Char id="lion" pos="11 0" emotion="normal"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="那…那又是什么？"/>
+  <Enter/>
+  <Char id="lion" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="lion" pos="11 0" emotion="stop2"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="？？？？" string="嗯……"/>
+  <Enter/>
+  <Char id="lion" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="lion" pos="11 0" emotion="normal"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="谢谢你帮了我们！|不过你究竟是谁？"/>
+  <Enter/>
+  <Char id="lion" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="lion" pos="11 0" emotion="stop2"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="？？？？" string="我……|我的名字是…"/>
+  <Enter/>
+  <Char id="lion" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="lion" pos="11 0" emotion="normal"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="唉！急死了~|你快说啊~"/>
+  <Enter/>
+  <Char id="lion" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="lion" pos="11 0" emotion="stop2"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="？？？？" string="呃呃！！！|（好丢人啊~~不行了…还是快跑吧！）"/>
+  <Enter/>
+  <Char id="lion" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodao" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="喂喂！！你别走啊！！"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodao" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="你先告诉我这个像素世界到底是什么地方！"/>
+  <Enter/>
+</Scene>

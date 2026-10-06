@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle1"/>
+  <Char id="marid" pos="7 0" emotion="stop2"/>
+  <Msg name="蓝蓝" string="厨房到底在哪啊？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dona" pos="10 0" emotion="stop2"/>
+  <Msg name="当娜" string="啊！！你是谁！！不会是小偷吧？？！！"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="marid" pos="4 0" emotion="stop5"/>
+  <Msg name="蓝蓝" string="恩!!??"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="marid" pos="4 0" emotion="stop5"/>
+  <Char id="dona" pos="11 0" emotion="stop2"/>
+  <Msg name="当娜" string="啊！！小偷！！救命啊！！"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dona" remove="true"/>
+  <Char id="marid" pos="7 0" emotion="stop5"/>
+  <Msg name="蓝蓝" string="啊！！等等！！|您误会了！！"/>
+  <Enter/>
+</Scene>

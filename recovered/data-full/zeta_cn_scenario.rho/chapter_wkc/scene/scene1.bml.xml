@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill2"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="急匆匆地跑！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="宝宝！！！这么急着去哪儿啊？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="急匆匆地跑！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="宝宝那么急着去哪里呀？|我要跟过去看看！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <BackGround texture="vill4"/>
+  <Char id="bazzi" pos="8 0" emotion="stop5"/>
+  <Msg name="宝宝" string="晕。。。皮蛋不在这儿？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="皮蛋到底在哪里呀！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="终于赶上了！！|叫你都不理人，你到底要去哪里呀！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="啊，是黑妞呀！|一个超大规模的赛事举办方给皮蛋发了邀请函！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="超大规模赛事举办方？？？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Msg name="宝宝" string="恩！！是的！！是来自..|世界锦标赛举办事务局！！！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="世界锦标赛？|是只有专业选手们才能参加的全球级大赛吗！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="ani1"/>
+  <Msg name="宝宝" string="对呀，就是他们给皮蛋发了邀请函！|我们要赶快找到皮蛋！！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="皮蛋现在还在练习呢！|跟我来！"/>
+  <Enter/>
+</Scene>

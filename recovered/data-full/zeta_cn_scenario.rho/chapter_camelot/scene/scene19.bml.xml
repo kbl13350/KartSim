@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot20"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="这家伙真难缠，能阻拦我这么久的你是第一个。"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="呼呼呼……真的不行了……|亚瑟！赶紧拔剑！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="excalibur" pos="8 0" emotion="normal"/>
+  <Char id="arthur" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="（只要拔出这把剑就……）"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="arthur" remove="true"/>
+  <Char id="excalibur" pos="8 0" emotion="normal"/>
+  <Char id="arthur" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="啊啊啊！！"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="arthur" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop2"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="莫德雷德" string="休想得逞~！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" emotion="stop5"/>
+  <Msg name="???" string="呃啊！！！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="pendragon" pos="7 0" emotion="normal"/>
+  <Msg name="???" string="啊~啊啊~~"/>
+  <Enter/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="pendragon" pos="7 0" emotion="normal"/>
+  <Char id="excalibur" pos="8 0" emotion="stop4"/>
+  <Msg name="" string="（闪一下！！）"/>
+  <Enter/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="pendragon" pos="8 0" flip="true" emotion="stop2"/>
+  <Msg name="???" string="啊~啊啊~~"/>
+  <Enter/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop5"/>
+  <Msg name="宝宝" string="那是什么！怎么回事！|那只红色的小狗……变成龙了！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mordred" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="莫德雷德" string="什么情况！那条龙又是什么东西！！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="merlin" pos="11 0" emotion="stop3"/>
+  <Msg name="梅林" string="原来如此……每当卡美洛陷入危机时出现的……|这个形态就是传说中的潘德拉贡……"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="merlin" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="梅林" string="潘德拉贡是圣剑的能量源泉……|想当年我和它征战沙场。"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop5"/>
+  <Msg name="宝宝" string="看那边！！红龙……潘德拉贡被圣剑吸进去了！！呜哇哇…"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="excalibur" pos="9 0" emotion="stop2"/>
+  <Char id="camelot_effect" pos="9 0" emotion="stop2"/>
+  <Char id="arthur" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="亚瑟" string="怎么回事！！有道奇怪的光线正被圣剑吸收！！"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="arthur" remove="true"/>
+  <Char id="excalibur" pos="7 0" emotion="stop3"/>
+  <Char id="camelot_effect" pos="7 0" emotion="stop2"/>
+  <Msg name="" string="咻~咻~咻~"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="9 0" emotion="stop5"/>
+  <Char id="merlin" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="梅林" string="！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="bazzi" pos="11 0" emotion="stop5"/>
+  <Char id="merlin" pos="7 0" flip="true" emotion="stop3"/>
+  <Char id="mordred" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="莫德雷德" string="！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="bazzi" pos="13 0" emotion="stop5"/>
+  <Char id="merlin" pos="10 0" flip="true" emotion="stop3"/>
+  <Char id="mordred" pos="6 0" flip="true" emotion="stop3"/>
+  <Char id="kei" pos="2 0" flip="true" emotion="stop5"/>
+  <Msg name="凯" string="！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="mordred" remove="true"/>
+  <Char id="kei" remove="true"/>
+  <Char id="pendragon" pos="6 0" emotion="stop2"/>
+  <Char id="king_arthur" pos="8 0" emotion="normal"/>
+  <Msg name="" string="（嘟咚！！）"/>
+  <Enter/>
+  <Char id="pendragon" remove="true"/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="你是？亚瑟？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="normal"/>
+  <Msg name="亚瑟王" string="烈焰勇士啊，亚瑟是我过去的名字，|我是被圣剑唤醒的卡美洛亚瑟王。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="stop1"/>
+  <Msg name="亚瑟王" string="而且，通过圣剑和潘德拉贡了解到了过往的所有琐事。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="帅炸了！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="stop1"/>
+  <Msg name="亚瑟王" string="大魔法师梅林啊，谢谢你一直以来守护我……"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="merlin" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="卡美洛的王……微臣惶恐！"/>
+  <Enter/>
+  <Char id="merlin" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="stop1"/>
+  <Msg name="亚瑟王" string="还有，凯，为你的牺牲表示感谢。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop5"/>
+  <Char id="light" pos="5 0" emotion="stop1"/>
+  <Msg name="" string="（咻呜~）"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="light" remove="true"/>
+  <Char id="kei" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="凯" string="咦……伤口消失了。这就是圣剑……是亚瑟王的力量吗？"/>
+  <Enter/>
+  <Char id="kei" remove="true"/>
+  <Char id="king_arthur" pos="11 0" emotion="normal"/>
+  <Msg name="亚瑟王" string="莫德雷德！毒杀卡美洛的国王，弄得百姓民不聊生，你该当何罪。"/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="mordred" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="莫德雷德" string="呜呼呼呼…你以为得到圣剑的力量|就能打败我吗？"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="莫德雷德" string="那好，我也展现下我真正的力量吧！"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="莫德雷德" string="……黑暗之力……"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="mordred" pos="7 0" flip="true" emotion="stop4"/>
+  <Char id="camelot_effect" pos="6 0" emotion="stop3"/>
+  <Msg name="莫德雷德" string="…………"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="mordred" pos="7 0" flip="true" emotion="stop5"/>
+  <Char id="camelot_effect" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="莫德雷德" string="呵呵……你能承受得了这股黑暗的力量吗？"/>
+  <Enter/>
+  <Char id="mordred" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="king_arthur" pos="9 0" emotion="normal"/>
+  <Msg name="亚瑟王" string="..."/>
+  <Enter/>
+  <Char id="king_arthur" remove="true"/>
+  <Char id="king_arthur" pos="9 0" emotion="stop1"/>
+  <Char id="camelot_effect" pos="9 0" flip="true" emotion="stop4"/>
+  <Msg name="亚瑟王" string="好吧，那我也稍微认真一点吧。"/>
+  <Enter/>
+</Scene>

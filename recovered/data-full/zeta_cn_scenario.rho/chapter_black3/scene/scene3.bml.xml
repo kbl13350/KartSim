@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="wkc5"/>
+  <Char id="raptorR" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷" string="调查完关于世界各地星陨之石的详情。"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷格" string="不足的可以去那里|调查应该就可以~嘿嘿嘿"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop1"/>
+  <Char id="raptorR" pos="2 0" emotion="stop2"/>
+  <Char id="raptorL" pos="5 0" emotion="stop2"/>
+  <Msg name="黑杰克" string="大家都辛苦了~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop1"/>
+  <Char id="totop" pos="11 0" emotion="stop1"/>
+  <Msg name="格雷" string="并且调查中收集了可疑信息。"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="可疑信息？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷" string="听说星陨之石还隐藏了其他力量.."/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="7 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="星陨之石里有其他力量？？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷" string="统治远古时代的王的力量..|可以统治别人的力量..|可以开启封印的统治车辆的钥匙。"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop3"/>
+  <Char id="totop" pos="11 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="哈哈..|统治~~"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorL" pos="7 0" emotion="stop2"/>
+  <Msg name="格雷格" string="统治车辆~|哇！对统治世界应该很有帮助~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="totop" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="黑杰克" string="知道了。|比起车辆得先集齐星陨之石啊。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷" string="会尽快回收回来的。"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="raptorR" pos="4 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="嗯，知道了。|那都退下吧！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="raptorR" pos="5 0" emotion="stop1"/>
+  <Msg name="格雷，格雷格" string="是！"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="统治车辆..|只要拥有了这个，就能统治世界了。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop2"/>
+  <Msg name="黑杰克" string="那，愿望也就..|得重新建立计划，获得统治车辆。|哈哈哈"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="黑杰克" string="愿望与车辆都要由我收走。|哈哈哈"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <BackGround texture="mh3"/>
+  <Char id="raptorR" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷" string="格雷格！跟上！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="格雷格" string="哥！去哪里啊~"/>
+  <Enter/>
+</Scene>

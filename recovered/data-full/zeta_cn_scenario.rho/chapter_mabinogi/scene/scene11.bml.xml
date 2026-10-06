@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mabi2"/>
+  <Char id="dao" pos="7 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="钥匙找不到钥匙就完蛋了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="咦？那是什么？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="mabi7"/>
+  <Char id="ghost" pos="8 0" emotion="stop1"/>
+  <Msg name="" string="(…)"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="娜儿！找到钥匙了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop2"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Msg name="娜儿" string="没想到真的找到了！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop2"/>
+  <Char id="camelot_effect" pos="11 0" emotion="stop6"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="快，快出来！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="camelot_effect" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="娜儿" string="如果你被困在洞穴里，你想过后果吗…"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="其实…虽然有点担心…"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="但如果是真正的正义光之骑士帕拉丁的话，就不会丢下朋友！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="5 0" flip="true" emotion="stop7"/>
+  <Msg name="娜儿" string="非常感谢，我该如何报答你呢… "/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop6"/>
+  <Msg name="" string="（坍塌声）"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="洞穴就要坍塌了！快跑！"/>
+  <Enter/>
+  <Char id="nao" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="nao" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="娜儿" string="跟住我！"/>
+  <Enter/>
+</Scene>

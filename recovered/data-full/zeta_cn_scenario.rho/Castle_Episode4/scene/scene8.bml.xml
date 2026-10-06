@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle5"/>
+  <Char id="cloi" pos="11 0" emotion="stop2"/>
+  <Msg name="克鲁伊" string="哔哔哔哔…|入侵…者..入..侵..者..."/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop3"/>
+  <Msg name="蓝蓝" string="咻，终于停下来了…|这是路易的房间吗？？把礼物放在这吧…"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop1"/>
+  <Msg name="皮欧" string="你是谁？？"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop1"/>
+  <Char id="marid" pos="3 0" emotion="stop5"/>
+  <Msg name="蓝蓝" string="啊！！吓一跳。|我在找我朋友，我叫蓝蓝。"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop2"/>
+  <Msg name="皮欧" string="我是大城堡的管家，皮欧。朋友失踪了？|恩？？旁边的是克鲁伊？？是克鲁伊吧？"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop5"/>
+  <Msg name="蓝蓝" string="您知道那机器人？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop1"/>
+  <Msg name="皮欧" string="路易的家人一直是出名的科学家。|其中路易2世发明了很多机器人。"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop3"/>
+  <Msg name="蓝蓝" string="恩！！那机器人也是路易家族发明的吗？|是不是在发明危险的机器啊？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop4"/>
+  <Msg name="皮欧" string="不是的！研究的是能帮助家人的机器人…|但是最近年老的机器人会发射光线，|被击中的机器有的会消失，有的会坏掉。|克鲁伊好像也被击中了。"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop4"/>
+  <Char id="marid" pos="3 0" emotion="stop5"/>
+  <Msg name="蓝蓝" string="那宝宝会不会也被那光线击中后消失了呢？？"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="pidellio" pos="11 0" emotion="stop2"/>
+  <Msg name="皮欧" string="不知道啊..|路易正在寻找解决方法呢。|为了寻找你的朋友，一定要跟路易说说。"/>
+  <Enter/>
+  <Char id="pidellio" remove="true"/>
+  <Char id="marid" pos="4 0" emotion="stop5"/>
+  <Msg name="蓝蓝" string="还有这种事情…|那赶紧去找路易吧！！"/>
+  <Enter/>
+</Scene>

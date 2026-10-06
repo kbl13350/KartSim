@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="matchStart" caption="Match Start" windowRect="0 0 433 147" align="center" frame="CaptionDialog">
+  <Panel windowRect="0 6 149 99" texture="team_blue@zz" alphaTest="true" alphaBlend="true"/>
+  <Panel windowRect="257 6 406 99" texture="team_red@zz" alphaTest="true" alphaBlend="true"/>
+  <Panel windowRect="129 6 278 103" texture="vs@zz" alphaTest="true" alphaBlend="true"/>
+</CaptionWindow>

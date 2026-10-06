@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statueList>
+  <statue relName="nemo00" itemCatId="34" itemId="467" resPath="00_블럭배찌"/>
+  <statue relName="nemo01" itemCatId="34" itemId="466" resPath="01_블럭다오"/>
+  <statue relName="nemo02" itemCatId="34" itemId="468" resPath="02_블럭디지니"/>
+  <statue relName="nemo03" itemCatId="34" itemId="470" resPath="03_리온"/>
+  <statue relName="nemo04" itemCatId="34" itemId="471" resPath="04_캐롤"/>
+  <statue relName="nemo05" itemCatId="34" itemId="469" resPath="05_메디아"/>
+  <statue relName="nemo06" itemCatId="34" itemId="474" resPath="06_메디아집"/>
+  <statue relName="nemo07" itemCatId="34" itemId="472" resPath="07_블럭시계탑"/>
+  <statue relName="nemo08" itemCatId="34" itemId="475" resPath="08_블럭풍차"/>
+  <statue relName="nemo09" itemCatId="34" itemId="473" resPath="09_블럭무지개폭포"/>
+</statueList>

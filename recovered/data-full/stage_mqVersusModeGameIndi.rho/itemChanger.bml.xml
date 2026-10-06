@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="retryInfo" windowRect="0 23 280 43">
+  <FocusCard name="keyDisp" leftTopWH="0 0 20 20" texture="changer" focusedUv="0 20 20 40" ordinaryUv="0 20 20 40" disableUv="40 20 60 40" alphaBlend="true"/>
+  <FocusCard name="exist" leftTopWH="23 0 20 20" texture="changer" focusedUv="21 21 40 40" ordinaryUv="21 21 40 40" disableUv="61 21 80 40" alphaBlend="true"/>
+  <CharPanel name="changerNum" windowRect="41 2 101 19" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789x" fontPos="0 0" text="00" spaceOffset="-4"/>
+  <Panel name="infinity" windowRect="53 0 85 20" texture="changerItem_num_infinite" visible="false" alphaBlend="true"/>
+</Container>

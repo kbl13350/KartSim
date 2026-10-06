@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <ImageBoard windowSize="1024 486" adjust="0 21" align="center" image="pass_img_popupUpgradeBG" alphaBlend="true" enable="true"/>
+  <ImageBoard windowSize="1024 43" adjust="0 -243" align="center" image="pass_img_popupUpgradeBar@zz" alphaBlend="true" enable="true"/>
+  <Window windowSize="800 600" align="center" frame="NoFrame">
+    <ImageBoard windowSize="400 240" adjust="0 -58" align="center" image="pass_img_icon2" alphaBlend="true" enable="true"/>
+    <Label name="confirmLabel" windowSize="400 80" adjust="0 108" align="center" text="" textColor="255 255 255 175" textRender="bold" textAlign="center" lineGap="4" visible="true"/>
+  </Window>
+  <ImageButton name="closeButton" windowSize="246 42" align="center" adjust="0 214" autoLoadImage="pass_btn_ticketBuyConfirm_@zz" alphaBlend="true"/>
+</Panel>

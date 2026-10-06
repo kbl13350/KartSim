@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+             ForwardAccelForce='135.0'
+             BackwardAccelForce='110.0'
+             DragFactor='-0.072'
+             SteerConstraint='2.3'
+             DriftEscapeForce='700'
+             CornerDrawFactor='0.062'
+             UseTransformBooster='true'
+			TransAccelFactor='1.62'
+
+             BoosterBlur='true'
+             EngineSound='cotton6'
+             EnvMap='true'
+
+             BoosterType='cotton6'
+             BoosterType0='default'
+             BoosterType1='default'
+
+             Port0='mod1a'
+             Port1='mod1b'
+             FirePort0='mod1c'
+             FirePort1='mod2a'
+             FirePort2='mod2b'
+             FirePort3='mod2c'
+             FirePort4='mod3a'
+             FirePort5='mod3b'
+
+
+	DescBalance= '38'
+	DescStability ='38'
+	DescEngineGrade='1'
+	DescCornering='6'
+	DescEnchantCap = '25'
+
+/>
+
+<!--중국 나이트 이글 SR -->

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="close">
+    <m c="kr" v="닫 기"/>
+    <m c="cn" v="关闭"/>
+    <m c="tw" v="關閉"/>
+    <m c="jp" v="閉じる"/>
+    <m c="id" v="Close"/>
+  </k>
+  <k n="next">
+    <m c="kr" v="다 음"/>
+    <m c="cn" v="下一页"/>
+    <m c="tw" v="下一個"/>
+    <m c="jp" v="次"/>
+    <m c="id" v="Next"/>
+  </k>
+  <k n="plant">
+    <m c="kr" v="마이 플랜트"/>
+    <m c="cn" v="工厂车间"/>
+    <m c="tw" v="加工廠"/>
+    <m c="jp" v="マイプラント"/>
+    <m c="id" v="Plant"/>
+  </k>
+  <k n="equipParts">
+    <m c="kr" v="장착하기"/>
+    <m c="cn" v="装备"/>
+    <m c="tw" v="裝置"/>
+    <m c="jp" v="装着する"/>
+    <m c="id" v="Equip"/>
+  </k>
+  <k n="equipKart">
+    <m c="kr" v="카트 바꾸기"/>
+    <m c="tw" v="變更卡丁車"/>
+    <m c="jp" v="カート変更"/>
+  </k>
+  <k n="gotoFactory">
+    <m c="kr" v="강화하기"/>
+    <m c="jp" v="強化する"/>
+  </k>
+  <k n="genEnergy">
+    <m c="kr" v="생산 시작"/>
+    <m c="cn" v="开始生产"/>
+    <m c="tw" v="開始生產"/>
+    <m c="jp" v="生産開始"/>
+    <m c="id" v="Mulai"/>
+  </k>
+  <k n="exchangeEnergy">
+    <m c="kr" v="튜닝파츠 교환"/>
+    <m c="tw" v="改裝配件交換"/>
+    <m c="jp" v="チューニングパーツ交換"/>
+  </k>
+  <k n="shaking">
+    <m c="kr" v="흔들어보기"/>
+    <m c="jp" v="揺らしてみる"/>
+  </k>
+  <k n="genarateEnergyResult">
+    <m c="kr" v="에너지 %d 개를 생산했습니다."/>
+    <m c="jp" v="エネルギー%d個を生産しました。"/>
+  </k>
+  <k n="genarating">
+    <m c="kr" v="자동 생산 중.."/>
+    <m c="jp" v="自動生産中…"/>
+  </k>
+  <k n="boostGenarating">
+    <m c="kr" v="에너지 생산기가 화가 났습니다.|5분간 에너지 생산 시간이 조금 단축됩니다."/>
+    <m c="cn" v=""/>
+    <m c="tw" v="能量生產器過熱|能量生產器已經過熱。|5分鐘內能量生產時間會略為縮短。"/>
+    <m c="jp" v="エネルギー生産機が火を吹いています。|5分間エネルギー生産時間が短縮します。"/>
+    <m c="id" v="Energy Producing Machine Overheat|Energy Producing Machinemu menjadi Overheat.|Waktu produksi kamu akan berkurang selama 5 menit."/>
+  </k>
+  <k n="overhitGenarating">
+    <m c="kr" v="에너지 생산기가 과열되었습니다.|5분간 에너지 생산 시간이 조금 길어졌습니다."/>
+    <m c="jp" v="エネルギー生産機が過熱状態です。|5分間エネルギー生産時間が延長します。"/>
+  </k>
+  <k n="nowAvailable">
+    <m c="kr" v="오늘 교환 가능 횟수 : %d 번 가능"/>
+    <m c="cn" v="今日可兑换次数：可兑换%d次"/>
+    <m c="tw" v="今天可交換回數 : %d 次可交換"/>
+    <m c="jp" v="一日の交換可能回数 : %d 回可能"/>
+    <m c="id" v="Jumlah yang dapat ditukar hari ini : %d kali"/>
+  </k>
+  <k n="exchangeDefaultDesc">
+    <m c="kr" v="튜닝파츠 - 모든 종류|에너지 10개 소모|모든 종류의 튜닝파츠 중 1종을 획득합니다."/>
+    <m c="cn" v="强化部件|能量消耗10个|所有强化部件中获得1种"/>
+    <m c="tw" v="改裝配件|消耗能量10個|所有種類的改裝配件中可獲得1種"/>
+    <m c="jp" v="チューニングパーツ - 全種類|エネルギー10個消耗|すべてのチューニングパーツのうち1個を入手します。"/>
+    <m c="id" v="Tuning Parts|10 Energy telah dikonsumsi|Mendapatkan 1 jenis Tuning Parts dari semua jenis Tuning Parts yang tersedia"/>
+  </k>
+  <k n="exchangeEngineDesc">
+    <m c="kr" v="튜닝파츠 - 엔진패치|에너지 15개 소모|엔진 패치 튜닝파츠 중 1종을 획득합니다."/>
+    <m c="cn" v="引擎|能量消耗15个|所有引擎强化部件中获得1种"/>
+    <m c="tw" v="能量配件|消耗能量15個|引擎改裝配件中可獲得1種"/>
+    <m c="jp" v="チューニングパーツ - エンジンパッチ|エネルギー15個消耗|エンジンパッチの中から1個を入手します。"/>
+    <m c="tw" v="能量配件|消耗能量15個|引擎改裝配件中可獲得1種"/>
+    <m c="id" v="Engine Parts|15 Energy telah dikonsumsi|Mendapatkan 1 jenis dari Engine Tuning Parts"/>
+  </k>
+  <k n="exchangeHandleDesc">
+    <m c="kr" v="튜닝파츠 - 핸들|에너지 14개 소모|핸들 튜닝파츠 중 1종을 획득합니다."/>
+    <m c="cn" v="方向盘|能量消耗14个|所有方向盘强化部件中获得1种"/>
+    <m c="tw" v="方向盤改裝配件|消耗能量14個|方向盤改裝配件中可獲得1種"/>
+    <m c="jp" v="チューニングパーツ - ハンドル|エネルギー14個消耗|ハンドルの中から1個を入手します。"/>
+    <m c="id" v="Handle Tuning Parts|15 Energy telah dikonsumsi|Mendapatkan 1 jenis dari Handle Tuning Parts"/>
+  </k>
+  <k n="exchangeWheelDesc">
+    <m c="kr" v="튜닝파츠 - 바퀴|에너지 14개 소모|바퀴 튜닝파츠 중 1종을 획득합니다."/>
+    <m c="cn" v="轮胎|能量消耗14个|所有轮胎强化部件中获得1种"/>
+    <m c="tw" v="輪胎改裝配件|消耗能量14個|輪胎改裝配件中可獲得1種"/>
+    <m c="jp" v="チューニングパーツ - タイヤ|エネルギー14個消耗|タイヤの中から1個を入手します。"/>
+    <m c="id" v="Wheel Tuning Parts|15 Energy telah dikonsumsi|Mendapatkan 1 jenis dari Wheel Tuning Parts"/>
+  </k>
+  <k n="exchangeSupportKitDesc">
+    <m c="kr" v="튜닝파츠 - 보조킷|에너지 14개 소모|보조킷 튜닝파츠 중 1종을 획득합니다."/>
+    <m c="cn" v="工具|能量消耗14个|所有强化工具中获得1种"/>
+    <m c="tw" v="工具箱|消耗能量14個|改裝工具箱改裝配件中可獲得1種"/>
+    <m c="jp" v="チューニングパーツ - 補助キット|エネルギー14個消耗|補助キットの中から1個を入手します。"/>
+    <m c="id" v="&quot;Kit|Mendapatkan 1 jenis dari Tuning Kits|13 Energy telah dikonsumsi"/>
+  </k>
+  <k n="notEnoughEnergy">
+    <m c="kr" v="에너지가 부족하여 아이템 교환이 불가능합니다.|에너지를 추가 생산하여 다시 시도해 주시기 바랍니다."/>
+    <m c="cn" v="能量不足，无法兑换。|继续生产能量后请在尝试。"/>
+    <m c="tw" v="能量不足，故無法交換道具。|追加能量生產後，請再嘗試。"/>
+    <m c="id" v="Energy kamu kurang untuk menukarkan Item.|Produksi Energy lagi lalu silahkan coba lagi."/>
+  </k>
+  <k n="exchangeOk">
+    <m c="kr" v="에너지를 튜닝파츠로 교환했습니다.|장착하기로 튜닝파츠를 장착해보세요."/>
+    <m c="jp" v="エネルギーをチューニングパーツと交換しました。|[装着する]でチューニングパーツを装着してみてください。"/>
+  </k>
+  <k n="npcTalk1">
+    <m c="kr" v="생성기를 켜두고 게임 해봐."/>
+    <m c="jp" v="生成機をONにしてゲームしてみなよ。"/>
+  </k>
+  <k n="npcTalk2">
+    <m c="kr" v="에너지를 모아서 파츠를 얻을 수 있지."/>
+    <m c="jp" v="エネルギーを集めるとパーツが手に入るんだ。"/>
+  </k>
+  <k n="npcTalk3">
+    <m c="kr" v="술먹고 싶다... 너 주민증은 있나?"/>
+    <m c="jp" v="酒飲みたい…キミはもう成人？"/>
+  </k>
+  <k n="npcTalk4">
+    <m c="kr" v="점검 때 유저 강종을 하면 기분이 좀 좋아져.."/>
+    <m c="jp" v="メンテナンスの時はちょっと休めるから気分が良くなるんだ…"/>
+  </k>
+  <k n="npcTalk5">
+    <m c="kr" v="아이폰4S가 나왔다는데... 곧 아이폰 갤럭시 4S 10.1 탭이 나올 거 같아."/>
+    <m c="jp" v="そろそろスマートフォンが欲しいな。"/>
+  </k>
+  <k n="npcTalk6">
+    <m c="kr" v="배찌가 몇 살인지 아니?"/>
+    <m c="jp" v="ベッチがいくつか知ってる？"/>
+  </k>
+  <k n="npcTalk7">
+    <m c="kr" v="우니는 학교 언제부터 다닌다디?"/>
+    <m c="jp" v="ウニはいつから学校に行くんだっけ？"/>
+  </k>
+  <k n="genarator">
+    <m c="kr" v="에너지 생산기"/>
+    <m c="cn" v="能量生产机"/>
+    <m c="tw" v="能量生產器"/>
+    <m c="jp" v="エネルギー生産機"/>
+    <m c="id" v="Energy Machine"/>
+  </k>
+  <k n="exchange">
+    <m c="kr" v="튜닝파츠 교환"/>
+    <m c="cn" v="兑换强化部件"/>
+    <m c="tw" v="改裝配件交換"/>
+    <m c="jp" v="チューニングパーツ交換"/>
+    <m c="id" v="Tukarkan Parts"/>
+  </k>
+  <k n="genaratorStartFail">
+    <m c="kr" v="이미 생산기가 가동 중 입니다."/>
+    <m c="cn" v="生产机已启动。|如未启动，请稍后再试。"/>
+    <m c="tw" v="生產器已經啟動中…|如果為非啟動狀態，請稍後再嘗試。"/>
+    <m c="jp" v="すでに生産機が稼働しています。"/>
+    <m c="id" w="Energy Producing Machine sedang bekerja..|Bila tidak sedang bekerja, cobalah beberapa saat lagi."/>
+  </k>
+  <k n="plantExchangeCntOver">
+    <m c="kr" v="오늘 교환 가능 횟수가 모두 소진되어 교환이 불가능 합니다.|내일 (오전 06:00 기준) 다시 시도해 주세요."/>
+    <m c="cn" v="今日可兑换次数已用完。|请明天再兑换。（上午06：00点后）"/>
+    <m c="tw" v="可交換個數已經消耗完畢。|請於明天(上午06:00以後)再次嘗試。"/>
+    <m c="jp" v="一日の交換可能回数をすべて消耗したため、交換できません。|明日(午前06:00基準)もう一度お試しください。"/>
+    <m c="id" v="Kamu telah mencapai jumlah maksimal penukaran.|Silahkan coba lagi besok (Setelah Jam 06:00 WIB)"/>
+  </k>
+  <k n="plantExchangeDrawFail">
+    <m c="kr" v="서버의 일시적인 장애가 발생했습니다.|잠시 후 다시 시도해보세요."/>
+    <m c="jp" v="サーバーの一時的な障害が発生しました。|しばらく経ってからもう一度お試しください。"/>
+  </k>
+  <k n="plantExchangeNeedPhoto">
+    <m c="kr" v="교환을 하기 위해서는 사진이 필요합니다.|확인 부탁 드립니다."/>
+    <m c="cn" v="无法进行兑换。|需要持有神秘工头卡片时才能进行兑换。"/>
+    <m c="tw" v="在特殊項目選擇上所需要的道具不足,因此無法進行交換.|需要布羅帝照片"/>
+  </k>
+  <k n="unknownError">
+    <m c="kr" v="알 수 없는 오류가 발생했습니다.|잠시 후 다시 시도해보세요."/>
+    <m c="jp" v="原因不明のエラーが発生しました。|しばらく経ってからもう一度お試しください。"/>
+  </k>
+  <k n="equipPartsTip">
+    <m c="kr" v="아이템 장착:|교환을 통해 획득한 아이템을 카트에 장착"/>
+    <m c="cn" v="装备道具：|通过兑换获得的道具装备到车辆"/>
+    <m c="tw" v="道具裝置：|透過交換獲得的道具可裝置在卡丁車上"/>
+    <m c="jp" v="アイテム装着: | 交換して入手したアイテムをカートに装着"/>
+    <m c="id" v="Equip Item:|Memasang Item yang sudah ditukar pada Kart"/>
+  </k>
+  <k n="exchangeEnergyTip">
+    <m c="kr" v="튜닝파츠 교환:|에너지를 아이템으로 교환"/>
+    <m c="cn" v="兑换强化部件：|用能量兑换道具"/>
+    <m c="tw" v="改裝配件交換：|以能量交換道具"/>
+    <m c="jp" v="チューニングパーツ交換: |エネルギーをアイテムと交換"/>
+    <m c="id" v="Trade Tuning Parts:|Tukarkan Energy ke Item"/>
+  </k>
+  <k n="energyTip">
+    <m c="kr" v="에너지 : 에너지 생산기에서 생산됩니다.|튜닝파츠 교환에서 아이템으로 교환합니다.|게임 종료시 0개로 초기화 됩니다."/>
+    <m c="cn" v="能量：在能量生产机中产出|在强化部件兑换中可兑换为道具|游戏结束时重置为0个"/>
+    <m c="tw" v="能量 : |在能量生產機上生產改裝配件交換上，|可用道具交換的卡丁車結束時，|會初始化為0。"/>
+    <m c="jp" v="エネルギー : エネルギー生産機で生産されます。|チューニングパーツ交換でアイテムと交換します。|ゲームを終了すると0個に初期化されます。"/>
+    <m c="id" v="Produksi dari Energy Producing Machine|Tukarkan Item dari Trade Tuning Parts|Bila meninggalkan Kart Rider, balik ke 0"/>
+  </k>
+  <k n="genEnergyTip">
+    <m c="kr" v="생산기를 가동하여 에너지를 생산합니다.|가동이 시작 되면 플랜트를 떠나도 자동|으로 계속 생산됩니다."/>
+    <m c="cn" v="启动生产机时可以开始生产能量|启动生产后即使离开工厂|也可继续进行自动生产"/>
+    <m c="tw" v="啟動生產器後，形成能量|開始啟動的話，即使離開加工廠 |也會自動持續生產"/>
+    <m c="jp" v="生産機を稼働させてエネルギーを生産します。|稼働が始まったら、プラントを離れていても|自動的に生産されます。"/>
+    <m c="id" v="Producing Machine akan tetap |aktif meskipun telah |meninggalkan Plant"/>
+  </k>
+  <k n="aboutEnergy">
+    <m c="kr" v="에너지에 대하여"/>
+    <m c="tw" v="關於加工廠"/>
+    <m c="cn" v="关于工厂"/>
+    <m c="jp" v="エネルギーについて"/>
+    <m c="id" v="Tentang Energy"/>
+  </k>
+  <k n="aboutParts">
+    <m c="kr" v="튜닝파츠에 대하여"/>
+    <m c="cn" v="关于强化部件"/>
+    <m c="tw" v="關於改裝配件"/>
+    <m c="jp" v="パーツについて"/>
+    <m c="id" v="Tentang Tuning Parts"/>
+  </k>
+  <k n="overheatSuccess">
+    <m c="kr" v="에너지 생산기가 과열되었습니다.|5분간 에너지 생산 시간이 조금 단축됩니다."/>
+    <m c="cn" v="能量生产机在生产过程中温度过热。|能量生产机生产时间缩短5分钟。"/>
+    <m c="tw" v="能量生產器已經過熱。|5分鐘內能量生產時間會略為縮短。"/>
+    <m c="jp" v="エネルギー生産機が過熱状態です。|5分間エネルギー生産時間が短縮します。"/>
+    <m c="id" v="Energy Producing Machine Overheat|Energy Producing Machinemu menjadi Overheat.|Waktu produksi kamu akan berkurang selama 5 menit."/>
+  </k>
+  <k n="resultProgressTip">
+    <m c="kr" v="에너지 생산기가 작동 중입니다.|게이지가 차면 에너지가 1개 생산됩니다.|플랜트를 떠나도 자동으로 계속 생산됩니다."/>
+    <m c="cn" v="能量生产机正在运转中|每蓄满一个能量条即可生产出一个道具|即使离开工厂也会自动生产能量"/>
+    <m c="tw" v="能量生產器啟動中|格子集滿時，可生產1個|即使離開加工廠也會繼續自動生產"/>
+    <m c="jp" v="エネルギー生産機が作動中です。|ゲージがいっぱいになるとエネルギーが1個生産されます。|プラントを離れていても自動的に生産され続けます。"/>
+    <m c="id" v="Energy Producing Machine sedang bekerja|Bila Gauge penuh akan memproduksi 1 buah|Produksi secara otomatis meskipun meninggalakn Plant"/>
+  </k>
+  <k n="aboutChangingEnergy">
+    <m c="kr" v="정해진 에너지를 소비하여, 선택한 아이템 종류 중 1종을 획득합니다.|오늘 교환 가능 횟수를 모두 사용할 경우 더 이상 교환이 불가능합니다.|오늘 교환 가능 횟수는 매일 오전 6:00에 초기화 됩니다."/>
+    <m c="jp" v="一定のエネルギーを消費して、選択した種類のアイテムを1個入手します。|一日に交換可能な回数をすべて消耗すると、交換できなくなります。|一日に交換可能な回数は毎日午前6:00に初期化されます。"/>
+  </k>
+  <k n="confirmExchange">
+    <m c="kr" v="교환"/>
+    <m c="cn" v="确定"/>
+    <m c="tw" v="交換"/>
+    <m c="jp" v="交換"/>
+    <m c="id" v="Exchange"/>
+  </k>
+  <k n="exchange3PackDesc">
+    <m c="kr" v="튜닝파츠 - 3개 교환|에너지 30개 소모|모든 종류의 튜닝파츠 중 3종을 한번에 획득합니다.|교환 시 교환 개수는 1회만 줄어듭니다."/>
+    <m c="jp" v="チューニングパーツ ‐ 3個交換|エネルギー30個消耗|すべての種類のチューニングパーツから3個を一度に入手できます。|交換回数は1回としてカウントされます。"/>
+  </k>
+  <k n="aboutNaiad">
+    <m c="kr" v="나이아드의 사진"/>
+    <m c="jp" v="ナイアドの写真"/>
+  </k>
+  <k n="exchangeSpDesc">
+    <m c="kr" v="튜닝파츠 - 레어, 유니크 등급의 파츠|에너지 30개 소모|모든 종류의 튜닝파츠 중 레어, 유니크 등급 파츠를 1개 획득합니다.|교환 가능 횟수가 1회 줄어듭니다."/>
+    <m c="cn" v="高级强化部件|能量消耗30个|所有高级强化部件中获得1种"/>
+    <m c="id" v="Tukarkan Parts"/>
+    <m c="tw" v="改裝配件─稀有或較好等級的配件|消耗３０個能量|可在所有的改裝配件中，獲得１個稀有或較好等級的配件。|獲得配件後，可兌換次數減少１次。"/>
+  </k>
+  <k n="themeMos">
+    <m c="kr" v="모스"/>
+    <m c="cn" v="小强"/>
+    <m c="tw" v="工頭"/>
+  </k>
+  <k n="partsDisassem">
+    <m c="kr" v="파츠 분해"/>
+    <m c="cn" v="部件分解"/>
+    <m c="tw" v="配件分解"/>
+  </k>
+  <k n="partsShop">
+    <m c="kr" v="파츠 상점"/>
+    <m c="cn" v="部件商店"/>
+    <m c="tw" v="配件商城"/>
+  </k>
+  <k n="currentXenergy">
+    <m c="kr" v="X-에너지 보유량"/>
+    <m c="cn" v="X-能量持有量"/>
+    <m c="tw" v="X-能量擁有量"/>
+  </k>
+</StringBag>

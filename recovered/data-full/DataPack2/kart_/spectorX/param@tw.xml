@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='148'
+	BackwardAccelForce='100'
+	DragFactor='-0.079'
+	SteerConstraint='2.96'
+	CornerDrawFactor='0.07'
+	DriftEscapeForce='2010'
+	
+	driftBoostMulAccelFactor='1.31'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.8583'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+	BoostAccelFactor='1.535'
+	
+	DriftMaxGauge='-540'
+	NormalBoosterTime='65'
+	TeamBoosterTime='-100'
+	
+	DriftGaguePreservePercent='0.7'
+	antiCollideBalance='0.94'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.1'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='X'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='60'
+	dualMulAccelFactor='1.1'
+	dualTransLowSpeed='100'
+
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10main1'
+	BoosterType3='10main1'
+        BoosterType4='10main'
+	BoosterType5='10main'
+
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1a3'
+	FirePort1='mod1a4'
+        FirePort2='mod1c1'
+	FirePort3='mod1c2'
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 255 255 255' trailPort0='mod1a3' trailPort1='mod1a4'/>
+</BodyParam>
+<!-- 스펙터 9 / 대만 / 레전드 / 스피드 / 빙고 2 / 20190118 릴리즈 -->

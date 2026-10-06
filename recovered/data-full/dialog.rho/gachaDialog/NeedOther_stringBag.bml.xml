@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="NeedOtherDialogCaption">
+    <m c="kr" v="또 다른 아이템이 필요합니다."/>
+    <m c="jp" v="他のアイテムが必要です。"/>
+    <m c="cn" v="还需要其他道具。"/>
+    <m c="tw" v="需要另一種道具"/>
+    <m c="vn" v="Cần thêm vật phẩm khác."/>
+    <m c="ru" v="Необходим другой предмет"/>
+    <m c="id" v="Membutuhkan item lain."/>
+    <m c="th" v="ต้องการไอเทมตัวอื่นอีก"/>
+  </k>
+  <k n="needOtheratShop">
+    <m c="kr" v="또 다른 아이템 [%s] 가(이) 필요합니다.| [%s] 는(은) 상점에서 구입하실 수 있습니다."/>
+    <m c="jp" v="他のアイテム[%s]が必要です。| [%s] はショップで購入できます。"/>
+    <m c="cn" v="没有%s。|%s可以在商店购买。"/>
+    <m c="tw" v="沒有%s。|%s可以在商店購買。"/>
+    <m c="vn" v="Cần thêm [%s] .|Có thể mua được [%s] ở Shop."/>
+    <m c="ru" v="Необходим [%s].| [%s] можно купить в магазине."/>
+    <m c="id" v="Membutuhkan item lain [%s] .| [%s] dapat dibeli di toko."/>
+    <m c="th" v="ต้องการไอเทม [%s] อีก| สามารถซื้อ[%s] ได้ในร้านค้า"/>
+  </k>
+  <k n="needOtheratQuest">
+    <m c="kr" v="또 다른 아이템 [%s] 가(이) 필요합니다."/>
+    <m c="jp" v="他のアイテム[%s]が必要です。"/>
+    <m c="cn" v="没有%s。|%s可以在赛道上随机获得。"/>
+    <m c="tw" v="沒有%s。|%s可在行駛中一定比率獲得"/>
+    <m c="vn" v="Cần thêm [%s]. |Có thể nhận được [%s] từ nhiệm vụ."/>
+    <m c="ru" v="Необходим [%s].| [%s] можно получить, выполнив квест."/>
+    <m c="id" v="Membutuhkan item lain [%s] ."/>
+    <m c="th" v="ต้องการไอเทม [%s] อีก| สามารถหาได้ [%s] จากเควส"/>
+  </k>
+  <k n="needOther">
+    <m c="kr" v="또 다른 아이템 [%s] 가(이) 필요합니다."/>
+    <m c="jp" v="他のアイテム[%s]が必要です。"/>
+    <m c="cn" v="没有%s。"/>
+    <m c="tw" v="需要%s。"/>
+    <m c="vn" v="Lại cần thêm đồ [%s] khác"/>
+    <m c="ru" v="Необходим [%s]."/>
+    <m c="id" v="Membutuhkan item lain [%s] ."/>
+    <m c="th" v="ต้องการไอเทม [%s] อีก"/>
+  </k>
+</StringBag>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="nym02"/>
+  <Char id="lodumani" pos="7 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="呜哈哈，我的胡子太帅了！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="tutu" pos="7 0" emotion="stop9"/>
+  <Msg name="嘟嘟" string="嘿嘿，我的胡须好像更酷一点。"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="lodumani" pos="7 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="什么！你敢跟我比？！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="tutu" pos="8 0" emotion="stop10"/>
+  <Msg name="嘟嘟" string="不…不是的…船长…不是那意思…"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <fxSound file="Story_B"/>
+  <Shake time="500"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="海盗崽子们！把美美交出来！！！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" pos="7 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="你们这是自寻死路？！这次一定要把你们彻底打垮！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="tutu" pos="7 0" emotion="stop4"/>
+  <Msg name="嘟嘟" string="（呼…还好他们来了...）"/>
+  <Enter/>
+</Scene>

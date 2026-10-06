@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Tracing isFixedKart="true" fixedKartId="998" isFixedChar="true" fixedCharId="208" kartId="1004" colorId="1" dyeId="1" characterId="213" uniformId="0" characterName="？？？">
+    <LevelContent level="0" track="nemo_I01" laps="2" ksv="nemo_1-9" distance="50" startOffset="1500"/>
+  </Tracing>
+</Root>

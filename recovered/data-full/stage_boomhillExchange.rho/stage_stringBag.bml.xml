@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="exchangeShopName_dao">
+    <m c="kr" v="다오의 교환소"/>
+    <m c="cn" v="皮蛋兑换所"/>
+  </k>
+  <k n="exchangeShopName_bazzi">
+    <m c="kr" v="배찌의 교환소"/>
+    <m c="cn" v="宝宝兑换所"/>
+  </k>
+  <k n="exchangeShopName_ethi">
+    <m c="kr" v="에띠의 교환소"/>
+    <m c="cn" v="葱头兑换所"/>
+  </k>
+  <k n="exchangeShopName_vip">
+    <m c="kr" v="VIP 교환소"/>
+    <m c="cn" v="VIP兑换所"/>
+  </k>
+  <k n="buy">
+    <m c="kr" v="구매"/>
+    <m c="cn" v="兑换"/>
+  </k>
+  <k n="trade">
+    <m c="kr" v="교환"/>
+    <m c="cn" v="兑换"/>
+  </k>
+  <k n="reset">
+    <m c="kr" v="원래대로"/>
+    <m c="cn" v="初始状态"/>
+  </k>
+  <k n="boomhillKoinUnit">
+    <m c="kr" v="개"/>
+    <m c="cn" v="个"/>
+  </k>
+  <k n="seasonTitle_exchange">
+    <m c="kr" v="붐힐 교환소"/>
+    <m c="cn" v="繁荣兑换所"/>
+  </k>
+  <k n="topGuideTxt_3">
+    <m c="kr" v="등급전 플레이 등을 통해 획득 가능한 [color:255 36 129 255][다오의 열정 인장][/color]으로 다오의 붐힐 교환소 아이템을 교환해 갈 수 있습니다.|일 교환 제한은 매일 06:00, 주간 구매 제한은 매주 목요일 06:00에 리프래시 됩니다."/>
+    <m c="cn" v="使用通过等级赛等获取的[color:255 36 129 255][皮蛋的热情印章][/color]，可兑换相应的道具。|每天6点刷新每日兑换限制，每周四6点刷新每周兑换限制。"/>
+  </k>
+  <k n="topGuideTxt_4">
+    <m c="kr" v="획득한 [color:255 36 129 255][배찌의 행운이 깃든 인장][/color]으로 배찌의 교환소에서 아이템으로 교환해 갈 수 있습니다.|일 교환 제한은 매일 06:00, 주간 구매 제한은 매주 목요일 06:00에 리프래시 됩니다."/>
+    <m c="cn" v="可使用[color:255 36 129 255][宝宝的幸运印章][/color]在宝宝兑换所中兑换道具。|将在每日06:00及每周四06:00重置兑换限制。"/>
+  </k>
+  <k n="topGuideTxt_5">
+    <m c="kr" v="아이템 조합에서 [color:255 36 129 255][에띠의 재능 인장][/color]을 획득할 수 있습니다. |운영 상황에 따라 에띠의 교환소는 종료될 수 있습니다. "/>
+    <m c="cn" v="可在道具组合中获取[color:255 36 129 255][葱头的才能印章][/color]。|根据运营情况，葱头兑换所有可能关闭。"/>
+  </k>
+  <k n="topGuideTxt_6">
+    <m c="kr" v="VIP 등급 보상으로 획득 가능한 [color:255 36 129 255][VIP 코인][/color]으로 VIP 교환소에서 다양한 아이템들을 교환해 갈 수 있습니다.|VIP 교환소 시즌 종료 시 미사용 VIP코인은 일괄 삭제됩니다."/>
+    <m c="cn" v="通过VIP等级奖励获得的[color:255 36 129 255][VIP印章][/color]，可在VIP兑换所中兑换各类丰富道具。|VIP兑换所赛季结束时，未使用的VIP印章将统一删除。"/>
+  </k>
+  <k n="seasonToTimeTxt">
+    <m c="kr" v="[color:255 0 221 254]%s[/color] 종료까지 남은 기간"/>
+    <m c="cn" v="[color:255 0 221 254]%s[/color] 距赛季结束剩余"/>
+  </k>
+  <k n="seasonToTimeTxt2">
+    <m c="kr" v="종료까지 남은 기간"/>
+    <m c="cn" v="距赛季结束剩余"/>
+  </k>
+  <k n="seasonRemainingDay">
+    <m c="kr" v="[color:255 218 90 90]%d[/color] 일"/>
+    <m c="cn" v="[color:255 218 90 90]%d[/color] 天"/>
+  </k>
+  <k n="notExchangeable">
+    <m c="kr" v="교환불가"/>
+    <m c="cn" v="不可兑换"/>
+  </k>
+  <k n="notExchangeable_limit">
+    <m c="kr" v="이미 보유하였습니다."/>
+    <m c="cn" v="已持有该道具。"/>
+  </k>
+  <k n="notExchangeable_eventBuyCount">
+    <m c="kr" v="교환불가"/>
+    <m c="cn" v="不可兑换"/>
+  </k>
+  <k n="exchangeTagDay">
+    <m c="kr" v="%d/일"/>
+    <m c="cn" v="%d/每日"/>
+  </k>
+  <k n="exchangeTagWeek">
+    <m c="kr" v="%d/주간"/>
+    <m c="cn" v="%d/每周"/>
+  </k>
+  <k n="exchangeTagLimitedCount">
+    <m c="kr" v="%d/%d"/>
+    <m c="cn" v="%d/%d"/>
+  </k>
+  <k n="exchangeInfo3">
+    <m c="kr" v="주로 등급전을 통해 획득할 수 있는 아이템으로 교환소에서 아이템과 교환할 때 사용한다.|교환소 시즌에 따라 다오의 열정 배치는 초기화 된다."/>
+    <m c="cn" v="皮蛋兑换所专用道具，主要可透过等级赛获得。|皮蛋的热情徽章的持有数量将于兑换所赛季变更时初始化。"/>
+  </k>
+  <k n="exchangeInfo4">
+    <m c="kr" v="주로 등급전을 통해 획득할 수 있는 아이템으로 교환소에서 아이템과 교환할 때 사용한다.|교환소 시즌에 따라 다오의 열정 배치는 초기화 된다."/>
+    <m c="cn" v="皮蛋兑换所专用道具，主要可透过等级赛获得。|皮蛋的热情徽章的持有数量将于兑换所赛季变更时初始化。"/>
+  </k>
+  <k n="exchangeInfo5">
+    <m c="kr" v="에띠의 교환소에서 사용하는 전용 아이템이며, 마이룸의 [아이템 조합]에서 조합을 통해 인장을 획득할 수 있습니다. |운영 상황에 따라 에띠의 재능 인장은 초기화 될 수 있습니다."/>
+    <m c="cn" v="葱头兑换所专用道具，可在小屋里通过[道具组合]获取印章。|根据运营情况，葱头的才能印章可能会被初始化。"/>
+  </k>
+  <k n="exchangeInfo6">
+    <m c="kr" v="VIP 교환소에서 사용하는 전용 아이템이며, 등급 평가 기간동안 누적된 점수에 따라 획득할 수 있습니다.|교환소 시즌 종료 시 VIP 코인은 초기화됩니다."/>
+    <m c="cn" v="VIP兑换所专用道具，根据每月的印章积分获取。|VIP兑换所赛季结束时，当季的VIP印章将被清空。"/>
+  </k>
+</StringBag>

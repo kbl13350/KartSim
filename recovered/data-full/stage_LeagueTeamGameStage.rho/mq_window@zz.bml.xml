@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="uiEffect" windowRect="fullscreen"/>
+  <Minimap name="minimap" windowSize="180 180" adjust="17 0" align="right;vcenter">
+    <Window windowRect="0 10 180 11" frame="ShineLine">
+      <Label name="alignDesc" windowRect="5 5 30 15" text="" textColor="white"/>
+      <Window windowSize="180 1" frame="ShineLine" adjust="0 169"/>
+    </Window>
+  </Minimap>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Panel name="deadAp" windowRect="fullscreen" texture="blood" textureOp="modulate" alphaBlend="true" alphaTest="false" enable="false" visible="false" color="0 255 255 255"/>
+    <Container name="item" windowRect="0 0 280 75"/>
+    <StressMirror name="stressMirror"/>
+    <CutEffect name="cutEffect"/>
+    <CutEffect name="cutEffect2"/>
+  </Container>
+</Container>

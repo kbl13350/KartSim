@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des5"/>
+  <Msg name="..." string="滋……!轰！"/>
+  <Enter/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="发生什么事了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="居然睡着了！！|一点知觉都没有！|这到底是怎么回事.."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Msg name="皮蛋" string="呼噜噜！"/>
+  <Enter/>
+  <Msg name="..." string="哈哈哈！进行的很顺利！！"/>
+  <Enter/>
+  <Char id="lodumani" pos="8 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="我就是个天才！早告诉你了！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="mobi" pos="4 0" emotion="stop2"/>
+  <Msg name="吉米" string="…船长，他们好像睡的很死！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="… 嘟嘟，你在干什么！|赶紧把他们绑到船上去！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="tutu" pos="4 0" emotion="stop2"/>
+  <Msg name="嘟嘟" string="是是。|(为什么是我。可恶的吉米！)"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="tutu" pos="7 0" emotion="stop5"/>
+  <Msg name="嘟嘟" string="吉米！早就看你不爽了。|怎么样，来场比赛，赢的人就是二当家！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="mobi" pos="7 0" emotion="stop5"/>
+  <Msg name="吉米" string="就凭你|… 居然已经出发了！|哼！就算这样也赢不了我！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container windowRect="0 0 1316 822" align="center">
+    <Container windowSize="1316 822" align="center">
+      <ImageBoard windowSize="1316 822" adjust="0 0" image="추격전_bg_공용" align="center" alphaBlend="true" visible="true"/>
+      <ImageBoard name="bg_red" windowSize="1316 822" adjust="0 0" image="bg_02@zz" align="center" alphaBlend="true" visible="false"/>
+      <ImageBoard name="bg_blue" windowSize="1316 822" adjust="0 0" image="bg_01@zz" align="center" alphaBlend="true" visible="false"/>
+      <ImageBoard name="bg_pursuit_red" windowSize="1316 822" adjust="0 0" image="추격전_bg_02@zz" align="center" alphaBlend="true" visible="false"/>
+      <ImageBoard name="bg_pursuit_blue" windowSize="1316 822" adjust="0 0" image="추격전_bg_01@zz" align="center" alphaBlend="true" visible="false"/>
+      <Container windowRect="0 0 1316 26">
+        <Label name="gameSpeed" windowRect="6 0 66 20" frame="GameReadyTitleEdit" align="vcenter" textRender="outline" text="" textColor="white" textColor2="gray" textAlign="center"/>
+        <Label name="gameType" windowRect="69 0 189 20" frame="GameReadyTitleEdit" align="vcenter" textRender="outline" text="" textColor="white" textColor2="gray" textAlign="center"/>
+        <Container windowRect="192 3 242 23" visible="false">
+          <Panel name="changeRoomInfoNotPassword" windowRect="0 0 50 20" texture="공개" alphaBlend="true" visible="false">
+            <Label windowRect="0 0 50 20" text="#sb(changeRoomInfoNotPassword)" textRender="outline" textColor="white" textColor2="255 40 128 69" textAlign="center"/>
+          </Panel>
+          <Panel name="changeRoomInfoPassword" windowRect="0 0 50 20" texture="비공개" alphaBlend="true" visible="false">
+            <Label windowRect="0 0 50 20" text="#sb(changeRoomInfoPassword)" textRender="outline" textColor="white" textColor2="255 68 30 209" textAlign="center"/>
+          </Panel>
+        </Container>
+        <Label name="roomName" windowRect="0 0 600 50" align="hcenter" textRender="bold20" text="" textColor="white" textAlign="center"/>
+        <Label name="sessionStateStr" windowRect="1039 0 1080 22" align="vcenter" text="#sb(ssWaiting)" textColor="yellow" textAlign="center"/>
+        <ImageButton name="changeRoomInfo" windowSize="76 20" align="right" adjust="70 3" autoLoadImage="btn_set_" alphaBlend="true" enable="false" visible="false">
+          <Label windowRect="17 0 76 22" align="vcenter" text="#sb(changeRoomInfo)" textColor="white" textRender="bold" textAlign="center"/>
+        </ImageButton>
+        <ImageButton name="goBackButton" leftTopWH="1274 10 32 32" autoLoadImage="close_" alphaBlend="true"/>
+      </Container>
+      <Container name="board" windowRect="0 30 764 372" align="hcenter" visible="false">
+        <Container name="rider2" windowRect="0 174 192 345">
+          <Panel name="myRiderTag" windowRect="0 0 192 172" align="center" texture="img_playerFrame@zz" alphaBlend="true" visible="false"/>
+        </Container>
+        <Container name="rider3" windowRect="192 174 384 345">
+          <Panel name="myRiderTag" windowRect="0 0 192 172" align="center" texture="img_playerFrame@zz" alphaBlend="true" visible="false"/>
+        </Container>
+        <Container name="rider6" windowRect="384 174 576 345">
+          <Panel name="myRiderTag" windowRect="0 0 192 172" align="center" texture="img_playerFrame@zz" alphaBlend="true" visible="false"/>
+        </Container>
+        <Container name="rider7" windowRect="576 174 768 345">
+          <Panel name="myRiderTag" windowRect="0 0 192 172" align="center" texture="img_playerFrame@zz" alphaBlend="true" visible="false"/>
+        </Container>
+        <Container name="rider4" windowRect="384 0 576 171">
+          <Panel name="myRiderTag" windowRect="0 0 192 172" align="center" texture="img_playerFrame@zz" alphaBlend="true" visible="false"/>
+        </Container>
+        <Container name="rider5" windowRect="576 0 768 171">
+          <Panel name="myRiderTag" windowRect="0 0 192 172" align="center" texture="img_playerFrame@zz" alphaBlend="true" visible="false"/>
+        </Container>
+      </Container>
+      <CharPanel name="timeLeft" leftTopWH="101 66 72 40" align="hcenter" adjust="4 0" centerAlign="true" texture="number" alphaBlend="true" fontSize="30 44" spaceOffset="8" fontStr="0123456789" text="55" speedTick="5" enable="true" visible="true"/>
+      <Label name="selectPlease" leftTopWH="0 229 215 31" text="" textRender="bold16" textColor="white" textAlign="center" align="hcenter"/>
+      <Container leftTopWH="496 258 284 154" enable="false">
+        <TrackCard name="트랙카드" leftTopWH="51 10 224 134" alphaBlend="true" trackRect="0 0 224 134" trackNameRect="30 120 215 130" trackNameTextRender="bold" trackNameTextColor="0 0 0 0" enable="false" difficultyVisible="false"/>
+        <Label name="out_trackName" leftTopWH="41 14 134 10" textColor="white" textAlign="center" enable="false" visible="false"/>
+        <Panel name="trackTheme" leftTopWH="43 66 37 38" texture="btn_teamChange_red_1" alphaBlend="true" enable="false" visible="false"/>
+        <BlinkButton name="트랙" leftTopWH="0 0 284 154" autoLoadImage="track_0" blinkGap="500" autoStart="true" alphaBlend="true" visible="true"/>
+      </Container>
+      <Container name="trackCardCont_other" leftTopWH="496 409 224 134" enable="false">
+        <TrackCard name="트랙카드_other" leftTopWH="51 10 224 134" alphaBlend="true" trackRect="0 0 224 134" trackNameRect="30 120 215 130" trackNameTextRender="bold" trackNameTextColor="0 0 0 0" enable="false" difficultyVisible="false"/>
+        <Label name="out_trackName_other" windowRect="10 114 215 124" textColor="white" textAlign="center" enable="false" visible="false"/>
+        <Panel name="trackTheme_other" leftTopWH="0 57 37 38" texture="btn_teamChange_blue_1" alphaBlend="true" enable="false" visible="false"/>
+        <Panel leftTopWH="42 -2 284 154" texture="track_opp" alphaBlend="true" enable="false"/>
+      </Container>
+      <Container name="rider0" leftTopWH="0 165 450 450"/>
+      <Container name="rider1" leftTopWH="861 165 450 450" enable="false"/>
+      <Container windowSize="1316 227" align="bottom">
+        <Container windowRect="0 0 1316 227">
+          <Window name="chatCont" leftTopWH="11 10 350 146">
+            <ImageBoard leftTopTex="0 0" alphaBlend="true" image="chat_bg"/>
+            <List name="chat" windowRect="7 4 667 172" autoScroll="true" listGap="0"/>
+            <Edit name="채팅" leftTopWH="37 180 600 20" textColor="255 175 176 179" textRender="bold16" textBgColor="none" caretColor="white" frame="NoFrame"/>
+          </Window>
+          <Container name="trackCardCont_overTime" leftTopWH="693 10 352 206" enable="false">
+            <TrackCard name="트랙카드_overTime" windowRect="0 0 352 206" alphaBlend="true" trackRect="0 0 222 134" trackNameRect="30 120 215 130" trackNameTextRender="bold" trackNameTextColor="0 0 0 0" enable="false"/>
+            <Panel leftTopTex="0 0" texture="img_trackFrame" alphaBlend="true" enable="false"/>
+            <Label name="out_trackName_overTime" windowRect="10 114 215 124" textColor="white" textAlign="center" enable="false"/>
+            <Panel name="trackTheme_overTime" windowRect="1 91 38 129" texture="btn_teamChange_red_1" alphaBlend="true" enable="false"/>
+            <Panel name="recording" windowRect="5 5 45 45" texture="녹화안됨" alphaBlend="true" enable="false"/>
+            <Label name="recordingError" windowRect="200 225 340 305" frame="DefaultTooltip" enable="false" text="#sb(recordingError)" textColor="white" autoWrap="true" multiLine="true" visible="false" alphaBlend="true"/>
+            <Panel name="tempCard" leftTopWH="0 0 352 206" texture="1vs1_track@zz" alphaBlend="true" enable="false"/>
+            <Panel leftTopWH="0 0 352 206" texture="trackThumb_frame" alphaBlend="true" enable="false"/>
+          </Container>
+          <ToolTipWindow name="chatNotice" windowSize="100 50" adjust="0 70" frame="YellowTalkBalloon" multiLine="true" textColor="black" showEmoticon="false" autoSizing="true" visible="false" enable="false"/>
+          <Container name="readyButtonCont_itemPreset" leftTopWH="1055 10 203 146" visible="false">
+            <ImageButton name="ready" leftTopTex="0 0" autoLoadImage="1vs1_btn_start_" alphaBlend="true" visible="true"/>
+            <ImageButton name="cancel" leftTopTex="0 0" autoLoadImage="1vs1_btn_startCancel_" alphaBlend="true" visible="false"/>
+            <ImageButton name="start" windowRect="0 8 196 72" autoLoadImage="btn_start_@zz" alphaBlend="true" visible="false"/>
+            <ImageButton name="start_count" windowRect="0 8 196 72" autoLoadImage="btn_gameStart@zz" alphaBlend="true" visible="false">
+              <Play1SPanel name="autoCount" scene="대기실카운트" leftTopWH="-10 -14 78 90" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -0.6 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="false"/>
+            </ImageButton>
+            <ImageButton name="cancel_count" windowRect="0 8 196 72" autoLoadImage="btn_Autostart_@zz" alphaBlend="true" visible="false">
+              <Play1SPanel name="autoCount" scene="대기실카운트" leftTopWH="-10 -14 78 90" nearPlane="0.1" farPlane="1000" fov="75.0" defaultCameraPos="0 -0.6 0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="false"/>
+            </ImageButton>
+            <ImageButton name="itemPreset" leftTopTex="0 72" autoLoadImage="1vs1_btn_preset_" alphaBlend="true"/>
+            <ImageButton name="카트" leftTopTex="0 142" autoLoadImage="1vs1_btn_myitem_" alphaBlend="true"/>
+          </Container>
+        </Container>
+      </Container>
+      <Label name="talkBalloon8" windowRect="0 0 614 154" frame="ObserverMsgBox" textRender="bold16" text="#sb(eventGM)" align="center" autoWrap="true" multiLine="true" visible="false" alphaBlend="true" textColor="255 52 95 128" marginRect="10 10 10 10">
+        <Label name="chat" windowRect="0 35 574 135" autoWrap="true" textRender="bold16" multiLine="true" textColor="255 42 55 80" align="hcenter"/>
+      </Label>
+    </Container>
+    <ToolTipWindow name="복불복공지" windowSize="340 100" align="center" frame="DefaultTooltip" alphaBlend="true" visible="false">
+      <Label name="내용" leftTopWH="-10 5 340 90" multiLine="true" alphaBlend="true" textRender="gulim14" autoWrap="true" text="#sb(bokbulbokNotice)" textAlign="center" textColor="white" lineGap="4"/>
+      <Label name="제목" leftTopWH="25 0 340 30" alphaBlend="true" textRender="gulim14" text="#sb(bokbulbokNoticeTitle)" textColor="yellow"/>
+    </ToolTipWindow>
+    <Container name="finalScene" windowRect="0 50 800 450" visible="false">
+      <Panel name="emotion" windowRect="187 129 673 364" alphaBlend="true" visible="false" texture="specialItemCutSc"/>
+    </Container>
+    <Container name="finalFullScene" windowRect="0 0 800 600" visible="false">
+      <ImageBoard name="fullSceneBoard" windowRect="0 0 800 600" alphaBlend="false" visible="false"/>
+    </Container>
+  </Container>
+  <Label name="invited" windowRect="250 0 550 22" textRender="bold" text="" scale="2" textColor="white" textAlign="center"/>
+  <Container name="matchSucceed" leftTopWH="0 0 800 600" align="center" visible="false">
+    <Panel leftTopTex="0 0" texture="스타트로딩_800x600_01@zz"/>
+    <Panel leftTopTex="512 0" texture="스타트로딩_800x600_02@zz"/>
+    <Panel leftTopTex="0 512" texture="스타트로딩_800x600_03@zz"/>
+    <Panel leftTopTex="512 512" texture="스타트로딩_800x600_04@zz"/>
+  </Container>
+  <ImageBoard name="matchSucceed_1600" leftTopWH="0 0 1600 900" image="START로딩_1600@zz" align="center" visible="false"/>
+  <ImageBoard name="matchSucceed_1920" leftTopWH="0 0 1920 1080" image="START로딩_1920@zz" align="center" visible="false"/>
+</Container>

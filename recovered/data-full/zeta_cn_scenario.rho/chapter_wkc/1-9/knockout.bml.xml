@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="1"/>
+  <KnockOut track="wkc_R01" laps="2" isFixedKart="true" fixedKartId="10" isFixedChar="true" fixedCharId="2" miniNpc="true" type="rank">
+    <LevelContent level="0" ksv="싱가폴1" startOffset="2000">
+      <ShadowKart characterId="18" uniformId="0" kartId="456" colorId="8" dyeId="8" characterName="天才赛车手"/>
+      <ShadowKart characterId="18" uniformId="0" kartId="456" colorId="4" dyeId="4" characterName="骑士"/>
+      <ShadowKart characterId="18" uniformId="0" kartId="456" colorId="10" dyeId="10" characterName="尼克"/>
+      <ShadowKart characterId="18" uniformId="0" kartId="456" colorId="11" dyeId="11" characterName="Jean"/>
+      <ShadowKart characterId="18" uniformId="0" kartId="456" colorId="5" dyeId="5" characterName="赛车手 严"/>
+      <ShadowKart characterId="18" uniformId="0" kartId="456" colorId="2" dyeId="2" characterName="赛车手 宣"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

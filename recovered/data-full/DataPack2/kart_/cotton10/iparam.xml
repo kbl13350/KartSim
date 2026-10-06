@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='85.0'
+	BackwardAccelForce='80.0'
+	DragFactor='-0.048'
+	SteerConstraint='1.35'
+	DriftEscapeForce='150'
+	CornerDrawFactor='0.040'
+/>
+<!-- 태국 코튼 R4 LE -->

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='148.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.077'
+	SteerConstraint='2.73'
+	DriftEscapeForce='2100'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	EnvMap='true'
+	antiCollideBalance='0.88'
+
+	GripBrakeForce = '1000'
+	SlipBrakeForce='200'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.791'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.8'
+	StartBoosterTimeSpeed='1250'   
+
+	NormalBoosterTime = '-100'
+	TeamBoosterTime = '-200'
+	DriftMaxGauge = '-600'
+	DriftGaguePreservePercent='0.5'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85sub'
+	BoosterType4='85sub'
+
+	Port0='mod1c1'
+	Port1='mod1c2'
+
+	FirePort0='mod1a4'
+	FirePort1='mod1d1'
+	FirePort2='mod1d2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '50'
+	DescStability ='45'
+	DescEngineGrade='1.25'
+	DescCornering='4'
+	DescEnchantCap = '25'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1d1' trailPort1='mod1d2'/>
+</BodyParam>
+
+<!--중국 관 HT 131024 상점 한정 캐시 / 스피드 -->

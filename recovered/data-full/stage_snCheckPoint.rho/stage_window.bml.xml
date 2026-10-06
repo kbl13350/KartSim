@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Panel name="digit" windowSize="191 82" align="right;top" adjust="28 5" texture="digit_box" alphaBlend="true">
+      <Panel windowRect="0 0 191 1" texture="digit_line" alphaBlend="true"/>
+      <Container name="lapinfo" windowRect="0 1 191 27">
+        <Panel windowRect="-42 2 86 24" uvRect="0 0 128 22" texture="aw_03@zz" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="myLap" windowRect="93 2 153 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789:/x" text="0/0"/>
+        <Panel windowRect="0 26 191 27" texture="digit_line" alphaBlend="true"/>
+      </Container>
+      <Container name="timeinfo" windowRect="0 28 199 54">
+        <Panel windowRect="-42 2 86 24" uvRect="0 22 128 44" texture="aw_03@zz" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="TimeMin" windowRect="73 2 113 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789" text="0" rightAlign="true"/>
+        <Panel windowRect="113 2 133 25" uvRect="200 0 220 23" texture="digit_num" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="TimeSec" windowRect="130 2 170 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789" text="00" spaceOffset="-6"/>
+        <Panel windowRect="164 2 184 25" uvRect="200 0 220 23" texture="digit_num" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="TimeMil" windowRect="181 2 221 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789" text="00" spaceOffset="-6"/>
+        <Panel windowRect="0 26 191 27" texture="digit_line" alphaBlend="true"/>
+      </Container>
+      <Container name="bestinfo" windowRect="0 55 199 81">
+        <Panel windowRect="-42 2 86 24" uvRect="0 44 128 66" texture="aw_03@zz" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="BestMin" windowRect="73 2 113 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789" text="0" rightAlign="true"/>
+        <Panel windowRect="113 2 133 25" uvRect="200 0 220 23" texture="digit_num" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="BestSec" windowRect="130 2 170 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789" text="00" spaceOffset="-6"/>
+        <Panel windowRect="164 2 184 25" uvRect="200 0 220 23" texture="digit_num" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="BestMil" windowRect="181 2 221 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789" text="00" spaceOffset="-6"/>
+        <Panel windowRect="0 26 191 27" texture="digit_line" alphaBlend="true"/>
+      </Container>
+    </Panel>
+    <Container name="lefttimeinfo" windowRect="212 10 538 104" visible="false" align="hcenter">
+      <Panel windowRect="0 0 326 94" texture="scenarioBox" alphaBlend="true"/>
+      <CharPanel name="LeftTimeMin" windowRect="25 9 93 63" texture="timedigit" alphaBlend="true" fontSize="34 54" fontPos="0 0" fontStr="0123456789.-" text="-0"/>
+      <Container name="LeftTimeDot0" windowRect="0 0 326 94">
+        <Panel windowRect="93 4 111 58" uvRect="348 0 366 54" texture="timedigit" alphaBlend="true"/>
+        <Panel windowRect="93 -21 111 33" uvRect="348 0 366 54" texture="timedigit" alphaBlend="true"/>
+      </Container>
+      <CharPanel name="LeftTimeSec" windowRect="111 9 93 63" texture="timedigit" alphaBlend="true" fontSize="34 54" fontPos="0 0" fontStr="0123456789.-" text="00"/>
+      <Container name="LeftTimeDot1" windowRect="0 0 326 94">
+        <Panel windowRect="179 4 197 58" uvRect="348 0 366 54" texture="timedigit" alphaBlend="true"/>
+        <Panel windowRect="179 -21 197 33" uvRect="348 0 366 54" texture="timedigit" alphaBlend="true"/>
+      </Container>
+      <CharPanel name="LeftTimeMil" windowRect="197 9 93 63" texture="timedigit" alphaBlend="true" fontSize="34 54" fontPos="0 0" fontStr="0123456789.-" text="00"/>
+      <CharPanel name="LeftTimeMinRed" windowRect="25 9 93 63" texture="timedigit" alphaBlend="true" fontSize="34 54" fontPos="0 54" fontStr="0123456789.-" text="-0" visible="false"/>
+      <Container name="LeftTimeDot0Red" windowRect="0 0 326 94" visible="false">
+        <Panel windowRect="93 4 111 58" uvRect="348 54 366 108" texture="timedigit" alphaBlend="true"/>
+        <Panel windowRect="93 -21 111 33" uvRect="348 54 366 108" texture="timedigit" alphaBlend="true"/>
+      </Container>
+      <CharPanel name="LeftTimeSecRed" windowRect="111 9 93 63" texture="timedigit" alphaBlend="true" fontSize="34 54" fontPos="0 54" fontStr="0123456789.-" text="00" visible="false"/>
+      <Container name="LeftTimeDot1Red" windowRect="0 0 326 94" visible="false">
+        <Panel windowRect="179 4 197 58" uvRect="348 54 366 108" texture="timedigit" alphaBlend="true"/>
+        <Panel windowRect="179 -21 197 33" uvRect="348 54 366 108" texture="timedigit" alphaBlend="true"/>
+      </Container>
+      <CharPanel name="LeftTimeMilRed" windowRect="197 9 93 63" texture="timedigit" alphaBlend="true" fontSize="34 54" fontPos="0 54" fontStr="0123456789.-" text="00" visible="false"/>
+    </Container>
+    <Container name="timeCheckPanel" windowRect="232 10 558 104" visible="false" align="hcenter">
+      <Panel name="timeCheckText" windowSize="61 24" adjust="45 66" texture="bonus@zz" alphaBlend="true"/>
+      <Panel name="timeCheckSec" windowRect="219 65 258 89" texture="sec@zz" alphaBlend="true"/>
+      <CharPanel name="timeCheckLeft" windowRect="163 65 163 65" texture="scenarioNum" alphaBlend="true" fontSize="19 26" fontPos="0 0" fontStr="0123456789+" text="000"/>
+    </Container>
+    <Container name="chSpeedPanel" windowRect="212 10 538 104" visible="false" align="hcenter">
+      <Panel name="chSpeedText" windowRect="53 66 154 90" texture="chal@zz" alphaBlend="true"/>
+      <Panel name="chSpeedSec" windowRect="225 65 278 89" texture="km@zz" alphaBlend="true"/>
+      <CharPanel name="chSpeed" windowRect="164 65 183 65" texture="scenarioNum" alphaBlend="true" fontSize="19 26" fontPos="0 0" fontStr="0123456789+" text="000"/>
+    </Container>
+    <Container name="okSpeedPanel" windowRect="212 10 538 104" visible="false" align="hcenter">
+      <Panel name="chSpeedText" windowRect="53 66 204 90" texture="succ@zz" alphaBlend="true"/>
+      <Panel name="chSpeedSec" windowRect="225 65 278 89" texture="km@zz" alphaBlend="true"/>
+      <CharPanel name="okSpeed" windowRect="164 65 183 65" texture="scenarioNum" alphaBlend="true" fontSize="19 26" fontPos="0 0" fontStr="0123456789+" text="000"/>
+    </Container>
+    <Panel name="dashboard" windowSize="225 175" adjust="4 6" align="right;bottom" uvRect="0 0 225 175" texture="aw_01@zz" alphaBlend="true">
+      <CharPanel name="kmh" windowRect="134 105 221 143" texture="aw_02@zz" alphaBlend="true" fontSize="29 38" fontPos="0 0" fontStr="0123456789" text="000"/>
+      <Panel windowRect="106 125 145 141" uvRect="119 175 158 191" texture="aw_01@zz" alphaBlend="true"/>
+      <Graduation name="hand" windowRect="9 89 81 105" texture="aw_01@zz" alphaBlend="true" uvRect="0 176 72 192" minDegree="-90" maxDegree="180" minValue="0" maxValue="360" axis="70.5 8" defaultValue="0"/>
+      <Panel name="handMark" windowRect="66 84 92 109" uvRect="93 175 119 200" texture="aw_01@zz" alphaBlend="true"/>
+      <DashboardPanel name="LucciNum" windowRect="134 153 223 168" texture="aw_02@zz" alphaBlend="true" fontSize="10 15" fontPos="345 0" fontStr="0123456789" text="     "/>
+    </Panel>
+    <Container name="rankboard" windowRect="30 89 210 600" enable="false">
+      <CharPanel name="myrank" windowRect="0 0 220 55" texture="digit_rank_num" alphaBlend="true" fontSize="44 55" fontStr="x012345678" allowVertical="true" text="0"/>
+      <CharPanel name="riderCount" windowRect="40 28 80 58" texture="digit_rank_num_small" alphaBlend="true" fontSize="20 25" fontStr="0123456789/" text="/8" spaceOffset="-4"/>
+      <RankList name="ranklist" windowRect="0 60 200 525"/>
+    </Container>
+  </Container>
+  <Panel name="메뉴" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" visible="false" enable="false">
+    <CaptionWindow frame="CaptionDialog" caption="#sb(menu)" fillTrans="true" windowRect="310 210 489 344" captionColor="black" captionPos="0 1" align="center">
+      <Container windowRect="0 0 70 134">
+        <StateButton name="다시시도" windowRect="10 2 82 74" align="hcenter" iconSet="다시시도" iconAlign="hcenter" iconPos="0 5" stateText="#sb(retry)" textAlign="hcenter" textColor="black" textPos="0 55" canDisable="true" enable="false"/>
+      </Container>
+      <Container windowRect="85 0 155 134">
+        <StateButton name="싱글플레이" windowRect="87 2 159 74" align="hcenter" iconSet="메인메뉴" iconAlign="hcenter" iconPos="0 5" stateText="#sb(goToMenu)" textAlign="hcenter" textColor="black" textPos="0 55"/>
+      </Container>
+    </CaptionWindow>
+  </Panel>
+</Container>

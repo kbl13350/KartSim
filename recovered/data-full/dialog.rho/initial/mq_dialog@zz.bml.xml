@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="topwnd" windowRect="0 0 374 420" frame="CaptionDialog" caption="#sb(modifyInitial)" align="center" setCloseButton="cancelButton">
+    <Window name="plateWindow" windowSize="338 120" adjust="0 5" frame="InnerFrame" align="hcenter">
+      <Panel name="initialWarning" windowSize="338 112" adjust="-7 -4" color="0 0 0 0" alphaBlend="true" visible="false">
+        <Panel name="initialWarningU" windowSize="250 22" adjust="0 2" color="128 0 0 0" alphaBlend="true" align="hcenter">
+          <Label name="initialWarningULabel" autoSizing="true" windowSize="250 22" adjust="0 0" text="#sb(initialWarning)" textColor="yellow" textRender="bold14" textAlign="center" align="center"/>
+        </Panel>
+        <Panel name="initialWarningL" windowSize="250 22" adjust="0 88" color="128 0 0 0" alphaBlend="true" align="hcenter">
+          <Label name="initialWarningLLabel" autoSizing="true" windowSize="250 22" adjust="0 0" text="#sb(initialWarning)" textColor="yellow" textRender="bold14" textAlign="center" align="center"/>
+        </Panel>
+      </Panel>
+      <TextButton name="prevInitial" windowRect="14 33 45 65" textRender="bold14" frame="BulletLeftButton" iconSet="왼쪽" useDisableState="true"/>
+      <TextButton name="nextInitial" windowRect="272 33 303 65" textRender="bold14" frame="BulletRightButton" iconSet="오른쪽" useDisableState="true"/>
+      <Panel name="initialCaret" windowRect="106 30 109 66" color="128 0 0 0"/>
+    </Window>
+    <Window name="keyboardFrame" windowRect="0 125 340 320" frame="PopupWindow" align="hcenter">
+      <ImageButton name="func_key_back" windowRect="277 3 329 27" autoLoadImage="이니셜백" alphaBlend="true"/>
+      <ImageButton name="norm_key1_0" windowRect="7 30 32 54" autoLoadImage="이니셜" text="A" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_1" windowRect="34 30 59 54" autoLoadImage="이니셜" text="B" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_2" windowRect="61 30 86 54" autoLoadImage="이니셜" text="C" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_3" windowRect="88 30 113 54" autoLoadImage="이니셜" text="D" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_4" windowRect="115 30 140 54" autoLoadImage="이니셜" text="E" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_5" windowRect="142 30 167 54" autoLoadImage="이니셜" text="F" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_6" windowRect="169 30 194 54" autoLoadImage="이니셜" text="G" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_7" windowRect="196 30 221 54" autoLoadImage="이니셜" text="H" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_8" windowRect="223 30 248 54" autoLoadImage="이니셜" text="I" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_9" windowRect="250 30 275 54" autoLoadImage="이니셜" text="J" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_10" windowRect="277 30 302 54" autoLoadImage="이니셜" text="K" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key1_11" windowRect="304 30 329 54" autoLoadImage="이니셜" text="L" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_0" windowRect="7 57 32 81" autoLoadImage="이니셜" text="M" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_1" windowRect="34 57 59 81" autoLoadImage="이니셜" text="N" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_2" windowRect="61 57 86 81" autoLoadImage="이니셜" text="O" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_3" windowRect="88 57 113 81" autoLoadImage="이니셜" text="P" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_4" windowRect="115 57 140 81" autoLoadImage="이니셜" text="Q" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_5" windowRect="142 57 167 81" autoLoadImage="이니셜" text="R" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_6" windowRect="169 57 194 81" autoLoadImage="이니셜" text="S" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_7" windowRect="196 57 221 81" autoLoadImage="이니셜" text="T" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_8" windowRect="223 57 248 81" autoLoadImage="이니셜" text="U" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_9" windowRect="250 57 275 81" autoLoadImage="이니셜" text="V" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_10" windowRect="277 57 302 81" autoLoadImage="이니셜" text="W" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key2_11" windowRect="304 57 329 81" autoLoadImage="이니셜" text="X" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_0" windowRect="7 84 32 108" autoLoadImage="이니셜" text="Y" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_1" windowRect="34 84 59 108" autoLoadImage="이니셜" text="Z" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_2" windowRect="61 84 86 108" autoLoadImage="이니셜" text="!" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_3" windowRect="88 84 113 108" autoLoadImage="이니셜" text="&quot;" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_4" windowRect="115 84 140 108" autoLoadImage="이니셜" text="#" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_5" windowRect="142 84 167 108" autoLoadImage="이니셜" text="$" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_6" windowRect="169 84 194 108" autoLoadImage="이니셜" text="%" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_7" windowRect="196 84 221 108" autoLoadImage="이니셜" text="&amp;" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_8" windowRect="223 84 248 108" autoLoadImage="이니셜" text="&apos;" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_9" windowRect="250 84 275 108" autoLoadImage="이니셜" text="(" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_10" windowRect="277 84 302 108" autoLoadImage="이니셜" text=")" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key3_11" windowRect="304 84 329 108" autoLoadImage="이니셜" text="*" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_0" windowRect="7 111 32 135" autoLoadImage="이니셜" text="+" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_1" windowRect="34 111 59 135" autoLoadImage="이니셜" text="," textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_2" windowRect="61 111 86 135" autoLoadImage="이니셜" text="-" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_3" windowRect="88 111 113 135" autoLoadImage="이니셜" text="." textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_4" windowRect="115 111 140 135" autoLoadImage="이니셜" text="/" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_5" windowRect="142 111 167 135" autoLoadImage="이니셜" text=":" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_6" windowRect="169 111 194 135" autoLoadImage="이니셜" text=";" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_7" windowRect="196 111 221 135" autoLoadImage="이니셜" text="&lt;" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_8" windowRect="223 111 248 135" autoLoadImage="이니셜" text="=" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_9" windowRect="250 111 275 135" autoLoadImage="이니셜" text="&gt;" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_10" windowRect="277 111 302 135" autoLoadImage="이니셜" text="?" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key4_11" windowRect="304 111 329 135" autoLoadImage="이니셜" text="@" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_0" windowRect="7 138 32 162" autoLoadImage="이니셜" text="[" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_1" windowRect="34 138 59 162" autoLoadImage="이니셜" text="\" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_2" windowRect="61 138 86 162" autoLoadImage="이니셜" text="]" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_3" windowRect="88 138 113 162" autoLoadImage="이니셜" text="^" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_4" windowRect="115 138 140 162" autoLoadImage="이니셜" text="_" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_5" windowRect="142 138 167 162" autoLoadImage="이니셜" text="`" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_6" windowRect="169 138 194 162" autoLoadImage="이니셜" text="{" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_7" windowRect="196 138 221 162" autoLoadImage="이니셜" text="|" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_8" windowRect="223 138 248 162" autoLoadImage="이니셜" text="}" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="norm_key5_9" windowRect="250 138 275 162" autoLoadImage="이니셜" text="~" textRender="bold14" alphaBlend="true"/>
+      <ImageButton name="func_key_space" windowRect="277 138 329 162" autoLoadImage="이니셜스페이스" textRender="bold14" alphaBlend="true"/>
+    </Window>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 340 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="useOkButton" windowRect="0 0 87 30" text="#sb(ok)" textRender="bold14"/>
+      <TextButton name="cancelButton" windowRect="0 0 52 30" align="right" text="#sb(cancel)" textRender="bold14"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <AiKart id="1" track="village_I04" isFixedKart="true" fixedKartId="10" laps="3" gameType="item" isFixedChar="true" fixedCharId="1">
+    <LevelContent level="0" item="Rocket;WaterBomb;Booster;WaterFly;Shild;" aiItemLevel="1">
+      <AiKart characterId="18" uniformId="0" kartId="25" colorId="8" dyeId="8" balloonId="0" speed="50" accel="22" startTick="0" characterName="嘟嘟"/>
+      <AiKart characterId="15" uniformId="0" kartId="25" colorId="3" dyeId="3" balloonId="0" speed="51" accel="21" startTick="0" characterName="吉米"/>
+      <AiKart characterId="9" uniformId="0" kartId="27" colorId="1" dyeId="1" balloonId="0" speed="52" accel="20" startTick="0" characterName="海盗船长"/>
+    </LevelContent>
+  </AiKart>
+</Root>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle5"/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="叮当叮当"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="alma" pos="12 0" emotion="stop3"/>
+  <Msg name="路易" string="咻！差点出大事了555"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="路易！你为什么把自己关在衣柜里了啊？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="alma" pos="12 0" emotion="stop1"/>
+  <Msg name="路易" string="为了避开唠叨的当娜，结果被关起来了。|不是你的话，差一点就出大事了。|可是小强，你怎么在我家啊？"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop7"/>
+  <Msg name="小强" string="啊…这个..！！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop6"/>
+  <Msg name="小强" string="不，这现在不重要！宝宝在城堡里失踪了！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="alma" pos="12 0" emotion="stop2"/>
+  <Msg name="路易" string="什么，宝宝失踪了？到底去哪了啊？"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop1"/>
+  <Msg name="小强" string="在你的玩具屋里失踪的。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="alma" pos="12 0" emotion="stop2"/>
+  <Msg name="路易" string="玩具屋？啊…"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="路易！你知道什么吗？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="alma" pos="12 0" emotion="stop1"/>
+  <Msg name="路易" string="恩..大概知道宝宝失踪的秘密了。"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop6"/>
+  <Msg name="小强" string="真的吗？那秘密是什么啊？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="alma" pos="12 0" emotion="stop3"/>
+  <Msg name="路易" string="不能轻易告诉你。|来吧，如果能打败我的话我就告诉你。"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop4"/>
+  <Msg name="小强" string="恩？好吧！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	 ForwardAccelForce='105.0'
+	 BackwardAccelForce='100.0'
+	 DragFactor='-0.062'
+	 SteerConstraint='1.5'
+	 DriftEscapeForce='200'
+	 CornerDrawFactor='0.045'
+	 BoosterBlur='true'
+	 EngineSound='pro'
+	 EnvMap='true'
+
+	 	DescBalance= '25'
+	DescStability ='28'
+
+/>
+
+<!-- 대만 마스터 PRO SE -->

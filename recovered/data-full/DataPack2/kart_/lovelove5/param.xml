@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 코스모스카트 -->
+<BodyParam
+	ForwardAccelForce='50.0'
+	BackwardAccelForce='70.0'
+	DragFactor='-0.05'
+	SteerConstraint='1'
+	DriftEscapeForce='110'
+	CornerDrawFactor='0.04'
+
+	EngineSound='lovelove1'
+	BoosterType='lovelove1'
+
+	DescBalance= '25'
+
+/>

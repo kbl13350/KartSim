@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='110.0'
+	BackwardAccelForce='110.0'
+	DragFactor='-0.051'
+	SteerConstraint='1.8'
+	DriftEscapeForce='230'
+	CornerDrawFactor='0.05'
+	BoosterBlur='true'
+	EngineSound='pro'
+
+		
+	DescBalance= '25'
+	DescStability ='25'
+/>
+
+<!--일본 커비 PRO -->

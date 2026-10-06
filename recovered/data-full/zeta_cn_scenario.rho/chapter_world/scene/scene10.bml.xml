@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des3"/>
+  <Char id="Brian" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="布莱恩" string="巨大的犯罪团伙与黑客的联手……"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="布莱恩" string="如果不赶紧处理，|肯定会出大事……"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Sophia" pos="8 0" emotion="stop1"/>
+  <Msg name="索菲亚" string="……"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <BackGround texture="des4"/>
+  <Char id="totop" pos="8 0" emotion="stop5"/>
+  <Msg name="黑杰克" string="这次的行动中把黑客拉进来，|绝对是神来之笔啊！哈哈哈……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="raptorRs" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷" string="不愧是杰克大人。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="Brian" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="布莱恩" string="嗯？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="布莱恩" string="那个头长得很奇怪的人旁边的那个少年，|不就是刚才那个黑暗组织吗？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Sophia" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="索菲亚" string="……也许吧。"/>
+  <Enter/>
+  <Char id="Sophia" remove="true"/>
+  <Char id="Brian" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="布莱恩" string="别动!|警察！！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="totop" pos="7 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="大家注意，警察来了！！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorRs" pos="7 0" emotion="stop3"/>
+  <Msg name="格雷" string="杰克大人，请您赶快避一避吧！"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="raptorRs" pos="7 0" emotion="stop3"/>
+  <Msg name="格雷" string="这里有我来负责！"/>
+  <Enter/>
+  <Char id="raptorRs" remove="true"/>
+  <Char id="totop" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="呵呵呵，那就拜托你了~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="Brian" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="布莱恩" string="看到警察就跑，|果然有问题。"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="布莱恩" string="站住！别动！"/>
+  <Enter/>
+</Scene>

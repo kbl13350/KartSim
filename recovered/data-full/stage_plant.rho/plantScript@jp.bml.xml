@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlModel>
+  <row npcChar="brodi" action="click,nearby" step="1" reactionAni="5" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="윙크" script="プラントについて知りたいことがあったら、いつでもオレをクリックしな。" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="2" reactionAni="1" reactionImage="브로디_기본" reactionSound="웃기" script="工場マンっていうドラマ見たか？あれ、オレが出てるんだよ。" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="3" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="なあ、ナイアドって知ってるか？すっごくかわいいんだよな…。" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="4" reactionAni="2" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="화내기" script="ドクターRがオレのドリルを持って行ったらしい。" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="5" reactionAni="20" reactionImage="브로디_기본" reactionSound="잠잘때" script="zzZ…あれ？(よだれが…)" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="1" reactionAni="2" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="벙찌기" script="プラントについて知りたいことがあったら、いつでもオレをクリックしな。|ところで…お前、オレに似てるな。" userChar="16" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="2" reactionAni="4" reactionImage="브로디_기본" reactionSound="화내기" script="お前…何者だ…？どうしてオレのふりをしてる？" userChar="16" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="3" reactionAni="2" reactionImage="브로디_기본" reactionSound="벙찌기" script="きっと秘密があるんだな…もしかして、小さい頃に行方不明になった…!!" userChar="16" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="4" reactionAni="3" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="울기" script="ぐすん…兄貴って呼んでくれよ…。" userChar="16" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="1" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="ああ…よう(ポッ)、ナイアド…ヘヘヘ、知りたいことがあったらオレに聞きな。なんでも教えてやるよ。|でも、本当にかわいいな、お前…。" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="2" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="工場マンっていうドラマ見たか？あれ、オレが出てるんだよ。" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="3" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="今度ブースター工場に遊びに行かないか？" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="4" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="これ秘密なんだが…実はオレ、好きな人ができたらしい。" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="5" reactionAni="3" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="울기" script="この気持ち、いつ伝わるのか…。" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="exchangeEnergy" step="1" script="一定のエネルギーを消費して選択したアイテムの種類の内1個を入手します。|一日の交換可能個数をすべて使用すると、交換ができなくなります。|一日の交換可能個数は毎日午前6:00に初期化されます。"/>
+  <row npcChar="brodi" action="changedTuningParts" reactionImage="브로디_측면" reactionImageFlip="true" step="1" script="おめでとう、%sを獲得したぞ！カートに装着してみな！" buttonType="equipParts,close"/>
+  <row npcChar="brodi" action="askEnergy" step="1" reactionImage="브로디_측면" reactionImageFlip="true" script="エネルギーはエネルギー生産機の生産開始ボタンを押して作動させると入手できる。|エネルギー生産機ゲージがいっぱいになるごとに1個ずつ生産されるんだ。" buttonType="next"/>
+  <row npcChar="brodi" action="askEnergy" step="2" reactionImage="브로디_기본" script="エネルギーが10個以上集まったらチューニングパーツ交換ボタンをクリックしてカートを|強化するチューニングパーツと交換できるぞ。" buttonType="next"/>
+  <row npcChar="brodi" action="askEnergy" step="3" reactionImage="브로디_기본" script="エネルギー生産機は右にあるから、OFFになってたらスイッチを入れてみな！|カートライダーを終了するとエネルギーは全部消えるから、忘れずに交換しろよな。" buttonType="genEnergy,close"/>
+  <row npcChar="brodi" action="askTuningParts" step="1" reactionImage="브로디_측면" reactionImageFlip="true" script="チューニングパーツはエネルギーを集めてくれば交換できるぞ！ |チューニングパーツをカートに装着すれば、カートがさらにパワーアップするんだ！" buttonType="next"/>
+  <row npcChar="brodi" action="askTuningParts" step="2" reactionImage="브로디_기본" script="チューニングパーツを持ってるか？装着ウィンドウをクリックして装着するんだ。|カートがパワーアップするぞ。" buttonType="equipParts,close"/>
+  <row npcChar="brodi" action="click,nearby" step="1" reactionAni="4" reactionImage="브로디_기본" reactionSound="화내기" script="ドクターR!! オレのドリルを持って行っただろ！返せ!!|ところで、オレに何の用だ？何か聞きたいことでもあるのか？" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="2" reactionAni="4" reactionImage="브로디_기본" reactionSound="화내기" script="オレのドリルがなくなった日！うちの工場に来たのはお前だけなんだよ!!" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="3" reactionAni="3" reactionImage="브로디_측면" reactionSound="울기" script="あのドリルは…使い方を間違えると大変なことになるんだ…。" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="4" reactionAni="2" reactionImage="브로디_기본" reactionSound="벙찌기" script="じゃあ、オレのドリルは一体誰が持って行ったんだ??" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="5" reactionAni="4" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="화내기" script="捕まえたらただじゃおかないぞ!!" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="askNaiad" step="1" reactionAni="1" reactionImage="브로디_기본" reactionSound="웃기" script="혹시 나이아드의 사진을 가지고 있니?" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="2" reactionAni="1" reactionImage="브로디_기본" reactionSound="윙크" script="나이아드의 사진을 가지고 있다면 특별히 [스페셜] 항목을 선택 할 수 있게 해줄께!" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="3" reactionAni="1" reactionImage="브로디_기본" reactionSound="벙찌기" script="[스페셜] 항목으로 파츠를 교환하면 에너지 30개로|레어나 유니크 파츠 중 한 개를 받을 수 있어!" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="4" reactionAni="1" reactionImage="브로디_기본" reactionSound="벙찌기" script="나이아드의 사진은 이벤트나 퀘스트를 통해 얻을 수 있지만 자주 얻을 수 없어.|나이아드의 사진을 가지고 있다면 높은 등급의 파츠를 교환할 수 있는 기회를 놓치지 마~" buttonType="close"/>
+  <row npcChar="brodi" action="askNaiad" step="1" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="혹시... 네 사진 같은 거... 음... 그러니까 혹시... 가지고 있니?" userChar="32" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="2" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="사진... 보여주면... 특별히 [스페셜] 항목을 선택할 수 있게 해줄껩!!" userChar="32" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="3" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="[스페셜] 항목으로 파츠를 교환하면 에너지 30개로|레어나 유니크 파츠 중 한 개를 받을 수 있어!" userChar="32" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="4" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="다른 친구들은 이벤트와 퀘스트로 너의 사진을 받은 적이 있다고 하던데...|사진을 보여주면 높은 등급의 파츠를 교환 할 수 있으니 기회를 놓치지 마~ 에헤..." userChar="32" buttonType="close"/>
+</xmlModel>

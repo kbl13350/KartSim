@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="cottonTacho" windowSize="249 175" adjust="10 -7" align="right;bottom" enable="false">
+  <Panel name="mask" windowRect="162 10 212 60" uvRect="284 54 334 104" texture="cotton@zz" alphaBlend="true"/>
+  <Graduation name="boostHand" windowRect="162 10 212 60" uvRect="2 0 4 2" texture="mask" alphaBlend="true" minDegree="50" maxDegree="360" minValue="0" maxValue="350" axis="25 25" defaultValue="0"/>
+  <Panel name="dashboard" windowRect="0 0 249 160" uvRect="0 0 249 160" texture="cotton@zz" alphaBlend="true">
+    <Graduation name="hand" windowRect="26 76 80 86" uvRect="284 113 339 123" texture="cotton@zz" alphaBlend="true" minDegree="-90" maxDegree="180" minValue="0" maxValue="375" axis="54 4" defaultValue="0"/>
+    <Panel name="boost_Off" windowRect="162 23 205 49" uvRect="284 0 326 26" texture="cotton@zz" alphaBlend="true"/>
+    <Panel name="boost_On" windowRect="162 23 205 49" uvRect="284 26 326 52" texture="cotton@zz" alphaBlend="true" visible="false"/>
+    <CharPanel name="kmh" windowRect="144 92 207 123" texture="cotton@zz" alphaBlend="true" fontSize="22 31" fontPos="0 170" fontStr="0123456789" text="000"/>
+    <DashboardPanel name="LucciNum" windowRect="155 141 225 159" texture="aw_02@zz" alphaBlend="true" fontSize="10 15" fontPos="345 0" fontStr="0123456789" text="         "/>
+  </Panel>
+</Container>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+	<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.2'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.065'
+
+	TransAccelFactor='1.68'
+	StartBoosterTimeSpeed='1200'           
+	StartForwardAccelFactorSpeed='1'
+	TransformTime='700' 
+
+	UseTransformBooster='true'
+	
+	BoosterBlur='true'
+	BoosterType='zero5'
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	EngineSound='cotton7'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+
+	DescBalance= '34'
+	DescStability ='35'
+	DescEngineGrade='1.2'
+	DescCornering='6'
+	DescEnchantCap = '20'
+
+/>
+
+<!-- 중국 STORM Z7 N 마이스터 보상 카트 120202-->

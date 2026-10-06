@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="skillTuningCaption">
+    <m c="kr" v="[color:255 22 225 255]슬롯%d[/color] 성능 선택"/>
+    <m c="cn" v="[color:255 22 225 255]性能槽%d[/color]性能选择"/>
+  </k>
+  <k n="messegeBoxCaption">
+    <m c="kr" v="=성능 선택"/>
+    <m c="cn" v="性能选择"/>
+  </k>
+  <k n="speed">
+    <m c="kr" v="스피드"/>
+    <m c="cn" v="竞速"/>
+  </k>
+  <k n="item">
+    <m c="kr" v="아이템"/>
+    <m c="cn" v="道具"/>
+  </k>
+  <k n="alreadyUse">
+    <m c="kr" v="다른 슬롯에 장착중"/>
+    <m c="cn" v="已装至其他性能槽中"/>
+  </k>
+  <k n="restrictSkill">
+    <m c="kr" v="카트바디 기능과 중복됨"/>
+    <m c="cn" v="与车辆原有性能重复"/>
+  </k>
+  <k n="restrictInTuningSkill">
+    <m c="kr" v="다른 성능 슬롯 기능과 중복"/>
+    <m c="cn" v="与其他性能槽功能重复"/>
+  </k>
+  <k n="change">
+    <m c="kr" v="   변경"/>
+    <m c="cn" v="   变更"/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="cn" v="确认"/>
+  </k>
+  <k n="cancel">
+    <m c="kr" v="취소"/>
+    <m c="cn" v="取消"/>
+  </k>
+  <k n="unlock">
+    <m c="kr" v="   해금"/>
+    <m c="cn" v="   解锁"/>
+  </k>
+  <k n="helpDesc">
+    <m c="kr" v="선택한 성능은 [에띠의 스패너]를 소모해 다른 성능으로 변경 가능합니다.|성능변경 시 기존 성능에 투자한 튜닝 포인트는 돌려 받습니다."/>
+    <m c="cn" v="选中的性能可通过消耗[color:255 62 255 14][葱头的扳手][/color]变更为其他性能。|变更性能时，将返还在之前性能中使用的强化点数。"/>
+  </k>
+  <k n="tuningSkillChangeDesc">
+    <m c="kr" v="슬롯n의 성능을 에띠의스패너 %d개를 사용하여 아래와 같이 변경 하시겠습니까?|[%s] &gt; [%s]"/>
+    <m c="cn" v="是否使用%d个葱头的扳手将性能槽%d的性能变更如下？|[%s]&gt;[%s]"/>
+  </k>
+  <k n="chooseTuningSkillDesc">
+    <m c="kr" v="슬롯 %d에 [%s]을 장착하시겠습니까?"/>
+    <m c="cn" v="是否要于性能槽%d中装备[%s]？"/>
+  </k>
+  <k n="chooseNoTuningSkillDesc">
+    <m c="kr" v="선택한 성능이 없습니다."/>
+    <m c="cn" v="未选择性能。"/>
+  </k>
+  <k n="allSkillRstrictDesc">
+    <m c="kr" v="모든 성능이 카트바디 기능과 중복되어 선택할 수 없으므로, 해금을 진행하지 않습니다."/>
+    <m c="cn" v="所有性能都与车辆原有性能重复，无法选择，无需解锁。"/>
+  </k>
+</StringBag>

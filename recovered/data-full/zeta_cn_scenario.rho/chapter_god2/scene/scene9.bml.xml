@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="France1"/>
+  <Char id="totop" pos="11 0" emotion="stop6"/>
+  <Msg name="黑杰克" string="我说！！您这是在搞什么啊？？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop6"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="洛基" string="被他们发现了，我也是逼不得已……"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="黑杰克" string="呼呼呼！原来如此！！|早点告诉我多好~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="被他们抓住前最好先躲一躲吧！黑杰克"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="原来如此……您不跟我们一起走吗？？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="不用担心我，你先走！！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <BackGround texture="Italy3"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="呼呼……黑杰克你给我站住！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="这家伙到底跑哪去了！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="11 0" emotion="normal"/>
+  <Msg name="洛基" string="黑杰克那家伙见到我就跑了！！！哈哈……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="11 0" emotion="normal"/>
+  <Msg name="洛基" string="差点出大事了！钟楼差点就被拆了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="11 0" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="stop2"/>
+  <Msg name="托尔" string="嗯……话说回来，洛基辛苦你了~~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="11 0" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="就是，多亏洛基，要不然要出大事了~~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="11 0" emotion="stop1"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="stop2"/>
+  <Msg name="托尔" string="从你这几天的表现来看，是真心想要改邪归正啊~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="11 0" emotion="stop1"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="stop2"/>
+  <Msg name="洛基" string="（愚蠢……）那……那当然！！托尔哥~~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="11 0" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="stop2"/>
+  <Msg name="洛基" string="我都已经赌上了阿斯加德的名誉~~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="ms_loki" pos="11 0" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="stop2"/>
+  <Msg name="洛基" string="哼哼……（还挺简单的嘛~）"/>
+  <Enter/>
+</Scene>

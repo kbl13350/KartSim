@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="Help" windowSize="366 132" adjust="-73 -10" align="left" texture="help_back_img_01" alphaBlend="true">
+  <Container name="caption" windowRect="18 7 358 10">
+    <Label name="captionStr" windowRect="0 0 170 15" text="#sb(chat_help)" textColor="white" textRender="bold14"/>
+    <ImageButton name="close" windowSize="20 20" adjust="-5 0" align="right" autoLoadImage="b_close_" alphaBlend="true" altTextRender="outline" altText="#sb(chat_dialogClose)"/>
+  </Container>
+  <ColorLabel windowRect="15 39 360 136" textRender="bold14" textColor="255 202 210 220" text="#sb(chat_help_desc)" autoWrap="true" multiLine="true"/>
+</Panel>

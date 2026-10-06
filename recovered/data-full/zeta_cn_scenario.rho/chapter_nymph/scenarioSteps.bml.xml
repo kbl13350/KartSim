@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="南海避暑！" synopsis="酷热的夏天！皮蛋和伙伴们为了避暑，出发前往南海~" howToClear="请完成地图" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="2" type="32" mode="single" preConditionId="1" title="蓝海飘移！" synopsis="在湛蓝的南海之滨！|勤奋的皮蛋和伙伴们即使来到了休假胜地也不忘记训练。" howToClear="请在指定速度以上通过检查点" missionText="完成游戏 %d回 / %d回" addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardStockId="2536"/>
+  </Step>
+  <Step id="3" type="1" mode="multi" preConditionId="2" title="神秘纹章！" synopsis="训练的时候，黑妞在水中看到了发光的神秘物体！|为在黑妞面前表现自己，皮蛋自告奋勇要把发光的物体取回来。" howToClear="在多人游戏中完成10回比赛" missionText="多人游戏 %d回 / %d回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" achievementCount="10" rewardRp="500"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="光的指引！" synopsis="发光的物体是一块刻着文字的石头！|正当皮蛋他们研究这块石头的时候，|从文字上射出来的亮光指向南海的另一边，|神奇的是在那里出现了一个之前没见过的岛。" howToClear="请在规定时间内完成游戏" missionText="完成游戏 %d回 / %d回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="2537"/>
+  </Step>
+  <Step id="5" type="32" mode="single" preConditionId="4" title="出发！蝴蝶仙境！" synopsis="亮光所指的地方有个漆黑的洞穴。|好奇心强烈的皮蛋和伙伴们二话不说奔向了洞穴！" howToClear="请在规定时间内通过所有检查点" missionText="通过检查点 %d回 / %d回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="6" type="35" mode="single" preConditionId="5" title="水精灵美美！" synopsis="通过神秘的洞穴，皮蛋和伙伴们到了“精灵世界”蝴蝶仙境!|那个不分青红皂白攻击陌生人的小精灵?" howToClear="在与美美道具赛对决中胜利" missionText="游戏胜利 %d回 / %d回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06A" otherWayLockId="7">
+    <Level difficult="0" rewardStockId="2538"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="5" title="水精灵美美！" synopsis="通过神秘的洞穴，皮蛋和伙伴们到了“精灵世界”蝴蝶仙境!|那个不分青红皂白攻击陌生人的小精灵?" howToClear="在与美美对决中胜利" missionText="游戏胜利 %d回 / %d回" addToGarage="true" visualScene="scene7" readyStage="1-7" stepTitleId="06B" otherWayLockId="6">
+    <Level difficult="0" rewardStockId="2538"/>
+  </Step>
+  <Step id="8" type="31" mode="single" preConditionId="6|7" title="美美的恶作剧！" synopsis="为了回到繁荣山丘，皮蛋他们围绕着海神殿拼命得奔跑着！|这个方法真是可疑。" howToClear="不落后于NPC完成比赛。" missionText="完成游戏 %d回/ %d 回" addToGarage="true" visualScene="scene8" readyStage="1-8" stepTitleId="07">
+    <Level difficult="0" rewardStockId="101"/>
+  </Step>
+  <Step id="9" type="31" mode="single" preConditionId="8" title="再遇海盗船长！" synopsis="美美心满意足地耍了皮蛋他们，|但当她正准备开启回归繁荣山丘的通道时！|突然出现的海盗，绑架了美美！|必须赶快救出美美才行！" howToClear="在规定时间内打败嘟嘟" missionText="追击成功 %d回 / %d回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="08">
+    <Level difficult="0" rewardStockId="2539"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="精灵的误解！" synopsis="结果皮蛋和伙伴们失败了…| 这时出现了多个与美美相似的精灵 | 要求皮蛋交出美美!" howToClear="请在规定时间内完成游戏" missionText="完成游戏 %d回 / %d回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="09">
+    <Level difficult="0" rewardStockId="2540"/>
+  </Step>
+  <Step id="11" type="35" mode="single" preConditionId="10" title="还给我！" synopsis="在两个精灵冷静下来之后，终于解除了双方之间的误会。|为救出同伴，精灵们和皮蛋他们一起前往海盗船挑战海盗船长。" howToClear="在道具赛中战胜海盗战队" missionText="对决胜利 %d回 / %d回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="10">
+    <Level difficult="0" rewardRp="800"/>
+  </Step>
+  <Step id="12" type="30" mode="single" preConditionId="11" title="强大的纹章力量！" synopsis="不仅美美没能救出，连幻幻也被俘虏了！|得到了精灵纹章的海盗船长力量太强大了，先逃了再说！" howToClear="在规定时间内甩掉海盗船长。*注意 距离差距0M时挑战失败。" missionText="成功逃出 %d回 / %d回" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="11">
+    <Level difficult="0" rewardStockId="2541"/>
+  </Step>
+  <Step id="13" type="15" mode="multi" preConditionId="12" title="精灵的眼泪&lt;一&gt;" synopsis="为了抑制纹章的力量，需要精灵的眼泪。|为了寻找精灵的眼泪，皮蛋和伙伴们来到了迷失森林！" howToClear="在多人游戏中行驶30Km" missionText="目标 %.2fKm/%.2fKm" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="12">
+    <Level difficult="0" achievementCount="30" rewardStockId="2542"/>
+  </Step>
+  <Step id="14" type="30" mode="single" preConditionId="13" title="精灵的眼泪&lt;二&gt;" synopsis="终于得到了精灵的眼泪！|但是安全运送非常重要，运送时千万不能多次碰撞！！" howToClear="在规定时间内完成游戏，并不能超过冲撞次数。" missionText="目标 %d回 / %d回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="13">
+    <Level difficult="0" rewardStockId="2543"/>
+  </Step>
+  <Step id="15" type="35" mode="single" preConditionId="14" title="这次不再放水了！" synopsis="得到了精灵眼泪的皮蛋，再次来到海盗船挑战海盗船长！|这次非胜不可！" howToClear="在与海盗战队的道具赛中获胜" missionText="对决胜利 %d回 / %d回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="14">
+    <Level difficult="0" rewardStockId="74"/>
+  </Step>
+  <Step id="16" type="30" mode="single" preConditionId="15" title="快醒过来！！" synopsis="终于击退了海盗船长，|可是美美却被精灵纹章的力量控制，成了傀儡！|与海盗对决的皮蛋他们，能安全救出美美吗？" howToClear="在与美美比赛中获胜。" missionText="游戏胜利 %d回 / %d回" addToGarage="true" visualScene="scene16" readyStage="1-16" stepTitleId="15A">
+    <Level difficult="0" rewardStockId="2544"/>
+  </Step>
+  <Step id="17" type="35" mode="single" preConditionId="15" title="快醒过来！！" synopsis="终于击退了海盗船长，|可是美美却被精灵纹章的力量控制，成了傀儡！|与海盗对决的皮蛋他们，能安全救出美美吗？" howToClear="在与美美道具赛中获胜。" missionText="游戏胜利 %d回 / %d回" addToGarage="true" visualScene="scene17" readyStage="1-17" stepTitleId="15B">
+    <Level difficult="0" rewardStockId="2544"/>
+  </Step>
+  <Step id="18" type="31" mode="single" preConditionId="16|17" title="对不起！" synopsis="恢复意识的美美和幻幻得知自己攻击了伙伴，|觉得难以面对皮蛋他们。|为了安慰美美，必须追上她！" howToClear="在规定时间内超越美美。" missionText="追击成功 %d回 / %d回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="16">
+    <Level difficult="0" rewardLucci="2000"/>
+  </Step>
+  <Step id="19" type="35" mode="single" preConditionId="18" title="先得者胜！" synopsis="追上了美美，可是纹章却掉到悬崖下了。|必须赶在海盗船长之前拿到纹章！" howToClear="在与海盗战队的导弹赛中获胜。" missionText="游戏胜利 %d回 / %d回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="17">
+    <Level difficult="0" rewardStockId="2545"/>
+  </Step>
+  <Step id="20" type="30" mode="single" preConditionId="19" title="光的引导！回家！" synopsis="回到了蝴蝶仙境的精灵纹章发出一道亮光，|皮蛋和伙伴们随着纹章的指引终于返回了繁荣山丘！" howToClear="在规定时间内不发生3次碰撞完成游戏" missionText="完成游戏 %d回 / %d回" addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="18" isFinalStep="true">
+    <Level difficult="0" rewardStockId="2546"/>
+  </Step>
+</StepList>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <Tracing isFixedKart="true" fixedKartId="1590" isFixedChar="true" fixedCharId="495" kartId="1590" colorId="6" dyeId="43" characterId="18" uniformId="32" characterName="波诺">
+    <LevelContent level="0" track="mine_I05" laps="3" ksv="1-9" distance="30" startOffset="900"/>
+  </Tracing>
+</Root>

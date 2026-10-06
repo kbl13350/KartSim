@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="slotCard" leftTopWH="0 0 164 128" visible="true">
+  <ImageBoard name="slotBg" leftTopWH="0 0 164 128" alphaBlend="false" image="slotBg" visible="true"/>
+  <ItemWindow name="item" windowSize="144 100" adjust="0 5" align="top;center" stockId="0"/>
+  <Label name="itemName" align="bottom;center" leftTopWH="0 5 130 30" text="" textAlign="center" textRender="bold16" textColor="255 202 210 220" textRolling="true"/>
+  <Label name="itemPeriod" align="right;top" adjust="5 0" windowSize="40 20" text="" textAlign="right" textRender="outline14" textColor="white" textColor2="black"/>
+</Window>

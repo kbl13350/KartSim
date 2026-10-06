@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowSize="800 600" caption="" captionPos="0 1" captionColor="black" align="center" setCloseButton="cancelButton">
+  <Container name="itemCatTab" leftTopWH="0 -25 700 30">
+    <TextButton name="info1" windowRect="0 0 60 27" frame="Tab" text="퀘스트" forceTooltip="false" textColor="black"/>
+    <TextButton name="info2" windowRect="60 0 120 27" frame="Tab" text="2번항목" forceTooltip="false" textColor="black"/>
+    <TextButton name="info3" windowRect="120 0 180 27" frame="Tab" text="3번항목" forceTooltip="false" textColor="black"/>
+  </Container>
+  <List name="testList" frame="DefaultEdit" leftTopWH="0 0 760 500" align="right" listGap="1" listMargin="0 0 0 0"/>
+  <Container name="info1Tab" leftTopWH="0 0 650 550">
+    <Window name="calendar" leftTopWH="0 0 350 400" visible="false">
+      <TextButton name="curYear" leftTopWH="50 0 100 50" text=""/>
+      <TextButton name="toPrevMonth" leftTopWH="200 0 50 50" text="←" frame="DefaultFocusedButton" enable="true"/>
+      <TextButton name="curMonth" leftTopWH="250 0 50 50" text=""/>
+      <TextButton name="toNextMonth" leftTopWH="300 0 50 50" text="→"/>
+      <TextButton name="sunday" leftTopWH="0 50 50 50" text="일"/>
+      <TextButton name="monday" leftTopWH="50 50 50 50" text="월"/>
+      <TextButton name="tuesday" leftTopWH="100 50 50 50" text="화"/>
+      <TextButton name="wednesday" leftTopWH="150 50 50 50" text="수"/>
+      <TextButton name="thursday" leftTopWH="200 50 50 50" text="목"/>
+      <TextButton name="friday" leftTopWH="250 50 50 50" text="금"/>
+      <TextButton name="saturday" leftTopWH="300 50 50 50" text="토"/>
+      <TextButton name="0" leftTopWH="0 100 50 50" text=""/>
+      <TextButton name="1" leftTopWH="50 100 50 50" text=""/>
+      <TextButton name="2" leftTopWH="100 100 50 50" text=""/>
+      <TextButton name="3" leftTopWH="150 100 50 50" text=""/>
+      <TextButton name="4" leftTopWH="200 100 50 50" text=""/>
+      <TextButton name="5" leftTopWH="250 100 50 50" text=""/>
+      <TextButton name="6" leftTopWH="300 100 50 50" text=""/>
+      <TextButton name="10" leftTopWH="0 150 50 50" text=""/>
+      <TextButton name="11" leftTopWH="50 150 50 50" text=""/>
+      <TextButton name="12" leftTopWH="100 150 50 50" text=""/>
+      <TextButton name="13" leftTopWH="150 150 50 50" text=""/>
+      <TextButton name="14" leftTopWH="200 150 50 50" text=""/>
+      <TextButton name="15" leftTopWH="250 150 50 50" text=""/>
+      <TextButton name="16" leftTopWH="300 150 50 50" text=""/>
+      <TextButton name="20" leftTopWH="0 200 50 50" text=""/>
+      <TextButton name="21" leftTopWH="50 200 50 50" text=""/>
+      <TextButton name="22" leftTopWH="100 200 50 50" text=""/>
+      <TextButton name="23" leftTopWH="150 200 50 50" text=""/>
+      <TextButton name="24" leftTopWH="200 200 50 50" text=""/>
+      <TextButton name="25" leftTopWH="250 200 50 50" text=""/>
+      <TextButton name="26" leftTopWH="300 200 50 50" text=""/>
+      <TextButton name="30" leftTopWH="0 250 50 50" text=""/>
+      <TextButton name="31" leftTopWH="50 250 50 50" text=""/>
+      <TextButton name="32" leftTopWH="100 250 50 50" text=""/>
+      <TextButton name="33" leftTopWH="150 250 50 50" text=""/>
+      <TextButton name="34" leftTopWH="200 250 50 50" text=""/>
+      <TextButton name="35" leftTopWH="250 250 50 50" text=""/>
+      <TextButton name="36" leftTopWH="300 250 50 50" text=""/>
+      <TextButton name="40" leftTopWH="0 300 50 50" text=""/>
+      <TextButton name="41" leftTopWH="50 300 50 50" text=""/>
+      <TextButton name="42" leftTopWH="100 300 50 50" text=""/>
+      <TextButton name="43" leftTopWH="150 300 50 50" text=""/>
+      <TextButton name="44" leftTopWH="200 300 50 50" text=""/>
+      <TextButton name="45" leftTopWH="250 300 50 50" text=""/>
+      <TextButton name="46" leftTopWH="300 300 50 50" text=""/>
+      <TextButton name="50" leftTopWH="0 350 50 50" text=""/>
+      <TextButton name="51" leftTopWH="50 350 50 50" text=""/>
+      <TextButton name="52" leftTopWH="100 350 50 50" text=""/>
+      <TextButton name="53" leftTopWH="150 350 50 50" text=""/>
+      <TextButton name="54" leftTopWH="200 350 50 50" text=""/>
+      <TextButton name="55" leftTopWH="250 350 50 50" text=""/>
+      <TextButton name="56" leftTopWH="300 350 50 50" text=""/>
+    </Window>
+  </Container>
+  <Container name="info2Tab" leftTopWH="0 0 650 550"/>
+  <Container name="info3Tab" leftTopWH="0 0 650 550"/>
+  <Edit name="edit" frame="DefaultEdit" leftTopWH="0 0 300 25" maxChar="120" align="bottom"/>
+</CaptionWindow>

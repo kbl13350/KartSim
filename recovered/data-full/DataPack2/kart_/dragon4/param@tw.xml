@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='143.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.071'
+	SteerConstraint='2.2'
+	DriftEscapeForce='500'
+	CornerDrawFactor='0.06'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.62'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	BoosterType='dragon1'
+	BoosterWaveType='effect_dragon'
+
+	Port0='mod1a2'
+	Port1='mod1a3'
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+	FirePort2='mod2a3'
+	FirePort3='mod2a4'
+	FirePort4='mod2b1'
+/>
+<!-- 대만 드래고니아 SR (가샤폰 레어) -->

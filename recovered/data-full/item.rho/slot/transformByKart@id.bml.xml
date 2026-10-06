@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformByKart>
+  <item srcIdx="cloud" kartId="28" dstIdx="darkCloud" probability="0"/>
+  <item srcIdx="rocket" kartId="419" gitType="no_flag" dstIdx="goldRocket" probability="50"/>
+  <item srcIdx="rocket" kartId="419" gitType="bossOnly" dstIdx="goldRocketForBoss" probability="70"/>
+  <item srcIdx="rocket" kartId="419" gitType="no_flag" dstIdx="goldRocket" probability="50"/>
+</transformByKart>

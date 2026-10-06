@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="0 0 776 586" color="white">
+  <ImageBoard leftTopWH="0 10 748 166" image="contest_entrance_infoGradeBG" align="hcenter">
+    <Label name="openPeriod" leftTopWH="0 7 346 29" align="right" adjust="15 0" textAlign="right,vcenter" textRender="bold16" textColor="white"/>
+    <Panel name="seasonGradeIcon" leftTopWH="23 37 144 124" texture="경쟁전_등급_미참여" alphaBlend="true"/>
+    <Label leftTopWH="134 60 198 20" text="#sb(grade)" textRender="bold14" textAlign="center" textColor="255 157 191 241"/>
+    <Label name="gradeText" leftTopWH="136 82 198 58" textRender="bold20" textAlign="center" textColor="white"/>
+    <Label leftTopWH="338 60 226 20" text="#sb(rank)" textRender="bold14" textAlign="center" textColor="255 157 191 241"/>
+    <Label name="rankInfo" leftTopWH="338 82 226 58" text="#sb(rankPercentageNone)" textRender="bold20" textAlign="center" textColor="white"/>
+    <Label leftTopWH="568 60 179 20" text="#sb(accumulatedScore)" textRender="bold14" textAlign="center" textColor="255 157 191 241"/>
+    <Label name="accumulatedScore" leftTopWH="568 82 179 58" textRender="bold20" textAlign="center" textColor="white"/>
+  </ImageBoard>
+  <ImageBoard leftTopWH="0 182 748 306" image="contest_entrance_infoWeekBG" alphaBlend="true" align="hcenter">
+    <Label leftTopWH="38 0 30 26" text="#sb(week)" textColor="255 245 247 250" textRender="bold16" textAlign="center"/>
+    <Label leftTopWH="217 0 30 26" text="#sb(grade)" textColor="255 245 247 250" textRender="bold16" textAlign="center"/>
+    <Label leftTopWH="436 0 30 26" text="#sb(rank)" textColor="255 245 247 250" textRender="bold16" textAlign="center"/>
+    <Label leftTopWH="641 0 30 26" text="#sb(point)" textColor="255 245 247 250" textRender="bold16" textAlign="center"/>
+    <ImageBoard name="competitiveInfo" windowRect="0 0 748 306" image="contest_entrance_infoExplanationBG" alphaBlend="true" visible="false">
+      <Label leftTopWH="26 0 322 60" text="#sb(competitiveHelp1)" textRender="bold14" textColor="255 72 106 163" textAlign="vcenter"/>
+      <Label leftTopWH="26 61 322 60" text="#sb(competitiveHelp2)" textRender="bold14" textColor="255 72 106 163" textAlign="vcenter"/>
+      <Label leftTopWH="26 122 322 60" text="#sb(competitiveHelp3)" textRender="bold14" textColor="255 72 106 163" textAlign="vcenter"/>
+      <Label leftTopWH="26 183 322 60" text="#sb(competitiveHelp4)" textRender="bold14" textColor="255 72 106 163" textAlign="vcenter"/>
+      <Label leftTopWH="26 244 322 60" text="#sb(competitiveHelp5)" textRender="bold14" textColor="255 72 106 163" textAlign="vcenter"/>
+    </ImageBoard>
+    <GridSelector name="competitiveGrid" leftTopWH="0 4 748 360" alignSize="1" maxLine="4" clientMargin="0 30 0 0" alignMargin="0 1" align="hcenter"/>
+  </ImageBoard>
+  <ImageButton name="competitiveEnter" leftTopTex="164 499" autoLoadImage="simul_btn_enter_" alphaBlend="true"/>
+  <ImageButton name="competitiveHelp" leftTopTex="436 499" autoLoadImage="btn_info_" alphaBlend="true"/>
+</Panel>

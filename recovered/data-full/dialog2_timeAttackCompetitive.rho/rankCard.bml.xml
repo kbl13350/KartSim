@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window leftTopWH="0 0 958 46">
+  <Panel name="medal" leftTopWH="35 13 22 30" alphaBlend="true" visible="false"/>
+  <Label name="rank" leftTopWH="35 5 22 46" textAlign="center" textRender="bold16" textColor="255 84 100 129"/>
+  <Label name="rid" leftTopWH="94 4 264 46" textAlign="center" textRender="bold16" textColor="255 84 100 129"/>
+  <Panel name="gradeIcon" leftTopWH="423 5 46 40" alphaBlend="true"/>
+  <Label name="grade" leftTopWH="465 4 100 46" textAlign="center" textRender="bold16" textColor="255 84 100 129"/>
+  <Label name="point" leftTopWH="627 4 200 46" textAlign="center" textRender="bold16" textColor="255 84 100 129"/>
+  <ImageButton name="infoBtn" leftTopWH="873 11 34 36" autoLoadImage="contest_btn_riderInfo_" alphaBlend="true" visible="false"/>
+</Window>

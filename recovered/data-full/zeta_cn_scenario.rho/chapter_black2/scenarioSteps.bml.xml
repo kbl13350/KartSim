@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="集合！伙伴们~" synopsis="繁荣山丘马上要开展世界GP大赛|为此世界各国的车手们会聚到繁荣山丘|去迎接他们吧！" howToClear="请打败皮蛋。" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene1" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="500"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="繁荣GP赛" synopsis="出席世界GP赛的伙伴们|需要占领最佳观赏位置！|宝宝会占到最佳位置为大家助威吗？" howToClear="完成赛道 0回/1回" missionText="..." addToGarage="true" visualScene="scene2" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardRp="400"/>
+  </Step>
+  <Step id="3" type="34" mode="single" preConditionId="2" title="阻止逃跑" synopsis="GP赛的最后！神秘车手突然出现，拿走了|奖品，目睹这一切的宝宝与伙伴们|决定一起协心协力抓住他！" howToClear="请在道具赛打败神秘车手" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene3" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="星陨之石的秘密" synopsis="为了找回奖品|在追捕神秘车手的途中，发现了他的真面目|与星陨之石的秘密。伙伴们认知到奖品的重要性|为了找回奖品开始追击格雷格。" howToClear="请在指定时间内完成赛道" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene4" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="5596"/>
+  </Step>
+  <Step id="5" type="30" mode="single" preConditionId="4" title="冲向龙之华夏！" synopsis="向龙之华夏出发的伙伴们！|只不过从一开始就有很多磕磕绊绊！他们会追上雯雯|安全的到达吗？" howToClear="请在指定时间追上雯雯。|*注意 距离超过20m则挑战失败。" missionText="追击成功 0回/1回" addToGarage="true" visualScene="scene5" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" rewardLucci="800"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="格雷？" synopsis="为了调查星陨之石信息的成员宝宝|无意中目击到进入比赛场的格雷|准备跟随其后。|格雷的目的是什么呢？" howToClear="请在指定时间与撞击次数内完成赛道" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene6" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="5595"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="星陨之石的位置" synopsis="偷听格雷与神秘人物对话的宝宝|获得了星陨之石的情报。要赶快告诉伙伴们|此消息啊！" howToClear="请在指定时间内完成赛道" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene7" readyStage="1-7" otherWayLockId="8" stepTitleId="07">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="8" type="30" mode="single" preConditionId="6" title="星陨之石的位置" synopsis="偷听格雷与神秘人物对话的宝宝|获得了星陨之石的情报。要赶快告诉伙伴们|此消息啊！" howToClear="请在指定时间内完成赛道" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene8" readyStage="1-8" otherWayLockId="7" stepTitleId="08">
+    <Level difficult="0" rewardStockId="73"/>
+  </Step>
+  <Step id="9" type="36" mode="single" preConditionId="7|8" title="星陨之石托帕石" synopsis="与伙伴们重新集合的宝宝，以自己得知的事实与伙伴们的|调查内容为基础，找到了星陨之石托帕石的位置。|只要抢先于黑暗组织找到星陨之石托帕石就没有问题。" howToClear="请在指定时间完成赛道。|*用有限的导弹，破坏障碍物完成赛道。" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene9" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="5693"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="兵马俑的骚乱" synopsis="到达了藏有星陨之石托帕石的兵马俑！|这时兵马俑内部产生了大骚乱，发现了仓皇而逃的格雷。|伙伴们可以顺利找到托帕石吗？" howToClear="请在指定时间内完成赛道" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene10" readyStage="1-10" stepTitleId="10">
+    <Level difficult="0" rewardStockId="5692"/>
+  </Step>
+  <Step id="11" type="30" mode="single" preConditionId="10" title="捷径" synopsis="找到星座托帕石的宝宝，为了找到格雷所说的|星陨之石，向美美生活的蝴蝶仙境出发。|这时，鑫鑫说有捷径，主动提出要带路！|伙伴们会通过捷径顺利到达蝴蝶仙境吗？" howToClear="请在指定时间内完成赛道" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene11" readyStage="1-11" stepTitleId="11">
+    <Level difficult="0" rewardLucci="1000"/>
+  </Step>
+  <Step id="12" type="31" mode="single" preConditionId="11" title="美美" synopsis="安全到达蝴蝶仙境！一到达就发现|晕倒在地的美美。美美说被红头发的坏蛋所威胁|被逼无奈说出来星陨之石的位置！|要抢先于格雷先到星陨之石绿宝石的所在之地！" howToClear="与伙伴们一起在竞速赛上胜利。" missionText="完成目标 0回/1回" addToGarage="true" visualScene="scene12" readyStage="1-12" stepTitleId="12">
+    <Level difficult="0" rewardStockId="5696"/>
+  </Step>
+  <Step id="13" type="30" mode="single" preConditionId="12" title="消失的星陨之石绿宝石" synopsis="到达星陨之石绿宝石所在地的伙伴们！|但是，星陨之石绿宝石已被夺走。大家觉悟到为时已晚|为了与皮蛋见面|出发去月光之城。" howToClear="请在指定时间内完成赛道" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene13" readyStage="1-13" stepTitleId="13">
+    <Level difficult="0" rewardStockId="5697"/>
+  </Step>
+  <Step id="14" type="34" mode="single" preConditionId="13" title="格雷兄弟的攻击" synopsis="比预想的到达的要快！|但是，宝宝与伙伴们的前方突然出现格雷兄弟|开始攻击他们。伙伴们可以抵挡|格雷兄弟的攻击吗？" howToClear="请在道具赛打败格雷兄弟" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene14" readyStage="1-14" stepTitleId="14">
+    <Level difficult="0" rewardStockId="5694"/>
+  </Step>
+  <Step id="15" type="30" mode="single" preConditionId="14" title="抓住！" synopsis="阻挡格雷兄弟的途中|星陨之石托帕石被夺走。虽然因为尼欧的出现|顺利躲过了危险。但是，为了重新找回托帕石|要再次抓住格雷兄弟。" howToClear="请在指定时间内追上格雷格。|*注意 超过20m则挑战失败。" missionText="追击成功 0回/1回" addToGarage="true" visualScene="scene15" readyStage="1-15" stepTitleId="15">
+    <Level difficult="0" rewardStockId="5695"/>
+  </Step>
+  <Step id="16" type="32" mode="single" preConditionId="15" title="约定场所" synopsis="追击格雷兄弟失败的宝宝与伙伴们|与尼欧一起出发向约定的场所。" howToClear="请在指定时间内通过核对积分。" missionText="通过所有核对积分 0回/1回" addToGarage="true" visualScene="scene16" readyStage="1-16" otherWayLockId="17" stepTitleId="16">
+    <Level difficult="0" rewardStockId="1128"/>
+  </Step>
+  <Step id="17" type="32" mode="single" preConditionId="15" title="约定场所" synopsis="追击格雷兄弟失败的宝宝与伙伴们|与尼欧一起出发向约定的场所。" howToClear="请用指定速度通过所有核对积分。" missionText="通过所有核对积分 0回/1回" addToGarage="true" visualScene="scene17" readyStage="1-17" otherWayLockId="16" stepTitleId="17">
+    <Level difficult="0" rewardStockId="1128"/>
+  </Step>
+  <Step id="18" type="30" mode="single" preConditionId="16|17" title="再次相逢" synopsis="在约定场所相逢的宝宝与皮蛋！|宝宝与尼欧给皮蛋讲述了这期间发生的一切。|在尼欧的帮助下，得知黑暗组织总部地点的伙伴们|为了最后的一战出发。" howToClear="请在指定时间与撞击次数内完成赛道" missionText="完成赛道 0回/1回" addToGarage="true" visualScene="scene18" readyStage="1-18" stepTitleId="18">
+    <Level difficult="0" rewardLucci="3000"/>
+  </Step>
+  <Step id="19" type="34" mode="single" preConditionId="18" title="黑暗组织的逆袭" synopsis="到达黑暗组织总部的伙伴们|被格雷兄弟突然袭击。|伙伴们会安然无恙吗？" howToClear="请在道具赛打败格雷兄弟" missionText="对决胜利 0回/1回" addToGarage="true" visualScene="scene19" readyStage="1-19" stepTitleId="19">
+    <Level difficult="0" rewardStockId="3310"/>
+  </Step>
+  <Step id="20" type="31" mode="single" preConditionId="19" title="追击黑暗组织" synopsis="被黑暗组织夺走所有的星陨之石，伙伴们很受打击。|但是，伙伴们深切认知到，阻挡黑暗组织的只有他们。|所以伙伴们决定重新振作起来追击格雷兄弟。" howToClear="请与伙伴们在竞速赛获得第一" missionText="完成目标 0回/1回" addToGarage="true" visualScene="scene20" readyStage="1-20" stepTitleId="20" isFinalStep="true">
+    <Level difficult="0" rewardStockId="5600"/>
+  </Step>
+</StepList>

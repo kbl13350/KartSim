@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh2"/>
+  <Char id="bazzi" pos="8 0" emotion="ani1"/>
+  <Msg name="宝宝" string="呲！|这次也是伟大的宝宝我第一个到达！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop7"/>
+  <Msg name="小强" string="宝..|算了..对，这次又是宝宝第！一！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop3"/>
+  <Msg name="鑫鑫" string="哎~！|真可惜~"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <BackGround texture="Northeu10"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="果然追到了这里！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="raptorL" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="哥~现在要攻击吗？|那帮家伙不是拿着托帕石吗！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorR" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷" string="走！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <BackGround texture="mh2"/>
+  <Char id="mos" pos="8 0" emotion="stop1"/>
+  <Msg name="小强" string="先去找皮蛋吧！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="格雷格" string="你们好啊~小朋友们~|欢迎来到地狱。|乖乖的交出星陨之石吧~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop5"/>
+  <Char id="wenwen" pos="7 0" emotion="stop6"/>
+  <Msg name="宝宝，雯雯" string="格雷格！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷" string="格雷格！|别哆嗦了！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="对不起..哥..|拿出那个星陨之石托帕石！"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="哼！|伟大的宝宝不想给你们！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="那我倒要看看..|格雷格，快去拿过来！"/>
+  <Enter/>
+</Scene>

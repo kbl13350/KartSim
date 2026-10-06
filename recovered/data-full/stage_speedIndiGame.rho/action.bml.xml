@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actionList>
+  <action name="start@zz"/>
+  <action name="finallap@zz"/>
+  <action name="2lap@zz"/>
+  <action name="3lap@zz"/>
+  <action name="4lap@zz"/>
+  <action name="5lap@zz"/>
+  <action name="wrongway" layer="2"/>
+  <action name="winner@zz"/>
+  <action name="finish@zz"/>
+  <action name="finish카운트"/>
+  <action name="retire@zz"/>
+  <action name="raceover@zz"/>
+  <action name="flag_draw@zz"/>
+  <action name="goldenflag_start@zz"/>
+</actionList>

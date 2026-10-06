@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ButtonAni name="jelly">
+  <Hide>
+    <PositionTon>
+      <Phase at="1" tick="0" translate="0.0 0.0 0.0"/>
+      <Phase at="2" tick="100" translate="0.0 -20.0 0.0"/>
+      <Phase at="3" tick="300" translate="0.0 40.0 0.0"/>
+    </PositionTon>
+    <ScaleTon type="rate">
+      <Phase at="1" tick="0" scale="1.0 1.0 0.0"/>
+      <Phase at="2" tick="100" scale="1.5 1.5 0.0"/>
+      <Phase at="3" tick="300" scale="0.4 0.4 0.0"/>
+    </ScaleTon>
+  </Hide>
+</ButtonAni>

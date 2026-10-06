@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill7"/>
+  <Char id="f4chen" pos="11 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="我想起来了！|皮德炸鸡！麦德斯私人学校！还有F4！！！！！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop1"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="道明宝宝" string="杉雯雯！！|那，我呢！！我？"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="杉雯雯" string="当然记得~骄傲自满，目中无人，凤梨头道明宝宝！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="道明宝宝" string="对，我就是骄傲自满，目中无人的凤…咳咳，好吧，看来都记起来了~"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4taki" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="美作奇奇" string="嘿嘿|都想起来了~|看来宝宝很兴奋啊~"/>
+  <Enter/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4mobi" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="西门吉米" string="道明那家伙…|好像越来越傻了？"/>
+  <Enter/>
+  <Char id="f4mobi" remove="true"/>
+  <Char id="f4dao" pos="6 0" flip="true" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="爱情本来就会让人变笨~"/>
+  <Enter/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Msg name="杉雯雯" string="谢谢，道明宝宝！F4！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4taki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="美作奇奇" string="嘿嘿~现在剩下的就是道明宝宝和杉雯雯的约会了吧？~"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="杉雯雯" string="嗯…道明宝宝…和我一起去赛车怎么样？|"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="道明宝宝" string="好！！！！|如果我赢了，以后你只可以和我练习？！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="杉雯雯" string="哈哈，好~|打败我，以后就跟着你一人~"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="道明宝宝" string="说话算数~？我赢了，你就跟着我一个人！！！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="杉雯雯" string="约定！|道明宝宝！准备好了吗？！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="道明宝宝" string="我肯定会赢~！雯雯！"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Char id="f4bazzi" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="杉雯雯" string="我可不会让着你哦~走吧~宝宝！"/>
+  <Enter/>
+</Scene>

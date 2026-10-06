@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="chatWindowIn" windowSize="342 277" align="right;bottom" adjust="-12 60">
+  <Window name="chatInGame" windowSize="342 277" align="right;bottom" frame="ChatInGameWindow">
+    <Container name="caption" windowRect="-3 0 314 15">
+      <Panel name="title" windowRect="0 0 172 20" texture="channel_1" alphaBlend="true" alphaTest="true" visible="true">
+        <Label name="title" leftTopWH="25 0 148 20" text="#sb(clubChat)" textAlign="vcenter" autoWrap="true" visible="true" textColor="silver" textColor2="255 21 19 19" textRender="outline"/>
+      </Panel>
+      <ImageButton name="help" windowSize="20 20" align="right" adjust="24 0" autoLoadImage="b_help_" alphaBlend="true" altTextRender="outline" altText="#sb(chat_help)" altRelativePos="-10 -24"/>
+      <ImageButton name="close" windowSize="20 20" align="right" adjust="0 0" autoLoadImage="b_close_" alphaBlend="true" altTextRender="outline" altText="#sb(chat_chatHide)" altRelativePos="-47 -24" altRelativeLegAdj="10 -16"/>
+    </Container>
+    <Container name="bodyGuild" windowRect="-3 32 314 210">
+      <List name="guildChatHistory" windowRect="0 -7 315 197" upButton="ChatScrollUpButton" downButton="ChatScrollDownButton" scrollButton="ChatVerticalScrollButton" scrollArea="ChatVerticalScrollArea" scrollWidth="14" autoScroll="true" listMargin="0 0 0 10"/>
+    </Container>
+    <Container name="status" windowRect="-3 233 314 282">
+      <Edit name="input" maxChar="30" windowRect="-1 0 263 23" frame="ChatEditBox" text="" textBgColor="none"/>
+      <ImageButton name="clearList" windowSize="24 24" adjust="26 0" align="right" autoLoadImage="eraser_0" alphaBlend="true" altTextRender="outline" altText="#sb(chat_erase)" altRelativePos="-30 -24" altRelativeLegAdj="20 -16"/>
+      <ImageButton name="emoticon" windowSize="24 24" adjust="0 0" align="right" autoLoadImage="icon_emoticon_0" alphaBlend="true" altTextRender="outline" altText="#sb(chat_emo)" altRelativePos="-28 -24" altRelativeLegAdj="15 -16"/>
+    </Container>
+  </Window>
+  <Panel name="mainview" windowSize="342 277" align="right;bottom" adjust="-12 2" color="0 50 50 50" alphaBlend="true" visible="false">
+    <Window name="GCHelp" windowRect="0 30 342 200" visible="false"/>
+    <Window name="GCEmoticonSelect" windowRect="145 103 350 280" visible="false"/>
+    <Window name="GCCloseChat" windowRect="0 30 342 99" visible="false"/>
+  </Panel>
+</Container>

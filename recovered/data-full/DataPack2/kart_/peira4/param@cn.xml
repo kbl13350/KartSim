@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.078'
+	SteerConstraint='2.3'
+	DriftEscapeForce='2000'
+	CornerDrawFactor='0.066'
+
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	EnvMap='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.793'
+	TransformTime='220'
+
+	StartForwardAccelFactorSpeed = '1.8'
+	StartBoosterTimeSpeed='1250'   
+
+	NormalBoosterTime = '-50'
+	TeamBoosterTime = '-100'
+	DriftMaxGauge = '-600'
+	DriftGaguePreservePercent='0.5'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main_gold'
+	BoosterType3='8sub'
+	BoosterType4='8sub'
+
+	Port0='mod2a1' 
+	Port1='mod2a2'
+
+	FirePort0='mod2b1'
+	FirePort1='mod2a3'
+	FirePort2='mod2a4'
+
+	TailLampSize='0.2'
+	TailLampColor='255 165 235 75'
+	BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance='45'
+	DescStability='45'
+	DescEngineGrade='1.25'
+	DescCornering='3'
+	DescEnchantCap='25'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255'/>
+</BodyParam>
+
+<!--블랙 페이라 HT+ 20140306 중국 씨앗 이벤트 최종 -->

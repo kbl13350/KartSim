@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot8"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="哈哈哈……现在知道谁是冠军了吧！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="葱头" string="我是真没想到！！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="葱头" string="烈焰祥龙的性能这么好……|再稍微改善一下，应该就完美了！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="主要是我的漂移实力够强才对吧！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="哇…改善后的新车|应该可以冲击冠军哦！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="stop1"/>
+  <Msg name="葱头" string="嗯，我也非常期待！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="升级版新车，好羡慕。我也想要呀，葱头！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop5"/>
+  <Char id="ethi" pos="4 0" emotion="stop3"/>
+  <Msg name="葱头" string="没问题啊，只要你也能参加世界巡回赛，肯定给你打造一辆。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="normal"/>
+  <Msg name="葱头" string="对了！宝宝，针对你的跑车习惯，我要调一下烈焰祥龙，稍等……"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="ani2"/>
+  <Msg name="葱头" string="这儿和这儿在磨合一下就行……|（改装中……）"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop4"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="离比赛开始还有点时间啊。|皮蛋，我想去逛下英国博物馆。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop5"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="对哦！我记得这附近有个非常大的博物馆。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop4"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="葱头，宝宝，你们也一起去吧！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="刚练完车又要去哪啊？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="normal"/>
+  <Msg name="葱头" string="你们先走，|我弄完就跟上。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Char id="dao" pos="10 0" emotion="stop2"/>
+  <Msg name="黑妞,皮蛋" string="那我们先去了，快点哦。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="..." string="（改装中……）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="stop1"/>
+  <Msg name="葱头" string="好了！终于完成了！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="ani2"/>
+  <Msg name="葱头" string="我们也出发吧！|跟上哦…（嗡嗡）"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="懒得去哎……|不过总比自已一个人待在这里好吧。等等我……"/>
+  <Enter/>
+</Scene>

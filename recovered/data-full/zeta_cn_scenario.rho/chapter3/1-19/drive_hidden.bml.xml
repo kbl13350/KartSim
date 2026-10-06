@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <TimeAttack>
+    <LevelContent level="0" track="tomb_R01" laps="3" timeLimit="113000"/>
+  </TimeAttack>
+</Root>

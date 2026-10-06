@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PartsCard name="partsCardTemplate" windowRect="0 0 98 98" texture="itemCard" alphaBlend="true" click="true">
+  <Window name="shopItemContainer" windowRect="-18 -14 104 104" enable="false" align="center"/>
+  <Label name="leftCount" windowSize="20 20" align="right" adjust="8 2" autoSizing="true" text="#sb(alert)" textAlign="center" textRender="outline16" textColor="white" enable="false" visible="false"/>
+  <Panel name="floater" windowRect="0 0 73 73" align="center" texture="floater" enable="false" visible="false" alphaBlend="true"/>
+  <Panel name="spaner" windowRect="0 0 73 73" align="center" texture="spaner" enable="false" visible="false" alphaBlend="true"/>
+  <Panel name="activ" windowRect="0 0 73 73" align="center" texture="activ" enable="false" visible="false" alphaBlend="true"/>
+</PartsCard>

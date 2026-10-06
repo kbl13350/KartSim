@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Dynamics
+	Mass='100.0'
+	AirFriction='3.0'
+	DragFactor='0.7'
+	ForwardAccelForce='1620.0'
+	BackwardAccelForce='1500.0'
+	GripBrakeForce='1500.0'
+	SlipBrakeForce='1200.0'
+	MaxSteerAngle='10.0'
+	SteerConstraint='20.0'
+	FrontGripFactor='5.0'
+	RearGripFactor='5.0'
+	DriftTriggerFactor='0.2'
+	DriftTriggerTime='0.2'
+	DriftSlipFactor='0.2'
+	DriftEscapeForce='1850.0'
+	CornerDrawFactor='0.13'
+	DriftMaxGauge='5050.0'
+	TransAccelFactor='-0.22'
+/>
+<!-- 보통 속도 13.12.12 신규 속도 -->

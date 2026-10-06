@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='121.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.06'
+	SteerConstraint='2.1'
+	DriftEscapeForce='600'
+	CornerDrawFactor='0.052'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+	TransAccelFactor='1.65'
+
+    BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod2a1'
+	Port1='mod2a2'
+    FirePort0='mod2a3'
+	FirePort1='mod2a4'
+	FirePort2='mod2b1'
+	FirePort3='mod2b2'
+    FirePort4='mod2b3'
+	FirePort5='mod2b4'
+
+	
+	DescBalance= '31'
+	DescStability ='28'
+	DescEngineGrade='1'
+	DescCornering='1'
+	DescEnchantCap = '20'
+
+/>
+
+<!-- 20120816 인니 솔리드 SR 퀘스트 보상 -->

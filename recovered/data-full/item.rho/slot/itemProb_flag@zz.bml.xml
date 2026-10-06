@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+  <item name="shield" idx="10" highrank="21" midrank="15" lowrank="9"/>
+  <item name="rocket" idx="7" highrank="15" midrank="25" lowrank="35" isAccumulable="true" accumCnt="1" maxAccum="10"/>
+  <item name="magnet" idx="5" highrank="7" midrank="5" lowrank="3"/>
+  <item name="booster" idx="6" highrank="14" midrank="10" lowrank="6"/>
+  <item name="devil" idx="2" highrank="0" midrank="5" lowrank="3"/>
+  <item name="angel" idx="11" highrank="7" midrank="5" lowrank="3"/>
+  <item name="rocket5" idx="15" basename="rocket" baseIdx="7" highrank="3" midrank="5" lowrank="7" isAccumulable="true" accumCnt="5" maxAccum="10" eatTextureIndex="15"/>
+  <item name="ghost" idx="16" highrank="7" midrank="5" lowrank="3"/>
+  <item name="mine" idx="17" highrank="6" midrank="10" lowrank="14"/>
+  <item name="superShield" idx="18" highrank="7" midrank="5" lowrank="3"/>
+  <item name="rollingBomb" idx="19" highrank="6" midrank="10" lowrank="14"/>
+</items>

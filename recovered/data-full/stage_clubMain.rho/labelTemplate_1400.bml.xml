@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window windowRect="0 0 962 34">
+  <ImageBoard name="backPanel" leftTopWH="0 0 962 34" image="myClub_img_overBar_1400" alphaBlend="true" alphaTest="true" visible="false"/>
+  <Label name="level" leftTopWH="0 0 80 34" enable="true" textRender="bold14" textColor="255 84 100 129" multiLine="false" autoWrap="true" textAlign="center"/>
+  <Label name="oid" leftTopWH="60 2 130 27" enable="true" textRender="bold14" textColor="255 84 100 129" multiLine="false" autoWrap="true" textAlign="center" visible="false"/>
+  <Label name="rid" leftTopWH="74 0 220 34" enable="true" textRender="bold14" textColor="255 84 100 129" multiLine="false" autoWrap="true" textAlign="center"/>
+  <Label name="crewGrade" leftTopWH="214 0 220 34" enable="true" textRender="bold14" textColor="255 84 100 129" multiLine="false" autoWrap="true" textAlign="center"/>
+  <Label name="weekActivityPoint" leftTopWH="390 0 110 34" enable="true" textRender="bold14" textColor="255 84 100 129" multiLine="false" autoWrap="true" textAlign="vcenter;right"/>
+  <Label name="totalActivityPoint" leftTopWH="535 0 110 34" enable="true" textRender="bold14" textColor="255 84 100 129" multiLine="false" autoWrap="true" textAlign="vcenter;right"/>
+  <Label name="joinDate" leftTopWH="672 0 180 34" enable="true" textRender="bold14" textColor="255 84 100 129" multiLine="false" autoWrap="true" textAlign="center"/>
+  <Label name="onlineState" leftTopWH="820 0 110 34 " enable="true" textRender="bold14" textColor="255 84 100 129" multiLine="false" autoWrap="true" textAlign="center"/>
+  <Window name="invisibleCover" leftTopWH="0 0 962 34"/>
+  <ImageButton name="modify" leftTopTex="930 6" autoLoadImage="myClub_brn_memberModify_" alphaBlend="true" visible="false"/>
+</Window>

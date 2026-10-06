@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow leftTopWH="0 0 512 422" frame="CaptionDialog" caption="#sb(dictionaryRewardDlgTitle)" align="center">
+    <ItemWindow name="rewardItemPanel" leftTopWH="0 0 200 200" align="hcenter"/>
+    <Label name="rewardInfoLbl" leftTopWH="0 200 100 20" text="#sb(dictionaryRewardDlgDesc)" textAlign="center" align="hcenter" textRender="bold16" textColor="255 42 55 80"/>
+    <Window windowSize="460 1" adjust="0 290" frame="VSection" align="hcenter"/>
+    <TextButton name="okButton" leftTopWH="118 310 120 50" text="#sb(getReward)" textColor="255 234 243 255" overTextColor="255 234 243 255" textRender="bold16" alphaBlend="true" visible="true"/>
+    <TextButton name="cancelButton" leftTopWH="250 310 120 50" text="#sb(cancel)" textColor="255 84 93 104" textRender="bold16" alphaBlend="true" visible="true"/>
+  </CaptionWindow>
+</Panel>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MultiStage>
+  <revolution className="SnKnockoutStage" addResFolder="/stage/common/;/stage/common/icon;/stage/riderSchoolItem" topmostWindow="stage_window"/>
+  <monocoque className="SnKnockoutStage" addResFolder="/stage/common/;/stage/common/icon;/stage/speedIndiGame/;/stage/itemIndiGame/" topmostWindow="mq_window@zz"/>
+</MultiStage>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="tooltip" leftTopWH="0 0 300 300" frame="BlackTransCaptionWindow" depthBias="1024.0" enable="false" visible="false">
+  <Panel leftTopWH="5 5 130 130" texture="img_tooTipItemBG" alphaBlend="true">
+    <ItemWindow name="itemWindow" leftTopWH="0 0 125 125"/>
+  </Panel>
+  <Label name="lblEnchantInfo" text="#sb(notAllowEnchant)" windowRect="10 12 106 52" multiLine="false" enable="false" textColor="yellow" textRender="outline" visible="false"/>
+  <Label name="stocks" leftTopWH="140 30 150 70" text="" textRender="bold" multiLine="true" autoWrap="true" textColor="white"/>
+  <Label name="itemDesc" leftTopWH="5 140 275 0" text="" textColor="255 200 200 200" multiLine="true" autoWrap="true" vertAutoSizing="true"/>
+  <Window name="seperator" leftTopWH="5 0 275 2" frame="HSection"/>
+  <Label name="itemEffect" leftTopWH="5 0 275 0" text="" multiLine="true" autoWrap="true" vertAutoSizing="true" textColor="yellow"/>
+  <StringBag>
+    <k n="notAllowEnchant">
+      <m c="kr" v="강화 불가"/>
+      <m c="jp" v="強化不可"/>
+      <m c="cn" v="不可改装"/>
+      <m c="tw" v="無法強化"/>
+      <m c="id" v="Tidak bisa enhance"/>
+    </k>
+  </StringBag>
+</CaptionWindow>

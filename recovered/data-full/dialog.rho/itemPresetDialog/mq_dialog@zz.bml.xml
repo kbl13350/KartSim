@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="captionDlgFrame" windowRect="0 0 1350 800" frame="CaptionDialog" captionPos="0 1" caption="#sb(itemPresetTitle)" align="center" setCloseButton="ok">
+    <Container name="presetSlotCardGrp" windowSize="1264 700" align="hcenter" adjust="0 10">
+      <GridSelector name="presetSlotCardSelector" windowSize="1264 700" align="hcenter" alignSize="3" maxLine="1" alignMargin="10 0" clientMargin="0 0 0 0" linePaging="true"/>
+    </Container>
+    <Container name="pageBtnGrp" windowSize="850 24" align="hcenter|bottom" adjust="0 3">
+      <ImageButton name="pageLeftBtn" windowSize="370 24" align="left" alphaBlend="true" autoLoadImage="garage_btn_pageLeft_"/>
+      <Label name="pageNum" windowSize="88 24" adjust="0 0" align="center" text="1 / 1" textColor="255 41 64 86" textColor2="black" textAlign="center" textRender="bold16"/>
+      <ImageButton name="pageRightBtn" windowSize="370 24" align="right" alphaBlend="true" autoLoadImage="garage_btn_pageRight_"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china9"/>
+  <Char id="zindaru" pos="3 0" emotion="stop7"/>
+  <Char id="lingling" pos="11 0" emotion="normal"/>
+  <Msg name="阿哥" string="请别再跟着我了。|我不是很了解那个传说。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop7"/>
+  <Char id="lingling" pos="11 0" emotion="stop1"/>
+  <Msg name="凌凌" string="你先停下来听我说！|为了继承我的家族，正在举行家族传承仪式。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop4"/>
+  <Char id="lingling" pos="11 0" emotion="stop1"/>
+  <Msg name="阿哥" string="家族传承仪式？|看来是在正式承袭家族血脉之前举行的传统仪式。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop4"/>
+  <Char id="lingling" pos="11 0" emotion="stop5"/>
+  <Msg name="凌凌" string="对！|你还是蛮聪明的嘛！"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop5"/>
+  <Char id="lingling" pos="11 0" emotion="normal"/>
+  <Msg name="阿哥" string="是的，的确有不少人这样说过我。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop4"/>
+  <Char id="lingling" pos="11 0" emotion="stop1"/>
+  <Msg name="凌凌" string="额…好吧。|简单来说为了完成传承仪式，我需要找到那个传说中的守护者。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop6"/>
+  <Char id="lingling" pos="11 0" emotion="stop1"/>
+  <Msg name="凌凌" string="我想守护者气息应该是在非常出色的车手身上，或者在某个特别的物件里。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop4"/>
+  <Char id="lingling" pos="11 0" emotion="stop3"/>
+  <Msg name="阿哥" string="那以你之见，是在我身上？"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="11 0" emotion="stop5"/>
+  <Char id="zindaru" pos="3 0" emotion="stop4"/>
+  <Msg name="凌凌" string="果然很聪明！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop5"/>
+  <Char id="lingling" pos="11 0" emotion="stop5"/>
+  <Msg name="阿哥" string="哈哈哈！|不好意思，是我笑得太大声了。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop4"/>
+  <Char id="lingling" pos="11 0" emotion="normal"/>
+  <Msg name="凌凌" string="对了，你叫阿哥是吗？|看起来是个出色的车手呢…"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop1"/>
+  <Char id="lingling" pos="11 0" emotion="stop3"/>
+  <Msg name="阿哥" string="话说是那样…但是我真的不清楚传说，还有你说的守护者气息那些。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="3 0" emotion="stop1"/>
+  <Char id="lingling" pos="10 0" emotion="stop3"/>
+  <Msg name="凌凌" string="一小会就可以…真的不可以吗？"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="2 0" flip="true" emotion="stop7"/>
+  <Char id="lingling" pos="10 0" emotion="stop3"/>
+  <Msg name="阿哥" string="很遗憾没能帮到你。|我还有事情，有缘再见哦。"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="zindaru" pos="0 0" flip="true" emotion="stop7"/>
+  <Char id="lingling" pos="8 0" emotion="stop1"/>
+  <Msg name="凌凌" string="那就让我看看你的赛车实力吧~！"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="7 0" emotion="stop1"/>
+  <Msg name="" string="（嗡）"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="5 0" emotion="stop1"/>
+  <Msg name="凌凌" string="等等我！！！"/>
+  <Enter/>
+</Scene>

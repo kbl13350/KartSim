@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="uiEffect" windowRect="fullscreen"/>
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Label name="distance" visible="false"/>
+    <XmlFile file="missionTimer"/>
+    <StressMirror name="stressMirror"/>
+    <Container name="stepInfo" windowSize="300 150" adjust="0 0" align="left;bottom" visible="false">
+      <Panel windowSize="272 50" adjust="9 0" texture="미션박스" alphaTest="true" alphaBlend="true" visible="true">
+        <Label name="missionString" windowSize="300 27" adjust="-12 12" textRender="outline" textColor="white" textColor2="black" text="" textAlign="hcenter"/>
+      </Panel>
+      <Panel windowSize="290 132" adjust="0 15" texture="엠블럼" alphaTest="true" alphaBlend="true" visible="true">
+        <Panel name="eventStep" windowSize="56 17" adjust="117 42" texture="이벤트@zz" alphaTest="true" alphaBlend="true" visible="false"/>
+        <CharPanel name="baseStep" windowSize="28 20" adjust="130 38" texture="숫자" visible="false" enable="false" fontSize="14 20" fontStr="1234567890" text="09" alphaBlend="true"/>
+      </Panel>
+    </Container>
+    <XmlFile file="collisionMission"/>
+    <Container name="tracingPanel" windowRect="0 0 342 50" align="hcenter;top" visible="false">
+      <Container windowRect="0 0 342 50">
+        <Panel windowRect="0 0 226 32" align="center" texture="상단바" alphaBlend="true"/>
+        <Panel name="tracingText" windowRect="0 0 155 29" align="center" texture="sn_거리@zz" alphaBlend="true">
+          <CharPanel name="tracingLeft" windowRect="95 0 152 26" align="center" texture="sn_카운트숫자" alphaBlend="true" fontSize="20 26" fontStr="0123456789+" text="  0"/>
+        </Panel>
+      </Container>
+    </Container>
+  </Container>
+  <Panel name="메뉴" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" visible="false">
+    <CaptionWindow frame="CaptionDialog" caption="#sb(menu)" windowRect="0 0 230 160" align="center">
+      <ImageButton name="goBackButton" windowSize="20 20" align="right" adjust="0 -25" autoLoadImage="close_" alphaBlend="true" altText="#sb(close)"/>
+      <Container windowRect="0 12 150 81" align="hcenter">
+        <StateButton name="다시시도" windowRect="0 0 64 74" iconSet="btn_singleAgain" iconAlign="hcenter" text="#sb(retry)" textAlign="hcenter" stringPos="0 55" canDisable="true"/>
+        <StateButton name="싱글플레이" windowRect="0 0 64 74" align="right" iconSet="btn_menu" iconAlign="hcenter" text="#sb(goToMenu)" textAlign="hcenter" stringPos="0 55"/>
+      </Container>
+      <Window windowRect="0 90 190 92" frame="VSection" align="hcenter"/>
+    </CaptionWindow>
+  </Panel>
+</Container>

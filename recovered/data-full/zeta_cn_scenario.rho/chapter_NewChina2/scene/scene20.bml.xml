@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china24"/>
+  <Char id="lingling" pos="4 0" emotion="normal"/>
+  <Msg name="凌凌" string="额？？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="14 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋，宝宝，黑妞" string="额？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="wenwen" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="雯雯" string="额？？我怎么又回到这里了！"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="lingling" pos="3 0" flip="true" emotion="stop2"/>
+  <Msg name="凌凌" string="为什么..？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="dao" pos="13 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="快看~！光在慢慢向下移动。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="9 0" flip="true" emotion="stop5"/>
+  <Char id="dao" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="它指向哪里呢？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="9 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="13 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="凌凌！在指向凌凌！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="lingling" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="mabinogi_stuff" pos="5 -1" emotion="stop4"/>
+  <Msg name="凌凌" string="（！！！）"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="light" pos="5 0" emotion="stop1"/>
+  <Char id="lingling" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="凌凌" string="怎么回事！？"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <BackGround texture="china27"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="（咚）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="china26"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="" string="（闪闪发光）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="camelot21"/>
+  <Char id="light" pos="7 1" emotion="stop1"/>
+  <Char id="mabinogi_stuff" pos="7 0" emotion="stop4"/>
+  <Msg name="" string="（砰~）"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="light" pos="7 -1" emotion="stop1"/>
+  <Char id="draong2_stuff" pos="7 -1" emotion="stop2"/>
+  <Char id="mabinogi_stuff" pos="7 0" emotion="stop4"/>
+  <Msg name="麒麟" string="两个龙之家族的孩子啊~"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="draong2_stuff" remove="true"/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="mabinogi_stuff" pos="7 0" emotion="stop4"/>
+  <Char id="light" pos="7 0" emotion="stop1"/>
+  <Msg name="麒麟" string="龙的圣地的混沌还未来临。|当混沌到来时，希望两个龙之家族的孩子以及小伙伴们可以一起勇敢对抗混沌"/>
+  <Enter/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="light" remove="true"/>
+  <Char id="light" pos="7 0" emotion="stop1"/>
+  <Msg name="麒麟" string="沉睡的守护者气息将在混沌的气息袭来时将再次苏醒。"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <BackGround texture="china24"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="看来龙之守护者就是凌凌！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mabinogi_stuff" pos="4 -2" emotion="normal"/>
+  <Char id="lingling" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="凌凌" string="我…我吗？传说中的龙之守护者？"/>
+  <Enter/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="mabinogi_stuff" pos="4 -2" emotion="normal"/>
+  <Char id="lingling" pos="4 0" emotion="normal"/>
+  <Msg name="凌凌" string="把龙之圣地从混沌中解救出来的那个龙之守护者？"/>
+  <Enter/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="lingling" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="最强龙之车手雯雯。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="从混沌将龙之圣地解救出来的龙之守护者凌凌。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="意思就是两个龙之家族的孩子都聚在了一起咯。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="所以传承仪式只是为了成为龙之守护者的过程吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop5"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="好像也可以那么理解？黑妞最聪明啦！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="lingling" pos="2 0" flip="true" emotion="stop3"/>
+  <Msg name="凌凌" string="传说中的龙之守护者…"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="2 0" flip="true" emotion="stop2"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="凌凌，我就是你的1号朋友！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lingling" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop4"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="我们都是朋友！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lingling" pos="2 0" flip="true" emotion="stop4"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="13 0" flip="true" emotion="stop5"/>
+  <Msg name="凌凌" string="是吗？见到你们我也非常高兴！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lingling" pos="7 0" flip="true" emotion="stop5"/>
+  <Msg name="凌凌" string="以后还请多多指教啦~朋友们！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="dao" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="皮蛋" string="话说受到了麒麟的祝福之后，感觉身体里面有一股力量在流淌呢！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop1"/>
+  <Char id="dizini" pos="7 0" emotion="stop1"/>
+  <Char id="wenwen" pos="2 0" emotion="stop2"/>
+  <Msg name="雯雯，黑妞，宝宝" string="是诶，感觉很轻松！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="wenwen" pos="4 0" emotion="stop4"/>
+  <Msg name="雯雯" string="那我们现在就去看冰灯节怎么样！"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="dizini" pos="12 0" emotion="stop2"/>
+  <Char id="bazzi" pos="7 0" emotion="stop2"/>
+  <Char id="dao" pos="2 0" emotion="stop2"/>
+  <Msg name="皮蛋，宝宝，黑妞" string="好呀！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="wenwen" pos="11 0" emotion="stop4"/>
+  <Msg name="雯雯" string="我来带路~"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="等一下！看谁先能到达，我们比个赛怎么样！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Char id="wenwen" pos="13 0" emotion="stop2"/>
+  <Char id="dizini" pos="9 0" emotion="stop1"/>
+  <Msg name="黑妞，雯雯" string="我先出发咯！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="ani4"/>
+  <Msg name="宝宝" string="话还没说完呢！！你等等！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ghost" pos="5 0" emotion="stop1"/>
+  <Msg name="" string="（隆~）"/>
+  <Enter/>
+</Scene>

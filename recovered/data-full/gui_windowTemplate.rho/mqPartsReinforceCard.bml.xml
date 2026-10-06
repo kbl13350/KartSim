@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GarageCard name="garageCardTemplate" leftTopWH="0 0 180 152" texture="unique4_x" alphaBlend="true">
+  <Container name="shopItemContainer" windowSize="180 103" adjust="0 40" enable="false"/>
+  <Label name="itemNameLabel" leftTopWH="4 4 172 36" textAlign="center" enable="false" textRender="bold16"/>
+  <Panel name="disable" leftTopWH="4 4 172 144" texture="popup_reinforce_slot_dim" alphaBlend="true" enable="false" visible="false">
+    <Label name="itemNameLabel" leftTopWH="4 104 172 36" text="#sb(maxLevel)" textAlign="center" enable="false" textRender="outline16" textColor="255 255 255 255" textColor2="255 0 0 0"/>
+  </Panel>
+  <Panel name="selected" leftTopWH="4 4 172 144" texture="popup_reinforce_slot_selected" alphaBlend="true" enable="false" visible="false"/>
+  <Panel name="reinforcedIcon" leftTopWH="144 37 34 34" texture="icon_ethisBolt" alphaBlend="true" enable="false" visible="false"/>
+</GarageCard>

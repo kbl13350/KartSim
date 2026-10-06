@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.073'
+	SteerConstraint='2.3'
+	DriftEscapeForce='1200'
+	CornerDrawFactor='0.066'
+
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+	DriftMaxGauge='-1000'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.8'
+	motorcycleType='true'
+	StartBoosterTime='1200'
+	StartForwardAccelFactorSpeed = '1.6'
+	TransformTime='700' 
+
+	BoosterWaveType='effect_zero'
+	BoosterBlur='true'
+	EngineSound='bike'
+	EnvMap='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType4='zero5'
+	BoosterType5='zero5'
+
+	Port0='mod6a'
+	Port1='mod6b'
+	FirePort0='mod2a'
+	FirePort1='mod2b'
+	FirePort2='mod2c'
+	FirePort3='mod2d'
+
+	TachometerType='Tacho1'
+	TachometerName='bike'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '38'
+	DescStability ='33'
+	DescEngineGrade='1.2'
+	DescCornering='4'
+	DescEnchantCap = '25'
+/>
+<!-- 한국 저스티스 바이크 Z7 (가샤폰 레어)-->

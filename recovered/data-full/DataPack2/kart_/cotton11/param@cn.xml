@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.075'
+	SteerConstraint='2.2'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.07'
+	BoosterBlur='true'
+	EngineSound='cotton7'
+	UseTransformBooster='true'
+
+	TransAccelFactor='1.68'
+	StartBoosterTimeSpeed='1200'
+	StartForwardAccelFactorSpeed='1.2'
+	TransformTime='700'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zero5'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod3a'
+	Port1='mod3b'
+	FirePort0='mod4'
+
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+	EnvMap='1'
+
+	
+	DescBalance= '34'
+	DescStability ='40'
+	DescEngineGrade='1.2'
+	DescCornering='1'
+	DescEnchantCap = '25'
+
+/>
+
+<!-- 중국 cotton Z7 2011-01-20 무제한/상시-->

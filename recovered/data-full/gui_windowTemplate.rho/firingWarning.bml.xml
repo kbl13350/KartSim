@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen" align="center" name="firingWarning">
+  <Panel name="firingWarningPanel" windowRect="fullscreen" texture="warning_rocket" textureOp="modulate" alphaBlend="true" alphaTest="false" enable="false" visible="false" color="0 255 255 255"/>
+</Container>

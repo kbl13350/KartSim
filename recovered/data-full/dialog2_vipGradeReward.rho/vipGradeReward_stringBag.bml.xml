@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="vipGradeRewardTitle">
+    <m c="kr" v="프리미엄 등급 업"/>
+    <m c="cn" v="VIP等级升级"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="vipGradeRewardDesc">
+    <m c="kr" v="축하합니다!|프리미엄 등급 %s 달성!"/>
+    <m c="cn" v="恭喜您！|成功达成[%s]等级！"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="itemCountFormat">
+    <m c="kr" v="x%d"/>
+    <m c="cn" v="x%d"/>
+    <m c="tw" v=""/>
+  </k>
+</StringBag>

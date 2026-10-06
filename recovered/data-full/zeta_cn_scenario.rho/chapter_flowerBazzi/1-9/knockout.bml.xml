@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="wkc_R01" laps="2" isFixedKart="true" fixedKartId="531" isFixedChar="true" fixedCharId="90">
+    <LevelContent level="0" ksv="event-9">
+      <ShadowKart characterId="91" uniformId="0" kartId="524" colorId="1" dyeId="1" characterName="杉雯雯"/>
+      <ShadowKart characterId="93" uniformId="0" kartId="528" colorId="9" dyeId="9" characterName="花泽皮蛋"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

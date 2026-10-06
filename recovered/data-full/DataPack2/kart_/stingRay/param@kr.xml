@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+ForwardAccelForce='149.0'
+BackwardAccelForce='100.0'
+DragFactor='-0.08'
+SteerConstraint='3'
+DriftEscapeForce='2000'
+CornerDrawFactor='0.078'
+
+BoosterBlur='true'
+EngineSound='cotton85'
+antiCollideBalance='0.9'
+
+UseTransformBooster='true'
+TransAccelFactor='1.848'
+TransformTime='100'
+
+StartForwardAccelFactorSpeed = '1.8'
+StartBoosterTimeSpeed='1400'
+
+NormalBoosterTime = '100'
+TeamBoosterTime = '300'
+DriftMaxGauge = '-670'
+DriftGaguePreservePercent='0.6'
+
+BoosterWaveType='boost8'
+BoosterType='8soon_gold'
+BoosterType0='8soon_gold'
+BoosterType1='8soon_gold'
+BoosterType2='85main'
+BoosterType3='85main'
+BoosterType4='85sub'
+BoosterType5='85sub'
+
+Port0='mod1c1'
+Port1='mod1c2'
+
+FirePort0='mod1a1'
+FirePort1='mod1a2'
+FirePort2='mod1a3'
+FirePort3='mod1a4'
+
+TailLampSize='0.2'
+TailLampColor='0 255 100 100'
+BoostBlurColor='255 77 77 77'
+
+EnvMap='true'
+WheelFixed = 'true'
+
+TachometerType='Tacho1'
+TachometerName='ht'
+itemSlotName='ht'
+boostGaugeName='ht'
+
+DescBalance= '52'
+DescStability ='48'
+DescEngineGrade='1.25'
+DescCornering='8'
+DescEnchantCap = '30'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a3' trailPort1='mod1a4'/>
+</BodyParam>
+
+<!--뉴 스팅레이 합성 시스템 최종 보상 / 레전드 등급 20140529 -->

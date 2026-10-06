@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageButton name="baseCard" windowRect="0 0 250 172" autoLoadImage="timeShop_bottomBtn_" text="" alphaBlend="true" textColor="White" textAlign="hcenter" stringPos="0 12" altRelativePos="-136 0">
+  <Container windowRect="0 0 250 172" enable="false">
+    <Label name="itemName" windowSize="250 10" adjust="0 10" text="0" textColor="255 42 55 80" textAlign="center" textRender="bold16"/>
+    <ItemWindow name="item" leftTopWH="15 26 160 120" stockId="1" align="center" adjust="0 8"/>
+    <Window name="itemCountBG" leftTopWH="110 38 43 20" alphaBlend="true" visible="false" align="right" adjust="10 0">
+      <Label name="itemCount" leftTopWH="0 0 43 20" text="100개" textAlign="right" textColor="White" textColor2="255 0 0 0" textRender="bold14"/>
+    </Window>
+    <Container windowSize="250 172" adjust="0 -67" align="hcenter;bottom">
+      <Panel name="priceType" windowSize="18 19" adjust="15 1" align="vcenter" texture="img_lucci" alphaBlend="true"/>
+      <Label name="price" windowSize="56 9" adjust="0 -6" align="vcenter;hcenter" text="9900" textColor="255 255 255 255" textRender="bold16" textAlign="center"/>
+    </Container>
+  </Container>
+  <ImageButton name="buy" leftTopWH="0 136 238 30" align="hcenter" autoLoadImage="timeShop_btn_itemBuy@zz" text="" alphaBlend="true" textAlign="center" textRender="bold14" textColor="White" visible="false"/>
+</ImageButton>

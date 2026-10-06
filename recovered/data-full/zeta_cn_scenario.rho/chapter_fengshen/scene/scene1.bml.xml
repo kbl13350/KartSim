@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="fengshen1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[仙界某湖泊]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="Fengshen_stuff" pos="10 -2" emotion="stop4"/>
+  <Msg name="道士姜太公" string="鲲鹏你这家伙！上次遗憾未能得手，今日可不会再让你跑了！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="Fengshen_stuff" pos="10 -2" emotion="stop4"/>
+  <Msg name="湖泊" string="……"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="Fengshen_stuff" pos="10 -2" emotion="stop4"/>
+  <Msg name="道士姜太公" string="也该上钩了啊……"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Fengshen_stuff" pos="10 -1" emotion="stop3"/>
+  <Char id="Taoisttaigong" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="鱼竿" string="（咯吱咯吱）"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="Fengshen_stuff" pos="9 -1" emotion="stop3"/>
+  <Msg name="道士姜太公" string="吼！看这力气，定是个不寻常的家伙！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="light" pos="7 0" emotion="stop1"/>
+  <Char id="Fengshen_stuff" pos="7 0" emotion="stop1"/>
+  <Msg name="山河社稷图" string="……"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Taoisttaigong" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="道士姜太公" string="这？！这不是女娲娘娘的法宝吗，怎会出现在这湖里？"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="light" pos="7 0" emotion="stop1"/>
+  <Char id="Fengshen_stuff" pos="7 0" emotion="stop2"/>
+  <Msg name="山河社稷图" string="闪烁！"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Taoisttaigong" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="道士姜太公" string="山河社稷图上写着什么字？"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Fengshen_stuff" pos="7 0" emotion="stop2"/>
+  <Msg name="山河社稷图" string="“钓到此宝者，速速将其封印于凡间，唯有那比神仙更快者，才能钓得此宝“"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Taoisttaigong" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="道士姜太公" string="此乃女娲之命！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="道士姜太公" string="但，比神仙还快者？莫非真有此等奇人？"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="道士姜太公" string="…女娲娘娘的宏愿，真是让人猜不透。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="道士姜太公" string="话说回来，钓鱼的法术……"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="道士姜太公" string="竟是给我的任务！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="道士姜太公" string="那就去趟久违的人界吧~"/>
+  <Enter/>
+</Scene>

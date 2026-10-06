@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="ice1"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Bgm theme="ice" file="ice_03"/>
+  <Msg name="皮蛋" string="小强! 居然到现在为止一直隐藏着这么厉害的赛车实力。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="哪里是隐藏实力……|唉。还不是为了在输给皮蛋的时候看起来好点。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞" string="真是吃惊。|小强居然有这么厉害的赛车实力。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="小强" string="到现在为止还在看我笑话啊？|（突然生气似的）"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="kephi" pos="10 0" emotion="stop3"/>
+  <Char id="dizini" pos="7 0" emotion="stop5"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋/黑妞/胖墩/小强" string="哈哈哈！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="mos" pos="12 0" emotion="stop1"/>
+  <Msg name="小强" string="这次在城镇高速公路上练习如何？|这是我之前进行练习的地方，似乎是练习转弯和攻击性行驶的最好的地方。|也正好试探下胖墩和黑妞的实力进步。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="是嘛？有这么好的练习场所吗？|现在马上出发吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="小强" string="城镇高速赛道中胜利的人，我答应送给他特别准备的礼物。|怎么样，挑战试试？|不过。皮蛋去哪里了？"/>
+  <Enter/>
+  <Char id="kephi" pos="3 0" emotion="stop4"/>
+  <Msg name="胖墩" string="皮蛋早就出发了。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Shake time="700"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop7"/>
+  <fxSound file="Story_A"/>
+  <Msg name="小强" string="呼！"/>
+  <Enter/>
+  <Char id="dizini" pos="3 0" emotion="stop2"/>
+  <Msg name="黑妞" string="来吧快点~ 尽快赶上皮蛋一起去城镇高速公路！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BodyParam
+             ForwardAccelForce='105.0'
+             BackwardAccelForce='100.0'
+             DragFactor='-0.06'
+             SteerConstraint='1.5'
+             DriftEscapeForce='180'
+             CornerDrawFactor='0.045'
+             BoosterBlur='true'
+             EngineSound='pro'
+
+			 			
+	DescBalance= '28'
+	DescStability ='30'
+
+/>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill1"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="真了不起， 皮蛋！ 你适应起来比想象得快多了！"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="真的，小强?| 啊！ 太好了！|每次听到小强的称赞，似乎就能充满自信。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="这样来看，今后不该称赞皮蛋了。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="你说什么？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="哈哈哈，开玩笑的。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="既然我准备的特训都漂亮地完成了，那么现在开始熟悉下道具的使用和施放如何？"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="道具使用?"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="小强" string="是啊。繁荣山丘的决赛，是道具赛模式来进行的。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="小强" string="皮蛋！|难道你不知道吗?"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="额? |什……什么啊！  |我老早就知道了！|哈哈哈！"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="这个这个……有点受不你了……|在还来得及之前，快开始道具的使用方法的练习吧。 "/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="真……真的吗?|我要知道道具的使用法！"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="当然！来吧，|马上开始导弹使用方法的练习吧！开始练习~"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="等……等下！|我还没做好心理准备……"/>
+  <Enter/>
+</Scene>

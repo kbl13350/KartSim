@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guild>
+  <guild name="game" id="21" openTime="16:00~23:59" rpLimit="22070">
+    <trackList gameType="item">
+      <track id="nemo_I03"/>
+      <track id="world_I01"/>
+      <track id="factory_I01"/>
+      <track id="jurassic_I01"/>
+      <track id="beach_I01"/>
+      <track id="factory_I02"/>
+      <track id="ice_I07"/>
+      <track id="jurassic_I02"/>
+      <track id="northeu_I03"/>
+      <track id="china_I05"/>
+      <track id="tomb_I01"/>
+      <track id="desert_I05"/>
+      <track id="forest_I06"/>
+      <track id="castle_I02"/>
+      <track id="mine_I01"/>
+      <track id="mine_I02"/>
+      <track id="pirate_I03"/>
+      <track id="fairy_I04"/>
+      <track id="factory_I07"/>
+      <track id="tomb_I02"/>
+      <track id="ice_I05"/>
+      <track id="world_I05"/>
+      <track id="village_I01"/>
+      <track id="northeu_I05_rvs"/>
+      <track id="nymph_I01"/>
+      <track id="sword_I02"/>
+    </trackList>
+    <trackList gameType="speed">
+      <track id="nemo_R01"/>
+      <track id="northeu_R01"/>
+      <track id="village_R01"/>
+      <track id="ice_R01"/>
+      <track id="factory_R01"/>
+      <track id="moonhill_R02"/>
+      <track id="fairy_R01"/>
+      <track id="forest_R04"/>
+      <track id="mine_R03"/>
+      <track id="tomb_R02"/>
+      <track id="china_R01"/>
+      <track id="tomb_R01"/>
+      <track id="castle_R01"/>
+      <track id="world_R05"/>
+      <track id="jurassic_R01"/>
+      <track id="wkc_R02"/>
+      <track id="world_R01"/>
+      <track id="nymph_R01"/>
+      <track id="china_R02"/>
+      <track id="forest_R05"/>
+      <track id="jurassic_R03"/>
+      <track id="world_R10"/>
+      <track id="wkc_R05"/>
+      <track id="forest_R02"/>
+      <track id="village_R03"/>
+      <track id="gold_R01"/>
+      <track id="nemo_R02"/>
+      <track id="pirate_R03"/>
+      <track id="beach_R01"/>
+      <track id="desert_R01"/>
+      <track id="sword_R01"/>
+    </trackList>
+  </guild>
+  <guild name="url" accountType="sp">
+    <region szId="3001" regionCode="1">
+      <url type="guildRank" url="http://apppopkart.tiancity.com/MotorCadeOrder/SearchList.aspx"/>
+      <url type="guildManage" url="http://guild3001.popkart.com/page/nx.aspx?url=manager/guildmember"/>
+      <url type="findGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="guildMember" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/guildmember"/>
+      <url type="joinGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="secedeGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="makeGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/create"/>
+      <url type="guildMark" url=""/>
+    </region>
+    <region szId="3001" regionCode="2">
+      <url type="guildRank" url="http://apppopkart.tiancity.com/MotorCadeOrder/SearchList.aspx"/>
+      <url type="guildManage" url="http://guild3001.popkart.com/page/nx.aspx?url=manager/guildmember"/>
+      <url type="findGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="guildMember" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/guildmember"/>
+      <url type="joinGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="secedeGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="makeGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/create"/>
+      <url type="guildMark" url=""/>
+    </region>
+    <region szId="3001" regionCode="3">
+      <url type="guildRank" url="http://apppopkart.tiancity.com/MotorCadeOrder/SearchList.aspx"/>
+      <url type="guildManage" url="http://guild3001.popkart.com/page/nx.aspx?url=manager/guildmember"/>
+      <url type="findGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="guildMember" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/guildmember"/>
+      <url type="joinGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="secedeGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="makeGuild" url="http://guild3001.popkart.com/page/nx.aspx?url=guild/create"/>
+      <url type="guildMark" url=""/>
+    </region>
+    <region szId="3002" regionCode="1">
+      <url type="guildRank" url="http://apppopkart.tiancity.com/MotorCadeOrder/SearchList.aspx"/>
+      <url type="guildManage" url="http://guild01.popkart.com/page/nx.aspx?url=manager/guildmember"/>
+      <url type="findGuild" url="http://guild01.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="guildMember" url="http://guild01.popkart.com/page/nx.aspx?url=guild/guildmember"/>
+      <url type="joinGuild" url="http://guild01.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="secedeGuild" url="http://guild01.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="makeGuild" url="http://guild01.popkart.com/page/nx.aspx?url=guild/create"/>
+      <url type="guildMark" url=""/>
+    </region>
+    <region szId="3002" regionCode="2">
+      <url type="guildRank" url="http://apppopkart.tiancity.com/MotorCadeOrder/SearchListct2.aspx"/>
+      <url type="guildManage" url="http://guild02.popkart.com/page/nx.aspx?url=manager/guildmember"/>
+      <url type="findGuild" url="http://guild02.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="guildMember" url="http://guild02.popkart.com/page/nx.aspx?url=guild/guildmember"/>
+      <url type="joinGuild" url="http://guild02.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="secedeGuild" url="http://guild02.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="makeGuild" url="http://guild02.popkart.com/page/nx.aspx?url=guild/create"/>
+      <url type="guildMark" url=""/>
+    </region>
+    <region szId="3002" regionCode="3">
+      <url type="guildRank" url="http://apppopkart.tiancity.com/MotorCadeOrder/SearchListcnc1.aspx"/>
+      <url type="guildManage" url="http://guild03.popkart.com/page/nx.aspx?url=manager/guildmember"/>
+      <url type="findGuild" url="http://guild03.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="guildMember" url="http://guild03.popkart.com/page/nx.aspx?url=guild/guildmember"/>
+      <url type="joinGuild" url="http://guild03.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="secedeGuild" url="http://guild03.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="makeGuild" url="http://guild03.popkart.com/page/nx.aspx?url=guild/create"/>
+      <url type="guildMark" url=""/>
+    </region>
+    <region szId="3002" regionCode="4">
+      <url type="guildRank" url="http://apppopkart.tiancity.com/MotorCadeOrder/SearchListcnc2.aspx"/>
+      <url type="guildManage" url="http://guild04.popkart.com/page/nx.aspx?url=manager/guildmember"/>
+      <url type="findGuild" url="http://guild04.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="guildMember" url="http://guild04.popkart.com/page/nx.aspx?url=guild/guildmember"/>
+      <url type="joinGuild" url="http://guild04.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="secedeGuild" url="http://guild04.popkart.com/page/nx.aspx?url=guild/list"/>
+      <url type="makeGuild" url="http://guild04.popkart.com/page/nx.aspx?url=guild/create"/>
+      <url type="guildMark" url=""/>
+    </region>
+  </guild>
+  <guild name="auth">
+    <auth id="1" joinType="guildMaster" isAuthGuildInfoRefresh="true" isAuthMakeGuildMark="true" isAuthGuildLevelUp="true"/>
+    <auth id="2" joinType="guildManager" isAuthGuildInfoRefresh="false" isAuthMakeGuildMark="false" isAuthGuildLevelUp="false"/>
+    <auth id="3" joinType="guildMamber" isAuthGuildInfoRefresh="false" isAuthMakeGuildMark="false" isAuthGuildLevelUp="false"/>
+    <auth id="4" joinType="guildWaiting" isAuthGuildInfoRefresh="false" isAuthMakeGuildMark="false" isAuthGuildLevelUp="false"/>
+  </guild>
+  <guild name="level" maxLevel="4">
+    <level level="2" needCp="600001"/>
+    <level level="3" needCp="3000001"/>
+    <level level="4" needCp="10000001"/>
+    <level level="5" needCp="20000001"/>
+    <level level="6" needCp="50000001"/>
+  </guild>
+</guild>

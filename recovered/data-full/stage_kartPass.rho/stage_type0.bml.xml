@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="stage_type0" leftTopWH="0 0 1360 648" enable="true" visible="true">s
+  <ImageBoard windowSize="1360 648" adjust="-418 0" image="kartPass_main_kartPassBG" align="hcenter" alphaBlend="true" visible="true"/>
+  <Container name="pointWnd" leftTopWH="226 -60 300 20" enable="true" visible="false">
+    <Label windowSize="156 20" adjust="0 4" align="left;top" text="#sb(pointStrType0)" textColor="255 124 137 153" textRender="bold16" textAlign="left"/>
+    <Label name="userPoint" windowSize="60 20" adjust="100 4" align="left;top" text="point" textColor="255 27 176 254" textRender="bold16" textAlign="right" visible="true"/>
+    <Label name="levelPoint" windowSize="60 20" adjust="160 4" align="left;top" text="point" textColor="255 124 137 153" textRender="bold16" textAlign="left" visible="true"/>
+  </Container>
+  <Window name="slot" windowSize="100 100" adjust="-56 0">
+    <Window name="slot44" leftTopWH="0 fullheight 206 167" frame="NoFrame"/>
+    <Window name="slot40" leftTopWH="206 fullheight 198 167" frame="NoFrame"/>
+    <Window name="slot41" leftTopWH="404 fullheight 198 167" frame="NoFrame"/>
+    <Window name="slot42" leftTopWH="602 fullheight 198 167" frame="NoFrame"/>
+    <Window name="slot43" leftTopWH="800 fullheight 198 167" frame="NoFrame"/>
+    <Window name="slot34" leftTopWH="0 200 206 167" frame="NoFrame"/>
+    <Window name="slot30" leftTopWH="206 200 198 167" frame="NoFrame"/>
+    <Window name="slot31" leftTopWH="404 200 198 167" frame="NoFrame"/>
+    <Window name="slot32" leftTopWH="602 200 198 167" frame="NoFrame"/>
+    <Window name="slot33" leftTopWH="800 200 198 167" frame="NoFrame"/>
+    <Window name="slot04" leftTopWH="0 0 206 200" frame="NoFrame"/>
+    <Window name="slot00" leftTopWH="206 0 198 200" frame="NoFrame"/>
+    <Window name="slot01" leftTopWH="404 0 198 200" frame="NoFrame"/>
+    <Window name="slot02" leftTopWH="602 0 198 200" frame="NoFrame"/>
+    <Window name="slot03" leftTopWH="800 0 198 200" frame="NoFrame"/>
+  </Window>
+  <Window name="slot5" windowSize="100 100" adjust="-56 0">
+    <Window name="slot54" leftTopWH="0 367 206 200" frame="NoFrame"/>
+    <Window name="slot50" leftTopWH="206 367 198 200" frame="NoFrame"/>
+    <Window name="slot51" leftTopWH="404 367 198 200" frame="NoFrame"/>
+    <Window name="slot52" leftTopWH="602 367 198 200" frame="NoFrame"/>
+    <Window name="slot53" leftTopWH="800 367 198 200" frame="NoFrame"/>
+  </Window>
+  <Panel texture="kartPass_icon0" leftTopTex="-14 150" alphaBlend="true" visible="true" enable="true">
+    <Label windowSize="120 20" adjust="30 12" text="#sb(kartPassType0)" textColor="255 81 86 96" textRender="bold16" textAlign="center" visible="true"/>
+  </Panel>
+  <Panel name="disableType3" texture="kartPass_icon3_1" leftTopTex="-14 317" alphaBlend="true" visible="true" enable="true">
+    <ImageButton name="btn_buyPopup3" leftTopWH="519 258 218 66" autoLoadImage="kartPass_main_btnShop_" text="#sb(buy_passType3)" textColor="255 119 92 4" overTextColor="255 196 172 0" clickedTextColor="255 95 76 16" disabledTextColor="255 92 92 92" textRender="bold20" alphaBlend="true" enable="true" visible="true"/>
+    <Label windowSize="120 20" adjust="32 12" text="#sb(kartPassType3)" textColor="255 95 76 16" textRender="bold16" textAlign="center" visible="true"/>
+  </Panel>
+  <Panel name="ableType3" texture="kartPass_icon3" leftTopTex="-14 317" alphaBlend="true" visible="true" enable="true">
+    <Label windowSize="120 20" adjust="32 12" text="#sb(kartPassType3)" textColor="255 95 76 16" textRender="bold16" textAlign="center" visible="true"/>
+  </Panel>
+  <Panel name="disableType4" texture="kartPass_icon4_1" leftTopTex="-10000 -10000" alphaBlend="true" visible="false" enable="false">
+    <ImageButton name="btn_buyPopup4" leftTopWH="-207 449 218 66" autoLoadImage="kartPass_main_btnShop_" text="#sb(buy_passType4)" textColor="255 120 80 0" overTextColor="255 120 80 0" clickedTextColor="255 120 80 0" disabledTextColor="255 60 60 60" textRender="bold" alphaBlend="true" enable="true" visible="true"/>
+  </Panel>
+  <Panel name="ableType4" texture="kartPass_icon4" leftTopTex="-10000 -10000" alphaBlend="true" visible="false" enable="false">
+    <ImageButton name="btn_rewardAll4" leftTopWH="-205 450 210 32" autoLoadImage="kartPass_btnAccept_0" text="#sb(rewardAll)" textColor="255 90 95 105" overTextColor="255 120 80 0" clickedTextColor="255 120 80 0" disabledTextColor="255 60 60 60" textRender="bold" alphaBlend="true" enable="false" visible="false"/>
+  </Panel>
+  <Panel name="disableType5" texture="kartPass_icon5_1" leftTopTex="-14 519" alphaBlend="true" visible="true" enable="true">
+    <ImageButton name="btn_buyPopup5" leftTopWH="669 258 218 66" autoLoadImage="kartPass_main_btnShop_" text="#sb(buy_passType5)" textColor="255 120 80 0" overTextColor="255 120 80 0" clickedTextColor="255 120 80 0" disabledTextColor="255 60 60 60" textRender="bold" alphaBlend="true" enable="true" visible="false"/>
+    <Label windowSize="120 20" adjust="32 12" text="#sb(kartPassType5)" textColor="255 84 68 110" textRender="bold16" textAlign="center" visible="true"/>
+  </Panel>
+  <Panel name="ableType5" texture="kartPass_icon5" leftTopTex="-14 519" alphaBlend="true" visible="true" enable="true">
+    <Label windowSize="120 20" adjust="32 12" text="#sb(kartPassType5)" textColor="255 84 68 110" textRender="bold16" textAlign="center" visible="true"/>
+  </Panel>
+  <ImageButton name="btn_rewardAll0" leftTopWH="734 575 180 66" autoLoadImage="kartPass_main_btnAcceptAll_" text="#sb(rewardAll)" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" textRender="bold20" alphaBlend="true" enable="false" visible="true"/>
+  <ImageButton name="btn_buyItem" leftTopWH="431 -59 72 32" autoLoadImage="kartPass_main_passTicket_@zz" alphaBlend="true" visible="true" enable="true"/>
+  <ImageBoard windowSize="24 565" adjust="150 0" image="kartPass_main_lastRewardShadow" alphaBlend="true" visible="true" enable="false"/>
+  <Label windowSize="786 82" adjust="-400 566" textAlign="left|vcenter" text="#sb(kartPassGuideText)" textColor="255 206 216 231" textRender="bold14"/>
+  <Container leftTopWH="-418 0 362 424">
+    <Label name="lastRewardTitle" windowSize="260 44" adjust="0 17" align="hcenter" textAlign="center" text="#sb(kartPassPremiumPassLastReward)" textColor="255 255 255 255" textRender="bold24"/>
+    <ItemWindow name="lastRewardStockItem" windowSize="362 400" adjust="0 15" stockId="0" visible="false" enable="false"/>
+    <GaragePreview name="lastRewardKarttem" preset="UserInfo" windowSize="362 400" adjust="0 -12" visible="false"/>
+    <Label name="lastRewardStockName" windowSize="320 37" adjust="0 378" align="hcenter" textAlign="center" text=" " textColor="255 255 255 255" textRender="bold20"/>
+  </Container>
+</Window>

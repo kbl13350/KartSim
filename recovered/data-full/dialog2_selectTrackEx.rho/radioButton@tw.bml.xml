@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container leftTopWH="10 105 822 35" depthBias="256">
+  <Container name="selectThemeCon" leftTopWH="2 3 96 30">
+    <Panel name="themeIcon" leftTopWH="3 3 24 24" alphaBlend="true"/>
+    <Label name="themeStr" leftTopWH="28 3 65 24" textColor="white" textRender="bold" textAlign="center"/>
+  </Container>
+  <Panel leftTopWH="2 3 96 30" visible="false"/>
+  <StateButton name="radio.item" leftTopWH="108 8 80 20" iconSet="trackSelect_btn_checkBox" text="#sb(track_item)" textColor="255 230 240 245" overTextColor="255 230 240 245" clickedTextColor="255 230 240 245" disabledTextColor="255 230 240 245" textRender="bold" textAlign="vcenter" stringPos="28 0" altTextRender="bold">
+    <Panel name="checkMark" leftTopWH="0 0 20 20" texture="trackSelect_btn_checkBox_3" enable="false" alphaBlend="true"/>
+  </StateButton>
+  <StateButton name="radio.speed" leftTopWH="182 8 80 20" iconSet="trackSelect_btn_checkBox" text="#sb(track_speed)" textColor="255 230 240 245" overTextColor="255 230 240 245" clickedTextColor="255 230 240 245" disabledTextColor="255 230 240 245" textRender="bold" textAlign="vcenter" stringPos="28 0" altTextRender="bold">
+    <Panel name="checkMark" leftTopWH="0 0 20 20" texture="trackSelect_btn_checkBox_3" enable="false" alphaBlend="true"/>
+  </StateButton>
+  <Label name="searchTotalTrack" leftTopWH="512 8 153 20" text="#sb(searchTotalTrack)" textColor="255 202 216 228" textRender="bold" textAlign="center"/>
+  <Label name="helpString" leftTopWH="648 8 153 20" text="#sb(fvrTrack_helpstring)" textColor="255 175 180 185" textAlign="center"/>
+  <Edit name="searchEdit" leftTopWH="660 8 153 20" textColor="white" textBgColor="none" frame="NoFrame" maxChar="14" visible="true" enable="true"/>
+</Container>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Escape isFixedKart="true" fixedKartId="1160" fixedCharId="2" isFixedChar="true" kartId="1272" characterId="332" colorId="55" dyeId="55" characterName="宙斯">
+    <LevelContent level="0" track="olympos_I02" laps="3" ksv="1-11" distance="20" startOffset="-1500"/>
+  </Escape>
+</Root>

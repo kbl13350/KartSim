@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle3"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞" string="晕，终于追上了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop4"/>
+  <Msg name="当娜" string="恩？你是？|我现在很忙！"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop5"/>
+  <Msg name="黑妞" string="啊，我朋友在这城堡里失踪了。|能帮忙找一下朋友吗？555"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop2"/>
+  <Msg name="当娜" string="这是个大事啊！|但我现在很忙，不能帮你了。"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop1"/>
+  <Msg name="当娜" string="啊，对了！厨师长皮德有可能会看到过你的朋友。"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="厨师长皮德吗?"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop3"/>
+  <Msg name="当娜" string="对，去厨房的话可能会找到皮德叔叔。|可得快点了，等会就是午饭时间。|午饭时间皮德叔叔很忙的。"/>
+  <Enter/>
+  <Char id="dona" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop2"/>
+  <Msg name="黑妞" string="大城堡的厨房！！|谢谢你。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dona" pos="12 0" emotion="stop3"/>
+  <Msg name="当娜" string="不客气。|那我忙我的事了啊。"/>
+  <Enter/>
+</Scene>

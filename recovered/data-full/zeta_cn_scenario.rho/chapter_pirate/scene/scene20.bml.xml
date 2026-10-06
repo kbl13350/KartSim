@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate5"/>
+  <Char id="dao" pos="6 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="好像没有人…？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mobi" pos="10 0" emotion="stop1"/>
+  <Msg name="吉米" string="哼！！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop6"/>
+  <Char id="kephi" pos="5 0" emotion="stop4"/>
+  <Char id="dao" pos="2 0" emotion="stop6"/>
+  <Msg name="皮蛋，胖墩，黑妞" string="哇！又是你吉米！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="吉米！我不想跟你决斗！我们可是朋友！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mobi" pos="9 0" flip="true" emotion="stop8"/>
+  <Msg name="吉米" string="哼！我不是你们的朋友！|只是刚才跟蓝蓝决斗时腿受了伤，看来是不能追你们了。|你们要走就走，随你们便！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="dizini" pos="9 0" emotion="stop5"/>
+  <Char id="kephi" pos="5 0" emotion="stop3"/>
+  <Char id="dao" pos="2 0" emotion="stop4"/>
+  <Msg name="皮蛋，胖墩，黑妞" string="吉米！你果然是我们的朋友！|改天来找我们，我们一起赛车。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mobi" pos="4 0" flip="true" emotion="stop6"/>
+  <Msg name="吉米" string="哼！赶紧走吧！|船长来了你们就…"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="lodumani" pos="12 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="你们这些家伙给我站住！！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="stop6"/>
+  <Char id="marid" pos="5 0" emotion="stop5"/>
+  <Char id="bazzi" pos="2 0" emotion="stop5"/>
+  <Msg name="宝宝，蓝蓝，葱头" string="糟糕！！又追上来了！！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lodumani" pos="12 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="吉米，你在干什么！|赶紧抓住他们！！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="mobi" pos="4 0" flip="true" emotion="stop9"/>
+  <Msg name="吉米" string="是，船长…"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="ethi" pos="10 0" flip="true" emotion="stop6"/>
+  <Char id="marid" pos="7 0" flip="true" emotion="stop5"/>
+  <Char id="bazzi" pos="3 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝，蓝蓝，葱头" string="啊~~~ 救命啊！！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="我们也不需要再逃走了！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="海盗船长！！一决胜负吧！！|让你看看我们真正的实力！！！"/>
+  <Enter/>
+</Scene>

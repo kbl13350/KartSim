@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 튤립카트 -->
+<BodyParam
+	ForwardAccelForce='60.0'
+	BackwardAccelForce='75.0'
+	DragFactor='-0.03'
+	SteerConstraint='1.5'
+	DriftEscapeForce='110'
+	CornerDrawFactor='0.035'
+
+	EngineSound='lovelove1'
+	BoosterType='lovelove1'
+
+				DescBalance= '25'
+
+/>

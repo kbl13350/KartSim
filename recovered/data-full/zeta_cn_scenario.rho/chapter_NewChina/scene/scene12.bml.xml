@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china2"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="为什么骗我们？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="sharming" pos="3 0" emotion="stop4"/>
+  <Msg name="木兰" string="嘘哩哩哩～～！（声音）|阿哥 在这里干嘛！|我们可没有时间在这里晃荡！快走！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="dao" pos="3 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop4"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋, 黑妞, 宝宝" string="喂……!|没听到我们在叫你们吗！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="sharming" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="木兰" string="我们很忙的，先走……|嘘哩哩哩～～！（声音）"/>
+  <Enter/>
+</Scene>

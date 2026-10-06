@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="GuildprixTutorial">
+    <m c="kr" v="길드전 튜토리얼"/>
+    <m c="jp" v="ギルド戦チュートリアル"/>
+    <m c="cn" v="车队赛教程"/>
+    <m c="us" v="Guildprix Tutorial"/>
+    <m c="vn" v="Hướng dẫn"/>
+    <m c="ru" v="Обучение турнирам"/>
+    <m c="id" v="Tutorial Guild War"/>
+    <m c="th" v="Guild Prix Tutorial"/>
+    <m c="tw" v="車隊戰教學"/>
+  </k>
+  <k n="next">
+    <m c="kr" v="다음"/>
+    <m c="jp" v="次"/>
+    <m c="cn" v="下一步"/>
+    <m c="tw" v="下一頁"/>
+    <m c="us" v="Next"/>
+    <m c="vn" v="Tiếp"/>
+    <m c="ru" v="Далее"/>
+    <m c="id" v="Next"/>
+    <m c="th" v="ต่อไป"/>
+  </k>
+</StringBag>

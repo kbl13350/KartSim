@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="gold4"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="突然出现，攻击后又消失了……|到底是谁啊??"/>
+  <Enter/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="葱头" string="呼……. 似乎是守护这里的原住民。 |嗯。那个少年去哪里了呢?"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="kaphae" pos="3 0" emotion="stop1"/>
+  <Msg name="???" string="救命啊~~~"/>
+  <Enter/>
+  <Char id="kaphae" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="这个声音，是刚才那个少年的声音吗？"/>
+  <Enter/>
+  <Char id="kephi" pos="3 0" emotion="stop4"/>
+  <Msg name="胖墩" string="啊……是发生了什……什么大事情吗？ "/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop6"/>
+  <Msg name="葱头" string="走！赶紧去看看发生了什么事情"/>
+  <Enter/>
+</Scene>

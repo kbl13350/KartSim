@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.082'
+	SteerConstraint='2.5'
+	CornerDrawFactor='0.07'
+	DriftEscapeForce='1625'
+	
+	driftBoostMulAccelFactor='1.285'
+	chargeBoostBySpeed='335'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.848'
+	StartForwardAccelFactorSpeed='1.7'
+	StartBoosterTimeSpeed='1500'
+	
+	DriftMaxGauge='-500'
+	NormalBoosterTime='-50'
+	TeamBoosterTime='-120'
+	
+	DriftGaguePreservePercent='0.6'
+	antiCollideBalance='0.91'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	TransformTime='700'
+	
+	DescBalance='50'
+	DescStability='50'
+	DescEngineGrade='1.375'
+	DescCornering='8'
+	DescEnchantCap='25'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='9th'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	OnCharacterSize='0.01'
+	BoosterWaveType='boost8'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+	BoosterType='9soon'
+	BoosterType0='9soon'
+
+	Port0='mod1d1' 
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1b1'/>
+</BodyParam>
+<!-- 골든볼9 / 대만 / 레어 / 스피드 / 패키지 / 20160226 릴리즈 -->

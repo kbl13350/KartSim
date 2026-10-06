@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.1'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.067'
+	EngineSound='cotton6'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterBlur='true'
+
+	EnvMap='true'
+
+	Port0='mod1a'
+	Port1='mod1b'
+	FirePort0='mod2a'
+	FirePort1='mod2b'
+	FirePort2='mod2c'
+	FirePort3='mod2d'
+
+	ExtWheelSpeed='10'
+
+	DescBalance= '31'
+	DescStability ='35'
+	DescEngineGrade='1'
+	DescEnchantCap = '20'
+
+/>
+
+<!-- 한국 님프윙 SR -->

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="nine" windowRect="0 0 256 200" align="hcenter;bottom" enable="false">
+  <Window name="dashboard" leftTopWH="0 0 282 105" alphaBlend="true" align="hcenter;bottom">
+    <Panel name="bg1" leftTopTex="0 0" texture="tachoBG_1" alphaBlend="true" align="hcenter;bottom"/>
+    <Panel name="bg2" leftTopTex="0 0" texture="tachoBG_2" alphaBlend="true" align="hcenter;bottom" visible="false"/>
+    <Panel name="draft" leftTopTex="95 12" texture="icon1_1" alphaBlend="true">
+      <Panel name="on" leftTopTex="0 0" texture="icon1_2" alphaBlend="true"/>
+    </Panel>
+    <Panel name="incGauge" leftTopTex="145 12" texture="icon2_1" alphaBlend="true">
+      <Panel name="on" leftTopTex="0 0" texture="icon2_2" alphaBlend="true"/>
+    </Panel>
+    <Panel name="side1" leftTopTex="0 0" texture="tacho_gage1" alphaBlend="true" visible="false"/>
+    <Panel name="side2" leftTopTex="0 0" texture="tacho_gage2" alphaBlend="true" visible="false"/>
+    <Panel name="side3" leftTopTex="0 0" texture="tacho_gage3" alphaBlend="true" visible="false"/>
+    <Panel name="side4" leftTopTex="0 0" texture="tacho_gage4" alphaBlend="true" visible="false"/>
+    <Panel name="side5" leftTopTex="0 0" texture="tacho_gage5" alphaBlend="true" visible="false"/>
+    <Panel name="sideBar" leftTopTex="0 0" texture="tacho_outline" alphaBlend="true" align="hcenter;bottom" visible="false"/>
+    <CharPanel name="kmh" leftTopWH="90 50 100 33" texture="number1" alphaBlend="true" fontSize="34 45" fontPos="0 0" fontStr="1234567890" text="000" spaceOffset="0"/>
+    <CharPanel name="kmh2" leftTopWH="90 50 100 33" texture="number2" alphaBlend="true" fontSize="34 45" fontPos="0 0" fontStr="1234567890" text="000" spaceOffset="0" visible="false"/>
+    <Panel name="transformerFaceBg" leftTopTex="38 50" texture="autobotFace_1" alphaBlend="true" visible="true" color="255 0 0 0">
+      <Panel name="transformerFace" leftTopTex="0 0" texture="autobotFace_2" alphaBlend="true" visible="false" color="255 0 0 0"/>
+    </Panel>
+    <Play1SPanel name="sideEffect" scene="side" leftTopWH="-28 -29 340 200" zoom="1" clearZBefore="true" defaultCameraPos="0.0 -2.05 0.3" defaultSpotPos="0.0 0.0 0.0" visible="false" alphaBlend="true" align="hcenter"/>
+  </Window>
+</Container>

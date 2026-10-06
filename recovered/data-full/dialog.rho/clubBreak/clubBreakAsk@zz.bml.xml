@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowSize="fullwidth fullheight" adjust="-30 0">
+  <CaptionWindow leftTopWH="0 0 444 294" frame="CaptionDialog" align="center" caption="#sb(requestClubBreak)">
+    <Label leftTopWH="0 20 400 20" text="#sb(clubBreakAsk)" textAlign="center" textRender="bold16" textColor="255 0 0 0"/>
+    <Label leftTopWH="10 50 100 20" text="#sb(clubBreakNotice)" textAlign="left" textRender="bold14" textColor="255 80 80 80"/>
+    <Window windowSize="400 1" frame="HSection" adjust="0 63" align="hcenter;bottom"/>
+    <Window name="yesNoButtonList" leftTopWH="0 0 400 40" adjust="0 6" align="hcenter;bottom">
+      <TextButton name="okButton" windowSize="132 40" adjust="-70 0" align="center" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" frame="DefaultFocusedButton"/>
+      <TextButton name="cancelButton" windowSize="132 40" adjust="70 0" align="center" text="#sb(cancel)" textRender="bold16" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131"/>
+    </Window>
+  </CaptionWindow>
+</Container>

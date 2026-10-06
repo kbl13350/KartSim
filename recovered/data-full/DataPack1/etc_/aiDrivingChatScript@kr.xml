@@ -1,0 +1,1057 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+	condition type = 0 : DEFAULT
+	condition type = 1 : 유저불리
+	condition type = 2 : 유저유리
+	condition type = 3 : 경합
+	condition type = 4 : 시작전
+-->
+<chattingScript>
+	<campaign type='1'> <!--동물 캠페인-->
+		<condition type='0'>
+			<scripts msg='짐승이라고 무시하지마!'/>
+			<scripts msg='동물의 왕국에 오신걸 환영하네~'/>
+			<scripts msg='너희들 저번에 지고도 또왔냐?'/>
+			<scripts msg='결국 우리의 승리다!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='아~ 보이지도 않네'/>
+			<scripts msg='허허허… 그저 웃지요…'/>
+			<scripts msg='[UserRID] 나대지 마십시오.'/>
+			<scripts msg='[UserRID] 도움이 필요한 것처럼 들리는데.'/>
+			<scripts msg='[AiRID]!! 니가 우리 희망이다 '/>
+			<scripts msg='[UserRID] 계속 쉬길 바랍니다!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='슬슬 본때를 보여줄 시간이 온거 같군.'/>
+			<scripts msg='아 도저히 못따라가겠네 ㅠ_ㅠ '/>
+			<scripts msg='넌 나에게 모욕감을 줬어'/>
+			<scripts msg='젠장 당했어~'/>
+			<scripts msg='먼저가~ 난 이미 틀렸어…'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='더러운꼴 당하기 싫으면 지금 포기하시지'/>
+			<scripts msg='동물학대로 신고할테다~'/>
+			<scripts msg='바로 지금이야! [AiRID]'/>
+			<scripts msg='필살기 고고고!!'/>
+			<scripts msg='[AiRID]! 지름길을 이용하라구!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='페어플레이 합시다!'/>
+			<scripts msg='왠지 재밌는 경기가 될 꺼 같은데~'/>
+			<scripts msg='어디서 본것 같은데~'/>
+			<scripts msg='10초 전에 여기 와 있기로 했잖아~'/>
+			<scripts msg='이번에도 우리가 승리한다~'/>
+		</condition>
+	</campaign>
+
+
+	<campaign type='2'> <!--리타이어맨 캠페인-->		
+		<condition type='0'>
+			<scripts msg='하하. 보기보다 쑥맥이시네요?'/>
+			<scripts msg='손에 땀을 쥐게하는 한판이군! -_-;;'/>
+			<scripts msg='[UserRID]! 훌륭한 라이더의 자질이 보여!'/>
+			<scripts msg='부스터를 사용하라고~'/>
+			<scripts msg='팀킬 금지!! 리타이어하지말라고!'/>
+			<scripts msg='리타이어는 우리의 것? 응?'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='[UserRID] 발로 하냐?'/>
+			<scripts msg='리타이어! 준비됐나~'/>
+			<scripts msg='퍼펙 고고!! '/>
+			<scripts msg='리타이어는 그렇게 하는게 아니야~'/>
+			<scripts msg='10초 전에 여기 와 있기로 했잖아~'/>
+			<scripts msg='우린 눈 감고 하고 있어!'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='슬슬 본때를 보여줄 시간이 온거 같군'/>
+			<scripts msg='따라가기 힘들겠는데~'/>
+			<scripts msg='난 이제 틀렸어~ 어서들 가~'/>
+			<scripts msg='경고!경고! 그들이 나타났다~'/>
+			<scripts msg='리타이어맨을 리타이어 시키다니~'/>
+			<scripts msg='[UserRID]님, 조금만 기다려주세요 '/>
+			<scripts msg='너희들이 최강의 팀이다 '/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='우리는 리! 타이어맨이예요!'/>
+			<scripts msg='시간 낭비하지 마십시오.'/>
+			<scripts msg='나대지 마십시오.'/>
+			<scripts msg='참… 센스들이 없으시네요.'/>
+			<scripts msg='[UserRID]… 잠깐 스쳐 가는분…!!'/>
+			<scripts msg='다 좋은데 말야. 자네만 없으면 좋겠군요.'/>
+			<scripts msg='카트라이더 너무 재밌어!!'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='페어플레이 합시다!'/>
+			<scripts msg='왠지 재밌는 경기가 될 꺼 같은데~'/>
+			<scripts msg='우리의 승리다! '/>
+			<scripts msg='[AiRID]!! 디펜부탁해~'/>
+			<scripts msg='내 뒤만 졸졸 따라와~'/>
+		</condition>
+	</campaign>
+
+
+	<campaign type='3'> <!--고디우스 캠페인-->		
+		<condition type='0'>
+			<scripts msg='간만에 재밌는 상대를 만났군. 훗!'/>
+			<scripts msg='어디서 좀 달려본 실력이군!'/>
+			<scripts msg='감히 황금의 신에게 도전하다니!'/>
+			<scripts msg='나 혼자서도 충분해!'/>
+			<scripts msg='신이 내린 컨트롤!!'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='[UserRID] 발로하는 자..'/>
+			<scripts msg='어리석은 자들..'/>
+			<scripts msg='올리타 시켜버리겠어!'/>
+			<scripts msg='[UserRID] 참 센스들이 없군!'/>
+			<scripts msg='[UserRID] 연습 좀 더하고 오렴~'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='슬슬 본때를 보여줄 시간이 온거 같군.'/>
+			<scripts msg='아 도저히 못따라가겠네 ㅠ_ㅠ'/>
+			<scripts msg='[UserRID]! 잘하는데??'/>
+			<scripts msg='따라가기 힘들겠는데~'/>
+			<scripts msg='[UserRID]! 넌 나에게 모욕감을 줬어'/>
+			<scripts msg='고디우스님을 화나게 만들다니~'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='시간 낭비하지 마라!'/>
+			<scripts msg='어디 솜씨한번 볼까?'/>
+			<scripts msg='황금의 신! 고디우스~'/>
+			<scripts msg='모두들 고디우스님에게 복종하라'/>
+			<scripts msg='심판의 주먹이 너희를 벌하리라~'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='페어플레이 하지 않으면 벌하리라!'/>
+			<scripts msg='왠지 재밌는 경기가 될 꺼 같은데~'/>
+			<scripts msg='우리의 승리다!'/>
+			<scripts msg='[UserRID] 살려는 드리지~'/>
+			<scripts msg='어리석은 자들 '/>
+		</condition>
+	</campaign>
+
+
+	<campaign type='4'> <!--중국 캠페인-->		
+		<condition type='0'>
+			<scripts msg='용의 라이더의 위대한 힘을 보여주지~'/>
+			<scripts msg='우리는 전설 속 용의 라이더!'/>
+			<scripts msg='우리와의 대결이 영광인줄 알아라~.'/>
+			<scripts msg='우리를 빼놓고 최고를 논하지 말라'/>
+			<scripts msg='우리는 용에 의해 선택된 자들! '/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='두려움에 떨고 있구나~'/>
+			<scripts msg='이것이 진정한 용의 라이더의 실력!'/>
+			<scripts msg='[UserRID] 니가 계속 이러면 나 마음아퍼~'/>
+			<scripts msg='아직 우린 시작도 안했다고~'/>
+			<scripts msg='이것이 바로 용의 힘!'/>
+			<scripts msg='설마 일부러 져주는 건가?'/>
+			<scripts msg='[UserRID] 너란 녀석 알수가 없구나~'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='재미로 상대해주는것도 이제 끝이다.'/>
+			<scripts msg='[UserRID] 과속하다 사고난다~.'/>
+			<scripts msg='미안해, 지금 막 출발하려던 참이야!'/>
+			<scripts msg='아직 시작도 안했는데~'/>
+			<scripts msg='젠장 당했어~'/>
+			<scripts msg='[AiRID]! 먼저가~ 난 이미 틀렸어…'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='방심? 이건 여유라고!! 하는거야!'/>
+			<scripts msg='[AiRID]!! 디펜은 나에게 맡겨라!'/>
+			<scripts msg='이야호~! 바로 지금이야!'/>
+			<scripts msg='광란의 폭죽탄을 발사할 타이밍인가?'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='처음에는 살살 해주지!'/>
+			<scripts msg='용의 힘이 준비되었다!'/>
+			<scripts msg='우릴 고른걸 후회하게 해주마~'/>
+			<scripts msg='[AiRID]!! 너에게 뒤를 맡긴다!'/>
+			<scripts msg='실력으로 보여주겠다!'/>
+		</condition>
+	</campaign>
+
+	<campaign type='5'>		<!--스페이스팀-->		
+		<condition type='0'>
+			<scripts msg='스페이스 부스터 발동!'/>
+			<scripts msg='모든 준비가 끝났어! 시작하자!'/>
+			<scripts msg='나 혼자서도 충분해!'/>
+			<scripts msg='내가 앞으로 치고 나갈 테니 뒤를 부탁해!'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='이제부터 뒤로 달려줄까?'/>
+			<scripts msg='[AiRID]!! 좀 봐주면서 하자고~'/>
+			<scripts msg='발로 너무 오래했더니 다리에 쥐가 나네.'/>
+			<scripts msg='실력이 이정도라니 실망이야!'/>
+			<scripts msg='[UserRID] 이제 포기할 때도 되지 않았나?'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='와우! [UserRID] 너 제법이구나?'/>
+			<scripts msg='제법인데. 우리팀에 들어올 생각은 없냐?'/>
+			<scripts msg='믿을 수가 없군! [UserRID] 잘하는데?'/>
+			<scripts msg='그런 꼼수를 생각해낼리가 없잖아~'/>
+			<scripts msg='잠깐 기다려주면 안되겠니?'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='과학적으로 승리해주지!'/>
+			<scripts msg='당황하면 후진해요!!'/>
+			<scripts msg='빵빵거리면 콱 밟아 버립니다~'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='카트라이더는 우주에서도 인기 짱이에요~'/>
+			<scripts msg='우주 최강 스페이스!'/>
+			<scripts msg='스페이스팀 출동!!'/>
+		</condition>
+	</campaign>
+
+	<campaign type='6'>		<!--산타-->		
+		<condition type='0'>
+			<scripts msg='메리 크리스마스~!'/>
+			<scripts msg='흰 눈이 가득한 아름다운 겨울밤이에요~.'/>
+			<scripts msg='징글벨 징글벨~♪'/>
+			<scripts msg='올해는 착한일을 많이 하셨나요?'/>
+			<scripts msg='울면 안돼~ 울면 안돼~'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='[UserRID]! 조금만 기다려 줘!'/>
+			<scripts msg='외로운 크리스마스가 되겠군!'/>
+			<scripts msg='내가 대신 멋진 크리스마스 선물을 줄게.'/>
+			<scripts msg='우는 아이에겐 선물을 안주신데~♪'/>
+			<scripts msg='이번 크리스마스도 혼자서 보낼거지?'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='방심? 이건 여유라고!! 하는거야!'/>
+			<scripts msg='[UserRID]! 좀 기다려 주십쇼! 굽신굽신~'/>
+			<scripts msg='악! 이건 크리스마스의 악몽이야!'/>
+			<scripts msg='[UserRID] 당장 스카우트 해야겠는걸!'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='이번 크리스마스 이브에는 눈이 내릴까?'/>
+			<scripts msg='눈길 조심하세요! ㅋ'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='루돌프 사슴코는 매우 반짝이는 코~♪'/>
+			<scripts msg='올해도 매우 바쁜 크리스마스가 되겠군요.'/>
+			<scripts msg='이번 크리스마스에는 눈이 올까요?'/>
+		</condition>
+	</campaign>
+
+	<campaign type='7'>		<!-- 다오 -->		
+		<condition type='0'>
+			<scripts msg='우리는 천하무적의 다오 팀!'/>
+			<scripts msg='진정한 드리프트를 보여주마!'/>
+			<scripts msg='어디 한번 이제부터 달려 볼까?'/>
+			<scripts msg='나 이 트랙 처음인걸~ 어떡하지?'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='우리가 퍼펙트로 이기는건가?'/>
+			<scripts msg='[UserRID]! 팀킬 하는거 내가 봤다!'/>
+			<scripts msg='기다려줄테니! 드루와~ 드루와~'/>
+			<scripts msg='[UserRID] 너무 긴장하지마!'/>
+			<scripts msg='[AiRID]! 휴식이 필요한 거 같아!'/>
+			<scripts msg='어리석은 녀석들~~~'/>
+			<scripts msg='이제부터 발로 해줄께!'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='오늘같은 굴욕은 태어나서 처음이야!'/>
+			<scripts msg='[UserRID]! 그러지 말고 좀 기다려!'/>
+			<scripts msg='지름길을 이용하라고!'/>
+			<scripts msg='[AiRID]! 아이템 제대로 못쓰냐~ ㅜㅜ '/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='필살기를 사용해! 바로 지금!'/>
+			<scripts msg='기다려! [AiRID]. 내가 갈께'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='우리가 진정한 챔피언팀이다!'/>
+			<scripts msg='우리 어디서 만난적 있나요?'/>
+			<scripts msg='서로 매너 게임 합시다!'/>
+		</condition>
+	</campaign>
+
+	<campaign type='8'>		<!--배찌-->		
+		<condition type='0'>
+			<scripts msg='우리는 천하무적의 배찌 팀!'/>
+			<scripts msg='진정한 드리프트를 보여주마!'/>
+			<scripts msg='어디 한번 이제부터 달려 볼까? '/>
+			<scripts msg='이 트랙은 내가 자신 있지!'/>
+			<scripts msg='[AiRID]! 지름길은 이쪽이라구! '/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='우리가 퍼펙트로 이기는건가?'/>
+			<scripts msg='[UserRID]! 팀킬이나 하고!'/>
+			<scripts msg='이건 크리스마스의 악몽이야! '/>
+			<scripts msg='난 아무것도 못 본 척 할거야~'/>
+			<scripts msg='10초 전에 여기 와 있기로 했잖아~'/>
+			<scripts msg='에이~ 필살기 안써도 이기겠네~'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='매너 없이 먼저 들어가버리진 않겠지?'/>
+			<scripts msg='[UserRID]! 좀 기다려주지 않겠나?'/>
+			<scripts msg='[AiRID]! 바로 지금 필살기! '/>
+			<scripts msg='[AiRID]! 우리의 희망이야~'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='[AiRID] 지름길을 이용해!'/>
+			<scripts msg='기다려! [AiRID]. 내가 갈께'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='우리가 진정한 챔피언팀이다!'/>
+			<scripts msg='우리 어디서 만난적 있나요?'/>
+			<scripts msg='우리 매너겜 해요~! '/>
+		</condition>
+	</campaign>
+
+	<campaign type='9'>		<!--대저택-->		
+		<condition type='0'>
+			<scripts msg='우리는 대저택 패밀리에요!'/>
+			<scripts msg='[UserRID]! 우리 카트가 탐나지 않니?'/>
+			<scripts msg='[UserRID]! 왠지 고수의 냄새가 나!'/>
+			<scripts msg='실수는 용납하지 않겠어!'/>
+			<scripts msg='우리의 실력을 보여주자!'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='거리가 점점 벌어지는거 같은데? ㅋㅋㅋ'/>
+			<scripts msg='지금 우리만 달리는거야?'/>
+			<scripts msg='자비란 없다! 계속 밀어부쳐~'/>
+			<scripts msg='이 정도로 우리에게 도전하다니~'/>
+			<scripts msg='계속 쉬길 바랍니다!'/>
+			<scripts msg='아~ 너무 시시해 너네 말고 다른팀 없어?'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='[UserRID]! 아이템전 정말 잘하네!'/>
+			<scripts msg='도저히 앞으로 나갈 수가 없어!'/>
+			<scripts msg='[AiRID]! 어서 빨리 물파리를!'/>
+			<scripts msg='자 이제부터 쇼타임이다!'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='지금 막 출발하려던 참이야!'/>
+			<scripts msg='[AiRID]! 바로 지금 필살기!'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='대저택 패밀리의 실력을 보여주자!'/>
+			<scripts msg='[UserRID]! 즐길 준비가 되었나?'/>
+			<scripts msg='[AiRID]! 너무 긴장하지마!'/>
+		</condition>
+	</campaign>
+	<campaign type='10'>		<!--로봇다오팀-->
+		<condition type='0'>
+			<scripts msg='삐리리리! 삐리리리!'/>
+			<scripts msg='모든 준비가 끝났습니다.'/>
+			<scripts msg='로봇다오의 주행 시간을 계산합니다. '/>
+			<scripts msg='모든 역할을 배분 완료했습니다.'/>
+			<scripts msg='필살기 사용시간을 설정했습니다.'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='거리차가 벌어지기 시작했습니다.'/>
+			<scripts msg='모든 것이 계산대로 진행되었습니다.'/>
+			<scripts msg='[UserRID] 위험대상에서 제외합니다.'/>
+			<scripts msg='[AiRID]! 경고! 적들이 다가옵니다.'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='[UserRID]! 집중공격 시작합니다.'/>
+			<scripts msg='주행 시간을 재 계산합니다.'/>
+			<scripts msg='[AiRID]! 예상하지 못한 주행입니다.'/>
+			<scripts msg='삐리리리! 필살기가 준비됐습니다.'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='[AiRID]! 필살기 발동 시작!'/> 
+			<scripts msg='[AiRID]! 디펜스 모드로 변환!'/> 
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='확률상 저희에게 이길 가능성은 없습니다. '/>
+			<scripts msg='[UserRID]에 대한 분석을 시작합니다. '/>
+			<scripts msg='설정을 초기화 합니다. '/>
+		</condition>
+	</campaign>
+	<campaign type='11'>		<!--로봇배찌팀-->
+		<condition type='0'>
+			<scripts msg='삐리리리! 삐리리리!'/>
+			<scripts msg='모든 준비가 끝났습니다.'/>
+			<scripts msg='로봇배찌의 주행 시간을 계산합니다. '/>
+			<scripts msg='모든 역할을 배분 완료했습니다.'/>
+			<scripts msg='필살기 사용시간을 설정했습니다.'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='거리차가 벌어지기 시작했습니다.'/>
+			<scripts msg='모든 것이 계산대로 진행되었습니다.'/>
+			<scripts msg='[UserRID] 위험대상에서 제외합니다.'/>
+			<scripts msg='[AiRID]! 경고! 적들이 다가옵니다.'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='[UserRID]! 집중공격 시작합니다.'/>
+			<scripts msg='주행 시간을 재 계산합니다.'/>
+			<scripts msg='[AiRID]! 예상하지 못한 주행입니다.'/>
+			<scripts msg='삐리리리! 필살기가 준비됐습니다.'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='[AiRID]! 필살기 발동 시작!'/> 
+			<scripts msg='[AiRID]! 디펜스 모드로 변환!'/> 
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='확률상 저희에게 이길 가능성은 없습니다. '/>
+			<scripts msg='[UserRID]에 대한 분석을 시작합니다. '/>
+			<scripts msg='설정을 초기화 합니다. '/>
+		</condition>
+	</campaign>
+	<campaign type='12'>		<!--해적 배틀팀-->
+		<condition type='0'>
+			<scripts msg='해적단의 영광을 위하여~!!! '/>
+			<scripts msg='해적단의 무시무시함을 보여주지! '/>
+			<scripts msg='[UserRID]! 루찌를 다 내놓아라~'/>
+			<scripts msg='이제부터 약탈을 시작하자!'/>
+			<scripts msg='승리가 아니면 죽음을 달라!!! '/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='이제 해적단원의 무시무시함을 알겠지? '/>
+			<scripts msg='[AiRID]! 이제부터 후진으로 달린다!! '/>
+			<scripts msg='공격중지! [UserRID]가 울고 있어.'/>
+			<scripts msg='카트 좀 한다는 소리를 들을 수 있겠냐? '/>
+			<scripts msg='경기가 너무 시시해서 하품이 나는구나~!!'/>
+			<scripts msg='콧노래가 절로 나오는구나~'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='[UserRID]를 집중공격 하라~! '/>
+			<scripts msg='우리 해적단에 들어올 생각은 없냐? '/>
+			<scripts msg='[AiRID]! 뒤에서 뭐하는 거야!!! '/>
+			<scripts msg='[AiRID]! 무조건 공격이다! 공격! 공격! '/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='[AiRID]! 위대한 해적의 힘을 보여주자!'/> 
+			<scripts msg='[AiRID]! 바로 지금이 역전 타이밍!!'/> 
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='루찌 좀 많이 모아둔 것 같은데~'/>
+			<scripts msg='우리는 무자비한 로두마니 해적단!!'/>
+			<scripts msg='각오해! 우리에게 자비란 없다!!!'/>
+		</condition>
+	</campaign>
+
+	<!-- 유령 배틀팀 -->
+	<campaign type='13'>
+		<condition type='0'>	
+			<scripts msg='진정한 공포를 느끼게 해주지~!!! '/>
+			<scripts msg='벌써부터 벌벌 떨고 있는 거야? '/>
+			<scripts msg='[UserRID]! 무서우면 뒤로 빠지시지~'/>
+			<scripts msg='녀석들에게 절망을 느끼게 해주자구! '/>
+			<scripts msg='암흑의 그림자 속으로 빠지게 해주마!'/>
+		</condition>	
+			
+		<condition type='1'>	
+			<scripts msg='평생을 두려움에 떨고 싶은가~ ㅋㅋㅋ'/>
+			<scripts msg='벌써부터 녀석들이 두려움에 떨고 있구나~'/>
+			<scripts msg='[UserRID] 너 지금 울고 있니? ㅋㅋㅋ '/>
+			<scripts msg='어둠의 힘이 우리를 축복해주고 있다!'/>
+			<scripts msg='확실하게 끝장내버리자!'/>
+		</condition>	
+			
+		<condition type='2'>	
+			<scripts msg='[UserRID]에게 우리의 무서움을 보여주자! '/>
+			<scripts msg='[UserRID] 너는 우리가 무섭지 않은 거야? '/>
+			<scripts msg='우린 이제부터 시작이다!'/>
+			<scripts msg='왜 날 유령취급하고 가냐?'/>
+			<scripts msg='유령군단의 무서움을 보여주마!'/>
+		</condition>	
+			
+		<condition type='3'>	
+			<scripts msg='어리석은 녀석들!'/>
+			<scripts msg='감히 우리에게 도전하다니~'/>
+			<scripts msg='지금 바로 공포를 느끼게 해주자!'/>
+		</condition>	
+			
+		<condition type='4'>	
+			<scripts msg='우리의 소문을 들어 본적이 있겠지?'/>
+			<scripts msg='아직 시작도 안했는데~ 떨고 있나?'/>
+			<scripts msg='공포, 절망, 슬픔을 모두 느끼게 해주지! '/>
+		</condition>	
+	</campaign>		
+
+	<!-- 유령 배틀팀 / 차키의 신부 -->
+	<!--<campaign type='13'>		
+		<condition type='0'>
+			<scripts msg='아델 듀 어 뎀벨라… 어웨이크!'/>
+			<scripts msg='할로윈은 바로 차키와 나를 위한 날이라구!'/>
+			<scripts msg='영원히 너의 친구가 될꺼야~'/>
+			<scripts msg='쓸데없는 호기심은 신상에 해로워~'/>
+			<scripts msg='자 이제부터 할로윈 파티를 시작해볼까~'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='[UserRID] 이제 내 얘길 믿겠지?'/>
+			<scripts msg='자 이제~ 다음은 누구 차례?'/>
+			<scripts msg='[UserRID] 중요한건 테크닉이야'/>
+			<scripts msg='차키! 눈을 감고 7초만 세…'/>
+			<scripts msg='[UserRID] 이래도~ 우리가 무섭지 않은 거야?'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='[UserRID] 당신은 너무 장난이 심해~'/>
+			<scripts msg='배터리가 들어있지 않습니다. 이런~~ XXX'/>
+			<scripts msg='차키! 뭐하고 있어~ 제대로 달리지 못해~'/>
+			<scripts msg='차키~ 우리의 힘을 보여주자고!'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='[UserRID] 이게 친구의 끝이야!'/>
+			<scripts msg='우리의 장난에 당하지 않도록…'/>
+			<scripts msg='[AiRID] 어서 필살기를 준비해~'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='설마 장난쳐 줬으면 하는 애는 없겠지?'/>
+			<scripts msg='이봐, 기억안나? 난 너의 영원한 친구잖아.'/>
+			<scripts msg='차키 준비 됐어~ 녀석에게 혼쭐을 내 주자고~'/>
+		</condition>
+	</campaign> -->
+
+	<!--<campaign type='14'>	
+		<condition type='0'>
+			<scripts msg='너희들 필살기라고 들어는 봤냐? 캬캬'/> 
+			<scripts msg='올해는 착한일을 많이 하셨나요?'/> 
+			<scripts msg='중국 대륙의 위대한 힘을 보여주지~'/> 
+			<scripts msg='[UserRID]! 우리 카트가 탐나지 않니?'/> 
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='거리가 점점 벌어지는거 같은데? ㅋㅋㅋ'/> 
+			<scripts msg='너네 달리고는 있냐?'/> 
+			<scripts msg='[UserRID] 기어 다니냐.'/> 
+			<scripts msg='[AiRID]!! 요새 너 너무 살 찐거 아냐?'/> 
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='[UserRID] 때문에 앞으로 나갈 수가 없어!'/> 
+			<scripts msg='아 도저히 못따라가겠네 ㅠ_ㅠ'/> 
+			<scripts msg='[UserRID] 과속하다 사고난다~.'/> 
+			<scripts msg='[UserRID]! 좀 기다려 주십쇼! 굽신굽신~'/> 
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='[AiRID]! 바로 지금 필살기!'/> 
+			<scripts msg='디펜감사염'/> 
+			<scripts msg='이야호~!'/> 
+			<scripts msg='이번 크리스마스 이브에는 눈이 내릴까?'/> 
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='[UserRID]! 너무 긴장하지마!'/> 
+			<scripts msg='페어플레이 합시다!'/> 
+			<scripts msg='실력으로 보여주겠다!'/> 
+			<scripts msg='이번에는 [AiRID]가 선두다!'/> 
+		</condition>
+	</campaign>
+	<campaign type='15'>	
+		<condition type='0'>
+			<scripts msg='너희들 필살기라고 들어는 봤냐? 캬캬'/> 
+			<scripts msg='올해는 착한일을 많이 하셨나요?'/> 
+			<scripts msg='중국 대륙의 위대한 힘을 보여주지~'/> 
+			<scripts msg='[UserRID]! 우리 카트가 탐나지 않니?'/> 
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='거리가 점점 벌어지는거 같은데? ㅋㅋㅋ'/> 
+			<scripts msg='너네 달리고는 있냐?'/> 
+			<scripts msg='[UserRID] 기어 다니냐.'/> 
+			<scripts msg='[AiRID]!! 요새 너 너무 살 찐거 아냐?'/> 
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='[UserRID] 때문에 앞으로 나갈 수가 없어!'/> 
+			<scripts msg='아 도저히 못따라가겠네 ㅠ_ㅠ'/> 
+			<scripts msg='[UserRID] 과속하다 사고난다~.'/> 
+			<scripts msg='[UserRID]! 좀 기다려 주십쇼! 굽신굽신~'/> 
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='[AiRID]! 바로 지금 필살기!'/> 
+			<scripts msg='디펜감사염'/> 
+			<scripts msg='이야호~!'/> 
+			<scripts msg='이번 크리스마스 이브에는 눈이 내릴까?'/> 
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='[UserRID]! 너무 긴장하지마!'/> 
+			<scripts msg='페어플레이 합시다!'/> 
+			<scripts msg='실력으로 보여주겠다!'/> 
+			<scripts msg='이번에는 [AiRID]가 선두다!'/> 
+		</condition>
+	</campaign>
+	<campaign type='16'>	
+		<condition type='0'>
+			<scripts msg='간만에 재밌는 상대를 만났군. 훗!'/> 
+			<scripts msg='[UserRID]! 왠지 고수의 냄새가 나!'/> 
+			<scripts msg='[UserRID]! 루찌를 주면 목숨만은 살려주지!'/> 
+			<scripts msg='간만에 재밌는 상대를 만났군. 훗!'/> 
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='[UserRID] 발로하는 자..'/> 
+			<scripts msg='[AiRID]! 심심한데 너 한테 미사일 쓸래…'/> 
+			<scripts msg='[UserRID]를 집중공격 하라~!'/> 
+			<scripts msg='올리타 고고!!'/> 
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='이제 슬슬 본때를 보여줄 시간이 온거 같군.'/> 
+			<scripts msg='[AiRID]! 빨리 물파리 쓰지 않고 뭐하는거야!'/> 
+			<scripts msg='[AiRID]! 이제부터 후진으로 달린다!!'/> 
+			<scripts msg='[UserRID]! 잘하는데??'/> 
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='[AiRID]~ 게임 끝나고 사우나나 갈까?'/> 
+			<scripts msg='[AiRID]! 힘내! 우리가 앞지를 수 있을거야!'/> 
+			<scripts msg='[AiRID]! 바로 지금이 역전 타이밍!!'/> 
+			<scripts msg='천사나이스'/> 
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='왠지 재밌는 경기가 될 꺼 같은데~'/> 
+			<scripts msg='[AiRID]! 준비 됐지?'/> 
+			<scripts msg='각오해! 우리에게 자비란 없다!!!'/> 
+			<scripts msg='내가 1등을 해주마'/> 
+		</condition>
+	</campaign>
+	<campaign type='17'>	
+		<condition type='0'>
+			<scripts msg='간만에 재밌는 상대를 만났군. 훗!'/> 
+			<scripts msg='[UserRID]! 왠지 고수의 냄새가 나!'/> 
+			<scripts msg='[UserRID]! 루찌를 주면 목숨만은 살려주지!'/> 
+			<scripts msg='간만에 재밌는 상대를 만났군. 훗!'/> 
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='[UserRID] 발로하는 자..'/> 
+			<scripts msg='[AiRID]! 심심한데 너 한테 미사일 쓸래…'/> 
+			<scripts msg='[UserRID]를 집중공격 하라~!'/> 
+			<scripts msg='올리타 고고!!'/> 
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='이제 슬슬 본때를 보여줄 시간이 온거 같군.'/> 
+			<scripts msg='[AiRID]! 빨리 물파리 쓰지 않고 뭐하는거야!'/> 
+			<scripts msg='[AiRID]! 이제부터 후진으로 달린다!!'/> 
+			<scripts msg='[UserRID]! 잘하는데??'/> 
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='[AiRID]~ 게임 끝나고 사우나나 갈까?'/> 
+			<scripts msg='[AiRID]! 힘내! 우리가 앞지를 수 있을거야!'/> 
+			<scripts msg='[AiRID]! 바로 지금이 역전 타이밍!!'/> 
+			<scripts msg='천사나이스'/> 
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='왠지 재밌는 경기가 될 꺼 같은데~'/> 
+			<scripts msg='[AiRID]! 준비 됐지?'/> 
+			<scripts msg='각오해! 우리에게 자비란 없다!!!'/> 
+			<scripts msg='내가 1등을 해주마'/> 
+		</condition>
+	</campaign-->
+	<campaign type='14'>	
+		<condition type='0'>
+			<scripts msg='두려움이 없는 히어로 다오!'/>
+			<scripts msg='[UserRID]! 함께 붐힐을 지켜보지 않을래?'/>
+			<scripts msg='[UserRID]! 누가 진짜인지 맞춰보라고~'/>
+			<scripts msg='영웅은 항상 늦게 나타나는 법~'/>
+			<scripts msg='헬멧을 쓰고 있으니 답답해…'/>
+		</condition>
+
+		<condition type='1'>
+			<scripts msg='10초 전에 여기 와 있기로 했잖아~'/>
+			<scripts msg='디지니랑 함께 달리면 좋겠다~'/>
+			<scripts msg='우리를 고른건 탁월한 선택이었어.'/>
+			<scripts msg='이대로면 우리가 이길 거라는~~'/>
+			<scripts msg='다 어디갔어~ 다 어디로 갔어!'/>
+		</condition>
+
+		<condition type='2'>
+			<scripts msg='[UserRID] 다음엔 함께 모험을 가자!'/>
+			<scripts msg='[AiRID]! 빨리 [UserRID]를 잡아!'/>
+			<scripts msg='망토가 너무 길어 밟힐 것 같아.'/>
+			<scripts msg='자 이제부터 쇼타임!'/>
+			<scripts msg='불안하지만 우리가 지는 일은 없겠지?'/>
+		</condition>
+
+		<condition type='3'>
+			<scripts msg='네가 상대할 대상이 아니야!'/>
+			<scripts msg='이런 상대는 오랜만이라 즐거워!'/>
+		</condition>
+
+		<condition type='4'>
+			<scripts msg='그렇게 긴장하지마~'/>
+			<scripts msg='[UserRID] 진짜 다오를 맞춰보라고~!'/>
+			<scripts msg='하하. 보기보다 쑥맥이시네요?'/>
+		</condition>
+	</campaign>
+
+	<campaign type='15'> <!--폭주 연합팀-->
+		<condition type='0'>
+			<scripts msg='[UserRID]! 어디 실력을 테스트해볼까?'/>
+			<scripts msg='폭주연합의 승리를 위하여!'/>
+			<scripts msg='오빠 달려~♬ 고고고~!!'/>
+			<scripts msg='우리의 이름을 들어 본적은 있나?'/>
+			<scripts msg='내가 앞으로 치고 나갈 테니 뒤를 부탁해!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='라이딩은 처음인가~'/>
+			<scripts msg='[AiRID]!! 살살하자구!'/>
+			<scripts msg='눈앞에 결승점이 보이는구나!'/>
+			<scripts msg='너네 따라오고 있는거냐?'/>
+			<scripts msg='웃음을 참는게 이렇게 어려울 줄이야~'/>
+			<scripts msg='퍼펙 고고!!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='젠장 당했어~'/>
+			<scripts msg='요새 내가 침체기라는~'/>
+			<scripts msg='[UserRID] 뭐 이련 녀셕이 다 있냐'/>
+			<scripts msg='격렬한 분노가 느껴진다!!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='슬슬 실력을 보여줄 시간이 온거 같군.'/>
+			<scripts msg='도움이 필요한 것처럼 들리는데.'/>
+			<scripts msg='드루와~ 드루와~'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='진정한 라이딩이 뭔지 보여주마~'/>
+			<scripts msg='[UserRID]! 페어플레이? 그게 뭐냐!'/>
+		</condition>
+	</campaign>
+
+	<campaign type='16'> <!--블랙컴퍼니-->
+		<condition type='0'>
+			<scripts msg='어디 솜씨한번 볼까~'/>
+			<scripts msg='블랙 컴퍼니가 세계를 지배한다!'/>
+			<scripts msg='별자리 석판은 블랙 컴퍼니가 차지한다!'/>
+			<scripts msg='목숨은 보장하지 못한다!'/>
+			<scripts msg='세!계!정!복!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='[UserRID]! 애송이인줄 알았는데~'/>
+			<scripts msg='블랙 컴퍼니는 언제나 승리한다!'/>
+			<scripts msg='블랙 컴퍼니에게는 패배는 없다! '/>
+			<scripts msg='[UserRID]! 우리 등이나 보고 있다니!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='좋아~ 아주 좋아~ 재미있는 시간이야!'/>
+			<scripts msg='[UserRID]! 지금부터 시작이다!'/>
+			<scripts msg='[UserRID]! 넌 최고의 스파이다!'/>
+			<scripts msg='[UserRID]! 우리와 함께 하겠나?'/>
+			<scripts msg='별자리 석판을 찾아봐야겠군요!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='블랙 컴퍼니에게는 패배는 없다!'/>
+			<scripts msg='슬슬 실력을 보여줄 시간이 온거 같군.'/>
+			<scripts msg='방심? 이건 여유라고!! 하는거야!'/>
+			<scripts msg='[UserRID]! 잠시 쉬었다가 가는 건 어때?'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='블랙 컴퍼니가 세계를 지배한다!'/>
+			<scripts msg='세계 정복!! 우리가 한다~'/>
+			<scripts msg='목숨은 보장하지 못한다!'/>
+		</condition>
+	</campaign>
+
+	<campaign type='17'> <!-- 보스팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='우리는 최강 보스! 특공대다~'/>
+			<scripts msg='최고들만 우리와 함께할 수 있지~'/>
+			<scripts msg='두렵다면 어서 포기해라~'/>
+			<scripts msg='로두마니! 아루! 루이 알마! 로봇 다오!'/>
+			<scripts msg='최강 보스를 위하여~'/>
+			<scripts msg='승리는 우리의 것~'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='[UserRID]! 팀킬~ 멍청한 녀석~'/>
+			<scripts msg='[AiRID]! 이제 그만하라고!'/>
+			<scripts msg='10초만 쉬었다 갈까~'/>
+			<scripts msg='너무 시시한데~ 이래서는 재미가 없잖아!'/>
+			<scripts msg='[UserRID]! 어서 따라와봐~'/>
+			<scripts msg='너희는 패배~ 우리는 승리~!'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='[AiRID] 달려! 빨리 좀 달려봐!'/>
+			<scripts msg='기다려! 아직 시작 안 했다고!'/>
+			<scripts msg='[UserRID]를 집중 공격!'/>
+			<scripts msg='[AiRID]! 작전에 맞춰서 움직여!'/>
+			<scripts msg='[AiRID] 이제부터 내 작전을 따라!'/>
+			<scripts msg='각자 달리면 작전이 무슨 소용이야!'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='이제 작전을 시작한다! 플랜 A'/>
+			<scripts msg='각오해! 우리에게 자비란 없다!'/>
+			<scripts msg='[UserRID]! 어서 배신의 팀킬 시작해~'/>
+			<scripts msg='슬슬 실력을 보여줄 시간이 온 것 같군. '/>
+			<scripts msg='배신자의 활약이 필요하군! [UserRID]'/>
+			<scripts msg='[UserRID]를 집중 마크해라~'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='확률상으로 우리에게 이길 가능성은 0%~'/>
+			<scripts msg='우리는 최강! 보스팀~'/>
+			<scripts msg='입금은 완료됐어~[UserRID]!'/>
+			<scripts msg='[UserRID] 배신은 타이밍이야~'/>
+			<scripts msg='[UserRID]! 루찌를 확인해봐!'/>
+			<scripts msg='피곤하니까~ 빨리 끝내자~'/>
+		</condition>
+	</campaign>
+<!--
+	<campaign type='17'> 디셉티콘
+		<condition type='0'>
+			<scripts msg='사냥감이 저기 있군.'/>
+			<scripts msg='디셉티콘, 집결하라!'/>
+			<scripts msg='프라임은 어디 있나!'/>
+			<scripts msg='[UserRID]! 도망칠 기회는 지금이다!'/>
+			<scripts msg='우리의 공포를 느껴라!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='이걸로 전투는 끝났다!'/>
+			<scripts msg='[AiRID]! 이만 끝내라!'/>
+			<scripts msg='약한 것은 죄다, [UserRID]!'/>
+			<scripts msg='더 이상 놀아줄 필요는 없겠지.'/>
+			<scripts msg='[AiRID], 뒤는 알아서 처리해!'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='나를 지켜라, [AiRID]!'/>
+			<scripts msg='아직 끝나지 않았다!'/>
+			<scripts msg='[UserRID], 이겼다고 생각하나?'/>
+			<scripts msg='이대로 끝날 것 같나?'/>
+			<scripts msg='똑같이 돌려주마!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='놀이는 이제 끝이다!'/>
+			<scripts msg='디셉티콘, 모두 공격!'/>
+			<scripts msg='이젠 애써봐야 소용없다!'/>
+			<scripts msg='[UserRID]부터 공격!'/>
+			<scripts msg='[AiRID]! 모두 쓸어버려!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='후회해도 이미 늦었다!'/>
+			<scripts msg='넌 마지막 기회를 놓쳤다!'/>
+			<scripts msg='공포를 즐길 시간이다!'/>
+		</condition>
+	</campaign>
+-->
+
+<!--
+	<campaign type='18'> 오토봇
+		<condition type='0'>
+			<scripts msg='[UserRID]! 집중 공격!'/>
+			<scripts msg='너희는 쓰러질 것이다!'/>
+			<scripts msg='[UserRID]! 아직도 거기있나?'/>
+			<scripts msg='트!랜!스!포!머! 파!이!팅!'/>
+			<scripts msg='우주 최강!'/>
+		</condition>
+		<condition type='1'>
+			<scripts msg='모조리 쓸어버리겠다!'/>
+			<scripts msg='패배는 [UserRID]부터 시작이지~'/>
+			<scripts msg='너희는 패배한다.'/>
+			<scripts msg='전설은 실재한다.'/>
+			<scripts msg='[UserRID] 한심하군.'/>
+		</condition>
+		<condition type='2'>
+			<scripts msg='운명은 우리 뜻대로 되지 않는다.'/>
+			<scripts msg='아직 끝나지 않았다!'/>
+			<scripts msg='지금부터 너희를 공격하겠다!'/>
+			<scripts msg='[AiRID]! 따라와라!'/>
+			<scripts msg='[AiRID]! 빨리!'/>
+		</condition>
+		<condition type='3'>
+			<scripts msg='승리는 우리의 것이다!'/>
+			<scripts msg='[UserRID] 중심이었나..'/>
+			<scripts msg='[UserRID]! 나를 찾는가!'/>
+			<scripts msg='[UserRID]! 나는 너를 처단할 것이다!'/>
+			<scripts msg='[AiRID]! 공격하라!'/>
+		</condition>
+		<condition type='4'>
+			<scripts msg='모두가 하나가 될 때까지..'/>
+			<scripts msg='희생 없이, 승리도 없다!'/>
+			<scripts msg='우리는 승리하고 너희는 패배할 것이다!'/>
+		</condition>
+	</campaign>
+-->
+
+	<campaign type='19'> <!-- 어비스 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='[UserRID]! 건방짐의 대가는 치를 각오됐겠지?'/>
+			<scripts msg='[UserRID], 제일 먼저 혼내주지!'/>
+			<scripts msg='이제 너희들은 절대 도망칠 수 없다!'/>
+			<scripts msg='어비스의 재건을 위해 사라져라!'/>
+			<scripts msg='어비스의 지상 진출을 위하여!'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='이게 바로 어비스의 힘이다!'/>
+			<scripts msg='[UserRID] 별 볼 일 없는 실력이네.'/>
+			<scripts msg='너무 쉬운걸.'/>
+			<scripts msg='[UserRID] 시시한 걸로 지상 대표인가?'/>
+			<scripts msg='한심하군, 지상 인간들이란.'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='이러다 질 것 같은데?'/>
+			<scripts msg='생각보다 쉽지 않군.'/>
+			<scripts msg='[UserRID]! 지상 인간치곤 실력이 제법인데?'/>
+			<scripts msg='너무 만만하게 봤나?'/>
+			<scripts msg='[UserRID]! 어비스의 힘을 보여주마!'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='너희들은 포위 됐다!'/>
+			<scripts msg='[UserRID], 비켜 주시지?'/>
+			<scripts msg='[UserRID], 방해말고 비켜라.'/>
+			<scripts msg='항복해라! 너희에게 승산은 없다!'/>
+			<scripts msg='[UserRID]! 감히 날 방해하다니!'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='어비스의 힘을 알려주지!'/>
+			<scripts msg='지금이라도 항복해라!'/>
+			<scripts msg='이번엔 완벽하게 처리해주마!'/>
+		</condition>
+	</campaign>
+
+	<campaign type='20'> <!-- 마녀협회 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='[UserRID]에겐 어떤 마법을 걸어볼까~?'/>
+			<scripts msg='봐주지 않을 거야~!'/>
+			<scripts msg='이번 기회에 마녀 무서운 줄 알게 될 거야!'/>
+			<scripts msg='마법의 힘을 보여주지~ 후훗!'/>
+			<scripts msg='어디 한 번 해보시지~.'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='마녀를 우습게 보면 큰 코 다치는 거야~!'/>
+			<scripts msg='[UserRID], 겨우 그 정도야?'/>
+			<scripts msg='[UserRID] 정도는 마법 없이도 이기겠는걸~?'/>
+			<scripts msg='눈 감고 타도 [UserRID]보단 빠르겠어! 후훗!'/>
+			<scripts msg='마법의 위대함을 이제 좀 알겠어~?'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='빗자루야 빨라져라! 이얍~'/>
+			<scripts msg='절대 지지 않아!'/>
+			<scripts msg='[UserRID]! 놓치지 않을 거야!'/>
+			<scripts msg='[AiRID], 뭔가 잘못된 거 같은데?'/>
+			<scripts msg='[AiRID], 주문은 제대로 외우고 있는 거지?'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='이쯤에서 포기하는 게 어때?'/>
+			<scripts msg='[UserRID], 마녀가 무섭지 않아?'/>
+			<scripts msg='[UserRID]부터 개구리로 만들까?'/>
+			<scripts msg='[UserRID], 마녀의 자존심을 건드리다니!'/>
+			<scripts msg='[AiRID]! 포기 하지마! 아직 안 끝났어!'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='마녀 무서운 줄 모르는구나?'/>
+			<scripts msg='지금이라도 항복하는 게 좋을 텐데.'/>
+			<scripts msg='더 이상은 봐주지 않을 거야.'/>
+		</condition>
+	</campaign>
+	<campaign type='21'> <!-- 삼국지 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='이 대결에서 반드시 승리하고 돌아가리라!'/>
+			<scripts msg='네 녀석들, 솜씨 한 번 보자꾸나!'/>
+			<scripts msg='[AiRID]! 지금이 기회다!'/>
+			<scripts msg='[UserRID]! 넌 내가 상대하마!'/>
+			<scripts msg='[UserRID]! 우리를 막을 수 없다!'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='승리가 눈앞이다! 전진하라!'/>
+			<scripts msg='너같이 겁약한 장수는 전체를 위험에 빠뜨리지!'/>
+			<scripts msg='[UserRID], 고작 이것밖에 안 되더냐! 하하!'/>
+			<scripts msg='[UserRID], 그대의 노력은 기억하리라!'/>
+			<scripts msg='청룡언월도조차 필요 없겠구나!'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='물러서지 마라! 싸워라! 싸워!'/>
+			<scripts msg='[UserRID]! 이대로 승리하게 두진 않겠다!'/>
+			<scripts msg='형세가 많이 어렵구나….'/>
+			<scripts msg='[UserRID]부터 잡아라!'/>
+			<scripts msg='[AiRID]! 마지막까지 포기하지 마라!'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='[UserRID]! 스스로 물러나는 건 어떤가?'/>
+			<scripts msg='[UserRID]! 나를 상대할 각오는 됐겠지?'/>
+			<scripts msg='[UserRID], 제대로 힘을 겨뤄보자.'/>
+			<scripts msg='[AiRID]! 돌격!'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='하룻강아지 범 무서운 줄 모르는구나!'/>
+			<scripts msg='지금이라도 항복하는 게 좋을 텐데.'/>
+			<scripts msg='이번에는 봐주지 않겠다.'/>
+		</condition>
+	</campaign>
+	<campaign type='22'> <!-- 코리아 팀 -->
+		<condition type='0'>  <!-- DEFAULT -->
+			<scripts msg='도사들의 힘을 얕본 건 아니겠지?'/>
+			<scripts msg='우리를 상대로 얼마나 갈 수 있을지 볼까?!'/>
+			<scripts msg='어디 한번 신명 나게 놀아보자고!'/>
+			<scripts msg='[UserRID], 정정당당한 승부 기대할게!'/>
+			<scripts msg='평소에 열심히 수련한 걸 보여줄 기회이군.'/>
+		</condition>
+		<condition type='1'> <!-- 유저불리 -->
+			<scripts msg='이런, 곧 우리의 승리로 끝날 것 같군.'/>
+			<scripts msg='[UserRID]! 내가 조금 봐줘야 할 것 같구나!'/>
+			<scripts msg='[UserRID], 방심은 언제나 금물이야!'/>
+			<scripts msg='[UserRID], 너도 평소 수련에 정진하도록 해.'/>
+			<scripts msg='안타깝게도 아직 갈 길이 멀어 보이는구나!'/>
+		</condition>
+		<condition type='2'> <!-- 유저유리 -->
+			<scripts msg='이런, 방심한 사이에 벌써…!'/>
+			<scripts msg='긴장해라, 곧 네 그림자보다 가까이 갈 거니까!'/>
+			<scripts msg='포기하기엔 아직 일러! 모두 집중해!'/>
+			<scripts msg='[UserRID]의 발을 묶어 놓도록!'/>
+			<scripts msg='앞으로 수련에 좀 더 매진해야겠어.'/>
+		</condition>
+		<condition type='3'> <!-- 경합 -->
+			<scripts msg='상황이 흥미진진하게 흘러가는군…'/>
+			<scripts msg='[UserRID]! 더 이상 도망갈 수 없을 것이다!'/>
+			<scripts msg='[UserRID]! 긴장의 끈을 놓지 말라고!'/>
+			<scripts msg='[UserRID]! 실력이 제법 좋구나?'/>
+			<scripts msg='[AiRID]! 지금이다!!'/>
+		</condition>
+		<condition type='4'> <!-- 시작전 -->
+			<scripts msg='열과 성을 다해 상대해 주마!'/>
+			<scripts msg='도사의 힘을 제대로 보여주마.'/>
+			<scripts msg='하하하! 도사 상대로 대결이라니, 언제나 환영이다!'/>
+		</condition>
+	</campaign>
+</chattingScript>

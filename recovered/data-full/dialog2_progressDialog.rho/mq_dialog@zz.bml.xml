@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="progressDialog" windowRect="0 0 712 523" frame="CaptionDialog" caption="#sb(progressDialog)" align="center" setCloseButton="cancel">
+    <Tab name="tabMenu" windowSize="677 430" adjust="0 7">
+      <Panel leftTopWH="0 27 327 2" color="255 0 149 243"/>
+      <TabPage name="progQuest" windowRect="0 35 677 456">
+        <List name="questList" leftTopWH="0 0 327 421" listGap="1" scrollBarVisible="true"/>
+        <Window windowRect="0 -35 344 332" align="right" frame="InnerFrame">
+          <Label name="subjectName" windowRect="-7 -8 335 21" frame="TitleCap" textRender="bold" text="#sb(subjectName)" textColor="white" textAlign="center"/>
+          <Panel name="questImage" windowRect="0 19 241 229" align="hcenter" alphaBlend="true">
+            <Panel windowRect="0 0 241 210" align="center" texture="기존퀘스트덮개" alphaBlend="true"/>
+          </Panel>
+          <Panel windowRect="0 234 246 252" align="hcenter" texture="img_periodBG" alphaBlend="true">
+            <Label name="period" windowRect="0 0 10 10" align="center" text="#sb(date)" textRender="bold" textColor="255 90 90 90" autoSizing="true"/>
+          </Panel>
+          <Panel windowRect="0 258 316 286" align="hcenter" texture="img_titleGrey" alphaBlend="true">
+            <Label name="title" windowRect="0 0 10 10" align="center" text="#sb(quest_method)" textRender="bold" textColor="white" autoSizing="true"/>
+          </Panel>
+          <Label name="desc" windowRect="0 287 300 390" align="hcenter" text="#sb(title)" textColor="255 90 90 90" textAlign="hcenter" multiLine="true" autoWrap="true"/>
+        </Window>
+        <Window windowRect="0 346 344 424" align="right" frame="InnerFrame">
+          <Container windowRect="0 -15 160 5" align="hcenter" enable="false">
+            <Panel name="prizeTag0" windowRect="0 0 160 20" texture="img_miniTitle" alphaBlend="true"/>
+            <Label windowRect="0 0 160 20" textRender="bold" text="#sb(questPrize)" textAlign="center" textColor="255 100 113 132"/>
+          </Container>
+          <Panel windowRect="2 0 62 56" align="vcenter" texture="img_rewardOn" alphaBlend="true">
+            <ItemWindow name="reward" windowSize="51 51" adjust="0 0" itemCategory="jewel" itemId="143" align="center"/>
+            <Panel name="rewardPanel" windowSize="51 51" adjust="0 0" align="center" alphaBlend="true" visible="false"/>
+          </Panel>
+          <Label name="rewardStr" windowRect="0 20 344 40" text="" textColor="255 90 90 90" textAlign="center"/>
+        </Window>
+      </TabPage>
+      <TabPage name="progScenario" windowRect="0 35 677 456">
+        <List name="scenarioList" leftTopWH="0 0 327 421" listGap="1" scrollBarVisible="true"/>
+        <Window windowRect="0 -35 344 218" align="right" frame="InnerFrame">
+          <Label name="subjectName" windowRect="-7 -8 335 21" frame="TitleCap" textRender="bold" text="#sb(scenario)" textColor="white" textAlign="center"/>
+          <Label name="sys" windowRect="0 35 316 100" align="hcenter" text="#sb(emptyScenario)" textColor="255 90 90 90" textAlign="hcenter" multiLine="true" autoWrap="true"/>
+          <Panel windowRect="0 100 316 128" align="hcenter" texture="img_titleGrey" alphaBlend="true">
+            <Label windowRect="0 0 10 10" align="center" text="#sb(scenario_method)" textRender="bold" textColor="white" autoSizing="true"/>
+          </Panel>
+          <Label name="scenarioMission" windowRect="0 132 316 390" align="hcenter" text="#sb(wayToScenario)" textColor="255 90 90 90" textAlign="hcenter" multiLine="true" autoWrap="true"/>
+          <ImageButton name="gotoScenario" windowRect="0 0 222 38" align="hcenter;bottom" autoLoadImage="btn_shortCut_@zz" alphaBlend="true"/>
+        </Window>
+        <Window windowRect="0 225 344 424" align="right">
+          <Panel name="scenarioType" windowRect="0 0 340 165" align="center" alphaBlend="true"/>
+        </Window>
+      </TabPage>
+      <TabPage name="progCareer" windowRect="0 35 677 456">
+        <List name="careerList" leftTopWH="0 0 327 421" listGap="1" scrollBarVisible="true"/>
+        <Window windowRect="0 -35 344 332" align="right" frame="InnerFrame">
+          <Label name="subjectName" windowRect="-7 -8 335 21" frame="TitleCap" textRender="bold" text="#sb(subjectName)" textColor="white" textAlign="center"/>
+          <Container windowRect="0 21 344 100">
+            <Panel windowRect="3 0 63 56" align="vcenter" texture="img_rewardOn" alphaBlend="true">
+              <ItemWindow windowSize="51 51" adjust="0 0" itemCategory="jewel" itemId="143" align="center"/>
+            </Panel>
+            <Label windowRect="0 20 344 40" text="#sb(careerPoint)" textColor="255 98 113 134" textRender="bold" textAlign="hcenter"/>
+            <Label name="careerPoint" windowRect="0 40 344 60" text="10" textRender="bold" textColor="255 60 60 60" textAlign="hcenter"/>
+          </Container>
+          <Panel windowRect="0 100 316 128" align="hcenter" texture="img_titleGrey" alphaBlend="true">
+            <Label name="title" windowRect="0 0 10 10" align="center" text="#sb(career_method)" textRender="bold" textColor="white" autoSizing="true"/>
+          </Panel>
+          <Label name="desc" windowRect="0 132 316 390" align="hcenter" text="#sb(title)" textColor="255 90 90 90" textAlign="hcenter" multiLine="true" autoWrap="true"/>
+          <ImageButton name="gotoCareer" windowRect="0 0 182 38" align="hcenter;bottom" autoLoadImage="btn_complete_@zz" alphaBlend="true"/>
+        </Window>
+        <Window name="careerReward" windowRect="0 346 344 424" align="right" frame="InnerFrame">
+          <Container windowRect="0 -15 160 5" align="hcenter" enable="false">
+            <Panel name="prizeTag0" windowRect="0 0 160 20" texture="img_miniTitle" alphaBlend="true"/>
+            <Label windowRect="0 0 160 20" textRender="bold" text="#sb(careerPrize)" textAlign="center" textColor="255 100 113 132"/>
+          </Container>
+          <Panel windowRect="3 0 63 56" align="vcenter" texture="img_rewardOn" alphaBlend="true">
+            <ItemWindow name="reward" windowSize="51 51" adjust="0 0" itemCategory="jewel" itemId="143" align="center"/>
+            <Panel name="rewardPanel" windowSize="51 51" adjust="0 0" align="center" alphaBlend="true" visible="false"/>
+          </Panel>
+          <Label name="rewardStr" windowRect="0 20 344 40" text="" textColor="255 90 90 90" textAlign="center"/>
+        </Window>
+      </TabPage>
+      <TabMenu name="cats" leftTopWH="4 0 327 29">
+        <ImageButton name="progQuest" leftTopTex="0 0" autoLoadImage="btn_tab2_" text="#sb(quest)" textColor="255 59 77 99" overTextRender="bold" overTextColor="255 20 162 236" clickedTextRender="bold" clickedTextColor="255 22 92 159" disabledTextRender="bold" disabledTextColor="255 22 92 159" alphaBlend="true"/>
+        <ImageButton name="progScenario" leftTopTex="108 0" autoLoadImage="btn_tab2_" text="#sb(scenario)" textColor="255 59 77 99" overTextRender="bold" overTextColor="255 20 162 236" clickedTextRender="bold" clickedTextColor="255 22 92 159" disabledTextRender="bold" disabledTextColor="255 22 92 159" alphaBlend="true"/>
+        <ImageButton name="progCareer" leftTopTex="216 0" autoLoadImage="btn_tab2_" text="#sb(career)" textColor="255 59 77 99" overTextRender="bold" overTextColor="255 20 162 236" clickedTextRender="bold" clickedTextColor="255 22 92 159" disabledTextRender="bold" disabledTextColor="255 22 92 159" alphaBlend="true"/>
+      </TabMenu>
+    </Tab>
+    <Container windowRect="0 0 400 30" align="hcenter;bottom" visible="false">
+      <Window windowRect="0 -10 600 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="goAttend" windowRect="0 0 117 30" text="#sb(goAttend)"/>
+      <TextButton name="goBigTrack" windowRect="0 0 117 30" text="#sb(goBigTrack)"/>
+      <TextButton name="goOutrun" windowRect="0 0 117 30" text="#sb(goOutrun)"/>
+      <TextButton name="okButton" windowRect="0 0 87 30" align="center" text="#sb(ok)"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

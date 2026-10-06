@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="tombStone">
+  <state name="Use" life="4000" item="나타남" itemFx="비석 올라옴" size="6.5"/>
+  <state name="Affect" life="4000" item="부서짐" fired="호박유령들" firedFx="호박귀신" itemFx="비석 부서짐"/>
+  <state name="Disappear" life="1000" item="사라짐" itemFx="비석 사라짐"/>
+  <state name="SpecialShield" life="1000"/>
+</item>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='148'
+	BackwardAccelForce='100'
+	DragFactor='-0.0758'
+	TransAccelFactor='1.845'
+	SteerConstraint='3'
+	CornerDrawFactor='0.064'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+	NormalBoosterTime='-110'
+	TeamBoosterTime='-210'
+	
+	DriftMaxGauge='-530'
+	DriftEscapeForce='1550'
+	DriftGaguePreservePercent='0.5'
+	DriftLeanFactor='-0.005'
+	
+	draftMulAccelFactor='1.15'
+	draftTick='2000'
+	driftBoostMulAccelFactor='1.15'
+	driftBoostTick='500'
+	chargeBoostBySpeed='300'
+	TransformTime='700'
+	autoChargeLowSpeed='100'
+	
+	DescBalance='47'
+	DescStability='49'
+	DescEngineGrade='1.36'
+	DescCornering='7'
+	DescEnchantCap='25'
+
+	BoosterWaveType='boost8'
+	BoosterType='9soon'
+	BoosterType0='9soon'
+	BoosterType1='9soon'
+
+	FirePort0='mod1b3' 
+	FirePort1='mod2b3'
+	
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	
+	EngineSound='9th'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255'/>
+</BodyParam>
+<!-- 청소 빗자루 9 / 한국 / 상점 한정 판매 / 20141023 릴리즈 -->

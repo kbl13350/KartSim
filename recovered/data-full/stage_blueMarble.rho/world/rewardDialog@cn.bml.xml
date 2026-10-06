@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window texture="desert_01@zz" leftTopTex="0 0" align="center">
+  <Panel windowRect="-800 -600 800 600" color="200 0 0 0" alphaBlend="true"/>
+  <Panel name="bg_0" leftTopTex="0 0 600 600" texture="두바이일반@zz" visible="false" alphaBlend="true" align="center"/>
+  <Panel name="bg_1" leftTopTex="0 0 600 600" texture="두바이대박@zz" visible="false" alphaBlend="true" align="center"/>
+  <Panel name="bg_2" leftTopTex="0 0 600 600" texture="뉴욕일반@zz" visible="false" alphaBlend="true" align="center"/>
+  <Panel name="bg_3" leftTopTex="0 0 600 600" texture="브랑스일반@zz" visible="false" alphaBlend="true" align="center"/>
+  <Panel name="bg_4" leftTopTex="0 0 600 600" texture="이태리일반@zz" visible="false" alphaBlend="true" align="center"/>
+  <Panel name="bg_5" leftTopTex="0 0 600 600" texture="이태리대박@zz" visible="false" alphaBlend="true" align="center"/>
+  <Panel name="bg_6" leftTopTex="0 0 600 600" texture="브라질일반@zz" visible="false" alphaBlend="true" align="center"/>
+  <Panel name="bg_7" leftTopTex="0 0 600 600" texture="브라질대박@zz" visible="false" alphaBlend="true" align="center"/>
+  <Panel name="bg_8" leftTopTex="0 0 600 600" texture="런던일반@zz" visible="false" alphaBlend="true" align="center"/>
+  <Panel name="bg_9" leftTopTex="0 0 600 600" texture="런던대박@zz" visible="false" alphaBlend="true" align="center"/>
+  <Label name="title" leftTopWH="-6 -8 110 20" fillTrans="true" multiLine="false" autoWrap="true" lineGap="1" textColor="white" text="title" textAlign="center" textRender="bold"/>
+  <Label name="body" leftTopWH="-91 20 290 50" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="body" textAlign="center"/>
+  <Label name="rewardName" leftTopWH="-2 152 110 20" fillTrans="true" multiLine="false" autoWrap="true" lineGap="1" textColor="white" text="body" textAlign="center"/>
+  <ItemWindow name="item" windowRect="6 71 96 161" itemCategory="jewel" itemId="1"/>
+  <ImageButton name="okButton" text="#sb(ok)" autoLoadImage="ok_0" leftTopTex="182 214" alphaBlend="true" textColor="white" textRender="bold"/>
+</Window>

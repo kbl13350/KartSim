@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152'
+	BackwardAccelForce='100'
+	DragFactor='-0.081'
+	SteerConstraint='2.8'
+	CornerDrawFactor='0.072'
+	DriftEscapeForce='1500'
+
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+
+	BoostAccelFactor='1.85'
+	TransAccelFactor='1.85'
+	BoosterAccelFactorItem='1.7'
+	StartForwardAccelFactorItem='1.65'
+	StartBoosterTimeItem='1400'
+
+	UseExtendedAfterBooster='true'
+	SpecialSlotCapacity='2'
+	ItemSlotCapacity='3'
+	
+	DriftMaxGauge='-300'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+
+	UseTransformBooster='true'
+
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	EngineSound='cotton85'
+
+	DescBalance='49'
+	DescStability='49'
+	DescEngineGrade='1.35'
+	DescCornering='7.5'
+	DescEnchantCap='25'
+
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85sub'
+	BoosterType4='85sub'
+
+	Port0='mod1c1'
+	Port1='mod1c2'
+
+	FirePort0='mod2a3'
+	FirePort1='mod2a1'
+	FirePort2='mod2a2'
+
+	secondColor='255 243 243 243'
+	secondHighColor='255 255 255 255'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+	
+	addModelFolder='tiger'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2a1' trailPort1='mod2a2'/>
+</BodyParam>

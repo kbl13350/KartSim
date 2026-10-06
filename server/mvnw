@@ -1,0 +1,23 @@
+#!/bin/sh
+set -eu
+here=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+version=3.9.11
+distribution="$here/.mvn/dist/apache-maven-$version"
+if command -v mvn >/dev/null 2>&1; then
+  exec mvn "$@"
+fi
+if [ ! -x "$distribution/bin/mvn" ]; then
+  mkdir -p "$here/.mvn/dist"
+  archive="$here/.mvn/dist/apache-maven-$version-bin.tar.gz"
+  curl -fL --retry 3 "https://archive.apache.org/dist/maven/maven-3/$version/binaries/apache-maven-$version-bin.tar.gz" -o "$archive"
+  expected=bcfe4fe305c962ace56ac7b5fc7a08b87d5abd8b7e89027ab251069faebee516b0ded8961445d6d91ec1985dfe30f8153268843c89aa392733d1a3ec956c9978
+  if command -v shasum >/dev/null 2>&1; then
+    actual=$(shasum -a 512 "$archive" | awk '{print $1}')
+  else
+    actual=$(sha512sum "$archive" | awk '{print $1}')
+  fi
+  [ "$actual" = "$expected" ] || { echo 'Maven download checksum mismatch' >&2; exit 1; }
+  tar -xzf "$archive" -C "$here/.mvn/dist"
+  rm "$archive"
+fi
+exec "$distribution/bin/mvn" "$@"

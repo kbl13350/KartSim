@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.3'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.07'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.68'
+	TransformTime='700'               
+
+	StartForwardAccelFactorSpeed = '1.2'
+	StartBoosterTimeSpeed='1200'           
+
+	BoosterBlur='true'
+	EngineSound='lodi4'
+	EnvMap='true'
+
+	BoosterType='zero5'
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+
+	FirePort0='mod2a'
+
+	TailLampSize='0.3'
+	TailLampColor='0 100 242 255'
+	BoostBlurColor='255 77 77 77'
+
+
+	TachometerType='Tacho1'
+	TachometerName='pylon'
+
+	DescBalance= '40'
+	DescStability ='44'
+	DescEngineGrade='1.2'
+	DescCornering='6'
+	DescEnchantCap = '25'
+
+
+/>
+
+
+<!-- 대만 로디 벤투스 110906 상점 캐시-->

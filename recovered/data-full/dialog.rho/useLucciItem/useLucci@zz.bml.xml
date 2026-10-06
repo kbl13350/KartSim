@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowRect="0 0 350 395" caption="#sb(useLucciItemCaption)" align="center" frame="CaptionDialog" captionPos="0 1" captionColor="black" setCloseButton="cancelButton">
+  <Window name="transFillPlane" windowRect="0 7 316 216" frame="InnerFrame" enable="false"/>
+  <Window name="main" windowRect="4 0 316 222"/>
+  <Container windowRect="0 232 313 252">
+    <Label name="msg" windowRect="0 0 1 1" text="#sb(useLucciItemMsg)" align="center" autoSizing="true"/>
+  </Container>
+  <Edit name="selectedItem" windowRect="5 254 308 335" frame="DefaultEdit" marginRect="10 10 10 10" visible="false"/>
+  <Container name="type2" windowRect="44 300 260 322">
+    <TextButton name="okButton" text="#sb(ok)" windowRect="3 0 100 22" hasDisable="true" altTextRender="outline"/>
+    <TextButton name="cancelButton" text="#sb(cancel)" windowRect="132 0 229 22" altTextRender="outline"/>
+  </Container>
+  <Label name="itemName" windowRect="5 259 120 276" text="루찌 아이템" textAlign="right" textRender="bold"/>
+  <ComboBox name="cmbItemList" windowRect="135 254 308 276" comboListLength="145" scrollBarVisible="true"/>
+  <StringBag>
+    <k n="useLucciItemCaption">
+      <m c="kr" v="교환"/>
+      <m c="jp" v="交換"/>
+      <m c="cn" v="兑换券"/>
+      <m c="tw" v="兌換券"/>
+      <m c="ru" v="Карта Луцци"/>
+      <m c="th" v="Lucci Card"/>
+      <m c="id" v="Tukar Kupon"/>
+      <m c="vn" v="Thẻ Lucci"/>
+    </k>
+    <k n="useLucciItemMsg">
+      <m c="kr" v="몇 개의 아이템을 사용하시겠습니까?"/>
+      <m c="jp" v="何個のアイテムを使用しますか？"/>
+      <m c="cn" v="您确定使用几个道具？"/>
+      <m c="tw" v="請選擇您要兌換的數量"/>
+      <m c="th" v="ต้องการใช้ไอเทมกี่ชิ้น"/>
+      <m c="vn" v="Bạn có muốn sử dụng vật phẩm này?"/>
+      <m c="id" v="Ingin menggunakan berapa item?"/>
+      <m c="ru" v="Сколько предметов вы хотите использовать?"/>
+    </k>
+  </StringBag>
+</CaptionWindow>

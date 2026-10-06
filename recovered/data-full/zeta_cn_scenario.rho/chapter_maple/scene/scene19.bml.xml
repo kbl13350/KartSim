@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="maple14"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="那我们就开始破坏音乐盒吧？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="破坏！音乐盒！！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="toben" pos="13 0" emotion="stop1"/>
+  <Msg name="短中分勇士" string="等一下！|刚才跟皮蛋老师走过来的时候发现这条路异常复杂。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="toben" pos="12 0" emotion="normal"/>
+  <Msg name="短中分勇士" string="一不小心就会迷路的。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="stop1"/>
+  <Char id="toben" pos="12 0" emotion="normal"/>
+  <Msg name="品克缤" string="那怎么办？"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="stop1"/>
+  <Char id="toben" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="短中分勇士" string="另一个胡同里有着一群散发着不祥的黑色气息的人。。。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="stop1"/>
+  <Char id="toben" pos="12 0" emotion="normal"/>
+  <Msg name="短中分勇士" string="出去的路上还有依次让我想起皮蛋老师和他的伙伴们的灯光。"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="toben" pos="12 0" emotion="normal"/>
+  <Msg name="品克缤" string="什么灯光？"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="stop4"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="toben" pos="12 0" emotion="stop3"/>
+  <Msg name="短中分勇士" string="好像依次有着紫色，蓝色，红色，黄色的灯光！"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="toben" pos="12 0" emotion="stop3"/>
+  <Msg name="白雪人" string="胖墩，皮蛋，宝宝，黑妞？？"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="toben" remove="true"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="normal"/>
+  <Char id="pinkbean" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="toben" pos="12 0" emotion="stop3"/>
+  <Msg name="品克缤" string="应该可以帮助我们~|尽快吧！"/>
+  <Enter/>
+</Scene>

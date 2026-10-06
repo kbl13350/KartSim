@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageButton name="eventButton" windowRect="0 150 60 210" alphaBlend="true">
+  <Label name="btnAlert" windowSize="20 21" align="right" adjust="-6 -6" frame="AlertLabel" text="#sb(alert)" textAlign="center" textRender="bold" textColor="white" enable="false" marginRect="0 -5 0 0"/>
+  <ImageButton name="mouseOver" windowRect="-5 60 67 81" autoLoadImage="overBox" alphaBlend="true">
+    <Label name="buttonText" windowRect="0 0 1 1" text="#sb(scenario)" textColor="black" autoSizing="true" align="center" enable="false"/>
+  </ImageButton>
+</ImageButton>

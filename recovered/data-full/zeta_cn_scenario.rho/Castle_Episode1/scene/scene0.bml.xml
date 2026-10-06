@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill2"/>
+  <Char id="mos" pos="3 0" emotion="stop1"/>
+  <Msg name="小强" string="那…路易在那！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="alma" pos="12 0" emotion="stop1"/>
+  <Msg name="路易" string="…"/>
+  <Enter/>
+  <Char id="alma" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞" string="路易一直都是悄悄的上学，悄悄的离开。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="12 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="对啊！路易到底是什么样的孩子呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop1"/>
+  <Msg name="蓝蓝" string="那么好奇的话直接去问问吧。"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="啊！！！这样也可以啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋…有时我因你而丢脸…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop6"/>
+  <Msg name="小强" string="那得抓紧时间了，路易已经消失了。"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="好！今天一定要查明路易的身份！"/>
+  <Enter/>
+</Scene>

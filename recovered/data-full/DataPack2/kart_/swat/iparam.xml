@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.2'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.06'
+	UseTransformBooster='true'
+	TransAccelFactor='1.62'
+
+	EnvMap='true'
+	BoosterBlur='true'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	EngineSound='cotton6'
+	
+	Port0='mod3a'
+	Port1='mod3b'
+	FirePort0='mod1a'
+	FirePort1='mod1b'
+	FirePort2='mod1c'
+
+
+	DescBalance= '36'
+	DescStability ='40'
+	DescEngineGrade='1'
+	DescCornering='4'
+	DescEnchantCap = '25'
+/>
+<!-- SWAT SR (대만) --> 

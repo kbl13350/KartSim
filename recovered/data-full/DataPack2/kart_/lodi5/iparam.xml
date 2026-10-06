@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+         SteerConstraint='2.3'
+         DriftEscapeForce='900'
+         CornerDrawFactor='0.072'
+         UseTransformBooster='true'
+
+         BoosterBlur='true'
+	     EngineSound='lodi4'
+         EnvMap='true'
+
+         BoosterType='cotton6'
+         BoosterType0='default'
+         BoosterType1='default'
+
+         Port0='mod1c1'
+         Port1='mod1c2'
+         FirePort0='mod1d1'
+         FirePort1='mod1d2'
+         FirePort2='mod1a1'
+         FirePort3='mod1a2'
+         FirePort4='mod1a3'
+         FirePort5='mod1a4'
+
+		 TachometerType='Tacho1'
+         TachometerName='pylon'
+
+		 		
+		DescBalance= '40'
+		DescStability ='30'
+		DescEngineGrade='1'
+		DescCornering='7'
+		DescEnchantCap = '25'
+
+/>

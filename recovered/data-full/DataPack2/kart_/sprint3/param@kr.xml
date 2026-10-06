@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='155.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.079'
+	SteerConstraint='2.3'
+	DriftEscapeForce='1400'
+	CornerDrawFactor='0.063'
+
+	EngineSound='cotton85'
+	antiCollideBalance='1.2'
+	
+	SlipBrakeForce='300'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.833'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '2.1'
+	StartBoosterTimeSpeed='1300'   
+
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-400'
+	DriftMaxGauge = '-700'
+	DriftGaguePreservePercent='0.4'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8main'
+	BoosterType4='8sub'
+    BoosterType5='8sub'
+
+	Port0='mod2b1'
+	Port1='mod2b1'
+
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+	FirePort2='mod2a3'
+	FirePort3='mod2a4'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+    BoostBlurColor='255 77 77 77'
+
+	secondColor='255 40 41 46'
+	secondHighColor='255 255 255 255'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '55'
+	DescStability ='44'
+	DescEngineGrade='1.25'
+	DescCornering='4'
+	DescEnchantCap = '25'
+	
+	defaultSocket='3'
+	addModelFolder='sprint3'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2b3' trailPort1='mod2b4'/>
+</BodyParam>
+
+<!-- 한국 뉴 스프린트 black 130822 그랑프리 보상  -->

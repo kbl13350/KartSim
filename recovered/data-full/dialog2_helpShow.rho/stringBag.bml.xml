@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="playTogether">
+    <m c="kr" v="같이하기"/>
+  </k>
+  <k n="stateBlock">
+    <m c="kr" v="차단중"/>
+    <m c="jp" v="ブロック中"/>
+    <m c="cn" v="被阻止"/>
+    <m c="tw" v="封鎖"/>
+    <m c="us" v="Blocked"/>
+    <m c="vn" v="Đang chặn"/>
+    <m c="ru" v="Заблокирован"/>
+    <m c="id" v="Block"/>
+    <m c="th" v="กำลังแบน"/>
+  </k>
+  <k n="stateKart">
+    <m c="kr" v="카트라이더중"/>
+    <m c="jp" v="カートライダー中"/>
+    <m c="cn" v="行驶中"/>
+    <m c="tw" v="行駛中"/>
+    <m c="us" v="Playing Kart"/>
+    <m c="vn" v="Online"/>
+    <m c="ru" v="Ожидает"/>
+    <m c="id" v="Sedang Berkart"/>
+    <m c="th" v="กำล้งเล่นเกมอยู่"/>
+  </k>
+  <k n="stateGame">
+    <m c="kr" v="게임중"/>
+    <m c="jp" v="ゲーム中"/>
+    <m c="cn" v="游戏中"/>
+    <m c="tw" v="遊戲中"/>
+    <m c="us" v="Playing Game"/>
+    <m c="vn" v="Online"/>
+    <m c="ru" v="В игре"/>
+    <m c="id" v="Sedang bermarin"/>
+    <m c="th" v="กำล้งเล่นเกมอยู่"/>
+  </k>
+  <k n="stateBusy">
+    <m c="kr" v="바쁨"/>
+    <m c="jp" v="取り込み中"/>
+    <m c="cn" v="忙碌"/>
+    <m c="tw" v="忙碌"/>
+    <m c="us" v="Busy"/>
+    <m c="vn" v="Bận"/>
+    <m c="ru" v="Занят"/>
+    <m c="id" v="Sibuk"/>
+    <m c="th" v="ยุ่ง"/>
+  </k>
+  <k n="stateAway">
+    <m c="kr" v="자리비움"/>
+    <m c="jp" v="退席中"/>
+    <m c="cn" v="马上回来"/>
+    <m c="tw" v="馬上回來"/>
+    <m c="us" v="Away"/>
+    <m c="vn" v="Rời khỏi"/>
+    <m c="ru" v="Отошел"/>
+    <m c="id" v="Sedang tidak ada"/>
+    <m c="th" v="ไม่อยู่"/>
+  </k>
+  <k n="stateRegWait">
+    <m c="kr" v="등록대기중"/>
+    <m c="jp" v="登録待機中"/>
+    <m c="cn" v="等待接受"/>
+    <m c="tw" v="等待接受"/>
+    <m c="us" v="Waiting"/>
+    <m c="vn" v="Đang đợi"/>
+    <m c="ru" v="Сделан запрос"/>
+    <m c="id" v="Proses daftar"/>
+    <m c="th" v="รอลงทะเบียน"/>
+  </k>
+  <k n="inviteMessage">
+    <m c="kr" v="%s 님께서 초대 메시지를 보내셨습니다."/>
+    <m c="jp" v="%sさんから招待メッセージが届きました。"/>
+    <m c="cn" v="%s发送了邀请信息"/>
+    <m c="tw" v="向%s 提出好友申請"/>
+    <m c="us" v="%s has sent you an invitation!"/>
+    <m c="vn" v="Đã gửi tin nhắn cho %s để thách thức đua."/>
+    <m c="ru" v="%s прислал приглашение."/>
+    <m c="id" v="Telah mengirim pesan undangan kepada %s"/>
+    <m c="th" v="ส่งข้อความเชิญแก่%sแล้ว"/>
+  </k>
+  <k n="sentInvite">
+    <m c="kr" v="초대 메시지를 보냈습니다."/>
+    <m c="jp" v="招待メッセージを送りました。"/>
+    <m c="cn" v="已发出邀请信息"/>
+    <m c="tw" v="已傳送申請訊息"/>
+    <m c="us" v="Your invitation has been sent!"/>
+    <m c="vn" v="Đã gửi tin nhắn."/>
+    <m c="ru" v="Приглашение отправлено."/>
+    <m c="id" v="Telah mengirim pesan undangan."/>
+    <m c="th" v="ส่งข้อความเชิญแล้ว"/>
+  </k>
+  <k n="doInvite">
+    <m c="kr" v="초대하기"/>
+    <m c="jp" v="招待する"/>
+    <m c="cn" v="邀请"/>
+    <m c="tw" v="邀請"/>
+    <m c="us" v="Invite"/>
+    <m c="vn" v="Mời"/>
+    <m c="ru" v="Пригласить"/>
+    <m c="id" v="Undang"/>
+    <m c="th" v="เชิญ"/>
+  </k>
+  <k n="notFriend">
+    <m c="kr" v="해당 라이더와 같이 할 수 없습니다."/>
+  </k>
+  <k n="failPlayTogether">
+    <m c="kr" v="같이하기 실패"/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="jp" v="確認"/>
+    <m c="cn" v="确定"/>
+    <m c="tw" v="確認"/>
+    <m c="us" v="Ok"/>
+    <m c="th" v="ยืนยัน"/>
+    <m c="vn" v="Ok"/>
+    <m c="ru" v="Принять"/>
+    <m c="id" v="Konfirmasi"/>
+  </k>
+  <k n="searchRiderTooltip">
+    <m c="kr" v="라이더 이름을 입력해주세요!!"/>
+  </k>
+  <k n="searchAndPTBtn">
+    <m c="kr" v="JOIN"/>
+  </k>
+</StringBag>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 
+	EventMenuManager.h,EventMenuManager.cpp에 해당 class가 작성되어 있어야 함.
+-->
+<eventMenu>
+<!--	<eventButton className='MyPlantEventBtn' labelText='플랜트' btnImg='mplant_@zz'/>-->
+	<eventButton className='TimeShopBtn' labelText='时间商店' btnImg='timeShop_0'/>
+	<eventButton className='LoveVillEventBtn' labelText='爱情村' btnImg='love_icon_0'/>
+	<eventButton className='RpsEventBtn' labelText='剪刀石头布' btnImg='event_jji_0'/>
+	<eventButton className='AttendEventBtn' labelText='迷你签到' btnImg='event_chulsuk_0'/>
+	<eventButton className='AttendEventSoloBtn' labelText='솔로출석체크' btnImg='event_single_0'/>
+	<eventButton className='AttendEventCoupleBtn' labelText='커플출석체크' btnImg='event_couple_0'/>
+	<eventButton className='PlayTimeRewardBtn' labelText='在线有礼' btnImg='event_time_0'/>
+	<eventButton className='JackPotEventBtn' labelText='天降财神' btnImg='event_lucky_0'/>
+	<eventButton className='LucciEventBtn' labelText='明日金币活动' btnImg='event_lucci_0'/>
+	<eventButton className='RpEventBtn' labelText='明日经验活动' btnImg='event_rpback_0'/>
+	<!-- <eventButton className='BlueMarbleEventBtn' labelText='刀剑大富翁' btnImg='main_boomhill_0'/> --> <!-- 붐힐마블 도검 -->
+	<eventButton className='BlueMarbleEventBtn' labelText='跑跑大富翁' btnImg='main_boomhill_0'/> <!-- 붐힐마블  -->
+	<!-- <eventButton className='BlueMarbleEventBtn' labelText='跑跑西游记' btnImg='main_boomhill_0'/> --><!--붐힐마블 서유기-->
+	<!-- <eventButton className='BlueMarbleEventBtn' labelText='跑跑大富翁' btnImg='main_boomhill_0'/> --><!--붐힐마블 트랜스포머-->
+	<!-- <eventButton className='BlueMarbleEventBtn' labelText='世界大富翁' btnImg='main_boomhill_0'/> --><!--붐힐마블 월드-->
+	<eventButton className='RelicInvestEventBtn' labelText='古迹探险' btnImg='treasure_0'/>
+	<eventButton className='BingoGachaEventBtn' labelText='幸运BINGO' btnImg='bingoGacha_0'/>
+	<eventButton className='BingoEventBtn' labelText='BINGO' btnImg='bingo_0'/>
+	<!--<eventButton className='PokoEventBtn' labelText='噗卡大作战' btnImg='main_archieve_0'/>-->
+	<!--<eventButton className='PokoEventBtn' labelText='噗卡大作战' btnImg='pokopoko_0'/>-->
+	<eventButton className='PokoEventBtn' labelText='迷你签到' btnImg='event_chulsuk_0'/>
+	<eventButton className='BuningSlotEventBtn' labelText='燃烧模式' btnImg='burn_0'/>
+	<eventButton className='LimitedGachaBtn' labelText='限量活动' btnImg='limitedGacha_0'/>
+	<eventButton className='ExchangeGuideEventBtn' labelText='合成' btnImg='합성유도_@zz'/>	<!-- 합성유도 -->
+	<eventButton className='MagicHatBtn' labelText='魔法帽' btnImg='마술모자_0'/>
+	<eventButton className='FishingEventBtn' labelText='钓鱼' btnImg='main_fish_0'/>
+	<eventButton className='SecretShopBtn' labelText='神秘商店' btnImg='비밀의상점_메인아이콘_0'/>	
+	<eventButton className='UpgradeGearBtn' labelText='升级齿轮' btnImg='main_upgradeGear_0'/>
+	<!--<eventButton className='UpgradeGearBtn' labelText='升级齿轮' btnImg='main_upgradeGearLucci_0'/> -->
+	<eventButton className='BlockCatchBtn' labelText='像素娃娃机' btnImg='main_blockcatch_0'/>
+	<eventButton className='VersusModeBtn' labelText='1vs1对战' btnImg='main_1vs1mode_0'/>
+	<eventButton className='HitPangPangBtn' labelText='消消乐' btnImg='hitPangPang_0'/>
+	<eventButton className='DuelMissionBtn' labelText='赛道对决' btnImg='event_trackVS_'/>
+	<eventButton className='SimulationGameBtn' labelText='车队经理人' btnImg='시뮬레이션모드_'/>
+	<eventButton className='TcCashEventBtn' labelText='累计活动' btnImg='event_chargePoint_0'/>
+	<eventButton className='TreasureHuntBtn' labelText='寻宝活动' btnImg='event_thg_0' wndName='TreasureHuntBtn'/>
+	<eventButton className='BoomhillExchangeBtn' labelText='繁荣兑换所' btnImg='event_exchange_0'/>
+	<eventButton className='PersonalShopBtn' labelText='雯雯幸运店' btnImg='event_personalShop_0'/>
+
+	<!-- MainMenuStage 재진입 시 미션출석체크 버튼 위치 재정렬되는 문제 임시 수정 -->
+	<eventButton className='MissionAttendBtn' labelText='签到任务' btnImg='event_missioncheck_0'/>	
+	<eventButton className='MissionAttendNRBtn' labelText='签到任务' btnImg='event_missioncheck_new_0'/>	
+</eventMenu>

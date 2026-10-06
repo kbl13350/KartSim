@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <TimeAttack isFixedKart="true" fixedKartId="1417" isFixedChar="true" fixedCharId="403">
+    <LevelContent level="0" track="forest_I02" laps="2" timeLimit="97000"/>
+  </TimeAttack>
+</Root>

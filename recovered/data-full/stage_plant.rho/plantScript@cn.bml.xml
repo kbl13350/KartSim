@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlModel>
+  <row npcChar="brodi" action="click,nearby" step="1" reactionAni="5" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="윙크" script="你好，我是神秘工头，想了解工厂车间，就问我吧。" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="2" reactionAni="1" reactionImage="브로디_기본" reactionSound="웃기" script="有没有看过一部叫工厂的男人的电视剧？那是我出演的。" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="3" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="你认识美美吗？她很漂亮……" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="4" reactionAni="2" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="화내기" script="R博士好像拿走我的钻孔机了" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="5" reactionAni="20" reactionImage="브로디_기본" reactionSound="잠잘때" script="zzZ… 嗯？zzz" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="1" reactionAni="2" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="벙찌기" script="啊……你好，我是神秘工头，想了解工厂车间，就问我吧。|你……长得很像我。" userChar="16" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="2" reactionAni="4" reactionImage="브로디_기본" reactionSound="화내기" script="你……你是谁……你为什么模仿我？" userChar="16" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="3" reactionAni="2" reactionImage="브로디_기본" reactionSound="벙찌기" script="我们之间肯定存在什么秘密……难道你是小时候被遗弃的！！" userChar="16" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="4" reactionAni="3" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="울기" script="呜呜……叫我声哥哥……" userChar="16" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="1" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="你……你好(满脸通红)，美美……嘿嘿，|有什么想知道的，就问我吧，什么都能告诉你……|你好漂亮……吱吱" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="2" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="有没有看过一部叫工厂的男人的电视剧？那是我出演的。" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="3" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="下次要不要一起去参观一下加速器工厂？" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="4" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="这是秘密……我好想喜欢上谁了。" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="5" reactionAni="3" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="울기" script="那个人什么时候才能接受我的爱呢……" userChar="32" buttonType="close"/>
+  <row npcChar="brodi" action="exchangeEnergy" step="1" script="消耗指定的能量，能获得选择的一种道具。|如果今天可兑换的次数用完就无法再继续兑换。|今天能兑换的次数会在每天06:00进行初始化。"/>
+  <row npcChar="brodi" action="changedTuningParts" reactionImage="브로디_측면" reactionImageFlip="true" step="1" script="祝贺你获得%n！装备到车上试试看。" buttonType="equipParts,close"/>
+  <row npcChar="brodi" action="askEnergy" step="1" reactionImage="브로디_측면" reactionImageFlip="true" script="能量可以通过点击能量生产机的开始生产按钮启动生产机获得，|每蓄满一格能量条就能获得一个能量。" buttonType="next"/>
+  <row npcChar="brodi" action="askEnergy" step="2" reactionImage="브로디_기본" script="收集10个以上的能量后，可以点击兑换按钮兑换强化车辆的部件。" buttonType="next"/>
+  <row npcChar="brodi" action="askEnergy" step="3" reactionImage="브로디_기본" script="能量生产机在右边，如果它是关闭着的，现在就启动它吧！|对了！结束游戏能量会全部消失，记得全部都兑换掉哦！" buttonType="genEnergy,close"/>
+  <row npcChar="brodi" action="askTuningParts" step="1" reactionImage="브로디_측면" reactionImageFlip="true" script="强化部件可以用能量来进行交换，把强化部件装备到车辆，车辆就会变得更强大。" buttonType="next"/>
+  <row npcChar="brodi" action="askTuningParts" step="2" reactionImage="브로디_기본" script="有强化部件吗？点击装备窗口进行装备吧，车辆会变得更强大的。" buttonType="equipParts,close"/>
+  <row npcChar="brodi" action="click,nearby" step="1" reactionAni="4" reactionImage="브로디_기본" reactionSound="화내기" script="R博士！！是你拿了我的钻孔机了吗？还给我！！|可是你为什么来找我？想知道什么？" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="2" reactionAni="4" reactionImage="브로디_기본" reactionSound="화내기" script="自从钻孔机消失！你是第一个来我工厂的！！" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="3" reactionAni="3" reactionImage="브로디_측면" reactionSound="울기" script="我的钻孔机…不会用的话会出大事的…" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="4" reactionAni="2" reactionImage="브로디_기본" reactionSound="벙찌기" script="那我的钻孔机到底是谁拿走的啊？" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="click,nearby" step="5" reactionAni="4" reactionImage="브로디_측면" reactionImageFlip="true" reactionSound="화내기" script="千万别被我抓到！！" userChar="12" buttonType="close"/>
+  <row npcChar="brodi" action="askNaiad" step="1" reactionAni="1" reactionImage="브로디_기본" reactionSound="웃기" script="혹시 나이아드의 사진을 가지고 있니?" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="2" reactionAni="1" reactionImage="브로디_기본" reactionSound="윙크" script="나이아드의 사진을 가지고 있다면 특별히 [스페셜] 항목을 선택 할 수 있게 해줄께!" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="3" reactionAni="1" reactionImage="브로디_기본" reactionSound="벙찌기" script="[스페셜] 항목으로 파츠를 교환하면 에너지 30개로|레어나 유니크 파츠 중 한 개를 받을 수 있어!" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="4" reactionAni="1" reactionImage="브로디_기본" reactionSound="벙찌기" script="나이아드의 사진은 이벤트나 퀘스트를 통해 얻을 수 있지만 자주 얻을 수 없어.|나이아드의 사진을 가지고 있다면 높은 등급의 파츠를 교환할 수 있는 기회를 놓치지 마~" buttonType="close"/>
+  <row npcChar="brodi" action="askNaiad" step="1" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="혹시... 네 사진 같은 거... 음... 그러니까 혹시... 가지고 있니?" userChar="32" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="2" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="사진... 보여주면... 특별히 [스페셜] 항목을 선택할 수 있게 해줄껩!!" userChar="32" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="3" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="[스페셜] 항목으로 파츠를 교환하면 에너지 30개로|레어나 유니크 파츠 중 한 개를 받을 수 있어!" userChar="32" buttonType="next"/>
+  <row npcChar="brodi" action="askNaiad" step="4" reactionAni="6" reactionImage="브로디_기본" reactionSound="사랑해" script="다른 친구들은 이벤트와 퀘스트로 너의 사진을 받은 적이 있다고 하던데...|사진을 보여주면 높은 등급의 파츠를 교환 할 수 있으니 기회를 놓치지 마~ 에헤..." userChar="32" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="1" reactionAni="1" reactionImage="모스_06" reactionSound="웃기" script="给我强化部件我就给你分解成金币和X-能量，|使用X-能量还可在部件商店中购买部件哦！" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="2" reactionAni="1" reactionImage="모스_07" reactionSound="웃기" script="X-能量只有分解强化部件才能获得哦！|先收集能量后制作强化部件吧！" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="3" reactionAni="1" reactionImage="모스_05" reactionSound="웃기" script="为了强化梦寐以求的卡丁车，必须要X-能量！|所以特别开设了部件商店。" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="4" reactionAni="1" reactionImage="모스_06" reactionSound="웃기" script="我非常喜欢强化卡丁车！|亲手掌管卡丁车部件时特别幸福~" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="1" reactionAni="1" reactionImage="모스_06" reactionSound="웃기" script="帮你把强化部件换成金币和X-能量吧！|用X-能量可以在部件商店里购买部件…| 可是你怎么和我长得一模一样呢？无所谓了~呵呵" userChar="7" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="2" reactionAni="1" reactionImage="모스_07" reactionSound="웃기" script="所谓实力并不仅仅是驾驶实力哦！|嗯…强化方面你也和我一样厉害吗？" userChar="7" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="3" reactionAni="1" reactionImage="모스_05" reactionSound="웃기" script="我们要不要一起协作，制作一辆完美的卡丁车呢？" userChar="7" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="4" reactionAni="1" reactionImage="모스_06" reactionSound="웃기" script="今天碰到了我的梦中情人，太开心了！" userChar="7" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="1" reactionAni="1" reactionImage="모스_06" reactionSound="웃기" script="帮你把强化部件换成金币和X-能量吧！|用X-能量可以在部件商店里买部件…|虽然你不怎么喜欢。" userChar="16" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="2" reactionAni="1" reactionImage="모스_07" reactionSound="웃기" script="我也具有可以制作更好部件的实力！|所以不要因为我只给你分解而生气！" userChar="16" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="3" reactionAni="1" reactionImage="모스_05" reactionSound="웃기" script="呼~与你不同，我每次都可以制作更好的部件！|当然~有点贵，呵呵" userChar="16" buttonType="close"/>
+  <row npcChar="mos" action="click,nearby" step="4" reactionAni="1" reactionImage="모스_06" reactionSound="웃기" script="以后我也想拥有这样的工厂~" userChar="16" buttonType="close"/>
+  <row npcChar="mos" action="partsDisassemble" step="1" reactionAni="2" reactionImage="모스_08" reactionSound="벙찌기" script="选择要分解的部件吧！|分解后就不能取消了，所以慎重点~"/>
+  <row npcChar="mos" action="partsDisassembleOK" step="1" reactionAni="1" reactionImage="모스_07" reactionSound="웃기" script="相信我吧！"/>
+  <row npcChar="mos" action="partsDisassembleResult" step="1" reactionAni="1" reactionImage="모스_07" reactionSound="웃기" script="看~怎么样？|获得的X-能量可以在部件商店里兑换强化部件哦！"/>
+  <row npcChar="mos" action="xEnergyExchangeOK" step="1" reactionAni="1" reactionImage="모스_03" reactionSound="웃기" script="正确的选择！|谢谢，请再度光临！"/>
+  <row npcChar="mos" action="xEnergyExchange" step="1" script="分解强化部件时可以获得X-能量。|游戏结束时X-能量不会清零。"/>
+</xmlModel>

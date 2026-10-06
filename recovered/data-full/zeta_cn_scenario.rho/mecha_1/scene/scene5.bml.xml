@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="真是的，葱头到底去哪儿了？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="700"/>
+  <Char id="mos" pos="6 0" emotion="stop3"/>
+  <Msg name="小强" string="（吱！）出大事了，|听说城镇受到机器人的攻击了！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="什么！刚刚那个黑色机器人吗？|这下麻烦了，该怎么办？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Msg name="黑妞" string="总之，我们先回城镇吧？|说不定葱头也正赶往城镇呢。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop4"/>
+  <Msg name="宝宝" string="是的，|葱头很聪明的，我们不用那么担心他。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="好吧，那我们就先回去吧！|走，出发了！"/>
+  <Enter/>
+</Scene>

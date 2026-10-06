@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextButton name="fillFriendList" windowRect="0 0 155 20" frame="SelectBtn" text=" " stringPos="2 3" textAlign="vcenter" textRender="bold16" textColor="255 88 105 129"/>

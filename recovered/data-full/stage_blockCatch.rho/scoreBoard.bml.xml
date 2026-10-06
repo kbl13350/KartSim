@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageBoard name="timerSection" leftTopWH="0 0 1400 89" image="barTop@zz" alphaBlend="true" alphaTest="true" enable="true" visible="true" depthBias="50" align="hcenter">
+  <CharPanel name="secTimer" leftTopWH="140 22 17 24" texture="남은시간_01" alphaBlend="true" fontSize="17 24" spaceOffset="1" fontStr="1234567890" text="60" speedTick="10" enable="true" visible="true" depthBias="50" rightAlign="true"/>
+  <CharPanel name="curScore" leftTopWH="740 40 28 37" align="hcenter" texture="현재점수" alphaBlend="true" fontSize="28 37" spaceOffset="1" fontStr="1234567890" text="0000" speedTick="5" enable="true" visible="true" centerAlign="true"/>
+  <CharPanel name="catchedDiamond" leftTopWH="990 24 11 16" texture="블록개수_한칸에11px" alphaBlend="true" fontSize="11 16" spaceOffset="1" fontStr="1234567890" text="00" speedTick="10" enable="true" visible="true" rightAlign="true"/>
+  <CharPanel name="catchedGold" leftTopWH="1075 24 11 16" texture="블록개수_한칸에11px" alphaBlend="true" fontSize="11 16" spaceOffset="1" fontStr="1234567890" text="00" speedTick="10" enable="true" visible="true" rightAlign="true"/>
+  <CharPanel name="catchedSilver" leftTopWH="1156 24 11 16" texture="블록개수_한칸에11px" alphaBlend="true" fontSize="11 16" spaceOffset="1" fontStr="1234567890" text="00" speedTick="10" enable="true" visible="true" rightAlign="true"/>
+  <CharPanel name="catchedBronze" leftTopWH="1238 24 11 16" texture="블록개수_한칸에11px" alphaBlend="true" fontSize="11 16" spaceOffset="1" fontStr="1234567890" text="00" speedTick="10" enable="true" visible="true" rightAlign="true"/>
+  <CharPanel name="catchedFail" leftTopWH="1321 24 11 16" texture="블록개수_한칸에11px" alphaBlend="true" fontSize="11 16" spaceOffset="1" fontStr="1234567890" text="00" speedTick="10" enable="true" visible="true" rightAlign="true"/>
+</ImageBoard>

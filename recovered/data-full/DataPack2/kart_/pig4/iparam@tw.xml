@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.15'
+	DriftEscapeForce='500'
+	CornerDrawFactor='0.065'
+	TransAccelFactor='1.62'
+
+	BoosterBlur='true'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	UseTransformBooster='true'
+
+	EngineSound='cotton6'
+
+	Port0='mod3a'
+	Port1='mod3b'
+	FirePort0='mod4a'
+	FirePort1='mod4b'
+	FirePort2='mod6a'
+	FirePort3='mod6b'
+
+	SpecialSlotCapacity='2'
+/>
+<!-- 대만 황금 복돼지 카트 SR 20110121 춘절 한정판 업그레이드-->

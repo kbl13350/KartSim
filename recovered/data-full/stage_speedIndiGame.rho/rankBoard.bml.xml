@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="rankboard" leftTopWH="0 0 229 80" align="vcenter" adjust="0 -200">
+  <CharPanel name="myrank" leftTopWH="24 2 64 80" texture="big_num" alphaBlend="true" fontSize="64 80" fontStr="0123456789" text="1" fontPos="0 0" allowVertical="true"/>
+  <CharPanel name="st" leftTopWH="83 2 40 28" texture="st" alphaBlend="true" fontSize="40 28" fontStr="1230" fontPos="0 0" text="0" align="bottom"/>
+  <Panel leftTopTex="115 20" texture="diagonal" alphaBlend="true" align="bottom" adjust="0 2"/>
+  <CharPanel name="riderCount" leftTopWH="135 21 26 34" texture="small_num" alphaBlend="true" fontSize="26 34" fontStr="0123456789" fontPos="0 0" text="8" spaceOffset="0" align="bottom"/>
+  <RankList name="ranklist" leftTopWH="0 100 229 462"/>
+</Window>

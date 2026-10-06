@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='60.0'
+	BackwardAccelForce='75.0'
+	DragFactor='-0.025'
+	SteerConstraint='0.875'
+	DriftEscapeForce='120'
+	CornerDrawFactor='0.023'
+
+	DescCornering='3'
+	DescEnchantCap = '20'
+
+/>

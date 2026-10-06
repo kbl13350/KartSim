@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Career>
+	<CareerItem  id ='1'	achievementList='0,15,1,3'/>
+	<CareerItem  id ='2'	achievementList='2,5,6,7,8,9,10,11,12,13,14,16,17,18'/>
+	<CareerItem  id ='3'		/>
+	<CareerItem  id ='4'		/>
+	<CareerItem  id ='5'		/>
+	<CareerItem  id ='6'		/>
+	<CareerItem  id ='12'		rewardStockId='2512'	/>	<!-- Career LevelⅠ	Career Level 1 풍선 100개 -->           
+	<CareerItem  id ='13'		rewardEmblemId='8366'/>	<!-- Career Level Ⅱ	Career Level Ⅱ 엠블럼 -->     
+	<CareerItem  id ='14'		rewardEmblemId='8367'/>	<!-- Career Level Ⅲ	Career Level Ⅲ 엠블럼 -->     
+	<CareerItem  id ='15'		rewardEmblemId='8368'/>	<!-- Career Level Ⅳ	Career Level Ⅳ 엠블럼 -->     
+	<CareerItem  id ='16'		/>
+	<CareerItem  id ='17'		/>
+	<CareerItem  id ='18'		/>
+	<CareerItem  id ='21'		/>
+	<CareerItem  id ='22'		/>
+	<CareerItem  id ='23'		/>
+	<CareerItem  id ='24'		/>
+	<CareerItem  id ='31'		/>
+	<CareerItem  id ='32'		/>
+	<CareerItem  id ='33'		/>
+	<CareerItem  id ='34'		preClearCareerId='32'/>
+	<CareerItem  id ='35'		rewardStockId='2511'/>	<!-- 챔피언스 레전드 라이더	챔피언스 레전드 풍선 100개 -->
+	<CareerItem  id ='37'		 />
+	<CareerItem  id ='38'		 />
+	<CareerItem  id ='39'		 />
+	<CareerItem  id ='40'		 />
+	<CareerItem  id ='41'		  rewardStockId='311'/>	
+
+	<CareerItem  id ='52'		/>
+	<CareerItem  id ='53'		/>
+	<CareerItem  id ='57'		/>
+	<CareerItem  id ='58'		/>
+	<CareerItem  id ='62'		/>
+	<CareerItem  id ='63'		/>
+	<CareerItem  id ='67'		/>
+	<CareerItem  id ='68'		/>
+	<CareerItem  id ='72'		/>
+	<CareerItem  id ='73'		/>
+	<CareerItem  id ='77'		/>
+	<CareerItem  id ='78'		/>
+	<CareerItem  id ='82'		/>
+	<CareerItem  id ='83'		/>
+	<CareerItem  id ='87'		/>
+	<CareerItem  id ='88'		/>
+	<CareerItem  id ='92'		/>
+	<CareerItem  id ='93'		 />
+	<CareerItem  id ='94'		rewardStockId='2605' />	<!-- 판타리니 가이드 3	판타리니 테마 풍선 100개 -->
+	<CareerItem  id ='95'		/>
+	<CareerItem  id ='96'		/>
+	<CareerItem  id ='97'		rewardStockId='2606' />	<!-- 대저택 집사 입용고시 3		대저택 테마 풍선 100개 --> 
+	<CareerItem  id ='98'		/>
+	<CareerItem  id ='99'		/>
+	<CareerItem  id ='100'		rewardStockId='2607' />	<!-- 황금문명의 탐험가 3	황금문명 테마 풍선 100개 -->      
+	<CareerItem  id ='101'		/>
+	<CareerItem  id ='102'		/>
+	<CareerItem  id ='103'		rewardStockId='2608' />	<!-- 해적 토벌작전 3	해적 테마 풍선 100개 -->                    
+	<CareerItem  id ='104'		/>
+	<CareerItem  id ='105'		/>
+	<CareerItem  id ='106'		rewardStockId='2609' />	<!-- 팩토리 공장장 3	팩토리 테마 풍선 100개 -->                 
+	<CareerItem  id ='107'		/>
+	<CareerItem  id ='108'		/>
+	<CareerItem  id ='109'		rewardStockId='2610' />	<!-- 노르테유 히치하이커 3	노르테유 테마 풍선 100개 -->      
+	<CareerItem  id ='110'		/>
+	<CareerItem  id ='111'		/>
+	<CareerItem  id ='112'		rewardStockId='2611' />	<!-- 보석 세공사 3	광산 테마 풍선 100개 -->                    
+	<CareerItem  id ='113'		/>
+	<CareerItem  id ='114'		/>
+	<CareerItem  id ='115'		rewardStockId='2612' />	<!-- 공동묘지 묘지기 3	공동묘지 테마 풍선 100개 -->              
+	<CareerItem  id ='116'		/>
+	<CareerItem  id ='117'		/>
+	<CareerItem  id ='118'		rewardStockId='2613' />	<!-- 붐힐마을 자경대 3	빌리지 테마 풍선 100개 -->                 
+	<CareerItem  id ='119'		/>
+	<CareerItem  id ='120'		/>
+	<CareerItem  id ='121'		rewardStockId='2614' />	<!-- 플루피 숲 나무꾼 3	플루피 숲 테마 풍선 100개 -->     
+	<CareerItem  id ='122'		/>
+	<CareerItem  id ='123'		/>
+	<CareerItem  id ='124'		rewardStockId='2615' />	<!-- 사막의 유랑가 3	사막 테마 풍선 100개 -->                    
+	<CareerItem  id ='125'		/>
+	<CareerItem  id ='126'		/>
+	<CareerItem  id ='127'		rewardStockId='2616' />	<!-- 아이스리온 에스키모 3	아이스리온 테마 풍선 100개 -->   
+	<CareerItem  id ='128'		/>
+	<CareerItem  id ='129'		/>
+	<CareerItem  id ='130'		rewardStockId='2617' />	<!-- 문힐시티의 히어로 3	문힐시티 테마 풍선 100개 -->      
+	<CareerItem  id ='131'		/>
+	<CareerItem  id ='132'		/>
+	<CareerItem  id ='133'		rewardStockId='2618' />	<!-- 동화속 공주 3	프레티온 테마 풍선 100개 -->              
+	<CareerItem  id ='134'		rewardStockId='2619' />	<!-- 테마 주행자	테마 풍선 100개 -->                                   
+	<CareerItem  id ='135'		/>
+	<CareerItem  id ='136'		/>
+	<CareerItem  id ='137'		rewardStockId='2620' />	<!-- 양손잡이	손바닥 전자파밴드 50개 -->             
+	<CareerItem  id ='168'		/>
+	<CareerItem  id ='169'		/>
+	<CareerItem  id ='170'		/>
+	<CareerItem  id ='171'		/>
+	<CareerItem  id ='172'		/>
+	<CareerItem  id ='173'		/>
+	<CareerItem  id ='174'		/>
+	<CareerItem  id ='175'		/>
+	<CareerItem  id ='176'		/>
+	<CareerItem  id ='177'		/>
+	<CareerItem  id ='178'		/>
+	<CareerItem  id ='179'		/>
+	<CareerItem  id ='180'		/>
+	<CareerItem  id ='181'		/>
+	<CareerItem  id ='182'		/>
+	<CareerItem  id ='183'		/>
+	<CareerItem  id ='184'		/>
+	<CareerItem  id ='185'		/>
+	<CareerItem  id ='186'		/>
+	<CareerItem  id ='187'		/>
+	<CareerItem  id ='188'		/>
+	<CareerItem  id ='189'			rewardEmblemId='8364'/>	<!-- 아이템 박물관	아이템 박물관 엠블럼 -->
+	<CareerItem  id ='190'		/>
+	<CareerItem  id ='191'		/>
+	<CareerItem  id ='192'		/>
+	<CareerItem  id ='193'		/>
+	<CareerItem  id ='194'		/>
+	<CareerItem  id ='196'		/>
+	<CareerItem  id ='197'		/>
+	<CareerItem  id ='201'			rewardEmblemId='8365'/>	<!-- 밥먹고 카트만	죽돌이 엠블럼 -->
+	<CareerItem  id ='247'		/>
+	<CareerItem  id ='248'		/>	
+	<CareerItem  id ='249'		/>
+	<CareerItem  id ='250'		/>
+	<CareerItem  id ='257'		/>
+	<CareerItem  id ='258'		/>
+	<CareerItem  id ='259'		/>
+	<CareerItem  id ='260'		/>
+	<CareerItem  id ='261'		achievementCount='110000'/>
+	<CareerItem  id ='267'		/>
+
+	<CareerItem  id ='7' />
+	<CareerItem  id ='138' />
+	<CareerItem  id ='139' />
+	<CareerItem  id ='140' />
+	<CareerItem  id ='141' />
+	<CareerItem  id ='142' />
+	<CareerItem  id ='143' />
+	<CareerItem  id ='144' />
+	<CareerItem  id ='145' />
+	<CareerItem  id ='146' />
+	<CareerItem  id ='147' />
+	<CareerItem  id ='148' />
+	<CareerItem  id ='149' />
+	<CareerItem  id ='150' />
+	<CareerItem  id ='151' />
+	<CareerItem  id ='152' />
+	<CareerItem  id ='153' />
+	<CareerItem  id ='154' />
+	<CareerItem  id ='155' />
+	<CareerItem  id ='156' />
+	<CareerItem  id ='157' />
+	<CareerItem  id ='158' />
+	<CareerItem  id ='159' />
+	<CareerItem  id ='160' />
+	<CareerItem  id ='161' />
+	<CareerItem  id ='162' />
+	<CareerItem  id ='163' />
+	<CareerItem  id ='164' />
+	<CareerItem  id ='165' />
+	<CareerItem  id ='166' />
+	<CareerItem  id ='167' />
+	<CareerItem  id ='206' isNew='1' />
+	<CareerItem  id ='207' isNew='1' />
+	<CareerItem  id ='208' isNew='1' />
+	<CareerItem  id ='209' isNew='1' />
+	<CareerItem  id ='210' isNew='1' />
+	<CareerItem  id ='211' isNew='1' />
+	<CareerItem  id ='212' isNew='1' />
+	<CareerItem  id ='213' isNew='1' rewardStockId='4421'/>
+	<CareerItem  id ='214' />
+	<CareerItem  id ='215'  achievementCount='118000'/>
+	<CareerItem  id ='216'  achievementCount='113000'/>
+	<CareerItem  id ='217'  achievementCount='180000'/>
+	<CareerItem  id ='218'  achievementCount='158000'/>
+	<CareerItem  id ='219'  achievementCount='148000'/>
+	<CareerItem  id ='220'  achievementCount='160000'/>
+	<CareerItem  id ='221'  achievementCount='145000'/>
+	<CareerItem  id ='222'  achievementCount='135000'/>
+	<CareerItem  id ='223'  achievementCount='175000'/>
+	<CareerItem  id ='224'  achievementCount='159000'/>
+	<CareerItem  id ='225'  achievementCount='148000'/>
+	<CareerItem  id ='226'  achievementCount='115000'/>
+	<CareerItem  id ='227'  achievementCount='96000'/>
+	<CareerItem  id ='228'  achievementCount='85000'/>
+	<CareerItem  id ='229'  achievementCount='145000'/>
+	<CareerItem  id ='230'  achievementCount='134000'/>
+	<CareerItem  id ='231'  achievementCount='125000'/>
+	<CareerItem  id ='232'  achievementCount='175000'/>
+	<CareerItem  id ='233'  achievementCount='151000'/>
+	<CareerItem  id ='234'  achievementCount='140000'/>
+	<CareerItem  id ='235'  achievementCount='125000'/>
+	<CareerItem  id ='236'  achievementCount='114000'/>
+	<CareerItem  id ='237'  achievementCount='105000'/>
+	<CareerItem  id ='238'  achievementCount='173000'/>
+	<CareerItem  id ='239'  achievementCount='138000'/>
+	<CareerItem  id ='240'  achievementCount='122000'/>
+	<CareerItem  id ='241'  achievementCount='145000'/>
+	<CareerItem  id ='242'  achievementCount='134000'/>
+	<CareerItem  id ='243'  achievementCount='121000'/>
+	<CareerItem  id ='244'  achievementCount='155000'/>
+	<CareerItem  id ='245'  achievementCount='138000'/>
+	<CareerItem  id ='246'  achievementCount='127000'/>
+
+	<CareerItem  id ='254'  isNew='1' />
+	<CareerItem  id ='255'  isNew='1' />
+	<CareerItem  id ='256'  isNew='1' />
+
+
+	<CareerItem  id ='277'		 />
+	<CareerItem  id ='278'		 />
+	<CareerItem  id ='279'		  rewardStockId='3861'/>
+	<CareerItem  id ='280'		/>
+	<CareerItem  id ='281'		/>
+	<CareerItem  id ='282'		 rewardStockId='3862'/>
+
+	<CareerItem  id ='39'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='40'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='41'  rewardStockId='1904' eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='54'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='55'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='56'  rewardStockId='1595'/>
+	<CareerItem  id ='59'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='60'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='61'  rewardStockId='1890' eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='64'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='65'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='66'  rewardStockId='1941' eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='69'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='70'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='71'  rewardStockId='2886' eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='74'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='75'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='76'  rewardStockId='413' eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='79'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='80'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='81'  rewardStockId='2014' eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='84'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='85'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='86'  rewardStockId='254' eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='89'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='90'  eventDateTime='2011-08-12~*'/>
+	<CareerItem  id ='91'  rewardStockId='482' eventDateTime='2011-08-12~*'/>
+
+	<CareerItem  id ='293'		isNew='1' rewardStockId='6881'/>
+	<CareerItem  id ='294'		isNew='1' rewardStockId='6881'/>
+	<CareerItem  id ='295'		isNew='1' rewardStockId='6881'/>
+</Career> 

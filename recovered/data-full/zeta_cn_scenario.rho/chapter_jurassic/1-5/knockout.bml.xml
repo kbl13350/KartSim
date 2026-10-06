@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="1"/>
+  <KnockOut track="moonhill_I01" laps="3" isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2" type="lap">
+    <LevelContent level="0" ksv="Jurassic_1-5">
+      <ShadowKart characterId="3" uniformId="0" kartId="846" colorId="2" dyeId="2" characterName="黑妞"/>
+      <ShadowKart characterId="1" uniformId="0" kartId="796" colorId="1" dyeId="1" characterName="宝宝"/>
+      <ShadowKart characterId="20" uniformId="0" kartId="764" colorId="11" dyeId="11" characterName="尼欧"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

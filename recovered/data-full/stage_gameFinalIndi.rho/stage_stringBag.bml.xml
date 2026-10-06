@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="warnResultAtNoviceChannel0">
+    <m c="kr" v="-- 초보채널은 나오지 않습니다 --"/>
+    <m c="jp" v="-- 初心者チャンネルは出ません --"/>
+    <m c="cn" v="-- 新手驾驶执照中不增加经验 --"/>
+    <m c="tw" v="新手駕駛執照中不會增加經驗值"/>
+    <m c="us" v=" -- Race Points and Lucci are not available at the Beginner&apos;s channel --"/>
+    <m c="vn" v="Cấp độ không phù hợp"/>
+    <m c="ru" v="-- Канал для новичков недоступен --"/>
+    <m c="id" v="-- Channel Newbie tidak muncul --"/>
+    <m c="th" v="Channel มือใหม่ไม่ปรากฏ"/>
+  </k>
+  <k n="warnResultAtNoviceChannel1">
+    <m c="kr" v="-- 루키 라이센스에 도전하세요 --"/>
+    <m c="jp" v="-- ルーキーライセンスに挑戦してください。 --"/>
+    <m c="cn" v="-- 请您挑战初级驾驶执照！ --"/>
+    <m c="tw" v="請您挑戰初級駕駛執照！"/>
+    <m c="us" v=" -- Go for the Rookie license! --"/>
+    <m c="vn" v="Hãy tham gia kênh Tay Đua Trẻ"/>
+    <m c="ru" v="-- Попробуйте получить права для новобранца --"/>
+    <m c="id" v="-- Challenge Lisensi Rookie --"/>
+    <m c="th" v="ลองทำใบขับขี่ Rookie ดูสิ"/>
+  </k>
+  <k n="bigTrackQuestComplete">
+    <m c="kr" v="님이 퀘스트를 완료했습니다"/>
+    <m c="jp" v="さんがクエストを完了しました。"/>
+    <m c="cn" v="完成任务"/>
+    <m c="tw" v="已經完成任務"/>
+    <m c="us" v="has completed the quest. You will be taken to bonus track."/>
+    <m c="vn" v="Hoàn thành nhiệm vụ giải thưởng lớn"/>
+    <m c="ru" v="выполнил квест"/>
+    <m c="id" v="telah menyelesaikan Quest"/>
+    <m c="th" v="ทำเควสสำเร็จแล้ว"/>
+  </k>
+</StringBag>

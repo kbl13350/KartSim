@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="world_R04" laps="3" isFixedKart="true" fixedKartId="1112" isFixedChar="true" fixedCharId="262" type="rank">
+    <LevelContent level="0" ksv="1-9" startOffset="2000">
+      <ShadowKart characterId="2" uniformId="0" kartId="1107" colorId="6" dyeId="6" characterName="皮蛋"/>
+      <ShadowKart characterId="260" uniformId="0" kartId="1122" colorId="27" dyeId="27" characterName="托尔"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

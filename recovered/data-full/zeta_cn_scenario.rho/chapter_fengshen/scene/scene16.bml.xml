@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china20"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="Zhou" pos="11 0" emotion="normal"/>
+  <Msg name="妲己" string="现在能认出臣妾了吗？！"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="Zhou" pos="11 0" emotion="stop2"/>
+  <Msg name="纣王" string="我真是被骗了，对不起。"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" pos="4 0" emotion="stop3"/>
+  <Char id="Zhou" pos="11 0" emotion="stop2"/>
+  <Msg name="妲己" string="你这家伙！！竟敢冒充皇后，你到底是什么人？"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="pung" pos="8 0" emotion="normal"/>
+  <Msg name="杨戬" string="（碰！）"/>
+  <Enter/>
+  <Char id="pung" remove="true"/>
+  <Char id="Yangjian" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="杨戬" string="哈哈！我是杨戬。"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Yangjian" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="杨戬" string="乱世妖怪妲己，我是从仙界来抓你的道士！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Zhou" pos="10 0" emotion="stop3"/>
+  <Char id="Daji" pos="4 0" emotion="normal"/>
+  <Msg name="纣王" string="妖怪？仙界？道士？|可真能编！"/>
+  <Enter/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" pos="10 0" emotion="stop3"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop5"/>
+  <Msg name="妲己" string="没错。他这是为了逃避治罪而胡言乱语呢！"/>
+  <Enter/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Zhou" pos="10 0" emotion="stop3"/>
+  <Char id="Daji" pos="4 0" emotion="stop3"/>
+  <Msg name="妲己" string="来人呐！把那家伙给我抓起来……"/>
+  <Enter/>
+  <Char id="Zhou" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Yangjian" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="杨戬" string="（总不能伤害无辜的凡人吧。这种时候就要~）"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Yangjian" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="杨戬" string="给大家展示一下我的实力！|看我杨戬的第36个道术！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Yangjian" pos="3 0" emotion="stop4"/>
+  <Msg name="杨戬" string="走为上计！"/>
+  <Enter/>
+  <Char id="Yangjian" remove="true"/>
+  <Char id="Daji" pos="7 0" emotion="stop3"/>
+  <Msg name="妲己" string="？？？你这家伙？！我不会让你轻松跑掉的！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.077'
+	SteerConstraint='2.6'
+	DriftEscapeForce='1100'
+	CornerDrawFactor='0.074'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	UseTransformBooster='true'
+	TransAccelFactor ='1.7'
+	TransformTime='650'    
+
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-350'
+	DriftMaxGauge = '-400'
+
+	StartBoosterTimeSpeed='1200'           
+	StartForwardAccelFactorSpeed = '1.25'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zerosub'
+	BoosterType0='zerosub'
+	BoosterType1='zerosub'
+	BoosterType2='zeroplus'
+	BoosterType3='zeroplus'
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1b1'
+	FirePort1='mod1b2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 246 0'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '43'
+	DescStability ='45'
+	DescEngineGrade='1.2'
+	DescCornering='4'
+	DescEnchantCap = '25'
+
+>
+</BodyParam> 
+
+<!--중국 백룡 Z7+ 상시 판매용 121108-->

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CatList>
+	<Category itemCat='character'		enableCat='itemCatCharacter'/>
+	<Category itemCat='color'			enableCat='itemCatPaint'/>
+	<Category itemCat='kart'			enableCat='itemCatKart'/>
+	<Category itemCat='plate'			enableCat='itemCatPlate'/>
+	<Category itemCat='tempLicense'		enableCat='itemCatLicense'/>
+	<Category itemCat='slotChanger'		enableCat='itemCatSlotChanger'/>
+	<Category itemCat='goggle'			enableCat='itemCatGoggle'/>
+	<Category itemCat='balloon'			enableCat='itemCatBalloon'/>
+	<Category itemCat='superBoss'		enableCat='itemCatSuperBoss'/>
+	<Category itemCat='headBand'		enableCat='itemCatHeadBand'/>
+	<Category itemCat='headPhone'		enableCat='itemCatHeadPhone'/>
+	<Category itemCat='ticket'			enableCat=''/>
+	<Category itemCat='upgradeKit'		enableCat=''/>
+	<Category itemCat='jewel'			enableCat=''/>
+	<Category itemCat='handGearL'		enableCat='itemCatHandGearL'/>
+	<Category itemCat='handGearR'		enableCat='itemCatHandGearR'/>
+	<Category itemCat='uniform'			enableCat='itemCatUniform'/>
+	<Category itemCat='decal'			enableCat='itemCatDecal'/>
+	<Category itemCat='pet'				enableCat='itemCatPet'/>
+	<Category itemCat='initialCard'		enableCat=''/>
+	<Category itemCat='card'			enableCat=''/>
+	<Category itemCat='lottery'			enableCat=''/>
+	<Category itemCat='questkey'		enableCat=''/>
+	<Category itemCat='aura'			enableCat='itemCatAura'/>
+	<Category itemCat='skidMark'		enableCat='itemCatSkidMark'/>
+	<Category itemCat='roomCard'		enableCat='itemCatMyRoom'/>
+	<Category itemCat='lucciItem'		enableCat=''/>
+	<Category itemCat='specialKit'		enableCat='itemCatSpecialKit'/>
+	<Category itemCat='ridColor'		enableCat='itemCatRidColor'/>
+	<Category itemCat='rpLucciBonus'	enableCat='itemCatRpLucciBonus'/>
+	<Category itemCat='attendRestore'	enableCat='itemCatAttendRestore'/>
+	<Category itemCat='material'	enableCat=''/>
+	<Category itemCat='extend'		enableCat=''/>
+</CatList>
+
+
+<!-- enableCat=L"" 이면 무조건 true -->

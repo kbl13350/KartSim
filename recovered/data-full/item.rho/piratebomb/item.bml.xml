@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="piratebomb">
+  <state name="Use" life="1500" item="폭탄_등장" itemFx="해적팀_등장"/>
+  <state name="Set" life="1500" item="폭탄_진행중" itemFx="해적팀_진행중"/>
+  <state name="Affect" life="1500" fired="폭탄_터짐" firedFx="해적팀_터짐"/>
+  <state name="EscapeAffect" life="3000" item="폭탄_방어" itemFx="해적팀_방어"/>
+  <state name="SpecialShield" life="2000" itemFx="해적팀_방어"/>
+</item>

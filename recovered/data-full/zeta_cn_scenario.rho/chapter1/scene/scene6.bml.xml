@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="des3"/>
+  <Bgm theme="desert" file="desert_02"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞" string="哇！好帅，皮蛋！"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="normal"/>
+  <Msg name="皮蛋" string="呼……真是辛苦的对决。."/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="胖墩" string="你是叫皮蛋吗？刚才说了无理的话，真是抱歉。|拿着，这个是我的热狗。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="不用。不给我也可以的。|能够和胖墩你一起进行赛车，我已经充分享受过了。"/>
+  <Enter/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="胖墩" string="啊？真的？|你真是善良的车手！|让我们重新认识一下。以后成为好朋友吧~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop4"/>
+  <Char id="dao" pos="2 0" emotion="stop4"/>
+  <Char id="kephi" pos="13 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋/黑妞/胖墩" string="哈哈哈！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="胖墩" string="但是啊，皮蛋你的车子到处都是撞坏的地方，|看来需要好好修理一番了。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="normal"/>
+  <Msg name="皮蛋" string="嗯？ 我开车子太不小心了……|不过，我确实也觉得该修理一下了。"/>
+  <Enter/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="胖墩" string="真的吗？那样的话，让小强修理一下如何？"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="小强？小强是谁？"/>
+  <Enter/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="繁荣山丘最厉害的维修师小强，你也不知道吗？|是专门修理赛车的一个朋友，赛车方面的知识比谁都多，|怎么样？要不要拜托小强修理赛车呢？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="我也听说过小强的。|既可以拜托他修理车子，也是个能够更多了解赛车的机会。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="繁荣山丘最厉害的赛车维修师小强！|好的！现在马上出发去找小强~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <BackGround texture="for4"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="胖墩" string="就是这里了！小强的赛车维修所！"/>
+  <Enter/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞" string="那个小个子车手似乎就是小强了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="normal"/>
+  <Msg name="胖墩" string="你好！小强！好久不见。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="哇~ 也没多久啊。胖墩！大赛准备的如何？"/>
+  <Enter/>
+  <Char id="kephi" pos="3 0" emotion="stop1"/>
+  <Msg name="胖墩" string="嗯~ 就那样，今天和朋友一起来了。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop4"/>
+  <Char id="dao" pos="2 0" emotion="stop4"/>
+  <Msg name="皮蛋/黑妞" string="你好~！"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="你好~ 我叫小强。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="我叫皮蛋！|听说你是繁荣山丘最厉害的维修师！"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="什么最强啊……|不过，找我有什么事情吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop2"/>
+  <Msg name="胖墩" string="皮蛋的车子有很多地方撞坏了，所以想拜托你修理下。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="小强" string="嗯……我来看看……|额，开车似乎横冲直撞的。|要修理的地方不是一个两个。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="从胖墩那里听到不少关于你的事。 |他说你知道非常多关于车子的知识。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="我非常喜欢修理和改造车子。|所以自然而然的就了解车子了。|也谈不上什么很厉害的程度。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="不用谦虚。|你能把你关于车子的知识告诉我吗？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋啊，初次见面，怎么能提那么无理的要求。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="小强" string="非常坚定的要求嘛！|很好，我喜欢你这种自信，我尽量教你。|不过呢，这里也有一个条件。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="啊哈！|真的？什么条件？|不管是什么，尽管说吧！"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="呼呼。那么首先在我规定的时间内，完成这个森林赛道吧。|有自信的吧？"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="好！ 就这样！|好好看着，现在马上开始~！"/>
+  <Enter/>
+</Scene>

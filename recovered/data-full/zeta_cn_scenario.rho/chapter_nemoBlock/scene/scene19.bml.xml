@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Nemo11"/>
+  <Char id="medea" pos="8 0" emotion="stop1"/>
+  <Msg name="麦迪娅" string="什么？|次元之门！！"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="medea" pos="8 0" emotion="stop1"/>
+  <Msg name="麦迪娅" string="卡洛儿这家伙，怎么现在才说~"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="medea" pos="8 0" emotion="stop1"/>
+  <Msg name="麦迪娅" string="有很多陷阱~那我就跟着他们吧~"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="你们在哪呢？"/>
+  <Enter/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="皮蛋~~在这里^^"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="normal"/>
+  <Msg name="皮蛋" string="你们都准备好了吗？|我们现在就回去吧~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="可是…宝宝呢？"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="nemodao" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="刚刚还在这里的…？？"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemodao" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞" string="宝宝~~~你在哪啊？？"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="1 0" flip="true" emotion="stop1"/>
+  <Char id="nemodao" pos="12 0" emotion="normal"/>
+  <Msg name="宝宝" string="我在这儿！！！|一想到可以回到原来的样子…|紧张的肚子疼…"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="1 0" flip="true" emotion="stop1"/>
+  <Char id="nemodao" pos="12 0" emotion="normal"/>
+  <Msg name="皮蛋" string="哈哈哈哈~|都到齐了就出发吧！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="nemodizini" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="1 0" flip="true" emotion="stop1"/>
+  <Char id="nemodao" pos="12 0" emotion="normal"/>
+  <Msg name="黑妞/宝宝" string="嗯嗯~~好想快点回去！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="medea" pos="8 0" emotion="stop1"/>
+  <Msg name="麦迪娅" string="嘿！！！！"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="medea" pos="8 0" emotion="stop1"/>
+  <Msg name="麦迪娅" string="等一下~|我们好像还有事情没解决吧~"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="medea" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="啊，你是！！麦迪娅？？"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="medea" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="麦迪娅" string="告诉我次元之门在哪里！|或者带我过去！"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="medea" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="那不行！！你只是个玩具而已~|不能跟我们一起走~"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="medea" pos="11 0" emotion="stop1"/>
+  <Char id="nemodao" pos="3 0" emotion="normal"/>
+  <Msg name="皮蛋" string="你们快跟我来！！|摆脱这个麦迪娅！"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodao" remove="true"/>
+  <Char id="medea" pos="8 0" emotion="stop1"/>
+  <Msg name="麦迪娅" string="你们！！给我等着~~"/>
+  <Enter/>
+</Scene>

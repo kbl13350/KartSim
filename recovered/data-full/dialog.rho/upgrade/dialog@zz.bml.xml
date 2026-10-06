@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel name="effectBg" windowRect="-307 -111 900 800" enable="true" visible="true" color="100 0 0 0" alphaBlend="true" alphaTest="true"/>
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 750 470" align="center" caption="#sb(upgrade)" captionPos="0 1" captionColor="black" textRender="outline" setCloseButton="quit">
+    <Container windowSize="380 400" adjust="0 0">
+      <Panel leftTopTex="5 8" texture="upg_itemTextBG1" alphaBlend="true">
+        <Label windowRect="0 -5 146 25" textAlign="center" text="#sb(preItem)" enable="true" textRender="bold" textColor="255 99 111 119"/>
+      </Panel>
+      <Panel leftTopTex="216 8" texture="upg_itemTextBG2" alphaBlend="true">
+        <Label windowRect="0 -5 146 25" textAlign="center" text="#sb(afterItem)" enable="true" textRender="bold" textColor="255 119 50 3"/>
+      </Panel>
+      <Window name="kartSelect" windowRect="0 30 172 480">
+        <GridSelectorEx name="kartList" windowRect="0 0 320 390" alignSize="2" maxLine="1" alignMargin="58 8" linePaging="false"/>
+      </Window>
+      <Panel leftTopTex="142 71" texture="upg_upgradeMark@zz" alphaBlend="true"/>
+      <Panel name="static" windowRect="0 175 365 176" color="155 50 50 50" alphaBlend="true" alphaTest="true"/>
+      <ImageButton name="excuteUpgrade" leftTopTex="75 185" autoLoadImage="upg_btnStart_@zz" alphaBlend="true" alphaTest="true" enable="false"/>
+      <Panel name="container" leftTopTex="-4 242" texture="upg_noticeBG" alphaBlend="true">
+        <Label windowRect="155 10 200 31" text="#sb(checkPoint)" textRender="outline" textColor="100 230 230 230" textColor2="100 62 64 68"/>
+        <Label windowRect="4 45 10 61" text="- #sb(upgradeInfo1)" textRender="outline" multiLine="true" textColor="100 230 230 230" textColor2="100 62 64 68"/>
+        <Label windowRect="4 61 10 77" text="- #sb(upgradeInfo2)" textRender="outline" multiLine="true" textColor="100 230 230 230" textColor2="100 62 64 68"/>
+        <Label windowRect="4 77 10 93" text="- #sb(upgradeInfo3)" textRender="outline" multiLine="true" textColor="100 230 230 230" textColor2="100 62 64 68"/>
+        <Label windowRect="4 93 10 109" text="- #sb(upgradeInfo4)" textRender="outline" multiLine="true" textColor="100 230 230 230" textColor2="100 62 64 68"/>
+      </Panel>
+    </Container>
+    <Panel name="keepKart" windowSize="348 413" adjust="372 8" texture="upg_collectBG" captionPos="0 6" alphaBlend="true">
+      <Label name="upgradeItemCount" windowSize="20 9" adjust="-30 12" text="#sb(upgradeItemCount)" textColor="white" align="hcenter" textRender="bold"/>
+      <Container name="container" windowSize="0 0 400 400" adjust="10 40">
+        <GridSelectorDivLoad name="itemGrid" windowRect="0 0 380 380" alignStyle="horizontal" alignSize="4" maxLine="4" alignMargin="-3 -3" clientMargin="0 1 0 0"/>
+      </Container>
+      <Panel windowSize="51 22" adjust="3 15" texture="img_numberBG" alphaBlend="true" enable="true" alphaTest="true" align="hcenter;bottom">
+        <Label name="pageInfo" windowSize="25 9" adjust="0 0" text=" 1/2 " textColor="white" align="center" textAlign="center"/>
+      </Panel>
+      <ImageButton name="preItemList" leftTopTex="18 375" autoLoadImage="upg_btnLeft_" alphaBlend="true" alphaTest="true" enable="true"/>
+      <ImageButton name="nextItemList" leftTopTex="205 375" autoLoadImage="upg_btnRight_" alphaBlend="true" alphaTest="true" enable="true"/>
+    </Panel>
+  </CaptionWindow>
+</Container>

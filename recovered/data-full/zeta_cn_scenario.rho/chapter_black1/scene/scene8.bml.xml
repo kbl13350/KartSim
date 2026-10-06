@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate5"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="哎呦~好累啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Msg name="海盗船长" string="真难缠.."/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop2"/>
+  <Msg name="黑妞" string="海盗船长~|就一次~就帮我们一次吧~♡"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop1"/>
+  <Msg name="海盗船长" string="哼！刚才那么对我~|真可笑！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="大方点~帮帮我们不就好了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="真！真！难缠|好！那通过我的考验就给你们看！吼吼吼！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="ethi" pos="2 0" emotion="stop6"/>
+  <Char id="dizini" pos="12 0" emotion="stop6"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="葱头，黑妞，皮蛋" string="考验！！！！"/>
+  <Enter/>
+</Scene>

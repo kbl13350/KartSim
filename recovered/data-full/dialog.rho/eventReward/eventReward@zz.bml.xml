@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="100 100 520 300" caption="#sb(eventRewardCaption)" captionPos="0 1" captionColor="black" align="center" setCloseButton="okButton">
+  <ItemWindow name="itemPanel" windowRect="5 5 102 110" frame="ItemSlotWindow" uvRect="0 0 97 105" enable="false" alphaBlend="true"/>
+  <Label name="textLabel" windowRect="115 7 375 94" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="메세지!" align="vcenter"/>
+  <TextButton name="okButton" text="#sb(ok)" windowRect="305 112 375 132" altTextRender="outline"/>
+</CaptionWindow>

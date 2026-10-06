@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window enable="true" leftTopWH="0 0 800 600" align="center">
+  <Panel windowRect="fullscreen" align="center" color="200 0 0 0" alphaBlend="true"/>
+  <Container leftTopWH="0 -50 800 600">
+    <Panel name="bg_0" windowSize="512 301" align="center" texture="popup_미리보기" alphaBlend="true">
+      <Label name="label" leftTopWH="175 136 200 50" text="#sb(burningPreViewTitle)" textAlign="center" textColor="white" textRender="bigbold"/>
+      <Label name="label" leftTopWH="175 156 200 50" text="#sb(burningPreViewPoint)" textAlign="center" textColor="red" textRender="bigbold"/>
+      <ImageButton name="okButton" leftTopTex="195 234" autoLoadImage="btn_confirm_0" alphaBlend="true" textAlign="center" textColor="white" textRender="bigbold" text="#sb(okBt)"/>
+      <ImageButton name="cancelButton" leftTopTex="293 234" autoLoadImage="btn_cancel_0" alphaBlend="true" textAlign="center" textColor="black" textRender="bigbold" text="#sb(cancelBt)"/>
+    </Panel>
+  </Container>
+</Window>

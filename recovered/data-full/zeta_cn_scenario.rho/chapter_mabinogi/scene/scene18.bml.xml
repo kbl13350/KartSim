@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mabi5"/>
+  <Char id="paladindao" pos="7 0" flip="true" emotion="ani1"/>
+  <Msg name="皮蛋" string="呵… "/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="macha" pos="8 0" emotion="stop2"/>
+  <Msg name="马赫" string="哦耶~~本马赫赢了！冰淇淋~"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="macha" pos="8 0" emotion="normal"/>
+  <Msg name="马赫" string="嗯？我刚才说了什么… "/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="paladindao" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="冰淇淋？宝宝… ？"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="macha" pos="8 0" emotion="normal"/>
+  <Msg name="马赫" string="切，帕拉丁也不过如此。|没有时间再跟你玩了。"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="macha" pos="8 0" emotion="stop1"/>
+  <Msg name="马赫" string="竟然把爱琳的命运交给了你这种人，愚蠢至极。"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="paladindao" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="怎么会！变得无法动弹了！"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="macha" pos="12 0" emotion="stop3"/>
+  <Char id="paladindao" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="马赫" string="再见，小家伙。"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop1"/>
+  <Msg name="黑妞" string="皮蛋！！我来了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="不，不可以！！皮蛋躲开！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Cichol" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="锁孔" string="呼呼… 看来马赫找到了。"/>
+  <Enter/>
+  <Char id="Cichol" remove="true"/>
+  <Char id="macha" pos="11 0" emotion="stop4"/>
+  <Msg name="马赫" string="感受马赫的力量吧！"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="mabinogi_stuff" pos="4 0" emotion="stop1"/>
+  <Char id="macha" pos="11 0" emotion="stop4"/>
+  <Msg name="" string="（哐）"/>
+  <Enter/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="macha" remove="true"/>
+  <Char id="paladindao" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="mabinogi_stuff" pos="15 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="哇！好大的火焰！"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="paladindao" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="mabinogi_stuff" pos="13 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="再这样下去会出大事的！"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="mabinogi_stuff" pos="8 0" emotion="normal"/>
+  <Msg name="" string="（唰）"/>
+  <Enter/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="light" pos="8 0" emotion="stop1"/>
+  <Char id="mabinogi_stuff" pos="8 0" emotion="normal"/>
+  <Msg name="" string="（闪耀）"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <Char id="mabinogi_stuff" remove="true"/>
+  <Char id="paladindao" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="嗯？！火焰停止扩散了！"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="paladindao" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="没事吗？！"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="paladindao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="是娜儿给我的灵魂石救了我！"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="macha" pos="8 0" emotion="normal"/>
+  <Msg name="马赫" string="为什么魔法不管用呢？|再一次让你见识我的力量…!"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="macha" pos="8 0" emotion="stop3"/>
+  <Msg name="马赫" string="怎，怎么可能…|没办法用力了！"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="Cichol" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="锁孔" string="额…为什么我动不了了！|你赶紧想想办法！"/>
+  <Enter/>
+  <Char id="Cichol" remove="true"/>
+  <Char id="paladindao" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="快接住预言书！"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="paladindao" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="黑妞，你找到了！"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="macha" pos="11 0" emotion="stop5"/>
+  <Msg name="马赫" string="不，不可以！他拿着的是预言书？！"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="macha" pos="11 0" emotion="stop5"/>
+  <Char id="paladindao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="马赫！赶紧把宝宝还给我们！"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="macha" pos="12 0" emotion="stop5"/>
+  <Char id="paladindao" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="马赫" string="把那可怕的预言书拿开！！"/>
+  <Enter/>
+  <Char id="macha" remove="true"/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="马赫正在逃跑！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="paladindao" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="站住！"/>
+  <Enter/>
+  <Char id="paladindao" remove="true"/>
+  <Char id="Cichol" pos="7 0" flip="true" emotion="ani1"/>
+  <Msg name="锁孔" string="马赫！你丢下我独自逃跑吗！"/>
+  <Enter/>
+</Scene>

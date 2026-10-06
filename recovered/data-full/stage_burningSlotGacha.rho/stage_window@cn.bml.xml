@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 800 600" align="center">
+  <ImageBoard windowRect="0 0 786 595" image="베이스박스2@zz" alphaBlend="true" align="center"/>
+  <Container name="openSlot" windowRect="0 105 750 400" visible="true">
+    <Panel name="item1" texture="아이템bg2" leftTopTex="69 0" enable="true" alphaBlend="true"/>
+    <Panel name="item2" texture="아이템bg_활성" leftTopTex="292 0" enable="true" alphaBlend="true"/>
+    <Panel name="item3" texture="아이템bg2" leftTopTex="514 0" enable="true" alphaBlend="true"/>
+    <Window name="openSlotitem0" windowRect="146 46 206 111" alphaBlend="true"/>
+    <Window name="openSlotitem1" windowRect="372 46 432 111" alphaBlend="true"/>
+    <Window name="openSlotitem2" windowRect="594 46 654 111" alphaBlend="true"/>
+    <Window name="openSlotitem3" windowRect="816 46 876 111" alphaBlend="true"/>
+    <Window name="openSlotitem4" windowRect="-89 46 -29 111" alphaBlend="true"/>
+  </Container>
+  <Container name="attachSlotitem" windowRect="0 105 750 400"/>
+  <Window windowSize="1024 768" align="center">
+    <Panel windowRect="0 0 512 512" texture="bg_bg_1024_01" alphaBlend="true" alphaTest="true"/>
+    <Panel windowRect="512 0 1024 512" texture="bg_bg_1024_02" alphaBlend="true" alphaTest="true"/>
+    <Panel windowRect="0 512 512 768" texture="bg_bg_1024_03" alphaBlend="true" alphaTest="true"/>
+    <Panel windowRect="512 512 1024 768" texture="bg_bg_1024_04" alphaBlend="true" alphaTest="true"/>
+  </Window>
+  <Container name="holdSlot" windowRect="70 104 750 400" visible="true">
+    <Panel name="holdSlot1" texture="아이템bg" leftTopTex="-1 0" enable="true" alphaBlend="true"/>
+    <Panel name="holdSlot2" texture="아이템bg" leftTopTex="222 0" enable="true" alphaBlend="true"/>
+    <Panel name="holdSlot3" texture="아이템bg" leftTopTex="444 0" enable="true" alphaBlend="true"/>
+  </Container>
+  <ImageBoard name="bg01" windowRect="0 0 786 595" image="베이스박스@zz" alphaBlend="true" align="center"/>
+  <Container windowRect="70 105 750 400" visible="true">
+    <ImageBoard windowRect="-10 -9 680 184" image="프레임" alphaBlend="false"/>
+  </Container>
+  <Panel name="gage1" leftTopTex="177 300" uvRect="0 0 0 17" texture="gage1" alphaBlend="true"/>
+  <Panel name="gage2" leftTopTex="477 300" uvRect="0 0 0 17" texture="gage2" alphaBlend="true" visible="false"/>
+  <Window name="lotteryItem" windowRect="110 380 170 445" alphaBlend="true"/>
+  <Container windowRect="70 105 750 400">
+    <ImageButton name="buyNow" leftTopTex="7 387" autoLoadImage="구입하기버튼_0@zz" alphaBlend="true" enable="false"/>
+    <ImageButton name="useButton" leftTopTex="135 387" autoLoadImage="사용하기버튼_0@zz" alphaBlend="true"/>
+  </Container>
+  <Container name="notEnough" windowRect="295 245 695 451" visible="false">
+    <Panel name="enoughCount" texture="결과창박스_비활성@zz" leftTopTex="57 92" enable="true" alphaBlend="true"/>
+    <CharPanel name="needCount" leftTopTex="243 180 " texture="오른쪽숫자" fontSize="17 24" fontPos="0 0" fontStr="1234567890" text="11" alphaTest="true" alphaBlend="true" visible="true"/>
+  </Container>
+  <Container name="Enough" windowRect="295 245 695 451" visible="false">
+    <Panel texture="결과창박스_활성@zz" leftTopTex="57 92" enable="true" alphaBlend="true"/>
+    <ImageButton name="runBurning" leftTopTex="146 224" autoLoadImage="버닝사용버튼_0@zz" alphaBlend="true"/>
+  </Container>
+  <Panel texture="곱하기버튼" leftTopTex="191 417" enable="true" alphaBlend="true" visible="true"/>
+  <CharPanel name="itemCount" leftTopTex="231 417 " texture="숫자" fontSize="16 21" fontPos="0 0" fontStr="1234567890" text="111" alphaTest="true" alphaBlend="true" visible="true"/>
+  <ImageButton name="exit" align="right;top" windowSize="36 36" autoLoadImage="close_0" alphaBlend="true"/>
+  <Panel name="lotteryBg" windowRect="-200 -85 1000 800" enable="true" color="200 0 0 0" alphaBlend="true" alphaTest="true" visible="false"/>
+  <Panel name="runningBurning" windowRect="-200 -85 1000 800" enable="true" color="0 0 0 0" alphaBlend="true" alphaTest="true" visible="false"/>
+  <Container name="lotteryBgResultViewAll" visible="false">
+    <Panel name="lotteryResult" texture="결과창" leftTopTex="158 52" enable="true" alphaBlend="true" visible="false"/>
+    <Panel name="burningResult" texture="버닝창" leftTopTex="158 52" enable="true" alphaBlend="true" visible="false"/>
+    <Window name="lotteryOpenItem" windowRect="317 200 495 290" alphaBlend="true"/>
+    <Window name="lotteryBgResultViewItemWndWithBonus1" windowRect="317 200 495 290" alphaBlend="true"/>
+    <Window name="lotteryBgResultViewItemWndWithBonus2" windowRect="317 200 495 290" alphaBlend="true"/>
+    <Label name="LotteryStringOk" windowRect="5 200 800 550" text="" textRender="outline" textColor="white" multiLine="true" autoWrap="true" lineGap="1" textAlign="center"/>
+    <ImageButton name="LotteryOkBtn" leftTopTex="309 418" autoLoadImage="확인버튼0@zz" alphaBlend="true" visible="false"/>
+    <ImageButton name="BurningOkBtn" leftTopTex="309 418" autoLoadImage="확인버튼0@zz" alphaBlend="true" visible="false"/>
+  </Container>
+</Container>

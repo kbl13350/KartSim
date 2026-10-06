@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true"/>
+  <ImageBoard leftTopWH="0 0 1028 678" adjust="0 0" align="center" alphaBlend="true" image="itemViewBg" visible="true">
+    <GridSelectorEx name="itemGrid" leftTopWH="86 130 800 600" alignSize="5" maxLine="4" alignMargin="9 4" clientMargin="0 0 0 0" linePaging="true"/>
+    <ImageButton name="scrollUp" windowSize="54 40" adjust="15 -200" align="right;center" autoLoadImage="scrollUp_" alphaBlend="true"/>
+    <ImageButton name="scrollDown" windowSize="54 40" adjust="15 300" align="right;center" autoLoadImage="scrollDown_" alphaBlend="true"/>
+    <Label leftTopWH="0 12 100 30" align="hcenter" text="#sb(itemViewAll)" textRender="outline24" textColor="white" textColor2="black" textAlign="center"/>
+    <Window windowSize="860 38" adjust="84 63" visible="true">
+      <ImageButton name="1" windowSize="172 38" adjust="0 0" autoLoadImage="btn_grade1_" alphaBlend="true">
+        <Label windowSize="38 38" align="center" text="1" textAlign="center" textRender="bold20" textColor="255 88 105 129" alphaBlend="true"/>
+      </ImageButton>
+      <ImageButton name="2" windowSize="172 38" adjust="172 0" autoLoadImage="btn_grade1_" alphaBlend="true">
+        <Label windowSize="38 38" align="center" text="2" textAlign="center" textRender="bold20" textColor="255 88 105 129" alphaBlend="true"/>
+      </ImageButton>
+      <ImageButton name="3" windowSize="172 38" adjust="344 0" autoLoadImage="btn_grade1_" alphaBlend="true">
+        <Label windowSize="38 38" align="center" text="3" textAlign="center" textRender="bold20" textColor="255 88 105 129" alphaBlend="true"/>
+      </ImageButton>
+      <ImageButton name="4" windowSize="172 38" adjust="516 0" autoLoadImage="btn_grade1_" alphaBlend="true">
+        <Label windowSize="38 38" align="center" text="4" textAlign="center" textRender="bold20" textColor="255 88 105 129" alphaBlend="true"/>
+      </ImageButton>
+      <ImageButton name="5" windowSize="172 38" adjust="688 0" autoLoadImage="btn_grade1_" alphaBlend="true">
+        <Label windowSize="38 38" align="center" text="5" textAlign="center" textRender="bold20" textColor="255 88 105 129" alphaBlend="true"/>
+      </ImageButton>
+    </Window>
+    <ImageButton name="exitBtn" windowSize="38 38" adjust="10 10" align="right" autoLoadImage="btn_exit_" alphaBlend="true"/>
+  </ImageBoard>
+</Container>

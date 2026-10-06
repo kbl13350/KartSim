@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="tuningLevelUpCaption">
+    <m c="kr" v="튜닝 단계 강화"/>
+    <m c="cn" v="车辆强化"/>
+  </k>
+  <k n="tuningTargetKart">
+    <m c="kr" v="대상 카트바디"/>
+    <m c="cn" v="强化车辆"/>
+  </k>
+  <k n="kartCount">
+    <m c="kr" v="보유 카트 : %d대"/>
+    <m c="cn" v="持有车辆： %d辆"/>
+  </k>
+  <k n="level">
+    <m c="kr" v="%d단계"/>
+    <m c="cn" v="%d级"/>
+  </k>
+  <k n="formatNextNum">
+    <m c="kr" v="%d[color:255 62 255 14] (+%d)[/color]"/>
+    <m c="cn" v="%d[color:255 62 255 14] (+%d)[/color]"/>
+  </k>
+  <k n="tuningSlotNum">
+    <m c="kr" v="튜닝 슬롯 개수"/>
+    <m c="cn" v="性能槽数量"/>
+  </k>
+  <k n="tuningPoint">
+    <m c="kr" v="튜닝 포인트"/>
+    <m c="cn" v="强化点数"/>
+  </k>
+  <k n="totalTuningSuccessProb">
+    <m c="kr" v="총 튜닝 성공 확률[color:255 163 255 42] %d%%[/color]"/>
+    <m c="cn" v="总强化成功概率[color:255 163 255 42] %d%%[/color]"/>
+  </k>
+  <k n="tuningSuccessProbWithAccum">
+    <m c="kr" v="튜닝 성공 확률 %d%%[color:255 50 218 50]+누적 확률 %d%%[/color]"/>
+    <m c="cn" v="强化成功概率 %d%%[color:255 50 218 50]+累计概率 %d%%[/color]"/>
+  </k>
+  <k n="levelUpItem">
+    <m c="kr" v="강화 재료"/>
+    <m c="cn" v="强化材料"/>
+  </k>
+  <k n="ethiChipSet">
+    <m c="kr" v="에띠의 칩셋"/>
+    <m c="cn" v="葱头的芯片"/>
+  </k>
+  <k n="holdingAmount">
+    <m c="kr" v="보유량"/>
+    <m c="cn" v="持有数量"/>
+  </k>
+  <k n="charge">
+    <m c="kr" v="수수료"/>
+    <m c="cn" v="手续费"/>
+  </k>
+  <k n="helpStr1">
+    <m c="kr" v="튜닝 단계 강화는 실패하면 다음 시도할 때 성공확률이 올라가니 너무 낙담하지마~"/>
+    <m c="cn" v="强化失败后，再次尝试时成功概率会上升，所以不要太灰心哦~"/>
+  </k>
+  <k n="helpStr2">
+    <m c="kr" v="단, 강화 실패로 누적되는 확률은 최대치 제한이 있고, 해당 카트바디 강화에 성공하면 초기화돼!"/>
+    <m c="cn" v="但是，强化失败所累计的成功概率是有上限的，当该车辆强化成功后将会被重置！"/>
+  </k>
+  <k n="resultStr">
+    <m c="kr" v="다음 강화 시도 시 [color:255 62 255 14]성공 확률 증가 (최대 30%)[/color]"/>
+    <m c="cn" v="下一次尝试强化时[color:255 62 255 14]成功概率将增加 (最大 30%)[/color]"/>
+  </k>
+</StringBag>

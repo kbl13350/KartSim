@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animalBoosterList>
+  <animalBooster kartId="56" iconId="80" prob="-1"/>
+  <animalBooster kartId="199" iconId="202" prob="100"/>
+  <animalBooster kartId="206" iconId="158" prob="-1"/>
+  <animalBooster kartId="217" iconId="197" prob="100"/>
+  <animalBooster kartId="241" iconId="241" prob="20"/>
+  <animalBooster kartId="275" iconId="273" prob="100"/>
+  <animalBooster kartId="288" iconId="273" prob="100"/>
+</animalBoosterList>

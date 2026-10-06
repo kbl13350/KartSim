@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="丢失的黄金指南针"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="虽然在和雅克布兄弟的对决中胜出了，|但是黄金指南针被夺走了。|请追赶雅克布兄弟并把丢失的黄金指南针找回来。"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="在限定的时间内超过雅克布兄弟|注意：被甩掉 20m 以上的话，挑战失败.|"/>
+  </k>
+</StringBag>

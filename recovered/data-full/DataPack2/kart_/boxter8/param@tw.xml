@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+		ForwardAccelForce='147.0'
+		BackwardAccelForce='100.0'
+		DragFactor='-0.08'
+		SteerConstraint='2.7'
+		DriftEscapeForce='1850'
+		CornerDrawFactor='0.072'
+
+		BoosterBlur='true'
+		EngineSound='cotton8'
+		WaveEffect='true'
+		UseTransformBooster='true'
+
+		TransAccelFactor='1.792'
+		TransformTime='100'
+		StartForwardAccelFactorSpeed='1.7'
+		StartBoosterTimeSpeed='1300'
+	
+		NormalBoosterTime='-50'
+		TeamBoosterTime='-100'
+		DriftMaxGauge='-430'
+		DriftGaguePreservePercent='0.6'
+
+		BoosterWaveType='boost8'
+		BoosterType='8soon'
+		BoosterType0='8soon'
+		BoosterType1='8soon'
+		BoosterType2='8sub'
+		BoosterType3='8main'
+		BoosterType4='8sub'
+
+		Port0='mod1c1' 
+		Port1='mod1c2'
+
+		FirePort0='mod1a1'
+		FirePort1='mod1a2'
+		FirePort2='mod1a3'
+
+		TailLampSize='0.1'
+		TailLampColor='0 255 100 100'
+		BoostBlurColor='255 77 77 77'
+
+
+		secondColor='255 40 40 40'
+		secondHighColor='255 150 150 150'
+
+		EnvMap='true'
+
+		TachometerType='Tacho1'
+		TachometerName='ht'
+		itemSlotName='ht'
+		boostGaugeName='ht'
+
+		DescBalance='44'
+		DescStability='48'
+		DescEngineGrade='1.25'
+		DescCornering='6'
+		DescEnchantCap = '31'
+
+		addModelFolder='boxter7'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a1' trailPort1='mod1a3'/>
+</BodyParam>
+
+<!-- 대만 박스터 HT LE 140213 빙고 가챠폰 중간 보상 -->

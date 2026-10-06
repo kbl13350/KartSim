@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<newRiderItem>
+	<character id='2'/> <!-- dao -->
+	<character id='3'/> <!-- dizni -->
+
+	<color id='6' /> <!-- blue -->
+	<color id='4' /> <!-- green -->
+	<color id='5' /> <!-- bright ok -->
+	<color id='7' /> <!-- viloet -->
+</newRiderItem>

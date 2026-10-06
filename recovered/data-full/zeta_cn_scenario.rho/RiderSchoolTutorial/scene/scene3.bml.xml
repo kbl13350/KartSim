@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="riderSchool"/>
+  <Char id="dao" pos="8 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="坚持到了最后，棒极了！！"/>
+  <Enter/>
+  <Char id="dao" pos="8 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="恭喜你成为了名副其实的车手，欢迎进入到跑跑卡丁车世界！"/>
+  <Enter/>
+  <Char id="dao" pos="8 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="可以在多人游戏频道中与其他玩家一同行驶，也可以在车手学校中继续学习更加深入而有用的内容。"/>
+  <Enter/>
+  <Char id="dao" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="完成车手学校课程后可以获得很多有用道具，车手学校的课程对实战有很大的帮助。|若以后还有机会的话，再赛出风采吧！"/>
+  <ImageButton name="라이더스쿨" windowRect="265 90 362 118" autoLoadImage="라이더스쿨_cn_" alphaBlend="true" alphaTest="true"/>
+  <ImageButton name="메인" windowRect="392 90 489 118" autoLoadImage="게임하러가기_cn_" alphaBlend="true" alphaTest="true"/>
+  <Enter/>
+</Scene>

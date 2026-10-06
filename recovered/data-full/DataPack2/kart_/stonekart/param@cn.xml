@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='146.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.0785'
+	SteerConstraint='3.2'
+	DriftEscapeForce='1400'
+	CornerDrawFactor='0.07'
+
+	EngineSound='cotton85'
+	StartForwardAccelFactorItem = '1.7'
+	StartBoosterTimeItem='1300'           
+
+	UseExtendedAfterBooster='true'
+	BoosterAccelFactorItem ='1.65'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.715'
+	TransformTime='250'
+
+	NormalBoosterTime='-70'
+	TeamBoosterTime='-200'
+	DriftMaxGauge='-500'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85main'
+
+	FirePort0='mod6a'
+	FirePort1='mod6a1'
+	FirePort2='mod6b'
+	FirePort3='mod6b1'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '45'
+	DescStability ='45'
+	DescEngineGrade='1.25'
+	DescCornering='3'
+	DescEnchantCap = '25'
+	SpecialSlotCapacity='2'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod6a' trailPort1='mod6a1'/>
+</BodyParam>
+
+<!-- 투석기 20140424 한정 판매 / 패키지 -->

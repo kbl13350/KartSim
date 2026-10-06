@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="manageClubCrew">
+    <m c="kr" v="클럽원 등급 변경"/>
+    <m c="cn" v="俱乐部会员等级变更"/>
+    <m c="tw" v="俱樂部成員等級變更"/>
+  </k>
+  <k n="member">
+    <m c="kr" v="클럽원"/>
+    <m c="cn" v="俱乐部会员"/>
+    <m c="tw" v="俱樂部成員"/>
+  </k>
+  <k n="firstMember">
+    <m c="kr" v="우수 클럽원"/>
+    <m c="cn" v="俱乐部优秀会员"/>
+    <m c="tw" v="優等俱樂部成員"/>
+  </k>
+  <k n="manager">
+    <m c="kr" v="운영진"/>
+    <m c="cn" v="俱乐部管理层"/>
+    <m c="tw" v="管理團隊"/>
+  </k>
+  <k n="clubMaster">
+    <m c="kr" v="클럽장"/>
+    <m c="cn" v="俱乐部会长"/>
+    <m c="tw" v="俱樂部會長"/>
+  </k>
+  <k n="gradeStateFormat1">
+    <m c="kr" v="%s 님은 현재"/>
+    <m c="cn" v="%s 会员现在"/>
+    <m c="tw" v="%s玩家目前是"/>
+  </k>
+  <k n="gradeStateFormat2">
+    <m c="kr" v="입니다."/>
+    <m c="cn" v="是。"/>
+    <m c="tw" v="。"/>
+  </k>
+  <k n="managerExplain">
+    <m c="kr" v="(가입 승인, 클럽 소개 수정)"/>
+    <m c="cn" v="（同意加入，修改俱乐部简介）"/>
+    <m c="tw" v="(加入許可, 俱樂部介紹修改)"/>
+  </k>
+  <k n="firstMemberExplain">
+    <m c="kr" v="(가입 승인)"/>
+    <m c="cn" v="（同意加入）"/>
+    <m c="tw" v="(加入許可)"/>
+  </k>
+  <k n="kickOut">
+    <m c="kr" v="추방하기"/>
+    <m c="cn" v="踢除"/>
+    <m c="tw" v="踢除"/>
+  </k>
+  <k n="askKickOut">
+    <m c="kr" v="[%s]님을 정말로 추방 하시겠습니까?"/>
+    <m c="cn" v="确认要踢除[%s]会员吗？"/>
+    <m c="tw" v="確定要將[%s]玩家踢除嗎?"/>
+  </k>
+  <k n="refreshClubInfo">
+    <m c="kr" v="최신 정보로 갱신 중 입니다."/>
+    <m c="cn" v="正在更新最新信息。"/>
+    <m c="tw" v="正在更新最新資訊。"/>
+  </k>
+  <k n="youAlreadyKickOut">
+    <m c="kr" v="클럽에서 추방되었습니다.|클럽 목록 페이지로 이동합니다."/>
+    <m c="cn" v="已被俱乐部踢除，|移动到俱乐部目录。"/>
+    <m c="tw" v="已被俱樂部踢除。|移動至俱樂部目錄頁面。"/>
+  </k>
+  <k n="cantChangeClubMasterGrade">
+    <m c="kr" v="클럽장의 정보는 변경할 수 없습니다."/>
+    <m c="cn" v="无法变更俱乐部会长信息。"/>
+    <m c="tw" v="俱樂部會長資訊無法變更。"/>
+  </k>
+  <k n="cantKickoutClubMasterGrade">
+    <m c="kr" v="클럽장은 추방시킬 수 없습니다."/>
+    <m c="cn" v="无法踢除俱乐部会长。"/>
+    <m c="tw" v="俱樂部會長無法踢除。"/>
+  </k>
+  <k n="cantKickoutSameGrade">
+    <m c="kr" v="운영진은 클럽장만 추방할 수 있습니다."/>
+    <m c="cn" v="只有会长可以将管理层踢除俱乐部。"/>
+    <m c="tw" v="只有俱樂部會長可踢除管理團隊。"/>
+  </k>
+  <k n="formString1">
+    <m c="kr" v="님은 현재"/>
+    <m c="cn" v="您现在是"/>
+    <m c="tw" v="玩家目前是"/>
+  </k>
+  <k n="formString2">
+    <m c="kr" v="입니다."/>
+    <m c="cn" v="。"/>
+    <m c="tw" v="。"/>
+  </k>
+</StringBag>

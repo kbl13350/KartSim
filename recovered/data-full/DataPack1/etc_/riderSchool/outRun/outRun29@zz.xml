@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- (2021.10.28 Update) 대저택 은밀한 지하실 (변경 사항 X) -->
+<!-- (2022.01.06 Update) 중국 통합 속도 반영 -->
+<!-- (2022.01.14 Update) 대만 통합 속도 반영 -->
+<!-- (2022.10.20 Update) 연습카트 V1 기준 기록 및 설정 반영 -->
+<!-- 캐릭터 : 로두마니 / 탑승 카트 : 로디 크로스 -->
+<OutRun kartId='1371'	characterId='9' colorId='47' dyeId='1'	track='castle_R01'	gameSpeed='7'>
+	<LevelContent level='7' ksv='L1_5_castle_R01_7'/>
+</OutRun>

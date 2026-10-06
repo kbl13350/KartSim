@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='154'
+	BackwardAccelForce='100'
+	DragFactor='-0.086'
+	SteerConstraint='2.556'
+	CornerDrawFactor='0.072'
+	DriftEscapeForce='1732'
+	
+	driftBoostMulAccelFactor='1.42'
+	chargeBoostBySpeed='350'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.4082'
+	StartForwardAccelFactorSpeed='1.7'
+	StartBoosterTimeSpeed='1500'
+	BoostAccelFactor='1.54'
+	
+	DriftMaxGauge='-500'
+	NormalBoosterTime='84'
+	TeamBoosterTime='-150'
+	
+	DriftGaguePreservePercent='0.6'
+	antiCollideBalance='0.97'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.10'
+	driftBoostTick='500'
+	autoChargeLowSpeed='120'
+	TransformTime='700'
+	
+	TachometerType='XunGenTacho'
+	TachometerName='xun'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='12'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='20'
+	dualBoosterTickMax='30'
+	dualMulAccelFactor='1.07'
+	dualTransLowSpeed='100'
+	
+	SpeedSlotCapacity='2'
+
+	wallCollGaugeCooldownTime = '3.0'
+	wallCollGaugeMinVelBound = '200'
+	wallCollGaugeMinVelLoss = '50'
+	wallCollGaugeMaxVelLoss = '200'
+	useExtendedAfterBoosterMore = 'false'
+
+	defaultExceedType='3'
+	defaultEngineType='11'
+	defaultHandleType='11'
+	defaultWheelType='11'
+	defaultBoosterType='11'
+
+	BoosterType='12soon'
+	BoosterType0='12soon'
+	BoosterType1='12soon'
+	BoosterType2='12sub'
+	BoosterType3='12main1'
+	BoosterType4='12main1'
+	BoosterType5='12main2'
+	BoosterType6='12main2'     
+
+
+	Port0='mod2a1' 
+	Port1='mod2a2'
+
+	FirePort0='mod2b1'
+            FirePort1='mod2a3'
+	FirePort2='mod2a4'
+            FirePort3='mod2b2'
+            FirePort4='mod2b3'
+ 
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        	BoostBlurColor='255 0 0 255'
+
+
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 255 0 41' trailPort0='mod2b1'/>
+</BodyParam>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="tomb4"/>
+  <Char id="dao" pos="8 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="这里真的好阴森啊。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="dao" pos="10 0" emotion="stop3"/>
+  <Msg name="黑妞" string="那是什么？！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="冷静点~ 只是树影而已。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" pos="8 0" emotion="stop1"/>
+  <Msg name="胖墩" string="咦？有没有闻到哪里飘来的香味？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="没闻到啊？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="dao" pos="10 0" emotion="stop3"/>
+  <Msg name="黑妞" string="呜，好吓人。我不想再往里面走了~~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="可是我想去逛逛~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" pos="7 0" emotion="stop4"/>
+  <Msg name="胖墩" string="我肚子饿了……"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="normal"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="那我就和黑妞在这里等你们。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop2"/>
+  <Char id="dizini" pos="5 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="宝宝、胖墩，你们去逛吧！ 两小时后在小镇入口汇合~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop2"/>
+  <Msg name="宝宝" string="肯定很好玩！那待会见啦~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop4" flip="true"/>
+  <Msg name="宝宝" string="胖墩，我们先从哪里开始逛好呢？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ghost" pos="8 0" emotion="stop1"/>
+  <Msg name="胖墩" string="……"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="stop5" flip="true"/>
+  <Msg name="宝宝" string="胖墩？！什么时候不见的？"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="screenUI" windowRect="0 0 1024 768">
+  <Container name="timeinfo" windowRect="182 0 290 62" align="bottom">
+    <CharPanel name="min" windowRect="0 0 30 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="19 0 34 17" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="sec" windowRect="27 0 57 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="45 0 60 16" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="mil" windowRect="53 0 83 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+  </Container>
+  <Container windowRect="0 15 800 110">
+    <Panel windowRect="0 60 45 98" uvRect="0 0 45 38" texture="카메라정보표시@zz" alphaBlend="true"/>
+    <Window windowRect="43 67 280 88" frame="NoFrame"/>
+    <Panel windowRect="160 70 161 85" color="200 0 0 0" alphaBlend="true"/>
+    <Label name="useItemDesc" leftTopWH="0 7 200 40" textRender="bigbold" textColor="yellow" align="hcenter" visible="false"/>
+    <Window windowRect="48 70 160 85">
+      <Label name="currentRider" windowRect="0 0 92 20" text="???" textRender="outline" textColor="yellow" textColor2="black" autoSizing="true" align="hcenter"/>
+    </Window>
+    <Window windowRect="165 70 280 85">
+      <Label name="currentCam" windowRect="0 0 105 20" text="???" textRender="outline" textColor="yellow" textColor2="black" autoSizing="true" align="hcenter"/>
+    </Window>
+  </Container>
+  <Container name="player0" windowRect="2 120 200 153">
+    <CharPanel name="rank" windowRect="15 0 35 26" align="vcenter" texture="digit_rank_basicb" fontSize="20 26" fontStr="0123456789X" text="2" alphaBlend="true"/>
+    <Label name="rid" windowRect="40 0 40 33" textRender="outline" textColor="white" textColor2="black" autoSizing="true" align="vcenter"/>
+  </Container>
+  <Container name="player1" windowRect="0 160 200 193">
+    <CharPanel name="rank" windowRect="15 0 35 26" align="vcenter" texture="digit_rank_basicb" fontSize="20 26" fontStr="0123456789X" text="2" alphaBlend="true"/>
+    <Label name="rid" windowRect="40 0 40 33" textRender="outline" textColor="white" textColor2="black" autoSizing="true" align="vcenter"/>
+  </Container>
+  <Container name="player2" windowRect="0 200 200 233">
+    <CharPanel name="rank" windowRect="15 0 35 26" align="vcenter" texture="digit_rank_basicb" fontSize="20 26" fontStr="0123456789X" text="2" alphaBlend="true"/>
+    <Label name="rid" windowRect="40 0 40 33" textRender="outline" textColor="white" textColor2="black" autoSizing="true" align="vcenter"/>
+  </Container>
+  <Container name="player3" windowRect="0 240 200 273">
+    <CharPanel name="rank" windowRect="15 0 35 26" align="vcenter" texture="digit_rank_basicb" fontSize="20 26" fontStr="0123456789X" text="2" alphaBlend="true"/>
+    <Label name="rid" windowRect="40 0 40 33" textRender="outline" textColor="white" textColor2="black" autoSizing="true" align="vcenter"/>
+  </Container>
+  <Container name="player4" windowRect="0 280 200 313">
+    <CharPanel name="rank" windowRect="15 0 35 26" align="vcenter" texture="digit_rank_basicb" fontSize="20 26" fontStr="0123456789X" text="2" alphaBlend="true"/>
+    <Label name="rid" windowRect="40 0 40 33" textRender="outline" textColor="white" textColor2="black" autoSizing="true" align="vcenter"/>
+  </Container>
+  <Container name="player5" windowRect="0 320 200 353">
+    <CharPanel name="rank" windowRect="15 0 35 26" align="vcenter" texture="digit_rank_basicb" fontSize="20 26" fontStr="0123456789X" text="2" alphaBlend="true"/>
+    <Label name="rid" windowRect="40 0 40 33" textRender="outline" textColor="white" textColor2="black" autoSizing="true" align="vcenter"/>
+  </Container>
+  <Container name="player6" windowRect="0 360 200 393">
+    <CharPanel name="rank" windowRect="15 0 35 26" align="vcenter" texture="digit_rank_basicb" fontSize="20 26" fontStr="0123456789X" text="2" alphaBlend="true"/>
+    <Label name="rid" windowRect="40 0 40 33" textRender="outline" textColor="white" textColor2="black" autoSizing="true" align="vcenter"/>
+  </Container>
+  <Container name="player7" windowRect="0 400 200 433">
+    <CharPanel name="rank" windowRect="15 0 35 26" align="vcenter" texture="digit_rank_basicb" fontSize="20 26" fontStr="0123456789X" text="2" alphaBlend="true"/>
+    <Label name="rid" windowRect="40 0 40 33" textRender="outline" textColor="white" textColor2="black" autoSizing="true" align="vcenter"/>
+  </Container>
+</Container>

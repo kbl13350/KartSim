@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="stepInfo" leftTopWH="0 0 172 240" enable="true" visible="true">
+  <Play1SPanel name="now" scene="카트패스현재레벨" leftTopWH="1 1 170 28" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.0 0" defaultSpotPos="0 0 0" zoom="1.7" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+  <ColorLabel name="step" leftTopWH="0 0 172 29" text="" textColor="255 245 255 250" textRender="bold" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+  <ImageButton name="reward" leftTopWH="0 30 172 210" autoLoadImage="kartPass_pcRoom_slot_" alphaBlend="true" visible="true" enable="true">
+    <ItemWindow name="rewardStockItem" windowSize="220 300" adjust="0 10" align="center" stockId="0" enable="false" visible="false"/>
+    <ImageButton name="btn_reward" windowSize="144 30" adjust="0 8" align="center;bottom" autoLoadImage="kartPass_main_rewardGet_" text="#sb(receive)" textColor="255 90 95 105" overTextColor="255 130 80 5" clickedTextColor="255 130 80 5" textRender="bold" alphaBlend="true" enable="true" visible="false">
+      <Label name="rewardInfo" leftTopWH="0 80 120 20" text="" textColor="black" textAlign="center" autoWrap="true" visible="false"/>
+    </ImageButton>
+    <Panel name="closed" leftTopTex="0 -30" texture="kartPass_common_slotCover3" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+    <Panel name="checked" windowSize="172 210" adjust="0 0" align="left" texture="kartPass_common_slotCheck2" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+    <Panel name="selected" leftTopTex="0 0" texture="kartPass_event_slotSelect" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+  </ImageButton>
+  <Label name="playTime" leftTopWH="0 29 172 29" text="" textColor="255 245 255 250" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+  <Label name="rewardCountStr" leftTopWH="53 37 160 20" text="" textRender="bold14" textColor="255 81 86 96" textAlign="right" autoWrap="true" visible="false"/>
+  <Play1SPanel name="effect" scene="카트패스슬롯이펙트" leftTopWH="0 110 172 130" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.0 -0.05" defaultSpotPos="0 0 -0.05" zoom="2.2" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+</Window>

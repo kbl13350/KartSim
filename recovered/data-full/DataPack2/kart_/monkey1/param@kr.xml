@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='110.0'
+	DragFactor='-0.075'
+	SteerConstraint='2.3'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.065'
+								  
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType4='heart'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+	FirePort0='mod1a3'
+	FirePort1='mod1a4'
+	FirePort2='mod1b1'
+
+	SpecialSlotCapacity='2'
+
+				
+	DescBalance= '38'
+	DescStability ='38'
+	DescEngineGrade='1'
+	DescCornering='4'
+	DescEnchantCap = '25'
+
+/>
+
+<!-- 한국 몽키 카트 SR 가샤폰 20110127 -->

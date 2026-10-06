@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<List name="list" windowRect="2 2 400 140" upButton="ChatScrollUpButton" downButton="ChatScrollDownButton" scrollButton="ChatVerticalScrollButton" scrollArea="ChatVerticalScrollArea" scrollWidth="14" listMargin="8 0 0 0" listGap="5" frame="WhitePanel" autoAlign="false" autoScroll="true"/>

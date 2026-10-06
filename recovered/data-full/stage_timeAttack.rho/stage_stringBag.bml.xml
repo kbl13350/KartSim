@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="time">
+    <m c="kr" v="TIME"/>
+    <m c="cn" v="当前时间"/>
+    <m c="tw" v="時間"/>
+  </k>
+  <k n="best">
+    <m c="kr" v="BEST"/>
+    <m c="cn" v="最佳记录"/>
+    <m c="tw" v="最高"/>
+  </k>
+  <k n="miniInfoSummary">
+    <m c="kr" v="충돌 %d회 / 부스터 %d회"/>
+    <m c="cn" v="撞击%d次 / 加速%d次"/>
+    <m c="tw" v="衝撞%d回 / 推進器%d回"/>
+  </k>
+  <k n="competitiveCrashCountFormat">
+    <m c="kr" v="%d회 / %d회 미만"/>
+    <m c="cn" v="%d次/未满%d次"/>
+  </k>
+  <k n="competitiveBoosterCountFormat">
+    <m c="kr" v="%d회 / %d회 이상"/>
+    <m c="cn" v="%d次/%d次以上"/>
+  </k>
+  <k n="pointFormat">
+    <m c="kr" v="%d점"/>
+    <m c="cn" v="%d分"/>
+  </k>
+  <k n="competitiveTimeout">
+    <m c="kr" v="타임 어택 경쟁전은 10분 이내 완주하여야 합니다.|제한 시간을 초과하여 주행이 종료됩니다."/>
+    <m c="cn" v="竞争排位赛需在10分钟内完成。|超过指定时间时自动结束比赛。"/>
+  </k>
+  <k n="driveBonus">
+    <m c="kr" v="주행 보너스"/>
+    <m c="cn" v="行驶额外奖励"/>
+  </k>
+  <k n="crashBonus">
+    <m c="kr" v="충돌"/>
+    <m c="cn" v="撞击"/>
+  </k>
+  <k n="boosterBonus">
+    <m c="kr" v="부스터"/>
+    <m c="cn" v="加速器"/>
+  </k>
+</StringBag>

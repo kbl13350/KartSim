@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="brodi_01"/>
+  <Char id="ghost" pos="8 0" emotion="stop1"/>
+  <Msg name="？" string="叮铃铃~叮铃铃~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="普赛克" string="保罗？我是普赛克"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="神秘人员" string="普赛克~怎么突然来电话？|难道出什么差错了？"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <BackGround texture="mh2"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="普赛克" string="那倒没有|我好像找到了可以帮我们作战的人！"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <BackGround texture="brodi_01"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="神秘人员" string="你能这么快确信|很想知道是什么人！"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <BackGround texture="mh2"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="普赛克" string="一个职业冲浪手！|被暴走联盟偷走赛车后|发誓要找回爱车而一直与他们战斗着~"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <BackGround texture="brodi_01"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="神秘人员" string="好条件！|那，作战现在就要开始了？"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <BackGround texture="mh2"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="普赛克" string="还要再观察…|应该快了！|到那时就立马告诉你是否可以开始作战"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <BackGround texture="brodi_01"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="神秘人员" string="好，那我这边也开始准备！|对了！妹妹找到了吗？|几天前给你发了那个金发美女的照片！叫什么美…玲？"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <BackGround texture="mh2"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="普赛克" string="虽然还没告诉本人，但应该是妹妹|还有要拜托你的事"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <BackGround texture="brodi_01"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="神秘人员" string="恭喜！终于找到了失散已久的妹妹！|对了，说吧，什么请求？"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <BackGround texture="mh2"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="普赛克" string="这次作战结束后我要和妹妹出国，请给我准备2张机票"/>
+  <Enter/>
+  <Char id="psyki" remove="true"/>
+  <Char id="steve" pos="8 0" emotion="stop1"/>
+  <Msg name="罗杰" string="嗯？那个好像是普赛克？|等等~普赛克！|在那里做什么呢？"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="psyki" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="普赛克" string="我以后再联络你|（不能被发现！先躲起来！）"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Delivery isFixedKart="true" fixedKartId="1523" isFixedChar="true" fixedCharId="476">
+    <LevelContent level="0" track="china_S02" collision="3" laps="1" timeLimit="90000"/>
+  </Delivery>
+</Root>

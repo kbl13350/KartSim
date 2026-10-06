@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+           SteerConstraint='2.32'
+           DriftEscapeForce='920'
+           CornerDrawFactor='0.07'
+
+           UseTransformBooster='true'
+           TransAccelFactor='1.71'
+           TransformTime='700'   
+
+           BoosterBlur='true'
+           EngineSound='cotton7'
+           EnvMap='true'
+
+           StartForwardAccelFactorSpeed = '1.2'
+           StartBoosterTimeSpeed='1200'           
+
+           BoosterWaveType='effect_zero'
+           BoosterType='cotton6'
+           BoosterType0='default'
+           BoosterType1='default'
+           BoosterType2='zero5'
+           BoosterType3='cotton6'
+           BoosterType4='cotton6'
+
+           Port0='mod2c1'
+           Port1='mod2c2'
+           FirePort0='mod3a1'
+           FirePort1='mod2d2'
+           FirePort2='mod2d1'
+
+           TailLampSize='0.3'
+           TailLampColor='0 255 100 100'
+           BoostBlurColor='255 77 77 77'
+
+           DescBalance= '38'
+           DescStability ='40'
+           DescEngineGrade='1.2'
+           DescCornering='7'
+           DescEnchantCap = '31'
+/>
+
+<!--중국 제니스 Z7 이벤트 가샤폰 레어 20110721 -->

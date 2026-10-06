@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="nym02"/>
+  <Char id="dizini" pos="6 0" emotion="stop6"/>
+  <Msg name="黑妞" string="呼~真是一场苦战啊"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="不是胜利了吗！即使没有精灵的眼泪，我们也是最厉害的~！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="shylph" pos="8 0" emotion="stop1"/>
+  <Msg name="琳琳" string="赶快救出美美和幻幻，然后逃出去！"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="什么事？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="naiad" pos="7 0" emotion="stop1"/>
+  <Msg name="美美" string="威...胁...到...海...盗...船...长...的...人...都...要...被...排...除..."/>
+  <Enter/>
+  <Char id="naiad" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="dao" pos="6 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="！！！！！！！！！！！！！怎么回事！！！！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="美…美美…怎么了？！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="wisp" pos="7 0" emotion="stop1"/>
+  <Msg name="幻幻" string="啊啊啊…消失吧…打..扰..海..盗..船..长..的..家..伙."/>
+  <Enter/>
+  <Char id="wisp" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="幻…幻幻也变成这样子了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="wisp" pos="4 0" emotion="stop3"/>
+  <Char id="naiad" pos="11 0" emotion="stop1"/>
+  <Msg name="美美和幻幻" string="你们…都...要..被...惩...罚.."/>
+  <Enter/>
+  <Char id="wisp" remove="true"/>
+  <Char id="naiad" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="哈哈哈，看到了吗！！这就是纹章的力量！！精灵们！打倒他们！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="shylph" pos="8 0" emotion="stop1"/>
+  <Msg name="琳琳" string="就是现在！皮蛋，拿出精灵的眼泪跟他们决斗吧！！但是要注意不能伤害到精灵们！"/>
+  <Enter/>
+</Scene>

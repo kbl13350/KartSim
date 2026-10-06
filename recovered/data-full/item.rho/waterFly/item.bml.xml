@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="waterFly">
+  <state name="Use" life="2000" item="item00" itemFx="firing"/>
+  <state name="Affect" life="1000" item="item01" fired="fired01" firedFx="fired"/>
+  <state name="EscapeAffect" life="2000" fired="fired01" firedFx="trapped" firing="파란방패"/>
+  <state name="Shield" life="1000" fired="쉴드방어" firedFx="shield"/>
+  <state name="SpecialShield" life="2000"/>
+  <state name="AfterBoost" life="0"/>
+  <state name="AttachTimeBomb" life="0"/>
+  <state name="Use" life="800" item="근접공격_디스오더" itemFx="bossFiring"/>
+  <state name="Affect" life="1000" fired="근접공격_플레이어" firedFx="bossFired"/>
+  <state name="EscapeAffect" life="2000" firedFx="trapped" firing="파란방패"/>
+  <state name="Shield" life="1000" fired="쉴드방어" firedFx="shield"/>
+  <state name="SpecialShield" life="2000"/>
+  <state name="AfterBoost" life="0"/>
+  <state name="AttachTimeBomb" life="0"/>
+  <state name="Use" life="800" item="근접공격_타이탄로더" itemFx="bossFiring"/>
+  <state name="Affect" life="1000" fired="근접공격_플레이어" firedFx="bossFired"/>
+  <state name="EscapeAffect" life="2000" firedFx="trapped" firing="파란방패"/>
+  <state name="Shield" life="1000" fired="쉴드방어" firedFx="shield"/>
+  <state name="SpecialShield" life="2000"/>
+  <state name="AfterBoost" life="0"/>
+  <state name="AttachTimeBomb" life="0"/>
+</item>

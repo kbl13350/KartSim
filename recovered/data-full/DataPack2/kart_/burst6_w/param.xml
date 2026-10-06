@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='140.0'
+	BackwardAccelForce='110.0'
+	DragFactor='-0.065'
+	SteerConstraint='2.3'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.066'
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod2a2'
+	Port1='mod2a3'
+	FirePort0='mod2b3'
+	FirePort1='mod2b4'
+	FirePort2='mod1a4'
+	FirePort3='mod1b4'
+	FirePort4='mod4a'
+	FirePort5='mod4b'
+
+	DescBalance= '30'
+	DescStability ='25'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '25'
+/>
+<!-- 버스트SR 에어로파츠 (W파츠) -->

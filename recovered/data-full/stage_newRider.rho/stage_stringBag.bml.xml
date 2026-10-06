@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="newRiderCaption">
+    <m c="kr" v="라이더 등록"/>
+    <m c="jp" v="ライダー登録"/>
+    <m c="cn" v="创建车手"/>
+    <m c="tw" v="創立車手"/>
+    <m c="us" v="Add a Rider"/>
+    <m c="vn" v="đăng ký"/>
+    <m c="ru" v="Добавить гонщика"/>
+    <m c="id" v="Daftar Rider"/>
+    <m c="th" v="สร้างตัวละคร"/>
+  </k>
+  <k n="inputRiderId">
+    <m c="kr" v="라이더의 이름을 정하세요."/>
+    <m c="jp" v="ライダーの名前を決めてください。"/>
+    <m c="cn" v="请输入您所需要的角色名称"/>
+    <m c="tw" v="請輸入車手名稱"/>
+    <m c="us" v="Type in the Rider name."/>
+    <m c="vn" v="Tên tay đua:"/>
+    <m c="ru" v="Выберите имя гонщика"/>
+    <m c="id" v="Masukan nama Rider."/>
+    <m c="th" v="ชื่อตัวละคร"/>
+  </k>
+  <k n="selectCharacter">
+    <m c="kr" v="캐릭터"/>
+    <m c="jp" v="キャラ"/>
+    <m c="cn" v="角色"/>
+    <m c="tw" v="人物"/>
+    <m c="us" v="Character"/>
+    <m c="vn" v="Nhân vật"/>
+    <m c="ru" v="Персонаж"/>
+    <m c="id" v="Character"/>
+    <m c="th" v="ตัวละคร"/>
+  </k>
+  <k n="selectDye">
+    <m c="kr" v="염색약"/>
+    <m c="cn" v="染色剂"/>
+    <m c="tw" v="染色劑"/>
+  </k>
+  <k n="selectPaint">
+    <m c="kr" v="페인트"/>
+    <m c="jp" v="ペイント"/>
+    <m c="cn" v="喷漆"/>
+    <m c="tw" v="噴漆"/>
+    <m c="us" v="Paint"/>
+    <m c="vn" v="Màu"/>
+    <m c="ru" v="Краска"/>
+    <m c="id" v="Paint"/>
+    <m c="th" v="สี"/>
+  </k>
+  <k n="warningBold">
+    <m c="cn" v="注意！在以下情况下，无需GM的事先通知，角色名称也将被更改。"/>
+  </k>
+  <k n="warningBold0">
+    <m c="kr" v="잠깐!! 다음에 해당하는 경우, GM에 의해 사전 경고 없이"/>
+    <m c="jp" v="ちょっと待って!! 次に該当する場合、GMによって事前の警告無しに"/>
+    <m c="cn" v="注意！在以下情况下，无需GM的事先通知，"/>
+    <m c="tw" v="注意﹗下列情形者，GM將不進行告知，"/>
+    <m c="us" v="When creating a new Rider, please note the Rules."/>
+    <m c="vn" v="Lưu ý, khi đăng ký tên nhân vật,"/>
+    <m c="ru" v="Внимание! Следующие имена запрещены:"/>
+    <m c="id" v="Tunggu !! Jika melanggar peraturan dibawah, "/>
+    <m c="th" v="ข้อกำหนดในการตั้งชื่อตัวละคร"/>
+  </k>
+  <k n="warningBold1">
+    <m c="kr" v="제재 또는 임의대로 라이더명이 수정될 수 있습니다."/>
+    <m c="jp" v="アカウントの停止または任意のライダー名に修正されることがあります。"/>
+    <m c="cn" v="角色名称也将被更改。"/>
+    <m c="tw" v="更改車手名稱。"/>
+    <m c="us" v="Name violations (can be changed without notice):"/>
+    <m c="vn" v="phải chấp nhận các điều kiện và khuyến cáo sau:"/>
+    <m c="ru" v=" "/>
+    <m c="id" v="maka GM dapat merubah nama Rider tanpa peringatan."/>
+    <m c="th" v=" "/>
+  </k>
+  <k n="warningDetail0">
+    <m c="kr" v="- 운영자를 사칭하거나 사칭하려고 하는 의도가 보이는 라이더명"/>
+    <m c="jp" v="- GMを装ったり、装う意図が見られるライダー名"/>
+    <m c="cn" v="- 有自称管理员意图的角色名称"/>
+    <m c="tw" v="與營運者相似或有詐騙意圖的車手名稱。"/>
+    <m c="us" v="* It imitates or bears close resemblance to that of a GM."/>
+    <m c="vn" v="Không được mạo danh GM và tên người khác."/>
+    <m c="ru" v="Имя, похожее на ники администрации"/>
+    <m c="id" v="- Nama Rider meniru nama GM atau bermaksud meniru nama GM."/>
+    <m c="th" v="ห้ามตั้งชื่อใดๆที่ไม่สุภาพหยาบคายหรือไม่เหมาะสม"/>
+  </k>
+  <k n="warningDetail1">
+    <m c="kr" v="- 음란한 단어나 욕설이 포함된 라이더명"/>
+    <m c="jp" v="- 公序良俗に違反するライダー名"/>
+    <m c="cn" v="- 角色名称中包含淫秽、反动的词汇，或脏话"/>
+    <m c="tw" v="出現淫穢或辱罵字眼的車手名稱。"/>
+    <m c="us" v="* It contains inappropriate terms (profanity, racism, etc.)"/>
+    <m c="vn" v="Không dùng từ ngữ gây phảm cảm hoặc gây sự hiểu nhầm"/>
+    <m c="ru" v="Имя, содержащее нецензурные слова"/>
+    <m c="id" v="- Nama Rider mengandung SARA atau kata-kata kasar"/>
+    <m c="th" v="ห้ามตั้งชื่อแอบอ้างเป็นทีมงานหรือรู้จักกับทีมงาน"/>
+  </k>
+  <k n="warningDetail2">
+    <m c="kr" v="- 아이템, 라이더(계정)를 현금 매매 혹은 타 서버 및 게임과"/>
+    <m c="jp" v="- アイテム、ライダー(アカウント)の現金売買または他のサーバーやゲームと"/>
+    <m c="cn" v="- 有以道具，车手（账号）来换取"/>
+    <m c="tw" v="意圖以道具、車手(帳號)作為角色名稱。"/>
+    <m c="us" v="* It displays intent to trade items and accounts for cash,"/>
+    <m c="vn" v="Không giao dịch bằng tiền mặt."/>
+    <m c="ru" v="Имя, противоречащее соглашению"/>
+    <m c="id" v="- Nama Rider yang bermaksud menjual "/>
+    <m c="th" v="ห้ามตั้งชื่อที่ขัดต่อศาสนา และสถาบันพระมหากษัตริย์ "/>
+  </k>
+  <k n="warningDetail3">
+    <m c="kr" v="  교환하려는 의도가 보이는 라이더명"/>
+    <m c="jp" v="  交換する意図が見られるライダー名"/>
+    <m c="cn" v="  其它服务器或游戏账号意图的角色名称"/>
+    <m c="tw" v="違背社會道德理念的角色名稱。"/>
+    <m c="us" v="or with/for other servers or games."/>
+    <m c="vn" v="Sử dụng tên phải rõ ràng."/>
+    <m c="ru" v="Имя, использвовавшееся другим игроком"/>
+    <m c="id" v="  Item atau Rider(ID) dengan uang. "/>
+    <m c="th" v="ห้ามตั้งชื่อให้คล้ายหรือเหมือนผู้อื่นเพื่อการทุจริต"/>
+  </k>
+  <k n="warningDetail2_3">
+    <m c="cn" v="- 有以道具，车手（账号）来换取 其它服务器或游戏账号意图的角色名称"/>
+  </k>
+  <k n="warningDetail4">
+    <m c="kr" v="- 사회 통념상 수용하기 어려운 라이더명"/>
+    <m c="jp" v="- 社会通念上,受け入れがたいライダー名"/>
+    <m c="cn" v="- 违背社会传统观念的角色名称"/>
+    <m c="tw" v="無法建立超過12個位元的角色名稱(1個中文字為2個位元)"/>
+    <m c="us" v="* GM and Admin discretion"/>
+    <m c="vn" v="Tên tay đua phải phù hợp văn hóa."/>
+    <m c="ru" v="Имя, противоречащее морали общества"/>
+    <m c="id" v="- Nama Rider yang susah diterima oleh publik"/>
+    <m c="th" v="ทีมงานจะดำเนินการแก้ไขชื่อโดยไม่มีการแจ้งเตือนให้ทราบ"/>
+  </k>
+  <k n="registerCaption">
+    <m c="kr" v="라이더 등록"/>
+    <m c="jp" v="ライダー登録"/>
+    <m c="cn" v="登录车手"/>
+    <m c="tw" v="登錄車手"/>
+    <m c="us" v="Add a Rider"/>
+    <m c="vn" v="Đăng ký"/>
+    <m c="ru" v="Добавить гонщика"/>
+    <m c="id" v="Daftar Rider"/>
+    <m c="th" v="ลงทะเบียนผู้เล่น"/>
+  </k>
+  <k n="registerNoName">
+    <m c="kr" v="라이더 이름을 입력하세요."/>
+    <m c="jp" v="ライダー名を入力してください。"/>
+    <m c="cn" v="请输入角色名称"/>
+    <m c="tw" v="請輸入車手名稱"/>
+    <m c="us" v="Type in the Rider name."/>
+    <m c="vn" v="Nhập tên tay đua"/>
+    <m c="ru" v="Ввести имя гонщика"/>
+    <m c="id" v="Masukan nama Rider."/>
+    <m c="th" v="กรุณากรอกชื่อผู้เล่น"/>
+  </k>
+  <k n="registerInvalidName">
+    <m c="kr" v="적합하지 않은 라이더 이름입니다."/>
+    <m c="jp" v="不適切なライダー名です。"/>
+    <m c="cn" v="不允许使用的角色名称"/>
+    <m c="tw" v="不允許使用的車手名稱"/>
+    <m c="us" v="Invalid Rider name."/>
+    <m c="vn" v="Tên không phù hợp"/>
+    <m c="ru" v="Неверное имя гонщика"/>
+    <m c="id" v="Nama Rider tidak sesuai."/>
+    <m c="th" v="ชื่อไม่เหมาะสมหรือชื่อถูกใช้ไปแล้ว|กรุณาตรวจสอบอีกครั้ง"/>
+  </k>
+  <k n="registerAlready">
+    <m c="kr" v="이미 존재하는 라이더 이름 입니다."/>
+    <m c="jp" v="すでに存在するライダー名です。"/>
+    <m c="cn" v="已存在的角色名称"/>
+    <m c="tw" v="已存在的車手名稱"/>
+    <m c="us" v="This Rider name already exists."/>
+    <m c="vn" v="Tên nhân vật đã được sử dụng!"/>
+    <m c="ru" v="Такое имя уже существует."/>
+    <m c="id" v="Nama Rider sudah dipakai."/>
+    <m c="th" v="เป็นชื่อผู้เล่นที่มีอยู่แล้ว"/>
+  </k>
+  <k n="nextStep">
+    <m c="kr" v="다음단계로 이동"/>
+    <m c="jp" v="次の段階へ移動"/>
+    <m c="cn" v="进行下一阶段"/>
+    <m c="tw" v="移動至下個階段"/>
+    <m c="us" v=""/>
+    <m c="vn" v=""/>
+    <m c="ru" v=""/>
+    <m c="id" v="Next Step"/>
+    <m c="th" v=""/>
+  </k>
+  <k n="tutorialStart">
+    <m c="kr" v="축하합니다. 성공적으로 라이더가 생성되었습니다.|이제 튜토리얼에서 기본적인 조작법을 배워볼까요?"/>
+    <m c="jp" v="おめでとうございます。ライダーが作成されました。|さっそくチュートリアルで基本的な操作方法を学んでみましょう。|チュートリアルを完了すると、プレゼントももらえます。"/>
+    <m c="cn" v="恭喜你成为名副其实的车手。|是否通过新手教程开始学习基本操作？"/>
+    <m c="tw" v="恭喜您成為新血車手！|是否要先於教學步驟中學習基本的卡丁車操作方法呢？"/>
+    <m c="us" v=""/>
+    <m c="vn" v=""/>
+    <m c="ru" v=""/>
+    <m c="id" v="Selamat. Rider telah berhasil dibuat."/>
+    <m c="th" v=""/>
+  </k>
+  <k n="tutorialStartWithRid">
+    <m c="cn" v="恭喜[color:255 22 225 255]%s[/color]成为名副其实的车手。|是否通过新手教程开始学习基本操作？"/>
+  </k>
+  <k n="trainee">
+    <m c="kr" v="연습생"/>
+    <m c="cn" v="新手"/>
+    <m c="tw" v="新手"/>
+  </k>
+  <k n="cantcreateinformTitle">
+    <m c="kr" v="안내"/>
+    <m c="cn" v="提示"/>
+  </k>
+  <k n="cantcreateinform">
+    <m c="kr" v="|||카트라이더를 사랑해 주셔서 감사드립니다.|2023년 3월 31일(금) 카트라이더의 한국 서비스 종료가 예정되어|더 이상의 신규 라이더 생성이 불가능합니다.| |넓은 마음으로 이해 부탁드립니다.|보다 좋은 게임으로 보답하겠습니다.|감사합니다."/>
+    <m c="cn" v="因准备合并服务器，暂时无法创建新角色。"/>
+  </k>
+</StringBag>

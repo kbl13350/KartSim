@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss3"/>
+  <Char id="meoguri" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="莫格瑞" string="真菜，地面的人类就这点实力吗？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="pirate1" pos="11 0" emotion="stop1"/>
+  <Msg name="海盗 A" string="额，我们不是他的对手。"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="pirate1" pos="11 0" emotion="stop1"/>
+  <Char id="pirate1" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="海盗 B" string="得赶紧叫海盗船长来！"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="lodumani" pos="6 0" flip="true" emotion="stop2"/>
+  <Msg name="海盗船长" string="没那必要了！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="pirate1" pos="11 0" emotion="stop1"/>
+  <Msg name="海盗 C" string="船，船长，您一直都在看着吗？"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="pirate1" pos="11 0" emotion="stop1"/>
+  <Char id="tutu" pos="4 0" flip="true" emotion="stop10"/>
+  <Msg name="嘟嘟" string="哎！看看你们这副德行，|这也能称得上是海盗团的一员？"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="mobi" pos="12 0" emotion="stop6"/>
+  <Char id="tutu" pos="4 0" flip="true" emotion="stop10"/>
+  <Msg name="吉米" string="别太责怪他们……是对面太厉害了。"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="lodumani" pos="9 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="呼呼，这些新面孔还挺强的嘛！哪个组织的呀？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="你就是老大吗？|我们是从阿比斯来的！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="海盗船长" string="阿比斯？第一次听说啊……来我们地盘是有何目的？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="莫格瑞" string="我们的地盘？有意思，|这个地方本来就是我们的土地！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="mobi" pos="9 0" emotion="stop9"/>
+  <Msg name="吉米" string="别无理取闹了！繁荣山丘南海是我们的地盘！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="mobi" pos="12 0" emotion="stop9"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="哼，莫格瑞大人说的对~一群丑海盗！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="tutu" pos="11 0" emotion="stop10"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="嘟嘟" string="丑，丑海盗？你这是在侮辱我们嘛！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="tutu" pos="11 0" emotion="stop10"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="奈琳" string="对，大叔你长得最丑了！鲶鱼馒头！呵呵呵！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="tutu" pos="11 0" emotion="stop5"/>
+  <Char id="narin" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="嘟嘟" string="你这无礼的家伙！船长，|赶紧除掉这无礼的家伙吧！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="mobi" pos="7 0" emotion="stop3"/>
+  <Msg name="吉米" string="哈哈！小姑娘你还挺有眼光的嘛~"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="lodumani" pos="6 0" flip="true" emotion="stop5"/>
+  <Msg name="海盗船长" string="好了，都给我安静点！别跑题了！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="10 0" flip="true" emotion="stop5"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="总算是安静了……那么这片土地是由你们掌控的吗？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="海盗船长" string="当然了，从很久之前这片区域就归我海盗船长管，么哈哈哈！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="我是阿比斯的统治者，|莫格瑞！先听下我们的故事吧！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="tutu" pos="12 0" emotion="stop8"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="嘟嘟" string="喂喂，海盗船长可不跟闲杂人等聊天！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="tutu" pos="12 0" emotion="stop8"/>
+  <Char id="meoguri" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="莫格瑞" string="鲶鱼馒头，这是老大跟老大之间的对话！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="tutu" pos="12 0" emotion="stop10"/>
+  <Char id="meoguri" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="嘟嘟" string="我叫嘟嘟，你这个罐头！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="tutu" pos="12 0" emotion="stop10"/>
+  <Char id="meoguri" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="莫格瑞" string="你是在侮辱我莫格瑞的象征吗？"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="10 0" emotion="stop2"/>
+  <Msg name="海盗船长" string="嘟嘟，给我安静点！叫莫格瑞是吧？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="对，这既是我的名字也是我的名号！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="海盗船长" string="我不跟闲杂人聊天！如果想谈话就展示下你的实力吧！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Char id="meoguri" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="有意思，这是这里的规矩吗？"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="奈琳" string="哼，都不用莫格瑞大人出手，|就由我来会会你吧！"/>
+  <Enter/>
+</Scene>

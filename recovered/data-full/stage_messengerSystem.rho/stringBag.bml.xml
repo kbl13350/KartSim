@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="blockAddFriend">
+    <m c="kr" v="친구요청 받지 않기"/>
+    <m c="cn" v="不接收好友请求"/>
+  </k>
+  <k n="bolckInviteGame">
+    <m c="kr" v="게임초대 받지 않기"/>
+    <m c="cn" v="不接收游戏邀请"/>
+  </k>
+  <k n="addFriend">
+    <m c="kr" v="친구추가"/>
+    <m c="cn" v="添加好友"/>
+  </k>
+  <k n="startChat">
+    <m c="kr" v="대화하기"/>
+    <m c="cn" v="对话"/>
+  </k>
+  <k n="addFavorite">
+    <m c="kr" v="즐겨찾기"/>
+    <m c="cn" v="特别关注"/>
+  </k>
+  <k n="deleteFavorite">
+    <m c="kr" v="즐겨찾기 해제"/>
+    <m c="cn" v="取消特别关注"/>
+  </k>
+  <k n="followGame">
+    <m c="kr" v="게임 찾아가기"/>
+    <m c="cn" v="加入游戏"/>
+  </k>
+  <k n="InviteGame">
+    <m c="kr" v="게임 초대하기"/>
+    <m c="cn" v="邀请游戏"/>
+  </k>
+  <k n="blockFriend">
+    <m c="kr" v="차단하기"/>
+    <m c="cn" v="屏蔽"/>
+  </k>
+  <k n="deleteFriend">
+    <m c="kr" v="친구삭제"/>
+    <m c="cn" v="删除好友"/>
+  </k>
+  <k n="info">
+    <m c="kr" v="정보보기"/>
+    <m c="cn" v="查看信息"/>
+  </k>
+  <k n="online">
+    <m c="kr" v="접속 중"/>
+    <m c="cn" v="在线"/>
+  </k>
+  <k n="inGame">
+    <m c="kr" v="게임 중"/>
+    <m c="cn" v="游戏中"/>
+  </k>
+  <k n="away">
+    <m c="kr" v="자리비움"/>
+    <m c="cn" v="离开"/>
+  </k>
+  <k n="offline">
+    <m c="kr" v="오프라인"/>
+    <m c="cn" v="离线"/>
+  </k>
+  <k n="friend">
+    <m c="kr" v="친구"/>
+    <m c="cn" v="好友"/>
+  </k>
+  <k n="chat">
+    <m c="kr" v="대화(%d)"/>
+    <m c="cn" v="对话(%d)"/>
+  </k>
+  <k n="searchFriend">
+    <m c="kr" v="내 친구 검색하기"/>
+    <m c="cn" v="搜索我的好友"/>
+  </k>
+  <k n="friendGroupList">
+    <m c="kr" v="라이더 그룹 리스트"/>
+    <m c="cn" v="车手分组列表"/>
+  </k>
+  <k n="gift">
+    <m c="kr" v="선물하기"/>
+    <m c="cn" v="赠送礼物"/>
+  </k>
+  <k n="message">
+    <m c="kr" v="우편함"/>
+    <m c="cn" v="邮箱"/>
+  </k>
+  <k n="setting">
+    <m c="kr" v="관리"/>
+    <m c="cn" v="管理"/>
+  </k>
+  <k n="recommendList">
+    <m c="kr" v="추천 친구"/>
+    <m c="cn" v="推荐好友"/>
+  </k>
+  <k n="favoriteList">
+    <m c="kr" v="즐겨찾기 (%d)"/>
+    <m c="cn" v="特别关注 (%d)"/>
+  </k>
+  <k n="onlineList">
+    <m c="kr" v="온라인 (%d)"/>
+    <m c="cn" v="在线好友 (%d)"/>
+  </k>
+  <k n="offlineList">
+    <m c="kr" v="오프라인 (%d)"/>
+    <m c="cn" v="离线好友 (%d)"/>
+  </k>
+  <k n="recentList">
+    <m c="kr" v="최근 플레이한 라이더"/>
+    <m c="cn" v="最近游戏"/>
+  </k>
+  <k n="recentChannelTitle">
+    <m c="kr" v="%s (%02d:%02d)"/>
+    <m c="cn" v="%s (%02d:%02d)"/>
+  </k>
+  <k n="refreshRec">
+    <m c="kr" v="다시 찾기"/>
+    <m c="cn" v="刷新"/>
+  </k>
+  <k n="blockList">
+    <m c="kr" v="차단친구 관리"/>
+    <m c="cn" v="屏蔽管理 (%d)"/>
+  </k>
+  <k n="receive">
+    <m c="kr" v="수신함"/>
+    <m c="cn" v="收件箱"/>
+  </k>
+  <k n="send">
+    <m c="kr" v="발신함"/>
+    <m c="cn" v="发件箱"/>
+  </k>
+  <k n="bulkDeleteHelpStr">
+    <m c="kr" v="친구 요청을 제외하고 삭제 가능한 내용을 묶어서 삭제합니다."/>
+    <m c="cn" v="除好友请求之外，|将可删除的内容一并删除。"/>
+  </k>
+  <k n="bulkDelete">
+    <m c="kr" v="발신함 정리하기"/>
+    <m c="cn" v="整理发件箱"/>
+  </k>
+  <k n="receiveFriendRequestStr">
+    <m c="kr" v="[color:255 13 153 225]%s[/color]에게 [color:255 13 153 225]친구 요청[/color]을 받았습니다."/>
+    <m c="cn" v="收到来自[color:255 13 153 225]%s[/color]的[color:255 13 153 225]好友请求。[/color]"/>
+  </k>
+  <k n="autoRefuseStr">
+    <m c="kr" v="[color:255 36 129 225]%d일 [/color]후 자동으로 거절됩니다."/>
+    <m c="cn" v="[color:255 36 129 225]%d天[/color]后将自动拒绝。"/>
+  </k>
+  <k n="sendFriendRequestStr">
+    <m c="kr" v="[color:255 13 153 225]%s[/color]에게 [color:255 13 153 225]친구 요청[/color]을 보냈습니다.|상대가 수락하면 친구로 추가됩니다."/>
+    <m c="cn" v="已向[color:255 13 153 225]%s[/color]发送[color:255 13 153 225]好友请求[/color]。|对方同意后将添加为好友。"/>
+  </k>
+  <k n="acceptFriendStr">
+    <m c="kr" v="[color:255 13 153 225]%s[/color] 님이 [color:255 36 129 225]친구 요청[/color]을 수락했습니다."/>
+    <m c="cn" v="[color:255 13 153 225]%s[/color]已[color:255 36 129 225]同意[/color]好友请求。"/>
+  </k>
+  <k n="refuseFriendStr">
+    <m c="kr" v="[color:255 13 153 225]%s[/color]가 [color:255 72 106 163]친구 요청을 거절[/color]하였습니다."/>
+    <m c="cn" v="[color:255 13 153 225]%s[/color]已[color:255 72 106 163]拒绝[/color]好友请求。"/>
+  </k>
+  <k n="autoDeleteStr">
+    <m c="kr" v="메시지는 [color:255 13 153 225]%d일[/color] 후 자동으로 삭제됩니다."/>
+    <m c="cn" v="此信息将在[color:255 13 153 225]%d天[/color]后自动删除。"/>
+  </k>
+  <k n="friendSetting">
+    <m c="kr" v="친구 관리"/>
+    <m c="cn" v="好友管理"/>
+  </k>
+  <k n="blockSetting">
+    <m c="kr" v="차단친구 관리"/>
+    <m c="cn" v="屏蔽管理"/>
+  </k>
+  <k n="normalSetting">
+    <m c="kr" v="일반 설정"/>
+    <m c="cn" v="普通设置"/>
+  </k>
+  <k n="chatHelp1">
+    <m c="kr" v="친구와 대화해 보세요."/>
+    <m c="cn" v="和好友聊聊天吧。"/>
+  </k>
+  <k n="chatHelp2">
+    <m c="kr" v="친구 리스트에서 친구를 더블 클릭하거나 우 클릭으로 대화하기를 눌러 대화창을 만들어 대화할 수 있습니다.|최대 8명까지 다른 친구를 초대해서 함께 이야기 할 수 있습니다."/>
+    <m c="cn" v="可在好友列表中[color:255 27 176 254]双击好友[/color]或[color:255 27 176 254]右键点击对话[/color]创建对话窗口进行聊天。|最多支持8位好友同时聊天。"/>
+  </k>
+  <k n="chatFriend">
+    <m c="kr" v="일반 설정"/>
+    <m c="cn" v="普通设置"/>
+  </k>
+  <k n="fullChatTitle1">
+    <m c="kr" v="친구 [color:255 0 221 254]%s[/color]와 대화"/>
+    <m c="cn" v="好友[color:255 0 221 254]%s[/color]的对话"/>
+  </k>
+  <k n="fullChatTitle2">
+    <m c="kr" v="친구 [color:255 0 221 254]%s[/color]외 [color:255 0 221 254]%d[/color]명과 대화"/>
+    <m c="cn" v="好友[color:255 0 221 254]%s[/color]等[color:255 0 221 254]%d[/color]人的对话"/>
+  </k>
+  <k n="shortChatTitle1">
+    <m c="kr" v="%s와 대화"/>
+    <m c="cn" v="%s的对话"/>
+  </k>
+  <k n="shortChatTitle2">
+    <m c="kr" v="%s외 %d명"/>
+    <m c="cn" v="%s等%d人"/>
+  </k>
+  <k n="inviteFriendHelpStr">
+    <m c="kr" v="대화에 초대할 친구를 선택해 주세요.|대화는 최대 8인까지 가능합니다."/>
+    <m c="cn" v="请选择要邀请加入对话的好友。|对话最多可支持8人。"/>
+  </k>
+  <k n="inviteEnableNum">
+    <m c="kr" v="초대 가능 인원"/>
+    <m c="cn" v="可邀请人数"/>
+  </k>
+  <k n="UserNum">
+    <m c="kr" v="%d명"/>
+    <m c="cn" v="%d人"/>
+  </k>
+  <k n="invite">
+    <m c="kr" v="초대하기"/>
+    <m c="cn" v="邀请"/>
+  </k>
+  <k n="cancel">
+    <m c="kr" v="취소"/>
+    <m c="cn" v="取消"/>
+  </k>
+  <k n="inviteFriend">
+    <m c="kr" v="친구 초대하기"/>
+    <m c="cn" v="邀请好友"/>
+  </k>
+  <k n="inviteFriendAlt">
+    <m c="kr" v="내 친구 초대하기"/>
+    <m c="cn" v="邀请我的好友"/>
+  </k>
+  <k n="exitChatAlt">
+    <m c="kr" v="대화 방 나가기"/>
+    <m c="cn" v="退出聊天房间"/>
+  </k>
+  <k n="chatAlertGuide1">
+    <m c="kr" v="타인을 존중하며 문명적인 소통을 부탁드립니다."/>
+    <m c="cn" v="请尊重他人，文明交流。"/>
+  </k>
+  <k n="chatAlertGuide2">
+    <m c="kr" v="욕설, 인신공격, 광고, 규정 위반, 민감내용 전송 금지입니다."/>
+    <m c="cn" v="禁止发送辱骂、人身攻击、"/>
+  </k>
+  <k n="chatAlertGuide3">
+    <m c="kr" v="욕설, 인신공격, 광고, 규정 위반, 민감내용 전송 금지입니다."/>
+    <m c="cn" v="广告、违规、敏感内容。"/>
+  </k>
+  <k n="chatAlertGuide4">
+    <m c="kr" v="친근한 커뮤니티 분위기를 함께 조성해 주셔서 감사합니다!"/>
+    <m c="cn" v="感谢车手们共同营造友好的交流氛围！"/>
+  </k>
+  <k n="createInitChat">
+    <m c="kr" v="대화방이 생성되었습니다."/>
+    <m c="cn" v="聊天房间已创建。"/>
+  </k>
+  <k n="enterChat">
+    <m c="kr" v="%s가 입장하였습니다."/>
+    <m c="cn" v="%s已进入房间。"/>
+  </k>
+  <k n="leaveChat">
+    <m c="kr" v="%s가 퇴장하였습니다."/>
+    <m c="cn" v="%s已离开房间。"/>
+  </k>
+  <k n="inviteChat">
+    <m c="kr" v="%s를 대화방에 초대하였습니다."/>
+    <m c="cn" v="已邀请%s进入聊天房间。"/>
+  </k>
+  <k n="offlineChat">
+    <m c="kr" v="%s가 오프라인 상태입니다."/>
+    <m c="cn" v="%s处于离线状态"/>
+  </k>
+  <k n="inputGuide">
+    <m c="kr" v="여기에 입력하세요."/>
+    <m c="cn" v="请在此输入。"/>
+  </k>
+  <k n="chat_warn10secBlock">
+    <m c="kr" v="채팅창 도배 방지를 위해 10초간 채팅이 금지됩니다."/>
+    <m c="cn" v="为防止刷屏，聊天禁止10秒。"/>
+  </k>
+  <k n="nobodyChat1">
+    <m c="kr" v="대화 상대가 방에 존재하지 않아 더 이상 대화를 할 수 없습니다."/>
+    <m c="cn" v="聊天对象不在房间内，无法再进行对话。"/>
+  </k>
+  <k n="nobodyChat2">
+    <m c="kr" v="대화 상대가 없습니다."/>
+    <m c="cn" v="没有可进行对话的对象。"/>
+  </k>
+  <k n="accept">
+    <m c="kr" v="수락"/>
+    <m c="cn" v="同意"/>
+  </k>
+  <k n="refuse">
+    <m c="kr" v="거절"/>
+    <m c="cn" v="拒绝"/>
+  </k>
+  <k n="messenger">
+    <m c="kr" v="친구 메신저"/>
+    <m c="cn" v="好友聊天系统"/>
+  </k>
+  <k n="successAddFriend">
+    <m c="kr" v="친구 신청이 완료되었습니다. "/>
+    <m c="cn" v="已完成好友申请。"/>
+  </k>
+  <k n="blockRequsetUser">
+    <m c="kr" v="상대 라이더가 친구 요청을 닫아둔 상태입니다. "/>
+    <m c="cn" v="对方车手已关闭好友请求功能。"/>
+  </k>
+  <k n="userHaveMaxFriend">
+    <m c="kr" v="상대 또는 나의 친구가 최대이거나 더 이상 메시지를 받지 못하거나 친구추가를 할 수 없습니다."/>
+    <m c="cn" v="对方或我的好友数量已达上限，或无法再接收消息，|无法添加好友。"/>
+  </k>
+  <k n="alreadyFriend">
+    <m c="kr" v="이미 친구 신청을 하거나 친구인 라이더입니다."/>
+    <m c="cn" v="已发送好友申请或已经是好友了。"/>
+  </k>
+  <k n="overMaxRequestNum">
+    <m c="kr" v="최대 친구 요청 가능 인원수를 초과하여 더 이상 친구 요청을 할 수 없습니다."/>
+    <m c="cn" v="已超过请求好友数量上限，无法再发送好友请求。"/>
+  </k>
+  <k n="refuseConfirm">
+    <m c="kr" v="친구 요청을 거절하면 동일한 라이더에게 다음날 06시 까지 친구 신청을 받지 않게 됩니다."/>
+    <m c="cn" v="如拒绝好友请求，|到次日上午6点，都不会再收到相同车手的好友申请。"/>
+  </k>
+  <k n="maxChatRoom">
+    <m c="kr" v="대화 상대 또는 나의 채팅 방 최대 생성 수에 도달하여 더 이상 채팅 방을 생성할 수 없습니다."/>
+    <m c="cn" v="聊天对象或我的聊天房间已达最大数量，|无法再创建房间。"/>
+  </k>
+  <k n="maxUserInChat">
+    <m c="kr" v="채팅 방에 최대 대화 가능 인원이 초과되어 더 이상 초대할 수 없습니다."/>
+    <m c="cn" v="聊天房间已超出最大可对话人数，无法再进行邀请。"/>
+  </k>
+  <k n="blockFriend">
+    <m c="kr" v="친구 차단"/>
+    <m c="cn" v="屏蔽好友"/>
+  </k>
+  <k n="inquireBlockFriend">
+    <m c="kr" v="친구를 차단하시겠습니까?"/>
+    <m c="cn" v="要屏蔽好友吗？"/>
+  </k>
+  <k n="deleteFriend">
+    <m c="kr" v="친구 삭제"/>
+    <m c="cn" v="删除好友"/>
+  </k>
+  <k n="inquireDeleteFriend">
+    <m c="kr" v="친구 등록을 해제하시겠습니까?"/>
+    <m c="cn" v="要删除好友吗？"/>
+  </k>
+  <k n="blockCancel">
+    <m c="kr" v="차단 해제"/>
+    <m c="cn" v="解除屏蔽"/>
+  </k>
+  <k n="inquireBlockCancel">
+    <m c="kr" v="차단 해제 하시겠습니까?"/>
+    <m c="cn" v="要解除屏蔽吗？"/>
+  </k>
+  <k n="completeGameInvite">
+    <m c="kr" v="요청 메시지가 발송되었습니다."/>
+    <m c="cn" v="已发送邀请信息。"/>
+  </k>
+  <k n="receiveGameInvite">
+    <m c="kr" v="%s가 게임에 초대하였습니다.|함께 플레이 하시겠습니까?"/>
+    <m c="cn" v="%s邀请您加入游戏。|要一起游戏吗？"/>
+  </k>
+  <k n="bulkDeleteConfirm">
+    <m c="kr" v="친구 요청의 결과를 기다리는 메시지를 제외하고 오래된 메시지 순으로 삭제합니다.|삭제 하시겠습니까?"/>
+    <m c="cn" v="除等待好友请求结果的信息外|将按时间顺序从旧信息开始删除。|确定要删除吗？"/>
+  </k>
+  <k n="bulkDeleteResult">
+    <m c="kr" v="%d개 메시지를 삭제하였습니다."/>
+    <m c="cn" v="已删除%d条信息。"/>
+  </k>
+  <k n="chatInviteError">
+    <m c="kr" v="알 수 없는 오류로 채팅 창을 생성하지 못하였습니다.|다시 시도해 주세요."/>
+    <m c="cn" v="由于未知错误，无法创建聊天窗口。|请重试。"/>
+  </k>
+  <k n="normalError">
+    <m c="kr" v="오류가 발생하였습니다.|다시 시도해 주세요."/>
+    <m c="cn" v="发生错误。|请重试。"/>
+  </k>
+  <k n="Error">
+    <m c="kr" v="오류가 발생하였습니다.|다시 시도해 주세요."/>
+    <m c="cn" v="发生错误。|请重试。"/>
+  </k>
+  <k n="informExpireMsg">
+    <m c="kr" v="처리 기간이 만료된 메시지입니다.|메시지는 삭제됩니다."/>
+    <m c="cn" v="已超过处理期限。|将删除此信息。"/>
+  </k>
+  <k n="informExpireMsg2">
+    <m c="kr" v="기한이 만료되어 메시지는 삭제됩니다."/>
+    <m c="cn" v="已过期，将删除此信息。"/>
+  </k>
+  <k n="informExpireMsg3">
+    <m c="kr" v="기간이 만료되었거나 처리할 수 없는 요청으로 메시지를 삭제합니다."/>
+    <m c="cn" v="该请求已过期或无法处理，将删除此信息"/>
+  </k>
+</StringBag>

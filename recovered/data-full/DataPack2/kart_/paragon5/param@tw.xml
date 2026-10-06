@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.078'
+	SteerConstraint='2.3'
+	DriftEscapeForce='2000'
+	CornerDrawFactor='0.07'
+
+	BoosterBlur='true'
+	EngineSound='cotton8'
+	EnvMap='true'
+	WaveEffect='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.815'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.7'
+	StartBoosterTimeSpeed='1300'   
+
+	NormalBoosterTime = '-100'
+	TeamBoosterTime = '-200'
+	DriftMaxGauge = '-440'
+	DriftGaguePreservePercent='0.6'
+
+	BoosterWaveType='boost8'
+
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8sub'
+	BoosterType3='8sub'
+	BoosterType4='8sub'
+	BoosterType5='8sub'
+	BoosterType6='8main'
+
+	Port0='mod1b1' 
+	Port1='mod1b2'
+
+	FirePort0='mod1a1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a3'
+	FirePort3='mod1a4'
+	FirePort4='mod1b3'
+	
+	TailLampSize='0.2'
+	TailLampColor='0 253 43 253'
+    BoostBlurColor='255 77 77 77'
+
+	secondColor='255 255 186 0'
+	secondHighColor='255 255 255 0'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '47'
+	DescStability ='50'
+	DescEngineGrade='1.25'
+	DescCornering='8'
+	DescEnchantCap = '31'
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a2' trailPort1='mod1a3'/>
+</BodyParam>
+
+
+<!--대만 파라곤 HT 130808 빙고 가샤폰 레전드-->

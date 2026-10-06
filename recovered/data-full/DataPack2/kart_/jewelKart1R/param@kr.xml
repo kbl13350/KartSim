@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.084'
+	SteerConstraint='2.6'
+	CornerDrawFactor='0.074'
+	DriftEscapeForce='1900'
+
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+	
+	BoostAccelFactor='1.866'
+	TransAccelFactor='1.866'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+
+	DriftMaxGauge='-660'
+	NormalBoosterTime='10'
+	TeamBoosterTime='-100'
+
+    BoosterBlur='true'
+    EngineSound='cotton7'
+    UseTransformBooster='true'
+
+		BoosterWaveType='effect_zero'
+		BoosterType='cotton6'
+		BoosterType0='default'
+		BoosterType1='default'
+		BoosterType2='zero5'
+		BoosterType3='zero5'
+		
+		Port0='mod1a1' 
+		Port1='mod1a2'
+		FirePort1='mod1b1'
+		
+		EnvMap='true'
+		TailLampSize='0.3'
+		TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+				   
+	DescBalance= '53'
+	DescStability ='51'
+	DescEngineGrade='1'
+	DescCornering='7.7'
+	DescEnchantCap = '31'
+
+	addModelFolder='jewelKart1'
+/>
+<!--한국 라피스 Z7-R / 20200820-->

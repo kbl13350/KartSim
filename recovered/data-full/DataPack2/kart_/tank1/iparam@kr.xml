@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+		ForwardAccelForce='120.0'
+		BackwardAccelForce='100.0'
+		DragFactor='-0.05'
+		SteerConstraint='2.8'
+		DriftEscapeForce='1000'
+		CornerDrawFactor='0.063'
+
+		UseTransformBooster='true'
+		TransAccelFactor='1.7'
+		TransformTime='250'   
+	
+		StartForwardAccelFactorItem = '2.1'
+		StartBoosterTimeItem='1200'       
+						
+		UseExtendedAfterBooster='true'
+		BoosterAccelFactorItem ='1.6'
+		
+		SpecialSlotCapacity = '2'
+
+		BoosterBlur='true'
+		EngineSound='tank8'
+		WaveEffect='true'
+		EnvMap='true'
+
+		BoosterType='8soon'
+		BoosterWaveType='boost8'
+
+		BoosterType0='8soon'
+		BoosterType1='8soon'
+		BoosterType2='8main'
+		BoosterType3='8main'
+
+
+	Port0='mod2a3'
+	Port1='mod2a4'
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+
+
+		TailLampSize='0.3'
+		TailLampColor='0 255 100 100'
+		BoostBlurColor='255 77 77 77'
+
+		TachometerType='Tacho1'
+		TachometerName='ht'
+		itemSlotName='ht'
+		boostGaugeName='ht'
+
+		DescBalance= '41'
+		DescStability ='42'
+		DescEngineGrade='1.25'
+		DescCornering='5'
+		DescEnchantCap = '30'
+
+/>
+
+<!--한국 M1 케피 탱크 HT 121018 가샤폰 레어-->

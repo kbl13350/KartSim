@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill6"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="（砰.砰！！）这，这怎么可能……|城镇被破坏成这个样子……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="那个坏蛋机器人！|到底他的真面目是什么！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="好像没办法回城镇了。|那么去哪儿呢？还是，去城镇战斗？|我们的武器呢？啊啊，怎么办才好呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="700"/>
+  <Char id="lodumani" pos="10 0" emotion="stop2"/>
+  <Msg name="海盗船长" string="（吱！）大家，全都跟着我。总之我们要先逃离这里。|被那机器人缠上的话就完了！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="什，什么。海盗船长你为什么？|今天奇怪的事情怎么总是在发生！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="lodumani" pos="9 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="没有时间了，他很快就会攻到这里。|大家跟我走！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="总之，我们要先逃离这里再说。|虽然有点可疑但也没办法了。|走吧！"/>
+  <Enter/>
+</Scene>

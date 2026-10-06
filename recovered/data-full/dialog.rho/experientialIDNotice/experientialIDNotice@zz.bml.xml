@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="experientialID_0" frame="CaptionDialog" windowRect="100 100 400 300" caption="#sb(experientialIDCaption)" align="center" setCloseButton="okButton">
+    <Label name="textLabel" windowRect="10 30 260 150" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" align="vcenter"/>
+    <Container windowRect="0 0 260 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 255 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="okButton" windowRect="0 0 87 30" align="center" text="#sb(ok)" altTextRender="outline"/>
+    </Container>
+  </CaptionWindow>
+  <CaptionWindow name="experientialID_1" frame="CaptionDialog" windowRect="100 100 400 300" caption="#sb(experientialIDCaption)" align="center" setCloseButton="okButton">
+    <Label name="textLabel" windowRect="10 30 260 150" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" align="vcenter"/>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 255 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="register" windowRect="0 0 87 30" text="#sb(register)" altTextRender="outline"/>
+      <TextButton name="okButton" windowRect="0 0 52 30" align="right" text="#sb(ok)" altTextRender="outline"/>
+    </Container>
+  </CaptionWindow>
+  <CaptionWindow name="experientialID_2" frame="CaptionDialog" windowRect="100 100 400 300" caption="#sb(experientialIDCaption)" align="center" setCloseButton="okButton">
+    <Label name="textLabel" windowRect="10 30 260 150" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="" align="vcenter"/>
+    <Container windowRect="0 0 145 30" align="hcenter;bottom">
+      <Window windowRect="0 -10 255 -8" frame="VSection" align="hcenter"/>
+      <TextButton name="riderSchool" windowRect="0 0 87 30" text="#sb(riderSchool)" altTextRender="outline"/>
+      <TextButton name="okButton" windowRect="0 0 52 30" align="right" text="#sb(ok)" altTextRender="outline"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

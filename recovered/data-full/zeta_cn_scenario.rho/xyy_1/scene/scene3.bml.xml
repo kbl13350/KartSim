@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="xyy4"/>
+  <Char id="dao" pos="7 0" emotion="normal"/>
+  <Msg name="皮蛋" string="让他给跑掉了，怎么办呢..？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="喜羊羊" string="你真的不是灰太狼啊？|我以为是他变的呢..很抱歉刚才攻击了你！|可是你是谁啊？"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="我是从繁荣山丘来的皮蛋！|找回家的路时来到了这里，可是因为我懒羊羊他…"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="喜羊羊" string="真的，懒羊羊怎么办啊…"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy2" pos="7 0" emotion="stop1"/>
+  <Msg name="美羊羊" string="我有好想法！|皮蛋需要你的帮忙，可以吗？"/>
+  <Enter/>
+  <Char id="xyy2" remove="true"/>
+  <Char id="xyy2" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="当然可以了！|请让我来帮忙吧！"/>
+  <Enter/>
+  <Char id="xyy2" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy2" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="美羊羊" string="皮蛋你装扮成羊然后去引诱灰太狼吧！|趁灰太狼不在的时候我们去救懒羊羊！"/>
+  <Enter/>
+  <Char id="xyy2" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="好想法！|那我现在就去引诱灰太狼！出发！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="ani5"/>
+  <Char id="xyy1" pos="11 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="可是…需要去哪里引诱灰太狼呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="xyy1" pos="11 0" emotion="stop4"/>
+  <Char id="xyy2" pos="4 0" emotion="stop3"/>
+  <Msg name="喜羊羊" string="…|往那个方向开的话就是狼堡了！"/>
+  <Enter/>
+  <Char id="xyy1" remove="true"/>
+  <Char id="xyy2" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="知道了！这就出发。"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,953 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<itemBonusTable>
+		<character id='1' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='2' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='3' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='4' bonusType='ethi' mulRpIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='5' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='6' bonusType='marid' mulRpIndi='1.5' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='7' bonusType='mos' mulRpIndi='1.6' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='8' bonusType='ethi' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='9' bonusType='lodumani' mulRp1='4.0' mulLucci1='4.0' needBonusCard='false' />
+		<character id='10' bonusType='dao' mulRp1='1.7' mulLucci1='1.7' needBonusCard='false' />
+		<character id='11' bonusType='wonwon' mulLucciIndi='3.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='12' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='13' bonusType='revaski' needBonusCard='false' />
+		<character id='14' bonusType='marid' mulLucciIndi='2.0' mulLucciTeam='2.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='15' bonusType='lodumani' mulRp1='3.5' mulLucci1='3.5' needBonusCard='false' />
+		<character id='16' bonusType='mos' mulRpIndi='1.4' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='17' bonusType='wonwon' mulRpIndi='3.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='18' bonusType='tutu' needBonusCard='false' />
+		<character id='19' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='20' bonusType='bazzi' mulRpIndi='3.0' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='21' bonusType='bazzi' mulRpIndi='3.0' mulLucciIndi='2.0' mulRpTeam='4.0' needBonusCard='false' />
+		<character id='22' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='23' bonusType='wonwon' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='24' bonusType='bazzi' mulLucciIndi='3.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='25' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='26' bonusType='wonwon' mulLucciIndi='3.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='27' bonusType='wonwon' mulLucciIndi='3.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='28' bonusType='bazzi' mulRpIndi='3.0' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='29' bonusType='marid' mulRpIndi='1.5' mulLucciIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='30' bonusType='bazzi' mulRpIndi='3.0' mulLucciIndi='1.5' mulRpTeam='3.0' mulLucciTeam='1.5' needBonusCard='false' />
+		<character id='31' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='1.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='32' bonusType='wonwon' mulLucciIndi='3.0' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='33' bonusType='aru' mulRpTeam='1.5' mulLucciTeam='1.5' needBonusCard='false' />
+		<character id='34' bonusType='aru' mulRpTeam='1.5' mulLucciTeam='1.5' needBonusCard='false' />
+		<character id='35' bonusType='aru' mulRpTeam='1.5' mulLucciTeam='1.5' needBonusCard='false' />
+		<character id='36' bonusType='aru' mulRpTeam='1.5' mulLucciTeam='1.5' needBonusCard='false' />
+		<character id='37' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='38' bonusType='ethi' mulRpIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='39' bonusType='ethi' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='40' bonusType='ethi' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='41' bonusType='ethi' mulRpIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='42' bonusType='ethi' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='43' bonusType='ethi' mulRpIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='44' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='46' bonusType='yeopo' mulRpIndi='3.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='49' bonusType='shui' mulLucciIndi='2.0' mulRpTeam='2.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='50' bonusType='yeopo' mulRpIndi='3.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='51' bonusType='yeopo' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='53' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='54' bonusType='bazzi' mulRpIndi='3.0' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='55' bonusType='marid' mulLucciIndi='2.0' mulRpTeam='2.1' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='60' bonusType='marid' mulRpIndi='2.2' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='61' bonusType='marid' mulRpIndi='2.2' mulLucciIndi='2.2' mulRpTeam='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='62' bonusType='marid' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.2' mulLucciTeam='2.2' needBonusCard='false' />
+		<character id='64' bonusType='marid' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='65' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='66' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='68' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='69' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='71' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='72' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='73' bonusType='gamania' rpBonus='true' lucciBonus='true' needBonusCard='false' />
+		<character id='74' bonusType='yeopo' mulLucciIndi='3.0' mulRpTeam='2.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='75' bonusType='bazzi' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='76' bonusType='steve' mulRpIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='77' bonusType='bazzi' mulRpIndi='3.0' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='78' bonusType='marid' mulRpIndi='2.5' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='81' bonusType='marid' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='82' bonusType='bazzi' mulRpIndi='3.0' mulLucciIndi='2.0' mulRpTeam='4.0' needBonusCard='false' />
+		<character id='84' bonusType='bazzi' mulRpIndi='3.0' mulLucciIndi='2.0' mulRpTeam='4.0' needBonusCard='false' />
+		<character id='86' bonusType='draki' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='87' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='88' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='89' bonusType='yeopo' mulRpIndi='3.0' mulRpTeam='2.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='90' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='91' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='92' bonusType='lodumani' mulRp1='3.5' mulLucci1='3.5' needBonusCard='false' />
+		<character id='93' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='94' bonusType='wonwon' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='95' bonusType='ethi' mulRpIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='96' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='97' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='98' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='99' bonusType='ethi' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='100' bonusType='ethi' mulRpIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='101' bonusType='wonwon' mulLucciIndi='3.0' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='102' bonusType='wonwon' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='103' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='104' bonusType='marid' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='105' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='106' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='107' bonusType='lodumani' mulRp1='3.5' mulLucci1='3.5' needBonusCard='false' />
+		<character id='108' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='109' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' mulLucciTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='111' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='3.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='113' bonusType='marid' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='114' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='115' bonusType='dao' mulRp1='1.9' mulLucci1='2.0' needBonusCard='false' />
+		<character id='118' bonusType='bazzi' mulRpIndi='4.0' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='119' bonusType='marid' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.2' mulLucciTeam='2.2' needBonusCard='false' />
+		<character id='120' bonusType='bazzi' mulLucciIndi='3.5' mulRpTeam='4.0' needBonusCard='false' />
+		<character id='122' bonusType='gamania' rpBonus='true' lucciBonus='true' needBonusCard='false' />
+		<character id='123' bonusType='marid' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='125' bonusType='marid' mulRpIndi='2.2' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='127' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='129' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='131' bonusType='lodumani' mulRp1='4.0' mulLucci1='4.0' needBonusCard='false' />
+		<character id='133' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='135' bonusType='lodumani' mulRp1='3.5' mulLucci1='3.5' needBonusCard='false' />
+		<character id='136' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='138' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='139' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='140' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='141' bonusType='marid' mulRpIndi='2.2' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='142' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='1.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='143' bonusType='bazzi' mulRpIndi='3.0' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='145' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='1.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='146' bonusType='bazzi' mulRpIndi='3.0' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='148' bonusType='mos' mulRpIndi='1.6' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='150' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='151' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='153' bonusType='wonwon2' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='154' bonusType='bazzi2' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='4.0' needBonusCard='false' />
+		<character id='156' bonusType='lodumani' mulRp1='3.5' mulLucci1='3.5' needBonusCard='false' />
+		<character id='157' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='158' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='160' bonusType='yeopo' mulRpIndi='3.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='161' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='163' bonusType='bazzi2' mulRpIndi='3.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='164' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='165' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='166' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='167' bonusType='ethi' mulRpIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='168' bonusType='marid' mulRpIndi='1.5' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='169' bonusType='mos' mulRpIndi='1.6' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='170' bonusType='ethi' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='171' bonusType='lodumani' mulRp1='4.0' mulLucci1='4.0' needBonusCard='false' />
+		<character id='172' bonusType='dao' mulRp1='1.7' mulLucci1='1.7' needBonusCard='false' />
+		<character id='173' bonusType='lodumani' mulRp1='3.5' mulLucci1='3.5' needBonusCard='false' />
+		<character id='174' bonusType='wonwon' mulLucciIndi='3.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='177' bonusType='bazzi2' mulLucciIndi='4.0' mulRpTeam='4.0' needBonusCard='false' />
+		<character id='178' bonusType='mos' mulRpIndi='1.4' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='179' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='180' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='181' bonusType='ethi' mulRpIndi='2.0' mulRpTeam='1.8' needBonusCard='false' />
+		<character id='182' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='183' bonusType='bazzi2' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='186' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='187' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='188' bonusType='bazzi' mulRpIndi='3.0' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='189' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='1.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='190' bonusType='wonwon2' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='191' bonusType='shui' mulLucciIndi='3.0' mulRpTeam='2.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='198' bonusType='yeopo' mulRpIndi='3.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='199' bonusType='wonwon' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='200' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='1.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='201' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='202' bonusType='lodumani' mulRp1='4.0' mulLucci1='4.0' needBonusCard='false' />
+		<character id='204' bonusType='wonwon2' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='205' bonusType='mos' mulRpIndi='1.6' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='206' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='207' bonusType='marid' mulRpIndi='2.2' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='208' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='209' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='210' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='211' bonusType='bazzi2' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='212' bonusType='marid' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='213' bonusType='shui' mulRpIndi='2.0' mulRpTeam='2.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='214' bonusType='bazzi2' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='215' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='216' bonusType='marid' mulRpIndi='1.5' mulLucciIndi='2.0' mulRpTeam='1.0' mulLucciTeam='2.0' winTeamRpMul='1.0' needBonusCard='false' />
+		<character id='217' bonusType='wonwon2' mulRpIndi='3.0' mulRpTeam='3.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='218' bonusType='ethi' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='219' bonusType='dao' mulRp1='1.7' mulLucci1='1.7' needBonusCard='false' />
+		<character id='220' bonusType='marid' mulLucciIndi='2.0' mulLucciTeam='2.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='221' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='222' bonusType='wonwon2' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='223' bonusType='marid' mulRpIndi='2.5' mulRpTeam='2.5' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='224' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='225' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='226' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='227' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='228' bonusType='wonwon2' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.0' mulLucciTeam='1.5' needBonusCard='false' />
+		<character id='229' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' mulLucciTeam='1.1' needBonusCard='false' />
+		<character id='230' bonusType='wonwon2' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='232' bonusType='wonwon2' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='234' bonusType='bazzi2' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='235' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='236' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='237' bonusType='marid' mulRpIndi='1.5' mulRpTeam='1.5' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='238' bonusType='marid' mulLucciIndi='2.0' mulLucciTeam='2.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='240' bonusType='wonwon2' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='241' bonusType='dao' mulRp1='2.0' mulLucci1='2.0' needBonusCard='false' />
+		<character id='242' bonusType='wonwon2' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='243' bonusType='shui' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='244' bonusType='marid' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='248' bonusType='wonwon' mulRpIndi='2.5' mulRpTeam='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='249' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='250' bonusType='dao' mulRp1='2.0' mulLucci1='2.0' needBonusCard='false' />
+		<character id='251' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='252' bonusType='bazzi' mulLucciIndi='3.5' mulRpTeam='4.0' needBonusCard='false' />
+		<character id='253' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='254' bonusType='bazzi' mulRpIndi='3.0' mulRpTeam='4.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='255' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='256' bonusType='lodumani' mulRp1='4.0' mulLucci1='4.0' needBonusCard='false' />
+		<character id='257' bonusType='bazzi2' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='258' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='259' bonusType='wonwon2' mulLucciIndi='3.0' mulRpTeam='3.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='260' bonusType='wonwon2' mulLucciIndi='3.0' mulRpTeam='3.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='261' bonusType='wonwon2' mulRpIndi='3.0' mulRpTeam='3.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='262' bonusType='wonwon2' mulRpIndi='3.0' mulRpTeam='3.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='263' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='264' bonusType='marid' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.2' mulLucciTeam='2.2' needBonusCard='false' />
+		<character id='266' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='267' bonusType='marid' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='1.5' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='268' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='270' bonusType='marid' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.2' mulLucciTeam='2.2' needBonusCard='false' />
+		<character id='271' bonusType='ethi' mulLucciIndi='2.0' mulRpTeam='2.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='272' bonusType='gamania' rpBonus='true' lucciBonus='true' needBonusCard='false' />
+		<character id='273' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='274' bonusType='ethi' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='275' bonusType='bazzi2' mulRpIndi='3.5' mulLucciIndi='1.5' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='276' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='277' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='278' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='279' bonusType='ethi' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='280' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='281' bonusType='dao' mulRp1='2.0' mulLucci1='2.0' needBonusCard='false' />
+		<character id='282' bonusType='marid' mulRpIndi='1.5' mulRpTeam='2.0' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='283' bonusType='marid' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='284' bonusType='wonwon' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='285' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='287' bonusType='bazzi2' mulRpIndi='3.5' mulLucciIndi='1.5' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='288' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='289' bonusType='bazzi2' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='290' bonusType='dao' mulRp1='2.0' mulLucci1='2.0' needBonusCard='false' />
+		<character id='291' bonusType='wonwon2' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='292' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='293' bonusType='marid' mulRpIndi='2.5' mulRpTeam='2.5' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='294' bonusType='wonwon2' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='295' bonusType='dao' mulRp1='2.0' mulLucci1='2.0' needBonusCard='false' />
+		<character id='296' bonusType='bazzi2' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='297' bonusType='wonwon' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='298' bonusType='wonwon2' mulLucciIndi='4.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='299' bonusType='bazzi' mulRpIndi='3.5' mulLucciIndi='3.5' mulRpTeam='4.0' needBonusCard='false' />
+		<character id='300' bonusType='wonwon2' mulLucciIndi='3.5' mulRpTeam='2.0' winTeamRpMul='2.0' needBonusCard='false' />
+		<character id='301' bonusType='dao' mulRp1='1.8' mulLucci1='1.8' needBonusCard='false' />
+		<character id='302' bonusType='bazzi' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='304' bonusType='lodumani' mulRp1='4.0' mulLucci1='4.0' needBonusCard='false' />
+		<character id='305' bonusType='wonwon' mulRpIndi='3.5' mulLucciIndi='3.5' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='306' bonusType='yeopo' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='307' bonusType='marid' mulLucciIndi='2.5' mulRpTeam='2.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='308' bonusType='wonwon2' mulRpIndi='2.0' mulLucciIndi='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='309' bonusType='marid' mulRpIndi='2.0' mulRpTeam='1.5' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='314' bonusType='dao' mulRp1='2.5' mulLucci1='2.5' needBonusCard='false' />
+		<character id='315' bonusType='wonwon2' mulLucciIndi='3.5' mulRpTeam='3.5' needBonusCard='false' />
+		<character id='316' bonusType='bazzi' mulLucciIndi='3.5' mulRpTeam='3.5' needBonusCard='false' />
+		<character id='317' bonusType='marid' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='3.5' mulLucciTeam='3.5' needBonusCard='false' />
+		<character id='318' bonusType='wonwon' mulRpIndi='2.5' mulRpTeam='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='319' bonusType='bazzi2' mulRpIndi='2.0' mulLucciIndi='2.0' mulRpTeam='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='320' bonusType='wonwon2' mulRpIndi='3.5' mulLucciIndi='3.5' mulRpTeam='3.0' winTeamRpMul='2.0' needBonusCard='false' />
+		<character id='321' bonusType='marid' mulRpIndi='2.5' mulLucciIndi='2.5' mulLucciTeam='2.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='322' bonusType='bazzi2' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='323' bonusType='marid' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='324' bonusType='wonwon' mulRpIndi='2.5' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='325' bonusType='marid' mulLucciIndi='2.5' mulRpTeam='2.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='326' bonusType='marid' mulRpIndi='2.5' mulLucciIndi='2.5' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='327' bonusType='marid' mulRpIndi='2.0' mulRpTeam='2.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='328' bonusType='marid' mulRpIndi='3.5' mulLucciIndi='3.5' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='329' bonusType='bazzi' mulLucciIndi='3.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='330' bonusType='marid' mulRpIndi='3.5' mulLucciIndi='3.5' mulRpTeam='3.0' mulLucciTeam='3.0' winTeamRpMul='2.0' needBonusCard='false' />
+		<character id='331' bonusType='dao' mulRp1='3.5' mulLucci1='3.5' needBonusCard='false' />
+		<character id='332' bonusType='bazzi' mulLucciIndi='2.5' mulRpTeam='3.5' needBonusCard='false' />
+		<character id='346' bonusType='wonwon' mulRpIndi='3.5' mulRpTeam='3.5' mulLucciTeam='3.5' needBonusCard='false' />
+		<character id='347' bonusType='marid' mulLucciIndi='3.0' mulLucciTeam='3.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='348' bonusType='bazzi' mulRpIndi='3.0' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='349' bonusType='marid' mulRpIndi='3.5' mulRpTeam='3.5' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='351' bonusType='dao' mulRp1='3.0' mulLucci1='2.5' needBonusCard='false' />
+		<character id='352' bonusType='marid' mulRpIndi='3.5' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='353' bonusType='bazzi' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='354' bonusType='marid' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='355' bonusType='wonwon2' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='3.0' winTeamLucciMul='2.0' needBonusCard='false' />
+		<character id='356' bonusType='marid' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' mulLucciTeam='2.5' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='357' bonusType='yeopo' mulRpIndi='3.5' mulLucciIndi='3.5' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='358' bonusType='marid' mulRpIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='359' bonusType='wonwon2' mulRpIndi='3.5' mulRpTeam='3.5' needBonusCard='false' />
+		<character id='360' bonusType='dao' mulRp1='2.5' mulLucci1='2.0' needBonusCard='false' />
+		<character id='361' bonusType='dao' mulRp1='2.0' mulLucci1='2.5' needBonusCard='false' />
+		<character id='362' bonusType='dao' mulRp1='2.5' mulLucci1='2.5' needBonusCard='false' />
+		<character id='363' bonusType='marid' mulRpIndi='3.5' mulLucciIndi='3.5' mulRpTeam='3.0' mulLucciTeam='3.0' winTeamLucciMul='2.0' needBonusCard='false' />
+		<character id='364' bonusType='dao' mulRp1='2.5' mulLucci1='2.5' needBonusCard='false' />
+		<character id='365' bonusType='dao' mulRp1='2.5' mulLucci1='2.5' needBonusCard='false' />
+		<character id='368' bonusType='dao' mulRp1='2.5' mulLucci1='2.5' needBonusCard='false' />
+		<character id='369' bonusType='dao' mulRp1='3.0' mulLucci1='3.0' needBonusCard='false' />
+		<character id='370' bonusType='marid' mulLucciIndi='3.0' mulRpTeam='2.5' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='371' bonusType='marid' mulRpIndi='2.5' mulLucciIndi='2.5' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='372' bonusType='marid' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='3.0' mulLucciTeam='3.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='374' bonusType='dao' mulRp1='2.5' mulLucci1='2.5' needBonusCard='false' />
+		<character id='375' bonusType='dao' mulRp1='3.0' mulLucci1='2.5' needBonusCard='false' />
+		<character id='378' bonusType='wonwon2' mulRpIndi='2.5' mulLucciIndi='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='379' bonusType='marid' mulLucciIndi='3.0' mulRpTeam='2.5' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='380' bonusType='wonwon' mulRpIndi='4.0' mulLucciIndi='4.0' mulRpTeam='4.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='381' bonusType='marid' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='3.0' winTeamLucciMul='2.0' needBonusCard='false' />
+		<character id='382' bonusType='wonwon2' mulRpIndi='4.0' mulLucciIndi='4.0' mulRpTeam='4.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='383' bonusType='marid' mulLucciIndi='3.0' mulLucciTeam='3.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='384' bonusType='wonwon2' mulLucciIndi='3.0' mulLucciTeam='2.0' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='385' bonusType='wonwon' mulRpIndi='2.5' mulRpTeam='2.0' mulLucciTeam='2.0' needBonusCard='false' />
+		<character id='386' bonusType='marid' mulRpIndi='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='387' bonusType='wonwon2' mulRpIndi='2.5' mulRpTeam='2.0' winTeamLucciMul='1.5' needBonusCard='false' />
+		<character id='388' bonusType='ethi' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.0' winTeamLucciMul='1.5' needBonusCard='false' />
+		<character id='389' bonusType='bazzi2' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='390' bonusType='bazzi' mulRpIndi='4.0' mulLucciIndi='4.0' mulRpTeam='4.0' mulLucciTeam='4.0' needBonusCard='false' />
+		<character id='393' bonusType='wonwon2' mulLucciIndi='3.0' mulRpTeam='2.0' winTeamLucciMul='1.5' needBonusCard='false' />
+		<character id='394' bonusType='steve' mulRpIndi='2.0' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='395' bonusType='draki' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='398' bonusType='marid' mulRpIndi='3.0' mulLucciTeam='2.5' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='400' bonusType='wonwon' mulRpIndi='3.0' mulRpTeam='2.5' winTeamLucciMul='1.5' needBonusCard='false' />
+		<character id='401' bonusType='marid' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.5' mulLucciTeam='2.5' winTeamRpMul='1.1' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='402' bonusType='dao' mulRp1='2.5' mulLucci1='2.5' needBonusCard='false' />
+		<character id='403' bonusType='wonwon2' mulRpIndi='3.5' mulLucciIndi='3.5' mulRpTeam='2.5' winTeamLucciMul='1.5' needBonusCard='false' />
+		<character id='404' bonusType='mos' mulRpIndi='1.6' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='405' bonusType='dao' mulRp1='2.0' mulLucci1='2.0' needBonusCard='false' />
+		<character id='406' bonusType='draki' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='407' bonusType='bazzi' mulRpIndi='3.5' mulRpTeam='3.0' needBonusCard='false' />
+		<character id='408' bonusType='marid' mulLucciIndi='2.0' mulLucciTeam='2.5' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='409' bonusType='bazzi2' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='4.0' needBonusCard='false' />
+		<character id='410' bonusType='bazzi' mulLucciIndi='2.5' mulRpTeam='2.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='411' bonusType='wonwon' mulLucciIndi='3.0' mulRpTeam='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='412' bonusType='dao' mulRp1='2.0' mulLucci1='2.0' needBonusCard='false' />
+		<character id='413' bonusType='wonwon2' mulRpIndi='3.5' mulLucciIndi='3.5' mulRpTeam='3.5' winTeamLucciMul='2.0' needBonusCard='false' />
+		<character id='414' bonusType='marid' mulRpIndi='3.5' mulLucciTeam='3.5' winTeamRpMul='1.5' needBonusCard='false' />
+		<character id='415' bonusType='marid' mulRpIndi='3.0' mulLucciTeam='3.0' needBonusCard='false' />
+		<character id='416' bonusType='marid' mulRpIndi='3.0' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='417' bonusType='bazzi' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.5' needBonusCard='false' />
+		<character id='418' bonusType='draki' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='419' bonusType='draki' mulRpIndi='3.0' mulLucciIndi='3.0' mulRpTeam='2.5' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='420' bonusType='ethi' mulLucciIndi='3.0' mulRpTeam='2.5' winTeamLucciMul='1.5' needBonusCard='false' />
+		<character id='421' bonusType='marid' mulLucciIndi='3.0' mulLucciTeam='3.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='422' bonusType='marid' mulRpIndi='3.0' mulRpTeam='3.0' winTeamLucciMul='1.1' needBonusCard='false' />
+		<character id='423' bonusType='dao' mulRp1='2.5' mulLucci1='2.5' needBonusCard='false' />
+		<character id='424' bonusType='wonwon2' mulRpIndi='3.5' mulLucciTeam='2.5' needBonusCard='false' />
+		<character id='425' bonusType='mos' mulRpIndi='1.6' mulLucciIndi='2.0' mulRpTeam='2.0' needBonusCard='false' />
+		<character id='426' bonusType='marid' mulRpIndi='3.0' mulLucciTeam='3.0' winTeamRpMul='1.1' needBonusCard='false' />
+		<character id='427' bonusType='draki' mulRpIndi='2.5' mulLucciIndi='2.5' mulRpTeam='3.0' needBonusCard='false' />
+		<handGearL id='4' bonusType='lucci*1.05' />
+		<handGearL id='8' bonusType='lucci*1.05' />
+		<handGearL id='10' bonusType='lucci*1.1' />
+		<handGearL id='11' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='12' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='13' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='14' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='15' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='16' bonusType='rp*1.1' />
+		<handGearL id='17' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='18' bonusType='rp*1.1' />
+		<handGearL id='19' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='20' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='22' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='24' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='25' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='26' bonusType='rp*1.05' />
+		<handGearL id='27' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='28' bonusType='lucci*1.1' />
+		<handGearL id='29' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='30' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='31' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='32' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='33' bonusType='lucci*1.1' />
+		<handGearL id='34' bonusType='lucci*1.1' />
+		<handGearL id='35' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='36' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='37' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='38' bonusType='lucci*1.1' />
+		<handGearL id='39' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='40' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='41' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='42' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='43' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='46' bonusType='rp*1.15' />
+		<handGearL id='47' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='49' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='50' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='51' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='52' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='53' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='54' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='55' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='56' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='57' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='59' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='60' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='62' bonusType='lucci*1.1' />
+		<handGearL id='64' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='65' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='66' bonusType='lucci*1.1' />
+		<handGearL id='68' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='69' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='70' bonusType='lucci*1.15' />
+		<handGearL id='72' bonusType='lucci*1.1' />
+		<handGearL id='73' bonusType='rp*1.1' />
+		<handGearL id='74' bonusType='lucci*1.2' />
+		<handGearL id='75' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='76' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='77' bonusType='rp*1.15' />
+		<handGearL id='78' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='79' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='80' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='81' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='82' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='83' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='84' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='85' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='88' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='89' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='91' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='92' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='93' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='94' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='95' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='97' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='98' bonusType='rp*1.15' />
+		<handGearL id='99' bonusType='rp*1.1' />
+		<handGearL id='102' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='103' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='104' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='105' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='106' bonusType='rp*1.1' />
+		<handGearL id='107' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='108' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='109' bonusType='rp*1.1' />
+		<handGearL id='110' bonusType='rp*1.1' />
+		<handGearL id='111' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='112' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='113' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='114' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='115' bonusType='rp*1.1' />
+		<handGearL id='116' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='117' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='121' bonusType='rp*1.1' />
+		<handGearL id='122' bonusType='rp*1.1' />
+		<handGearL id='123' bonusType='rp*1.1' />
+		<handGearL id='124' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='125' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='127' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='128' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='129' bonusType='rp*1.1' />
+		<handGearL id='130' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='131' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='132' bonusType='rp*1.1' />
+		<handGearL id='133' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='135' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='136' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='139' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='141' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='142' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='143' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='144' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='146' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='147' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='148' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='149' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='150' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='151' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='155' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='156' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='157' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='158' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='163' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='164' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='165' bonusType='rp*1.1' />
+		<handGearL id='166' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='167' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='168' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='170' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='171' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='174' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='175' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='177' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='178' bonusType='lucci*1.1' />
+		<handGearL id='179' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='180' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='181' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='184' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='185' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='187' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='188' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='191' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='192' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='193' bonusType='rp*1.05, lucci*1.15' />
+		<handGearL id='194' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='198' bonusType='lucci*1.1' />
+		<handGearL id='200' bonusType='lucci*1.05' />
+		<handGearL id='205' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='206' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='207' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='208' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='209' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='210' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='211' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='212' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='213' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='214' bonusType='rp*1.2, lucci*1.2' />
+		<handGearL id='217' bonusType='rp*1.1' />
+		<handGearL id='220' bonusType='rp*1.05, lucci*1.1' />
+		<handGearL id='221' bonusType='rp*1.1' />
+		<handGearL id='222' bonusType='rp*1.15, lucci*1.05' />
+		<handGearL id='223' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='224' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='225' bonusType='lucci*1.1' />
+		<handGearL id='226' bonusType='rp*1.1' />
+		<handGearL id='227' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='228' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='229' bonusType='rp*1.1' />
+		<handGearL id='231' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='232' bonusType='lucci*1.1' />
+		<handGearL id='233' bonusType='rp*1.1' />
+		<handGearL id='234' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='235' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='236' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='238' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='240' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='241' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='242' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='244' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='245' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='246' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='247' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='248' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='249' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='251' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='252' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='253' bonusType='rp*1.15' />
+		<handGearL id='254' bonusType='lucci*1.15' />
+		<handGearL id='256' bonusType='lucci*1.15' />
+		<handGearL id='257' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='258' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='259' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='260' bonusType='rp*1.05, lucci*1.05' />
+		<handGearL id='261' bonusType='lucci*1.2' />
+		<handGearL id='262' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='263' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='264' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='265' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='266' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='267' bonusType='rp*1.2' />
+		<handGearL id='268' bonusType='lucci*1.2' />
+		<handGearL id='269' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='270' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='271' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='272' bonusType='rp*1.15' />
+		<handGearL id='274' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='275' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='279' bonusType='rp*1.15' />
+		<handGearL id='280' bonusType='lucci*1.15' />
+		<handGearL id='281' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='282' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='284' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='287' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='289' bonusType='rp*1.1, lucci*1.05' />
+		<handGearL id='294' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='295' bonusType='rp*1.1, lucci*1.15' />
+		<handGearL id='296' bonusType='rp*1.15, lucci*1.1' />
+		<handGearL id='297' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='298' bonusType='rp*1.15' />
+		<handGearL id='299' bonusType='lucci*1.15' />
+		<handGearL id='300' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='301' bonusType='rp*1.2' />
+		<handGearL id='302' bonusType='lucci*1.2' />
+		<handGearL id='303' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='304' bonusType='rp*1.2' />
+		<handGearL id='305' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='306' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='307' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='308' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='309' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='310' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='312' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='313' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='314' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='315' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='320' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='321' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='322' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='323' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='324' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='325' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='326' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='327' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='328' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='329' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='330' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='331' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='332' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='334' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='335' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='336' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='337' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='338' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='341' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='342' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='343' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='344' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='345' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='346' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='347' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='348' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='349' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='350' bonusType='rp*1.2, lucci*1.2' />
+		<handGearL id='351' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='352' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='353' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='354' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='355' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='356' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='357' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='358' bonusType='rp*1.5, lucci*1.5' />
+		<handGearL id='359' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='360' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='361' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='362' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='363' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='364' bonusType='rp*1.5, lucci*1.5' />
+		<handGearL id='365' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='367' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='368' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='370' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='371' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='372' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='373' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='374' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='375' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='376' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='377' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='378' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='379' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='380' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='381' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='383' bonusType='rp*1.16' />
+		<handGearL id='384' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='385' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='386' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='387' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='388' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='389' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='390' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='391' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='392' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='393' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='394' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='395' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='396' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='397' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='398' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='399' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='400' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='404' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='405' bonusType='rp*1.4, lucci*1.4' />
+		<handGearL id='406' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='407' bonusType='rp*1.1, lucci*1.15' />
+		<handGearL id='408' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='409' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='410' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='411' bonusType='rp*1.15, lucci*1.15' />
+		<handGearL id='412' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='413' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='414' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='415' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='416' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='417' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='418' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='419' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='420' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='421' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='422' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='423' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='424' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='425' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='426' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='427' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='428' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='429' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='430' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='431' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='432' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='433' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='30002' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='30003' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='30004' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='30005' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='30006' bonusType='rp*1.1, lucci*1.1' />
+		<handGearL id='30011' bonusType='rp*1.05, lucci*1.1' />
+		<uniform id='12' restriction='itemOn(1,1)' bonusType='rp*1.05, lucci*1.05' />
+		<uniform id='13' restriction='itemOn(1,2)' bonusType='rp*1.05' />
+		<uniform id='14' restriction='itemOn(1,3)' bonusType='rp*1.05' />
+		<uniform id='16' restriction='itemOn(1,8)' bonusType='rp*1.05' />
+		<uniform id='17' restriction='itemOn(1,12)' bonusType='rp*1.05, lucci*1.05' />
+		<uniform id='28' restriction='itemOn(1,5)' bonusType='rp*1.05' />
+		<uniform id='29' bonusType='rp*1.05, lucci*1.05' />
+		<uniform id='30' bonusType='rp*1.1, lucci*1.1' />
+		<uniform id='37' restriction='itemOn(1,6)' bonusType='rp*1.05' />
+		<uniform id='60' restriction='itemOn(1,7)' bonusType='rp*1.05' />
+		<uniform id='72' bonusType='rp*1.1, lucci*1.1' />
+		<uniform id='83' restriction='itemOn(1,24)' bonusType='rp*1.1' />
+		<uniform id='85' restriction='itemOn(1,46)' bonusType='rp*1.05' />
+		<uniform id='86' restriction='itemOn(1,21)' bonusType='rp*1.1' />
+		<uniform id='90' restriction='itemOn(1,19)' bonusType='lucci*1.05' />
+		<uniform id='91' restriction='itemOn(1,8)' bonusType='lucci*1.05' />
+		<uniform id='92' restriction='itemOn(1,2)' bonusType='lucci*1.05' />
+		<uniform id='93' restriction='itemOn(1,1)' bonusType='lucci*1.05' />
+		<uniform id='98' restriction='itemOn(1,1)' bonusType='lucci*1.05' />
+		<uniform id='103' restriction='itemOn(1,1)' bonusType='rp*1.05, lucci*1.05' />
+		<uniform id='104' restriction='itemOn(1,3)' bonusType='rp*1.05' />
+		<uniform id='105' restriction='itemOn(1,25)' bonusType='rp*1.05' />
+		<uniform id='106' restriction='itemOn(1,2)' bonusType='rp*1.05' />
+		<uniform id='107' restriction='itemOn(1,1)' bonusType='rp*1.05, lucci*1.05' />
+		<pet id='2' bonusType='LucciRandom100' />
+		<pet id='3' bonusType='LucciRandom100' />
+		<pet id='4' bonusType='LucciRandom100' />
+		<pet id='5' bonusType='LucciRandom100' />
+		<pet id='6' bonusType='lucci*1.15' />
+		<pet id='7' bonusType='LucciRandom100' />
+		<pet id='9' bonusType='LucciRandom400' />
+		<pet id='12' bonusType='LucciRandom100' />
+		<pet id='13' bonusType='LucciRandom70' />
+		<pet id='15' bonusType='LucciRandom100' />
+		<pet id='16' bonusType='LucciRandom100' />
+		<pet id='17' bonusType='LucciRandom100' />
+		<pet id='21' bonusType='LucciRandom100' />
+		<pet id='22' bonusType='LucciRandom100' />
+		<pet id='23' bonusType='LucciRandom100' />
+		<pet id='24' bonusType='LucciRandom100' />
+		<pet id='25' bonusType='LucciRandom100' />
+		<pet id='26' bonusType='RpRandom100' />
+		<pet id='27' bonusType='LucciRandom100' />
+		<pet id='28' bonusType='RpRandom100' />
+		<pet id='29' bonusType='LucciRandom100' />
+		<pet id='30' bonusType='LucciRandom100' />
+		<pet id='31' bonusType='LucciRandom100' />
+		<pet id='32' bonusType='LucciRandom100' />
+		<pet id='33' bonusType='LucciRandom100' />
+		<pet id='34' bonusType='RpRandom200' />
+		<pet id='35' bonusType='LucciRandom100' />
+		<pet id='37' bonusType='RpRandom100' />
+		<pet id='38' bonusType='LucciRandom100' />
+		<pet id='39' bonusType='LucciRandom100' />
+		<pet id='40' bonusType='RpRandom100' />
+		<pet id='41' bonusType='RpRandom100' />
+		<pet id='42' bonusType='LucciRandom100' />
+		<pet id='43' bonusType='LucciRandom100' />
+		<pet id='44' bonusType='LucciRandom100' />
+		<pet id='45' bonusType='RpRandom100' />
+		<pet id='46' bonusType='LucciRandom100' />
+		<pet id='47' bonusType='RpRandom100, LucciRandom100' />
+		<pet id='48' bonusType='RpRandom100, LucciRandom100' />
+		<pet id='49' bonusType='LucciRandom100' />
+		<pet id='51' bonusType='RpRandom100' />
+		<pet id='52' bonusType='LucciRandom100' />
+		<pet id='53' bonusType='LucciRandom400' />
+		<pet id='54' bonusType='LucciRandom100' />
+		<pet id='55' bonusType='LucciRandom100' />
+		<pet id='56' bonusType='RpRandom100, LucciRandom100' />
+		<pet id='57' bonusType='RpRandom100' />
+		<pet id='58' bonusType='LucciRandom100' />
+		<pet id='59' bonusType='LucciRandom100' />
+		<pet id='60' bonusType='RpRandom100' />
+		<pet id='61' bonusType='RpRandom100' />
+		<pet id='62' bonusType='LucciRandom100' />
+		<pet id='63' bonusType='RpRandom100' />
+		<pet id='64' bonusType='RpRandom100' />
+		<pet id='65' bonusType='LucciRandom100' />
+		<pet id='66' bonusType='LucciRandom100' />
+		<pet id='67' bonusType='LucciRandom100' />
+		<pet id='68' bonusType='LucciRandom100' />
+		<pet id='69' bonusType='RpRandom100, LucciRandom100' />
+		<pet id='70' bonusType='RpRandom50, LucciRandom50' />
+		<pet id='71' bonusType='RpRandom100' />
+		<pet id='72' bonusType='LucciRandom100' />
+		<pet id='73' bonusType='RpRandom200' />
+		<pet id='74' bonusType='LucciRandom100' />
+		<pet id='75' bonusType='RpRandom100' />
+		<pet id='76' bonusType='LucciRandom100' />
+		<pet id='78' bonusType='RpRandom100' />
+		<pet id='79' bonusType='LucciRandom100' />
+		<pet id='80' bonusType='LucciRandom100' />
+		<pet id='81' bonusType='LucciRandom100' />
+		<pet id='82' bonusType='LucciRandom100' />
+		<pet id='83' bonusType='LucciRandom100' />
+		<pet id='84' bonusType='RpRandom200' />
+		<pet id='86' bonusType='LucciRandom100' />
+		<pet id='87' bonusType='RpRandom100' />
+		<pet id='88' bonusType='LucciRandom100' />
+		<pet id='89' bonusType='RpRandom100, LucciRandom100' />
+		<pet id='90' bonusType='RpRandom200' />
+		<pet id='92' bonusType='LucciRandom100' />
+		<pet id='93' bonusType='RpRandom400' />
+		<pet id='94' bonusType='RpRandom400' />
+		<pet id='95' bonusType='RpRandom200' />
+		<pet id='97' bonusType='LucciRandom100' />
+		<pet id='98' bonusType='LucciRandom100' />
+		<pet id='99' bonusType='RpRandom500' />
+		<pet id='100' bonusType='LucciRandom300' />
+		<pet id='101' bonusType='RpRandom300' />
+		<pet id='102' bonusType='LucciRandom100' />
+		<pet id='103' bonusType='RpRandom200' />
+		<pet id='104' bonusType='RpRandom100' />
+		<pet id='106' bonusType='RpRandom100, LucciRandom100' />
+		<pet id='108' bonusType='RpRandom300' />
+		<pet id='109' bonusType='LucciRandom300' />
+		<pet id='110' bonusType='LucciRandom500' />
+		<pet id='111' bonusType='RpRandom200' />
+		<pet id='112' bonusType='LucciRandom300' />
+		<pet id='113' bonusType='RpRandom300, LucciRandom300' />
+		<pet id='114' bonusType='RpRandom100, LucciRandom100' />
+		<pet id='115' bonusType='RpRandom300, LucciRandom300' />
+		<pet id='116' bonusType='RpRandom300, LucciRandom300' />
+		<pet id='117' bonusType='LucciRandom100' />
+		<pet id='118' bonusType='RpRandom300' />
+		<pet id='119' bonusType='RpRandom400' />
+		<pet id='121' bonusType='RpRandom200, LucciRandom200' />
+		<pet id='122' bonusType='LucciRandom100' />
+		<pet id='123' bonusType='RpRandom300' />
+		<pet id='124' bonusType='LucciRandom100' />
+		<pet id='125' bonusType='RpRandom300' />
+		<pet id='126' bonusType='RpRandom400' />
+		<pet id='127' bonusType='RpRandom300, LucciRandom300' />
+		<pet id='128' bonusType='RpRandom200' />
+		<pet id='129' bonusType='RpRandom300' />
+		<pet id='130' bonusType='RpRandom500' />
+		<pet id='131' bonusType='RpRandom300, LucciRandom300' />
+		<pet id='132' bonusType='LucciRandom300' />
+		<pet id='133' bonusType='RpRandom200, LucciRandom200' />
+		<pet id='134' bonusType='RpRandom200, LucciRandom200' />
+		<pet id='135' bonusType='LucciRandom100' />
+		<pet id='137' bonusType='RpRandom200, LucciRandom200' />
+		<pet id='138' bonusType='RpRandom300, LucciRandom300' />
+		<pet id='139' bonusType='LucciRandom100' />
+		<pet id='140' bonusType='RpRandom100' />
+		<pet id='141' bonusType='LucciRandom100' />
+		<pet id='142' bonusType='RpRandom100, LucciRandom100' />
+		<pet id='143' bonusType='LucciRandom200' />
+		<pet id='144' bonusType='LucciRandom200' />
+		<pet id='145' bonusType='LucciRandom200' />
+		<pet id='146' bonusType='LucciRandom300' />
+		<pet id='147' bonusType='RpRandom200' />
+		<pet id='148' bonusType='RpRandom500' />
+		<pet id='149' bonusType='RpRandom200, LucciRandom200' />
+		<pet id='150' bonusType='RpRandom200' />
+		<pet id='151' bonusType='RpRandom200' />
+		<pet id='152' bonusType='RpRandom300' />
+		<pet id='153' bonusType='LucciRandom300' />
+		<pet id='154' bonusType='RpRandom200, LucciRandom200' />
+		<pet id='155' bonusType='RpRandom200, LucciRandom200' />
+		<pet id='157' bonusType='RpRandom200' />
+		<pet id='160' bonusType='LucciRandom200' />
+		<pet id='161' bonusType='RpRandom200' />
+		<pet id='163' bonusType='RpRandom200' />
+		<pet id='164' bonusType='RpRandom200, LucciRandom200' />
+		<pet id='165' bonusType='RpRandom200' />
+		<pet id='166' bonusType='LucciRandom200' />
+		<pet id='167' bonusType='RpRandom200' />
+		<pet id='168' bonusType='RpRandom200' />
+		<pet id='169' bonusType='LucciRandom200' />
+		<pet id='170' bonusType='RpRandom200, LucciRandom200' />
+		<pet id='171' bonusType='LucciRandom200' />
+		<pet id='172' bonusType='LucciRandom300' />
+		<pet id='30003' bonusType='LucciRandom400' />
+		<pet id='30004' bonusType='RpRandom100' />
+		<pet id='30005' bonusType='LucciRandom100' />
+		<pet id='30006' bonusType='LucciRandom100' />
+		<pet id='30007' bonusType='LucciRandom100' />
+		<pet id='30008' bonusType='RpRandom200' />
+		<rpLucciBonus id='1' bonusType='rp*2.0' />
+		<rpLucciBonus id='2' bonusType='lucci*2.0' />
+		<rpLucciBonus id='3' bonusType='rp*1.7, lucci*1.7' />
+		<rpLucciBonus id='4' bonusType='rp*1.5' />
+		<rpLucciBonus id='5' bonusType='lucci*1.5' />
+		<rpLucciBonus id='6' bonusType='rp*1.2, lucci*1.2' />
+		<flyingPet id='1' bonusType='LucciRandom100' />
+		<flyingPet id='2' bonusType='LucciRandom10To100' />
+		<flyingPet id='3' bonusType='LucciRandom10To100' />
+		<flyingPet id='4' bonusType='LucciRandom10To100' />
+		<flyingPet id='5' bonusType='LucciRandom10To100' />
+		<flyingPet id='6' bonusType='LucciRandom10To100' />
+		<flyingPet id='7' bonusType='RpRandom100' />
+		<flyingPet id='8' bonusType='RpRandom10To100' />
+		<flyingPet id='9' bonusType='RpRandom10To100' />
+		<flyingPet id='10' bonusType='RpRandom10To100' />
+		<flyingPet id='11' bonusType='RpRandom10To100' />
+		<flyingPet id='12' bonusType='RpRandom10To100' />
+		<flyingPet id='13' bonusType='LucciRandom100' />
+		<flyingPet id='14' bonusType='LucciRandom10To100' />
+		<flyingPet id='15' bonusType='LucciRandom10To100' />
+		<flyingPet id='16' bonusType='LucciRandom10To100' />
+		<flyingPet id='17' bonusType='LucciRandom10To100' />
+		<flyingPet id='18' bonusType='LucciRandom10To100' />
+		<flyingPet id='25' bonusType='LucciRandom10To100' />
+		<flyingPet id='26' bonusType='RpRandom10To100' />
+		<flyingPet id='27' bonusType='RpRandom10To100' />
+		<flyingPet id='28' bonusType='RpRandom10To100' />
+		<flyingPet id='29' bonusType='RpRandom10To100' />
+		<flyingPet id='31' bonusType='RpRandom10To100' />
+		<flyingPet id='32' bonusType='RpRandom10To100' />
+		<flyingPet id='33' bonusType='RpRandom10To100' />
+		<flyingPet id='34' bonusType='RpRandom10To100' />
+		<flyingPet id='35' bonusType='RpRandom10To100' />
+		<flyingPet id='36' bonusType='RpRandom10To100' />
+		<flyingPet id='37' bonusType='RpRandom10To100' />
+		<flyingPet id='38' bonusType='RpRandom10To100' />
+		<flyingPet id='39' bonusType='RpRandom10To100' />
+		<flyingPet id='40' bonusType='RpRandom10To100' />
+		<flyingPet id='41' bonusType='LucciRandom10To100' />
+		<flyingPet id='42' bonusType='RpRandom10To100' />
+		<flyingPet id='43' bonusType='LucciRandom10To100' />
+		<flyingPet id='44' bonusType='LucciRandom10To100' />
+		<flyingPet id='45' bonusType='LucciRandom100' />
+		<flyingPet id='46' bonusType='LucciRandom100' />
+		<flyingPet id='47' bonusType='LucciRandom100' />
+		<flyingPet id='48' bonusType='RpRandom100' />
+		<flyingPet id='49' bonusType='LucciRandom10To100' />
+		<flyingPet id='50' bonusType='LucciRandom200' />
+		<flyingPet id='51' bonusType='RpRandom10To100' />
+		<flyingPet id='53' bonusType='RpRandom100' />
+		<flyingPet id='54' bonusType='RpRandom100' />
+		<flyingPet id='56' bonusType='LucciRandom10To100' />
+		<flyingPet id='57' bonusType='RpRandom10To100' />
+		<flyingPet id='58' bonusType='RpRandom10To100' />
+		<flyingPet id='59' bonusType='LucciRandom100' />
+		<flyingPet id='60' bonusType='LucciRandom10To100' />
+		<flyingPet id='61' bonusType='RpRandom100' />
+		<flyingPet id='62' bonusType='RpRandom10To100' />
+		<flyingPet id='63' bonusType='LucciRandom10To100' />
+		<flyingPet id='64' bonusType='RpRandom100' />
+		<flyingPet id='65' bonusType='LucciRandom10To100' />
+		<flyingPet id='66' bonusType='LucciRandom200' />
+		<flyingPet id='67' bonusType='RpRandom10To100' />
+		<flyingPet id='68' bonusType='LucciRandom10To100' />
+		<flyingPet id='69' bonusType='RpRandom10To100' />
+		<flyingPet id='71' bonusType='LucciRandom10To100' />
+		<flyingPet id='72' bonusType='LucciRandom10To100' />
+		<flyingPet id='73' bonusType='LucciRandom10To100' />
+		<flyingPet id='74' bonusType='RpRandom100' />
+		<flyingPet id='75' bonusType='RpRandom10To100' />
+		<flyingPet id='76' bonusType='LucciRandom100' />
+		<flyingPet id='77' bonusType='LucciRandom100' />
+		<flyingPet id='78' bonusType='RpRandom10To100' />
+		<flyingPet id='79' bonusType='LucciRandom10To100' />
+		<flyingPet id='80' bonusType='LucciRandom100' />
+		<flyingPet id='81' bonusType='RpRandom100' />
+		<flyingPet id='82' bonusType='RpRandom100' />
+		<flyingPet id='83' bonusType='LucciRandom100' />
+</itemBonusTable>

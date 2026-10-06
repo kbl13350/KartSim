@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel name="desktop" windowRect="fullscreen" color="235 0 0 0" alphaBlend="true">
+  <Container windowRect="0 0 800 600" align="center">
+    <ImageBoard name="mainWindow" windowSize="800 600" image="choice03_BG" align="center" alphaBlend="true" phaBlend="true"/>
+    <ImageButton name="select1" leftTopTex="0 150" autoLoadImage="dao_@zz" alphaBlend="true" alphaTest="true" enable="true"/>
+    <ImageButton name="select2" leftTopTex="400 150" autoLoadImage="bazzi_@zz" alphaBlend="true" alphaTest="true" enable="true"/>
+  </Container>
+  <ItemWindow name="itemPanel1" windowRect="0 0 304 150" visible="false"/>
+  <ItemWindow name="itemPanel2" windowRect="0 0 304 150" visible="false"/>
+  <Label name="textLabel" windowRect="0 172 338 284" frame="DefaultEdit" visible="false"/>
+</Panel>

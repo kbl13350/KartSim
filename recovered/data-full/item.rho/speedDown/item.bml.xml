@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="speedDown">
+  <state name="Preaffect" life="1000" fired="스턴_시작" firedFx="affecting"/>
+  <state name="Affect" life="0" fired="스턴_진행"/>
+  <state name="Escape" life="1000" fired="스턴_끝" firedFx="trapped"/>
+</item>

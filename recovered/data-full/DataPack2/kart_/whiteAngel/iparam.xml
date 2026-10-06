@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.3'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.065'
+
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+	DriftMaxGauge='-1000'
+
+	motorcycleType='true'
+	EnvMap='true'
+
+	StartForwardAccelFactor = '2'
+	BoostAccelFactor='1.5'
+	TransAccelFactor='1.8'
+	StartBoosterTime='1200'           
+	TransformTime='700'
+
+	UseTransformBooster='true'
+
+	BoosterBlur='true'
+	BoosterType='lovelove10'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	EngineSound='bike'
+
+	TachometerType='Tacho1'
+	TachometerName='angel'
+
+	Port0='mod3a'
+	Port1='mod3b'
+	FirePort0='mod5'
+	FirePort1='mod1a'
+	FirePort2='mod1b'
+	FirePort3='mod1c'
+	FirePort4='mod1d'
+
+
+		DescBalance= '30'
+		DescStability ='25'
+		DescEngineGrade='1.2'
+		DescCornering='1'
+		DescEnchantCap = '20'
+
+/>
+
+<!-- 화이트 엔젤 스쿠터 _ 한국 PC방 쿠폰 -->
+

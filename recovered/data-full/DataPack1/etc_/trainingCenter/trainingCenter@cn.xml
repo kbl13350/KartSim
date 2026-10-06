@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--  
+	type
+	시작부스터 StartBooster = 0
+	순간부스터 AdBooster = 1
+	드리프트스킬감지 DriftSkillDetect = 2
+	드래프트 Draft = 3
+	듀얼부스터 dualBooster = 4
+
+	DriftSkillType
+	Short = 1
+	Optimization = 2
+	Cutting = 3
+	ShortCutting = 4
+	ShortFull = 5
+	Double = 6
+	Drag = 7
+};
+-->
+<itemList>
+	<!-- 기본 주행 스킬 -->
+	<itemCat id='1' >
+		<!-- 출발부스터 village_L03_03_short -->
+		<item step='1' icon='tc_startbooster'
+			type='0'
+			track='village_L03_03_short'
+			kartId='0'
+			itemSlotCnt='2'
+			wrongWayOff='true'
+			time='0,0'
+			missionPhase='2'
+
+			sBoosterMissionNum='5' 
+			sBoosterMissionClearNum='2' />
+		<!-- 드리프트&부스터 village_L02_01 -->
+		<item step='2' icon='tc_driftbooster'
+			type='1'
+			track='village_L02_01'
+			kartId='0'
+			itemSlotCnt='1'
+			time='30000,30000,40000' 
+			missionPhase='3'
+			wrongWayOff='true'/>
+		<!-- 숏드리프트 village_L03_06 -->
+		<item step='3' icon='tc_sd'
+			type='2'
+			track='village_L03_06'
+			kartId='0'
+			itemSlotCnt='1'
+			time='60000,60000'
+			missionPhase='2'
+
+			wrongWayOff='true'	
+			colLimitCnt='5'
+			detectSkill='1'
+			detectCheckNum='3,9'/>
+		<!-- 최적화드리프트 village_L02_01 -->
+		<item step='4' icon='tc_drift'
+			type='2'
+			track='village_L02_01'
+			kartId='0'
+			itemSlotCnt='1'
+			time='40000,40000'
+			missionPhase='2'
+			wrongWayOff='true'
+
+			detectSkill='2'
+			detectCheckNum='2,3'/>
+	</itemCat>
+
+	<!-- 고급 주행 스킬 -->
+	<itemCat id='2' >
+		<!-- 숏풀드리프트 village_L04_06-->
+		<item step='1' icon='tc_spd'
+			type='2'
+			kartId='0'
+			track='village_L04_06'
+			time='40000,40000'
+			missionPhase='2'
+			wrongWayOff='true'
+
+			detectSkill='5'
+			detectCheckNum='1,3'/>
+		<!-- 커팅드리프트 village_C005-->
+		<item step='2' icon='tc_cd'
+			type='2'
+			guide='1'
+			kartId='0'
+			track='village_C005'
+			hideMiniMap='true'
+			time='0,60000'
+			missionPhase='2'
+			wrongWayOff='true'
+			
+			detectSkill='3'
+			detectCheckNum='3,6'
+			isCompleteMission='true'/>
+		<!-- 숏커팅드리프트 village_L04_07-->
+		<item step='3' icon='tc_scd'
+			type='2'
+			track='village_L04_07'
+			kartId='0'
+			itemSlotCnt='1'
+			time='60000,60000'
+			missionPhase='2'
+			wrongWayOff='true'
+			
+			detectSkill='4'
+			detectCheckNum='3,6'/>
+		<!-- 끌기드리프트 village_C005-->
+		<item step='4' icon='tc_pd'
+			type='2'
+			track='village_C005'
+			hideMiniMap='true'
+			kartId='0'
+			itemSlotCnt='1'
+			time='0,60000'
+			missionPhase='2'
+			wrongWayOff='true'
+			
+			detectSkill='7'
+			detectCheckNum='2,5'
+			isCompleteMission='true'/>
+	</itemCat>
+	
+	<!-- 특수 스킬 -->
+	<itemCat id='3' >
+		<!-- 드래프트 village_L01_02-->
+		<item step='1' icon='tc_draft'
+			type='3'
+			track='village_I04'
+			kartId='1518'
+			itemSlotCnt='0'
+			lap='2'
+			time='90000,90000'
+			missionPhase='2'
+			
+			aiNum='26'
+			aiDistOffset='60'
+			aiKartId='1'
+			aiCharacterId='1'
+			aiColorId='1'
+			aiDyeId='1'
+			aiSpeed='50'
+			aiAccel='30'
+			draftGuideNum='2'
+			draftMissionNum='5'	/>
+		<!-- 듀얼부스터 village_L03_07-->
+		 <item step='2' icon='tc_db'
+			type='4'
+			track='village_L03_07'
+			kartId='1518'
+			missionPhase='1'
+			itemSlotCnt='2'
+			wrongWayOff='true'
+			time='40000' />
+
+		<!-- 익시드 wkc_L01 -->
+		 <item step='3' icon='tc_exceed'
+			type='5'
+			track='wkc_L01'
+			kartId='1518'
+			missionPhase='1'
+			itemSlotCnt='2'
+			wrongWayOff='true'
+			time='50000' />
+
+		<!-- 차저 village_L01_04-->
+		 <item step='4' icon='tc_charger'
+			type='6'
+			track='village_L01_04'
+			kartId='1518'
+			missionPhase='1'
+			itemSlotCnt='2'
+			wrongWayOff='true'
+			time='40000' />
+	</itemCat>
+</itemList>

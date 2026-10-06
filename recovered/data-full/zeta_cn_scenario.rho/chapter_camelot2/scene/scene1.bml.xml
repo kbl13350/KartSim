@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill3"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="宝宝！准备好了吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="嗯！准备好了！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="因为卡美洛事件，没能发挥真正的实力就被淘汰……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="就是~这次世巡赛输的也太冤枉了~！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="为了繁荣山丘的名誉，下次一定要拿下冠军！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="胖墩" string="哇塞~今天也在练车吗？"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="早啊~胖墩~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="胖墩~好久不见~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" pos="10 0" flip="true" emotion="stop2"/>
+  <Msg name="胖墩" string="你们可真够努力的！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="bazzi" pos="5 0" emotion="stop4"/>
+  <Msg name="宝宝" string="哈哈……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="kephi" pos="8 0" flip="true" emotion="normal"/>
+  <Msg name="胖墩" string="我也要好好练车，争取参加下次世巡赛~"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kephi" pos="8 0" flip="true" emotion="stop1"/>
+  <Msg name="胖墩" string="那我先走了~练车要迟到了……下次再见~"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="bazzi" pos="10 0" emotion="stop5"/>
+  <Msg name="皮蛋，宝宝" string="……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="5 0" emotion="stop4"/>
+  <Msg name="小强" string="早啊~皮蛋，宝宝~"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="5 0" flip="true" emotion="stop4"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋，宝宝" string="早啊~小强~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="5 0" emotion="stop6"/>
+  <Msg name="小强" string="这几天我把自已的车也改装了！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="我瞅瞅~哇~好帅的车啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="5 0" emotion="stop5"/>
+  <Msg name="小强" string="只要有这辆车，下次参加世巡赛的肯定是我！哈哈哈！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="啊……这……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="7 0" emotion="stop2"/>
+  <Msg name="小强" string="那我先走了~有时间一起跑车~"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Msg name="皮蛋，宝宝" string="……"/>
+  <Enter/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="宝宝，看来他们也要……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="嗯……"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="今天也要疯狂练车！！"/>
+  <Enter/>
+</Scene>

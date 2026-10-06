@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="digit" windowSize="218 136" align="right;top" adjust="0 20">
+  <Container name="lapinfo" windowRect="120 13 204 65">
+    <CharPanel name="myLap" windowRect="0 0 43 52" texture="big_num" alphaBlend="true" fontSize="43 52" fontStr="0123456789" fontPos="0 0" text="2"/>
+    <Panel leftTopTex="38 26" texture="diagonal" alphaBlend="true"/>
+    <CharPanel name="totalLap" windowRect="26 0 66 25" align="bottom" texture="small_num" alphaBlend="true" fontSize="20 25" fontStr="0123456789/" fontPos="0 0" text="3"/>
+  </Container>
+  <Panel leftTopTex="0 67" texture="laptime_line" alphaBlend="true" align="right"/>
+  <Container name="timeinfo" windowRect="107 73 215 90">
+    <Panel leftTopTex="-85 -3" texture="laptime_time@zz" alphaBlend="true"/>
+    <CharPanel name="min" windowRect="0 0 30 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="19 0 34 17" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="sec" windowRect="27 0 57 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="45 0 60 16" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="mil" windowRect="53 0 83 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+  </Container>
+  <Container name="bestinfo" windowRect="107 93 215 110">
+    <Panel leftTopTex="-85 -3" texture="laptime_best@zz" alphaBlend="true"/>
+    <CharPanel name="min" windowRect="0 0 30 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="19 0 34 17" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="sec" windowRect="27 0 57 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="45 0 60 16" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="mil" windowRect="53 0 83 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+  </Container>
+  <Container name="lapPlus" windowRect="107 73 215 90" visible="false">
+    <Panel leftTopTex="-85 -3" texture="laptime_lap@zz" alphaBlend="true"/>
+    <CharPanel name="min" windowRect="0 0 30 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="19 0 34 17" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="sec" windowRect="27 0 57 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+    <Panel windowRect="45 0 60 16" uvRect="150 0 165 17" texture="time_num" alphaBlend="true"/>
+    <CharPanel name="mil" windowRect="53 0 83 17" texture="time_num" alphaBlend="true" fontSize="15 17" fontStr="0123456789" fontPos="0 0" text="00" spaceOffset="-4"/>
+  </Container>
+</Window>

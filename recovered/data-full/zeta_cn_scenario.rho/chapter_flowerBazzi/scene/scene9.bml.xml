@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="wkc1"/>
+  <Char id="f4dao" pos="10 0" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="呵呵呵。|杉雯雯胜利。"/>
+  <Enter/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4taki" pos="11 0" emotion="stop1"/>
+  <Msg name="美作奇奇" string="难以置信。|杉雯雯！！！实力相当吗！"/>
+  <Enter/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4mobi" pos="10 0" emotion="stop1"/>
+  <Msg name="西门吉米" string="是啊，难得有这么刺激的比赛，|是吧，道明宝宝？"/>
+  <Enter/>
+  <Char id="f4mobi" remove="true"/>
+  <Char id="f4bazzi" pos="10 0" emotion="stop2"/>
+  <Msg name="道明宝宝" string="（心脏怎么跳这么快。|脸怎么这么烫？！）"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4taki" pos="11 0" emotion="stop1"/>
+  <Msg name="美作奇奇" string="喂，道明宝宝！|输了一次而已，不至于这么泄气吧？"/>
+  <Enter/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4mobi" pos="11 0" emotion="stop1"/>
+  <Msg name="西门吉米" string="杉雯雯应该是第一个打败道明宝宝的女孩子吧？"/>
+  <Enter/>
+  <Char id="f4mobi" remove="true"/>
+  <Char id="f4taki" pos="11 0" emotion="stop1"/>
+  <Msg name="美作奇奇" string="哦？|也是，谁敢打败每天只开最新赛车的道明宝宝啊…"/>
+  <Enter/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4dao" pos="10 0" emotion="stop1"/>
+  <Char id="f4chen" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="好样的，杉雯雯。|你果然很有天赋。"/>
+  <Enter/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4dao" pos="11 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="我也不知道我是怎么赢的。|这只是和送外卖的时候一样的速度而已…"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4dao" pos="11 0" emotion="stop1"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="那就是你的优势。|这也赋予了你赛车的天赋。|以后就和我一起练车吧？"/>
+  <Enter/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="f4dao" pos="11 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="就和前辈两人练习？"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4mobi" pos="10 0" emotion="stop1"/>
+  <Msg name="西门吉米" string="哦哟~帅哥花泽皮蛋与杉雯雯单独练习！|杉雯雯该激动的睡不着了。"/>
+  <Enter/>
+  <Char id="f4mobi" remove="true"/>
+  <Char id="f4bazzi" pos="11 0" emotion="stop4"/>
+  <Msg name="道明宝宝" string="（什么？两人单独？|花泽皮蛋想和杉雯雯单独做什么！）"/>
+  <Enter/>
+  <Char id="f4bazzi" remove="true"/>
+  <Char id="f4taki" pos="10 0" emotion="stop1"/>
+  <Msg name="美作奇奇" string="哟~|难道真的只有练习吗？"/>
+  <Enter/>
+  <Char id="f4taki" remove="true"/>
+  <Char id="f4dao" pos="11 0" emotion="stop1"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="花泽皮蛋" string="杉雯雯，明天在练习场见。"/>
+  <Enter/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4chen" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="f4dao" pos="11 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="好的！花泽前辈。"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="f4dao" remove="true"/>
+  <BackGround texture="castle3"/>
+  <Char id="f4dao" pos="11 0" emotion="stop1"/>
+  <Msg name="花泽皮蛋" string="杉雯雯，来这么早。|快进入练习吧。"/>
+  <Enter/>
+  <Char id="f4dao" remove="true"/>
+  <Char id="f4chen" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="杉雯雯" string="好的。|我会努力向你学习。"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Shake time="500"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="f4bazzi" pos="9 0" emotion="stop4"/>
+  <Msg name="道明宝宝" string="你们俩单独想干什么。|你俩是不是靠太近了？|花泽皮蛋你葫芦里到底卖的什么药？|不行，我得去看看。"/>
+  <Enter/>
+</Scene>

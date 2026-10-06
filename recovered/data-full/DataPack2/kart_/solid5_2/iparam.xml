@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+             ForwardAccelForce='95.0'
+             BackwardAccelForce='85.0'
+             DragFactor='-0.049'
+             SteerConstraint='1.5'
+             DriftEscapeForce='220'
+             CornerDrawFactor='0.047'
+             BoosterBlur='true'
+             EngineSound='pro'
+/>
+
+<!-- 솔리드 Pro 중국버전 -차이나조이용 임시상품 처리 -->
+

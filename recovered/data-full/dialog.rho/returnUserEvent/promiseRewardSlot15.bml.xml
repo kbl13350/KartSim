@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="rewardInfo" windowSize="203 264" enable="true" visible="true">
+  <ImageBoard image="returnUser_attend2_normal" alphaBlend="true"/>
+  <ColorLabel name="daysLbl" windowSize="200 20" align="center;top" adjust="0 8" text="" textColor="255 255 255 255" textRender="bold16" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+  <Label name="stockNameLbl" windowSize="200 20" align="center;bottom" adjust="0 20" text="" textColor="255 40 106 83" textRender="bold14" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+  <Window name="rewardSlotName" windowSize="203 264"/>
+  <ImageBoard name="complete" leftTopTex="0 0" image="returnUser_attend2_dim" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+</Window>

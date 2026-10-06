@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="拜访黄金遗迹守护人"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="虽然遇到了 卡帕的爸爸——祭祀长, |但是祭祀长还是以怀疑的眼神看待皮蛋和朋友们，|一副无法相信他们的表情。|一贯带有攻击性态度的祭祀长提出和皮蛋进行比赛……|到底祭祀长暗藏着什么样的居心呢？ "/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="请在和祭祀长的道具赛中胜出。|"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="黄金之城"/>
+  </k>
+</StringBag>

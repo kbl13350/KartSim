@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="slot0">
+    <m c="kr" v="서역으로 / 시작"/>
+    <m c="id" v="Boom Hill Marble|Mulai"/>
+    <m c="cn" v="西天之路|就此前行"/>
+    <m c="tw" v="往西域取經/開始"/>
+    <m c="jp" v="ブームヒル|スタート"/>
+  </k>
+  <k n="slot0_desc">
+    <m c="kr" v="당 태종! 현장에게|서역으로 중생을 구제할 불법 경전을|찾아 길을 떠나라 명하다!"/>
+    <m c="id" v="Kamu mendapat 1000 LUCCI |untuk petualangan kamu! | Semangat!"/>
+    <m c="cn" v="唐太宗！交待玄奘前往西天极乐世界|取得可以济度众生的真经！"/>
+    <m c="tw" v="唐太宗下令!派玄奘|前往西域尋找能救濟眾生的經文!"/>
+    <m c="jp" v="旅の経費として1000ルッチを差し上げます！|もう一度、ファイト！"/>
+  </k>
+  <k n="slot1">
+    <m c="kr" v="보물 삼장"/>
+    <m c="id" v="Harta karun |Boom Hill"/>
+    <m c="cn" v="宝物|三藏"/>
+    <m c="tw" v="寶物三藏"/>
+    <m c="jp" v="ブームヒルの宝"/>
+  </k>
+  <k n="slot1_desc">
+    <m c="kr" v="당 태종!|현장에게 삼장이라는 법명을 주니|그가 바로 삼장법사이니라!"/>
+    <m c="id" v="Menemukan harta karun | legenda Boom Hill!"/>
+    <m c="cn" v="唐太宗！赐予玄奘三藏的雅号|从此，唐三藏开始了漫漫西行"/>
+    <m c="tw" v="唐太宗賜與玄奘!法名為三藏|他就是唐三藏法師!"/>
+    <m c="jp" v="伝説として伝わる|ブームヒルの宝を見つけた！"/>
+  </k>
+  <k n="slot2">
+    <m c="kr" v="요괴 등장!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="妖怪登场！"/>
+    <m c="tw" v="怪物登場"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot2_desc">
+    <m c="kr" v="요괴에게 쫓기던 삼장법사를|태백금성이 구원하다."/>
+    <m c="id" v="Kamu tidak bisa bergerak | akibat ban kamu pecah!"/>
+    <m c="cn" v="太白金星解救了|正在被妖怪追赶的唐三藏"/>
+    <m c="tw" v="在太白金星|拯救被怪物追趕的唐三藏法師."/>
+    <m c="jp" v="タイヤがパンクして|動けない！"/>
+  </k>
+  <k n="slot3">
+    <m c="kr" v="화과산의|원숭이"/>
+    <m c="id" v="Misi menyerang |hantu"/>
+    <m c="cn" v="吃俺老孙|一棒！"/>
+    <m c="tw" v="花果山的|猴群"/>
+    <m c="jp" v="幽霊退治作戦"/>
+  </k>
+  <k n="slot3_desc">
+    <m c="kr" v="돌에서 태어난 원숭이|화과산 원숭이 무리를 이끌고|스스로 제천대성이라 칭하다!"/>
+    <m c="id" v="Kamu telah mengusir setan |atas permintaan penduduk desa!"/>
+    <m c="cn" v="从石头缝里蹦出来的花果山小猴子|不知天高地厚的自称为齐天大圣孙悟空！"/>
+    <m c="tw" v="靈石孕育而成之石猴|帶領著花果山的猴群|並自稱為齊天大聖!"/>
+    <m c="jp" v="町の人たちに頼まれて|セメタリーの幽霊を退治した！"/>
+  </k>
+  <k n="slot4">
+    <m c="kr" v="삼장법사와|손오공"/>
+    <m c="id" v="Jelajahi istana |tengkorak"/>
+    <m c="cn" v="唐三藏|与孙悟空"/>
+    <m c="tw" v="唐三藏法師跟孫悟空"/>
+    <m c="jp" v="スケルトン城|探検"/>
+  </k>
+  <k n="slot4_desc">
+    <m c="kr" v="손오공! 오행산 꼭대기에 붙여진 봉인의 부적을 떼어 자신을 구원해 달라고 청하다!"/>
+    <m c="id" v="Kamu mendapatkan LUCCI | dari penjelajahan kuburan |istana tengkorak!"/>
+    <m c="cn" v="孙悟空！请求唐三藏为他解除封印|敢问路在何方？路在脚下！"/>
+    <m c="tw" v="孫悟空!說將封印在五指山山頂的的符咒揭除"/>
+    <m c="jp" v="セメタリーのスケルトン城を探検して|ルッチを入手した！"/>
+  </k>
+  <k n="slot5">
+    <m c="kr" v="첫 번째 제자"/>
+    <m c="id" v="Melatih |keberanian"/>
+    <m c="cn" v="师徒结伴"/>
+    <m c="tw" v="第一個徒弟"/>
+    <m c="jp" v="肝試し"/>
+  </k>
+  <k n="slot5_desc">
+    <m c="kr" v="손오공 서역으로 불경을|가지러 가는 삼장법사의|첫 번째 제자가 되다!"/>
+    <m c="id" v="Kamu telah mengalahkan ketakutan|kamu dengan latihan keberanian| di kuburan!"/>
+    <m c="cn" v="孙悟空就这么成为了|唐僧的大徒弟，与唐僧一同去西天取经！"/>
+    <m c="tw" v="孫悟空成為前往西域取經之唐三藏法師的|第一個徒弟!"/>
+    <m c="jp" v="セメタリーで肝試しをして|恐怖に打ち勝った！"/>
+  </k>
+  <k n="slot6">
+    <m c="kr" v="요괴 등장!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="妖怪登场！"/>
+    <m c="tw" v="怪物登場"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot6_desc">
+    <m c="kr" v="불로장생을 위해 삼장법사를|노리던 요괴들이 손오공에게|혼쭐나는구나!"/>
+    <m c="id" v="Mesin kamu mulai berasap!"/>
+    <m c="cn" v="呔！俺乃是会七十二变，会腾云驾雾的孙悟空|又怎会怕了你们这些小妖精？！"/>
+    <m c="tw" v="為了能長生不老,要捉捕唐三藏的|怪物們都被孫悟空|給趕跑了!"/>
+    <m c="jp" v="エンジンから煙が出始めた！"/>
+  </k>
+  <k n="slot7">
+    <m c="kr" v="과거의|천봉원수"/>
+    <m c="id" v="Tanda prajurit |pinguin"/>
+    <m c="cn" v="天蓬元帅"/>
+    <m c="tw" v="過去的|天蓬元帥"/>
+    <m c="jp" v="ペンギン|戦士の証"/>
+  </k>
+  <k n="slot7_desc">
+    <m c="kr" v="하늘의 천봉원수 죄를 짓고|인간 세상으로 쫓겨나|돼지 모습으로 요괴가 되었구나!"/>
+    <m c="id" v="Mendapatkan tanda perajurit pinguin | setelah mengalahkan perajurit penguin!"/>
+    <m c="cn" v="即使被贬为人见人怕的猪怪|他也从来不后悔自己曾努力的爱过一个人"/>
+    <m c="tw" v="天蓬元帥犯了天罪|被下遣到了人間|變成了長得像豬的怪物!"/>
+    <m c="jp" v="ペンギン戦士との決闘に勝利して|ペンギン戦士の証を手に入れた！"/>
+  </k>
+  <k n="slot8">
+    <m c="kr" v="공포의|제천대성"/>
+    <m c="id" v="Latihan |musim salju"/>
+    <m c="cn" v="恐怖的|齐天大圣"/>
+    <m c="tw" v="可怕的齊天大聖"/>
+    <m c="jp" v="冬の合宿"/>
+  </k>
+  <k n="slot8_desc">
+    <m c="kr" v="원숭이의 정체가|제천대성인 걸 알고|저팔계는 줄행랑을 치는구나!"/>
+    <m c="id" v="Kamu memulai latihan musim salju | untuk menghadapi cuaca dingin!"/>
+    <m c="cn" v="原来你就是当年大闹天宫的孙悟空？|老猪我先走一步！"/>
+    <m c="tw" v="知道猴子的真正面目是|齊天大聖後|豬八戒就逃跑了呢!"/>
+    <m c="jp" v="厳しい寒さに備えて|アイス冬合宿を始めた！"/>
+  </k>
+  <k n="slot9">
+    <m c="kr" v="두 번째 제자"/>
+    <m c="id" v="Menjajaki |gunung salju"/>
+    <m c="cn" v="八戒归降"/>
+    <m c="tw" v="第二個徒弟"/>
+    <m c="jp" v="雪山登り"/>
+  </k>
+  <k n="slot9_desc">
+    <m c="kr" v="스스로 삼장법사를|모시길 원하니 그가 바로|삼장법사의 두번째 제자 저팔계다!"/>
+    <m c="id" v="Aku lihat gunung salju | mulai menuju puncak gunung salju!"/>
+    <m c="cn" v="八戒决心将功赎罪|与唐三藏一起前往西天，修得正果"/>
+    <m c="tw" v="自己想要服侍唐三藏|那就是|唐三藏第二個徒弟豬八戒!"/>
+    <m c="jp" v="雪山がそこにある|だから雪山を登るんだ！"/>
+  </k>
+  <k n="slot10">
+    <m c="kr" v="보물 근두운"/>
+    <m c="id" v="Harta karun | gunung es"/>
+    <m c="cn" v="宝物|筋斗云"/>
+    <m c="tw" v="寶物筋斗雲"/>
+    <m c="jp" v="氷山の中の宝"/>
+  </k>
+  <k n="slot10_desc">
+    <m c="kr" v="한 번에 10만 8천 리를|날아갈 수 있는 근두운을 가진|손오공을 누가 잡을 수 있겠느냐!"/>
+    <m c="id" v="Kamu menemukan harta karun | dari dalam gunung es |yang hancur!"/>
+    <m c="cn" v="此乃天地神物，可日游四海，腾云驾雾|一翻十万八千里！"/>
+    <m c="tw" v="誰可以追得到|搭乘筋斗雲一個觔斗便能行十萬八千里路的|孫悟空呢!"/>
+    <m c="jp" v="崩れた氷山から|隠された宝を発見した！"/>
+  </k>
+  <k n="slot11">
+    <m c="kr" v="유사하의 요괴"/>
+    <m c="id" v="Keburuntungan|goa jamur"/>
+    <m c="cn" v="三千弱水|流沙河"/>
+    <m c="tw" v="流沙河畔的妖怪"/>
+    <m c="jp" v="キノコトンネル|の幸運"/>
+  </k>
+  <k n="slot11_desc">
+    <m c="kr" v="하늘의 권렴대장군 죄를 짓고|인간 세상으로 쫓겨나|유사하의 요괴가 되었구나!"/>
+    <m c="id" v="Beruntung sekali! | kamu menemukan LUCI |dalam goa jamur!"/>
+    <m c="cn" v="沙悟净原是天庭的卷帘大将，后被贬下凡|他盘踞在流沙河，成为了吃人的妖怪！"/>
+    <m c="tw" v="捲簾大將軍犯了天罪|被下遣到了人間|變成了流沙河畔的妖怪!!"/>
+    <m c="jp" v="ラッキー！|キノコトンネルで誰かが|落としたルッチを拾った！"/>
+  </k>
+  <k n="slot12">
+    <m c="kr" v="요괴 등장!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="妖怪登场！"/>
+    <m c="tw" v="妖怪登場"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot12_desc">
+    <m c="kr" v="삼장의 고기를 탐내어 사람으로|변신한 요괴가 삼장에게|구원을 요청하는구나!"/>
+    <m c="id" v="Bensinnya habis! | bagaimana ini?"/>
+    <m c="cn" v="贪图唐僧肉的妖怪，伪装成人|正在寻求唐僧的帮助！"/>
+    <m c="tw" v="想把唐三藏吃掉|變成像人類的怪物|並向唐三藏求援!"/>
+    <m c="jp" v="燃料切れ！|どうしよう？"/>
+  </k>
+  <k n="slot13">
+    <m c="kr" v="줄행랑"/>
+    <m c="id" v="Hadiah |dari panda"/>
+    <m c="cn" v="沙僧战败"/>
+    <m c="tw" v="逃跑"/>
+    <m c="jp" v="パンダの恩返し"/>
+  </k>
+  <k n="slot13_desc">
+    <m c="kr" v="손오공과 저팔계가 함께|덤벼오니 사오정에게는|도망만이 답이구나!"/>
+    <m c="id" v="Kamu mendapatkan hadiah |dari panda setelah membantu |panda yang terluka!"/>
+    <m c="cn" v="面对孙悟空和猪八戒两个强敌|沙悟净只有逃之夭夭！"/>
+    <m c="tw" v="孫悟空跟豬八戒一起|解決後|沙悟淨只能逃跑了|!"/>
+    <m c="jp" v="森の中でケガをしたパンダを|助けて、プレゼントをもらった！"/>
+  </k>
+  <k n="slot14">
+    <m c="kr" v="세 번째 제자"/>
+    <m c="id" v="Latihan |jarak bebas"/>
+    <m c="cn" v="收服沙悟净"/>
+    <m c="tw" v="第三個徒弟"/>
+    <m c="jp" v="遊撃訓練"/>
+  </k>
+  <k n="slot14_desc">
+    <m c="kr" v="사오정 목차행자의 중재로|삼장법사의 세 번째 제자가되다!"/>
+    <m c="id" v="Fokus!|Mulai terlihat sesuatu!|ayo maju terus~!"/>
+    <m c="cn" v="最终，这个吃人的妖怪摩顶受戒，指沙为姓|保护唐僧师徒，前往西天极乐世界！"/>
+    <m c="tw" v="沙悟淨經過觀世音菩薩的指點|成為唐三藏的第三個徒弟!"/>
+    <m c="jp" v="精神統一！|高地が前にあるぞ！|前進せよ～！"/>
+  </k>
+  <k n="slot15">
+    <m c="kr" v="요괴 등장!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="妖怪登场！"/>
+    <m c="tw" v="妖怪登場"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot15_desc">
+    <m c="kr" v="요괴가 등장하니 손오공이|축지법으로 일행을 모두|요괴를 피해 옮겨버리는구나!"/>
+    <m c="id" v="Gawat!|tidak bisa menggerakkan setir!"/>
+    <m c="cn" v="满天神佛尚不能伤我分毫|你们岂敢抢走我师傅？"/>
+    <m c="tw" v="妖怪出現後|孫悟空使用縮地法使一行人|免於受到怪物的攻擊!"/>
+    <m c="jp" v="大変だ！|ハンドルが動かない！"/>
+  </k>
+  <k n="slot16">
+    <m c="kr" v="손오공의 파문"/>
+    <m c="id" v="Hadiah |pemburuan Tutu"/>
+    <m c="cn" v="孙悟空的破门"/>
+    <m c="tw" v="孫悟空逐出師門"/>
+    <m c="jp" v="トゥトゥの|懸賞金"/>
+  </k>
+  <k n="slot16_desc">
+    <m c="kr" v="손오공 도적을 때려죽이고|삼장법사에게 파문을 당하다!"/>
+    <m c="id" v="Kamu menangkap |hidup-hidup penjahat Tutu"/>
+    <m c="cn" v="孙悟空打死了化妆成人的妖精|可惜，唐僧不辨人妖，盛怒之下赶走了孙悟空！"/>
+    <m c="tw" v="孫悟空殺死盜賊|遭到唐三藏逐出師門!"/>
+    <m c="jp" v="悪党トゥトゥを捕まえた！"/>
+  </k>
+  <k n="slot17">
+    <m c="kr" v="보물|여의금고봉"/>
+    <m c="id" v="Harga karun |bajak laut"/>
+    <m c="cn" v="宝物|如意金箍棒"/>
+    <m c="tw" v="寶物|如意金箍棒"/>
+    <m c="jp" v="海賊の宝"/>
+  </k>
+  <k n="slot17_desc">
+    <m c="kr" v="1만 3천 5백 근의 신진철이|손오공과 만나 무적의|여의금고봉이되었구나!"/>
+    <m c="id" v="Kamu menemukan peta harta karun| bajak laut yang tersembunyi!"/>
+    <m c="cn" v="太轻！还是太轻！只有这把重一万三千五百斤的定海神针|才适合做俺老孙的如意金箍棒！"/>
+    <m c="tw" v="一萬三千五百斤的天河定底神針鐵|成為了孫悟空的|如意金箍棒!"/>
+    <m c="jp" v="隠された海賊の宝の地図を手に入れた！"/>
+  </k>
+  <k n="slot18">
+    <m c="kr" v="진짜와 가짜"/>
+    <m c="id" v="Kabur dari | bajak laut"/>
+    <m c="cn" v="真假美猴王"/>
+    <m c="tw" v="真或假"/>
+    <m c="jp" v="海賊船脱出"/>
+  </k>
+  <k n="slot18_desc">
+    <m c="kr" v="하늘나라 신령들은 물론,|삼장법사까지 진짜와 가짜 사이에서|손오공을 구분하지 못하는구나!"/>
+    <m c="id" v="Kamu berhasil kabur dari kapal |bajak laut setelah mengelabui |kejaran Lodumani!"/>
+    <m c="cn" v="无论天下地下，无论众生众神|谁也无法分清谁才是真正的孙悟空！"/>
+    <m c="tw" v="除了仙界的神靈外,|連唐三藏都無法分辨|孫悟空是真的還是假的阿!"/>
+    <m c="jp" v="ロドマニの追撃を|かわして海賊船から脱出した！"/>
+  </k>
+  <k n="slot19">
+    <m c="kr" v="육이미후"/>
+    <m c="id" v="Keadaan |berbahaya"/>
+    <m c="cn" v="六尾猕猴"/>
+    <m c="tw" v="六耳獼猴"/>
+    <m c="jp" v="危機一髪"/>
+  </k>
+  <k n="slot19_desc">
+    <m c="kr" v="석가여래께서 단번에 가짜 손오공이|육이미후라는 것을 밝혀주시니|오공은 단숨에 그를 벌하는구나!"/>
+    <m c="id" v="Keadaan darurat! | Lodumani mengejar kamu!"/>
+    <m c="cn" v="孰真孰假，只有如来一眼认出|孙悟空这下松了口气！"/>
+    <m c="tw" v="釋迦牟尼一下就發現|孫悟空是六耳獼猴假扮的|孫悟空懲罰了六耳獼猴!"/>
+    <m c="jp" v="危機一髪！|ロドマニが追って来る！"/>
+  </k>
+  <k n="slot20">
+    <m c="kr" v="요괴 등장!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="妖怪登场！"/>
+    <m c="tw" v="妖怪登場"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot20_desc">
+    <m c="kr" v="요괴 때문에 힘들어진 손오공이|관음보살에게 도움을 청하는구나!"/>
+    <m c="id" v="Kart body masuk ke | lubang pasir!"/>
+    <m c="cn" v="呔！没想到这群妖怪如此棘手|俺只好向观音大士求助了！"/>
+    <m c="tw" v="因為妖怪,累壞的孫悟空|向觀世音菩薩請求幫忙!"/>
+    <m c="jp" v="砂のくぼみに|カートボディーがはまっちゃった！"/>
+  </k>
+  <k n="slot21">
+    <m c="kr" v="파초선"/>
+    <m c="id" v="Situs |Arkeologi"/>
+    <m c="cn" v="火焰山"/>
+    <m c="tw" v="芭蕉扇"/>
+    <m c="jp" v="恐竜遺跡"/>
+  </k>
+  <k n="slot21_desc">
+    <m c="kr" v="화염산을 넘으려니|파초동 쇠부채 신선의|파초선이 필요하구나!"/>
+    <m c="id" v="Kamu menemukan situs |peninggalan dinosaurus setelah| badai angin pasir lewat!"/>
+    <m c="cn" v="要想过此地|必须要有铁扇公主的芭蕉扇！"/>
+    <m c="tw" v="若要越過火焰山|需要芭蕉洞鐵扇公主的|芭蕉扇!"/>
+    <m c="jp" v="砂嵐が過ぎると、|隠された恐竜遺跡が現れた！"/>
+  </k>
+  <k n="slot22">
+    <m c="kr" v="우마왕|vs 손오공"/>
+    <m c="id" v="Sphinx"/>
+    <m c="cn" v="牛魔王|大战孙悟空"/>
+    <m c="tw" v="牛魔王|vs 孫悟空"/>
+    <m c="jp" v="スフィンクス"/>
+  </k>
+  <k n="slot22_desc">
+    <m c="kr" v="우마왕과 손오공이 싸움을 벌이니|온갖 요괴와 하늘의 신까지|그들을 돕기 시작하는구나!"/>
+    <m c="id" v="&quot;Makhluk apa yang jalan |dengan 4 kaki di pagi hari |2 kaki di siang hari, |dan 3 kaki di malam hari?&quot;"/>
+    <m c="cn" v="一场惊天动地的战斗即将爆发|各路妖怪、神仙纷纷观战！"/>
+    <m c="tw" v="牛魔王和孫悟空開戰|全部的怪物和天界的神靈們|也開始一起幫忙!"/>
+    <m c="jp" v="朝は4本足、昼は2本足で|夜には3本足で歩く動物、な～んだ？"/>
+  </k>
+  <k n="slot23">
+    <m c="kr" v="요괴 등장!"/>
+    <m c="id" v="Aduh! Rusak!"/>
+    <m c="cn" v="妖怪登场！"/>
+    <m c="tw" v="妖怪登場"/>
+    <m c="jp" v="あっ！|故障だ！"/>
+  </k>
+  <k n="slot23_desc">
+    <m c="kr" v="서역으로 가는 길은|멀고 험한데 요괴들은 한시도|가만히 있지 않는구나!"/>
+    <m c="id" v="Rusak~! | tidak bisa menemukan penyebabnya! |Kamu butuh moss!"/>
+    <m c="cn" v="九九八十一难，难于上青天。|妖怪们却一刻都没停止过攻击！"/>
+    <m c="tw" v="往西域的路|又遠又危險|怪物們一直發動攻擊!"/>
+    <m c="jp" v="故障した～！|原因不明！モス、助けて！"/>
+  </k>
+  <k n="slot24">
+    <m c="kr" v="보물 파초선"/>
+    <m c="id" v="Harta karun |padang pasir"/>
+    <m c="cn" v="宝物|芭蕉扇"/>
+    <m c="tw" v="寶物芭蕉扇"/>
+    <m c="jp" v="砂漠の宝"/>
+  </k>
+  <k n="slot24_desc">
+    <m c="kr" v="화염산의 불꽃을 잠재울 수 있는|파초선을 놓고 우마왕과 손오공이|심하게 싸우는구나!"/>
+    <m c="id" v="Kamu menemukan harta karun| padang pasir di oasis!"/>
+    <m c="cn" v="为了熄灭火焰山的大火|孙悟空与牛魔王大打出手！"/>
+    <m c="tw" v="使用能使火焰山的火花|熄滅的芭蕉扇|牛魔王及孫悟空開始激烈的開戰!"/>
+    <m c="jp" v="オアシスで砂漠の宝を発見した！"/>
+  </k>
+  <k n="slot25">
+    <m c="kr" v="우마왕 항복"/>
+    <m c="id" v="Penjelajah| pyramid"/>
+    <m c="cn" v="牛魔王战败"/>
+    <m c="tw" v="降伏牛魔王"/>
+    <m c="jp" v="ピラミッド|探検"/>
+  </k>
+  <k n="slot25_desc">
+    <m c="kr" v="천라지망 속 도망칠 수 없는|우마왕 결국 불가에 귀의하며|항복하는구나!"/>
+    <m c="id" v="Kamu telah menjelajahi pyramid | yang penuh dengan |legenda pharaoh "/>
+    <m c="cn" v="莫伤我命！|情愿归顺佛家也！"/>
+    <m c="tw" v="被困在天羅地網中無法逃脫的牛魔王|終於被降伏了!"/>
+    <m c="jp" v="ファラオの伝説が|眠るピラミッドを探検した！"/>
+  </k>
+  <k n="slotJackPot">
+    <m c="kr" v="진정한 보물"/>
+    <m c="id" v="Penjelajah| sejati"/>
+    <m c="tw" v="真正的寶物"/>
+    <m c="cn" v="宝物|大乘佛经"/>
+    <m c="jp" v="真の宝"/>
+  </k>
+  <k n="slotJackPot_desc">
+    <m c="kr" v="저 멀리 서역국이|보이는구나!"/>
+    <m c="id" v="Hahaha!|harta karun ada untuk |menjadi milikku!"/>
+    <m c="tw" v="看到了遠方的|西域國呢"/>
+    <m c="cn" v="历经磨难，尔等终成正果|必将流芳万世，净福人间！"/>
+    <m c="jp" v="ウハハハ！|宝はオレのために存在する！"/>
+  </k>
+  <k n="confirm">
+    <m c="kr" v="확인"/>
+    <m c="id" v="OK"/>
+    <m c="cn" v="确认"/>
+    <m c="tw" v="確認"/>
+    <m c="jp" v="確認"/>
+  </k>
+  <k n="blueMarbleDesc">
+    <m c="kr" v="붐힐마블 서유기 이벤트 규칙!"/>
+    <m c="id" v="Peraturan BoomHill Marble"/>
+    <m c="tw" v="大富翁西遊記活動規則"/>
+    <m c="cn" v="跑跑西游记活动规则"/>
+    <m c="jp" v="ブームヒルすごろくイベントルール！"/>
+  </k>
+  <k n="blueMarbleDescBody">
+    <m c="kr" v="1. 말 이동은 주사위를 굴려 나온 숫자만큼 슬롯을 이동합니다.|2. 주사위 숫자 1은 말 이동 후 자동으로 주사위를 한번 더 굴립니다.|3. 말이 슬롯에 도착하면 해당 슬롯에 대한 정보를 확인할 수 있습니다.|4. 보물 슬롯에 말이 도착한 경우 보물 도장을 찍을 수 있습니다.|5. 보물 슬롯(4개)에 도장을 모두 찍을 경우 특별한 보상을 받습니다."/>
+    <m c="id" v="1. Pion karakter bergerak sesuai angka dadu yang keluar|2. Lemparan berikut akan otomatis jika dadu lebih dari 1|3. Informasi Kotak akan didapatkan jika berada diatasnya|4. Dapat Stempel Harta Karun jika ada di Slot Harta Karun|5. Dapat Spesial Item jika dapat 4 Stempel Harta Karun"/>
+    <m c="cn" v="1. 棋子按照骰子投掷出的数字移动。|2. 如果骰子是1的话，棋子移动后会自动再投掷一次骰子。|3. 棋子到达格子时，就可以确认相应格子里的信息。|4. 如果棋子到达宝物格子里时，就可以盖宝物印章。|5. 盖所有宝物格子的印章（4个），就可以获得特殊奖品。"/>
+    <m c="tw" v="1. 甩骰子後根據出現的數字移動棋子.|2. 骰子數字1是移動旗子後能自動在骰一次骰子.|3. 根據棋子到達的欄位,確認該欄位的訊息|4. 棋子若走到寶物欄位,即可蓋寶物章.|5. 寶物欄位(4個)都蓋滿章時,可獲得特別的禮物."/>
+    <m c="jp" v="1. コマはサイコロを転がして出た目の数だけスロットを移動|2. サイコロの1が出ると、コマの移動後に自動的にもう一度|    サイコロを転がせる|3. コマがスロットに到着すると、そのスロットの情報を確認|4. 宝スロットにコマが止まると、宝スタンプを押す|5. 宝スロット(4個)すべてにスタンプを押すと、特別な報酬を入手"/>
+  </k>
+</StringBag>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="beach8"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="…" string="滴-滴-滴-滴！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="电视声" string="现在播报早新闻。|霸占1920年代所有事业，并独吞资产的月光之城市长的遗物近期被发现。"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <Char id="paul" pos="11 0" emotion="stop1"/>
+  <Msg name="电视声" string="在市长旧宅地下，发现了大量的|宝石与名画…"/>
+  <Enter/>
+  <Char id="paul" remove="true"/>
+  <BackGround texture="castle3"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="考古队员" string="竟然私吞了这么多！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="jakob2" pos="10 0" emotion="normal"/>
+  <Msg name="考古队员" string="做了这么久的考古，这么多宝藏还是第一次见。"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="考古队员" string="我来看看！这是钻石，这是红宝石，还有珍珠…|这个？这？"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="ethi" pos="3 0" emotion="ani3"/>
+  <Msg name="葱头" string="发现了什么？"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Msg name="考古队员" string="葱头，来得正好！|发现了一个旧文件！"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Msg name="葱头" string="你看! |这不是简单的文件！"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="考古队员" string="？！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="这好像是车辆设计图~|感觉不是一般的设计图。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="考古队员" string="葱头！快看，这里有文字|亚伯…亚伯特…"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="葱头" string="亚伯特！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop5"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="考古队员" string="对，是亚伯特！|好像是设计这辆车的设计者？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="ani3"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="这个交给专家来看一下比较好！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop4"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="葱头" string="我把设计图转交给车辆研究所复原组的小强！|现场就拜托你了！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="ani3"/>
+  <Char id="jakob2" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="考古队员" string="好！这里就交给我。|快去快回！"/>
+  <Enter/>
+</Scene>

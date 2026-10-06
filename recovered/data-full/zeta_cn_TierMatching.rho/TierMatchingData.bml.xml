@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TierMatchingRuleData>
+  <MatchInfoList matchLevelTick="10000">
+    <MatchInfo minMP="0" groupId="0"/>
+    <MatchInfo minMP="1001" groupId="0"/>
+    <MatchInfo minMP="1501" groupId="0"/>
+    <MatchInfo minMP="1601" groupId="1"/>
+    <MatchInfo minMP="1701" groupId="1"/>
+    <MatchInfo minMP="1801" groupId="1"/>
+    <MatchInfo minMP="1901" groupId="1"/>
+    <MatchInfo minMP="2001" groupId="2"/>
+    <MatchInfo minMP="2101" groupId="2"/>
+    <MatchInfo minMP="2201" groupId="2"/>
+    <MatchInfo minMP="2301" groupId="2"/>
+    <MatchInfo minMP="2401" groupId="2"/>
+    <MatchInfo minMP="2501" groupId="3"/>
+    <MatchInfo minMP="2601" groupId="3"/>
+    <MatchInfo minMP="2701" groupId="3"/>
+    <MatchInfo minMP="2801" groupId="3"/>
+    <MatchInfo minMP="2901" groupId="3"/>
+    <MatchInfo minMP="3001" groupId="4"/>
+    <MatchInfo minMP="3101" groupId="4"/>
+    <MatchInfo minMP="3201" groupId="4"/>
+    <MatchInfo minMP="3301" groupId="4"/>
+    <MatchInfo minMP="3401" groupId="4"/>
+    <MatchInfo minMP="3501" groupId="5"/>
+  </MatchInfoList>
+  <MPCalcInfo>
+    <PT count="5" multiple="3.0"/>
+    <CR value="1499" div="2" maxC="500" minC="-500"/>
+    <Limit max="99" min="-99"/>
+  </MPCalcInfo>
+  <MPCalcInfoIndi>
+    <C initC="30000" minAddingC="1" maxAddingC="50"/>
+    <S winS="1.0" looseS="0.0" tieS="0.5"/>
+    <P constP="700"/>
+    <RT constRA="3" constRB="9"/>
+    <V constV1="0" constV2="5" constV3="10" constV4="20" constV5="30"/>
+    <DM value="1499"/>
+  </MPCalcInfoIndi>
+  <MPCalcInfoTeam>
+    <C initC="72000" minAddingC="1" maxAddingC="50"/>
+    <S winS="1.0" looseS="0.0" tieS="0.5"/>
+    <P constP="700"/>
+    <R constR1="5" constR2="3" constR3="1" constR4="0" constR5="0" constR6="-1" constR7="-3" constR8="-5" constRT="-10"/>
+    <V constV1="0" constV2="5" constV3="10" constV4="20" constV5="30"/>
+    <PB perfect="20"/>
+    <DM value="1499"/>
+  </MPCalcInfoTeam>
+  <TierList>
+    <tier minMP="1499" rank="0"/>
+    <tier minMP="1600" rank="1"/>
+    <tier minMP="1700" rank="2"/>
+    <tier minMP="1800" rank="3"/>
+    <tier minMP="1900" rank="4"/>
+    <tier minMP="2000" rank="5"/>
+    <tier minMP="2100" rank="6"/>
+    <tier minMP="2200" rank="7"/>
+    <tier minMP="2300" rank="8"/>
+    <tier minMP="2400" rank="9"/>
+    <tier minMP="2500" rank="10"/>
+    <tier minMP="2600" rank="11"/>
+    <tier minMP="2700" rank="12"/>
+    <tier minMP="2800" rank="13"/>
+    <tier minMP="2900" rank="14"/>
+    <tier minMP="3000" rank="15"/>
+    <tier minMP="3100" rank="16"/>
+    <tier minMP="3200" rank="17"/>
+    <tier minMP="3300" rank="18"/>
+    <tier minMP="3400" rank="19"/>
+    <tier minMP="3500" rank="20"/>
+    <tier minMP="3600" rank="21"/>
+    <tier minMP="3700" rank="22"/>
+    <tier minMP="3800" rank="23"/>
+    <tier minMP="3900" rank="24"/>
+    <tier minMP="4000" rank="25"/>
+  </TierList>
+  <TierMatchingGrade>
+    <Grade minValue="4000"/>
+    <Grade minValue="3500"/>
+    <Grade minValue="3000"/>
+    <Grade minValue="2500"/>
+    <Grade minValue="2000"/>
+    <Grade minValue="0"/>
+  </TierMatchingGrade>
+</TierMatchingRuleData>

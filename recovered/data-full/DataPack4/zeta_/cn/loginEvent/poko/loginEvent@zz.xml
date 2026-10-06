@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Panel windowRect='fullscreen' color='200 0 0 0' alphaBlend='true'>
+	<Container name='loginEvent' windowRect='0 0 788 580' caption='#sb(loginEvent)' align='center'>
+		<Panel name='bg01' windowRect='0 0 512 512' texture='프레임1' alphaBlend='true' enable='false'/>
+		<Panel name='bg02' windowRect='512 0 788 512' texture='프레임2' alphaBlend='true' enable='false'/>
+		<Panel name='bg03' windowRect='0 512 512 580' texture='프레임3' alphaBlend='true' enable='false'/>
+		<Panel name='bg04' windowRect='512 512 788 580' texture='프레임4' alphaBlend='true' enable='false'/>
+		<ImageButton name='cancel' windowRect='726 99 762 135' autoLoadImage='close_0' altText='#sb(closeWindow)' altTextRender='outline' alphaBlend='true'/>
+
+		<Label windowRect='70 92 478 132' text='#sb(pokoEvent)' textRender='bold' textColor='white' multiLine='true' autoWrap='true' textAlign='vcenter' enable='false'/>
+
+		<GridSelector name='board' windowRect='52 142 300 450' alignStyle='horizontal' alignSize='6' maxLine='5' alignMargin='5 5' clientMargin='5 5 5 5'/>
+
+		<List name='special' windowRect='607 187 800 400' listGap='32' listMargin='10 0 0 0' autoAlign='false' scrollBarVisible='false'/>
+
+		<Window name='quest' windowSize='161 84' align='right;bottom' adjust='28 81'>
+			<Label name='questTitle' windowRect='0 5 200 23' align='hcenter' autoSizing='true' textRender='bold' textColor='white'/>
+			<Label name='quest' windowRect='0 23 200 41' align='right' autoSizing='true' textRender='bold' textColor='white'/>
+			<Label name='questState' windowRect='0 38 200 56' align='right' autoSizing='true' textRender='bold' textColor='white'/>	
+			<Label name='questReward' windowRect='0 68 200 86' align='right' autoSizing='true'  textRender='bold' textColor='white'/>	
+		</Window>
+		<Container windowSize='195 112' align='right;bottom' adjust='13 70'>
+			<Panel name='doPcCafeQuest' windowSize='195 112' texture='PC방알림' align='center' visible='false'/>
+			<Panel name='questComplete' windowSize='195 112' texture='클리어' align='center' visible='false'/>
+		</Container>
+
+		<Label name='toDay' windowRect='150 524 555 560' text='' textRender='bold' textColor='white' textAlign='center' multiLine='true'/>
+	</Container>
+
+	<Panel name='onClick' windowRect='fullscreen' color='100 0 0 0' alphaBlend='true' visible='false' enable='false'>
+		<Play1SPanel name='onClick1s' scene='다오카드_펑' windowSize='800 600' align='center' defaultCameraPos='0.0 -2.0 0.6' defaultSpotPos='0.0 0.0 0.6' zoom='1.0' stop='true' clearZBefore='true' clearZAfter='true' enable='false'/>
+	</Panel>
+</Panel>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god4"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="托尔" string="为什么会突然找我呢？|都这么晚了……"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="哈哈哈…… 对了！|是不是准备给我获胜奖励啊！"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="父亲大人！您找我有事吗？"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="来了啊，托尔！"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="嗯…去赛前庆典前我有话要跟你说。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="托尔" string="呼呼~ 您是要预祝我获得胜利吗？"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="奥丁" string="唉~ 说多少次了别那么自大……"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Msg name="奥丁" string="这次决赛我会特许|洛基使用永恒之枪 X！"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="你就把这个永恒之枪 X|转交给洛基！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="托尔" string="您是说永恒之枪 X吗？"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="嗯…这都是为了让你们|能堂堂正正的进行比赛！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="托尔" string="但是这是王的神物！|其他神也会参加比赛，怎么可以？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="怎么！|你的意思是我奥丁判断的不对吗！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="odin" pos="11 0" emotion="stop1"/>
+  <Msg name="托尔" string="既然这是父亲意思…|我会照办的。"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="托尔" string="反正获胜的|肯定是我雷神托尔！哈哈哈"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="托尔" string="这次也会给父亲献上|刻着托尔名字的奖杯！"/>
+  <Enter/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="知道了，快点吧这个给洛基送过去，|嘻嘻！不对…呼呼！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="pung" pos="11 0" emotion="normal"/>
+  <Char id="thor" pos="3 0" emotion="normal"/>
+  <Msg name="…" string="砰！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="pung" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="loki" pos="9 0" emotion="normal"/>
+  <Msg name="洛基" string="嘻嘻…虽然知道是个傻瓜|但骗起来也太简单了吧？"/>
+  <Enter/>
+  <Char id="loki" remove="true"/>
+  <Char id="loki" pos="9 0" flip="true" emotion="stop1"/>
+  <Msg name="洛基" string="现在我只要坐等|就可以了吗？|嘻嘻嘻"/>
+  <Enter/>
+</Scene>

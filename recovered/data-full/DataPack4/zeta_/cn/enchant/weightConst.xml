@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 카트 항목별 노출 수치 상수 값-->
+<weightConst>
+	<weight name='DragFactor' enchantVariable='-0.001' generalWeight='0.8' enchantWeight='1.8' publicCutDown='-0.05'/>
+	<weight name='ForwardAccelForce' enchantVariable='1.4' generalWeight='0.8' enchantWeight='1.8' publicCutDown='120'/>
+	<weight name='TransAccelFactor' enchantVariable='0.006' generalWeight='0.5' enchantWeight='2' publicCutDown='1.4'/>
+	<weight name='TeamBoosterTime' enchantVariable='100' generalWeight='0.8' enchantWeight='1.8' publicCutDown='-1500'/>
+	<weight name='NormalBoosterTime' enchantVariable='70' generalWeight='0.8' enchantWeight='1.8' publicCutDown='-1000'/>
+	<weight name='StartBoosterTimeSpeed' enchantVariable='200' generalWeight='1' enchantWeight='1.8' publicCutDown='0'/>
+	<weight name='DriftMaxGauge' enchantVariable='-75' generalWeight='1' enchantWeight='2' publicCutDown='1500'/>
+	<weight name='DriftEscapeForce' enchantVariable='70' generalWeight='0.7' enchantWeight='1.8' publicCutDown='0'/>
+	<weight name='CornerDrawFactor' enchantVariable='0.001' generalWeight='0.7' enchantWeight='1.8' publicCutDown='0.05'/>
+</weightConst>

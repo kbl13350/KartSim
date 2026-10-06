@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<growthKart>
+<!--
+prevId - 성장 이전 카트  (없으면 생략)
+nextId - 다음 성장 카트 (없으면 생략 : 최종 카트로 인식)
+-->
+	<growthKartList>
+		<kart id='1408' nextId='1409'/>
+		<kart id='1409' prevId='1408' nextId='1410'/>
+		<kart id='1410' prevId='1409' />
+
+		<kart id='1418' nextId='1419'/>
+		<kart id='1419' prevId='1418' />
+
+		<kart id='1422' nextId='1423'/>
+		<kart id='1423' prevId='1422' nextId='1424'/>
+		<kart id='1424' prevId='1423' />
+
+		<kart id='1518' nextId='1519'/>
+		<kart id='1519' prevId='1518' nextId='1520'/>
+		<kart id='1520' prevId='1519' />
+
+		<kart id='1528' nextId='1529'/>
+		<kart id='1529' prevId='1528' nextId='1530'/>
+		<kart id='1530' prevId='1529' />
+
+		<kart id='1532' nextId='1533'/>
+		<kart id='1533' prevId='1532' nextId='1534'/>
+		<kart id='1534' prevId='1533' />
+
+		<kart id='1539' nextId='1540'/>
+		<kart id='1540' prevId='1539' nextId='1541'/>
+		<kart id='1541' prevId='1540' />
+
+		<kart id='1544' nextId='1545'/>
+		<kart id='1545' prevId='1544' nextId='1546'/>
+		<kart id='1546' prevId='1545' />
+
+		<kart id='1616' nextId='1617'/>
+		<kart id='1617' prevId='1616' nextId='1618'/>
+		<kart id='1618' prevId='1617' />
+	</growthKartList>
+
+	<!-- Xun 엔진용 : 재료 카트에서 제외될 카트의 Id -->
+	<exclusionKart>
+		<kart id='1513' /><!-- 프로토I 신 -->
+		<kart id='1514' /><!-- 프로토S 신-B -->
+		<kart id='1516' /><!-- 프로토S 신-S -->
+		<kart id='1517' /><!-- 프로토S 신-L -->
+
+				<!-- KARTRIDGE -->
+		<kart id='1527' /><!-- 익시드 랜덤 변경 레어 파츠 신 -->
+	</exclusionKart>
+</growthKart>

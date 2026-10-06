@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="0 0 1024 768">
+  <Panel leftTopWH="0 0 1024 768" texture="ingame_shadow" alphaBlend="true"/>
+  <XmlFile file="scoreUi"/>
+  <XmlFile file="timeUi"/>
+  <XmlFile file="rankBoard1024"/>
+</Container>

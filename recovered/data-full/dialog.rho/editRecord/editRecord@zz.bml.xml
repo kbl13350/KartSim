@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="0 0 380 200" caption="#sb(modifyInfo)" captionPos="0 1" captionColor="black" align="center" setCloseButton="cancelButton">
+  <Panel windowRect="6 20 16 30" enable="false" texture="설명네모" alphaBlend="true"/>
+  <Label name="static" windowRect="28 20 29 22" enable="false" text="#sb(title)"/>
+  <Edit name="title" frame="DefaultEdit" windowRect="75 14 340 36" maxChar="30"/>
+  <Panel windowRect="6 60 16 70" enable="false" texture="설명네모" alphaBlend="true"/>
+  <Label name="static" windowRect="28 60 29 72" enable="false" text="#sb(desc)"/>
+  <Edit name="description" frame="DefaultEdit" windowRect="75 54 340 76" maxChar="190"/>
+  <Panel windowRect="0 92 346 93" color="255 0 0 0"/>
+  <Panel windowRect="0 93 346 94" color="255 255 255 255"/>
+  <TextButton name="okButton" text="#sb(ok)" windowRect="63 110 135 132" altTextRender="outline"/>
+  <TextButton name="cancelButton" text="#sb(cancel)" windowRect="222 110 294 132" altTextRender="outline"/>
+</CaptionWindow>

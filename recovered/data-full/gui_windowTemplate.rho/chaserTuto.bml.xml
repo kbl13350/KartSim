@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="tutorialBoard" windowSize="223 106" align="left;bottom" adjust="9 8">
+  <Panel name="img1" clientRect="0 0 223 106" texture="chaserTuto01@zz" alphaBlend="true" visible="false"/>
+  <Panel name="img2" clientRect="0 0 223 106" texture="chaserTuto02@zz" alphaBlend="true" visible="false"/>
+  <Panel name="img3" clientRect="0 0 223 106" texture="chaserTuto03@zz" alphaBlend="true" visible="false"/>
+  <Panel name="img4" clientRect="0 0 223 106" texture="chaserTuto04@zz" alphaBlend="true" visible="false"/>
+  <Panel name="img5" clientRect="0 0 223 106" texture="chaserTuto05@zz" alphaBlend="true" visible="false"/>
+</Container>

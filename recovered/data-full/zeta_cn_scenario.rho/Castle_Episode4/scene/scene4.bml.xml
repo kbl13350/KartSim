@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Char id="marid" pos="7 0" emotion="stop5"/>
+  <Msg name="蓝蓝" string="咻…差点出事了。。|可是，这是哪里啊？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop3"/>
+  <Msg name="皮德" string="谁敢跑到这个树林里啊？"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop4"/>
+  <Char id="zude" pos="11 0" emotion="stop3"/>
+  <Msg name="蓝蓝" string="啊！！有人！！|您好，我叫蓝蓝。我在找我朋友，|他叫宝宝，您见过吗？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="zude" remove="true"/>
+  <Char id="zude" pos="8 0" emotion="stop1"/>
+  <Msg name="皮德" string="小朋友，我是大城堡的厨师，皮德。|能帮我寻找幻想料理材料-彩虹蘑菇的话，|我可以告诉你你朋友的位置！！"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop5"/>
+  <Msg name="蓝蓝" string="知道了！！可是我从来没有做过那种粗活啊。"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop3"/>
+  <Char id="marid" pos="3 0" emotion="stop5"/>
+  <Msg name="皮德" string="那就算了，我自己去找吧。"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="marid" pos="4 0" emotion="stop6"/>
+  <Msg name="蓝蓝" string="知道了，知道了！！|咻，为了宝宝，我这是在干什么啊…"/>
+  <Enter/>
+</Scene>

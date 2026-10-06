@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Career>
+	<CareerItem  id ='1'		achievementList='0,15,1,3'/>
+	<CareerItem  id ='2'		achievementList='2,5,6,7,8,9,10,11,12,13,14,16,17,18'/>
+	<CareerItem  id ='3'		/>
+	<CareerItem  id ='4'		/>
+	<CareerItem  id ='5'		/>
+	<CareerItem  id ='6'		/>
+	<CareerItem  id ='7'		/>
+	<CareerItem  id ='8'		achievementList='9,10,11,12'/>
+	<CareerItem  id ='9'		achievementList='8'/>
+	<CareerItem  id ='10'		achievementList='7'/>
+	<CareerItem  id ='11'		/>
+	<CareerItem  id ='12'		rewardStockId='3109'	/>	<!-- Career LevelⅠ	Career Level 1 풍선 100개 -->           
+	<CareerItem  id ='13'		rewardEmblemId='8366'/>	<!-- Career Level Ⅱ	Career Level Ⅱ 엠블럼 -->     
+	<CareerItem  id ='14'		rewardEmblemId='8367'/>	<!-- Career Level Ⅲ	Career Level Ⅲ 엠블럼 -->     
+	<CareerItem  id ='15'		rewardEmblemId='8368'/>	<!-- Career Level Ⅳ	Career Level Ⅳ 엠블럼 -->     
+	<CareerItem  id ='16'		/>
+	<!--<CareerItem  id ='17'		/>-->
+	<CareerItem  id ='18'		/>
+	<!--CareerItem  id ='19'		enable='false' />
+	<CareerItem  id ='20'		enable='false' /-->
+	<!--<CareerItem  id ='21'		/>-->
+	<CareerItem  id ='22'		/>
+	<CareerItem  id ='23'		/>
+	<!--CareerItem  id ='36'		/-->
+	<CareerItem  id ='135'		/>
+	<CareerItem  id ='136'		/>
+	<CareerItem  id ='137'		rewardStockId='3127'/>	<!-- 양손잡이 -->
+	<CareerItem  id ='141'		achievementCount='170000'/>
+	<CareerItem  id ='142'		achievementCount='150000'/>
+	<CareerItem  id ='143'		achievementCount='122000'/>
+	<CareerItem  id ='168'		/>
+	<CareerItem  id ='169'		/>
+	<CareerItem  id ='170'		/>
+	<CareerItem  id ='171'		/>
+	<CareerItem  id ='172'		/>
+	<CareerItem  id ='173'		/>
+	<CareerItem  id ='174'		/>
+	<CareerItem  id ='175'		/>
+	<CareerItem  id ='176'		/>
+	<CareerItem  id ='177'		/>
+	<CareerItem  id ='178'		/>
+	<CareerItem  id ='179'		/>
+	<CareerItem  id ='180'		/>
+	<CareerItem  id ='181'		/>
+	<CareerItem  id ='182'		/>
+	<CareerItem  id ='183'		/>
+	<CareerItem  id ='184'		/>
+	<CareerItem  id ='185'		/>
+	<CareerItem  id ='186'		/>
+	<CareerItem  id ='187'		/>
+	<CareerItem  id ='188'		/>
+	<CareerItem  id ='189'			rewardEmblemId='8364'/>	<!-- 아이템 박물관	아이템 박물관 엠블럼 -->
+	<CareerItem  id ='190'		/>
+	<CareerItem  id ='191'		/>
+	<CareerItem  id ='192'		/>
+	<CareerItem  id ='193'		/>
+	<CareerItem  id ='194'		/>
+	<!--CareerItem  id ='195'		/-->
+	<CareerItem  id ='196'		/>
+	<CareerItem  id ='197'		/>
+	<!--CareerItem  id ='198'		/>
+	<CareerItem  id ='199'		/-->
+	<CareerItem  id ='201'			rewardEmblemId='8365'/>	<!-- 밥먹고 카트만	죽돌이 엠블럼 -->
+	<CareerItem  id ='202'		/>
+	<CareerItem  id ='205'		/>
+	<CareerItem  id ='214'		/>
+	<CareerItem  id ='215'		/>
+	<CareerItem  id ='216'		/>
+	<CareerItem  id ='244'		/>
+	<CareerItem  id ='245'		/>
+	<CareerItem  id ='246'		/>
+	<CareerItem  id ='247'		/>
+	<CareerItem  id ='248'		/>
+	<CareerItem  id ='249'		/>
+	<CareerItem  id ='250'		/>
+	<CareerItem  id ='251'		/>
+	<CareerItem  id ='252'			rewardEmblemId='8370'/>	<!-- 팬더 애호가 엠블럼 -->
+	<CareerItem  id ='254'		/>
+	<CareerItem  id ='255'		/>
+	<CareerItem  id ='256'		/>
+	<CareerItem  id ='257'		/>
+	<CareerItem  id ='258'		/>
+	<CareerItem  id ='259'		/>
+	<CareerItem  id ='260'		/>
+	<CareerItem  id ='261'		/>
+
+	<CareerItem  id ='24'		/>
+	<!--<CareerItem  id ='25'		/>
+	<CareerItem  id ='26'		/>
+	<CareerItem  id ='27'		/>
+	<CareerItem  id ='28'		/>
+	<CareerItem  id ='29'		/>
+	<CareerItem  id ='30'		/>-->
+	<CareerItem  id ='31'		/>
+	<CareerItem  id ='32'		/>
+	<CareerItem  id ='33'		/>
+	<CareerItem  id ='34'		/>
+	<!--<CareerItem  id ='35'		rewardStockId='3110'	/>-->
+	<CareerItem  id ='37'		/>
+	<CareerItem  id ='38'		/>
+	<CareerItem  id ='39'		/>
+	<CareerItem  id ='40'		/>
+	<CareerItem  id ='41'		rewardStockId='3271'	/>
+	<CareerItem  id ='42'		/>
+	<CareerItem  id ='43'		/>
+	<CareerItem  id ='44'		/>
+	<CareerItem  id ='45'		/>
+	<CareerItem  id ='46'		rewardStockId='384'/>
+	<CareerItem  id ='47'		/>
+	<CareerItem  id ='48'		/>
+	<CareerItem  id ='49'		/>
+	<CareerItem  id ='50'		/>
+	<CareerItem  id ='51'		rewardStockId='562'/>
+	<CareerItem  id ='52'		/>
+	<CareerItem  id ='53'		/>
+	<CareerItem  id ='54'		/>
+	<CareerItem  id ='55'		/>
+	<CareerItem  id ='56'		rewardStockId='1903'/>
+	<CareerItem  id ='57'		/>
+	<CareerItem  id ='58'		/>
+	<CareerItem  id ='59'		/>
+	<CareerItem  id ='60'		/>
+	<CareerItem  id ='61'		rewardStockId='2162'/>
+	<CareerItem  id ='62'		/>
+	<CareerItem  id ='63'		/>
+	<CareerItem  id ='64'		/>
+	<CareerItem  id ='65'		/>
+	<CareerItem  id ='66'		rewardStockId='3061'/>
+	<CareerItem  id ='67'		/>
+	<CareerItem  id ='68'		/>
+	<CareerItem  id ='69'		/>
+	<CareerItem  id ='70'		/>
+	<CareerItem  id ='71'		rewardStockId='2731'/>
+	<CareerItem  id ='72'		/>
+	<CareerItem  id ='73'		/>
+	<CareerItem  id ='74'		/>
+	<CareerItem  id ='75'		/>
+	<CareerItem  id ='76'		rewardStockId='329'/>
+	<CareerItem  id ='77'		/>
+	<CareerItem  id ='78'		/>
+	<CareerItem  id ='79'		/>
+	<CareerItem  id ='80'		/>
+	<CareerItem  id ='81'		rewardStockId='2232'/>
+	<CareerItem  id ='82'		/>
+	<CareerItem  id ='83'		/>
+	<CareerItem  id ='84'		/>
+	<CareerItem  id ='85'		/>
+	<CareerItem  id ='86'		rewardStockId='1144'/>
+	<CareerItem  id ='87'		/>
+	<CareerItem  id ='88'		/>
+	<CareerItem  id ='89'		/>
+	<CareerItem  id ='90'		/>
+	<CareerItem  id ='91'		rewardStockId='450'/>
+	<CareerItem  id ='144'		achievementCount='183000'/>
+	<CareerItem  id ='145'		achievementCount='165000'/>
+	<CareerItem  id ='146'		achievementCount='136000'/>
+	<CareerItem  id ='206'		/>
+	<CareerItem  id ='207'		/>
+	<CareerItem  id ='208'		/>
+	<CareerItem  id ='209'		/>
+	<CareerItem  id ='210'		rewardStockId='918'/>
+	<CareerItem  id ='217'		achievementCount='169000'/>
+	<CareerItem  id ='218'		achievementCount='153000'/>
+	<CareerItem  id ='219'		achievementCount='143000'/>
+	<CareerItem  id ='232'		achievementCount='194000'/>
+	<CareerItem  id ='233'		achievementCount='170000'/>
+	<CareerItem  id ='234'		achievementCount='136000'/>
+
+	<CareerItem  id ='92' isNew='1'/>
+	<CareerItem  id ='93' isNew='1'/>
+	<CareerItem  id ='94' rewardStockId='3111' isNew='1'/>
+	<CareerItem  id ='95' isNew='1'/>
+	<CareerItem  id ='96' isNew='1'/>
+	<CareerItem  id ='97' rewardStockId='3112' isNew='1'/>
+	<CareerItem  id ='98' isNew='1'/>
+	<CareerItem  id ='99' isNew='1'/>
+	<CareerItem  id ='100' rewardStockId='3113' isNew='1'/>
+	<CareerItem  id ='101' isNew='1'/>
+	<CareerItem  id ='102' isNew='1'/>
+	<CareerItem  id ='103' rewardStockId='3114' isNew='1'/>
+	<CareerItem  id ='104' isNew='1'/>
+	<CareerItem  id ='105' isNew='1'/>
+	<CareerItem  id ='106' rewardStockId='3115' isNew='1'/>
+	<CareerItem  id ='107' isNew='1'/>
+	<CareerItem  id ='108' isNew='1'/>
+	<CareerItem  id ='109' rewardStockId='3116' isNew='1'/>
+	<CareerItem  id ='110' isNew='1'/>
+	<CareerItem  id ='111' isNew='1'/>
+	<CareerItem  id ='112' rewardStockId='3119' isNew='1'/>
+	<CareerItem  id ='113' isNew='1'/>
+	<CareerItem  id ='114' isNew='1'/>
+	<CareerItem  id ='115' rewardStockId='3118' isNew='1'/>
+	<CareerItem  id ='116' isNew='1'/>
+	<CareerItem  id ='117' isNew='1'/>
+	<CareerItem  id ='118' rewardStockId='3117' isNew='1'/>
+	<CareerItem  id ='119' isNew='1'/>
+	<CareerItem  id ='120' isNew='1'/>
+	<CareerItem  id ='121' rewardStockId='3121' isNew='1'/>
+	<CareerItem  id ='122' isNew='1'/>
+	<CareerItem  id ='123' isNew='1'/>
+	<CareerItem  id ='124' rewardStockId='3120' isNew='1'/>
+	<CareerItem  id ='125' isNew='1'/>
+	<CareerItem  id ='126' isNew='1'/>
+	<CareerItem  id ='127' rewardStockId='3122' isNew='1'/>
+	<CareerItem  id ='128' isNew='1'/>
+	<CareerItem  id ='129' isNew='1'/>
+	<CareerItem  id ='130' rewardStockId='3123' isNew='1'/>
+	<CareerItem  id ='131' isNew='1'/>
+	<CareerItem  id ='132' isNew='1'/>
+	<CareerItem  id ='133' rewardStockId='3124' isNew='1'/>
+	<CareerItem  id ='134' rewardStockId='3126' isNew='1'/>
+	<CareerItem  id ='211' isNew='1'/>
+	<CareerItem  id ='212' isNew='1'/>
+	<CareerItem  id ='213' rewardStockId='3125' isNew='1'/>
+	<CareerItem  id ='220' achievementCount='177000' isNew='1'/>
+	<CareerItem  id ='221' achievementCount='155000' isNew='1'/>
+	<CareerItem  id ='222' achievementCount='128000' isNew='1'/>
+	<CareerItem  id ='226' achievementCount='119000' isNew='1'/>
+	<CareerItem  id ='227' achievementCount='100000' isNew='1'/>
+	<CareerItem  id ='228' achievementCount='81000' isNew='1'/>
+	<CareerItem  id ='241' achievementCount='153000' isNew='1'/>
+	<CareerItem  id ='242' achievementCount='130000' isNew='1'/>
+	<CareerItem  id ='243' achievementCount='117000' isNew='1'/>
+
+	<CareerItem  id ='280'		isNew='1'/>
+	<CareerItem  id ='281'		isNew='1'/>
+	<CareerItem  id ='282'		isNew='1' rewardStockId='4009'/>
+
+	<CareerItem  id ='293'		isNew='1' rewardStockId='7914'/>
+	<CareerItem  id ='294'		isNew='1' rewardStockId='7914'/>
+	<CareerItem  id ='295'		isNew='1' rewardStockId='7914'/>
+</Career> 

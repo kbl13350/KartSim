@@ -1,0 +1,473 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- 무조건 소수점 한자리만 허용 -->
+
+<F1GameProperty>
+
+<!-- <option name='option' level='3' rank='7' step='1'/>-->
+
+	<F1RiderGroup id='1' opened='true'>		
+		<F1Rider id='1'	name='Legend Racer'                 kartId='456' colorId='12' dyeId='12' speedWeight='0' accelWeight='0'/>
+		<F1Rider id='2'	name='MR. Black'                      kartId='456' colorId='8' dyeId='8'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='3'	name='Hyper Motor'                   kartId='460' colorId='1' dyeId='1'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='4'	name='C-Dragon'                       kartId='456' colorId='2' dyeId='2'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='5'	name='Bad Skill'                        kartId='460' colorId='3' dyeId='3'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='6'	name='Rider Liu'                        kartId='456' colorId='4' dyeId='4'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='7'	name='P.Y.K'                             kartId='460' colorId='5' dyeId='5'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='8'	name='Luki'                               kartId='456' colorId='6' dyeId='6'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='9'	name='KartRider King'                 kartId='460' colorId='7' dyeId='7'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='10'	name='Rider Nek'                       kartId='456' colorId='9' dyeId='9'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='11'	name='Romi'                             kartId='460' colorId='10' dyeId='10'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='12'	name='Anak kecil yang gembira'  kartId='456' colorId='11' dyeId='11'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='13'	name='Rod'                               kartId='460' colorId='12' dyeId='12'	speedWeight='0' accelWeight='0'/>		
+		<F1Rider id='14'	name='Fussy'                            kartId='460' colorId='2' dyeId='2'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='15'	name='Beauty Rider'                   kartId='456' colorId='3' dyeId='3'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='16'	name='Grumpy'                         kartId='460' colorId='4' dyeId='4'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='17'	name='Fighter'                           kartId='460' colorId='6' dyeId='6'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='18'	name='Ted'                               kartId='456' colorId='7' dyeId='7'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='19'	name='Dragon'                           kartId='460' colorId='11' dyeId='11'	speedWeight='0' accelWeight='0'/>
+
+		<!-- x 1000 -->
+		<BoostInterval chase='1' yield='9'>
+			<Interval grade='1' veasy='6-10'	easy='5-9'		normal='4-7'	hard='3-5'/>  <!--추격조-->
+			<Interval grade='2' veasy='6-12'	easy='6-11'		normal='6-11'	hard='3-8'/>
+			<Interval grade='3' veasy='8-14'	easy='8-13'		normal='8-12'	hard='4-9'/>
+			<Interval grade='4' veasy='12-15'	easy='11-15'	normal='9-15'	hard='7-12'/>
+			<Interval grade='5' veasy='14-18'	easy='13-18'	normal='11-17'	hard='9-15'/>
+			<Interval grade='6' veasy='17-19'	easy='16-19'	normal='14-18'	hard='12-17'/>
+			<Interval grade='7' veasy='18-21'	easy='17-21'	normal='15-20'	hard='14-19'/>
+			<Interval grade='8' veasy='6-20'	easy='5-20'		normal='3-20'	hard='2-20'/> <!--랜덤 테이블-->
+			<Interval grade='9' veasy='13-18'	easy='13-18'	normal='12-16'	hard='9-10'/> <!--선두 조절용-->
+		</BoostInterval>
+
+		<!-- level 별 난이도 id : 1 easy, 2 normal, 3 hard-->
+		<F1LevelWeight>
+			<Level id='1'	speed='-13'	accel='-7'	step1Spd='0'	step2Spd='1'	step3Spd='0'/>		<!-- very easy -->
+			<Level id='2'	speed='-11'	accel='-4'	step1Spd='0'	step2Spd='1'	step3Spd='0'/>		<!-- easy -->
+			<Level id='3'	speed='-11'	accel='-3'	step1Spd='0'	step2Spd='1'	step3Spd='0'/>		<!-- normal -->
+			<Level id='4'	speed='-10'	accel='-3'	step1Spd='0'	step2Spd='2'	step3Spd='1'/>		<!-- hard -->
+		</F1LevelWeight>
+	</F1RiderGroup>
+
+	<F1RiderGroup id='2' opened='true'>		
+		<F1Rider id='1'	name='Legend Racer'                 kartId='456' colorId='12' dyeId='12' speedWeight='0' accelWeight='0'/>
+		<F1Rider id='2'	name='MR. Black'                      kartId='456' colorId='8' dyeId='8'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='3'	name='Hyper Motor'                   kartId='460' colorId='1' dyeId='1'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='4'	name='C-Dragon'                       kartId='456' colorId='2' dyeId='2'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='5'	name='Bad Skill'                        kartId='460' colorId='3' dyeId='3'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='6'	name='Rider Liu'                        kartId='456' colorId='4' dyeId='4'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='7'	name='P.Y.K'                            kartId='460' colorId='5' dyeId='5'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='8'	name='Luki'                               kartId='456' colorId='6' dyeId='6'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='9'	name='KartRider King'                kartId='460' colorId='7' dyeId='7'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='10'	name='Rider Nek'                       kartId='456' colorId='9' dyeId='9'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='11'	name='Romi'                             kartId='460' colorId='10' dyeId='10'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='12'	name='Anak kecil yang gembira' kartId='456' colorId='11' dyeId='11'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='13'	name='Rod'                               kartId='460' colorId='12' dyeId='12'	speedWeight='0' accelWeight='0'/>		
+		<F1Rider id='14'	name='Fussy'                            kartId='460' colorId='2' dyeId='2'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='15'	name='Beauty Rider'                  kartId='456' colorId='3' dyeId='3'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='16'	name='Grumpy'                         kartId='460' colorId='4' dyeId='4'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='17'	name='Fighter'                           kartId='460' colorId='6' dyeId='6'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='18'	name='Ted'                               kartId='456' colorId='7' dyeId='7'	speedWeight='0' accelWeight='0'/>
+		<F1Rider id='19'	name='Dragon'                          kartId='460' colorId='11' dyeId='11'	speedWeight='0' accelWeight='0'/>
+
+		<!-- x 1000 -->
+		<BoostInterval chase='1' yield='9'>
+			<Interval grade='1' veasy='6-10'	easy='5-9'		normal='4-7'	hard='3-5'/>  <!--추격조-->
+			<Interval grade='2' veasy='6-12'	easy='6-11'		normal='6-11'	hard='3-8'/>
+			<Interval grade='3' veasy='8-14'	easy='8-13'		normal='8-12'	hard='4-9'/>
+			<Interval grade='4' veasy='12-15'	easy='11-15'	normal='9-15'	hard='7-12'/>
+			<Interval grade='5' veasy='14-18'	easy='13-18'	normal='11-17'	hard='9-15'/>
+			<Interval grade='6' veasy='17-19'	easy='16-19'	normal='14-18'	hard='12-17'/>
+			<Interval grade='7' veasy='18-21'	easy='17-21'	normal='15-20'	hard='14-19'/>
+			<Interval grade='8' veasy='6-20'	easy='5-20'		normal='3-20'	hard='2-20'/> <!--랜덤 테이블-->
+			<Interval grade='9' veasy='13-18'	easy='13-18'	normal='12-16'	hard='9-10'/> <!--선두 조절용-->
+		</BoostInterval>
+
+		<!-- level 별 난이도 id : 1 easy, 2 normal, 3 hard-->
+		<F1LevelWeight>
+			<Level id='1'	speed='-13'	accel='-7'	step1Spd='0'	step2Spd='1'	step3Spd='0'/>		<!-- very easy -->
+			<Level id='2'	speed='-11'	accel='-4'	step1Spd='0'	step2Spd='1'	step3Spd='0'/>		<!-- easy -->
+			<Level id='3'	speed='-11'	accel='-3'	step1Spd='0'	step2Spd='1'	step3Spd='0'/>		<!-- normal -->
+			<Level id='4'	speed='-10'	accel='-3'	step1Spd='0'	step2Spd='2'	step3Spd='1'/>		<!-- hard -->
+		</F1LevelWeight>
+	</F1RiderGroup>
+	<!-- rank 별 난이도 base -->
+	<F1RankWeight rankGrade='0-1'>
+		<F1Rider id='1'	speed='54'	accel='25'	bstGrade='3'/>
+		<F1Rider id='2'	speed='54'	accel='27'	bstGrade='3'/>
+		<F1Rider id='3'	speed='53'	accel='24'	bstGrade='2'/>
+		<F1Rider id='4'	speed='53'	accel='20'	bstGrade='3'/>
+		<F1Rider id='5'	speed='52'	accel='20'	bstGrade='3'/>
+		<F1Rider id='6'	speed='50'	accel='21'	bstGrade='2'/>
+		<F1Rider id='7'	speed='51'	accel='17'	bstGrade='3'/>
+		<F1Rider id='8'	speed='51'	accel='22'	bstGrade='3'/>
+		<F1Rider id='9'	speed='51'	accel='22'	bstGrade='4'/>
+		<F1Rider id='10'	speed='50'	accel='27'	bstGrade='4'/>
+		<F1Rider id='11'	speed='50'	accel='27'	bstGrade='2'/>
+		<F1Rider id='12'	speed='48'	accel='27'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='27'	bstGrade='5'/>
+		<F1Rider id='14'	speed='46'	accel='27'	bstGrade='5'/>
+		<F1Rider id='15'	speed='45'	accel='25'	bstGrade='5'/>
+		<F1Rider id='16'	speed='44'	accel='25'	bstGrade='5'/>
+		<F1Rider id='17'	speed='42'	accel='25'	bstGrade='6'/>
+		<F1Rider id='18'	speed='41'	accel='30'	bstGrade='2'/>
+		<F1Rider id='19'	speed='41'	accel='30'	bstGrade='1'/>
+	</F1RankWeight>
+
+	<F1RankWeight rankGrade='2-3'>
+		<F1Rider id='1'	speed='54'	accel='23'	bstGrade='3'/>
+		<F1Rider id='2'	speed='53'	accel='25'	bstGrade='3'/>
+		<F1Rider id='3'	speed='52'	accel='27'	bstGrade='3'/>
+		<F1Rider id='4'	speed='53'	accel='21'	bstGrade='6'/>
+		<F1Rider id='5'	speed='52'	accel='20'	bstGrade='4'/>
+		<F1Rider id='6'	speed='50'	accel='21'	bstGrade='2'/>
+		<F1Rider id='7'	speed='51'	accel='17'	bstGrade='4'/>
+		<F1Rider id='8'	speed='51'	accel='22'	bstGrade='4'/>
+		<F1Rider id='9'	speed='51'	accel='22'	bstGrade='5'/>
+		<F1Rider id='10'	speed='50'	accel='27'	bstGrade='4'/>
+		<F1Rider id='11'	speed='50'	accel='27'	bstGrade='3'/>
+		<F1Rider id='12'	speed='48'	accel='27'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='27'	bstGrade='6'/>
+		<F1Rider id='14'	speed='46'	accel='27'	bstGrade='6'/>
+		<F1Rider id='15'	speed='45'	accel='25'	bstGrade='6'/>
+		<F1Rider id='16'	speed='43'	accel='25'	bstGrade='6'/>
+		<F1Rider id='17'	speed='42'	accel='25'	bstGrade='7'/>
+		<F1Rider id='18'	speed='41'	accel='30'	bstGrade='2'/>
+		<F1Rider id='19'	speed='41'	accel='30'	bstGrade='1'/>
+	</F1RankWeight>
+		
+		<F1RankWeight rankGrade='4-5'>
+		<F1Rider id='1'	speed='54'	accel='23'	bstGrade='3'/>
+		<F1Rider id='2'	speed='53'	accel='27'	bstGrade='3'/>
+		<F1Rider id='3'	speed='53'	accel='21'	bstGrade='4'/>
+		<F1Rider id='4'	speed='52'	accel='23'	bstGrade='4'/>
+		<F1Rider id='5'	speed='52'	accel='21'	bstGrade='5'/>
+		<F1Rider id='6'	speed='51'	accel='22'	bstGrade='2'/>
+		<F1Rider id='7'	speed='51'	accel='19'	bstGrade='4'/>
+		<F1Rider id='8'	speed='51'	accel='21'	bstGrade='4'/>
+		<F1Rider id='9'	speed='50'	accel='24'	bstGrade='5'/>
+		<F1Rider id='10'	speed='50'	accel='28'	bstGrade='4'/>
+		<F1Rider id='11'	speed='50'	accel='26'	bstGrade='3'/>
+		<F1Rider id='12'	speed='48'	accel='26'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='28'	bstGrade='6'/>
+		<F1Rider id='14'	speed='46'	accel='26'	bstGrade='6'/>
+		<F1Rider id='15'	speed='45'	accel='25'	bstGrade='6'/>
+		<F1Rider id='16'	speed='43'	accel='25'	bstGrade='6'/>
+		<F1Rider id='17'	speed='42'	accel='25'	bstGrade='7'/>
+		<F1Rider id='18'	speed='41'	accel='30'	bstGrade='2'/>
+		<F1Rider id='19'	speed='41'	accel='25'	bstGrade='3'/>
+	</F1RankWeight>
+
+			<F1RankWeight rankGrade='6-7'>
+		<F1Rider id='1'	speed='54'	accel='22'	bstGrade='3'/>
+		<F1Rider id='2'	speed='53'	accel='21'	bstGrade='3'/>
+		<F1Rider id='3'	speed='52'	accel='25'	bstGrade='4'/>
+		<F1Rider id='4'	speed='52'	accel='23'	bstGrade='4'/>
+		<F1Rider id='5'	speed='52'	accel='21'	bstGrade='5'/>
+		<F1Rider id='6'	speed='51'	accel='22'	bstGrade='2'/>
+		<F1Rider id='7'	speed='51'	accel='18'	bstGrade='4'/>
+		<F1Rider id='8'	speed='51'	accel='23'	bstGrade='4'/>
+		<F1Rider id='9'	speed='50'	accel='22'	bstGrade='5'/>
+		<F1Rider id='10'	speed='50'	accel='27'	bstGrade='5'/>
+		<F1Rider id='11'	speed='50'	accel='27'	bstGrade='3'/>
+		<F1Rider id='12'	speed='48'	accel='27'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='27'	bstGrade='6'/>
+		<F1Rider id='14'	speed='46'	accel='27'	bstGrade='6'/>
+		<F1Rider id='15'	speed='45'	accel='25'	bstGrade='6'/>
+		<F1Rider id='16'	speed='43'	accel='25'	bstGrade='6'/>
+		<F1Rider id='17'	speed='42'	accel='25'	bstGrade='7'/>
+		<F1Rider id='18'	speed='41'	accel='30'	bstGrade='3'/>
+		<F1Rider id='19'	speed='41'	accel='25'	bstGrade='2'/>
+	</F1RankWeight>
+
+			<F1RankWeight rankGrade='8-9'>
+		<F1Rider id='1'	speed='53'	accel='23'	bstGrade='3'/>
+		<F1Rider id='2'	speed='53'	accel='22'	bstGrade='3'/>
+		<F1Rider id='3'	speed='52'	accel='22'	bstGrade='5'/>
+		<F1Rider id='4'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='5'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='6'	speed='51'	accel='21'	bstGrade='3'/>
+		<F1Rider id='7'	speed='51'	accel='17'	bstGrade='4'/>
+		<F1Rider id='8'	speed='51'	accel='22'	bstGrade='4'/>
+		<F1Rider id='9'	speed='50'	accel='22'	bstGrade='5'/>
+		<F1Rider id='10'	speed='50'	accel='27'	bstGrade='5'/>
+		<F1Rider id='11'	speed='50'	accel='27'	bstGrade='3'/>
+		<F1Rider id='12'	speed='48'	accel='27'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='27'	bstGrade='6'/>
+		<F1Rider id='14'	speed='46'	accel='27'	bstGrade='6'/>
+		<F1Rider id='15'	speed='45'	accel='25'	bstGrade='6'/>
+		<F1Rider id='16'	speed='43'	accel='25'	bstGrade='6'/>
+		<F1Rider id='17'	speed='42'	accel='25'	bstGrade='7'/>
+		<F1Rider id='18'	speed='41'	accel='25'	bstGrade='4'/>
+		<F1Rider id='19'	speed='41'	accel='30'	bstGrade='3'/>
+	</F1RankWeight>
+
+				<F1RankWeight rankGrade='10-11'>
+		<F1Rider id='1'	speed='53'	accel='23'	bstGrade='3'/>
+		<F1Rider id='2'	speed='53'	accel='22'	bstGrade='3'/>
+		<F1Rider id='3'	speed='52'	accel='22'	bstGrade='5'/>
+		<F1Rider id='4'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='5'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='6'	speed='51'	accel='21'	bstGrade='3'/>
+		<F1Rider id='7'	speed='51'	accel='17'	bstGrade='4'/>
+		<F1Rider id='8'	speed='51'	accel='22'	bstGrade='5'/>
+		<F1Rider id='9'	speed='50'	accel='22'	bstGrade='6'/>
+		<F1Rider id='10'	speed='50'	accel='27'	bstGrade='5'/>
+		<F1Rider id='11'	speed='50'	accel='27'	bstGrade='3'/>
+		<F1Rider id='12'	speed='48'	accel='27'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='27'	bstGrade='6'/>
+		<F1Rider id='14'	speed='46'	accel='27'	bstGrade='6'/>
+		<F1Rider id='15'	speed='45'	accel='25'	bstGrade='6'/>
+		<F1Rider id='16'	speed='43'	accel='25'	bstGrade='6'/>
+		<F1Rider id='17'	speed='42'	accel='25'	bstGrade='7'/>
+		<F1Rider id='18'	speed='41'	accel='25'	bstGrade='3'/>
+		<F1Rider id='19'	speed='41'	accel='30'	bstGrade='2'/>
+	</F1RankWeight>
+
+				<F1RankWeight rankGrade='12-13'>
+		<F1Rider id='1'	speed='53'	accel='23'	bstGrade='3'/>
+		<F1Rider id='2'	speed='53'	accel='22'	bstGrade='3'/>
+		<F1Rider id='3'	speed='52'	accel='22'	bstGrade='5'/>
+		<F1Rider id='4'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='5'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='6'	speed='51'	accel='21'	bstGrade='3'/>
+		<F1Rider id='7'	speed='51'	accel='17'	bstGrade='3'/>
+		<F1Rider id='8'	speed='50'	accel='22'	bstGrade='4'/>
+		<F1Rider id='9'	speed='50'	accel='22'	bstGrade='5'/>
+		<F1Rider id='10'	speed='50'	accel='27'	bstGrade='5'/>
+		<F1Rider id='11'	speed='50'	accel='27'	bstGrade='3'/>
+		<F1Rider id='12'	speed='48'	accel='27'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='27'	bstGrade='6'/>
+		<F1Rider id='14'	speed='46'	accel='27'	bstGrade='6'/>
+		<F1Rider id='15'	speed='45'	accel='25'	bstGrade='6'/>
+		<F1Rider id='16'	speed='43'	accel='25'	bstGrade='6'/>
+		<F1Rider id='17'	speed='42'	accel='25'	bstGrade='7'/>
+		<F1Rider id='18'	speed='41'	accel='25'	bstGrade='4'/>
+		<F1Rider id='19'	speed='41'	accel='30'	bstGrade='3'/>
+	</F1RankWeight>
+
+					<F1RankWeight rankGrade='14-15'>
+		<F1Rider id='1'	speed='53'	accel='22'	bstGrade='3'/>
+		<F1Rider id='2'	speed='53'	accel='21'	bstGrade='3'/>
+		<F1Rider id='3'	speed='52'	accel='22'	bstGrade='5'/>
+		<F1Rider id='4'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='5'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='6'	speed='51'	accel='21'	bstGrade='3'/>
+		<F1Rider id='7'	speed='51'	accel='17'	bstGrade='4'/>
+		<F1Rider id='8'	speed='51'	accel='22'	bstGrade='4'/>
+		<F1Rider id='9'	speed='50'	accel='22'	bstGrade='5'/>
+		<F1Rider id='10'	speed='50'	accel='27'	bstGrade='5'/>
+		<F1Rider id='11'	speed='50'	accel='27'	bstGrade='3'/>
+		<F1Rider id='12'	speed='48'	accel='27'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='27'	bstGrade='6'/>
+		<F1Rider id='14'	speed='46'	accel='27'	bstGrade='6'/>
+		<F1Rider id='15'	speed='45'	accel='25'	bstGrade='6'/>
+		<F1Rider id='16'	speed='43'	accel='25'	bstGrade='6'/>
+		<F1Rider id='17'	speed='42'	accel='25'	bstGrade='7'/>
+		<F1Rider id='18'	speed='41'	accel='25'	bstGrade='4'/>
+		<F1Rider id='19'	speed='41'	accel='30'	bstGrade='3'/>
+	</F1RankWeight>
+
+		<F1RankWeight rankGrade='16-17'>
+		<F1Rider id='1'	speed='52'	accel='21'	bstGrade='3'/>
+		<F1Rider id='2'	speed='52'	accel='21'	bstGrade='4'/>
+		<F1Rider id='3'	speed='52'	accel='22'	bstGrade='4'/>
+		<F1Rider id='4'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='5'	speed='52'	accel='20'	bstGrade='6'/>
+		<F1Rider id='6'	speed='51'	accel='21'	bstGrade='3'/>
+		<F1Rider id='7'	speed='51'	accel='17'	bstGrade='3'/>
+		<F1Rider id='8'	speed='51'	accel='22'	bstGrade='4'/>
+		<F1Rider id='9'	speed='50'	accel='22'	bstGrade='5'/>
+		<F1Rider id='10'	speed='50'	accel='27'	bstGrade='5'/>
+		<F1Rider id='11'	speed='50'	accel='27'	bstGrade='3'/>
+		<F1Rider id='12'	speed='48'	accel='27'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='27'	bstGrade='6'/>
+		<F1Rider id='14'	speed='46'	accel='27'	bstGrade='6'/>
+		<F1Rider id='15'	speed='45'	accel='25'	bstGrade='6'/>
+		<F1Rider id='16'	speed='43'	accel='25'	bstGrade='6'/>
+		<F1Rider id='17'	speed='42'	accel='25'	bstGrade='6'/>
+		<F1Rider id='18'	speed='41'	accel='25'	bstGrade='5'/>
+		<F1Rider id='19'	speed='41'	accel='30'	bstGrade='2'/>
+	</F1RankWeight>
+
+			<F1RankWeight rankGrade='18-19'>
+		<F1Rider id='1'	speed='52'	accel='20'	bstGrade='3'/>
+		<F1Rider id='2'	speed='52'	accel='20'	bstGrade='4'/>
+		<F1Rider id='3'	speed='52'	accel='21'	bstGrade='4'/>
+		<F1Rider id='4'	speed='52'	accel='20'	bstGrade='5'/>
+		<F1Rider id='5'	speed='52'	accel='20'	bstGrade='6'/>
+		<F1Rider id='6'	speed='51'	accel='21'	bstGrade='3'/>
+		<F1Rider id='7'	speed='51'	accel='17'	bstGrade='3'/>
+		<F1Rider id='8'	speed='50'	accel='22'	bstGrade='4'/>
+		<F1Rider id='9'	speed='50'	accel='22'	bstGrade='5'/>
+		<F1Rider id='10'	speed='50'	accel='27'	bstGrade='5'/>
+		<F1Rider id='11'	speed='50'	accel='27'	bstGrade='3'/>
+		<F1Rider id='12'	speed='48'	accel='27'	bstGrade='4'/>
+		<F1Rider id='13'	speed='47'	accel='27'	bstGrade='6'/>
+		<F1Rider id='14'	speed='46'	accel='26'	bstGrade='6'/>
+		<F1Rider id='15'	speed='45'	accel='26'	bstGrade='6'/>
+		<F1Rider id='16'	speed='43'	accel='26'	bstGrade='6'/>
+		<F1Rider id='17'	speed='42'	accel='26'	bstGrade='7'/>
+		<F1Rider id='18'	speed='41'	accel='25'	bstGrade='5'/>
+		<F1Rider id='19'	speed='41'	accel='23'	bstGrade='2'/>
+	</F1RankWeight>
+
+
+</F1GameProperty>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

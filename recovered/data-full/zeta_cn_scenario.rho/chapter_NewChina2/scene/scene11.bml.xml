@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china19"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="[龙之圣地城市中心]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="sharming" pos="3 0" emotion="stop1"/>
+  <Msg name="木兰" string="你也听到了雯雯说的吧？"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="sharming" pos="3 0" emotion="stop4"/>
+  <Char id="hantao" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="门神" string="先是阿哥…再后是鑫鑫也输了。"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" pos="4 0" emotion="stop4"/>
+  <Char id="hantao" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="木兰" string="他们是不是轻敌了呀？"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" pos="4 0" emotion="stop1"/>
+  <Char id="hantao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="门神" string="但总归来说输就是输了。"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" remove="true"/>
+  <Char id="hantao" pos="11 0" flip="true" emotion="stop2"/>
+  <Char id="sharming" pos="4 0" emotion="stop4"/>
+  <Msg name="木兰" string="关乎龙之车手的名誉。|不过到底是怎么打败他们的呢？"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" remove="true"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="[过了一会]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="lingling" pos="3 0" emotion="normal"/>
+  <Msg name="凌凌" string="我听说龙之车手在这里…不知道对不对诶。"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="凌凌" string="你好，我是凌凌。|你…是龙之车手吗？"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="8 0" flip="true" emotion="stop4"/>
+  <Char id="hantao" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="木兰" string="我叫木兰，他是门神。|我们就是龙之车手。"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" remove="true"/>
+  <Char id="lingling" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="凌凌" string="还好没有找错…果然宝玉也在震动呢。"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="8 0" flip="true" emotion="stop3"/>
+  <Char id="hantao" pos="12 0" flip="true" emotion="stop2"/>
+  <Msg name="木兰" string="宝玉在震动？"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" remove="true"/>
+  <Char id="lingling" pos="5 0" flip="true" emotion="stop5"/>
+  <Msg name="凌凌" string="是的，宝玉会对守护者气息做出反应。|为了完成家族的传承仪式，我正在寻找守护者气息。"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="8 0" flip="true" emotion="stop1"/>
+  <Char id="hantao" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="门神" string="那你的意思是守护者气息在我们身上吗？但是我并没有感受到你所说的那个气息。"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" remove="true"/>
+  <Char id="lingling" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="凌凌" string="果然…龙之车手是感受不到的。"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="lingling" pos="5 0" emotion="normal"/>
+  <Msg name="凌凌" string="但是阿哥和鑫鑫也是通过宝玉才找到的守护者气息呢。"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="9 0" flip="true" emotion="stop4"/>
+  <Msg name="木兰" string="…原来跟阿哥和鑫鑫对决的是你。|你到底是怎么打败他们的呢？"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="lingling" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="凌凌" string="可能是因为运气好吧。也有可能是最近我的状态比较好呢！"/>
+  <Enter/>
+  <Char id="lingling" remove="true"/>
+  <Char id="sharming" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="木兰" string="就算再怎么有潜力，运气再好，真的能轻松打败龙之车手吗？…"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="门神" string="真的是不可思议！"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="sharming" pos="9 0" flip="true" emotion="stop4"/>
+  <Msg name="木兰" string="虽然很难相信，但是既然你说是靠实力打败的他们…|那就让我来试炼一下你吧！"/>
+  <Enter/>
+  <Char id="sharming" remove="true"/>
+  <Char id="hantao" pos="10 0" flip="true" emotion="stop3"/>
+  <Msg name="门神" string="通过我的试炼，那我就认可你！"/>
+  <Enter/>
+  <Char id="hantao" remove="true"/>
+  <Char id="lingling" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="凌凌" string="一言为定！"/>
+  <Enter/>
+</Scene>

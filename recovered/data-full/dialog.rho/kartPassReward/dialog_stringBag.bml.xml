@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="kartPassReward">
+    <m c="kr" v="카트 패스 보상"/>
+    <m c="cn" v="跑跑通行证奖励"/>
+    <m c="tw" v="跑跑通行證獎勵"/>
+  </k>
+  <k n="rewardStrFormat">
+    <m c="kr" v="카트 패스 보상을 획득!|%s 아이템을 획득하였습니다."/>
+    <m c="cn" v="获得跑跑通行证奖励!|获得%s 道具。"/>
+    <m c="tw" v="獲得跑跑通行證獎勵!|%s 道具獲得。"/>
+  </k>
+  <k n="stop">
+    <m c="kr" v="그만 받기"/>
+    <m c="cn" v="停止领取"/>
+    <m c="tw" v="結束領取"/>
+  </k>
+  <k n="autoRewardFail">
+    <m c="kr" v="획득 가능한 보상이 없습니다."/>
+    <m c="cn" v="暂无可领取奖励"/>
+    <m c="tw" v="沒有可獲得的獎勵。"/>
+  </k>
+  <k n="kartPassRewardError">
+    <m c="kr" v="카트 패스 보상 획득 실패"/>
+    <m c="cn" v="领取失败"/>
+    <m c="tw" v="賽季通行證獎勵獲得失敗"/>
+  </k>
+  <k n="rewardStepFormat">
+    <m c="kr" v="Lv %d"/>
+    <m c="cn" v="Lv %d"/>
+    <m c="tw" v="Lv %d"/>
+  </k>
+  <k n="rewardStepFormat0">
+    <m c="kr" v="[color:255 92 111 131]Lv %d[/color]"/>
+    <m c="cn" v="[color:255 92 111 131]Lv %d[/color]"/>
+    <m c="tw" v="[color:255 92 111 131]Lv %d[/color]"/>
+  </k>
+  <k n="rewardStepFormat1">
+    <m c="kr" v="[color:255 0 138 218]Lv %d[/color]"/>
+    <m c="cn" v="[color:255 0 138 218]Lv %d[/color]"/>
+    <m c="tw" v="[color:255 0 138 218]Lv %d[/color]"/>
+  </k>
+  <k n="rewardStepFormat3">
+    <m c="kr" v="[color:255 144 104 30]Lv %d[/color]"/>
+    <m c="cn" v="[color:255 144 104 30]Lv %d[/color]"/>
+    <m c="tw" v="[color:255 144 104 30]Lv %d[/color]"/>
+  </k>
+  <k n="rewardStepFormat5">
+    <m c="kr" v="[color:255 100 90 117]Lv %d[/color]"/>
+    <m c="cn" v="[color:255 100 90 117]Lv %d[/color]"/>
+    <m c="tw" v="[color:255 100 90 117]Lv %d[/color]"/>
+  </k>
+  <k n="rewardListStrFormat">
+    <m c="kr" v="[color:255 36 129 255]%s 보상 %d개[/color]가 보상함에 지급 되었습니다."/>
+    <m c="cn" v="[color:255 36 129 255]已将 %d个[/color]跑跑通行证奖励发放至奖励箱。"/>
+    <m c="tw" v="[color:255 36 129 255]%s獎勵 %d個[/color]發送至獎勵箱。"/>
+  </k>
+</StringBag>

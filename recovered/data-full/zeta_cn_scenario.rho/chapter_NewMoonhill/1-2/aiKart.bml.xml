@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <AiKart id="1" track="forest_I05" isFixedKart="true" fixedKartId="919" laps="3" gameType="item" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" item="Rocket;WaterBomb;Booster;Magnet;WaterFly;Ufo;Shield" aiItemLevel="1" isAiItemFree="false">
+      <AiKart characterId="3" uniformId="0" kartId="919" colorId="2" dyeId="2" balloonId="0" speed="40" accel="30" startTick="0" characterName="黑妞"/>
+    </LevelContent>
+  </AiKart>
+</Root>

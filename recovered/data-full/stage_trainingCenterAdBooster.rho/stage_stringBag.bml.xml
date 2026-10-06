@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="useAdBooster">
+    <m c="kr" v="드리프트&amp;순간부스터"/>
+    <m c="cn" v="漂移&amp;瞬间加速器"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="useBooster">
+    <m c="kr" v="부스터 사용"/>
+    <m c="cn" v="使用加速器"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="goalInLimitTime">
+    <m c="kr" v="제한 시간 내 완주"/>
+    <m c="cn" v="规定时间内完成"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="driftAdBooster">
+    <m c="kr" v="드리프트&amp;순간부스터"/>
+    <m c="cn" v="漂移&amp;瞬间加速器"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="drift">
+    <m c="kr" v="드리프트"/>
+    <m c="cn" v="漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="guide1">
+    <m c="kr" v="[color:255 254 227 4]왼쪽[/color] 방향 혹은 [color:255 254 227 4]오른쪽[/color] 방향 드리프트"/>
+    <m c="cn" v="[color:255 254 227 4]向左[/color]或[color:255 254 227 4]向右[/color]漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="driftEnd">
+    <m c="kr" v="드리프트 종료 (카운터)"/>
+    <m c="cn" v="结束漂移（反方向键）"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="guide2">
+    <m c="kr" v="드리프트 진행 중 [color:255 254 227 4]반대 방향키[/color] 입력"/>
+    <m c="cn" v="漂移过程中按下[color:255 254 227 4]反方向键[/color]"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="adBooster">
+    <m c="kr" v="순간부스터"/>
+    <m c="cn" v="瞬间加速器"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="guide3">
+    <m c="kr" v="드리프트 종료 후 [color:255 254 227 4]전진키[/color] 입력"/>
+    <m c="cn" v="结束漂移后按下[color:255 254 227 4]前进键[/color]"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="boosterGaugeChargeUse">
+    <m c="kr" v="부스터 게이지 충전 및 사용"/>
+    <m c="cn" v="加速器集气及使用"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="boosterGaugeCharge">
+    <m c="kr" v="부스터 게이지 충전"/>
+    <m c="cn" v="加速器集气"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="guide4">
+    <m c="kr" v="[color:255 254 227 4]왼쪽[/color] 방향 혹은 [color:255 254 227 4]오른쪽[/color] 방향 드리프트"/>
+    <m c="cn" v="[color:255 254 227 4]向左[/color]或[color:255 254 227 4]向右[/color]漂移"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="boosterUse">
+    <m c="kr" v="부스터 사용"/>
+    <m c="cn" v="使用加速器"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="guide5">
+    <m c="kr" v="아이템 사용 중 [color:255 255 126 0]전진키 유지[/color] 시 부스터 지속"/>
+    <m c="cn" v="使用道具期间[color:255 255 126 0]保持长按前进键[/color]"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="driftUse">
+    <m c="kr" v="드리프트 사용"/>
+    <m c="cn" v="使用漂移"/>
+    <m c="tw" v=""/>
+  </k>
+</StringBag>

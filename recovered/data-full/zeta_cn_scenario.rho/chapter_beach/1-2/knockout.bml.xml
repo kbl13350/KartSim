@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="village_R01" laps="2" isFixedKart="true" fixedKartId="117" isFixedChar="true" fixedCharId="2" type="lap" isFixedCahr="true">
+    <LevelContent level="0" ksv="beach_1-2">
+      <ShadowKart characterId="2" uniformId="23" kartId="45" colorId="4" dyeId="4" characterName="R军团士官"/>
+      <ShadowKart characterId="2" uniformId="26" kartId="29" colorId="6" dyeId="6" characterName="R军团上等兵"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

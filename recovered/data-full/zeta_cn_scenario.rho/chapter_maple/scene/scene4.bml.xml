@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Char id="ghost" pos="6 0" emotion="stop1"/>
+  <Msg name="" string="[繁荣山丘附近草丛]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="好陌生的世界。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="品克缤" string="让我们好好欣赏一番吧~？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="粉色豆豆！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop1"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="什么呀，你竟然追到这里了？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop1"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="快给我道具！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="normal"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="会给你的，别催！|我家里面有的是呢。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop4"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="现在重要的不是这件事~|你这个毛毛怪！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop4"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="白雪人" string="（撇眼）"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop4"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="白雪人" string="白。雪。人。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="normal"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤" string="白雪人？那是什么？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="normal"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="我的名字。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop1"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="真是烦人的家伙呢。|知道了，白雪人。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop1"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="要给白雪人道具！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="stop4"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="知道了，给你就是了嘛！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="yeti" pos="6 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="（打开传送门回到家里随便那个东西给它吧~）"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤" string="开门~！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="。。。"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="品克缤" string="咦？|传送门在这里怎么打不开呢？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="normal"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="等回去我再给你吧~|先在这里转一转再说！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="normal"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="白雪人" string="现在就给我！道具！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="12 0" emotion="normal"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="" string="（咻！）"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="yeti" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="品克缤" string="这个声音是？|是刚才我们看到的那个吗？"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="ghost" pos="4 0" emotion="stop1"/>
+  <Msg name="伙伴们" string="先到达村庄广场的人是第一名哦！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="4 0" emotion="stop1"/>
+  <Msg name="" string="（喷气！）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="村庄~？看来会有很多好玩的东西在那里~！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="品克缤" string="我要跟着他们去~！"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="pinkbean" pos="15 0" flip="true" emotion="stop3"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="" string="（嗖~）"/>
+  <Enter/>
+  <Char id="pinkbean" remove="true"/>
+  <Char id="yeti" remove="true"/>
+  <Char id="yeti" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="白雪人" string="。。。？"/>
+  <Enter/>
+  <Char id="yeti" remove="true"/>
+  <Char id="yeti" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="白雪人" string="粉色豆豆！！！|我的道具！"/>
+  <Enter/>
+</Scene>

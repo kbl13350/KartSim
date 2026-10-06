@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="timerSection" leftTopWH="42 34 675 51" depthBias="100.0" adjust="-138 -320" align="center">
+  <Panel name="timeBg" leftTopTex="274 9" texture="hitpang_main_gagebarBg" alphaBlend="true">
+    <Container name="gauge" leftTopWH="7 6 400 16">
+      <Panel name="left" leftTopWH="0 0 7 16" texture="hitpang_gagebar_normal" uvRect="0 0 7 16" alphaBlend="true"/>
+      <Panel name="mid" leftTopWH="7 0 386 16" texture="hitpang_gagebar_normal" uvRect="8 0 16 16" alphaBlend="true"/>
+      <Panel name="right" leftTopWH="393 0 7 16" texture="hitpang_gagebar_normal" uvRect="17 0 24 16" alphaBlend="true"/>
+    </Container>
+    <Panel name="clock0" leftTopTex="-8 -8" texture="hitpang_gagebar_watch_normal" alphaBlend="true"/>
+    <Panel name="clock1" leftTopTex="-8 -8" texture="hitpang_gagebar_watch_fever" alphaBlend="true" visible="false"/>
+    <Container name="secTimer" leftTopWH="154 27 108 17">
+      <CharPanel name="min" windowRect="0 0 30 25" texture="time_숫자당12너비" alphaBlend="true" fontSize="12 16" fontStr="1234567890" fontPos="0 0" text="00" spaceOffset="0"/>
+      <CharPanel name="sec" windowRect="34 0 64 25" texture="time_숫자당12너비" alphaBlend="true" fontSize="12 16" fontStr="1234567890" fontPos="0 0" text="00" spaceOffset="0"/>
+      <CharPanel name="mil" windowRect="66 0 96 25" texture="time_숫자당12너비" alphaBlend="true" fontSize="12 16" fontStr="1234567890" fontPos="0 0" text="00" spaceOffset="0"/>
+    </Container>
+  </Panel>
+  <Panel leftTopTex="739 7" texture="hitpang_main_scoreBg@zz" alphaBlend="true">
+    <CharPanel name="curScore" leftTopWH="174 10 14 17" texture="score_숫자당17너비" alphaBlend="true" fontSize="17 24" spaceOffset="2" fontStr="1234567890" text="00000" speedTick="5" enable="true" rightAlign="true"/>
+  </Panel>
+  <Container name="fever" leftTopWH="565 42 360 67" visible="false">
+    <Panel leftTopTex="0 0" texture="hitpang_main_icon_fevertime_B01@zz" alphaBlend="true"/>
+    <Panel leftTopTex="0 0" texture="hitpang_main_icon_fevertime_B02@zz" alphaBlend="true"/>
+  </Container>
+</Container>

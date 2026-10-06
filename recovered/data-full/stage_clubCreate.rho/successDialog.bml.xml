@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowRect="0 0 556 347" caption="#sb(successDialogTitle)" align="center" frame="CaptionDialog" setCloseButton="okButton">
+  <ImageBoard name="transFillPlane" windowRect="0 0 542 246" image="club_img_createPopupDeco2" align="hcenter,top" adjust="0 -1" alphaBlend="true" enable="false">
+    <Panel name="clubMark" windowRect="0 50 100 150" texture="" alphaBlend="true" align="hcenter">
+      <Panel name="clubFrame" windowSize="150 150" align="center" alphaBlend="true" visible="true"/>
+    </Panel>
+    <Label name="clubName" leftTopWH="0 196 434 22" text="clubName" textColor="255 42 55 80" textRender="bold16" textAlign="center" align="hcenter"/>
+  </ImageBoard>
+  <Window leftTopWH="0 0 434 1" frame="HSection" align="hcenter;bottom" adjust="0 63"/>
+  <Container name="type1" leftTopWH="0 0 274 42" align="hcenter;bottom" adjust="0 6">
+    <TextButton name="okButton" leftTopWH="0 0 132 42" align="center" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+  </Container>
+</CaptionWindow>

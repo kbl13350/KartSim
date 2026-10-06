@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="abyss_I01" laps="3" isFixedKart="true" fixedKartId="1107" isFixedChar="true" fixedCharId="2" type="lap">
+    <LevelContent level="0" ksv="1-20" startOffset="0">
+      <ShadowKart characterId="3" uniformId="0" kartId="1135" colorId="2" dyeId="2" characterName="黑妞"/>
+      <ShadowKart characterId="289" uniformId="0" kartId="1175" colorId="2" dyeId="2" characterName="奈尔"/>
+      <ShadowKart characterId="290" uniformId="0" kartId="1175" colorId="60" dyeId="60" characterName="奈琳"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

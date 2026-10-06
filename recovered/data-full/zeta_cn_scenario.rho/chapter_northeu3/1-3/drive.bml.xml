@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <TimeAttack isFixedKart="true" fixedKartId="943" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" track="northeu_R01" laps="1" timeLimit="0"/>
+  </TimeAttack>
+</Root>

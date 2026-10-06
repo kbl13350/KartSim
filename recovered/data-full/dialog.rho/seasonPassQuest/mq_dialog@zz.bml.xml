@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <ImageBoard windowSize="502 506" adjust="0 6" align="center" image="pass_img_popupMainBG" alphaBlend="true" enable="true">
+    <Panel leftTopTex="14 3" texture="pass_img_popupTitleTXT@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+    <Label name="openPeriod" windowSize="320 22" adjust="186 20" align="left" text="" textColor="255 240 245 250" textAlign="left" visible="true" enable="true"/>
+    <ImageButton name="closeButton" leftTopWH="466 11 22 23" autoLoadImage="pass_btn_popupClose_" alphaBlend="true" visible="true" enable="true"/>
+    <Container name="normalQuest" leftTopWH="13 44 480 400" enable="true" visible="false">
+      <Label name="ready" windowSize="320 20" adjust="16 9" align="right" text="#sb(seasonPassQuestHelp0)" textColor="255 80 90 95" textAlign="right" visible="false" enable="false"/>
+      <Label name="expired" windowSize="320 20" adjust="16 9" align="right" text="#sb(seasonPassQuestHelp3)" textColor="255 80 90 95" textAlign="right" visible="false" enable="false"/>
+      <Panel leftTopTex="0 0" texture="pass_img_titleTXT1@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+      <Container name="quest1" leftTopWH="3 50 460 75" enable="true" visible="true">
+        <Panel leftTopWH="6 56 458 1" texture="pass_img_popupMainLine" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Panel leftTopTex="20 3" texture="pass_img_popupTitleBox" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Label name="title" windowSize="200 20" adjust="28 3" align="left" text="" textColor="255 60 65 75" textRender="bold" textAlign="left"/>
+        <Label name="desc" windowSize="200 20" adjust="28 23" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+        <Panel name="reward" windowSize="68 43" adjust="195 -17" align="center" texture="" alphaBlend="true" enable="false" visible="false"/>
+      </Container>
+      <Container name="quest2" leftTopWH="3 115 460 75" enable="true" visible="true">
+        <Panel leftTopWH="6 66 458 1" texture="pass_img_popupMainLine" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Panel leftTopTex="20 3" texture="pass_img_popupTitleBox" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Label name="title" windowSize="200 20" adjust="28 3" align="left" text="" textColor="255 60 65 75" textRender="bold" textAlign="left"/>
+        <Label name="desc" windowSize="200 20" adjust="28 23" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+        <Label name="subDesc" windowSize="200 20" adjust="28 43" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+        <Panel name="reward" windowSize="68 43" adjust="195 -7" align="center" texture="" alphaBlend="true" enable="false" visible="false"/>
+        <Panel name="valueBar" leftTopWH="126 24 252 10" texture="pass_img_popupMissionBarBG" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Panel name="valueBarCover" leftTopWH="126 24 252 10" texture="pass_img_popupMissionBarCover" alphaBlend="true" alphaTest="true" visible="false"/>
+        <Panel name="subValueBar" leftTopWH="126 44 252 10" texture="pass_img_popupMissionBarBG" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Panel name="subValueBarCover" leftTopWH="126 44 252 10" texture="pass_img_popupMissionBarCover" alphaBlend="true" alphaTest="true" visible="false"/>
+      </Container>
+      <Container name="quest3" leftTopWH="3 190 460 75" enable="true" visible="true">
+        <Panel leftTopWH="6 66 458 1" texture="pass_img_popupMainLine" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Panel leftTopTex="20 3" texture="pass_img_popupTitleBox" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Label name="title" windowSize="200 20" adjust="28 3" align="left" text="" textColor="255 60 65 75" textRender="bold" textAlign="left"/>
+        <Label name="desc" windowSize="200 20" adjust="28 23" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+        <Label name="subDesc" windowSize="200 20" adjust="28 43" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+        <Panel name="reward" windowSize="68 43" adjust="195 -7" align="center" texture="" alphaBlend="true" enable="false" visible="false"/>
+        <Panel name="valueBar" leftTopWH="126 24 252 10" texture="pass_img_popupMissionBarBG" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Panel name="valueBarCover" leftTopWH="126 24 252 10" texture="pass_img_popupMissionBarCover" alphaBlend="true" alphaTest="true" visible="false"/>
+        <Panel name="subValueBar" leftTopWH="126 44 252 10" texture="pass_img_popupMissionBarBG" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Panel name="subValueBarCover" leftTopWH="126 44 252 10" texture="pass_img_popupMissionBarCover" alphaBlend="true" alphaTest="true" visible="false"/>
+      </Container>
+      <Container name="quest4" leftTopWH="3 275 460 75" enable="true" visible="true">
+        <Panel leftTopTex="20 3" texture="pass_img_popupTitleBox" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Label name="title" windowSize="200 20" adjust="28 3" align="left" text="" textColor="255 60 65 75" textRender="bold" textAlign="left"/>
+        <Label name="desc" windowSize="200 20" adjust="28 23" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+        <Panel name="reward" windowSize="68 43" adjust="195 -17" align="center" texture="" alphaBlend="true" enable="false" visible="false"/>
+        <Panel name="valueBar" leftTopWH="126 22 252 10" texture="pass_img_popupMissionBarBG" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Panel name="valueBarCover" leftTopWH="126 22 252 10" texture="pass_img_popupMissionBarCover" alphaBlend="true" alphaTest="true" visible="false"/>
+      </Container>
+    </Container>
+    <Container name="bonusQuest" leftTopWH="13 44 480 400" enable="true" visible="false">
+      <Panel leftTopTex="0 0" texture="pass_img_titleTXT2@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+      <Label windowSize="320 20" adjust="16 9" align="right" text="#sb(seasonPassQuestHelp1)" textColor="255 80 90 95" textAlign="right" visible="true" enable="false"/>
+      <Panel leftTopTex="20 46" texture="pass_img_popupTitleBox" alphaBlend="true" alphaTest="true" visible="true"/>
+      <Label name="title" windowSize="200 20" adjust="28 46" align="left" text="" textColor="255 60 65 75" textRender="bold" textAlign="left"/>
+      <Label name="desc" windowSize="200 20" adjust="120 46" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+      <Label name="bonusStep1" windowSize="200 20" adjust="28 115" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+      <Label name="bonusStep2" windowSize="200 20" adjust="28 135" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+      <Label name="bonusStep3" windowSize="200 20" adjust="28 155" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+      <Container leftTopWH="0 0 480 400" enable="true" visible="true">
+        <Panel leftTopTex="23 85" texture="pass_img_popupBonusBarBG" alphaBlend="true" alphaTest="true" visible="true"/>
+        <Panel name="progressMark" windowSize="47 24" adjust="58 62" align="left" texture="pass_img_popupPCroomLV" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="point" windowSize="47 24" adjust="0 -2" align="left" text="#sb(seasonPassLvFormat)" textColor="black" textRender="bold" textAlign="center"/>
+        </Panel>
+        <Label name="min" windowSize="20 20" adjust="41 83" align="left" text="#sb(bonusMin)" textColor="255 205 210 230" textRender="bold" textAlign="center"/>
+        <Label name="max" windowSize="20 20" adjust="412 83" align="left" text="" textColor="255 250 255 135" textRender="bold" textAlign="center"/>
+        <Panel name="progressBar" leftTopWH="80 88 318 10" uvRect="0 0 318 10" texture="pass_img_popupPCroomGauge" alphaBlend="true" alphaTest="true" visible="true"/>
+      </Container>
+    </Container>
+    <Panel name="pcCafeQuestOff" leftTopTex="11 374" texture="pass_img_popupBGPC" alphaBlend="true" alphaTest="true" visible="false"/>
+    <Container name="pcCafeQuest" leftTopWH="13 377 480 100" enable="true" visible="false">
+      <Panel leftTopTex="0 0" texture="pass_img_titleTXT3@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+      <Label windowSize="320 20" adjust="16 9" align="right" text="#sb(seasonPassQuestHelp2)" textColor="255 80 90 95" textAlign="right" visible="true" enable="false"/>
+      <Panel leftTopTex="20 44" texture="pass_img_popupTitleBox" alphaBlend="true" alphaTest="true" visible="true"/>
+      <Label windowSize="200 20" adjust="28 44" align="left" text="#sb(pcCafeQuestTitle)" textColor="255 60 65 75" textRender="bold" textAlign="left"/>
+      <Label name="pcCafeQuestDesc" windowSize="200 20" adjust="100 44" align="left" text="" textColor="255 95 110 135" textAlign="left"/>
+      <Panel name="pcCafeOff" leftTopTex="126 4" texture="pass_img_popupPCroom_1@zz" alphaBlend="true" alphaTest="true" visible="true"/>
+      <Panel name="pcCafeOn" leftTopTex="126 4" texture="pass_img_popupPCroom_2@zz" alphaBlend="true" alphaTest="true" visible="false"/>
+      <Container leftTopWH="0 0 480 400" enable="true" visible="true">
+        <Panel name="progressMark" windowSize="47 24" adjust="58 62" align="left" texture="pass_img_popupPCroomLV" alphaBlend="true" alphaTest="true" visible="true">
+          <Label name="point" windowSize="47 24" adjust="0 -2" align="left" text="" textColor="black" textRender="bold" textAlign="center"/>
+        </Panel>
+        <Label name="min" windowSize="20 20" adjust="41 83" align="left" text="" textColor="255 205 210 230" textRender="bold" textAlign="center"/>
+        <Label name="max" windowSize="20 20" adjust="412 83" align="left" text="" textColor="255 250 255 135" textRender="bold" textAlign="center"/>
+        <Panel name="progressBar" leftTopWH="80 88 318 10" uvRect="0 0 318 10" texture="pass_img_popupPCroomGauge" alphaBlend="true" alphaTest="true" visible="true"/>
+      </Container>
+    </Container>
+  </ImageBoard>
+</Panel>

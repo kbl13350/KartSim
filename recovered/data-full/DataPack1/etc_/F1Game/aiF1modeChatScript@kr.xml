@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+type 설명
+0: drive
+1: endScene
+2: crash
+3: overtake
+4: overtaken
+10: rankIn
+-->
+<chattingScript>
+<F1RiderGroup id='1'>
+<scripts type='0' msg='네오: [UserRID]! 이번에야 말로 실력을 겨뤄보자! 하하하'/>
+<scripts type='0' msg='시리우스: 후후후후후… 네오… [UserRID]…'/>
+<scripts type='0' msg='핑크모터: 저번 대회 이후로 우리 아빠… 하이퍼 모터가 사라졌어… 내가 꼭 찾아낼거야'/>
+<scripts type='0' msg='배드스킬: 후으으… 후으으…'/>
+<scripts type='0' msg='T.O.B: 진리가 어디 가겠나~ 진리가 어디 가겠나~'/>
+<scripts type='0' msg='T.O.B: [UserRID]! 1회 대회 때, 우리 리더를 구해줘서 고맙다. 너라면 우리 빅방에 들어와도 좋아.'/>
+<scripts type='0' msg='카론: 제롬, 슈미즈…우리아빠 카왕님의 후계자가 되려고 나를 차지하겠다고? 훗. 실력을 보여봐'/>
+<scripts type='0' msg='카론: 제롬! 내 뒤만 졸졸 따라다니면 내가 반하겠어?'/>
+<scripts type='0' msg='카론: 슈미즈… 흠… 조금씩 끌려. 매력이 있는 걸.'/>
+<scripts type='0' msg='카론: 우리 아빠, 카왕님이 왕국의 후계자를 찾아오라고 했지.'/>
+<scripts type='0' msg='제롬: 카론 공주님. 전 왕국은 관심없고 카론 공주님을 사랑해요!'/>
+<scripts type='0' msg='슈미즈: 제롬, 카론 공주님에게 너는 어울리지 않아.'/>
+<scripts type='0' msg='제롬: 카론 공주님. 지금 봤어요? 봤어요? 내 멋진 모습을!'/>
+<scripts type='0' msg='덕후: 어익후. 너네 왜 여기서 연애를 하고 있냐능!'/>
+<scripts type='0' msg='앤트라이스: 쌀집아저씨(엉클라이스)가 일나가서 내가 대신 나왔슈~'/>
+<scripts type='0' msg='앤트라이스: 싸고 질 좋은 신토불이 작물이 많으니께 문의들 많이 하셔유~'/>
+<scripts type='0' msg='K.D.K: 여러분~ 모이면 카트입니다~ ㅎㅎ'/>
+<scripts type='0' msg='K.D.K: 크러시를 많이 하면 보상 카드를 얻을 수가 있어요!'/>
+<scripts type='0' msg='K.D.K: [UserRID] PIT에 들어가보세요~ 크러시 부스터가 빠르게 차오를거에요!'/>
+<scripts type='0' msg='훤: [UserRID] 잊어달라하였느냐. 잊어주길 바라느냐.'/>
+<scripts type='0' msg='훤: 입카트! 다물라! 다물라! 그 입 다물라!'/>
+<scripts type='0' msg='핑크모터: 아빠는… 이런 힘든 레이싱을 했던 걸까?'/>
+<scripts type='0' msg='배드스킬: …으아아아아… 어지러워…'/>
+<scripts type='0' msg='마스크쓴여성: 명령 받았습니다. 임무를 완수하겠습니다.'/>
+<scripts type='0' msg='T.O.B: 카트 속에 꼬깃 꼬깃 접어둔 우승을 향한 쪽지~'/>
+<scripts type='0' msg='크로우: 난 먼북해의 지배자, 해군 대장 저스티스 크로우! 로두마니는 어디 있지?'/>
+<scripts type='0' msg='크로우: 로두마니와 나는 언젠가 숙명의 대결을 펼칠 수 밖에 없지'/>
+<scripts type='0' msg='욕삼이: 아잉! 2회 대회! 아잉!'/>
+<scripts type='0' msg='슈미즈: 카론 공주, 이제는 나에게 마음을 여는게 좋을 거요.'/>
+<scripts type='0' msg='슈미즈: (후후… 카론 공주에겐 미안하지만 난 카왕의 왕국만 관심이 있지.)'/>
+<scripts type='0' msg='제롬: (카론 공주님… 처음 봤던 날을 아직도 기억해. 너무 아름다웠지…)'/>
+<scripts type='0' msg='OTL: 아아… 왠지 벌써 절망적이야… orz'/>
+<scripts type='0' msg='전설의 라이더: 루… 우리 왠지 점점 엑스트라가 되는 것 같지 않아?.. 난 전설인데...'/>
+<scripts type='0' msg='루: 전설의 라이더… 우린 시나리오도 있는데 왜 점점 비중이 줄어들까…'/>
+<scripts type='0' msg='시리우스: 실컷들 좋아하라지…'/>
+<scripts type='0' msg='욕삼이: [UserRID]! ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ'/>
+<scripts type='0' msg='K.D.K: 승점은 3라운드 누적을 통해 계산되니까 열심히 GO GO!'/>
+<scripts type='0' msg='K.D.K: 로미와 로드가 결혼해서 신혼여행을 가버렸답니다. 후우… 제가 많이 바쁘군요.'/>
+<scripts type='0' msg='K.D.K: 크러시 부스터는 다른 차 뒤에 가까이 붙으면 차오른답니다.'/>
+<scripts type='0' msg='입카트: [UserRID]! 자꾸 치지 말라고! 그럴 땐 인코스로 붙으면서 숏 드립을 해야지!'/>
+<scripts type='0' msg='T.O.B: C-Dragon은 1회 대회 후유증으로 쉬고 있지.'/>
+
+<!-- type1은 AiRid값을 현재는 사용할 수 없음 -->
+<scripts type='1' msg='훤: 미안하구나. 이기려 하였으나, 너를 이기지 못하였다.'/>
+<scripts type='1' msg='카론: 제롬. 넌 너무 재미가 없어. 너무 쉽단 말이야.'/>
+<scripts type='1' msg='슈미즈: 카론 공주, 좀 하는군. 딱 그 정도야.'/>
+<scripts type='1' msg='제롬: 카론 공주님 수고 하셨어요. 정말 굉장해요.'/>
+<scripts type='1' msg='제롬: 아아… 카론 공주님 너무 예뻐… '/>
+<scripts type='1' msg='K.D.K: 미션들을 정말 뛰어나게 달성하면 더 좋은 보상 카드를 받을 수 있습니다.'/>
+<scripts type='1' msg='K.D.K: 높은 난이도에서 플레이를 할 수록 더 많은 보상을 얻을 수 있습니다.'/>
+<scripts type='1' msg='K.D.K: 난이도에 따라 트랙이 변한답니다.'/>
+<scripts type='1' msg='카론: [UserRID]… 아빠가 후계자 삼고싶어 했다더니 굉장하군.'/>
+<scripts type='1' msg='루: 전설의 라이더… 힘내…'/>
+<scripts type='1' msg='전설의 라이더: 루… 우리 기운내자…'/>
+<scripts type='1' msg='입카트: 미션을 높이 달성하면 GREAT 보상을 받는 다던데… 어떻게 하는거지?'/>
+<scripts type='1' msg='네오: 역시 이번 대회도 편하지는 않겠군. 의심스러운 구석이 한두개가 아니야'/>
+<scripts type='1' msg='네오: 배드스킬이 더 이상해졌어.'/>
+<scripts type='1' msg='용춘: 마스크쓴여성… 어디서 본 것 같은데… 혹시…?'/>
+
+<!--AI를 크러시 -->
+<scripts type='2' msg='크으악. 아프다'/>
+<scripts type='2' msg='아~~~ 쫌~~!!!!!!!!!!'/>
+<scripts type='2' msg='크윽! 나를 견제할 줄이야~!'/>
+<scripts type='2' msg='[UserRID] …두고보겠습니다.'/>
+<scripts type='2' msg='[UserRID]! 반드시 복수 할테야!'/>
+<scripts type='2' msg='[UserRID]! 전설의 크러시 기술!! / 시리우스: 지금. 좋아해봐라. 후후'/>
+
+<!--AI를 추월 -->
+<scripts type='3' msg='[UserRID] 널 이렇게 보낼 수 없어 돌아와~~!!'/>
+<scripts type='3' msg='어..어라??'/>
+<scripts type='3' msg='허걱! 이럴 수는 없어 ㅠㅠ'/>
+<scripts type='3' msg='나를 밟고 최고가 되라 [UserRID]!'/>
+<scripts type='3' msg='나는 양보운전하는 라이더~'/>
+<scripts type='3' msg='[UserRID], 실수해라! 실수해라! 실수해라! 실수해라!'/>
+
+<!--AI가 유저를 추월 -->
+<scripts type='4' msg='먼저간다~ [UserRID]'/>
+<scripts type='4' msg='[UserRID], 쫌 비켜줄래?'/>
+<scripts type='4' msg='다음 코너에서 두고보자!'/>
+<scripts type='4' msg='빨리 좀 갑시다~'/>
+<scripts type='4' msg='[UserRID]님 언제나 양보 해주셔서 감사합니다.(꾸벅)'/>
+<scripts type='4' msg='[UserRID], TV 보면서 하고있니? / 욕삼이: [UserRID], 추월당했어 ㅋㅋㅋㅋㅋㅋㅋㅋ'/>
+<scripts type='4' msg='비켜!! 화장실 가야 돼~!!'/>
+
+<!--특정 순위가 됨 -->
+<scripts type='10' rank='1' msg='[UserRID] ! 기다려주면 소개팅을 시켜 주겠다!'/>
+<scripts type='10' rank='1' msg='우쭐하지 마랏! 내가 곧 따라 잡아주마!!'/>
+<scripts type='10' rank='1' msg='[UserRID], 너란 녀석, 멋진 녀석…..'/>
+<scripts type='10' rank='1' msg='저의 멘토가 되어주세요! [UserRID]!'/>
+<scripts type='10' rank='1' msg='[UserRID].. 천재야…'/>
+<scripts type='10' rank='5' msg='[UserRID]님 같이가요~ 데헤~'/>
+<scripts type='10' rank='5' msg='[UserRID] 재능이 있군요'/>
+<scripts type='10' rank='5' msg='[UserRID] 친구가 해주고 있는거 아냐?'/>
+<scripts type='10' rank='5' msg='앗! [UserRID], 언제 저렇게 빨리….'/>
+<scripts type='10' rank='5' msg='[AiRID]! [UserRID] 길막해!'/>
+<scripts type='10' rank='5' msg='[UserRID]! 이 모드에 타고 났군~'/>
+<scripts type='10' rank='9' msg='[UserRID], 4년 전 내 실력을 보는 것 같군~'/>
+<scripts type='10' rank='9' msg='[UserRID] 제법인데? 하지만 아직 멀었어!'/>
+<scripts type='10' rank='9' msg='[UserRID] … 꽤 하는걸??'/>
+<scripts type='10' rank='9' msg='[UserRID], 만년 중위권만 할 셈이야?'/>
+<scripts type='10' rank='9' msg='[UserRID]님 또 뵙네요~'/>
+<scripts type='10' rank='15' msg='[UserRID]~! 게임에 집중하도록!'/>
+<scripts type='10' rank='15' msg='[UserRID], 발로 하는 것 치고 잘 하는 군!'/>
+<scripts type='10' rank='15' msg='[UserRID], 재능은 있지만, 연습이 필요한 걸?'/>
+<scripts type='10' rank='15' msg='아니야~ 운전 그렇게 하는거~'/>
+<scripts type='10' rank='15' msg='[UserRID] 매너 있는 주행이군… 감동이야..'/>
+<scripts type='10' rank='15' msg='[UserRID]! 근성을 보여봐! 아직 끝이 아니야!'/>
+<scripts type='10' rank='15' msg='[UserRID] ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ'/>
+</F1RiderGroup>
+
+<!--포뮬러 파이널 라운드 용 채팅 그룹 시나리오 2단계-->
+<F1RiderGroup id='2'>
+<scripts type='0' msg='MR.블랙: 후하하하하하 나의 블랙 라이더들을 막을 수 있다고? 어림없지!'/>
+<scripts type='0' msg='MR.블랙: 근데 저 제롬이라는 녀석은 어떻게 바이러스에 감염되지 않은거지?'/>
+<scripts type='0' msg='블랙 앤트라이스: 후우욱~ 쓰으아아아알! 브오리이! 코오옹!그오추우!'/>
+<scripts type='0' msg='네오: 어쩐지 의심스러워서 음료수를 안먹었더니. 역시 바이러스였군!'/>
+<scripts type='0' msg='제롬: 카론 공주님! 슈미즈! 정신차려! 이게 대체 무슨 일이야..'/>
+<scripts type='0' msg='네오: [UserRID]! 근데 제롬이라는 아이는 왜 감염이 되지 않은 거지?'/>
+<scripts type='0' msg='블랙 슈미즈: 후우 후우. 왕국은 내거야. 왕국은 내거야. 왕국은 내거야.'/>
+<scripts type='0' msg='블랙 카론: 흐흐흐… 이리오렴 제롬. 내가 이뻐해줄게. 진짜야.'/>
+<scripts type='0' msg='블랙 K.D.K: 후우 후우… 모이면… 후우… 카트…'/>
+<scripts type='0' msg='블랙 K.D.K: 후우 후우… 이번 방학… 후우… 기대… 후우우..'/>
+
+<!-- type1은 AiRid값을 현재는 사용할 수 없음 -->
+<scripts type='1' msg='네오: 제롬이라는 아이. 내가 왠지 가르치고 싶군.'/>
+<scripts type='1' msg='네오: MR.블랙… 이번에야 말로 완벽히 사라진 걸까?'/>
+<scripts type='1' msg='[UserRID]: 힘들었지만 블랙 라이더를 막을 수 있었어. 다음 대회에는 정말로 실력을 겨루자 네오!'/>
+<scripts type='1' msg='핑크모터: 아아…머리가 아파.. 무슨 일이 있었던 거지?.... 아빠를 찾아야 하는데…'/>
+<scripts type='1' msg='크로우: 크윽… 내가 이런 얄팍한 기술에 당하다니… 먼북해로 돌아가 수련을 쌓아야 겠어'/>
+<scripts type='1' msg='카론: 역시 슈미즈가 좀 더 끌려… 궁금하고 매력있어…  / 슈미즈: (거의 다 넘어왔군. 후후)'/>
+<scripts type='1' msg='T.O.B: 우리 빅방이 두 번이나 도움을 받다니. 하긴 진리가 어디 가겠나. 고맙다 [UserRID]'/>
+<scripts type='1' msg='제롬: 강해지고 싶어… 꼭 강해져서 다음엔 내 힘으로 카론 공주님을 지킬거야!'/>
+<scripts type='1' msg='핑크모터: 결국 아빠는 못찾았어.. 이제 단서를 어디서 찾아야하지?... 흑흑'/>
+<scripts type='1' msg='미녀라이더: 핑크모터. 내가 아빠를 찾는 것을 도와줄게. 같이 납치당했을 때 기억이 나.'/>
+<scripts type='1' msg='네오: 제롬… 나중에 꼭 나를 찾아오거라. 강해지게 만들어주지.'/>
+<scripts type='1' msg='MR.블랙: 내가 이렇게 질 수는 없… 크아아악… 그 분이 복수...(슈우욱)'/>
+<scripts type='1' msg='미녀라이더: 내가 모두를 위험에 빠트렸어…'/>
+<scripts type='1' msg='배드스킬: 드디어… 드디어 내 몸이 나에게 돌아왔어. 흑흑. 고마워 [UserRID]'/>
+<scripts type='1' msg='루: 전설의 라이더… 우리 연습하러 가자… 민폐만 끼치고 대회가 끝났어… 전설은 무슨 ㅠ'/>
+<scripts type='1' msg='네오: 모두 자책하지마. 모든 잘못은 MR.블랙이었고 이제 원흉은 사라졌어.'/>
+<scripts type='1' msg='네오: 아직 모든 것이 끝난 것 같지는 않아… MR.블랙의 배후에 누군가가 있을 것 같아.'/>
+<scripts type='1' msg='훤: 사람도 아닌자가 감히 과인의 정신에 손을 댄 것이냐…'/>
+
+<scripts type='2' msg='!!! / MR. 블랙: 블랙 라이더가 이정도로 쓰러질 것 같은가!'/>
+<scripts type='2' msg='!!! / 네오: 좋아 그렇게 하나씩 크러시로 무찌르는 거야! 난 치지말고…'/>
+<scripts type='2' msg='!!!!!!!!!!!!!!!!!!!!!!'/>
+<scripts type='2' msg='[UserRID] …두고보겠어....'/>
+
+<scripts type='3' msg='… / MR. 블랙: 아… 안돼… [UserRID]가 점점 빨라진다!!'/>
+<scripts type='3' msg='어..어라??'/>
+<scripts type='3' msg='!!!! / 네오: 그렇게 하나씩 전진하는거야!'/>
+<scripts type='3' msg='… / 제롬: 제발… 제발 모두를 구해주세요! 당신만이 희망이에요!'/>
+<scripts type='4' msg='... / 네오: 이렇게 꾸물거릴 시간 없어!'/>
+<scripts type='10' rank='1' msg='악!! / 배드스킬: [UserRID]…후우…공격…후우…'/>
+<scripts type='10' rank='2' msg='악!! / MR.블랙: 잘하는 군. 마지막 결투다!'/>
+<scripts type='10' rank='1' msg='악!!! / MR.블랙: [UserRID] 흥. 블랙 라이더들이 곧 따라 잡을 거다'/>
+<scripts type='10' rank='1' msg='악!!! / 제롬: [UserRID]! 당신을 믿어요. 이대로 카론 공주님을 구해주세요.'/>
+<scripts type='10' rank='1' msg='악!!! / 네오: 역시 대단해! 블랙 라이더들을 무찌를 수 있겠어!'/>
+<scripts type='10' rank='5' msg='악!!! / 네오: 조금만 더 분발하자!'/>
+<scripts type='10' rank='5' msg='!!! / MR. 블랙: 고작 그정도냐? 블랙 라이더들을 이길 순 없다니까!'/>
+<scripts type='10' rank='5' msg='!!! / 블랙 미녀라이더: [UserRID]… 막아… 후우우…'/>
+<scripts type='10' rank='5' msg='!!! / 블랙 배드스킬: [UserRID]… 없앤다…'/>
+<scripts type='10' rank='5' msg='!!! / 블랙 욕삼이: 아…아잉… 후우'/>
+<scripts type='10' rank='9' msg='[UserRID]. 그 정도 인가 / 네오: 서둘러!'/>
+<scripts type='10' rank='9' msg='[UserRID]. 그 정도 인가 / MR.블랙: 느긋하군'/>
+<scripts type='10' rank='15' msg='... / MR.블랙: 이정도라면 우리의 계획이 멀지 않았다.'/>
+<scripts type='10' rank='15' msg='... / 네오: 블랙라이더들이... 너무 강해'/>
+</F1RiderGroup>
+
+<!--각 라운드 시작 전 컷신 스크립트 -->
+<scripts type='101' character='neo_2' msg='네오||이번 대회에서는 음모를 가진 인물은 안 보이는군!|진짜 실력을 겨뤄보자!'/>
+<scripts type='102' character='다오_01' msg='다오|사라진 MR.블랙이 신경 쓰이지만 이번 대회는 레이스에만 집중할 수 있겠어. 네오~ 가자!'/>
+<scripts type='103' character='neo_1' msg='네오||근데 하이퍼모터와 미녀라이더는 어디로 사라진걸까?'/>
+<scripts type='104' msg='줄거리1||1회 대회는 네오의 활약으로 MR.블랙을 저지하고 다오가 우승한다. 직후 MR.블랙은 도망가고 하이퍼 모터,미녀라이더,배드스킬이 실종된다.'/>
+<scripts type='105' msg='줄거리2||왕국의 주인 카왕이 은퇴하고 딸인 카론이 후계자를 찾아 참가하였다. 카론을 사랑하는 제롬과 왕국을 노리는 슈미즈도 참가한다.'/>
+<scripts type='106' msg='줄거리3||하이퍼 모터의 딸 핑크모터는 아버지를 찾기 위해 참가한다. 그 외에도 많은 참가자가 등장한 2회 대회!과연 어떻게 될까?'/>
+<scripts type='107' character='racer1_웃기' msg='제롬||무슨 일이 있어도 카론 공주님을 무사히 지킬거야. 아아 카론 공주님... 눈부시게 아름다우셔라.'/>
+<scripts type='201' character='neo_1' msg='네오||시리우스라는 자가 뭔가 이상해… 좀 더 자세히 알아보자'/>
+<scripts type='202' character='다오_07' msg='다오||헉헉... 참가자들 눈 빛이 이상해지고 있어! 무슨 일이지?'/>
+<scripts type='203' character='neo_2' msg='네오||숙소에 놓인 이 음료수.. 뭔가 이상해 마시지 말자.'/>
+<scripts type='204' msg='1라운드 후||마스크쓴여성이 몰래 모든 라이더들의 숙소에 처음보는 음료수를 두었다. 음료의 정체는?'/>
+<scripts type='202' character='racer_웃기' msg='전설의 라이더||이 음료수는 뭐지? 모두에게 주는 건가? (꿀꺽)… 맛있네'/>
+<scripts type='202' character='blackracer_character02' msg='시리우스||지금들 좋아해라… 곧 지옥을 보여주지'/>
+<scripts type='301' character='blackracer_character02' msg='시리우스||사실 내 정체는 MR.블랙! 모든 참가자들을 감염시키는데 성공했다! 블랙라이더들아~ 가랏!!'/>
+<scripts type='302' character='blackracer_character02' msg='MR.블랙||시리우스는 내 가명이다! 내가 만든 블랙 라이더들을 이겨낼 수 있을까?!'/>
+<scripts type='303' msg='2라운드 후||라이더들이 마신 음료는 블랙 바이러스!. 너와 네오. 그리고 제롬을 빼고 모두가 블랙화 세뇌를 당했다!'/>
+<scripts type='304' character='neo_2' msg='네오||MR.블랙! 다시 돌아왔군!세뇌라니...네 뜻 대로 되지는 않을 거다!'/>
+<scripts type='305' character='다오_06' msg='다오||MR.블랙! 사람들을 감염시키다니! 어서 풀어줘!!'/>
+<scripts type='306' character='blackracer_character01' msg='시리우스||모두 블랙으로 감염시켰다!..응?제롬은 왜 마셔놓고 세뇌당하지 않은거지?'/>
+<scripts type='307' character='racer1_기본' msg='제롬||아앗. 사람들이 블랙으로 감염됬어!!카..카론 공주님. 제가 꼭 구해드릴게요!!!!!'/>
+</chattingScript>

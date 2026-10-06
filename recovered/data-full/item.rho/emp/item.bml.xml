@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="emp">
+  <state name="Use" life="500" itemFx="using"/>
+  <state name="Affect" life="1500" fired="fired01" firedFx="affecting"/>
+</item>

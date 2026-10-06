@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true"/>
+  <ImageBoard name="missionRewardSelectBg" windowSize="592 626" align="center" image="returnUser_rewardPopup" alphaBlend="true">
+    <Label name="diziniRewardLine" windowSize="280 50" align="top;center" adjust="0 5" text="#sb(diziniMissionThanks)" textRender="bold16" textColor="255 95 53 0" textAlign="center"/>
+    <ColorLabel name="missionRewardSelectGuide1" windowSize="300 30" align="center" adjust="0 -20" text="#sb(missionRewardSelectGuide1)" textRender="bold16" textColor="255 191 126 0" textAlign="center"/>
+    <Window name="rewardSelectSlotCon" windowSize="290 60" align="center" adjust="0 85"/>
+    <ColorLabel name="missionRewardSelectGuide2" windowSize="300 60" align="bottom;center" adjust="0 97" text="#sb(missionRewardSelectGuide2)" textRender="bold14" textColor="255 205 165 87" textAlign="center"/>
+    <Container name="xx" windowRect="0 0 304 48" align="center;bottom" adjust="0 20">
+      <TextButton name="ok" leftTopWH="0 0 146 48" text="#sb(claimReward)" align="left" textRender="bold16"/>
+      <TextButton name="cancel" leftTopWH="0 0 146 48" text="#sb(close)" align="right" textRender="bold16"/>
+    </Container>
+  </ImageBoard>
+</Container>

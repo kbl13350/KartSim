@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <MaxSpeed track="pirate_R02_sn05" laps="1" isFixedKart="true" fixedKartId="103" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" speedValue="155;180;220;170;220;140;130;155" timeLimit="90000"/>
+  </MaxSpeed>
+</Root>

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<EventPopup>
+	<Entity	texture='20260730_신규테마이벤트팝업'
+		openPeriod='2026-07-30T06:00:00~2026-08-06T05:59:59'
+	/>
+	<Entity	texture='20260730_스텔스모드오픈이벤트팝업'
+		openPeriod='2026-08-06T06:00:00~2026-08-20T05:59:59'
+	/>
+</EventPopup>

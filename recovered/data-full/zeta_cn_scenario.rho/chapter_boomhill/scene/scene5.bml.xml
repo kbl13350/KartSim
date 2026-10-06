@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="riderSchool"/>
+  <Char id="len" pos="8 0" emotion="stop2"/>
+  <Msg name="莱恩" string="哇~~~~~~~|还有这种练习场啊！"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="莉亚~可以先跑一跑吗？"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="先等等~我给你调查过去大赛的数据~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="嗯？什么意思~|快给我详细的说说！"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="上次的大赛皮蛋的实力好像很突出~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="总觉得为了大赛的练习，需要准备合适的路线~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="莉亚给准备的话，我也肯定会放心的练习~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="马上就好~|我先检查一下，你先等等~！！"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="知道了！（真想快点跑一跑~）"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="到大赛之前，要有思想准备！！"/>
+  <Enter/>
+</Scene>

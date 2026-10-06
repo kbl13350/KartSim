@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+	<RandomJewelGen
+		name=''
+	>
+		<baseProb
+			preset='' ex) bigBonus, normal 
+			adjustFactor='' ex) 1.0f
+			ItemSpeedIndi='' ex) 100 means 1/100 overwrited
+		/>
+		<bonus
+			probMul='' ex) 1.5f
+			items='' ex) 3-0,3-1
+		/>
+		<jewelList>
+			<jewel id='' prob='' storage='eventTemp' eventTempId='' eventTempMask='' maxCount=''/>
+			<jewel id='' prob='' storage='item' maxCount=''/>
+		</jewelList>
+	</RandomJewelGen>
+
+	<SequentialJewelGen
+		name=''
+
+		eventTempId=''
+		eventTempMask=''
+	>
+		<baseProb
+			preset='' ex) bigBonus, normal 
+			adjustFactor='' ex) 1.0f
+			ItemSpeedIndi='' ex) 100 means 1/100 overwrited
+		/>
+		<bonus
+			probMul='' ex) 1.5f
+			items='' ex) 3-0,3-1
+		/>
+		<jewelList>
+			<jewel id='' probFactor='' />
+		</jewelList>
+	</SequentialJewelGen>
+	<RandomJewelGen
+		name='rsb'
+	>
+		<baseProb
+			preset='normal'
+			adjustFactor='1.5'
+		/>
+		<jewelList>
+			<jewel id='154' prob='33' storage='item' maxCount='32767'/>
+			<jewel id='155' prob='33' storage='item' maxCount='32767'/>
+			<jewel id='156' prob='33' storage='item' maxCount='32767'/>
+		</jewelList>
+	</RandomJewelGen>
+-->
+<!--
+<jewelGenList>
+	<RandomJewelGen
+		name='blacklove'
+	>
+		<baseProb
+			preset='1game'	
+			adjustFactor='3.0'
+		/>
+		<jewelList>
+			<jewel itemCatId='24' itemId='254' effectJewelId='165' prob='100' storage='item' maxCount='32767'/>	
+		</jewelList>
+	</RandomJewelGen>
+	<RandomJewelGen
+		name='6th_1'
+	>
+		<baseProb
+			preset='1game'	
+			adjustFactor='3.0'
+		/>
+		<jewelList>
+			<jewel itemCatId='15' itemId='171' effectJewelId='171' prob='20' storage='item' maxCount='32767'/>	
+			<jewel itemCatId='15' itemId='166' effectJewelId='166' prob='20' storage='item' maxCount='32767'/>	
+			<jewel itemCatId='15' itemId='167' effectJewelId='167' prob='20' storage='item' maxCount='32767'/>	
+			<jewel itemCatId='15' itemId='168' effectJewelId='168' prob='20' storage='item' maxCount='32767'/>	
+			<jewel itemCatId='15' itemId='169' effectJewelId='169' prob='20' storage='item' maxCount='32767'/>	
+		</jewelList>
+	</RandomJewelGen>
+	<RandomJewelGen
+		name='6th_2'
+	>
+		<baseProb
+			preset='1game'	
+			adjustFactor='1.5'
+		/>
+		<jewelList>
+			<jewel itemCatId='15' itemId='170' effectJewelId='170' prob='100' storage='item' maxCount='32767'/>	
+		</jewelList>
+	</RandomJewelGen>
+	-->
+	<!--
+	<RandomJewelGen
+		name='brodiPhoto'
+	>
+		<baseProb
+			preset='1game'	
+			adjustFactor='1.5'
+		/>
+		<jewelList>
+			<jewel itemCatId='25' itemId='5' effectJewelId='170' prob='100' storage='item' maxCount='32767'/>	
+		</jewelList>
+	</RandomJewelGen>
+-->
+<jewelGenList>
+	<RandomJewelGen
+		name='world'
+	>
+		<baseProb
+			preset='normal'
+			adjustFactor='1.5'
+		/>
+		<jewelList>
+			<jewel id='206' prob='100' storage='item' maxCount='32767'/>
+			<jewel id='207' prob='100' storage='item' maxCount='32767'/>
+			<jewel id='208' prob='100' storage='item' maxCount='32767'/>
+			<jewel id='209' prob='100' storage='item' maxCount='32767'/>
+			<jewel id='210' prob='100' storage='item' maxCount='32767'/>
+			<jewel id='212' prob='100' storage='item' maxCount='32767'/>
+		</jewelList>
+	</RandomJewelGen>
+	<RandomJewelGen
+		name='puple'
+	>
+		<baseProb
+			preset='test100prob'
+			adjustFactor='1.0'
+		/>
+		<jewelList>
+			<jewel itemCatId='34' itemId='155' effectJewelId='196' prob='15' storage='item' maxCount='32767'/>	
+		</jewelList>
+	</RandomJewelGen>
+	<RandomJewelGen
+		name='rsb'
+	>
+		<baseProb
+			preset='1.5game'
+			adjustFactor='0.5'
+		/>
+		<jewelList>
+			<jewel id='192' prob='33' storage='item' maxCount='32767'/>
+			<jewel id='193' prob='33' storage='item' maxCount='32767'/>
+			<jewel id='194' prob='33' storage='item' maxCount='32767'/>
+		</jewelList>
+	</RandomJewelGen>
+	<RandomJewelGen
+		name='thunder'
+	>
+		<baseProb
+			preset='1.5game'
+			adjustFactor='1.0'
+		/>
+		<jewelList>
+			<jewel itemCatId='34' itemId='179' effectJewelId='176' prob='33' storage='item' maxCount='32767'/>	
+		</jewelList>
+	</RandomJewelGen>
+	<RandomJewelGen
+		name='star'
+	>
+		<baseProb
+			preset='1.5game'
+			adjustFactor='1.0'
+		/>
+		<jewelList>
+			<jewel itemCatId='34' itemId='178' effectJewelId='177' prob='33' storage='item' maxCount='32767'/>	
+		</jewelList>
+	</RandomJewelGen>
+	<RandomJewelGen
+		name='blackLove'
+	>
+		<baseProb
+			preset='1game'	
+			adjustFactor='3.0'
+		/>
+		<jewelList>
+			<jewel itemCatId='24' itemId='30035' effectJewelId='165' prob='100' storage='item' maxCount='32767'/>	
+		</jewelList>
+	</RandomJewelGen>
+
+	<RandomJewelGen
+		name='pirate'
+	>
+		<baseProb
+			preset='1.5game'
+			adjustFactor='1.0'
+		/>
+		<jewelList>
+			<jewel id='202' prob='100' storage='item' maxCount='32767'/>
+		</jewelList>
+	</RandomJewelGen>
+</jewelGenList>

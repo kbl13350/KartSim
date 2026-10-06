@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill4"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="大家好~！开心的夏天来到了！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="每个夏天都会发生很精彩的故事！我有预感，这个夏天同样会令人难忘。好期待啊!^^"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="呼…"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop6"/>
+  <Msg name="黑妞" string="哎…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="啊…咿…你们这是怎么了？！无精打采的样子！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop6"/>
+  <Msg name="中暑的黑妞" string="皮……皮蛋，你不热吗？我都喘不过气来了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop5"/>
+  <Msg name="中暑的宝宝" string="今年夏天真的好热啊。呼呼"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="不热啊！我的衣服非常凉爽！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="10 0" flip="true" emotion="stop6"/>
+  <Msg name="宝宝和黑妞" string="（这家伙热昏头了吧~）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="这样吧，我们一起去海边避暑如何？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop5"/>
+  <Msg name="黑妞" string="真难得啊，我们的皮蛋 也能想出这么好的主意！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop1"/>
+  <Msg name="宝宝" string="太热了,你们两个就别磨蹭了，赶快出发吧。GOGOGO!"/>
+  <Enter/>
+</Scene>

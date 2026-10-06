@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh3"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="格雷格" string="干嘛要跟着他.."/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop3"/>
+  <Msg name="格雷" string="格雷格！再不闭嘴，我就.."/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="4 0" emotion="stop3"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="格雷格" string="知道了~知道了！！|（哥，这算什么啊！烦！！）"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="totop" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="黑杰克" string="看到前方有什么东西了吗？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷" string="..."/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="黑杰克" string="前面的高楼~|还有他后面的世界~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷格" string="说什么呢~难道你是房地产推销人员？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="totop" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="黑杰克" string="吼吼吼|没文化真可怕~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="废话少说！|那你说的梦想是什么？"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑杰克" string="统！治！世！界！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="格雷格" string="统治世界？？？|哈哈哈哈|笑话~~好冷~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="黑杰克" string="真抱歉让你们笑话~|但是，如果有方法呢？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="格雷" string="方法~|如果是废话，那就让你去见老天爷.."/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="7 0" flip="true" emotion="stop1"/>
+  <Msg name="黑杰克" string="吼吼吼|听说过星陨之石吗？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorL" pos="10 0" flip="true" emotion="stop1"/>
+  <Char id="raptorR" pos="4 0" emotion="stop1"/>
+  <Msg name="格雷，格雷格" string="星陨之石？"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="8 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="现在世界上有叫做星陨之石的|5个石板。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="8 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="只要收集这5个石板，唤醒它的力量|就可以许愿！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷" string="星陨之石.."/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorR" pos="12 0" flip="true" emotion="stop1"/>
+  <Char id="raptorL" pos="9 0" flip="true" emotion="stop2"/>
+  <Msg name="格雷格" string="吹牛~讲笑话呢~|难道这是新时代的冷笑话！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="黑杰克" string="如果觉得是吹牛，那我也没办法~|可我想告诉你们，这是事实~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷" string="事实..|那如果统治世界了，我们能得到什么？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="黑杰克" string="快乐的时光，还有~|可以给你们随便命令他们的权利！"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="格雷" string="快乐的时光~哈哈哈哈|好~非常好~"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="黑杰克" string="那~意思就是OK？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="totop" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷" string="但是，这之前要证明存在可以打败我们的力量！"/>
+  <Enter/>
+</Scene>

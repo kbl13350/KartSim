@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="abyssBarricade">
+  <state name="StateUse" life="1000" firing="용오름_사용" firingFx="용오름_1_사용" size="70"/>
+  <state name="StateSet" life="266" item="item00_abyss" itemFx="용오름_2_피격" size="10" itemSize="0.5"/>
+  <state name="StateActive" life="5000" item="item01_abyss" size="4.5" itemSize="0.8"/>
+  <state name="StateEnd" life="500" item="item02_abyss" itemSize="0.5" itemFx="용오름_4_사라짐"/>
+  <state name="StateAffect" life="2000" fired="fired02_abyss" itemSize="0.5" itemFx="용오름_3_피격효과음"/>
+  <state name="StateShield" life="1000" fired="쉴드방어" firedFx="shield"/>
+  <state name="StateSpecialShield" life="2000"/>
+</item>

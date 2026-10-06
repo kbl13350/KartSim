@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="逃离黄金神殿"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="一到达神殿的地下，洞窟就开始坍塌。|现在是被石头埋没的一触即发的危机时刻!! |请在洞窟坍塌前，找到出口。"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="请在规定的时间内，完成赛道。|"/>
+  </k>
+</StringBag>

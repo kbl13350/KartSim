@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="digit" windowSize="218 136" align="right;top" adjust="0 20">
+  <Container name="lapinfo" windowRect="120 13 204 65">
+    <CharPanel name="myLap" windowRect="0 0 43 52" texture="big_num" alphaBlend="true" fontSize="43 52" fontStr="0123456789" fontPos="0 0" text="2"/>
+    <Panel leftTopTex="38 26" texture="diagonal" alphaBlend="true"/>
+    <CharPanel name="totalLap" windowRect="26 0 66 25" align="bottom" texture="small_num" alphaBlend="true" fontSize="20 25" fontStr="0123456789/" fontPos="0 0" text="3"/>
+  </Container>
+  <Panel name="lapText" leftTopTex="0 67" texture="lap_RunnerText@zz" alphaBlend="true" align="right">
+    <Panel name="runnerHandicap" leftTopTex="0 42" texture="lap_HandicapText@zz" alphaBlend="true" align="right" visible="false"/>
+  </Panel>
+</Window>

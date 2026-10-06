@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window windowSize="210 168" adjust="0 50">
+  <Panel name="arrow" leftTopTex="0 162" texture="upgradekart_grade_arrow" align="hcenter" visible="true" alphaBlend="true">
+    <Panel name="arrow_select" leftTopTex="0 0" texture="upgradekart_grade_arrow_2" align="hcenter" visible="false" alphaBlend="true"/>
+  </Panel>
+  <Panel name="gradeBg" leftTopTex="0 24" texture="upgradekart_grade_bg_4" visible="true" alphaBlend="true"/>
+  <ColorLabel name="gradeText" leftTopWH="8 32 210 20" text="" textAlign="left" textColor="black" textRender="bold"/>
+  <ItemWindow name="growthKartListWnd" leftTopWH="0 24 210 140" visible="true" enable="true" cameraFrom="2.0 -8.0 3.6" cameraTo="0.0 0.0 0.1" cameraZoom="3.1"/>
+  <Panel name="backPanel" leftTopWH="0 24 210 140" texture="upgradekart_grade_bg_dim" alphaBlend="true" visible="true" enable="false"/>
+  <Panel name="completePanel" leftTopWH="0 0 212 42" texture="upgradekart_grade_bg_complete@zz" align="center" alphaBlend="true" enable="false" visible="false"/>
+  <Panel name="selectFrame" leftTopTex="0 24" texture="upgradekart_grade_frame" visible="false" enable="false" alphaBlend="true"/>
+  <ColorLabel name="kartName" leftTopWH="0 136 210 24" text="" textAlign="center" textColor="white" textRender="bold14"/>
+  <Play1SPanel name="selectEffect" windowSize="210 140" adjust="0 10" align="center" alphaBlend="true" scene="업그래이드단계강조이팩트" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -1.2 0" defaultSpotPos="0.0 0.0 0.0" zoom="1" enable="false" clearZBefore="true" clearZAfter="true" visible="false"/>
+</Window>

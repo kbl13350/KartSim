@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <XmlFile file="missionTimer"/>
+    <Container name="timeCheckPanel" windowRect="0 0 342 112" align="hcenter" visible="false">
+      <Container windowRect="0 80 342 108">
+        <Panel name="timeCheckText" windowRect="0 0 237 29" align="center" texture="sn_보너스타임@zz" alphaBlend="true">
+          <CharPanel name="timeCheckLeft" windowRect="147 0 207 26" align="vcenter" texture="sn_카운트숫자" alphaBlend="true" fontSize="20 26" fontStr="0123456789+" text="000"/>
+        </Panel>
+      </Container>
+    </Container>
+    <Container name="chSpeedPanel" windowRect="0 0 342 112" align="hcenter" visible="false">
+      <Container windowRect="0 80 342 108">
+        <Panel name="chSpeedText" windowRect="0 0 237 29" align="center" texture="sn_도전속도@zz" alphaBlend="true">
+          <CharPanel name="chSpeed" windowRect="99 0 159 26" align="vcenter" texture="sn_카운트숫자" alphaBlend="true" fontSize="20 26" fontStr="0123456789+" text="000"/>
+        </Panel>
+      </Container>
+    </Container>
+    <Container name="okSpeedPanel" windowRect="0 0 342 112" align="hcenter" visible="false">
+      <Container windowRect="0 80 342 108">
+        <Panel name="okSpeedText" windowRect="0 0 237 29" align="center" texture="sn_성공속도@zz" alphaBlend="true">
+          <CharPanel name="okSpeed" windowRect="99 0 159 26" align="vcenter" texture="sn_카운트숫자" alphaBlend="true" fontSize="20 26" fontStr="0123456789+" text="000"/>
+        </Panel>
+      </Container>
+    </Container>
+  </Container>
+  <Panel name="메뉴" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" visible="false">
+    <CaptionWindow frame="CaptionDialog" caption="#sb(menu)" windowRect="0 0 360 180" align="center" setCloseButton="cancelButton">
+      <Container windowRect="0 15 330 120" align="hcenter">
+        <StateButton name="싱글플레이" windowSize="104 106" align="center" iconSet="btn_menu" iconAlign="hcenter" text="#sb(goToMenu)" textAlign="hcenter" stringPos="0 55"/>
+      </Container>
+    </CaptionWindow>
+  </Panel>
+</Container>

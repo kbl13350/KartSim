@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="stealthInfo" leftTopWH="0 0 100 100" visible="true">
+  <Panel leftTopWH="0 0 776 586" color="255 255 255 255" visible="true">
+    <ImageBoard name="stealthInfoImage" leftTopWH="0 10 748 480" align="hcenter" alphaBlend="true" enable="false" visible="true"/>
+    <Window name="bottomText" leftTopWH="0 430 718 60" align="hcenter">
+      <Label name="title" leftTopWH="12 22 100 30" text="#sb(period)" textAlign="left,vcenter" textRender="bold16" marginRect="0 2 0 0" textColor="255 207 221 240"/>
+      <Label name="periodText" leftTopWH="0 22 100 30" text="" textAlign="right,vcenter" align="right" textRender="bold16" marginRect="0 2 0 0" textColor="255 255 255 255"/>
+    </Window>
+  </Panel>
+</Container>

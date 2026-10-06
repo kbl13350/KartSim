@@ -1,0 +1,47 @@
+{
+  "source": "../../mirror/assets/index-DoW2rQpI.js",
+  "sourceSha256": "d753ab83d0007826b7275a7b4e4288d7b0f2a60662e967eac374ec3a1e0fb354",
+  "sourceOffsets": "UTF-16 code-unit offsets in the decoded JavaScript string; end exclusive",
+  "tables": {
+    "h10": {
+      "file": "vehicle-physics-h10.csv",
+      "sha256": "2c93fabef7b22d27cfcdef24c27b1894869e315ee9ac9fc15f31effa6b58eccd",
+      "range": [
+        1024887,
+        1798303
+      ],
+      "columns": 91,
+      "dataRows": 2374,
+      "sources": {
+        "cn-server-capture": 2374
+      }
+    },
+    "d10": {
+      "file": "vehicle-physics-d10.csv",
+      "sha256": "9c5caece9c7b3d2aab92aec17c500ac18dee0c4bead4d1a82e72f877da90fc24",
+      "range": [
+        1798310,
+        3591795
+      ],
+      "columns": 91,
+      "dataRows": 3276,
+      "sources": {
+        "local-p3553+launcher-v2": 10,
+        "local-p3543+launcher-v2": 6,
+        "cn3229+local-p3528": 2836,
+        "cn3075+local-p3528": 2,
+        "cn3229+launcher-v2": 188,
+        "local-p3528+launcher-v2": 234
+      }
+    }
+  },
+  "overrides": {
+    "file": "vehicle-physics-overrides.mjs",
+    "sha256": "d303010977c8e82ba7baf865e644e9567300af14af0dde4d76264e3dc65f994e",
+    "range": [
+      3591797,
+      3847452
+    ],
+    "finalKeys": 436
+  }
+}

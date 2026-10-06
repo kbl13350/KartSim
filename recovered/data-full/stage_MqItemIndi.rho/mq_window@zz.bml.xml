@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="uiEffect" windowRect="fullscreen"/>
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Panel name="digit" windowSize="146 118" align="right;top" adjust="28 5" texture="lap_box" alphaBlend="true">
+      <Panel windowRect="0 57 50 113" texture="lap_text@zz" alphaBlend="true"/>
+      <Container name="lapinfo" windowRect="30 10 118 48">
+        <Panel windowRect="0 0 38 38" texture="lap_big" uvRect="0 0 38 38" alphaBlend="true"/>
+        <CharPanel name="myLap" windowRect="40 0 78 38" texture="lap_big" alphaBlend="true" fontSize="33 38" fontStr="1234567" text="0" fontPos="38 0"/>
+        <CharPanel name="totalLap" windowRect="65 0 112 34" texture="lap_small" alphaBlend="true" fontSize="26 34" fontStr="/12345" text="/3" spaceOffset="-7"/>
+      </Container>
+      <Container name="lapPlus" windowRect="55 57 118 73">
+        <CharPanel name="min" windowRect="0 0 26 16" texture="sec" alphaBlend="true" fontSize="13 16" fontStr="1234567890" text="00" spaceOffset="-1"/>
+        <Panel windowRect="21 0 34 16" uvRect="130 0 143 16" texture="sec" alphaBlend="true"/>
+        <CharPanel name="sec" windowRect="32 0 58 16" texture="sec" alphaBlend="true" fontSize="13 16" fontStr="1234567890" text="00" spaceOffset="-1"/>
+        <Panel windowRect="53 0 66 16" uvRect="130 0 143 16" texture="sec" alphaBlend="true"/>
+        <CharPanel name="mil" windowRect="63 0 89 20" texture="sec" alphaBlend="true" fontSize="13 16" fontStr="1234567890" text="00" spaceOffset="-1"/>
+      </Container>
+      <Container name="timeinfo" windowRect="55 77 118 93">
+        <CharPanel name="min" windowRect="0 0 26 16" texture="sec" alphaBlend="true" fontSize="13 16" fontStr="1234567890" text="00" spaceOffset="-1"/>
+        <Panel windowRect="21 0 34 16" uvRect="130 0 143 16" texture="sec" alphaBlend="true"/>
+        <CharPanel name="sec" windowRect="32 0 58 16" texture="sec" alphaBlend="true" fontSize="13 16" fontStr="1234567890" text="00" spaceOffset="-1"/>
+        <Panel windowRect="53 0 66 16" uvRect="130 0 143 16" texture="sec" alphaBlend="true"/>
+        <CharPanel name="mil" windowRect="63 0 89 20" texture="sec" alphaBlend="true" fontSize="13 16" fontStr="1234567890" text="00" spaceOffset="-1"/>
+      </Container>
+      <Container name="bestinfo" windowRect="55 97 118 113">
+        <CharPanel name="min" windowRect="0 0 26 16" texture="sec" alphaBlend="true" fontSize="13 16" fontStr="1234567890" text="00" spaceOffset="-1"/>
+        <Panel windowRect="21 0 34 16" uvRect="130 0 143 16" texture="sec" alphaBlend="true"/>
+        <CharPanel name="sec" windowRect="32 0 58 16" texture="sec" alphaBlend="true" fontSize="13 16" fontStr="1234567890" text="00" spaceOffset="-1"/>
+        <Panel windowRect="53 0 66 16" uvRect="130 0 143 16" texture="sec" alphaBlend="true"/>
+        <CharPanel name="mil" windowRect="63 0 89 20" texture="sec" alphaBlend="true" fontSize="13 16" fontStr="1234567890" text="00" spaceOffset="-1"/>
+      </Container>
+    </Panel>
+    <Container name="item" windowRect="0 0 280 75">
+      <Panel name="exist" windowRect="-95 25 -80 45" texture="changer" uvRect="42 0 57 20" alphaBlend="true"/>
+      <Container name="changerinfo" windowRect="0 0 280 20">
+        <ImageCheckButton name="keyDisp" windowRect="0 0 21 20" autoImage="alt_" alphaBlend="true"/>
+        <ImageCheckButton name="exist" windowRect="23 0 38 20" autoImage="change_" alphaBlend="true"/>
+        <Panel name="infinity" windowRect="68 6 106 25" uvRect="308 98 346 117" texture="aw_02@zz" alphaBlend="true" visible="false"/>
+        <CharPanel name="changerNum" windowRect="40 1 278 19" texture="digitnum@zz" alphaBlend="true" fontSize="14 18" fontStr="1234567890" text="x0048"/>
+      </Container>
+      <Container name="retryInfo" windowRect="0 23 280 43">
+        <ImageCheckButton name="keyDisp" windowRect="0 0 21 20" autoImage="item_" alphaBlend="true"/>
+        <ImageCheckButton name="exist" windowRect="23 0 38 20" autoImage="changewhat_" alphaBlend="true"/>
+        <CharPanel name="changerNum" windowRect="40 1 278 19" texture="digitnum@zz" alphaBlend="true" fontSize="14 18" fontStr="1234567890" text="x0048"/>
+      </Container>
+    </Container>
+    <Panel name="dashboard" windowSize="146 138" adjust="10 10" align="right;bottom" uvRect="38 0 184 138" texture="tachometer" alphaBlend="true">
+      <Graduation name="hand" windowRect="-9 67 26 72" uvRect="204 160 239 165" texture="tachometer" alphaBlend="true" minDegree="-90" maxDegree="270" minValue="0" maxValue="450" axis="80 3" defaultValue="0"/>
+      <CharPanel name="kmh" windowRect="34 56 103 84" texture="tachometer" alphaBlend="true" fontSize="24 28" fontPos="0 170" fontStr="0123456789" text="000"/>
+    </Panel>
+    <Panel name="rankboard" windowRect="0 89 229 140" texture="rank_box" uvRect="0 0 229 51" alphaBlend="true" enable="false">
+      <CharPanel name="myrank" windowRect="20 -6 63 46" texture="digit_lap_focus" alphaBlend="true" fontSize="43 52" fontStr="012345678" text="2" fontPos="43 0"/>
+      <CharPanel name="st" windowRect="55 26 82 46" texture="st" alphaBlend="true" fontSize="27 20" fontStr="1230" text="0"/>
+      <CharPanel name="riderCount" windowRect="74 0 114 25" texture="digit_lap" alphaBlend="true" fontSize="20 25" fontStr="0123456789" text="8" spaceOffset="0"/>
+      <RankList name="ranklist" windowRect="0 51 229 515"/>
+    </Panel>
+    <StressMirror name="stressMirror"/>
+    <CutEffect name="cutEffect"/>
+    <DashboardPanel name="slotTimer" windowRect="0 0 44 26" texture="미사일숫자" alphaBlend="true" fontSize="22 26" fontPos="0 0" fontStr="0123456789" text="3" speedTick="20" visible="false"/>
+  </Container>
+</Container>

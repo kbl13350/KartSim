@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='144.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.075'
+	SteerConstraint='2.5'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.063'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.68'
+	TransformTime='700'   
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+	SpecialSlotCapacity='2'
+
+	StartForwardAccelFactorItem = '1.2'
+	StartBoosterTimeItem='1200'           
+
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='cotton6'
+	BoosterType3='cotton6'
+	BoosterType4='zero5'      
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+
+	FirePort0='mod1a3'
+	FirePort1='mod1a4'
+	FirePort2='mod1b1'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '40'
+	DescStability ='40'
+	DescEngineGrade='1.2'
+	DescCornering='4'
+	DescEnchantCap = '30'
+
+/>
+<!--중국 돌고래 Z7 가샤폰 레어 20110818-->

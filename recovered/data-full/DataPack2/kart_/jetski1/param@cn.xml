@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='145.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.076'
+	SteerConstraint='2.8'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.067'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	SpecialSlotCapacity ='2'
+	ItemSlotCapacity='3'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.7'           
+	TransformTime='700'               
+
+	StartBoosterTimeItem='1200'           
+	StartForwardAccelFactorItem = '1.25'
+
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-350'
+	DriftMaxGauge = '-400'
+	
+	EnvMap='true'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zeroplus'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zeroplus'
+	BoosterType3='zeroplus'
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1b1'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '40'
+	DescStability ='40'
+	DescEngineGrade='1.2'
+	DescCornering='5'
+	DescEnchantCap = '30'
+
+/>
+<!-- 중국 제트스키 Z7+ 가샤폰 레어 121213-->

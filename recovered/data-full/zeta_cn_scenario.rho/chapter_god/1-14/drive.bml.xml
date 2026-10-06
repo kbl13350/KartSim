@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Escape isFixedKart="true" fixedKartId="1122" fixedCharId="260" isFixedChar="true" kartId="1118" characterId="263" colorId="72" dyeId="72" characterName="海姆达尔">
+    <LevelContent level="0" track="forest_I02" laps="2" ksv="1-14" distance="20" startOffset="-1500"/>
+  </Escape>
+</Root>

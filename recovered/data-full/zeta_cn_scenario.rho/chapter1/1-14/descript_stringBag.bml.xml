@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="scenarioTitle">
+    <m c="cn" v="挑战自己"/>
+  </k>
+  <k n="synopsis">
+    <m c="cn" v="结束了火热的对决，终于能有自己的时间了的皮蛋，|想起了之前在沙漠中和胖墩的对决。|皮蛋回想起了那个时候自己纯粹的心灵，再次下定决心。"/>
+  </k>
+  <k n="howtoClear">
+    <m c="cn" v="请在规定的时间内完成赛道.|"/>
+  </k>
+  <k n="trackName">
+    <m c="cn" v="沙漠绿洲"/>
+  </k>
+</StringBag>

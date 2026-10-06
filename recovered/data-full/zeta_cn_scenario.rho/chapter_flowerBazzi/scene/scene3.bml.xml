@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china4"/>
+  <Char id="f4chen" pos="11 0" emotion="stop3"/>
+  <Msg name="杉雯雯" string="啦啦啦~|外卖也送完了~~~"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Shake time="500"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="..." string="吱！！！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="f4chen" pos="12 0" emotion="stop1"/>
+  <Msg name="杉雯雯" string="吓我一跳！！！|喂~！你这么突然闯进来…|差点撞上了。"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="raptorL" pos="4 0" emotion="stop3"/>
+  <Char id="f4chen" pos="11 0" emotion="stop1"/>
+  <Msg name="格雷格" string="让开！|敢当我格雷格的路！"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="steve" pos="4 0" flip="true" emotion="stop3"/>
+  <Msg name="罗杰" string="小偷！！！|那个小朋友~|那个绿头发是小偷！！！|快抓住他！！！"/>
+  <Enter/>
+  <Char id="steve" remove="true"/>
+  <Char id="f4chen" pos="11 0" emotion="stop1"/>
+  <Char id="raptorL" pos="3 0" emotion="stop3"/>
+  <Msg name="杉雯雯" string="小…小偷？？？"/>
+  <Enter/>
+  <Char id="f4chen" remove="true"/>
+  <Char id="raptorL" remove="true"/>
+  <Shake time="500"/>
+  <Char id="raptorL" pos="3 0" emotion="stop3"/>
+  <Char id="f4chen" pos="11 0" emotion="stop1"/>
+  <Msg name="格雷格" string="切，真麻烦……|给我让开！！！"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="f4chen" remove="true"/>
+  <Shake time="500"/>
+  <Char id="f4chen" pos="10 0" emotion="stop4"/>
+  <Msg name="杉雯雯" string="啊呀~！|你给我站住！！！"/>
+  <Enter/>
+</Scene>

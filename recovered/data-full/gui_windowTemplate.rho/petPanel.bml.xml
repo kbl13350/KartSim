@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RenderPanel name="pet" leftTopWH="5 30 200 400" clearZAfter="true" nearPlane="0.1" farPlane="100" alphaBlend="true" enable="false"/>

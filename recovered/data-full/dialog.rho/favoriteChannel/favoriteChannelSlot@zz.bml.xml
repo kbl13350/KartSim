@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="slot" windowRect="0 0 424 93" frame="PopupWindow" caption="빠른시작 1" textRender="bold16">
+  <Window windowSize="120 52" adjust="32 6">
+    <GridSelector name="difficultyList" windowSize="80 100" alignSize="1" maxLine="4" alignMargin="0 4" linePaging="true"/>
+  </Window>
+  <Window name="seperator" windowSize="1 46" adjust="118 9" frame="VSection"/>
+  <Window windowSize="96 52" adjust="128 6">
+    <GridSelector name="modeList" windowSize="96 52" alignSize="1" maxLine="4" alignMargin="0 4" linePaging="true"/>
+  </Window>
+  <Window windowSize="96 52" adjust="224 6">
+    <GridSelector name="speedList" windowSize="96 52" alignSize="1" maxLine="4" alignMargin="0 4" linePaging="true"/>
+  </Window>
+  <Window windowSize="96 52" adjust="320 6">
+    <GridSelector name="teamList" windowSize="96 52" alignSize="1" maxLine="4" alignMargin="0 4" linePaging="true"/>
+  </Window>
+</CaptionWindow>

@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+// 배찌, 여름 산타, 네오, 카파에, 대만 브로디, 관우, 중국 데빌킴
+// 팀전 풀방 퍼펙트
+// 개인전 풀방 1위
+
+// 배찌2
+// 팀전 4인 이상 퍼펙트
+// 개인전 4인 이상 1위
+
+// 다오, 디지니, 케피, 닥터 R, 데빌킴
+// 보너스 카드 소지
+
+// 에띠, 우니, 워드
+// 팀전 승리
+// 개인전 1위
+
+// 마리드, 에리니, 티이라, 손오공
+// 개인전 완주
+// 팀전 승리
+
+// 모스, 브로디
+// 보너스 카드 소지 기본임 
+// 개인전 3등 이내
+// 팀전 승리
+
+// 로두마니, 모비
+// 풀방 all retire
+
+// 산타
+// 완주
+// 특정 시간 동안 +루찌
+
+// 중국 산타
+// 특정 시간 동안
+// +루찌, rp
+
+// 닥터 리바스키
+// 보너스카드 소지
+// 개인전 1위 RP 랜덤 400%
+// 팀전 승리 RP 랜덤 400%
+
+// 투투
+// 보너스카드 소지
+// 개인전 1위 루찌 랜덤 400%
+// 팀전 승리 루찌 랜덤 400%
+
+// 원원
+// 팀전 풀방 승리
+// 개인전 풀방 1위
+
+// 원원2
+// 팀전 4인 이상 승리
+// 개인전 4인 이상 1위
+
+// 여포
+// 개인전 풀방 3위 이내
+// 팀전 풀방 퍼펙트 승리
+
+//슈아이
+// 개인전 1위 루찌 랜덤
+// 팀전 승리 시 루찌,  RP 보너스
+-->
+<itemBonusTable>
+	<character id='1' bonusType='bazzi'
+		mulRpTeam='3.0' mulLucciTeam='3.0' 
+		mulRpIndi='2.0'	mulLucciIndi='2.0' />		<!-- 배찌 -->
+	<character id='2'
+		bonusType='dao'
+		needBonusCard='true' 
+		mulRp1='1.4'		mulLucci1='1.4'
+		/>	<!-- 다오 -->
+	<character id='3'
+		bonusType='dao'
+		needBonusCard='true' 
+		mulRp1='1.4'		mulLucci1='1.4'
+		/>	<!-- 디지니 -->
+	<character id='4'
+		bonusType='dao'
+		needBonusCard='true' 
+		mulRp1='1.4'		mulLucci1='1.4'
+		/>	<!-- 에띠 -->
+	<character id='5'
+		bonusType='dao'
+		needBonusCard='true' 
+		mulRp1='1.4'		mulLucci1='1.4'
+		/>	<!-- 에띠 -->
+	<character id='6'
+		bonusType='dao'
+		needBonusCard='true' 
+		mulRp1='1.4'		mulLucci1='1.4'
+		/>	<!-- 마리드 -->
+	<character id='7'
+		bonusType='dao'
+		needBonusCard='true' 
+		mulRp1='1.4'		mulLucci1='1.4'
+		/>	<!-- 모스 -->
+	<character id='8'
+		bonusType='dao'
+		needBonusCard='true' 
+		mulRp1='1.4'		mulLucci1='1.4'
+		/>	<!-- 우니 -->
+	<character id='12'	bonusType='ethi'				
+		mulRpIndi='2.0'	mulLucciIndi='2.0'	mulRpTeam='1.7'	mulLucciTeam='1.7'	/>		<!-- 닥터 R -->
+	<character id='16'
+		bonusType='dao'
+		needBonusCard='true' 
+		mulRp1='1.4'		mulLucci1='1.4'
+		mulRp2='1.4'		mulLucci2='1.4'
+		/>	<!-- 브로디 -->
+	<character id='20' bonusType='bazzi'
+		mulRpTeam='3.0' mulLucciTeam='3.0' 
+		mulRpIndi='2.0'	mulLucciIndi='2.0' />		<!-- neo -->
+	<character id='28'
+		bonusType='dao'
+		needBonusCard='true' 
+		mulRpTeam='1.4' mulLucciTeam='1.4' 
+		mulRpIndi='1.4'	mulLucciIndi='1.4'
+		/>	<!-- 히어로 다오 -->
+	<character id='44'
+		bonusType='ethi'
+		needBonusCard='true' 
+		mulRpTeam='1.7' mulLucciTeam='1.7' 
+		mulRpIndi='2.0'	mulLucciIndi='2.0'
+		/>	<!-- 캡틴 로두마니 -->
+	<!-- pet -->
+	<pet id='11' bonusType='LucciRandom100'/>
+	<pet id='12' bonusType='LucciRandom100'/>
+	<pet id='19' bonusType='LucciRandom100'/>
+	<pet id='20' bonusType='LucciRandom100'/>
+	<pet id='21' bonusType='LucciRandom100'/>
+	<pet id='22' bonusType='LucciRandom100'/>
+	<pet id='24' bonusType='LucciRandom100'/>
+	<pet id='39' bonusType='LucciRandom100'/>
+	<pet id='40' bonusType='LucciRandom100'/>
+	<pet id='42' bonusType='LucciRandom100'/>
+	<pet id='86' bonusType='LucciRandom100'/>
+
+	<rpLucciBonus id='1' bonusType='rp*2.0' />
+	<rpLucciBonus id='2' bonusType='lucci*2.0' />
+
+</itemBonusTable>

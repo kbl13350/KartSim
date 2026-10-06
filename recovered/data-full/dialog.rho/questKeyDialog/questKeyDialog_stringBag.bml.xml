@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="rewardStockCaption">
+    <m c="kr" v="라이더 비밀일기"/>
+    <m c="jp" v="ライダー秘密日記"/>
+    <m c="us" v="Rider&apos;s secret diary…"/>
+    <m c="vn" v="Nhật ký trường đua"/>
+    <m c="ru" v="Дневник гонщика"/>
+    <m c="id" v="Rider Secret Diary"/>
+    <m c="th" v="ไดอารี่ลับส่วนตัว"/>
+  </k>
+  <k n="NewQuest">
+    <m c="kr" v="새로운 퀘스트가 시작되었습니다.|퀘스트 창을 확인해 보세요."/>
+    <m c="jp" v="新しいクエストが始まりました。|クエストウィンドウを確認してください。"/>
+    <m c="us" v="New Quest added! Please check your Quest Log."/>
+    <m c="vn" v="Bắt đầu nhiệm vụ mới.|Hãy kiểm tra cửa sổ nhiệm vụ."/>
+    <m c="ru" v="Открыт новый квест.|Откройте окно квестов."/>
+    <m c="id" v="Quest baru telah dimulai.|Silahkan cek window quest."/>
+    <m c="th" v="เริ่มเควสใหม่ |กรุณายืนยันเควส"/>
+  </k>
+  <k n="oldBookInfo">
+    <m c="kr" v="&quot;네오&quot;의 오래된 노트입니다.|읽으면 새로운 퀘스트가 시작됩니다.|읽으시겠습니까?"/>
+    <m c="jp" v="&quot;ネオ&quot;の古いノートです。|読むと新しいクエストが始まります。|読みますか？"/>
+    <m c="us" v="Neo&apos;s old note. | A new Quest will start if you open this note. | Continue?"/>
+    <m c="vn" v="Nếu đọc sách tuyệt kỹ thì nhiệm vụ mới sẽ bắt đầu.| Bạn có muốn đọc chứ ? "/>
+    <m c="ru" v="Старые записи &quot;Нео&quot;.|Прочитав их, вы получите новый квест.|Прочитать?"/>
+    <m c="id" v="Note lama dari &quot;Neo&quot;|Jika membacanya akan mulai Quest baru.|Ingin membacanya?"/>
+    <m c="th" v="บันทึกโบราณ&quot;นีโอ&quot; ถ้าอ่านแล้วจะเป็นการเริ่มเควสใหม่ จะอ่านใช่ไหม"/>
+  </k>
+  <k n="congratulationStrFormat">
+    <m c="kr" v="축하합니다!|다음 상품을 획득하셨습니다.|&quot;%s&quot;"/>
+    <m c="jp" v="おめでとうございます！|次の賞品を入手しました。|&quot;%s&quot;"/>
+    <m c="us" v="Congratulations! | You have obtained the following item. | &quot;%s&quot;"/>
+    <m c="vn" v="Chúc mừng bạn!|Bạn đã giành được giải thưởng.|&quot;%s&quot;"/>
+    <m c="ru" v="Поздравляем!|Вы получили следующий предмет:|&quot;%s&quot;"/>
+    <m c="id" v="Selamat!|Telah mendapat item berikut ini,|&quot;%s&quot;"/>
+    <m c="th" v="ดีใจด้วยนะ ได้รับของแล้ว|&quot;%s&quot;"/>
+  </k>
+  <k n="lotteryNotInPeriod">
+    <m c="kr" v="사용 기간이 아닙니다."/>
+    <m c="jp" v="利用有効期間ではありません。"/>
+    <m c="us" v="This item cannot be used at this time. "/>
+    <m c="vn" v="Vĩnh viễn"/>
+    <m c="ru" v="Сейчас не время."/>
+    <m c="id" v="Bukan waktu pemakaian"/>
+    <m c="th" v="ยังไม่ถึงเวลาที่ใช้ได้"/>
+  </k>
+  <k n="unknownError">
+    <m c="kr" v="알 수 없는 오류가 발생했습니다."/>
+    <m c="jp" v="原因不明のエラーが発生しました。"/>
+    <m c="us" v="An unknown error has occurred. "/>
+    <m c="vn" v="Không xác định được lỗi"/>
+    <m c="ru" v="Обнаружена неизвестная ошибка"/>
+    <m c="id" v="Telah terjadi error."/>
+    <m c="th" v="เกิดความผิดพลาดขึ้น"/>
+  </k>
+</StringBag>

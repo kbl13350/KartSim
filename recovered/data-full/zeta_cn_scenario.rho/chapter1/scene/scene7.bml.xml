@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Bgm theme="forest" file="forest_02"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="噢噢。真为你捏了把汗，不过第一个考验总算通过了。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="喉喉~ 那么，同意我的要求了吗？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="小强" string="还早, 现在是第二个考验了。 |真正的测试，现在才刚刚开始。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="呼！第一个考验？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="3 0" emotion="stop2"/>
+  <Msg name="胖墩" string="小强！你是不是对皮蛋要求太高了？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="想要开始的，不是我，而是他。|如果现在想要放弃的话，就直接说吧。|连这点热情和韧性都没有的车手，想要得到我的赛车知识真是做梦。"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="额~"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="好！我也热身完了。|来吧，下面的条件是什么？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="好！我喜欢你这种自信满满的样子。|来吧，第二个考验是把我改造的赛车送到沙漠市场陷阱之路蓝蓝小姐那边去。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="递送？|这种事情，哪里有什么难度！"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="你是不知道才会说这样的话的……|这个是特别预定的车子，所以非常的贵重。递送中就算有一条刮痕，蓝蓝小姐也不会善罢甘休的。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="赛车上一点都没有刮痕……|在规定时间内，送到沙漠市场陷阱之路，居然是这样的条件……|就算对高速行驶和转弯有自信的皮蛋，也似乎是不太可能完成的任务……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="……"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="小强" string="来吧……怎么样啊？|递送约定的时间，现在正在一点点流逝。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="好！决定了！|接受第二个考验。|需要递送的赛车在哪里？ "/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="来这里。|约定的时候不多了，赶紧了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="皮蛋……到底能不能成功呢？"/>
+  <Enter/>
+</Scene>

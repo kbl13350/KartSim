@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="penguin3"/>
+  <Char id="Pengzi" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="企小美" string="去哪儿了？？"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="好像跟丢了。要不分头找找？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="我和企小美去吧。反正只有我能和她交流~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop4"/>
+  <Msg name="黑妞" string="好！那我和皮蛋一队！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="企小美，从现在起我们就是一队啦……咦？去哪了？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Pengzi" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="企小美" string="嗖~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="哇~太快了吧！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="我们也快点追上去吧？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="12 0" emotion="stop3"/>
+  <Msg name="宝宝" string="嗖~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="企小美！都说了单独行动很危险~"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="而且我第一次来这里，不太熟悉路。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengzi" pos="8 0" emotion="normal"/>
+  <Msg name="企小美" string="我来告诉你。"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengzi" pos="8 0" emotion="stop1"/>
+  <Msg name="企小美" string="其实我们企鹅也经常会迷路。"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="啊？那你们怎么找路呀？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengzi" pos="8 0" emotion="stop1"/>
+  <Msg name="企小美" string="我们有只有企鹅才能看懂的特殊标记。"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengzi" pos="7 0" emotion="normal"/>
+  <Msg name="企小美" string="如果和你刚才走过的路一致就跟着蓝色标志，|如果像是不同的路就跟着红色标志。"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Msg name="宝宝" string="这是什么意思？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengzi" pos="7 0" emotion="normal"/>
+  <Msg name="企小美" string="矿山的路看起来都差不多，但仔细观察就会发现有些区域和你之前经过的地方有点不同。"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengzi" pos="7 0" emotion="stop1"/>
+  <Msg name="企小美" string="如果路上有和你最初经过的地方有不同之处，就跟随红光，如果和平时一样，就跟随蓝光！"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengzi" pos="7 0" emotion="normal"/>
+  <Msg name="企小美" string="这样吧，我们分头行动，我去这边！你去那边看看。"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="Pengzi" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="企小美" string="那待会儿见！"/>
+  <Enter/>
+  <Char id="Pengzi" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop5"/>
+  <Msg name="宝宝" string="啊？！等一下！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Pengzi" pos="11 0" emotion="normal"/>
+  <Msg name="企小美" string="建议你多观察观察周围环境，慢慢走会比较好~"/>
+  <Enter/>
+</Scene>

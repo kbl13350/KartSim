@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="shield">
+  <state name="Use" life="2000" firing="firing00"/>
+  <state name="Shield" life="1000" firing="쉴드방어" firingFx="shield"/>
+  <state name="Disappear" life="500"/>
+  <state name="Use" life="3000" firing="GoldS"/>
+  <state name="Shield" life="1000" firing="쉴드방어" firingFx="shield"/>
+  <state name="Disappear" life="500"/>
+</item>

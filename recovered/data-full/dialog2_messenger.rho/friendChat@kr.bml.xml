@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FriendChat name="friendChat" windowRect="67 0 327 286" enable="false" visible="false">
+  <Panel name="backPlane" windowRect="9 0 265 286" texture="kPlane1" enable="false" alphaBlend="true"/>
+  <Label name="chatFriendName" windowRect="17 3 257 27" marginRect="23 0 0 0" frame="DefaultEdit" text="" textRender="bold" textAlign="vcenter">
+    <Panel name="static1" windowRect="1 1 20 19" texture="대화창아이콘" uvRect="0 0 19 18" alphaBlend="true" align="vcenter"/>
+  </Label>
+  <Window name="frame" windowRect="18 30 257 208" frame="DefaultEdit" enable="false"/>
+  <List name="chat" windowRect="22 36 254 202" autoScroll="true" listGap="5"/>
+  <MsFriendChatInput name="friendChatInput" windowRect="17 210 257 262" frame="DefaultEdit" maxChar="70" multiLine="true"/>
+  <MsrStateButton name="closeChat" windowRect="239 7 256 24" iconSet="close" iconInfix="" canDisable="false" altText="#sb(closeChat)"/>
+  <MsrStateButton name="inviteFriend" windowRect="17 267 98 283" iconSet="plusTool" canDisable="false" iconPos="0 0" stateText="#sb(inviteChatter)" textPos="17 0" textAlign="vcenter" textColor="black"/>
+</FriendChat>

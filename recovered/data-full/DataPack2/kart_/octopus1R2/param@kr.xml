@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152'
+	BackwardAccelForce='100'
+	DragFactor='-0.081'
+	SteerConstraint='2.6'
+	CornerDrawFactor='0.072'
+	DriftEscapeForce='1500'
+
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+
+	BoosterBlur='true'
+	EngineSound='cotton8'
+	WaveEffect='true'
+	SpecialSlotCapacity='2'
+	ItemSlotCapacity='3'
+
+	BoostAccelFactor='1.85'
+	TransAccelFactor='1.85'
+	BoosterAccelFactorItem='1.7'
+	StartForwardAccelFactorItem='1.65'
+	StartBoosterTimeItem='1400'
+
+	UseExtendedAfterBooster='true'
+
+	DriftMaxGauge='-300'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+
+	UseTransformBooster='true'
+	TransformTime='250'
+
+	
+	BoosterWaveType='boost8'
+	BoosterType='default'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+
+	DescBalance= '39'
+	DescStability ='40'
+	DescEngineGrade='1.25'
+	DescCornering='5'
+	DescEnchantCap = '20'
+
+	addModelFolder='octopus1' 
+
+/>
+
+<!-- 아이템 카트 평준화 20130711 왕문어 R / HT 급 성능 추가 -->

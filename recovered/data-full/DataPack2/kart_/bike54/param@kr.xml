@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='156'
+	BackwardAccelForce='100'
+	DragFactor='-0.081'
+	SteerConstraint='3.1'
+	CornerDrawFactor='0.073'
+	DriftEscapeForce='1800'
+	
+	driftBoostMulAccelFactor='1.32'
+	chargeBoostBySpeed='350'
+	
+	TransAccelFactor='1.857'
+	StartForwardAccelFactorSpeed='1.85'
+	StartBoosterTimeSpeed='1350'
+	
+	DriftMaxGauge='-1200'
+	NormalBoosterTime='-320'
+	TeamBoosterTime='-600'
+	
+	DriftGaguePreservePercent='0.7'
+	antiCollideBalance='0.9'
+	
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='100'
+	TransformTime='700'
+	
+	DescBalance='52'
+	DescStability='51'
+	DescEngineGrade='1.4'
+	DescCornering='8'
+	DescEnchantCap='31'
+	
+	TachometerType='NineTacho'
+	TachometerName='nine'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='9th_bike'
+	
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+	motorcycleType='true'
+	SpeedSlotCapacity='3'
+
+
+	BoosterType='9soon'
+	BoosterType0='9soon'
+	BoosterType1='9soon'
+	BoosterType2='9main'
+        BoosterType3='9sub'
+        BoosterType4='9sub'
+        BoosterType5='9sub'
+	BoosterType6='9sub'
+
+        Port0='mod1a1'
+	Port1='mod1a2'
+
+	FirePort0='mod1a3'
+	FirePort1='mod1b1'
+        FirePort2='mod1b2'
+        FirePort3='mod1b3'
+        FirePort4='mod1b4'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+
+       
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1b1' trailPort1='mod1b2'/>
+</BodyParam>
+<!-- 골든스톰블레이드 9 / 한국 / 레전드 / 스피드 / 빙고2 / 20170928 릴리즈 -->

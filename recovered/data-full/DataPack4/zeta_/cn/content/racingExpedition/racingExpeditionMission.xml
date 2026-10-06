@@ -1,0 +1,434 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<racingExpedition>
+	<basicInfo resetDayOfWeek='thursday' resetHour='6' defaultMissionMaxCount='10' buyableMissionMaxCount='10'
+			buyMissionTokenCount='3' reduceMissionTimeTokenCount='1' reduceMissionTimeUnit='30' changeMissionTokenCount='2'
+			tokenItemCatId='34' tokenItemId='879' resetHourFriendList='6'/>
+	
+	<basicBonusConst bonusConstRp='1' bonusConstLucci='8' bonusConstRpLucci='0.5' 
+	bonusConstKartBody='0.006' bonusConstChar='0.05' bonusConstCharSpecific0='0.0' bonusConstCharSpecific1='1.0'/>
+
+	<basicRewardList>
+		<basicReward difficulty='1' reward='120'/>
+		<basicReward difficulty='2' reward='230'/>
+		<basicReward difficulty='3' reward='330'/>
+		<basicReward difficulty='4' reward='420'/>
+		<basicReward difficulty='5' reward='500'/>
+	</basicRewardList>
+
+	<specificList>
+		<specific specificType='0' bonusType='0'/>
+		<specific specificType='1' bonusType='1'/>
+		<specific specificType='2' bonusType='2'/>
+		<specific specificType='3' bonusType='1'/>
+		<specific specificType='4' bonusType='2'/>
+		<specific specificType='5' bonusType='3'/>
+		<specific specificType='6' bonusType='1'/>
+		<specific specificType='7' bonusType='2'/>
+	</specificList>
+
+	<kartBodyTuningBonusList>
+		<kartBodyTuning tuninglevel='0'>
+			<tuningBonus difficulty='1' bonus='4.5'/>
+			<tuningBonus difficulty='2' bonus='4.3'/>
+			<tuningBonus difficulty='3' bonus='4.1'/>
+			<tuningBonus difficulty='4' bonus='3.9'/>
+			<tuningBonus difficulty='5' bonus='3.8'/>
+		</kartBodyTuning>
+		<kartBodyTuning tuninglevel='1'>
+			<tuningBonus difficulty='1' bonus='9.0'/>
+			<tuningBonus difficulty='2' bonus='8.6'/>
+			<tuningBonus difficulty='3' bonus='8.3'/>
+			<tuningBonus difficulty='4' bonus='7.9'/>
+			<tuningBonus difficulty='5' bonus='7.5'/>
+		</kartBodyTuning>
+		<kartBodyTuning tuninglevel='2'>
+			<tuningBonus difficulty='1' bonus='13.5'/>
+			<tuningBonus difficulty='2' bonus='12.9'/>
+			<tuningBonus difficulty='3' bonus='12.4'/>
+			<tuningBonus difficulty='4' bonus='11.8'/>
+			<tuningBonus difficulty='5' bonus='11.3'/>
+		</kartBodyTuning>
+		<kartBodyTuning tuninglevel='3'>
+			<tuningBonus difficulty='1' bonus='18.0'/>
+			<tuningBonus difficulty='2' bonus='17.3'/>
+			<tuningBonus difficulty='3' bonus='16.5'/>
+			<tuningBonus difficulty='4' bonus='15.8'/>
+			<tuningBonus difficulty='5' bonus='15.0'/>
+		</kartBodyTuning>
+		<kartBodyTuning tuninglevel='4'>
+			<tuningBonus difficulty='1' bonus='22.5'/>
+			<tuningBonus difficulty='2' bonus='21.6'/>
+			<tuningBonus difficulty='3' bonus='20.6'/>
+			<tuningBonus difficulty='4' bonus='19.7'/>
+			<tuningBonus difficulty='5' bonus='18.8'/>
+		</kartBodyTuning>
+		<kartBodyTuning tuninglevel='5'>
+			<tuningBonus difficulty='1' bonus='27.0'/>
+			<tuningBonus difficulty='2' bonus='25.9'/>
+			<tuningBonus difficulty='3' bonus='24.8'/>
+			<tuningBonus difficulty='4' bonus='23.6'/>
+			<tuningBonus difficulty='5' bonus='22.5'/>
+		</kartBodyTuning>
+	</kartBodyTuningBonusList>
+	
+	<reinforcePartsBonusList>
+		<partsLevel total='4'>
+			<reinforcePart difficulty='1' bonus='1'/>
+			<reinforcePart difficulty='2' bonus='1'/>
+			<reinforcePart difficulty='3' bonus='2'/>
+			<reinforcePart difficulty='4' bonus='3'/>
+			<reinforcePart difficulty='5' bonus='3'/>
+		</partsLevel>
+		<partsLevel total='5'>
+			<reinforcePart difficulty='1' bonus='1'/>
+			<reinforcePart difficulty='2' bonus='3'/>
+			<reinforcePart difficulty='3' bonus='4'/>
+			<reinforcePart difficulty='4' bonus='5'/>
+			<reinforcePart difficulty='5' bonus='6'/>
+		</partsLevel>
+		<partsLevel total='6'>
+			<reinforcePart difficulty='1' bonus='2'/>
+			<reinforcePart difficulty='2' bonus='4'/>
+			<reinforcePart difficulty='3' bonus='6'/>
+			<reinforcePart difficulty='4' bonus='8'/>
+			<reinforcePart difficulty='5' bonus='9'/>
+		</partsLevel>
+		<partsLevel total='7'>
+			<reinforcePart difficulty='1' bonus='3'/>
+			<reinforcePart difficulty='2' bonus='6'/>
+			<reinforcePart difficulty='3' bonus='8'/>
+			<reinforcePart difficulty='4' bonus='10'/>
+			<reinforcePart difficulty='5' bonus='12'/>
+		</partsLevel>
+		<partsLevel total='8'>
+			<reinforcePart difficulty='1' bonus='4'/>
+			<reinforcePart difficulty='2' bonus='7'/>
+			<reinforcePart difficulty='3' bonus='10'/>
+			<reinforcePart difficulty='4' bonus='13'/>
+			<reinforcePart difficulty='5' bonus='15'/>
+		</partsLevel>
+		<partsLevel total='9'>
+			<reinforcePart difficulty='1' bonus='4'/>
+			<reinforcePart difficulty='2' bonus='8'/>
+			<reinforcePart difficulty='3' bonus='12'/>
+			<reinforcePart difficulty='4' bonus='15'/>
+			<reinforcePart difficulty='5' bonus='18'/>
+		</partsLevel>
+		<partsLevel total='10'>
+			<reinforcePart difficulty='1' bonus='5'/>
+			<reinforcePart difficulty='2' bonus='10'/>
+			<reinforcePart difficulty='3' bonus='14'/>
+			<reinforcePart difficulty='4' bonus='18'/>
+			<reinforcePart difficulty='5' bonus='21'/>
+		</partsLevel>
+		<partsLevel total='11'>
+			<reinforcePart difficulty='1' bonus='6'/>
+			<reinforcePart difficulty='2' bonus='11'/>
+			<reinforcePart difficulty='3' bonus='16'/>
+			<reinforcePart difficulty='4' bonus='20'/>
+			<reinforcePart difficulty='5' bonus='24'/>
+		</partsLevel>
+		<partsLevel total='12'>
+			<reinforcePart difficulty='1' bonus='6'/>
+			<reinforcePart difficulty='2' bonus='12'/>
+			<reinforcePart difficulty='3' bonus='18'/>
+			<reinforcePart difficulty='4' bonus='23'/>
+			<reinforcePart difficulty='5' bonus='27'/>
+		</partsLevel>
+		<partsLevel total='13'>
+			<reinforcePart difficulty='1' bonus='7'/>
+			<reinforcePart difficulty='2' bonus='14'/>
+			<reinforcePart difficulty='3' bonus='20'/>
+			<reinforcePart difficulty='4' bonus='25'/>
+			<reinforcePart difficulty='5' bonus='30'/>
+		</partsLevel>
+		<partsLevel total='14'>
+			<reinforcePart difficulty='1' bonus='8'/>
+			<reinforcePart difficulty='2' bonus='15'/>
+			<reinforcePart difficulty='3' bonus='22'/>
+			<reinforcePart difficulty='4' bonus='28'/>
+			<reinforcePart difficulty='5' bonus='33'/>
+		</partsLevel>
+		<partsLevel total='15'>
+			<reinforcePart difficulty='1' bonus='9'/>
+			<reinforcePart difficulty='2' bonus='17'/>
+			<reinforcePart difficulty='3' bonus='24'/>
+			<reinforcePart difficulty='4' bonus='30'/>
+			<reinforcePart difficulty='5' bonus='36'/>
+		</partsLevel>
+		<partsLevel total='16'>
+			<reinforcePart difficulty='1' bonus='9'/>
+			<reinforcePart difficulty='2' bonus='18'/>
+			<reinforcePart difficulty='3' bonus='26'/>
+			<reinforcePart difficulty='4' bonus='33'/>
+			<reinforcePart difficulty='5' bonus='39'/>
+		</partsLevel>
+		<partsLevel total='17'>
+			<reinforcePart difficulty='1' bonus='10'/>
+			<reinforcePart difficulty='2' bonus='19'/>
+			<reinforcePart difficulty='3' bonus='28'/>
+			<reinforcePart difficulty='4' bonus='35'/>
+			<reinforcePart difficulty='5' bonus='42'/>
+		</partsLevel>
+		<partsLevel total='18'>
+			<reinforcePart difficulty='1' bonus='11'/>
+			<reinforcePart difficulty='2' bonus='21'/>
+			<reinforcePart difficulty='3' bonus='30'/>
+			<reinforcePart difficulty='4' bonus='38'/>
+			<reinforcePart difficulty='5' bonus='45'/>
+		</partsLevel>
+		<partsLevel total='19'>
+			<reinforcePart difficulty='1' bonus='12'/>
+			<reinforcePart difficulty='2' bonus='22'/>
+			<reinforcePart difficulty='3' bonus='32'/>
+			<reinforcePart difficulty='4' bonus='40'/>
+			<reinforcePart difficulty='5' bonus='48'/>
+		</partsLevel>
+		<partsLevel total='20'>
+			<reinforcePart difficulty='1' bonus='12'/>
+			<reinforcePart difficulty='2' bonus='23'/>
+			<reinforcePart difficulty='3' bonus='34'/>
+			<reinforcePart difficulty='4' bonus='43'/>
+			<reinforcePart difficulty='5' bonus='51'/>
+		</partsLevel>
+		<partsLevel total='21'>
+			<reinforcePart difficulty='1' bonus='13'/>
+			<reinforcePart difficulty='2' bonus='25'/>
+			<reinforcePart difficulty='3' bonus='36'/>
+			<reinforcePart difficulty='4' bonus='45'/>
+			<reinforcePart difficulty='5' bonus='54'/>
+		</partsLevel>
+		<partsLevel total='22'>
+			<reinforcePart difficulty='1' bonus='14'/>
+			<reinforcePart difficulty='2' bonus='26'/>
+			<reinforcePart difficulty='3' bonus='38'/>
+			<reinforcePart difficulty='4' bonus='48'/>
+			<reinforcePart difficulty='5' bonus='57'/>
+		</partsLevel>
+		<partsLevel total='23'>
+			<reinforcePart difficulty='1' bonus='14'/>
+			<reinforcePart difficulty='2' bonus='28'/>
+			<reinforcePart difficulty='3' bonus='40'/>
+			<reinforcePart difficulty='4' bonus='50'/>
+			<reinforcePart difficulty='5' bonus='60'/>
+		</partsLevel>
+		<partsLevel total='24'>
+			<reinforcePart difficulty='1' bonus='15'/>
+			<reinforcePart difficulty='2' bonus='29'/>
+			<reinforcePart difficulty='3' bonus='42'/>
+			<reinforcePart difficulty='4' bonus='53'/>
+			<reinforcePart difficulty='5' bonus='63'/>
+		</partsLevel>
+		<partsLevel total='25'>
+			<reinforcePart difficulty='1' bonus='16'/>
+			<reinforcePart difficulty='2' bonus='30'/>
+			<reinforcePart difficulty='3' bonus='44'/>
+			<reinforcePart difficulty='4' bonus='55'/>
+			<reinforcePart difficulty='5' bonus='66'/>
+		</partsLevel>
+		<partsLevel total='26'>
+			<reinforcePart difficulty='1' bonus='17'/>
+			<reinforcePart difficulty='2' bonus='32'/>
+			<reinforcePart difficulty='3' bonus='46'/>
+			<reinforcePart difficulty='4' bonus='58'/>
+			<reinforcePart difficulty='5' bonus='69'/>
+		</partsLevel>
+		<partsLevel total='27'>
+			<reinforcePart difficulty='1' bonus='17'/>
+			<reinforcePart difficulty='2' bonus='33'/>
+			<reinforcePart difficulty='3' bonus='48'/>
+			<reinforcePart difficulty='4' bonus='60'/>
+			<reinforcePart difficulty='5' bonus='72'/>
+		</partsLevel>
+		<partsLevel total='28'>
+			<reinforcePart difficulty='1' bonus='18'/>
+			<reinforcePart difficulty='2' bonus='35'/>
+			<reinforcePart difficulty='3' bonus='50'/>
+			<reinforcePart difficulty='4' bonus='63'/>
+			<reinforcePart difficulty='5' bonus='75'/>
+		</partsLevel>
+		<partsLevel total='29'>
+			<reinforcePart difficulty='1' bonus='19'/>
+			<reinforcePart difficulty='2' bonus='36'/>
+			<reinforcePart difficulty='3' bonus='51'/>
+			<reinforcePart difficulty='4' bonus='66'/>
+			<reinforcePart difficulty='5' bonus='78'/>
+		</partsLevel>
+		<partsLevel total='30'>
+			<reinforcePart difficulty='1' bonus='19'/>
+			<reinforcePart difficulty='2' bonus='37'/>
+			<reinforcePart difficulty='3' bonus='53'/>
+			<reinforcePart difficulty='4' bonus='68'/>
+			<reinforcePart difficulty='5' bonus='81'/>
+		</partsLevel>
+		<partsLevel total='31'>
+			<reinforcePart difficulty='1' bonus='20'/>
+			<reinforcePart difficulty='2' bonus='39'/>
+			<reinforcePart difficulty='3' bonus='55'/>
+			<reinforcePart difficulty='4' bonus='71'/>
+			<reinforcePart difficulty='5' bonus='84'/>
+		</partsLevel>
+		<partsLevel total='32'>
+			<reinforcePart difficulty='1' bonus='21'/>
+			<reinforcePart difficulty='2' bonus='40'/>
+			<reinforcePart difficulty='3' bonus='57'/>
+			<reinforcePart difficulty='4' bonus='73'/>
+			<reinforcePart difficulty='5' bonus='87'/>
+		</partsLevel>
+		<partsLevel total='33'>
+			<reinforcePart difficulty='1' bonus='22'/>
+			<reinforcePart difficulty='2' bonus='41'/>
+			<reinforcePart difficulty='3' bonus='59'/>
+			<reinforcePart difficulty='4' bonus='76'/>
+			<reinforcePart difficulty='5' bonus='90'/>
+		</partsLevel>
+		<partsLevel total='34'>
+			<reinforcePart difficulty='1' bonus='22'/>
+			<reinforcePart difficulty='2' bonus='43'/>
+			<reinforcePart difficulty='3' bonus='61'/>
+			<reinforcePart difficulty='4' bonus='78'/>
+			<reinforcePart difficulty='5' bonus='93'/>
+		</partsLevel>
+		<partsLevel total='35'>
+			<reinforcePart difficulty='1' bonus='23'/>
+			<reinforcePart difficulty='2' bonus='44'/>
+			<reinforcePart difficulty='3' bonus='63'/>
+			<reinforcePart difficulty='4' bonus='81'/>
+			<reinforcePart difficulty='5' bonus='96'/>
+		</partsLevel>
+		<partsLevel total='36'>
+			<reinforcePart difficulty='1' bonus='24'/>
+			<reinforcePart difficulty='2' bonus='46'/>
+			<reinforcePart difficulty='3' bonus='65'/>
+			<reinforcePart difficulty='4' bonus='83'/>
+			<reinforcePart difficulty='5' bonus='99'/>
+		</partsLevel>
+		<partsLevel total='37'>
+			<reinforcePart difficulty='1' bonus='24'/>
+			<reinforcePart difficulty='2' bonus='47'/>
+			<reinforcePart difficulty='3' bonus='67'/>
+			<reinforcePart difficulty='4' bonus='86'/>
+			<reinforcePart difficulty='5' bonus='102'/>
+		</partsLevel>
+		<partsLevel total='38'>
+			<reinforcePart difficulty='1' bonus='25'/>
+			<reinforcePart difficulty='2' bonus='48'/>
+			<reinforcePart difficulty='3' bonus='69'/>
+			<reinforcePart difficulty='4' bonus='88'/>
+			<reinforcePart difficulty='5' bonus='105'/>
+		</partsLevel>
+		<partsLevel total='39'>
+			<reinforcePart difficulty='1' bonus='26'/>
+			<reinforcePart difficulty='2' bonus='50'/>
+			<reinforcePart difficulty='3' bonus='71'/>
+			<reinforcePart difficulty='4' bonus='91'/>
+			<reinforcePart difficulty='5' bonus='108'/>
+		</partsLevel>
+		<partsLevel total='40'>
+			<reinforcePart difficulty='1' bonus='27'/>
+			<reinforcePart difficulty='2' bonus='51'/>
+			<reinforcePart difficulty='3' bonus='73'/>
+			<reinforcePart difficulty='4' bonus='93'/>
+			<reinforcePart difficulty='5' bonus='111'/>
+		</partsLevel>
+	</reinforcePartsBonusList>
+
+
+	<missionList>
+		<mission id='1' specificType='0' trackId='village_R03' trackThemeId='3' bonusType='0' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='2' specificType='0' trackId='village_I04' trackThemeId='3' bonusType='1' rewardStockId='31895'  difficulty='1' runningTime='8'/>
+		<mission id='3' specificType='0' trackId='village_I05' trackThemeId='3' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='4' specificType='0' trackId='factory_I04' trackThemeId='8' bonusType='1' rewardStockId='31895'  difficulty='1' runningTime='8'/>
+		<mission id='5' specificType='0' trackId='factory_I03' trackThemeId='8' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='6' specificType='0' trackId='factory_R01' trackThemeId='8' bonusType='1' rewardStockId='24721'  difficulty='5' runningTime='40'/>
+		<mission id='7' specificType='0' trackId='factory_R03' trackThemeId='8' bonusType='0' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='8' specificType='0' trackId='brodi_R01' trackThemeId='19' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='9' specificType='0' trackId='brodi_I01' trackThemeId='19' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='10' specificType='0' trackId='moonhill_R01' trackThemeId='11' bonusType='1' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='11' specificType='0' trackId='moonhill_I02' trackThemeId='11' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='12' specificType='0' trackId='moonhill_I04' trackThemeId='11' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='13' specificType='1' trackId='wkc_R03' trackThemeId='18' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='14' specificType='1' trackId='wkc_R02' trackThemeId='18' bonusType='1' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='15' specificType='1' trackId='wkc_R01' trackThemeId='18' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='16' specificType='1' trackId='world_R01' trackThemeId='25' bonusType='1' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='17' specificType='1' trackId='world_I03' trackThemeId='25' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='18' specificType='1' trackId='world_R10' trackThemeId='25' bonusType='2' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='19' specificType='1' trackId='china_I01' trackThemeId='13' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='20' specificType='1' trackId='china_I07' trackThemeId='13' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='21' specificType='1' trackId='china_R04' trackThemeId='13' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='22' specificType='2' trackId='desert_I03' trackThemeId='2' bonusType='0' rewardStockId='31895'  difficulty='1' runningTime='8'/>
+		<mission id='23' specificType='2' trackId='desert_I04' trackThemeId='2' bonusType='2' rewardStockId='31895'  difficulty='1' runningTime='8'/>
+		<mission id='24' specificType='2' trackId='desert_I06' trackThemeId='2' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='25' specificType='2' trackId='mine_I01' trackThemeId='6' bonusType='1' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='26' specificType='2' trackId='mine_I02' trackThemeId='6' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='27' specificType='2' trackId='mine_R03' trackThemeId='6' bonusType='2' rewardStockId='24723'  difficulty='5' runningTime='40'/>
+		<mission id='28' specificType='2' trackId='tomb_I03' trackThemeId='5' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='29' specificType='2' trackId='tomb_I04' trackThemeId='5' bonusType='1' rewardStockId='31895'  difficulty='1' runningTime='8'/>
+		<mission id='30' specificType='2' trackId='tomb_R03' trackThemeId='5' bonusType='2' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='31' specificType='3' trackId='forest_I02' trackThemeId='1' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='32' specificType='3' trackId='forest_I09' trackThemeId='1' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='33' specificType='3' trackId='forest_R03' trackThemeId='1' bonusType='2' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='34' specificType='3' trackId='gold_I01' trackThemeId='12' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='35' specificType='3' trackId='gold_I04' trackThemeId='12' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='36' specificType='3' trackId='gold_R01' trackThemeId='12' bonusType='0' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='37' specificType='3' trackId='sword_R02' trackThemeId='27' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='38' specificType='3' trackId='sword_I02' trackThemeId='27' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='39' specificType='3' trackId='sword_R01' trackThemeId='27' bonusType='1' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='40' specificType='4' trackId='pirate_R04' trackThemeId='9' bonusType='0' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='41' specificType='4' trackId='pirate_I04' trackThemeId='9' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='42' specificType='4' trackId='pirate_R02' trackThemeId='9' bonusType='2' rewardStockId='24721'  difficulty='5' runningTime='40'/>
+		<mission id='43' specificType='4' trackId='nymph_I01' trackThemeId='15' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='44' specificType='4' trackId='nymph_I02' trackThemeId='15' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='45' specificType='4' trackId='nymph_I04' trackThemeId='15' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='46' specificType='4' trackId='beach_I01' trackThemeId='21' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='47' specificType='4' trackId='beach_R01' trackThemeId='21' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='48' specificType='4' trackId='beach_R04' trackThemeId='21' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='49' specificType='4' trackId='abyss_I02' trackThemeId='29' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='50' specificType='4' trackId='abyss_R01' trackThemeId='29' bonusType='0' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='51' specificType='4' trackId='abyss_R02' trackThemeId='29' bonusType='2' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='52' specificType='5' trackId='god_R01' trackThemeId='28' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='53' specificType='5' trackId='god_R02' trackThemeId='28' bonusType='1' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='54' specificType='5' trackId='god_I01' trackThemeId='28' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='55' specificType='5' trackId='god_I02' trackThemeId='28' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='56' specificType='5' trackId='camelot_I01' trackThemeId='30' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='57' specificType='5' trackId='camelot_I02' trackThemeId='30' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='58' specificType='5' trackId='camelot_R02' trackThemeId='30' bonusType='2' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='59' specificType='5' trackId='olympos_I01' trackThemeId='31' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='60' specificType='5' trackId='olympos_R01' trackThemeId='31' bonusType='1' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='61' specificType='5' trackId='mabi_I01' trackThemeId='33' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='62' specificType='5' trackId='mabi_R01' trackThemeId='33' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='63' specificType='5' trackId='mabi_R02' trackThemeId='33' bonusType='2' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='64' specificType='5' trackId='maple_I01' trackThemeId='34' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='65' specificType='5' trackId='maple_R02' trackThemeId='34' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='66' specificType='5' trackId='maple_R03' trackThemeId='34' bonusType='2' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='67' specificType='5' trackId='fengshen_R01' trackThemeId='35' bonusType='1' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='68' specificType='5' trackId='fengshen_R02' trackThemeId='35' bonusType='0' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='69' specificType='5' trackId='fengshen_I04' trackThemeId='35' bonusType='2' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='70' specificType='6' trackId='northeu_R01' trackThemeId='7' bonusType='0' rewardStockId='24723'  difficulty='5' runningTime='40'/>
+		<mission id='71' specificType='6' trackId='northeu_I01' trackThemeId='7' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='72' specificType='6' trackId='northeu_I07' trackThemeId='7' bonusType='2' rewardStockId='31895'  difficulty='1' runningTime='8'/>
+		<mission id='73' specificType='6' trackId='northeu_R02' trackThemeId='7' bonusType='2' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='74' specificType='6' trackId='fairy_I01' trackThemeId='10' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='75' specificType='6' trackId='fairy_I03' trackThemeId='10' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='76' specificType='6' trackId='fairy_R01' trackThemeId='10' bonusType='1' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='77' specificType='6' trackId='fairy_R02' trackThemeId='10' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='78' specificType='6' trackId='steam_R01' trackThemeId='22' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='79' specificType='6' trackId='nemo_I01' trackThemeId='26' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='80' specificType='6' trackId='nemo_R01' trackThemeId='26' bonusType='0' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='81' specificType='6' trackId='nemo_I02' trackThemeId='26' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='82' specificType='7' trackId='ice_I01' trackThemeId='4' bonusType='0' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='83' specificType='7' trackId='ice_I02' trackThemeId='4' bonusType='2' rewardStockId='31895'  difficulty='1' runningTime='8'/>
+		<mission id='84' specificType='7' trackId='ice_R02' trackThemeId='4' bonusType='0' rewardStockId='24721'  difficulty='5' runningTime='40'/>
+		<mission id='85' specificType='7' trackId='ice_R05' trackThemeId='4' bonusType='0' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='86' specificType='7' trackId='jurassic_I01' trackThemeId='24' bonusType='1' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='87' specificType='7' trackId='jurassic_I02' trackThemeId='24' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='88' specificType='7' trackId='jurassic_R04' trackThemeId='24' bonusType='1' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+		<mission id='89' specificType='7' trackId='jurassic_R03' trackThemeId='24' bonusType='1' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='90' specificType='7' trackId='castle_I05' trackThemeId='14' bonusType='2' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='91' specificType='7' trackId='castle_R01' trackThemeId='14' bonusType='1' rewardStockId='31900'  difficulty='4' runningTime='32'/>
+		<mission id='92' specificType='7' trackId='castle_I02' trackThemeId='14' bonusType='0' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='93' specificType='7' trackId='mechanic_R01' trackThemeId='16' bonusType='2' rewardStockId='31899'  difficulty='3' runningTime='24'/>
+		<mission id='94' specificType='7' trackId='park_R01' trackThemeId='20' bonusType='2' rewardStockId='31899'  difficulty='2' runningTime='16'/>
+	</missionList>
+</racingExpedition>
+

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageButton name="teambtn" autoLoadImage="popup_selectTeamColor_blue_@zz" windowRect="0 0 86 92" alphaBlend="true">
+  <Panel name="curr" texture="popup_selectTeamColor_selected@zz" leftTopTex="0 0" align="bottom" adjust="0 2" alphaBlend="true" enable="false"/>
+  <Panel name="sele" texture="popup_selectTeamColor_frame" leftTopTex="0 0" align="center" adjust="0 -1" alphaBlend="true" enable="false"/>
+</ImageButton>

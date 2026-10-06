@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+ForwardAccelForce='145.0'
+BackwardAccelForce='100.0'
+DragFactor='-0.079'
+SteerConstraint='3.5'
+DriftEscapeForce='2200'
+CornerDrawFactor='0.065'
+
+GripBrakeForce = '800'
+SlipBrakeForce='-300'
+
+UseTransformBooster='true'
+TransAccelFactor='1.748'
+TransformTime='100'
+
+StartForwardAccelFactorSpeed = '1.7'
+StartBoosterTimeSpeed='1300'           
+
+NormalBoosterTime = '-100'
+TeamBoosterTime = '-200'
+DriftMaxGauge = '-500'
+DriftGaguePreservePercent='0.5'
+
+WaveEffect='true'
+BoosterBlur='true'
+EngineSound='cotton8'
+
+BoosterWaveType='boost8'
+BoosterType='8soon'
+BoosterType0='8soon'
+BoosterType1='8soon'
+BoosterType2='8main'
+BoosterType3='8sub'
+BoosterType4='8sub'
+
+Port0='mod1c1' 
+Port1='mod1c2'
+
+FirePort0='mod1a1'
+FirePort1='mod1a2'
+FirePort2='mod1a3'
+
+TailLampSize='0.2'
+TailLampColor='0 255 100 100'
+BoostBlurColor='255 77 77 77'
+
+EnvMap='true'
+
+DescBalance= '43'
+DescStability ='38'
+DescEngineGrade='1.25'
+DescCornering='9'
+DescEnchantCap = '25'
+
+TachometerType='Tacho1'
+TachometerName='ht'
+itemSlotName='ht'
+boostGaugeName='ht'
+
+secondColor='255 255 255 255'
+secondHighColor='255 255 0 0'
+
+>
+<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod1a2' trailPort1='mod1a3'/>
+</BodyParam>
+
+
+<!--대만 벌쳐 130718 캐시 상점 판매-->

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen" align="center">
+  <Panel name="bg" windowRect="fullscreen" enable="false" color="150 0 0 0" alphaBlend="true" alphaTest="false"/>
+  <ImageBoard windowRect="145 176 682 428" image="soccerPop_text" alphaBlend="true" align="center">
+    <ImageBoard name="npc" windowSize="517 228" adjust="9 9" alphaBlend="true" enable="true" visible="false"/>
+    <Label name="systemMsg" windowSize="200 80" adjust="45 30" multiLine="true" textColor="black" textAlign="vcenter" textRender="bold" autoWrap="true" enable="false"/>
+    <ImageButton name="yes" windowSize="103 43" adjust="147 230" autoLoadImage="soccerYes_no_pop_0" text="#sb(RpsYes)" textRender="bold" altTextRender="outline" alphaBlend="true"/>
+    <ImageButton name="no" windowSize="103 43" adjust="257 230" autoLoadImage="soccerYes_no_pop_0" text="#sb(RpsNo)" textRender="bold" altTextRender="outline" alphaBlend="true"/>
+    <ImageButton name="ok" windowSize="103 43" adjust="197 230" autoLoadImage="soccerYes_no_pop_0" visible="false" text="#sb(RpsOk)" textRender="bold" altTextRender="outline" alphaBlend="true"/>
+  </ImageBoard>
+</Container>

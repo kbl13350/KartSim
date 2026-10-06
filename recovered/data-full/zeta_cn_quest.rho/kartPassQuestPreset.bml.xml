@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kartPassQuestPreset>
+  <QuestItem id="1" type="1" achievementValue="3" title="多人游戏行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。" mission="多人游戏行驶3回"/>
+  <QuestItem id="2" type="2" achievementValue="2" title="多人游戏完成" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。" mission="多人游戏完成2回"/>
+  <QuestItem id="3" type="3" achievementValue="1500" title="多人游戏完成（km）" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。" mission="多人游戏累积完成15km"/>
+  <QuestItem id="4" type="4" achievementValue="1" restriction="Type_Indi" title="完成多人游戏排名任务" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="多人游戏个人赛中第5名以内完成1回" rank="5"/>
+  <QuestItem id="5" type="4" achievementValue="2" restriction="Type_Indi" title="完成多人游戏排名任务" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="多人游戏个人赛中第6名以内完成2回" rank="6"/>
+  <QuestItem id="6" type="4" achievementValue="2" restriction="Type_Indi" title="完成多人游戏排名任务" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="多人游戏个人赛中第7名以内完成2回" rank="7"/>
+  <QuestItem id="7" type="1" achievementValue="3" restriction="Type_Indi" title="多人游戏个人赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="多人游戏个人赛行驶3回"/>
+  <QuestItem id="8" type="1" achievementValue="3" restriction="Type_Team" title="多人游戏组队赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="多人游戏组队赛行驶3回"/>
+  <QuestItem id="9" type="8" achievementValue="1" restriction="Type_Team" title="多人游戏组队赛胜利" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="多人游戏组队赛胜利1回"/>
+  <QuestItem id="10" type="8" achievementValue="1" title="多人游戏胜利" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。" mission="多人游戏胜利1回 "/>
+  <QuestItem id="11" type="1" achievementValue="4" title="多人游戏行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。" mission="多人游戏行驶4回"/>
+  <QuestItem id="12" type="1" achievementValue="6" title="多人游戏行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。" mission="多人游戏行驶6回"/>
+  <QuestItem id="13" type="3" achievementValue="1000" title="多人游戏完成（km）" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。" mission="多人游戏累计完成100Km"/>
+  <QuestItem id="14" type="1" achievementValue="20" restriction="Ch_Infinit" title="无限加速竞速赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="无限加速竞速赛行驶20回"/>
+  <QuestItem id="15" type="1" achievementValue="20" restriction="Type_Item" title="道具赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="道具赛行驶20回"/>
+  <QuestItem id="16" type="1" achievementValue="20" restriction="Type_Team" title="多人游戏组队赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="多人游戏组队赛行驶20回"/>
+  <QuestItem id="17" type="1" achievementValue="20" restriction="Type_ItemIndi" title="道具个人赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="个人道具赛行驶20回"/>
+  <QuestItem id="18" type="1" achievementValue="20" restriction="Type_Speed" title="竞速赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="竞速赛行驶20回"/>
+  <QuestItem id="19" type="1" achievementValue="20" restriction="Type_ItemTeam" title="道具组队赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|
+但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="道具组队赛行驶20回"/>
+  <QuestItem id="20" type="1" achievementValue="20" restriction="Type_Indi" title="多人游戏个人赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|
+但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="多人游戏个人赛行驶20回"/>
+  <QuestItem id="21" type="1" achievementValue="20" restriction="Type_SpeedTeam" title="竞速组队赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="竞速组队赛行驶20回"/>
+  <QuestItem id="22" type="1" achievementValue="20" restriction="Type_SpeedIndi" title="竞速个人赛行驶" desc="完成跑跑通行证任务获得多种奖励吧！|完成任务时通行证积分会立即体现在通行证等级中。|但只能在持有活动通行证，特殊通行证时才可累计对应通行证的积分。" mission="竞速个人赛行驶20回"/>
+</kartPassQuestPreset>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='90.0'
+	BackwardAccelForce='90.0'
+	DragFactor='-0.051'
+	SteerConstraint='1.65'
+	DriftEscapeForce='180'
+	CornerDrawFactor='0.045'
+
+	BoosterBlur='true'
+	EngineSound='pot2'
+	BoosterType0='pot1'
+	BoosterType1='pot1'
+	BoosterType2='default'
+	BoosterType3='default'
+
+	DescBalance= '23'
+	DescStability ='25'
+	DescCornering='3'
+	DescEnchantCap = '20'
+
+/>
+<!-- 중국 프루루PRO -->
+

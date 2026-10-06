@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='140.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.071'
+           SteerConstraint='2.4'
+           DriftEscapeForce='900'
+           CornerDrawFactor='0.067'
+           StartBoosterTime='1200' 
+           TransformTime='700' 
+
+           BoosterBlur='true'
+           EngineSound='cotton7'
+           UseTransformBooster='false'
+
+           BoosterType='cotton6'
+           BoosterType0='default'
+           BoosterType1='default'
+           BoosterType2='zero5'
+           BoosterType3='zero5'
+
+           BoosterWaveType='effect_zero'
+           Port0='mod1a1' 
+           Port1='mod1a2'
+
+           FirePort0='mod1a3'
+           FirePort1='mod1a4'
+           FirePort2='mod1b1'
+           FirePort3='mod1b2'
+           FirePort4='mod1d2'
+
+           TailLampSize='0.3'
+           TailLampColor='0 255 100 100'
+           BoostBlurColor='255 77 77 77'
+
+           SpecialSlotCapacity='2'
+
+		   	
+	DescBalance= '35'
+	DescStability ='45'
+	DescEngineGrade='1.2'
+	DescCornering='1'
+	DescEnchantCap = '25'
+/>
+
+<!--한국 보스전 카트 스팅거 Z7 20110113-->

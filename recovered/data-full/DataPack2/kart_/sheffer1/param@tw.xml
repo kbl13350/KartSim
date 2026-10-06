@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='142.0'
+	BackwardAccelForce='110.0'
+	DragFactor='-0.072'
+	SteerConstraint='2.3'
+	DriftEscapeForce='1000'
+	CornerDrawFactor='0.066'
+	TransAccelFactor='1.62'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+
+	EnvMap='true'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	Port0='mod1d1'
+	Port1='mod1d2'
+
+	FirePort0='mod1a1'
+	FirePort1='mod1a2'
+	FirePort2='mod1a3'
+	FirePort3='mod1a4'
+	FirePort4='mod1c1'
+	FirePort5='mod1c2'
+
+	DescBalance= '33'
+	DescStability ='33'
+	DescCornering='5'
+	DescEnchantCap = '30'
+/>
+
+<!-- 대만 쉐퍼SR 20110225 판매용 -->

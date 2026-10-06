@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="china6"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="旅客 金珍洙" string="啊~是怪物！！！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="旅客" string="队长，快跑！|兵马俑复活了！！"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="china5"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="我是第一！！|咦？发生了什么事？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop3"/>
+  <Msg name="鑫鑫" string="嘿嘿..|慢慢去没关系~"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="我可是第一哦~哈哈哈哈"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop7"/>
+  <Msg name="小强" string="宝宝..这不是在比赛.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="但是好像发生了什么事..|听说兵马俑复活了~|但是，兵马俑是什么？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="zindaru" pos="8 0" emotion="stop2"/>
+  <Msg name="阿哥" string="雯雯~~~"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="wenwen" pos="4 0" flip="true" emotion="stop6"/>
+  <Char id="rick" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="雯雯，鑫鑫" string="阿哥！"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="rick" remove="true"/>
+  <Char id="zindaru" pos="8 0" emotion="stop3"/>
+  <Msg name="阿哥" string="雯雯！|不能碰封印星陨之石的地方~"/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="rick" pos="9 0" flip="true" emotion="stop4"/>
+  <Msg name="鑫鑫" string="好像已经来不及了..|兵马俑复活了.."/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="zindaru" pos="4 0" emotion="stop6"/>
+  <Char id="rick" pos="11 0" flip="true" emotion="stop4"/>
+  <Msg name="阿哥" string="这表明谁碰了封印星陨之石的地方.."/>
+  <Enter/>
+  <Char id="zindaru" remove="true"/>
+  <Char id="rick" remove="true"/>
+  <BackGround texture="china6"/>
+  <Char id="raptorR" pos="12 0" emotion="stop3"/>
+  <Msg name="格雷" string="差点出大事..|先后退再说。"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <BackGround texture="china5"/>
+  <Char id="kephi" pos="11 0" emotion="stop4"/>
+  <Msg name="胖墩" string="啊~那里~那里~"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop6"/>
+  <Msg name="小强" string="格雷！！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="wenwen" pos="8 0" emotion="stop3"/>
+  <Msg name="雯雯" string="好像是格雷干的好事！"/>
+  <Enter/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop4"/>
+  <Msg name="鑫鑫" string="好像是打算偷星陨之石~"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop4"/>
+  <Char id="wenwen" pos="11 0" flip="true" emotion="stop7"/>
+  <Msg name="雯雯" string="这表明我们也有机会~"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="wenwen" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="意思是谁要进到那里去才可以.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="rick" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="鑫鑫" string="伟大的宝宝去比较合适！|不是很伟大吗！"/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="额..我要去厕所.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="normal"/>
+  <Msg name="小强" string="宝宝~先进去看看~"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="normal"/>
+  <Char id="wenwen" pos="11 0" emotion="stop2"/>
+  <Msg name="雯雯" string="宝宝，加油！！"/>
+  <Enter/>
+</Scene>

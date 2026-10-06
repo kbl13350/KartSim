@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god4"/>
+  <Char id="odin" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="（大会前一天……）|我知道大家都在忙着准备比赛，这次叫大家来……"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="没别的事……|就是为了神圣的G1联赛"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="希望大家能堂堂正正的比赛。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="thor" pos="10 0" emotion="stop1"/>
+  <Char id="dao" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="托尔" string="这次您就不用担心了。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="thor" pos="10 0" emotion="stop1"/>
+  <Char id="dao" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="堂堂正正的胜负肯定没问题。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="thor" pos="10 0" emotion="stop1"/>
+  <Char id="dao" pos="13 0" flip="true" emotion="stop4"/>
+  <Msg name="奥丁" string="啊~~还有洛基去哪了！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="normal"/>
+  <Msg name="奥丁" string="对你，我有件事要特别再说一次~~"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Msg name="黑杰克" string="（洛基？难道那小姐姐？）"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Msg name="奥丁" string="洛基！！！在想什么呢~"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Msg name="奥丁" string="来！！拿永恒之枪吧~"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Msg name="黑杰克" string="？？？？是……谢……谢谢。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="stop2"/>
+  <Msg name="奥丁" string="虽然发生了上次的事……我就把永恒之枪给你|你可要堂堂正正的比赛！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="stop1"/>
+  <Msg name="奥丁" string="如果在耍什么诡计，你可要做好心理准备！！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="odin" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="loki" pos="11 0" emotion="stop1"/>
+  <Msg name="黑杰克" string="（这到底是在搞什么啊？）"/>
+  <Enter/>
+</Scene>

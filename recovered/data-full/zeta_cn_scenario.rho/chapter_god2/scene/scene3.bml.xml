@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Char id="ms_loki" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="看来我一个人是什么都做不了了……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="难道就没什么办法能接近托尔？"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="看来没那么容易……|只能试试看了……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <BackGround texture="for2"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="哥！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="托尔" string="这家伙，竟然自已找上门了……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="洛基" string="等……等一下……先听我说"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="托尔" string="没必要了！！洛基你这家伙！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="normal"/>
+  <Msg name="洛基" string="我有个好主意~~"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="normal"/>
+  <Msg name="托尔" string="少跟我来这一套！！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="normal"/>
+  <Msg name="托尔" string="虽然不知道你打什么算盘，但你敢再上前一步，我绝不会饶你的！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="normal"/>
+  <Msg name="洛基" string="我晕……，果然没那么容易啊！！！|还是先溜再说吧……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="totop" pos="12 0" emotion="stop4"/>
+  <Msg name="黑杰克" string="还是帮帮那漂亮的小姐姐吧！！|呼呼呼~"/>
+  <Enter/>
+</Scene>

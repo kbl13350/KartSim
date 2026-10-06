@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="camelot9"/>
+  <Char id="dao" pos="10 0" emotion="stop2"/>
+  <Char id="dizini" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="你们来了，来一起逛逛。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="dao" pos="10 0" emotion="stop2"/>
+  <Msg name="黑妞" string="哇！这里的装饰品好漂亮，而且建筑也好神奇啊。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="5 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" emotion="stop6"/>
+  <Msg name="葱头" string="哇…真大…|这些不就是书本上说的遗物嘛！这得参观多久啊？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="ethi" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="bazzi" pos="11 0" emotion="stop3"/>
+  <Msg name="宝宝" string="什么呀，只有古董啊，无聊。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <BackGround texture="camelot10"/>
+  <Char id="ethi" pos="11 0" emotion="stop1"/>
+  <Char id="excalibur" pos="5 0" emotion="stop1"/>
+  <Msg name="葱头" string="这边，这边…看这个，这就是嵌于石缝中的传说之剑-圣剑，据说一般人是无法拔出圣剑的。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="excalibur" pos="2 0" emotion="stop1"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop4"/>
+  <Char id="ethi" pos="6 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="真帅！你说没人可以拔出那把剑？"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="excalibur" pos="9 0" emotion="stop1"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Char id="ethi" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="如果是皮蛋的话，|应该可以吧？"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="6 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="博物馆的东西可不能乱摸哦。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="10 0" emotion="stop4"/>
+  <Msg name="宝宝" string="什么呀…什么呀…"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="excalibur" pos="14 0" emotion="stop1"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="黑妞" string="是传说中的圣剑，据说一般人拔不出来。"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="excalibur" pos="14 0" emotion="stop1"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="5 0" emotion="stop4"/>
+  <Msg name="宝宝" string="嘿嘿…好像挺有意思，要不我试下？"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="excalibur" pos="7 0" emotion="stop1"/>
+  <Char id="bazzi" pos="7 0" emotion="stop6"/>
+  <Char id="dizini" pos="1 0" emotion="stop6"/>
+  <Char id="ethi" pos="13 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="（抓住）|我要拔了，赐我力量吧！咿…呀！"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="9 0" flip="true" emotion="stop6"/>
+  <Char id="ethi" pos="2 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="宝宝，别呀！这里的东西不能乱摸！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="excalibur" pos="7 0" emotion="stop3"/>
+  <Char id="ethi" pos="10 0" flip="true" emotion="stop5"/>
+  <Char id="dao" pos="14 0" flip="true" emotion="stop6"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="1 0" emotion="stop6"/>
+  <Msg name="皮蛋一伙" string="这，耀眼的光芒是怎么回事，好刺眼。"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="excalibur" pos="7 0" emotion="stop3"/>
+  <Msg name="..." string="（唰唰唰唰唰，咻咻咻咻咻，嗡嗡嗡嗡嗡）"/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <Char id="excalibur" pos="7 0" emotion="stop1"/>
+  <Msg name="..." string=""/>
+  <Enter/>
+  <Char id="excalibur" remove="true"/>
+  <BackGround texture="camelot11"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[ 卡美洛-贫民窟-梅林家 ]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="arthur" pos="10 0" emotion="stop2"/>
+  <Msg name="亚瑟" string="刚回家就这么多家务活，|果然这个家没我就不行。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="9 0" emotion="normal"/>
+  <Msg name="亚瑟" string="话说回来，卡美洛的王子……|对了，凯！没想到我会被那家伙给抓住。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="8 0" emotion="stop4"/>
+  <Msg name="亚瑟" string="长得斯斯文文的，没想到运动神经也这么发达。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="8 0" emotion="stop2"/>
+  <Msg name="亚瑟" string="不对，我在说什么呢……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="8 0" emotion="normal"/>
+  <Msg name="..." string="（唰唰唰唰唰）"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="8 0" emotion="stop3"/>
+  <Msg name="亚瑟" string="那，那里，从天而降的那道光是什么？"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="亚瑟" string="梅林叔叔！|有道红光从天而降！你看那儿！"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="11 0" emotion="stop3"/>
+  <Msg name="梅林" string="这，这红光是……"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="11 0" emotion="stop4"/>
+  <Msg name="梅林" string="看来时机已成熟了。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="11 0" emotion="normal"/>
+  <Msg name="亚瑟" string="嗯？时机成熟？又开始自言自语了吗？"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="梅林" string="亚瑟，我们去那道红光降下的地方看看吧。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="5 0" flip="true" emotion="stop3"/>
+  <Char id="merlin" pos="10 0" emotion="normal"/>
+  <Msg name="亚瑟" string="现在？都这么晚了去那干嘛？"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="5 0" flip="true" emotion="stop3"/>
+  <Char id="merlin" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="梅林" string="之后会跟你解释的，快点跟我来。"/>
+  <Enter/>
+  <Char id="arthur" remove="true"/>
+  <Char id="merlin" remove="true"/>
+  <Char id="arthur" pos="7 0" flip="true" emotion="stop2"/>
+  <Msg name="亚瑟" string="哎…真是，又怎么了。|梅林叔叔！等等我…"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu7"/>
+  <Char id="totop" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="黑杰克" string="呼呼呼！！漂亮的小姐姐，惊喜还满意吗~"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="非常满意~黑杰克！|（比想象中的还有用嘛……）"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="想再请你帮个忙。|可能会有些困难，没关系吗？"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="没问题。"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="那么！！黑杰克！！|（嘀嘀咕咕……）"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="totop" pos="11 0" emotion="stop4"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="黑杰克" string="好的！正好，现在出发应该就可以了！呼呼呼"/>
+  <Enter/>
+  <Char id="totop" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="8 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="呵呵呵……愚蠢的家伙……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <BackGround texture="for3"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="托尔！托尔哥！！在哪呢？"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="托尔" string="又怎么了！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="洛基" string="黑杰克那家伙好像又在计划着什么……"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="托尔" string="又从哪得到了这种消息……|你到底在外面搞什么鬼！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="洛基" string="咳咳！！现在重要的不是这个！！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="洛基" string="要去追那家伙！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="托尔" string="到底什么事啊！！一惊一乍的！！"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_loki" pos="2 0" emotion="stop1"/>
+  <Char id="ms_thor" pos="11 0" emotion="stop3"/>
+  <Msg name="洛基" string="现在不去会酿成大祸！！|要赶上才行啊……|快点，跟我来~~"/>
+  <Enter/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="ms_thor" pos="8 0" emotion="stop3"/>
+  <Msg name="托尔" string="洛基！！！怎么也得告诉我现在是去哪吧~~"/>
+  <Enter/>
+</Scene>

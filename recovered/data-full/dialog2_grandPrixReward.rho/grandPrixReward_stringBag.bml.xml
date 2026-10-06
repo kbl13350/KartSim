@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="grandPrixReward">
+    <m c="kr" v="그랑프리 보상"/>
+    <m c="tw" v="周間大獎獎勵"/>
+    <m c="cn" v="GP赛奖励"/>
+  </k>
+  <k n="getGrandPrixRewardCount">
+    <m c="kr" v="%d개의 그랑프리 보상을 획득 하셨습니다."/>
+    <m c="tw" v="已獲得%d個"/>
+    <m c="cn" v="您获得了%d个GP赛奖励。"/>
+  </k>
+  <k n="aboutItemDesc">
+    <m c="kr" v="그랑프리 보상을 획득 하셨습니다.|보상함에서 확인 해보세요."/>
+    <m c="tw" v="已獲得周間大獎獎勵!|請於我的道具中確認"/>
+    <m c="cn" v="您获得了GP赛奖励。|请在我的道具中确认。"/>
+  </k>
+  <k n="ok">
+    <m c="kr" v="확인"/>
+    <m c="tw" v="確認"/>
+    <m c="cn" v="确认"/>
+  </k>
+</StringBag>

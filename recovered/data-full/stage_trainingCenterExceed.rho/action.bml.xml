@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actionList>
+  <action name="start@zz"/>
+  <action name="finish@zz"/>
+  <action name="finallap@zz"/>
+  <action name="2lap@zz"/>
+  <action name="wrongway" layer="2"/>
+  <action name="clear@zz"/>
+  <action name="retire@zz"/>
+  <action name="미션카운트"/>
+</actionList>

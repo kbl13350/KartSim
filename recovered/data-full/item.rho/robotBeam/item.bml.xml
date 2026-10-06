@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="robotBeam">
+  <state name="Use" life="1000" item="castle_70_1" itemFx="내려감" size="5.0"/>
+  <state name="Set" life="3000" item="castle_70_2" itemFx="광선" size="20.0"/>
+  <state name="Affect" life="4000" fired="kaza01" firedFx="fired"/>
+  <state name="PostAffect" life="1000" fired="kaza02" firedFx="fired"/>
+  <state name="Disappear" life="1000" item="castle_70_3" itemFx="올라감"/>
+  <state name="SpecialShield" life="1000"/>
+</item>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Dynamics
+	Mass='100.0'
+	AirFriction='3.0'
+	DragFactor='0.735'
+	ForwardAccelForce='1950.0'
+	BackwardAccelForce='1500.0'
+	GripBrakeForce='1800.0'
+	SlipBrakeForce='1250.0'
+	MaxSteerAngle='10.0'
+	SteerConstraint='22.0'
+	FrontGripFactor='5.0'
+	RearGripFactor='5.0'
+	DriftTriggerFactor='0.2'
+	DriftTriggerTime='0.2'
+	DriftSlipFactor='0.2'
+	DriftEscapeForce='2300.0'
+	CornerDrawFactor='0.15'
+	DriftMaxGauge='1.0'
+
+	TransAccelFactor='0.4'
+	NormalBoosterTime	= '2000000'
+	TeamBoosterTime		= '2000000'
+/>
+<!-- 14.01.23 무한 부스터 채널 스펙 -->
+<!-- 18.03.20 만우절 무한 부스터 스펙으로 갱신 -->
+<!-- 22.02.08 통합/최신 엔진 기준 만우절 무한 부스터 스펙으로 갱신 -->

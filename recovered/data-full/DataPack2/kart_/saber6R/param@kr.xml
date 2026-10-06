@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='150'
+	BackwardAccelForce='100'
+	DragFactor='-0.085'
+	SteerConstraint='2.9'
+	CornerDrawFactor='0.076'
+	DriftEscapeForce='2040'
+
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+
+	BoostAccelFactor='1.867'
+	TransAccelFactor='1.867'
+	StartForwardAccelFactorSpeed='1.8'
+	StartBoosterTimeSpeed='1400'
+
+	DriftMaxGauge='-680'
+	NormalBoosterTime='-20'
+	TeamBoosterTime='-120'
+
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+
+    BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	Port0='mod2c1'
+	Port1='mod2c2'
+    FirePort0='mod2b1'
+	FirePort1='mod2b2'
+	FirePort2='mod2b3'
+	FirePort3='mod2b4'
+
+	DescBalance= '53'
+	DescStability ='51'
+	DescEngineGrade='1'
+	DescCornering='7.5'
+	DescEnchantCap = '31'
+
+/>
+
+<!-- saber SR -->

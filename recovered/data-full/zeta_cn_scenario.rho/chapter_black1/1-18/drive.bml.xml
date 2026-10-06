@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <TimeAttack isFixedKart="true" fixedKartId="111" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" track="moonhill_I03_sn07" laps="1" timeLimit="50000"/>
+  </TimeAttack>
+</Root>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for2"/>
+  <Bgm theme="forest" file="forest_02"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="呼呼~ 真吃力啊！"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop6"/>
+  <Msg name="小强" string="休息休息再练习。|现在真的离大赛没几天了。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="现在我也算是具备了和别的高手过招比赛的实力了。|但是，不知道为什么，还是觉得有什么不足？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="哎……是吗？|在我看来，以皮蛋的实力，现在参加大赛也没什么问题了，|你会那样想，是不是因为没有获胜的信念呢？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Shake time="700"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="获胜的信念？"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="小强" string="嗯，不管在什么不利的情况下，只要坚定获胜的信念的话，就一定能实现逆转的。|但是，反过来说，如果自信不足的话，就算是原本实力相近的比赛，也会被对手挫败的。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="原来是这样啊。这样看来，我还不具备必胜的信念啊。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="小强" string="皮蛋啊！ 那么在剩下的时间内，你需要通过和其他车手的比赛，增加胜利的自信哦。|以你现在的实力的话，应该有充分的把握和其他车手在比赛中一决胜负的。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="normal"/>
+  <Msg name="皮蛋" string="恩，坚定获胜的信念。|虽然不是很容易，但是我需要去体会这种信念。|谢谢你，小强啊你总是能给我很多帮助。"/>
+  <Enter/>
+  <Char id="mos" pos="12 0" flip="true" emotion="normal"/>
+  <Msg name="小强" string="谢什么。 |我再次开始赛车，还不是因为你？|该说谢谢的是我才对，皮蛋。"/>
+  <Enter/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋/小强" string="哈哈哈！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="7.5 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="那么，现在开始，我要更多地和其他车手进行对决。|一想到又要开始比赛，我已经开始心跳加速了！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StepList>
+  <Step id="1" type="30" mode="single" preConditionId="0" title="青青草原上的皮蛋" synopsis="&quot;精灵世界中刚出来的皮蛋,|莫名其妙的来到了一个完全陌生的地方，|皮蛋正在寻找回家的路。&quot;" howToClear="请在规定时间内完成赛道。" missionText="完成赛道 %d回/%d回" addToGarage="true" visualScene="scene0" readyStage="1-1" stepTitleId="01">
+    <Level difficult="0" rewardLucci="500"/>
+  </Step>
+  <Step id="2" type="30" mode="single" preConditionId="1" title="你是狼吧？" synopsis="在皮蛋寻找回家道路时遇到了一个羊村，|可是羊羊们都以为皮蛋是狼，就开始追赶他了。|必须要赶紧让羊羊们相信自己！" howToClear="在与喜羊羊的对决中获胜。" missionText="游戏胜利 %d回/%d回" addToGarage="true" visualScene="scene1" readyStage="1-2" stepTitleId="02">
+    <Level difficult="0" rewardStockId="3240"/>
+  </Step>
+  <Step id="3" type="31" mode="single" preConditionId="2" title="被抓的懒羊羊" synopsis="避开羊羊攻击的皮蛋不小心撞了睡懒觉的懒羊羊。|看到懒羊羊被撞飞其他的羊羊们都笑坏了。|可是突然出现了灰太狼，把懒羊羊给抓住了！|喜羊羊看到自己闯祸了，所以赶紧去追击灰太狼！" howToClear="在规定时间内打败灰太狼。" missionText="追击成功 %d回/%d回" addToGarage="true" visualScene="scene2" readyStage="1-3" stepTitleId="03">
+    <Level difficult="0" rewardRp="200"/>
+  </Step>
+  <Step id="4" type="30" mode="single" preConditionId="3" title="披着羊皮的皮蛋" synopsis="皮蛋没有追到灰太狼，被它逃跑了。|这时美羊羊想出了好办法，就是皮蛋扮羊去引诱灰太狼，|这时其他人去救懒羊羊。皮蛋向着狼堡出发了！" howToClear="请在规定时间内完成赛道。" missionText="完成赛道 %d回/%d回" addToGarage="true" visualScene="scene3" readyStage="1-4" stepTitleId="04">
+    <Level difficult="0" rewardStockId="3235"/>
+  </Step>
+  <Step id="5" type="1" mode="multi" preConditionId="4" title="诱骗灰太狼" synopsis="抓住懒羊羊的灰太狼准备大吃一顿。|这时懒羊羊称告诉灰太狼羊羊们的秘密场所，|被骗的灰太狼去找了懒羊羊所说的秘密场所了。" howToClear="在多人游戏中行驶10回比赛。" missionText="多人游戏 %d回/%d回" addToGarage="true" visualScene="scene4" readyStage="1-5" stepTitleId="05">
+    <Level difficult="0" achievementCount="10" rewardStockId="3236"/>
+  </Step>
+  <Step id="6" type="30" mode="single" preConditionId="5" title="骗走灰太狼" synopsis="没找到羊的灰太狼很生气，|懒羊羊却说灰太狼太笨，找错了地方，|愚蠢的灰太狼又相信了懒羊羊，去寻找其他的羊了。" howToClear="请在规定时间内完成赛道。" missionText="完成赛道 %d回/%d回" addToGarage="true" visualScene="scene5" readyStage="1-6" stepTitleId="06">
+    <Level difficult="0" rewardStockId="2541"/>
+  </Step>
+  <Step id="7" type="30" mode="single" preConditionId="6" title="真是这里吗？" synopsis="懒羊羊其实是骗灰太狼的，|可是此刻在灰太狼的前面真的出现了一只羊。|灰太狼开心的去抓羊了。" howToClear="在规定时间内打败皮蛋。" missionText="追击成功 %d回/%d回" addToGarage="true" visualScene="scene6" readyStage="1-7" stepTitleId="07">
+    <Level difficult="0" rewardStockId="3241"/>
+  </Step>
+  <Step id="8" type="30" mode="single" preConditionId="7" title="真的是羊吗？" synopsis="发现抓住的羊是披着羊皮的皮蛋！|皮蛋跟愤怒的灰太狼提出了对决。" howToClear="在与灰太狼的对决中获胜。" missionText="游戏胜利 %d回/%d回" addToGarage="true" visualScene="scene7" readyStage="1-8" stepTitleId="08">
+    <Level difficult="0" rewardStockId="3238"/>
+  </Step>
+  <Step id="9" type="34" mode="single" preConditionId="8" title="愤怒的灰太狼" synopsis="被皮蛋打败的灰太狼回到了狼堡准备享用懒羊羊！|可是此刻喜羊羊和美羊羊刚刚救出了懒羊羊。|愤怒的灰太狼想攻击羊羊们，这时皮蛋出现了！|皮蛋和羊羊们齐心协力跟灰太狼进行了对决。" howToClear="在多人道具赛中获胜。" missionText="对决胜利 %d回/%d回" addToGarage="true" visualScene="scene8" readyStage="1-9" stepTitleId="09">
+    <Level difficult="0" rewardStockId="3235"/>
+  </Step>
+  <Step id="10" type="30" mode="single" preConditionId="9" title="熟悉的地方" synopsis="被羊羊们打败的灰太狼，喊着“我还会回来的”就跑掉了。|皮蛋在跟灰太狼对决时无意中找到回家路，|虽然和羊羊们只是短暂的接触，可是经历了太多的事情，|现在就要分开了。" howToClear="在规定时间和撞击次数内完成游戏" missionText="目标 %d回/%d回" addToGarage="true" visualScene="scene9" readyStage="1-10" stepTitleId="10" isFinalStep="true">
+    <Level difficult="0" rewardStockId="3237"/>
+  </Step>
+</StepList>

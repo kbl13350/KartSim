@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="earlyFinishGame" leftTopWH="0 0 1024 768" visible="false">
+  <ImageBoard leftTopWH="0 218 726 108" align="hcenter" image="result_bg" alphaBlend="true">
+    <Container align="left" leftTopWH="0 8 138 77" adjust="94 0">
+      <Panel name="otherRed" align="right" leftTopWH="27 0 138 77" texture="result_red@zz" alphaBlend="true" visible="false"/>
+      <Panel name="otherBlue" align="right" leftTopWH="0 0 138 77" texture="result_blue@zz" alphaBlend="true" visible="false"/>
+      <Label name="otherRedName" align="right" leftTopWH="0 69 138 19" alphaBlend="true" text="" textAlign="center" textColor="white" textColor2="255 194 23 136" textRender="outline"/>
+      <Label name="otherBlueName" align="hcenter" leftTopWH="0 69 138 19" alphaBlend="true" text="" textAlign="center" textColor="white" textColor2="255 0 144 222" textRender="outline"/>
+    </Container>
+    <Panel leftTopWH="262 0 260 73" align="vcenter" texture="runaway@zz" alphaBlend="true"/>
+  </ImageBoard>
+</Container>

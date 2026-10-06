@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window name="stepInfo" leftTopWH="0 0 198 200" enable="true" visible="true">
+  <Play1SPanel name="now" scene="카트패스현재레벨" leftTopWH="0 1 198 32" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.0 0" defaultSpotPos="0 0 0" zoom="1.7" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+  <ColorLabel name="step" leftTopWH="0 1 198 32" text="" textColor="255 234 219 238" textRender="bold16" textAlign="center" autoWrap="true" enable="false" visible="true"/>
+  <ImageButton name="reward" leftTopWH="0 33 198 167" autoLoadImage="kartPass_main_slotSpecial_" alphaBlend="true" visible="true" enable="true">
+    <ItemWindow name="rewardStockItem" windowSize="190 152" adjust="0 0" align="center" stockId="0" enable="false" visible="false"/>
+    <ImageButton name="btn_reward" windowSize="210 32" adjust="0 3" align="center;bottom" autoLoadImage="kartPass_btnAccept_0" text="#sb(receive)" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" textRender="bold16" alphaBlend="true" enable="true" visible="false">
+      <Label name="rewardInfo" leftTopWH="0 80 120 20" text="" textColor="black" textAlign="center" autoWrap="true" visible="false"/>
+    </ImageButton>
+    <Panel name="checked" windowSize="218 165" adjust="1 1" align="left" texture="kartPass_common_slotCheck1" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+  </ImageButton>
+  <Label name="rewardCountStr" leftTopWH="27 37 160 20" text="" textRender="bold14" textColor="255 84 68 110" textAlign="right" autoWrap="true" visible="false"/>
+  <Panel name="closed" leftTopTex="1 1" texture="kartPass_common_slotCover1" alphaBlend="true" alphaTest="true" enable="false" visible="false"/>
+  <Play1SPanel name="effect" scene="카트패스슬롯이펙트" leftTopWH="0 30 220 167" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -2.0 -0.05" defaultSpotPos="0 0 -0.05" zoom="2.2" clearZBefore="true" clearZAfter="true" enable="false" visible="false" loop="true"/>
+  <Panel name="locked" windowSize="30 30" adjust="0 34" align="left" texture="kartPass_common_slotLock" alphaBlend="true" alphaTest="true" visible="false"/>
+</Window>

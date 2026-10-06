@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='140.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.0715'
+	SteerConstraint='2.2'
+	DriftEscapeForce='600'
+	CornerDrawFactor='0.061'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+	TransAccelFactor='1.62'
+
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='rainbow1'
+	BoosterType3='rainbow1'
+	BoosterType4='rainbow1'
+
+	Port0='mod1d1' 
+	Port1='mod1d2'
+
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+	FirePort2='mod2a3'
+
+	
+	DescBalance= '37'
+	DescStability ='38'
+	DescEngineGrade='1'
+	DescCornering='5'
+	DescEnchantCap = '20'
+
+/>
+<!-- 대만 까마귀 SR  -->

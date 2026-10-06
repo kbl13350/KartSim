@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SlotFrame>
+  <Texture name="normal" id="0" texture="slot"/>
+  <Texture name="xmas" id="1" texture="slot_xmas"/>
+  <Texture name="grandprix" id="2" texture="slot_gp"/>
+  <Texture name="battle" id="3" texture="slot_battle"/>
+  <Texture name="champ" id="4" texture="slot_champ"/>
+  <Texture name="deadracing" id="5" texture="slot_deadRacing"/>
+  <Texture name="f1Speed" id="6" texture="slot"/>
+  <Texture name="transformer" id="7" texture="slotTransformer"/>
+  <Texture name="nine" id="8" texture="slot_9th"/>
+  <Texture name="nine_lodi" id="9" texture="slot_lodi"/>
+  <Texture name="dual" id="10" texture="slot_dual"/>
+  <Texture name="v1" id="11" texture="slot_v1"/>
+  <Texture name="v2" id="12" texture="slot_12"/>
+</SlotFrame>

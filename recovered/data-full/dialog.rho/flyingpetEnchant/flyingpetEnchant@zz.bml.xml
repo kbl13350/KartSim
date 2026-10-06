@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen" align="center">
+  <Panel name="bg" windowRect="fullscreen" enable="false" visible="true" color="100 0 0 0" alphaBlend="true" alphaTest="true"/>
+  <CaptionWindow leftTopWH="0 0 574 662" caption="#sb(flyingPet)" align="center" frame="CaptionDialog" setCloseButton="goBackButton">
+    <ImageBoard name="mainwindow" windowSize="560 652" adjust="0 -1" align="hcenter" image="플라잉펫선택_bg">
+      <Label name="topLabel" windowSize="500 20" adjust="0 15" align="hcenter" text="FlyingPet Upgrade" textRender="bold16" textColor="255 255 255 255" textAlign="center"/>
+      <List name="upgradeItemList" windowRect="10 50 550 510" scrollWidth="11" listMargin="4 0 0 0" listGap="0" rigidScroll="true" autoAlign="false" visible="true"/>
+      <ImageBoard image="플라잉펫_textBg_01" leftTopWH="0 515 518 52" align="hcenter">
+        <Label name="bodyLabel" windowSize="500 30" adjust="0 5" text="FlyingPet Upgrade|FlyingPet UpgraFlyingPet Upgrade|FlyingPet UpgraFlyingPet Upgrade|FlyingPet UpgraFlyingPet Upgrade|FlyingPet UpgraFlyingPet Upgrade|FlyingPet Upgra" textRender="bold14" textColor="255 255 255 255" align="hcenter" multiLine="true" autoWrap="true" textAlign="center"/>
+      </ImageBoard>
+      <TextButton name="upgrade" windowSize="132 42" adjust="0 595" text="#sb(grow)" align="hcenter" frame="DefaultFocusedButton" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+    </ImageBoard>
+  </CaptionWindow>
+</Container>

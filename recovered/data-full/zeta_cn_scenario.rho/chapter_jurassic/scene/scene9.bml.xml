@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Char id="lodumani" pos="8 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="哈哈，都听到了吧|跟恐龙差不多的人类？？好神奇啊！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="mobi" pos="5 0" flip="true" emotion="stop7"/>
+  <Msg name="吉米" string="他们驾驶的车辆会更神奇吧~"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" pos="10 0" emotion="stop8"/>
+  <Msg name="嘟嘟" string="偷偷跟上去，会不会见到恐龙族？"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="tutu" pos="11 0" emotion="stop8"/>
+  <Msg name="海盗船长" string="好想法！去偷恐龙族的赛车吧！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="tutu" remove="true"/>
+  <Char id="mobi" pos="6 0" flip="true" emotion="stop9"/>
+  <Msg name="吉米" string="啊…快~快~跟上！|他们走远了！"/>
+  <Enter/>
+  <Char id="mobi" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="8 0" flip="true" emotion="stop3"/>
+  <Msg name="海盗船长" string="呵~不要落下！赶紧跟上去！"/>
+  <Enter/>
+</Scene>

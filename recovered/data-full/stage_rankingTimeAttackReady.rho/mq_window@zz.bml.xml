@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true" align="center"/>
+  <CaptionWindow name="timeAttack" frame="CaptionDialog" caption="#sb(timeAttack)" windowSize="1328 785" adjust="0 -10" align="center" setCloseButton="exit">
+    <ImageBoard name="settingBg" windowSize="1314 700" align="top,hcenter" adjust="0 -1" image="timeAttack_main_bg" alphaBlend="true" visible="true">
+      <Container name="charBg" windowSize="1314 226" align="top,hcenter" adjust="0 0">
+        <Container name="캐릭터창" windowSize="500 450" align="center" adjust="-200 140"/>
+      </Container>
+      <Container windowSize="1314 226" align="hcenter" adjust="0 514">
+        <ImageBoard windowSize="1314 226" adjust="0 0" image="single_attack_img_settingBG" alphaBlend="true"/>
+        <Container name="gameSpeedBtnPanel" leftTopWH="893 61 134 26">
+          <ImageButton name="onBtn" windowSize="67 26" align="left" autoLoadImage="timeAttack_main_btnOptionLeft_" text="#sb(speedS7)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+          <ImageButton name="offBtn" windowSize="67 26" align="right" autoLoadImage="timeAttack_main_btnOptionRight_" text="#sb(speedS4)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+        </Container>
+        <Container name="teamBoosterBtnPanel" leftTopWH="893 118 134 26">
+          <ImageButton name="offBtn" windowSize="67 26" align="left" autoLoadImage="timeAttack_main_btnOptionLeft_" text="#sb(indiGame)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+          <ImageButton name="onBtn" windowSize="67 26" align="right" autoLoadImage="timeAttack_main_btnOptionRight_" text="#sb(teamGame)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+        </Container>
+        <Container name="shadowBtnPanel" leftTopWH="893 175 134 26">
+          <ImageButton name="onBtn" windowSize="67 26" align="left" autoLoadImage="timeAttack_main_btnOptionLeft_" text="#sb(on)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+          <ImageButton name="offBtn" windowSize="67 26" align="right" autoLoadImage="timeAttack_main_btnOptionRight_" text="#sb(off)" textAlign="center" textRender="bold14" overTextRender="bold14" checkedTextRender="bold14" uncheckedTextRender="bold14" textColor="255 102 110 122" overTextColor="255 255 255 255" checkedTextColor="255 42 55 80" uncheckedTextColor="255 102 110 122" alphaBlend="true"/>
+        </Container>
+        <ImageButton name="트랙" windowSize="248 66" adjust="1060 154" autoLoadImage="btn_myItem_trackSelect_@zz" alphaBlend="true"/>
+        <ImageButton name="내아이템" windowSize="248 66" adjust="1060 80" autoLoadImage="contest_btn_myItem_@zz" alphaBlend="true"/>
+        <ImageButton name="시작" windowSize="248 66" adjust="1060 7" autoLoadImage="btn_singleStart2_@zz" alphaBlend="true">
+          <Label name="소모루찌" windowSize="122 17" adjust="84 39" textRender="bold14" textColor="white" textAlign="center"/>
+        </ImageButton>
+        <Label windowSize="306 43" adjust="390 0" textRender="bold16" text="#sb(myRecord)" textColor="255 42 50 80" textAlign="center"/>
+        <Label windowSize="153 43" adjust="402 44" textRender="bold14" text="#sb(currentRecord)" textColor="255 84 100 129" textAlign="left|vcenter"/>
+        <Label name="currentRecord" windowSize="143 43" adjust="553 44" textRender="bold14" text="" textColor="255 84 100 129" textAlign="right|vcenter"/>
+        <Label windowSize="153 42" adjust="402 88" textRender="bold14" text="#sb(gameSpeed)" textColor="255 84 100 129" textAlign="left|vcenter"/>
+        <Label name="replayGameSpeed" windowSize="143 42" adjust="553 88" textRender="bold14" textColor="255 84 100 129" textAlign="right|vcenter"/>
+        <Label windowSize="153 42" adjust="402 130" textRender="bold14" text="#sb(kartBody)" textColor="255 84 100 129" textAlign="left|vcenter"/>
+        <Label name="replayKart" windowSize="143 42" adjust="553 130" textRender="bold14" textColor="255 84 100 129" textAlign="right|vcenter"/>
+        <Label windowSize="153 43" adjust="402 172" textRender="bold14" text="#sb(track)" textColor="255 84 100 129" textAlign="left|vcenter"/>
+        <Label name="replayTrack" windowSize="143 43" adjust="553 172" textRender="bold14" textColor="255 84 100 129" textAlign="right|vcenter"/>
+        <Label windowSize="302 44" adjust="725 0" textRender="bold16" text="#sb(option)" textColor="255 42 50 80" textAlign="center"/>
+        <ImageBoard name="게임스피드" windowSize="71 52" adjust="715 47" image="timeAttack_main_iconMode7" alphaBlend="true"/>
+        <Label windowSize="94 58" adjust="785 45" textRender="bold14" text="#sb(trackSpeed)" textColor="255 84 100 129" textAlign="left|vcenter"/>
+        <ImageBoard name="부스터모드" windowSize="71 52" adjust="715 104" image="timeAttack_main_iconBooster1" alphaBlend="true"/>
+        <Label windowSize="94 58" adjust="785 102" textRender="bold14" text="#sb(boosterMode)" textColor="255 84 100 129" textAlign="left|vcenter"/>
+        <ImageBoard name="고스트사용" windowSize="71 52" adjust="715 161" image="timeAttack_main_iconGhost1" alphaBlend="true"/>
+        <Label windowSize="94 58" adjust="785 159" textRender="bold14" text="#sb(showShadow)" textColor="255 84 100 129" textAlign="left|vcenter"/>
+        <Label name="shadowdesc" windowSize="134 26" adjust="893 174" text="#sb(invalidShadow)" textRender="bold14" textColor="white" textAlign="center"/>
+        <Container leftTopWH="0 0 372 226" enable="true">
+          <TrackCard name="trackInfoCard" trackRect="12 12 360 214" trackNameRect="50 185 320 207" trackNameTextRender="outline16" bigSpecialMarkAdjust="180 -206" smallSpecialMarkAdjust="280 -206" trackNameTextColor="white">
+            <Panel name="icon" windowSize="30 30" adjust="15 181" alphaBlend="true"/>
+          </TrackCard>
+        </Container>
+      </Container>
+      <Window name="lucciRect" windowRect="4 236 295 266" frame="GrayPanel" visible="false">
+        <Panel name="lucciText" windowRect="0 -1 99 22" texture="mylucci@zz" alphaBlend="true"/>
+        <Panel windowRect="103 2 280 18" texture="number_back" alphaBlend="true"/>
+        <CharPanel name="lucci" windowRect="102 3 279 17" fontSize="16 14" fontPos="0 0" fontStr="0123456789" texture="number" alphaBlend="true" text="7005882"/>
+      </Window>
+    </ImageBoard>
+    <ImageBoard name="recordBg" windowSize="458 490" adjust="837 8" image="single_attack_img_infoBG" alphaBlend="true" visible="true">
+      <Label windowSize="458 34" adjust="20 0" textRender="bold16" text="#sb(trackRanking)" textColor="white" textAlign="left|vcenter"/>
+      <Label windowSize="52 34" adjust="0 34" text="#sb(standings)" textRender="bold14" textColor="255 180 212 246" textAlign="center"/>
+      <Label windowSize="124 34" adjust="52 34" text="#sb(recordRider)" textRender="bold14" textColor="255 180 212 246" textAlign="center"/>
+      <Label windowSize="192 34" adjust="176 34" text="#sb(recordKart)" textRender="bold14" textColor="255 180 212 246" textAlign="center"/>
+      <Label windowSize="88 34" adjust="368 34" text="#sb(recordStat)" textRender="bold14" textColor="255 180 212 246" textAlign="center"/>
+      <Container name="holder" windowSize="458 420" adjust="0 70">
+        <Window name="line1" windowSize="458 42" adjust="0 0">
+          <Label name="순위_1" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_1" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_1" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_1" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+        <Window name="line2" windowSize="458 42" adjust="0 42">
+          <Label name="순위_2" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_2" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_2" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_2" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+        <Window name="line3" windowSize="458 42" adjust="0 84">
+          <Label name="순위_3" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_3" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_3" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_3" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+        <Window name="line4" windowSize="458 42" adjust="0 126">
+          <Label name="순위_4" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_4" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_4" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_4" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+        <Window name="line5" windowSize="458 42" adjust="0 168">
+          <Label name="순위_5" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_5" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_5" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_5" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+        <Window name="line6" windowSize="458 42" adjust="0 210">
+          <Label name="순위_6" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_6" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_6" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_6" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+        <Window name="line7" windowSize="458 42" adjust="0 252">
+          <Label name="순위_7" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_7" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_7" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_7" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+        <Window name="line8" windowSize="458 42" adjust="0 294">
+          <Label name="순위_8" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_8" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_8" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_8" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+        <Window name="line9" windowSize="458 42" adjust="0 336">
+          <Label name="순위_9" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_9" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_9" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_9" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+        <Window name="line10" windowSize="458 42" adjust="0 378">
+          <Label name="순위_10" windowSize="52 42" adjust="0 0" textRender="bold14" textAlign="center" textColor="white"/>
+          <Label name="이름_10" windowSize="124 42" adjust="62 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="카트_10" windowSize="192 42" adjust="210 0" textRender="bold14" textAlign="left|vcenter" textColor="white"/>
+          <Label name="기록_10" windowSize="88 42" adjust="368 0" textRender="bold14" textAlign="center" textColor="white"/>
+        </Window>
+      </Container>
+    </ImageBoard>
+  </CaptionWindow>
+  <Container name="selectGameSpeed" windowRect="0 0 800 600" visible="false" depthBias="300">
+    <CaptionWindow name="selectGameSpeed2" frame="CaptionDialog" caption="#sb(gameSpeed)" windowSize="250 200" adjust="0 0" align="center" captionPos="0 1" captionColor="black">
+      <Window name="radioGroup" frame="GrayEdit" windowSize="210 95" adjust="0 5">
+        <ImageCheckButton name="S7" windowSize="82 87" adjust="10 5" align="vcenter" autoImage="S2_@zz" alphaBlend="true">
+          <Label windowSize="82 87" adjust="0 -8" text="#sb(speedS7)" textColor="white" textAlign="center"/>
+        </ImageCheckButton>
+        <ImageCheckButton name="S4" windowSize="82 87" adjust="110 5" align="vcenter" autoImage="S4_@zz" alphaBlend="true">
+          <Label windowSize="82 87" adjust="0 -8" text="#sb(speedS4)" textColor="white" textAlign="center"/>
+        </ImageCheckButton>
+      </Window>
+      <Container windowRect="0 0 150 30" align="hcenter;bottom">
+        <Window windowRect="0 -10 210 -8" frame="VSection" align="hcenter"/>
+        <TextButton name="ok" windowRect="0 0 87 30" text="#sb(ok)"/>
+        <TextButton name="cancel" windowRect="0 0 52 30" align="right" text="#sb(cancel)"/>
+      </Container>
+    </CaptionWindow>
+  </Container>
+</Container>

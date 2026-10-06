@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for3"/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="你…你到底是谁？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop2"/>
+  <Msg name="克鲁伊" string="我是管理庭院的庭院机器人克鲁伊，哔哔哔哔！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop4"/>
+  <Msg name="黑妞" string="啊！|误会你了，对不起…"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop3"/>
+  <Msg name="克鲁伊" string="对不起？！哔哔哔哔？|你在跟我道歉吗？"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="恩，我误会你了啊？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop2"/>
+  <Msg name="克鲁伊" string="啊…没！哔哔哔哔！|你真善良。"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop5"/>
+  <Msg name="黑妞" string="恩？没什么啊..^^;|害羞啊.."/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop3"/>
+  <Msg name="克鲁伊" string="哔哔哔哔！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop1"/>
+  <Msg name="黑妞" string="啊，对了！克鲁伊，你见过一个很胖的，还没有睡醒的朋友吗，他叫宝宝。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop1"/>
+  <Msg name="克鲁伊" string="这个，没见过啊，哔哔哔哔！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop6"/>
+  <Msg name="黑妞" string="恩..宝宝到底去哪啦？55"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop1"/>
+  <Msg name="克鲁伊" string="大城堡的主人路易什么事都知道的。|去找路易的话会找到你的朋友的.|哔哔哔哔！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="dizini" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="啊！克鲁伊，你能带我去找路易吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="cloi" pos="12 0" emotion="stop3"/>
+  <Msg name="克鲁伊" string="恩，我带你去吧，跟我走吧。哔哔哔哔！"/>
+  <Enter/>
+</Scene>

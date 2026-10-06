@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <Shadow isFixedKart="true" fixedKartId="24" isFixedChar="true" fixedCharId="44" kartId="414" characterId="1" uniformId="43" colorId="6" dyeId="6" characterName="迪斯欧德B" miniNpc="true">
+    <LevelContent level="0" ksv="result_20110103_1748" track="mechanic_I01" laps="3"/>
+  </Shadow>
+</Root>

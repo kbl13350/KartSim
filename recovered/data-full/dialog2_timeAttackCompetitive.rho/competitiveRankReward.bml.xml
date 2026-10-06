@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow name="weekDialog" windowRect="0 0 956 478" frame="CaptionDialog" captionPos="0 1" caption="#sb(rewardTitle)" align="center" visible="false">
+    <ImageBoard leftTopWH="0 -2 942 237" image="contest_img_rewardNoticeInfoBG" align="hcenter" alphaBlend="true">
+      <Label leftTopWH="83 80 942 30" text="#sb(rewardMsg1)" align="hcenter" textAlign="center" textRender="outline20" textColor="white"/>
+      <Label leftTopWH="83 110 942 30" text="#sb(rewardMsg2)" align="hcenter" textAlign="center" textRender="outline16" textColor="white"/>
+    </ImageBoard>
+    <ImageBoard name="week" leftTopWH="0 242 926 128" image="contest_img_rewardNoticeSlotBG1" align="hcenter" alphaBlend="true">
+      <Label name="weekCurInfo" leftTopWH="0 0 926 28" textAlign="center" textRender="bold14" textColor="white"/>
+      <Panel name="gradeIcon" leftTopWH="70 38 88 78" texture="경쟁전_팝_미참여" alphaBlend="true"/>
+      <Panel name="gradeTextIcon" leftTopWH="148 41 196 68" texture="경쟁전_등급텍스트L_미참여@zz" alphaBlend="true"/>
+      <Label name="rankPercentage" text="-" leftTopWH="416 62 100 30" textAlign="center" textRender="bold16"/>
+      <Container name="rewardPanel1" leftTopWH="652 38 80 80"/>
+      <Container name="rewardPanel2" leftTopWH="740 38 80 80"/>
+      <Container name="rewardPanel3" leftTopWH="828 38 80 80"/>
+    </ImageBoard>
+    <TextButton name="okButton" frame="TabBlack2" textRender="bold16" text="#sb(ok)" windowSize="130 38" adjust="0 4" align="bottom|hcenter"/>
+  </CaptionWindow>
+  <CaptionWindow name="lastWeekDialog" windowRect="0 0 956 612" frame="CaptionDialog" captionPos="0 1" caption="#sb(rewardTitle)" align="center" visible="false">
+    <ImageBoard leftTopWH="0 -2 942 237" image="contest_img_rewardNoticeInfoBG" align="hcenter" alphaBlend="true">
+      <Label leftTopWH="83 80 942 30" text="#sb(rewardMsg1)" align="hcenter" textAlign="center" textRender="bold20" textColor="white"/>
+      <Label leftTopWH="83 110 942 30" text="#sb(rewardMsg2)" align="hcenter" textAlign="center" textRender="bold16" textColor="white"/>
+    </ImageBoard>
+    <ImageBoard name="season" leftTopWH="0 242 926 128" image="contest_img_rewardNoticeSlotBG2" align="hcenter" alphaBlend="true">
+      <Label name="seasonCurInfo" leftTopWH="0 0 926 28" textAlign="center" textRender="bold14" textColor="white"/>
+      <Panel name="gradeIcon" leftTopWH="70 38 88 78" texture="경쟁전_팝_미참여" alphaBlend="true"/>
+      <Panel name="gradeTextIcon" leftTopWH="148 41 196 68" texture="경쟁전_등급텍스트L_미참여@zz" alphaBlend="true"/>
+      <Label name="rankPercentage" text="-" leftTopWH="416 62 100 30" textAlign="center" textRender="bold16"/>
+      <Container name="rewardPanel1" leftTopWH="652 38 80 80"/>
+      <Container name="rewardPanel2" leftTopWH="740 38 80 80"/>
+      <Container name="rewardPanel3" leftTopWH="828 38 80 80"/>
+    </ImageBoard>
+    <ImageBoard name="week" leftTopWH="0 378 926 128" image="contest_img_rewardNoticeSlotBG1" align="hcenter" alphaBlend="true">
+      <Label name="weekCurInfo" leftTopWH="0 0 926 28" textAlign="center" textRender="bold14" textColor="white"/>
+      <Panel name="gradeIcon" leftTopWH="70 38 88 78" texture="경쟁전_팝_미참여" alphaBlend="true"/>
+      <Panel name="gradeTextIcon" leftTopWH="148 41 196 68" texture="경쟁전_등급텍스트L_미참여@zz" alphaBlend="true"/>
+      <Label name="rankPercentage" text="-" leftTopWH="416 62 100 30" textAlign="center" textRender="bold16"/>
+      <Container name="rewardPanel1" leftTopWH="652 38 80 80"/>
+      <Container name="rewardPanel2" leftTopWH="740 38 80 80"/>
+      <Container name="rewardPanel3" leftTopWH="828 38 80 80"/>
+    </ImageBoard>
+    <TextButton name="okButton" frame="TabBlack2" textRender="bold16" text="#sb(ok)" windowSize="130 36" adjust="0 4" align="bottom|hcenter"/>
+  </CaptionWindow>
+</Panel>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="ice2"/>
+  <Char id="dao" pos="8 0" emotion="ani2"/>
+  <Msg name="皮蛋" string="啊… 我赢了神奇车手！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mysteryMan" pos="8 0" emotion="stop1"/>
+  <Msg name="???" string="你太厉害了！皮蛋！"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="神奇车手.."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mysteryMan" pos="8 0" emotion="stop1"/>
+  <Msg name="???" string="恭喜你.是因你坚持不懈的性格而获得的成果.|但现在还不能掉以轻心。"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="还没跟海盗船长一比高下呢.|决战时，我一定会获胜的！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mysteryMan" pos="8 0" emotion="stop1"/>
+  <Msg name="???" string="好样儿的！|为确保获胜，进行加强训练如何？"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="mysteryMan" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="加强训练？"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mysteryMan" pos="8 0" emotion="stop1"/>
+  <Msg name="???" string="依我看，你在减速方面有点弱|我教你一些技巧，我们一起训练好不好？"/>
+  <Enter/>
+  <Char id="mysteryMan" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="减速…|谢谢！马上开始训练！"/>
+  <Enter/>
+</Scene>

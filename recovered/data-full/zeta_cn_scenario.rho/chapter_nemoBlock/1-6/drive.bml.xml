@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <TimeAttack isFixedKart="true" fixedKartId="998" isFixedChar="true" fixedCharId="208">
+    <LevelContent level="0" track="nemo_I01" laps="3" timeLimit="125000"/>
+  </TimeAttack>
+</Root>

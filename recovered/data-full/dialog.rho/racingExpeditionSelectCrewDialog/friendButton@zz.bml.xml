@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="friendContainer" windowRect="0 0 164 186" adjust="0 0" visible="true" enable="true">
+  <Container name="friendInfoContainer" windowSize="164 186" adjust="0 0" visible="true" enable="true">
+    <Label name="friendInfo" visible="false" enable="false"/>
+    <ImageButton name="friendBtn" windowSize="164 186" adjust="0 0" autoLoadImage="slotItem_character_" alphaBlend="true"/>
+    <ImageBoard name="specificIcon" image="tag_theme_0@zz" windowSize="42 22" adjust="0 0" alphaBlend="true" visible="false" enable="false"/>
+    <GaragePreview name="charKartPreview" windowSize="164 156" adjust="0 0" enable="false" alphaBlend="true"/>
+    <ColorLabel name="bonusAmountLbl" windowSize="164 50" adjust="0 144" text="0(-)" textColor="255 255 255 255" textRender="bold14" textAlign="center" visible="true" enable="false"/>
+    <ColorLabel name="friendNameLbl" windowSize="100 15" adjust="0 15" align="hcenter" text="friendName" textColor="255 255 255 255" textColor2="255 0 0 0" textRender="outline14" textAlign="left|vcenter" visible="true" enable="false">
+      <ImageBoard name="coupleIcon" image="slotIcon_heart" windowSize="24 24" adjust="-28 0" alphaBlend="true" visible="false" enable="false"/>
+    </ColorLabel>
+    <ImageBoard name="friendCardSelectedBg" image="slot_selected" windowSize="172 194" adjust="-3 -3" alphaBlend="true" visible="false" enable="false"/>
+  </Container>
+</Container>

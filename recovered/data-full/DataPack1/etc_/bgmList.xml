@@ -1,0 +1,851 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<StringBag>
+		<k n='title'>
+				<m c='kr' v='KARTRIDER' />
+				<m c='cn' v='跑跑卡丁车' />
+				<m c='tw' v='跑跑卡丁車' />
+		</k>
+		<k n='bonustrack'>
+				<m c='kr' v='-' />
+		</k>
+		<k n='bonusStage_01'>
+				<m c='kr' v='-' />
+		</k>
+		<k n='boss_01'>
+				<m c='kr' v='드디어 보스 등장' />
+				<m c='cn' v='双重反击' />
+				<m c='tw' v='魔王終於登場' />
+		</k>
+		<k n='boss_02'>
+				<m c='kr' v='변신! 타이탄 로더' />
+				<m c='cn' v='变身！泰坦领主' />
+				<m c='tw' v='變身!泰坦大帝' />
+		</k>
+		<k n='brodi_01'>
+				<m c='kr' v='혁신! 브로디' />
+				<m c='cn' v='革新！神秘工头' />
+				<m c='tw' v='布羅帝現身!' />
+		</k>
+		<k n='brodi_02'>
+				<m c='kr' v='인공지능 A0!' />
+				<m c='cn' v='人工智能-AO！' />
+				<m c='tw' v='人工智慧A0!' />
+		</k>
+		<k n='castle_01'>
+				<m c='kr' v='루이알마의 화려한 레이스' />
+				<m c='cn' v='秘密地下室' />
+				<m c='tw' v='路易艾瑪的華麗競賽' />
+		</k>
+		<k n='castle_02'>
+				<m c='kr' v='대저택 댄스 파티' />
+				<m c='cn' v='城堡派对' />
+				<m c='tw' v='城堡舞會派對' />
+		</k>
+		<k n='china_01'>
+				<m c='kr' v='대륙의 붉은 춤' />
+				<m c='cn' v='龙之舞' />
+				<m c='tw' v='紅舞的大陸' />
+		</k>
+		<k n='china_02'>
+				<m c='kr' v='첸첸의 공휴일' />
+				<m c='cn' v='龙之遗迹' />
+				<m c='tw' v='芊芊的假期' />
+		</k>
+		<k n='china_03'>
+				<m c='kr' v='중국식 교차로' />
+				<m c='cn' v='龙之缘' />
+				<m c='tw' v='東方的交叉路口' />
+		</k>
+		<k n='coke_01'>
+				<m c='kr' v='-' />
+		</k>
+		<k n='desert_01'>
+				<m c='kr' v='모래바람주의보' />
+				<m c='cn' v='预警' />
+				<m c='tw' v='路易艾瑪的華麗競賽' />
+		</k>
+		<k n='desert_02'>
+				<m c='kr' v='낙타경주' />
+				<m c='cn' v='奔跑吧，骆驼' />
+				<m c='tw' v='駱駝賽跑' />
+		</k>
+		<k n='desert_03'>
+				<m c='kr' v='신기루' />
+				<m c='cn' v='海市蜃楼' />
+				<m c='tw' v='海市蜃樓' />
+		</k>
+		<k n='desert_04'>
+				<m c='kr' v='오아시스 모임' />
+				<m c='cn' v='绿洲' />
+				<m c='tw' v='綠洲集會' />
+		</k>
+		<k n='BGM001_포뮬러모드A#3'>
+				<m c='kr' v='네 뒤에 크러시' />
+				<m c='cn' v='撞击' />
+				<m c='tw' v='衝撞大賽' />
+		</k>
+		<k n='BGM002_포뮬러모드B#2'>
+				<m c='kr' v='아스팔트 캐논' />
+				<m c='cn' v='加农炮' />
+				<m c='tw' v='公路加農炮' />
+		</k>
+		<k n='BGM003_포뮬러모드C#2'>
+				<m c='kr' v='크러시 드라이버' />
+				<m c='cn' v='激进飘移' />
+				<m c='tw' v='急速兜風' />
+		</k>
+		<k n='BGM-공장01'>
+				<m c='kr' v='즐거운 생산라인' />
+				<m c='cn' v='快乐的生产线' />
+				<m c='tw' v='快樂的生產線' />
+		</k>
+		<k n='BGM-공장02'>
+				<m c='kr' v='신규 설비' />
+				<m c='cn' v='爱情工厂' />
+				<m c='tw' v='新型設備' />
+		</k>
+		<k n='BGM-공장03'>
+				<m c='kr' v='공장에서 미아되기' />
+				<m c='cn' v='迷失' />
+				<m c='tw' v='在工廠裡迷路' />
+		</k>
+		<k n='fairy_01'>
+				<m c='kr' v='동화는 해피엔딩' />
+				<m c='cn' v='秋天的童话' />
+				<m c='tw' v='童話都是快樂結局' />
+		</k>
+		<k n='fairy_02'>
+				<m c='kr' v='메르헨가도' />
+				<m c='cn' v='童话' />
+				<m c='tw' v='童話大道' />
+		</k>
+		<k n='fairy_03'>
+				<m c='kr' v='티이라의 초대' />
+				<m c='cn' v='绿野迷踪' />
+				<m c='tw' v='王冠的招待' />
+		</k>
+		<k n='arena_01'>
+				<m c='kr' v='플래그 전원공격' />
+				<m c='cn' v='开始进攻' />
+				<m c='tw' v='搶旗全員攻擊' />
+		</k>
+		<k n='arena_02'>
+				<m c='kr' v='깃발은 어디에??' />
+				<m c='cn' v='夺旗大赛' />
+				<m c='tw' v='旗幟在哪裡?' />
+		</k>
+		<k n='arena_03'>
+				<m c='kr' v='플래그 휘날리며' />
+				<m c='cn' v='旗帜飞扬' />
+				<m c='tw' v='旗幟飄揚' />
+		</k>
+		<k n='forest_01'>
+				<m c='kr' v='곰을 만나면 죽은척' />
+				<m c='cn' v='熊出没注意' />
+				<m c='tw' v='遇到熊就裝死' />
+		</k>
+		<k n='forest_02'>
+				<m c='kr' v='아루와 나뭇꾼' />
+				<m c='cn' v='你是我的伙伴' />
+				<m c='tw' v='森林裡的朋友們' />
+		</k>
+		<k n='forest_03'>
+				<m c='kr' v='숲속 산책로' />
+				<m c='cn' v='曲径通幽' />
+				<m c='tw' v='森林散步小徑' />
+		</k>
+		<k n='Gold_01'>
+				<m c='kr' v='고디우스 눈뜨다' />
+				<m c='cn' v='复活' />
+				<m c='tw' v='高狄睜開眼' />
+		</k>
+		<k n='Gold_02'>
+				<m c='kr' v='금빛 좌표를 따라서' />
+				<m c='cn' v='黄金坐标' />
+				<m c='tw' v='跟著金色座標' />
+		</k>
+		<k n='Gold_03'>
+				<m c='kr' v='황금 어드벤처' />
+				<m c='cn' v='黄金冒险' />
+				<m c='tw' v='黃金冒險' />
+		</k>
+		<k n='ice_01'>
+				<m c='kr' v='마음은 따뜻하게' />
+				<m c='cn' v='温暖心灵' />
+				<m c='tw' v='讓心暖暖的' />
+		</k>
+		<k n='ice_02'>
+				<m c='kr' v='눈내리는 마을' />
+				<m c='cn' v='飘雪的村庄' />
+				<m c='tw' v='下雪的村落' />
+		</k>
+		<k n='ice_03'>
+				<m c='kr' v='썰매 배달부' />
+				<m c='cn' v='企鹅舞曲' />
+				<m c='tw' v='雪橇快遞員' />
+		</k>
+		<k n='city_01'>
+				<m c='kr' v='디스오더 이중주' />
+				<m c='cn' v='迪斯奥德二重奏' />
+				<m c='tw' v='擾亂二重奏' />
+		</k>
+		<k n='city_02'>
+				<m c='kr' v='추격! 디스오더' />
+				<m c='cn' v='追击！迪斯奥德' />
+				<m c='tw' v='追擊!擾亂!' />
+		</k>
+		<k n='mine_01'>
+				<m c='kr' v='광산 깊은 곳으로!' />
+				<m c='cn' v='矿工之歌' />
+				<m c='tw' v='前往礦山深處' />
+		</k>
+		<k n='mine_02'>
+				<m c='kr' v='금광을 찾아서' />
+				<m c='cn' v='找金矿' />
+				<m c='tw' v='找到金礦' />
+		</k>
+		<k n='mine_03'>
+				<m c='kr' v='석탄 열차' />
+				<m c='cn' v='煤矿之歌' />
+				<m c='tw' v='煤炭列車' />
+		</k>
+		<k n='moonhill_01'>
+				<m c='kr' v='흥청망청 문힐의 밤' />
+				<m c='cn' v='月光之夜' />
+				<m c='tw' v='歡天喜地的月光之夜' />
+		</k>
+		<k n='moonhill_02'>
+				<m c='kr' v='악당들은 네오 조심' />
+				<m c='cn' v='月光之城' />
+				<m c='tw' v='壞人們小心尼歐' />
+		</k>
+		<k n='moonhill_03'>
+				<m c='kr' v='문힐 비밥' />
+				<m c='cn' v='月光下的绅士' />
+				<m c='tw' v='月光獵人' />
+		</k>
+		<k n='northeu_01'>
+				<m c='kr' v='타키의 고향' />
+				<m c='cn' v='遨游太空' />
+				<m c='tw' v='奇奇的故鄉' />
+		</k>
+		<k n='northeu_02'>
+				<m c='kr' v='노르테유 워프게이트' />
+				<m c='cn' v='天空之城' />
+				<m c='tw' v='太空碼頭空橋' />
+		</k>
+		<k n='northeu_03'>
+				<m c='kr' v='행성점프' />
+				<m c='cn' v='太空漫游' />
+				<m c='tw' v='行星跳躍' />
+		</k>
+		<k n='Nymph_01'>
+				<m c='kr' v='나이아드의 노래' />
+				<m c='cn' v='蝴蝶仙境' />
+				<m c='tw' v='維妮公主之歌' />
+		</k>
+		<k n='Nymph_02'>
+				<m c='kr' v='달빛의 요정 라이더' />
+				<m c='cn' v='月光精灵' />
+				<m c='tw' v='月光妖精 萊德' />
+		</k>
+		<k n='pirate_01'>
+				<m c='kr' v='해적왕 모비' />
+				<m c='cn' v='海贼王吉米' />
+				<m c='tw' v='海賊王 墨比' />
+		</k>
+		<k n='pirate_02'>
+				<m c='kr' v='로두마니! 출항!' />
+				<m c='cn' v='出航' />
+				<m c='tw' v='羅陀瑪尼!出港!' />
+		</k>
+		<k n='priate_03'>
+				<m c='kr' v='약탈의 노래' />
+				<m c='cn' v='掠夺之歌' />
+				<m c='tw' v='掠奪之歌' />
+		</k>
+		<k n='single_01'>
+				<m c='kr' v='-' />
+		</k>
+		<k n='single_02'>
+				<m c='kr' v='-' />
+		</k>
+		<k n='single_03'>
+				<m c='kr' v='-' />
+		</k>
+		<k n='tomb_01'>
+				<m c='kr' v='공동묘지 순찰' />
+				<m c='cn' v='幽灵的狂欢' />
+				<m c='tw' v='墓地巡邏' />
+		</k>
+		<k n='tomb_02'>
+				<m c='kr' v='유령 축제' />
+				<m c='cn' v='幽灵盛典' />
+				<m c='tw' v='幽靈祭典' />
+		</k>
+		<k n='tomb_03'>
+				<m c='kr' v='네 뒤에 유령…' />
+				<m c='cn' v='幽灵出没' />
+				<m c='tw' v='背後幽靈…' />
+		</k>
+		<k n='village_01'>
+				<m c='kr' v='붐힐 3총사' />
+				<m c='cn' v='永远的梦想' />
+				<m c='tw' v='城鎮三劍客' />
+		</k>
+		<k n='village_02'>
+				<m c='kr' v='붐힐 드라이브' />
+				<m c='cn' v='繁荣山丘' />
+				<m c='tw' v='城鎮兜風' />
+		</k>
+		<k n='village_03'>
+				<m c='kr' v='배찌 뒹굴' />
+				<m c='cn' v='车手的命运1' />
+				<m c='tw' v='遊手好閒的睏寶' />
+		</k>
+		<k n='village_04'>
+				<m c='kr' v='레이스의 시작' />
+				<m c='cn' v='赛车大会会歌' />
+				<m c='tw' v='競賽的起點' />
+		</k>
+		<k n='wkc_01'>
+				<m c='kr' v='월드 챔프' />
+				<m c='cn' v='WKC' />
+				<m c='tw' v='世界冠軍' />
+		</k>
+		<k n='wkc_02'>
+				<m c='kr' v='오버드라이브' />
+				<m c='cn' v='夏日极速方程' />
+				<m c='tw' v='超越兜風' />
+		</k>
+		<k n='xmas_01'>
+				<m c='kr' v='성탄 드리프트' />
+				<m c='cn' v='圣诞快乐' />
+				<m c='tw' v='聖誕飄移' />
+		</k>
+		<k n='xmas_02'>
+				<m c='kr' v='크리스마스 익스프레스' />
+				<m c='cn' v='圣诞节之歌' />
+				<m c='tw' v='聖誕特快車' />
+		</k>
+		<k n='017_Themepark_3'>
+				<m c='kr' v='붐붐 퍼레이드' />
+				<m c='cn' v='繁荣进行曲' />
+				<m c='tw' v='夢幻啦啦隊表演' />
+		</k>
+		<k n='castle_01_re'>
+				<m c='kr' v='대저택 댄스 배틀' />
+				<m c='cn' v='城堡舞技对决' />
+				<m c='tw' v='城堡戰鬥舞步' />
+		</k>
+		<k n='china_01_re'>
+				<m c='kr' v='대륙의 붉은 비트' />
+				<m c='cn' v='空中楼阁' />
+				<m c='tw' v='大陸紅色節奏' />
+		</k>
+		<k n='desert_03_re'>
+				<m c='kr' v='춤추는 신기루' />
+				<m c='cn' v='禁止出入' />
+				<m c='tw' v='海市蜃樓之舞' />
+		</k>
+		<k n='factory_04'>
+				<m c='kr' v='관계자외 출입금지' />
+				<m c='cn' v='童话书' />
+				<m c='tw' v='限制通行' />
+		</k>
+		<k n='fairy_04'>
+				<m c='kr' v='동화책 밖으로!' />
+				<m c='cn' v='伙伴' />
+				<m c='tw' v='逃離童話書' />
+		</k>
+		<k n='forest_02_re'>
+				<m c='kr' v='숲속의 친구의 친구들' />
+				<m c='cn' v='伙伴' />
+				<m c='tw' v='森林精靈之友' />
+		</k>
+		<k n='Gold_04'>
+				<m c='kr' v='금빛 문이 열리면' />
+				<m c='cn' v='黄金之门' />
+				<m c='tw' v='黃金門打開' />
+		</k>
+		<k n='ice_02_re'>
+				<m c='kr' v='눈 치우는 마을' />
+				<m c='cn' v='雪中飘移' />
+				<m c='tw' v='掃雪的村莊' />
+		</k>
+		<k n='city_03'>
+				<m c='kr' v='비트메카닉' />
+				<m c='cn' v='机械之城' />
+				<m c='tw' v='機器人節奏' />
+		</k>
+		<k n='mine_04'>
+				<m c='kr' v='다이아몬드 러쉬' />
+				<m c='cn' v='钻石泪' />
+				<m c='tw' v='鑽石賽車' />
+		</k>
+		<k n='moonhill_02_re'>
+				<m c='kr' v='미녀들은 네오 조심' />
+				<m c='cn' v='尼欧出现注意' />
+				<m c='tw' v='美女小心尼歐' />
+		</k>
+		<k n='northeu_01_re'>
+				<m c='kr' v='타키의 무대' />
+				<m c='cn' v='奇奇的舞台' />
+				<m c='tw' v='奇奇舞台' />
+		</k>
+		<k n='Pirate_03_re'>
+				<m c='kr' v='약탈의 춤사위' />
+				<m c='cn' v='掠夺之舞' />
+				<m c='tw' v='搶奪之舞' />
+		</k>
+		<k n='tomb_03_re'>
+				<m c='kr' v='내 뒤엔 유령 댄서' />
+				<m c='cn' v='幽灵舞伴' />
+				<m c='tw' v='我和幽靈舞團' />
+		</k>
+		<k n='village_03_re'>
+				<m c='kr' v='배찌 뒹굴뒹굴' />
+				<m c='cn' v='车手的命运2' />
+				<m c='tw' v='翻滾吧睏寶' />
+		</k>
+		<k n='chasing_01'>
+				<m c='kr' v='춤추는 조준선' />
+				<m c='cn' v='飘移的瞄准镜' />
+				<m c='tw' v='浮動的準星' />
+		</k>
+		<k n='chasing_02'>
+				<m c='kr' v='사냥감' />
+				<m c='cn' v='猎手' />
+				<m c='tw' v='獵物' />
+		</k>
+		<k n='beach_02'>
+				<m c='kr' v='피치 칵테일' />
+				<m c='cn' v='沙滩盛宴' />
+				<m c='tw' v='蜜桃雞尾酒' />
+		</k>
+		<k n='beach_04'>
+				<m c='kr' v='두근 두근 비치' />
+				<m c='cn' v='心动沙滩' />
+				<m c='tw' v='心跳加速的海灘 ' />
+		</k>
+		<k n='beach_05'>
+				<m c='kr' v='파도 위 서핑 댄스' />
+				<m c='cn' v='冲浪舞步' />
+				<m c='tw' v='海浪上的衝浪舞姿' />
+		</k>
+		<k n='steam_01'>
+				<m c='kr' v='다함께 스윙스윙' />
+				<m c='cn' v='摇摆舞' />
+				<m c='tw' v='搖擺搖擺' />
+		</k>
+		<k n='steam_02'>
+				<m c='kr' v='로즈 알베르와 춤을' />
+				<m c='cn' v='与阿尔贝特共舞' />
+				<m c='tw' v='蘿絲阿爾貝一起跳舞' />
+		</k>
+		<k n='steam_03'>
+				<m c='kr' v='명탐정 카이' />
+				<m c='cn' v='名侦探-福尔摩斯' />
+				<m c='tw' v='和名偵探凱伊' />
+		</k>
+		<k n='transFormer_01'>
+				<m c='kr' v='I&apos;m Optimus Prime!' />
+				<m c='cn' v='我是擎天柱' />
+				<m c='tw' v='我是柯博文!' />
+		</k>
+		<k n='transFormer_02'>
+				<m c='kr' v='사이버트로니안' />
+				<m c='cn' v='赛伯坦星球' />
+				<m c='tw' v='塞博坦' />
+		</k>
+		<k n='transFormer_03'>
+				<m c='kr' v='어둠의 세력 디셉티콘' />
+				<m c='cn' v='黑暗势力狂派' />
+				<m c='tw' v='黑暗的勢力狂派' />
+		</k>
+		<k n='transFormer_04'>
+				<m c='kr' v='트랜스포머 등장' />
+				<m c='tw' v='變形金剛登場!' />
+		</k>
+		<k n='jurassic_01'>
+				<m c='kr' v='공룡섬으로 떠나요!' />
+				<m c='cn' v='向恐龙岛出发！' />
+				<m c='tw' v='一起前往恐龍島冒險吧!' />
+		</k>
+		<k n='jurassic_02'>
+				<m c='kr' v='레이싱은 라키와 함께' />
+				<m c='cn' v='与露西一起竞速' />
+				<m c='tw' v='和拉琪一起競速!' />
+		</k>
+		<k n='jurassic_03'>
+				<m c='kr' v='카르노와 한판 승부' />
+				<m c='cn' v='与卡诺决一死战' />
+				<m c='tw' v='與卡洛一決勝負!' />
+		</k>
+		<k n='world_01'>
+				<m c='kr' v='첫 번째 세계여행' />
+				<m c='cn' v='第一次世界旅行' />
+				<m c='tw' v='第一次的世界旅行' />
+		</k>
+		<k n='world_02'>
+				<m c='kr' v='등장! 블랙 컴퍼니!' />
+				<m c='cn' v='登场！黑暗组织！' />
+				<m c='tw' v='登場! 闇影勢力!' />
+		</k>
+		<k n='world_03'>
+				<m c='kr' v='도그 파이트' />
+				<m c='cn' v='追击战' />
+				<m c='tw' v='戰鬥機空戰' />
+		</k>
+		<k n='world_04'>
+				<m c='kr' v='리오 대축제' />
+				<m c='cn' v='里约盛典' />
+				<m c='tw' v='里約大慶典' />
+		</k>
+		<k n='world_05'>
+				<m c='kr' v='니트로 부스터' />
+				<m c='cn' v='氮气加速' />
+				<m c='tw' v='氮氣推進器' />
+		</k>
+		<k n='nemo_00'>
+				<m c='kr' v='네모네모 페스티벌' />
+				<m c='cn' v='像素世界大庆典' />
+				<m c='tw' v='積木慶典' />
+		</k>
+		<k n='nemo_01'>
+				<m c='kr' v='마녀는 장난을 좋아해' />
+				<m c='cn' v='女巫恶作剧' />
+				<m c='tw' v='魔女喜愛惡作劇' />
+		</k>
+		<k n='nemo_02'>
+				<m c='kr' v='겨울에는 캐롤' />
+				<m c='cn' v='守护骑士卡洛儿' />
+				<m c='tw' v='冬天的歌頌' />
+		</k>
+		<k n='nemo_03'>
+				<m c='kr' v='친절한 리온씨' />
+				<m c='cn' v='善良的怪兽里昂' />
+				<m c='tw' v='親切的里溫' />
+		</k>
+		<k n='nemo_04'>
+				<m c='kr' v='사랑을 담아서, 네모!' />
+				<m c='cn' v='相亲相爱，像素世界！' />
+				<m c='tw' v='注入愛情，積木!' />
+		</k>
+		<k n='sword_01'>
+				<m c='kr' v='도검무쌍' />
+				<m c='cn' v='刀剑无双' />
+				<m c='tw' v='刀劍無雙' />
+		</k>
+		<k n='sword_02'>
+				<m c='kr' v='차가운 달빛 아래' />
+				<m c='cn' v='冷冷的月光下' />
+				<m c='tw' v='冰冷的月光下' />
+		</k>
+		<k n='sword_03'>
+				<m c='kr' v='바람보다 자유롭게' />
+				<m c='cn' v='比风更自由' />
+				<m c='tw' v='乘風自由' />
+		</k>
+		<k n='sword_04'>
+				<m c='kr' v='춤추는 달의 공주' />
+				<m c='cn' v='跳舞的月之公主' />
+				<m c='tw' v='舞動的月亮公主' />
+		</k>
+		<k n='god_01'>
+				<m c='kr' v='아스가르드' />
+				<m c='cn' v='阿斯加德' />
+				<m c='tw' v='阿斯嘉特' />
+		</k>
+		<k n='god_02'>
+				<m c='kr' v='불꽃의 땅 무스펠하임' />
+				<m c='cn' v='火之国穆斯贝尔海姆' />
+				<m c='tw' v='火焰之地穆斯貝爾海姆' />
+		</k>
+		<k n='god_03'>
+				<m c='kr' v='천둥의 신 강림!' />
+				<m c='cn' v='雷神降临！' />
+				<m c='tw' v='雷神降臨!' />
+		</k>
+		<k n='god_04'>
+				<m c='kr' v='로키의 장난이 멈추지 않아' />
+				<m c='cn' v='洛基的恶作剧永不停止！' />
+				<m c='tw' v='洛基的玩笑沒有中止' />
+		</k>
+		<k n='abyss_01'>
+				<m c='kr' v='어비스 웨이브' />
+				<m c='cn' v='阿比斯的波浪' />
+				<m c='tw' v='深海之城的波浪' />
+		</k>
+		<k n='abyss_02'>
+				<m c='kr' v='심해의 지배자' />
+				<m c='cn' v='深海统治者' />
+				<m c='tw' v='深海的支配者' />
+		</k>
+		<k n='abyss_03'>
+				<m c='kr' v='꿈꾸는 소녀' />
+				<m c='cn' v='少女之梦' />
+				<m c='tw' v='作夢的少女' />
+		</k>
+		<k n='abyss_04'>
+				<m c='kr' v='너울대는 파도처럼' />
+				<m c='cn' v='冲浪少年' />
+				<m c='tw' v='諾爾的心像海浪' />
+		</k>
+		<k n='abyss_05'>
+				<m c='kr' v='바다 사나이 머맨' />
+				<m c='cn' v='海之男儿-莫曼' />
+				<m c='tw' v='大海男子漢半魚人' />
+		</k>
+		<k n='camelot_01'>
+				<m c='kr' v='기사들의 노래' />
+				<m c='cn' v='骑士之歌' />
+				<m c='tw' v='騎士們之歌' />
+		</k>
+		<k n='camelot_02'>
+				<m c='kr' v='카멜롯 대축제' />
+				<m c='cn' v='卡美洛大庆典' />
+				<m c='tw' v='史詩世紀大慶典' />
+		</k>
+		<k n='camelot_03'>
+				<m c='kr' v='기사왕에게 영광 있으라' />
+				<m c='cn' v='骑士王的荣耀' />
+				<m c='tw' v='騎士王的榮耀' />
+		</k>
+		<k n='camelot_04'>
+				<m c='kr' v='승리의 깃발을 이 곳에' />
+				<m c='cn' v='竖起胜利旗帜' />
+				<m c='tw' v='勝利的旗幟於此' />
+		</k>
+		<k n='camelot_05'>
+				<m c='kr' v='반역의 마검사' />
+				<m c='cn' v='谋反的魔剑士' />
+				<m c='tw' v='叛逆的魔劍士' />
+		</k>
+		<k n='olympos_01'>
+				<m c='kr' v='시련을 넘어서' />
+				<m c='cn' v='跨跃试练' />
+				<m c='tw' v='通過試驗' />
+		</k>
+		<k n='olympos_02'>
+				<m c='kr' v='올림포스 메카닉 그룹' />
+				<m c='cn' v='奥林匹斯 机械军团' />
+				<m c='tw' v='奧林帕斯機械兵團' />
+		</k>
+		<k n='olympos_03'>
+				<m c='kr' v='여신에게 바치는 세레나데' />
+				<m c='cn' v='献给女神的小夜曲' />
+				<m c='tw' v='獻給女神的小夜曲' />
+		</k>
+		<k n='olympos_04'>
+				<m c='kr' v='춤추는 어둠' />
+				<m c='cn' v='舞动的黑暗' />
+				<m c='tw' v='舞動的夜晚' />
+		</k>
+		<k n='olympos_05'>
+				<m c='kr' v='심판의 벼락' />
+				<m c='cn' v='雷霆的审判' />
+				<m c='tw' v='審判的雷電' />
+		</k>
+		<k n='korea_01'>
+				<m c='kr' v='웰컴 투 코리아' />
+				<m c='tw' v='歡迎來韓國' />
+		</k>
+		<k n='korea_02'>
+				<m c='kr' v='동에 번쩍 서에 번쩍' />
+				<m c='tw' v='東奔西跑' />
+		</k>
+		<k n='korea_03'>
+				<m c='kr' v='여우 꼬리는 아홉 개？' />
+				<m c='tw' v='狐狸尾巴有九個?' />
+		</k>
+		<k n='korea_04'>
+				<m c='kr' v='소울 드라이브' />
+				<m c='tw' v='靈魂驅動' />
+		</k>
+		<k n='korea_05'>
+				<m c='kr' v='언덕아래 하늬바람' />
+				<m c='tw' v='山坡下的西風' />
+		</k>
+		<k n='러블리 로티!'>
+				<m c='kr' v='러블리 로티!' />
+				<m c='tw' v='小可愛樂蒂!' />
+		</k>
+		<k n='Kart_17th_Anniversary'>
+				<m c='kr' v='생일 축하해, 카트라이더!' />
+		</k>
+		<k n='mabi_01'>
+				<m c='kr' v='어릴 적 할머니가 들려주신 옛 전설' />
+				<m c='cn' v='小时候奶奶讲的故事' />
+				<m c='tw' v='小時候奶奶說的古老傳說' />
+		</k>
+		<k n='mabi_02'>
+				<m c='kr' v='낙엽의 춤' />
+				<m c='cn' v='落叶的舞蹈' />
+				<m c='tw' v='落葉之舞' />
+		</k>
+		<k n='mabi_03'>
+				<m c='kr' v='소년 모험가' />
+				<m c='cn' v='少年探险家' />
+				<m c='tw' v='少年冒險家' />
+		</k>
+		<k n='mabi_04'>
+				<m c='kr' v='최종무곡' />
+				<m c='cn' v='最终舞曲' />
+				<m c='tw' v='最終舞曲' />
+		</k>
+		<k n='mabi_05'>
+				<m c='kr' v='잎사귀 사이로 비치는 햇살' />
+				<m c='cn' v='树叶间的阳光' />
+				<m c='tw' v='從葉子間透出的陽光' />
+		</k>
+		<k n='mabi_06'>
+				<m c='kr' v='종말을 향한 예언' />
+				<m c='cn' v='末日预言' />
+				<m c='tw' v='末日預言' />
+		</k>
+		<k n='mabi_07'>
+				<m c='kr' v='나의 빛은 이곳에 있나니' />
+				<m c='cn' v='我的光芒犹在' />
+				<m c='tw' v='我的光芒居然在這裡' />
+		</k>
+		<k n='maple_01'>
+				<m c='kr' v='Start the Adventure' />
+				<m c='cn' v='Start the Adventure' />
+		</k>
+		<k n='maple_02'>
+				<m c='kr' v='Floral Life' />
+				<m c='cn' v='Floral Life' />
+		</k>
+		<k n='maple_03'>
+				<m c='kr' v='Going on a Picnic' />
+				<m c='cn' v='Going on a Picnic' />
+		</k>
+		<k n='maple_04'>
+				<m c='kr' v='Above the Treetops' />
+				<m c='cn' v='Above the Treetops' />
+		</k>
+		<k n='maple_05'>
+				<m c='kr' v='꿈의 도시 레헬른' />
+				<m c='cn' v='Lacheln, The City of Dreams' />
+		</k>
+		<k n='maple_06'>
+				<m c='kr' v='꿈의 파편' />
+				<m c='cn' v='Dream Fragments' />
+		</k>
+		<k n='maple_07'>
+				<m c='kr' v='Bad Guys' />
+				<m c='cn' v='Bad Guys' />
+		</k>
+		<k n='maple_08'>
+				<m c='kr' v='Temple of Time' />
+				<m c='cn' v='Temple of Time' />
+		</k>
+		<k n='maple_09'>
+				<m c='kr' v='단풍잎 페스티벌' />
+				<m c='cn' v='Maple Festival' />
+		</k>
+		<k n='maple_10'>
+				<m c='kr' v='시작된 이야기' />
+				<m c='cn' v='Tales of Beginner' />
+		</k>
+		<k n='KartStory'>
+				<m c='kr' v='KartStory' />
+		</k>
+		<k n='facelift_01'>
+				<m c='kr' v='세컨드 드라이브' />
+				<m c='cn' v='繁荣山丘2' />
+		</k>
+		<k n='facelift_02'>
+				<m c='kr' v='싱그러운 풀내음' />
+				<m c='cn' v='清新草香' />
+		</k>
+		<k n='facelift_03'>
+				<m c='kr' v='코브라 출몰주의' />
+				<m c='cn' v='眼镜蛇出没' />
+		</k>
+		<k n='facelift_04'>
+				<m c='kr' v='KARTRIDER Face-lift' />
+				<m c='cn' v='KARTRIDER 突破' />
+		</k>
+		<k n='china_04'>
+				<m c='kr' v='계승되는 용의 전설' />
+				<m c='cn' v='龙之传说 传承' />
+		</k>
+		<k n='china_05'>
+				<m c='kr' v='용의 땅 전통 축제' />
+				<m c='cn' v='龙之圣地 传统庆典' />
+		</k>
+		<k n='china_06'>
+				<m c='kr' v='피어나는 전설' />
+				<m c='cn' v='追逐传说的龙之车手' />
+		</k>
+		<k n='Kart_18th_Anniversary'>
+				<m c='kr' v='카트라이더 18주년 기념' />
+				<m c='cn' v='18周年纪念' />
+		</k>
+		<k n='fengshen_01'>
+				<m c='kr' v='빛이 이끄는 전설' />
+				<m c='cn' v='被光引导的传奇' />
+		</k>
+		<k n='fengshen_02'>
+				<m c='kr' v='선계의 선율' />
+				<m c='cn' v='仙界旋律' />
+		</k>
+		<k n='fengshen_03'>
+				<m c='kr' v='선과 악의 저너머' />
+				<m c='cn' v='善与恶的彼端' />
+		</k>
+		<k n='fengshen_04'>
+				<m c='kr' v='여정의 끝에서' />
+				<m c='cn' v='旅程的尽头' />
+		</k>
+		<k n='fengshen_05'>
+				<m c='kr' v='마주한 어둠' />
+				<m c='cn' v='面对黑暗' />
+		</k>
+		<k n='fengshen_06'>
+				<m c='kr' v='선마결전' />
+				<m c='cn' v='仙魔决战' />
+		</k>
+		<k n='fengshen_07'>
+				<m c='kr' v='여우불의 장난' />
+				<m c='cn' v='狐火的诡计' />
+		</k>
+		<k n='fengshen_08'>
+				<m c='kr' v='봉신, 그 끝을 향해' />
+				<m c='cn' v='封神，冲向尽头' />
+		</k>
+		<k n='ice_04'>
+				<m c='kr' v='눈꽃의 소원' />
+				<m c='cn' v='雪花之祈愿' />
+		</k>
+		<k n='ice_05'>
+				<m c='kr' v='춤추는 하얀 선물' />
+				<m c='cn' v='舞动的白色礼物' />
+		</k>
+		<k n='mine_05'>
+				<m c='kr' v='석양 아래 황금의 땅' />
+				<m c='cn' v='夕阳下的黄金之地' />
+		</k>
+		<k n='mine_06'>
+				<m c='kr' v='광산 터널 추격' />
+				<m c='cn' v='矿山隧道追击' />
+		</k>
+		<k n='Kart_20th_Anniversary'>
+				<m c='kr' v='카트라이더 20주년 기념' />
+				<m c='cn' v='20周年纪念' />
+		</k>
+		<k n='tomb_04'>
+				<m c='kr' v='환상의 무도' />
+				<m c='cn' v='幻想舞会' />
+		</k>
+		<k n='tomb_05'>
+				<m c='kr' v='장난스런 왈츠' />
+				<m c='cn' v='俏皮华尔兹' />
+		</k>
+		<k n='tomb_06'>
+				<m c='kr' v='마녀의 레시피' />
+				<m c='cn' v='魔女的秘方' />
+		</k>
+</StringBag>

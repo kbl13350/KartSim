@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='142.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.073'
+           SteerConstraint='2.05'
+           DriftEscapeForce='700'
+           CornerDrawFactor='0.066'
+
+           BoosterBlur='true'
+           EngineSound='cotton7'
+           UseTransformBooster='true'
+
+           TransAccelFactor='1.68'
+           StartBoosterTimeSpeed='1200'
+           StartForwardAccelFactorSpeed='1.2'
+           TransformTime='700'
+           
+           BoosterWaveType='effect_zero'
+           BoosterType='cotton6'
+           BoosterType0='default'
+           BoosterType1='default'
+           BoosterType2='cotton6'
+           BoosterType3='cotton6'
+           BoosterType4='zero5'
+
+           Port0='mod1a1' 
+           Port1='mod1a2'
+
+           FirePort0='mod1b1'
+           FirePort1='mod1b2'
+           FirePort2='mod1b3'
+
+           TailLampSize='0.3'
+           TailLampColor='0 255 100 100'
+           BoostBlurColor='255 77 77 77'
+
+           EnvMap='true'
+
+		   
+           DescBalance= '37'
+           DescStability ='38'
+           DescEngineGrade='1.2'
+           DescCornering='2'
+           DescEnchantCap = '20'
+
+/>
+<!--중국 적토마 z7 상점 판매 스피드 카트 110303-->

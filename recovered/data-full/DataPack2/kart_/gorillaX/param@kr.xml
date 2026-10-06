@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152'
+	BackwardAccelForce='100'
+	DragFactor='-0.08'
+	SteerConstraint='2.3'
+	CornerDrawFactor='0.072'
+	DriftEscapeForce='1500'
+	
+	driftBoostMulAccelFactor='1.32'
+	chargeBoostBySpeed='300'
+	DriftLeanFactor='-0.01'
+	
+	TransAccelFactor='1.85'
+	BoosterAccelFactorItem='1.7'
+	StartForwardAccelFactorItem='1.65'
+	StartBoosterTimeItem='1450'
+
+	UseExtendedAfterBooster='true'
+	SpecialSlotCapacity='2'
+	
+	DriftMaxGauge='-300'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+
+	draftTick='2000'
+	draftMulAccelFactor='1.15'
+	driftBoostTick='500'
+	autoChargeLowSpeed='160'
+	TransformTime='700'
+	
+	TachometerType='XGenTacho'
+	TachometerName='dual'
+	driftBoostEffectType='driftBoost9'
+	EngineSound='god'
+	UseTransformBooster='true'
+	BoosterBlur='true'
+	BoosterWaveType='boost8'
+
+	dualBoosterTickMin='40'
+	dualBoosterTickMax='60'
+	dualMulAccelFactor='1.1'
+	dualTransLowSpeed='100'
+
+	BoosterType='9soon'
+	BoosterType0='10soon1'
+	BoosterType1='10soon1'
+	BoosterType2='10main1'
+	BoosterType3='10main1'
+	BoosterType4='10main'
+	BoosterType5='10main'
+
+	Port0='mod2a1' 
+	Port1='mod2a2'
+
+	FirePort0='mod2a3'
+	FirePort1='mod2a4'
+	FirePort2='mod2b1'
+	FirePort3='mod2b2'
+
+
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 232  39   6'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 140  56 239'/>
+</BodyParam>
+<!-- 고릴라 X / 한국 / 일반 / 아이템 / 가챠폰 / 20200312 릴리즈 -->

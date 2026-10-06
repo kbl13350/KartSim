@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <KnockOut track="gold_R01" laps="2" isFixedKart="true" fixedKartId="14">
+    <LevelContent level="0" ksv="Step16_2분25초">
+      <ShadowKart characterId="12" uniformId="31" kartId="4" characterName="波利斯 雅克布" colorId="4" dyeId="4"/>
+      <ShadowKart characterId="18" uniformId="32" kartId="3" characterName="波诺 雅克布" colorId="3" dyeId="3"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

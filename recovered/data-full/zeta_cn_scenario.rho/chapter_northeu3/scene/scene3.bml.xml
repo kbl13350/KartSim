@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu1"/>
+  <Char id="taki" pos="5 0" emotion="stop2"/>
+  <Msg name="奇奇" string="这里就是太空的宇宙停车场~ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Char id="bazzi" pos="12 0" emotion="stop2"/>
+  <Char id="dizini" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋，宝宝，黑妞" string="哇~~~~~ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="taki" pos="5 0" emotion="stop2"/>
+  <Msg name="奇奇" string="可以说是~公交车停车场？ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="normal"/>
+  <Char id="bazzi" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="7 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="喔喔~宇宙上也有这种啊！！ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="normal"/>
+  <Char id="bazzi" pos="12 0" emotion="stop1"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Msg name="宝宝" string="真~帅！！ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="taki" pos="12 0" emotion="stop2"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Char id="dizini" pos="1 0" emotion="stop3"/>
+  <Msg name="奇奇" string="这里比较混乱~小心点~|跟紧了~！ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="5 0" flip="true" emotion="stop6"/>
+  <Char id="dizini" pos="13 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="哇~那是飞碟吧~~ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="15 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" flip="true" emotion="stop7"/>
+  <Msg name="奇奇" string="是这边~|从这一直走~爸爸就在那里等着~ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="你们~看那里~！|真的很帅！！ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="伙伴们~！！|快看啊~~~|啊，都不见了… |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="难道~啊~|别开玩笑了！快出来~~~ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="难道迷路了… |"/>
+  <Enter/>
+</Scene>

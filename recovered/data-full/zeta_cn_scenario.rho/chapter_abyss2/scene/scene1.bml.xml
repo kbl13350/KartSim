@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss1"/>
+  <Char id="meoguri" pos="8 0" emotion="normal"/>
+  <Msg name="莫格瑞" string="我去去就来！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫曼" string="真的没问题吗？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop2"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="总不能放着这些叛徒不管吧！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop2"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫曼" string="可是您一个人的话应该没什么胜算……"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="啊？我说过是我自已一个人去吗？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="stop1"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫曼" string="但，也没什么可以上地面的人吧……"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="有个人可以！|不对，她应该不算人吧。"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="11 0" emotion="normal"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫曼" string="有人可以帮忙？"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="normal"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="告诉你也无妨，|阿比斯深处的某个地方有个魔女。"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="10 0" emotion="normal"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫曼" string="难道说传说中的深海魔女真的存在……"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="知道的太多反而危险！|就到此为止吧！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="11 0" flip="true" emotion="normal"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫曼" string="好的！还请多加注意安全！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <Char id="meoguri" pos="12 0" flip="true" emotion="normal"/>
+  <Char id="merman" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="知道了！我不在的这段时间阿比斯就交给你了！"/>
+  <Enter/>
+  <Char id="meoguri" remove="true"/>
+  <Char id="merman" remove="true"/>
+  <BackGround texture="abyss11"/>
+  <Char id="meoguri" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="莫格瑞" string="那个魔女住哪来着……|都记不清了。"/>
+  <Enter/>
+</Scene>

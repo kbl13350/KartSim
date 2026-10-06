@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate2"/>
+  <Char id="lodumani" pos="8 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="真狠.."/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="哎呦 真累.."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="如果失手~就糟了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop1"/>
+  <Msg name="海盗船长" string="既然约好了就给你们看！|但是，都不要打我宝物的主意！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <BackGround texture="pirate4"/>
+  <Char id="lodumani" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="海盗船长" string="这里就是伟大的海贼海盗船长的宝库！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="哇 宝石~黄金，应有尽有啊！|皮蛋，那个漂亮吧？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="嗯，真的很漂亮哦~|看看那个，真帅。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="听我指挥！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="ethi" pos="4 0" emotion="stop6"/>
+  <Msg name="葱头" string="皮蛋，黑妞，宝物之间好像没有星陨之石啊？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="对啊~|海盗船长没有石头上镶有大宝石的东西吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop1"/>
+  <Msg name="海盗船长" string="石头上镶有宝石..|啊~是说镶有绿宝石的石板啊！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="lodumani" pos="11 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="有吗？？？？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Msg name="海盗船长" string="那个是在流星上发现的~|是让嘟嘟去偷.."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="lodumani" pos="11 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="不需要说明！有吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="lodumani" pos="8 0" emotion="stop5"/>
+  <Msg name="海盗船长" string="哎！我还对你们期待什么啊..|就在那边石板上！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="葱头" string="没有啊？|咦？这是什么？是骷髅标志卡片"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="额…|我的宝物去哪里了！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="皮蛋" string="本来有的现在消失了~|那就是谁偷走了~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="应该..还是格雷格？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="lodumani" pos="11 0" emotion="stop5"/>
+  <Char id="dizini" pos="1 0" emotion="stop3"/>
+  <Msg name="海盗船长" string="竟敢偷我的宝物|吉米抓住那家伙拿回我的宝物！"/>
+  <Enter/>
+  <Char id="lodumani" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="这里是没有！那去卡帕那里看看吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Msg name="葱头" string="卡帕说给我们调查传说，应该会有线索！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="mobi" pos="8 0" emotion="stop5"/>
+  <Msg name="吉米" string="真头疼..|皮蛋~船长下命令了，我也要跟你们去~"/>
+  <Enter/>
+</Scene>

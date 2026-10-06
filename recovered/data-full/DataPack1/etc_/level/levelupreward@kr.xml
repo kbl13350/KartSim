@@ -1,0 +1,546 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- 아이템 지급은 <item
+		루찌 지급은 <lucci
+
+	아이디 생성시 레벨 1부터 시작으로 가정
+
+	stock은 아이템이 1개만 추가되어 있는 stock만 사용 가능
+
+	아이템 추가 순서
+	1 : Item
+	2 : Stock
+	3 : Lucci
+-->
+<Levels>
+	<Level curLevel='0'> <!-- 신규 라이더 선물 -->
+		<stock stockId='24211' />	<!-- 황금 달토끼 X / 황금 달토끼 X -->
+		<lucci rewardLucci='1000'/>	<!-- 루찌 1000  -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='1'			glove='노랑5'>
+		<stock stockId='28292' />	<!-- 카트라이더 풍선 / 카트라이더 풍선(365 개) -->
+		<stock stockId='16064' />	<!-- 아쿠아 블루 페인트 / 아쿠아 블루 페인트 -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='2'			glove='노랑4'>
+		<stock stockId='29142' />	<!-- 라이더스 전자파 밴드 / 라이더스 전자파밴드(365 개) -->
+		<stock stockId='16563' />	<!-- 배찌 필살기 / 배찌 필살기(20 개) -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='3'			glove='노랑3'>
+		<stock stockId='28520' />	<!-- 하얀색 염색약 / 하얀색 염색약 -->
+		<lucci rewardLucci='1000'/>	<!-- 루찌 1000  -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='4'			glove='노랑2'>
+		<stock stockId='21020' />	<!-- 빨강 네임펜 / 빨강 네임펜 -->
+		<lucci rewardLucci='1000'/>	<!-- 루찌 1000  -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='5'			glove='노랑1'>
+		<stock stockId='12613' />	<!-- 배찌 / 배찌(100 일) -->
+		<stock stockId='10321' />	<!-- 코인 / 10 코인 -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='6'			glove='초록5'>
+		<stock stockId='23135' />	<!-- 폭스 X / 폭스 X -->
+		<lucci rewardLucci='2000'/>	<!-- 루찌 2000  -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='7'			glove='초록4'>
+		<stock stockId='20757' />	<!-- 플라잉 너굴 / 플라잉 너굴 -->
+		<lucci rewardLucci='2000'/>	<!-- 루찌 2000  -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='8'			glove='초록3'>
+		<stock stockId='567' />	<!-- 다람쥐 번호판 / 다람쥐 번호판 -->
+		<stock stockId='10346' />	<!-- 디지니 필살기 / 디지니 필살기(20 개) -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='9'			glove='초록2'>
+		<stock stockId='23455' />	<!-- 오리 핸드봉 / 오리 핸드봉 -->
+		<lucci rewardLucci='2000'/>	<!-- 루찌 2000  -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='10'			glove='초록1'>
+		<stock stockId='17685' />	<!-- 빨강 불꽃 오라 / 빨강 불꽃 오라 -->
+		<lucci rewardLucci='2000'/>	<!-- 루찌 2000  -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='11'			glove='파랑5'>
+		<stock stockId='10205' />	<!-- 실버 상자 / 실버 상자 (1개) -->
+		<lucci rewardLucci='3000'/>	<!-- 루찌 3000  -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='12'			glove='파랑4'>
+		<stock stockId='10205' />	<!-- 실버 상자 / 실버 상자 (1개) -->
+		<lucci rewardLucci='3000'/>	<!-- 루찌 3000  -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='13'			glove='파랑3'>
+		<stock stockId='10205' />	<!-- 실버 상자 / 실버 상자 (1개) -->
+		<lucci rewardLucci='3000'/>	<!-- 루찌 3000  -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='14'			glove='파랑2'>
+		<stock stockId='10205' />	<!-- 실버 상자 / 실버 상자 (1개) -->
+		<lucci rewardLucci='3000'/>	<!-- 루찌 3000  -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='15'			glove='파랑1'>
+		<stock stockId='10206' />	<!-- 골드 상자 / 골드 상자 (1개) -->
+		<lucci rewardLucci='3000'/>	<!-- 루찌 3000  -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='16'			glove='빨강5'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<stock stockId='10806' />	<!-- 코인 / 15 코인 -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='17'			glove='빨강4'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<stock stockId='10205' />	<!-- 실버 상자 / 실버 상자 (1개) -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='18'			glove='빨강3'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<stock stockId='10205' />	<!-- 실버 상자 / 실버 상자 (1개) -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='19'			glove='빨강2'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<stock stockId='10205' />	<!-- 실버 상자 / 실버 상자 (1개) -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='20'			glove='빨강1'>
+		<stock stockId='19013' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(1개) -->
+		<stock stockId='10205' />	<!-- 실버 상자 / 실버 상자 (1개) -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='21'			glove='검정5'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<stock stockId='10364' />	<!-- 코인 / 20 코인 -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='22'			glove='검정4'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<lucci rewardLucci='4000'/>	<!-- 루찌 4000  -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='23'			glove='검정3'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<lucci rewardLucci='4000'/>	<!-- 루찌 4000  -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='24'			glove='검정2'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<lucci rewardLucci='4000'/>	<!-- 루찌 4000  -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='25'			glove='검정1'>
+		<stock stockId='19013' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(1개) -->
+		<stock stockId='18998' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(2개) -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='26'			glove='무지개5'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<stock stockId='15143' />	<!-- 코인 / 25 코인 -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='27'			glove='무지개4'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<stock stockId='10394' />	<!-- 루찌 50% 카드 / 루찌 50% 카드(3 일) -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='28'			glove='무지개3'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<stock stockId='4684' />	<!-- RP 50% 카드 / RP 50% 카드(3 일) -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='29'			glove='무지개2'>
+		<stock stockId='18997' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(1개) -->
+		<stock stockId='10394' />	<!-- 루찌 50% 카드 / 루찌 50% 카드(3 일) -->
+		<stock stockId='4899' />	<!-- 아이템 체인저 / 아이템 체인저(30 개) -->
+	</Level>
+	<Level curLevel='30'			glove='무지개1'>
+		<stock stockId='19014' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(2개) -->
+		<stock stockId='4684' />	<!-- RP 50% 카드 / RP 50% 카드(3 일) -->
+		<stock stockId='3228' />	<!-- 슬롯 체인저 / 슬롯 체인저(30 개) -->
+	</Level>
+	<Level curLevel='31'			glove='스타노랑5'>
+		<stock stockId='18998' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(2개) -->
+		<stock stockId='14097' />	<!-- 코인 / 30 코인 -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='32'			glove='스타노랑4'>
+		<stock stockId='18998' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(2개) -->
+		<lucci rewardLucci='5000'/>	<!-- 루찌 5000  -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='33'			glove='스타노랑3'>
+		<stock stockId='18998' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(2개) -->
+		<lucci rewardLucci='5000'/>	<!-- 루찌 5000  -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='34'			glove='스타노랑2'>
+		<stock stockId='18998' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(2개) -->
+		<lucci rewardLucci='5000'/>	<!-- 루찌 5000  -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='35'			glove='스타노랑1'>
+		<stock stockId='19015' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(3개) -->
+		<stock stockId='18999' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(3개) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='36'			glove='스타초록5'>
+		<stock stockId='18998' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(2개) -->
+		<stock stockId='14097' />	<!-- 코인 / 30 코인 -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='37'			glove='스타초록4'>
+		<stock stockId='18998' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(2개) -->
+		<stock stockId='1640' />	<!-- RP 100% 카드 / RP 100% 카드(3일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='38'			glove='스타초록3'>
+		<stock stockId='18998' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(2개) -->
+		<stock stockId='1642' />	<!-- 루찌 100% 카드 / 루찌 100% 카드(3일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='39'			glove='스타초록2'>
+		<stock stockId='18998' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(2개) -->
+		<stock stockId='1640' />	<!-- RP 100% 카드 / RP 100% 카드(3일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='40'			glove='스타초록1'>
+		<stock stockId='19015' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(3개) -->
+		<stock stockId='1642' />	<!-- 루찌 100% 카드 / 루찌 100% 카드(3일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='41'			glove='스타파랑5'>
+		<stock stockId='18999' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(3개) -->
+		<stock stockId='14097' />	<!-- 코인 / 30 코인 -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='42'			glove='스타파랑4'>
+		<stock stockId='18999' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(3개) -->
+		<lucci rewardLucci='6000'/>	<!-- 루찌 6000  -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='43'			glove='스타파랑3'>
+		<stock stockId='18999' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(3개) -->
+		<lucci rewardLucci='6000'/>	<!-- 루찌 6000  -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='44'			glove='스타파랑2'>
+		<stock stockId='18999' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(3개) -->
+		<lucci rewardLucci='6000'/>	<!-- 루찌 6000  -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='45'			glove='스타파랑1'>
+		<stock stockId='19016' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(4개) -->
+		<stock stockId='19000' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(4개) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='46'			glove='스타빨강5'>
+		<stock stockId='19000' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(4개) -->
+		<stock stockId='14097' />	<!-- 코인 / 30 코인 -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='47'			glove='스타빨강4'>
+		<stock stockId='19000' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(4개) -->
+		<stock stockId='1641' />	<!-- RP 100% 카드 / RP 100% 카드(7일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='48'			glove='스타빨강3'>
+		<stock stockId='19000' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(4개) -->
+		<stock stockId='1643' />	<!-- 루찌 100% 카드 / 루찌 100% 카드(7일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='49'			glove='스타빨강2'>
+		<stock stockId='19000' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(4개) -->
+		<stock stockId='1641' />	<!-- RP 100% 카드 / RP 100% 카드(7일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='50'			glove='스타빨강1'>
+		<stock stockId='19017' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(5개) -->
+		<stock stockId='1643' />	<!-- 루찌 100% 카드 / 루찌 100% 카드(7일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='51'			glove='스타검정5'>
+		<stock stockId='19001' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(5개) -->
+		<stock stockId='14097' />	<!-- 코인 / 30 코인 -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='52'			glove='스타검정4'>
+		<stock stockId='19001' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(5개) -->
+		<lucci rewardLucci='7000'/>	<!-- 루찌 7000  -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='53'			glove='스타검정3'>
+		<stock stockId='19001' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(5개) -->
+		<lucci rewardLucci='7000'/>	<!-- 루찌 7000  -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='54'			glove='스타검정2'>
+		<stock stockId='19001' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(5개) -->
+		<lucci rewardLucci='7000'/>	<!-- 루찌 7000  -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='55'			glove='스타검정1'>
+		<stock stockId='19018' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(6개) -->
+		<stock stockId='29144' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(6 개) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='56'			glove='스타무지개5'>
+		<stock stockId='29144' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(6 개) -->
+		<stock stockId='14097' />	<!-- 코인 / 30 코인 -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='57'			glove='스타무지개4'>
+		<stock stockId='29144' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(6 개) -->
+		<stock stockId='1641' />	<!-- RP 100% 카드 / RP 100% 카드(7일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='58'			glove='스타무지개3'>
+		<stock stockId='29144' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(6 개) -->
+		<stock stockId='1643' />	<!-- 루찌 100% 카드 / 루찌 100% 카드(7일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='59'			glove='스타무지개2'>
+		<stock stockId='29144' />	<!-- [보급] 레벨업 선물 / [보급] 레벨업 선물(6 개) -->
+		<stock stockId='1641' />	<!-- RP 100% 카드 / RP 100% 카드(7일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='60'			glove='스타무지개1'>
+		<stock stockId='19019' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(7개) -->
+		<stock stockId='1643' />	<!-- 루찌 100% 카드 / 루찌 100% 카드(7일) -->
+		<stock stockId='15563' />	<!-- 실버 상자 / 실버 상자(3 개) -->
+	</Level>
+	<Level curLevel='61'			glove='노랑별5'>
+		<stock stockId='19019' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(7개) -->
+		<stock stockId='10333' />	<!-- 코인 / 50 코인 -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='62'			glove='노랑별4'>
+		<stock stockId='19019' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(7개) -->
+		<stock stockId='28707' />	<!-- V1 파츠 조각 / V1 파츠 조각(10 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='63'			glove='노랑별3'>
+		<stock stockId='19019' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(7개) -->
+		<stock stockId='28707' />	<!-- V1 파츠 조각 / V1 파츠 조각(10 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='64'			glove='노랑별2'>
+		<stock stockId='19019' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(7개) -->
+		<stock stockId='28707' />	<!-- V1 파츠 조각 / V1 파츠 조각(10 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='65'			glove='노랑별1'>
+		<stock stockId='29145' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(8 개) -->
+		<stock stockId='28707' />	<!-- V1 파츠 조각 / V1 파츠 조각(10 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='66'			glove='초록별5'>
+		<stock stockId='29145' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(8 개) -->
+		<stock stockId='10333' />	<!-- 코인 / 50 코인 -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='67'			glove='초록별4'>
+		<stock stockId='29145' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(8 개) -->
+		<stock stockId='26887' />	<!-- 루찌 주머니 / 루찌 주머니(1 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='68'			glove='초록별3'>
+		<stock stockId='29145' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(8 개) -->
+		<stock stockId='28707' />	<!-- V1 파츠 조각 / V1 파츠 조각(10 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='69'			glove='초록별2'>
+		<stock stockId='29145' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(8 개) -->
+		<stock stockId='28707' />	<!-- V1 파츠 조각 / V1 파츠 조각(10 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='70'			glove='초록별1'>
+		<stock stockId='29146' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(9 개) -->
+		<stock stockId='28707' />	<!-- V1 파츠 조각 / V1 파츠 조각(10 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='71'			glove='파랑별5'>
+		<stock stockId='29146' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(9 개) -->
+		<stock stockId='10333' />	<!-- 코인 / 50 코인 -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='72'			glove='파랑별4'>
+		<stock stockId='29146' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(9 개) -->
+		<stock stockId='28660' />	<!-- V1 파츠 조각 / V1 파츠 조각(20 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='73'			glove='파랑별3'>
+		<stock stockId='29146' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(9 개) -->
+		<stock stockId='28660' />	<!-- V1 파츠 조각 / V1 파츠 조각(20 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='74'			glove='파랑별2'>
+		<stock stockId='29146' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(9 개) -->
+		<stock stockId='28660' />	<!-- V1 파츠 조각 / V1 파츠 조각(20 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='75'			glove='파랑별1'>
+		<stock stockId='19020' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(10개) -->
+		<stock stockId='28660' />	<!-- V1 파츠 조각 / V1 파츠 조각(20 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='76'			glove='빨강별5'>
+		<stock stockId='19020' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(10개) -->
+		<stock stockId='10333' />	<!-- 코인 / 50 코인 -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='77'			glove='빨강별4'>
+		<stock stockId='19020' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(10개) -->
+		<stock stockId='26887' />	<!-- 루찌 주머니 / 루찌 주머니(1 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='78'			glove='빨강별3'>
+		<stock stockId='19020' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(10개) -->
+		<stock stockId='28660' />	<!-- V1 파츠 조각 / V1 파츠 조각(20 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='79'			glove='빨강별2'>
+		<stock stockId='19020' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(10개) -->
+		<stock stockId='28660' />	<!-- V1 파츠 조각 / V1 파츠 조각(20 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='80'			glove='빨강별1'>
+		<stock stockId='29147' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(11 개) -->
+		<stock stockId='27280' />	<!-- 유니크 파츠 X / 유니크 파츠 X -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='81'			glove='검정별5'>
+		<stock stockId='29147' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(11 개) -->
+		<stock stockId='10333' />	<!-- 코인 / 50 코인 -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='82'			glove='검정별4'>
+		<stock stockId='29147' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(11 개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='83'			glove='검정별3'>
+		<stock stockId='29147' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(11 개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='84'			glove='검정별2'>
+		<stock stockId='29147' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(11 개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='85'			glove='검정별1'>
+		<stock stockId='19021' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(12개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='86'			glove='무지개별5'>
+		<stock stockId='19021' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(12개) -->
+		<stock stockId='10333' />	<!-- 코인 / 50 코인 -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='87'			glove='무지개별4'>
+		<stock stockId='19021' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(12개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='88'			glove='무지개별3'>
+		<stock stockId='19021' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(12개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='89'			glove='무지개별2'>
+		<stock stockId='19021' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(12개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='90'			glove='무지개별1'>
+		<stock stockId='19022' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(13개) -->
+		<stock stockId='27280' />	<!-- 유니크 파츠 X / 유니크 파츠 X -->
+		<stock stockId='14303' />	<!-- 골드 상자 / 골드 상자(3 개) -->
+	</Level>
+	<Level curLevel='91'			glove='노랑동메달'>
+		<stock stockId='19022' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(13개) -->
+		<stock stockId='10343' />	<!-- 코인 / 100 코인 -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+	</Level>
+	<Level curLevel='92'			glove='초록동메달'>
+		<stock stockId='19022' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(13개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+	</Level>
+	<Level curLevel='93'			glove='파랑동메달'>
+		<stock stockId='19022' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(13개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+	</Level>
+	<Level curLevel='94'			glove='빨강동메달'>
+		<stock stockId='19022' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(13개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+	</Level>
+	<Level curLevel='95'			glove='검정동메달'>
+		<stock stockId='19022' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(13개) -->
+		<stock stockId='28610' />	<!-- V1 파츠 조각 / V1 파츠 조각(30 개) -->
+	</Level>
+	<Level curLevel='96'			glove='무지개동메달'>
+		<stock stockId='19023' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(14개) -->
+		<stock stockId='28611' />	<!-- V1 파츠 조각 / V1 파츠 조각(40 개) -->
+	</Level>
+	<Level curLevel='97'			glove='노랑은메달'>
+		<stock stockId='19023' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(14개) -->
+		<stock stockId='14099' />	<!-- 코인 / 150 코인 -->
+		<stock stockId='28611' />	<!-- V1 파츠 조각 / V1 파츠 조각(40 개) -->
+	</Level>
+	<Level curLevel='98'			glove='초록은메달'>
+		<stock stockId='19023' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(14개) -->
+		<stock stockId='28611' />	<!-- V1 파츠 조각 / V1 파츠 조각(40 개) -->
+	</Level>
+	<Level curLevel='99'			glove='파랑은메달'>
+		<stock stockId='19023' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(14개) -->
+		<stock stockId='28611' />	<!-- V1 파츠 조각 / V1 파츠 조각(40 개) -->
+	</Level>
+	<Level curLevel='100'			glove='빨강은메달'>
+		<stock stockId='19023' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(14개) -->
+		<stock stockId='28611' />	<!-- V1 파츠 조각 / V1 파츠 조각(40 개) -->
+	</Level>
+	<Level curLevel='101'			glove='검정은메달'>
+		<stock stockId='19023' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(14개) -->
+		<stock stockId='28611' />	<!-- V1 파츠 조각 / V1 파츠 조각(40 개) -->
+	</Level>
+	<Level curLevel='102'			glove='무지개은메달'>
+		<stock stockId='19024' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(15개) -->
+		<stock stockId='28482' />	<!-- V1 파츠 조각 / V1 파츠 조각(50 개) -->
+	</Level>
+	<Level curLevel='103'			glove='노랑금메달'>
+		<stock stockId='19024' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(15개) -->
+		<stock stockId='14099' />	<!-- 코인 / 150 코인 -->
+		<stock stockId='28482' />	<!-- V1 파츠 조각 / V1 파츠 조각(50 개) -->
+	</Level>
+	<Level curLevel='104'			glove='초록금메달'>
+		<stock stockId='19024' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(15개) -->
+		<stock stockId='28482' />	<!-- V1 파츠 조각 / V1 파츠 조각(50 개) -->
+	</Level>
+	<Level curLevel='105'			glove='파랑금메달'>
+		<stock stockId='19024' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(15개) -->
+		<stock stockId='28482' />	<!-- V1 파츠 조각 / V1 파츠 조각(50 개) -->
+	</Level>
+	<Level curLevel='106'			glove='빨강금메달'>
+		<stock stockId='19024' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(15개) -->
+		<stock stockId='28482' />	<!-- V1 파츠 조각 / V1 파츠 조각(50 개) -->
+	</Level>
+	<Level curLevel='107'			glove='검정금메달'>
+		<stock stockId='19024' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(15개) -->
+		<stock stockId='28482' />	<!-- V1 파츠 조각 / V1 파츠 조각(50 개) -->
+	</Level>
+	<Level curLevel='108'			glove='무지개금메달'>
+		<stock stockId='19024' />	<!-- [특급] 레벨업 선물 / [특급] 레벨업 선물(15개) -->
+		<stock stockId='14271' />	<!-- 코인 / 300 코인 -->
+		<stock stockId='28482' />	<!-- V1 파츠 조각 / V1 파츠 조각(50 개) -->
+	</Level>
+</Levels>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="noHaveBaseFlyingPet">
+    <m c="kr" v="성장시킬 플라잉펫이 없습니다. |플라잉펫을 구입하면 성장을 시킬 수 있습니다."/>
+    <m c="tw" v="目前我的車庫內沒有可培育的飛行寵物！|可至商城購買新的飛行寵物。"/>
+    <m c="cn" v="没有可以成长的飞行宠物。|兑换飞行宠物就可以让他成长哦。"/>
+    <m c="id" v="Flying pet yang bisa ditumbuhkan tidak ada. | Belilah Flying pet untuk penumbuhan."/>
+  </k>
+  <k n="noHaveUpgradeFlyingPet">
+    <m c="kr" v="기능교체 할 플라잉펫이 없습니다. |기능교체는 성장한 플라잉펫에게만 사용할 수 있는 기능입니다."/>
+    <m c="tw" v="目前沒有可替換功能的飛行寵物!|請確認我的車庫內，是否還有已成長的飛行寵物。"/>
+    <m c="cn" v="没有可以替换功能的飞行宠物。|替换功能只可用在成长型飞行宠物中。"/>
+    <m c="id" v="Tidak ada Flying pet yang bisa melakukan pergantian skill.|Pergantian skill hanya dapat dilakukan oleh Flying pet yang sudah dewasa."/>
+  </k>
+  <k n="notSelectGrowTgt">
+    <m c="kr" v="성장시킬 플라잉펫을 선택 후, [성장] 을 클릭 해 주세요."/>
+    <m c="cn" v="选择需要成长的飞行宠物后，点击[成长]。"/>
+    <m c="tw" v="請選擇想要培育的飛行寵物後，點選[培育]按鈕"/>
+    <m c="id" v="&quot;Sesudah memilih Flying pet yang akan ditumbuhkan, klik tombol [Tumbuhkan] &quot;"/>
+  </k>
+  <k n="notSelectSkillChangeTgt">
+    <m c="kr" v="기능교체 할 플라잉펫을 선택 후, [기능교체] 를 클릭 해 주세요."/>
+    <m c="cn" v="选择需要替换功能的飞行宠物后，点击[替换功能]。"/>
+    <m c="tw" v="請選擇想要替換功能的飛行寵物後，點選[功能交換]按鈕"/>
+    <m c="id" v="&quot;Sesudah memilih Flying pet yang akan diganti skillnya, klik tombol [Ganti skill] &quot;"/>
+  </k>
+  <k n="grow">
+    <m c="kr" v="성장"/>
+    <m c="cn" v="成长"/>
+    <m c="tw" v="培育"/>
+    <m c="id" v="Tumbuh"/>
+  </k>
+  <k n="skillChange">
+    <m c="kr" v="기능교체"/>
+    <m c="cn" v="替换功能"/>
+    <m c="tw" v="功能交換"/>
+    <m c="id" v="Ganti skill"/>
+  </k>
+  <k n="growTitle">
+    <m c="kr" v="성장시킬 플라잉펫을 선택 해 주세요"/>
+    <m c="cn" v="请选择需要成长的飞行宠物"/>
+    <m c="tw" v="請選擇想培育的飛行寵物。"/>
+    <m c="id" v="Pilihlah Flying pet yang akan ditumbuhkan"/>
+  </k>
+  <k n="growBody">
+    <m c="kr" v="플라잉펫을 성장시키면|내 아이템에서 선택한 플라잉펫은 사라지고,|각 확률에 따라 [성장한 플라잉펫]을 볼 수 있습니다."/>
+    <m c="cn" v="飞行宠物成长时 我的道具中所选择的飞行宠物将会消失|但可以得到更加强大的“成长的飞行宠物”"/>
+    <m c="tw" v="飛行寵物培育成功，原本選擇的飛行寵物將會消失！|轉而獲得更強化的&quot;已成長的飛行寵物&quot;。"/>
+  </k>
+  <k n="growResultTitle">
+    <m c="kr" v="플라잉 펫이 성장했습니다."/>
+    <m c="cn" v="飞行宠物已成长"/>
+    <m c="tw" v="飛行寵物培育成功了！"/>
+    <m c="id" v="Flying pet telah tumbuh besar."/>
+  </k>
+  <k n="growResultBody">
+    <m c="kr" v="‘플라잉펫 날개’ 아이템을 사용하면|각 확률에 따라 성장한 플라잉 펫의 기능을 변경할 수 있습니다.|( 모든 타입의 성장한 플라잉펫을 가지면 더 이상 교체할 수 없어요. )"/>
+    <m c="cn" v="使用“功能手杖”时，|可变更成长的飞行宠物功能哦。"/>
+    <m c="tw" v="使用‘飛行寵物翅膀’道具後，|已成長的飛行寵物功能可被替換。|(已擁有該類型已成長的飛行寵物，就不可再被替換)"/>
+    <m c="id" v="Skill Flying pet bisa diganti jika menggunakan|Item &apos;Flying pet Wing.|(Tidak perlu mengganti lagi jika sudah memiliki| semua Flying pet dewasa.)"/>
+  </k>
+  <k n="skillChangeTitle">
+    <m c="kr" v="기능교체 할 플라잉펫을 선택 해 주세요."/>
+    <m c="cn" v="请选择飞行宠物"/>
+    <m c="tw" v="請選擇要交替換功能的飛行寵物。"/>
+    <m c="id" v="Pilihlah Flying pet yang akan diganti skillnya."/>
+  </k>
+  <k n="skillChangeBody">
+    <m c="kr" v="기능교체를 하면, 선택한 성장한 플라잉펫은 사라지고,|각 확률에 따라 새롭게 [성장]한 플라잉펫을 만날 수 있습니다."/>
+    <m c="cn" v="可替换飞行宠物功能|一定概率与现有功能相同或有一定提升"/>
+    <m c="tw" v="替換功能成功的話，原本選擇的飛行寵物將會消失！|轉而獲得擁有新功能的&quot;已成長的飛行寵物&quot;。"/>
+    <m c="id" v="&quot;Jika melakukan penggantian skill,| Flying pet yang dipilih akan hilang,|dan anda akan menemukan &apos;|Flying pet dewasa&apos; yang jauh lebih kuat.&quot;"/>
+  </k>
+  <k n="skillChangeResultTitle">
+    <m c="kr" v="성장한 플라잉펫이 새롭게 태어났습니다."/>
+    <m c="cn" v="飞行宠物脱胎换骨喽。"/>
+    <m c="tw" v="已成長的飛行寵物重新誕生了！"/>
+    <m c="id" v="Flying pet dewasa telah lahir kembali."/>
+  </k>
+  <k n="skillChangeResultBody">
+    <m c="kr" v="‘플라잉펫 날개’ 아이템을 사용하면|각 확률에 따라 성장한 플라잉 펫의 기능을 변경할 수 있습니다.|( 모든 타입의 성장한 플라잉펫을 가지면 더 이상 교체할 수 없어요. )"/>
+    <m c="cn" v="使用“功能手杖”时，|可变更成长的飞行宠物功能哦。"/>
+    <m c="tw" v="使用‘飛行寵物翅膀’道具後，|已成長的飛行寵物功能可被替換。|(已擁有該類型已成長的飛行寵物，就不可再被替換)"/>
+    <m c="id" v="Skill Flying pet dewasa bisa diganti jika menggunakan|Item &apos;Flying pet Wing.|(Tidak perlu mengganti lagi jika sudah memiliki| semua Flying pet dewasa.)"/>
+  </k>
+  <k n="petName">
+    <m c="kr" v="이름 : "/>
+    <m c="cn" v="名称 : "/>
+    <m c="tw" v="名稱 : "/>
+    <m c="id" v="Nama :"/>
+  </k>
+  <k n="petEffect">
+    <m c="kr" v="기능 : "/>
+    <m c="cn" v="功能"/>
+    <m c="tw" v="功能 : "/>
+    <m c="id" v="Skill :"/>
+  </k>
+  <k n="growQuestion">
+    <m c="kr" v="선택하신 플라잉펫을 성장시키겠습니까?"/>
+    <m c="cn" v="确定要成长所选的飞行宠物吗？"/>
+    <m c="tw" v="確認將選擇的飛行寵物進行成長嗎？"/>
+  </k>
+  <k n="skillChangeQuestion">
+    <m c="kr" v="선택하신 플라잉펫의 기능을 교체하시겠습니까?"/>
+    <m c="cn" v="确定要替换飞行宠物的功能吗？"/>
+    <m c="tw" v="確認將選擇的飛行寵物功能作替換嗎？"/>
+  </k>
+  <k n="growQuestionTitle">
+    <m c="kr" v="플라잉펫 성장"/>
+    <m c="cn" v="飞行宠物成长"/>
+    <m c="tw" v="飛行寵物成長"/>
+  </k>
+  <k n="skillChangeQuestionTitle">
+    <m c="kr" v="플라잉펫 기능교체"/>
+    <m c="cn" v="替换飞行宠物的功能"/>
+    <m c="tw" v="飛行寵物功能替換"/>
+  </k>
+</StringBag>

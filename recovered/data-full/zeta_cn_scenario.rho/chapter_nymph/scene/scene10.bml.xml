@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="nymph3"/>
+  <Char id="bazzi" pos="6 0" emotion="stop5"/>
+  <Msg name="宝宝" string="没抓到海盗啊…"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="9 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="现在该怎么办才好呢，皮蛋？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="500"/>
+  <Char id="wisp" pos="7 0" emotion="stop3"/>
+  <Msg name="幻幻" string="你们!!居然敢绑架美美!!你们难道不怕美美精灵之神的愤怒吗!!"/>
+  <Enter/>
+  <Char id="wisp" remove="true"/>
+  <Char id="shylph" pos="7 0" emotion="stop3"/>
+  <Msg name="琳琳" string="赶快教训他们…"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="等..等等!请听我们说!!"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="不..不是我们啊.冤枉啊"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="shylph" pos="7 0" emotion="stop4"/>
+  <Msg name="琳琳" string="那就进精灵之神的洞穴看看吧"/>
+  <Enter/>
+  <Char id="shylph" remove="true"/>
+  <Char id="wisp" pos="8 0" emotion="stop1"/>
+  <Msg name="幻幻" string="如果在说谎,你们不可能平安出来的…"/>
+  <Enter/>
+  <Char id="wisp" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="好!那你看清楚"/>
+  <Enter/>
+</Scene>

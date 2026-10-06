@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="complete">
+    <m c="kr" v="미션완료! 잊지 말고 내일 업그레이드된 선물을 받으세요!"/>
+    <m c="cn" v="任务完成！明天别忘了领取升级后的奖励哦！"/>
+    <m c="tw" v="任務完成!別忘了獲得明日已升級的獎勵吧!"/>
+  </k>
+  <k n="getAttendReward">
+    <m c="kr" v="아이템 받기"/>
+    <m c="cn" v="领取道具"/>
+    <m c="tw" v="領取獎勵"/>
+  </k>
+  <k n="attendCount">
+    <m c="kr" v="%d 회 출석"/>
+    <m c="cn" v="第%d次签到"/>
+    <m c="tw" v="%d次出席"/>
+  </k>
+  <k n="attendItem">
+    <m c="kr" v="출석체크 아이템"/>
+    <m c="cn" v="签到奖励"/>
+    <m c="tw" v="出席道具"/>
+  </k>
+  <k n="missionSuccessItem">
+    <m c="kr" v="미션완료 아이템"/>
+    <m c="cn" v="任务完成奖励"/>
+    <m c="tw" v="任務完成道具"/>
+  </k>
+  <k n="reserveRewardItem">
+    <m c="kr" v="지급 예정 아이템"/>
+    <m c="cn" v="等待领取奖励"/>
+    <m c="tw" v="預計贈送的道具"/>
+  </k>
+  <k n="missionSuccess">
+    <m c="kr" v="미션완료"/>
+    <m c="cn" v="任务完成"/>
+    <m c="tw" v="任務成功"/>
+  </k>
+  <k n="missionAttendTip1">
+    <m c="kr" v="출석 체크 보상"/>
+    <m c="cn" v="签到奖励"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="missionAttendTipDesc1">
+    <m c="kr" v="보상 받기를 클릭하여 오늘 출석 보상을 획득하세요."/>
+    <m c="cn" v="点击领取道具按钮来获得今日签到奖励。"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="missionAttendTip2">
+    <m c="kr" v="미션 완료 보상"/>
+    <m c="cn" v="任务完成奖励"/>
+    <m c="tw" v="出席小撇步二!!"/>
+  </k>
+  <k n="missionAttendTipDesc2">
+    <m c="kr" v="이번 미션을 완료하면 다음 출석 시 미션 완료 보상을 추가로 받을 수 있습니다."/>
+    <m c="cn" v="完成本次任务即可额外领取|下一次的任务完成奖励。"/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="missionAttendEnd">
+    <m c="kr" v="더 이상 출석할 수 없습니다."/>
+    <m c="cn" v="签到结束，无法再进行签到。"/>
+    <m c="tw" v="無法再進行出席."/>
+  </k>
+  <k n="missionAttendTip">
+    <m c="kr" v="미션 출석 팁"/>
+    <m c="cn" v="签到小贴士"/>
+    <m c="tw" v="任務出席小撇步"/>
+  </k>
+  <k n="getMissionAttendRewardTitle">
+    <m c="kr" v="오늘의 출석 선물!"/>
+    <m c="cn" v="今日的签到奖励！"/>
+    <m c="tw" v="今日的出席獎勵!"/>
+  </k>
+  <k n="getMissionAttendRewardMessage">
+    <m c="kr" v="|오늘의 출석 선물!|%s 아이템을 획득하였습니다!||미션을 수행하시고 내일의 선물을|업그레이드해 보세요!"/>
+    <m c="cn" v="|今日的签到奖励！|恭喜您获得了%s ！||快来完成任务，升级明天的签到奖励吧！"/>
+    <m c="tw" v="|今日的出席獎勵!|已獲得%s道具!||執行任務後,升級明日的獎勵吧!"/>
+  </k>
+  <k n="firstDayNotice">
+    <m c="kr" v="첫번째 날은 업그레이드 미션이 없습니다."/>
+    <m c="cn" v="签到第一天没有升级任务。"/>
+    <m c="tw" v="首日沒有升級任務."/>
+  </k>
+  <k n="noQuestNotice">
+    <m c="kr" v="업그레이드 미션이 없는 날 입니다."/>
+    <m c="cn" v=""/>
+    <m c="tw" v=""/>
+  </k>
+  <k n="lastDayQuestNotice">
+    <m c="kr" v="출석 마지막 날에는 업그레이드 미션을 수행할 수 없습니다."/>
+    <m c="cn" v="签到活动的最后一天，无法进行升级任务。"/>
+    <m c="tw" v="出席最後一日無法執行升級任務."/>
+  </k>
+  <k n="missionProgress">
+    <m c="kr" v="미션 진행중"/>
+    <m c="cn" v="任务进行中"/>
+  </k>
+  <k n="missionBannerDesc">
+    <m c="kr" v="신규유저 출석 이벤트, 간단한 미션으로 무제한 아이템 획득 기회"/>
+    <m c="cn" v="新/回归玩家签到活动，完成简单任务就可获得无限制道具的机会。"/>
+  </k>
+  <k n="missionBannerDesc_front">
+    <m c="kr" v=""/>
+    <m c="cn" v="新/回归玩家签到活动，完成简单任务就可获得"/>
+  </k>
+  <k n="missionBannerDesc_emphasis">
+    <m c="kr" v=""/>
+    <m c="cn" v="无限制道具"/>
+  </k>
+  <k n="missionBannerDesc_rest">
+    <m c="kr" v=""/>
+    <m c="cn" v="的机会。"/>
+  </k>
+</StringBag>

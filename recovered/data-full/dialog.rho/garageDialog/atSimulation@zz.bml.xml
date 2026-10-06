@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SubCategoryStringBag>
+  <Category nameKey="kartBody">
+    <SubCat nameKey="itemKart" catId="3"/>
+    <SubCat nameKey="speedkart" catId="3"/>
+  </Category>
+  <Category nameKey="character">
+    <SubCat nameKey="character" catId="1"/>
+  </Category>
+</SubCategoryStringBag>

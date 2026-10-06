@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="eventRewardCaption">
+    <m c="kr" v="이벤트 상품 획득"/>
+    <m c="jp" v="イベント商品獲得"/>
+    <m c="cn" v="获得活动道具！"/>
+    <m c="tw" v="獲得活動道具！"/>
+    <m c="us" v="You received an event item! "/>
+    <m c="vn" v="Phần thưởng"/>
+    <m c="ru" v="Получить ивентовый предмет"/>
+    <m c="id" v="Mendapatkan Hadiah Event"/>
+    <m c="th" v="ได้รับไอเทมจากกิจกรรม"/>
+  </k>
+</StringBag>

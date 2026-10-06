@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="god4"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="ms_loki" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="托尔……洛基……|欢迎回来~~"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="ms_loki" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="在米德加尔特反省的怎么样了~"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="ms_loki" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="托尔" string="一直在反省……奥丁大人~"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="ms_loki" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="是的……父亲！！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="ms_loki" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="已经从海姆达尔那听说你们的事情了~"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="ms_loki" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="看你们反省的也差不多了，现在就把你们变回原样。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="ms_loki" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="托尔" string="谢谢。"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="ms_loki" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="洛基" string="（终于……）"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="ms_loki" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="ms_thor" pos="2 0" flip="true" emotion="normal"/>
+  <Char id="pung" pos="4 0" emotion="normal"/>
+  <Msg name="..." string="嘣！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="ms_loki" remove="true"/>
+  <Char id="ms_thor" remove="true"/>
+  <Char id="pung" remove="true"/>
+  <Char id="pung" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="loki" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="以后就多想想该为阿斯加德做点什么~"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="loki" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="既然现在阿斯加德也回归和平了~"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="loki" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="想重开上次没完成的G1联赛……"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="loki" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="奥丁" string="这次想邀请米德加尔特的朋友们一起参加……"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="odin" pos="11 0" emotion="normal"/>
+  <Char id="loki" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="thor" pos="2 0" flip="true" emotion="normal"/>
+  <Msg name="托尔" string="我很赞同。奥丁！！"/>
+  <Enter/>
+  <Char id="odin" remove="true"/>
+  <Char id="loki" remove="true"/>
+  <Char id="thor" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="宝宝" string="我们也要一起？？？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" emotion="stop3"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="G1联赛，有点期待啊~"/>
+  <Enter/>
+</Scene>

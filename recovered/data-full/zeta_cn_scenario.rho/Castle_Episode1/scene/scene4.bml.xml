@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="castle2"/>
+  <Char id="dao" pos="3 0" emotion="normal"/>
+  <Msg name="皮蛋" string="这..这边也没有啊。|到底…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop1"/>
+  <Msg name="..." string="噔噔噔噔..咕噜咕噜.."/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="啊！是城堡里的厨师长吗？他是否知道宝宝的下落呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="您好！厨师长！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop2"/>
+  <Msg name="皮德" string="恩？你是？谁让你进厨房的？"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="啊..我是来找朋友的…你是否看过名字叫做宝宝的家伙呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop4"/>
+  <Msg name="皮德" string="宝宝？没听说过！我现在很忙，别打扰我。"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop4"/>
+  <Msg name="皮蛋" string="那…请问谁会知道呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop4"/>
+  <Msg name="皮德" string="你这家伙！还不出去！我得教训你了！"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="啊啊啊！救命啊！"/>
+  <Enter/>
+</Scene>

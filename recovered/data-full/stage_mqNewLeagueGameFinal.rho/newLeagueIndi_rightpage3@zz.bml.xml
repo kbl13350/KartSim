@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="seasonMp" leftTopWH="0 272 438 46" align="hcenter">
+  <Panel name="bgWindow" windowSize="438 46" texture="grade_leagueIndi_resultBtm" textureOp="modulate" color="255 255 255 255" alphaBlend="true" visible="true" depthBias="-1"/>
+  <Container name="rankCont" leftTopWH="25 0 41 25" align="vcenter">
+    <Panel windowSize="26 26" align="right" texture="위@zz" alphaBlend="true"/>
+    <CharPanel name="rank" windowSize="16 26" texture="결과창숫자" alphaBlend="true" fontSize="16 26" fontStr="0123456789+-()" text="1"/>
+  </Container>
+  <Container name="winCont" leftTopWH="148 0 64 26" align="vcenter">
+    <CharPanel name="win" windowSize="16 26" texture="결과창숫자" alphaBlend="true" fontSize="16 26" fontStr="0123456789+-()" text="3"/>
+    <Panel windowSize="42 26" align="right" texture="연승@zz" alphaBlend="true"/>
+  </Container>
+  <Container windowSize="173 24" align="right;vcenter" adjust="0 0">
+    <CharPanel name="pt" windowSize="171 26" texture="결과창숫자" alphaBlend="true" visible="false" fontSize="16 26" fontStr="0123456789+-()" text="1500(+33)" centerAlign="true"/>
+    <Panel name="placementTestText" windowSize="70 26" texture="결과창_배치중@zz" alphaBlend="true" visible="false" align="center"/>
+  </Container>
+</Container>

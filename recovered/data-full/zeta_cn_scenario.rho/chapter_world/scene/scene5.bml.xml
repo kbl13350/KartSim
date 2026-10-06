@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Italy2"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="站住！！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋！|我们得再快一点！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="raptorLs" pos="11 0" emotion="stop2"/>
+  <Msg name="格雷格" string="哈哈哈……|就那点实力还敢在我面前嚣张！！"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="raptorLs" pos="11 0" emotion="stop2"/>
+  <Msg name="格雷格" string="你不是想抓我吗？|尽管来啊！"/>
+  <Enter/>
+  <Char id="raptorLs" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="&lt;警笛&gt;" string="呜呜呜呜~"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="恩？怎么回事？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="后面有警察跟过来了……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop6"/>
+  <Msg name="皮蛋" string="是来抓黑暗组织的吧？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="不知道啊……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="糟了！格雷格……|跑的太远了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="我们好像追不上了，呜呜~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="皮蛋，会不会是黑暗组织做了什么坏事，|所以警察才跟过来？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="很有可能！|如果是黑暗组织的话……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="我们去问一下吧？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="dizini" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="好！我们把车头掉一下。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <BackGround texture="Italy1"/>
+  <Char id="dao" pos="7 0" emotion="stop7"/>
+  <Msg name="皮蛋" string="等一下！！！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Brian" pos="8 0" emotion="stop1"/>
+  <Msg name="布莱恩" string="嗯？小鬼，|你们是在追犯罪分子吗？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop6"/>
+  <Msg name="黑妞" string="嗯？不是啊~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="Brian" pos="11 0" emotion="stop1"/>
+  <Msg name="黑妞" string="我们在追黑暗组织的格雷格！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="8 0" emotion="stop1"/>
+  <Msg name="布莱恩" string="黑暗组织？……是什么？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="12 0" emotion="stop5"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="布莱恩" string="先不说这个，|这个画像里的少女你们认识吗？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" pos="12 0" emotion="stop1"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="这不是跟格雷格在一起的那个少女吗？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="黑妞" string="这个少女是谁啊？"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" pos="8 0" emotion="stop3"/>
+  <Msg name="布莱恩" string="这个少女是全球黑客事件的犯罪嫌疑人， |她的名字叫克莉丝。"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="布莱恩" string="对了，我是负责这个案子的刑警。|我叫布莱恩。"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" pos="11 0" emotion="stop3"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="布莱恩" string="我正在追捕画像里的这个少女。"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Msg name="黑妞" string="也就是说，|这个少女和黑暗组织是一伙的？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="5 0" emotion="stop3"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="布莱恩" string="那我就不清楚了。"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" pos="8 0" emotion="stop3"/>
+  <Msg name="布莱恩" string="既然你们也在追这些人，|那就协助警方做个调查吧。"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dizini" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="Brian" pos="11 0" emotion="stop1"/>
+  <Msg name="黑妞" string="那个……警察叔叔！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="Brian" pos="11 0" emotion="stop1"/>
+  <Msg name="黑妞" string="虽然很想帮你……|但是我们正在旅行，"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="Brian" pos="11 0" emotion="stop1"/>
+  <Msg name="黑妞" string="而且我们也不知道他们去哪了……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="Brian" pos="11 0" emotion="stop3"/>
+  <Msg name="布莱恩" string="那我就管不着了。"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop6"/>
+  <Char id="Brian" pos="11 0" emotion="stop4"/>
+  <Msg name="布莱恩" string="没准你们能给案子提供一点线索，|所以跟我走一趟吧！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="Brian" pos="11 0" emotion="stop1"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="我们只是普通的游客而已，|恐怕帮不上多大的忙吧？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="5 0" emotion="stop5"/>
+  <Char id="dizini" pos="2 0" emotion="stop6"/>
+  <Msg name="黑妞" string="那个……我还是觉得，|我们帮不上你什么忙！！！！（小声地说）我们走吧，皮蛋！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="5 0" flip="true" emotion="stop6"/>
+  <Char id="Brian" pos="11 0" emotion="stop2"/>
+  <Char id="dao" pos="1 0" flip="true" emotion="stop5"/>
+  <Msg name="黑妞" string="对不起了！！|我们先走了~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Brian" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="Brian" pos="8 0" emotion="stop2"/>
+  <Msg name="布莱恩" string="喂，等等，小鬼！！"/>
+  <Enter/>
+  <Char id="Brian" remove="true"/>
+  <Char id="Brian" pos="8 0" emotion="stop4"/>
+  <Msg name="布莱恩" string="我的话还没说完呢！！！！！！"/>
+  <Enter/>
+</Scene>

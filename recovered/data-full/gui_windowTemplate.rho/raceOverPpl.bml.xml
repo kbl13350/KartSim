@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="raceOver" windowSize="248 165" align="right;bottom" adjust="9 8" enable="false">
+  <Panel name="frame" texture="pplFrame" windowRect="0 0 248 165" alphaBlend="true" visible="false">
+    <BlinkButton name="onAir" windowRect="18 6 82 21" hasDiable="false" blinkGap="350" alphaBlend="true" autoLoadImage="onAir0@zz" visible="false"/>
+    <Panel name="ppl" windowRect="13 27 235 154" alphaBlend="true"/>
+  </Panel>
+</Container>

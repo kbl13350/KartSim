@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="abyss12"/>
+  <Char id="narin" pos="8 0" emotion="stop3"/>
+  <Msg name="奈琳" string="好像迷路了啊，呜呜！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="8 0" emotion="stop3"/>
+  <Msg name="奈琳" string="呜，这里又黑又恐怖……"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="…"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="abyss13"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="stop3"/>
+  <Msg name="奈琳" string="好饿……呜，奈尔奈尔啊，莫格瑞大人……"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="pirate1" pos="3 0" emotion="stop1"/>
+  <Char id="pirate12" pos="7 0" emotion="stop3"/>
+  <Char id="pirate13" pos="11 0" emotion="stop1"/>
+  <Msg name="海盗们" string="在那！"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="pirate12" remove="true"/>
+  <Char id="pirate13" remove="true"/>
+  <Char id="narin" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="奈琳" string="啊，不要！给我滚开！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="…"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="abyss16"/>
+  <Char id="narin" pos="7 0" emotion="normal"/>
+  <Msg name="奈琳" string="终，终于甩掉了。"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="奈琳" string="嘤嘤嘤，好累啊，一点力气都没了……"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="那里有没有人啊~？奈琳~快回答~！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" pos="8 0" emotion="stop3"/>
+  <Msg name="奈琳" string="！！！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="7 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="也不在这里吗……太阳马上就要下山了……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="stop5"/>
+  <Msg name="奈琳" string="……这里"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="12 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="诶？刚才好像听到了轻微的声音……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="4 0" flip="true" emotion="stop3"/>
+  <Char id="narin" pos="11 0" emotion="stop3"/>
+  <Msg name="奈琳" string="这里！！在……这里！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="narin" pos="11 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="奈，奈琳？！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop5"/>
+  <Char id="narin" pos="9 0" emotion="stop3"/>
+  <Msg name="奈琳" string="嘤嘤嘤~这里好可怕啊~~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="narin" pos="9 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="知，知道了，先放开我~~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop6"/>
+  <Char id="narin" pos="11 0" emotion="stop5"/>
+  <Msg name="奈琳" string="…"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="narin" pos="11 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="咻，现在好点了吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop4"/>
+  <Char id="narin" pos="11 0" emotion="stop5"/>
+  <Msg name="奈琳" string="……嗯。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="…"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="for4"/>
+  <Char id="neoul" pos="9 0" emotion="stop1"/>
+  <Msg name="奈尔" string="姐姐！"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="neoul" pos="9 0" emotion="stop1"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="奈琳" string="奈尔奈尔啊~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="9 0" emotion="stop1"/>
+  <Char id="narin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="奈尔" string="……我可担心死你了。"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" pos="12 0" emotion="stop1"/>
+  <Char id="narin" pos="6 0" flip="true" emotion="stop1"/>
+  <Char id="dao" pos="2 0" emotion="stop5"/>
+  <Msg name="奈琳" string="嗯，这位皮蛋大人救了我~~"/>
+  <Enter/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="7 0" flip="true" emotion="stop6"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="大人？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="听，听我解释……"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="5 0" emotion="stop6"/>
+  <Char id="narin" pos="10 0" emotion="stop1"/>
+  <Msg name="奈琳" string="哇啊，皮蛋大人~~您刚才好帅啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="5 0" emotion="stop1"/>
+  <Char id="dizini" pos="12 0" emotion="stop4"/>
+  <Char id="dao" pos="0 0" emotion="stop6"/>
+  <Msg name="黑妞" string="皮蛋？要不咱俩谈谈？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" pos="5 0" emotion="stop1"/>
+  <Char id="dizini" pos="12 0" emotion="stop4"/>
+  <Char id="dao" pos="8 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="黑，黑妞！这，这只是误会~~~~~~！！！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="…"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <BackGround texture="vill7"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="stop1"/>
+  <Msg name="奈琳" string="嗯，就这么定了！试着阻止莫格瑞大人吧！"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="neoul" pos="11 0" emotion="stop1"/>
+  <Msg name="奈尔" string="姐姐，你终于明白我的心情了……"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈琳" string="因为不能让他赶走皮蛋大人啊……"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="stop1"/>
+  <Char id="neoul" pos="11 0" emotion="stop3"/>
+  <Msg name="奈尔" string="姐，姐姐？？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop3"/>
+  <Msg name="黑妞" string="（使眼神）"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="呵呵……我完了……"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="normal"/>
+  <Msg name="奈琳" string="奈尔奈尔啊，我们去阿比斯吧~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈尔" string="……又去阿比斯？"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="neoul" pos="11 0" emotion="normal"/>
+  <Msg name="奈琳" string="嗯，我们去跟莫格瑞大人说清楚的话应该会理解~"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="narin" pos="5 0" flip="true" emotion="normal"/>
+  <Char id="neoul" pos="11 0" flip="true" emotion="normal"/>
+  <Msg name="奈尔" string="……皮蛋，如果可以的话跟我们一起……"/>
+  <Enter/>
+  <Char id="narin" remove="true"/>
+  <Char id="neoul" remove="true"/>
+  <Char id="dao" pos="10 0" flip="true" emotion="stop4"/>
+  <Msg name="皮蛋" string="当然，一起去吧！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="6 0" emotion="stop4"/>
+  <Msg name="黑妞" string="哎，只让皮蛋一个人去有点不，放，心啊！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="stop4"/>
+  <Char id="bazzi" pos="2 0" emotion="stop5"/>
+  <Msg name="宝宝" string="黑妞的表情好恐怖……！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="narin" pos="8 0" emotion="stop1"/>
+  <Msg name="奈琳" string="哇啊~皮蛋大人，你就跟着我就行~"/>
+  <Enter/>
+</Scene>

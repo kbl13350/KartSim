@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageBoard windowSize="512 372" align="center" image="passReward_img_popupBG" alphaBlend="true" visible="true">
+  <Play1SPanel scene="종이폭죽효과" windowSize="512 372" align="center" nearPlane="1" farPlane="1000" fov="75.0" defaultCameraPos="0 -3.0 0" defaultSpotPos="0 0 0" zoom="1.0" clearZBefore="true" clearZAfter="true" enable="false" visible="true" loop="false"/>
+  <Container name="rewardItemPanel" windowSize="250 200" adjust="0 -35" align="center" visible="true"/>
+  <Label name="rewardStr0" windowSize="400 20" adjust="0 116" align="center;bottom" text="#sb(rewardMsg0)" textColor="black" textRender="bold" textAlign="center" visible="true" enable="true"/>
+  <ColorLabel name="rewardStr1" windowSize="400 20" adjust="0 100" align="center;bottom" text="#sb(rewardMsg1)" textColor="black" textRender="bold" textAlign="center" visible="true" enable="true"/>
+  <Label windowSize="400 20" adjust="0 84" align="center;bottom" text="#sb(rewardMsg2)" textColor="black" textRender="bold" textAlign="center" visible="true" enable="true"/>
+  <ImageButton name="okButton" windowSize="90 34" adjust="0 38" align="center;bottom" autoLoadImage="collect_btn_popupConfirm_" text="#sb(ok)" textColor="255 250 250 250" overTextColor="255 250 250 250" clickedTextColor="255 250 250 250" disabledTextColor="255 78 78 78" textRender="bold" alphaBlend="true" visible="true" enable="true"/>
+  <Label windowSize="200 20" adjust="0 20" align="hcenter" text="#sb(title)" textColor="white" textRender="bold" textAlign="center"/>
+</ImageBoard>

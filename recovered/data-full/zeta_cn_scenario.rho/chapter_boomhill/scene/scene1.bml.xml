@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="cnboomhill2"/>
+  <Char id="coco" pos="9 0" emotion="stop1"/>
+  <Msg name="莉亚" string="（！！！）有莱恩的一封信~"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <Char id="coco" pos="9 0" emotion="stop1"/>
+  <Msg name="莉亚" string="得赶紧交给莱恩~"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <Char id="coco" pos="9 0" emotion="stop1"/>
+  <Msg name="莉亚" string="但是去哪儿找莱恩呢？|好像不在这里~"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <BackGround texture="cnboomhill3"/>
+  <Char id="coco" pos="9 0" emotion="stop1"/>
+  <Msg name="莉亚" string="到底去哪儿了啊？|（左瞧瞧~右瞧瞧~）"/>
+  <Enter/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="莱恩!!找了你好久~~~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="什么事啊？？"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="有人给你寄了一个邀请券~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="这是什么呢？（打开邀请券）"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="邀请您参加即将开始的繁荣大赛！！！"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="哈哈哈~~难道我的传言都传到了繁荣山丘？"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莉亚" string="大赛什么时候开始啊？？？？"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="（额）时间不剩多少了~~~"/>
+  <Enter/>
+  <Char id="len" remove="true"/>
+  <Char id="coco" remove="true"/>
+  <Char id="len" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="coco" pos="12 0" emotion="stop1"/>
+  <Msg name="莱恩" string="（嗡~）快点出发吧！莉亚"/>
+  <Enter/>
+</Scene>

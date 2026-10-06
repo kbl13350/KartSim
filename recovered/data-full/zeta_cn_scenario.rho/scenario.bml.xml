@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScenarioList>/&gt; 
+  <Restriction preset="pcCafeLogin"/>
+  <Restriction xmas="theme:x-mas"/>
+  <Restriction onSanta="itemOn:1-11" noSanta="inventory:-1-11"/>
+  <Restriction reverse="track:Reverse"/>
+  <Restriction onlyYellowGlove="rp:-4900"/>
+  <Restriction onlyGreenGlove="rp:+4900"/>
+  <Restriction overYellow4Glove="rp:+190"/>
+  <Restriction overYellow3Glove="rp:+380"/>
+  <Restriction overYellow2Glove="rp:+650"/>
+  <Restriction overYellow1Glove="rp:+1120"/>
+  <Restriction overGreen5Glove="rp:+1690"/>
+  <Restriction overGreen3Glove="rp:+3330"/>
+  <Restriction overGreen2Glove="rp:+4500"/>
+  <Restriction overRp70="rp:+70"/>
+  <Restriction overRp190="rp:+190"/>
+  <Restriction overRp650="rp:+650"/>
+  <Restriction overRp875="rp:+875"/>
+  <Restriction overRp570="rp:+570"/>
+  <Restriction overRp380="rp:+380"/>
+  <Restriction overRp1120="rp:+1120"/>
+  <Restriction overRp1690="rp:+1690"/>
+  <Restriction overRp1750="rp:+1750"/>
+  <Restriction overRp2410="rp:+2410"/>
+  <Restriction overRp2625="rp:+2625"/>
+  <Restriction overRp3330="rp:+3330"/>
+  <Restriction overRp3500="rp:+3500"/>
+  <Restriction overRp4500="rp:+4500"/>
+  <Restriction overRp4900="rp:+4900"/>
+  <Restriction overRp6300="rp:+6300"/>
+  <Restriction overRp7700="rp:+7700"/>
+  <Restriction overRp9100="rp:+9100"/>
+  <Chapter id="60" name="chapter_tomb" title="寻找幽灵小镇消失的南瓜" desc="以秋日南瓜庆典而闻名的幽灵小镇。
+某天，镇上的南瓜突然全部消失，导致今年的秋日南瓜庆典被迫取消，
+原本一直满心期待庆典期间举办整蛊人类考试的伊丽莎白，决定查清事情的缘由。" active="true" openPeriod="2026-07-30T06:00:00~*" level="2" bgmTheme="tomb" showNewIcon="true"/>
+  <Chapter id="59" name="chapter_penguin" title="企鹅与矿山的秘密" desc="为体验滑冰橇的乐趣，皮蛋一行人来到了繁荣山丘北部的企鹅小镇。
+在那里，他们帮助了陷入困境的企鹅朋友，一同前往矿山。
+企鹅与矿山深处，究竟藏着怎样的秘密呢？" active="true" openPeriod="2025-12-18T06:00:00~*" level="2" bgmTheme="ice" showNewIcon="false"/>
+  <Chapter id="58" name="chapter_fengshen2" title="笼罩的阴影" desc="心中燃烧着复仇之火的妲己，解开申公豹的封印后，便与他一同出发去寻找那四把能夺取神仙力量的宝剑。
+梅林则通过预知能力，预料到他们即将前来抢夺圣剑，便将其托付给了皮蛋一行人。
+宝宝与他的朋友们，能否成功阻止申公豹与妲己的阴谋？" active="true" openPeriod="2025-07-24T06:00:00~*" level="2" bgmTheme="fengshen" showNewIcon="false"/>
+  <Chapter id="57" name="chapter_fengshen" title="光的引导" desc="冰钓时意外卷入奇异状况，穿越至古代中国的宝宝一行人。
+恰逢仙人哪吒出现，表示只要他们协助封印妖怪妲己，便助其重返家园。
+宝宝一行人能否成功封印妖怪妲己，顺利回家呢？" active="true" openPeriod="2025-01-02T06:00:00~*" level="2" bgmTheme="fengshen" showNewIcon="false"/>
+  <Chapter id="56" name="chapter_NewChina2" title="龙的传承" desc="由于不断的赛车比赛，皮蛋一行人急需再整顿休息。
+凌凌开始了家族传承和寻找预言中龙之守护者的旅程。
+应雯雯的邀请，皮蛋和小伙伴们前往龙之圣地，还有与龙之车手凌凌的相遇。
+与新车手凌凌一起寻找传说中龙之守护者的旅程拉开序幕。" active="true" openPeriod="2022-07-28T06:00:00~*" level="2" bgmTheme="china" showNewIcon="false"/>
+  <Chapter id="55" name="chapter_maple" title="皮蛋与品克缤的特别辅导" desc="皮蛋一行人收到白雪人与品克缤的邀请来到了冒险岛世界。
+短中分勇士希望皮蛋和品克缤能成为他的师父，
+在真挚的请求和无奈之下皮蛋和品克缤也答应了他。
+皮蛋与品克缤的辅导现在开始！" active="true" openPeriod="2022-07-28T06:00:00~*" level="2" bgmTheme="maple" showNewIcon="false"/>
+  <Chapter id="54" name="chapter_mabinogi" title="爱琳世界探险记" desc="茉莉安女神守护着的永恒之地-爱琳。
+魔族之神锁孔为了入侵爱琳想尽了办法，而皮蛋和他的朋友们
+则被锁孔的诡计所迷惑，不得不前往爱琳世界。为了守卫
+繁荣山丘和爱琳的和平，皮蛋一行人的探险就此开始！" active="true" openPeriod="2021-12-23T06:00:00~*" level="2" bgmTheme="mabi" showNewIcon="false"/>
+  <Chapter id="53" name="chapter_olympos2" title="危机重现" desc="将宙斯和其野心成功封印在地狱后，
+赫拉克斯代替宙斯接手了O.M.G会长职位。
+在为公司事务忙得不可开交的某一天，
+危机从奥林匹斯的某处悄悄袭来。" selectImage="info_olympos2" active="true" openPeriod="2021-02-25T06:00:00~*" level="2" bgmTheme="olympos" showNewIcon="false" preClearChapterId="52"/>
+  <Chapter id="52" name="chapter_olympos" title="奥林匹斯的继承者" desc="奥林匹斯内规模最大的国际企业O.M.G，
+为了能让赫拉克斯顺利接手公司，
+宙斯会长儿子准备了新的试炼…
+被卷入其中的皮蛋一伙的新历险记！" active="true" openPeriod="2020-12-10T06:00:00~*" level="2" bgmTheme="olympos" showNewIcon="false"/>
+  <Chapter id="51" name="chapter_camelot2" title="卡美洛庆典" desc="自亚瑟当上国王之后，卡美洛和平又安详。
+于是亚瑟王举办了卡美洛庆典，
+并使用圣剑之力邀请了皮蛋一伙，
+承诺在盛典比赛中获胜的小伙伴可以向亚瑟王许愿…" selectImage="info_camelot2" active="true" openPeriod="2020-11-12T06:00:00~*" level="2" bgmTheme="camelot" showNewIcon="false" preClearChapterId="50"/>
+  <Chapter id="50" name="chapter_camelot" title="旧世与未来的王" desc="为了卡美洛王国的未来，决定要保护王子的王国策略家梅林，
+试图利用王子将卡美洛王国收入囊中的魔剑士莫德雷德，
+还有误打误撞成为传说中烈焰勇士的皮蛋一伙。
+圣剑争夺战即将拉开帷幕…" selectImage="info_camelot" active="true" bgmTheme="camelot" openPeriod="2020-07-30T06:00:00~*" level="2" showNewIcon="false"/>
+  <Chapter id="49" name="chapter_abyss2" title="深海魔女" desc="为复仇而蠢蠢欲动的阿比斯支配者莫格瑞，
+计划与深海魔女赫凯特联手，
+借助魔法的力量来攻下繁荣山丘，
+阻止莫格瑞的最后一次旅行即将开始。" selectImage="info_abyss2" active="true" rewardMsg="恭喜~获得了黑暗主题故事模式的奖励。" openPeriod="2020-05-14T06:00:00~*" level="2" bgmTheme="abyss" showNewIcon="false" preClearChapterId="48"/>
+  <Chapter id="48" name="chapter_abyss" title="深海支配者" desc="沉落在大海深处的深海都市阿比斯，
+拥有进军陆地野心的阿比斯之王莫格瑞，
+试图与其他恶势力同盟，入侵繁荣山丘…
+为了阻止恶势力的联合，皮蛋一行人又开始了新的冒险。" active="true" showNewIcon="false" bgmTheme="abyss" openPeriod="2019-12-19T06:00:00~*" level="2"/>
+  <Chapter id="47" name="chapter_god2" title="洛基的计划" desc="被奥丁逐放到米德加尔特的洛基和托尔!
+既没有永恒之枪，又变为女身，连魔法都无法正常使用的
+洛基，仅通过随机应变能力和口才就变回原身后
+开始了夺取永恒之枪的计划…" selectImage="info_god2" active="true" showNewIcon="false" bgmTheme="god" openPeriod="2019-08-08T06:00:00~*" level="2" preClearChapterId="46"/>
+  <Chapter id="46" name="chapter_god" title="诸神传说" desc="神界卡丁车联赛G1种子选手托尔！
+因洛基从中做怪，变为女身掉落到了繁荣山丘。
+托尔能不能回到阿斯加德恢复自己的原貌呢？
+向阿斯加德出发，托尔的冒险现在开始。" selectImage="info_god" active="true" showNewIcon="false" bgmTheme="god" openPeriod="2018-12-20T06:00:00~*" level="2"/>
+  <Chapter id="45" name="chapter_sword" title="月下门的继承者" desc="位于深山中的月下门继承者——日影和月熙。
+拥有出色才能的月熙和一直羡慕朋友的日影。
+从小青梅竹马比姐妹还要亲密，
+但却不得不刀剑相向的两个少女的故事开始了。" selectImage="info_sword" active="true" showNewIcon="false" bgmTheme="sword" openPeriod="2018-07-12T06:00:00~*" level="2"/>
+  <Chapter id="44" name="chapter_NewMoonhill" subTitle="月光之城" title="不眠都市" desc="收到来自卡尔市长的月光卡丁车大赛请帖，
+皮蛋他们怀着冠军梦想向着月光之城出发。
+新英雄！新朋友！新敌人！新故事！" selectImage="info_moonhill" active="true" rewardKeyItemId="0" chapterKeyItemId="0" showNewIcon="false" bgmTheme="moonhill" openPeriod="2018-06-14T06:00:00~*" level="3"/>
+  <Chapter id="43" name="chapter_northeu3" title="北奥行星大奖赛" desc="在奇奇的故乡北奥行星开展了卡丁车大奖赛，
+并邀请皮蛋和伙伴们一起参加！！
+繁荣山丘的捣蛋鬼们去北奥行星是否可以顺利完成比赛呢？
+皮蛋一伙的北奥行星历险记即将开始~！" selectImage="info_norteu3" active="true" level="2" showNewIcon="false" preClearChapterId="42" bgmTheme="northeu"/>
+  <Chapter id="42" name="chapter_northeu2" title="R博士的庐山真面目！" desc="突然有一天，因为R博士繁荣山丘的所有赛道都反了过来。
+因为R博士原因不明的行动，繁荣山丘的孩子们开始疑惑…
+用面纱遮住真面目的R博士，他到底是谁？
+与伙伴们一起揭开他的面纱吧！" selectImage="info_norteu2" active="true" level="2" showNewIcon="false" preClearChapterId="41" bgmTheme="northeu"/>
+  <Chapter id="41" name="chapter_northeu" title="奇奇的宇宙旅行" desc="在北奥行星过着无聊生活的奇奇准备偷偷独自去旅行，
+偶然间到达繁荣山丘的奇奇与刚结识的伙伴们一起
+沉浸在卡丁车的世界当中。
+而在北奥行星的Q博士发现奇奇失踪后，准备去找儿子了…" selectImage="info_norteu" active="true" level="2" showNewIcon="false" bgmTheme="northeu"/>
+  <Chapter id="40" name="chapter4" regularChapter="true" title="恐怖的幽灵车手" subTitle="第四章节" desc="参加完繁荣山丘赛车大会的皮蛋一伙回到了繁荣山丘。
+可是刚到村庄就听到了幽灵车手的消息。
+想跟皮蛋进行一次比赛的幽灵车手，
+到底是什么身份呢？" selectImage="info_4" active="true" level="3" preClearChapterId="39" bgmTheme="village"/>
+  <Chapter id="39" name="chapter3" regularChapter="true" subTitle="第三章" title="不速之客—海盗船长" desc="繁荣山丘的夜幕下，海盗船长不请自来。
+没有人会欢迎令人厌恶的苍蝇。
+果然，他以卑劣的手段抢走的皮蛋父亲留下的挂坠。
+皮蛋和朋友们愤怒了，他们毅然踏上了追击海盗的征途！" selectImage="info3" active="true" level="2" preClearChapterId="38" bgmTheme="village"/>
+  <Chapter id="38" name="chapter2" regularChapter="true" subTitle="第二章" title="新朋友！新挑战！" desc="参加繁荣山丘赛车大会的皮蛋，
+将会遇到更多的朋友，进行更多的对决。
+新的朋友，新的挑战故事，现在开始了。" selectImage="info2" active="true" level="2" preClearChapterId="37" bgmTheme="village"/>
+  <Chapter id="37" name="chapter1" regularChapter="true" title="车手的诞生" subTitle="第一章" desc="菜鸟车手皮蛋的梦想是，
+成为繁荣山丘最强的车手。
+为了参加赛车大会二苦练的皮蛋，
+遇到了许多充满个性的车手，并产生了友谊。" selectImage="info1" active="true" level="2" bgmTheme="village"/>
+  <Chapter id="36" name="chapter_NewChina" subTitle="龙之章节" title="龙之车手！挑战传说！" desc="“皮蛋和朋友们遇到了龙之车手，
+他们之间展开了激烈的对决。
+龙之车手们的实力超乎想象，
+期待着皮蛋和朋友们再次缔造传奇！" selectImage="info_china" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="3" bgmTheme="china"/>
+  <Chapter id="35" name="chapter_nemoBlock" title="玩具士兵的秘密" desc="皮蛋和他的朋友们被神秘力量吸进了像素世界，
+在这个全是方块的世界里，他们碰到了女巫麦迪娅…
+拥有神秘力量的玩具士兵究竟隐藏着什么不为人知的秘密？
+皮蛋和他的朋友们能安然无恙的回到繁荣山丘吗？" active="true" rewardMsg="恭喜~获得了黑暗主题故事模式的奖励。" openPeriod="*~*" level="2" bgmTheme="nemo"/>
+  <Chapter id="34" name="chapter_world2" title="征服世界！" desc="黑色组织预谋通过黑入银行系统，获得征服世界的资金。
+但是皮蛋一行人的出现，打乱了他的计划…
+黑暗组织是否能够躲避皮蛋他们的追击，顺利完成集资呢？
+黑暗组织的世界征服计划！现在开始！" active="true" bgmTheme="world" openPeriod="*~*" level="2"/>
+  <Chapter id="33" name="chapter_world" title="向世界出发！" desc="打算来一次环球旅行的皮蛋和黑妞，
+偶然卷进了黑客事件，开始踏上追踪悬赏通缉犯的奇妙旅程…
+皮蛋和黑妞能顺利完成旅行吗？
+惊心动魄的追击战即将开始！" active="true" bgmTheme="world" openPeriod="*~*" level="2"/>
+  <Chapter id="32" name="chapter_jurassic" title="侏罗纪大冒险！" desc="为了阻止恐龙族车手卡诺的“赶走族长野心”，
+少女露西开始寻找能打赢卡诺的车手。
+碰到露西的皮蛋得知情况后，
+决定帮助露西前往恐龙岛…与恐龙族的对决即将开始。" active="true" level="2" bgmTheme="jurassic"/>
+  <Chapter id="31" name="chapter_1920y" title="敞篷老爷车的秘密" desc="拥有古典的外形以及优越性能的敞篷老爷车背后的秘密！
+与穿越时空的侦探福尔摩斯一起解决神秘事件吧！" selectImage="info_1920y" active="true" level="2" bgmTheme="steam"/>
+  <Chapter id="30" name="chapter_flowerBazzi" title="流星花园宝宝版" desc="道明宝宝，花泽皮蛋，西门奇奇，美作小强！
+一群花美男袭来！
+ F4与开朗少女杉雯雯展开的心动故事！" selectImage="info_flowerBazzi" active="true" level="2" bgmTheme="village"/>
+  <Chapter id="29" name="chapter_beach2" title="阿嘉的挑战！冲向胜利！" desc="阿嘉要参加飙车的宣誓！
+可以寻找爱车的唯一途径是，
+在飙车赛打败暴走联盟。
+职业冲浪手阿嘉的飙车挑战就此开始！" selectImage="info_beach2" active="true" level="2" bgmTheme="beach"/>
+  <Chapter id="28" name="chapter_beach" title="街头飙车" desc="新伙伴阿嘉的车辆被盗。
+发现被盗的地点就是进行飙车的现场！
+为了找回丢失的车辆，参加飙车的阿嘉！
+比海边太阳更炙热的友情与爱情故事即将拉开帷幕。" selectImage="info_beach" active="true" level="2" bgmTheme="beach"/>
+  <Chapter id="27" name="chapter_black3" title="黑杰克与黑暗组织" desc="为了统治地球，寻找星陨之石的黑暗组织！
+还有BOOS黑杰克与各类兄弟！
+他们的故事即将开始。" selectImage="info_black3" active="true" rewardMsg="恭喜~获得了黑暗主题故事模式的奖励。" bgmTheme="moonhill" level="2"/>
+  <Chapter id="26" name="chapter_black2" title="寻找星陨之石！" desc="神秘黑暗组织以及充满秘密的星陨之石！
+到目前为止星陨之石的秘密逐渐露出水面，
+想要霸占星陨之石的黑色部队登场，
+世界陷入到危机之中…为了阻止黑色部队的伙伴们的第二个故事即将开始。" selectImage="info_black2" active="true" rewardMsg="恭喜~获得了黑暗主题故事模式的奖励。" bgmTheme="moonhill" level="2"/>
+  <Chapter id="25" name="chapter_black1" title="黑暗组织的登场" desc="与星陨之石一同登场的神秘团体！黑暗组织！
+为了统治全世界寻找星陨之石的黑暗组织与
+为了拯救世界阻挡他们的繁荣山丘伙伴们的
+冒险从此拉开帷幕。" selectImage="info_black1" active="true" rewardMsg="恭喜~获得了黑暗主题故事模式的奖励。" bgmTheme="moonhill" level="2"/>
+  <Chapter id="22" name="chapter_boomhill" title="繁荣山丘的邀请！" desc="莱恩与莉亚被邀请到一年一度的繁荣山丘赛车大会上。
+ 遇见实力不凡的伙伴们，一同展开激烈的对决...
+莱恩与莉亚是否能和新朋友们融洽的相处呢？" selectImage="info_boomhill" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="2" bgmTheme="village"/>
+  <Chapter id="21" name="chapter_themePark" title="跑跑游乐场全新开放！" desc="全世界最好豪华的跑跑游乐场开放！
+前往游乐场的伙伴们突然碰到了未知的黑影！
+现在就体验一下在跑跑游乐场发生的有趣的故事吧！" selectImage="info_themePark" active="true" rewardMsg="恭喜~获得了跑跑游乐场主题故事模式的奖励。" bgmTheme="park" level="3"/>
+  <Chapter id="19" name="chapter_brodi" title="神秘工头" desc="皮蛋和伙伴们看到神秘工头制作的全新车辆时，
+都目瞪口呆了。
+当他们知道神秘工头的未来工厂需要消耗大量车辆部件时，
+都冲上了收集车辆部件的旅程。" selectImage="info_brodi" active="true" rewardKeyItemId="0" chapterKeyItemId="0" bgmTheme="brodi" level="3"/>
+  <Chapter id="17" name="chapter_wkc" title="世界锦标赛" desc="受邀参加世界锦标赛的皮蛋，
+世界最强专业车手们的巅峰之战，
+传说中的天才赛车手闪亮登场！
+皮蛋的世界锦标赛挑战之路即将开始！" selectImage="info_wkc" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="3" bgmTheme="wkc"/>
+  <Chapter id="16" name="xyy_1" title="皮蛋的青青草原之旅！" desc="通过精灵之光离开精灵世界的皮蛋，并没有回到繁荣山丘，而是来到了一个陌生的草原。 初到这里的皮蛋就遇上了一场空前大劫案，灰太狼抓走了懒羊羊！ 独自来到羊羊世界的皮蛋是否能救出懒羊羊后安全回家呢？ 皮蛋在青青草原中的全新冒险！一起去体验吧！" selectImage="xyy" active="true" rewardKeyItemId="0" chapterKeyItemId="0" openPeriod="2011-06-02T06:00:00~2012-05-23T23:59:59" level="3" bgmTheme="xyy"/>
+  <Chapter id="15" name="mecha_3" title="海盗领袖" desc="繁荣山丘的伙伴们面临前所未有的危机时，
+海盗船长给予了很大的帮助，
+邪恶的海盗船长变成了善良的海盗领袖，
+到底是为什么呢？从现在开始续写海盗船长的故事。" selectImage="info_mechanic" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="3" bgmTheme="mechanic"/>
+  <Chapter id="14" name="mecha_2" title="卡奥斯的身份" desc="黑色机器人迪斯欧德所说的卡奥斯到底是谁呢？
+葱头又是去哪里了呢？皮蛋和伙伴们是否能解开
+该谜题和带来繁荣山丘的和平呢？" selectImage="info_mechanic" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="3" bgmTheme="mechanic"/>
+  <Chapter id="13" name="mecha_1" title="黑色机器人的袭击" desc="繁荣山丘举行了一次卡丁车比赛！
+可是在比赛过程中发生了奇怪的问题，
+皮蛋和伙伴们为此去寻找原因，这时突然出现的
+黑色机器人开始袭击城镇！到底会发生什么事呢？" selectImage="info_mechanic" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="2" bgmTheme="mechanic"/>
+  <Chapter id="12" name="Castle_Episode4" title="寻找宝宝，蓝蓝篇！" desc="对路易的身份很好奇的皮蛋和伙伴们，
+为了查明路易的身份，偷偷溜进了大城堡。
+参观大城堡时丢失了贪玩的宝宝！" selectImage="info6" active="true" rewardKeyItemId="0" chapterKeyItemId="0" openPeriod="2010-11-25T06:00:00~*" level="3" bgmTheme="castle"/>
+  <Chapter id="11" name="Castle_Episode3" title="寻找宝宝，小强篇！" desc="对路易的身份很好奇的皮蛋和伙伴们，
+为了查明路易的身份，偷偷溜进了大城堡。
+参观大城堡时丢失了贪玩的宝宝！" selectImage="info6" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="3" bgmTheme="castle"/>
+  <Chapter id="10" name="Castle_Episode2" title="寻找宝宝，黑妞篇！" desc="对路易的身份很好奇的皮蛋和伙伴们，
+为了查明路易的身份，偷偷溜进了大城堡。
+参观大城堡时丢失了贪玩的宝宝！" selectImage="info6" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="2" bgmTheme="castle"/>
+  <Chapter id="9" name="Castle_Episode1" title="寻找宝宝，皮蛋篇！" desc="对路易的身份很好奇的皮蛋和伙伴们，
+为了查明路易的身份，偷偷溜进了大城堡。
+参观大城堡时丢失了贪玩的宝宝！" selectImage="info6" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="2" bgmTheme="castle"/>
+  <Chapter id="8" name="chapter_nymph" title="精灵纹章！" desc="偶然获得神秘纹章的皮蛋和朋友们，进入了精灵世界，
+在那里认识了精灵朋友美美。
+突然出现的海盗团，为了其野心而绑架了美美…
+皮蛋和他的朋友们能安全的救出美美后回到繁荣山丘吗？" selectImage="nymph" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="3" bgmTheme="nymph"/>
+  <Chapter id="7" name="chapter_pirate" title="勇闯海贼岛！" desc="在海盗的老家，皮蛋和朋友们与敌人展开了又一场恶战。
+机关重重的险恶之地能否困住身经百战的勇敢车手？
+请关注海盗章节——勇闯海贼岛！" selectImage="info_pirate" active="true" rewardKeyItemId="0" chapterKeyItemId="0" level="4" bgmTheme="pirate"/>
+  <Chapter id="6" name="chapter_moonhill" subTitle="月光之城" title="不眠都市" desc="收到来自卡尔市长的月光卡丁车大赛请帖，
+皮蛋他们怀着冠军梦想向着月光之城出发。
+新英雄！新朋友！新敌人！新故事！" selectImage="info_moonhill" active="true" rewardKeyItemId="0" chapterKeyItemId="0" openPeriod="*~2018-06-14T05:59:59" level="3" bgmTheme="moonhill"/>
+  <Chapter id="2" name="extra1" title="黄金神！复活！" desc="从探险家爱德爷爷那里听到传说中黄金文明的故事的
+皮蛋和他的朋友们，开始了寻找黄金文明的冒险历程。
+但历经千辛万苦几乎就要成功的他们却被一个使用
+黄金指南针的怪物逼入了一个无穷无尽的迷宫中…" selectImage="info_extra" active="true" rewardKeyItemId="0" chapterKeyItemId="0" bgmTheme="gold" level="3"/>
+</ScenarioList>

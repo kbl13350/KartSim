@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="penguin3"/>
+  <Char id="jakob2" pos="7 0" emotion="stop4"/>
+  <Msg name="波诺 雅克布" string="哥，这边，在这边！"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <BackGround texture="penguin3"/>
+  <Char id="jakob1" pos="7 0" emotion="stop5"/>
+  <Msg name="波利斯 雅克布" string="你说矿山里有企鹅，在哪儿呢？"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" pos="7 0" emotion="normal"/>
+  <Msg name="波诺 雅克布" string="嘘！！看那边。"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <BackGround texture="penguin4"/>
+  <Char id="Pengko" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="企小呆" string="就是这个！这个就够了。"/>
+  <Enter/>
+  <Char id="Pengko" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="Penguin_crown" pos="11 0" emotion="normal"/>
+  <Msg name="企小羽" string="呼，找颗漂亮的爱心石简直比摘星星还费劲。"/>
+  <Enter/>
+  <Char id="Pengko" remove="true"/>
+  <Char id="Penguin_crown" remove="true"/>
+  <Char id="jakob1" pos="5 0" emotion="stop1"/>
+  <Msg name="波利斯 雅克布" string="还真有企鹅？"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob1" pos="5 0" emotion="stop1"/>
+  <Char id="jakob2" pos="2 0" emotion="stop3"/>
+  <Msg name="波诺 雅克布" string="而且还是挖钻石的企鹅！"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" pos="7 0" emotion="normal"/>
+  <Msg name="波利斯 雅克布" string="不过，爱心石是什么东西？"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" remove="true"/>
+  <BackGround texture="penguin4"/>
+  <Char id="jakob2" pos="7 0" emotion="normal"/>
+  <Msg name="波诺 雅克布" string="你没来之前，我偷偷听到企鹅们聊天，|据说不是普通钻石，是长得像心形的特殊钻石。"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob1" pos="7 0" emotion="normal"/>
+  <Msg name="波利斯 雅克布" string="嗯，企鹅们视若珍宝的心形钻石……"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob1" pos="7 0" emotion="stop2"/>
+  <Msg name="波利斯 雅克布" string="嘿嘿，要是拿到手，说不定能卖个天价呢。"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="jakob2" pos="7 0" emotion="normal"/>
+  <Msg name="波诺 雅克布" string="那咱们怎么办？你打算怎么处理这些企鹅？"/>
+  <Enter/>
+  <Char id="jakob2" remove="true"/>
+  <Char id="jakob1" pos="7 0" emotion="stop2"/>
+  <Msg name="波利斯 雅克布" string="放心，我自有计划。"/>
+  <Enter/>
+  <Char id="jakob1" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="（片刻之后……）"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="jakob2_penguin" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="波诺 雅克布" string="哥，咱们这身打扮也太像企鹅了吧！"/>
+  <Enter/>
+  <Char id="jakob2_penguin" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="jakob1_penguin" pos="11 0" emotion="stop1"/>
+  <Msg name="波利斯 雅克布" string="这种程度，人类也能骗过。"/>
+  <Enter/>
+  <Char id="jakob2_penguin" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="jakob1_penguin" pos="11 0" emotion="normal"/>
+  <Msg name="波利斯 雅克布" string="我去安装炸药，|波诺你去试探试探那些企鹅。"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--	
+		playBunningSystemPropertys 에서 보상 및 타입별 포인트(시간, 게임, All) 설정 
+					timePoint=(sec:point) / gameTypesPoint=(mode:point,mode:point,...)
+		playBunningSystemSchedules 에서 시간 및 타입 설정(시간, 게임, All)
+		누적 type - 0 : all , 1 : time, 2 : game
+-->
+
+<playBunningSystem k1st='1500' k2nd='4500' k3rd='10000' kMax='10000' kDivide_for_ui='1'>
+	<playBunningSystemPropertys>
+		<playBunningSystemProperty
+			id='0'
+			timePointPerSec='1' 
+			gameTypesSet='SpeedIndi:30,SpeedTeam:30,ItemIndi:30,ItemTeam:30,FlagIndi:30,FlagTeam:30,SpeedMatch:30,ItemMatch:30,BattleTeam:30,ChampionsTeamRoyal:30,ChampionsTeamMaster:30,BossGame:30,F1SpeedGame:30,SpeedMixed:30,ItemMixed:30'
+		/> <!-- 상시 - 이벤트가 없으면 기본적으로 id=0 내역이 적용 -->
+	</playBunningSystemPropertys>
+		
+	<playBunningSystemRewardSets>
+		<playBunningSystemRewardSet id='0' period='*~*'>
+			<reward type='lucci' value='500' prob='500' lureProb='300' />			
+			<reward type='lucci' value='600' prob='500' lureProb='100' />			
+			<reward type='lucci' value='700' prob='500' lureProb='300' />		
+			<reward type='lucci' value='800' prob='500' lureProb='100' />		
+			<reward type='lucci' value='900' prob='500' lureProb='100' />		
+			<reward type='lucci' value='1000' prob='400' lureProb='300' />		
+			<reward type='lucci' value='1500' prob='300' lureProb='300' />		
+			<reward type='lucci' value='2000' prob='200' lureProb='300' />		
+			<reward type='lucci' value='2500' prob='200' lureProb='300' />		
+			<reward type='lucci' value='3000' prob='100' lureProb='300' />		
+			<reward stockId='6273' prob='300' lureProb='100' /> <!-- 황금돼지가면 풍선 黄金猪面具气球(10 个) -->
+			<reward stockId='7827' prob='300' lureProb='100' /> <!-- 복숭아 풍선 仙桃气球(10 个) -->
+			<reward stockId='6277' prob='300' lureProb='100' /> <!-- 개뼈다귀 풍선 狗骨头气球(10 个) -->
+			<reward stockId='1791' prob='300' lureProb='100' /> <!-- 박쥐 풍선 蝙蝠气球(10个) -->
+			<reward stockId='7828' prob='300' lureProb='100' /> <!-- 팝콘 풍선 爆米花气球(10 个) -->
+			<reward stockId='7829' prob='300' lureProb='100' /> <!-- 구급상자 풍선 急救箱气球(10 个) -->
+			<reward stockId='7830' prob='250' lureProb='100' /> <!-- 토성풍선 (676) 土星气球(10 个) -->
+			<reward stockId='7831' prob='250' lureProb='100' /> <!-- 양철난로풍선 (738) 锅炉气球(10 个) -->
+			<reward stockId='7832' prob='250' lureProb='100' /> <!-- 마우스풍선 (686) 鼠标气球(10 个) -->
+			<reward stockId='7833' prob='250' lureProb='100' /> <!-- 해골풍선 (340) 骷髅法师气球(10 个) -->
+			<reward stockId='7834' prob='250' lureProb='100' /> <!-- 스쿠터고글 / 대만스쿠터고글 (41) 摩托护目镜(3 天) -->
+			<reward stockId='7835' prob='250' lureProb='100' /> <!-- 스노클링2 (64) 潜水护目镜(3 天) -->
+			<reward stockId='7836' prob='250' lureProb='100' /> <!-- 파티고글 (113) 蝴蝶护目镜(3 天) -->
+			<reward stockId='7837' prob='250' lureProb='100' /> <!-- 루시드셔터 / 셔터쉐이드 (71) 百叶窗护目镜(3 天) -->
+			<reward stockId='7838' prob='300' lureProb='100' /> <!-- 여의주 밴드 龙珠头饰(3 天) -->
+			<reward stockId='7839' prob='300' lureProb='100' /> <!-- 폭탄 밴드 霹雳弹头饰(3 天) -->
+			<reward stockId='7840' prob='300' lureProb='100' /> <!-- 불꽃 밴드 欢欢头饰(3 天) -->
+			<reward stockId='7841' prob='300' lureProb='100' /> <!-- 백마흑마 밴드 木马头饰(3 天) -->
+			<reward stockId='7842' prob='300' lureProb='500' /> <!-- 박쥐 밴드 蝙蝠头饰(3 天) -->
+			<reward stockId='7843' prob='300' lureProb='500' /> <!-- 햇살 밴드 太阳风头饰(3 天) -->
+			<reward stockId='7844' prob='250' lureProb='100' /> <!-- 뚤어뻥밴드 (82) 马桶橛子头饰(3 天) -->
+			<reward stockId='7845' prob='250' lureProb='100' /> <!-- 마이크밴드 (99) 麦克风头饰(3 天) -->
+			<reward stockId='7846' prob='250' lureProb='100' /> <!-- 우산밴드 (114) 遮阳伞头饰(3 天) -->
+			<reward stockId='1382' prob='100' lureProb='100' /> <!-- 클로버스키드 四叶草印迹(3天) -->
+			<reward stockId='7800' prob='50' lureProb='1100' /> <!-- 블루 상자 蓝色礼盒(1个) -->
+			<reward stockId='7804' prob='50' lureProb='1100' /> <!-- 블루 플랜트 상자 蓝色部件箱(1个) -->
+			<reward stockId='7847' prob='10' lureProb='1100' /> <!-- 1만 루찌카드 1万金币卡(1 个) -->
+			<reward stockId='7848' prob='5' lureProb='1100' /> <!-- 2만 루찌카드 2万金币卡(1 个) -->
+		</playBunningSystemRewardSet>
+		<playBunningSystemRewardSet id='1' period='*~*'>
+			<reward type='lucci' value='1000' prob='1000' lureProb='100' />
+			<reward type='lucci' value='1200' prob='800' lureProb='100' />
+			<reward type='lucci' value='1500' prob='600' lureProb='100' />
+			<reward type='lucci' value='1800' prob='600' lureProb='600' />
+			<reward type='lucci' value='2000' prob='500' lureProb='100' />
+			<reward type='lucci' value='2200' prob='500' lureProb='100' />
+			<reward type='lucci' value='2500' prob='400' lureProb='100' />
+			<reward type='lucci' value='2800' prob='400' lureProb='100' />
+			<reward type='lucci' value='3000' prob='400' lureProb='100' />
+			<reward type='lucci' value='3300' prob='400' lureProb='100' />
+			<reward type='lucci' value='3600' prob='300' lureProb='100' />
+			<reward type='lucci' value='4000' prob='300' lureProb='600' />
+			<reward type='lucci' value='4400' prob='300' lureProb='100' />
+			<reward type='lucci' value='4800' prob='300' lureProb='100' />
+			<reward type='lucci' value='5000' prob='300' lureProb='100' />
+			<reward type='lucci' value='6000' prob='300' lureProb='100' />			
+			<reward stockId='7830' prob='300' lureProb='100' /> <!-- 토성풍선 (676) 土星气球(10 个) -->
+			<reward stockId='7831' prob='300' lureProb='100' /> <!-- 양철난로풍선 (738) 锅炉气球(10 个) -->
+			<reward stockId='7832' prob='300' lureProb='100' /> <!-- 마우스풍선 (686) 鼠标气球(10 个) -->
+			<reward stockId='7833' prob='300' lureProb='100' /> <!-- 해골풍선 (340) 骷髅法师气球(10 个) -->
+			<reward stockId='7834' prob='300' lureProb='100' /> <!-- 스쿠터고글 / 대만스쿠터고글 (41) 摩托护目镜(3 天) -->
+			<reward stockId='7835' prob='300' lureProb='100' /> <!-- 스노클링2 (64) 潜水护目镜(3 天) -->
+			<reward stockId='7836' prob='300' lureProb='100' /> <!-- 파티고글 (113) 蝴蝶护目镜(3 天) -->
+			<reward stockId='7837' prob='300' lureProb='100' /> <!-- 루시드셔터 / 셔터쉐이드 (71) 百叶窗护目镜(3 天) -->
+			<reward stockId='7844' prob='300' lureProb='100' /> <!-- 뚤어뻥밴드 (82) 马桶橛子头饰(3 天) -->
+			<reward stockId='7845' prob='300' lureProb='500' /> <!-- 마이크밴드 (99) 麦克风头饰(3 天) -->
+			<reward stockId='7846' prob='300' lureProb='100' /> <!-- 우산밴드 (114) 遮阳伞头饰(3 天) -->
+			<reward stockId='7800' prob='60' lureProb='600' /> <!-- 블루 상자 蓝色礼盒(1个) -->
+			<reward stockId='7804' prob='75' lureProb='600' /> <!-- 블루 플랜트 상자 蓝色部件箱(1个) -->
+			<reward stockId='7802' prob='35' lureProb='1100' /> <!-- 레드 상자 红色礼盒(1个) -->
+			<reward stockId='7806' prob='45' lureProb='1200' /> <!-- 레드 플랜트 상자 红色部件箱(1个) -->
+			<reward stockId='7847' prob='20' lureProb='800' /> <!-- 1만 루찌카드 1万金币卡(1 个) -->
+			<reward stockId='7848' prob='10' lureProb='800' /> <!-- 2만 루찌카드 2万金币卡(1 个) -->
+			<reward stockId='7849' prob='5' lureProb='800' /> <!-- 5만 루찌카드 5万金币卡(1 个) -->
+			<reward stockId='8659' prob='3000' lureProb='600' /> <!-- 거름 보석 沃土符文(1 个) -->
+		</playBunningSystemRewardSet>
+		<playBunningSystemRewardSet id='2' period='*~*'>
+			<reward type='lucci' value='2000' prob='1000' lureProb='100' />
+			<reward type='lucci' value='3000' prob='800' lureProb='500' />
+			<reward type='lucci' value='4000' prob='600' lureProb='100' />
+			<reward type='lucci' value='5000' prob='600' lureProb='100' />
+			<reward type='lucci' value='6000' prob='500' lureProb='100' />
+			<reward type='lucci' value='7000' prob='500' lureProb='100' />
+			<reward type='lucci' value='8000' prob='400' lureProb='600' />
+			<reward type='lucci' value='9000' prob='400' lureProb='100' />
+			<reward type='lucci' value='10000' prob='400' lureProb='100' />			
+			<reward stockId='7850' prob='500' lureProb='200' /> <!-- 물음표풍선 (707) 蓝色问号气球(1 个) -->
+			<reward stockId='7851' prob='500' lureProb='100' /> <!-- 물음표밴드 (285) 问号头饰(1 天) -->
+			<reward stockId='7800' prob='500' lureProb='200' /> <!-- 블루 상자 蓝色礼盒(1个) -->
+			<reward stockId='7804' prob='400' lureProb='100' /> <!-- 블루 플랜트 상자 蓝色部件箱(1个) -->
+			<reward stockId='7802' prob='150' lureProb='300' /> <!-- 레드 상자 红色礼盒(1个) -->
+			<reward stockId='7806' prob='100' lureProb='200' /> <!-- 레드 플랜트 상자 红色部件箱(1个) -->
+			<reward stockId='7852' prob='20' lureProb='600' /> <!-- 실버 상자 银色礼盒(1 个) -->
+			<reward stockId='7853' prob='10' lureProb='400' /> <!-- 실버 플랜트 상자 银色部件箱(1 个) -->
+			<reward stockId='7847' prob='300' lureProb='1000' /> <!-- 1만 루찌 카드 1万金币卡(1 个) -->
+			<reward stockId='7848' prob='200' lureProb='1200' /> <!-- 2만 루찌 카드 2万金币卡(1 个) -->
+			<reward stockId='7854' prob='100' lureProb='1200' /> <!-- 3만 루찌 카드 3万金币卡(1 个) -->
+			<reward stockId='7855' prob='10' lureProb='1200' /> <!-- 10만 루찌 카드 10万金币卡(1 个) -->
+			<reward stockId='7856' prob='5' lureProb='1500' /> <!-- 100만 루찌 카드 100万金币卡(1 个) -->
+			<reward stockId='8660' prob='2500' lureProb='1000' /> <!-- 태양 보석 太阳符文(1 个) -->
+		</playBunningSystemRewardSet>
+	</playBunningSystemRewardSets>
+
+	<playBunningSystemSchedules>
+		<!--####################################      B A S E     ######################################### -->
+			<basePlayBunningSystemSchedule id='0' openPeriod='*~*' gold='2' silver='1' bronze='0' type='0'/>	
+		<!--######################################################################################### -->
+		
+		<!--이벤트는 eventPlayBunningSystemSchedule 통해서 셋팅 -->
+
+
+	</playBunningSystemSchedules>
+</playBunningSystem>

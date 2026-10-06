@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+           SteerConstraint='2.1'
+           DriftEscapeForce='1000'
+           CornerDrawFactor='0.07'
+
+           UseTransformBooster='true'
+           TransAccelFactor='1.62'
+
+           BoosterBlur='true'
+           EngineSound='cotton6'
+           EnvMap='true'
+           LampFlareType='redHeadLamp'
+
+           BoosterType='cotton6'
+           BoosterWaveType='effect_zero'
+           BoosterType0='default'
+           BoosterType1='default'
+
+           Port0='mod1a1'
+           Port1='mod1a2'
+           FirePort0='mod2a1'
+           FirePort1='mod2a2'
+           FirePort2='mod2a3'
+           FirePort3='mod2a4'
+           FirePort4='mod2b1'
+           FirePort5='mod2b2'
+
+
+		   	DescBalance= '38'
+	DescStability ='38'
+	DescEngineGrade='1'
+	DescCornering='7'
+	DescEnchantCap = '25'
+/>
+<!-- 대만 세이버6.5 20110603 무제한 한정판매 -->

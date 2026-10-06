@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='107.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.060'
+	SteerConstraint='1.65'
+	DriftEscapeForce='350'
+	CornerDrawFactor='0.060'
+	NormalBoosterTime='-200'
+
+	TeamBoosterTime='-400'
+	DriftMaxGauge='-750'
+
+	motorcycleType='true'
+	EnvMap='true'
+
+	BoosterBlur='true'
+	EngineSound='bike'
+
+	TachometerType='Tacho1'
+	TachometerName='bike'
+/>
+
+<!-- 대만 메탈 PRO -->

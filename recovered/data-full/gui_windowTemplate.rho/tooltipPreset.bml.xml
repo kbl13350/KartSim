@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Preset>
+  <Label name="itemInfoTooltip" windowRect="0 0 241 300" frame="DefaultTooltip" marginRect="3 23 0 -10" text="아이템 설명" textColor="white" vertAutoSizing="true" enable="false" visible="false" regStyle="left" regPos="left" autoWrap="true" multiLine="true" depthBias="1024">
+    <Label name="caption" windowRect="5 5 10 10" autoSizing="true" multiLine="false" textRender="bold" text="snowbe11" textColor="white"/>
+  </Label>
+  <ToolTipWindow name="mixDialogItemName" windowRect="0 0 10 10" frame="DefaultTooltip" text="" marginRect="0 0 0 -10" textColor="white" autoSizing="true" vertAutoSizing="false" enable="false" visible="false" autoWrap="false" multiLine="true" depthBias="1024"/>
+</Preset>

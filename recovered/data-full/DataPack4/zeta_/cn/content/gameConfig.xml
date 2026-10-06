@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Class>
+	<Multiplay>
+		<Channel name='newbie'		level='1' track='1' speed='S1;S2' rpLimit='9900' lucciBonus='1.2'>
+			<BattleTeam defaultSpeed='S1'/>
+		</Channel>
+		<Channel name='classC'		level='2' track='2' rpLimit='61270' lucciBonus='1.1'>
+			<BattleTeam defaultSpeed='S2'/>
+		</Channel>
+		<Channel name='classB'		level='3' track='3' rpLimit='269010' lucciBonus='1.15'>
+			<SpeedIndi defaultSpeed='S2'/>
+		</Channel>
+		<Channel name='classA'		level='4' track='4' rpBonus='1.1' lucciBonus='1.2'>
+			<SpeedIndi defaultSpeed='S2'/>
+		</Channel>
+		<Channel name='free'		level='0' track='2' speed='S2'>
+			<SpeedIndi defaultSpeed='S2'/>
+		</Channel>
+	</Multiplay>
+
+	<Flag gameType='FlagIndi;FlagTeam'>
+		<Channel name='flag'		level='2' track='4' speed='S2'>
+		</Channel>
+	</Flag>
+
+	<Guild gameType='SpeedMatch;ItemMatch;SpeedMixed;ItemMixed'>
+		<Channel name='guild'		level='3' track='4' speed='S2'>
+		</Channel>
+	</Guild>
+
+	<Champions gameType='ChallengeTeamRoyal;ChallengeTeamMaster'>
+		<Channel name='royal'		level='4' track='3' speed='S3' rpLowerLimit='61270' gameType='ChallengeTeamRoyal'>
+		</Channel>
+		<Channel name='master'		level='2' track='1' speed='S1' rpLimit='61270' gameType='ChallengeTeamMaster'>
+		</Channel>
+	</Champions>
+
+	<Bokbulbok gameType='BokbulbokItemIndi;BokbulbokItemTeam;BokbulbokSpeedIndi;BokbulbokSpeedTeam'>
+		<Channel name='bokbulbok'	level='0' track='2' speed='S2'>
+		</Channel>
+	</Bokbulbok>
+
+	<Grandprix>
+		<Channel name='grandprix_speed'	level='2' speed='S2'> 
+		</Channel>
+		<Channel name='grandprix_item'	level='2' speed='S2'> 
+		</Channel>
+<!--		<Channel name='grandprix_item_r'	level='2' speed='S2'> 
+		</Channel>-->
+	</Grandprix>
+
+	<Survival gameType='SpeedPremium;SpeedNormal;ItemPremium;ItemNormal;SpeedPremiumTeam;;SpeedNormalTeam'>
+		<Channel name='survival'	level='2' speed='S2'> 
+		</Channel>
+	</Survival>
+
+	<Challenge gameType='ChallengeTeam'>
+		<Channel name='challenge'	level='2' speed='S2'>
+		</Channel>
+	</Challenge>
+
+	<Bonus>
+		<LevelDiff diff='1' lucciMul='1.05'/>
+		<LevelDiff diff='2' lucciMul='1.1'/>
+		<LevelDiff diff='3' rpMul='1.1'/>
+	</Bonus>
+</Class>

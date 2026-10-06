@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="fengshen2"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[仙界]"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" emotion="stop1"/>
+  <Msg name="道士姜太公" string="诸位都到齐了！"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" pos="11 0" emotion="normal"/>
+  <Msg name="雷震子" string="哟，这几个孩子长得真稀奇。"/>
+  <Enter/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Char id="Leizhenzi" pos="11 0" emotion="normal"/>
+  <Msg name="宝宝" string="你长得才稀奇呢。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Char id="Leizhenzi" pos="11 0" emotion="stop1"/>
+  <Msg name="雷震子" string="哈哈！好个伶牙俐齿的家伙。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" emotion="normal"/>
+  <Msg name="道士姜太公" string="寒暄就到此为止，时间紧迫。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" emotion="stop4"/>
+  <Msg name="道士姜太公" string="集齐所有诛仙四剑，不仅能抹去仙人所有记忆，|还能吸走他们的道行，贬为凡人。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="那请问，圣剑也是其中一柄吗？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" emotion="normal"/>
+  <Msg name="道士姜太公" string="对，在那个世界是这么叫它的。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Msg name="黑妞" string="那个叫申公豹的，想用那柄剑做什么？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" emotion="normal"/>
+  <Msg name="道士姜太公" string="恐怕是想把我们仙人全变成凡人，自己当这世界唯一的神。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" emotion="stop4"/>
+  <Msg name="道士姜太公" string="如果让他得逞，这世界怕是要成恶人横行的天下了。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop5"/>
+  <Msg name="皮蛋" string="那必须要阻止他啊！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="Nezha" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Taoisttaigong" pos="11 0" emotion="normal"/>
+  <Msg name="哪吒" string="姜太公，有什么对策吗？"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" pos="3 0" flip="true" emotion="normal"/>
+  <Char id="Taoisttaigong" pos="11 0" emotion="stop1"/>
+  <Msg name="道士姜太公" string="哪吒，你去对付申公豹。"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Nezha" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="Taoisttaigong" pos="11 0" emotion="stop1"/>
+  <Msg name="哪吒" string="小事！交给我。"/>
+  <Enter/>
+  <Char id="Nezha" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="Taoisttaigong" pos="11 0" emotion="normal"/>
+  <Msg name="道士姜太公" string="雷震子，你去缠住妲己。"/>
+  <Enter/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Leizhenzi" pos="4 0" flip="true" emotion="stop4"/>
+  <Char id="Taoisttaigong" pos="11 0" emotion="normal"/>
+  <Msg name="雷震子" string="明白。"/>
+  <Enter/>
+  <Char id="Leizhenzi" remove="true"/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="7 0" emotion="normal"/>
+  <Msg name="道士姜太公" string="他们俩拖住申公豹和妲己的时候，你们跟我去收回宝剑。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop6"/>
+  <Char id="dao" pos="7 0" emotion="stop3"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="黑妞" string="我们吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="11 0" emotion="stop6"/>
+  <Char id="dao" pos="7 0" emotion="stop6"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="这么厉害的东西，我们能行吗？"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" emotion="stop1"/>
+  <Msg name="道士姜太公" string="对于不是神的凡人来说，那不过是柄普通的剑，不必担心。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="Taoisttaigong" pos="8 0" emotion="normal"/>
+  <Msg name="道士姜太公" string="不过，那柄圣剑除外。"/>
+  <Enter/>
+  <Char id="Taoisttaigong" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop4"/>
+  <Char id="dizini" pos="5 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="啊！那让宝宝负责就可以了。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="10 0" emotion="stop4"/>
+  <Char id="dizini" pos="5 0" flip="true" emotion="stop6"/>
+  <Msg name="黑妞" string="不过，宝宝去哪了？"/>
+  <Enter/>
+  <BackGround texture="fengshen12"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[仙界，桃树前]"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="ghost" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop3"/>
+  <Msg name="宝宝" string="（咕噜噜~）"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="3 0" emotion="stop4"/>
+  <Msg name="宝宝" string="好饿啊！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="light" pos="8 2" emotion="stop1"/>
+  <Char id="Fengshen2_stuff" pos="8 2" emotion="normal"/>
+  <Msg name="宝宝" string="好想摘个桃子吃，嗯，就一个……"/>
+  <Enter/>
+</Scene>

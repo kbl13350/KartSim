@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Tracing isFixedKart="true" fixedKartId="943" kartId="1020" characterId="21" uniformId="43" colorId="1" dyeId="1" characterName="门神">
+    <LevelContent level="0" track="china_R05" laps="1" ksv="리부트_17단계_china_R05_1분50초" distance="20" startOffset="1000"/>
+  </Tracing>
+</Root>

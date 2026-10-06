@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<NewbieMatchingRuleData>
+	<MatchInfoList matchLevelTick='4000'>
+		<MatchInfo minMP='0'	groupId='0'/>
+		<MatchInfo minMP='1001'	groupId='0'/>
+		<MatchInfo minMP='1501'	groupId='0'/>
+
+		<MatchInfo minMP='1601'	groupId='1'/>
+		<MatchInfo minMP='1701'	groupId='1'/>
+		<MatchInfo minMP='1801'	groupId='1'/>
+		<MatchInfo minMP='1901'	groupId='1'/>
+
+		<MatchInfo minMP='2001'	groupId='2'/>
+		<MatchInfo minMP='2101'	groupId='2'/>
+		<MatchInfo minMP='2201'	groupId='2'/>
+		<MatchInfo minMP='2301'	groupId='2'/>
+		<MatchInfo minMP='2401'	groupId='2'/>
+
+		<MatchInfo minMP='2501'	groupId='3'/>
+		<MatchInfo minMP='2601'	groupId='3'/>
+		<MatchInfo minMP='2701'	groupId='3'/>
+		<MatchInfo minMP='2801'	groupId='3'/>
+		<MatchInfo minMP='2901'	groupId='3'/>
+
+		<MatchInfo minMP='3001'	groupId='4'/>
+		<MatchInfo minMP='3101'	groupId='4'/>
+		<MatchInfo minMP='3201'	groupId='4'/>
+		<MatchInfo minMP='3301'	groupId='4'/>
+		<MatchInfo minMP='3401'	groupId='4'/>
+
+		<MatchInfo minMP='3501'	groupId='5'/>
+	</MatchInfoList>
+
+	<MPCalcInfo>
+		<PT count='5' multiple='3.0'/>
+	</MPCalcInfo>
+	<MPCalcInfoIndi>
+		<C initC='20000' minAddingC='1' maxAddingC='50'/>
+		<S winS='1.0' looseS='0.0' tieS='0.5'/>	
+		<P constP='500'/>
+		<RT constRA='3' constRB='10'/>
+		<V constVA='1' constVB='10'/>
+		<DM value='2000'/>
+	</MPCalcInfoIndi>
+	<MPCalcInfoTeam>
+		<C initC='60000' minAddingC='1' maxAddingC='50'/>
+		<S winS='1.0' looseS='0.0' tieS='0.5'/>	
+		<P constP='500'/>
+		<R constR1='5' constR2='3' constR3='1' constR4='0' constR5='0' constR6='-1' constR7='-3' constR8='-5' constRT='-10'/>
+		<V constVA='1' constVB='10'/>
+		<PB perfect='20'/>
+		<DM value='2000'/>
+	</MPCalcInfoTeam>
+</NewbieMatchingRuleData>

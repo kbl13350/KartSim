@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="kartPassLevelUpType0">
+    <m c="kr" v="카트 패스%s [color:255 221 146 0]LV %d[/color] 이(가) 되었습니다.|"/>
+    <m c="cn" v="%s 跑跑通行证已到 [color:255 221 146 0]LV %d[/color] |"/>
+    <m c="tw" v="跑跑通行證%s [color:255 221 146 0]LV %d[/color] 達成。|"/>
+  </k>
+  <k n="kartPassLevelUpType1">
+    <m c="kr" v="이벤트 패스 [color:255 36 129 255]LV %d[/color] 이(가) 되었습니다.|"/>
+    <m c="cn" v="活动通行证已到 [color:255 36 129 255]LV %d[/color] |"/>
+    <m c="tw" v="活動通行證 [color:255 36 129 255]LV %d[/color] 達成。"/>
+  </k>
+  <k n="kartPassLevelUpType2">
+    <m c="kr" v="PC방 패스 [color:255 50 255 185]LV %d[/color] 이(가) 되었습니다.|"/>
+    <m c="cn" v="网吧通行证已到 [color:255 50 255 185]LV %d[/color] |"/>
+    <m c="tw" v="網咖通行證 [color:255 50 255 185]LV %d[/color] 達成。"/>
+  </k>
+  <k n="kartPassLevelUpType5">
+    <m c="kr" v="스페셜 패스 [color:255 194 53 252]LV %d[/color] 이(가) 되었습니다.|"/>
+    <m c="cn" v="特殊通行证已到 [color:255 194 53 252]LV %d[/color] |"/>
+    <m c="tw" v="特殊通行證 [color:255 194 53 252]LV %d[/color] 達成。"/>
+  </k>
+  <k n="addType0">
+    <m c="kr" v="(일반%s)"/>
+    <m c="cn" v="（一般%s）"/>
+    <m c="tw" v="(一般%s)"/>
+  </k>
+  <k n="addType3">
+    <m c="kr" v=", 프리미엄"/>
+    <m c="cn" v=", 豪华"/>
+    <m c="tw" v=", 高級"/>
+  </k>
+  <k n="addType4">
+    <m c="kr" v=", 럭셔리"/>
+    <m c="cn" v=", 奢华"/>
+    <m c="tw" v=", 華麗"/>
+  </k>
+  <k n="kartPassLevelUpStr">
+    <m c="kr" v="보상을 받으세요!"/>
+    <m c="cn" v="请领取奖励！"/>
+    <m c="tw" v="請領取獎勵!"/>
+  </k>
+</StringBag>

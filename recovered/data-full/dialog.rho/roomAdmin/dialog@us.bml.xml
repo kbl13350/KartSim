@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow name="optionDialog" windowRect="0 0 485 335" caption="#sb(dialogTitle)" align="center" frame="CaptionDialogBlankClient" setCloseButton="OK">
+  <Window name="transFillPlane" windowRect="-1 0 461 286" frame="CaptionDialogClientRoundTransFill" enable="false"/>
+  <Panel name="dummyPln" texture="blank00" windowRect="-2 248 463 291" uvRect="0 0 1 43" enable="false"/>
+  <Window windowRect="7 9 454 122" frame="InnerCaptionWindow">
+    <Label clientRect="50 -22 292 -2" text="#sb(authority)" textRender="bold" autoSizing="true" align="hcenter"/>
+    <Window windowRect="-2 0 342 173">
+      <Panel windowRect="6 8 19 20" name="static" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+      <Label windowRect="21 9 158 19" text="#sb(openMyroom)" textRender="bold"/>
+      <PlaneCheckButton name="closeMyRoom" windowRect="158 9 170 23"/>
+      <Label windowRect="177 10 220 20" text="#sb(setPassword)"/>
+      <Label windowRect="232 10 280 20" text="#sb(password)"/>
+      <Edit windowRect="280 4 430 26" name="passMyRoom" text="" passEdit="true" maxChar="12"/>
+      <Panel windowRect="219 6 220 26" color="255 79 80 84"/>
+      <Panel windowRect="6 49 19 61" name="static" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+      <Label windowRect="21 50 158 60" text="#sb(openEtc)" textRender="bold"/>
+      <PlaneCheckButton name="closeEtc" windowRect="158 50 170 64"/>
+      <Label windowRect="177 50 220 60" text="#sb(setPassword)"/>
+      <Label windowRect="232 50 280 60" text="#sb(password)"/>
+      <Edit windowRect="280 44 430 66" name="passEtc" text="" passEdit="true" maxChar="12"/>
+      <Panel windowRect="219 46 220 66" color="255 79 80 84"/>
+      <Panel windowRect="6 88 19 100" name="static" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true" visible="false"/>
+      <Label windowRect="21 89 158 99" text="#sb(openGuestbook)" textRender="bold" visible="false"/>
+      <PlaneCheckButton name="closeGuestBook" windowRect="158 89 170 103" enable="false" visible="false"/>
+      <Label windowRect="177 90 220 100" text="#sb(setPassword)" visible="false"/>
+      <Label windowRect="232 90 280 100" text="#sb(password)" visible="false"/>
+      <Edit windowRect="280 84 430 106" name="passGuestBook" text="" passEdit="true" maxChar="12" enable="false" visible="false"/>
+      <Panel windowRect="219 86 220 106" color="255 79 80 84" visible="false"/>
+    </Window>
+  </Window>
+  <Window windowRect="7 129 454 237" frame="InnerCaptionWindow">
+    <Label clientRect="50 -22 292 -2" text="#sb(chatSetting)" textRender="bold" autoSizing="true" align="hcenter"/>
+    <Window windowRect="-2 0 342 173">
+      <TextButton name="OK" windowRect="196 92 266 112" text="#sb(ok)"/>
+      <Panel windowRect="6 43 19 55" name="static" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+      <Label windowRect="21 44 158 54" text="#sb(chatTrack)" textRender="bold"/>
+      <ComboBox name="chatTrack" windowRect="125 40 268 60" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="25" scrollBarVisible="false">
+        <Skip>
+          <TextButton name="item1" windowRect="0 0 116 20" frame="SelectBtn" textAlign="center" text="village"/>
+        </Skip>
+      </ComboBox>
+      <Panel windowRect="6 5 19 17" name="static" texture="내정보분류아이콘" uvRect="0 0 13 11" alphaBlend="true"/>
+      <Label windowRect="21 7 158 16" text="#sb(reserveKart)" textRender="bold"/>
+      <ComboBox name="reserveKart_1" windowRect="125 3 268 23" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="145" scrollBarVisible="true"/>
+      <ComboBox name="reserveKart_2" windowRect="285 3 428 23" frame="DefaultEdit" listFrame="DefaultEdit" comboListLength="145" scrollBarVisible="true"/>
+    </Window>
+  </Window>
+</CaptionWindow>

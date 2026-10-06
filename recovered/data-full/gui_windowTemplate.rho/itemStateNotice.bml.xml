@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="itemStateNotice" windowSize="1600 900" align="center" lifeTime="2000" affectTime="1000" panelCount="3">
+  <Container name="goodCon" windowSize="250 200" align="center" adjust="-215 150" color="255 255 0 0">
+    <Container name="itemStateNoticeBad_0" windowSize="260 45" adjust="0 0" enable="true" visible="false">
+      <Panel name="itemImagePanel" windowSize="45 45" adjust="0 0" texture="item4" alphaBlend="true" visible="true"/>
+      <Label name="itemStateLabel" windowSize="200 20" adjust="45 -2" text="다오배찌다오배찌" textColor="255 255 205 212" textRender="outline16" lineGap="1" textAlign="vcenter"/>
+      <Panel name="ItemStatePanel" windowSize="74 22" adjust="45 22" texture="공격당함@zz" alphaBlend="true" visible="true"/>
+    </Container>
+    <Container name="itemStateNoticeBad_1" windowSize="260 45" adjust="0 50" enable="true" visible="false">
+      <Panel name="itemImagePanel" windowSize="45 45" adjust="0 0" texture="item4" alphaBlend="true" visible="true"/>
+      <Label name="itemStateLabel" windowSize="200 20" adjust="45 -2" text="다오배찌다오배찌" textColor="255 255 205 212" textRender="outline16" lineGap="1" textAlign="vcenter"/>
+      <Panel name="ItemStatePanel" windowSize="74 22" adjust="45 22" texture="공격당함@zz" alphaBlend="true" visible="true"/>
+    </Container>
+    <Container name="itemStateNoticeBad_2" windowSize="260 45" adjust="0 100" enable="true" visible="false">
+      <Panel name="itemImagePanel" windowSize="45 45" adjust="0 0" texture="item4" alphaBlend="true" visible="true"/>
+      <Label name="itemStateLabel" windowSize="200 20" adjust="45 -2" text="다오배찌다오배찌" textColor="255 255 205 212" textRender="outline16" lineGap="1" textAlign="vcenter"/>
+      <Panel name="ItemStatePanel" windowSize="74 22" adjust="45 22" texture="공격당함@zz" alphaBlend="true" visible="true"/>
+    </Container>
+  </Container>
+  <Container name="badCon" windowSize="250 200" align="center" adjust="280 150" color="255 0 255 0">
+    <Container name="itemStateNoticeGood_0" windowSize="250 45" adjust="0 0" enable="true" visible="false">
+      <Panel name="itemImagePanel" windowSize="45 45" adjust="0 0" texture="item4" alphaBlend="true" visible="true"/>
+      <Label name="itemStateLabel" windowSize="200 20" adjust="45 -2" text="다오배찌다오배찌 외 1명" textColor="255 191 233 255" textRender="outline16" lineGap="1" textAlign="vcenter"/>
+      <Panel name="ItemStatePanel" windowSize="74 22" adjust="45 22" texture="효과적용@zz" alphaBlend="true" visible="true"/>
+    </Container>
+    <Container name="itemStateNoticeGood_1" windowSize="250 45" adjust="0 50" enable="true" visible="false">
+      <Panel name="itemImagePanel" windowSize="45 45" adjust="0 0" texture="item4" alphaBlend="true" visible="true"/>
+      <Label name="itemStateLabel" windowSize="200 20" adjust="45 -2" text="다오배찌다오배찌 외 1명" textColor="255 191 233 255" textRender="outline16" lineGap="1" textAlign="vcenter"/>
+      <Panel name="ItemStatePanel" windowSize="74 22" adjust="45 22" texture="효과적용@zz" alphaBlend="true" visible="true"/>
+    </Container>
+    <Container name="itemStateNoticeGood_2" windowSize="250 45" adjust="0 100" enable="true" visible="false">
+      <Panel name="itemImagePanel" windowSize="45 45" adjust="0 0" texture="item4" alphaBlend="true" visible="true"/>
+      <Label name="itemStateLabel" windowSize="200 20" adjust="45 -2" text="다오배찌다오배찌 외 1명" textColor="255 191 233 255" textRender="outline16" lineGap="1" textAlign="vcenter"/>
+      <Panel name="ItemStatePanel" windowSize="74 22" adjust="45 22" texture="효과적용@zz" alphaBlend="true" visible="true"/>
+    </Container>
+  </Container>
+</Container>

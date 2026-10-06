@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='105.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.053'
+	SteerConstraint='1.65'
+	DriftEscapeForce='170'
+	CornerDrawFactor='0.043'
+
+	BoosterBlur='true'
+	EngineSound='pro'
+
+	DescBalance= '25'
+	DescStability ='30'
+/>
+<!-- 버스트 PRO-Z -->

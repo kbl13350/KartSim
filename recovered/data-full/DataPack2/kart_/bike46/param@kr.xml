@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+
+	ForwardAccelForce='146.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.077'
+	SteerConstraint='1.93'
+	DriftEscapeForce='1400'
+	CornerDrawFactor='0.067'
+
+	BoosterBlur='true'
+	EngineSound='bike8'
+
+	WaveEffect='true'
+	motorcycleType='true'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.845'
+	TransformTime='150'
+
+	StartForwardAccelFactorSpeed = '1.65'
+	StartBoosterTimeSpeed='1250'           
+
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-400'
+	DriftMaxGauge = '-1250'
+	DriftGaguePreservePercent='0.4'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85main'
+
+	Port0='mod1c1'
+	Port1='mod1c2'
+
+	FirePort0='mod1a1'
+	FirePort1='mod1a2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	EnvMap='true'
+	WheelFixed = 'true'
+	SpeedSlotCapacity='3'
+
+	DescBalance='45'
+	DescStability='38'
+	DescEngineGrade='1.25'
+	DescCornering='3'
+	DescEnchantCap='25'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' />
+</BodyParam>
+
+
+<!-- 뉴 윈드 엣지 20140424 상점-->

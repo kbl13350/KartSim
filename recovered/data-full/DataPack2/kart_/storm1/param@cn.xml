@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+             ForwardAccelForce='140.0'
+             BackwardAccelForce='100.0'
+             DragFactor='-0.07'
+             SteerConstraint='2.25'
+             DriftEscapeForce='700'
+             CornerDrawFactor='0.06'
+             UseTransformBooster='true'
+             TransAccelFactor='1.62'
+
+             EnvMap='true'
+             BoosterBlur='true'
+             BoosterType='cotton6'
+             BoosterType0='default'
+             BoosterType1='default'
+             
+             EngineSound='cotton6'
+             
+             Port0='mod1c1'
+             Port1='mod1c2'
+             FirePort0='mod1d1'
+             FirePort1='mod1d2'
+             FirePort2='mod2a'
+             FirePort3='mod2b'
+
+		DescBalance= '30'
+		DescStability ='28'
+		DescEngineGrade='1'
+		DescCornering='6'
+		DescEnchantCap = '25'
+
+/>
+<!-- STORM SR (중국) -->

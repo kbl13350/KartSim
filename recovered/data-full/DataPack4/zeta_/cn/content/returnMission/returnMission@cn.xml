@@ -1,0 +1,885 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+		id			: career 개별 id (커리어 리스트 엑셀파일 참고)
+
+		mainType	: 클라이언트 UI 대분류 값
+
+						1 : 멀티플레이(등급전 포함)
+						2 : 타임어택(경쟁전, 랭킹, 연습모드)
+						3 : 시나리오
+						4 : 소셜
+						5 : 클럽
+						6 : 차고
+						7 : 상점
+						8 : 재화
+						9 : 라이센스
+
+						팀배틀(일단 멀티와 분리(난이도 등 별도 체크 요소 필요함))
+						따로 분리해야하남..
+
+
+		missionType	: 소스코드 내부 mission 구분 값
+
+						멀티플레이
+						1 : 멀티플레이 주행
+						2 : 멀티플레이 완주
+						3 : 멀티플레이 주행거리
+						4 : 멀티플레이 등수
+						5 : 멀티플레이 승리
+						6 : 멀티플레이 부스터 사용
+
+						아이템 팀배틀
+						7 : 아이템 팀배틀 참여
+						8 : 아이템 팁배틀 승리
+						9 : 아이템 팀배틀 %난이도 승리
+
+						싱글플레이
+						10 : 타임어택 경쟁전 완주
+						11 : 타임어택 경쟁전 %s등급 이상(A, B, C...)
+						12 : 랭킹 타임어택 완주
+						13 : 연습 타임어택 주행
+						14 : 연습 타임어택 1종 트랙 연슴목표 모두 완료
+
+						시나리오
+						15 : 아무 시나리오 단계 1개 클리어
+						16 : 특정 테마 클리어
+
+						소셜
+						17 : 친구 추가
+						18 : 커플 추가
+
+						클럽
+						19 : 클럽 생성하기
+						20 : 클럽 가입하기
+						21 : 클럽 후원 루찌 양
+
+						차고
+						22 : 차고 진입하기
+						23 : 카트바디에 파츠 사용
+						// 24 : 파츠 램프 사용하기
+						25 : 카트바디 분해하여 파츠 얻기
+						26 : 파츠 조각 획득하기
+						27 : 파츠 분해하기
+						28 : 12세대 엔진 카트바디 강화
+
+						상점
+						29 : 상점 진입하기
+						30 : 아이템 구입하기
+						31 : 서로 다른 종류의 아이템 구입하기
+						32 : 배터리 충전하기
+						33 : 상점에서의 루찌 아이템 구매 횟수
+						34 : 상점에서의 루찌 소비량
+
+						재화
+						35 : 재화 사용량
+						36 : 재화 획득량
+
+						라이센스
+						37 : 특정 라이센스 획득
+
+						멀티플레이 - 참여
+						38 : 주행 조건없이 단순 참여
+
+		missionValue : 세부 조건(순위, 트랙 등) - missionType에 맞게 값 설정 및 코드에서 해석
+				paymentType : 체크할 지불수단
+						0 : 모든 재화
+						1 : 배터리
+						2 : 루찌
+						3 : 코인
+				kRiderSchoolLevel : 라이센스
+						kRiderSchoolBeginner : 1
+						kRiderSchoolRookie 	 : 2
+						kRiderSchoolL3		 : 3
+
+		주행 공용
+		gameType : 미션 체크할 때 코드 상에서 BaseConst.h의 gameType 또는 채널 이름과 비교 예정
+						0 : 종류 상관없이 진행
+						1 : 스피드 개인
+						2 : 아이템 개인
+						3 : 스피드 팀
+						4 : 아이템 팀
+						5 : 스피드 전체
+						6 : 아이템 전체
+						7 : 무한부스터 개인
+						8 : 무한부스터 팀
+						9 : 스피드 개인 등급전
+						10 : 아이템 개인 등급전
+						11 : 스피드 클럽레이스
+						12 : 아이템 클럽레이스
+						13 : 아이템 팀 배틀
+						14 : 깃발전
+						15 : 랭킹 타임어택
+						16 : 타임어택 경쟁전
+						17 : 타임어택 연습
+
+		trackType : 아래의 trackRandomType과 같이 체크하면 안 된다
+						0 : 일반
+						1 : 리버스
+						2 : 크레이지
+
+		trackRandomType : 랜덤 트랙, 크레이지 트랙 등
+						0 : 모든 랜덤 트랙
+						1 : Best 랜덤 트랙
+						2 : NEW 랜덤
+						3 : 리버스 랜덤
+						4 : 크레이지 랜덤
+
+		scenarioId : 시나리오 id (특정 시나리오 클리어 여부 체크)
+
+		restrictionType : 미션 결정 시점에서 미션 출현 조건
+						0 : 조건 없음
+						1 : 타임어택 경쟁전이 진행 중인 경우
+						2 : 특정 시나리오를 클리어하지 않은 경우
+						3 : 커플이 없는 상태
+						4 : 클럽에 가입되어 있는 상태
+						5 : 등급전이 진행 중인 경우
+						6 : n일 이상 아이템을 구매하지 않은 경우
+						7 : 특정 라이센스를 획득하지 않았을 때
+						8 : 클럽에 가입되어있지 않은 상태
+		restrictionValue : 미션 출현 조건 관련 구체적인 값
+
+		difficulty : 미션 난이도
+						0 : 쉬움
+						1 : 어려움
+
+		engineGrade : 카트바디 엔진 (파츠 체크용으로도 사용)
+					해당 엔진 이상~ 으로 체크하는 중
+						8 : V1
+						9 : Xun
+
+		partsCatId : 파츠 종류
+						0 : 전체
+						1 : 엔진
+						2 : 핸들
+						3 : 바퀴
+						4 : 부스터
+						5 : 코팅
+						6 : 램프
+						7 : 부스터이펙트
+
+		shortcut : gotoStage 동작
+						0 : 없음
+						1 : 멀티플레이
+						2 : 타임어택
+						3 : 시나리오
+						4 : 라이센스
+						5 : 메신저
+						6 : 차고 - 파츠 장착, 강화 GarageXStage
+						7 : 차고 - 튜닝 KartuneStage
+						8 : 차고 - 분해 DisassembleStage
+						9 : 클럽
+						10 : 멀티플레이 - 아이템카테고리
+						11 : 멀티플레이 - 스피드카테고리
+						12 : 멀티플레이 - 기타카테고리
+						13 : 멀티플레이 - 초보카테고리
+
+-->	
+
+<!-- 2026/08/27 패치에서 seasonId = 5. 다음 투입 시 1 증가시킬 것 -->
+<ReturnMission seasonId='5' lastLogoutDays='31' maxAttendDays='15' itemCatId='34' itemId='864' stockCardId='4277'>
+	<!-- 멀티플레이 -->
+	<missionItem
+		id='1' mainType='1' missionType='1'
+		missionDesc='个人竞速赛行驶%d/2回'
+		gameType='1'
+		clearValue='2'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='11'
+	/>
+	<missionItem
+		id='2' mainType='1' missionType='1'
+		missionDesc='个人道具赛行驶%d/2回'
+		gameType='2'
+		clearValue='2'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='10'
+	/>
+	<missionItem
+		id='3' mainType='1'  missionType='4'
+		missionDesc='多人游戏进入前3名1次'
+		gameType='0'
+		missionValue='3'
+		clearValue='1'
+		difficulty='2'
+		shortcut='10'
+	/>
+	<missionItem
+		id='4' mainType='1' missionType='4'
+		missionDesc='个人竞速赛进入前3名%d/2次'
+		gameType='1'
+		missionValue='3'
+		clearValue='2'
+		difficulty='2'
+		shortcut='11'
+	/>
+	<missionItem
+		id='5' mainType='1' missionType='4'
+		missionDesc='个人道具赛进入前3名%d/2次'
+		gameType='2'
+		missionValue='3'
+		clearValue='2'
+		difficulty='2'
+		shortcut='10'
+	/>
+	<missionItem
+		id='6' mainType='1' missionType='3'
+		missionDesc='今日多人游戏累计完成%d/100km'
+		gameType='0'
+		clearValue='1000'
+		difficulty='1'
+		shortcut='10'
+	/>
+	<missionItem
+		id='7' mainType='1' missionType='3'
+		missionDesc='今日多人游戏累计完成%d/500km'
+		gameType='0'
+		clearValue='5000'
+		difficulty='2'
+		shortcut='10'
+	/>
+	<missionItem
+		id='8' mainType='1' missionType='6'
+		missionDesc='个人竞速赛使用加速器%d/15次'
+		missionValue='15'
+		gameType='1'
+		clearValue='15'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='11'
+	/>
+	<missionItem
+		id='9' mainType='1' missionType='2'
+		missionDesc='个人无限加速赛完成1回'
+		gameType='7'
+		clearValue='1'
+		difficulty='1'
+		shortcut='11'
+	/>
+	<missionItem
+		id='10' mainType='1' missionType='2'
+		missionDesc='组队无限加速赛完成1回'
+		gameType='8'
+		clearValue='1'
+		difficulty='1'
+		shortcut='11'
+	/>
+	<missionItem
+		id='11' mainType='1' missionType='1'
+		missionDesc='组队竞速赛行驶%d/2回'
+		gameType='3'
+		clearValue='2'
+		difficulty='1'
+		shortcut='11'
+	/>
+	<missionItem
+		id='12' mainType='1' missionType='1'
+		missionDesc='组队道具赛行驶%d/2回'
+		gameType='4'
+		clearValue='2'
+		difficulty='1'
+		shortcut='10'
+	/>
+	<missionItem
+		id='13' mainType='1' missionType='2'
+		missionDesc='组队竞速赛完成1回'
+		gameType='3'
+		clearValue='1'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='11'
+	/>
+	<missionItem
+		id='14' mainType='1' missionType='2'
+		missionDesc='组队道具赛完成1回'
+		gameType='4'
+		clearValue='1'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='10'
+	/>
+	<missionItem
+		id='15' mainType='1' missionType='5'
+		missionDesc='组队竞速赛胜利1回'
+		gameType='3'
+		clearValue='1'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='11'
+	/>
+	<missionItem
+		id='16' mainType='1' missionType='5'
+		missionDesc='组队道具赛胜利1回'
+		gameType='4'
+		clearValue='1'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='10'
+	/>
+	<missionItem
+		id='17' mainType='1' missionType='38'
+		missionDesc='夺旗赛进行1回（星期模式或夺旗赛频道）'
+		gameType='14'
+		clearValue='1'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='12'
+	/>	
+	<missionItem
+		id='18' mainType='1' missionType='5'
+		missionDesc='夺旗赛胜利1回（星期模式或夺旗赛频道）'
+		gameType='14'
+		clearValue='1'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='12'
+	/>
+
+	<!-- 랜덤 트랙은 어떻게 처리할 것인가 -->
+	<!-- <missionItem
+		id='19' mainType='1' missionType='2'
+		missionDesc='任意难度的人气随机赛道完成1回'
+		trackRandomType='1'
+		clearValue='1'
+		difficulty='2'
+	/>
+	<missionItem
+		id='20' mainType='1' missionType='2'
+		missionDesc='新图随机赛道完成1回'
+		trackRandomType='2'
+		clearValue='1'
+		difficulty='2'
+	/>
+	<missionItem
+		id='21' mainType='1' missionType='2'
+		missionDesc='反方向随机赛道完成1回'
+		trackRandomType='3'
+		clearValue='1'
+		difficulty='2'
+	/>	 -->
+	<!-- 랜덤 트랙은 어떻게 처리할 것인가 -->
+
+	<missionItem
+		id='22' mainType='1' missionType='1'
+		missionDesc='道具赛疯狂赛道行驶1回'
+		gameType='6'
+		trackType='2'
+		clearValue='1'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='10'
+	/>
+	<missionItem
+		id='23' mainType='1' missionType='2'
+		missionDesc='道具赛疯狂赛道完成1回'
+		gameType='6'
+		trackType='2'
+		clearValue='1'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='10'
+	/>
+
+	<!-- 아이템 팀배틀 -->
+	<missionItem
+		id='24' mainType='1' missionType='7'
+		missionDesc='挑战赛进行1回'
+		gameType='13'
+		clearValue='1'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='12'
+	/>
+	<missionItem
+		id='25' mainType='1' missionType='8'
+		missionDesc='挑战赛胜利1回'
+		gameType='13'
+		clearValue='1'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='12'
+	/>
+	<missionItem
+		id='26' mainType='1' missionType='9'
+		missionDesc='完成挑战赛简单难度'
+		missionValue='0'
+		gameType='13'
+		clearValue='1'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='12'
+	/>
+	<missionItem
+		id='27' mainType='1' missionType='9'
+		missionDesc='完成挑战赛普通难度'
+		missionValue='1'
+		gameType='13'
+		clearValue='1'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='12'
+	/>
+	<missionItem
+		id='28' mainType='1' missionType='9'
+		missionDesc='完成挑战赛困难难度'
+		missionValue='2'
+		gameType='13'
+		clearValue='1'
+		difficulty='2'
+		isRetryable='1'
+		shortcut='12'
+	/>
+	<!-- 아이템 팀배틀 -->
+
+	<!-- 타임어택 -->
+	<missionItem
+		id='29' mainType='2' missionType='10'
+		missionDesc='完成竞争排位赛任意赛道'
+		gameType='16'
+		clearValue='1'
+		restrictionType='1'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='2'
+	/>
+	<missionItem
+		id='30' mainType='2' missionType='11'
+		missionDesc='竞争排位赛任意赛道获得S级以上'
+		missionValue='3'
+		gameType='16'
+		clearValue='1'
+		restrictionType='1'
+		difficulty='2'
+		shortcut='2'
+	/>
+	<missionItem
+		id='31' mainType='2' missionType='11'
+		missionDesc='竞争排位赛任意赛道获得A级以上'
+		missionValue='4'
+		gameType='16'
+		clearValue='1'
+		restrictionType='1'
+		difficulty='1'
+		shortcut='2'
+	/>
+	<missionItem
+		id='32' mainType='2' missionType='11'
+		missionDesc='竞争排位赛任意赛道获得B级以上'
+		missionValue='5'
+		gameType='16'
+		clearValue='1'
+		restrictionType='1'
+		difficulty='1'
+		shortcut='2'
+	/>
+	<missionItem
+		id='33' mainType='2' missionType='12'
+		missionDesc='计时排位赛任意赛道完成1次'
+		gameType='15'
+		clearValue='1'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='2'
+	/>
+	<missionItem
+		id='34' mainType='2' missionType='12'
+		missionDesc='计时排位赛任意赛道完成%d/2次'
+		gameType='15'
+		clearValue='2'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='2'
+	/>
+	<!-- 타임어택 -->
+
+	<!-- 시나리오 -->
+	<missionItem
+		id='35' mainType='3' missionType='15'
+		missionDesc='完成故事模式的不同关卡（%d/1个）'
+		clearValue='1'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='3'
+	/>
+	<missionItem
+		id='36' mainType='3' missionType='15'
+		missionDesc='完成故事模式的不同关卡（%d/2个）'
+		clearValue='2'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='3'
+	/>
+	<missionItem
+		id='37' mainType='3' missionType='15'
+		missionDesc='完成故事模式的不同关卡（%d/5个）'
+		clearValue='5'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='3'
+	/>
+	<missionItem
+		id='38' mainType='3' missionType='16'
+		missionDesc='通关洛奇主题故事模式'
+		missionValue='54'
+		clearValue='1'
+		restrictionType='2'
+		restrictionValue='54'
+		difficulty='2'
+		shortcut='3'
+	/>
+	<missionItem
+		id='39' mainType='3' missionType='16'
+		missionDesc='通关冒险岛主题故事模式'
+		missionValue='55'
+		clearValue='1'
+		restrictionType='2'
+		restrictionValue='55'
+		difficulty='2'
+		shortcut='3'
+	/>
+	<missionItem
+		id='40' mainType='3' missionType='16'
+		missionDesc='通关封神传说主题-光的引导故事模式'
+		missionValue='57'
+		clearValue='1'
+		restrictionType='2'
+		restrictionValue='57'
+		difficulty='2'
+		shortcut='3'
+	/>
+	<!-- 시나리오 -->
+
+	<missionItem
+		id='41' mainType='2' missionType='13'
+		missionDesc='完成练习计时赛中任意1条赛道'
+		gameType='17'
+		clearValue='1'
+		difficulty='1'
+		isRetryable='1'
+		shortcut='2'
+	/>
+	<missionItem
+		id='42' mainType='2' missionType='14'
+		missionDesc='完成1条赛道的全部练习目标'
+		gameType='17'
+		clearValue='1'
+		difficulty='2'
+		shortcut='2'
+	/>
+
+	<!-- 차고 -->
+	<!-- <missionItem
+		id='43' mainType='6' missionType='22'
+		missionDesc='进入车库'
+		clearValue='1'
+		difficulty='1'
+	/> -->
+	<missionItem
+		id='44' mainType='6' missionType='23'
+		missionDesc='在V1，迅车辆中装备部件'
+		clearValue='1'
+		difficulty='1'
+		engineGrade='8'
+		partsCatId='0'
+		shortcut='6'
+	/>
+	<missionItem
+		id='45' mainType='6' missionType='23'
+		missionDesc='在V1，迅车辆中装备车灯部件'
+		clearValue='1'
+		difficulty='1'
+		engineGrade='8'
+		partsCatId='6'
+		shortcut='6'
+	/>
+	<missionItem
+		id='46' mainType='6' missionType='25'
+		missionDesc='分解V1或迅车辆'
+		clearValue='1'
+		difficulty='1'
+		engineGrade='8'
+		partsCatId='0'
+		shortcut='8'
+	/>
+	<!-- <missionItem
+		id='47' mainType='6' missionType='26'
+		missionDesc='获得V1，迅引擎部件碎片'
+		clearValue='1'
+		difficulty='1'
+		engineGrade='8'
+		partsCatId='0'
+	/> -->
+	<missionItem
+		id='48' mainType='6' missionType='27'
+		missionDesc='分解V1或迅车辆部件'
+		clearValue='1'
+		difficulty='1'
+		engineGrade='8'
+		partsCatId='0'
+		shortcut='8'
+	/>
+	<missionItem
+		id='49' mainType='6' missionType='28'
+		missionDesc='尝试强化迅引擎车辆'
+		clearValue='1'
+		difficulty='2'
+		engineGrade='9'
+		shortcut='7'
+	/>
+	<!-- 차고 -->
+
+	<!-- 소셜 -->
+	<missionItem
+		id='50' mainType='4' missionType='17'
+		missionDesc='添加%d/3名好友（对方接受后才会统计）'
+		clearValue='3'
+		difficulty='1'
+		shortcut='5'
+	/>
+	<missionItem
+		id='51' mainType='4' missionType='17'
+		missionDesc='添加%d/6名好友（对方接受后才会统计）'
+		clearValue='6'
+		difficulty='1'
+		shortcut='5'
+	/>
+	<missionItem
+		id='52' mainType='4' missionType='17'
+		missionDesc='添加%d/8名好友（对方接受后才会统计）'
+		clearValue='8'
+		difficulty='1'
+		shortcut='5'
+	/>
+	<missionItem
+		id='53' mainType='4' missionType='18'
+		missionDesc='建立情侣关系'
+		clearValue='1'
+		restrictionType='3'
+		difficulty='2'
+		shortcut='5'
+	/>
+	<!-- 소셜 -->
+
+	<!-- 클럽 -->
+	<missionItem
+		id='54' mainType='5' missionType='19'
+		missionDesc='创建俱乐部'
+		clearValue='1'
+		difficulty='2'
+		shortcut='9'
+	/>
+	<missionItem
+		id='55' mainType='5' missionType='20'
+		missionDesc='加入俱乐部'
+		clearValue='1'
+		restrictionType='8'
+		difficulty='1'
+		shortcut='9'
+	/>
+	<missionItem
+		id='56' mainType='5' missionType='21'
+		missionDesc='向俱乐部捐助%d/10,000金币（每日仅限捐一次）'
+		clearValue='10000'
+		restrictionType='4'
+		difficulty='2'
+		shortcut='9'
+	/>
+	<missionItem
+		id='57' mainType='5' missionType='21'
+		missionDesc='向俱乐部捐助%d/20,000金币（每日仅限捐一次）'
+		clearValue='20000'
+		restrictionType='4'
+		difficulty='2'
+		shortcut='9'
+	/>
+	<!-- 클럽 -->
+
+	<!-- 등급전 관련 6개 임시 제외 -->
+	<!-- <missionItem
+		id='58' mainType='1' missionType='1'
+		missionDesc='竞速等级赛行驶%d/2回'
+		gameType='9'
+		clearValue='2'
+		restrictionType='5'
+		difficulty='1'
+		shortcut='11'
+	/>
+	<missionItem
+		id='59' mainType='1' missionType='1'
+		missionDesc='道具等级赛行驶%d/2回'
+		gameType='10'
+		clearValue='2'
+		restrictionType='5'
+		difficulty='1'
+		shortcut='10'
+	/>
+	<missionItem
+		id='60' mainType='1' missionType='2'
+		missionDesc='竞速等级赛完成1回'
+		gameType='9'
+		clearValue='1'
+		restrictionType='5'
+		difficulty='2'
+		shortcut='11'
+	/>
+	<missionItem
+		id='61' mainType='1' missionType='2'
+		missionDesc='道具等级赛完成1回'
+		gameType='10'
+		clearValue='1'
+		restrictionType='5'
+		difficulty='2'
+		shortcut='10'
+	/>
+	<missionItem
+		id='62' mainType='1' missionType='4'
+		missionDesc='竞速等级赛进入前3名'
+		missionValue='3'
+		gameType='9'
+		clearValue='1'
+		restrictionType='5'
+		difficulty='2'
+		shortcut='11'
+	/>
+	<missionItem
+		id='63' mainType='1' missionType='4'
+		missionDesc='道具等级赛进入前3名'
+		missionValue='3'
+		gameType='10'
+		clearValue='1'
+		restrictionType='5'
+		difficulty='2'
+		shortcut='10'
+	/> -->
+	
+	<!-- 상점 -->
+	<!-- <missionItem
+		id='64' mainType='7' missionType='29'
+		missionDesc='进入商店'
+		clearValue='1'
+		difficulty='1'
+	/>
+	<missionItem
+		id='65' mainType='7' missionType='30'
+		missionDesc='在商店兑换任意道具1次'
+		clearValue='1'
+		restrictionType='6'
+		restrictionValue='30'
+		difficulty='2'
+	/>
+	<missionItem
+		id='66' mainType='7' missionType='31'
+		missionDesc='在商店兑换任意道具%d/2次'
+		clearValue='2'
+		restrictionType='6'
+		restrictionValue='30'
+		difficulty='2'
+	/>
+	<missionItem
+		id='67' mainType='7' missionType='32'
+		missionDesc='充值10电池'
+		clearValue='10'
+		difficulty='2'
+	/>
+	<missionItem
+		id='68' mainType='7' missionType='32'
+		missionDesc='充值100电池'
+		clearValue='100'
+		difficulty='2'
+	/>
+	<missionItem
+		id='69' mainType='7' missionType='30'
+		missionDesc='在商店兑换金币道具1次'
+		missionValue='2'
+		clearValue='1'
+		difficulty='1'
+	/>
+	<missionItem
+		id='70' mainType='7' missionType='30'
+		missionDesc='在商店兑换金币道具%d/2次'
+		missionValue='2'
+		clearValue='2'
+		difficulty='1'
+	/>
+	<missionItem
+		id='71' mainType='7' missionType='33'
+		missionDesc='在商店使用10万金币'
+		missionValue='2'
+		clearValue='100000'
+		difficulty='2'
+	/> -->
+	<!-- 상점 -->
+	
+	<!-- 재화 -->
+	<!-- <missionItem
+		id='72' mainType='8' missionType='34'
+		missionDesc='使用%d/15,000金币'
+		missionValue='2'
+		clearValue='15000'
+		difficulty='2'
+	/>
+	<missionItem
+		id='73' mainType='8' missionType='34'
+		missionDesc='使用%d/50,000金币'
+		missionValue='2'
+		clearValue='50000'
+		difficulty='2'
+	/>
+	<missionItem
+		id='74' mainType='8' missionType='35'
+		missionDesc='获得%d/1,000金币'
+		missionValue='2'
+		clearValue='1000'
+		difficulty='1'
+	/>
+	<missionItem
+		id='75' mainType='8' missionType='35'
+		missionDesc='获得%d/5,000金币'
+		missionValue='2'
+		clearValue='5000'
+		difficulty='1'
+	/>
+	<missionItem
+		id='76' mainType='8' missionType='35'
+		missionDesc='获得%d/10,000金币'
+		missionValue='2'
+		clearValue='10000'
+		difficulty='1'
+	/> -->
+	<!-- 재화 -->
+
+	<!-- 라이센스 -->
+	<missionItem
+		id='77' mainType='9' missionType='37'
+		missionDesc='获得新手驾照'
+		missionValue='1'
+		clearValue='1'
+		restrictionType='7'
+		restrictionValue='1'
+		difficulty='1'
+		shortcut='4'
+	/>
+	<missionItem
+		id='78' mainType='9' missionType='37'
+		missionDesc='获得初级驾照'
+		missionValue='2'
+		clearValue='1'
+		restrictionType='7'
+		restrictionValue='2'
+		difficulty='1'
+		shortcut='4'
+	/>
+	<missionItem
+		id='79' mainType='9' missionType='37'
+		missionDesc='获得L3驾照'
+		missionValue='3'
+		clearValue='1'
+		restrictionType='7'
+		restrictionValue='3'
+		difficulty='2'
+		shortcut='4'
+	/>
+	<!-- 라이센스 -->
+
+</ReturnMission>

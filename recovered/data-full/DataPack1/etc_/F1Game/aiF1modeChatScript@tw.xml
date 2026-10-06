@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+type 설명
+0 : drive
+1 : endScene
+2 : crash
+3 : overtack
+4 : overtaken
+10: rankIn
+-->
+<chattingScript>
+	<F1RiderGroup id='1'>
+		<scripts type='0' msg='愛罵人的人 : 哎呀? 你 這樣 哎呀! 哎呀!'/>
+		<scripts type='0' msg='尼歐 : 奇怪… 這個比賽會有隱藏什麼祕密… '/>
+		<scripts type='0' msg='超級快車手 : 我是賽道上的強者Hyper Motor! Black Motor的時代已經過了~'/>
+		<scripts type='0' msg='Um Pro : [UserRID].. 太厲害了哈'/>
+		<scripts type='0' msg='P.Y.K : 加油!!'/>
+		<scripts type='0' msg='酷龍 : 龍的力量與我同在...'/>
+		<scripts type='0' msg='賽車手 盧比 : 感覺得到龍的氣息嗎? 奔跑吧 龍!!'/>
+		<scripts type='0' msg='羅米 : 跟緊其他車子後面時衝撞推進器的效能會提升~'/>
+		<scripts type='0' msg='騎士尼克  : 今年大家的實力突然都進步好多.. 真奇怪…'/>
+		<scripts type='0' msg='賽車手 尼克  : 盧! 我們來調查看看這比賽'/>
+		<scripts type='0' msg='壞技師 : 車子自己隨便走了!! 這不是我的實力!'/>
+		<scripts type='0' msg='MR. SUN : … 時期降臨了…'/>
+		<scripts type='0' msg='MR. SUN : 堂堂正正要在倫理與道德課本裡面找'/>
+		<scripts type='0' msg='[AiRID] : [UserRID] 我們一起玩吧!'/>
+		<scripts type='0' msg='卡丁車之王 : 我是卡丁車之王!! 沒有人可以贏的過我吧…?'/>
+		<scripts type='0' msg='決賽選手 : 哇嗚!  哇嗚 哇嗚~(解說 : [UserRID]! 來跟我比試看看啊 )'/>
+		<scripts type='0' msg='寶嵐 : 啊啊~ [UserRID] 好帥'/>
+		<scripts type='0' msg='臭屁仔 : 短打之後連結，用連噴來結尾! 我真的是太聰明了!'/>
+		<scripts type='0' msg='愛罵人的人 : 尼歐 你 哎呀! 哎呀~?哎呀呀'/>
+		<scripts type='0' msg='羅米 : [UserRID] 進入PIT試試看~ 衝撞推進器很快就會滿格!'/>
+		<scripts type='0' msg='羅米 : 洛迪~ 保重身體 T_T'/>
+		<scripts type='0' msg='MR. SUN : 哦呵呵呵呵呵呵呵呵'/>
+		<scripts type='0' msg='愛罵人的人 : 哎呀~呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵'/>
+		<scripts type='0' msg='Load : 羅米~ 保重身體 T_T'/>
+		<scripts type='0' msg='羅米 : 衝擊次數越多可以有機會獲得卡丁車做為獎勵!'/>
+		<scripts type='0' msg='羅米 : 努力累績3個回合的勝績~ 有機會可以獲得卡丁車的 GO GO!'/>
+		<scripts type='0' msg='臭屁仔 : 啊! [UserRID]~ 都因為你害我跑的不好!'/>
+		<scripts type='0' msg='臭屁仔 : 輸給不會連噴的小鬼! 都是 [UserRID]的錯!'/>
+		<scripts type='0' msg='酷龍 : 今天晚上我要帶綠帽子跟 [UserRID]去繁榮山丘了~'/>
+		<scripts type='0' msg='[AiRID] : [UserRID]!你是否已經學會利用衝撞推進器，展現傳說中的撞擊技巧了?!'/>
+		<scripts type='0' msg='[AiRID] : [UserRID]? 第一次聽到的選手… 還不錯嘛…'/>
+		<scripts type='0' msg='龍 : 這就是龍的氣息?!'/>
+		<scripts type='1' msg='賽車手 盧比 : 真的是很有趣的比賽 呼呼..!!!!'/>
+		<scripts type='1' msg='臭屁仔 : [UserRID]不要撞我的話 我就是第一名了呢..'/>
+		<scripts type='1' msg='寶嵐 : [UserRID]… 很有魅力… 哇呼'/>
+		<scripts type='1' msg='MR. SUN : 現在盡情的開心吧… 他會馬上趕來的…'/>
+		<scripts type='1' msg='MR. SUN : 呿.. 不會被陷阱騙嗎'/>
+		<scripts type='1' msg='泰迪 : 輸了也開心嗎~'/>
+		<scripts type='1' msg='羅米 : 完美的完成任務可以獲得更好獎勵的卡丁車~'/>
+		<scripts type='1' msg='壞技師 : 這不是我的跑法! 好恐怖喔… 有人在操控…'/>
+		<scripts type='1' msg='尼歐 : 要小心.. 一定有陰謀..'/>
+		<scripts type='1' msg='尼歐 : MR. SUN... 不要弄髒神聖的黑色...'/>
+		<scripts type='1' msg='決賽選手 : 嗚哦哦哦哦哦哦哦!'/>
+		<scripts type='1' msg='超級快車手 : 結束後我們輕鬆的喝一杯好嗎?'/>
+		<scripts type='1' msg='愛罵人的人 : 啊! 真的哎呀! 哎呀 呵 呵 呵 哎呀'/>
+		<scripts type='1' msg='P.Y.K : [UserRID] 像彗星一樣的出現…'/>
+		<scripts type='1' msg='龍 : 撞擊? 好可怕的技巧…'/>
+		<scripts type='1' msg='酷龍: [UserRID] 要不要加入我們的車隊?'/>
+		<scripts type='1' msg='騎士尼克  : 今年的冠軍已經飛走了'/>
+		<scripts type='1' msg='卡丁車之王 : [UserRID]! 來做我的手下，我會把你當做卡丁車王子的! 什麼不需要?...這是真心話嗎?'/>
+		<scripts type='2' msg='為什麼這樣對我 T_T'/>
+		<scripts type='2' msg='啊~~~ 再一點~~!!!!!!!!!!'/>
+		<scripts type='2' msg='啊! 沒想到會注意我~!'/>
+		<scripts type='2' msg='[UserRID] …我會記住.'/>
+		<scripts type='2' msg='[UserRID]! 一定會報仇!'/>
+		<scripts type='3' msg='[UserRID] 不能讓你這樣離開的 給我回來~~!!'/>
+		<scripts type='3' msg='哦..什麼??'/>
+		<scripts type='3' msg='鳴啊! 不能變成這樣 T_T'/>
+		<scripts type='3' msg='把我踩在腳下去當第一名吧  [UserRID]!'/>
+		<scripts type='3' msg='我是很有禮貌的車手~'/>
+		<scripts type='3' msg='[UserRID]， 失手! 失手! 失手吧! 失手吧!'/>
+		<scripts type='4' msg='我先走啦~ [UserRID]'/>
+		<scripts type='4' msg='[UserRID]， 借過好嗎?'/>
+		<scripts type='4' msg='在下一個彎道再看看!'/>
+		<scripts type='4' msg='快一點~'/>
+		<scripts type='4' msg='[UserRID]謝謝您每次禮讓我。(鞠躬)'/>
+		<scripts type='4' msg='[UserRID]， 玩遊戲還看電視嗎?'/>
+		<scripts type='4' msg='借過!! 我要上廁所~!!'/>
+		<scripts type='10' rank='1' msg='[UserRID] ! 如果等我 我會幫你安排聯誼!'/>
+		<scripts type='10' rank='1' msg='不要發呆! 我馬上會超越你!!'/>
+		<scripts type='10' rank='1' msg='[UserRID], 你真的是有夠帥的…..'/>
+		<scripts type='10' rank='1' msg='請你當我的助手! [UserRID]!'/>
+		<scripts type='10' rank='1' msg='[UserRID]是天才…'/>
+		<scripts type='10' rank='5' msg='[UserRID]等我~ 哈哈~'/>
+		<scripts type='10' rank='5' msg='[UserRID] 真有才能吶'/>
+		<scripts type='10' rank='5' msg='[UserRID] 是否有朋友在幫忙?'/>
+		<scripts type='10' rank='5' msg='啊! [UserRID]， 什麼時候變這麼快….'/>
+		<scripts type='10' rank='5' msg='[AiRID]! [UserRID] 隨便走!'/>
+		<scripts type='10' rank='5' msg='[UserRID]! 對這模式真有一套~'/>
+		<scripts type='10' rank='9' msg='[UserRID]， 好像在看3年前的我~'/>
+		<scripts type='10' rank='9' msg='[UserRID] 真的很厲害? 但是還沒好!'/>
+		<scripts type='10' rank='9' msg='[UserRID] … 還 很厲害嗎??'/>
+		<scripts type='10' rank='9' msg='[UserRID]， 每次都要跑中間嗎?'/>
+		<scripts type='10' rank='9' msg='[UserRID]我們又見面了~'/>
+		<scripts type='10' rank='15' msg='[UserRID]~! 專心在遊戲吧!'/>
+		<scripts type='10' rank='15' msg='[UserRID]， 用腳算還很厲害嗎!'/>
+		<scripts type='10' rank='15' msg='[UserRID]， 這麼有才能，還需要練習嗎?'/>
+		<scripts type='10' rank='15' msg='不對~ 車子不是這樣開的~'/>
+		<scripts type='10' rank='15' msg='[UserRID] 很有禮貌的跑法… 我都被感動了..'/>
+		<scripts type='10' rank='15' msg='[UserRID]! 給我看看耐力! 現在還沒結束呢!'/>
+		<scripts type='10' rank='15' msg='[UserRID] 哈 哈 哈  哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈'/>
+	</F1RiderGroup>
+	<F1RiderGroup id='2'>
+		<scripts type='0' msg='愛罵人的人 : 哎呀? 你 這樣 哎呀! 哎呀!'/>
+		<scripts type='0' msg='尼歐 : 奇怪… 這個比賽會有隱藏什麼祕密… '/>
+		<scripts type='0' msg='超級快車手 : 我是賽道上的強者Hyper Motor! Black Motor的時代已經過了~'/>
+		<scripts type='0' msg='Um Pro : [UserRID].. 太厲害了哈'/>
+		<scripts type='0' msg='P.Y.K : 加油!!'/>
+		<scripts type='0' msg='酷龍 : 龍的力量與我同在...'/>
+		<scripts type='0' msg='賽車手 盧比 : 感覺得到龍的氣息嗎? 奔跑吧 龍!!'/>
+		<scripts type='0' msg='羅米 : 跟緊其他車子後面時衝撞推進器的效能會提升~'/>
+		<scripts type='0' msg='騎士尼克  : 今年大家的實力突然都進步好多.. 真奇怪…'/>
+		<scripts type='0' msg='賽車手 尼克  : 盧! 我們來調查看看這比賽'/>
+		<scripts type='0' msg='壞技師 : 車子自己隨便走了!! 這不是我的實力!'/>
+		<scripts type='0' msg='MR. SUN : … 時期降臨了…'/>
+		<scripts type='0' msg='MR. SUN : 堂堂正正要在倫理與道德課本裡面找'/>
+		<scripts type='0' msg='[AiRID] : [UserRID] 我們一起玩吧!'/>
+		<scripts type='0' msg='卡丁車之王 : 我是卡丁車之王!! 沒有人可以贏的過我吧…?'/>
+		<scripts type='0' msg='決賽選手 : 哇嗚!  哇嗚 哇嗚~(解說 : [UserRID]! 來跟我比試看看啊 )'/>
+		<scripts type='0' msg='寶嵐 : 啊啊~ [UserRID] 好帥'/>
+		<scripts type='0' msg='臭屁仔 : 短打之後連結，用連噴來結尾! 我真的是太聰明了!'/>
+		<scripts type='0' msg='愛罵人的人 : 尼歐 你 哎呀! 哎呀~?哎呀呀'/>
+		<scripts type='0' msg='羅米 : [UserRID] 進入PIT試試看~ 衝撞推進器很快就會滿格!'/>
+		<scripts type='0' msg='羅米 : 洛迪~ 保重身體 T_T'/>
+		<scripts type='0' msg='MR. SUN : 哦呵呵呵呵呵呵呵呵'/>
+		<scripts type='0' msg='愛罵人的人 : 哎呀~呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵呵'/>
+		<scripts type='0' msg='Load : 羅米~ 保重身體 T_T'/>
+		<scripts type='0' msg='羅米 : 衝擊次數越多可以有機會獲得卡丁車做為獎勵!'/>
+		<scripts type='0' msg='羅米 : 努力累績3個回合的勝績~ 有機會可以獲得卡丁車的 GO GO!'/>
+		<scripts type='0' msg='臭屁仔 : 啊! [UserRID]~ 都因為你害我跑的不好!'/>
+		<scripts type='0' msg='臭屁仔 : 輸給不會連噴的小鬼! 都是 [UserRID]的錯!'/>
+		<scripts type='0' msg='酷龍 : 今天晚上我要帶綠帽子跟 [UserRID]去繁榮山丘了~'/>
+		<scripts type='0' msg='[AiRID] : [UserRID]!你是否已經學會利用衝撞推進器，展現傳說中的撞擊技巧了?!'/>
+		<scripts type='0' msg='[AiRID] : [UserRID]? 第一次聽到的選手… 還不錯嘛…'/>
+		<scripts type='0' msg='龍 : 這就是龍的氣息?!'/>
+		<scripts type='1' msg='賽車手 盧比 : 真的是很有趣的比賽 呼呼..!!!!'/>
+		<scripts type='1' msg='臭屁仔 : [UserRID]不要撞我的話 我就是第一名了呢..'/>
+		<scripts type='1' msg='寶嵐 : [UserRID]… 很有魅力… 哇呼'/>
+		<scripts type='1' msg='MR. SUN : 現在盡情的開心吧… 他會馬上趕來的…'/>
+		<scripts type='1' msg='MR. SUN : 呿.. 不會被陷阱騙嗎'/>
+		<scripts type='1' msg='泰迪 : 輸了也開心嗎~'/>
+		<scripts type='1' msg='羅米 : 完美的完成任務可以獲得更好獎勵的卡丁車~'/>
+		<scripts type='1' msg='壞技師 : 這不是我的跑法! 好恐怖喔… 有人在操控…'/>
+		<scripts type='1' msg='尼歐 : 要小心.. 一定有陰謀..'/>
+		<scripts type='1' msg='尼歐 : MR. SUN... 不要弄髒神聖的黑色...'/>
+		<scripts type='1' msg='決賽選手 : 嗚哦哦哦哦哦哦哦!'/>
+		<scripts type='1' msg='超級快車手 : 結束後我們輕鬆的喝一杯好嗎?'/>
+		<scripts type='1' msg='愛罵人的人 : 啊! 真的哎呀! 哎呀 呵 呵 呵 哎呀'/>
+		<scripts type='1' msg='P.Y.K : [UserRID] 像彗星一樣的出現…'/>
+		<scripts type='1' msg='龍 : 撞擊? 好可怕的技巧…'/>
+		<scripts type='1' msg='酷龍: [UserRID] 要不要加入我們的車隊?'/>
+		<scripts type='1' msg='騎士尼克  : 今年的冠軍已經飛走了'/>
+		<scripts type='1' msg='卡丁車之王 : [UserRID]! 來做我的手下，我會把你當做卡丁車王子的! 什麼不需要?...這是真心話嗎?'/>
+		<scripts type='2' msg='為什麼這樣對我 T_T'/>
+		<scripts type='2' msg='啊~~~ 再一點~~!!!!!!!!!!'/>
+		<scripts type='2' msg='啊! 沒想到會注意我~!'/>
+		<scripts type='2' msg='[UserRID] …我會記住.'/>
+		<scripts type='2' msg='[UserRID]! 一定會報仇!'/>
+		<scripts type='3' msg='[UserRID] 不能讓你這樣離開的 給我回來~~!!'/>
+		<scripts type='3' msg='哦..什麼??'/>
+		<scripts type='3' msg='鳴啊! 不能變成這樣 T_T'/>
+		<scripts type='3' msg='把我踩在腳下去當第一名吧  [UserRID]!'/>
+		<scripts type='3' msg='我是很有禮貌的車手~'/>
+		<scripts type='3' msg='[UserRID]， 失手! 失手! 失手吧! 失手吧!'/>
+		<scripts type='4' msg='我先走啦~ [UserRID]'/>
+		<scripts type='4' msg='[UserRID]， 借過好嗎?'/>
+		<scripts type='4' msg='在下一個彎道再看看!'/>
+		<scripts type='4' msg='快一點~'/>
+		<scripts type='4' msg='[UserRID]謝謝您每次禮讓我。(鞠躬)'/>
+		<scripts type='4' msg='[UserRID]， 玩遊戲還看電視嗎?'/>
+		<scripts type='4' msg='借過!! 我要上廁所~!!'/>
+		<scripts type='10' rank='1' msg='[UserRID] ! 如果等我 我會幫你安排聯誼!'/>
+		<scripts type='10' rank='1' msg='不要發呆! 我馬上會超越你!!'/>
+		<scripts type='10' rank='1' msg='[UserRID], 你真的是有夠帥的…..'/>
+		<scripts type='10' rank='1' msg='請你當我的助手! [UserRID]!'/>
+		<scripts type='10' rank='1' msg='[UserRID]是天才…'/>
+		<scripts type='10' rank='5' msg='[UserRID]等我~ 哈哈~'/>
+		<scripts type='10' rank='5' msg='[UserRID] 真有才能吶'/>
+		<scripts type='10' rank='5' msg='[UserRID] 是否有朋友在幫忙?'/>
+		<scripts type='10' rank='5' msg='啊! [UserRID]， 什麼時候變這麼快….'/>
+		<scripts type='10' rank='5' msg='[AiRID]! [UserRID] 隨便走!'/>
+		<scripts type='10' rank='5' msg='[UserRID]! 對這模式真有一套~'/>
+		<scripts type='10' rank='9' msg='[UserRID]， 好像在看3年前的我~'/>
+		<scripts type='10' rank='9' msg='[UserRID] 真的很厲害? 但是還沒好!'/>
+		<scripts type='10' rank='9' msg='[UserRID] … 還 很厲害嗎??'/>
+		<scripts type='10' rank='9' msg='[UserRID]， 每次都要跑中間嗎?'/>
+		<scripts type='10' rank='9' msg='[UserRID]我們又見面了~'/>
+		<scripts type='10' rank='15' msg='[UserRID]~! 專心在遊戲吧!'/>
+		<scripts type='10' rank='15' msg='[UserRID]， 用腳算還很厲害嗎!'/>
+		<scripts type='10' rank='15' msg='[UserRID]， 這麼有才能，還需要練習嗎?'/>
+		<scripts type='10' rank='15' msg='不對~ 車子不是這樣開的~'/>
+		<scripts type='10' rank='15' msg='[UserRID] 很有禮貌的跑法… 我都被感動了..'/>
+		<scripts type='10' rank='15' msg='[UserRID]! 給我看看耐力! 現在還沒結束呢!'/>
+		<scripts type='10' rank='15' msg='[UserRID] 哈 哈 哈  哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈 哈'/>
+	</F1RiderGroup>
+<!--각 라운드 시작 전 컷신 스크립트 -->
+<!-- <scripts type='101' character='neo_2' msg='네오||이번 대회에서는 음모를 가진 인물은 안 보이는군!|진짜 실력을 겨뤄보자!'/>
+<scripts type='102' character='다오_01' msg='다오|사라진 MR.블랙이 신경 쓰이지만 이번 대회는 레이스에만 집중할 수 있겠어. 네오~ 가자!'/>
+<scripts type='103' character='neo_1' msg='네오||근데 하이퍼모터와 미녀라이더는 어디로 사라진걸까?'/>
+<scripts type='104' msg='줄거리1||1회 대회는 네오의 활약으로 MR.블랙을 저지하고 다오가 우승한다. 직후 MR.블랙은 도망가고 하이퍼 모터,미녀라이더,배드스킬이 실종된다.'/>
+<scripts type='105' msg='줄거리2||왕국의 주인 카왕이 은퇴하고 딸인 카론이 후계자를 찾아 참가하였다. 카론을 사랑하는 제롬과 왕국을 노리는 슈미즈도 참가한다.'/>
+<scripts type='106' msg='줄거리3||하이퍼 모터의 딸 핑크모터는 아버지를 찾기 위해 참가한다. 그 외에도 많은 참가자가 등장한 2회 대회!과연 어떻게 될까?'/>
+<scripts type='107' character='racer1_웃기' msg='제롬||무슨 일이 있어도 카론 공주님을 무사히 지킬거야. 아아 카론 공주님... 눈부시게 아름다우셔라.'/>
+<scripts type='201' character='neo_1' msg='네오||시리우스라는 자가 뭔가 이상해… 좀 더 자세히 알아보자'/>
+<scripts type='202' character='다오_07' msg='다오||헉헉... 참가자들 눈 빛이 이상해지고 있어! 무슨 일이지?'/>
+<scripts type='203' character='neo_2' msg='네오||숙소에 놓이 이 음료수.. 뭔가 이상해 마시지 말자.'/>
+<scripts type='204' msg='1라운드 후||마스크쓴여성이 몰래 모든 라이더들의 숙소에 처음보는 음료수를 두었다. 음료의 정체는?'/>
+<scripts type='202' character='racer_웃기' msg='전설의 라이더||이 음료수는 뭐지? 모두에게 주는 건가? (꿀꺽)… 맛있네'/>
+<scripts type='202' character='blackracer_character02' msg='시리우스||지금들 좋아해라… 곧 지옥을 보여주지'/>
+<scripts type='301' character='blackracer_character02' msg='시리우스||사실 내 정체는 MR.블랙! 모든 참가자들을 감염시키는데 성공했다! 블랙라이더들아~ 가랏!!'/>
+<scripts type='302' character='blackracer_character02' msg='MR.블랙||시리우스는 내 가명이다! 내가 만든 블랙 라이더들을 이겨낼 수 있을까?!'/>
+<scripts type='303' msg='2라운드 후||라이더들이 마신 음료는 블랙 바이러스!. 너와 네오. 그리고 제롬을 빼고 모두가 블랙화 세뇌를 당했다!'/>
+<scripts type='304' character='neo_2' msg='네오||MR.블랙! 다시 돌아왔군!세뇌라니...네 뜻 대로 되지는 않을 거다!'/>
+<scripts type='305' character='다오_06' msg='다오||MR.블랙! 사람들을 감염시키다니! 어서 풀어줘!!'/>
+<scripts type='306' character='blackracer_character01' msg='시리우스||모두 블랙으로 감염시켰다!..응?제롬은 왜 마셔놓고 세뇌당하지 않은거지?'/>
+<scripts type='307' character='racer1_기본' msg='제롬||아앗. 사람들이 블랙으로 감염됬어!!카..카론 공주님. 제가 꼭 구해드릴게요!!!!!'/>
+ -->
+</chattingScript>
+
+

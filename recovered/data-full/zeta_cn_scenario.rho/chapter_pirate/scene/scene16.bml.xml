@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate3"/>
+  <Char id="kephi" pos="4 0" emotion="stop3"/>
+  <Msg name="胖墩" string="哈哈哈！监视塔也不怎么样嘛！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="kephi" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="11 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="喔喔！胖墩你不是有恐高症吗？！了不起！！"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop4"/>
+  <Char id="kephi" pos="4 0" emotion="stop1"/>
+  <Msg name="胖墩" string="一点都不怕！|(其实是有点害怕..‘嘴唇打颤’)"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" remove="true"/>
+  <Char id="pirate1" pos="8 0" emotion="stop3"/>
+  <Msg name="海盗水手" string="嘟嘟队长！找到他们了！在那边！"/>
+  <Enter/>
+  <Char id="pirate1" remove="true"/>
+  <Char id="tutu" pos="8 0" emotion="stop9"/>
+  <Msg name="嘟嘟" string="给我抓住他们！|只要抓住他们我就能成为No.2！！"/>
+  <Enter/>
+  <Char id="tutu" remove="true"/>
+  <Char id="dao" pos="6 0" emotion="stop6"/>
+  <Msg name="皮蛋" string="糟了！是海盗！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="6 0" emotion="stop5"/>
+  <Msg name="胖墩" string="哼！不要担心！让我来解决他们！！|来吧，海盗们！"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill5"/>
+  <Char id="dizini" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞" string="胖墩 真差劲！|居然喝光了小乖的牛奶！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="胖墩，这真是差劲的事情！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="kephi" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="胖墩" string="抱歉……|但是我实在是太饿了 ㅠ_ㅠ"/>
+  <Enter/>
+  <Char id="kephi" remove="true"/>
+  <Char id="uni" pos="3 0" emotion="stop4"/>
+  <Msg name="小乖" string="小乖！ 小乖！"/>
+  <Enter/>
+  <Char id="uni" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="皮蛋" string="要原谅他? 小乖?|额……|但是，因为是胖墩错了，所以该处罚他。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop6"/>
+  <Msg name="小强" string="&quot;就当是练习驾驶, 处罚胖墩跑圈如何? &quot;"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop1"/>
+  <Msg name="皮蛋" string="真是个好主意?|胖墩！ 一边行驶，一边反省自己的错误。"/>
+  <Enter/>
+</Scene>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="brodi_03"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="得找找可以进行广播的地方！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="normal"/>
+  <Msg name="葱头" string="好像是那边！！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="a8" pos="8 0" emotion="stop1"/>
+  <Msg name="A8" string="嘀嘀嘀 嘀嘀嘀。 |（非相关人员，禁止入内。）"/>
+  <Enter/>
+  <Char id="a8" remove="true"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Char id="a8" pos="11 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="机器人在阻止我们的去路！！|好像就是那边！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="a8" remove="true"/>
+  <Char id="bazzi" pos="8 0" emotion="normal"/>
+  <Msg name="宝宝" string="让开，我们得过去！！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="a8" pos="11 0" emotion="stop1"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="A8" string="嘀嘀嘀嘀！|（不要妨碍我们的工作！）"/>
+  <Enter/>
+  <Char id="a8" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="a8" pos="11 0" emotion="stop1"/>
+  <Char id="dao" pos="4 0" emotion="stop3"/>
+  <Msg name="A8" string="嘀，嘀，嘀嘀嘀嘀嘀！|（再妨碍，你们会后悔的！！）"/>
+  <Enter/>
+  <Char id="a8" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="ethi" pos="8 0" emotion="normal"/>
+  <Msg name="葱头" string="没时间在这种地方浪费了！！|神秘工头可能有危险了！！"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="走开！宝宝，去挡住机器人。|我要先行一步！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="a8" pos="11 0" emotion="stop1"/>
+  <Char id="bazzi" pos="4 0" emotion="stop3"/>
+  <Msg name="A8" string="嘀嘀嘀嘀嘀！嘀嘀嘀嘀|（要向A0大人进行报告！发现入侵者了！）"/>
+  <Enter/>
+</Scene>

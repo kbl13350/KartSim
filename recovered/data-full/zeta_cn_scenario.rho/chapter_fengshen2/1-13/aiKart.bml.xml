@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <AiKart id="1" track="fengshen_I03" isFixedKart="true" fixedKartId="1563" isFixedChar="true" fixedCharId="482" laps="3" gameType="item">
+    <LevelContent level="0" isAiItemFree="false" item="Rocket;WaterBomb;Booster;WaterFly" aiItemLevel="1">
+      <AiKart characterId="472" uniformId="0" kartId="1524" colorId="1" dyeId="1" balloonId="0" speed="45" accel="32" startTick="0" characterName="哪吒"/>
+      <AiKart characterId="481" uniformId="0" kartId="1523" colorId="6" dyeId="1" balloonId="0" speed="45" accel="32" startTick="0" characterName="雷震子"/>
+    </LevelContent>
+  </AiKart>
+</Root>

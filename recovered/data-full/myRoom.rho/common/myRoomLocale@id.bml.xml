@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<myRoomList>
+  <myRoom id="1" name="village_M01" title="Village My Room" default="true"/>
+  <myRoom id="2" name="desert_M01" title="Desert My Room"/>
+  <myRoom id="3" name="forest_M01" title="Forest My Room"/>
+  <myRoom id="4" name="china_M01"/>
+  <myRoom id="5" name="village_M02"/>
+  <myRoom id="6" title="핑크러브 마이룸"/>
+  <myRoom id="7" title="댄스 마이룸"/>
+  <myRoom id="8" title="봄꽃 마이룸"/>
+  <myRoom id="9" title="썸머 마이룸"/>
+  <myRoom id="16" title="공동묘지 1"/>
+  <myRoom id="17" title="할로윈 마이룸"/>
+  <myRoom id="19" title="I Love My Room"/>
+</myRoomList>

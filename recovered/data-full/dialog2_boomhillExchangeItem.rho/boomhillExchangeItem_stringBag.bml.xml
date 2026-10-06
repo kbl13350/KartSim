@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="itemName">
+    <m c="kr" v="아이템 이름"/>
+    <m c="cn" v="道具名称"/>
+  </k>
+  <k n="itemPrice">
+    <m c="kr" v="아이템 가격"/>
+    <m c="cn" v="道具价格"/>
+  </k>
+  <k n="cash">
+    <m c="kr" v="캐시"/>
+    <m c="cn" v="个"/>
+  </k>
+  <k n="myCash">
+    <m c="kr" v="현재 캐시"/>
+    <m c="cn" v="我的电池"/>
+  </k>
+  <k n="cashAfterBuying">
+    <m c="kr" v="구입 후 캐시"/>
+    <m c="cn" v="剩余电池"/>
+  </k>
+  <k n="myLucci">
+    <m c="kr" v="현재 루찌"/>
+    <m c="cn" v="我的金币"/>
+  </k>
+  <k n="lucciAfterBuying">
+    <m c="kr" v="구입 후 루찌"/>
+    <m c="cn" v="剩余金币"/>
+  </k>
+  <k n="myLuccon">
+    <m c="kr" v="현재 루콘"/>
+  </k>
+  <k n="lucconAfterBuying">
+    <m c="kr" v="구입 후 루콘"/>
+    <m c="cn" v="剩余幸运币"/>
+  </k>
+  <k n="askBuyBoomhillExchange">
+    <m c="kr" v="상점에서 구매한 상품은 취소가 되지 않습니다."/>
+    <m c="cn" v="要兑换所选道具吗？"/>
+  </k>
+  <k n="infoGachaProbPage">
+    <m c="kr" v="캐시 판매 아이템의 확률 정보는 웹페이지 &gt; 확률형 아이템 페이지에서 확인 가능합니다."/>
+    <m c="cn" v=""/>
+  </k>
+  <k n="initialWarning">
+    <m c="kr" v="(구입한 이니셜은 모든 번호판에 적용됩니다.)"/>
+    <m c="cn" v="兑换的车牌文字可以在所有显示牌上显示"/>
+  </k>
+  <k n="rechargeCash">
+    <m c="kr" v="캐시 충전하기"/>
+    <m c="cn" v="电池兑换"/>
+  </k>
+  <k n="buy">
+    <m c="kr" v="구입"/>
+    <m c="cn" v="兑换"/>
+  </k>
+  <k n="cancel">
+    <m c="kr" v="취소"/>
+    <m c="cn" v="取消"/>
+  </k>
+  <k n="unknown">
+    <m c="kr" v="알수없음"/>
+    <m c="cn" v="未知"/>
+  </k>
+  <k n="buyItem">
+    <m c="kr" v="아이템 구입"/>
+    <m c="cn" v="获得活动道具"/>
+  </k>
+  <k n="buyItemWarning">
+    <m c="kr" v="* 구입하시기 전에 선물함 아이템 보유 유무 및 아이템의 기한과 수량을 꼭 확인하여 주십시오. |* [구입확정함]에서 구입확정 후 아이템 사용이 가능합니다. 구입 후 7일 기간 내 구입취소를 할 수 있습니다.|* 구입 후 7일 이내에 구입확정 또는 취소를 하지 않은 경우, 내 아이템으로 자동 수령됩니다.|* 판매기간이 한정된 아이템의 경우 판매기간이 지나면 구입취소가 불가능 합니다.|* 일부 아이템은 구입 후 구입취소가 불가능 합니다."/>
+    <m c="cn" v="根据用户协议，兑换了该商品后将无法取消或退还。您确定要兑换买该商品吗？"/>
+  </k>
+  <k n="duplicateItemError1">
+    <m c="kr" v="상품에 들어있는 아이템 중 아래와 같은 아이템을 이미 가지고 있으므로, 상품을 구입할 수 없습니다."/>
+    <m c="cn" v="您已拥有下列道具，无法再兑换"/>
+  </k>
+  <k n="duplicateItemError2">
+    <m c="kr" v="이 상품을 구입하시려면 먼저 차고에서 중복되는 아이템을 버려주세요."/>
+    <m c="cn" v="想要兑换此道具，请先在车库中丢弃重复的道具"/>
+  </k>
+  <k n="askRechargeCash">
+    <m c="kr" v="캐시가 부족합니다. 캐시 충전 페이지로 이동할까요?"/>
+    <m c="cn" v="电池不足，是否要移动到兑换页面？"/>
+  </k>
+  <k n="modifyInitial">
+    <m c="kr" v="이니셜 변경"/>
+    <m c="cn" v="变更车牌文字"/>
+  </k>
+  <k n="buyInitialBrief">
+    <m c="kr" v="이니셜 변경 %d캐시"/>
+    <m c="cn" v="变更车牌文字%d电池"/>
+  </k>
+  <k n="modifyInitialWarning">
+    <m c="kr" v="이니셜을 변경하게 되면 기존의 이니셜은 더 이상 사용할 수 없습니다. 정말 이니셜을 변경하시겠습니까?"/>
+    <m c="cn" v="变更车牌文字后就不能再使用目前的车牌文字了，要继续吗？"/>
+  </k>
+  <k n="selectStr">
+    <m c="kr" v="선택해주세요"/>
+    <m c="cn" v="选择期限"/>
+  </k>
+  <k n="selectError">
+    <m c="kr" v="구매하려는 상품을 선택해 주시기 바랍니다."/>
+    <m c="cn" v="请选择要兑换道具的使用期限"/>
+  </k>
+  <k n="goodsName">
+    <m c="kr" v="상품명"/>
+    <m c="cn" v="道具名称"/>
+  </k>
+  <k n="goodsPrice">
+    <m c="kr" v="상품 가격"/>
+    <m c="cn" v="道具价格"/>
+  </k>
+  <k n="paymentMethod">
+    <m c="kr" v="구입 방법"/>
+    <m c="cn" v="兑换方式"/>
+  </k>
+  <k n="myKoin">
+    <m c="kr" v="현재 코인"/>
+    <m c="cn" v="我的酷币"/>
+  </k>
+  <k n="koinAfterBuying">
+    <m c="kr" v="구입 후 코인"/>
+    <m c="cn" v="剩余酷币"/>
+  </k>
+  <k n="seasonPassBuyHelp">
+    <m c="kr" v="[일반/프리미엄/럭셔리 패스 레벨에만 적용되며,|구입 확정함에 보관된 수량은 포함되지 않습니다.]"/>
+    <m c="cn" v="[只适用于一般/豪华/奢华通行证等级。]"/>
+  </k>
+  <k n="userStep">
+    <m c="kr" v="현재 패스 LV %s"/>
+    <m c="cn" v="目前等级%s"/>
+  </k>
+  <k n="userStepAfterBuying">
+    <m c="kr" v="구입 후 패스 LV %s"/>
+    <m c="cn" v="兑换后等级%s"/>
+  </k>
+  <k n="userStepSpecialPass">
+    <m c="kr" v="현재 스페셜 패스 LV %s"/>
+    <m c="cn" v="目前特殊等级%s"/>
+  </k>
+  <k n="userStepAfterBuyingSpecialPass">
+    <m c="kr" v="구입 후 스페셜 패스 LV %s"/>
+    <m c="cn" v="兑换后特殊等级%s"/>
+  </k>
+  <k n="max">
+    <m c="kr" v="MAX"/>
+    <m c="cn" v="最大值"/>
+  </k>
+  <k n="myPassPoint">
+    <m c="kr" v="%d / %d"/>
+    <m c="cn" v="%d / %d"/>
+  </k>
+  <k n="targetPointAfterBuying">
+    <m c="kr" v=" / %d"/>
+    <m c="cn" v=" / %d"/>
+  </k>
+  <k n="buyItemTitle_boomhillExchange">
+    <m c="kr" v="교환소 아이템"/>
+    <m c="cn" v="兑换所道具"/>
+  </k>
+  <k n="itemPrice_boomhillExchange_dao">
+    <m c="kr" v="교환에 필요한 다오의 인장 수량"/>
+    <m c="cn" v="兑换所兑换印章数量"/>
+  </k>
+</StringBag>

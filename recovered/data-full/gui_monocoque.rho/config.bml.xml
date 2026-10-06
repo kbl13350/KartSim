@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ThemeSwitch>
+  <CaptionWindow useCaptionShadow="false" captionTextRender="default" captionColor="white" captionColor2="255 27 60 113">
+    <CaptionDialog dialogCaptionPosOffset="0 3" textRender="bold20"/>
+    <BigCaptionDialog textRender="bold20"/>
+    <FlagCaptionDialog textRender="bold20" dialogCaptionPosOffset="-176 0"/>
+  </CaptionWindow>
+  <TextButton useTextShadow="false" focusButtonFrame="DefaultFocusedButton" focusButtonTextColor="white" defaultTextColor="black" defaultTextColor2="255 1 140 235">
+    <DefaultStaticButton textColor="255 60 60 60" overTextColor="255 0 80 150" clickedTextColor="255 53 97 128" disabledTextColor="255 90 90 90"/>
+    <DefaultFocusedButton textRender="default" textColor="white" textColor2="255 3 139 237" overTextRender="default" overTextColor="white" overTextColor2="255 3 139 237" clickedTextRender="default" clickedTextColor="255 212 237 254" clickedTextColor2="255 1 138 231" disabledTextRender="default" disabledTextColor="255 210 210 210" disabledTextColor2="255 125 125 125"/>
+    <SelectBtn textColor="255 60 60 60" overTextColor="255 218 241 254"/>
+    <ComboSelectButton textColor="255 60 60 60" overTextColor="255 218 241 254"/>
+    <Tab textColor="white" overTextRender="bold" overTextColor="255 20 162 236" clickedTextRender="bold" clickedTextColor="255 22 92 159" disabledTextRender="bold" disabledTextColor="255 22 92 159"/>
+    <PopupButton textRender="bold" textColor="white" overTextRender="bold" overTextColor="white" clickedTextRender="bold" clickedTextColor="255 210 210 210" disabledTextRender="default" disabledTextColor="255 180 180 180"/>
+    <TabBlack textColor="white" overTextRender="bold" overTextColor="255 20 162 236" clickedTextRender="bold" clickedTextColor="255 22 92 159" disabledTextRender="bold" disabledTextColor="255 22 92 159"/>
+  </TextButton>
+  <ScrollBar defaultSize="12"/>
+</ThemeSwitch>

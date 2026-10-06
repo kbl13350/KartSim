@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='85.0'
+	BackwardAccelForce='80.0'
+	DragFactor='-0.049'
+	SteerConstraint='1.1'
+	DriftEscapeForce='130'
+	CornerDrawFactor='0.03'
+
+	EngineSound='bike'
+
+	DescBalance= '30'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='2'
+	DescEnchantCap = '20'
+
+/>
+<!-- 대만 F5-Proto (R4급 - 이벤트용) -->

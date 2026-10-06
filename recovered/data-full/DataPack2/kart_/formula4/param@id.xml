@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='105.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.053'
+	SteerConstraint='2'
+	DriftEscapeForce='300'
+	CornerDrawFactor='0.041'
+
+	BoosterBlur='true'
+	EngineSound='formula1'
+/>
+<!-- 인니 F1 카트 Pro 120705 -->

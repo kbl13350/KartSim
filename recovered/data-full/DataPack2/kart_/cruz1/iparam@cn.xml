@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.3'
+	DriftEscapeForce='500'
+	CornerDrawFactor='0.056'
+	UseTransformBooster='true'
+	TransAccelFactor='1.6'
+
+	BoosterBlur='true'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+
+	EngineSound='cotton6'
+	EnvMap='true'
+
+	Port0='mod6a'
+	Port1='mod6b'
+	FirePort0='mod2b1'
+	FirePort1='mod2b2'
+	FirePort2='mod2b3'
+	FirePort3='mod2c1'
+	FirePort4='mod2c2'
+
+	DescBalance= '25'
+	DescStability ='30'
+	DescEngineGrade='1'
+	DescCornering='1'
+	DescEnchantCap = '20'
+
+/>
+
+<!-- 중국 크루저 SR :보상 -->
+
+

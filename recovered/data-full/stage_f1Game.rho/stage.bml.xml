@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Stage className="F1SpeedGameStage" addResFolder="/stage/common/;/stage/speedTeamGame/;/stage/speedIndiGame/;" topmostWindow="mq_window@zz"/>

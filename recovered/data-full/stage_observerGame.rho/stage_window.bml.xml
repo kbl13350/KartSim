@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="frostEffect" windowRect="fullscreen"/>
+  <Container name="uiEffect" windowRect="fullscreen"/>
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Panel name="digit" windowSize="191 55" align="right;top" adjust="28 5" texture="digit_box" alphaBlend="true">
+      <Panel windowRect="0 0 191 1" texture="digit_line" alphaBlend="true"/>
+      <Container name="lapinfo" windowRect="0 1 191 27">
+        <Panel windowRect="-42 2 86 24" uvRect="0 0 128 22" texture="aw_03@zz" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="myLap" windowRect="93 2 153 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789:/x" text="0/0"/>
+        <Panel windowRect="0 26 191 27" texture="digit_line" alphaBlend="true"/>
+      </Container>
+      <Container name="timeinfo" windowRect="0 28 199 54">
+        <Panel windowRect="-42 2 86 24" uvRect="0 22 128 44" texture="aw_03@zz" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="TimeMin" windowRect="73 2 113 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789" text="0" rightAlign="true"/>
+        <Panel windowRect="113 2 133 25" uvRect="200 0 220 23" texture="digit_num" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="TimeSec" windowRect="130 2 170 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789" text="00" spaceOffset="-6"/>
+        <Panel windowRect="164 2 184 25" uvRect="200 0 220 23" texture="digit_num" align="vcenter" alphaBlend="true"/>
+        <CharPanel name="TimeMil" windowRect="181 2 221 25" texture="digit_num" alphaBlend="true" fontSize="20 23" fontStr="0123456789" text="00" spaceOffset="-6"/>
+        <Panel windowRect="0 26 191 27" texture="digit_line" alphaBlend="true"/>
+      </Container>
+    </Panel>
+    <Panel name="dashboard" windowSize="225 175" adjust="4 16" align="right;bottom" uvRect="0 0 225 175" texture="aw_01@zz" alphaBlend="true">
+      <CharPanel name="kmh" windowRect="134 105 221 143" texture="aw_02@zz" alphaBlend="true" fontSize="29 38" fontPos="0 0" fontStr="0123456789" text="000"/>
+      <Panel windowRect="106 125 145 141" uvRect="119 175 158 191" texture="aw_01@zz" alphaBlend="true"/>
+      <Graduation name="hand" windowRect="9 89 81 105" texture="aw_01@zz" alphaBlend="true" uvRect="0 176 72 192" minDegree="-90" maxDegree="180" minValue="0" maxValue="360" axis="70.5 8" defaultValue="0"/>
+      <Panel name="handMark" windowRect="66 84 92 109" uvRect="93 175 119 200" texture="aw_01@zz" alphaBlend="true"/>
+      <DashboardPanel name="LucciNum" windowRect="134 153 223 168" texture="aw_02@zz" alphaBlend="true" fontSize="10 15" fontPos="345 0" fontStr="0123456789" text="     "/>
+    </Panel>
+    <Container name="help" windowRect="290 20 800 600" visible="false">
+      <Panel windowRect="-10 -10 510 480" color="128 58 110 165" alphaBlend="true"/>
+      <Label windowRect="0 0 500 20" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp01)"/>
+      <Label windowRect="0 20 500 40" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp02)"/>
+      <Label windowRect="0 40 500 60" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp03)"/>
+      <Label windowRect="0 60 500 80" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp04)"/>
+      <Label windowRect="0 80 500 100" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp05)"/>
+      <Label windowRect="0 100 500 120" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp06)"/>
+      <Label windowRect="0 120 500 140" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp07)"/>
+      <Label windowRect="0 160 500 180" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp11)"/>
+      <Label windowRect="0 180 500 200" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp12)"/>
+      <Label windowRect="0 200 500 220" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp13)"/>
+      <Label windowRect="0 220 500 240" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp14)"/>
+      <Label windowRect="0 240 500 260" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp15)"/>
+      <Label windowRect="0 280 500 300" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp21)"/>
+      <Label windowRect="0 300 500 320" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp22)"/>
+      <Label windowRect="0 320 500 340" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp23)"/>
+      <Label windowRect="0 340 500 360" textRender="outline" textColor="red" textColor2="black" text="#sb(onHelp24)"/>
+      <Label windowRect="0 360 500 380" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp25)"/>
+      <Label windowRect="0 380 500 400" textRender="outline" textColor="red" textColor2="black" text="#sb(onHelp26)"/>
+      <Label windowRect="0 400 500 420" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp27)"/>
+      <Label windowRect="0 420 500 440" textRender="outline" textColor="red" textColor2="black" text="#sb(onHelp28)"/>
+      <Label windowRect="0 440 500 460" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp29)"/>
+      <Label windowRect="0 460 500 480" textRender="outline" textColor="white" textColor2="black" text="#sb(onHelp30)"/>
+    </Container>
+    <Container name="console" windowSize="790 20" align="left;bottom">
+      <Label name="ranklock" windowRect="0 0 0 0" textRender="outline" textColor="red" textColor2="black" autoSizing="true" text="Rank Locked"/>
+      <Label name="cameratype" windowRect="110 0 0 0" textRender="outline" textColor="white" textColor2="black" autoSizing="true"/>
+      <Label name="comment" windowRect="360 0 0 0" textRender="outline" textColor="white" textColor2="black" autoSizing="true" text="HELP: F1"/>
+    </Container>
+    <Container name="minimapspot" clientRect="fullscreen" enable="false" visible="false">
+      <Panel name="spot7" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+        <Label name="spotlable" windowRect="11 3 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="1"/>
+      </Panel>
+      <Panel name="spot6" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+        <Label name="spotlable" windowRect="11 3 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="1"/>
+      </Panel>
+      <Panel name="spot5" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+        <Label name="spotlable" windowRect="11 3 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="1"/>
+      </Panel>
+      <Panel name="spot4" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+        <Label name="spotlable" windowRect="11 3 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="1"/>
+      </Panel>
+      <Panel name="spot3" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+        <Label name="spotlable" windowRect="11 3 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="1"/>
+      </Panel>
+      <Panel name="spot2" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+        <Label name="spotlable" windowRect="11 3 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="1"/>
+      </Panel>
+      <Panel name="spot1" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+        <Label name="spotlable" windowRect="11 3 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="1"/>
+      </Panel>
+      <Panel name="spot0" windowRect="0 0 37 32" color="140 255 130 0" alphaBlend="true">
+        <Label name="spotlable" windowRect="11 3 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="1"/>
+      </Panel>
+    </Container>
+    <Container windowRect="20 30 800 600">
+      <Container name="player0" clientRect="0 60 200 93">
+        <Panel name="rank" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+          <Label name="ranklabel" windowRect="12 9 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="1"/>
+        </Panel>
+        <Label name="rid" windowRect="40 0 40 33" textRender="du11bOutline" textColor="white" autoSizing="true" align="vcenter"/>
+      </Container>
+      <Container name="player1" clientRect="0 100 200 133">
+        <Panel name="rank" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+          <Label name="ranklabel" windowRect="12 9 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="2"/>
+        </Panel>
+        <Label name="rid" windowRect="40 0 40 33" textRender="du11bOutline" textColor="white" autoSizing="true" align="vcenter"/>
+      </Container>
+      <Container name="player2" clientRect="0 140 200 173">
+        <Panel name="rank" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+          <Label name="ranklabel" windowRect="12 9 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="3"/>
+        </Panel>
+        <Label name="rid" windowRect="40 0 40 33" textRender="du11bOutline" textColor="white" autoSizing="true" align="vcenter"/>
+      </Container>
+      <Container name="player3" clientRect="0 180 200 213">
+        <Panel name="rank" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+          <Label name="ranklabel" windowRect="12 9 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="4"/>
+        </Panel>
+        <Label name="rid" windowRect="40 0 40 33" textRender="du11bOutline" textColor="white" autoSizing="true" align="vcenter"/>
+      </Container>
+      <Container name="player4" clientRect="0 220 200 253">
+        <Panel name="rank" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+          <Label name="ranklabel" windowRect="12 9 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="5"/>
+        </Panel>
+        <Label name="rid" windowRect="40 0 40 33" textRender="du11bOutline" textColor="white" autoSizing="true" align="vcenter"/>
+      </Container>
+      <Container name="player5" clientRect="0 260 200 293">
+        <Panel name="rank" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+          <Label name="ranklabel" windowRect="12 9 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="6"/>
+        </Panel>
+        <Label name="rid" windowRect="40 0 40 33" textRender="du11bOutline" textColor="white" autoSizing="true" align="vcenter"/>
+      </Container>
+      <Container name="player6" clientRect="0 300 200 333">
+        <Panel name="rank" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+          <Label name="ranklabel" windowRect="12 9 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="7"/>
+        </Panel>
+        <Label name="rid" windowRect="40 0 40 33" textRender="du11bOutline" textColor="white" autoSizing="true" align="vcenter"/>
+      </Container>
+      <Container name="player7" clientRect="0 340 200 373">
+        <Panel name="rank" windowRect="0 0 37 32" color="180 255 130 0" alphaBlend="true">
+          <Label name="ranklabel" windowRect="12 9 26 28" textRender="du11bOutline" textColor="white" align="vcenter" text="8"/>
+        </Panel>
+        <Label name="rid" windowRect="40 0 40 33" textRender="du11bOutline" textColor="white" autoSizing="true" align="vcenter"/>
+      </Container>
+    </Container>
+  </Container>
+  <Container name="speedResultPanel" windowRect="0 0 800 600" visible="false" align="center">
+    <Container name="tpBoard" windowRect="0 0 800 600">
+      <Panel windowRect="167 378 377 478" texture="팀박스" alphaBlend="true">
+        <Panel windowSize="210 1" adjust="0 -1" texture="팀박스라인" alphaBlend="true"/>
+        <Panel name="blueTeamNorm" windowSize="157 33" adjust="5 8" texture="blueteam@zz" alphaBlend="true"/>
+        <Panel name="blueTeamWin1" windowSize="157 33" adjust="5 8" texture="blueteam@zz" alphaBlend="true" visible="false"/>
+        <Panel name="blueTeamWin2" windowSize="157 33" adjust="5 8" texture="blueteam@zz" alphaBlend="true" visible="false"/>
+        <TpBoard name="blueTpBoard" windowSize="150 33" adjust="165 13" texture="blueteam_num@zz" alphaBlend="true" fontSize="23 28" fontPos="0 0" fontStr="0123456789" charNum="2" maxSpinSpeed="200" breakVal="300" minStopSpeed="100" minSpinSpeed="80" slowestSpinSpeed="40" slowestBreakVal="40"/>
+        <Panel windowSize="210 1" adjust="0 100" texture="팀박스라인" alphaBlend="true"/>
+      </Panel>
+      <Panel windowRect="424 378 634 478" texture="팀박스" alphaBlend="true">
+        <Panel windowSize="210 1" adjust="0 -1" texture="팀박스라인" alphaBlend="true"/>
+        <Panel name="redTeamNorm" windowSize="150 33" adjust="5 8" texture="redteam@zz" alphaBlend="true"/>
+        <Panel name="redTeamWin1" windowSize="150 33" adjust="5 8" texture="redteam@zz" alphaBlend="true" visible="false"/>
+        <Panel name="redTeamWin2" windowSize="150 33" adjust="5 8" texture="redteam@zz" alphaBlend="true" visible="false"/>
+        <TpBoard name="redTpBoard" windowSize="150 33" adjust="165 13" texture="redteam_num@zz" alphaBlend="true" fontSize="23 28" fontPos="0 0" fontStr="0123456789" charNum="2" maxSpinSpeed="200" breakVal="300" minStopSpeed="100" minSpinSpeed="80" slowestSpinSpeed="40" slowestBreakVal="40"/>
+        <Panel windowSize="210 1" adjust="0 100" texture="팀박스라인" alphaBlend="true"/>
+      </Panel>
+    </Container>
+    <Container name="line0" windowRect="0 13 800 52">
+      <Panel windowSize="400 39" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 39" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 39" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="resultID" windowSize="50 26" adjust="173 7" texture="id@zz" alphaBlend="true"/>
+      <Panel name="resultTime" windowSize="86 24" adjust="348 8" texture="GameOverTime@zz" alphaBlend="true"/>
+      <Panel name="resultTP" windowSize="166 24" adjust="521 8" texture="tp@zz" alphaBlend="true"/>
+    </Container>
+    <Container name="line1" windowRect="0 62 800 99">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="150 0 245 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="348 0 433 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="314 0 448 33" align="vcenter">
+        <Label name="tp" windowSize="70 33" adjust="215 0" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line2" windowRect="0 99 800 136">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="150 0 245 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="348 0 433 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="314 0 448 33" align="vcenter">
+        <Label name="tp" windowSize="70 33" adjust="215 0" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line3" windowRect="0 136 800 173">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="150 0 245 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="348 0 433 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="314 0 448 33" align="vcenter">
+        <Label name="tp" windowSize="70 33" adjust="215 0" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line4" windowRect="0 173 800 210">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="150 0 245 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="348 0 433 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="314 0 448 33" align="vcenter">
+        <Label name="tp" windowSize="70 33" adjust="215 0" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line5" windowRect="0 210 800 247">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="150 0 245 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="348 0 433 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="314 0 448 33" align="vcenter">
+        <Label name="tp" windowSize="70 33" adjust="215 0" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line6" windowRect="0 247 800 284">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="150 0 245 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="348 0 433 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="314 0 448 33" align="vcenter">
+        <Label name="tp" windowSize="70 33" adjust="215 0" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line7" windowRect="0 284 800 321">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="150 0 245 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="348 0 433 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="314 0 448 33" align="vcenter">
+        <Label name="tp" windowSize="70 33" adjust="215 0" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line8" windowRect="0 321 800 358">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="97 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="150 0 245 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="348 0 433 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="314 0 448 33" align="vcenter">
+        <Label name="tp" windowSize="70 33" adjust="215 0" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+  </Container>
+  <Container name="itemResultPanel" windowRect="0 0 800 600" visible="false" align="center">
+    <Container name="line0" windowRect="0 13 800 52">
+      <Panel windowSize="400 39" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 39" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 39" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="resultID" windowSize="50 26" adjust="268 7" texture="id@zz" alphaBlend="true"/>
+      <Panel name="resultTime" windowSize="86 24" adjust="443 8" texture="GameOverTime@zz" alphaBlend="true"/>
+    </Container>
+    <Container name="line1" windowRect="0 62 800 99">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="245 0 340 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="443 0 528 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line2" windowRect="0 99 800 136">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="245 0 340 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="443 0 528 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line3" windowRect="0 136 800 173">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="245 0 340 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="443 0 528 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line4" windowRect="0 173 800 210">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="245 0 340 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="443 0 528 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line5" windowRect="0 210 800 247">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="245 0 340 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="443 0 528 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line6" windowRect="0 247 800 284">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="245 0 340 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="443 0 528 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line7" windowRect="0 284 800 321">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="245 0 340 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="443 0 528 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+    <Container name="line8" windowRect="0 321 800 358">
+      <Panel windowSize="400 36" adjust="0 0" texture="랭킹박스_01" alphaBlend="true">
+        <Panel windowSize="400 36" adjust="400 0" texture="랭킹박스_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="redbgBar" windowSize="400 36" adjust="0 0" texture="레드자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="레드자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="bluebgBar" windowSize="400 36" adjust="0 0" texture="블루_자신표시_01" alphaBlend="true" visible="false">
+        <Panel windowSize="400 36" adjust="400 0" texture="블루_자신표시_02" alphaBlend="true"/>
+      </Panel>
+      <Panel windowSize="400 1" adjust="0 36" texture="랭킹라인_01" alphaBlend="true">
+        <Panel windowSize="400 1" adjust="400 0" texture="랭킹라인_02" alphaBlend="true"/>
+      </Panel>
+      <Panel name="numR" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="redteam_num@zz" alphaBlend="true"/>
+      <Panel name="numB" windowSize="23 28" adjust="192 4" uvRect="23 0 46 28" texture="blueteam_num@zz" alphaBlend="true"/>
+      <Container name="static" windowRect="245 0 340 36">
+        <Label name="id" windowRect="155 0 254 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+      <Container name="static" windowRect="443 0 528 36">
+        <Label name="time" windowRect="250 0 400 33" textRender="outline" textColor="white" autoSizing="true" align="center"/>
+      </Container>
+    </Container>
+  </Container>
+</Container>

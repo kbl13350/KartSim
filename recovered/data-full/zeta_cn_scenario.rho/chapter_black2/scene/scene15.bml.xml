@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh2"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="不行！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="raptorL" pos="11 0" flip="true" emotion="stop1"/>
+  <Char id="stone" pos="5 0" emotion="stop4"/>
+  <Msg name="格雷格" string="那我就拿走了~"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="stone" remove="true"/>
+  <Char id="raptorR" pos="11 0" flip="true" emotion="stop1"/>
+  <Msg name="格雷" string="星陨之石我拿走了|后面就交给你了！"/>
+  <Enter/>
+  <Char id="raptorR" remove="true"/>
+  <Char id="raptorL" pos="4 0" emotion="stop2"/>
+  <Msg name="格雷格" string="知道了，哥！|我会好好处理的，放心走吧！"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop7"/>
+  <Msg name="小强" string="宝宝，危险！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="3 0" emotion="stop7"/>
+  <Char id="rick" pos="6 0" emotion="stop4"/>
+  <Msg name="鑫鑫" string="站住！！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="rick" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="还是得我来..|嗯？尼欧？"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="raptorL" pos="4 0" emotion="stop4"/>
+  <Msg name="格雷格" string="什么！敢挡我的路！"/>
+  <Enter/>
+  <Char id="raptorL" remove="true"/>
+  <Char id="neo" pos="11 0" emotion="stop1"/>
+  <Msg name="尼欧" string="还好吧？宝宝.."/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="neo" pos="7 0" emotion="stop1"/>
+  <Msg name="宝宝" string="谢谢..|但是，星陨之石被抢走了.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neo" remove="true"/>
+  <Char id="neo" pos="8 0" emotion="stop2"/>
+  <Msg name="尼欧" string="得先抓住格雷格！"/>
+  <Enter/>
+</Scene>

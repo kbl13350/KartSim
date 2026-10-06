@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="fengshen9"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Msg name="" string="[魔界，妲己的庭院]"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="妲己" string="妲己幻尾草长得可真好。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="妲己" string="哼，这么一来，妖力肯定能恢复个七七八八了。"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="ghost" pos="0 0" emotion="stop1"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop5"/>
+  <Msg name="妲己" string="该怎么报复仙界那帮家伙呢？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Fengshen_stuff" pos="7 0" emotion="stop4"/>
+  <Msg name="姜太公的鱼竿" string="（动了动）"/>
+  <Enter/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="Fengshen_stuff" pos="11 0" emotion="stop3"/>
+  <Msg name="妲己" string="嗯？鱼竿自己动起来了？"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Daji" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="Fengshen_stuff" pos="14 0" emotion="stop3"/>
+  <Msg name="姜太公的鱼竿" string="（咻）"/>
+  <Enter/>
+  <Char id="Daji" remove="true"/>
+  <Char id="Fengshen_stuff" remove="true"/>
+  <Char id="Daji" pos="8 0" flip="true" emotion="stop2"/>
+  <Msg name="妲己" string="咦？等等，鱼钩好像在指着什么地方？"/>
+  <Enter/>
+  <Char id="ghost" remove="true"/>
+  <Char id="Daji" pos="11 0" flip="true" emotion="stop5"/>
+  <Msg name="妲己" string="跟着去看看？"/>
+  <Enter/>
+</Scene>

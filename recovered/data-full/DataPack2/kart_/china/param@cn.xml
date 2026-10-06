@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+
+	ForwardAccelForce='155.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.083'
+	SteerConstraint='2.3'
+	DriftEscapeForce='1600'
+	CornerDrawFactor='0.078'
+
+	WaveEffect='true'
+	BoosterBlur='true'
+	EngineSound='cotton85'
+	antiCollideBalance='0.8'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.843'
+	TransformTime='100'
+
+	StartForwardAccelFactorSpeed = '1.8'
+	StartBoosterTimeSpeed='1600'   
+
+	NormalBoosterTime = '-50'
+	TeamBoosterTime = '300'
+	DriftMaxGauge = '-1500'
+	DriftGaguePreservePercent='0.65'
+
+	BoosterWaveType='boost8'
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='85main'
+	BoosterType3='85sub'
+	BoosterType4='85sub'
+
+	Port0='mod2b1' 
+	Port1='mod2b2'
+
+	FirePort0='mod2c1'
+	FirePort1='mod2b3'
+	FirePort2='mod2b4'
+
+	TailLampSize='0.2'
+	TailLampColor='255 255 186   0'
+	BoostBlurColor='255 77 77 77'
+
+	EnvMap='true'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	DescBalance= '53'
+	DescStability ='54'
+	DescEngineGrade='1.25'
+	DescCornering='9'
+	DescEnchantCap = '31'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='255 0 199 206' trailPort0='mod2b3' trailPort1='mod2b4'/>
+</BodyParam>
+
+<!-- 홍기 HT+ (뉴) 빙고 가챠폰 유니크 20140424
+     모델이 겁네 후짐(접지면적 조절 불가) 플라즈마 급으로 나가지만 실제 게충 떨어짐-->

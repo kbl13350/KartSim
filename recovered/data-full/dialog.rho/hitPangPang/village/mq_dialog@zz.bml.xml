@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="200 0 0 0" alphaBlend="true">
+  <ImageBoard name="bg" leftTopWH="0 45 894 736" image="bg@zz" align="center" alphaBlend="true" visible="true">
+    <Panel name="userItemCounXLetter" windowSize="10 11" align="center;bottom" adjust="-50 28" texture="hitpang_intro_img_coinX" alphaBlend="true"/>
+    <CharPanel name="userItemCount" windowSize="10 11" align="center;bottom" adjust="20 30" texture="hitpang_intro_img_coinAmount_자당10너비" alphaBlend="true" fontSize="10 14" spaceOffset="2" fontStr="1234567890" text="00" rightAlign="true" speedTick="5" enable="false"/>
+    <Label windowSize="410 100" align="center" adjust="60 20" text="#sb(description1)" textRender="bold14" textAlign="vcenter" textColor="white" autoWrap="true" lineGap="2"/>
+    <Label windowSize="410 100" align="center" adjust="60 120" text="#sb(description2)" textRender="bold14" textAlign="vcenter" textColor="white" autoWrap="true" lineGap="2"/>
+    <Label windowSize="410 100" align="center" adjust="60 220" text="#sb(description3)" textRender="bold14" textAlign="vcenter" textColor="white" autoWrap="true" lineGap="2"/>
+    <Label windowSize="410 30" align="center" adjust="0 284" text="#sb(description4)" textRender="bold14" textAlign="center" textColor="white" autoWrap="true" lineGap="2"/>
+    <Container name="flag" windowSize="230 35" align="top;center" adjust="7 110">
+      <Container name="flag0" align="left;center">
+        <Panel leftTopTex="0 0" texture="hitpang_intro_img_flag_01" alphaBlend="true"/>
+        <Panel leftTopTex="0 0" texture="hitpang_intro_img_flag_02" alphaBlend="true" visible="false"/>
+      </Container>
+      <Container name="flag1" align="right;center">
+        <Panel leftTopTex="0 0" texture="hitpang_intro_img_flag_01" alphaBlend="true"/>
+        <Panel leftTopTex="0 0" texture="hitpang_intro_img_flag_02" alphaBlend="true" visible="false"/>
+      </Container>
+    </Container>
+    <ImageButton name="closeButton" windowSize="40 40" align="right;center" adjust="158 -115" autoLoadImage="hitpang_intro_btn_exit_0" alphaBlend="true"/>
+    <ImageButton name="start" windowSize="194 52" align="bottom;center" adjust="150 8" autoLoadImage="hitpang_intro_btn_gamestart_0@zz" alphaBlend="true">
+      <CharPanel name="requestItemCount" leftTopWH="167 15 16 20" texture="hitpang_intro_img_gamestartbtn_amount_자당16너비" alphaBlend="true" fontSize="16 20" spaceOffset="-1" fontStr="1234567890" text="3" enable="false"/>
+    </ImageButton>
+  </ImageBoard>
+</Panel>

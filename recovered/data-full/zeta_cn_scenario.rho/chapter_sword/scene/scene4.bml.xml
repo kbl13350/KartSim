@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="sword4"/>
+  <Char id="il_young" pos="6 0" emotion="stop2"/>
+  <Msg name="日影" string="我不会输…|我一直为了银月剑还有守护月下门而努力…"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wor_ha" pos="12 0" emotion="normal"/>
+  <Char id="il_young" pos="6 0" emotion="stop2"/>
+  <Msg name="月下门主" string="日影啊…对不起…"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <Char id="il_young" pos="5 0" flip="true" emotion="stop2"/>
+  <Char id="Wor_ha" pos="12 0" emotion="normal"/>
+  <Msg name="日影" string="师傅…"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="Wor_ha" pos="11 0" emotion="normal"/>
+  <Char id="il_young" pos="5 0" flip="true" emotion="stop2"/>
+  <Msg name="月下门主" string="我期待你的努力不会白费…"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wor_ha" pos="11 0" emotion="normal"/>
+  <Char id="il_young" pos="3 0" emotion="stop2"/>
+  <Msg name="日影" string="比武的胜者会是我，我会守护月下门的。"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wor_ha" pos="8 0" emotion="normal"/>
+  <Msg name="月下门主" string="吼吼…|（这可怎么办…）"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <BackGround texture="sword1"/>
+  <Char id="Wor_ha" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="月下门主" string="准备开始比武。"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" pos="11 0" emotion="stop2"/>
+  <Char id="Wol_hee" pos="13 0" emotion="normal"/>
+  <Char id="Wor_ha" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="月熙，日影" string="遵命。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="Wor_ha" pos="4 0" flip="true" emotion="normal"/>
+  <Msg name="月下门主" string="今天将会被历史所铭记，开始吧！"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <BackGround texture="sword2"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="日影" string="月熙…"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="Wol_hee" pos="11 0" emotion="normal"/>
+  <Msg name="月熙" string="日影师姐！我会全力以赴的。|证明给所有人看。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="Wol_hee" pos="11 0" emotion="normal"/>
+  <Msg name="日影" string="很好~我也会尽全力的。|然后拥有银月剑守护月下门。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <BackGround texture="sword1"/>
+  <Char id="Wor_ha" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="月下门主" string="（让她们俩比武受到伤害，这是我的报应啊…）"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="10"/>
+  <Char id="Wor_ha" pos="3 0" flip="true" emotion="normal"/>
+  <Msg name="月下门主" string="月熙会赢的…|努力是无法胜过天赋的…"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <BackGround texture="sword2"/>
+  <fxSound file="Story_A"/>
+  <Shake time="30"/>
+  <Char id="light" pos="7 0" emotion="stop1"/>
+  <Msg name="月下门主" string="最后关头了…日影…"/>
+  <Enter/>
+  <Char id="light" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="30"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="日影" string="精彩的对决…"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="30"/>
+  <Char id="Wol_hee" pos="11 0" emotion="stop3"/>
+  <Msg name="月熙" string="日影师姐…"/>
+  <Enter/>
+  <Char id="Wol_hee" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="30"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="日影" string="师傅！|月下门日影承认今日的失败。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="30"/>
+  <Char id="Wor_ha" pos="11 0" emotion="normal"/>
+  <Msg name="月下门主" string="月下门的下任门主是月熙。"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <fxSound file="Story_A"/>
+  <Shake time="30"/>
+  <Char id="Wor_ha" pos="11 0" emotion="normal"/>
+  <Msg name="月下门主" string="银月剑是月下门的象征！|将由下任门主月熙来守护。"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="Wol_hee" pos="2 0" flip="true" emotion="stop3"/>
+  <Msg name="月熙，日影" string="遵命。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="日影" string="月下门日影|为了成为无愧于月下门的武士，今天将离开。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wor_ha" pos="10 0" emotion="normal"/>
+  <Msg name="月下门主" string="糟了…竟然要走…"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop2"/>
+  <Char id="Wor_ha" pos="10 0" emotion="normal"/>
+  <Msg name="日影" string="为了拥有更强的实力…能够超越天赋的实力，我要离开。"/>
+  <Enter/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="Wor_ha" pos="10 0" emotion="normal"/>
+  <Char id="Wol_hee" pos="12 0" emotion="stop3"/>
+  <Char id="il_young" pos="4 0" flip="true" emotion="stop2"/>
+  <Msg name="月熙" string="日影师姐…"/>
+  <Enter/>
+  <Char id="Wor_ha" remove="true"/>
+  <Char id="Wol_hee" remove="true"/>
+  <Char id="il_young" remove="true"/>
+  <Char id="Wor_ha" pos="10 0" emotion="normal"/>
+  <Char id="Wol_hee" pos="12 0" emotion="stop3"/>
+  <Char id="il_young" pos="4 0" emotion="stop2"/>
+  <Msg name="日影" string="月熙…不，少门主，我走了。|大家保重…"/>
+  <Enter/>
+</Scene>

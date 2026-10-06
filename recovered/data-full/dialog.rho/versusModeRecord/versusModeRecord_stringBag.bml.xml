@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="versusModeDetailInfo">
+    <m c="kr" v="전적 상세보기"/>
+    <m c="cn" v="战绩详情"/>
+    <m c="tw" v="觀看詳細戰績"/>
+  </k>
+  <k n="vp">
+    <m c="kr" v="VP"/>
+    <m c="cn" v="胜点"/>
+    <m c="tw" v="VP"/>
+  </k>
+  <k n="inviteGame">
+    <m c="kr" v="친선 대전"/>
+    <m c="cn" v="友谊赛"/>
+    <m c="tw" v="友誼決鬥"/>
+  </k>
+  <k n="formatScore">
+    <m c="kr" v="%d:%d"/>
+    <m c="cn" v="%d:%d"/>
+    <m c="tw" v="%d:%d"/>
+  </k>
+  <k n="formatLogTime">
+    <m c="kr" v="%04d.%02d.%02d %02d시%02d분"/>
+    <m c="cn" v="%04d.%02d.%02d %02d时%02d分"/>
+    <m c="tw" v="%04d.%02d.%02d %02d時%02d分"/>
+  </k>
+  <k n="noRecord">
+    <m c="kr" v="기록없음"/>
+    <m c="cn" v="无记录"/>
+    <m c="tw" v="沒有記錄"/>
+  </k>
+  <k n="tracingFailed">
+    <m c="kr" v="추격 실패"/>
+    <m c="cn" v="追逐失败"/>
+  </k>
+  <k n="escapeFailed">
+    <m c="kr" v="탈주 실패"/>
+    <m c="cn" v="逃脱失败"/>
+  </k>
+  <k n="retire">
+    <m c="kr" v="%04d.%02d.%02d %02d시%02d분"/>
+    <m c="cn" v="%04d.%02d.%02d %02d时%02d分"/>
+    <m c="tw" v="%04d.%02d.%02d %02d時%02d分"/>
+  </k>
+</StringBag>

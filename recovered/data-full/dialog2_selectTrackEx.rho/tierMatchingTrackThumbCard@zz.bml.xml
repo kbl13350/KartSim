@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TrackThumb name="thumb" windowRect="0 0 232 168" autoLoadImage="등급전_tracklist_normal" trackRect="6 25 228 134" smallSpecialMarkAdjust="185 96" themeMarkAdjust="8 102" enable="true">
+  <CharPanel name="difficultyChar" leftTopWH="15 9 63 15" texture="난이도원" fontSize="13 15" fontStr="01" depthBias="-10" text="0" spaceOffset="-3" alphaBlend="true" enable="false"/>
+  <Label name="trackName" leftTopWH="0 138 232 30" textRender="bold14" textColor="255 42 55 80" textAlign="hcenter"/>
+  <Panel name="tracklist_over" leftTopWH="0 0 232 168" texture="등급전_tracklist_over@zz" alphaBlend="true" visible="false" enable="false"/>
+  <Panel name="tracklist_press" leftTopWH="0 0 232 168" texture="등급전_tracklist_press@zz" alphaBlend="true" visible="false" enable="false"/>
+</TrackThumb>

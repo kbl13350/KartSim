@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.065'
+	SteerConstraint='2.35'
+	DriftEscapeForce='800'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='cotton6'
+	UseTransformBooster='true'
+
+	BoosterType='dark'
+	BoosterType0='dark'
+	BoosterType1='default'
+	BoosterType2='default'
+
+	Port0='mod1b'
+	Port1='mod1a'
+	FirePort0='mod1c'
+/>
+
+<!-- F1 카트 블랙 -->

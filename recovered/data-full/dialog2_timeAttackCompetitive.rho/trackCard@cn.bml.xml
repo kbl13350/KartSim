@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ImageBoard leftTopWH="0 0 942 180" image="contest_img_trackRecordBG@zz" alphaBlend="true">
+  <Label name="trackName" leftTopWH="0 2 942 34" textAlign="center" textRender="bold16" textColor="255 42 55 80"/>
+  <Panel name="thumb" leftTopWH="6 44 222 130">
+    <Panel leftTopWH="0 0 222 130" texture="img_trackThumbS_frame" alphaBlend="true" enable="false"/>
+    <Container name="trackThumbDifficulty" windowSize="222 130" adjust="-40 -8"/>
+  </Panel>
+  <Panel name="rvs" leftTopWH="110 95 36 36" texture="작은리버스트랙" alphaBlend="true" visible="false"/>
+  <Panel name="crz" leftTopWH="110 95 36 36" texture="crazyMark" alphaBlend="true" visible="false"/>
+  <Label leftTopWH="275 46 100 21" text="#sb(trackPoint)" textRender="bold14" textColor="white"/>
+  <Label name="trackPoint" leftTopWH="815 46 100 21" textAlign="right" textRender="bold14" textColor="white"/>
+  <Label leftTopWH="275 72 100 21" text="#sb(bestRacingTime)" textRender="bold14" textColor="255 84 100 129"/>
+  <Label name="bestRacingTime" leftTopWH="495 72 100 21" textAlign="hcenter" textRender="bold14" textColor="255 84 100 129"/>
+  <Label name="racingPoint" leftTopWH="815 72 100 21" textAlign="right" textRender="bold14" textColor="255 84 100 129"/>
+  <Label leftTopWH="275 98 100 21" text="#sb(crashCount)" textRender="bold14" textColor="255 84 100 129"/>
+  <Label name="crashCount" leftTopWH="500 98 100 21" textAlign="hcenter" textRender="bold14" textColor="255 84 100 129"/>
+  <Label name="crashPoint" leftTopWH="815 98 100 21" textAlign="right" textRender="bold14" textColor="255 84 100 129"/>
+  <Label leftTopWH="275 124 100 21" text="#sb(boosterCount)" textRender="bold14" textColor="255 84 100 129"/>
+  <Label name="boosterCount" leftTopWH="500 124 100 21" textAlign="hcenter" textRender="bold14" textColor="255 84 100 129"/>
+  <Label name="boosterPoint" leftTopWH="815 124 100 21" textAlign="right" textRender="bold14" textColor="255 84 100 129"/>
+  <Label leftTopWH="275 152 100 21" text="#sb(kartBody)" textRender="bold14" textColor="255 84 100 129"/>
+  <Label name="kartBody" leftTopWH="815 152 100 21" textAlign="right" textRender="bold14" textColor="255 84 100 129"/>
+</ImageBoard>

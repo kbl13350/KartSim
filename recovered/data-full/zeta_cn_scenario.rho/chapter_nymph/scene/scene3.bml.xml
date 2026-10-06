@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="pirate3"/>
+  <Char id="bazzi" pos="6 0" emotion="stop4"/>
+  <Msg name="宝宝" string="这训练~累是累了点，但是感觉好充实。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop3"/>
+  <Msg name="黑妞" string="咿？皮蛋啊，那边是不是有什么东西在发光?"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="真的有什么东西在发光啊？是飞鱼吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" pos="7 0" flip="true" emotion="stop4"/>
+  <Msg name="宝宝" string="以前听别人说，在南海的某个地方可以找到精灵的宝石。"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop4"/>
+  <Msg name="黑妞" string="真的吗？皮蛋啊~ 我很想要那个！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop1"/>
+  <Msg name="皮蛋" string="一句话！只要是黑妞想要的，我就一定给你拿过来。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop2"/>
+  <Msg name="黑妞" string="哇~皮蛋最厉害了!"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="6 0" emotion="stop4"/>
+  <Msg name="宝宝" string="(嘿嘿…其实我是瞎编的！)"/>
+  <Enter/>
+</Scene>

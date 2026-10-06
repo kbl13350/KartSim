@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config name="mainIcon_content_map">
+  <Pair name="멀티플레이" content="multiplay" notice="multiplayNotice"/>
+  <Pair name="싱글플레이" content="singleplay" notice="singleplayNotice"/>
+  <Pair name="시나리오" content="scenario"/>
+  <Pair name="타임어택" content="timeAttack"/>
+  <Pair name="리플레이" content="replay"/>
+  <Pair name="라이더스쿨" content="riderSchool"/>
+  <Pair name="기타" notice="etcPlayNotice"/>
+  <Pair name="플래그" content="flag"/>
+  <Pair name="챔피온" content="champions"/>
+  <Pair name="아이템팀매치" content="guildprix"/>
+  <Pair name="그랑프리" content="grandprix"/>
+  <Pair name="복불복" content="bokbulbok"/>
+  <Pair name="팩토리" content="enchant" notice="factoryNotice"/>
+  <Pair name="라이더스쿨quick" notice="riderSchoolNotice"/>
+  <Pair name="myPlant" content="myPlant" notice="plantNotice"/>
+  <Pair name="이벤트" notice="eventNotice"/>
+</Config>

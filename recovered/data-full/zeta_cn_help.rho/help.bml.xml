@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helper>
+  <target name="defaultMenuExpBtn">
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="这里是主界面，|也叫‘大厅’，|登录游戏后最先看到的就是这里啦。" isSkipBtn="true" isNextBtn="true"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="在这里，|可以看到自己等级和车手名称。" isNextBtn="true"/>
+      <highLight left="0" top="0" width="248" height="38"/>
+      <play1s left="220" top="20" width="100" height="100" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase checkClickWndName="groveBtn">
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="试试点击‘等级图标’。"/>
+      <highLight leftTopWH="0 0 36 38" canClick="true"/>
+      <play1s left="20" top="20" width="100" height="100" play1sName="클릭유도_노랑" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="在这里，|可以查看下一次升级所需经验值，|以及升级时可获得的奖励。" isNextBtn="true"/>
+      <highLight left="51" top="41" width="434" height="410"/>
+    </phase>
+    <phase checkClickWndName="ok">
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="好了，现在点击‘确认’关闭窗口。"/>
+      <highLight left="224" top="410" width="88" height="38" canClick="true"/>
+      <play1s left="217" top="320" width="100" height="100" play1sName="클릭유도_노랑" play1sAngle="180"/>
+    </phase>
+    <phase checkClickWndName="myInfoButton">
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="点击车手名称旁边的`i`图标，|可以查看自己的详细信息。|试试看吧。"/>
+      <highLight leftTopWH="187 7 24 24" canClick="true"/>
+      <play1s left="190" top="20" width="100" height="100" play1sName="클릭유도_노랑" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="在车手信息窗口里，|可以查看自己或其他车手的详细信息。" isNextBtn="true"/>
+      <highLight left="-346" top="-250" width="692" height="500" leftPlusHalf="true" topPlusHalf="true"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="什么是VIP等级？|通过游戏内各项积分可以获得相应等级，|按照等级可以获取不同的优惠和奖励哦~" isNextBtn="true"/>
+      <highLight left="5" top="-204" width="318" height="194" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="116" top="-10" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="想知道详细的分数信息，|请点击‘放大镜’图标。" isNextBtn="true"/>
+      <highLight left="287" top="-69" width="26" height="26" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="208" top="-62" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="45"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="窗口下面的图标，|在查看其他车手的信息时会被激活。" isNextBtn="true"/>
+      <highLight left="-133" top="202" width="282" height="32" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-44" top="100" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="180"/>
+    </phase>
+    <phase checkClickWndName="exit">
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="现在点击‘X’关闭窗口。"/>
+      <highLight left="305" top="-237" width="26" height="26" leftPlusHalf="true" topPlusHalf="true" canClick="true"/>
+      <play1s left="218" top="-222" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="45"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="这里可以看到自己所持有的金币和酷币。|金币和酷币可以兑换多种道具。" isNextBtn="true"/>
+      <highLight right="0" top="0" width="365" height="38"/>
+      <play1s right="141" top="30" width="100" height="100" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="金币通过游戏获取，|酷币通过活动或充值来获取。" isNextBtn="true"/>
+      <highLight right="73" top="0" width="292" height="38"/>
+      <play1s right="168" top="30" width="100" height="100" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="可通过快速进入按钮进入各频道游戏房间|或参与活动、迷你游戏及特殊商店！" isNextBtn="true"/>
+      <highLight left="-385" top="-260" width="380" height="260" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-84" top="-208" width="100" height="500" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="此处有通往跑跑通行证的入口的按钮。|参与跑跑通行证，可领取多种阶段奖励。" isNextBtn="true"/>
+      <highLight left="30" top="-256" width="364" height="280" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-64" top="-160" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="这里有菜单按钮和移至大厅按钮，|奖励箱按钮可接收活动及任务获得的奖励，|还有通知各种活动的小提示。" isNextBtn="true"/>
+      <highLight left="8" bottom="0" width="174" height="42"/>
+      <play1s left="160" bottom="30" width="100" height="100" play1sName="파랑화살표" play1sAngle="225"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="这些菜单是以后最常用到的，|通过这里可以进入到各种游戏模式和商店。" isNextBtn="true"/>
+      <highLight left="-200" bottom="0" width="400" height="62" leftPlusHalf="true"/>
+      <play1s left="-44" bottom="60" width="100" height="100" leftPlusHalf="true" play1sName="파랑화살표" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="这里汇集了除基本游戏以外，|对玩家可能有帮助的菜单。" isNextBtn="true"/>
+      <highLight right="10" bottom="0" width="202" height="42"/>
+      <play1s right="164" bottom="30" width="100" height="100" play1sName="파랑화살표" play1sAngle="135"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="主界面的说明就到此结束啦。|现在返回大厅~!" isCloseBtn="true"/>
+    </phase>
+  </target>
+  <target name="multiPlayExpBtn">
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="现在开始介绍|和其他玩家一起进行游戏的方法。" isSkipBtn="true" isNextBtn="true"/>
+    </phase>
+    <phase checkClickWndName="multiplay">
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="点击下面的‘多人游戏’。"/>
+      <highLight left="-186" bottom="0" width="60" height="56" leftPlusHalf="true" canClick="true"/>
+      <play1s left="-208" bottom="50" width="100" height="100" leftPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="点击这里，|可以进入不同的游戏模式。" isNextBtn="true"/>
+      <highLight left="-393" top="-260" width="404" height="74" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-240" top="-190" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="关于不同游戏模式的说明，|可以在这里查看。" isNextBtn="true"/>
+      <highLight left="28" top="-264" width="368" height="296" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-70" top="-160" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="想知道怎样进入房间开始游戏吗？" isNextBtn="true"/>
+    </phase>
+    <phase checkClickWndName="아이템카테고리">
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="首先选择游戏模式。|我们先看看‘道具赛’吧。"/>
+      <highLight left="-366" top="-262" width="80" height="76" leftPlusHalf="true" topPlusHalf="true" canClick="true"/>
+      <play1s left="-295" top="-200" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="游戏模式里还分成几个小的模式，|可以看到有个人对个人的个人赛，|也有车队和车队之间竞争的组队赛。" isNextBtn="true"/>
+      <highLight left="-376" top="-168" width="378" height="58" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-120" top="-55" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase checkClickWndName="itemIndiCombine">
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="点击‘个人道具’。"/>
+      <highLight left="-376" top="-168" width="188" height="58" leftPlusHalf="true" topPlusHalf="true" canClick="true"/>
+      <play1s left="-200" top="-120" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="可以看到属于个人道具赛的房间列表。|点击列表就可以进入房间了。" isNextBtn="true"/>
+      <highLight left="40" top="-220" width="336" height="356" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="40" top="0" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="45"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="列表下面有两个键，|快速进入和创建房间。" isNextBtn="true"/>
+      <highLight left="32" top="186" width="360" height="64" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="152" top="90" width="110" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="很简单吧！|多人游戏的说明就到此结束啦。|现在返回大厅~！" isCloseBtn="true"/>
+    </phase>
+  </target>
+  <target name="singlePlayExpBtn">
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="下面我们了解一下进行单人游戏的方法。" isSkipBtn="true" isNextBtn="true"/>
+    </phase>
+    <phase checkClickWndName="singleplay">
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="点击下面的‘单人游戏’。"/>
+      <highLight left="-126" bottom="0" width="60" height="56" leftPlusHalf="true" canClick="true"/>
+      <play1s left="-148" bottom="50" width="100" height="100" leftPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="这里也有很多不同模式哦！|让我一一向你介绍吧！" isNextBtn="true"/>
+      <highLight left="-393" top="-260" width="404" height="74" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-240" top="-190" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘计时赛’模式，|可以自己练习，|或创造自己的纪录。" isNextBtn="true"/>
+      <highLight left="-391" top="-262" width="80" height="76" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-320" top="-200" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="请在‘驾照考试’中考取与实力相符的驾照。|驾照分为新手,初级,L3,L2,L1,PRO 6个等级。" isNextBtn="true"/>
+      <highLight left="-311" top="-262" width="80" height="76" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-240" top="-200" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘挑战者’模式|通过共40个阶段的排位，|了解自己的实力。" isNextBtn="true"/>
+      <highLight left="-231" top="-262" width="80" height="76" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-160" top="-200" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘故事模式’|在跑跑卡丁车的故事中，|体验游戏乐趣的同时领取丰富的奖励。" isNextBtn="true"/>
+      <highLight left="-151" top="-262" width="80" height="76" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-80" top="-200" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="通过‘回放’|可以看到自己和其他车手的竞赛场景。" isNextBtn="true"/>
+      <highLight left="-71" top="-262" width="80" height="76" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="0" top="-200" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="一个人的游戏再也不会孤单！|单人游戏的说明也到此结束啦。|现在返回大厅~！" isCloseBtn="true"/>
+    </phase>
+  </target>
+  <target name="myRoomExpBtn">
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="下面介绍小屋。" isSkipBtn="true" isNextBtn="true"/>
+    </phase>
+    <phase checkClickWndName="마이룸">
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="点击下面的‘小屋’。"/>
+      <highLight left="-64" bottom="0" width="60" height="56" leftPlusHalf="true" canClick="true"/>
+      <play1s left="-86" bottom="50" width="100" height="100" leftPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="可以看到小屋里有很多功能。" isNextBtn="true"/>
+      <highLight left="8" top="38" width="574" height="90"/>
+      <play1s left="174" top="130" width="100" height="100" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘我的车库’|可以查看我持有的车辆和道具。" isNextBtn="true"/>
+      <highLight left="14" top="48" width="70" height="72"/>
+      <play1s left="60" top="110" width="100" height="100" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="通过组合各种材料|进行“道具组合”可获得多种道具。" isNextBtn="true"/>
+      <highLight left="84" top="48" width="70" height="72"/>
+      <play1s left="60" top="110" width="100" height="100" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="可在‘成就’中查询成就进度。" isNextBtn="true"/>
+      <highLight left="154" top="48" width="70" height="72"/>
+      <play1s left="130" top="110" width="100" height="100" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="可在‘道具图鉴’中查询已收藏的道具。" isNextBtn="true"/>
+      <highLight left="224" top="48" width="70" height="72"/>
+      <play1s left="200" top="110" width="100" height="100" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘我的徽章’| 可以查看已经获得的所有徽章。" isNextBtn="true"/>
+      <highLight left="294" top="48" width="70" height="72"/>
+      <play1s left="270" top="110" width="100" height="100" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘管理’|可以进行小屋的开放设置等。" isNextBtn="true"/>
+      <highLight left="364" top="48" width="70" height="72"/>
+      <play1s left="340" top="110" width="100" height="100" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘寻找小屋’|可以访问其他车手的小屋。" isNextBtn="true"/>
+      <highLight left="434" top="48" width="70" height="72"/>
+      <play1s left="410" top="110" width="100" height="100" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘随机进入’|随机访问其他车手的小屋。" isNextBtn="true"/>
+      <highLight left="504" top="48" width="70" height="72"/>
+      <play1s left="480" top="110" width="100" height="100" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="在这里，|可以看到目前在小屋的车手信息。" isNextBtn="true"/>
+      <highLight right="0" top="40" width="170" height="244"/>
+      <play1s right="170" top="200" width="100" height="100" play1sName="파랑화살표" play1sAngle="45"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="还可以在聊天窗口|和别的车手聊天哦。" isNextBtn="true"/>
+      <highLight right="0" bottom="54" width="374" height="120"/>
+      <play1s right="300" bottom="160" width="100" height="100" play1sName="파랑화살표" play1sAngle="135"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="现在开始介绍装备和使用道具的方法。" isNextBtn="true"/>
+    </phase>
+    <phase checkClickWndName="garageOpen">
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="点击‘我的车库’，|可以查看我获得的道具。|点击进入。"/>
+      <highLight left="14" top="48" width="70" height="72" canClick="true"/>
+      <play1s left="60" top="110" width="100" height="100" play1sName="클릭유도_노랑" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="在这里，|可以分类查看我目前持有的道具。" isNextBtn="true"/>
+      <highLight left="-126" top="-180" width="490" height="410" leftPlusHalf="true" topPlusHalf="true" canClick="true"/>
+      <play1s left="-220" top="-100" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="把鼠标放在道具上，|就能看到道具说明，|点击就可以装备或者使用。" isNextBtn="true"/>
+      <highLight left="-126" top="-180" width="490" height="410" leftPlusHalf="true" topPlusHalf="true" canClick="true"/>
+      <play1s left="-10" top="-90" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘强化部件’|可以通过装备强化部件，|提高车辆的性能。" isNextBtn="true"/>
+      <highLight left="-372" top="5" width="70" height="70" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-325" top="35" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="可在奖励箱查看和接收|各种活动及任务获得的奖励。" isNextBtn="true"/>
+      <highLight left="-298" top="5" width="70" height="70" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-252" top="35" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="‘礼物盒’|查看我收到的礼物。" isNextBtn="true"/>
+      <highLight left="-224" top="5" width="70" height="70" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-180" top="35" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="只属于私人空间——我的小屋！|关于我的小屋的介绍就到此结束啦。|现在返回大厅~！" isCloseBtn="true"/>
+    </phase>
+  </target>
+  <target name="shopExpBtn">
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="想知道怎样兑换道具吗？" isSkipBtn="true" isNextBtn="true"/>
+    </phase>
+    <phase checkClickWndName="상점">
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="点击下面的‘商店’。"/>
+      <highLight left="00" bottom="0" width="60" height="56" leftPlusHalf="true" canClick="true"/>
+      <play1s left="-20" bottom="50" width="100" height="100" leftPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="可以看到我持有的|酷币，电池和金币的数量。" isNextBtn="true"/>
+      <highLight left="-388" top="-260" width="288" height="152" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-120" top="-138" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="在此输入兑换券号码，|可以兑换道具。" isNextBtn="true"/>
+      <highLight left="-384" top="-110" width="144" height="85" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-262" top="-52" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="这里是商店正在出售的道具。" isNextBtn="true"/>
+      <highLight left="-96" top="-270" width="496" height="520" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-190" top="-30" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="把鼠标放在道具上，|就能看到道具说明，|道具可以兑换或者赠送。" isNextBtn="true"/>
+      <highLight left="-96" top="-270" width="496" height="520" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="14" top="-114" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="关于商店的介绍就到此结束啦。|现在返回大厅~！" isCloseBtn="true"/>
+    </phase>
+  </target>
+  <target name="kartuneExpBtn">
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="通过车辆升级，|车辆性能会变得更强！|想了解一下吗？" isSkipBtn="true" isNextBtn="true"/>
+    </phase>
+    <phase checkClickWndName="튜닝">
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="点击下面的‘车辆升级’。"/>
+      <highLight left="72" bottom="0" width="54" height="56" leftPlusHalf="true" canClick="true"/>
+      <play1s left="50" bottom="50" width="100" height="100" leftPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="180"/>
+    </phase>
+    <phase checkClickWndName="카트레벨업">
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="点击‘升级’进行车辆升级。|试试看吧。"/>
+      <highLight left="10" top="40" width="114" height="50" canClick="true"/>
+      <play1s left="100" top="80" width="100" height="100" play1sName="클릭유도_노랑" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="在这里，|可以看到可以用来进行升级的车辆。" isNextBtn="true"/>
+      <highLight left="-50" top="-206" width="434" height="440" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-140" top="-100" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="请在右侧选择需要升级的车辆。" isNextBtn="true"/>
+      <highLight left="-380" top="-204" width="764" height="410" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-348" top="-20" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="然后选择作为升级材料的车辆。|请注意，|升级后的材料车辆将会消失。" isNextBtn="true"/>
+      <highLight left="-380" top="-204" width="764" height="410" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-186" top="-20" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="选择结束后，|可以在上面查看幸运点等级。" isNextBtn="true"/>
+      <highLight left="-380" top="-204" width="332" height="44" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-268" top="-170" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="使用酷币提高幸运点后，|会有更高的机会让车辆升级成功！" isNextBtn="true"/>
+      <highLight left="-376" top="90" width="324" height="42" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-260" top="0" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="然后点击‘开始升级’|升级结束后查看是否成功。" isNextBtn="true"/>
+      <highLight left="-380" top="168" width="204" height="66" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-328" top="90" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="180"/>
+    </phase>
+    <phase checkClickWndName="closeButton">
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="那么，现在要关闭“车辆升级”窗口吗？"/>
+      <highLight left="355" top="-232" width="26" height="26" leftPlusHalf="true" topPlusHalf="true" canClick="true"/>
+      <play1s left="268" top="-216" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="45"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="升级成功,|可以获取一定强化点，|强化点可以进一步提升车辆性能。" isNextBtn="true"/>
+      <highLight right="0" top="34" width="244" height="380"/>
+      <play1s right="210" top="280" width="100" height="100" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="性能的变化，|可以通过车辆属性图查看。" isNextBtn="true"/>
+      <highLight right="0" top="34" width="244" height="380"/>
+      <play1s right="210" top="120" width="100" height="100" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="成功升级至+3及以上级别后，|可以给车辆添加上流光效果哦。" isNextBtn="true"/>
+      <highLight left="0" top="92" width="368" height="100"/>
+      <play1s left="140" top="180" width="100" height="100" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="利用车辆升级，来打造属于自己的最炫车辆吧！" isCloseBtn="true"/>
+    </phase>
+  </target>
+  <target name="exchangeSystemExpBtn">
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="想知道怎样使用废弃的车辆|获得新的车辆吗？" isSkipBtn="true" isNextBtn="true"/>
+    </phase>
+    <phase checkClickWndName="합성">
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="点击下面的‘合成’。"/>
+      <highLight left="126" bottom="0" width="54" height="56" leftPlusHalf="true" canClick="true"/>
+      <play1s left="102" bottom="50" width="100" height="100" leftPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="在这里，|可以看到可用于合成的车辆。" isNextBtn="true"/>
+      <highLight left="-50" top="-206" width="434" height="440" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-140" top="-100" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="首先选择用作合成材料的车辆。|可以选择2~4辆车辆。" isNextBtn="true"/>
+      <highLight left="-384" top="-166" width="330" height="108" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-270" top="-70" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="选择结束后，|可以查看合成后我将获得的车辆等级。" isNextBtn="true"/>
+      <highLight left="-374" top="-200" width="154" height="34" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-240" top="-180" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="315"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="使用酷币提高幸运点，|可以获得更高等级的车辆哦！" isNextBtn="true"/>
+      <highLight left="-384" top="-64" width="324" height="42" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-260" top="-50" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="然后点击‘开始合成’|合成结束后就可以看到完成后的车辆了。" isNextBtn="true"/>
+      <highLight left="-384" top="8" width="204" height="60" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-328" top="-70" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="车辆以旧换新！|关于合成的说明就到此结束了。|现在返回大厅~！" isCloseBtn="true"/>
+    </phase>
+  </target>
+  <target name="clubBtn">
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="接下来我们一起来了解下俱乐部相关内容" isSkipBtn="true" isNextBtn="true"/>
+    </phase>
+    <phase checkClickWndName="club">
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="请点击下方‘俱乐部’菜单。"/>
+      <highLight left="129" bottom="0" width="60" height="56" leftPlusHalf="true" canClick="true"/>
+      <play1s left="110" bottom="50" width="100" height="100" leftPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="180"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="根据是否已加入俱乐部，|左侧显示 ‘创建俱乐部’或‘我的俱乐部’菜单|右侧显示‘俱乐部目录’。" isNextBtn="true"/>
+      <highLight left="-114" top="-340" width="228" height="40" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-51" top="-300" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="可以通过左侧菜单‘创建俱乐部’,|如果已加入俱乐部可以通过‘我的俱乐部’菜单查询俱乐部信息~" isNextBtn="true"/>
+      <highLight left="-114" top="-340" width="116" height="40" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-116" top="-300" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="0"/>
+    </phase>
+    <phase checkClickWndName="clubList">
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="如果已申请加入俱乐部，请点击‘俱乐部目录’。|如果未申请，请点击此按钮继续~" isNextBtn="true"/>
+      <highLight left="0" top="-340" width="114" height="40" leftPlusHalf="true" topPlusHalf="true" canClick="true"/>
+      <play1s left="-7" top="-300" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="클릭유도_노랑" play1sAngle="0"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="如果已知晓俱乐部名称或俱乐部会长名称，请在此处进行搜索。" isNextBtn="true"/>
+      <highLight left="-153" top="-251" width="665" height="90" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-240" top="-250" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="在上方搜索的结果或已创建的俱乐部可在此处确认。|请选择想要加入的俱乐部~" isNextBtn="true"/>
+      <highLight left="-153" top="-165" width="665" height="428" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-240" top="-30" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="可在俱乐部目录查询已选俱乐部的信息~" isNextBtn="true"/>
+      <highLight left="-505" top="-246" width="343" height="498" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-140" top="0" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="270"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="如果已选择想要加入的俱乐部,|请点击‘加入俱乐部’按钮进行申请~" isNextBtn="true"/>
+      <highLight left="-510" top="259" width="357" height="60" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-240" top="170" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="225"/>
+    </phase>
+    <phase>
+      <explanation left="-370" top="90" width="740" height="110" leftPlusHalf="true" text="如果已加入俱乐部，可在我的俱乐部信息界面进行确认。" isNextBtn="true"/>
+      <highLight left="-153" top="262" width="665" height="64" leftPlusHalf="true" topPlusHalf="true"/>
+      <play1s left="-240" top="250" width="100" height="100" leftPlusHalf="true" topPlusHalf="true" play1sName="파랑화살표" play1sAngle="90"/>
+    </phase>
+    <phase>
+      <explanation left="-370" bottom="90" width="740" height="110" leftPlusHalf="true" text="俱乐部介绍已结束，|返回主界面~！" isCloseBtn="true"/>
+    </phase>
+  </target>
+  <target name="skipTarget">
+    <phase>
+      <explanation leftTopWH="-370 90 740 110" leftPlusHalf="true" text="是否跳过帮助？|点击下方的图标，|随时获取帮助。" isSkipYesBtn="true" isSkipNoBtn="true"/>
+      <highLight left="9" bottom="4" width="34" height="34"/>
+      <play1s left="1" bottom="25" width="100" height="100" play1sName="파랑화살표" play1sAngle="180"/>
+    </phase>
+  </target>
+</helper>

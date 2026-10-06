@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Nemo7"/>
+  <Char id="nemodizini" pos="7 0" flip="true" emotion="normal"/>
+  <Msg name="黑妞" string="嘘！！宝宝，你过来~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Msg name="宝宝" string="你找到什么了？？"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="嗯！！我感觉这里应该是麦迪娅住的地方~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="medea" pos="8 0" emotion="stop3"/>
+  <Msg name="麦迪娅" string="这些家伙…|竟然闯到这里来了~"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Msg name="宝宝" string="要是麦迪娅在怎么办~|我们还是回去吧！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" pos="4 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="说什么呢！我们好不容易才找到这里！！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" pos="3 0" emotion="normal"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="这里肯定能找到一些线索~|快点！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="medea" pos="8 0" emotion="stop2"/>
+  <Msg name="麦迪娅" string="咦？|好像还没有发现我！！"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="medea" pos="8 0" emotion="stop2"/>
+  <Msg name="麦迪娅" string="得好好的教训一下他们！！"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodizini" pos="2 0" emotion="normal"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Msg name="宝宝" string="黑妞~我有种不祥的预感！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="nemodizini" pos="2 0" flip="true" emotion="stop1"/>
+  <Char id="nemobazzi" pos="11 0" emotion="normal"/>
+  <Msg name="黑妞" string="你别那么大声~|小点声跟我来~"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <BackGround texture="Nemo10"/>
+  <Char id="nemodizini" pos="10 0" emotion="normal"/>
+  <Char id="nemobazzi" pos="13 0" emotion="stop2"/>
+  <Char id="medea" pos="0 0" flip="true" emotion="stop1"/>
+  <Msg name="黑妞/宝宝" string="呃…吓死我了！！"/>
+  <Enter/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="medea" remove="true"/>
+  <Char id="medea" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemodizini" pos="11 0" emotion="normal"/>
+  <Char id="nemobazzi" pos="15 0" emotion="normal"/>
+  <Msg name="麦迪娅" string="你们…|在这里干嘛呢？"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="medea" pos="3 0" flip="true" emotion="stop1"/>
+  <Char id="nemodizini" pos="11 0" emotion="normal"/>
+  <Char id="nemobazzi" pos="15 0" emotion="normal"/>
+  <Msg name="黑妞" string="麦迪娅！快把我们送回繁荣山丘~"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="medea" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="nemodizini" pos="11 0" emotion="normal"/>
+  <Char id="nemobazzi" pos="15 0" emotion="normal"/>
+  <Msg name="麦迪娅" string="你说什么？|竟敢…命令我？"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="medea" pos="3 0" flip="true" emotion="stop3"/>
+  <Char id="nemodizini" pos="11 0" emotion="normal"/>
+  <Char id="nemobazzi" pos="15 0" emotion="normal"/>
+  <Msg name="麦迪娅" string="看我怎么教训你！"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="medea" pos="2 0" flip="true" emotion="stop3"/>
+  <Char id="nemodizini" pos="11 0" emotion="normal"/>
+  <Char id="nemobazzi" pos="15 0" emotion="stop2"/>
+  <Msg name="宝宝" string="这里太危险了！|快跑！！"/>
+  <Enter/>
+  <Char id="medea" remove="true"/>
+  <Char id="nemodizini" remove="true"/>
+  <Char id="nemobazzi" remove="true"/>
+  <Char id="medea" pos="4 0" flip="true" emotion="stop1"/>
+  <Char id="nemodizini" pos="13 0" flip="true" emotion="normal"/>
+  <Char id="nemobazzi" pos="16 0" flip="true" emotion="normal"/>
+  <Msg name="麦迪娅" string="想跑？看你们能跑到哪里去~"/>
+  <Enter/>
+</Scene>

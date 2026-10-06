@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="dual" windowRect="0 0 256 200" align="hcenter;bottom" enable="false" indiGaugeFullLenth="1000" teamGaugeFullLenth="1000" indiGaugeDegree="194.0" teamGaugeDegree="194.0" indiBoostMaskCount="3" teamBoostMaskCount="3" itemIconLife="500" alarmBlinkTime="100">
+  <Window name="dashboard" leftTopWH="0 10 200 74" alphaBlend="true" align="hcenter;bottom" adjust="0 0">
+    <Panel name="v1gen_bg1" leftTopTex="0 0" texture="tacho_v1_baseBG_1" alphaBlend="true" enable="true" align="bottom;hcenter" visible="true"/>
+    <Panel name="v1gen_bg2" leftTopTex="0 0" texture="tacho_v1_baseBG_2" alphaBlend="true" enable="true" align="bottom;hcenter" visible="false"/>
+    <Container name="collisionFeatures" leftTopWH="0 0 200 74" align="hcenter;bottom">
+      <Panel name="warnBg" leftTopTex="0 0" texture="tacho_v1_crushBG_2" alphaBlend="true" enable="true" align="bottom;hcenter" visible="false"/>
+      <Panel name="crashBg" leftTopTex="0 0" texture="tacho_v1_crushBG_1" alphaBlend="true" enable="true" align="bottom;hcenter" visible="false"/>
+      <Panel name="incGauge" leftTopTex="84 -36" texture="tacho_v1_icon_Auto_1" alphaBlend="true" visible="true">
+        <Panel name="on" leftTopTex="0 0" texture="tacho_v1_icon_Auto_2" alphaBlend="true" visible="false"/>
+      </Panel>
+      <Panel name="chargeable" leftTopTex="84 -36" texture="tacho_v1_icon_Auto_3" alphaBlend="true" visible="false"/>
+      <Panel name="charging" leftTopTex="84 -36" texture="tacho_v1_icon_crash" alphaBlend="true" visible="false"/>
+      <BlinkButton name="resetting" leftTopWH="84 -36 32 22" autoLoadImage="tacho_v1_icon_stop" alphaBlend="true" useDisableState="false" blinkGap="350" visible="false"/>
+    </Container>
+    <Container name="boostFeatures" leftTopWH="0 10 200 74" align="hcenter;bottom" visible="false">
+      <Panel name="teamBoost" leftTopTex="0 512" texture="tacho_v1_teamBoosterBG" alphaBlend="true" enable="true" align="bottom;hcenter" adjust="0 123" visible="false">
+        <Panel name="teamBoostFullFrame" leftTopTex="0 0" texture="tacho_v1_teamBooster_2" textureOp="modulate" alphaBlend="true" visible="false"/>
+        <Panel name="teamBoostGauge" leftTopWH="2 2 192 8" uvRect="2 2 194 10" texture="tacho_v1_teamBooster_1" alphaBlend="true"/>
+        <Panel name="teamBoostBar" leftTopTex="0 0" altSize="-1 0" altRelativePos="1 0" texture="taho_v1_teamMarker" textureOp="modulate" alphaBlend="true"/>
+      </Panel>
+      <Panel name="indiBoost" leftTopTex="0 512" texture="tacho_v1_soloBoosterBG" alphaBlend="true" enable="true" align="bottom;hcenter" adjust="0 133" visible="true">
+        <Panel name="indiBoostFullFrame" leftTopTex="0 0" texture="tacho_v1_soloBooster_2" textureOp="modulate" alphaBlend="true" visible="false"/>
+        <Panel name="indiBoostGauge" leftTopWH="2 14 192 14" uvRect="2 14 194 28" texture="tacho_v1_soloBooster_1" alphaBlend="true"/>
+        <Panel name="indiBoostBar" leftTopTex="0 9" altSize="-1 0" altRelativePos="1 0" texture="taho_v1_soloMarker" textureOp="modulate" alphaBlend="true"/>
+      </Panel>
+    </Container>
+    <Panel name="n2o" leftTopTex="50 -37" texture="tacho_v1_icon_1" alphaBlend="true">
+      <Panel name="on" leftTopTex="0 0" texture="tacho_v1_icon_2" alphaBlend="true" visible="false"/>
+    </Panel>
+    <Panel name="n2o_always" leftTopTex="50 -37" texture="tacho_v1_icon_3" alphaBlend="true" visible="false"/>
+    <Panel name="itemIcon" leftTopTex="84 -36" texture="tacho_v1_icon_item_1" alphaBlend="true" visible="false">
+      <Panel name="on" leftTopTex="0 0" texture="tacho_v1_icon_item_2" alphaBlend="true" visible="false"/>
+    </Panel>
+    <Panel name="infinite" leftTopTex="84 -36" texture="tacho_v1_icon_limitless" alphaBlend="true" visible="false"/>
+    <Panel name="draft" leftTopTex="116 -36" texture="tacho_v1_icon_draft_1" alphaBlend="true">
+      <Panel name="on" leftTopTex="0 0" texture="tacho_v1_icon_draft_2" alphaBlend="true" visible="false"/>
+    </Panel>
+    <CharPanel name="kmh2" leftTopWH="0 -8 200 46" texture="tacho_v1_number_2" alphaBlend="true" fontSize="36 43" fontPos="0 0" fontStr="1234567890" text="0" spaceOffset="-2" visible="true" centerAlign="true"/>
+    <CharPanel name="kmh" leftTopWH="0 -8 200 46" texture="tacho_v1_number_1" alphaBlend="true" fontSize="36 43" fontPos="0 0" fontStr="1234567890" text="0" spaceOffset="-2" centerAlign="true"/>
+  </Window>
+  <Container name="dualBoostManualAlarm" leftTopWH="40 240 108 74" enable="true" visible="false">
+    <Panel name="BoostAlarmPanel1" windowSize="108 74" adjust="0 0" texture="X_BoostAlarm_1" alphaBlend="true" visible="true"/>
+    <Panel name="BoostAlarmPanel2" windowSize="108 74" adjust="0 0" texture="X_BoostAlarm_2" alphaBlend="true" visible="false"/>
+  </Container>
+</Container>

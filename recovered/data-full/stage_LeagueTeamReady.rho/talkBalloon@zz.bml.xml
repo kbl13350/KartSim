@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Label name="talkBalloon" windowRect="80 0 220 70" frame="YellowTalkBalloon" autoWrap="true" multiLine="true" vertAutoSizing="true" visible="false" alphaBlend="true" marginRect="0 20 0 0" textColor="black">
+  <Label name="nametag" windowRect="0 0 107 20" textRender="outline" textColor="blue" textColor2="white" alphaBlend="true"/>
+</Label>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Boss>
+  <BodyParam EngineSound="cotton6" LampFlareType="boss1" EnvMap="true" LeftArm="m1b2" RightArm="m1b3" Attack0="m3b" Attack1="m3a" Lamp0="m1b4a" Lamp1="m1b4b" Lamp2="m2c" Lamp3="m2d"/>
+  <LeftArmParam EnvMap="false" Attack0="m1a1" Attack1="m2a1" Connect="m3" Target="m1a"/>
+  <RightArmParam EnvMap="false" Attack0="m1a3" Attack1="m2a1" Connect="m3" Target="m1a"/>
+</Boss>

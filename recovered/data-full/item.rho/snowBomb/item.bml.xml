@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="snowBomb">
+  <state name="Use" life="1000" item="item00" itemFx="firing"/>
+  <state name="Set" life="1000" item="item01" size="10.0" itemFx="set"/>
+  <state name="Affect" life="3000" fired="fired02" firedFx="trapped"/>
+  <state name="EscapeAffect" life="2000" fired="fired02" firedFx="trapped"/>
+  <state name="SpecialShield" life="2000"/>
+  <state name="AfterBoost" life="0"/>
+</item>

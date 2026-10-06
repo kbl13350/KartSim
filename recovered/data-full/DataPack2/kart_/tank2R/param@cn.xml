@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='152'
+	BackwardAccelForce='100'
+	DragFactor='-0.081'
+	SteerConstraint='2.7'
+	CornerDrawFactor='0.071'
+	DriftEscapeForce='1500'
+
+	driftBoostMulAccelFactor='1.31'
+	DriftLeanFactor='-0.01'
+
+	BoostAccelFactor='1.85'
+	TransAccelFactor='1.85'
+	BoosterAccelFactorItem='1.7'
+	StartForwardAccelFactorItem='1.8'
+	StartBoosterTimeItem='1400'
+
+	UseExtendedAfterBooster='true'
+	SpecialSlotCapacity='2'
+	ItemSlotCapacity='3'
+	
+	DriftMaxGauge='-300'
+	NormalBoosterTime='-200'
+	TeamBoosterTime='-500'
+
+	BoosterBlur='true'
+	EngineSound='cotton8'
+	WaveEffect='true'
+	UseTransformBooster='true'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	BoosterType='8soon'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8sub'
+	BoosterType4='8sub'
+
+	Port0='mod2a3'
+	Port1='mod2a4'
+
+	FirePort0='mod2b1'
+	FirePort1='mod2a1'
+	FirePort2='mod2a2'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+        BoostBlurColor='255 77 77 77'
+
+			addModelFolder='tank2' 	
+
+	DescBalance= '40'
+	DescStability ='47'
+	DescEngineGrade='1.25'
+	DescCornering='3'
+	DescEnchantCap = '20'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2a' trailPort1='mod2b'/>
+</BodyParam>
+<!-- 타이탄 탱크-R / 한국 / 레어 / 아이템 / 상점 / 2020625 릴리즈 -->

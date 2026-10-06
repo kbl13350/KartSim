@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow windowSize="512 200" adjust="0 0" frame="CaptionDialog" caption="#sb(notice)" align="center" alphaBlend="true" setCloseButton="cancelButton">
+  <ColorLabel name="alertStr1" windowSize="400 22" adjust="0 98" align="center;bottom" text="#sb(mileageAlertDlgMsg1)" textColor="255 42 55 80" textRender="bold16" textAlign="center" visible="true" enable="true"/>
+  <ColorLabel name="alertStr2" windowSize="400 22" adjust="0 76" align="center;bottom" text="#sb(mileageAlertDlgMsg2)" textColor="255 42 55 80" textRender="bold16" textAlign="center" visible="true" enable="true"/>
+  <TextButton name="okButton" windowSize="130 40" adjust="-70 6" align="center;bottom" text="#sb(ok)" textColor="255 255 255 255" overTextColor="255 255 255 255" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" textRender="bold16" alphaBlend="true" visible="true" enable="true"/>
+  <TextButton name="cancelButton" windowSize="130 40" adjust="70 6" align="center;bottom" text="#sb(cancel)" textColor="255 64 75 95" overTextColor="255 106 120 147" clickedTextColor="255 35 41 52" disabledTextColor="255 131 131 131" textRender="bold16" alphaBlend="true" visible="true" enable="true"/>
+</CaptionWindow>

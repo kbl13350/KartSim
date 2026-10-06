@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.2'
+	DriftEscapeForce='900'
+	CornerDrawFactor='0.065'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+	
+	UseTransformBooster='true'
+	TransAccelFactor='1.69'           
+	TransformTime='700'   
+	
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-350'
+	DriftMaxGauge = '-350'
+	
+	StartBoosterTimeSpeed='1200'           
+	StartForwardAccelFactorSpeed = '1.2'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='cotton6'
+	BoosterType0='plasma1'
+	BoosterType1='plasma1'
+	BoosterType2='zero5'
+	BoosterType3='zero5'
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1b1'
+	FirePort1='mod1b2'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 246 0'
+    BoostBlurColor='255 77 77 77'
+
+	DescBalance= '45'
+	DescStability ='45'
+	DescEngineGrade='1.2'
+	DescCornering='6'
+	DescEnchantCap = '31'
+/>
+
+<!--중국 제노 PLZ7 120621-->

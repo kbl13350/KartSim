@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='120.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='2.2'
+	DriftEscapeForce='600'
+	CornerDrawFactor='0.053'
+	
+	UseTransformBooster='true'
+	TransAccelFactor='1.65'
+
+	SpecialSlotCapacity='2'
+
+	EngineSound='cotton6'
+	BoosterType='cotton6'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterBlur='true'
+
+	Port0='mod1a1' 
+	Port1='mod1a2'
+
+	FirePort0='mod1b1'
+	FirePort1='mod1b2'
+
+	DescBalance= '30'
+	DescStability ='30'
+	DescEnchantCap ='20'
+	DescEngineGrade='2'
+	DescCornering='25'
+/>
+
+<!-- 중국 배찌배틀카트SR (퀘스트 업글) -->

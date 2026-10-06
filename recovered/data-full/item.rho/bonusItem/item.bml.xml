@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item name="bonusItem">
+  <state name="Stay" life="0" item="stand" size="1.0"/>
+  <state name="Eaten" life="2000" fired="item01" firedFx="eaten"/>
+  <state name="Wait" life="3600000"/>
+</item>

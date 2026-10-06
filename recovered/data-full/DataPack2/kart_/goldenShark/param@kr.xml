@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+		ForwardAccelForce='148.0'
+		BackwardAccelForce='100.0'
+		DragFactor='-0.077'
+		SteerConstraint='3.1'
+		DriftEscapeForce='1600'
+		CornerDrawFactor='0.065'
+		EngineSound='cotton8'
+		
+		StartForwardAccelFactorItem = '1.7'
+		StartBoosterTimeItem='1300'           
+
+		SpecialSlotCapacity='2'
+
+		UseExtendedAfterBooster='true'
+		BoosterAccelFactorItem ='1.6'
+
+		UseTransformBooster='true'
+		TransAccelFactor='1.823'
+		TransformTime='100'
+
+		BoosterWaveType='boost8'
+		BoosterType='8soon'
+		BoosterType0='8soon'
+		BoosterType1='8soon'
+		BoosterType2='8main'
+		BoosterType3='8sub'
+		BoosterType4='8sub'
+
+		Port0='mod1a1'
+		Port1='mod1a2'
+
+		FirePort0='mod1b'
+		FirePort1='mod1a3'
+		FirePort2='mod1a4'
+
+		TailLampSize='0.2'
+		TailLampColor='0 255 100 100'
+		BoostBlurColor='255 77 77 77'
+
+		DescBalance= '47'
+		DescStability ='47'
+		DescEngineGrade='1.25'
+		DescCornering='4'
+		DescEnchantCap = '31'
+
+		TachometerType='Tacho1'
+		TachometerName='ht'
+		itemSlotName='ht'
+		boostGaugeName='ht'
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 255 210 0' trailPort0='mod1a3' trailPort1='mod1a4'/>
+</BodyParam>
+
+<!--한국  골든 샤크 / 빙고 가챠폰 20140213 -->

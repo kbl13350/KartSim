@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='80.0'
+	BackwardAccelForce='50.0'
+	DragFactor='-0.05'
+	SteerConstraint='0'
+	DriftEscapeForce='150'
+	CornerDrawFactor='0.03'
+
+	DescBalance= '25'
+	DescStability ='23'
+
+/>
+
+<!--인니 스쿨버스 R4 -->

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <KnockOut track="ice_I07" laps="2" isFixedKart="true" fixedKartId="794" isFixedChar="true" fixedCharId="101" type="rank">
+    <LevelContent level="0" ksv="1920_1-20" startOffset="2000">
+      <ShadowKart characterId="75" uniformId="0" kartId="794" colorId="36" dyeId="36" characterName="阿嘉"/>
+      <ShadowKart characterId="31" uniformId="0" kartId="794" colorId="8" dyeId="8" characterName="华丽蓝蓝"/>
+      <ShadowKart characterId="50" uniformId="0" kartId="794" colorId="4" dyeId="4" characterName="华丽小乖 "/>
+      <ShadowKart characterId="19" uniformId="0" kartId="794" colorId="1" dyeId="1" characterName="茜茜"/>
+      <ShadowKart characterId="74" uniformId="0" kartId="794" colorId="6" dyeId="6" characterName="美玲"/>
+    </LevelContent>
+  </KnockOut>
+</Root>

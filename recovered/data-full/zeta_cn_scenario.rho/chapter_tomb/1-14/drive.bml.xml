@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="7"/>
+  <Shadow isFixedKart="true" fixedKartId="1630" fixedCharId="501" isFixedChar="true" kartId="1630" characterId="226" colorId="14" dyeId="7" characterName="卡米拉">
+    <LevelContent level="0" track="village_R14" laps="2" ksv="1-14"/>
+  </Shadow>
+</Root>

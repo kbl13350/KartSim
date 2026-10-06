@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="for4"/>
+  <Char id="marid" pos="7 0" emotion="stop1"/>
+  <Msg name="蓝蓝" string="找到了！！皮德叔叔，是这个蘑菇吗？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="zude" pos="9 0" emotion="stop3"/>
+  <Msg name="皮德" string="哦！！蓝蓝，很棒啊，我再找几个就可以了..|好样的，按照约定我告诉你他的位置吧。|我在厨房时见过一个叫宝宝的小朋友。"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop5"/>
+  <Msg name="蓝蓝" string="真的吗？？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop3"/>
+  <Char id="marid" pos="3 0" emotion="stop5"/>
+  <Msg name="皮德" string="当然是真的了。|对了..能帮我把这个蘑菇拿到厨房吗？|不尽快拿去的话蘑菇会坏的。"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="marid" pos="3 0" emotion="stop3"/>
+  <Msg name="蓝蓝" string="知道了，我帮您拿去吧，|可是您真的在厨房见过宝宝吗？"/>
+  <Enter/>
+  <Char id="marid" remove="true"/>
+  <Char id="zude" pos="11 0" emotion="stop2"/>
+  <Char id="marid" pos="3 0" emotion="stop3"/>
+  <Msg name="皮德" string="他用一脸没睡醒的样子跟我打招呼，我能记错吗？|我还得多找几个蘑菇，你先拿过去吧。"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="marid" remove="true"/>
+  <Char id="marid" pos="6 0" emotion="stop4"/>
+  <Msg name="蓝蓝" string="知道了，皮德叔叔。"/>
+  <Enter/>
+</Scene>

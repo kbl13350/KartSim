@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowSize="707 202" align="center" adjust="0 -180" alphaBlend="true">
+  <ImageBoard name="img1" windowSize="707 202" image="aprilFoolDayTuto@zz" alphaBlend="true" visible="true"/>
+</Container>

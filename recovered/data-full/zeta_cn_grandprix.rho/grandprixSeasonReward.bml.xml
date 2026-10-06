@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GrandPrixSeasonRewardList>
+  <RewardList seasonId="1">
+    <Reward grade="1" stockId="25368"/>
+    <Reward grade="2" stockId="25369"/>
+    <Reward grade="3" stockId="25370"/>
+    <Reward grade="4" stockId="25371"/>
+    <Reward grade="5" stockId="25372"/>
+  </RewardList>
+  <RewardList seasonId="2">
+    <Reward grade="1" stockId="26777"/>
+    <Reward grade="2" stockId="26778"/>
+    <Reward grade="3" stockId="25370"/>
+    <Reward grade="4" stockId="25371"/>
+    <Reward grade="5" stockId="22761"/>
+  </RewardList>
+  <RewardList seasonId="3">
+    <Reward grade="1" stockId="26779"/>
+    <Reward grade="2" stockId="26780"/>
+    <Reward grade="3" stockId="25370"/>
+    <Reward grade="4" stockId="25371"/>
+    <Reward grade="5" stockId="22761"/>
+  </RewardList>
+  <RewardList seasonId="4">
+    <Reward grade="1" stockId="27054"/>
+    <Reward grade="2" stockId="27055"/>
+    <Reward grade="3" stockId="27056"/>
+    <Reward grade="4" stockId="27057"/>
+    <Reward grade="5" stockId="27058"/>
+  </RewardList>
+  <RewardList seasonId="5">
+    <Reward grade="1" stockId="27098"/>
+    <Reward grade="2" stockId="27099"/>
+    <Reward grade="3" stockId="27100"/>
+    <Reward grade="4" stockId="27101"/>
+    <Reward grade="5" stockId="27102"/>
+  </RewardList>
+  <RewardList seasonId="6">
+    <Reward grade="1" stockId="27364"/>
+    <Reward grade="2" stockId="27365"/>
+    <Reward grade="3" stockId="27366"/>
+    <Reward grade="4" stockId="27367"/>
+    <Reward grade="5" stockId="27368"/>
+  </RewardList>
+  <RewardList seasonId="7">
+    <Reward grade="1" stockId="28245"/>
+    <Reward grade="2" stockId="28246"/>
+    <Reward grade="3" stockId="27366"/>
+    <Reward grade="4" stockId="27367"/>
+    <Reward grade="5" stockId="27368"/>
+  </RewardList>
+  <RewardList seasonId="8">
+    <Reward grade="1" stockId="28661"/>
+    <Reward grade="2" stockId="28662"/>
+    <Reward grade="3" stockId="27366"/>
+    <Reward grade="4" stockId="27367"/>
+    <Reward grade="5" stockId="27368"/>
+  </RewardList>
+  <RewardList seasonId="9">
+    <Reward grade="1" stockId="28663"/>
+    <Reward grade="2" stockId="28664"/>
+    <Reward grade="3" stockId="27366"/>
+    <Reward grade="4" stockId="27367"/>
+    <Reward grade="5" stockId="27368"/>
+  </RewardList>
+  <RewardList seasonId="10">
+    <Reward grade="1" stockId="27364"/>
+    <Reward grade="2" stockId="27365"/>
+    <Reward grade="3" stockId="27366"/>
+    <Reward grade="4" stockId="27367"/>
+    <Reward grade="5" stockId="27368"/>
+  </RewardList>
+  <RewardList seasonId="11">
+    <Reward grade="1" stockId="30080"/>
+    <Reward grade="2" stockId="30081"/>
+    <Reward grade="3" stockId="30082"/>
+    <Reward grade="4" stockId="30083"/>
+    <Reward grade="5" stockId="30084"/>
+  </RewardList>
+  <RewardList seasonId="12">
+    <Reward grade="1" stockId="30160"/>
+    <Reward grade="2" stockId="30081"/>
+    <Reward grade="3" stockId="30082"/>
+    <Reward grade="4" stockId="30083"/>
+    <Reward grade="5" stockId="30084"/>
+  </RewardList>
+  <RewardList seasonId="13">
+    <Reward grade="1" stockId="30427"/>
+    <Reward grade="2" stockId="30428"/>
+    <Reward grade="3" stockId="30429"/>
+    <Reward grade="4" stockId="30430"/>
+    <Reward grade="5" stockId="30431"/>
+  </RewardList>
+  <RewardList seasonId="16">
+    <Reward grade="1" stockId="30427"/>
+    <Reward grade="2" stockId="30428"/>
+    <Reward grade="3" stockId="30429"/>
+    <Reward grade="4" stockId="30430"/>
+    <Reward grade="5" stockId="30431"/>
+  </RewardList>
+</GrandPrixSeasonRewardList>

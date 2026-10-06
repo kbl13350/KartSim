@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RankSlot name="rankSlot" windowRect="0 0 245 31">
+  <Window windowRect="27 0 51 30">
+    <Panel name="spot" clientRect="0 0 30 30" texture="rank_slot_observer2" alphaBlend="true" textureOp="modulate" color="white" align="center" visible="true">
+      <Panel leftTopTex="0 0" texture="rank_slot_observer" alphaBlend="true">
+        <CharPanel name="rankStr" leftTopWH="0 0 22 22" texture="digit_rank_basic" fontSize="22 22" fontStr="0123456789X" text="2" align="center" alphaBlend="true" visible="true"/>
+      </Panel>
+    </Panel>
+  </Window>
+  <Label name="rid" windowRect="58 4 186 35" align="vcenter" adjust="0 -1" text="#sb(kartRider)" textRender="outline16" textColor="white" textAlign="vcenter"/>
+  <CharPanel name="ping" leftTopWH="240 4 4 18" texture="ping" fontSize="4 18" fontPos="0 0" fontStr="0123" text="2" align="vcenter"/>
+  <Panel name="logout" leftTopTex="210 5" texture="out@zz" alphaBlend="true" visible="false" align="vcenter"/>
+  <Container name="exceedCon" leftTopWH="56 22 186 15" visible="false">
+    <Panel name="exceed_bg" leftTopTex="0 0" texture="ingame_observer_gauge_bg" alphaBlend="true" visible="true"/>
+    <Panel name="exceed_0" leftTopTex="0 0" texture="ingame_observer_gauge_bar_1" alphaBlend="true" visible="true"/>
+    <Panel name="exceed_1" leftTopTex="0 0" texture="ingame_observer_gauge_bar_2" alphaBlend="true" visible="false"/>
+    <Panel name="exceed_1_end" leftTopWH="0 0 3 9" texture="ingame_observer_gauge_bar_2" uvRect="183 0 186 9" alphaBlend="true" visible="true"/>
+  </Container>
+</RankSlot>

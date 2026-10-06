@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <Container name="uiEffect" windowRect="fullscreen"/>
+  <XmlFile file="minimap"/>
+  <Container name="ScreenUI" windowRect="fullscreen" enable="false">
+    <Label name="distance" visible="false"/>
+    <XmlFile file="missionTimer"/>
+    <StressMirror name="stressMirror"/>
+    <Container name="stepInfo" windowSize="370 150" adjust="10 0" align="left;bottom" visible="false">
+      <Panel leftTopWH="0 0 332 78" align="center" texture="bg1" alphaTest="true" alphaBlend="true" visible="true">
+        <Label name="missionString" windowSize="332 27" adjust="0 40" textRender="default16" textColor="white" textColor2="255 12 32 62" text="" textAlign="hcenter"/>
+      </Panel>
+      <Panel leftTopWH="0 0 202 136" adjust="0 -70" align="center" texture="엠블럼" alphaTest="true" alphaBlend="true" visible="true">
+        <Panel name="eventStep" windowSize="56 17" adjust="77 42" texture="이벤트@zz" alphaTest="true" alphaBlend="true" visible="false"/>
+        <CharPanel name="baseStep" windowSize="28 20" adjust="-3 -25" align="center" texture="숫자" visible="false" enable="false" fontSize="20 24" fontStr="1234567890" text="09" alphaBlend="true" spaceOffset="-5"/>
+      </Panel>
+    </Container>
+    <XmlFile file="collisionMission"/>
+    <Container name="tracingPanel" windowRect="0 0 342 112" align="hcenter;top" visible="false">
+      <Container windowRect="0 0 264 40">
+        <Panel name="tracingText" leftTopTex="0 0" align="center" texture="sn_거리@zz" alphaBlend="true">
+          <CharPanel name="tracingLeft" leftTopWH="160 0 74 28" align="vcenter" texture="sn_카운트숫자" alphaBlend="true" fontSize="20 26" fontStr="0123456789+" text="000" rightAlign="true"/>
+        </Panel>
+      </Container>
+    </Container>
+  </Container>
+  <XmlFile file="retryPopup_2btn"/>
+</Container>

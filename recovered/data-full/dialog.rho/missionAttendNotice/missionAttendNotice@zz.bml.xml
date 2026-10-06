@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowSize="fullwidth fullheight" adjust="-30 0">
+  <CaptionWindow name="captionWindow" windowRect="0 0 556 387" frame="CaptionDialog" caption="#sb(todayMissionSuccess)" align="center">
+    <ImageBoard name="transFillPlane" windowRect="0 0 542 246" image="common_popupBg_reward" align="hcenter,top" adjust="0 -1" alphaBlend="true" enable="false">
+      <Panel texture="img_timeEventWnd" leftTopWH="0 20 262 166" align="hcenter" alphaBlend="true">
+        <Label name="lblMsg" leftTopWH="220 180 200 250" multiLine="true" autoWrap="true" textRender="bold14" align="hcenter" textColor="255 42 55 80" text="#sb(missionAttendQuestSuccess)"/>
+      </Panel>
+    </ImageBoard>
+    <Window leftTopWH="0 0 434 1" frame="HSection" align="hcenter;bottom" adjust="0 63"/>
+    <TextButton name="okButton" leftTopWH="0 0 132 42" text="#sb(go2MissionAttend)" align="hcenter;bottom" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
+  </CaptionWindow>
+</Container>

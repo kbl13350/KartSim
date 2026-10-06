@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="caption">
+    <m c="kr" v="고백카드 사용"/>
+    <m c="jp" v="告白カード使用"/>
+    <m c="cn" v="使用情书"/>
+    <m c="tw" v="使用告白卡"/>
+    <m c="vn" v="Sử dụng Thư Tỏ Tình"/>
+    <m c="ru" v="Использовать карту любви"/>
+    <m c="id" v="Menggunakan kartu cinta"/>
+    <m c="th" v="ใช้บัตรบอกรัก"/>
+  </k>
+  <k n="selectRiderMsg">
+    <m c="kr" v="사랑을 고백할 라이더를 선택하세요."/>
+    <m c="jp" v="愛を告白するライダーを選択してください。"/>
+    <m c="cn" v="请选择情书赠送的对象"/>
+    <m c="tw" v="請選擇要告白的車手"/>
+    <m c="vn" v="Hãy chọn tay đua muốn bày tỏ tình yêu"/>
+    <m c="ru" v="Выберите гонщика, которому хотите |признаться в любви"/>
+    <m c="id" v="Silahkan memilih Rider yang ingin kamu melamar cinta"/>
+    <m c="th" v="กรุณาเลือกผู้เล่นที่จะบอกรัก"/>
+  </k>
+  <k n="declareLoveMsg">
+    <m c="kr" v="고백 메시지 입력"/>
+    <m c="jp" v="告白メッセージ入力"/>
+    <m c="cn" v="输入情书的内容"/>
+    <m c="tw" v="請輸入告白訊息"/>
+    <m c="vn" v="Viết nội dung cần thổ lộ"/>
+    <m c="ru" v="Ввести сообщение признания"/>
+    <m c="id" v="Masukkan pesan cinta kamu"/>
+    <m c="th" v="กรอกข้อความบอกรัก"/>
+  </k>
+  <k n="errorNoSelectedItem">
+    <m c="kr" v="고백할 라이더가 선택되지 않았습니다."/>
+    <m c="jp" v="告白するライダーが選択されていません。"/>
+    <m c="cn" v="你还没有选择告白的对象"/>
+    <m c="tw" v="尚未選擇告白車手"/>
+    <m c="vn" v="Chưa chọn tay đua muốn bày tỏ tình yêu"/>
+    <m c="ru" v="Вы не выбрали гонщика"/>
+    <m c="id" v="Rider belum dipilih."/>
+    <m c="th" v="ท่านยังไม่ได้เลือกผู้เล่นที่จะบอกรัก"/>
+  </k>
+  <k n="select">
+    <m c="kr" v="고백 대상 선택"/>
+    <m c="jp" v="告白対象選択"/>
+    <m c="cn" v="选择告白的对象"/>
+    <m c="tw" v="選擇告白對象"/>
+    <m c="vn" v="Lựa chọn tay đua"/>
+    <m c="ru" v="Выбрать гонщика"/>
+    <m c="id" v="Silahkan memilih"/>
+    <m c="th" v="เลือกผู้ที่จะบอกรัก"/>
+  </k>
+</StringBag>

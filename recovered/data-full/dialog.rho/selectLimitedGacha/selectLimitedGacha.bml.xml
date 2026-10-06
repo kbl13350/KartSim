@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionInnerWindow" caption="#sb(limitGacha)" captionPos="0 -1" leftTopWH="20 100 345 325" alphaBlend="true">
+  <ImageButton name="ok" leftTopWH="0 -34 20 20" adjust="-10 0" align="right" autoLoadImage="close_" altTextRender="outline" alphaBlend="true" altText="#sb(close)"/>
+  <Window name="itemSelect" windowSize="320 327">
+    <GridSelectorDivLoad name="itemList" windowRect="0 0 300 325" alignStyle="horizontal" alignSize="2" maxLine="2" alignMargin="1 1"/>
+    <ScrollBar name="itemListBar" windowRect="0 0 12 270" align="right" scrollType="vertical" visible="false" minScrollButtonHeight="25"/>
+  </Window>
+</CaptionWindow>

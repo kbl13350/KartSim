@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+  <CaptionWindow frame="CaptionDialog" windowRect="0 0 530 507" caption="#sb(caption)" captionPos="0 1" captionColor="black" align="center">
+    <Panel windowRect="0 7 485 294" texture="try_dao" align="hcenter"/>
+    <Label name="lblMsg" windowRect="0 303 485 377" textRender="bold16" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="Message" textAlign="center"/>
+    <Container windowRect="0 0 260 50" align="hcenter;bottom">
+      <Window windowRect="0 -10 485 -9" frame="VSection" align="hcenter"/>
+      <TextButton name="okButton" windowRect="0 0 120 45" align="left" text="#sb(accept)" textRender="bold16"/>
+      <TextButton name="cancelButton" windowRect="0 0 120 45" align="right" text="#sb(decline)" textRender="bold16"/>
+    </Container>
+  </CaptionWindow>
+</Panel>

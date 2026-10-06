@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StringBag>
+  <k n="countUnitFmt">
+    <m c="kr" v="%d개"/>
+    <m c="jp" v="%d個"/>
+    <m c="cn" v="%d个"/>
+    <m c="tw" v="%d個"/>
+    <m c="us" v="%d unit(s)"/>
+    <m c="vn" v="%d cái"/>
+    <m c="ru" v="%d ед."/>
+    <m c="id" v="%d pcs"/>
+    <m c="th" v="%dอัน"/>
+  </k>
+  <k n="dayUnitFmt">
+    <m c="kr" v="%d일"/>
+    <m c="jp" v="%d日"/>
+    <m c="cn" v="%d天"/>
+    <m c="tw" v="%d日"/>
+    <m c="us" v="%d Days"/>
+    <m c="vn" v="%d ngày"/>
+    <m c="ru" v="%d дн."/>
+    <m c="id" v="%d hari"/>
+    <m c="th" v="%dวัน"/>
+  </k>
+  <k n="hourUnitFmt">
+    <m c="kr" v="%d시간"/>
+    <m c="jp" v="%d時間"/>
+    <m c="cn" v="%d小时"/>
+    <m c="tw" v="%d小時"/>
+    <m c="us" v="%d Hours"/>
+    <m c="vn" v="%dh"/>
+    <m c="ru" v="%d ч."/>
+    <m c="id" v="%d jam"/>
+    <m c="th" v="%dชั่วโมง"/>
+  </k>
+  <k n="everlasting">
+    <m c="kr" v="기간 제한 없음"/>
+    <m c="jp" v="期間制限なし"/>
+    <m c="cn" v="无时间限制"/>
+    <m c="tw" v="無時間限制"/>
+    <m c="us" v="There is no expiration date. "/>
+    <m c="vn" v="Vĩnh viễn"/>
+    <m c="ru" v="Без ограничения по времени"/>
+    <m c="id" v="Tidak ada durasi"/>
+    <m c="th" v="ไม่จำกัด"/>
+  </k>
+  <k n="getNewItem">
+    <m c="kr" v="새로운 아이템 획득"/>
+    <m c="jp" v="新しいアイテム獲得"/>
+    <m c="cn" v="获得新道具"/>
+    <m c="tw" v="獲得新道具"/>
+    <m c="us" v="You have received a new item!"/>
+    <m c="vn" v="Lấy vật phẩm mới"/>
+    <m c="ru" v="Получить новый предмет"/>
+    <m c="id" v="Mendapat item baru"/>
+    <m c="th" v="ได้รับไอเทมใหม่"/>
+  </k>
+  <k n="countDiffFmt">
+    <m c="kr" v="[%1!s!] -&gt; [%2!s!]로 증가"/>
+    <m c="jp" v="[%1!s!] -&gt; [%2!s!]に増加"/>
+    <m c="cn" v="从[%1!s!] -&gt; 增加至[%2!s!]"/>
+    <m c="tw" v="由[%1!s!] 增加至[%2!s!]"/>
+    <m c="us" v="Increased to [%2!s!] from [%1!s!]"/>
+    <m c="vn" v="Số lượng gia tăng từ [%1!s!] -&gt; [%2!s!]"/>
+    <m c="ru" v="Увеличение [%1!s!] -&gt; [%2!s!]"/>
+    <m c="id" v="[%1!s!] -&gt; [%2!s!]meningkat"/>
+    <m c="th" v="เพิ่มจาก [%1!s!] -&gt; [%2!s!]"/>
+  </k>
+  <k n="durationDiffFmt">
+    <m c="kr" v="약 [%1!s!] -&gt; 약 [%2!s!]으로 기간 연장"/>
+    <m c="jp" v="約[%1!s!] -&gt; 約[%2!s!]に期間延長"/>
+    <m c="cn" v="从约[%1!s!] -&gt; 延长期限至约[%2!s!]"/>
+    <m c="tw" v="將時間約[%1!s!]延長至約[%2!s!]"/>
+    <m c="us" v="This item&apos;s availability has been extended|from [%1!s!] - &gt; [%2!s!]"/>
+    <m c="vn" v="Thời gian gia hạn: [%1!s!] -&gt; [%2!s!]"/>
+    <m c="ru" v="Продление срока действия [%1!s!] -&gt; [%2!s!]"/>
+    <m c="id" v="Kurang lebih [%1!s!] -&gt; Kurang lebih [%2!s!]bertambah durasi"/>
+    <m c="th" v="เพิ่มจาก[%1!s!] -&gt; [%2!s!]"/>
+  </k>
+  <k n="noChangeFmt">
+    <m c="kr" v="약 [%s]"/>
+    <m c="jp" v="約[%s]"/>
+    <m c="cn" v="[%s]"/>
+    <m c="tw" v="[%s]"/>
+    <m c="us" v="approximately [%s]"/>
+    <m c="vn" v="khoảng [%s]"/>
+    <m c="ru" v="Примерно [%s]"/>
+    <m c="id" v="Kurang lebih [%s]"/>
+    <m c="th" v="ราว [%s]"/>
+  </k>
+  <k n="noChangeCntFmt">
+    <m c="kr" v="내아이템에 [%d개] 보유중"/>
+    <m c="cn" v="该道具您已持有[%d个/天]。"/>
+    <m c="jp" v="マイホームに[%d個]保有中"/>
+    <m c="id" v="Memiliki [%d pcs] di My Room"/>
+  </k>
+  <k n="noChangeCntError">
+    <m c="kr" v="※ 이 상품을 받더라도 보유 개수 변화 없음"/>
+    <m c="cn" v="※接收该礼物不会改变当前持有道具的个数或期限。"/>
+    <m c="jp" v="※ この商品を受け取っても保有個数変化なし"/>
+    <m c="id" v="* Tidak ada perubahan jumlah item saat menerima item ini."/>
+  </k>
+  <k n="durationDiffErr">
+    <m c="kr" v="※ 최대 %d일까지만 연장 가능(약 %s 감소)"/>
+    <m c="jp" v="※ 最大%d日までのみ延長可能(約 %s減少)"/>
+    <m c="cn" v="※ 最多可延长至%d天(减少约%s )"/>
+    <m c="tw" v="※ 最多可延長至%d日(約減少%s )"/>
+    <m c="us" v="The expiration date cannot reach past 180 days after purchase."/>
+    <m c="vn" v="* Có thể sử dụng đến ngày %d"/>
+    <m c="ru" v="* Можно продлить до %d дн.(снижение на %s)"/>
+    <m c="id" v="*  Hanya dapat memperpanjang durasi sampai %d hari(Kurang lebih %s berkurang)"/>
+    <m c="th" v="※ เพิ่มได้มากสุด %dวัน(ลดลง %s)"/>
+  </k>
+  <k n="countDiffErr">
+    <m c="kr" v="※ 최대 %d개까지만 보유 가능(%s 손실)"/>
+    <m c="cn" v="※最多可持有%d个，将丢失[%s]"/>
+    <m c="jp" v="※ 最大%d個までのみ保有可能(%s損失)"/>
+    <m c="tw" v="此道具已超過系統可堆疊的數量上限"/>
+    <m c="id" v="※ Hanya dapat memiliki sampai %d pcs(%s rugi)"/>
+  </k>
+  <k n="everlastingResultErr">
+    <m c="kr" v="이미 같은 아이템이 내아이템에 있음"/>
+    <m c="jp" v="すでに同じアイテムがマイホームにあります"/>
+    <m c="cn" v="车库中存在没有使用期限限制的道具"/>
+    <m c="tw" v="車庫中擁有 無限制期限的道具"/>
+    <m c="us" v="There is an item with no expiration date in your Garage. "/>
+    <m c="vn" v="Vật phẩm bạn đang có"/>
+    <m c="ru" v="Этот предмет уже есть в вашей комнате."/>
+    <m c="id" v="Item yang sama sudah ada di My Room"/>
+    <m c="th" v="มีไอเทมเหมือนกันอยู่ในห้องส่วนตัวแล้ว"/>
+  </k>
+  <k n="everlastingResultWarn">
+    <m c="kr" v="내아이템에 있는 아이템의 사용기간 변경"/>
+    <m c="jp" v="マイホームにあるアイテムの利用有効期間変更"/>
+    <m c="cn" v="车库中道具的使用限制会消失"/>
+    <m c="tw" v="車庫中道具的使用限制將會解除"/>
+    <m c="us" v="The expiration date on the item in your Garage has been removed. "/>
+    <m c="vn" v="Thay đổi thời gian sử dụng vật phẩm"/>
+    <m c="ru" v="Сменить время действия предмета в комнате"/>
+    <m c="id" v="Mengubah durasi item yang ada di My Room"/>
+    <m c="th" v="เพิ่มเวลาของไอเทมในห้องส่วนตัว"/>
+  </k>
+  <k n="noChangeErr">
+    <m c="kr" v="※ 이 상품을 받더라도 사용기간 변화 없음"/>
+    <m c="jp" v="※ この商品を受け取っても利用有効期間変化なし"/>
+    <m c="cn" v="※ 接收这个商品，使用期限也不会有变化"/>
+    <m c="tw" v="※即使在禮物盒中接受，也無法累積該道具的期限"/>
+    <m c="us" v="Accepting this item will not change the expiration date. "/>
+    <m c="vn" v="* Không thể gia hạn"/>
+    <m c="ru" v="* Срок действия этого предмета сменить нельзя"/>
+    <m c="id" v="* Tidak ada perubahan durasi item saat menerima item ini."/>
+    <m c="th" v="※ ถึงแม้จะรับของชิ้นนี้แล้ว แต่เวลาการใช้จะเท่าเดิม"/>
+  </k>
+  <k n="everlastingErr">
+    <m c="kr" v="※ 이 상품을 받더라도 사용기간 변화 없음"/>
+    <m c="jp" v="※ この商品を受け取っても利用有効期間変化なし"/>
+    <m c="cn" v="※ 接收这个商品，使用期限也不会有变化"/>
+    <m c="tw" v="※即使在禮物盒中接受，也無法累積該道具的期限"/>
+    <m c="us" v="Accepting this item will not change the expiration date. "/>
+    <m c="vn" v="* Không thể gia hạn"/>
+    <m c="ru" v="* Срок действия этого предмета сменить нельзя"/>
+    <m c="id" v="* Tidak ada perubahan durasi item saat menerima item ini."/>
+    <m c="th" v="※ ถึงแม้จะรับของชิ้นนี้แล้ว แต่เวลาการใช้จะเท่าเดิม"/>
+  </k>
+  <k n="noCntChangeErr">
+    <m c="kr" v="※ 이 상품을 받더라도 개수 변화 없음"/>
+    <m c="jp" v="※ この商品を受け取っても個数変化なし"/>
+    <m c="id" v="* Tidak ada perubahan jumlah item saat menerima item ini."/>
+  </k>
+  <k n="everlastingCntErr">
+    <m c="kr" v="※ 이 상품을 받더라도 개수 변화 없음"/>
+    <m c="jp" v="※ この商品を受け取っても個数変化なし"/>
+    <m c="id" v="* Tidak ada perubahan jumlah item saat menerima item ini."/>
+  </k>
+  <k n="mixDurationDiffErr">
+    <m c="kr" v="※ 최대 %d일까지만 연장 가능(약 %s 초과)"/>
+    <m c="cn" v="※可最大延长至%d天（已超%s 天）"/>
+    <m c="tw" v="※最多只能延長至%d日止(約超過%s 日)"/>
+  </k>
+  <k n="mixCountDiffErr">
+    <m c="kr" v="※ 최대 %d개까지만 보유 가능(%s 초과)"/>
+    <m c="cn" v="※可最多获得%d个（已超%s 个）"/>
+    <m c="tw" v="※最多只能獲得%d個(約超過%s 個)"/>
+  </k>
+  <k n="countAcquireImpossible">
+    <m c="kr" v="최대 수량 초과로 획득 불가"/>
+    <m c="cn" v="由于超过该道具的最大数量无法获得"/>
+    <m c="tw" v="超過最大數量因此無法獲得"/>
+  </k>
+  <k n="periodAcquireImpossible">
+    <m c="kr" v="최대 기간 초과로 획득 불가"/>
+    <m c="cn" v="由于超过该道具的最大期限无法获得"/>
+    <m c="tw" v="超過最長時間因此無法獲得"/>
+  </k>
+  <k n="mixCountDiffFmt">
+    <m c="kr" v="[%1!s!] -&gt; [%2!s!]"/>
+    <m c="cn" v="[%1!s!] -&gt; [%2!s!]"/>
+    <m c="tw" v="[%1!s!] -&gt; [%2!s!]"/>
+  </k>
+  <k n="mixDurationDiffFmt">
+    <m c="kr" v="약 [%1!s!] -&gt; 약 [%2!s!]"/>
+    <m c="cn" v="约[%1!s!] -&gt; 约[%2!s!]"/>
+    <m c="tw" v="約[%1!s!] -&gt; 約[%2!s!]"/>
+  </k>
+</StringBag>

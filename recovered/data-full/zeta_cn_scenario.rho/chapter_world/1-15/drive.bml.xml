@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam gameSpeed="0"/>
+  <Shadow kartId="932" characterId="60" uniformId="0" colorId="8" dyeId="8" characterName="黑杰克" isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" ksv="village_R12_0" track="village_R12" laps="2"/>
+  </Shadow>
+</Root>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" captionPos="0 1" captionColor="black" windowRect="0 0 633 220" align="center">
+  <Label windowRect="8 5 0 12" text="#sb(addItemWarningMsg1)"/>
+  <Label windowRect="8 20 0 25" text="#sb(addItemWarningMsg2)"/>
+  <List name="resultCheckStockList" windowRect="4 42 595 60" frame="DefaultEdit" listGap="5" listMargin="5 -2 5 0" rigidScroll="true"/>
+  <Container name="bottomLayer" windowRect="0 63 572 84" color="red" align="hcenter">
+    <Label name="leaseWarningLabel" windowRect="8 5 180 12" multiLine="true"/>
+    <Panel windowRect="0 35 575 36" color="255 0 0 0"/>
+    <Panel windowRect="0 36 575 37" color="255 255 255 255"/>
+    <Label name="leaseWarningLabel2" windowRect="8 19 180 27" multiLine="true"/>
+    <Label name="lblConfirmAsk" windowRect="8 45 379 47" enable="false" text="" multiLine="true" autoWrap="true" lineGap="1" autoSizing="true"/>
+    <Panel windowRect="0 79 575 80" color="255 0 0 0"/>
+    <Panel windowRect="0 80 575 81" color="255 255 255 255"/>
+    <Window name="yesNoButtonList" windowRect="0 83 500 106" align="hcenter">
+      <TextButton name="yesButton" windowRect="138 3 211 25" text="#sb(yes)" altTextRender="outline"/>
+      <TextButton name="noButton" windowRect="295 3 368 25" text="#sb(no)" altTextRender="outline"/>
+    </Window>
+    <Window name="okButtonList" windowRect="0 79 500 101" align="hcenter">
+      <TextButton name="okButton" windowRect="100 3 170 25" text="#sb(ok)" align="hcenter" altTextRender="outline"/>
+    </Window>
+  </Container>
+</CaptionWindow>

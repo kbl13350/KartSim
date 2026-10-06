@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaptionWindow frame="CaptionDialog" windowRect="0 0 520 470" caption="#sb(caption)" captionPos="0 1" captionColor="black" align="center">
+  <Panel windowRect="0 5 485 292" texture="success"/>
+  <ItemWindow windowRect="110 10 390 280" itemCategory="card" itemId="5" fillTrans="true" alphaBlend="true"/>
+  <Panel windowRect="0 298 485 299" color="255 0 0 0" enable="false"/>
+  <Panel windowRect="0 299 485 300" color="255 255 255 255" enable="false"/>
+  <Label name="lblMsg" windowRect="0 300 485 375" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="#sb(msg)" textAlign="center"/>
+  <Panel windowRect="0 375 485 376" color="255 0 0 0" enable="false"/>
+  <Panel windowRect="0 376 485 377" color="255 255 255 255" enable="false"/>
+  <TextButton name="okButton" text="#sb(ok)" windowRect="200 382 280 404" altTextRender="outline"/>
+</CaptionWindow>

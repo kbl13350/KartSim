@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="vill4"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="啊~~~对了！！我们有小强！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="奇奇" string="小强？？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="嗯~~他可是改装赛车的达人~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="快去找小强看看！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="小强！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="小强" string="皮蛋！！！什么事呀？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="奇奇想赛车，|但是只有飞碟~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="这个飞碟可不可以改装呢？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="小强" string="嗯，这种类型第一次见。|别担心~应该可以！！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="小强" string="比想象要简单哦~~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="哦？是吗？"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="小强" string="但是需要配件~|去我仓库帮忙拿一下配件吧~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="皮蛋" string="马上就去。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="mos" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="奇奇~从这里直走就有小强的仓库。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="taki" pos="4 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="去那里只要拿到配件就能改装~|快走吧。"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="taki" pos="8 0" emotion="stop3"/>
+  <Msg name="奇奇" string="不用了~~皮蛋。|我自己去吧~太麻烦你了~"/>
+  <Enter/>
+</Scene>

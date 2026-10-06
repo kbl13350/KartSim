@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='143.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.073'
+	SteerConstraint='3.0'
+	DriftEscapeForce='700'
+	CornerDrawFactor='0.068'
+
+	UseTransformBooster='false'
+
+	BoosterBlur='true'
+	EngineSound='cotton8'
+	WaveEffect='true'
+	EnvMap='true'
+	SpecialSlotCapacity ='2'
+	
+	StartForwardAccelFactorItem = '1.65'
+	StartBoosterTimeItem='1200'           
+
+	UseExtendedAfterBooster='true'
+	BoosterAccelFactorItem ='1.6'
+
+	TachometerType='Tacho1'
+	TachometerName='ht'
+	itemSlotName='ht'
+	boostGaugeName='ht'
+
+	BoosterWaveType='boost8'
+	BoosterType='8sub'
+	BoosterType0='8soon'
+	BoosterType1='8soon'
+	BoosterType2='8main'
+	BoosterType3='8main'
+	BoosterType4='8sub'	
+	BoosterType5='8sub'
+
+	Port0='mod2a2' 
+	Port1='mod2a4'
+
+	FirePort0='mod2a1'
+	FirePort1='mod2a3'
+	FirePort2='mod2b2'
+	FirePort3='mod2b1'
+	FirePort4='mod2b3'
+	FirePort5='mod2b4'
+
+	TailLampSize='0.2'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '42'
+	DescStability ='35'
+	DescEngineGrade='1.25'
+	DescCornering='2'
+	DescEnchantCap = '20'
+
+
+>
+	<ShortTrail TailLampSize='0.2' TailLampColor='0 0 102 255' trailPort0='mod2b3' trailPort1='mod2b2'/>
+</BodyParam>
+<!--한국 복돼지 HT 출첵 보상 -> 무제한 변경권 판매 111215 -->

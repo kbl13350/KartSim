@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TonPopupMenu name="pendingStartMenu" windowRect="0 0 188 0" frame="BlackCaptionWindow" textRender="bold16" caption="questTitle" captionPosAdjust="20 1" captionAlign="left" captionTextColor="white" flipUpDown="false" adjustLeftTop="-10 -1" PopupMenuAnimPack="pendingup" depthBias="-100" alphaBlend="true" itemGap="0"/>

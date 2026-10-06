@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu6"/>
+  <Char id="camilla" pos="8 0" emotion="stop3"/>
+  <Msg name="卡米拉" string="是哪一家来着？！"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lora" pos="11 0" emotion="stop2"/>
+  <Char id="camilla" pos="4 0" emotion="stop3"/>
+  <Msg name="罗拉" string="什么？！上次是怎么送的？"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="4 0" emotion="stop3" flip="true"/>
+  <Char id="lora" pos="11 0" emotion="stop2"/>
+  <Msg name="卡米拉" string="那时候是有个小家伙告诉我的。"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lora" remove="true"/>
+  <Char id="ethi" pos="3 0" emotion="stop3"/>
+  <Char id="camilla" pos="11 0" emotion="stop3"/>
+  <Msg name="葱头" string="咦？你是上次那个送货员？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="4 0" emotion="stop5"/>
+  <Char id="lora" pos="11 0" emotion="normal"/>
+  <Msg name="卡米拉" string="啊？！就是这位小家伙。"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lora" remove="true"/>
+  <Char id="lora" pos="11 0" emotion="stop5"/>
+  <Char id="camilla" pos="4 0" emotion="stop5"/>
+  <Msg name="罗拉" string="你好？"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop5"/>
+  <Msg name="葱头" string="小家伙？看起来跟我年纪差不多啊。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" pos="4 0" emotion="stop5"/>
+  <Char id="lora" pos="11 0" emotion="normal"/>
+  <Msg name="卡米拉" string="其实我的年龄是~"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lora" remove="true"/>
+  <Char id="lora" pos="11 0" emotion="stop3"/>
+  <Char id="camilla" pos="4 0" emotion="stop5"/>
+  <Msg name="罗拉" string="嘘！我们上次送错货了，要把东西换回来，能告诉我胖墩的家在哪吗？"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop1"/>
+  <Msg name="葱头" string="好呀~ 跟我来。"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <BackGround texture="maple8"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" pos="8 0" emotion="stop5"/>
+  <Msg name="卡米拉" string="谢谢!"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop3" flip="true"/>
+  <Msg name="葱头" string="那我先走啦~"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="ethi" pos="7 0" emotion="stop5" flip="true"/>
+  <Msg name="葱头" string="不过胖墩到底买了多少东西啊？"/>
+  <Enter/>
+  <Char id="ethi" remove="true"/>
+  <Char id="camilla" pos="4 0" emotion="stop5" flip="true"/>
+  <Char id="tomb_stuff" pos="11 0" emotion="stop1"/>
+  <Msg name="卡米拉" string="幸好！南瓜都还在！！"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="tomb_stuff" remove="true"/>
+  <Char id="lora" pos="8 0" emotion="stop5" flip="true"/>
+  <Msg name="罗拉" string="呼，看来今年的南瓜庆典和整蛊人类考试可以顺利进行了。"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="camilla" pos="4 0" emotion="stop5" flip="true"/>
+  <Char id="lora" pos="11 0" emotion="stop5"/>
+  <Msg name="卡米拉" string="伊丽莎白肯定超级开心~"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lora" remove="true"/>
+  <Char id="lora" pos="11 0" emotion="normal"/>
+  <Char id="camilla" pos="4 0" emotion="stop5" flip="true"/>
+  <Msg name="罗拉" string="真可惜。我连药剂考试题目都想好了呢~"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="4 0" emotion="stop3" flip="true"/>
+  <Char id="lora" pos="11 0" emotion="normal"/>
+  <Msg name="卡米拉" string="那个只有姐姐你会觉得可惜吧？"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lora" remove="true"/>
+  <Char id="lora" pos="11 0" emotion="stop1"/>
+  <Char id="camilla" pos="4 0" emotion="stop3" flip="true"/>
+  <Msg name="罗拉" string="药剂制作明明很有趣！"/>
+  <Enter/>
+  <Char id="lora" remove="true"/>
+  <Char id="camilla" remove="true"/>
+  <Char id="camilla" pos="8 0" emotion="stop5"/>
+  <Msg name="卡米拉" string="不管不管~我要赶紧去准备整蛊人类的考试啦！"/>
+  <Enter/>
+  <Char id="camilla" remove="true"/>
+  <Char id="lora" pos="7 0" emotion="stop2"/>
+  <Msg name="罗拉" string="只有这种时候你的动作最快！一起走！"/>
+  <Enter/>
+</Scene>

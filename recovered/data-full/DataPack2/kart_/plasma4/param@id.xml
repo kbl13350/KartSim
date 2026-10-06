@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='105.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.05'
+	SteerConstraint='1.65'
+	DriftEscapeForce='600'
+	CornerDrawFactor='0.046'
+
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='infector1'
+	BoosterType3='infector1'
+	BoosterBlur='true'
+	EngineSound='pro'
+
+	DriftMaxGauge='1500'
+	NormalBoosterTime='2000'
+	TeamBoosterTime='1000'
+
+
+	DescBalance= '25'
+	DescStability ='25'
+	DescEngineGrade='1'
+	DescCornering='3'
+	DescEnchantCap = '25'
+/>
+
+<!--인니 플라즈마 PXT 120705 -->

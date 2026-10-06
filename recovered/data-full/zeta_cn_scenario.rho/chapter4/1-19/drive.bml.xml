@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="1"/>
+  <Delivery isFixedKart="true" fixedKartId="943" isFixedChar="true" fixedCharId="2">
+    <LevelContent level="0" track="tomb_R03" collision="2" laps="2" timeLimit="180000"/>
+  </Delivery>
+</Root>

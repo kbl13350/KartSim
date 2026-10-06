@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mh2"/>
+  <Char id="neo" pos="11 0" emotion="stop2"/>
+  <Msg name="尼欧" string="还是没有抓到.."/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="rick" pos="4 0" emotion="stop4"/>
+  <Msg name="鑫鑫" string="星陨之石也被抢走了.."/>
+  <Enter/>
+  <Char id="rick" remove="true"/>
+  <Char id="mos" pos="8 0" emotion="normal"/>
+  <Msg name="小强" string="没关系..而且~|多亏尼欧，躲过了危险.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="宝宝" string="呜呜..郁闷..突破兵马俑，好不容易拿到的.."/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="mos" pos="11 0" flip="true" emotion="stop3"/>
+  <Char id="bazzi" pos="4 0" emotion="stop5"/>
+  <Msg name="小强" string="宝宝.."/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="neo" pos="8 0" emotion="stop1"/>
+  <Msg name="尼欧" string="得先和皮蛋他们集合.."/>
+  <Enter/>
+  <Char id="neo" remove="true"/>
+  <Char id="mos" pos="4 0" emotion="stop3"/>
+  <Msg name="小强" string="好，快出发吧.."/>
+  <Enter/>
+</Scene>

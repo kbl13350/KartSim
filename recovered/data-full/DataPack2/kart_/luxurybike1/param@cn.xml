@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='140.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.073'
+           SteerConstraint='2'
+           DriftEscapeForce='1000'
+   CornerDrawFactor='0.067'
+
+           NormalBoosterTime='-200'
+           TeamBoosterTime='-500'
+           DriftMaxGauge='-1200'
+           
+           UseTransformBooster='true'
+           TransAccelFactor = '1.66'
+           TransformTime='700'
+
+           StartForwardAccelFactorItem = '1.2'
+           StartBoosterTimeItem='1200'        
+
+           BoosterBlur='true'
+           EngineSound='bike'
+           SpecialSlotCapacity='2'
+           EnvMap='true'
+           motorcycleType='true'
+
+           TachometerType='Tacho1'
+           TachometerName='bike'
+
+           BoosterWaveType='effect_zero'
+           BoosterType='zero5'
+           BoosterType0='default'
+           BoosterType1='default'
+           BoosterType2='cotton6'
+           BoosterType3='cotton6'
+           BoosterType4='cotton6'
+           BoosterType5='cotton6'
+           BoosterType6='zero5'
+
+           Port0='mod1c1'
+           Port1='mod1c2'
+           FirePort0='mod1a1'
+           FirePort1='mod1a2'
+           FirePort2='mod1a3'
+           FirePort3='mod1a4'
+           FirePort4='mod1b'
+
+           TailLampSize='0.2'
+           TailLampColor='0 255 100 100'
+           BoostBlurColor='255 77 77 77'
+
+           DescBalance= '39'
+           DescStability ='32'
+           DescEngineGrade='1.2'
+           DescCornering='2'
+           DescEnchantCap = '25'
+
+/>
+
+<!--중국 LV 스쿠터 20110721 패키지 판매-->

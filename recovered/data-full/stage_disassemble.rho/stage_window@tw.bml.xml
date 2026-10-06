@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <ImageBoard name="bg" windowSize="1024 768" adjust="0 0" image="disassemble_img_baseBG" align="center" alphaBlend="true" visible="true"/>
+  <ImageBoard name="menuTab" leftTopWH="0 44 682 38" align="hcenter" image="garage_img_menuBG4" alphaBlend="true" visible="true">
+    <ImageButton name="partsInstall" leftTopTex="0 0" align="vcenter" autoLoadImage="garage_btn_menuTab1_" alphaBlend="true" text="#sb(partsInstall)" textAlign="vcenter" stringPos="50 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148"/>
+    <ImageButton name="partsDisassemble" leftTopTex="114 0" align="vcenter" autoLoadImage="garage_btn_menuTab2_" alphaBlend="true" text="#sb(partsDisassemble)" textAlign="vcenter" stringPos="50 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148" enable="false"/>
+    <ImageButton name="kartLevelUp" leftTopTex="228 0" align="vcenter" autoLoadImage="garage_btn_menuTab5_" alphaBlend="true" text="#sb(tunningStr)" textAlign="vcenter" stringPos="50 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148"/>
+    <ImageButton name="partsComposite" leftTopTex="342 0" align="vcenter" autoLoadImage="garage_btn_menuTab3_" alphaBlend="true" text="#sb(partsComposite)" textAlign="vcenter" stringPos="50 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148"/>
+    <ImageButton name="partsFactory" leftTopTex="456 0" align="vcenter" autoLoadImage="garage_btn_menuTab4_" alphaBlend="true" text="#sb(factory)" textAlign="vcenter" stringPos="50 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148"/>
+    <ImageButton name="growthKart" leftTopTex="570 0" align="vcenter" autoLoadImage="garage_btn_menuTab6_" alphaBlend="true" text="#sb(upgrade)" textAlign="vcenter" stringPos="45 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 31 74 115" clickedTextRender="bold" clickedTextColor="255 22 86 148" disabledTextRender="bold" disabledTextColor="255 22 86 148" visible="false">
+      <Label name="growthAlert" windowSize="20 21" align="right" adjust="-6 -6" frame="AlertLabel" text="!" textAlign="center" textRender="bold" textColor="white" enable="false" visible="false" marginRect="0 -5 0 0"/>
+    </ImageButton>
+    <Panel name="growthLock" leftTopWH="570 0 112 38" alphaBlend="true" visible="true" altText="#sb(growthTabLock)" altRelativePos="5 35" texture="garage_btn_menuTab6_0">
+      <Label leftTopWH="45 0 65 12" text="#sb(upgrade)" align="vcenter" textColor="255 134 146 160" textRender="bold"/>
+    </Panel>
+  </ImageBoard>
+  <Window name="viewTab" leftTopWH="0 82 800 45" adjust="0 0" align="hcenter">
+    <ImageBoard windowSize="200 34" adjust="-302 0" align="center" image="disassemble_Item@zz" alphaBlend="true" visible="true"/>
+    <ImageBoard windowSize="200 34" adjust="228 0" align="center" image="disassemble_Result@zz" alphaBlend="true" visible="true"/>
+  </Window>
+  <Window name="subTab" leftTopWH="0 127 420 35">
+    <ImageButton name="kartView" leftTopTex="0 0" autoLoadImage="disassemble_btn_Tab_" alphaBlend="true" text="#sb(kartBody)" textAlign="center" stringPos="50 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 220 228 236" clickedTextRender="bold" clickedTextColor="255 220 228 236" disabledTextRender="bold" disabledTextColor="255 22 86 148" enable="false"/>
+    <ImageButton name="partsView" leftTopTex="212 0" autoLoadImage="disassemble_btn_Tab_" alphaBlend="true" text="#sb(parts)" textAlign="center" stringPos="50 0" textRender="bold" textColor="255 220 228 236" overTextRender="bold" overTextColor="255 220 228 236" clickedTextRender="bold" clickedTextColor="255 220 228 236" disabledTextRender="bold" disabledTextColor="255 22 86 148"/>
+  </Window>
+  <Window name="itamTab" leftTopWH="9 200 400 436">
+    <GridSelectorDivLoad name="itemSelector" windowSize="400 400" adjust="19 14" alignStyle="horizontal" alignSize="4" maxLine="4" alignMargin="10 10" clientMargin="0 1 0 0"/>
+    <Label name="pageInfo" windowSize="400 9" adjust="0 400" text="0/0" textColor="white" textColor2="black" align="hcenter" textAlign="center" textRender="outline"/>
+    <ImageButton name="leftKartPage" leftTopTex="19 396" autoLoadImage="garage_btn_pageLeft_" alphaBlend="true" alphaTest="true" enable="true"/>
+    <ImageButton name="rightKartPage" leftTopTex="246 396" autoLoadImage="garage_btn_pageRight_" alphaBlend="true" alphaTest="true" enable="true"/>
+  </Window>
+  <Window name="gradeTab" leftTopWH="0 172 400 35">
+    <PlaneCheckButton name="select4" windowSize="20 20" adjust="55 0" frame="DefaultCheckButton">
+      <Label windowSize="50 20" adjust="20 0" align="hcenter;left" text="#sb(loGradeAverage)" textColor="255 82 117 149" textRender="bold"/>
+    </PlaneCheckButton>
+    <PlaneCheckButton name="select3" windowSize="20 20" adjust="133 0" frame="DefaultCheckButton">
+      <Label windowSize="50 20" adjust="20 0" align="hcenter;left" text="#sb(loGradeRare)" textColor="255 82 117 149" textRender="bold"/>
+    </PlaneCheckButton>
+    <PlaneCheckButton name="select2" windowSize="20 20" adjust="211 0" frame="DefaultCheckButton">
+      <Label windowSize="50 20" adjust="20 0" align="hcenter;left" text="#sb(loGradeLegend)" textColor="255 82 117 149" textRender="bold"/>
+    </PlaneCheckButton>
+    <PlaneCheckButton name="select1" windowSize="20 20" adjust="289 0" frame="DefaultCheckButton">
+      <Label windowSize="50 20" adjust="20 0" align="hcenter;left" text="#sb(loGradeUnique)" textColor="255 82 117 149" textRender="bold"/>
+    </PlaneCheckButton>
+  </Window>
+  <Window name="buttonTab" leftTopWH="13 646 500 58">
+    <ImageButton name="partsChange" leftTopTex="0 0" autoLoadImage="disassemble_btn_partsChange_@zz" alphaBlend="true"/>
+    <ImageButton name="disassembleStart" leftTopTex="192 0" autoLoadImage="disassemble_btn_Start_@zz" alphaBlend="true">
+      <Label name="feeInfo" windowRect="126 37 120 20" text="" textColor="yellow" textAlign="center"/>
+    </ImageButton>
+  </Window>
+  <GridSelectorEx name="resultItemList" windowRect="480 149 540 540" alignSize="4" maxLine="4" alignMargin="8 8" linePaging="false"/>
+  <Label windowSize="500 9" adjust="487 673" text="#sb(disassembleTip1)" textColor="255 223 233 242" textColor2="255 45 53 65" textAlign="left"/>
+  <Label windowSize="500 9" adjust="487 689" text="#sb(disassembleTip2)" textColor="255 223 233 242" textColor2="255 45 53 65" textAlign="left"/>
+  <ImageBoard name="backGround2" leftTopWH="0 90 1024 628" image="garage_img_baseBG2" alphaBlend="true" visible="false"/>
+</Container>

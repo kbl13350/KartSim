@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="myInfo" windowRect="0 0 295 480" align="center">
+  <CaptionWindow windowRect="0 0 295 480" caption="#sb(myInfo)" frame="EmptyClientCaptionDialog" captionPos="0 3" captionColor="black" setCloseButton="okButton">
+    <Panel name="bg" windowRect="0 0 262 255" texture="circle" uvRect="136 75 398 330" enable="false"/>
+    <Panel name="pedding" windowRect="0 0 262 5" color="255 211 222 237" enable="false"/>
+    <Window name="transFillPlaneUp" windowRect="0 5 262 255" frame="EmptyFill" enable="false"/>
+    <Panel name="transFillPlaneDown" windowRect="0 255 261 419" color="255 211 222 237" enable="false"/>
+    <Window name="main" windowRect="0 0 258 300" visible="false" frame="NoFrame"/>
+    <Window name="tempShopPreview" windowRect="17 0 277 290"/>
+    <Panel name="emblemBox" windowSize="252 28" adjust="5 10" texture="myroom_eblem_frame" alphaBlend="true">
+      <Panel name="glove" windowRect="3 -2 35 30" uvRect="0 0 32 32" alphaBlend="true"/>
+      <Panel name="mainEmblem0" windowRect="110 4 130 24" uvRect="0 0 20 20" alphaBlend="true" visible="false"/>
+      <Panel name="mainEmblem1" windowRect="150 4 170 24" uvRect="0 0 20 20" alphaBlend="true" visible="false"/>
+      <Panel name="mainEmblem2" windowRect="190 4 210 24" uvRect="0 0 20 20" alphaBlend="true" visible="false"/>
+    </Panel>
+    <Container windowRect="0 253 290 322">
+      <Window windowSize="55 16" adjust="0 10">
+        <Panel name="rpButton" windowSize="58 16" adjust="0 3" texture="rp_box" uvRect="0 0 58 16" alphaBlend="true"/>
+        <Label name="static" windowSize="58 16" adjust="0 3" text="#sb(rp)" textAlign="center" textColor="white" textRender="bold"/>
+        <Panel name="rpBar_begin" windowRect="62 3 65 19" texture="exp_0%" uvRect="0 0 3 16" alphaBlend="true"/>
+        <Panel name="rpBar_middle" windowRect="65 3 259 19" texture="exp_0%" uvRect="3 0 81 16" alphaBlend="true"/>
+        <Panel name="rpBar_end" windowRect="259 3 262 19" texture="exp_0%" uvRect="81 0 84 16" alphaBlend="true"/>
+        <Panel name="rpGauge_begin" windowRect="62 3 65 19" texture="exp_100%" uvRect="0 0 3 16" alphaBlend="true"/>
+        <Panel name="rpGauge_middle" windowRect="65 3 259 19" texture="exp_100%" uvRect="3 0 81 16" alphaBlend="true"/>
+        <Panel name="rpGauge_end" windowRect="259 3 262 19" texture="exp_100%" uvRect="81 0 84 16" alphaBlend="true"/>
+        <Label name="rpLabel" windowSize="200 16" adjust="70 2" text="1234567/11234567" textAlign="center"/>
+      </Window>
+      <Window name="careerInfo" windowSize="55 16" adjust="0 30">
+        <Panel name="careerButton" windowSize="58 16" adjust="0 3" texture="career_box" uvRect="0 0 58 16" alphaBlend="true"/>
+        <Label name="static" windowSize="58 16" adjust="0 3" text="#sb(career)" textAlign="center" textColor="white" textRender="bold"/>
+        <Panel name="careerBar_begin" windowRect="62 3 65 19" texture="exp_0%" uvRect="0 0 3 16" alphaBlend="true"/>
+        <Panel name="careerBar_middle" windowRect="65 3 259 19" texture="exp_0%" uvRect="3 0 81 16" alphaBlend="true"/>
+        <Panel name="careerBar_end" windowRect="259 3 262 19" texture="exp_0%" uvRect="81 0 84 16" alphaBlend="true"/>
+        <Panel name="careerGauge_begin" windowRect="62 3 65 19" texture="exp_100%" uvRect="0 0 3 16" alphaBlend="true"/>
+        <Panel name="careerGauge_middle" windowRect="65 3 259 19" texture="exp_100%" uvRect="3 0 81 16" alphaBlend="true"/>
+        <Panel name="careerGauge_end" windowRect="259 3 262 19" texture="exp_100%" uvRect="81 0 84 16" alphaBlend="true"/>
+        <Label name="careerLabel" windowSize="200 16" adjust="70 2" text="1234567/11234567" textAlign="center"/>
+      </Window>
+      <Panel name="whiteBox" windowSize="262 40" adjust="0 53" texture="white_borad" alphaBlend="true">
+        <Label name="static" windowRect="10 5 20 20" text="#sb(riderCreateTime) : " textRender="bold"/>
+        <Label name="createTime" windowRect="110 5 120 20" text="2005년 1월1일"/>
+        <Label name="static" windowRect="10 20 30 40" textRender="bold" text="#sb(riderName) : "/>
+        <Label name="rid" windowRect="110 20 120 40" textRender="bold"/>
+      </Panel>
+      <Panel name="grayBox" windowSize="262 40" adjust="0 99" texture="gray_borad" alphaBlend="true">
+        <Label name="static" windowRect="10 5 20 20" text="#sb(myGuild) : " textRender="bold" textColor="white"/>
+        <Label name="guild" windowRect="110 5 120 20" text="2005년 1월1일"/>
+        <Container name="coupleInfo" visible="false">
+          <Label name="static" windowRect="10 20 30 40" textRender="bold" text="#sb(coupleLabel) : " textColor="white"/>
+          <Label name="coupleLabel" windowRect="110 20 120 40" textRender="bold"/>
+        </Container>
+      </Panel>
+    </Container>
+    <Container windowRect="0 395 72 417" align="hcenter">
+      <TextButton name="okButton" text="#sb(ok)" windowRect="0 0 72 22" frame="DefaultStaticButton" altTextRender="outline"/>
+    </Container>
+  </CaptionWindow>
+</Container>

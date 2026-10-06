@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container name="desktop" windowRect="fullscreen">
+  <Panel name="exchange" windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
+    <CaptionWindow name="exchangeNow" windowRect="0 0 465 315" align="center" caption="#sb(partsShop)" captionColor="black" captionPos="0 6" setCloseButton="cancel">
+      <Label name="nowAvailableXenergy" windowRect="0 5 60 21" text="#sb(nowAvailableXenergy)" textColor="255 54 108 198" autoSizing="true"/>
+      <TabControl name="exchangegrid" windowRect="1 22 430 112" align="hcenter" frame="InnerFrame" upButton="WideLeftScrollButton" downButton="WideRightScrollButton" scrollButtonSize="15 80" viewMargin="-5 -5 0 0" tabGap="5" scrollType="horizon" rigidScroll="true" autoAlign="false" hideScrollAtNoScrollableArea="false" wantItemMouveMoveMsg="true"/>
+      <Panel name="npc_mosBox" windowSize="127 109" adjust="-141 17" alphaBlend="true">
+        <Label text="#sb(currentXenergy)" textColor="white" windowRect="20 12 200 30"/>
+        <Panel name="exImg" windowSize="50 48 " adjust="35 30" alphaBlend="true"/>
+        <Panel name="energyIconX" windowRect="20 78 36 96" alphaBlend="true"/>
+        <CharPanel name="keepingXEnergy" clientRect="38 78 192 96" alphaBlend="true" fontSize="14 18" fontPos="0 0" fontStr="1234567890" text="0"/>
+      </Panel>
+      <Label name="desc" windowRect="1 122 430 202" frame="InnerFrame" align="hcenter" text="#sb(partsShopNotice)" marginRect="5 5 5 5" autoWarp="true" multiLine="true" textColor="255 13 99 194"/>
+      <Container windowSize="250 30" align="hcenter;bottom" adjust="0 -4">
+        <TextButton name="ok" windowRect="0 0 90 22" text="#sb(confirmExchange)" useDisableState="true" disabledTextColor="gray"/>
+        <TextButton name="cancel" windowRect="160 0 250 22" text="#sb(cancel)"/>
+      </Container>
+    </CaptionWindow>
+  </Panel>
+</Container>

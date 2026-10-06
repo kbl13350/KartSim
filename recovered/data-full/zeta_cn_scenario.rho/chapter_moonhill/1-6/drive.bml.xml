@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+  <BaseParam levelSpec="2"/>
+  <Escape isFixedKart="true" fixedKartId="25" kartId="25" characterId="2" uniformId="23" colorId="4" dyeId="4" characterName="R军团士官">
+    <LevelContent level="0" track="village_I05" laps="3" ksv="step_6" distance="20" startOffset="-2000"/>
+  </Escape>
+</Root>

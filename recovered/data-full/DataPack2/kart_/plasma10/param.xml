@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='140.0'
+	BackwardAccelForce='100.0'
+	DragFactor='-0.073'
+	SteerConstraint='2.1'
+	DriftEscapeForce='1050'
+	CornerDrawFactor='0.065'
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.85'
+	TransformTime='700'   
+
+	NormalBoosterTime = '-100'
+	TeamBoosterTime = '-350'
+	DriftMaxGauge = '-600'
+
+	BoosterBlur='true'
+	EngineSound='cotton7'
+
+	StartForwardAccelFactorSpeed = '1.6'
+	StartBoosterTimeSpeed='1200'     
+
+	BoosterType='cotton6'
+	BoosterWaveType='effect_zero'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='plasma7'
+	BoosterType3='plasma7'
+	BoosterType4='zero5' 
+
+	Port0='mod1c1'
+	Port1='mod1c2'
+	FirePort0='mod2d2'
+	FirePort1='mod2d1'
+	FirePort2='mod1d1'	
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 100 100'
+	BoostBlurColor='255 77 77 77'
+
+	DescBalance= '42'
+	DescStability ='40'
+	DescEngineGrade='1.3'
+	DescCornering='7'
+	DescEnchantCap = '25'
+
+/>
+<!--한국 플라즈마 Z7 110825 상점 상시 -->

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Container windowRect="fullscreen">
+  <CaptionWindow name="debugView" frame="CaptionDialog" caption="디버그" windowRect="10 10 420 450" visible="false" enable="false" depthBias="255">
+    <List name="consol" windowRect="15 0 370 370" scrollType="vertical"/>
+  </CaptionWindow>
+</Container>

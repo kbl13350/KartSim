@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="mine1"/>
+  <Char id="cloi" pos="3 0" flip="true" emotion="stop3"/>
+  <Msg name="克鲁伊" string="哔哔哔哔！就是这里！"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop4"/>
+  <Msg name="小强" string="啊！这里就是大城堡的地下仓库！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="cloi" pos="3 0" flip="true" emotion="stop1"/>
+  <Msg name="克鲁伊" string="因为地下室黑暗，路况又复杂，城堡里的人有时也会迷路。|那我先走了，祝你尽快找到朋友。"/>
+  <Enter/>
+  <Char id="cloi" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop5"/>
+  <Msg name="小强" string="恩！谢谢你！"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="小强" string="可是从哪开始找呢？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="zude" pos="4 0" flip="true" emotion="stop1"/>
+  <Msg name="？？？" string="啪嚓啪嚓…"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="小强" string="啊！谁啊？？？"/>
+  <Enter/>
+  <Char id="mos" remove="true"/>
+  <Char id="zude" pos="4 0" flip="true" emotion="stop4"/>
+  <Msg name="？？？" string="呵呵呵呵！"/>
+  <Enter/>
+  <Char id="zude" remove="true"/>
+  <Char id="mos" pos="12 0" flip="true" emotion="stop7"/>
+  <Msg name="小强" string="啊！鬼啊！"/>
+  <Enter/>
+</Scene>

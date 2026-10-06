@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GarageCard name="garageCardTemplate" windowRect="0 0 194 126" texture="img_slotBoxNormal" alphaBlend="true">
+  <Panel name="protectedImg" leftTopTex="1 -1" texture="img_protectedSlot" alphaBlend="true" enable="false" visible="false"/>
+  <Window name="shopItemContainer" windowRect="0 0 194 126" align="center" enable="false"/>
+  <Container name="itemNameContainer" windowRect="0 0 194 126" enable="false" visible="false">
+    <Label name="itemNameLabel" align="center" autoSizing="true"/>
+  </Container>
+  <Label name="remainingDays" windowSize="194 30" adjust="0 6" align="bottom" textAlign="center" textRender="outline16" textColor="white" visible="false"/>
+  <Panel name="checkButton" windowSize="194 126" texture="img_slotBoxSelect" alphaBlend="true" visible="false" enable="true"/>
+  <Panel name="disableButton" windowSize="194 126" texture="periodExchange_img_itemDim" alphaBlend="true" visible="false" enable="true"/>
+  <Panel name="protectionLock" leftTopTex="1 -1" texture="img_protectLock" alphaBlend="true" enable="false" visible="false"/>
+  <Panel name="protectionLock_ethi" leftTopTex="1 -1" texture="img_protectLock_ethi" alphaBlend="true" enable="false" visible="false"/>
+  <ImageButton name="protectBtn" leftTopTex="0 0" align="bottom;hcenter" adjust="0 6" autoLoadImage="btn_protect_" text="#sb(protectKart)" textAlign="center" textRender="outline16" textColor="white" textColor2="255 74 143 0" overTextColor="white" overTextColor2="255 74 143 0" clickedTextColor="white" clickedTextColor2="255 74 143 0" disabledTextColor="255 197 197 197" disabledTextColor2="255 69 69 69" alphaBlend="true" visible="false"/>
+</GarageCard>

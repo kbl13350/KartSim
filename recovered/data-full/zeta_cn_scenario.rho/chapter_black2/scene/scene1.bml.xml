@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="cnboomhill3"/>
+  <Char id="bazzi" pos="8 0" emotion="stop1"/>
+  <Msg name="宝宝" string="皮蛋..|快点~ 会被黑妞说的！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="皮蛋" string="困~|可还是很困啊.."/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <BackGround texture="vill5"/>
+  <Char id="dizini" pos="8 0" emotion="ani1"/>
+  <Msg name="黑妞" string="皮蛋快点！|宝宝你也快点~"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" pos="8 0" emotion="normal"/>
+  <Msg name="皮蛋" string="时间还多啊~|干嘛这么着急！"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="伙伴们好久没有一起聚过了！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dao" remove="true"/>
+  <Char id="dao" pos="12 0" flip="true" emotion="stop3"/>
+  <Char id="dizini" pos="2 0" emotion="stop3"/>
+  <Char id="bazzi" pos="5 0" emotion="stop3"/>
+  <Msg name="宝宝" string="那倒是！|如果没开这次GP赛，也很难见上一面~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dao" pos="8 0" flip="true" emotion="normal"/>
+  <Msg name="皮蛋" string="困！那也太早了~"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="dizini" pos="8 0" emotion="normal"/>
+  <Msg name="黑妞" string="皮蛋，睡懒觉不好！|快去迎接他们吧！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="宝宝" string="黑妞真性急"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Char id="bazzi" pos="11 0" flip="true" emotion="stop3"/>
+  <Msg name="黑妞" string="宝宝！！！"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="没~快出发吧！|快点~皮蛋，你太慢了~！"/>
+  <Enter/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="bazzi" pos="8 0" flip="true" emotion="stop5"/>
+  <Msg name="宝宝" string="（真烦人..黑妞！！！！）"/>
+  <Enter/>
+</Scene>

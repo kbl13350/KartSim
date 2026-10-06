@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+           ForwardAccelForce='151.0'
+           BackwardAccelForce='100.0'
+           DragFactor='-0.075'
+           SteerConstraint='1.7'
+           DriftEscapeForce='1200'
+           CornerDrawFactor='0.072'
+
+           UseTransformBooster='true'
+           TransformTime='700' 
+           TransAccelFactor='1.68'
+
+           StartForwardAccelFactorSpeed = '1.2'
+           StartBoosterTimeSpeed='1200'           
+
+           BoosterBlur='true'
+           EngineSound='cotton7'
+           EnvMap='true'
+
+           BoosterType='zero5'
+           BoosterWaveType='effect_zero'
+           BoosterType0='default'
+           BoosterType1='default'
+
+           Port0='mod1a1'
+           Port1='mod1a2'
+           FirePort0='mod2a1'
+           FirePort1='mod2a2'
+              
+           TailLampSize='0.2'
+           TailLampColor='0 255 100 100'
+           BoostBlurColor='255 77 77 77'
+
+           DescBalance= '39'
+           DescStability ='40'
+           DescEngineGrade='1.2'
+           DescCornering='4'
+           DescEnchantCap = '25'
+
+/>
+
+<!-- 대만 STORM Z7 120323 상시 상점-->

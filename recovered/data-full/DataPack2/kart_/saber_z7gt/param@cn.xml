@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BodyParam
+	ForwardAccelForce='153.0'
+	BackwardAccelForce='90.0'
+	DragFactor='-0.076'
+	SteerConstraint='2.2'
+	DriftEscapeForce='1300'
+	CornerDrawFactor='0.087'
+
+	StartForwardAccelFactorSpeed = '1.3'
+	StartBoosterTimeSpeed='1200'   
+
+	UseTransformBooster='true'
+	TransAccelFactor='1.71'
+	TransformTime='700' 
+
+	NormalBoosterTime = '-150'
+	TeamBoosterTime = '-350'
+	DriftMaxGauge = '-400'
+
+	BoosterBlur='true'
+
+	BoosterWaveType='effect_zero'
+	BoosterType='zerosub'
+	BoosterType0='default'
+	BoosterType1='default'
+	BoosterType2='zeroplus'
+
+	EngineSound='cotton7'
+
+	Port0='mod1a1'
+	Port1='mod1a2'
+	FirePort0='mod2a1'
+	FirePort1='mod2a2'
+	FirePort2='mod2a3'
+
+	TailLampSize='0.3'
+	TailLampColor='0 255 246 0'
+	BoostBlurColor='255 77 77 77'
+
+	EnvMap='true'
+
+	DescBalance= '47'
+	DescStability ='45'
+	DescEngineGrade='1.2'
+	DescCornering='7'
+	DescEnchantCap = '25'
+
+/>
+
+<!-- 중국 세이버 Z7+ 120809-->

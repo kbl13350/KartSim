@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene>
+  <BackGround texture="Northeu13"/>
+  <Char id="dizini" pos="4 0" emotion="stop4"/>
+  <Char id="taki" pos="11 0" flip="true" emotion="stop2"/>
+  <Msg name="黑妞" string="虽然因为皮蛋有了点小插曲，|但还是顺利到达了！！ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="taki" remove="true"/>
+  <Char id="taki" pos="11 0" flip="true" emotion="stop2"/>
+  <Char id="dizini" pos="4 0" emotion="stop3"/>
+  <Msg name="奇奇" string="我说嘛~很庆幸~ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="revaski" pos="8 0" emotion="stop3"/>
+  <Msg name="Q博士" string="你们来了~~|欢迎来到北奥行星！ |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop3"/>
+  <Msg name="奇奇" string="爸爸！！ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop3"/>
+  <Msg name="Q博士" string="哎呀~我的宝贝儿子~！ |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="stop2"/>
+  <Char id="bazzi" pos="12 0" emotion="stop2"/>
+  <Char id="dizini" pos="8 0" emotion="stop2"/>
+  <Msg name="皮蛋，宝宝，黑妞" string="您好！ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop1"/>
+  <Msg name="Q博士" string="好好~|这期间过得好吗？ |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dao" pos="3 0" emotion="normal"/>
+  <Char id="bazzi" pos="12 0" emotion="normal"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Msg name="皮蛋，宝宝，黑妞" string="嗯，好 |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="bazzi" remove="true"/>
+  <Char id="dizini" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop1"/>
+  <Msg name="奇奇" string="爸爸！|但是~这突如其来的太空大奖赛是什么啊？ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop3"/>
+  <Msg name="Q博士" string="这个！这是爸爸计划的北奥行星卡丁车大会！ |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dao" pos="7 0" emotion="stop2"/>
+  <Msg name="皮蛋" string="真厉害！|我肯定会是第一名！ |"/>
+  <Enter/>
+  <Char id="dao" remove="true"/>
+  <Char id="taki" pos="7 0" emotion="stop3"/>
+  <Msg name="奇奇" string="才不是！第一肯定是我的~ |"/>
+  <Enter/>
+  <Char id="taki" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop1"/>
+  <Msg name="Q博士" string="吼吼吼吼~|没那么简单~因为有很多高手参赛~ |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Msg name="黑妞" string="叔叔~那就是比赛赛道吗？ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="revaski" pos="7 0" emotion="stop1"/>
+  <Msg name="Q博士" string="是的~就在那里比赛~ |"/>
+  <Enter/>
+  <Char id="revaski" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="normal"/>
+  <Msg name="黑妞" string="嗯…与我们练习的地方完全不同呢… |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="dizini" pos="7 0" emotion="stop1"/>
+  <Msg name="黑妞" string="看来想拿第一不简单！|伙伴们，跟我来，应该需要练习适应太空赛道！ |"/>
+  <Enter/>
+  <Char id="dizini" remove="true"/>
+  <Char id="taki" pos="8 0" emotion="stop5"/>
+  <Char id="bazzi" pos="12 0" flip="true" emotion="stop5"/>
+  <Char id="dao" pos="3 0" emotion="stop6"/>
+  <Msg name="皮蛋，奇奇，宝宝" string="额… |"/>
+  <Enter/>
+</Scene>
