@@ -21,6 +21,7 @@
     "vite": "8.3.2"
   },
   "dependencies": {
+    "fflate": "^0.8.3",
     "three": "0.178.0"
   }
 }

@@ -31,7 +31,9 @@ git lfs pull
 
 它会构建并启动 `server/` 中的 Java 21 服务，再启动 `rewrite/` 中的前端。前端地址由终端打印（默认 <http://127.0.0.1:8780/>），Java 服务默认监听 <http://127.0.0.1:8787/>。首次构建会下载 Maven 和前端依赖。按 Ctrl-C 结束两个进程。服务端数据保存在 `server/data/kart.db`；详细 API、存储与代码导航见 [`server/README.md`](server/README.md)，原客户端协议与本地扩展的区别见 [`SERVER_PROTOCOL.md`](SERVER_PROTOCOL.md)。
 
-本地可开发版用 WebSocket 连接 Java 服务，支持游客大厅、普通/抓地/幽灵竞速的房间流程，并把本地档案与计时赛摘要同步到 SQLite。完整 Ghost 回放帧仍由浏览器 IndexedDB 保存。原始镜像运行方式保持发行版的远端多人配置。
+本地可开发版用 WebSocket 连接 Java 服务，支持游客大厅及普通、抓地、幽灵、挡人、巨人、RP 和 LTE Web 试玩的房间与赛程流程。挡人模式需要至少五人；LTE 目前包含专用赛道与 Z/X 躲闪，自动补氮气和香蕉事件尚未实现。档案、计时赛摘要、多人赛果及挡人胜负写入 SQLite；完整 Ghost 回放帧仍由浏览器 IndexedDB 保存。原始镜像运行方式保持发行版的远端多人配置。
+
+四种新增模式的服务端联调可在 Java 服务运行后执行 `node server-special-smoke.mjs`；该检查使用真实前端房间与事件校验器，覆盖建房、开赛、模式数据、结算和回房，巨人模式还检查状态广播。建议使用临时 `KART_DATA_DIR` 运行测试服务，以免将测试赛果写进日常数据库。
 
 ## 重新下载或校验资源
 

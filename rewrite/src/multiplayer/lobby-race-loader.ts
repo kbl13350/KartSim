@@ -237,6 +237,7 @@ export function initializeLobbyRace(host: LobbyRaceHost,
     send: message => host.client.request(message),
     captureClock: () => host.client.captureClock(),
     onError: error => {
+      console.error("Multiplayer race loading failed", error);
       host.syncLoadingView();
       options.status(`比赛加载失败：${formatMultiplayerError(error)}`, true);
     },

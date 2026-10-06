@@ -57,6 +57,38 @@ public class HistoryApi {
         });
     }
 
+    /** One finished race per row, including modes with no ranked result rows. */
+    @GetMapping("/race-outcomes")
+    public List<Map<String, Object>> recentOutcomes(
+            @RequestParam(value = "gameplay", required = false) String gameplay) {
+        if (gameplay != null && !List.of(
+                "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp")
+                .contains(gameplay)) throw new ApiError(400, "INVALID_GAMEPLAY");
+        return database.transaction(connection -> {
+            List<Map<String, Object>> outcomes = new ArrayList<>();
+            String sql = """
+                SELECT race_id,room_id,gameplay,track_id,json,created_at
+                FROM race_outcomes
+                """ + (gameplay == null ? "" : "WHERE gameplay=? ") +
+                "ORDER BY created_at DESC LIMIT 100";
+            try (PreparedStatement query = connection.prepareStatement(sql)) {
+                if (gameplay != null) query.setString(1, gameplay);
+                try (ResultSet rows = query.executeQuery()) {
+                    while (rows.next()) {
+                        outcomes.add(Map.of(
+                            "raceId", rows.getString("race_id"),
+                            "roomId", rows.getString("room_id"),
+                            "gameplay", rows.getString("gameplay"),
+                            "trackId", rows.getString("track_id"),
+                            "snapshot", json.readTree(rows.getString("json")),
+                            "createdAt", rows.getLong("created_at")));
+                    }
+                }
+            }
+            return outcomes;
+        });
+    }
+
     @GetMapping("/room-rules")
     public List<Map<String, Object>> savedRules() {
         return database.transaction(connection -> {

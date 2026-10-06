@@ -94,9 +94,24 @@
 }
 ```
 
-`revision` 从 1 开始，每次状态更新递增；客户端会丢弃旧版本和自己已离开的房间（`rewrite/src/multiplayer/room-state.ts:20-45`）。频道决定模式和速度：`speedIndiCombine` / `speedTeamCombine` 是速度 7，`speedIndiInfinit` / `speedTeamInfinit` 是速度 4（`rewrite/src/multiplayer/room-validation.ts:111-116`）。房间必须有 `trackId` 或 p3553 的 `randomTrackCode`；人数 2–8，成员 ID 与槽位唯一、房主必须在成员中。装备若出现必须满足完整 34 个分类和数值范围；比赛的 `roster` 每人必须有有效装备（`rewrite/src/multiplayer/room-validation.ts:193-225,344-408`）。房间阶段为 `open → loading → countdown/racing → finished`，非 `open` 阶段必须附有效 `race`。具体赛果字段、结束时限与团队得分约束见 `rewrite/src/multiplayer/room-validation.ts:305-341`。本地服务建议先完整实现 `ordinary`，再扩展娱乐模式。
+`revision` 从 1 开始，每次状态更新递增；客户端会丢弃旧版本和自己已离开的房间（`rewrite/src/multiplayer/room-state.ts:20-45`）。频道决定模式和速度：`speedIndiCombine` / `speedTeamCombine` 是速度 7，`speedIndiInfinit` / `speedTeamInfinit` 是速度 4（`rewrite/src/multiplayer/room-validation.ts:111-116`）。房间必须有 `trackId` 或 p3553 的 `randomTrackCode`；人数 2–8，成员 ID 与槽位唯一、房主必须在成员中。装备若出现必须满足完整 34 个分类和数值范围；比赛的 `roster` 每人必须有有效装备（`rewrite/src/multiplayer/room-validation.ts:193-225,344-408`）。房间阶段为 `open → loading → countdown/racing → finished`，非 `open` 阶段必须附有效 `race`。具体赛果字段、结束时限与团队得分约束见 `rewrite/src/multiplayer/room-validation.ts:305-341`。
+
+真实比赛装载器还要求 `race.startSlots`：键必须恰好覆盖 `race.roster` 中的每个 `playerId`，值是互不重复的 0–7 整数起跑位。这个条件目前没有包含在 `room-validation.ts` 的静态校验里，但缺失会使浏览器在载入赛道时返回“本局缺少完整起跑位表”（`recovered/formatted/index.js:77081-77100`）。本地端到端脚本会单独检查它。
 
 `rooms` 列表中的每个摘要必须含 `roomId,name,mode,capacity,speedVersion,channelName,speed,gameplay,resourceVersion,count,locked`，以及 `trackId` 或 `randomTrackCode`；额外的 `gaming` 可帮助前端判断是否可快速加入（`rewrite/src/multiplayer/server-events.ts:107-124`）。
+
+### 本地特殊玩法
+
+Java 服务的模式规则集中在 `server/src/main/java/local/kartsim/server/GameModes.java`，房间与赛程在 `LobbyService.java`。每个服务端快照都必须通过 `rewrite/src/multiplayer/room-validation.ts`：
+
+| 模式 | 房间与比赛约束 | 赛后数据 |
+| --- | --- | --- |
+| 挡人 `roadblock` | 至少五人、个人标准速度、固定随机赛道；房主为跑者，三分钟限时，跑者完赛或退出会产生专属结果 | `roadblockOutcome` 和完整赛程写入 `race_outcomes`；无普通名次列表 |
+| 巨人 `giant` | 个人标准速度、限定赛道；`giant-state` 按玩家序号和增长状态校验后广播 | 名次与完整赛程分别写入 `race_results`、`race_outcomes` |
+| RP `rp` | 每人收到冻结的赛车抽选；目前奖池为已确认可加载的赛车 387、390、378、361，飞宠为 0 | 同上 |
+| LTE `lte` | p3553、标准速度、三张专用赛道；本地前端启用 Web 试玩入口和 Z/X 躲闪 | 同上；自动补氮气、香蕉事件尚未完整实现 |
+
+可运行 `node server-special-smoke.mjs` 让真实前端校验器检查四种模式的双端协议、赛程、巨人广播和回房。测试会写入所连接服务的 SQLite；建议为测试服务设置临时 `KART_DATA_DIR`。
 
 ## 运动数据
 

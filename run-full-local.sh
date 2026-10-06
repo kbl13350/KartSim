@@ -15,8 +15,13 @@ fi
 # so Ctrl-C can reliably stop both local services.
 (cd "$root/server" && ./mvnw -q -DskipTests package)
 
+# Maven may replace target/*.jar during another build. Run a private copy so
+# Java can still load classes and shut down cleanly while source is being edited.
+runtime_dir=$(mktemp -d "${TMPDIR:-/tmp}/kartsim-local.XXXXXX")
+cp "$root/server/target/kartsim-server-1.0.0.jar" "$runtime_dir/server.jar"
+
 KART_DATA_DIR="${KART_DATA_DIR:-$root/server/data}" \
-  java -jar "$root/server/target/kartsim-server-1.0.0.jar" &
+  java -jar "$runtime_dir/server.jar" &
 server_pid=$!
 client_pid=
 
@@ -25,6 +30,7 @@ stop_services() {
   kill "$server_pid" 2>/dev/null || true
   if [[ -n "$client_pid" ]]; then wait "$client_pid" 2>/dev/null || true; fi
   wait "$server_pid" 2>/dev/null || true
+  rm -rf -- "$runtime_dir"
 }
 trap stop_services EXIT INT TERM
 

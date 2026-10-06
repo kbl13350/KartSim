@@ -31,6 +31,8 @@ coordinates and observable behavior.
 | `$a` and `As.setFactory` in GarageXView | `garage-factory-commit.ts` | Factory session requests, optimistic configuration submission, stale response protection and rollback; routed into the lazy chunk |
 | `As.requestSkillSelection`, `As.requestExceedTypeChange` in GarageXView | `garage-upgrade-dialog-actions.ts` | Upgrade dialog eligibility, selection and configuration submission; routed into the lazy chunk |
 | Local profile helpers | `local-profile.ts` | Equipment, kart choice, storage validation and favorites |
+| My Room | `my-room-catalog.ts`, `my-room-view.ts` | Source-backed room environment names, saved local room settings and the My Items entry |
+| My Items | `item-inventory.ts`, `item-inventory-view.ts` | Local catalog browsing, search, favorites and equipment entry from My Room |
 
 The generator routes these selected implementations into the running game. The `ty`, `oy` and `C7` class shells, rendering, and unlisted methods remain in `src/generated/ui.js`. Each adjacent test compares the implementation against code extracted at test time
 from the immutable `recovered/formatted/index.js` release. The tests cover state

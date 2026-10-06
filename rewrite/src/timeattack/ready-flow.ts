@@ -1,3 +1,5 @@
+import { openReadyHouse } from "./ready-house";
+
 /** The selection carried from the Ready screen into a single-player race. */
 export interface ReadySelection {
   mapPath?: string;
@@ -46,6 +48,8 @@ interface ReadyLibrary {
 
 interface ReadyView {
   show(): void;
+  freeze(): void;
+  unfreeze(): void;
   dispose(): void;
 }
 
@@ -76,10 +80,11 @@ export interface ReadyFlowController {
     shell: {
       isReadyStageOpening: boolean;
       started: boolean;
+      current: string;
       modal?: string;
       beginReadyStage(): void;
       endReadyStage(): void;
-      openModal(name: string): void;
+      openModal(name: string): boolean;
       closeModal(name: string): void;
     };
     getSelection(): ReadySelection | undefined;
@@ -89,6 +94,8 @@ export interface ReadyFlowController {
     getLibrary(): ReadyLibrary | undefined;
     getBgm(): { playReady(): void } | undefined;
     getProfile(): unknown;
+    setProfile(profile: unknown): void;
+    saveProfile(): void;
     getRecordFor(key: unknown): unknown;
     getAudioContext(): { resume(): Promise<unknown> } | undefined;
     getInterfaceAudio(): { playHover(): void; playClick(): void; playStart(): void } | undefined;
@@ -229,6 +236,7 @@ export async function enterTimeAttackReady(
       onHover: () => host.getInterfaceAudio()?.playHover(),
       onActivate: () => host.getInterfaceAudio()?.playClick(),
       onGarage: () => controller.openGarageX(selection, host.getReadyOptions()),
+      onHouse: () => { void openReadyHouse(controller); },
       onSinglePlayer: () => {
         if (controller.multiplayer) controller.returnMultiplayerToSinglePlayer();
         else if (controller.activeGarage) controller.returnGarageToReady();

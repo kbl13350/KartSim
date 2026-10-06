@@ -2,6 +2,17 @@
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
 
+import { installWorldOverrides } from "../world/install.ts";
+import { initializeRacePresenter } from "../multiplayer/race-presenter-initialize.ts";
+import { updateRacePresenterFrame } from "../multiplayer/race-presenter-frame.ts";
+import { updateRaceSession } from "../multiplayer/race-session-update.ts";
+import { bindRaceSessionClock, disposeRaceSession, exitRaceSession, failRaceSession, initializeRaceSession, raceSessionDiagnosticsView, raceSessionPresentingResults, raceSessionTouchDodgeEnabled, raceSessionTouchDrivingAvailable, renderRaceSession, requestRaceSessionLeave, scheduleRaceSessionStart, showRaceSessionWaiting, updateRaceSessionRoom } from "../multiplayer/race-session-lifecycle.ts";
+import { clearRacePresenterGiant, prepareRacePresenterFlyingPet, prepareRacePresenterGiant, prepareRacePresenterRoadblockFlag, prepareRacePresenterRoadblockResult } from "../multiplayer/race-presenter-setup.ts";
+import { prepareRacePresenterTrackEvents } from "../multiplayer/race-presenter-track-events.ts";
+import { showRacePresenterResults } from "../multiplayer/race-presenter-results.ts";
+import { disposeRacePresenter, warmRacePresenter } from "../multiplayer/race-presenter-lifecycle.ts";
+import { applyPresenterWarpActions, applyPresenterWarpCamera, capturePresenterRankProgress, forwardPresenterAwardInput, handlePresenterRouteTag, playPresenterGo, playPresenterReset, releasePresenterShadowPresentations, startPresenterAudio, startPresenterBoostGaugeFull, updatePresenterRoom } from "../multiplayer/race-presenter-actions.ts";
+import { renderRacePresenterFrame } from "../multiplayer/race-presenter-render.ts";
 import { browserScanCode } from "../input/action-bindings.ts";
 import { gamepadAxisControl, pressedGamepadControls } from "../input/gamepad-controls.ts";
 import { MotionClockMapping as BL, RemoteMotionPredictor as Gi0 } from "../multiplayer/remote-motion.ts";
@@ -29,6 +40,15 @@ import { AL, Bg, Oo, di0, fi0, pi0, rc, vv, xd } from "./driving.js";
 
 const localRaceDependencies = { states: X2, beginResetState: mL, advanceResetState: wL, routeTagFamily: Vo, isStartBoosterWindow: fL };
 const raceRoomDependencies = { modeOf: G2, sameRp: t7, sameRoadblock: oR, sameLte: Nw, sameGiant: yI, toLocalTick: Y3, racingState: X2.Racing };
+const racePresenterInitializationDependencies = { createCameraShake: (random, anchor) => new nP(random, anchor), createRankRoster: (roster, playerId) => new Tr0(roster, playerId), createLightFactor: random => new sP(random), createAction2d: assets => new dI(assets), applyTrackFog: (scene, track) => kv(scene, track), createRacerView: scene => new Vg(scene), vehicleParts: vehicle => lc(vehicle), serializedRoot: model => J5(model), get accessorySockets() { return oP; }, createLinkedPresentation: (...args) => new _a(...args), attachAura: (...args) => ev(...args), createGiantAppearance: (...args) => new Kr0(...args), startPosition: (...args) => rL(...args), createShadowPresentation: object => new $i0(object) };
+const racePresenterFrameDependencies = { result: { get countdownState() { return X2.Countdown; }, render: (...args) => e4(...args) }, events: { get racingState() { return X2.Racing; } }, participants: { updateRemoteVehicleEffects: (...args) => xr0(...args), updateLocalVehicleEffects: (...args) => Mr0(...args) }, hud: { rankByProgress: (...args) => _r0(...args), rankFallback: (...args) => Gr0(...args), rankWithResults: (...args) => Br0(...args), updateTachometer: (...args) => QL(...args), prepareScene: (...args) => e4(...args), get racingState() { return X2.Racing; } } };
+const racePresenterSetupDependencies = { flyingPetItem: (library, itemId) => Ma(library, itemId), serializedRoot: model => J5(model), loadFlyingPet: options => S4.race(options), paintColors: (library, itemId) => We(library, itemId), loadRoadblockFlag: (...args) => _v.load(...args), loadGiant: (...args) => Fv.load(...args), loadRoadblockResult: (...args) => Bv.load(...args), nowMs: () => performance.now() };
+const racePresenterTrackEventDependencies = { loadEffects: (...args) => b7.load(...args), loadAudio: (...args) => v7.load(...args), loadDummyAudio: (...args) => m7.load(...args) };
+const racePresenterResultsDependencies = { vehicleParts: vehicle => lc(vehicle), winningPlayers: (...args) => rG(...args), createVehicleView: scene => new Vg(scene) };
+const racePresenterLifecycleDependencies = { warmScene: (...args) => Hn(...args), createRenderTarget: (width, height) => new nn(width, height), vehicleParts: vehicle => lc(vehicle) };
+const racePresenterActionsDependencies = { routeTagFamily: tag => Vo(tag), resetTachometer: tachometer => eP(tachometer) };
+const racePresenterRenderDependencies = { get transparentSort() { return jm; }, withColorPipeline: (...args) => yo(...args), renderTachometer: (...args) => JL(...args), get blackBarFraction() { return Rv; }, get worldAxis() { return H2; }, get depthAxis() { return $2; }, get postFinishState() { return X2.PostFinish; } };
+const raceSessionUpdateDependencies = { nowMs: () => performance.now(), get lteKeyMap() { return Xr0; }, get states() { return X2; } };
 
 class _L {
     constructor(data, scene, renderScene, skydomeScene, lensFlare) {
@@ -71,524 +91,44 @@ class _L {
   expiredEventEffects = [];
   routeStates = new WeakMap();
   triangleObbQuery;
-  updateRender(e, t, i, r) {
-    (this.renderScene?.update(e, t, i, r),
-      this.skydomeScene?.update(e, t, i, r),
-      this.lensFlare?.update(t, i, r));
-  }
-  setLensFlareEnabled(e) {
-    this.lensFlare?.setEnabled(e);
-  }
-  resetRender(e, t, i, r) {
-    (this.renderScene?.reset(e),
-      this.skydomeScene?.reset(e),
-      this.lensFlare?.reset(),
-      this.updateRender(e, t, i, r),
-      this.movingSurface?.rebase(),
-      this.data.eventRuntimes?.forEach((s) => s.reset()),
-      (this.pendingEventRuntimes = void 0),
-      (this.activeEventRuntimes = []),
-      (this.expiredEventEffects = []));
-  }
-  updateMovingRoads(e) {
-    this.movingSurface?.update(e);
-  }
-  queryObb(e) {
-    return [
-      ...(this.movingSurface?.queryObb(e) ?? []),
-      ...this.surface.queryObb(e),
-    ];
-  }
-  queryObstacleObb(e) {
-    return this.obstacleSurface?.queryObb(e) ?? [];
-  }
-  updateObstacles(e, t) {
-    this.data.obstacleAnimators?.length &&
-      ((this.pendingObstacleTriangles = void 0),
-      this.data.obstacleAnimators.forEach((i) => {
-        const r =
-          this.data.resourceVersion === "p3553"
-            ? this.obstacleKartPairs.has(i)
-            : this.obstacleKartPaired;
-        i.update(
-          e,
-          this.obstacleClientWorldElements,
-          this.obstacleClientWorldBounds,
-          r ? t : void 0,
-        );
-      }));
-  }
-  registerObstaclePair(e) {
-    if (!this.data.obstacleAnimators?.length) return;
-    this.obstacleKartPaired = !0;
-    const t = [];
-    let i = 0;
-    for (const r of this.data.obstacleAnimators) {
-      if (this.data.resourceVersion === "p3553") this.obstacleKartPairs.add(r);
-      else if (i >= 8) break;
-      const s = r.registrationCenter(),
-        o = t0(r.modelRadius() * 4),
-        a = t0(s.x - e.x),
-        c = t0(s.y - e.y),
-        l = t0(s.z - e.z);
-      !(t0(t0(t0(a * a) + t0(l * l)) + t0(c * c)) < t0(o * o)) ||
-        i >= 8 ||
-        (t.push(...r.updateSnapshot()), (i += 1));
-    }
-    this.pendingObstacleTriangles = t;
-  }
-    commitObstacleSnapshot() { return commitObstacleSnapshot(this, Oo); }
-  updateEvents(e) {
-    this.data.eventRuntimes?.forEach((t) =>
-      t.slot12(e, this.eventClientWorldElements),
-    );
-  }
-  registerEventPairs(e, t) {
-    if (!this.data.eventRuntimes?.length) return;
-    const i = [];
-    for (const r of this.data.eventRuntimes)
-      r.registerKartPair(e) && i.length < 8 && i.push(r);
-    (this.expireEventEffects(t), (this.pendingEventRuntimes = i));
-  }
-  expireEventEffects(e) {
-    this.data.eventRuntimes?.forEach((t) => {
-      this.expiredEventEffects.push(...t.expireEffects(e));
-    });
-  }
-  consumeExpiredEventEffects() {
-    const e = this.expiredEventEffects;
-    return ((this.expiredEventEffects = []), e);
-  }
-  commitEventSnapshot() {
-    this.data.eventRuntimes?.length &&
-      ((this.activeEventRuntimes = this.pendingEventRuntimes ?? []),
-      (this.pendingEventRuntimes = void 0));
-  }
-  queryEventObb(e, t) {
-    const i = [];
-    for (const r of this.activeEventRuntimes) {
-      const s = r.firstOverlap(e, t);
-      s && i.push(s);
-    }
-    return i;
-  }
-  rayQuery(e, t, i) {
-    const r = this.movingSurface,
-      s = r === void 0 ? Number.POSITIVE_INFINITY : r.queryBest(e, t, i),
-      o = this.surface.queryBest(e, t, i),
-      a = r === void 0 || o < s,
-      c = a ? o : s,
-      l = this.obstacleSurface,
-      u = l === void 0 ? Number.POSITIVE_INFINITY : l.queryBest(e, t, i);
-    return c === Number.POSITIVE_INFINITY || u < c
-      ? l === void 0 || u === Number.POSITIVE_INFINITY
-        ? void 0
-        : l.buildHit(e, t, u)
-      : a
-        ? this.surface.buildHit(e, t, o)
-        : r.buildHit(e, t, s);
-  }
-  getStart() {
-    return this.data.start;
-  }
-  prepareCurrentSectionReset(e) {
-    const t = this.requireRouteState(e),
-      i = this.sections[t.section],
-      r = i.frames[0];
-    if (!r) throw new Error("当前路线段缺少 reset frame 0。");
-    return {
-      position: On(r.position, Tt(r.forward, t0(0.10000000149011612))),
-      forward: I1(r.forward),
-      up: I1(r.up),
-      surface: i.surface,
-    };
-  }
-  commitCurrentSectionReset(e) {
-    const t = this.requireRouteState(e);
-    this.routeStates.set(e, {
-      ...t,
-      resetAux68: 0,
-      resetAux74: 0,
-      resetAux80: 0,
-      resetAux8C: 0,
-    });
-  }
-  getRouteState(e) {
-    return this.requireRouteState(e);
-  }
-  currentRouteSurface(e) {
-    return this.sections[this.requireRouteState(e).section].surface;
-  }
-  warpNextDestination(e) {
-    const t = this.sections[this.requireRouteState(e).section];
-    if (t.surface !== "warpnext")
-      throw new Error("warpnext destination 的当前路线段类型不匹配。");
-    const i = t.outgoing[0];
-    if (!i) throw new Error("warpnext 路线段缺少原版 outgoing[0]。");
-    const r = E5(this.sections[i.section]),
-      s = N1(r.position, Tt(r.forward, rc));
-    return (
-      (s.z = t0(-t0(t0(-r.position.z) - t0(t0(-r.forward.z) * rc)))),
-      { position: s, forward: I1(r.forward), up: I1(r.up) }
-    );
-  }
-  completeWarpNextRailLanding(e, t) {
-    const i = this.requireRouteState(e),
-      r = this.sections[i.section];
-    if (r.surface !== "warpnext") return !1;
-    const s = r.outgoing[0];
-    if (!s) throw new Error("warpnext 路线段缺少 outgoing[0]。");
-    const o = this.sections[s.section];
-    if (!o.surface.includes("rail")) return !1;
-    t?.("warpnext:out:next", E5(r));
-    const a = Math.fround(i.completedDistance + r.length),
-      c =
-        s.section === this.data.firstSection ||
-        (s.gate.final &&
-          this.data.lapTarget !== void 0 &&
-          i.lap === this.data.lapTarget)
-          ? i.lap + 1
-          : i.lap;
-    return (
-      this.routeStates.set(e, {
-        ...i,
-        section: s.section,
-        lap: c,
-        localDistance: 0,
-        completedDistance: a,
-        distance: a,
-      }),
-      t?.(`${o.surface}:in:next`, E5(o)),
-      !0
-    );
-  }
-  completeRailContactLanding(e, t, i) {
-    const r = this.requireRouteState(e),
-      s = this.sections[r.section];
-    if (s.surface.includes("rail")) return !1;
-    const o = s.outgoing.filter((p) =>
-      this.sections[p.section].surface.includes("rail"),
-    );
-    if (o.length === 0) return !1;
-    const a = this.railCaptureDistance();
-    let c,
-      l = Math.fround(a * a);
-    for (const p of o) {
-      const v = this.sections[p.section].frames;
-      for (let w = 0; w + 1 < v.length; w += 1) {
-        const g = v[w].position,
-          y = N1(v[w + 1].position, g),
-          b = xt(y, y),
-          A = b > 0 ? Math.max(0, Math.min(1, xt(N1(t, g), y) / b)) : 0,
-          x = N1(t, On(g, Tt(y, A))),
-          M = xt(x, x);
-        M < l && ((l = M), (c = p));
-      }
-    }
-    if (!c) return !1;
-    const u = this.sections[c.section];
-    s.surface && i?.(`${s.surface}:out:next`, E5(s));
-    const h = Math.fround(r.completedDistance + s.length),
-      d = this.projectSectionDistance(t, u),
-      f =
-        c.section === this.data.firstSection ||
-        (c.gate.final &&
-          this.data.lapTarget !== void 0 &&
-          r.lap === this.data.lapTarget)
-          ? r.lap + 1
-          : r.lap;
-    return (
-      this.routeStates.set(e, {
-        ...r,
-        section: c.section,
-        lap: f,
-        localDistance: d,
-        completedDistance: h,
-        distance: Math.fround(h + d),
-      }),
-      i?.(`${u.surface}:in:next`, E5(u)),
-      !0
-    );
-  }
-  lookupRailConfig(e) {
-    if (!this.data.railConfig)
-      throw new Error("rail descriptor 缺少 rail.bml registry。");
-    return f30(this.data.railConfig, e);
-  }
-  railCaptureDistance() {
-    if (this.data.railCaptureDistance === void 0)
-      throw new Error("rail capture distance 未安装。");
-    return this.data.railCaptureDistance;
-  }
-  resetRouteState(e, t) {
-    const i = this.sections[this.data.lastSection],
-      r = this.projectSectionDistance(t, i);
-    this.routeStates.set(e, {
-      section: this.data.lastSection,
-      lap: 0,
-      localDistance: r,
-      completedDistance: -i.length,
-      distance: Math.fround(-i.length + r),
-      resetAux68: 0,
-      resetAux74: 0,
-      resetAux80: 0,
-      resetAux8C: 0,
-    });
-  }
-  warpRouteToSection(e, t) {
-    if (!this.sections[t]) throw new Error(`路线段 ${t} 不存在。`);
-    const r = this.requireRouteState(e);
-    this.routeStates.set(e, {
-      ...r,
-      section: t,
-      localDistance: 0,
-      distance: Math.fround(r.completedDistance),
-    });
-  }
-  associateRoute(e, t) {
-    const i = this.requireRouteState(e);
-    let r = null,
-      s = 999999;
-    const o = (c, l, u) => {
-      c < s && xt(l, On(u, Tt(l, rc))) > -xd && ((s = c), (r = null));
-    };
-    if (
-      (this.sections.forEach((c, l) => {
-        for (let u = 0; u + 1 < c.frames.length; u += 1) {
-          const h = c.frames[u],
-            d = c.frames[u + 1],
-            f = N1(h.position, d.position),
-            p = N1(t, d.position),
-            v = xt(f, p);
-          if (v < 0) {
-            o(xt(p, p), d.up, p);
-            continue;
-          }
-          const w = N1(t, h.position);
-          if (xt(Tt(f, -1), w) < 0) {
-            o(xt(w, w), h.up, w);
-            continue;
-          }
-          const y = v / xt(f, f),
-            b = On(d.position, Tt(f, y)),
-            A = N1(t, b),
-            x = xt(A, A);
-          x < s && xt(d.up, On(A, Tt(d.up, rc))) > -xd && ((s = x), (r = l));
-        }
-      }),
-      r === null)
-    )
-      return !1;
-    const a = this.projectSectionDistance(t, this.sections[r]);
-    return (
-      this.routeStates.set(e, {
-        ...i,
-        section: r,
-        localDistance: a,
-        distance: Math.fround(i.completedDistance + a),
-      }),
-      !0
-    );
-  }
-  refreshRouteProjection(e, t) {
-    const i = this.requireRouteState(e),
-      r = this.projectSectionDistance(t, this.sections[i.section]),
-      s = {
-        ...i,
-        localDistance: r,
-        distance: Math.fround(i.completedDistance + r),
-      };
-    return (this.routeStates.set(e, s), s);
-  }
-  sampleRoute(e, t, i = 0) {
-    const r = this.requireRouteState(e);
-    let s = r.section,
-      o = r.localDistance,
-      a = Math.fround(Math.max(0, t));
-    const c = new Set();
-    for (; a > 0;) {
-      const h = this.sections[s];
-      if (Math.fround(o + a) <= h.length) break;
-      const d = Math.fround(h.length - o),
-        f = Math.fround(a - d);
-      if (f < a) c.clear();
-      else {
-        if (c.has(s))
-          throw new Error("rail route lookahead 遇到无距离进展的循环。");
-        c.add(s);
-      }
-      a = f;
-      const p = h.outgoing;
-      if (p.length === 0)
-        throw new Error("rail route lookahead 缺少 outgoing edge。");
-      ((s = p[(i >>> 0) % p.length].section), (o = 0));
-    }
-    o = Math.fround(o + a);
-    const l = this.sections[s];
-    let u = 0;
-    for (let h = 0; h + 1 < l.frames.length; h += 1) {
-      const d = l.frames[h],
-        f = l.frames[h + 1],
-        p = nE(d.position, f.position),
-        v = Math.fround(u + p);
-      if (o >= u && o <= v) {
-        const w = Math.fround(Math.fround(o - u) / p);
-        return {
-          surface: l.surface,
-          sampled: !0,
-          point: Td(d.position, f.position, w),
-          direction: Td(d.forward, f.forward, w),
-          up: Td(d.up, f.up, w),
-        };
-      }
-      u = v;
-    }
-    return { surface: l.surface, sampled: !1 };
-  }
-  updateRoute(e, t, i, r) {
-    const s = this.requireRouteState(e);
-    let o = s.section,
-      a = s.lap,
-      c = s.completedDistance,
-      l = !1,
-      u = 0,
-      h = !1;
-    for (;;) {
-      let p = !1;
-      const v = this.sections[o];
-      for (const w of v.outgoing) {
-        let g = _d(w.gate, t, i) > 0;
-        if (!g) {
-          const M = this.sections[w.section].outgoing;
-          for (let E = 0; E < M.length; E += 1)
-            if (_d(M[E].gate, t, i) > 0) {
-              g = !0;
-              break;
-            }
-        }
-        if (!g) continue;
-        c = Math.fround(c + v.length);
-        const y = o,
-          b = w.section,
-          A = this.sections[y].surface,
-          x = this.sections[b].surface;
-        (A !== x && A && r?.(`${A}:out:next`, E5(this.sections[y])),
-          (o = b),
-          (o === this.data.firstSection ||
-            (w.gate.final &&
-              this.data.lapTarget !== void 0 &&
-              s.lap === this.data.lapTarget)) &&
-            (a += 1),
-          this.routeStates.set(e, {
-            ...s,
-            section: o,
-            lap: a,
-            localDistance: 0,
-            completedDistance: c,
-            distance: c,
-          }),
-          A !== x && x && r?.(`${x}:in:next`, E5(this.sections[b])),
-          (l = !0),
-          (p = !0),
-          y === o && (h = !0));
-        break;
-      }
-      if (!p || h) break;
-      if (u++ > this.sections.length * 2)
-        throw new Error("route forward transition cycle 未收敛。");
-    }
-    if (!l)
-      for (;;) {
-        let p = !1;
-        const v = this.sections[o];
-        for (const w of v.incoming) {
-          if (_d(w.gate, t, i) >= 0) continue;
-          const g = o,
-            y = w.section,
-            b = this.sections[g].surface,
-            A = this.sections[y].surface;
-          (b !== A && b && r?.(`${b}:out:prev`, E5(this.sections[g])),
-            (o = y),
-            (c = Math.fround(c - this.sections[o].length)),
-            g === this.data.firstSection && (a = a > 0 ? a - 1 : 0),
-            this.routeStates.set(e, {
-              ...s,
-              section: o,
-              lap: a,
-              localDistance: 0,
-              completedDistance: c,
-              distance: c,
-            }),
-            b !== A && A && r?.(`${A}:in:prev`, E5(this.sections[y])),
-            (p = !0),
-            g === o && (h = !0));
-          break;
-        }
-        if (!p || h) break;
-        if (u++ > this.sections.length * 2)
-          throw new Error("route reverse transition cycle 未收敛。");
-      }
-    const d = this.projectSectionDistance(i, this.sections[o]),
-      f = {
-        ...s,
-        section: o,
-        lap: a,
-        localDistance: d,
-        completedDistance: c,
-        distance: Math.fround(c + d),
-      };
-    return (this.routeStates.set(e, f), f);
-  }
-  runOuterRoutePass(e, t, i, r, s = !0, o = !0) {
-    return (s && o && this.updateRoute(e, t, i, r), this.requireRouteState(e));
-  }
-  requireRouteState(e) {
-    const t = this.routeStates.get(e);
-    if (!t) throw new Error("该车辆尚未建立路线状态。");
-    return t;
-  }
-  projectSectionDistance(e, t) {
-    const i = t.frames;
-    if (i.length === 0) return 0;
-    let r = 0;
-    for (; r < i.length && !(q5(N1(e, i[r].position), i[r].forward) < 0);)
-      r += 1;
-    if (r === 0) return 0;
-    let s = 0,
-      o = 0;
-    for (; o + 1 < r;)
-      ((s = Math.fround(s + Math.fround(nE(i[o].position, i[o + 1].position)))),
-        (o += 1));
-    let a;
-    if (r === i.length) a = q5(N1(e, i[o].position), i[o].forward);
-    else {
-      const c = N1(i[r].position, i[o].position);
-      GL(c) > xd
-        ? ((a = q5(N1(e, i[o].position), bi0(c))), a < 0 && (a = 0))
-        : (a = q5(N1(e, i[o].position), i[o].forward));
-    }
-    return ((s = Math.fround(s + Math.fround(a))), s > t.length ? t.length : s);
-  }
-  dispose() {
-    (this.lensFlare?.dispose(),
-      this.renderScene?.dispose(),
-      this.skydomeScene?.dispose());
-    const e = new Set(),
-      t = new Set();
-    this.group.traverse((i) => {
-      if (!(i instanceof D2)) return;
-      (i.geometry.dispose(),
-        (Array.isArray(i.material) ? i.material : [i.material]).forEach((s) => {
-          if (!e.has(s)) {
-            e.add(s);
-            for (const o of Object.values(s))
-              !(o instanceof D9) || t.has(o) || (t.add(o), o.dispose());
-            s.dispose();
-          }
-        }));
-    });
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+installWorldOverrides(_L);
 
 
 
@@ -693,110 +233,37 @@ function C5(n, e, t, i, r, s, o, a, c, l, u, h, d, f, p) {
 
 
 
-function nE(n, e) {
-  const t = t0(e.x - n.x),
-    i = t0(e.y - n.y),
-    r = t0(e.z - n.z),
-    s = t0(t * t),
-    o = t0(r * r),
-    a = t0(i * i),
-    c = t0(t0(s + o) + a);
-  return t0(Math.sqrt(c));
-}
-
-function GL(n) {
-  const e = t0(n.x * n.x),
-    t = t0(n.z * n.z),
-    i = t0(n.y * n.y),
-    r = t0(t0(e + t) + i);
-  return t0(Math.sqrt(r));
-}
-
-function bi0(n) {
-  const e = GL(n);
-  if (e === 0) return { x: 1, y: 1, z: -1 };
-  const t = t0(-n.z);
-  return { x: t0(n.x / e), y: t0(n.y / e), z: t0(-t0(t / e)) };
-}
-
-function q5(n, e) {
-  const t = t0(n.x * e.x),
-    i = t0(t0(-n.z) * t0(-e.z)),
-    r = t0(n.y * e.y);
-  return t0(t0(t + i) + r);
-}
-
-function iE(n, e, t) {
-  const i = e.x,
-    r = t0(-e.z),
-    s = e.y,
-    o = t.x,
-    a = t0(-t.z),
-    c = t.y,
-    l = t0(t0(r * c) - t0(s * a)),
-    u = t0(t0(s * o) - t0(i * c)),
-    h = t0(t0(i * a) - t0(r * o));
-  ((n.x = l), (n.y = h), (n.z = t0(-u)));
-}
-
-function Td(n, e, t) {
-  return On(n, Tt(N1(e, n), t));
-}
-
-function _d(n, e, t) {
-  return (
-    fl(oc, t, e),
-    !rE(n.triangles[0], e, oc) && !rE(n.triangles[1], e, oc)
-      ? 0
-      : q5(oc, n.normal) >= 0
-        ? 1
-        : -1
-  );
-}
-
-const oc = { x: 0, y: 0, z: 0 },
-  Gd = { x: 0, y: 0, z: 0 },
-  Bd = { x: 0, y: 0, z: 0 },
-  Rd = { x: 0, y: 0, z: 0 },
-  Id = { x: 0, y: 0, z: 0 },
-  kd = { x: 0, y: 0, z: 0 };
-
-function rE(n, e, t) {
-  (fl(Gd, n[1], n[0]), fl(Bd, n[2], n[0]), iE(Rd, t, Bd));
-  const i = q5(Gd, Rd);
-  if (i > -Bg && i < fi0) return !1;
-  const r = t0(1 / i);
-  fl(Id, e, n[0]);
-  const s = t0(q5(Id, Rd) * r);
-  if (s < 0 || s > 1) return !1;
-  iE(kd, Id, Gd);
-  const o = t0(q5(t, kd) * r);
-  if (o < 0 || t0(s + o) > 1) return !1;
-  const a = t0(q5(Bd, kd) * r);
-  return a >= 0 && a <= 1;
-}
-
-
-
-function E5(n) {
-  const e = n.frames[0];
-  if (!e) throw new Error("route surface event 缺少 section frame 0。");
-  return e;
-}
 
 
 
 
 
-function fl(n, e, t) {
-  ((n.x = t0(e.x - t.x)), (n.y = t0(e.y - t.y)), (n.z = t0(e.z - t.z)));
-}
 
 
 
-function xt(n, e) {
-  return t0(t0(t0(n.x * e.x) + t0(n.y * e.y)) + t0(n.z * e.z));
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4900,135 +4367,7 @@ class Kr0 {
 }
 
 class jr0 {
-  constructor(e, t, i, r, s, o, a, c, l, u, h, d, f, p = () => !1, v, w) {
-    ((this.assets = e),
-      (this.runtime = t),
-      (this.race = i),
-      (this.playerId = r),
-      (this.hud = o),
-      (this.random = a),
-      (this.countdown = c),
-      (this.award = l),
-      (this.resultView = u),
-      (this.bgm = h),
-      (this.banner = d),
-      (this.bannerRequest = f),
-      (this.petVisible = p),
-      (this.trackInfoCard = v),
-      (this.roadblockHud = w),
-      (this.cameraShake = new nP(a, this.cameraEffectAnchor)),
-      (this.rankRoster = new Tr0(i.roster, r)),
-      (this.lightFactor = new sP(a)));
-    const g = e.participants.find((b) => b.playerId === r);
-    ((this.tachometer = g.vehicle.tachometerRenderer),
-      this.tachometer.enableUiSmoothing(),
-      this.gaugePreserve.configure(g.vehicle.tachometerSelection.folder),
-      (this.action2d = new dI(s)),
-      this.action2d.enableUiSmoothing(),
-      this.drive.configureP3528ResolutionMode(),
-      this.surround.configureP3528ResolutionMode());
-    const y = t.local.track;
-    (this.scene.add(y.group),
-      kv(this.scene, y),
-      e.rain && this.scene.add(e.rain.object),
-      e.snow && this.scene.add(e.snow.object));
-    try {
-      for (const b of e.participants) {
-        const A = b.vehicle,
-          x = new Vg(this.scene);
-        (this.views.set(b.playerId, x),
-          b.playerId === r
-            ? this.scene.add(...lc(A))
-            : this.scene.add(A.trails.object),
-          x.setModel(
-            A.imported.object,
-            A.visual,
-            A.imported.animation,
-            A.imported.model,
-            A.imported.scene,
-          ));
-        const M = J5(A.imported.model),
-          E = M.children[6]?.value,
-          _ =
-            E && "children" in E
-              ? A.imported.renderScene?.bySource.get(E)
-              : void 0,
-          C = b.characters.linked ?? b.characters.ordinary;
-        if (C) {
-          if (!_) throw new Error("多人赛车缺少原角色挂点。");
-          if (
-            (_.clear(),
-            _.add(C.scene.object),
-            C.scene.object.scale.setScalar(A.visual.onCharacterSize),
-            b.characters.linked)
-          ) {
-            const I = A.imported.renderScene?.bySource.get(M);
-            if (!I || !C.award)
-              throw new Error("多人联动角色的车体显示或领奖资源未就绪。");
-            const L = new _a(
-              I,
-              _,
-              C.scene.object,
-              A.kartItem.alwaysLinkCharacter,
-            );
-            (L.resetForRacePresentation(),
-              this.linkedPresentations.set(b.playerId, L));
-          }
-        }
-        for (const I of A.accessories) {
-          if (!C) throw new Error("多人角色饰品缺少角色。");
-          const L = I.kind === "aura" ? void 0 : oP[I.kind],
-            k = L
-              ? C.scene.getDecorationSocket(L[0], L[1])
-              : C.scene.getDecorationOwner();
-          if (!k) throw new Error("多人角色饰品挂点缺失。");
-          if ((k.add(I.render.scene.object), I.kind === "aura")) {
-            if (!_) throw new Error("多人赛车缺少炫光车体挂点。");
-            const D = A.imported.renderScene?.bySource.get(M);
-            if (!D) throw new Error("多人赛车缺少炫光车体根节点。");
-            ev(k, D, I.render.scene.object);
-          }
-        }
-        if (A.decoration) {
-          const I = x.getAttachment(16);
-          if (!I) throw new Error("多人赛车缺少气球挂点。");
-          I.add(A.decoration.scene.object);
-        }
-        if (e.drivingMode?.kind === "giant") {
-          const I = A.imported.renderScene?.rootMaterialBindings,
-            L = C?.scene.rootMaterialBindings;
-          if (!I || !L) throw new Error("巨人模型缺少独立材料继承 consumer。");
-          this.giantAppearances.set(
-            b.playerId,
-            new Kr0(b.playerId === r, I, L),
-          );
-        }
-        const S = t.local.startPose,
-          G = rL(
-            S.position,
-            S.right,
-            i.startSlots[b.playerId],
-            (I, L) => y.rayQuery(I, L, !1)?.point,
-          );
-        (this.initialPoses.set(b.playerId, { ...S, position: G }),
-          x.updatePose({
-            x: G.x,
-            y: G.y,
-            z: G.z,
-            ...S,
-            visualScale: { x: 1, y: 1, z: 1 },
-          }),
-          e.drivingMode?.kind === "shadow" &&
-            b.playerId !== r &&
-            this.shadowPresentations.set(
-              b.playerId,
-              new $i0(A.imported.object),
-            ));
-      }
-    } catch (b) {
-      throw (this.dispose(), b);
-    }
-  }
+    constructor(assets, runtime, race, playerId, actionAssets, hud, random, countdown, award, resultView, bgm, banner, bannerRequest, petVisible = () => false, trackInfoCard, roadblockHud) { initializeRacePresenter(this, { assets, runtime, race, playerId, actionAssets, hud, random, countdown, award, resultView, bgm, banner, bannerRequest, petVisible, trackInfoCard, roadblockHud }, racePresenterInitializationDependencies); }
   assets;
   runtime;
   race;
@@ -5086,835 +4425,28 @@ class jr0 {
   trackEventEffects;
   trackEventAudio;
   trackDummyAudio;
-  async prepareFlyingPet(e, t) {
-    const i = this.assets.participants.find(
-        (c) => c.playerId === this.playerId,
-      ),
-      r = await Ma(e, i.profile.equipment.itemIds[52]);
-    if (!r) return;
-    const s = i.characters.ordinary?.scene,
-      o = J5(i.vehicle.imported.model).children[6]?.value;
-    if (!s || !o || !("transform" in o))
-      throw new Error("Flying pet rider mount is missing.");
-    const a = await S4.race({
-      library: e,
-      item: r,
-      role: "local",
-      environment: this.assets.map.environment,
-      binding: this.assets.map.stageBinding,
-      colors: await We(e, i.profile.equipment.itemIds[2] || 1),
-      random: this.random,
-      grandparentScale: o.transform.scale,
-      audioContext: t,
-      listen: (c) => this.runtime.local.physics.addFlyingPetListener(c),
-    });
-    if (this.disposed)
-      throw (
-        a?.dispose(),
-        new Error("Flying pet race was disposed while loading.")
-      );
-    ((this.flyingPet = a), a?.mount(s.getDecorationOwner()));
-  }
-  async prepareRoadBlockFlag(e) {
-    if (!this.race.roadblock) return;
-    const t = this.views.get(this.race.roadblock.runnerId);
-    if (!t) throw new Error("挡人比赛缺少冻结跑者模型。");
-    const i = await _v.load(
-      e,
-      t.root,
-      {
-        environment: this.assets.map.environment,
-        stageBinding: this.assets.map.stageBinding,
-      },
-      this.race.roadblock.runnerId === this.playerId,
-    );
-    if (this.disposed) {
-      i.dispose();
-      return;
-    }
-    this.roadblockFlag = i;
-  }
-  async prepareGiant(e, t) {
-    if (this.assets.drivingMode?.kind !== "giant") return;
-    const i = this.assets.participants.map((s) => {
-        const o =
-          s.playerId === this.playerId
-            ? this.runtime.local.giant
-            : this.runtime.remotes.giant(s.playerId);
-        if (!o) throw new Error("巨人表现缺少本局车辆 owner。");
-        return {
-          id: s.playerId,
-          logic: o,
-          pose: () =>
-            s.playerId === this.playerId
-              ? this.runtime.local.physics.body
-              : this.runtime.remotes.presentationVisible(
-                    s.playerId,
-                    performance.now(),
-                  )
-                ? this.runtime.remotes.copyWebPose(s.playerId)
-                : void 0,
-        };
-      }),
-      r = await Fv.load(
-        e,
-        this.scene,
-        i,
-        {
-          environment: this.assets.map.environment,
-          stageBinding: this.assets.map.stageBinding,
-        },
-        t,
-        (s, o) => this.hud.giantStage(s, o),
-      );
-    if (this.disposed) {
-      r.dispose();
-      return;
-    }
-    this.giantPresentation = r;
-  }
-  clearGiant() {
-    if (this.assets.drivingMode?.kind === "giant") {
-      (this.giantPresentation?.dispose(),
-        (this.giantPresentation = void 0),
-        this.hud.clearGiant());
-      for (const e of this.giantAppearances.values()) e.dispose();
-      (this.giantAppearances.clear(), this.cameraShake.setGiantGate(void 0));
-    }
-  }
-  async prepareTrackEvents(e, t) {
-    if (this.disposed) throw new Error("多人赛道场景已经释放。");
-    const i = this.assets.map.eventProjections,
-      r =
-        i.length > 0
-          ? this.views.get(this.playerId)?.presentationRoot()
-          : void 0;
-    if (i.length > 0 && !r) throw new Error("多人事件效果缺少本机车辆挂点。");
-    const s = r
-      ? await b7.load(
-          e,
-          i,
-          r,
-          this.assets.map.environment,
-          this.assets.map.stageBinding,
-          t,
-        )
-      : void 0;
-    let o, a;
-    try {
-      const c = this.assets.map.renderScene?.clientWorldElements;
-      if (i.some((l) => l.sound) && !c)
-        throw new Error("多人事件独立音效缺少赛道世界矩阵。");
-      if (
-        ((o = c && i.some((l) => l.sound) ? await v7.load(e, i, c, t) : void 0),
-        (a =
-          this.assets.map.dummySounds.length > 0
-            ? await m7.load(e, this.assets.map.dummySounds, t)
-            : void 0),
-        this.disposed)
-      )
-        throw (
-          s?.dispose(),
-          o?.dispose(),
-          a?.dispose(),
-          new Error("多人赛道场景载入期间已释放。")
-        );
-      ((this.trackEventEffects = s),
-        (this.trackEventAudio = o),
-        (this.trackDummyAudio = a));
-    } catch (c) {
-      throw (s?.dispose(), o?.dispose(), a?.dispose(), c);
-    }
-  }
-  async prepareRoadBlockResult(e) {
-    if (!this.race.roadblock) return;
-    const t = await Bv.load(e, this.assets);
-    if (this.disposed) {
-      t.dispose();
-      return;
-    }
-    this.roadblockResult = t;
-  }
-  warm(e, t) {
-    (this.assets.map.readyCamera.start(),
-      this.update(e, t, []),
-      Hn(e, this.scene, this.scene));
-    for (const s of this.assets.participants)
-      (Hn(e, this.views.get(s.playerId).root, this.scene, !0),
-        s.vehicle.effects.warmDetachedScenes(e, this.scene));
-    (this.runtime.local.track.skydome &&
-      Hn(e, this.runtime.local.track.skydome, this.scene),
-      e.getDrawingBufferSize(this.size));
-    const i = new nn(this.size.x, this.size.y),
-      r = e.getRenderTarget();
-    try {
-      (e.setRenderTarget(i), this.render(e, t));
-    } finally {
-      (e.setRenderTarget(r), i.dispose());
-    }
-  }
-  update(e, t, i) {
-    if (this.disposed) return;
-    (this.runtime.giantEffectsEnded && this.clearGiant(),
-      this.trackInfoCard?.update(t),
-      this.banner?.update(
-        t,
-        this.runtime.local.scheduledStartAtMs,
-        this.runtime.local.lifecycle.state === X2.Countdown,
-        this.bannerRequest,
-      ),
-      e.getDrawingBufferSize(this.size));
-    const r = this.size.x,
-      s = this.size.y;
-    if (
-      ((this.camera.aspect = r / s),
-      !this.resultVisible &&
-        i.some((g) => g.kind === "publish-result") &&
-        this.showResult(t),
-      this.resultVisible)
-    ) {
-      (this.hud.hideTimeGap(),
-        (this.resultComplete = this.resultView.update(t)),
-        this.assets.map.stageBinding.beginFrame(t),
-        this.award?.update(
-          t,
-          this.camera,
-          this.runtime.local,
-          this.assets,
-          this.views,
-        ),
-        this.roadblockResult?.update(t, this.camera, r, s),
-        this.runtime.local.track.updateRender(t, this.camera, r, s),
-        this.assets.lteCoins?.update(t, this.camera, r, s),
-        e4(this.scene, this.camera, !1),
-        this.runtime.local.track.skydome &&
-          e4(this.runtime.local.track.skydome, this.camera));
-      return;
-    }
-    const { physics: o, track: a } = this.runtime.local,
-      c = this.race.roadblock ? this.runtime.roadBlockRemaining(t) : void 0;
-    if (c !== void 0) {
-      this.roadblockHud?.setRemaining(c);
-      const g = a.data.lapTarget;
-      if (g === void 0) throw new Error("挡人HUD缺少赛道圈数。");
-      this.roadblockHud?.setRunnerLaps(
-        this.runtime.roadBlockRunnerProgress()?.lap,
-        g,
-      );
-    }
-    (this.finishCountdown.update(
-      t,
-      this.runtime.local.lifecycle.state === X2.Racing
-        ? this.runtime.finishDeadline
-        : void 0,
-    ) && this.countdown?.playFinishNumber(),
-      this.runtime.local.consumeResetSound() &&
-        (this.cameraShake.leave(!0),
-        this.cameraWave.leave(),
-        this.playReset()));
-    for (const g of this.runtime.local.consumeLocalRouteTags())
-      this.handleRouteTag(g);
-    (this.applyLocalWarpActions(), this.lightFactor.update());
-    for (const g of i) {
-      if (g.kind === "countdown") {
-        if (g.step === 2)
-          for (const [y, b] of this.linkedPresentations)
-            (b.setMode(4), this.views.get(y)?.resetAnimation());
-        if (
-          (this.countdown?.playNumber(),
-          g.step === 2 && this.flyingPet?.launch(),
-          g.step === 3)
-        )
-          for (const y of this.assets.participants)
-            y.vehicle.accessories
-              .find((b) => b.kind === "aura")
-              ?.render.requestDespawn?.();
-      }
-      (g.kind === "count-go" && this.playGoAndHideTrackInfo(),
-        g.kind === "lap" && this.countdown?.playLap(),
-        g.kind === "final-lap" && this.countdown?.playFinalLap(),
-        g.kind === "switch-drive-camera" &&
-          ((this.cameraMode = "drive"), this.drive.reset()),
-        g.kind === "switch-surround-camera" &&
-          ((this.cameraMode = "surround"), this.surround.reset()),
-        g.kind === "start-effect" && this.action2d.scheduleStart(g.atMs),
-        g.kind === "lap" && this.action2d.showLap(g.value, t),
-        g.kind === "final-lap" && this.action2d.showFinalLap(t),
-        g.kind === "forced-finish" &&
-          !this.race.roadblock &&
-          ((this.localRetirePending = !0),
-          this.action2d.showRetire(t),
-          this.finishBlackBar.start(t),
-          this.bgm?.playResult(!1)),
-        g.kind === "natural-finish" &&
-          !this.race.roadblock &&
-          (this.winnerMotion.acceptLocalFinish(g.outcome),
-          this.finishBlackBar.start(t),
-          this.bgm?.playMultiplayerFinish(g.outcome === "winner"),
-          g.outcome === "winner"
-            ? this.action2d.showWinner(t)
-            : this.action2d.showFinish(t)),
-        g.kind === "raceover" && this.action2d.showRaceOver(t));
-    }
-    if (this.warpCameraFrozen) this.applyWarpCamera();
-    else if (this.cameraMode === "ready")
-      this.assets.map.readyCamera.apply(this.camera, t, o.body);
-    else if (this.cameraMode === "surround")
-      this.surround.apply(
-        this.camera,
-        this.surround.update(
-          t,
-          o.body,
-          o.driveCameraRuntime().eventScaleSecondary.z,
-        ),
-      );
-    else {
-      const g = a.currentRouteSurface(o),
-        y = o.body;
-      if (o.giant && !this.runtime.giantEffectsEnded) {
-        let E = !1;
-        if (
-          o.giant.main !== 4 &&
-          this.runtime.local.lifecycle.state === X2.Racing
-        )
-          for (const _ of this.assets.participants) {
-            const C = this.runtime.remotes.giant(_.playerId),
-              S = this.runtime.remotes.copyWebPose(_.playerId);
-            if (!C || C.main !== 4 || !S) continue;
-            const G = Math.fround(S.position.x - y.position.x),
-              I = Math.fround(S.position.y - y.position.y),
-              L = Math.fround(S.position.z - y.position.z);
-            if (
-              Math.fround(
-                Math.fround(Math.fround(G * G) + Math.fround(L * L)) +
-                  Math.fround(I * I),
-              ) < 900
-            ) {
-              E = !0;
-              break;
-            }
-          }
-        (this.cameraShake.setGiantGate(
-          E ? Math.fround(1e3 - o.giant.main * 100) : !1,
-        ),
-          this.giantPresentation?.setThreatSound(E));
-      }
-      const b = this.cameraShake.update(t, g),
-        A = {
-          x: Math.fround(y.position.x + b.x),
-          y: Math.fround(y.position.y + b.y),
-          z: Math.fround(y.position.z + b.z),
-        };
-      this.cameraWave.update(t, g, y, A);
-      const x = this.drive.update({
-          timestampMs: t,
-          body: { ...y, position: A },
-          routeSurface: g,
-          ...o.driveCameraRuntime(),
-        }),
-        M = this.runtime.local.warpNext.fairyFovFactor();
-      this.drive.apply(this.camera, {
-        ...x,
-        horizontalFovDegrees:
-          M === void 0
-            ? x.horizontalFovDegrees
-            : Math.max(Math.fround(x.horizontalFovDegrees * M), 65),
-        far: a.cameraFar ?? x.far,
-      });
-    }
-    (this.assets.map.stageBinding.beginFrame(t),
-      a.updateRender(t, this.camera, r, s),
-      this.assets.lteCoins?.update(t, this.camera, r, s),
-      this.assets.rain?.update(t, this.camera, r, s),
-      this.assets.snow?.update(t, this.camera, r, s));
-    const l = this.runtime.finishSnapshot(),
-      u = [];
-    for (const g of this.assets.participants) {
-      const y = this.views.get(g.playerId);
-      if (!y) continue;
-      const b =
-        g.playerId === this.playerId
-          ? this.runtime.localPresentation
-          : this.runtime.remotes.consumePresentation(g.playerId);
-      let A;
-      if (g.playerId === this.playerId) {
-        const I = o.body;
-        ((A = y.update(
-          {
-            ...o.state,
-            x: I.position.x,
-            y: I.position.y,
-            z: I.position.z,
-            right: I.right,
-            forward: I.forward,
-            up: I.up,
-          },
-          t,
-          o.consumeKartAnimationInput(),
-        )),
-          A !== void 0 && o.setAnimationSlot(A));
-      } else {
-        const I =
-          this.runtime.remotes.copyWebPose(g.playerId) ??
-          this.initialPoses.get(g.playerId);
-        if ((I && u.push({ playerId: g.playerId, pose: I }), I)) {
-          const L = {
-            x: I.position.x,
-            y: I.position.y,
-            z: I.position.z,
-            ...I,
-            visualScale:
-              "visualScale" in I ? I.visualScale : { x: 1, y: 1, z: 1 },
-          };
-          b?.animation ? y.updateRemote(L, t, b.animation) : y.updatePose(L);
-        }
-      }
-      y.root.visible =
-        g.playerId === this.playerId
-          ? this.runtime.local.resetVisible(t) &&
-            this.runtime.local.warpNext.presentationVisible(t)
-          : this.runtime.remotes.presentationVisible(g.playerId, t);
-      const x = b?.motion,
-        M = this.linkedPresentations.get(g.playerId),
-        E = x ? M?.updateSpeedRace(x.boosterState, t) : void 0;
-      y.root.updateMatrixWorld(!0);
-      const _ =
-        g.playerId === this.playerId
-          ? o.giant
-          : this.runtime.remotes.giant(g.playerId);
-      (_ && this.giantAppearances.get(g.playerId)?.update(_.main, _.extra),
-        g.vehicle.imported.renderScene?.update(this.camera, r, s),
-        g.draftEffect?.update(
-          t,
-          y.root.visible && this.runtime.draftPresentationVisible(g.playerId),
-          y.root.visible && this.runtime.draftBurstActive(g.playerId),
-          this.camera,
-          r,
-          s,
-        ));
-      const C =
-          g.playerId === this.playerId
-            ? this.localRetirePending
-            : this.runtime
-                .resultSnapshot()
-                ?.some(
-                  (I) => I.playerId === g.playerId && I.elapsedMs === null,
-                ),
-        S = C && !this.retiredCharacterIds.has(g.playerId);
-      S && this.retiredCharacterIds.add(g.playerId);
-      const G = this.winnerMotion.consume(g.playerId, this.playerId, l, !!C);
-      ((g.characters.linked ?? g.characters.ordinary)?.scene.update(
-        t,
-        this.camera,
-        r,
-        s,
-        S || G
-          ? {
-              forwardSpeed: 0,
-              rawSteer: 0,
-              tireTransient: 0,
-              boosterState: 0,
-              instantAccelerationActive: !1,
-              motorcycle: !1,
-              landingTrigger: !1,
-              collisionHit: !1,
-              collisionStrength: 0,
-              visualScaleMode: 0,
-              ...x,
-              linkedPresentationMotion: E,
-              finishMotion: S ? 13 : G,
-            }
-          : x
-            ? { ...x, linkedPresentationMotion: E }
-            : void 0,
-      ),
-        b &&
-          (g.vehicle.lampFlares.setInputPair("front", b.frontLamp),
-          g.vehicle.lampFlares.setInputPair("rear", b.rearLamp)),
-        g.vehicle.lampFlares.update(
-          t,
-          this.camera,
-          g.vehicle.imported.renderScene !== void 0,
-        ),
-        g.playerId !== this.playerId &&
-          b &&
-          (b.animation &&
-            xr0(
-              g.vehicle,
-              y,
-              this.camera,
-              t,
-              b.animation,
-              b.motion.instantAccelerationActive,
-              r,
-              s,
-            ),
-          g.vehicle.trails.setState(b.motion.boosterState, t),
-          g.vehicle.trails.update(
-            t,
-            this.camera,
-            g.vehicle.imported.renderScene !== void 0,
-          )));
-      for (const I of g.vehicle.accessories)
-        (I.kind === "headBand" &&
-          b &&
-          I.render.setOwnerState?.(b.motion.boosterState, t),
-          I.render.scene.update(t, this.camera, r, s));
-      (g.playerId === this.playerId &&
-        Mr0(
-          g.vehicle,
-          this.runtime.local,
-          y,
-          this.camera,
-          t,
-          A,
-          M?.simpleShadowEnabled() ?? !0,
-        ),
-        g.vehicle.decoration?.scene.update(t, this.camera, r, s));
-    }
-    const h = o.consumeTrackEventEffectRequests();
-    if (
-      (this.roadblockFlag?.update(t, this.camera, r, s),
-      this.giantPresentation?.update(
-        t,
-        this.camera,
-        r,
-        s,
-        o.giantSourceProtected(),
-      ),
-      this.assets.drivingMode?.kind === "shadow")
-    )
-      for (const g of this.shadowPresentations.values()) g.update();
-    if (h.length > 0 && !this.trackEventEffects)
-      throw new Error("多人赛道事件缺少本机效果对象。");
-    for (const g of h) this.trackEventEffects.trigger(g.effect, g.atMs);
-    for (const g of a.consumeExpiredEventEffects())
-      this.trackEventEffects?.remove(g);
-    (this.flyingPet?.update(t, this.camera, r, s, this.petVisible()),
-      this.trackEventEffects?.update(t, this.camera, r, s),
-      this.trackEventAudio?.update(t, o.body.position),
-      this.trackDummyAudio?.update(this.camera),
-      this.captureRankProgress());
-    const d = _r0(
-      this.race.roster,
-      this.playerId,
-      (g) => this.rankRoster.progress(g),
-      this.hud.markerTints(),
-      this.runtime.finishSnapshot(),
-      (g) =>
-        this.runtime.remotes.rankDisconnected(g)
-          ? void 0
-          : this.runtime.latencyMs(g),
-    );
-    o.giant?.setRank(d === void 0 ? void 0 : d.rank - 1);
-    let f =
-      d ??
-      Gr0(this.race.roster, this.playerId, this.hud.markerTints(), (g) =>
-        this.runtime.remotes.rankDisconnected(g)
-          ? void 0
-          : this.runtime.latencyMs(g),
-      );
-    const p = this.runtime.resultSnapshot();
-    if (
-      (p && (f = Br0(f, p)),
-      (f = {
-        ...f,
-        rows: f.rows.map((g) => ({
-          ...g,
-          out: this.rankRoster.out(g.participantId),
-          disconnected: this.runtime.remotes.rankDisconnected(g.participantId),
-        })),
-      }),
-      this.action2d.setFinishDeadline(
-        this.runtime.local.lifecycle.state === X2.Racing
-          ? this.runtime.finishDeadline
-          : void 0,
-      ),
-      o.consumeTeamGaugeFullAnimation() && this.hud.startTeamBoostGaugeFull(),
-      this.hud.update(this.runtime.local, t, u, f),
-      this.hud.timeGapEnabled && this.warpHudHidden && this.hud.hideTimeGap(),
-      this.hud.timeGapEnabled && !this.warpHudHidden)
-    ) {
-      const g = this.runtime.finishSnapshot();
-      this.hud.updateTimeGap(
-        this.runtime.local,
-        t,
-        this.race.roster
-          .filter((y) => this.views.has(y.playerId))
-          .map((y) => {
-            const b =
-                y.playerId === this.playerId
-                  ? this.runtime.local.raceProgress()
-                  : this.runtime.remotes.raceProgress(y.playerId),
-              A = g.find((x) => x.playerId === y.playerId);
-            return {
-              playerId: y.playerId,
-              name: y.name,
-              progress: A
-                ? {
-                    distance: b?.distance ?? 0,
-                    lap: b?.lap ?? 0,
-                    finishElapsedMs: A.elapsedMs,
-                  }
-                : b,
-            };
-          }),
-        this.playerId,
-      );
-    }
-    const v = Math.trunc(t) >>> 0,
-      w = this.gaugePreserve.update(
-        t,
-        o.consumeTimeAttackTachometerGaugePreserve(),
-      );
-    (QL(
-      this.tachometer,
-      o,
-      t,
-      v,
-      v,
-      0,
-      w,
-      o.consumeTimeAttackTachometerNormalBooster(),
-      this.runtime.localDraftHudActive(),
-    ),
-      this.audioStarted &&
-        this.assets.draftAudio.update(
-          this.runtime.draftPresentationVisible(this.playerId),
-          this.runtime.localDraftHudActive(),
-        ),
-      e4(this.scene, this.camera, !1),
-      a.skydome && e4(a.skydome, this.camera));
-  }
-  awardInput(e, t) {
-    this.resultVisible && this.award?.input(e, t);
-  }
-  applyWarpCamera() {
-    if (!this.warpCameraFrozen) return;
-    const e = this.assets.map.warpNextCamera;
-    if (!e) throw new Error("warpnextcamera_cam 缺失；多人不能沿用旧镜头。");
-    e(this.camera);
-  }
-  applyLocalWarpActions() {
-    for (const e of this.runtime.local.consumeWarpActions())
-      (e.kind === "start-warp-presentation" && (this.warpHudHidden = !0),
-        e.kind === "reset-drive-camera" &&
-          (this.drive.reset(0), (this.warpCameraFrozen = !1)),
-        e.kind === "freeze-camera" && (this.warpCameraFrozen = !0),
-        e.kind === "teleport" && (this.warpCameraFrozen = !1),
-        e.kind === "finish-warp-letterbox" && (this.warpHudHidden = !1));
-  }
-  handleRouteTag(e) {
-    const t = Vo(e);
-    (t === "flash" && this.lightFactor.trigger(),
-      t.startsWith("shake") &&
-        (e.includes(":in:")
-          ? this.cameraShake.enter()
-          : e.includes(":out:") && this.cameraShake.leave(!0)),
-      t.startsWith("wave") &&
-        (e.includes(":in:")
-          ? this.cameraWave.enter()
-          : e.includes(":out:") && this.cameraWave.leave()));
-  }
-  showResult(e) {
-    (this.clearGiant(),
-      this.roadblockFlag?.dispose(),
-      (this.roadblockFlag = void 0),
-      this.releaseShadowPresentations(),
-      this.flyingPet?.dispose(),
-      (this.flyingPet = void 0),
-      this.cameraShake.leave(!0),
-      this.cameraWave.leave(),
-      (this.warpCameraFrozen = !1),
-      (this.warpHudHidden = !1),
-      this.trackEventEffects?.dispose(),
-      (this.trackEventEffects = void 0),
-      this.trackEventAudio?.dispose(),
-      (this.trackEventAudio = void 0),
-      this.trackDummyAudio?.dispose(),
-      (this.trackDummyAudio = void 0));
-    const t = this.runtime.resultSnapshot();
-    if (!t || !this.resultView) throw new Error("本局结果展示资源未就绪。");
-    const i = this.runtime.raceSnapshot();
-    if (i.roadblock) {
-      if ((this.roadblockHud?.hide(), !this.roadblockResult))
-        throw new Error("挡人专属结算场景未就绪。");
-      for (const s of this.assets.participants) {
-        s.draftEffect?.reset(e);
-        for (const o of lc(s.vehicle)) o.removeFromParent();
-        (s.vehicle.effects.setState(0, 0, !1, !1, e),
-          s.vehicle.lampFlares.resetInputVisibility(),
-          s.vehicle.imported.animation?.reset(e),
-          s.vehicle.audio.stopRace());
-      }
-      (this.roadblockResult.show(
-        e,
-        this.runtime.local,
-        this.assets,
-        this.views,
-        i,
-      ),
-        this.scene.add(
-          this.roadblockResult.root,
-          this.roadblockResult.effectRoot,
-        ),
-        this.assets.draftAudio.reset(),
-        this.resultView.show(t, e, i),
-        (this.resultVisible = !0),
-        this.bgm?.playResult(
-          i.roadblockOutcome?.runnerWon ===
-            (i.roadblock.runnerId === this.playerId),
-        ));
-      return;
-    }
-    if (!this.award) throw new Error("本局颁奖资源未就绪。");
-    const r = rG(this.assets.mode ?? "individual", i.roster, t, i.winningTeam);
-    for (const s of t)
-      if (r.includes(s.playerId) && !this.views.has(s.playerId)) {
-        const o = this.assets.participants.find(
-            (l) => l.playerId === s.playerId,
-          ),
-          a = new Vg(this.scene),
-          c = o.vehicle;
-        (a.setModel(
-          c.imported.object,
-          c.visual,
-          c.imported.animation,
-          c.imported.model,
-          c.imported.scene,
-        ),
-          this.views.set(s.playerId, a));
-      }
-    for (const [s, o] of this.linkedPresentations)
-      (this.views.get(s)?.resetAnimation(), o.setMode(1));
-    this.award.show(e, this.runtime.local, t, this.views, i);
-    for (const s of this.assets.participants) {
-      s.draftEffect?.reset(e);
-      for (const o of lc(s.vehicle)) o.removeFromParent();
-      (s.vehicle.effects.setState(0, 0, !1, !1, e),
-        s.vehicle.lampFlares.resetInputVisibility(),
-        s.vehicle.imported.animation?.reset(e),
-        s.vehicle.audio.stopRace());
-    }
-    (this.assets.draftAudio.reset(),
-      this.scene.add(this.award.root, this.award.effectRoot),
-      this.resultView.show(t, e, i),
-      (this.resultVisible = !0),
-      this.bgm?.playMultiplayerPodium());
-  }
-  startAudio() {
-    this.audioStarted ||
-      ((this.audioStarted = !0),
-      this.bgm?.restart(),
-      this.trackInfoCard?.setBgmName(this.bgm?.currentRaceName ?? ""),
-      this.trackInfoCard?.setVisible(!0),
-      this.assets.participants
-        .find((e) => e.playerId === this.playerId)
-        .vehicle.audio.start());
-  }
-  playGoAndHideTrackInfo() {
-    (this.countdown?.playGo(), this.trackInfoCard?.slideOut());
-  }
-  playReset() {
-    this.assets.participants
-      .find((e) => e.playerId === this.playerId)
-      .vehicle.audio.playReset();
-  }
-  startBoostGaugeFull() {
-    (eP(this.tachometer), this.hud.startBoostGaugeFull());
-  }
-  captureRankProgress() {
-    this.rankRoster.capture((e) =>
-      e === this.playerId
-        ? this.runtime.local.raceProgress()
-        : this.runtime.remotes.raceProgress(e),
-    );
-  }
-  updateRoom(e) {
-    if (this.resultVisible) return;
-    const t = new Set(e.members.map((i) => i.playerId));
-    (this.captureRankProgress(), this.rankRoster.updatePresent(t));
-  }
-  render(e, t) {
-    if (this.disposed) return;
-    const i = e.autoClear;
-    try {
-      ((e.autoClear = !1), e.clear(), e.setTransparentSort(jm));
-      try {
-        (this.runtime.local.track.skydome &&
-          yo(e, () => e.render(this.runtime.local.track.skydome, this.camera)),
-          e.clearDepth(),
-          yo(e, () => e.render(this.scene, this.camera)));
-      } finally {
-        e.setTransparentSort(null);
-      }
-      if (this.resultVisible) return;
-      (e.clearDepth(),
-        !this.warpHudHidden &&
-          this.runtime.local.lifecycle.state < X2.PostFinish &&
-          (this.hud.render(e), JL(this.tachometer, e)));
-      const r = Math.floor(this.size.y * Rv + 0.5),
-        s =
-          this.size.y > 0
-            ? Math.floor(
-                r * this.runtime.local.warpNext.blackBarRatio(t) + 0.5,
-              ) / this.size.y
-            : 0;
-      (this.warpBlackBar.renderRatio(e, s),
-        this.finishBlackBar.render(e, t, this.size.y),
-        this.action2d.render(e, t, H2, $2));
-    } finally {
-      e.autoClear = i;
-    }
-  }
-  dispose() {
-    if ((this.releaseShadowPresentations(), !this.disposed)) {
-      ((this.disposed = !0),
-        this.clearGiant(),
-        this.flyingPet?.dispose(),
-        (this.flyingPet = void 0),
-        this.trackEventEffects?.dispose(),
-        (this.trackEventEffects = void 0),
-        this.trackEventAudio?.dispose(),
-        (this.trackEventAudio = void 0),
-        this.trackDummyAudio?.dispose(),
-        (this.trackDummyAudio = void 0),
-        this.audioStarted && this.bgm?.silence());
-      for (const e of this.assets.participants) {
-        for (const t of lc(e.vehicle)) t.removeFromParent();
-        (e.characters.ordinary?.scene.object.removeFromParent(),
-          e.characters.linked?.scene.object.removeFromParent());
-        for (const t of e.vehicle.accessories)
-          t.render.scene.object.removeFromParent();
-        e.vehicle.decoration?.scene.object.removeFromParent();
-      }
-      for (const e of this.views.values()) e.releaseBorrowedModel();
-      (this.views.clear(),
-        this.linkedPresentations.clear(),
-        this.hud.dispose(),
-        this.initialPoses.clear(),
-        this.rankRoster.dispose(),
-        this.roadblockFlag?.dispose(),
-        (this.roadblockFlag = void 0),
-        this.roadblockHud?.dispose(),
-        this.roadblockResult?.dispose(),
-        this.award?.dispose(),
-        this.resultView?.dispose(),
-        this.banner?.dispose(),
-        this.trackInfoCard?.dispose(),
-        this.countdown?.dispose(),
-        this.finishBlackBar.dispose(),
-        this.warpBlackBar.dispose(),
-        this.action2d.dispose(),
-        this.scene.clear());
-    }
-  }
-  releaseShadowPresentations() {
-    if (this.assets.drivingMode?.kind === "shadow") {
-      for (const e of this.shadowPresentations.values()) e.dispose();
-      this.shadowPresentations.clear();
-    }
-  }
+    async prepareFlyingPet(library, audioContext) { return prepareRacePresenterFlyingPet(this, library, audioContext, racePresenterSetupDependencies); }
+    async prepareRoadBlockFlag(library) { return prepareRacePresenterRoadblockFlag(this, library, racePresenterSetupDependencies); }
+    async prepareGiant(library, audioContext) { return prepareRacePresenterGiant(this, library, audioContext, racePresenterSetupDependencies); }
+    clearGiant() { return clearRacePresenterGiant(this); }
+    async prepareTrackEvents(library, audioContext) { return prepareRacePresenterTrackEvents(this, library, audioContext, racePresenterTrackEventDependencies); }
+    async prepareRoadBlockResult(library) { return prepareRacePresenterRoadblockResult(this, library, racePresenterSetupDependencies); }
+    warm(renderer, nowMs) { return warmRacePresenter(this, renderer, nowMs, racePresenterLifecycleDependencies); }
+    update(renderer, nowMs, actions) { return updateRacePresenterFrame(this, renderer, nowMs, actions, racePresenterFrameDependencies); }
+    awardInput(input, nowMs) { return forwardPresenterAwardInput(this, input, nowMs); }
+    applyWarpCamera() { return applyPresenterWarpCamera(this); }
+    applyLocalWarpActions() { return applyPresenterWarpActions(this); }
+    handleRouteTag(tag) { return handlePresenterRouteTag(this, tag, racePresenterActionsDependencies); }
+    showResult(nowMs) { return showRacePresenterResults(this, nowMs, racePresenterResultsDependencies); }
+    startAudio() { return startPresenterAudio(this); }
+    playGoAndHideTrackInfo() { return playPresenterGo(this); }
+    playReset() { return playPresenterReset(this); }
+    startBoostGaugeFull() { return startPresenterBoostGaugeFull(this, racePresenterActionsDependencies); }
+    captureRankProgress() { return capturePresenterRankProgress(this); }
+    updateRoom(room) { return updatePresenterRoom(this, room); }
+    render(renderer, nowMs) { return renderRacePresenterFrame(this, renderer, nowMs, racePresenterRenderDependencies); }
+    dispose() { return disposeRacePresenter(this, racePresenterLifecycleDependencies); }
+    releaseShadowPresentations() { return releasePresenterShadowPresentations(this); }
 }
 
 class aP {
@@ -5928,14 +4460,7 @@ class aP {
 const Xr0 = { KeyZ: [l2.ModeImpulsePositive], KeyX: [l2.ModeImpulseNegative] };
 
 class Yr0 extends aP {
-  constructor(e, t, i, r, s) {
-    (super(),
-      (this.runtime = e),
-      (this.scene = t),
-      (this.host = i),
-      (this.chat = r),
-      (this.notice = s));
-  }
+    constructor(runtime, scene, host, chat, notice) { super(); initializeRaceSession(this, runtime, scene, host, chat, notice); }
   runtime;
   scene;
   host;
@@ -5948,218 +4473,20 @@ class Yr0 extends aP {
   resultVisible = !1;
   roomPhase;
   now = 0;
-  get diagnosticsView() {
-    return this.scene;
-  }
-  get touchDrivingAvailable() {
-    return (
-      this.active &&
-      !this.disposed &&
-      !this.resultVisible &&
-      !this.notice?.visible
-    );
-  }
-  get touchDodgeEnabled() {
-    return (
-      !this.disposed && this.runtime.local.physics.speedRaceMode?.kind === "lte"
-    );
-  }
-  bindClock(e) {
-    this.runtime.bindClock(e);
-  }
-  updateRoom(e) {
-    ((this.roomPhase = e.phase),
-      this.scene.updateRoom(e),
-      this.runtime.updateRoom(e),
-      this.chat?.updateRoom(e));
-  }
-  presentingResults() {
-    return this.resultVisible
-      ? !this.scene.resultComplete
-      : this.runtime.resultSnapshot() !== void 0;
-  }
-  showWaiting() {
-    if (this.disposed) throw new Error("多人比赛已释放。");
-    this.active ||
-      ((this.now = performance.now()),
-      this.scene.update(this.host.renderer, this.now, []),
-      this.scene.render(this.host.renderer, this.now),
-      this.host.publish(this),
-      (this.active = !0),
-      this.chat?.show(),
-      this.chat?.setAllowed(!0),
-      this.scene.startAudio(),
-      this.host.input.cancelAll(),
-      this.host.input.setEnabled(!0),
-      this.host.autoForward.cancel(),
-      this.host.renderer.domElement.focus(),
-      this.host.status("本机加载完成，等待其他玩家和统一起跑通知。"));
-  }
-  scheduleStart(e) {
-    if (this.disposed) throw new Error("多人比赛已释放。");
-    (this.runtime.scheduleStart(e),
-      this.showWaiting(),
-      this.host.status(
-        this.runtime.local.physics.speedRaceMode?.kind === "lte"
-          ? "LTE Web试玩：Z左躲闪、X右躲闪；自动补氮气及香蕉事件尚未接齐。"
-          : "沿用设置中的驾驶按键，等待统一起跑。",
-      ));
-  }
-  update(e) {
-    if (!(!this.active || this.disposed)) {
-      this.now = performance.now();
-      try {
-        const t = this.runtime.local.physics,
-          i = this.host.input.drain(
-            t.speedRaceMode?.kind === "lte" ? Xr0 : void 0,
-          );
-        i.cancelled &&
-          (this.controls.cancel(),
-          this.host.autoForward.cancel(),
-          t.hardCancelControls(),
-          this.runtime.local.cancelModeDrivingInput());
-        const r = this.runtime.local.lifecycle;
-        (this.host.autoForward.setRaceState(
-          !this.resultVisible && r.state < X2.PostFinish,
-          r.state === X2.Racing &&
-            !this.runtime.local.isStartBoosterWindow(this.now),
-        ),
-          this.resultVisible &&
-            this.scene.awardInput(i.transitions, i.cancelled),
-          this.controls.dispatch(
-            this.resultVisible || this.notice?.visible ? [] : i.transitions,
-            (c, l) => {
-              this.notice?.visible ||
-                this.host.autoForward.dispatch(
-                  c,
-                  l,
-                  this.controls.snapshot(),
-                  (u) => {
-                    if (u.kind === "reset") {
-                      (this.runtime.local.requestReset(),
-                        this.runtime.local.consumeRoadBlockResetNotice() &&
-                          (this.notice?.showRoadBlockReset(this.now),
-                          this.notice?.visible &&
-                            (this.controls.cancel(),
-                            this.host.autoForward.cancel(),
-                            t.hardCancelControls(),
-                            this.host.input.cancelAll())));
-                      return;
-                    }
-                    const h = this.runtime.local.lifecycle.state;
-                    if (
-                      h === X2.Result ||
-                      (h !== X2.Racing &&
-                        (u.kind === "instant-acceleration" ||
-                          u.kind === "reorder-items"))
-                    )
-                      return;
-                    const d = this.host.autoForward.apply(
-                      this.controls.snapshot(),
-                    );
-                    (u.kind === "unsupported-action" &&
-                      this.runtime.local.handleModeDrivingCommand(
-                        u,
-                        this.now,
-                      )) ||
-                      (t.handleDrivingCommand(u, d),
-                      (u.kind === "forward-down" || u.kind === "forward-up") &&
-                        (this.runtime.local.isStartBoosterWindow(this.now) &&
-                          t.startRaceBooster(),
-                        u.kind === "forward-down" && t.startPlayBooster(d)));
-                  },
-                );
-            },
-          ),
-          this.notice?.visible &&
-            (this.controls.cancel(), this.host.autoForward.cancel()));
-        const s = this.controls.snapshot(),
-          o = !this.resultVisible && r.state !== X2.Result,
-          a = this.runtime.update(this.now, this.host.autoForward.apply(s), !1);
-        (o && this.host.clientFramerate.sample(this.now),
-          this.host.touchControls.setAutoForwardActive(
-            this.host.autoForward.isActive(s),
-          ),
-          this.disposed ||
-            (t.consumeSpeedSlotReordered() && this.host.playSlotChanger(),
-            this.chat?.setAllowed(
-              r.state === X2.Ready ||
-                (r.state === X2.Countdown && r.countdownStep < 4) ||
-                r.state >= X2.PostFinish,
-            ),
-            this.runtime.local.boostGaugeFull &&
-              this.scene.startBoostGaugeFull(),
-            this.scene.update(this.host.renderer, this.now, a),
-            this.resultVisible &&
-              this.scene.resultComplete &&
-              this.requestLeave(),
-            !this.resultVisible &&
-              a.some((c) => c.kind === "publish-result") &&
-              (this.notice?.hide(),
-              (this.resultVisible = !0),
-              this.controls.cancel(),
-              this.host.autoForward.cancel(),
-              t.hardCancelControls(),
-              this.host.input.cancelAll(),
-              this.host.status("成绩展示结束后自动返回原房间。"))));
-      } catch (t) {
-        this.fail(t);
-      }
-    }
-  }
-  render() {
-    if (!(!this.active || this.disposed))
-      try {
-        this.scene.render(this.host.renderer, this.now);
-      } catch (e) {
-        this.fail(e);
-      }
-  }
-  requestLeave() {
-    if (this.leaving || this.disposed) return;
-    if (
-      ((this.leaving = !0),
-      this.resultVisible &&
-        this.roomPhase === "open" &&
-        this.host.closePresentation)
-    ) {
-      this.host.closePresentation();
-      return;
-    }
-    (this.resultVisible && this.host.returnToRoom
-      ? () => this.host.returnToRoom()
-      : () => this.host.leave())().catch((t) => {
-      ((this.leaving = !1), this.host.status(`退出失败：${String(t)}`, !0));
-    });
-  }
-  fail(e) {
-    this.disposed ||
-      (this.host.status(
-        `多人比赛已停止：${e instanceof Error ? e.message : String(e)}`,
-        !0,
-      ),
-      (this.resultVisible = !1),
-      this.requestLeave(),
-      this.dispose());
-  }
-  exit() {
-    this.dispose();
-  }
-  dispose() {
-    this.disposed ||
-      ((this.disposed = !0),
-      this.active &&
-        (this.host.input.setEnabled(!1), this.host.input.cancelAll()),
-      this.controls.cancel(),
-      this.host.autoForward.setRaceState(!1, !1),
-      this.host.touchControls.setAutoForwardActive(!1),
-      this.chat?.dispose(),
-      this.notice?.dispose(),
-      this.scene.dispose(),
-      this.runtime.dispose(),
-      this.active && this.host.release(this),
-      (this.active = !1));
-  }
+    get diagnosticsView() { return raceSessionDiagnosticsView(this); }
+    get touchDrivingAvailable() { return raceSessionTouchDrivingAvailable(this); }
+    get touchDodgeEnabled() { return raceSessionTouchDodgeEnabled(this); }
+    bindClock(clock) { return bindRaceSessionClock(this, clock); }
+    updateRoom(room) { return updateRaceSessionRoom(this, room); }
+    presentingResults() { return raceSessionPresentingResults(this); }
+    showWaiting() { return showRaceSessionWaiting(this, () => performance.now()); }
+    scheduleStart(start) { return scheduleRaceSessionStart(this, start); }
+    update(frame) { return updateRaceSession(this, raceSessionUpdateDependencies); }
+    render() { return renderRaceSession(this); }
+    requestLeave() { return requestRaceSessionLeave(this); }
+    fail(error) { return failRaceSession(this, error); }
+    exit() { return exitRaceSession(this); }
+    dispose() { return disposeRaceSession(this); }
 }
 
 function fc(n) {
@@ -8755,11 +7082,13 @@ function Xo0(n) {
 const Yo0 = {
     "track-select": "ReadyTrackSelect",
     garage: "ReadyGarage",
+    house: "ReadyHouse",
     settings: "ReadySettings",
   },
   Zo0 = {
     ReadyTrackSelect: "track-select",
     ReadyGarage: "garage",
+    ReadyHouse: "house",
     ReadySettings: "settings",
   };
 
@@ -8788,6 +7117,7 @@ class Qo0 {
       this.readyStageOpening ||
       this.state === "ReadyTrackSelect" ||
       this.state === "ReadyGarage" ||
+      this.state === "ReadyHouse" ||
       this.state === "ReadySettings"
     );
   }

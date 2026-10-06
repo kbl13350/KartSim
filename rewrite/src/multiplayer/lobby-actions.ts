@@ -1,4 +1,5 @@
 import { formatMultiplayerError } from "./errors";
+import { isPlayableGameplay } from "./gameplay-admission";
 import type { ActiveRoom } from "./room-state";
 
 export type Gameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp";
@@ -77,7 +78,7 @@ const startRuleErrors = new Set([
 ]);
 
 function supportedGameplay(gameplay: Gameplay): boolean {
-  return gameplay in gameplayNames && gameplay !== "lte";
+  return isPlayableGameplay(gameplay);
 }
 
 /** Fetch one room-list page, discarding responses superseded by a newer selection. */
@@ -85,7 +86,7 @@ export async function listLobbyRooms(host: LobbyControllerHost, channel: string,
   page: number, quiet = false, gameplay: Gameplay = host.gameplay): Promise<void> {
   if (!host.connected || host.state.room || host.disposed) return;
   if (!supportedGameplay(gameplay)) {
-    host.options.status("LTE 模式暂未开放。", true);
+    host.options.status("未知的房间玩法。", true);
     return;
   }
   if (gameplay !== "ordinary" && host.options.version !== "p3553") {
@@ -114,7 +115,7 @@ export async function listLobbyRooms(host: LobbyControllerHost, channel: string,
     host.rooms = list.rooms;
     host.lobby?.setRooms(channel, page, list.total, list.rooms, gameplay);
     if (!quiet) host.options.status(gameplay === "lte"
-      ? "LTE Web试玩：可创建个人或组队标准房间，Z/X左右躲闪。专用地图、自动补氮气及香蕉事件尚未接齐。"
+      ? "LTE Web试玩：三张专用地图全部随机，Z/X左右躲闪；自动补氮气与香蕉事件尚未实现。"
       : list.total
         ? `找到 ${list.total} 个房间，点击房间即可加入。`
         : `${gameplayNames[gameplay]}大厅暂无房间，可以创建房间邀请其他玩家加入。`);

@@ -27,6 +27,7 @@ export interface TaskbarOptions {
   root: HTMLElement;
   onSettings?: () => void;
   onGarage?: () => void;
+  onHouse?: () => void;
   onSinglePlayer?: () => void;
   onMultiplayer?: () => void;
   onHover?: () => void;
@@ -218,6 +219,7 @@ export class Taskbar {
   actionFor(name: string): (() => void) | undefined {
     if (name === "설정") return this.options.onSettings;
     if (name === "파츠") return this.options.onGarage;
+    if (name === "마이룸") return this.options.onHouse;
     if (name === "singleplay") return this.options.onSinglePlayer;
     if (name === "multiplay") return this.options.onMultiplayer;
     return undefined;

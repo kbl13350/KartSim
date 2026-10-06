@@ -237,7 +237,7 @@ function renderXunExceedType(
   for (const [node, fallback] of [
     ["exceedType", "超负荷类型"], ["curExceedType", "现在类型"],
     ["exceedAccel", "超负荷加速度"], ["exceedTime", "超负荷时间"],
-  ]) host.nativeLabel(`${exceedPanelPath}/@text:#sb(${node})`, fallback);
+  ] as const) host.nativeLabel(`${exceedPanelPath}/@text:#sb(${node})`, fallback);
   host.texture("tuning_Exceedslot", host.rect(`${exceedPanelPath}/exceedSlot`));
 
   const selected = exceedType === undefined ? undefined : host.assets.exceedTypes?.get(exceedType);

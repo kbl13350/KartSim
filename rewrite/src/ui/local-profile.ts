@@ -30,11 +30,36 @@ export interface Equipment {
   [key: string]: unknown;
 }
 
+export interface MyRoomProfile {
+  environmentId: number;
+  displayName: string;
+  message: string;
+}
+
+export function defaultMyRoomProfile(): MyRoomProfile {
+  // myRoom.rho/common/myRoomLocale@cn.bml marks environment 16 as the default.
+  return { environmentId: 16, displayName: "我的小屋", message: "" };
+}
+
+export function validateMyRoomProfile(value: unknown): asserts value is MyRoomProfile {
+  if (!value || typeof value !== "object") throw new Error("本地用户资料的小屋设置无效。");
+  const room = value as Partial<MyRoomProfile>;
+  validateInteger(room.environmentId, 65535, "小屋环境 ID");
+  if (typeof room.displayName !== "string" || room.displayName.trim().length === 0 ||
+      room.displayName.length > 32) {
+    throw new Error("本地用户资料的小屋名称必须为 1..32 个字符。");
+  }
+  if (typeof room.message !== "string" || room.message.length > 120) {
+    throw new Error("本地用户资料的小屋留言不能超过 120 个字符。");
+  }
+}
+
 export interface LocalProfile {
   equipment: Equipment;
   initial: string;
   favoriteTracks: FavoriteTrack[];
   favoriteItems: FavoriteItem[];
+  myRoom: MyRoomProfile;
   garage?: unknown;
   [key: string]: unknown;
 }
@@ -111,7 +136,7 @@ export function defaultLocalProfile(): LocalProfile {
   itemIds[70] = 1;
   return {
     equipment: { itemIds, kartSerial: 0, valueAt3E: 0, exceedType: 0 },
-    initial: "", favoriteTracks: [], favoriteItems: [],
+    initial: "", favoriteTracks: [], favoriteItems: [], myRoom: defaultMyRoomProfile(),
   };
 }
 
@@ -172,6 +197,7 @@ export function resolveSystemKartVariant(key: string, variant: unknown,
 export function parseLocalProfile(serialized: string, deps: ProfileDependencies): LocalProfile {
   // JSON.parse is the untrusted persistence boundary; validation below narrows it.
   const profile = { initial: "", favoriteTracks: [], favoriteItems: [],
+    myRoom: defaultMyRoomProfile(),
     ...JSON.parse(serialized) } as LocalProfile;
   const equipment = profile?.equipment;
   if (!equipment) throw new Error("本地用户资料缺少装备结构。");
@@ -193,6 +219,7 @@ export function parseLocalProfile(serialized: string, deps: ProfileDependencies)
   }
   validateFavoriteTracks(profile.favoriteTracks);
   validateFavoriteItems(profile.favoriteItems);
+  validateMyRoomProfile(profile.myRoom);
   const garage = deps.normalizeGarage(profile.garage);
   deps.validateGarage(garage);
   return garage === profile.garage ? profile : { ...profile, garage };
@@ -208,6 +235,7 @@ export function saveLocalProfile(profile: LocalProfile,
   storage: Pick<Storage, "setItem">,
   deps: Pick<ProfileDependencies, "validateGarage">): void {
   deps.validateGarage(profile.garage);
+  validateMyRoomProfile(profile.myRoom);
   storage.setItem(LOCAL_PROFILE_KEY, JSON.stringify(profile));
 }
 

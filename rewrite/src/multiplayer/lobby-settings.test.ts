@@ -101,7 +101,7 @@ test("room settings fetch, edits and unchanged close match release", async () =>
 });
 
 test("ordinary and gameplay room creation match release payloads", async () => {
-  for (const gameplay of ["ordinary", "grip", "lte"] as const) {
+  for (const gameplay of ["ordinary", "grip", "giant"] as const) {
     const run = async (released: boolean) => {
       const { host, events, b1, Original } = fixture(gameplay);
       host.state.room = undefined;
@@ -114,6 +114,18 @@ test("ordinary and gameplay room creation match release payloads", async () => {
     };
     assert.deepEqual(await run(false), await run(true), gameplay);
   }
+});
+
+test("LTE room creation submits its gameplay and selected speed channel", async () => {
+  const { host, events, b1 } = fixture("lte");
+  host.state.room = undefined;
+  await createLobbyRoom(host, channels,
+    (options, mode, channel, nickname, submit) =>
+      b1.createGameplay(options, mode, channel, nickname!, submit));
+  assert.ok(events.some(event => Array.isArray(event) && event[0] === "mutate" &&
+    (event[1] as { type?: string; gameplay?: string; channelName?: string }).type === "create" &&
+    (event[1] as { gameplay?: string }).gameplay === "lte" &&
+    (event[1] as { channelName?: string }).channelName === "speedTeamCombine"));
 });
 
 test("confirmation closes modal before running command", async () => {

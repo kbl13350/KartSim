@@ -32,6 +32,7 @@ node test/auth-smoke.mjs
 | `Accounts.java`、`HttpApi.java` | 邀请、账号、会话与联机握手前的 HTTP API |
 | `LocalWebSocket.java` | WebSocket 帧解析、请求 ID 回复、运动帧传输 |
 | `LobbyService.java`、`Room.java` | 房间状态、命令、赛程及广播 |
+| `GameModes.java` | 特殊玩法的赛道池、建房约束和比赛附加数据 |
 | `StorageApi.java` | 本地档案和影子记录的可选同步 |
 | `HistoryApi.java` | 已保存的房间规则和比赛结果查询 |
 
@@ -51,6 +52,7 @@ node test/auth-smoke.mjs
 | `GET/PUT /api/records/{ownerId}/{recordId}` | 读取/保存一项影子记录 JSON |
 | `GET /api/records/{ownerId}` | 列出该浏览器所有记录 |
 | `GET /api/race-results?name=Alice` | 最近 100 条多人比赛结果 |
+| `GET /api/race-outcomes?gameplay=roadblock` | 最近 100 局完整赛果，包括没有排名的挡人胜负 |
 | `GET /api/room-rules` | 最近 100 份创建过的房间规则 |
 
 档案和记录请求必须带 `X-Profile-Key`，值为浏览器首次随机生成的 32 字节 base64url 密钥。首次 PUT 将它的 SHA-256 摘要与 ownerId 绑定；之后使用同一密钥读写。ownerId 为 UUID。GET 未创建的档案返回 404，密钥不符返回 403。浏览器保留密钥原文，服务端只保存摘要。数据目录仍应当作私人文件保护。
@@ -61,9 +63,9 @@ node test/auth-smoke.mjs
 
 连接 `ws://127.0.0.1:8787/multiplayer/ws`。每个 JSON 请求带字符串 `requestId`；回复原样带回该 ID。失败回复为 `{"type":"error","requestId":"…","code":"…"}`。已登录用户可在 `hello` 消息中带 `token`，游客不带。成功 `hello` 返回 `welcome` 和玩家 UUID；`clock` 使用相对本进程启动时间的单调毫秒，与赛程时间同基准。
 
-大厅/房间支持 `list-ordinary`、`list-gameplay`、`create`、`join`、`leave`、`ready`、`team`、`track`、`random-track`、`slot`、`kick`、`transfer-host`、`equipment`、`changing`、`get-room-settings`、`room-settings`、`chat`。比赛支持 `start`、`loaded`、`load-failed`、`finish`、`return-room` 和 `race-chat`。房间更新使用完整 `room` 快照和递增 `revision`；比赛中的二进制运动帧按客户端 56 字节头的房间、比赛、玩家 ID 与接收槽位校验后中继。
+大厅/房间支持 `list-ordinary`、`list-gameplay`、`create`、`join`、`leave`、`ready`、`team`、`track`、`random-track`、`slot`、`kick`、`transfer-host`、`equipment`、`changing`、`get-room-settings`、`room-settings`、`chat`。比赛支持 `start`、`loaded`、`load-failed`、`finish`、`return-room`、`race-chat`、`award-motion`，以及巨人模式的 `giant-state` 和标准速度组队模式的 `team-charge`/`team-gauge`。房间更新使用完整 `room` 快照和递增 `revision`；开赛时 `race.startSlots` 冻结每位车手的 0–7 起跑位置；比赛中的二进制运动帧按客户端 56 字节头的房间、比赛、玩家 ID 与接收槽位校验后中继。
 
-当前赛程实现普通、抓地、幽灵竞速的共同竞速流程；特殊规则的挡人、巨人、RP 等玩法在建房时明确返回 `GAMEPLAY_UNAVAILABLE`。直连 WebRTC、原站专有后台运营功能不在这份本地协议内。实时房间在进程内，重启后房间不恢复；账号、档案、记录、房间规则和赛后成绩保存在 SQLite。
+赛程支持普通、抓地、幽灵、挡人、巨人、RP 和 LTE。挡人模式至少五人，房主是跑者；跑者到达终点获胜，三分钟到期或跑者退出则挡人方获胜。巨人模式验证连续的状态序号并广播给其他车手。RP 从本地 P3553 目录与模型资源已核对的四辆赛车（387、390、378、361）中随机抽取，飞行宠物固定为 0；奖池尚未扩展到原站完整列表。LTE 是 Web 试玩：使用三张专用赛道和客户端的 Z/X 躲闪，自动补氮气及香蕉事件尚未完整实现。比赛结果和完整赛程快照写入 SQLite，其中挡人胜负保存在 `race_outcomes`；实时房间在进程内，重启后房间不恢复。直连 WebRTC 和原站专有后台运营功能不在这份本地协议内。
 
 ## 扩展
 

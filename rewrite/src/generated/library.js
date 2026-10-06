@@ -2,10 +2,22 @@
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
 
+import { isPlayableGameplay } from "../multiplayer/gameplay-admission.ts";
+import { multiplayerModeTiles } from "../multiplayer/mode-tiles.ts";
+import { drawMultiplayerWindowNode } from "../ui/multiplayer-window-draw.ts";
+import { renderMultiplayerWindow } from "../ui/multiplayer-window-render.ts";
+import { multiplayerCanvasButton, updateMultiplayerHoverRegion, closeMultiplayerCombo, chooseMultiplayerCombo } from "../ui/multiplayer-window-actions.ts";
+import { drawMultiplayerComboPopup } from "../ui/multiplayer-window-combo.ts";
+import { renderLobbyList } from "../ui/lobby-list-render.ts";
+import { loadMultiplayerWindowAssets } from "../ui/multiplayer-window-assets.ts";
 import { activateLobbyListEntry } from "../ui/lobby-list-actions.ts";
 import { drawLobbyListNode } from "../ui/lobby-list-draw.ts";
 import { personalBoostFrame, teamBoostFrame } from "../ui/race-hud-boost.ts";
 const lobbyListDrawDependencies = { attribute: T, rectangle: V0, modeForButton: Zc, get interactiveNames() { return aQ; }, imageState: st, drawTexture: ct, fitRoomTitle: CX, measure: ve, drawText: m9, randomTrack: X6, get fontFamily() { return Yp; } };
+const lobbyListRenderDependencies = { viewport: Sr, modeForButton: Zc, roomLabel: rR };
+const multiplayerWindowAssetDependencies = { loadBml: F9, findResource: U1, decodeTexture: p2, frame: Ft, attribute: T, buttonStyle: m4, parseBml: s2, loadFont: f5, get fontFamily() { return Sn; } };
+const multiplayerWindowDrawDependencies = { attribute: T, rectangle: V0, innerRectangle: E9, paintFrame: C9, color: E8, charLayout: ga, charGlyphs: pa, paintImageButton: ct, numbers: j2, drawText: m9, comboEntries: OM, captionRectangle: f3, nodeConfig: an, get fontFamily() { return Sn; } };
+const multiplayerComboDependencies = { entries: OM, attribute: T, rectangle: V0, paintFrame: C9 };
 import { speedTypeEntry as r7 } from "../physics/speed-baseline.ts";
 import { loadSwWithReadableCodec } from "../codecs/sw-compat.ts";
 import { getResource, initializeResourceLookup, resourceCanonicalCandidates, resourceEntriesUnderCanonicalPrefix, resourceExactCanonicalCandidates, resourceFindSibling, resourceHasManifestMount, resourcePhysicalContainerNames, resourceResolveContainerPath } from "../resources/resource-lookup.ts";
@@ -374,58 +386,7 @@ function X6(n) {
   return Yc.find((e) => e.code === n);
 }
 
-const Y6 = [
-  {
-    name: "ordinaryRace",
-    label: "普通竞速",
-    image: "ordinary-race.png",
-    gameplay: "ordinary",
-    x: 0,
-    y: 0,
-  },
-  {
-    name: "gripRace",
-    label: "抓地模式",
-    image: "grip-mode.png",
-    gameplay: "grip",
-    x: 278,
-    y: 0,
-  },
-  {
-    name: "shadowRace",
-    label: "幽灵模式",
-    image: "ghost-mode.png",
-    gameplay: "shadow",
-    x: 0,
-    y: 138,
-  },
-  {
-    name: "blockingRace",
-    label: "挡人模式",
-    image: "blocking-mode.png",
-    gameplay: "roadblock",
-    x: 278,
-    y: 138,
-  },
-  {
-    name: "giantRace",
-    label: "巨人模式",
-    image: "giant-mode-hd.png",
-    gameplay: "giant",
-    x: 0,
-    y: 276,
-  },
-  {
-    name: "rpRace",
-    label: "RP竞速",
-    image: "cn_스피드복불복개인전_0",
-    resourceRoot: "zeta_/cn/stage/mainMenu",
-    editedImage: "rp-race-neutral-0",
-    gameplay: "rp",
-    x: 278,
-    y: 276,
-  },
-];
+const Y6 = multiplayerModeTiles;
 
 function Zc(n) {
   return Y6.find((e) => e.name === n);
@@ -661,45 +622,7 @@ class Ew {
         (e.preventDefault(), this.activate(this.hovered));
   };
     activate(name) { return activateLobbyListEntry(this, name, Zc, $6); }
-  render() {
-    if (this.disposed) return;
-    const e = this.options.root.getBoundingClientRect(),
-      t = Sr(e.width, e.height, window.devicePixelRatio, 1600, 900);
-    ((this.canvas.width = t.width),
-      (this.canvas.height = t.height),
-      this.context.setTransform(t.scaleX, 0, 0, t.scaleY, 0, 0),
-      (this.context.imageSmoothingEnabled = !0),
-      (this.hits = []),
-      this.draw(this.assets.definition, {
-        x: 0,
-        y: 0,
-        width: 1600,
-        height: 900,
-      }),
-      this.buttons.update(
-        this.hits.map((i) => {
-          const r = /^room(\d)$/.exec(i.name),
-            s = {
-              ordinaryRace: "普通竞速",
-              roomLeft: "上一页",
-              roomRight: "下一页",
-              createRoom: "创建房间",
-              quickJoin: "快速加入",
-            },
-            o = r ? this.rooms[Number(r[1])] : void 0;
-          return {
-            key: i.name,
-            rect: i.rect,
-            label: o
-              ? `加入 ${rR(o)}${o.gaming ? "（游戏中）" : ""}`
-              : (Zc(i.name)?.label ?? s[i.name] ?? i.name),
-            hover: () => this.options.onHover?.(),
-            activate: () => this.activate(i.name),
-          };
-        }),
-      ),
-      (this.canvas.style.cursor = this.hovered ? "pointer" : "default"));
-  }
+    render() { return renderLobbyList(this, lobbyListRenderDependencies); }
     draw(node, parent, room, titleRight) { return drawLobbyListNode(this, node, parent, room, titleRight, lobbyListDrawDependencies); }
 }
 
@@ -1103,360 +1026,15 @@ class te {
       this.paintingOnly = !1;
     }
   }
-  render() {
-    if (this.disposed || !this.font) return;
-    const e = this.options.root.getBoundingClientRect(),
-      t = Sr(e.width, e.height, window.devicePixelRatio, 1600, 900);
-    (this.canvas.width !== t.width && (this.canvas.width = t.width),
-      this.canvas.height !== t.height && (this.canvas.height = t.height),
-      this.context.setTransform(1, 0, 0, 1, 0, 0),
-      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height),
-      this.context.setTransform(t.scaleX, 0, 0, t.scaleY, 0, 0),
-      (this.context.imageSmoothingEnabled = this.options.smoothImages === !0));
-    const i = new Set();
-    ((this.buttons = []),
-      this.comboRects.clear(),
-      (this.hoverRegions.length = 0),
-      this.draw(
-        this.options.definition,
-        { x: 0, y: 0, width: 1600, height: 900 },
-        i,
-      ));
-    for (const [r, s] of this.controls)
-      !this.paintingOnly && !i.has(r) && (s.hidden = !0);
-    if ((this.drawComboPopup(), !this.paintingOnly)) {
-      for (const r of this.controls.values())
-        r instanceof HTMLInputElement &&
-          (r.style.pointerEvents = this.openCombo ? "none" : "auto");
-      (this.buttonLayer.update(this.buttons),
-        (this.popup.hidden = !this.openCombo));
-      for (const r of this.buttons)
-        if (typeof r.key == "number") {
-          const s = this.buttonLayer.control(r.key);
-          ((s.id = `${this.popup.id}-option-${r.key}`),
-            s.setAttribute("role", "option"),
-            s.setAttribute(
-              "aria-selected",
-              String(
-                r.key ===
-                  this.options
-                    .state(this.openCombo)
-                    .select.values.indexOf(
-                      this.options.state(this.openCombo).select.value,
-                    ),
-              ),
-            ),
-            s.parentElement !== this.popup && this.popup.append(s));
-        }
-      this.openCombo &&
-        this.controls
-          .get(this.openCombo)
-          ?.setAttribute(
-            "aria-activedescendant",
-            `${this.popup.id}-option-${this.comboIndex}`,
-          );
-    }
-  }
+    render() { return renderMultiplayerWindow(this, Sr); }
   text(e) {
     return e.replace(/#sb\(([^)]+)\)/g, (t, i) => this.strings.get(i) ?? "");
   }
-  draw(e, t, i) {
-    const r = this.options.state(e);
-    if (
-      r.visible === !1 ||
-      (r.visible !== !0 && T(e, "visible") === "false") ||
-      e.name === "Skip"
-    )
-      return;
-    const s = this.textures.get(e),
-      o = this.styles.get(e),
-      a = e.name.includes("Button"),
-      l =
-        r.disabled || (!r.action && a)
-          ? 3
-          : this.hovered === e
-            ? this.pressed === e
-              ? 2
-              : 1
-            : 0,
-      u =
-        T(e, "frame") ??
-        (e.name === "Edit"
-          ? "DefaultEdit"
-          : e.name === "PlaneCheckButton"
-            ? "DefaultCheckButton"
-            : ""),
-      h = this.frames.get(u),
-      d =
-        o?.states[l].frame ??
-        h?.[e.name === "PlaneCheckButton" ? +!!r.checked : 0],
-      f = V0(e, t, d, s?.[0], r.size),
-      p = { ...f, x: f.x + (r.offsetX ?? 0) };
-    (r.pointerBlock &&
-      this.buttons.push({ key: e, rect: p, disabled: !0, activate: () => {} }),
-      r.hoverRegion &&
-        this.hoverRegions.push({
-          id: r.hoverRegion,
-          rect: p,
-          sound: !!r.hoverRegionSound,
-        }),
-      r.select && this.comboRects.set(e, d ? E9(d, p) : p),
-      d?.texture && C9(this.context, d, this.images.get(d.texture).image, p));
-    const v = T(e, "color");
-    if (
-      (v &&
-        !(
-          this.options.modulateTextures &&
-          s &&
-          T(e, "textureOp") === "modulate"
-        ) &&
-        ((this.context.fillStyle = E8(v)),
-        this.context.fillRect(p.x, p.y, p.width, p.height)),
-      s && e.name === "CharPanel")
-    ) {
-      const y = s[0],
-        b = ga(e, y);
-      for (const A of pa(b, r.text ?? T(e, "text") ?? ""))
-        this.context.drawImage(
-          y.image,
-          A.u0 * y.width,
-          A.v0 * y.height,
-          (A.u1 - A.u0) * y.width,
-          (A.v1 - A.v0) * y.height,
-          p.x + A.left,
-          p.y + A.top,
-          A.right - A.left,
-          A.bottom - A.top,
-        );
-    } else if (s) {
-      const y = s.length === 1 ? s[0] : s[l];
-      if (e.name === "ImageButton") ct(this.context, y, p);
-      else if (T(e, "uvRect") !== void 0) {
-        const [b, A, x, M] = j2(T(e, "uvRect"), 4, "uvRect");
-        this.context.drawImage(
-          y.image,
-          b,
-          A,
-          x - b,
-          M - A,
-          p.x,
-          p.y,
-          p.width,
-          p.height,
-        );
-      } else this.context.drawImage(y.image, p.x, p.y, p.width, p.height);
-    }
-    if ((r.paint?.(this.context, p), r.lines)) {
-      (this.context.save(),
-        this.context.beginPath(),
-        this.context.rect(p.x, p.y, p.width, p.height),
-        this.context.clip(),
-        (this.context.font = `16px '${Sn}'`));
-      const y = [];
-      for (const b of r.lines) {
-        const A = typeof b == "string" ? b : b.text,
-          x = typeof b == "string" ? "white" : b.color;
-        let M = "";
-        for (const E of A)
-          (M &&
-            this.context.measureText(M + E).width > p.width - 12 &&
-            (y.push({ text: M, color: x }), (M = "")),
-            (M += E));
-        y.push({ text: M, color: x });
-      }
-      (y
-        .slice(-Math.floor(p.height / 24))
-        .forEach((b, A) =>
-          m9(
-            this.context,
-            b.text,
-            { ...p, x: p.x + 6, y: p.y + A * 24 },
-            {
-              family: Sn,
-              size: 16,
-              kind: "label",
-              color: b.color,
-              align: "left",
-              verticalAlign: "top",
-            },
-          ),
-        ),
-        this.context.restore());
-    }
-    const w = e.name === "CaptionWindow",
-      g = r.text ?? this.text(T(e, w ? "caption" : "text") ?? "");
-    if (r.select) {
-      const y = OM(e, r.select.values)[r.select.values.indexOf(r.select.value)];
-      y && this.drawComboText(y, this.comboRects.get(e), !!r.disabled);
-    }
-    if (g && !r.input && !r.select && e.name !== "CharPanel") {
-      const y = T(e, "textAlign") ?? (a || w ? "center" : "left");
-      m9(this.context, g, w && d ? f3(d, p, an(e, this.config)) : p, {
-        stroke: /^outline(?:\d+)?$/.test(T(e, "textRender") ?? "") ? 1 : 0,
-        strokeColor: E8(T(e, "textColor2") ?? "black"),
-        family: Sn,
-        size: w ? 20 : Number(/\d+/.exec(T(e, "textRender") ?? "")?.[0] ?? 16),
-        kind: a || w ? "button" : "label",
-        color:
-          r.textColor ??
-          (w
-            ? "white"
-            : (o?.states[l].textColor ?? E8(T(e, "textColor") ?? "white"))),
-        align:
-          y.includes("hcenter") || y === "center"
-            ? "center"
-            : y.includes("right")
-              ? "right"
-              : "left",
-        verticalAlign:
-          y.includes("vcenter") || y === "center" ? "center" : "top",
-      });
-    }
-    if (!this.paintingOnly && (r.action || r.input || r.select || a)) {
-      i.add(e);
-      let y = this.controls.get(e);
-      (y ||
-        (r.input
-          ? ((y = document.createElement("input")), this.element.append(y))
-          : (y = this.buttonLayer.ensure(this.canvasButton(e, p, g, r))),
-        this.controls.set(e, y),
-        y instanceof HTMLInputElement &&
-          (Object.assign(y.style, {
-            position: "absolute",
-            margin: "0",
-            padding: "0 4px",
-            boxSizing: "border-box",
-            border: "none",
-            background: "transparent",
-            font: `bold 16px '${Sn}'`,
-            color: "rgb(72,106,163)",
-          }),
-          y.addEventListener("keydown", (b) => {
-            if (b.key !== "Enter" || b.isComposing) return;
-            const A = this.options.state(e);
-            if (!(A.disabled || !A.input?.submit)) {
-              if (
-                (b.preventDefault(),
-                b.stopPropagation(),
-                A.input.blurOnEmptyEnter && !y.value.trim())
-              ) {
-                y.blur();
-                return;
-              }
-              A.input.submit();
-            }
-          }),
-          y.addEventListener("input", () => {
-            this.options.state(e).input?.change(y.value);
-          }))),
-        !r.input &&
-          !this.buttons.some((b) => b.key === e) &&
-          this.buttons.push(this.canvasButton(e, p, g, r)),
-        (y.hidden = !1),
-        (y.disabled = !!r.disabled || (!r.action && !r.input && !r.select)),
-        y.setAttribute("aria-label", r.label ?? g ?? T(e, "name") ?? ""),
-        r.checked !== void 0 &&
-          y.setAttribute("aria-pressed", String(r.checked)),
-        r.expanded !== void 0 &&
-          y.setAttribute("aria-expanded", String(r.expanded)),
-        y instanceof HTMLInputElement &&
-          r.input &&
-          ((y.type = r.input.password ? "password" : "text"),
-          (y.maxLength = r.input.maxLength),
-          (y.autocomplete = "off"),
-          y.value !== r.input.value && (y.value = r.input.value)),
-        r.select &&
-          (y.setAttribute("role", "combobox"),
-          y.setAttribute("aria-haspopup", "listbox"),
-          y.setAttribute("aria-controls", this.popup.id),
-          y.setAttribute("aria-expanded", String(this.openCombo === e)),
-          this.openCombo !== e && y.removeAttribute("aria-activedescendant"),
-          y.setAttribute(
-            "aria-valuetext",
-            r.select.valueText ?? `${r.select.value} 人`,
-          )),
-        y instanceof HTMLInputElement &&
-          Object.assign(y.style, {
-            left: `${p.x / 16}%`,
-            top: `${p.y / 9}%`,
-            width: `${p.width}px`,
-            height: `${p.height}px`,
-            transformOrigin: "top left",
-            transform: `scale(${this.options.root.clientWidth / 1600},${this.options.root.clientHeight / 900})`,
-          }));
-    }
-    for (const y of e.children) this.draw(y, d ? E9(d, p) : p, i);
-  }
-  canvasButton(e, t, i, r) {
-    return {
-      key: e,
-      rect: t,
-      label: r.label ?? i ?? T(e, "name") ?? "",
-      disabled: !!r.disabled || (!r.action && !r.select),
-      hover: () => {
-        this.options.state(e).silentHover || this.options.onHover?.();
-      },
-      activate: () => {
-        const s = this.options.state(e);
-        s.disabled ||
-          s.visible === !1 ||
-          (s.select
-            ? (this.options.onActivate?.(),
-              (this.openCombo = e),
-              (this.comboIndex = Math.max(
-                0,
-                s.select.values.indexOf(s.select.value),
-              )),
-              this.render())
-            : s.action &&
-              ((s.onActivate ?? this.options.onActivate)?.(), s.action()));
-      },
-      keydown: (s) => {
-        const o = this.options.state(e);
-        !this.openCombo &&
-          !o.disabled &&
-          o.select &&
-          ["ArrowDown", "ArrowUp"].includes(s.key) &&
-          (s.preventDefault(),
-          s.stopPropagation(),
-          (this.openCombo = e),
-          (this.comboIndex = Math.max(
-            0,
-            o.select.values.indexOf(o.select.value),
-          )),
-          this.render());
-      },
-    };
-  }
-  updateHoverRegion(e) {
-    const t = this.options.root.getBoundingClientRect(),
-      i = ((e.clientX - t.left) * 1600) / t.width,
-      r = ((e.clientY - t.top) * 900) / t.height,
-      s = this.hoverRegions.find(
-        ({ rect: o }) =>
-          i >= o.x && i < o.x + o.width && r >= o.y && r < o.y + o.height,
-      );
-    s?.id !== this.hoveredRegion &&
-      ((this.hoveredRegion = s?.id),
-      s?.sound && this.options.onHover?.(),
-      this.render());
-  }
-  closeCombo() {
-    const e = this.openCombo;
-    ((this.openCombo = void 0),
-      this.render(),
-      e && this.controls.get(e)?.focus());
-  }
-  chooseCombo(e) {
-    const t = this.openCombo;
-    if (!t) return;
-    const i = this.options.state(t),
-      r = i.select?.values[e];
-    (!i.disabled &&
-      r !== void 0 &&
-      (this.options.onActivate?.(), i.select.change(r)),
-      this.closeCombo());
-  }
+    draw(node, parent, visibleControls) { return drawMultiplayerWindowNode(this, node, parent, visibleControls, multiplayerWindowDrawDependencies); }
+    canvasButton(node, rect, text, state) { return multiplayerCanvasButton(this, node, rect, text, state, T); }
+    updateHoverRegion(event) { return updateMultiplayerHoverRegion(this, event); }
+    closeCombo() { return closeMultiplayerCombo(this); }
+    chooseCombo(index) { return chooseMultiplayerCombo(this, index); }
   drawComboText(e, t, i = !1) {
     m9(this.context, this.text(T(e, "text") ?? ""), t, {
       family: Sn,
@@ -1469,171 +1047,8 @@ class te {
       verticalAlign: "center",
     });
   }
-  drawComboPopup() {
-    const e = this.openCombo,
-      t = e ? this.options.state(e) : void 0,
-      i = e ? this.comboRects.get(e) : void 0;
-    if (!e || !t?.select || t.disabled || !i) {
-      this.openCombo = void 0;
-      return;
-    }
-    this.buttons.push({
-      key: "comboBackdrop",
-      rect: { x: 0, y: 0, width: 1600, height: 900 },
-      activate: () => this.closeCombo(),
-    });
-    const r = OM(e, t.select.values),
-      s = this.frames.get(T(e, "listFrame") ?? "DefaultEdit")[0],
-      o = r.reduce(
-        (l, u) => l + V0(u, i, this.styles.get(u).states[0].frame).height,
-        0,
-      ),
-      a = {
-        x: i.x - s.left.width,
-        y: i.y - s.caption.height,
-        width: i.width + s.left.width + s.right.width,
-        height: o + s.caption.height + s.bottom.height,
-      };
-    s.texture && C9(this.context, s, this.images.get(s.texture).image, a);
-    let c = i.y;
-    r.forEach((l, u) => {
-      const h = this.styles.get(l).states[u === this.comboIndex ? 1 : 0],
-        d = V0(l, { ...i, y: c, height: o }, h.frame);
-      ((c += d.height),
-        h.frame.texture &&
-          C9(this.context, h.frame, this.images.get(h.frame.texture).image, d),
-        this.drawComboText(l, d),
-        this.buttons.push({
-          key: u,
-          rect: d,
-          label: this.text(T(l, "text") ?? ""),
-          tabIndex: -1,
-          hover: () => this.options.onHover?.(),
-          activate: () => this.chooseCombo(u),
-        }));
-    });
-  }
-  async loadAssets() {
-    const e = this.options.library,
-      t = await F9(e, "gui_/monocoque", "frame");
-    this.config = await F9(e, "gui_/monocoque", "config");
-    for (const a of t.children) this.frames.set(a.name, a.children.map(Ft));
-    const i = new Map(),
-      r = (a, c = !1, l) => {
-        const u = `${c}:${l ?? ""}:${a}`;
-        let h = i.get(u);
-        return (
-          h ||
-            ((h = (async () => {
-              const d = await p2(
-                  await U1(
-                    e,
-                    c ? ["gui_/monocoque"] : l ? [l] : this.options.roots,
-                    a,
-                  ).bytes(),
-                ),
-                f = document.createElement("canvas");
-              ((f.width = d.width),
-                (f.height = d.height),
-                f
-                  .getContext("2d")
-                  .putImageData(
-                    new ImageData(
-                      new Uint8ClampedArray(d.pixels),
-                      f.width,
-                      f.height,
-                    ),
-                    0,
-                    0,
-                  ));
-              const v = this.options.projectTexture?.(a, f) ?? f;
-              return { image: v, width: v.width, height: v.height };
-            })()),
-            i.set(u, h)),
-          h
-        );
-      },
-      s = async (a) => {
-        const c = T(a, "autoLoadImage") ?? T(a, "autoLoadImageBoard"),
-          l = T(a, "texture") ?? T(a, "image");
-        c
-          ? this.textures.set(
-              a,
-              await Promise.all(
-                [1, 2, 3, 4].map((f) => r(c.replace(/(@zz)?$/, `${f}$1`))),
-              ),
-            )
-          : l && this.textures.set(a, [await r(l, !1, T(a, "resourceRoot"))]);
-        const u = T(a, "color");
-        if (
-          this.options.modulateTextures &&
-          l &&
-          u &&
-          T(a, "textureOp") === "modulate"
-        ) {
-          const f = this.textures.get(a)[0],
-            [p, v, w, g] = u.split(/\s+/).map(Number),
-            y = document.createElement("canvas");
-          ((y.width = f.width), (y.height = f.height));
-          const b = y.getContext("2d");
-          b.drawImage(f.image, 0, 0);
-          const A = b.getImageData(0, 0, y.width, y.height);
-          for (let x = 0; x < A.data.length; x += 4)
-            ((A.data[x] *= v / 255),
-              (A.data[x + 1] *= w / 255),
-              (A.data[x + 2] *= g / 255),
-              (A.data[x + 3] *= p / 255));
-          (b.putImageData(A, 0, 0), this.textures.set(a, [{ ...f, image: y }]));
-        }
-        a.name === "TextButton" && this.styles.set(a, m4(a, this.config, t));
-        const h =
-            T(a, "frame") ??
-            (a.name === "Edit"
-              ? "DefaultEdit"
-              : a.name === "PlaneCheckButton"
-                ? "DefaultCheckButton"
-                : ""),
-          d =
-            this.styles.get(a)?.states.map((f) => f.frame) ??
-            this.frames.get(h) ??
-            [];
-        for (const f of d)
-          f.texture &&
-            !this.images.has(f.texture) &&
-            this.images.set(f.texture, await r(f.texture, !0));
-        await Promise.all(a.children.map(s));
-      };
-    (await s(this.options.definition),
-      new DOMParser()
-        .parseFromString(
-          await U1(e, ["etc_"], "baseStringBag", ".xml").text(),
-          "application/xml",
-        )
-        .querySelectorAll("k")
-        .forEach((a) => {
-          const c = a.getAttribute("n"),
-            l = a.querySelector('m[c="cn"]')?.getAttribute("v");
-          c && l && this.strings.set(c, l);
-        }));
-    for (const a of this.options.roots)
-      for (const c of [
-        "stage_stringBag",
-        "dialog_stringBag",
-        "passwordBox_stringBag",
-      ]) {
-        const l = e.canonicalCandidates(`${a}/${c}.bml`);
-        if (l.length === 1)
-          for (const u of s2(await l[0].bytes()).children) {
-            const h = T(u, "n"),
-              d = u.children.find((f) => T(f, "c") === "cn");
-            h && d && this.strings.set(h, T(d, "v") ?? "");
-          }
-      }
-    this.font = await f5(
-      Sn,
-      await U1(e, ["gui_/font"], "SourceHanSansCN-Bold", ".otf").bytes(),
-    );
-  }
+    drawComboPopup() { return drawMultiplayerComboPopup(this, multiplayerComboDependencies); }
+    async loadAssets() { return loadMultiplayerWindowAssets(this, multiplayerWindowAssetDependencies); }
 }
 
 function OM(n, e) {
@@ -5437,7 +4852,7 @@ function PJ(n, e = "black") {
   return (S3.set(t, u), S3.size > DJ && S3.delete(S3.keys().next().value), u);
 }
 
-
+let FJ;
 
 const DJ = 256,
   S3 = new Map(),
@@ -7967,9 +7382,7 @@ function Nw(n, e) {
   );
 }
 
-function rg(n) {
-  return cw(n) && n !== "lte";
-}
+function rg(mode) { return isPlayableGameplay(mode); }
 
 function MI(n) {
   if (!rg(n))

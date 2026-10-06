@@ -14,6 +14,16 @@ import { GhostParticipantStream, GhostPlayback, GhostPoseRecorder, GhostRecorder
 import { hydrateGhostSummaryIndex, syncGhostSummaryIndex } from "../game/ghost-summary-sync.ts";
 import { loadGhostDecorations, loadGhostKartAssets, rankGhostColors } from "../timeattack/ghost-asset-loading.ts";
 import { deleteGhostRecord, exportGhostKsv, exportGhostSource, ghostRecord, ghostRecordKey, ghostTrackIdFromKey, persistGhostSummaries, promoteGhostRecord, putGhostRecord, restoreGhostRecordLibrary, saveGhostRecord, saveImportedGhostRecord, saveRawGhostRecord } from "../timeattack/ghost-record-library.ts";
+import { deleteGhostFromMenu, exportGhostFromMenu, importSelectedGhostFile, isCurrentGhostImport, switchToImportedGhostTrack } from "../timeattack/ghost-menu-import.ts";
+import { deleteGhostMenuRecord, exportGhostMenuRecord, importGhostMenuRecord, mountGhostMenuBridge, resolveGhostMenuKartTitle, resolveGhostMenuTrack } from "../timeattack/ghost-menu-host.ts";
+import { deriveGhostVisualMotion, isGhostDualTeam, updateGhostVisualAnimation } from "../timeattack/ghost-visual-motion.ts";
+import { attachGhostVisualToScene, disposeGhostVisual, seedGhostVisualStart, setGhostVisualEffects, setGhostVisualTrails } from "../timeattack/ghost-visual-lifecycle.ts";
+import { setGhostVisualAssets, setGhostVisualDecorations } from "../timeattack/ghost-visual-assets.ts";
+import { updateGhostVisualFrame } from "../timeattack/ghost-visual-update.ts";
+import { advanceRaceBgmTransition, clearRaceBgmTransition, currentRaceBgmName, disposeRaceBgm, playGarageBgm, playMultiplayerBgm, playMultiplayerFinishBgm, playMultiplayerPodiumBgm, playMyItemsBgm, playReadyBgm, playResultBgm, restartRaceBgm, silenceRaceBgm, startRaceBgm, stopRaceBgmOwner } from "../timeattack/race-bgm-playback.ts";
+import { loadRaceBgm, prepareMultiplayerBgm, selectRaceBgm } from "../timeattack/race-bgm-loading.ts";
+import { drainTimeAttackDrivingInput, resetTimeAttackTachometerInput, routeBaseDrivingCommand, routeTimeAttackDrivingCommand, routeTimeAttackRaceCommand, setTimeAttackAutoForward, setTimeAttackNitroSeamlessMode, timeAttackDrivingSnapshot } from "../timeattack/driving-input-bridge.ts";
+import { GhostSmoothSampler } from "../timeattack/ghost-smooth-sampler.ts";
 import { rankBoardValues, renderGameplayUi } from "../timeattack/race-hud.ts";
 import { placeAtStart, seedGhostStart, snapStartToGround } from "../timeattack/start-grid.ts";
 import { updateTimeAttackStage } from "../timeattack/stage-update.ts";
@@ -28,6 +38,7 @@ import { LD, V_, N_, Dh0, Vh0, O_ } from "../game/ghost-records.ts";
 import { Ah0, bh0 } from "../game/ghost/frame-codec.ts";
 import { Th0 } from "../game/ghost/record-store.ts";
 import { decodeKsvFile, encodeKsvFile } from "../game/ghost/ksv-codec.ts";
+import { buildGhostKsvHeader, encodeGhostKsvRecording, ghostKsvEquipment, nativeFrameToKsvStamp } from "../timeattack/ghost-ksv-export.ts";
 import { D2, El, H, I4, T2, l2, qe, v2 } from "./vendor.js";
 import { $2, $p, C9, Co, Dt, E9, Ft, G1, H2, Hn, J5, MK, O6, Oe, Ol, Pp, T, TW, V0, We, ZG, an, aw, b4, ct, da, e4, f3, f4, f5, gX, j6, jm, m9, ma, p2, p3, pX, s2, st, t3, wK, xe, yo, zB } from "./formats.js";
 import { $w, Ca, KI, LI, Ma, NR, Q6, Q9, Qc, S9, Tr, Ww, c7, dI, e6, eI, fn, hI, he, i3, oI, p5, qM, tI, u5, x4 } from "./library.js";
@@ -46,137 +57,28 @@ const ghostPlaybackDependencies = { decodeRouteStamp: By, sampleC1: Jh0, sampleC
 const ghostAssetDependencies = { findKart: b4, loadParameterFactory: async () => { const { createVehicleTimeAttackParameters } = await El(async () => { const { createVehicleTimeAttackParameters } = await Promise.resolve().then(() => AS); return { createVehicleTimeAttackParameters }; }, void 0); return createVehicleTimeAttackParameters; }, loadBodyParameter: t3, ghostItemIds: U_, loadPaintColor: We, createBalloon: Jw, createAccessory: hr };
 const ghostRecordLibraryDependencies = { restoreSummaries: Vh0, trackIdFromKey: key => Pt.trackIdFromKey(key), errorMessage: z_, zCeiling: B6, commonTimeBase: Dh0, debug: Nf, get storage() { return localStorage; }, get summaryStorageKey() { return PD; }, hydrateSummaries: hydrateGhostSummaryIndex, syncSummaries: syncGhostSummaryIndex };
 const ghostExportDependencies = { filename: V_, zCeiling: B6, encodeKsvFile: ph0 };
+const ghostMenuImportDependencies = { decodeKsv: pd0, toGhostRecord: gd0, toSelection: zD, selectionLabel: X_, mergeTrackSelection: md0 };
+const ghostVisualAssetDependencies = { serializedRoot: J5, createLinkedPresentation: (root, mount, driver, always) => new _a(root, mount, driver, always), collectToonPairs: qf, createBalloonMount: c7, get decorationSockets() { return jd0; }, nowMs: () => performance.now() };
+const ghostVisualUpdateDependencies = { decodePose: (frame, scratch) => LL(frame, scratch), decodeBasis: (basis, scratch) => xv(basis, scratch), boosterState: status => RD(status), secondaryState: status => ID(status), instantAcceleration: status => P_(status), copyToon: (source, clone) => f6(source, clone), nextTrailState: (status, prior, vehicle) => Kd0(status, prior, vehicle) };
+const raceBgmPlaybackDependencies = { setLoop: (source, loop) => w4(source, loop), setGain: (gain, value, time) => he(gain, value, time), connect: (context, source, channel, gain) => S9(context, source, channel, gain), setDucking: (context, fading) => qM(context, fading), fadeCurve: step => Qd0(step), schedule: (callback, delay) => setInterval(callback, delay), cancel: timer => clearInterval(timer) };
+const raceBgmLoadingDependencies = { resource: (library, path) => G5(library, path), garageMusic: (library, single) => ef0(library, single), parseMultiplayerList: (xml, path) => Fc0(xml, path), decodeBuffer: (resource, context) => Kt(resource, context), racePlaylist: (library, track, context) => eG(library, track, context), create: (context, playlist, ready, garage, win, lose, random) => new P7(context, playlist, ready, garage, win, lose, random) };
+const timeAttackInputBridgeDependencies = { get racingPhase() { return Ne.Racing; }, get forwardAction() { return l2.Forward; }, acceptsTimeAttackInput: lifecycle => e60(lifecycle), activeRace: lifecycle => t60(lifecycle), isTachometer: value => value instanceof fv };
+const ghostSmoothSamplerDependencies = { sampleNative: (record, timeMs) => FD(record, timeMs), smoothVelocity: (tail, head, prior, elapsed) => Zh0(tail, head, prior, elapsed), magnitude: velocity => fd0(velocity), float32: value => L9(value), renderBasis: (velocity, speed, quaternion) => Qh0(velocity, speed, quaternion) };
+const ghostKsvExportDependencies = { encodeStatus: (...args) => GD(...args), encodeRuntimeStamp: (stamp, zCeiling) => xD(stamp, zCeiling), createRecorder: zCeiling => new kD(zCeiling) };
 
 class n60 {
   constructor(e) {
     this.host = e;
   }
   host;
-  drainDrivingInput(e, t) {
-    const i = this.host.input.drain();
-    i.cancelled &&
-      (this.host.drivingInput.cancel(),
-      this.host.autoForward.cancel(),
-      this.host.nitroSeamless.cancel(),
-      this.host.getPhysics().cancelControls(),
-      this.host.getLampFlares()?.resetInputVisibility(),
-      this.host.gamepad.reset());
-    const r = this.host.getLifecycle().phase,
-      s = t60(this.host.getLifecycle());
-    this.host.autoForward.setRaceState(
-      s,
-      r === Ne.Racing && !this.host.getLifecycle().isStartBoosterWindow(e),
-    );
-    const o = this.host.gamepad.poll(
-        this.host.getGamepadPads(),
-        this.host.getGamepadMap(),
-      ),
-      a = o.length === 0 ? i.transitions : [...i.transitions, ...o];
-    (a.some(
-      (c) => c.sourceKind === "gamepad" && c.down && c.action === l2.Forward,
-    ) && this.host.resumeGamepadAutoForward(),
-      this.host.drivingInput.dispatch(a, (c, l) =>
-        this.host.autoForward.dispatch(
-          c,
-          l,
-          this.host.drivingInput.snapshot(),
-          (u) => this.handleDrivingCommand(u, e, t),
-        ),
-      ));
-  }
-  handleDrivingCommand(e, t, i) {
-    (this.handleBaseDrivingCommand(e),
-      e60(this.host.getLifecycle()) &&
-        this.handleTimeAttackDrivingCommand(e, t, i));
-  }
-  setAutoForwardEnabled(e) {
-    const t = this.host.autoForward.isActive(this.host.drivingInput.snapshot());
-    (this.host.autoForward.setEnabled(e),
-      !e && t && this.handleBaseDrivingCommand({ kind: "forward-up" }));
-  }
-  setNitroSeamlessMode(e) {
-    this.host.nitroSeamless.setMode(e);
-  }
-  getDrivingSnapshot() {
-    return this.host.autoForward.apply(this.host.drivingInput.snapshot());
-  }
-  handleBaseDrivingCommand(e) {
-    switch (e.kind) {
-      case "drift-start":
-      case "drift-stop":
-        this.host
-          .getPhysics()
-          .handleDrivingCommand(e, this.getDrivingSnapshot());
-        return;
-      case "forward-down":
-      case "forward-up":
-        (this.host
-          .getPhysics()
-          .handleDrivingCommand(e, this.getDrivingSnapshot()),
-          this.host
-            .getLampFlares()
-            ?.setInputPair("front", e.kind === "forward-down"));
-        return;
-      case "reverse-down":
-      case "reverse-up":
-        (this.host
-          .getPhysics()
-          .handleDrivingCommand(e, this.getDrivingSnapshot()),
-          this.host
-            .getLampFlares()
-            ?.setInputPair("rear", e.kind === "reverse-down"));
-        return;
-      default:
-        return;
-    }
-  }
-  handleTimeAttackDrivingCommand(e, t, i) {
-    switch (e.kind) {
-      case "forward-up":
-        (this.host.getLifecycle().isStartBoosterWindow(t) &&
-          this.host.getPhysics().startRaceBooster(),
-          this.resetTacho1InputMode(i));
-        return;
-      case "reverse-down":
-        this.resetTacho1InputMode(i);
-        return;
-      case "reset":
-        this.host.getLifecycle().phase === Ne.Racing &&
-          this.host.handleSpeedReset(!0);
-        return;
-      case "instant-acceleration":
-        this.host.getLifecycle().phase === Ne.Racing &&
-          this.host
-            .getPhysics()
-            .handleDrivingCommand(e, this.getDrivingSnapshot());
-        return;
-      case "forward-down":
-        (this.host.getLifecycle().isStartBoosterWindow(t) &&
-          this.host.getPhysics().startRaceBooster(),
-          this.host.getPhysics().startPlayBooster(this.getDrivingSnapshot()));
-        return;
-      case "use-item-or-booster":
-        {
-          const r = this.host.getPhysics(),
-            s = this.getDrivingSnapshot();
-          this.host.nitroSeamless.press(r, s, t) ||
-            r.handleDrivingCommand(e, s);
-        }
-        return;
-      case "reorder-items":
-        this.host.getLifecycle().phase === Ne.Racing &&
-          this.host
-            .getPhysics()
-            .handleDrivingCommand(e, this.getDrivingSnapshot());
-        return;
-      default:
-        return;
-    }
-  }
-  resetTacho1InputMode(e) {
-    const t = this.host.getTachometer();
-    t instanceof fv && t.resetMode(Math.trunc(e) >>> 0);
-  }
+    drainDrivingInput(nowMs, inputTime) { return drainTimeAttackDrivingInput(this, nowMs, inputTime, timeAttackInputBridgeDependencies); }
+    handleDrivingCommand(command, nowMs, inputTime) { return routeTimeAttackDrivingCommand(this, command, nowMs, inputTime, timeAttackInputBridgeDependencies); }
+    setAutoForwardEnabled(enabled) { return setTimeAttackAutoForward(this, enabled); }
+    setNitroSeamlessMode(mode) { return setTimeAttackNitroSeamlessMode(this, mode); }
+    getDrivingSnapshot() { return timeAttackDrivingSnapshot(this); }
+    handleBaseDrivingCommand(command) { return routeBaseDrivingCommand(this, command); }
+    handleTimeAttackDrivingCommand(command, nowMs, inputTime) { return routeTimeAttackRaceCommand(this, command, nowMs, inputTime, timeAttackInputBridgeDependencies); }
+    resetTacho1InputMode(inputTime) { return resetTimeAttackTachometerInput(this, inputTime, timeAttackInputBridgeDependencies); }
 }
 
 function i60(n) {
@@ -4353,17 +4255,7 @@ function P_(n) {
 class kD extends GhostPoseRecorder { constructor(zCeiling) { super(zCeiling, ghostPoseRecorderDependencies); } }
 
 class Rh0 {
-  encode(e, t) {
-    if (e.ksvRuntimeStamps)
-      return { stamps: e.ksvRuntimeStamps.map((o) => xD(o, t)) };
-    const i = e.frames,
-      r = i[0];
-    if (!r) return { stamps: [] };
-    const s = new kD(t);
-    s.begin(F_(r));
-    for (const o of i) s.update(F_(o));
-    return s.finish();
-  }
+    encode(recording, zCeiling) { return encodeGhostKsvRecording(recording, zCeiling, ghostKsvExportDependencies); }
 }
 
 function Ih0(n, e, t) {
@@ -4396,93 +4288,15 @@ function Ih0(n, e, t) {
   };
 }
 
-function F_(n) {
-  const e = n.rotation;
-  return {
-    timeMs: Math.max(0, n.stageTimeMs),
-    x: n.position.x,
-    y: -n.position.z,
-    z: n.position.y,
-    w: e.w,
-    qx: e.x,
-    qy: e.y,
-    qz: e.z,
-    status: GD(
-      n.state.stateCode,
-      n.state.driftActive,
-      n.state.instantAccelerationActive,
-      n.state.motionRequest,
-    ),
-  };
-}
 
-const D_ = { unknown1_1: 255, unknown6: 0 },
-  Fc = { regionCode: 0, unknown1_2: 0, unknown3: 0, unknown7: 0 },
-  kh0 = Uint8Array.of(0, 0, 0, 0);
+
+const kh0 = Uint8Array.of(0, 0, 0, 0);
 
 class Lh0 {
-  build(e, t) {
-    const i = Ph0(e.metadata.equipment),
-      r = e.metadata.equipment.playerName ?? "";
-    return {
-      headerVersion: 12,
-      recordTitle: "",
-      regionCode: Fc.regionCode,
-      unknown1_1: D_.unknown1_1,
-      contestType: 9,
-      playerNameHash: 0,
-      unknown1_2: Fc.unknown1_2,
-      recorderAccount: "",
-      recorderName: r,
-      recordingDateDays: 0,
-      recordingDateTime: 0,
-      recordChecksum: 0,
-      isOfficial: !1,
-      description: "",
-      trackName: e.metadata.trackId,
-      unknown3: Fc.unknown3,
-      bestTimeMs: e.metadata.summary.elapsedMs,
-      contestImg: "",
-      opaqueBlob: Uint8Array.from(kh0),
-      unknown6: D_.unknown6,
-      speed: e.metadata.speed,
-      unknown7: Fc.unknown7,
-      players: [{ playerName: r, clubName: "", equipment: i }],
-      recordVersion: 12,
-      records: [t],
-    };
-  }
+    build(recording, encoded) { return buildGhostKsvHeader(recording, encoded); }
 }
 
-function Ph0(n) {
-  return {
-    character: n.character,
-    kartPaint: n.kartPaint ?? 0,
-    characterColor: n.characterColor ?? 0,
-    kart: n.kart,
-    plate: n.plate,
-    goggle: n.goggle,
-    balloon: n.balloon,
-    equ2: n.superBoss ?? 0,
-    headband: n.headBand,
-    replay: n.headphone ?? 0,
-    cane: n.handGearL,
-    equ3: n.handGearR ?? 0,
-    apparel: n.uniform ?? 0,
-    equ4: n.decal ?? 0,
-    plateText: n.plateText,
-    startSlot: n.startSlot,
-    unknownPlayerFlag: 0,
-    equ5: 0,
-    equ6: 0,
-    equ7: 0,
-    equ8: 0,
-    equ9: 0,
-    equ10: 0,
-    equ11: 0,
-    equ12: 0,
-  };
-}
+
 
 const PD = "kartrider-web:p3553:time-attack-records-v1";
 
@@ -4716,35 +4530,7 @@ function Xh0(n) {
   return Cl[(e + 1) % Cl.length];
 }
 
-class Yh0 {
-  record;
-  lastTimeMs;
-  head;
-  tail;
-  velocity = { x: 0, y: 0, z: 0 };
-  constructor(e) {
-    if (e.stamps.length === 0) throw new Error("KSV 平滑采样记录没有任何帧。");
-    this.record = e;
-  }
-  sample(e) {
-    const t = FD(this.record, e),
-      i = { x: t.x, y: t.y, z: t.z };
-    ((this.tail = this.head), (this.head = i));
-    const r = this.lastTimeMs === void 0 ? 0 : e - this.lastTimeMs;
-    ((this.lastTimeMs = e),
-      r > 0 &&
-        this.tail &&
-        (this.velocity = Zh0(this.tail, this.head, this.velocity, r)));
-    const s = fd0(this.velocity),
-      o = L9(s * 3.6);
-    return {
-      sample: t,
-      velocity: this.velocity,
-      speedKmh: o,
-      renderBasisClient: Qh0(this.velocity, s, t.quaternion),
-    };
-  }
-}
+class Yh0 extends GhostSmoothSampler { constructor(record) { super(record, ghostSmoothSamplerDependencies); } }
 
 function Zh0(n, e, t, i) {
   const r = Math.min(1, L9(L9(i) * Hh0)),
@@ -5226,110 +5012,11 @@ class Ly {
   onExportClick = () => {
     this.exportGhost();
   };
-  async deleteGhost() {
-    const e = this.options.currentGhostKey();
-    if (!e) {
-      this.options.reportError("当前地图没有记录，无法删除影子。");
-      return;
-    }
-    try {
-      await this.options.deleteGhost(e);
-    } catch (t) {
-      this.options.reportError(
-        `删除失败：${t instanceof Error ? t.message : String(t)}`,
-      );
-    }
-  }
-  async exportGhost() {
-    const e = this.options.currentGhostKey();
-    if (!e) {
-      this.options.reportError("当前地图没有记录，无法导出 KSV。 ");
-      return;
-    }
-    try {
-      if (!this.options.exportGhost) throw new Error("导出功能尚未就绪。 ");
-      await this.options.exportGhost(e);
-    } catch (t) {
-      this.options.reportError(
-        `导出失败：${t instanceof Error ? t.message : String(t)}`,
-      );
-    }
-  }
-  async importSelectedFile() {
-    const e = this.input.files?.[0];
-    if (!e || this.disposed) return;
-    const t = ++this.importRevision,
-      i = this.options.speedVersion();
-    try {
-      const r = new Uint8Array(await e.arrayBuffer());
-      if (!this.isCurrentImport(t)) return;
-      const { info: s, zCeiling: o } = pd0(r),
-        a = gd0(s, i),
-        c = zD(s, i),
-        l = s.players[0]?.equipment.kart,
-        u =
-          l === void 0
-            ? ""
-            : ((await this.options.resolveGhostKartTitle(l)) ?? "");
-      if (
-        !this.isCurrentImport(t) ||
-        (await this.options.importGhost(
-          a.key,
-          a.sources,
-          { ...a.summary, kartName: u },
-          r,
-        ),
-        !this.isCurrentImport(t))
-      )
-        return;
-      const h = Math.max(...a.sources.map((d) => d.record.stamps.length));
-      await this.switchToImportedTrack(c, o, h, t);
-    } catch (r) {
-      this.isCurrentImport(t) &&
-        this.options.reportError(
-          `导入失败：${r instanceof Error ? r.message : String(r)}`,
-        );
-    } finally {
-      this.isCurrentImport(t) && (this.input.value = "");
-    }
-  }
-  isCurrentImport(e) {
-    return !this.disposed && this.importRevision === e;
-  }
-  async switchToImportedTrack(e, t, i, r) {
-    const s = await this.options.resolveGhostTrack(e.trackId);
-    if (!this.isCurrentImport(r)) return;
-    if (!s) {
-      this.options.reportError(
-        `已导入影子：地图 ${e.trackId} 不在当前目录，无法自动切换 ${X_(e)}（zCeiling ${t}，${i} 帧）`,
-      );
-      return;
-    }
-    if (!s.selection) {
-      this.options.reportError(
-        `已导入影子：${s.track.title} (${s.track.id})；READY 未就绪，未能自动切换 ${X_(e)}（zCeiling ${t}，${i} 帧）`,
-      );
-      return;
-    }
-    if (
-      (this.pendingTrackSwitch &&
-        (await this.pendingTrackSwitch.catch(() => {})),
-      !this.isCurrentImport(r))
-    )
-      return;
-    const o = this.options.selectGhostTrack(
-      md0(s.selection, s.track),
-      e.speed,
-      e.booster,
-      e.version,
-    );
-    this.pendingTrackSwitch = o;
-    try {
-      await o;
-    } finally {
-      this.pendingTrackSwitch === o && (this.pendingTrackSwitch = void 0);
-    }
-  }
+    async deleteGhost() { return deleteGhostFromMenu(this); }
+    async exportGhost() { return exportGhostFromMenu(this); }
+    async importSelectedFile() { return importSelectedGhostFile(this, ghostMenuImportDependencies); }
+    isCurrentImport(revision) { return isCurrentGhostImport(this, revision); }
+    async switchToImportedTrack(selection, zCeiling, frameCount, revision) { return switchToImportedGhostTrack(this, selection, zCeiling, frameCount, revision, ghostMenuImportDependencies); }
 }
 
 function X_(n) {
@@ -5359,68 +5046,15 @@ class vd0 {
     this.host = e;
   }
   host;
-  mount(e) {
-    return Ly.attach({
-      root: e,
-      importGhost: (t, i, r, s) => this.importRecord(t, i, r, s),
-      resolveGhostTrack: (t) => this.resolveTrack(t),
-      resolveGhostKartTitle: (t) => this.resolveKartTitle(t),
-      selectGhostTrack: (t, i, r, s) => this.host.selectTrack(t, i, r, s),
-      deleteGhost: (t) => this.deleteRecord(t),
-      exportGhost: (t) => this.exportRecord(t),
-      currentGhostKey: () => this.host.currentKey(),
-      speedVersion: () => this.host.speedVersion(),
-      reportError: (t) => this.host.reportError(t),
-      samplingMode: () => this.host.samplingMode(),
-      onSamplingModeChange: (t) => this.host.changeSamplingMode(t),
-      resetNickname: () => this.host.resetNickname(),
-    });
-  }
-  async importRecord(e, t, i, r) {
-    const s = this.host.library.record(e),
-      o = {
-        elapsedMs: i.bestTimeMs,
-        kartName: i.kartName ?? s?.kartName ?? "",
-        speed: i.speed,
-        booster: i.booster,
-        hasGhost: !0,
-      };
-    try {
-      r
-        ? await this.host.library.saveImported(e, t, o, r)
-        : await this.host.library.save(e, t, o);
-    } catch (a) {
-      throw (this.host.reportError(`影子导入失败：${yd0(a)}`), a);
-    }
-  }
-  async resolveTrack(e) {
-    const t = this.host.getLibrary();
-    if (!t) return;
-    const i = (await t.timeAttackTrackCatalog()).find(
-      (r) => r.id.toLowerCase() === e.toLowerCase(),
-    );
-    return i ? { track: i, selection: this.host.getSelection() } : void 0;
-  }
-  async resolveKartTitle(e) {
-    return (
-      await this.host.getLibrary()?.timeAttackGarageCatalog()
-    )?.karts.find((i) => i.itemId === e)?.title;
-  }
-  async deleteRecord(e) {
-    (await this.host.library.delete(e)) &&
-      e === this.host.currentKey() &&
-      this.host.refreshRecord();
-  }
-  async exportRecord(e) {
-    const t = await this.host.library.exportKsv(e);
-    if (!t) throw new Error("录像不存在或缺少可导出的 replay 数据。 ");
-    wd0(t.bytes, t.filename);
-  }
+    mount(root) { return mountGhostMenuBridge(this, root, options => Ly.attach(options)); }
+    async importRecord(key, sources, summary, bytes) { return importGhostMenuRecord(this, key, sources, summary, bytes); }
+    async resolveTrack(trackId) { return resolveGhostMenuTrack(this, trackId); }
+    async resolveKartTitle(itemId) { return resolveGhostMenuKartTitle(this, itemId); }
+    async deleteRecord(key) { return deleteGhostMenuRecord(this, key); }
+    async exportRecord(key) { return exportGhostMenuRecord(this, key, wd0); }
 }
 
-function yd0(n) {
-  return n instanceof Error ? n.message : String(n);
-}
+
 
 class Py {
   constructor(e, t) {
@@ -6945,209 +6579,17 @@ class Xd0 {
       (this.modelMount.name = "imported-ghost-mount"),
       this.root.add(this.modelMount));
   }
-  seedStart(e, t, i, r) {
-    (this.root.position.set(e.x, e.y, e.z),
-      this.basisRight.set(t.x, t.y, t.z),
-      this.basisUp.set(r.x, r.y, r.z),
-      this.basisForward.set(i.x, i.y, i.z),
-      this.orientationMatrix.makeBasis(
-        this.basisRight,
-        this.basisUp,
-        this.basisForward,
-      ),
-      this.root.quaternion.setFromRotationMatrix(this.orientationMatrix));
-  }
-  setAssets(e, t, i, r, s, o, a, c) {
-    this.usesP3553NonDualLinkedState = a === "p3553" && c <= 6;
-    const l = J5(e.model),
-      u = e.renderScene?.bySource.get(l);
-    if (!u) throw new Error("影子 ReKart serialized root presentation 缺失。");
-    if (t) {
-      const d = l.children[6]?.value,
-        f = d && "children" in d ? e.renderScene?.bySource.get(d) : void 0;
-      if (!f) throw new Error("影子 ReKart root child 6 mount 缺失。");
-      (f.clear(),
-        f.add(t.object),
-        r
-          ? ((this.linkedPresentation = new _a(u, f, t.object, r === "always")),
-            this.linkedPresentation.setMode(0))
-          : t.object.scale.setScalar(i));
-    }
-    ((this.imported = e),
-      (this.character = t),
-      (this.animation = e.animation),
-      (this.visual = s),
-      (this.motorcycle = o),
-      this.modelMount.add(e.object),
-      (this.toonPairs.length = 0),
-      qf(this.modelMount, this.toonPairs));
-    const h = s.attachments.map((d) => e.scene.nodes.get(d)?.object);
-    (!h[16] &&
-      s.attachments[16] === "balloon" &&
-      (h[16] = c7(e.model, e.scene)),
-      (this.attachmentNodes = h));
-  }
-  setEffects(e) {
-    this.effects = e;
-  }
-  setTrails(e, t) {
-    ((this.trails = e), (this.trailVehicle = t), (this.trailState = 0));
-  }
-  attachToScene(e) {
-    (e.add(this.root), this.trails && e.add(this.trails.object));
-  }
-  setDecorations(e, t) {
-    const i = this.attachmentNodes[16];
-    e &&
-      i &&
-      (e.scene.reset(performance.now()),
-      i.add(e.scene.object),
-      qf(e.scene.object),
-      (this.balloon = e));
-    for (const r of t) {
-      const s = jd0[r.kind],
-        o = this.character?.getDecorationSocket(s[0], s[1]);
-      o &&
-        (r.render.scene.reset(performance.now()),
-        o.add(r.render.scene.object),
-        qf(r.render.scene.object),
-        (this.accessories = [...this.accessories, r]));
-    }
-  }
-  update(e, t, i, r, s, o) {
-    const a = "sample" in e ? e.sample : e,
-      c = LL(a, this.poseScratch);
-    this.root.position.set(c.position.x, c.position.y, c.position.z);
-    const l =
-      "renderBasisClient" in e
-        ? xv(e.renderBasisClient, this.basisScratch)
-        : { right: c.right, forward: c.forward, up: c.up };
-    (this.basisRight.set(l.right.x, l.right.y, l.right.z),
-      this.basisUp.set(l.up.x, l.up.y, l.up.z),
-      this.basisForward.set(l.forward.x, l.forward.y, l.forward.z),
-      this.orientationMatrix.makeBasis(
-        this.basisRight,
-        this.basisUp,
-        this.basisForward,
-      ),
-      this.root.quaternion.setFromRotationMatrix(this.orientationMatrix));
-    const u = RD(a.status),
-      h = ID(a.status);
-    u === 10
-      ? this.lastBoosterState !== 10 &&
-        (this.burstTeam = this.lastBoosterState === 4)
-      : (this.lastBoosterState = u);
-    const d = this.deriveMotion(
-      c,
-      l.forward,
-      a.timeMs,
-      "velocity" in e ? e : void 0,
-    );
-    this.updateAnimation(t, u, h, d.displaySpeedKmh);
-    const f = this.usesP3553NonDualLinkedState
-      ? this.linkedPresentation?.updateSpeedRace(u, t)
-      : this.linkedPresentation?.update(u, t);
-    (o?.("kt-ghost-anim"),
-      this.character?.update(t, i, r, s, {
-        forwardSpeed: d.forwardSpeed,
-        rawSteer: d.rawSteer,
-        tireTransient: 0,
-        boosterState: u,
-        instantAccelerationActive: P_(a.status),
-        motorcycle: this.motorcycle,
-        landingTrigger: !1,
-        collisionHit: !1,
-        collisionStrength: 0,
-        visualScaleMode: 0,
-        linkedPresentationMotion: f,
-      }),
-      o?.("kt-ghost-char"),
-      this.imported?.renderScene?.update(i, r, s),
-      o?.("kt-ghost-render"));
-    for (const { source: p, clone: v } of this.toonPairs) f6(p, v);
-    (this.effects &&
-      (this.effects.setState(u, h, this.ghostDualTeam(u), P_(a.status), t) &&
-        this.animation?.enterDualUse(),
-      this.effects.update(t, i, r, s)),
-      this.trails &&
-        this.trailVehicle &&
-        ((this.trailState = Kd0(a.status, this.trailState, this.trailVehicle)),
-        this.trails.setState(this.trailState, t)),
-      this.trails?.update(t, i, this.imported?.renderScene !== void 0),
-      o?.("kt-ghost-fx"),
-      this.balloon?.scene.update(t, i, r, s),
-      this.accessories.forEach(({ kind: p, render: v }) => {
-        (p === "headBand" && v.setOwnerState?.(u, t),
-          v.scene.update(t, i, r, s));
-      }),
-      o?.("kt-ghost-decor"));
-  }
-  updateAnimation(e, t, i, r) {
-    if (!this.animation || !this.visual) return;
-    const s =
-      (this.visual.isTransformAutoCharge &&
-        r > this.visual.autoChargeLowSpeed) ||
-      (t > 2 && t < 12);
-    this.animation.update(e >>> 0, s, this.visual.transformTime, i, t);
-  }
-  ghostDualTeam(e) {
-    return e === 4 ? !0 : e === 10 && this.burstTeam;
-  }
-  deriveMotion(e, t, i, r) {
-    const s = Math.atan2(t.x, t.z);
-    let o = 0,
-      a = 0,
-      c = 0;
-    if (this.hasLastPose) {
-      const l = (i - this.lastPoseTimeMs) / 1e3;
-      if (l > 0) {
-        const u = e.position.x - this.lastPosePosition.x,
-          h = e.position.y - this.lastPosePosition.y,
-          d = e.position.z - this.lastPosePosition.z;
-        ((c = (Math.sqrt(u * u + h * h + d * d) / l) * 3.6),
-          (o = (u * t.x + h * t.y + d * t.z) / l));
-        let p = s - this.lastPoseHeading;
-        for (; p > Math.PI;) p -= Math.PI * 2;
-        for (; p < -Math.PI;) p += Math.PI * 2;
-        a = p;
-      }
-    }
-    if (r) {
-      const l = { x: r.velocity.x, y: r.velocity.z, z: -r.velocity.y };
-      ((o = l.x * t.x + l.y * t.y + l.z * t.z), (c = r.speedKmh));
-    }
-    return (
-      (this.hasLastPose = !0),
-      (this.lastPosePosition.x = e.position.x),
-      (this.lastPosePosition.y = e.position.y),
-      (this.lastPosePosition.z = e.position.z),
-      (this.lastPoseHeading = s),
-      (this.lastPoseTimeMs = i),
-      { forwardSpeed: o, rawSteer: a, displaySpeedKmh: c }
-    );
-  }
-  dispose() {
-    (this.balloon?.dispose(),
-      (this.balloon = void 0),
-      this.accessories.forEach(({ render: e }) => e.dispose()),
-      (this.accessories = []),
-      (this.attachmentNodes = []),
-      this.effects?.dispose(),
-      (this.effects = void 0),
-      this.trails?.dispose(),
-      (this.trails = void 0),
-      this.imported &&
-        (this.imported.renderScene?.dispose(),
-        u5(this.imported.object),
-        (this.imported = void 0)),
-      this.character?.dispose(),
-      (this.character = void 0),
-      (this.linkedPresentation = void 0),
-      (this.animation = void 0),
-      (this.visual = void 0),
-      this.modelMount.clear(),
-      this.root.removeFromParent());
-  }
+    seedStart(position, right, forward, up) { return seedGhostVisualStart(this, position, right, forward, up); }
+    setAssets(imported, character, scale, linkedMode, visual, motorcycle, format, level) { return setGhostVisualAssets(this, imported, character, scale, linkedMode, visual, motorcycle, format, level, ghostVisualAssetDependencies); }
+    setEffects(effects) { return setGhostVisualEffects(this, effects); }
+    setTrails(trails, vehicle) { return setGhostVisualTrails(this, trails, vehicle); }
+    attachToScene(scene) { return attachGhostVisualToScene(this, scene); }
+    setDecorations(balloon, accessories) { return setGhostVisualDecorations(this, balloon, accessories, ghostVisualAssetDependencies); }
+    update(input, timeMs, renderTime, frameSeconds, clock, mark) { return updateGhostVisualFrame(this, input, timeMs, renderTime, frameSeconds, clock, mark, ghostVisualUpdateDependencies); }
+    updateAnimation(timeMs, booster, secondary, speed) { return updateGhostVisualAnimation(this, timeMs, booster, secondary, speed); }
+    ghostDualTeam(booster) { return isGhostDualTeam(this, booster); }
+    deriveMotion(pose, forward, timeMs, telemetry) { return deriveGhostVisualMotion(this, pose, forward, timeMs, telemetry); }
+    dispose() { return disposeGhostVisual(this, u5); }
 }
 
 const J_ = [
@@ -7215,147 +6657,24 @@ class P7 {
   currentRaceNameValue;
   multiplayerBuffers;
   multiplayerLobbyPath;
-  async prepareMultiplayer(e, t = "") {
-    if (this.multiplayerBuffers && this.multiplayerLobbyPath === t) return;
-    const i = await G5(e, "zeta_/cn/content/bgmList.xml").bytes(),
-      r = Fc0(
-        new TextDecoder(i[0] === 255 ? "utf-16le" : "utf-8").decode(i),
-        t,
-      );
-    if (this.multiplayerBuffers) {
-      ((this.multiplayerBuffers = {
-        ...this.multiplayerBuffers,
-        lobby: await Kt(G5(e, r.lobby), this.context),
-      }),
-        (this.multiplayerLobbyPath = t));
-      return;
-    }
-    const [s, o, a, c] = await Promise.all([
-      Kt(G5(e, r.lobby), this.context),
-      Kt(G5(e, r.room), this.context),
-      Kt(G5(e, "sound_/bgm/main/game_end.ogg"), this.context),
-      Kt(G5(e, "sound_/bgm/main/game_result.ogg"), this.context),
-    ]);
-    ((this.multiplayerBuffers = { lobby: s, room: o, finish: a, podium: c }),
-      (this.multiplayerLobbyPath = t));
-  }
-  playMultiplayer(e) {
-    const t = this.multiplayerBuffers?.[e];
-    if (!t) throw Error("多人 BGM 尚未加载。");
-    this.current?.source.buffer !== t && this.start(t, !0, !0);
-  }
-  playMultiplayerPodium() {
-    const e = this.multiplayerBuffers?.podium;
-    if (!e) throw Error("颁奖台音乐尚未加载。");
-    this.current?.source.buffer !== e && this.start(e, !1, !1);
-  }
-  playMultiplayerFinish(e) {
-    if (e) {
-      this.playResult(!0);
-      return;
-    }
-    const t = this.multiplayerBuffers?.finish;
-    if (!t) throw Error("多人完赛音乐尚未加载。");
-    this.start(t, !1, !1);
-  }
-  static async load(e, t, i, r) {
-    const s = G5(e, "sound_/bgm/main/single.ogg"),
-      o = ef0(e, s),
-      a = G5(e, "sound_/bgm/main/game_win.ogg"),
-      c = G5(e, "sound_/bgm/main/game_lose.ogg"),
-      [l, u, h, d, f] = await Promise.all([
-        eG(e, t, r),
-        Kt(s, r),
-        o === s ? Promise.resolve(void 0) : Kt(o, r),
-        Kt(a, r),
-        Kt(c, r),
-      ]);
-    return new P7(r, l, u, h ?? u, d, f, i);
-  }
-  async selectRace(e, t) {
-    const i = await eG(e, t, this.context);
-    ((this.raceBuffers = i.buffers),
-      (this.raceNames = i.names),
-      (this.currentRaceNameValue = void 0));
-  }
-  restart() {
-    const e = this.random.next() % this.raceBuffers.length;
-    ((this.currentRaceNameValue = this.raceNames[e]),
-      this.start(this.raceBuffers[e], !0, !0));
-  }
-  get currentRaceName() {
-    return this.currentRaceNameValue;
-  }
-  playReady() {
-    this.current?.source.buffer !== this.readyBuffer &&
-      this.start(this.readyBuffer, !0, !0);
-  }
-  playGarage() {
-    this.current?.source.buffer !== this.garageBuffer &&
-      this.start(this.garageBuffer, !0, !0);
-  }
-  playMyItems() {
-    this.playReady();
-  }
-  playResult(e) {
-    this.start(e ? this.winBuffer : this.loseBuffer, !1, !1);
-  }
-  dispose() {
-    (this.clearTransition(),
-      this.stop(this.retiring),
-      this.stop(this.current),
-      (this.retiring = void 0),
-      (this.current = void 0));
-  }
-  silence() {
-    this.dispose();
-  }
-  start(e, t, i) {
-    (this.clearTransition(),
-      this.stop(this.retiring),
-      (this.retiring = i ? this.current : void 0),
-      i || this.stop(this.current));
-    const r = this.context.createBufferSource(),
-      s = this.context.createGain();
-    ((r.buffer = e),
-      w4(r, t),
-      he(s.gain, i ? 0 : 1, this.context.currentTime),
-      S9(this.context, r, "bgm", s),
-      r.start(),
-      (this.current = { source: r, gain: s }),
-      i &&
-        ((this.transitionStep = 0),
-        qM(this.context, !0),
-        (this.transitionTimer = setInterval(
-          () => this.advanceTransition(),
-          100,
-        ))));
-  }
-  advanceTransition() {
-    if (!this.current) return this.clearTransition();
-    if (this.transitionStep >= 16) {
-      (this.stop(this.retiring),
-        (this.retiring = void 0),
-        this.clearTransition());
-      return;
-    }
-    const e = Qd0(this.transitionStep++);
-    (he(this.current.gain.gain, e.incoming, this.context.currentTime),
-      he(this.retiring?.gain.gain, e.outgoing, this.context.currentTime));
-  }
-  clearTransition() {
-    (this.transitionTimer !== void 0 && clearInterval(this.transitionTimer),
-      (this.transitionTimer = void 0),
-      qM(this.context, !1));
-  }
-  stop(e) {
-    if (e) {
-      try {
-        e.source.stop();
-      } catch {}
-      (e.source.disconnect(), e.gain.disconnect());
-    }
-  }
+    async prepareMultiplayer(library, lobbyPath = '') { return prepareMultiplayerBgm(this, library, lobbyPath, raceBgmLoadingDependencies); }
+    playMultiplayer(kind) { return playMultiplayerBgm(this, kind); }
+    playMultiplayerPodium() { return playMultiplayerPodiumBgm(this); }
+    playMultiplayerFinish(won) { return playMultiplayerFinishBgm(this, won); }
+    static async load(library, track, random, context) { return loadRaceBgm(library, track, random, context, raceBgmLoadingDependencies); }
+    async selectRace(library, track) { return selectRaceBgm(this, library, track, raceBgmLoadingDependencies); }
+    restart() { return restartRaceBgm(this); }
+    get currentRaceName() { return currentRaceBgmName(this); }
+    playReady() { return playReadyBgm(this); }
+    playGarage() { return playGarageBgm(this); }
+    playMyItems() { return playMyItemsBgm(this); }
+    playResult(won) { return playResultBgm(this, won); }
+    dispose() { return disposeRaceBgm(this); }
+    silence() { return silenceRaceBgm(this); }
+    start(buffer, loop, fade) { return startRaceBgm(this, buffer, loop, fade, raceBgmPlaybackDependencies); }
+    advanceTransition() { return advanceRaceBgmTransition(this, raceBgmPlaybackDependencies); }
+    clearTransition() { return clearRaceBgmTransition(this, raceBgmPlaybackDependencies); }
+    stop(owner) { return stopRaceBgmOwner(owner); }
 }
 
 function Zd0(n) {

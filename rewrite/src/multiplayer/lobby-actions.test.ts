@@ -101,12 +101,22 @@ test("room-list modes, page fallback and error state match release", async () =>
       new Error("ROOM_FULL"));
     await invoke("speedIndiCombine", 2);
     await invoke("speedIndiCombine", 1, false, "grip");
-    await invoke("speedIndiCombine", 0, false, "lte");
+    await invoke("speedIndiCombine", 0, false, "giant");
     return { events, roomIds: host.rooms.map(value => value.roomId),
       channelName: host.channelName, page: host.page, gameplay: host.gameplay,
       selection: host.selection };
   };
   assert.deepEqual(await run(false), await run(true));
+});
+
+test("LTE lobby requests the local gameplay room list", async () => {
+  const { host, events, responses } = fixture();
+  responses.push({ type: "rooms", page: 0, total: 0, rooms: [] });
+  await listLobbyRooms(host, "speedIndiCombine", 0, false, "lte");
+  assert.equal(host.gameplay, "lte");
+  assert.ok(events.some(event => Array.isArray(event) && event[0] === "request" &&
+    (event[1] as { type?: string; gameplay?: string }).type === "list-gameplay" &&
+    (event[1] as { gameplay?: string }).gameplay === "lte"));
 });
 
 test("room mutation success, host start error and timeout match release", async () => {

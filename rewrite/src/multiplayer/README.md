@@ -89,6 +89,12 @@ HTTP endpoints cover health, guest and account login, persistent rooms and
 rules, profiles, and record documents. The browser's single-player profile
 and Ghost summary index synchronize through `ui/profile-sync.ts` and
 `game/ghost-summary-sync.ts`; full Ghost replay frames remain in IndexedDB.
+The local client accepts ordinary, grip, shadow, roadblock, giant, RP, and LTE
+rooms on P3553. LTE is a Web trial: its race uses only the three dedicated
+tracks, random track code 0, and the existing Z/X dodge control. The server
+must include the frozen `race.lte` metadata and a complete `race.startSlots`
+map (one unique slot from 0 to 7 per roster player) for the client to load it.
+The LTE trial does not yet implement automatic nitro refill or banana events.
 The original WebRTC path stays available by setting
 `VITE_MULTIPLAYER_TRANSPORT=webrtc` and a compatible backend origin.
 

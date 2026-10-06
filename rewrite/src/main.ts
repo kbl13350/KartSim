@@ -1,7 +1,4 @@
-// The generated compatibility runtime is kept separate from the handwritten
-// modules. It retains all currently observed game behavior while each system
-// is migrated to the maintainable implementations in this source tree.
-import { installWorldOverrides } from "./world/install";
+// The verified release modules and handwritten systems share one startup path.
 import { installLocalMultiplayerConfig } from "./multiplayer/local-config";
 
 installLocalMultiplayerConfig();
@@ -30,8 +27,8 @@ async function waitForServiceWorker(): Promise<void> {
 }
 
 await waitForServiceWorker();
-const { _L: TrackWorld } = await import("./generated/world.js");
-installWorldOverrides(TrackWorld);
+// The TrackWorld module installs all handwritten instance methods when loaded.
+await import("./generated/world.js");
 await import("./generated/app.js");
 
 export {};

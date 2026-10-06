@@ -2,7 +2,6 @@ package local.kartsim.server;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -97,14 +96,19 @@ public class LocalWebSocket implements WebSocketConfigurer {
         public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
             LobbyService.Client client = clients.remove(session.getId());
             outbound.remove(session.getId());
-            if (client != null) lobby.disconnect(client);
+            if (client != null) {
+                try { lobby.disconnect(client); }
+                catch (RuntimeException failed) {
+                    LOG.warn("Room cleanup after WebSocket close failed", failed);
+                }
+            }
         }
 
         @Override
         public void handleTransportError(WebSocketSession session, Throwable exception) {
             LOG.warn("WebSocket transport error: {}", exception.toString());
             try { session.close(CloseStatus.SERVER_ERROR); }
-            catch (IOException ignored) { }
+            catch (Exception ignored) { /* The peer may have closed concurrently. */ }
         }
 
         private void error(String sessionId, String requestId, String code) {
@@ -118,13 +122,18 @@ public class LocalWebSocket implements WebSocketConfigurer {
             WebSocketSession session = outbound.get(sessionId);
             if (session == null || !session.isOpen()) return;
             try { session.sendMessage(new TextMessage(json.writeValueAsString(message))); }
-            catch (IOException failed) { LOG.warn("Cannot send WebSocket reply: {}", failed.toString()); }
+            catch (Exception failed) {
+                // isOpen can change between the check and sendMessage.
+                LOG.debug("WebSocket text send stopped: {}", failed.toString());
+            }
         }
         private void sendBinary(String sessionId, byte[] frame) {
             WebSocketSession session = outbound.get(sessionId);
             if (session == null || !session.isOpen()) return;
             try { session.sendMessage(new BinaryMessage(frame)); }
-            catch (IOException failed) { LOG.warn("Cannot relay motion frame: {}", failed.toString()); }
+            catch (Exception failed) {
+                LOG.debug("WebSocket binary send stopped: {}", failed.toString());
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 import { formatMultiplayerError } from "./errors";
+import { isPlayableGameplay } from "./gameplay-admission";
 import type { Gameplay, LobbyRoom } from "./lobby-actions";
 
 export interface RoomSettings {
@@ -103,8 +104,8 @@ export async function createLobbyRoom(host: LobbySettingsHost,
   channels: Record<string, { mode: string; speed: number }>,
   loadDialog: LoadCreateDialog): Promise<void> {
   const gameplay = host.gameplay;
-  if (!["ordinary", "grip", "shadow", "roadblock", "giant", "rp"].includes(gameplay)) {
-    host.options.status("LTE 模式暂未开放。", true);
+  if (!isPlayableGameplay(gameplay)) {
+    host.options.status("未知的房间玩法。", true);
     return;
   }
   const channel = host.channelName;

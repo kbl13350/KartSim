@@ -90,6 +90,9 @@ public class LobbyService {
             case "load-failed" -> loadFailed(client, input);
             case "finish" -> finish(client, input);
             case "return-room" -> returnRoom(client, input);
+            case "giant-state" -> giantState(client, input);
+            case "team-charge" -> teamCharge(client, input);
+            case "award-motion" -> awardMotion(client, input);
             default -> throw new ApiError(400, "UNSUPPORTED_COMMAND");
         };
     }
@@ -184,19 +187,15 @@ public class LobbyService {
             throw new ApiError(400, "INVALID_CHANNEL");
         String gameplay = optionalText(input, "gameplay", 20);
         if (gameplay == null) gameplay = "ordinary";
-        if (!List.of("ordinary", "grip", "shadow").contains(gameplay))
-            throw new ApiError(400, "GAMEPLAY_UNAVAILABLE");
-        if (!gameplay.equals("ordinary") && !client.resourceVersion.equals("p3553"))
-            throw new ApiError(400, "RESOURCE_VERSION_UNSUPPORTED");
-        if (gameplay.equals("grip") && speed != 7)
-            throw new ApiError(400, "INVALID_CHANNEL");
         String name = text(input, "name", 1, 18);
         int capacity = integer(input, "capacity", 2, 8);
         if (mode.equals("team") && capacity % 2 != 0) throw new ApiError(400, "INVALID_CAPACITY");
+        GameModes.validateCreation(gameplay, channel, client.resourceVersion, capacity);
         String password = optionalText(input, "password", 12);
         if (password == null) password = "";
         Room room = new Room(UUID.randomUUID().toString(), name, password,
             mode, channel, gameplay, client.resourceVersion, capacity, speed, client.playerId);
+        GameModes.initializeTrack(room);
         room.members.add(new Room.Member(client.playerId, client.name, 0,
             mode.equals("team") ? 1 : null, client.equipment, client.initial));
         rooms.put(room.id, room);
@@ -228,8 +227,6 @@ public class LobbyService {
 
     private Map<String, Object> leave(Client client, JsonNode input) {
         Room room = memberRoom(client, input);
-        if (!room.phase.equals("open") && !room.phase.equals("finished"))
-            throw new ApiError(400, "ROOM_NOT_OPEN");
         leaveInternal(client, room);
         return Map.of("type", "left", "roomId", room.id);
     }
@@ -245,6 +242,20 @@ public class LobbyService {
             return;
         }
         if (room.hostId.equals(client.playerId)) room.hostId = room.members.get(0).playerId;
+        if (room.gameplay.equals("roadblock") && room.race != null &&
+            room.phase.equals("racing")) {
+            if (client.playerId.equals(room.race.roadblock.get("runnerId")))
+                endRoadblock(room, "runner-left", Math.max(now(), room.race.startAt));
+            else {
+                room.revision++;
+                broadcastRoom(room, null);
+            }
+            return;
+        }
+        if (room.phase.equals("finished") && room.race != null) {
+            room.race.returnedIds.remove(client.playerId);
+            closeRaceWhenReturned(room);
+        }
         if (!room.phase.equals("open") && !room.phase.equals("finished")) {
             room.phase = "open";
             room.race = null;
@@ -285,8 +296,10 @@ public class LobbyService {
                 String track = text(input, "trackId", 1, 64);
                 if (!track.matches("[A-Za-z][A-Za-z0-9_]{0,63}"))
                     throw new ApiError(400, "INVALID_TRACK");
+                GameModes.validateTrack(room, track);
                 room.trackId = track;
                 room.randomTrackCode = null;
+                saveRules(room);
             }
             case "random-track" -> {
                 requireHost(room, client);
@@ -295,8 +308,10 @@ public class LobbyService {
                 int code = integer(input, "randomTrackCode", 0, 40);
                 if (!List.of(0, 3, 4, 5, 6, 7, 8, 30, 40).contains(code))
                     throw new ApiError(400, "INVALID_TRACK");
+                GameModes.validateRandomTrack(room, code);
                 room.trackId = null;
                 room.randomTrackCode = code;
+                saveRules(room);
             }
             case "slot" -> {
                 requireHost(room, client);
@@ -337,6 +352,7 @@ public class LobbyService {
             }
             case "transfer-host" -> {
                 requireHost(room, client);
+                if (room.kickVote != null) throw new ApiError(400, "VOTE_IN_PROGRESS");
                 String target = text(input, "playerId", 1, 64);
                 if (room.member(target) == null) throw new ApiError(400, "PLAYER_NOT_FOUND");
                 room.hostId = target;
@@ -378,10 +394,7 @@ public class LobbyService {
         event.put("roomId", room.id);
         if (inRace) event.put("raceId", room.race.id);
         event.put("message", message);
-        for (Room.Member member : room.members) {
-            Client receiver = clients.get(member.playerId);
-            if (receiver != null && receiver != client) receiver.emit(event);
-        }
+        broadcastPeerEvent(room, client, event);
         return event;
     }
 
@@ -392,6 +405,8 @@ public class LobbyService {
         if (integer(input, "revision", 1, Integer.MAX_VALUE) != room.revision)
             throw new ApiError(409, "STALE_REVISION");
         if (room.members.size() < 2) throw new ApiError(400, "NOT_ENOUGH_PLAYERS");
+        if (room.gameplay.equals("roadblock") && room.members.size() < 5)
+            throw new ApiError(400, "NOT_ENOUGH_PLAYERS");
         if (room.members.stream().anyMatch(member ->
                 !member.playerId.equals(room.hostId) && !member.ready))
             throw new ApiError(400, "PLAYERS_NOT_READY");
@@ -403,14 +418,22 @@ public class LobbyService {
             throw new ApiError(400, "TEAM_REQUIRED");
         List<Map<String, Object>> roster = room.members.stream()
             .map(Room.Member::snapshot).toList();
+        Map<String, Integer> startSlots = new LinkedHashMap<>();
+        for (Room.Member member : room.members)
+            startSlots.put(member.playerId, member.slot);
+        long loadingWindowMs = List.of("roadblock", "giant", "rp", "lte")
+            .contains(room.gameplay) ? 90_000 : 30_000;
         room.race = new Room.Race(UUID.randomUUID().toString(),
-            room.channelName, room.gameplay, chooseTrack(room), now() + 30_000, roster);
+            room.channelName, room.gameplay, GameModes.chooseTrack(room),
+            now() + loadingWindowMs, roster, startSlots);
+        GameModes.addRaceData(room, room.race);
         room.kickVote = null;
         room.phase = "loading";
         room.raceError = null;
         room.revision++;
         String raceId = room.race.id;
-        timer.schedule(() -> loadingTimeout(room.id, raceId), 30, TimeUnit.SECONDS);
+        timer.schedule(() -> loadingTimeout(room.id, raceId),
+            loadingWindowMs, TimeUnit.MILLISECONDS);
         broadcastRoom(room, client);
         return roomReply(room);
     }
@@ -433,6 +456,12 @@ public class LobbyService {
             room.race.loadedIds.add(client.playerId);
         if (room.race.loadedIds.size() == room.members.size()) {
             room.race.startAt = now() + 3_000;
+            if (room.gameplay.equals("roadblock")) {
+                room.race.finishDeadline = room.race.startAt + GameModes.ROADBLOCK_LIMIT_MS;
+                String raceId = room.race.id;
+                timer.schedule(() -> roadblockTimeout(room.id, raceId),
+                    GameModes.ROADBLOCK_LIMIT_MS + 3_000L, TimeUnit.MILLISECONDS);
+            }
             room.phase = "countdown";
             String raceId = room.race.id;
             timer.schedule(() -> beginRace(room.id, raceId), 3, TimeUnit.SECONDS);
@@ -453,6 +482,8 @@ public class LobbyService {
 
     private Map<String, Object> loadFailed(Client client, JsonNode input) {
         Room room = raceRoom(client, input);
+        if (!room.phase.equals("loading"))
+            throw new ApiError(400, "RACE_NOT_LOADING");
         room.phase = "open";
         room.race = null;
         room.raceError = "LOAD_FAILED";
@@ -465,6 +496,14 @@ public class LobbyService {
         Room room = raceRoom(client, input);
         if (!room.phase.equals("racing")) throw new ApiError(400, "RACE_NOT_RUNNING");
         int elapsed = integer(input, "elapsedMs", 0, Integer.MAX_VALUE);
+        if (room.gameplay.equals("roadblock")) {
+            if (!client.playerId.equals(room.race.roadblock.get("runnerId")))
+                throw new ApiError(403, "RUNNER_REQUIRED");
+            if (now() >= room.race.finishDeadline)
+                endRoadblock(room, "timeout", room.race.finishDeadline);
+            else endRoadblock(room, "finish", now());
+            return roomReply(room);
+        }
         if (room.race.finishes.stream().anyMatch(row -> row.get("playerId").equals(client.playerId)))
             throw new ApiError(400, "ALREADY_FINISHED");
         room.race.finishes.add(Map.of("playerId", client.playerId, "elapsedMs", elapsed));
@@ -480,6 +519,110 @@ public class LobbyService {
             broadcastRoom(room, client);
         }
         return roomReply(room);
+    }
+
+    synchronized void roadblockTimeout(String roomId, String raceId) {
+        Room room = rooms.get(roomId);
+        if (room == null || room.race == null || !room.race.id.equals(raceId) ||
+            !room.phase.equals("racing")) return;
+        endRoadblock(room, "timeout", room.race.finishDeadline);
+    }
+
+    /** The runner is the only racer who can win; blockers win at the time limit. */
+    private void endRoadblock(Room room, String reason, long observedAt) {
+        Room.Race race = room.race;
+        long endAt = Math.max(race.startAt, Math.min(observedAt, race.finishDeadline));
+        String runnerId = (String) race.roadblock.get("runnerId");
+        if (reason.equals("finish")) {
+            race.finishes.add(Map.of("playerId", runnerId,
+                "elapsedMs", (int) (endAt - race.startAt)));
+        }
+        race.roadblockOutcome = Map.of("runnerWon", reason.equals("finish"),
+            "reason", reason, "endAt", endAt);
+        race.raceOverAt = endAt + 3_000;
+        race.results = List.of();
+        room.phase = "finished";
+        room.revision++;
+        saveResults(room);
+        broadcastRoom(room, null);
+    }
+
+    private Map<String, Object> giantState(Client client, JsonNode input) {
+        Room room = raceRoom(client, input);
+        if (!room.gameplay.equals("giant") || !room.phase.equals("racing") ||
+            !room.race.loadedIds.contains(client.playerId))
+            throw new ApiError(400, "GIANT_STATE_UNAVAILABLE");
+        int sequence = integer(input, "sequence", 1, Integer.MAX_VALUE);
+        int main = integer(input, "main", 0, 4);
+        int extra = integer(input, "extra", 0, 2);
+        int status = integer(input, "status", 0, 1);
+        if (main != 4 && extra != 0) throw new ApiError(400, "INVALID_GIANT_STATE");
+        Room.GiantState previous = room.race.giantStates.get(client.playerId);
+        int oldSequence = previous == null ? 0 : previous.sequence();
+        int oldMain = previous == null ? 0 : previous.main();
+        int oldExtra = previous == null ? 0 : previous.extra();
+        if (sequence != oldSequence + 1) throw new ApiError(409, "INVALID_SEQUENCE");
+        int next = (oldMain + oldExtra + 1) % 7;
+        if (status == 1 ? main != oldMain || extra != oldExtra :
+            main != Math.min(next, 4) || extra != Math.max(0, next - 4))
+            throw new ApiError(400, "INVALID_GIANT_STATE");
+        room.race.giantStates.put(client.playerId,
+            new Room.GiantState(sequence, main, extra, status));
+        Map<String, Object> event = Map.of("type", "giant-state",
+            "roomId", room.id, "raceId", room.race.id, "playerId", client.playerId,
+            "sequence", sequence, "main", main, "extra", extra, "status", status);
+        broadcastPeerEvent(room, client, event);
+        return event;
+    }
+
+    /** Sum the team's drift charge and publish the next normalized meter target. */
+    private Map<String, Object> teamCharge(Client client, JsonNode input) {
+        Room room = raceRoom(client, input);
+        if (!room.mode.equals("team") || room.speed == 4 ||
+            room.gameplay.equals("grip") || !room.phase.equals("racing") ||
+            !room.race.loadedIds.contains(client.playerId))
+            throw new ApiError(400, "TEAM_GAUGE_UNAVAILABLE");
+        Integer team = room.member(client.playerId).team;
+        if (team == null) throw new ApiError(400, "TEAM_REQUIRED");
+        int sequence = integer(input, "sequence", 1, Integer.MAX_VALUE);
+        int previous = room.race.teamChargeSequences.getOrDefault(client.playerId, 0);
+        if (sequence != previous + 1) throw new ApiError(409, "INVALID_SEQUENCE");
+        JsonNode amount = input.get("charge");
+        if (amount == null || !amount.isNumber() ||
+            !Double.isFinite(amount.doubleValue()) || amount.doubleValue() <= 0 ||
+            amount.doubleValue() > 100_000)
+            throw new ApiError(400, "INVALID_CHARGE");
+        double current = room.race.teamGaugeTargets.getOrDefault(team, 0.0);
+        double target = Math.min(1.0, current + amount.doubleValue() / 8_000.0);
+        room.race.teamChargeSequences.put(client.playerId, sequence);
+        room.race.teamGaugeTargets.put(team, target >= 1 ? 0.0 : target);
+        int gaugeSequence = room.race.teamGaugeSequences.merge(team, 1, Integer::sum);
+        Map<String, Object> event = Map.of("type", "team-gauge",
+            "roomId", room.id, "raceId", room.race.id,
+            "team", team, "sequence", gaugeSequence, "target", target);
+        broadcastPeerEvent(room, client, event);
+        return event;
+    }
+
+    private Map<String, Object> awardMotion(Client client, JsonNode input) {
+        Room room = raceRoom(client, input);
+        if (!List.of("racing", "finished").contains(room.phase))
+            throw new ApiError(400, "RACE_NOT_RUNNING");
+        int motion = integer(input, "motion", 3, 12);
+        if (!List.of(3, 4, 5, 12).contains(motion))
+            throw new ApiError(400, "INVALID_MOTION");
+        Map<String, Object> event = Map.of("type", "award-motion",
+            "roomId", room.id, "raceId", room.race.id,
+            "playerId", client.playerId, "motion", motion);
+        broadcastPeerEvent(room, client, event);
+        return event;
+    }
+
+    private void broadcastPeerEvent(Room room, Client sender, Map<String, Object> event) {
+        for (Room.Member member : room.members) {
+            Client receiver = clients.get(member.playerId);
+            if (receiver != null && receiver != sender) receiver.emit(event);
+        }
     }
 
     private synchronized void finalizeRace(String roomId, String raceId) {
@@ -528,20 +671,39 @@ public class LobbyService {
         if (!room.phase.equals("finished")) throw new ApiError(400, "RACE_NOT_FINISHED");
         if (!room.race.returnedIds.contains(client.playerId))
             room.race.returnedIds.add(client.playerId);
-        if (room.race.returnedIds.size() >= room.members.size()) {
-            room.phase = "open";
-            room.race = null;
-            room.raceError = null;
-            for (Room.Member member : room.members) member.ready = false;
-        }
+        closeRaceWhenReturned(room);
         room.revision++;
         broadcastRoom(room, client);
         return roomReply(room);
     }
 
+    private static void closeRaceWhenReturned(Room room) {
+        if (room.race == null || !room.phase.equals("finished") ||
+            !room.members.stream().allMatch(member ->
+                room.race.returnedIds.contains(member.playerId))) return;
+        room.phase = "open";
+        room.race = null;
+        room.raceError = null;
+        for (Room.Member member : room.members) member.ready = false;
+    }
+
     private void saveResults(Room room) {
         Room.Race race = room.race;
         database.transaction(connection -> {
+            try (PreparedStatement insert = connection.prepareStatement("""
+                    INSERT OR IGNORE INTO race_outcomes
+                    (race_id,room_id,gameplay,track_id,json,created_at)
+                    VALUES(?,?,?,?,?,?)""")) {
+                insert.setString(1, race.id);
+                insert.setString(2, room.id);
+                insert.setString(3, room.gameplay);
+                insert.setString(4, race.trackId);
+                insert.setString(5, json.writeValueAsString(Map.of(
+                    "roomId", room.id, "mode", room.mode, "gameplay", room.gameplay,
+                    "race", race.snapshot())));
+                insert.setLong(6, System.currentTimeMillis());
+                insert.executeUpdate();
+            }
             try (PreparedStatement insert = connection.prepareStatement("""
                     INSERT OR IGNORE INTO race_results
                     (room_id,race_id,player_id,name,rank,elapsed_ms,points,created_at)
@@ -578,6 +740,8 @@ public class LobbyService {
                 kicked.emit(Map.of("type", "left", "roomId", room.id));
             }
             room.members.removeIf(member -> member.playerId.equals(vote.targetId));
+            if (room.hostId.equals(vote.targetId) && !room.members.isEmpty())
+                room.hostId = room.members.get(0).playerId;
             room.kickVote = null;
         } else if (vote.noIds.size() > vote.eligibleIds.size() - majority) {
             room.kickVote = null;
@@ -666,12 +830,6 @@ public class LobbyService {
     }
     private static long now() {
         return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - START_NANOS);
-    }
-    private static String chooseTrack(Room room) {
-        if (room.trackId != null) return room.trackId;
-        String[] candidates = {"village_R01", "desert_I01", "forest_I01", "ice_I03"};
-        int seed = Objects.hash(room.id, room.randomTrackCode, System.nanoTime());
-        return candidates[Math.floorMod(seed, candidates.length)];
     }
     private static boolean validEquipment(JsonNode value) {
         if (value == null || !value.isObject() || !value.has("itemIds") ||

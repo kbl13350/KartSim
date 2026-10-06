@@ -2,10 +2,16 @@ package local.kartsim.server;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.attribute.PosixFileAttributeView;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +21,32 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Database {
+    private static final Logger LOG = LoggerFactory.getLogger(Database.class);
+    private static final Set<PosixFilePermission> DIRECTORY_PERMISSIONS =
+        PosixFilePermissions.fromString("rwx------");
+    private static final Set<PosixFilePermission> FILE_PERMISSIONS =
+        PosixFilePermissions.fromString("rw-------");
+    private final Path directory;
     private final String jdbcUrl;
+    private final boolean posix;
 
     public Database(@Value("${kart.data-dir}") String dataDir) throws Exception {
-        Path directory = Path.of(dataDir).toAbsolutePath().normalize();
+        directory = Path.of(dataDir).toAbsolutePath().normalize();
         Files.createDirectories(directory);
+        posix = Files.getFileStore(directory).supportsFileAttributeView(PosixFileAttributeView.class);
+        if (posix) {
+            Files.setPosixFilePermissions(directory, DIRECTORY_PERMISSIONS);
+            Path database = directory.resolve("kart.db");
+            if (!Files.exists(database)) {
+                Files.createFile(database,
+                    PosixFilePermissions.asFileAttribute(FILE_PERMISSIONS));
+            } else if (Files.isSymbolicLink(database)) {
+                throw new IllegalStateException("Database path must not be a symbolic link");
+            }
+            Files.setPosixFilePermissions(database, FILE_PERMISSIONS);
+        } else {
+            LOG.warn("POSIX file permissions unavailable; protect the data directory with OS ACLs");
+        }
         jdbcUrl = "jdbc:sqlite:" + directory.resolve("kart.db");
         try (Connection connection = DriverManager.getConnection(jdbcUrl);
              Statement statement = connection.createStatement()) {
@@ -69,11 +96,18 @@ public class Database {
                   UNIQUE(race_id, player_id)
                 )""");
             statement.execute("""
+                CREATE TABLE IF NOT EXISTS race_outcomes (
+                  race_id TEXT PRIMARY KEY, room_id TEXT NOT NULL,
+                  gameplay TEXT NOT NULL, track_id TEXT NOT NULL,
+                  json TEXT NOT NULL, created_at INTEGER NOT NULL
+                )""");
+            statement.execute("""
                 CREATE TABLE IF NOT EXISTS room_rules (
                   room_id TEXT PRIMARY KEY, json TEXT NOT NULL,
                   updated_at INTEGER NOT NULL
                 )""");
         }
+        hardenFiles();
     }
 
     @FunctionalInterface
@@ -99,6 +133,23 @@ public class Database {
             }
         } catch (SQLException error) {
             throw new IllegalStateException("Cannot open local database", error);
+        } finally {
+            try { hardenFiles(); }
+            catch (Exception error) {
+                throw new IllegalStateException("Cannot secure local database files", error);
+            }
+        }
+    }
+
+    private void hardenFiles() throws Exception {
+        if (!posix) return;
+        Files.setPosixFilePermissions(directory, DIRECTORY_PERMISSIONS);
+        for (String suffix : new String[] {"", "-wal", "-shm"}) {
+            Path file = directory.resolve("kart.db" + suffix);
+            if (!Files.exists(file)) continue;
+            if (Files.isSymbolicLink(file))
+                throw new IllegalStateException("Database files must not be symbolic links");
+            Files.setPosixFilePermissions(file, FILE_PERMISSIONS);
         }
     }
 }

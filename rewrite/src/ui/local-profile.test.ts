@@ -94,6 +94,40 @@ function createRunner(release: boolean) {
   return { base, examples };
 }
 
-test("local profile, equipment and favorites match released client", () => {
-  assert.deepEqual(createRunner(false), createRunner(true));
+function legacyProfileView(value: unknown): unknown {
+  if (typeof value === "string" && value.startsWith("{\"equipment\":")) {
+    return JSON.stringify(legacyProfileView(JSON.parse(value)));
+  }
+  if (Array.isArray(value)) return value.map(legacyProfileView);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value)
+      .filter(([key]) => key !== "myRoom")
+      .map(([key, entry]) => [key, legacyProfileView(entry)]));
+  }
+  return value;
+}
+
+test("local profile legacy fields, equipment and favorites match released client", () => {
+  assert.deepEqual(legacyProfileView(createRunner(false)), createRunner(true));
+});
+
+test("local profile adds and validates the local My Room draft", () => {
+  const room = rewritten.defaultMyRoomProfile();
+  assert.deepEqual(room, {
+    environmentId: 16, displayName: "我的小屋", message: "",
+  });
+  const profile = rewritten.defaultLocalProfile();
+  assert.deepEqual(profile.myRoom, room);
+  const deps: rewritten.ProfileDependencies = {
+    normalizeGarage: garage => garage, validateGarage: () => undefined,
+    garageKart: () => ({}), systemKarts: [], resolveVariant: () => undefined,
+  };
+  assert.deepEqual(rewritten.parseLocalProfile(JSON.stringify({
+    ...profile, myRoom: { environmentId: 12, displayName: "测试小屋", message: "欢迎" },
+  }), deps).myRoom, {
+    environmentId: 12, displayName: "测试小屋", message: "欢迎",
+  });
+  assert.throws(() => rewritten.validateMyRoomProfile({
+    environmentId: 16, displayName: "", message: "",
+  }), /小屋名称/);
 });

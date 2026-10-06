@@ -155,6 +155,7 @@ public class Room {
         public final String trackId;
         public final long loadingDeadline;
         public final List<Map<String, Object>> roster;
+        public final Map<String, Integer> startSlots;
         public final List<String> loadedIds = new ArrayList<>();
         public final List<String> returnedIds = new ArrayList<>();
         public final List<Map<String, Object>> finishes = new ArrayList<>();
@@ -164,15 +165,26 @@ public class Room {
         public Long raceOverAt;
         public Integer winningTeam;
         public Map<Integer, Integer> teamScores;
+        public Map<String, Object> rp;
+        public Map<String, Object> lte;
+        public Map<String, Object> giant;
+        public Map<String, Object> roadblock;
+        public Map<String, Object> roadblockOutcome;
+        public final Map<String, GiantState> giantStates = new LinkedHashMap<>();
+        public final Map<String, Integer> teamChargeSequences = new LinkedHashMap<>();
+        public final Map<Integer, Integer> teamGaugeSequences = new LinkedHashMap<>();
+        public final Map<Integer, Double> teamGaugeTargets = new LinkedHashMap<>();
 
         public Race(String id, String channelName, String gameplay, String trackId,
-                    long loadingDeadline, List<Map<String, Object>> roster) {
+                    long loadingDeadline, List<Map<String, Object>> roster,
+                    Map<String, Integer> startSlots) {
             this.id = id;
             this.channelName = channelName;
             this.gameplay = gameplay;
             this.trackId = trackId;
             this.loadingDeadline = loadingDeadline;
             this.roster = roster;
+            this.startSlots = Map.copyOf(startSlots);
         }
 
         public Map<String, Object> snapshot() {
@@ -183,10 +195,11 @@ public class Room {
             value.put("trackId", trackId);
             value.put("loadingDeadline", loadingDeadline);
             value.put("roster", roster);
+            value.put("startSlots", startSlots);
             value.put("loadedIds", List.copyOf(loadedIds));
             if (startAt != null) value.put("startAt", startAt);
             if (finishDeadline != null) {
-                value.put("finishWindowMs", 10_000);
+                if (!gameplay.equals("roadblock")) value.put("finishWindowMs", 10_000);
                 value.put("finishDeadline", finishDeadline);
             }
             if (!finishes.isEmpty()) value.put("finishes", List.copyOf(finishes));
@@ -195,7 +208,15 @@ public class Room {
             if (winningTeam != null) value.put("winningTeam", winningTeam);
             if (teamScores != null) value.put("teamScores", teamScores);
             if (!returnedIds.isEmpty()) value.put("returnedIds", List.copyOf(returnedIds));
+            if (rp != null) value.put("rp", rp);
+            if (lte != null) value.put("lte", lte);
+            if (giant != null) value.put("giant", giant);
+            if (roadblock != null) value.put("roadblock", roadblock);
+            if (roadblockOutcome != null) value.put("roadblockOutcome", roadblockOutcome);
             return value;
         }
     }
+
+    /** Last accepted giant state from one racer, used to verify ordered updates. */
+    public record GiantState(int sequence, int main, int extra, int status) {}
 }

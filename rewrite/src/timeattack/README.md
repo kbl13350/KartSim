@@ -4,7 +4,7 @@
 
 | 阶段 | 入口文件 | 职责 |
 | --- | --- | --- |
-| Ready | `ready-flow.ts`、`ready-controller-state.ts`、`ready-garage.ts`、`ready-settings.ts`、`ready-multiplayer.ts` | 选图、选车、设置、联机入口及开赛请求 |
+| Ready | `ready-flow.ts`、`ready-controller-state.ts`、`ready-garage.ts`、`ready-house.ts`、`ready-inventory.ts`、`ready-settings.ts`、`ready-multiplayer.ts` | 选图、选车、小屋与道具、设置、联机入口及开赛请求 |
 | 发布比赛 | `race-publication.ts`、`start-grid.ts` | 载入后的赛道与赛车资源移交、起跑排位 |
 | 比赛循环 | `stage-lifecycle.ts`、`stage-update.ts`、`driving-loop.ts` | 倒计时、驾驶逐帧、圈数、完赛和返回 Ready |
 | 重置与呈现 | `automatic-reset.ts`、`checkpoint-reset.ts`、`race-reset.ts`、`stage-render.ts`、`race-hud.ts`、`action-dispatch.ts` | 低速或离轨重置、检查点、HUD、场景和操作派发 |

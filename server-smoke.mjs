@@ -57,12 +57,24 @@ const equipmentSlots = [
 ];
 
 function equipment() {
+  const browserDefaults = { 1: 2, 2: 1, 3: 387, 70: 1 };
   return {
-    itemIds: Object.fromEntries(equipmentSlots.map(slot => [slot, slot === 1 || slot === 3 ? 1 : 0])),
+    itemIds: Object.fromEntries(equipmentSlots.map(slot => [slot, browserDefaults[slot] ?? 0])),
     kartSerial: 0,
     valueAt3E: 0,
     exceedType: 0,
   };
+}
+
+function assertStartSlots(race) {
+  const entries = Object.entries(race.startSlots ?? {});
+  assert.deepEqual(entries.map(([id]) => id).sort(),
+    race.roster.map(member => member.playerId).sort(), "Incomplete startSlots");
+  assert.equal(new Set(entries.map(([, slot]) => slot)).size, entries.length,
+    "Duplicate start slot");
+  for (const [, slot] of entries)
+    assert.ok(Number.isInteger(slot) && slot >= 0 && slot <= 7,
+      `Invalid start slot ${slot}`);
 }
 
 function assertRoomBasics(room, expectedPlayerId) {
@@ -279,6 +291,7 @@ try {
     revision: ready.room.revision });
   assert.equal(loading.type, "room");
   assert.equal(loading.room.phase, "loading");
+  assertStartSlots(loading.room.race);
   const raceId = loading.room.race?.raceId;
   assert.ok(typeof raceId === "string" && raceId.length > 0);
   console.log("✓ ready/start entered loading phase");
@@ -332,6 +345,7 @@ try {
   const teamLoading = await first.control.request({ type: "start", roomId: teamRoomId,
     revision: teamReady.room.revision });
   assert.equal(teamLoading.room.phase, "loading");
+  assertStartSlots(teamLoading.room.race);
   const teamRaceId = teamLoading.room.race.raceId;
   assert.ok(typeof teamLoading.room.race.trackId === "string");
   await first.control.request({ type: "loaded", roomId: teamRoomId, raceId: teamRaceId });
@@ -340,6 +354,23 @@ try {
   assert.equal(teamCountdown.room.phase, "countdown");
   await first.control.waitFor(message => message?.type === "room" &&
     message.room?.roomId === teamRoomId && message.room?.phase === "racing");
+  const gauge = await first.control.request({ type: "team-charge", roomId: teamRoomId,
+    raceId: teamRaceId, sequence: 1, charge: 4000 });
+  assert.equal(gauge.type, "team-gauge");
+  assert.equal(gauge.team, 1);
+  assert.equal(gauge.sequence, 1);
+  assert.equal(gauge.target, 0.5);
+  const receivedGauge = await second.control.waitFor(message => message?.type === "team-gauge" &&
+    message.roomId === teamRoomId && message.raceId === teamRaceId);
+  assert.equal(receivedGauge.target, 0.5);
+  const award = await first.control.request({ type: "award-motion", roomId: teamRoomId,
+    raceId: teamRaceId, motion: 3 });
+  assert.equal(award.type, "award-motion");
+  assert.equal(award.playerId, first.welcome.playerId);
+  const receivedAward = await second.control.waitFor(message => message?.type === "award-motion" &&
+    message.roomId === teamRoomId && message.raceId === teamRaceId);
+  assert.equal(receivedAward.motion, 3);
+  console.log("✓ team charge and award motion accepted and broadcast");
   await first.control.request({ type: "finish", roomId: teamRoomId,
     raceId: teamRaceId, elapsedMs: 61_000 });
   const teamFinished = await second.control.request({ type: "finish", roomId: teamRoomId,

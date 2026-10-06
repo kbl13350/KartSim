@@ -20,6 +20,12 @@ const Original = new Function(`
   return ry;
 `)() as typeof Taskbar;
 
+test("original My Room tray button calls the new house action", () => {
+  const open = () => undefined;
+  const bar = { options: { onHouse: open } } as unknown as Taskbar;
+  assert.equal(Taskbar.prototype.actionFor.call(bar, "마이룸"), open);
+});
+
 class FakeElement {
   style: Record<string, string> = {};
   dataset: Record<string, string> = {};

@@ -117,6 +117,17 @@ const raceHudBoostMethodOverrides = new Map([
 const lobbyListDrawMethodOverrides = new Map([
   ["draw", "  draw(node, parent, room, titleRight) { return drawLobbyListNode(this, node, parent, room, titleRight, lobbyListDrawDependencies); }"],
   ["activate", "  activate(name) { return activateLobbyListEntry(this, name, Zc, $6); }"],
+  ["render", "  render() { return renderLobbyList(this, lobbyListRenderDependencies); }"],
+]);
+const multiplayerWindowAssetMethodOverrides = new Map([
+  ["loadAssets", "  async loadAssets() { return loadMultiplayerWindowAssets(this, multiplayerWindowAssetDependencies); }"],
+  ["draw", "  draw(node, parent, visibleControls) { return drawMultiplayerWindowNode(this, node, parent, visibleControls, multiplayerWindowDrawDependencies); }"],
+  ["render", "  render() { return renderMultiplayerWindow(this, Sr); }"],
+  ["canvasButton", "  canvasButton(node, rect, text, state) { return multiplayerCanvasButton(this, node, rect, text, state, T); }"],
+  ["updateHoverRegion", "  updateHoverRegion(event) { return updateMultiplayerHoverRegion(this, event); }"],
+  ["closeCombo", "  closeCombo() { return closeMultiplayerCombo(this); }"],
+  ["chooseCombo", "  chooseCombo(index) { return chooseMultiplayerCombo(this, index); }"],
+  ["drawComboPopup", "  drawComboPopup() { return drawMultiplayerComboPopup(this, multiplayerComboDependencies); }"],
 ]);
 const ghostOverrides = new Set([
   "LD", "V_", "N_", "Dh0", "Vh0", "O_",
@@ -144,6 +155,79 @@ const lobbyRoomTimingMethodOverrides = new Map([
   ["animate", "  animate() { return animateLobbyRoom(this, lobbyRoomTimingDependencies); }"],
   ["sendChat", "  async sendChat() { return sendLobbyRoomChat(this); }"],
 ]);
+const lobbyRoomLifecycleMethodOverrides = new Map([
+  ["show", "  show() { return showLobbyRoomLifecycle(this, lobbyRoomLifecycleDependencies); }"],
+  ["hide", "  hide() { return hideLobbyRoom(this, lobbyRoomLifecycleDependencies); }"],
+  ["activateReadyShortcut", "  activateReadyShortcut() { return activateLobbyReadyShortcut(this); }"],
+  ["update", "  update(room, busy, connected) { return updateLobbyRoom(this, room, busy, connected, this.emotions, lobbyRoomLifecycleDependencies); }"],
+  ["dispose", "  dispose() { return disposeLobbyRoom(this, lobbyRoomLifecycleDependencies); }"],
+  ["installRoomKeyboard", "  installRoomKeyboard() { return installLobbyRoomKeyboard(this, lobbyRoomLifecycleDependencies); }"],
+  ["removeRoomKeyboard", "  removeRoomKeyboard() { return removeLobbyRoomKeyboard(this, lobbyRoomLifecycleDependencies); }"],
+  ["toggleEmotionWheel", "  toggleEmotionWheel() { return toggleLobbyEmotionWheel(this); }"],
+  ["closeEmotionWheel", "  closeEmotionWheel() { return closeLobbyEmotionWheel(this); }"],
+  ["loadTrack", "  async loadTrack() { return loadLobbyRoomTrack(this, lobbyRoomTrackDependencies); }"],
+]);
+const lobbyRoomMethodOverrides = new Map([
+  ...lobbyRoomTimingMethodOverrides,
+  ...lobbyRoomLifecycleMethodOverrides,
+  ["constructor", "  constructor(room, playerId, actions, library) { initializeLobbyRoom(this, room, playerId, actions, library); }"],
+  ["load", "  static async load(library, root, room, playerId, actions, audioContext) { return loadLobbyRoom((snapshot, id, callbacks, resources) => new py(snapshot, id, callbacks, resources), library, root, room, playerId, actions, audioContext, lobbyRoomConstructionDependencies); }"],
+  ["state", "  state(node) { return lobbyRoomNodeState(this, node, lobbyRoomStateDependencies); }"],
+]);
+const lobbyRoomFieldOverrides = new Map([
+  ["onEmotionKey", "  onEmotionKey = event => handleLobbyEmotionKey(this, event);"],
+  ["onRoomKey", "  onRoomKey = event => handleLobbyRoomKey(this, event, document.body);"],
+]);
+const ghostKsvClassMethodOverrides = new Map([
+  ["encode", "  encode(recording, zCeiling) { return encodeGhostKsvRecording(recording, zCeiling, ghostKsvExportDependencies); }"],
+  ["build", "  build(recording, encoded) { return buildGhostKsvHeader(recording, encoded); }"],
+]);
+const ghostKsvFunctionOverrides = new Map([
+  ["F_", "function F_(frame) { return nativeFrameToKsvStamp(frame, ghostKsvExportDependencies.encodeStatus); }"],
+  ["Ph0", "function Ph0(equipment) { return ghostKsvEquipment(equipment); }"],
+]);
+const multiplayerPresenterMethodOverrides = new Map([
+  ["constructor", "  constructor(assets, runtime, race, playerId, actionAssets, hud, random, countdown, award, resultView, bgm, banner, bannerRequest, petVisible = () => false, trackInfoCard, roadblockHud) { initializeRacePresenter(this, { assets, runtime, race, playerId, actionAssets, hud, random, countdown, award, resultView, bgm, banner, bannerRequest, petVisible, trackInfoCard, roadblockHud }, racePresenterInitializationDependencies); }"],
+  ["prepareFlyingPet", "  async prepareFlyingPet(library, audioContext) { return prepareRacePresenterFlyingPet(this, library, audioContext, racePresenterSetupDependencies); }"],
+  ["prepareRoadBlockFlag", "  async prepareRoadBlockFlag(library) { return prepareRacePresenterRoadblockFlag(this, library, racePresenterSetupDependencies); }"],
+  ["prepareGiant", "  async prepareGiant(library, audioContext) { return prepareRacePresenterGiant(this, library, audioContext, racePresenterSetupDependencies); }"],
+  ["clearGiant", "  clearGiant() { return clearRacePresenterGiant(this); }"],
+  ["prepareTrackEvents", "  async prepareTrackEvents(library, audioContext) { return prepareRacePresenterTrackEvents(this, library, audioContext, racePresenterTrackEventDependencies); }"],
+  ["prepareRoadBlockResult", "  async prepareRoadBlockResult(library) { return prepareRacePresenterRoadblockResult(this, library, racePresenterSetupDependencies); }"],
+  ["warm", "  warm(renderer, nowMs) { return warmRacePresenter(this, renderer, nowMs, racePresenterLifecycleDependencies); }"],
+  ["update", "  update(renderer, nowMs, actions) { return updateRacePresenterFrame(this, renderer, nowMs, actions, racePresenterFrameDependencies); }"],
+  ["awardInput", "  awardInput(input, nowMs) { return forwardPresenterAwardInput(this, input, nowMs); }"],
+  ["applyWarpCamera", "  applyWarpCamera() { return applyPresenterWarpCamera(this); }"],
+  ["applyLocalWarpActions", "  applyLocalWarpActions() { return applyPresenterWarpActions(this); }"],
+  ["handleRouteTag", "  handleRouteTag(tag) { return handlePresenterRouteTag(this, tag, racePresenterActionsDependencies); }"],
+  ["showResult", "  showResult(nowMs) { return showRacePresenterResults(this, nowMs, racePresenterResultsDependencies); }"],
+  ["startAudio", "  startAudio() { return startPresenterAudio(this); }"],
+  ["playGoAndHideTrackInfo", "  playGoAndHideTrackInfo() { return playPresenterGo(this); }"],
+  ["playReset", "  playReset() { return playPresenterReset(this); }"],
+  ["startBoostGaugeFull", "  startBoostGaugeFull() { return startPresenterBoostGaugeFull(this, racePresenterActionsDependencies); }"],
+  ["captureRankProgress", "  captureRankProgress() { return capturePresenterRankProgress(this); }"],
+  ["updateRoom", "  updateRoom(room) { return updatePresenterRoom(this, room); }"],
+  ["render", "  render(renderer, nowMs) { return renderRacePresenterFrame(this, renderer, nowMs, racePresenterRenderDependencies); }"],
+  ["dispose", "  dispose() { return disposeRacePresenter(this, racePresenterLifecycleDependencies); }"],
+  ["releaseShadowPresentations", "  releaseShadowPresentations() { return releasePresenterShadowPresentations(this); }"],
+]);
+const racePresentationSessionMethodOverrides = new Map([
+  ["constructor", "  constructor(runtime, scene, host, chat, notice) { super(); initializeRaceSession(this, runtime, scene, host, chat, notice); }"],
+  ["diagnosticsView", "  get diagnosticsView() { return raceSessionDiagnosticsView(this); }"],
+  ["touchDrivingAvailable", "  get touchDrivingAvailable() { return raceSessionTouchDrivingAvailable(this); }"],
+  ["touchDodgeEnabled", "  get touchDodgeEnabled() { return raceSessionTouchDodgeEnabled(this); }"],
+  ["bindClock", "  bindClock(clock) { return bindRaceSessionClock(this, clock); }"],
+  ["updateRoom", "  updateRoom(room) { return updateRaceSessionRoom(this, room); }"],
+  ["presentingResults", "  presentingResults() { return raceSessionPresentingResults(this); }"],
+  ["showWaiting", "  showWaiting() { return showRaceSessionWaiting(this, () => performance.now()); }"],
+  ["scheduleStart", "  scheduleStart(start) { return scheduleRaceSessionStart(this, start); }"],
+  ["update", "  update(frame) { return updateRaceSession(this, raceSessionUpdateDependencies); }"],
+  ["render", "  render() { return renderRaceSession(this); }"],
+  ["requestLeave", "  requestLeave() { return requestRaceSessionLeave(this); }"],
+  ["fail", "  fail(error) { return failRaceSession(this, error); }"],
+  ["exit", "  exit() { return exitRaceSession(this); }"],
+  ["dispose", "  dispose() { return disposeRaceSession(this); }"],
+]);
 // These helpers only served the KSV functions and the old Ghost store. Their
 // behavior now lives in the handwritten modules, so omit the dead copies.
 const retiredGhostHelpers = new Set([
@@ -163,6 +247,28 @@ const vehicleCoinSourceOverrides = new Map([
 ]);
 const vehicleCoinOwnerOverrides = new Set(["jw"]);
 const vehicleVisualOwnerOverrides = new Set(["tv", "d7"]);
+const vehicleWeatherOverrides = new Set(["sL", "y7", "A7"]);
+const vehicleRouteFunctionOverrides = new Set(["Eg", "Vo", "gv"]);
+const vehicleWarpClassOverrides = new Set(["Qk"]);
+const vehicleTrackEventOverrides = new Set(["EC", "Kn0"]);
+const vehicleEventAnimatorOverrides = new Set(["qn0"]);
+const vehicleLensFlareOverrides = new Set(["c30", "w7"]);
+const vehicleKartAudioOverrides = new Set([
+  "C30", "pv", "E30", "T30", "_30", "G30", "Be", "B30", "ll", "R30",
+]);
+const vehicleAssetLoaderMethodOverrides = new Map([
+  ["loadVehicleAsset", "  async loadVehicleAsset(path, itemId, hint, body, kartName, environment, stageBinding, audioContext, coatingTexture, decorationOption, convertClientCoordinates, suppressClassic = false, forceNew = false) { return loadVehicleAsset(this, path, itemId, hint, body, kartName, environment, stageBinding, audioContext, coatingTexture, decorationOption, convertClientCoordinates, suppressClassic, forceNew, vehicleAssetOps); }"],
+  ["loadRaceCharacters", "  async loadRaceCharacters(characterPath, characterItem, kartItem, motionBasis, includeSpecialMotion, environment, stageBinding, award = false) { return loadRaceCharacters(this, characterPath, characterItem, kartItem, motionBasis, includeSpecialMotion, environment, stageBinding, award); }"],
+  ["loadVehicleRuntime", "  async loadVehicleRuntime(path, textureKey, plateId, library, environment, stageBinding, profile = this.assetHost.userProfile, kartItemId, engineGrade, coatingTextureOverride, scope, convertClientCoordinates, deferEnvironment = false) { return loadVehicleRuntime(this, path, textureKey, plateId, library, environment, stageBinding, profile, kartItemId, engineGrade, coatingTextureOverride, scope, convertClientCoordinates, deferEnvironment, vehicleRuntimeOps); }"],
+  ["loadCharacterAsset", "  async loadCharacterAsset(path, item, motionSource, animationType, includeF54, environment, stageBinding, linkMode, profile = this.assetHost.userProfile, outlineBatch, award = false) { return loadCharacterAsset(this, path, item, motionSource, animationType, includeF54, environment, stageBinding, linkMode, profile, outlineBatch, award, characterAssetOps); }"],
+  ["loadAssetMap", "  loadAssetMap(path, trackId) { return loadTimeAttackMap(this, path, trackId, J30); }"],
+  ["loadMultiplayerMap", "  loadMultiplayerMap(path, trackId, mode) { return loadMultiplayerMap(this, path, trackId, mode, Bt, Vw, Z30); }"],
+  ["loadMap", "  async loadMap(path, trackId, mode, admit, lte = false) { return loadTrackMap(this, path, trackId, mode, admit, lte, trackMapOps); }"],
+]);
+const vehicleSlipstreamOverrides = new Set(["mv", "wv"]);
+const vehicleStartGridOverrides = new Set(["iL", "rL"]);
+const vehicleNormalCoordinatorOverrides = new Set(["vL", "U40", "yL", "as", "J8"]);
+const vehicleFrameClockOverrides = new Set(["$40", "DC"]);
 const peerMeshOverrides = new Set(["pl0"]);
 const networkTimingOverrides = new Set(["L40", "gl0"]);
 const remoteMotionOverrides = new Set(["BL", "Gi0"]);
@@ -176,6 +282,12 @@ const inputFunctionOverrides = new Map([
   ["Hg", { section: "world", text: "function Hg(gamepads) { return pressedGamepadControls(gamepads); }" }],
   ["xl", { section: "multiplayer", text: "function xl(code, keyMap = Br) { return keyboardActionsForCode(code, keyMap, ut); }" }],
   ["yf", { section: "multiplayer", text: "function yf(target) { return isEditableTarget(target); }" }],
+]);
+const gameplayAdmissionOverrides = new Map([
+  ["rg", "function rg(mode) { return isPlayableGameplay(mode); }"],
+]);
+const gameplayTileOverrides = new Map([
+  ["Y6", "const Y6 = multiplayerModeTiles;"],
 ]);
 const lobbyPrimitiveOverrides = new Set(["Ul0", "C1"]);
 const uiSymbolOverrides = new Set([
@@ -548,6 +660,64 @@ const ghostAssetBuilderMethodOverrides = new Map([
   ["loadGhostDecorations", "  async loadGhostDecorations(ghost, library, scene, importer) { return loadGhostDecorations(ghost, library, scene, importer, ghostAssetDependencies); }"],
   ["rankColors", "  async rankColors(ghosts) { return rankGhostColors(this, ghosts, ghostAssetDependencies); }"],
 ]);
+const ghostMenuImportMethodOverrides = new Map([
+  ["deleteGhost", "  async deleteGhost() { return deleteGhostFromMenu(this); }"],
+  ["exportGhost", "  async exportGhost() { return exportGhostFromMenu(this); }"],
+  ["importSelectedFile", "  async importSelectedFile() { return importSelectedGhostFile(this, ghostMenuImportDependencies); }"],
+  ["isCurrentImport", "  isCurrentImport(revision) { return isCurrentGhostImport(this, revision); }"],
+  ["switchToImportedTrack", "  async switchToImportedTrack(selection, zCeiling, frameCount, revision) { return switchToImportedGhostTrack(this, selection, zCeiling, frameCount, revision, ghostMenuImportDependencies); }"],
+]);
+const ghostMenuBridgeMethodOverrides = new Map([
+  ["mount", "  mount(root) { return mountGhostMenuBridge(this, root, options => Ly.attach(options)); }"],
+  ["importRecord", "  async importRecord(key, sources, summary, bytes) { return importGhostMenuRecord(this, key, sources, summary, bytes); }"],
+  ["resolveTrack", "  async resolveTrack(trackId) { return resolveGhostMenuTrack(this, trackId); }"],
+  ["resolveKartTitle", "  async resolveKartTitle(itemId) { return resolveGhostMenuKartTitle(this, itemId); }"],
+  ["deleteRecord", "  async deleteRecord(key) { return deleteGhostMenuRecord(this, key); }"],
+  ["exportRecord", "  async exportRecord(key) { return exportGhostMenuRecord(this, key, wd0); }"],
+]);
+const ghostVisualMotionMethodOverrides = new Map([
+  ["seedStart", "  seedStart(position, right, forward, up) { return seedGhostVisualStart(this, position, right, forward, up); }"],
+  ["setAssets", "  setAssets(imported, character, scale, linkedMode, visual, motorcycle, format, level) { return setGhostVisualAssets(this, imported, character, scale, linkedMode, visual, motorcycle, format, level, ghostVisualAssetDependencies); }"],
+  ["setEffects", "  setEffects(effects) { return setGhostVisualEffects(this, effects); }"],
+  ["setTrails", "  setTrails(trails, vehicle) { return setGhostVisualTrails(this, trails, vehicle); }"],
+  ["attachToScene", "  attachToScene(scene) { return attachGhostVisualToScene(this, scene); }"],
+  ["setDecorations", "  setDecorations(balloon, accessories) { return setGhostVisualDecorations(this, balloon, accessories, ghostVisualAssetDependencies); }"],
+  ["update", "  update(input, timeMs, renderTime, frameSeconds, clock, mark) { return updateGhostVisualFrame(this, input, timeMs, renderTime, frameSeconds, clock, mark, ghostVisualUpdateDependencies); }"],
+  ["deriveMotion", "  deriveMotion(pose, forward, timeMs, telemetry) { return deriveGhostVisualMotion(this, pose, forward, timeMs, telemetry); }"],
+  ["updateAnimation", "  updateAnimation(timeMs, booster, secondary, speed) { return updateGhostVisualAnimation(this, timeMs, booster, secondary, speed); }"],
+  ["ghostDualTeam", "  ghostDualTeam(booster) { return isGhostDualTeam(this, booster); }"],
+  ["dispose", "  dispose() { return disposeGhostVisual(this, u5); }"],
+]);
+const raceBgmPlaybackMethodOverrides = new Map([
+  ["prepareMultiplayer", "  async prepareMultiplayer(library, lobbyPath = '') { return prepareMultiplayerBgm(this, library, lobbyPath, raceBgmLoadingDependencies); }"],
+  ["playMultiplayer", "  playMultiplayer(kind) { return playMultiplayerBgm(this, kind); }"],
+  ["playMultiplayerPodium", "  playMultiplayerPodium() { return playMultiplayerPodiumBgm(this); }"],
+  ["playMultiplayerFinish", "  playMultiplayerFinish(won) { return playMultiplayerFinishBgm(this, won); }"],
+  ["load", "  static async load(library, track, random, context) { return loadRaceBgm(library, track, random, context, raceBgmLoadingDependencies); }"],
+  ["selectRace", "  async selectRace(library, track) { return selectRaceBgm(this, library, track, raceBgmLoadingDependencies); }"],
+  ["restart", "  restart() { return restartRaceBgm(this); }"],
+  ["currentRaceName", "  get currentRaceName() { return currentRaceBgmName(this); }"],
+  ["playReady", "  playReady() { return playReadyBgm(this); }"],
+  ["playGarage", "  playGarage() { return playGarageBgm(this); }"],
+  ["playMyItems", "  playMyItems() { return playMyItemsBgm(this); }"],
+  ["playResult", "  playResult(won) { return playResultBgm(this, won); }"],
+  ["dispose", "  dispose() { return disposeRaceBgm(this); }"],
+  ["silence", "  silence() { return silenceRaceBgm(this); }"],
+  ["start", "  start(buffer, loop, fade) { return startRaceBgm(this, buffer, loop, fade, raceBgmPlaybackDependencies); }"],
+  ["advanceTransition", "  advanceTransition() { return advanceRaceBgmTransition(this, raceBgmPlaybackDependencies); }"],
+  ["clearTransition", "  clearTransition() { return clearRaceBgmTransition(this, raceBgmPlaybackDependencies); }"],
+  ["stop", "  stop(owner) { return stopRaceBgmOwner(owner); }"],
+]);
+const timeAttackInputBridgeMethodOverrides = new Map([
+  ["drainDrivingInput", "  drainDrivingInput(nowMs, inputTime) { return drainTimeAttackDrivingInput(this, nowMs, inputTime, timeAttackInputBridgeDependencies); }"],
+  ["handleDrivingCommand", "  handleDrivingCommand(command, nowMs, inputTime) { return routeTimeAttackDrivingCommand(this, command, nowMs, inputTime, timeAttackInputBridgeDependencies); }"],
+  ["setAutoForwardEnabled", "  setAutoForwardEnabled(enabled) { return setTimeAttackAutoForward(this, enabled); }"],
+  ["setNitroSeamlessMode", "  setNitroSeamlessMode(mode) { return setTimeAttackNitroSeamlessMode(this, mode); }"],
+  ["getDrivingSnapshot", "  getDrivingSnapshot() { return timeAttackDrivingSnapshot(this); }"],
+  ["handleBaseDrivingCommand", "  handleBaseDrivingCommand(command) { return routeBaseDrivingCommand(this, command); }"],
+  ["handleTimeAttackDrivingCommand", "  handleTimeAttackDrivingCommand(command, nowMs, inputTime) { return routeTimeAttackRaceCommand(this, command, nowMs, inputTime, timeAttackInputBridgeDependencies); }"],
+  ["resetTacho1InputMode", "  resetTacho1InputMode(inputTime) { return resetTimeAttackTachometerInput(this, inputTime, timeAttackInputBridgeDependencies); }"],
+]);
 const recordServiceMethodOverrides = new Map([
   ["restore", "  restore() { return restoreRaceRecords(this); }"],
   ["promote", "  async promote(elapsedMs, counts) { return promoteRaceRecord(this, elapsedMs, counts, recordServiceDependencies); }"],
@@ -844,6 +1014,22 @@ const worldConstructorOverrides = new Map([
   }`],
   ["commitObstacleSnapshot", "  commitObstacleSnapshot() { return commitObstacleSnapshot(this, Oo); }"],
 ]);
+// The release TrackWorld's entire method surface has already been rewritten
+// and differentially tested in world/install.ts. Strip all 36 old bodies and
+// install the readable methods when the class is declared.
+const worldInstalledMethods = [
+  "projectSectionDistance", "sampleRoute", "requireRouteState", "getRouteState",
+  "getStart", "resetRouteState", "refreshRouteProjection", "warpRouteToSection",
+  "currentRouteSurface", "prepareCurrentSectionReset", "commitCurrentSectionReset",
+  "updateRoute", "runOuterRoutePass", "associateRoute", "warpNextDestination",
+  "completeWarpNextRailLanding", "railCaptureDistance", "lookupRailConfig",
+  "completeRailContactLanding", "updateEvents", "registerEventPairs",
+  "expireEventEffects", "consumeExpiredEventEffects", "commitEventSnapshot",
+  "queryEventObb", "rayQuery", "queryObb", "queryObstacleObb",
+  "updateRender", "setLensFlareEnabled", "resetRender", "updateMovingRoads",
+  "updateObstacles", "registerObstaclePair", "commitObstacleSnapshot", "dispose",
+];
+for (const name of worldInstalledMethods) worldConstructorOverrides.set(name, " ");
 const activeRaceMethodOverrides = new Map([
   ["bindClock", "  bindClock(mapping) { return bindActiveRaceClock(this, mapping, { makeClock: value => new BL(value), makeSender: (physics, clock, connection, routing) => new ki0(physics, clock, connection, routing) }); }"],
   ["scheduleStart", "  scheduleStart(startAt) { return scheduleActiveRaceStart(this, startAt); }"],
@@ -909,8 +1095,22 @@ function groupNames(names) {
 const source = await readFile(sourceFile, "utf8");
 assert(sha256(source) === expectedSourceHash, "The inspected formatted bundle changed.");
 assert(source.length === sections.at(-1).end, "The source length changed.");
+const embeddedPngInflateStart = source.indexOf("var rt = Uint8Array,");
+const embeddedPngInflateEnd = source.indexOf("const Kq = new Uint8Array", embeddedPngInflateStart);
+assert(embeddedPngInflateStart >= 0 && embeddedPngInflateEnd > embeddedPngInflateStart,
+  "The bundled PNG zlib decoder boundaries changed.");
 const ast = parse(source, { sourceType: "module", errorRecovery: false });
 const statements = ast.program.body;
+const replacedFormatClasses = new Set();
+const replacedDriveCameraClasses = new Set();
+const replacedKeyControllers = new Set();
+let replacedToonOutlineController = false;
+const replacedReadableFormatRenderers = new Set();
+let replacedPngInflate = false;
+let replacedCourseGraph = false;
+let replacedPngDecoder = false;
+let retiredPngSignature = false;
+const replacedTextureAlpha = new Set();
 const bodies = new Map(order.map((name) => [name, []]));
 let garageExportNode;
 let dlDeclarator;
@@ -919,11 +1119,18 @@ const replacedResources = new Set();
 const replacedSwMethods = new Set();
 const replacedRaceHudBoostMethods = new Set();
 const replacedLobbyListDrawMethods = new Set();
+const replacedMultiplayerWindowAssetMethods = new Set();
 const replacedGhosts = new Set();
 const replacedKsv = new Set();
 const replacedGhostRuntimeClasses = new Set();
 const replacedLobbyAvatarDeclarations = new Set();
-const replacedLobbyRoomTimingMethods = new Set();
+const replacedLobbyRoomMethods = new Set();
+const replacedLobbyRoomFields = new Set();
+let replacedRaceLoadingScreen = false;
+const replacedGhostKsvClassMethods = new Set();
+const replacedGhostKsvFunctions = new Set();
+const replacedMultiplayerPresenterMethods = new Set();
+const replacedRacePresentationSessionMethods = new Set();
 const retiredGhosts = new Set();
 const replacedPhysics = new Set();
 const replacedMotionCodec = new Set();
@@ -933,6 +1140,18 @@ const replacedVehicleAnimationActions = new Set();
 const replacedVehicleCoinSources = new Set();
 const replacedVehicleCoinOwners = new Set();
 const replacedVehicleVisualOwners = new Set();
+const replacedVehicleWeather = new Set();
+const replacedVehicleRouteFunctions = new Set();
+const replacedVehicleWarpClasses = new Set();
+const replacedVehicleTrackEvents = new Set();
+const replacedVehicleEventAnimators = new Set();
+const replacedVehicleLensFlares = new Set();
+const replacedVehicleKartAudio = new Set();
+const replacedVehicleAssetLoaderMethods = new Set();
+const replacedVehicleSlipstream = new Set();
+const replacedVehicleStartGrid = new Set();
+const replacedVehicleNormalCoordinators = new Set();
+const replacedVehicleFrameClocks = new Set();
 const replacedPeerMesh = new Set();
 const replacedNetworkTiming = new Set();
 const replacedLobbyPrimitives = new Set();
@@ -956,6 +1175,8 @@ const replacedGarageSelectionMethods = new Set();
 let replacedRemoteFleet = false;
 const replacedInputClasses = new Set();
 const replacedInputFunctions = new Set();
+const replacedGameplayAdmission = new Set();
+const replacedGameplayTiles = new Set();
 let replacedGameplayInputQueue = false;
 let replacedGamepadPoller = false;
 const replacedLobbyActions = new Set();
@@ -973,6 +1194,12 @@ const replacedApplicationMethods = new Set();
 const replacedApplicationFields = new Set();
 const replacedGhostRecordLibraryMethods = new Set();
 const replacedGhostAssetBuilderMethods = new Set();
+const replacedGhostMenuImportMethods = new Set();
+const replacedGhostMenuBridgeMethods = new Set();
+const replacedGhostVisualMotionMethods = new Set();
+const replacedRaceBgmPlaybackMethods = new Set();
+const replacedTimeAttackInputBridgeMethods = new Set();
+let replacedGhostSmoothSampler = false;
 const replacedRecordServiceMethods = new Set();
 const replacedTimeAttackStageMethods = new Set();
 const replacedPresenterMethods = new Set();
@@ -990,6 +1217,26 @@ function rewriteClassMethods(node, replacements, found) {
       (typeof replacement === "function" ? replacement(method) : replacement);
     cursor = method.end;
     found.add(method.key.name);
+  }
+  return rewritten + source.slice(cursor, node.end);
+}
+
+function rewriteLobbyRoomMembers(node) {
+  let cursor = node.start;
+  let rewritten = "";
+  for (const member of node.body.body) {
+    if (member.key?.type !== "Identifier") continue;
+    const isMethod = member.type === "ClassMethod";
+    const isField = member.type === "ClassProperty";
+    const replacements = isMethod ? lobbyRoomMethodOverrides :
+      isField ? lobbyRoomFieldOverrides : undefined;
+    const found = isMethod ? replacedLobbyRoomMethods : replacedLobbyRoomFields;
+    const replacement = replacements?.get(member.key.name);
+    if (!replacement) continue;
+    assert(!found.has(member.key.name), `Duplicate lobby room member ${member.key.name}.`);
+    rewritten += source.slice(cursor, member.start) + replacement;
+    cursor = member.end;
+    found.add(member.key.name);
   }
   return rewritten + source.slice(cursor, node.end);
 }
@@ -1052,6 +1299,127 @@ for (const node of statements) {
       : node.type === "VariableDeclaration" && node.declarations.length === 1
         ? node.declarations[0].id.name
         : undefined;
+  if (declarationName === "Kq") {
+    assert(node.type === "VariableDeclaration" && originalSection(node.start) === "formats",
+      "The original PNG signature moved from formats.");
+    retiredPngSignature = true;
+    continue;
+  }
+  if (declarationName === "p2") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      "The original PNG decoder moved from formats.");
+    bodies.get("formats").push({ at: node.start,
+      text: "async function p2(bytes) { return decodePngRgba(bytes); }" });
+    replacedPngDecoder = true;
+    continue;
+  }
+  if (declarationName === "aK" || declarationName === "cK") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      `Texture alpha corrector ${declarationName} moved from formats.`);
+    bodies.get("formats").push({ at: node.start,
+      text: `function ${declarationName}(pixels, width, height) { normalizeLegacyTextureAlpha(pixels, width, height); }` });
+    replacedTextureAlpha.add(declarationName);
+    continue;
+  }
+  if (node.start >= embeddedPngInflateStart && node.start < embeddedPngInflateEnd) {
+    assert(originalSection(node.start) === "formats", "Bundled PNG inflate code moved.");
+    if (declarationName === "V6") {
+      replacedPngInflate = true;
+    }
+    continue;
+  }
+  if (declarationName === "Jq" || declarationName === "eK" || declarationName === "nR") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "formats",
+      `Texture loader or canvas controller ${declarationName} moved from formats.`);
+    const parent = { Jq: "DDSLoader", eK: "TGALoader", nR: "CanvasHitController" }[declarationName];
+    bodies.get("formats").push({ at: node.start,
+      text: `class ${declarationName} extends ${parent} {}` });
+    replacedFormatClasses.add(declarationName);
+    continue;
+  }
+  if (declarationName === "Cj" || declarationName === "Ol") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "formats",
+      `Drive camera ${declarationName} moved from formats.`);
+    bodies.get("formats").push({ at: node.start, text: declarationName === "Cj"
+      ? "class Cj extends CameraHeightFollower { constructor() { super({ f32: n0, floatWord: g1, clampRatio: bs, smoothScalar: qc }); } }"
+      : "class Ol extends DriveCameraController { constructor(processState) { super(processState, cameraMathDependencies()); } }" });
+    replacedDriveCameraClasses.add(declarationName);
+    continue;
+  }
+  if (declarationName === "on" || declarationName === "Zm") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "formats",
+      `Key controller ${declarationName} moved from formats.`);
+    const parent = declarationName === "on" ? "FloatKeyController" : "ColorKeyController";
+    bodies.get("formats").push({ at: node.start,
+      text: `class ${declarationName} extends ${parent} {
+  static fromParsed(parsed) { return ${parent}.fromParsed.call(${declarationName}, parsed); }
+}` });
+    replacedKeyControllers.add(declarationName);
+    continue;
+  }
+  if (declarationName === "N6") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "formats",
+      "The Toon outline controller moved from formats.");
+    bodies.get("formats").push({ at: node.start,
+      text: `class N6 extends ToonOutlineController {
+  constructor(source, centerArgb, outerArgb, drawOutline = true, batch, cacheRigidProjection = false) {
+    super(source, centerArgb, outerArgb, drawOutline, batch, cacheRigidProjection,
+      toonOutlineDependencies());
+  }
+}` });
+    replacedToonOutlineController = true;
+    continue;
+  }
+  if (declarationName === "wK" || declarationName === "tw") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "formats",
+      `Readable renderer ${declarationName} moved from formats.`);
+    bodies.get("formats").push({ at: node.start,
+      text: declarationName === "wK"
+        ? "class wK extends ToonOutlineBatch { constructor() { super({ currentSerial: vK, configureObject: ie }); } }"
+        : `class tw extends AwardPodiumScene {
+  constructor(render, slots, confetti, mode) {
+    super(render, slots, confetti, mode, awardPodiumDependencies());
+  }
+  static async load(library, options) {
+    return loadAwardPodiumScene(library, options, awardPodiumLoadDependencies(),
+      (render, slots, confetti, mode) => new tw(render, slots, confetti, mode));
+  }
+}` });
+    replacedReadableFormatRenderers.add(declarationName);
+    continue;
+  }
+  if (declarationName === "bo" || declarationName === "CB") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      `Readable material ${declarationName} moved from formats.`);
+    bodies.get("formats").push({ at: node.start,
+      text: declarationName === "bo"
+        ? "function bo(texture, environment, paletteParts = 0) { return createToonEnvironmentMaterial(texture, environment, paletteParts); }"
+        : "function CB(texture, properties, flipWinding = false, bakedNodes = false) { return createBasicTextureMaterial(texture, properties, flipWinding, bakedNodes); }" });
+    replacedReadableFormatRenderers.add(declarationName);
+    continue;
+  }
+  if (declarationName === "JW") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      "Track course graph builder moved from formats.");
+    bodies.get("formats").push({ at: node.start,
+      text: "function JW(objects, forceReverse) { return buildTrackCourseGraph(objects, forceReverse); }" });
+    replacedCourseGraph = true;
+    continue;
+  }
+  if (node.type === "VariableDeclaration" &&
+      node.declarations[0]?.id?.name === "w9") {
+    assert(originalSection(node.start) === "vehicle" &&
+      groupNames(new Set(node.declarations.map((part) => part.id.name))) ===
+        "N40, O40, V40, w9, z40, zt",
+      "Giant kart interpolation constants changed.");
+    continue;
+  }
+  if (declarationName === "sd" || declarationName === "pL") {
+    assert(originalSection(node.start) === "vehicle" &&
+      node.type === (declarationName === "pL" ? "ClassDeclaration" : "FunctionDeclaration"),
+      "Giant kart effect implementation moved.");
+    continue;
+  }
   if (node.type === "VariableDeclaration" &&
       node.declarations.some((part) => part.id.name === "J" || part.id.name === "Q0")) {
     assert(originalSection(node.start) === "vehicle", "Packed kart state indices moved.");
@@ -1149,6 +1517,23 @@ for (const node of statements) {
     replacedInputFunctions.add(declarationName);
     continue;
   }
+  if (gameplayAdmissionOverrides.has(declarationName)) {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "library",
+      `Gameplay admission helper ${declarationName} moved from library.`);
+    bodies.get("library").push({ at: node.start,
+      text: gameplayAdmissionOverrides.get(declarationName) });
+    replacedGameplayAdmission.add(declarationName);
+    continue;
+  }
+  if (gameplayTileOverrides.has(declarationName)) {
+    assert(node.type === "VariableDeclaration" && node.declarations.length === 1 &&
+      originalSection(node.start) === "library",
+    `Gameplay tile list ${declarationName} moved from library.`);
+    bodies.get("library").push({ at: node.start,
+      text: gameplayTileOverrides.get(declarationName) });
+    replacedGameplayTiles.add(declarationName);
+    continue;
+  }
   if (declarationName === "AL") {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "driving", "AL moved from driving.");
     bodies.get("driving").push({
@@ -1162,7 +1547,7 @@ for (const node of statements) {
       "Track world constructor moved from world.");
     bodies.get("world").push({
       at: node.start,
-      text: rewriteClassMethods(node, worldConstructorOverrides, replacedWorldConstructor),
+      text: `${rewriteClassMethods(node, worldConstructorOverrides, replacedWorldConstructor)}\ninstallWorldOverrides(_L);`,
     });
     continue;
   }
@@ -1288,8 +1673,37 @@ for (const node of statements) {
       "Lobby room view moved from multiplayer.");
     bodies.get("multiplayer").push({
       at: node.start,
-      text: rewriteClassMethods(node, lobbyRoomTimingMethodOverrides,
-        replacedLobbyRoomTimingMethods),
+      text: rewriteLobbyRoomMembers(node),
+    });
+    continue;
+  }
+  if (declarationName === "gy") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "multiplayer",
+      "Multiplayer race loading screen moved from multiplayer.");
+    bodies.get("multiplayer").push({
+      at: node.start,
+      text: "class gy extends RaceLoadingScreen { static async load(library, root) { return super.load(library, root, raceLoadingScreenAssets); } }",
+    });
+    replacedRaceLoadingScreen = true;
+    continue;
+  }
+  if (declarationName === "jr0") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "world",
+      "Multiplayer race presenter moved from world.");
+    bodies.get("world").push({
+      at: node.start,
+      text: rewriteClassMethods(node, multiplayerPresenterMethodOverrides,
+        replacedMultiplayerPresenterMethods),
+    });
+    continue;
+  }
+  if (declarationName === "Yr0") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "world",
+      "Multiplayer race session moved from world.");
+    bodies.get("world").push({
+      at: node.start,
+      text: rewriteClassMethods(node, racePresentationSessionMethodOverrides,
+        replacedRacePresentationSessionMethods),
     });
     continue;
   }
@@ -1317,6 +1731,16 @@ for (const node of statements) {
     bodies.get("library").push({
       at: node.start,
       text: rewriteClassMethods(node, lobbyListDrawMethodOverrides, replacedLobbyListDrawMethods),
+    });
+    continue;
+  }
+  if (declarationName === "te") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "library",
+      "Multiplayer window moved from library.");
+    bodies.get("library").push({
+      at: node.start,
+      text: rewriteClassMethods(node, multiplayerWindowAssetMethodOverrides,
+        replacedMultiplayerWindowAssetMethods),
     });
     continue;
   }
@@ -1381,6 +1805,28 @@ for (const node of statements) {
     replacedSoloRacePublisher = true;
     continue;
   }
+  if (declarationName === "Rh0" || declarationName === "Lh0") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "timeattack",
+      "Ghost KSV exporter moved from time attack.");
+    bodies.get("timeattack").push({
+      at: node.start,
+      text: rewriteClassMethods(node, ghostKsvClassMethodOverrides,
+        replacedGhostKsvClassMethods),
+    });
+    continue;
+  }
+  if (ghostKsvFunctionOverrides.has(declarationName)) {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "timeattack",
+      "Ghost KSV conversion moved from time attack.");
+    assert(!replacedGhostKsvFunctions.has(declarationName),
+      `Duplicate Ghost KSV function ${declarationName}.`);
+    bodies.get("timeattack").push({
+      at: node.start,
+      text: ghostKsvFunctionOverrides.get(declarationName),
+    });
+    replacedGhostKsvFunctions.add(declarationName);
+    continue;
+  }
   if (declarationName === "Nh0") {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "timeattack",
       "Time attack record service moved.");
@@ -1399,6 +1845,66 @@ for (const node of statements) {
       text: rewriteClassMethods(node, ghostRecordLibraryMethodOverrides,
         replacedGhostRecordLibraryMethods),
     });
+    continue;
+  }
+  if (declarationName === "Ly") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "timeattack",
+      "Ghost menu moved from timeattack.");
+    bodies.get("timeattack").push({
+      at: node.start,
+      text: rewriteClassMethods(node, ghostMenuImportMethodOverrides,
+        replacedGhostMenuImportMethods),
+    });
+    continue;
+  }
+  if (declarationName === "vd0") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "timeattack",
+      "Ghost menu bridge moved from timeattack.");
+    bodies.get("timeattack").push({
+      at: node.start,
+      text: rewriteClassMethods(node, ghostMenuBridgeMethodOverrides,
+        replacedGhostMenuBridgeMethods),
+    });
+    continue;
+  }
+  if (declarationName === "Xd0") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "timeattack",
+      "Ghost visual moved from timeattack.");
+    bodies.get("timeattack").push({
+      at: node.start,
+      text: rewriteClassMethods(node, ghostVisualMotionMethodOverrides,
+        replacedGhostVisualMotionMethods),
+    });
+    continue;
+  }
+  if (declarationName === "P7") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "timeattack",
+      "Race BGM owner moved from timeattack.");
+    bodies.get("timeattack").push({
+      at: node.start,
+      text: rewriteClassMethods(node, raceBgmPlaybackMethodOverrides,
+        replacedRaceBgmPlaybackMethods),
+    });
+    continue;
+  }
+  if (declarationName === "n60") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "timeattack",
+      "Time attack input bridge moved from timeattack.");
+    bodies.get("timeattack").push({
+      at: node.start,
+      text: rewriteClassMethods(node, timeAttackInputBridgeMethodOverrides,
+        replacedTimeAttackInputBridgeMethods),
+    });
+    continue;
+  }
+  if (declarationName === "Yh0") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "timeattack",
+      "Ghost smooth sampler moved from timeattack.");
+    bodies.get("timeattack").push({
+      at: node.start,
+      text: "class Yh0 extends GhostSmoothSampler { constructor(record) { super(record, ghostSmoothSamplerDependencies); } }",
+    });
+    replacedGhostSmoothSampler = true;
     continue;
   }
   if (declarationName === "if0") {
@@ -1599,6 +2105,106 @@ for (const node of statements) {
     replacedVehicleVisualOwners.add(declarationName);
     continue;
   }
+  if (vehicleWeatherOverrides.has(declarationName)) {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "vehicle",
+      `Vehicle weather effect ${declarationName} moved.`);
+    const wrappers = {
+      sL: "class sL extends RainScreenEffect { constructor(random, rainOnStart) { super(random, rainOnStart, ca); } }",
+      y7: "class y7 extends RainAudioCue { constructor(context, cue) { super(context, cue, S9); } static load(library, context) { return loadRainAudioCue(library, context, Q9, (audioContext, buffer) => new y7(audioContext, buffer)); } }",
+      A7: "class A7 extends SnowScreenEffect { constructor(random, texture) { super(random, texture, ca); } static load(library, random) { return loadSnowScreenEffect(library, random, p2, (source, texture) => new A7(source, texture)); } }",
+    };
+    bodies.get("vehicle").push({ at: node.start, text: wrappers[declarationName] });
+    replacedVehicleWeather.add(declarationName);
+    continue;
+  }
+  if (vehicleRouteFunctionOverrides.has(declarationName)) {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "vehicle",
+      `Vehicle route function ${declarationName} moved.`);
+    replacedVehicleRouteFunctions.add(declarationName);
+    continue;
+  }
+  if (vehicleWarpClassOverrides.has(declarationName)) {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "vehicle",
+      `Vehicle warp class ${declarationName} moved.`);
+    replacedVehicleWarpClasses.add(declarationName);
+    continue;
+  }
+  if (vehicleTrackEventOverrides.has(declarationName)) {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "vehicle",
+      `Vehicle track event ${declarationName} moved.`);
+    if (declarationName === "Kn0") {
+      bodies.get("vehicle").push({ at: node.start,
+        text: "class Kn0 extends TrackEventOwner { constructor(projection) { super(projection, trackEventOwnerOps); } }" });
+    }
+    replacedVehicleTrackEvents.add(declarationName);
+    continue;
+  }
+  if (vehicleEventAnimatorOverrides.has(declarationName)) {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "vehicle",
+      `Vehicle event animator ${declarationName} moved.`);
+    bodies.get("vehicle").push({ at: node.start,
+      text: "class qn0 extends MovingTrackEvent { constructor(root, projection) { super(root, projection, movingEventOps); } }" });
+    replacedVehicleEventAnimators.add(declarationName);
+    continue;
+  }
+  if (vehicleLensFlareOverrides.has(declarationName)) {
+    assert(originalSection(node.start) === "vehicle" &&
+      node.type === (declarationName === "w7" ? "ClassDeclaration" : "FunctionDeclaration"),
+      `Vehicle lens flare ${declarationName} moved.`);
+    if (declarationName === "w7") bodies.get("vehicle").push({ at: node.start,
+      text: "class w7 extends LensFlareEffect { constructor(point, texture) { super(point, texture, ca); } static load(library, position) { return loadLensFlareEffect(library, position, p2, (point, texture) => new w7(point, texture)); } }" });
+    replacedVehicleLensFlares.add(declarationName);
+    continue;
+  }
+  if (vehicleKartAudioOverrides.has(declarationName)) {
+    assert(originalSection(node.start) === "vehicle" &&
+      node.type === (declarationName === "pv" ? "ClassDeclaration" : "FunctionDeclaration"),
+      `Vehicle kart audio ${declarationName} moved.`);
+    if (declarationName === "pv") bodies.get("vehicle").push({ at: node.start,
+      text: "class pv extends KartAudioRuntime { constructor(...args) { super(...args, kartAudioOps); } static load(library, engineName, generation, chargeBoostBySpeed, context, kartName) { return loadKartAudio(library, engineName, generation, chargeBoostBySpeed, context, kartName, kartAudioLoadOps, (...args) => new pv(...args)); } }" });
+    replacedVehicleKartAudio.add(declarationName);
+    continue;
+  }
+  if (declarationName === "ul") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "vehicle",
+      "Vehicle asset loader class moved.");
+    bodies.get("vehicle").push({ at: node.start,
+      text: rewriteClassMethods(node, vehicleAssetLoaderMethodOverrides,
+        replacedVehicleAssetLoaderMethods) });
+    continue;
+  }
+  if (vehicleSlipstreamOverrides.has(declarationName)) {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "vehicle",
+      `Vehicle slipstream ${declarationName} moved.`);
+    const wrapper = declarationName === "mv"
+      ? "class mv extends SlipstreamVisual { static load(library, kart, environment, stageBinding) { return loadSlipstreamVisual(library, kart, environment, stageBinding, slipstreamVisualOps, (scene, burst) => new mv(scene, burst)); } }"
+      : "class wv extends SlipstreamAudio { constructor(context, charging, draft) { super(context, charging, draft, slipstreamAudioOps); } static load(library, context) { return loadSlipstreamAudio(library, context, Q9, (audioContext, charging, draft) => new wv(audioContext, charging, draft)); } }";
+    bodies.get("vehicle").push({ at: node.start, text: wrapper });
+    replacedVehicleSlipstream.add(declarationName);
+    continue;
+  }
+  if (vehicleStartGridOverrides.has(declarationName)) {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "vehicle",
+      `Vehicle start grid ${declarationName} moved.`);
+    replacedVehicleStartGrid.add(declarationName);
+    continue;
+  }
+  if (vehicleNormalCoordinatorOverrides.has(declarationName)) {
+    assert(originalSection(node.start) === "vehicle" &&
+      node.type === (["as", "J8"].includes(declarationName) ? "FunctionDeclaration" : "ClassDeclaration"),
+      `Vehicle normal coordinator ${declarationName} moved.`);
+    if (declarationName === "yL") bodies.get("vehicle").push({ at: node.start,
+      text: "class yL extends NormalRaceCoordinator { constructor(mode, track, kart, sink) { super(mode, track, kart, sink, normalRaceModes); } }" });
+    replacedVehicleNormalCoordinators.add(declarationName);
+    continue;
+  }
+  if (vehicleFrameClockOverrides.has(declarationName)) {
+    assert(originalSection(node.start) === "vehicle" &&
+      node.type === (declarationName === "DC" ? "FunctionDeclaration" : "ClassDeclaration"),
+      `Vehicle frame clock ${declarationName} moved.`);
+    replacedVehicleFrameClocks.add(declarationName);
+    continue;
+  }
   if (peerMeshOverrides.has(declarationName)) {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "multiplayer",
       `Peer mesh override ${declarationName} moved.`);
@@ -1671,6 +2277,21 @@ for (const node of statements) {
   });
 }
 assert(garageExportNode, "The 89-name garage export declaration is missing.");
+assert(groupNames(replacedFormatClasses) === "Jq, eK, nR",
+  "The texture loaders and canvas controller were not all replaced.");
+assert(groupNames(replacedDriveCameraClasses) === "Cj, Ol",
+  "The drive camera classes were not both replaced.");
+assert(groupNames(replacedKeyControllers) === "Zm, on",
+  "The float and color key controllers were not both replaced.");
+assert(replacedToonOutlineController, "The Toon outline controller was not replaced.");
+assert(groupNames(replacedReadableFormatRenderers) === "CB, bo, tw, wK",
+  "The award scene, Toon batch, and material renderers were not all replaced.");
+assert(replacedPngInflate, "The bundled PNG inflate entry point was not replaced.");
+assert(replacedCourseGraph, "The track course graph builder was not replaced.");
+assert(replacedPngDecoder && retiredPngSignature,
+  "The PNG decoder and signature were not both replaced.");
+assert(groupNames(replacedTextureAlpha) === "aK, cK",
+  "The texture alpha correctors were not both replaced.");
 assert(dlDeclarator, "The shared dl constant was not found.");
 assert(
   replacedInputs.size === inputOverrides.size,
@@ -1686,6 +2307,8 @@ assert(replacedRaceHudBoostMethods.size === raceHudBoostMethodOverrides.size,
   "The race HUD boost method overrides were not all found.");
 assert(replacedLobbyListDrawMethods.size === lobbyListDrawMethodOverrides.size,
   "The lobby list draw method override was not found.");
+assert(replacedMultiplayerWindowAssetMethods.size === multiplayerWindowAssetMethodOverrides.size,
+  "The multiplayer window asset override was not found.");
 assert(
   replacedGhosts.size === ghostOverrides.size,
   "The handwritten Ghost overrides were not all found.",
@@ -1695,8 +2318,20 @@ assert(replacedGhostRuntimeClasses.size === ghostRuntimeClassOverrides.size,
   "The Ghost runtime class overrides were not all found.");
 assert(replacedLobbyAvatarDeclarations.size === lobbyAvatarDeclarationOverrides.size,
   "The lobby avatar declarations were not all found.");
-assert(replacedLobbyRoomTimingMethods.size === lobbyRoomTimingMethodOverrides.size,
-  "The lobby room timing methods were not all found.");
+assert(replacedLobbyRoomMethods.size === lobbyRoomMethodOverrides.size,
+  "The lobby room methods were not all found.");
+assert(replacedLobbyRoomFields.size === lobbyRoomFieldOverrides.size,
+  "The lobby room keyboard fields were not all found.");
+assert(replacedRaceLoadingScreen,
+  "The multiplayer race loading screen override was not found.");
+assert(replacedGhostKsvClassMethods.size === ghostKsvClassMethodOverrides.size,
+  "The Ghost KSV exporter classes were not both replaced.");
+assert(replacedGhostKsvFunctions.size === ghostKsvFunctionOverrides.size,
+  "The Ghost KSV exporter functions were not both replaced.");
+assert(replacedMultiplayerPresenterMethods.size === multiplayerPresenterMethodOverrides.size,
+  "The multiplayer race presenter update override was not found.");
+assert(replacedRacePresentationSessionMethods.size === racePresentationSessionMethodOverrides.size,
+  "The multiplayer race session method overrides were not all found.");
 assert(retiredGhosts.size === retiredGhostHelpers.size, "The retired Ghost helpers were not all found.");
 assert(replacedPhysics.size === physicsOverrides.size, "The handwritten vehicle parameter overrides were not all found.");
 assert(replacedStageManager, "The handwritten StageManager override was not found.");
@@ -1714,6 +2349,18 @@ assert(replacedGhostRecordLibraryMethods.size === ghostRecordLibraryMethodOverri
   "The Ghost record library method overrides were not all found.");
 assert(replacedGhostAssetBuilderMethods.size === ghostAssetBuilderMethodOverrides.size,
   "The Ghost asset builder method overrides were not all found.");
+assert(replacedGhostMenuImportMethods.size === ghostMenuImportMethodOverrides.size,
+  "The Ghost menu import method overrides were not all found.");
+assert(replacedGhostMenuBridgeMethods.size === ghostMenuBridgeMethodOverrides.size,
+  "The Ghost menu bridge method overrides were not all found.");
+assert(replacedGhostVisualMotionMethods.size === ghostVisualMotionMethodOverrides.size,
+  "The Ghost visual motion method overrides were not all found.");
+assert(replacedRaceBgmPlaybackMethods.size === raceBgmPlaybackMethodOverrides.size,
+  "The race BGM playback method overrides were not all found.");
+assert(replacedTimeAttackInputBridgeMethods.size === timeAttackInputBridgeMethodOverrides.size,
+  "The time attack input bridge method overrides were not all found.");
+assert(replacedGhostSmoothSampler,
+  "The Ghost smooth sampler override was not found.");
 assert(replacedPresenterMethods.size === presenterMethodOverrides.size,
   "The presentation method overrides were not all found.");
 assert(replacedMotionCodec.size === motionCodecOverrides.size,
@@ -1730,6 +2377,30 @@ assert(replacedVehicleCoinOwners.size === vehicleCoinOwnerOverrides.size,
   "The handwritten vehicle coin owner was not found.");
 assert(replacedVehicleVisualOwners.size === vehicleVisualOwnerOverrides.size,
   "The handwritten vehicle visual owners were not all found.");
+assert(replacedVehicleWeather.size === vehicleWeatherOverrides.size,
+  "The vehicle weather effects were not all replaced.");
+assert(replacedVehicleRouteFunctions.size === vehicleRouteFunctionOverrides.size,
+  "The vehicle route functions were not all replaced.");
+assert(replacedVehicleWarpClasses.size === vehicleWarpClassOverrides.size,
+  "The vehicle warp classes were not all replaced.");
+assert(replacedVehicleTrackEvents.size === vehicleTrackEventOverrides.size,
+  "The vehicle track event classes were not all replaced.");
+assert(replacedVehicleEventAnimators.size === vehicleEventAnimatorOverrides.size,
+  "The vehicle event animator was not replaced.");
+assert(replacedVehicleLensFlares.size === vehicleLensFlareOverrides.size,
+  "The vehicle lens flare symbols were not all replaced.");
+assert(replacedVehicleKartAudio.size === vehicleKartAudioOverrides.size,
+  "The vehicle kart audio symbols were not all replaced.");
+assert(replacedVehicleAssetLoaderMethods.size === vehicleAssetLoaderMethodOverrides.size,
+  "The vehicle asset loader methods were not all replaced.");
+assert(replacedVehicleSlipstream.size === vehicleSlipstreamOverrides.size,
+  "The vehicle slipstream classes were not all replaced.");
+assert(replacedVehicleStartGrid.size === vehicleStartGridOverrides.size,
+  "The vehicle start grid functions were not all replaced.");
+assert(replacedVehicleNormalCoordinators.size === vehicleNormalCoordinatorOverrides.size,
+  "The vehicle normal coordinator symbols were not all replaced.");
+assert(replacedVehicleFrameClocks.size === vehicleFrameClockOverrides.size,
+  "The vehicle frame clock symbols were not all replaced.");
 assert(replacedPeerMesh.size === peerMeshOverrides.size,
   "The handwritten peer mesh class was not found.");
 assert(replacedNetworkTiming.size === networkTimingOverrides.size,
@@ -1767,6 +2438,10 @@ assert(replacedInputClasses.size === inputClassOverrides.size &&
   "The gameplay input class overrides were not all found.");
 assert(replacedInputFunctions.size === inputFunctionOverrides.size,
   "The gameplay input helper overrides were not all found.");
+assert(replacedGameplayAdmission.size === gameplayAdmissionOverrides.size,
+  "The gameplay admission override was not found.");
+assert(replacedGameplayTiles.size === gameplayTileOverrides.size,
+  "The gameplay tile override was not found.");
 assert(replacedLobbyActions.size === lobbyActionMethodOverrides.size,
   "The handwritten lobby actions were not all found.");
 assert(replacedRaceSessionMethods.size === multiplayerMethodOverrides.size,
@@ -1915,7 +2590,34 @@ function renderModule(name) {
     lines.push('export * from "../vendor/legacy-three.ts";');
     return `${lines.join("\n").trimEnd()}\n`;
   }
+  if (name === "formats") {
+    lines.push('import { DDSLoader } from "three/addons/loaders/DDSLoader.js";');
+    lines.push('import { TGALoader } from "three/addons/loaders/TGALoader.js";');
+    lines.push('import { CanvasHitController } from "../ui/canvas-hit-controller.ts";');
+    lines.push('import { CameraHeightFollower, DriveCameraController } from "../resources/drive-camera.ts";');
+    lines.push('import { FloatKeyController } from "../resources/float-key-controller.ts";');
+    lines.push('import { ColorKeyController } from "../resources/color-key-controller.ts";');
+    lines.push('import { ToonOutlineController, toonColorFromArgb } from "../resources/toon-outline-controller.ts";');
+    lines.push('import { ToonOutlineBatch } from "../resources/toon-outline-batch.ts";');
+    lines.push('import { AwardPodiumScene, loadAwardPodiumScene } from "../resources/award-podium-scene.ts";');
+    lines.push('import { createToonEnvironmentMaterial } from "../resources/toon-environment-material.ts";');
+    lines.push('import { createBasicTextureMaterial } from "../resources/basic-texture-material.ts";');
+    lines.push('import { decodePngRgba } from "../resources/png-decoder.ts";');
+    lines.push('import { normalizeLegacyTextureAlpha } from "../resources/texture-alpha.ts";');
+    lines.push('import { buildTrackCourseGraph } from "../resources/track-course-graph.ts";');
+  }
   if (name === "world") {
+    lines.push('import { installWorldOverrides } from "../world/install.ts";');
+    lines.push('import { initializeRacePresenter } from "../multiplayer/race-presenter-initialize.ts";');
+    lines.push('import { updateRacePresenterFrame } from "../multiplayer/race-presenter-frame.ts";');
+    lines.push('import { updateRaceSession } from "../multiplayer/race-session-update.ts";');
+    lines.push('import { bindRaceSessionClock, disposeRaceSession, exitRaceSession, failRaceSession, initializeRaceSession, raceSessionDiagnosticsView, raceSessionPresentingResults, raceSessionTouchDodgeEnabled, raceSessionTouchDrivingAvailable, renderRaceSession, requestRaceSessionLeave, scheduleRaceSessionStart, showRaceSessionWaiting, updateRaceSessionRoom } from "../multiplayer/race-session-lifecycle.ts";');
+    lines.push('import { clearRacePresenterGiant, prepareRacePresenterFlyingPet, prepareRacePresenterGiant, prepareRacePresenterRoadblockFlag, prepareRacePresenterRoadblockResult } from "../multiplayer/race-presenter-setup.ts";');
+    lines.push('import { prepareRacePresenterTrackEvents } from "../multiplayer/race-presenter-track-events.ts";');
+    lines.push('import { showRacePresenterResults } from "../multiplayer/race-presenter-results.ts";');
+    lines.push('import { disposeRacePresenter, warmRacePresenter } from "../multiplayer/race-presenter-lifecycle.ts";');
+    lines.push('import { applyPresenterWarpActions, applyPresenterWarpCamera, capturePresenterRankProgress, forwardPresenterAwardInput, handlePresenterRouteTag, playPresenterGo, playPresenterReset, releasePresenterShadowPresentations, startPresenterAudio, startPresenterBoostGaugeFull, updatePresenterRoom } from "../multiplayer/race-presenter-actions.ts";');
+    lines.push('import { renderRacePresenterFrame } from "../multiplayer/race-presenter-render.ts";');
     lines.push('import { browserScanCode } from "../input/action-bindings.ts";');
     lines.push('import { gamepadAxisControl, pressedGamepadControls } from "../input/gamepad-controls.ts";');
     lines.push('import { MotionClockMapping as BL, RemoteMotionPredictor as Gi0 } from "../multiplayer/remote-motion.ts";');
@@ -1950,6 +2652,16 @@ function renderModule(name) {
     lines.push('import { hydrateGhostSummaryIndex, syncGhostSummaryIndex } from "../game/ghost-summary-sync.ts";');
     lines.push('import { loadGhostDecorations, loadGhostKartAssets, rankGhostColors } from "../timeattack/ghost-asset-loading.ts";');
     lines.push('import { deleteGhostRecord, exportGhostKsv, exportGhostSource, ghostRecord, ghostRecordKey, ghostTrackIdFromKey, persistGhostSummaries, promoteGhostRecord, putGhostRecord, restoreGhostRecordLibrary, saveGhostRecord, saveImportedGhostRecord, saveRawGhostRecord } from "../timeattack/ghost-record-library.ts";');
+    lines.push('import { deleteGhostFromMenu, exportGhostFromMenu, importSelectedGhostFile, isCurrentGhostImport, switchToImportedGhostTrack } from "../timeattack/ghost-menu-import.ts";');
+    lines.push('import { deleteGhostMenuRecord, exportGhostMenuRecord, importGhostMenuRecord, mountGhostMenuBridge, resolveGhostMenuKartTitle, resolveGhostMenuTrack } from "../timeattack/ghost-menu-host.ts";');
+    lines.push('import { deriveGhostVisualMotion, isGhostDualTeam, updateGhostVisualAnimation } from "../timeattack/ghost-visual-motion.ts";');
+    lines.push('import { attachGhostVisualToScene, disposeGhostVisual, seedGhostVisualStart, setGhostVisualEffects, setGhostVisualTrails } from "../timeattack/ghost-visual-lifecycle.ts";');
+    lines.push('import { setGhostVisualAssets, setGhostVisualDecorations } from "../timeattack/ghost-visual-assets.ts";');
+    lines.push('import { updateGhostVisualFrame } from "../timeattack/ghost-visual-update.ts";');
+    lines.push('import { advanceRaceBgmTransition, clearRaceBgmTransition, currentRaceBgmName, disposeRaceBgm, playGarageBgm, playMultiplayerBgm, playMultiplayerFinishBgm, playMultiplayerPodiumBgm, playMyItemsBgm, playReadyBgm, playResultBgm, restartRaceBgm, silenceRaceBgm, startRaceBgm, stopRaceBgmOwner } from "../timeattack/race-bgm-playback.ts";');
+    lines.push('import { loadRaceBgm, prepareMultiplayerBgm, selectRaceBgm } from "../timeattack/race-bgm-loading.ts";');
+    lines.push('import { drainTimeAttackDrivingInput, resetTimeAttackTachometerInput, routeBaseDrivingCommand, routeTimeAttackDrivingCommand, routeTimeAttackRaceCommand, setTimeAttackAutoForward, setTimeAttackNitroSeamlessMode, timeAttackDrivingSnapshot } from "../timeattack/driving-input-bridge.ts";');
+    lines.push('import { GhostSmoothSampler } from "../timeattack/ghost-smooth-sampler.ts";');
     lines.push('import { rankBoardValues, renderGameplayUi } from "../timeattack/race-hud.ts";');
     lines.push('import { placeAtStart, seedGhostStart, snapStartToGround } from "../timeattack/start-grid.ts";');
     lines.push('import { updateTimeAttackStage } from "../timeattack/stage-update.ts";');
@@ -1964,9 +2676,32 @@ function renderModule(name) {
     lines.push('import { Ah0, bh0 } from "../game/ghost/frame-codec.ts";');
     lines.push('import { Th0 } from "../game/ghost/record-store.ts";');
     lines.push('import { decodeKsvFile, encodeKsvFile } from "../game/ghost/ksv-codec.ts";');
+    lines.push('import { buildGhostKsvHeader, encodeGhostKsvRecording, ghostKsvEquipment, nativeFrameToKsvStamp } from "../timeattack/ghost-ksv-export.ts";');
   }
   if (name === "vehicle") {
     lines.push('import { KartRuntimeState as J40 } from "../vehicle/kart-runtime-state.ts";');
+    lines.push('import { GiantKartEffect as pL } from "../vehicle/giant-kart-effect.ts";');
+    lines.push('import { WarpNextController as Qk, warpPresentationBlinkVisible as gv } from "../vehicle/warp-next-controller.ts";');
+    lines.push('import { EventCollisionLatch as EC } from "../vehicle/event-collision-latch.ts";');
+    lines.push('import { TrackEventOwner } from "../vehicle/track-event-owner.ts";');
+    lines.push('import { MovingTrackEvent } from "../vehicle/moving-track-event.ts";');
+    lines.push('import { copyEventPoint } from "../vehicle/event-geometry.ts";');
+    lines.push('import { LensFlareEffect, lensFlareAnchor as c30, loadLensFlareEffect } from "../vehicle/lens-flare.ts";');
+    lines.push('import { loadRaceCharacters } from "../vehicle/race-character-loading.ts";');
+    lines.push('import { loadVehicleRuntime } from "../vehicle/load-vehicle-runtime.ts";');
+    lines.push('import { loadVehicleAsset } from "../vehicle/load-vehicle-asset.ts";');
+    lines.push('import { loadTrackMap, loadTimeAttackMap, loadMultiplayerMap } from "../vehicle/load-track-map.ts";');
+    lines.push('import { KartAudioRuntime, loadKartAudio, decodeMotorAudio, parseRoadSoundConfig } from "../vehicle/kart-audio-runtime.ts";');
+    lines.push('import { loadCharacterAsset } from "../vehicle/load-character-asset.ts";');
+    lines.push('import { SlipstreamVisual, loadSlipstreamVisual, SlipstreamAudio, loadSlipstreamAudio } from "../vehicle/slipstream-effects.ts";');
+    lines.push('import { validateRaceStartGrid as iL, raceStartPosition as rL } from "../vehicle/race-start-slots.ts";');
+    lines.push('import { LapTiming as vL, NormalObjectCoordinator as U40 } from "../vehicle/normal-coordinator.ts";');
+    lines.push('import { NormalRaceCoordinator } from "../vehicle/normal-race-coordinator.ts";');
+    lines.push('import { VehicleFrameClock as $40, normalizeVehicleTime as DC } from "../vehicle/frame-clock.ts";');
+    lines.push('import { routeSurfaceKind as Eg, routeTagFamily as Vo } from "../world/route-tag.ts";');
+    lines.push('import { RainScreenEffect } from "../vehicle/rain-screen-effect.ts";');
+    lines.push('import { SnowScreenEffect, loadSnowScreenEffect } from "../vehicle/snow-screen-effect.ts";');
+    lines.push('import { RainAudioCue, loadRainAudioCue } from "../vehicle/rain-audio-cue.ts";');
     lines.push('import { parseKartSpecCsv as qw } from "../physics/csv.ts";');
     lines.push('import { createBodyParamSpec as pS } from "../physics/body-param.ts";');
     lines.push('import { VehicleSpecCatalog } from "../physics/catalog.ts";');
@@ -2036,6 +2771,9 @@ function renderModule(name) {
   }
   if (name === "multiplayer") {
     lines.push('import { keyboardActionsForCode } from "../input/action-bindings.ts";');
+    lines.push('import { RaceLoadingScreen } from "../multiplayer/race-loading-screen.ts";');
+    lines.push('import { handleLobbyEmotionKey, handleLobbyRoomKey, initializeLobbyRoom, loadLobbyRoom } from "../multiplayer/lobby-room-construction.ts";');
+    lines.push('import { lobbyRoomNodeState } from "../multiplayer/lobby-room-state.ts";');
     lines.push('import { isEditableTarget } from "../input/gameplay-input-queue.ts";');
     lines.push('import { GameplayInputQueue } from "../input/gameplay-input-queue.ts";');
     lines.push('import { GamepadEdgePoller } from "../input/gamepad-edges.ts";');
@@ -2044,6 +2782,8 @@ function renderModule(name) {
     lines.push('import { RaceStartCoordinator } from "../multiplayer/race-start-coordinator.ts";');
     lines.push('import { LobbyAvatarCache, lobbyAvatarKey } from "../multiplayer/lobby-avatar-cache.ts";');
     lines.push('import { animateLobbyRoom, canAnimateLobbyRoom, isLobbyCountdownLocked, lobbyCountdownState, sendLobbyChat as sendLobbyRoomChat, sendLobbyEmotion, setLobbyStartPresentation, updateLobbyCountdown } from "../multiplayer/lobby-room-timing.ts";');
+    lines.push('import { activateLobbyReadyShortcut, closeLobbyEmotionWheel, disposeLobbyRoom, hideLobbyRoom, installLobbyRoomKeyboard, removeLobbyRoomKeyboard, showLobbyRoom as showLobbyRoomLifecycle, toggleLobbyEmotionWheel, updateLobbyRoom } from "../multiplayer/lobby-room-lifecycle.ts";');
+    lines.push('import { loadLobbyRoomTrack } from "../multiplayer/lobby-room-track.ts";');
     lines.push('import { initializeLobbyRace } from "../multiplayer/lobby-race-loader.ts";');
     lines.push('import { RoomState as Ul0 } from "../multiplayer/room-state.ts";');
     lines.push('import { formatMultiplayerError as C1 } from "../multiplayer/errors.ts";');
@@ -2086,10 +2826,22 @@ function renderModule(name) {
     lines.push('import { startSinglePlayerRace, returnToReady } from "../app/race-navigation.ts";');
   }
   if (name === "library") {
+    lines.push('import { isPlayableGameplay } from "../multiplayer/gameplay-admission.ts";');
+    lines.push('import { multiplayerModeTiles } from "../multiplayer/mode-tiles.ts";');
+    lines.push('import { drawMultiplayerWindowNode } from "../ui/multiplayer-window-draw.ts";');
+    lines.push('import { renderMultiplayerWindow } from "../ui/multiplayer-window-render.ts";');
+    lines.push('import { multiplayerCanvasButton, updateMultiplayerHoverRegion, closeMultiplayerCombo, chooseMultiplayerCombo } from "../ui/multiplayer-window-actions.ts";');
+    lines.push('import { drawMultiplayerComboPopup } from "../ui/multiplayer-window-combo.ts";');
+    lines.push('import { renderLobbyList } from "../ui/lobby-list-render.ts";');
+    lines.push('import { loadMultiplayerWindowAssets } from "../ui/multiplayer-window-assets.ts";');
     lines.push('import { activateLobbyListEntry } from "../ui/lobby-list-actions.ts";');
     lines.push('import { drawLobbyListNode } from "../ui/lobby-list-draw.ts";');
     lines.push('import { personalBoostFrame, teamBoostFrame } from "../ui/race-hud-boost.ts";');
     lines.push('const lobbyListDrawDependencies = { attribute: T, rectangle: V0, modeForButton: Zc, get interactiveNames() { return aQ; }, imageState: st, drawTexture: ct, fitRoomTitle: CX, measure: ve, drawText: m9, randomTrack: X6, get fontFamily() { return Yp; } };');
+    lines.push('const lobbyListRenderDependencies = { viewport: Sr, modeForButton: Zc, roomLabel: rR };');
+    lines.push('const multiplayerWindowAssetDependencies = { loadBml: F9, findResource: U1, decodeTexture: p2, frame: Ft, attribute: T, buttonStyle: m4, parseBml: s2, loadFont: f5, get fontFamily() { return Sn; } };');
+    lines.push('const multiplayerWindowDrawDependencies = { attribute: T, rectangle: V0, innerRectangle: E9, paintFrame: C9, color: E8, charLayout: ga, charGlyphs: pa, paintImageButton: ct, numbers: j2, drawText: m9, comboEntries: OM, captionRectangle: f3, nodeConfig: an, get fontFamily() { return Sn; } };');
+    lines.push('const multiplayerComboDependencies = { entries: OM, attribute: T, rectangle: V0, paintFrame: C9 };');
     lines.push('import { speedTypeEntry as r7 } from "../physics/speed-baseline.ts";');
     lines.push('import { loadSwWithReadableCodec } from "../codecs/sw-compat.ts";');
     lines.push('import { getResource, initializeResourceLookup, resourceCanonicalCandidates, resourceEntriesUnderCanonicalPrefix, resourceExactCanonicalCandidates, resourceFindSibling, resourceHasManifestMount, resourcePhysicalContainerNames, resourceResolveContainerPath } from "../resources/resource-lookup.ts";');
@@ -2114,11 +2866,66 @@ function renderModule(name) {
     }
   }
   lines.push("");
+  if (name === "formats") {
+    // Resolve late format constants only when a camera is constructed.
+    lines.push(`function cameraMathDependencies() { return {
+  f32: n0, floatWord: g1, bodyBasis: kB, clientVector: g4,
+  column: Qt, setColumn: zl, normalize: Np, cross: Op, scale: Kc, add: Hb,
+  alignMotorcycle: Ej, orientation: LB, orientationDot: da,
+  scaleOrientation: ew, smoothOrientation: O6, speed: Ul,
+  smoothScalar: qc, clampRatio: bs, basisFromOrientation: PB,
+  tiltBasis: _j, outputVector: v8, clientDot: Ou, horizontalFov: we,
+  resolutionFov: z6, parseRoadNumber: y8, emptyVector: Bj,
+  baseFov: DB, activeFov: VB, altActiveFov: NB, boostFov: OB,
+  specialFovLimit: bj, p3528SpecialFovLimit: Mj, near: xj, far: Sj,
+}; }`);
+    lines.push(`function toonOutlineDependencies() { return {
+  defaultProfile: () => kp,
+  nextSerial: yb,
+  enabled: () => $c,
+  projection: {
+    generation: () => Lp, prepare: SB, transpose: Fp, multiply: Dp,
+    transform: SK, model: Li, combined: Pi, screen: xB, clip: $r,
+  },
+  update: () => ({
+    profileForSelector1: AK, profileForOtherSelector: Xm,
+    get defaultProfile() { return kp; },
+    get enabled() { return $c; },
+    overrideForObject: bK, colorFromArgb: toonColorFromArgb,
+    nextSerial: yb,
+    projectedDepth: (body, camera) => {
+      Mb.setFromMatrixPosition(body.matrixWorld).project(camera);
+      return Mb.z;
+    },
+  }),
+}; }`);
+    lines.push(`function awardPodiumDependencies() { return {
+  makeDistanceController: parsed => on.fromParsed(parsed),
+  baseFov: () => z6(0).base,
+  horizontalFov: we,
+}; }
+function awardPodiumLoadDependencies() { return {
+  parseModel: y9, loadScene: W1,
+  resolveTexture: (library, path, resource) => sn(library, path, void 0, resource),
+}; }`);
+    lines.push("");
+  }
   if (name === "vehicle") {
     lines.push('const animationActionDependencies = { createSequence: (source, motions, initial) => new _r(source, motions, initial), oneWay: m1, returnable: h5 };');
     lines.push('const coinOwnerOps = { createObject: () => new T2(), originalAsset: nl, decodeModel: y9, decodeAudio: Q9, loadModel: c5, createContact: (...args) => new y10(...args), routeAudio: S9 };');
     lines.push('const chargerEffectOps = { decodeModel: y9, loadModel: c5, prepareTexture: ye0, configureMesh: ie, configureMaterials: ve0 };');
     lines.push('const coatingOwnerOps = { createTextures: library => new yB(library), loadProjection: Ak };');
+    lines.push('const movingEventOps = { transformPoint: e3 };');
+    lines.push('const trackEventOwnerOps = { createAnimator: (root, projection) => new qn0(root, projection), copyPosition: copyEventPoint };');
+    lines.push('const vehicleRuntimeOps = { resolveResources: t3, wheelAssets: yw, palette: We, prepareAppearance: vw, garageKart: p5, parseParameters: cv, makeVisual: wk, shortAssetName: a40, loadCoating: (...args) => d7.load(...args), needsParticleModification: Bk, loadXunModification: (...args) => Do.loadXun(...args), loadParticleModification: (...args) => c6.load(...args), disposeObject: u5 };');
+    lines.push('const kartAudioOps = { route: S9, setGain: he, setLoop: w4, roadSoundEnabled: BQ };');
+    lines.push('const kartAudioLoadOps = { decodeMotor: (context, bytes) => decodeMotorAudio(context, bytes, S30), decodeAudio: Q9, parseRoadConfig: bytes => parseRoadSoundConfig(bytes, s2, T), createContext: () => new AudioContext() };');
+    lines.push('const vehicleAssetOps = { resolveKartIdentity: b4, tachometerSelection: O50, useClassicHud: E50, resourceVersion: Bt, loadClassicTachometer: () => uv.load(), loadTachometerConfig: $50, makeTacho1: config => new fv(config), makeMqTacho: config => new Fk(config), loadNineTacho: (...args) => p7.load(...args), loadV1Tacho: (...args) => Ta.load(...args), loadXGenTacho: (...args) => Gr.load(...args), loadAudio: (...args) => pv.load(...args), loadEffects: (...args) => Ca.load(...args), loadTrails: (...args) => Ea.load(...args), makeDriftSetup: Ze0, loadDriftEffects: (...args) => iv.load(...args), loadMotionBlur: (...args) => sv.load(...args), loadZetAir: (...args) => lv.load(...args), loadShockWave: (...args) => av.load(...args), loadExhaust: (...args) => rv.load(...args), loadCrash: (...args) => nv.load(...args), loadCharger: (...args) => tv.load(...args), loadLampFlares: (...args) => s6.load(...args), kartModelRoot: J5, loadShadow: (...args) => fr.load(...args), paintColor: We, loadDecoration: Jw, loadAccessory: hr, physicsParams: jt0, rootExtent: el, collisionShape: v90, disposeObject: u5 };');
+    lines.push('const trackMapOps = { decodeModel: y9, assetProvenance: X30, loadLteCoins: A10, loadWeather: A30, loadWarp: b30, validateCourse: Y30, lensFlareAnchor: c30, dummySounds: Vn0, extractRoad: YW, mapMovingObjects: K30, additionalMatrixRoots: j30, admitMovingObject: Um, parseEventProjection: $k, makeEventRuntime: projection => new Kn0(projection), hasDeferredRoad: mo, isDeferredRoadMaterial: Fl, unsupportedRoad: NG, hasRail: Ri, loadRailConfig: w30, loadRailCapture: y30, resourceVersion: Bt, isLteTrack: Vw, loadAdmission: J30, loadMultiplayerAdmission: Z30, makeReadyCamera: model => new I30(model), loadAdvertisements: Ln0, textureCandidates: hB, textureStatus: sn, loadEnvironment: library => rn.load(library), loadScene: c5, warpNextCamera: O30, configureSkydome: i40 };');
+    lines.push('const characterAssetOps = { resolveIdentity: pk, chooseCostume: CR, decodeMotion: FI, linkedMotionNames: qp, specialMotionNames: HY, standardMotionNames: WY, linkedController: s40, specialController: o40, standardController: r40, awardController: (...args) => new b10(...args), faceTextureSources: SR, collectFaceMotionAssets: xR, palette: We, parseModel: xa, createScene: TR };');
+    lines.push('const slipstreamVisualOps = { decodeModel: y9, loadModel: c5 };');
+    lines.push('const slipstreamAudioOps = { loop: w4, connect: S9 };');
+    lines.push('const normalRaceModes = { isSoloMode: Q30, isMultiplayerMode: e40 };');
     lines.push("");
   }
   if (name === "driving") {
@@ -2163,6 +2970,14 @@ function renderModule(name) {
     lines.push("const ghostAssetDependencies = { findKart: b4, loadParameterFactory: async () => { const { createVehicleTimeAttackParameters } = await El(async () => { const { createVehicleTimeAttackParameters } = await Promise.resolve().then(() => AS); return { createVehicleTimeAttackParameters }; }, void 0); return createVehicleTimeAttackParameters; }, loadBodyParameter: t3, ghostItemIds: U_, loadPaintColor: We, createBalloon: Jw, createAccessory: hr };");
     lines.push("const ghostRecordLibraryDependencies = { restoreSummaries: Vh0, trackIdFromKey: key => Pt.trackIdFromKey(key), errorMessage: z_, zCeiling: B6, commonTimeBase: Dh0, debug: Nf, get storage() { return localStorage; }, get summaryStorageKey() { return PD; }, hydrateSummaries: hydrateGhostSummaryIndex, syncSummaries: syncGhostSummaryIndex };");
     lines.push("const ghostExportDependencies = { filename: V_, zCeiling: B6, encodeKsvFile: ph0 };");
+    lines.push("const ghostMenuImportDependencies = { decodeKsv: pd0, toGhostRecord: gd0, toSelection: zD, selectionLabel: X_, mergeTrackSelection: md0 };");
+    lines.push("const ghostVisualAssetDependencies = { serializedRoot: J5, createLinkedPresentation: (root, mount, driver, always) => new _a(root, mount, driver, always), collectToonPairs: qf, createBalloonMount: c7, get decorationSockets() { return jd0; }, nowMs: () => performance.now() };");
+    lines.push("const ghostVisualUpdateDependencies = { decodePose: (frame, scratch) => LL(frame, scratch), decodeBasis: (basis, scratch) => xv(basis, scratch), boosterState: status => RD(status), secondaryState: status => ID(status), instantAcceleration: status => P_(status), copyToon: (source, clone) => f6(source, clone), nextTrailState: (status, prior, vehicle) => Kd0(status, prior, vehicle) };");
+    lines.push("const raceBgmPlaybackDependencies = { setLoop: (source, loop) => w4(source, loop), setGain: (gain, value, time) => he(gain, value, time), connect: (context, source, channel, gain) => S9(context, source, channel, gain), setDucking: (context, fading) => qM(context, fading), fadeCurve: step => Qd0(step), schedule: (callback, delay) => setInterval(callback, delay), cancel: timer => clearInterval(timer) };");
+    lines.push("const raceBgmLoadingDependencies = { resource: (library, path) => G5(library, path), garageMusic: (library, single) => ef0(library, single), parseMultiplayerList: (xml, path) => Fc0(xml, path), decodeBuffer: (resource, context) => Kt(resource, context), racePlaylist: (library, track, context) => eG(library, track, context), create: (context, playlist, ready, garage, win, lose, random) => new P7(context, playlist, ready, garage, win, lose, random) };");
+    lines.push("const timeAttackInputBridgeDependencies = { get racingPhase() { return Ne.Racing; }, get forwardAction() { return l2.Forward; }, acceptsTimeAttackInput: lifecycle => e60(lifecycle), activeRace: lifecycle => t60(lifecycle), isTachometer: value => value instanceof fv };");
+    lines.push("const ghostSmoothSamplerDependencies = { sampleNative: (record, timeMs) => FD(record, timeMs), smoothVelocity: (tail, head, prior, elapsed) => Zh0(tail, head, prior, elapsed), magnitude: velocity => fd0(velocity), float32: value => L9(value), renderBasis: (velocity, speed, quaternion) => Qh0(velocity, speed, quaternion) };");
+    lines.push("const ghostKsvExportDependencies = { encodeStatus: (...args) => GD(...args), encodeRuntimeStamp: (stamp, zCeiling) => xD(stamp, zCeiling), createRecorder: zCeiling => new kD(zCeiling) };");
     lines.push("");
   }
   if (name === "multiplayer") {
@@ -2188,11 +3003,25 @@ function renderModule(name) {
   persistGameOptions: ua0,
 };`);
     lines.push("const lobbyRoomTimingDependencies = { nowMs: () => performance.now(), requestFrame: callback => requestAnimationFrame(callback), cancelFrame: frameId => cancelAnimationFrame(frameId), toLocalStartAt: Y3 };");
+    lines.push("const lobbyRoomLifecycleDependencies = { previewMembers: (room, teams) => DT(room, teams), parseChat: (chat, emotions) => Ng(chat, emotions), get chatBubbleDurationMs() { return Il0; }, nowMs: () => performance.now(), cancelFrame: frameId => cancelAnimationFrame(frameId), get keyboard() { return window; } };");
+    lines.push("const lobbyRoomTrackDependencies = { randomTrack: code => X6(code), mode: room => G2(room), uiResource: (library, roots, token) => U1(library, roots, token), decodePng: bytes => p2(bytes), canvas: image => { const canvas = document.createElement('canvas'); canvas.width = image.width; canvas.height = image.height; canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(image.pixels), image.width, image.height), 0, 0); return canvas; }, roadblockTracks: library => Cw(library), theme: metadata => wa(metadata) };");
+    lines.push("const lobbyRoomConstructionDependencies = { mode: room => G2(room), loadRoleTeams: library => fa(library), loadEmotions: library => cP(library), loadCountdown: library => dy.load(library), loadDefinition: (library, roadblock) => Ll0(library, roadblock), withEmotions: (definition, emotions) => Fl0(definition, emotions), loadView: options => te.load(options), loadTrackChangeNotice: (...args) => fy.load(...args), createPreviews: (library, render, onError, emotions, audioContext) => new Tl0(library, render, onError, emotions, audioContext) };");
+    lines.push("const lobbyRoomStateDependencies = { nodeName: node => T(node, 'name'), slots: (room, playerId) => FT(room, playerId), roadblockRunner: room => TF(room), gameplayMode: room => G2(room), decodeChat: (text, emotions) => Ng(text, emotions), wrapBubble: text => kl0(text), drawBubbleLine: (canvas, line, rect, options) => m9(canvas, line, rect, options), nowMs: () => performance.now(), get roadblockDefaults() { return tt; }, get rpChannelNames() { return lw; }, get colors() { return { redTeam: Rl0, blueTeam: Bl0, ownChat: _l0, otherChat: Gl0 }; } };");
+    lines.push("const raceLoadingScreenAssets = { imageBytes: (library, roots, name) => U1(library, roots, name).bytes(), decodeImage: bytes => p2(bytes) };");
     lines.push("");
   }
   if (name === "world") {
     lines.push("const localRaceDependencies = { states: X2, beginResetState: mL, advanceResetState: wL, routeTagFamily: Vo, isStartBoosterWindow: fL };");
     lines.push("const raceRoomDependencies = { modeOf: G2, sameRp: t7, sameRoadblock: oR, sameLte: Nw, sameGiant: yI, toLocalTick: Y3, racingState: X2.Racing };");
+    lines.push("const racePresenterInitializationDependencies = { createCameraShake: (random, anchor) => new nP(random, anchor), createRankRoster: (roster, playerId) => new Tr0(roster, playerId), createLightFactor: random => new sP(random), createAction2d: assets => new dI(assets), applyTrackFog: (scene, track) => kv(scene, track), createRacerView: scene => new Vg(scene), vehicleParts: vehicle => lc(vehicle), serializedRoot: model => J5(model), get accessorySockets() { return oP; }, createLinkedPresentation: (...args) => new _a(...args), attachAura: (...args) => ev(...args), createGiantAppearance: (...args) => new Kr0(...args), startPosition: (...args) => rL(...args), createShadowPresentation: object => new $i0(object) };");
+    lines.push("const racePresenterFrameDependencies = { result: { get countdownState() { return X2.Countdown; }, render: (...args) => e4(...args) }, events: { get racingState() { return X2.Racing; } }, participants: { updateRemoteVehicleEffects: (...args) => xr0(...args), updateLocalVehicleEffects: (...args) => Mr0(...args) }, hud: { rankByProgress: (...args) => _r0(...args), rankFallback: (...args) => Gr0(...args), rankWithResults: (...args) => Br0(...args), updateTachometer: (...args) => QL(...args), prepareScene: (...args) => e4(...args), get racingState() { return X2.Racing; } } };");
+    lines.push("const racePresenterSetupDependencies = { flyingPetItem: (library, itemId) => Ma(library, itemId), serializedRoot: model => J5(model), loadFlyingPet: options => S4.race(options), paintColors: (library, itemId) => We(library, itemId), loadRoadblockFlag: (...args) => _v.load(...args), loadGiant: (...args) => Fv.load(...args), loadRoadblockResult: (...args) => Bv.load(...args), nowMs: () => performance.now() };");
+    lines.push("const racePresenterTrackEventDependencies = { loadEffects: (...args) => b7.load(...args), loadAudio: (...args) => v7.load(...args), loadDummyAudio: (...args) => m7.load(...args) };");
+    lines.push("const racePresenterResultsDependencies = { vehicleParts: vehicle => lc(vehicle), winningPlayers: (...args) => rG(...args), createVehicleView: scene => new Vg(scene) };");
+    lines.push("const racePresenterLifecycleDependencies = { warmScene: (...args) => Hn(...args), createRenderTarget: (width, height) => new nn(width, height), vehicleParts: vehicle => lc(vehicle) };");
+    lines.push("const racePresenterActionsDependencies = { routeTagFamily: tag => Vo(tag), resetTachometer: tachometer => eP(tachometer) };");
+    lines.push("const racePresenterRenderDependencies = { get transparentSort() { return jm; }, withColorPipeline: (...args) => yo(...args), renderTachometer: (...args) => JL(...args), get blackBarFraction() { return Rv; }, get worldAxis() { return H2; }, get depthAxis() { return $2; }, get postFinishState() { return X2.PostFinish; } };");
+    lines.push("const raceSessionUpdateDependencies = { nowMs: () => performance.now(), get lteKeyMap() { return Xr0; }, get states() { return X2; } };");
     lines.push("");
   }
   for (const fragment of bodies.get(name).sort((a, b) => a.at - b.at)) {
@@ -2286,7 +3115,10 @@ function pruneUnreferencedDeclarations(rendered) {
           if (statement.type !== "VariableDeclaration") continue;
           const retained = statement.declarations.filter((part) => {
             if (part.id.type !== "Identifier" || !isInertLiteral(part.init)) return true;
-            return program.scope.getBinding(part.id.name)?.referenced;
+            const binding = program.scope.getBinding(part.id.name);
+            // Babel does not count a write-only binding as "referenced". A
+            // later `cache ??= value` still needs its lexical declaration.
+            return binding?.referenced || !!binding?.constantViolations.length;
           });
           if (retained.length === statement.declarations.length) continue;
           dead.push({
@@ -2310,11 +3142,37 @@ function pruneUnreferencedDeclarations(rendered) {
 }
 
 await mkdir(outputDir, { recursive: true });
+async function writeIfChanged(filename, contents) {
+  const target = path.join(outputDir, filename);
+  try {
+    if (await readFile(target, "utf8") === contents) return;
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+  await writeFile(target, contents, "utf8");
+}
+
 const generated = [];
+function addHouseShellState(source) {
+  const substitutions = [
+    ['    garage: "ReadyGarage",\n    settings: "ReadySettings",',
+      '    garage: "ReadyGarage",\n    house: "ReadyHouse",\n    settings: "ReadySettings",'],
+    ['    ReadyGarage: "garage",\n    ReadySettings: "settings",',
+      '    ReadyGarage: "garage",\n    ReadyHouse: "house",\n    ReadySettings: "settings",'],
+    ['      this.state === "ReadyGarage" ||\n      this.state === "ReadySettings"',
+      '      this.state === "ReadyGarage" ||\n      this.state === "ReadyHouse" ||\n      this.state === "ReadySettings"'],
+  ];
+  for (const [before, after] of substitutions) {
+    assert(source.includes(before), "ShellStateMachine layout changed; house modal needs review.");
+    source = source.replace(before, after);
+  }
+  return source.replace(/^[ \t]+$/gm, "");
+}
 for (const name of order) {
-  const text = pruneUnreferencedDeclarations(retireDuplicateArchiveCode(name, renderModule(name)));
+  let text = pruneUnreferencedDeclarations(retireDuplicateArchiveCode(name, renderModule(name)));
+  if (name === "world") text = addHouseShellState(text);
   const filename = `${name}.js`;
-  await writeFile(path.join(outputDir, filename), text, "utf8");
+  await writeIfChanged(filename, text);
   generated.push({
     file: filename,
     bytes: Buffer.byteLength(text),
@@ -2334,10 +3192,73 @@ const garagePartOverrides = new Map([
   ["Xe", "function Xe(a, e, t, s, i, n, r) { return resolveEquippedGaragePart(a, e, t, s, i, n, r, me); }"],
   ["Kt", "function Kt(a, e) { return sameGaragePart(a, e); }"],
 ]);
+const garageRuntimeClassOverrides = new Map([
+  ["Qi", "const Qi = GarageModelCache;"],
+  ["vn", "class vn extends GarageInventoryScroll { constructor(viewport, hitTarget, snapStep) { super(viewport, hitTarget, snapStep, (...args) => Qs(...args)); } }"],
+  ["Ka", "class Ka extends GaragePointEffects { constructor(surface, assets, load, onError) { super(surface, assets, load, onError, { attribute: (node, name) => y(node, name) }); } }"],
+]);
+const garageUpgradeSessionClassOverrides = new Map([
+  ["qa", "class qa extends GarageSkillSelectionState { constructor(progression, slot = 0) { super(progression, slot, garageSkillSelectionDependencies); } }"],
+  ["Qa", "class Qa extends GarageUpgradePreparationState { constructor(candidates, selectedItemId) { super(candidates, selectedItemId, garageUpgradePreparationDependencies); } }"],
+  ["Da", "class Da extends GarageSkillSelectionDialog { constructor(surface, library, progression, row, onClose) { super(surface, library, progression, row, onClose, garageSkillDialogDependencies); } }"],
+  ["Tn", "class Tn extends GarageExceedTypeDialog { constructor(surface, assets, library, current, onClose) { super(surface, assets, library, current, onClose, garageExceedDialogDependencies); } }"],
+]);
+const garageUpgradeResultOverrides = new Map([
+  ["constructor", "constructor(surface, library, environment, stage, title, onClose, kind, summary, resultOnly = false, badgeUrl) { initializeGarageUpgradeResult(this, surface, library, environment, stage, title, onClose, kind, summary, resultOnly, badgeUrl, garageUpgradeConstructionDependencies); }"],
+  ["capturePreview", "capturePreview(panels, rect) { return captureGarageUpgradePreview(this, panels, rect, garageUpgradeRenderDependencies); }"],
+  ["render", "render(time, panels) { return renderGarageUpgradeResult(this, time, panels, garageUpgradeRenderDependencies); }"],
+  ["close", "close(confirmed) { return closeGarageUpgradeResult(this, confirmed); }"],
+  ["dispose", "dispose() { return disposeGarageUpgradeResult(this); }"],
+]);
+const garagePointEffectHelperOverrides = new Map([
+  ["za", "function za(gauge, sprite, points) { return garageSkillEffectRect(gauge, sprite, points); }"],
+  ["Ua", "function Ua(before, after) { return compareGarageSkillEffects(before, after); }"],
+]);
+const garagePreparationHelperOverrides = new Map([
+  ["Za", "function Za(current, next) { return compareGarageUpgradeLevels(current, next); }"],
+  ["ss", "function ss() { return preparationMethodPanelRect(); }"],
+  ["Ya", "function Ya(context, rect) { return fillPreparationMethodPanel(context, rect); }"],
+  ["en", "function en(context, presenter, cards, selectedId, normal, selected) { return drawPreparationCards(context, presenter, cards, selectedId, normal, selected); }"],
+]);
+const garagePreparationDialogOverrides = new Map([
+  ["constructor", "constructor(surface, library, candidates, selectedItemId, onClose) { initializeGaragePreparation(this, surface, library, candidates, selectedItemId, onClose, garagePreparationConstructionDependencies); }"],
+  ["selected", "get selected() { return selectedPreparationVehicle(this); }"],
+  ["previewRect", "get previewRect() { return preparationPreviewRect(this); }"],
+  ["previewCard", "get previewCard() { return preparationPreviewCard(this); }"],
+  ["cards", "get cards() { return preparationCards(this); }"],
+  ["place", "place(element, rect) { return placePreparationControl(this, element, rect); }"],
+  ["label", "label(text, rectName, extraClass = '') { return addPreparationLabel(this, text, rectName, extraClass); }"],
+  ["comparisonValue", "comparisonValue(rectName, value, increment = 0, extraClass = 'metric-value') { return addPreparationComparisonValue(this, rectName, value, increment, extraClass); }"],
+  ["button", "button(label, rect, action, disabled = false) { return createPreparationButton(this, label, rect, action, disabled); }"],
+  ["decoratePageArrow", "decoratePageArrow(button, arrow, rect) { return decoratePreparationPageArrow(this, button, arrow, rect, garagePreparationRenderDependencies); }"],
+  ["cancelButton", "cancelButton() { return addPreparationCancelButton(this); }"],
+  ["load", "async load(library) { return loadGaragePreparation(this, library, value => Ha(value)); }"],
+  ["refresh", "refresh() { return refreshGaragePreparation(this, garagePreparationRenderDependencies); }"],
+  ["resizeCanvases", "resizeCanvases() { return resizePreparationCanvases(this); }"],
+  ["close", "close(accept) { return closeGaragePreparation(this, accept); }"],
+  ["dispose", "dispose() { return disposeGaragePreparation(this); }"],
+  ["clearPageFrameResources", "clearPageFrameResources() { return clearPreparationPageFrames(this); }"],
+  ["draw", "draw(presenter) { return drawGaragePreparation(this, presenter, garagePreparationRenderDependencies); }"],
+]);
 const garageProgressionOverrides = new Map([
+  ["constructor", "constructor(assets, onChange, onSelectSkill, onExceedTypeChange = () => {}) { initializeGarageProgressionView(this, assets, onChange, onSelectSkill, onExceedTypeChange); }"],
   ["reset", "reset(layout) { return resetGarageProgressionPanel(this, layout); }"],
+  ["previewRect", "get previewRect() { return garageProgressionPreviewRect(this); }"],
   ["updateRadar", "async updateRadar(library, kart, grade, progression, configuration) { return updateGarageProgressionRadar(this, library, kart, grade, progression, configuration, garageProgressionRadarDependencies); }"],
   ["dispose", "dispose() { return disposeGarageProgressionPanel(this); }"],
+  ["rect", "rect(name) { return garageProgressionRect(this, name); }"],
+  ["place", "place(element, rect) { return placeGarageProgressionElement(this, element, rect); }"],
+  ["styleFromNode", "styleFromNode(element, name) { return styleGarageProgressionFromNode(this, element, name, garageProgressionElementsDependencies); }"],
+  ["label", "label(text, rect, node) { return addGarageProgressionLabel(this, text, rect, node); }"],
+  ["nativeLabel", "nativeLabel(name, fallback) { return addGarageProgressionNativeLabel(this, name, fallback, garageProgressionElementsDependencies); }"],
+  ["texture", "texture(name, rect) { return addGarageProgressionTexture(this, name, rect); }"],
+  ["button", "button(name, title, action, disabled = false, offset = 0) { return addGarageProgressionButton(this, name, title, action, disabled, offset, garageProgressionElementsDependencies); }"],
+  ["update", "update(progression, hasVehicle, grade, factory, exceedType, vehicle, noAvailableVehicles = false) { return updateGarageProgressionPanel(this, progression, hasVehicle, grade, factory, exceedType, vehicle, noAvailableVehicles, garageProgressionPanelDependencies); }"],
+  ["draw", "draw(context, grade) { return drawGarageProgressionView(this, context, grade, garageProgressionDrawDependencies); }"],
+]);
+const garageProgressionHelperOverrides = new Map([
+  ["$s", "function $s(vehicle, restrictions) { return garageExceedChangeAvailability(vehicle, restrictions); }"],
+  ["ya", "function ya(element, value) { return appendGarageNativeColorText(element, value); }"],
 ]);
 const garageEquipmentOverrides = new Map([
   ["requireCustomization", "requireCustomization() { return requireGarageCustomization(this, ae); }"],
@@ -2416,6 +3337,68 @@ const garagePageVisibilityOverrides = new Map([
 const garageControlsOverrides = new Map([
   ["updateControls", "updateControls() { return updateGarageControls(this, garageControlsDependencies); }"],
 ]);
+const garageViewControlsOverrides = new Map([
+  ["place", "place(element, rect) { return placeGarageControl(this, element, rect); }"],
+  ["setPartsOnlyNodesMounted", "setPartsOnlyNodesMounted(mounted) { return setGaragePartsOnlyNodesMounted(this, mounted); }"],
+  ["setVehicleInfoNodesMounted", "setVehicleInfoNodesMounted(mounted) { return setGarageVehicleInfoNodesMounted(this, mounted); }"],
+  ["setUpgradeStatusMounted", "setUpgradeStatusMounted(mounted) { return setGarageUpgradeStatusMounted(this, mounted); }"],
+  ["button", "button(label, action) { return createGarageActionButton(this, label, action); }"],
+  ["skin", "skin(button, imageBase, states = 4) { return skinGarageActionButton(this, button, imageBase, states); }"],
+  ["nativeButton", "nativeButton(name, fallback, action, override) { return createGarageNativeButton(this, name, fallback, action, override, { attribute: y }); }"],
+  ["rect", "rect(name) { return garageViewRect(this, name); }"],
+  ["icon", "icon(key, className) { return createGarageIcon(this, key, className); }"],
+]);
+const garagePartModelsOverrides = new Map([
+  ["partVisual", "partVisual(container, part, className, row) { return renderGaragePartVisual(this, container, part, className, row, { iconKey: Ss, cardLayout: xt }); }"],
+  ["addModelTarget", "addModelTarget(container, source, className, row, fallback, dimensions) { return addGaragePartModelTarget(this, container, source, className, row, fallback, dimensions); }"],
+  ["renderPartModels", "renderPartModels() { return renderGaragePartModels(this); }"],
+]);
+const garageBuildControlsOverrides = new Map([
+  ["buildControls", "buildControls() { return buildGarageControls(this, { slots: de, slotLabels: ai, inventoryRect: Dt, removeButtonRect: _n, cardsRect: bt }); }"],
+]);
+const garageViewConstructionOverrides = new Map([
+  ["constructor", `constructor(options, assets, tuning, previews) { return initializeGarageView(this, options, assets, tuning, previews, {
+    validateKart: Ft, createDrawing: canvas => new Js(canvas),
+    createModelCache: (load, onError) => new Qi(load, onError),
+    loadModel: (library, path, environment, stageBinding) => Je(library, path, environment, stageBinding),
+    bindInteractionAudio: ei, isHoverAudible: xi, isClickAudible: Ci,
+    createProgressionPanel: (...args) => new va(...args),
+    createPointEffects: (...args) => new Ka(...args),
+    createControlCanvas: (...args) => new Pi(...args),
+    createResizeObserver: callback => new ResizeObserver(callback), window,
+  }); }`],
+]);
+const garageViewActionsOverrides = new Map([
+  ["serial", "serial() { return garageSelectedKartSerial(this); }"],
+  ["speedVersion", "get speedVersion() { return garageSpeedVersion(this, garageViewActionDependencies); }"],
+  ["base", "base() { return garageBaseSpecification(this); }"],
+  ["baseFor", "baseFor(kart) { return garageBaseForKart(this, kart, garageViewActionDependencies); }"],
+  ["partLabel", "partLabel(part) { return garagePartLabel(this, part, garageViewActionDependencies); }"],
+  ["rehitTestInventoryPreview", "rehitTestInventoryPreview() { return rehitGarageInventoryPreview(this, garageViewActionDependencies); }"],
+  ["showFactoryTutorial", "async showFactoryTutorial() { return showGarageFactoryTutorial(this, garageViewActionDependencies); }"],
+  ["onKey", "onKey = event => handleGarageEscapeKey(this, event);"],
+]);
+const garageFrameCanvasOverrides = new Map([
+  ["captureStrengtheningStage", "captureStrengtheningStage() { return captureGarageStrengtheningStage(this); }"],
+  ["captureStage", "captureStage() { return captureGarageStage(this); }"],
+  ["finishCanvasFrame", "finishCanvasFrame(frozen = false) { return finishGarageCanvasFrame(this, frozen); }"],
+  ["paintTaskbar", "paintTaskbar() { return paintGarageTaskbar(this); }"],
+  ["authoredPointerY", "authoredPointerY(event) { return garageAuthoredPointerY(this, event); }"],
+  ["drawKartCatalogFrame", "drawKartCatalogFrame(context, rect, selected, hovered = false) { return drawGarageKartCatalogFrame(this, context, rect, selected, hovered); }"],
+  ["drawKartLevelBadge", "drawKartLevelBadge(context, kart, rect) { return drawGarageKartLevelBadge(this, context, kart, rect, garageFrameCanvasDependencies); }"],
+]);
+const garageStrengtheningOverlayOverrides = new Map([
+  ["renderStrengtheningOverlay", "renderStrengtheningOverlay(time) { return renderGarageStrengtheningOverlay(this, time, garageStrengtheningOverlayDependencies); }"],
+]);
+const garageFrameRenderOverrides = new Map([
+  ["frame", "frame = () => renderGarageFrame(this, garageFrameRenderDependencies);"],
+]);
+const garagePreviewInputOverrides = new Map([
+  ["createTransformPreviewButton", "createTransformPreviewButton() { return createGarageTransformPreviewButton(this, garagePreviewInputDependencies); }"],
+  ["onDragStart", "onDragStart = event => startGaragePreviewDrag(this, event);"],
+  ["onDragMove", "onDragMove = event => moveGaragePreviewDrag(this, event);"],
+  ["onDragEnd", "onDragEnd = event => endGaragePreviewDrag(this, event);"],
+]);
 const garageTransformPreviewOverrides = new Map([
   ["startTransformPreview", "startTransformPreview(immediate = false) { return startGarageTransformPreview(this, immediate); }"],
   ["transformPreviewSessionActive", "transformPreviewSessionActive() { return isGarageTransformPreviewSessionActive(this); }"],
@@ -2432,6 +3415,24 @@ const garageFactoryPickerOverrides = new Map([
   ["commit", "commit(configuration) { return commitGarageFactoryChoice(this, configuration, garageFactoryPickerDependencies); }"],
   ["factoryChoiceButton", "factoryChoiceButton(text, pressed, disabled, action) { return createGarageFactoryChoiceButton(this, text, pressed, disabled, action, garageFactoryPickerDependencies); }"],
 ]);
+const garageFactoryPanelOverrides = new Map([
+  ["update", "update(configuration, supported, busy = false, vehicleName, vehicle, vehicleKey = vehicleName) { return updateGarageFactoryPanel(this, configuration, supported, busy, vehicleName, vehicle, vehicleKey, garageFactoryPanelDependencies); }"],
+]);
+const garageFactoryViewOverrides = new Map([
+  ["constructor", "constructor(assets, onChange, onConfirm, onTabChange, onTutorial) { initializeGarageFactoryView(this, assets, onChange, onConfirm, onTabChange, onTutorial); }"],
+  ["showsCatalog", "get showsCatalog() { return garageFactoryShowsCatalog(this); }"],
+  ["previewRect", "get previewRect() { return garageFactoryPreviewRect(this); }"],
+  ["catalogLayout", "get catalogLayout() { return garageFactoryCatalogLayout(this.assets, garageFactoryViewDependencies); }"],
+  ["place", "place(element, rect) { return placeGarageFactoryElement(this, element, rect); }"],
+  ["label", "label(text, rect, node) { return addGarageFactoryLabel(this, text, rect, node, garageFactoryViewDependencies); }"],
+  ["updateScores", "updateScores(scores, title) { return updateGarageFactoryScoreLabel(this, scores, title); }"],
+]);
+const garageFactoryCanvasOverrides = new Map([
+  ["resizeCanvases", "resizeCanvases() { return resizeGarageFactoryCanvases(this); }"],
+  ["styleActionFrame", "styleActionFrame(button) { return styleGarageFactoryActionFrame(this, button, garageFactoryCanvasDependencies); }"],
+  ["draw", "draw(context) { return drawGarageFactoryBackground(this, context, garageFactoryCanvasDependencies); }"],
+  ["drawCatalogFrame", "drawCatalogFrame(context, index, selected, hover = false) { return drawGarageFactoryCatalogFrame(this, context, index, selected, hover); }"],
+]);
 const garageAst = parse(garage, { sourceType: "module", errorRecovery: false });
 const garageEdits = garageAst.program.body.flatMap(node =>
   node.type === "FunctionDeclaration" && node.id && garagePartOverrides.has(node.id.name)
@@ -2440,6 +3441,77 @@ const garageEdits = garageAst.program.body.flatMap(node =>
 assert(garageEdits.length === garagePartOverrides.size &&
   new Set(garageEdits.map(edit => edit.name)).size === garagePartOverrides.size,
   "Garage parts business functions changed in the release source.");
+const garageRuntimeClassEdits = garageAst.program.body.flatMap(node =>
+  node.type === "ClassDeclaration" && node.id && garageRuntimeClassOverrides.has(node.id.name)
+    ? [{ start: node.start, end: node.end,
+      text: garageRuntimeClassOverrides.get(node.id.name), name: node.id.name }]
+    : []);
+assert(garageRuntimeClassEdits.length === garageRuntimeClassOverrides.size &&
+  new Set(garageRuntimeClassEdits.map(edit => edit.name)).size === garageRuntimeClassOverrides.size,
+  "Garage runtime classes changed in the release source.");
+const garageUpgradeSessionClassEdits = garageAst.program.body.flatMap(node =>
+  node.type === "ClassDeclaration" && node.id &&
+    garageUpgradeSessionClassOverrides.has(node.id.name)
+    ? [{ start: node.start, end: node.end,
+      text: garageUpgradeSessionClassOverrides.get(node.id.name), name: node.id.name }]
+    : []);
+assert(garageUpgradeSessionClassEdits.length === garageUpgradeSessionClassOverrides.size &&
+  new Set(garageUpgradeSessionClassEdits.map(edit => edit.name)).size === garageUpgradeSessionClassOverrides.size,
+  "Garage upgrade session classes changed in the release source.");
+const upgradeResultClass = garageAst.program.body.find(node =>
+  node.type === "ClassDeclaration" && node.id?.name === "Ra");
+assert(upgradeResultClass, "Garage upgrade result class changed in the release source.");
+const garageUpgradeResultEdits = upgradeResultClass.body.body.flatMap(method =>
+  method.type === "ClassMethod" && method.key.type === "Identifier" &&
+    garageUpgradeResultOverrides.has(method.key.name)
+    ? [{ start: method.start, end: method.end,
+      text: garageUpgradeResultOverrides.get(method.key.name), name: method.key.name }]
+    : []);
+assert(garageUpgradeResultEdits.length === garageUpgradeResultOverrides.size &&
+  new Set(garageUpgradeResultEdits.map(edit => edit.name)).size === garageUpgradeResultOverrides.size,
+  "Garage upgrade result methods changed in the release source.");
+const garagePointEffectHelperEdits = garageAst.program.body.flatMap(node =>
+  node.type === "FunctionDeclaration" && node.id &&
+    garagePointEffectHelperOverrides.has(node.id.name)
+    ? [{ start: node.start, end: node.end,
+      text: garagePointEffectHelperOverrides.get(node.id.name), name: node.id.name }]
+    : []);
+assert(garagePointEffectHelperEdits.length === garagePointEffectHelperOverrides.size,
+  "Garage point effect helpers changed in the release source.");
+const garagePreparationHelperEdits = garageAst.program.body.flatMap(node =>
+  node.type === "FunctionDeclaration" && node.id &&
+    garagePreparationHelperOverrides.has(node.id.name)
+    ? [{ start: node.start, end: node.end,
+      text: garagePreparationHelperOverrides.get(node.id.name), name: node.id.name }]
+    : []);
+assert(garagePreparationHelperEdits.length === garagePreparationHelperOverrides.size,
+  "Garage preparation helpers changed in the release source.");
+const preparationDialogClass = garageAst.program.body.find(node =>
+  node.type === "ClassDeclaration" && node.id?.name === "Ja");
+assert(preparationDialogClass, "Garage preparation dialog changed in the release source.");
+const garagePreparationDialogEdits = preparationDialogClass.body.body.flatMap(method =>
+  method.type === "ClassMethod" && method.key.type === "Identifier" &&
+    garagePreparationDialogOverrides.has(method.key.name)
+    ? [{ start: method.start, end: method.end,
+      text: garagePreparationDialogOverrides.get(method.key.name), name: method.key.name }]
+    : []);
+assert(garagePreparationDialogEdits.length === garagePreparationDialogOverrides.size &&
+  new Set(garagePreparationDialogEdits.map(edit => edit.name)).size ===
+    garagePreparationDialogOverrides.size,
+  "Garage preparation dialog methods changed in the release source.");
+const progressionHelperEdits = garageAst.program.body.flatMap(node =>
+  node.type === "FunctionDeclaration" && node.id && garageProgressionHelperOverrides.has(node.id.name)
+    ? [{ start: node.start, end: node.end,
+      text: garageProgressionHelperOverrides.get(node.id.name), name: node.id.name }]
+    : []);
+assert(progressionHelperEdits.length === garageProgressionHelperOverrides.size,
+  "Garage progression helper functions changed in the release source.");
+const factoryLayoutEdits = garageAst.program.body.flatMap(node =>
+  node.type === "FunctionDeclaration" && node.id?.name === "Ca"
+    ? [{ start: node.start, end: node.end,
+      text: "function Ca(assets) { return garageFactoryCatalogLayout(assets, garageFactoryViewDependencies); }" }]
+    : []);
+assert(factoryLayoutEdits.length === 1, "Garage Factory catalog layout moved in the release source.");
 const progressionClass = garageAst.program.body.find(node =>
   node.type === "ClassDeclaration" && node.id?.name === "va");
 assert(progressionClass, "Garage progression panel class changed in the release source.");
@@ -2594,6 +3666,48 @@ const controlsEdits = garageViewClass.body.body.flatMap(method =>
     : []);
 assert(controlsEdits.length === garageControlsOverrides.size,
   "Garage controls method changed in the release source.");
+function garageClassMethodEdits(overrides, label) {
+  const edits = garageViewClass.body.body.flatMap(method =>
+    method.type === "ClassMethod" && method.key.type === "Identifier" &&
+      overrides.has(method.key.name)
+      ? [{ start: method.start, end: method.end,
+        text: overrides.get(method.key.name), name: method.key.name }]
+      : []);
+  assert(edits.length === overrides.size &&
+    new Set(edits.map(edit => edit.name)).size === overrides.size,
+    `${label} changed in the release source.`);
+  return edits;
+}
+const viewControlsEdits = garageClassMethodEdits(garageViewControlsOverrides,
+  "Garage view control methods");
+const partModelsEdits = garageClassMethodEdits(garagePartModelsOverrides,
+  "Garage part model methods");
+const buildControlsEdits = garageClassMethodEdits(garageBuildControlsOverrides,
+  "Garage build controls method");
+function garageClassMemberEdits(overrides, label) {
+  const edits = garageViewClass.body.body.flatMap(member =>
+    (member.type === "ClassMethod" || member.type === "ClassProperty") &&
+      member.key.type === "Identifier" && overrides.has(member.key.name)
+      ? [{ start: member.start, end: member.end,
+        text: overrides.get(member.key.name), name: member.key.name }]
+      : []);
+  assert(edits.length === overrides.size &&
+    new Set(edits.map(edit => edit.name)).size === overrides.size,
+    `${label} changed in the release source.`);
+  return edits;
+}
+const viewConstructionEdits = garageClassMemberEdits(garageViewConstructionOverrides,
+  "Garage view construction");
+const viewActionsEdits = garageClassMemberEdits(garageViewActionsOverrides,
+  "Garage view actions");
+const frameCanvasEdits = garageClassMemberEdits(garageFrameCanvasOverrides,
+  "Garage frame canvas methods");
+const strengtheningOverlayEdits = garageClassMemberEdits(garageStrengtheningOverlayOverrides,
+  "Garage strengthening overlay");
+const frameRenderEdits = garageClassMemberEdits(garageFrameRenderOverrides,
+  "Garage frame render loop");
+const previewInputEdits = garageClassMemberEdits(garagePreviewInputOverrides,
+  "Garage preview input controls");
 const transformPreviewEdits = garageViewClass.body.body.flatMap(method =>
   method.type === "ClassMethod" && method.key.type === "Identifier" &&
     garageTransformPreviewOverrides.has(method.key.name)
@@ -2615,6 +3729,32 @@ const factoryPickerEdits = factoryPanelClass.body.body.flatMap(method =>
 assert(factoryPickerEdits.length === garageFactoryPickerOverrides.size &&
   new Set(factoryPickerEdits.map(edit => edit.name)).size === garageFactoryPickerOverrides.size,
   "Garage Factory picker methods changed in the release source.");
+const factoryPanelEdits = factoryPanelClass.body.body.flatMap(method =>
+  method.type === "ClassMethod" && method.key.type === "Identifier" &&
+    garageFactoryPanelOverrides.has(method.key.name)
+    ? [{ start: method.start, end: method.end,
+      text: garageFactoryPanelOverrides.get(method.key.name), name: method.key.name }]
+    : []);
+assert(factoryPanelEdits.length === garageFactoryPanelOverrides.size,
+  "Garage Factory panel refresh changed in the release source.");
+const factoryViewEdits = factoryPanelClass.body.body.flatMap(method =>
+  method.type === "ClassMethod" && method.key.type === "Identifier" &&
+    garageFactoryViewOverrides.has(method.key.name)
+    ? [{ start: method.start, end: method.end,
+      text: garageFactoryViewOverrides.get(method.key.name), name: method.key.name }]
+    : []);
+assert(factoryViewEdits.length === garageFactoryViewOverrides.size &&
+  new Set(factoryViewEdits.map(edit => edit.name)).size === garageFactoryViewOverrides.size,
+  "Garage Factory view methods changed in the release source.");
+const factoryCanvasEdits = factoryPanelClass.body.body.flatMap(method =>
+  method.type === "ClassMethod" && method.key.type === "Identifier" &&
+    garageFactoryCanvasOverrides.has(method.key.name)
+    ? [{ start: method.start, end: method.end,
+      text: garageFactoryCanvasOverrides.get(method.key.name), name: method.key.name }]
+    : []);
+assert(factoryCanvasEdits.length === garageFactoryCanvasOverrides.size &&
+  new Set(factoryCanvasEdits.map(edit => edit.name)).size === garageFactoryCanvasOverrides.size,
+  "Garage Factory canvas methods changed in the release source.");
 const retiredFactorySessionNodes = garageAst.program.body.filter(node =>
   node.type === "ClassDeclaration" && node.id?.name === "$a" ||
   node.type === "FunctionDeclaration" && node.id?.name === "Sa" ||
@@ -2625,19 +3765,43 @@ assert(retiredFactorySessionNodes.length === 3,
 const retiredFactorySessionEdits = retiredFactorySessionNodes.map(node =>
   ({ start: node.start, end: node.end, text: "" }));
 let redirected = garage;
-for (const edit of [...garageEdits, ...progressionEdits, ...equipmentEdits,
+for (const edit of [...garageEdits, ...garageRuntimeClassEdits,
+  ...garageUpgradeSessionClassEdits, ...garageUpgradeResultEdits,
+  ...garagePointEffectHelperEdits, ...garagePreparationHelperEdits,
+  ...garagePreparationDialogEdits, ...progressionHelperEdits, ...factoryLayoutEdits,
+  ...progressionEdits, ...equipmentEdits,
   ...catalogNavigationEdits, ...factoryScoringEdits, ...cosmeticEquipmentEdits,
   ...cardCatalogEdits, ...stateCommitEdits, ...factoryCommitEdits, ...upgradeDialogEdits,
   ...progressionFlowEdits, ...cosmeticInventoryEdits, ...performanceEdits,
   ...lifecycleEdits, ...equippedCosmeticsEdits, ...vehicleInformationEdits,
-  ...pageVisibilityEdits, ...controlsEdits, ...transformPreviewEdits,
-  ...factoryPickerEdits,
+  ...pageVisibilityEdits, ...controlsEdits, ...viewControlsEdits,
+  ...partModelsEdits, ...buildControlsEdits, ...viewConstructionEdits,
+  ...viewActionsEdits, ...frameCanvasEdits, ...strengtheningOverlayEdits,
+  ...frameRenderEdits, ...previewInputEdits, ...transformPreviewEdits,
+  ...factoryPickerEdits, ...factoryPanelEdits, ...factoryViewEdits, ...factoryCanvasEdits,
   ...retiredFactorySessionEdits].sort((left, right) => right.start - left.start)) {
   redirected = redirected.slice(0, edit.start) + edit.text + redirected.slice(edit.end);
 }
 redirected = redirected.replace(oldImport, 'from "./app.js";');
 redirected = 'import { collectGarageParts, parseLegacyGarageParts, resolveEquippedGaragePart, sameGaragePart, sortGarageParts } from "../ui/garage-parts-business.ts";\n'
+  + 'import { GarageModelCache } from "../ui/garage-model-cache.ts";\n'
+  + 'import { GarageInventoryScroll } from "../ui/garage-inventory-scroll.ts";\n'
+  + 'import { compareGarageSkillEffects, garageSkillEffectRect, GaragePointEffects } from "../ui/garage-point-effects.ts";\n'
+  + 'import { GarageSkillSelectionState, GarageUpgradePreparationState } from "../ui/garage-progression-session.ts";\n'
+  + 'import { GarageSkillSelectionDialog } from "../ui/garage-skill-dialog.ts";\n'
+  + 'import { GarageExceedTypeDialog } from "../ui/garage-exceed-dialog.ts";\n'
+  + 'import { clearPreparationPageFrames, closeGaragePreparation, disposeGaragePreparation, preparationCards, preparationPreviewCard, preparationPreviewRect, resizePreparationCanvases, selectedPreparationVehicle } from "../ui/garage-upgrade-preparation-state.ts";\n'
+  + 'import { compareGarageUpgradeLevels, drawGaragePreparation, drawPreparationCards, fillPreparationMethodPanel, preparationMethodPanelRect } from "../ui/garage-upgrade-preparation-render.ts";\n'
+  + 'import { addPreparationCancelButton, addPreparationComparisonValue, addPreparationLabel, createPreparationButton, decoratePreparationPageArrow, placePreparationControl } from "../ui/garage-upgrade-preparation-controls.ts";\n'
+  + 'import { loadGaragePreparation } from "../ui/garage-upgrade-preparation-loading.ts";\n'
+  + 'import { refreshGaragePreparation } from "../ui/garage-upgrade-preparation-refresh.ts";\n'
+  + 'import { initializeGaragePreparation } from "../ui/garage-upgrade-preparation-construction.ts";\n'
+  + 'import { initializeGarageUpgradeResult } from "../ui/garage-upgrade-result-construction.ts";\n'
+  + 'import { captureGarageUpgradePreview, closeGarageUpgradeResult, disposeGarageUpgradeResult, renderGarageUpgradeResult } from "../ui/garage-upgrade-result-render.ts";\n'
   + 'import { disposeGarageProgressionPanel, resetGarageProgressionPanel, updateGarageProgressionRadar } from "../ui/garage-progression-radar.ts";\n'
+  + 'import { appendGarageNativeColorText, garageExceedChangeAvailability, updateGarageProgressionPanel } from "../ui/garage-progression-panel.ts";\n'
+  + 'import { addGarageProgressionButton, addGarageProgressionLabel, addGarageProgressionNativeLabel, addGarageProgressionTexture, garageProgressionRect, placeGarageProgressionElement, styleGarageProgressionFromNode } from "../ui/garage-progression-elements.ts";\n'
+  + 'import { drawGarageProgressionView, garageProgressionPreviewRect, initializeGarageProgressionView } from "../ui/garage-progression-view.ts";\n'
   + 'import { equipGaragePart, requestGaragePartEquip, requireGarageCustomization, selectGaragePartSlot, setGaragePartPreview } from "../ui/garage-equipment-actions.ts";\n'
   + 'import { canSetGarageProgression, filteredGarageKarts, garageFactoryAllowed, selectGarageKart, selectGaragePage } from "../ui/garage-catalog-navigation.ts";\n'
   + 'import { canonicalGarageFactoryVehicle, garageFactoryVehicleKey, garageKartSerialFor, updateGarageFactoryScores } from "../ui/garage-factory-scoring.ts";\n'
@@ -2654,9 +3818,24 @@ redirected = 'import { collectGarageParts, parseLegacyGarageParts, resolveEquipp
   + 'import { updateGarageVehicleFunctions, updateGarageVehicleHeading, updateGarageVehicleInformation } from "../ui/garage-vehicle-information.ts";\n'
   + 'import { updateGaragePageVisibility } from "../ui/garage-page-visibility.ts";\n'
   + 'import { updateGarageControls } from "../ui/garage-controls.ts";\n'
+  + 'import { createGarageActionButton, createGarageIcon, createGarageNativeButton, garageViewRect, placeGarageControl, setGaragePartsOnlyNodesMounted, setGarageUpgradeStatusMounted, setGarageVehicleInfoNodesMounted, skinGarageActionButton } from "../ui/garage-view-controls.ts";\n'
+  + 'import { addGaragePartModelTarget, renderGaragePartModels, renderGaragePartVisual } from "../ui/garage-part-models.ts";\n'
+  + 'import { buildGarageControls } from "../ui/garage-build-controls.ts";\n'
+  + 'import { initializeGarageView } from "../ui/garage-view-construction.ts";\n'
+  + 'import { garageBaseForKart, garageBaseSpecification, garagePartLabel, garageSelectedKartSerial, garageSpeedVersion, handleGarageEscapeKey, rehitGarageInventoryPreview, showGarageFactoryTutorial } from "../ui/garage-view-actions.ts";\n'
+  + 'import { captureGarageStage, captureGarageStrengtheningStage, drawGarageKartCatalogFrame, drawGarageKartLevelBadge, finishGarageCanvasFrame, garageAuthoredPointerY, paintGarageTaskbar } from "../ui/garage-frame-canvas.ts";\n'
+  + 'import { renderGarageStrengtheningOverlay } from "../ui/garage-strengthening-overlay.ts";\n'
+  + 'import { renderGarageFrame } from "../ui/garage-frame-render.ts";\n'
+  + 'import { createGarageTransformPreviewButton, endGaragePreviewDrag, moveGaragePreviewDrag, startGaragePreviewDrag } from "../ui/garage-preview-input.ts";\n'
   + 'import { activeGaragePreviewRect, finishGaragePreviewDrag, flushGarageTransformPreviewStart, isGarageTransformPreviewSessionActive, moveToGarageTransformPreviewRoot, placeInGarageTransformPreviewRoot, startGarageTransformPreview, syncGarageTransformPreviewUi } from "../ui/garage-transform-preview.ts";\n'
   + 'import { commitGarageFactoryChoice, createGarageFactoryChoiceButton, renderGarageFactoryAbilityPicker, updateGarageFactoryDraftSlot } from "../ui/garage-factory-picker.ts";\n'
+  + 'import { updateGarageFactoryPanel } from "../ui/garage-factory-panel.ts";\n'
+  + 'import { addGarageFactoryLabel, garageFactoryCatalogLayout, garageFactoryPreviewRect, garageFactoryShowsCatalog, initializeGarageFactoryView, placeGarageFactoryElement, updateGarageFactoryScoreLabel } from "../ui/garage-factory-view.ts";\n'
+  + 'import { drawGarageFactoryBackground, drawGarageFactoryCatalogFrame, resizeGarageFactoryCanvases, styleGarageFactoryActionFrame } from "../ui/garage-factory-canvas.ts";\n'
   + 'const garageProgressionRadarDependencies = { createStatus: () => document.createElement("div"), loadParameters: da, applyChanges: ha, makeRadar: la };\n'
+  + 'const garageProgressionPanelDependencies = { nextLevel: Vs, remainingPoints: we, changePoint: ze, initialProgression: ce, get skills() { return fs; } };\n'
+  + 'const garageProgressionElementsDependencies = { attribute: y };\n'
+  + 'const garageProgressionDrawDependencies = { attribute: y, drawFrame: (context, frame, image, rect) => be(context, frame, image, rect), drawRadar: (context, rect, radar) => ga(context, rect, radar) };\n'
   + 'const garageEquipmentDependencies = { canCustomize: ae, slotLocked: fe, currentConfiguration: K, validateConfiguration: te, writeConfiguration: ie, partFamily: me, slotLabel: le };\n'
   + 'const garageCatalogDependencies = { canCustomize: ae, progressionLayout: pe, blockedKart: Re, validateKart: Ft, factoryAllowed: ui, progressionKind: Ue, progressionMismatchMessage: oi };\n'
   + 'const garageFactoryScoringDependencies = { currentConfiguration: K, scoreFamily: vt, loadScoreSource: cs, calculateScores: Me };\n'
@@ -2676,10 +3855,26 @@ redirected = 'import { collectGarageParts, parseLegacyGarageParts, resolveEquipp
   + 'const garagePageVisibilityDependencies = { canCustomize: ae, showVehicleInformation: ds, defaultCardRect: assets => bt(assets) };\n'
   + 'const garageControlsDependencies = { showVehicleInformation: ds, progressionFamily: pe, canCustomize: ae, blockedKart: Re, progressionSupport: Ue, expectedProgressionKind: Ut, currentEquipment: K, vehicleFamily: me, layoutForGrade: ue, initialProgression: ce, slots: de, get slotNodes() { return wt; }, slotLabel: le, partsForSlot: qi, cardLayout: xt, inventoryRect: Dt, quality: Et, cardTexture: Sn, samePart: Kt, equippedPart: Xe, slotLocked: fe, canEquip: mt, bindPreview: Mn };\n'
   + 'const garageFactoryPickerDependencies = { get abilities() { return Mt; }, draftFrom: value => ht(value), signature: value => Zt(value), validate: value => Tt(value), abilityId: (group, level) => Hs(group, level), stylePrimary: button => he(button, undefined, "primary"), nodeAttribute: (node, name) => y(node, name), nativeStatePath: (base, state) => se(base, state) };\n'
+  + 'const garageFactoryPanelDependencies = { defaultConfiguration: () => nt(), signature: value => Zt(value), draftFrom: value => ht(value), get abilityDescriptions() { return ms; }, attribute: (node, name) => y(node, name), nativeStatePath: (base, state) => se(base, state), childRect: (node, rect) => Y(node, rect) };\n'
+  + 'const garageFactoryViewDependencies = { attribute: (node, name) => y(node, name), childRect: (node, rect) => Y(node, rect) };\n'
+  + 'const garageFactoryCanvasDependencies = { attribute: (node, name) => y(node, name), pixelRatio: () => Ee(), sizeCanvas: (...args) => Pe(...args), drawFrame: (...args) => be(...args) };\n'
+  + 'const garageViewActionDependencies = { get defaultVersion() { return vs; }, previewKey: kart => bs(kart), createPreview: (...args) => xs(...args), partLabel: (...args) => $n(...args), hitTest: (...args) => Rn(...args), loadFactoryTutorial: (...args) => Ea(...args), cancelFrame: id => cancelAnimationFrame(id), requestFrame: callback => requestAnimationFrame(callback), elementFromPoint: (x, y) => document.elementFromPoint(x, y) };\n'
+  + 'const garageFrameCanvasDependencies = { currentConfiguration: (...args) => K(...args), progressionKind: grade => fi(grade), badgeTexture: (grade, level) => mi(grade, level), levelLabel: level => vi(level), drawLabel: (...args) => wi(...args) };\n'
+  + 'const garageStrengtheningOverlayDependencies = { composeEquipment: (...args) => ot(...args), currentConfiguration: (...args) => K(...args), writeConfiguration: (...args) => ie(...args) };\n'
+  + 'const garageFrameRenderDependencies = { requestFrame: callback => requestAnimationFrame(callback), now: () => performance.now(), layoutForGrade: grade => ue(grade), backgroundForPage: (page, layout) => Nn(page, layout), nativePageName: (page, xun) => Ln(page, xun), nativeFramePlan: (definition, name) => An(definition, name), attribute: (node, name) => y(node, name), kartTypeTexture: kind => In(kind), drawScrollbar: (...args) => yi(...args), composeEquipment: (...args) => ot(...args), currentConfiguration: (...args) => K(...args), writeConfiguration: (...args) => ie(...args) };\n'
+  + 'const garagePreviewInputDependencies = { attribute: (node, name) => y(node, name) };\n'
+  + 'const garageSkillSelectionDependencies = { validate: progression => kt(progression), select: (progression, slot, skillId) => Xs(progression, slot, skillId), availablePoints: progression => we(progression) };\n'
+  + 'const garageUpgradePreparationDependencies = { blockedKart: itemId => Re(itemId), validate: progression => kt(progression), nextLevel: (progression, method) => Ys(progression, method) };\n'
+  + 'const garageSkillDialogDependencies = { createState: (progression, row) => new qa(progression, row), loadAssets: library => Ts(library), styleAction: (button, style, kind) => he(button, style, kind), availablePoints: progression => we(progression), get skills() { return fs; } };\n'
+  + 'const garageExceedDialogDependencies = { styleAction: (button, style, kind) => he(button, style, kind), loadStyles: library => Ts(library), resolveChoice: choice => ua(choice) };\n'
+  + 'const garagePreparationRenderDependencies = { fitCanvas: (...args) => Pe(...args), pixelRatio: () => Ee(), drawFrame: (...args) => be(...args) };\n'
+  + 'const garagePreparationConstructionDependencies = { createState: (candidates, selectedItemId) => new Qa(candidates, selectedItemId) };\n'
+  + 'const garageUpgradeConstructionDependencies = { stylePrimary: button => he(button, undefined, "primary"), loadXun: (...args) => Ma(...args), loadClassic: (...args) => ka(...args) };\n'
+  + 'const garageUpgradeRenderDependencies = { sizeCanvas: (...args) => Pe(...args), pixelRatio: () => Ee(), phase: (...args) => Aa(...args), get phaseLabels() { return Ia; } };\n'
   + redirected;
 assert(!redirected.includes(oldImport), "Garage chunk redirect failed.");
 const garageOutput = "GarageXView-DSeU5AUN.js";
-await writeFile(path.join(outputDir, garageOutput), redirected, "utf8");
+await writeIfChanged(garageOutput, redirected);
 
 const vehicleDataInputs = await Promise.all([
   "vehicle-physics-h10.csv",
@@ -2698,7 +3893,14 @@ const manifest = {
   garageSourceSha256: sha256(garage),
   garageExportCount: garageAliases.length,
   handwrittenGaragePartOverrides: [...garagePartOverrides.keys()],
+  handwrittenGarageRuntimeClassOverrides: [...garageRuntimeClassOverrides.keys()],
+  handwrittenGarageUpgradeSessionClassOverrides: [...garageUpgradeSessionClassOverrides.keys()],
+  handwrittenGarageUpgradeResultOverrides: [...garageUpgradeResultOverrides.keys()],
+  handwrittenGaragePointEffectHelperOverrides: [...garagePointEffectHelperOverrides.keys()],
+  handwrittenGaragePreparationHelperOverrides: [...garagePreparationHelperOverrides.keys()],
+  handwrittenGaragePreparationDialogOverrides: [...garagePreparationDialogOverrides.keys()],
   handwrittenGarageProgressionOverrides: [...garageProgressionOverrides.keys()],
+  handwrittenGarageProgressionHelperOverrides: [...garageProgressionHelperOverrides.keys()],
   handwrittenGarageEquipmentOverrides: [...garageEquipmentOverrides.keys()],
   handwrittenGarageCatalogNavigationOverrides: [...garageCatalogNavigationOverrides.keys()],
   handwrittenGarageFactoryScoringOverrides: [...garageFactoryScoringOverrides.keys()],
@@ -2715,8 +3917,21 @@ const manifest = {
   handwrittenGarageVehicleInformationOverrides: [...garageVehicleInformationOverrides.keys()],
   handwrittenGaragePageVisibilityOverrides: [...garagePageVisibilityOverrides.keys()],
   handwrittenGarageControlsOverrides: [...garageControlsOverrides.keys()],
+  handwrittenGarageViewControlsOverrides: [...garageViewControlsOverrides.keys()],
+  handwrittenGaragePartModelsOverrides: [...garagePartModelsOverrides.keys()],
+  handwrittenGarageBuildControlsOverrides: [...garageBuildControlsOverrides.keys()],
+  handwrittenGarageViewConstructionOverrides: [...garageViewConstructionOverrides.keys()],
+  handwrittenGarageViewActionsOverrides: [...garageViewActionsOverrides.keys()],
+  handwrittenGarageFrameCanvasOverrides: [...garageFrameCanvasOverrides.keys()],
+  handwrittenGarageStrengtheningOverlayOverrides: [...garageStrengtheningOverlayOverrides.keys()],
+  handwrittenGarageFrameRenderOverrides: [...garageFrameRenderOverrides.keys()],
+  handwrittenGaragePreviewInputOverrides: [...garagePreviewInputOverrides.keys()],
   handwrittenGarageTransformPreviewOverrides: [...garageTransformPreviewOverrides.keys()],
   handwrittenGarageFactoryPickerOverrides: [...garageFactoryPickerOverrides.keys()],
+  handwrittenGarageFactoryPanelOverrides: [...garageFactoryPanelOverrides.keys()],
+  handwrittenGarageFactoryViewOverrides: [...garageFactoryViewOverrides.keys()],
+  handwrittenGarageFactoryCanvasOverrides: [...garageFactoryCanvasOverrides.keys()],
+  handwrittenGarageFactoryLayoutOverride: factoryLayoutEdits.length === 1,
   retiredGarageFactorySessionHelpers: ["Sa", "Qt", "$a"],
   noModuleCycles: true,
   sharedMathNames: [...sharedMathNames],
@@ -2750,6 +3965,12 @@ const manifest = {
   handwrittenRecordServiceMethodOverrides: [...recordServiceMethodOverrides.keys()],
   handwrittenGhostRecordLibraryMethodOverrides: [...ghostRecordLibraryMethodOverrides.keys()],
   handwrittenGhostAssetBuilderMethodOverrides: [...ghostAssetBuilderMethodOverrides.keys()],
+  handwrittenGhostMenuImportMethodOverrides: [...ghostMenuImportMethodOverrides.keys()],
+  handwrittenGhostMenuBridgeMethodOverrides: [...ghostMenuBridgeMethodOverrides.keys()],
+  handwrittenGhostVisualMotionMethodOverrides: [...ghostVisualMotionMethodOverrides.keys()],
+  handwrittenRaceBgmPlaybackMethodOverrides: [...raceBgmPlaybackMethodOverrides.keys()],
+  handwrittenTimeAttackInputBridgeMethodOverrides: [...timeAttackInputBridgeMethodOverrides.keys()],
+  handwrittenGhostSmoothSamplerOverride: replacedGhostSmoothSampler,
   handwrittenPresenterMethodOverrides: [...presenterMethodOverrides.keys()],
   handwrittenMotionCodecOverrides: [...motionCodecOverrides],
   handwrittenVehicleBusinessOverrides: [...vehicleBusinessOverrides],
@@ -2758,6 +3979,18 @@ const manifest = {
   handwrittenVehicleCoinSourceOverrides: [...vehicleCoinSourceOverrides.keys()],
   handwrittenVehicleCoinOwnerOverrides: [...vehicleCoinOwnerOverrides],
   handwrittenVehicleVisualOwnerOverrides: [...vehicleVisualOwnerOverrides],
+  handwrittenVehicleWeatherOverrides: [...vehicleWeatherOverrides],
+  handwrittenVehicleRouteFunctionOverrides: [...vehicleRouteFunctionOverrides],
+  handwrittenVehicleWarpClassOverrides: [...vehicleWarpClassOverrides],
+  handwrittenVehicleTrackEventOverrides: [...vehicleTrackEventOverrides],
+  handwrittenVehicleEventAnimatorOverrides: [...vehicleEventAnimatorOverrides],
+  handwrittenVehicleLensFlareOverrides: [...vehicleLensFlareOverrides],
+  handwrittenVehicleKartAudioOverrides: [...vehicleKartAudioOverrides],
+  handwrittenVehicleAssetLoaderMethodOverrides: [...vehicleAssetLoaderMethodOverrides.keys()],
+  handwrittenVehicleSlipstreamOverrides: [...vehicleSlipstreamOverrides],
+  handwrittenVehicleStartGridOverrides: [...vehicleStartGridOverrides],
+  handwrittenVehicleNormalCoordinatorOverrides: [...vehicleNormalCoordinatorOverrides],
+  handwrittenVehicleFrameClockOverrides: [...vehicleFrameClockOverrides],
   handwrittenPeerMeshOverrides: [...peerMeshOverrides],
   handwrittenNetworkTimingOverrides: [...networkTimingOverrides],
   handwrittenLobbyPrimitiveOverrides: [...lobbyPrimitiveOverrides],
@@ -2779,8 +4012,18 @@ const manifest = {
   handwrittenRemoteFleetOverride: replacedRemoteFleet,
   handwrittenInputClassOverrides: [...inputClassOverrides, "jl0", "Ql0"],
   handwrittenInputFunctionOverrides: [...inputFunctionOverrides.keys()],
+  handwrittenGameplayAdmissionOverrides: [...gameplayAdmissionOverrides.keys()],
+  handwrittenGameplayTileOverrides: [...gameplayTileOverrides.keys()],
   handwrittenLobbyActionMethodOverrides: [...lobbyActionMethodOverrides.keys()],
   handwrittenLobbyRoomTimingMethodOverrides: [...lobbyRoomTimingMethodOverrides.keys()],
+  handwrittenLobbyRoomLifecycleMethodOverrides: [...lobbyRoomLifecycleMethodOverrides.keys()],
+  handwrittenLobbyRoomMemberOverrides: [...lobbyRoomMethodOverrides.keys(),
+    ...lobbyRoomFieldOverrides.keys()],
+  handwrittenRaceLoadingScreenOverride: replacedRaceLoadingScreen,
+  handwrittenGhostKsvClassMethodOverrides: [...ghostKsvClassMethodOverrides.keys()],
+  handwrittenGhostKsvFunctionOverrides: [...ghostKsvFunctionOverrides.keys()],
+  handwrittenMultiplayerPresenterMethodOverrides: [...multiplayerPresenterMethodOverrides.keys()],
+  handwrittenRacePresentationSessionMethodOverrides: [...racePresentationSessionMethodOverrides.keys()],
   handwrittenRaceSessionMethodOverrides: [...raceSessionMethodOverrides.keys()],
   handwrittenClientMethodOverrides: [...clientMethodOverrides.keys()],
   handwrittenServerEventParserOverride: replacedServerEventParser,
@@ -2791,11 +4034,7 @@ const manifest = {
   files: generated,
   garageFile: garageOutput,
 };
-await writeFile(
-  path.join(outputDir, "manifest.json"),
-  `${JSON.stringify(manifest, null, 2)}\n`,
-  "utf8",
-);
+await writeIfChanged("manifest.json", `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(
   `Generated ${generated.length} ES modules and the redirected Garage chunk; ` +
     `${garageAliases.length} Garage exports preserved.`,

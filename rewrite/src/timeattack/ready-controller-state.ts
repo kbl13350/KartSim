@@ -12,6 +12,8 @@ export interface ReadyControllerStateHost {
     shell: {
       readyModalBusy: boolean;
       current: string;
+      modal?: string;
+      closeModal(name: string): void;
       leaveMultiplayerLobby(): void;
     };
     hud: { showDebugText(message: string, level: string): void };
@@ -30,6 +32,9 @@ export interface ReadyControllerStateHost {
   activeSettings?: Disposable;
   activeTrackSelect?: Disposable;
   activeGarage?: Disposable;
+  activeHouse?: Disposable;
+  activeItemInventory?: Disposable;
+  inventoryOpening?: boolean;
   activeWindowNotice?: { update(value: unknown): void };
   readyToonEnvironment?: unknown;
   multiplayer?: Disposable & {
@@ -51,6 +56,10 @@ export interface ReadyControllerStateHost {
 /** Release owned Ready and multiplayer UI objects. */
 export function disposeReadyController(host: ReadyControllerStateHost): void {
   host.disposed = true;
+  host.activeItemInventory?.dispose();
+  host.activeItemInventory = undefined;
+  host.activeHouse?.dispose();
+  host.activeHouse = undefined;
   host.multiplayer?.dispose();
   host.multiplayer = undefined;
   host.activeTimeAttackReady?.dispose();
@@ -80,6 +89,11 @@ export function refreshReadyRecord(host: ReadyControllerStateHost): void {
   host.activeTimeAttackReady?.refreshRecord();
 }
 export function releaseReadyForRace(host: ReadyControllerStateHost): void {
+  host.activeItemInventory?.dispose();
+  host.activeItemInventory = undefined;
+  host.activeHouse?.dispose();
+  host.activeHouse = undefined;
+  if (host.host.shell.modal === "house") host.host.shell.closeModal("house");
   host.activeTimeAttackReady?.dispose();
   host.activeTimeAttackReady = undefined;
   host.activeTaskbar?.setVisible(false);

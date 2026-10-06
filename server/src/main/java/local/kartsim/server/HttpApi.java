@@ -29,8 +29,11 @@ public class HttpApi {
 
     @GetMapping("/auth/config")
     public Map<String, Object> config(HttpServletRequest request) {
+        String host = request.getServerName();
+        if (!host.equals("127.0.0.1") && !host.equalsIgnoreCase("localhost"))
+            throw new ApiError(400, "INVALID_HOST");
         return Map.of("loginRequired", false,
-            "backendOrigin", "http://127.0.0.1:" + request.getLocalPort());
+            "backendOrigin", "http://" + host.toLowerCase() + ":" + request.getLocalPort());
     }
 
     @PostMapping("/auth/guest-name")

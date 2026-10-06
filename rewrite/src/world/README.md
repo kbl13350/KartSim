@@ -1,12 +1,13 @@
 # 赛道世界层
 
-`installWorldOverrides()` 在游戏加载前接入 `_L` 赛道实例。覆写集中在 `install.ts`，不修改生成文件。除构造函数外，`_L` 的赛道运行方法现由可读 TypeScript 实现：路线状态、门穿越、warp/rail 落点、事件和障碍物快照、碰撞表面选择、场景控制器调度与资源释放。
+生成器从 `_L` 赛道类移除了全部 36 个原方法，模块加载时调用 `installWorldOverrides()` 安装 `install.ts` 中的可读 TypeScript 实现。`_L` 保留字段与委托给 `initializeTrackWorld()` 的构造函数；运行方法覆盖路线状态、门穿越、warp/rail 落点、事件和障碍物快照、碰撞表面选择、场景控制器调度与资源释放。
 
 | 文件 | 职责 |
 | --- | --- |
 | `route.ts` | 客户端坐标、float32 路线几何、RouteSection 投影和前瞻采样。 |
 | `gates.ts` | 检查门的三角形线段交叉及正反方向判定。 |
 | `route-state.ts` | 路线状态、重置、离轨重新关联、门穿越、warp/rail 落点、rail 配置和 surface tag。 |
+| `route-tag.ts` | 原版路线表面标签分类，以及进入/退出方向后缀的解析。 |
 | `event-queue.ts` | 事件动画、最多八个碰撞候选、过期效果与帧快照提交。 |
 | `collision-routing.ts` | 静态路、移动路和障碍物射线命中优先级，OBB 查询合并。 |
 | `static-track-surface.ts` | 原版 4 单位栅格索引、静态路射线及 p3553/旧版 OBB 查询。 |
