@@ -1415,6 +1415,11 @@ const replacedInputs = new Set();
 const replacedResources = new Set();
 const replacedSwMethods = new Set();
 const replacedRaceHudBoostMethods = new Set();
+let replacedMotionBlurEffect = false;
+let retiredMotionBlurConstants = false;
+const retiredMotionBlurHelpers = new Set();
+const motionBlurHelperNames = new Set(["Ct0", "Et0", "Tt0", "_t0", "Gt0",
+  "YS", "ZS", "QS", "Bt0", "Rt0", "ov", "It0", "kt0", "Lt0", "Gk"]);
 const replacedLobbyListDrawMethods = new Set();
 const replacedMultiplayerWindowAssetMethods = new Set();
 let replacedMultiplayerWindowView = false;
@@ -1696,6 +1701,34 @@ const iv = createDriftEffectClass(driftEffectDependencies);`,
       : node.type === "VariableDeclaration" && node.declarations.length === 1
         ? node.declarations[0].id.name
         : undefined;
+  if (node.type === "VariableDeclaration" &&
+      node.declarations[0]?.id?.name === "o6") {
+    assert(originalSection(node.start) === "vehicle" &&
+      groupNames(node.declarations.map(entry => entry.id.name)) ===
+        "St0, a6, o6, xt0", "Motion blur constants moved from vehicle.");
+    retiredMotionBlurConstants = true;
+    continue;
+  }
+  if (motionBlurHelperNames.has(declarationName)) {
+    assert(node.type === "FunctionDeclaration" &&
+      originalSection(node.start) === "vehicle",
+    `Motion blur helper ${declarationName} moved from vehicle.`);
+    retiredMotionBlurHelpers.add(declarationName);
+    continue;
+  }
+  if (declarationName === "sv") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "vehicle",
+      "Motion blur effect moved from vehicle.");
+    for (const name of ["load", "setState", "render", "reset", "dispose",
+      "renderLayer", "captureFrame", "overlayFrame", "currentScreenTexture"]) {
+      assert(node.body.body.some(member => member.key?.name === name),
+        `Motion blur class lost ${name}.`);
+    }
+    bodies.get("vehicle").push({ at: node.start,
+      text: "const sv = createMotionBlurEffectClass(motionBlurRendererOps);" });
+    replacedMotionBlurEffect = true;
+    continue;
+  }
   if (node.type === "VariableDeclaration" &&
       node.declarations[0]?.id?.name === "EZ") {
     assert(originalSection(node.start) === "formats" &&
@@ -3139,9 +3172,11 @@ ${[...multiplayerMethodOverrides.values()].join("\n")}
   if (declarationName === "tI") {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "library",
       "Race HUD moved from library.");
+    recordWholeClassMembers(node, raceHudBoostMethodOverrides,
+      replacedRaceHudBoostMethods);
     bodies.get("library").push({
       at: node.start,
-      text: rewriteClassMethods(node, raceHudBoostMethodOverrides, replacedRaceHudBoostMethods),
+      text: "class tI extends RaceHudController { constructor(definition, minimap) { super(definition, minimap, raceHudDependencies); } }",
     });
     continue;
   }
@@ -3828,6 +3863,9 @@ assert(replacedSwMethods.size === swMethodOverrides.size,
   "The resource lookup and track catalog method overrides were not all found.");
 assert(replacedRaceHudBoostMethods.size === raceHudBoostMethodOverrides.size,
   "The race HUD boost method overrides were not all found.");
+assert(replacedMotionBlurEffect && retiredMotionBlurConstants &&
+  retiredMotionBlurHelpers.size === motionBlurHelperNames.size,
+  "The motion blur implementation was not fully retired.");
 assert(replacedLobbyListDrawMethods.size === lobbyListDrawMethodOverrides.size,
   "The lobby list draw method override was not found.");
 assert(replacedMultiplayerWindowAssetMethods.size === multiplayerWindowAssetMethodOverrides.size,
@@ -4338,6 +4376,7 @@ function renderModule(name) {
     lines.push('import { buildGhostKsvHeader, encodeGhostKsvRecording, ghostKsvEquipment, nativeFrameToKsvStamp } from "../timeattack/ghost-ksv-export.ts";');
   }
   if (name === "vehicle") {
+    lines.push('import { createMotionBlurEffectClass } from "../vehicle/motion-blur-effect.ts";');
     lines.push('import { collectDummySounds, TrackDummySurroundAudio, StandaloneEventSurroundAudio, unsupportedEventSound } from "../vehicle/track-surround-audio.ts";');
     lines.push('import { ReadyCameraController, warpNextCamera } from "../vehicle/ready-camera.ts";');
     lines.push('import { V1TachometerPresentation } from "../vehicle/v1-tachometer-presentation.ts";');
@@ -4536,6 +4575,7 @@ function renderModule(name) {
     lines.push('import { startSinglePlayerRace, returnToReady } from "../app/race-navigation.ts";');
   }
   if (name === "library") {
+    lines.push('import { RaceHudController } from "../ui/race-hud-controller.ts";');
     lines.push('import { MultiplayerWindowView } from "../ui/multiplayer-window-view.ts";');
     lines.push('import { GarageConfirmationDialog } from "../ui/garage-confirmation-dialog.ts";');
     lines.push('import { garageConfirmationFontFamily as PR, loadGarageConfirmationFont, loadGarageConfirmationAssets, loadGarageConfirmationBlueprint, garageConfirmationPartEquipRequest, garageConfirmationLayout } from "../ui/garage-confirmation-assets.ts";');
@@ -4563,6 +4603,7 @@ function renderModule(name) {
     lines.push('import { activateLobbyListEntry } from "../ui/lobby-list-actions.ts";');
     lines.push('import { drawLobbyListNode } from "../ui/lobby-list-draw.ts";');
     lines.push('import { personalBoostFrame, teamBoostFrame } from "../ui/race-hud-boost.ts";');
+    lines.push('const raceHudDependencies = { createShadow: texture => new xJ(texture), createRenderer: () => new fn(new Map()), createCache: () => new O5(), createRankPresentation: () => new UQ(), createGaugePulse: Jp, loadClassicGauge: (library, kind) => jl.load(library, kind), validateTick: Pw, buildSpeedSlots: XJ, buildTimeCommands: jJ, buildRankCommands: JJ, buildTeamGaugeCommands: YJ, materializeDrawOrder: dt, requireDrawNode: Xl, scaleGauge: Os, alignMarker: nI, advanceGaugePulse: jR, nativeSine: Ro, get reorderDurationMs() { return px; } };');
     lines.push('const lobbyListDrawDependencies = { attribute: T, rectangle: V0, modeForButton: Zc, get interactiveNames() { return aQ; }, imageState: st, drawTexture: ct, fitRoomTitle: CX, measure: ve, drawText: m9, randomTrack: X6, get fontFamily() { return Yp; } };');
     lines.push('const lobbyListRenderDependencies = { viewport: Sr, modeForButton: Zc, roomLabel: rR };');
     lines.push('const multiplayerWindowAssetDependencies = { loadBml: F9, findResource: U1, decodeTexture: p2, frame: Ft, attribute: T, buttonStyle: m4, parseBml: s2, loadFont: f5, get fontFamily() { return Sn; } };');
@@ -4714,6 +4755,7 @@ function awardPodiumLoadDependencies() { return {
     lines.push("");
   }
   if (name === "vehicle") {
+    lines.push('const motionBlurRendererOps = { Scene: D1, Camera: a5, Geometry: t9, FloatAttribute: M1, Mesh: D2, Vector2: B2, Vector3: H, ShaderMaterial: Vt, RenderTarget: nn, DataTexture: J9, FramebufferTexture: IN, decodePng: p2, colorSpace: v9, clampWrapping: F1, linearFilter: u9, textureFormat: e9, textureType: _9, customBlending: u1, additiveEquation: R9, sourceAlpha: l1, oneMinusSourceAlpha: v1 };');
     lines.push('const trackSurroundAudioOps = { decode: Q9, route: S9, setGain: he, setLoop: w4 };');
     lines.push('const readyCameraOps = { isPrsController: P6, unsupportedPrs: Nm, createPrsRuntime: zG, animatePrs: PW, fieldOfView: we };');
     lines.push('const v1TachometerOps = { attribute: T, makeCharger: TJ, makeGaugePulse: Jp, updateCharger: _J, chargerVisibility: GJ, updateGaugePulse: jR, updateResettingBlink: F50, frameAlpha: vg };');
@@ -6538,6 +6580,8 @@ const manifest = {
   handwrittenVehicleNormalCoordinatorOverrides: [...vehicleNormalCoordinatorOverrides],
   handwrittenVehicleFrameClockOverrides: [...vehicleFrameClockOverrides],
   handwrittenVehicleResidualOverrides: [...vehicleResidualOverrides.keys()],
+  handwrittenMotionBlurEffect: replacedMotionBlurEffect,
+  retiredMotionBlurHelpers: [...retiredMotionBlurHelpers].sort(),
   retiredVehicleResidualConstants: [...retiredVehicleResidualConstants],
   handwrittenPeerMeshOverrides: [...peerMeshOverrides],
   handwrittenNetworkTimingOverrides: [...networkTimingOverrides],
@@ -6562,6 +6606,8 @@ const manifest = {
   handwrittenGhostEquipment: [...ghostEquipmentOverrides.keys()],
   handwrittenSoloRaceBuild: replacedGhostAssetBuilderMethods.has("build"),
   handwrittenSettingsMethodOverrides: [...settingsMethodOverrides.keys()],
+  handwrittenRaceHudController: replacedRaceHudBoostMethods.size ===
+    raceHudBoostMethodOverrides.size,
   handwrittenGarageSelectionMethodOverrides: [...garageSelectionMethodOverrides.keys()],
   handwrittenRemoteFleetOverride: replacedRemoteFleet,
   handwrittenInputClassOverrides: [...inputClassOverrides, "jl0", "Ql0"],

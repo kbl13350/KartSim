@@ -1110,6 +1110,24 @@
     "D40",
     "Ea"
   ],
+  "handwrittenMotionBlurEffect": true,
+  "retiredMotionBlurHelpers": [
+    "Bt0",
+    "Ct0",
+    "Et0",
+    "Gk",
+    "Gt0",
+    "It0",
+    "Lt0",
+    "QS",
+    "Rt0",
+    "Tt0",
+    "YS",
+    "ZS",
+    "_t0",
+    "kt0",
+    "ov"
+  ],
   "retiredVehicleResidualConstants": [
     "v1-float",
     "track-sound"
@@ -1294,6 +1312,7 @@
     "applyGraphicsPreset",
     "resetSound"
   ],
+  "handwrittenRaceHudController": true,
   "handwrittenGarageSelectionMethodOverrides": [
     "subTabs",
     "filteredItems",
@@ -1803,8 +1822,8 @@
     },
     {
       "file": "library.js",
-      "bytes": 229054,
-      "sha256": "0ff02dd604680cf9e7cc6ab68874c68a69fc43ff8f061ff340c55903ae804005",
+      "bytes": 223053,
+      "sha256": "0a57afedc98c8c41ea3765f98529681058ca596e3d3a794497f7c9075b924ef6",
       "imports": 128,
       "exports": 156
     },
@@ -1824,8 +1843,8 @@
     },
     {
       "file": "vehicle.js",
-      "bytes": 200290,
-      "sha256": "171a095cb50e6da9d286e03ab598623e7b543c91c3602ef206d0059e94f1f0ff",
+      "bytes": 191696,
+      "sha256": "b8df7687b157f9133b9d8588ef7f9b3079f1574a810c1055d588bc222b1b3e09",
       "imports": 183,
       "exports": 104
     },
