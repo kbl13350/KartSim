@@ -74,6 +74,30 @@ const formatObstacleOverrides = new Map([
   ["Um", "function Um(object) { return admitMovingObstacle(object); }"],
   ["e3", "function e3(point, matrix) { return transformObstaclePoint(point, matrix); }"],
 ]);
+const formatTrackAdmissionOverrides = new Map([
+  ["XW", "function XW(root) { return readTrackSettings(root); }"],
+  ["YW", "function YW(parsed, mode = \"strict\", options = {}) { return extractTrackRoute(parsed, mode, options); }"],
+  ["ZW", "function ZW(parsed, mode = \"strict\") { return trackRuntimeIssues(parsed, mode); }"],
+  ["HG", "function HG(object) { return itemGameOnly(object); }"],
+  ["Au", "function Au(mode) { return soloTrackMode(mode); }"],
+]);
+const formatKartIdentityOverrides = new Map([
+  ["Cr", "const Cr = legacyKartFamilies;"],
+  ["n3", "function n3(itemId) { return isBlockedKartId(itemId); }"],
+  ["Mw", "function Mw(itemId) { return blockedKartMessage(itemId); }"],
+  ["j6", "function j6(itemId) { return requirePlayableKartId(itemId); }"],
+  ["_Z", "function _Z(family) { return defaultLegacyKartState(family); }"],
+  ["xw", "function xw(key, alias) { return legacyKartStateForAlias(key, alias); }"],
+  ["b4", "function b4(catalog, itemId, path, systemKey) { return resolveKartSelection(catalog, itemId, path, systemKey); }"],
+  ["N3", "function N3(kart) { return kartCatalogIdentity(kart); }"],
+  ["GZ", "function GZ(key) { return stableSystemKartKey(key); }"],
+]);
+const formatFontLayoutOverrides = new Map([
+  ["pa", "function pa(layout, text) { return layoutSpriteFont(layout, text); }"],
+  ["$B", "function $B(layout, text, glyphs) { return layoutSpriteFontInto(layout, text, glyphs); }"],
+  ["ga", "function ga(node, texture) { return spriteFontLayoutForPanel(node, texture, fontLayoutOps); }"],
+]);
+const retiredFormatFontHelpers = new Set(["Jb", "eM", "tM", "Wp", "Yj", "A8"]);
 const retiredFormatSource = new Set([
   "EW", "OG", "_W", "KA",
   "NW", "OW", "zW", "l8", "wo", "UW", "yu", "$W", "WW", "L0",
@@ -366,6 +390,15 @@ const vehicleResidualOverrides = new Map([
   ["k40", "class k40 extends VehicleMotionReceiver {}"],
   ["F40", "class F40 extends LteDodgeMotion {}"],
   ["D40", "class D40 extends LteDodgeInput { constructor() { super(lteDodgeInputOps); } }"],
+  ["Ea", `const Ea = createTailLampEffectClass({
+  Object3D: T2, Vector3: H, DataTexture: J9, ShaderMaterial: Vt,
+  BufferGeometry: t9, BufferAttribute: _0, Mesh: D2,
+  decodePng: p2, configureMesh: Ao,
+  rgbaFormat: e9, unsignedByteType: _9, srgbColorSpace: v9,
+  clampToEdgeWrapping: S1, linearFilter: u9, dynamicDrawUsage: r1,
+  lessEqualDepth: y1, doubleSide: s1, customBlending: u1,
+  sourceAlpha: l1, oneBlend: h3, additiveEquation: R9,
+});`],
 ]);
 const peerMeshOverrides = new Set(["pl0"]);
 const networkTimingOverrides = new Set(["L40", "gl0"]);
@@ -1287,6 +1320,16 @@ assert(kartBoosterEffectsStart >= 0 && kartBoosterEffectsEnd > kartBoosterEffect
 "The kart booster effect boundaries changed.");
 const ast = parse(source, { sourceType: "module", errorRecovery: false });
 const statements = ast.program.body;
+const driftClusterStartNode = statements.find(node => node.type === "VariableDeclaration" &&
+  node.declarations[0]?.id?.name === "De0");
+const driftClusterEndNode = statements.find(node => node.type === "FunctionDeclaration" &&
+  node.id?.name === "y0" && node.start > driftClusterStartNode?.start);
+assert(driftClusterStartNode && driftClusterEndNode &&
+  originalSection(driftClusterStartNode.start) === "vehicle" &&
+  originalSection(driftClusterEndNode.start) === "vehicle" &&
+  statements.filter(node => node.start >= driftClusterStartNode.start &&
+    node.end <= driftClusterEndNode.end).length === 30,
+"The release drift effect cluster boundaries changed.");
 const embeddedPakoDeclarationCount = statements.filter(node =>
   node.start >= embeddedPakoStart && node.start < embeddedPakoEnd).length;
 assert(embeddedPakoDeclarationCount > 30,
@@ -1304,11 +1347,22 @@ const replacedFormatBusiness = new Set();
 const replacedFormatRoadDescriptors = new Set();
 const replacedFormatRoadExtraction = new Set();
 const replacedFormatObstacles = new Set();
+const replacedFormatTrackAdmission = new Set();
+const replacedFormatKartIdentity = new Set();
+const replacedFormatFontLayout = new Set();
+const retiredFormatFont = new Set();
+let retiredKartIdentityEmptySet = false;
+let retiredTrackNameCompare = false;
+let replacedRendererWarmup = false;
 const retiredFormatDeclarations = new Set();
+let retiredDriftClusterDeclarations = 0;
+let retiredDriftTextureSelector = false;
 let replacedToonOutlineController = false;
 const replacedReadableFormatRenderers = new Set();
 const replacedWorldPerformance = new Set();
 const replacedWorldLargeDeclarations = new Set();
+const replacedWorldResidualDeclarations = new Set();
+const retiredWorldResidualGroups = new Set();
 const replacedAppBoot = new Set();
 const replacedWorldHud = new Set();
 const replacedWorldLocalDirectory = new Set();
@@ -1365,6 +1419,8 @@ const replacedLobbyListDrawMethods = new Set();
 const replacedMultiplayerWindowAssetMethods = new Set();
 let replacedMultiplayerWindowView = false;
 let replacedGarageLivePanels = false;
+const retiredLibraryHudAndConfirmation = new Set();
+const replacedLibraryHudAndConfirmation = new Set();
 const replacedGhosts = new Set();
 const replacedKsv = new Set();
 const replacedGhostRuntimeClasses = new Set();
@@ -1613,6 +1669,26 @@ function Ww(state) { return waveKindForState(state); }` });
     retiredKartBoosterEffectDeclarations += 1;
     continue;
   }
+  if (node.start >= driftClusterStartNode.start && node.end <= driftClusterEndNode.end) {
+    assert(originalSection(node.start) === "vehicle", "The drift effect declaration moved.");
+    if (node.start === driftClusterStartNode.start) bodies.get("vehicle").push({
+      at: node.start, text: `const driftEffectDependencies = {
+  Object3D: T2, DataTexture: J9, MeshBasicMaterial: d3,
+  BufferGeometry: t9, BufferAttribute: _0, Mesh: D2,
+  decodePng: p2, configureSkidMesh: ie, configureDriftMesh: Ao,
+  textureFormat: e9, textureType: _9, colorSpace: v9,
+  wrapping: S1, nearestFilter: h9, dynamicUsage: r1,
+  doubleSide: s1, customBlending: u1, additiveEquation: R9,
+  sourceAlpha: l1, oneMinusSourceAlpha: v1, oneBlend: h3,
+};
+function Ze0(definition, scene, singleRearWheel, kartType) {
+  return createDriftMarkSetup(definition, scene, singleRearWheel, kartType, oS);
+}
+const iv = createDriftEffectClass(driftEffectDependencies);`,
+    });
+    retiredDriftClusterDeclarations += 1;
+    continue;
+  }
 
   const declarationName =
     node.type === "FunctionDeclaration" || node.type === "ClassDeclaration"
@@ -1620,6 +1696,156 @@ function Ww(state) { return waveKindForState(state); }` });
       : node.type === "VariableDeclaration" && node.declarations.length === 1
         ? node.declarations[0].id.name
         : undefined;
+  if (node.type === "VariableDeclaration" &&
+      node.declarations[0]?.id?.name === "EZ") {
+    assert(originalSection(node.start) === "formats" &&
+      groupNames(node.declarations.map(entry => entry.id.name)) === "EZ, TZ",
+    "The empty blocked kart set changed in the release.");
+    retiredKartIdentityEmptySet = true;
+    continue;
+  }
+  if (declarationName === "Wn") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      "Track name comparator changed in the release.");
+    retiredTrackNameCompare = true;
+    continue;
+  }
+  if (declarationName === "re0") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "vehicle",
+      "Drift texture selector changed in the release.");
+    retiredDriftTextureSelector = true;
+    continue;
+  }
+  if (formatTrackAdmissionOverrides.has(declarationName)) {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      `Track admission declaration ${declarationName} changed.`);
+    bodies.get("formats").push({ at: node.start,
+      text: formatTrackAdmissionOverrides.get(declarationName) });
+    replacedFormatTrackAdmission.add(declarationName);
+    continue;
+  }
+  if (formatKartIdentityOverrides.has(declarationName)) {
+    assert(node.type === (declarationName === "Cr" ? "VariableDeclaration" : "FunctionDeclaration") &&
+      originalSection(node.start) === "formats",
+      `Kart identity declaration ${declarationName} changed.`);
+    bodies.get("formats").push({ at: node.start,
+      text: formatKartIdentityOverrides.get(declarationName) });
+    replacedFormatKartIdentity.add(declarationName);
+    continue;
+  }
+  if (formatFontLayoutOverrides.has(declarationName)) {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      `Font layout declaration ${declarationName} changed.`);
+    bodies.get("formats").push({ at: node.start,
+      text: formatFontLayoutOverrides.get(declarationName) });
+    replacedFormatFontLayout.add(declarationName);
+    continue;
+  }
+  if (retiredFormatFontHelpers.has(declarationName)) {
+    assert(originalSection(node.start) === "formats" &&
+      node.type === (declarationName === "Jb" ? "VariableDeclaration" : "FunctionDeclaration"),
+      `Font layout helper ${declarationName} changed.`);
+    retiredFormatFont.add(declarationName);
+    continue;
+  }
+  if (declarationName === "Hn") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      "Renderer warmup declaration changed.");
+    bodies.get("formats").push({ at: node.start,
+      text: "function Hn(renderer, root, environment, onePixel = false) { return warmRendererResources(renderer, root, environment, onePixel); }" });
+    replacedRendererWarmup = true;
+    continue;
+  }
+  if (node.type === "VariableDeclaration" &&
+      node.declarations[0]?.id?.name === "zM") {
+    assert(originalSection(node.start) === "library" &&
+      groupNames(node.declarations.map(entry => entry.id.name)) ===
+      "Qu, T8, UM, gQ, mQ, vQ, wQ, zM",
+    "The garage confirmation resource constants changed in the release source.");
+    retiredLibraryHudAndConfirmation.add("zM");
+    continue;
+  }
+  if (["PR", "yQ", "jr", "Ju", "AQ", "$M", "bQ", "MQ", "xQ",
+    "SQ", "CQ", "I00", "cI", "lI", "ig", "Lx", "Px"].includes(declarationName)) {
+    assert(originalSection(node.start) === "library",
+      `Library HUD or confirmation helper ${declarationName} moved.`);
+    retiredLibraryHudAndConfirmation.add(declarationName);
+    continue;
+  }
+  if (declarationName === "pQ" || declarationName === "_w") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "library",
+      `Garage confirmation resource loader ${declarationName} moved.`);
+    bodies.get("library").push({ at: node.start, text: declarationName === "pQ"
+      ? "async function pQ(library) { return loadGarageConfirmationFont(library, garageConfirmationAssetDependencies); }"
+      : "async function _w(library) { return loadGarageConfirmationBlueprint(library, garageConfirmationAssetDependencies); }" });
+    replacedLibraryHudAndConfirmation.add(declarationName);
+    continue;
+  }
+  if (declarationName === "FR") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "library" &&
+      node.body.body.filter(member => member.type === "ClassMethod").length === 12,
+    "Garage confirmation class changed in the release source.");
+    bodies.get("library").push({ at: node.start, text: `class FR extends GarageConfirmationDialog {
+  constructor(root, onVisibility, blueprint, images, font) {
+    super(root, onVisibility, blueprint, images, font, garageConfirmationDialogDependencies);
+  }
+  static async load(library, root, onVisibility) {
+    return GarageConfirmationDialog.load(library, root, onVisibility,
+      garageConfirmationDialogDependencies,
+      (root, onVisibility, blueprint, images, font) =>
+        new FR(root, onVisibility, blueprint, images, font));
+  }
+}` });
+    replacedLibraryHudAndConfirmation.add(declarationName);
+    continue;
+  }
+  if (declarationName === "Fw") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "library" &&
+      node.body.body.filter(member => member.type === "ClassMethod").length === 12,
+    "Giant Boost HUD class changed in the release source.");
+    bodies.get("library").push({ at: node.start, text: `class Fw extends GiantBoostHud {
+  constructor(models, textures, panels) {
+    super(models, textures, panels, giantBoostHudDependencies);
+  }
+  static async load(library) {
+    return GiantBoostHud.load(library, giantBoostHudDependencies,
+      (models, textures, panels) => new Fw(models, textures, panels));
+  }
+}` });
+    replacedLibraryHudAndConfirmation.add(declarationName);
+    continue;
+  }
+  if (declarationName === "Dw") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "library" &&
+      node.body.body.filter(member => member.type === "ClassMethod").length === 14,
+    "Multiplayer HUD class changed in the release source.");
+    bodies.get("library").push({ at: node.start, text: `class Dw extends MultiplayerRaceHud {
+  constructor(ui, tints, anonymous = false, competition = false, runnerId) {
+    super(ui, tints, anonymous, competition, runnerId, multiplayerRaceHudDependencies);
+  }
+  static async load(library, race, playerId) {
+    return MultiplayerRaceHud.load(library, race, playerId,
+      multiplayerRaceHudDependencies,
+      (ui, tints, anonymous, competition, runnerId) =>
+        new Dw(ui, tints, anonymous, competition, runnerId));
+  }
+}` });
+    replacedLibraryHudAndConfirmation.add(declarationName);
+    continue;
+  }
+  if (node.type === "VariableDeclaration" && originalSection(node.start) === "world" &&
+      ["$L", "n9", "M2"].includes(node.declarations[0]?.id?.name)) {
+    retiredWorldResidualGroups.add(node.declarations[0].id.name);
+    continue;
+  }
+  if (["sr0", "ar0", "ur0", "dr0", "$d", "mE", "Ks", "cr0", "hr0", "Tv", "qr0", "Kr0"]
+      .includes(declarationName)) {
+    assert(originalSection(node.start) === "world" &&
+      ["FunctionDeclaration", "ClassDeclaration"].includes(node.type),
+      `World residual ${declarationName} moved from its release section.`);
+    replacedWorldResidualDeclarations.add(declarationName);
+    continue;
+  }
   if (formatRoadDescriptorOverrides.has(declarationName)) {
     assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
       `Road descriptor declaration ${declarationName} changed.`);
@@ -2438,10 +2664,8 @@ function II(version, speed) { return findSpeedTypeEntry(version, speed); }` });
   if (declarationName === "Ui0") {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "world",
       "Active race coordinator moved from world.");
-    bodies.get("world").push({
-      at: node.start,
-      text: rewriteClassMethods(node, activeRaceMethodOverrides, replacedActiveRaceMethods),
-    });
+    recordWholeClassMembers(node, activeRaceMethodOverrides, replacedActiveRaceMethods);
+    replacedWorldResidualDeclarations.add(declarationName);
     continue;
   }
   if (declarationName === "Bi0") {
@@ -3420,7 +3644,7 @@ ${[...multiplayerMethodOverrides.values()].join("\n")}
   }
   if (vehicleResidualOverrides.has(declarationName)) {
     assert(originalSection(node.start) === "vehicle" &&
-      node.type === (["m7", "v7", "I30", "gn0", "Cn0", "I40", "k40", "F40", "D40"].includes(declarationName)
+      node.type === (["m7", "v7", "I30", "gn0", "Cn0", "I40", "k40", "F40", "D40", "Ea"].includes(declarationName)
         ? "ClassDeclaration" : "FunctionDeclaration"),
     `Vehicle residual symbol ${declarationName} changed in the release.`);
     assert(!replacedVehicleResidual.has(declarationName),
@@ -3523,6 +3747,14 @@ assert(replacedFormatRoadDescriptors.size === formatRoadDescriptorOverrides.size
   replacedFormatObstacles.size === formatObstacleOverrides.size &&
   groupNames(retiredFormatDeclarations) === groupNames(retiredFormatSource),
 "The road descriptor, road extraction, and moving obstacle declarations were not all replaced.");
+assert(replacedFormatTrackAdmission.size === formatTrackAdmissionOverrides.size &&
+  replacedFormatKartIdentity.size === formatKartIdentityOverrides.size &&
+  replacedFormatFontLayout.size === formatFontLayoutOverrides.size &&
+  groupNames(retiredFormatFont) === groupNames(retiredFormatFontHelpers) &&
+  retiredKartIdentityEmptySet && retiredTrackNameCompare && replacedRendererWarmup,
+"The track admission, kart identity, font layout, or renderer warmup was not replaced.");
+assert(retiredDriftClusterDeclarations === 30 && retiredDriftTextureSelector,
+  "The drift effect cluster was not fully replaced.");
 assert(replacedToonOutlineController, "The Toon outline controller was not replaced.");
 assert(groupNames(replacedReadableFormatRenderers) === "CB, bo, tw, wK",
   "The award scene, Toon batch, and material renderers were not all replaced.");
@@ -3537,6 +3769,10 @@ assert(retiredKartBoosterEffectDeclarations === 11,
   `Expected 11 kart booster effect declarations; found ${retiredKartBoosterEffectDeclarations}.`);
 assert(replacedMultiplayerWindowView && replacedGarageLivePanels,
   "The multiplayer window and garage live panels were not both replaced.");
+assert(groupNames(retiredLibraryHudAndConfirmation) ===
+  "$M, AQ, CQ, I00, Ju, Lx, MQ, PR, Px, SQ, bQ, cI, ig, jr, lI, xQ, yQ, zM" &&
+  groupNames(replacedLibraryHudAndConfirmation) === "Dw, FR, Fw, _w, pQ",
+`The confirmation and multiplayer HUD source clusters were not all replaced: retired=${groupNames(retiredLibraryHudAndConfirmation)} replaced=${groupNames(replacedLibraryHudAndConfirmation)}.`);
 assert(groupNames(replacedLibraryResultViews) === "Bo, Tw",
   "The multiplayer result views were not both replaced.");
 assert(replacedDerivedOverlayRenderer && replacedModelBinaryCursor &&
@@ -3625,6 +3861,10 @@ assert(replacedWorldPerformance.size === worldPerformanceOverrides.size,
   "The performance diagnostics overrides were not all found.");
 assert(groupNames(replacedWorldLargeDeclarations) === "Bv, Fv, Hs0, S4, b7",
   "The large world owners were not all replaced.");
+assert(groupNames(replacedWorldResidualDeclarations) ===
+  "$d, Kr0, Ks, Tv, Ui0, ar0, cr0, dr0, hr0, mE, qr0, sr0, ur0" &&
+  groupNames(retiredWorldResidualGroups) === "$L, M2, n9",
+  "The flying pet, giant warning and multiplayer coordinator residuals were not retired.");
 assert(replacedWorldHud.size === worldHudOverrides.size && retiredHudVersion,
   "The HUD overlay overrides were not all found.");
 assert(replacedWorldLocalDirectory.size === worldLocalDirectoryOverrides.size &&
@@ -3916,6 +4156,10 @@ function renderModule(name) {
   if (name === "formats") {
     lines.push('import { isTrackPrs, createPrsRuntime, playPrs, setPrsCycleMode, stopPrs, validatePrs, defaultTrackTransform, applyTrackPrs, sampleTrackPrs } from "../resources/track-prs-animation.ts";');
     lines.push('import { admitMovingObstacle, transformObstaclePoint } from "../resources/moving-obstacle.ts";');
+    lines.push('import { extractTrackRoute, itemGameOnly, readTrackSettings, soloTrackMode, trackRuntimeIssues } from "../resources/track-model-admission.ts";');
+    lines.push('import { blockedKartMessage, defaultLegacyKartState, isBlockedKartId, kartCatalogIdentity, legacyKartFamilies, legacyKartStateForAlias, requirePlayableKartId, resolveKartSelection, stableSystemKartKey } from "../resources/system-kart-identity.ts";');
+    lines.push('import { layoutSpriteFont, layoutSpriteFontInto, spriteFontLayoutForPanel } from "../resources/font-glyph-layout.ts";');
+    lines.push('import { warmRendererResources } from "../resources/renderer-warmup.ts";');
     lines.push('import { extractTrackRoads } from "../resources/track-road-extraction.ts";');
     lines.push('import { anyRoadIssue, isMovableRoad, movingRoadIssue, roadRail, roadSound, roadSurface, staticRoadIssue } from "../resources/track-road-descriptor.ts";');
     lines.push('import { CanvasHitController } from "../ui/canvas-hit-controller.ts";');
@@ -3944,9 +4188,17 @@ function renderModule(name) {
     lines.push('import { decodePngRgba } from "../resources/png-decoder.ts";');
     lines.push('import { normalizeLegacyTextureAlpha } from "../resources/texture-alpha.ts";');
     lines.push('import { buildTrackCourseGraph } from "../resources/track-course-graph.ts";');
+    lines.push('const fontLayoutOps = { attribute: T, rectangle: lt, parseNumbers: j2 };');
   }
   if (name === "world") {
     lines.push('import { installWorldOverrides } from "../world/install.ts";');
+    lines.push('import { FlyingPetModel, loadFlyingPetModelParts } from "../world/flying-pet-model.ts";');
+    lines.push('import { FlyingPetIdleMotion, FlyingPetRaceState, visibleFlyingPet } from "../world/flying-pet-state.ts";');
+    lines.push('import { FlyingPetAudio, loadFlyingPetAliveSound, loadFlyingPetEffect } from "../world/flying-pet-media.ts";');
+    lines.push('import { FlyingPetTextures } from "../world/flying-pet-textures.ts";');
+    lines.push('import { GiantWarning } from "../world/giant-warning.ts";');
+    lines.push('import { GiantAppearance } from "../world/giant-appearance.ts";');
+    lines.push('import { ActiveRaceCoordinator } from "../multiplayer/active-race-coordinator.ts";');
     lines.push('import { FlyingPetPresentation } from "../world/flying-pet-presentation.ts";');
     lines.push('import { TrackEventEffectPool } from "../world/track-event-effect-pool.ts";');
     lines.push('import { GiantRaceEffects } from "../world/giant-race-effects.ts";');
@@ -4060,6 +4312,8 @@ function renderModule(name) {
     lines.push('import { admitTrackObject } from "../vehicle/track-object-admission.ts";');
     lines.push('import { isNewMotionSequence, VehicleMotionSender, VehicleMotionReceiver } from "../vehicle/remote-vehicle-motion.ts";');
     lines.push('import { LteDodgeMotion, LteDodgeInput } from "../vehicle/lte-dodge.ts";');
+    lines.push('import { createTailLampEffectClass } from "../vehicle/tail-lamp-effect.ts";');
+    lines.push('import { createDriftEffectClass, createDriftMarkSetup } from "../vehicle/drift-effect.ts";');
     lines.push('import { KartRuntimeState as J40 } from "../vehicle/kart-runtime-state.ts";');
     lines.push('import { GiantKartEffect as pL } from "../vehicle/giant-kart-effect.ts";');
     lines.push('import { WarpNextController as Qk, warpPresentationBlinkVisible as gv } from "../vehicle/warp-next-controller.ts";');
@@ -4246,6 +4500,10 @@ function renderModule(name) {
   }
   if (name === "library") {
     lines.push('import { MultiplayerWindowView } from "../ui/multiplayer-window-view.ts";');
+    lines.push('import { GarageConfirmationDialog } from "../ui/garage-confirmation-dialog.ts";');
+    lines.push('import { garageConfirmationFontFamily as PR, loadGarageConfirmationFont, loadGarageConfirmationAssets, loadGarageConfirmationBlueprint, garageConfirmationPartEquipRequest, garageConfirmationLayout } from "../ui/garage-confirmation-assets.ts";');
+    lines.push('import { GiantBoostHud } from "../ui/giant-boost-hud.ts";');
+    lines.push('import { MultiplayerRaceHud } from "../ui/multiplayer-race-hud.ts";');
     lines.push('import { MultiplayerResultView } from "../ui/multiplayer-result-view.ts";');
     lines.push('import { RoadblockResultView } from "../ui/roadblock-result-view.ts";');
     lines.push('import { DerivedOverlayRenderer } from "../ui/derived-overlay-renderer.ts";');
@@ -4274,6 +4532,40 @@ function renderModule(name) {
     lines.push('const multiplayerWindowDrawDependencies = { attribute: T, rectangle: V0, innerRectangle: E9, paintFrame: C9, color: E8, charLayout: ga, charGlyphs: pa, paintImageButton: ct, numbers: j2, drawText: m9, comboEntries: OM, captionRectangle: f3, nodeConfig: an, get fontFamily() { return Sn; } };');
     lines.push('const multiplayerComboDependencies = { entries: OM, attribute: T, rectangle: V0, paintFrame: C9 };');
     lines.push('const multiplayerWindowViewDependencies = { newHitLayer: (...args) => new nR(...args), decoratePopup: tR, attribute: T, measureText: ve, drawText: m9, color: E8, releaseFont: G1, get fontFamily() { return Sn; }, renderWindow: view => renderMultiplayerWindow(view, Sr), drawNode: (view, node, parent, visible) => drawMultiplayerWindowNode(view, node, parent, visible, multiplayerWindowDrawDependencies), canvasButton: (view, node, rect, text, state) => multiplayerCanvasButton(view, node, rect, text, state, T), updateHoverRegion: (view, event) => updateMultiplayerHoverRegion(view, event), closeCombo: view => closeMultiplayerCombo(view), chooseCombo: (view, index) => chooseMultiplayerCombo(view, index), drawComboPopup: view => drawMultiplayerComboPopup(view, multiplayerComboDependencies), loadAssets: view => loadMultiplayerWindowAssets(view, multiplayerWindowAssetDependencies) };');
+    lines.push(`const garageConfirmationAssetDependencies = {
+  loadFont: f5, parseBml: s2, attribute: T, frame: Ft,
+  decodeImage: async bytes => $p(await createImageBitmap(
+    new Blob([bytes], { type: "image/png" }))),
+  rectangle: V0, innerRectangle: E9,
+};
+const garageConfirmationDialogDependencies = {
+  loadFont: library => loadGarageConfirmationFont(library, garageConfirmationAssetDependencies),
+  loadAssets: library => loadGarageConfirmationAssets(library, garageConfirmationAssetDependencies),
+  releaseFont: G1, partEquipRequest: garageConfirmationPartEquipRequest,
+  layout: (blueprint, lineCount, size, request) =>
+    garageConfirmationLayout(blueprint, lineCount, size, request,
+      garageConfirmationAssetDependencies),
+  attribute: T, resizeCanvas: p3, pixelRatio: xe,
+  paintFrame: C9, drawText: m9, captionOffset: an,
+  captionRectangle: f3, innerRectangle: E9,
+  fontFamily: PR,
+};
+const giantBoostHudDependencies = {
+  createRenderer: () => new fn(new Map()),
+  createCamera: () => new a5(), createWorld: () => new D1(),
+  createViewport: () => new Y2(), applyCamera: Aa,
+  attribute: T, loadModel: aI, findResource: Yi, parseBml: s2,
+  decodeTexture: p2, makeUi: d5, layoutUi: dn, panels: dt,
+};
+const multiplayerRaceHudDependencies = {
+  createGap: () => new DQ(),
+  loadTimeGap: (library, target) => Bw.load(library, target),
+  resolveDye: We, loadHudAssets: eI, attribute: T, loadMinimap: oI,
+  createHud: (assets, minimap) => new tI(assets, minimap),
+  loadGiant: library => Fw.load(library), normalizeRank: XM,
+  get racingState() { return X2.Racing; },
+  viewportWidth: H2, viewportHeight: $2,
+};`);
     lines.push('import { speedTypeEntry as r7 } from "../physics/speed-baseline.ts";');
     lines.push('import { loadSwWithReadableCodec } from "../codecs/sw-compat.ts";');
     lines.push('import { getResource, initializeResourceLookup, resourceCanonicalCandidates, resourceEntriesUnderCanonicalPrefix, resourceExactCanonicalCandidates, resourceFindSibling, resourceHasManifestMount, resourcePhysicalContainerNames, resourceResolveContainerPath } from "../resources/resource-lookup.ts";');
@@ -4662,14 +4954,92 @@ function awardPodiumLoadDependencies() { return {
     lines.push("");
   }
   if (name === "world") {
+    lines.push(`const flyingPetModelDependencies = {
+  createGroup: () => new T2(), createSkin: source => new vR(source),
+  registerSkinCulling: (root, collect) => qm(root, collect),
+  applyTransform: (root, transform) => Ud(root, transform),
+  toonProperties: (node, parent) => wE(node, parent),
+  makeMaterial: (texture, options) => bo(texture, options),
+  applyMaterial: (material, properties) => Mo(material, properties),
+  renderState: (alpha, zbuf) => ir0(alpha, zbuf),
+  createMesh: (geometry, material) => new D2(geometry, material),
+  configureRenderOrder: (...args) => ie(...args),
+  createOutline: (...args) => new N6(...args),
+  createMatrix: () => new v2(), createVector: () => new H(),
+  updateEnvironment: (...args) => xo(...args),
+  rigidGeometry: source => rr0(source), isElement: node => vE(node),
+  collectBoneMatrices: (source, pose) => AR.collect(source, pose),
+  composeBoneMatrix: (pose, inverse) => yR(pose, inverse),
+  setTextureEnabled: (material, disabled) => JH(material, disabled),
+  headTransform: pose => nr0(pose),
+};`);
+    lines.push(`const flyingPetTextureDependencies = {
+  decodePng: bytes => p2(bytes),
+  paintColors: (low, high, primary, highlight) => K6(low, high, primary, highlight),
+  createTexture: (pixels, width, height, format) => new J9(pixels, width, height, format),
+  format: e9, colorSpace: v9, wrapping: S1, filtering: h9,
+};`);
+    lines.push(`const flyingPetMediaDependencies = {
+  directory: DI, parseScene: y9, buildScene: W1,
+  decodeAudio: Q9, connectAudio: S9,
+};`);
+    lines.push(`const giantWarningDependencies = {
+  createGeometry: () => new t9(),
+  createAttribute: (values, size) => new _0(values, size),
+  createMaterial: options => new Vt(options),
+  createMesh: (geometry, material) => new D2(geometry, material),
+  orientMesh: mesh => Ao(mesh),
+  repeatWrapping: S1, linearFilter: h9,
+  normalBlending: u1, sourceAlpha: l1, oneMinusSourceAlpha: v1,
+  addEquation: R9, doubleSide: s1, alwaysDepth: y1,
+};`);
+    lines.push(`const giantAppearanceDependencies = {
+  applyOutline: (mesh, options) => Ab(mesh, options),
+  isMaterial: material => material instanceof $1,
+  hasNormalUvOffset: material => zn(material),
+  restoreRootConsumer: mesh => QG(mesh),
+  get normalUvY() { return NL; },
+  blending: u1, sourceAlpha: l1, oneMinusSourceAlpha: v1, addEquation: R9,
+};`);
+    lines.push(`const activeRaceCoordinatorDependencies = {
+  normalizeRp: value => mI(value),
+  createCollisionFramerate: (...args) => new Ni0(...args),
+  createLocal: (...args) => new Ci0(...args),
+  createCadence: (...args) => new Vi0(...args),
+  createRemotes: (...args) => new Bi0(...args),
+  resolveRemoteCollision: (...args) => Di0(...args),
+  createPresentation: () => new I40(), createSlipstream: () => new fE(),
+  bindClock: (host, mapping) => bindActiveRaceClock(host, mapping, {
+    makeClock: value => new BL(value),
+    makeSender: (...args) => new ki0(...args),
+  }),
+  scheduleStart: (host, startAt) => scheduleActiveRaceStart(host, startAt),
+  updateRoom: (host, room) => updateActiveRaceRoom(host, room, raceRoomDependencies),
+  updateFrame: (host, now, frame, bypass) => updateActiveRaceFrame(host, now, frame, bypass,
+    { racingState: X2.Racing, resultState: X2.Result,
+      captureMotion: B40, captureAnimation: R40 }),
+  updateRemoteViews: (host, now) => updateRaceRemoteViews(host, now,
+    { racingState: X2.Racing, resultState: X2.Result }),
+  roadblockRemaining: (host, now) => roadblockRemaining(host, now, Y3),
+  dispose: host => disposeActiveRace(host),
+};`);
     lines.push(`const flyingPetPresentationDependencies = {
   loadPetAsset: (library, id) => x4.load(library, id),
-  createSkinResources: (asset, primary, high) => new mE(asset, primary, high),
+  createSkinResources: (asset, primary, high) => new FlyingPetTextures(
+    asset, primary, high, flyingPetTextureDependencies),
   createAnimation: sequence => new cc(sequence),
-  loadModel: (...args) => Ks.load(...args),
-  createIdleMotion: (clips, animation, random) => new cr0(clips, animation, random),
-  loadEffect: (...args) => $d(...args), loadAudio: (...args) => Tv.load(...args),
-  createRaceState: () => new hr0(), isVisible: dr0,
+  loadModel: async (model, clips, skin, environment, binding) => {
+    const { body, faces } = await loadFlyingPetModelParts(clips, skin);
+    return new FlyingPetModel(model, body, faces, environment, binding,
+      flyingPetModelDependencies);
+  },
+  createIdleMotion: (clips, animation, random) => new FlyingPetIdleMotion(clips, animation, random),
+  loadEffect: (library, name, environment, binding) => loadFlyingPetEffect(
+    library, name, environment, binding, flyingPetMediaDependencies),
+  loadAudio: async (asset, context) => new FlyingPetAudio(context,
+    await loadFlyingPetAliveSound(asset, context, flyingPetMediaDependencies),
+    flyingPetMediaDependencies),
+  createRaceState: () => new FlyingPetRaceState(), isVisible: visibleFlyingPet,
   createRotationMatrix: () => new v2(), renderNested: qm,
 };`);
     lines.push(`const trackEventEffectDependencies = {
@@ -4682,7 +5052,7 @@ function awardPodiumLoadDependencies() { return {
   exactEntry: (library, path) => Yi(library, path),
   createGroup: () => new T2(), decodeSound: Q9, connectSound: S9,
   decodeImage: p2, createTexture: (pixels, width, height) => new J9(pixels, width, height),
-  createWarning: texture => new qr0(texture), build: aI,
+  createWarning: texture => new GiantWarning(texture, giantWarningDependencies), build: aI,
 };`);
     lines.push(`const roadblockResultPresentationDependencies = {
   parseScene: y9, attribute: T, buildScene: W1,
@@ -4697,7 +5067,8 @@ function awardPodiumLoadDependencies() { return {
   createToonStageBinding: () => new ha(),
   loadRaceAssets: (...args) => A40(...args),
   loadCharacterAnimations: (...args) => hI(...args),
-  createNetworkDriver: (...args) => new Ui0(...args),
+  createNetworkDriver: (...args) => new ActiveRaceCoordinator(
+    ...args, activeRaceCoordinatorDependencies),
   loadTimeGap: (...args) => Dw.load(...args),
   loadCountdownAudio: (...args) => Q6.load(...args),
   loadRoadblockFlag: (...args) => tw.load(...args),
@@ -4717,7 +5088,7 @@ function awardPodiumLoadDependencies() { return {
     lines.push("const localRaceConstructionDependencies = { validateStartSlots: iL, hasLteMode: ko, validRpDraws: ba, sameRp: t7, hasGiantMode: Io, makeLte: () => new D40(), makeGiant: callback => new pL(true, callback), makePhysics: (...args) => new AL(...args), makeTrack: (...args) => new _L(...args), placeAtStart: rL, makeCoordinator: (...args) => new yL(...args), racingState: X2.Racing };");
     lines.push("const localRaceDependencies = { states: X2, beginResetState: mL, advanceResetState: wL, routeTagFamily: Vo, isStartBoosterWindow: fL };");
     lines.push("const raceRoomDependencies = { modeOf: G2, sameRp: t7, sameRoadblock: oR, sameLte: Nw, sameGiant: yI, toLocalTick: Y3, racingState: X2.Racing };");
-    lines.push("const racePresenterInitializationDependencies = { createCameraShake: (random, anchor) => new nP(random, anchor), createRankRoster: (roster, playerId) => new Tr0(roster, playerId), createLightFactor: random => new sP(random), createAction2d: assets => new dI(assets), applyTrackFog: (scene, track) => kv(scene, track), createRacerView: scene => new Vg(scene), vehicleParts: vehicle => lc(vehicle), serializedRoot: model => J5(model), get accessorySockets() { return oP; }, createLinkedPresentation: (...args) => new _a(...args), attachAura: (...args) => ev(...args), createGiantAppearance: (...args) => new Kr0(...args), startPosition: (...args) => rL(...args), createShadowPresentation: object => new $i0(object) };");
+    lines.push("const racePresenterInitializationDependencies = { createCameraShake: (random, anchor) => new nP(random, anchor), createRankRoster: (roster, playerId) => new Tr0(roster, playerId), createLightFactor: random => new sP(random), createAction2d: assets => new dI(assets), applyTrackFog: (scene, track) => kv(scene, track), createRacerView: scene => new Vg(scene), vehicleParts: vehicle => lc(vehicle), serializedRoot: model => J5(model), get accessorySockets() { return oP; }, createLinkedPresentation: (...args) => new _a(...args), attachAura: (...args) => ev(...args), createGiantAppearance: (...args) => new GiantAppearance(...args, giantAppearanceDependencies), startPosition: (...args) => rL(...args), createShadowPresentation: object => new $i0(object) };");
     lines.push("const racePresenterFrameDependencies = { result: { get countdownState() { return X2.Countdown; }, render: (...args) => e4(...args) }, events: { get racingState() { return X2.Racing; } }, participants: { updateRemoteVehicleEffects: (...args) => xr0(...args), updateLocalVehicleEffects: (...args) => Mr0(...args) }, hud: { rankByProgress: (...args) => _r0(...args), rankFallback: (...args) => Gr0(...args), rankWithResults: (...args) => Br0(...args), updateTachometer: (...args) => QL(...args), prepareScene: (...args) => e4(...args), get racingState() { return X2.Racing; } } };");
     lines.push("const racePresenterSetupDependencies = { flyingPetItem: (library, itemId) => Ma(library, itemId), serializedRoot: model => J5(model), loadFlyingPet: options => S4.race(options), paintColors: (library, itemId) => We(library, itemId), loadRoadblockFlag: (...args) => _v.load(...args), loadGiant: (...args) => Fv.load(...args), loadRoadblockResult: (...args) => Bv.load(...args), nowMs: () => performance.now() };");
     lines.push("const racePresenterTrackEventDependencies = { loadEffects: (...args) => b7.load(...args), loadAudio: (...args) => v7.load(...args), loadDummyAudio: (...args) => m7.load(...args) };");
@@ -6070,6 +6441,15 @@ const manifest = {
   handwrittenFormatRoadDescriptors: [...replacedFormatRoadDescriptors].sort(),
   handwrittenFormatRoadExtraction: [...replacedFormatRoadExtraction].sort(),
   handwrittenFormatObstacles: [...replacedFormatObstacles].sort(),
+  handwrittenFormatTrackAdmission: [...replacedFormatTrackAdmission].sort(),
+  handwrittenFormatKartIdentity: [...replacedFormatKartIdentity].sort(),
+  handwrittenFormatFontLayout: [...replacedFormatFontLayout].sort(),
+  retiredFormatFontHelpers: [...retiredFormatFont].sort(),
+  handwrittenRendererWarmup: replacedRendererWarmup,
+  retiredKartIdentityEmptySet,
+  retiredTrackNameCompare,
+  handwrittenDriftEffect: retiredDriftClusterDeclarations === 30 &&
+    retiredDriftTextureSelector,
   retiredFormatDeclarations: [...retiredFormatDeclarations].sort(),
   handwrittenWorldHudOverrides: [...worldHudOverrides],
   handwrittenWorldLocalDirectoryOverrides: [...worldLocalDirectoryOverrides],

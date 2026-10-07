@@ -71,4 +71,4 @@ npm run verify
 
 影子记录的帧编解码与存储还经过真实浏览器 IndexedDB 写入、读取、列举和删除验证；可在开发服务器打开 `/tests/browser/ghost-store.html` 重测。KSV 外层格式也已手写，可用 `/tests/browser/ksv-codec.html` 检查浏览器读写闭环；底层 zlib 使用 `pako@2.1.0`，字节输出已与发行版逐项比对。
 
-`src/generated/` 当前仍有约 1.47 MB 的场景格式、渲染、界面、车辆和车库兼容代码保留发行版压缩名称。完整手写重构尚未完成；每个已替换范围都由 `src/generated/manifest.json` 和相应的差分测试标明。暂停菜单资源、画布交互和赛前车辆预览已迁到 `src/timeattack/`，并在真实浏览器中验证进入赛道和 Esc 暂停。原网页只交付浏览器客户端，仓库内 `server/` 是依照可观察协议新写的 Java 实现。联机协议边界见 `src/multiplayer/README.md`。
+`src/generated/` 当前仍有约 1.2 MB 的场景格式、渲染、界面、车辆和车库兼容代码保留发行版压缩名称。完整手写重构尚未完成；每个已替换范围都由 `src/generated/manifest.json` 和相应的差分测试标明。暂停菜单资源、画布交互和赛前车辆预览已迁到 `src/timeattack/`，并在真实浏览器中验证进入赛道和 Esc 暂停。原网页只交付浏览器客户端，仓库内 `server/` 是依照可观察协议新写的 Java 实现。联机协议边界见 `src/multiplayer/README.md`。

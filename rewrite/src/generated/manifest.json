@@ -740,6 +740,41 @@
     "Um",
     "e3"
   ],
+  "handwrittenFormatTrackAdmission": [
+    "Au",
+    "HG",
+    "XW",
+    "YW",
+    "ZW"
+  ],
+  "handwrittenFormatKartIdentity": [
+    "Cr",
+    "GZ",
+    "Mw",
+    "N3",
+    "_Z",
+    "b4",
+    "j6",
+    "n3",
+    "xw"
+  ],
+  "handwrittenFormatFontLayout": [
+    "$B",
+    "ga",
+    "pa"
+  ],
+  "retiredFormatFontHelpers": [
+    "A8",
+    "Jb",
+    "Wp",
+    "Yj",
+    "eM",
+    "tM"
+  ],
+  "handwrittenRendererWarmup": true,
+  "retiredKartIdentityEmptySet": true,
+  "retiredTrackNameCompare": true,
+  "handwrittenDriftEffect": true,
   "retiredFormatDeclarations": [
     "$H",
     "$W",
@@ -1072,7 +1107,8 @@
     "I40",
     "k40",
     "F40",
-    "D40"
+    "D40",
+    "Ea"
   ],
   "retiredVehicleResidualConstants": [
     "v1-float",
@@ -1760,15 +1796,15 @@
     },
     {
       "file": "formats.js",
-      "bytes": 164426,
-      "sha256": "bbf3f22e8371fc31d063d0fae0d26b11d41345d4ea00cb70f1df92d35ce5d3eb",
+      "bytes": 153873,
+      "sha256": "0bd08fb81c2e28b05a938f7d1a31640df201ec21508722094d24cb231bd9a879",
       "imports": 71,
       "exports": 185
     },
     {
       "file": "library.js",
-      "bytes": 252725,
-      "sha256": "15c964b175aa22c81db3ce97868caf27b1f5d1b4261c7e867a215a27b3594554",
+      "bytes": 229054,
+      "sha256": "0ff02dd604680cf9e7cc6ab68874c68a69fc43ff8f061ff340c55903ae804005",
       "imports": 128,
       "exports": 156
     },
@@ -1788,8 +1824,8 @@
     },
     {
       "file": "vehicle.js",
-      "bytes": 230190,
-      "sha256": "c4de1f405372ad97c31f3200c8c2b6d4cd5ca8737e5a9a98490dbd0c5e919b4c",
+      "bytes": 200290,
+      "sha256": "171a095cb50e6da9d286e03ab598623e7b543c91c3602ef206d0059e94f1f0ff",
       "imports": 183,
       "exports": 104
     },
@@ -1802,8 +1838,8 @@
     },
     {
       "file": "world.js",
-      "bytes": 148182,
-      "sha256": "892214bfab4a47de1ce7a55b4b9cf4e65f22a7564e3423da993c97b7cf681af2",
+      "bytes": 127268,
+      "sha256": "d69d66608779a0c299aaf8fca4185aa25d71f3f600a2913832ebf3b6488dd796",
       "imports": 186,
       "exports": 81
     },

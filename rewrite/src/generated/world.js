@@ -3,6 +3,13 @@
 // Stable minified names are retained for behavioral parity.
 
 import { installWorldOverrides } from "../world/install.ts";
+import { FlyingPetModel, loadFlyingPetModelParts } from "../world/flying-pet-model.ts";
+import { FlyingPetIdleMotion, FlyingPetRaceState, visibleFlyingPet } from "../world/flying-pet-state.ts";
+import { FlyingPetAudio, loadFlyingPetAliveSound, loadFlyingPetEffect } from "../world/flying-pet-media.ts";
+import { FlyingPetTextures } from "../world/flying-pet-textures.ts";
+import { GiantWarning } from "../world/giant-warning.ts";
+import { GiantAppearance } from "../world/giant-appearance.ts";
+import { ActiveRaceCoordinator } from "../multiplayer/active-race-coordinator.ts";
 import { FlyingPetPresentation } from "../world/flying-pet-presentation.ts";
 import { TrackEventEffectPool } from "../world/track-event-effect-pool.ts";
 import { GiantRaceEffects } from "../world/giant-race-effects.ts";
@@ -53,14 +60,92 @@ import { I1, N1, On, Rg, Tt, dl, t0 } from "./math.js";
 import { A40, B40, D40, Fk, Gr, I40, In0, No, Qk, R40, Ta, Tk, Uk, Vo, Y3, ev, f30, fL, fv, gL, gv, iL, k40, m7, mL, p7, pL, pr, rL, v7, vL, wL, yL } from "./vehicle.js";
 import { AL, Bg, Oo, di0, fi0, pi0, rc, vv, xd } from "./driving.js";
 
+const flyingPetModelDependencies = {
+  createGroup: () => new T2(), createSkin: source => new vR(source),
+  registerSkinCulling: (root, collect) => qm(root, collect),
+  applyTransform: (root, transform) => Ud(root, transform),
+  toonProperties: (node, parent) => wE(node, parent),
+  makeMaterial: (texture, options) => bo(texture, options),
+  applyMaterial: (material, properties) => Mo(material, properties),
+  renderState: (alpha, zbuf) => ir0(alpha, zbuf),
+  createMesh: (geometry, material) => new D2(geometry, material),
+  configureRenderOrder: (...args) => ie(...args),
+  createOutline: (...args) => new N6(...args),
+  createMatrix: () => new v2(), createVector: () => new H(),
+  updateEnvironment: (...args) => xo(...args),
+  rigidGeometry: source => rr0(source), isElement: node => vE(node),
+  collectBoneMatrices: (source, pose) => AR.collect(source, pose),
+  composeBoneMatrix: (pose, inverse) => yR(pose, inverse),
+  setTextureEnabled: (material, disabled) => JH(material, disabled),
+  headTransform: pose => nr0(pose),
+};
+const flyingPetTextureDependencies = {
+  decodePng: bytes => p2(bytes),
+  paintColors: (low, high, primary, highlight) => K6(low, high, primary, highlight),
+  createTexture: (pixels, width, height, format) => new J9(pixels, width, height, format),
+  format: e9, colorSpace: v9, wrapping: S1, filtering: h9,
+};
+const flyingPetMediaDependencies = {
+  directory: DI, parseScene: y9, buildScene: W1,
+  decodeAudio: Q9, connectAudio: S9,
+};
+const giantWarningDependencies = {
+  createGeometry: () => new t9(),
+  createAttribute: (values, size) => new _0(values, size),
+  createMaterial: options => new Vt(options),
+  createMesh: (geometry, material) => new D2(geometry, material),
+  orientMesh: mesh => Ao(mesh),
+  repeatWrapping: S1, linearFilter: h9,
+  normalBlending: u1, sourceAlpha: l1, oneMinusSourceAlpha: v1,
+  addEquation: R9, doubleSide: s1, alwaysDepth: y1,
+};
+const giantAppearanceDependencies = {
+  applyOutline: (mesh, options) => Ab(mesh, options),
+  isMaterial: material => material instanceof $1,
+  hasNormalUvOffset: material => zn(material),
+  restoreRootConsumer: mesh => QG(mesh),
+  get normalUvY() { return NL; },
+  blending: u1, sourceAlpha: l1, oneMinusSourceAlpha: v1, addEquation: R9,
+};
+const activeRaceCoordinatorDependencies = {
+  normalizeRp: value => mI(value),
+  createCollisionFramerate: (...args) => new Ni0(...args),
+  createLocal: (...args) => new Ci0(...args),
+  createCadence: (...args) => new Vi0(...args),
+  createRemotes: (...args) => new Bi0(...args),
+  resolveRemoteCollision: (...args) => Di0(...args),
+  createPresentation: () => new I40(), createSlipstream: () => new fE(),
+  bindClock: (host, mapping) => bindActiveRaceClock(host, mapping, {
+    makeClock: value => new BL(value),
+    makeSender: (...args) => new ki0(...args),
+  }),
+  scheduleStart: (host, startAt) => scheduleActiveRaceStart(host, startAt),
+  updateRoom: (host, room) => updateActiveRaceRoom(host, room, raceRoomDependencies),
+  updateFrame: (host, now, frame, bypass) => updateActiveRaceFrame(host, now, frame, bypass,
+    { racingState: X2.Racing, resultState: X2.Result,
+      captureMotion: B40, captureAnimation: R40 }),
+  updateRemoteViews: (host, now) => updateRaceRemoteViews(host, now,
+    { racingState: X2.Racing, resultState: X2.Result }),
+  roadblockRemaining: (host, now) => roadblockRemaining(host, now, Y3),
+  dispose: host => disposeActiveRace(host),
+};
 const flyingPetPresentationDependencies = {
   loadPetAsset: (library, id) => x4.load(library, id),
-  createSkinResources: (asset, primary, high) => new mE(asset, primary, high),
+  createSkinResources: (asset, primary, high) => new FlyingPetTextures(
+    asset, primary, high, flyingPetTextureDependencies),
   createAnimation: sequence => new cc(sequence),
-  loadModel: (...args) => Ks.load(...args),
-  createIdleMotion: (clips, animation, random) => new cr0(clips, animation, random),
-  loadEffect: (...args) => $d(...args), loadAudio: (...args) => Tv.load(...args),
-  createRaceState: () => new hr0(), isVisible: dr0,
+  loadModel: async (model, clips, skin, environment, binding) => {
+    const { body, faces } = await loadFlyingPetModelParts(clips, skin);
+    return new FlyingPetModel(model, body, faces, environment, binding,
+      flyingPetModelDependencies);
+  },
+  createIdleMotion: (clips, animation, random) => new FlyingPetIdleMotion(clips, animation, random),
+  loadEffect: (library, name, environment, binding) => loadFlyingPetEffect(
+    library, name, environment, binding, flyingPetMediaDependencies),
+  loadAudio: async (asset, context) => new FlyingPetAudio(context,
+    await loadFlyingPetAliveSound(asset, context, flyingPetMediaDependencies),
+    flyingPetMediaDependencies),
+  createRaceState: () => new FlyingPetRaceState(), isVisible: visibleFlyingPet,
   createRotationMatrix: () => new v2(), renderNested: qm,
 };
 const trackEventEffectDependencies = {
@@ -73,7 +158,7 @@ const giantRaceDependencies = {
   exactEntry: (library, path) => Yi(library, path),
   createGroup: () => new T2(), decodeSound: Q9, connectSound: S9,
   decodeImage: p2, createTexture: (pixels, width, height) => new J9(pixels, width, height),
-  createWarning: texture => new qr0(texture), build: aI,
+  createWarning: texture => new GiantWarning(texture, giantWarningDependencies), build: aI,
 };
 const roadblockResultPresentationDependencies = {
   parseScene: y9, attribute: T, buildScene: W1,
@@ -88,7 +173,8 @@ const multiplayerRaceLoaderDependencies = {
   createToonStageBinding: () => new ha(),
   loadRaceAssets: (...args) => A40(...args),
   loadCharacterAnimations: (...args) => hI(...args),
-  createNetworkDriver: (...args) => new Ui0(...args),
+  createNetworkDriver: (...args) => new ActiveRaceCoordinator(
+    ...args, activeRaceCoordinatorDependencies),
   loadTimeGap: (...args) => Dw.load(...args),
   loadCountdownAudio: (...args) => Q6.load(...args),
   loadRoadblockFlag: (...args) => tw.load(...args),
@@ -108,7 +194,7 @@ const kartPresentationDependencies = { makeWheelPresentation: (resource, nodes, 
 const localRaceConstructionDependencies = { validateStartSlots: iL, hasLteMode: ko, validRpDraws: ba, sameRp: t7, hasGiantMode: Io, makeLte: () => new D40(), makeGiant: callback => new pL(true, callback), makePhysics: (...args) => new AL(...args), makeTrack: (...args) => new _L(...args), placeAtStart: rL, makeCoordinator: (...args) => new yL(...args), racingState: X2.Racing };
 const localRaceDependencies = { states: X2, beginResetState: mL, advanceResetState: wL, routeTagFamily: Vo, isStartBoosterWindow: fL };
 const raceRoomDependencies = { modeOf: G2, sameRp: t7, sameRoadblock: oR, sameLte: Nw, sameGiant: yI, toLocalTick: Y3, racingState: X2.Racing };
-const racePresenterInitializationDependencies = { createCameraShake: (random, anchor) => new nP(random, anchor), createRankRoster: (roster, playerId) => new Tr0(roster, playerId), createLightFactor: random => new sP(random), createAction2d: assets => new dI(assets), applyTrackFog: (scene, track) => kv(scene, track), createRacerView: scene => new Vg(scene), vehicleParts: vehicle => lc(vehicle), serializedRoot: model => J5(model), get accessorySockets() { return oP; }, createLinkedPresentation: (...args) => new _a(...args), attachAura: (...args) => ev(...args), createGiantAppearance: (...args) => new Kr0(...args), startPosition: (...args) => rL(...args), createShadowPresentation: object => new $i0(object) };
+const racePresenterInitializationDependencies = { createCameraShake: (random, anchor) => new nP(random, anchor), createRankRoster: (roster, playerId) => new Tr0(roster, playerId), createLightFactor: random => new sP(random), createAction2d: assets => new dI(assets), applyTrackFog: (scene, track) => kv(scene, track), createRacerView: scene => new Vg(scene), vehicleParts: vehicle => lc(vehicle), serializedRoot: model => J5(model), get accessorySockets() { return oP; }, createLinkedPresentation: (...args) => new _a(...args), attachAura: (...args) => ev(...args), createGiantAppearance: (...args) => new GiantAppearance(...args, giantAppearanceDependencies), startPosition: (...args) => rL(...args), createShadowPresentation: object => new $i0(object) };
 const racePresenterFrameDependencies = { result: { get countdownState() { return X2.Countdown; }, render: (...args) => e4(...args) }, events: { get racingState() { return X2.Racing; } }, participants: { updateRemoteVehicleEffects: (...args) => xr0(...args), updateLocalVehicleEffects: (...args) => Mr0(...args) }, hud: { rankByProgress: (...args) => _r0(...args), rankFallback: (...args) => Gr0(...args), rankWithResults: (...args) => Br0(...args), updateTachometer: (...args) => QL(...args), prepareScene: (...args) => e4(...args), get racingState() { return X2.Racing; } } };
 const racePresenterSetupDependencies = { flyingPetItem: (library, itemId) => Ma(library, itemId), serializedRoot: model => J5(model), loadFlyingPet: options => S4.race(options), paintColors: (library, itemId) => We(library, itemId), loadRoadblockFlag: (...args) => _v.load(...args), loadGiant: (...args) => Fv.load(...args), loadRoadblockResult: (...args) => Bv.load(...args), nowMs: () => performance.now() };
 const racePresenterTrackEventDependencies = { loadEffects: (...args) => b7.load(...args), loadAudio: (...args) => v7.load(...args), loadDummyAudio: (...args) => m7.load(...args) };
@@ -804,171 +890,6 @@ function Di0(n, e, t, i, r) {
 
 class Vi0 extends RacePeerCadence { constructor(race, localId) { super(race, localId, G2(race) !== "ordinary"); } }
 
-class Ui0 {
-  constructor(e, t, i, r, s, o) {
-    ((this.assets = e),
-      (this.connection = i),
-      (this.onError = s),
-      (this.rpIdentity = t.rp ? mI(t.rp) : void 0),
-      (this.roadblockIdentity = t.roadblock
-        ? Object.freeze({ ...t.roadblock })
-        : void 0),
-      (this.lteIdentity = t.lte ? Object.freeze({ ...t.lte }) : void 0),
-      (this.giantIdentity = t.giant ? Object.freeze({ ...t.giant }) : void 0),
-      (this.collisionFramerate = new Ni0(
-        e.checkClientFramerate && e.channel.adjustCollision,
-        e.participants
-          .filter((c) => c.playerId !== i.playerId)
-          .map((c) => c.playerId),
-        o,
-      )));
-    let a;
-    try {
-      if (e.channel.name !== t.channelName)
-        throw new Error("比赛频道与已加载资源不一致。");
-      if (
-        ((a = new Ci0(e, t, i.playerId)),
-        (this.local = a),
-        a.giant && !i.sendGiantState)
-      )
-        throw new Error("缺少巨人可靠状态发送通道。");
-      if (
-        ((this.cadence = new Vi0(t, i.playerId)),
-        e.mode === "team" && e.speed !== 4)
-      ) {
-        if (!i.sendTeamCharge || !i.subscribeTeamGauge)
-          throw Error("缺少组队集气通道。");
-        const l = t.roster.find((u) => u.playerId === i.playerId).team;
-        this.offTeam = i.subscribeTeamGauge((u) => {
-          this.disposed ||
-            u.team !== l ||
-            u.sequence <= this.teamSequence ||
-            this.room?.phase !== "racing" ||
-            ((this.teamSequence = u.sequence),
-            this.local.physics.enqueueMultiplayerTeamTarget(u.target));
-        });
-      }
-      this.remotes = new Bi0(
-        e,
-        i,
-        r,
-        (l) => {
-          try {
-            s(l);
-          } finally {
-            this.dispose();
-          }
-        },
-        this.cadence,
-      );
-      const c = e.participants.find(
-        (l) => l.playerId === i.playerId,
-      ).collisionBalance;
-      this.local.queueRemoteKart(
-        {
-          name: "GoNetKart[]",
-          category: 0,
-          active: !0,
-          removeRequested: !1,
-          slot12: (l) => {
-            (this.remoteFrameUpdated || this.updateRemotes(l),
-              this.local.giant?.updateEffects(l),
-              this.remotes.updateGiantEffects(l));
-          },
-          slot13: () => {},
-          commit: () => {},
-          destroy: () => {},
-        },
-        (l) =>
-          Di0(this.local.physics, this.remotes, c, l, this.collisionFramerate),
-      );
-    } catch (c) {
-      throw (
-        this.collisionFramerate.dispose(),
-        this.offTeam?.(),
-        this.cadence?.dispose(),
-        a?.dispose(),
-        e.dispose(),
-        c
-      );
-    }
-  }
-  assets;
-  connection;
-  onError;
-  local;
-  remotes;
-  localPresentation;
-  presentation = new I40();
-  slipstream = new fE();
-  remoteSlipstreams = new Map();
-  disposed = !1;
-  clockBound = !1;
-  mapping;
-  room;
-  finishReported = !1;
-  offTeam;
-  teamSequence = 0;
-  teamSentSequence = 0;
-  teamCharge = 0;
-  teamSentAt = -1 / 0;
-  finishDeadline;
-  sender;
-  cadence;
-  collisionFramerate;
-  remotePhysicsBypass = !1;
-  remoteFrameUpdated = !1;
-  rpIdentity;
-  roadblockIdentity;
-  lteIdentity;
-  giantIdentity;
-  giantSequence = 0;
-  giantSend = Promise.resolve();
-  giantCleared = !1;
-  get giantEffectsEnded() {
-    return this.giantCleared;
-  }
-    bindClock(mapping) { return bindActiveRaceClock(this, mapping, { makeClock: value => new BL(value), makeSender: (physics, clock, connection, routing) => new ki0(physics, clock, connection, routing) }); }
-    scheduleStart(startAt) { return scheduleActiveRaceStart(this, startAt); }
-    updateRoom(room) { return updateActiveRaceRoom(this, room, raceRoomDependencies); }
-    update(nowMs, frame, bypass) { return updateActiveRaceFrame(this, nowMs, frame, bypass, { racingState: X2.Racing, resultState: X2.Result, captureMotion: B40, captureAnimation: R40 }); }
-  raceSnapshot() {
-    return this.room?.race;
-  }
-  latencyMs(e) {
-    return this.connection.latencyMs?.(e);
-  }
-  draftPresentationVisible(e) {
-    return e === this.connection.playerId
-      ? this.slipstream.presentationVisible
-      : (this.remoteSlipstreams.get(e)?.presentationVisible ?? !1);
-  }
-  draftBurstActive(e) {
-    return e === this.connection.playerId
-      ? this.slipstream.hudActive
-      : (this.remoteSlipstreams.get(e)?.hudActive ?? !1);
-  }
-  localDraftHudActive() {
-    return this.slipstream.hudActive;
-  }
-    updateRemotes(nowMs) { return updateRaceRemoteViews(this, nowMs, { racingState: X2.Racing, resultState: X2.Result }); }
-  resultSnapshot() {
-    return this.room?.race?.results;
-  }
-  roadBlockRunnerProgress() {
-    const e = this.roadblockIdentity?.runnerId;
-    if (e)
-      return e === this.connection.playerId
-        ? this.local.raceProgress()
-        : this.remotes.raceProgress(e);
-  }
-    roadBlockRemaining(nowMs) { return roadblockRemaining(this, nowMs, Y3); }
-  finishSnapshot() {
-    return this.room?.race?.finishes ?? [];
-  }
-    dispose() { return disposeActiveRace(this); }
-}
-
 const NL = 0.6796875;
 
 function zn(n) {
@@ -1426,73 +1347,6 @@ function tr0({ translation: [n, e, t], rotation: [i, r, s, o] }) {
   ];
 }
 
-class mE {
-  constructor(e, t, i) {
-    ((this.assets = e), (this.primary = t), (this.high = i));
-  }
-  assets;
-  primary;
-  high;
-  textures = new Map();
-  disposed = !1;
-  body() {
-    return this.load("body").then((e) => {
-      if (!e) throw new Error("飞宠缺少主体贴图。");
-      return e;
-    });
-  }
-  face(e) {
-    return this.load(`f${String(e).padStart(2, "0")}`);
-  }
-  dispose() {
-    if (!this.disposed) {
-      this.disposed = !0;
-      for (const e of this.textures.values())
-        e.then(
-          (t) => t?.dispose(),
-          () => {},
-        );
-      this.textures.clear();
-    }
-  }
-  load(e) {
-    if (this.disposed) throw new Error("飞宠贴图owner已释放。");
-    let t = this.textures.get(e);
-    return (t || ((t = this.create(e)), this.textures.set(e, t)), t);
-  }
-  async create(e) {
-    const t = e === "body" || !!this.assets.find("f00_0.png"),
-      i = t ? this.assets.find(e === "body" ? "0.png" : `${e}_0.png`) : void 0,
-      r = this.assets.find(
-        e === "body" ? "1.png" : t ? `${e}_1.png` : `${e}.png`,
-      );
-    if (!r) return;
-    const s = await r.bytes(),
-      o = await p2(s);
-    let a = o.pixels;
-    if (i) {
-      const l = await i.bytes();
-      if (l[24] === 8 && l[25] === 6 && s[24] === 8 && s[25] === 6) {
-        const u = await p2(l);
-        if (u.width === o.width && u.height === o.height)
-          a = K6(u.pixels, a, this.primary, this.high);
-        else if (e !== "body") return;
-      } else if (e !== "body") return;
-    } else if (t && e !== "body") return;
-    const c = new J9(a, o.width, o.height, e9);
-    return (
-      (c.name = `${this.assets.name}:${e}`),
-      (c.colorSpace = v9),
-      (c.flipY = !1),
-      (c.wrapS = c.wrapT = S1),
-      (c.minFilter = c.magFilter = h9),
-      (c.generateMipmaps = !1),
-      (c.needsUpdate = !0),
-      c
-    );
-  }
-}
-
 function nr0(n) {
   return new _o().set(
     n[0],
@@ -1639,395 +1493,6 @@ function vE(n) {
     "ReTriList",
     "ReToonSkinned",
   ].includes(n.value.className);
-}
-
-function sr0(n) {
-  const e = (t) => {
-    const i = n.bones[t];
-    if (!i) throw new Error("飞宠骨骼索引越界。");
-    if (t !== 0 && i.enabled) {
-      if (i.parentIndex >= t) throw new Error("飞宠骨骼父索引无效。");
-      e(i.parentIndex);
-    }
-  };
-  e(5);
-  for (const t of n.vertices)
-    for (const [i, r] of [
-      [t.bone0, t.bone1 === 65535 || t.weight0 !== 0],
-      [t.bone1, t.bone1 !== 65535 && t.weight1 !== 0],
-    ])
-      if (r && (e(i), !n.bones[i].reserved))
-        throw new Error("此飞宠依赖原生保留蒙皮矩阵，暂不支持显示。");
-}
-
-class Ks {
-  object = new T2();
-  headSocket;
-  skin;
-  skinSource;
-  frame;
-  draws = [];
-  materials = [];
-  rigid = [];
-  attachments = [];
-  faceMaterials = [];
-  faces = new Map();
-  head;
-  disposed = !1;
-  static async load(e, t, i, r, s) {
-    const o = await i.body(),
-      a = new Map();
-    for (const c of new Set(t.flatMap((l) => l.map))) {
-      const l = await i.face(c);
-      l && a.set(c, l);
-    }
-    return new Ks(e, o, a, r, s);
-  }
-  constructor(e, t, i, r, s) {
-    const o = e.root.value;
-    if (o.className !== "RePet2") throw new Error("飞宠模型不是 RePet2。");
-    const a = o.children[0]?.value;
-    if (a?.className !== "ReToonSkinned") throw new Error("飞宠主蒙皮缺失。");
-    (sr0(a.geometry.value),
-      (this.skinSource = a.geometry.value),
-      (this.skin = new vR(this.skinSource)),
-      qm(this.object, () => this.collect()));
-    try {
-      ((this.faces = i),
-        (this.object.name = "FlyingPet:RePet2"),
-        Ud(this.object, o.transform));
-      const c = wE(o),
-        l = (d, f, p, v, w, g = !0) => {
-          const y = bo(v, { kind: "normal-projection" }),
-            b = wE(p, c);
-          (Mo(y, ir0(b.alpha, b.zbuf)),
-            this.materials.push(y),
-            w && this.faceMaterials.push(y));
-          const A = new D2(d, y);
-          ((A.frustumCulled = !1),
-            ie(
-              A,
-              o.sortDepthBias,
-              y.transparent,
-              y.transparent ? -0.01 : 0,
-              this.object,
-            ));
-          const x = new N6(f, 4278190080, 2130706432, g);
-          ((x.object.visible = g),
-            ie(x.object, o.sortDepthBias, !0, 0, this.object));
-          const M = new T2();
-          (M.add(A, x.object),
-            Ud(M, p.transform),
-            (M.visible = p.nodeEnabled !== 0),
-            this.draws.push({ mesh: A, outline: x }));
-          const E = new v2(),
-            _ = new v2(),
-            C = new v2().makeRotationX(Math.PI / 2),
-            S = new H();
-          return (
-            (A.onBeforeRender = (G, I, L) => {
-              (E.copy(C).multiply(A.matrixWorld),
-                L.getWorldPosition(S),
-                S.set(S.x, -S.z, S.y),
-                _.copy(E).invert(),
-                xo(y, r, s, E, _, S));
-            }),
-            M
-          );
-        },
-        u = l(this.skin.geometry, this.skin.outlineSource, a, t, !1);
-      (u.matrix.identity(), this.object.add(u));
-      for (const d of [1, 2]) {
-        const f = o.children[d]?.value;
-        if (!f || !("children" in f)) continue;
-        const p = f.children[0]?.value;
-        if (!p && d === 2) continue;
-        if (!p || p.className !== "ReToonRigid")
-          throw new Error("飞宠刚性附件结构不支持。");
-        const v = rr0(p.geometry.value);
-        this.rigid.push(v);
-        const w = l(
-          v,
-          p.geometry.value,
-          p,
-          d === 1 ? (i.values().next().value ?? t) : t,
-          d === 1,
-          d !== 2,
-        );
-        (this.attachments.push({ object: w, local: w.matrix.clone() }),
-          this.object.add(w));
-      }
-      const h = o.children[3];
-      if (h) {
-        if (!vE(h) || h.value.name !== "head")
-          throw new Error("飞宠头部挂点结构不支持。");
-        const d = (f) => {
-          if (f.className !== "Relement")
-            throw new Error("飞宠头部包含未支持的几何。");
-          const p = new T2();
-          Ud(p, f.transform);
-          for (const v of f.children) {
-            if (!vE(v)) throw new Error("飞宠头部子节点不是 Relement。");
-            p.add(d(v.value));
-          }
-          return p;
-        };
-        ((this.head = d(h.value)),
-          (this.headSocket = this.head.children[0]),
-          this.object.add(this.head));
-      }
-    } catch (c) {
-      throw (this.dispose(), c);
-    }
-  }
-  update(e, t, i, r, s) {
-    this.frame = { animation: e, camera: t, width: i, height: r, now: s };
-  }
-  collect() {
-    if (this.disposed || !this.frame) return;
-    const { animation: e, camera: t, width: i, height: r, now: s } = this.frame;
-    e.update(s);
-    const o = AR.collect(this.skinSource, e.pose);
-    this.skin.applyPalette(
-      this.skinSource.bones.map((l, u) => yR(o[u], l.inverseBind)),
-    );
-    const a = this.faces.get(e.sequence.map[e.faceSlot]);
-    for (const l of this.faceMaterials)
-      (JH(l, !a),
-        a &&
-          ((l.uniforms.baseMap.value = a),
-          (l.uniforms.uvControllerEnabled.value = 0)));
-    const c = nr0(o[5]);
-    for (const l of this.attachments) l.object.matrix.copy(c).multiply(l.local);
-    (this.head?.matrix.copy(c), this.object.updateWorldMatrix(!0, !0));
-    for (const { mesh: l, outline: u } of this.draws) u.update(l, t, i, r);
-  }
-  dispose() {
-    this.disposed ||
-      ((this.disposed = !0),
-      this.object.removeFromParent(),
-      this.skin.geometry.dispose(),
-      this.rigid.forEach((e) => e.dispose()),
-      this.materials.forEach((e) => e.dispose()),
-      this.draws.forEach((e) => e.outline.dispose()));
-  }
-}
-
-const $L = [
-    { motion: 0, min: 2, max: 5, restore: !1, carry: !1 },
-    { motion: 1, min: 2, max: 5, restore: !0, carry: !1 },
-    { motion: 21, min: 2, max: 5, restore: !0, carry: !1 },
-    { motion: 20, min: 10, max: 60, restore: !0, carry: !0 },
-    { motion: 8, min: 1, max: 4, restore: !1, carry: !1 },
-    { motion: 6, min: 2, max: 5, restore: !0, carry: !1 },
-    { motion: 5, min: 2, max: 5, restore: !0, carry: !1 },
-    { motion: 7, min: 2, max: 5, restore: !0, carry: !1 },
-  ],
-  or0 = $L.map((n) => n.motion);
-
-function ar0(n) {
-  return Math.max(0, Math.ceil((n % 80) / 10) - 1);
-}
-
-class cr0 {
-  constructor(e, t, i) {
-    ((this.clips = e), (this.animation = t), (this.random = i));
-  }
-  clips;
-  animation;
-  random;
-  next = 0;
-  remaining = 0;
-  reset() {
-    this.next = this.remaining = 0;
-  }
-  update(e) {
-    if (e < this.remaining) {
-      this.remaining -= e;
-      return;
-    }
-    const t = $L[this.next];
-    this.next = ar0(this.random.next());
-    const i = this.clips.get(t.motion);
-    if (!i) throw new Error("飞宠闲置动作未预载。");
-    (this.animation.bind(i, 300, t.restore, 300, t.carry ? this.remaining : 0),
-      (this.remaining =
-        Math.imul(
-          (this.random.next() % (t.max - t.min)) + t.min,
-          i.header[2],
-        ) >>> 0));
-  }
-}
-
-const n9 = Math.fround,
-  lr0 = () => [n9(0.59), -0.75, 0.5],
-  WL = (n, e) => n.map((t, i) => n9(t - e[i])),
-  Fg = (n, e) => n9(n9(n9(n[0] * e[0]) + n9(n[1] * e[1])) + n9(n[2] * e[2]));
-
-function ur0(n, e, t, i) {
-  const r = Math.min(n9(0.05), n9(n9(i >>> 0) * n9(0.001))),
-    s = WL(n, t),
-    o = n9(Math.sqrt(Fg(s, s)));
-  if (o === 0) return !1;
-  const a = n9(350 * o),
-    c = n9(n9(Fg(e, s) * 2) / o);
-  for (let l = 0; l < 3; l++) {
-    const u = n9(n9(-n9(a + c) * s[l]) / o),
-      h = n9(u - n9(e[l] * 11));
-    ((e[l] = n9(e[l] + n9(h * r))), (n[l] = n9(n[l] + n9(e[l] * r))));
-  }
-  return !0;
-}
-
-class hr0 {
-  local = lr0();
-  secondLocal = [0.75, 0.75, 0.5];
-  position = [0, 0, 0];
-  velocity = [0, 0, 0];
-  previous = 0;
-  remaining = 0;
-  following = !1;
-  launched = !1;
-  firstVisible = !0;
-  secondVisible = !1;
-  firedVisible = !1;
-  aliveVisible = !1;
-  firedStart = 0;
-  aliveStart = 0;
-  counter = 0;
-  aliveDue = 0;
-  showDue = 0;
-  clearDue = 0;
-  launch() {
-    this.launched ||
-      ((this.launched = !0),
-      (this.remaining = 400),
-      (this.firstVisible = !1),
-      (this.secondLocal = [...this.local]),
-      this.disable());
-  }
-  disable() {
-    this.launched &&
-      (this.counter++,
-      (this.secondVisible = this.aliveVisible = !1),
-      (this.firedVisible = !0),
-      (this.firedStart = this.previous));
-  }
-  enable() {
-    this.launched &&
-      (this.counter > 0 && this.counter--,
-      (this.aliveDue = (Math.imul(this.counter, 700) + this.previous) >>> 0));
-  }
-  update(e, t, i, r) {
-    ((e >>>= 0), this.previous || (this.previous = e));
-    const s = (e - this.previous) >>> 0;
-    if (
-      (this.remaining
-        ? s < this.remaining
-          ? (this.remaining -= s)
-          : ((this.remaining = 0),
-            (this.local[1] = n9(this.local[1] + 1.5)),
-            (this.position = [n9(t[12]), n9(t[13] + 1.5), n9(t[14])]),
-            this.enable(),
-            (this.following = !0))
-        : r(s),
-      this.following)
-    ) {
-      if (!(this.previous < e)) return !1;
-      const a = [n9(t[12]), n9(t[13] + 1.5), n9(t[14])];
-      if (!ur0(this.position, this.velocity, a, s)) return !1;
-      const c = WL(this.position, a);
-      this.secondLocal = [0, 1, 2].map((l) => {
-        const u = i[l];
-        if (!Number.isFinite(u) || u === 0)
-          throw new Error("飞宠祖父缩放无效。");
-        const h = [0, 1, 2].map((d) => n9(n9(t[l * 4 + d]) * n9(1 / u)));
-        return n9(Fg(h, c) + this.local[l]);
-      });
-    }
-    let o = !1;
-    return (
-      this.aliveDue &&
-        (e - this.aliveDue) >>> 0 > 500 &&
-        ((this.aliveDue = 0),
-        (this.firedVisible = !1),
-        (this.aliveVisible = !0),
-        (this.aliveStart = e),
-        (this.showDue = this.clearDue = e),
-        (o = !0)),
-      this.showDue &&
-        (e - this.showDue) >>> 0 > 166 &&
-        ((this.secondVisible = !0), (this.showDue = 0)),
-      this.clearDue &&
-        (e - this.clearDue) >>> 0 > 766 &&
-        ((this.clearDue = this.counter = 0),
-        (this.aliveVisible = this.firedVisible = !1)),
-      (this.previous = e),
-      o
-    );
-  }
-}
-
-function dr0(n, e) {
-  return n === "local" && e;
-}
-
-async function $d(n, e, t, i) {
-  const r = (s) => {
-    const o = n.get(`${DI}/${s}`);
-    if (!o) throw new Error(`飞宠公共效果缺少 ${s}。`);
-    return o;
-  };
-  return W1(
-    y9(await r(`${e}.1s`).bytes()),
-    n,
-    `flyingPet:${e}`,
-    (s) => ({ status: "found", entry: r(`${s.name}.png`) }),
-    {
-      environment: t,
-      stageBinding: i,
-      advanceEnvironment: !1,
-      convertClientCoordinates: !1,
-    },
-  );
-}
-
-class Tv {
-  constructor(e, t) {
-    ((this.context = e), (this.alive = t));
-  }
-  context;
-  alive;
-  active = new Set();
-  disposed = !1;
-  static async load(e, t) {
-    const i = t && e.sound("펫머리얹기"),
-      r = i && (await i.bytes()),
-      s = r && (await Q9(t, r));
-    return new Tv(t, s || void 0);
-  }
-  playAlive() {
-    if (this.disposed || !this.context || !this.alive) return;
-    const e = this.context.createBufferSource();
-    ((e.buffer = this.alive),
-      S9(this.context, e, "fx"),
-      this.active.add(e),
-      e.addEventListener(
-        "ended",
-        () => {
-          (e.disconnect(), this.active.delete(e));
-        },
-        { once: !0 },
-      ),
-      e.start());
-  }
-  dispose() {
-    ((this.disposed = !0),
-      this.active.forEach((e) => {
-        (e.stop(), e.disconnect());
-      }),
-      this.active.clear());
-  }
 }
 
 
@@ -3198,226 +2663,12 @@ class _a {
   }
 }
 
-const M2 = Math.fround,
-  dc = (n) => {
-    const e = M2(
-      Math.sqrt(M2(M2(M2(n.x * n.x) + M2(n.y * n.y)) + M2(n.z * n.z))),
-    );
-    return e === 0
-      ? { x: 0, y: 0, z: 0 }
-      : { x: M2(n.x / e), y: M2(n.y / e), z: M2(n.z / e) };
-  },
-  Hd = (n, e) => ({ x: M2(n.x - e.x), y: M2(n.y - e.y), z: M2(n.z - e.z) }),
-  IE = (n, e) => M2(M2(M2(n.x * e.x) + M2(n.y * e.y)) + M2(n.z * e.z));
-
-class qr0 {
-  constructor(e) {
-    ((this.texture = e),
-      (e.wrapS = e.wrapT = S1),
-      (e.minFilter = e.magFilter = h9),
-      (e.generateMipmaps = !1),
-      this.geometry.setAttribute("position", new _0(this.positions, 3)),
-      this.geometry.setAttribute("uv", new _0(this.uvs, 2)),
-      this.geometry.setIndex([0, 1, 2, 2, 1, 3]),
-      (this.material = new Vt({
-        uniforms: { image: { value: e } },
-        transparent: !0,
-        blending: u1,
-        blendSrc: l1,
-        blendDst: v1,
-        blendEquation: R9,
-        side: s1,
-        forceSinglePass: !0,
-        depthFunc: y1,
-        depthWrite: !1,
-        vertexShader:
-          "precision highp float; uniform mat4 projectionMatrix,modelViewMatrix; attribute vec3 position; attribute vec2 uv; varying vec2 vUv; void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}",
-        fragmentShader:
-          "precision highp float; uniform sampler2D image; varying vec2 vUv; void main(){gl_FragColor=texture2D(image,vUv)*vec4(1.0,1.0,1.0,128.0/255.0);}",
-      })),
-      (this.mesh = new D2(this.geometry, this.material)),
-      (this.mesh.frustumCulled = !1),
-      (this.mesh.visible = !1),
-      (this.mesh.matrixAutoUpdate = !1),
-      Ao(this.mesh));
-  }
-  texture;
-  geometry = new t9();
-  material;
-  mesh;
-  selected;
-  coefficient = 0;
-  angle = 0;
-  positions = new Float32Array(12);
-  uvs = new Float32Array([0, 0, 1, 0, 0, 1, 1, 1]);
-  update(e, t, i, r) {
-    if (((this.mesh.visible = !1), i)) return;
-    let s,
-      o = 1 / 0;
-    if (e.main !== 4) {
-      for (const y of t)
-        if (y.main === 4) {
-          const b = Hd(y.position, e.position),
-            A = M2(
-              Math.sqrt(M2(M2(M2(b.x * b.x) + M2(b.y * b.y)) + M2(b.z * b.z))),
-            );
-          A >= 5 &&
-            A <= 70 &&
-            A < o &&
-            IE({ x: -e.forward.x, y: -e.forward.y, z: -e.forward.z }, dc(b)) >
-              0 &&
-            ((s = y), (o = A));
-        }
-    }
-    if (!s && !this.selected) return;
-    if (
-      (s &&
-        s.id !== this.selected &&
-        ((this.coefficient = 0), (this.angle = 0), (this.selected = s.id)),
-      !s && this.coefficient <= M2(0.05))
-    ) {
-      this.reset();
-      return;
-    }
-    const a = M2((o - 5) / 65),
-      c = M2(392 - a * 392),
-      l = s ? M2((120 + c) / 512) : 0;
-    this.coefficient = M2((1 - M2(0.1)) * this.coefficient + l * M2(0.1));
-    const u = r.matrixWorld.elements,
-      h = { x: u[12], y: u[13], z: u[14] };
-    if (s) {
-      const y = dc(Hd(s.position, e.position)),
-        b = dc({ x: u[8], y: u[9], z: u[10] });
-      ((this.angle = M2((1 - Math.max(0, IE(b, y))) * M2(0.85))),
-        M2(b.z * y.x - b.x * y.z) > 0 && (this.angle = M2(-this.angle)));
-    }
-    const d = dc(Hd(e.position, h)),
-      f = M2(h.x + M2(d.x * M2(2.5))),
-      p = M2(h.y + M2(d.y * M2(2.5))),
-      v = M2(h.z + M2(d.z * M2(2.5))),
-      w = { x: M2(-u[0] * 2.5), y: M2(-u[1] * 2.5), z: M2(-u[2] * 2.5) },
-      g = { x: M2(u[4] * 2.5), y: M2(u[5] * 2.5), z: M2(u[6] * 2.5) };
-    for (let y = 0; y < 4; y++) {
-      const b = M2((y % 2 === 0 ? 1 : -1) + this.angle),
-        A = y < 2 ? 1 : -1;
-      ((this.positions[y * 3] = M2(w.x * b + g.x * A + f)),
-        (this.positions[y * 3 + 1] = M2(w.y * b + g.y * A + p)),
-        (this.positions[y * 3 + 2] = M2(w.z * b + g.z * A + v)));
-    }
-    ((this.uvs[5] = this.uvs[7] = this.coefficient),
-      (this.geometry.attributes.position.needsUpdate = !0),
-      (this.geometry.attributes.uv.needsUpdate = !0),
-      (this.mesh.visible = !0));
-  }
-  reset() {
-    ((this.selected = void 0),
-      (this.coefficient = 0),
-      (this.angle = 0),
-      (this.mesh.visible = !1));
-  }
-  dispose() {
-    (this.reset(),
-      this.mesh.removeFromParent(),
-      this.geometry.dispose(),
-      this.material.dispose(),
-      this.texture.dispose());
-  }
-}
-
 class Fv extends GiantRaceEffects {
   constructor(library, world, options, audio, stage) {
     super(library, world, options, audio, stage, giantRaceDependencies);
   }
   static async load(library, world, actors, options, audio, stage) {
     return new Fv(library, world, options, audio, stage).loadActors(actors);
-  }
-}
-
-class Kr0 {
-  constructor(e, t, i) {
-    ((this.local = e), (this.kart = t), (this.character = i));
-  }
-  local;
-  kart;
-  character;
-  clones = [];
-  transparent = !1;
-  purple = !1;
-  update(e, t) {
-    e === 0 ? (this.purple = !1) : t === 2 && (this.purple = !0);
-    for (const [s, o] of [
-      [this.kart, 4284887961],
-      [this.character, 2858824601],
-    ])
-      for (const { mesh: a } of s)
-        Ab(a, {
-          selector: this.purple ? 1 : 0,
-          centerArgb: this.purple ? o : 4278190080,
-          outerArgb: this.purple ? 6697881 : 2130706432,
-        });
-    const r = this.local && e === 4;
-    if (
-      this.transparent !== r &&
-      (this.restoreMaterials(), (this.transparent = r), !!r)
-    )
-      try {
-        for (const s of [...this.kart, ...this.character]) {
-          const o = s.mesh.material;
-          if (Array.isArray(o) || !(o instanceof $1))
-            throw new Error("巨人模型缺少已闭合的单材质 root consumer。");
-          if (!zn(o) && !s.inheritsRootAlpha) continue;
-          const a = o.clone(),
-            c = s.mesh.onBeforeRender,
-            l = s.inheritsRootAlpha ? QG(s.mesh) : () => {},
-            u = () => {
-              for (const [h, d] of Object.entries(o.uniforms)) {
-                const f = d.value,
-                  p = a.uniforms[h];
-                p &&
-                  (f?.isTexture
-                    ? (p.value = f)
-                    : p.value?.copy && f?.clone
-                      ? p.value.copy(f)
-                      : (p.value = f));
-              }
-              (zn(a) && (a.uniforms.normalUvOffset.value.y = NL),
-                s.inheritsRootAlpha &&
-                  ((a.uniforms.alphaTestEnabled.value = 1),
-                  (a.uniforms.alphaFunction.value = 5),
-                  (a.uniforms.alphaReference.value = 0),
-                  (a.transparent = !0),
-                  (a.blending = u1),
-                  (a.blendSrc = l1),
-                  (a.blendDst = v1),
-                  (a.blendEquation = R9)));
-            };
-          (this.clones.push({
-            binding: s,
-            source: o,
-            clone: a,
-            callback: c,
-            restore: l,
-          }),
-            (s.mesh.material = a),
-            (s.mesh.onBeforeRender = function (...h) {
-              (c.apply(this, h), u());
-            }),
-            u());
-        }
-      } catch (s) {
-        throw (this.restoreMaterials(), s);
-      }
-  }
-  restoreMaterials() {
-    for (const e of this.clones.splice(0).reverse())
-      ((e.binding.mesh.material = e.source),
-        (e.binding.mesh.onBeforeRender = e.callback),
-        e.restore(),
-        e.clone.dispose());
-  }
-  dispose() {
-    (this.restoreMaterials(), (this.transparent = !1), (this.purple = !1));
-    for (const { mesh: e } of [...this.kart, ...this.character]) Ab(e, void 0);
   }
 }
 

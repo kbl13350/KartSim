@@ -5,6 +5,10 @@ import { rhoAdler32 } from "../codecs/common.ts";
 
 import { isTrackPrs, createPrsRuntime, playPrs, setPrsCycleMode, stopPrs, validatePrs, defaultTrackTransform, applyTrackPrs, sampleTrackPrs } from "../resources/track-prs-animation.ts";
 import { admitMovingObstacle, transformObstaclePoint } from "../resources/moving-obstacle.ts";
+import { extractTrackRoute, itemGameOnly, readTrackSettings, soloTrackMode, trackRuntimeIssues } from "../resources/track-model-admission.ts";
+import { blockedKartMessage, defaultLegacyKartState, isBlockedKartId, kartCatalogIdentity, legacyKartFamilies, legacyKartStateForAlias, requirePlayableKartId, resolveKartSelection, stableSystemKartKey } from "../resources/system-kart-identity.ts";
+import { layoutSpriteFont, layoutSpriteFontInto, spriteFontLayoutForPanel } from "../resources/font-glyph-layout.ts";
+import { warmRendererResources } from "../resources/renderer-warmup.ts";
 import { extractTrackRoads } from "../resources/track-road-extraction.ts";
 import { anyRoadIssue, isMovableRoad, movingRoadIssue, roadRail, roadSound, roadSurface, staticRoadIssue } from "../resources/track-road-descriptor.ts";
 import { CanvasHitController } from "../ui/canvas-hit-controller.ts";
@@ -33,6 +37,7 @@ import { createBasicTextureMaterial } from "../resources/basic-texture-material.
 import { decodePngRgba } from "../resources/png-decoder.ts";
 import { normalizeLegacyTextureAlpha } from "../resources/texture-alpha.ts";
 import { buildTrackCourseGraph } from "../resources/track-course-graph.ts";
+const fontLayoutOps = { attribute: T, rectangle: lt, parseNumbers: j2 };
 import { $1, $i, Am, B2, Bl, Cm, D1, D2, D9, F1, GG, Gl, H, Hi, J9, M1, Mm, Nc, ON, Pl, R4, R9, S1, Sm, T2, Tl, VN, Vt, W2, Wi, Y2, Z9, _0, _9, _l, ao, bm, co, e5, e9, h3, h9, ir, l1, l2, lG, me, n5, oo, r1, r9, rG, ra, ro, rr, s1, s5, so, t9, tn, u1, u4, u9, v1, v2, v9, xm, y1, ym, yr, ys } from "./vendor.js";
 
 const panelMaterializeDependencies = { attribute: T, inset: YB, uv: dX, font: ga, rasterizeInto: $B, offsetInto: lX, copyInto: uX, rasterize: pa };
@@ -246,41 +251,7 @@ const a9 = {
     TontrollerGroup: 833422914,
   };
 
-function XW(n) {
-  const e = {};
-  if (n.kind !== "track") return e;
-  const t = n.trackObjects.find((a) => Wn(a.name, "track")),
-    i = (a, c) => {
-      const l = a?.attributes.find((h) => h.name === c)?.value;
-      if (l === void 0) return;
-      const u = Number(l);
-      return Number.isFinite(u) ? u : void 0;
-    },
-    r = t?.property?.children.find((a) => a.name === "camera"),
-    s = i(r, "far");
-  s !== void 0 && s > 0 && (e.cameraFar = s);
-  const o = t?.property?.children.find((a) => a.name === "fog");
-  if (o) {
-    const a = i(o, "mode"),
-      c = i(o, "r"),
-      l = i(o, "g"),
-      u = i(o, "b");
-    a !== void 0 &&
-      c !== void 0 &&
-      l !== void 0 &&
-      u !== void 0 &&
-      (e.fog = {
-        mode: a,
-        r: c,
-        g: l,
-        b: u,
-        start: i(o, "start"),
-        end: i(o, "end"),
-        density: i(o, "density"),
-      });
-  }
-  return e;
-}
+function XW(root) { return readTrackSettings(root); }
 
 function y9(n) {
   const e = new ZH(n),
@@ -293,96 +264,17 @@ function y9(n) {
   return { root: r, rootOccurrence: i, settings: XW(r) };
 }
 
-function YW(n, e = "strict", t = {}) {
-  if (!Hm(n.root))
-    throw new Error("standalone Relement .1s 不含 TrackContainer 路线数据。");
-  const i = qG(n.root.scene);
-  if (i.triangles.length + i.deferredTriangles.length === 0)
-    throw new Error("track.1s 不含原版 <property><road/> 碰撞数据。");
-  const r = JW(n.root.trackObjects, t.forceReverse === !0);
-  return {
-    containerName: n.root.name,
-    collisionTriangles: i.triangles,
-    deferredRoadTriangles: i.deferredTriangles,
-    roadIssues: i.issues,
-    runtimeIssues: ZW(n, e),
-    collisionStats: i.stats,
-    sections: r.sections,
-    firstSection: r.firstSection,
-    lastSection: r.lastSection,
-    start: r.start,
-  };
-}
-
-function ZW(n, e = "strict") {
-  if (!Hm(n.root)) return [];
-  const t = [];
-  for (const i of n.root.trackObjects) {
-    if (i.kind === "TrackObject") {
-      i.name !== "track" &&
-        t.push(
-          `TrackObject ${i.name || "<unnamed>"} 的 runtime consumer 尚未闭合`,
-        );
-      continue;
-    }
-    if (
-      i.kind === "ToRoad" ||
-      i.kind === "ToDummy" ||
-      i.kind === "ToBlackPlane" ||
-      i.kind === "ToMinimap" ||
-      (Au(e) && i.kind === "ToItemCube")
-    )
-      continue;
-    if (i.kind !== "ToMovableObject") {
-      t.push(`${i.kind} ${i.name || "<unnamed>"} 的 runtime consumer 尚未闭合`);
-      continue;
-    }
-    const r = i.property?.children.find((l) => Wn(l.name, "object"));
-    if (Au(e) && HG(i)) continue;
-    const s = r?.attributes.find((l) => Wn(l.name, "type"))?.value,
-      o = s?.indexOf("\0") ?? -1,
-      a = s === void 0 ? void 0 : s.slice(0, o < 0 ? s.length : o);
-    if (Au(e) && a === "itemCube") continue;
-    const c =
-      s && Wn(s, "obstacle")
-        ? "obstacle"
-        : s && Wn(s, "event")
-          ? "event"
-          : void 0;
-    if (!(c === "obstacle" && e === "time-attack" && Um(i).status === "admit"))
-      if (c)
-        t.push(
-          `ToMovableObject ${i.name || `#${i.instanceOrdinal}`} 的 object type=${c} 尚未接入 M5 runtime`,
-        );
-      else {
-        const l = a ?? "<missing>";
-        t.push(
-          `ToMovableObject ${i.name || `#${i.instanceOrdinal}`} 的 object type=${l || "<empty>"} consumer 尚未闭合`,
-        );
-      }
-  }
-  return t;
-}
-
-function HG(n) {
-  const t = n.property?.children
-    .find((i) => Wn(i.name, "object"))
-    ?.attributes.find((i) => Wn(i.name, "onlyItemGame"))?.value;
-  return t !== void 0 && Wn(t.toLowerCase(), "true");
-}
-
-function Au(n) {
-  return n === "speed-individual" || n === "time-attack";
-}
-
-function Wn(n, e) {
-  const t = n.indexOf("\0");
-  return n.slice(0, t < 0 ? n.length : t) === e;
-}
+function YW(parsed, mode = "strict", options = {}) { return extractTrackRoute(parsed, mode, options); }
 
 
 
-function JW(objects, forceReverse) { return buildTrackCourseGraph(objects, forceReverse); }
+function HG(object) { return itemGameOnly(object); }
+
+
+
+
+
+
 
 
 
@@ -2901,63 +2793,7 @@ function Vu(n) {
   return typeof e == "object" && e !== null && e.kind === "morph-controller";
 }
 
-function Hn(n, e, t, i = !1) {
-  const r = new Z9();
-  t ? n.compile(e, r, t) : n.compile(e, r);
-  const s = new Set();
-  if (
-    (e.traverse((d) => {
-      const f = d;
-      if (!(!f.isMesh && !d.isSprite))
-        for (const p of Array.isArray(f.material) ? f.material : [f.material]) {
-          const v = p.uniforms,
-            w = p.map;
-          if ((w instanceof D9 && s.add(w), v))
-            for (const g of Object.keys(v)) {
-              const y = v[g]?.value;
-              y instanceof D9 && s.add(y);
-            }
-        }
-    }),
-    s.forEach((d) => n.initTexture(d)),
-    !i)
-  )
-    return;
-  const o = new D1();
-  ((o.fog = t?.fog ?? null),
-    e.traverse((d) => {
-      let f;
-      if (d.type === "Mesh") {
-        const p = d;
-        f = new D2(p.geometry, p.material);
-      } else if (d.isSprite) f = new GG(d.material);
-      else return;
-      ((f.matrixAutoUpdate = !1),
-        f.matrix.copy(d.matrixWorld),
-        (f.frustumCulled = !1),
-        o.add(f));
-    }));
-  const a = n.getRenderTarget(),
-    c = n.getViewport(new Y2()),
-    l = n.getScissor(new Y2()),
-    u = n.getScissorTest(),
-    h = n.sortObjects;
-  try {
-    (n.setRenderTarget(null),
-      n.setViewport(0, 0, 1, 1),
-      n.setScissor(0, 0, 1, 1),
-      n.setScissorTest(!0),
-      (n.sortObjects = !1),
-      n.render(o, r));
-  } finally {
-    ((n.sortObjects = h),
-      n.setRenderTarget(a),
-      n.setViewport(c),
-      n.setScissor(l),
-      n.setScissorTest(u),
-      o.clear());
-  }
-}
+function Hn(renderer, root, environment, onePixel = false) { return warmRendererResources(renderer, root, environment, onePixel); }
 
 function oj(n) {
   for (const e of n) {
@@ -3791,138 +3627,11 @@ function d5(n, e) {
   return { node: n, geometry: t, children: n.children.map((i) => d5(i, e)) };
 }
 
-function pa(n, e) {
-  const t = [];
-  return ($B(n, e, t), t);
-}
+function pa(layout, text) { return layoutSpriteFont(layout, text); }
 
-function $B(n, e, t) {
-  const i = Math.fround(n.fontWidth),
-    r = Math.fround(n.fontHeight),
-    s = Math.fround(i + Math.fround(n.spaceOffset)),
-    o = Math.fround(s * e.length),
-    a = Math.fround(Math.fround(n.right) - Math.fround(n.left));
-  let c = Math.fround(n.left);
-  (n.centerAlign &&
-    (c = Math.fround(c + eM(Math.fround(Math.fround(a - o) * 0.5)))),
-    n.rightAlign && (c = Math.fround(n.left + eM(Math.fround(a - o)))));
-  const l = Math.fround(n.top),
-    u = n.fontCharacters;
-  let h = 0;
-  for (let d = 0; d < e.length; d += 1) {
-    const f = e.charAt(d);
-    if (f !== " ") {
-      let p = 0,
-        v = 0,
-        w = !1;
-      for (let g = 0; g < u.length; g += 1) {
-        const y = u.charAt(g);
-        if (y === f) {
-          w = !0;
-          break;
-        }
-        ((p = Math.fround(p + i)),
-          p < n.rowWidth || ((v = Math.fround(v + r)), (p = 0)),
-          y === "|" && ((v = Math.fround(v + r)), (p = 0)));
-      }
-      if (w) {
-        const g = Math.fround(n.fontX + p),
-          y = Math.fround(n.fontY + v);
-        let b = t[h];
-        (b === void 0 &&
-          ((b = {
-            character: f,
-            left: 0,
-            top: 0,
-            right: 0,
-            bottom: 0,
-            u0: 0,
-            v0: 0,
-            u1: 0,
-            v1: 0,
-          }),
-          (t[h] = b)),
-          (b.character = f),
-          (b.left = c),
-          (b.top = l),
-          (b.right = Math.fround(c + i)),
-          (b.bottom = Math.fround(l + r)),
-          (b.u0 = Math.fround(g / n.textureWidth)),
-          (b.v0 = Math.fround(y / n.textureHeight)),
-          (b.u1 = Math.fround(Math.fround(g + i) / n.textureWidth)),
-          (b.v1 = Math.fround(Math.fround(y + r) / n.textureHeight)),
-          (h += 1));
-      }
-    }
-    c = Math.fround(c + s);
-  }
-  t.length = h;
-}
+function $B(layout, text, glyphs) { return layoutSpriteFontInto(layout, text, glyphs); }
 
-const Jb = new WeakMap();
-
-function ga(n, e) {
-  const t = Jb.get(n);
-  if (t && t.textureWidth === e.width && t.textureHeight === e.height)
-    return t.layout;
-  if (!["CharPanel", "DashboardPanel"].includes(n.name))
-    throw new Error(`${n.name} 不是 P3528 CharPanel。`);
-  const i = T(n, "texture"),
-    r = lt(n, i === void 0 ? void 0 : new Map([[i, e]])),
-    s = 0,
-    o = 0,
-    a = r.width,
-    c = r.height,
-    l = Wp(tM(n, "fontSize"), 2, "fontSize"),
-    u = Wp(T(n, "fontPos") ?? "0 0", 2, "fontPos"),
-    h = A8(n, "flexible"),
-    d = {
-      left: s,
-      top: o,
-      right: a,
-      fontWidth: h ? Math.fround(a - s) : l[0],
-      fontHeight: h ? Math.fround(c - o) : l[1],
-      fontX: u[0],
-      fontY: u[1],
-      fontCharacters: tM(n, "fontStr"),
-      spaceOffset: Yj(n, "spaceOffset", 0),
-      centerAlign: A8(n, "centerAlign"),
-      rightAlign: A8(n, "rightAlign"),
-      rowWidth: A8(n, "allowVertical") ? e.width : 800,
-      textureWidth: e.width,
-      textureHeight: e.height,
-    };
-  return (
-    Jb.set(n, { textureWidth: e.width, textureHeight: e.height, layout: d }),
-    d
-  );
-}
-
-function eM(n) {
-  return Math.trunc(Math.fround(n + (n < 0 ? -0.5 : 0.5)));
-}
-
-function tM(n, e) {
-  const t = T(n, e);
-  if (t === void 0 || t === "") throw new Error(`${n.name} 缺少 ${e}。`);
-  return t;
-}
-
-function Wp(n, e, t) {
-  return j2(n, e, t);
-}
-
-function Yj(n, e, t) {
-  const i = T(n, e);
-  return i === void 0 ? t : Wp(i, 1, e)[0];
-}
-
-function A8(n, e) {
-  const t = T(n, e);
-  if (t === void 0 || t === "false") return !1;
-  if (t === "true") return !0;
-  throw new Error(`${n.name}.${e}=${t} 不是 P3528 boolean。`);
-}
+function ga(node, texture) { return spriteFontLayoutForPanel(node, texture, fontLayoutOps); }
 
 function WB(n, e) {
   if (n.name !== "Graduation")
@@ -6349,152 +6058,23 @@ async function Go(n, e) {
 
 class bw extends Error {}
 
-const EZ = [],
-  TZ = new Set(EZ);
+function n3(itemId) { return isBlockedKartId(itemId); }
 
-function n3(n) {
-  return TZ.has(n);
-}
+function Mw(itemId) { return blockedKartMessage(itemId); }
 
-function Mw(n) {
-  return n3(n)
-    ? `车辆 ItemKart ${n} 的比赛数据尚未补全，暂不可选择或进入相关流程。`
-    : void 0;
-}
+function j6(itemId) { return requirePlayableKartId(itemId); }
 
-function j6(n) {
-  const e = Mw(n);
-  if (e) throw new Error(e);
-}
+const Cr = legacyKartFamilies;
 
-const Cr = [
-  {
-    key: "legacyPractice",
-    identityClass: "legacy-system-family",
-    title: "旧版练习用卡丁车",
-    defaultLevel: "l1",
-    engineGrade: 0,
-    states: [
-      {
-        level: "rookie",
-        resource: "practice0",
-        aliases: ["practice0"],
-        parameterSource: { status: "school-spec" },
-      },
-      {
-        level: "l3",
-        resource: "practice1",
-        aliases: ["practice1"],
-        parameterSource: { status: "school-spec" },
-      },
-      {
-        level: "l2",
-        resource: "practice2",
-        aliases: ["practice2"],
-        parameterSource: { status: "school-spec" },
-      },
-      {
-        level: "l1",
-        resource: "practice3",
-        aliases: ["practice3"],
-        parameterSource: { status: "school-spec" },
-      },
-    ],
-  },
-  {
-    key: "legacyPracticeBlackline",
-    identityClass: "legacy-system-family",
-    title: "旧版黑线练习用卡丁车",
-    defaultLevel: "l1",
-    engineGrade: 0,
-    states: [
-      {
-        level: "rookie",
-        resource: "practiceblack0",
-        aliases: ["practiceblack0", "practiceblack1"],
-        parameterSource: {
-          status: "family-resource",
-          resource: "practiceblack0",
-          generation: "G3",
-        },
-      },
-      {
-        level: "l3",
-        resource: "practiceblack2",
-        aliases: ["practiceblack2"],
-        parameterSource: {
-          status: "family-resource",
-          resource: "practiceblack0",
-          generation: "G3",
-        },
-      },
-      {
-        level: "l2",
-        resource: "practiceblack3",
-        aliases: ["practiceblack3"],
-        parameterSource: {
-          status: "family-resource",
-          resource: "practiceblack0",
-          generation: "G3",
-        },
-      },
-      {
-        level: "l1",
-        resource: "practiceblack4",
-        aliases: ["practiceblack4", "practiceblack5"],
-        parameterSource: {
-          status: "family-resource",
-          resource: "practiceblack0",
-          generation: "G3",
-        },
-      },
-    ],
-  },
-];
+function _Z(family) { return defaultLegacyKartState(family); }
 
-function _Z(n) {
-  const e = n.states.find((t) => t.level === n.defaultLevel);
-  if (!e) throw new Error(`${n.key} 缺少默认等级 ${n.defaultLevel}。`);
-  return e;
-}
+function xw(key, alias) { return legacyKartStateForAlias(key, alias); }
 
-function xw(n, e) {
-  const t = e.toLowerCase();
-  return Cr.find((i) => i.key === n)?.states.find((i) =>
-    i.aliases.some((r) => r.toLowerCase() === t),
-  );
-}
+function b4(catalog, itemId, path, systemKey) { return resolveKartSelection(catalog, itemId, path, systemKey); }
 
-function b4(n, e, t, i) {
-  if (n3(e)) return;
-  const r = t.replace(/\\/g, "/").toLowerCase(),
-    s = n.find(
-      (u) =>
-        u.itemId === e &&
-        (e !== 0 || u.systemKey === i) &&
-        u.path.replace(/\\/g, "/").toLowerCase() === r,
-    );
-  if (s) return s;
-  if (e !== 0 || !i) return;
-  const o = Cr.find((u) => u.key === i),
-    a = /^kart_\/([^/]+)\/model\.1s$/.exec(r),
-    c = o && a ? xw(o.key, a[1]) : void 0;
-  if (!c || r !== `kart_/${c.resource.toLowerCase()}/model.1s`) return;
-  const l = n.find((u) => u.itemId === 0 && u.systemKey === i);
-  return l
-    ? { ...l, internalId: c.resource, path: `kart_/${c.resource}/model.1s` }
-    : void 0;
-}
+function N3(kart) { return kartCatalogIdentity(kart); }
 
-function N3(n) {
-  return n.itemId === 0 ? `system:${GZ(n.systemKey)}` : `catalog:3:${n.itemId}`;
-}
 
-function GZ(n) {
-  const e = n?.trim();
-  if (!e) throw new Error("系统车辆缺少稳定身份键。");
-  return e;
-}
 
 function LR(n, e) {
   return (n.selectionGameTypes ?? [n.gameType]).includes(e);
