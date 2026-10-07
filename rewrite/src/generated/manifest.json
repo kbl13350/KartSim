@@ -1838,15 +1838,15 @@
     },
     {
       "file": "world.js",
-      "bytes": 127268,
-      "sha256": "d69d66608779a0c299aaf8fca4185aa25d71f3f600a2913832ebf3b6488dd796",
+      "bytes": 124199,
+      "sha256": "6ae79e6f09b00183f2781d57de39db4d152bcfc5723416400f975c676b8f4755",
       "imports": 186,
       "exports": 81
     },
     {
       "file": "ui.js",
-      "bytes": 194517,
-      "sha256": "091e0569ed8a56edafae92650bd324b13ec0737068248a320fc90e2d2adde640",
+      "bytes": 166744,
+      "sha256": "3d08e133b39948c30f1c9ff03550c0d5b01aa7844f6a3627bc4ee4155434018d",
       "imports": 120,
       "exports": 33
     },

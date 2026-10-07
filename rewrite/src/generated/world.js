@@ -3,6 +3,7 @@
 // Stable minified names are retained for behavioral parity.
 
 import { installWorldOverrides } from "../world/install.ts";
+import { LocalRaceController } from "../multiplayer/local-race-controller.ts";
 import { FlyingPetModel, loadFlyingPetModelParts } from "../world/flying-pet-model.ts";
 import { FlyingPetIdleMotion, FlyingPetRaceState, visibleFlyingPet } from "../world/flying-pet-state.ts";
 import { FlyingPetAudio, loadFlyingPetAliveSound, loadFlyingPetEffect } from "../world/flying-pet-media.ts";
@@ -193,6 +194,7 @@ const multiplayerRaceLoaderDependencies = {
 const kartPresentationDependencies = { makeWheelPresentation: (resource, nodes, visual) => new N90(resource, nodes, visual), makeBalloon: c7, disposeObject: u5 };
 const localRaceConstructionDependencies = { validateStartSlots: iL, hasLteMode: ko, validRpDraws: ba, sameRp: t7, hasGiantMode: Io, makeLte: () => new D40(), makeGiant: callback => new pL(true, callback), makePhysics: (...args) => new AL(...args), makeTrack: (...args) => new _L(...args), placeAtStart: rL, makeCoordinator: (...args) => new yL(...args), racingState: X2.Racing };
 const localRaceDependencies = { states: X2, beginResetState: mL, advanceResetState: wL, routeTagFamily: Vo, isStartBoosterWindow: fL };
+const localRaceControllerDependencies = { construction: localRaceConstructionDependencies, runtime: localRaceDependencies, makeLapTiming: () => new vL(), makeLifecycle: () => new OQ(), makeResetState: () => pr(), makeWarpNext: () => new Qk(), resetVisible: gL };
 const raceRoomDependencies = { modeOf: G2, sameRp: t7, sameRoadblock: oR, sameLte: Nw, sameGiant: yI, toLocalTick: Y3, racingState: X2.Racing };
 const racePresenterInitializationDependencies = { createCameraShake: (random, anchor) => new nP(random, anchor), createRankRoster: (roster, playerId) => new Tr0(roster, playerId), createLightFactor: random => new sP(random), createAction2d: assets => new dI(assets), applyTrackFog: (scene, track) => kv(scene, track), createRacerView: scene => new Vg(scene), vehicleParts: vehicle => lc(vehicle), serializedRoot: model => J5(model), get accessorySockets() { return oP; }, createLinkedPresentation: (...args) => new _a(...args), attachAura: (...args) => ev(...args), createGiantAppearance: (...args) => new GiantAppearance(...args, giantAppearanceDependencies), startPosition: (...args) => rL(...args), createShadowPresentation: object => new $i0(object) };
 const racePresenterFrameDependencies = { result: { get countdownState() { return X2.Countdown; }, render: (...args) => e4(...args) }, events: { get racingState() { return X2.Racing; } }, participants: { updateRemoteVehicleEffects: (...args) => xr0(...args), updateLocalVehicleEffects: (...args) => Mr0(...args) }, hud: { rankByProgress: (...args) => _r0(...args), rankFallback: (...args) => Gr0(...args), rankWithResults: (...args) => Br0(...args), updateTachometer: (...args) => QL(...args), prepareScene: (...args) => e4(...args), get racingState() { return X2.Racing; } } };
@@ -426,107 +428,7 @@ function C5(n, e, t, i, r, s, o, a, c, l, u, h, d, f, p) {
 
 
 
-class Ci0 {
-    constructor(assets, room, playerId) { initializeLocalRace(this, assets, room, playerId, localRaceConstructionDependencies); }
-  assets;
-  lapTiming = new vL();
-  boostGaugeFull = !1;
-  physics;
-  track;
-  lifecycle = new OQ();
-  startPose;
-  coordinator;
-  scheduled = !1;
-  clockOriginMs = 0;
-  disposed = !1;
-  lte;
-  giant;
-  isRoadBlockRunner;
-  roadblock;
-  naturallyFinished = !1;
-  forcedElapsedMs;
-  pendingActions = [];
-  finishDeadline;
-  raceOverAt;
-  resultsReady = !1;
-  resetState = pr();
-  lowSpeedResetStartedAtMs = 0;
-  resetSoundPending = !1;
-  roadBlockResetNoticePending = !1;
-  pendingRouteTags = [];
-  warpNext = new Qk();
-  pendingWarpActions = [];
-  routeClockMs = 0;
-  consumeLocalRouteTags() {
-    return this.pendingRouteTags.splice(0);
-  }
-  consumeWarpActions() {
-    return this.pendingWarpActions.splice(0);
-  }
-  lteAvailable() {
-    return (
-      !this.disposed &&
-      this.lifecycle.state === X2.Racing &&
-      this.resetState.phase === 0 &&
-      !this.warpNext.blocksDriving() &&
-      this.physics.lteDodgeAvailable()
-    );
-  }
-  handleModeDrivingCommand(e, t) {
-    return this.lte?.dispatch(e, t, this.lteAvailable()) ?? !1;
-  }
-  cancelModeDrivingInput() {
-    this.lte?.cancel();
-  }
-    requestReset(playerRequested = true) { return requestLocalRaceReset(this, localRaceDependencies, playerRequested); }
-  consumeResetSound() {
-    const e = this.resetSoundPending;
-    return ((this.resetSoundPending = !1), e);
-  }
-  consumeRoadBlockResetNotice() {
-    const e = this.roadBlockResetNoticePending;
-    return ((this.roadBlockResetNoticePending = !1), !!e);
-  }
-  get resetStartedAt() {
-    return this.resetState.phase !== 0 && this.resetState.startMs !== 0
-      ? this.resetState.startMs
-      : void 0;
-  }
-    checkAutomaticReset(nowMs, stepSeconds) { return checkLocalRaceAutomaticReset(this, localRaceDependencies, nowMs, stepSeconds); }
-  resetVisible(e) {
-    return gL(this.resetState, e);
-  }
-  get resetSuspended() {
-    return this.resetState.phase === 1 || this.resetState.phase === 2;
-  }
-    advanceReset(nowMs) { return advanceLocalRaceReset(this, localRaceDependencies, nowMs); }
-    acceptEndTiming(finishDeadline, raceOverAt, resultsReady) { return acceptLocalRaceEndTiming(this, localRaceDependencies, finishDeadline, raceOverAt, resultsReady); }
-    handleLocalRouteTag(tag) { return handleLocalRaceRouteTag(this, localRaceDependencies, tag); }
-    applyWarpActions(actions) { return applyLocalRaceWarpActions(this, actions); }
-    scheduleStart(startAtMs) { return scheduleLocalRaceStart(this, startAtMs); }
-    get scheduledStartAtMs() { return localRaceScheduledStartAtMs(this); }
-    isStartBoosterWindow(nowMs) { return localRaceStartBoosterWindow(this, localRaceDependencies, nowMs); }
-    raceProgress() { return localRaceProgress(this); }
-    elapsedMs(nowMs) { return localRaceElapsedMs(this, localRaceDependencies, nowMs); }
-    update(nowMs, stepSeconds) { return updateLocalRace(this, localRaceDependencies, nowMs, stepSeconds); }
-  queueRemoteKart(e, t) {
-    this.coordinator.queueRemoteKart(e, t);
-  }
-  dispose() {
-    this.disposed ||
-      ((this.disposed = !0),
-      (this.roadBlockResetNoticePending = !1),
-      this.lte?.dispose(),
-      this.giant?.dispose(),
-      this.giant && this.physics.clearGiantRaceEffects(),
-      this.warpNext.reset(),
-      this.physics.hardCancelControls(),
-      this.physics.setRaceMotionLocked(!0),
-      this.coordinator.dispose(),
-      this.track.group.removeFromParent(),
-      this.track.group.clear());
-  }
-}
+class Ci0 extends LocalRaceController { constructor(assets, room, playerId) { super(assets, room, playerId, localRaceControllerDependencies); } }
 
 
 

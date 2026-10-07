@@ -1,13 +1,13 @@
 /**
  * Local participant runtime for an already assembled multiplayer race.
  *
- * The asset/physics constructor still lives in the compatibility layer. These
+ * The readable LocalRaceController assembles assets and physics, then these
  * functions own the race clock, resets, route effects, warp presentation and
- * per-frame lifecycle once that constructor has produced a runtime object.
+ * per-frame lifecycle.
  */
 
-// The generated constructor supplies physics, track and mode controllers. Its
-// shape will narrow as those owners are migrated into maintained modules.
+// The controller supplies physics, track and mode owners. Its shape will narrow
+// as those owners are migrated into maintained modules.
 export type LocalRaceHost = Record<string, any>;
 
 export interface LocalRaceDependencies {

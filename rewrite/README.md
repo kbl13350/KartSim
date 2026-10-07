@@ -41,12 +41,12 @@ npm run verify
 | `src/driving/` | 车辆构造、状态、控制、帧循环、碰撞、增压、仪表与视觉 | `AL` 的 173 个方法均由手写 TypeScript 接入；字段声明和外部辅助仍在兼容层 |
 | `src/world/` | 赛道路线、门、事件、碰撞与场景生命周期 | 手写 TypeScript；启动时安装到兼容世界类 |
 | `src/app/`、`src/timeattack/` | 资源启动、首次车手注册、运行依赖接口、应用快捷键、暂停/重开、画布尺寸、Ghost 菜单、退出清理、Ready 流程、开赛/返回导航及计时赛生命周期 | 手写 TypeScript；`Bf0` 的全部方法与访问器、Ready 控制器、计时赛阶段和记录服务方法已接入 |
-| `src/ui/` | Ready 视图与车辆预览、随机选图、设置、车库选择、装备及 Factory 提交、任务栏、滚动条、车库画布、本地档案与收藏 | 手写 TypeScript；`ty`、`ny`、`Tc0`、`oy`、`C7` 和懒加载车库的对应业务方法已接入，其余视图仍需兼容层 |
+| `src/ui/` | Ready 视图与车辆预览、随机选图、设置、车库选择、装备及 Factory 提交、任务栏、滚动条、车库画布、本地档案与收藏 | 手写 TypeScript；`C7` 车库选择整类及 `ty`、`ny`、`Tc0`、`oy` 和懒加载车库的对应业务方法已接入，其余视图仍需兼容层 |
 | `src/vehicle/` | 赛道金币、人物动作、车辆动画、音效、资源总装配、赛道加载、充能特效、车膜和悬挂饰品运动 | 手写 TypeScript；`ul` 全部方法和 `pv` 音效类已接入，底层模型与特效辅助仍在兼容层 |
 | `src/resources/` | 资源清单、档案索引、容器缓存、赛道与车库目录、车辆身份、配置及原接口适配器 | 手写 TypeScript；`Sw` 的全部 38 个方法已接入游戏 |
 | `src/codecs/` | Rho/Rho5 索引扫描、挂载、解码及二进制 XML/BML 解码 | 手写 TypeScript；`Sw.load` 静态方法已接入游戏 |
 | `src/physics/` | 车辆物理参数、可编辑 CSV/JSON 和查找规则 | 手写 TypeScript；`data.js` 现转发可编辑数据，表解析与车型查询已接入游戏，其他范围见模块文档 |
-| `src/multiplayer/` | HTTP、WebRTC、WebSocket、协议、房间、大厅与本地/远端赛况 | 手写 TypeScript；游戏客户端默认接仓库中的 Java 服务；视图仍需兼容层 |
+| `src/multiplayer/` | HTTP、WebRTC、WebSocket、协议、房间、大厅与本地/远端赛况 | 手写 TypeScript；本地比赛 `Ci0` 整类已接入；游戏客户端默认接仓库中的 Java 服务；其余视图仍需兼容层 |
 | `src/ui/profile-sync.ts`、`src/game/ghost-summary-sync.ts` | 本地资料与成绩摘要的 Java 存储同步 | 手写 TypeScript；本地数据优先，离线可继续游玩 |
 | `src/generated/` | 从 v39.11 发行包按语法边界拆出的兼容模块 | 自动生成，仍有压缩名称；不要直接编辑 |
 | `tools/generate-modules.mjs` | 检验源包哈希、拆模块、计算跨模块依赖、注入手写替代模块 | 可维护的迁移工具 |
@@ -71,4 +71,4 @@ npm run verify
 
 影子记录的帧编解码与存储还经过真实浏览器 IndexedDB 写入、读取、列举和删除验证；可在开发服务器打开 `/tests/browser/ghost-store.html` 重测。KSV 外层格式也已手写，可用 `/tests/browser/ksv-codec.html` 检查浏览器读写闭环；底层 zlib 使用 `pako@2.1.0`，字节输出已与发行版逐项比对。
 
-`src/generated/` 当前仍有约 1.2 MB 的场景格式、渲染、界面、车辆和车库兼容代码保留发行版压缩名称。完整手写重构尚未完成；每个已替换范围都由 `src/generated/manifest.json` 和相应的差分测试标明。暂停菜单资源、画布交互和赛前车辆预览已迁到 `src/timeattack/`，并在真实浏览器中验证进入赛道和 Esc 暂停。原网页只交付浏览器客户端，仓库内 `server/` 是依照可观察协议新写的 Java 实现。联机协议边界见 `src/multiplayer/README.md`。
+`src/generated/` 当前仍有约 1.1 MB 的场景格式、渲染、界面、车辆和车库兼容代码保留发行版压缩名称。完整手写重构尚未完成；每个已替换范围都由 `src/generated/manifest.json` 和相应的差分测试标明。暂停菜单资源、画布交互和赛前车辆预览已迁到 `src/timeattack/`，并在真实浏览器中验证进入赛道和 Esc 暂停。原网页只交付浏览器客户端，仓库内 `server/` 是依照可观察协议新写的 Java 实现。联机协议边界见 `src/multiplayer/README.md`。

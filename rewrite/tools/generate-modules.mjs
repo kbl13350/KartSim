@@ -2655,9 +2655,10 @@ function II(version, speed) { return findSpeedTypeEntry(version, speed); }` });
   if (declarationName === "Ci0") {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "world",
       "Local race runtime moved from world.");
+    recordWholeClassMembers(node, localRaceMethodOverrides, replacedLocalRaceMethods);
     bodies.get("world").push({
       at: node.start,
-      text: rewriteClassMethods(node, localRaceMethodOverrides, replacedLocalRaceMethods),
+      text: "class Ci0 extends LocalRaceController { constructor(assets, room, playerId) { super(assets, room, playerId, localRaceControllerDependencies); } }",
     });
     continue;
   }
@@ -3228,9 +3229,38 @@ ${[...multiplayerMethodOverrides.values()].join("\n")}
   if (declarationName === "C7") {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "ui",
       "Garage selector moved from UI.");
+    recordWholeClassMembers(node, garageSelectionMethodOverrides,
+      replacedGarageSelectionMethods);
     bodies.get("ui").push({
       at: node.start,
-      text: rewriteClassMethods(node, garageSelectionMethodOverrides, replacedGarageSelectionMethods),
+      text: `const garageSelectionViewOps = {
+  get document() { return document; }, get window() { return window; },
+  get ResizeObserver() { return ResizeObserver; },
+  requestAnimationFrame: callback => requestAnimationFrame(callback),
+  cancelAnimationFrame: id => cancelAnimationFrame(id),
+  get performance() { return performance; },
+  get CanvasDrawing() { return Ma0; }, Scrollbar: b6, TouchSwipe: WP,
+  get touchSwipeConfig() { return jv; },
+  get touchSwipeThreshold() { return Xv; },
+  buildWindows: sF, gridStep: i4, draftProfile: aT,
+  normalizeKartKey: of, kartAppearancePath: t80, appearanceMatches: xw,
+  loadPanels: (...args) => E7.load(...args), cardRect: yl,
+  validateKart: pT, validateCharacter: cf, loadAssets: u80,
+  attribute: T, child: Ae, drawFrame: C9, drawText: kn,
+  frameContent: E9, captionRect: f3, layoutRect: V0,
+  drawImage: uf, drawCardImage: m80, drawScrollbar: Kv,
+  spriteSourceX: Ca0, itemKey: sf, hoverState: st, drawIcon: ct,
+  get equipmentSlot() { return Ya0; },
+  kartProgression: p5, engineFamily: KP, engineLevelText: Ka0,
+  classicLevelText: ja0, drawLabel: m9, measureText: ve,
+  tooltipRect: rF, noticeLayout: Wo, drawNoticePanel: qP,
+  resizeCanvas: p3, pixelRatio: xe, itemGrid: $P,
+  positionInput: aw, pointInRect: Oe, moveHover: Xa0, playClick: Mc,
+};
+const GarageSelectionViewBase = createGarageSelectionViewClass(garageSelectionViewOps);
+class C7 extends GarageSelectionViewBase {
+${[...garageSelectionMethodOverrides.values()].join("\n")}
+}`,
     });
     continue;
   }
@@ -4192,6 +4222,7 @@ function renderModule(name) {
   }
   if (name === "world") {
     lines.push('import { installWorldOverrides } from "../world/install.ts";');
+    lines.push('import { LocalRaceController } from "../multiplayer/local-race-controller.ts";');
     lines.push('import { FlyingPetModel, loadFlyingPetModelParts } from "../world/flying-pet-model.ts";');
     lines.push('import { FlyingPetIdleMotion, FlyingPetRaceState, visibleFlyingPet } from "../world/flying-pet-state.ts";');
     lines.push('import { FlyingPetAudio, loadFlyingPetAliveSound, loadFlyingPetEffect } from "../world/flying-pet-media.ts";');
@@ -4391,6 +4422,7 @@ function renderModule(name) {
     lines.push('import { ScrollbarController as b6, scrollbarGeometry as uT, dragScrollPosition as qa0, stepScrollPosition as nf, scrollPosition as qv, pointInRectangle as bc } from "../ui/scrollbar.ts";');
     lines.push('import { GarageLivePanels } from "../ui/garage-live-panels.ts";');
     lines.push('import { garageEquipmentCardKey, normalizedGarageKartPath } from "../ui/garage-live-panel-assets.ts";');
+    lines.push('import { createGarageSelectionViewClass } from "../ui/garage-selection-view.ts";');
     lines.push('import { TouchPageSwipe as WP } from "../ui/touch-swipe.ts";');
     lines.push('import { CoatingPreviewSession as xa0 } from "../ui/coating-preview.ts";');
     lines.push('import { RandomTrackSession as Tc0 } from "../ui/random-track-session.ts";');
@@ -5087,6 +5119,7 @@ function awardPodiumLoadDependencies() { return {
     lines.push('const kartPresentationDependencies = { makeWheelPresentation: (resource, nodes, visual) => new N90(resource, nodes, visual), makeBalloon: c7, disposeObject: u5 };');
     lines.push("const localRaceConstructionDependencies = { validateStartSlots: iL, hasLteMode: ko, validRpDraws: ba, sameRp: t7, hasGiantMode: Io, makeLte: () => new D40(), makeGiant: callback => new pL(true, callback), makePhysics: (...args) => new AL(...args), makeTrack: (...args) => new _L(...args), placeAtStart: rL, makeCoordinator: (...args) => new yL(...args), racingState: X2.Racing };");
     lines.push("const localRaceDependencies = { states: X2, beginResetState: mL, advanceResetState: wL, routeTagFamily: Vo, isStartBoosterWindow: fL };");
+    lines.push("const localRaceControllerDependencies = { construction: localRaceConstructionDependencies, runtime: localRaceDependencies, makeLapTiming: () => new vL(), makeLifecycle: () => new OQ(), makeResetState: () => pr(), makeWarpNext: () => new Qk(), resetVisible: gL };");
     lines.push("const raceRoomDependencies = { modeOf: G2, sameRp: t7, sameRoadblock: oR, sameLte: Nw, sameGiant: yI, toLocalTick: Y3, racingState: X2.Racing };");
     lines.push("const racePresenterInitializationDependencies = { createCameraShake: (random, anchor) => new nP(random, anchor), createRankRoster: (roster, playerId) => new Tr0(roster, playerId), createLightFactor: random => new sP(random), createAction2d: assets => new dI(assets), applyTrackFog: (scene, track) => kv(scene, track), createRacerView: scene => new Vg(scene), vehicleParts: vehicle => lc(vehicle), serializedRoot: model => J5(model), get accessorySockets() { return oP; }, createLinkedPresentation: (...args) => new _a(...args), attachAura: (...args) => ev(...args), createGiantAppearance: (...args) => new GiantAppearance(...args, giantAppearanceDependencies), startPosition: (...args) => rL(...args), createShadowPresentation: object => new $i0(object) };");
     lines.push("const racePresenterFrameDependencies = { result: { get countdownState() { return X2.Countdown; }, render: (...args) => e4(...args) }, events: { get racingState() { return X2.Racing; } }, participants: { updateRemoteVehicleEffects: (...args) => xr0(...args), updateLocalVehicleEffects: (...args) => Mr0(...args) }, hud: { rankByProgress: (...args) => _r0(...args), rankFallback: (...args) => Gr0(...args), rankWithResults: (...args) => Br0(...args), updateTachometer: (...args) => QL(...args), prepareScene: (...args) => e4(...args), get racingState() { return X2.Racing; } } };");
