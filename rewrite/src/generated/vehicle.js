@@ -2,6 +2,7 @@
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
 
+import { createMqTachometerClass } from "../vehicle/mq-tachometer-renderer.ts";
 import { createMotionBlurEffectClass } from "../vehicle/motion-blur-effect.ts";
 import { collectDummySounds, TrackDummySurroundAudio, StandaloneEventSurroundAudio, unsupportedEventSound } from "../vehicle/track-surround-audio.ts";
 import { ReadyCameraController, warpNextCamera } from "../vehicle/ready-camera.ts";
@@ -56,6 +57,7 @@ import { $w, BJ, BQ, Ca, Cw, EI, FI, G20, GJ, HI, Io, Iw, Jp, KI, Kl, LI, Lo, MI
 import { d10, h10, hn } from "./data.js";
 import { F2, F4, m } from "./math.js";
 
+const mqTachometerOps = { Scene: D1, Camera: a5, Geometry: t9, BufferAttribute: _0, Mesh: D2, BoundingSphere: yr, Vector3: H, Vector2: B2, DataTexture: J9, ShaderMaterial: Vt, drawCommands: WQ, systemUiSmoothing: Co, resamplePixels: UB, finishResampledPixels: OR, depth: xs, rgbaFormat: e9, unsignedByteType: _9, srgbColorSpace: v9, clampWrapping: S1, linearFilter: u9, nearestFilter: h9, lessEqualDepth: y1, customBlending: u1, additiveEquation: R9, sourceAlpha: l1, oneMinusSourceAlpha: v1 };
 const motionBlurRendererOps = { Scene: D1, Camera: a5, Geometry: t9, FloatAttribute: M1, Mesh: D2, Vector2: B2, Vector3: H, ShaderMaterial: Vt, RenderTarget: nn, DataTexture: J9, FramebufferTexture: IN, decodePng: p2, colorSpace: v9, clampWrapping: F1, linearFilter: u9, textureFormat: e9, textureType: _9, customBlending: u1, additiveEquation: R9, sourceAlpha: l1, oneMinusSourceAlpha: v1 };
 const trackSurroundAudioOps = { decode: Q9, route: S9, setGain: he, setLoop: w4 };
 const readyCameraOps = { isPrsController: P6, unsupportedPrs: Nm, createPrsRuntime: zG, animatePrs: PW, fieldOfView: we };
@@ -3300,216 +3302,7 @@ function A2(n) {
   return Math.fround(n);
 }
 
-const Kh = 4096;
-
-class Fk {
-  constructor(e) {
-    if (((this.definition = e), e.type !== "MqTacho"))
-      throw new Error(`${e.type} 的 P3528 Tachometer Web backend 尚未闭合。`);
-  }
-  definition;
-  scene = new D1();
-  camera = new a5();
-  textures = new Map();
-  smoothTextures = !1;
-  materials = new Map();
-  pool = [];
-  speed = -1;
-  gaugeCount = -1;
-  width = -1;
-  height = -1;
-  preserve;
-  enableUiSmoothing() {
-    this.smoothTextures = !0;
-  }
-  update(e, t, i, r) {
-    const s = Math.trunc(e),
-      o = Math.trunc(Math.fround(Math.fround(e) * Math.fround(19 / 350))) >>> 0;
-    if (
-      s === this.speed &&
-      o === this.gaugeCount &&
-      t === this.width &&
-      i === this.height &&
-      r === this.preserve
-    )
-      return;
-    ((this.speed = s),
-      (this.gaugeCount = o),
-      (this.width = t),
-      (this.height = i),
-      (this.preserve = r));
-    const a = WQ(this.definition, e, t, i, r);
-    for (let c = 0; c < a.length; c += 1) {
-      const l = a[c],
-        u = this.poolEntry(c);
-      (this.fillGeometry(u, l),
-        (u.mesh.material = this.material(l.texture, t, i)),
-        (u.mesh.renderOrder = c),
-        (u.mesh.visible = !0));
-    }
-    for (let c = a.length; c < this.pool.length; c += 1)
-      this.pool[c].mesh.visible = !1;
-  }
-  render(e) {
-    const t = e.autoClear;
-    e.autoClear = !1;
-    try {
-      e.render(this.scene, this.camera);
-    } finally {
-      e.autoClear = t;
-    }
-  }
-  dispose() {
-    for (const e of this.pool)
-      (e.geometry.dispose(), e.mesh.removeFromParent());
-    ((this.pool.length = 0),
-      this.materials.forEach((e) => e.dispose()),
-      this.textures.forEach((e) => e.dispose()));
-  }
-  poolEntry(e) {
-    let t = this.pool[e];
-    if (t) return t;
-    const i = new t9(),
-      r = new _0(new Float32Array(Kh * 4 * 3), 3),
-      s = new _0(new Float32Array(Kh * 4 * 2), 2),
-      o = new _0(new Uint16Array(Kh * 6), 1);
-    (i.setAttribute("position", r),
-      i.setAttribute("uv", s),
-      i.setIndex(o),
-      (i.boundingSphere = new yr(new H(), 1 / 0)));
-    const a = new D2(i);
-    return (
-      (a.frustumCulled = !1),
-      this.scene.add(a),
-      (t = { mesh: a, geometry: i, positions: r, uvs: s, indices: o }),
-      this.pool.push(t),
-      t
-    );
-  }
-  fillGeometry(e, t) {
-    const i = e.positions.array,
-      r = e.uvs.array,
-      s = e.indices.array,
-      o = t.kind === "panel" ? 1 : t.framebufferQuads.length;
-    for (let a = 0; a < o; a += 1) {
-      const c =
-          t.kind === "panel"
-            ? {
-                left: t.framebufferRect.left,
-                top: t.framebufferRect.top,
-                right: t.framebufferRect.right,
-                bottom: t.framebufferRect.bottom,
-                u0: t.uv.left,
-                v0: t.uv.top,
-                u1: t.uv.right,
-                v1: t.uv.bottom,
-              }
-            : t.framebufferQuads[a],
-        l = a * 4;
-      let u = l * 3;
-      ((i[u] = c.left),
-        (i[u + 1] = c.top),
-        (i[u + 2] = xs),
-        (u += 3),
-        (i[u] = c.left),
-        (i[u + 1] = c.bottom),
-        (i[u + 2] = xs),
-        (u += 3),
-        (i[u] = c.right),
-        (i[u + 1] = c.top),
-        (i[u + 2] = xs),
-        (u += 3),
-        (i[u] = c.right),
-        (i[u + 1] = c.bottom),
-        (i[u + 2] = xs));
-      let h = l * 2;
-      ((r[h] = c.u0),
-        (r[h + 1] = c.v0),
-        (h += 2),
-        (r[h] = c.u0),
-        (r[h + 1] = c.v1),
-        (h += 2),
-        (r[h] = c.u1),
-        (r[h + 1] = c.v0),
-        (h += 2),
-        (r[h] = c.u1),
-        (r[h + 1] = c.v1));
-      const d = l;
-      let f = a * 6;
-      ((s[f] = d),
-        (s[f + 1] = d + 1),
-        (s[f + 2] = d + 2),
-        (s[f + 3] = d + 2),
-        (s[f + 4] = d + 1),
-        (s[f + 5] = d + 3));
-    }
-    (e.geometry.setDrawRange(0, o * 6),
-      (e.positions.needsUpdate = !0),
-      (e.uvs.needsUpdate = !0),
-      (e.indices.needsUpdate = !0));
-  }
-  material(e, t, i) {
-    let r = this.materials.get(e);
-    if (r) r.uniforms.viewport.value.set(t, i);
-    else {
-      const s = this.smoothTextures || Co(),
-        o = s
-          ? OR(UB(new Uint8ClampedArray(e.pixels), e.width, e.height))
-          : e.pixels,
-        a = new J9(o, e.width, e.height, e9, _9);
-      ((a.colorSpace = v9),
-        (a.flipY = !1),
-        (a.wrapS = a.wrapT = S1),
-        (a.magFilter = a.minFilter = s ? u9 : h9),
-        (a.generateMipmaps = !1),
-        (a.unpackAlignment = 1),
-        (a.needsUpdate = !0),
-        this.textures.set(e, a),
-        (r = x50(a, t, i)),
-        this.materials.set(e, r));
-    }
-    return r;
-  }
-}
-
-function x50(n, e, t) {
-  return new Vt({
-    name: "KartRider MqTacho",
-    defines: n.magFilter === u9 ? { HUD_ALPHA_WEIGHTED: 1 } : {},
-    uniforms: { map: { value: n }, viewport: { value: new B2(e, t) } },
-    vertexShader: `
-      precision highp float;
-      attribute vec3 position;
-      attribute vec2 uv;
-      uniform vec2 viewport;
-      varying vec2 vUv;
-      void main() {
-        vUv = uv;
-        gl_Position = vec4(position.x * 2.0 / viewport.x - 1.0, 1.0 - position.y * 2.0 / viewport.y, position.z * 2.0 - 1.0, 1.0);
-      }
-    `,
-    fragmentShader: `
-      precision highp float;
-      uniform sampler2D map;
-      varying vec2 vUv;
-      void main() {
-        gl_FragColor = texture2D(map, vUv);
-        #ifdef HUD_ALPHA_WEIGHTED
-        gl_FragColor.rgb = gl_FragColor.a > 0.0 ? gl_FragColor.rgb / gl_FragColor.a : vec3(0.0);
-        #endif
-      }
-    `,
-    transparent: !0,
-    depthTest: !0,
-    depthWrite: !0,
-    depthFunc: y1,
-    blending: u1,
-    blendSrc: l1,
-    blendDst: v1,
-    blendEquation: R9,
-    toneMapped: !1,
-  });
-}
+const Fk = createMqTachometerClass(mqTachometerOps);
 
 function S50(n) {
   const e = n.stage.children.filter((a) => T(a, "name") === "ScreenUI"),

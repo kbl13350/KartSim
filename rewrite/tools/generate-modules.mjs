@@ -1418,6 +1418,8 @@ const replacedRaceHudBoostMethods = new Set();
 let replacedMotionBlurEffect = false;
 let retiredMotionBlurConstants = false;
 const retiredMotionBlurHelpers = new Set();
+let replacedMqTachometer = false;
+const retiredMqTachometerHelpers = new Set();
 const motionBlurHelperNames = new Set(["Ct0", "Et0", "Tt0", "_t0", "Gt0",
   "YS", "ZS", "QS", "Bt0", "Rt0", "ov", "It0", "kt0", "Lt0", "Gk"]);
 const replacedLobbyListDrawMethods = new Set();
@@ -1727,6 +1729,26 @@ const iv = createDriftEffectClass(driftEffectDependencies);`,
     bodies.get("vehicle").push({ at: node.start,
       text: "const sv = createMotionBlurEffectClass(motionBlurRendererOps);" });
     replacedMotionBlurEffect = true;
+    continue;
+  }
+  if (declarationName === "Kh" || declarationName === "x50") {
+    assert(originalSection(node.start) === "vehicle" &&
+      node.type === (declarationName === "Kh" ? "VariableDeclaration" :
+        "FunctionDeclaration"),
+    `MQ tachometer helper ${declarationName} moved from vehicle.`);
+    retiredMqTachometerHelpers.add(declarationName);
+    continue;
+  }
+  if (declarationName === "Fk") {
+    assert(node.type === "ClassDeclaration" && originalSection(node.start) === "vehicle",
+      "MQ tachometer moved from vehicle.");
+    for (const name of ["update", "render", "dispose", "enableUiSmoothing"]) {
+      assert(node.body.body.some(member => member.key?.name === name),
+        `MQ tachometer lost ${name}.`);
+    }
+    bodies.get("vehicle").push({ at: node.start,
+      text: "const Fk = createMqTachometerClass(mqTachometerOps);" });
+    replacedMqTachometer = true;
     continue;
   }
   if (node.type === "VariableDeclaration" &&
@@ -3230,9 +3252,11 @@ ${[...multiplayerMethodOverrides.values()].join("\n")}
   if (declarationName === "_7") {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "ui",
       "Track picker moved from UI.");
+    recordWholeClassMembers(node, trackPickerMethodOverrides,
+      replacedTrackPickerMethods);
     bodies.get("ui").push({
       at: node.start,
-      text: rewriteClassMethods(node, trackPickerMethodOverrides, replacedTrackPickerMethods),
+      text: "const _7 = createTrackPickerWindowClass(trackPickerWindowDependencies);",
     });
     continue;
   }
@@ -3866,6 +3890,9 @@ assert(replacedRaceHudBoostMethods.size === raceHudBoostMethodOverrides.size,
 assert(replacedMotionBlurEffect && retiredMotionBlurConstants &&
   retiredMotionBlurHelpers.size === motionBlurHelperNames.size,
   "The motion blur implementation was not fully retired.");
+assert(replacedMqTachometer &&
+  groupNames(retiredMqTachometerHelpers) === "Kh, x50",
+  "The MQ tachometer implementation was not fully retired.");
 assert(replacedLobbyListDrawMethods.size === lobbyListDrawMethodOverrides.size,
   "The lobby list draw method override was not found.");
 assert(replacedMultiplayerWindowAssetMethods.size === multiplayerWindowAssetMethodOverrides.size,
@@ -4376,6 +4403,7 @@ function renderModule(name) {
     lines.push('import { buildGhostKsvHeader, encodeGhostKsvRecording, ghostKsvEquipment, nativeFrameToKsvStamp } from "../timeattack/ghost-ksv-export.ts";');
   }
   if (name === "vehicle") {
+    lines.push('import { createMqTachometerClass } from "../vehicle/mq-tachometer-renderer.ts";');
     lines.push('import { createMotionBlurEffectClass } from "../vehicle/motion-blur-effect.ts";');
     lines.push('import { collectDummySounds, TrackDummySurroundAudio, StandaloneEventSurroundAudio, unsupportedEventSound } from "../vehicle/track-surround-audio.ts";');
     lines.push('import { ReadyCameraController, warpNextCamera } from "../vehicle/ready-camera.ts";');
@@ -4461,6 +4489,8 @@ function renderModule(name) {
     lines.push('import { accumulateVehicleTeamGauge, consumeVehicleTeamGaugeCharge, enqueueVehicleTeamGaugeTarget, updateVehicleTeamGauge, consumeVehicleTeamGaugeFullAnimation, teamGaugeSettledAtMs, convertVehicleTeamBoosterSlots, expireVehicleTeamSlotWindow, vehicleSpeedSlotDisabled, teamSlotWindowStartMs } from "../driving/team-gauge.ts";');
   }
   if (name === "ui") {
+    lines.push('import { createTrackPickerWindowClass } from "../ui/track-picker-window.ts";');
+    lines.push('import { loadTrackPickerWindowAssets, loadTrackCard } from "../ui/track-picker-window-assets.ts";');
     lines.push('import { createSettingsWindowClass } from "../ui/settings-window.ts";');
     lines.push('import { loadSettingsWindowAssets, parseOfficialBgmChoices } from "../ui/settings-window-assets.ts";');
     lines.push('import { ScrollbarController as b6, scrollbarGeometry as uT, dragScrollPosition as qa0, stepScrollPosition as nf, scrollPosition as qv, pointInRectangle as bc } from "../ui/scrollbar.ts";');
@@ -4755,6 +4785,7 @@ function awardPodiumLoadDependencies() { return {
     lines.push("");
   }
   if (name === "vehicle") {
+    lines.push('const mqTachometerOps = { Scene: D1, Camera: a5, Geometry: t9, BufferAttribute: _0, Mesh: D2, BoundingSphere: yr, Vector3: H, Vector2: B2, DataTexture: J9, ShaderMaterial: Vt, drawCommands: WQ, systemUiSmoothing: Co, resamplePixels: UB, finishResampledPixels: OR, depth: xs, rgbaFormat: e9, unsignedByteType: _9, srgbColorSpace: v9, clampWrapping: S1, linearFilter: u9, nearestFilter: h9, lessEqualDepth: y1, customBlending: u1, additiveEquation: R9, sourceAlpha: l1, oneMinusSourceAlpha: v1 };');
     lines.push('const motionBlurRendererOps = { Scene: D1, Camera: a5, Geometry: t9, FloatAttribute: M1, Mesh: D2, Vector2: B2, Vector3: H, ShaderMaterial: Vt, RenderTarget: nn, DataTexture: J9, FramebufferTexture: IN, decodePng: p2, colorSpace: v9, clampWrapping: F1, linearFilter: u9, textureFormat: e9, textureType: _9, customBlending: u1, additiveEquation: R9, sourceAlpha: l1, oneMinusSourceAlpha: v1 };');
     lines.push('const trackSurroundAudioOps = { decode: Q9, route: S9, setGain: he, setLoop: w4 };');
     lines.push('const readyCameraOps = { isPrsController: P6, unsupportedPrs: Nm, createPrsRuntime: zG, animatePrs: PW, fieldOfView: we };');
@@ -4812,6 +4843,8 @@ function awardPodiumLoadDependencies() { return {
     lines.push('const settingsInteractionDependencies = { get tabs() { return Ie; }, versions: Qd, versionStatus: Ac, speedChoices: Di, fallbackSpeed: wa0, defaultSound: _P, volumeThumb: tm };');
     lines.push('const settingsWindowAssetDependencies = { parseBml: s2, decodePng: p2, attribute: T, frameState: Ft, buttonStyle: m4, loadAutoImage: ma, registerFont: f5, scrollbarAssets: Hv };');
     lines.push('const settingsWindowDependencies = { loadAssets: library => loadSettingsWindowAssets(library, settingsWindowAssetDependencies), parseBgmChoices: parseOfficialBgmChoices, releaseFont: G1, configureCanvas: p3, pixelRatio: xe, layoutRect: V0, clientRect: E9, captionPosition: an, captionRect: f3, measureText: ve, paintText: m9, paintFrame: C9, keyboardLabel: SP, gamepadLabel: sa0, gamepadButtons: Hg, validGamepadCode: EP, usedGamepadCode: ca0, browserKeyCode: xP, validKeyCode: CP, get tabs() { return Ie; }, versions: Qd, defaultVersion: C4, versionStatus: Ac, speedChoices: Di, fallbackSpeed: wa0, speedChannel: zv, channelText: VP, keyActions: ut, defaultKeyMap: Br, dialogShortcuts: BP, defaultSound: _P };');
+    lines.push('const trackPickerAssetDependencies = { parseBml: s2, decodePng: p2, frame: Ft, buttonStyle: m4, scrollbar: Hv, captionOffset: an, loadFont: f5 };');
+    lines.push('const trackPickerWindowDependencies = { loadAssets: (library, groups) => loadTrackPickerWindowAssets(library, groups, trackPickerAssetDependencies), loadTrackCard: (library, path) => loadTrackCard(library, path, { decodePng: p2 }), releaseFont: G1, layoutTree: jc, layoutRect: V0, frameClient: E9, paintFrame: C9, paintText: m9, measureText: ve, configureCanvas: p3, pixelRatio: xe, positionControl: aw, noticeLayout: Wo, paintNotice: qP };');
     lines.push('const readyViewDependencies = { formatRecord: yT, speedChannel: Ue, defaultVersion: ze };');
     lines.push('const readyButtonDrawingDependencies = { paintFrame: ct, paintText: df, translate: Yn };');
     lines.push(`class Ma0 extends GarageCanvasCompositor {
@@ -6582,6 +6615,8 @@ const manifest = {
   handwrittenVehicleResidualOverrides: [...vehicleResidualOverrides.keys()],
   handwrittenMotionBlurEffect: replacedMotionBlurEffect,
   retiredMotionBlurHelpers: [...retiredMotionBlurHelpers].sort(),
+  handwrittenMqTachometer: replacedMqTachometer,
+  retiredMqTachometerHelpers: [...retiredMqTachometerHelpers].sort(),
   retiredVehicleResidualConstants: [...retiredVehicleResidualConstants],
   handwrittenPeerMeshOverrides: [...peerMeshOverrides],
   handwrittenNetworkTimingOverrides: [...networkTimingOverrides],
@@ -6590,6 +6625,8 @@ const manifest = {
   retiredUiHelpers: [...retiredUiHelpers],
   handwrittenLocalProfileFunctionOverrides: [...localProfileFunctionOverrides.keys()],
   handwrittenTrackPickerMethodOverrides: [...trackPickerMethodOverrides.keys()],
+  handwrittenTrackPickerWindow: replacedTrackPickerMethods.size ===
+    trackPickerMethodOverrides.size,
   handwrittenLocalRaceMethodOverrides: [...localRaceMethodOverrides.keys()],
   handwrittenActiveRaceMethodOverrides: [...activeRaceMethodOverrides.keys()],
   handwrittenRemoteMotionOverrides: [...remoteMotionOverrides],

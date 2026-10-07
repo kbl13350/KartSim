@@ -1128,6 +1128,11 @@
     "kt0",
     "ov"
   ],
+  "handwrittenMqTachometer": true,
+  "retiredMqTachometerHelpers": [
+    "Kh",
+    "x50"
+  ],
   "retiredVehicleResidualConstants": [
     "v1-float",
     "track-sound"
@@ -1200,6 +1205,7 @@
     "gameTypeEnabled",
     "remapRandomSelection"
   ],
+  "handwrittenTrackPickerWindow": true,
   "handwrittenLocalRaceMethodOverrides": [
     "constructor",
     "requestReset",
@@ -1843,8 +1849,8 @@
     },
     {
       "file": "vehicle.js",
-      "bytes": 191696,
-      "sha256": "b8df7687b157f9133b9d8588ef7f9b3079f1574a810c1055d588bc222b1b3e09",
+      "bytes": 186623,
+      "sha256": "4df6a048df06e5d349375f9e171a26cc0265063e5fa085d78c6129950dd44c65",
       "imports": 183,
       "exports": 104
     },
@@ -1864,8 +1870,8 @@
     },
     {
       "file": "ui.js",
-      "bytes": 122431,
-      "sha256": "a36b9e080da51a95d778e4eb605d99eb10c8dda2b3323e6f7feb4852b475cfc7",
+      "bytes": 80732,
+      "sha256": "51177e843ea60c1c2a40e7aa42fc8b9abbf8832136023e082fdc1615ce0d7bad",
       "imports": 120,
       "exports": 33
     },
