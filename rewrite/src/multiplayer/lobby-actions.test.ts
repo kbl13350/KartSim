@@ -165,3 +165,13 @@ test("leave, chat, join, quick join, team and settings match release", async () 
   };
   assert.deepEqual(await run(false), await run(true));
 });
+
+test("joining sends the gear chosen since connecting so the race roster matches", async () => {
+  const { host, events } = fixture();
+  const equipment = { itemIds: { 3: 1637 } };
+  const options = { ...host.options, currentEquipment: () => equipment };
+  host.mutate = async message => { events.push(["mutate", message]); return true; };
+  await joinLobbyRoom({ ...host, options }, summary("open"), async () => {});
+  assert.deepEqual(events.find(event => Array.isArray(event) && event[0] === "mutate"),
+    ["mutate", { type: "join", roomId: "open", password: "", equipment }]);
+});

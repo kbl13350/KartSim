@@ -1,5 +1,6 @@
 import { formatMultiplayerError } from "./errors";
 import { isPlayableGameplay } from "./gameplay-admission";
+import { currentEquipmentField } from "./lobby-actions";
 import type { Gameplay, LobbyRoom } from "./lobby-actions";
 
 export interface RoomSettings {
@@ -14,6 +15,7 @@ export interface LobbySettingsHost {
   options: {
     nickname?: string;
     status(message: string, error?: boolean): void;
+    currentEquipment?(): unknown;
     [key: string]: unknown;
   };
   state: { room?: LobbyRoom };
@@ -119,7 +121,8 @@ export async function createLobbyRoom(host: LobbySettingsHost,
       host.channelName = form.channelName;
       void host.mutate({ type: "create", ...form,
         ...(gameplay === "ordinary" ? { gameplay: "ordinary" } : {}),
-        mode, speed, speedVersion: "国服" });
+        mode, speed, speedVersion: "国服",
+        ...currentEquipmentField(host.options) });
     }));
 }
 

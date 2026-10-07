@@ -7,9 +7,9 @@ import { inflateSync } from "node:zlib";
 import { y9 } from "../generated/formats.js";
 import { FI } from "../generated/library.js";
 import { ag } from "../generated/vehicle.js";
-import { Vector3 } from "three";
+import { BoxGeometry, Group, Mesh, Vector3 } from "three";
 import { findMyRoomSceneAssets, myRoomFacingYaw, myRoomSceneAnchors,
-  myRoomSceneFrame } from "./my-room-scene";
+  myRoomSceneFrame, myRoomVisibleBounds } from "./my-room-scene";
 
 const defaultRoom = {
   id: 16, resourceName: "tomb_M01", title: "墓地小屋背景", isDefault: true,
@@ -39,6 +39,20 @@ test("ordinary character front turns toward all walking directions", () => {
     assert.ok(facing.distanceTo(expected) < 0.00001,
       `facing ${facing.toArray()} should match movement ${expected.toArray()}`);
   }
+});
+
+test("parked kart grounding ignores hidden effect meshes", () => {
+  const kart = new Group();
+  kart.position.set(0, 20.88, 0);
+  const body = new Mesh(new BoxGeometry(2, 1, 3));
+  body.position.y = 0.5;
+  // Hidden kart effects sit far below the body and must not lift the floor offset.
+  const effect = new Mesh(new BoxGeometry(112, 112, 49));
+  effect.visible = false;
+  kart.add(body, effect);
+  const bounds = myRoomVisibleBounds(kart);
+  assert.ok(Math.abs(bounds.min.y - 20.88) < 1e-6);
+  assert.ok(Math.abs(bounds.max.y - 21.88) < 1e-6);
 });
 
 test("the shipped default 3D room has original rider and kart anchors", async () => {

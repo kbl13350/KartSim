@@ -1,5 +1,7 @@
 import {
-  Box3, Color, Group, PerspectiveCamera, Raycaster, Scene, SRGBColorSpace, Vector3, WebGLRenderer,
+  Box3, BufferGeometry, Color, DoubleSide, Float32BufferAttribute, Group, Mesh, MeshBasicMaterial,
+  PerspectiveCamera, Raycaster, Scene, SRGBColorSpace, Vector3, WebGLRenderer,
+  type Material, type Object3D,
 } from "three";
 import { CR, SR, TR, W1, Yb, sn, xR, y9 } from "../generated/formats.js";
 import { FI, Tr, p5, xa } from "../generated/library.js";
@@ -171,6 +173,86 @@ export function myRoomSceneAnchors(model: ParsedRoom): MyRoomSceneAnchors {
   };
 }
 
+/**
+ * Box3.setFromObject also counts hidden meshes. Parked karts carry hidden
+ * effect geometry (f01-f03, Object01-03) reaching ~56 units below the body,
+ * which would push the grounding offset out of range.
+ */
+export function myRoomVisibleBounds(root: Object3D): Box3 {
+  const bounds = new Box3();
+  const part = new Box3();
+  root.updateWorldMatrix(true, true);
+  root.traverseVisible(object => {
+    const mesh = object as Object3D & {
+      geometry?: BufferGeometry; boundingBox?: Box3 | null; computeBoundingBox?: () => void;
+    };
+    if (!mesh.geometry) return;
+    // Skinned meshes keep a pose-aware box on the object itself.
+    if (mesh.boundingBox !== undefined && mesh.computeBoundingBox) {
+      mesh.computeBoundingBox();
+      part.copy(mesh.boundingBox!);
+    } else {
+      if (!mesh.geometry.boundingBox) mesh.geometry.computeBoundingBox();
+      if (!mesh.geometry.boundingBox) return;
+      part.copy(mesh.geometry.boundingBox);
+    }
+    bounds.union(part.applyMatrix4(mesh.matrixWorld));
+  });
+  return bounds;
+}
+
+/**
+ * Room triangles inside `area`, merged into one world-space mesh. Room meshes
+ * share one large buffer, so per-mesh boxes cannot narrow the search. Without
+ * `withTransparent`, glows and light beams are left out so they do not block;
+ * floors such as ice or glass need them.
+ */
+export function myRoomCollider(root: Object3D, area: Box3,
+  withTransparent = false): Mesh | undefined {
+  root.updateWorldMatrix(true, true);
+  const positions: number[] = [];
+  const a = new Vector3();
+  const b = new Vector3();
+  const c = new Vector3();
+  const triangle = new Box3();
+  root.traverseVisible(object => {
+    const mesh = object as Mesh;
+    if (!mesh.isMesh || (mesh as Mesh & { isSkinnedMesh?: boolean }).isSkinnedMesh) return;
+    const position = mesh.geometry.getAttribute("position");
+    if (!position) return;
+    const index = mesh.geometry.index;
+    const total = index ? index.count : position.count;
+    const materials: Material[] = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    const ranges = Array.isArray(mesh.material) && mesh.geometry.groups.length
+      ? mesh.geometry.groups.map(group => ({ ...group, material: materials[group.materialIndex ?? 0] }))
+      : [{ ...mesh.geometry.drawRange, material: materials[0] }];
+    for (const range of ranges) {
+      if (!range.material?.visible || (range.material.transparent && !withTransparent)) continue;
+      const end = Math.min(total, range.start + range.count);
+      for (let i = range.start; i + 2 < end; i += 3) {
+        a.fromBufferAttribute(position, index ? index.getX(i) : i).applyMatrix4(mesh.matrixWorld);
+        b.fromBufferAttribute(position, index ? index.getX(i + 1) : i + 1).applyMatrix4(mesh.matrixWorld);
+        c.fromBufferAttribute(position, index ? index.getX(i + 2) : i + 2).applyMatrix4(mesh.matrixWorld);
+        triangle.makeEmpty().expandByPoint(a).expandByPoint(b).expandByPoint(c);
+        if (triangle.intersectsBox(area)) positions.push(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z);
+      }
+    }
+  });
+  if (!positions.length) return undefined;
+  const geometry = new BufferGeometry();
+  geometry.setAttribute("position", new Float32BufferAttribute(positions, 3));
+  geometry.computeBoundingSphere();
+  const collider = new Mesh(geometry, new MeshBasicMaterial({ side: DoubleSide }));
+  collider.updateMatrixWorld(true);
+  return collider;
+}
+
+/** Walking character footprint and the probe heights that meet scenery. */
+const WALK_RADIUS = 0.45;
+const WALK_PROBE_HEIGHTS = [0.4, 1.1];
+/** Largest floor height change the character may step across. */
+const WALK_STEP = 0.35;
+
 export interface MyRoomSceneFrame {
   target: Vector3;
   distance: number;
@@ -206,10 +288,17 @@ function resolveRoomTexture(library: MyRoomSceneLibrary, path: string,
     : resolved;
 }
 
+/** Follow camera distance at zoom 1, close behind the walking character. */
+const FOLLOW_DISTANCE = 8;
+const FOLLOW_MIN_ZOOM = 0.7;
+// Zoom 1 is the widest view; going further out shows the edge of smaller rooms.
+const FOLLOW_MAX_ZOOM = 1;
+
 /** Renders the original MyRoom 3D track and skydome in an isolated preview. */
 export class MyRoomSceneView {
   readonly canvas = document.createElement("canvas");
   readonly status = document.createElement("div");
+  readonly zoomReadout = document.createElement("div");
   readonly camera = new PerspectiveCamera(52, 1, 0.1, 4000);
   readonly scene = new Scene();
   readonly skyScene = new Scene();
@@ -241,6 +330,9 @@ export class MyRoomSceneView {
   private zoom = 1;
   private readonly cameraTarget = new Vector3();
   private readonly heldKeys = new Set<string>();
+  private collider?: Mesh;
+  private floorCollider?: Mesh;
+  private readonly walkRay = new Raycaster();
   private lastFrameTime = 0;
   private followingPlayer = false;
   private disposed = false;
@@ -258,7 +350,9 @@ export class MyRoomSceneView {
     this.status.setAttribute("role", "status");
     this.status.style.cssText = "position:absolute;left:12px;top:76px;z-index:2;padding:6px 10px;max-width:calc(100% - 24px);border-radius:6px;background:#102b49d9;color:#fff;font:13px/1.4 system-ui,sans-serif;pointer-events:none";
     this.status.textContent = "等待载入原版小屋场景…";
-    root.append(this.canvas, this.status);
+    this.zoomReadout.setAttribute("aria-live", "polite");
+    this.zoomReadout.style.cssText = "position:absolute;right:12px;top:76px;z-index:2;padding:6px 10px;border-radius:6px;background:#102b49d9;color:#fff;font:13px/1.4 system-ui,sans-serif;font-variant-numeric:tabular-nums;pointer-events:none";
+    root.append(this.canvas, this.status, this.zoomReadout);
     this.canvas.addEventListener("pointerdown", this.onPointerDown);
     this.canvas.addEventListener("blur", this.onCanvasBlur);
     this.canvas.addEventListener("wheel", this.onWheel, { passive: false });
@@ -322,6 +416,7 @@ export class MyRoomSceneView {
       this.room.reset(0);
       this.sky.reset(0);
       previousRoom?.dispose();
+      this.disposeCollider();
       previousSky?.dispose();
       this.setStatus(this.avatar
         ? "WASD / 方向键行走 · 滚轮缩放"
@@ -426,11 +521,13 @@ export class MyRoomSceneView {
     this.playerRoot.clear();
     this.parkedKartRoot.clear();
     this.room?.dispose();
+    this.disposeCollider();
     this.sky?.dispose();
     this.renderer?.dispose();
     this.renderer?.forceContextLoss();
     this.canvas.remove();
     this.status.remove();
+    this.zoomReadout.remove();
   }
 
   private ensureRenderer(): void {
@@ -449,15 +546,23 @@ export class MyRoomSceneView {
 
   private positionCamera(): void {
     if (!this.frame) return;
-    const target = this.followingPlayer ? this.cameraTarget : this.frame.target;
-    const distance = this.followingPlayer ? 13 : this.frame.distance;
-    const horizontal = Math.cos(this.pitch) * distance * this.zoom;
-    this.camera.position.set(
+    if (this.followingPlayer)
+      this.poseCamera(this.camera, this.cameraTarget, FOLLOW_DISTANCE * this.zoom);
+    else this.poseCamera(this.camera, this.frame.target, this.frame.distance * this.zoom);
+  }
+
+  private poseCamera(camera: PerspectiveCamera, target: Vector3, distance: number): void {
+    camera.position.set(
       target.x,
-      target.y + Math.sin(this.pitch) * distance * this.zoom,
-      target.z + horizontal,
+      target.y + Math.sin(this.pitch) * distance,
+      target.z + Math.cos(this.pitch) * distance,
     );
-    this.camera.lookAt(target);
+    camera.lookAt(target);
+  }
+
+  private updateZoomReadout(): void {
+    const text = `缩放 ${this.zoom.toFixed(2)}×`;
+    if (this.zoomReadout.textContent !== text) this.zoomReadout.textContent = text;
   }
 
   private resize(): void {
@@ -486,6 +591,7 @@ export class MyRoomSceneView {
       this.lastFrameTime = now;
       this.updateWalk(delta);
       this.positionCamera();
+      this.updateZoomReadout();
       try {
         if (this.avatar && this.subject) {
           this.subject.stageBinding.beginFrame(elapsed);
@@ -501,7 +607,7 @@ export class MyRoomSceneView {
             this.avatarNeedsGrounding = false;
           }
           if (this.kartNeedsGrounding && this.anchors) {
-            const bounds = new Box3().setFromObject(this.avatar.kart.object);
+            const bounds = myRoomVisibleBounds(this.avatar.kart.object);
             const offset = this.parkingGroundY - bounds.min.y;
             if (Number.isFinite(offset) && Math.abs(offset) < 20)
               this.parkedKartRoot.position.y += offset;
@@ -535,9 +641,12 @@ export class MyRoomSceneView {
 
   private readonly onWheel = (event: WheelEvent): void => {
     event.preventDefault();
-    this.zoom = Math.max(this.followingPlayer ? 0.55 : 0.5,
-      Math.min(this.followingPlayer ? 1.65 : 2.5,
-        this.zoom * Math.exp(event.deltaY * 0.001)));
+    const wanted = this.zoom * Math.exp(event.deltaY * 0.001);
+    if (!this.followingPlayer) {
+      this.zoom = Math.max(0.5, Math.min(2.5, wanted));
+      return;
+    }
+    this.zoom = Math.max(FOLLOW_MIN_ZOOM, Math.min(FOLLOW_MAX_ZOOM, wanted));
   };
 
   private placeSubject(): void {
@@ -569,6 +678,13 @@ export class MyRoomSceneView {
     };
     this.riderGroundY = floor(this.anchors.rider);
     this.parkingGroundY = floor(this.anchors.parking);
+    const { minX, maxX, minZ, maxZ } = this.anchors;
+    this.disposeCollider();
+    const walkArea = new Box3(
+      new Vector3(minX - 2, this.riderGroundY - 1.5, minZ - 2),
+      new Vector3(maxX + 2, this.riderGroundY + 2.5, maxZ + 2));
+    this.collider = myRoomCollider(this.room.object, walkArea);
+    this.floorCollider = myRoomCollider(this.room.object, walkArea, true);
     this.avatarNeedsGrounding = Boolean(this.avatar);
     this.kartNeedsGrounding = Boolean(this.avatar);
     this.floorMeasured = true;
@@ -590,9 +706,11 @@ export class MyRoomSceneView {
         this.playerRoot.position.x + dx * 1.8 * delta));
       const z = Math.max(this.anchors.minZ, Math.min(this.anchors.maxZ,
         this.playerRoot.position.z + dz * 1.8 * delta));
-      const fromKart = Math.hypot(x - this.anchors.parking.x, z - this.anchors.parking.z);
-      if (fromKart > 1.8 * this.environmentKartScale)
-        this.playerRoot.position.set(x, this.anchors.rider.y, z);
+      const position = this.playerRoot.position;
+      // Slide along whatever blocks a diagonal step instead of stopping dead.
+      const step = [[x, z], [x, position.z], [position.x, z]]
+        .find(([nextX, nextZ]) => this.canWalkTo(nextX!, nextZ!));
+      if (step) position.set(step[0]!, this.anchors.rider.y, step[1]!);
       this.playerRoot.rotation.y = myRoomFacingYaw(dx, dz);
     } else {
       this.walkingAvatar?.motion.submitMotion(3);
@@ -600,6 +718,47 @@ export class MyRoomSceneView {
     }
     const desired = this.playerRoot.position.clone().add(new Vector3(0, 1.8, 0));
     this.cameraTarget.lerp(desired, Math.min(1, delta * 9));
+  }
+
+  /** Keep clear of the parked kart, solid scenery and floor edges or raised platforms. */
+  private canWalkTo(x: number, z: number): boolean {
+    if (!this.anchors) return false;
+    const from = this.playerRoot.position;
+    const dx = x - from.x;
+    const dz = z - from.z;
+    const distance = Math.hypot(dx, dz);
+    if (!distance) return false;
+    if (Math.hypot(x - this.anchors.parking.x, z - this.anchors.parking.z) <=
+        1.8 * this.environmentKartScale) return false;
+    const collider = this.collider;
+    const floorCollider = this.floorCollider;
+    if (!collider || !floorCollider) return true;
+    const ray = this.walkRay;
+    const ground = this.riderGroundY;
+    const direction = new Vector3(dx / distance, 0, dz / distance);
+    const side = new Vector3(-direction.z, 0, direction.x).multiplyScalar(WALK_RADIUS * 0.7);
+    ray.far = distance + WALK_RADIUS;
+    for (const height of WALK_PROBE_HEIGHTS) {
+      for (const offset of [0, 1, -1]) {
+        ray.set(new Vector3(from.x, ground + height, from.z).addScaledVector(side, offset), direction);
+        if (ray.intersectObject(collider, false).length) return false;
+      }
+    }
+    ray.far = 1.2 + 1.5;
+    ray.set(new Vector3(x, ground + 1.2, z), new Vector3(0, -1, 0));
+    // Low solid scenery below the probe heights still blocks the step.
+    const solid = ray.intersectObject(collider, false)[0];
+    if (solid && solid.point.y > ground + WALK_STEP) return false;
+    return ray.intersectObject(floorCollider, false)
+      .some(hit => Math.abs(hit.point.y - ground) <= WALK_STEP);
+  }
+
+  private disposeCollider(): void {
+    for (const collider of [this.collider, this.floorCollider]) {
+      collider?.geometry.dispose();
+      (collider?.material as Material | undefined)?.dispose();
+    }
+    this.collider = this.floorCollider = undefined;
   }
 
   private readonly onKeyDown = (event: KeyboardEvent): void => {

@@ -13,3 +13,11 @@ test("local Java backend is configured without the downloaded remote config", ()
   }).backendOrigin, "http://localhost:9000");
   assert.throws(() => createLocalMultiplayerConfig("https://example.test"));
 });
+
+test("LAN play reaches the backend through the page's own origin", () => {
+  const lan = { VITE_MULTIPLAYER_SAME_ORIGIN: "1" };
+  assert.equal(createLocalMultiplayerConfig("https://192.168.1.8:8780", lan).backendOrigin,
+    "https://192.168.1.8:8780");
+  assert.equal(createLocalMultiplayerConfig("https://kart-mac.local:8780", lan).backendOrigin,
+    "https://kart-mac.local:8780");
+});

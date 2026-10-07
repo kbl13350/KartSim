@@ -115,6 +115,7 @@ export async function openReadyMultiplayer(controller: ReadyMultiplayerControlle
     onRaceVisibility: (visible: boolean) => controller.activeTaskbar?.setVisible(!visible),
     initialTrackId: host.getSelection()?.trackId,
     initialEquipment: deps.initialEquipment(host.getProfile()),
+    currentEquipment: () => deps.initialEquipment(host.getProfile()),
     initial: host.getProfile().initial,
     garage: {
       options: () => controller.multiplayerGarageOptions(),

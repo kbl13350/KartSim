@@ -98,13 +98,22 @@ export function receiveLobbyEvent(host: LobbyEventHost, event: LobbyEvent,
   }
   if (current.phase !== "open") host.cancelDialog(false);
 
-  if (current.race?.returnedIds?.includes(host.playerId)) {
+  const roster = current.race?.roster as Array<{ playerId: string }> | undefined;
+  const lateJoiner = Array.isArray(roster) &&
+    !roster.some(member => member.playerId === host.playerId);
+  if (lateJoiner) {
+    // Joined after the start: not in this race's frozen roster, so wait in the room.
+    host.startCoordinator?.reset();
+    host.options.status("房间正在比赛中，本局结束后即可准备。");
+  } else if (current.race?.returnedIds?.includes(host.playerId)) {
     host.startCoordinator?.reset();
     host.options.status("已返回原房间，等待其他玩家结束结算；全部返回后可重新准备。");
   } else {
     host.startCoordinator?.update(current);
   }
-  if (current.phase === "loading" && !host.startCoordinator) {
+  if (lateJoiner) {
+    // Status set above; the phase messages below are for racers.
+  } else if (current.phase === "loading" && !host.startCoordinator) {
     host.options.status(`正在加载比赛，${current.race?.loadedIds.length ?? 0}/${current.members.length} 人已就绪…`);
   } else if (current.phase === "countdown") {
     host.options.status("已加载玩家等待统一起跑；超时玩家已按掉线处理。");

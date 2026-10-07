@@ -8,10 +8,12 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -193,6 +195,7 @@ public class LobbyService {
         GameModes.validateCreation(gameplay, channel, client.resourceVersion, capacity);
         String password = optionalText(input, "password", 12);
         if (password == null) password = "";
+        refreshEquipment(client, input);
         Room room = new Room(UUID.randomUUID().toString(), name, password,
             mode, channel, gameplay, client.resourceVersion, capacity, speed, client.playerId);
         GameModes.initializeTrack(room);
@@ -207,7 +210,8 @@ public class LobbyService {
     private Map<String, Object> join(Client client, JsonNode input) {
         if (client.roomId != null) throw new ApiError(400, "ALREADY_IN_ROOM");
         Room room = requireRoom(text(input, "roomId", 1, 64));
-        if (!room.phase.equals("open")) throw new ApiError(400, "ROOM_NOT_OPEN");
+        // A racing room with space can be joined; the newcomer is not in the frozen
+        // roster and waits in the room until the race closes.
         if (!room.resourceVersion.equals(client.resourceVersion))
             throw new ApiError(400, "RESOURCE_VERSION_MISMATCH");
         if (!Objects.equals(room.password, optionalText(input, "password", 12) == null ?
@@ -217,6 +221,7 @@ public class LobbyService {
         int slot = availableSlot(room, room.mode.equals("team") ? preferredTeam(room) : null);
         if (slot < 0) throw new ApiError(400, "ROOM_FULL");
         Integer team = room.mode.equals("team") ? (slot < 4 ? 1 : 2) : null;
+        refreshEquipment(client, input);
         room.members.add(new Room.Member(client.playerId, client.name, slot, team,
             client.equipment, client.initial));
         client.roomId = room.id;
@@ -361,7 +366,11 @@ public class LobbyService {
                 if (!validEquipment(input.get("equipment")))
                     throw new ApiError(400, "INVALID_EQUIPMENT");
                 member.equipment = input.get("equipment");
+                client.equipment = member.equipment;
                 member.ready = false;
+                // Confirming the garage closes it; the client relies on this instead of
+                // sending changing=false, so the member must not stay "装备中".
+                member.changing = false;
             }
             case "changing" -> member.changing = booleanField(input, "changing");
             case "room-settings" -> {
@@ -454,7 +463,7 @@ public class LobbyService {
         if (!room.phase.equals("loading")) throw new ApiError(400, "RACE_NOT_LOADING");
         if (!room.race.loadedIds.contains(client.playerId))
             room.race.loadedIds.add(client.playerId);
-        if (room.race.loadedIds.size() == room.members.size()) {
+        if (room.race.loadedIds.containsAll(racers(room))) {
             room.race.startAt = now() + 3_000;
             if (room.gameplay.equals("roadblock")) {
                 room.race.finishDeadline = room.race.startAt + GameModes.ROADBLOCK_LIMIT_MS;
@@ -679,8 +688,7 @@ public class LobbyService {
 
     private static void closeRaceWhenReturned(Room room) {
         if (room.race == null || !room.phase.equals("finished") ||
-            !room.members.stream().allMatch(member ->
-                room.race.returnedIds.contains(member.playerId))) return;
+            !room.race.returnedIds.containsAll(racers(room))) return;
         room.phase = "open";
         room.race = null;
         room.raceError = null;
@@ -786,7 +794,22 @@ public class LobbyService {
         if (room.race == null ||
             !room.race.id.equals(text(input, "raceId", 1, 64)))
             throw new ApiError(400, "RACE_NOT_FOUND");
+        if (!rosterIds(room.race).contains(client.playerId))
+            throw new ApiError(403, "NOT_RACE_PARTICIPANT");
         return room;
+    }
+
+    private static Set<String> rosterIds(Room.Race race) {
+        Set<String> ids = new HashSet<>();
+        for (Map<String, Object> entry : race.roster) ids.add((String) entry.get("playerId"));
+        return ids;
+    }
+
+    /** Current members who started this race; late joiners are left out. */
+    private static List<String> racers(Room room) {
+        Set<String> roster = rosterIds(room.race);
+        return room.members.stream().map(member -> member.playerId)
+            .filter(roster::contains).toList();
     }
     private Room memberRoom(Client client, JsonNode input) {
         String id = text(input, "roomId", 1, 64);
@@ -831,6 +854,14 @@ public class LobbyService {
     private static long now() {
         return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - START_NANOS);
     }
+    /**
+     * Gear can change outside a room (lobby 我的物品, garage, single player), so create
+     * and join carry the client's current equipment; the race roster is frozen from it.
+     */
+    private static void refreshEquipment(Client client, JsonNode input) {
+        if (validEquipment(input.get("equipment"))) client.equipment = input.get("equipment");
+    }
+
     private static boolean validEquipment(JsonNode value) {
         if (value == null || !value.isObject() || !value.has("itemIds") ||
             !value.get("itemIds").isObject()) return false;

@@ -133,8 +133,9 @@ export class LocalRaceController {
   }
   raceProgress(): ReturnType<typeof localRaceProgress> { return localRaceProgress(this); }
   elapsedMs(now: number): number { return localRaceElapsedMs(this, this.dependencies.runtime, now); }
-  update(now: number, stepSeconds: number): void {
-    updateLocalRace(this, this.dependencies.runtime, now, stepSeconds);
+  /** The frame's race actions (finish, reset, warp) feed the multiplayer coordinator. */
+  update(now: number, stepSeconds: number): ReturnType<typeof updateLocalRace> {
+    return updateLocalRace(this, this.dependencies.runtime, now, stepSeconds);
   }
 
   queueRemoteKart(kart: unknown, collide: unknown): void {

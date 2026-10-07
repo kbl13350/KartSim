@@ -13,14 +13,17 @@ declare global {
 
 export interface LocalConfigEnvironment {
   VITE_MULTIPLAYER_BACKEND_ORIGIN?: string;
+  /** LAN play: the dev server proxies the backend on the page's own origin. */
+  VITE_MULTIPLAYER_SAME_ORIGIN?: string;
   VITE_MULTIPLAYER_TRANSPORT?: string;
 }
 
 /** Pure builder so local settings can be tested without a browser. */
 export function createLocalMultiplayerConfig(pageOrigin: string,
   environment: LocalConfigEnvironment = {}): LocalMultiplayerConfig {
+  const sameOrigin = environment.VITE_MULTIPLAYER_SAME_ORIGIN?.trim() === "1";
   const backendOrigin = environment.VITE_MULTIPLAYER_BACKEND_ORIGIN?.trim() ||
-    "http://127.0.0.1:8787";
+    (sameOrigin ? pageOrigin : "http://127.0.0.1:8787");
   const backend = new URL(backendOrigin);
   if (!["http:", "https:"].includes(backend.protocol) || backend.origin !== backendOrigin ||
       backend.username || backend.password || backend.pathname !== "/" ||

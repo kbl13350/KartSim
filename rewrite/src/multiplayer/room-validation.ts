@@ -397,8 +397,8 @@ export function isValidRoomSnapshot(value: unknown): value is RoomSnapshot {
   const rosterIds = new Set<string>(race.roster.map((member: RoomMember) => member.playerId));
   if (race.roster.some((member: RoomMember) => !member.equipment) ||
       new Set(race.loadedIds).size !== race.loadedIds.length ||
+      // Members outside the roster joined after the start and wait for the next race.
       !race.loadedIds.every((id: unknown) => typeof id === "string" && rosterIds.has(id)) ||
-      (value.members as RoomMember[]).some(member => !rosterIds.has(member.playerId)) ||
       (race.returnedIds !== undefined &&
         (value.phase !== "finished" || !Array.isArray(race.returnedIds) ||
           new Set(race.returnedIds).size !== race.returnedIds.length ||

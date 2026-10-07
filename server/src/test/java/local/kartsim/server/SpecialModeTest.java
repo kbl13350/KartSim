@@ -22,6 +22,30 @@ class SpecialModeTest {
     private final ObjectMapper json = new ObjectMapper();
 
     @Test
+    void lateJoinerWaitsWithoutBlockingTheRace() throws Exception {
+        try (Fixture fixture = new Fixture(directory.resolve("late"))) {
+            List<LobbyService.Client> players = fixture.connect(3);
+            List<LobbyService.Client> racers = players.subList(0, 2);
+            LobbyService.Client late = players.get(2);
+            Map<String, Object> room = fixture.joinAndReady(racers,
+                fixture.create(racers, "ordinary", "speedIndiCombine", 8));
+            String roomId = (String) room.get("roomId");
+            room = fixture.command(racers.getFirst(), Map.of("type", "start",
+                "roomId", roomId, "revision", room.get("revision")));
+            String raceId = (String) race(room).get("raceId");
+
+            room = fixture.command(late, Map.of("type", "join", "roomId", roomId));
+            assertEquals(3, ((List<?>) room.get("members")).size());
+            assertEquals("NOT_RACE_PARTICIPANT", fixture.error(() -> fixture.command(late,
+                Map.of("type", "loaded", "roomId", roomId, "raceId", raceId))));
+            for (LobbyService.Client racer : racers)
+                room = fixture.command(racer, Map.of("type", "loaded",
+                    "roomId", roomId, "raceId", raceId));
+            assertEquals("countdown", room.get("phase"));
+        }
+    }
+
+    @Test
     void roadblockUsesRunnerDeadlineAndPersistsAnOutcome() throws Exception {
         try (Fixture fixture = new Fixture(directory.resolve("roadblock"))) {
             List<LobbyService.Client> players = fixture.connect(5);

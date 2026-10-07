@@ -64,6 +64,21 @@ export interface LobbyDrawDependencies {
       align: "center" | "left"; verticalAlign: "center" | "top" }): void;
   randomTrack(code: number): { title: string } | undefined;
   fontFamily: string;
+  /**
+   * Web addition: tag each listed room 准备中 or 游戏中 beside its title, and let
+   * players join a racing room that has space (they wait for the next race).
+   * The release greys racing rooms out instead; it has no room-state art.
+   */
+  showRoomStatus?: boolean;
+}
+
+const ROOM_STATUS_SIZE = 14;
+
+/** Status tag text and colour for a listed room. */
+export function lobbyRoomStatus(room: LobbyRoomSummary): { text: string; fill: string } {
+  return room.gaming
+    ? { text: "游戏中", fill: "#d9534f" }
+    : { text: "准备中", fill: "#2e9d5b" };
 }
 
 export function drawLobbyListNode(
@@ -95,7 +110,8 @@ export function drawLobbyListNode(
   const interactive = host.enabled &&
     (dependencies.interactiveNames.has(name) || name === "createRoom" ||
      name === "quickJoin" ||
-     (!!roomMatch && !!room && !room.gaming && room.count < room.capacity));
+     (!!roomMatch && !!room && (!room.gaming || !!dependencies.showRoomStatus) &&
+       room.count < room.capacity));
 
   if (textures) {
     host.context.save();
@@ -155,9 +171,30 @@ export function drawLobbyListNode(
   if (interactive) host.hits.push({ name, rect: bounds });
 
   let text = attribute(node, "text");
+  let textBounds = bounds;
   if (name === "roomTitle") {
-    text = room ? dependencies.fitRoomTitle(room,
-      titleRight === undefined ? bounds.width : Math.max(0, titleRight - bounds.x - 8),
+    let titleWidth = titleRight === undefined
+      ? bounds.width : Math.max(0, titleRight - bounds.x - 8);
+    if (room && dependencies.showRoomStatus) {
+      // The tag takes the right end of the title column, just before the track name.
+      const status = lobbyRoomStatus(room);
+      const tagWidth = dependencies.measure(host.context, status.text,
+        { family: dependencies.fontFamily, size: ROOM_STATUS_SIZE }).width + 14;
+      const tagHeight = Math.min(bounds.height, ROOM_STATUS_SIZE + 8);
+      const tag = { x: bounds.x + Math.max(0, titleWidth - tagWidth), width: tagWidth,
+        y: bounds.y + (bounds.height - tagHeight) / 2, height: tagHeight };
+      host.context.save();
+      host.context.fillStyle = status.fill;
+      host.context.fillRect(tag.x, tag.y, tag.width, tag.height);
+      host.context.restore();
+      dependencies.drawText(host.context, status.text, tag, {
+        family: dependencies.fontFamily, size: ROOM_STATUS_SIZE, kind: "label",
+        color: "#ffffff", align: "center", verticalAlign: "center",
+      });
+      titleWidth = Math.max(0, titleWidth - tagWidth - 6);
+      textBounds = { ...bounds, width: titleWidth };
+    }
+    text = room ? dependencies.fitRoomTitle(room, titleWidth,
       value => dependencies.measure(host.context, value, {
         family: dependencies.fontFamily,
         size: Number(/\d+/.exec(attribute(node, "textRender") ?? "")?.[0] ?? 16),
@@ -179,7 +216,7 @@ export function drawLobbyListNode(
       const alignment = attribute(node, "textAlign") ?? "";
       const color = attribute(node, "textColor") ?? "white";
       const channels = color.split(/\s+/).map(Number);
-      dependencies.drawText(host.context, text, bounds, {
+      dependencies.drawText(host.context, text, textBounds, {
         family: dependencies.fontFamily,
         size: Number(/\d+/.exec(attribute(node, "textRender") ?? "")?.[0] ?? 16),
         kind: "label",

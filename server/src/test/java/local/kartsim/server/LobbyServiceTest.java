@@ -209,6 +209,48 @@ class LobbyServiceTest {
         }
     }
 
+    @Test
+    @SuppressWarnings("unchecked")
+    void roomGearFollowsJoinAndEndsTheChangingState() throws Exception {
+        Database database = new Database(dataDirectory.toString());
+        LobbyService lobby = new LobbyService(new Accounts(database), database, json);
+        try {
+            LobbyService.Client alice = connect(lobby, "Alice");
+            LobbyService.Client bob = connect(lobby, "Bob");
+            Map<String, Object> room = (Map<String, Object>) lobby.handle(alice,
+                json.valueToTree(Map.of("type", "create", "name", "Test Room", "capacity", 2,
+                    "password", "", "channelName", "speedIndiCombine",
+                    "gameplay", "ordinary", "mode", "individual",
+                    "speed", 7, "speedVersion", "国服"))).get("room");
+            String roomId = (String) room.get("roomId");
+            // Gear picked outside the room after hello replaces the connection's copy.
+            Map<String, Object> newKart = new LinkedHashMap<>(equipment());
+            Map<String, Integer> ids = new LinkedHashMap<>(
+                (Map<String, Integer>) newKart.get("itemIds"));
+            ids.put("3", 1637);
+            newKart.put("itemIds", ids);
+            room = (Map<String, Object>) lobby.handle(bob, json.valueToTree(Map.of(
+                "type", "join", "roomId", roomId, "equipment", newKart))).get("room");
+            assertEquals(1637, ((JsonNode) member(room, bob.playerId).get("equipment"))
+                .get("itemIds").get("3").intValue());
+            room = (Map<String, Object>) lobby.handle(bob, json.valueToTree(Map.of(
+                "type", "changing", "roomId", roomId, "changing", true))).get("room");
+            assertEquals(true, member(room, bob.playerId).get("changing"));
+
+            room = (Map<String, Object>) lobby.handle(bob, json.valueToTree(Map.of(
+                "type", "equipment", "roomId", roomId, "equipment", equipment()))).get("room");
+            assertFalse(member(room, bob.playerId).containsKey("changing"));
+        } finally {
+            lobby.stop();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Map<String, Object> member(Map<String, Object> room, String playerId) {
+        return ((List<Map<String, Object>>) room.get("members")).stream()
+            .filter(member -> playerId.equals(member.get("playerId"))).findFirst().orElseThrow();
+    }
+
     private LobbyService.Client connect(LobbyService lobby, String name) {
         return connect(lobby, name, new ArrayList<>());
     }

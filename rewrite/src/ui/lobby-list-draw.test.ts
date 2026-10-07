@@ -109,3 +109,48 @@ test("多人大厅树的文字、按钮、房间与裁剪和发行版一致", as
   assert.deepEqual(eventsRewrite, eventsOriginal);
   assert.deepEqual(rewritten.hits, baseline.hits);
 });
+
+test("房间列表标出游戏中或等待中，房间名让出标签位置", () => {
+  const texts: Array<[string, LobbyRect]> = [];
+  const fills: string[] = [];
+  const fake = { save() {}, restore() {}, drawImage() {}, strokeRect() {},
+    fillRect() { fills.push(fake.fillStyle); }, fillStyle: "", filter: "none" };
+  const context = fake as unknown as CanvasRenderingContext2D;
+  const dependencies: LobbyDrawDependencies = {
+    attribute: (entry, name) =>
+      (entry as LobbyLayoutNode & { attributes: Record<string, string> }).attributes[name],
+    rectangle: entry => (entry as LobbyLayoutNode & { bounds: LobbyRect }).bounds,
+    modeForButton: () => undefined, interactiveNames: new Set(), imageState: () => 0,
+    drawTexture() {}, fitRoomTitle: (_room, width) => `title:${width}`,
+    measure: (_context, value) => ({ width: value.length * 10 }),
+    drawText: (_context, value, bounds) => { texts.push([value, bounds]); },
+    randomTrack: () => undefined, fontFamily: "Lobby Font", showRoomStatus: true,
+  };
+  const rooms = [{ count: 3, capacity: 8, gaming: true }, { count: 1, capacity: 8 }];
+  const host: LobbyDrawHost = {
+    mode: "speed", page: 0, total: 2, rooms, enabled: true, gameplay: "ordinary",
+    context, hits: [], assets: { textures: new Map(), trackTitles: new Map(), strings: new Map() },
+    draw(entry, parent, room, titleRight) {
+      drawLobbyListNode(this, entry, parent, room, titleRight, dependencies);
+    },
+  };
+  // The BML reader looks names up as attributes.
+  const named = (name: string, bounds: LobbyRect, children: LobbyLayoutNode[] = []) =>
+    node(name, bounds, children, { name });
+  const row = (index: number) => named(`room${index}`, { x: 0, y: index * 40, width: 600, height: 40 }, [
+    named("roomTitle", { x: 0, y: index * 40, width: 400, height: 40 }),
+    named("trackName", { x: 408, y: index * 40, width: 150, height: 40 }),
+  ]);
+  host.draw(named("list", { x: 0, y: 0, width: 600, height: 80 }, [row(0), row(1)]),
+    { x: 0, y: 0, width: 600, height: 80 });
+
+  assert.deepEqual(texts.map(([value]) => value).filter(value => /中$/.test(value)),
+    ["游戏中", "准备中"]);
+  assert.deepEqual(fills, ["#d9534f", "#2e9d5b"]);
+  // 400px column - 44px tag - 6px gap; the title is drawn only in that space.
+  const title = texts.find(([value]) => value.startsWith("title:"))!;
+  assert.equal(title[0], "title:350");
+  assert.equal(title[1].width, 350);
+  // A racing room with space stays joinable; the late joiner waits in the room.
+  assert.deepEqual(host.hits.map(hit => hit.name), ["room0", "room1"]);
+});

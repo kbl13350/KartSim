@@ -23,15 +23,17 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @EnableWebSocket
 public class LocalWebSocket implements WebSocketConfigurer {
     private final Handler handler;
+    private final LocalNetwork network;
 
-    public LocalWebSocket(LobbyService lobby, ObjectMapper json) {
+    public LocalWebSocket(LobbyService lobby, ObjectMapper json, LocalNetwork network) {
         handler = new Handler(lobby, json);
+        this.network = network;
     }
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(handler, "/multiplayer/ws")
-            .setAllowedOriginPatterns("http://127.0.0.1:*", "http://localhost:*");
+            .setAllowedOriginPatterns(network.originPatterns());
     }
 
     private static final class Handler extends TextWebSocketHandler {

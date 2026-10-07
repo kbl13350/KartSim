@@ -4,13 +4,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/** The server binds to loopback and accepts browser pages on loopback origins. */
+/** Accepts browser pages on loopback origins and on any configured LAN hosts. */
 @Configuration
 public class LocalCors implements WebMvcConfigurer {
+    private final LocalNetwork network;
+
+    public LocalCors(LocalNetwork network) {
+        this.network = network;
+    }
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOriginPatterns("http://127.0.0.1:*", "http://localhost:*")
+            .allowedOriginPatterns(network.originPatterns())
             .allowedMethods("GET", "PUT", "POST", "OPTIONS")
             .allowedHeaders("Content-Type", "Authorization", "X-Profile-Key")
             .maxAge(600);

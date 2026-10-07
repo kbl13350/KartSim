@@ -161,6 +161,7 @@ export function requestRaceSessionLeave(host: RaceSessionLifecycleHost): void {
 export function failRaceSession(host: RaceSessionLifecycleHost,
   error: unknown): void {
   if (host.disposed) return;
+  console.error("多人比赛已停止", error);
   host.host.status(`多人比赛已停止：${error instanceof Error
     ? error.message : String(error)}`, true);
   host.resultVisible = false;

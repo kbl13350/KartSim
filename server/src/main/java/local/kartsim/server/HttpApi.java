@@ -2,6 +2,7 @@ package local.kartsim.server;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class HttpApi {
     private final Accounts accounts;
     private final LobbyService lobby;
+    private final LocalNetwork network;
 
     public HttpApi(Accounts accounts, LobbyService lobby) {
+        this(accounts, lobby, LocalNetwork.loopbackOnly());
+    }
+
+    @Autowired
+    public HttpApi(Accounts accounts, LobbyService lobby, LocalNetwork network) {
         this.accounts = accounts;
         this.lobby = lobby;
+        this.network = network;
     }
 
     @GetMapping("/healthz")
@@ -29,8 +37,18 @@ public class HttpApi {
 
     @GetMapping("/auth/config")
     public Map<String, Object> config(HttpServletRequest request) {
+        String forwarded = request.getHeader("X-Forwarded-Host");
+        if (forwarded != null) {
+            String forwardedHost = forwarded.split(",")[0].trim().replaceFirst(":\\d+$", "");
+            if (!network.allowsHost(forwardedHost)) throw new ApiError(400, "INVALID_HOST");
+            // Reached through the page's dev-server proxy: the backend is the page origin.
+            Map<String, Object> sameOrigin = new java.util.LinkedHashMap<>();
+            sameOrigin.put("loginRequired", false);
+            sameOrigin.put("backendOrigin", null);
+            return sameOrigin;
+        }
         String host = request.getServerName();
-        if (!host.equals("127.0.0.1") && !host.equalsIgnoreCase("localhost"))
+        if (!network.allowsHost(host))
             throw new ApiError(400, "INVALID_HOST");
         return Map.of("loginRequired", false,
             "backendOrigin", "http://" + host.toLowerCase() + ":" + request.getLocalPort());

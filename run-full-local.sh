@@ -49,6 +49,7 @@ fi
 
 echo "Java service: http://127.0.0.1:8787"
 echo "Starting game frontend (the address will be printed by Vite)..."
-(cd "$root/rewrite" && npm run dev) &
+# KART_VITE_HOST (set by run-lan.sh) overrides the loopback host in `npm run dev`.
+(cd "$root/rewrite" && npm run dev -- ${KART_VITE_HOST:+--host "$KART_VITE_HOST"}) &
 client_pid=$!
 wait "$client_pid"

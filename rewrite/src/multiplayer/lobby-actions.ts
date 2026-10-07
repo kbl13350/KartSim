@@ -37,6 +37,8 @@ export interface LobbyControllerHost {
     version?: string;
     status(message: string, error?: boolean): void;
     beforeLeaveRoom?: (context: { reason: string; room: LobbyRoom }) => Promise<boolean> | boolean;
+    /** Gear as it is now; it may have changed outside a room since connecting. */
+    currentEquipment?(): unknown;
   };
   client: { request(message: Record<string, unknown>): Promise<unknown>; dispose(): void };
   state: { room?: LobbyRoom; allowJoin(roomId: string): void };
@@ -213,11 +215,20 @@ export async function joinLobbyRoom(host: LobbyControllerHost, room: RoomSummary
   host.state.allowJoin(room.roomId);
   if (room.locked) {
     await passwordDialog(host, password => {
-      void host.mutate({ type: "join", roomId: room.roomId, password });
+      void host.mutate({ type: "join", roomId: room.roomId, password,
+        ...currentEquipmentField(host.options) });
     });
   } else {
-    await host.mutate({ type: "join", roomId: room.roomId, password: "" });
+    await host.mutate({ type: "join", roomId: room.roomId, password: "",
+      ...currentEquipmentField(host.options) });
   }
+}
+
+/** Create and join send current gear so the server's race roster matches this client. */
+export function currentEquipmentField(options: { currentEquipment?(): unknown }):
+  { equipment?: unknown } {
+  const equipment = options.currentEquipment?.();
+  return equipment === undefined ? {} : { equipment };
 }
 
 export async function quickJoinLobbyRoom(host: LobbyControllerHost): Promise<void> {

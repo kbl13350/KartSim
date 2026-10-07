@@ -246,3 +246,11 @@ test("deterministic JSON mutation sweep matches release", () => {
   }
   assert.ok(comparisons >= 500);
 });
+
+test("a player who joined after the start waits outside the race roster", () => {
+  for (const phase of ["loading", "racing", "finished"]) {
+    const value = room({ phase });
+    value.members.push(member("late", 2));
+    assert.equal(isValidRoomSnapshot(value), true, phase);
+  }
+});
