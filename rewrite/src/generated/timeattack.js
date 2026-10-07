@@ -2,6 +2,7 @@
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
 
+import { PresentationController } from "../app/presentation-controller.ts";
 import { TouchLayoutEditor } from "../input/touch-layout-editor.ts";
 import { TouchDrivingControls } from "../input/touch-driving-controls.ts";
 import { VehiclePreviewRenderer } from "../timeattack/vehicle-preview-renderer.ts";
@@ -133,6 +134,7 @@ const ghostToonDependencies = { isMesh: value => value instanceof D2, isToon: zn
 const ghostEffectDependencies = { boosterState: RD, boosterEffect: $w, secondaryEffect: Ww, secondaryState: ID };
 const presentationFrameDependencies = { nowMs: () => performance.now(), isRaceFinished: Un, requestFrame: callback => requestAnimationFrame(callback) };
 const presenterRaceDependencies = { setToonLinesEnabled: Pp, newSpeedResetState: pr, nowMs: () => performance.now(), applyTrackFog: kv, isManualBoostTachometer: value => value instanceof Gr };
+const presentationControllerServices = { createFrameRateCounter: () => new rf0(), createStageManager: () => new wf0(), createReadyStage: host => new mf0(host), createRaceStage: host => new df0(host), startLoop: owner => startPresentationLoop(owner, presentationFrameDependencies), stopLoop: owner => disposePresentationLoop(owner), advanceFrame: (owner, scheduledAtMs) => advancePresentationFrame(owner, scheduledAtMs, presentationFrameDependencies), renderFrame: (owner, startedAtMs) => renderPresentationFrame(owner, startedAtMs, presentationFrameDependencies), releaseRace: owner => releaseRaceForReady(owner, presenterRaceDependencies), replaceTrack: (owner, track) => replaceRaceTrack(owner, track, presenterRaceDependencies), applyRaceOptions: (owner, kartItemId) => applyRaceOptions(owner, kartItemId, presenterRaceDependencies) };
 const timeAttackStageDependencies = { nowMs: () => performance.now(), bodyQuaternion: PL, statusFlags: GD, racingPhase: Ne.Racing, isRaceFinished: Un, beginResetState: mL, advanceState: wL, kartVisible: gL, isDrivingPhase: Jl0, countdownPhase: Ne.Countdown, finishAcceptedPhase: Ne.FinishAccepted, refreshTachometer: eP, rankParticipants: XL, elapsedRaceMs: ff0, relativeGhostTime: nG, newGhostPoseBuffer: () => kL(), decodeGhostPose: LL, setVisualScaleMode: MK, isExhaustActive: Tk, particleRatio: Pt0, roadDescriptorName: TW, slotOffset: iG, createGhostRouteProgress: track => new hf0(track), compose: gf0, updateTachometer: QL, renderTachometer: JL, prepareWorldScene: e4, renderWithColorPipeline: yo, worldAxis: H2, depthAxis: $2 };
 const recordServiceDependencies = { recordKey: (selection, options) => Pt.recordKey(selection, options), resolveSpeed: Ue, validateSpeed: y6 };
 const ghostPoseRecorderDependencies = { interpolatePose: Ih0, encodeStamp: xD };
@@ -1279,127 +1281,7 @@ class mf0 extends YD {
   }
 }
 
-class vf0 {
-  constructor(e, t) {
-    ((this.host = e),
-      (this.previousRenderTime = t ?? 0),
-      (this.frame = this.frame.bind(this)),
-      this.stages.register(
-        "TimeAttackReadyStage",
-        () => ((this.currentRaceStage = void 0), new mf0(this.host)),
-      ),
-      this.stages.register("MultiplayerDrivingStage", () => {
-        if (((this.currentRaceStage = void 0), !this.multiplayerStage))
-          throw new Error("多人比赛尚未准备。");
-        return this.multiplayerStage;
-      }),
-      this.stages.register("TimeAttackStage", () => {
-        const i = new df0(this.host);
-        return ((this.currentRaceStage = i), i);
-      }));
-  }
-  host;
-  clientFramerate = new rf0();
-  animationFrame = 0;
-  lastUpdateMs = 0;
-  maxRafDelayMs = 0;
-  previousRenderTime;
-  presentationClockMs = 0;
-  fps = 60;
-  frameTimeSeconds = 0;
-  stages = new wf0();
-  currentRaceStage;
-  multiplayerStage;
-  get multiplayerDiagnosticsView() {
-    return this.multiplayerStage?.diagnosticsView;
-  }
-  nextFrameCallbacks = [];
-  publishMultiplayer(e) {
-    if (this.multiplayerStage) throw new Error("已有多人比赛。");
-    (this.host.shell.enterMultiplayerRace(),
-      (this.multiplayerStage = e),
-      this.stages.changeStage("MultiplayerDrivingStage"));
-  }
-  releaseMultiplayer(e) {
-    this.multiplayerStage === e &&
-      ((this.multiplayerStage = void 0),
-      this.host.shell.current === "MultiplayerRacing" &&
-        this.host.shell.leaveMultiplayerRace(),
-      this.stages.changeStage("TimeAttackReadyStage"));
-  }
-    start() { return startPresentationLoop(this, presentationFrameDependencies); }
-    dispose() { return disposePresentationLoop(this); }
-  afterNextFrame(e) {
-    return new Promise((t, i) => {
-      this.nextFrameCallbacks.push({
-        run: () => {
-          try {
-            t(e());
-          } catch (r) {
-            i(r);
-          }
-        },
-        reject: i,
-      });
-    });
-  }
-  changeStage(e, t) {
-    return this.stages.changeStage(e, t);
-  }
-  get stageName() {
-    return this.stages.currentName;
-  }
-  handleRouteSurfaceTag(e, t) {
-    this.currentRaceStage?.handleRouteSurfaceTag(e, t);
-  }
-  applyWarpNextActions(e) {
-    this.currentRaceStage?.applyWarpNextActions(e);
-  }
-  warpToCheckpoint(e) {
-    this.currentRaceStage?.warpToCheckpoint(e);
-  }
-  warpToPoint(e) {
-    this.currentRaceStage?.warpToPoint(e);
-  }
-    frame(scheduledAtMs) { return advancePresentationFrame(this, scheduledAtMs, presentationFrameDependencies); }
-    updateAndRender(startedAtMs) { return renderPresentationFrame(this, startedAtMs, presentationFrameDependencies); }
-  renderGameplayUi(e, t) {
-    this.currentRaceStage?.renderGameplayUi(e, t);
-  }
-  disposeRaceInterface() {
-    this.currentRaceStage?.disposeInterface();
-  }
-  get raceInterface() {
-    return this.currentRaceStage?.interface;
-  }
-  initiateSpeedReset(e) {
-    this.currentRaceStage?.initiateSpeedReset(e);
-  }
-  advanceResetCompletion(e) {
-    this.currentRaceStage?.advanceResetCompletion(e);
-  }
-  updateDriving(e) {
-    this.currentRaceStage?.updateDriving(e);
-  }
-  updateTimeAttackRoute(e, t, i) {
-    this.currentRaceStage?.updateTimeAttackRoute(e, t, i);
-  }
-  handleTimeAttackActions(e, t) {
-    this.currentRaceStage?.handleTimeAttackActions(e, t);
-  }
-  handleTimeAttackActionAudio(e, t) {
-    return this.currentRaceStage?.handleTimeAttackActionAudio(e, t) ?? !1;
-  }
-  handleTimeAttackFinishAction(e, t) {
-    return this.currentRaceStage?.handleTimeAttackFinishAction(e, t) ?? !1;
-  }
-  showTimeAttackResult(e, t) {
-    this.currentRaceStage?.showTimeAttackResult(e, t);
-  }
-    releaseRaceForReady() { return releaseRaceForReady(this, presenterRaceDependencies); }
-    replaceTrack(nextTrack) { return replaceRaceTrack(this, nextTrack, presenterRaceDependencies); }
-    applyRaceOptions(kartItemId) { return applyRaceOptions(this, kartItemId, presenterRaceDependencies); }
-}
+class vf0 extends PresentationController { constructor(host, previousRenderTime) { super(host, previousRenderTime, presentationControllerServices); } }
 
 function yf0(n) {
   const e = Ue(n);

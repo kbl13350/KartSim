@@ -40,8 +40,8 @@ npm run verify
 | `src/input/` | 驾驶按键、触屏与游戏手柄状态、漂移和控制位 | 手写 TypeScript，已替换对应发行版实现 |
 | `src/driving/` | 车辆构造、状态、控制、帧循环、碰撞、增压、仪表与视觉 | `AL` 的 173 个方法均由手写 TypeScript 接入；字段声明和外部辅助仍在兼容层 |
 | `src/world/` | 赛道路线、门、事件、碰撞与场景生命周期 | 手写 TypeScript；启动时安装到兼容世界类 |
-| `src/app/`、`src/timeattack/` | 资源启动、首次车手注册、运行依赖接口、应用快捷键、暂停/重开、画布尺寸、Ghost 菜单、退出清理、Ready 流程、开赛/返回导航及计时赛生命周期 | 手写 TypeScript；`Bf0` 的全部方法与访问器、Ready 控制器、计时赛阶段和记录服务方法已接入 |
-| `src/ui/` | Ready 视图与车辆预览、随机选图、设置、车库选择、装备及 Factory 提交、任务栏、滚动条、车库画布、本地档案与收藏 | 手写 TypeScript；`C7` 车库选择整类及 `ty`、`ny`、`Tc0`、`oy` 和懒加载车库的对应业务方法已接入，其余视图仍需兼容层 |
+| `src/app/`、`src/timeattack/` | 资源启动、首次车手注册、运行依赖接口、应用快捷键、暂停/重开、画布尺寸、Ghost 菜单、退出清理、Ready 流程、开赛/返回导航及计时赛生命周期 | 手写 TypeScript；`Bf0` 的全部方法与访问器、`vf0` 演示控制器整类、Ready 控制器、计时赛阶段和记录服务方法已接入 |
+| `src/ui/` | Ready 视图与车辆预览、随机选图、设置、车库选择、装备及 Factory 提交、任务栏、滚动条、车库画布、本地档案与收藏 | 手写 TypeScript；`C7` 车库选择与 `oy` 设置窗口整类、`ty`、`ny`、`Tc0` 和懒加载车库的对应业务方法已接入，其余视图仍需兼容层 |
 | `src/vehicle/` | 赛道金币、人物动作、车辆动画、音效、资源总装配、赛道加载、充能特效、车膜和悬挂饰品运动 | 手写 TypeScript；`ul` 全部方法和 `pv` 音效类已接入，底层模型与特效辅助仍在兼容层 |
 | `src/resources/` | 资源清单、档案索引、容器缓存、赛道与车库目录、车辆身份、配置及原接口适配器 | 手写 TypeScript；`Sw` 的全部 38 个方法已接入游戏 |
 | `src/codecs/` | Rho/Rho5 索引扫描、挂载、解码及二进制 XML/BML 解码 | 手写 TypeScript；`Sw.load` 静态方法已接入游戏 |
@@ -71,4 +71,4 @@ npm run verify
 
 影子记录的帧编解码与存储还经过真实浏览器 IndexedDB 写入、读取、列举和删除验证；可在开发服务器打开 `/tests/browser/ghost-store.html` 重测。KSV 外层格式也已手写，可用 `/tests/browser/ksv-codec.html` 检查浏览器读写闭环；底层 zlib 使用 `pako@2.1.0`，字节输出已与发行版逐项比对。
 
-`src/generated/` 当前仍有约 1.1 MB 的场景格式、渲染、界面、车辆和车库兼容代码保留发行版压缩名称。完整手写重构尚未完成；每个已替换范围都由 `src/generated/manifest.json` 和相应的差分测试标明。暂停菜单资源、画布交互和赛前车辆预览已迁到 `src/timeattack/`，并在真实浏览器中验证进入赛道和 Esc 暂停。原网页只交付浏览器客户端，仓库内 `server/` 是依照可观察协议新写的 Java 实现。联机协议边界见 `src/multiplayer/README.md`。
+`src/generated/` 当前仍有约 1.0 MB 的场景格式、渲染、界面、车辆和车库兼容代码保留发行版压缩名称。完整手写重构尚未完成；每个已替换范围都由 `src/generated/manifest.json` 和相应的差分测试标明。暂停菜单资源、画布交互和赛前车辆预览已迁到 `src/timeattack/`，并在真实浏览器中验证进入赛道和 Esc 暂停。原网页只交付浏览器客户端，仓库内 `server/` 是依照可观察协议新写的 Java 实现。联机协议边界见 `src/multiplayer/README.md`。

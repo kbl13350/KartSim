@@ -1845,8 +1845,8 @@
     },
     {
       "file": "ui.js",
-      "bytes": 166744,
-      "sha256": "3d08e133b39948c30f1c9ff03550c0d5b01aa7844f6a3627bc4ee4155434018d",
+      "bytes": 122431,
+      "sha256": "a36b9e080da51a95d778e4eb605d99eb10c8dda2b3323e6f7feb4852b475cfc7",
       "imports": 120,
       "exports": 33
     },
@@ -1859,8 +1859,8 @@
     },
     {
       "file": "timeattack.js",
-      "bytes": 55205,
-      "sha256": "63028de879e3083060d9172d414e80a40a64d68e129fd41084de9e0540f6c9b4",
+      "bytes": 52351,
+      "sha256": "530d075bc37555637bc83fedc55d38f80844f36c93f345308ce25971295251d5",
       "imports": 148,
       "exports": 24
     },

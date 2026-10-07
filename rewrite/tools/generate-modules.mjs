@@ -3220,9 +3220,10 @@ ${[...multiplayerMethodOverrides.values()].join("\n")}
   if (declarationName === "oy") {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "ui",
       "Settings view moved from UI.");
+    recordWholeClassMembers(node, settingsMethodOverrides, replacedSettingsMethods);
     bodies.get("ui").push({
       at: node.start,
-      text: rewriteClassMethods(node, settingsMethodOverrides, replacedSettingsMethods),
+      text: "const oy = createSettingsWindowClass(settingsWindowDependencies);",
     });
     continue;
   }
@@ -3394,9 +3395,10 @@ ${[...garageSelectionMethodOverrides.values()].join("\n")}
   }
   if (declarationName === "vf0") {
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "timeattack", "Presenter moved.");
+    recordWholeClassMembers(node, presenterMethodOverrides, replacedPresenterMethods);
     bodies.get("timeattack").push({
       at: node.start,
-      text: rewriteClassMethods(node, presenterMethodOverrides, replacedPresenterMethods),
+      text: "class vf0 extends PresentationController { constructor(host, previousRenderTime) { super(host, previousRenderTime, presentationControllerServices); } }",
     });
     continue;
   }
@@ -4277,6 +4279,7 @@ function renderModule(name) {
     lines.push('import { commitObstacleSnapshot } from "../world/track-obstacle-snapshot.ts";');
   }
   if (name === "timeattack") {
+    lines.push('import { PresentationController } from "../app/presentation-controller.ts";');
     lines.push('import { TouchLayoutEditor } from "../input/touch-layout-editor.ts";');
     lines.push('import { TouchDrivingControls } from "../input/touch-driving-controls.ts";');
     lines.push('import { VehiclePreviewRenderer } from "../timeattack/vehicle-preview-renderer.ts";');
@@ -4419,6 +4422,8 @@ function renderModule(name) {
     lines.push('import { accumulateVehicleTeamGauge, consumeVehicleTeamGaugeCharge, enqueueVehicleTeamGaugeTarget, updateVehicleTeamGauge, consumeVehicleTeamGaugeFullAnimation, teamGaugeSettledAtMs, convertVehicleTeamBoosterSlots, expireVehicleTeamSlotWindow, vehicleSpeedSlotDisabled, teamSlotWindowStartMs } from "../driving/team-gauge.ts";');
   }
   if (name === "ui") {
+    lines.push('import { createSettingsWindowClass } from "../ui/settings-window.ts";');
+    lines.push('import { loadSettingsWindowAssets, parseOfficialBgmChoices } from "../ui/settings-window-assets.ts";');
     lines.push('import { ScrollbarController as b6, scrollbarGeometry as uT, dragScrollPosition as qa0, stepScrollPosition as nf, scrollPosition as qv, pointInRectangle as bc } from "../ui/scrollbar.ts";');
     lines.push('import { GarageLivePanels } from "../ui/garage-live-panels.ts";');
     lines.push('import { garageEquipmentCardKey, normalizedGarageKartPath } from "../ui/garage-live-panel-assets.ts";');
@@ -4763,6 +4768,8 @@ function awardPodiumLoadDependencies() { return {
     // the user action occurs, after ES module initialization has finished.
     lines.push('const garageFavoriteDependencies = { get maxFavorites() { return qg; }, gridStep: i4 };');
     lines.push('const settingsInteractionDependencies = { get tabs() { return Ie; }, versions: Qd, versionStatus: Ac, speedChoices: Di, fallbackSpeed: wa0, defaultSound: _P, volumeThumb: tm };');
+    lines.push('const settingsWindowAssetDependencies = { parseBml: s2, decodePng: p2, attribute: T, frameState: Ft, buttonStyle: m4, loadAutoImage: ma, registerFont: f5, scrollbarAssets: Hv };');
+    lines.push('const settingsWindowDependencies = { loadAssets: library => loadSettingsWindowAssets(library, settingsWindowAssetDependencies), parseBgmChoices: parseOfficialBgmChoices, releaseFont: G1, configureCanvas: p3, pixelRatio: xe, layoutRect: V0, clientRect: E9, captionPosition: an, captionRect: f3, measureText: ve, paintText: m9, paintFrame: C9, keyboardLabel: SP, gamepadLabel: sa0, gamepadButtons: Hg, validGamepadCode: EP, usedGamepadCode: ca0, browserKeyCode: xP, validKeyCode: CP, get tabs() { return Ie; }, versions: Qd, defaultVersion: C4, versionStatus: Ac, speedChoices: Di, fallbackSpeed: wa0, speedChannel: zv, channelText: VP, keyActions: ut, defaultKeyMap: Br, dialogShortcuts: BP, defaultSound: _P };');
     lines.push('const readyViewDependencies = { formatRecord: yT, speedChannel: Ue, defaultVersion: ze };');
     lines.push('const readyButtonDrawingDependencies = { paintFrame: ct, paintText: df, translate: Yn };');
     lines.push(`class Ma0 extends GarageCanvasCompositor {
@@ -4851,6 +4858,7 @@ function awardPodiumLoadDependencies() { return {
     lines.push('const ghostEffectDependencies = { boosterState: RD, boosterEffect: $w, secondaryEffect: Ww, secondaryState: ID };');
     lines.push("const presentationFrameDependencies = { nowMs: () => performance.now(), isRaceFinished: Un, requestFrame: callback => requestAnimationFrame(callback) };");
     lines.push("const presenterRaceDependencies = { setToonLinesEnabled: Pp, newSpeedResetState: pr, nowMs: () => performance.now(), applyTrackFog: kv, isManualBoostTachometer: value => value instanceof Gr };");
+    lines.push("const presentationControllerServices = { createFrameRateCounter: () => new rf0(), createStageManager: () => new wf0(), createReadyStage: host => new mf0(host), createRaceStage: host => new df0(host), startLoop: owner => startPresentationLoop(owner, presentationFrameDependencies), stopLoop: owner => disposePresentationLoop(owner), advanceFrame: (owner, scheduledAtMs) => advancePresentationFrame(owner, scheduledAtMs, presentationFrameDependencies), renderFrame: (owner, startedAtMs) => renderPresentationFrame(owner, startedAtMs, presentationFrameDependencies), releaseRace: owner => releaseRaceForReady(owner, presenterRaceDependencies), replaceTrack: (owner, track) => replaceRaceTrack(owner, track, presenterRaceDependencies), applyRaceOptions: (owner, kartItemId) => applyRaceOptions(owner, kartItemId, presenterRaceDependencies) };");
     lines.push("const timeAttackStageDependencies = { nowMs: () => performance.now(), bodyQuaternion: PL, statusFlags: GD, racingPhase: Ne.Racing, isRaceFinished: Un, beginResetState: mL, advanceState: wL, kartVisible: gL, isDrivingPhase: Jl0, countdownPhase: Ne.Countdown, finishAcceptedPhase: Ne.FinishAccepted, refreshTachometer: eP, rankParticipants: XL, elapsedRaceMs: ff0, relativeGhostTime: nG, newGhostPoseBuffer: () => kL(), decodeGhostPose: LL, setVisualScaleMode: MK, isExhaustActive: Tk, particleRatio: Pt0, roadDescriptorName: TW, slotOffset: iG, createGhostRouteProgress: track => new hf0(track), compose: gf0, updateTachometer: QL, renderTachometer: JL, prepareWorldScene: e4, renderWithColorPipeline: yo, worldAxis: H2, depthAxis: $2 };");
     lines.push("const recordServiceDependencies = { recordKey: (selection, options) => Pt.recordKey(selection, options), resolveSpeed: Ue, validateSpeed: y6 };");
     lines.push("const ghostPoseRecorderDependencies = { interpolatePose: Ih0, encodeStamp: xD };");
