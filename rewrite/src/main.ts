@@ -1,7 +1,9 @@
 // The verified release modules and handwritten systems share one startup path.
 import { installLocalMultiplayerConfig } from "./multiplayer/local-config";
+import { installStartupLoadingSkin } from "./ui/startup-loading-skin";
 
 installLocalMultiplayerConfig();
+installStartupLoadingSkin();
 
 async function waitForServiceWorker(): Promise<void> {
   if (!("serviceWorker" in navigator) || !window.isSecureContext) return;

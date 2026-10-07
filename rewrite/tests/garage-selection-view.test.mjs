@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { parse } from "@babel/parser";
-import { createGarageSelectionViewClass } from "../src/ui/garage-selection-view.ts";
+import { createGarageSelectionViewClass, releaseGarageTopTabs,
+  webGarageTopTabs } from "../src/ui/garage-selection-view.ts";
 
 const release = readFileSync(new URL("../../recovered/formatted/index.js", import.meta.url), "utf8");
 const originalNode = parse(release, { sourceType: "module" }).program.body
@@ -313,6 +314,8 @@ test("garage selector full frame rendering matches release", () => {
     view.favoriteKey = () => undefined;
     view.itemGrid = () => ({ cells: [{ x: 200, y: 160, width: 80, height: 90 }],
       firstItem: 0, positionCount: 2 });
+    // The Web build hides 锁定/网吧 and enables 使用; compare against the released tabs.
+    if (h === actual) view.topTabs = releaseGarageTopTabs;
     view.livePanels = { render: (...args) => h.calls.push(["panel:render", args[0], args[1], args[2]]),
       drawPreview: (_context, rect) => h.calls.push(["panel:preview", rect]),
       drawCard: (_context, candidate, rect) => h.calls.push(["panel:card", candidate.itemId, rect]) };
@@ -329,4 +332,11 @@ test("garage selector static asset loading constructs the same view", async () =
   const originalView = await expected.ViewClass.load(expected.options);
   const rewrittenView = await actual.ViewClass.load(actual.options);
   assert.deepEqual(snapshot(rewrittenView, actual), snapshot(originalView, expected));
+});
+
+test("Web garage tabs hide 锁定 and 网吧 and open 使用 as the in-use list", () => {
+  assert.deepEqual(webGarageTopTabs.map(tab => tab.key),
+    ["favoriteItem", "kartBody", "character", "equip", "useful", "deco"]);
+  assert.equal(webGarageTopTabs.find(tab => tab.key === "useful")?.category, "using");
+  assert.equal(releaseGarageTopTabs.length, 8);
 });

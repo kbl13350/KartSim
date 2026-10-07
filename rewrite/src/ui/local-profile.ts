@@ -42,7 +42,17 @@ export interface MyRoomProfile {
   environmentId: number;
   displayName: string;
   message: string;
+  /** roomAdmin "设置代表卡丁车": up to two starred karts parked beside the owner's. */
+  displayKarts?: FavoriteItem[];
+  /** roomAdmin "我的小屋聊天设置"; chat is allowed unless explicitly turned off. */
+  chatAllowed?: boolean;
+  /** roomAdmin access passwords; empty means open. Visitors are not yet networked. */
+  roomPassword?: string;
+  etcPassword?: string;
 }
+
+const MY_ROOM_DISPLAY_KARTS = 2;
+const MY_ROOM_PASSWORD_LENGTH = 12;
 
 export function defaultMyRoomProfile(): MyRoomProfile {
   // myRoom.rho/common/myRoomLocale@cn.bml marks environment 16 as the default.
@@ -59,6 +69,19 @@ export function validateMyRoomProfile(value: unknown): asserts value is MyRoomPr
   }
   if (typeof room.message !== "string" || room.message.length > 120) {
     throw new Error("本地用户资料的小屋留言不能超过 120 个字符。");
+  }
+  if (room.displayKarts !== undefined) {
+    validateFavoriteItems(room.displayKarts);
+    if (room.displayKarts.length > MY_ROOM_DISPLAY_KARTS ||
+        room.displayKarts.some(item => item.category !== ITEM_CATEGORY.kart))
+      throw new Error("本地用户资料的小屋代表卡丁车最多两辆。");
+  }
+  if (room.chatAllowed !== undefined && typeof room.chatAllowed !== "boolean")
+    throw new Error("本地用户资料的小屋聊天设置无效。");
+  for (const password of [room.roomPassword, room.etcPassword]) {
+    if (password !== undefined &&
+        (typeof password !== "string" || password.length > MY_ROOM_PASSWORD_LENGTH))
+      throw new Error(`本地用户资料的小屋密码不能超过 ${MY_ROOM_PASSWORD_LENGTH} 个字符。`);
   }
 }
 

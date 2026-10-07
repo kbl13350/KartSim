@@ -191,6 +191,7 @@ export class HudOverlay {
     this.loadingView = requiredElement(this.systemElement,
       "[data-hud='startup-loading']");
     this.loadingLabel = requiredElement(this.systemElement, ".startup-loading-label");
+
     this.loadingError = requiredElement(this.systemElement,
       "[data-hud='startup-loading-error']");
     this.loadingFab = requiredElement(this.systemElement, "[data-hud='loading-fab']");
@@ -284,39 +285,9 @@ export class HudOverlay {
     this.loadingError.hidden = true;
   }
 
-  chooseResourceSource(selectLocal: () => Promise<unknown>): Promise<unknown> {
-    const choice = requiredElement<HTMLElement>(this.loadingView,
-      "[data-hud='resource-choice']");
-    const localButton = requiredElement<HTMLButtonElement>(choice,
-      "[data-action='local-rho']");
-    const onlineButton = requiredElement<HTMLButtonElement>(choice,
-      "[data-action='online-rho']");
-    choice.hidden = false;
-    return new Promise(resolve => {
-      const finish = (result?: unknown) => {
-        choice.hidden = true;
-        localButton.removeEventListener("click", chooseLocal);
-        onlineButton.removeEventListener("click", chooseOnline);
-        resolve(result);
-      };
-      const chooseOnline = () => finish();
-      const chooseLocal = async () => {
-        localButton.disabled = true;
-        try {
-          finish(await selectLocal());
-        } catch (error) {
-          if (!(error instanceof DOMException && error.name === "AbortError")) {
-            this.loadingError.textContent =
-              error instanceof Error ? error.message : String(error);
-            this.loadingError.hidden = false;
-          }
-        } finally {
-          localButton.disabled = false;
-        }
-      };
-      localButton.addEventListener("click", chooseLocal);
-      onlineButton.addEventListener("click", chooseOnline);
-    });
+  /** Resources always load from the online (mirrored) containers; no local Data prompt. */
+  chooseResourceSource(_selectLocal?: () => Promise<unknown>): Promise<unknown> {
+    return Promise.resolve(undefined);
   }
 
   finishLoading(): void {

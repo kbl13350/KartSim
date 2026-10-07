@@ -24,7 +24,7 @@ test("My Room save rolls back memory when persistence fails", () => {
 test("inventory favorite saves without replacing an unsaved My Room draft", () => {
   const original = defaultLocalProfile();
   let current = original;
-  let saved = 0, roomRefreshes = 0, inventoryRefreshes = 0;
+  let saved = 0, roomRefreshes = 0;
   const controller = {
     host: {
       getProfile: () => current,
@@ -32,14 +32,12 @@ test("inventory favorite saves without replacing an unsaved My Room draft", () =
       saveProfile: () => { saved++; },
     },
     activeHouse: { refresh: () => { roomRefreshes++; } },
-    activeItemInventory: { refresh: () => { inventoryRefreshes++; } },
   } as unknown as ReadyHouseController;
   const next = { ...original, favoriteItems: [{ category: 3, itemId: 123, serial: 0 }] };
   saveReadyHouseProfile(controller, next);
   assert.equal(current, next);
   assert.equal(saved, 1);
   assert.equal(roomRefreshes, 0);
-  assert.equal(inventoryRefreshes, 1);
 });
 
 test("closing My Room releases both overlays and restores Ready controls", () => {
@@ -50,14 +48,14 @@ test("closing My Room releases both overlays and restores Ready controls", () =>
       closeModal: () => { events.push("shell.close"); controller.host.shell.modal = undefined;
         controller.host.shell.current = "Ready"; } } },
     activeHouse: { dispose: () => events.push("house.dispose") },
-    activeItemInventory: { dispose: () => events.push("inventory.dispose") },
+    activeHouseGarage: { dispose: () => events.push("garage.dispose") },
     houseTaskbarRelease: () => events.push("taskbar.release"),
     activeTimeAttackReady: { unfreeze: () => events.push("ready.unfreeze") },
     activeTaskbar: { setVisible: (visible: boolean) => events.push(`taskbar:${visible}`) },
   } as unknown as ReadyHouseController;
   closeReadyHouse(controller);
-  assert.deepEqual(events, ["taskbar.release", "inventory.dispose", "house.dispose", "shell.close",
+  assert.deepEqual(events, ["taskbar.release", "garage.dispose", "house.dispose", "shell.close",
     "ready.unfreeze", "taskbar:true"]);
   assert.equal(controller.activeHouse, undefined);
-  assert.equal(controller.activeItemInventory, undefined);
+  assert.equal(controller.activeHouseGarage, undefined);
 });

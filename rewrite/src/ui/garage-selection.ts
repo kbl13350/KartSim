@@ -200,11 +200,28 @@ export function filteredGarageItems<Item extends GarageCatalogItem>(
   });
 }
 
+/** Equipment slot of each catalog kind (release table S7). */
+const EQUIPMENT_SLOT: Readonly<Record<string, number>> = {
+  character: 1, color: 2, kart: 3, plate: 4, dye: 70, flyingPet: 52, goggle: 8,
+  balloon: 9, headBand: 11, handGearL: 16, aura: 26, skidMark: 27,
+};
+
+/** The same in-use test that draws a card as selected. */
+export function garageItemInUse(item: GarageCatalogItem,
+  equipment: { itemIds: Record<number, number>; systemKart?: string }): boolean {
+  const slot = EQUIPMENT_SLOT[item.kind];
+  if (slot === undefined || item.itemId !== equipment.itemIds[slot]) return false;
+  if (item.kind === "kart" && item.itemId === 0) return item.systemKey === equipment.systemKart;
+  return item.itemId !== 0;
+}
+
 export function garageCategoryItems<Item extends GarageCatalogItem>(
   host: GarageSelectionHost<Item> & { decorationItems(): Item[] },
   deps: GarageSelectionDependencies<Item>,
 ): Item[] {
   if (host.category === "favorite") return host.favoriteCategoryItems();
+  if (host.category === "using") return allGarageItems(host, deps)
+    .filter(item => garageItemInUse(item, host.draftProfile.equipment));
   if (host.category === "deco" || host.category === "equip") return host.decorationItems();
   if (host.category === "character") {
     const flyingPets = host.options.catalog.equipment.filter(item => item.kind === "flyingPet");

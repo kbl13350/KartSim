@@ -1,16 +1,22 @@
-import type { LocalProfile } from "../ui/local-profile";
-import { ItemInventoryView } from "../ui/item-inventory-view";
-import type { ItemInventoryCatalog, ItemInventoryItem } from "../ui/item-inventory";
+import type { FavoriteItem, LocalProfile } from "../ui/local-profile";
+import type { MyRoomAdminKart } from "../ui/my-room-admin";
+import type { ItemInventoryCatalog } from "../ui/item-inventory";
+import { C7, ds } from "../generated/ui.js";
 import { loadMyRoomCatalog } from "../ui/my-room-catalog";
 import type { MyRoomSceneLibrary, MyRoomSceneSubject } from "../ui/my-room-scene";
 import { MyRoomView } from "../ui/my-room-view";
+import { loadLocalRiderNickname } from "../multiplayer/account-local-state";
 import type { ReadyFlowController } from "./ready-flow";
-import type { ReadyGarageController } from "./ready-garage";
-import { equipReadyInventoryItem } from "./ready-inventory";
+import { selectReadyGarage, type ReadyGarageController } from "./ready-garage";
+
+/** The release GarageDialog ("我的物品") opened from the room menu. */
+interface HouseGarageView { show(): void; dispose(): void }
+
+type GarageChoice = Parameters<typeof selectReadyGarage>[3];
 
 export interface ReadyHouseController extends ReadyFlowController {
   activeHouse?: MyRoomView;
-  activeItemInventory?: ItemInventoryView;
+  activeHouseGarage?: HouseGarageView;
   inventoryOpening?: boolean;
   houseTaskbarRelease?: () => void;
   host: ReadyFlowController["host"] & {
@@ -56,14 +62,13 @@ export function saveReadyHouseProfile(controller: ReadyHouseController,
     throw error;
   }
   if (prior.myRoom !== profile.myRoom) controller.activeHouse?.refresh(profile);
-  controller.activeItemInventory?.refresh(profile);
 }
 
 export function closeReadyHouse(controller: ReadyHouseController): void {
   controller.houseTaskbarRelease?.();
   controller.houseTaskbarRelease = undefined;
-  controller.activeItemInventory?.dispose();
-  controller.activeItemInventory = undefined;
+  controller.activeHouseGarage?.dispose();
+  controller.activeHouseGarage = undefined;
   controller.activeHouse?.dispose();
   controller.activeHouse = undefined;
   if (controller.host.shell.modal === "house") controller.host.shell.closeModal("house");
@@ -73,60 +78,103 @@ export function closeReadyHouse(controller: ReadyHouseController): void {
   }
 }
 
+/** "我的物品" in the room opens the same release GarageDialog as Ready. */
 async function openHouseInventory(controller: ReadyHouseController,
   library: ReadyHouseLibrary): Promise<void> {
-  if (controller.inventoryOpening || controller.activeItemInventory || !controller.activeHouse) return;
+  if (controller.inventoryOpening || controller.activeHouseGarage || !controller.activeHouse) return;
   const house = controller.activeHouse;
+  const host = controller.host;
+  const selection = host.getSelection();
+  const environment = controller.readyToonEnvironment;
+  if (!selection?.vehiclePath || selection.vehicleItemId === undefined ||
+      !selection.characterPath || !selection.characterItemId || !environment)
+    throw new Error("我的物品缺少资源库或当前装备身份。");
   controller.inventoryOpening = true;
   try {
     const catalog = await library.timeAttackGarageCatalog();
-    if (controller.disposed || controller.host.shell.modal !== "house" ||
+    if (controller.disposed || host.shell.modal !== "house" ||
         controller.activeHouse !== house) return;
-    let view!: ItemInventoryView;
-    view = new ItemInventoryView({
-      root: controller.host.root,
-      catalog,
-      profile: controller.host.getProfile() as LocalProfile,
-      onProfileChange: profile => saveReadyHouseProfile(controller, profile),
-      onEquip: (item, action) => equipFromHouseInventory(controller, item, catalog, action),
-      onClose: () => {
-        if (controller.activeItemInventory === view) controller.activeItemInventory = undefined;
-        controller.activeHouse?.inventoryClosed();
-      },
-    });
-    controller.activeItemInventory = view;
-    try {
-      view.show();
-    } catch (error) {
+    const garageController = controller as unknown as ReadyGarageController;
+    let view!: HouseGarageView;
+    const close = (): void => {
       view.dispose();
-      if (controller.activeItemInventory === view) controller.activeItemInventory = undefined;
-      throw error;
+      if (controller.activeHouseGarage === view) controller.activeHouseGarage = undefined;
+      controller.activeHouse?.inventoryClosed();
+    };
+    view = await C7.load({
+      library, root: host.root, stageBinding: host.toonStageBinding,
+      environment, catalog, profile: host.getProfile(),
+      selectedKartItemId: selection.vehicleItemId,
+      selectedCharacterItemId: selection.characterItemId,
+      onConfirm: (choice: GarageChoice) => {
+        close();
+        void equipFromHouseGarage(controller, choice);
+      },
+      onCancel: close,
+      onFavoriteChange: (items: unknown) => garageController.changeFavoriteItems(items),
+      onHover: () => host.getInterfaceAudio()?.playHover(),
+      onActivate: () => host.getInterfaceAudio()?.playClick(),
+      onInteraction: () => { host.getAudioContext()?.resume(); },
+      // Release window notices (favourite/lock results), shared with Ready.
+      onNotice: (message: unknown, kind: unknown, details: unknown) => {
+        const owner = controller as unknown as { activeWindowNotice?: {
+          show(message: unknown, kind: unknown, details: unknown): void } };
+        owner.activeWindowNotice ??= new ds(host.root);
+        owner.activeWindowNotice!.show(message, kind, details);
+      },
+    }) as HouseGarageView;
+    if (controller.disposed || controller.activeHouse !== house) {
+      view.dispose();
+      return;
     }
+    controller.activeHouseGarage = view;
+    view.show();
   } finally {
     controller.inventoryOpening = false;
   }
 }
 
-async function equipFromHouseInventory(controller: ReadyHouseController,
-  item: ItemInventoryItem, catalog: ItemInventoryCatalog,
-  action: "equip" | "unequip" = "equip"): Promise<LocalProfile> {
+/**
+ * Ready recreates its model stage when equipment changes, so leave the room,
+ * commit through Ready's garage path, then return so the parked kart and rider
+ * reflect the new choice.
+ */
+async function equipFromHouseGarage(controller: ReadyHouseController,
+  choice: GarageChoice): Promise<void> {
   const selection = controller.host.getSelection();
-  if (!selection) throw new Error("当前没有可更新的 Ready 装备。");
+  if (!selection) return;
   const options = controller.host.getReadyOptions();
   closeReadyHouse(controller);
   try {
-    // The generated ql0 controller owns the ReadyGarageController operations.
-    const profile = await equipReadyInventoryItem(controller as unknown as ReadyGarageController,
-      selection, options, item, catalog, action);
-    // Ready recreates its model stage when equipment changes. Return to the room so
-    // the parked vehicle and rider immediately reflect the newly selected item.
+    await selectReadyGarage(controller as unknown as ReadyGarageController,
+      selection, options, choice);
     if (!controller.disposed && controller.host.shell.current === "Ready" &&
         controller.activeTimeAttackReady) await openReadyHouse(controller);
-    return profile;
   } catch (error) {
     controller.host.hud.showDebugText(
       `装备道具失败：${error instanceof Error ? error.message : String(error)}`, "error");
-    throw error;
+  }
+}
+
+/** Starred karts (favoriteItems category 3) that resolve to a local kart model. */
+function starredRoomKarts(profile: LocalProfile,
+  catalog: ItemInventoryCatalog): MyRoomAdminKart[] {
+  return profile.favoriteItems.filter(item => item.category === 3).flatMap(item => {
+    const kart = roomKart(item, catalog);
+    return kart ? [{ item, title: kart.title }] : [];
+  });
+}
+
+function roomKart(item: FavoriteItem, catalog: ItemInventoryCatalog) {
+  return catalog.karts.find(kart => kart.itemId === item.itemId &&
+    (item.itemId !== 0 || kart.systemKey === item.systemKart));
+}
+
+function localRiderName(): string {
+  try {
+    return loadLocalRiderNickname(() => localStorage) || "车手";
+  } catch {
+    return "车手";
   }
 }
 
@@ -150,6 +198,9 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
       subject: currentRoomSubject(controller, catalog),
       environments,
       profile: controller.host.getProfile() as LocalProfile,
+      ownerName: localRiderName(),
+      starredKarts: starredRoomKarts(controller.host.getProfile() as LocalProfile, catalog),
+      resolveKart: item => roomKart(item, catalog),
       onProfileChange: profile => saveReadyHouseProfile(controller, profile),
       onOpenInventory: () => openHouseInventory(controller, library),
       onClose: () => closeReadyHouse(controller),

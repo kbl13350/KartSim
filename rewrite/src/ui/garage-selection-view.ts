@@ -4,7 +4,10 @@ export const GARAGE_WIDTH = 1600;
 export const GARAGE_HEIGHT = 900;
 export const GARAGE_FONT = "P3528 Source Han Sans CN Garage";
 
-const topTabs = [
+export interface GarageTopTab { key: string; category?: string }
+
+/** dialog.rho/garageDialog top tabs as released; 锁定, 网吧 and 使用 had no category. */
+export const releaseGarageTopTabs: readonly GarageTopTab[] = [
   { key: "favoriteItem", category: "favorite" },
   { key: "lockedItem" },
   { key: "pcCafe" },
@@ -14,6 +17,11 @@ const topTabs = [
   { key: "useful" },
   { key: "deco", category: "deco" },
 ];
+
+/** Web tabs: 锁定 and 网吧 have no Web data and are hidden; 使用 lists items in use. */
+export const webGarageTopTabs: readonly GarageTopTab[] = releaseGarageTopTabs
+  .filter(tab => tab.key !== "lockedItem" && tab.key !== "pcCafe")
+  .map(tab => tab.key === "useful" ? { ...tab, category: "using" } : tab);
 
 type AnyFunction = (...args: any[]) => any;
 /** Host services retain the release's asset, canvas and DOM implementations. */
@@ -107,6 +115,8 @@ export function createGarageSelectionViewClass(ops: GarageSelectionViewOps) {
     hovered: string | undefined;
     pressed: string | undefined;
     shown = false;
+    /** Top category tabs; tests may swap in the released list. */
+    topTabs: readonly GarageTopTab[] = webGarageTopTabs;
     disposed = false;
     frozen = false;
     animationFrame = 0;
@@ -325,7 +335,7 @@ export function createGarageSelectionViewClass(ops: GarageSelectionViewOps) {
       const baseline = ops.layoutRect(this.assets.tabDefinition, tabHolder,
         this.assets.tabStyle.states[0].frame);
       let margin = Number(ops.attribute(ops.child(this.assets.definition, "tabMarginCont"), "adjust").split(" ")[0]);
-      topTabs.forEach(tab => {
+      this.topTabs.forEach(tab => {
         const label = this.text(tab.key);
         const rect = { ...baseline, x: baseline.x + margin, width: this.tabTextWidth(label) + 40 };
         margin += rect.width;

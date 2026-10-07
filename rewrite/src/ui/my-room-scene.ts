@@ -61,6 +61,15 @@ export interface MyRoomSceneSubject {
   /** The Ready-stage toon resources stay owned by Ready. */
   environment: unknown;
   stageBinding: { beginFrame(time: number): void; coatingTextures(library: unknown): unknown };
+  /** roomAdmin representative karts, parked at parking08 and parking09. */
+  displayKarts?: readonly GarageCatalogEntry[];
+}
+
+interface ParkedDisplay {
+  root: Group;
+  avatar: RoomAvatar;
+  ground: number;
+  needsGrounding: boolean;
 }
 
 /** Build the selected ordinary character with its original standing and walking motions. */
@@ -128,6 +137,11 @@ async function loadWalkingAvatar(library: MyRoomSceneLibrary,
 export interface MyRoomSceneAnchors {
   rider: Vector3;
   parking: Vector3;
+  /**
+   * parking08 and parking09 continue the owner's column beside parking00; the
+   * parking01-07 row behind the plaza is left for visiting riders' karts.
+   */
+  displayParking: Vector3[];
   minX: number;
   maxX: number;
   minZ: number;
@@ -160,12 +174,15 @@ export function myRoomSceneAnchors(model: ParsedRoom): MyRoomSceneAnchors {
   };
   const rider = dummy("rider00");
   const parking = dummy("parking00");
+  const displayParking = ["parking08", "parking09"]
+    .filter(name => objects.some(object => object.kind === "ToDummy" && object.name === name))
+    .map(dummy);
   const riderPoints = objects.filter(object => object.kind === "ToDummy" &&
     /^rider\d\d$/.test(object.name)).map(object => nativePoint(object.transform.position));
   const xs = [...riderPoints.map(point => point.x), parking.x];
   const zs = [...riderPoints.map(point => point.z), parking.z];
   return {
-    rider, parking,
+    rider, parking, displayParking,
     minX: Math.min(...xs) - 0.8,
     maxX: Math.max(...xs) + 1.2,
     minZ: Math.min(...zs) - 1,
@@ -298,7 +315,6 @@ const FOLLOW_MAX_ZOOM = 1;
 export class MyRoomSceneView {
   readonly canvas = document.createElement("canvas");
   readonly status = document.createElement("div");
-  readonly zoomReadout = document.createElement("div");
   readonly camera = new PerspectiveCamera(52, 1, 0.1, 4000);
   readonly scene = new Scene();
   readonly skyScene = new Scene();
@@ -331,6 +347,8 @@ export class MyRoomSceneView {
   private readonly cameraTarget = new Vector3();
   private readonly heldKeys = new Set<string>();
   private collider?: Mesh;
+  private displays: ParkedDisplay[] = [];
+  private displayGeneration = 0;
   private floorCollider?: Mesh;
   private readonly walkRay = new Raycaster();
   private lastFrameTime = 0;
@@ -350,9 +368,7 @@ export class MyRoomSceneView {
     this.status.setAttribute("role", "status");
     this.status.style.cssText = "position:absolute;left:12px;top:76px;z-index:2;padding:6px 10px;max-width:calc(100% - 24px);border-radius:6px;background:#102b49d9;color:#fff;font:13px/1.4 system-ui,sans-serif;pointer-events:none";
     this.status.textContent = "等待载入原版小屋场景…";
-    this.zoomReadout.setAttribute("aria-live", "polite");
-    this.zoomReadout.style.cssText = "position:absolute;right:12px;top:76px;z-index:2;padding:6px 10px;border-radius:6px;background:#102b49d9;color:#fff;font:13px/1.4 system-ui,sans-serif;font-variant-numeric:tabular-nums;pointer-events:none";
-    root.append(this.canvas, this.status, this.zoomReadout);
+    root.append(this.canvas, this.status);
     this.canvas.addEventListener("pointerdown", this.onPointerDown);
     this.canvas.addEventListener("blur", this.onCanvasBlur);
     this.canvas.addEventListener("wheel", this.onWheel, { passive: false });
@@ -489,6 +505,7 @@ export class MyRoomSceneView {
       previous && Lt(previous);
       previousWalking?.scene.dispose();
       this.setStatus("WASD / 方向键行走 · 滚轮缩放");
+      void this.setDisplayKarts(subject.displayKarts ?? []);
       return true;
     } catch (error) {
       if (!this.disposed && generation === this.subjectGeneration) {
@@ -502,11 +519,80 @@ export class MyRoomSceneView {
     }
   }
 
+  /** Replace the representative karts beside the owner's parked kart. */
+  async setDisplayKarts(karts: readonly GarageCatalogEntry[]): Promise<boolean> {
+    if (this.disposed || !this.subject) return false;
+    const subject = this.subject;
+    const generation = ++this.displayGeneration;
+    const loaded: RoomAvatar[] = [];
+    try {
+      const equipment = subject.profile.equipment;
+      const [kartColors, riderColors] = await Promise.all([
+        Yb(this.library, equipment.itemIds[2] ?? 0),
+        Yb(this.library, equipment.itemIds[70] ?? 0, 70),
+      ]);
+      for (const kart of karts.slice(0, 2)) {
+        // Shown as a different kart with the owner's paint, like a garage preview.
+        const shown = { ...equipment, itemIds: { ...equipment.itemIds, 3: kart.itemId },
+          kartSerial: 0, systemKart: kart.itemId === 0 ? kart.systemKey : undefined,
+          systemKartVariant: undefined };
+        loaded.push(await Jv(this.library, kart, subject.character, subject.environment,
+          subject.stageBinding, new Tr(), "kart-only", {
+            equipment: shown, initial: subject.profile.initial,
+            build: p5(subject.profile.garage, kart.itemId, 0), kartColors, riderColors,
+          }, undefined, true));
+        if (this.disposed || generation !== this.displayGeneration) return false;
+      }
+      this.clearDisplays();
+      this.displays = loaded.splice(0).map(avatar => {
+        const root = new Group();
+        root.add(avatar.scene);
+        this.scene.add(root);
+        return { root, avatar, ground: 0, needsGrounding: true };
+      });
+      this.placeDisplays();
+      return true;
+    } catch (error) {
+      if (!this.disposed && generation === this.displayGeneration) {
+        const message = error instanceof Error ? error.message : String(error);
+        this.setStatus(`小屋代表卡丁车加载失败：${message}`, true);
+      }
+      return false;
+    } finally {
+      loaded.forEach(avatar => Lt(avatar));
+    }
+  }
+
+  private clearDisplays(): void {
+    for (const display of this.displays) {
+      display.root.removeFromParent();
+      display.root.clear();
+      Lt(display.avatar);
+    }
+    this.displays = [];
+  }
+
+  /** Same quarter-turn basis and scale as parking00, grounded on the paving below. */
+  private placeDisplays(): void {
+    const slots = this.anchors?.displayParking ?? [];
+    this.displays.forEach((display, index) => {
+      const slot = slots[index];
+      display.root.visible = !!slot;
+      if (!slot) return;
+      display.root.position.copy(slot);
+      display.root.rotation.y = Math.PI / 2;
+      display.root.scale.setScalar(this.environmentKartScale);
+      display.ground = this.floorMeasured ? this.floorBelow(slot) : slot.y;
+      display.needsGrounding = true;
+    });
+  }
+
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
     ++this.generation;
     ++this.subjectGeneration;
+    ++this.displayGeneration;
     cancelAnimationFrame(this.animationFrame);
     this.resizeObserver?.disconnect();
     this.canvas.removeEventListener("pointerdown", this.onPointerDown);
@@ -517,6 +603,7 @@ export class MyRoomSceneView {
     window.removeEventListener("blur", this.onWindowBlur);
     this.heldKeys.clear();
     this.avatar && Lt(this.avatar);
+    this.clearDisplays();
     this.walkingAvatar?.scene.dispose();
     this.playerRoot.clear();
     this.parkedKartRoot.clear();
@@ -527,7 +614,6 @@ export class MyRoomSceneView {
     this.renderer?.forceContextLoss();
     this.canvas.remove();
     this.status.remove();
-    this.zoomReadout.remove();
   }
 
   private ensureRenderer(): void {
@@ -539,9 +625,11 @@ export class MyRoomSceneView {
     this.renderer.autoClear = false;
   }
 
+  /** Progress hints stay off screen under the release menus; errors are shown. */
   private setStatus(message: string, error = false): void {
     this.status.textContent = message;
     this.status.setAttribute("role", error ? "alert" : "status");
+    this.status.hidden = !error;
   }
 
   private positionCamera(): void {
@@ -558,11 +646,6 @@ export class MyRoomSceneView {
       target.z + Math.cos(this.pitch) * distance,
     );
     camera.lookAt(target);
-  }
-
-  private updateZoomReadout(): void {
-    const text = `缩放 ${this.zoom.toFixed(2)}×`;
-    if (this.zoomReadout.textContent !== text) this.zoomReadout.textContent = text;
   }
 
   private resize(): void {
@@ -591,7 +674,6 @@ export class MyRoomSceneView {
       this.lastFrameTime = now;
       this.updateWalk(delta);
       this.positionCamera();
-      this.updateZoomReadout();
       try {
         if (this.avatar && this.subject) {
           this.subject.stageBinding.beginFrame(elapsed);
@@ -612,6 +694,18 @@ export class MyRoomSceneView {
             if (Number.isFinite(offset) && Math.abs(offset) < 20)
               this.parkedKartRoot.position.y += offset;
             this.kartNeedsGrounding = false;
+          }
+          for (const display of this.displays) {
+            display.avatar.kart.animation.updateCurrentState(elapsed);
+            T4(display.avatar, elapsed, this.camera, this.root.clientWidth,
+              this.root.clientHeight);
+            if (display.needsGrounding && display.root.visible) {
+              const offset = display.ground -
+                myRoomVisibleBounds(display.avatar.kart.object).min.y;
+              if (Number.isFinite(offset) && Math.abs(offset) < 20)
+                display.root.position.y += offset;
+              display.needsGrounding = false;
+            }
           }
           this.avatar.flyingPet?.update(elapsed, this.camera,
             this.root.clientWidth, this.root.clientHeight);
@@ -660,6 +754,7 @@ export class MyRoomSceneView {
     this.parkedKartRoot.scale.setScalar(this.environmentKartScale);
     if (!this.playerRoot.parent) this.scene.add(this.playerRoot);
     if (!this.parkedKartRoot.parent) this.scene.add(this.parkedKartRoot);
+    this.placeDisplays();
     this.followingPlayer = true;
     this.pitch = Math.PI * 0.045;
     this.cameraTarget.copy(this.playerRoot.position).add(new Vector3(0, 1.8, 0));
@@ -667,15 +762,18 @@ export class MyRoomSceneView {
   }
 
   /** The dummy can be above the paving; use the closest rendered floor below it. */
+  private floorBelow(point: Vector3): number {
+    if (!this.room) return point.y;
+    const ray = new Raycaster();
+    ray.set(point.clone().add(new Vector3(0, 30, 0)), new Vector3(0, -1, 0));
+    const hit = ray.intersectObject(this.room.object, true).find(candidate =>
+      candidate.point.y <= point.y + 1 && candidate.point.y >= point.y - 10);
+    return hit?.point.y ?? point.y;
+  }
+
   private measureGround(): void {
     if (!this.anchors || !this.room) return;
-    const ray = new Raycaster();
-    const floor = (point: Vector3): number => {
-      ray.set(point.clone().add(new Vector3(0, 30, 0)), new Vector3(0, -1, 0));
-      const hit = ray.intersectObject(this.room!.object, true).find(candidate =>
-        candidate.point.y <= point.y + 1 && candidate.point.y >= point.y - 10);
-      return hit?.point.y ?? point.y;
-    };
+    const floor = (point: Vector3): number => this.floorBelow(point);
     this.riderGroundY = floor(this.anchors.rider);
     this.parkingGroundY = floor(this.anchors.parking);
     const { minX, maxX, minZ, maxZ } = this.anchors;
@@ -728,8 +826,10 @@ export class MyRoomSceneView {
     const dz = z - from.z;
     const distance = Math.hypot(dx, dz);
     if (!distance) return false;
-    if (Math.hypot(x - this.anchors.parking.x, z - this.anchors.parking.z) <=
-        1.8 * this.environmentKartScale) return false;
+    const parked = [this.anchors.parking, ...this.displays
+      .filter(display => display.root.visible).map(display => display.root.position)];
+    if (parked.some(spot => Math.hypot(x - spot.x, z - spot.z) <=
+        1.8 * this.environmentKartScale)) return false;
     const collider = this.collider;
     const floorCollider = this.floorCollider;
     if (!collider || !floorCollider) return true;
