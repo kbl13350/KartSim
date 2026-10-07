@@ -118,3 +118,125 @@ test("RP result reveal, state painting, cancellation and cleanup match release",
       await observeLifecycle(false, variant), variant);
   }
 });
+
+type LoadVariant = "normal" | "invalid-race" | "missing-draw" |
+  "missing-kart" | "missing-pet" | "scene-error" | "sound-error" |
+  "prepare-error" | "view-error";
+
+async function observeLoad(rewritten: boolean, variant: LoadVariant) {
+  const events: unknown[][] = [];
+  const box = { name: "Play1SPanel", children: [] };
+  const sparkle = { name: "Play1SPanel", children: [] };
+  const decorated = { name: "Root", children: [
+    { name: "boxOpen", children: [box] },
+    { name: "noticeDlg", children: [{ name: "당첨", children: [sparkle] }] },
+  ] };
+  const root = { id: "root" };
+  const library = {
+    async timeAttackGarageCatalog() {
+      events.push(["catalog"]);
+      return { karts: variant === "missing-kart" ? [] :
+        [{ itemId: 3, title: "赛车甲" }],
+      equipment: variant === "missing-pet" ? [] :
+        [{ kind: "flyingPet", itemId: 5, title: "飞宠甲" }] };
+    },
+  };
+  const draws: Record<string, { kartId: number; flyingPetId: number }> =
+    variant === "missing-draw" ? {} : {
+      self: { kartId: 3, flyingPetId: 5 },
+    };
+  const race = {
+    rp: variant === "invalid-race" ? undefined : {
+      draws,
+    },
+    roster: [{ playerId: "self" }],
+  };
+  const scene = { play() {}, paintKart() {}, paint() {},
+    dispose() { events.push(["scene-dispose"]); } };
+  const sound = { async prepare() { events.push(["prepare"]);
+    if (variant === "prepare-error") throw new Error("prepare failed"); },
+  play() {}, stop() { events.push(["stop"]); },
+  dispose() { events.push(["sound-dispose"]); } };
+  const view = { element: { dataset: {} as Record<string, string> },
+    show() {}, hide() { events.push(["hide"]); }, render() {},
+    dispose() { events.push(["view-dispose"]); } };
+  const dependencies = {
+    validDraws: (_draws: unknown, ids: string[]) => {
+      events.push(["valid", ids]); return variant !== "invalid-race";
+    },
+    loadDefinition: async (_library: unknown, directory: string, name: string) => {
+      events.push(["definition", directory, name]); return { name: "Original", children: [] };
+    },
+    decorateDefinition: (_definition: unknown, kartTitle: string,
+      petTitle: string) => {
+      events.push(["decorate", kartTitle, petTitle]); return decorated;
+    },
+    nodeName: (node: { name: string }) => node.name,
+    loadScene: async (_library: unknown, definition: unknown, kart: unknown) => {
+      events.push(["scene", definition === decorated, kart]);
+      if (variant === "scene-error") throw new Error("scene failed");
+      return scene;
+    },
+    loadSound: async (_library: unknown, audio: unknown) => {
+      events.push(["sound", audio]);
+      if (variant === "sound-error") throw new Error("sound failed");
+      return sound;
+    },
+    loadView: async (options: Record<string, unknown>) => {
+      events.push(["view", options.library === library,
+        options.root === root, options.definition === decorated,
+        options.roots, options.label, options.modal,
+        typeof options.state]);
+      if (variant === "view-error") throw new Error("view failed");
+      return view;
+    },
+    nowMs: () => 1000,
+    requestFrame: (_callback: () => void) => 1,
+    cancelFrame: (_id: number) => undefined,
+  } as unknown as RpResultNoticeDependencies;
+  const legacyDependencies = {
+    ba: dependencies.validDraws,
+    F9: dependencies.loadDefinition,
+    Vl0: dependencies.decorateDefinition,
+    T: dependencies.nodeName,
+    my: { load: dependencies.loadScene },
+    wy: { load: dependencies.loadSound },
+    te: { load: dependencies.loadView },
+    performance: { now: dependencies.nowMs },
+    requestAnimationFrame: dependencies.requestFrame,
+    cancelAnimationFrame: dependencies.cancelFrame,
+  };
+  const Original = new Function(...Object.keys(legacyDependencies),
+    `${originalClass}\nreturn vy;`)(...Object.values(legacyDependencies)) as {
+      load(library: unknown, root: unknown, race: unknown, playerId: string,
+        audio: unknown): Promise<RpResultNotice>;
+    };
+  class Modern extends RpResultNotice {
+    constructor(lucky: boolean,
+      box: ConstructorParameters<typeof RpResultNotice>[1],
+      sparkle: ConstructorParameters<typeof RpResultNotice>[2]) {
+      super(lucky, box, sparkle, dependencies);
+    }
+  }
+  let notice: RpResultNotice | undefined;
+  let error: string | undefined;
+  try {
+    notice = rewritten
+      ? await Modern.load(library, root, race, "self", "audio", dependencies)
+      : await Original.load(library, root, race, "self", "audio");
+  } catch (failure) { error = (failure as Error).message; }
+  return { events, error, notice: notice && {
+    lucky: notice.lucky, box: notice.box === box,
+    sparkle: notice.sparkle === sparkle,
+    phase: notice.phase, layer: notice.view?.element.dataset.uiLayer,
+  } };
+}
+
+test("RP result asset identity and staged failure cleanup match release", async () => {
+  for (const variant of ["normal", "invalid-race", "missing-draw",
+    "missing-kart", "missing-pet", "scene-error", "sound-error",
+    "prepare-error", "view-error"] as const) {
+    assert.deepEqual(await observeLoad(true, variant),
+      await observeLoad(false, variant), variant);
+  }
+});

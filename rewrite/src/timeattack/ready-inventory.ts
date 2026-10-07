@@ -2,7 +2,7 @@ import { Cr, xw } from "../generated/formats.js";
 import { E20, GI, p5 } from "../generated/library.js";
 import { selectLocalKart, type LocalProfile } from "../ui/local-profile";
 import {
-  itemInventoryCanUnequip, itemInventoryEntries,
+  itemInventoryCanEquip, itemInventoryCanUnequip, itemInventoryEntries,
   itemInventoryIsEquipped, type ItemInventoryCatalog,
   type ItemInventoryItem,
 } from "../ui/item-inventory";
@@ -27,6 +27,8 @@ export async function equipReadyInventoryItem(
     candidate.systemKey === item.systemKey && candidate.kind === item.kind &&
     candidate.internalId === item.internalId && candidate.path === item.path);
   if (!available) throw new Error("这件道具不在当前本地目录中。");
+  if (action === "equip" && !itemInventoryCanEquip(available))
+    throw new Error("这件道具当前不能装备。");
 
   const previousProfile = host.getProfile() as LocalProfile;
   if (action === "unequip" &&

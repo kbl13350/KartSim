@@ -64,6 +64,10 @@ export async function assembleTrackScene(model, library, label, resolveTexture,
     right: new Vector3(), up: new Vector3(), back: new Vector3(),
     position: new Vector3(),
   };
+  // Uniform setters copy these values synchronously; reuse them across draws.
+  const toonViewer = new Vector3();
+  const toonWorld = new Matrix4();
+  const toonWorldInverse = new Matrix4();
   let manualWorldMatrices = false;
 
   let rigidPool;
@@ -460,14 +464,11 @@ export async function assembleTrackScene(model, library, label, resolveTexture,
     mesh.onBeforeRender = (renderer, scene, camera) => {
       bindTexture(texture, renderer);
       if (toon) {
-        const viewer = new Vector3(camera.position.x, -camera.position.z,
-          camera.position.y);
-        const world = new Matrix4();
-        const inverse = new Matrix4();
-        store.readClientWorld(nodeIndex, world);
-        store.readClientWorldInverse(nodeIndex, inverse);
+        toonViewer.set(camera.position.x, -camera.position.z, camera.position.y);
+        store.readClientWorld(nodeIndex, toonWorld);
+        store.readClientWorldInverse(nodeIndex, toonWorldInverse);
         configureToonUniforms(material, environment, stageBinding,
-          world, inverse, viewer);
+          toonWorld, toonWorldInverse, toonViewer);
       }
     };
     if (!toon) return mesh;

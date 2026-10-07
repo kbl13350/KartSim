@@ -11,6 +11,156 @@
     "Xe",
     "Kt"
   ],
+  "handwrittenGarageTopLevelBusinessOverrides": [
+    "Yi",
+    "Zi",
+    "Je",
+    "la",
+    "Yt",
+    "ga",
+    "ea",
+    "ta",
+    "sa",
+    "oa",
+    "ca",
+    "da"
+  ],
+  "handwrittenGarageScoreBusinessOverrides": [
+    "Me",
+    "tn",
+    "ln",
+    "rs",
+    "_s",
+    "Nt",
+    "ut",
+    "cn",
+    "hn",
+    "un",
+    "yn",
+    "sn"
+  ],
+  "handwrittenGarageAssetLoaderOverrides": [
+    "Ui",
+    "ia",
+    "Ba",
+    "ja"
+  ],
+  "handwrittenGarageUpgradeFlowLoaderOverrides": [
+    "Ea",
+    "Ma",
+    "ka"
+  ],
+  "handwrittenGarageSupportBusinessOverrides": [
+    "nn",
+    "ns",
+    "gn",
+    "cs",
+    "_i",
+    "Ls",
+    "Ns",
+    "$n",
+    "qt",
+    "Wa",
+    "An",
+    "Fn",
+    "Mn"
+  ],
+  "handwrittenGarageExtendedBusinessOverrides": [
+    "an",
+    "rn",
+    "as",
+    "on",
+    "dn",
+    "wn",
+    "zi",
+    "Wt",
+    "Ts",
+    "Ha",
+    "bt",
+    "Dt",
+    "Ss",
+    "Pn",
+    "Ln",
+    "he",
+    "xa",
+    "La",
+    "Qe",
+    "We",
+    "gt",
+    "Aa",
+    "Gi",
+    "st",
+    "fa",
+    "ma",
+    "wa",
+    "ue",
+    "pe",
+    "Xi",
+    "Ge",
+    "pt",
+    "ft",
+    "Et",
+    "Sn",
+    "In",
+    "Nn",
+    "ds",
+    "mt",
+    "Rn",
+    "ee",
+    "ye",
+    "ha",
+    "ua",
+    "is",
+    "xe",
+    "re"
+  ],
+  "handwrittenGarageNativeCatalogOverrides": [
+    "Q",
+    "Ii",
+    "ne",
+    "Ki",
+    "Vt",
+    "Fa",
+    "tt",
+    "pn"
+  ],
+  "handwrittenGarageRemainingPrimitiveOverrides": [
+    "Bt",
+    "Ni",
+    "_t",
+    "Fi",
+    "xt",
+    "se",
+    "Ut",
+    "Wi",
+    "ht",
+    "Zt",
+    "Ta",
+    "Na",
+    "En"
+  ],
+  "handwrittenGarageRemainingCatalogOverrides": [
+    "Ai",
+    "Ve",
+    "Ot",
+    "ji",
+    "Ji",
+    "H",
+    "Ye",
+    "It",
+    "ba",
+    "Jt",
+    "es",
+    "Oa",
+    "ts",
+    "Xa",
+    "Ct",
+    "Se",
+    "Is",
+    "bn",
+    "kn",
+    "wt"
+  ],
   "handwrittenGarageRuntimeClassOverrides": [
     "Pi",
     "Qi",
@@ -197,6 +347,11 @@
     "rehitTestInventoryPreview",
     "showFactoryTutorial",
     "onKey"
+  ],
+  "handwrittenGarageViewFieldActionsOverrides": [
+    "inventoryScroll",
+    "cancelPreview",
+    "removePart"
   ],
   "handwrittenGarageFrameCanvasOverrides": [
     "captureStrengtheningStage",
@@ -569,6 +724,104 @@
     "jo0",
     "Xo0"
   ],
+  "handwrittenFormatRoadDescriptors": [
+    "Fl",
+    "NG",
+    "Ri",
+    "TW",
+    "VG",
+    "Vm",
+    "mo"
+  ],
+  "handwrittenFormatRoadExtraction": [
+    "qG"
+  ],
+  "handwrittenFormatObstacles": [
+    "Um",
+    "e3"
+  ],
+  "retiredFormatDeclarations": [
+    "$H",
+    "$W",
+    "EW",
+    "HH",
+    "KA",
+    "L0",
+    "NW",
+    "OG",
+    "OW",
+    "Ps",
+    "UH",
+    "UW",
+    "WH",
+    "WW",
+    "XH",
+    "_W",
+    "aH",
+    "cH",
+    "hH",
+    "jH",
+    "l8",
+    "lH",
+    "uH",
+    "wo",
+    "yu",
+    "zW"
+  ],
+  "handwrittenWorldHudOverrides": [
+    "$o0",
+    "Wo0",
+    "Ho0",
+    "X1",
+    "QE",
+    "JE",
+    "Ko0",
+    "eT"
+  ],
+  "handwrittenWorldLocalDirectoryOverrides": [
+    "io0",
+    "ro0",
+    "so0",
+    "gP",
+    "ao0",
+    "co0"
+  ],
+  "handwrittenCanvasContextDiagnostics": true,
+  "handwrittenTouchLayoutEditor": true,
+  "handwrittenTouchDrivingControls": true,
+  "handwrittenVehiclePreviewRenderer": true,
+  "handwrittenTimeAttackDialogs": [
+    "Dy",
+    "zd0"
+  ],
+  "handwrittenTimeAttackRaceViews": [
+    "Ly",
+    "Bd0",
+    "Rd0"
+  ],
+  "handwrittenGhostVisualHelpers": [
+    "Kd0",
+    "qf",
+    "tf0"
+  ],
+  "retiredEmbeddedPakoBytes": 86962,
+  "handwrittenKartPresentationViewOverride": true,
+  "handwrittenDrivingCollisionOverrides": [
+    "ni0",
+    "Mt",
+    "vv",
+    "Oo",
+    "S5",
+    "hi0",
+    "vd",
+    "yd",
+    "Ad",
+    "yv",
+    "bd",
+    "di0",
+    "Md",
+    "pi0"
+  ],
   "handwrittenApplicationAccessorOverrides": [
     "get:previousRenderTime",
     "set:previousRenderTime",
@@ -636,6 +889,7 @@
     "persist"
   ],
   "handwrittenGhostAssetBuilderMethodOverrides": [
+    "build",
     "loadGhostKartAssets",
     "loadGhostDecorations",
     "rankColors"
@@ -700,6 +954,8 @@
   ],
   "handwrittenGhostSmoothSamplerOverride": true,
   "handwrittenPresenterMethodOverrides": [
+    "start",
+    "dispose",
     "frame",
     "updateAndRender",
     "releaseRaceForReady",
@@ -801,6 +1057,27 @@
     "$40",
     "DC"
   ],
+  "handwrittenVehicleResidualOverrides": [
+    "Vn0",
+    "m7",
+    "v7",
+    "eL",
+    "I30",
+    "O30",
+    "gn0",
+    "Cn0",
+    "Y30",
+    "n40",
+    "No",
+    "I40",
+    "k40",
+    "F40",
+    "D40"
+  ],
+  "retiredVehicleResidualConstants": [
+    "v1-float",
+    "track-sound"
+  ],
   "handwrittenPeerMeshOverrides": [
     "pl0"
   ],
@@ -870,6 +1147,7 @@
     "remapRandomSelection"
   ],
   "handwrittenLocalRaceMethodOverrides": [
+    "constructor",
     "requestReset",
     "checkAutomaticReset",
     "advanceReset",
@@ -934,6 +1212,35 @@
     "render",
     "dispose"
   ],
+  "handwrittenFirstRiderDialog": true,
+  "handwrittenTimeAttackAuxiliaryClasses": [
+    "Mf0",
+    "Ny",
+    "rf0",
+    "uf0"
+  ],
+  "handwrittenRouteSurfaceListenerMethods": [
+    "handleRouteSurfaceTag",
+    "warpNextEventFrame",
+    "applyWarpNextActions",
+    "applyWarpNextAction",
+    "freezeWarpCamera"
+  ],
+  "handwrittenRaceBgmResources": [
+    "Zd0",
+    "Jd0",
+    "eG",
+    "Kt",
+    "G5",
+    "ef0",
+    "tG"
+  ],
+  "handwrittenGhostEquipment": [
+    "zh0",
+    "U_",
+    "P3"
+  ],
+  "handwrittenSoloRaceBuild": true,
   "handwrittenSettingsMethodOverrides": [
     "setRoomSpeed",
     "toggleCombo",
@@ -1082,6 +1389,77 @@
   ],
   "handwrittenRaceLoadingScreenOverride": true,
   "handwrittenRpScenePreviewOverride": true,
+  "handwrittenMultiplayerNoticeClassOverrides": [
+    "fy",
+    "vy",
+    "wy",
+    "yy"
+  ],
+  "handwrittenLobbyPreviewDeclarationOverrides": [
+    "Ml0",
+    "Tl0",
+    "dy",
+    "xl0"
+  ],
+  "handwrittenMultiplayerAccountDeclarationOverrides": [
+    "Al0",
+    "CF",
+    "Ko",
+    "PT",
+    "Xo",
+    "ay",
+    "yl0"
+  ],
+  "handwrittenMultiplayerPresentationFunctionOverrides": [
+    "Dl0",
+    "Fl0",
+    "Ll0",
+    "Nl0",
+    "Pl0",
+    "Vl0",
+    "_F"
+  ],
+  "handwrittenMultiplayerSupportFunctionOverrides": [
+    "DT",
+    "EF",
+    "FT",
+    "Hl0",
+    "SF",
+    "Sl0",
+    "TF",
+    "bl0",
+    "im",
+    "kl0",
+    "vl0",
+    "wl0",
+    "xF"
+  ],
+  "handwrittenMultiplayerAccountUiGroup": true,
+  "handwrittenFullMultiplayerClasses": [
+    "LT",
+    "Wl0",
+    "py",
+    "ql0"
+  ],
+  "handwrittenRoomOptionFunctionOverrides": [
+    "NT",
+    "Ol0",
+    "zl0"
+  ],
+  "handwrittenLobbyDialogMethodOverrides": [
+    "confirm",
+    "notice",
+    "messageBox",
+    "create",
+    "createOrdinary",
+    "createGameplay",
+    "password",
+    "team",
+    "createForm",
+    "roomSettings",
+    "setBusy",
+    "dispose"
+  ],
   "handwrittenGhostKsvClassMethodOverrides": [
     "encode",
     "build"
@@ -1382,15 +1760,15 @@
     },
     {
       "file": "formats.js",
-      "bytes": 237829,
-      "sha256": "abd6166e5a5d4d3bf009b3feb153b4b7835d552daeb48f7c509a1bda8764ef78",
+      "bytes": 164426,
+      "sha256": "bbf3f22e8371fc31d063d0fae0d26b11d41345d4ea00cb70f1df92d35ce5d3eb",
       "imports": 71,
       "exports": 185
     },
     {
       "file": "library.js",
-      "bytes": 318228,
-      "sha256": "f845345fec3166e54564546ede1812672014396f771fe222a374c94deae5a772",
+      "bytes": 252725,
+      "sha256": "15c964b175aa22c81db3ce97868caf27b1f5d1b4261c7e867a215a27b3594554",
       "imports": 128,
       "exports": 156
     },
@@ -1410,43 +1788,43 @@
     },
     {
       "file": "vehicle.js",
-      "bytes": 290080,
-      "sha256": "17f767fcef2ec02acbe1d3ea7783b0d64ea27d4696d8e20ac45c7714cbc00466",
+      "bytes": 230190,
+      "sha256": "c4de1f405372ad97c31f3200c8c2b6d4cd5ca8737e5a9a98490dbd0c5e919b4c",
       "imports": 183,
       "exports": 104
     },
     {
       "file": "driving.js",
-      "bytes": 26628,
-      "sha256": "94ce630c118d9cbfa2ef6d5523e165dfb5275a7ee02e2391028c483096e626ed",
+      "bytes": 22235,
+      "sha256": "dc94583c838e84d8aa7e9190cb3660d29ca65eb244c1ddd579ed3f1920ccb2f2",
       "imports": 45,
       "exports": 9
     },
     {
       "file": "world.js",
-      "bytes": 195082,
-      "sha256": "f8ae857118f6d511569d84d051c0e556fc1a8584dbb5e8662b84f30cd7c5ecf8",
+      "bytes": 148182,
+      "sha256": "892214bfab4a47de1ce7a55b4b9cf4e65f22a7564e3423da993c97b7cf681af2",
       "imports": 186,
       "exports": 81
     },
     {
       "file": "ui.js",
-      "bytes": 215734,
-      "sha256": "065a59b5d4db67357bbe153af41846101288a7a05c2b8e4bb9239bae0db77f4b",
+      "bytes": 194517,
+      "sha256": "091e0569ed8a56edafae92650bd324b13ec0737068248a320fc90e2d2adde640",
       "imports": 120,
       "exports": 33
     },
     {
       "file": "multiplayer.js",
-      "bytes": 92797,
-      "sha256": "da687353fad8ddae718ee46d67cb834a3a490be038acc058d77584feb625f19d",
+      "bytes": 35574,
+      "sha256": "438e4d4b7a62ca8da4d972455f1ce59fbff34eaf7053507439d196a92a2c8d36",
       "imports": 98,
       "exports": 18
     },
     {
       "file": "timeattack.js",
-      "bytes": 240449,
-      "sha256": "06b9f80046591b63f770a1e373cc2b6ce798372f438e36483e8a43c8d5f9e84e",
+      "bytes": 55205,
+      "sha256": "63028de879e3083060d9172d414e80a40a64d68e129fd41084de9e0540f6c9b4",
       "imports": 148,
       "exports": 24
     },

@@ -2,6 +2,7 @@
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
 
+import { createVehicleCollisionScratch, optionalRoadSurface, triangleCentroid as vv, triangleIntersectsOrientedBox as Oo, orientedBoxBounds as di0, updateTrackedTriangleVelocity } from "../driving/collision-geometry.ts";
 import { initializeVehicle } from "../driving/construct-vehicle.ts";
 import * as VehicleCommands from "../driving/vehicle-commands.ts";
 import * as VehicleTachometer from "../driving/tachometer.ts";
@@ -39,6 +40,7 @@ import { Q00 } from "./library.js";
 import { F2, I1, N1, Rg, Tt, m, t0 } from "./math.js";
 import { $40, $C, Cs, Eg, H40, HC, J40, K40, NC, OC, Q40, UC, VC, Vo, W40, WC, X40, Y40, Z40, _g, ad, cd, cs, ec, j40, ld, mi, nc, od, q40, qC, tc, ud, x5, zC } from "./vehicle.js";
 
+const trackedTriangleMath = { cloneVector: I1, centroid: Rg, subtract: N1, scale: Tt, f32: t0 };
 const vehicleSurfaces = { parseRouteTag: Vo, surfaceKind: Eg, railId: Ri, roadSurface: Mt };
 
 class AL {
@@ -280,28 +282,7 @@ class AL {
 
 
 
-function ni0() {
-  return {
-    force: F2(),
-    torque: F2(),
-    v0: F2(),
-    v1: F2(),
-    v2: F2(),
-    v3: F2(),
-    v4: F2(),
-    v5: F2(),
-    v6: F2(),
-    v7: F2(),
-    v8: F2(),
-    v9: F2(),
-    v10: F2(),
-    v11: F2(),
-    oldCompression: [0, 0, 0, 0],
-    zeroNormals: [F2(), F2(), F2(), F2()],
-    obb: { center: F2(), axes: [F2(), F2(), F2()], halfExtents: [0, 0, 0] },
-    primaryResult: { responseHit: !1, lowHit: !1 },
-  };
-}
+function ni0() { return createVehicleCollisionScratch(F2); }
 
 
 
@@ -383,212 +364,29 @@ function ni0() {
 
 
 
-function Mt(n) {
-  return n ? VG(n) : void 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const w0 = Math.fround;
-
-function vv(n) {
-  const e = w0(0.3333300054073334);
-  return {
-    x: w0(w0(w0(w0(n.a.x) + w0(n.b.x)) + w0(n.c.x)) * e),
-    y: w0(w0(w0(w0(n.a.y) + w0(n.b.y)) + w0(n.c.y)) * e),
-    z: w0(-w0(w0(w0(w0(-n.a.z) + w0(-n.b.z)) + w0(-n.c.z)) * e)),
-  };
-}
-
-function Oo(n, e) {
-  const [t, i, r] = e.axes,
-    s = e.center,
-    o = w0(w0(n.a.x) - w0(s.x)),
-    a = w0(w0(-n.a.z) - w0(-s.z)),
-    c = w0(w0(n.a.y) - w0(s.y)),
-    l = w0(w0(n.b.x) - w0(s.x)),
-    u = w0(w0(-n.b.z) - w0(-s.z)),
-    h = w0(w0(n.b.y) - w0(s.y)),
-    d = w0(w0(n.c.x) - w0(s.x)),
-    f = w0(w0(-n.c.z) - w0(-s.z)),
-    p = w0(w0(n.c.y) - w0(s.y));
-  return hi0(
-    S5(o, a, c, t, !1),
-    S5(o, a, c, i, !0),
-    S5(o, a, c, r, !1),
-    S5(l, u, h, t, !1),
-    S5(l, u, h, i, !0),
-    S5(l, u, h, r, !1),
-    S5(d, f, p, t, !1),
-    S5(d, f, p, i, !0),
-    S5(d, f, p, r, !1),
-    w0(e.halfExtents[0]),
-    w0(e.halfExtents[1]),
-    w0(e.halfExtents[2]),
-  );
-}
-
-function S5(n, e, t, i, r) {
-  const s = w0(r ? -i.x : i.x),
-    o = w0(r ? i.z : -i.z),
-    a = w0(r ? -i.y : i.y);
-  return w0(w0(w0(s * n) + w0(o * e)) + w0(a * t));
-}
-
-function hi0(n, e, t, i, r, s, o, a, c, l, u, h) {
-  const d = w0(i - n),
-    f = w0(r - e),
-    p = w0(s - t),
-    v = w0(o - i),
-    w = w0(a - r),
-    g = w0(c - s),
-    y = w0(n - o),
-    b = w0(e - a),
-    A = w0(t - c);
-  if (
-    vd(f, p, e, t, a, c, u, h) ||
-    yd(d, p, n, t, o, c, l, h) ||
-    Ad(d, f, i, r, o, a, l, u) ||
-    vd(w, g, e, t, a, c, u, h) ||
-    yd(v, g, n, t, o, c, l, h) ||
-    Ad(v, w, n, e, i, r, l, u) ||
-    vd(b, A, e, t, r, s, u, h) ||
-    yd(y, A, n, t, i, s, l, h) ||
-    Ad(y, b, i, r, o, a, l, u) ||
-    Math.min(n, i, o) > l ||
-    -l > Math.max(n, i, o) ||
-    Math.min(e, r, a) > u ||
-    -u > Math.max(e, r, a) ||
-    Math.min(t, s, c) > h ||
-    -h > Math.max(t, s, c)
-  )
-    return !1;
-  const x = w0(w0(f * g) - w0(p * w)),
-    M = w0(w0(p * v) - w0(d * g)),
-    E = w0(w0(d * w) - w0(f * v)),
-    _ = -bd(x, M, E, n, e, t),
-    C = x > 0 ? -l : l,
-    S = M > 0 ? -u : u,
-    G = E > 0 ? -h : h;
-  return w0(bd(x, M, E, C, S, G) + _) > 0
-    ? !1
-    : w0(bd(x, M, E, -C, -S, -G) + _) >= 0;
-}
-
-function vd(n, e, t, i, r, s, o, a) {
-  return yv(
-    w0(w0(e * t) - w0(n * i)),
-    w0(w0(e * r) - w0(n * s)),
-    w0(w0(Math.abs(e) * o) + w0(Math.abs(n) * a)),
-  );
-}
-
-function yd(n, e, t, i, r, s, o, a) {
-  return yv(
-    w0(w0(-e * t) + w0(n * i)),
-    w0(w0(-e * r) + w0(n * s)),
-    w0(w0(Math.abs(e) * o) + w0(Math.abs(n) * a)),
-  );
-}
-
-function Ad(n, e, t, i, r, s, o, a) {
-  return yv(
-    w0(w0(e * t) - w0(n * i)),
-    w0(w0(e * r) - w0(n * s)),
-    w0(w0(Math.abs(e) * o) + w0(Math.abs(n) * a)),
-  );
-}
-
-function yv(n, e, t) {
-  const i = e > n ? n : e,
-    r = e > n ? e : n;
-  return i > t || -t > r;
-}
-
-function bd(n, e, t, i, r, s) {
-  return w0(w0(w0(n * i) + w0(e * r)) + w0(t * s));
-}
-
-const f1 = Math.fround;
-
-function di0(n, e) {
-  const [t, i, r] = n.axes,
-    s = f1(n.halfExtents[0]),
-    o = f1(n.halfExtents[1]),
-    a = f1(n.halfExtents[2]),
-    c = f1(n.center.x),
-    l = f1(-n.center.z),
-    u = f1(n.center.y),
-    h = f1(t.x),
-    d = f1(-i.x),
-    f = f1(r.x),
-    p = f1(-t.z),
-    v = f1(i.z),
-    w = f1(-r.z),
-    g = f1(t.y),
-    y = f1(-i.y),
-    b = f1(r.y);
-  for (let A = 0; A < 8; A += 1) {
-    const x = A & 4 ? s : -s,
-      M = A & 2 ? o : -o,
-      E = A & 1 ? a : -a,
-      _ = Md(h, d, f, x, M, E, c),
-      C = Md(p, v, w, x, M, E, l),
-      S = Md(g, y, b, x, M, E, u);
-    A === 0
-      ? ((e[0] = e[3] = _), (e[1] = e[4] = C), (e[2] = e[5] = S))
-      : (e[0] > _ && (e[0] = _),
-        e[1] > C && (e[1] = C),
-        e[2] > S && (e[2] = S),
-        _ > e[3] && (e[3] = _),
-        C > e[4] && (e[4] = C),
-        S > e[5] && (e[5] = S));
-  }
-}
-
-function Md(n, e, t, i, r, s, o) {
-  return f1(f1(f1(f1(n * i) + f1(e * r)) + f1(t * s)) + o);
-}
+function Mt(road) { return optionalRoadSurface(road, VG); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const Bg = t0(1e-4),
   fi0 = 1e-4,
   xd = t0(0.10000000149011612),
   rc = t0(0.20000000298023224);
 
-function pi0(n, e, t, i) {
-  if (!Number.isSafeInteger(t) || t < 0 || !Number.isSafeInteger(i) || i < 0)
-    throw new Error("tracked triangle timestamp 必须是非负整数毫秒。");
-  const r = t >>> 0,
-    s = i >>> 0,
-    a = (r - (s === 0 ? r : s)) >>> 0,
-    c = t0(a);
-  for (const l of n) {
-    const u = e(l),
-      h = [I1(u[0]), I1(u[1]), I1(u[2])];
-    if (a !== 0) {
-      const d = Rg(h),
-        f = Rg(l.previousVertices),
-        p = N1(d, f),
-        v = Tt(p, t0(1e3));
-      l.surfaceVelocity = { x: t0(v.x / c), y: t0(v.y / c), z: t0(v.z / c) };
-    }
-    l.previousVertices = h;
-  }
-  return r;
-}
+function pi0(triangles, verticesOf, timeMs, previousMs) { return updateTrackedTriangleVelocity(triangles, verticesOf, timeMs, previousMs, trackedTriangleMath); }
 
 export { AL, Bg, Oo, di0, fi0, pi0, rc, vv, xd };

@@ -3,11 +3,14 @@
 // Stable minified names are retained for behavioral parity.
 
 import { ScrollbarController as b6, scrollbarGeometry as uT, dragScrollPosition as qa0, stepScrollPosition as nf, scrollPosition as qv, pointInRectangle as bc } from "../ui/scrollbar.ts";
+import { GarageLivePanels } from "../ui/garage-live-panels.ts";
+import { garageEquipmentCardKey, normalizedGarageKartPath } from "../ui/garage-live-panel-assets.ts";
 import { TouchPageSwipe as WP } from "../ui/touch-swipe.ts";
 import { CoatingPreviewSession as xa0 } from "../ui/coating-preview.ts";
 import { RandomTrackSession as Tc0 } from "../ui/random-track-session.ts";
 import { activateGarageAction, allGarageItems, clampGarageFavoriteOffset, commitGarageItem, confirmGarageSelection, favoriteGarageItems, filteredGarageItems, garageCategoryItems, garageDecorationItems, garageFavoriteKey, garageFavoriteKeys, garageSubTabs, selectGarageCategory, selectGarageDecoration, selectGarageItem, selectGarageLegacyAppearance, selectGarageSubCategory, selectedGarageKart, toggleGarageFavoriteItem } from "../ui/garage-selection.ts";
 import { activateSettingsControl, applySettingsGraphicsPreset, applySettingsPreset, changeSettingsVolume, closeSettingsCombo, moveSettingsSelection, repeatSettingsVolumeStep, resetSettingsSound, selectSettingsSpeed, selectSettingsVersion, setSettingsRoomSpeed, stepSettingsVolume, stopSettingsVolumePointer, toggleSettingsCombo, toggleSettingsOption } from "../ui/settings-interactions.ts";
+import { addGraphicsPresentationOptions } from "../ui/graphics-presentation-options.ts";
 import { activateReadyButton, activateReadyTrainingShortcut, applyReadyViewOptions, cancelReadyPointer, drawReadyButtonText, drawReadyImageButton, leaveReadyPointer, moveReadyPointer, pressReadyPointer, readyButtonAtPoint, readyButtonNodeId, refreshReadyViewRecord, releaseReadyPointer, selectReadyViewOption, setReadyViewSpeedChannel } from "../ui/ready-view-actions.ts";
 import { disposeReadyVehiclePreview, loadReadyVehiclePreview, renderReadyVehiclePreview } from "../ui/ready-vehicle-preview.ts";
 import { GarageCanvasCompositor } from "../ui/garage-compositor.ts";
@@ -25,6 +28,25 @@ import { Ak, Bk, Do, Ea, Jw, ag, bS, cv, d7, dr, ev, fr, hr, ok, pk, rk, sk, wk,
 import { Aa0, Ac, BP, Br, C4, CP, Di, EP, Hg, NP, Pv, Qd, S4, SP, Ue, VP, _P, _a, ba0, ca0, kP, sa0, ut, wa0, xP, ze, zv } from "./world.js";
 
 const localProfileDependencies = { normalizeGarage: E20, validateGarage: GI, garageKart: p5, systemKarts: Cr, resolveVariant: xw };
+const garageLivePanelDependencies = {
+  createRenderer: () => new I4({ alpha: true, preserveDrawingBuffer: true,
+    powerPreference: "high-performance" }),
+  createCamera: (kind, width, height) => Qs(kind, width, height),
+  createImporter: () => new Tr(), sizePreviewCamera: $a0, cameraYaw: J3,
+  outputColorSpace: qe,
+  motion: { cameraYaw: J3, resetLinkedPresentation: Zv,
+    now: () => performance.now() },
+  assets: { coatingEquipment: Ak, equipmentKey: garageEquipmentCardKey,
+    loadEquipment: La0, disposeCharacter: af, loadCharacter: Ho,
+    kartKey: N3, disposeKart: Js, loadKart: Qv, garageKart: p5,
+    normalizedKartPath: normalizedGarageKartPath, loadPreview: T7,
+    disposePreview: Lt, createCoatingFitting: JP },
+  render: { kartKey: N3, equipmentKey: garageEquipmentCardKey,
+    frameKartCamera: Ua0, updateKartCard: ey, updatePreview: T4,
+    advanceKartTransform: o80, updateOrdinaryPreview: nF, visualState: ZP,
+    renderScene: f4, pixelRatio: xe, disposeCharacter: af,
+    disposeKart: Js },
+};
 const garageSelectionDependencies = { blockedKartItem: n3, legacyFamily: of, validateKartItem: j6, selectProfile: aT, findKart: pT, findCharacter: cf };
 const garageFavoriteDependencies = { get maxFavorites() { return qg; }, gridStep: i4 };
 const settingsInteractionDependencies = { get tabs() { return Ie; }, versions: Qd, versionStatus: Ac, speedChoices: Di, fallbackSpeed: wa0, defaultSound: _P, volumeThumb: tm };
@@ -298,22 +320,11 @@ function A6(n, e) {
 }
 
 const Le = Math.fround,
-  lT = 3.141592025756836,
-  Na0 = 6.283185005187988,
   $o = new WeakMap();
 
-function Oa0(n, e, t) {
-  const i = za0(n, e),
-    r = Le(i - n),
-    s = Le(Le(r * 9) + (r > 0 ? 0.5 : -0.5)),
-    o = Le(n + Le(Le(Le(t) * s) * Le(0.001))),
-    a = Math.abs(r) < Le(0.01) || Math.sign(r) !== Math.sign(Le(i - o));
-  return { yaw: a ? i : o, complete: a };
-}
 
-function za0(n, e) {
-  return n < 0 && Math.abs(Le(e - n)) > Math.abs(Le(e + n)) ? -Le(Na0 - e) : e;
-}
+
+
 
 function Qs(n, e, t) {
   const i = { kart: 3.7, character: 1.2, preview: 1.6 }[n],
@@ -1659,669 +1670,22 @@ function Zv(n) {
     n.linkedPresentation?.setMode(0));
 }
 
-function dT(n) {
-  return `${n.x},${n.y},${n.width},${n.height}`;
-}
 
-class E7 {
-  constructor(e, t, i, r, s, o, a, c = "preview") {
-    ((this.library = e),
-      (this.environment = t),
-      (this.stageBinding = i),
-      (this.onReady = r),
-      (this.previewMode = c),
-      (this.coatingTextures = i.coatingTextures(e)),
-      (this.renderer.outputColorSpace = qe),
-      this.renderer.setClearColor(0, 0),
-      (this.renderer.autoClear = !1),
-      (this.characterCamera = Qs("character", s.width, s.height)),
-      (this.kartCamera = Qs("kart", s.width, s.height)),
-      (this.previewCamera = a ?? Qs("preview", o.width, o.height)));
+
+class E7 extends GarageLivePanels {
+  constructor(library, environment, binding, onReady, characterSize,
+    previewSize, previewCamera, mode = "preview") {
+    super(library, environment, binding, onReady, characterSize,
+      previewSize, previewCamera, mode, garageLivePanelDependencies);
   }
-  library;
-  environment;
-  stageBinding;
-  onReady;
-  previewMode;
-  particleModificationPageVisible = !0;
-  coatingTextures;
-  coatingFitting;
-  coatingRequest;
-  coatingFailure;
-  get coatingPreviewError() {
-    return this.coatingFailure;
-  }
-  setParticleModificationPageVisible(e) {
-    ((this.particleModificationPageVisible = e),
-      this.preview?.particleModification?.setPresentationAllowed(e));
-  }
-  async validateCoatingEquipment(e, t) {
-    const i = this.preview,
-      r = i?.coatingSource;
-    if (!i || r?.itemId !== e) throw new Error("请等待当前车辆预览加载完成。");
-    if (
-      (await Ak(
-        this.library,
-        i.kart.model,
-        r.visual,
-        r.engineGrade,
-        { family: t.family, coating: t.id },
-        this.coatingTextures,
-      ),
-      this.disposed || this.preview !== i)
-    )
-      throw new Error("车辆已切换，请重新选择车膜。");
-  }
-  renderer = new I4({
-    alpha: !0,
-    preserveDrawingBuffer: !0,
-    powerPreference: "high-performance",
-  });
-  pixelRatio = 1;
-  directFrame;
-  preparingDirectFrame = !1;
-  panelRect;
-  characterCamera;
-  kartCamera;
-  previewCamera;
-  setPreviewSize(e, t, i = "default") {
-    ($a0(this.previewCamera, e, t, i), J3(this.previewCamera, this.previewYaw));
-  }
-  importer = new Tr();
-  characters = new Map();
-  karts = new Map();
-  characterLoading = new Set();
-  kartLoading = new Set();
-  characterFailed = new Set();
-  kartFailed = new Set();
-  equipment = new Map();
-  equipmentLoading = new Set();
-  equipmentFailed = new Set();
-  desiredEquipment = new Set();
-  desiredCharacters = new Set();
-  desiredKarts = new Set();
-  preview;
-  previewKey;
-  previewGeneration = 0;
-  previewYaw = 0;
-  previewReverse = !1;
-  previewRearView = !1;
-  transformPreviewEnabled = !1;
-  transformPreviewTimelineActive = !1;
-  transformPreviewCancelled = !1;
-  transformPreviewCompleted = !1;
-  transformPreviewClosing = !1;
-  previewTargetYaw;
-  previewYawTime;
-  disposed = !1;
-  static async load(e, t, i, r, s, o, a, c = "preview") {
-    return new E7(e, t, i, r, s, o, a, c);
-  }
-  render(e, t, i, r, s, o, a, c, l, u = !0, h = 1, d) {
-    if (!this.disposed) {
-      (this.syncCards(r.map((f) => f.item)),
-        o
-          ? this.syncPreview(o, a, c)
-          : ((this.previewKey = void 0),
-            this.previewGeneration++,
-            this.disposePreview()),
-        this.syncCoatingPreview(l),
-        u && this.advancePreviewRotation(e),
-        (this.pixelRatio = Number.isFinite(h) && h > 0 ? h : 1),
-        (this.directFrame = d ? { target: d, scenes: new Map() } : void 0),
-        (this.preparingDirectFrame = d !== void 0),
-        d ||
-          (this.renderer.setPixelRatio(this.pixelRatio),
-          this.renderer.setSize(t, i, !1),
-          this.renderer.setScissorTest(!1),
-          this.renderer.clear(!0, !0, !0)),
-        this.stageBinding.beginFrame(e),
-        d || this.renderer.setScissorTest(!0));
-      try {
-        (o && this.renderPreview(e, i, s, u),
-          r.forEach(({ item: f, rect: p, kartZoom: v, kartShadow: w }) => {
-            f.kind === "character"
-              ? this.renderCharacterCard(e, i, f, p)
-              : f.kind === "kart"
-                ? this.renderKartCard(e, i, f, p, v, w)
-                : "category" in f && this.renderEquipmentCard(i, f, p);
-          }));
-      } finally {
-        ((this.preparingDirectFrame = !1),
-          d || this.renderer.setScissorTest(!1));
-      }
-    }
-  }
-  drawCard(e, t, i) {
-    (t.kind === "character"
-      ? this.characters.has(t.itemId)
-      : t.kind === "kart"
-        ? this.karts.has(N3(t))
-        : this.equipment.has(xc(t))) && this.copyTo(e, i);
-  }
-  drawPreview(e, t) {
-    this.preview && this.copyTo(e, t);
-  }
-  renderPreviewSnapshot(e, t, i, r, s = 1) {
-    return this.disposed || !this.preview
-      ? !1
-      : ((this.directFrame = void 0),
-        (this.pixelRatio = Number.isFinite(s) && s > 0 ? s : 1),
-        this.renderer.setPixelRatio(this.pixelRatio),
-        this.renderer.setSize(t, i, !1),
-        this.renderer.setScissorTest(!1),
-        this.renderer.clear(!0, !0, !0),
-        this.stageBinding.beginFrame(e),
-        this.renderer.setScissorTest(!0),
-        this.renderPreview(e, i, r, !1),
-        this.renderer.setScissorTest(!1),
-        !0);
-  }
-  renderKartSnapshot(e, t, i, r, s, o = 1) {
-    return this.disposed || !this.karts.get(N3(r))
-      ? !1
-      : ((this.directFrame = void 0),
-        (this.pixelRatio = Number.isFinite(o) && o > 0 ? o : 1),
-        this.renderer.setPixelRatio(this.pixelRatio),
-        this.renderer.setSize(t, i, !1),
-        this.renderer.setScissorTest(!1),
-        this.renderer.clear(!0, !0, !0),
-        this.stageBinding.beginFrame(e),
-        this.renderer.setScissorTest(!0),
-        this.renderKartCard(e, i, r, s),
-        this.renderer.setScissorTest(!1),
-        !0);
-  }
-  drawAuxiliaryPanel(e, t) {
-    if (this.disposed || t.length === 0) return;
-    const i = this.pixelRatio > 0 ? this.pixelRatio : 1,
-      r = new Map();
-    for (const a of t) {
-      const c = a.canvas.getBoundingClientRect();
-      let l = a.canvas.width / i,
-        u = a.canvas.height / i;
-      if (c.width > 0 && c.height > 0) {
-        const f = xe(),
-          p = Math.max(1, Math.round(c.width * f)),
-          v = Math.max(1, Math.round(c.height * f));
-        (a.canvas.width !== p && (a.canvas.width = p),
-          a.canvas.height !== v && (a.canvas.height = v),
-          (l = (c.width * f) / i),
-          (u = (c.height * f) / i));
-      }
-      const h = `${a.canvas.width}:${a.canvas.height}`,
-        d = r.get(h);
-      d
-        ? d.targets.push(a)
-        : r.set(h, { targets: [a], logicalWidth: l, logicalHeight: u });
-    }
-    const s = Math.max(
-        ...[...r.values()].map((a) => a.targets[0].canvas.width),
-      ),
-      o = Math.max(...[...r.values()].map((a) => a.targets[0].canvas.height));
-    (this.renderer.getPixelRatio() !== 1 && this.renderer.setPixelRatio(1),
-      (this.renderer.domElement.width !== s ||
-        this.renderer.domElement.height !== o) &&
-        this.renderer.setSize(s, o, !1));
-    for (const a of r.values()) {
-      const { width: c, height: l } = a.targets[0].canvas,
-        { logicalWidth: u, logicalHeight: h } = a;
-      (this.renderer.setScissorTest(!0),
-        this.setViewport(o, { x: 0, y: 0, width: c, height: l }),
-        this.renderer.clear(!0, !0, !0),
-        e.update(u, h),
-        f4(this.renderer, e.scene, e.camera),
-        this.renderer.setScissorTest(!1));
-      for (const d of a.targets)
-        (d.save(),
-          d.setTransform(1, 0, 0, 1, 0, 0),
-          d.clearRect(0, 0, c, l),
-          d.drawImage(this.renderer.domElement, 0, 0, c, l, 0, 0, c, l),
-          d.restore());
-    }
-  }
-  beginPreviewRotation() {
-    ((this.previewTargetYaw = void 0), (this.previewYawTime = void 0));
-  }
-  rotatePreview(e) {
-    this.beginPreviewRotation();
-    const t = Math.fround(this.previewYaw - Math.fround(e * Math.fround(0.02))),
-      i = 6.283185005187988;
-    let r = Math.abs(t);
-    for (; r > i;) r = Math.fround(r - i);
-    (r > lT && (r = -Math.fround(i - r)),
-      (this.previewYaw = t < 0 ? -r : r),
-      J3(this.previewCamera, this.previewYaw));
-  }
-  beginTransformPreviewSession() {
-    this.transformPreviewEnabled ||
-      ((this.transformPreviewCompleted = !1),
-      (this.transformPreviewClosing = !1),
-      (this.transformPreviewCancelled = !1),
-      (this.transformPreviewTimelineActive = !1),
-      (this.transformPreviewEnabled = !0),
-      this.resetPreviewRotation(!0));
-  }
-  restartTransformPreview() {
-    (this.transformPreviewEnabled || this.beginTransformPreviewSession(),
-      (this.transformPreviewCompleted = !1),
-      (this.transformPreviewClosing = !1),
-      (this.transformPreviewTimelineActive = !0),
-      (this.transformPreviewCancelled = !1),
-      this.preview &&
-        ((this.preview.origin = void 0),
-        this.preview.cosmeticEffects?.restartGaragePreview(performance.now()),
-        this.preview.cosmeticTrails?.restartGaragePreview()));
-  }
-  get isTransformPreviewSessionActive() {
-    return this.transformPreviewEnabled;
-  }
-  get isTransformPreviewEnabled() {
-    return this.transformPreviewEnabled;
-  }
-  get isPreviewReady() {
-    return this.preview !== void 0;
-  }
-  toggleTransformPreview() {
-    if (!this.transformPreviewClosing) {
-      if (this.transformPreviewCompleted) {
-        this.closeCompletedTransformPreview();
-        return;
-      }
-      this.setTransformPreview(!this.transformPreviewEnabled);
-    }
-  }
-  setTransformPreview(e) {
-    if (e !== this.transformPreviewEnabled) {
-      if (e) {
-        ((this.transformPreviewCompleted = !1),
-          (this.transformPreviewClosing = !1));
-        const t = this.transformPreviewCancelled;
-        ((this.transformPreviewTimelineActive = !0),
-          (this.transformPreviewCancelled = !1),
-          t && this.preview && (this.preview.origin = void 0));
-      }
-      if (((this.transformPreviewEnabled = e), e)) {
-        const t = performance.now();
-        (this.preview?.cosmeticEffects?.restartGaragePreview(t),
-          this.preview?.cosmeticTrails?.restartGaragePreview());
-      } else {
-        if (this.transformPreviewTimelineActive) {
-          this.transformPreviewCancelled = !0;
-          const i = this.preview?.kart.animation;
-          (!this.preview ||
-            this.preview.transformEnabled !== !0 ||
-            i?.state === 0) &&
-            (this.transformPreviewTimelineActive = !1);
-        }
-        const t = performance.now();
-        (this.preview?.cosmeticEffects?.setState(0, 0, !1, !1, t),
-          this.preview?.cosmeticTrails?.setState(0, t));
-      }
-      this.resetPreviewRotation(e);
-    }
-  }
-  resetPreviewForPageTransition() {
-    if (this.disposed) return;
-    const e = performance.now();
-    ((this.transformPreviewEnabled = !1),
-      (this.transformPreviewTimelineActive = !1),
-      (this.transformPreviewCancelled = !1),
-      (this.transformPreviewCompleted = !1),
-      (this.transformPreviewClosing = !1),
-      (this.previewTargetYaw = void 0),
-      (this.previewYawTime = void 0),
-      (this.previewYaw = 0),
-      (this.previewRearView = !1),
-      this.previewMode === "kart-only" && (this.previewReverse = !1),
-      J3(this.previewCamera, 0),
-      this.preview?.cosmeticEffects?.setState(0, 0, !1, !1, e),
-      this.preview?.cosmeticTrails?.setState(0, e));
-    const t = this.preview;
-    t &&
-      ((t.transformEnabled = !1),
-      (t.origin = void 0),
-      t.kart.animation.reset(Math.trunc(e) >>> 0),
-      Zv(t));
-  }
-  closeCompletedTransformPreview() {
-    const e = performance.now();
-    ((this.transformPreviewCompleted = !1),
-      (this.transformPreviewEnabled = !1),
-      (this.transformPreviewTimelineActive = !1),
-      (this.transformPreviewCancelled = !1),
-      (this.transformPreviewClosing = Math.abs(this.previewYaw) >= 0.01),
-      this.preview?.cosmeticEffects?.restartGaragePreview(e),
-      this.preview?.cosmeticTrails?.restartGaragePreview(),
-      this.preview &&
-        ((this.preview.transformEnabled = !1), (this.preview.origin = void 0)),
-      (this.previewTargetYaw = 0),
-      (this.previewYawTime = void 0),
-      (this.previewRearView = !1),
-      J3(this.previewCamera, this.previewYaw));
-  }
-  resetPreviewRotation(e = this.previewRearView) {
-    ((this.previewRearView = e),
-      this.previewMode === "kart-only"
-        ? (this.previewTargetYaw = e ? Math.fround(Math.PI / 2) : 0)
-        : (this.previewTargetYaw = e || this.previewReverse ? lT : 0),
-      (this.previewYawTime = void 0));
-  }
-  advancePreviewRotation(e) {
-    if (this.previewTargetYaw === void 0) return;
-    const t = Math.floor(e) >>> 0,
-      i = (t - (this.previewYawTime ?? t)) >>> 0,
-      r = Oa0(this.previewYaw, this.previewTargetYaw, i);
-    ((this.previewYaw = r.yaw),
-      (this.previewYawTime = t),
-      r.complete &&
-        ((this.previewTargetYaw = void 0),
-        this.transformPreviewClosing && (this.transformPreviewClosing = !1)),
-      J3(this.previewCamera, this.previewYaw));
-  }
-  dispose() {
-    this.disposed ||
-      ((this.disposed = !0),
-      (this.directFrame = void 0),
-      this.characters.forEach(af),
-      this.karts.forEach(Js),
-      this.characters.clear(),
-      this.karts.clear(),
-      this.equipment.forEach((e) => e.dispose()),
-      this.equipment.clear(),
-      this.disposePreview(),
-      this.renderer.dispose());
-  }
-  copyTo(e, t) {
-    const i = this.directFrame;
-    if (i && e === i.target.context) {
-      const r = i.scenes.get(dT(t));
-      r && i.target.drawModel(t, (s) => f4(s, r.scene, r.camera));
-      return;
-    }
-    e.drawImage(
-      this.renderer.domElement,
-      t.x * this.pixelRatio,
-      t.y * this.pixelRatio,
-      t.width * this.pixelRatio,
-      t.height * this.pixelRatio,
-      t.x,
-      t.y,
-      t.width,
-      t.height,
-    );
-  }
-  renderCharacterCard(e, t, i, r) {
-    const s = this.characters.get(i.itemId);
-    s &&
-      (this.setViewport(t, r),
-      s.character.update(e, this.characterCamera, r.width, r.height, void 0),
-      this.submitScene(s.scene, this.characterCamera));
-  }
-  renderKartCard(e, t, i, r, s, o = !1) {
-    const a = this.karts.get(N3(i));
-    if (!a) return;
-    Ua0(this.kartCamera, r.width, r.height, s);
-    const c = a.cardCamera?.(r.width, r.height) ?? this.kartCamera;
-    (this.setViewport(t, r),
-      ey(a, e, c, r.width, r.height, o),
-      this.submitScene(a.scene, c));
-  }
-  renderPreview(e, t, i, r = !0) {
-    const s = this.preview;
-    if (!s) return;
-    this.setViewport(t, i);
-    const o = this.previewMode === "kart-only";
-    if (!r) {
-      (T4(s, e, this.previewCamera, i.width, i.height, !1),
-        this.submitScene(s.scene, this.previewCamera));
-      return;
-    }
-    (o
-      ? (s.kart.animation.updateCurrentState(e),
-        o80(s, e, this.transformPreviewTimelineActive) &&
-          ((this.transformPreviewCompleted = !this.transformPreviewCancelled),
-          (this.transformPreviewTimelineActive = !1),
-          (this.transformPreviewCancelled = !1),
-          (s.transformEnabled = !1),
-          (s.origin = void 0)))
-      : (nF(s, e), s.kart.animation.updateCurrentState(e)),
-      T4(s, e, this.previewCamera, i.width, i.height));
-    const a = s.kart.animation.state,
-      c = ((Math.trunc(e) >>> 0) - (s.origin ?? 0)) >>> 0,
-      l = o && this.transformPreviewEnabled && c <= 6e3,
-      u = ZP(a, l),
-      h = u.state !== 0;
-    (s.cosmeticEffects?.setState(u.state, u.dualMode, !1, !1, e),
-      s.cosmeticEffects?.update(e, this.previewCamera, i.width, i.height),
-      s.cosmeticTrails?.setState(h ? 3 : 0, e),
-      s.cosmeticTrails?.update(e, this.previewCamera),
-      s.particleModification?.update(
-        e,
-        !0,
-        this.previewCamera,
-        i.width,
-        i.height,
-      ),
-      s.flyingPet?.update(e, this.previewCamera, i.width, i.height),
-      s.decorations.forEach((d) =>
-        d.scene.update(e, this.previewCamera, i.width, i.height),
-      ),
-      this.submitScene(s.scene, this.previewCamera));
-  }
-  renderEquipmentCard(e, t, i) {
-    const r = this.equipment.get(xc(t));
-    r &&
-      (this.setViewport(e, i),
-      r.update(i.width, i.height),
-      this.submitScene(r.scene, r.camera));
-  }
-  setViewport(e, t) {
-    if (((this.panelRect = t), this.preparingDirectFrame)) return;
-    const i = e - t.y - t.height;
-    (this.renderer.setViewport(t.x, i, t.width, t.height),
-      this.renderer.setScissor(t.x, i, t.width, t.height),
-      this.renderer.clear(!0, !0, !0));
-  }
-  submitScene(e, t) {
-    this.preparingDirectFrame && this.directFrame && this.panelRect
-      ? this.directFrame.scenes.set(dT(this.panelRect), {
-          scene: e,
-          camera: t.clone(),
-        })
-      : f4(this.renderer, e, t);
-  }
-  syncCards(e) {
-    const t = e.filter((r) => r.kind === "character"),
-      i = e.filter((r) => r.kind === "kart");
-    (this.syncCharacters(t),
-      this.syncKarts(i),
-      this.syncEquipment(e.filter((r) => "category" in r)));
-  }
-  syncEquipment(e) {
-    ((this.desiredEquipment = new Set(e.map(xc))),
-      this.equipment.forEach((t, i) => {
-        this.desiredEquipment.has(i) || (t.dispose(), this.equipment.delete(i));
-      }),
-      e.forEach((t) => this.loadEquipmentCard(t)));
-  }
-  loadEquipmentCard(e) {
-    const t = xc(e);
-    this.equipment.has(t) ||
-      this.equipmentLoading.has(t) ||
-      this.equipmentFailed.has(t) ||
-      (this.equipmentLoading.add(t),
-      La0(this.library, e, this.environment, this.stageBinding)
-        .then((i) => {
-          this.disposed || !this.desiredEquipment.has(t)
-            ? i.dispose()
-            : this.equipment.set(t, i);
-        })
-        .catch(() => this.equipmentFailed.add(t))
-        .finally(() => {
-          (this.equipmentLoading.delete(t), this.disposed || this.onReady());
-        }));
-  }
-  syncCharacters(e) {
-    ((this.desiredCharacters = new Set(e.map((t) => t.itemId))),
-      this.characters.forEach((t, i) => {
-        this.desiredCharacters.has(i) || (af(t), this.characters.delete(i));
-      }),
-      e.forEach((t) => {
-        this.characters.has(t.itemId) ||
-          this.characterLoading.has(t.itemId) ||
-          this.characterFailed.has(t.itemId) ||
-          (this.characterLoading.add(t.itemId),
-          Ho(this.library, t, this.environment, this.stageBinding, "card")
-            .then((i) => {
-              this.disposed || !this.desiredCharacters.has(t.itemId)
-                ? af(i)
-                : this.characters.set(t.itemId, i);
-            })
-            .catch(() => {
-              this.characterFailed.add(t.itemId);
-            })
-            .finally(() => {
-              (this.characterLoading.delete(t.itemId),
-                this.disposed || this.onReady());
-            }));
-      }));
-  }
-  syncKarts(e) {
-    ((this.desiredKarts = new Set(e.map(N3))),
-      this.karts.forEach((t, i) => {
-        this.desiredKarts.has(i) || (Js(t), this.karts.delete(i));
-      }),
-      e.forEach((t) => this.loadKartCard(t)));
-  }
-  loadKartCard(e) {
-    const t = N3(e);
-    this.karts.has(t) ||
-      this.kartLoading.has(t) ||
-      this.kartFailed.has(t) ||
-      (this.kartLoading.add(t),
-      Qv(this.library, e, this.environment, this.stageBinding)
-        .then((i) => {
-          this.disposed || !this.desiredKarts.has(t)
-            ? Js(i)
-            : this.karts.set(t, i);
-        })
-        .catch(() => this.kartFailed.add(t))
-        .finally(() => {
-          (this.kartLoading.delete(t), this.disposed || this.onReady());
-        }));
-  }
-  syncPreview(e, t, i) {
-    const { itemIds: r } = i.equipment,
-      s = e.itemId === r[3] ? i.equipment.kartSerial : 0,
-      o = p5(i.garage, e.itemId, s),
-      a = JSON.stringify([
-        N3(e),
-        n80(e.path),
-        t.itemId,
-        r[2],
-        r[4],
-        r[70],
-        r[52],
-        r[8],
-        r[9],
-        r[11],
-        r[16],
-        r[26],
-        r[27],
-        i.initial,
-        o.cosmetics,
-        o.progression?.kind,
-        o.progression?.level,
-      ]);
-    if (a === this.previewKey) return;
-    this.previewKey = a;
-    const c = ++this.previewGeneration;
-    (this.disposePreview(),
-      T7(
-        this.library,
-        e,
-        t,
-        this.environment,
-        this.stageBinding,
-        this.importer,
-        this.previewMode,
-        i,
-        this.coatingTextures,
-      )
-        .then((l) => {
-          if (this.disposed || c !== this.previewGeneration) Lt(l);
-          else {
-            ((this.preview = l),
-              l.particleModification?.setPresentationAllowed(
-                this.particleModificationPageVisible,
-              ));
-            const u = this.previewMode === "kart-only" ? !1 : l.reverse;
-            this.previewReverse !== u &&
-              ((this.previewReverse = u), this.resetPreviewRotation());
-          }
-        })
-        .catch(() => {})
-        .finally(() => {
-          !this.disposed && c === this.previewGeneration && this.onReady();
-        }));
-  }
-  disposePreview() {
-    (this.coatingFitting?.dispose(),
-      (this.coatingFitting = void 0),
-      (this.coatingRequest = void 0),
-      (this.coatingFailure = void 0),
-      (this.transformPreviewEnabled = !1),
-      (this.transformPreviewTimelineActive = !1),
-      (this.transformPreviewCancelled = !1),
-      (this.transformPreviewCompleted = !1),
-      (this.transformPreviewClosing = !1),
-      this.preview && (Lt(this.preview), (this.preview = void 0)));
-  }
-  syncCoatingPreview(e) {
-    if (!e) {
-      if (this.coatingRequest) {
-        const t = this.coatingFitting?.current !== void 0;
-        (this.coatingFitting?.cancel(),
-          t && this.preview && (this.preview.origin = void 0));
-      }
-      ((this.coatingRequest = void 0), (this.coatingFailure = void 0));
-      return;
-    }
-    if (!(!this.preview || this.coatingRequest === e)) {
-      ((this.coatingRequest = e), (this.coatingFailure = void 0));
-      try {
-        if (this.previewMode !== "kart-only")
-          throw new Error("车膜试穿仅属于独立车库。");
-        this.coatingFitting ??= JP(this.preview, this.coatingTextures);
-        const t = this.coatingFitting,
-          i = this.preview;
-        t.select(e)
-          .then((r) => {
-            r &&
-              !this.disposed &&
-              this.preview === i &&
-              this.coatingFitting === t &&
-              this.coatingRequest === e &&
-              (i.origin = void 0);
-          })
-          .catch((r) => {
-            !this.disposed &&
-              this.coatingFitting === t &&
-              this.coatingRequest === e &&
-              (this.coatingFailure =
-                r instanceof Error ? r.message : String(r));
-          });
-      } catch (t) {
-        this.coatingFailure = t instanceof Error ? t.message : String(t);
-      }
-    }
+  static async load(library, environment, binding, onReady, characterSize,
+    previewSize, previewCamera, mode = "preview") {
+    return new E7(library, environment, binding, onReady, characterSize,
+      previewSize, previewCamera, mode);
   }
 }
 
-function xc(n) {
-  return `${n.kind}:${n.itemId}`;
-}
+
 
 function QP(n, e, t, i) {
   return n === "preview" ? !1 : Bk(e, t, i);
@@ -2341,9 +1705,7 @@ function t80(n) {
   return n?.replaceAll("\\", "/").match(/^kart_\/([^/]+)\/model\.1s$/i)?.[1];
 }
 
-function n80(n) {
-  return n.replaceAll("\\", "/").toLowerCase();
-}
+
 
 async function Qv(n, e, t, i) {
   const r = await t3(n, e.path, e.systemKey),
@@ -5788,7 +5150,7 @@ async function qc0(n) {
     _ = await f5(_i, await Ml(n, "gui_/font/SourceHanSansCN-Bold.otf").bytes());
   return {
     definition: v,
-    graphics: i,
+    graphics: addGraphicsPresentationOptions(i),
     game: h,
     keyboard: s,
     keymapScrollbar: A,
@@ -5960,6 +5322,7 @@ const Jc0 = {
     bgmMute: "bgmEnabled",
     fxMute: "fxEnabled",
     enableRoadSound: "enableRoadSound",
+    verticalSync: "verticalSync",
     boostBlur: "boostBlur",
     setDualBoostAuto: "dualBoostAuto",
     toonLine: "toonLine",

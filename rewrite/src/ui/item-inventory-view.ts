@@ -4,6 +4,7 @@ import {
   itemInventoryCanFavorite, itemInventoryCanLock, itemInventoryCanUnequip,
   itemInventoryEntries,
   itemInventoryIsEquipped, itemInventoryIsFavorite, itemInventoryKey,
+  itemInventoryProfileOnly,
   itemInventorySubcategories, toggleItemInventoryFavorite, toggleItemInventoryLock,
   type ItemInventoryCatalog,
   type ItemInventoryGroup, type ItemInventoryItem,
@@ -24,10 +25,23 @@ const KIND_LABELS: Record<string, string> = {
   headBand: "头饰", balloon: "气球", goggle: "护目镜", handGearL: "手部装备",
   aura: "光环", color: "喷漆", dye: "染色", skidMark: "轮胎印", plate: "车牌",
   pet: "宠物", unknown: "未收录",
+  uniform: "服装", decal: "贴花", ridColor: "车手颜色", slotBg: "车手栏背景",
+  headPhone: "耳机", rpLucciBonus: "经验金币加成",
+  goItemSkinCard: "道具皮肤卡", tachometer: "仪表盘卡",
 };
 
+const PROFILE_ONLY_EFFECTS: Record<string, string> = {
+  rpLucciBonus: "经验金币加成暂未计算",
+  goItemSkinCard: "道具皮肤暂未应用",
+  tachometer: "仪表盘外观暂未呈现",
+};
+
+function profileOnlyLimit(item: ItemInventoryItem): string {
+  return PROFILE_ONLY_EFFECTS[item.kind] ?? "场景外观暂无";
+}
+
 const STYLE = `
-.item-inventory-overlay{position:absolute;inset:0;z-index:80;display:grid;place-items:center;padding:20px;background:rgba(2,12,25,.76);color:#f1f6ff;font:15px/1.4 system-ui,-apple-system,"Microsoft YaHei",sans-serif;box-sizing:border-box}
+.item-inventory-overlay{position:absolute;inset:0 0 7.333333%;z-index:80;display:grid;place-items:center;padding:20px;background:rgba(2,12,25,.76);color:#f1f6ff;font:15px/1.4 system-ui,-apple-system,"Microsoft YaHei",sans-serif;box-sizing:border-box}
 .item-inventory-overlay *{box-sizing:border-box}
 .item-inventory-window{width:min(1120px,100%);max-height:min(800px,calc(100% - 40px));display:flex;flex-direction:column;overflow:hidden;border:2px solid #65b7e7;border-radius:18px;background:linear-gradient(145deg,#244d75 0%,#122a48 45%,#0a1d35 100%);box-shadow:0 28px 80px #000a,0 0 0 3px #153b62 inset}
 .item-inventory-header{display:flex;align-items:center;gap:16px;padding:18px 22px;background:#3a75a5;border-bottom:2px solid #85d6fa}
@@ -82,7 +96,7 @@ function button(label: string, onClick: () => void, className = ""): HTMLButtonE
   return result;
 }
 
-/** Original My Room inventory categories backed by explicit account holdings. */
+/** Original My Room inventory groups, using the local resource catalog as its items. */
 export class ItemInventoryView {
   readonly element = node("div", "item-inventory-overlay");
   readonly catalogItems: ItemInventoryItem[];
@@ -226,7 +240,9 @@ export class ItemInventoryView {
 
   private itemState(item: ItemInventoryItem): string {
     if (item.expiresAt !== undefined && item.expiresAt <= Date.now()) return "已过期";
-    if (itemInventoryIsEquipped(item, this.profile)) return "● 使用中";
+    if (itemInventoryIsEquipped(item, this.profile)) return itemInventoryProfileOnly(item)
+      ? `● 已装备到档案 · ${profileOnlyLimit(item)}` : "● 使用中";
+    if (itemInventoryProfileOnly(item)) return `可装备到档案 · ${profileOnlyLimit(item)}`;
     return item.quantity === undefined ? "资源可用" : "数量 " + item.quantity + " 个";
   }
 
@@ -272,7 +288,7 @@ export class ItemInventoryView {
     this.detail.replaceChildren();
     if (!item) {
       this.detail.append(node("h3", undefined, "我的物品"),
-        node("p", undefined, "选择一件物品查看持有状态。"));
+        node("p", undefined, "选择一件物品查看详情和装备状态。"));
       return;
     }
     this.detail.append(node("h3", undefined, item.title),
@@ -286,6 +302,9 @@ export class ItemInventoryView {
         "有效期至：" + new Date(item.expiresAt).toLocaleString("zh-CN")));
     if (item.locked) this.detail.append(node("p", undefined, "已锁定"));
     if (item.pcCafe) this.detail.append(node("p", undefined, "网吧专属"));
+    if (itemInventoryProfileOnly(item))
+      this.detail.append(node("p", undefined,
+        `可保存原版装备类别与编号；当前 Web 版${profileOnlyLimit(item)}。`));
     this.detail.append(node("p", undefined, this.itemState(item)));
     const favorite = button(itemInventoryIsFavorite(item, this.profile) ? "取消星标" : "加入星标",
       () => this.toggleFavorite(item));
@@ -369,7 +388,9 @@ export class ItemInventoryView {
       const profile = await this.options.onEquip(item, action);
       if (this.disposed) return;
       if (profile) this.profile = profile;
-      this.setStatus(`已${action === "unequip" ? "卸下" : "装备"} ${item.title}`);
+      this.setStatus(itemInventoryProfileOnly(item) && action === "equip"
+        ? `已将 ${item.title} 装备到档案；当前 Web 版${profileOnlyLimit(item)}。`
+        : `已${action === "unequip" ? "卸下" : "装备"} ${item.title}`);
     } catch (error) {
       if (!this.disposed)
         this.setStatus(error instanceof Error ? error.message : String(error));

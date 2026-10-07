@@ -2,7 +2,7 @@ import type { LocalProfile } from "../ui/local-profile";
 import { ItemInventoryView } from "../ui/item-inventory-view";
 import type { ItemInventoryCatalog, ItemInventoryItem } from "../ui/item-inventory";
 import { loadMyRoomCatalog } from "../ui/my-room-catalog";
-import type { MyRoomSceneLibrary } from "../ui/my-room-scene";
+import type { MyRoomSceneLibrary, MyRoomSceneSubject } from "../ui/my-room-scene";
 import { MyRoomView } from "../ui/my-room-view";
 import type { ReadyFlowController } from "./ready-flow";
 import type { ReadyGarageController } from "./ready-garage";
@@ -12,6 +12,7 @@ export interface ReadyHouseController extends ReadyFlowController {
   activeHouse?: MyRoomView;
   activeItemInventory?: ItemInventoryView;
   inventoryOpening?: boolean;
+  houseTaskbarRelease?: () => void;
   host: ReadyFlowController["host"] & {
     setProfile(profile: LocalProfile): void;
     saveProfile(): void;
@@ -19,8 +20,29 @@ export interface ReadyHouseController extends ReadyFlowController {
 }
 
 type ReadyHouseLibrary = MyRoomSceneLibrary & {
-  timeAttackGarageCatalog(): Promise<unknown>;
+  timeAttackGarageCatalog(): Promise<ItemInventoryCatalog>;
 };
+
+/** Match the displayed models to the exact Ready selection, including system karts. */
+function currentRoomSubject(controller: ReadyHouseController,
+  catalog: ItemInventoryCatalog): MyRoomSceneSubject | undefined {
+  const selection = controller.host.getSelection();
+  const environment = controller.readyToonEnvironment;
+  const binding = controller.host.toonStageBinding as
+    Partial<MyRoomSceneSubject["stageBinding"]> | undefined;
+  if (!selection?.vehiclePath || !selection.characterPath || !environment ||
+      typeof binding?.beginFrame !== "function" ||
+      typeof binding.coatingTextures !== "function") return undefined;
+  const kart = catalog.karts.find(item => item.itemId === selection.vehicleItemId &&
+    item.path.toLowerCase() === selection.vehiclePath!.toLowerCase() &&
+    (item.itemId !== 0 || item.systemKey === selection.vehicleSystemKey));
+  const character = catalog.characters.find(item =>
+    item.itemId === selection.characterItemId &&
+    item.path.toLowerCase() === selection.characterPath!.toLowerCase());
+  if (!kart || !character) return undefined;
+  return { kart, character, profile: controller.host.getProfile() as LocalProfile,
+    environment, stageBinding: binding as MyRoomSceneSubject["stageBinding"] };
+}
 
 /** Keep the in-memory profile and its local/server mirror together. */
 export function saveReadyHouseProfile(controller: ReadyHouseController,
@@ -38,6 +60,8 @@ export function saveReadyHouseProfile(controller: ReadyHouseController,
 }
 
 export function closeReadyHouse(controller: ReadyHouseController): void {
+  controller.houseTaskbarRelease?.();
+  controller.houseTaskbarRelease = undefined;
   controller.activeItemInventory?.dispose();
   controller.activeItemInventory = undefined;
   controller.activeHouse?.dispose();
@@ -55,7 +79,7 @@ async function openHouseInventory(controller: ReadyHouseController,
   const house = controller.activeHouse;
   controller.inventoryOpening = true;
   try {
-    const catalog = await library.timeAttackGarageCatalog() as ItemInventoryCatalog;
+    const catalog = await library.timeAttackGarageCatalog();
     if (controller.disposed || controller.host.shell.modal !== "house" ||
         controller.activeHouse !== house) return;
     let view!: ItemInventoryView;
@@ -92,8 +116,13 @@ async function equipFromHouseInventory(controller: ReadyHouseController,
   closeReadyHouse(controller);
   try {
     // The generated ql0 controller owns the ReadyGarageController operations.
-    return await equipReadyInventoryItem(controller as unknown as ReadyGarageController,
+    const profile = await equipReadyInventoryItem(controller as unknown as ReadyGarageController,
       selection, options, item, catalog, action);
+    // Ready recreates its model stage when equipment changes. Return to the room so
+    // the parked vehicle and rider immediately reflect the newly selected item.
+    if (!controller.disposed && controller.host.shell.current === "Ready" &&
+        controller.activeTimeAttackReady) await openReadyHouse(controller);
+    return profile;
   } catch (error) {
     controller.host.hud.showDebugText(
       `装备道具失败：${error instanceof Error ? error.message : String(error)}`, "error");
@@ -110,13 +139,15 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
   if (!library) return;
   if (!controller.host.shell.openModal("house")) return;
   controller.activeTimeAttackReady.freeze();
-  controller.activeTaskbar?.setVisible(false);
   try {
-    const environments = await loadMyRoomCatalog(library);
+    const [environments, catalog] = await Promise.all([
+      loadMyRoomCatalog(library), library.timeAttackGarageCatalog(),
+    ]);
     if (controller.disposed || controller.host.shell.modal !== "house") return;
     const view = new MyRoomView({
       root: controller.host.root,
       library,
+      subject: currentRoomSubject(controller, catalog),
       environments,
       profile: controller.host.getProfile() as LocalProfile,
       onProfileChange: profile => saveReadyHouseProfile(controller, profile),
@@ -126,6 +157,21 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
     controller.activeHouse = view;
     try {
       view.show();
+      const taskbar = controller.activeTaskbar as { element?: HTMLElement } | undefined;
+      if (taskbar?.element) {
+        const element = taskbar.element;
+        const onNavigation = (event: MouseEvent): void => {
+          const button = event.target instanceof Element
+            ? event.target.closest("button") : null;
+          if (!button || !element.contains(button) || button.disabled) return;
+          if (button.getAttribute("aria-label") === "小屋")
+            event.stopImmediatePropagation();
+          closeReadyHouse(controller);
+        };
+        element.addEventListener("click", onNavigation, true);
+        controller.houseTaskbarRelease = () =>
+          element.removeEventListener("click", onNavigation, true);
+      }
     } catch (error) {
       view.dispose();
       if (controller.activeHouse === view) controller.activeHouse = undefined;

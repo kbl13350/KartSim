@@ -30,8 +30,17 @@ export interface ItemInventoryItem {
 export type ItemInventoryGroup = "all" | "favorite" | "locked" | "pcCafe" |
   "kartBody" | "lottery" | "character" | "equip" | "useful" | "deco";
 
-const EQUIPMENT_KINDS = new Set(["headBand", "balloon", "goggle", "handGearL"]);
-const DECORATION_KINDS = new Set(["aura", "color", "dye", "skidMark", "plate"]);
+const EQUIPMENT_KINDS = new Set([
+  "headBand", "balloon", "goggle", "handGearL", "headPhone", "decal",
+  "rpLucciBonus", "goItemSkinCard", "tachometer",
+]);
+const DECORATION_KINDS = new Set([
+  "aura", "color", "dye", "skidMark", "plate", "uniform", "ridColor", "slotBg",
+]);
+const PROFILE_ONLY_KINDS = new Set([
+  "pet", "uniform", "decal", "ridColor", "slotBg", "headPhone",
+  "rpLucciBonus", "goItemSkinCard", "tachometer",
+]);
 
 export const ITEM_INVENTORY_GROUPS: ReadonlyArray<{ key: ItemInventoryGroup; label: string }> = [
   { key: "favorite", label: "★ 星标道具" },
@@ -111,7 +120,7 @@ export function itemInventoryEntries(catalog: ItemInventoryCatalog): ItemInvento
   const entries: ItemInventoryItem[] = [
     ...catalog.karts.map(item => ({ ...item, category: ITEM_CATEGORY.kart })),
     ...catalog.characters.map(item => ({ ...item, category: ITEM_CATEGORY.character })),
-    ...catalog.equipment.filter(item => item.kind === "flyingPet" ||
+    ...catalog.equipment.filter(item => item.kind === "flyingPet" || item.kind === "pet" ||
       EQUIPMENT_KINDS.has(item.kind) || DECORATION_KINDS.has(item.kind)),
   ];
   const seen = new Set<string>();
@@ -167,11 +176,16 @@ export function itemInventoryCanUnequip(item: ItemInventoryItem): boolean {
     item.kind !== "color" && item.kind !== "dye";
 }
 
-/** Local Ready can apply these asset-backed equipment categories. */
+/** Local Ready can save these asset-backed equipment categories. */
 export function itemInventoryCanEquip(item: ItemInventoryItem,
   now = Date.now()): boolean {
   return item.quantity !== 0 &&
     (item.expiresAt === undefined || item.expiresAt > now);
+}
+
+/** These original equipment slots persist, while this build has no scene renderer for them. */
+export function itemInventoryProfileOnly(item: ItemInventoryItem): boolean {
+  return PROFILE_ONLY_KINDS.has(item.kind);
 }
 
 export function itemInventoryCanFavorite(item: ItemInventoryItem): boolean {
@@ -239,7 +253,7 @@ function inSubcategory(item: ItemInventoryItem, group: ItemInventoryGroup,
     if (subcategory === "enhanceIngredient") return item.category === 79;
   }
   const kindAliases: Record<string, string> = {
-    headband: "headBand", paint: "color",
+    headband: "headBand", paint: "color", slotBG: "slotBg",
   };
   if (subcategory === "pet") return item.category === 21;
   if (subcategory === "fishingItem") return [15, 59].includes(item.category);

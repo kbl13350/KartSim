@@ -101,7 +101,7 @@ test("项目、数字、布尔与装饰属性解析保持发行版边界", () =>
   }
 });
 
-test("真实 p3553 ItemTable 与国服覆盖得到完全相同的车库定义", async () => {
+test("真实 p3553 ItemTable 的既有类别保持一致并扩展小屋装备身份", async () => {
   const index = JSON.parse(inflateSync(readFileSync(path.resolve(project,
     "../mirror/__p3553/archive-index"))).toString("utf8"), (_key, value: unknown) => {
     if (value && typeof value === "object" && "$u8" in value && typeof value.$u8 === "string")
@@ -130,9 +130,34 @@ test("真实 p3553 ItemTable 与国服覆盖得到完全相同的车库定义", 
   const authored = setup(AuthoredLibrary, files);
   const expected = await original.itemTableGarageDefinitions();
   const actual = await authored.itemTableGarageDefinitions();
-  assert.deepEqual(actual, expected);
+  const originalKinds = new Set(expected.map(item => item.kind));
+  assert.deepEqual(actual.filter(item => originalKinds.has(item.kind)), expected);
+  for (const kind of ["pet", "uniform", "decal", "ridColor", "slotBg",
+    "headPhone", "rpLucciBonus", "goItemSkinCard", "tachometer"]) {
+    assert.ok(actual.some(item => item.kind === kind), `缺少 ${kind} 原版道具身份`);
+  }
   assert.ok(actual.length > 1_000);
-  assert.deepEqual(await authored.itemTableGarageDefinitions(), expected);
+  assert.deepEqual(await authored.itemTableGarageDefinitions(), actual);
+});
+
+test("小屋其他装备类别保留原版 ItemTable 的类别与物品 ID", () => {
+  const root = x1(utf16(`<itemtable>
+    <pet id="21" name="cat3"/><uniform id="18" name="panda"/>
+    <decal id="20" name="blaze"/><ridColor id="31" name="red"/>
+    <slotBg id="71" name="vip"/><headPhone id="12" name="headCamera01"/>
+    <rpLucciBonus id="32" name="rp_bc"/>
+    <goItemSkinCard id="58" name="snowman"/>
+    <tachometer id="61" name="taxi"/>
+  </itemtable>`)).root;
+  assert.deepEqual(parseItemDefinitions(root.children).map(item =>
+    [item.kind, item.itemId, item.internalId]), [
+    ["pet", 21, "cat3"], ["uniform", 18, "panda"],
+    ["decal", 20, "blaze"], ["ridColor", 31, "red"],
+    ["slotBg", 71, "vip"], ["headPhone", 12, "headCamera01"],
+    ["rpLucciBonus", 32, "rp_bc"],
+    ["goItemSkinCard", 58, "snowman"],
+    ["tachometer", 61, "taxi"],
+  ]);
 });
 
 test("系统练习车与必需文件校验保持发行版行为", async () => {

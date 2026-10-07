@@ -179,3 +179,35 @@ test("an equipped accessory can be removed through Ready reload and save, while 
     f.host.getSelection(), f.host.getReadyOptions(), paint, catalog, "unequip"),
     /不能卸下/);
 });
+
+test("original auxiliary equipment slots persist through Ready, including bonus and item skin cards", async () => {
+  const auxiliary = [
+    ["headPhone", 12], ["uniform", 18], ["decal", 20],
+    ["pet", 21], ["ridColor", 31], ["slotBg", 71],
+    ["rpLucciBonus", 32], ["goItemSkinCard", 58], ["tachometer", 61],
+  ] as const;
+  const expanded: ItemInventoryCatalog = {
+    ...catalog,
+    equipment: [...catalog.equipment,
+      ...auxiliary.map(([kind, category]) => ({
+        kind, category, itemId: category + 100, title: kind, internalId: kind,
+      }))],
+  };
+  for (const [kind, category] of auxiliary) {
+    const f = fixture();
+    const item = itemInventoryEntries(expanded).find(entry => entry.kind === kind)!;
+    const result = await equipReadyInventoryItem(f.controller,
+      f.host.getSelection(), f.host.getReadyOptions(), item, expanded);
+    assert.equal(result.equipment.itemIds[category], category + 100);
+    assert.equal(f.host.getProfile(), result);
+    assert.equal(f.events.at(-1), "save");
+  }
+  const f = fixture();
+  const bonus = itemInventoryEntries(expanded).find(item => item.kind === "rpLucciBonus")!;
+  await equipReadyInventoryItem(f.controller,
+    f.host.getSelection(), f.host.getReadyOptions(), bonus, expanded);
+  const removed = await equipReadyInventoryItem(f.controller,
+    f.host.getSelection(), f.host.getReadyOptions(), bonus, expanded, "unequip");
+  assert.equal(removed.equipment.itemIds[32], 0);
+  assert.equal(f.events.at(-1), "save");
+});

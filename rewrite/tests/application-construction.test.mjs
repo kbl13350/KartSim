@@ -146,5 +146,9 @@ test("application canvas and startup construction match the release", () => {
       return { calls: f.calls, owner: summarize(f.owner) };
     } finally { globalThis.window = oldWindow; }
   };
-  assert.deepEqual(run("rewritten"), run("original"));
+  const rewritten = run("rewritten");
+  const diagnostics = rewritten.calls.find(call => call[0] === "diagnostics")[1];
+  assert.equal(diagnostics.options.verticalSync, false);
+  delete diagnostics.options.verticalSync;
+  assert.deepEqual(rewritten, run("original"));
 });

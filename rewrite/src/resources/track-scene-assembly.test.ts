@@ -347,6 +347,7 @@ test("Toon 刚性网格、轮廓和纹理缓存与发行版一致", async () => 
   const makeMaterial = () => new MeshBasicMaterial();
   const textureControllers = () => ({ uvControllers: undefined,
     alphaController: undefined, currentAlpha: 1 });
+  const drawUniforms = new Map<object, unknown[]>();
   const originalHarness = harness();
   const currentHarness = harness();
   for (const item of [originalHarness, currentHarness]) {
@@ -355,9 +356,18 @@ test("Toon 刚性网格、轮廓和纹理缓存与发行版一致", async () => 
     h.shared.hB = () => ({ candidates: [candidate], omitted: [] });
     h.shared.aj = pool;
     Object.assign(h.shared, { D2: Mesh, t9: BufferGeometry, N6: FakeOutline,
+      Bb: new Vector3(), Rb: new Matrix4(), Ib: new Matrix4(),
       bo: makeMaterial, Mo: () => undefined, AB: texture,
       YK: (_candidate: unknown, value: unknown) => value,
-      _K: textureControllers, ie: () => undefined });
+      _K: textureControllers, ie: () => undefined,
+      uK: () => undefined,
+      xo: (material: object, _environment: unknown, _binding: unknown,
+        world: Matrix4, inverse: Matrix4, viewer: Vector3) => {
+        const frames = drawUniforms.get(material) ?? [];
+        frames.push({ world: [...world.elements], inverse: [...inverse.elements],
+          viewer: viewer.toArray() });
+        drawUniforms.set(material, frames);
+      } });
     Object.assign(h.adapter, { inspectRoot: h.shared.hB,
       allocateRigidGeometry: pool, loadTexture: texture,
       inheritToonTexture: h.shared.YK,
@@ -365,6 +375,8 @@ test("Toon 刚性网格、轮廓和纹理缓存与发行版一致", async () => 
       applyMaterialProperties: h.shared.Mo,
       createTextureControllers: textureControllers,
       configureRenderOrder: h.shared.ie,
+      bindTexture: h.shared.uK,
+      configureToonUniforms: h.shared.xo,
       OutlineController: FakeOutline,
       SceneStore: Store });
   }
@@ -384,6 +396,17 @@ test("Toon 刚性网格、轮廓和纹理缓存与发行版一致", async () => 
       [...oldBody.geometry.getAttribute(attribute).array]);
   assert.deepEqual(currentBody.geometry.drawRange, oldBody.geometry.drawRange);
   assert.deepEqual(currentBody.userData, oldBody.userData);
+  const camera = new PerspectiveCamera();
+  for (const [x, y, z] of [[1, 2, 3], [-4, 5, -6], [7, 8, 9]]) {
+    camera.position.set(x!, y!, z!);
+    for (const body of [oldBody, currentBody]) {
+      (body.onBeforeRender as Function)({}, {}, camera);
+    }
+  }
+  assert.deepEqual(drawUniforms.get(currentBody.material),
+    drawUniforms.get(oldBody.material));
+  assert.deepEqual(drawUniforms.get(currentBody.material)?.map(frame =>
+    (frame as { viewer: number[] }).viewer), [[1, -3, 2], [-4, 6, 5], [7, -9, 8]]);
   old.dispose();
   current.dispose();
 });

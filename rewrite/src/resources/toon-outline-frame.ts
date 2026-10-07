@@ -110,19 +110,30 @@ export function updateToonBodyGeometry(host: ToonFrameHost,
   const index = host.prepareBodyIndex(geometry);
   const sourceIndices = host.bodySourceIndices!;
   let count = 0;
+  let changed = false;
   const output = index.array as Uint32Array;
   for (let face = 0; face < host.classes.length; face++) {
     const faceClass = host.classes[face]!;
     if (faceClass > 1) continue;
     const start = face * 3;
-    output[count++] = sourceIndices[start]!;
-    output[count++] = sourceIndices[start + (faceClass === 0 ? 1 : 2)]!;
-    output[count++] = sourceIndices[start + (faceClass === 0 ? 2 : 1)]!;
+    const first = sourceIndices[start]!;
+    const second = sourceIndices[start + (faceClass === 0 ? 1 : 2)]!;
+    const third = sourceIndices[start + (faceClass === 0 ? 2 : 1)]!;
+    changed ||= output[count] !== first || output[count + 1] !== second ||
+      output[count + 2] !== third;
+    output[count++] = first;
+    output[count++] = second;
+    output[count++] = third;
   }
   geometry.setDrawRange(0, count);
-  index.clearUpdateRanges();
-  if (count !== 0) {
-    host.bodyIndexUpdateRange.count = count;
+  // Camera movement usually leaves face winding unchanged. Keep pending ranges
+  // intact until Three uploads them, and avoid resending identical index data.
+  if (changed) {
+    let uploadCount = count;
+    for (const range of index.updateRanges)
+      uploadCount = Math.max(uploadCount, range.start + range.count);
+    index.clearUpdateRanges();
+    host.bodyIndexUpdateRange.count = uploadCount;
     index.updateRanges.push(host.bodyIndexUpdateRange);
     index.needsUpdate = true;
   }

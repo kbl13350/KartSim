@@ -75,8 +75,13 @@ test("F3 diagnostics text matches release with and without an engine", () => {
   counter.recordFrame(20, 5, 120);
   const frame = counter.summary();
   for (const engine of [null, collectEngineDiagnostics(input())]) {
-    assert.deepEqual(formatDiagnosticsLines(engine, frame, 57.9),
-      originalFormat(engine, frame, 57.9));
+    const expected = originalFormat(engine, frame, 57.9);
+    if (engine) {
+      const optionsIndex = expected.findIndex(line => line.startsWith("OPTIONS    "));
+      expected[optionsIndex] = expected[optionsIndex].replace(
+        "OPTIONS    ", "OPTIONS    verticalSync off | ");
+    }
+    assert.deepEqual(formatDiagnosticsLines(engine, frame, 57.9), expected);
   }
   counter.dispose();
 });

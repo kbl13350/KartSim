@@ -15,6 +15,7 @@
     "@babel/parser": "7.29.9",
     "@babel/traverse": "7.29.8",
     "@types/node": "24.10.0",
+    "@types/pako": "2.0.4",
     "@types/three": "0.178.0",
     "tsx": "4.23.15",
     "typescript": "7.0.2",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "fflate": "^0.8.3",
+    "pako": "2.1.0",
     "three": "0.178.0"
   }
 }

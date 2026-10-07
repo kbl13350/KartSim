@@ -51,11 +51,12 @@ test("closing My Room releases both overlays and restores Ready controls", () =>
         controller.host.shell.current = "Ready"; } } },
     activeHouse: { dispose: () => events.push("house.dispose") },
     activeItemInventory: { dispose: () => events.push("inventory.dispose") },
+    houseTaskbarRelease: () => events.push("taskbar.release"),
     activeTimeAttackReady: { unfreeze: () => events.push("ready.unfreeze") },
     activeTaskbar: { setVisible: (visible: boolean) => events.push(`taskbar:${visible}`) },
   } as unknown as ReadyHouseController;
   closeReadyHouse(controller);
-  assert.deepEqual(events, ["inventory.dispose", "house.dispose", "shell.close",
+  assert.deepEqual(events, ["taskbar.release", "inventory.dispose", "house.dispose", "shell.close",
     "ready.unfreeze", "taskbar:true"]);
   assert.equal(controller.activeHouse, undefined);
   assert.equal(controller.activeItemInventory, undefined);

@@ -27,6 +27,9 @@ const CN_STANDARD: SpeedBaseline = {
   normalBoosterTime: 0, teamBoosterTime: 0,
 };
 
+/** Standard Chinese speed profile also used as the vehicle assembly fallback. */
+export const defaultCnSpeedType = CN_STANDARD;
+
 const CN: Record<number, SpeedBaseline> = {
   0: { ...CN_STANDARD, addSteerConstraint: 1.7, addDriftEscapeForce: 150,
     addTransAccelFactor: 0.199, dragFactor: 0.735, forwardAccel: 1950, backwardAccel: 1500,
@@ -171,4 +174,20 @@ export function speedTypeEntry(version: SpeedVersion, speed: number): SpeedTypeE
     fields, driftMaxGaugeFromSpeedTypeOnly: fields.driftMaxGauge === 1,
     source: { file: "KartRider.Data/ExcData/SpeedType.cs", lines: lines! },
   };
+}
+
+// The release exposed a table lookup in addition to its throwing r7 accessor.
+// Keep the table entries stable by identity, as the original Map did.
+const speedTypeTable = new Map<string, SpeedTypeEntry>();
+for (const [version, speeds] of [
+  ["国服", [0, 1, 2, 3, 4, 5, 6, 7, 8]],
+  ["国服复古", [0, 1, 2, 3, 4, 5]],
+  ["韩服复古", [0, 1, 2, 3, 4, 5]],
+] as const) {
+  for (const speed of speeds)
+    speedTypeTable.set(`${version}:${speed}`, speedTypeEntry(version, speed));
+}
+
+export function findSpeedTypeEntry(version: unknown, speed: unknown): SpeedTypeEntry | undefined {
+  return speedTypeTable.get(`${version}:${speed}`);
 }

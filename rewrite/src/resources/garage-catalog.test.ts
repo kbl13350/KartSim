@@ -106,6 +106,7 @@ test("车库目录合并、模型回退、目录排序与装备筛选和原版�
     file("character_Dao/model.1s", "character_Dao.rho"),
     file("character_Bazzi/costume/body/model.1s", "character_Bazzi.rho"),
     file("stuff2_/plate/texture/PlateA.png", "stuff2_plate.rho"),
+    file("stuff/balloon/BalloonA/balloon.1s", "stuff.rho"),
   ];
   const original = setup(ReleaseLibrary, files, definitions);
   const authored = setup(AuthoredLibrary, files, definitions);
@@ -125,4 +126,67 @@ test("缺少或重复中国商店文件与原版报错一致", async () => {
     assert.deepEqual(await outcome(() => authored.loadTimeAttackGarageCatalog()),
       await outcome(() => original.loadTimeAttackGarageCatalog()));
   }
+});
+
+test("原版小屋附加分类加入可辨认的 CN 装备目录", async () => {
+  const kinds = [
+    ["pet", 21], ["uniform", 18], ["decal", 20], ["ridColor", 31],
+    ["slotBg", 71], ["headPhone", 12], ["rpLucciBonus", 32],
+    ["goItemSkinCard", 58], ["tachometer", 61],
+  ] as const;
+  const definitions = kinds.map(([kind, category]) => ({
+    kind, itemId: category, internalId: `resource_${category}`,
+  }));
+  const library = setup(AuthoredLibrary, [
+    file("zeta_/cn/shop/data/item.kml", "zeta_shop.rho"),
+    file("pet_/resource_21/param.bml", "pet_resource_21.rho"),
+    file("character_/Bazzi/costume/model/resource_18.1s", "character_Bazzi.rho"),
+    file("stuff/decal/resource_20.1s", "stuff.rho"),
+    file("stuff2_/slotBG/resource_71.1s", "stuff2_slotBG.rho"),
+    file("stuff/headPhone/resource_12.1s", "stuff.rho"),
+    file("stuff/card/resource_32.1s", "stuff.rho"),
+    file("stuff/goItemSkinCard/resource_58.1s", "stuff.rho"),
+    file("stuff/card/resource_61.1s", "stuff.rho"),
+  ], definitions);
+  const result = await loadTimeAttackGarageCatalog(library, {
+    ...dependencies,
+    parseShopXml: () => shopDocument(kinds.map(([_, category]) => ({
+      category: String(category), id: String(category), title: `道具 ${category}`,
+    }))),
+  });
+  assert.deepEqual(result.equipment.map(item =>
+    [item.kind, item.category, item.itemId, item.title]), kinds.map(([kind, category]) =>
+    [kind, category, category, `道具 ${category}`]));
+});
+
+test("没有国服商店标题的 ItemTable 道具仅在 Ready 资源齐全时入库", async () => {
+  const definitions: GarageItemDefinition[] = [
+    { kind: "character", itemId: 40, internalId: "Bazzi" },
+    { kind: "balloon", itemId: 41, internalId: "BalloonB" },
+    { kind: "headBand", itemId: 42, internalId: "HeadB" },
+    { kind: "goggle", itemId: 43, internalId: "GoggleB" },
+    { kind: "color", itemId: 44, internalId: "ColorB" },
+    { kind: "dye", itemId: 45, internalId: "DyeB" },
+    { kind: "pet", itemId: 46, internalId: "PetB" },
+  ];
+  const files = [
+    file("zeta_/cn/shop/data/item.kml", "zeta_shop.rho"),
+    file("character_/Bazzi/model.1s", "character_Bazzi.rho"),
+    file("stuff/balloon/BalloonB/balloon.1s", "stuff.rho"),
+    file("stuff/headBand/HeadB_0.1s", "stuff.rho"),
+    file("stuff/headBand/HeadB_1.1s", "stuff.rho"),
+    file("stuff/headBand/HeadB_2.1s", "stuff.rho"),
+    // The fourth headband slot and GoggleB model are absent.
+  ];
+  const library = setup(AuthoredLibrary, files, definitions);
+  const result = await loadTimeAttackGarageCatalog(library, {
+    ...dependencies, parseShopXml: () => shopDocument([]),
+  });
+  assert.deepEqual(result.characters.map(item => [item.itemId, item.title]),
+    [[40, "Bazzi (40)"]]);
+  assert.deepEqual(result.equipment.map(item => [item.kind, item.itemId, item.title]), [
+    ["balloon", 41, "BalloonB (41)"],
+    ["color", 44, "ColorB (44)"],
+    ["dye", 45, "DyeB (45)"],
+  ]);
 });

@@ -1,10 +1,13 @@
+import { schedulePresentationFrame, type PresentationLoopPresenter } from "./presentation-scheduler";
+
 export interface PresentationFrame {
   nowMs: number;
   rawMs: number;
 }
 
-export interface FramePresenter {
+export interface FramePresenter extends PresentationLoopPresenter {
   host: {
+    gameOptions?: { verticalSync?: boolean };
     workProfiler?: {
       begin(atMs: number): void;
       mark(name: string, atMs: number): void;
@@ -12,6 +15,7 @@ export interface FramePresenter {
       summary(): unknown;
     };
     renderer: {
+      getContext?(): { flush(): void };
       info: {
         reset(): void;
         render: { calls: number; triangles: number; lines: number; points: number; frame: number };
@@ -21,7 +25,7 @@ export interface FramePresenter {
       setRaceState(driving: boolean, paused: boolean, dodge: boolean): void;
     };
     input: { isEnabled: boolean };
-    shell: { started: boolean };
+    shell: { started: boolean; halted?: boolean };
     session: { lifecycle: unknown };
     paused: boolean;
     ready: { updateWindowNotice(nowMs: number): void };
@@ -49,6 +53,7 @@ export interface FramePresenter {
   fps: number;
   nextFrameCallbacks: Array<{ run(): void; reject(error: unknown): void }>;
   stages: {
+    currentName?: string;
     enter(): void;
     update(frame: PresentationFrame): void;
     render(): void;
@@ -63,7 +68,7 @@ export interface FrameLoopDependencies {
   requestFrame(callback: (nowMs: number) => void): number;
 }
 
-export interface AnimationFramePresenter {
+export interface AnimationFramePresenter extends PresentationLoopPresenter {
   maxRafDelayMs: number;
   lastUpdateMs: number;
   animationFrame: number;
@@ -75,8 +80,10 @@ export interface AnimationFramePresenter {
 export function advancePresentationFrame(
   presenter: AnimationFramePresenter,
   scheduledAtMs: number | undefined,
-  dependencies: Pick<FrameLoopDependencies, "nowMs" | "requestFrame">,
+  dependencies: Pick<FrameLoopDependencies, "nowMs" | "requestFrame"> &
+    Partial<Pick<FrameLoopDependencies, "isRaceFinished">>,
 ): void {
+  if (presenter.presentationDisposed || presenter.presentationScheduler?.disposed) return;
   const now = dependencies.nowMs();
   if (typeof scheduledAtMs === "number") {
     presenter.maxRafDelayMs = Math.max(
@@ -85,7 +92,7 @@ export function advancePresentationFrame(
     );
   }
   if ((Math.trunc(now) >>> 0) === presenter.lastUpdateMs) {
-    presenter.animationFrame = dependencies.requestFrame(presenter.frame);
+    schedulePresentationFrame(presenter, dependencies);
     return;
   }
   presenter.lastUpdateMs = Math.trunc(dependencies.nowMs()) >>> 0;
@@ -98,6 +105,7 @@ export function renderPresentationFrame(
   startedAtMs: number,
   dependencies: FrameLoopDependencies,
 ): void {
+  if (presenter.presentationDisposed || presenter.presentationScheduler?.disposed) return;
   const { host } = presenter;
   host.workProfiler?.begin(startedAtMs);
   const nowMs = Math.trunc(dependencies.nowMs()) >>> 0;
@@ -125,6 +133,7 @@ export function renderPresentationFrame(
     const frame = { nowMs, rawMs: nowMs };
     presenter.stages.update(frame);
     presenter.stages.render();
+    if (presenter.presentationScheduler?.lastFrameUnlocked) host.renderer.getContext?.().flush();
     host.hud.updateEngine(presenter.fps);
     if (presenter.nextFrameCallbacks.length > 0) {
       for (const callback of presenter.nextFrameCallbacks.splice(0)) callback.run();
@@ -147,6 +156,6 @@ export function renderPresentationFrame(
       startedAtMs,
       host.workProfiler?.summary(),
     );
-    presenter.animationFrame = dependencies.requestFrame(presenter.frame);
+    schedulePresentationFrame(presenter, dependencies);
   }
 }

@@ -161,6 +161,11 @@ export function handleApplicationShortcut(host: ApplicationControlHost,
   return true;
 }
 
+// Limit the main 3D pass to a Full HD pixel budget. High-DPI displays otherwise
+// multiply every fragment's cost, even though the game uses a fixed camera size.
+// Interface canvases keep their independent, native-resolution backing buffers.
+const MAX_APPLICATION_RENDER_PIXELS = 1920 * 1080;
+
 /** Resize the renderer and reapply the active camera's projection. */
 export function configureApplicationBackbuffer(host: ApplicationControlHost,
   dimensions: { width: number; height: number },
@@ -169,8 +174,10 @@ export function configureApplicationBackbuffer(host: ApplicationControlHost,
   pixelRatio: number): void {
   host.activeBlackBar?.setViewportHeight(host.root.getBoundingClientRect().height);
   const rect = host.root.getBoundingClientRect();
-  const scale = scaleForViewport(rect.width, rect.height, pixelRatio,
+  const nativeScale = scaleForViewport(rect.width, rect.height, pixelRatio,
     dimensions.width, dimensions.height);
+  const scale = Math.min(nativeScale,
+    Math.sqrt(MAX_APPLICATION_RENDER_PIXELS / (dimensions.width * dimensions.height)));
   host.renderer.setDrawingBufferSize(dimensions.width, dimensions.height, scale);
   host.camera.aspect = dimensions.width / dimensions.height;
   if (host.session.cameraMode === "drive" && host.session.driveCameraState) {

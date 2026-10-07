@@ -58,6 +58,7 @@ function engineDiagnostics(owner: any, ops: ApplicationConstructionOps): any {
       toonLine: owner.gameOptions.toonLine,
       shadow: owner.gameOptions.shadow,
       dualBoostAuto: owner.gameOptions.dualBoostAuto,
+      verticalSync: owner.gameOptions.verticalSync === true,
     },
   });
 }
@@ -66,6 +67,7 @@ function engineDiagnostics(owner: any, ops: ApplicationConstructionOps): any {
 export function initializeApplication(owner: any, root: HTMLElement,
   ops: ApplicationConstructionOps): void {
   owner.root = root;
+  (window as any).__kartRenderQaApp = owner;
   const canvas = owner.renderer.domElement as HTMLCanvasElement;
   canvas.className = "game-canvas";
   canvas.dataset.uiLayer = "world";

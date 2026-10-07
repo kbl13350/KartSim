@@ -5,7 +5,8 @@ import { defaultMyRoomProfile, type LocalProfile } from "./local-profile";
 import {
   filterItemInventory, itemInventoryCanEquip, itemInventoryCanUnequip,
   itemInventoryEntries, itemInventoryIsEquipped, itemInventoryIsFavorite,
-  itemInventorySubcategories, toggleItemInventoryFavorite, toggleItemInventoryLock,
+  itemInventoryProfileOnly, itemInventorySubcategories,
+  toggleItemInventoryFavorite, toggleItemInventoryLock,
   type ItemInventoryCatalog,
 } from "./item-inventory";
 
@@ -109,6 +110,36 @@ test("only removable accessories expose the original garage's second-click unequ
   assert.equal(itemInventoryCanUnequip(items.find(item => item.kind === "headBand")!), true);
   assert.equal(itemInventoryCanUnequip(items.find(item => item.kind === "aura")!), true);
   assert.equal(itemInventoryCanUnequip(items.find(item => item.kind === "flyingPet")!), true);
+  assert.equal(itemInventoryCanUnequip({ ...items[3]!, kind: "rpLucciBonus", category: 32 }), true);
   assert.equal(itemInventoryCanUnequip({ ...items[3]!, kind: "color", category: 2 }), false);
   assert.equal(itemInventoryCanUnequip({ ...items[3]!, kind: "dye", category: 70 }), false);
+});
+
+test("other original equipment identities keep their warehouse group and honest equip state", () => {
+  const kinds = [
+    ["pet", 21, "character", "pet"],
+    ["uniform", 18, "deco", "uniform"],
+    ["decal", 20, "equip", "decal"],
+    ["ridColor", 31, "deco", "ridColor"],
+    ["slotBg", 71, "deco", "slotBG"],
+    ["headPhone", 12, "useful", "etc"],
+    ["rpLucciBonus", 32, "equip", "rpLucciBonus"],
+    ["goItemSkinCard", 58, "equip", "whole"],
+    ["tachometer", 61, "equip", "whole"],
+  ] as const;
+  const extra: ItemInventoryCatalog = {
+    karts: [], characters: [],
+    equipment: kinds.map(([kind, category]) => ({
+      kind, category, itemId: category + 100, title: kind, internalId: kind,
+    })),
+  };
+  const items = itemInventoryEntries(extra);
+  assert.equal(items.length, kinds.length);
+  for (const [kind, _category, group, subcategory] of kinds) {
+    const item = items.find(entry => entry.kind === kind)!;
+    assert.ok(filterItemInventory(items, profile(), group, "", subcategory)
+      .includes(item));
+    assert.equal(itemInventoryProfileOnly(item), true);
+    assert.equal(itemInventoryCanEquip(item), true);
+  }
 });

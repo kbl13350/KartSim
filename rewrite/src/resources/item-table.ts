@@ -29,7 +29,9 @@ export interface ItemTableLibrary {
 
 const ITEM_KINDS = new Set([
   "kart", "character", "color", "plate", "dye", "flyingPet", "goggle",
-  "balloon", "headBand", "handGearL", "aura", "skidMark",
+  "balloon", "headBand", "handGearL", "aura", "skidMark", "pet", "uniform",
+  "decal", "ridColor", "slotBg", "headPhone", "rpLucciBonus",
+  "goItemSkinCard", "tachometer",
 ]);
 const DECORATIONS_WITH_TRANS = new Set([
   "goggle", "balloon", "headBand", "handGearL", "aura", "skidMark",

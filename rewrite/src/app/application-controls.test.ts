@@ -168,6 +168,50 @@ test("application pause, failure, keyboard, and viewport behavior matches releas
   assert.deepEqual(actual, expected);
 });
 
+test("the main 3D backbuffer stays within Full HD on high-DPI and large displays", () => {
+  for (const viewport of [
+    { width: 2248, height: 1264.5, pixelRatio: 2 },
+    { width: 1920, height: 1080, pixelRatio: 2 },
+    { width: 3840, height: 2160, pixelRatio: 1 },
+  ]) {
+    const { host, events } = makeHost(true);
+    host.root.getBoundingClientRect = () => viewport;
+    const scaleForViewport = (width: number, height: number, ratio: number,
+      targetWidth: number, targetHeight: number) =>
+      Math.max(width * ratio / targetWidth, height * ratio / targetHeight);
+    configureApplicationBackbuffer(host, { width: 1600, height: 900 },
+      scaleForViewport, viewport.pixelRatio);
+    assert.deepEqual(events, [
+      ["blackbar", viewport.height],
+      ["buffer", 1600, 900, 1.2],
+      ["drive-camera", host.session.driveCameraState],
+    ]);
+    assert.equal(host.camera.aspect, 1600 / 900);
+  }
+});
+
+test("the render budget never increases low-resolution buffers and follows viewport changes", () => {
+  const { host, events } = makeHost(true);
+  let viewport = { width: 3840, height: 2160 };
+  host.root.getBoundingClientRect = () => viewport;
+  const configure = (pixelRatio: number) => configureApplicationBackbuffer(host,
+    { width: 1600, height: 900 }, (width, height, ratio, targetWidth, targetHeight) =>
+      Math.max(width * ratio / targetWidth, height * ratio / targetHeight), pixelRatio);
+  configure(2);
+  viewport = { width: 800, height: 450 };
+  configure(1);
+  configure(2);
+  viewport = { width: 1600, height: 900 };
+  configure(1);
+  assert.deepEqual(events.filter(event => event[0] === "buffer"), [
+    ["buffer", 1600, 900, 1.2],
+    ["buffer", 1600, 900, 0.5],
+    ["buffer", 1600, 900, 1],
+    ["buffer", 1600, 900, 1],
+  ]);
+  assert.equal(host.camera.aspect, 1600 / 900);
+});
+
 async function exerciseRestart(rewritten: boolean, selected: boolean): Promise<unknown> {
   const { host, events } = makeHost(rewritten);
   if (!rewritten) originalEvents = events;

@@ -3,6 +3,16 @@
 // Stable minified names are retained for behavioral parity.
 
 import { installWorldOverrides } from "../world/install.ts";
+import { FlyingPetPresentation } from "../world/flying-pet-presentation.ts";
+import { TrackEventEffectPool } from "../world/track-event-effect-pool.ts";
+import { GiantRaceEffects } from "../world/giant-race-effects.ts";
+import { RoadblockResultPresentation, loadRoadblockResultParts } from "../world/roadblock-result-presentation.ts";
+import { createMultiplayerRaceLoader } from "../multiplayer/race-loader.ts";
+import { CanvasContextDiagnostics } from "../ui/canvas-context-diagnostics.ts";
+import { supportsLocalResourceDirectory as io0, recoverLocalResourceDirectory as ro0, chooseLocalResourceDirectory as so0 } from "../resources/local-directory-source.ts";
+import { initializeLocalRace } from "../multiplayer/local-race-construction.ts";
+import { KartPresentationView } from "../world/kart-presentation-view.ts";
+import { HudOverlay, captureUiTransition as eT } from "../ui/hud-overlay.ts";
 import { PerformanceCounter as ko0 } from "../ui/performance-counter.ts";
 import { collectEngineDiagnostics as jo0, formatDiagnosticsLines as qo0 } from "../ui/engine-diagnostics.ts";
 import { RaceChatOverlay } from "../multiplayer/race-chat-overlay.ts";
@@ -43,6 +53,59 @@ import { I1, N1, On, Rg, Tt, dl, t0 } from "./math.js";
 import { A40, B40, D40, Fk, Gr, I40, In0, No, Qk, R40, Ta, Tk, Uk, Vo, Y3, ev, f30, fL, fv, gL, gv, iL, k40, m7, mL, p7, pL, pr, rL, v7, vL, wL, yL } from "./vehicle.js";
 import { AL, Bg, Oo, di0, fi0, pi0, rc, vv, xd } from "./driving.js";
 
+const flyingPetPresentationDependencies = {
+  loadPetAsset: (library, id) => x4.load(library, id),
+  createSkinResources: (asset, primary, high) => new mE(asset, primary, high),
+  createAnimation: sequence => new cc(sequence),
+  loadModel: (...args) => Ks.load(...args),
+  createIdleMotion: (clips, animation, random) => new cr0(clips, animation, random),
+  loadEffect: (...args) => $d(...args), loadAudio: (...args) => Tv.load(...args),
+  createRaceState: () => new hr0(), isVisible: dr0,
+  createRotationMatrix: () => new v2(), renderNested: qm,
+};
+const trackEventEffectDependencies = {
+  parseScene: y9, buildScene: W1,
+  resolveTextureSource: (library, path, reference) => sn(library, path, void 0, reference),
+  decodeSound: Q9, connectSound: (context, source) => S9(context, source),
+};
+const giantRaceDependencies = {
+  parseBml: s2, attribute: T,
+  exactEntry: (library, path) => Yi(library, path),
+  createGroup: () => new T2(), decodeSound: Q9, connectSound: S9,
+  decodeImage: p2, createTexture: (pixels, width, height) => new J9(pixels, width, height),
+  createWarning: texture => new qr0(texture), build: aI,
+};
+const roadblockResultPresentationDependencies = {
+  parseScene: y9, attribute: T, buildScene: W1,
+  resolveSource: (library, path, reference) => sn(library, path, void 0, reference),
+  validateStand: mr0, createGroup: () => new T2(),
+  createCameraPublisher: () => new Ol(), createDistance: wr0,
+  startBasis: fr0, nativePoint: point => It(point),
+  createVector: (x, y, z) => new H(x, y, z),
+  runnerPose: pr0, cameraPose: gr0,
+};
+const multiplayerRaceLoaderDependencies = {
+  createToonStageBinding: () => new ha(),
+  loadRaceAssets: (...args) => A40(...args),
+  loadCharacterAnimations: (...args) => hI(...args),
+  createNetworkDriver: (...args) => new Ui0(...args),
+  loadTimeGap: (...args) => Dw.load(...args),
+  loadCountdownAudio: (...args) => Q6.load(...args),
+  loadRoadblockFlag: (...args) => tw.load(...args),
+  loadTrackCard: options => M7.load(options),
+  loadRoadblockHud: (...args) => Bo.loadHud(...args),
+  loadRoadblockResult: (...args) => Bo.loadResult(...args),
+  loadRoadblockOverlay: (...args) => Gw.load(...args),
+  loadRaceResult: (...args) => Tw.load(...args),
+  findKart: p5, bannerKind: uP,
+  loadBanner: (...args) => x7.load(...args),
+  createPresenter: (...args) => new jr0(...args),
+  loadRaceChat: (...args) => Dv.load(...args),
+  createSession: (...args) => new Yr0(...args),
+  now: () => performance.now(),
+};
+const kartPresentationDependencies = { makeWheelPresentation: (resource, nodes, visual) => new N90(resource, nodes, visual), makeBalloon: c7, disposeObject: u5 };
+const localRaceConstructionDependencies = { validateStartSlots: iL, hasLteMode: ko, validRpDraws: ba, sameRp: t7, hasGiantMode: Io, makeLte: () => new D40(), makeGiant: callback => new pL(true, callback), makePhysics: (...args) => new AL(...args), makeTrack: (...args) => new _L(...args), placeAtStart: rL, makeCoordinator: (...args) => new yL(...args), racingState: X2.Racing };
 const localRaceDependencies = { states: X2, beginResetState: mL, advanceResetState: wL, routeTagFamily: Vo, isStartBoosterWindow: fL };
 const raceRoomDependencies = { modeOf: G2, sameRp: t7, sameRoadblock: oR, sameLte: Nw, sameGiant: yI, toLocalTick: Y3, racingState: X2.Racing };
 const racePresenterInitializationDependencies = { createCameraShake: (random, anchor) => new nP(random, anchor), createRankRoster: (roster, playerId) => new Tr0(roster, playerId), createLightFactor: random => new sP(random), createAction2d: assets => new dI(assets), applyTrackFog: (scene, track) => kv(scene, track), createRacerView: scene => new Vg(scene), vehicleParts: vehicle => lc(vehicle), serializedRoot: model => J5(model), get accessorySockets() { return oP; }, createLinkedPresentation: (...args) => new _a(...args), attachAura: (...args) => ev(...args), createGiantAppearance: (...args) => new Kr0(...args), startPosition: (...args) => rL(...args), createShadowPresentation: object => new $i0(object) };
@@ -278,107 +341,7 @@ function C5(n, e, t, i, r, s, o, a, c, l, u, h, d, f, p) {
 
 
 class Ci0 {
-  constructor(e, t, i) {
-    if (
-      ((this.assets = e),
-      (this.roadblock = e.drivingMode?.kind === "roadblock"),
-      (this.isRoadBlockRunner = this.roadblock && t.roadblock?.runnerId === i),
-      e.raceId !== t.raceId)
-    )
-      throw new Error("禁止使用上一局的比赛资源。");
-    iL(t);
-    const r = e.participants.find((s) => s.playerId === i);
-    if (!r || !t.roster.some((s) => s.playerId === i))
-      throw new Error("本局缺少本机车辆。");
-    if (e.map.data.trackId !== t.trackId)
-      throw new Error("本局赛道与已装配资源不一致。");
-    if ((e.drivingMode?.kind === "lte") !== ko(t.lte))
-      throw new Error("LTE Web试玩身份与本机玩法不一致。");
-    if (
-      (e.drivingMode?.kind === "rp") !==
-        ba(
-          t.rp,
-          t.roster.map((s) => s.playerId),
-        ) ||
-      !t7(e.rp, t.rp)
-    )
-      throw new Error("RP 抽取结果与已装配车辆不一致。");
-    if (
-      t.rp &&
-      e.participants.some((s) => {
-        const o = t.rp.draws[s.playerId];
-        return (
-          !o ||
-          s.profile.equipment.itemIds[3] !== o.kartId ||
-          s.profile.equipment.itemIds[52] !== o.flyingPetId
-        );
-      })
-    )
-      throw new Error("RP 分配与参与者实际装配不一致。");
-    if (
-      ((this.lte = e.drivingMode?.kind === "lte" ? new D40() : void 0),
-      (e.drivingMode?.kind === "giant") !== Io(t.giant))
-    )
-      throw new Error("巨人冻结身份与玩法不一致。");
-    ((this.giant =
-      e.drivingMode?.kind === "giant"
-        ? new pL(!0, () => this.physics.compensateGiantBooster())
-        : void 0),
-      (this.physics = new AL(
-        r.vehicle.physicsParams,
-        r.vehicle.collisionShape,
-        e.mode === "team",
-        e.mode === "team" && e.speed === 4,
-        e.mode === "team" && e.speed !== 4,
-        e.drivingMode,
-        this.lte?.motion,
-        this.giant,
-        e.checkClientFramerate && e.channel.adjustCollision,
-      )),
-      (this.track = new _L(
-        e.map.data,
-        e.map.scene,
-        e.map.renderScene,
-        e.map.skydome,
-        e.lensFlare,
-      )),
-      this.physics.resetFromRouteFrame(this.track.getStart()),
-      (this.startPose = structuredClone({
-        position: this.physics.body.position,
-        right: this.physics.body.right,
-        forward: this.physics.body.forward,
-        up: this.physics.body.up,
-      })),
-      (this.physics.body.position = rL(
-        this.physics.body.position,
-        this.physics.body.right,
-        t.startSlots[i],
-        (s, o) => this.track.rayQuery(s, o, !1)?.point,
-      )),
-      this.track.resetRouteState(this.physics, this.physics.body.position),
-      this.track.setLensFlareEnabled(
-        this.track.currentRouteSurface(this.physics) === "lensflare",
-      ),
-      (this.physics.state.trackProgress = this.track.getRouteState(
-        this.physics,
-      ).distance),
-      this.physics.setRaceMotionLocked(!0),
-      (this.coordinator = new yL(
-        e.map.admission,
-        this.track,
-        this.physics,
-        (s) => this.handleLocalRouteTag(s),
-      )),
-      e.lteCoins && this.track.group.add(e.lteCoins.object),
-      e.lteCoins?.attach(
-        this.coordinator,
-        () => this.physics.body.position,
-        () =>
-          this.lifecycle.state === X2.Racing &&
-          this.resetState.phase === 0 &&
-          !this.warpNext.blocksDriving(),
-      ));
-  }
+    constructor(assets, room, playerId) { initializeLocalRace(this, assets, room, playerId, localRaceConstructionDependencies); }
   assets;
   lapTiming = new vL();
   boostGaugeFull = !1;
@@ -2067,183 +2030,16 @@ class Tv {
   }
 }
 
-function _3(n, e) {
-  ((n.matrixAutoUpdate = !1),
-    (n.matrix.elements[12] = e[0]),
-    (n.matrix.elements[13] = e[1]),
-    (n.matrix.elements[14] = e[2]),
-    (n.matrixWorldNeedsUpdate = !0));
-}
 
-class S4 {
-  constructor(e) {
-    this.race = e;
+
+class S4 extends FlyingPetPresentation {
+  constructor(race) { super(race, flyingPetPresentationDependencies); }
+  static async preview(options, atOrigin = false) {
+    return new S4().loadPreview(options, atOrigin);
   }
-  race;
-  resources = [];
-  first;
-  firstAnimation;
-  second;
-  secondAnimation;
-  fired;
-  alive;
-  headEffects = [];
-  idle;
-  audio;
-  state;
-  initial;
-  equipped;
-  firedStart;
-  aliveStart;
-  disposed = !1;
-  get object() {
-    return this.first.object;
-  }
-  static async preview(e, t = !1) {
-    const i = new S4();
-    try {
-      const r = await x4.load(e.library, e.item.internalId),
-        s = new mE(r, e.colors.primary, e.colors.high);
-      i.resources.push(s);
-      const o = (await r.clip(!1, 8)).sequence;
-      return (
-        (i.initial = o),
-        (i.firstAnimation = new cc(o)),
-        (i.first = await Ks.load(
-          await r.model(),
-          [o],
-          s,
-          e.environment,
-          e.binding,
-        )),
-        i.resources.push(i.first),
-        _3(i.first.object, t ? [0, 0, 0] : [0.75, -0.75, 0.5]),
-        e.item.tuneGroupId && (await i.attachHeadEffect(e, i.first)),
-        i
-      );
-    } catch (r) {
-      throw (i.dispose(), r);
-    }
-  }
-  static async race(e) {
-    if (e.role !== "local") return;
-    const t = new S4(e);
-    try {
-      const i = await x4.load(e.library, e.item.internalId),
-        r = new mE(i, e.colors.primary, e.colors.high);
-      t.resources.push(r);
-      const s = new Map();
-      for (const a of or0) s.set(a, (await i.clip(!1, a)).sequence);
-      ((t.initial = s.get(0)),
-        (t.equipped = (await i.clip(!0, 40)).sequence),
-        (t.firstAnimation = new cc(t.initial)),
-        (t.secondAnimation = new cc(t.equipped)),
-        (t.first = await Ks.load(
-          await i.model(),
-          [...s.values()],
-          r,
-          e.environment,
-          e.binding,
-        )),
-        t.resources.push(t.first),
-        (t.second = await Ks.load(
-          await i.model(!0),
-          [t.equipped],
-          r,
-          e.environment,
-          e.binding,
-        )),
-        t.resources.push(t.second),
-        (t.idle = new cr0(s, t.firstAnimation, e.random)),
-        (t.fired = await $d(e.library, "firedFx", e.environment, e.binding)),
-        t.resources.push(t.fired),
-        (t.alive = await $d(e.library, "aliveFx", e.environment, e.binding)),
-        t.resources.push(t.alive),
-        (t.audio = await Tv.load(i, e.audioContext)),
-        t.resources.push(t.audio),
-        e.item.tuneGroupId && (await t.attachHeadEffect(e, t.second)),
-        t.reset());
-      const o = e.listen?.((a) => (a ? t.state?.enable() : t.state?.disable()));
-      return (o && t.resources.push({ dispose: o }), t);
-    } catch (i) {
-      throw (t.dispose(), i);
-    }
-  }
-  mount(e) {
-    (e.add(this.first.object),
-      this.second && e.add(this.second.object),
-      this.fired && e.add(this.fired.object),
-      this.alive && e.add(this.alive.object));
-  }
-  launch() {
-    this.state?.launch();
-  }
-  reset() {
-    (this.firstAnimation.reset(this.initial),
-      this.race &&
-        ((this.state = new hr0()),
-        (this.secondAnimation = new cc(this.equipped)),
-        this.idle?.reset(),
-        (this.firedStart = this.aliveStart = void 0),
-        _3(this.first.object, this.state.local),
-        _3(this.second.object, this.state.secondLocal),
-        (this.first.object.visible = !1),
-        (this.second.object.visible =
-          this.fired.object.visible =
-          this.alive.object.visible =
-            !1)));
-  }
-  update(e, t, i, r, s = !0) {
-    if (this.disposed) return;
-    const o = !this.race || dr0(this.race.role, s);
-    if (this.state) {
-      this.first.object.updateWorldMatrix(!0, !1);
-      const a = new v2()
-        .makeRotationX(Math.PI / 2)
-        .multiply(this.first.object.matrixWorld);
-      (this.state.update(e, a.elements, this.race.grandparentScale, (l) =>
-        this.idle.update(l),
-      ) &&
-        o &&
-        this.audio?.playAlive(),
-        _3(this.first.object, this.state.local),
-        _3(this.second.object, this.state.secondLocal),
-        (this.first.object.visible = o && this.state.firstVisible),
-        (this.second.object.visible = o && this.state.secondVisible),
-        (this.fired.object.visible = o && this.state.firedVisible),
-        (this.alive.object.visible = o && this.state.aliveVisible),
-        this.state.firedVisible &&
-          this.firedStart !== this.state.firedStart &&
-          ((this.firedStart = this.state.firedStart),
-          _3(this.fired.object, this.state.local),
-          this.fired.setControllerCycleMode?.(2),
-          this.fired.reset(this.firedStart)),
-        this.state.aliveVisible &&
-          this.aliveStart !== this.state.aliveStart &&
-          ((this.aliveStart = this.state.aliveStart),
-          _3(this.alive.object, this.state.local),
-          this.alive.setControllerCycleMode?.(2),
-          this.alive.reset(this.aliveStart)),
-        this.second.update(this.secondAnimation, t, i, r, e),
-        this.state.firedVisible && this.fired.update(e, t, i, r),
-        this.state.aliveVisible && this.alive.update(e, t, i, r));
-    }
-    this.first.update(this.firstAnimation, t, i, r, e);
-    for (const a of this.headEffects) qm(a.object, () => a.update(e, t, i, r));
-  }
-  dispose() {
-    if (!this.disposed) {
-      this.disposed = !0;
-      for (const e of this.resources.reverse()) e.dispose();
-      this.resources.length = 0;
-    }
-  }
-  async attachHeadEffect(e, t) {
-    if (!t.headSocket) return;
-    const i = await $d(e.library, "effect", e.environment, e.binding);
-    (this.resources.push(i),
-      this.headEffects.push(i),
-      t.headSocket.add(i.object));
+  static async race(options) {
+    if (options.role !== "local") return;
+    return new S4(options).loadRace(options);
   }
 }
 
@@ -2447,137 +2243,14 @@ function wr0() {
   });
 }
 
-class Bv {
-  constructor(e, t, i) {
-    ((this.stand = e),
-      (this.confetti = t),
-      (this.reversePodium = i),
-      this.root.add(e.object),
-      this.effectRoot.add(t.object));
+class Bv extends RoadblockResultPresentation {
+  constructor(stand, confetti, reversePodium) {
+    super(stand, confetti, reversePodium, roadblockResultPresentationDependencies);
   }
-  stand;
-  confetti;
-  reversePodium;
-  root = new T2();
-  effectRoot = new T2();
-  cameraPublisher = new Ol();
-  distance = wr0();
-  basis;
-  ground;
-  runner;
-  runnerView;
-  disposed = !1;
-  static async load(e, t) {
-    const i = async (f) => {
-        const p = e.exactCanonicalCandidates(f);
-        if (p.length !== 1) throw new Error(`挡人结算资源不唯一：${f}`);
-        return p[0].bytes();
-      },
-      r = y9(await i(t.map.path));
-    if (r.root.kind !== "track")
-      throw new Error("挡人结算赛道没有 course owner。");
-    const o = r.root.trackObjects
-      .find((f) => f.kind === "TrackObject" && f.name === "track")
-      ?.property?.children.find((f) => f.name === "course");
-    if (!o) throw new Error("挡人结算赛道缺少 course。");
-    const a = /^(?:1|true|on)$/i.test((T(o, "reversePodium") ?? "").trim()),
-      c = "stuff/award/stand/indi.1s",
-      l = y9(await i(c));
-    if (l.root.kind !== "node") throw new Error("挡人奖台不是 Relement。");
-    const u = {
-        environment: t.map.environment,
-        stageBinding: t.map.stageBinding,
-        advanceEnvironment: !1,
-      },
-      h = await W1(l, e, "RoadBlockFinalStand", (f) => sn(e, c, void 0, f), u);
-    let d;
-    try {
-      mr0(l.root);
-      const f = "stuff/award/effect/ob_award_efect_a.1s";
-      return (
-        (d = await W1(
-          y9(await i(f)),
-          e,
-          "RoadBlockFinalConfetti",
-          (p) => sn(e, f, void 0, p),
-          u,
-        )),
-        new Bv(h, d, a)
-      );
-    } catch (f) {
-      throw (d?.dispose(), h.dispose(), f);
-    }
-  }
-  show(e, t, i, r, s) {
-    if (this.disposed || this.runner) return;
-    if (!s.roadblock || !s.roadblockOutcome)
-      throw new Error("挡人结算缺少跑者和胜负。");
-    const o = i.participants.find((w) => w.playerId === s.roadblock.runnerId),
-      a = r.get(s.roadblock.runnerId);
-    if (!o || !a || !o.characters.ordinary?.award || o.characters.linked)
-      throw new Error("挡人结算跑者人车未就绪。");
-    const c = t.track.getStart(),
-      l = t.track.rayQuery(
-        { x: c.position.x, y: Math.fround(c.position.y + 10), z: c.position.z },
-        { x: 0, y: -60, z: 0 },
-        !1,
-      )?.point;
-    if (!l) throw new Error("挡人结算基准未命中原生地面。");
-    ((this.basis = fr0(c, this.reversePodium)), (this.ground = l));
-    const [u, h, d] = this.basis,
-      f = It({ x: u.x, y: h.x, z: d.x }),
-      p = It({ x: u.z, y: h.z, z: d.z }),
-      v = It({ x: -u.y, y: -h.y, z: -d.y });
-    ((this.root.matrixAutoUpdate = !1),
-      this.root.matrix
-        .makeBasis(
-          new H(f.x, f.y, f.z),
-          new H(p.x, p.y, p.z),
-          new H(v.x, v.y, v.z),
-        )
-        .setPosition(l.x, l.y, l.z),
-      (this.root.matrixWorldNeedsUpdate = !0),
-      (this.effectRoot.matrixAutoUpdate = !1),
-      this.effectRoot.matrix.copy(this.root.matrix),
-      (this.effectRoot.matrixWorldNeedsUpdate = !0),
-      this.stand.reset(Math.trunc(e) >>> 0),
-      this.confetti.reset(Math.trunc(e) >>> 0),
-      this.distance.reset(Math.trunc(e) >>> 0));
-    for (const [w, g] of r) g.root.visible = w === o.playerId;
-    (a.resetAnimation(),
-      o.characters.ordinary.scene.reset(),
-      a.updatePose(pr0(this.basis, l)),
-      a.root.updateMatrixWorld(!0),
-      o.characters.ordinary.award.enterResult(
-        s.roadblockOutcome.runnerWon ? 12 : 13,
-      ),
-      (this.runner = o),
-      (this.runnerView = a));
-  }
-  update(e, t, i, r) {
-    if (this.disposed || !this.runner || !this.basis || !this.ground) return;
-    (this.cameraPublisher.apply(
-      t,
-      gr0(this.basis, this.ground, this.distance.update(Math.trunc(e) >>> 0)),
-    ),
-      this.runnerView.root.updateMatrixWorld(!0),
-      this.stand.update(e, t, i, r),
-      this.confetti.update(e, t, i, r));
-    const s = this.runner;
-    (s.vehicle.imported.renderScene?.update(t, i, r),
-      s.characters.ordinary.scene.update(e, t, i, r, void 0));
-    for (const o of s.vehicle.accessories) o.render.scene.update(e, t, i, r);
-    s.vehicle.decoration?.scene.update(e, t, i, r);
-  }
-  dispose() {
-    this.disposed ||
-      ((this.disposed = !0),
-      (this.runner = void 0),
-      (this.runnerView = void 0),
-      this.root.removeFromParent(),
-      this.effectRoot.removeFromParent(),
-      this.confetti.dispose(),
-      this.stand.dispose());
+  static async load(library, raceAssets) {
+    const parts = await loadRoadblockResultParts(
+      library, raceAssets, roadblockResultPresentationDependencies);
+    return new Bv(parts.stand, parts.confetti, parts.reversePodium);
   }
 }
 
@@ -3306,202 +2979,7 @@ class sP {
   }
 }
 
-class Vg {
-  root = new T2();
-  modelMount = new T2();
-  affectBasis = new _o();
-  presentationMatrix = new _o();
-  presentationState;
-  importedModel;
-  visualConfig;
-  animation;
-  wheelPresentation;
-  attachmentNodes = [];
-  constructor(e) {
-    ((this.root.name = "player-kart"),
-      (this.modelMount.name = "imported-kart-mount"),
-      (this.root.matrixAutoUpdate = !1),
-      cn(this.root),
-      (this.modelMount.matrixAutoUpdate = !1),
-      (this.modelMount.matrixWorldAutoUpdate = !1),
-      cn(this.modelMount),
-      this.root.add(this.modelMount),
-      e.add(this.root));
-  }
-  setModel(e, t, i, r, s) {
-    const o = r && s ? new N90(r, s, t) : void 0,
-      a = t.attachments.map((c) => s?.nodes.get(c)?.object);
-    (!a[16] && t.attachments[16] === "balloon" && r && s && (a[16] = c7(r, s)),
-      this.clearImportedModel(),
-      (this.importedModel = e),
-      (this.visualConfig = t),
-      (this.animation = i),
-      (this.wheelPresentation = o),
-      (this.attachmentNodes = a),
-      this.modelMount.add(e));
-  }
-  clearModel() {
-    this.clearImportedModel();
-  }
-  resetAnimation() {
-    (this.animation?.reset(0),
-      this.wheelPresentation?.reset(),
-      this.setLocalAffectBasis());
-  }
-  setLocalAffectBasis(e) {
-    if (e) {
-      const t = e.elements;
-      this.affectBasis.set(
-        t[0],
-        -t[8],
-        t[4],
-        0,
-        -t[2],
-        t[10],
-        -t[6],
-        0,
-        t[1],
-        -t[9],
-        t[5],
-        0,
-        0,
-        0,
-        0,
-        1,
-      );
-    } else this.affectBasis.identity();
-    this.presentationState &&
-      this.updatePresentationTransform(this.presentationState);
-  }
-  getAttachment(e) {
-    return this.attachmentNodes[e];
-  }
-  getVisualConfig() {
-    return this.visualConfig;
-  }
-  presentationRoot() {
-    return this.modelMount;
-  }
-  update(e, t, i) {
-    (this.updatePose(e), (this.presentationState = e));
-    const r = this.animation?.state ?? 0,
-      s = i
-        ? this.updateAnimation(t, i)
-        : this.animation?.updateCurrentState(t);
-    return (
-      this.wheelPresentation && this.wheelPresentation.update(e, t >>> 0, r),
-      s
-    );
-  }
-  updatePose(e) {
-    (this.root.matrix.set(
-      e.right.x,
-      e.up.x,
-      e.forward.x,
-      e.x,
-      e.right.y,
-      e.up.y,
-      e.forward.y,
-      e.y,
-      e.right.z,
-      e.up.z,
-      e.forward.z,
-      e.z,
-      0,
-      0,
-      0,
-      1,
-    ),
-      (this.root.matrixWorldNeedsUpdate = !0),
-      this.updatePresentationTransform(e));
-  }
-  updateRemote(e, t, i) {
-    return (
-      this.updatePose(e),
-      (this.presentationState = e),
-      this.updateAnimation(t, i)
-    );
-  }
-  enterDualUse() {
-    return (this.animation?.enterDualUse(), this.animation?.state);
-  }
-  updateAnimation(e, t) {
-    if (!this.animation || !this.visualConfig) return;
-    const i = e >>> 0,
-      r =
-        (this.visualConfig.isTransformAutoCharge &&
-          t.displaySpeedKmh > this.visualConfig.autoChargeLowSpeed) ||
-        (t.physicsState > 2 && t.physicsState < 12);
-    return this.animation.update(
-      i,
-      r,
-      this.visualConfig.transformTime,
-      t.dualMode,
-      t.physicsState,
-    );
-  }
-  dispose() {
-    (this.clearImportedModel(), this.root.removeFromParent());
-  }
-  releaseBorrowedModel() {
-    (this.clearImportedModel(!1), this.root.removeFromParent());
-  }
-  updatePresentationTransform(e) {
-    const t = this.presentationMatrix
-        .set(
-          e.right.x,
-          -e.forward.x,
-          e.up.x,
-          0,
-          -e.right.z,
-          e.forward.z,
-          -e.up.z,
-          0,
-          e.right.y,
-          -e.forward.y,
-          e.up.y,
-          0,
-          0,
-          0,
-          0,
-          1,
-        )
-        .multiply(this.affectBasis).elements,
-      { x: i, y: r, z: s } = e.visualScale,
-      o = Math.fround;
-    (this.modelMount.matrixWorld.set(
-      o(t[0] * i),
-      o(t[8] * r),
-      -o(t[4] * s),
-      e.x,
-      o(t[2] * i),
-      o(t[10] * r),
-      -o(t[6] * s),
-      e.y,
-      -o(t[1] * i),
-      -o(t[9] * r),
-      o(t[5] * s),
-      e.z,
-      0,
-      0,
-      0,
-      1,
-    ),
-      (this.modelMount.matrixWorldNeedsUpdate = !0));
-  }
-  clearImportedModel(e = !0) {
-    this.importedModel &&
-      (this.importedModel.removeFromParent(),
-      e && u5(this.importedModel),
-      (this.importedModel = void 0),
-      (this.visualConfig = void 0),
-      (this.animation = void 0),
-      (this.wheelPresentation = void 0),
-      (this.attachmentNodes = []),
-      e || (this.presentationState = void 0),
-      this.setLocalAffectBasis());
-  }
-}
+class Vg extends KartPresentationView { constructor(scene) { super(scene, kartPresentationDependencies); } }
 
 const _E = 1,
   Ir0 = 2,
@@ -3601,227 +3079,33 @@ function kv(n, e) {
 
 const oP = { goggle: [3, 0], headBand: [3, 3], handGearL: [4, 0] },
   Lv = "item/eventObject",
-  Nr0 = [Lv, "sound_/fx/surround"],
-  Or0 = ["ogg", "wav", "flac"];
+  Nr0 = [Lv, "sound_/fx/surround"];
 
-class b7 {
-  constructor(e, t, i, r, s) {
-    ((this.library = e),
-      (this.mount = t),
-      (this.environment = i),
-      (this.stageBinding = r),
-      (this.audioContext = s));
+class b7 extends TrackEventEffectPool {
+  constructor(library, mount, environment, binding, audioContext) {
+    super(library, mount, environment, binding, audioContext, trackEventEffectDependencies);
   }
-  library;
-  mount;
-  environment;
-  stageBinding;
-  audioContext;
-  templates = new Map();
-  activeScenes = [];
-  textures = new Map();
-  soundBuffers = new Map();
-  playingSounds = new Map();
-  pendingBuilds = 0;
-  disposed = !1;
-  texturesDisposed = !1;
-  failure;
-  static async load(e, t, i, r, s, o) {
-    const a = new b7(e, i, r, s, o);
-    try {
-      const c = t.flatMap((l) => (l.effect ? [l.effect] : []));
-      return (await a.loadTemplates(c), await a.loadSounds(c), a);
-    } catch (c) {
-      throw (a.dispose(), c);
-    }
-  }
-  trigger(e, t) {
-    this.throwFailure();
-    const i = this.templates.get(gl(e.model));
-    if (!i) return;
-    const r = i.spare.pop();
-    if (!r) throw new Error(`${i.path} event effect clone pool 尚未补回。`);
-    (r.reset(Math.trunc(t) >>> 0),
-      this.mount.add(r.object),
-      this.activeScenes.push({ effect: e, scene: r }),
-      this.playSound(e),
-      this.replenish(i));
-  }
-  remove(e) {
-    const t = this.activeScenes.findIndex((r) => r.effect === e);
-    if (t === -1) return;
-    const [{ scene: i }] = this.activeScenes.splice(t, 1);
-    (i.object.removeFromParent(), i.dispose());
-  }
-  update(e, t, i, r) {
-    this.throwFailure();
-    for (const { scene: s } of this.activeScenes) s.update(e, t, i, r);
-  }
-  dispose() {
-    if (!this.disposed) {
-      this.disposed = !0;
-      for (const e of this.playingSounds.values()) {
-        e.onended = null;
-        try {
-          e.stop();
-        } catch {}
-        e.disconnect();
-      }
-      this.playingSounds.clear();
-      for (const { scene: e } of this.activeScenes)
-        (e.object.removeFromParent(), e.dispose());
-      this.activeScenes.length = 0;
-      for (const e of this.templates.values()) {
-        for (const t of e.spare) t.dispose();
-        e.spare.length = 0;
-      }
-      (this.templates.clear(),
-        this.pendingBuilds === 0 && this.disposeTextures());
-    }
-  }
-  async loadTemplates(e) {
-    const t = zr0(e);
-    for (const [i, r] of t) {
-      const s = `${Lv}/${i}.1s`,
-        o = this.library.exactCanonicalCandidates(s);
-      if (o.length > 1) throw new Error(`${s} source 数量 ${o.length}。`);
-      if (o.length === 0) continue;
-      const a = {
-        model: i,
-        path: s,
-        parsed: y9(await o[0].bytes()),
-        spare: [],
-      };
-      for (let c = 0; c < r; c += 1) a.spare.push(await this.buildScene(a));
-      this.templates.set(gl(i), a);
-    }
-  }
-  async loadSounds(e) {
-    const t = new Set(
-      e
-        .filter((i) => this.templates.has(gl(i.model)) && BE(i))
-        .map((i) => i.soundName),
-    );
-    for (const i of t) {
-      const r = $r0(this.library, i);
-      if (!r) continue;
-      const s = await r.bytes();
-      this.soundBuffers.set(RE(i), await Q9(this.audioContext, s));
-    }
-  }
-  buildScene(e) {
-    return W1(
-      e.parsed,
-      this.library,
-      `event:${e.model}:TrackEventEffect`,
-      (t) => Ur0(this.library, e.path, t),
-      {
-        environment: this.environment,
-        stageBinding: this.stageBinding,
-        advanceEnvironment: !1,
-        textureCache: this.textures,
-      },
-    );
-  }
-  replenish(e) {
-    ((this.pendingBuilds += 1),
-      this.buildScene(e)
-        .then((t) => {
-          this.disposed ? t.dispose() : e.spare.push(t);
-        })
-        .catch((t) => {
-          this.disposed || (this.failure = Hr0(t));
-        })
-        .finally(() => {
-          ((this.pendingBuilds -= 1),
-            this.disposed &&
-              this.pendingBuilds === 0 &&
-              this.disposeTextures());
-        }));
-  }
-  playSound(e) {
-    if (!BE(e)) return;
-    const t = RE(e.soundName),
-      i = this.soundBuffers.get(t);
-    if (!i || this.playingSounds.has(t)) return;
-    const r = this.audioContext.createBufferSource();
-    ((r.buffer = i),
-      S9(this.audioContext, r),
-      (r.onended = () => {
-        this.playingSounds.get(t) === r &&
-          (r.disconnect(), this.playingSounds.delete(t));
-      }),
-      this.playingSounds.set(t, r),
-      r.start());
-  }
-  throwFailure() {
-    if (this.failure) throw this.failure;
-  }
-  disposeTextures() {
-    if (!this.texturesDisposed) {
-      this.texturesDisposed = !0;
-      for (const e of this.textures.values()) e.dispose();
-      this.textures.clear();
-    }
+  static async load(library, projections, mount, environment, binding, audioContext) {
+    return new b7(library, mount, environment, binding, audioContext)
+      .loadEvents(projections);
   }
 }
 
-function zr0(n) {
-  const e = new Map();
-  for (const t of n) {
-    const i = gl(t.model),
-      r = e.get(i);
-    r ? (r.count += 1) : e.set(i, { model: t.model, count: 1 });
-  }
-  return new Map([...e.values()].map(({ model: t, count: i }) => [t, i]));
-}
 
-function Ur0(n, e, t) {
-  const i = sn(n, e, void 0, t);
-  if (i.status !== "found") return i;
-  const r = Wr0(i.source.canonicalPrefix);
-  return i.source.kind !== "track" || r !== Lv.toLowerCase()
-    ? {
-        status: "unresolved",
-        reason: `${t.name ?? "<unnamed>"} escaped item/eventObject source。`,
-      }
-    : { status: "found", entry: i.entry };
-}
 
-function $r0(n, e) {
-  for (const t of Nr0) {
-    const i = Or0.flatMap((r) => n.exactCanonicalCandidates(`${t}/${e}.${r}`));
-    if (i.length > 1)
-      throw new Error(`${t}/${e} sound source 数量 ${i.length}。`);
-    if (i.length === 1) return i[0];
-  }
-}
 
-function BE(n) {
-  return n.soundType === 0 || n.soundType === 1
-    ? !0
-    : n.soundType === 2 && n.distance >= 0;
-}
 
-function gl(n) {
-  return n.toLowerCase();
-}
 
-function RE(n) {
-  return n.toLowerCase();
-}
 
-function Wr0(n) {
-  return n
-    .replaceAll("\\", "/")
-    .replace(/^\.\//, "")
-    .replace(/^\/+|\/+$/g, "")
-    .toLowerCase();
-}
 
-function Hr0(n) {
-  return n instanceof Error ? n : new Error(String(n));
-}
+
+
+
+
+
+
+
+
 
 function Pv(n) {
   return (
@@ -4040,249 +3324,12 @@ class qr0 {
   }
 }
 
-class Fv {
-  constructor(e, t, i, r, s) {
-    ((this.library = e),
-      (this.world = t),
-      (this.options = i),
-      (this.audio = r),
-      (this.stage = s));
+class Fv extends GiantRaceEffects {
+  constructor(library, world, options, audio, stage) {
+    super(library, world, options, audio, stage, giantRaceDependencies);
   }
-  library;
-  world;
-  options;
-  audio;
-  stage;
-  disposed = !1;
-  pending = 0;
-  failure;
-  textures = new Map();
-  actors = [];
-  explosions = [];
-  sounds = new Map();
-  sources = new Set();
-  threat;
-  warning;
-  firePath = "";
-  arrowLife = 0;
-  fireLife = 0;
-  static async load(e, t, i, r, s, o) {
-    const a = new Fv(e, t, r, s, o);
-    try {
-      const l = s2(
-        await Yi(e, "item/giantEffect/item.bml").bytes(),
-      ).children.filter((d) => d.name === "state" && T(d, "name") === "Affect");
-      if (
-        l.length !== 2 ||
-        T(l[0], "fired") !== "fired00" ||
-        T(l[1], "item") !== "arrow"
-      )
-        throw new Error("巨人效果原状态表不匹配。");
-      if (
-        ((a.fireLife = Number(T(l[0], "life"))),
-        (a.arrowLife = Number(T(l[1], "life"))),
-        a.fireLife !== 1e3 || a.arrowLife !== 3e4)
-      )
-        throw new Error("巨人效果原生命周期未核准。");
-      a.firePath = `item/giantEffect/${T(l[0], "fired")}.1s`;
-      for (const d of i) {
-        const f = await a.build("item/giantEffect/arrow.1s"),
-          p = new T2();
-        ((p.matrixAutoUpdate = !1),
-          (p.visible = !1),
-          p.add(f.scene.object),
-          t.add(p));
-        const v = { actor: d, arrow: f, mount: p, spare: [] };
-        (a.actors.push(v), v.spare.push(await a.build(a.firePath)));
-      }
-      for (const [d, f] of [
-        ["scale", "sound_/fx/etc/giantScale.ogg"],
-        ["press", "sound_/fx/etc/press.ogg"],
-        ["reset", `sound_/fx/item/giantEffect/${T(l[0], "itemFx")}.ogg`],
-        ["threat", "sound_/fx/surround/mo_돌구르기.ogg"],
-      ])
-        a.sounds.set(d, await Q9(s, await Yi(e, f).bytes()));
-      const u = await p2(
-          await Yi(e, "effect/giantShadow/giantShadow.png").bytes(),
-        ),
-        h = new J9(u.pixels, u.width, u.height);
-      return (
-        (h.flipY = !1),
-        (h.needsUpdate = !0),
-        (a.warning = new qr0(h)),
-        t.add(a.warning.mesh),
-        a
-      );
-    } catch (c) {
-      throw (a.dispose(), c);
-    }
-  }
-  build(e, t) {
-    return aI(this.library, e, this.textures, this.options, !1, t);
-  }
-  replenish(e, t) {
-    (this.pending++,
-      this.build(this.firePath, t)
-        .then((i) => {
-          this.disposed ? i.scene.dispose() : e.spare.push(i);
-        })
-        .catch((i) => {
-          this.disposed || (this.failure = i);
-        })
-        .finally(() => {
-          (this.pending--, this.releaseTextures());
-        }));
-  }
-  play(e, t = !1) {
-    const i = this.sounds.get(e);
-    if (!i) throw new Error(`巨人声音未装配：${e}`);
-    const r = this.audio.createBufferSource();
-    return (
-      (r.buffer = i),
-      (r.loop = t),
-      S9(this.audio, r, "fx"),
-      this.sources.add(r),
-      (r.onended = () => {
-        (r.disconnect(), this.sources.delete(r));
-      }),
-      r.start(),
-      r
-    );
-  }
-  setThreatSound(e) {
-    this.disposed ||
-      (e && !this.threat
-        ? (this.threat = this.play("threat", !0))
-        : !e &&
-          this.threat &&
-          (this.stop(this.threat), (this.threat = void 0)));
-  }
-  stop(e) {
-    ((e.onended = null), e.stop(), e.disconnect(), this.sources.delete(e));
-  }
-  pose(e, t, i) {
-    const r = t.actor.pose();
-    if (!r) return !1;
-    const { right: s, forward: o, up: a, position: c } = r;
-    return (
-      e.matrix.set(
-        s.x,
-        a.x,
-        -o.x,
-        Math.fround(c.x + a.x * i),
-        s.y,
-        a.y,
-        -o.y,
-        Math.fround(c.y + a.y * i),
-        s.z,
-        a.z,
-        -o.z,
-        Math.fround(c.z + a.z * i),
-        0,
-        0,
-        0,
-        1,
-      ),
-      (e.matrixWorldNeedsUpdate = !0),
-      !0
-    );
-  }
-  update(e, t, i, r, s) {
-    if (this.disposed) return;
-    if (this.failure) throw this.failure;
-    const o = this.actors.find((l) => l.actor.logic.local);
-    for (const l of this.actors) {
-      for (const h of l.actor.logic.consumeVisuals()) {
-        if (h.kind === "stage") {
-          l.actor.logic.local && this.stage(h.cells, h.atMs);
-          continue;
-        }
-        if (h.kind === "reset") {
-          const d = l.spare.pop();
-          if (!d) throw new Error("巨人爆炸原模型克隆尚未补回。");
-          const f = new T2();
-          ((f.matrixAutoUpdate = !1),
-            f.add(d.scene.object),
-            this.world.add(f),
-            d.scene.reset(h.atMs),
-            this.explosions.push({
-              model: d,
-              mount: f,
-              actor: l,
-              start: h.atMs,
-            }),
-            this.replenish(l, d.parsed));
-        }
-        l.actor.logic.local && this.play(h.kind);
-      }
-      const u = o.actor.logic.main === 4 && l.actor.logic.main !== 4;
-      (u &&
-        l.arrowStart === void 0 &&
-        ((l.arrowStart = e), l.arrow.scene.reset(e)),
-        u || (l.arrowStart = void 0),
-        l.arrowStart !== void 0 &&
-          (e - l.arrowStart) >>> 0 >= this.arrowLife &&
-          ((l.arrowStart = e), l.arrow.scene.reset(e)),
-        (l.mount.visible =
-          u &&
-          this.pose(
-            l.mount,
-            l,
-            Math.fround(l.actor.logic.mainScale.z * Math.fround(1.31)),
-          )),
-        l.mount.visible && l.arrow.scene.update(e, t, i, r));
-    }
-    for (let l = this.explosions.length - 1; l >= 0; l--) {
-      const u = this.explosions[l];
-      if ((e - u.start) >>> 0 >= this.fireLife) {
-        (u.mount.removeFromParent(),
-          u.model.scene.dispose(),
-          this.explosions.splice(l, 1));
-        continue;
-      }
-      ((u.mount.visible = this.pose(u.mount, u.actor, 0)),
-        u.model.scene.update(e, t, i, r));
-    }
-    const a = (l) => {
-        const u = l.actor.pose();
-        return u ? { id: l.actor.id, main: l.actor.logic.main, ...u } : void 0;
-      },
-      c = a(o);
-    c &&
-      this.warning?.update(
-        c,
-        this.actors
-          .filter((l) => l !== o)
-          .flatMap((l) => {
-            const u = a(l);
-            return u ? [u] : [];
-          }),
-        s,
-        t,
-      );
-  }
-  releaseTextures() {
-    if (this.disposed && this.pending === 0) {
-      for (const e of this.textures.values()) e.dispose();
-      this.textures.clear();
-    }
-  }
-  dispose() {
-    if (!this.disposed) {
-      ((this.disposed = !0), this.warning?.dispose(), (this.warning = void 0));
-      for (const e of [...this.sources]) this.stop(e);
-      ((this.threat = void 0), this.sounds.clear());
-      for (const e of this.actors) {
-        (e.mount.removeFromParent(), e.arrow.scene.dispose());
-        for (const t of e.spare) t.scene.dispose();
-        e.spare.length = 0;
-      }
-      for (const e of this.explosions)
-        (e.mount.removeFromParent(), e.model.scene.dispose());
-      ((this.explosions.length = 0),
-        (this.actors.length = 0),
-        this.releaseTextures());
-    }
+  static async load(library, world, actors, options, audio, stage) {
+    return new Fv(library, world, options, audio, stage).loadActors(actors);
   }
 }
 
@@ -5249,216 +4296,9 @@ class x7 {
   }
 }
 
-function Hs0(n) {
-  return {
-    async prepare(e, t, i, r) {
-      const s = n.assets(),
-        o = n.audio(),
-        a = s.getLibrary();
-      if (!r?.leaveRace || !o || !a)
-        throw new Error("多人驾驶缺少资源、音频或本局连接。");
-      const c = () => {
-        if (i.aborted) throw new Error("本局装配已取消。");
-      };
-      c();
-      const l = await A40(
-        { ...s, toonStageBinding: new ha() },
-        e,
-        t,
-        o,
-        {
-          playerId: r.playerId,
-          profile: n.profile(),
-          anonymous: n.raceAnonymous?.() ?? !1,
-          classicHud: n.classicHud?.() ?? !1,
-        },
-        i,
-      );
-      let u, h, d, f, p, v, w, g, y, b, A, x;
-      try {
-        const M = await hI(a, !0);
-        (c(),
-          (w = new Ui0(
-            l,
-            t,
-            r,
-            () => performance.now(),
-            (D) => {
-              if (y) y.fail(D);
-              else throw D;
-            },
-            n.clientFramerate,
-          )),
-          (v = await Dw.load(a, l, r.playerId)),
-          c(),
-          (p = await Q6.load(a, o, !0)),
-          c());
-        const E = n.bgm();
-        if (!E) throw Error("比赛缺少 BGM owner。");
-        (await E.selectRace(a, l.map.metadata),
-          c(),
-          t.roadblock || ((u = await tw.load(a, l)), c(), u.bind(r, l)));
-        const _ = n.renderer.domElement.parentElement;
-        if (!_) throw new Error("缺少结果界面容器。");
-        const C = l.map.path.replaceAll("\\", "/").split("/").at(-2);
-        if (!C) throw new Error("赛道信息卡缺少赛道目录。");
-        const S =
-          e.mode === "team"
-            ? t.roster.find((D) => D.playerId === r.playerId)?.team
-            : void 0;
-        if (e.mode === "team" && S !== 1 && S !== 2)
-          throw new Error("组队赛卡片缺少本机红蓝队身份。");
-        ((x = await M7.load({
-          library: a,
-          root: _,
-          trackId: t.trackId,
-          trackDirectory: C,
-          trackTitle: l.map.metadata.cnTitle ?? "",
-          difficulty: l.map.metadata.difficulty,
-          game: {
-            modeKey: e.mode === "team" ? "SpeedTeam" : "SpeedIndi",
-            speed: e.speed,
-            team: S === 1 || S === 2 ? S : void 0,
-          },
-        })),
-          c(),
-          x?.setVisible(!1),
-          n.raceTimeGap?.() && !t.roadblock && (await v.loadTimeGap(a, _), c()),
-          t.roadblock
-            ? ((d = await Bo.loadHud(a, _, t, r.playerId)),
-              c(),
-              (h = await Bo.loadResult(a, _, t)),
-              c(),
-              (f = await Gw.load(a, _)),
-              c())
-            : ((h = await Tw.load(a, _, t, r.playerId, e.mode === "team")),
-              c()));
-        const G = l.participants.find((D) => D.playerId === r.playerId);
-        if (!G) throw new Error("本局缺少本机车辆横幅身份。");
-        const I = G.profile.equipment,
-          L = p5(G.profile.garage, I.itemIds[3], I.kartSerial),
-          k = uP(
-            L,
-            G.vehicle.kartItem.engineGrade,
-            e.mode === "team" ? "team" : "personal",
-            e.speed,
-          );
-        if (k) {
-          try {
-            A = await x7.load(a, _);
-          } catch {
-            A = void 0;
-          }
-          c();
-        }
-        return (
-          (g = new jr0(
-            l,
-            w,
-            t,
-            r.playerId,
-            M,
-            v,
-            s.targetRandom,
-            p,
-            u,
-            h,
-            E,
-            A,
-            k,
-            () => n.flyingPetVisible?.() ?? !1,
-            x,
-            d,
-          )),
-          await g.prepareRoadBlockFlag(a),
-          c(),
-          await g.prepareGiant(a, o),
-          c(),
-          await g.prepareRoadBlockResult(a),
-          c(),
-          await g.prepareFlyingPet(a, o),
-          c(),
-          await g.prepareTrackEvents(a, o),
-          c(),
-          g.warm(n.renderer, performance.now()),
-          c(),
-          (b = await Dv.load(a, _, r, n.status)),
-          c(),
-          (y = new Yr0(
-            w,
-            g,
-            {
-              ...n,
-              leave: () => r.leaveRace(),
-              returnToRoom: () =>
-                r.returnToRoom
-                  ? r.returnToRoom()
-                  : Promise.reject(new Error("本局连接不支持返回房间。")),
-              closePresentation: () => r.presentationClosed?.(),
-            },
-            b,
-            f,
-          )),
-          y
-        );
-      } catch (M) {
-        throw (
-          b?.dispose(),
-          f?.dispose(),
-          g?.dispose(),
-          g ||
-            (d?.dispose(),
-            x?.dispose(),
-            A?.dispose(),
-            p?.dispose(),
-            u?.dispose(),
-            h?.dispose()),
-          v?.dispose(),
-          w ? w.dispose() : l.dispose(),
-          M
-        );
-      }
-    },
-  };
-}
+function Hs0(host) { return createMultiplayerRaceLoader(host, multiplayerRaceLoaderDependencies); }
 
-const UE = [
-  "webglcontextlost",
-  "webglcontextrestored",
-  "contextlost",
-  "contextrestored",
-];
-
-class qs0 {
-  constructor(e, t, i, r) {
-    ((this.root = e),
-      (this.gameCanvas = t),
-      (this.phase = i),
-      (this.report = r));
-    for (const s of UE) e.addEventListener(s, this.onContext, !0);
-  }
-  root;
-  gameCanvas;
-  phase;
-  report;
-  onContext = (e) => {
-    const t = e.target;
-    if (!(t instanceof HTMLCanvasElement)) return;
-    const i = e.type.endsWith("lost"),
-      r = e.type.startsWith("webgl") ? "WebGL" : "Canvas2D",
-      s = t.closest("[data-ui-layer]")?.dataset.uiLayer ?? "unknown",
-      o = t === this.gameCanvas ? "主游戏画布" : `界面画布(${s})`,
-      a =
-        "statusMessage" in e && typeof e.statusMessage == "string"
-          ? e.statusMessage
-          : "",
-      c = `[画布诊断] ${o} ${r} ${i ? "已丢失" : "已恢复"}；${t.width}×${t.height}；阶段=${this.phase()}${a ? `；${a}` : ""}`;
-    this.report(c, i);
-  };
-  dispose() {
-    for (const e of UE) this.root.removeEventListener(e, this.onContext, !0);
-  }
-}
+class qs0 extends CanvasContextDiagnostics {}
 
 
 
@@ -5474,74 +4314,7 @@ class qs0 {
 
 
 
-const no0 = "kartsim-local-rho-directory",
-  zo = "selection",
-  pP = "data-directory";
 
-function io0() {
-  return typeof window.showDirectoryPicker == "function";
-}
-
-async function ro0() {
-  try {
-    const n = await ao0();
-    return n && (await n.queryPermission({ mode: "read" })) === "granted"
-      ? n
-      : void 0;
-  } catch {
-    return;
-  }
-}
-
-async function so0() {
-  const n = window.showDirectoryPicker;
-  if (!n) throw new Error("当前浏览器不支持选择本地资源目录。");
-  const e = await n.call(window, { mode: "read" });
-  try {
-    await e.getFileHandle("aaa.pk");
-  } catch {
-    throw new Error("请选择卡丁车客户端的 Data 文件夹（其中应有 aaa.pk）。");
-  }
-  return (await co0(e).catch(() => {}), e);
-}
-
-
-
-function gP() {
-  return new Promise((n, e) => {
-    const t = indexedDB.open(no0, 1);
-    ((t.onupgradeneeded = () => t.result.createObjectStore(zo)),
-      (t.onsuccess = () => n(t.result)),
-      (t.onerror = () => e(t.error)));
-  });
-}
-
-async function ao0() {
-  const n = await gP();
-  try {
-    return await new Promise((e, t) => {
-      const i = n.transaction(zo, "readonly").objectStore(zo).get(pP);
-      ((i.onsuccess = () => e(i.result)), (i.onerror = () => t(i.error)));
-    });
-  } finally {
-    n.close();
-  }
-}
-
-async function co0(n) {
-  const e = await gP();
-  try {
-    await new Promise((t, i) => {
-      const r = e.transaction(zo, "readwrite");
-      (r.objectStore(zo).put(n, pP),
-        (r.oncomplete = () => t()),
-        (r.onerror = () => i(r.error)),
-        (r.onabort = () => i(r.error)));
-    });
-  } finally {
-    e.close();
-  }
-}
 
 
 
@@ -5658,422 +4431,7 @@ function bP(value) { return isValidRoomSnapshot(value); }
 
 function zo0(value) { return parseServerEvent(value, { validRoom: bP, validChannel: W6, validGameplay: To, validRandomTrackCode: code => !!X6(code) }); }
 
-const Uo0 = 11,
-  YE = `${Uo}.${Uo0}`,
-  ZE = 250;
-
-class $o0 {
-  element;
-  systemElement = document.createElement("section");
-  debugTextList;
-  debugPanel;
-  debugOutput;
-  copyPerformanceButton;
-  debugEnginePanel;
-  debugEngineOutput;
-  copyEngineButton;
-  callbacks;
-  pauseOverlay;
-  loadingView;
-  loadingLabel;
-  loadingError;
-  loadingFab;
-  loadingFabCopy;
-  loadingFabRing;
-  loadingProgress = new Map();
-  performanceCounter;
-  debugVisible = !1;
-  nextDebugRefreshMs = 0;
-  engineVisible = !1;
-  nextEngineRefreshMs = 0;
-  copyLabelTimer = 0;
-  latestState;
-  latestFps = 0;
-  latestWorkSegments;
-  constructor(e, t) {
-    ((this.element = document.createElement("section")),
-      (this.element.className = "hud"),
-      (this.element.dataset.uiLayer = "diagnostics"),
-      (this.element.innerHTML = `
-      <div class="debug-text-list" data-hud="debug-text-list" role="log" aria-live="polite"></div>
-      <aside class="debug-panel" data-hud="debug">
-        <div class="debug-panel-actions">
-          <strong>F2 FPS</strong>
-        </div>
-        <pre data-hud="debug-output"></pre>
-      </aside>
-    `),
-      this.element.insertAdjacentHTML(
-        "beforeend",
-        `
-      <aside class="debug-panel" data-hud="debug-engine" style="left:25px;right:auto;">
-        <div class="debug-panel-actions">
-          <strong>F3 ENGINE / GRAPHICS / MEMORY · v${YE}</strong>
-          <button type="button" data-action="copy-engine">复制</button>
-        </div>
-        <pre data-hud="debug-engine-output"></pre>
-      </aside>
-    `,
-      ),
-      (this.systemElement.className = "system-overlay"),
-      (this.systemElement.dataset.uiLayer = "system"),
-      (this.systemElement.innerHTML = `
-      <div class="pause-overlay">
-        <strong>运行已停止</strong>
-        <div class="pause-actions">
-          <button type="button" data-action="return-ready">返回 READY</button>
-        </div>
-      </div>
-      <div class="startup-loading" data-hud="startup-loading" role="status" aria-live="polite">
-        <div class="startup-loading-copy">
-          <strong class="startup-loading-label" role="progressbar" aria-label="加载进度">LOADING</strong>
-          <small class="startup-frontend-version">前端 v${YE}</small>
-          <p data-hud="startup-loading-error" role="alert" hidden></p>
-          <div class="startup-resource-choice" data-hud="resource-choice" hidden>
-            <span>资源来源</span>
-            <button type="button" data-action="local-rho">选择本地 Data 文件夹</button>
-            <button type="button" data-action="online-rho">使用在线资源</button>
-          </div>
-        </div>
-      </div>
-      <div class="loading-fab" data-hud="loading-fab" role="status" aria-live="polite" hidden>
-        <span class="loading-fab-copy" data-hud="loading-fab-copy">正在加载资源</span>
-        <span class="loading-fab-ring" role="progressbar" aria-label="后台加载进度"></span>
-      </div>
-    `),
-      e.append(this.element),
-      e.ownerDocument.body.append(this.systemElement),
-      (this.debugTextList = X1(this.element, "[data-hud='debug-text-list']")),
-      (this.debugPanel = X1(this.element, "[data-hud='debug']")),
-      (this.debugOutput = X1(this.debugPanel, "[data-hud='debug-output']")),
-      (this.debugEnginePanel = X1(this.element, "[data-hud='debug-engine']")),
-      (this.debugEngineOutput = X1(
-        this.debugEnginePanel,
-        "[data-hud='debug-engine-output']",
-      )),
-      (this.copyEngineButton = X1(
-        this.debugEnginePanel,
-        "[data-action='copy-engine']",
-      )),
-      (this.performanceCounter = new ko0()),
-      (this.callbacks = t),
-      (this.pauseOverlay = X1(this.systemElement, ".pause-overlay")),
-      (this.loadingView = X1(
-        this.systemElement,
-        "[data-hud='startup-loading']",
-      )),
-      (this.loadingLabel = X1(this.systemElement, ".startup-loading-label")),
-      (this.loadingError = X1(
-        this.systemElement,
-        "[data-hud='startup-loading-error']",
-      )),
-      (this.loadingFab = X1(this.systemElement, "[data-hud='loading-fab']")),
-      (this.loadingFabCopy = X1(
-        this.systemElement,
-        "[data-hud='loading-fab-copy']",
-      )),
-      (this.loadingFabRing = X1(this.systemElement, ".loading-fab-ring")),
-      this.pauseOverlay
-        .querySelector("[data-action='return-ready']")
-        ?.addEventListener("click", t.returnToReady),
-      this.copyPerformanceButton?.addEventListener(
-        "click",
-        this.onCopyPerformance,
-      ),
-      this.copyEngineButton?.addEventListener("click", this.onCopyEngine),
-      window.addEventListener("keydown", this.onDebugKeyDown),
-      document.addEventListener("visibilitychange", this.onVisibilityChange));
-  }
-  dispose() {
-    (window.removeEventListener("keydown", this.onDebugKeyDown),
-      document.removeEventListener("visibilitychange", this.onVisibilityChange),
-      this.copyPerformanceButton?.removeEventListener(
-        "click",
-        this.onCopyPerformance,
-      ),
-      this.copyEngineButton?.removeEventListener("click", this.onCopyEngine),
-      window.clearTimeout(this.copyLabelTimer),
-      this.performanceCounter?.dispose(),
-      this.element.remove(),
-      this.systemElement.remove());
-  }
-  update(e, t) {
-    ((this.latestState = e), this.updateEngine(t));
-  }
-  updateEngine(e) {
-    this.latestFps = e;
-    const t = performance.now();
-    (this.refreshDebugPanel(t), this.refreshEnginePanel(t));
-  }
-  probeSnapshot() {}
-  beginPerformanceRace(e = performance.now()) {
-    const t = this.performanceCounter;
-    t !== void 0 &&
-      (t.beginRace(e),
-      (this.nextDebugRefreshMs = 0),
-      this.refreshDebugPanel(e, !0));
-  }
-  finishPerformanceRace(e = performance.now()) {
-    const t = this.performanceCounter;
-    t !== void 0 &&
-      (t.finishRace(e),
-      (this.nextDebugRefreshMs = 0),
-      this.refreshDebugPanel(e, !0));
-  }
-  recordPerformanceFrame(e, t, i, r) {
-    this.latestWorkSegments = r;
-    const s = this.performanceCounter;
-    if (s === void 0) return;
-    s.recordFrame(e, t, i) &&
-      !s.isRaceActive() &&
-      this.refreshDebugPanel(performance.now(), !0);
-  }
-  setPaused(e) {
-    const t = this.performanceCounter;
-    (e === !1 && t?.isRaceActive() && t.skipNextFrame(),
-      this.pauseOverlay.classList.toggle("is-visible", e));
-  }
-  showDebugText(e, t = "info") {
-    const i = document.createElement("p");
-    ((i.textContent = e),
-      (i.dataset.kind = t),
-      this.debugTextList.append(i),
-      window.setTimeout(() => i.remove(), t === "error" ? 6e3 : 3500));
-  }
-  beginLoading() {
-    (this.loadingProgress.clear(),
-      JE(this.loadingLabel),
-      JE(this.loadingFabRing),
-      this.setLoadingFabVisible(!1),
-      this.loadingView.classList.remove("is-complete", "has-error"),
-      this.loadingView.removeAttribute("aria-hidden"),
-      (this.loadingError.textContent = ""),
-      (this.loadingError.hidden = !0));
-  }
-  chooseResourceSource(e) {
-    const t = X1(this.loadingView, "[data-hud='resource-choice']"),
-      i = X1(t, "[data-action='local-rho']"),
-      r = X1(t, "[data-action='online-rho']");
-    return (
-      (t.hidden = !1),
-      new Promise((s) => {
-        const o = (l) => {
-            ((t.hidden = !0),
-              i.removeEventListener("click", c),
-              r.removeEventListener("click", a),
-              s(l));
-          },
-          a = () => o(),
-          c = async () => {
-            i.disabled = !0;
-            try {
-              o(await e());
-            } catch (l) {
-              (l instanceof DOMException && l.name === "AbortError") ||
-                ((this.loadingError.textContent =
-                  l instanceof Error ? l.message : String(l)),
-                (this.loadingError.hidden = !1));
-            } finally {
-              i.disabled = !1;
-            }
-          };
-        (i.addEventListener("click", c), r.addEventListener("click", a));
-      })
-    );
-  }
-  finishLoading() {
-    (this.loadingView.classList.add("is-complete"),
-      this.loadingView.setAttribute("aria-hidden", "true"),
-      this.setLoadingFabVisible(!1),
-      this.loadingProgress.clear());
-  }
-  setLoadingProgress(e, t, i, r = "正在加载资源") {
-    const s = Math.max(0, i);
-    this.loadingProgress.set(e, {
-      loaded: Math.min(s, Math.max(0, t)),
-      total: s,
-    });
-    const o = Ho0(this.loadingProgress.values()),
-      a = o.total <= 0 ? 1 : o.loaded / o.total,
-      c = Math.round(a * 1e4) / 100;
-    (QE(this.loadingLabel, c),
-      QE(this.loadingFabRing, c),
-      (this.loadingFabCopy.textContent = r));
-    const l = !this.loadingView.classList.contains("is-complete"),
-      u = o.total <= 0 || o.loaded >= o.total;
-    (this.setLoadingFabVisible(!l && !u),
-      !l && u && this.loadingProgress.clear());
-  }
-  showLoadingError(e) {
-    ((this.loadingError.textContent = e),
-      (this.loadingError.hidden = !1),
-      this.loadingView.classList.add("has-error"),
-      this.showDebugText(e, "error"));
-  }
-  setLoadingFabVisible(e) {
-    ((this.loadingFab.hidden = !e),
-      this.systemElement.classList.toggle("has-loading-fab", e));
-  }
-  onVisibilityChange = () => {
-    document.visibilityState === "visible" &&
-      this.performanceCounter?.skipNextFrame();
-  };
-  onDebugKeyDown = (e) => {
-    e.repeat ||
-      (e.code === "F2"
-        ? (e.preventDefault(),
-          (this.debugVisible = !this.debugVisible),
-          this.debugPanel.classList.toggle("is-visible", this.debugVisible),
-          (this.nextDebugRefreshMs = 0),
-          this.refreshDebugPanel(performance.now(), !0))
-        : e.code === "F3" &&
-          (e.preventDefault(),
-          (this.engineVisible = !this.engineVisible),
-          this.debugEnginePanel?.classList.toggle(
-            "is-visible",
-            this.engineVisible,
-          ),
-          (this.nextEngineRefreshMs = 0),
-          this.refreshEnginePanel(performance.now(), !0)));
-  };
-  onCopyPerformance = () => {};
-  onCopyEngine = () => {
-    const e = this.copyEngineButton;
-    if (e === void 0 || this.debugEngineOutput === void 0) return;
-    const t = this.debugEngineOutput.textContent ?? "";
-    Ko0(t)
-      .then(() => {
-        (window.clearTimeout(this.copyLabelTimer),
-          (e.textContent = "已复制"),
-          (this.copyLabelTimer = window.setTimeout(() => {
-            e.textContent = "复制";
-          }, 1500)));
-      })
-      .catch((i) => {
-        const r = i instanceof Error ? i.message : String(i);
-        this.showDebugText(`复制 F3 数据失败：${r}`, "error");
-      });
-  };
-  refreshEnginePanel(e, t = !1) {
-    if (
-      !this.engineVisible ||
-      this.performanceCounter === void 0 ||
-      this.debugEngineOutput === void 0 ||
-      (!t && e < this.nextEngineRefreshMs)
-    )
-      return;
-    this.nextEngineRefreshMs = e + ZE;
-    const i = this.callbacks.collectEngineDiagnostics?.() ?? null,
-      r = qo0(i, this.performanceCounter.summary(), this.latestFps);
-    this.debugEngineOutput.textContent = r.join(`
-`);
-  }
-  refreshDebugPanel(e, t = !1) {
-    if (this.debugVisible && !(!t && e < this.nextDebugRefreshMs)) {
-      this.nextDebugRefreshMs = e + ZE;
-      {
-        this.debugOutput.textContent = Wo0(this.latestFps);
-        return;
-      }
-    }
-  }
-}
-
-function Wo0(n) {
-  return `FPS  ${n.toFixed(1)}`;
-}
-
-function Ho0(n) {
-  let e = 0,
-    t = 0;
-  for (const i of n) ((e += i.loaded), (t += i.total));
-  return { loaded: e, total: t };
-}
-
-function X1(n, e) {
-  const t = n.querySelector(e);
-  if (!t) throw new Error(`HUD element not found: ${e}`);
-  return t;
-}
-
-function QE(n, e) {
-  (n.classList.add("is-determinate"),
-    n.style.setProperty("--loading-progress", `${e}%`),
-    n.setAttribute("aria-valuemin", "0"),
-    n.setAttribute("aria-valuemax", "100"),
-    n.setAttribute("aria-valuenow", String(e)));
-}
-
-function JE(n) {
-  (n.classList.remove("is-determinate"),
-    n.style.removeProperty("--loading-progress"),
-    n.removeAttribute("aria-valuemin"),
-    n.removeAttribute("aria-valuemax"),
-    n.removeAttribute("aria-valuenow"));
-}
-
-async function Ko0(n) {
-  if (navigator.clipboard?.writeText)
-    try {
-      await navigator.clipboard.writeText(n);
-      return;
-    } catch {}
-  const e = document.createElement("textarea");
-  ((e.value = n),
-    e.setAttribute("readonly", ""),
-    (e.style.position = "fixed"),
-    (e.style.opacity = "0"),
-    document.body.append(e),
-    e.select());
-  const t = document.execCommand("copy");
-  if ((e.remove(), !t)) throw new Error("浏览器拒绝了剪贴板写入");
-}
-
-function eT(n) {
-  const e = n.getBoundingClientRect(),
-    t = document.createElement("canvas"),
-    i = window.devicePixelRatio || 1;
-  ((t.width = Math.max(1, Math.round(e.width * i))),
-    (t.height = Math.max(1, Math.round(e.height * i))));
-  const r = t.getContext("2d");
-  if (!r) throw new Error("无法保存页面切换画面。");
-  r.scale(i, i);
-  const s = [...n.querySelectorAll("canvas[data-ui-layer]")]
-    .map((o) => ({
-      source: o,
-      style: getComputedStyle(o),
-      rect: o.getBoundingClientRect(),
-    }))
-    .filter(
-      ({ source: o, style: a, rect: c }) =>
-        !o.hidden &&
-        a.display !== "none" &&
-        a.visibility !== "hidden" &&
-        c.width > 0 &&
-        c.height > 0,
-    )
-    .sort(
-      (o, a) =>
-        (Number.parseInt(o.style.zIndex) || 0) -
-        (Number.parseInt(a.style.zIndex) || 0),
-    );
-  for (const { source: o, style: a, rect: c } of s)
-    ((r.globalAlpha = Number(a.opacity)),
-      r.drawImage(o, c.left - e.left, c.top - e.top, c.width, c.height));
-  return (
-    Object.assign(t.style, {
-      position: "absolute",
-      inset: "0",
-      width: "100%",
-      height: "100%",
-      zIndex: "8",
-      pointerEvents: "auto",
-    }),
-    t.setAttribute("aria-hidden", "true"),
-    n.append(t),
-    () => t.remove()
-  );
-}
+class $o0 extends HudOverlay { constructor(root, callbacks) { super(root, callbacks, `${Uo}.11`); } }
 
 const Yo0 = {
     "track-select": "ReadyTrackSelect",
@@ -6536,6 +4894,7 @@ const _P = {
     fxEnabled: !0,
     fxVolume: 1,
     enableRoadSound: !1,
+    verticalSync: false,
     boostBlur: !1,
     dualBoostAuto: !0,
     toonLine: !0,
@@ -6558,6 +4917,7 @@ function la0() {
       n === null
         ? { ..._P }
         : {
+            verticalSync: false,
             dualBoostAuto: !0,
             toonLine: !0,
             shadow: !0,
@@ -6583,6 +4943,7 @@ function RP(n) {
     "bgmEnabled",
     "fxEnabled",
     "enableRoadSound",
+    "verticalSync",
     "boostBlur",
     "dualBoostAuto",
     "toonLine",

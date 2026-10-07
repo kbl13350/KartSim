@@ -305,3 +305,61 @@ test("Toon 描边帧缓存、批处理复制和可见车身索引与发行版一
     assert.deepEqual(newFixture.events, oldFixture.events);
   }
 });
+
+test("车身索引仅在内容改变时上传，并保留尚未提交的更新范围", () => {
+  const host = frameFixture().host as unknown as ToonFrameHost;
+  const body = new BufferGeometry();
+  body.setAttribute("position", new BufferAttribute(new Float32Array(36), 3));
+  host.classes.set([0, 1, 2, 3]);
+  updateToonBodyGeometry(host, body);
+  const index = body.getIndex()!;
+  const firstVersion = index.version;
+  assert.deepEqual([...index.array].slice(0, 6), [0, 1, 2, 3, 5, 4]);
+
+  // A second update can happen before the renderer consumes the first range.
+  updateToonBodyGeometry(host, body);
+  assert.equal(index.version, firstVersion);
+  assert.deepEqual(index.updateRanges, [{ start: 0, count: 6 }]);
+
+  // Shrinking and restoring an unchanged prefix needs only a draw-range edit.
+  index.clearUpdateRanges();
+  host.classes.set([0, 2, 2, 3]);
+  updateToonBodyGeometry(host, body);
+  assert.deepEqual(body.drawRange, { start: 0, count: 3 });
+  assert.equal(index.version, firstVersion);
+  host.classes.set([0, 1, 2, 3]);
+  updateToonBodyGeometry(host, body);
+  assert.deepEqual(body.drawRange, { start: 0, count: 6 });
+  assert.equal(index.version, firstVersion);
+  assert.deepEqual(index.updateRanges, []);
+
+  host.classes.set([1, 0, 2, 3]);
+  updateToonBodyGeometry(host, body);
+  assert.deepEqual([...index.array].slice(0, 6), [0, 2, 1, 3, 4, 5]);
+  assert.equal(index.version, firstVersion + 1);
+  assert.deepEqual(index.updateRanges, [{ start: 0, count: 6 }]);
+
+  host.classes.fill(2);
+  updateToonBodyGeometry(host, body);
+  assert.deepEqual(body.drawRange, { start: 0, count: 0 });
+  host.classes.fill(0);
+  updateToonBodyGeometry(host, body);
+  assert.deepEqual([...index.array], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  assert.equal(index.version, firstVersion + 2);
+  assert.deepEqual(index.updateRanges, [{ start: 0, count: 12 }]);
+
+  // Multiple changes before a draw must retain edits outside a later, shorter
+  // range, so re-showing those faces cannot expose stale GPU indices.
+  index.clearUpdateRanges();
+  host.classes.set([1, 1, 2, 3]);
+  updateToonBodyGeometry(host, body);
+  assert.deepEqual(index.updateRanges, [{ start: 0, count: 6 }]);
+  host.classes.set([0, 2, 2, 3]);
+  updateToonBodyGeometry(host, body);
+  assert.deepEqual(index.updateRanges, [{ start: 0, count: 6 }]);
+  const pendingVersion = index.version;
+  host.classes.set([0, 1, 2, 3]);
+  updateToonBodyGeometry(host, body);
+  assert.equal(index.version, pendingVersion);
+  assert.deepEqual(index.updateRanges, [{ start: 0, count: 6 }]);
+});

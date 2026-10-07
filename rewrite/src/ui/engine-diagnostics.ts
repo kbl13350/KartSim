@@ -211,7 +211,7 @@ export function formatDiagnosticsLines(
     `CAMERA     pos ${engine.camera.position.join(", ")} | yaw ${engine.camera.rotationY} | pitch ${engine.camera.rotationX} | fov ${engine.camera.fov} | near ${engine.camera.near} | far ${engine.camera.far}`,
     `ASSETS     materials ${engine.scene.materials} | geometries ${engine.scene.geometries}`,
     `ACTIVE     ${Object.keys(engine.active).filter(key => engine.active[key]).join(" ")}`,
-    `OPTIONS    boostBlur ${switchState(engine.options.boostBlur)} | toonLine ${switchState(engine.options.toonLine)} | shadow ${switchState(engine.options.shadow)} | dualBoostAuto ${switchState(engine.options.dualBoostAuto)}`,
+    `OPTIONS    verticalSync ${switchState(engine.options.verticalSync)} | boostBlur ${switchState(engine.options.boostBlur)} | toonLine ${switchState(engine.options.toonLine)} | shadow ${switchState(engine.options.shadow)} | dualBoostAuto ${switchState(engine.options.dualBoostAuto)}`,
     `RAF DELAY  max ${formatPerformanceMilliseconds(engine.raf.maxDelayMs)} (vsync -> our callback; large = main thread busy before us)`,
   );
   for (const peer of engine.network ?? []) {

@@ -3,13 +3,28 @@ import { rhoAdler32 } from "../codecs/common.ts";
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
 
-import { DDSLoader } from "three/addons/loaders/DDSLoader.js";
-import { TGALoader } from "three/addons/loaders/TGALoader.js";
+import { isTrackPrs, createPrsRuntime, playPrs, setPrsCycleMode, stopPrs, validatePrs, defaultTrackTransform, applyTrackPrs, sampleTrackPrs } from "../resources/track-prs-animation.ts";
+import { admitMovingObstacle, transformObstaclePoint } from "../resources/moving-obstacle.ts";
+import { extractTrackRoads } from "../resources/track-road-extraction.ts";
+import { anyRoadIssue, isMovableRoad, movingRoadIssue, roadRail, roadSound, roadSurface, staticRoadIssue } from "../resources/track-road-descriptor.ts";
 import { CanvasHitController } from "../ui/canvas-hit-controller.ts";
 import { CameraHeightFollower, DriveCameraController } from "../resources/drive-camera.ts";
 import { FloatKeyController } from "../resources/float-key-controller.ts";
 import { ColorKeyController } from "../resources/color-key-controller.ts";
 import { assembleTrackScene } from "../resources/track-scene-assembly.js";
+import { buildCharacterScene } from "../resources/character-scene-render.js";
+import { CharacterSkinGeometry } from "../resources/character-skin-geometry.js";
+import { loadLegacyTexture } from "../resources/legacy-texture-loader.ts";
+import { parseResourceXml } from "../resources/xml-utf16-parser.ts";
+import { ToonEnvironmentTexture } from "../resources/toon-environment-texture.ts";
+import { CoatingFrameClock, CoatingTextureManager, StageTextureBinding } from "../resources/coating-stage.ts";
+import { MorphController } from "../resources/morph-controller.ts";
+import { orientTrackBillboard } from "../resources/billboard-orientation.ts";
+import { TrackBinaryCursor, TrackObjectRegistry } from "../resources/track-binary-reader.ts";
+import { CharacterColorTable, loadCharacterColorTable } from "../resources/character-color-table.ts";
+import { PanelDrawCache } from "../resources/panel-draw-order.ts";
+import { materializePanelDrawOrder } from "../resources/panel-materializer.ts";
+import { applyToonMaterialProperties, characterMaterialDefaults, setToonEnvironmentUniforms, setToonUvController, toonPropertyBank } from "../resources/toon-material-state.ts";
 import { ToonOutlineController, toonColorFromArgb } from "../resources/toon-outline-controller.ts";
 import { ToonOutlineBatch } from "../resources/toon-outline-batch.ts";
 import { AwardPodiumScene, loadAwardPodiumScene } from "../resources/award-podium-scene.ts";
@@ -20,6 +35,20 @@ import { normalizeLegacyTextureAlpha } from "../resources/texture-alpha.ts";
 import { buildTrackCourseGraph } from "../resources/track-course-graph.ts";
 import { $1, $i, Am, B2, Bl, Cm, D1, D2, D9, F1, GG, Gl, H, Hi, J9, M1, Mm, Nc, ON, Pl, R4, R9, S1, Sm, T2, Tl, VN, Vt, W2, Wi, Y2, Z9, _0, _9, _l, ao, bm, co, e5, e9, h3, h9, ir, l1, l2, lG, me, n5, oo, r1, r9, rG, ra, ro, rr, s1, s5, so, t9, tn, u1, u4, u9, v1, v2, v9, xm, y1, ym, yr, ys } from "./vendor.js";
 
+const panelMaterializeDependencies = { attribute: T, inset: YB, uv: dX, font: ga, rasterizeInto: $B, offsetInto: lX, copyInto: uX, rasterize: pa };
+function characterSceneDependencies() { return {
+  loadBodyTexture: QY, loadFaceTexture: YY,
+  orientClientGroup: Hl, orientNativeGroup: cn,
+  defaultProperties: ju, inheritProperties: ju,
+  rigidGeometry: nZ, SkinnedGeometry: vR,
+  registerSkinCulling: qm,
+  collectBoneMatrices: (source, pose) => AR.collect(source, pose),
+  applyTransform: iZ, isRenderableChild: rZ,
+  makeToonMaterial: bo, applyMaterialProperties: Mo,
+  toonProperties: tZ, configureRenderOrder: ie,
+  OutlineController: N6, cullHierarchy: JG,
+  isVisible: Xu, configureToonUniforms: xo, poseMatrix: ZY,
+}; }
 function trackSceneDependencies() { return {
   inspectRoot: hB, validateInspection: ZK, isMorphGeometry: Vu,
   stripIndices: Vp, allocateRigidGeometry: aj,
@@ -151,852 +180,37 @@ let CW = class {
   }
 };
 
-const EW = new Set(["BH", "MZ", "BS", "JM", "DJ", "DF", "MR", "HW"]);
+function VG(descriptor) { return roadSurface(descriptor); }
 
-function VG(n) {
-  return n.road.attributes.find((e) => e.name === "surface")?.value;
-}
+function Ri(descriptor) { return roadRail(descriptor); }
 
-function Ri(n) {
-  return n.road.attributes.find((e) => e.name === "rail")?.value;
-}
+function TW(descriptor) { return roadSound(descriptor); }
 
-function TW(n) {
-  return n.road.attributes.find((e) => e.name === "sound")?.value;
-}
+function mo(descriptor) { return isMovableRoad(descriptor); }
 
-function mo(n) {
-  return n.road.attributes.some(
-    (e) => e.name === "movable" && e.value === "true",
-  );
-}
+function Fl(descriptor, mesh) { return movingRoadIssue(descriptor, mesh); }
 
-function Fl(n, e) {
-  const t = OG(n, !0);
-  if (t) return t;
-  if (!mo(n)) return "road descriptor 不是 movable=true";
-  for (let i = e; i; i = i.parent) {
-    if (i.node.slotOccurrences?.[1]?.value?.kind === "prs") return;
-    if (i.node.slotOccurrences?.[0] || i.node.slotOccurrences?.[2])
-      return "movable=true lineage 含未闭合 Vis/Path controller";
-    if (
-      i.node.className !== "Relement" &&
-      i.node.className !== "ReTriList" &&
-      i.node.className !== "ReTriStrip"
-    )
-      return `movable=true lineage 节点类 ${i.node.className} 的 matrix callback 未闭合`;
-  }
-}
+function NG(descriptor, mesh) { return anyRoadIssue(descriptor, mesh); }
 
-function NG(n, e) {
-  return mo(n) ? Fl(n, e) : Vm(n);
-}
+function Vm(descriptor) { return staticRoadIssue(descriptor); }
 
-function Vm(n) {
-  return OG(n, !1);
-}
 
-function OG(n, e) {
-  const t = n.road;
-  if (t.text !== "") return "road text 非空";
-  if (t.children.length !== 0) return "road 含子节点";
-  const i = new Set();
-  for (const r of t.attributes) {
-    if (i.has(r.name)) return `road 重复属性 ${r.name}`;
-    if ((i.add(r.name), r.name === "surface")) {
-      const s = _W(r.value);
-      if (s) return s;
-    } else {
-      if (e && r.name === "movable" && r.value === "true") continue;
-      if (
-        !["alphaBias", "dust", "dustVel", "sound", "soung", "rail"].includes(
-          r.name,
-        )
-      )
-        return `road 属性 ${r.name}=${r.value} 尚未接入已证 consumer`;
-    }
-  }
-}
+function P6(value) { return isTrackPrs(value); }
+function zG() { return createPrsRuntime(); }
+function GW(property, runtime, time, duration) { return playPrs(property, runtime, time, duration); }
+function BW(runtime, mode) { return setPrsCycleMode(runtime, mode); }
+function RW(property, runtime, time) { return stopPrs(property, runtime, time); }
+function Nm(property) { return validatePrs(property); }
+function UG() { return defaultTrackTransform(); }
+function $G(output, property, runtime, time, fallback) { return applyTrackPrs(output, property, runtime, time, fallback); }
+function PW(property, runtime, time, fallback) { return sampleTrackPrs(property, runtime, time, fallback); }
 
-function _W(n) {
-  if (
-    [
-      "bcharge",
-      "bcharget",
-      "dirt",
-      "pit",
-      "retire",
-      "slip",
-      "리셋",
-      "점프",
-      "촋",
-    ].includes(n)
-  )
-    return;
-  const e = n.slice(0, 2);
-  if (!EW.has(e)) return `road surface=${n} 尚未接入已证 consumer`;
-  if (e === "DJ") {
-    const t = n.slice(2).split("/");
-    if (t.length < 3 || t.slice(0, 3).some((i) => !KA(i)))
-      return `road surface=${n} 的 DJ token 无法安全复现`;
-  }
-  if (
-    (e === "BH" || e === "MZ") &&
-    n[4] === "." &&
-    (e === "BH" ? [3, 7, 11, 15] : [3, 7, 11]).some(
-      (i) => !KA(n.slice(i, i + 3)),
-    )
-  )
-    return `road surface=${n} 的固定宽度 float token 无法安全复现`;
-}
 
-function KA(n) {
-  return n === "" ? !0 : Number.isFinite(Number.parseFloat(n));
-}
+function Um(object) { return admitMovingObstacle(object); }
 
-const jA = new WeakMap();
+function e3(point, matrix) { return transformObstaclePoint(point, matrix); }
 
-function P6(n) {
-  return !!(n && typeof n == "object" && n.kind === "prs");
-}
-
-function zG() {
-  return {
-    anchor: 0,
-    previousCycle: 0,
-    reverseHalf: !1,
-    frequencyOverride: 1,
-    cycleModeOverride: void 0,
-    frozenTime: void 0,
-    rangeStart: 0,
-    rangeStop: 0,
-  };
-}
-
-function GW(n, e, t, i) {
-  ((e.anchor = Math.trunc(t) >>> 0),
-    (e.previousCycle = 0),
-    (e.reverseHalf = !1),
-    (e.frozenTime = void 0));
-  const r = WG(n);
-  ((e.rangeStart = n.base.startTimeWord ?? r.start),
-    (e.rangeStop = n.base.stopTimeWord ?? r.stop),
-    (e.frequencyOverride = 1));
-  const s = Math.trunc(i) >>> 0;
-  if (s !== 0 && e.rangeStop !== 0) {
-    const o = xp(a0(a0((e.rangeStop - e.rangeStart) >>> 0) * n.base.frequency));
-    e.frequencyOverride = a0(a0(o) / a0(s));
-  }
-}
-
-function BW(n, e) {
-  n.cycleModeOverride = Math.trunc(e) >>> 0;
-}
-
-function RW(n, e, t) {
-  if (e.rangeStart === 0 && e.rangeStop === 0) {
-    const i = WG(n);
-    ((e.rangeStart = n.base.startTimeWord ?? i.start),
-      (e.rangeStop = n.base.stopTimeWord ?? i.stop));
-  }
-  e.frozenTime = Uc(n.base, e, Math.trunc(t) >>> 0, e.rangeStart, e.rangeStop);
-}
-
-function Nm(n) {
-  const e = (o, a) => {
-      if (o)
-        return !("records" in o) || ![0, 1, 3].includes(o.type)
-          ? `${a} Vec3 keyType ${o.type}`
-          : o.records.length === 0
-            ? `${a} 不含 key`
-            : void 0;
-    },
-    t = e(n.position, "position");
-  if (t) return t;
-  const i = e(n.scale, "scale");
-  if (i) return i;
-  const r = n.rotation;
-  if (!r) return fu(n);
-  if ("records" in r)
-    return r.type !== 1
-      ? `rotation keyType ${r.type}`
-      : r.records.length === 0
-        ? "rotation 不含 key"
-        : fu(n);
-  if (r.type !== 4) return `rotation composite keyType ${r.type}`;
-  const s = r.axes ?? r.components;
-  if (!s || s.length !== 3) return "rotation type4 缺少三个 scalar axes";
-  for (const o of s) {
-    if (o.type !== 0 && o.type !== 3)
-      return `rotation scalar keyType ${o.type}`;
-    if (o.records.length === 0) return "rotation scalar 不含 key";
-  }
-  return fu(n);
-}
-
-function fu(n) {
-  n.position && (QA(n.position), Ls(n.position, n, 0));
-  const e = n.rotation;
-  (e &&
-    ("records" in e ? DW(e) : (e.axes ?? e.components).forEach(VW),
-    Ls(e, n, 2)),
-    n.scale && (QA(n.scale), Ls(n.scale, n, 4)));
-}
-
-function UG() {
-  return {
-    position: [0, 0, 0],
-    basis: [
-      [1, 0, 0],
-      [0, 1, 0],
-      [0, 0, 1],
-    ],
-    scale: [1, 1, 1],
-  };
-}
-
-function $G(n, e, t, i, r) {
-  const s = Math.trunc(i) >>> 0,
-    o = IW(e);
-  if (o.position) {
-    const a = Uc(e.base, t, s, o.rangeP[0], o.rangeP[1]);
-    YA(n.position, o.position, a);
-  } else ZA(n.position, r.position);
-  if (o.rotation) {
-    const a = Uc(e.base, t, s, o.rangeR[0], o.rangeR[1]);
-    kW(n.basis, o.rotation, a);
-  } else FW(n.basis, r.basis);
-  if (o.scale) {
-    const a = Uc(e.base, t, s, o.rangeS[0], o.rangeS[1]);
-    YA(n.scale, o.scale, a);
-  } else ZA(n.scale, r.scale);
-  return n;
-}
-
-const XA = new WeakMap();
-
-function pu(n, e, t) {
-  const i = Ls(n, e, t);
-  return [i.start, i.stop];
-}
-
-function IW(n) {
-  let e = XA.get(n);
-  if (e) return e;
-  const t = (o) => {
-      if (!o) return;
-      if (!("records" in o))
-        throw new Error(`Track PRS Vec3 keyType ${o.type} 尚未映射。`);
-      if (![0, 1, 3].includes(o.type))
-        throw new Error(`Track PRS Vec3 keyType ${o.type} 尚未映射。`);
-      const a = o.records.length,
-        c = new Float64Array(a),
-        l = new Float32Array(a * 3);
-      for (let u = 0; u < a; u += 1) {
-        const h = h4(o.records[u]);
-        ((c[u] = h.getUint32(0, !0)),
-          (l[u * 3] = h.getFloat32(4, !0)),
-          (l[u * 3 + 1] = h.getFloat32(8, !0)),
-          (l[u * 3 + 2] = h.getFloat32(12, !0)));
-      }
-      return { type: o.type, times: c, values: l };
-    },
-    i = (o) => {
-      if (o.type !== 0 && o.type !== 3)
-        throw new Error(`Track PRS scalar keyType ${o.type} 尚未映射。`);
-      const a = o.records.length,
-        c = new Float64Array(a),
-        l = new Float32Array(a),
-        u = new Float32Array(a),
-        h = new Float32Array(a);
-      for (let d = 0; d < a; d += 1) {
-        const f = h4(o.records[d]);
-        ((c[d] = f.getUint32(0, !0)),
-          (l[d] = f.getFloat32(4, !0)),
-          o.type === 0 &&
-            ((u[d] = f.getFloat32(8, !0)), (h[d] = f.getFloat32(12, !0))));
-      }
-      return { type: o.type, times: c, values: l, incoming: u, outgoing: h };
-    },
-    r = n.rotation;
-  let s;
-  if (r)
-    if ("records" in r) {
-      if (r.type !== 1)
-        throw new Error(`Track PRS rotation keyType ${r.type} 尚未映射。`);
-      const o = r.records.length,
-        a = new Float64Array(o),
-        c = new Float32Array(o * 4);
-      for (let l = 0; l < o; l += 1) {
-        const u = h4(r.records[l]);
-        ((a[l] = u.getUint32(0, !0)),
-          (c[l * 4] = u.getFloat32(4, !0)),
-          (c[l * 4 + 1] = u.getFloat32(8, !0)),
-          (c[l * 4 + 2] = u.getFloat32(12, !0)),
-          (c[l * 4 + 3] = u.getFloat32(16, !0)));
-      }
-      s = { kind: 2, type: r.type, times: a, values: c };
-    } else {
-      if (r.type !== 4)
-        throw new Error(
-          `Track PRS rotation composite keyType ${r.type} 尚未映射。`,
-        );
-      const o = r.axes ?? r.components;
-      if (!o || o.length !== 3)
-        throw new Error("Track PRS rotation type4 缺少三个 scalar axes。 ");
-      s = { kind: 3, type: 4, axes: o.map(i) };
-    }
-  return (
-    (e = {
-      position: t(n.position),
-      rotation: s,
-      scale: t(n.scale),
-      rangeP: n.position ? pu(n.position, n, 0) : [0, 0],
-      rangeR: r ? pu(r, n, 2) : [0, 0],
-      rangeS: n.scale ? pu(n.scale, n, 4) : [0, 0],
-    }),
-    XA.set(n, e),
-    e
-  );
-}
-
-function YA(n, e, t) {
-  const i = e.times.length,
-    r = Om(e.times, i, t),
-    s = r,
-    o = Math.min(r + 1, i - 1);
-  if (s === o || e.type === 3) {
-    ((n[0] = e.values[s * 3]),
-      (n[1] = e.values[s * 3 + 1]),
-      (n[2] = e.values[s * 3 + 2]));
-    return;
-  }
-  const a = zm(e.times[s], e.times[o], t),
-    c = a0(1 - a);
-  ((n[0] = a0(a0(e.values[s * 3] * c) + a0(e.values[o * 3] * a))),
-    (n[1] = a0(a0(e.values[s * 3 + 1] * c) + a0(e.values[o * 3 + 1] * a))),
-    (n[2] = a0(a0(e.values[s * 3 + 2] * c) + a0(e.values[o * 3 + 2] * a))));
-}
-
-function kW(n, e, t) {
-  if (e.kind === 2) {
-    const o = e.times.length,
-      a = Om(e.times, o, t),
-      c = a,
-      l = Math.min(a + 1, o - 1);
-    c === l
-      ? vu(n, [
-          e.values[c * 4],
-          e.values[c * 4 + 1],
-          e.values[c * 4 + 2],
-          e.values[c * 4 + 3],
-        ])
-      : (LW(
-          o8,
-          e.values[c * 4],
-          e.values[c * 4 + 1],
-          e.values[c * 4 + 2],
-          e.values[c * 4 + 3],
-          e.values[l * 4],
-          e.values[l * 4 + 1],
-          e.values[l * 4 + 2],
-          e.values[l * 4 + 3],
-          zm(e.times[c], e.times[l], t),
-        ),
-        vu(n, o8));
-    return;
-  }
-  const i = gu(e.axes[0], t),
-    r = gu(e.axes[1], t),
-    s = gu(e.axes[2], t);
-  (wu(a8, s, 2),
-    wu(c8, r, 1),
-    eb(o8, a8, c8),
-    wu(a8, i, 0),
-    eb(c8, o8, a8),
-    vu(n, c8));
-}
-
-function gu(n, e) {
-  const t = n.times.length,
-    i = Om(n.times, t, e),
-    r = i,
-    s = Math.min(i + 1, t - 1);
-  if (r === s || n.type === 3) return n.values[r];
-  const o = zm(n.times[r], n.times[s], e),
-    a = a0(n.values[s] - n.values[r]);
-  let c = a0(a0(a0(n.outgoing[r] + n.incoming[s]) - a0(2 * a)));
-  return (
-    (c = a0(
-      a0(c * o) + a0(a0(3 * a) - a0(a0(2 * n.outgoing[r]) + n.incoming[s])),
-    )),
-    (c = a0(a0(c * o) + n.outgoing[r])),
-    a0(a0(c * o) + n.values[r])
-  );
-}
-
-function Om(n, e, t) {
-  if (e === 0) throw new Error("Track PRS track 不含 key。 ");
-  let i = 0;
-  for (; i + 1 < e && t > n[i + 1];) i += 1;
-  return i;
-}
-
-function LW(n, e, t, i, r, s, o, a, c, l) {
-  const u = a0(a0(a0(a0(o * t) + a0(s * e)) + a0(i * a)) + a0(r * c));
-  let h = a0(1 - a0(u * a0(0.82279688)));
-  h = a0(a0(h * h) * a0(0.58549219));
-  let d;
-  if (l > 0.5) {
-    const v = a0(1 - l);
-    d = a0(1 - a0(a0(a0(a0(a0(v + v) - 3) * a0(h * v)) + 1 + h) * v));
-  } else d = a0(a0(a0(a0(a0(l + l) - 3) * a0(h * l)) + 1 + h) * l);
-  ((n[0] = a0(a0(s - e) * d + e)),
-    (n[1] = a0(a0(o - t) * d + t)),
-    (n[2] = a0(a0(a - i) * d + i)),
-    (n[3] = a0(a0(c - r) * d + r)));
-  const f = a0(a0(a0(n[0] * n[0] + n[1] * n[1]) + n[2] * n[2]) + n[3] * n[3]);
-  let p = a0(a0(f - a0(0.95906597)) * a0(-0.53251559) + a0(1.0214351));
-  (f <= a0(0.91521198) &&
-    ((p = JA(f, p)), f <= a0(0.6521197) && (p = JA(f, p))),
-    (n[0] = a0(n[0] * p)),
-    (n[1] = a0(n[1] * p)),
-    (n[2] = a0(n[2] * p)),
-    (n[3] = a0(n[3] * p)));
-}
-
-function PW(n, e, t, i) {
-  return $G(UG(), n, e, t, i);
-}
-
-function ZA(n, e) {
-  ((n[0] = e[0]), (n[1] = e[1]), (n[2] = e[2]));
-}
-
-function FW(n, e) {
-  for (let t = 0; t < 3; t += 1)
-    ((n[t][0] = e[t][0]), (n[t][1] = e[t][1]), (n[t][2] = e[t][2]));
-}
-
-function Uc(n, e, t, i, r) {
-  if (e.frozenTime !== void 0) return e.frozenTime;
-  ((e.rangeStart = i),
-    (e.rangeStop = r),
-    e.anchor === 0 && t !== 0 && (e.anchor = t));
-  const s = (e.anchor + n.phaseWord) >>> 0;
-  let o = t < s ? 0 : (t + n.phaseWord - e.anchor) >>> 0;
-  const a =
-    nb(e.frequencyOverride) === 1065353216 ? n.frequency : e.frequencyOverride;
-  nb(a) !== 1065353216 && (o = xp(a0(a0(o) * a)));
-  const c = xp(a0(a0((r - i) >>> 0) * a));
-  if (c === 0) return o;
-  const l = e.cycleModeOverride ?? n.cycleMode;
-  if (l === 0) return ((o % c) + i) >>> 0;
-  if (l === 1) {
-    const u = Math.floor(o / c) >>> 0;
-    (u !== e.previousCycle && (e.reverseHalf = !e.reverseHalf),
-      (e.previousCycle = u));
-    const h = o % c;
-    return e.reverseHalf ? (c - h) >>> 0 : h;
-  }
-  return l === 2 ? (o < i ? i : o > r ? r : o) : t;
-}
-
-function WG(n) {
-  const e = n.scale ? 4 : n.rotation ? 2 : 0,
-    t = n.scale ?? n.rotation ?? n.position;
-  return t ? Ls(t, n, e) : { start: 0, stop: 0 };
-}
-
-const mu = { start: 0, stop: 0 };
-
-function Ls(n, e, t) {
-  const i = F6(n);
-  if (i.range) return i.range;
-  const r =
-    "records" in n
-      ? n.records
-      : (n.axes ?? n.components ?? []).flatMap((o) => o.records);
-  if (r.length === 0)
-    return (
-      (mu.start = e.firstLastCache[t]),
-      (mu.stop = e.firstLastCache[t + 1]),
-      mu
-    );
-  const s = r.map((o) => h4(o).getUint32(0, !0));
-  return (i.range = { start: Math.min(...s), stop: Math.max(...s) });
-}
-
-function F6(n) {
-  let e = jA.get(n);
-  return (e || ((e = {}), jA.set(n, e)), e);
-}
-
-function QA(n) {
-  const e = F6(n);
-  return (e.vec3 ??= n.records.map((t) => {
-    const i = h4(t);
-    return {
-      time: i.getUint32(0, !0),
-      value: [i.getFloat32(4, !0), i.getFloat32(8, !0), i.getFloat32(12, !0)],
-    };
-  }));
-}
-
-function DW(n) {
-  const e = F6(n);
-  return (e.rotation ??= n.records.map((t) => {
-    const i = h4(t);
-    return {
-      time: i.getUint32(0, !0),
-      value: [
-        i.getFloat32(4, !0),
-        i.getFloat32(8, !0),
-        i.getFloat32(12, !0),
-        i.getFloat32(16, !0),
-      ],
-    };
-  }));
-}
-
-function VW(n) {
-  const e = F6(n);
-  return (e.scalar ??= n.records.map((t) => {
-    const i = h4(t);
-    return {
-      time: i.getUint32(0, !0),
-      value: i.getFloat32(4, !0),
-      incoming: n.type === 0 ? i.getFloat32(8, !0) : 0,
-      outgoing: n.type === 0 ? i.getFloat32(12, !0) : 0,
-    };
-  }));
-}
-
-function zm(n, e, t) {
-  const i = (e - n) >>> 0;
-  return i === 0 ? 0 : a0(a0((t - n) >>> 0) / a0(i));
-}
-
-const o8 = [0, 0, 0, 0],
-  a8 = [0, 0, 0, 0],
-  c8 = [0, 0, 0, 0];
-
-function JA(n, e) {
-  return a0(
-    e *
-      a0(
-        a0(a0(a0(e * e) * n) - a0(0.95906597)) * a0(-0.53251559) +
-          a0(1.0214351),
-      ),
-  );
-}
-
-function wu(n, e, t) {
-  const i = a0(e * 0.5);
-  ((n[0] = a0(Math.cos(i))),
-    (n[1] = 0),
-    (n[2] = 0),
-    (n[3] = 0),
-    (n[t + 1] = a0(Math.sin(i))));
-}
-
-function eb(n, e, t) {
-  const [i, r, s, o] = e,
-    [a, c, l, u] = t,
-    h = a0(a0(a0(a0(i * a) - a0(r * c)) - a0(s * l)) - a0(o * u)),
-    d = a0(a0(a0(a0(i * c) + a0(r * a)) + a0(s * u)) - a0(o * l)),
-    f = a0(a0(a0(a0(i * l) - a0(r * u)) + a0(s * a)) + a0(o * c)),
-    p = a0(a0(a0(a0(i * u) + a0(r * l)) - a0(s * c)) + a0(o * a));
-  ((n[0] = h), (n[1] = d), (n[2] = f), (n[3] = p));
-}
-
-function vu(n, [e, t, i, r]) {
-  ((n[0][0] = a0(1 - a0(2 * a0(a0(i * i) + a0(r * r))))),
-    (n[0][1] = a0(2 * a0(a0(t * i) - a0(e * r)))),
-    (n[0][2] = a0(2 * a0(a0(t * r) + a0(e * i)))),
-    (n[1][0] = a0(2 * a0(a0(t * i) + a0(e * r)))),
-    (n[1][1] = a0(1 - a0(2 * a0(a0(t * t) + a0(r * r))))),
-    (n[1][2] = a0(2 * a0(a0(i * r) - a0(e * t)))),
-    (n[2][0] = a0(2 * a0(a0(t * r) - a0(e * i)))),
-    (n[2][1] = a0(2 * a0(a0(i * r) + a0(e * t)))),
-    (n[2][2] = a0(1 - a0(2 * a0(a0(t * t) + a0(i * i))))));
-}
-
-function h4(n) {
-  return new DataView(n.buffer, n.byteOffset, n.byteLength);
-}
-
-const tb = new DataView(new ArrayBuffer(4));
-
-function nb(n) {
-  return (tb.setFloat32(0, n, !0), tb.getUint32(0, !0));
-}
-
-function xp(n) {
-  if (!Number.isFinite(n) || n < 0 || n > 4294967296)
-    throw new Error(`Track PRS u32 conversion 越界：${n}。`);
-  return Math.trunc(a0(n)) >>> 0;
-}
-
-function a0(n) {
-  return Math.fround(n);
-}
-
-class NW {
-  constructor(e, t, i, r) {
-    ((this.bindings = e),
-      (this.renderRoot = t),
-      (this.velFactor = i),
-      (this.pressMode = r));
-  }
-  bindings;
-  renderRoot;
-  velFactor;
-  pressMode;
-  lastUpdateMs = 0;
-  center = { x: 0, y: 0, z: 0 };
-  radius = 0;
-  currentTriangles = [];
-  update(e, t, i, r) {
-    const s = Math.trunc(e) >>> 0,
-      o = (c) => {
-        const l = t(c);
-        if (!l)
-          throw new Error(
-            `${c.name || c.className} 缺少上一轮 scene world matrix。`,
-          );
-        return l;
-      },
-      a = i(this.renderRoot);
-    if (!a)
-      throw new Error(
-        `${this.renderRoot.name} 缺少上一轮 scene world bounds。`,
-      );
-    return (
-      (this.radius = OW(a)),
-      this.lastUpdateMs === 0 && (this.lastUpdateMs = s),
-      this.shouldThrottle(s, r)
-        ? this.currentTriangles
-        : this.updateTriangles(s, o)
-    );
-  }
-  shouldThrottle(e, t) {
-    if (!t || (e - this.lastUpdateMs) >>> 0 >= 333) return !1;
-    const i = L0(L0(this.radius * 4) + 10),
-      r = L0(this.center.x - t.x),
-      s = L0(this.center.y - t.y),
-      o = L0(this.center.z - t.z);
-    return L0(L0(L0(r * r) + L0(o * o)) + L0(s * s)) > L0(i * i);
-  }
-  updateTriangles(e, t) {
-    const i = (e - this.lastUpdateMs) >>> 0,
-      r = this.bindings.map((o) => {
-        const a = t(o.node),
-          c = e3(o.localA, a),
-          l = e3(o.localB, a),
-          u = e3(o.localC, a);
-        o.normal = $W(c, l, u) ?? o.normal;
-        const h = WW(c, l, u);
-        return (
-          o.previousCenter &&
-            i !== 0 &&
-            (o.motion = {
-              x: L0(L0(L0(h.x - o.previousCenter.x) * 1e3) / L0(i)),
-              y: L0(L0(L0(h.y - o.previousCenter.y) * 1e3) / L0(i)),
-              z: L0(L0(L0(h.z - o.previousCenter.z) * 1e3) / L0(i)),
-            }),
-          (o.previousCenter = h),
-          {
-            a: c,
-            b: l,
-            c: u,
-            normal: o.normal,
-            motion: o.motion,
-            velFactor: this.velFactor,
-            pressMode: this.pressMode,
-          }
-        );
-      }),
-      s = this.bindings.map((o) => o.previousCenter);
-    if (((this.center = { x: 0, y: 0, z: 0 }), s.length > 0)) {
-      const o = L0(s.length);
-      this.center = {
-        x: L0(s.reduce((a, c) => L0(a + c.x), 0) / o),
-        y: L0(s.reduce((a, c) => L0(a + c.y), 0) / o),
-        z: L0(s.reduce((a, c) => L0(a + c.z), 0) / o),
-      };
-    }
-    return ((this.lastUpdateMs = e), (this.currentTriangles = r), r);
-  }
-  updateSnapshot() {
-    return this.currentTriangles;
-  }
-  registrationCenter() {
-    return this.center;
-  }
-  modelRadius() {
-    return this.radius;
-  }
-}
-
-function Um(n) {
-  if (zW(n.property) !== "obstacle")
-    return { status: "block", reason: "not-obstacle" };
-  if (!UW(n.object))
-    return { status: "block", reason: "nested object 不是 Relement" };
-  const e = [];
-  let t,
-    i = !1,
-    r;
-  const s = new Set(),
-    o = (u, h, d) => {
-      const f = u.slotOccurrences[1];
-      if (f)
-        if (!P6(f.value)) t ??= `${u.name || u.className} PRS 类型不受支持`;
-        else {
-          const y = Nm(f.value);
-          y ? (t ??= `${u.name || u.className} ${y}`) : (i = !0);
-        }
-      const p = u.additionalProperty;
-      p &&
-        (["effect", "gravity", "inv", "ob", "scale"].forEach((y) => {
-          l8(p, y) && s.add(y);
-        }),
-        l8(p, "press")
-          ? (r = "directional")
-          : l8(p, "press100") && (r = "hard-stop"));
-      const v = u.slotOccurrences[4]?.value,
-        w = v?.kind === "backface" && v.cull !== void 0 ? v.cull : d;
-      if (h && (u.className === "ReTriList" || u.className === "ReTriStrip")) {
-        const y = u.vertexData;
-        if (!y?.positions)
-          t ??= `${u.name || u.className} obstacle geometry 缺少 positions`;
-        else {
-          const b = (A, x, M) => {
-            if (A === x || x === M || A === M) return;
-            let E = x,
-              _ = M;
-            w === 3 && ([E, _] = [_, E]);
-            const C = y.positions[A],
-              S = y.positions[E],
-              G = y.positions[_];
-            if (!C || !S || !G) {
-              t ??= `${u.name || u.className} obstacle index 越界`;
-              return;
-            }
-            e.push({
-              node: u,
-              localA: C,
-              localB: S,
-              localC: G,
-              normal: { x: 0, y: 0, z: 0 },
-              motion: { x: 0, y: 0, z: 0 },
-            });
-          };
-          if (u.className === "ReTriList")
-            for (let A = 0; A + 2 < y.indices.length; A += 3)
-              b(y.indices[A], y.indices[A + 1], y.indices[A + 2]);
-          else
-            for (let A = 0; A + 2 < y.indices.length; A += 1)
-              b(
-                A % 2 === 0 ? y.indices[A] : y.indices[A + 1],
-                A % 2 === 0 ? y.indices[A + 1] : y.indices[A],
-                y.indices[A + 2],
-              );
-        }
-      }
-      const g = !!(p && l8(p, "ob"));
-      u.children.forEach((y) => o(y, g, w));
-    };
-  if ((o(n.object, !1, 2), t)) return { status: "block", reason: t };
-  const c = n.property?.children
-      .find((u) => wo(u.name, "object"))
-      ?.attributes.find((u) => wo(u.name, "velFactor"))?.value,
-    l = c === void 0 ? 1 : Number.parseFloat(c);
-  return Number.isFinite(l)
-    ? {
-        status: "admit",
-        animator: new NW(e, n.object, L0(l), r),
-        renderRoot: n.object,
-        hasPrs: i,
-        pressMode: r,
-        collisionTriangleCount: e.length,
-        markerProfile: [...s].sort(),
-      }
-    : { status: "block", reason: `velFactor=${c} 无效` };
-}
-
-function OW(n) {
-  if (n.kind !== "ordinary")
-    return { canonical: 0, invalid: 1 / 0, "non-finite": NaN }[n.kind];
-  const e = n.max.map((i, r) => L0(i - L0(L0(n.min[r] + i) * 0.5))),
-    t = L0(L0(L0(e[0] * e[0]) + L0(e[1] * e[1])) + L0(e[2] * e[2]));
-  return L0(Math.sqrt(t));
-}
-
-function zW(n) {
-  const t = n?.children
-    .find((r) => wo(r.name, "object"))
-    ?.attributes.find((r) => wo(r.name, "type"))?.value;
-  if (t === void 0) return;
-  const i = t.indexOf("\0");
-  return t.slice(0, i < 0 ? t.length : i);
-}
-
-function l8(n, e) {
-  return n.children.find((t) => wo(t.name, e));
-}
-
-function wo(n, e) {
-  const t = n.indexOf("\0");
-  return n.slice(0, t < 0 ? n.length : t) === e;
-}
-
-function UW(n) {
-  return !!(n && typeof n == "object" && n.kind === "node");
-}
-
-function e3(n, e) {
-  const t = L0(yu(e[0], n[0], e[4], n[1], e[8], n[2]) + e[12]),
-    i = L0(yu(e[1], n[0], e[5], n[1], e[9], n[2]) + e[13]),
-    r = L0(yu(e[2], n[0], e[6], n[1], e[10], n[2]) + e[14]);
-  return { x: t, y: r, z: L0(-i) };
-}
-
-function yu(n, e, t, i, r, s) {
-  return L0(L0(L0(n * e) + L0(t * i)) + L0(r * s));
-}
-
-function $W(n, e, t) {
-  const i = { x: L0(e.x - n.x), y: L0(e.y - n.y), z: L0(e.z - n.z) },
-    r = { x: L0(t.x - n.x), y: L0(t.y - n.y), z: L0(t.z - n.z) },
-    s = {
-      x: L0(L0(i.y * r.z) - L0(i.z * r.y)),
-      y: L0(L0(i.z * r.x) - L0(i.x * r.z)),
-      z: L0(L0(i.x * r.y) - L0(i.y * r.x)),
-    },
-    o = L0(Math.sqrt(L0(L0(L0(s.x * s.x) + L0(s.z * s.z)) + L0(s.y * s.y))));
-  if (o > 0) return { x: L0(s.x / o), y: L0(s.y / o), z: L0(s.z / o) };
-}
-
-function WW(n, e, t) {
-  const i = L0(0.3333300054);
-  return {
-    x: L0(L0(L0(n.x + e.x) + t.x) * i),
-    y: L0(L0(L0(n.y + e.y) + t.y) * i),
-    z: L0(L0(L0(n.z + e.z) + t.z) * i),
-  };
-}
-
-function L0(n) {
-  return Math.fround(n);
-}
-
-const HW = 18346,
-  qW = 18363,
-  KW = 10154,
-  jW = 10171,
-  a9 = {
+const a9 = {
     TrackContainer: 687408536,
     Relement: 235340604,
     ReTriStrip: 352060408,
@@ -1188,234 +402,17 @@ function JW(objects, forceReverse) { return buildTrackCourseGraph(objects, force
 
 
 
-function d4(n, e) {
-  return [
-    Math.fround(n[0] - e[0]),
-    Math.fround(n[1] - e[1]),
-    Math.fround(n[2] - e[2]),
-  ];
-}
 
-function Ii(n, e) {
-  return [
-    Math.fround(n[0] + e[0]),
-    Math.fround(n[1] + e[1]),
-    Math.fround(n[2] + e[2]),
-  ];
-}
 
-function Zt(n, e) {
-  return [Math.fround(n[0] * e), Math.fround(n[1] * e), Math.fround(n[2] * e)];
-}
 
-function Cp(n, e) {
-  return [
-    Math.fround(Math.fround(n[1] * e[2]) - Math.fround(n[2] * e[1])),
-    Math.fround(Math.fround(n[2] * e[0]) - Math.fround(n[0] * e[2])),
-    Math.fround(Math.fround(n[0] * e[1]) - Math.fround(n[1] * e[0])),
-  ];
-}
 
-function cr(n) {
-  const e = Math.fround(
-      Math.fround(Math.fround(n[0] * n[0]) + Math.fround(n[1] * n[1])) +
-        Math.fround(n[2] * n[2]),
-    ),
-    t = Math.fround(Math.sqrt(e));
-  return t !== 0 ? n.map((i) => Math.fround(i / t)) : [1, 1, 1];
-}
 
-function qG(n) {
-  const e = [],
-    t = [],
-    i = [],
-    r = [],
-    s = new Set(),
-    o = {
-      roadMeshCount: 0,
-      ownRoadMeshCount: 0,
-      expandedTriangleCount: 0,
-      registeredTriangleCount: 0,
-      admittedTriangleCount: 0,
-      deferredTriangleCount: 0,
-      reversedTriangleCount: 0,
-      roadMeshNames: [],
-    },
-    a = (c, l, u, h, d) => {
-      const f = { node: c, parent: d },
-        p = lH(l, cH(c));
-      let v = u,
-        w = !1;
-      const g = UH(c);
-      if (g) {
-        const A = g.value.propertyOccurrence,
-          x =
-            A?.value.name === "property"
-              ? A.value.children.find((M) => M.name === "road")
-              : void 0;
-        ((v =
-          x && A
-            ? { texture: g, property: A, road: x, declaredAt: f }
-            : void 0),
-          (w = v !== void 0));
-      }
-      const y = $H(c)?.cull ?? h,
-        b = HH(c);
-      if (
-        (v &&
-          !b &&
-          (c.vertexData || c.rigidGeometry) &&
-          i.push({
-            descriptor: v,
-            mesh: f,
-            reason: `road mesh class ${c.className} 不是 ReTriList/ReTriStrip`,
-          }),
-        v && b)
-      ) {
-        (r.push({ descriptor: v, mesh: f }),
-          (o.roadMeshCount += 1),
-          w && (o.ownRoadMeshCount += 1));
-        const A = v.property.encoding === "reference" ? "ref" : "new";
-        o.roadMeshNames.push(`${w ? A : "inherited"}:${c.name}`);
-        const x = uH(b.positions, p),
-          M = b.indices,
-          E = Vm(v);
-        E &&
-          !s.has(v) &&
-          (s.add(v), i.push({ descriptor: v, mesh: f, reason: E }));
-        const _ = (C, S, G) => {
-          if (b.kind === "strip" && (C === S || S === G || C === G)) return;
-          let I = S,
-            L = G;
-          ((o.expandedTriangleCount += 1),
-            y === 3 && (([I, L] = [L, I]), (o.reversedTriangleCount += 1)));
-          const k = x[C],
-            D = x[I],
-            V = x[L];
-          if (!k || !D || !V)
-            throw new Error(`${c.name} 的原版 road 索引越界。`);
-          if (
-            ![k, D, V].every(
-              (q) => q[0] >= 0 && q[0] < 2e3 && q[1] >= 0 && q[1] < 2e3,
-            )
-          )
-            return;
-          const K = hH(k, D, V);
-          if (!K) return;
-          const P = {
-            a: ne(k),
-            b: ne(D),
-            c: ne(V),
-            normal: ne(K),
-            auxiliaryDirection: aH(v, b.uvs, k, D, V, C, I, L),
-            roadDescriptor: v,
-            origin: { mesh: f, localIndices: [C, I, L] },
-          };
-          (E
-            ? (t.push(P), (o.deferredTriangleCount += 1))
-            : (e.push(P), (o.admittedTriangleCount += 1)),
-            (o.registeredTriangleCount += 1));
-        };
-        if (b.kind === "list")
-          for (let C = 0; C + 2 < M.length; C += 3) _(M[C], M[C + 1], M[C + 2]);
-        else
-          for (let C = 0; C + 2 < M.length; C += 1) {
-            const S = C % 2 === 0;
-            _(S ? M[C] : M[C + 1], S ? M[C + 1] : M[C], M[C + 2]);
-          }
-      }
-      c.children.forEach((A) => a(A, p, v, y, f));
-    };
-  return (
-    a(n, [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0], void 0, 2),
-    {
-      triangles: e,
-      deferredTriangles: t,
-      issues: i,
-      descriptorUses: r,
-      stats: o,
-    }
-  );
-}
 
-function aH(n, e, t, i, r, s, o, a) {
-  const c = [0, 0, 1],
-    l = VG(n);
-  if (!l || l.length <= 3 || (l.slice(0, 2) !== "BS" && l.slice(0, 2) !== "JM"))
-    return ne(c);
-  const u = e[s],
-    h = e[o],
-    d = e[a];
-  if (!u || !h || !d) return ne(c);
-  const f = (E, _) => [Math.fround(E[0] - _[0]), Math.fround(E[1] - _[1])],
-    p = f(h, u),
-    v = f(d, u),
-    w = f(d, h),
-    g = d4(i, t),
-    y = d4(r, t),
-    b = d4(r, i),
-    A = Math.fround(v[0] - p[0]),
-    x = Math.fround(9999999747378752e-21);
-  let M;
-  if (A <= x && A >= -x) M = w[0] < 0 ? Zt(b, -1) : b;
-  else {
-    const E = Math.fround(v[0] / A);
-    ((M = Ii(Zt(g, E), Zt(y, Math.fround(1 - E)))),
-      Math.fround(v[1] + Math.fround(E * Math.fround(p[1] - v[1]))) < 0 &&
-        (M = Zt(M, -1)));
-  }
-  return ne(Zt(cr(M), -1));
-}
 
-function cH(n) {
-  const [e, t, i] = n.transform,
-    [r, s, o] = n.scale;
-  return [
-    Math.fround(e[0] * r),
-    Math.fround(e[1] * s),
-    Math.fround(e[2] * o),
-    Math.fround(n.position[0]),
-    Math.fround(t[0] * r),
-    Math.fround(t[1] * s),
-    Math.fround(t[2] * o),
-    Math.fround(n.position[1]),
-    Math.fround(i[0] * r),
-    Math.fround(i[1] * s),
-    Math.fround(i[2] * o),
-    Math.fround(n.position[2]),
-  ];
-}
 
-function lH(n, e) {
-  const t = new Array(12);
-  for (let i = 0; i < 3; i += 1) {
-    const r = i * 4;
-    for (let s = 0; s < 3; s += 1)
-      t[r + s] = Ps(n[r], e[s], n[r + 1], e[4 + s], n[r + 2], e[8 + s]);
-    t[r + 3] = Math.fround(
-      Ps(n[r], e[3], n[r + 1], e[7], n[r + 2], e[11]) + n[r + 3],
-    );
-  }
-  return t;
-}
 
-function uH(n, e) {
-  return n.map((t) => [
-    Math.fround(Ps(e[0], t[0], e[1], t[1], e[2], t[2]) + e[3]),
-    Math.fround(Ps(e[4], t[0], e[5], t[1], e[6], t[2]) + e[7]),
-    Math.fround(Ps(e[8], t[0], e[9], t[1], e[10], t[2]) + e[11]),
-  ]);
-}
 
-function Ps(n, e, t, i, r, s) {
-  return Math.fround(
-    Math.fround(Math.fround(n * e) + Math.fround(t * i)) + Math.fround(r * s),
-  );
-}
-
-function hH(n, e, t) {
-  return cr(Cp(d4(e, n), d4(t, n)));
-}
+function qG(root) { return extractTrackRoads(root, Vm); }
 
 function dH() {
   const n = new YH();
@@ -2030,53 +1027,6 @@ function vo(n, e) {
   return n.uint8() !== 0 ? e.readObjectOccurrence(n) : void 0;
 }
 
-function UH(n) {
-  const e = n.slotOccurrences[7];
-  if (!e) {
-    if (n.slots[7] !== void 0)
-      throw new Error(
-        `${n.name || n.className} 的 TexProperty 缺少 Object47 occurrence。`,
-      );
-    return;
-  }
-  if (!XH(e.value))
-    throw new Error(`${n.name || n.className} 的 slot 8 不是 TexProperty。`);
-  return e;
-}
-
-function $H(n) {
-  const e = n.slotOccurrences[4];
-  if (!e) {
-    if (n.slots[4] !== void 0)
-      throw new Error(
-        `${n.name || n.className} 的 BackFaceProperty 缺少 Object47 occurrence。`,
-      );
-    return;
-  }
-  if (!jH(e.value))
-    throw new Error(
-      `${n.name || n.className} 的 slot 5 不是 BackFaceProperty。`,
-    );
-  return e.value;
-}
-
-function WH(n) {
-  return [...n.indices];
-}
-
-function HH(n) {
-  if (
-    !(n.className !== "ReTriList" && n.className !== "ReTriStrip") &&
-    n.vertexData?.positions
-  )
-    return {
-      kind: n.className === "ReTriStrip" ? "strip" : "list",
-      positions: n.vertexData.positions,
-      indices: WH(n.vertexData),
-      uvs: n.vertexData.uvs.flat(),
-    };
-}
-
 function xu(n, e, t) {
   if (n >= e) throw new Error(`${t}索引 ${n} 越界。`);
 }
@@ -2105,9 +1055,7 @@ function qH(n) {
   };
 }
 
-function ne(n) {
-  return { x: n[0], y: n[2], z: -n[1] };
-}
+
 
 function a3(n, e) {
   return Array.from({ length: e }, () => n.vec3());
@@ -2138,155 +1086,9 @@ function KH(n) {
   );
 }
 
-function jH(n) {
-  return !!(n && typeof n == "object" && n.kind === "backface");
-}
+class YH extends TrackObjectRegistry {}
 
-function XH(n) {
-  return !!(n && typeof n == "object" && n.kind === "texture");
-}
-
-class YH {
-  objects = new Map();
-  fields = new Map();
-  objectIds = new Set();
-  fieldIds = new Set();
-  decoders = new Map();
-  register(e, t) {
-    this.decoders.set(e >>> 0, t);
-  }
-  readObject(e) {
-    return this.readObjectOccurrence(e).value;
-  }
-  readObjectOccurrence(e) {
-    const t = e.position,
-      i = e.uint16();
-    if (i === qW) {
-      const c = e.uint16();
-      if (!this.objects.has(c)) throw new Error(`未知对象引用 ${c}。`);
-      return { encoding: "reference", id: c, value: this.objects.get(c) };
-    }
-    if (i !== HW)
-      throw new Error(
-        `0x${t.toString(16)} 不是 KartObject（标记 0x${i.toString(16)}）。`,
-      );
-    const r = e.uint32(),
-      s = e.uint16();
-    if (this.objectIds.has(s)) throw new Error(`重复对象索引 ${s}。`);
-    this.objectIds.add(s);
-    const o = this.decoders.get(r);
-    if (!o) throw new Error(`不支持 ClassStamp 0x${r.toString(16)}。`);
-    const a = o(e, this);
-    return (this.objects.set(s, a), { encoding: "new", id: s, value: a });
-  }
-  readField(e, t) {
-    return this.readFieldOccurrence(e, t).value;
-  }
-  readFieldOccurrence(e, t) {
-    const i = e.position,
-      r = e.uint16();
-    if (r === jW) {
-      const a = e.uint16();
-      if (!this.fields.has(a))
-        throw new Error(`0x${i.toString(16)} 存在未知字段引用 ${a}。`);
-      return { encoding: "reference", id: a, value: this.fields.get(a) };
-    }
-    if (r !== KW) throw new Error(`0x${i.toString(16)} 不是索引字段。`);
-    const s = e.uint16();
-    if (this.fieldIds.has(s)) throw new Error(`重复字段索引 ${s}。`);
-    this.fieldIds.add(s);
-    const o = t(e, this);
-    return (this.fields.set(s, o), { encoding: "new", id: s, value: o });
-  }
-}
-
-let ZH = class {
-  constructor(e) {
-    ((this.data = e),
-      (this.view = new DataView(e.buffer, e.byteOffset, e.byteLength)));
-  }
-  data;
-  view;
-  position = 0;
-  get remaining() {
-    return this.data.length - this.position;
-  }
-  skip(e) {
-    (this.require(e), (this.position += e));
-  }
-  bytes(e) {
-    this.require(e);
-    const t = this.data.slice(this.position, this.position + e);
-    return ((this.position += e), t);
-  }
-  uint8() {
-    return (this.require(1), this.data[this.position++]);
-  }
-  int16() {
-    this.require(2);
-    const e = this.view.getInt16(this.position, !0);
-    return ((this.position += 2), e);
-  }
-  uint16() {
-    this.require(2);
-    const e = this.view.getUint16(this.position, !0);
-    return ((this.position += 2), e);
-  }
-  uint32() {
-    this.require(4);
-    const e = this.view.getUint32(this.position, !0);
-    return ((this.position += 4), e);
-  }
-  float32() {
-    this.require(4);
-    const e = this.view.getFloat32(this.position, !0);
-    return ((this.position += 4), e);
-  }
-  vec2() {
-    return [this.float32(), this.float32()];
-  }
-  vec3() {
-    return [this.float32(), this.float32(), this.float32()];
-  }
-  string() {
-    const e = this.count("字符串", 1e5);
-    try {
-      return new TextDecoder("utf-16le", { fatal: !0 }).decode(
-        this.bytes(e * 2),
-      );
-    } catch {
-      throw new Error("track.1s 包含无效 UTF-16LE 字符串。");
-    }
-  }
-  count(e, t) {
-    const i = this.uint32();
-    if (i > t) throw new Error(`${e}数量 ${i} 无效。`);
-    return i;
-  }
-  uint16Count(e, t) {
-    const i = this.uint16();
-    if (i > t) throw new Error(`${e}数量 ${i} 无效。`);
-    return i;
-  }
-  isNewObject() {
-    return (
-      this.position + 8 <= this.data.length &&
-      this.data[this.position] === 170 &&
-      this.data[this.position + 1] === 71
-    );
-  }
-  peekUint32(e) {
-    return (this.require(e + 4), this.view.getUint32(this.position + e, !0));
-  }
-  require(e) {
-    if (
-      !Number.isSafeInteger(e) ||
-      e < 0 ||
-      this.position + e > this.data.length
-    )
-      throw new Error(`track.1s 在 0x${this.position.toString(16)} 意外结束。`);
-  }
-};
+let ZH = class ZH extends TrackBinaryCursor {};
 
 const YG = new WeakMap();
 
@@ -3194,335 +1996,37 @@ async function p2(bytes) { return decodePngRgba(bytes); }
 
 
 
-const u8 = "etc_/toon.png";
 
-class rn {
-  texture;
-  constructor(e) {
-    this.texture = e;
-  }
-  static async load(e) {
-    const t = e.exactCanonicalCandidates(u8);
-    if (t.length !== 1)
-      throw new Error(`${u8} exact source 数量应为 1，实际为 ${t.length}。`);
-    const i = t[0];
-    if (
-      i.sourceKind !== "rho5" ||
-      i.sourceName !== "DataPack1_00001.rho5" ||
-      i.containerId !== "rho5:datapack1"
-    )
-      throw new Error(`${u8} 不来自当前 P3528 DataPack1 exact owner。`);
-    return rn.fromBytes(await i.bytes());
-  }
-  static async fromBytes(e) {
-    const t = await p2(e);
-    if (t.width !== 128 || t.height !== 64)
-      throw new Error(
-        `toon.png dimensions 应为 128x64，实际为 ${t.width}x${t.height}。`,
-      );
-    const i = new J9(t.pixels, t.width, t.height, e9, _9);
-    return (
-      (i.name = u8),
-      (i.colorSpace = v9),
-      (i.wrapS = i.wrapT = F1),
-      (i.magFilter = i.minFilter = h9),
-      (i.generateMipmaps = !1),
-      (i.flipY = !1),
-      (i.unpackAlignment = 1),
-      (i.needsUpdate = !0),
-      new rn(i)
-    );
-  }
-  requestTexture() {
-    return this.texture;
-  }
-  takeBoundTexture(e) {
-    if (!e || this.texture !== e) return;
-    const t = this.texture;
-    return ((this.texture = void 0), t);
-  }
-  dispose() {
-    (this.texture?.dispose(), (this.texture = void 0));
-  }
-}
 
-class vB {
-  position = 0;
-  direction = 1;
-  deadline = 0;
-  advance(e) {
-    if (!Number.isInteger(e) || e < 0 || e > 4294967295)
-      throw new Error("车膜时钟必须是 uint32。");
-    return e <= this.deadline
-      ? !1
-      : ((this.deadline = (e + 30) >>> 0),
-        (this.position += this.direction),
-        this.position === 120
-          ? (this.direction = -1)
-          : this.position === 0 && (this.direction = 1),
-        !0);
-  }
-}
+class rn extends ToonEnvironmentTexture {}
 
-class yB {
-  constructor(e, t = new vB()) {
-    ((this.library = e), (this.clock = t));
-  }
-  library;
-  clock;
-  pending = new Map();
-  ready = new Map();
-  disposed = !1;
-  request(e) {
-    if (!Number.isInteger(e) || e < 1 || e > 255)
-      return Promise.reject(new Error("车膜纹理索引尚未支持。"));
-    if (this.disposed)
-      return Promise.reject(new Error("车膜纹理管理器已释放。"));
-    const t = this.pending.get(e);
-    if (t) return t;
-    const i = this.load(e);
-    return (
-      this.pending.set(e, i),
-      i.catch(() => {
-        this.pending.get(e) === i && this.pending.delete(e);
-      }),
-      i
-    );
-  }
-  advance(e) {
-    if (!Number.isInteger(e) || e < 0 || e > 4294967295)
-      throw new Error("车膜时钟必须是 uint32。");
-    if (!(this.disposed || !this.clock.advance(e)))
-      for (const { source: t, texture: i } of this.ready.values())
-        t.width < 256 ||
-          (fb(t, this.clock.position, 128, i.image.data), (i.needsUpdate = !0));
-  }
-  dispose() {
-    if (!this.disposed) {
-      this.disposed = !0;
-      for (const { texture: e } of this.ready.values()) e.dispose();
-      (this.ready.clear(), this.pending.clear());
-    }
-  }
-  async load(e) {
-    const t = `effect/envMap/env${e}.png`,
-      i = this.library.exactCanonicalCandidates(t);
-    if (i.length !== 1) throw new Error(`车膜纹理缺失或不唯一：${t}`);
-    const r = await p2(await i[0].bytes());
-    if (
-      !(e === 255
-        ? r.width === 256 && r.height === 256
-        : (r.width === 128 || r.width === 256) && r.height === 128)
-    )
-      throw new Error(`车膜纹理尺寸尚未支持：${r.width}×${r.height}`);
-    if (this.disposed) throw new Error("车膜纹理管理器已释放。");
-    const o = new Uint8Array(128 * r.height * 4);
-    fb(r, 0, r.height, o);
-    const a = new J9(o, 128, r.height, e9, _9);
-    return (
-      (a.name = t),
-      (a.colorSpace = v9),
-      (a.wrapS = a.wrapT = S1),
-      (a.magFilter = u9),
-      (a.minFilter = h9),
-      (a.generateMipmaps = !1),
-      (a.flipY = !1),
-      (a.unpackAlignment = 1),
-      (a.needsUpdate = !0),
-      this.ready.set(e, { source: r, texture: a }),
-      a
-    );
-  }
-}
+class vB extends CoatingFrameClock {}
 
-function fb(n, e, t, i) {
-  for (let r = 0; r < t; r++) {
-    const s = (r * n.width + e) * 4;
-    i.set(n.pixels.subarray(s, s + 512), r * 128 * 4);
-  }
-}
+class yB extends CoatingTextureManager { constructor(library, clock = new vB()) { super(library, clock); } }
 
-class ha {
-  current = null;
-  retained = null;
-  light = 1;
-  coatings = new Map();
-  coatingClocks = new Map();
-  coatingTransitions = new Set();
-  coatingRevision = 0;
-  coatingsDisposed = !1;
-  coatingTextures(e) {
-    if (this.coatingsDisposed) throw new Error("共享车膜渲染绑定已释放。");
-    let t = this.coatings.get(e);
-    return (
-      t || ((t = this.newCoatingTextures(e)), this.coatings.set(e, t)),
-      t
-    );
-  }
-  newCoatingTextures(e) {
-    let t = this.coatingClocks.get(e);
-    return (t || ((t = new vB()), this.coatingClocks.set(e, t)), new yB(e, t));
-  }
-  prepareCoatingStage() {
-    if (this.coatingsDisposed) throw new Error("共享车膜渲染绑定已释放。");
-    const e = this.coatingRevision,
-      t = new Map();
-    let i = !0;
-    const r = () => {
-        if (!i || this.coatingsDisposed || e !== this.coatingRevision)
-          throw new Error("车膜阶段事务已失效。");
-      },
-      s = {
-        validate: r,
-        textures: (o) => {
-          r();
-          let a = t.get(o);
-          return (a || ((a = this.newCoatingTextures(o)), t.set(o, a)), a);
-        },
-        commit: () => {
-          r();
-          const o = this.coatings;
-          ((this.coatings = t),
-            ++this.coatingRevision,
-            (i = !1),
-            this.coatingTransitions.delete(s));
-          for (const a of o.values()) a.dispose();
-        },
-        dispose: () => {
-          if (i) {
-            ((i = !1), this.coatingTransitions.delete(s));
-            for (const o of t.values()) o.dispose();
-          }
-        },
-      };
-    return (this.coatingTransitions.add(s), s);
-  }
-  request(e) {
-    const t = e.requestTexture();
-    return (
-      t &&
-        t !== this.current &&
-        (this.retained?.dispose(), (this.retained = null), (this.current = t)),
-      this.current
-    );
-  }
-  currentTexture() {
-    return this.current;
-  }
-  beginFrame(e) {
-    const t = Math.trunc(e) >>> 0;
-    for (const [i, r] of this.coatingClocks) {
-      const s = this.coatings.get(i);
-      s ? s.advance(t) : r.advance(t);
-    }
-  }
-  retain(e) {
-    const t = e.takeBoundTexture(this.current);
-    t && (this.retained?.dispose(), (this.retained = t));
-  }
-  setLightFactor(e) {
-    this.light = e;
-  }
-  lightFactor() {
-    return this.light;
-  }
-  release() {
-    for (const e of [...this.coatingTransitions]) e.dispose();
-    for (const e of this.coatings.values()) e.dispose();
-    (this.coatings.clear(),
-      this.coatingClocks.clear(),
-      this.retained?.dispose(),
-      (this.retained = null),
-      (this.current = null),
-      ++this.coatingRevision);
-  }
-  dispose() {
-    ((this.coatingsDisposed = !0), this.release());
+
+
+class ha extends StageTextureBinding {
+  newCoatingTextures(library) {
+    let clock = this.coatingClocks.get(library);
+    if (!clock) { clock = new vB(); this.coatingClocks.set(library, clock); }
+    return new yB(library, clock);
   }
 }
 
 function bo(texture, environment, paletteParts = 0) { return createToonEnvironmentMaterial(texture, environment, paletteParts); }
 
-function Zq(n, e, t) {
-  ((n.uniforms.uvControllerEnabled.value = t ? 1 : 0),
-    n.uniforms.uvOffsetScale.value.set(
-      e.offsetU,
-      e.offsetV,
-      e.scaleU,
-      e.scaleV,
-    ),
-    (n.uniforms.uvRotation.value = e.rotation));
-}
+function Zq(material, state, enabled) { return setToonUvController(material, state, enabled); }
 
-function Mo(n, e) {
-  if (e.toon.value.words[0] !== 1 || e.toon.value.words[5] !== 2)
-    throw new Error(
-      `Toon mode/key ${e.toon.value.words[0]}/${e.toon.value.words[5]} 尚未映射。`,
-    );
-  if (e.wire.value.enabled !== 0)
-    throw new Error("WireProperty enabled 尚未映射。 ");
-  if (e.material.value.mode !== 0)
-    throw new Error(`MtlProperty mode ${e.material.value.mode} 尚未映射。`);
-  n.uniforms.normalUvOffset.value.set(
-    pb(e.toon.value.words[3]),
-    pb(e.toon.value.words[4]),
-  );
-  const t = e.alpha.value;
-  ((n.uniforms.alphaTestEnabled.value = t.alphaTestEnable !== 0 ? 1 : 0),
-    (n.uniforms.alphaFunction.value = t.compare),
-    (n.uniforms.alphaReference.value = t.alphaRef / 255),
-    (n.depthWrite = e.zbuffer.value.zWrite !== 0),
-    (n.depthFunc = Qq(e.zbuffer.value.zFunc)),
-    (n.side = s1),
-    t.blendEnable !== 0
-      ? ((n.transparent = !0),
-        (n.blending = u1),
-        (n.blendSrc = gb(t.srcBlend)),
-        (n.blendDst = gb(t.dstBlend)),
-        (n.blendEquation = R9))
-      : ((n.transparent = !1), (n.blending = n5)));
-}
+function Mo(material, properties) { return applyToonMaterialProperties(material, properties); }
 
-function pb(n) {
-  const e = new ArrayBuffer(4),
-    t = new DataView(e);
-  return (t.setUint32(0, n, !0), t.getFloat32(0, !0));
-}
 
-function xo(n, e, t, i, r, s) {
-  ((n.uniforms.toonEnv.value = t.request(e)),
-    n.uniforms.clientWorld.value.copy(i),
-    n.uniforms.clientWorldInverse.value.copy(r),
-    n.uniforms.viewOriginClient.value.copy(s));
-}
 
-function Qq(n) {
-  const t = { 1: ro, 2: so, 3: oo, 4: y1, 5: ao, 6: co, 7: rr, 8: ir }[n];
-  if (t === void 0) throw new Error(`D3DCMPFUNC ${n} 尚未映射。`);
-  return t;
-}
+function xo(material, texture, environment, world, inverse, origin) { return setToonEnvironmentUniforms(material, texture, environment, world, inverse, origin); }
 
-function gb(n) {
-  const t = {
-    1: ym,
-    2: h3,
-    3: ra,
-    4: Am,
-    5: l1,
-    6: v1,
-    7: bm,
-    8: Mm,
-    9: xm,
-    10: Sm,
-    11: Cm,
-  }[n];
-  if (t === void 0) throw new Error(`D3DBLEND ${n} 尚未映射。`);
-  return t;
-}
 
-class Jq extends DDSLoader {}
 
-class eK extends TGALoader {}
+
 
 function tK(n, e, t, i) {
   const r = i === "DXT1" ? 8 : 16;
@@ -3614,71 +2118,11 @@ function oK(n, e, t, i, r, s, o, a) {
     }
 }
 
-async function AB(n, e, t) {
-  const i = n.extension.toLowerCase(),
-    r = i === "png" && t,
-    s = await n.bytes();
-  let o;
-  if (i === "png") {
-    let a;
-    try {
-      r || (a = await p2(s));
-    } catch (l) {
-      throw new Error(
-        `${n.virtualPath} PNG decode：${l instanceof Error ? l.message : String(l)}`,
-      );
-    }
-    const c = n.canonicalPath ?? n.virtualPath;
-    (/^(?:stuff|stuff2_)\/boostereffect\/[^/]+\//i.test(c) &&
-      aK(a.pixels, a.width, a.height),
-      /(^|\/)effect\/enchant\/front\.png$/i.test(c.replaceAll("\\", "/")) &&
-        cK(a.pixels, a.width, a.height),
-      (o = new J9(a.pixels, a.width, a.height, e9, _9)),
-      (o.premultiplyAlpha = !1));
-  } else if (i === "dds") {
-    const a = new Jq().parse(_u(s), !0);
-    if (!a.format || a.width <= 0 || a.height <= 0 || a.mipmapCount <= 0)
-      throw new Error(`${n.virtualPath} DDS layout 无效。`);
-    if (a.format === e9)
-      o = new J9(a.mipmaps[0].data, a.width, a.height, e9, _9);
-    else {
-      const c = a.format === u4 ? $i : a.format;
-      o = new Pl(a.mipmaps, a.width, a.height, c, _9);
-    }
-  } else if (i === "tga") {
-    const a = new eK().parse(_u(s));
-    ((o = new J9(a.data, a.width, a.height, e9, _9)), (o.flipY = !1));
-  } else if (i === "jpg") {
-    const a = await createImageBitmap(
-      new Blob([_u(s)], { type: "image/jpeg" }),
-      {
-        colorSpaceConversion: "none",
-        imageOrientation: "none",
-        premultiplyAlpha: "none",
-      },
-    );
-    ((o = new D9(a)), (o.flipY = !0));
-  } else
-    throw new Error(`${n.virtualPath} 的 ${i || "unknown"} decoder 尚未闭合。`);
-  return (
-    (o.name = n.canonicalPath ?? n.virtualPath),
-    (o.colorSpace = v9),
-    i !== "tga" && i !== "jpg" && (o.flipY = !1),
-    (o.generateMipmaps = e.mipFilter !== 0 && !(o instanceof Pl)),
-    (o.wrapS = wb(e.addressU)),
-    (o.wrapT = wb(e.addressV)),
-    (o.magFilter = fK(e.magFilter)),
-    (o.minFilter = dK(e.minFilter, e.mipFilter)),
-    (o.anisotropy =
-      e.minFilter === 3 || e.magFilter === 3 ? e.maxAnisotropy : 1),
-    (o.needsUpdate = !0),
-    o
-  );
-}
+async function AB(resource, sampler, skipPngDecode) { return loadLegacyTexture(resource, sampler, skipPngDecode); }
 
-function aK(pixels, width, height) { normalizeLegacyTextureAlpha(pixels, width, height); }
 
-function cK(pixels, width, height) { normalizeLegacyTextureAlpha(pixels, width, height); }
+
+
 
 
 
@@ -3705,32 +2149,13 @@ function hK(n) {
   if (n === Hi) return "DXT5";
 }
 
-function wb(n) {
-  if (n === 1) return S1;
-  if (n === 2) return Tl;
-  if (n === 3) return F1;
-  throw new Error(`D3DTEXTUREADDRESS ${n} 尚未映射。`);
-}
 
-function dK(n, e) {
-  if (n !== 1 && n !== 2 && n !== 3)
-    throw new Error(`D3DTEXF min ${n} 尚未映射。`);
-  const t = n !== 1;
-  if (e === 0) return t ? u9 : h9;
-  if (e === 1) return t ? Nc : lG;
-  if (e === 2 || e === 3 || e === 4 || e === 5) return t ? e5 : ys;
-  throw new Error(`D3DTEXF mip ${e} 尚未映射。`);
-}
 
-function fK(n) {
-  if (n === 0 || n === 1) return h9;
-  if ([2, 3, 4, 5].includes(n)) return u9;
-  throw new Error(`D3DTEXF mag ${n} 尚未映射。`);
-}
 
-function _u(n) {
-  return n.slice().buffer;
-}
+
+
+
+
 
 const pK = ["dds", "png", "jpg", "tga", "kng"],
   vb = [
@@ -4189,113 +2614,19 @@ class Zm extends ColorKeyController {
 
 
 
-class Qm {
-  constructor(e, t, i) {
-    if (((this.geometry = t), e.data.length === 0))
-      throw new Error("MorphController 缺少 MorphData。");
-    ((this.channel = qK(e)),
-      (this.attribute = t.getAttribute(this.channel)),
-      KK(e, this.channel, this.attribute),
-      (this.weights = e.data.map((r) =>
-        on.fromParsed({ kind: "float-controller", base: e.base, keys: r.keys }),
-      )),
-      (this.weightOutputs = this.weights.map(() => 0)),
-      (this.targets = e.data.map((r) =>
-        Float32Array.from(
-          (this.channel === "position" ? r.positions : r.uvs).flat(),
-        ),
-      )),
-      (this.refreshBounds = i),
-      this.attribute.setUsage(r1));
-  }
-  geometry;
-  weights;
-  targets;
-  channel;
-  attribute;
-  weightOutputs;
-  refreshBounds;
-  lastTick;
-  static fromParsed(e, t, i = !0) {
-    if (!jK(e)) throw new Error("VertexData property 不是 MorphController。");
-    return new Qm(e, t, i);
-  }
-  update(e) {
-    const t = Math.trunc(e) >>> 0;
-    if (t === this.lastTick) return;
-    this.lastTick = t;
-    const i = this.weightOutputs;
-    for (let s = 0; s < this.weights.length; s += 1)
-      i[s] = this.weights[s].update(t);
-    const r = this.attribute.array;
-    (this.channel === "position"
-      ? (r.fill(0),
-        this.targets.forEach((s, o) => HK(r, s, i[o])),
-        this.refreshBounds &&
-          (this.geometry.computeBoundingBox(),
-          this.geometry.computeBoundingSphere()))
-      : this.targets.forEach((s, o) => WK(r, s, i[o])),
-      (this.attribute.needsUpdate = !0));
-  }
-  reset(e) {
-    (this.weights.forEach((t) => t.reset(e)), (this.lastTick = void 0));
-  }
-  play(e, t) {
-    (this.weights.forEach((i) => i.play(e, t)), (this.lastTick = void 0));
-  }
-  setCycleMode(e) {
-    this.weights.forEach((t) => t.setCycleMode(e));
-  }
-  stop(e) {
-    (this.update(e), this.weights.forEach((t) => t.stop(e)));
-  }
-}
+class Qm extends MorphController { constructor(source, geometry, refreshBounds) { super(source, geometry, refreshBounds, on); } }
 
-function WK(n, e, t) {
-  const i = Fi(1 - t);
-  for (let r = 0; r < n.length; r += 1) n[r] = Fi(Fi(e[r] * t) + Fi(n[r] * i));
-}
 
-function HK(n, e, t) {
-  for (let i = 0; i < n.length; i += 1) n[i] = Fi(n[i] + Fi(e[i] * t));
-}
 
-function qK(n) {
-  if (n.data.some((r) => r.normals || r.scalars))
-    throw new Error("MorphController normal/scalar channel 尚未映射。");
-  const e = n.data[0].positions !== void 0,
-    t = n.data[0].uvs !== void 0;
-  if (e === t)
-    throw new Error("MorphController 必须且只能包含 position 或 UV channel。");
-  const i = e ? "position" : "uv";
-  if (n.data.some((r) => !!r.positions !== e || !!r.uvs !== t))
-    throw new Error(`MorphController ${i} channel 在 records 间不一致。`);
-  return i;
-}
 
-function KK(n, e, t) {
-  if (!(t?.array instanceof Float32Array))
-    throw new Error(`Morph ${e} buffer 必须为 Float32Array。`);
-  const i = e === "position" ? 3 : 2;
-  if (t.itemSize !== i) throw new Error(`Morph ${e} buffer 分量数应为 ${i}。`);
-  for (const r of n.data) {
-    const s = e === "position" ? r.positions : r.uvs;
-    if (r.vertexCount !== t.count || s.length !== t.count)
-      throw new Error(
-        `MorphController ${e} 顶点数 ${r.vertexCount} 与 mesh ${t.count} 不一致。`,
-      );
-  }
-}
 
-function jK(n) {
-  if (!n || typeof n != "object") return !1;
-  const e = n;
-  return e.kind === "morph-controller" && !!(e.base && Array.isArray(e.data));
-}
 
-function Fi(n) {
-  return Math.fround(n);
-}
+
+
+
+
+
+
 
 
 
@@ -4553,157 +2884,17 @@ function ij(n, e, t, i, r, s, o) {
     (n.boundsDirty[e] = 1));
 }
 
-const x3 = new H(),
-  V1 = [new H(), new H(), new H()],
-  N9 = [new H(), new H(), new H()],
-  k9 = [new H(), new H(), new H()],
-  oi = [new H(), new H(), new H()],
-  M5 = new H(),
-  Hr = new H(),
-  Fu = new H(),
-  g8 = new H(),
-  Vb = new H(),
-  L1 = new Array(9).fill(0);
+function rj(target, source, mode, camera) { return orientTrackBillboard(target, source, mode, camera); }
 
-function rj(n, e, t, i) {
-  const r = e.elements;
-  (x3.set(r[12], r[13], r[14]),
-    V1[0].set(r[0], r[1], r[2]),
-    V1[1].set(r[4], r[5], r[6]),
-    V1[2].set(r[8], r[9], r[10]),
-    N9[0].copy(V1[0]),
-    N9[1].copy(V1[1]),
-    N9[2].copy(V1[2]));
-  let s = !1;
-  for (let o = 0; o < 3; o += 1)
-    if (N9[o].length() !== 1) {
-      s = !0;
-      break;
-    }
-  if (s)
-    for (let o = 0; o < 3; o += 1) N9[o].multiplyScalar(1 / N9[o].length());
-  if (t === 3) {
-    M5.copy(i.position).sub(x3);
-    const o = M5.dot(N9[0]),
-      a = M5.dot(N9[2]),
-      c = Math.sqrt(o * o + a * a);
-    if (c < 9999999960041972e-28) {
-      n.copy(e);
-      return;
-    }
-    const l = Math.acos(o / c),
-      u = a >= 0 ? 1.570796012878418 - l : l + 1.570796012878418,
-      h = Math.cos(u),
-      d = Math.sin(u);
-    (k9[0].copy(V1[0]).multiplyScalar(h).addScaledVector(V1[2], -d),
-      k9[1].copy(V1[1]),
-      k9[2].copy(V1[0]).multiplyScalar(d).addScaledVector(V1[2], h),
-      m8(n, k9[0], k9[1], k9[2], x3));
-    return;
-  }
-  if (t === 5) {
-    if ((M5.copy(i.position).sub(x3), M5.lengthSq() < 0.009999999776482582)) {
-      n.copy(e);
-      return;
-    }
-    M5.normalize();
-    const o = i.back.dot(M5),
-      a = o < 0.9999989867210388;
-    (a && sj(M5, i.back, Math.acos(o)),
-      a ? Nb(oi[0], i.right) : oi[0].copy(i.right),
-      a ? Nb(oi[1], i.up) : oi[1].copy(i.up),
-      oi[2].copy(M5).negate());
-    for (let c = 0; c < 3; c += 1) {
-      const l = oi[c],
-        u = N9[0].dot(l),
-        h = N9[1].dot(l),
-        d = N9[2].dot(l);
-      k9[c]
-        .copy(V1[0])
-        .multiplyScalar(u)
-        .addScaledVector(V1[1], h)
-        .addScaledVector(V1[2], d);
-    }
-    m8(n, k9[0], k9[1], k9[2], x3);
-    return;
-  }
-  if (t !== 1 && t !== 4) {
-    m8(n, N9[0], N9[1], N9[2], x3);
-    return;
-  }
-  if (
-    (Hr.copy(i.right).negate(),
-    Du(k9[0], t === 4 ? Hr : i.back),
-    Du(k9[1], i.up),
-    Du(k9[2], t === 4 ? i.back : Hr),
-    t === 4)
-  )
-    (ai(N9[0], k9[0]), ai(N9[1], k9[1]), ai(N9[2], k9[2]));
-  else {
-    const o = k9[0],
-      a = k9[1],
-      c = k9[2],
-      l = Math.sqrt(a.z * a.z + c.z * c.z);
-    if ((Fu.copy(o), g8.copy(c), l > 9999999974752427e-22)) {
-      const u = a.z,
-        h = c.z;
-      (Hr.copy(g8).multiplyScalar(u),
-        k9[0]
-          .copy(a)
-          .multiplyScalar(u)
-          .addScaledVector(g8, h)
-          .multiplyScalar(1 / l),
-        k9[1]
-          .copy(a)
-          .multiplyScalar(h)
-          .sub(Hr)
-          .multiplyScalar(1 / l),
-        k9[2].copy(Fu).negate());
-    } else (k9[0].copy(g8), k9[2].copy(Fu).negate());
-    (ai(N9[0], k9[0]), ai(N9[1], k9[1]), ai(N9[2], k9[2]));
-  }
-  m8(n, N9[0], N9[1], N9[2], x3);
-}
 
-function Du(n, e) {
-  n.set(N9[0].dot(e), N9[1].dot(e), N9[2].dot(e));
-}
 
-function ai(n, e) {
-  n.copy(V1[0])
-    .multiplyScalar(e.x)
-    .addScaledVector(V1[1], e.y)
-    .addScaledVector(V1[2], e.z);
-}
 
-function sj(n, e, t) {
-  Vb.copy(n).cross(e);
-  const i = Math.cos(t),
-    r = Math.sin(t),
-    s = 1 - i,
-    { x: o, y: a, z: c } = Vb;
-  ((L1[0] = o * o * s + i),
-    (L1[1] = c * r + o * a * s),
-    (L1[2] = o * c * s - a * r),
-    (L1[3] = o * a * s - c * r),
-    (L1[4] = a * a * s + i),
-    (L1[5] = o * r + a * c * s),
-    (L1[6] = a * r + o * c * s),
-    (L1[7] = a * c * s - o * r),
-    (L1[8] = c * c * s + i));
-}
 
-function Nb(n, e) {
-  n.set(
-    e.x * L1[0] + e.y * L1[1] + e.z * L1[2],
-    e.x * L1[3] + e.y * L1[4] + e.z * L1[5],
-    e.x * L1[6] + e.y * L1[7] + e.z * L1[8],
-  );
-}
 
-function m8(n, e, t, i, r) {
-  n.set(e.x, t.x, i.x, r.x, e.y, t.y, i.y, r.y, e.z, t.z, i.z, r.z, 0, 0, 0, 1);
-}
+
+
+
+
 
 function Vu(n) {
   const e = n.node.vertexData?.property;
@@ -5280,22 +3471,7 @@ class tw extends AwardPodiumScene {
   }
 }
 
-function x1(n) {
-  if (n.length < 2 || n[0] !== 255 || n[1] !== 254)
-    throw new Error("XML 缺少 UTF-16LE BOM。");
-  let e;
-  try {
-    e = new TextDecoder("utf-16le", { fatal: !0 }).decode(n.subarray(2));
-  } catch {
-    throw new Error("XML 含无效 UTF-16LE code unit 序列。");
-  }
-  const t = new Ij(e);
-  (t.declaration(), t.misc());
-  const i = t.element(0);
-  if ((t.misc(), !t.finished))
-    throw new Error(`XML 在 code unit ${t.position} 后含额外内容。`);
-  return { root: i, sourceBytes: n.slice() };
-}
+function x1(bytes) { return parseResourceXml(bytes); }
 
 function j0(n, e) {
   return n.attributes.find((t) => t.name === e)?.value;
@@ -5305,133 +3481,9 @@ function zp(n, e) {
   return n.children.find((t) => t.name === e);
 }
 
-class Ij {
-  constructor(e) {
-    this.source = e;
-  }
-  source;
-  position = 0;
-  get finished() {
-    return this.position === this.source.length;
-  }
-  declaration() {
-    if (!this.source.startsWith("<?xml", this.position))
-      throw new Error("XML declaration 必须紧跟 UTF-16LE BOM。");
-    const e = this.source.indexOf("?>", this.position + 5);
-    if (e < 0) throw new Error("XML declaration 未闭合。");
-    const t = this.source.slice(this.position + 5, e);
-    if (
-      !/\bversion\s*=\s*(['"])1\.0\1/.test(t) ||
-      !/\bencoding\s*=\s*(['"])UTF-16\1/i.test(t)
-    )
-      throw new Error("XML declaration 不是 version 1.0 / UTF-16。");
-    this.position = e + 2;
-  }
-  misc() {
-    for (;;) {
-      if ((this.whitespace(), !this.source.startsWith("<!--", this.position)))
-        return;
-      const e = this.source.indexOf("-->", this.position + 4);
-      if (e < 0) throw new Error("XML comment 未闭合。");
-      if (this.source.slice(this.position + 4, e).includes("--"))
-        throw new Error("XML comment 含非法 --。");
-      this.position = e + 3;
-    }
-  }
-  element(e) {
-    if (e > 128) throw new Error("XML 层级超过安全上限。");
-    if ((this.expect("<"), this.peek("/") || this.peek("!") || this.peek("?")))
-      throw new Error("XML element 起始标记无效。");
-    const t = this.name(),
-      i = [],
-      r = new Set();
-    for (;;) {
-      if ((this.whitespace(), this.take("/>")))
-        return { name: t, attributes: i, children: [], text: "" };
-      if (this.take(">")) break;
-      const a = this.name();
-      if (r.has(a)) throw new Error(`${t} 含重复属性 ${a}。`);
-      (r.add(a), this.whitespace(), this.expect("="), this.whitespace());
-      const c = this.source[this.position];
-      if (c !== "'" && c !== '"') throw new Error(`${t}.${a} 缺少属性引号。`);
-      this.position += 1;
-      const l = this.source.indexOf(c, this.position);
-      if (l < 0) throw new Error(`${t}.${a} 属性未闭合。`);
-      const u = qb(this.source.slice(this.position, l));
-      ((this.position = l + 1), i.push({ name: a, value: u }));
-    }
-    const s = [];
-    let o = "";
-    for (;;) {
-      if (this.source.startsWith(`</${t}`, this.position))
-        return (
-          (this.position += t.length + 2),
-          this.whitespace(),
-          this.expect(">"),
-          { name: t, attributes: i, children: s, text: qb(o) }
-        );
-      if (this.source.startsWith("<!--", this.position)) {
-        const l = this.source.indexOf("-->", this.position + 4);
-        if (l < 0) throw new Error("XML comment 未闭合。");
-        this.position = l + 3;
-        continue;
-      }
-      if (this.peek("<")) {
-        s.push(this.element(e + 1));
-        continue;
-      }
-      if (this.finished) throw new Error(`${t} 缺少结束标记。`);
-      const a = this.source.indexOf("<", this.position),
-        c = a < 0 ? this.source.length : a;
-      ((o += this.source.slice(this.position, c)), (this.position = c));
-    }
-  }
-  name() {
-    const e = /^[A-Za-z_][A-Za-z0-9_.:-]*/.exec(
-      this.source.slice(this.position),
-    );
-    if (!e) throw new Error(`XML 在 code unit ${this.position} 缺少合法名称。`);
-    return ((this.position += e[0].length), e[0]);
-  }
-  whitespace() {
-    for (; /\s/.test(this.source[this.position] ?? "");) this.position += 1;
-  }
-  peek(e) {
-    return this.source.startsWith(e, this.position);
-  }
-  take(e) {
-    return this.peek(e) ? ((this.position += e.length), !0) : !1;
-  }
-  expect(e) {
-    if (!this.take(e))
-      throw new Error(`XML 在 code unit ${this.position} 需要 ${e}。`);
-  }
-}
 
-function qb(n) {
-  return n
-    .replace(/&(#x[0-9a-fA-F]+|#\d+|amp|lt|gt|apos|quot);/g, (e, t) => {
-      if (t === "amp") return "&";
-      if (t === "lt") return "<";
-      if (t === "gt") return ">";
-      if (t === "apos") return "'";
-      if (t === "quot") return '"';
-      const i = t.startsWith("#x")
-        ? Number.parseInt(t.slice(2), 16)
-        : Number.parseInt(t.slice(1), 10);
-      if (
-        !Number.isInteger(i) ||
-        i < 0 ||
-        i > 1114111 ||
-        (i >= 55296 && i <= 57343)
-      )
-        throw new Error(`XML entity ${e} 无效。`);
-      return String.fromCodePoint(i);
-    })
-    .replace(/&[^;\s]*;/g, (e) => {
-      throw new Error(`XML entity ${e} 未定义。`);
-    });
-}
+
+
 
 const Kb = new WeakMap();
 
@@ -5501,124 +3553,19 @@ function U6(n) {
   return (e || ((e = Dj(n)), Xb.set(n, e)), e);
 }
 
-class nw {
-  constructor(e, t, i, r, s) {
-    ((this.characterColorIds = e),
-      (this.colors = t),
-      (this.riderColors = i),
-      (this.uniformNames = r),
-      (this.dyeRankColors = s));
-  }
-  characterColorIds;
-  colors;
-  riderColors;
-  uniformNames;
-  dyeRankColors;
-  static parse(e) {
-    const t = x1(e).root;
-    if (t.name !== "itemtable")
-      throw new Error(`character color table root ${t.name} 不是 itemtable。`);
-    const i = Fj(t),
-      r = new Map(),
-      s = new Map(),
-      o = new Set(),
-      a = new Map();
-    for (const c of t.children)
-      if (c.name === "color") Zb(c, r, "base", "high");
-      else if (c.name === "dye") {
-        Zb(c, s, "base", "high");
-        const l = j0(c, "rank");
-        l !== void 0 && a.set(iw(c, "id"), Up(l));
-      } else c.name === "uniform" && o.add(So(c, "name").toLowerCase());
-    return new nw(i, r, s, o, a);
-  }
-  resolveDyeRankColor(e) {
-    const t = this.dyeRankColors.get(e);
-    if (t === void 0) throw new Error(`itemTable 缺少 dye ${e} 的 rank 颜色。`);
-    return t;
-  }
-  resolve(e) {
-    const t = this.tryResolve(e);
-    if (t) return t;
-    const i = e
-      .replace(/^character_/i, "")
-      .replace(/\.rho$/i, "")
-      .toLowerCase();
-    throw new Error(`itemTable 缺少 character ${i}。`);
-  }
-  tryResolve(e) {
-    const t = e
-        .replace(/^character_/i, "")
-        .replace(/\.rho$/i, "")
-        .toLowerCase(),
-      i = this.characterColorIds.get(t);
-    if (i === void 0) return;
-    const r = this.riderColors.get(i);
-    if (!r) throw new Error(`itemTable character ${t} 引用缺失 dye ${i}。`);
-    return r;
-  }
-  tryResolveColor(e, t = 2) {
-    return (t === 2 ? this.colors : this.riderColors).get(e);
-  }
-  resolveColor(e, t = 2) {
-    const i = this.tryResolveColor(e, t);
-    if (!i)
-      throw new Error(`itemTable 缺少 ${t === 2 ? "color" : "dye"} ${e}。`);
-    return i;
-  }
-}
+class nw extends CharacterColorTable {}
 
-function Fj(n) {
-  const e = new Map();
-  for (const t of n.children.filter((i) => i.name === "character")) {
-    const i = So(t, "name").toLowerCase(),
-      r = iw(t, "orgColorId"),
-      s = e.get(i);
-    if (s !== void 0 && s !== r)
-      throw new Error(
-        `itemTable character ${i} 的 orgColorId ${s}/${r} 冲突。`,
-      );
-    e.set(i, r);
-  }
-  return e;
-}
 
-function Zb(n, e, t, i) {
-  const r = iw(n, "id");
-  if (e.has(r)) throw new Error(`itemTable ${n.name} ${r} 重复。`);
-  e.set(r, { primary: Up(So(n, t)), high: Up(So(n, i)) });
-}
 
-async function Dj(n) {
-  const e = n.exactCanonicalCandidates("etc_/itemTable.kml");
-  if (e.length !== 1)
-    throw new Error(
-      `etc_/itemTable.kml source 数量必须为 1，实际 ${e.length}。`,
-    );
-  return nw.parse(await e[0].bytes());
-}
 
-function So(n, e) {
-  const t = j0(n, e);
-  if (t === void 0 || t === "")
-    throw new Error(`itemTable ${n.name}.${e} 缺失。`);
-  return t;
-}
 
-function iw(n, e) {
-  const t = So(n, e);
-  if (!/^\d+$/.test(t))
-    throw new Error(`itemTable ${n.name}.${e} 不是非负整数。`);
-  return Number(t);
-}
+async function Dj(library) { return loadCharacterColorTable(library, nw); }
 
-function Up(n) {
-  const e = n.trim().split(/\s+/).map(Number);
-  if (e.length !== 4 || e.some((o) => !Number.isInteger(o) || o < 0 || o > 255))
-    throw new Error(`itemTable color ${n} 不是 A R G B bytes。`);
-  const [t, i, r, s] = e;
-  return ((t << 24) | (i << 16) | (r << 8) | s) >>> 0;
-}
+
+
+
+
+
 
 const H2 = 1600,
   $2 = 900;
@@ -6325,98 +4272,7 @@ function dn(n, e, t, i = {}) {
   );
 }
 
-function dt(n, e, t) {
-  const i = t === void 0 ? [] : t.baseOutput();
-  i.length = 0;
-  for (let r = 0; r < n.length; r += 1) {
-    const s = n[r];
-    if (s.kind !== "panel" && s.kind !== "char-panel") {
-      i.push(s);
-      continue;
-    }
-    if (T(s.node, "alphaBlend") !== "true" || T(s.node, "alphaTest") !== void 0)
-      throw new Error(`${s.node.name} 不使用已闭合的 P3528 alpha state。`);
-    const o = T(s.node, "texture"),
-      a = o === void 0 ? void 0 : e.get(o);
-    if (s.kind === "panel" && o === void 0) {
-      if (T(s.node, "color") !== "150 0 0 0")
-        throw new Error(
-          `${s.node.name} 缺少已闭合的 P3528 texture 或 solid color。`,
-        );
-      const d = t?.payloadFor(s);
-      if (d !== void 0) {
-        i.push(d);
-        continue;
-      }
-      const f = {
-        ...s,
-        kind: "solid-panel",
-        framebufferRect: YB(s.worldRect),
-        color: [0, 0, 0, 150],
-      };
-      (t?.storePayload(s, f), i.push(f));
-      continue;
-    }
-    if (!o || !a)
-      throw new Error(`${s.node.name} 缺少已解析的 P3528 texture。`);
-    if (s.kind === "panel") {
-      const h = t?.payloadFor(s, a);
-      if (h !== void 0) {
-        i.push(h);
-        continue;
-      }
-      const d = {
-        ...s,
-        kind: "panel",
-        textureName: o,
-        texture: a,
-        framebufferRect: s.worldRect,
-        uv: dX(s.node, a),
-      };
-      (t?.storePayload(s, d, a), i.push(d));
-      continue;
-    }
-    if (s.text === void 0)
-      throw new Error(
-        `${T(s.node, "name") ?? "CharPanel"} 缺少已闭合的 text producer。`,
-      );
-    const c = ga(s.node, a);
-    if (t !== void 0) {
-      const h = t.glyphPools(s.node);
-      ($B(c, s.text, h.local),
-        lX(h.local, h.world, s.worldRect.left, s.worldRect.top),
-        uX(h.world, h.framebuffer));
-      const d = t.payloadFor(s, a),
-        f = d ?? {
-          ...s,
-          kind: "char-panel",
-          text: s.text,
-          textureName: o,
-          texture: a,
-          worldQuads: h.world,
-          framebufferQuads: h.framebuffer,
-        };
-      (d === void 0 ? t.storePayload(s, f, a) : (f.text = s.text), i.push(f));
-      continue;
-    }
-    const u = pa(c, s.text).map((h) => ({
-      ...h,
-      left: Math.fround(s.worldRect.left + h.left),
-      top: Math.fround(s.worldRect.top + h.top),
-      right: Math.fround(s.worldRect.left + h.right),
-      bottom: Math.fround(s.worldRect.top + h.bottom),
-    }));
-    i.push({
-      ...s,
-      text: s.text,
-      textureName: o,
-      texture: a,
-      worldQuads: u,
-      framebufferQuads: u.map((h) => ({ ...h })),
-    });
-  }
-  return i;
-}
+function dt(commands, textures, cache) { return materializePanelDrawOrder(commands, textures, cache, panelMaterializeDependencies); }
 
 function lX(n, e, t, i) {
   for (let r = 0; r < n.length; r += 1) {
@@ -6610,93 +4466,7 @@ function cM(n, e, t) {
   return n.map((i, r) => Math.fround(i + (r % 2 === 0 ? e : t)));
 }
 
-class O5 {
-  tree;
-  width = Number.NaN;
-  height = Number.NaN;
-  root;
-  draw = [];
-  base = [];
-  basePayloads = new WeakMap();
-  glyphPoolsByNode = new WeakMap();
-  drawOrder(e, t, i, r = {}) {
-    return (
-      (this.root === void 0 ||
-        this.tree !== e ||
-        this.width !== t ||
-        this.height !== i) &&
-        ((this.tree = e),
-        (this.width = t),
-        (this.height = i),
-        (this.root = this.createEntry(
-          e,
-          { left: 0, top: 0, right: Math.fround(t), bottom: Math.fround(i) },
-          0,
-          0,
-        ))),
-      (this.draw.length = 0),
-      this.emit(this.root, void 0, r, this.draw),
-      this.draw
-    );
-  }
-  payloadFor(e, t) {
-    return this.basePayloads.get(e)?.get(t);
-  }
-  storePayload(e, t, i) {
-    let r = this.basePayloads.get(e);
-    (r === void 0 && ((r = new Map()), this.basePayloads.set(e, r)),
-      r.set(i, t));
-  }
-  baseOutput() {
-    return this.base;
-  }
-  glyphPools(e) {
-    let t = this.glyphPoolsByNode.get(e);
-    return (
-      t === void 0 &&
-        ((t = { local: [], world: [], framebuffer: [] }),
-        this.glyphPoolsByNode.set(e, t)),
-      t
-    );
-  }
-  createEntry(e, t, i, r) {
-    const s = l5(e.geometry, t),
-      o = Math.fround(i + s.left),
-      a = Math.fround(r + s.top),
-      c = XB(e.node.name),
-      l =
-        c === void 0
-          ? void 0
-          : {
-              kind: c,
-              node: e.node,
-              worldRect: {
-                left: o,
-                top: a,
-                right: Math.fround(o + e.geometry.width),
-                bottom: Math.fround(a + e.geometry.height),
-              },
-            },
-      u = {
-        left: 0,
-        top: 0,
-        right: e.geometry.width,
-        bottom: e.geometry.height,
-      },
-      h = [];
-    for (let d = 0; d < e.children.length; d += 1)
-      h.push(this.createEntry(e.children[d], u, o, a));
-    return { node: e.node, kind: c, command: l, children: h };
-  }
-  emit(e, t, i, r) {
-    if (!(i.visibility?.(e.node, t) ?? ZB(e.node))) return;
-    e.command !== void 0 &&
-      (e.kind === "char-panel" && (e.command.text = i.text?.(e.node)),
-      r.push(e.command));
-    const s = e.children;
-    for (let o = 0; o < s.length; o += 1) this.emit(s[o], e.node, i, r);
-  }
-}
+class O5 extends PanelDrawCache { constructor() { super({ measure: l5, kind: XB, visible: ZB }); } }
 
 function ZB(n) {
   const e = T(n, "visible");
@@ -7442,155 +5212,17 @@ function oR(n, e) {
 
 function Dt(bytes, seed = 0) { return rhoAdler32(bytes, seed); }
 
-const wR = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
-  M8 = [0, 0, 0],
-  x8 = [0, 0, 0],
-  EM = [0, 0, 0];
 
-class vR {
-  constructor(e) {
-    ((this.source = e),
-      (this.positions = new Float32Array(e.wedges.length * 3)),
-      (this.normals = new Float32Array(e.wedges.length * 3)));
-    const t = new Int32Array(e.vertices.length).fill(-1);
-    ((this.normalSourceOffsets = new Int32Array(e.wedges.length)),
-      e.wedges.forEach((s, o) => {
-        (t[s.skinVertexIndex] < 0 && (t[s.skinVertexIndex] = o),
-          (this.normalSourceOffsets[o] = t[s.skinVertexIndex] * 3));
-      }),
-      (this.outlinePositions = e.vertices.map(() => [0, 0, 0])),
-      (this.globalPose = e.bones.map(() => new Array(12).fill(0))),
-      (this.palette = e.bones.map(() => new Array(12).fill(0))));
-    const i = new Float32Array(e.wedges.length * 2);
-    e.wedges.forEach((s, o) => {
-      i.set([s.u, s.v], o * 2);
-    });
-    const r = [];
-    (e.triangles.forEach((s) => {
-      r.push(...s.wedgeIndices);
-    }),
-      (this.geometry = new t9()),
-      this.geometry.setAttribute("position", new _0(this.positions, 3)),
-      this.geometry.setAttribute("normal", new _0(this.normals, 3)),
-      this.geometry.setAttribute("uv", new _0(i, 2)),
-      this.geometry.setIndex(r),
-      (this.outlineSource = {
-        positions: this.outlinePositions,
-        normals: [],
-        texcoords: [],
-        faces: e.triangles.map((s) => ({
-          texcoordIndices: [...s.wedgeIndices],
-          adjacentFaceIndices: [...s.adjacentTriangleIndices],
-          positionIndices: [...s.positionIndices],
-          winding: s.winding,
-          outlineOpenEdge: s.unknown13,
-        })),
-      }),
-      this.update(
-        Array.from({ length: e.bones.length }, (s, o) => e.bones[o].localBind),
-      ));
-  }
-  source;
-  geometry;
-  positions;
-  normals;
-  normalSourceOffsets;
-  outlinePositions;
-  globalPose;
-  palette;
-  outlineSource;
-  update(e) {
-    const t = this.updatePose(e);
-    return (this.updateVertices(), t);
-  }
-  updatePose(e) {
-    if (e.length < this.source.bones.length)
-      throw new Error(
-        `character pose 需要 ${this.source.bones.length} bones，实际为 ${e.length}。`,
-      );
-    const t = this.globalPose,
-      i = this.palette,
-      r = this.source.bones;
-    for (let s = 0; s < r.length; s += 1) {
-      const o = r[s];
-      if (s === 0) TM(t[s], e[s]);
-      else if (o.enabled) {
-        if (o.parentIndex >= s)
-          throw new Error(
-            `character bone ${s} parent ${o.parentIndex} 尚未建立。`,
-          );
-        Hp(t[s], t[o.parentIndex], e[s]);
-      } else TM(t[s], wR);
-      Hp(i[s], t[s], o.inverseBind);
-    }
-    return t;
-  }
-  updateVertices() {
-    this.applyPalette(this.palette);
-  }
-  applyPalette(e) {
-    const t = this.source.wedges;
-    for (let r = 0; r < t.length; r += 1) {
-      const s = r * 3,
-        o = this.normalSourceOffsets[r];
-      if (o === s) {
-        const a = this.source.vertices[t[r].skinVertexIndex];
-        (FY(EM, a.normal, a.bone0, a.bone1, a.weight0, a.weight1, e),
-          this.normals.set(EM, s));
-      } else
-        ((this.normals[s] = this.normals[o]),
-          (this.normals[s + 1] = this.normals[o + 1]),
-          (this.normals[s + 2] = this.normals[o + 2]));
-    }
-    const i = this.source.vertices;
-    for (let r = 0; r < i.length; r += 1) {
-      const s = i[r];
-      PY(
-        this.outlinePositions[r],
-        s.position,
-        s.bone0,
-        s.bone1,
-        s.weight0,
-        s.weight1,
-        e,
-      );
-    }
-    for (let r = 0; r < t.length; r += 1)
-      this.positions.set(this.outlinePositions[t[r].skinVertexIndex], r * 3);
-    ((this.geometry.getAttribute("position").needsUpdate = !0),
-      (this.geometry.getAttribute("normal").needsUpdate = !0),
-      this.geometry.computeBoundingBox(),
-      this.geometry.computeBoundingSphere());
-  }
-}
 
-function PY(n, e, t, i, r, s, o) {
-  (_M(n, Wl(o, t, r), e),
-    i !== 65535 &&
-      (_M(M8, Wl(o, i, s), e),
-      (n[0] = q2(q2(n[0] * r) + q2(M8[0] * s))),
-      (n[1] = q2(q2(n[1] * r) + q2(M8[1] * s))),
-      (n[2] = q2(q2(n[2] * r) + q2(M8[2] * s)))));
-}
+class vR extends CharacterSkinGeometry {}
 
-function FY(n, e, t, i, r, s, o) {
-  (GM(n, Wl(o, t, r), e),
-    i !== 65535 &&
-      (GM(x8, Wl(o, i, s), e),
-      (n[0] = q2(q2(n[0] * r) + q2(x8[0] * s))),
-      (n[1] = q2(q2(n[1] * r) + q2(x8[1] * s))),
-      (n[2] = q2(q2(n[2] * r) + q2(x8[2] * s)))));
-}
 
-function Wl(n, e, t) {
-  if (e < n.length) return n[e];
-  if (t === 0) return wR;
-  throw new Error(`character skin palette index ${e} 越界且权重为 ${t}。`);
-}
 
-function TM(n, e) {
-  for (let t = 0; t < 12; t += 1) n[t] = e[t];
-}
+
+
+
+
+
 
 function yR(n, e) {
   const t = new Array(12);
@@ -7613,23 +5245,9 @@ function Hp(n, e, t) {
   }
 }
 
-function _M(n, e, t) {
-  for (let i = 0; i < 3; i += 1)
-    n[i] = q2(
-      q2(
-        q2(q2(e[i * 4] * t[0]) + q2(e[i * 4 + 1] * t[1])) +
-          q2(e[i * 4 + 2] * t[2]),
-      ) + e[i * 4 + 3],
-    );
-}
 
-function GM(n, e, t) {
-  for (let i = 0; i < 3; i += 1)
-    n[i] = q2(
-      q2(q2(e[i * 4] * t[0]) + q2(e[i * 4 + 1] * t[1])) +
-        q2(e[i * 4 + 2] * t[2]),
-    );
-}
+
+
 
 function q2(n) {
   return Math.fround(n);
@@ -8115,158 +5733,7 @@ function mw(n) {
   return n.replaceAll("\\", "/").toLowerCase();
 }
 
-async function TR(n, e, t, i, r, s, o = {}) {
-  const a = n.root.value;
-  if (a.serializedBoundsOverride !== 0 || a.cullingTraversalMode !== 3)
-    throw new Error("P3528 ReCharacter root bounds mode 不在已闭合模型集合。");
-  const [c, l] = await Promise.all([
-      QY(e, o),
-      Promise.all([...t].map(async ([U, O]) => [U, await YY(U, O, o)])),
-    ]),
-    u = new Map(l),
-    h = o.outlineBatch,
-    d = Q(i.face()),
-    f = new T2();
-  ((f.name = "TimeAttackCharacter"),
-    o.convertClientCoordinates !== !1 ? Hl(f) : cn(f));
-  const p = new Set(),
-    v = [],
-    w = new Set(),
-    g = [],
-    y = [],
-    b = new v2(),
-    A = new v2(),
-    x = new H(),
-    M = [];
-  let E;
-  const _ = ju(),
-    C = ju(n.root.value, _).alpha,
-    S = [],
-    G = K(n.root, _, !1),
-    I = new T2();
-  ((I.name = "ReCharacter:P3528Cull"), I.add(G));
-  const L = {
-    cullingObject: I,
-    sourceObject: G,
-    bounds: a.bounds0,
-    cullingTraversalMode: a.cullingTraversalMode,
-    children: [],
-    enabled: a.nodeEnabled !== 0,
-  };
-  f.add(I);
-  const k = M[0]?.skin;
-  if (!k) throw new Error("ReCharacter 缺少主 ReToonSkinned body。");
-  const D = [
-    { object: G.children[1], bone: 5, local: G.children[1]?.matrix.clone() },
-    { object: G.children[2], bone: 5, local: G.children[2]?.matrix.clone() },
-    { object: G.children[3], bone: 5 },
-    { object: G.children[4], bone: 9 },
-    { object: G.children[5], bone: 14 },
-  ];
-  return {
-    object: f,
-    rootMaterialBindings: S,
-    getDecorationOwner: () => G,
-    getDecorationSocket: V,
-    update: q,
-    reset: () => i.reset(),
-    dispose: e0,
-  };
-  function V(U, O) {
-    return G.children[U]?.children[O];
-  }
-  function K(U, O, F) {
-    const z = U.value,
-      Y = ju(z, O),
-      X = F || z.name === "face";
-    let l0;
-    if (z.className === "ReToonRigid") {
-      const r0 = nZ(z.geometry.value);
-      (w.add(r0),
-        (l0 = P(r0, z.geometry.value, X ? d : c, Y, z.sortDepthBias, X)));
-    } else if (z.className === "ReToonSkinned") {
-      const r0 = new vR(z.geometry.value);
-      (w.add(r0.geometry),
-        (l0 = P(r0.geometry, r0.outlineSource, c, Y, z.sortDepthBias, !1)),
-        M.push({ skin: r0, object: l0 }),
-        qm(l0, () => {
-          E && AR.collect(z.geometry.value, E);
-        }));
-    } else l0 = new T2();
-    return (
-      (l0.name = z.name),
-      iZ(l0, z.transform),
-      (l0.visible = z.nodeEnabled !== 0),
-      z.children.forEach((r0) => {
-        if (!rZ(r0))
-          throw new Error(`${z.name || z.className} child 不是 Relement。`);
-        l0.add(K(r0, Y, X));
-      }),
-      l0
-    );
-  }
-  function P(U, O, F, z, Y, X) {
-    const l0 = bo(F, { kind: "normal-projection" });
-    (Mo(l0, tZ(z.alpha, z.zbuf)), p.add(l0), X && v.push(l0));
-    const r0 = new D2(U, l0);
-    (S.push({ mesh: r0, inheritsRootAlpha: z.alpha === C }),
-      (r0.frustumCulled = !1),
-      ie(r0, Y, l0.transparent, l0.transparent ? -0.01 : 0));
-    const j = new N6(O, 4278190080, 2130706432, !0, h);
-    ((j.object.frustumCulled = !1), ie(j.object, Y, !0));
-    const F0 = new T2();
-    return (
-      F0.add(r0, j.object),
-      g.push({ outline: j, mesh: r0 }),
-      y.push({ mesh: r0, material: l0 }),
-      F0
-    );
-  }
-  function q(U, O, F, z, Y) {
-    const X = i.update(U, Y);
-    E = X;
-    const l0 = Q(i.face());
-    v.forEach((j) => {
-      j.uniforms.baseMap.value = l0;
-    });
-    const r0 = k.updatePose(X);
-    for (let j = 1; j < M.length; j += 1) M[j].skin.updatePose(X);
-    if (
-      (D.forEach(({ object: j, bone: F0, local: O0 }) => {
-        if (!j) return;
-        const z0 = ZY(r0[F0]);
-        j.matrix.copy(O0 ? z0.multiply(O0) : z0);
-      }),
-      !(O instanceof Z9))
-    )
-      throw new Error(
-        "P3528 ReCharacter hierarchy culling 需要 perspective camera。",
-      );
-    if ((f.updateWorldMatrix(!0, !0), JG([L], O), !Xu(I))) {
-      for (const { outline: j } of g) j.dropFrame();
-      return;
-    }
-    for (const { skin: j, object: F0 } of M) Xu(F0) && j.updateVertices();
-    x.set(O.position.x, -O.position.z, O.position.y);
-    for (const { mesh: j, material: F0 } of y)
-      Xu(j) &&
-        (b.makeRotationX(Math.PI / 2).multiply(j.matrixWorld),
-        A.copy(b).invert(),
-        xo(F0, r, s, b, A, x));
-    g.forEach(({ outline: j, mesh: F0 }) => j.update(F0, O, F, z));
-  }
-  function e0() {
-    (f.removeFromParent(),
-      g.forEach(({ outline: U }) => U.dispose()),
-      w.forEach((U) => U.dispose()),
-      p.forEach((U) => U.dispose()),
-      c.dispose(),
-      u.forEach((U) => U.dispose()));
-  }
-  function Q(U) {
-    return u.get(U) ?? c;
-  }
-}
+async function TR(model, bodyBytes, faceSources, animation, environment, stageBinding, options = {}) { return buildCharacterScene(model, bodyBytes, faceSources, animation, environment, stageBinding, options, characterSceneDependencies()); }
 
 async function YY(n, e, t) {
   if (!e.overlay) return eZ(e.image, `character:face:${n}`);
@@ -8387,96 +5854,9 @@ function ww(n, e, t, i) {
   );
 }
 
-function ju(n, e) {
-  const t = {
-      className: "AlphaProperty",
-      blendEnable: 0,
-      srcBlend: 2,
-      dstBlend: 1,
-      alphaTestEnable: 0,
-      alphaFunc: 8,
-      alphaRef: 0,
-    },
-    i = { className: "ZBufProperty", mode: 4, enabled: 1 },
-    r = n?.slots[3]?.value,
-    s = n?.slots[10]?.value;
-  return {
-    alpha: r?.className === "AlphaProperty" ? r : (e?.alpha ?? t),
-    zbuf: s?.className === "ZBufProperty" ? s : (e?.zbuf ?? i),
-  };
-}
+function ju(root, fallback) { return characterMaterialDefaults(root, fallback); }
 
-function tZ(n, e) {
-  const t = (i, r) => ({ source: "property-bank", value: i, bankIndex: r });
-  return {
-    alpha: t(
-      {
-        kind: "alpha",
-        blendEnable: n.blendEnable,
-        srcBlend: n.srcBlend,
-        dstBlend: n.dstBlend,
-        alphaTestEnable: n.alphaTestEnable,
-        compare: n.alphaFunc,
-        alphaRef: n.alphaRef,
-      },
-      0,
-    ),
-    backface: t({ kind: "backface", cull: 2 }, 7),
-    fog: t(
-      {
-        kind: "fog-property",
-        selector: 0,
-        mode: 1,
-        color: 0,
-        start: 0,
-        end: 1,
-        density: 1,
-      },
-      11,
-    ),
-    material: t(
-      {
-        kind: "material",
-        mode: 0,
-        ambient: 4294967295,
-        diffuse: 4294967295,
-        specular: 4294967295,
-        power: 1,
-        reserved: 0,
-        emissive: 4294967295,
-        controllers: [],
-        controllerOccurrences: [],
-      },
-      12,
-    ),
-    texture: t(
-      {
-        kind: "texture",
-        textureOp: 1,
-        addressU: 1,
-        addressV: 1,
-        minFilter: 1,
-        magFilter: 1,
-        mipFilter: 0,
-        maxAnisotropy: 1,
-        uvControllers: [],
-        uvControllerOccurrences: [],
-        scalar: 1,
-      },
-      13,
-    ),
-    toon: t(
-      {
-        kind: "toon",
-        flags: [1, 1],
-        words: [1, 4, 4294967295, 1065353216, 0, 2, 0, 4278190080, 2130706432],
-      },
-      15,
-    ),
-    wire: t({ kind: "wire", enabled: 0 }, 16),
-    zbuffer: t({ kind: "zbuffer", zFunc: e.mode, zWrite: e.enabled }, 19),
-  };
-}
+function tZ(alpha, zbuffer) { return toonPropertyBank(alpha, zbuffer); }
 
 function nZ(n) {
   const e = new Float32Array(n.faces.length * 9),
