@@ -653,6 +653,64 @@ test("copies are assembled as soon as overlapping visuals are scheduled, up to t
   assert.equal(pool.instances.length, ITEM_FX_TUNING.maxInstances, "copies are kept for later uses");
 });
 
+test("a visual whose copy was taken over this frame does not take another one", async () => {
+  const { presenter, at } = await setup();
+  const pool = presenter.models.pools.get("item/common/미사일폭발.1s")!;
+  // Listed first but due later; the others end in reverse list order.
+  presenter.show("late", pool.model, 1000, 1000, 3000, () => true);
+  for (let index = 1; index <= ITEM_FX_TUNING.maxInstances; index += 1)
+    presenter.show(`early:${index}`, pool.model, 0, 0, 10_000 - index * 1000, () => true);
+  await flush();
+  assert.equal(pool.instances.length, ITEM_FX_TUNING.maxInstances);
+  at(0);
+  assert.equal(models(presenter).length, ITEM_FX_TUNING.maxInstances);
+  // The late one takes the copy of the last-listed one, which ends first.
+  at(1000);
+  assert.equal(models(presenter).length, ITEM_FX_TUNING.maxInstances);
+  assert.equal(presenter.visuals.length, ITEM_FX_TUNING.maxInstances);
+  assert.ok(presenter.visuals.every(visual => visual.instance));
+  at(10_000);
+  assert.deepEqual(models(presenter), []);
+  assert.ok(pool.instances.every(instance => !instance.busy), "every copy is free again");
+});
+
+test("every banana lying on the track shows for its whole Set.life", async () => {
+  const { presenter, at } = await setup();
+  const users = ["A", "B", "C"];
+  for (let index = 0; index < 9; index += 1) {
+    presenter.used({ useId: 50 + index, itemId: ItemIdx.banana, userId: users[index % 3]!, targets: [],
+      startMs: index * 2000, etaMs: 0, point: { x: 10 * (index + 1), y: 0, z: 0 } });
+    await flush();
+    at(index * 2000 + 600);
+  }
+  at(17_000);
+  const peels = shown(presenter).filter(entry => entry.model === "item/banana/item01.1s");
+  assert.deepEqual(peels.map(entry => entry.position[0]).sort((a, b) => a - b),
+    [10, 20, 30, 40, 50, 60, 70, 80, 90]);
+});
+
+test("at the placed-object cap a new banana waits for a copy instead of hiding a live one", async () => {
+  const { presenter, at } = await setup();
+  const cap = ITEM_FX_TUNING.placedMaxInstances;
+  assert.ok(cap > ITEM_FX_TUNING.maxInstances);
+  for (let index = 0; index <= cap; index += 1) {
+    presenter.used({ useId: 100 + index, itemId: ItemIdx.banana, userId: "B", targets: [], startMs: index,
+      etaMs: 0, point: { x: index, y: 0, z: 0 } });
+  }
+  await flush();
+  at(cap + 600);
+  const peels = () => shown(presenter).filter(entry => entry.model === "item/banana/item01.1s")
+    .map(entry => entry.position[0]);
+  assert.equal(peels().length, cap);
+  assert.ok(!peels().includes(cap), "the newest waits");
+  assert.ok(peels().includes(0), "the oldest is still on the track");
+  // One is run over: the waiting banana takes its copy.
+  presenter.removed(100);
+  at(cap + 616);
+  assert.equal(peels().length, cap);
+  assert.ok(peels().includes(cap) && !peels().includes(0));
+});
+
 test("reset forgets everything; dispose releases scenes and sounds", async () => {
   const { presenter, at, scenes, played } = await setup();
   const track = new Group();

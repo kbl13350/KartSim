@@ -202,6 +202,8 @@ interface FxVisual {
   /** Replaced when a later start of a kart effect knows more (the magnet's target). */
   place: Placer;
   instance?: FxInstance;
+  /** Finished: out of `visuals` for good (a pass over a copy of the list skips it). */
+  done?: boolean;
 }
 
 type SoundAnchor =
@@ -815,6 +817,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
   }
 
   finish(visual: FxVisual): void {
+    visual.done = true;
     const index = this.visuals.indexOf(visual);
     if (index >= 0) this.visuals.splice(index, 1);
     if (visual.instance) visual.pool.release(visual.instance);
@@ -830,6 +833,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     this.readListener(frame.camera);
     const out = this.placement;
     for (const visual of [...this.visuals]) {
+      // Taken over by an earlier visual of this pass (steal): it must not take a copy again.
+      if (visual.done) continue;
       if (now >= visual.endMs) {
         this.finish(visual);
         continue;
@@ -874,9 +879,13 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       if (now - ended.endMs > ITEM_FX_TUNING.useLifetimeMs) this.endedSlots.delete(key);
   }
 
-  /** At the model cap: take the copy of the visual of that model that ends first. */
+  /**
+   * At the model cap: take the copy of the visual of that model that ends
+   * first. A placed object (a banana still live on the track) is never taken
+   * over; the newcomer waits for a free copy.
+   */
   steal(visual: FxVisual): FxInstance | undefined {
-    if (!visual.pool.full) return undefined;
+    if (!visual.pool.full || visual.pool.model.placed) return undefined;
     let victim: FxVisual | undefined;
     for (const other of this.visuals)
       if (other !== visual && other.pool === visual.pool && other.instance &&

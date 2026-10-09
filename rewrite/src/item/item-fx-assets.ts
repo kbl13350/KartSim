@@ -7,7 +7,8 @@ import { ITEM_FX_TUNING, type FxModel, type FxSound } from "./item-fx-plan";
  * item set is decoded once at race load; each shown copy is an assembled
  * scene (`c5`, the cube field's loader) in its own mount, pooled per model:
  * one copy is preloaded, more are assembled in the background when several
- * karts need the same model at once, up to `maxInstances`. Textures are
+ * karts need the same model at once, up to `maxInstances` (a placed object's
+ * model up to `placedMaxInstances`). Textures are
  * shared by all copies through one cache. Sounds are decoded at load and
  * played through the race audio route.
  */
@@ -177,9 +178,14 @@ export class FxModelPool {
     return free;
   }
 
+  /** At most this many copies of the model. */
+  get cap(): number {
+    return this.model.placed ? ITEM_FX_TUNING.placedMaxInstances : ITEM_FX_TUNING.maxInstances;
+  }
+
   /** Assemble copies in the background until `demand` exist or are on the way (at most the cap). */
   reserve(demand: number): void {
-    const wanted = Math.min(demand, ITEM_FX_TUNING.maxInstances);
+    const wanted = Math.min(demand, this.cap);
     while (this.instances.length + this.building < wanted && this.grow()) { /* one build per copy */ }
   }
 
@@ -188,13 +194,13 @@ export class FxModelPool {
     instance.mount.visible = false;
   }
 
-  /** Every allowed copy exists: a new visual can only take over a running one. */
+  /** Every allowed copy exists: a new visual can only take over a running one (or wait). */
   get full(): boolean {
-    return this.instances.length >= ITEM_FX_TUNING.maxInstances;
+    return this.instances.length >= this.cap;
   }
 
   grow(): boolean {
-    if (this.instances.length + this.building >= ITEM_FX_TUNING.maxInstances ||
+    if (this.instances.length + this.building >= this.cap ||
       this.failure !== undefined || this.bank.disposed) return false;
     this.building += 1;
     this.bank.build(this).then(instance => {
