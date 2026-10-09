@@ -127,6 +127,9 @@ services:
       KART_STARTING_LUCCI: ${KART_STARTING_LUCCI:-10000}
       # 信任其 X-Forwarded-For 的反向代理（注册限流按真实客户端 IP 计算）；留空为回环地址，见 .env.example。
       KART_TRUSTED_PROXIES: ${KART_TRUSTED_PROXIES:-}
+      # 好友私聊 WebSocket 的连接上限与每连接发送缓冲；留空为程序默认值（5000、262144）。
+      KART_MESSENGER_MAX_CONNECTIONS: ${KART_MESSENGER_MAX_CONNECTIONS:-}
+      KART_MESSENGER_SEND_BUFFER_BYTES: ${KART_MESSENGER_SEND_BUFFER_BYTES:-}
     # backend 访问 MySQL/Redis；cluster 对游戏节点提供 8790，并承载发布的 8787。
     networks: [backend, cluster]
     ports:

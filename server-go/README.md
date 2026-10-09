@@ -2,7 +2,7 @@
 
 这是 KartSim 的服务端，用 Go 重写自 [`../server`](../server) 中的 Java 版（Java 版保留为行为参考，不再修改）。它拆成两种进程：
 
-- **数据服务 `kart-data`**：只有一个。唯一访问 MySQL 与 Redis 的进程，提供账号、账号经济（等级、钱包、库存、商店、奖励入账、管理页面）、档案、影子记录、历史、游戏服列表与入场票据等 HTTP API，并另开一个只供游戏节点使用的内部端口。
+- **数据服务 `kart-data`**：只有一个。唯一访问 MySQL 与 Redis 的进程，提供账号、账号经济（等级、钱包、库存、商店、奖励入账、管理页面）、好友与私聊、档案、影子记录、历史、游戏服列表与入场票据等 HTTP API（好友私聊另有一个 WebSocket），并另开一个只供游戏节点使用的内部端口。
 - **游戏服务 `kart-game`**：可以部署任意多个。没有数据库，房间状态在各自内存中；同一房间的玩家都连在同一个节点上，比赛时钟、广播与运动帧中继都在单进程内完成。
 
 玩家必须登录：默认开放注册、没有游客模式；新账号领取新手礼包后才能进入联机。账号经济见下文[“账号经济”](#账号经济)。权威设计约定见 [`DESIGN.md`](DESIGN.md) 与 [`ECONOMY.md`](ECONOMY.md)；浏览器协议见仓库根的 [`SERVER_PROTOCOL.md`](../SERVER_PROTOCOL.md)。
@@ -27,6 +27,7 @@
 ```
 
 - 浏览器只把会话 token 发给数据服务；游戏节点永远看不到 token，只验证数据服务签发的票据。
+- 好友与私聊（见下文[“好友与私聊”](#好友与私聊)）也在数据服务：HTTP 接口加一个 WebSocket `/api/messenger/ws`（在线状态、消息与同步提示的推送），消息存在 MySQL。
 - 游戏节点每 5 秒向数据服务发心跳（在线玩家、房间数、容量、公布的 origin），数据服务据此生成游戏服列表；节点 15 秒没有心跳就从列表消失。
 - 比赛结束和房间规则变化后，游戏节点把记录写入本地发件箱，再按顺序投递到数据服务；数据服务暂时不可用时记录不会丢，恢复后自动补发。
 - 比赛奖励：游戏节点在结束快照里给出 `race.rewards`（经验、金币），结算经发件箱送达后由数据服务在同一事务内入账（按 `raceId` + 账号幂等）。余额、库存与等级只以数据服务为准，浏览器和游戏节点都不可信。
@@ -132,9 +133,10 @@ node --import tsx tools/export-economy-data.mjs --out DIR  # 写到其他目录�
 
 - 注册：每个客户端 IP（IPv4 单个地址，IPv6 按 /64）每小时 5 次，IPv6 另按 /56 每小时 10 次；全服每分钟 60 次，只计通过字段、邀请码与重名预检的注册，注定失败的请求用不掉全服额度。Redis 不可用时注册返回 503。
 - 登录：每个客户端 IP（同上）每 5 分钟 20 次；失败次数按（用户名、客户端网段：IPv4 /24、IPv6 /64）计数，每 15 分钟 10 次。别的网段的失败不会锁住这个用户名，攻击者无法把别人锁在账号外。
-- 领取礼包、购买、计时赛结算、保存档案：每个账号每分钟 300 次；计时赛另有节奏限制（ECONOMY.md 2.2）。
+- 领取礼包、购买、计时赛结算、保存档案、好友私聊的写接口：每个账号每分钟 300 次；计时赛另有节奏限制（ECONOMY.md 2.2）。
+- 好友请求：每个账号每小时 20 次（Redis 不可用时放行）。私聊刷屏：每个账号每秒 1 条、突发 5 条，用完后禁言 10 秒（429 `CHAT_FLOOD`，带 `mutedUntil`；计数在数据服务内存中，HTTP 与 WebSocket 共用）。
 
-超出返回 429 `TOO_MANY_ATTEMPTS`。计数在 Redis 的 `rl:` 键下，误封时可删除对应键，例如 `redis-cli DEL 'kart:rl:register-ip:203.0.113.7'`（IPv6 为 `register-ip:2001:db8::/64`、`register-site:2001:db8::/56`；登录失败为 `login-fail:<小写用户名>|203.0.113.0/24`）。
+超出返回 429 `TOO_MANY_ATTEMPTS`。计数在 Redis 的 `rl:` 键下，误封时可删除对应键，例如 `redis-cli DEL 'kart:rl:register-ip:203.0.113.7'`（IPv6 为 `register-ip:2001:db8::/64`、`register-site:2001:db8::/56`；登录失败为 `login-fail:<小写用户名>|203.0.113.0/24`；好友请求为 `friend-request:<accountId>`）。
 
 游戏节点按连接限流（固定值）：文本命令每秒 30 次（突发 60），其中 `create`/`track`/`random-track`/`room-settings` 另限每秒 5 次（突发 20），需要核对装备的命令每秒 2 次（突发 10），运动帧每秒 200 帧（突发 400）。超出的命令回复 429 `RATE_LIMITED`（运动帧直接丢弃），持续超出的连接以 1008 断开。
 
@@ -185,7 +187,7 @@ node --import tsx tools/export-economy-data.mjs --out DIR  # 写到其他目录�
 ./run-lan.sh
 ```
 
-数据服务与游戏节点监听 `0.0.0.0` 并信任任意主机名（`KART_LAN_HOSTS='*'`）；前端以自签名证书提供 HTTPS（其他设备需要安全上下文），并把 `/multiplayer/ws` 代理到唯一的游戏节点（`KART_LAN_GAME_BACKEND`），其余 `/multiplayer/`、`/api/` 代理到数据服务（`KART_LAN_BACKEND`）。该节点以 `KART_PUBLIC_ORIGIN=same-origin` 运行，列表中的 origin 为 `null`，浏览器因此连接页面同源的 `wss://`。内部 API 仍只监听 127.0.0.1。终端会打印各网卡的 `https://<IP>:8780/` 地址，每台设备首次访问时需要信任证书；管理页面同样经代理提供（`https://<IP>:8780/multiplayer/admin`）。数据服务信任本机代理转发的 `X-Forwarded-For`（`KART_TRUSTED_PROXIES=127.0.0.1/32,::1/128`），注册限流因此按各设备的地址计算。
+数据服务与游戏节点监听 `0.0.0.0` 并信任任意主机名（`KART_LAN_HOSTS='*'`）；前端以自签名证书提供 HTTPS（其他设备需要安全上下文），并把 `/multiplayer/ws` 代理到唯一的游戏节点（`KART_LAN_GAME_BACKEND`），其余 `/multiplayer/`、`/api/` 代理到数据服务（`KART_LAN_BACKEND`，好友私聊的 WebSocket `/api/messenger/ws` 也转发升级）。该节点以 `KART_PUBLIC_ORIGIN=same-origin` 运行，列表中的 origin 为 `null`，浏览器因此连接页面同源的 `wss://`。内部 API 仍只监听 127.0.0.1。终端会打印各网卡的 `https://<IP>:8780/` 地址，每台设备首次访问时需要信任证书；管理页面同样经代理提供（`https://<IP>:8780/multiplayer/admin`）。数据服务信任本机代理转发的 `X-Forwarded-For`（`KART_TRUSTED_PROXIES=127.0.0.1/32,::1/128`），注册限流因此按各设备的地址计算。
 
 ### Docker Compose
 
@@ -203,7 +205,7 @@ docker compose logs kart-data | grep -i "account economy"   # 注册方式、游
 
 网络分两层：`backend`（`internal: true`，没有出网路由）只有 `mysql`、`redis` 与 `kart-data`；`cluster` 有 `kart-data` 与两个游戏节点，发布的端口经它对宿主机可达。游戏节点因此只能访问 `kart-data` 的 8787/8790，连不到 MySQL 与 Redis——Redis 里的会话缓存与账号缓存等同登录凭据，能写 Redis 就能冒充任何账号（包括管理员）。
 
-`.env` 含集群密钥与全部密码：用上面的 `install -m 600`（或 `(umask 077 && cp .env.example .env)`）创建，已有的文件执行 `chmod 600 .env`；密码与密钥用 `openssl rand -hex 24` 这类足够长的随机值。kart-game 的 `KART_MAX_CONNECTIONS`、`KART_SEND_BUFFER_BYTES`、`KART_HELLO_TIMEOUT` 与 kart-data 的 `KART_REDIS_PREFIX` 也可以写在 `.env` 中，留空时用程序默认值；其他未出现在 `docker-compose.yml` 里的变量不会传进容器。
+`.env` 含集群密钥与全部密码：用上面的 `install -m 600`（或 `(umask 077 && cp .env.example .env)`）创建，已有的文件执行 `chmod 600 .env`；密码与密钥用 `openssl rand -hex 24` 这类足够长的随机值。kart-game 的 `KART_MAX_CONNECTIONS`、`KART_SEND_BUFFER_BYTES`、`KART_HELLO_TIMEOUT` 与 kart-data 的 `KART_REDIS_PREFIX`、`KART_MESSENGER_MAX_CONNECTIONS`、`KART_MESSENGER_SEND_BUFFER_BYTES` 也可以写在 `.env` 中，留空时用程序默认值；其他未出现在 `docker-compose.yml` 里的变量不会传进容器。
 
 账号经济的变量也在 `.env` 中：`KART_REGISTRATION`（默认 `open`）、`KART_ADMIN_USERNAMES`（管理员用户名；部署后用 `docker compose logs kart-data | grep -i invitation` 打印的引导邀请码注册它们）、`KART_ALLOW_GUESTS`、`KART_EXP_RATE`/`KART_LUCCI_RATE`（只传给数据服务，游戏节点经心跳响应得到）、`KART_STARTING_LUCCI` 与 `KART_TRUSTED_PROXIES`。前面放宿主机 Nginx 时务必按 `.env.example` 设置 `KART_TRUSTED_PROXIES`，否则所有玩家共用一个注册限流额度。管理页面经发布的 8787 端口（或 Nginx 的 `/multiplayer/`）访问：`/multiplayer/admin`。
 
@@ -287,6 +289,8 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `KART_EXP_RATE` / `KART_LUCCI_RATE` | `1` / `1` | 经验与金币奖励倍率（0–100），在入账时作用于联机比赛与计时赛奖励（ECONOMY.md 2）；心跳响应把它们告诉游戏节点，快照 `race.rewards` 因此显示乘过倍率的值。比赛结算携带游戏节点显示时用的倍率，数据服务在 [0, max(10, 当前配置)] 内采用它，所以改倍率前后结束的比赛显示值与入账值仍一致。只需在数据服务设置 |
 | `KART_STARTING_LUCCI` | `10000` | 新账号的初始金币（0–1,000,000,000，写入流水） |
 | `KART_TRUSTED_PROXIES` | 回环地址（`127.0.0.0/8`、`::1`） | 信任其 `X-Forwarded-For` 的反向代理，IP 或 CIDR，逗号分隔；`none` 表示不信任任何代理。用于按真实客户端 IP 限流（见“限流与反向代理”） |
+| `KART_MESSENGER_MAX_CONNECTIONS` | `5000` | 好友私聊 WebSocket 上限（含尚未 `hello` 的连接，1–1,000,000）；超出时升级前返回 HTTP 503 `SERVER_BUSY` |
+| `KART_MESSENGER_SEND_BUFFER_BYTES` | `262144` | 每个好友私聊连接待发送的字节上限（65536–67108864）；积压超过它的连接以 1008 断开 |
 
 启动时连接 MySQL（最多重试 30 秒），在 `GET_LOCK('kartsim_schema')` 下建表与迁移，再连接 Redis。Redis 不可用时缓存降级为直连 MySQL 并告警，但游戏服列表、票据与在线昵称依赖 Redis，这些接口会返回 503 `DATA_SERVICE_UNAVAILABLE`。
 
@@ -372,6 +376,27 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `GET /api/admin/accounts?q=` | 管理员按用户名或昵称搜索（不带 `q` 为最新账号，最多 50 个）→ `{"accounts":[{"id","username","nickname","admin","createdAt","level","exp","wallet","inventoryCount","onboarded"}]}`；非管理员 403 `ADMIN_REQUIRED` |
 | `POST /api/admin/grant` | 管理员发放或扣除：`{"username","currency":"coupon"\|"lucci"\|"koin"\|"exp","amount","note","requestId"?}` → `{"applied","levelUps","duplicate","requestId","account"}`；同一 `requestId` 以相同参数重放返回 `duplicate:true`，参数不同 409 `REQUEST_ID_CONFLICT`；见“管理页面与发放货币” |
 
+### 好友与私聊
+
+完整契约（JSON 结构、错误码、推送与表结构）见 [`DESIGN.md`](DESIGN.md) 第 9 节。全部需要 Bearer（未登录 401 `LOGIN_REQUIRED`），写接口计入账号写限流。任何改变好友、请求、屏蔽、设置或会话列表的操作之后，数据服务向相关账号的每个连接推送 `{"type":"sync"}`，浏览器随后重新读取 `GET /api/messenger/state`；消息与在线状态单独推送。
+
+| 路径 | 用途与错误 |
+| --- | --- |
+| `GET /api/messenger/state` | `{"me","settings","friends","incoming","outgoing","blocks","conversations","limits","serverTime"}`；好友带 `presence`（`online`/`inGame`/`offline`，隐身者总是 `offline`），会话最多 10 个 |
+| `POST /api/messenger/friends/request` | `{"nickname"}` → `{"request"}`；对方已先发过请求时直接成为好友 → `{"friend","accepted":true}`。404 `PLAYER_NOT_FOUND`、400 `CANNOT_ADD_SELF`、409 `ALREADY_FRIENDS`/`REQUEST_PENDING`/`REQUEST_COOLDOWN`（被拒后到下一个北京时间 06:00）/`FRIEND_LIMIT`/`TARGET_FRIEND_LIMIT`/`REQUEST_LIMIT`/`BLOCKED_TARGET`、403 `FRIEND_REQUESTS_BLOCKED`、429 `TOO_MANY_ATTEMPTS`（每账号每小时 20 次） |
+| `POST /api/messenger/friends/respond` | `{"accountId","accept"}` → `{"friend"}`（同意）或 `{"ok":true}`（拒绝）；404 `REQUEST_NOT_FOUND`、409 `FRIEND_LIMIT`/`TARGET_FRIEND_LIMIT` |
+| `POST /api/messenger/friends/cancel`、`/friends/remove` | `{"accountId"}` → `{"ok":true}`：撤回我的请求（404 `REQUEST_NOT_FOUND`）、删除好友（双方，404 `FRIEND_NOT_FOUND`） |
+| `POST /api/messenger/friends/favorite` | `{"accountId","favorite"}` → `{"friend"}`；404 `FRIEND_NOT_FOUND` |
+| `POST /api/messenger/outbox/clear` | → `{"deleted"}`：隐藏已被同意或拒绝的请求卡片 |
+| `POST /api/messenger/blocks/add`、`/blocks/remove` | `{"accountId"}` → `{"block"}` / `{"ok":true}`；屏蔽同时删除好友关系与双方的请求。404 `PLAYER_NOT_FOUND`、400 `CANNOT_BLOCK_SELF`、409 `BLOCK_LIMIT`（100）、404 `BLOCK_NOT_FOUND` |
+| `PUT /api/messenger/settings` | `{"blockFriendRequests","blockGameInvites","invisible"}`（都必填，否则 400 `INVALID_REQUEST`）→ 同样的对象 |
+| `GET /api/messenger/messages?with=&before=&limit=` | 与某人的消息（旧 → 新，默认 30 条、最多 100）→ `{"messages","hasMore"}`；`with` 非法 400 `INVALID_ACCOUNT_ID` |
+| `POST /api/messenger/messages` | `{"to","text","clientId"}` → `{"message","duplicate"}`（`clientId` 为 UUID，重复提交返回原消息）；文本去掉首尾空白后 1–30 字。403 `NOT_FRIENDS`、400 `INVALID_MESSAGE`/`INVALID_REQUEST_ID`、429 `{"error":"CHAT_FLOOD","mutedUntil"}` |
+| `POST /api/messenger/read`、`/conversations/hide` | `{"with","upTo"}` / `{"with"}` → `{"ok":true}`：已读到某条消息；隐藏会话并清除我这一侧的记录（新消息会让它重新出现） |
+| `GET /api/messenger/ws` | WebSocket。第一帧（10 秒内）`{"type":"hello","token"}` → `{"type":"welcome","accountId","serverTime","state"}`；之后 `ping`→`pong`、`send`→`sent`（另推 `message`）、`read`。推送 `presence`、`message`、`sync`、`notice`。关闭码 1001 服务关闭、1008 刷屏或发送缓冲溢出、4001 会话结束（token 无效、退出登录、每 5 分钟复查）、4002 同一账号超过 4 个连接时最早的一个被替换。反向代理必须转发升级头（见“分布式部署”的 Nginx 示例） |
+
+私聊消息保存 30 天；未处理的好友请求 7 天后自动拒绝，被同意或拒绝的请求卡片 7 天后删除（都由每小时的清理完成）。
+
 账号、档案与历史接口的校验规则、错误码与 Java 版一致；密码哈希格式（PBKDF2-SHA256，120000 次）与会话摘要格式也相同，因此旧数据可以直接迁移。
 
 ### 游戏节点（`:8788` 等）
@@ -416,8 +441,10 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `account_onboarding`、`account_profiles` | 新手礼包领取记录、账号绑定档案 |
 | `timeattack_bests`、`timeattack_runs`、`timeattack_state`、`daily_rewards` | 计时赛个人最佳、已发奖励的计时赛跑次（按 `requestId`；超过每日上限的跑次不写入）、每账号最近一次结算（节奏限制与重试）、每日奖励计数 |
 | `admin_grants` | 管理员发放记录（管理员 + `requestId` → 账号、货币、数额），保证 `requestId` 只代表一次发放 |
+| `messenger_settings`、`friendships`、`friend_requests`、`account_blocks` | 好友私聊设置（拒绝好友请求、拒绝游戏邀请、隐身）、好友关系（每一方一行，含收藏）、好友请求及其结果、屏蔽 |
+| `private_messages`、`private_conversations` | 私聊消息（30 天，按发送者 + `clientId` 去重）、每个账号的会话列表（最后一条、已读位置、未读数、清除标记、隐藏） |
 
-`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起）。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3。
+`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4。
 
 ### Redis 键（前缀 `KART_REDIS_PREFIX`，默认 `kart:`）
 
@@ -433,7 +460,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `node:{id}`、`nodes`、`node-players:{id}`、`node-accounts:{id}`、`node-epoch:{id}` | 游戏节点注册、节点集合、节点上的在线名、节点上玩家到账号的映射、节点进程的启动时间（节点重启后释放旧进程的占用） | 15 秒 / — / 60 秒 / 60 秒 / 60 秒 |
 | `presence:{小写昵称}` | `nodeId\|playerId` | 30 秒 |
 | `presence-account:{accountId}` | `nodeId\|playerId`（一个账号同时只有一个在线会话） | 30 秒 |
-| `rl:{键}` | 限流计数（`register-ip:{IP 或 IPv6 /64}`、`register-site:{IPv6 /56}`、`register-all`、`login-ip:{IP 或 IPv6 /64}`、`login-fail:{小写用户名}\|{IPv4 /24 或 IPv6 /64}`、`write:{账号}`） | 窗口长度 |
+| `rl:{键}` | 限流计数（`register-ip:{IP 或 IPv6 /64}`、`register-site:{IPv6 /56}`、`register-all`、`login-ip:{IP 或 IPv6 /64}`、`login-fail:{小写用户名}\|{IPv4 /24 或 IPv6 /64}`、`write:{账号}`、`friend-request:{账号}`） | 窗口长度 |
 
 缓存是旁路缓存：先提交 MySQL，再删除或回填 Redis；Redis 出错只记录日志并回退到 MySQL。Redis 的内容都可以重建，清空它最多让在线昵称、在线账号与节点列表在下一次心跳（≤ 5 秒）前缺失。
 
@@ -517,6 +544,19 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
+    # 好友私聊的 WebSocket（数据服务）；精确匹配优先于下面的 /api/。
+    location = /api/messenger/ws {
+        proxy_pass http://10.0.0.10:8787;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        # 服务端每 30 秒 ping，超时要大于这个间隔。
+        proxy_read_timeout 120s;
+        proxy_send_timeout 120s;
+    }
     location ^~ /api/ {
         proxy_pass http://10.0.0.10:8787;
         proxy_set_header Host $host;
@@ -582,11 +622,11 @@ server {
 | --- | --- | --- |
 | 进程 | 单进程：HTTP API + WebSocket + SQLite | kart-data（唯一） + kart-game（多个） |
 | 存储 | SQLite `server/data/kart.db`（`KART_DATA_DIR`） | MySQL + Redis 缓存；`KART_DATA_DIR` 不再使用，用 `kart-migrate-sqlite` 迁移旧数据 |
-| WebSocket | `ws://<数据服务>/multiplayer/ws` | `<游戏服 origin>/multiplayer/ws`；数据服务上不再有 WebSocket |
+| WebSocket | `ws://<数据服务>/multiplayer/ws` | 房间协议在 `<游戏服 origin>/multiplayer/ws`；数据服务上的 WebSocket 只有好友私聊的 `/api/messenger/ws`（新增） |
 | 进入大厅 | `hello` 可带会话 `token` | 先取游戏服列表与一次性票据，`hello` 必须带 `ticket`；`token` 被忽略，游戏节点看不到会话 token |
 | 昵称唯一 | 单进程内 | 全集群（Redis 在线昵称，心跳续期）；一个账号全集群同时只能有一个会话（`ACCOUNT_ONLINE`） |
 | 赛果写入 | 比赛结束时同步写 SQLite | 经发件箱异步投递，按 `raceId` 幂等；历史接口稍后可见 |
-| 新增接口 | — | `/multiplayer/game-servers`、`/multiplayer/game-servers/ticket`、`/api/player-stats`，以及账号经济的 `/api/account*`、`/api/inventory`、`/api/shop/*`、`/api/timeattack/settle`、`/api/admin/*`、`/multiplayer/admin` |
+| 新增接口 | — | `/multiplayer/game-servers`、`/multiplayer/game-servers/ticket`、`/api/player-stats`，账号经济的 `/api/account*`、`/api/inventory`、`/api/shop/*`、`/api/timeattack/settle`、`/api/admin/*`、`/multiplayer/admin`，以及好友私聊的 `/api/messenger/*` |
 | 新增数据 | — | `race_results.account_id`、`player_stats`、等级/钱包/流水/库存/购买等经济表 |
 | 注册与游客 | 邀请码注册，首个账号为管理员；可游客进入 | 默认开放注册（注册即登录，按 IP 限流），没有游客；管理员由 `KART_ADMIN_USERNAMES` 指定（`invite` 模式保留 Java 行为） |
 | 装备 | 只校验格式 | 账号只能使用库存中未过期的物品（`ITEM_NOT_OWNED`） |
@@ -607,7 +647,8 @@ server {
 | `internal/data/config`、`internal/data/server` | 数据服务配置与组装（MySQL、Redis、两个监听口） |
 | `internal/data/store` | MySQL 表结构、迁移与事务 |
 | `internal/data/cache` | Redis 旁路缓存、节点注册与在线昵称 |
-| `internal/data/api` | 公网 API（含账号经济与管理页面 `admin.html`/`admin.js`）与内部 API（含装备核对） |
+| `internal/data/api` | 公网 API（含账号经济、好友私聊与管理页面 `admin.html`/`admin.js`）与内部 API（含装备核对） |
+| `internal/data/messenger` | 好友私聊的 WebSocket 连接、在线状态 hub、消息与同步推送、刷屏限制 |
 | `internal/data/economy` | 商店目录与等级表（`catalog.json`、`levels.json`，由 `rewrite/tools/export-economy-data.mjs` 生成并 `go:embed`） |
 | `internal/shared/rewards` | 联机比赛与计时赛奖励公式、每日上限（游戏节点与数据服务共用） |
 | `internal/data/sqlitemigrate` | 旧 SQLite 数据迁移 |

@@ -2,6 +2,7 @@ package api
 
 import (
 	"bytes"
+	"context"
 	"database/sql"
 	"encoding/json"
 	"io"
@@ -18,6 +19,7 @@ import (
 
 	"kartsim/internal/data/cache"
 	"kartsim/internal/data/datatest"
+	"kartsim/internal/data/messenger"
 	"kartsim/internal/data/store"
 	"kartsim/internal/shared/contract"
 	"kartsim/internal/shared/netcfg"
@@ -55,13 +57,14 @@ type harnessOptions struct {
 	limits         *RateLimits
 	trustedProxies []netip.Prefix
 	redisHook      redis.Hook
+	messenger      messenger.Options // short offline grace unless set
 }
 
 // generousLimits keep rate limiting active but out of the way.
 func generousLimits() RateLimits {
 	limits := DefaultRateLimits()
 	limits.RegisterPerIP, limits.RegisterPerIPv6Site, limits.RegisterGlobal, limits.LoginPerIP, limits.LoginFailures,
-		limits.AccountWrites = 1000, 1000, 1000, 1000, 1000, 100_000
+		limits.AccountWrites, limits.FriendRequests = 1000, 1000, 1000, 1000, 1000, 100_000, 1000
 	return limits
 }
 
@@ -85,6 +88,9 @@ func newHarness(t *testing.T, opts harnessOptions) *harness {
 	if opts.limits != nil {
 		limits = *opts.limits
 	}
+	if opts.messenger.OfflineGrace == 0 {
+		opts.messenger.OfflineGrace = 100 * time.Millisecond
+	}
 	h.api = New(Options{
 		Store:          st,
 		Cache:          cache.New(client, h.prefix, datatest.Logger()),
@@ -103,11 +109,21 @@ func newHarness(t *testing.T, opts harnessOptions) *harness {
 		Limiter:        cache.NewLimiter(client, h.prefix),
 		Limits:         &limits,
 		TrustedProxies: opts.trustedProxies,
+		Messenger:      opts.messenger,
 	})
 	h.public = httptest.NewServer(h.api.PublicHandler())
 	h.internal = httptest.NewServer(h.api.InternalHandler())
 	t.Cleanup(h.public.Close)
 	t.Cleanup(h.internal.Close)
+	// httptest does not track upgraded connections: close the messenger
+	// sockets (and wait for their handlers) before the servers and MySQL.
+	t.Cleanup(func() {
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
+		if err := h.api.ShutdownMessenger(ctx); err != nil {
+			t.Errorf("messenger shutdown: %v", err)
+		}
+	})
 	return h
 }
 

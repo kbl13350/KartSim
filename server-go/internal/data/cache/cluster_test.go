@@ -520,3 +520,37 @@ func TestRestartAndLeaveFreeAccounts(t *testing.T) {
 		t.Fatalf("leave freed another node's account: %q", got)
 	}
 }
+
+func TestAccountsInGame(t *testing.T) {
+	cluster, server := newTestCluster(t)
+	ctx := context.Background()
+	if inGame, err := cluster.AccountsInGame(ctx, nil); err != nil || len(inGame) != 0 {
+		t.Fatalf("no ids: %v, %v", inGame, err)
+	}
+	register(t, cluster, Node{NodeID: "game-a", Capacity: 10})
+	register(t, cluster, Node{NodeID: "game-b", Capacity: 10})
+	claimPresence(t, cluster, "game-a", "p1", "Ann", "acc-1")
+	claimPresence(t, cluster, "game-b", "p2", "Bob", "acc-2")
+	claimPresence(t, cluster, "game-a", "p3", "Guest", "")
+	inGame, err := cluster.AccountsInGame(ctx, []string{"acc-1", "acc-2", "acc-3"})
+	if err != nil || len(inGame) != 2 || !inGame["acc-1"] || !inGame["acc-2"] {
+		t.Fatalf("in game: %v, %v", inGame, err)
+	}
+	// A released claim and a claim whose node vanished do not count.
+	if err := cluster.ReleasePresence(ctx, Presence{NodeID: "game-a", PlayerID: "p1", Name: "Ann", AccountID: "acc-1"}); err != nil {
+		t.Fatal(err)
+	}
+	server.FastForward(NodeTTL + time.Second)
+	register(t, cluster, Node{NodeID: "game-a", Capacity: 10})
+	if !server.Exists("kt:presence-account:acc-2") {
+		t.Fatal("the stale claim should still be stored")
+	}
+	inGame, err = cluster.AccountsInGame(ctx, []string{"acc-1", "acc-2"})
+	if err != nil || len(inGame) != 0 {
+		t.Fatalf("in game after release and node expiry: %v, %v", inGame, err)
+	}
+	server.SetError("ERR down")
+	if _, err := cluster.AccountsInGame(ctx, []string{"acc-1"}); err == nil {
+		t.Fatal("lookup error hidden")
+	}
+}

@@ -11,7 +11,7 @@
    └──WebSocket──► kart-game ×N（:8788, :8789 …，房间状态在内存）
 ```
 
-- **数据服务 kart-data**：只有一个。唯一访问 MySQL 与 Redis 的进程。提供原 Java 的全部 HTTP API（账号、档案、影子记录、历史），新增“游戏服列表”“入场票据”与账号经济接口，另开内部端口供游戏节点调用（心跳注册、在线昵称占用、装备归属核对、房间规则保存、赛后结算与奖励入账）。
+- **数据服务 kart-data**：只有一个。唯一访问 MySQL 与 Redis 的进程。提供原 Java 的全部 HTTP API（账号、档案、影子记录、历史），新增“游戏服列表”“入场票据”、账号经济与好友私聊接口（好友私聊另有一个 WebSocket `/api/messenger/ws`，见第 9 节），另开内部端口供游戏节点调用（心跳注册、在线昵称占用、装备归属核对、房间规则保存、赛后结算与奖励入账）。
 - **游戏服务 kart-game**：可部署多个，无数据库。每个节点各自持有内存房间；同一房间的所有玩家连在同一个节点上，因此比赛时钟、广播、运动帧中继都在单进程内完成，与 Java 版一致。
 - **入场流程**（“带上数据节点和个人信息进入游戏服”）：
   1. 浏览器向数据服务 `GET /multiplayer/game-servers` 取在线游戏服列表，玩家选择一个（只有一个时自动进入）；想一起玩的人选同一个服。
@@ -30,7 +30,7 @@ server-go/
   internal/shared/contract       内部 API 路径与 JSON 结构（已完成）
   internal/shared/netcfg         可信主机、CORS、WebSocket Origin 校验（已完成，含测试）
   cmd/kart-data/                 数据服务入口
-  internal/data/...              数据服务实现
+  internal/data/...              数据服务实现（internal/data/messenger：好友私聊的 WebSocket 与在线状态 hub）
   cmd/kart-migrate-sqlite/       旧 SQLite kart.db → MySQL 迁移工具
   cmd/kart-game/                 游戏服务入口
   internal/game/...              游戏服务实现
@@ -64,6 +64,8 @@ server-go/
 | `KART_EXP_RATE` / `KART_LUCCI_RATE` | `1` | 奖励倍率，入账时应用；心跳响应把它们告诉游戏节点（显示用），比赛结算带回显示时用的倍率，数据服务在 [0, max(10, 当前配置)] 内采用 |
 | `KART_STARTING_LUCCI` | `10000` | 新账号初始金币 |
 | `KART_TRUSTED_PROXIES` | 回环地址 | 信任其 `X-Forwarded-For` 的代理（IP/CIDR，`none` 为不信任），用于按客户端 IP 限流 |
+| `KART_MESSENGER_MAX_CONNECTIONS` | `5000` | 好友私聊 WebSocket 上限（含未 hello 的连接），超出时升级前返回 HTTP 503 `SERVER_BUSY`（1–1,000,000） |
+| `KART_MESSENGER_SEND_BUFFER_BYTES` | `262144` | 每个好友私聊连接待发送的字节上限（65536–67108864），超出以 1008 关闭 |
 
 启动时：连接 MySQL（重试 30 秒）、在 `GET_LOCK('kartsim_schema')` 下执行建表/迁移、连接 Redis（重试）。Redis 不可用时**缓存降级**为直连 MySQL 并告警，但在线昵称与节点注册依赖 Redis，此时 ticket/presence 接口返回 503 `DATA_SERVICE_UNAVAILABLE`。
 
@@ -85,6 +87,7 @@ server-go/
 | **新增** `GET /multiplayer/game-servers` | `contract.GameServerList`：存活节点，按 name 排序；`full = players >= capacity` |
 | **新增** `POST /multiplayer/game-servers/ticket` | 请求 `contract.TicketRequest`；带 Bearer 则必须有效（否则 401 `LOGIN_REQUIRED`）且已领取新手礼包（否则 403 `ONBOARDING_REQUIRED`），签发账号票据（`Guest=false, AccountID, Username, Nickname, Admin`）；不带 Bearer 时只有 `KART_ALLOW_GUESTS=true` 才签发游客票据（`Guest=true`），否则 401 `LOGIN_REQUIRED`。节点不存在/已下线 404 `GAME_SERVER_NOT_FOUND`，已满 503 `GAME_SERVER_FULL`。响应 `contract.TicketResponse` |
 | **新增** `GET /api/player-stats?name=<昵称>` | `{"nickname","races","wins","podiums","points","updatedAt"}`，不存在 404 `PLAYER_NOT_FOUND`（仅统计注册账号） |
+| **新增** `/api/messenger/*` | 好友与私聊（HTTP 与 WebSocket `GET /api/messenger/ws`），见第 9 节 |
 
 错误体 `{"error":"CODE"}`；未知异常 500 `INTERNAL_ERROR`（记录日志）；JSON 解析失败 400 `INVALID_REQUEST`；请求体上限 8 MiB。所有公网路由套 `netcfg.CORS`。
 
@@ -122,7 +125,7 @@ room_rules(room_id PK, json TEXT, updated_at BIGINT, INDEX(updated_at))
 player_stats(account_id PK FK→accounts ON DELETE CASCADE, races, wins, podiums, points INT, updated_at BIGINT)
 ```
 
-schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`、`exp_ledger`、`inventory_items`、`purchases`、`account_onboarding`、`account_profiles`、`timeattack_bests`、`timeattack_runs`、`daily_rewards`；schema v3 加 `admin_grants`（管理员发放的 `requestId` 绑定账号、货币与数额）与 `timeattack_state`（每账号最近一次计时赛结算，用于节奏限制与重试），结构与约束见 ECONOMY.md 5。`timeattack_runs` 与 `daily_rewards` 保留 30 天，由每小时的清理任务（与过期会话清理一起）删除。
+schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`、`exp_ledger`、`inventory_items`、`purchases`、`account_onboarding`、`account_profiles`、`timeattack_bests`、`timeattack_runs`、`daily_rewards`；schema v3 加 `admin_grants`（管理员发放的 `requestId` 绑定账号、货币与数额）与 `timeattack_state`（每账号最近一次计时赛结算，用于节奏限制与重试），结构与约束见 ECONOMY.md 5。`timeattack_runs` 与 `daily_rewards` 保留 30 天，由每小时的清理任务（与过期会话清理一起）删除。schema v4 加好友与私聊的 `messenger_settings`、`friendships`、`friend_requests`、`account_blocks`、`private_messages`、`private_conversations`（第 9.5 节）。
 
 `invite` 模式的注册在 `GET_LOCK('kartsim_register')` 下进行（邀请单次使用、首个账号为管理员不出现竞态）；开放模式不取命名锁，并发注册同名由唯一键决定，可选邀请码由加锁读取保证只用一次；唯一键冲突（1062）映射为 `USERNAME_TAKEN` / `NICKNAME_TAKEN`。启动引导邀请在 `GET_LOCK('kartsim_bootstrap')` 下进行。
 
@@ -140,7 +143,7 @@ schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`
 | `node:{id}` / `nodes` / `node-players:{id}` / `node-accounts:{id}` / `node-epoch:{id}` | 游戏节点注册 | 15 秒 / — / 60 秒 / 60 秒 / 60 秒 |
 | `presence:{lower(name)}` | `nodeId\|playerId` | 30 秒 |
 | `presence-account:{accountId}` | `nodeId\|playerId`（一个账号一个在线会话） | 30 秒 |
-| `rl:{key}` | 限流计数（`register-ip:{IP，IPv6 为 /64}` 每小时 5 次、`register-site:{IPv6 /56}` 每小时 10 次、`register-all` 每分钟 60 次（预检通过后才计数）、`login-ip:{IP，IPv6 为 /64}` 每 5 分钟 20 次、`login-fail:{用户名}\|{IPv4 /24 或 IPv6 /64}` 每 15 分钟 10 次失败、`write:{accountId}` 每分钟 300 次）；注册在 Redis 不可用时拒绝（503），其余放行 | 窗口长度 |
+| `rl:{key}` | 限流计数（`register-ip:{IP，IPv6 为 /64}` 每小时 5 次、`register-site:{IPv6 /56}` 每小时 10 次、`register-all` 每分钟 60 次（预检通过后才计数）、`login-ip:{IP，IPv6 为 /64}` 每 5 分钟 20 次、`login-fail:{用户名}\|{IPv4 /24 或 IPv6 /64}` 每 15 分钟 10 次失败、`write:{accountId}` 每分钟 300 次、`friend-request:{accountId}` 每小时 20 次）；注册在 Redis 不可用时拒绝（503），其余放行 | 窗口长度 |
 
 缓存为旁路缓存：先写 MySQL 提交，再删除/回填；Redis 出错只记日志，回退 MySQL。
 
@@ -212,7 +215,7 @@ schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`
 - 选服对话框：存在多个可用服时显示（名称、在线人数/容量、满员不可选，默认选中上次的服）；只有一个可用服时自动进入；没有可用服时报错“暂无可用的游戏服务器”。
 - 进入大厅：昵称确定后先选服；每次连接尝试（包括昵称冲突重试）都重新申请票据，然后连接 `<游戏服 origin>/multiplayer/offer`（`websocketUrlForOffer` 会改成 `/multiplayer/ws`），`hello` 发送 `ticket`，不再把会话 token 发给游戏服。
 - 先确认 `src/generated/*.js` 是否由 `tools/generate-modules.mjs` 从其他源文件生成：如是，修改真正的源并重新生成，而不是只改生成物。
-- `vite.config.ts` 开发代理：`^/multiplayer/ws` → 游戏服（`KART_LAN_GAME_BACKEND`，默认 `http://127.0.0.1:8788`，`ws: true`），其他 `^/multiplayer/` 与 `^/api/` → 数据服务（`KART_LAN_BACKEND`）。
+- `vite.config.ts` 开发代理：`^/multiplayer/ws` → 游戏服（`KART_LAN_GAME_BACKEND`，默认 `http://127.0.0.1:8788`，`ws: true`），`^/api/messenger/ws` → 数据服务（`ws: true`，必须排在 `^/api/` 之前），其他 `^/multiplayer/` 与 `^/api/` → 数据服务（`KART_LAN_BACKEND`）。
 - 更新/新增单元测试，`npm run typecheck` 与相关 `npm test` 必须通过。
 
 ## 6. 运维
@@ -239,3 +242,113 @@ schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`
 - **奖励流程**：游戏节点 `finalizeRace` 计算基础奖励（`internal/shared/rewards`，所有玩法，挡人按规则折算名次）→ 快照 `race.rewards` 立即显示乘倍率后的数值（倍率来自心跳响应，`rewards.ApplyRate`）→ `RaceSettlement.Rewards`（基础值）经发件箱按序投递 → 数据服务在结算事务内用同一个 `rewards.ApplyRate` 乘倍率（结算携带的倍率在允许范围内时采用它）、按收到结算时的北京时间自然日套每日上限、逐级发放升级奖励并写 `exp_ledger`/`wallet_ledger`，幂等键为 raceId + 账号，重复投递或数据服务停机后的补发都只入账一次（完成时间早于 24 小时前的不再发奖励）。计时赛由浏览器调用 `POST /api/timeattack/settle`（`requestId` 幂等），服务端校验赛道（`tracks.json`）、节奏（429 `TOO_MANY_ATTEMPTS`），判断个人最佳与无效成绩。
 - **商店与管理**：商店目录、等级表与计时赛赛道表来自 `internal/data/economy`（`rewrite/tools/export-economy-data.mjs` 生成，`--check` 校验），购买以 `requestId` 幂等，并可带 `expectedPrice`/`expectedCurrency`（与当前报价不符 409 `PRICE_CHANGED`）；管理页面 `GET /multiplayer/admin` 调用 `/api/admin/accounts` 与 `/api/admin/grant`（写流水，余额不为负；`requestId` 绑定账号、货币与数额，参数不同 409 `REQUEST_ID_CONFLICT`）。
 - **测试**：`test/economy-smoke.mjs` 覆盖以上流程并直接核对 MySQL 流水与余额一致（运行方式见 README“测试”）。
+
+## 9. 好友与私聊（messenger）
+
+本节是浏览器与 kart-data 之间的契约（路径、JSON 字段、错误码、WebSocket 帧与关闭码），前端 `rewrite/` 按它实现，两边必须一致。
+
+### 9.1 原则
+
+- 全部在 kart-data（单实例）中，以服务端为准：MySQL 保存好友、请求、屏蔽、设置与私聊消息，进程内的 hub（`internal/data/messenger`）只保存可以重建的东西（连接、在线状态、刷屏计数）。必须登录（Bearer 会话 token）。
+- 账号一律用 `accountId`（`accounts.id`，UUID）表示，不暴露用户名。好友请求按**昵称**（车手名，唯一、不区分大小写）发起。
+- 1:1 私聊消息**持久化**（MySQL，保留 30 天），对方回来后照常收到；对方离线时界面仍显示原版的“%s处于离线状态”系统行。
+- 变更走 HTTP POST/PUT（CORS 只允许 GET/PUT/POST）；实时推送走每个标签页一个 WebSocket。
+- 任何改变账号 X 的好友、请求、屏蔽、设置或会话列表的操作之后，服务端向 X 的每个连接推送 `{"type":"sync"}`（发起操作的标签页也收到），客户端（去抖后）重新 `GET /api/messenger/state`。消息与在线状态单独推送，不发 `sync`。
+- 错误：HTTP `{"error":"CODE"}`（apierr，状态码见下表）；WebSocket `{"type":"error","code":"CODE","requestId"?}`。
+
+### 9.2 JSON 结构
+
+```
+Me           = { accountId, nickname, level, glove }            // level/glove 由 account_progress.exp 换算（同 /api/account）
+Settings     = { blockFriendRequests: bool, blockGameInvites: bool, invisible: bool }
+Presence     = "online" | "inGame" | "offline"
+Friend       = { accountId, nickname, level, glove, favorite: bool, since: ms, presence: Presence }
+Incoming     = { accountId, nickname, level, glove, createdAt: ms, expiresAt: ms }   // 发给我的待处理请求
+Outgoing     = { accountId, nickname, level, glove, state: "pending"|"accepted"|"refused",
+                 createdAt: ms, resolvedAt: ms|null, expiresAt: ms }
+                 // pending：expiresAt = 自动拒绝时间；accepted/refused：expiresAt = 卡片自动删除时间
+Block        = { accountId, nickname, level, glove, since: ms }
+Conversation = { accountId, nickname, lastMessageId: number, lastMessageAt: ms, unread: number, lastReadId: number }
+Message      = { id: number, from: accountId, to: accountId, text, sentAt: ms, clientId }
+Limits       = { friends: 100, pendingOutgoing: 30, blocks: 100, messageLength: 30, requestDays: 7, resultDays: 7 }
+State        = { me: Me, settings: Settings, friends: Friend[], incoming: Incoming[], outgoing: Outgoing[],
+                 blocks: Block[], conversations: Conversation[], limits: Limits, serverTime: ms }
+```
+
+- 在线状态：账号持有游戏节点的在线占用（Redis `presence-account:{id}`，且其节点 `node:{nodeId}` 仍在注册）为 `inGame`；否则至少有一个已 hello 的好友私聊连接（最后一个连接断开后还有 5 秒宽限）且 `settings.invisible` 为 false 为 `online`；否则 `offline`。隐身账号对别人永远是 `offline`，在游戏中也一样。Redis 不可用时游戏部分视为不在游戏，`online`/`offline` 照常。
+- `friends` 收藏在前、按昵称排序；`incoming`、`outgoing`、`blocks` 新的在前；`outgoing` 不含发送者清理掉的卡片。
+- `conversations`：不含隐藏的，按 `lastMessageAt` 倒序，最多 10 个（原版左栏 10 格）。
+- 消息文本：去掉首尾空白后 1–30 个码点（原版 chatInput maxChar=30），不得含控制字符（`validText`）。
+- 每小时清理尚未处理到的行按清理后的样子显示：过了 `expiresAt` 的待处理请求视为在 `expiresAt` 被拒绝（`resultDays` 后删除），不再出现在对方的 `incoming` 中。
+
+### 9.3 HTTP API（全部需要 Bearer，未登录 401 `LOGIN_REQUIRED`）
+
+| 方法与路径 | 请求 → 200 响应 | 错误 |
+| --- | --- | --- |
+| `GET /api/messenger/state` | → `State` | |
+| `POST /api/messenger/friends/request` | `{nickname}` → `{request: Outgoing}`；对方已先向我发过请求时直接成为好友 → `{friend: Friend, accepted: true}` | 404 `PLAYER_NOT_FOUND`，400 `CANNOT_ADD_SELF`，409 `ALREADY_FRIENDS`，409 `REQUEST_PENDING`，409 `REQUEST_COOLDOWN`（被拒后到下一个北京时间 06:00 前），409 `FRIEND_LIMIT`（我的），409 `TARGET_FRIEND_LIMIT`，409 `REQUEST_LIMIT`，403 `FRIEND_REQUESTS_BLOCKED`（对方的设置，或对方屏蔽了我），409 `BLOCKED_TARGET`（我屏蔽了对方），429 `TOO_MANY_ATTEMPTS` |
+| `POST /api/messenger/friends/respond` | `{accountId, accept: bool}` → 同意 `{friend: Friend}`，拒绝 `{ok: true}` | 404 `REQUEST_NOT_FOUND`，409 `FRIEND_LIMIT`，409 `TARGET_FRIEND_LIMIT` |
+| `POST /api/messenger/friends/cancel` | `{accountId}` → `{ok: true}`（撤回我的待处理请求） | 404 `REQUEST_NOT_FOUND` |
+| `POST /api/messenger/friends/remove` | `{accountId}` → `{ok: true}`（双方都失去好友关系） | 404 `FRIEND_NOT_FOUND` |
+| `POST /api/messenger/friends/favorite` | `{accountId, favorite: bool}` → `{friend: Friend}` | 404 `FRIEND_NOT_FOUND` |
+| `POST /api/messenger/outbox/clear` | `{}` → `{deleted: n}`（隐藏我已被同意/拒绝的请求卡片，待处理的保留） | |
+| `POST /api/messenger/blocks/add` | `{accountId}` → `{block: Block}`（同时删除双方的好友关系与两个方向的请求；重复屏蔽返回原来的记录） | 404 `PLAYER_NOT_FOUND`，400 `CANNOT_BLOCK_SELF`，409 `BLOCK_LIMIT` |
+| `POST /api/messenger/blocks/remove` | `{accountId}` → `{ok: true}` | 404 `BLOCK_NOT_FOUND` |
+| `PUT /api/messenger/settings` | `Settings`（三个字段都必填）→ `Settings` | 400 `INVALID_REQUEST` |
+| `GET /api/messenger/messages?with=<accountId>&before=<messageId?>&limit=<1..100，默认 30>` | → `{messages: Message[]（旧 → 新）, hasMore: bool}`，只含我的清除标记之后的消息 | 400 `INVALID_ACCOUNT_ID`（`with` 不是 UUID 或是自己），400 `INVALID_REQUEST`（`before`/`limit` 非法） |
+| `POST /api/messenger/messages` | `{to, text, clientId(uuid)}` → `{message: Message, duplicate: bool}` | 403 `NOT_FRIENDS`，400 `INVALID_MESSAGE`，400 `INVALID_REQUEST_ID`，429 `CHAT_FLOOD`（响应体另含 `"mutedUntil": ms`） |
+| `POST /api/messenger/read` | `{with, upTo: messageId}` → `{ok: true}`（设置 `lastReadId`，不后退、不超过最后一条，重新计算 `unread`） | |
+| `POST /api/messenger/conversations/hide` | `{with}` → `{ok: true}`（原版“退出”：隐藏会话并为我清除到最后一条消息为止的记录；新消息会让它重新出现） | |
+
+- 校验顺序：先会话（401），再 JSON（400 `INVALID_REQUEST`），再账号写限流。`accountId` 不是 UUID 时直接按“找不到”回答（`PLAYER_NOT_FOUND`/`REQUEST_NOT_FOUND`/`FRIEND_NOT_FOUND`/`BLOCK_NOT_FOUND`/`NOT_FRIENDS`），`read`/`hide` 则什么都不做。
+- 好友请求的检查顺序：`PLAYER_NOT_FOUND`、`CANNOT_ADD_SELF`、`ALREADY_FRIENDS`、`BLOCKED_TARGET`、`FRIEND_REQUESTS_BLOCKED`（对方屏蔽了我，与对方的设置用同一个码，屏蔽因此不可见）；对方已有待处理请求时直接成为好友（只检查双方的好友上限，不看对方的“拒绝好友请求”设置）；否则依次 `REQUEST_PENDING`、`REQUEST_COOLDOWN`、`FRIEND_REQUESTS_BLOCKED`（对方设置）、`FRIEND_LIMIT`、`TARGET_FRIEND_LIMIT`、`REQUEST_LIMIT`（我未过期的待处理请求已有 30 个），然后保存（替换同一对账号旧的结果行）。自动拒绝（过期）与手动拒绝一样有冷却。
+- 发送消息的检查顺序（HTTP 与 WebSocket 相同）：`clientId`（UUID，按小写保存；400 `INVALID_REQUEST_ID`）、文本（`INVALID_MESSAGE`）、刷屏限制（`CHAT_FLOOD`）、好友关系（`NOT_FRIENDS`）。同一账号重复使用 `clientId` 返回原消息与 `duplicate: true`，不再推送。写消息的一方视为已读到这条消息。
+- 限流：好友请求每账号每小时 20 次（`rl:friend-request:{accountId}`，Redis 不可用时放行，找不到车手的尝试也计数）；所有写接口另计入账号写限流 `write:{accountId}`。刷屏：每账号 1 条/秒、突发 5 条，用完后禁言 10 秒（`CHAT_FLOOD` + `mutedUntil`，原版 chat_warn10secBlock“为防止刷屏，聊天禁止10秒”），HTTP 与 WebSocket 共用一个计数（在 hub 内存中）。
+- 推送：请求 → 双方 `sync`，对方另收 `notice friend-request`；同意（含互相请求时的直接成为好友）→ 双方 `sync`，请求方另收 `notice friend-accepted`；拒绝 → 双方 `sync`，请求方另收 `notice friend-refused`；撤回、删除好友、屏蔽 → 双方 `sync`；收藏、清理卡片、取消屏蔽、设置、已读、隐藏会话 → 自己 `sync`；改名（`POST /multiplayer/auth/nickname`）→ 所有能看到该昵称的账号（好友、请求的另一方、屏蔽了他的人、会话对象）与自己 `sync`；设置隐身 → 好友收到 `presence`。
+
+### 9.4 WebSocket `GET /api/messenger/ws`
+
+- 不经过 `a.serve`（直接 `mux.Handle`，仍有 CORS、panic 恢复与 JSON 404/405），Origin 用 `netcfg.CheckWebSocketOrigin` 校验。不是升级请求 400 `INVALID_REQUEST`；连接数达到 `KART_MESSENGER_MAX_CONNECTIONS` 或正在关闭时升级前 503 `SERVER_BUSY`。只接受文本帧（二进制帧以 1003 关闭，非法 UTF-8 以 1007 关闭），单条上限 8 KiB。
+- 第一帧必须在 10 秒内到达：`{"type":"hello","token":"<会话 token>"}` → `{"type":"welcome","accountId","serverTime","state":State}`。token 缺失或无效、第一帧不是 hello、超时：`{"type":"error","code":"LOGIN_REQUIRED"}` 后以 4001 关闭。hello 时 MySQL/Redis 出错：`{"type":"error","code":"DATA_SERVICE_UNAVAILABLE"}` 后以 1011 关闭（客户端稍后重连）。`welcome` 一定是 hello 之后的第一帧（期间的推送排在它后面）。
+- 关闭码：1001 服务关闭；1008 刷屏（每账号所有连接合计每秒 10 条命令、突发 30）或发送缓冲溢出（`KART_MESSENGER_SEND_BUFFER_BYTES`）；4001 会话结束（退出登录立即关闭该会话的所有连接；每 5 分钟用 `findAccount` 复查一次会话，过期或被删除时关闭）；4002 被替换（同一账号超过 4 个连接时关闭最早的一个）。服务端每 30 秒发协议 ping，读超时 90 秒，每帧写超时 5 秒。
+- 客户端 → 服务端（`requestId` 为非空白且不超过 64 字符的字符串时原样带回）：
+  - `{"type":"ping"}` → `{"type":"pong"}`。
+  - `{"type":"send","to","text","clientId","requestId"?}` → `{"type":"sent","requestId"?,"message":Message,"duplicate":bool}`；收件人的所有连接与发件人的其他连接收到 `{"type":"message","message":Message}`。错误 `{"type":"error","code":"NOT_FRIENDS"|"INVALID_MESSAGE"|"INVALID_REQUEST_ID"|"CHAT_FLOOD","requestId"?,"mutedUntil"?}`。
+  - `{"type":"read","with","upTo"}` → 不回复（已保存；读者的其他连接收到 `sync`）；`upTo` 不是整数时 `INVALID_REQUEST`。
+  - 其他类型或无法解析：`{"type":"error","code":"INVALID_REQUEST"}`。
+- 服务端推送：
+  - `{"type":"presence","accountId","presence":Presence}`：发给该账号所有在线的好友，在值变化时：第一个连接 hello、最后一个连接断开 5 秒后、切换隐身、游戏节点占用或释放在线（内部接口 `PathPresenceClaim`/`PathPresenceRelease` 带 `AccountID` 时）、以及每 10 秒对游戏在线的核对（节点崩溃、`nodeLeave`、心跳冲突都不报告账号）。
+  - `{"type":"message","message":Message}`。
+  - `{"type":"sync"}`（见 9.1、9.3）。
+  - `{"type":"notice","kind":"friend-request"|"friend-accepted"|"friend-refused","accountId","nickname"}`：发给受影响的账号（`accountId`/`nickname` 是另一方），另有 `sync`；用于托盘提醒与提示。
+
+### 9.5 MySQL 表（schema v4）
+
+```
+messenger_settings(account_id PK FK, block_friend_requests, block_game_invites, invisible TINYINT, updated_at)
+friendships(account_id FK, friend_id FK, favorite TINYINT, created_at, PK(account_id, friend_id), INDEX(friend_id))  -- 每一方一行
+friend_requests(from_id FK, to_id FK, state 'pending'|'accepted'|'refused', created_at, resolved_at NULL,
+                expires_at, sender_hidden TINYINT, PK(from_id, to_id), INDEX(to_id, state), INDEX(state, expires_at))
+account_blocks(account_id FK, blocked_id FK, created_at, PK(account_id, blocked_id), INDEX(blocked_id))
+private_messages(id BIGINT AUTO_INCREMENT PK, low_id FK, high_id FK, sender_id, client_id, body VARCHAR(120) utf8mb4_bin,
+                 created_at, UNIQUE(sender_id, client_id), INDEX(low_id, high_id, id), INDEX(high_id), INDEX(created_at))
+private_conversations(account_id FK, peer_id FK, last_message_id, last_message_at, last_read_id, unread INT,
+                      cleared_up_to, hidden TINYINT, updated_at, PK(account_id, peer_id),
+                      INDEX(account_id, hidden, last_message_at), INDEX(peer_id), INDEX(last_message_at))
+```
+
+- 所有账号列都是 `ON DELETE CASCADE` 外键（测试清理靠删除账号）。MySQL 不允许在带级联动作的外键列上加 CHECK（错误 3823），所以“不能是自己”和 `low_id < high_id` 由代码保证；`state IN (…)` 与 `unread >= 0` 有 CHECK。`private_messages.sender_id` 总是 `low_id` 或 `high_id` 之一，不另设外键；`body` 比接口允许的 30 码点宽，以后放宽限制不用迁移。
+- `friend_requests`：`pending` 的 `expires_at` = 创建 + 7 天，到期自动拒绝（原版 autoRefuseStr）；`accepted`/`refused` 的 `resolved_at` 为处理时间，`expires_at` = 处理 + 7 天，到期删除（原版 autoDeleteStr）。`sender_hidden` 是发送者清理掉的卡片，行保留到 `expires_at`，因此拒绝的冷却（到下一个北京时间 06:00，原版 refuseConfirm）仍然有效。再次请求同一个人时替换旧的结果行。
+- `private_conversations`：发消息时发件人的行 `last_read_id` 推进到这条消息、`unread` 清零，收件人的行 `unread + 1`，双方 `hidden` 清零；`read` 在行锁下按 `id > max(last_read_id, cleared_up_to)` 重新数未读；`hide` 把 `cleared_up_to` 与 `last_read_id` 设为最后一条消息。
+- 事务：好友关系、请求与屏蔽的变更都在 READ COMMITTED + 死锁重试（`inEconomyTx`）中，先按账号 ID 升序用 `INSERT … ON DUPLICATE KEY UPDATE` 锁住双方的 `messenger_settings` 行（不存在时创建默认行），所以每个账号的这些变更串行执行，上限计数没有竞态；账号已被删除（外键失败）映射为 `PLAYER_NOT_FOUND`（或相应的“找不到”）。发消息先查 `clientId` 去重，再用 `FOR SHARE` 读发件人一侧的好友行（并发的删除好友或屏蔽要等它提交，之后不会再有消息写入），插入消息后按账号 ID 升序更新两个会话行，双向同时发消息不会死锁。
+
+### 9.6 hub（`internal/data/messenger`）
+
+- 连接的读写模型照搬游戏节点 `internal/game/ws`（每连接一个读协程、一个写协程与按字节计的有界队列、令牌桶），但不导入 `internal/game`。hub 方法从不阻塞在连接上；调用 MySQL/Redis 时使用 hub 自己的 5 秒超时上下文，不使用升级请求的上下文。
+- 状态：已连接账号（连接列表、好友集合、命令限流）与“对等方”（已连接账号本身及其好友：观察者集合、隐身、是否在游戏、最近推送的在线状态）。账号的第一个连接 hello 时加载好友列表（含好友的隐身设置）并向 Redis 查询本人和好友是否在游戏；好友关系变化（同意、删除、屏蔽）后重新加载双方的列表。每次加载与每个隐身/游戏在线读数都带序号，旧的读数不会覆盖新的。每 10 秒的核对同时重试加载失败的好友列表并清理闲置的刷屏计数。
+- `presence-account` 的游戏在线用 `cache.Cluster.AccountsInGame`：`MGET presence-account:{id}`，再 `MGET node:{nodeId}` 确认节点仍在注册（与 `NameOnline` 相同的规则）。Redis 不可用时保留上次已知的游戏在线；新加载的视为不在游戏。
+- 关闭：`server.go` 在关闭 HTTP 监听之前调用 `ShutdownMessenger`（`http.Server.Shutdown` 不跟踪已升级的连接），所有连接以 1001 关闭。
+
+### 9.7 每小时清理
+
+与过期会话一起，每步最多 10,000 行：过了 `expires_at` 的待处理请求改为 `refused`（`resolved_at = expires_at`，`expires_at` 再加 7 天）；过了 `expires_at` 的 `accepted`/`refused` 行删除；30 天前的私聊消息删除，最后一条消息在 30 天前的会话行也删除（它的消息已经全部过期）。清理不推送 `sync`：客户端按 `expiresAt` 自己隐藏过期的卡片，`state` 也按 9.2 的规则显示。

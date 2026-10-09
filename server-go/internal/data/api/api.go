@@ -21,6 +21,7 @@ import (
 	"kartsim/internal/data/cache"
 	"kartsim/internal/data/config"
 	"kartsim/internal/data/economy"
+	"kartsim/internal/data/messenger"
 	"kartsim/internal/data/store"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/netcfg"
@@ -63,6 +64,10 @@ type Options struct {
 	Limiter        *cache.Limiter // rate limits; none when nil
 	Limits         *RateLimits    // DefaultRateLimits when nil
 	StartingLucci  *int64         // KART_STARTING_LUCCI; store.DefaultStartingLucci when nil
+
+	// Messenger tunes the friends and private chat sockets (DESIGN.md 9);
+	// its Origin policy, clock and logger are the API's.
+	Messenger messenger.Options
 }
 
 // API serves the public and internal handlers.
@@ -88,6 +93,7 @@ type API struct {
 	trustedProxies []netip.Prefix
 	limiter        *cache.Limiter
 	limits         RateLimits
+	hub            *messenger.Hub
 }
 
 // New builds the API.
@@ -153,7 +159,7 @@ func New(opts Options) *API {
 		}
 		st = st.WithEconomy(store.EconomyRules{Data: data, StartingLucci: startingLucci, Rates: rates})
 	}
-	return &API{
+	a := &API{
 		store:          st,
 		cache:          opts.Cache,
 		cluster:        opts.Cluster,
@@ -175,6 +181,12 @@ func New(opts Options) *API {
 		limiter:        opts.Limiter,
 		limits:         limits,
 	}
+	hubOptions := opts.Messenger
+	hubOptions.CheckOrigin = network.CheckWebSocketOrigin
+	hubOptions.Now = now
+	hubOptions.Logger = logger
+	a.hub = messenger.New(messengerBackend{a}, hubOptions)
+	return a
 }
 
 func (a *API) nowMillis() int64 { return a.now().UnixMilli() }
@@ -224,6 +236,24 @@ func (a *API) PublicHandler() http.Handler {
 	route("POST /api/timeattack/settle", a.settleTimeAttack)
 	route("GET /api/admin/accounts", a.adminAccounts)
 	route("POST /api/admin/grant", a.adminGrant)
+
+	route("GET /api/messenger/state", a.messengerState)
+	route("POST /api/messenger/friends/request", a.friendRequest)
+	route("POST /api/messenger/friends/respond", a.friendRespond)
+	route("POST /api/messenger/friends/cancel", a.friendCancel)
+	route("POST /api/messenger/friends/remove", a.friendRemove)
+	route("POST /api/messenger/friends/favorite", a.friendFavorite)
+	route("POST /api/messenger/outbox/clear", a.outboxClear)
+	route("POST /api/messenger/blocks/add", a.blockAdd)
+	route("POST /api/messenger/blocks/remove", a.blockRemove)
+	route("PUT /api/messenger/settings", a.messengerSettings)
+	route("GET /api/messenger/messages", a.messengerHistory)
+	route("POST /api/messenger/messages", a.messengerSend)
+	route("POST /api/messenger/read", a.messengerRead)
+	route("POST /api/messenger/conversations/hide", a.conversationHide)
+	// The socket outlives requestTimeout and writes no error body once
+	// upgraded, so it is not wrapped by serve.
+	mux.Handle("GET /api/messenger/ws", a.hub)
 
 	return recoverPanics(a.network.CORS(jsonFallback(mux)))
 }

@@ -20,6 +20,7 @@ import (
 	"kartsim/internal/data/cache"
 	"kartsim/internal/data/config"
 	"kartsim/internal/data/economy"
+	"kartsim/internal/data/messenger"
 	"kartsim/internal/data/store"
 	"kartsim/internal/shared/netcfg"
 	"kartsim/internal/shared/rewards"
@@ -33,6 +34,8 @@ const (
 	// economyRetention is how long rewarded time-attack runs (replay
 	// answers) and daily reward counters are kept.
 	economyRetention = 30 * 24 * time.Hour
+	// messageRetention is how long private messages are kept (DESIGN.md 9).
+	messageRetention = 30 * 24 * time.Hour
 	// sweepBatch bounds the rows one sweep deletes per table.
 	sweepBatch = 10_000
 )
@@ -103,6 +106,8 @@ func Run(ctx context.Context, cfg config.Config, logger *slog.Logger) error {
 		StartingLucci:  &cfg.StartingLucci,
 		TrustedProxies: cfg.TrustedProxies,
 		Limiter:        cache.NewLimiter(rdb, cfg.RedisPrefix),
+		Messenger: messenger.Options{MaxConnections: cfg.MessengerMaxConnections,
+			SendBufferLimit: cfg.MessengerSendBufferBytes},
 	})
 	logger.Info("account economy", "registration", cfg.Registration, "guests", cfg.AllowGuests,
 		"admins", len(cfg.AdminUsernames), "expRate", cfg.ExpRate, "lucciRate", cfg.LucciRate,
@@ -141,6 +146,7 @@ func serve(ctx context.Context, cfg config.Config, logger *slog.Logger, service 
 	var background sync.WaitGroup
 	background.Go(func() { caches.Run(runCtx) })
 	background.Go(func() { sweep(runCtx, st, logger) })
+	background.Go(func() { service.RunMessenger(runCtx) })
 
 	failed := make(chan error, len(servers))
 	for i, server := range servers {
@@ -162,6 +168,10 @@ func serve(ctx context.Context, cfg config.Config, logger *slog.Logger, service 
 	}
 	shutdownCtx, cancel := context.WithTimeout(context.WithoutCancel(ctx), shutdownTimeout)
 	defer cancel()
+	// Upgraded sockets are not tracked by http.Server.Shutdown.
+	if err := service.ShutdownMessenger(shutdownCtx); err != nil {
+		logger.Warn("messenger shutdown incomplete", "error", err)
+	}
 	for _, server := range servers {
 		if err := server.Shutdown(shutdownCtx); err != nil {
 			logger.Warn("shutdown incomplete", "addr", server.Addr, "error", err)
@@ -212,7 +222,9 @@ func sweep(ctx context.Context, st *store.Store, logger *slog.Logger) {
 // sweepOnce deletes expired sessions, which can no longer authenticate,
 // and time-attack runs and daily reward counters older than
 // economyRetention, which no request needs any more; all would otherwise
-// accumulate.
+// accumulate. It also refuses friend requests nobody answered in time,
+// drops request results past their outbox time and deletes private
+// messages (and conversations) older than messageRetention.
 func sweepOnce(ctx context.Context, st *store.Store, logger *slog.Logger, now time.Time) {
 	sweepCtx, cancel := context.WithTimeout(ctx, time.Minute)
 	defer cancel()
@@ -228,6 +240,13 @@ func sweepOnce(ctx context.Context, st *store.Store, logger *slog.Logger, now ti
 		logger.Warn("economy history cleanup failed", "error", err)
 	} else if runs > 0 || days > 0 {
 		logger.Info("old economy history removed", "timeAttackRuns", runs, "dailyRewards", days)
+	}
+	pruned, err := st.PruneMessenger(sweepCtx, now.UnixMilli(), now.Add(-messageRetention).UnixMilli(), sweepBatch)
+	if err != nil && !errors.Is(err, context.Canceled) {
+		logger.Warn("messenger cleanup failed", "error", err)
+	} else if pruned != (store.MessengerPrune{}) {
+		logger.Info("messenger cleanup", "refusedRequests", pruned.Refused, "expiredResults", pruned.Results,
+			"messages", pruned.Messages, "conversations", pruned.Conversations)
 	}
 }
 

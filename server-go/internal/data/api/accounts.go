@@ -311,6 +311,7 @@ func (a *API) nickname(w http.ResponseWriter, r *http.Request) error {
 		return err
 	}
 	a.cache.Invalidate(r.Context(), "account:"+account.ID)
+	a.messengerRenamed(r.Context(), account.ID)
 	account.Nickname = *nickname
 	return writeJSON(w, http.StatusOK, accountBody{publicView(account)})
 }
@@ -322,6 +323,7 @@ func (a *API) logout(w http.ResponseWriter, r *http.Request) error {
 			return err
 		}
 		a.cache.Invalidate(r.Context(), "session:"+tokenHash)
+		a.hub.CloseSession(tokenHash) // its messenger sockets close with 4001
 	}
 	return writeJSON(w, http.StatusOK, map[string]bool{"ok": true})
 }

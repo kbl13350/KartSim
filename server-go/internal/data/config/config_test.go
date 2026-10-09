@@ -29,6 +29,33 @@ func TestDefaults(t *testing.T) {
 		!slices.Equal(cfg.TrustedProxies, DefaultTrustedProxies) {
 		t.Fatalf("unexpected economy defaults: %+v", cfg)
 	}
+	if cfg.MessengerMaxConnections != 5000 || cfg.MessengerSendBufferBytes != 262144 {
+		t.Fatalf("unexpected messenger defaults: %+v", cfg)
+	}
+}
+
+func TestMessengerSettings(t *testing.T) {
+	cfg, err := FromEnv(env(map[string]string{
+		"KART_CLUSTER_SECRET":              secret,
+		"KART_MESSENGER_MAX_CONNECTIONS":   " 120 ",
+		"KART_MESSENGER_SEND_BUFFER_BYTES": "65536",
+	}))
+	if err != nil || cfg.MessengerMaxConnections != 120 || cfg.MessengerSendBufferBytes != 65536 {
+		t.Fatalf("got %+v, %v", cfg, err)
+	}
+	for name, values := range map[string]map[string]string{
+		"zero connections":   {"KART_MESSENGER_MAX_CONNECTIONS": "0"},
+		"text connections":   {"KART_MESSENGER_MAX_CONNECTIONS": "many"},
+		"small send buffer":  {"KART_MESSENGER_SEND_BUFFER_BYTES": "65535"},
+		"huge send buffer":   {"KART_MESSENGER_SEND_BUFFER_BYTES": "1073741824"},
+		"fraction of buffer": {"KART_MESSENGER_SEND_BUFFER_BYTES": "65536.5"},
+	} {
+		values["KART_CLUSTER_SECRET"] = secret
+		_, err := FromEnv(env(values))
+		if err == nil || !strings.Contains(err.Error(), "KART_MESSENGER_") {
+			t.Errorf("%s: %v", name, err)
+		}
+	}
 }
 
 func TestEconomySettings(t *testing.T) {

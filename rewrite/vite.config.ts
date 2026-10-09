@@ -23,6 +23,7 @@ const lan = lanCert && lanKey ? {
   proxy: {
     "^/multiplayer/ws(?:[?#]|$)": { target: gameBackend, ws: true, xfwd: true },
     "^/multiplayer/": { target: backend, xfwd: true },
+    "^/api/messenger/ws(?:[?#]|$)": { target: backend, ws: true, xfwd: true },
     "^/api/": { target: backend, xfwd: true },
   },
 } : {};

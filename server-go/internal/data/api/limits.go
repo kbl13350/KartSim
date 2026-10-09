@@ -39,6 +39,10 @@ type RateLimits struct {
 	// a bound against floods, far above what a player does. Fails open.
 	AccountWrites       int
 	AccountWritesWindow time.Duration
+	// Friend requests per account (DESIGN.md 9), on top of AccountWrites;
+	// fails open.
+	FriendRequests       int
+	FriendRequestsWindow time.Duration
 }
 
 // DefaultRateLimits are the production limits (ECONOMY.md 6).
@@ -49,6 +53,7 @@ func DefaultRateLimits() RateLimits {
 		LoginPerIP: 20, LoginPerIPWindow: 5 * time.Minute,
 		LoginFailures: 10, LoginFailuresWindow: 15 * time.Minute,
 		AccountWrites: 300, AccountWritesWindow: time.Minute,
+		FriendRequests: 20, FriendRequestsWindow: time.Hour,
 	}
 }
 
@@ -101,6 +106,11 @@ func (a *API) record(ctx context.Context, key string, limit int, window time.Dur
 // accountWrite applies the per-account economy write limit.
 func (a *API) accountWrite(ctx context.Context, accountID string) error {
 	return a.hit(ctx, "write:"+accountID, a.limits.AccountWrites, a.limits.AccountWritesWindow, false)
+}
+
+// friendRequestLimit applies the per-account friend request limit.
+func (a *API) friendRequestLimit(ctx context.Context, accountID string) error {
+	return a.hit(ctx, "friend-request:"+accountID, a.limits.FriendRequests, a.limits.FriendRequestsWindow, false)
 }
 
 // clientIP is the address rate limits count against: the TCP peer, or,

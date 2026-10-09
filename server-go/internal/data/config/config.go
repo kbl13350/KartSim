@@ -34,6 +34,15 @@ const (
 	maxRate          = 100
 )
 
+// Messenger defaults (DESIGN.md 9).
+const (
+	DefaultMessengerMaxConnections = 5000
+	DefaultMessengerSendBuffer     = 256 << 10
+	maxMessengerConnections        = 1_000_000
+	minMessengerSendBuffer         = 64 << 10
+	maxMessengerSendBuffer         = 64 << 20
+)
+
 // DefaultTrustedProxies are the peers whose X-Forwarded-For is believed
 // when KART_TRUSTED_PROXIES is unset: a reverse proxy or dev server on the
 // same machine.
@@ -68,6 +77,10 @@ type Config struct {
 	LucciRate      float64        // KART_LUCCI_RATE
 	StartingLucci  int64          // KART_STARTING_LUCCI
 	TrustedProxies []netip.Prefix // KART_TRUSTED_PROXIES; their X-Forwarded-For names the client
+
+	// Friends and private chat (DESIGN.md 9).
+	MessengerMaxConnections  int // KART_MESSENGER_MAX_CONNECTIONS: messenger sockets, hello'd or not
+	MessengerSendBufferBytes int // KART_MESSENGER_SEND_BUFFER_BYTES: queued bytes per socket
 }
 
 // PublicListen is the host:port of the public HTTP listener.
@@ -137,7 +150,31 @@ func FromEnv(getenv func(string) string) (Config, error) {
 		cfg.PublicOrigin = normalized
 	}
 	problems = append(problems, readEconomy(&cfg, first)...)
+	problems = append(problems, readMessenger(&cfg, first)...)
 	return cfg, errors.Join(problems...)
+}
+
+// readMessenger reads the messenger socket limits.
+func readMessenger(cfg *Config, first func(...string) string) []error {
+	var problems []error
+	read := func(name string, target *int, fallback, minimum, maximum int) {
+		*target = fallback
+		value := first(name)
+		if value == "" {
+			return
+		}
+		parsed, err := strconv.Atoi(value)
+		if err != nil || parsed < minimum || parsed > maximum {
+			problems = append(problems, fmt.Errorf("%s must be an integer from %d to %d", name, minimum, maximum))
+			return
+		}
+		*target = parsed
+	}
+	read("KART_MESSENGER_MAX_CONNECTIONS", &cfg.MessengerMaxConnections, DefaultMessengerMaxConnections, 1,
+		maxMessengerConnections)
+	read("KART_MESSENGER_SEND_BUFFER_BYTES", &cfg.MessengerSendBufferBytes, DefaultMessengerSendBuffer,
+		minMessengerSendBuffer, maxMessengerSendBuffer)
+	return problems
 }
 
 // readEconomy reads the account and economy settings.

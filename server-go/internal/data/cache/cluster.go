@@ -6,7 +6,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"maps"
 	"slices"
+	"strings"
 	"time"
 
 	"github.com/redis/go-redis/v9"
@@ -421,6 +423,55 @@ func (c *Cluster) NameOnline(ctx context.Context, name string) (bool, error) {
 		return false, fmt.Errorf("presence lookup: %w", err)
 	}
 	return online == 1, nil
+}
+
+// AccountsInGame reports which of ids hold a game-node presence
+// (presence-account:{id}) whose node is still registered: the same "node
+// must still exist" rule as NameOnline. Only accounts in game are listed.
+func (c *Cluster) AccountsInGame(ctx context.Context, ids []string) (map[string]bool, error) {
+	inGame := map[string]bool{}
+	if len(ids) == 0 {
+		return inGame, nil
+	}
+	keys := make([]string, len(ids))
+	for i, id := range ids {
+		keys[i] = c.accountKey(id)
+	}
+	values, err := c.rdb.MGet(ctx, keys...).Result()
+	if err != nil {
+		return nil, fmt.Errorf("account presence lookup: %w", err)
+	}
+	owners := map[string][]string{} // node id -> accounts it holds
+	for i, value := range values {
+		text, ok := value.(string)
+		if !ok {
+			continue
+		}
+		if node, _, found := strings.Cut(text, "|"); found && node != "" {
+			owners[node] = append(owners[node], ids[i])
+		}
+	}
+	if len(owners) == 0 {
+		return inGame, nil
+	}
+	nodes := slices.Sorted(maps.Keys(owners))
+	nodeKeys := make([]string, len(nodes))
+	for i, node := range nodes {
+		nodeKeys[i] = c.nodeKey(node)
+	}
+	registered, err := c.rdb.MGet(ctx, nodeKeys...).Result()
+	if err != nil {
+		return nil, fmt.Errorf("account presence lookup: %w", err)
+	}
+	for i, value := range registered {
+		if value == nil {
+			continue // the node vanished; its claims are stale
+		}
+		for _, id := range owners[nodes[i]] {
+			inGame[id] = true
+		}
+	}
+	return inGame, nil
 }
 
 // Node returns one live node.

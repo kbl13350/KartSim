@@ -293,6 +293,95 @@ var migrations = []migration{
 		{table: "timeattack_runs", name: "idx_timeattack_runs_created", columns: "created_at"},
 		{table: "daily_rewards", name: "idx_daily_rewards_day", columns: "day"},
 	}},
+	// Version 4: friends and private chat (DESIGN.md 9). Each side of a
+	// friendship has its own row (favorite belongs to the owner).
+	// friend_requests keeps the accepted/refused result of a request for the
+	// sender's outbox until expires_at. Every account column cascades, and
+	// MySQL refuses CHECK constraints on cascading foreign key columns
+	// (error 3823): "not yourself" and low_id < high_id are rules of the code.
+	// private_messages.sender_id is always low_id or high_id, so it needs no
+	// foreign key of its own.
+	{version: 4, statements: []string{
+		`CREATE TABLE IF NOT EXISTS messenger_settings (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			block_friend_requests TINYINT NOT NULL DEFAULT 0,
+			block_game_invites TINYINT NOT NULL DEFAULT 0,
+			invisible TINYINT NOT NULL DEFAULT 0,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id),
+			CONSTRAINT fk_messenger_settings_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		`CREATE TABLE IF NOT EXISTS friendships (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			friend_id CHAR(36) ` + idColumn + ` NOT NULL,
+			favorite TINYINT NOT NULL DEFAULT 0,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, friend_id),
+			KEY idx_friendships_friend (friend_id),
+			CONSTRAINT fk_friendships_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE,
+			CONSTRAINT fk_friendships_friend FOREIGN KEY (friend_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		`CREATE TABLE IF NOT EXISTS friend_requests (
+			from_id CHAR(36) ` + idColumn + ` NOT NULL,
+			to_id CHAR(36) ` + idColumn + ` NOT NULL,
+			state VARCHAR(8) ` + idColumn + ` NOT NULL,
+			created_at BIGINT NOT NULL,
+			resolved_at BIGINT NULL,
+			expires_at BIGINT NOT NULL,
+			sender_hidden TINYINT NOT NULL DEFAULT 0,
+			PRIMARY KEY (from_id, to_id),
+			KEY idx_friend_requests_to (to_id, state),
+			KEY idx_friend_requests_expires (state, expires_at),
+			CONSTRAINT chk_friend_requests_state CHECK (state IN ('pending', 'accepted', 'refused')),
+			CONSTRAINT fk_friend_requests_from FOREIGN KEY (from_id) REFERENCES accounts (id) ON DELETE CASCADE,
+			CONSTRAINT fk_friend_requests_to FOREIGN KEY (to_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		`CREATE TABLE IF NOT EXISTS account_blocks (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			blocked_id CHAR(36) ` + idColumn + ` NOT NULL,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, blocked_id),
+			KEY idx_account_blocks_blocked (blocked_id),
+			CONSTRAINT fk_account_blocks_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE,
+			CONSTRAINT fk_account_blocks_blocked FOREIGN KEY (blocked_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// body is wider than the 30 code points the API accepts, so the
+		// limit can grow without a migration.
+		`CREATE TABLE IF NOT EXISTS private_messages (
+			id BIGINT NOT NULL AUTO_INCREMENT,
+			low_id CHAR(36) ` + idColumn + ` NOT NULL,
+			high_id CHAR(36) ` + idColumn + ` NOT NULL,
+			sender_id CHAR(36) ` + idColumn + ` NOT NULL,
+			client_id CHAR(36) ` + idColumn + ` NOT NULL,
+			body VARCHAR(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (id),
+			UNIQUE KEY uq_private_messages_client (sender_id, client_id),
+			KEY idx_private_messages_pair (low_id, high_id, id),
+			KEY idx_private_messages_high (high_id),
+			KEY idx_private_messages_created (created_at),
+			CONSTRAINT fk_private_messages_low FOREIGN KEY (low_id) REFERENCES accounts (id) ON DELETE CASCADE,
+			CONSTRAINT fk_private_messages_high FOREIGN KEY (high_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		`CREATE TABLE IF NOT EXISTS private_conversations (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			peer_id CHAR(36) ` + idColumn + ` NOT NULL,
+			last_message_id BIGINT NOT NULL DEFAULT 0,
+			last_message_at BIGINT NOT NULL DEFAULT 0,
+			last_read_id BIGINT NOT NULL DEFAULT 0,
+			unread INT NOT NULL DEFAULT 0,
+			cleared_up_to BIGINT NOT NULL DEFAULT 0,
+			hidden TINYINT NOT NULL DEFAULT 0,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, peer_id),
+			KEY idx_private_conversations_recent (account_id, hidden, last_message_at),
+			KEY idx_private_conversations_peer (peer_id),
+			KEY idx_private_conversations_last (last_message_at),
+			CONSTRAINT chk_private_conversations_unread CHECK (unread >= 0),
+			CONSTRAINT fk_private_conversations_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE,
+			CONSTRAINT fk_private_conversations_peer FOREIGN KEY (peer_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+	}},
 }
 
 // LatestSchemaVersion is the version Migrate brings a database to.

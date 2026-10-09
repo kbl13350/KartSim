@@ -230,6 +230,9 @@ func (a *API) presenceClaim(w http.ResponseWriter, r *http.Request) error {
 	case cache.NameTaken:
 		return errNicknameTaken
 	}
+	if request.AccountID != "" {
+		a.hub.GameChanged(request.AccountID) // friends see "inGame"
+	}
 	return writeJSON(w, http.StatusOK, contract.OK{OK: true})
 }
 
@@ -266,6 +269,9 @@ func (a *API) presenceRelease(w http.ResponseWriter, r *http.Request) error {
 		Name: request.Name, AccountID: request.AccountID}); err != nil {
 		a.log.Warn("presence release unavailable", "node", request.NodeID, "error", err)
 		return errServiceUnavailable
+	}
+	if request.AccountID != "" {
+		a.hub.GameChanged(request.AccountID)
 	}
 	return writeJSON(w, http.StatusOK, contract.OK{OK: true})
 }
