@@ -1,3 +1,4 @@
+import { isItemChannel } from "../multiplayer/lobby-item-mode";
 import type { LobbyRoomSummary } from "./lobby-list-draw";
 import {
   createLobbyListUiState, lobbyCategory, lobbyTab, lobbyTabAvailable, requestLobbyList,
@@ -77,10 +78,14 @@ export function activateLobbyListEntry(
 
   const choice = modeForButton(name);
   if (choice) {
+    // Mode cards are speed-channel games; from an item list they start on the speed pair.
+    const listed = isItemChannel(host.channelName)
+      ? host.channelName === "itemTeamCombine" ? "speedTeamCombine" : "speedIndiCombine"
+      : host.channelName;
     const channel = choice.gameplay === "roadblock" || choice.gameplay === "giant"
       ? "speedIndiCombine"
-      : choice.gameplay !== "grip" || host.channelName === "speedTeamCombine"
-        ? (host.channelName ?? "speedIndiCombine")
+      : choice.gameplay !== "grip" || listed === "speedTeamCombine"
+        ? (listed ?? "speedIndiCombine")
         : "speedIndiCombine";
     host.options.onMode(channel, 0, choice.gameplay);
     return;

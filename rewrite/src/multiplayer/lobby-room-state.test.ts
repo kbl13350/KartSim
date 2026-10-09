@@ -166,3 +166,29 @@ test("room controls, member slots, chat and track state match the release", () =
     }
   }
 });
+
+test("道具赛 rooms name their game in the room header", () => {
+  for (const [mode, text] of [["individual", "个人道具赛"], ["team", "组队道具赛"]] as const) {
+    const host = {
+      room: { name: "道具房", speed: 7, mode, phase: "open", hostId: "local",
+        capacity: 8, members: [], channelName: mode === "team" ? "itemTeamCombine"
+          : "itemIndiCombine", gameplay: "item" },
+      playerId: "local", busy: false, connected: true, countdownLocked: false,
+      countdownState: () => ({ active: false, elapsed: 0, remaining: 0, cancelLocked: false }),
+      actions: { track() {} },
+    } as unknown as LobbyRoomStateHost;
+    const dependencies = {
+      nodeName: (node: unknown) => (node as { name: string }).name,
+      slots: () => [], roadblockRunner: () => undefined, gameplayMode: () => "item",
+      decodeChat: (value: string) => ({ text: value }), wrapBubble: (value: string) => [value],
+      drawBubbleLine: () => {}, nowMs: () => 0,
+      roadblockDefaults: { noRunnerManualReset: true, limitMs: 180000 },
+      rpChannelNames: {},
+      colors: { redTeam: "red", blueTeam: "blue", ownChat: "own", otherChat: "other" },
+    } as unknown as LobbyRoomStateDependencies;
+    assert.equal(lobbyRoomNodeState(host, { name: "gameType" }, dependencies).text, text);
+    assert.equal(lobbyRoomNodeState(host, { name: "gameSpeed" }, dependencies).text, "标准速度");
+    const track = lobbyRoomNodeState(host, { name: "트랙" }, dependencies);
+    assert.deepEqual([track.disabled, track.label], [false, "选择赛道"]);
+  }
+});

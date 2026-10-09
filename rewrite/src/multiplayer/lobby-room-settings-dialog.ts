@@ -2,12 +2,22 @@
 
 import type { LobbyDialogNode, LobbyDialogOptions, LobbyDialogSession,
   LobbyDialogViewDependencies } from "./lobby-dialog-views";
+import { itemModeLabel } from "./lobby-item-mode";
+
+/** The room's game as the settings dialog names it; item rooms are 道具赛. */
+export type RoomSettingsMode = "team" | "individual" | "itemTeam" | "itemIndi";
+
+export function roomSettingsMode(room: { mode: string; gameplay?: string }): RoomSettingsMode {
+  const team = room.mode === "team";
+  return room.gameplay === "item" ? team ? "itemTeam" : "itemIndi"
+    : team ? "team" : "individual";
+}
 
 export interface ExistingRoomSettings { name: string; password: string }
 
 export async function showLobbyRoomSettings<T extends LobbyDialogSession>(
   createDialog: () => T, options: LobbyDialogOptions,
-  mode: "team" | "individual", initial: ExistingRoomSettings,
+  mode: RoomSettingsMode, initial: ExistingRoomSettings,
   submitSettings: (settings: ExistingRoomSettings) => void,
   dependencies: LobbyDialogViewDependencies): Promise<T> {
   const dialog = createDialog();
@@ -44,7 +54,9 @@ export async function showLobbyRoomSettings<T extends LobbyDialogSession>(
     state: (node: LobbyDialogNode) => {
       switch (dependencies.nodeName(node)) {
         case "gameType": return {
-          text: mode === "team" ? "组队竞速" : "个人竞速",
+          text: mode === "itemTeam" || mode === "itemIndi"
+            ? itemModeLabel(mode === "itemTeam")
+            : mode === "team" ? "组队竞速" : "个人竞速",
         };
         case "roomName": return {
           disabled: dialog.busy, label: "房间名称",

@@ -138,3 +138,29 @@ test("confirmation closes modal before running command", async () => {
   };
   assert.deepEqual(await run(false), await run(true));
 });
+
+test("道具赛 rooms are created on the chosen item channel and edited as 道具赛", async () => {
+  const itemChannels = { ...channels,
+    itemIndiCombine: { mode: "individual", speed: 7 },
+    itemTeamCombine: { mode: "team", speed: 7 } };
+  const { host, events } = fixture("item");
+  host.state.room = undefined;
+  host.channelName = "itemIndiCombine";
+  await createLobbyRoom(host, itemChannels, (_options, mode, channel, nickname, submit) => {
+    events.push(["createGameplay", mode, channel, nickname]);
+    submit({ channelName: "itemTeamCombine", gameplay: mode, name: "道具房" });
+  });
+  assert.deepEqual(events.filter(event => Array.isArray(event) &&
+    ["createGameplay", "mutate"].includes(event[0] as string)), [
+    ["createGameplay", "item", "itemIndiCombine", "Account"],
+    ["mutate", { type: "create", channelName: "itemTeamCombine", gameplay: "item",
+      name: "道具房", mode: "team", speed: 7, speedVersion: "国服" }],
+  ]);
+  assert.equal(host.channelName, "itemTeamCombine");
+
+  const edit = fixture("item");
+  edit.host.state.room = { ...room(), mode: "team", gameplay: "item" };
+  await changeLobbyRoomInfo(edit.host, edit.b1.roomSettings);
+  assert.deepEqual(edit.events.find(event => Array.isArray(event) &&
+    event[0] === "roomSettings"), ["roomSettings", "itemTeam"]);
+});

@@ -90,3 +90,12 @@ test("room style dropdown validation and cloned option tree match release", () =
       observeDropdown(false, variant), variant);
   }
 });
+
+test("道具赛 offers the two original item channels by their string bag names", () => {
+  const channels = roomChannelNames("item", ordinary, rp);
+  assert.deepEqual(channels, { itemIndiCombine: "个人道具赛", itemTeamCombine: "组队道具赛" });
+  assert.equal(roomChannelKey("组队道具赛", channels), "itemTeamCombine");
+  assert.throws(() => roomChannelKey("个人竞速", channels));
+  // The ordinary dropdown stays the speed channels.
+  assert.deepEqual(roomChannelNames("ordinary", ordinary, rp), ordinary);
+});

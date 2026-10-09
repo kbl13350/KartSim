@@ -162,3 +162,13 @@ test("同一个顶栏可挂在商店里：跟随账号刷新等级、名字与�
     dom.restore();
   }
 });
+
+test("快速进入可以选个人道具赛和组队道具赛", () => {
+  assert.deepEqual(quickEntry("itemIndi"), { id: "itemIndi", title: "个人道具赛",
+    kind: "multiplayer", channel: "itemIndiCombine", gameplay: "item" });
+  assert.deepEqual(quickEntry("itemTeam"), { id: "itemTeam", title: "组队道具赛",
+    kind: "multiplayer", channel: "itemTeamCombine", gameplay: "item" });
+  const storage = memoryStorage();
+  saveQuickEntries(["itemTeam", "speedIndi"], storage);
+  assert.deepEqual(loadQuickEntries(storage), ["itemTeam", "speedIndi"]);
+});

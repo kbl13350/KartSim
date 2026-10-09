@@ -1,5 +1,7 @@
 /** Maps a room UI node to its live presentation and command state. */
 
+import { itemModeLabel } from "./lobby-item-mode";
+
 interface RoomMember {
   playerId: string;
   name: string;
@@ -263,6 +265,7 @@ function roomDetailsState(host: LobbyRoomStateHost, name: string,
       ? dependencies.rpChannelNames[room.channelName ?? ""]
       : mode === "roadblock" ? "挡人模式"
         : mode === "ordinary" ? room.mode === "team" ? "组队竞速赛" : "个人竞速赛"
+          : mode === "item" ? itemModeLabel(room.mode === "team")
           : `${room.mode === "team" ? "组队" : "个人"}${mode === "grip" ? "抓地" : "幽灵"}${room.speed === 4 ? "无限加速" : "赛"}` };
     case "changeRoomInfoNotPassword": return { visible: room.locked === false };
     case "changeRoomInfoPassword": return { visible: room.locked === true };
