@@ -16,6 +16,7 @@ import (
 	"kartsim/internal/game/admission"
 	"kartsim/internal/game/cluster"
 	"kartsim/internal/game/config"
+	"kartsim/internal/game/itemmode"
 	"kartsim/internal/game/lobby"
 	"kartsim/internal/game/outbox"
 	"kartsim/internal/game/ws"
@@ -51,6 +52,10 @@ type App struct {
 
 // New builds a node; nothing runs until Start.
 func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
+	items, err := itemmode.Default()
+	if err != nil {
+		return nil, fmt.Errorf("item race data: %w", err)
+	}
 	data := cluster.NewDataClient(cfg.DataInternalURL, cfg.Secret)
 	if opts.Outbox.Logger == nil {
 		opts.Outbox.Logger = log
@@ -80,6 +85,7 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 		Busy:        memory.busy,
 		Rates:       agent.Rates,
 		Logger:      log,
+		ItemMode:    items,
 	})
 	agent.SetSource(rooms)
 	agent.SetConflictHandler(func(playerIDs []string) { rooms.Evict(playerIDs) })

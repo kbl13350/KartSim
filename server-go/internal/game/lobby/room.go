@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"slices"
 
+	"kartsim/internal/game/itemmode"
 	"kartsim/internal/shared/rewards"
 )
 
@@ -263,6 +264,21 @@ type race struct {
 
 	// progress is each racer's furthest accepted route distance (meters).
 	progress map[string]float64
+	// current is each racer's latest accepted route distance and lap, the
+	// live order of an item race.
+	current map[string]routeSample
+
+	// item is race.item of an item race ({"ruleset","table"}); items its
+	// item state, and itemSequences each racer's last item sequence.
+	item          obj
+	items         *itemmode.Race
+	itemSequences map[string]int
+}
+
+// routeSample is a racer's latest route progress from its motion frames.
+type routeSample struct {
+	distance float64
+	lap      int
 }
 
 func (r *race) inRoster(playerID string) bool { return slices.Contains(r.rosterIDs, playerID) }
@@ -374,6 +390,10 @@ func (r *race) snapshot() obj {
 		// Not in Java: {playerId: {"exp", "lucci"}} for every gameplay,
 		// after the Java fields so their order is unchanged.
 		value = append(value, field{"rewards", r.rewardsObj()})
+	}
+	if r.item != nil {
+		// Not in Java: the item race ruleset, after every other field.
+		value = append(value, field{"item", r.item})
 	}
 	return value
 }

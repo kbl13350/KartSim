@@ -29,7 +29,7 @@ var (
 	lteTracks     = []string{"jurassic_R02", "beach_R05", "moonhill_R06"}
 	defaultTracks = []string{"village_R01", "desert_I01", "forest_I01", "ice_I03"}
 
-	gameplays = []string{"ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp"}
+	gameplays = []string{"ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item"}
 
 	// rpKarts were checked against the local P3553 catalog, model, parameter,
 	// animation-frame and texture resources. The server cannot trust an
@@ -50,6 +50,10 @@ func validateCreation(gameplay, channel, version string, capacity int) error {
 		return fail(http.StatusBadRequest, "INVALID_CHANNEL")
 	}
 	if (gameplay == "grip" || gameplay == "lte") && !strings.HasSuffix(channel, "Combine") {
+		return fail(http.StatusBadRequest, "INVALID_CHANNEL")
+	}
+	// The item channels run only item races, and item races only run there.
+	if (gameplay == "item") != isItemChannel(channel) {
 		return fail(http.StatusBadRequest, "INVALID_CHANNEL")
 	}
 	if gameplay == "roadblock" && capacity < 5 {

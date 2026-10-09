@@ -51,10 +51,11 @@ func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 
 // Race progress: the kinematic kinds 4..10 (rewrite payload.ts) carry the
 // racer's route distance as a little-endian float64, in meters, at payload
-// offset 108.
+// offset 108, and its lap as a little-endian uint32 at 116.
 const (
 	motionHeaderLength = 56
 	progressOffset     = motionHeaderLength + 108
+	lapOffset          = motionHeaderLength + 116
 	// A reported distance is capped at what 500 km/h since the start (plus
 	// a little slack) could cover.
 	maxRaceSpeed  = 140.0 // m/s
@@ -90,8 +91,9 @@ func kinematicPayloadLength(kind int) int {
 }
 
 // recordProgress keeps the furthest route distance a racer reported while
-// racing and before its finish. Frames of another length than their kind
-// implies, non-finite or non-positive distances are ignored.
+// racing and before its finish, and its latest distance and lap (the live
+// order of an item race). Frames of another length than their kind implies,
+// non-finite or non-positive distances are ignored.
 func (rc *race) recordProgress(playerID string, frame []byte, now int64) {
 	kind := int(frame[2])
 	if kind < 4 || len(frame) != motionHeaderLength+kinematicPayloadLength(kind) ||
@@ -108,6 +110,8 @@ func (rc *race) recordProgress(playerID string, frame []byte, now int64) {
 		return
 	}
 	distance = min(distance, float64(now-*rc.startAt)/1000*maxRaceSpeed+progressSlack)
+	rc.current[playerID] = routeSample{distance: distance,
+		lap: int(binary.LittleEndian.Uint32(frame[lapOffset:]))}
 	if distance > rc.progress[playerID] {
 		rc.progress[playerID] = distance
 	}

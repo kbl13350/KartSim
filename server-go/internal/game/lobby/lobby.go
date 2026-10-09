@@ -19,6 +19,7 @@ import (
 	"sync"
 	"time"
 
+	"kartsim/internal/game/itemmode"
 	"kartsim/internal/game/names"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/contract"
@@ -106,6 +107,11 @@ type Options struct {
 	// (rewards.ApplyRate) so players see what is credited. Called with the
 	// lobby lock held; must not block.
 	Rates func() rewards.Rates
+	// ItemMode is the item race data (nil: the embedded itemmode.json).
+	ItemMode *itemmode.Data
+	// ItemRandom returns the random source of one item race's draws and
+	// random targets (nil: a PCG seeded from crypto/rand).
+	ItemRandom func() itemmode.Random
 }
 
 // Client is one WebSocket connection. Its fields are guarded by Lobby.mu.
@@ -153,6 +159,8 @@ type Lobby struct {
 	busy        func() bool
 	rates       func() rewards.Rates
 	log         *slog.Logger
+	items       *itemmode.Data
+	itemRandom  func() itemmode.Random
 
 	// verifySlots bounds the equipment checks in flight (a semaphore).
 	verifySlots chan struct{}
@@ -195,6 +203,8 @@ func New(opts Options) *Lobby {
 		busy:        opts.Busy,
 		rates:       opts.Rates,
 		log:         opts.Logger,
+		items:       opts.ItemMode,
+		itemRandom:  opts.ItemRandom,
 		verifySlots: make(chan struct{}, maxConcurrentVerifies),
 		rooms:       map[string]*room{},
 		clients:     map[string]*Client{},
@@ -220,6 +230,18 @@ func New(opts Options) *Lobby {
 	}
 	if l.rates == nil {
 		l.rates = rewards.DefaultRates
+	}
+	if l.items == nil {
+		// Item rooms are refused without it; the node's app loads it at
+		// startup and fails there instead.
+		if data, err := itemmode.Default(); err != nil {
+			l.log.Error("item race data unavailable", "error", err)
+		} else {
+			l.items = data
+		}
+	}
+	if l.itemRandom == nil {
+		l.itemRandom = newItemRandom
 	}
 	return l
 }
@@ -332,6 +354,8 @@ func (l *Lobby) dispatch(c *Client, typ string, in Request, check *ownershipChec
 		return l.teamCharge(c, in)
 	case "award-motion":
 		return l.awardMotion(c, in)
+	case "item":
+		return l.itemCommand(c, in)
 	default:
 		return nil, fail(http.StatusBadRequest, "UNSUPPORTED_COMMAND")
 	}
@@ -637,9 +661,9 @@ func (l *Lobby) create(c *Client, in Request, check *ownershipCheck) (obj, error
 	}
 	var mode string
 	switch channel {
-	case "speedIndiCombine", "speedIndiInfinit":
+	case "speedIndiCombine", "speedIndiInfinit", "itemIndiCombine":
 		mode = "individual"
-	case "speedTeamCombine", "speedTeamInfinit":
+	case "speedTeamCombine", "speedTeamInfinit", "itemTeamCombine":
 		mode = "team"
 	default:
 		return nil, fail(http.StatusBadRequest, "INVALID_CHANNEL")
@@ -689,6 +713,9 @@ func (l *Lobby) create(c *Client, in Request, check *ownershipCheck) (obj, error
 	if err := validateCreation(gameplay, channel, c.resourceVersion, capacity); err != nil {
 		return nil, err
 	}
+	if gameplay == "item" && l.items == nil {
+		return nil, fail(http.StatusBadRequest, "INVALID_GAMEPLAY")
+	}
 	password := ""
 	if value, err := in.optionalText("password", 12); err != nil {
 		return nil, err
@@ -706,6 +733,7 @@ func (l *Lobby) create(c *Client, in Request, check *ownershipCheck) (obj, error
 	r := newRoom(newUUID(), name, password, mode, channel, gameplay,
 		c.resourceVersion, capacity, speed, c.playerID)
 	initializeTrack(r)
+	l.initializeItemTrack(r)
 	team := 0
 	if mode == "team" {
 		team = 1
@@ -993,7 +1021,7 @@ func (l *Lobby) applyMutation(r *room, m *member, c *Client, typ string, in Requ
 		if !identifierPattern.MatchString(track) {
 			return fail(http.StatusBadRequest, "INVALID_TRACK")
 		}
-		if err := validateTrack(r, track); err != nil {
+		if err := l.validateTrack(r, track); err != nil {
 			return err
 		}
 		r.trackID = track
@@ -1013,7 +1041,7 @@ func (l *Lobby) applyMutation(r *room, m *member, c *Client, typ string, in Requ
 		if !slices.Contains(randomTrackCodes, code) {
 			return fail(http.StatusBadRequest, "INVALID_TRACK")
 		}
-		if err := validateRandomTrack(r, code); err != nil {
+		if err := l.validateRandomTrack(r, code); err != nil {
 			return err
 		}
 		r.trackID = ""
@@ -1262,12 +1290,14 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 	switch r.gameplay {
 	case "roadblock", "giant", "rp", "lte":
 		loadingWindow = 90_000
+	case "item":
+		loadingWindow = itemLoadingWindowMs
 	}
 	rc := &race{
 		id:                  newUUID(),
 		channelName:         r.channelName,
 		gameplay:            r.gameplay,
-		trackID:             chooseTrack(r),
+		trackID:             l.chooseTrack(r),
 		loadingDeadline:     l.clock.Now() + loadingWindow,
 		rosterAccounts:      map[string]string{},
 		rosterNames:         map[string]string{},
@@ -1277,6 +1307,8 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 		teamChargeSequences: map[string]int{},
 		teamGaugeSequences:  map[int]int{},
 		teamGaugeTargets:    map[int]float64{},
+		current:             map[string]routeSample{},
+		itemSequences:       map[string]int{},
 	}
 	for _, m := range r.members {
 		rc.roster = append(rc.roster, m.snapshot())
@@ -1288,6 +1320,7 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 	}
 	r.race = rc
 	addRaceData(r, rc)
+	l.startItemRace(r, rc)
 	r.kickVote = nil
 	r.phase = "loading"
 	r.raceError = ""
@@ -1567,8 +1600,9 @@ func (l *Lobby) teamCharge(c *Client, in Request) (obj, error) {
 		return nil, err
 	}
 	rc := r.race
-	if r.mode != "team" || r.speed == 4 || r.gameplay == "grip" || r.phase != "racing" ||
-		!rc.isLoaded(c.playerID) {
+	// Item team races have no team gauge (stage_itemTeamGame).
+	if r.mode != "team" || r.speed == 4 || r.gameplay == "grip" || r.gameplay == "item" ||
+		r.phase != "racing" || !rc.isLoaded(c.playerID) {
 		return nil, fail(http.StatusBadRequest, "TEAM_GAUGE_UNAVAILABLE")
 	}
 	team := r.member(c.playerID).team
@@ -1680,6 +1714,13 @@ func (l *Lobby) finalizeRace(roomID, raceID string) {
 		rc.winningTeam = 1
 		if scores[1] > scores[0] {
 			rc.winningTeam = 2
+		}
+		// Item team races (ITEM_MODE.md 8): the first finisher's team wins;
+		// the scores stay for the snapshot.
+		if r.gameplay == "item" && len(rc.results) > 0 && rc.results[0].elapsedMs != nil {
+			if team := rc.rosterTeams[rc.results[0].playerID]; team != 0 {
+				rc.winningTeam = team
+			}
 		}
 	}
 	l.awardRanked(r)
@@ -1871,6 +1912,11 @@ func (l *Lobby) setRewards(r *room, in rewards.RaceInput, excluded []string) {
 // neither team gets the bonus, although race.winningTeam keeps the Java
 // value (team 1 on a tie) for display.
 func rewardedTeam(rc *race) int {
+	// An item team race is won by the first finisher's team, whatever the
+	// scores.
+	if rc.gameplay == "item" {
+		return rc.winningTeam
+	}
 	if rc.teamScores != nil && rc.teamScores[0] == rc.teamScores[1] {
 		return 0
 	}
