@@ -736,3 +736,16 @@ test("a throwing presenter, physics or connection never reaches the race loop", 
   press(g, 1000);
   assert.equal(g.physics.boosters, 1);
 });
+
+test("reset forgets every transient state and the presenter's visuals", async () => {
+  const f = controllerFixture();
+  await holding(f, [7, 10]);
+  used(f, { useId: 5, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(0), etaMs: 900 });
+  f.connection.emit({ action: "scan", playerId: RIVAL, slots: [7, -1], until: server(9000) });
+  f.controller.reset();
+  assert.equal(f.controller.incoming.size, 0);
+  assert.equal(f.controller.scans.size, 0);
+  assert.deepEqual(f.controller.hudState(0).slots, [-1, -1]);
+  assert.deepEqual(f.physics.slotsSet.at(-1), [-1, -1]);
+  assert.deepEqual(f.presenter.calls.at(-1), ["reset"]);
+});

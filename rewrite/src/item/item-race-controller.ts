@@ -369,6 +369,7 @@ export class ItemRaceController implements ItemCommandHandler {
     this.log.length = 0;
     this.slots.reset();
     this.applySlots(this.nowMs);
+    this.presenterCall(presenter => presenter.reset());
   }
 
   dispose(): void {
