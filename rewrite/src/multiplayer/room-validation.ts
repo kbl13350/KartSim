@@ -79,6 +79,8 @@ export interface RaceSnapshot {
     limitMs: 180000; noRunnerManualReset: true };
   roadblockOutcome?: { runnerWon: boolean; reason: "finish" | "timeout" | "runner-left";
     endAt: number };
+  /** Account rewards after the race (ECONOMY.md 2.1); see account/rewards.ts. */
+  rewards?: Record<string, { exp: number; lucci: number }>;
 }
 
 export interface RoomSnapshot {

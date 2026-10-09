@@ -142,6 +142,10 @@ export interface MyRoomSceneAnchors {
    * parking01-07 row behind the plaza is left for visiting riders' karts.
    */
   displayParking: Vector3[];
+  /** The parking01-07 row behind the plaza, by spot number; rooms may omit spots. */
+  backRow: Array<Vector3 | undefined>;
+  /** The front hall's centre: the middle of the rider00-07 standing spots. */
+  hall: Vector3;
   minX: number;
   maxX: number;
   minZ: number;
@@ -177,12 +181,20 @@ export function myRoomSceneAnchors(model: ParsedRoom): MyRoomSceneAnchors {
   const displayParking = ["parking08", "parking09"]
     .filter(name => objects.some(object => object.kind === "ToDummy" && object.name === name))
     .map(dummy);
+  const backRow = [1, 2, 3, 4, 5, 6, 7].reduce<Array<Vector3 | undefined>>((row, spot) => {
+    const name = `parking0${spot}`;
+    row[spot] = objects.some(object => object.kind === "ToDummy" && object.name === name)
+      ? dummy(name) : undefined;
+    return row;
+  }, []);
   const riderPoints = objects.filter(object => object.kind === "ToDummy" &&
     /^rider\d\d$/.test(object.name)).map(object => nativePoint(object.transform.position));
+  const hall = riderPoints.reduce((sum, point) => sum.add(point), new Vector3())
+    .multiplyScalar(1 / riderPoints.length).setY(rider.y);
   const xs = [...riderPoints.map(point => point.x), parking.x];
   const zs = [...riderPoints.map(point => point.z), parking.z];
   return {
-    rider, parking, displayParking,
+    rider, parking, displayParking, backRow, hall,
     minX: Math.min(...xs) - 0.8,
     maxX: Math.max(...xs) + 1.2,
     minZ: Math.min(...zs) - 1,
@@ -305,6 +317,71 @@ function resolveRoomTexture(library: MyRoomSceneLibrary, path: string,
     : resolved;
 }
 
+/**
+ * Lobby showcase pose: the rider and kart side by side where
+ * `myRoomShowcaseCenter` puts them, seen from the room's usual +Z camera.
+ */
+export interface MyRoomShowcasePose {
+  /** How far in front of a straight back row's spots 4 and 5 the pair stands. */
+  ahead: number;
+  /** The kart from the rider; its x grows with the room's kart scale. */
+  kart: Vector3;
+  /** Kart yaw; zero faces the camera. */
+  kartYaw: number;
+  /** Rider yaw; zero faces the camera. */
+  riderYaw: number;
+  /** Camera target from the middle of the pair. */
+  target: Vector3;
+  /** Camera distance for karts at their normal size; larger karts pull it back. */
+  distance: number;
+  pitch: number;
+}
+
+export function myRoomShowcasePose(): MyRoomShowcasePose {
+  return {
+    ahead: 2.5,
+    kart: new Vector3(-2.15, 0, -0.3),
+    kartYaw: Math.PI * 0.33,
+    riderYaw: -Math.PI * 0.06,
+    target: new Vector3(0.525, 2.15, 2.05),
+    distance: 5.2,
+    pitch: Math.PI * 0.06,
+  };
+}
+
+/** Spots 4 and 5 count as one back row when this level with each other and the floor. */
+const ROW_TOLERANCE = 0.5;
+const SHELF_HEIGHT = 1;
+
+/** Whether parking04 and parking05 sit side by side in a straight back row on the floor. */
+export function myRoomBackRowStraight(anchors: Pick<MyRoomSceneAnchors, "rider" | "backRow">):
+  boolean {
+  const four = anchors.backRow[4];
+  const five = anchors.backRow[5];
+  return !!four && !!five && Math.abs(four.z - five.z) <= ROW_TOLERANCE &&
+    Math.abs(four.x - five.x) > ROW_TOLERANCE && four.z < anchors.rider.z &&
+    Math.max(four.y, five.y) - anchors.rider.y <= SHELF_HEIGHT;
+}
+
+/**
+ * Where the pair stands, on rider00's floor. Rooms whose back row runs
+ * straight behind the plaza put it a little in front of the midpoint of
+ * parking04 and parking05. Special rooms (rows that turn a corner or run
+ * down the side, the VIP room's display shelves, missing spots) put it at
+ * the front hall's centre instead.
+ */
+export function myRoomShowcaseCenter(anchors: Pick<MyRoomSceneAnchors, "rider" | "backRow" | "hall">,
+  ahead: number): Vector3 {
+  if (!myRoomBackRowStraight(anchors)) return anchors.hall.clone().setY(anchors.rider.y);
+  return anchors.backRow[4]!.clone().add(anchors.backRow[5]!).multiplyScalar(0.5)
+    .setY(anchors.rider.y).add(new Vector3(0, 0, ahead));
+}
+
+export interface MyRoomSceneOptions {
+  /** A still lobby view: no walking or zoom, rider and kart posed together. */
+  showcase?: MyRoomShowcasePose;
+}
+
 /** Follow camera distance at zoom 1, close behind the walking character. */
 const FOLLOW_DISTANCE = 8;
 const FOLLOW_MIN_ZOOM = 0.7;
@@ -356,9 +433,14 @@ export class MyRoomSceneView {
   private disposed = false;
   private readonly resizeObserver?: ResizeObserver;
 
-  constructor(readonly root: HTMLElement, readonly library: MyRoomSceneLibrary) {
-    this.canvas.setAttribute("aria-label", "原版小屋三维场景，可用 WASD 行走，滚轮缩放");
-    this.canvas.tabIndex = 0;
+  private readonly showcase?: MyRoomShowcasePose;
+
+  constructor(readonly root: HTMLElement, readonly library: MyRoomSceneLibrary,
+    options: MyRoomSceneOptions = {}) {
+    this.showcase = options.showcase;
+    this.canvas.setAttribute("aria-label", this.showcase
+      ? "大厅三维场景" : "原版小屋三维场景，可用 WASD 行走，滚轮缩放");
+    this.canvas.tabIndex = this.showcase ? -1 : 0;
     this.canvas.style.width = "100%";
     this.canvas.style.height = "100%";
     this.canvas.style.display = "block";
@@ -369,6 +451,14 @@ export class MyRoomSceneView {
     this.status.style.cssText = "position:absolute;left:12px;top:76px;z-index:2;padding:6px 10px;max-width:calc(100% - 24px);border-radius:6px;background:#102b49d9;color:#fff;font:13px/1.4 system-ui,sans-serif;pointer-events:none";
     this.status.textContent = "等待载入原版小屋场景…";
     root.append(this.canvas, this.status);
+    if (this.showcase) {
+      this.canvas.style.pointerEvents = "none";
+      if (typeof ResizeObserver !== "undefined") {
+        this.resizeObserver = new ResizeObserver(() => this.resize());
+        this.resizeObserver.observe(root);
+      }
+      return;
+    }
     this.canvas.addEventListener("pointerdown", this.onPointerDown);
     this.canvas.addEventListener("blur", this.onCanvasBlur);
     this.canvas.addEventListener("wheel", this.onWheel, { passive: false });
@@ -428,6 +518,8 @@ export class MyRoomSceneView {
       this.avatarNeedsGrounding = Boolean(this.avatar);
       this.kartNeedsGrounding = Boolean(this.avatar);
       this.placeSubject();
+      // The lobby camera is fixed before the rider and kart arrive.
+      if (this.showcase && !this.avatar) this.placeShowcase(this.showcase);
       this.positionCamera();
       this.room.reset(0);
       this.sky.reset(0);
@@ -755,10 +847,76 @@ export class MyRoomSceneView {
     if (!this.playerRoot.parent) this.scene.add(this.playerRoot);
     if (!this.parkedKartRoot.parent) this.scene.add(this.parkedKartRoot);
     this.placeDisplays();
+    if (this.showcase) {
+      this.placeShowcase(this.showcase);
+      return;
+    }
     this.followingPlayer = true;
     this.pitch = Math.PI * 0.045;
     this.cameraTarget.copy(this.playerRoot.position).add(new Vector3(0, 1.8, 0));
     this.lastFrameTime = 0;
+  }
+
+  /** Stand the rider beside the kart and fix the camera on them. */
+  private placeShowcase(pose: MyRoomShowcasePose): void {
+    if (!this.anchors) return;
+    const center = myRoomShowcaseCenter(this.anchors, pose.ahead);
+    const scale = this.environmentKartScale;
+    const kart = new Vector3(pose.kart.x * scale, pose.kart.y, pose.kart.z);
+    const rider = center.clone().addScaledVector(kart, -0.5);
+    this.playerRoot.position.copy(rider);
+    this.playerRoot.rotation.y = pose.riderYaw;
+    this.parkedKartRoot.position.copy(rider).add(kart);
+    this.parkedKartRoot.rotation.y = pose.kartYaw;
+    this.riderGroundY = this.floorMeasured ? this.floorBelow(this.playerRoot.position)
+      : this.playerRoot.position.y;
+    this.parkingGroundY = this.floorMeasured ? this.floorBelow(this.parkedKartRoot.position)
+      : this.parkedKartRoot.position.y;
+    this.followingPlayer = false;
+    this.pitch = pose.pitch;
+    this.zoom = 1;
+    this.frame = { target: center.clone().add(pose.target),
+      distance: pose.distance * (1 + (scale - 1) * 0.6) };
+    this.avatarNeedsGrounding = Boolean(this.avatar);
+    this.kartNeedsGrounding = Boolean(this.avatar);
+  }
+
+  /** Change the lobby pose in place, keeping the loaded room and models. */
+  setShowcasePose(pose: MyRoomShowcasePose): void {
+    if (!this.showcase) return;
+    Object.assign(this.showcase, pose);
+    this.characterGroundRoot.position.y = 0;
+    this.parkedKartRoot.position.y = 0;
+    this.placeShowcase(this.showcase);
+  }
+
+  /** Whether the room and the posed rider and kart have been drawn. */
+  get ready(): boolean {
+    return !!this.room && !!this.avatar && this.floorMeasured &&
+      !this.avatarNeedsGrounding && !this.kartNeedsGrounding;
+  }
+
+  /**
+   * The current view as a small 2D image. The scene is drawn again first so
+   * the WebGL buffer still holds it when it is copied.
+   */
+  snapshot(maxWidth = 960): HTMLCanvasElement | undefined {
+    if (this.disposed || !this.renderer || !this.room || !this.sky ||
+        !this.canvas.width || !this.canvas.height) return undefined;
+    try {
+      this.renderer.clear(true, true, true);
+      this.renderer.render(this.skyScene, this.camera);
+      this.renderer.clearDepth();
+      this.renderer.render(this.scene, this.camera);
+      const scale = Math.min(1, maxWidth / this.canvas.width);
+      const image = document.createElement("canvas");
+      image.width = Math.max(1, Math.round(this.canvas.width * scale));
+      image.height = Math.max(1, Math.round(this.canvas.height * scale));
+      image.getContext("2d")?.drawImage(this.canvas, 0, 0, image.width, image.height);
+      return image;
+    } catch {
+      return undefined;
+    }
   }
 
   /** The dummy can be above the paving; use the closest rendered floor below it. */
@@ -774,6 +932,11 @@ export class MyRoomSceneView {
   private measureGround(): void {
     if (!this.anchors || !this.room) return;
     const floor = (point: Vector3): number => this.floorBelow(point);
+    if (this.showcase) {
+      this.floorMeasured = true;
+      this.placeShowcase(this.showcase);
+      return;
+    }
     this.riderGroundY = floor(this.anchors.rider);
     this.parkingGroundY = floor(this.anchors.parking);
     const { minX, maxX, minZ, maxZ } = this.anchors;

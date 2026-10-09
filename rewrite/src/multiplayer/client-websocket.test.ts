@@ -64,11 +64,11 @@ function makeHost() {
   return { host, events, binary, closed: () => closed };
 }
 
-test("the local WebSocket uses one channel for the existing hello, clock, room and motion protocol", async () => {
-  const socket = new FakeSocket("ws://127.0.0.1:8787/multiplayer/ws");
+test("the game server WebSocket uses one channel for the existing hello, clock, room and motion protocol", async () => {
+  const socket = new FakeSocket("ws://127.0.0.1:8788/multiplayer/ws");
   const { host, events, binary, closed } = makeHost();
-  const connection = connectGameClient(host, "http://127.0.0.1:8787/multiplayer/offer",
-    "Tester", "p3553", {}, "", true, "session-token", {
+  const connection = connectGameClient(host, "http://127.0.0.1:8788/multiplayer/offer",
+    "Tester", "p3553", {}, "", true, "kt1.entry.ticket", {
       transport: "websocket", webSocketFactory: url => {
         assert.equal(url, socket.url);
         queueMicrotask(() => socket.open());
@@ -84,7 +84,9 @@ test("the local WebSocket uses one channel for the existing hello, clock, room a
   assert.equal(host.clock.capture(100)?.offsetMs, 20);
   assert.deepEqual(socket.sent.slice(0, 4).map(value => JSON.parse(String(value)).type),
     ["hello", "clock", "clock", "clock"]);
-  assert.equal((JSON.parse(String(socket.sent[0])) as { token: string }).token, "session-token");
+  const hello = JSON.parse(String(socket.sent[0])) as Record<string, unknown>;
+  assert.equal(hello.ticket, "kt1.entry.ticket");
+  assert.equal("token" in hello, false, "the session token never reaches a game server");
   assert.deepEqual(await host.request({ type: "list-ordinary", page: 0 }),
     { type: "rooms", requestId: "5", page: 0, total: 0, rooms: [] });
   socket.receive({ type: "left", roomId: "room-a" });
@@ -102,4 +104,22 @@ test("WebSocket URL conversion rejects unexpected endpoints", () => {
     "wss://example.test/multiplayer/ws");
   assert.throws(() => websocketUrlForOffer("http://example.test/private/offer"));
   assert.throws(() => websocketUrlForOffer("http://example.test/multiplayer/offer?token=x"));
+});
+
+test("hello omits the ticket field when no ticket is supplied", async () => {
+  const socket = new FakeSocket("ws://127.0.0.1:8788/multiplayer/ws");
+  const { host } = makeHost();
+  await connectGameClient(host, "http://127.0.0.1:8788/multiplayer/offer",
+    "Tester", "p3553", {}, "", false, undefined, {
+      transport: "websocket", webSocketFactory: () => {
+        queueMicrotask(() => socket.open());
+        return socket as unknown as WebSocket;
+      },
+      now: () => 100,
+      validateControlMessage: value => parseServerMessage(value) as ServerControlEvent,
+    });
+  const hello = JSON.parse(String(socket.sent[0])) as Record<string, unknown>;
+  assert.deepEqual(Object.keys(hello).sort(), ["equipment", "initial", "name", "protocolVersion",
+    "raceRuntime", "requestId", "resourceVersion", "ruleset", "type"]);
+  host.dispose();
 });

@@ -1,4 +1,20 @@
 /** Ends live multiplayer presentation and opens the race result scene. */
+import { showAccountToast, type OverlayDocument } from "../account/account-dialogs";
+import { activeBrowserSession, refreshAccountAfterRace } from "../account/account-runtime";
+import { formatRaceReward, parseRaceRewards } from "../account/rewards";
+
+/**
+ * 挡人模式 has no result rows to carry the reward, so the local player's
+ * `race.rewards` entry is announced instead (ECONOMY.md 2.1).
+ */
+export function announceRoadblockReward(rewards: unknown, playerId: unknown,
+  show: (message: string) => void = message => {
+    if (typeof document !== "undefined" && activeBrowserSession())
+      showAccountToast(document as unknown as OverlayDocument, message, 6_000);
+  }): void {
+  const reward = parseRaceRewards(rewards).get(String(playerId));
+  if (reward) show(`本局奖励 ${formatRaceReward(reward)}`);
+}
 
 interface ResultRow { playerId: unknown; [key: string]: unknown }
 interface RaceSnapshot {
@@ -6,6 +22,7 @@ interface RaceSnapshot {
   roadblockOutcome?: { runnerWon: boolean };
   roster: unknown;
   winningTeam?: unknown;
+  rewards?: unknown;
 }
 interface ResultVehicle {
   imported: {
@@ -135,6 +152,8 @@ export function showRacePresenterResults(host: RacePresenterResultsHost,
     host.resultVisible = true;
     host.bgm?.playResult(snapshot.roadblockOutcome?.runnerWon ===
       (snapshot.roadblock.runnerId === host.playerId));
+    announceRoadblockReward(snapshot.rewards, host.playerId);
+    refreshAccountAfterRace();
     return;
   }
 
@@ -167,4 +186,6 @@ export function showRacePresenterResults(host: RacePresenterResultsHost,
   host.resultView.show(results, nowMs, snapshot);
   host.resultVisible = true;
   host.bgm?.playMultiplayerPodium();
+  // race.rewards are credited by the data service; catch the wallet and level up.
+  refreshAccountAfterRace();
 }

@@ -1,4 +1,5 @@
 /** Multiplayer finish screen assembled from the game's original BML panels. */
+import { formatRaceReward, parseRaceRewards, type RaceReward } from "../account/rewards";
 
 export interface ResultNode {
   name: string;
@@ -42,7 +43,17 @@ export interface ResultViewDependencies {
   newPageClock(time: number): {
     update(time: number): { offset: number; complete: boolean };
   };
+  /**
+   * Add a "+经验 +金币" label to each row for `race.rewards` (ECONOMY.md 2.1).
+   * Off keeps the release page exactly.
+   */
+  showRewards?: boolean;
 }
+
+/** The reward label sits between the name and the time columns of both row layouts. */
+const REWARD_LABEL = {
+  leftTopWH: "300 15 196 30", textAlign: "right,vcenter", textColor: "255 255 222 0",
+};
 
 const folder = "stage_/mqGameFinal";
 
@@ -63,6 +74,7 @@ export class MultiplayerResultView {
   pageWidth = 0;
   teamScores?: Record<number, number>;
   winningTeam?: number;
+  rewards = new Map<string, RaceReward>();
   private newPageClock!: ResultViewDependencies["newPageClock"];
 
   static async load(library: unknown, root: unknown, race: ResultRace,
@@ -96,7 +108,12 @@ export class MultiplayerResultView {
     const rows = race.roster.map((_, index) => {
       const left = listMargin[0]!;
       const top = listMargin[1]! + index * rowHeight;
-      const row = prefixedCopy(rowTemplate, `row${index}/`, deps);
+      const copy = prefixedCopy(rowTemplate, `row${index}/`, deps);
+      const nameLabel = deps.showRewards
+        ? copy.children.find(child => deps.attribute(child, "name") === `row${index}/id`)
+        : undefined;
+      const row = nameLabel ? deps.cloneNode(copy, {}, [...copy.children,
+        deps.cloneNode(nameLabel, { ...REWARD_LABEL, name: `row${index}/reward` })]) : copy;
       const rectangle = { windowRect: `${left} ${top} ${left + 664} ${top + rowHeight}` };
       if (!teamStyles) {
         return deps.cloneNode(row, rectangle, row.children.map(child =>
@@ -197,6 +214,10 @@ export class MultiplayerResultView {
         Number(teamPart[2]),
     };
     if (part === "tp") return { text: String(result.points) };
+    if (part === "reward") {
+      const reward = this.rewards.get(String(result.playerId));
+      return reward ? { visible: true, text: formatRaceReward(reward) } : { visible: false };
+    }
     if (["timeCon2", "titleCont", "team"].includes(part!)) return { visible: false };
     if (part === "colorBg" || part === "meLine")
       return { visible: result.playerId === localPlayerId };
@@ -213,9 +234,11 @@ export class MultiplayerResultView {
   }
 
   show(results: ResultEntry[], time = performance.now(),
-    outcome?: { teamScores?: Record<number, number>; winningTeam?: number }): void {
+    outcome?: { teamScores?: Record<number, number>; winningTeam?: number;
+      rewards?: unknown }): void {
     this.teamScores = outcome?.teamScores;
     this.winningTeam = outcome?.winningTeam;
+    this.rewards = parseRaceRewards(outcome?.rewards);
     this.results = results.map(result => ({ ...result }));
     this.page = this.newPageClock(time);
     this.pageOffset = -this.pageWidth;

@@ -4,8 +4,8 @@ import test from "node:test";
 import { parse } from "@babel/parser";
 
 import {
-  updateGarageControls, type GarageControlsDependencies, type GarageControlsHost,
-  type GarageControlsVehicle, type GaragePartCardLayout,
+  GARAGE_PRACTICE_NOTICE, updateGarageControls, type GarageControlsDependencies,
+  type GarageControlsHost, type GarageControlsVehicle, type GaragePartCardLayout,
 } from "./garage-controls";
 import type { GaragePart, GaragePartSlot } from "./garage-parts-business";
 
@@ -286,6 +286,26 @@ function fixture(released: boolean) {
   };
 }
 
+interface ElementSnapshot {
+  className: string;
+  text: string;
+  attributes: Array<[string, string]>;
+  properties: Array<[string, string]>;
+  children: ElementSnapshot[];
+}
+
+/**
+ * The release wrote the practice kart notice as bare text into the part grid,
+ * where it landed in the first card cell; the rewrite centers it in its own
+ * element. Everything else about the practice page matches the release.
+ */
+function practiceNoticeAsText(state: unknown): unknown {
+  const value = state as { inventory: ElementSnapshot };
+  const [notice, ...rest] = value.inventory.children;
+  if (!notice?.className.includes("garage-practice-notice") || rest.length) return state;
+  return { ...value, inventory: { ...value.inventory, text: notice.text, children: [] } };
+}
+
 function withDocument<T>(fakeDocument: unknown, callback: () => T): T {
   const previous = globalThis.document;
   globalThis.document = fakeDocument as Document;
@@ -326,10 +346,37 @@ test("level fallback, XUN and classic progression panels match As", () => {
       f.setCustomizable(false);
       f.update();
       states.push(f.snapshot());
-      return states;
+      return states.map(practiceNoticeAsText);
     });
   };
   assert.deepEqual(run(false), run(true));
+});
+
+test("practice kart notice is centered over the part list, not crammed into its first cell", () => {
+  const f = fixture(false);
+  const state = withDocument(f.fakeDocument, () => {
+    f.setCustomizable(false);
+    f.update();
+    return f.snapshot();
+  });
+  const inventory = state.inventory as ElementSnapshot;
+  assert.equal(inventory.text, "", "no bare text node in the three-column grid");
+  assert.equal(inventory.children.length, 1);
+  const notice = inventory.children[0]!;
+  assert.equal(notice.text, GARAGE_PRACTICE_NOTICE);
+  assert.equal(notice.className, "garage-parts-notice garage-practice-notice");
+  assert.deepEqual(new Map(notice.attributes).get("role"), "status");
+  const style = new Map(notice.properties);
+  // It covers the whole list and centers its text both ways.
+  assert.equal(style.get("position"), "absolute");
+  assert.equal(style.get("inset"), "0");
+  assert.equal(style.get("display"), "flex");
+  assert.equal(style.get("align-items"), "center");
+  assert.equal(style.get("justify-content"), "center");
+  assert.equal(style.get("pointer-events"), "none");
+  assert.equal((state.remove as { disabled: boolean }).disabled, true);
+  const events = state.events as unknown[];
+  assert.deepEqual(events.slice(-2), ["page-visibility", "cards"]);
 });
 
 test("parts inventory cards, cosmetic tab and missing layout match As", () => {

@@ -8,16 +8,21 @@ const projectDir = fileURLToPath(new URL(".", import.meta.url));
 const mirrorDir = fileURLToPath(new URL("../mirror", import.meta.url));
 
 // run-lan.sh serves other devices over HTTPS: the game needs a secure context
-// (crypto.subtle, crypto.randomUUID, OPFS), and the Java service is proxied on
-// the page origin so those pages can reach it without mixed content.
+// (crypto.subtle, crypto.randomUUID, OPFS), and the services are proxied on
+// the page origin so those pages can reach them without mixed content. The
+// game server WebSocket goes to one game node (listed with a null origin,
+// KART_PUBLIC_ORIGIN=same-origin); every other request goes to the data service.
 const lanCert = process.env.KART_LAN_CERT;
 const lanKey = process.env.KART_LAN_KEY;
 const backend = process.env.KART_LAN_BACKEND ?? "http://127.0.0.1:8787";
+const gameBackend = process.env.KART_LAN_GAME_BACKEND ?? "http://127.0.0.1:8788";
 const lan = lanCert && lanKey ? {
   https: { cert: readFileSync(lanCert), key: readFileSync(lanKey) },
+  // Vite tries these in order, so the WebSocket route must come first. All are
+  // anchored so /multiplayer-config.js stays a static file.
   proxy: {
-    // Anchored so /multiplayer-config.js stays a static file.
-    "^/multiplayer/": { target: backend, ws: true, xfwd: true },
+    "^/multiplayer/ws(?:[?#]|$)": { target: gameBackend, ws: true, xfwd: true },
+    "^/multiplayer/": { target: backend, xfwd: true },
     "^/api/": { target: backend, xfwd: true },
   },
 } : {};

@@ -1,3 +1,5 @@
+import { updateStoryChase, type ChaseStage } from "../story/story-chase";
+
 // Presentation owners still come from the generated client. Their renderer,
 // physics and asset types will be narrowed as those systems are migrated.
 interface LegacyFrameHost {
@@ -29,8 +31,14 @@ export interface TimeAttackUpdateStage {
   released: boolean;
   ghostPoseBuffer: any[];
   ghostPoses: any[];
-  ghostRouteProgress: { update(ghost: any, playback: any, timeMs: number, position: any): void };
-  ui?: { trackInfoCard?: { update(nowMs: number): void } };
+  ghostRouteProgress: {
+    update(ghost: any, playback: any, timeMs: number, position: any): void;
+    distance(ghost: any): number;
+  };
+  ui?: {
+    trackInfoCard?: { update(nowMs: number): void };
+    action2D?: { setChaseDistance?(metres: number | undefined): void };
+  };
   updateDriving(rawNowMs: number): void;
 }
 
@@ -110,7 +118,10 @@ export function updateTimeAttackStage(
     const poseBuffer = stage.ghostPoseBuffer;
     for (let index = 0; index < ghosts.length; index += 1) {
       const ghost = ghosts[index];
-      const sample = ghost.playback.sample(ghostTimeMs);
+      // Story chase rivals run ahead (+) or behind (−) the race clock; never
+      // before stamp 0, which is a sentinel at the world origin.
+      const timeMs = Math.max(0, ghostTimeMs + (ghost.timeOffsetMs ?? 0));
+      const sample = ghost.playback.sample(timeMs);
       mark?.("kt-ghost-sample");
       ghost.view.update(sample, effectiveNowMs, host.camera,
         dependencies.worldAxis, dependencies.depthAxis, mark);
@@ -118,11 +129,13 @@ export function updateTimeAttackStage(
         "sample" in sample ? sample.sample : sample,
         poseBuffer[index],
       );
-      stage.ghostRouteProgress.update(ghost, ghost.playback, ghostTimeMs, pose.position);
+      stage.ghostRouteProgress.update(ghost, ghost.playback, timeMs, pose.position);
       pose.markerTint = host.session.rankColors[index + 1];
     }
     ghostPoses = poseBuffer;
   }
+  // Story Tracing / Escape: the gap panel and the per-frame verdict.
+  updateStoryChase(stage as unknown as ChaseStage, rawNowMs);
   mark?.("kt-ghost");
 
   const cameraState = host.getPhysics().driveCameraRuntime();

@@ -8,6 +8,7 @@ import { admitMovingObstacle, transformObstaclePoint } from "../resources/moving
 import { extractTrackRoute, itemGameOnly, readTrackSettings, soloTrackMode, trackRuntimeIssues } from "../resources/track-model-admission.ts";
 import { blockedKartMessage, defaultLegacyKartState, isBlockedKartId, kartCatalogIdentity, legacyKartFamilies, legacyKartStateForAlias, requirePlayableKartId, resolveKartSelection, stableSystemKartKey } from "../resources/system-kart-identity.ts";
 import { layoutSpriteFont, layoutSpriteFontInto, spriteFontLayoutForPanel } from "../resources/font-glyph-layout.ts";
+import { timeAttackRewardText } from "../timeattack/result-rewards.ts";
 import { warmRendererResources } from "../resources/renderer-warmup.ts";
 import { extractTrackRoads } from "../resources/track-road-extraction.ts";
 import { anyRoadIssue, isMovableRoad, movingRoadIssue, roadRail, roadSound, roadSurface, staticRoadIssue } from "../resources/track-road-descriptor.ts";
@@ -4260,6 +4261,8 @@ function gX(n, e, t, i) {
     o = {
       crash: hM(e.crashCount, "crashCount"),
       booster: hM(e.boosterCount, "boosterCount"),
+      exp: timeAttackRewardText(e.rewardExp),
+      lucci: timeAttackRewardText(e.rewardLucci),
     },
     a = dn(n.windowTree, t, i, {
       visibility: (c) => (n.visiblePanels.has(c) ? !0 : void 0),
@@ -4286,8 +4289,8 @@ function mX(n, e, t) {
     uM(i, ue(n, "bestinfo"), "best"),
     i.set(ue(ue(e, "crashInfo"), "count"), "crash-count"),
     i.set(ue(ue(e, "boosterInfo"), "count"), "booster-count"),
-    i.set(ue(t, "RP"), "initial-reward"),
-    i.set(ue(t, "Lucci"), "initial-reward"),
+    i.set(ue(t, "RP"), "reward-exp"),
+    i.set(ue(t, "Lucci"), "reward-lucci"),
     i
   );
 }
@@ -4302,7 +4305,8 @@ function wX(n, e, t, i) {
   if (n === void 0) return;
   if (n === "crash-count") return i.crash;
   if (n === "booster-count") return i.booster;
-  if (n === "initial-reward") return " +0";
+  if (n === "reward-exp") return i.exp;
+  if (n === "reward-lucci") return i.lucci;
   const [r, s] = n.split("-");
   return (r === "elapsed" ? e : t)[s];
 }

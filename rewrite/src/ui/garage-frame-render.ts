@@ -1,4 +1,5 @@
 import type { GaragePreviewRect } from "./garage-transform-preview";
+import { drawOwnershipBadge } from "./ownership-badge";
 
 export interface GarageFrameVehicle {
   itemId: number;
@@ -256,6 +257,7 @@ export function renderGarageFrame(host: GarageFrameRenderHost,
       host.drawKartCatalogFrame(context, rect, selected, isHovered?.());
     host.panels!.drawCard(context, item, rect);
     host.drawKartLevelBadge(context, item, rect);
+    if (host.pageMode !== "factory") drawOwnershipBadge(context, item, rect);
     if (host.pageMode === "factory" && selected)
       host.factoryPanel?.drawCatalogFrame(context, index, true);
   });

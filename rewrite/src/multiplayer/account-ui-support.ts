@@ -15,7 +15,7 @@ export function styleAccountButtons(...buttons: { style: { cssText: string } }[]
 }
 
 export const accountErrorMessages: Record<string, string> = {
-  INVALID_ACCOUNT_FIELDS: "账号名须为 3–24 位字母、数字或下划线；昵称 2–16 字；密码至少 12 位。",
+  INVALID_ACCOUNT_FIELDS: "账号名须为 3–24 位字母、数字或下划线；昵称 1–16 字；密码至少 8 位。",
   INVALID_INVITE: "邀请码无效或已被使用。",
   USERNAME_TAKEN: "账号名已被使用。",
   NICKNAME_TAKEN: "昵称已被使用。",
@@ -23,6 +23,25 @@ export const accountErrorMessages: Record<string, string> = {
   TOO_MANY_ATTEMPTS: "尝试过于频繁，请稍后再试。",
   ACCOUNTS_UNAVAILABLE: "账号服务尚未启用。",
   NOT_FOUND: "联机后端尚未更新到账号版本。",
+  // The data service answers 503 when Redis-backed presence is unavailable.
+  DATA_SERVICE_UNAVAILABLE: "数据服务暂时不可用，请稍后再试。",
+  // Account economy (server-go/ECONOMY.md 6).
+  REGISTRATION_CLOSED: "当前服务器已关闭注册，请联系管理员。",
+  LOGIN_REQUIRED: "登录已失效，请重新登录。",
+  ONBOARDING_REQUIRED: "请先完成新车手注册，领取新手礼包。",
+  ITEM_NOT_OWNED: "装备中有未拥有或已过期的物品，已换回默认装备。",
+  INSUFFICIENT_FUNDS: "余额不足。",
+  ALREADY_OWNED: "已经永久拥有该物品。",
+  EXP_REQUIRED: "经验不足，暂时无法购买该物品。",
+  OFFER_NOT_FOUND: "该商品已下架，请刷新商店。",
+  RATE_LIMITED: "操作过于频繁，请稍后再试。",
+  STORAGE_QUOTA_EXCEEDED: "存储空间已满，请清理后再试。",
+  INVALID_NICKNAME: "昵称须为 1–16 字，且不能包含尖括号或控制字符。",
+  STARTER_ALREADY_CLAIMED: "新手礼包已经领取过了。",
+  INVALID_STARTER: "新手礼包只能选择皮蛋或黑妞，以及蓝、绿、青绿、紫色。",
+  ACCOUNT_ONLINE: "该账号已在其他地方在线，请先退出另一处登录。",
+  PRICE_CHANGED: "价格已变化，请刷新商店后重试。",
+  REQUEST_ID_CONFLICT: "请求编号与之前的请求冲突，请重试。",
 };
 
 export function formatAccountServiceError(error: unknown,

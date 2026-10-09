@@ -1,4 +1,8 @@
 import { openReadyHouse } from "./ready-house";
+import type { ReadyShopController } from "./ready-shop";
+import { openShopUnlessRacing } from "./ready-shop-guard";
+import { goReadyHome, openReadyHome, preloadReadyHome, syncReadyHome,
+  type ReadyHomeController } from "./ready-home";
 
 /** The selection carried from the Ready screen into a single-player race. */
 export interface ReadySelection {
@@ -205,6 +209,8 @@ export async function enterTimeAttackReady(
   const { host } = controller;
   if (host.shell.isReadyStageOpening) return;
   const { selection, library, bgm } = controller.readyStageContext();
+  let readyShown = false;
+  preloadReadyHome(controller as unknown as ReadyHomeController);
   host.shell.beginReadyStage();
   const garage = controller.activeGarage;
   try {
@@ -235,13 +241,27 @@ export async function enterTimeAttackReady(
       onSettings: () => controller.openSettings(),
       onHover: () => host.getInterfaceAudio()?.playHover(),
       onActivate: () => host.getInterfaceAudio()?.playClick(),
-      onGarage: () => controller.openGarageX(selection, host.getReadyOptions()),
+      // The taskbar outlives this Ready build: read the equipment at click time
+      // (onboarding, purchases and expiry repairs replace the selection).
+      onGarage: () => controller.openGarageX(host.getSelection() ?? selection,
+        host.getReadyOptions()),
       onHouse: () => { void openReadyHouse(controller); },
       onSinglePlayer: () => {
-        if (controller.multiplayer) controller.returnMultiplayerToSinglePlayer();
-        else if (controller.activeGarage) controller.returnGarageToReady();
+        // The release 单人游戏 page; its 练习计时赛 card opens time attack.
+        void goReadyHome(controller as unknown as ReadyHomeController, () => {
+          if (controller.multiplayer) return controller.returnMultiplayerToSinglePlayer();
+          if (controller.activeGarage) controller.returnGarageToReady();
+        }, "single");
       },
       onMultiplayer: () => controller.openMultiplayer(),
+      onShop: () => openShopUnlessRacing(controller as unknown as ReadyShopController),
+      onHome: () => {
+        const home = controller as unknown as ReadyHomeController;
+        void goReadyHome(home, () => {
+          if (controller.multiplayer) return controller.returnMultiplayerToSinglePlayer();
+          if (controller.activeGarage) controller.returnGarageToReady();
+        });
+      },
     });
 
     const view = await dependencies.loadReadyView({
@@ -261,6 +281,10 @@ export async function enterTimeAttackReady(
       onTraining: (options: ReadyOptions) => controller.startRaceFromReady(selection, options),
       onTrackSelect: (options: ReadyOptions) => controller.openTrackSelect(selection, options),
       onItemSelect: (options: ReadyOptions) => controller.openGarage(selection, options),
+      // The window's close button returns to the 单人游戏 page it opened from.
+      onExit: () => {
+        void openReadyHome(controller as unknown as ReadyHomeController, "single");
+      },
       onInteraction: () => host.getAudioContext()?.resume(),
       onActivate: () => host.getInterfaceAudio()?.playClick(),
       onHover: () => host.getInterfaceAudio()?.playHover(),
@@ -282,8 +306,11 @@ export async function enterTimeAttackReady(
     if (controller.activeGarage === garage) controller.activeGarage = undefined;
     controller.activeTaskbar.setVisible(true);
     bgm.playReady();
+    readyShown = true;
   } finally {
     host.shell.endReadyStage();
+    // Home needs the Ready-opening lock released before it can cover Ready.
+    if (readyShown) syncReadyHome(controller as unknown as ReadyHomeController);
     if (garage && controller.activeGarage === garage && !host.shell.started) {
       garage.unfreeze();
       if (!host.shell.modal) host.shell.openModal("garage");
@@ -411,7 +438,8 @@ export async function resolveRandomSelection(
   selection: ReadySelection,
 ): Promise<ReadySelection> {
   const group = controller.activeRandomGroup;
-  if (!group) return selection;
+  // A story race keeps its own track and leaves the time attack pool alone.
+  if (!group || selection.story) return selection;
   const library = controller.host.getLibrary();
   if (!library) throw new Error("随机赛道启动缺少资源库。");
   const catalog = controller.randomTrackCatalog ?? await library.timeAttackTrackCatalog();

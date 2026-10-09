@@ -35,6 +35,8 @@ export interface HelloRequest {
   equipment: unknown;
   initial: string;
   raceRuntime: boolean;
+  /** One-time entry ticket from the data service, required by game servers. */
+  ticket?: string;
 }
 
 export interface WelcomeMessage {

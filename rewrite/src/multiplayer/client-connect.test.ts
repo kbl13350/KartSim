@@ -54,14 +54,17 @@ const raceId = "22222222-2222-4222-8222-222222222222";
 const playerId = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
 
 function harness(released: boolean, answer: unknown = { type: "answer", sdp: "answer-sdp" },
-  capabilities: string[] = []) {
+  capabilities: string[] = [], ticket?: string) {
   const requests: unknown[] = [];
   const fetches: unknown[] = [];
+  // Kept apart from `fetches` so the release comparisons above stay unchanged.
+  const headers: Array<{ url: string; headers: RequestInit["headers"] }> = [];
   const messages: unknown[] = [];
   const peer = new FakePeer();
   let closed = 0;
   const fetchImpl = async (_url: unknown, init?: RequestInit) => {
     fetches.push({ url: _url, body: init?.body, credentials: init?.credentials });
+    headers.push({ url: String(_url), headers: init?.headers });
     return new Response(JSON.stringify(String(_url).endsWith("/ice")
       ? { iceServers: [] } : answer), { status: 200 });
   };
@@ -116,13 +119,13 @@ function harness(released: boolean, answer: unknown = { type: "answer", sdp: "an
     ? (target as InstanceType<typeof Original>).connect("https://example.org/multiplayer/offer",
       "Tester", "p3553", {}, "", true)
     : connectGameClient(target, "https://example.org/multiplayer/offer",
-      "Tester", "p3553", {}, "", true, undefined, {
+      "Tester", "p3553", {}, "", true, ticket, {
         validateControlMessage: value => value as ServerControlEvent,
         peerFactory: () => peer as unknown as RTCPeerConnection,
         fetchImpl: fetchImpl as typeof fetch,
         now: () => 140,
       });
-  return { target, peer, requests, fetches, messages, connect, closed: () => closed };
+  return { target, peer, requests, fetches, headers, messages, connect, closed: () => closed };
 }
 
 test("server SDP handshake, welcome, clocks and control dispatch match LT", async () => {
@@ -175,4 +178,28 @@ test("P2P capability, ICE lookup and correlated clock reply match LT", async () 
     return result;
   };
   assert.deepEqual(await run(false), await run(true));
+});
+
+test("WebRTC sends the entry ticket in hello and no bearer token to the game server", async () => {
+  const { target, requests, headers, connect } = harness(false,
+    { type: "answer", sdp: "answer-sdp" }, ["p2p-motion"], "kt1.entry.ticket");
+  await connect();
+  const hello = requests.find(request => (request as { type: string }).type === "hello") as
+    Record<string, unknown>;
+  assert.equal(hello.ticket, "kt1.entry.ticket");
+  assert.equal("token" in hello, false);
+  assert.deepEqual(headers.map(entry => entry.url), [
+    "https://example.org/multiplayer/offer", "https://example.org/multiplayer/ice"]);
+  for (const entry of headers) {
+    // Headers lowercases names, so any spelling of Authorization is caught.
+    assert.equal(new Headers(entry.headers).has("authorization"), false, entry.url);
+  }
+  assert.deepEqual(headers.map(entry => entry.headers), [
+    { "Content-Type": "application/json" }, {}]);
+  target.dispose();
+
+  const anonymous = harness(false, { type: "answer", sdp: "answer-sdp" }, []);
+  await anonymous.connect();
+  assert.equal("ticket" in (anonymous.requests[0] as Record<string, unknown>), false);
+  anonymous.target.dispose();
 });

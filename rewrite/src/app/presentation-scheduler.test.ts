@@ -27,6 +27,7 @@ function harness() {
   return {
     scheduler, frames, tasks,
     get disposals() { return disposals; },
+    get now() { return nowMs; },
     setVisible(value: boolean) { visible = value; },
     setNow(value: number) { nowMs = value; },
     runTask() {
@@ -83,20 +84,46 @@ test("default race scheduling unlocks solo and multiplayer, retaining RAF for ot
 test("unlocked frames yield asynchronously and pace duplicate milliseconds", () => {
   const env = harness();
   const times: number[] = [];
+  const presents: boolean[] = [];
   const callback = (atMs: number) => {
     times.push(atMs);
-    if (times.length < 3) env.scheduler.request(callback, true);
+    presents.push(env.scheduler.lastFramePresents);
+    if (times.length < 4) env.scheduler.request(callback, true);
   };
   const id = env.scheduler.request(callback, true);
   assert.equal(env.scheduler.request(callback, true), id);
   assert.equal(env.tasks.size, 1);
-  assert.equal(env.frames.size, 0);
+  assert.equal(env.frames.size, 1);
   assert.deepEqual(times, []);
   env.runTask();
   assert.equal([...env.tasks.values()][0]!.delayMs, 1);
   env.runTask();
   env.runTask();
-  assert.deepEqual(times, [100, 101, 102]);
+  assert.equal(env.frames.size, 1);
+  env.runFrame();
+  assert.deepEqual(times, [100, 101, 102, 118]);
+  assert.deepEqual(presents, [false, false, false, true]);
+  assert.equal(env.scheduler.lastFrameUnlocked, true);
+  assert.equal(env.tasks.size + env.frames.size, 0);
+});
+
+test("a display refresh delivers the pending unlocked frame and replaces its task", () => {
+  const env = harness();
+  let calls = 0;
+  const callback = () => {
+    calls++;
+    env.scheduler.request(callback, true);
+  };
+  env.scheduler.request(callback, true);
+  const staleTask = [...env.tasks.values()][0]!.callback;
+  env.runFrame();
+  assert.equal(calls, 1);
+  assert.equal(env.scheduler.lastFramePresents, true);
+  staleTask();
+  assert.equal(calls, 1);
+  assert.equal(env.tasks.size, 1);
+  assert.equal(env.frames.size, 1);
+  assert.equal([...env.tasks.values()][0]!.delayMs, 1);
 });
 
 test("hidden pages use RAF, including a task posted before visibility changes", () => {
@@ -181,52 +208,92 @@ test("dispose before start avoids browser resources and prevents later starts", 
   assert.equal(target.presentationScheduler, undefined);
 });
 
-test("duplicate frame clock retains unlocked scheduling and disposed callbacks do no work", () => {
+test("duplicate milliseconds skip task frames, redraw on display refresh, and disposed callbacks do no work", () => {
   const env = harness();
+  const frames: boolean[] = [];
   const target = Object.assign(presenter(), {
     presentationScheduler: env.scheduler,
-    maxRafDelayMs: 0, lastUpdateMs: 100,
-    updateAndRender: () => { throw new Error("duplicate frame rendered"); },
+    maxRafDelayMs: 0, lastUpdateMs: 100, redrawOnly: false,
+    updateAndRender() {},
   });
+  target.updateAndRender = () => { frames.push(target.redrawOnly); };
   const dependencies = { nowMs: () => 100.1, requestFrame: () => { throw new Error("legacy RAF"); } };
-  advancePresentationFrame(target, 100, dependencies);
+  target.frame = atMs => advancePresentationFrame(target, atMs, dependencies);
+  env.scheduler.request(target.frame, true);
+  env.runTask();
+  assert.deepEqual(frames, []);
   assert.equal(env.tasks.size, 1);
+  env.runFrame();
+  assert.deepEqual(frames, [true]);
+  assert.equal(target.lastUpdateMs, 100);
   env.scheduler.dispose();
   advancePresentationFrame(target, 101, { ...dependencies, nowMs: () => { throw new Error("disposed clock"); } });
-  assert.equal(env.tasks.size, 0);
+  assert.equal(env.tasks.size + env.frames.size, 0);
 });
 
-test("non-RAF rendering flushes WebGL and disposal inside a frame prevents rescheduling", () => {
+function framePresenter(scheduler: PresentationScheduler) {
+  const calls = { update: 0, render: 0, resets: 0, performanceFrames: [] as number[] };
+  const target: FramePresenter = {
+    ...presenter(),
+    multiplayerStage: undefined,
+    presentationScheduler: scheduler,
+    previousRenderTime: 0.1, frameTimeSeconds: 0, fps: 60,
+    nextFrameCallbacks: [],
+    stages: {
+      currentName: "TimeAttackStage", enter() {},
+      update() { calls.update++; }, render() { calls.render++; },
+    },
+    host: {
+      renderer: {
+        info: { reset() { calls.resets++; }, render: { calls: 1, triangles: 2, lines: 0, points: 0, frame: 1 } },
+      },
+      touchControls: { setRaceState() {} }, input: { isEnabled: true },
+      shell: { started: true }, session: { lifecycle: {} }, paused: false,
+      ready: { updateWindowNotice() {} },
+      hud: { updateEngine() {}, recordPerformanceFrame(frameMs) { calls.performanceFrames.push(frameMs); } },
+      engineRenderStats: { calls: 0, triangles: 0, lines: 0, points: 0, frame: 0 },
+      haltRuntime(error) { throw error; },
+    },
+  };
+  return { target, calls };
+}
+
+test("unlocked task frames only advance; display refreshes advance, draw and settle callbacks", () => {
+  const env = harness();
+  const { target, calls } = framePresenter(env.scheduler);
+  const dependencies = {
+    nowMs: () => env.now, isRaceFinished: () => false,
+    requestFrame: () => { throw new Error("legacy RAF"); },
+  };
+  target.frame = atMs => renderPresentationFrame(target, atMs, dependencies);
+  let settled = 0;
+  target.nextFrameCallbacks.push({ run: () => settled++, reject() {} });
+  startPresentationLoop(target, dependencies);
+  env.runTask();
+  env.runTask();
+  assert.deepEqual([calls.update, calls.render, calls.resets, settled], [2, 0, 0, 0]);
+  assert.deepEqual(calls.performanceFrames, []);
+  env.runFrame();
+  assert.deepEqual([calls.update, calls.render, calls.resets, settled], [3, 1, 1, 1]);
+  env.runFrame();
+  assert.deepEqual([calls.update, calls.render], [4, 2]);
+  // Presented frame time spans every simulated millisecond since the previous draw.
+  assert.deepEqual(calls.performanceFrames.map(Math.round), [17, 16]);
+  assert.equal(env.tasks.size, 1);
+  assert.equal(env.frames.size, 1);
+});
+
+test("disposal inside a presented frame prevents rescheduling", () => {
   for (const unlocked of [false, true]) {
     const env = harness();
-    let flushes = 0;
-    const target: FramePresenter = {
-      ...presenter(),
-      multiplayerStage: undefined,
-      presentationScheduler: env.scheduler,
-      previousRenderTime: 0, frameTimeSeconds: 0, fps: 60,
-      nextFrameCallbacks: [],
-      stages: { currentName: "TimeAttackStage", enter() {}, update() {}, render() {} },
-      host: {
-        renderer: {
-          info: { reset() {}, render: { calls: 1, triangles: 2, lines: 0, points: 0, frame: 1 } },
-          getContext: () => ({ flush() { flushes++; } }),
-        },
-        touchControls: { setRaceState() {} }, input: { isEnabled: true },
-        shell: { started: true }, session: { lifecycle: {} }, paused: false,
-        ready: { updateWindowNotice() {} },
-        hud: { updateEngine() {}, recordPerformanceFrame() {} },
-        engineRenderStats: { calls: 0, triangles: 0, lines: 0, points: 0, frame: 0 },
-        haltRuntime(error) { throw error; },
-      },
-    };
+    const { target, calls } = framePresenter(env.scheduler);
     target.nextFrameCallbacks.push({ run: () => disposePresentationLoop(target), reject() {} });
     env.scheduler.request(atMs => renderPresentationFrame(target, atMs, {
       nowMs: () => 100.5, isRaceFinished: () => false,
       requestFrame: () => { throw new Error("disposed fallback RAF"); },
     }), unlocked);
-    if (unlocked) env.runTask(); else env.runFrame();
-    assert.equal(flushes, unlocked ? 1 : 0);
+    env.runFrame();
+    assert.deepEqual([calls.update, calls.render], [1, 1]);
     assert.equal(target.animationFrame, 0);
     assert.equal(env.frames.size + env.tasks.size, 0);
   }
@@ -234,7 +301,15 @@ test("non-RAF rendering flushes WebGL and disposal inside a frame prevents resch
 
 test("browser backend dispatches through real asynchronous tasks and cancels pending work", async () => {
   const previous = Object.getOwnPropertyDescriptor(globalThis, "document");
+  const previousFrame = Object.getOwnPropertyDescriptor(globalThis, "requestAnimationFrame");
+  const previousCancel = Object.getOwnPropertyDescriptor(globalThis, "cancelAnimationFrame");
+  const displayFrames = new Set<number>();
+  let nextDisplayFrame = 0;
   Object.defineProperty(globalThis, "document", { configurable: true, value: { visibilityState: "visible" } });
+  Object.defineProperty(globalThis, "requestAnimationFrame", { configurable: true,
+    value: () => { const id = ++nextDisplayFrame; displayFrames.add(id); return id; } });
+  Object.defineProperty(globalThis, "cancelAnimationFrame", { configurable: true,
+    value: (id: number) => displayFrames.delete(id) });
   const scheduler = createBrowserPresentationScheduler();
   try {
     let returned = false;
@@ -249,9 +324,13 @@ test("browser backend dispatches through real asynchronous tasks and cancels pen
     scheduler.dispose();
     await new Promise(resolve => setTimeout(resolve, 10));
     assert.equal(cancelledRan, false);
+    assert.equal(displayFrames.size, 0);
   } finally {
     scheduler.dispose();
-    if (previous) Object.defineProperty(globalThis, "document", previous);
-    else Reflect.deleteProperty(globalThis, "document");
+    for (const [name, descriptor] of [["document", previous], ["requestAnimationFrame", previousFrame],
+      ["cancelAnimationFrame", previousCancel]] as const) {
+      if (descriptor) Object.defineProperty(globalThis, name, descriptor);
+      else Reflect.deleteProperty(globalThis, name);
+    }
   }
 });

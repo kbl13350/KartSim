@@ -16,7 +16,7 @@ import { ModelObjectReader } from "../resources/model-object-reader.ts";
 import { createModelRecordDecoders, isModelElement } from "../resources/model-record-decoders.ts";
 import { KartBoosterEffectHost, KartBoosterSharedSources, boosterKindForState, waveKindForState } from "../vehicle/kart-booster-effects.ts";
 import { defaultCnSpeedType, findSpeedTypeEntry } from "../physics/speed-baseline.ts";
-const multiplayerResultDependencies = { loadBml: F9, attribute: T, cloneNode: h2, loadTeams: fa, loadDye: Pj, loadView: options => te.load(options), smoothImages: Co, stageHeight: $2, formatTime: Eo, newPageClock: time => new Vj(time) };
+const multiplayerResultDependencies = { loadBml: F9, attribute: T, cloneNode: h2, loadTeams: fa, loadDye: Pj, loadView: options => te.load(options), smoothImages: Co, stageHeight: $2, formatTime: Eo, newPageClock: time => new Vj(time), showRewards: true };
 const roadblockResultDependencies = { loadBml: F9, attribute: T, cloneNode: h2, rectangle: V0, numberTokens: j2, loadView: options => te.load(options), projectTexture: fQ };
 const derivedOverlayDependencies = { attribute: T, smoothImages: Co, smoothPixels: image => OR(UB(new Uint8ClampedArray(image.pixels), image.width, image.height)), setPlayCamera: Aa };
 import { isPlayableGameplay } from "../multiplayer/gameplay-admission.ts";

@@ -3,7 +3,7 @@ import type { ClientConnectDependencies, ClientConnectionHost,
   ServerControlEvent } from "./client-connect";
 import { PROTOCOL_VERSION, ROOM_RULESET } from "./protocol";
 
-/** The existing lobby still asks for /offer; the local server uses one WS channel. */
+/** The existing lobby still asks for /offer; a game server uses one WS channel. */
 export function websocketUrlForOffer(offerUrl: string): string {
   const url = new URL(offerUrl);
   if ((url.protocol !== "http:" && url.protocol !== "https:") ||
@@ -43,10 +43,14 @@ class SocketChannel {
   close(): void { this.socket.close(); }
 }
 
-/** Connect the recovered game client to the Java server's readable JSON protocol. */
+/**
+ * Connect the recovered game client to a game server's readable JSON protocol.
+ * `ticket` is the one-time entry ticket from the data service; the session
+ * token is never sent to a game server.
+ */
 export async function connectWebSocketGameClient(host: ClientConnectionHost,
   offerUrl: string, name: string, resourceVersion: string, equipment: unknown,
-  initial: string, raceRuntime: boolean, token: string | undefined,
+  initial: string, raceRuntime: boolean, ticket: string | undefined,
   dependencies: ClientConnectDependencies): Promise<ServerControlEvent> {
   if (host.peer) throw new Error("Connection already exists");
   const makeSocket = dependencies.webSocketFactory ?? (url => new WebSocket(url));
@@ -94,7 +98,7 @@ export async function connectWebSocketGameClient(host: ClientConnectionHost,
     if (host.peer !== session) throw new Error("Connection cancelled");
     const welcome = await host.request({ type: "hello", protocolVersion: PROTOCOL_VERSION,
       ruleset: ROOM_RULESET, resourceVersion, name, equipment, initial,
-      raceRuntime, ...(token ? { token } : {}) });
+      raceRuntime, ...(ticket ? { ticket } : {}) });
     if (welcome.type !== "welcome" || !welcome.playerId) throw new Error("Expected welcome");
     host.playerId = welcome.playerId;
 

@@ -60,6 +60,9 @@ export interface ReadySettingsController {
   activeTimeAttackReady?: ReadyView;
   activeWindowNotice?: { dispose(): void };
   readyToonEnvironment?: { dispose(): void };
+  /** The shop (ready-shop.ts) covers the page, or is loading to. */
+  activeShop?: unknown;
+  shopOpening?: boolean;
   readyStageContext(): { library: unknown };
   readyModalBusy(): boolean;
   publishRaceSpeedChannel(): void;
@@ -207,6 +210,12 @@ export function showReadyTrackSelectError(controller: ReadySettingsController,
 
 export function handleReadyShortcut(controller: ReadySettingsController,
   event: KeyboardEvent): boolean {
+  // Nothing behind the shop answers keys: no race start, ready toggle or
+  // option toggle (the shop stops its keys itself; this covers its loading).
+  if (controller.activeShop || controller.shopOpening) {
+    if (event.code === "F5") event.preventDefault();
+    return true;
+  }
   if (controller.multiplayer?.handleRoomShortcut(event)) return true;
   if (event.code !== "F5" || !controller.activeTimeAttackReady) return false;
   event.preventDefault();

@@ -136,3 +136,18 @@ test("track and item favorites, including save failure, match release", () => {
   };
   assert.deepEqual(run(false), run(true));
 });
+
+test("a race start closes the shop, or cancels one still loading", () => {
+  const { host, events } = fixture(false);
+  const shopHost = host as unknown as { activeShop?: { close(): void }; shopOpening?: boolean;
+    shopCancelled?: boolean };
+  shopHost.activeShop = { close: () => events.push("shop.close") };
+  releaseReadyForRace(host);
+  assert.ok(events.includes("shop.close"));
+  assert.equal(shopHost.activeShop, undefined);
+  const loading = fixture(false);
+  const loadingHost = loading.host as unknown as typeof shopHost;
+  loadingHost.shopOpening = true;
+  releaseReadyForRace(loading.host);
+  assert.equal(loadingHost.shopCancelled, true);
+});

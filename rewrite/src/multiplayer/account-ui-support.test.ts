@@ -69,6 +69,25 @@ function observe(rewritten: boolean) {
     messages: rewritten ? accountErrorMessages : original.uy };
 }
 
+/** Codes added by the data service split and the account economy (ECONOMY.md 6). */
+const addedCodes = [
+  "DATA_SERVICE_UNAVAILABLE", "REGISTRATION_CLOSED", "LOGIN_REQUIRED", "ONBOARDING_REQUIRED",
+  "ITEM_NOT_OWNED", "INSUFFICIENT_FUNDS", "ALREADY_OWNED", "EXP_REQUIRED", "OFFER_NOT_FOUND",
+  "RATE_LIMITED", "STORAGE_QUOTA_EXCEEDED", "INVALID_NICKNAME", "STARTER_ALREADY_CLAIMED",
+  "INVALID_STARTER", "ACCOUNT_ONLINE", "PRICE_CHANGED", "REQUEST_ID_CONFLICT",
+];
+
 test("multiplayer account URL, headers, style and error text match release", () => {
-  assert.deepEqual(observe(true), observe(false));
+  const rewritten = observe(true);
+  const released = observe(false);
+  const messages = { ...rewritten.messages };
+  for (const code of addedCodes) {
+    assert.match(messages[code] ?? "", /[一-鿿]/u, code);
+    delete messages[code];
+  }
+  // Open registration: nicknames are 1–16 characters and passwords at least 8.
+  assert.equal(messages.INVALID_ACCOUNT_FIELDS,
+    "账号名须为 3–24 位字母、数字或下划线；昵称 1–16 字；密码至少 8 位。");
+  messages.INVALID_ACCOUNT_FIELDS = released.messages.INVALID_ACCOUNT_FIELDS!;
+  assert.deepEqual({ ...rewritten, messages }, released);
 });

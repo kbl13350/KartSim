@@ -129,3 +129,37 @@ test("ordinary Dao standing and common walking motions alternate steps", async (
   const standing = motion.update(1800);
   assert.ok(Math.abs(standing[18]![0]! - standing[22]![0]!) < 0.01);
 });
+
+test("大厅站位：后排直线时在第 4、5 车位前方，特殊小屋站在前厅中心", async () => {
+  const { myRoomBackRowStraight, myRoomShowcaseCenter } = await import("./my-room-scene");
+  const rider = new Vector3(85, 20, -100);
+  const hall = new Vector3(90.5, 20.4, -101.5);
+  const row = (points: Array<[number, number, number?] | undefined>) =>
+    points.map(point => point && new Vector3(rider.x + point[0], rider.y + (point[2] ?? 0),
+      rider.z + point[1]));
+  const at = (backRow: Array<Vector3 | undefined>) => {
+    const anchors = { rider, hall, backRow };
+    return { straight: myRoomBackRowStraight(anchors),
+      center: myRoomShowcaseCenter(anchors, 2.5).sub(rider).toArray()
+        .map(value => Math.round(value * 100) / 100 + 0) };
+  };
+
+  // Most rooms: one row behind the plaza, spots 4 and 5 at x 6 and 9.
+  assert.deepEqual(at(row([undefined, [-2.7, -9.2], [0.3, -9.2], [3.1, -9.2], [6, -9.2],
+    [9, -9.2, -0.5]])), { straight: true, center: [7.5, 0, -6.7] });
+  // Listed right to left still counts as the same row.
+  assert.equal(at(row([undefined, undefined, undefined, undefined, [9, -9.2], [6, -9.2]]))
+    .straight, true);
+
+  const hallCenter = [5.5, 0, -1.5];
+  // A row that turns the back-right corner.
+  assert.deepEqual(at(row([undefined, undefined, undefined, undefined, [15.2, -8.4],
+    [19, -4.7]])), { straight: false, center: hallCenter });
+  // Both spots down the right side.
+  assert.deepEqual(at(row([undefined, undefined, undefined, undefined, [18, -2.1],
+    [18, 1.1]])), { straight: false, center: hallCenter });
+  // The VIP room's raised display shelves.
+  assert.deepEqual(at(row([undefined, undefined, undefined, undefined, [16, -8.7, 3],
+    [17, -8.7, 3]])), { straight: false, center: hallCenter });
+  assert.deepEqual(at([]), { straight: false, center: hallCenter });
+});

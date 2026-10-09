@@ -157,3 +157,20 @@ test("account gate, guest fallback and cancellation match release", async () => 
       await observeEntry(false, variant), variant);
   }
 });
+
+test("multiplayer uses the startup account: no dialog, re-read and onboarding required", async () => {
+  const { multiplayerAccountFromSession } = await import("./account-service");
+  await assert.rejects(multiplayerAccountFromSession(undefined), { message: "LOGIN_REQUIRED" });
+  let refreshed = 0;
+  const session = (onboarded: boolean) => ({
+    refresh: async () => { refreshed++; },
+    summary: () => ({ account: { nickname: "车手甲" }, onboarded }),
+  });
+  await assert.rejects(multiplayerAccountFromSession(session(false)),
+    { message: "ONBOARDING_REQUIRED" });
+  assert.deepEqual(await multiplayerAccountFromSession(session(true)), { nickname: "车手甲" });
+  assert.equal(refreshed, 2);
+  await assert.rejects(multiplayerAccountFromSession({
+    refresh: async () => { throw new Error("LOGIN_REQUIRED"); }, summary: () => undefined,
+  }), { message: "LOGIN_REQUIRED" });
+});

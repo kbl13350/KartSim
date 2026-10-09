@@ -1,4 +1,6 @@
-import { LOCAL_PROFILE_KEY } from "./local-profile";
+import { loadAccountProfile } from "../account/account-profile";
+import { accountProfileSync, activeBrowserSession, recordProfileLoad } from "../account/account-runtime";
+import { defaultLocalProfile, LOCAL_PROFILE_KEY } from "./local-profile";
 import type { LocalProfile } from "./local-profile";
 
 export const LOCAL_OWNER_KEY = "kartsim.local-owner-id";
@@ -141,11 +143,37 @@ export function browserProfileSync(): ProfileSync | undefined {
   return browserSync;
 }
 
-export function loadBrowserProfile<T extends LocalProfile>(loadLocal: () => T | undefined,
-  parse: (serialized: string) => T): Promise<T | undefined> {
-  return browserProfileSync()?.load(loadLocal, parse) ?? Promise.resolve(loadLocal());
+/**
+ * Forget the cached anonymous sync; the next use reads (or creates) the
+ * browser identity again. Used after an account switch removed it.
+ */
+export function resetBrowserProfileSync(): void {
+  browserSync = undefined;
 }
 
+/**
+ * A signed-in account reads its profile from the data service (server wins)
+ * instead of the anonymous owner-key copy; see account/account-profile.ts.
+ */
+export async function loadBrowserProfile<T extends LocalProfile>(loadLocal: () => T | undefined,
+  parse: (serialized: string) => T): Promise<T | undefined> {
+  const session = activeBrowserSession();
+  if (session) {
+    const load = await loadAccountProfile(session, {
+      storage: localStorage, profileKey: LOCAL_PROFILE_KEY, loadLocal, parse,
+      defaultProfile: () => defaultLocalProfile() as T,
+    });
+    recordProfileLoad(load);
+    return load.profile;
+  }
+  return browserProfileSync()?.load(loadLocal, parse) ?? loadLocal();
+}
+
+/** Local saves are mirrored to the account profile, or the anonymous copy without one. */
 export function syncBrowserProfile(profile: LocalProfile): void {
+  if (activeBrowserSession()) {
+    accountProfileSync()?.enqueue(profile);
+    return;
+  }
   browserProfileSync()?.enqueue(profile);
 }

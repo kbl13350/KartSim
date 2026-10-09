@@ -75,8 +75,8 @@ export class ReadyController {
   readyModalBusy() { return isReadyModalBusy(
     own<ReadyControllerStateHost>(this)); }
 
-  async openMultiplayer() { return openReadyMultiplayer(
-    own<ReadyMultiplayerController>(this), services(this).multiplayer); }
+  async openMultiplayer(channel?: string, gameplay?: string) { return openReadyMultiplayer(
+    own<ReadyMultiplayerController>(this), services(this).multiplayer, channel, gameplay); }
   async multiplayerGarageOptions() { return readyMultiplayerGarageOptions(
     own<ReadyMultiplayerController>(this), services(this).createNotice); }
   applyMultiplayerGarage(choice: Parameters<typeof applyReadyMultiplayerGarage>[1]) {

@@ -1821,15 +1821,15 @@
     },
     {
       "file": "formats.js",
-      "bytes": 153873,
-      "sha256": "0bd08fb81c2e28b05a938f7d1a31640df201ec21508722094d24cb231bd9a879",
+      "bytes": 154075,
+      "sha256": "b0e8bff1c535ae36e064e99fa25f1e8ccb18a9fac8c0d117cec6c87bb70cf416",
       "imports": 71,
       "exports": 185
     },
     {
       "file": "library.js",
-      "bytes": 223053,
-      "sha256": "0a57afedc98c8c41ea3765f98529681058ca596e3d3a794497f7c9075b924ef6",
+      "bytes": 223094,
+      "sha256": "7560359f19a6b48a7dd7e8ddd93e7e4cdc31f3b8d4f759c7258c8e5cc038ae70",
       "imports": 128,
       "exports": 156
     },
@@ -1877,8 +1877,8 @@
     },
     {
       "file": "multiplayer.js",
-      "bytes": 35574,
-      "sha256": "438e4d4b7a62ca8da4d972455f1ce59fbff34eaf7053507439d196a92a2c8d36",
+      "bytes": 36817,
+      "sha256": "0ada87ff76e21686a4ff926900d0eed127b96989f7ce95ce9a66db7ed7a38f07",
       "imports": 98,
       "exports": 18
     },
@@ -1891,8 +1891,8 @@
     },
     {
       "file": "app.js",
-      "bytes": 15387,
-      "sha256": "fa70de2d4323080c68c9e49dd663b2e1a4720925e11c2de349a53772793562ef",
+      "bytes": 16032,
+      "sha256": "bc8ef0ebe0dd82b5cd9456f5fa1daa3d17af30a71a64de6d9b875f7ba21fa0da",
       "imports": 159,
       "exports": 1
     }
