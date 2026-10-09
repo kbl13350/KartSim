@@ -160,6 +160,50 @@ test("HUD startup, pause, loading and F2/F3 panels match release", () => {
   assert.deepEqual(runHud(HudOverlay, false), runHud(OriginalHud, true));
 });
 
+test("lazy downloads cannot complete or move the startup bar; finish and retry own its endpoints", () => {
+  withHudEnvironment(({ root }) => {
+    const hud = new HudOverlay(root, { returnToReady() {} }, "39.11");
+    const percent = () => Number(hud.loadingLabel.attributes["aria-valuenow"]);
+    hud.beginStartupLoading();
+    assert.equal(percent(), 0);
+    hud.setStartupProgress(20, "正在加载车辆与赛道目录");
+    hud.setLoadingProgress("first", 100, 100, "正在加载 container1");
+    assert.equal(percent(), 20);
+    assert.equal(hud.loadingView.dataset.downloadItem, "正在加载 container1");
+    assert.equal(hud.loadingView.dataset.downloadPercent, "100");
+    hud.setLoadingProgress("later", 250, 1_000, "正在加载 container2");
+    assert.equal(percent(), 20);
+    assert.equal(hud.loadingView.dataset.downloadItem, "正在加载 container2");
+    assert.equal(hud.loadingView.dataset.downloadPercent, "25");
+    assert.equal(hud.loadingView.dataset.downloadLoaded, "250");
+    assert.equal(hud.loadingView.dataset.downloadTotal, "1000");
+    hud.setStartupProgress(99, "正在初始化音频与游戏场景");
+    hud.showLoadingError("scene failed");
+    assert.equal(percent(), 99);
+    assert.equal(hud.loadingView.classList.contains("is-complete"), false);
+    hud.beginStartupLoading();
+    assert.equal(percent(), 0);
+    assert.equal(hud.loadingView.dataset.downloadItem, undefined);
+    assert.equal(hud.loadingError.hidden, true);
+    hud.setLoadingProgress("later", 500, 1_000, "正在加载 container3");
+    assert.equal(hud.loadingView.dataset.downloadItem, "正在加载 container3");
+    hud.finishLoading();
+    assert.equal(percent(), 100);
+    assert.equal(hud.loadingView.dataset.downloadItem, undefined);
+    assert.equal(hud.loadingView.classList.contains("is-complete"), true);
+    hud.setStartupProgress(50, "late callback");
+    assert.equal(percent(), 100);
+    hud.setLoadingProgress("background", 20, 40);
+    assert.equal(hud.loadingFabRing.attributes["aria-valuenow"], "50");
+    assert.equal(hud.loadingFab.hidden, false);
+    hud.beginLoading();
+    assert.equal(hud.loadingLabel.attributes["aria-valuetext"], undefined);
+    hud.setLoadingProgress("race", 25, 100);
+    assert.equal(percent(), 25, "race loading retains its byte progress");
+    hud.dispose();
+  });
+});
+
 test("F10 toggles the yellow game-server latency and FPS readout and its probe timer", async () => {
   await withHudEnvironment(async ({ root, events, win }) => {
     const hud = new HudOverlay(root, { returnToReady() {} }, "39.11");

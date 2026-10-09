@@ -41,6 +41,7 @@ export class FlyingPetPresentation {
   equipped: any;
   firedStart: number | undefined;
   aliveStart: number | undefined;
+  private previewPrevious: number | undefined;
   disposed = false;
 
   constructor(readonly race: any, readonly dependencies: FlyingPetPresentationDependencies) {}
@@ -53,12 +54,18 @@ export class FlyingPetPresentation {
       const asset = await ops.loadPetAsset(options.library, options.item.internalId);
       const skin = ops.createSkinResources(asset, options.colors.primary, options.colors.high);
       this.resources.push(skin);
-      this.initial = (await asset.clip(false, 8)).sequence;
+      const clips = new Map<number, any>();
+      for (const motion of options.animate ? RACE_MOTION_IDS : [8])
+        clips.set(motion, (await asset.clip(false, motion)).sequence);
+      this.initial = clips.get(8);
       this.firstAnimation = ops.createAnimation(this.initial);
-      this.first = await ops.loadModel(await asset.model(), [this.initial], skin,
+      this.first = await ops.loadModel(await asset.model(), [...clips.values()], skin,
         options.environment, options.binding);
       this.resources.push(this.first);
-      setLocalPosition(this.first.object, atOrigin ? [0, 0, 0] : [0.75, -0.75, 0.5]);
+      if (options.animate) this.idle = ops.createIdleMotion(clips, this.firstAnimation,
+        options.random ?? { next: () => Math.floor(Math.random() * 0x100000000) >>> 0 });
+      setLocalPosition(this.first.object, atOrigin ? [0, 0, 0]
+        : options.previewPosition ?? [0.75, -0.75, 0.5]);
       if (options.item.tuneGroupId) await this.attachHeadEffect(options, this.first);
       return this;
     } catch (error) {
@@ -118,7 +125,11 @@ export class FlyingPetPresentation {
 
   reset(): void {
     this.firstAnimation.reset(this.initial);
-    if (!this.race) return;
+    if (!this.race) {
+      this.idle?.reset();
+      this.previewPrevious = undefined;
+      return;
+    }
     this.state = this.dependencies.createRaceState();
     this.secondAnimation = this.dependencies.createAnimation(this.equipped);
     this.idle?.reset();
@@ -131,6 +142,11 @@ export class FlyingPetPresentation {
 
   update(time: number, camera: unknown, width: number, height: number, localVisible = true): void {
     if (this.disposed) return;
+    if (!this.race && this.idle) {
+      const now = time >>> 0;
+      this.idle.update(this.previewPrevious === undefined ? 0 : (now - this.previewPrevious) >>> 0);
+      this.previewPrevious = now;
+    }
     const visible = !this.race || this.dependencies.isVisible(this.race.role, localVisible);
     if (this.state) {
       this.first.object.updateWorldMatrix(true, false);

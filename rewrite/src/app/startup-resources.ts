@@ -1,3 +1,5 @@
+import { StartupProgress, type StartupWork } from "./startup-progress";
+
 /** Resource bootstrap, first-rider registration, and Ready-stage preparation. */
 export interface StartupDisposable {
   dispose(): void;
@@ -58,6 +60,8 @@ export interface StartupHost {
     install(library: StartupLibrary, sources: MountedStartupSources): void;
   };
   hud: {
+    beginStartupLoading?(): void;
+    setStartupProgress?(percent: number, message: string): void;
     chooseResourceSource(defaultName: string): Promise<StartupSource | undefined>;
     setLoadingProgress(key: string, loadedBytes: number, totalBytes: number, message: string): void;
     showDebugText(message: string, level?: string): void;
@@ -78,7 +82,8 @@ export interface StartupHost {
   };
   gameOptions: unknown;
   targetRandom: unknown;
-  prepareStartupReady(library: StartupLibrary, selection: StartupSelection, vehicleTitle: string): Promise<void>;
+  prepareStartupReady(library: StartupLibrary, selection: StartupSelection, vehicleTitle: string,
+    onProgress?: (current: number, total: number) => void): Promise<void>;
   applyNewRiderRegistration(): Promise<void>;
   enterTimeAttackReady(): Promise<unknown>;
 }
@@ -93,7 +98,8 @@ export interface ResourceLoadingDependencies {
     onProgress: (progress: { file: string; loadedBytes: number; totalBytes: number }) => void,
     source: StartupSource | undefined,
   ): Promise<MountedStartupSources>;
-  loadLibrary(sources: unknown, archiveIndexes: unknown): Promise<StartupLibrary>;
+  loadLibrary(sources: unknown, archiveIndexes: unknown,
+    onProgress?: (event: { current: number; total: number; filename: string }) => void): Promise<StartupLibrary>;
   loadProfile(): RiderProfile | undefined | Promise<RiderProfile | undefined>;
   defaultProfile(): RiderProfile;
   resolveSelection(catalog: RiderCatalog, maps: unknown[], profile: RiderProfile): {
@@ -126,6 +132,14 @@ export async function loadStartupResources(
   dependencies: ResourceLoadingDependencies,
 ): Promise<void> {
   const generation = host.assets.beginGeneration();
+  host.hud.beginStartupLoading?.();
+  const progress = new StartupProgress();
+  let active = true;
+  let finished = false;
+  const report = (work: StartupWork, current: number, total: number, message: string): void => {
+    if (active && host.hud.setStartupProgress && host.assets.isCurrent(generation))
+      host.hud.setStartupProgress(progress.update(work, current, total), message);
+  };
   try {
     const localSource = dependencies.localResourcesSupported()
       ? (await dependencies.recoverLocalSource()) ??
@@ -135,31 +149,47 @@ export async function loadStartupResources(
 
     const mounted = await dependencies.loadVersionedSources(
       dependencies.versionId("p3553"),
-      progress => host.hud.setLoadingProgress(
-        `resource:${progress.file.toLowerCase()}`,
-        progress.loadedBytes,
-        progress.totalBytes,
-        `正在加载 ${progress.file}`,
-      ),
+      progress => {
+        if ((!active && !finished) ||
+            (host.hud.setStartupProgress && !host.assets.isCurrent(generation))) return;
+        host.hud.setLoadingProgress(
+          `resource:${progress.file.toLowerCase()}`,
+          progress.loadedBytes,
+          progress.totalBytes,
+          `正在加载 ${progress.file}`,
+        );
+      },
       localSource,
     );
     if (!host.assets.isCurrent(generation)) return;
+    report("sources", 1, 1, "正在解析资源索引");
 
-    const library = await dependencies.loadLibrary(mounted.sources, mounted.archiveIndexes);
+    const library = await dependencies.loadLibrary(mounted.sources, mounted.archiveIndexes,
+      event => report("library", event.current, event.total, "正在解析资源索引"));
     if (!host.assets.isCurrent(generation)) return;
     if (library.files.length === 0) {
       throw new Error(library.errors[0] ?? "没有成功读取任何资源文件。");
     }
+    report("library", 1, 1, "正在加载车辆与赛道目录");
 
     const [garageCatalog, maps] = await Promise.all([
-      library.timeAttackGarageCatalog(), library.mapCatalog(),
+      library.timeAttackGarageCatalog().then(catalog => {
+        report("garage", 1, 1, "正在加载车辆与赛道目录");
+        return catalog;
+      }),
+      library.mapCatalog().then(maps => {
+        report("maps", 1, 1, "正在加载车辆与赛道目录");
+        return maps;
+      }),
     ]);
     if (!host.assets.isCurrent(generation)) return;
 
+    report("account", 0, 1, "正在连接账号服务，请完成登录");
     if (dependencies.ensureAccount) {
       await dependencies.ensureAccount();
       if (!host.assets.isCurrent(generation)) return;
     }
+    report("account", 1, 1, "正在读取车手档案");
     let profile = dependencies.loadProfile();
     if (profile instanceof Promise) {
       let loaded: RiderProfile | undefined;
@@ -185,10 +215,13 @@ export async function loadStartupResources(
     }
     if (dependencies.sanitizeProfile)
       host.userProfile = dependencies.sanitizeProfile(host.userProfile, garageCatalog);
+    report("profile", 1, 1, "正在初始化音频与游戏场景");
     const startup = dependencies.resolveSelection(garageCatalog, maps, host.userProfile);
     host.assets.install(library, mounted);
-    await host.prepareStartupReady(library, startup.selection, startup.vehicleTitle);
+    await host.prepareStartupReady(library, startup.selection, startup.vehicleTitle,
+      (current, total) => report("ready", current, total, "正在初始化音频与游戏场景"));
     if (!host.assets.isCurrent(generation)) return;
+    report("ready", 1, 1, "游戏初始化完成");
 
     if (library.errors[0]) host.hud.showDebugText(library.errors[0], "error");
     else if (library.warnings[0]) host.hud.showDebugText(library.warnings[0]);
@@ -209,6 +242,7 @@ export async function loadStartupResources(
       );
     }
     host.hud.finishLoading();
+    finished = true;
     const registerRider = dependencies.needsRiderRegistration
       ? dependencies.needsRiderRegistration() : dependencies.localNickname() === "";
     if (registerRider) await host.applyNewRiderRegistration();
@@ -216,6 +250,8 @@ export async function loadStartupResources(
     if (host.assets.isCurrent(generation)) {
       host.hud.showLoadingError(error instanceof Error ? error.message : String(error));
     }
+  } finally {
+    active = false;
   }
 }
 
@@ -334,6 +370,7 @@ export async function registerNewRider(
 }
 
 export interface StartupReadyDependencies {
+  onProgress?(current: number, total: number): void;
   createAudioContext(): StartupAudioContext;
   applyAudioOptions(context: StartupAudioContext, gameOptions: unknown): void;
   loadBgm(library: StartupLibrary, metadata: unknown, random: unknown,
@@ -354,11 +391,14 @@ export async function prepareStartupReady(
   if (!metadata) throw new Error(`${selection.mapPath} 缺少权威 track metadata。`);
   const context = dependencies.createAudioContext();
   dependencies.applyAudioOptions(context, host.gameOptions);
+  dependencies.onProgress?.(1, 4);
   let bgm: StartupDisposable | undefined;
   let interfaceAudio: StartupDisposable | undefined;
   try {
     bgm = await dependencies.loadBgm(library, metadata, host.targetRandom, context);
+    dependencies.onProgress?.(2, 4);
     interfaceAudio = await dependencies.loadInterfaceAudio(library, context);
+    dependencies.onProgress?.(3, 4);
     host.session.selection = { ...selection };
     host.session.vehicleTitle = vehicleTitle;
     host.audio.context = context;
@@ -366,6 +406,7 @@ export async function prepareStartupReady(
     host.audio.bgmTrackId = selection.trackId;
     host.audio.interfaceAudio = interfaceAudio;
     await host.enterTimeAttackReady();
+    dependencies.onProgress?.(4, 4);
   } catch (error) {
     interfaceAudio?.dispose();
     bgm?.dispose();

@@ -15,7 +15,7 @@
 import type { ShopNode, ShopRect } from "../shop/shop-original";
 import { attr, screenRect, ShopLayout } from "../shop/shop-original";
 import { imageVar } from "../shop/shop-assets";
-import { BmlTree, element, setText } from "../shop/shop-widgets";
+import { BmlTree, element, place, setText } from "../shop/shop-widgets";
 import { lotteryErrorMessage, type DrawResult, type HuntSlot, type LotteryDraw,
   type TreasureHuntState } from "./lottery-api";
 import { findIn, isLotteryLibrary, loadLotteryStage, loadStageArt, prune, TREASURE_ROOTS,
@@ -32,6 +32,8 @@ const RARITIES = ["normal", "rare", "epic", "unique", "legend", "special", "ulti
 const SPIN_MS = 1_400;
 /** Pause between rounds of 10 个使用(连续). */
 const AUTO_PAUSE_MS = 1_600;
+/** Avoid retrying forever when the account already owns the entire pool. */
+const MAX_DUPLICATE_ROUNDS = 20;
 const SKIP_KEY = "kartsim.treasureHunt.skipAnimation";
 const ICON_ROOTS = ["stage_/treasureHunt", "stage_/mqShop", "stage_/mainMenu", "stage_/common"];
 
@@ -48,19 +50,21 @@ const STYLES = `
 .ks-hunt-slot-pic{position:absolute;left:24%;top:20%;width:52%;height:52%}
 .ks-hunt-card-pic{position:absolute;left:62px;top:34px;width:90px;height:90px}
 .ks-hunt-popup{position:absolute;inset:0;pointer-events:auto;cursor:pointer}
-.ks-hunt-cell{position:absolute;width:120px;height:150px}
+.ks-hunt-cell{position:absolute;width:120px;height:150px;pointer-events:none}
 .ks-hunt-cell-glow{position:absolute;left:-40px;top:-40px;width:200px;height:200px;background:center/contain no-repeat;
   animation:ks-hunt-pop .35s ease-out both}
 .ks-hunt-cell-pic{position:absolute;left:13px;top:13px;width:94px;height:94px;animation:ks-hunt-pop .35s ease-out both}
 .ks-hunt-cell[data-pity] .ks-hunt-cell-glow{filter:hue-rotate(-20deg) brightness(1.2)}
-.ks-hunt-single{position:absolute;width:250px;height:250px}
+.ks-hunt-single{position:absolute;width:250px;height:250px;pointer-events:none}
 .ks-hunt-single-glow{position:absolute;left:-90px;top:-90px;width:430px;height:430px;background:center/contain no-repeat;
   animation:ks-hunt-pop .4s ease-out both}
 .ks-hunt-fixed-bg,.ks-hunt-fixed-ring{position:absolute;inset:-56px;background:center/contain no-repeat}
 .ks-hunt-fixed-ring{animation:ks-hunt-spin 6s linear infinite}
 @keyframes ks-hunt-pop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
 @keyframes ks-hunt-spin{to{transform:rotate(360deg)}}
-.ks-hunt-check[aria-pressed=true]{background-image:var(${imageVar("newgacha_check_04")})!important}
+.ks-hunt-check[aria-pressed=true]{background-image:var(${imageVar("newgacha_check_02")})!important}
+.ks-hunt-check{background-image:var(${imageVar("newgacha_check_01")})!important;background-position:left center!important}
+.ks-lottery[data-skip-animation=true] :is(.ks-hunt-cell-glow,.ks-hunt-cell-pic,.ks-hunt-single-glow,.ks-hunt-fixed-ring){animation:none}
 .ks-hunt-closed{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:18px 40px;border-radius:12px;
   background:rgba(0,0,0,.7);color:#fff;font-size:30px;pointer-events:none}
 `;
@@ -98,6 +102,10 @@ function prepareWindow(window: ShopNode): ShopNode {
     if (node.name === "ImageCheckButton") {
       next = { ...next, name: "ImageButton", attributes: [...node.attributes.filter(entry => entry.name !== "autoImage"),
         { name: "autoLoadImage", value: attr(node, "autoImage") ?? "newgacha_check_0" }] };
+      if (attr(node, "name") === "animationSkipButton") {
+        next = { ...next, attributes: [...next.attributes.filter(entry => entry.name !== "windowSize"),
+          { name: "windowSize", value: "150 26" }] };
+      }
     }
     if (attr(node, "name") === "buyButton") {
       // 兑换 is always offered (the release shows it once a material runs out).
@@ -143,6 +151,7 @@ export class TreasureHuntView {
 
   private relayout(): void {
     this.tree.relayout(new ShopLayout(this.layoutWindow, screenRect(this.shell.screen)));
+    this.updateButtons();
   }
 
   private rect(name: string, parent?: string): ShopRect | undefined {
@@ -161,19 +170,26 @@ export class TreasureHuntView {
     button("multiUse", () => void this.draw(10))?.setAttribute("aria-label", "10个使用");
     button("multiAutoUse", () => void this.drawAuto())?.setAttribute("aria-label", "10个使用（连续）");
     button("buyButton", () => void this.openPacks())?.setAttribute("aria-label", "兑换");
-    button("stopAutoButton", () => { this.stopRequested = true; })?.setAttribute("aria-label", "停止连抽");
+    const stop = button("stopAutoButton", () => { this.stopRequested = true; });
+    if (stop) {
+      stop.setAttribute("aria-label", "停止连抽");
+      stop.style.zIndex = "20";
+      this.shell.stage.append(stop);
+    }
     const info = this.el("itemInfo");
     if (info) info.title = (this.stage.strings.get("requiredItemDesc") ?? "").replaceAll("|", "\n");
     const check = button("animationSkipButton", () => {
       this.skip = !this.skip;
       storeSkip(this.skip);
       check?.setAttribute("aria-pressed", String(this.skip));
+      this.shell.element.dataset.skipAnimation = String(this.skip);
     });
     if (check) {
       check.classList.add("ks-hunt-check");
       check.setAttribute("aria-label", "跳过动画");
       check.setAttribute("aria-pressed", String(this.skip));
     }
+    this.shell.element.dataset.skipAnimation = String(this.skip);
     for (let slot = 1; slot <= SLOT_COUNT; slot++) {
       const host = this.el(`summarySlot${slot}`);
       if (!host) continue;
@@ -325,9 +341,16 @@ export class TreasureHuntView {
     for (const name of ["oneUse", "multiUse", "multiAutoUse"]) {
       const target = this.el(name);
       if (target instanceof HTMLButtonElement) {
-        target.disabled = this.busy;
+        target.disabled = this.busy || this.auto;
         target.setAttribute("aria-disabled", String(!open));
       }
+    }
+    const stop = this.el("stopAutoButton");
+    const rect = this.rect("multiAutoUse");
+    if (stop) {
+      stop.hidden = !this.auto;
+      if (rect) place(stop, { ...rect, x: rect.x + (rect.width - 180) / 2,
+        y: rect.y + (rect.height - 58) / 2, width: 180, height: 58 });
     }
   }
 
@@ -344,13 +367,13 @@ export class TreasureHuntView {
     if (!missing) return true;
     const message = [fillString(this.stage.strings.get("mileageAlertDlgMsg1") ?? "%s持有数量不足。", missing.name),
       "要打开兑换吗？"].join("\n");
-    if (await this.shell.confirm("提示", message, "兑换")) await this.openPacks();
+    if (await this.shell.confirm("提示", message, "兑换")) await this.openPacks(true);
     return false;
   }
 
-  private async openPacks(): Promise<void> {
+  private async openPacks(duringDraw = false): Promise<void> {
     const state = this.state;
-    if (!state || this.busy) return;
+    if (!state || (this.busy && !duringDraw) || (this.auto && !duringDraw)) return;
     const bought = await this.shell.packs(state.packs, this.pictures, () => { /* reloaded below */ });
     if (bought) await this.reload();
   }
@@ -368,7 +391,7 @@ export class TreasureHuntView {
     if (this.skip || lights.length === 0) return;
     const started = performance.now();
     let index = 0;
-    while (performance.now() - started < SPIN_MS && !this.shell.disposed) {
+    while (performance.now() - started < SPIN_MS && !this.skip && !this.stopRequested && !this.shell.disposed) {
       lights.forEach((light, at) => light.toggleAttribute("data-on", at === index % lights.length));
       index += 1 + Math.floor(Math.random() * 3);
       await wait(70 + (performance.now() - started) / 12);
@@ -393,11 +416,12 @@ export class TreasureHuntView {
   }
 
   private async draw(count: 1 | 10, fromAuto = false): Promise<DrawResult | undefined> {
-    if ((this.busy && !fromAuto) || this.shell.disposed || this.shell.dialogOpen) return undefined;
-    if (!(await this.ready())) return undefined;
+    if ((this.busy && !fromAuto) || (this.auto && !fromAuto) || this.shell.disposed || this.shell.dialogOpen) return undefined;
+    if (!fromAuto) this.stopRequested = false;
     this.busy = true;
     this.updateButtons();
     try {
+      if (!(await this.ready()) || this.shell.disposed || (fromAuto && this.stopRequested)) return undefined;
       const [result] = await Promise.all([this.options.api.treasureDraw(count), this.spin()]);
       if (this.shell.disposed) return result;
       this.apply(result);
@@ -419,10 +443,22 @@ export class TreasureHuntView {
     if (this.busy || this.auto) return;
     this.auto = true;
     this.stopRequested = false;
+    this.updateButtons();
+    let duplicates = 0;
     try {
       for (;;) {
         const result = await this.draw(10, true);
-        if (!result || result.stopped || result.draws.length < 10 || this.stopRequested || this.shell.disposed) break;
+        if (!result || this.stopRequested || this.shell.disposed) break;
+        if (result.stopped?.code === "ALREADY_OWNED") {
+          duplicates = result.draws.length ? 0 : duplicates + 1;
+          if (duplicates >= MAX_DUPLICATE_ROUNDS) {
+            this.shell.showNotice(`连续${MAX_DUPLICATE_ROUNDS}次未获得新道具，连抽已暂停。未成功的次数不消耗道具。`, 6_000);
+            break;
+          }
+        } else {
+          duplicates = 0;
+          if (result.stopped || result.draws.length < 10) break;
+        }
         await wait(AUTO_PAUSE_MS);
         if (this.stopRequested || this.shell.disposed) break;
       }
@@ -430,6 +466,7 @@ export class TreasureHuntView {
       // The last round's results stay until dismissed.
       this.auto = false;
       this.hideStop();
+      this.updateButtons();
     }
   }
 
@@ -460,11 +497,12 @@ export class TreasureHuntView {
     if (kind === "single") this.buildSingle(result.draws[0]!, built);
     else if (kind === "fixed") this.buildFixed(fixed!, built);
     else this.buildMulti(result.draws, built);
-    popup.append(...built, layer);
+    popup.prepend(layer);
+    popup.append(...built);
     if (background) background.hidden = false;
     popup.hidden = false;
     const stop = this.el("stopAutoButton");
-    if (stop) stop.hidden = !auto;
+    if (stop) stop.hidden = !this.auto;
     return new Promise<void>(resolve => {
       const done = () => {
         if (this.popupDone !== done) return;
@@ -563,6 +601,7 @@ export class TreasureHuntView {
 
   dispose(): void {
     this.stopRequested = true;
+    this.closePopup();
     for (const cleanup of this.cleanups.values()) cleanup();
     this.cleanups.clear();
     this.shell.dispose();

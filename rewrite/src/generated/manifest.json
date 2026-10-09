@@ -1891,8 +1891,8 @@
     },
     {
       "file": "app.js",
-      "bytes": 16032,
-      "sha256": "bc8ef0ebe0dd82b5cd9456f5fa1daa3d17af30a71a64de6d9b875f7ba21fa0da",
+      "bytes": 16072,
+      "sha256": "86bf3b044986b8060eb73da4bd3540ce17fa34fc25677021628764212d8866ff",
       "imports": 159,
       "exports": 1
     }

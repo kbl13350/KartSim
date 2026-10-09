@@ -148,3 +148,22 @@ test("flying pet preview and race animation lifecycle match release", async () =
   assert.deepEqual(await preview(true), await preview(false));
   assert.deepEqual(await race(true), await race(false));
 });
+
+test("walking-room pets preload idle clips and advance/reset their own clock", async () => {
+  const { log, deps, options, mount } = fixture();
+  const pet = await new FlyingPetPresentation(undefined, deps)
+    .loadPreview({ ...options, animate: true });
+  assert.deepEqual(log.filter(entry => entry[0] === "clip").map(entry => entry[2]),
+    [0, 1, 21, 20, 8, 6, 5, 7]);
+  assert.equal(log.find(entry => entry[0] === "loadModel")[3].length, 8,
+    "all idle face textures must be available before animation switches");
+  pet.mount(mount);
+  pet.update(100, "camera", 640, 480);
+  pet.update(116, "camera", 640, 480);
+  pet.reset();
+  pet.update(2000, "camera", 640, 480);
+  assert.deepEqual(log.filter(entry => entry[0] === "idleUpdate").map(entry => entry[1]), [0, 16, 0]);
+  pet.dispose();
+  pet.update(2016, "camera", 640, 480);
+  assert.equal(log.filter(entry => entry[0] === "idleUpdate").length, 3);
+});
