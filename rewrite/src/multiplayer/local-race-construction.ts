@@ -1,4 +1,4 @@
-import { isItemRace, isItemRaceRules, teamGaugeEnabled } from "./lobby-item-mode";
+import { isItemRace, isItemRaceRules } from "./lobby-item-mode";
 
 export interface LocalRaceConstructionOps {
   validateStartSlots(room: any): void;
@@ -74,7 +74,10 @@ export function initializeLocalRace(
     localParticipant.vehicle.collisionShape,
     assets.mode === "team",
     assets.mode === "team" && assets.speed === 4,
-    teamGaugeEnabled(assets),
+    // Item team races keep the network-driven gauge but never feed it: they
+    // neither subscribe to team-gauge nor send team-charge. Passing false
+    // here would start the offline local gauge instead (driving/team-gauge.ts).
+    assets.mode === "team" && assets.speed !== 4,
     assets.drivingMode,
     owner.lte?.motion,
     owner.giant,

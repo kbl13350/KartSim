@@ -159,17 +159,14 @@ test("local race asset validation and runtime construction match release", () =>
   }
 });
 
-test("item races need their race.item and run without 组队集气", () => {
+test("item races need their race.item and keep the team gauge unfed", () => {
   const team = { ruleset: "web-item-v1", table: "team" };
   const built = run("rewritten", { item: true, team: true, speed: 7, raceItem: team });
   assert.equal(built.error, undefined);
-  // makePhysics(params, shape, team, team infinite, team charge, ...)
+  // makePhysics(params, shape, team, team infinite, network team gauge, ...): the
+  // gauge stays network-driven, so without team-gauge events it never fills.
   const physics = built.calls.find(call => Array.isArray(call) && call[0] === "physics created");
-  assert.deepEqual(physics[1].slice(0, 4), [true, false, false, { kind: "item", team: true }]);
-  // An ordinary standard-speed team race keeps its team charge.
-  const speed = run("rewritten", { team: true, speed: 7 });
-  const speedPhysics = speed.calls.find(call => Array.isArray(call) && call[0] === "physics created");
-  assert.deepEqual(speedPhysics[1].slice(0, 3), [true, false, true]);
+  assert.deepEqual(physics[1].slice(0, 4), [true, false, true, { kind: "item", team: true }]);
   for (const scenario of [
     { item: true, team: true, speed: 7 },
     { item: true, team: true, speed: 7, raceItem: { ruleset: "web-item-v1", table: "indi" } },
