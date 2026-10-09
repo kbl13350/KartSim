@@ -108,14 +108,28 @@ func TestEmbeddedTracksAndPools(t *testing.T) {
 			t.Errorf("item-only track %s = %+v %v", id, track, ok)
 		}
 	}
-	// Speed tracks, trackLocale-blocked tracks and tracks without cubes are out.
-	for _, id := range []string{"village_R01", "tomb_I05", "nymph_I03", "desert_I09", "ice_I01", "village_I11", "forest_I03_rvs"} {
+	// The tracks of the client's item catalog (rewrite/src/resources/track-catalog.ts
+	// itemTrackCatalog): 158 item tracks and the 29 reverse tracks with an open
+	// trackLocale@cn track_rvs row.
+	reverse := 0
+	for _, track := range d.Tracks {
+		if track.Reverse {
+			reverse++
+		}
+	}
+	if len(d.Tracks) != 187 || reverse != 29 {
+		t.Errorf("%d item tracks, %d reverse; the client catalog has 187 and 29", len(d.Tracks), reverse)
+	}
+	// Speed tracks, trackLocale-blocked tracks, tracks without cubes or a CN
+	// title, and reverse tracks without a cn track_rvs row are out.
+	for _, id := range []string{"village_R01", "tomb_I05", "nymph_I03", "desert_I09", "ice_I01", "village_I11",
+		"forest_I03_rvs", "transFormer_I01", "desert_I03_rvs"} {
 		if _, ok := d.Track(id); ok {
 			t.Errorf("%s accepted", id)
 		}
 	}
-	if track, ok := d.Track("desert_I03_rvs"); !ok || !track.Reverse || track.Cubes == 0 {
-		t.Errorf("desert_I03_rvs = %+v %v", track, ok)
+	if track, ok := d.Track("forest_I01_rvs"); !ok || !track.Reverse || track.Cubes == 0 {
+		t.Errorf("forest_I01_rvs = %+v %v", track, ok)
 	}
 	for _, code := range RandomCodes {
 		if len(d.Pool(code)) == 0 {

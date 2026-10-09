@@ -222,10 +222,10 @@ func TestItemRoomTracks(t *testing.T) {
 		}
 		return codeOf(t, err)
 	}
-	for _, id := range []string{"village_R01", "tomb_I05", "ice_I01", "forest_I03_rvs", "nowhere_I01"} {
+	for _, id := range []string{"village_R01", "tomb_I05", "ice_I01", "forest_I03_rvs", "desert_I03_rvs", "nowhere_I01"} {
 		assertEqual(t, track(id), "TRACK_NOT_ITEM")
 	}
-	for _, id := range []string{"desert_I03", "village_C01", "desert_I03_rvs", "nemo_C02"} {
+	for _, id := range []string{"desert_I03", "village_C01", "forest_I01_rvs", "nemo_C02"} {
 		assertEqual(t, track(id), "")
 	}
 	assertEqual(t, h.recorder.savedRules(t, roomID.(string))["trackId"], "nemo_C02")
@@ -390,7 +390,7 @@ func TestItemRequestChecksAndSequence(t *testing.T) {
 	// the reporter.
 	hazard := ir.send(a, "hit", hit(map[string]any{"useId": 0, "itemId": 37, "hazardId": 2, "result": "blocked", "by": "shield"}))
 	want := map[string]any{"type": "item", "roomId": roomID, "raceId": raceID, "action": "hit",
-		"playerId": a.playerID, "useId": 0, "itemId": 37, "userId": nil, "result": "blocked", "by": "shield", "hazardId": 2}
+		"playerId": a.playerID, "useId": 0, "itemId": 37, "result": "blocked", "by": "shield", "hazardId": 2}
 	assertEqual(t, without(hazard, "sequence"), want)
 	assertEqual(t, hazard["sequence"], ir.sequences[a])
 	ir.send(a, "hit", hit(map[string]any{"useId": 0, "itemId": 37, "hazardId": 2}))
@@ -698,4 +698,28 @@ func TestItemTeamResult(t *testing.T) {
 			players[3].playerID: reward(53, 72),
 		})
 	})
+}
+
+func TestItemTestGrants(t *testing.T) {
+	h := newHarness(t)
+	players := h.connectN(2)
+	ir := h.startItemRace(players, "itemIndiCombine")
+	p0, p1 := players[0], players[1]
+	ir.at(p0, 500, 1)
+	ir.at(p1, 400, 1)
+	// Off by default: a cube that names its item is refused (its sequence is used).
+	assertEqual(t, ir.reject(p0, "cube", map[string]any{"cubeId": 1, "capacity": 2, "testItemId": 7}),
+		"ITEM_TEST_GRANTS_DISABLED")
+	// With KART_ITEM_TEST_GRANTS the leader gets the rocket it could never draw.
+	h.lobby.itemTests = true
+	grant := ir.send(p0, "cube", map[string]any{"cubeId": 1, "capacity": 2, "testItemId": 7})
+	assertEqual(t, []any{grant["itemId"], grant["reason"], grant["slots"]}, []any{float64(7), nil, []int{7, -1}})
+	abusing := ir.send(p0, "cube", map[string]any{"cubeId": 1, "capacity": 2, "testItemId": 2})
+	assertEqual(t, []any{abusing["itemId"], abusing["reason"]}, []any{nil, "abusing"})
+	assertEqual(t, ir.reject(p0, "cube", map[string]any{"cubeId": 2, "capacity": 2, "testItemId": 110}),
+		"INVALID_TESTITEMID") // the slot lock is a team item
+	assertEqual(t, ir.reject(p0, "cube", map[string]any{"cubeId": 2, "capacity": 2, "testItemId": "rocket"}),
+		"INVALID_TESTITEMID")
+	used := ir.send(p0, "use", map[string]any{"itemId": 7, "targetId": p1.playerID})
+	assertEqual(t, used["targets"], []any{p1.playerID})
 }

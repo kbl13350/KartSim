@@ -1,15 +1,18 @@
-// Unit tests for the item mode exporter's pure rules, and a cross-check of
-// the committed server-go/internal/game/itemmode/itemmode.json against the
-// decoded original files in recovered/data-full.
-// Run from rewrite/: node --test tools/item-mode-export/item-mode.test.mjs
+// Unit tests for the item mode exporter's pure rules, a cross-check of the
+// committed server-go/internal/game/itemmode/itemmode.json against the
+// decoded original files in recovered/data-full, and a check that its track
+// list, random pools and default track are exactly the browser's item track
+// catalog (the server must never pick a track the client cannot load).
+// Run from rewrite/:
+//   node --import tsx --test tools/item-mode-export/item-mode.test.mjs
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-import { baseStates, closedLocaleTracks, cubeCount, defaultTrack, itemFolder, itemTrackMetadata,
-  probabilityTable, RANDOM_CODES, randomPools, restrictionRows, trackRows } from "./item-mode.mjs";
+import { baseStates, cubeCount, defaultTrack, itemFolder, probabilityTable, RANDOM_CODES,
+  randomPools, restrictionRows, trackRows } from "./item-mode.mjs";
 
 const node = (name, attributes = {}, children = []) => ({
   name, text: "", children,
@@ -101,46 +104,27 @@ test("cubes count static and moving item cubes only", () => {
   assert.equal(cubeCount({ root: { kind: "scene" } }), 0);
 });
 
-test("trackLocale closes blocked and unchoosable tracks and reverse variants", () => {
-  const closed = closedLocaleTracks(node("trackList", {}, [
-    node("track", { id: "tomb_I05", name: "墓地", blocked: "true" }),
-    node("track", { id: "desert_I09", choosable: "false" }),
-    node("track", { id: "tomb_I09", blocked: "false" }),
-    node("track_rvs", { refId: "forest_I03", blocked: "true" }),
-    node("track_crz", { refId: "desert_I03", blocked: "true" }),
-  ]));
-  assert.deepEqual([...closed].sort(), ["desert_I09", "forest_I03_rvs", "tomb_I05"]);
-});
-
-test("item metadata keeps item-only tracks for the client catalog rules", () => {
-  assert.deepEqual(itemTrackMetadata([
-    { id: "village_C01", gameType: "item", isOnlyItemTrack: true },
-    { id: "village_R01", gameType: "speed" },
-    { id: "forest_I01", gameType: "item" },
-  ]), [{ id: "village_C01", gameType: "item", isOnlyItemTrack: undefined },
-    { id: "forest_I01", gameType: "item", isOnlyItemTrack: undefined }]);
-});
-
-test("track rows need cubes in their exact model and an open locale row", () => {
+test("track rows keep the client catalog order and need cubes in the exact model", () => {
   const { problems, problem } = collect();
   const choice = (id, extra = {}) => ({ id, title: id, gameType: "item", ...extra });
   const rows = trackRows([
-    choice("desert_I03"), choice("tomb_I05"), choice("ice_I01"), choice("village_C01"),
+    choice("desert_I03"), choice("ice_I01"), choice("village_C01"),
     choice("desert_I03_rvs", { reverse: true }), choice("tomb_I05_rvs", { reverse: true }),
-    choice("forest_I03_rvs", { reverse: true }), choice("village_R01", { gameType: "speed" }),
-    choice("desert_I03"),
+    choice("village_R01", { gameType: "speed" }), choice("desert_I03"),
   ], {
-    closed: new Set(["tomb_I05", "forest_I03_rvs"]),
-    cubes: new Map([["desert_I03", 39], ["tomb_I05", 38], ["village_C01", 70], ["desert_I03_rvs", 39],
-      ["tomb_I05_rvs", 38], ["forest_I03_rvs", 40], ["village_R01", 4]]),
+    cubes: new Map([["desert_I03", 39], ["village_C01", 70], ["desert_I03_rvs", 39],
+      ["tomb_I05_rvs", 38], ["village_R01", 4]]),
     onlyItem: new Set(["village_C01"]),
   }, problem);
   assert.deepEqual(rows, [
     { id: "desert_I03", title: "desert_I03", cubes: 39, onlyItem: undefined, reverse: undefined },
     { id: "village_C01", title: "village_C01", cubes: 70, onlyItem: true, reverse: undefined },
     { id: "desert_I03_rvs", title: "desert_I03_rvs", cubes: 39, onlyItem: undefined, reverse: true },
+    { id: "tomb_I05_rvs", title: "tomb_I05_rvs", cubes: 38, onlyItem: undefined, reverse: true },
   ]);
-  assert.deepEqual(problems, ["track desert_I03 listed twice"]);
+  // The server offers exactly the client's tracks: any track it would drop is an error.
+  assert.deepEqual(problems, ["track ice_I01 has no item cube", "track village_R01 is not an item track",
+    "track desert_I03 listed twice"]);
 });
 
 test("random pools map the codes to item groups and the default is the first hot1 track", () => {
@@ -155,7 +139,9 @@ test("random pools map the codes to item groups and the default is the first hot
   assert.deepEqual(pools.map(pool => pool.code), RANDOM_CODES.map(entry => entry.code));
   assert.deepEqual(pools.find(pool => pool.code === 3).tracks, ["b", "a"]);
   assert.deepEqual(pools.find(pool => pool.code === 0).tracks, ["a", "b", "c"]);
-  assert.equal(problems.length, RANDOM_CODES.length - 2);
+  // x is not an exported track; the six other codes have no group.
+  assert.equal(problems.length, 1 + RANDOM_CODES.length - 2);
+  assert.match(problems[0], /code 3 .* x is not an exported track/);
   assert.equal(defaultTrack(pools, problem), "b");
   assert.equal(defaultTrack([], problem), undefined);
 });
@@ -206,10 +192,17 @@ test("itemmode.json tracks honour trackLocale@cn and the hot1 default", { skip: 
   for (const id of ids) assert.equal(types.get(id.replace(/_rvs$/, "")), "item", id);
   for (const row of xmlRows(path.join(common, "trackLocale@cn.bml.xml"), "track"))
     if (row.blocked === "true" || row.choosable === "false") assert.ok(!ids.has(row.id), row.id);
-  for (const row of xmlRows(path.join(common, "trackLocale@cn.bml.xml"), "track_rvs"))
-    if (row.blocked === "true") assert.ok(!ids.has(`${row.refId}_rvs`), row.refId);
+  // A reverse track needs an open trackLocale@cn track_rvs row.
+  const reverseRows = new Map(xmlRows(path.join(common, "trackLocale@cn.bml.xml"), "track_rvs")
+    .map(row => [`${row.refId}_rvs`, row]));
+  for (const track of data.tracks.filter(entry => entry.reverse)) {
+    const row = reverseRows.get(track.id);
+    assert.ok(row && row.blocked !== "true" && row.choosable !== "false", track.id);
+  }
   for (const id of ["village_C01", "mine_C04", "china_C01", "world_C02", "nemo_C02"])
     assert.equal(data.tracks.find(track => track.id === id)?.onlyItem, true, id);
+  assert.equal(data.tracks.filter(track => !track.reverse).length, 158);
+  assert.equal(data.tracks.filter(track => track.reverse).length, 29);
   assert.ok(data.tracks.every(track => track.cubes > 0));
   const random = readFileSync(path.join(common, "randomTrack@cn.bml.xml"), "utf8");
   const hot1 = random.slice(random.indexOf('<RandomTrackSet gameType="item" randomType="hot1"'));
@@ -218,3 +211,32 @@ test("itemmode.json tracks honour trackLocale@cn and the hot1 default", { skip: 
   assert.equal(data.defaultTrack, firstHot1);
   for (const pool of data.randomPools) for (const id of pool.tracks) assert.ok(ids.has(id), `${pool.code} ${id}`);
 });
+
+// The committed export against the browser's item track catalog: the server
+// draws and accepts tracks from itemmode.json, the race loader resolves them
+// in itemTrackCatalog and throws "本局赛道不在当前资源目录中。" for any other.
+
+const haveMirror = existsSync(exported) &&
+  existsSync(path.join(projectRoot, "mirror/__p3553/archive-index")) &&
+  existsSync(path.join(projectRoot, "mirror/__p3553/resources"));
+
+test("itemmode.json tracks, random pools and default are the client's item catalog",
+  { skip: !haveMirror }, async () => {
+    const data = JSON.parse(readFileSync(exported, "utf8"));
+    const { loadResourceLibrary } = await import("../economy-export/resource-library.mjs");
+    const { itemRandomTrackGroups, itemTrackCatalog } = await import(
+      pathToFileURL(path.join(projectRoot, "rewrite/src/resources/track-catalog.ts")).href);
+    const { library } = await loadResourceLibrary(projectRoot);
+    const catalog = await itemTrackCatalog(library);
+    assert.deepEqual(data.tracks.map(track => [track.id, track.title, track.reverse === true]),
+      catalog.map(choice => [choice.id, choice.title, choice.reverse === true]),
+      "server item tracks differ from the client's itemTrackCatalog; run tools/export-item-mode-data.mjs");
+    const groups = await itemRandomTrackGroups(library);
+    for (const { code, group } of RANDOM_CODES) {
+      assert.deepEqual(data.randomPools.find(pool => pool.code === code)?.tracks,
+        groups.find(candidate => candidate.id === group)?.trackIds, `random code ${code} (${group})`);
+    }
+    const hot1 = groups.find(candidate => candidate.id === "item:hot1:1");
+    assert.equal(data.defaultTrack, hot1?.trackIds[0]);
+    assert.ok(catalog.some(choice => choice.id === data.defaultTrack));
+  });

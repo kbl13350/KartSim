@@ -129,7 +129,7 @@ node --import tsx tools/export-economy-data.mjs --out DIR  # 写到其他目录�
 
 ### 道具赛数据（概率表与道具赛道）
 
-游戏节点运行道具赛（道具个人赛 / 组队道具赛，规则见 [`../rewrite/ITEM_MODE.md`](../rewrite/ITEM_MODE.md)，协议见 [`../SERVER_PROTOCOL.md`](../SERVER_PROTOCOL.md)“本地新增：道具赛”）所需的数据 `internal/game/itemmode/itemmode.json` 同样由导出工具从 `mirror/p3553` 生成并 `go:embed` 编入 kart-game，**不要手改**：个人 `item/slot/itemProb_indi@zz.bml`（14 种）与组队 `itemProb_team2@cn.bml`（19 种）的 top/high/mid/low 权重、`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限（道具锁、天使、闪电每局 2 次，加速器不限）、这 19 种道具 `item.bml` 第一组状态的时长（毫秒）、道具房间可选的 197 条赛道（含反向与 5 条道具专用图，只保留 `track.1s` 里确有道具箱的）、随机码 3–7/0/8/30 对应的道具随机池，以及默认赛道（道具 hot1 第一条）。
+游戏节点运行道具赛（道具个人赛 / 组队道具赛，规则见 [`../rewrite/ITEM_MODE.md`](../rewrite/ITEM_MODE.md)，协议见 [`../SERVER_PROTOCOL.md`](../SERVER_PROTOCOL.md)“本地新增：道具赛”）所需的数据 `internal/game/itemmode/itemmode.json` 同样由导出工具从 `mirror/p3553` 生成并 `go:embed` 编入 kart-game，**不要手改**：个人 `item/slot/itemProb_indi@zz.bml`（14 种）与组队 `itemProb_team2@cn.bml`（19 种）的 top/high/mid/low 权重、`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限（道具锁、天使、闪电每局 2 次，加速器不限）、这 19 种道具 `item.bml` 第一组状态的时长（毫秒）、道具房间可选的 187 条赛道（158 条道具图含 5 条道具专用图，加 29 条反向；与浏览器道具房间的选图目录完全一致，每条都有道具箱）、随机码 3–7/0/8/30 对应的道具随机池，以及默认赛道（道具 hot1 第一条）。
 
 ```sh
 cd rewrite
@@ -138,7 +138,7 @@ node --import tsx tools/export-item-mode-data.mjs --check    # 提交的 JSON �
 node --test tools/item-mode-export/item-mode.test.mjs        # 导出规则单测，并与 recovered/data-full 的原版表交叉核对
 ```
 
-赛道筛选直接运行浏览器的赛道目录规则（`trackMetadataCatalog`、`timeAttackTrackCatalog`、`randomTrackGroupsFromBml`，保留 `isOnlyItemTrack`），再去掉 `trackLocale@cn` 中 `blocked`/`choosable="false"` 的赛道，并用前端的 `.1s` 解码器统计每个模型的 `ToItemCube` 与移动道具箱。kart-game 启动时解析它（失败则不启动）；`go test ./internal/game/itemmode` 校验版本号与内容一致。
+赛道表与随机池直接取浏览器道具房间的选图目录（`rewrite/src/resources/track-catalog.ts` 的 `itemTrackCatalog`、`itemRandomTrackGroups`：`trackLocale@cn` 规则、反向赛道需要 `track_rvs` 行），并用前端的 `.1s` 解码器统计每个模型的 `ToItemCube` 与移动道具箱（目录里每条赛道都必须有，否则导出失败）。`rewrite/tools/item-mode-export/item-mode.test.mjs` 在有 `mirror/p3553` 时比对已提交的 JSON 与浏览器目录，二者不一致即失败。kart-game 启动时解析它（失败则不启动）；`go test ./internal/game/itemmode` 校验版本号与内容一致。
 
 ### 限流与反向代理
 
@@ -244,7 +244,7 @@ go vet ./... && go test -race ./...
 KART_TEST_MYSQL_DSN='kart:kart@tcp(127.0.0.1:3306)/kartsim_test?charset=utf8mb4&collation=utf8mb4_0900_as_ci' go test -race ./...
 ```
 
-未设置 `KART_TEST_MYSQL_DSN` 时跳过 MySQL 相关单测；Redis 相关单测使用 miniredis。不需要运行服务的 Node 单测：`node --test test/lib/kart-client.test.mjs test/lib/economy.test.mjs test/launcher.test.mjs`（测试客户端与新手装备、端到端脚本用来预测奖励与等级的规则移植，以及 `run-full-local.sh` 对非法配置的拒绝与 DSN 脱敏）。
+未设置 `KART_TEST_MYSQL_DSN` 时跳过 MySQL 相关单测；Redis 相关单测使用 miniredis。不需要运行服务的 Node 单测：`node --test test/lib/kart-client.test.mjs test/lib/economy.test.mjs test/launcher.test.mjs test/lib/item-race.test.mjs test/lib/item-bot-lib.test.mjs`（测试客户端与新手装备、端到端脚本用来预测奖励与等级的规则移植、`run-full-local.sh` 对非法配置的拒绝与 DSN 脱敏，以及道具赛脚本与测试机器人的共用部分：名次组、目标规则、道具请求序号、运动帧、路线行驶；有 `rewrite/node_modules` 时还与浏览器自己的起跑位、车身朝向与运动编解码逐项比对）。
 
 端到端脚本（Node.js 22+，无 npm 依赖；共用 [`test/lib/kart-client.mjs`](test/lib/kart-client.mjs)，自带集群的脚本另用 [`test/lib/local-cluster.mjs`](test/lib/local-cluster.mjs)，奖励与等级规则在 [`test/lib/economy.mjs`](test/lib/economy.mjs)）：
 
@@ -254,7 +254,8 @@ KART_TEST_MYSQL_DSN='kart:kart@tcp(127.0.0.1:3306)/kartsim_test?charset=utf8mb4&
 | `node test/auth-smoke.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis | 自行构建并启动 kart-data（`KART_REGISTRATION=invite`，管理员用户名用 `KART_BOOTSTRAP_INVITE` 注册）与两个 kart-game（临时 MySQL 库和账号、唯一 Redis 前缀），验证邀请、注册、登录、改名、token、档案密钥、内部 API 鉴权、拒绝游客与未领取礼包的票据、票据（含伪造的过期/错数据节点/游客票据）、跨节点昵称与账号占用（`presence-account` 键，另一节点 `ACCOUNT_ONLINE`）、数据服务停机期间的结算经发件箱补发并入账（立即完赛按未完赛奖励）、玩家统计、结算幂等以及数据服务重启后的持久化；结束时全部清理 |
 | `node test/economy-smoke.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis | 自行启动开放注册的 kart-data（测试管理员与 `KART_BOOTSTRAP_INVITE`、倍率 1、初始金币 10000）与两个 kart-game，验证：注册返回 token、密码 8–128、首位注册者不是管理员、按 IP 限流 429；管理员用户名不带邀请码（或大小写不同、邀请码错误）400 `INVALID_INVITE`，日志打印引导邀请码，用它注册后成为管理员、邀请码不能再用；`auth/config` 字段；游客票据与游客 `hello` 被拒；领取礼包前 403；礼包白名单（400）、幂等与库存；`/api/account` 钱包与 Lv.1；目录 ETag/304/gzip；`INSUFFICIENT_FUNDS` → 管理员发放 → 过期的 `expectedPrice`/`expectedCurrency` 409 `PRICE_CHANGED`（不扣款）→ 购买 → `ALREADY_OWNED`、`EXP_REQUIRED`、`OFFER_NOT_FOUND`、限时购买与续期、`requestId` 重放、换商品 409 `REQUEST_ID_CONFLICT`；账号档案 409 `ITEM_NOT_OWNED`；`hello`/`create`/`join`/`equipment` 的不拥有装备；一个账号一个会话（同节点 `NICKNAME_TAKEN`，另一节点及改名后 `ACCOUNT_ONLINE`）；两局比赛：立即完赛双方只得未完赛奖励，等满 10 秒服务器时间后完赛者得名次奖励、上报时间比服务器观察短 3 秒以上者按未完赛（`race.results` 名次不变），入账、升级奖励、战绩，重复投递不重复入账；结算携带的倍率（`expRate`/`lucciRate`）、超过 24 小时与超过单条上限的结算只记赛果不发奖励；MySQL 流水与余额一致；计时赛奖励、个人最佳、400 `INVALID_ELAPSED_MS`/`INVALID_TRACK`、节奏限制 429 `TOO_MANY_ATTEMPTS`、`requestId` 重放与 409 `REQUEST_ID_CONFLICT`；管理页面、账号搜索、发放与扣除、非管理员被拒、发放 `requestId` 重放 `duplicate:true`、换参数 409 `REQUEST_ID_CONFLICT`；`KART_REGISTRATION=closed` 重启后注册 403 而余额与库存保留；任何退出路径（含 Ctrl-C）都清理。比赛与计时赛要等真实时间，约 1 分钟 |
 | `node ../server-smoke.mjs` | 集群已运行 | 在上述规则基础上用真实前端校验器检查大厅、房间、个人赛与组队赛快照及 `race.rewards`（个人赛开跑 10 秒内完成，双方奖励相同，即未完赛奖励）（需要 `rewrite/node_modules`，没有时跳过校验器；已安装但校验器加载失败时直接失败，设置 `KART_SMOKE_ALLOW_NO_VALIDATORS=1` 才降级为警告） |
-| `node ../server-special-smoke.mjs` | 集群已运行、`rewrite/node_modules` | 注册五个账号，检查挡人、巨人、RP、LTE 四种模式的房间、赛程、广播、`race.rewards`（都在开跑 10 秒内结束，所有人得相同的未完赛奖励）与结算 |
+| `node ../server-special-smoke.mjs` | 集群已运行、`rewrite/node_modules` | 注册五个账号，检查挡人、巨人、RP、LTE 四种模式的房间、赛程、广播、`race.rewards`（都在开跑 10 秒内结束，所有人得相同的未完赛奖励）与结算；再用四个账号跑个人道具赛与组队道具赛：道具频道与玩法、道具赛道与随机码规则（有 `mirror/p3553` 时还核对浏览器的道具赛道目录）、用浏览器编码器发送带名次进度的运动帧、按名次组抽取（刷箱、满槽、三槽）、换位、变更卡、各类道具的目标、放置、命中/格挡、香蕉移除、赛道危险物、透视镜、道具锁、完赛（组队按最先冲线者的队伍获胜）、结算与道具赛成就；所有道具请求都过浏览器的请求校验、所有事件都过浏览器的事件校验（会变成 `INVALID_ITEM_EVENT` 的道具事件算失败）。道具来自真实抽取，脚本会刷箱直到拿到需要的道具（`KART_SMOKE_ITEM_BUDGET_MS`，默认每种 90 秒）；`KART_SMOKE_ITEM_ONLY=1` 只跑道具赛；约 1 分钟 |
+| `node test/item-bot-check.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis，`rewrite/node_modules`，`mirror/p3553` | 自行启动打开 `KART_ITEM_TEST_GRANTS` 的临时集群，由脚本扮演玩家建道具房间，启动测试机器人 `test/item-bot.mjs`：它登录、找到房间、准备、载入，沿赛道路线行驶（运动帧用浏览器编解码器核对）、按时使用导弹和香蕉、上报玩家的导弹与大魔王命中（被导弹炸飞时停下）、跑完 3 圈完赛、`--once` 后离开且不打印密码；约 1 分钟 |
 | `node test/run-cluster-smokes.mjs [smoke] [server-smoke] [special]` | `KART_SMOKE_MYSQL_ADMIN`，Redis | 自行启动临时集群（开放注册、两个游戏节点），依次对它运行上面三个“集群已运行”的脚本，结束后清理；不想把测试数据写进开发集群时用它 |
 | `node test/frontend-economy-check.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis，`rewrite/node_modules` | 自行启动临时集群（倍率经验 1.5、金币 2，两个游戏节点），用 tsx 直接运行浏览器的真实模块（`rewrite/src/account/*`、`shop-api.ts`/`shop-model.ts`、`game-servers.ts`、`client-websocket.ts` 与严格的事件/房间校验器、`timeattack-settle.ts`）：登录门注册（开放注册折叠的“有邀请码？”；管理员用户名不带邀请码 `INVALID_INVITE`，用引导邀请码注册）→ 首次登录迁移偏好与 404 `PROFILE_NOT_FOUND` → 新手礼包（`source:"starter"`、重复领取）→ 车库拥有过滤 → 档案保存与 409 `ITEM_NOT_OWNED` 修复 → 商店目录 ETag/304 → `ShopPurchaser` 余额不足 → 管理员发放 → 旧价格 `PRICE_CHANGED`（中文提示、不扣款）→ 购买与租用 → 票据与进入游戏服（练习车、买来的车、免费槽位）→ 同一账号在另一节点 `ACCOUNT_ONLINE` → 两个账号比赛（等满 10 秒服务器时间再完赛）→ 解析 `race.rewards`（显示值 = 倍率后的入账值）→ 刷新账号与升级提示 → 计时赛结算（间隔 10 秒以上；过于频繁的 `TOO_MANY_ATTEMPTS` 与无效赛道 `INVALID_TRACK` 静默无奖励）与升级 → 过期租用在档案读取与 `hello`（`ITEM_NOT_OWNED` 后修复重进）时回退；约 1 分钟 |
 
@@ -268,6 +269,16 @@ node test/smoke.mjs && node ../server-smoke.mjs && node ../server-special-smoke.
 KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6379 node test/run-cluster-smokes.mjs
 # 浏览器真实模块对临时集群的账号经济全流程（需要 rewrite/ 下 npm ci）
 KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6379 node test/frontend-economy-check.mjs
+# 只跑道具赛冒烟（临时集群）与道具赛测试机器人的端到端检查
+KART_SMOKE_ITEM_ONLY=1 KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6379 node test/run-cluster-smokes.mjs special
+KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6379 node test/item-bot-check.mjs
+```
+
+**道具赛测试机器人**（[`test/item-bot.mjs`](test/item-bot.mjs)，用法见文件头注释或 `--help`）：在浏览器里手动测试道具赛时充当另一名车手。用 JSON 文件里的已有账号登录（`--accounts`，默认 `server-go/data/dev-test-accounts.json`，`--account` 选用户名或昵称；不打印密码），加入唯一的道具房间（或 `--room ID`）、准备、载入；比赛中沿赛道路线（浏览器的路线图，需要 `mirror/p3553`）以 `--speed` 米/秒在自己的起跑位车道行驶并按圈完赛，或用 `--replay` 重放在浏览器里录下的运动（`--print-recorder` 打印 DevTools 录制片段）；`--use rocket@20s,devil@25s` 在比赛时间使用指定道具（导弹/磁铁瞄准 `--target`，默认第一名对手；需要游戏节点 `KART_ITEM_TEST_GRANTS=true`）；瞄准它的道具到达时上报命中（`--defend shield|angel` 可改为格挡），开过香蕉、水炸弹、定时水炸弹、路障时上报命中，被瞄准的路障由它放置；命中后按效果停下或减速。赛后回到房间再次准备（`--once` 则离开）。
+
+```sh
+KART_ITEM_TEST_GRANTS=true ./run-full-local.sh          # 在仓库根目录；浏览器里建一个道具房间
+node server-go/test/item-bot.mjs --account bob --use rocket@20s,banana@30s,devil@45s
 ```
 
 **账号与注册限流。** 默认没有游客，所以每个脚本玩家都是新注册的账号（随机的唯一用户名与 ≤ 16 字的昵称），领取新手礼包后用 Bearer 票据进入，`hello`/`create`/`join` 只带新手装备（练习车）。注册按客户端 IP 每小时限 5 次，而一次 `smoke.mjs` 就要注册 3 个账号、`server-special-smoke.mjs` 5 个：脚本因此给每个账号发送不同的 `X-Forwarded-For`（`198.18.0.0/15` 测试网段），被测数据服务必须信任运行脚本的地址——`KART_TRUSTED_PROXIES` 的默认值（回环地址）已覆盖 `run-full-local.sh`/`run-lan.sh` 启动并在本机测试的情况，自带集群的脚本固定使用 `KART_TRUSTED_PROXIES=127.0.0.1/32`。不能这样配置的部署（远程、compose 发布端口、邀请码或关闭注册）改用已有账号：`KART_SMOKE_ACCOUNTS=user1:密码1,user2:密码2,…`（按顺序使用，不够时再注册；没领取礼包的会自动领取），并可用 `KART_SMOKE_FORWARDED_FOR=0` 不发送该头。注册被限流时脚本会给出上述提示；需要立即解除时删除 Redis 键 `<前缀>rl:register-ip:<IP>`。
@@ -328,6 +339,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `KART_MEMORY_LIMIT_MB` | `0`（不限） | 设置后等同 `GOMEMLIMIT`；存活堆超过它的 90% 时拒绝新连接（HTTP 503）和新 `hello`（503 `SERVER_BUSY`），已在房间的玩家不受影响。为 0 或 ≥ 64 |
 | `KART_HELLO_TIMEOUT` | `15s` | 连接后在这段时间内没有完成 `hello` 就以 1008 关闭（Go 时长格式，1s–5m） |
 | `KART_ALLOW_GUESTS` | `false` | 为 `false` 时游客票据的 `hello` 返回 401 `LOGIN_REQUIRED`；应与数据服务相同 |
+| `KART_ITEM_TEST_GRANTS` | `false` | **仅限开发测试。**为 `true` 时道具赛的 `cube` 请求可以带 `testItemId` 指定拿到的道具（测试机器人 `test/item-bot.mjs --use` 需要它），启动时打印警告；为 `false` 时这种请求返回 403 `ITEM_TEST_GRANTS_DISABLED`。公开部署切勿打开 |
 
 ### 启动脚本（`run-full-local.sh` / `run-lan.sh`）
 
@@ -725,4 +737,4 @@ server {
 | `internal/game/cluster` | 心跳、昵称占用与释放 |
 | `internal/game/outbox` | 结算发件箱 |
 | `scripts/` | MySQL 初始化脚本、开发依赖 compose |
-| `test/` | Node 端到端脚本：`smoke.mjs`、`auth-smoke.mjs`、`economy-smoke.mjs`、`frontend-economy-check.mjs`、`run-cluster-smokes.mjs`，以及 `launcher.test.mjs`（`run-full-local.sh` 的配置检查）；`test/lib/` 为共用客户端（`kart-client.mjs`）、自带集群（`local-cluster.mjs`）、奖励与等级规则（`economy.mjs`）和 Redis 小客户端 |
+| `test/` | Node 端到端脚本：`smoke.mjs`、`auth-smoke.mjs`、`economy-smoke.mjs`、`frontend-economy-check.mjs`、`run-cluster-smokes.mjs`、道具赛测试机器人 `item-bot.mjs` 与它的检查 `item-bot-check.mjs`，以及 `launcher.test.mjs`（`run-full-local.sh` 的配置检查）；`test/lib/` 为共用客户端（`kart-client.mjs`）、自带集群（`local-cluster.mjs`）、奖励与等级规则（`economy.mjs`）、道具赛脚本共用部分（`item-race.mjs`、`item-bot-lib.mjs`）和 Redis 小客户端 |
