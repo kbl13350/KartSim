@@ -111,7 +111,8 @@ export function bindRaceScope(host: RaceSessionHost, room?: SessionRoom): void {
 }
 
 /** Item request actions (ITEM_MODE.md 5). */
-export type ItemRequestAction = "cube" | "use" | "place" | "hit" | "swap" | "change";
+export type ItemRequestAction = "cube" | "use" | "place" | "hit" | "swap" | "change" | "escape" |
+  "slots";
 
 /**
  * Failures that never reached the server's sequence check, so the sequence
@@ -236,9 +237,9 @@ export function createRaceConnection(host: RaceSessionHost, roomId: string,
       return result;
     },
     /**
-     * Item events of this race from the other racers (used, placed, hit) and
-     * the server (scan). Replies carry a requestId and come back as the
-     * result of `sendItem` instead.
+     * Item events of this race from the other racers (used, placed, hit,
+     * escaped) and the server (scan). Replies carry a requestId and come back
+     * as the result of `sendItem` instead.
      */
     subscribeItem: (listener: (event: ItemServerEvent) => void) => {
       if (!active()) return () => {};

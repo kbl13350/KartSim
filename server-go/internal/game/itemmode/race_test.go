@@ -585,3 +585,88 @@ func TestUsesArePrunedAfterTheirLifetime(t *testing.T) {
 		t.Fatal("expired use kept")
 	}
 }
+
+func TestEscapeFromATrap(t *testing.T) {
+	r := teamRace(t, &picks{})
+	standings := order("b1", "a1", "b2", "a2")
+	use := func(user string, item int) *Use {
+		t.Helper()
+		give(r, user, item)
+		result, err := r.UseItem(UseRequest{PlayerID: user, ItemID: item, Point: &Point{}, Now: 0,
+			Standings: standings})
+		if err != nil {
+			t.Fatal(err)
+		}
+		return result.Use
+	}
+	hit := func(victim string, u *Use, result, by string) {
+		t.Helper()
+		if _, _, err := r.Hit(HitRequest{VictimID: victim, UseID: u.ID, ItemID: u.ItemID, Result: result,
+			By: by, Now: 500}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	fly := use("a2", WaterFly) // at b2, the opponent ahead
+	_, _, err := r.Escape("b2", fly.ID, 0, 600)
+	wantErr(t, err, ErrInvalidUse) // no hit reported yet
+	hit("b2", fly, ResultHit, "")
+	escaped, fresh, err := r.Escape("b2", fly.ID, 0, 1_000)
+	if err != nil || !fresh || escaped.VictimID != "b2" || escaped.UseID != fly.ID || escaped.ItemID != WaterFly ||
+		escaped.UserID != "a2" {
+		t.Fatalf("escape %+v %v %v", escaped, fresh, err)
+	}
+	if again, fresh, err := r.Escape("b2", fly.ID, 0, 1_100); err != nil || fresh || again.UseID != fly.ID {
+		t.Fatalf("repeat %+v %v %v", again, fresh, err)
+	}
+	_, _, err = r.Escape("a1", fly.ID, 0, 1_000)
+	wantErr(t, err, ErrInvalidUse) // not a victim
+
+	// Only a hit by a trapping item escapes.
+	bomb := use("b1", WaterBomb)
+	hit("a1", bomb, ResultBlocked, ByAngel)
+	_, _, err = r.Escape("a1", bomb.ID, 0, 1_000)
+	wantErr(t, err, ErrInvalidUse) // blocked: never trapped
+	timeBomb := use("a1", TimeBomb)
+	hit("a1", timeBomb, ResultHit, "")
+	if _, fresh, err := r.Escape("a1", timeBomb.ID, 0, 4_000); err != nil || !fresh {
+		t.Fatalf("time bomb escape %v %v", fresh, err)
+	}
+	devil := use("b1", Devil)
+	hit("a2", devil, ResultHit, "")
+	_, _, err = r.Escape("a2", devil.ID, 0, 1_000)
+	wantErr(t, err, ErrInvalidUse)
+	_, _, err = r.Escape("a2", 99, 0, 1_000)
+	wantErr(t, err, ErrInvalidUse)
+	_, _, err = r.Escape("b2", fly.ID, 0, UseLifetimeMs+1)
+	wantErr(t, err, ErrInvalidUse) // expired
+	_, _, err = r.Escape("zz", fly.ID, 0, 1_000)
+	wantErr(t, err, ErrInvalidTarget)
+
+	// A water mine on the track: its hazard hit escapes, once per hit.
+	_, _, err = r.Escape("a1", 0, 3, 1_000)
+	wantErr(t, err, ErrInvalidUse)
+	if _, _, err := r.Hit(HitRequest{VictimID: "a1", ItemID: WaterMine, HazardID: 3, Result: ResultHit,
+		Now: 1_000}); err != nil {
+		t.Fatal(err)
+	}
+	mine, fresh, err := r.Escape("a1", 0, 3, 1_600)
+	if err != nil || !fresh || mine.HazardID != 3 || mine.ItemID != WaterMine || mine.UseID != 0 {
+		t.Fatalf("hazard escape %+v %v %v", mine, fresh, err)
+	}
+	if _, fresh, _ := r.Escape("a1", 0, 3, 1_700); fresh {
+		t.Fatal("hazard escape repeated")
+	}
+	if _, _, err := r.Hit(HitRequest{VictimID: "a1", ItemID: WaterMine, HazardID: 3, Result: ResultHit,
+		Now: 4_000}); err != nil {
+		t.Fatal(err)
+	}
+	if _, fresh, err := r.Escape("a1", 0, 3, 4_600); err != nil || !fresh {
+		t.Fatalf("a new hazard hit escapes again %v %v", fresh, err)
+	}
+	if _, _, err := r.Hit(HitRequest{VictimID: "b1", ItemID: Mine, HazardID: 4, Result: ResultHit,
+		Now: 1_000}); err != nil {
+		t.Fatal(err)
+	}
+	_, _, err = r.Escape("b1", 0, 4, 1_500)
+	wantErr(t, err, ErrInvalidUse) // a mine launches, it does not trap
+}

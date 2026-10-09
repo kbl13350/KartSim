@@ -105,7 +105,11 @@ export type ItemRequest = ItemRequestBase & (
   | { action: "hit"; useId: number; itemId: number; result: "hit" | "blocked";
     by?: "shield" | "angel" | "emp" | "escape"; hazardId?: number }
   | { action: "swap" }
-  | { action: "change" });
+  | { action: "change" }
+  /** A trapped racer left its bubble early (useId 0: a track water mine, with hazardId). */
+  | { action: "escape"; useId: number; hazardId?: number }
+  /** The racer's authoritative slots again, after a rejection left them in doubt. */
+  | { action: "slots" });
 
 /** Server error codes of rejected item requests; none of them fails the race. */
 export const ITEM_ERROR_CODES = [
@@ -139,8 +143,12 @@ export function isValidItemRequest(value: unknown): value is ItemRequest {
         (value.by === undefined || (value.result === "blocked" &&
           ["shield", "angel", "emp", "escape"].includes(String(value.by)))) &&
         (value.hazardId === undefined || safeInteger(value.hazardId, 0, 4096));
+    case "escape":
+      return safeInteger(value.useId, 0, Number.MAX_SAFE_INTEGER) &&
+        (value.useId === 0 ? safeInteger(value.hazardId, 1, 4096) : value.hazardId === undefined);
     case "swap":
     case "change":
+    case "slots":
       return true;
     default:
       return false;

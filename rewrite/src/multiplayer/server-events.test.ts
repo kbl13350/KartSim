@@ -121,6 +121,12 @@ test("every item event action is projected onto its known fields", () => {
       { ...item, requestId: "r3", action: "slots", slots: [6, 7] }],
     [{ ...item, action: "scan", playerId: "player-2", slots: [10, 109, -1], until: 9000 },
       { ...item, action: "scan", playerId: "player-2", slots: [10, 109, -1], until: 9000 }],
+    // A trapped racer left its bubble early (the reply carries the sequence).
+    [{ ...item, action: "escaped", playerId: "player-2", useId: 6, itemId: 9 },
+      { ...item, action: "escaped", playerId: "player-2", useId: 6, itemId: 9 }],
+    [{ ...item, requestId: "r5", action: "escaped", playerId, useId: 0, itemId: 37, hazardId: 3,
+      sequence: 8 },
+    { ...item, requestId: "r5", action: "escaped", playerId, useId: 0, itemId: 37, hazardId: 3 }],
   ];
   for (const [event, parsed] of accepted) {
     assert.deepEqual(parseServerEvent(event, deps), parsed, JSON.stringify(event));
@@ -162,6 +168,11 @@ test("an invalid item event is dropped without closing the connection", () => {
     { ...item, action: "hit", playerId, useId: 0, itemId: 8, result: "hit", removed: "yes" },
     { ...item, action: "slots", slots: "7,-1" },
     { ...item, action: "scan", playerId, slots },
+    { ...item, action: "escaped", useId: 6, itemId: 9 },
+    { ...item, action: "escaped", playerId, useId: -1, itemId: 9 },
+    { ...item, action: "escaped", playerId, useId: 6, itemId: 256 },
+    { ...item, action: "escaped", playerId, useId: 0, itemId: 37 },
+    { ...item, action: "escaped", playerId, useId: 0, itemId: 37, hazardId: 4097 },
     { type: "item", raceId, action: "slots", slots },
     { type: "item", roomId, action: "slots", slots },
   ];
@@ -220,6 +231,9 @@ test("the item event type and item requests are part of the client protocol", ()
     { ...request, action: "hit", useId: 0, itemId: 8, result: "hit", hazardId: 4 },
     { ...request, action: "swap" },
     { ...request, action: "change" },
+    { ...request, action: "slots" },
+    { ...request, action: "escape", useId: 9 },
+    { ...request, action: "escape", useId: 0, hazardId: 4 },
   ]) assert.equal(isValidItemRequest(valid), true, JSON.stringify(valid));
   for (const invalid of [
     { ...request, sequence: 0, action: "swap" },
@@ -229,6 +243,10 @@ test("the item event type and item requests are part of the client protocol", ()
     { ...request, action: "place", useId: 0, point: { x: 1, y: 2, z: 3 } },
     { ...request, action: "hit", useId: 1, itemId: 7, result: "hit", by: "shield" },
     { ...request, action: "throw" },
+    { ...request, action: "escape" },
+    { ...request, action: "escape", useId: -1 },
+    { ...request, action: "escape", useId: 0 },
+    { ...request, action: "escape", useId: 0, hazardId: 0 },
     { ...request, type: "giant-state", action: "swap" },
   ]) assert.equal(isValidItemRequest(invalid), false, JSON.stringify(invalid));
 });

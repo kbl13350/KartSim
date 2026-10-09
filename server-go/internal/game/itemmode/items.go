@@ -113,6 +113,9 @@ type rule struct {
 	place  placeRule
 	hit    hitRule
 	blocks []string // defences that block it besides escape
+	// trap: a hit traps its victim in a water bubble, which the victim can
+	// leave early (escape).
+	trap bool
 }
 
 // attack defences: a shield blocks the items whose item.bml has a Shield,
@@ -127,8 +130,8 @@ var (
 var rules = map[int]rule{
 	Booster:      {target: TargetSelf},
 	Banana:       {target: TargetArea, point: true, hit: hitAnyone, blocks: shieldAndAngel},
-	WaterBomb:    {target: TargetArea, point: true, hit: hitOpponents, blocks: angelOnly},
-	WaterFly:     {target: TargetAheadOne, speed: flySpeed, etaState: "Use", etaItem: WaterFly, hit: hitTargets, blocks: shieldAndAngel},
+	WaterBomb:    {target: TargetArea, point: true, hit: hitOpponents, blocks: angelOnly, trap: true},
+	WaterFly:     {target: TargetAheadOne, speed: flySpeed, etaState: "Use", etaItem: WaterFly, hit: hitTargets, blocks: shieldAndAngel, trap: true},
 	Rocket:       {target: TargetAimed, speed: missileSpeed, etaState: "Use", etaItem: Rocket, hit: hitTargets, blocks: shieldAndAngel},
 	GuideRocket:  {target: TargetLeader, speed: missileSpeed, etaState: "Use", etaItem: Rocket, hit: hitTargets, blocks: shieldAndAngel},
 	RandomRocket: {target: TargetRandomAhead, speed: missileSpeed, etaState: "Use", etaItem: Rocket, hit: hitTargets, blocks: shieldAndAngel},
@@ -143,7 +146,7 @@ var rules = map[int]rule{
 	Cloud:        {target: TargetAllBehind, hit: hitTargets},
 	Scanning:     {target: TargetOwnTeam},
 	SlotLock:     {target: TargetAllOpponents, hit: hitTargets},
-	TimeBomb:     {target: TargetArea, place: placeByUser, hit: hitAnyone, blocks: angelOnly},
+	TimeBomb:     {target: TargetArea, place: placeByUser, hit: hitAnyone, blocks: angelOnly, trap: true},
 }
 
 // hazardBlocks are the defences against the track-placed hazards (banana,
@@ -153,6 +156,9 @@ var hazardBlocks = map[int][]string{
 	Mine:      shieldAndAngel,
 	WaterMine: shieldAndAngel,
 }
+
+// trapHazards are the track-placed hazards whose hit traps the racer.
+var trapHazards = map[int]bool{WaterMine: true}
 
 // Target returns the target rule of a table item.
 func Target(idx int) (TargetRule, bool) {

@@ -21,9 +21,9 @@
  * item channel with gameplay item, item track and random-track rules, join,
  * start, loaded, binary motion frames with race progress encoded by the
  * browser's payload codec (so the node ranks the racers and draws by rank
- * group), cube grants (abusing, full, 3 slots), swap, change, uses of the
- * items with the targets the server must pick, place, hit/blocked, the
- * removed banana, track hazards, scans, the slot lock, finish (the item team
+ * group), cube grants (abusing, full, 3 slots), swap, change, slots, uses
+ * of the items with the targets the server must pick, place, hit/blocked,
+ * escape, the removed banana, track hazards, scans, the slot lock, finish (the item team
  * result: the first finisher's team wins) and the settlement and item
  * careers. Every item request passes the browser's request validator and
  * every server event the browser's event validators (an item event the
@@ -598,11 +598,17 @@ async function teamItems(race) {
   const trapped = await mateOf(bomber).items.request("hit", { useId: bomb.useId, itemId: ITEM.timeBomb,
     result: "hit" });
   assert.equal(trapped.userId, bomber.id);
+  // The trapped teammate leaves the bubble early: the others end it then.
+  const escaped = await mateOf(bomber).items.request("escape", { useId: bomb.useId });
+  assert.deepEqual([escaped.action, escaped.playerId, escaped.useId, escaped.itemId],
+    ["escaped", mateOf(bomber).id, bomb.useId, ITEM.timeBomb]);
+  assertBroadcastOf(await itemEventOn(bomber, "escaped", bomb.useId), escaped);
   const opponent = opponentsOf(bomber)[0];
   await opponent.items.expectError("hit", { useId: bomb.useId, itemId: ITEM.timeBomb, result: "blocked",
     by: "shield" }, "INVALID_BY");
   await opponent.items.request("hit", { useId: bomb.useId, itemId: ITEM.timeBomb, result: "blocked", by: "angel" });
-  console.log("  ✓ time bomb placed by its user, trapping a teammate; only the angel blocks it");
+  await opponent.items.expectError("escape", { useId: bomb.useId }, "INVALID_USE");
+  console.log("  ✓ time bomb placed by its user, trapping a teammate who escapes; only the angel blocks it");
 
   // 水炸弹: opponents only (avoidItemTeamKill), only the angel blocks it.
   const thrower = await obtain(race, [second, third], ITEM.waterBomb);
@@ -744,8 +750,11 @@ async function itemRace(team) {
     await fourth.items.expectError("change", {}, "ITEM_CHANGER_UNAVAILABLE");
     const notHeld = swapped.slots[0] === ITEM.booster ? ITEM.rocket : ITEM.booster;
     await second.items.expectError("use", { itemId: notHeld }, "ITEM_NOT_HELD");
+    // The browser asks for its slots again after a rejection that may have left it apart.
+    const resync = await second.items.request("slots");
+    assert.deepEqual([resync.action, resync.slots], ["slots", swapped.slots]);
     await third.items.expectError("swap", {}, "INVALID_SEQUENCE", { sequence: third.items.sequence + 5 });
-    console.log("  ✓ grants by rank group, abusing, full slots, 3 slots, swap, change and wrong items refused");
+    console.log("  ✓ grants by rank group, abusing, full slots, 3 slots, swap, change, slots and wrong items refused");
 
     if (team) await teamItems(race);
     else await individualItems(race);

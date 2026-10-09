@@ -143,7 +143,7 @@
 
 **名次与抽取。** 服务器按运动帧里的**当前**路线距离排名（已完赛者按完赛顺序在前，离开者不计）：第 1 名 top；其余 `p=(名次-2)/(人数-1)`，`p<1/3` high、`p<2/3` mid，否则 low；只有 1 人时 top。按名次组权重抽取；`slotLock`、`angel`、`thunderbolt` 每位车手每局最多获得 2 次，达到后从表里剔除重抽，`booster` 不受限制。
 
-**请求** `{"type":"item","roomId","raceId","sequence","action",…}`。先检查：非道具赛 `ITEM_UNAVAILABLE`，未载入 `RACE_NOT_RUNNING`；`sequence` 必须是该车手上一个序号 +1，否则 409 `INVALID_SEQUENCE`。序号一经接受即被用掉，之后无论请求成功与否都不再重用（客户端可以连续发送，不必等回复）；随后比赛未在进行（服务器时间早于 `startAt`，或已结束）时返回 `RACE_NOT_RUNNING`。被拒绝的道具请求只回普通错误 `{"type":"error","code"}`，不改变任何状态，**不会让比赛失败**；道具槽以最近一次成功回复里的 `slots` 为准（槽只因本人的请求变化）。已完赛的车手 `cube`/`use`/`place`/`swap` 返回 `INVALID_USE`（`hit` 仍可上报）。
+**请求** `{"type":"item","roomId","raceId","sequence","action",…}`。先检查：非道具赛 `ITEM_UNAVAILABLE`，未载入 `RACE_NOT_RUNNING`；`sequence` 必须是该车手上一个序号 +1，否则 409 `INVALID_SEQUENCE`。序号一经接受即被用掉，之后无论请求成功与否都不再重用（客户端可以连续发送，不必等回复）；随后比赛未在进行（服务器时间早于 `startAt`，或已结束）时返回 `RACE_NOT_RUNNING`。被拒绝的道具请求只回普通错误 `{"type":"error","code"}`，不改变任何状态，**不会让比赛失败**；道具槽以最近一次成功回复里的 `slots` 为准（槽只因本人的请求变化）。已完赛的车手 `cube`/`use`/`place`/`swap` 返回 `INVALID_USE`（`hit`、`escape`、`slots` 仍可发送）。
 
 | `action` | 字段 | 服务器处理 | 回复（只给发送者） | 广播（房间其他成员） |
 | --- | --- | --- | --- | --- |
@@ -151,7 +151,9 @@
 | `use` | `itemId`（必须等于槽 0）、瞄准类可带 `targetId`、香蕉和水炸弹必须带 `point:{x,y,z}`（原版客户端 z 向上坐标，即 three.js 的 `(x, -z, y)`） | 槽 0 不是该道具 `ITEM_NOT_HELD`；被道具锁 `ITEM_LOCKED`（天使除外）；缺 `point` `INVALID_POINT`；瞄准的不是在赛对手 `INVALID_TARGET`。按下表决定 `targets`，分配 `useId`（本局从 1 递增），`startAt` 为服务器当前毫秒，追踪类按名次距离差算 `etaMs`；取走槽 0、其余前移 | 广播内容加 `sequence`、`slots` | `{"action":"used","playerId","useId","itemId","targets":[…],"startAt","etaMs","point"?}` |
 | `place` | `useId`、`point` | 路障只接受其目标（被锁定的第一名）上报落点，定时水炸弹只接受使用者上报爆点；每个 `useId` 一次，否则 `INVALID_USE` | 广播内容加 `sequence` | `{"action":"placed","useId","itemId","playerId":使用者,"point"}` |
 | `hit` | `useId`（赛道预置危险物为 0，另带 `hazardId` 1–4096）、`itemId`、`result:"hit"\|"blocked"`、可选 `by:"shield"\|"angel"\|"emp"\|"escape"` | 受害者自报：`useId` 须在 60 秒内且道具相符（`INVALID_USE`）；受害者须是该道具能打到的人（`INVALID_TARGET`，见下）；`by` 须能挡住该道具（`INVALID_BY`；`hit` 不能带 `by`）。同一受害者对同一 `useId` 只记一次，重复上报原样返回第一次的结果、不再广播；赛道危险物同一受害者 3 秒内只记一次。香蕉被第一次命中即移除（`removed:true`），之后再报 `INVALID_USE` | 广播内容加 `sequence` | `{"action":"hit","playerId":受害者,"useId","itemId","userId"?:使用者（赛道危险物没有使用者，省略该字段；前端校验不接受 null）,"result","by"?,"hazardId"?,"removed"?}` |
+| `escape` | `useId`（赛道预置水雷为 0，另带 `hazardId` 1–4096） | 被困车手连按左右提前脱出水泡时自报：须是本人报过 `result:"hit"` 的困住类命中——水炸弹、水苍蝇、定时水炸弹（`useId` 60 秒内），或赛道水雷（该 `hazardId` 最近一次命中）；否则 `INVALID_USE`。每次命中只记一次，重复发送原样回复、不再广播 | 广播内容加 `sequence` | `{"action":"escaped","playerId":被困者,"useId","itemId","hazardId"?}`：其他客户端此时结束该车的水泡并开始蓝盾 |
 | `swap` | — | 槽 0、1 都有道具时交换（道具锁期间也可以），否则 `INVALID_USE` | `{"action":"slots","sequence","slots"}` | 无 |
+| `slots` | — | 不改变任何状态；被拒绝的请求不带 `slots`，客户端可用它重新取得权威道具槽（浏览器在 `use`/`swap` 被拒绝、可能与服务器不一致时发送） | `{"action":"slots","sequence","slots"}` | 无 |
 | `change` | — | 道具变更卡（第 3 阶段）；目前一律 `ITEM_CHANGER_UNAVAILABLE` | — | — |
 
 所有回复与事件都是 `{"type":"item","roomId","raceId","action",…}`；`slots` 每槽一个值，空槽为 -1。服务器另发（无请求）：`{"action":"scan","playerId":被透视者,"slots","until"}`，只发给透视方队伍的在赛车手——使用透视镜时立即发一份每名在赛对手的道具槽，之后在 `until`（`startAt`+8000）之前对手道具槽每次变化都再发。所有时刻都是服务器时钟毫秒（与 `serverTick`、`startAt` 同一基准）。

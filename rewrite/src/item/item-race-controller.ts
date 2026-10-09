@@ -30,7 +30,8 @@ import {
 } from "./item-race-rules";
 import { EMPTY_SLOT, ItemSlotMirror, sameSlots } from "./item-race-slots";
 
-export type ItemRequestAction = "cube" | "use" | "place" | "hit" | "swap" | "change";
+export type ItemRequestAction = "cube" | "use" | "place" | "hit" | "swap" | "change" | "escape" |
+  "slots";
 
 /** The race connection's item channel (race-session `sendItem` / `subscribeItem`). */
 export interface ItemRaceConnection {

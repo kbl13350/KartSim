@@ -110,6 +110,9 @@ type Hit struct {
 	// Removed: this hit removed the item (the first hit on a banana).
 	Removed bool
 	At      int64
+
+	// escaped: the victim left the trap of this hit early (Escape).
+	escaped bool
 }
 
 // ScanNotice is a scanned opponent's slots for a racer whose team scans.
@@ -548,6 +551,45 @@ func (r *Race) Hit(req HitRequest) (hit Hit, fresh bool, err error) {
 		hit.Removed = true
 	}
 	use.hits[req.VictimID] = hit
+	return hit, true, nil
+}
+
+// Escape records that a trapped racer left its water bubble early by
+// pressing left/right (ITEM_MODE.md 6): the victim's own notice after a hit
+// it reported on a trapping use (water bomb, water fly, time bomb) or, with
+// useID 0, on a water mine hazard (hazardID), so the others end the bubble
+// and start the blue shield then. It returns the trapping hit. Each hit
+// escapes once: a repeat returns the hit again with fresh false.
+func (r *Race) Escape(playerID string, useID, hazardID int, now int64) (Hit, bool, error) {
+	if r.racers[playerID] == nil {
+		return Hit{}, false, ErrInvalidTarget
+	}
+	if useID == 0 {
+		key := hazardKey{playerID, hazardID}
+		hit, ok := r.hazards[key]
+		if hazardID < 1 || !ok || hit.Result != ResultHit || !trapHazards[hit.ItemID] {
+			return Hit{}, false, ErrInvalidUse
+		}
+		if hit.escaped {
+			return hit, false, nil
+		}
+		hit.escaped = true
+		r.hazards[key] = hit
+		return hit, true, nil
+	}
+	use := r.liveUse(useID, now)
+	if use == nil || !rules[use.ItemID].trap {
+		return Hit{}, false, ErrInvalidUse
+	}
+	hit, ok := use.hits[playerID]
+	if !ok || hit.Result != ResultHit {
+		return Hit{}, false, ErrInvalidUse
+	}
+	if hit.escaped {
+		return hit, false, nil
+	}
+	hit.escaped = true
+	use.hits[playerID] = hit
 	return hit, true, nil
 }
 

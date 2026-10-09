@@ -176,8 +176,12 @@ export interface ItemSlotsEvent extends ItemEventBase {
 export interface ItemScanEvent extends ItemEventBase {
   action: "scan"; playerId: string; slots: ItemSlots; until: number;
 }
+/** A trapped racer left its bubble early: end its bubble and start the blue shield now. */
+export interface ItemEscapedEvent extends ItemEventBase {
+  action: "escaped"; playerId: string; useId: number; itemId: number; hazardId?: number;
+}
 export type ItemServerEvent = ItemGrantEvent | ItemUsedEvent | ItemPlacedEvent |
-  ItemHitEvent | ItemSlotsEvent | ItemScanEvent;
+  ItemHitEvent | ItemSlotsEvent | ItemScanEvent | ItemEscapedEvent;
 
 /** What an invalid item event becomes: it rejects its request and changes nothing else. */
 export interface InvalidItemEvent { type: "error"; code: "INVALID_ITEM_EVENT"; requestId?: string }
@@ -301,6 +305,14 @@ export function parseItemServerEvent(value: Record<string, unknown>): ItemServer
       const slots = itemSlots(value.slots);
       if (!text(value.playerId, 1, 64) || !slots || !clock(value.until)) return undefined;
       return { ...base, action: "scan", playerId: value.playerId, slots, until: value.until };
+    }
+    case "escaped": {
+      const hazard = value.useId === 0;
+      if (!text(value.playerId, 1, 64) || !useId(value.useId, 0) || !itemId(value.itemId) ||
+          (hazard ? !integer(value.hazardId, 1, ITEM_CUBE_ID_MAX) : value.hazardId !== undefined))
+        return undefined;
+      return { ...base, action: "escaped", playerId: value.playerId, useId: value.useId as number,
+        itemId: value.itemId, ...(hazard ? { hazardId: value.hazardId as number } : {}) };
     }
     default:
       return undefined;

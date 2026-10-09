@@ -10,7 +10,8 @@ package lobby
 // rejected (a rejection is an ordinary error reply that changes nothing and
 // does not end the race), so a client numbers its requests without waiting
 // for the replies. Each accepted cube, use and swap reply carries the
-// racer's authoritative slots.
+// racer's authoritative slots; a slots request asks for them alone (a
+// client that lost track after a rejection).
 
 import (
 	crand "crypto/rand"
@@ -175,6 +176,11 @@ func (l *Lobby) itemCommand(c *Client, in Request) (obj, error) {
 		return l.itemPlace(r, c, in, sequence, now)
 	case "hit":
 		return l.itemHit(r, c, in, sequence, now)
+	case "escape":
+		return l.itemEscape(r, c, in, sequence, now)
+	case "slots":
+		// A resynchronisation: the racer's current slots; nothing changes.
+		return itemEvent(r, "slots", field{"sequence", sequence}, field{"slots", rc.items.Slots(c.playerID)}), nil
 	case "swap":
 		slots, notices, err := rc.items.Swap(c.playerID, now, itemStandings(rc))
 		if err != nil {
@@ -345,6 +351,35 @@ func (l *Lobby) itemHit(r *room, c *Client, in Request, sequence int, now int64)
 	}
 	// A repeated report answers the recorded hit again without telling the
 	// others twice.
+	if fresh {
+		l.broadcastPeerEvent(r, c, event)
+	}
+	return append(slices.Clone(event), field{"sequence", sequence}), nil
+}
+
+// itemEscape relays a trapped racer leaving its bubble early: the others end
+// the bubble and start the blue shield then. A repeat answers again without
+// telling the others twice.
+func (l *Lobby) itemEscape(r *room, c *Client, in Request, sequence int, now int64) (obj, error) {
+	useID, err := in.integer("useId", 0, math.MaxInt32)
+	if err != nil {
+		return nil, err
+	}
+	hazardID := 0
+	if useID == 0 {
+		if hazardID, err = in.integer("hazardId", 1, itemmode.MaxCubeID); err != nil {
+			return nil, err
+		}
+	}
+	hit, fresh, err := r.race.items.Escape(c.playerID, useID, hazardID, now)
+	if err != nil {
+		return nil, itemFailure(err)
+	}
+	event := itemEvent(r, "escaped", field{"playerId", hit.VictimID}, field{"useId", hit.UseID},
+		field{"itemId", hit.ItemID})
+	if hit.HazardID != 0 {
+		event = append(event, field{"hazardId", hit.HazardID})
+	}
 	if fresh {
 		l.broadcastPeerEvent(r, c, event)
 	}

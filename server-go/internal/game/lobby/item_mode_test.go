@@ -657,6 +657,52 @@ func TestItemPlaceAndBanana(t *testing.T) {
 	assertEqual(t, ir.reject(p0, "hit", map[string]any{"useId": 2, "itemId": 113, "result": "hit"}), "INVALID_USE")
 }
 
+// A trapped racer that leaves its bubble early tells the others, once per
+// hit; the slots request answers the racer's slots without changing them.
+func TestItemEscapeAndSlots(t *testing.T) {
+	h, ir, players := teamItemRace(t)
+	a1, b1, a2, b2 := players[0], players[1], players[2], players[3]
+	ir.grant(b2, 1, itemmode.GroupMid, itemmode.WaterFly)
+	ir.grant(b2, 2, itemmode.GroupMid, itemmode.Booster)
+	slots := ir.send(b2, "slots", nil)
+	assertEqual(t, without(slots, "sequence"), map[string]any{"type": "item", "roomId": ir.roomID,
+		"raceId": ir.raceID, "action": "slots", "slots": []int{itemmode.WaterFly, itemmode.Booster}})
+	assertEqual(t, slots["sequence"], ir.sequences[b2])
+	fly := ir.send(b2, "use", map[string]any{"itemId": itemmode.WaterFly})
+	assertEqual(t, fly["targets"], []string{a1.playerID})
+	useID := fly["useId"]
+	assertEqual(t, ir.reject(a1, "escape", map[string]any{"useId": useID}), "INVALID_USE") // not hit yet
+	ir.send(a1, "hit", map[string]any{"useId": useID, "itemId": itemmode.WaterFly, "result": "hit"})
+	before := map[*Client]int{}
+	for _, peer := range []*Client{b1, a2, b2} {
+		before[peer] = len(itemEvents(t, h, peer))
+	}
+	escaped := ir.send(a1, "escape", map[string]any{"useId": useID})
+	event := map[string]any{"type": "item", "roomId": ir.roomID, "raceId": ir.raceID, "action": "escaped",
+		"playerId": a1.playerID, "useId": useID, "itemId": itemmode.WaterFly}
+	assertEqual(t, without(escaped, "sequence"), event)
+	for _, peer := range []*Client{b1, a2, b2} {
+		events := itemEvents(t, h, peer)
+		assertEqual(t, events[before[peer]:], []map[string]any{event})
+	}
+	// A repeat answers again without telling the others twice.
+	repeat := ir.send(a1, "escape", map[string]any{"useId": useID})
+	assertEqual(t, without(repeat, "sequence"), event)
+	assertEqual(t, len(itemEvents(t, h, b2)), before[b2]+1)
+	assertEqual(t, ir.reject(a1, "escape", nil), "INVALID_USEID")
+	assertEqual(t, ir.reject(a1, "escape", map[string]any{"useId": 0}), "INVALID_HAZARDID")
+	assertEqual(t, ir.reject(a1, "escape", map[string]any{"useId": 0, "hazardId": 2}), "INVALID_USE")
+	// A water mine on the track escapes with its hazard id.
+	ir.send(b1, "hit", map[string]any{"useId": 0, "itemId": 37, "hazardId": 2, "result": "hit"})
+	mine := ir.send(b1, "escape", map[string]any{"useId": 0, "hazardId": 2})
+	assertEqual(t, without(mine, "sequence"), map[string]any{"type": "item", "roomId": ir.roomID,
+		"raceId": ir.raceID, "action": "escaped", "playerId": b1.playerID, "useId": 0, "itemId": 37,
+		"hazardId": 2})
+	// The slots request changes nothing.
+	assertEqual(t, ir.send(b2, "slots", nil)["slots"], []int{itemmode.Booster, -1})
+	assertEqual(t, ir.send(b2, "slots", nil)["slots"], []int{itemmode.Booster, -1})
+}
+
 // Item team races: the first finisher's team wins, whatever the scores,
 // and earns the team bonus even when the scores tie.
 func TestItemTeamResult(t *testing.T) {
