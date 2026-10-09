@@ -1118,6 +1118,32 @@ const drivingMethodOverrides = new Map([
   ["timeAttackSpeedSlotWindowStartMs", "  timeAttackSpeedSlotWindowStartMs() { return teamSlotWindowStartMs(this); }"],
 ]);
 
+// item-mode(driving): item-race (道具赛) members of AL and the item tuning record.
+// The behavior lives in src/driving/item-mode.ts, item-effects.ts and
+// physics-parameters.ts. Touch points elsewhere in this file are also marked
+// item-mode(driving): the AL emission and one import line in renderModule.
+const itemModeDrivingMembers = [
+  "  itemMode = !1;",
+  "  itemEffects;",
+  "  get itemSlotCapacity() { return VehicleItemMode.vehicleItemSlotCapacity(this); }",
+  "  setItemSlots(slots) { return VehicleItemMode.setVehicleItemSlots(this, slots); }",
+  "  itemSlots() { return VehicleItemMode.vehicleItemSlots(this); }",
+  "  startItemBooster() { return VehicleItemMode.startVehicleItemBooster(this); }",
+];
+function appendItemModeDrivingMembers(classText) {
+  const end = classText.lastIndexOf("}");
+  assert(end > 0, "AL class body is missing its closing brace.");
+  return `${classText.slice(0, end)}${itemModeDrivingMembers.join("\n")}\n${classText.slice(end)}`;
+}
+// jt0 builds the AL tuning record; item races also need the item columns.
+vehicleResidualOverrides.set("jt0",
+  "function jt0(spec, visual, engineGrade) { return vehiclePhysicsParameters(spec, visual, engineGrade); }");
+function itemModeDrivingImports(name) {
+  if (name === "driving") return ['import * as VehicleItemMode from "../driving/item-mode.ts";'];
+  if (name === "vehicle") return ['import { vehiclePhysicsParameters } from "../driving/physics-parameters.ts";'];
+  return [];
+}
+
 // A delegate retains the release method's original signature, including
 // getter syntax and default parameters, while moving its behavior to TypeScript.
 function vehicleDelegate(namespace, exportedName, mode = "instance") {
@@ -2803,7 +2829,9 @@ function II(version, speed) { return findSpeedTypeEntry(version, speed); }` });
     assert(node.type === "ClassDeclaration" && originalSection(node.start) === "driving", "AL moved from driving.");
     bodies.get("driving").push({
       at: node.start,
-      text: rewriteClassMethods(node, drivingMethodOverrides, replacedDrivingMethods),
+      // item-mode(driving): append the item-race members to AL.
+      text: appendItemModeDrivingMembers(
+        rewriteClassMethods(node, drivingMethodOverrides, replacedDrivingMethods)),
     });
     continue;
   }
@@ -4361,6 +4389,7 @@ function renderModule(name) {
     lines.push('export * from "../vendor/legacy-three.ts";');
     return `${lines.join("\n").trimEnd()}\n`;
   }
+  lines.push(...itemModeDrivingImports(name)); // item-mode(driving)
   if (name === "formats") {
     lines.push('import { isTrackPrs, createPrsRuntime, playPrs, setPrsCycleMode, stopPrs, validatePrs, defaultTrackTransform, applyTrackPrs, sampleTrackPrs } from "../resources/track-prs-animation.ts";');
     lines.push('import { admitMovingObstacle, transformObstaclePoint } from "../resources/moving-obstacle.ts";');

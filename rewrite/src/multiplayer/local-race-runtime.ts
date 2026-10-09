@@ -59,6 +59,13 @@ export function checkLocalRaceAutomaticReset(
     race.coordinator.synchronizePositionAnchor();
     race.requestReset(false);
   }
+  // A kart held by an item (bubble, missile, barricade, banana spin) is stopped on
+  // purpose; neither the wall timers nor the low-speed timer may reset it.
+  if (race.physics.itemEffects?.suppressesAutomaticReset) {
+    race.physics.consumeAutomaticResetRequest();
+    race.lowSpeedResetStartedAtMs = 0;
+    return;
+  }
   if (race.physics.consumeAutomaticResetRequest()) {
     race.requestReset(false);
     return;
@@ -167,6 +174,7 @@ export function applyLocalRaceWarpActions(race: LocalRaceHost, actions: any[]): 
   for (const action of actions) {
     if (action.kind === "start-warp-presentation") {
       race.lte?.cancel();
+      race.physics.itemEffects?.clear();
       race.physics.setWarpPresentationActive(true);
       race.physics.setWarpPressProtected(true);
     } else if (action.kind === "freeze-camera") {
@@ -297,6 +305,8 @@ export function updateLocalRace(
   if (race.lifecycle.state !== deps.states.Racing) {
     race.giant?.setDrivingActive(false);
     race.lte?.cancel();
+    // Item effects end at the finish line (and never start before the race).
+    race.physics.itemEffects?.clear();
     race.physics.setRaceMotionLocked(true);
     if (race.lifecycle.state === deps.states.PostFinish)
       race.coordinator.run(frameClock, stepSeconds);

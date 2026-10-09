@@ -2,6 +2,7 @@
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
 
+import * as VehicleItemMode from "../driving/item-mode.ts";
 import { createVehicleCollisionScratch, optionalRoadSurface, triangleCentroid as vv, triangleIntersectsOrientedBox as Oo, orientedBoxBounds as di0, updateTrackedTriangleVelocity } from "../driving/collision-geometry.ts";
 import { initializeVehicle } from "../driving/construct-vehicle.ts";
 import * as VehicleCommands from "../driving/vehicle-commands.ts";
@@ -276,6 +277,12 @@ class AL {
   createWheelRuntime() { return VehicleInitialization.createVehicleWheelRuntime(); }
   createRuntime() { return VehicleInitialization.createVehicleRuntime(this); }
   createState() { return VehicleInitialization.createVehicleState(); }
+  itemMode = !1;
+  itemEffects;
+  get itemSlotCapacity() { return VehicleItemMode.vehicleItemSlotCapacity(this); }
+  setItemSlots(slots) { return VehicleItemMode.setVehicleItemSlots(this, slots); }
+  itemSlots() { return VehicleItemMode.vehicleItemSlots(this); }
+  startItemBooster() { return VehicleItemMode.startVehicleItemBooster(this); }
 }
 
 

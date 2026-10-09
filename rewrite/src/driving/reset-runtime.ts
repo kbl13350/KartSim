@@ -22,6 +22,8 @@ export interface VehicleResetContext {
   checkClientFramerate: boolean;
   clock: { reset(checkClientFramerate: boolean): void };
   tuning: { wallCollGaugeCooldownTime: number; driftMaxGauge: number };
+  /** Item races: victim effects end with every reset. */
+  itemEffects?: { clear(): void; resetState(): void };
   createBody(): VehicleBody;
   createState(): object;
   createWheelRuntime(): object;
@@ -74,6 +76,7 @@ export function resetVehicle(vehicle: VehicleResetContext, x: number, y: number,
   Object.assign(vehicle.state, vehicle.createState());
   Object.assign(vehicle.wheels, vehicle.createWheelRuntime());
   vehicle.runtime = vehicle.createRuntime();
+  vehicle.itemEffects?.resetState();
   zeroVector(vehicle.scratch.force);
   zeroVector(vehicle.scratch.torque);
   vehicle.trackEventEffectRequests = [];
@@ -101,6 +104,7 @@ export function resetVehicleFromRoute(vehicle: VehicleResetContext, frame: Pick<
 export function beginVehicleReset(vehicle: VehicleResetContext, immediate: boolean): boolean {
   const runtime = vehicle.runtime;
   if (immediate && runtime.fullPhysicsBypass) return false;
+  vehicle.itemEffects?.clear();
   runtime.fullPhysicsBypass = true;
   runtime.automaticResetInteractionActive = false;
   runtime.interactionActive = false;

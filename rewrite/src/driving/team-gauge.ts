@@ -5,6 +5,8 @@ export interface TeamGaugeContext {
   teamBoosterDirect: boolean;
   externalTeamGauge: boolean;
   speedRaceMode?: { kind: string };
+  /** Item team races have no team booster gauge; the slots hold items, not nitro. */
+  itemMode?: boolean;
   runtime: {
     teamGaugeCharge: number;
     teamGaugeQueue: number[];
@@ -40,7 +42,8 @@ export function consumeVehicleTeamGaugeCharge(vehicle: TeamGaugeContext): number
 }
 
 export function enqueueVehicleTeamGaugeTarget(vehicle: TeamGaugeContext, fraction: number): void {
-  if (!vehicle.externalTeamGauge || !Number.isFinite(fraction) || fraction < 0 || fraction > 1) return;
+  if (vehicle.itemMode || !vehicle.externalTeamGauge || !Number.isFinite(fraction) ||
+    fraction < 0 || fraction > 1) return;
   vehicle.runtime.teamGaugeQueue.push(float(fraction));
 }
 
@@ -48,7 +51,7 @@ export function enqueueVehicleTeamGaugeTarget(vehicle: TeamGaugeContext, fractio
 export function updateVehicleTeamGauge(vehicle: TeamGaugeContext, nowMs: number): void {
   const { runtime } = vehicle;
   const gripRace = vehicle.speedRaceMode?.kind === "grip";
-  if (!vehicle.teamBooster || (vehicle.teamBoosterDirect &&
+  if (vehicle.itemMode || !vehicle.teamBooster || (vehicle.teamBoosterDirect &&
     (vehicle.convertTeamBoosterSlots(nowMs, false), !gripRace))) return;
   if (gripRace && !vehicle.teamBoosterDirect) vehicle.convertTeamBoosterSlots(nowMs, false);
   const charge = runtime.teamGaugeCharge;

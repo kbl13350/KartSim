@@ -43,6 +43,8 @@ export interface BoosterStateContext {
   };
   state: { nitro: number; boostTime: number };
   teamBooster: boolean;
+  /** Item races spend booster items through startItemBooster, never as nitro slots. */
+  itemMode?: boolean;
   dualBoostAutoArm: boolean;
   dualBoostAuto: boolean;
   activateChargerIfReady(): void;
@@ -61,6 +63,7 @@ const isBoosterSlot = (slot: number) => slot === ordinaryBoosterSlot || slot ===
 /** Consume the first eligible nitro slot and enter the ordinary/team boost state. */
 export function startVehicleNormalBooster(vehicle: BoosterStateContext, input: { forward: number }): boolean {
   const { runtime, tuning, state } = vehicle;
+  if (vehicle.itemMode) return false;
   if ((runtime.physicsState !== 0 && runtime.physicsState !== 18) || input.forward <= 0) return false;
   const firstSlot = runtime.speedSlots[0];
   if (runtime.speedSlotDisabled[0]) return false;

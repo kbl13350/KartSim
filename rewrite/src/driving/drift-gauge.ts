@@ -1,6 +1,7 @@
 /** Drift charge and collision preservation rules used by AL. */
 export interface DriftGaugeContext {
   speedRaceMode?: { kind: string };
+  itemMode?: boolean;
   wheels: { grounded: boolean };
   tuning: {
     driftMaxGauge: number;
@@ -33,7 +34,8 @@ const float = Math.fround;
 export function accumulateDriftCharge(context: DriftGaugeContext,
   seconds: number, full3DRail: boolean): void {
   const { runtime, tuning } = context;
-  if (context.speedRaceMode?.kind === "grip" ||
+  // Item races keep drifting and the drift-exit boost but never charge the booster gauge.
+  if (context.itemMode || context.speedRaceMode?.kind === "grip" ||
       (!context.wheels.grounded && !full3DRail) ||
       !runtime.driftGaugeWindow || runtime.localForwardSpeed < 0) return;
   if (tuning.driftMaxGauge === 1) {

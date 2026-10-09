@@ -24,6 +24,11 @@ export interface VehicleFrameContext extends VehicleStepContext {
   body: VehicleStepContext["body"] & { angularVelocity: Vector3 };
   scratch: VehicleStepContext["scratch"] & { force: Vector3; torque: Vector3 };
   giant?: NonNullable<VehicleStepContext["giant"]> & { frozen?: boolean };
+  itemEffects?: NonNullable<VehicleStepContext["itemEffects"]> & {
+    readonly holdsBody: boolean;
+    stepHeldSlice(seconds: number): void;
+    advanceWithoutPhysics(elapsedMs: number): void;
+  };
   applyJumpSurfaceTuning(): void;
   updateEventGravity(nowMs: number): void;
   updateInstantWallCharge(nowMs: number): void;
@@ -85,10 +90,14 @@ export function advanceVehicleFrame(
     runtime.liveDragFactor = dragFactor;
     vehicle.updateModeScale(clock.nowMs);
     vehicle.updatePublicGauge();
+    vehicle.itemEffects?.advanceWithoutPhysics(clock.elapsedMs);
   } else {
     vehicle.updateObstacleSuppressionTimer(clock.elapsedMs);
     for (const sliceMs of clock.slicesMs) {
-      vehicle.stepSubstep(Math.fround(Math.fround(sliceMs) * Math.fround(0.001)), input, track);
+      const seconds = Math.fround(Math.fround(sliceMs) * Math.fround(0.001));
+      // Item races: a trapped, launched or barricaded kart follows its effect path.
+      if (vehicle.itemEffects?.holdsBody) vehicle.itemEffects.stepHeldSlice(seconds);
+      else vehicle.stepSubstep(seconds, input, track);
       runtime.landingShockAudioStrength = Math.max(
         runtime.landingShockAudioStrength, runtime.collisionResponseMagnitudeB6C,
       );

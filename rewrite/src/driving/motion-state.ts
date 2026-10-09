@@ -60,12 +60,12 @@ export function advanceStateTimerMilliseconds(
 
 /** Charge the shared speed/drift meter while speed charging is enabled. */
 export function accumulateSpeedCharge(
-  vehicle: Pick<MotionStateContext, "runtime" | "tuning">,
+  vehicle: Pick<MotionStateContext, "runtime" | "tuning"> & { itemMode?: boolean },
   seconds: number,
   full3DRail: boolean,
 ): void {
   const { runtime, tuning } = vehicle;
-  if (!runtime.tachometerIncGauge) return;
+  if (!runtime.tachometerIncGauge || vehicle.itemMode) return;
   runtime.driftGaugeElapsed = float(runtime.driftGaugeElapsed + seconds);
   let chargeRate = float(tuning.chargeBoostBySpeed);
   if (runtime.chargerEnabled && runtime.chargerActive) {
