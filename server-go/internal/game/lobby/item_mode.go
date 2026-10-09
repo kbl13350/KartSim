@@ -311,12 +311,14 @@ func (l *Lobby) itemHit(r *room, c *Client, in Request, sequence int, now int64)
 	if err != nil {
 		return nil, itemFailure(err)
 	}
-	var userID any
-	if hit.UserID != "" {
-		userID = hit.UserID
-	}
 	event := itemEvent(r, "hit", field{"playerId", hit.VictimID}, field{"useId", hit.UseID},
-		field{"itemId", hit.ItemID}, field{"userId", userID}, field{"result", hit.Result})
+		field{"itemId", hit.ItemID})
+	// A track hazard has no user: userId is left out (the browser's event
+	// validator accepts an absent userId, not null).
+	if hit.UserID != "" {
+		event = append(event, field{"userId", hit.UserID})
+	}
+	event = append(event, field{"result", hit.Result})
 	if hit.By != "" {
 		event = append(event, field{"by", hit.By})
 	}

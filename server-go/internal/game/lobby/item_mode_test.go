@@ -390,7 +390,7 @@ func TestItemRequestChecksAndSequence(t *testing.T) {
 	// the reporter.
 	hazard := ir.send(a, "hit", hit(map[string]any{"useId": 0, "itemId": 37, "hazardId": 2, "result": "blocked", "by": "shield"}))
 	want := map[string]any{"type": "item", "roomId": roomID, "raceId": raceID, "action": "hit",
-		"playerId": a.playerID, "useId": 0, "itemId": 37, "userId": nil, "result": "blocked", "by": "shield", "hazardId": 2}
+		"playerId": a.playerID, "useId": 0, "itemId": 37, "result": "blocked", "by": "shield", "hazardId": 2}
 	assertEqual(t, without(hazard, "sequence"), want)
 	assertEqual(t, hazard["sequence"], ir.sequences[a])
 	ir.send(a, "hit", hit(map[string]any{"useId": 0, "itemId": 37, "hazardId": 2}))
