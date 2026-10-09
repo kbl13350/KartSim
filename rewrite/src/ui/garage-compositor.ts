@@ -79,7 +79,7 @@ export interface GaragePaint {
 }
 
 interface RasterLayer { texture: GarageTexture; rect: GarageRect; bytes: number }
-interface CanvasLayer { texture: GarageTexture; revision: unknown; used: boolean }
+interface CanvasLayer { texture: GarageTexture; revision: unknown; used: boolean; width: number; height: number }
 
 const PAINT_METHODS = new Set<PaintMethod>([
   "drawImage", "fillRect", "fillText", "strokeText", "fill", "stroke",
@@ -213,6 +213,13 @@ export class GarageCanvasCompositor {
     if (this.disposed || !canvas.width || !canvas.height) return;
     this.flush();
     let layer = this.canvasLayers.get(canvas);
+    // A WebGL2 texture keeps the size of its first upload; a canvas that was
+    // resized since (a part model fitted to its card) needs a new texture.
+    if (layer && (layer.width !== canvas.width || layer.height !== canvas.height)) {
+      layer.texture.dispose();
+      this.canvasLayers.delete(canvas);
+      layer = undefined;
+    }
     if (layer) {
       if (revision === undefined || revision !== layer.revision) layer.texture.needsUpdate = true;
       layer.revision = revision;
@@ -221,7 +228,7 @@ export class GarageCanvasCompositor {
       const texture = this.dependencies.createTexture(canvas);
       texture.minFilter = texture.magFilter = this.dependencies.canvasTextureFilter;
       texture.generateMipmaps = false;
-      layer = { texture, revision, used: true };
+      layer = { texture, revision, used: true, width: canvas.width, height: canvas.height };
       this.canvasLayers.set(canvas, layer);
     }
     const transform = this.state.getTransform();

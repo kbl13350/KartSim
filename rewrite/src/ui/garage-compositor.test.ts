@@ -242,3 +242,45 @@ test("garage paint cache, 3D viewport, canvas layers and disposal match Ma0", ()
 test("garage texture cache evicts the oldest layer past 64 MiB like Ma0", () => {
   assert.deepEqual(exercise(false, true), exercise(true, true));
 });
+
+test("a canvas layer that changed size gets a new texture", () => {
+  const textures: Array<{ id: number; disposed: boolean; needsUpdate: boolean }> = [];
+  const context = {
+    getTransform: () => ({ a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }),
+  } as unknown as CanvasRenderingContext2D;
+  const stage = { width: 200, height: 100 } as GarageCanvas;
+  const noop = () => undefined;
+  const compositor = new GarageCanvasCompositor(stage, {
+    createCanvas: () => ({ width: 0, height: 0, getContext: () => context }) as unknown as GarageCanvas,
+    createRenderer: () => ({ setClearColor: noop, setSize: noop, setViewport: noop, setScissor: noop,
+      setScissorTest: noop, clear: noop, render: noop, dispose: noop }) as never,
+    createScene: () => ({ add: noop }),
+    createCamera: () => ({ updateProjectionMatrix: noop }) as never,
+    createMaterial: options => options as never,
+    createQuad: () => ({ position: { set: noop }, scale: { set: noop } }) as never,
+    createTexture: () => {
+      const texture = { id: textures.length + 1, disposed: false, needsUpdate: false,
+        minFilter: undefined, magFilter: undefined, generateMipmaps: true,
+        dispose() { texture.disposed = true; } };
+      textures.push(texture);
+      return texture;
+    },
+    outputColorSpace: "srgb", canvasTextureFilter: "linear", paintTextureFilter: "nearest",
+  });
+  const model = { width: 136, height: 100 } as GarageCanvas;
+  const rect = { x: 0, y: 0, width: 68, height: 50 };
+  compositor.beginFrame();
+  compositor.drawCanvasLayer(model, rect, undefined);
+  compositor.endFrame();
+  compositor.beginFrame();
+  compositor.drawCanvasLayer(model, rect, undefined);
+  compositor.endFrame();
+  assert.equal(textures.length, 1);
+  model.width = 230;
+  model.height = 132;
+  compositor.beginFrame();
+  compositor.drawCanvasLayer(model, rect, undefined);
+  compositor.endFrame();
+  assert.deepEqual(textures.map(texture => texture.disposed), [true, false]);
+  assert.equal(compositor.canvasLayers.size, 1);
+});
