@@ -124,3 +124,22 @@ test("active race coordinator constructor cleanup matches release", () => {
   for (const failure of ["channel", "team"])
     assert.deepEqual(exercise(true, failure), exercise(false, failure), failure);
 });
+
+test("an item team race freezes race.item and needs no team gauge channel", () => {
+  const { log, deps, assets, room, connection } = fixture();
+  assets.speed = 7;
+  assets.drivingMode = Object.freeze({ kind: "item", team: true });
+  room.item = { ruleset: "web-item-v1", table: "team", extra: 1 };
+  delete connection.sendTeamCharge;
+  delete connection.subscribeTeamGauge;
+  const owner = new ActiveRaceCoordinator(assets, room, connection, () => 10, () => {}, 60, deps);
+  assert.deepEqual(owner.itemIdentity, { ruleset: "web-item-v1", table: "team" });
+  assert.ok(Object.isFrozen(owner.itemIdentity));
+  assert.equal(owner.offTeam, undefined);
+  assert.ok(!log.some(entry => entry[0] === "subscribe"));
+  // A speed team race at standard speed still requires it.
+  const speed = fixture("team");
+  speed.assets.speed = 7;
+  assert.throws(() => new ActiveRaceCoordinator(speed.assets, speed.room, speed.connection,
+    () => 10, () => {}, 60, speed.deps), /组队集气/);
+});

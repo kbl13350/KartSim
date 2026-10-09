@@ -1,3 +1,5 @@
+import { freezeItemRaceRules, teamGaugeEnabled } from "./lobby-item-mode";
+
 export interface ActiveRaceCoordinatorDependencies {
   normalizeRp(value: unknown): unknown;
   createCollisionFramerate(enabled: unknown, opponents: unknown[], clientFramerate: unknown): any;
@@ -49,6 +51,8 @@ export class ActiveRaceCoordinator {
   roadblockIdentity: unknown;
   lteIdentity: unknown;
   giantIdentity: unknown;
+  /** Frozen `race.item` of a 道具赛 race. */
+  itemIdentity: unknown;
   giantSequence = 0;
   giantSend = Promise.resolve();
   giantCleared = false;
@@ -66,6 +70,7 @@ export class ActiveRaceCoordinator {
     this.roadblockIdentity = room.roadblock ? Object.freeze({ ...room.roadblock }) : undefined;
     this.lteIdentity = room.lte ? Object.freeze({ ...room.lte }) : undefined;
     this.giantIdentity = room.giant ? Object.freeze({ ...room.giant }) : undefined;
+    this.itemIdentity = freezeItemRaceRules(room.item);
     this.collisionFramerate = ops.createCollisionFramerate(
       assets.checkClientFramerate && assets.channel.adjustCollision,
       assets.participants.filter((player: any) => player.playerId !== connection.playerId)
@@ -81,7 +86,8 @@ export class ActiveRaceCoordinator {
       if (local.giant && !connection.sendGiantState)
         throw new Error("缺少巨人可靠状态发送通道。");
       this.cadence = ops.createCadence(room, connection.playerId);
-      if (assets.mode === "team" && assets.speed !== 4) {
+      // Item team races have no 组队集气 (ITEM_MODE.md 1).
+      if (teamGaugeEnabled(assets)) {
         if (!connection.sendTeamCharge || !connection.subscribeTeamGauge)
           throw Error("缺少组队集气通道。");
         const team = room.roster.find((player: any) =>

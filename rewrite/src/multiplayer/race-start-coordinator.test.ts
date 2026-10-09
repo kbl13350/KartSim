@@ -101,3 +101,21 @@ test("missed loading and changed race rules fail identically", async () => {
   };
   assert.deepEqual(await run(false), await run(true));
 });
+
+test("a changed race.item fails the loading item race", async () => {
+  const { events, options } = fixture();
+  const coordinator = new RaceStartCoordinator(options, rules);
+  const item = (revision: number, table: string) => room(revision, "loading", {
+    gameplay: "item", channelName: "itemIndiCombine", race: {
+      raceId: "race-1", channelName: "itemIndiCombine", loadedIds: [], gameplay: "item",
+      item: { ruleset: "web-item-v1", table } } });
+  coordinator.update(item(1, "indi"));
+  await settle();
+  coordinator.update(item(2, "indi"));
+  assert.equal(coordinator.active?.failed, false);
+  coordinator.update(item(3, "team"));
+  await settle();
+  assert.equal(coordinator.active?.failed, true);
+  assert.ok(events.some(event => Array.isArray(event) && event[0] === "error" &&
+    event[1] === "比赛加载期间频道配置发生变化。"));
+});

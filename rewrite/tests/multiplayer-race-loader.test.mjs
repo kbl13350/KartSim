@@ -10,7 +10,7 @@ const node = parse(release, { sourceType: "module" }).program.body.find(item =>
 assert.ok(node);
 const originalSource = release.slice(node.start, node.end);
 
-function fixture(roadblock, failAt) {
+function fixture(roadblock, failAt, drivingMode) {
   const log = [];
   const resource = name => ({
     name,
@@ -25,7 +25,7 @@ function fixture(roadblock, failAt) {
     vehicle: { kartItem: { engineGrade: 6 } },
   };
   const raceAssets = {
-    map, participants: [participant],
+    map, participants: [participant], drivingMode,
     dispose() { log.push(["dispose", "assets"]); },
   };
   const source = { getLibrary: () => library, targetRandom: "random" };
@@ -71,7 +71,8 @@ function fixture(roadblock, failAt) {
   class Flag { static load(...args) { return load("flag", {
     bind(_connection, _assets) { log.push(["bindFlag"]); },
   })(...args); } }
-  class TrackCard { static load(...args) { return load("trackCard", {
+  class TrackCard { static load(...args) { log.push(["trackCardGame", args[0].game]);
+    return load("trackCard", {
     setVisible(value) { log.push(["trackCardVisible", value]); },
   })(...args); } }
   class RoadblockResult {
@@ -79,7 +80,10 @@ function fixture(roadblock, failAt) {
     static loadResult(...args) { return load("roadblockResult")(...args); }
   }
   class RoadblockOverlay { static load(...args) { return load("roadblockOverlay")(...args); } }
-  class Result { static load(...args) { return load("result")(...args); } }
+  class Result { static load(...args) {
+    log.push(["resultLayout", args[4]]);
+    return load("result")(...args);
+  } }
   class Banner { static load(...args) { return load("banner")(...args); } }
   class Presenter {
     constructor(...args) { log.push(["presenter", args.length]); }
@@ -160,4 +164,22 @@ test("multiplayer race failure cleanup matches the release", async () => {
   for (const failedStep of ["roadblockResult", "prepareGiant", "chat"])
     assert.deepEqual(await exercise(true, true, failedStep),
       await exercise(false, true, failedStep), failedStep);
+});
+
+test("item races name their mode on the track card and drop TP from team results", async () => {
+  for (const [mode, team, modeKey, layout] of [
+    [Object.freeze({ kind: "item", team: true }), "team", "ItemTeam", "item-team"],
+    [Object.freeze({ kind: "item", team: false }), "individual", "ItemIndi", false],
+    [Object.freeze({ kind: "ordinary", team: true }), "team", "SpeedTeam", true],
+  ]) {
+    const { log, host, config, room, signal, connection, dependencies } =
+      fixture(undefined, undefined, mode);
+    config.mode = team;
+    if (team === "individual") room.roster[0].team = null;
+    const loader = createMultiplayerRaceLoader(host, dependencies);
+    await loader.prepare(config, room, signal, connection);
+    assert.deepEqual(log.find(entry => entry[0] === "trackCardGame")[1],
+      { modeKey, speed: 2, team: team === "team" ? 1 : undefined }, modeKey);
+    assert.deepEqual(log.find(entry => entry[0] === "resultLayout"), ["resultLayout", layout]);
+  }
 });

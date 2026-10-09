@@ -251,3 +251,26 @@ test("race clock binding and start scheduling match release", () => {
   assert.deepEqual(runClock(false, true), runClock(true, true));
   assert.deepEqual(runClock(false, false, true), runClock(true, false, true));
 });
+
+test("an item race fails when race.item changes or disappears", () => {
+  for (const [label, item, failed] of [
+    ["same rules", { ruleset: "web-item-v1", table: "team" }, false],
+    ["other table", { ruleset: "web-item-v1", table: "indi" }, true],
+    ["missing", undefined, true],
+  ] as const) {
+    const { host, snapshot } = fixture(false);
+    host.itemIdentity = Object.freeze({ ruleset: "web-item-v1", table: "team" });
+    const value = room();
+    value.race!.item = item;
+    host.updateRoom(value);
+    const events = snapshot().events;
+    assert.equal(events.some(event => Array.isArray(event) && event[0] === "error" &&
+      event[1] === "比赛期间频道身份发生变化。"), failed, label);
+  }
+  // A speed race must not gain race.item either.
+  const speed = fixture(false);
+  const value = room();
+  value.race!.item = { ruleset: "web-item-v1", table: "indi" };
+  speed.host.updateRoom(value);
+  assert.equal(speed.snapshot().disposed, true);
+});

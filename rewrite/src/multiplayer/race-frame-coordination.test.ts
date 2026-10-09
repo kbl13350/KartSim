@@ -178,3 +178,18 @@ test("race frame errors are reported and release the race like release", () => {
   }
   assert.deepEqual(run(false), run(true));
 });
+
+test("an item team race never sends 组队集气", async () => {
+  for (const kind of ["item", "ordinary"]) {
+    const item = fixture(false);
+    item.host.assets.mode = "team";
+    item.host.assets.speed = 7;
+    item.host.assets.drivingMode = { kind };
+    item.setTeamGain(2.5);
+    item.host.update(100, { tick: 100 }, false);
+    await Promise.resolve();
+    const sent = item.snapshot().events.filter(event =>
+      Array.isArray(event) && event[0] === "team.send");
+    assert.deepEqual(sent, kind === "item" ? [] : [["team.send", 2.5, 1]], kind);
+  }
+});

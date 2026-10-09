@@ -1,3 +1,4 @@
+import { sameItemRaceRules } from "./lobby-item-mode";
 import type { RacePoint } from "./race-driving-scales";
 
 /** Authoritative room changes and resource lifetime for an active multiplayer race. */
@@ -14,6 +15,7 @@ export interface ActiveRaceRoom {
     roadblock?: unknown;
     lte?: unknown;
     giant?: unknown;
+    item?: unknown;
     finishDeadline?: number;
     roadblockOutcome?: { endAt?: number };
     raceOverAt?: number;
@@ -48,6 +50,7 @@ export interface RaceRoomRuntimeHost {
   roadblockIdentity?: { runnerId?: string; limitMs: number };
   lteIdentity?: unknown;
   giantIdentity?: unknown;
+  itemIdentity?: unknown;
   room?: ActiveRaceRoom;
   mapping?: unknown;
   finishDeadline?: number;
@@ -148,7 +151,8 @@ export function updateActiveRaceRoom(
       !dependencies.sameRp(room.race.rp, host.rpIdentity) ||
       !dependencies.sameRoadblock(room.race.roadblock, host.roadblockIdentity) ||
       !dependencies.sameLte(room.race.lte, host.lteIdentity) ||
-      !dependencies.sameGiant(room.race.giant, host.giantIdentity)
+      !dependencies.sameGiant(room.race.giant, host.giantIdentity) ||
+      !sameItemRaceRules(room.race.item, host.itemIdentity)
     ))) {
     try {
       host.onError(new Error("比赛期间频道身份发生变化。"));
