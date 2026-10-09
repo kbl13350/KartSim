@@ -115,14 +115,17 @@ export type ItemRequestAction = "cube" | "use" | "place" | "hit" | "swap" | "cha
 
 /**
  * Failures that never reached the server's sequence check, so the sequence
- * number is still unused: local send failures, the scope checks before it and
- * the sequence rejection itself. Every other failure (a timeout included) is
- * taken as consumed, as the server consumes a sequence once it passes the +1
- * check even when the request is then rejected.
+ * number is still unused: local send failures, the connection's rate limit
+ * (answered before the lobby sees the request), the scope checks before it
+ * and the sequence rejection itself — the same list as the node test bot's
+ * CHECKED_BEFORE_SEQUENCE (server-go/test/lib/item-race.mjs). Every other
+ * failure (a timeout included) is taken as consumed, as the server consumes a
+ * sequence once it passes the +1 check even when the request is then rejected.
  */
 const ITEM_UNCONSUMED_FAILURES: ReadonlySet<string> = new Set([
   "INVALID_SEQUENCE", "ITEM_UNAVAILABLE", "RACE_NOT_FOUND", "NOT_RACE_PARTICIPANT",
-  "INVALID_ROOMID", "INVALID_RACEID", "ROOM_NOT_FOUND", "NOT_IN_ROOM",
+  "INVALID_ROOMID", "INVALID_RACEID", "ROOM_NOT_FOUND", "NOT_IN_ROOM", "NOT_ROOM_MEMBER",
+  "RATE_LIMITED",
   "Not connected", "Connection busy", "Race connection scope expired", "INVALID_ITEM_REQUEST",
 ]);
 

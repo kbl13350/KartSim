@@ -86,6 +86,23 @@ test("failures before the sequence check keep the number; timeouts use it up", a
   await next;
 });
 
+test("rate-limited and non-member rejections come before the sequence check and keep the number", async () => {
+  const { connection, requests, answer } = fixture();
+  // The WebSocket layer answers RATE_LIMITED before the lobby sees the request.
+  for (const code of ["RATE_LIMITED", "RATE_LIMITED", "NOT_ROOM_MEMBER"]) {
+    const refused = connection.sendItem("swap");
+    await flush();
+    await answer(new Error(code));
+    await assert.rejects(refused, new RegExp(code));
+  }
+  assert.deepEqual(requests.map(request => request.sequence), [1, 1, 1]);
+  const next = connection.sendItem("swap");
+  await flush();
+  assert.equal(requests.at(-1)!.sequence, 1);
+  await answer(undefined);
+  await next;
+});
+
 test("an INVALID_SEQUENCE answer probes one ahead, then one behind", async () => {
   const { connection, requests, answer } = fixture();
   for (let index = 0; index < 2; index++) {

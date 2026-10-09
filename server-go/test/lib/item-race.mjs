@@ -337,7 +337,8 @@ export class MotionInbox {
 
 /** Rejections the node returns before it checks (and uses up) the sequence. */
 export const CHECKED_BEFORE_SEQUENCE = new Set(["INVALID_SEQUENCE", "ITEM_UNAVAILABLE", "NOT_RACE_PARTICIPANT",
-  "RACE_NOT_FOUND", "NOT_IN_ROOM", "ROOM_NOT_FOUND", "INVALID_ROOMID", "INVALID_RACEID", "RATE_LIMITED"]);
+  "RACE_NOT_FOUND", "NOT_IN_ROOM", "NOT_ROOM_MEMBER", "ROOM_NOT_FOUND", "INVALID_ROOMID", "INVALID_RACEID",
+  "RATE_LIMITED"]);
 
 /**
  * One racer's `item` requests in one race. Every request carries the next
