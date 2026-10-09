@@ -1,0 +1,46 @@
+# 本机开发依赖：只启动 MySQL 与 Redis，并发布到 127.0.0.1，供 run-full-local.sh / run-lan.sh 使用。
+#
+#   docker compose -f server-go/scripts/dev-deps.compose.yml up -d
+#
+# MySQL：127.0.0.1:3306，库 kartsim 与 kartsim_test，账号 kart/kart（与 kart-data 默认 KART_MYSQL_DSN 一致）。
+# Redis：127.0.0.1:6379。端口被占用时可用 KART_DEV_MYSQL_PORT / KART_DEV_REDIS_PORT 换端口，
+# 并相应设置 KART_MYSQL_DSN / KART_REDIS_ADDR。完整集群（含服务本身）请用 ../docker-compose.yml。
+name: kartsim-dev-deps
+
+services:
+  mysql:
+    image: mysql:8.4
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_as_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: ${KART_DEV_MYSQL_ROOT_PASSWORD:-kartroot}
+      MYSQL_DATABASE: kartsim
+      MYSQL_USER: kart
+      MYSQL_PASSWORD: kart
+    ports:
+      - "127.0.0.1:${KART_DEV_MYSQL_PORT:-3306}:3306"
+    volumes:
+      - dev-mysql:/var/lib/mysql
+      # 再建 kartsim_test 并授权，供 Go 单元测试使用（KART_TEST_MYSQL_DSN）。
+      - ./init-mysql.sql:/docker-entrypoint-initdb.d/10-kartsim.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$${MYSQL_ROOT_PASSWORD}\" mysqladmin ping -h 127.0.0.1 -uroot --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+
+  redis:
+    image: redis:7
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    ports:
+      - "127.0.0.1:${KART_DEV_REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  dev-mysql:
