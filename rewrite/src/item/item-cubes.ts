@@ -3,9 +3,9 @@ import { clientToThree } from "./item-cube-source";
 
 /**
  * Item cubes (道具箱) for one item race. All cubes of a track share one
- * assembled scene: each cube is a synthetic wrapper (position) -> spinner
- * (runtime spin) -> copy of the theme's itemCube.1s node tree, so the model
- * is decoded once, its geometry sits in one pooled buffer, its materials and
+ * assembled scene: each cube is a synthetic wrapper node (position and runtime
+ * spin) over a copy of the theme's itemCube.1s node tree, so the model is
+ * decoded once, its geometry sits in one pooled buffer, its materials and
  * textures are shared, and one scene update animates every cube. Pickup state
  * is per player (other racers' pickups never hide your cubes): stay -> eaten
  * for Eaten.life (hidden, fired01 effect on the kart, eaten sound) -> stay.
@@ -143,7 +143,6 @@ interface CubeEntry {
   state: CubeState;
   eatenAt: number;
   wrapper?: CubeModelNode;
-  spinner?: CubeModelNode;
   view?: CubeSceneObject;
 }
 
@@ -182,17 +181,30 @@ function cloneTree(node: CubeModelNode): CubeModelNode {
   return { ...node, children: node.children.map(cloneTree) };
 }
 
+/** A model root that is a plain identity Relement adds nothing under a wrapper. */
+function plainRoot(root: CubeModelNode): boolean {
+  const identity = IDENTITY();
+  return root.className === "Relement" && root.nodeEnabled !== 0 &&
+    root.transform.every((row, index) => row.every((value, column) => value === identity[index]![column])) &&
+    root.position.every(value => value === 0) && root.scale.every(value => value === 1) &&
+    root.slotOccurrences.every(slot => !slot);
+}
+
+/**
+ * One wrapper per cube at the cube's client position; its basis carries the
+ * spin. The wrapper replaces a plain model root, so a cube costs only the
+ * model's own nodes plus one.
+ */
 export function buildCubeRoots(model: CubeModelData, cubes: readonly ItemCubeDescriptor[]): {
   root: CubeModelNode;
   wrappers: CubeModelNode[];
-  spinners: CubeModelNode[];
 } {
   if (model.root.kind !== "node") throw Error("道具箱模型必须是独立 Relement。");
   const root = syntheticNode(model.root, "itemCubes", [0, 0, 0], []);
-  const spinners = cubes.map(() => syntheticNode(model.root, "", [0, 0, 0], [cloneTree(model.root)]));
-  const wrappers = cubes.map((cube, index) =>
-    syntheticNode(model.root, `itemCube#${cube.id}`, [...cube.clientPosition], [spinners[index]!]));
-  return { root, wrappers, spinners };
+  const fold = plainRoot(model.root);
+  const wrappers = cubes.map(cube => syntheticNode(model.root, `itemCube#${cube.id}`,
+    [...cube.clientPosition], fold ? model.root.children.map(cloneTree) : [cloneTree(model.root)]));
+  return { root, wrappers };
 }
 
 class CubeField<Archive> implements ItemCubeField {
@@ -241,7 +253,7 @@ class CubeField<Archive> implements ItemCubeField {
     this.audio = audio;
     const options = { environment, stageBinding, advanceEnvironment: false as const,
       textureCache: this.textures };
-    const { root, wrappers, spinners } = buildCubeRoots(model, source.cubes);
+    const { root, wrappers } = buildCubeRoots(model, source.cubes);
     const scene = await ops.loadModel({ root, settings: model.settings }, archive, source.modelPath,
       { id: "itemCube" }, { ...options, additionalRoots: wrappers });
     this.scene = scene;
@@ -251,7 +263,6 @@ class CubeField<Archive> implements ItemCubeField {
       throw Error("道具箱场景根节点数量不一致。");
     this.entries.forEach((entry, index) => {
       entry.wrapper = wrappers[index];
-      entry.spinner = spinners[index];
       entry.view = scene.rootObjects[index + 1];
       if (entry.view?.name !== wrappers[index]!.name) throw Error("道具箱场景根节点顺序不一致。");
     });
@@ -359,22 +370,26 @@ class CubeField<Archive> implements ItemCubeField {
     basis[0]![0] = cos; basis[0]![1] = -sin;
     basis[1]![0] = sin; basis[1]![1] = cos;
     for (const entry of this.entries) {
+      const wrapper = entry.wrapper;
+      if (!wrapper) continue;
+      let changed = false;
       const { anchor } = entry.descriptor;
-      if (anchor && this.worldMatrix && entry.wrapper) {
+      if (anchor && this.worldMatrix) {
         const matrix = this.worldMatrix(anchor);
-        if (matrix) {
-          const client = [matrix[12]!, matrix[13]!, matrix[14]!];
-          if (client.every(Number.isFinite)) {
-            entry.wrapper.position = client;
-            this.scene.setNodeScale(entry.wrapper, ONE);
-            entry.position = clientToThree(client);
-          }
+        const client = matrix ? [matrix[12]!, matrix[13]!, matrix[14]!] : undefined;
+        if (client?.every(Number.isFinite)) {
+          wrapper.position = client;
+          entry.position = clientToThree(client);
+          changed = true;
         }
       }
-      if (entry.state === "stay" && entry.spinner) {
-        entry.spinner.transform = basis;
-        this.scene.setNodeScale(entry.spinner, ONE);
+      // Hidden (eaten) cubes keep their last pose until they return.
+      if (entry.state === "stay") {
+        wrapper.transform = basis;
+        changed = true;
       }
+      // `setNodeScale` re-serializes the wrapper's basis and position.
+      if (changed) this.scene.setNodeScale(wrapper, ONE);
     }
     this.scene.update(now, camera, width, height);
     for (const effect of this.effects) {

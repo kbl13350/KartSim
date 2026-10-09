@@ -103,22 +103,29 @@ function world() {
 }
 
 test("cube roots wrap a fresh copy of the model per cube", () => {
-  const model: CubeModelData = { root: modelNode("cube", [modelNode("Box", [modelNode("mesh")])]) };
-  const { root, wrappers, spinners } = buildCubeRoots(model,
-    [cube(1, [1, 2, 3]), cube(2049, [4, 5, 6], {})]);
+  const box = modelNode("Box", [modelNode("mesh")]);
+  const model: CubeModelData = { root: modelNode("cube", [box]) };
+  const { root, wrappers } = buildCubeRoots(model, [cube(1, [1, 2, 3]), cube(2049, [4, 5, 6], {})]);
   assert.equal(root.children.length, 0);
   assert.deepEqual(wrappers.map(wrapper => [wrapper.name, wrapper.position]),
     [["itemCube#1", [1, 2, 3]], ["itemCube#2049", [4, 5, 6]]]);
-  assert.deepEqual(wrappers.map(wrapper => wrapper.children[0]), spinners);
-  const [first, second] = spinners.map(spinner => spinner.children[0]!);
+  // A plain identity model root folds into the wrapper; the rest is copied per cube.
+  const [first, second] = wrappers.map(wrapper => wrapper.children[0]!);
+  assert.equal(first!.name, "Box");
   assert.notEqual(first, second);
+  assert.notEqual(first, box);
   assert.notEqual(first!.children[0], second!.children[0]);
-  assert.notEqual(first, model.root);
-  for (const node of [root, ...wrappers, ...spinners]) {
+  for (const node of [root, ...wrappers]) {
     assert.equal(node.slotOccurrences.length, 11);
     assert.ok(node.slotOccurrences.every(slot => slot === undefined));
     assert.deepEqual(node.childOccurrences, []);
   }
+  // A transformed or controlled root stays under the wrapper.
+  const moved = { root: { ...modelNode("cube", [box]), position: [0, 0, 1] } };
+  assert.equal(buildCubeRoots(moved, [cube(1, [0, 0, 0])]).wrappers[0]!.children[0]!.name, "cube");
+  const slotted = modelNode("cube", [box]);
+  slotted.slotOccurrences[1] = { value: "prs" };
+  assert.equal(buildCubeRoots({ root: slotted }, [cube(1, [0, 0, 0])]).wrappers[0]!.children[0]!.name, "cube");
   assert.throws(() => buildCubeRoots({ root: { ...modelNode("x"), kind: "track" } }, []));
 });
 
@@ -228,17 +235,20 @@ test("update spins standing cubes and moves moving cubes with their anchors", as
   const [scene] = log.scenes;
   field.update(1000, "camera", 800, 600);
   assert.deepEqual(scene!.updates.at(-1), [1000, "camera", 800, 600]);
-  const wrapperMove = scene!.scaled.find(entry => entry.node.name === "itemCube#2049");
-  assert.deepEqual(wrapperMove!.position.map(value => Math.fround(value)),
+  assert.deepEqual(scene!.scaled.map(entry => entry.node.name), ["itemCube#1", "itemCube#2049"]);
+  const [still, moving] = scene!.scaled;
+  assert.deepEqual(still!.position, [10, 20, 3]);
+  assert.deepEqual(moving!.position.map(value => Math.fround(value)),
     [Math.fround(418.3), Math.fround(442.5), Math.fround(91.5)]);
   const position = field.position(2049)!;
   assert.ok(Math.abs(position.x - 418.3) < 1e-4 && Math.abs(position.y - 91.5) < 1e-4 &&
     Math.abs(position.z + 442.5) < 1e-4);
-  const spins = scene!.scaled.filter(entry => entry.node.name === "");
-  assert.equal(spins.length, 2);
   const angle = cubeSpin(1000);
-  assert.ok(Math.abs(spins[0]!.basis[0]![0]! - Math.cos(angle)) < 1e-6);
-  assert.ok(Math.abs(spins[0]!.basis[1]![0]! - Math.sin(angle)) < 1e-6);
+  for (const spin of [still!, moving!]) {
+    assert.ok(Math.abs(spin.basis[0]![0]! - Math.cos(angle)) < 1e-6);
+    assert.ok(Math.abs(spin.basis[1]![0]! - Math.sin(angle)) < 1e-6);
+    assert.deepEqual(spin.basis[2], [0, 0, 1]);
+  }
   assert.deepEqual(field.position(1), { x: 10, y: 3, z: -20 });
   assert.equal(field.position(99), undefined);
 
@@ -249,10 +259,12 @@ test("update spins standing cubes and moves moving cubes with their anchors", as
   coordinator.objects[0]!.slot13(coordinator.kart, 1001);
   coordinator.objects[0]!.slot12(1017);
   assert.deepEqual(pickups, [2049]);
-  // An eaten cube no longer spins.
+  // An eaten cube no longer spins, but a moving one still follows its anchor.
   scene!.scaled.length = 0;
+  matrix.set([300, 442.5, 91.5], 12);
   field.update(1100);
-  assert.equal(scene!.scaled.filter(entry => entry.node.name === "").length, 1);
+  assert.deepEqual(scene!.scaled.map(entry => entry.node.name), ["itemCube#1", "itemCube#2049"]);
+  assert.equal(field.position(2049)!.x, 300);
   field.dispose();
   field.update(1200);
   assert.equal(scene!.updates.length, 2);
