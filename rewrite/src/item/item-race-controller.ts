@@ -179,6 +179,8 @@ interface OwnTimeBomb {
 
 interface TimeWindow { from: number; until: number }
 
+type HitSource = "area" | "targeted" | "hazard";
+
 const NO_UNDO = (): void => {};
 
 /**
@@ -293,7 +295,7 @@ export class ItemRaceController implements ItemCommandHandler {
       const now = this.nowMs;
       this.resolveHit({ useId: 0, itemId: trigger.itemIdx, hazardId: trigger.id,
         behaviour: definition.behaviour, effectAt: now,
-        position: trigger.position ?? this.localPose().position }, now);
+        position: trigger.position ?? this.localPose().position }, now, "hazard");
     });
   }
 
@@ -953,7 +955,7 @@ export class ItemRaceController implements ItemCommandHandler {
       if (nowMs < hit.effectAt) continue;
       this.incoming.delete(useId);
       this.resolveHit({ useId, itemId: hit.itemId, userId: hit.userId, behaviour: hit.behaviour,
-        effectAt: hit.effectAt, position: this.localPose().position }, nowMs);
+        effectAt: hit.effectAt, position: this.localPose().position }, nowMs, "targeted");
     }
   }
 
@@ -968,7 +970,7 @@ export class ItemRaceController implements ItemCommandHandler {
       if (area.ownerGraceUntil !== undefined && nowMs < area.ownerGraceUntil) continue;
       if (distance(position, area.point) > area.radius) continue;
       this.resolveHit({ useId: area.useId, itemId: area.itemId, userId: area.userId,
-        behaviour: area.behaviour, effectAt: nowMs, position: area.point }, nowMs);
+        behaviour: area.behaviour, effectAt: nowMs, position: area.point }, nowMs, "area");
     }
   }
 
@@ -981,25 +983,39 @@ export class ItemRaceController implements ItemCommandHandler {
     }
   }
 
+  /**
+   * Decide a hit on the local kart, apply it and report it. When the kart
+   * cannot take the physics effect right now (apply() refuses it), nothing is
+   * reported that the local physics did not show:
+   * - an area item (banana, water or time bomb, barricade) stays live and
+   *   unreported while a launch or barricade holds the kart, and lands once the
+   *   hold ends if the kart is still inside, as for a kart arriving then;
+   * - a track hazard is not reported (the hazard field fires again only after
+   *   the kart leaves and re-enters it);
+   * - a targeted hit (its timeline is over) is reported as not landed:
+   *   `blocked` without a defence.
+   */
   private resolveHit(hit: { useId: number; itemId: number; userId?: string; hazardId?: number;
-    behaviour: ItemBehaviour; effectAt: number; position?: Vec3 }, nowMs: number): void {
-    if (hit.useId > 0) {
-      if (this.reported.has(hit.useId)) return;
-      this.reported.add(hit.useId);
-    }
+    behaviour: ItemBehaviour; effectAt: number; position?: Vec3 }, nowMs: number,
+    source: HitSource): void {
+    if (hit.useId > 0 && this.reported.has(hit.useId)) return;
     const effects = this.options.physics.itemEffects;
-    const decision = decideHit(hit.itemId, hit.behaviour, {
+    let decision = decideHit(hit.itemId, hit.behaviour, {
       immune: effects?.immune ?? false,
       shield: nowMs < this.shieldUntil,
       angel: nowMs < this.angelUntil,
       emp: nowMs < this.empUntil,
       suspended: this.options.local.suspended(),
     });
+    if (decision.result === "hit" && !this.applyHit(hit, nowMs)) {
+      if (source !== "targeted") return;
+      decision = { result: "blocked" };
+    }
+    if (hit.useId > 0) this.reported.add(hit.useId);
     if (decision.by === "shield") {
       this.shieldUntil = 0;
       this.endKartEffect(this.playerId, "shield");
     }
-    if (decision.result === "hit") this.applyHit(hit.behaviour, hit.effectAt, nowMs);
     const fields: Record<string, unknown> = { useId: hit.useId, itemId: hit.itemId,
       result: decision.result };
     if (decision.by) fields.by = decision.by;
@@ -1021,14 +1037,17 @@ export class ItemRaceController implements ItemCommandHandler {
     }
   }
 
-  private applyHit(behaviour: ItemBehaviour, effectAt: number, nowMs: number): void {
+  /** Apply a landed hit; false when the kart cannot take its physics effect now. */
+  private applyHit(hit: { behaviour: ItemBehaviour; effectAt: number }, nowMs: number): boolean {
+    const { behaviour, effectAt } = hit;
     const kind = physicsEffect(behaviour.effect);
     if (kind) {
-      this.options.physics.itemEffects?.apply(kind, behaviour.effectMs, {
+      const effects = this.options.physics.itemEffects;
+      if (!effects) return true;
+      return effects.apply(kind, behaviour.effectMs, {
         elapsedMs: Math.max(0, nowMs - effectAt),
         ...(behaviour.escapeShieldMs !== undefined ? { escapeImmunityMs: behaviour.escapeShieldMs } : {}),
       });
-      return;
     }
     if (behaviour.effect === "cloud")
       this.cloudWindows.push({ from: effectAt, until: effectAt + behaviour.effectMs });
@@ -1036,6 +1055,7 @@ export class ItemRaceController implements ItemCommandHandler {
       this.lockWindows.push({ from: effectAt, until: effectAt + behaviour.effectMs });
       if (this.aim && this.aim.itemId !== ItemIdx.angel) this.cancelAim();
     }
+    return true;
   }
 
   // ---- presentation -------------------------------------------------------

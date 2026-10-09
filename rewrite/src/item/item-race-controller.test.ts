@@ -908,3 +908,43 @@ test("two time bombs used close together both explode where I am", async () => {
   at(h, 4000);
   assert.deepEqual(h.connection.of("place").map(place => place.useId), [101]);
 });
+
+test("a spin or barricade the held kart cannot take is not reported; the banana stays", () => {
+  const f = controllerFixture();
+  serve(f);
+  at(f, 0);
+  used(f, { useId: 7, itemId: ItemIdx.banana, startAt: server(0),
+    point: threeToClient({ x: 0, y: 0, z: 0 }) });
+  // Launched by a rocket (held at its anchor): the kart cannot spin.
+  f.physics.itemEffects.refuse.add("spin");
+  at(f, 600);
+  at(f, 700);
+  assert.deepEqual(f.physics.itemEffects.refused, ["spin", "spin"]);
+  assert.equal(f.connection.of("hit").length, 0);
+  assert.equal(f.presenter.of("hit").length, 0);
+  assert.equal(f.controller.hudState(700).notices.length, 0);
+  assert.ok(f.controller.areas.has(7));
+  // Released while still on the banana: it spins now, once.
+  f.physics.itemEffects.refuse.clear();
+  at(f, 800);
+  assert.deepEqual(f.connection.of("hit"), [{ useId: 7, itemId: 8, result: "hit" }]);
+  assert.deepEqual(f.physics.itemEffects.applied.map(entry => entry.kind), ["spin"]);
+  at(f, 900);
+  assert.equal(f.connection.of("hit").length, 1);
+
+  // A targeted hit the kart cannot take any more is reported as not landed.
+  const g = controllerFixture();
+  serve(g);
+  at(g, 0);
+  g.physics.itemEffects.refuse.add("launch");
+  used(g, { useId: 8, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(0), etaMs: 300 });
+  at(g, 300);
+  assert.deepEqual(g.connection.of("hit"), [{ useId: 8, itemId: 7, result: "blocked" }]);
+  const hit = g.presenter.of("hit")[0]![0] as Record<string, unknown>;
+  assert.equal(hit.result, "blocked");
+  assert.equal(g.controller.hudState(300).notices.length, 0);
+  // A track banana the kart cannot take is not reported at all.
+  g.physics.itemEffects.refuse.add("spin");
+  g.controller.hazard({ id: 3, itemIdx: ItemIdx.banana });
+  assert.equal(g.connection.of("hit").length, 1);
+});

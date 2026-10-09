@@ -74,8 +74,15 @@ export class FakeEffects {
   escapeShieldRemainingMs = 0;
   clockMs = 0;
   readonly effects = new Map<string, { startMs: number; endMs: number }>();
+  /** Kinds apply() refuses (the kart cannot take them, e.g. a spin while launched). */
+  readonly refuse = new Set<PhysicsItemEffect>();
+  readonly refused: PhysicsItemEffect[] = [];
 
   apply(kind: PhysicsItemEffect, durationMs: number, options: Record<string, unknown> = {}): boolean {
+    if (this.refuse.has(kind)) {
+      this.refused.push(kind);
+      return false;
+    }
     this.applied.push({ kind, durationMs, options });
     this.active.add(kind);
     return true;
