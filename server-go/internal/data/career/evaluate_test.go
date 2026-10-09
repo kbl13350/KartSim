@@ -131,14 +131,23 @@ func TestRaceCounters(t *testing.T) {
 func TestCollectionsEmblemsAndMulti(t *testing.T) {
 	data := defaultData(t)
 	f := emptyFacts()
-	f.Collected[3] = map[int]bool{1: true, 2: true}
+	// Kart 99999 and category 4 are not in the dictionary; kart 1638 is
+	// embargoed until 2026-09-17 06:00 Beijing.
+	f.Collected[3] = map[int]bool{1: true, 2: true, 99999: true, 1638: true}
 	f.Collected[1] = map[int]bool{5: true}
+	f.Collected[4] = map[int]bool{1: true}
+	f.Now = 1789596000000 - 1
 	if value, _ := data.Value(&Career{Type: 13}, f); value != 2 {
 		t.Fatalf("karts collected %d", value)
 	}
 	if value, _ := data.Value(&Career{Type: 12}, f); value != 3 {
 		t.Fatalf("all collected %d", value)
 	}
+	f.Now++
+	if value, _ := data.Value(&Career{Type: 13}, f); value != 3 {
+		t.Fatalf("karts collected after the embargo %d", value)
+	}
+	delete(f.Collected[3], 1638)
 	c1293 := mustCareer(t, data, 1293)
 	f.Owned[52] = map[int]bool{102: true, 103: true, 999: true}
 	if value, _ := data.Value(c1293, f); value != 2 {

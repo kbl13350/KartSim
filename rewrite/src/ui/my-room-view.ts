@@ -7,6 +7,8 @@ import type { FavoriteItem, LocalProfile, MyRoomProfile } from "./local-profile"
 import { validateMyRoomProfile } from "./local-profile";
 import { openMyRoomAdmin, type MyRoomAdminDialog, type MyRoomAdminKart } from "./my-room-admin";
 import { openMyRoomCareer, type MyRoomCareerLibrary, type MyRoomCareerWindow } from "./my-room-career";
+import { openMyRoomDictionary, type DictionaryItemInfo, type DictionaryPictureSource,
+  type MyRoomDictionaryWindow } from "./my-room-dictionary";
 import type { MyRoomEnvironment } from "./my-room-catalog";
 import { askRoomPassword, openFindRiderDialog } from "./my-room-dialogs";
 import { openMyRoomEmblems, type MyRoomEmblemDialog } from "./my-room-emblems";
@@ -14,7 +16,7 @@ import { MyRoomHud, loadMyRoomHudAssets, type MyRoomHudLibrary, type MyRoomHudRi
 import { MyRoomSceneView, type MyRoomRemoteRider, type MyRoomSceneLibrary,
   type MyRoomSceneSubject, type MyRoomVisitorKart } from "./my-room-scene";
 
-/** The data service side of the room: live visits, careers and emblems. */
+/** The data service side of the room: live visits, careers, emblems and the item dictionary. */
 export interface MyRoomSocial {
   api: MyRoomApi;
   connection: MyRoomConnection;
@@ -24,6 +26,12 @@ export interface MyRoomSocial {
   friends(): string[];
   /** A release notice box. */
   notice(title: string, message: string): Promise<unknown>;
+  /** Item names and kart types (the shop catalog) by itemKey for the 道具图鉴. */
+  dictionaryItems(): Promise<ReadonlyMap<string, DictionaryItemInfo>>;
+  /** Item pictures for the 道具图鉴; disposed with its window. */
+  dictionaryPictures?(): DictionaryPictureSource;
+  /** Re-reads the account (the wallet after a K币 reward). */
+  refreshAccount(): void;
 }
 
 export interface MyRoomViewOptions {
@@ -125,6 +133,7 @@ export class MyRoomView {
   private admin?: MyRoomAdminDialog;
   private adminOpening = false;
   private career?: MyRoomCareerWindow;
+  private dictionary?: MyRoomDictionaryWindow;
   private emblems?: MyRoomEmblemDialog;
   /** A dialog of the room menu is open or opening (find, career, emblems…). */
   private dialogBusy = false;
@@ -203,6 +212,7 @@ export class MyRoomView {
     this.admin?.dispose();
     this.career?.dispose();
     this.emblems?.dispose();
+    this.dictionary?.dispose();
     this.hud?.dispose();
     this.sceneView?.dispose();
     this.element.remove();
@@ -261,6 +271,7 @@ export class MyRoomView {
         onOpenAdmin: () => void this.openAdmin(),
         onCareer: () => void this.openCareer(),
         onEmblem: () => void this.openEmblems(),
+        onDictionary: () => void this.openDictionary(),
         onFindRider: () => void this.openFindRider(),
         onRandomVisit: () => void this.randomVisit(),
         onKick: accountId => void this.kick(accountId),
@@ -525,6 +536,44 @@ export class MyRoomView {
           if (this.disposed) dialog.dispose();
           else this.emblems = dialog;
         }, reject);
+      });
+    });
+  }
+
+  /** 图鉴 / 浏览图鉴: the 道具图鉴, the owner's with 领取奖励. */
+  private openDictionary(): Promise<void> {
+    const social = this.options.social;
+    if (!social) return Promise.resolve();
+    return this.withDialog(async () => {
+      const [summary, items] = await Promise.all([
+        this.visitorView(visit => social.api.dictionary(visit)),
+        social.dictionaryItems().catch(() => new Map<string, DictionaryItemInfo>()),
+      ]);
+      if (!summary || this.disposed) return;
+      await new Promise<void>((resolve, reject) => {
+        const pictures = social.dictionaryPictures?.();
+        openMyRoomDictionary({
+          library: this.options.library as unknown as MyRoomCareerLibrary,
+          root: this.options.root, summary, items, editable: summary.owner,
+          ...(pictures ? { pictures } : {}),
+          claim: async () => {
+            const claim = await social.api.claimDictionaryReward();
+            social.refreshAccount();
+            return claim;
+          },
+          notice: (title, message) => social.notice(title, message),
+          onClose: () => {
+            this.dictionary = undefined;
+            resolve();
+            if (!this.disposed) this.sceneView?.canvas.focus();
+          },
+        }).then(window => {
+          if (this.disposed) window.dispose();
+          else this.dictionary = window;
+        }, error => {
+          pictures?.dispose();
+          reject(error);
+        });
       });
     });
   }

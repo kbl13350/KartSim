@@ -345,3 +345,24 @@ export function createShopPreview(library: unknown,
     cacheSize: 40,
   });
 }
+
+/**
+ * Item pictures outside the shop (the 道具图鉴 cards): the same snapshot
+ * renderer at the 125×125 detail size, each picture copied into a canvas the
+ * caller owns; undefined when the item has none or the request was aborted.
+ */
+export function createItemPictures(library: unknown): {
+  picture(category: number, itemId: number, internalId: string,
+    signal: AbortSignal): Promise<HTMLCanvasElement | undefined>;
+  dispose(): void;
+} {
+  const preview = createShopPreview(library);
+  return {
+    async picture(category, itemId, internalId, signal) {
+      const host = document.createElement("div");
+      await preview.render({ category, itemId, internalId, kind: "", name: "", size: "detail" }, host, signal);
+      return host.querySelector("canvas") ?? undefined;
+    },
+    dispose: () => preview.dispose(),
+  };
+}

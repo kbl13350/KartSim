@@ -12,7 +12,8 @@ import (
 
 func TestSchemaMyRoomTables(t *testing.T) {
 	db := datatest.MySQL(t)
-	for _, table := range []string{"account_counters", "account_login_days", "account_careers", "account_emblems"} {
+	for _, table := range []string{"account_counters", "account_login_days", "account_careers", "account_emblems",
+		"account_dictionary"} {
 		var n int
 		if err := db.QueryRow("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = ?",
 			table).Scan(&n); err != nil || n != 1 {

@@ -3,7 +3,9 @@ import test from "node:test";
 
 import { MyRoomError } from "../myroom/myroom-connection";
 import { parseCareerTable, parseEmblemTable, xmlAttributes } from "../myroom/myroom-data";
-import { careerDate, careerRows, careerTarget, careerTotals } from "./my-room-career";
+import { careerCondition, careerDate, careerRows, careerTarget, careerTotals } from "./my-room-career";
+import { DICTIONARY_GROUPS, dictionaryEntries, dictionaryProgress, dictionaryRewardLines, itemKey,
+  type DictionaryItemInfo } from "./my-room-dictionary";
 import { chooseMainEmblem, clearMainEmblem } from "./my-room-emblems";
 import { enterErrorMessage } from "./my-room-view";
 
@@ -29,6 +31,17 @@ const careerXml = `<!-- comment <careerItem id='99' mainType='1' subType='1'/> -
   <careerItem id='4' mainType='1' subType='3' title='重复' careerType='55' clearValue='1'/>
   <careerItem id='5' mainType='1' subType='3' title='停用' careerType='1' clearValue='1' enable='false'/>
 </newCareerList>`;
+
+test("distance careers show km with one decimal", () => {
+  const table = parseCareerTable(careerXml);
+  const formats = { normal: "%s (%d/%d)", distance: "%s (%.1f/%.1f)" };
+  const forest = { ...table.get(2)!, careerType: 46, clearValue: 5000, desc: "森林" };
+  assert.equal(careerCondition(forest, 1234, formats), "森林 (123.4/500.0)");
+  assert.equal(careerCondition(forest, 9000, formats), "森林 (500.0/500.0)");
+  assert.equal(careerCondition({ ...forest, careerType: 50 }, 5, formats), "森林 (0.5/500.0)");
+  assert.equal(careerCondition(table.get(2)!, 3, formats), "d (3/10)");
+  assert.equal(careerCondition(table.get(1)!, 0, formats), "完成新手指南");
+});
 
 test("career and emblem tables parse like the server export", () => {
   const table = parseCareerTable(careerXml);
@@ -71,4 +84,40 @@ test("refused enters show the release notices", () => {
   assert.equal(enterErrorMessage(new MyRoomError("RANDOM_FAILED"), true), "随机进入失败");
   assert.equal(enterErrorMessage(new MyRoomError("CANNOT_ENTER"), false), "进入小屋失败");
   assert.equal(enterErrorMessage(new Error("network"), true), "随机进入失败");
+});
+
+test("dictionary sub tabs filter by kart type, engine grade and name", () => {
+  const summary = {
+    nickname: "Me", owner: true, total: 5, collected: 2, rewarded: 0, claimable: 2,
+    reward: { category: 56, item: 1, count: 1 },
+    kartGrades: new Map([[10, 13], [11, 12], [12, 13]]),
+    categories: [{ category: 3, name: "kart", items: [12, 11, 10], collected: [10] },
+      { category: 21, name: "pet", items: [5, 4], collected: [4] }],
+  };
+  const items = new Map<string, DictionaryItemInfo>([
+    [itemKey(3, 10), { name: "迅·闪电", internalId: "a", kartType: 2 }],
+    [itemKey(3, 11), { name: "棉花糖", internalId: "b", kartType: 1 }],
+    [itemKey(3, 12), { name: "迅·火焰", internalId: "c", kartType: 2 }],
+  ]);
+  const [all, speed, item] = DICTIONARY_GROUPS[0]!.subs;
+  assert.deepEqual(dictionaryEntries(summary, all!, items).map(entry => entry.itemId), [12, 11, 10]);
+  assert.deepEqual(dictionaryEntries(summary, speed!, items).map(entry => entry.itemId), [12, 10]);
+  assert.deepEqual(dictionaryEntries(summary, item!, items).map(entry => entry.itemId), [11]);
+  assert.deepEqual(dictionaryEntries(summary, all!, items, { grade: 13 }).map(entry => entry.itemId), [12, 10]);
+  assert.deepEqual(dictionaryEntries(summary, all!, items, { search: "闪电" }).map(entry => entry.itemId), [10]);
+  assert.deepEqual(dictionaryProgress(dictionaryEntries(summary, speed!, items)),
+    { collected: 1, total: 2, percent: 50 });
+  // Items the catalog does not name keep their id; a missing category is empty.
+  const pets = dictionaryEntries(summary, DICTIONARY_GROUPS[1]!.subs[1]!, items);
+  assert.deepEqual(pets.map(entry => [entry.name, entry.collected]), [["5", false], ["4", true]]);
+  assert.deepEqual(dictionaryEntries(summary, DICTIONARY_GROUPS[3]!.subs[0]!, items), []);
+  assert.deepEqual(dictionaryProgress([]), { collected: 0, total: 0, percent: 0 });
+  assert.equal(dictionaryProgress([{ category: 1, itemId: 1, collected: true, name: "", internalId: "" },
+    { category: 1, itemId: 2, collected: false, name: "", internalId: "" },
+    { category: 1, itemId: 3, collected: false, name: "", internalId: "" }]).percent, 33);
+});
+
+test("the dictionary reward text fills the release template", () => {
+  assert.deepEqual(dictionaryRewardLines("图鉴中新添道具数量为 %d个，|可领取[%s] %d个奖励。|确认要领取奖励吗？", 3, "K币", 3),
+    ["图鉴中新添道具数量为 3个，", "可领取[K币] 3个奖励。", "确认要领取奖励吗？"]);
 });

@@ -29,6 +29,7 @@ const (
 	ReasonTimeAttack = "timeattack" // time-attack reward; ref = requestId
 	ReasonPurchase   = "purchase"   // shop purchase; ref = requestId
 	ReasonAdmin      = "admin"      // admin grant; ref = "<admin username>:<requestId>"
+	// ReasonDictionary (dictionary.go): 道具图鉴 reward; ref = rewarded count
 )
 
 // Daily reward counters (daily_rewards.kind).

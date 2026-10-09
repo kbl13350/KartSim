@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { MyRoomApi, parseCareerSummary } from "./myroom-api";
+import { MyRoomApi, parseCareerSummary, parseDictionarySummary } from "./myroom-api";
 import { MyRoomConnection, MyRoomError, myRoomSocketUrl, type RoomEvent,
   type RoomSocket } from "./myroom-connection";
 
@@ -158,4 +158,32 @@ test("career and emblem responses are validated", async () => {
   assert.equal(calls.at(-1)![1]!.body, JSON.stringify({ nickname: "Owner", password: "pw" }));
   assert.deepEqual(emblems.main, [8196, 0]);
   assert.throws(() => parseCareerSummary({ nickname: "x", careers: [{ id: 1, value: 0, state: "odd" }] }));
+});
+
+test("dictionary responses are validated", async () => {
+  const calls: Array<[string, RequestInit | undefined]> = [];
+  const replies: unknown[] = [];
+  const api = new MyRoomApi({ requestJson: async (path, init) => { calls.push([path, init]); return replies.shift(); } });
+  const dictionary = { nickname: "Me", owner: true, version: "v", total: 3, collected: 1, rewarded: 0, claimable: 1,
+    reward: { category: 56, item: 1, count: 1 }, kartGrades: { 1638: 13, bad: 2 },
+    categories: [{ category: 3, name: "kart", items: [1638, 1, "x"], collected: [1] }] };
+  replies.push(dictionary);
+  const summary = await api.dictionary();
+  assert.equal(calls[0]![0], "/api/dictionary");
+  assert.deepEqual(summary.categories, [{ category: 3, name: "kart", items: [1638, 1], collected: [1] }]);
+  assert.equal(summary.kartGrades.get(1638), 13);
+  assert.equal(summary.kartGrades.size, 1);
+  assert.equal(summary.claimable, 1);
+  replies.push({ items: 1, koin: 1, wallet: { coupon: 0, lucci: 5, koin: 1 },
+    dictionary: { ...dictionary, rewarded: 1, claimable: 0 } });
+  const claim = await api.claimDictionaryReward();
+  assert.equal(calls.at(-1)![0], "/api/dictionary/reward");
+  assert.equal(calls.at(-1)![1]!.method, "POST");
+  assert.equal(claim.wallet.koin, 1);
+  assert.equal(claim.dictionary.claimable, 0);
+  replies.push({ ...dictionary, owner: false });
+  await api.dictionary({ nickname: "Owner" });
+  assert.equal(calls.at(-1)![0], "/api/myroom/dictionary");
+  assert.equal(calls.at(-1)![1]!.body, JSON.stringify({ nickname: "Owner", password: "" }));
+  assert.throws(() => parseDictionarySummary({ nickname: "x", categories: [{ category: 0 }] }));
 });

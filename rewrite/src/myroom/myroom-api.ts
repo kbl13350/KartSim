@@ -3,7 +3,9 @@
  * rider's own lists (GET /api/careers, /api/emblems), completing a career
  * (点击完成) and choosing representative emblems, and a visitor's read-only
  * view of another rider's lists behind the room's 车库/徽章/图鉴/成就是否公开
- * password (POST /api/myroom/careers, /api/myroom/emblems).
+ * password (POST /api/myroom/careers, /api/myroom/emblems). The 道具图鉴 (item
+ * dictionary): the collection (GET /api/dictionary), its K币 reward (POST
+ * /api/dictionary/reward) and a visitor's 浏览图鉴 (POST /api/myroom/dictionary).
  */
 
 export type CareerState = "playing" | "complete" | "rewarded";
@@ -47,6 +49,78 @@ export interface EmblemSummary {
   emblems: Array<{ id: number; acquiredAt: number }>;
   /** Representative emblems by slot; 0 is an empty slot. */
   main: [number, number];
+}
+
+export interface DictionaryCategory {
+  /** Item category: 1 character, 2 paint, 3 kart, 8 goggle, 9 balloon, 11 headband, 21 pet,
+   * 26 aura, 27 skid mark, 52 flying pet. */
+  category: number;
+  name: string;
+  /** Items the dictionary lists now, in the release order. */
+  items: number[];
+  /** The listed items the rider has collected. */
+  collected: number[];
+}
+
+export interface DictionarySummary {
+  nickname: string;
+  owner: boolean;
+  categories: DictionaryCategory[];
+  /** Kart engine grades (kartBodyGrade 1-13) by kart item id. */
+  kartGrades: Map<number, number>;
+  /** What each newly collected item pays (56:1, the K币). */
+  reward: { category: number; item: number; count: number };
+  total: number;
+  collected: number;
+  /** Owner only: items already rewarded and items whose reward can be claimed. */
+  rewarded: number;
+  claimable: number;
+}
+
+export interface DictionaryClaim {
+  items: number;
+  koin: number;
+  wallet: { coupon: number; lucci: number; koin: number };
+  dictionary: DictionarySummary;
+}
+
+const ids = (value: unknown): number[] =>
+  Array.isArray(value) ? value.flatMap(item => {
+    const id = integer(item);
+    return id !== undefined && id >= 0 ? [id] : [];
+  }) : [];
+
+export function parseDictionarySummary(value: unknown): DictionarySummary {
+  if (!record(value) || typeof value.nickname !== "string" || !Array.isArray(value.categories))
+    invalid("道具图鉴");
+  const categories = value.categories.map(row => {
+    if (!record(row)) invalid("道具图鉴");
+    const category = integer(row.category);
+    if (category === undefined || category <= 0) invalid("道具图鉴");
+    return { category, name: typeof row.name === "string" ? row.name : "", items: ids(row.items),
+      collected: ids(row.collected) };
+  });
+  const kartGrades = new Map<number, number>();
+  if (record(value.kartGrades)) {
+    for (const [key, grade] of Object.entries(value.kartGrades)) {
+      const id = Number(key);
+      const parsed = integer(grade);
+      if (Number.isSafeInteger(id) && parsed !== undefined) kartGrades.set(id, parsed);
+    }
+  }
+  const reward = record(value.reward) ? value.reward : {};
+  return {
+    nickname: value.nickname,
+    owner: value.owner === true,
+    categories,
+    kartGrades,
+    reward: { category: integer(reward.category) ?? 0, item: integer(reward.item) ?? 0,
+      count: integer(reward.count) ?? 0 },
+    total: integer(value.total) ?? 0,
+    collected: integer(value.collected) ?? 0,
+    rewarded: integer(value.rewarded) ?? 0,
+    claimable: integer(value.claimable) ?? 0,
+  };
 }
 
 /** The part of BrowserAccountSession the API needs. */
@@ -145,5 +219,25 @@ export class MyRoomApi {
 
   async setMainEmblems(main: [number, number]): Promise<EmblemSummary> {
     return parseEmblemSummary(await this.post("/api/emblems/main", { main }));
+  }
+
+  /** The signed-in rider's 道具图鉴, or another rider's (浏览图鉴). */
+  async dictionary(visit?: { nickname: string; password?: string }): Promise<DictionarySummary> {
+    return parseDictionarySummary(visit
+      ? await this.post("/api/myroom/dictionary", { nickname: visit.nickname, password: visit.password ?? "" })
+      : await this.session.requestJson("/api/dictionary"));
+  }
+
+  /** 领取奖励: 1 K币 for each collected item not rewarded before. */
+  async claimDictionaryReward(): Promise<DictionaryClaim> {
+    const body = await this.post("/api/dictionary/reward", {});
+    if (!record(body) || !record(body.wallet)) invalid("图鉴奖励");
+    return {
+      items: integer(body.items) ?? 0,
+      koin: integer(body.koin) ?? 0,
+      wallet: { coupon: integer(body.wallet.coupon) ?? 0, lucci: integer(body.wallet.lucci) ?? 0,
+        koin: integer(body.wallet.koin) ?? 0 },
+      dictionary: parseDictionarySummary(body.dictionary),
+    };
   }
 }

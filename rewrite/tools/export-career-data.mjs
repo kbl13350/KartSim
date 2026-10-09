@@ -14,6 +14,7 @@
 //                                  are kept, the client shows titles itself
 //   etc_/emblem/emblem@cn.xml      the CN emblem ids
 //   the time-attack track catalog  trackId -> career themeId (TrackThemeEntity)
+//   zeta_/cn/content/itemDictionary.xml   the 道具图鉴 content -> dictionary.json
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -21,6 +22,7 @@ import { fileURLToPath } from "node:url";
 import { formatDocument } from "./economy-export/canonical.mjs";
 import { loadResourceLibrary, parseNormalizedXml, uniqueBytes } from "./economy-export/resource-library.mjs";
 import { careerRows, emblemIds, trackThemes } from "./career-export/careers.mjs";
+import { dictionaryRows } from "./career-export/dictionary.mjs";
 
 const rewriteDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const projectRoot = path.resolve(rewriteDir, "..");
@@ -33,6 +35,7 @@ const outDir = outIndex >= 0 ? path.resolve(args[outIndex + 1] ?? "")
 const SOURCES = {
   careers: "etc_/career/newCareer@cn.xml",
   emblems: "etc_/emblem/emblem@cn.xml",
+  dictionary: "zeta_/cn/content/itemDictionary.xml",
 };
 
 const problems = [];
@@ -57,20 +60,34 @@ const document = formatDocument({
   trackThemes: themes,
 });
 
+const dictionary = dictionaryRows(await parseXmlAt(SOURCES.dictionary), problem);
+const dictionaryDocument = formatDocument({
+  generatedFrom: `rewrite/tools/export-career-data.mjs over mirror/${manifest.version} ` +
+    `revision ${manifest.revision}: ${SOURCES.dictionary} (category lists in display order, kart engine grades, ` +
+    "embargo dates as Unix ms, the reward per new item). Do not edit by hand.",
+  ...dictionary,
+});
+
 if (problems.length > 0) {
   for (const message of problems) console.error(`problem: ${message}`);
   process.exit(1);
 }
-const file = path.join(outDir, "careers.json");
+const outputs = [["careers.json", document], ["dictionary.json", dictionaryDocument]];
 if (checkOnly) {
-  if (!existsSync(file) || readFileSync(file, "utf8") !== document.text) {
-    console.error(`${file} is stale; run tools/export-career-data.mjs`);
+  const stale = outputs.filter(([name, doc]) => {
+    const file = path.join(outDir, name);
+    return !existsSync(file) || readFileSync(file, "utf8") !== doc.text;
+  });
+  if (stale.length) {
+    console.error(`${stale.map(([name]) => name).join(", ")} stale; run tools/export-career-data.mjs`);
     process.exit(1);
   }
 } else {
   mkdirSync(outDir, { recursive: true });
-  writeFileSync(file, document.text);
+  for (const [name, doc] of outputs) writeFileSync(path.join(outDir, name), doc.text);
 }
 if (duplicates.length > 0) console.log(`repeated career ids (first row kept): ${duplicates.join(", ")}`);
 console.log(`careers ${careers.length}, emblems ${emblems.length}, ` +
-  `track themes ${Object.keys(themes).length}, version ${document.version}`);
+  `track themes ${Object.keys(themes).length}, version ${document.version}; dictionary ` +
+  `${dictionary.categories.reduce((sum, row) => sum + row.items.length, 0)} items in ` +
+  `${dictionary.categories.length} categories, ${dictionary.embargo.length} embargo rows`);

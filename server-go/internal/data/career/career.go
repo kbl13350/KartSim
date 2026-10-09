@@ -54,6 +54,9 @@ type Data struct {
 	emblems     map[int]bool
 	EmblemIDs   []int
 	trackThemes map[string]int
+	// dictionary decides what the item-dictionary careers (types 12-23)
+	// count; without it they are untracked.
+	dictionary *Dictionary
 }
 
 type document struct {
@@ -100,9 +103,19 @@ func Parse(raw []byte) (*Data, error) {
 	return data, nil
 }
 
-var loadDefault = sync.OnceValues(func() (*Data, error) { return Parse(embedded) })
+var loadDefault = sync.OnceValues(func() (*Data, error) {
+	data, err := Parse(embedded)
+	if err != nil {
+		return nil, err
+	}
+	if data.dictionary, err = DefaultDictionary(); err != nil {
+		return nil, err
+	}
+	return data, nil
+})
 
-// Default returns the embedded table.
+// Default returns the embedded table, judging the dictionary careers with
+// the embedded dictionary.
 func Default() (*Data, error) { return loadDefault() }
 
 // Career returns the career with id.

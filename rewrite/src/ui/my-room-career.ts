@@ -71,6 +71,25 @@ export function careerTarget(info: CareerInfo): number {
   return info.multiIds.length ? info.multiIds.length : info.clearValue;
 }
 
+/** Distance careers (46 by theme, 50 with a replay camera) count 0.1 km. */
+const DISTANCE_CAREER_TYPES = new Set([46, 50]);
+
+/**
+ * The "(%d/%d)" condition after a career's description; distance careers
+ * use careerInfoFormat_Distance "%s (%.1f/%.1f)" in km.
+ */
+export function careerCondition(info: CareerInfo, value: number,
+                                format: { normal: string; distance: string }): string {
+  if (!info.showCondition) return info.desc;
+  const target = careerTarget(info);
+  const shown = Math.min(value, target);
+  if (DISTANCE_CAREER_TYPES.has(info.careerType)) {
+    return format.distance.replace("%s", info.desc).replace("%.1f", (shown / 10).toFixed(1))
+      .replace("%.1f", (target / 10).toFixed(1));
+  }
+  return format.normal.replace("%s", info.desc).replace("%d", String(shown)).replace("%d", String(target));
+}
+
 /**
  * The careers a tab lists: chained stages appear once the previous stage is
  * done, hidden careers once reached; then the filter.
@@ -395,12 +414,10 @@ class CareerWindow implements MyRoomCareerWindow {
         return { text: part?.title ?? String(id), done: state === "rewarded" };
       });
     }
-    const target = careerTarget(row.info);
-    const value = Math.min(row.progress.value, target);
-    const format = this.text("careerInfoFormat_Default") ?? "%s (%d/%d)";
-    const text = row.info.showCondition
-      ? format.replace("%s", row.info.desc).replace("%d", String(value)).replace("%d", String(target))
-      : row.info.desc;
+    const text = careerCondition(row.info, row.progress.value, {
+      normal: this.text("careerInfoFormat_Default") ?? "%s (%d/%d)",
+      distance: this.text("careerInfoFormat_Distance") ?? "%s (%.1f/%.1f)",
+    });
     return [{ text, done: row.progress.state !== "playing" }];
   }
 

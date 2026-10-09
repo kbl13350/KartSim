@@ -422,6 +422,17 @@ var migrations = []migration{
 			CONSTRAINT fk_account_emblems_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
 		) ` + tableTail,
 	}},
+	// 道具图鉴 rewards: how many collected dictionary items were rewarded.
+	{version: 101, statements: []string{
+		`CREATE TABLE IF NOT EXISTS account_dictionary (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			rewarded INT NOT NULL DEFAULT 0,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id),
+			CONSTRAINT chk_account_dictionary_rewarded CHECK (rewarded >= 0),
+			CONSTRAINT fk_account_dictionary_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+	}},
 }
 
 // LatestSchemaVersion is the version Migrate brings a database to.

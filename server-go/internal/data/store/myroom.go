@@ -58,7 +58,7 @@ func (s *Store) CareerFacts(ctx context.Context, accountID string, now int64) (c
 }
 
 func careerFacts(ctx context.Context, q rowsQueryer, accountID string, now int64) (career.Facts, error) {
-	f := career.Facts{LoginDates: map[string]bool{}, Collected: map[int]map[int]bool{},
+	f := career.Facts{Now: now, LoginDates: map[string]bool{}, Collected: map[int]map[int]bool{},
 		Owned: map[int]map[int]bool{}, Emblems: map[int]bool{}, Counters: map[string]int64{},
 		Rewarded: map[int]bool{}, RewardedAt: map[int]int64{}}
 	var createdAt int64

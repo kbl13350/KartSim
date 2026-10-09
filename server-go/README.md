@@ -399,7 +399,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 ### 小屋：成就、徽章与拜访
 
-成就（原版 Career，`dialog2_newCareer`）与徽章由数据服务判定和保存；判定数据 `internal/data/career/careers.json` 由 `rewrite/tools/export-career-data.mjs` 从原版 `etc_/career/newCareer@cn.xml`、`etc_/emblem/emblem@cn.xml` 与计时赛赛道主题导出（`go test ./internal/data/career` 校验版本号，**不要手改**）。全部 1198 条成就都会列出；能统计的类型（经验、注册天数、节日登录、好友数、金币使用与持有、道具收集、徽章、小屋代表车/代表徽章、计时赛完赛、多人赛按主题与模式的胜利/完赛/未完赛、连续未完赛、复合成就）实时计算进度，其余（会员、情侣、俱乐部、驾照、部件分解、行驶距离等）返回 `untracked:true`，永远停在未完成。前置成就（`preClearCareerId`）未完成时 `locked:true`。完成成就（点击完成）只发成就积分与原版 `rewardEmblemId` 徽章，原版道具奖励不发放。比赛与计时赛结算时在 `account_counters` 累加对应计数；获取 `GET /api/account` 时记录北京日期（节日登录成就）。
+成就（原版 Career，`dialog2_newCareer`）与徽章由数据服务判定和保存；判定数据 `internal/data/career/careers.json` 由 `rewrite/tools/export-career-data.mjs` 从原版 `etc_/career/newCareer@cn.xml`、`etc_/emblem/emblem@cn.xml` 与计时赛赛道主题导出（`go test ./internal/data/career` 校验版本号，**不要手改**）。全部 1198 条成就都会列出；能统计的类型（经验、注册天数、节日登录、好友数、金币使用与持有、道具图鉴收集、徽章、小屋代表车/代表徽章、计时赛完赛、多人赛按主题与模式的胜利/完赛/未完赛、连续未完赛、按主题累计行驶距离、带回放摄像机的累计行驶距离、复合成就）实时计算进度，其余（会员、情侣、俱乐部、驾照、部件分解等）返回 `untracked:true`，永远停在未完成。行驶距离由游戏节点从运动帧的赛道进度（米）取每名车手本局的最远值（不超过“开赛后秒数×140 m/s + 100 m”，冲线后不再增加），随结算的 `distanceMeters` 上报，数据服务按赛道主题累加（单局最多 200 km；成就的 `clearValue` 单位是 0.1 km）；阵容装备里有回放摄像机（类别 12）时另记一份摄像机距离。前置成就（`preClearCareerId`）未完成时 `locked:true`。完成成就（点击完成）只发成就积分与原版 `rewardEmblemId` 徽章，原版道具奖励不发放。比赛与计时赛结算时在 `account_counters` 累加对应计数；获取 `GET /api/account` 时记录北京日期（节日登录成就）。
 
 | 路径 | 用途与错误 |
 | --- | --- |
@@ -408,7 +408,12 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `GET /api/emblems` | 自己的徽章：`{"nickname","owner":true,"emblems":[{"id","acquiredAt"}],"main":[槽0,槽1]}`（0 为空槽） |
 | `POST /api/emblems/main` | `{"main":[a,b]}` → 同上；两个都必须已拥有、不重复，第一个槽不能空着而第二个有（原版“前面徽章槽不能为空”）。400 `INVALID_MAIN_EMBLEMS`、409 `EMBLEM_NOT_OWNED` |
 | `POST /api/myroom/careers`、`/api/myroom/emblems` | 访客查看：`{"nickname","password?"}` → 与上面相同的结构（`owner:false`）。屋主设置了“车库/徽章/图鉴/成就是否公开”密码时需要密码：403 `PASSWORD_REQUIRED`/`WRONG_PASSWORD`；404 `UNKNOWN_RIDER`；密码尝试每账号每分钟 10 次 |
+| `GET /api/dictionary` | 自己的道具图鉴：`{"nickname","owner":true,"version","categories":[{"category","name","items","collected"}],"kartGrades":{"车辆id":引擎等级},"reward":{"category":56,"item":1,"count":1},"total","collected","rewarded","claimable"}`；`items` 为现在显示的道具（原版顺序，未到解禁时间的不列出），`collected` 为其中已收藏的 |
+| `POST /api/dictionary/reward` | 领取图鉴奖励：每件新收藏的道具 1 K币，每件只发一次 → `{"items","koin","wallet","dictionary"}`；没有可领的 409 `NOTHING_TO_CLAIM` |
+| `POST /api/myroom/dictionary` | 访客浏览图鉴：`{"nickname","password?"}` → 同 `GET /api/dictionary`（`owner:false`，不含 `rewarded`/`claimable`）；密码规则同上 |
 | `GET /api/myroom/ws` | 小屋实时拜访的 WebSocket。第一帧 `{"type":"hello","token"}` → `{"type":"welcome","accountId","serverTime"}`。`enter`（不带参数进自己的小屋，`nickname` 进某车手的小屋，`random:true` 随机进入在线车手中未设密码、未满的小屋；`password` 为小屋密码）→ `{"type":"room","room","members","self"}`，错误码 `UNKNOWN_RIDER`/`ALREADY_HERE`/`PASSWORD_REQUIRED`/`WRONG_PASSWORD`/`ROOM_FULL`/`KICKED`（被踢后 5 分钟内）/`CANNOT_ENTER`（被屋主屏蔽）/`RANDOM_FAILED`。`move`（`x,y,z,yaw,moving`，每秒最多 15 次）、`chat`（1–60 字；屋主关闭聊天时访客 `CHAT_DISABLED`，刷屏 `CHAT_FLOOD`）、`kick`（屋主）、`leave`、`ping`。推送 `joined`、`left`、`moved`、`chat`、`settings`（屋主保存档案或代表徽章后）、`member`、`kicked`、`left-room`（同一账号在别的标签页进了小屋）。每个小屋最多 8 人（屋主固定 riderCard0），一个账号同时只在一个小屋；关闭码 4001 会话结束、1008 刷屏或缓冲溢出 |
+
+道具图鉴的道具表 `internal/data/career/dictionary.json` 与成就数据一起由 `export-career-data.mjs` 从原版 `zeta_/cn/content/itemDictionary.xml` 导出（10 类 3684 件，**不要手改**）。账号曾经拥有过的道具都算收藏（库存里过期的租用道具也算，与原版“期限制道具也可以激活道具图鉴”一致）；图鉴类成就（类型 12–23）也只数图鉴里列出的道具。`account_dictionary.rewarded` 记录已发过奖励的件数，领取时在钱包行锁内补发差额并写 `wallet_ledger`（原因 `dictionary`，ref 为领取后的累计件数）。
 
 小屋设置（环境、名称、代表车、聊天开关、两组密码）仍保存在账号档案 `myRoom` 中；数据服务读取它来判断访客能否进入，响应里只带 `locked`/`etcLocked`，不返回密码。
 

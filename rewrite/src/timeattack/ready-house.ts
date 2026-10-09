@@ -15,6 +15,9 @@ import { MyRoomApi } from "../myroom/myroom-api";
 import { MyRoomConnection, myRoomSocketUrl, type RoomAppearance } from "../myroom/myroom-connection";
 import { openMessengerMessage } from "../ui/messenger-dialogs";
 import type { MyRoomSocial } from "../ui/my-room-view";
+import { itemKey, type DictionaryItemInfo } from "../ui/my-room-dictionary";
+import { fetchShopCatalog } from "../shop/shop-api";
+import { createItemPictures } from "./shop-preview";
 
 /** The release GarageDialog ("我的物品") opened from the room menu. */
 interface HouseGarageView { show(): void; dispose(): void }
@@ -92,6 +95,15 @@ function roomSocial(controller: ReadyHouseController, library: ReadyHouseLibrary
     resolveAppearance: appearance => appearanceSubject(controller, catalog, appearance),
     friends: () => currentMessenger()?.store.state?.friends.map(friend => friend.nickname) ?? [],
     notice: (title, message) => openMessengerMessage(library as never, controller.host.root, title, message),
+    dictionaryItems: async () => {
+      const items = new Map<string, DictionaryItemInfo>();
+      for (const item of (await fetchShopCatalog(session)).items)
+        items.set(itemKey(item.category, item.itemId), { name: item.name, internalId: item.internalId,
+          ...(item.kartType !== undefined ? { kartType: item.kartType } : {}) });
+      return items;
+    },
+    dictionaryPictures: () => createItemPictures(library),
+    refreshAccount: () => { void session.refresh().catch(() => undefined); },
   };
 }
 

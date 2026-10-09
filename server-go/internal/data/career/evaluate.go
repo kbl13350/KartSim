@@ -70,7 +70,8 @@ func RaceCounter(kind string, gameType, theme int) string {
 	return fmt.Sprintf("race.%s.%d.%d", kind, gameType, theme)
 }
 
-// Item categories of the item-dictionary career types (도감 13-23).
+// Item categories of the item-dictionary career types (도감 13-23); type 12
+// counts every category.
 var dictionaryCategory = map[int]int{
 	13: 3,  // 车辆 kart
 	15: 1,  // 角色 character
@@ -86,6 +87,7 @@ var dictionaryCategory = map[int]int{
 
 // Facts is what the data service knows about one account.
 type Facts struct {
+	Now            int64 // Unix ms the facts were gathered at
 	Exp            int64
 	RegisteredDays int64           // whole days since the account was created
 	LoginDates     map[string]bool // "MM-DD" Beijing dates the account signed in on
@@ -144,14 +146,11 @@ func (d *Data) Value(c *Career, f Facts) (value int64, tracked bool) {
 		return int64(f.Friends), true
 	case 11:
 		return f.LucciSpent, true
-	case 12:
-		total := 0
-		for _, ids := range f.Collected {
-			total += len(ids)
+	case 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23: // 도감: items the dictionary lists
+		if d.dictionary == nil {
+			return 0, false
 		}
-		return int64(total), true
-	case 13, 15, 16, 17, 18, 19, 20, 21, 22, 23:
-		return int64(len(f.Collected[dictionaryCategory[c.Type]])), true
+		return int64(d.dictionary.Count(f.Collected, dictionaryCategory[c.Type], f.Now)), true
 	case 24:
 		return int64(len(f.Emblems)), true
 	case 26:

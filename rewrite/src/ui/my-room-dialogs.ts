@@ -1,11 +1,13 @@
-import { T } from "../generated/formats.js";
+import { T, m9 } from "../generated/formats.js";
 import { C8, F9, h2, te } from "../generated/library.js";
+import { decodeImage } from "../myroom/myroom-data";
 
 /**
  * Release dialogs of the My Room visits, drawn by the shared BML window
  * renderer: dialog2_findRider mq_dialog@zz (寻找小屋: a rider name, or a
- * friend from the list) and dialog2_passwordBox passwordBox@zz (the room
- * password a locked room asks visitors for).
+ * friend from the list), dialog2_passwordBox passwordBox@zz (the room
+ * password a locked room asks visitors for) and the 道具图鉴's
+ * itemDictionaryReward@zz (图鉴收藏奖励).
  */
 
 interface DialogNode {
@@ -190,5 +192,79 @@ export async function askRoomPassword(options: {
         loaded.focus("passwordEdit");
       }
     }, () => finish(undefined));
+  });
+}
+
+/**
+ * dialog.rho/itemDictionaryReward itemDictionaryReward@zz: the K币 the newly
+ * collected items pay (dialog/koin img_koinBox in the item window) and
+ * dictionaryRewardDlgDesc; resolves true for 领取奖励.
+ */
+export async function askDictionaryReward(options: {
+  library: unknown;
+  root: HTMLElement;
+  title: string;
+  lines: readonly string[];
+  count: number;
+  /** A loaded font for the description (the dictionary window's). */
+  fontFamily: string;
+  ok: string;
+  cancel: string;
+}): Promise<boolean> {
+  const folder = "dialog/itemDictionaryReward";
+  const raw = await F9(options.library, folder, "itemDictionaryReward@zz") as DialogNode;
+  const definition = await decorate(options.library, raw, folder);
+  const library = options.library as { canonicalCandidates(path: string): Array<{ bytes(): Promise<Uint8Array> }> };
+  const iconFile = library.canonicalCandidates("dialog/koin/img_koinBox.png")[0];
+  const icon = iconFile ? await decodeImage(iconFile).catch(() => undefined) : undefined;
+  const text = (context: CanvasRenderingContext2D, value: string, rect: { x: number; y: number; width: number;
+    height: number }, size: number, align: "center" | "right") => m9(context, value, rect, {
+    family: options.fontFamily, size, kind: "label", color: "rgb(42, 55, 80)", align, verticalAlign: "center",
+    stroke: 0, strokeColor: "black" });
+  return new Promise(resolve => {
+    let view: DialogView | undefined;
+    let done = false;
+    const finish = (value: boolean) => {
+      if (done) return;
+      done = true;
+      view?.dispose();
+      resolve(value);
+    };
+    void (te.load({
+      library: options.library, root: options.root, definition, roots: [folder, "stage_/common"],
+      modal: true, label: options.title, preserveDisplayPixels: true, smoothImages: true,
+      onCancel: () => finish(false), onConfirm: () => finish(true),
+      state: (node: DialogNode) => {
+        if (node.name === "CaptionWindow") return { text: options.title };
+        switch (nodeName(node)) {
+          case "rewardItemPanel": return { paint: (context: CanvasRenderingContext2D, rect: { x: number;
+            y: number; width: number; height: number }) => {
+            const size = 120;
+            const x = rect.x + (rect.width - size) / 2;
+            const y = rect.y + (rect.height - size) / 2 + 10;
+            if (icon) context.drawImage(icon, x, y, size, size);
+            text(context, `×${options.count}`, { x: x + size - 80, y: y + size - 28, width: 76, height: 24 }, 18,
+              "right");
+          } };
+          case "rewardInfoLbl": return { text: "", paint: (context: CanvasRenderingContext2D, rect: { x: number;
+            y: number; width: number; height: number }) => {
+            const middle = rect.x + rect.width / 2;
+            options.lines.forEach((line, index) =>
+              text(context, line, { x: middle - 230, y: rect.y + index * 26, width: 460, height: 24 }, 16, "center"));
+          } };
+          case "okButton": return { label: options.ok, text: options.ok, action: () => finish(true) };
+          case "cancelButton": return { label: options.cancel,
+            ...(node.name === "TextButton" ? { text: options.cancel } : {}), action: () => finish(false) };
+        }
+        return {};
+      },
+    } as never) as Promise<DialogView>).then(loaded => {
+      view = loaded;
+      if (done) loaded.dispose();
+      else {
+        loaded.show();
+        loaded.focus("okButton");
+      }
+    }, () => finish(false));
   });
 }

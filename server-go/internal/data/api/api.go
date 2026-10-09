@@ -99,6 +99,7 @@ type API struct {
 	limits         RateLimits
 	hub            *messenger.Hub
 	careers        *career.Data
+	dictionary     *career.Dictionary
 	rooms          *myroom.Hub
 }
 
@@ -197,6 +198,9 @@ func New(opts Options) *API {
 		panic(err) // the embedded data is checked by the career tests
 	}
 	a.careers = careers
+	if a.dictionary, err = career.DefaultDictionary(); err != nil {
+		panic(err)
+	}
 	roomOptions := opts.MyRoom
 	roomOptions.CheckOrigin = network.CheckWebSocketOrigin
 	roomOptions.Now = now
@@ -277,6 +281,9 @@ func (a *API) PublicHandler() http.Handler {
 	route("POST /api/emblems/main", a.setMainEmblems)
 	route("POST /api/myroom/careers", a.visitCareers)
 	route("POST /api/myroom/emblems", a.visitEmblems)
+	route("GET /api/dictionary", a.getDictionary)
+	route("POST /api/dictionary/reward", a.claimDictionaryReward)
+	route("POST /api/myroom/dictionary", a.visitDictionary)
 	mux.Handle("GET /api/myroom/ws", a.rooms)
 
 	return recoverPanics(a.network.CORS(jsonFallback(mux)))
