@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<title>游戏初始化进度验证</title>
+<link rel="stylesheet" href="/assets/index-mDCnV9Uo.css">
+<style>
+#scene{position:absolute;inset:0}header{position:fixed;z-index:1000;inset:0 0 auto;padding:14px 20px;background:#071722e8;display:flex;gap:12px;align-items:center;font:14px system-ui}
+button,select{padding:8px;font:inherit}#summary{margin-left:auto}#log{position:fixed;z-index:1000;top:70px;right:20px;background:#071722dc;padding:12px;white-space:pre-wrap;max-height:35vh;overflow:auto;font:12px/1.5 monospace}
+</style>
+<main id="scene"></main><div id="hud"></div>
+<header><button id="start">开始验证 / 重试</button><button id="continue" disabled>继续初始化</button>
+<select id="scenario" aria-label="初始化场景"><option value="normal">正常初始化</option><option value="failure">场景初始化失败</option></select>
+<span id="summary">使用真实资源，账号与档案使用测试响应</span></header><pre id="log"></pre>
+<script type="module">
+import { HudOverlay } from "/src/ui/hud-overlay.ts";
+import { installStartupLoadingSkin } from "/src/ui/startup-loading-skin.ts";
+import { loadStartupResources, prepareStartupReady } from "/src/app/startup-resources.ts";
+import { loadLegacyResourceBundle } from "/src/resources/legacy-adapter.ts";
+import { Sw } from "/src/generated/library.js";
+import { P7, Ny } from "/src/generated/timeattack.js";
+import { rn, ha } from "/src/generated/formats.js";
+import { MyRoomSceneView } from "/src/ui/my-room-scene.ts";
+import { loadMyRoomCatalog } from "/src/ui/my-room-catalog.ts";
+import { defaultLocalProfile } from "/src/ui/local-profile.ts";
+
+const start = document.querySelector("#start"), next = document.querySelector("#continue");
+const summary = document.querySelector("#summary"), log = document.querySelector("#log");
+const scene = document.querySelector("#scene"), hud = new HudOverlay(document.querySelector("#hud"), { returnToReady() {} }, "39.11");
+installStartupLoadingSkin();
+let generation = 0, room, environment, release, samples = [], running = false;
+const note = text => { log.textContent += text + "\n"; log.scrollTop = log.scrollHeight; };
+const report = hud.setStartupProgress.bind(hud);
+hud.setStartupProgress = (percent, message) => {
+  report(percent, message);
+  if (samples.at(-1) !== percent) { samples.push(percent); note(percent + "% " + message); }
+};
+const finish = hud.finishLoading.bind(hud);
+hud.finishLoading = () => { finish(); samples.push(100); note("100% 初始化完成，进度条已关闭"); };
+function pause(message) {
+  summary.textContent = message;
+  next.disabled = false;
+  return new Promise(resolve => { release = resolve; });
+}
+next.addEventListener("click", () => { next.disabled = true; release?.(); release = undefined; });
+window.addEventListener("error", event => note("ERROR: " + event.message));
+window.addEventListener("unhandledrejection", event => note("ERROR: " + event.reason));
+const host = {
+  root: scene, hud, assets: { beginGeneration: () => ++generation,
+    isCurrent: value => value === generation, install: library => { host.rhoLibrary = library; } },
+  userProfile: defaultLocalProfile(), session: {}, audio: {}, gameOptions: {}, targetRandom: { next: () => 0 },
+  prepareStartupReady: (library, selection, title, onProgress) => prepareStartupReady(host, library, selection, title, {
+    onProgress, createAudioContext: () => new AudioContext(), applyAudioOptions() {},
+    loadBgm: (library, metadata, random, context) => P7.load(library, metadata, random, context),
+    loadInterfaceAudio: (library, context) => Ny.load(library, context),
+  }),
+  async enterTimeAttackReady() {
+    const library = host.rhoLibrary, catalog = await library.timeAttackGarageCatalog();
+    const environments = await loadMyRoomCatalog(library);
+    environment = await rn.load(library);
+    room = new MyRoomSceneView(scene, library);
+    if (!await room.setEnvironment(environments.find(item => item.isDefault)) ||
+      !await room.setSubject({ kart: catalog.karts.find(item => item.itemId === host.session.selection.vehicleItemId),
+        character: catalog.characters.find(item => item.itemId === host.session.selection.characterItemId),
+        profile: host.userProfile, environment, stageBinding: new ha() })) throw new Error("场景资源加载失败");
+    if (document.querySelector("#scenario").value === "failure") throw new Error("测试：场景初始化失败");
+    await pause("场景已经载入，完成初始化前应保持 90%");
+  },
+};
+start.addEventListener("click", async () => {
+  if (running) return;
+  running = true; start.disabled = true;
+  summary.textContent = "正在验证初始化进度…";
+  samples = []; log.textContent = "";
+  room?.dispose(); environment?.dispose(); scene.replaceChildren();
+  host.audio.interfaceAudio?.dispose(); host.audio.bgm?.dispose(); await host.audio.context?.close();
+  host.audio = {};
+  await loadStartupResources(host, {
+    localResourcesSupported: () => false, recoverLocalSource: async () => undefined,
+    defaultSourceName: "test", versionId: value => value, loadVersionedSources: loadLegacyResourceBundle,
+    loadLibrary: (sources, indexes, progress) => Sw.load(sources, progress, indexes),
+    ensureAccount: () => pause("等待测试登录，进度应保持 40%"),
+    loadProfile: defaultLocalProfile, defaultProfile: defaultLocalProfile,
+    resolveSelection(catalog, maps, profile) {
+      const kart = catalog.karts.find(item => item.itemId === profile.equipment.itemIds[3]) ?? catalog.karts[0];
+      const character = catalog.characters.find(item => item.itemId === profile.equipment.itemIds[1]) ?? catalog.characters[0];
+      const map = maps.find(item => /village_r01/i.test(item.path));
+      return { vehicleTitle: kart.title, selection: { vehicleItemId: kart.itemId, vehiclePath: kart.path,
+        characterItemId: character.itemId, characterPath: character.path, trackId: map.id, mapPath: map.path } };
+    },
+    isSpecialKartId: () => false, displayKartName: () => "", localNickname: () => "test",
+    needsRiderRegistration: () => false,
+  });
+  const monotonic = samples.every((value, index) => index === 0 || value >= samples[index - 1]);
+  summary.textContent = `进度${monotonic ? "无回退" : "发生回退"}；${hud.loadingView.classList.contains("is-complete") ? "加载完成" : "失败保持未完成，可重试"}`;
+  running = false; start.disabled = false;
+});
+</script>
+</html>

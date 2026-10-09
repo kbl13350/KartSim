@@ -3,7 +3,7 @@ import {
   PerspectiveCamera, Raycaster, Scene, SRGBColorSpace, Vector3, WebGLRenderer,
   type Material, type Object3D,
 } from "three";
-import { CR, SR, TR, W1, Yb, sn, xR, y9 } from "../generated/formats.js";
+import { CR, SR, TR, W1, Yb, e4, sn, xR, y9, yo } from "../generated/formats.js";
 import { FI, Ma, Tr, p5, xa } from "../generated/library.js";
 import { Jv, Lt, T4 } from "../generated/ui.js";
 import { ag, hr, pk } from "../generated/vehicle.js";
@@ -138,7 +138,8 @@ async function dressWalkingAvatar(library: MyRoomSceneLibrary, subject: MyRoomSc
       if (item) {
         const colors = await Yb(library, items[2] ?? 0);
         const pet = await S4.preview({ library, item, environment: subject.environment,
-          binding: subject.stageBinding, colors }) as FollowingPet;
+          binding: subject.stageBinding, colors, animate: true,
+          previewPosition: [1.05, -0.75, 2] }) as FollowingPet;
         pet.mount(character.getDecorationOwner());
         avatar.pet = pet;
       }
@@ -1228,10 +1229,14 @@ export class MyRoomSceneView {
         this.sky.update(elapsed, this.camera, this.root.clientWidth, this.root.clientHeight);
         this.room.update(elapsed, this.camera, this.root.clientWidth, this.root.clientHeight);
         if (!this.floorMeasured && this.anchors) this.measureGround();
+        // Native skins and their face/head attachments are evaluated by the
+        // release's scene collection pass, before Three submits any meshes.
+        e4(this.skyScene, this.camera);
+        e4(this.scene, this.camera);
         this.renderer.clear(true, true, true);
-        this.renderer.render(this.skyScene, this.camera);
+        yo(this.renderer, () => this.renderer!.render(this.skyScene, this.camera));
         this.renderer.clearDepth();
-        this.renderer.render(this.scene, this.camera);
+        yo(this.renderer, () => this.renderer!.render(this.scene, this.camera));
       } catch (error) {
         this.setStatus(`原版小屋场景渲染失败：${error instanceof Error ? error.message : String(error)}`, true);
         return;
