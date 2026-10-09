@@ -1,3 +1,6 @@
+import type { MessengerLibrary } from "../ui/messenger-art";
+import { messengerTrayAlert } from "../ui/messenger-tray";
+import { suspendMessengerWindow, toggleMessengerWindow, type MessengerWindowOptions } from "../ui/messenger-window";
 import { openReadyHouse } from "./ready-house";
 import type { ReadyShopController } from "./ready-shop";
 import { openShopUnlessRacing } from "./ready-shop-guard";
@@ -262,6 +265,17 @@ export async function enterTimeAttackReady(
           if (controller.activeGarage) controller.returnGarageToReady();
         });
       },
+      // 好友聊天系统: the window opens over whatever page is showing.
+      onMessenger: () => {
+        void toggleMessengerWindow({
+          library: library as unknown as MessengerWindowOptions["library"], root: host.root,
+          onHover: () => host.getInterfaceAudio()?.playHover(),
+          onActivate: () => host.getInterfaceAudio()?.playClick(),
+        }).catch(error => host.hud.showDebugText(
+          `好友聊天系统：${error instanceof Error ? error.message : String(error)}`, "error"));
+      },
+      messengerAlert: messengerTrayAlert(library as unknown as MessengerLibrary),
+      onVisibilityChange: (visible: boolean) => suspendMessengerWindow(!visible),
     });
 
     const view = await dependencies.loadReadyView({

@@ -174,6 +174,8 @@ function followTaskbar(taskbar: HTMLElement, onLeave: (button: string) => void):
       event.stopImmediatePropagation();
       return;
     }
+    // 好友聊天系统 opens over the shop.
+    if (name === "messengerButton") return;
     onLeave(name);
   };
   document.addEventListener("click", onNavigation, true);

@@ -220,8 +220,9 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
           const button = event.target instanceof Element
             ? event.target.closest("button") : null;
           if (!button || !element.contains(button) || button.disabled) return;
-          // The shop opens over the room.
-          if (button.dataset.taskbarButton === "상점") return;
+          // The shop and 好友聊天系统 open over the room.
+          if (button.dataset.taskbarButton === "상점" ||
+            button.dataset.taskbarButton === "messengerButton") return;
           if (button.getAttribute("aria-label") === "小屋")
             event.stopImmediatePropagation();
           closeReadyHouse(controller);

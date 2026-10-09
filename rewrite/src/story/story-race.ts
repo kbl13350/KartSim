@@ -49,6 +49,8 @@ export function storyRaceOutcome(session: unknown): StoryRaceOutcome {
     forcedResult?: "cleared" | "failed" } } | undefined)?.lifecycle;
   const elapsedMs = lifecycle?.finishElapsedMs ?? 0;
   const forced = lifecycle?.forcedResult;
-  return { finished: elapsedMs > 0 && forced !== "failed", elapsedMs,
-    cleared: forced === undefined ? undefined : forced === "cleared" };
+  const outcome: StoryRaceOutcome = { finished: elapsedMs > 0 && forced !== "failed", elapsedMs };
+  // Only a chase decides the result itself; otherwise the step's judge does.
+  if (forced !== undefined) outcome.cleared = forced === "cleared";
+  return outcome;
 }

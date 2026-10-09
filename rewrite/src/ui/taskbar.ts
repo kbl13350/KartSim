@@ -36,7 +36,20 @@ export interface TaskbarOptions {
   onShop?: () => void;
   onHover?: () => void;
   onActivate?: () => void;
+  /** messengerButton: 好友聊天系统 (ui/messenger-window.ts). */
+  onMessenger?: () => void;
+  /** messengerAlert, the tray's red "!" (ui/messenger-tray.ts). */
+  messengerAlert?: {
+    active(): boolean;
+    subscribe(listener: () => void): () => void;
+    badge(): CanvasImageSource | undefined;
+  };
+  /** The bar was shown or hidden (hidden during races). */
+  onVisibilityChange?: (visible: boolean) => void;
 }
+
+/** messengerAlert's rectangle relative to messengerButton (tray@cn windowRect 11 -6 31 15). */
+const messengerAlertOffset = { x: 11, y: -6 };
 
 function canvasSize(width: number, height: number, pixelRatio: number) {
   const safeWidth = Number.isFinite(width) && width > 0 ? width : 1600;
@@ -74,6 +87,7 @@ export class Taskbar {
   compositeOwner?: object;
   compositeChanged?: () => void;
   revision = 0;
+  releaseAlert?: () => void;
 
   static async load(options: TaskbarOptions & { library: TaskbarAssetLibrary }): Promise<Taskbar> {
     return new Taskbar(options, await loadTaskbarAssets(options.library));
@@ -101,6 +115,7 @@ export class Taskbar {
     this.resizeObserver = new ResizeObserver(() => this.render());
     this.resizeObserver.observe(options.root);
     window.addEventListener("resize", this.onViewportResize);
+    this.releaseAlert = options.messengerAlert?.subscribe(() => this.render());
     this.render();
   }
 
@@ -132,9 +147,11 @@ export class Taskbar {
     this.hovered = undefined;
     this.pressed = undefined;
     this.render();
+    this.options.onVisibilityChange?.(visible);
   }
 
   dispose(): void {
+    this.releaseAlert?.();
     this.compositeOwner = undefined;
     this.compositeChanged = undefined;
     this.resizeObserver.disconnect();
@@ -216,6 +233,10 @@ export class Taskbar {
         this.context.strokeRect(button.rect.x + 1, button.rect.y + 1,
           button.rect.width - 2, button.rect.height - 2);
       }
+      const badge = button.name === "messengerButton" && this.options.messengerAlert?.active()
+        ? this.options.messengerAlert.badge() : undefined;
+      if (badge) this.context.drawImage(badge, button.rect.x + messengerAlertOffset.x,
+        button.rect.y + messengerAlertOffset.y);
     }
     this.revision++;
     this.compositeChanged?.();
@@ -229,6 +250,7 @@ export class Taskbar {
     if (name === "multiplay") return this.options.onMultiplayer;
     if (name === "gotoHome") return this.options.onHome;
     if (name === "상점") return this.options.onShop;
+    if (name === "messengerButton") return this.options.onMessenger;
     return undefined;
   }
 }

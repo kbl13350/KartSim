@@ -14,6 +14,7 @@ import {
   CATEGORY, STARTER, ownershipNow, sanitizeProfileEquipment, unownedSlots, type Ownership,
 } from "../account/ownership";
 import type { BrowserAccountSession } from "../account/browser-session";
+import { startMessenger, stopMessenger } from "../messenger/messenger-runtime";
 import { accountErrorMessages } from "../multiplayer/account-ui-support";
 import {
   browserLocalStorage, claimTimeAttackRecords, clearAccountLocalData,
@@ -101,8 +102,13 @@ export function attachAccountSession(host: AccountStartupHost,
     showAccountToast(pageDocument(host),
       `升级啦！Lv.${change.to}${glove ? ` · ${glove}` : ""}`, 5_000);
   });
-  session.onExpired(() => { void returnToLogin(host.root, "登录已失效，请重新登录。"); });
+  session.onExpired(() => {
+    stopMessenger();
+    void returnToLogin(host.root, "登录已失效，请重新登录。");
+  });
   setEquipmentRepairHandler(() => repairAccountEquipment(host));
+  // 好友聊天系统: friends see this account online from now on.
+  startMessenger(session);
   if (expiryTimer !== undefined) clearInterval(expiryTimer);
   // Rentals run out while playing; re-read the inventory once one has expired.
   expiryTimer = backgroundTimer(setInterval(() => {
@@ -119,6 +125,7 @@ export function attachAccountSession(host: AccountStartupHost,
  * current page and reload so every view starts from the new account.
  */
 export async function returnToLogin(root: HTMLElement, message?: string): Promise<void> {
+  stopMessenger();
   clearAccountSession();
   if (expiryTimer !== undefined) clearInterval(expiryTimer);
   expiryTimer = undefined;
@@ -148,6 +155,7 @@ export async function retryStartupProfile(host: AccountStartupHost,
 export async function logoutAccount(root: HTMLElement,
   storage: BrowserStorage | undefined = browserLocalStorage()): Promise<void> {
   const session = activeBrowserSession();
+  stopMessenger();
   if (session) await session.logout();
   if (storage) clearAccountLocalData(storage);
   await returnToLogin(root);

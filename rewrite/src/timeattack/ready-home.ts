@@ -233,9 +233,10 @@ export async function openReadyHome(controller: ReadyHomeController,
             view.setPage(controller.homePage);
             host.getInterfaceAudio()?.playClick();
             return;
-          // Settings and the shop are dialogs over the menu.
+          // Settings, the shop and 好友聊天系统 are dialogs over the menu.
           case "설정":
-          case "상점": return;
+          case "상점":
+          case "messengerButton": return;
           default:
             view.captureBackdrop();
             closeReadyHomeWhenCovered(controller);
