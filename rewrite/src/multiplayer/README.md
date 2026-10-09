@@ -24,7 +24,12 @@ bundle. It can be developed independently of the original minified code.
   relay probing, ICE repair, rate limits and diagnostics; it replaces `pl0`.
 - `network-timing.ts`: clock offset and race request RTT state; it replaces
   `L40` and `gl0`.
-- `race-session.ts`: member permissions and the abort-scoped race command API.
+- `race-session.ts`: member permissions and the abort-scoped race command API,
+  including the serialized 道具赛 `sendItem` (strict per-racer sequence) and
+  `subscribeItem`.
+- `item-race-wiring.ts`, `race-presenter-items.ts`: 道具赛 assembly (the item
+  race controller on the local owner) and its frame updates (cubes, hazards,
+  item presenter, item HUD state).
 - `server-events.ts`: validation for every observed server control event.
 - `room-validation.ts`: full room and race snapshot validation from the release.
 - `room-state.ts`: authoritative room revision, departure and recent-chat state.
