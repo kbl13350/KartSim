@@ -270,7 +270,8 @@ export function parseItemServerEvent(value: Record<string, unknown>): ItemServer
         ...(slots.value ? { slots: slots.value } : {}) };
     }
     case "hit": {
-      const userId = optionalText(value.userId);
+      // The game node writes `userId: null` for a track hazard (useId 0).
+      const userId = optionalText(value.userId === null && value.useId === 0 ? undefined : value.userId);
       const slots = optionalSlots(value.slots);
       const hazard = value.useId === 0;
       if (!text(value.playerId, 1, 64) || !useId(value.useId, 0) || !itemId(value.itemId) ||

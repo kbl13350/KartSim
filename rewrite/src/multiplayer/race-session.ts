@@ -1,5 +1,6 @@
 import type { DecodedGameMotion } from "./payload";
-import type { RoomMember, RoomPhase } from "./protocol";
+import { isValidItemRequest, type RoomMember, type RoomPhase } from "./protocol";
+import type { ItemServerEvent } from "./server-events";
 
 export interface RaceScope {
   roomId: string;
@@ -109,6 +110,33 @@ export function bindRaceScope(host: RaceSessionHost, room?: SessionRoom): void {
   };
 }
 
+/** Item request actions (ITEM_MODE.md 5). */
+export type ItemRequestAction = "cube" | "use" | "place" | "hit" | "swap" | "change";
+
+/**
+ * Failures that never reached the server's sequence check, so the sequence
+ * number is still unused: local send failures, the scope checks before it and
+ * the sequence rejection itself. Every other failure (a timeout included) is
+ * taken as consumed, as the server consumes a sequence once it passes the +1
+ * check even when the request is then rejected.
+ */
+const ITEM_UNCONSUMED_FAILURES: ReadonlySet<string> = new Set([
+  "INVALID_SEQUENCE", "ITEM_UNAVAILABLE", "RACE_NOT_FOUND", "NOT_RACE_PARTICIPANT",
+  "INVALID_ROOMID", "INVALID_RACEID", "ROOM_NOT_FOUND", "NOT_IN_ROOM",
+  "Not connected", "Connection busy", "Race connection scope expired", "INVALID_ITEM_REQUEST",
+]);
+
+/**
+ * After an INVALID_SEQUENCE rejection (a lost reply left the counters apart)
+ * the request is retried once with each of these offsets from the expected
+ * sequence; a rejected probe consumes nothing on the server.
+ */
+export const ITEM_SEQUENCE_PROBES: readonly number[] = Object.freeze([1, -1]);
+
+function failureCode(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
 /**
  * A capability-limited race connection. Each operation rechecks the room,
  * race, player identity and AbortSignal before sending or delivering events.
@@ -134,6 +162,33 @@ export function createRaceConnection(host: RaceSessionHost, roomId: string,
   const requestWhenActive = (message: { type: string; [key: string]: unknown }) =>
     active() ? host.request({ ...message, roomId, raceId })
       : Promise.reject(new Error("Race connection scope expired"));
+
+  // 道具赛: one request at a time with this racer's sequence rising by one,
+  // like giant-state. A rejected item request only rejects its own promise.
+  let itemSequence = 0;
+  let itemChain: Promise<unknown> = Promise.resolve();
+  const sendItemNow = async (action: ItemRequestAction,
+    fields: Record<string, unknown>): Promise<ItemServerEvent> => {
+    for (const offset of [0, ...ITEM_SEQUENCE_PROBES]) {
+      const sequence = itemSequence + 1 + offset;
+      if (sequence < 1) continue;
+      const message: { type: string; [key: string]: unknown } =
+        { ...fields, type: "item", roomId, raceId, sequence, action };
+      if (!isValidItemRequest(message as unknown)) throw new Error("INVALID_ITEM_REQUEST");
+      if (!active()) throw new Error("Race connection scope expired");
+      try {
+        const reply = await host.request(message) as ItemServerEvent;
+        itemSequence = sequence;
+        return reply;
+      } catch (error) {
+        const code = failureCode(error);
+        if (code === "INVALID_SEQUENCE") continue;
+        if (!ITEM_UNCONSUMED_FAILURES.has(code)) itemSequence = sequence;
+        throw error;
+      }
+    }
+    throw new Error("INVALID_SEQUENCE");
+  };
 
   return Object.freeze({
     playerId, roomId, raceId,
@@ -165,6 +220,29 @@ export function createRaceConnection(host: RaceSessionHost, roomId: string,
       return scopedSubscription(host.subscribe.bind(host), event => {
         if (active() && event.type === "team-gauge" && event.roomId === roomId &&
             event.raceId === raceId) listener(event);
+      });
+    },
+    /**
+     * Send one item request; it waits for the previous one. Resolves with the
+     * server's reply (an item event) and rejects with Error(code).
+     */
+    sendItem: (action: ItemRequestAction, fields: Record<string, unknown> = {}) => {
+      const run = () => sendItemNow(action, fields);
+      const result = itemChain.then(run, run);
+      itemChain = result.catch(() => {});
+      return result;
+    },
+    /**
+     * Item events of this race from the other racers (used, placed, hit) and
+     * the server (scan). Replies carry a requestId and come back as the
+     * result of `sendItem` instead.
+     */
+    subscribeItem: (listener: (event: ItemServerEvent) => void) => {
+      if (!active()) return () => {};
+      return scopedSubscription(host.subscribe.bind(host), event => {
+        if (active() && event.type === "item" && event.roomId === roomId &&
+            event.raceId === raceId && event.requestId === undefined)
+          listener(event as unknown as ItemServerEvent);
       });
     },
     sendAwardMotion: (motion: unknown) =>

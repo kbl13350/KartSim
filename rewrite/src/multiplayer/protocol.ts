@@ -93,8 +93,8 @@ export interface ClientRequest { type: string; requestId?: never; [key: string]:
 
 /**
  * 道具赛 requests (ITEM_MODE.md 5): one `item` type, told apart by `action`.
- * `sequence` rises by exactly one per racer and race. Points are in client
- * (three.js) coordinates.
+ * `sequence` rises by exactly one per racer and race. Points are in the
+ * original client's z-up coordinates (three.js (x, y, z) is client (x, -z, y)).
  */
 interface ItemRequestBase { type: "item"; roomId: string; raceId: string; sequence: number }
 export type ItemRequest = ItemRequestBase & (
