@@ -421,7 +421,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 角色与卡丁车的属性（都市、世界、大地、森林、海洋、传说、神秘、特殊）原版由服务器决定、客户端数据里没有，本项目按道具类别和 ID 的 FNV 哈希固定分配（`expedition.Specific`）。加成也是本项目对原版常量表的解读：属性匹配的角色奖励 +5%（`bonusConstChar`×`bonusConstCharSpecific1`），卡丁车按车库升级等级查 `kartBodyTuning` 缩短时间（0 级 4.5% … 5 级 27%，随难度递减，合计最多 50%），带四个强化部件的经典升级按部件等级合计查 `reinforcePart` 给基础奖励加点（约为基础奖励的 22%），好友属性匹配奖励 +5%、不匹配 +2.5%。奖励：难度的 `basicReward`（120–500）加部件点数，按任务的 `bonusType` 发经验（×1）、金币（×8）或各一半，再乘奖励加成；另发任务的原版奖励箱（探险队补给箱 ×1–3、红宝石盒、蛋白石盒）。经验与金币写流水（原因 `expedition`，ref 为“周起始:任务号”），不受每日上限限制。
 
-开箱：类别 24 的道具是箱子，开箱表 `internal/data/lottery/lottery.json` 由 `rewrite/tools/export-lottery-data.mjs` 从原版 `zeta_/cn/lottery/lottery.xml`、`stock.kml` 与 `item.kml` 导出（214 种箱子，**不要手改**）。开一个箱子消耗 1 个，按当时生效的 `rewardList` 引用的奖励集按 `prob` 权重抽一个 stock 发放（`needOther` 需要钥匙、`rpLimit` 需要经验、`retryCount` 抽到已永久拥有的道具时重抽，均按原版）；`box_openings` 以请求 ID 保存结果，重试返回同一结果。可叠加道具（箱子 24、材料 34、56、62、部件碎片 67，以及商城里的计数道具如气球）发放时数量累加；用掉后数量降到 0 但保留记录（图鉴与成就仍记得曾经拥有）。
+开箱：类别 24 的道具是箱子，开箱表与寻宝/精品道具场共用 `internal/data/lottery/lottery.json`（见下文“抽奖”，由 `rewrite/tools/export-lottery-data.mjs` 导出，**不要手改**；210 种箱子，`lottery.xml` 里另有 4 个不是 24 类道具的不导出）。开一个箱子消耗 1 个，按当时生效的 `rewardList` 引用的奖励集按 `prob` 权重抽一个 stock 发放（`needOther` 需要钥匙、`rpLimit` 需要经验、`retryCount` 抽到已永久拥有的道具时重抽，均按原版）；`box_openings` 以请求 ID 保存结果，重试返回同一结果。可叠加道具（箱子 24、材料 34、56、62、部件碎片 67，以及商城里的计数道具如气球）发放时数量累加；用掉后数量降到 0 但保留记录（图鉴与成就仍记得曾经拥有）。
 
 | 路径 | 用途与错误 |
 | --- | --- |
@@ -435,6 +435,19 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 小屋设置（环境、名称、代表车、聊天开关、两组密码）仍保存在账号档案 `myRoom` 中；数据服务读取它来判断访客能否进入，响应里只带 `locked`/`etcLocked`，不返回密码。
 
 账号、档案与历史接口的校验规则、错误码与 Java 版一致；密码哈希格式（PBKDF2-SHA256，120000 次）与会话摘要格式也相同，因此旧数据可以直接迁移。
+
+### 抽奖：寻宝活动与精品道具场
+
+寻宝活动（原版 RouletteStage）与精品道具场（原版 GachaUseStage，通用扭蛋）由数据服务抽奖、扣材料、发道具，规则、概率与接口见 [`LOTTERY.md`](LOTTERY.md)。抽奖表 `internal/data/lottery/lottery.json` 由 `rewrite/tools/export-lottery-data.mjs` 从原版 `lottery.xml`、`treasureHunt.xml`、`lotteryMileage.xml`、`stock.kml`、`item.kml` 导出（**不要手改**）。
+
+| 路径 | 说明 |
+| --- | --- |
+| `GET /api/lottery/treasure-hunt`、`POST /api/lottery/treasure-hunt/draw` | 寻宝面板（格子、保底进度、材料、礼包、每日免费）与抽奖（`count` 1 或 10） |
+| `GET /api/lottery/gacha`、`GET /api/lottery/gacha/{itemId}`、`POST /api/lottery/gacha/draw` | 精品道具场的扭蛋列表、单个扭蛋详情与使用（`count` 1–10） |
+| `POST /api/lottery/packs/buy` | 按原版价格购买材料礼包（计入商城累计消费） |
+| `POST /api/lottery/daily` | 领取当天的免费材料（`treasureHunt` / `gacha`） |
+| `GET /api/lottery/items` | 商店目录以外的道具名称 |
+| `GET`/`PUT /api/admin/lottery` | 管理员查看与设置活动开关、开放时段、每日免费道具（管理页面“抽奖活动”） |
 
 ### 游戏节点（`:8788` 等）
 
@@ -483,7 +496,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `account_counters`、`account_login_days` | 成就计数（多人赛按模式与赛道主题的胜利/完赛/未完赛、连续未完赛、计时赛完赛）、登录过的北京日期 |
 | `account_careers`、`account_emblems` | 已完成的成就（完成时间）、拥有的徽章（来源、代表徽章槽 `main_slot`） |
 
-`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4，小屋成就与徽章的表在 v5，道具图鉴奖励的表在 v6，开箱记录与赛车探险队的表在 v7（分支上暂为 102）。
+`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4，小屋成就与徽章的表在 v5，道具图鉴奖励的表在 v6，开箱记录与赛车探险队的表在 v7（分支上暂为 102），抽奖（`lottery_draws`、`lottery_counters`、`lottery_daily`、`lottery_activities`）在 v8（分支上暂为 103）。
 
 ### Redis 键（前缀 `KART_REDIS_PREFIX`，默认 `kart:`）
 

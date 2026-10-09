@@ -33,12 +33,21 @@ func TestOpenBox(t *testing.T) {
 	ctx := context.Background()
 	ids, _ := messengerAccounts(t, db, 1)
 	id := ids[0]
-	data, err := lottery.Parse([]byte(`{"version":"t","lotteries":[
-		{"id":1228,"lists":[{"from":0,"to":0,"sets":[1]}]},
-		{"id":9001,"lists":[{"from":0,"to":1000,"sets":[1]}]}],
-		"sets":{"1":[{"stockId":10,"weight":1},{"stockId":11,"weight":3}]},
-		"stocks":{"10":[{"category":1,"itemId":5,"count":1,"days":7}],"11":[{"category":34,"itemId":879,"count":4,"days":0}]},
-		"names":{"34:879":"探险币"}}`))
+	// Box 9001's original period ended at 1 s (Unix ms 1000).
+	data, err := lottery.Parse([]byte(`{"version":"0000000000000000000000000000000000000000000000000000000000000000",
+		"generatedFrom":"test","lotteries":[
+		{"itemId":1228,"name":"探险队补给箱","sets":[1]},
+		{"itemId":9001,"name":"旧箱子","end":"1970-01-01T08:00:00+08:00","sets":[1]}],
+		"rewardSets":[{"id":1,"rewards":[{"stockId":10,"weight":1},{"stockId":11,"weight":3}]}],
+		"mileage":[],"packs":[],
+		"treasureHunts":[{"id":1,"theme":"t","material":883,"otherMaterial":834,"rewards":[{"stockId":11}]}],
+		"stocks":[{"stockId":10,"items":[{"category":1,"itemId":5,"count":1,"days":7}]},
+			{"stockId":11,"items":[{"category":34,"itemId":879,"count":4,"days":0}]}],
+		"items":[{"category":24,"itemId":1228,"name":"探险队补给箱","count":true},
+			{"category":24,"itemId":9001,"name":"旧箱子","count":true},
+			{"category":34,"itemId":834,"name":"幸运藏宝图","count":true},
+			{"category":34,"itemId":879,"name":"探险币","count":true},
+			{"category":34,"itemId":883,"name":"海洋寻宝放大镜","count":true}]}`))
 	if err != nil {
 		t.Fatal(err)
 	}

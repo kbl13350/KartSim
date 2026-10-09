@@ -52,6 +52,13 @@ export const QUICK_ENTRIES: readonly QuickEntry[] = [
     gameplay: "rp" },
 ];
 
+/** One 活动 button: its id, label and the four release states (normal, over, pressed, disabled). */
+export interface LobbyEvent {
+  id: string;
+  label: string;
+  states: readonly LobbyImage[];
+}
+
 export const DEFAULT_QUICK_ENTRIES = ["speedIndi", "speedIndiInfinit", "timeAttack", "trackDuel"];
 export const MAX_QUICK_ENTRIES = 5;
 const QUICK_ENTRY_KEY = "kartsim.lobbyQuickEntries";
@@ -103,6 +110,9 @@ export interface LobbyHomeOptions {
   /** Mode card art for the two small promotion boards. */
   boardArt?: readonly [string, string];
   fontFamily?: string;
+  /** The 活动 buttons (main-menu-view LOBBY_EVENTS) under the promotion boards. */
+  events?: ReadonlyArray<LobbyEvent>;
+  onEvent?(id: string): void;
   onEntry(entry: QuickEntry): void;
   onHover?(): void;
   onActivate?(): void;
@@ -167,6 +177,14 @@ const STYLES = `
 .ks-lobby-board canvas{position:absolute;right:0;top:0;height:100%}
 .ks-lobby-board span{position:relative}
 .ks-lobby-board:hover{filter:brightness(1.08)}
+.ks-lobby-events{margin-top:.6cqh;border-radius:.5cqh;background:rgba(10,22,44,.72);box-shadow:0 .3cqh .9cqh rgba(0,0,0,.3);
+  padding:0 0 1cqh}
+.ks-lobby-events h2{margin:0;padding:.7cqh 1.4cqh;font-size:2cqh;font-weight:700;border-bottom:.15cqh solid rgba(255,255,255,.25);
+  text-shadow:0 .15cqh .3cqh rgba(0,0,0,.5)}
+.ks-lobby-event-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8cqh;padding:1cqh 1cqh 0}
+.ks-lobby-event{display:flex;flex-direction:column;align-items:center;gap:.3cqh;font-size:1.55cqh;
+  text-shadow:0 .12cqh .2cqh #000,0 0 .3cqh #000}
+.ks-lobby-event canvas{width:8.4cqh;height:8.2cqh;display:block}
 .ks-lobby-notice{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);padding:1.6cqh 3cqh;
   border-radius:.8cqh;background:rgba(8,20,40,.9);border:.15cqh solid rgba(255,255,255,.35);
   font-size:2.3cqh;white-space:nowrap;pointer-events:none}
@@ -572,7 +590,44 @@ export class LobbyHomeView {
     if (this.options.banners.length < 2) this.dots.hidden = true;
     promo.append(carousel, this.board("ks-blue", this.options.boardArt?.[0]),
       this.board("ks-purple", this.options.boardArt?.[1]));
+    const events = this.options.events ?? [];
+    if (events.length > 0) promo.append(this.buildEvents(events));
     return promo;
+  }
+
+  /** The release mq lobby 活动 panel (eventmenu_pop: title and a 3-column button grid). */
+  private buildEvents(events: ReadonlyArray<LobbyEvent>): HTMLElement {
+    const panel = element("section", "ks-lobby-events");
+    panel.setAttribute("aria-label", "活动");
+    const grid = element("div", "ks-lobby-event-grid");
+    for (const event of events) {
+      const button = element("button", "ks-lobby-event");
+      button.type = "button";
+      button.dataset.event = event.id;
+      button.setAttribute("aria-label", event.label);
+      const canvas = element("canvas");
+      canvas.setAttribute("aria-hidden", "true");
+      const draw = (state: number) => {
+        const image = event.states[state] ?? event.states[0];
+        if (!image) return;
+        canvas.width = image.width;
+        canvas.height = image.height;
+        canvas.getContext("2d")?.drawImage(image.image, 0, 0);
+      };
+      draw(0);
+      button.addEventListener("mouseenter", () => { draw(1); this.options.onHover?.(); });
+      button.addEventListener("mouseleave", () => draw(0));
+      button.addEventListener("pointerdown", () => draw(2));
+      button.addEventListener("pointerup", () => draw(1));
+      button.addEventListener("click", () => {
+        this.options.onActivate?.();
+        this.options.onEvent?.(event.id);
+      });
+      button.append(canvas, element("span", undefined, event.label));
+      grid.append(button);
+    }
+    panel.append(element("h2", undefined, "活动"), grid);
+    return panel;
   }
 
   private board(tone: string, art: string | undefined): HTMLElement {

@@ -309,9 +309,14 @@ type catalogDocument struct {
 }
 
 func newCatalogDocument(catalog *economy.Catalog) catalogDocument {
-	body := catalog.JSON()
+	return newJSONDocument(catalog.Version, catalog.JSON())
+}
+
+// newJSONDocument is a fixed JSON response with its ETag (the version) and
+// gzipped form made once.
+func newJSONDocument(version string, body []byte) catalogDocument {
 	return catalogDocument{
-		etag: `"` + catalog.Version + `"`,
+		etag: `"` + version + `"`,
 		body: body,
 		gzipped: sync.OnceValue(func() []byte {
 			var buffer bytes.Buffer
@@ -327,17 +332,23 @@ func newCatalogDocument(catalog *economy.Catalog) catalogDocument {
 // revalidation costs a 304; gzip when the client accepts it. It needs no
 // session (the catalog is public).
 func (a *API) shopCatalog(w http.ResponseWriter, r *http.Request) error {
+	return serveDocument(w, r, a.catalog)
+}
+
+// serveDocument answers a fixed document with its ETag (304 on a match)
+// and gzip when the client accepts it.
+func serveDocument(w http.ResponseWriter, r *http.Request, doc catalogDocument) error {
 	header := w.Header()
-	header.Set("ETag", a.catalog.etag)
+	header.Set("ETag", doc.etag)
 	header.Set("Cache-Control", "public, max-age=300")
 	header.Add("Vary", "Accept-Encoding")
-	if etagMatches(r.Header.Values("If-None-Match"), a.catalog.etag) {
+	if etagMatches(r.Header.Values("If-None-Match"), doc.etag) {
 		w.WriteHeader(http.StatusNotModified)
 		return nil
 	}
-	body := a.catalog.body
+	body := doc.body
 	if acceptsGzip(r.Header.Values("Accept-Encoding")) {
-		body = a.catalog.gzipped()
+		body = doc.gzipped()
 		header.Set("Content-Encoding", "gzip")
 	}
 	header.Set("Content-Type", "application/json; charset=utf-8")
