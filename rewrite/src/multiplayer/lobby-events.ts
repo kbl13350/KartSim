@@ -47,7 +47,7 @@ export interface RoomSpeed {
 }
 
 const gameplaySet = new Set<Gameplay>([
-  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp",
+  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item",
 ]);
 
 /** Called after a validated server event reaches the lobby controller. */

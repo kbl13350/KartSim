@@ -2,6 +2,7 @@ import { rhoAdler32 } from "../codecs/common.ts";
 // Generated from the verified KartSim v39.11 release bundle.
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
+import { itemChannelMismatch, itemRoomLabel } from "../multiplayer/lobby-item-mode.ts"; // item-mode(lobby)
 
 import { isTrackPrs, createPrsRuntime, playPrs, setPrsCycleMode, stopPrs, validatePrs, defaultTrackTransform, applyTrackPrs, sampleTrackPrs } from "../resources/track-prs-animation.ts";
 import { admitMovingObstacle, transformObstaclePoint } from "../resources/moving-obstacle.ts";
@@ -4707,6 +4708,9 @@ const He = {
   speedTeamCombine: { mode: "team", speed: 7, gameType: 3 },
   speedIndiInfinit: { mode: "individual", speed: 4, gameType: 1 },
   speedTeamInfinit: { mode: "team", speed: 4, gameType: 3 },
+  // item-mode(lobby): the original combined item channels.
+  itemIndiCombine: { mode: "individual", speed: 7, gameType: 2 },
+  itemTeamCombine: { mode: "team", speed: 7, gameType: 4 },
 };
 
 function $6(n) {
@@ -4725,6 +4729,7 @@ const xX = {
   lte: "LTE Web试玩",
   giant: "巨人模式",
   rp: "RP竞速",
+  item: "道具赛", // item-mode(lobby)
 };
 
 function cw(n) {
@@ -4735,7 +4740,8 @@ function cw(n) {
     n === "roadblock" ||
     n === "lte" ||
     n === "giant" ||
-    n === "rp"
+    n === "rp" ||
+    n === "item" // item-mode(lobby)
   );
 }
 
@@ -4746,6 +4752,7 @@ function G2(n) {
 }
 
 function To(n, e, t) {
+  if (itemChannelMismatch(n, e)) return !1; // item-mode(lobby)
   return (n !== void 0 && !cw(n)) || !$6(e)
     ? !1
     : n === "roadblock" || n === "giant"
@@ -4778,6 +4785,8 @@ function SX(n) {
       return 32;
     case "lte":
       return e ? 47 : 46;
+    case "item": // item-mode(lobby)
+      return e ? 4 : 2;
   }
 }
 
@@ -4796,6 +4805,7 @@ const H6 = {
 
 function iR(n) {
   const e = G2(n);
+  if (e === "item") return itemRoomLabel(n.channelName); // item-mode(lobby)
   return e === "roadblock"
     ? "挡人模式"
     : e === "giant"

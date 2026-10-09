@@ -1,6 +1,8 @@
 // Generated from the verified KartSim v39.11 release bundle.
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
+import { isItemRaceRules, sameItemRaceRules } from "../multiplayer/lobby-item-mode.ts"; // item-mode(lobby)
+import { itemTrackCatalog } from "../resources/track-catalog.ts"; // item-mode(lobby)
 
 import { createMqTachometerClass } from "../vehicle/mq-tachometer-renderer.ts";
 import { individualRiderDye } from "../multiplayer/individual-rider-colors.ts";
@@ -5973,6 +5975,13 @@ function w40(n, e) {
     G2(n) === "lte" ? !ko(e.lte) || !Nw(e.lte, n.race?.lte) : e.lte !== void 0
   )
     throw new Error("LTE Web试玩冻结参数无效。");
+  if ( // item-mode(lobby)
+    G2(n) === "item"
+      ? !isItemRaceRules(e.item, n.mode === "team") ||
+        !sameItemRaceRules(e.item, n.race?.item)
+      : e.item !== void 0
+  )
+    throw new Error("道具赛冻结参数无效。");
   if (
     G2(n) === "roadblock" &&
     (!e.roadblock ||
@@ -6106,7 +6115,9 @@ async function A40(n, e, t, i, r, s) {
         ? Cw(g)
         : G2(e) === "lte"
           ? r20(g)
-          : g.timeAttackTrackCatalog(),
+          : G2(e) === "item" // item-mode(lobby)
+            ? itemTrackCatalog(g)
+            : g.timeAttackTrackCatalog(),
       g.timeAttackGarageCatalog(),
     ]);
   w();
