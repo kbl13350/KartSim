@@ -473,7 +473,22 @@ export async function itemRandomTrackGroups(library: TrackLibrary): Promise<Rand
   if (!random) return [];
   const root = decodeBinaryXml(await random.bytes());
   return randomTrackGroupsFromBml(root, await itemTrackCatalog(library))
-    .filter(group => group.gameType === "item" && group.trackIds.length > 0);
+    .filter(group => group.gameType === "item" && group.trackIds.length > 0)
+    .map(drawableDisplay);
+}
+
+/**
+ * An item room's card lists only tracks its group can draw (the game node
+ * draws from the same item pools): 新图 shows the first drawable new tracks
+ * instead of the release's mixed speed/item list, and the hot cards drop the
+ * tracks the item catalog leaves out. Speed rooms keep the release lists.
+ */
+function drawableDisplay(group: RandomTrackGroup): RandomTrackGroup {
+  const drawable = new Set(group.trackIds);
+  const displayTrackIds = group.randomType === "new"
+    ? group.trackIds.slice(0, NEW_TRACK_DISPLAY_LIMIT)
+    : group.displayTrackIds.filter(id => drawable.has(id));
+  return { ...group, displayTrackIds };
 }
 
 export async function timeAttackRandomTrackNames(library: TrackLibrary): Promise<Map<string, string>> {

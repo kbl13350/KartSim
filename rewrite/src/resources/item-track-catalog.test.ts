@@ -99,6 +99,25 @@ test("p3553 道具赛随机组：人气 1-5、全部、新图、反向都只抽�
     .every(id => id.endsWith("_rvs")));
 });
 
+test("p3553 道具赛随机组的卡片说明只列出该组能抽到的赛道", async () => {
+  const groups = await itemRandomTrackGroups(library);
+  for (const group of groups) {
+    const drawable = new Set(group.trackIds);
+    const listed = group.displayTrackIds.filter(id => !drawable.has(id));
+    assert.deepEqual(listed, [], `${group.id} lists tracks it never draws`);
+  }
+  // 新图随机: the first ten drawable new item tracks, not the raw mixed list
+  // (which starts with speed tracks such as tomb_R07 and tomb_R06).
+  const fresh = groups.find(group => group.id === "item:new:0")!;
+  assert.deepEqual(fresh.displayTrackIds, fresh.trackIds.slice(0, 10));
+  for (const id of ["tomb_R07", "tomb_R06", "mine_R07", "china_R13"])
+    assert.ok(!fresh.displayTrackIds.includes(id), id);
+  for (const id of ["item:hot3:3", "item:hot4:4", "item:hot5:5"]) {
+    const display = groups.find(group => group.id === id)!.displayTrackIds;
+    assert.ok(!display.includes("tomb_I02") && !display.includes("village_I06"), id);
+  }
+});
+
 test("p3553 道具赛赛道的 track.1s 都放有道具箱", async () => {
   const empty: string[] = [];
   for (const track of items) {
