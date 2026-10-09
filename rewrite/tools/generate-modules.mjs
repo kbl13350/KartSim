@@ -298,7 +298,7 @@ const multiplayerSupportFunctionOverrides = new Map([
   ["kl0", "function kl0(text) { return wrapLobbyChatBubble(text); }"],
   ["FT", "function FT(room, playerId) { return lobbyRiderSlots(room, playerId); }"],
   ["TF", "function TF(room) { return roadblockRunnerId(room, G2); }"],
-  ["DT", "function DT(room, colors) { return decorateRoadblockRiders(room, colors, TF(room)); }"],
+  ["DT", "function DT(room, colors) { return decorateIndividualRiders(decorateRoadblockRiders(room, colors, TF(room))); }"],
   ["Hl0", "function Hl0(options) { return multiplayerReadyOptions(options, Ue); }"],
 ]);
 const ghostKsvClassMethodOverrides = new Map([
@@ -2063,6 +2063,27 @@ const iv = createDriftEffectClass(driftEffectDependencies);`,
     assert(original.includes('boostBlur: "boostBlur"'), "Graphics control mapping changed.");
     bodies.get("ui").push({ at: node.start,
       text: original.replace('boostBlur: "boostBlur"', 'verticalSync: "verticalSync",\n    boostBlur: "boostBlur"') });
+    continue;
+  }
+  // Individual rooms dress each racer in its slot's dye (not in the
+  // release, which kept everyone's own dye there); team and roadblock dyes
+  // are unchanged.
+  if (declarationName === "A40") {
+    const original = source.slice(node.start, node.end);
+    const teamDye = `: Q && F.team
+            ? Q[F.team - 1].dyeId
+            : void 0,`;
+    const dyedCharacters = `c0 = await (
+          Q
+            ? new ul(`;
+    assert(original.includes(teamDye) && original.includes(dyedCharacters),
+      "Race rider dye selection changed.");
+    bodies.get("vehicle").push({ at: node.start,
+      text: original.replace(teamDye, `: Q && F.team
+            ? Q[F.team - 1].dyeId
+            : individualRiderDye(e, F.slot),`).replace(dyedCharacters, `c0 = await (
+          Q || F0 !== void 0
+            ? new ul(`) });
     continue;
   }
   if (declarationName === "qc0") {
@@ -4460,6 +4481,7 @@ function renderModule(name) {
   }
   if (name === "vehicle") {
     lines.push('import { createMqTachometerClass } from "../vehicle/mq-tachometer-renderer.ts";');
+    lines.push('import { individualRiderDye } from "../multiplayer/individual-rider-colors.ts";');
     lines.push('import { createMotionBlurEffectClass } from "../vehicle/motion-blur-effect.ts";');
     lines.push('import { collectDummySounds, TrackDummySurroundAudio, StandaloneEventSurroundAudio, unsupportedEventSound } from "../vehicle/track-surround-audio.ts";');
     lines.push('import { ReadyCameraController, warpNextCamera } from "../vehicle/ready-camera.ts";');
@@ -4577,6 +4599,7 @@ function renderModule(name) {
     lines.push('import { accountOverlayStyle, accountPanelStyle, accountErrorMessages, styleAccountButtons, formatAccountServiceError, currentMultiplayerOrigin, multiplayerAccountEndpoint, multiplayerAuthHeaders } from "../multiplayer/account-ui-support.ts";');
     lines.push('import { loadLobbyAvatarAppearance } from "../multiplayer/lobby-avatar-appearance.ts";');
     lines.push('import { lobbyRiderSlots, roadblockRunnerId, decorateRoadblockRiders, wrapLobbyChatBubble } from "../multiplayer/lobby-room-helpers.ts";');
+    lines.push('import { decorateIndividualRiders } from "../multiplayer/individual-rider-colors.ts";');
     lines.push('import { multiplayerReadyOptions } from "../multiplayer/ready-options.ts";');
     lines.push('import { MultiplayerLobbyController } from "../multiplayer/lobby-controller.ts";');
     lines.push('import { ReadyController } from "../timeattack/ready-controller.ts";');
