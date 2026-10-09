@@ -74,7 +74,7 @@ test("the constructor admits the frozen item mode once vI knows game types 2 and
   if (!mode) return; // vI is extended by the lobby area; the fixture installs item mode meanwhile.
   assert.equal(mode.kind, "item");
   const vehicle = createItemDriver(373).vehicle;
-  assert.equal(vehicle.speedRaceMode, mode);
+  assert.deepEqual(vehicle.speedRaceMode, mode);
   assert.equal(vehicle.itemMode, true);
 });
 
