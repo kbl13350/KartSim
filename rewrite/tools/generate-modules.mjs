@@ -434,6 +434,26 @@ function applyItemWorldPatches(text, patches) {
   }
   return text;
 }
+// item-mode(fx): the item race presenter (道具赛表现层, src/item/item-race-presenter.ts)
+// is built in A40 right after the cube and hazard owners, with the same
+// environment, stage binding, model ops and audio context, and returned as
+// assets.itemPresenter (undefined outside item races). Every model and sound
+// of the item set loads here, so the first use of an item has no hitch.
+itemWorldVehicleImports.push(
+  'import { loadItemRacePresenter } from "../item/item-race-presenter.ts"; // item-mode(fx)');
+itemWorldVehicleOps.push(
+  "const itemPresenterOps = { originalAsset: nl, decodeModel: y9, decodeAudio: Q9, loadModel: c5, routeAudio: S9, setGain: he }; // item-mode(fx)");
+itemWorldRaceAssetPatches.push(
+  [`    (itemRaceFields && S.push(() => itemRaceFields.dispose()), w());`,
+    `    (itemRaceFields && S.push(() => itemRaceFields.dispose()), w());
+    const itemPresenter = itemRaceFields // item-mode(fx)
+      ? await loadItemRacePresenter(g, itemRaceFields.catalog, C.environment, C.stageBinding, i, itemPresenterOps)
+      : void 0;
+    (itemPresenter && S.push(() => itemPresenter.dispose()), w());`],
+  [`      itemHazards: itemRaceFields?.hazards,`,
+    `      itemHazards: itemRaceFields?.hazards,
+      itemPresenter, // item-mode(fx)`],
+);
 const vehicleSlipstreamOverrides = new Set(["mv", "wv"]);
 const vehicleStartGridOverrides = new Set(["iL", "rL"]);
 const vehicleNormalCoordinatorOverrides = new Set(["vL", "U40", "yL", "as", "J8"]);
