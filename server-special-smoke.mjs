@@ -49,8 +49,8 @@ import {
   waitUntilRaceCounts,
 } from "./server-go/test/lib/kart-client.mjs";
 import {
-  expectedTargets, groupWeight, ITEM, ITEM_NAMES, ITEM_RULES, ItemChannel, itemLife, loadItemData, MotionInbox,
-  MotionPump, othersMask, rankGroup, ServerClock, kartSample,
+  browserAccepts, browserEventValidation, expectedTargets, groupWeight, ITEM, ITEM_NAMES, ITEM_RULES, ItemChannel,
+  itemLife, kartSample, loadItemData, MotionInbox, MotionPump, othersMask, rankGroup, ServerClock,
 } from "./server-go/test/lib/item-race.mjs";
 
 const settings = readSettings();
@@ -62,45 +62,13 @@ const { parseServerEvent } = await tsImport(
 const { isValidItemRequest } = await tsImport("./rewrite/src/multiplayer/protocol.ts", import.meta.url);
 const { GameMotionDecoder, GameMotionEncoder } = await tsImport(
   "./rewrite/src/multiplayer/payload.ts", import.meta.url);
-const channelRules = {
-  speedIndiCombine: { mode: "individual", speed: 7 },
-  speedTeamCombine: { mode: "team", speed: 7 },
-  speedIndiInfinit: { mode: "individual", speed: 4 },
-  speedTeamInfinit: { mode: "team", speed: 4 },
-  itemIndiCombine: { mode: "individual", speed: 7 },
-  itemTeamCombine: { mode: "team", speed: 7 },
-};
-const itemChannels = new Set(["itemIndiCombine", "itemTeamCombine"]);
-const randomTrackCodes = new Set([0, 3, 4, 5, 6, 7, 8, 30, 40]);
-const verifiedRpKarts = new Set([387, 390, 378, 361]);
-const validation = {
-  validRoom: isValidRoomSnapshot,
-  validChannel: (channel, mode, speed) =>
-    channel in channelRules && channelRules[channel].mode === mode &&
-    channelRules[channel].speed === speed,
-  validGameplay: (gameplay, channel, version) => {
-    // Item channels carry only the item gameplay, which needs p3553.
-    if (itemChannels.has(channel) || gameplay === "item")
-      return gameplay === "item" && itemChannels.has(channel) && version === "p3553";
-    if (gameplay === undefined || gameplay === "ordinary") return true;
-    if (version !== "p3553" || !(channel in channelRules)) return false;
-    if (gameplay === "roadblock" || gameplay === "giant")
-      return channel === "speedIndiCombine";
-    if (gameplay === "rp" || gameplay === "shadow") return true;
-    return (gameplay === "lte" || gameplay === "grip") &&
-      channelRules[channel].speed === 7;
-  },
-  validRandomTrackCode: code => randomTrackCodes.has(code),
-};
+const validation = browserEventValidation(isValidRoomSnapshot);
 /**
- * The browser's acceptance of a server event. An invalid item event does not
- * close the browser's connection: parseServerEvent turns it into an
- * INVALID_ITEM_EVENT error, which the smoke counts as a rejection.
+ * The browser's acceptance of a server event; an item event it would turn
+ * into INVALID_ITEM_EVENT counts as a rejection.
  */
-const validate = message => {
-  const parsed = parseServerEvent(message, validation);
-  return parsed !== undefined && !(message?.type === "item" && parsed.type === "error");
-};
+const validate = message => browserAccepts(parseServerEvent, validation, message);
+const verifiedRpKarts = new Set([387, 390, 378, 361]);
 
 /** Every racer earned the same reward (all unfinished, ECONOMY.md 2.1). */
 function assertSameRewards(rewards, label) {

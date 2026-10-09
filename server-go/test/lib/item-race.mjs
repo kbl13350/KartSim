@@ -113,6 +113,55 @@ export function expectedTargets(idx, user, standings, teams, aimed) {
   }
 }
 
+/* ---------- the browser's event validators ---------- */
+
+/** Channels of the browser's room tables (generated formats.js He / W6, room-validation.ts). */
+export const CHANNEL_RULES = Object.freeze({
+  speedIndiCombine: { mode: "individual", speed: 7 },
+  speedTeamCombine: { mode: "team", speed: 7 },
+  speedIndiInfinit: { mode: "individual", speed: 4 },
+  speedTeamInfinit: { mode: "team", speed: 4 },
+  itemIndiCombine: { mode: "individual", speed: 7 },
+  itemTeamCombine: { mode: "team", speed: 7 },
+});
+const ITEM_CHANNELS = new Set(["itemIndiCombine", "itemTeamCombine"]);
+const RANDOM_TRACK_CODES = new Set([0, 3, 4, 5, 6, 7, 8, 30, 40]);
+
+/**
+ * The ServerEventValidation the browser passes to parseServerEvent
+ * (server-events.ts) for room lists: generated W6 channels and To gameplay
+ * rules (item channels carry only gameplay item, on p3553), with
+ * room-validation.ts isValidRoomSnapshot for snapshots.
+ */
+export function browserEventValidation(isValidRoomSnapshot) {
+  return {
+    validRoom: isValidRoomSnapshot,
+    validChannel: (channel, mode, speed) =>
+      Object.hasOwn(CHANNEL_RULES, channel) && CHANNEL_RULES[channel].mode === mode &&
+      CHANNEL_RULES[channel].speed === speed,
+    validGameplay: (gameplay, channel, version) => {
+      if (ITEM_CHANNELS.has(channel) || gameplay === "item")
+        return gameplay === "item" && ITEM_CHANNELS.has(channel) && version === "p3553";
+      if (gameplay === undefined || gameplay === "ordinary") return true;
+      if (version !== "p3553" || !Object.hasOwn(CHANNEL_RULES, channel)) return false;
+      if (gameplay === "roadblock" || gameplay === "giant") return channel === "speedIndiCombine";
+      if (gameplay === "rp" || gameplay === "shadow") return true;
+      return (gameplay === "lte" || gameplay === "grip") && CHANNEL_RULES[channel].speed === 7;
+    },
+    validRandomTrackCode: code => RANDOM_TRACK_CODES.has(code),
+  };
+}
+
+/**
+ * Whether the browser accepts a server event. An invalid item event does
+ * not close the browser's connection: parseServerEvent turns it into an
+ * INVALID_ITEM_EVENT error, which counts as a rejection here.
+ */
+export function browserAccepts(parseServerEvent, validation, message) {
+  const parsed = parseServerEvent(message, validation);
+  return parsed !== undefined && !(message?.type === "item" && parsed.type === "error");
+}
+
 /* ---------- clock ---------- */
 
 /**
@@ -304,17 +353,26 @@ export class ItemChannel {
     this.gapMs = 1000 / ratePerSecond;
     this.lastAt = 0;
     this.slots = undefined;
+    this.queue = Promise.resolve();
   }
 
   /**
    * Sends {type:"item", action, ...fields}; returns the reply (an item event
-   * or {type:"error", code}). `sequence` overrides the next number (to test
-   * INVALID_SEQUENCE). The number is used up unless the server rejected the
-   * request before checking it (CHECKED_BEFORE_SEQUENCE); RACE_NOT_RUNNING
-   * comes both before (racer not loaded: pass consumed false) and after it
-   * (race not started yet: the default).
+   * or {type:"error", code}). Requests go out one at a time in call order,
+   * so concurrent callers never share a sequence number. `sequence`
+   * overrides the next number (to test INVALID_SEQUENCE). The number is used
+   * up unless the server rejected the request before checking it
+   * (CHECKED_BEFORE_SEQUENCE); RACE_NOT_RUNNING comes both before (racer not
+   * loaded: pass consumed false) and after it (race not started yet: the
+   * default).
    */
-  async send(action, fields = {}, { sequence, consumed } = {}) {
+  send(action, fields = {}, options = {}) {
+    const sent = this.queue.then(() => this.sendNow(action, fields, options));
+    this.queue = sent.catch(() => {});
+    return sent;
+  }
+
+  async sendNow(action, fields, { sequence, consumed } = {}) {
     const wait = this.lastAt + this.gapMs - performance.now();
     if (wait > 0) await delay(wait);
     this.lastAt = performance.now();
