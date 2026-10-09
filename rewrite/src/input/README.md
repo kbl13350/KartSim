@@ -21,3 +21,11 @@ browser scan code lookup, and keyboard action resolution. `gamepad-controls.ts`
 reads connected controllers and converts buttons and axes into the control IDs
 used by `GamepadEdgePoller`. The mapping tests compare every browser scan code,
 all binding slots, remapped keys, and analog thresholds with the release.
+
+`item-input.ts` serves item races (道具赛). `ItemInputRouter` takes the use,
+reorder and secondary-item transitions (Ctrl, Alt, Z) out of the drained batch
+before it reaches `DrivingInputAccumulator`, so they never spend or reorder
+nitro slots, and turns them into item commands: use press, use release (or
+cancel when input is dropped), swap and change. Left and right presses are
+also reported as escape presses for a water bubble. The multiplayer session
+update routes the commands to the local race owner's `items` handler.

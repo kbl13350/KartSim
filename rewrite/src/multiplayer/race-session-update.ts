@@ -1,8 +1,15 @@
 /** Runs one multiplayer session tick, from controls through result transition. */
+import type { ItemCommand, ItemInputRouter } from "../input/item-input";
 
 export interface RaceSessionCommand { kind: string; [key: string]: unknown }
 export interface RaceSessionAction { kind: string; [key: string]: unknown }
-interface InputBatch { transitions: unknown[]; cancelled: boolean }
+interface InputBatch { transitions: Array<{ action: number; down: boolean }>; cancelled: boolean }
+
+/** Item races (道具赛) only; absent on every other physics owner. */
+interface ItemRacePhysics {
+  itemMode?: boolean;
+  itemEffects?: { readonly steeringInverted: boolean; escapePress(): boolean };
+}
 
 export interface RaceSessionUpdateHost {
   active: boolean;
@@ -11,7 +18,7 @@ export interface RaceSessionUpdateHost {
   now: number;
   runtime: {
     local: {
-      physics: {
+      physics: ItemRacePhysics & {
         speedRaceMode?: { kind: string };
         hardCancelControls(): void;
         handleDrivingCommand(command: RaceSessionCommand, applied: unknown): void;
@@ -26,6 +33,9 @@ export interface RaceSessionUpdateHost {
       consumeRoadBlockResetNotice(): boolean;
       handleModeDrivingCommand(command: RaceSessionCommand, nowMs: number): boolean;
       boostGaugeFull: boolean;
+      /** Item races: Ctrl/Alt/Z router and the item controller that receives the commands. */
+      itemInput?: ItemInputRouter;
+      items?: { handleCommand(command: ItemCommand, nowMs: number): void };
     };
     update(nowMs: number, applied: unknown, suspended: boolean): RaceSessionAction[];
   };
@@ -53,6 +63,7 @@ export interface RaceSessionUpdateHost {
     dispatch(transitions: unknown[], handle: (code: unknown,
       pressed: unknown) => void): void;
     snapshot(): unknown;
+    setSteeringInverted?(enabled: boolean): void;
   };
   notice?: {
     visible: boolean;
@@ -82,10 +93,39 @@ export interface RaceSessionUpdateDependencies {
   };
 }
 
+function itemRace(host: RaceSessionUpdateHost): boolean {
+  return host.runtime.local.physics.itemMode === true;
+}
+
+function sendItemCommand(host: RaceSessionUpdateHost, command: ItemCommand): void {
+  host.runtime.local.items?.handleCommand(command, host.now);
+}
+
+function cancelItemInput(host: RaceSessionUpdateHost): void {
+  if (itemRace(host))
+    host.runtime.local.itemInput?.cancel({ command: command => sendItemCommand(host, command) });
+}
+
+/**
+ * In item races Ctrl (press and release), Alt and Z become item commands and
+ * never reach the nitro slots; left/right presses also shorten a water bubble.
+ */
+function routeItemInput<T extends { action: number; down: boolean }>(host: RaceSessionUpdateHost,
+  transitions: T[], dependencies: RaceSessionUpdateDependencies): T[] {
+  const local = host.runtime.local;
+  if (!itemRace(host) || !local.itemInput) return transitions;
+  return local.itemInput.route(transitions, {
+    racing: local.lifecycle.state === dependencies.states.Racing,
+    command: command => sendItemCommand(host, command),
+    escape: () => { local.physics.itemEffects?.escapePress(); },
+  });
+}
+
 function cancelDriving(host: RaceSessionUpdateHost): void {
   host.controls.cancel();
   host.host.autoForward.cancel();
   host.runtime.local.physics.hardCancelControls();
+  cancelItemInput(host);
 }
 
 function applyDrivingCommand(host: RaceSessionUpdateHost,
@@ -132,6 +172,9 @@ export function updateRaceSession(host: RaceSessionUpdateHost,
       cancelDriving(host);
       local.cancelModeDrivingInput();
     }
+    // A devil (大魔王) hit swaps left and right through the input snapshot.
+    if (itemRace(host))
+      host.controls.setSteeringInverted?.(physics.itemEffects?.steeringInverted === true);
     const lifecycle = local.lifecycle;
     host.host.autoForward.setRaceState(
       !host.resultVisible && lifecycle.state < dependencies.states.PostFinish,
@@ -140,7 +183,7 @@ export function updateRaceSession(host: RaceSessionUpdateHost,
     if (host.resultVisible) host.scene.awardInput(
       input.transitions, input.cancelled);
     host.controls.dispatch(host.resultVisible || host.notice?.visible
-      ? [] : input.transitions, (code, pressed) => {
+      ? [] : routeItemInput(host, input.transitions, dependencies), (code, pressed) => {
       if (host.notice?.visible) return;
       host.host.autoForward.dispatch(code, pressed, host.controls.snapshot(),
         command => applyDrivingCommand(host, command, dependencies));
@@ -148,6 +191,7 @@ export function updateRaceSession(host: RaceSessionUpdateHost,
     if (host.notice?.visible) {
       host.controls.cancel();
       host.host.autoForward.cancel();
+      cancelItemInput(host);
     }
     const snapshot = host.controls.snapshot();
     const sampleFramerate = !host.resultVisible &&

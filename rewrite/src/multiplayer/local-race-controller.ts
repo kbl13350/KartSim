@@ -7,6 +7,7 @@ import {
   localRaceProgress, localRaceElapsedMs, updateLocalRace,
 } from "./local-race-runtime.js";
 import type { LocalRaceDependencies } from "./local-race-runtime.js";
+import { ItemInputRouter, type ItemCommandHandler } from "../input/item-input.js";
 
 /** Factories for state owners supplied by the recovered game runtime. */
 export interface LocalRaceControllerDependencies {
@@ -51,6 +52,9 @@ export class LocalRaceController {
   warpNext: any;
   readonly pendingWarpActions: any[] = [];
   routeClockMs = 0;
+  /** Item races (道具赛): Ctrl/Alt/Z routing and the item controller that owns the slots. */
+  readonly itemInput = new ItemInputRouter();
+  items: ItemCommandHandler | undefined;
 
   constructor(assets: any, room: any, playerId: string,
     dependencies: LocalRaceControllerDependencies) {
@@ -149,6 +153,7 @@ export class LocalRaceController {
     this.lte?.dispose();
     this.giant?.dispose();
     if (this.giant) this.physics.clearGiantRaceEffects();
+    this.physics.itemEffects?.clear();
     this.warpNext.reset();
     this.physics.hardCancelControls();
     this.physics.setRaceMotionLocked(true);
