@@ -10,6 +10,7 @@
     INVALID_CREDENTIALS: "用户名或密码错误",
     TOO_MANY_ATTEMPTS: "尝试次数过多，请稍后再试",
     LOGIN_REQUIRED: "登录已失效，请重新登录",
+    SESSION_REPLACED: "该账号已在其他地方登录，请重新登录",
     ADMIN_REQUIRED: "该账号不是管理员",
     ACCOUNT_NOT_FOUND: "找不到该用户名",
     INVALID_GRANT: "类型或数量无效（数量不能为 0，绝对值不超过 10 亿）",
@@ -81,7 +82,7 @@
     try { data = await response.json(); } catch (error) { data = null; }
     if (!response.ok) {
       const code = data && typeof data.error === "string" ? data.error : "HTTP_" + response.status;
-      if (code === "LOGIN_REQUIRED") signOut();
+      if (code === "LOGIN_REQUIRED" || code === "SESSION_REPLACED") signOut();
       const failure = new Error(describe(code));
       failure.code = code;
       throw failure;
@@ -115,8 +116,9 @@
     const status = $("login-status");
     show(status, "正在登录…");
     try {
+      // console: an admin's console login keeps its game login (single sign-on ends the others).
       const login = await call("POST", "/multiplayer/auth/login", {
-        username: form.username.value.trim(), password: form.password.value,
+        username: form.username.value.trim(), password: form.password.value, console: true,
       });
       form.password.value = "";
       if (!login.account || !login.account.admin) {

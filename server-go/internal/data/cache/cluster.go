@@ -3,6 +3,8 @@ package cache
 import (
 	"cmp"
 	"context"
+	"crypto/rand"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -403,6 +405,49 @@ func (c *Cluster) ReleasePresence(ctx context.Context, p Presence) error {
 // still holds it.
 func (c *Cluster) Release(ctx context.Context, nodeID, playerID, name string) error {
 	return c.ReleasePresence(ctx, Presence{NodeID: nodeID, PlayerID: playerID, Name: name})
+}
+
+// replacedOwner owns the presence keys of a session that a newer login
+// replaced. It is not a valid node id, so no node key ever exists for it:
+// claims treat the keys as free, while the node still serving the old
+// session sees them held elsewhere at its next heartbeat and closes it.
+const replacedOwner = "!replaced"
+
+// replaceScript hands an account's live game session over to a newer
+// login: the account key, and the nickname key when the same session holds
+// it, get the replacedOwner value.
+// KEYS: account, presence. ARGV: replaced value, presence TTL ms, the
+// replacedOwner prefix ("!replaced|").
+// Returns 1 when a live session was marked.
+var replaceScript = redis.NewScript(`
+local current = redis.call('GET', KEYS[1])
+if not current or string.sub(current, 1, #ARGV[3]) == ARGV[3] then
+  return 0
+end
+redis.call('SET', KEYS[1], ARGV[1], 'PX', ARGV[2])
+if redis.call('GET', KEYS[2]) == current then
+  redis.call('SET', KEYS[2], ARGV[1], 'PX', ARGV[2])
+end
+return 1
+`)
+
+// ReplaceAccount ends the account's live game session, if any, on behalf of
+// a newer login (single sign-on): the node serving it disconnects it at its
+// next heartbeat (contract.HeartbeatResponse.Conflicts), and the new
+// session can claim the account and nickname at once. nickname is the
+// account's current nickname.
+func (c *Cluster) ReplaceAccount(ctx context.Context, accountID, nickname string) (bool, error) {
+	nonce := make([]byte, 16)
+	if _, err := rand.Read(nonce); err != nil {
+		return false, err
+	}
+	value := replacedOwner + "|" + hex.EncodeToString(nonce)
+	marked, err := replaceScript.Run(ctx, c.rdb, []string{c.accountKey(accountID), c.presenceKey(FoldName(nickname))},
+		value, PresenceTTL.Milliseconds(), replacedOwner+"|").Int()
+	if err != nil {
+		return false, fmt.Errorf("replace account presence: %w", err)
+	}
+	return marked == 1, nil
 }
 
 // onlineScript reports whether a nickname is held by a registered node.

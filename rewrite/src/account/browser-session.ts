@@ -8,6 +8,9 @@ import {
 } from "./account-api";
 import type { AccountSession, AccountSummary, InventoryItem } from "./account-session";
 
+/** Why the service stopped accepting the token (single sign-on: "replaced"). */
+export type SessionEndReason = "expired" | "replaced";
+
 export interface LevelChange {
   from: number;
   to: number;
@@ -47,7 +50,7 @@ export class BrowserAccountSession implements AccountSession {
   private clockOffset = 0;
   private readonly listeners = new Set<() => void>();
   private readonly levelListeners = new Set<(change: LevelChange) => void>();
-  private readonly expiryListeners = new Set<() => void>();
+  private readonly expiryListeners = new Set<(reason: SessionEndReason) => void>();
   private pendingRefresh?: Promise<void>;
   private refreshAgain = false;
   private expiredValue = false;
@@ -96,8 +99,12 @@ export class BrowserAccountSession implements AccountSession {
     return () => { this.levelListeners.delete(listener); };
   }
 
-  /** Called once when the service refuses the token (LOGIN_REQUIRED). */
-  onExpired(listener: () => void): () => void {
+  /**
+   * Called once when the service refuses the token: LOGIN_REQUIRED
+   * ("expired"), or SESSION_REPLACED when a newer login of the account
+   * ended this one ("replaced", single sign-on).
+   */
+  onExpired(listener: (reason: SessionEndReason) => void): () => void {
     this.expiryListeners.add(listener);
     return () => { this.expiryListeners.delete(listener); };
   }
@@ -113,7 +120,8 @@ export class BrowserAccountSession implements AccountSession {
       let code: unknown;
       try { code = (await response.clone().json() as { error?: unknown })?.error; }
       catch { code = undefined; }
-      if (code === undefined || code === "LOGIN_REQUIRED") this.expire();
+      if (code === undefined || code === "LOGIN_REQUIRED") this.expire("expired");
+      else if (code === "SESSION_REPLACED") this.expire("replaced");
     }
     return response;
   }
@@ -215,14 +223,14 @@ export class BrowserAccountSession implements AccountSession {
 
   get isClosed(): boolean { return this.closed; }
 
-  private expire(): void {
+  private expire(reason: SessionEndReason): void {
     // A request of a logged-out session may come back 401 after another
     // account signed in; that answer concerns nobody any more.
     if (this.expiredValue || this.closed) return;
     this.expiredValue = true;
     this.clearToken?.(this.backendOrigin, this.token);
     for (const listener of [...this.expiryListeners]) {
-      try { listener(); } catch (error) { console.error(error); }
+      try { listener(reason); } catch (error) { console.error(error); }
     }
   }
 

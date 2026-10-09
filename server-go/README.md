@@ -345,7 +345,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `GET /multiplayer/auth/config` | `{"loginRequired":true,"backendOrigin":…,"registration":"open","guests":false}`；经可信反向代理（`X-Forwarded-Host`）时 `backendOrigin` 为 `null`；设置了 `KART_PUBLIC_ORIGIN` 时返回它；不可信主机 400 `INVALID_HOST` |
 | `POST /multiplayer/auth/guest-name` | `{"name"}` → `{"available"}`：名字合法、不是账号昵称且不在任何游戏服在线；非法 400 `INVALID_GUEST_NAME`（只在开启游客时有用） |
 | `POST /multiplayer/auth/register` | `{"username","nickname","password","invite"?}` → `{"account","token"}`（注册即登录）。用户名 `[A-Za-z0-9_]{3,24}`、昵称 ≤ 16 字、密码 8–128 位，否则 400 `INVALID_ACCOUNT_FIELDS`；`invite` 模式缺少或无效邀请码、`KART_ADMIN_USERNAMES` 中的用户名（任何模式）没有有效邀请码、或开放模式填写了无效邀请码（填写的会被消耗）时 400 `INVALID_INVITE`；`closed` 403 `REGISTRATION_CLOSED`；重名 409 `USERNAME_TAKEN`/`NICKNAME_TAKEN`；限流 429 `TOO_MANY_ATTEMPTS`（见“限流与反向代理”） |
-| `POST /multiplayer/auth/login` | 登录，返回 43 字符会话 token（有效 30 天）；限流 429 `TOO_MANY_ATTEMPTS`（按客户端 IP，失败按用户名与客户端网段） |
+| `POST /multiplayer/auth/login` | 登录，返回 43 字符会话 token（有效 30 天）；限流 429 `TOO_MANY_ATTEMPTS`（按客户端 IP，失败按用户名与客户端网段）。**单点登录**：登录成功会结束该账号的其他所有会话——旧 token 之后的请求得到 401 `SESSION_REPLACED`（7 天内，之后为 `LOGIN_REQUIRED`），旧会话的好友聊天与小屋 WebSocket 立即以 4001 关闭，在游戏服上的旧会话在下一次心跳（≤ 5 秒）时被断开（`conflicts`），新登录可以立刻进入游戏服。浏览器收到 `SESSION_REPLACED` 时提示“您的账号已在其他地方登录”并回到登录页。管理员在管理页面登录（请求体带 `"console": true`）不结束游戏中的会话；普通账号带它没有效果 |
 | `GET /multiplayer/auth/me` | Bearer token 查询账号 |
 | `POST /multiplayer/auth/nickname`、`/multiplayer/auth/logout` | 改名、退出 |
 | `POST /multiplayer/admin/invites` | 管理员创建邀请码 |
