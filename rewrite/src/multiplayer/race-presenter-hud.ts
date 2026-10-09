@@ -26,6 +26,7 @@ export interface RacePresenterHudHost {
     };
     remotes: {
       rankDisconnected(playerId: unknown): boolean;
+      hasDeparted(playerId: unknown): boolean;
       raceProgress(playerId: unknown): RaceProgress | undefined;
     };
     finishDeadline: number | undefined;
@@ -90,13 +91,20 @@ export function finishRacePresenterFrame(host: RacePresenterHudHost,
   const latency = (id: unknown) => remotes.rankDisconnected(id)
     ? undefined : runtime.latencyMs(id);
   const tints = hud.markerTints();
-  const progressBoard = dependencies.rankByProgress(race.roster, playerId,
+  // Not in the release: a racer out of the race before it reported any
+  // progress (it never loaded, or left first) would keep the progress board
+  // from ever forming, so it is left off the board.
+  const roster = race.roster.some(racer => remotes.hasDeparted(racer.playerId))
+    ? race.roster.filter(racer => !remotes.hasDeparted(racer.playerId) ||
+      host.rankRoster.progress(racer.playerId) !== undefined)
+    : race.roster;
+  const progressBoard = dependencies.rankByProgress(roster, playerId,
     id => host.rankRoster.progress(id), tints,
     runtime.finishSnapshot(), latency);
   physics.giant?.setRank(progressBoard === undefined
     ? undefined : progressBoard.rank! - 1);
 
-  let board = progressBoard ?? dependencies.rankFallback(race.roster,
+  let board = progressBoard ?? dependencies.rankFallback(roster,
     playerId, hud.markerTints(), id => remotes.rankDisconnected(id)
       ? undefined : runtime.latencyMs(id));
   const results = runtime.resultSnapshot();

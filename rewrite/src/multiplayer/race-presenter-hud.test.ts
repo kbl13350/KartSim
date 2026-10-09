@@ -21,6 +21,8 @@ interface Scenario {
   giant?: boolean;
   racing?: boolean;
   skydome?: boolean;
+  departed?: string[];
+  rosters?: unknown[];
 }
 
 function observe(rewritten: boolean, scenario: Scenario) {
@@ -57,6 +59,7 @@ function observe(rewritten: boolean, scenario: Scenario) {
     remotes: {
       rankDisconnected(id: unknown) { events.push(["disconnected", id]);
         return id === "missing"; },
+      hasDeparted(id: unknown) { return scenario.departed?.includes(id as string) ?? false; },
       raceProgress(id: unknown) { events.push(["remote-progress", id]);
         return { distance: 80, lap: 1 }; },
     },
@@ -85,7 +88,8 @@ function observe(rewritten: boolean, scenario: Scenario) {
     race: { roster },
     runtime,
     rankRoster: {
-      progress(id: unknown) { events.push(["rank-progress", id]); return 4; },
+      progress(id: unknown) { events.push(["rank-progress", id]);
+        return id === "missing" ? undefined : 4; },
       out(id: unknown) { events.push(["rank-out", id]); return id === "missing"; },
     },
     views: new Map([["local", {}], ["remote", {}]]),
@@ -106,17 +110,19 @@ function observe(rewritten: boolean, scenario: Scenario) {
     camera: "camera",
   };
   const dependencies = {
-    rankByProgress(_roster: unknown, playerId: unknown,
+    rankByProgress(roster: unknown, playerId: unknown,
       progress: (id: unknown) => unknown, tints: unknown,
       finish: unknown, latency: (id: unknown) => unknown) {
+      scenario.rosters?.push(roster);
       events.push(["rank-by-progress", playerId, tints, finish,
         progress("remote"), latency("remote"), latency("missing")]);
       return scenario.ranked === false ? undefined
         : { rank: 2, rows: [{ participantId: "local" },
           { participantId: "remote" }] };
     },
-    rankFallback(_roster: unknown, playerId: unknown, tints: unknown,
+    rankFallback(roster: unknown, playerId: unknown, tints: unknown,
       latency: (id: unknown) => unknown) {
+      scenario.rosters?.push(roster);
       events.push(["rank-fallback", playerId, tints, latency("missing")]);
       return { rank: 3, rows: [{ participantId: "local" },
         { participantId: "missing" }] };
@@ -159,4 +165,16 @@ test("multiplayer rank, time gap, gauge, audio and scene publication match relea
     assert.deepEqual(observe(true, scenario), observe(false, scenario),
       JSON.stringify(scenario));
   }
+});
+
+// Not in the release: a racer out of the race before reporting any progress
+// (it never loaded, or left first) is left off the rank board so the
+// progress ranking can still form; one that raced stays on it.
+test("racers out of the race without progress are left off the rank board", () => {
+  const rosters: unknown[] = [];
+  observe(true, { ranked: false, departed: ["remote", "missing"], rosters });
+  assert.deepEqual(rosters, [
+    [{ playerId: "local", name: "L" }, { playerId: "remote", name: "R" }],
+    [{ playerId: "local", name: "L" }, { playerId: "remote", name: "R" }],
+  ]);
 });

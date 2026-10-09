@@ -172,3 +172,18 @@ test("multiplayer presenter commands, audio and room ranking match release", () 
       observe(false, method, variant), `${method}:${variant}`);
   }
 });
+
+// Not in the release: past loading, racers who have not loaded were dropped
+// by the server and count as out, like racers who left the room.
+test("racers dropped while loading are out of the rank roster", () => {
+  const present: unknown[] = [];
+  const host = {
+    resultVisible: false,
+    captureRankProgress() {},
+    rankRoster: { updatePresent(ids: Set<unknown>) { present.push([...ids]); } },
+  } as unknown as RacePresenterActionsHost;
+  const members = [{ playerId: "me" }, { playerId: "slow" }, { playerId: "fast" }];
+  updatePresenterRoom(host, { phase: "loading", race: { loadedIds: ["fast"] }, members });
+  updatePresenterRoom(host, { phase: "countdown", race: { loadedIds: ["me", "fast"] }, members });
+  assert.deepEqual(present, [["me", "slow", "fast"], ["me", "fast"]]);
+});

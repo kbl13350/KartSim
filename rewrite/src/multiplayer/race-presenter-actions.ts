@@ -121,9 +121,15 @@ export function capturePresenterRankProgress(host: RacePresenterActionsHost): vo
 }
 
 export function updatePresenterRoom(host: RacePresenterActionsHost,
-  room: { members: Array<{ playerId: unknown }> }): void {
+  room: { phase?: string; race?: { loadedIds?: readonly unknown[] };
+    members: Array<{ playerId: unknown }> }): void {
   if (host.resultVisible) return;
-  const present = new Set(room.members.map(member => member.playerId));
+  // Not in the release: past loading, a racer who has not loaded was dropped
+  // by the server and is out like one who left the room.
+  const loaded = room.phase !== undefined && room.phase !== "loading"
+    ? room.race?.loadedIds : undefined;
+  const present = new Set(room.members.map(member => member.playerId)
+    .filter(playerId => !loaded || loaded.includes(playerId)));
   host.captureRankProgress();
   host.rankRoster.updatePresent(present);
 }
