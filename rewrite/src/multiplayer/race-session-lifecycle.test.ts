@@ -214,3 +214,48 @@ test("multiplayer race session constructor stores live owners in release order",
       rewritten.chat, rewritten.notice][index], owner);
   }
 });
+
+test("item races cancel held input when the window loses focus or the page is hidden", () => {
+  const events: string[] = [];
+  const page = new EventTarget();
+  const doc = Object.assign(new EventTarget(), { visibilityState: "visible" });
+  const session = (itemMode: boolean) => ({
+    runtime: { local: { physics: { speedRaceMode: { kind: "item" }, itemMode } }, dispose() {} },
+    scene: { update() {}, render() {}, startAudio() {}, dispose() {}, resultComplete: false },
+    host: {
+      renderer: { domElement: { focus() {} } },
+      publish() {}, release() {},
+      input: { cancelAll() { events.push("cancel"); }, setEnabled() {} },
+      autoForward: { cancel() {}, setRaceState() {} },
+      touchControls: { setAutoForwardActive() {} },
+      status() {},
+      leave: () => Promise.resolve(),
+    },
+    controls: { cancel() {} },
+    active: false, disposed: false, leaving: false, resultVisible: false, now: 0,
+    showWaiting() {}, requestLeave() {}, dispose() {}, fail() {},
+  }) as unknown as RaceSessionLifecycleHost;
+  const targets = { window: page, document: doc };
+
+  const item = session(true);
+  showRaceSessionWaiting(item, () => 1200, targets);
+  events.length = 0;
+  page.dispatchEvent(new Event("blur"));
+  assert.deepEqual(events, ["cancel"], "a lost keyup can no longer leave Ctrl held");
+  doc.dispatchEvent(new Event("visibilitychange"));
+  assert.deepEqual(events, ["cancel"], "showing the page again keeps the input");
+  doc.visibilityState = "hidden";
+  doc.dispatchEvent(new Event("visibilitychange"));
+  assert.deepEqual(events, ["cancel", "cancel"]);
+  disposeRaceSession(item);
+  events.length = 0;
+  page.dispatchEvent(new Event("blur"));
+  doc.dispatchEvent(new Event("visibilitychange"));
+  assert.deepEqual(events, [], "a disposed race stops listening");
+
+  const speed = session(false);
+  showRaceSessionWaiting(speed, () => 1200, targets);
+  events.length = 0;
+  page.dispatchEvent(new Event("blur"));
+  assert.deepEqual(events, [], "speed races keep the released input behaviour");
+});

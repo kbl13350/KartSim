@@ -29,3 +29,16 @@ nitro slots, and turns them into item commands: use press, use release (or
 cancel when input is dropped), swap and change. Left and right presses are
 also reported as escape presses for a water bubble. The multiplayer session
 update routes the commands to the local race owner's `items` handler.
+
+The router tracks which sources (`keyboard:<code>`, `touch:<action>`) hold
+the use key. A second down from a source that is still held means its keyup
+was lost, so the router cancels the stale hold and starts a fresh press. A
+keyboard edge also ends touch holds and a touch edge ends keyboard holds,
+because the queue passes one kind's edges only while the other kind holds
+nothing. During item
+races the session also calls `cancelAll()` on window `blur` and when the page
+is hidden (`watchRaceSessionFocusLoss` in
+`src/multiplayer/race-session-lifecycle.ts`). The next drain is then
+`cancelled`, which cancels the router and the driving input. Speed races and
+time attack keep the released behaviour: a lost keyup there lasts only until
+that key is pressed again.
