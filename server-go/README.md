@@ -127,6 +127,19 @@ node --import tsx tools/export-economy-data.mjs --out DIR  # 写到其他目录�
 
 工具直接运行浏览器的资源库与 `loadTimeAttackGarageCatalog`，保证商店与车库目录一致（赛道表取自 `timeAttackTrackCatalog()`）。三个文件都带内容 SHA-256 版本号；目录版本就是 `GET /api/shop/catalog` 的 `ETag`。重新生成后要重新构建并重启 kart-data（`go test ./internal/data/economy` 会校验版本号与内容一致）。
 
+### 道具赛数据（概率表与道具赛道）
+
+游戏节点运行道具赛（道具个人赛 / 组队道具赛，规则见 [`../rewrite/ITEM_MODE.md`](../rewrite/ITEM_MODE.md)，协议见 [`../SERVER_PROTOCOL.md`](../SERVER_PROTOCOL.md)“本地新增：道具赛”）所需的数据 `internal/game/itemmode/itemmode.json` 同样由导出工具从 `mirror/p3553` 生成并 `go:embed` 编入 kart-game，**不要手改**：个人 `item/slot/itemProb_indi@zz.bml`（14 种）与组队 `itemProb_team2@cn.bml`（19 种）的 top/high/mid/low 权重、`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限（道具锁、天使、闪电每局 2 次，加速器不限）、这 19 种道具 `item.bml` 第一组状态的时长（毫秒）、道具房间可选的 197 条赛道（含反向与 5 条道具专用图，只保留 `track.1s` 里确有道具箱的）、随机码 3–7/0/8/30 对应的道具随机池，以及默认赛道（道具 hot1 第一条）。
+
+```sh
+cd rewrite
+node --import tsx tools/export-item-mode-data.mjs            # 重新生成 itemmode.json
+node --import tsx tools/export-item-mode-data.mjs --check    # 提交的 JSON 过期时退出码 1
+node --test tools/item-mode-export/item-mode.test.mjs        # 导出规则单测，并与 recovered/data-full 的原版表交叉核对
+```
+
+赛道筛选直接运行浏览器的赛道目录规则（`trackMetadataCatalog`、`timeAttackTrackCatalog`、`randomTrackGroupsFromBml`，保留 `isOnlyItemTrack`），再去掉 `trackLocale@cn` 中 `blocked`/`choosable="false"` 的赛道，并用前端的 `.1s` 解码器统计每个模型的 `ToItemCube` 与移动道具箱。kart-game 启动时解析它（失败则不启动）；`go test ./internal/game/itemmode` 校验版本号与内容一致。
+
 ### 限流与反向代理
 
 数据服务（数值写在 `internal/data/api/limits.go`，没有对应的环境变量）：
@@ -399,7 +412,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 ### 小屋：成就、徽章与拜访
 
-成就（原版 Career，`dialog2_newCareer`）与徽章由数据服务判定和保存；判定数据 `internal/data/career/careers.json` 由 `rewrite/tools/export-career-data.mjs` 从原版 `etc_/career/newCareer@cn.xml`、`etc_/emblem/emblem@cn.xml` 与计时赛赛道主题导出（`go test ./internal/data/career` 校验版本号，**不要手改**）。全部 1198 条成就都会列出；能统计的类型（经验、注册天数、节日登录、好友数、金币使用与持有、道具图鉴收集、徽章、小屋代表车/代表徽章、计时赛完赛、多人赛按主题与模式的胜利/完赛/未完赛、连续未完赛、按主题累计行驶距离、带回放摄像机的累计行驶距离、复合成就）实时计算进度，其余（会员、情侣、俱乐部、驾照、部件分解等）返回 `untracked:true`，永远停在未完成。行驶距离由游戏节点从运动帧的赛道进度（米）取每名车手本局的最远值（不超过“开赛后秒数×140 m/s + 100 m”，冲线后不再增加），随结算的 `distanceMeters` 上报，数据服务按赛道主题累加（单局最多 200 km；成就的 `clearValue` 单位是 0.1 km）；阵容装备里有回放摄像机（类别 12）时另记一份摄像机距离。前置成就（`preClearCareerId`）未完成时 `locked:true`。完成成就（点击完成）只发成就积分与原版 `rewardEmblemId` 徽章，原版道具奖励不发放。比赛与计时赛结算时在 `account_counters` 累加对应计数；获取 `GET /api/account` 时记录北京日期（节日登录成就）。
+成就（原版 Career，`dialog2_newCareer`）与徽章由数据服务判定和保存；判定数据 `internal/data/career/careers.json` 由 `rewrite/tools/export-career-data.mjs` 从原版 `etc_/career/newCareer@cn.xml`、`etc_/emblem/emblem@cn.xml` 与计时赛赛道主题导出（`go test ./internal/data/career` 校验版本号，**不要手改**）。全部 1198 条成就都会列出；能统计的类型（经验、注册天数、节日登录、好友数、金币使用与持有、道具图鉴收集、徽章、小屋代表车/代表徽章、计时赛完赛、多人赛按主题与模式的胜利/完赛/未完赛（竞速、无限加速与道具赛：道具赛按 gameType 2 个人 / 4 组队计，6 为道具赛全部，0 包含所有比赛；道具俱乐部赛 8 不会出现）、连续未完赛、按主题累计行驶距离、带回放摄像机的累计行驶距离、复合成就）实时计算进度，其余（会员、情侣、俱乐部、驾照、部件分解等）返回 `untracked:true`，永远停在未完成。行驶距离由游戏节点从运动帧的赛道进度（米）取每名车手本局的最远值（不超过“开赛后秒数×140 m/s + 100 m”，冲线后不再增加），随结算的 `distanceMeters` 上报，数据服务按赛道主题累加（单局最多 200 km；成就的 `clearValue` 单位是 0.1 km）；阵容装备里有回放摄像机（类别 12）时另记一份摄像机距离。前置成就（`preClearCareerId`）未完成时 `locked:true`。完成成就（点击完成）只发成就积分与原版 `rewardEmblemId` 徽章，原版道具奖励不发放。比赛与计时赛结算时在 `account_counters` 累加对应计数；获取 `GET /api/account` 时记录北京日期（节日登录成就）。
 
 | 路径 | 用途与错误 |
 | --- | --- |
@@ -705,7 +718,8 @@ server {
 | `internal/shared/rewards` | 联机比赛与计时赛奖励公式、每日上限（游戏节点与数据服务共用） |
 | `internal/data/sqlitemigrate` | 旧 SQLite 数据迁移 |
 | `internal/game/config`、`internal/game/app` | 游戏节点配置与组装 |
-| `internal/game/lobby` | 房间、赛程与特殊模式（移植自 `LobbyService`/`Room`/`GameModes`） |
+| `internal/game/lobby` | 房间、赛程与特殊模式（移植自 `LobbyService`/`Room`/`GameModes`）；道具赛的房间、赛道与 `item` 请求在 `item_mode.go` |
+| `internal/game/itemmode` | 道具赛规则（纯函数，可注入随机源）：名次组、按权重抽取与获得上限、道具槽、目标选择与 `etaMs`、道具锁、透视、刷箱检查、`useId` 与命中记录；`itemmode.json` 由 `rewrite/tools/export-item-mode-data.mjs` 生成 |
 | `internal/game/ws` | WebSocket 读写协程、请求 ID 回复、运动帧中继 |
 | `internal/game/admission` | `hello` 票据校验与 nonce 记忆 |
 | `internal/game/cluster` | 心跳、昵称占用与释放 |

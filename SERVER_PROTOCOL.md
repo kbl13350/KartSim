@@ -84,7 +84,7 @@
 | `get-room-settings` / `room-settings` | `roomId`；更新另带 `revision,name,password` | `room-settings` 或 `room` | `rewrite/src/multiplayer/lobby-settings.ts:45-65`；`rewrite/src/multiplayer/lobby-actions.ts:240-253` |
 | `chat` | `roomId,text` | `chat` 事件，内容带 `sequence,playerId,name,text` | `rewrite/src/multiplayer/lobby-actions.ts:195-205`；`rewrite/src/multiplayer/server-events.ts:22-25,94-95` |
 
-客户端还发送 `loaded`、`load-failed`、`finish`、`return-room`、`race-chat`、`team-charge`、`giant-state`、`award-motion`、`latency-reply`，高级 P2P 模式还会发送 `p2p-signal` / `p2p-relay`（`rewrite/src/multiplayer/race-start-coordinator.ts:157-172`；`rewrite/src/multiplayer/race-session.ts:134-200`；`rewrite/src/multiplayer/peer-mesh.ts:205,427`）。服务端可发出的已观察事件类型集合见 `rewrite/src/multiplayer/protocol.ts:76-81`，字段校验见 `rewrite/src/multiplayer/server-events.ts:36-127`。不认识的请求要回 `{"type":"error","requestId":"原请求 ID","code":"错误码"}`，避免客户端一直等待。
+客户端还发送 `loaded`、`load-failed`、`finish`、`return-room`、`race-chat`、`team-charge`、`giant-state`、`award-motion`、`item`（本地新增，道具赛，见下文“本地新增：道具赛”）、`latency-reply`，高级 P2P 模式还会发送 `p2p-signal` / `p2p-relay`（`rewrite/src/multiplayer/race-start-coordinator.ts:157-172`；`rewrite/src/multiplayer/race-session.ts:134-200`；`rewrite/src/multiplayer/peer-mesh.ts:205,427`）。服务端可发出的已观察事件类型集合见 `rewrite/src/multiplayer/protocol.ts:76-81`，字段校验见 `rewrite/src/multiplayer/server-events.ts:36-127`。不认识的请求要回 `{"type":"error","requestId":"原请求 ID","code":"错误码"}`，避免客户端一直等待。
 
 **本地新增：装备归属。**账号只能使用库存中未过期的物品。`create`、`join`、`equipment` 携带的 `equipment` 由游戏节点在不持有大厅锁时向数据服务核对（`/internal/v1/equipment/verify`）：含不拥有的物品时回复 `{"type":"error","code":"ITEM_NOT_OWNED"}`，命令不生效（按 Java 校验顺序在应用装备处返回）；数据服务不可达时 `DATA_SERVICE_UNAVAILABLE`。`ready`（`ready:true`）核对发送者自己的装备；`start` 重新核对缓存已过期的所有成员，不拥有者被取消准备（房间广播新的 `revision`）且 `start` 返回 `ITEM_NOT_OWNED`；`start` 时同一账号占两个座位返回 `ACCOUNT_ONLINE`。每个会话缓存核对结果：肯定结果用到 min(`validUntil`, 核对后 10 分钟)，否定结果 10 秒。需要核对的命令每个连接每秒 2 次（突发 10），超出回复 429 `RATE_LIMITED`；全节点同时最多 32 个核对，超出 `DATA_SERVICE_UNAVAILABLE`。此外每个连接的文本命令有通用限流（每秒 30 次、突发 60；`create`/`track`/`random-track`/`room-settings` 另限每秒 5 次、突发 20），超出同样回复 `RATE_LIMITED`，持续超出的连接以 1008 关闭。只核对商店出售的分类（角色、喷漆、卡丁车、宠物、气球、头饰……）与系统车：`itemIds[3]` 为 0 时由 `systemKart` 指明系统车，新手礼包的练习车是 `systemKart:"practiceKart"`；改装部件、涂装等其他槽位不核对。新账号的装备就是新手礼包：角色 `itemIds[1]` 为 2 或 3，喷漆 `itemIds[2]` 与染色 `itemIds[70]` 为 6/4/5/7 之一，`itemIds[3]=0` 加 `systemKart:"practiceKart"`。
 
@@ -113,7 +113,7 @@
 
 **本地新增 `race.rewards`：**比赛有结果后（`finished` 阶段），快照的 `race` 末尾多一个字段 `rewards`，即 `{ "<playerId>": { "exp": 88, "lucci": 120 } }`，每位载入完成的车手一项，所有玩法都有（挡人模式没有名次结果，也按 `server-go/ECONOMY.md` 2.1 的规则折算）；`race.results` 保持原样。数值已乘数据服务的奖励倍率 `KART_EXP_RATE`/`KART_LUCCI_RATE`（游戏节点从心跳响应得到，用与入账相同的 `rewards.ApplyRate` 换算），结算发给数据服务的是倍率前的基础值（另带显示时用的倍率）；数据服务乘倍率、按收到结算时的北京时间自然日套每日上限后入账（按 `raceId` 与账号幂等；完成时间早于 24 小时前的结算不发奖励），实际入账以 `GET /api/account` 为准。防刷规则只影响 `rewards`：服务器观察到的比赛时长（`finish` 到达时间 − `startAt`）不足 10 秒，或客户端 `elapsedMs` 比它短 3 秒以上的完赛按未完赛计奖；挡人模式开跑 10 秒内结束时所有人按未完赛，中途离开房间的车手没有奖励项（名次赛中完赛后才离开的照常有）；组队平局时双方都没有胜方加成（`winningTeam` 仍按原样输出）。例如倍率为 1 时两人 `speedIndiCombine` 个人赛：第 1 名经验 88、金币 120，第 2 名经验 33、金币 40；经验倍率 1.5、金币倍率 2 时第 1 名显示经验 132、金币 240。
 
-`revision` 从 1 开始，每次状态更新递增；客户端会丢弃旧版本和自己已离开的房间（`rewrite/src/multiplayer/room-state.ts:20-45`）。频道决定模式和速度：`speedIndiCombine` / `speedTeamCombine` 是速度 7，`speedIndiInfinit` / `speedTeamInfinit` 是速度 4（`rewrite/src/multiplayer/room-validation.ts:111-116`）。房间必须有 `trackId` 或 p3553 的 `randomTrackCode`；人数 2–8，成员 ID 与槽位唯一、房主必须在成员中。装备若出现必须满足完整 34 个分类和数值范围；比赛的 `roster` 每人必须有有效装备（`rewrite/src/multiplayer/room-validation.ts:193-225,344-408`）。房间阶段为 `open → loading → countdown/racing → finished`，非 `open` 阶段必须附有效 `race`。**与 Java 不同：**比赛中（`loading`/`countdown`/`racing`）有车手离开房间时不再取消整局，其他车手继续比赛、跑完为止；离开者从 `members` 消失但仍在 `roster` 中，已载入的在 `results` 中按未完赛排在最后，服务端不再等它载入或完赛；浏览器把它标为退出、隐藏它的赛车并取消碰撞。只有挡人模式载入阶段跑者离开（或已凑不齐 5 名载入车手）、或所有车手都离开时才取消（`raceError: "MEMBER_LEFT"`）。同样，`load-failed` 与载入超时只把该车手移出本局（从 `loadedIds` 删除，留在房间等下一局，之后的比赛命令返回 `NOT_RACE_PARTICIPANT`），其他人载入完即开赛；只有本局无法开始时才取消（`LOAD_FAILED`/`LOAD_TIMEOUT`）。`loading` 之后不在 `loadedIds` 中的 `roster` 车手即已被移出。详见 `server-go/DESIGN.md` 4.3。具体赛果字段、结束时限与团队得分约束见 `rewrite/src/multiplayer/room-validation.ts:305-341`。
+`revision` 从 1 开始，每次状态更新递增；客户端会丢弃旧版本和自己已离开的房间（`rewrite/src/multiplayer/room-state.ts:20-45`）。频道决定模式和速度：`speedIndiCombine` / `speedTeamCombine` 是速度 7，`speedIndiInfinit` / `speedTeamInfinit` 是速度 4（`rewrite/src/multiplayer/room-validation.ts:111-116`）；本地新增的道具频道 `itemIndiCombine`（个人）/ `itemTeamCombine`（组队）是速度 7，只用于 `gameplay:"item"`。房间必须有 `trackId` 或 p3553 的 `randomTrackCode`；人数 2–8，成员 ID 与槽位唯一、房主必须在成员中。装备若出现必须满足完整 34 个分类和数值范围；比赛的 `roster` 每人必须有有效装备（`rewrite/src/multiplayer/room-validation.ts:193-225,344-408`）。房间阶段为 `open → loading → countdown/racing → finished`，非 `open` 阶段必须附有效 `race`。**与 Java 不同：**比赛中（`loading`/`countdown`/`racing`）有车手离开房间时不再取消整局，其他车手继续比赛、跑完为止；离开者从 `members` 消失但仍在 `roster` 中，已载入的在 `results` 中按未完赛排在最后，服务端不再等它载入或完赛；浏览器把它标为退出、隐藏它的赛车并取消碰撞。只有挡人模式载入阶段跑者离开（或已凑不齐 5 名载入车手）、或所有车手都离开时才取消（`raceError: "MEMBER_LEFT"`）。同样，`load-failed` 与载入超时只把该车手移出本局（从 `loadedIds` 删除，留在房间等下一局，之后的比赛命令返回 `NOT_RACE_PARTICIPANT`），其他人载入完即开赛；只有本局无法开始时才取消（`LOAD_FAILED`/`LOAD_TIMEOUT`）。`loading` 之后不在 `loadedIds` 中的 `roster` 车手即已被移出。详见 `server-go/DESIGN.md` 4.3。具体赛果字段、结束时限与团队得分约束见 `rewrite/src/multiplayer/room-validation.ts:305-341`。
 
 真实比赛装载器还要求 `race.startSlots`：键必须恰好覆盖 `race.roster` 中的每个 `playerId`，值是互不重复的 0–7 整数起跑位。这个条件目前没有包含在 `room-validation.ts` 的静态校验里，但缺失会使浏览器在载入赛道时返回“本局缺少完整起跑位表”（`recovered/formatted/index.js:77081-77100`）。本地端到端脚本会单独检查它。
 
@@ -131,6 +131,51 @@
 | 巨人 `giant` | 个人标准速度、限定赛道；`giant-state` 按玩家序号和增长状态校验后广播 | 名次与完整赛程分别写入 `race_results`、`race_outcomes` |
 | RP `rp` | 每人收到冻结的赛车抽选；目前奖池为已确认可加载的赛车 387、390、378、361，飞宠为 0 | 同上 |
 | LTE `lte` | p3553、标准速度、三张专用赛道；本地前端启用 Web 试玩入口和 Z/X 躲闪 | 同上；自动补氮气、香蕉事件尚未完整实现 |
+| 道具赛 `item` | p3553、道具频道 `itemIndiCombine`/`itemTeamCombine`（速度 7）；只能选道具赛道（`TRACK_NOT_ITEM`），默认道具 hot1 首图；载入窗口 90 秒；道具由服务器按名次抽取，`item` 请求按玩家序号校验后广播（见下文） | 同上；`race.item` 记录规则与概率表；组队道具赛最先冲线者的队伍获胜 |
+
+### 本地新增：道具赛
+
+规则约定见 [`rewrite/ITEM_MODE.md`](rewrite/ITEM_MODE.md)；服务器数据 `server-go/internal/game/itemmode/itemmode.json` 由 `rewrite/tools/export-item-mode-data.mjs` 从原版资源导出（**不要手改**）：个人 `item/slot/itemProb_indi@zz.bml`、组队 `itemProb_team2@cn.bml` 的名次组权重，`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限，19 种道具 `item.bml` 第一组状态的时长，道具赛道表、随机池与默认赛道。
+
+**房间。** `create` 用 `channelName:"itemIndiCombine"`（`mode:"individual"`）或 `"itemTeamCombine"`（`mode:"team"`，人数为偶数）、`speed:7`、`gameplay:"item"`，需要 p3553（`RESOURCE_VERSION_UNSUPPORTED`）；道具频道只接受 `item`，`item` 只能在道具频道（都返回 `INVALID_CHANNEL`）。`list-gameplay {"gameplay":"item"}` 列出道具房间，`list-ordinary` 不含它们。新房间默认赛道是道具 hot1 组第一条有道具箱的赛道（`desert_I03`）。`track` 只接受导出的道具赛道（`track@zz` 中 `gameType="item"`、含 5 条 `isOnlyItemTrack`，去掉 `trackLocale@cn` 中 `blocked="true"`/`choosable="false"` 的，且 `track.1s`/`track_rvs.1s` 里确有道具箱；共 197 条，其中 39 条反向），其他返回 `TRACK_NOT_ITEM`；`random-track` 接受 3–7（hot1–hot5）、0（全部）、8（新图）、30（反向），开赛时从对应的道具池抽取，40（竞速随机）返回 `INVALID_TRACK`。开赛后载入窗口 90 秒。比赛快照在 `race` 最后追加 `"item":{"ruleset":"web-item-v1","table":"indi"|"team"}`。组队道具赛没有集气，`team-charge` 返回 `TEAM_GAUGE_UNAVAILABLE`。
+
+**结果。** 个人道具赛与竞速相同（按完赛时间排名，第一名冲线后 10 秒结束）。组队道具赛 `winningTeam` 是**最先冲线者**（`results` 第一名）的队伍；`teamScores` 仍按完赛积分给出（0–39，供前端校验），胜方 ×1.2 奖励跟随 `winningTeam`，积分持平也照给。数据服务把道具赛计入成就的 gameType 2（个人）/ 4（组队）、6（道具全部）和 0（全部比赛）。
+
+**名次与抽取。** 服务器按运动帧里的**当前**路线距离排名（已完赛者按完赛顺序在前，离开者不计）：第 1 名 top；其余 `p=(名次-2)/(人数-1)`，`p<1/3` high、`p<2/3` mid，否则 low；只有 1 人时 top。按名次组权重抽取；`slotLock`、`angel`、`thunderbolt` 每位车手每局最多获得 2 次，达到后从表里剔除重抽，`booster` 不受限制。
+
+**请求** `{"type":"item","roomId","raceId","sequence","action",…}`。先检查：非道具赛 `ITEM_UNAVAILABLE`，未载入 `RACE_NOT_RUNNING`；`sequence` 必须是该车手上一个序号 +1，否则 409 `INVALID_SEQUENCE`。序号一经接受即被用掉，之后无论请求成功与否都不再重用（客户端可以连续发送，不必等回复）；随后非 `racing` 阶段返回 `RACE_NOT_RUNNING`。被拒绝的道具请求只回普通错误 `{"type":"error","code"}`，不改变任何状态，**不会让比赛失败**；道具槽以最近一次成功回复里的 `slots` 为准（槽只因本人的请求变化）。已完赛的车手 `cube`/`use`/`place`/`swap` 返回 `INVALID_USE`（`hit` 仍可上报）。
+
+| `action` | 字段 | 服务器处理 | 回复（只给发送者） | 广播（房间其他成员） |
+| --- | --- | --- | --- | --- |
+| `cube` | `cubeId` 1–4096（赛道道具箱 `instanceOrdinal`）、`capacity`（道具槽数，夹到 2–3，本局第一次报告后固定） | 同一道具箱 10 秒内再次吃到且中间没吃别的箱子：不给（`abusing`）；槽满：不给（`full`）；否则按名次组抽取放进第一个空槽 | `{"action":"grant","sequence","cubeId","itemId":整数或 null,"reason"?:"abusing"\|"full","slots"}` | 无（透视期间给透视方发 `scan`） |
+| `use` | `itemId`（必须等于槽 0）、瞄准类可带 `targetId`、香蕉和水炸弹必须带 `point:{x,y,z}`（客户端坐标） | 槽 0 不是该道具 `ITEM_NOT_HELD`；被道具锁 `ITEM_LOCKED`（天使除外）；缺 `point` `INVALID_POINT`；瞄准的不是在赛对手 `INVALID_TARGET`。按下表决定 `targets`，分配 `useId`（本局从 1 递增），`startAt` 为服务器当前毫秒，追踪类按名次距离差算 `etaMs`；取走槽 0、其余前移 | 广播内容加 `sequence`、`slots` | `{"action":"used","playerId","useId","itemId","targets":[…],"startAt","etaMs","point"?}` |
+| `place` | `useId`、`point` | 路障只接受其目标（被锁定的第一名）上报落点，定时水炸弹只接受使用者上报爆点；每个 `useId` 一次，否则 `INVALID_USE` | 广播内容加 `sequence` | `{"action":"placed","useId","itemId","playerId":使用者,"point"}` |
+| `hit` | `useId`（赛道预置危险物为 0，另带 `hazardId` 1–4096）、`itemId`、`result:"hit"\|"blocked"`、可选 `by:"shield"\|"angel"\|"emp"\|"escape"` | 受害者自报：`useId` 须在 60 秒内且道具相符（`INVALID_USE`）；受害者须是该道具能打到的人（`INVALID_TARGET`，见下）；`by` 须能挡住该道具（`INVALID_BY`；`hit` 不能带 `by`）。同一受害者对同一 `useId` 只记一次，重复上报原样返回第一次的结果、不再广播；赛道危险物同一受害者 3 秒内只记一次。香蕉被第一次命中即移除（`removed:true`），之后再报 `INVALID_USE` | 广播内容加 `sequence` | `{"action":"hit","playerId":受害者,"useId","itemId","userId":使用者或 null,"result","by"?,"hazardId"?,"removed"?}` |
+| `swap` | — | 槽 0、1 都有道具时交换（道具锁期间也可以），否则 `INVALID_USE` | `{"action":"slots","sequence","slots"}` | 无 |
+| `change` | — | 道具变更卡（第 3 阶段）；目前一律 `ITEM_CHANGER_UNAVAILABLE` | — | — |
+
+所有回复与事件都是 `{"type":"item","roomId","raceId","action",…}`；`slots` 每槽一个值，空槽为 -1。服务器另发（无请求）：`{"action":"scan","playerId":被透视者,"slots","until"}`，只发给透视方队伍的在赛车手——使用透视镜时立即发一份每名在赛对手的道具槽，之后在 `until`（`startAt`+8000）之前对手道具槽每次变化都再发。所有时刻都是服务器时钟毫秒（与 `serverTick`、`startAt` 同一基准）。
+
+| 道具（idx） | `targets` | 谁可以报 `hit` | 可挡的 `by`（另可 `escape`） | 服务器时间线 |
+| --- | --- | --- | --- | --- |
+| booster 6、shield 10、emp 12 | 自己 | 无 | — | — |
+| angel 11、scanning 109 | 本队在赛车手（自己在前） | 无 | — | 透视：`until`=`startAt`+8000 |
+| magnet 5 | `targetId`（无锁定则空） | 无 | — | — |
+| rocket 7 | `targetId`（无锁定则空=哑弹） | 目标 | shield、angel | `etaMs`=距离差/100 m/s，夹到 [300, 1500] |
+| guideRocket 33 | 第一名对手 | 目标 | shield、angel | 同导弹 |
+| randomRocket 127 | 随机一名领先的对手 | 目标 | shield、angel | 同导弹 |
+| waterFly 4 | 正前方最近的对手（跳过队友） | 目标 | shield、angel | 距离差/60 m/s，夹到 [300, 2000] |
+| ufo 3 | 第一名对手 | 目标 | shield、angel、emp | 距离差/60 m/s，夹到 [300, 1500] |
+| barricade 113 | 第一名对手（由其 `place` 落点） | 使用者的对手 | shield、angel | — |
+| devil 2、slotLock 110 | 所有对手 | 目标 | —（都不挡） | 道具锁：`startAt`+2000 起锁 3000 ms，期间除天使外 `use` 返回 `ITEM_LOCKED` |
+| thunderbolt 111 | 所有领先的对手 | 目标 | angel | — |
+| cloud2 114 | 所有落后的对手 | 目标 | — | — |
+| banana 8 | 无（`point` 放置） | 任何人（含自己和队友） | shield、angel | 首次命中后移除 |
+| waterBomb 9 | 无（`point` 落点） | 使用者的对手 | angel | — |
+| timeBomb 13 | 无（使用者 `place` 爆点） | 任何人（含自己和队友） | angel | — |
+| 赛道预置 banana 8、mine 17、waterMine 37 | — | 任何人（`useId:0` + `hazardId`） | shield、angel | 同一受害者 3 秒内只记一次 |
+
+“对手”是另一队的车手（个人赛为其他所有人），且只算仍在比赛（未完赛、未退出）的车手；距离差用使用者与目标的当前路线距离。客户端在 `startAt` 之后按 `rewrite/ITEM_MODE.md` 附录 B 的时间线表现效果。
 
 赛后数据由游戏节点经本地发件箱异步提交给数据服务，按 `raceId` 幂等写入 MySQL，因此历史接口会在比赛结束后稍晚一点出现该局。可运行 `node server-special-smoke.mjs` 让真实前端校验器检查四种模式的双端协议、赛程、巨人广播、`race.rewards`、回房以及结算是否到达数据服务。脚本会注册五个测试账号（每个账号带自己的 `X-Forwarded-For`，数据服务须信任运行脚本的地址，见 `server-go/README.md`“测试”），并写入所连集群的 MySQL；请对测试部署运行。
 

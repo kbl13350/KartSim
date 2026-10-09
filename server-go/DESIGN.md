@@ -191,6 +191,8 @@ schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`
 - 心跳：每 5 秒 `PathHeartbeat`（在线玩家、房间数、容量、origin）。启动时立即注册一次。
 - 关闭（SIGINT/SIGTERM）：停止接收新连接，向所有连接发送关闭帧 1001，`PathNodeLeave`，发件箱最多冲刷 5 秒；未发出的保留在磁盘，下次启动补发。
 
+- 道具赛（本地新增，规则见 `../rewrite/ITEM_MODE.md`，协议见 `../SERVER_PROTOCOL.md`“本地新增：道具赛”）：频道 `itemIndiCombine`/`itemTeamCombine`（速度 7）只接受 `gameplay:"item"`，反之亦然（`INVALID_CHANNEL`），需要 p3553。赛道、随机池与默认赛道取自 `internal/game/itemmode/itemmode.json`（`TRACK_NOT_ITEM`；随机码 40 `INVALID_TRACK`），载入窗口 90 秒，快照 `race.item` 在 `race` 最后。运动帧除最远进度外还记录每名车手的**当前**路线距离与圈数（负载偏移 108/116），道具抽取与目标按它排名（已完赛者按完赛顺序在前）。`item` 请求全部在大厅锁内同步处理、没有计时器：每名车手一个严格 +1 的序号（接受即消耗，之后被拒绝也不回退），规则在纯包 `internal/game/itemmode`（每局一个 `itemmode.Race`，随机源每局一个 crypto 种子的 PCG，测试可经 `Options.ItemRandom` 注入）；道具锁、透视、`useId` 60 秒有效期与道具箱 10 秒刷箱检查都用时间戳在下一次请求时判断。广播用 `broadcastPeerEvent`（排除发送者），透视结果直接发给透视方队伍。服务器只决定给什么道具、打谁和何时到达；命中由受害者自报（同一 `useId` 每名受害者只记一次，香蕉首次命中即移除），道具效果在各客户端按 `startAt` 表现。组队道具赛不接受 `team-charge`，`winningTeam` 为最先冲线者的队伍（`teamScores` 照常输出），胜方加成跟随它（平分也给）。数据服务把 `gameplay:"item"`（或道具频道）的结算计入成就 gameType 2/4。
+
 ### 4.4 发件箱（outbox）
 
 目录中每条一个文件 `<20位序号>-<kind>.json`（内容 `{"path":…, "body":…}`），先写临时文件再 rename。单个工作协程按序号发送：2xx 删除；409 视为成功；其他 4xx（408、429 除外）移入 `dead/` 并记录错误；网络错误/5xx 指数退避重试（1 秒起，最长 30 秒），保持顺序。启动时扫描已有文件继续发送。
