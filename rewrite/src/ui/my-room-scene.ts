@@ -72,6 +72,59 @@ interface ParkedDisplay {
   needsGrounding: boolean;
 }
 
+/** Where a rider stands and whether it walks (the room socket's pose). */
+export interface MyRoomPose { x: number; y: number; z: number; yaw: number; moving: boolean }
+
+/** Another rider in the room: its look and riderCard slot. */
+export interface MyRoomRemoteRider {
+  id: string;
+  slot: number;
+  subject: MyRoomSceneSubject;
+  pose?: MyRoomPose;
+}
+
+/** A visitor's kart, parked at parking01-07 by riderCard slot. */
+export interface MyRoomVisitorKart {
+  id: string;
+  slot: number;
+  subject: MyRoomSceneSubject;
+}
+
+interface RemoteRider {
+  id: string;
+  slot: number;
+  key: string;
+  root: Group;
+  ground: Group;
+  walking?: WalkingAvatar;
+  target: Vector3;
+  yaw: number;
+  moving: boolean;
+  placed: boolean;
+  needsGrounding: boolean;
+  generation: number;
+}
+
+interface VisitorKart {
+  id: string;
+  slot: number;
+  key: string;
+  display?: ParkedDisplay;
+  generation: number;
+}
+
+/** Remote riders walk at most this fast towards their reported spot. */
+const REMOTE_SPEED = 3.6;
+/** Farther than this and a remote rider jumps instead of walking. */
+const REMOTE_SNAP = 8;
+/** The local pose is reported at most this often while walking. */
+const POSE_INTERVAL_MS = 100;
+
+function subjectKey(subject: MyRoomSceneSubject): string {
+  return JSON.stringify([subject.kart.path, subject.character.path, subject.profile.equipment,
+    subject.profile.garage, subject.profile.initial]);
+}
+
 /** Build the selected ordinary character with its original standing and walking motions. */
 async function loadWalkingAvatar(library: MyRoomSceneLibrary,
   subject: MyRoomSceneSubject,
@@ -144,6 +197,8 @@ export interface MyRoomSceneAnchors {
   displayParking: Vector3[];
   /** The parking01-07 row behind the plaza, by spot number; rooms may omit spots. */
   backRow: Array<Vector3 | undefined>;
+  /** rider00-07 standing spots by number (riderCard order); rooms may omit some. */
+  riders: Array<Vector3 | undefined>;
   /** The front hall's centre: the middle of the rider00-07 standing spots. */
   hall: Vector3;
   minX: number;
@@ -189,12 +244,17 @@ export function myRoomSceneAnchors(model: ParsedRoom): MyRoomSceneAnchors {
   }, []);
   const riderPoints = objects.filter(object => object.kind === "ToDummy" &&
     /^rider\d\d$/.test(object.name)).map(object => nativePoint(object.transform.position));
+  const riders = [0, 1, 2, 3, 4, 5, 6, 7].map(spot => {
+    const name = `rider0${spot}`;
+    return objects.some(object => object.kind === "ToDummy" && object.name === name)
+      ? dummy(name) : undefined;
+  });
   const hall = riderPoints.reduce((sum, point) => sum.add(point), new Vector3())
     .multiplyScalar(1 / riderPoints.length).setY(rider.y);
   const xs = [...riderPoints.map(point => point.x), parking.x];
   const zs = [...riderPoints.map(point => point.z), parking.z];
   return {
-    rider, parking, displayParking, backRow, hall,
+    rider, parking, displayParking, backRow, riders, hall,
     minX: Math.min(...xs) - 0.8,
     maxX: Math.max(...xs) + 1.2,
     minZ: Math.min(...zs) - 1,
@@ -410,7 +470,17 @@ export class MyRoomSceneView {
   private riderGroundY = 0;
   private parkingGroundY = 0;
   private subject?: MyRoomSceneSubject;
+  /** The room owner's look when visiting: its kart is parked at parking00. */
+  private owner?: MyRoomSceneSubject;
   private subjectKey?: string;
+  /** riderCard slot of the local rider: it stands at rider0<slot>. */
+  private localSlot = 0;
+  private readonly remotes = new Map<string, RemoteRider>();
+  private readonly visitorKarts = new Map<string, VisitorKart>();
+  private lastPoseSent = 0;
+  private lastPoseMoving = false;
+  /** Reports the local rider's walking (throttled) for the room socket. */
+  onLocalMove?: (pose: MyRoomPose) => void;
   private subjectGeneration = 0;
   private anchors?: MyRoomSceneAnchors;
   private frame?: MyRoomSceneFrame;
@@ -518,6 +588,10 @@ export class MyRoomSceneView {
       this.avatarNeedsGrounding = Boolean(this.avatar);
       this.kartNeedsGrounding = Boolean(this.avatar);
       this.placeSubject();
+      for (const remote of this.remotes.values()) {
+        remote.needsGrounding = true;
+        this.spawnRemote(remote);
+      }
       // The lobby camera is fixed before the rider and kart arrive.
       if (this.showcase && !this.avatar) this.placeShowcase(this.showcase);
       this.positionCamera();
@@ -545,32 +619,38 @@ export class MyRoomSceneView {
     }
   }
 
-  /** Load the same equipped model pair as Ready, then show the rider beside the parked kart. */
-  async setSubject(subject: MyRoomSceneSubject): Promise<boolean> {
+  /**
+   * Load the same equipped model pair as Ready, then show the rider beside the
+   * parked kart. When visiting, `owner` is the room owner's look: its kart is
+   * the one parked at parking00 (and paints the representative karts) while
+   * the local rider walks with its own character.
+   */
+  async setSubject(subject: MyRoomSceneSubject, owner?: MyRoomSceneSubject): Promise<boolean> {
     if (this.disposed) return false;
-    const key = JSON.stringify([subject.kart.path, subject.character.path,
-      subject.profile.equipment, subject.profile.garage, subject.profile.initial]);
+    const parked = owner ?? subject;
+    const key = JSON.stringify([subjectKey(subject), owner ? subjectKey(owner) : ""]);
     if (key === this.subjectKey && this.avatar) return true;
     const generation = ++this.subjectGeneration;
     let next: RoomAvatar | undefined;
     let nextWalking: WalkingAvatar | undefined;
     if (this.room) this.setStatus("正在加载当前人物和卡丁车…");
     try {
-      const equipment = subject.profile.equipment;
-      const [kartColors, riderColors] = await Promise.all([
+      const equipment = parked.profile.equipment;
+      const [kartColors, riderColors, ownRiderColors] = await Promise.all([
         Yb(this.library, equipment.itemIds[2] ?? 0),
         Yb(this.library, equipment.itemIds[70] ?? 0, 70),
+        Yb(this.library, subject.profile.equipment.itemIds[70] ?? 0, 70),
       ]);
       if (this.disposed || generation !== this.subjectGeneration) return false;
-      nextWalking = await loadWalkingAvatar(this.library, subject, riderColors);
+      nextWalking = await loadWalkingAvatar(this.library, subject, ownRiderColors);
       if (this.disposed || generation !== this.subjectGeneration) return false;
-      const serial = subject.kart.itemId === equipment.itemIds[3]
+      const serial = parked.kart.itemId === equipment.itemIds[3]
         ? equipment.kartSerial ?? 0 : 0;
-      next = await Jv(this.library, subject.kart, subject.character,
+      next = await Jv(this.library, parked.kart, parked.character,
         subject.environment, subject.stageBinding, new Tr(), "kart-only", {
           equipment,
-          initial: subject.profile.initial,
-          build: p5(subject.profile.garage, subject.kart.itemId, serial),
+          initial: parked.profile.initial,
+          build: p5(parked.profile.garage, parked.kart.itemId, serial),
           kartColors, riderColors,
         }, undefined, true);
       if (this.disposed || generation !== this.subjectGeneration) return false;
@@ -580,6 +660,7 @@ export class MyRoomSceneView {
       this.avatar = avatar;
       this.walkingAvatar = nextWalking;
       this.subject = subject;
+      this.owner = owner;
       this.subjectKey = key;
       next = undefined;
       nextWalking = undefined;
@@ -614,7 +695,7 @@ export class MyRoomSceneView {
   /** Replace the representative karts beside the owner's parked kart. */
   async setDisplayKarts(karts: readonly GarageCatalogEntry[]): Promise<boolean> {
     if (this.disposed || !this.subject) return false;
-    const subject = this.subject;
+    const subject = this.owner ?? this.subject;
     const generation = ++this.displayGeneration;
     const loaded: RoomAvatar[] = [];
     try {
@@ -653,6 +734,210 @@ export class MyRoomSceneView {
     } finally {
       loaded.forEach(avatar => Lt(avatar));
     }
+  }
+
+  /** Stand the local rider at rider0<slot> (its riderCard slot). */
+  setLocalSlot(slot: number): void {
+    if (this.localSlot === slot) return;
+    this.localSlot = slot;
+    if (this.avatar && this.anchors && !this.showcase) this.placeSubject();
+  }
+
+  /** The other riders in the room; riders already shown keep walking. */
+  setRemoteRiders(riders: readonly MyRoomRemoteRider[]): void {
+    if (this.disposed) return;
+    const wanted = new Set(riders.map(rider => rider.id));
+    for (const [id, remote] of this.remotes) {
+      if (!wanted.has(id)) this.removeRemote(id, remote);
+    }
+    for (const rider of riders) {
+      const key = subjectKey(rider.subject);
+      const existing = this.remotes.get(rider.id);
+      if (existing && existing.key === key) {
+        existing.slot = rider.slot;
+        continue;
+      }
+      if (existing) this.removeRemote(rider.id, existing);
+      const remote: RemoteRider = { id: rider.id, slot: rider.slot, key, root: new Group(),
+        ground: new Group(), target: new Vector3(), yaw: 0, moving: false, placed: false,
+        needsGrounding: true, generation: 0 };
+      remote.ground.rotation.x = -Math.PI / 2;
+      remote.root.add(remote.ground);
+      this.remotes.set(rider.id, remote);
+      if (rider.pose) this.moveRemoteRider(rider.id, rider.pose);
+      void this.loadRemote(remote, rider.subject);
+    }
+  }
+
+  /** A remote rider reported where it is. */
+  moveRemoteRider(id: string, pose: MyRoomPose): void {
+    const remote = this.remotes.get(id);
+    if (!remote) return;
+    remote.target.set(pose.x, pose.y, pose.z);
+    remote.yaw = pose.yaw;
+    remote.moving = pose.moving;
+    if (!remote.placed) {
+      remote.root.position.copy(remote.target);
+      remote.root.rotation.y = pose.yaw;
+      remote.placed = true;
+    }
+  }
+
+  /** Visitors' karts in the parking01-07 back row (the local rider's too). */
+  setVisitorKarts(karts: readonly MyRoomVisitorKart[]): void {
+    if (this.disposed) return;
+    const wanted = new Map(karts.map(kart => [kart.id, kart]));
+    for (const [id, kart] of this.visitorKarts) {
+      const next = wanted.get(id);
+      if (!next || next.slot !== kart.slot || subjectKey(next.subject) !== kart.key)
+        this.removeVisitorKart(id, kart);
+    }
+    for (const kart of karts) {
+      if (this.visitorKarts.has(kart.id)) continue;
+      const entry: VisitorKart = { id: kart.id, slot: kart.slot, key: subjectKey(kart.subject),
+        generation: 0 };
+      this.visitorKarts.set(kart.id, entry);
+      void this.loadVisitorKart(entry, kart.subject);
+    }
+  }
+
+  private async loadRemote(remote: RemoteRider, subject: MyRoomSceneSubject): Promise<void> {
+    const generation = ++remote.generation;
+    let walking: WalkingAvatar | undefined;
+    try {
+      const riderColors = await Yb(this.library, subject.profile.equipment.itemIds[70] ?? 0, 70);
+      walking = await loadWalkingAvatar(this.library, subject, riderColors);
+      if (this.disposed || this.remotes.get(remote.id) !== remote || generation !== remote.generation) return;
+      remote.walking = walking;
+      walking = undefined;
+      remote.ground.add(remote.walking.scene.object);
+      remote.needsGrounding = true;
+      if (!remote.placed) this.spawnRemote(remote);
+      this.scene.add(remote.root);
+    } catch (error) {
+      console.warn("小屋车手模型加载失败", error);
+    } finally {
+      walking?.scene.dispose();
+    }
+  }
+
+  private spawnRemote(remote: RemoteRider): void {
+    if (!this.anchors) return;
+    const spot = this.anchors.riders[remote.slot] ?? this.anchors.rider;
+    remote.target.copy(spot).setY(this.anchors.rider.y);
+    remote.root.position.copy(remote.target);
+    remote.placed = true;
+  }
+
+  private removeRemote(id: string, remote: RemoteRider): void {
+    remote.generation++;
+    this.remotes.delete(id);
+    remote.root.removeFromParent();
+    remote.ground.clear();
+    remote.walking?.scene.dispose();
+    remote.walking = undefined;
+  }
+
+  private async loadVisitorKart(entry: VisitorKart, subject: MyRoomSceneSubject): Promise<void> {
+    const generation = ++entry.generation;
+    let avatar: RoomAvatar | undefined;
+    try {
+      const equipment = subject.profile.equipment;
+      const [kartColors, riderColors] = await Promise.all([
+        Yb(this.library, equipment.itemIds[2] ?? 0),
+        Yb(this.library, equipment.itemIds[70] ?? 0, 70),
+      ]);
+      const serial = subject.kart.itemId === equipment.itemIds[3] ? equipment.kartSerial ?? 0 : 0;
+      avatar = await Jv(this.library, subject.kart, subject.character, subject.environment,
+        subject.stageBinding, new Tr(), "kart-only", {
+          equipment, initial: subject.profile.initial,
+          build: p5(subject.profile.garage, subject.kart.itemId, serial), kartColors, riderColors,
+        }, undefined, true);
+      if (this.disposed || this.visitorKarts.get(entry.id) !== entry || generation !== entry.generation) return;
+      const root = new Group();
+      root.add(avatar.scene);
+      entry.display = { root, avatar, ground: 0, needsGrounding: true };
+      avatar = undefined;
+      this.scene.add(root);
+      this.placeVisitorKart(entry);
+    } catch (error) {
+      console.warn("小屋访客卡丁车加载失败", error);
+    } finally {
+      if (avatar) Lt(avatar);
+    }
+  }
+
+  private placeVisitorKart(entry: VisitorKart): void {
+    const display = entry.display;
+    if (!display) return;
+    const spot = this.anchors?.backRow[entry.slot];
+    display.root.visible = !!spot;
+    if (!spot) return;
+    display.root.position.copy(spot);
+    // Back-row karts face the plaza (yaw 0 faces the room camera), front first.
+    display.root.rotation.y = 0;
+    display.root.scale.setScalar(this.environmentKartScale);
+    display.ground = this.floorMeasured ? this.floorBelow(spot) : spot.y;
+    display.needsGrounding = true;
+  }
+
+  private removeVisitorKart(id: string, entry: VisitorKart): void {
+    entry.generation++;
+    this.visitorKarts.delete(id);
+    if (entry.display) {
+      entry.display.root.removeFromParent();
+      entry.display.root.clear();
+      Lt(entry.display.avatar);
+    }
+  }
+
+  /** Move remote riders towards their reported spots and animate them. */
+  private updateRemotes(delta: number, elapsed: number): void {
+    if (!this.anchors) return;
+    const width = this.root.clientWidth;
+    const height = this.root.clientHeight;
+    for (const remote of this.remotes.values()) {
+      if (!remote.walking) continue;
+      const position = remote.root.position;
+      const offset = remote.target.clone().sub(position).setY(0);
+      const distance = offset.length();
+      if (distance > REMOTE_SNAP) position.copy(remote.target);
+      else if (distance > 0.01) position.addScaledVector(offset, Math.min(1, REMOTE_SPEED * delta / distance));
+      position.y = this.anchors.rider.y;
+      let turn = remote.yaw - remote.root.rotation.y;
+      turn = Math.atan2(Math.sin(turn), Math.cos(turn));
+      remote.root.rotation.y += turn * Math.min(1, delta * 12);
+      remote.walking.motion.submitMotion(remote.moving || distance > 0.15 ? 4 : 3);
+      remote.walking.scene.update(elapsed, this.camera, width, height);
+      if (remote.needsGrounding) {
+        const bounds = new Box3().setFromObject(remote.walking.scene.object);
+        const ground = this.riderGroundY - bounds.min.y;
+        if (Number.isFinite(ground) && Math.abs(ground) < 20) remote.ground.position.y += ground;
+        remote.needsGrounding = false;
+      }
+    }
+    for (const entry of this.visitorKarts.values()) {
+      const display = entry.display;
+      if (!display) continue;
+      display.avatar.kart.animation.updateCurrentState(elapsed);
+      T4(display.avatar, elapsed, this.camera, width, height);
+      if (display.needsGrounding && display.root.visible) {
+        const ground = display.ground - myRoomVisibleBounds(display.avatar.kart.object).min.y;
+        if (Number.isFinite(ground) && Math.abs(ground) < 20) display.root.position.y += ground;
+        display.needsGrounding = false;
+      }
+    }
+  }
+
+  /** Report the local rider's walking: while it moves, and once when it stops. */
+  private reportPose(moving: boolean, now: number): void {
+    if (!this.onLocalMove) return;
+    if (moving ? now - this.lastPoseSent < POSE_INTERVAL_MS : !this.lastPoseMoving) return;
+    this.lastPoseSent = now;
+    this.lastPoseMoving = moving;
+    const position = this.playerRoot.position;
+    this.onLocalMove({ x: position.x, y: position.y, z: position.z,
+      yaw: this.playerRoot.rotation.y, moving });
   }
 
   private clearDisplays(): void {
@@ -694,6 +979,9 @@ export class MyRoomSceneView {
     window.removeEventListener("keyup", this.onKeyUp, true);
     window.removeEventListener("blur", this.onWindowBlur);
     this.heldKeys.clear();
+    this.onLocalMove = undefined;
+    for (const [id, remote] of this.remotes) this.removeRemote(id, remote);
+    for (const [id, entry] of this.visitorKarts) this.removeVisitorKart(id, entry);
     this.avatar && Lt(this.avatar);
     this.clearDisplays();
     this.walkingAvatar?.scene.dispose();
@@ -765,6 +1053,7 @@ export class MyRoomSceneView {
       const delta = this.lastFrameTime ? Math.min(0.05, (now - this.lastFrameTime) / 1000) : 0;
       this.lastFrameTime = now;
       this.updateWalk(delta);
+      this.updateRemotes(delta, elapsed);
       this.positionCamera();
       try {
         if (this.avatar && this.subject) {
@@ -837,7 +1126,8 @@ export class MyRoomSceneView {
 
   private placeSubject(): void {
     if (!this.anchors || !this.avatar) return;
-    this.playerRoot.position.copy(this.anchors.rider);
+    const spawn = this.anchors.riders[this.localSlot] ?? this.anchors.rider;
+    this.playerRoot.position.copy(spawn).setY(this.anchors.rider.y);
     this.characterGroundRoot.position.y = 0;
     this.playerRoot.rotation.y = 0;
     this.parkedKartRoot.position.copy(this.anchors.parking);
@@ -847,6 +1137,9 @@ export class MyRoomSceneView {
     if (!this.playerRoot.parent) this.scene.add(this.playerRoot);
     if (!this.parkedKartRoot.parent) this.scene.add(this.parkedKartRoot);
     this.placeDisplays();
+    for (const entry of this.visitorKarts.values()) this.placeVisitorKart(entry);
+    this.lastPoseMoving = true; // report the new spot
+    this.reportPose(false, performance.now());
     if (this.showcase) {
       this.placeShowcase(this.showcase);
       return;
@@ -948,6 +1241,8 @@ export class MyRoomSceneView {
     this.floorCollider = myRoomCollider(this.room.object, walkArea, true);
     this.avatarNeedsGrounding = Boolean(this.avatar);
     this.kartNeedsGrounding = Boolean(this.avatar);
+    for (const remote of this.remotes.values()) remote.needsGrounding = true;
+    for (const entry of this.visitorKarts.values()) this.placeVisitorKart(entry);
     this.floorMeasured = true;
   }
 
@@ -973,9 +1268,11 @@ export class MyRoomSceneView {
         .find(([nextX, nextZ]) => this.canWalkTo(nextX!, nextZ!));
       if (step) position.set(step[0]!, this.anchors.rider.y, step[1]!);
       this.playerRoot.rotation.y = myRoomFacingYaw(dx, dz);
+      this.reportPose(true, performance.now());
     } else {
       this.walkingAvatar?.motion.submitMotion(3);
       this.playerRoot.position.y = this.anchors.rider.y;
+      this.reportPose(false, performance.now());
     }
     const desired = this.playerRoot.position.clone().add(new Vector3(0, 1.8, 0));
     this.cameraTarget.lerp(desired, Math.min(1, delta * 9));
@@ -989,7 +1286,8 @@ export class MyRoomSceneView {
     const dz = z - from.z;
     const distance = Math.hypot(dx, dz);
     if (!distance) return false;
-    const parked = [this.anchors.parking, ...this.displays
+    const parked = [this.anchors.parking, ...[...this.displays,
+      ...[...this.visitorKarts.values()].flatMap(entry => entry.display ? [entry.display] : [])]
       .filter(display => display.root.visible).map(display => display.root.position)];
     if (parked.some(spot => Math.hypot(x - spot.x, z - spot.z) <=
         1.8 * this.environmentKartScale)) return false;

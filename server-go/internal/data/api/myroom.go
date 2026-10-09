@@ -37,6 +37,7 @@ const (
 
 type careerSummary struct {
 	Nickname string               `json:"nickname"`
+	Progress progressJSON         `json:"progress"`
 	Points   int                  `json:"points"`
 	Careers  []career.Progress    `json:"careers"`
 	Recent   []store.CareerRecord `json:"recent"`
@@ -59,7 +60,8 @@ func (a *API) careerSummary(ctx context.Context, target store.Contact, owner boo
 	if err != nil {
 		return careerSummary{}, err
 	}
-	return careerSummary{Nickname: target.Nickname, Points: a.careers.Points(facts.Rewarded),
+	return careerSummary{Nickname: target.Nickname, Progress: a.progress(facts.Exp),
+		Points:  a.careers.Points(facts.Rewarded),
 		Careers: a.careers.Evaluate(facts), Recent: recent, Owner: owner}, nil
 }
 
@@ -274,8 +276,9 @@ func (b roomBackend) rider(ctx context.Context, contact store.Contact) (myroom.R
 	if err != nil {
 		return myroom.Rider{}, err
 	}
+	progress := b.a.progress(contact.Exp)
 	return myroom.Rider{AccountID: contact.AccountID, Nickname: contact.Nickname, Exp: contact.Exp,
-		Profile: myroom.ParseProfile(document)}, nil
+		Level: progress.Level, Glove: progress.Glove, Profile: myroom.ParseProfile(document)}, nil
 }
 
 func (b roomBackend) Rider(ctx context.Context, accountID string) (myroom.Rider, bool, error) {

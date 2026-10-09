@@ -9,6 +9,12 @@ import { loadLocalRiderNickname } from "../multiplayer/account-local-state";
 import type { ReadyFlowController } from "./ready-flow";
 import { selectReadyGarage, selectionKeep, type ReadyGarageController } from "./ready-garage";
 import { garageViewCatalog } from "../account/garage-ownership";
+import { activeBrowserSession } from "../account/account-runtime";
+import { currentMessenger } from "../messenger/messenger-runtime";
+import { MyRoomApi } from "../myroom/myroom-api";
+import { MyRoomConnection, myRoomSocketUrl, type RoomAppearance } from "../myroom/myroom-connection";
+import { openMessengerMessage } from "../ui/messenger-dialogs";
+import type { MyRoomSocial } from "../ui/my-room-view";
 
 /** The release GarageDialog ("我的物品") opened from the room menu. */
 interface HouseGarageView { show(): void; dispose(): void }
@@ -49,6 +55,44 @@ export function currentRoomSubject(controller: ReadyHouseController,
   if (!kart || !character) return undefined;
   return { kart, character, profile: controller.host.getProfile() as LocalProfile,
     environment, stageBinding: binding as MyRoomSceneSubject["stageBinding"] };
+}
+
+/**
+ * Another rider's look (a room member or owner) as scene models from the
+ * full garage catalog, sharing Ready's toon environment; undefined when its
+ * kart or character is not in this client's catalog.
+ */
+export function appearanceSubject(controller: ReadyHouseController, catalog: ItemInventoryCatalog,
+  appearance: RoomAppearance): MyRoomSceneSubject | undefined {
+  const environment = controller.readyToonEnvironment;
+  const binding = controller.host.toonStageBinding as
+    Partial<MyRoomSceneSubject["stageBinding"]> | undefined;
+  if (!environment || typeof binding?.beginFrame !== "function" ||
+      typeof binding.coatingTextures !== "function") return undefined;
+  const equipment = appearance.equipment;
+  const kartId = equipment.itemIds[3] ?? 0;
+  const systemKart = typeof equipment.systemKart === "string" ? equipment.systemKart : undefined;
+  const kart = catalog.karts.find(item => item.itemId === kartId &&
+    (item.itemId !== 0 || item.systemKey === systemKart));
+  const character = catalog.characters.find(item => item.itemId === equipment.itemIds[1]);
+  if (!kart || !character) return undefined;
+  return { kart, character, profile: appearance as unknown as LocalProfile,
+    environment, stageBinding: binding as MyRoomSceneSubject["stageBinding"] };
+}
+
+/** The live room services while an account is signed in. */
+function roomSocial(controller: ReadyHouseController, library: ReadyHouseLibrary,
+  catalog: ItemInventoryCatalog): MyRoomSocial | undefined {
+  const session = activeBrowserSession();
+  if (!session) return undefined;
+  return {
+    api: new MyRoomApi(session),
+    connection: new MyRoomConnection({ url: myRoomSocketUrl(session.backendOrigin),
+      token: () => session.isClosed || session.expired ? undefined : session.sessionToken }),
+    resolveAppearance: appearance => appearanceSubject(controller, catalog, appearance),
+    friends: () => currentMessenger()?.store.state?.friends.map(friend => friend.nickname) ?? [],
+    notice: (title, message) => openMessengerMessage(library as never, controller.host.root, title, message),
+  };
 }
 
 /** Keep the in-memory profile and its local/server mirror together. */
@@ -212,6 +256,7 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
       onProfileChange: profile => saveReadyHouseProfile(controller, profile),
       onOpenInventory: () => openHouseInventory(controller, library),
       onClose: () => closeReadyHouse(controller),
+      social: roomSocial(controller, library, catalog),
     });
     controller.activeHouse = view;
     try {
@@ -226,8 +271,14 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
           // The shop and 好友聊天系统 open over the room.
           if (button.dataset.taskbarButton === "상점" ||
             button.dataset.taskbarButton === "messengerButton") return;
-          if (button.getAttribute("aria-label") === "小屋")
+          if (button.getAttribute("aria-label") === "小屋") {
             event.stopImmediatePropagation();
+            // Visiting: 小屋 goes back to the player's own room.
+            if (view.visiting) {
+              view.goHome();
+              return;
+            }
+          }
           closeReadyHouse(controller);
         };
         element.addEventListener("click", onNavigation, true);

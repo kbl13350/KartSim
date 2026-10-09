@@ -23,9 +23,11 @@
 
 - `src/ui/my-room-catalog.ts` 读取原版小屋清单，只显示本地存在场景模型的环境。
 - `src/ui/my-room-scene.ts` 解析和渲染同一环境的 `track.1s`、`skydome.1s`，使用原版 `rider00` 和 `parking00` 站位放置当前人物与赛车。当前人物采用普通角色模型，待机和移动分别使用本角色容器的 `f10`、`f11`，缺失时回退到 `character_common.rho`；赛车单独展示在停车位。场景占首页上方的游戏区域、保留底部菜单，支持键盘移动、固定方向的跟随视角、滚轮缩放和主题切换。行走边界依据原版站位点范围；由于可执行文件加壳，原生碰撞和输入状态机尚不能逐分支还原。
-- `src/ui/my-room-hud.ts` 读取 `stage_myRoom.rho/mq_window@zz.bml`、`stage_stringBag.bml` 及其贴图，按 1600×900 舞台在场景上绘制原版 monocoque 界面：屋主菜单（`menuGroupOwner`）、骑手列表和聊天框。“我的物品”“管理”可用；道具组合、成就、图鉴、徽章、探险队、寻找小屋、随机进入在 Web 版没有对应功能，按原版禁用态绘制。聊天只记录在本机。
+- `src/ui/my-room-hud.ts` 读取 `stage_myRoom.rho/mq_window@zz.bml`、`stage_stringBag.bml` 及其贴图，按 1600×900 舞台在场景上绘制原版 monocoque 界面：屋主菜单（`menuGroupOwner`）或访客菜单（`menuGroupVisiter`）、骑手列表 `riderCard0..7`（等级手套、名字，屋主可踢访客）和聊天框。屋主菜单的我的物品、成就、我的徽章、管理、寻找小屋、随机进入可用（随机进入在原版 BML 里是禁用态，这里开启）；访客菜单的我的物品、查看成就、查看徽章、寻找小屋、随机进入可用；道具组合、图鉴、探险队、查看道具、查看信息仍按原版禁用态绘制。
+- 小屋是多人实时的：`src/myroom/myroom-connection.ts` 连接数据服务的 `/api/myroom/ws`，打开小屋时进入自己的小屋，寻找小屋（`dialog2_findRider`，可从好友列表选）或随机进入时换到别人的小屋，上锁的小屋弹出 `dialog2_passwordBox`。同屋的车手在场景里互相看到（`rider00-07` 站位出生、平滑走动），访客的车停在 `parking01-07` 后排；聊天、进出提示（`notifyEnter`/`notifyLeave`）走服务器。拜访时任务栏的“小屋”回到自己的小屋。
+- 成就窗口 `src/ui/my-room-career.ts` 按 `dialog2_newCareer/newCareer@zz` 原版布局自绘：成就概要、各分类标签、`careerTemplate` 成就行、全部/未完成/可完成/完成筛选与点击完成；成就文字与图标读自 `etc_/career/newCareer@cn.xml` 和 `dialog2_newCareer/icon/`，进度与完成由数据服务判定。徽章窗口 `src/ui/my-room-emblems.ts` 用 `dialog/roomEmblem` 的 `mq_dialog@zz`（屋主，可设两个代表徽章）和 `otherEmblemDialog@zz`（访客），名称与图标来自 `etc_/emblem/`。访客查看成就与徽章受屋主“车库/徽章/图鉴/成就是否公开”密码保护。
 - 小屋“我的物品”打开与 Ready 相同的原版 GarageDialog（`generated/ui.js` 的 `C7`）；确认后经 `selectReadyGarage` 重载 Ready，再重新打开小屋以更新停车位赛车和人物。
 - `src/ui/item-inventory.ts`、`item-inventory-view.ts` 是早先的网页版仓库界面，小屋已不再使用；其分类映射与加成卡等装备路径保留供后续迁移。它们把原版仓库分类和卡片状态映射到当前资源目录。目录合并 ItemTable 物品身份、商城中文名与实际模型/贴图；缺中文名但资源有效的物品使用内部名。按照本工程的玩法要求，有档案装备槽的有效资源物品全部开放装备，无需账号持有清单。锁定赛车仍可装备。加成卡（类别 32）、道具皮肤卡（58）和仪表盘卡（61）可装备并保存原版类别与编号；当前 Web 版尚未计算加成或呈现后两类比赛效果。部分其他装备类别也只保存到档案，比赛场景尚无对应外观。
 - `src/timeattack/ready-inventory.ts` 沿用 Ready 的装备与档案保存路径；本地小屋环境、星标和锁定状态随同档案保存。
 
-原版访客、聊天、抽奖、消耗品、展示车及服务器账号权限没有可直接复用的本地运行逻辑；当前 Web 版只实现可由这些资源和既有 Ready 装备系统验证的路径。小屋名称和留言是 Web 版的本地设置，不声称来自原版管理协议。
+原版抽奖、消耗品及服务器账号权限没有可直接复用的本地运行逻辑；访客、聊天、成就与徽章由本项目的数据服务实现（见 `server-go/README.md`“小屋：成就、徽章与拜访”）。小屋名称和留言是 Web 版的本地设置，不声称来自原版管理协议。

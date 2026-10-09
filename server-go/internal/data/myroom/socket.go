@@ -416,7 +416,8 @@ func (h *Hub) enter(cl *client, id, nickname string, random bool, password strin
 	h.leaveLocked(cl, "")
 	h.rooms[owner.AccountID] = r
 	m := &member{conn: cl.conn, room: r, view: MemberView{AccountID: cl.accountID, Nickname: self.Nickname,
-		Exp: self.Exp, Appearance: self.Profile.Appearance, Owner: isOwner, Slot: slot}}
+		Exp: self.Exp, Level: self.Level, Glove: self.Glove, Appearance: self.Profile.Appearance,
+		Owner: isOwner, Slot: slot}}
 	r.members[cl.accountID] = m
 	h.members[cl.accountID] = m
 	cl.member = m

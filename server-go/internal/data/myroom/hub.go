@@ -53,6 +53,8 @@ type Rider struct {
 	AccountID string
 	Nickname  string
 	Exp       int64
+	Level     int
+	Glove     string // the level glove icon (etc_/level/<glove>.png)
 	Profile   Profile
 }
 
@@ -162,6 +164,8 @@ type MemberView struct {
 	AccountID  string          `json:"accountId"`
 	Nickname   string          `json:"nickname"`
 	Exp        int64           `json:"exp"`
+	Level      int             `json:"level"`
+	Glove      string          `json:"glove"`
 	Appearance json.RawMessage `json:"appearance"`
 	Owner      bool            `json:"owner"`
 	// Slot is the rider card: 0 the owner, 1..7 visitors.
@@ -420,6 +424,7 @@ func (h *Hub) refresh(accountID string) {
 	}
 	if m := h.members[accountID]; m != nil {
 		m.view.Nickname, m.view.Exp, m.view.Appearance = rider.Nickname, rider.Exp, rider.Profile.Appearance
+		m.view.Level, m.view.Glove = rider.Level, rider.Glove
 		h.broadcastLocked(m.room, encode(map[string]any{"type": "member", "member": m.view}), nil)
 	}
 }

@@ -93,6 +93,8 @@ type Facts struct {
 	DisplayKarts int
 	Counters     map[string]int64
 	Rewarded     map[int]bool
+	// RewardedAt is when each rewarded career was completed (Unix ms).
+	RewardedAt map[int]int64
 }
 
 // Career states as the client shows them (tabDetailCombo).
@@ -113,6 +115,8 @@ type Progress struct {
 	// Untracked: this server cannot measure the condition, so the career
 	// never completes.
 	Untracked bool `json:"untracked,omitempty"`
+	// CompletedAt is when a rewarded career was completed (Unix ms).
+	CompletedAt int64 `json:"completedAt,omitempty"`
 }
 
 // Value measures a career's condition; tracked is false for condition types
@@ -239,6 +243,7 @@ func (d *Data) progress(c *Career, f Facts) Progress {
 	switch {
 	case f.Rewarded[c.ID]:
 		p.State = StateRewarded
+		p.CompletedAt = f.RewardedAt[c.ID]
 	case c.Pre != 0 && !f.Rewarded[c.Pre]:
 		p.Locked = true
 	case d.Reached(c, f):

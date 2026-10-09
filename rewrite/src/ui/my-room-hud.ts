@@ -29,12 +29,43 @@ export interface MyRoomHudAssets {
   font: FontFace;
 }
 
-export interface MyRoomHudOptions {
+/** A rider on the release rider list (riderCard0..7). */
+export interface MyRoomHudRider {
+  accountId: string;
+  nickname: string;
+  /** riderCard index: 0 the owner, 1..7 visitors. */
+  slot: number;
+  /** Level glove icon name (etc_/level/<glove>.png). */
+  glove?: string;
+}
+
+/** Who is in the room shown, and as whom the player sees it. */
+export interface MyRoomHudRoom {
+  /** The player visits another rider's room (menuGroupVisiter). */
+  visitor: boolean;
   ownerName: string;
-  /** roomAdmin "允许聊天"; when off the chat line cannot be opened. */
+  riders: readonly MyRoomHudRider[];
+}
+
+export interface MyRoomHudOptions {
+  room(): MyRoomHudRoom;
+  /** Whether the player may chat here (roomAdmin "允许聊天" binds visitors). */
   chatAllowed(): boolean;
   onOpenInventory(): void;
   onOpenAdmin(): void;
+  onCareer(): void;
+  onEmblem(): void;
+  onFindRider(): void;
+  onRandomVisit(): void;
+  /** The owner removes a visitor (the rider card's kick button). */
+  onKick(accountId: string): void;
+  /**
+   * Sends a chat line; true when the room echoes it back (it then arrives
+   * through addChatLine), false to show it locally.
+   */
+  onChat(text: string): boolean;
+  /** The level glove icon, once loaded. */
+  gloveImage(glove: string): CanvasImageSource | undefined;
   /** Walking and wheel zoom belong to the 3D scene under the overlay. */
   sceneCanvas: HTMLCanvasElement;
 }
@@ -44,11 +75,20 @@ const FONT_FAMILY = "KartSim My Room";
 /** The stage is laid out at 1600x900; the bottom 7.333% is the shared taskbar. */
 const STAGE = { x: 0, y: 0, width: 1600, height: 900 };
 const VISIBLE_HEIGHT = 900 * (1 - 0.07333333);
-/** Release owner buttons without a Web feature are drawn in their disabled state. */
-const ENABLED_BUTTONS = new Set(["garageOpen", "roomAdminOpen", "hideChat", "openChat"]);
-const SKIPPED = new Set(["menuGroupVisiter", "ScreenUI", "newItem", "userListButton",
-  "info", "kick", "glove", "chatHistoryBar"]);
+/**
+ * Menu buttons with a Web feature. The others (道具组合, 图鉴, 探险队, 查看道具,
+ * 查看信息) are drawn in their disabled state. 随机进入 is enabled here although
+ * the release BML ships it disabled.
+ */
+const OWNER_BUTTONS = new Set(["garageOpen", "myCareerOpen", "myEmblemOpen", "roomAdminOpen",
+  "findRiderOpen", "randomVisitOpen"]);
+const VISITOR_BUTTONS = new Set(["garageOpen", "careerOpen", "emblemOpen", "findRiderOpen",
+  "randomVisitOpen"]);
+const CHAT_BUTTONS = new Set(["hideChat", "openChat"]);
+const SKIPPED = new Set(["ScreenUI", "newItem", "userListButton", "info", "chatHistoryBar"]);
 const CHAT_LIMIT = 6;
+const CHAT_KEPT = 50;
+const RIDER_CARD = /^riderCard(\d)$/;
 
 const attribute = (node: MyRoomHudNode, name: string): string | undefined =>
   T(node, name) as string | undefined;
@@ -124,9 +164,14 @@ export async function loadMyRoomHudAssets(library: MyRoomHudLibrary): Promise<My
     if (SKIPPED.has(attribute(node, "name") ?? "") || node.name === "ToolTipWindow") return;
     const states = attribute(node, "autoLoadImage");
     const single = attribute(node, "texture");
-    if (states) textures.set(node, await Promise.all([1, 2, 3, 4].map(index =>
-      texture(`${states}${index}`))));
-    else if (single) textures.set(node, [await texture(single)]);
+    try {
+      if (states) textures.set(node, await Promise.all([1, 2, 3, 4].map(index =>
+        texture(`${states}${index}`))));
+      else if (single) textures.set(node, [await texture(single)]);
+    } catch (error) {
+      // A missing button image leaves that button undrawn, not the whole menu.
+      console.warn(`小屋界面缺少 ${states ?? single} 贴图`, error);
+    }
     await Promise.all(node.children.map(visit));
   };
   const font = await f5(FONT_FAMILY,
@@ -157,6 +202,8 @@ export class MyRoomHud {
   private chatting = false;
   private readonly history: string[] = [];
   private disposed = false;
+  /** The rider card being drawn (its rid, glove and kick button). */
+  private card?: MyRoomHudRider;
 
   constructor(readonly root: HTMLElement, readonly assets: MyRoomHudAssets,
     readonly options: MyRoomHudOptions) {
@@ -203,6 +250,26 @@ export class MyRoomHud {
 
   get isChatting(): boolean { return this.chatting; }
 
+  /** Forget the chat of the previous room. */
+  clearChat(): void {
+    this.history.length = 0;
+    this.render();
+  }
+
+  /** A room chat line or notice (进入/离开小屋). */
+  addChatLine(line: string): void {
+    this.history.push(line);
+    if (this.history.length > CHAT_KEPT) this.history.splice(0, this.history.length - CHAT_KEPT);
+    this.render();
+  }
+
+  /** A release string of the stage bag with its placeholder filled. */
+  string(key: string, value?: string | number): string | undefined {
+    const template = this.assets.strings.get(key);
+    return template === undefined ? undefined
+      : value === undefined ? template : formatMyRoomString(template, value);
+  }
+
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
@@ -240,16 +307,41 @@ export class MyRoomHud {
   private draw(node: MyRoomHudNode, parent: Rect): void {
     const name = attribute(node, "name") ?? "";
     if (SKIPPED.has(name) || node.name === "ToolTipWindow" || node.name === "RenderPanel") return;
+    const cardSlot = RIDER_CARD.exec(name)?.[1];
+    const outerCard = this.card;
+    if (cardSlot !== undefined)
+      this.card = this.options.room().riders.find(rider => rider.slot === Number(cardSlot));
+    try {
+      this.drawNode(node, name, parent);
+    } finally {
+      this.card = outerCard;
+    }
+  }
+
+  private buttonEnabled(name: string): boolean {
+    if (CHAT_BUTTONS.has(name)) return true;
+    if (name === "kick") return !!this.card && this.card.slot > 0 && !this.options.room().visitor;
+    return (this.options.room().visitor ? VISITOR_BUTTONS : OWNER_BUTTONS).has(name);
+  }
+
+  private drawNode(node: MyRoomHudNode, name: string, parent: Rect): void {
     if (!this.visible(node, name)) return;
     const textures = this.assets.textures.get(node);
     const rect = V0(node, parent, undefined, textures?.[0]) as Rect;
 
     if (node.name === "ImageButton" && textures) {
-      const enabled = ENABLED_BUTTONS.has(name) && attribute(node, "enable") !== "false";
-      const state = enabled ? st(name, this.hovered, this.pressed) : 3;
+      const enabled = this.buttonEnabled(name);
+      const key = name === "kick" ? `kick:${this.card?.slot}` : name;
+      const state = enabled ? st(key, this.hovered, this.pressed) : 3;
       ct(this.context, textures[state]!, rect);
-      if (enabled) this.regions.push({ key: name, rect, label: this.buttonLabel(node, name),
-        activate: () => this.activate(name) });
+      if (enabled) {
+        const rider = this.card;
+        this.regions.push({ key, rect, label: this.buttonLabel(node, name),
+          activate: () => this.activate(name, rider) });
+      }
+    } else if (name === "glove" && this.card?.glove) {
+      const image = this.options.gloveImage(this.card.glove);
+      if (image) this.context.drawImage(image, rect.x, rect.y, rect.width, rect.height);
     } else if (textures) {
       const uv = attribute(node, "uvRect")?.split(/\s+/).map(Number);
       const texture = textures[0]!;
@@ -267,7 +359,10 @@ export class MyRoomHud {
   }
 
   private visible(node: MyRoomHudNode, name: string): boolean {
-    if (name === "menuGroupOwner" || name === "riderCard0") return true;
+    if (name === "menuGroupOwner") return !this.options.room().visitor;
+    if (name === "menuGroupVisiter") return this.options.room().visitor;
+    if (RIDER_CARD.test(name)) return !!this.card;
+    if (name === "kick") return this.buttonEnabled(name);
     if (name === "chatHistory") return this.chatOpen;
     if (name === "openChat") return !this.chatOpen;
     if (name === "hideChat") return this.chatOpen;
@@ -278,14 +373,15 @@ export class MyRoomHud {
   }
 
   private text(node: MyRoomHudNode, name: string): string | undefined {
-    if (name === "rid") return this.options.ownerName;
+    if (name === "rid") return this.card?.nickname;
     const raw = attribute(node, "text");
     if (!raw) return undefined;
     const key = /^#sb\(([^)]+)\)$/.exec(raw)?.[1];
     const value = key ? this.assets.strings.get(key) : raw;
     if (value === undefined) return undefined;
-    if (name === "riderList") return formatMyRoomString(value, this.options.ownerName);
-    if (name === "riderCount") return formatMyRoomString(value, 1);
+    const room = this.options.room();
+    if (name === "riderList") return formatMyRoomString(value, room.ownerName);
+    if (name === "riderCount") return formatMyRoomString(value, Math.max(1, room.riders.length));
     return value;
   }
 
@@ -329,13 +425,19 @@ export class MyRoomHud {
   private buttonLabel(node: MyRoomHudNode, name: string): string {
     if (name === "hideChat") return "收起聊天";
     if (name === "openChat") return "展开聊天";
+    if (name === "kick") return `请${this.card?.nickname ?? ""}离开小屋`;
     const label = node.children.find(child => child.name === "Label");
     return (label && this.text(label, "")) ?? name;
   }
 
-  private activate(name: string): void {
+  private activate(name: string, rider?: MyRoomHudRider): void {
     if (name === "garageOpen") this.options.onOpenInventory();
     else if (name === "roomAdminOpen") this.options.onOpenAdmin();
+    else if (name === "myCareerOpen" || name === "careerOpen") this.options.onCareer();
+    else if (name === "myEmblemOpen" || name === "emblemOpen") this.options.onEmblem();
+    else if (name === "findRiderOpen") this.options.onFindRider();
+    else if (name === "randomVisitOpen") this.options.onRandomVisit();
+    else if (name === "kick" && rider) this.options.onKick(rider.accountId);
     else if (name === "hideChat" || name === "openChat") {
       this.chatOpen = name === "openChat";
       this.render();
@@ -347,7 +449,11 @@ export class MyRoomHud {
     if (event.key === "Enter" && !event.isComposing) {
       event.preventDefault();
       const message = this.chatInput.value.trim();
-      if (message) this.history.push(`${this.options.ownerName} : ${message}`);
+      if (message && !this.options.onChat(message)) {
+        const self = this.options.room().riders.find(rider => rider.slot === 0)?.nickname ??
+          this.options.room().ownerName;
+        this.addChatLine(`${self} : ${message}`);
+      }
       this.chatInput.value = "";
       this.options.sceneCanvas.focus();
     } else if (event.key === "Escape") {

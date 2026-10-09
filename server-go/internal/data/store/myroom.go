@@ -60,7 +60,7 @@ func (s *Store) CareerFacts(ctx context.Context, accountID string, now int64) (c
 func careerFacts(ctx context.Context, q rowsQueryer, accountID string, now int64) (career.Facts, error) {
 	f := career.Facts{LoginDates: map[string]bool{}, Collected: map[int]map[int]bool{},
 		Owned: map[int]map[int]bool{}, Emblems: map[int]bool{}, Counters: map[string]int64{},
-		Rewarded: map[int]bool{}}
+		Rewarded: map[int]bool{}, RewardedAt: map[int]int64{}}
 	var createdAt int64
 	err := q.QueryRowContext(ctx, `SELECT a.created_at, COALESCE(p.exp, 0), COALESCE(w.lucci, 0)
 		FROM accounts a LEFT JOIN account_progress p ON p.account_id = a.id
@@ -150,12 +150,13 @@ func careerFacts(ctx context.Context, q rowsQueryer, accountID string, now int64
 	}); err != nil {
 		return f, err
 	}
-	if err := each("SELECT career_id FROM account_careers WHERE account_id = ?", func(rows *sql.Rows) error {
+	if err := each("SELECT career_id, completed_at FROM account_careers WHERE account_id = ?", func(rows *sql.Rows) error {
 		var id int
-		if err := rows.Scan(&id); err != nil {
+		var at int64
+		if err := rows.Scan(&id, &at); err != nil {
 			return err
 		}
-		f.Rewarded[id] = true
+		f.Rewarded[id], f.RewardedAt[id] = true, at
 		return nil
 	}); err != nil {
 		return f, err
@@ -254,6 +255,7 @@ func (s *Store) CompleteCareer(ctx context.Context, data *career.Data, accountID
 			}
 		}
 		facts.Rewarded[careerID] = true
+		facts.RewardedAt[careerID] = now
 		result.Career = data.Progress(c, facts)
 		result.Points = data.Points(facts.Rewarded)
 		return nil

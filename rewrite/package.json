@@ -9,7 +9,7 @@
     "build": "vite build && node tools/link-build-assets.mjs",
     "verify": "npm run generate && npm run typecheck && npm test && npm run build",
     "typecheck": "tsc --noEmit",
-    "test": "node --import ./src/physics/node-raw-test-hook.mjs --import tsx --test tests/*.test.mjs src/account/*.test.ts src/app/*.test.ts src/codecs/*.test.mjs src/driving/*.test.ts src/input/*.test.ts src/messenger/*.test.ts src/multiplayer/*.test.ts src/physics/*.test.ts src/resources/*.test.mjs src/resources/*.test.ts src/shop/*.test.ts src/story/*.test.ts src/timeattack/*.test.ts src/ui/*.test.ts src/vehicle/*.test.ts src/world/*.test.mjs"
+    "test": "node --import ./src/physics/node-raw-test-hook.mjs --import tsx --test tests/*.test.mjs src/account/*.test.ts src/app/*.test.ts src/codecs/*.test.mjs src/driving/*.test.ts src/input/*.test.ts src/messenger/*.test.ts src/multiplayer/*.test.ts src/myroom/*.test.ts src/physics/*.test.ts src/resources/*.test.mjs src/resources/*.test.ts src/shop/*.test.ts src/story/*.test.ts src/timeattack/*.test.ts src/ui/*.test.ts src/vehicle/*.test.ts src/world/*.test.mjs"
   },
   "devDependencies": {
     "@babel/parser": "7.29.9",

@@ -397,6 +397,21 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 私聊消息保存 30 天；未处理的好友请求 7 天后自动拒绝，被同意或拒绝的请求卡片 7 天后删除（都由每小时的清理完成）。
 
+### 小屋：成就、徽章与拜访
+
+成就（原版 Career，`dialog2_newCareer`）与徽章由数据服务判定和保存；判定数据 `internal/data/career/careers.json` 由 `rewrite/tools/export-career-data.mjs` 从原版 `etc_/career/newCareer@cn.xml`、`etc_/emblem/emblem@cn.xml` 与计时赛赛道主题导出（`go test ./internal/data/career` 校验版本号，**不要手改**）。全部 1198 条成就都会列出；能统计的类型（经验、注册天数、节日登录、好友数、金币使用与持有、道具收集、徽章、小屋代表车/代表徽章、计时赛完赛、多人赛按主题与模式的胜利/完赛/未完赛、连续未完赛、复合成就）实时计算进度，其余（会员、情侣、俱乐部、驾照、部件分解、行驶距离等）返回 `untracked:true`，永远停在未完成。前置成就（`preClearCareerId`）未完成时 `locked:true`。完成成就（点击完成）只发成就积分与原版 `rewardEmblemId` 徽章，原版道具奖励不发放。比赛与计时赛结算时在 `account_counters` 累加对应计数；获取 `GET /api/account` 时记录北京日期（节日登录成就）。
+
+| 路径 | 用途与错误 |
+| --- | --- |
+| `GET /api/careers` | 自己的成就：`{"nickname","owner":true,"points","progress","careers":[{"id","value","state","locked?","untracked?","completedAt?"}],"recent"}`；`state` 为 `playing`/`complete`（可完成）/`rewarded`（完成），`recent` 是最近 5 条完成记录 |
+| `POST /api/careers/complete` | `{"careerId"}` → `{"career","point","points","emblem?"}`；400 `INVALID_CAREER`、404 `UNKNOWN_CAREER`、409 `CAREER_NOT_COMPLETE`/`CAREER_ALREADY_COMPLETED` |
+| `GET /api/emblems` | 自己的徽章：`{"nickname","owner":true,"emblems":[{"id","acquiredAt"}],"main":[槽0,槽1]}`（0 为空槽） |
+| `POST /api/emblems/main` | `{"main":[a,b]}` → 同上；两个都必须已拥有、不重复，第一个槽不能空着而第二个有（原版“前面徽章槽不能为空”）。400 `INVALID_MAIN_EMBLEMS`、409 `EMBLEM_NOT_OWNED` |
+| `POST /api/myroom/careers`、`/api/myroom/emblems` | 访客查看：`{"nickname","password?"}` → 与上面相同的结构（`owner:false`）。屋主设置了“车库/徽章/图鉴/成就是否公开”密码时需要密码：403 `PASSWORD_REQUIRED`/`WRONG_PASSWORD`；404 `UNKNOWN_RIDER`；密码尝试每账号每分钟 10 次 |
+| `GET /api/myroom/ws` | 小屋实时拜访的 WebSocket。第一帧 `{"type":"hello","token"}` → `{"type":"welcome","accountId","serverTime"}`。`enter`（不带参数进自己的小屋，`nickname` 进某车手的小屋，`random:true` 随机进入在线车手中未设密码、未满的小屋；`password` 为小屋密码）→ `{"type":"room","room","members","self"}`，错误码 `UNKNOWN_RIDER`/`ALREADY_HERE`/`PASSWORD_REQUIRED`/`WRONG_PASSWORD`/`ROOM_FULL`/`KICKED`（被踢后 5 分钟内）/`CANNOT_ENTER`（被屋主屏蔽）/`RANDOM_FAILED`。`move`（`x,y,z,yaw,moving`，每秒最多 15 次）、`chat`（1–60 字；屋主关闭聊天时访客 `CHAT_DISABLED`，刷屏 `CHAT_FLOOD`）、`kick`（屋主）、`leave`、`ping`。推送 `joined`、`left`、`moved`、`chat`、`settings`（屋主保存档案或代表徽章后）、`member`、`kicked`、`left-room`（同一账号在别的标签页进了小屋）。每个小屋最多 8 人（屋主固定 riderCard0），一个账号同时只在一个小屋；关闭码 4001 会话结束、1008 刷屏或缓冲溢出 |
+
+小屋设置（环境、名称、代表车、聊天开关、两组密码）仍保存在账号档案 `myRoom` 中；数据服务读取它来判断访客能否进入，响应里只带 `locked`/`etcLocked`，不返回密码。
+
 账号、档案与历史接口的校验规则、错误码与 Java 版一致；密码哈希格式（PBKDF2-SHA256，120000 次）与会话摘要格式也相同，因此旧数据可以直接迁移。
 
 ### 游戏节点（`:8788` 等）
@@ -443,6 +458,8 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `admin_grants` | 管理员发放记录（管理员 + `requestId` → 账号、货币、数额），保证 `requestId` 只代表一次发放 |
 | `messenger_settings`、`friendships`、`friend_requests`、`account_blocks` | 好友私聊设置（拒绝好友请求、拒绝游戏邀请、隐身）、好友关系（每一方一行，含收藏）、好友请求及其结果、屏蔽 |
 | `private_messages`、`private_conversations` | 私聊消息（30 天，按发送者 + `clientId` 去重）、每个账号的会话列表（最后一条、已读位置、未读数、清除标记、隐藏） |
+| `account_counters`、`account_login_days` | 成就计数（多人赛按模式与赛道主题的胜利/完赛/未完赛、连续未完赛、计时赛完赛）、登录过的北京日期 |
+| `account_careers`、`account_emblems` | 已完成的成就（完成时间）、拥有的徽章（来源、代表徽章槽 `main_slot`） |
 
 `timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4。
 
