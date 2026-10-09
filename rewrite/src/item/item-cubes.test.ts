@@ -224,6 +224,33 @@ test("the local kart eats a cube, which hides for Eaten.life and comes back", as
   assert.ok(log.sounds.every(sound => sound.stopped));
 });
 
+test("a kart that crosses a cube between two frames still eats it; a jump does not", async () => {
+  const log: Log = { calls: [], scenes: [], sounds: [] };
+  const field = await loadItemCubeField("lib", source([cube(1, [0, 50, 0]), cube(2, [0, 300, 0])]),
+    "env", "stage", context, undefined, fakeOps(log));
+  const coordinator = world();
+  let kart: ItemVec3 = { x: 0, y: 0, z: -40 };
+  const pickups: number[] = [];
+  field.attach(coordinator, () => kart, () => true, id => pickups.push(id));
+  const [contact] = coordinator.objects;
+  const frame = (now: number) => { contact!.slot13(coordinator.kart, now); contact!.slot12(now); };
+  frame(1000);
+  // 200 km/h through a 100 ms frame: both samples outside the 2 m pickup radius of cube 1 (z -50).
+  kart = { x: 0, y: 0, z: -47.2 };
+  frame(1100);
+  assert.deepEqual(pickups, []);
+  kart = { x: 0, y: 0, z: -52.8 };
+  frame(1200);
+  assert.deepEqual(pickups, [1]);
+  // A reset jump across cube 2 (z -300) is not a drive.
+  kart = { x: 0, y: 0, z: -290 };
+  frame(3000);
+  kart = { x: 0, y: 0, z: -310 };
+  frame(3016);
+  assert.deepEqual(pickups, [1]);
+  field.dispose();
+});
+
 test("update spins standing cubes and moves moving cubes with their anchors", async () => {
   const log: Log = { calls: [], scenes: [], sounds: [] };
   const anchor = { kind: "node" };

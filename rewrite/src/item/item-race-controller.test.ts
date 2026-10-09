@@ -914,6 +914,29 @@ test("two time bombs used close together both explode where I am", async () => {
   assert.deepEqual(h.connection.of("place").map(place => place.useId), [101]);
 });
 
+test("a fast kart or a long frame cannot step over a banana", () => {
+  const f = controllerFixture();
+  serve(f);
+  at(f, 0);
+  used(f, { useId: 60, itemId: ItemIdx.banana, startAt: server(0),
+    point: threeToClient({ x: 0, y: 0, z: 100 }) });
+  used(f, { useId: 61, itemId: ItemIdx.banana, startAt: server(0),
+    point: threeToClient({ x: 0, y: 0, z: 300 }) });
+  // 200 km/h through a 100 ms frame: both samples outside the 2 m radius.
+  f.physics.body.position = { x: 0, y: 0, z: 97.2 };
+  at(f, 1100);
+  assert.equal(f.connection.of("hit").length, 0);
+  f.physics.body.position = { x: 0, y: 0, z: 102.8 };
+  at(f, 1200);
+  assert.deepEqual(f.connection.of("hit"), [{ useId: 60, itemId: 8, result: "hit" }]);
+  // A reset or warp jump is not a drive: the banana it passes is not hit.
+  f.physics.body.position = { x: 0, y: 0, z: 290 };
+  at(f, 3200);
+  f.physics.body.position = { x: 0, y: 0, z: 310 };
+  at(f, 3216);
+  assert.equal(f.connection.of("hit").length, 1);
+});
+
 test("a spin or barricade the held kart cannot take is not reported; the banana stays", () => {
   const f = controllerFixture();
   serve(f);

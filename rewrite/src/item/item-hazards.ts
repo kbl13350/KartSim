@@ -4,12 +4,14 @@ import {
   type ItemTrackModel, type ItemTrackObject, type ItemVec3,
 } from "./item-cube-source";
 import type { ItemPairObject, ItemPairWorld, ItemWorldMatrix } from "./item-cubes";
+import { sweepOrigin, sweptThrough } from "./item-race-rules";
 
 /**
  * Pre-placed item hazards (track bananas, mines, hidden mines and water
  * mines). Their visuals are the movables' own nested scenes, which the item
  * race admits into the track scene; this module only tracks where they are and
- * reports when the local kart enters one.
+ * reports when the local kart enters one — also when it crossed one between
+ * two frames (a fast kart or a long frame), but not across a reset or warp jump.
  */
 
 export type ItemHazardKind = "banana" | "mine" | "mineHidden" | "waterMine";
@@ -143,6 +145,7 @@ class HazardField implements ItemHazardField {
     this.attached = true;
     if (this.entries.length === 0) return;
     const cooldown = this.source.cooldownMs;
+    let last: { position: ItemVec3; atMs: number } | undefined;
     const contact: ItemPairObject = {
       name: "GoItemHazard[]",
       category: 2,
@@ -152,7 +155,9 @@ class HazardField implements ItemHazardField {
       slot13: (peer, nowMs) => {
         if (this.disposed || !world.isKartPeer(peer)) return;
         const now = nowMs >>> 0;
-        const kart = kartPosition();
+        const kart = { ...kartPosition() };
+        const from = last ? sweepOrigin(last.position, kart, (now - last.atMs) >>> 0) : undefined;
+        last = { position: kart, atMs: now };
         const allowed = canTrigger();
         for (const entry of this.entries) {
           const dx = Math.fround(kart.x - entry.position.x);
@@ -161,7 +166,8 @@ class HazardField implements ItemHazardField {
           const distance = Math.fround(Math.sqrt(Math.fround(
             Math.fround(Math.fround(dx * dx) + Math.fround(dy * dy)) + Math.fround(dz * dz))));
           const inside = Number.isFinite(distance) && distance <= entry.descriptor.radius;
-          const entered = inside && !entry.inside;
+          const entered = !entry.inside &&
+            (inside || sweptThrough(from, kart, entry.position, entry.descriptor.radius));
           // The inside flag follows the kart even while triggers are suppressed,
           // so a kart released inside a hazard has to leave and re-enter it.
           entry.inside = inside;

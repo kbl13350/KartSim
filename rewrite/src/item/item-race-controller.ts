@@ -26,8 +26,8 @@ import type {
 } from "./item-race-presenter-contract";
 import {
   ITEM_RACE_TUNING, bananaPoint, chooseAimTarget, clientToThreePoint, decideHit, distance,
-  effectStartOffsetMs, kartEffectOf, physicsEffect, projectToStage, teamColor, threeToClient,
-  victimsText, warningOf, waterBombPoint,
+  effectStartOffsetMs, kartEffectOf, physicsEffect, projectToStage, sweepOrigin, sweptThrough,
+  teamColor, threeToClient, victimsText, warningOf, waterBombPoint,
   type PhysicsItemEffect, type ProjectionCamera, type Vec3,
 } from "./item-race-rules";
 import { EMPTY_SLOT, ItemSlotMirror, sameSlots } from "./item-race-slots";
@@ -243,6 +243,8 @@ export class ItemRaceController implements ItemCommandHandler {
   private boosterToken: number | undefined;
   private pullToken: number | undefined;
   private resyncing = false;
+  /** The kart at the last area check, for the swept check. */
+  private areaSweep: { position: Vec3; atMs: number } | undefined;
   private readonly unsubscribe: () => void;
 
   constructor(options: ItemRaceControllerOptions) {
@@ -405,6 +407,7 @@ export class ItemRaceController implements ItemCommandHandler {
     this.localTrap = undefined;
     this.boosterToken = undefined;
     this.pullToken = undefined;
+    this.areaSweep = undefined;
     this.infoCard = undefined;
     this.abuseUntil = undefined;
     this.reorderStartedAt = undefined;
@@ -998,16 +1001,26 @@ export class ItemRaceController implements ItemCommandHandler {
     }
   }
 
+  /**
+   * Area items against the local kart, once per frame before the physics. The
+   * kart's path since the last check counts, not only where it is now, so a
+   * fast kart or a long frame cannot step over a banana (a reset or warp jump
+   * is not a path: `sweepOrigin`).
+   */
   private checkAreas(nowMs: number): void {
+    const position = { ...this.localPose().position };
+    const previous = this.areaSweep;
+    this.areaSweep = { position, atMs: nowMs };
     if (this.options.local.suspended() || this.options.physics.itemEffects?.immune) return;
-    const position = this.localPose().position;
+    const from = previous ? sweepOrigin(previous.position, position, nowMs - previous.atMs) : undefined;
     for (const area of this.areas.values()) {
       if (!area.point || this.reported.has(area.useId)) continue;
       const late = area.lateCheck === true;
       area.lateCheck = false;
       if (!late && (nowMs < area.activeFrom || nowMs > area.activeUntil)) continue;
       if (area.ownerGraceUntil !== undefined && nowMs < area.ownerGraceUntil) continue;
-      if (distance(position, area.point) > area.radius) continue;
+      if (distance(position, area.point) > area.radius &&
+          !sweptThrough(from, position, area.point, area.radius)) continue;
       this.resolveHit({ useId: area.useId, itemId: area.itemId, userId: area.userId,
         behaviour: area.behaviour, effectAt: nowMs, position: area.point }, nowMs, "area");
     }
@@ -1271,6 +1284,7 @@ export class ItemRaceController implements ItemCommandHandler {
     this.empUntil = 0;
     this.bombs.clear();
     this.localTrap = undefined;
+    this.areaSweep = undefined;
     this.infoCard = undefined;
   }
 

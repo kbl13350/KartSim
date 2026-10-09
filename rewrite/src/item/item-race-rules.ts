@@ -44,6 +44,13 @@ export const ITEM_RACE_TUNING = Object.freeze({
   logRows: 6,
   /** Uses are forgotten after the server's use lifetime. */
   useLifetimeMs: 60_000,
+  /**
+   * Swept area, hazard and cube checks: a move between two frames faster than
+   * this (plus the slack) is a reset or warp jump, not a drive, and only its
+   * end point counts.
+   */
+  sweepMaxSpeedMps: 120,
+  sweepSlackM: 1,
 });
 
 /** Inverse of W's clientToThree (x, z, -y): three.js → client z-up coordinates. */
@@ -58,6 +65,36 @@ export function clientToThreePoint(point: Vec3): Vec3 {
 
 export function distance(a: Vec3, b: Vec3): number {
   return Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
+}
+
+/** Distance from `point` to the segment from `a` to `b`. */
+export function segmentDistance(a: Vec3, b: Vec3, point: Vec3): number {
+  const dx = b.x - a.x, dy = b.y - a.y, dz = b.z - a.z;
+  const lengthSquared = dx * dx + dy * dy + dz * dz;
+  const t = lengthSquared > 0 ? Math.min(1, Math.max(0,
+    ((point.x - a.x) * dx + (point.y - a.y) * dy + (point.z - a.z) * dz) / lengthSquared)) : 0;
+  return Math.hypot(a.x + dx * t - point.x, a.y + dy * t - point.y, a.z + dz * t - point.z);
+}
+
+/**
+ * The previous frame's kart position when the move to `to` in `elapsedMs`
+ * could have been driven; undefined without one or after a reset or warp jump.
+ */
+export function sweepOrigin(from: Vec3 | undefined, to: Vec3, elapsedMs: number): Vec3 | undefined {
+  if (!from || !(elapsedMs >= 0)) return undefined;
+  const reach = ITEM_RACE_TUNING.sweepMaxSpeedMps * elapsedMs / 1000 + ITEM_RACE_TUNING.sweepSlackM;
+  return distance(from, to) <= reach ? from : undefined;
+}
+
+/**
+ * Area, hazard and cube checks run once per frame. A kart that started the
+ * frame outside a radius and crossed it on its way to `to` touched it too,
+ * although both samples are outside (a fast kart or a long frame stepping
+ * over a 4 m banana). A start already inside was checked last frame.
+ */
+export function sweptThrough(from: Vec3 | undefined, to: Vec3, point: Vec3, radius: number): boolean {
+  if (!from || !(distance(from, point) > radius)) return false;
+  return segmentDistance(from, to, point) <= radius;
 }
 
 const add = (a: Vec3, b: Vec3, scale = 1): Vec3 =>

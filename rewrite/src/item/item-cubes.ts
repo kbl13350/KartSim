@@ -1,5 +1,6 @@
 import type { ItemCubeDescriptor, ItemCubeSource, ItemVec3 } from "./item-cube-source";
 import { clientToThree } from "./item-cube-source";
+import { sweepOrigin, sweptThrough } from "./item-race-rules";
 
 /**
  * Item cubes (道具箱) for one item race. All cubes of a track share one
@@ -289,6 +290,7 @@ class CubeField<Archive> implements ItemCubeField {
     if (this.entries.length === 0) return;
     const radius = this.source.radius;
     const lifeMs = this.source.eatenLifeMs;
+    let last: { position: ItemVec3; atMs: number } | undefined;
     const contact: ItemPairObject = {
       name: "GoItemCube[]",
       category: 2,
@@ -315,9 +317,15 @@ class CubeField<Archive> implements ItemCubeField {
         this.play();
         for (const id of eaten) onPickup(id);
       },
-      slot13: peer => {
-        if (this.disposed || !world.isKartPeer(peer) || !canCollect()) return;
-        const kart = kartPosition();
+      slot13: (peer, nowMs) => {
+        if (this.disposed || !world.isKartPeer(peer)) return;
+        // The kart's path since the last frame counts too (a fast kart or a
+        // long frame), but not a reset or warp jump.
+        const now = nowMs >>> 0;
+        const kart = { ...kartPosition() };
+        const from = last ? sweepOrigin(last.position, kart, (now - last.atMs) >>> 0) : undefined;
+        last = { position: kart, atMs: now };
+        if (!canCollect()) return;
         for (const entry of this.entries) {
           if (entry.state !== "stay") continue;
           const dx = Math.fround(kart.x - entry.position.x);
@@ -325,7 +333,8 @@ class CubeField<Archive> implements ItemCubeField {
           const dz = Math.fround(kart.z - entry.position.z);
           const distance = Math.fround(Math.sqrt(Math.fround(
             Math.fround(Math.fround(dx * dx) + Math.fround(dy * dy)) + Math.fround(dz * dz))));
-          if (Number.isFinite(distance) && distance <= radius) entry.state = "pending";
+          if ((Number.isFinite(distance) && distance <= radius) ||
+              sweptThrough(from, kart, entry.position, radius)) entry.state = "pending";
         }
       },
       commit: () => {},

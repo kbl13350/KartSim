@@ -121,6 +121,28 @@ test("a hazard fires when the local kart enters it, then rests for the cooldown"
   assert.equal(hits.length, 3);
 });
 
+test("a kart that crosses a hazard between two frames still fires it; a jump does not", () => {
+  const source = createItemHazardSource(model([movable("banana", 9, { type: "banana" }, [0, 50, 0])]), catalog);
+  const field = createItemHazardField(source, undefined);
+  const coordinator = world();
+  let kart: ItemVec3 = { x: 0, y: 0, z: -35 };
+  const hits: ItemHazardHit[] = [];
+  field.attach(coordinator, () => kart, () => true, hit => hits.push(hit));
+  const pair = (now: number) => coordinator.objects[0]!.slot13(coordinator.kart, now);
+  pair(1000);
+  // A reset jump across the banana at z -50 (30 m in one 16 ms frame) is not a drive.
+  kart = { x: 0, y: 0, z: -65 };
+  pair(1016);
+  assert.equal(hits.length, 0);
+  // 200 km/h through a 100 ms frame: both samples outside its 2 m radius.
+  kart = { x: 0, y: 0, z: -52.8 };
+  pair(2000);
+  assert.equal(hits.length, 0);
+  kart = { x: 0, y: 0, z: -47.2 };
+  pair(2100);
+  assert.deepEqual(hits.map(hit => hit.id), [9]);
+});
+
 test("a track without hazards registers no contact", () => {
   const field = createItemHazardField(createItemHazardSource(model([]), catalog), undefined);
   const coordinator = world();
