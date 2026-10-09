@@ -382,10 +382,8 @@ var migrations = []migration{
 			CONSTRAINT fk_private_conversations_peer FOREIGN KEY (peer_id) REFERENCES accounts (id) ON DELETE CASCADE
 		) ` + tableTail,
 	}},
-	// My Room careers and emblems. TODO(myroom-social): renumber to the next
-	// free version when this branch merges; 100 keeps it clear of versions
-	// added on main meanwhile (shared development databases).
-	{version: 100, statements: []string{
+	// My Room careers and emblems.
+	{version: 5, statements: []string{
 		// Race and time-attack tallies the careers count (career.RaceCounter).
 		`CREATE TABLE IF NOT EXISTS account_counters (
 			account_id CHAR(36) ` + idColumn + ` NOT NULL,
