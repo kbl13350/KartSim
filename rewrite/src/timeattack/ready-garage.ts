@@ -120,6 +120,9 @@ export async function openReadyGarage(controller: ReadyGarageController,
       library, root: host.root, stageBinding: host.toonStageBinding,
       environment, catalog, profile: host.getProfile(),
       selectedKartItemId: selection.vehicleItemId,
+      // System karts (the starter practice kart) all have item id 0.
+      selectedKartSystemKey: selection.vehicleSystemKey,
+      selectedKartPath: selection.vehiclePath,
       selectedCharacterItemId: selection.characterItemId,
       onConfirm: (choice: GarageChoice) => {
         close();

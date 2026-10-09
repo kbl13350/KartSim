@@ -128,6 +128,18 @@ test("classic garage callbacks and close sequence match release", async () => {
   assert.deepEqual(await run(false), await run(true));
 });
 
+test("classic garage opens on the selected system kart, which has item id 0", async () => {
+  const item = fixture();
+  const { controller, deps } = item;
+  const selection = { ...controller.host.getSelection()!, vehicleItemId: 0,
+    vehicleSystemKey: "practiceKart", vehiclePath: "kart_/practiceKart/model.1s" };
+  await openReadyGarage(controller, selection, controller.host.getReadyOptions(), deps);
+  const viewOptions = item.getViewOptions();
+  assert.equal(viewOptions.selectedKartItemId, 0);
+  assert.equal(viewOptions.selectedKartSystemKey, "practiceKart");
+  assert.equal(viewOptions.selectedKartPath, "kart_/practiceKart/model.1s");
+});
+
 test("classic selection rollback and immediate garage selection match release", async () => {
   async function run(release: boolean) {
     const item = fixture(true);
