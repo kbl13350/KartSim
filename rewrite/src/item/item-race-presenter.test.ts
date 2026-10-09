@@ -507,6 +507,26 @@ test("the magnet field points at its target and ends with the pull", async () =>
   assert.deepEqual(models(presenter), []);
 });
 
+test("my own magnet field turns to the locked target once the use names it", async () => {
+  const { presenter, at } = await setup();
+  const toC = [30 / Math.hypot(30, 100), 0, 100 / Math.hypot(30, 100)];
+  // The physics pull starts at the release, a round trip before the reply.
+  presenter.kartEffect("A", "pull", 0, 3000);
+  at(16);
+  assert.ok(nearVec(shown(presenter)[0]!.forward, [0, 0, 1]));
+  presenter.used({ useId: 22, itemId: ItemIdx.magnet, userId: "A", targets: ["C"], startMs: 40, etaMs: 0 });
+  at(100);
+  const fields = shown(presenter);
+  assert.deepEqual(fields.map(entry => entry.model), ["item/magnet/item01.1s"]);
+  assert.ok(nearVec(fields[0]!.forward, toC), JSON.stringify(fields[0]));
+  // A pull started with its target faces it at once, and a restart without one keeps it.
+  at(4000);
+  presenter.kartEffect("A", "pull", 5000, 3000, { target: "C" });
+  presenter.kartEffect("A", "pull", 5010, 3000);
+  at(5016);
+  assert.ok(nearVec(shown(presenter)[0]!.forward, toC));
+});
+
 test("a self effect the controller already ended is not brought back by the late use reply", async () => {
   const { presenter, at } = await setup();
   const balloon = "item/waterBomb/item00.1s#carriedBalloon";

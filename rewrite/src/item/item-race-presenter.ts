@@ -90,7 +90,13 @@ export interface ItemRacePresenter {
   hit(event: ItemPresenterHit): void;
   /** A placed object is gone (a banana that was run over). */
   removed(useId: number): void;
-  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number): void;
+  /**
+   * `target` (pull only) is the racer the magnet pulls toward: its field faces
+   * that kart. Without it the field faces the kart's nose until a `used` of the
+   * magnet names its target.
+   */
+  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number,
+    options?: { target?: string }): void;
   endKartEffect(playerId: string, kind: ItemKartEffect): void;
   sound(itemId: number, stem: string,
     options?: { position?: ItemPresenterVec3; key?: string; loop?: boolean }): void;
@@ -193,7 +199,8 @@ interface FxVisual {
   anchorMs: number;
   showMs: number;
   endMs: number;
-  readonly place: Placer;
+  /** Replaced when a later start of a kart effect knows more (the magnet's target). */
+  place: Placer;
   instance?: FxInstance;
 }
 
@@ -375,7 +382,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     this.cancel(useGroup(useId));
   }
 
-  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number): void {
+  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number,
+    options: { target?: string } = {}): void {
     if (this.disposed || NO_KART_VISUAL.has(kind)) return;
     const end = startMs + Math.max(0, durationMs);
     const item = (name: string) => [...this.plan.items.values()].find(fx => fx.name === name);
@@ -408,7 +416,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       }
       case "pull": {
         const magnet = item("magnet");
-        if (magnet?.kind === "magnet") this.slot(playerId, kind, startMs, end - startMs, magnet.field);
+        if (magnet?.kind === "magnet") this.slot(playerId, kind, startMs, end - startMs, magnet.field,
+          { target: options.target });
         return;
       }
       case "shield":
@@ -663,9 +672,11 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
 
   /**
    * One visual per racer and effect: a second start while it runs only moves
-   * its end (and does not replay its sound). `fromUse` marks a start from a
-   * `used` event, which never brings back the local racer's own effect that
-   * the controller already ended.
+   * its end (and does not replay its sound); one that names a `target` also
+   * turns it toward that kart (the local racer's own magnet starts with the
+   * physics pull, before the use's reply names its target). `fromUse` marks a
+   * start from a `used` event, which never brings back the local racer's own
+   * effect that the controller already ended.
    */
   slot(playerId: string, kind: SlotKind, startMs: number, durationMs: number,
     model: FxModel | undefined, options: { sound?: FxSound; after?: FxModel; afterSound?: FxSound;
@@ -675,6 +686,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     const existing = this.slots.get(key);
     if (existing && existing.endMs > Math.max(startMs, this.nowMs) && existing.main && !this.ended(existing.main)) {
       this.retimeSlot(existing, end);
+      if (options.target) existing.main.place = this.facing(playerId, options.target);
       return;
     }
     if (options.fromUse && this.endedOwnEffect(key, playerId, startMs)) return;
