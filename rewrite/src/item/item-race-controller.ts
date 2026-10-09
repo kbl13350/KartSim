@@ -7,8 +7,10 @@
  * time bomb, barricade) against the local kart, reports hits and placements,
  * and feeds the item HUD and the item presenter.
  *
- * Nothing here may break the race: every entry point catches and logs, and a
- * rejected request only restores the last confirmed slots.
+ * Nothing here may break the race: every entry point catches and logs. A
+ * rejected use restores the last confirmed slots and takes back the effects
+ * it started on the key press; a rejection that may mean the slots drifted
+ * from the server's asks the server for them again.
  */
 import type { ItemCommand, ItemCommandHandler } from "../input/item-input";
 import type {
@@ -67,6 +69,8 @@ export interface ItemRacePhysics {
   readonly itemSlotCapacity: number;
   setItemSlots(slots: readonly number[]): void;
   startItemBooster(): boolean;
+  /** Take back a booster item the server refused (driving/item-mode.ts). */
+  cancelItemBooster?(): boolean;
   readonly body: ItemPresenterPose & { linearVelocity: Vec3 };
   readonly itemEffects?: ItemRaceEffects;
 }
@@ -175,6 +179,16 @@ interface OwnTimeBomb {
 
 interface TimeWindow { from: number; until: number }
 
+const NO_UNDO = (): void => {};
+
+/**
+ * Rejections after which my slots may differ from the server's (a reply was
+ * lost or could not be read, or slot 0 was not what I showed): error replies
+ * carry no slots, so the controller asks for them (`slots`).
+ */
+const LOST_REPLY_CODES: ReadonlySet<string> = new Set(["INVALID_ITEM_EVENT", "INVALID_SEQUENCE"]);
+const SLOT_DOUBT_CODES: ReadonlySet<string> = new Set([...LOST_REPLY_CODES, "ITEM_NOT_HELD", "INVALID_USE"]);
+
 const AIM_SOUND_KEY = "item-aim";
 const AIM_SOUND_STEMS = ["aiming", "inrange", "ontarget", "misfire"] as const;
 const AIM_PHASE_INDEX: Readonly<Record<ItemAimPhase, number>> = { aiming: 0, inrange: 1, ontarget: 2 };
@@ -191,6 +205,8 @@ export class ItemRaceController implements ItemCommandHandler {
   readonly areas = new Map<number, AreaRecord>();
   readonly reported = new Set<number>();
   readonly scans = new Map<string, { slots: readonly number[]; until: number }>();
+  /** My time bombs by request token, each placed when it explodes. */
+  readonly bombs = new Map<number, OwnTimeBomb>();
   readonly notices: ItemHudNotice[] = [];
   readonly log: ItemHudLogEntry[] = [];
   readonly lockWindows: TimeWindow[] = [];
@@ -200,7 +216,6 @@ export class ItemRaceController implements ItemCommandHandler {
   empUntil = 0;
   aim: AimState | undefined;
   aimScreen: { x: number; y: number } | undefined;
-  bomb: OwnTimeBomb | undefined;
   infoCard: { itemIdx: number; until: number } | undefined;
   abuseUntil: number | undefined;
   reorderStartedAt: number | undefined;
@@ -212,6 +227,12 @@ export class ItemRaceController implements ItemCommandHandler {
   private slotChangerPending = false;
   private statusMessage: string | undefined;
   private escapeShieldShown = false;
+  /** Angel windows covering me (my own by request token, teammates' by use). */
+  private readonly angels = new Map<string, number>();
+  /** The request whose booster or magnet pull runs now (a rejection only ends its own). */
+  private boosterToken: number | undefined;
+  private pullToken: number | undefined;
+  private resyncing = false;
   private readonly unsubscribe: () => void;
 
   constructor(options: ItemRaceControllerOptions) {
@@ -255,7 +276,10 @@ export class ItemRaceController implements ItemCommandHandler {
       const capacity = this.options.physics.itemSlotCapacity >= 3 ? 3 : 2;
       this.send("cube", { cubeId, capacity }).then(
         reply => this.guard("道具箱回包处理失败", () => this.onGrant(reply as ItemGrantEvent)),
-        error => this.warn(`道具箱 ${cubeId} 请求被拒绝`, error));
+        error => {
+          this.warn(`道具箱 ${cubeId} 请求被拒绝`, error);
+          this.resyncAfter(error, LOST_REPLY_CODES);
+        });
     });
   }
 
@@ -322,7 +346,9 @@ export class ItemRaceController implements ItemCommandHandler {
     }
     const lock = this.activeWindow(this.lockWindows, nowMs);
     if (lock) state.lock = { remainingMs: lock.until - nowMs };
-    if (this.bomb) state.timeBomb = { remainingMs: Math.max(0, this.bomb.explodeAt - nowMs) };
+    let explodeAt: number | undefined;
+    for (const bomb of this.bombs.values()) explodeAt = Math.min(explodeAt ?? Infinity, bomb.explodeAt);
+    if (explodeAt !== undefined) state.timeBomb = { remainingMs: Math.max(0, explodeAt - nowMs) };
     if (this.aim && this.aimScreen) state.aim = { phase: this.aim.phase, ...this.aimScreen };
     const warning = this.currentWarning(nowMs);
     if (warning) state.warning = warning;
@@ -360,9 +386,12 @@ export class ItemRaceController implements ItemCommandHandler {
     this.lockWindows.length = 0;
     this.cloudWindows.length = 0;
     this.shieldUntil = 0;
+    this.angels.clear();
     this.angelUntil = 0;
     this.empUntil = 0;
-    this.bomb = undefined;
+    this.bombs.clear();
+    this.boosterToken = undefined;
+    this.pullToken = undefined;
     this.infoCard = undefined;
     this.abuseUntil = undefined;
     this.reorderStartedAt = undefined;
@@ -383,7 +412,7 @@ export class ItemRaceController implements ItemCommandHandler {
     this.incoming.clear();
     this.areas.clear();
     this.uses.clear();
-    this.bomb = undefined;
+    this.bombs.clear();
   }
 
   // ---- local commands -----------------------------------------------------
@@ -453,6 +482,7 @@ export class ItemRaceController implements ItemCommandHandler {
         this.slots.reject(token);
         this.applySlots(this.nowMs);
         this.warn("道具换位被拒绝", error);
+        this.resyncAfter(error, SLOT_DOUBT_CODES);
       });
   }
 
@@ -469,9 +499,9 @@ export class ItemRaceController implements ItemCommandHandler {
     }
     const token = this.slots.begin("use");
     this.applySlots(nowMs);
-    this.startOwnEffect(definition, nowMs, targetId);
+    const undo = this.startOwnEffect(definition, nowMs, token, targetId);
     if (itemId === ItemIdx.timeBomb) {
-      this.bomb = { token, explodeAt: nowMs + behaviour.delayMs };
+      this.bombs.set(token, { token, explodeAt: nowMs + behaviour.delayMs });
       this.kartEffect(this.playerId, "timeBomb", nowMs, behaviour.delayMs);
     }
     this.send("use", fields).then(
@@ -480,52 +510,152 @@ export class ItemRaceController implements ItemCommandHandler {
         this.slots.confirm(used.slots, token);
         this.applySlots(this.nowMs);
         this.recordUse(used, true);
+        // Each time bomb follows its own use's timeline.
+        const bomb = this.bombs.get(token);
+        if (bomb) {
+          bomb.useId = used.useId;
+          const startMs = this.uses.get(used.useId)?.startMs;
+          if (startMs !== undefined) bomb.explodeAt = startMs + behaviour.delayMs;
+        }
       }),
       error => {
         this.slots.reject(token);
         this.applySlots(this.nowMs);
-        if (this.bomb?.token === token) {
-          this.bomb = undefined;
-          this.endKartEffect(this.playerId, "timeBomb");
-        }
+        this.guard("道具使用撤回失败", undo);
+        this.dropTimeBomb(token);
         this.warn(`道具 ${itemId} 使用被拒绝`, error);
+        this.resyncAfter(error, SLOT_DOUBT_CODES);
       });
   }
 
-  /** Effects of my own items that start at the key press, before the reply. */
-  private startOwnEffect(definition: ItemDefinition, nowMs: number, targetId?: string): void {
+  /**
+   * Effects of my own items that start at the key press, before the reply.
+   * Returns what a rejection takes back: the booster or magnet pull of this
+   * request while it still runs, and the shield, angel or EMP window it
+   * opened (with its visual), unless a hit already spent it. The UFO slow an
+   * EMP ended stays ended.
+   */
+  private startOwnEffect(definition: ItemDefinition, nowMs: number, token: number,
+    targetId?: string): () => void {
     const behaviour = definition.behaviour;
     const effects = this.options.physics.itemEffects;
     switch (behaviour.effect) {
-      case "boost":
-        this.options.physics.startItemBooster();
-        break;
-      case "shield":
-        this.shieldUntil = nowMs + behaviour.effectMs;
+      case "boost": {
+        if (!this.options.physics.startItemBooster()) return NO_UNDO;
+        this.boosterToken = token;
+        return () => {
+          // A later booster item restarted the boost: that one keeps it.
+          if (this.boosterToken !== token) return;
+          this.boosterToken = undefined;
+          this.options.physics.cancelItemBooster?.();
+        };
+      }
+      case "shield": {
+        const previous = this.shieldUntil;
+        const until = nowMs + behaviour.effectMs;
+        this.shieldUntil = until;
         this.kartEffect(this.playerId, "shield", nowMs, behaviour.effectMs);
-        break;
-      case "angel":
-        this.angelUntil = Math.max(this.angelUntil, nowMs + behaviour.effectMs);
+        return () => {
+          // Spent on a hit, or replaced by another shield: nothing to take back.
+          if (this.shieldUntil !== until) return;
+          this.shieldUntil = previous;
+          this.restoreOwnWindow("shield", previous);
+        };
+      }
+      case "angel": {
+        const key = `own:${token}`;
+        this.setAngel(key, nowMs + behaviour.effectMs);
         this.kartEffect(this.playerId, "angel", nowMs, behaviour.effectMs);
-        break;
-      case "emp":
-        this.empUntil = nowMs + behaviour.effectMs;
+        return () => {
+          if (!this.angels.delete(key)) return;
+          this.refreshAngel();
+          this.restoreOwnWindow("angel", this.angelUntil);
+        };
+      }
+      case "emp": {
+        const previous = this.empUntil;
+        const until = nowMs + behaviour.effectMs;
+        this.empUntil = until;
         effects?.end("slow");
         this.kartEffect(this.playerId, "emp", nowMs, behaviour.effectMs);
-        break;
-      case "pull":
-        if (targetId) {
-          effects?.apply("pull", behaviour.effectMs, {
-            target: () => {
-              const pose = this.options.remotes.pose(targetId);
-              return pose ? { ...pose.position } : undefined;
-            },
-          });
-        }
-        break;
+        return () => {
+          if (this.empUntil !== until) return;
+          this.empUntil = previous;
+          this.restoreOwnWindow("emp", previous);
+        };
+      }
+      case "pull": {
+        if (!targetId || !effects) return NO_UNDO;
+        const pulled = effects.apply("pull", behaviour.effectMs, {
+          target: () => {
+            const pose = this.options.remotes.pose(targetId);
+            return pose ? { ...pose.position } : undefined;
+          },
+        });
+        if (!pulled) return NO_UNDO;
+        this.pullToken = token;
+        return () => {
+          if (this.pullToken !== token) return;
+          this.pullToken = undefined;
+          effects.end("pull");
+        };
+      }
       default:
-        break;
+        return NO_UNDO;
     }
+  }
+
+  /** After a refused shield, angel or EMP: the visual ends, or goes back to the window still open. */
+  private restoreOwnWindow(kind: "shield" | "angel" | "emp", until: number): void {
+    const now = this.nowMs;
+    if (until > now) this.kartEffect(this.playerId, kind, now, until - now);
+    else this.endKartEffect(this.playerId, kind);
+  }
+
+  private setAngel(key: string, until: number): void {
+    this.angels.set(key, Math.max(this.angels.get(key) ?? 0, until));
+    this.refreshAngel();
+  }
+
+  private refreshAngel(): void {
+    let until = 0;
+    for (const value of this.angels.values()) until = Math.max(until, value);
+    this.angelUntil = until;
+  }
+
+  /** A refused time bomb: the bomb balloon stays only for my other bombs. */
+  private dropTimeBomb(token: number): void {
+    if (!this.bombs.delete(token)) return;
+    let last: number | undefined;
+    for (const bomb of this.bombs.values()) last = Math.max(last ?? -Infinity, bomb.explodeAt);
+    if (last !== undefined && last > this.nowMs)
+      this.kartEffect(this.playerId, "timeBomb", this.nowMs, last - this.nowMs);
+    else this.endKartEffect(this.playerId, "timeBomb");
+  }
+
+  /**
+   * Ask the server for my slots after a rejection that may mean they drifted
+   * apart (`codes`; request timeouts too): error replies carry no slots, so
+   * the last confirmed slots could keep showing an item the server no longer
+   * holds. One request at a time.
+   */
+  private resyncAfter(error: unknown, codes: ReadonlySet<string>): void {
+    const code = error instanceof Error ? error.message : String(error);
+    if (!codes.has(code) && !/timeout/i.test(code)) return;
+    if (this.resyncing || this.ended || this.disposed) return;
+    this.resyncing = true;
+    this.send("slots").then(
+      reply => {
+        this.resyncing = false;
+        this.guard("道具槽同步回包处理失败", () => {
+          this.slots.confirm((reply as ItemSlotsEvent).slots);
+          this.applySlots(this.nowMs);
+        });
+      },
+      failure => {
+        this.resyncing = false;
+        this.warn("道具槽同步失败", failure);
+      });
   }
 
   // ---- aiming -------------------------------------------------------------
@@ -641,10 +771,6 @@ export class ItemRaceController implements ItemCommandHandler {
     if (!definition) return;
     const behaviour = definition.behaviour;
     this.presentUseEffects(record, behaviour, own);
-    if (own && this.bomb && event.itemId === ItemIdx.timeBomb && this.bomb.useId === undefined) {
-      this.bomb.useId = event.useId;
-      this.bomb.explodeAt = startMs + behaviour.delayMs;
-    }
     if (this.ended) return;
     this.scheduleVictim(record, behaviour);
   }
@@ -659,7 +785,7 @@ export class ItemRaceController implements ItemCommandHandler {
       case "angel":
         for (const target of record.targets) {
           if (target === this.playerId) {
-            this.angelUntil = Math.max(this.angelUntil, startMs + behaviour.effectMs);
+            this.setAngel(`use:${record.useId}`, startMs + behaviour.effectMs);
             if (own) continue;
           }
           this.kartEffect(target, "angel", startMs, behaviour.effectMs);
@@ -847,12 +973,12 @@ export class ItemRaceController implements ItemCommandHandler {
   }
 
   private updateTimeBomb(nowMs: number): void {
-    const bomb = this.bomb;
-    if (!bomb || bomb.useId === undefined || nowMs < bomb.explodeAt) return;
-    this.bomb = undefined;
-    const record = this.uses.get(bomb.useId);
-    if (!record) return;
-    this.place(record, this.areas.get(bomb.useId), { ...this.localPose().position });
+    for (const [token, bomb] of this.bombs) {
+      if (bomb.useId === undefined || nowMs < bomb.explodeAt) continue;
+      this.bombs.delete(token);
+      const record = this.uses.get(bomb.useId);
+      if (record) this.place(record, this.areas.get(bomb.useId), { ...this.localPose().position });
+    }
   }
 
   private resolveHit(hit: { useId: number; itemId: number; userId?: string; hazardId?: number;
@@ -1052,11 +1178,12 @@ export class ItemRaceController implements ItemCommandHandler {
     if (this.shieldUntil > this.nowMs) this.endKartEffect(this.playerId, "shield");
     if (this.angelUntil > this.nowMs) this.endKartEffect(this.playerId, "angel");
     if (this.empUntil > this.nowMs) this.endKartEffect(this.playerId, "emp");
-    if (this.bomb) this.endKartEffect(this.playerId, "timeBomb");
+    if (this.bombs.size) this.endKartEffect(this.playerId, "timeBomb");
     this.shieldUntil = 0;
+    this.angels.clear();
     this.angelUntil = 0;
     this.empUntil = 0;
-    this.bomb = undefined;
+    this.bombs.clear();
     this.infoCard = undefined;
   }
 
@@ -1076,6 +1203,13 @@ export class ItemRaceController implements ItemCommandHandler {
           !this.areas.has(useId)) this.uses.delete(useId);
     }
     for (const [playerId, scan] of this.scans) if (nowMs >= scan.until) this.scans.delete(playerId);
+    let angelsExpired = false;
+    for (const [key, until] of this.angels) {
+      if (until > nowMs) continue;
+      this.angels.delete(key);
+      angelsExpired = true;
+    }
+    if (angelsExpired) this.refreshAngel();
     while (this.notices.length && nowMs - this.notices[0]!.at > ITEM_RACE_TUNING.noticeKeepMs)
       this.notices.shift();
     while (this.log.length && nowMs - this.log[0]!.at > ITEM_RACE_TUNING.logKeepMs) this.log.shift();

@@ -107,8 +107,10 @@ export class FakePhysics {
     up: { x: 0, y: 1, z: 0 },
     linearVelocity: { x: 0, y: 0, z: 10 },
   };
+  cancelledBoosters = 0;
   setItemSlots(slots: readonly number[]): void { this.slotsSet.push([...slots]); }
   startItemBooster(): boolean { this.boosters += 1; return true; }
+  cancelItemBooster(): boolean { this.cancelledBoosters += 1; return true; }
 }
 
 export type PresenterCall = [method: string, ...args: unknown[]];

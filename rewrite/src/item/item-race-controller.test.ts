@@ -23,6 +23,7 @@ function serve(f: ControllerFixture, slots: number[] = [-1, -1]) {
         return { type: "item", action: "grant", cubeId: fields.cubeId,
           itemId: state.slots[0] === -1 ? null : state.slots[0], slots: [...state.slots] };
       case "use": {
+        if (state.slots[0] !== fields.itemId) throw new Error("ITEM_NOT_HELD");
         state.slots = [...state.slots.slice(1), -1];
         return { type: "item", action: "used", playerId: SELF, useId: ++state.useId,
           itemId: fields.itemId, targets: fields.targetId ? [fields.targetId] : state.targets,
@@ -37,6 +38,8 @@ function serve(f: ControllerFixture, slots: number[] = [-1, -1]) {
           ...(fields.itemId === ItemIdx.banana && fields.useId ? { removed: true } : {}) };
       case "place":
         return { type: "item", action: "placed", playerId: SELF, ...fields };
+      case "slots":
+        return { type: "item", action: "slots", slots: [...state.slots] };
       default:
         throw new Error("INVALID_ACTION");
     }
@@ -748,4 +751,160 @@ test("reset forgets every transient state and the presenter's visuals", async ()
   assert.deepEqual(f.controller.hudState(0).slots, [-1, -1]);
   assert.deepEqual(f.physics.slotsSet.at(-1), [-1, -1]);
   assert.deepEqual(f.presenter.calls.at(-1), ["reset"]);
+});
+
+// ---- regressions from the item race review ----
+
+test("a refused booster is taken back and the item cannot boost twice", async () => {
+  const f = controllerFixture();
+  const state = await holding(f, [6, -1]);
+  state.reject = "ITEM_LOCKED";
+  press(f, 1000);
+  assert.equal(f.physics.boosters, 1, "the boost starts on the key press");
+  await settle();
+  assert.equal(f.physics.cancelledBoosters, 1);
+  assert.deepEqual(f.controller.hudState(1000).slots, [6, -1]);
+  assert.equal(f.connection.of("slots").length, 0, "a slot lock leaves the slots in sync");
+  state.reject = undefined;
+  press(f, 6000);
+  await settle();
+  assert.equal(f.physics.boosters, 2);
+  assert.equal(f.physics.cancelledBoosters, 1);
+  assert.deepEqual(f.controller.hudState(6000).slots, [-1, -1]);
+});
+
+test("a refused shield, EMP or magnet stops covering and pulling the kart", async () => {
+  const f = controllerFixture();
+  const state = await holding(f, [10, 12]);
+  state.reject = "ITEM_LOCKED";
+  press(f, 1000);
+  assert.equal(f.controller.shieldUntil, 3000);
+  await settle();
+  assert.equal(f.controller.shieldUntil, 0);
+  assert.deepEqual(f.presenter.of("endKartEffect").at(-1), [SELF, "shield"]);
+  state.reject = undefined;
+  used(f, { useId: 5, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(1000), etaMs: 300 });
+  at(f, 1300);
+  assert.deepEqual(f.connection.of("hit"), [{ useId: 5, itemId: 7, result: "hit" }]);
+
+  // EMP: the window is gone, so a UFO lands.
+  f.controller.handleCommand({ kind: "swap" }, 1400);
+  await settle();
+  state.reject = "ITEM_LOCKED";
+  press(f, 1500);
+  assert.equal(f.controller.empUntil, 3000);
+  await settle();
+  assert.equal(f.controller.empUntil, 0);
+  assert.deepEqual(f.presenter.of("endKartEffect").at(-1), [SELF, "emp"]);
+
+  // Magnet aimed at a racer the server says is no longer racing.
+  const g = controllerFixture();
+  const magnet = await holding(g, [5, -1]);
+  g.poses.set(RIVAL, pose({ x: 0, y: 0, z: 40 }));
+  press(g, 1000);
+  at(g, 1000 + ITEM_RACE_TUNING.aimLockMs);
+  magnet.reject = "INVALID_TARGET";
+  release(g, 1700);
+  assert.equal(g.physics.itemEffects.applied.at(-1)?.kind, "pull");
+  await settle();
+  assert.deepEqual(g.physics.itemEffects.ended, ["pull"]);
+  assert.deepEqual(g.controller.hudState(1700).slots, [5, -1]);
+});
+
+test("a refused angel ends only my own window; a teammate's angel still covers me", async () => {
+  const f = controllerFixture({ teamRace: true });
+  const state = await holding(f, [11, -1]);
+  at(f, 500);
+  // The teammate's angel covers me from 0 to 4000.
+  used(f, { useId: 4, itemId: ItemIdx.angel, playerId: MATE, targets: [MATE, SELF], startAt: server(0) });
+  state.reject = "ITEM_LOCKED";
+  press(f, 1000);
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [SELF, "angel", 1000, 4000]);
+  await settle();
+  // The visual goes back to the teammate's end.
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [SELF, "angel", 1000, 3000]);
+  state.reject = undefined;
+  used(f, { useId: 5, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(3000), etaMs: 500 });
+  used(f, { useId: 6, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(4000), etaMs: 500 });
+  at(f, 3500);
+  at(f, 4500);
+  assert.deepEqual(f.connection.of("hit"), [
+    { useId: 5, itemId: 7, result: "blocked", by: "angel" },
+    { useId: 6, itemId: 7, result: "hit" },
+  ]);
+
+  // Without another angel, the refused one's visual ends.
+  const g = controllerFixture({ teamRace: true });
+  const solo = await holding(g, [11, -1]);
+  solo.reject = "ITEM_LOCKED";
+  press(g, 1000);
+  await settle();
+  assert.deepEqual(g.presenter.of("endKartEffect").at(-1), [SELF, "angel"]);
+});
+
+test("after ITEM_NOT_HELD the controller asks the server for its slots", async () => {
+  const f = controllerFixture();
+  const state = await holding(f, [6, 10]);
+  // The server already spent the booster (its reply never arrived here).
+  state.slots = [10, -1];
+  press(f, 1000);
+  await settle();
+  assert.equal(f.physics.cancelledBoosters, 1);
+  assert.equal(f.connection.of("slots").length, 1);
+  assert.deepEqual(f.controller.hudState(1000).slots, [10, -1]);
+  // The next press uses what the server really holds.
+  press(f, 1100);
+  await settle();
+  assert.deepEqual(f.connection.of("use").at(-1), { itemId: 10 });
+  assert.deepEqual(f.controller.hudState(1100).slots, [-1, -1]);
+  assert.equal(f.connection.of("slots").length, 1);
+});
+
+test("two time bombs used close together both explode where I am", async () => {
+  const f = controllerFixture({ teamRace: true });
+  await holding(f, [13, 13]);
+  press(f, 1000);
+  await settle();
+  press(f, 1200);
+  await settle();
+  assert.equal(f.controller.hudState(1200).timeBomb?.remainingMs, 2800, "the first to explode");
+  f.physics.body.position = { x: 5, y: 0, z: 0 };
+  at(f, 4000);
+  assert.deepEqual(f.connection.of("place").map(place => place.useId), [101]);
+  assert.equal(f.controller.hudState(4000).timeBomb?.remainingMs, 200);
+  f.physics.body.position = { x: 50, y: 0, z: 0 };
+  at(f, 4200);
+  assert.deepEqual(f.connection.of("place"), [
+    { useId: 101, point: threeToClient({ x: 5, y: 0, z: 0 }) },
+    { useId: 102, point: threeToClient({ x: 50, y: 0, z: 0 }) },
+  ]);
+  assert.equal(f.controller.hudState(4200).timeBomb, undefined);
+
+  // Both replies after both presses: each use still gets its own place.
+  const g = controllerFixture({ teamRace: true });
+  const state = await holding(g, [13, 13]);
+  const replies: Array<() => void> = [];
+  const answer = g.connection.reply;
+  g.connection.reply = request => request.action !== "use" ? answer(request)
+    : new Promise(resolve => { const reply = answer(request); replies.push(() => resolve(reply)); });
+  press(g, 1000);
+  press(g, 1200);
+  for (const reply of replies.splice(0)) reply();
+  await settle();
+  void state;
+  at(g, 4000);
+  at(g, 4200);
+  assert.deepEqual(g.connection.of("place").map(place => place.useId), [101, 102]);
+  // A refused second bomb leaves the first one in place.
+  const h = controllerFixture({ teamRace: true });
+  const hs = await holding(h, [13, 13]);
+  press(h, 1000);
+  await settle();
+  hs.reject = "ITEM_LOCKED";
+  press(h, 1200);
+  await settle();
+  assert.deepEqual(h.presenter.of("kartEffect").at(-1), [SELF, "timeBomb", 1200, 2800]);
+  hs.reject = undefined;
+  at(h, 4000);
+  assert.deepEqual(h.connection.of("place").map(place => place.useId), [101]);
 });
