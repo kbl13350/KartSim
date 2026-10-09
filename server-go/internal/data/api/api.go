@@ -23,6 +23,8 @@ import (
 	"kartsim/internal/data/config"
 	"kartsim/internal/data/economy"
 	"kartsim/internal/data/messenger"
+	"kartsim/internal/data/expedition"
+	"kartsim/internal/data/lottery"
 	"kartsim/internal/data/myroom"
 	"kartsim/internal/data/store"
 	"kartsim/internal/shared/apierr"
@@ -100,6 +102,8 @@ type API struct {
 	hub            *messenger.Hub
 	careers        *career.Data
 	dictionary     *career.Dictionary
+	expedition     *expedition.Data
+	lottery        *lottery.Data
 	rooms          *myroom.Hub
 }
 
@@ -201,6 +205,12 @@ func New(opts Options) *API {
 	if a.dictionary, err = career.DefaultDictionary(); err != nil {
 		panic(err)
 	}
+	if a.expedition, err = expedition.Default(); err != nil {
+		panic(err)
+	}
+	if a.lottery, err = lottery.Default(); err != nil {
+		panic(err)
+	}
 	roomOptions := opts.MyRoom
 	roomOptions.CheckOrigin = network.CheckWebSocketOrigin
 	roomOptions.Now = now
@@ -284,6 +294,12 @@ func (a *API) PublicHandler() http.Handler {
 	route("GET /api/dictionary", a.getDictionary)
 	route("POST /api/dictionary/reward", a.claimDictionaryReward)
 	route("POST /api/myroom/dictionary", a.visitDictionary)
+	route("POST /api/inventory/open", a.openBox)
+	route("GET /api/expedition", a.getExpedition)
+	route("GET /api/expedition/crew", a.expeditionCrew)
+	route("POST /api/expedition/start", a.startExpedition)
+	route("POST /api/expedition/tokens", a.expeditionTokens)
+	route("POST /api/expedition/claim", a.claimExpedition)
 	mux.Handle("GET /api/myroom/ws", a.rooms)
 
 	return recoverPanics(a.network.CORS(jsonFallback(mux)))

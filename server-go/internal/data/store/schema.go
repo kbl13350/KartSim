@@ -433,6 +433,32 @@ var migrations = []migration{
 			CONSTRAINT fk_account_dictionary_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
 		) ` + tableTail,
 	}},
+	// Box openings and the 赛车探险队. TODO(myroom-social): renumber to the
+	// next free version when this branch merges; 102 keeps it clear of
+	// versions added on main meanwhile (shared development databases).
+	{version: 102, statements: []string{
+		// One row per opened box: the request id makes a retry return the
+		// same draw.
+		`CREATE TABLE IF NOT EXISTS box_openings (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			request_id CHAR(36) ` + idColumn + ` NOT NULL,
+			box_id INT NOT NULL,
+			stock_id INT NOT NULL,
+			result_json TEXT NOT NULL,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, request_id),
+			KEY idx_box_openings_created (created_at),
+			CONSTRAINT fk_box_openings_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// The account's expedition week (expedition.State as JSON).
+		`CREATE TABLE IF NOT EXISTS account_expedition (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			state_json TEXT NOT NULL,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id),
+			CONSTRAINT fk_account_expedition_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+	}},
 }
 
 // LatestSchemaVersion is the version Migrate brings a database to.
