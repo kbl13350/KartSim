@@ -107,3 +107,20 @@ export function startVehicleItemBooster(vehicle: ItemModeVehicle): boolean {
   runtime.resultBoosterCount = (runtime.resultBoosterCount + 1) >>> 0;
   return true;
 }
+
+/**
+ * End a booster item the server refused (ITEM_LOCKED, INVALID_TARGET…): the
+ * item controller starts the booster on the key press, before the reply, and
+ * takes it back on a rejection so the item cannot boost twice. Only the item
+ * booster state ends; it no longer counts as a used booster.
+ */
+export function cancelVehicleItemBooster(vehicle: ItemModeVehicle): boolean {
+  if (!vehicle.itemMode) return false;
+  const { runtime, state } = vehicle;
+  if (runtime.physicsState !== ITEM_BOOSTER_STATE) return false;
+  runtime.physicsState = 0;
+  runtime.stateRemainingMs = 0;
+  state.boostTime = 0;
+  runtime.resultBoosterCount = Math.max(0, runtime.resultBoosterCount - 1) >>> 0;
+  return true;
+}

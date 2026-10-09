@@ -64,7 +64,7 @@
 
 | 模块 | 内容 |
 | --- | --- |
-| `item-mode.ts` | 道具槽沿用 `runtime.speedSlots`，容量取 `itemSlotCapacity`（2 或 3），保存任意道具编号（-1 为空）；`setItemSlots`/`itemSlots`/`itemSlotCapacity`；`startItemBooster` 以物理状态 3 持续 `itemBoosterTime` |
+| `item-mode.ts` | 道具槽沿用 `runtime.speedSlots`，容量取 `itemSlotCapacity`（2 或 3），保存任意道具编号（-1 为空）；`setItemSlots`/`itemSlots`/`itemSlotCapacity`；`startItemBooster` 以物理状态 3 持续 `itemBoosterTime`；服务器拒绝该次使用时 `cancelItemBooster` 结束物理状态 3 并撤回加速计数 |
 | `item-effects.ts` | 打转、困住、炸飞、反向、减速、缩小、挡停、磁铁牵引八种效果；每个物理切片推进一次，困住/炸飞/挡停时以运动学路径代替物理子步，位姿变化随运动帧同步给远端 |
 | `physics-parameters.ts` | 发行版 `jt0` 的调参记录，末尾追加道具赛字段（道具槽容量、道具加速时间、道具起步与加速系数） |
 

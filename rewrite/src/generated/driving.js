@@ -283,6 +283,7 @@ class AL {
   setItemSlots(slots) { return VehicleItemMode.setVehicleItemSlots(this, slots); }
   itemSlots() { return VehicleItemMode.vehicleItemSlots(this); }
   startItemBooster() { return VehicleItemMode.startVehicleItemBooster(this); }
+  cancelItemBooster() { return VehicleItemMode.cancelVehicleItemBooster(this); }
 }
 
 

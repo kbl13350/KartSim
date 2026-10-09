@@ -1162,6 +1162,8 @@ const itemModeDrivingMembers = [
   "  setItemSlots(slots) { return VehicleItemMode.setVehicleItemSlots(this, slots); }",
   "  itemSlots() { return VehicleItemMode.vehicleItemSlots(this); }",
   "  startItemBooster() { return VehicleItemMode.startVehicleItemBooster(this); }",
+  // item-mode(fixa): a booster item the server refused ends its booster.
+  "  cancelItemBooster() { return VehicleItemMode.cancelVehicleItemBooster(this); }",
 ];
 function appendItemModeDrivingMembers(classText) {
   const end = classText.lastIndexOf("}");

@@ -211,3 +211,25 @@ test("a booster item ends a magnet pull", () => {
   assert.equal(item.vehicle.itemEffects.active.has("pull"), false);
   assert.equal(item.vehicle.runtime.physicsState, 3);
 });
+
+test("a booster item the server refused is cancelled", () => {
+  const item = createItemDriver(373);
+  item.run(1000);
+  const before = item.vehicle.runtime.resultBoosterCount;
+  assert.equal(item.vehicle.startItemBooster(), true);
+  item.run(100);
+  assert.equal(item.vehicle.cancelItemBooster(), true);
+  assert.equal(item.vehicle.runtime.physicsState, 0);
+  assert.equal(item.vehicle.runtime.stateRemainingMs, 0);
+  assert.equal(item.vehicle.state.boostTime, 0);
+  assert.equal(item.vehicle.runtime.resultBoosterCount, before, "the refused booster does not count");
+  assert.equal(item.vehicle.cancelItemBooster(), false, "nothing left to cancel");
+
+  // Only the item booster state: a magnet pull is left alone.
+  const pulled = createItemDriver(373);
+  pulled.run(1000);
+  pulled.vehicle.itemEffects.apply("pull", 3000, { target: () => ({ x: 0, y: 0, z: 500 }) });
+  assert.equal(pulled.vehicle.cancelItemBooster(), false);
+  assert.equal(pulled.vehicle.runtime.physicsState, 16);
+  assert.equal(createSpeedDriver(373).vehicle.cancelItemBooster(), false);
+});
