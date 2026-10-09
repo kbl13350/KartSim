@@ -174,7 +174,22 @@ func TestSettlementRaceClass(t *testing.T) {
 	}
 	request.Mode = "individual"
 	request.Snapshot = []byte(`{"race":{"channelName":"speedIndiCombine"}}`)
-	if settlement, ok = settlementFromRequest(request, 10); !ok || settlement.Team || settlement.Infinite {
+	if settlement, ok = settlementFromRequest(request, 10); !ok || settlement.Team || settlement.Infinite ||
+		settlement.Item {
 		t.Fatalf("individual settlement %+v", settlement)
+	}
+	// Item races: the gameplay item (or an item channel) counts as 道具赛.
+	request.Gameplay = "item"
+	request.Snapshot = []byte(`{"race":{"channelName":"itemIndiCombine","item":{"ruleset":"web-item-v1","table":"indi"}}}`)
+	if settlement, ok = settlementFromRequest(request, 10); !ok || settlement.Team || settlement.Infinite ||
+		!settlement.Item {
+		t.Fatalf("item settlement %+v", settlement)
+	}
+	request.Mode = "team"
+	request.Gameplay = "ordinary"
+	request.Snapshot = []byte(`{"race":{"channelName":"itemTeamCombine","winningTeam":1}}`)
+	if settlement, ok = settlementFromRequest(request, 10); !ok || !settlement.Team || !settlement.Item ||
+		settlement.WinningTeam != 1 {
+		t.Fatalf("item team settlement %+v", settlement)
 	}
 }

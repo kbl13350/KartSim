@@ -4,17 +4,25 @@ import "fmt"
 
 // Career game types (CareerData.h CareerGameType) of the races this server
 // runs: speed (channel *Combine) and infinite boost (*Infinit), each
-// individual or team. Item modes (2, 4, 6, 8) never occur.
+// individual or team, and the item races (道具个人赛 / 组队道具赛, gameplay
+// item in itemIndiCombine / itemTeamCombine). Item club racing (8) never
+// occurs.
 const (
 	GameSpeedIndividual    = 1
+	GameItemIndividual     = 2
 	GameSpeedTeam          = 3
+	GameItemTeam           = 4
 	GameInfiniteIndividual = 9
 	GameInfiniteTeam       = 10
 )
 
 // RaceGameType classifies a multiplayer race.
-func RaceGameType(team, infinite bool) int {
+func RaceGameType(team, infinite, item bool) int {
 	switch {
+	case item && team:
+		return GameItemTeam
+	case item:
+		return GameItemIndividual
 	case infinite && team:
 		return GameInfiniteTeam
 	case infinite:
@@ -26,14 +34,18 @@ func RaceGameType(team, infinite bool) int {
 }
 
 // raceGameTypes are the race classes a careerGameType counts: 0 every race,
-// 5 (스피드 전체) both speed classes.
+// 5 (스피드 전체) both speed classes, 6 (아이템 전체) both item classes.
 func raceGameTypes(careerGameType int) []int {
 	switch careerGameType {
 	case 0:
-		return []int{GameSpeedIndividual, GameSpeedTeam, GameInfiniteIndividual, GameInfiniteTeam}
+		return []int{GameSpeedIndividual, GameSpeedTeam, GameInfiniteIndividual, GameInfiniteTeam,
+			GameItemIndividual, GameItemTeam}
 	case 5:
 		return []int{GameSpeedIndividual, GameSpeedTeam}
-	case GameSpeedIndividual, GameSpeedTeam, GameInfiniteIndividual, GameInfiniteTeam:
+	case 6:
+		return []int{GameItemIndividual, GameItemTeam}
+	case GameSpeedIndividual, GameSpeedTeam, GameInfiniteIndividual, GameInfiniteTeam,
+		GameItemIndividual, GameItemTeam:
 		return []int{careerGameType}
 	}
 	return nil

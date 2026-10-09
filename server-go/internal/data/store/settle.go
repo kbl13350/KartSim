@@ -27,9 +27,11 @@ type Settlement struct {
 	Rewards   []SettledReward
 	RewardDay string
 	// The race class the careers count: a team race, an infinite-boost
-	// channel, and the winning team of a team race (0 when unknown).
+	// channel, an item race, and the winning team of a team race (0 when
+	// unknown).
 	Team        bool
 	Infinite    bool
+	Item        bool
 	WinningTeam int
 }
 
@@ -251,7 +253,7 @@ func countCareerRace(ctx context.Context, tx *sql.Tx, in Settlement, racer Settl
 	if err != nil {
 		return err
 	}
-	gameType := career.RaceGameType(in.Team, in.Infinite)
+	gameType := career.RaceGameType(in.Team, in.Infinite, in.Item)
 	theme := data.ThemeOf(in.TrackID)
 	finished := racer.ElapsedMs != nil
 	kind := career.RaceRetire

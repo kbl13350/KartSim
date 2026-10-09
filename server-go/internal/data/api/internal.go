@@ -386,9 +386,10 @@ type rosterCareer struct {
 }
 
 // raceClass sets what the careers need to classify a race (a team race, an
-// infinite-boost channel, the winning team) from the settlement's mode and
-// snapshot, and returns each roster player's team and replay camera. A
-// snapshot without those fields counts as an individual speed race.
+// infinite-boost channel, an item race, the winning team) from the
+// settlement's mode, gameplay and snapshot, and returns each roster player's
+// team and replay camera. A snapshot without those fields counts as an
+// individual speed race.
 func raceClass(settlement *store.Settlement, request contract.RaceSettlement) map[string]rosterCareer {
 	var snapshot struct {
 		Race struct {
@@ -406,6 +407,9 @@ func raceClass(settlement *store.Settlement, request contract.RaceSettlement) ma
 	_ = json.Unmarshal(request.Snapshot, &snapshot)
 	settlement.Team = request.Mode == "team"
 	settlement.Infinite = strings.HasSuffix(snapshot.Race.ChannelName, "Infinit")
+	// Item races (道具个人赛 / 组队道具赛): the gameplay item, in the
+	// itemIndiCombine / itemTeamCombine channels.
+	settlement.Item = request.Gameplay == "item" || strings.HasPrefix(snapshot.Race.ChannelName, "item")
 	if snapshot.Race.WinningTeam == 1 || snapshot.Race.WinningTeam == 2 {
 		settlement.WinningTeam = snapshot.Race.WinningTeam
 	}

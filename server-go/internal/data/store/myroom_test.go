@@ -93,6 +93,69 @@ func TestCareerRaceCounters(t *testing.T) {
 	}
 }
 
+// Item races count for the item career classes (道具个人赛 2, 组队道具赛 4);
+// an item team race is won by the team the snapshot names.
+func TestItemCareerRaceCounters(t *testing.T) {
+	db := datatest.MySQL(t)
+	st := store.New(db)
+	ctx := context.Background()
+	ids, _ := messengerAccounts(t, db, 2)
+	u := datatest.Unique()
+	t.Cleanup(func() { datatest.Exec(t, db, "DELETE FROM race_outcomes WHERE race_id LIKE ?", "item-career-"+u+"-%") })
+	race := func(n int, team bool, winning int, results ...store.SettledResult) {
+		t.Helper()
+		_, _, err := st.SaveSettlement(ctx, store.Settlement{RaceID: fmt.Sprintf("item-career-%s-%d", u, n),
+			RoomID: "room-" + u, Gameplay: "item", TrackID: "desert_I03", Snapshot: "{}", CreatedAt: 1000 + int64(n),
+			Team: team, Item: true, WinningTeam: winning, Results: results})
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	race(1, false, 0,
+		store.SettledResult{PlayerID: "p0", AccountID: ids[0], Name: "a", Rank: 1, ElapsedMs: elapsed(90_000)},
+		store.SettledResult{PlayerID: "p1", AccountID: ids[1], Name: "b", Rank: 2})
+	// p1 finished first, so its team 2 won although p0 finished too.
+	race(2, true, 2,
+		store.SettledResult{PlayerID: "p1", AccountID: ids[1], Name: "b", Rank: 1, ElapsedMs: elapsed(80_000), Team: 2},
+		store.SettledResult{PlayerID: "p0", AccountID: ids[0], Name: "a", Rank: 2, ElapsedMs: elapsed(81_000), Team: 1})
+	desert := 2
+	facts := func(id string) career.Facts {
+		t.Helper()
+		f, err := st.CareerFacts(ctx, id, 10_000)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return f
+	}
+	a, b := facts(ids[0]), facts(ids[1])
+	for name, want := range map[string]int64{
+		career.RaceCounter(career.RaceWin, career.GameItemIndividual, desert):     1,
+		career.RaceCounter(career.RaceFinish, career.GameItemIndividual, desert):  1,
+		career.RaceCounter(career.RaceFinish, career.GameItemTeam, desert):        1,
+		career.RaceCounter(career.RaceWin, career.GameItemTeam, desert):           0,
+		career.RaceCounter(career.RaceFinish, career.GameSpeedIndividual, desert): 0,
+	} {
+		if a.Counters[name] != want {
+			t.Errorf("a %s = %d, want %d", name, a.Counters[name], want)
+		}
+	}
+	if b.Counters[career.RaceCounter(career.RaceRetire, career.GameItemIndividual, desert)] != 1 ||
+		b.Counters[career.RaceCounter(career.RaceWin, career.GameItemTeam, desert)] != 1 {
+		t.Errorf("b counters %v", b.Counters)
+	}
+	// 道具赛未完成 (gameType 6) and the item team finish careers see them.
+	data, err := career.Default()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if value, _ := data.Value(&career.Career{Type: 43, GameType: 6, Clear: 1}, b); value != 1 {
+		t.Errorf("item retires %d", value)
+	}
+	if value, _ := data.Value(&career.Career{Type: 42, GameType: 4, Clear: 1}, a); value != 1 {
+		t.Errorf("item team finishes %d", value)
+	}
+}
+
 func TestCompleteCareerAndEmblems(t *testing.T) {
 	db := datatest.MySQL(t)
 	st := store.New(db)

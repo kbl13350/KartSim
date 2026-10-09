@@ -1,6 +1,9 @@
 package career
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
 
 func defaultData(t *testing.T) *Data {
 	t.Helper()
@@ -55,12 +58,33 @@ func TestThemeOf(t *testing.T) {
 
 func TestRaceGameType(t *testing.T) {
 	cases := []struct {
-		team, infinite bool
-		want           int
-	}{{false, false, 1}, {true, false, 3}, {false, true, 9}, {true, true, 10}}
+		team, infinite, item bool
+		want                 int
+	}{{false, false, false, 1}, {true, false, false, 3}, {false, true, false, 9}, {true, true, false, 10},
+		{false, false, true, 2}, {true, false, true, 4}}
 	for _, c := range cases {
-		if got := RaceGameType(c.team, c.infinite); got != c.want {
-			t.Errorf("RaceGameType(%v, %v) = %d", c.team, c.infinite, got)
+		if got := RaceGameType(c.team, c.infinite, c.item); got != c.want {
+			t.Errorf("RaceGameType(%v, %v, %v) = %d", c.team, c.infinite, c.item, got)
+		}
+	}
+}
+
+func TestRaceGameTypes(t *testing.T) {
+	cases := map[int][]int{
+		0:  {1, 3, 9, 10, 2, 4},
+		5:  {1, 3},
+		6:  {2, 4},
+		1:  {1},
+		2:  {2},
+		3:  {3},
+		4:  {4},
+		9:  {9},
+		10: {10},
+		8:  nil, // item club racing never occurs
+	}
+	for careerGameType, want := range cases {
+		if got := raceGameTypes(careerGameType); !slices.Equal(got, want) {
+			t.Errorf("raceGameTypes(%d) = %v, want %v", careerGameType, got, want)
 		}
 	}
 }
@@ -125,6 +149,20 @@ func TestRaceCounters(t *testing.T) {
 	itemOnly := &Career{Type: 42, GameType: 2, Clear: 1}
 	if value, tracked := data.Value(itemOnly, f); value != 0 || !tracked {
 		t.Fatalf("item finishes %d %v", value, tracked)
+	}
+	// Item races count for their class, 아이템 전체 (6) and every race (0).
+	f.Counters[RaceCounter(RaceFinish, GameItemIndividual, 4)] = 2
+	f.Counters[RaceCounter(RaceFinish, GameItemTeam, 0)] = 3
+	itemTeam := &Career{Type: 42, GameType: 4, Clear: 1}
+	itemAll := &Career{Type: 42, GameType: 6, Clear: 1}
+	everyRace := &Career{Type: 42, GameType: 0, Clear: 1}
+	for _, c := range []struct {
+		career *Career
+		want   int64
+	}{{itemOnly, 2}, {itemTeam, 3}, {itemAll, 5}, {everyRace, 1 + 5 + 5}, {speedOnly, 1}} {
+		if value, _ := data.Value(c.career, f); value != c.want {
+			t.Errorf("gameType %d finishes %d, want %d", c.career.GameType, value, c.want)
+		}
 	}
 }
 

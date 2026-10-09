@@ -390,6 +390,22 @@ func TestHistoryQueries(t *testing.T) {
 	if len(outcomes) == 0 || len(outcomes) > 100 {
 		t.Fatalf("outcomes %d", len(outcomes))
 	}
+
+	// Item races are listed under their own gameplay.
+	h.settle(contract.RaceSettlement{
+		NodeID: "game-1", RaceID: "hist-item-" + u, RoomID: "room-" + u, Gameplay: "item", Mode: "individual",
+		TrackID: "desert_I03", Snapshot: json.RawMessage(`{"race":{"channelName":"itemIndiCombine"}}`),
+		FinishedAt: base + 2, Results: []contract.RaceResult{{PlayerID: "player-" + u, Name: name, Rank: 1,
+			ElapsedMs: elapsed(5)}},
+	})
+	h.get("/api/race-outcomes?gameplay=item", nil).expect(t, http.StatusOK, "").json(t, &outcomes)
+	found = false
+	for _, outcome := range outcomes {
+		found = found || (outcome.RaceID == "hist-item-"+u && outcome.Gameplay == "item")
+	}
+	if !found {
+		t.Fatalf("item outcome missing from %d", len(outcomes))
+	}
 }
 
 // saveRoomRules posts room rules through the internal API.
