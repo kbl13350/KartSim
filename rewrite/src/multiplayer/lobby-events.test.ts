@@ -112,3 +112,24 @@ test("invalid room gameplay raises the same error", () => {
   assert.throws(() => OriginalValidating.prototype.receive.call(original.host, bad),
     error => error instanceof Error && error.message === "未知的房间玩法");
 });
+
+// Not in the release: past loading, a racer the server dropped (load failure
+// or timeout) is told so and waits in the room like a late joiner.
+test("a racer dropped while loading waits for the next race", () => {
+  const { host, events } = fixture();
+  const race = (phase: LobbyRoom["phase"], loadedIds: string[]) => ({
+    type: "room", room: makeRoom(phase === "loading" ? 1 : 2, phase, { race: {
+      raceId: "race-1", loadedIds,
+      roster: [{ playerId: "me" }, { playerId: "other" }],
+    } as unknown as LobbyRoom["race"] }),
+  });
+  receiveLobbyEvent(host, race("loading", []), roomSpeed);
+  assert.ok(events.some(event => Array.isArray(event) && event[0] === "update"));
+  events.length = 0;
+  receiveLobbyEvent(host, race("countdown", ["other"]), roomSpeed);
+  assert.ok(events.includes("reset"));
+  assert.ok(!events.some(event => Array.isArray(event) && event[0] === "update"));
+  assert.deepEqual(events.filter(event => Array.isArray(event) && event[0] === "status"), [
+    ["status", "你未能完成加载，已退出本局比赛；其他玩家继续比赛，本局结束后即可准备。", true],
+  ]);
+});

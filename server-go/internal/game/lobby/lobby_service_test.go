@@ -50,7 +50,7 @@ func TestTransferCannotMakeKickTargetTheHost(t *testing.T) {
 	}
 }
 
-func TestLoadFailureIsLimitedToLoadingAndRaceLeaveRecoversRoom(t *testing.T) {
+func TestLoadFailureIsLimitedToLoadingAndRaceLeaveKeepsRace(t *testing.T) {
 	h := newHarness(t)
 	alice, bob := h.connect("Alice"), h.connect("Bob")
 	created := h.must(alice, map[string]any{
@@ -85,8 +85,13 @@ func TestLoadFailureIsLimitedToLoadingAndRaceLeaveRecoversRoom(t *testing.T) {
 	firstRace := raceOf(room)
 	assertEqual(t, firstRace["startSlots"], map[string]any{alice.playerID: 0, bob.playerID: 1})
 	raceID := firstRace["raceId"]
+	// Not in Java: a load failure drops only that racer (even one that had
+	// loaded); the race is cancelled once no racer is left to start it.
 	h.must(alice, map[string]any{"type": "loaded", "roomId": roomID, "raceId": raceID})
 	room = h.command(alice, map[string]any{"type": "load-failed", "roomId": roomID, "raceId": raceID})
+	assertEqual(t, room["phase"], "loading")
+	assertEqual(t, raceOf(room)["loadedIds"], []any{})
+	room = h.command(bob, map[string]any{"type": "load-failed", "roomId": roomID, "raceId": raceID})
 	assertEqual(t, room["phase"], "open")
 	assertEqual(t, room["raceError"], "LOAD_FAILED")
 	room = h.command(alice, map[string]any{
@@ -99,15 +104,17 @@ func TestLoadFailureIsLimitedToLoadingAndRaceLeaveRecoversRoom(t *testing.T) {
 		"type": "load-failed", "roomId": roomID, "raceId": secondRaceID})
 	assertEqual(t, tooLate, "RACE_NOT_LOADING")
 
+	// Not in Java (which cancelled the race, MEMBER_LEFT): the race goes on
+	// for the racer left in the room.
 	left := h.must(bob, map[string]any{"type": "leave", "roomId": roomID})
 	assertEqual(t, left["type"], "left")
-	recovered := object(h.sink(alice).last(t)["room"])
-	assertEqual(t, recovered["phase"], "open")
-	assertEqual(t, recovered["raceError"], "MEMBER_LEFT")
-	if _, ok := recovered["race"]; ok {
-		t.Fatal("recovered room still has a race")
+	kept := object(h.sink(alice).last(t)["room"])
+	assertEqual(t, kept["phase"], "countdown")
+	assertEqual(t, raceOf(kept)["raceId"], secondRaceID)
+	if _, ok := kept["raceError"]; ok {
+		t.Fatal("race kept with a race error")
 	}
-	assertEqual(t, len(list(recovered["members"])), 1)
+	assertEqual(t, len(list(kept["members"])), 1)
 }
 
 func TestDepartedReturnDoesNotEndPodiumForRemainingPlayers(t *testing.T) {

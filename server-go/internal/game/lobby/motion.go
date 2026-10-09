@@ -29,13 +29,14 @@ func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 	if r == nil || r.race == nil ||
 		(r.phase != "loading" && r.phase != "countdown" && r.phase != "racing") ||
 		formatUUID(frame[4:20]) != r.id || formatUUID(frame[20:36]) != r.race.id ||
-		formatUUID(frame[36:52]) != c.playerID || !slices.Contains(r.race.loadedIDs, c.playerID) {
+		formatUUID(frame[36:52]) != c.playerID || !slices.Contains(r.race.loadedIDs, c.playerID) ||
+		r.race.isOut(c.playerID) {
 		return
 	}
 	recipientMask := int(frame[3])
 	for _, m := range r.members {
 		if m.playerID == c.playerID || recipientMask&(1<<m.slot) == 0 ||
-			!slices.Contains(r.race.loadedIDs, m.playerID) {
+			!slices.Contains(r.race.loadedIDs, m.playerID) || r.race.isOut(m.playerID) {
 			continue
 		}
 		if recipient := l.clients[m.playerID]; recipient != nil {

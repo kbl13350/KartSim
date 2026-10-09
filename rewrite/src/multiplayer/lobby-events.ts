@@ -101,17 +101,24 @@ export function receiveLobbyEvent(host: LobbyEventHost, event: LobbyEvent,
   const roster = current.race?.roster as Array<{ playerId: string }> | undefined;
   const lateJoiner = Array.isArray(roster) &&
     !roster.some(member => member.playerId === host.playerId);
+  // Not in the release: past loading, a racer who has not loaded was dropped
+  // by the server (load failure or timeout) while the others race on.
+  const droppedOut = !lateJoiner && Array.isArray(roster) && current.phase !== "loading" &&
+    !current.race?.loadedIds.includes(host.playerId);
   if (lateJoiner) {
     // Joined after the start: not in this race's frozen roster, so wait in the room.
     host.startCoordinator?.reset();
     host.options.status("房间正在比赛中，本局结束后即可准备。");
+  } else if (droppedOut) {
+    host.startCoordinator?.reset();
+    host.options.status("你未能完成加载，已退出本局比赛；其他玩家继续比赛，本局结束后即可准备。", true);
   } else if (current.race?.returnedIds?.includes(host.playerId)) {
     host.startCoordinator?.reset();
     host.options.status("已返回原房间，等待其他玩家结束结算；全部返回后可重新准备。");
   } else {
     host.startCoordinator?.update(current);
   }
-  if (lateJoiner) {
+  if (lateJoiner || droppedOut) {
     // Status set above; the phase messages below are for racers.
   } else if (current.phase === "loading" && !host.startCoordinator) {
     host.options.status(`正在加载比赛，${current.race?.loadedIds.length ?? 0}/${current.members.length} 人已就绪…`);

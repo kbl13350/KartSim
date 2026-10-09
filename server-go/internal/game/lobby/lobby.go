@@ -805,29 +805,104 @@ func (l *Lobby) leaveInternal(c *Client, existing *room) {
 	if r.hostID == c.playerID {
 		r.hostID = r.members[0].playerID
 	}
-	if r.gameplay == "roadblock" && r.race != nil && r.phase == "racing" {
-		if r.race.inRoster(c.playerID) {
-			r.race.leftIDs = append(r.race.leftIDs, c.playerID)
-		}
-		if c.playerID == r.race.roadblockRunner {
-			l.endRoadblock(r, "runner-left", max(l.clock.Now(), *r.race.startAt))
-		} else {
-			r.revision++
-			l.broadcastRoom(r, nil)
-		}
+	// Not in Java (which cancelled the race, MEMBER_LEFT): a racer leaving
+	// before the race finishes drops out alone; a late joiner leaving does
+	// not touch the race.
+	if r.race != nil && r.race.inRoster(c.playerID) &&
+		(r.phase == "loading" || r.phase == "countdown" || r.phase == "racing") {
+		l.racerLeft(r, c.playerID)
 		return
 	}
 	if r.phase == "finished" && r.race != nil {
 		r.race.returnedIDs = removeFirst(r.race.returnedIDs, c.playerID)
 		closeRaceWhenReturned(r)
 	}
-	if r.phase != "open" && r.phase != "finished" {
+	r.revision++
+	l.broadcastRoom(r, nil)
+}
+
+// racerLeft keeps a race going for the racers still in the room when one
+// leaves it before it finishes. The leaver stays in the frozen roster (and
+// in race.results as unfinished when it had loaded) but earns no reward
+// unless it had already finished, is out of the race even if it rejoins the
+// room, and is no longer waited for: the countdown starts once everyone
+// else has loaded, and the race finalizes once everyone else has finished.
+// The race is cancelled (MEMBER_LEFT) only when it cannot go on: a loading
+// race that cannot start (continueLoading), or a race that has no racer
+// left before anyone finished.
+func (l *Lobby) racerLeft(r *room, playerID string) {
+	rc := r.race
+	rc.markOut(playerID)
+	switch {
+	case r.gameplay == "roadblock" && playerID == rc.roadblockRunner && r.phase != "loading":
+		l.endRoadblock(r, "runner-left", max(l.clock.Now(), *rc.startAt))
+		l.closeAbandonedRace(r)
+		return
+	case r.phase == "racing" && len(rc.finishes) > 0 && r.gameplay != "roadblock" && allFinished(r):
+		l.finalizeRace(r.id, rc.id)
+		l.closeAbandonedRace(r)
+		return
+	case r.phase == "loading":
+		l.continueLoading(r, "MEMBER_LEFT")
+	case len(racers(r)) == 0:
+		if r.phase != "racing" {
+			r.raceError = "MEMBER_LEFT"
+		}
 		r.phase = "open"
 		r.race = nil
-		r.raceError = "MEMBER_LEFT"
 	}
 	r.revision++
 	l.broadcastRoom(r, nil)
+}
+
+// continueLoading goes on with a loading race after racers dropped out of
+// it: the countdown starts once the racers still in it have all loaded. The
+// race is cancelled with reason when it can no longer start: no racer is
+// left, or a roadblock race lost its runner or can no longer load five.
+func (l *Lobby) continueLoading(r *room, reason string) {
+	rc := r.race
+	if len(racers(r)) == 0 || (r.gameplay == "roadblock" &&
+		(rc.isOut(rc.roadblockRunner) || loadableRacers(r) < 5)) {
+		r.phase = "open"
+		r.race = nil
+		r.raceError = reason
+		return
+	}
+	l.startCountdownWhenLoaded(r)
+}
+
+// closeAbandonedRace reopens a race that just ended with no racer left in
+// the room, so the late joiners there need not wait for returns that will
+// never come.
+func (l *Lobby) closeAbandonedRace(r *room) {
+	if r.race == nil || r.phase != "finished" || len(racers(r)) > 0 {
+		return
+	}
+	closeRaceWhenReturned(r)
+	r.revision++
+	l.broadcastRoom(r, nil)
+}
+
+// loadableRacers is how many racers a loading race can still have loaded:
+// those who loaded (even if they left since) and those still in the room.
+func loadableRacers(r *room) int {
+	n := len(r.race.loadedIDs)
+	for _, id := range racers(r) {
+		if !r.race.isLoaded(id) {
+			n++
+		}
+	}
+	return n
+}
+
+// allFinished reports whether every racer still in the room has finished.
+func allFinished(r *room) bool {
+	for _, id := range racers(r) {
+		if !r.race.hasFinished(id) {
+			return false
+		}
+	}
+	return true
 }
 
 func (l *Lobby) removeRoom(r *room) {
@@ -1195,6 +1270,7 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 		trackID:             chooseTrack(r),
 		loadingDeadline:     l.clock.Now() + loadingWindow,
 		rosterAccounts:      map[string]string{},
+		rosterNames:         map[string]string{},
 		rosterTeams:         map[string]int{},
 		giantStates:         map[string]giantState{},
 		teamChargeSequences: map[string]int{},
@@ -1206,6 +1282,7 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 		rc.rosterIDs = append(rc.rosterIDs, m.playerID)
 		rc.startSlots = append(rc.startSlots, m.slot)
 		rc.rosterAccounts[m.playerID] = m.accountID
+		rc.rosterNames[m.playerID] = m.name
 		rc.rosterTeams[m.playerID] = m.team
 	}
 	r.race = rc
@@ -1275,14 +1352,20 @@ func isCode(err error, code string) bool {
 	return ok && rejected.Code == code
 }
 
+// loadingTimeout drops the racers who have not loaded by the deadline (not
+// in Java, which cancelled the race): they stay in the room and wait for
+// the next race while the others start.
 func (l *Lobby) loadingTimeout(roomID, raceID string) {
 	r := l.rooms[roomID]
 	if r == nil || r.race == nil || r.race.id != raceID || r.phase != "loading" {
 		return
 	}
-	r.phase = "open"
-	r.race = nil
-	r.raceError = "LOAD_TIMEOUT"
+	for _, id := range racers(r) {
+		if !r.race.isLoaded(id) {
+			r.race.markOut(id)
+		}
+	}
+	l.continueLoading(r, "LOAD_TIMEOUT")
 	r.revision++
 	l.broadcastRoom(r, nil)
 }
@@ -1299,23 +1382,31 @@ func (l *Lobby) loaded(c *Client, in Request) (obj, error) {
 	if !rc.isLoaded(c.playerID) {
 		rc.loadedIDs = append(rc.loadedIDs, c.playerID)
 	}
-	if containsAll(rc.loadedIDs, racers(r)) {
-		startAt := l.clock.Now() + 3_000
-		rc.startAt = &startAt
-		if r.gameplay == "roadblock" {
-			deadline := startAt + roadblockLimitMs
-			rc.finishDeadline = &deadline
-			roomID, raceID := r.id, rc.id
-			l.schedule((roadblockLimitMs+3_000)*time.Millisecond,
-				func() { l.roadblockTimeout(roomID, raceID) })
-		}
-		r.phase = "countdown"
-		roomID, raceID := r.id, rc.id
-		l.schedule(3*time.Second, func() { l.beginRace(roomID, raceID) })
-	}
+	l.startCountdownWhenLoaded(r)
 	r.revision++
 	l.broadcastRoom(r, c)
 	return roomReply(r), nil
+}
+
+// startCountdownWhenLoaded starts the countdown of a loading race once every
+// racer still in the room has loaded.
+func (l *Lobby) startCountdownWhenLoaded(r *room) {
+	rc := r.race
+	if !containsAll(rc.loadedIDs, racers(r)) {
+		return
+	}
+	startAt := l.clock.Now() + 3_000
+	rc.startAt = &startAt
+	if r.gameplay == "roadblock" {
+		deadline := startAt + roadblockLimitMs
+		rc.finishDeadline = &deadline
+		roomID, raceID := r.id, rc.id
+		l.schedule((roadblockLimitMs+3_000)*time.Millisecond,
+			func() { l.roadblockTimeout(roomID, raceID) })
+	}
+	r.phase = "countdown"
+	roomID, raceID := r.id, rc.id
+	l.schedule(3*time.Second, func() { l.beginRace(roomID, raceID) })
 }
 
 func (l *Lobby) beginRace(roomID, raceID string) {
@@ -1336,9 +1427,12 @@ func (l *Lobby) loadFailed(c *Client, in Request) (obj, error) {
 	if r.phase != "loading" {
 		return nil, fail(http.StatusBadRequest, "RACE_NOT_LOADING")
 	}
-	r.phase = "open"
-	r.race = nil
-	r.raceError = "LOAD_FAILED"
+	// Not in Java (which cancelled the race): only this racer drops out,
+	// even if it had reported loaded; it stays in the room for the next race.
+	rc := r.race
+	rc.loadedIDs = removeFirst(rc.loadedIDs, c.playerID)
+	rc.markOut(c.playerID)
+	l.continueLoading(r, "LOAD_FAILED")
 	r.revision++
 	l.broadcastRoom(r, c)
 	return roomReply(r), nil
@@ -1368,10 +1462,8 @@ func (l *Lobby) finish(c *Client, in Request) (obj, error) {
 		}
 		return roomReply(r), nil
 	}
-	for _, row := range rc.finishes {
-		if row.playerID == c.playerID {
-			return nil, fail(http.StatusBadRequest, "ALREADY_FINISHED")
-		}
+	if rc.hasFinished(c.playerID) {
+		return nil, fail(http.StatusBadRequest, "ALREADY_FINISHED")
 	}
 	rc.finishes = append(rc.finishes, finishRow{playerID: c.playerID, elapsedMs: elapsed,
 		serverAt: l.clock.Now()})
@@ -1381,7 +1473,7 @@ func (l *Lobby) finish(c *Client, in Request) (obj, error) {
 		roomID, raceID := r.id, rc.id
 		l.schedule(10*time.Second, func() { l.finalizeRace(roomID, raceID) })
 	}
-	if len(rc.finishes) == len(rc.loadedIDs) {
+	if allFinished(r) {
 		l.finalizeRace(r.id, rc.id)
 	} else {
 		r.revision++
@@ -1557,8 +1649,12 @@ func (l *Lobby) finalizeRace(roomID, raceID string) {
 		}
 		return math.MaxInt32
 	}
+	// Racers who left without finishing rank after the other unfinished ones.
+	retired := func(id string) bool { return rc.isOut(id) && !rc.hasFinished(id) }
 	order := slices.Clone(rc.loadedIDs)
-	slices.SortStableFunc(order, func(a, b string) int { return cmp.Compare(timeOf(a), timeOf(b)) })
+	slices.SortStableFunc(order, func(a, b string) int {
+		return cmp.Or(cmp.Compare(timeOf(a), timeOf(b)), compareBool(retired(a), retired(b)))
+	})
 	rc.results = make([]resultRow, 0, len(order))
 	rc.resultsSet = true
 	for index, id := range order {
@@ -1573,9 +1669,10 @@ func (l *Lobby) finalizeRace(roomID, raceID string) {
 	}
 	if r.mode == "team" {
 		var scores [2]int
+		// The frozen teams: a racer who finished and then left still scores.
 		for _, row := range rc.results {
-			if m := r.member(row.playerID); m != nil && m.team != 0 {
-				scores[m.team-1] = min(39, scores[m.team-1]+row.points)
+			if team := rc.rosterTeams[row.playerID]; team != 0 {
+				scores[team-1] = min(39, scores[team-1]+row.points)
 			}
 		}
 		rc.teamScores = &scores
@@ -1628,7 +1725,7 @@ func (l *Lobby) saveResults(r *room) {
 		{"race", rc.snapshot()}}
 	results := make([]contract.RaceResult, 0, len(rc.results))
 	for _, row := range rc.results {
-		name, accountID := row.playerID, rc.rosterAccounts[row.playerID]
+		name, accountID := cmp.Or(rc.rosterNames[row.playerID], row.playerID), rc.rosterAccounts[row.playerID]
 		if m := r.member(row.playerID); m != nil {
 			name, accountID = m.name, m.accountID
 		}
@@ -1712,7 +1809,15 @@ func (l *Lobby) awardRanked(r *room) {
 			}
 		}
 	}
-	l.setRewards(r, rewards.RaceInput{Racers: racers}, nil)
+	// Racers who left the room before finishing earn nothing; N still
+	// counts them.
+	var retired []string
+	for _, id := range rc.outIDs {
+		if !rc.hasFinished(id) {
+			retired = append(retired, id)
+		}
+	}
+	l.setRewards(r, rewards.RaceInput{Racers: racers}, retired)
 }
 
 // awardRoadblock computes the rewards of a roadblock race, which has no
@@ -1732,7 +1837,7 @@ func (l *Lobby) awardRoadblock(r *room, outcome rewards.Roadblock, racedMs int64
 	if racedMs >= minRewardedRaceMs {
 		in.Roadblock = &outcome
 	}
-	l.setRewards(r, in, rc.leftIDs)
+	l.setRewards(r, in, rc.outIDs)
 }
 
 // setRewards completes in with the race's channel, mode and team bonus,
@@ -1855,22 +1960,35 @@ func (l *Lobby) raceRoom(c *Client, in Request) (*room, error) {
 	if r.race.id != raceID {
 		return nil, fail(http.StatusBadRequest, "RACE_NOT_FOUND")
 	}
-	if !r.race.inRoster(c.playerID) {
+	// A racer out of the race (it left the room and came back, or failed to
+	// load) waits like a late joiner.
+	if !r.race.inRoster(c.playerID) || r.race.isOut(c.playerID) {
 		return nil, fail(http.StatusForbidden, "NOT_RACE_PARTICIPANT")
 	}
 	return r, nil
 }
 
-// racers are the current members who started this race; late joiners are
-// left out.
+// racers are the current members who started this race and are not out of
+// it; late joiners are left out.
 func racers(r *room) []string {
 	var ids []string
 	for _, m := range r.members {
-		if r.race.inRoster(m.playerID) {
+		if r.race.inRoster(m.playerID) && !r.race.isOut(m.playerID) {
 			ids = append(ids, m.playerID)
 		}
 	}
 	return ids
+}
+
+// compareBool orders false before true.
+func compareBool(a, b bool) int {
+	switch {
+	case a == b:
+		return 0
+	case a:
+		return 1
+	}
+	return -1
 }
 
 func containsAll(values, required []string) bool {

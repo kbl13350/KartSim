@@ -166,6 +166,7 @@ function observe(rewritten: boolean, scenario: Scenario) {
         presentationVisible(id: unknown, nowMs: number) {
           events.push(["remote-visible", id, nowMs]); return false;
         },
+        hasDeparted() { return false; },
         giant(id: unknown) { events.push(["remote-giant", id]);
           return { main: 4, extra: 5 }; },
       },

@@ -71,6 +71,7 @@ interface RacerRemoteRuntime {
   consumePresentation(playerId: unknown): RacerPresentation | undefined;
   copyWebPose(playerId: unknown): RacePose | undefined;
   presentationVisible(playerId: unknown, nowMs: number): boolean;
+  hasDeparted(playerId: unknown): boolean;
   giant(playerId: unknown): { main: number; extra: unknown } | undefined;
 }
 
@@ -175,7 +176,9 @@ export function updateRacePresenterParticipants(host: RacePresenterParticipantsH
       const pose = runtime.remotes.copyWebPose(racer.playerId) ??
         host.initialPoses.get(racer.playerId);
       if (pose) {
-        remotePoses.push({ playerId: racer.playerId, pose });
+        // Not in the release: no minimap marker for a racer who left the room.
+        if (!runtime.remotes.hasDeparted(racer.playerId))
+          remotePoses.push({ playerId: racer.playerId, pose });
         const projectedPose = {
           x: pose.position.x,
           y: pose.position.y,

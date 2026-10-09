@@ -224,6 +224,7 @@ type race struct {
 	roster          []obj    // member snapshots at start
 	rosterIDs       []string // roster player IDs in start order
 	rosterAccounts  map[string]string
+	rosterNames     map[string]string
 	rosterTeams     map[string]int // 0 in individual mode
 	startSlots      []int          // slot of rosterIDs[i]
 	loadedIDs       []string
@@ -241,8 +242,11 @@ type race struct {
 	giant           obj
 	roadblock       obj
 	roadblockRunner string
-	roadblockResult obj      // roadblockOutcome
-	leftIDs         []string // racers who left a running roadblock race
+	roadblockResult obj // roadblockOutcome
+	// outIDs are the racers out of the race before it finished: they left
+	// the room, or failed to load (load-failed, loading timeout). The race
+	// goes on without them (not in Java, which cancelled it).
+	outIDs []string
 	// rewards are the base exp and lucci of the rewarded racers, set with
 	// the results when the race finishes (ECONOMY.md 2.1) and settled as is;
 	// shownRewards are the same scaled by rates, the data service's reward
@@ -261,6 +265,18 @@ type race struct {
 func (r *race) inRoster(playerID string) bool { return slices.Contains(r.rosterIDs, playerID) }
 
 func (r *race) isLoaded(playerID string) bool { return slices.Contains(r.loadedIDs, playerID) }
+
+func (r *race) isOut(playerID string) bool { return slices.Contains(r.outIDs, playerID) }
+
+func (r *race) markOut(playerID string) {
+	if !r.isOut(playerID) {
+		r.outIDs = append(r.outIDs, playerID)
+	}
+}
+
+func (r *race) hasFinished(playerID string) bool {
+	return slices.ContainsFunc(r.finishes, func(f finishRow) bool { return f.playerID == playerID })
+}
 
 // finishedForRewards reports whether a racer's finish counts for the
 // rewards: the server saw at least minRewardedRaceMs of racing before it

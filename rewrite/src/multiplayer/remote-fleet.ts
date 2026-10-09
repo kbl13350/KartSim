@@ -236,7 +236,8 @@ export class RemoteFleet {
     }
   }
 
-  updateRoom(room: { roomId: string; race?: { raceId: string };
+  updateRoom(room: { roomId: string; phase?: string;
+    race?: { raceId: string; loadedIds?: readonly string[] };
     members: Array<{ playerId: string }> }): void {
     if (this.disposed) return;
     if (room.roomId !== this.connection.roomId ||
@@ -246,8 +247,13 @@ export class RemoteFleet {
       return;
     }
     const members = new Set(room.members.map(member => member.playerId));
+    // Not in the release: past loading, a racer who has not loaded was
+    // dropped by the server and will never race.
+    const loaded = room.phase !== undefined && room.phase !== "loading"
+      ? room.race?.loadedIds : undefined;
     for (const playerId of this.remotes.keys())
-      if (!members.has(playerId)) this.departed.add(playerId);
+      if (!members.has(playerId) || (loaded && !loaded.includes(playerId)))
+        this.departed.add(playerId);
   }
 
   update(now: number, options: RemoteMotionFrameOptions): void {
@@ -293,6 +299,8 @@ export class RemoteFleet {
     scale: unknown, playerId: string) => void): void {
     if (this.disposed) return;
     for (const playerId of this.collisionOrder) {
+      // Not in the release: a racer who left the room is no obstacle.
+      if (this.departed.has(playerId)) continue;
       const peer = this.remotes.get(playerId)!;
       const collision = peer.motion.collisionState();
       const pose = peer.motion.copyPose();
@@ -317,9 +325,15 @@ export class RemoteFleet {
       peer.motion.rankSnapshotAge === 0;
   }
 
+  /** Whether the racer left the room during the race (it stays in the roster). */
+  hasDeparted(playerId: string): boolean {
+    return !this.disposed && this.departed.has(playerId);
+  }
+
   presentationVisible(playerId: string, now: number): boolean {
     const peer = this.remotes.get(playerId);
-    return !this.disposed && !!peer &&
+    // Not in the release: a racer who left the room disappears from the track.
+    return !this.disposed && !!peer && !this.departed.has(playerId) &&
       (peer.motion.active || (Math.trunc(now) >>> 0) % 200 >= 100) &&
       this.resetVisible(playerId, now);
   }
