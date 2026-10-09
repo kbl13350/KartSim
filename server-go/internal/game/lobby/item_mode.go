@@ -200,8 +200,23 @@ func (l *Lobby) itemCube(r *room, c *Client, in Request, sequence int, now int64
 	if err != nil {
 		return nil, err
 	}
-	grant, notices, err := r.race.items.Cube(c.playerID, cubeID, capacity, now, itemStandings(r.race))
-	if err != nil {
+	var grant itemmode.Grant
+	var notices []itemmode.ScanNotice
+	if in.has("testItemId") {
+		// A development switch (KART_ITEM_TEST_GRANTS): the test bot names
+		// the item instead of drawing it.
+		if !l.itemTests {
+			return nil, fail(http.StatusForbidden, "ITEM_TEST_GRANTS_DISABLED")
+		}
+		testItem, err := in.integer("testItemId", 0, 255)
+		if err != nil {
+			return nil, err
+		}
+		grant, notices, err = r.race.items.TestCube(c.playerID, cubeID, capacity, testItem, now, itemStandings(r.race))
+		if err != nil {
+			return nil, itemFailure(err)
+		}
+	} else if grant, notices, err = r.race.items.Cube(c.playerID, cubeID, capacity, now, itemStandings(r.race)); err != nil {
 		return nil, itemFailure(err)
 	}
 	var itemID any

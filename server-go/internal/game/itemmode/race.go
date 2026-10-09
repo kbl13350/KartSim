@@ -29,6 +29,9 @@ var (
 	// ErrInvalidBy: a defence that cannot block the item, or one named with
 	// a hit.
 	ErrInvalidBy = &Error{"INVALID_BY"}
+	// ErrInvalidTestItem: a test grant names an item the race's table does
+	// not have.
+	ErrInvalidTestItem = &Error{"INVALID_TESTITEMID"}
 )
 
 const (
@@ -208,6 +211,22 @@ func (r *Race) racing(playerID string, standings []Racer) *racer {
 // racer's rank group, leaving out the items it already got as often as
 // their cap allows.
 func (r *Race) Cube(playerID string, cubeID, capacity int, now int64, standings []Racer) (Grant, []ScanNotice, error) {
+	return r.cube(playerID, cubeID, capacity, NoItem, now, standings)
+}
+
+// TestCube is Cube with the granted item named instead of drawn (a test
+// grant, for the game node's KART_ITEM_TEST_GRANTS development switch): the
+// same abuse and full-slot rules apply, the per-race caps do not (the item
+// still counts toward them). The item must be one of the race's table.
+func (r *Race) TestCube(playerID string, cubeID, capacity, itemID int, now int64, standings []Racer) (Grant, []ScanNotice, error) {
+	if !r.table.Contains(itemID) {
+		return Grant{}, nil, ErrInvalidTestItem
+	}
+	return r.cube(playerID, cubeID, capacity, itemID, now, standings)
+}
+
+// cube grants a cube's item: forced when it is not NoItem, otherwise drawn.
+func (r *Race) cube(playerID string, cubeID, capacity, forced int, now int64, standings []Racer) (Grant, []ScanNotice, error) {
 	p := r.racing(playerID, standings)
 	if p == nil || cubeID < 1 || cubeID > MaxCubeID {
 		return Grant{}, nil, ErrInvalidUse
@@ -224,6 +243,10 @@ func (r *Race) Cube(playerID string, cubeID, capacity int, now int64, standings 
 		grant.Reason = ReasonAbusing
 	case p.slots.Full():
 		grant.Reason = ReasonFull
+	case forced != NoItem:
+		p.slots.Add(forced)
+		p.obtained[forced]++
+		grant.ItemID = forced
 	default:
 		group := GroupOf(rankOf(standings, playerID), len(standings))
 		capped := func(idx int) bool {

@@ -86,7 +86,14 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 		Rates:       agent.Rates,
 		Logger:      log,
 		ItemMode:    items,
+		// A development switch (KART_ITEM_TEST_GRANTS): cube requests may
+		// name their item.
+		ItemTestGrants: cfg.ItemTestGrants,
 	})
+	if cfg.ItemTestGrants {
+		log.Warn("item test grants are on (KART_ITEM_TEST_GRANTS): item race clients may choose the items " +
+			"their cubes grant; never enable this on a public deployment")
+	}
 	agent.SetSource(rooms)
 	agent.SetConflictHandler(func(playerIDs []string) { rooms.Evict(playerIDs) })
 	if opts.WS.Logger == nil {

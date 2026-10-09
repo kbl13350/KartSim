@@ -45,6 +45,10 @@ type Config struct {
 	// AllowGuests admits guest tickets (KART_ALLOW_GUESTS, default false:
 	// hello with a guest ticket answers 401 LOGIN_REQUIRED).
 	AllowGuests bool
+	// ItemTestGrants lets an item race cube request name the item it grants
+	// (KART_ITEM_TEST_GRANTS, default false): a development switch for test
+	// bots and manual testing, never for a public deployment.
+	ItemTestGrants bool
 	// Memory guards (DESIGN.md 4.5).
 	MaxConnections  int           // WebSockets including those without hello
 	MaxRooms        int           // rooms on this node
@@ -152,6 +156,12 @@ func FromEnv(getenv func(string) string) (Config, error) {
 		problems = append(problems, errors.New("KART_ALLOW_GUESTS 必须是 true 或 false"))
 	}
 	cfg.AllowGuests = allowGuests
+
+	itemTestGrants, ok := parseBool(env("KART_ITEM_TEST_GRANTS", "false"))
+	if !ok {
+		problems = append(problems, errors.New("KART_ITEM_TEST_GRANTS 必须是 true 或 false"))
+	}
+	cfg.ItemTestGrants = itemTestGrants
 
 	lanHosts := getenv("KART_LAN_HOSTS")
 	if lanHosts == "" {

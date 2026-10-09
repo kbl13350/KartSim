@@ -136,3 +136,20 @@ func TestAllowGuestsSetting(t *testing.T) {
 		t.Errorf("KART_ALLOW_GUESTS=maybe: %v", err)
 	}
 }
+
+func TestItemTestGrantsSetting(t *testing.T) {
+	cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret}))
+	if err != nil || cfg.ItemTestGrants {
+		t.Fatalf("default: item test grants %v (%v)", cfg.ItemTestGrants, err)
+	}
+	for value, want := range map[string]bool{"true": true, "1": true, "false": false, "off": false} {
+		cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret, "KART_ITEM_TEST_GRANTS": value}))
+		if err != nil || cfg.ItemTestGrants != want {
+			t.Errorf("KART_ITEM_TEST_GRANTS=%s: %v %v", value, cfg.ItemTestGrants, err)
+		}
+	}
+	_, err = FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret, "KART_ITEM_TEST_GRANTS": "sometimes"}))
+	if err == nil || !strings.Contains(err.Error(), "KART_ITEM_TEST_GRANTS") {
+		t.Errorf("KART_ITEM_TEST_GRANTS=sometimes: %v", err)
+	}
+}

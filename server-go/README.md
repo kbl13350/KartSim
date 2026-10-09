@@ -328,6 +328,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `KART_MEMORY_LIMIT_MB` | `0`（不限） | 设置后等同 `GOMEMLIMIT`；存活堆超过它的 90% 时拒绝新连接（HTTP 503）和新 `hello`（503 `SERVER_BUSY`），已在房间的玩家不受影响。为 0 或 ≥ 64 |
 | `KART_HELLO_TIMEOUT` | `15s` | 连接后在这段时间内没有完成 `hello` 就以 1008 关闭（Go 时长格式，1s–5m） |
 | `KART_ALLOW_GUESTS` | `false` | 为 `false` 时游客票据的 `hello` 返回 401 `LOGIN_REQUIRED`；应与数据服务相同 |
+| `KART_ITEM_TEST_GRANTS` | `false` | **仅限开发测试。**为 `true` 时道具赛的 `cube` 请求可以带 `testItemId` 指定拿到的道具（测试机器人 `test/item-bot.mjs --use` 需要它），启动时打印警告；为 `false` 时这种请求返回 403 `ITEM_TEST_GRANTS_DISABLED`。公开部署切勿打开 |
 
 ### 启动脚本（`run-full-local.sh` / `run-lan.sh`）
 

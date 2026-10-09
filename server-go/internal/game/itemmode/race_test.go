@@ -131,6 +131,44 @@ func TestCubeAbuse(t *testing.T) {
 	}
 }
 
+func TestTestCubeGrantsTheNamedItem(t *testing.T) {
+	random := &picks{}
+	r := soloRace(t, random)
+	standings := order("p1", "p2", "p3", "p4")
+	// The leader cannot draw a rocket, but a test grant gives it; nothing is drawn.
+	grant, _, err := r.TestCube("p1", 1, 2, Rocket, 0, standings)
+	if err != nil || grant.ItemID != Rocket || grant.Reason != "" || !slices.Equal(grant.Slots, []int{Rocket, Empty}) ||
+		len(random.asked) != 0 {
+		t.Fatalf("test grant %+v %v (asked %v)", grant, err, random.asked)
+	}
+	// The abuse and full-slot rules still apply.
+	if grant, _, _ := r.TestCube("p1", 1, 2, Devil, 1, standings); grant.Reason != ReasonAbusing || grant.ItemID != NoItem {
+		t.Fatalf("same cube again %+v", grant)
+	}
+	r.TestCube("p1", 2, 2, Devil, 2, standings)
+	if grant, _, _ := r.TestCube("p1", 3, 2, Devil, 3, standings); grant.Reason != ReasonFull ||
+		!slices.Equal(grant.Slots, []int{Rocket, Devil}) {
+		t.Fatalf("full %+v", grant)
+	}
+	// Only items of the race's table: the individual table has no slot lock.
+	_, _, err = r.TestCube("p2", 1, 2, SlotLock, 0, standings)
+	wantErr(t, err, ErrInvalidTestItem)
+	_, _, err = r.TestCube("p2", 1, 2, Mine, 0, standings)
+	wantErr(t, err, ErrInvalidTestItem)
+	// Caps do not stop test grants, but test grants count toward them.
+	team := teamRace(t, &picks{})
+	teamStandings := order("b1", "b2", "a1", "a2")
+	for i := range 3 {
+		if grant, _, _ := team.TestCube("a1", i+1, 3, Angel, int64(i), teamStandings); grant.ItemID != Angel {
+			t.Fatalf("test angel %d: %+v", i, grant)
+		}
+		team.racers["a1"].slots.TakeFirst()
+	}
+	if team.racers["a1"].obtained[Angel] != 3 {
+		t.Fatalf("obtained %v", team.racers["a1"].obtained)
+	}
+}
+
 func TestCubeRejectsFinishedAndUnknownRacers(t *testing.T) {
 	r := soloRace(t, &picks{})
 	standings := Standings([]Racer{{ID: "p1", FinishOrder: 1}, {ID: "p2", Distance: 5}})

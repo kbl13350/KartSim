@@ -112,6 +112,10 @@ type Options struct {
 	// ItemRandom returns the random source of one item race's draws and
 	// random targets (nil: a PCG seeded from crypto/rand).
 	ItemRandom func() itemmode.Random
+	// ItemTestGrants lets a cube request name the item it grants
+	// ("testItemId", KART_ITEM_TEST_GRANTS): a development switch for test
+	// bots; otherwise such a request answers ITEM_TEST_GRANTS_DISABLED.
+	ItemTestGrants bool
 }
 
 // Client is one WebSocket connection. Its fields are guarded by Lobby.mu.
@@ -161,6 +165,7 @@ type Lobby struct {
 	log         *slog.Logger
 	items       *itemmode.Data
 	itemRandom  func() itemmode.Random
+	itemTests   bool
 
 	// verifySlots bounds the equipment checks in flight (a semaphore).
 	verifySlots chan struct{}
@@ -205,6 +210,7 @@ func New(opts Options) *Lobby {
 		log:         opts.Logger,
 		items:       opts.ItemMode,
 		itemRandom:  opts.ItemRandom,
+		itemTests:   opts.ItemTestGrants,
 		verifySlots: make(chan struct{}, maxConcurrentVerifies),
 		rooms:       map[string]*room{},
 		clients:     map[string]*Client{},
