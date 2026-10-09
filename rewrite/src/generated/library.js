@@ -1,6 +1,7 @@
 // Generated from the verified KartSim v39.11 release bundle.
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
+import { itemTrackCatalog } from "../resources/track-catalog.ts"; // item-mode(lobby)
 
 import { RaceHudController } from "../ui/race-hud-controller.ts";
 import { MultiplayerWindowView } from "../ui/multiplayer-window-view.ts";
@@ -820,6 +821,7 @@ async function uQ(n, e) {
       (await n.timeAttackTrackCatalog()).map((p) => [p.id, p.title]),
     );
     if (e === "p3553") for (const p of await Cw(n)) f.set(p.id, p.title);
+    if (e === "p3553") for (const p of await itemTrackCatalog(n)) f.has(p.id) || f.set(p.id, p.title); // item-mode(lobby)
     return { definition: s, textures: o, strings: h, font: u, trackTitles: f };
   } catch (h) {
     throw (G1(u), h);
@@ -5102,6 +5104,9 @@ function vI(n) {
         kind: "lte",
         team: n === 47,
       });
+    case 2: // item-mode(lobby)
+    case 4:
+      return Object.freeze({ [Pn]: !0, modeId: n, kind: "item", team: n === 4 });
     default:
       throw new Error(`竞速玩法 ${n} 尚未准入。`);
   }

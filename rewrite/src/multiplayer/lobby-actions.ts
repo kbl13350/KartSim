@@ -2,7 +2,8 @@ import { formatMultiplayerError } from "./errors";
 import { isPlayableGameplay } from "./gameplay-admission";
 import type { ActiveRoom } from "./room-state";
 
-export type Gameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp";
+export type Gameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp" |
+  "item";
 
 export interface RoomSummary {
   roomId: string;
@@ -83,6 +84,7 @@ export interface LobbyControllerHost {
 const gameplayNames: Record<Gameplay, string> = {
   ordinary: "普通竞速", grip: "抓地模式", shadow: "幽灵模式",
   roadblock: "挡人模式", lte: "LTE Web试玩", giant: "巨人模式", rp: "RP竞速",
+  item: "道具赛",
 };
 const startRuleErrors = new Set([
   "NOT_ENOUGH_PLAYERS", "ROADBLOCK_NEEDS_FIVE", "TRACK_REQUIRED",
@@ -102,7 +104,8 @@ export async function listLobbyRooms(host: LobbyControllerHost, channel: string,
     return;
   }
   if (gameplay !== "ordinary" && host.options.version !== "p3553") {
-    host.options.status("娱乐模式暂时仅开放 P3553 资源版本。", true);
+    host.options.status(gameplay === "item" ? "道具赛暂时仅开放 P3553 资源版本。"
+      : "娱乐模式暂时仅开放 P3553 资源版本。", true);
     return;
   }
   if (channel !== host.channelName || page !== host.page || gameplay !== host.gameplay) {

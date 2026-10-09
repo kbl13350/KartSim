@@ -1,4 +1,5 @@
 /** Resource and connection assembly for a live multiplayer race. */
+import { isItemRace, itemTrackCardModeKey } from "./lobby-item-mode";
 export interface MultiplayerRaceLoaderDependencies {
   createToonStageBinding(): unknown;
   loadRaceAssets(assets: unknown, config: any, room: any, audio: unknown,
@@ -14,7 +15,7 @@ export interface MultiplayerRaceLoaderDependencies {
   loadRoadblockResult(library: unknown, root: HTMLElement, room: any): Promise<any>;
   loadRoadblockOverlay(library: unknown, root: HTMLElement): Promise<any>;
   loadRaceResult(library: unknown, root: HTMLElement, room: any,
-    playerId: unknown, teamMode: boolean): Promise<any>;
+    playerId: unknown, teamMode: boolean | "item-team"): Promise<any>;
   findKart(garage: unknown, kartId: unknown, serial: unknown): any;
   bannerKind(kart: unknown, engineGrade: unknown, mode: string, speed: unknown): unknown;
   loadBanner(library: unknown, root: HTMLElement): Promise<any>;
@@ -110,12 +111,14 @@ export function createMultiplayerRaceLoader(
           : undefined;
         if (config.mode === "team" && team !== 1 && team !== 2)
           throw new Error("组队赛卡片缺少本机红蓝队身份。");
+        const item = isItemRace(raceAssets.drivingMode);
         trackCard = await deps.loadTrackCard({
           library, root, trackId: room.trackId, trackDirectory: directory,
           trackTitle: raceAssets.map.metadata.cnTitle ?? "",
           difficulty: raceAssets.map.metadata.difficulty,
           game: {
-            modeKey: config.mode === "team" ? "SpeedTeam" : "SpeedIndi",
+            modeKey: item ? itemTrackCardModeKey(config.mode === "team")
+              : config.mode === "team" ? "SpeedTeam" : "SpeedIndi",
             speed: config.speed,
             team: team === 1 || team === 2 ? team : undefined,
           },
@@ -134,8 +137,9 @@ export function createMultiplayerRaceLoader(
           roadblockOverlay = await deps.loadRoadblockOverlay(library, root);
           checkCancellation();
         } else {
+          // 组队道具赛 is won by the first finisher's team: no TP column or board.
           result = await deps.loadRaceResult(library, root, room, connection.playerId,
-            config.mode === "team");
+            config.mode === "team" ? item ? "item-team" : true : false);
           checkCancellation();
         }
 

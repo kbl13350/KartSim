@@ -66,12 +66,49 @@ test("模式列、快速开始与赛道主题", () => {
   assert.equal(trackThemeName(undefined), undefined);
 });
 
-test("道具赛未开放，ETC 需要 P3553", () => {
+test("道具赛与 ETC 需要 P3553", () => {
   const [speed, item, etc] = LOBBY_TABS;
   assert.equal(lobbyTabAvailable(speed!, "p3528"), true);
-  assert.equal(lobbyTabAvailable(item!, "p3553"), false);
+  assert.equal(lobbyTabAvailable(item!, "p3553"), true);
+  assert.equal(lobbyTabAvailable(item!, "p3528"), false);
   assert.equal(lobbyTabAvailable(etc!, "p3553"), true);
   assert.equal(lobbyTabAvailable(etc!, "p3528"), false);
+});
+
+test("道具赛标签按原版 아이템카테고리 分为个人道具赛和组队道具赛", () => {
+  const item = LOBBY_TABS.find(tab => tab.id === "item")!;
+  assert.equal(item.unavailable, undefined);
+  assert.deepEqual(item.categories.map(category => [category.id, category.title,
+    category.gameplay, category.channel, category.channels, category.filter]), [
+    ["itemIndi", "个人道具赛", "item", "itemIndiCombine", ["itemIndiCombine"], ["indi"]],
+    ["itemTeam", "组队道具赛", "item", "itemTeamCombine", ["itemTeamCombine"], ["team"]],
+  ]);
+  assert.equal(categoryForChannel("itemIndiCombine", "item")?.id, "itemIndi");
+  assert.equal(categoryForChannel("itemTeamCombine", "item")?.id, "itemTeam");
+  // An item channel opens the item list whatever gameplay came with it.
+  assert.equal(categoryForChannel("itemTeamCombine")?.id, "itemTeam");
+  assert.equal(categoryForChannel(undefined, "item")?.id, "itemIndi");
+
+  const state = createLobbyListUiState();
+  reconcileLobbyCategory(state, "itemTeamCombine", "item");
+  assert.deepEqual([state.tab, state.category], ["item", "itemTeam"]);
+  // The two categories share one item list; each keeps its own mode.
+  reconcileLobbyCategory(state, "itemIndiCombine", "item");
+  assert.deepEqual([state.tab, state.category], ["item", "itemIndi"]);
+  reconcileLobbyCategory(state, "speedIndiCombine", "ordinary");
+  assert.deepEqual([state.tab, state.category], ["speed", "speedIndi"]);
+
+  const rooms = [
+    room("individual", 7, { gameplay: "item" }), room("team", 7, { gameplay: "item" }),
+    room("team", 7, { gameplay: "item", locked: true }),
+  ];
+  state.category = "itemIndi";
+  assert.deepEqual(visibleLobbyRooms(state, rooms), [0]);
+  state.category = "itemTeam";
+  assert.deepEqual(visibleLobbyRooms(state, rooms), [1, 2]);
+  assert.equal(quickStartRoom(rooms, visibleLobbyRooms(state, rooms)), 1);
+  assert.equal(lobbyRoomModeLabel(rooms[0]!), "个人道具");
+  assert.equal(lobbyRoomModeLabel(rooms[1]!), "组队道具");
 });
 
 test("请求同步清空旧行不算返回；超时后不再显示读取中", () => {

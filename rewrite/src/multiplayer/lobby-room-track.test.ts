@@ -165,3 +165,37 @@ test("room track errors, generation cancellation and disposal match release", as
     assert.deepEqual(await inspect(true), await inspect(false), mode);
   }
 });
+
+test("an item room finds its track card in the item catalog", async () => {
+  const events: unknown[] = [];
+  const host = {
+    room: { trackId: "village_C01", gameplay: "item" },
+    library: {
+      timeAttackTrackCatalog: async () => { throw new Error("speed catalog"); },
+      get: (path: string) => ({ virtualPath: path, canonicalPath: "track_/village_C01/track.1s" }),
+      resolveContainerPath: (_path: string, card: string) => {
+        events.push(["card", card]);
+        return { status: "found", entry: { bytes: async () => new Uint8Array([1]) } };
+      },
+      trackMetadata: async () => ({ difficulty: 3, theme: "village" }),
+    },
+    actions: { onError: (error: unknown) => events.push(["error", String(error)]) },
+    disposed: false, trackLoad: 0, trackTitle: "",
+    view: { render: () => events.push(["render"]) },
+  } as unknown as LobbyRoomTrackHost;
+  const dependencies: LobbyRoomTrackDependencies = {
+    randomTrack: () => undefined,
+    mode: () => "item",
+    uiResource: () => ({ bytes: async () => new Uint8Array([2]) }),
+    decodePng: async () => ({ width: 1, height: 1, pixels: [0, 0, 0, 0] }),
+    canvas: image => ({ canvas: image }),
+    roadblockTracks: async () => { throw new Error("roadblock catalog"); },
+    theme: metadata => metadata.theme as string,
+    itemTracks: async () => [{ id: "village_C01", title: "城镇 手指（道具）",
+      path: "track_village_C01/track.1s" }],
+  };
+  await loadLobbyRoomTrack(host, dependencies);
+  assert.equal(host.trackTitle, "城镇 手指（道具）");
+  assert.equal(host.trackDifficulty, 3);
+  assert.deepEqual(events, [["card", "track_/village_C01/xt_trackCard.png"], ["render"]]);
+});

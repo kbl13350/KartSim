@@ -5444,6 +5444,93 @@ async function writeIfChanged(filename, contents) {
   await writeFile(target, contents, "utf8");
 }
 
+// ---- item-mode(lobby) ----------------------------------------------------
+// 道具赛 mode identity (ITEM_MODE.md 1, 2, 5, 8): the original item channels
+// itemIndiCombine / itemTeamCombine (channel.xml:72-73) and gameplay "item"
+// in the generated mode tables, the original game types 2 / 4, room labels,
+// the item track catalog for item rooms and the frozen `race.item` check at
+// race start. Each substitution must match exactly once in its module.
+const itemLobbyImports = new Map([
+  ["formats", ['import { itemChannelMismatch, itemRoomLabel } from "../multiplayer/lobby-item-mode.ts"; // item-mode(lobby)']],
+  ["library", ['import { itemTrackCatalog } from "../resources/track-catalog.ts"; // item-mode(lobby)']],
+  ["vehicle", [
+    'import { isItemRaceRules, sameItemRaceRules } from "../multiplayer/lobby-item-mode.ts"; // item-mode(lobby)',
+    'import { itemTrackCatalog } from "../resources/track-catalog.ts"; // item-mode(lobby)',
+  ]],
+]);
+const itemLobbyPatches = new Map([
+  ["formats", [
+    // Channel table He: the release only listed the four speed channels.
+    ['  speedTeamInfinit: { mode: "team", speed: 4, gameType: 3 },\n};',
+      '  speedTeamInfinit: { mode: "team", speed: 4, gameType: 3 },\n' +
+      '  // item-mode(lobby): the original combined item channels.\n' +
+      '  itemIndiCombine: { mode: "individual", speed: 7, gameType: 2 },\n' +
+      '  itemTeamCombine: { mode: "team", speed: 7, gameType: 4 },\n};'],
+    // Gameplay names xX and the gameplay set cw.
+    ['  rp: "RP竞速",\n};', '  rp: "RP竞速",\n  item: "道具赛", // item-mode(lobby)\n};'],
+    ['    n === "giant" ||\n    n === "rp"\n  );',
+      '    n === "giant" ||\n    n === "rp" ||\n    n === "item" // item-mode(lobby)\n  );'],
+    // To: item gameplay only on item channels, and nothing else on them.
+    ['function To(n, e, t) {\n  return (n !== void 0 && !cw(n)) || !$6(e)',
+      'function To(n, e, t) {\n  if (itemChannelMismatch(n, e)) return !1; // item-mode(lobby)\n' +
+      '  return (n !== void 0 && !cw(n)) || !$6(e)'],
+    // SX: kItemIndi = 2, kItemTeam = 4.
+    ['    case "lte":\n      return e ? 47 : 46;\n  }',
+      '    case "lte":\n      return e ? 47 : 46;\n' +
+      '    case "item": // item-mode(lobby)\n      return e ? 4 : 2;\n  }'],
+    // iR: room title suffix 个人道具赛 / 组队道具赛.
+    ['function iR(n) {\n  const e = G2(n);\n',
+      'function iR(n) {\n  const e = G2(n);\n' +
+      '  if (e === "item") return itemRoomLabel(n.channelName); // item-mode(lobby)\n'],
+  ]],
+  ["library", [
+    // vI: the frozen driving mode of game types 2 and 4, accepted by Q00.
+    ['    default:\n      throw new Error(`竞速玩法 ${n} 尚未准入。`);',
+      '    case 2: // item-mode(lobby)\n    case 4:\n' +
+      '      return Object.freeze({ [Pn]: !0, modeId: n, kind: "item", team: n === 4 });\n' +
+      '    default:\n      throw new Error(`竞速玩法 ${n} 尚未准入。`);'],
+    // Lobby list titles also cover the item-only tracks.
+    ['    if (e === "p3553") for (const p of await Cw(n)) f.set(p.id, p.title);\n',
+      '    if (e === "p3553") for (const p of await Cw(n)) f.set(p.id, p.title);\n' +
+      '    if (e === "p3553") for (const p of await itemTrackCatalog(n)) f.has(p.id) || f.set(p.id, p.title); // item-mode(lobby)\n'],
+  ]],
+  ["vehicle", [
+    // w40: an item race carries exactly its frozen race.item rules.
+    ['    throw new Error("LTE Web试玩冻结参数无效。");\n',
+      '    throw new Error("LTE Web试玩冻结参数无效。");\n' +
+      '  if ( // item-mode(lobby)\n' +
+      '    G2(n) === "item"\n' +
+      '      ? !isItemRaceRules(e.item, n.mode === "team") ||\n' +
+      '        !sameItemRaceRules(e.item, n.race?.item)\n' +
+      '      : e.item !== void 0\n' +
+      '  )\n' +
+      '    throw new Error("道具赛冻结参数无效。");\n'],
+    // A40: item rooms resolve their track in the item catalog.
+    ['        : G2(e) === "lte"\n          ? r20(g)\n          : g.timeAttackTrackCatalog(),',
+      '        : G2(e) === "lte"\n          ? r20(g)\n' +
+      '          : G2(e) === "item" // item-mode(lobby)\n            ? itemTrackCatalog(g)\n' +
+      '            : g.timeAttackTrackCatalog(),'],
+  ]],
+]);
+const appliedItemLobbyPatches = new Set();
+function applyItemLobbyPatches(name, source) {
+  for (const [before, after] of itemLobbyPatches.get(name) ?? []) {
+    const first = source.indexOf(before);
+    assert(first >= 0 && source.indexOf(before, first + 1) < 0,
+      `item-mode(lobby) patch target in ${name}.js is missing or ambiguous: ${before.slice(0, 60)}`);
+    source = source.replace(before, () => after);
+    appliedItemLobbyPatches.add(before);
+  }
+  const header = "// Stable minified names are retained for behavioral parity.\n";
+  const lines = itemLobbyImports.get(name);
+  if (lines) {
+    assert(source.includes(header), `${name}.js lost its generated header.`);
+    source = source.replace(header, () => `${header}${lines.join("\n")}\n`);
+  }
+  return source;
+}
+// ---- end item-mode(lobby) ------------------------------------------------
+
 const generated = [];
 function addHouseShellState(source) {
   const substitutions = [
@@ -5463,6 +5550,7 @@ function addHouseShellState(source) {
 for (const name of order) {
   let text = pruneUnreferencedDeclarations(retireDuplicateArchiveCode(name, renderModule(name)));
   if (name === "world") text = addHouseShellState(text);
+  text = applyItemLobbyPatches(name, text); // item-mode(lobby)
   const filename = `${name}.js`;
   await writeIfChanged(filename, text);
   generated.push({
@@ -5474,6 +5562,8 @@ for (const name of order) {
   });
 }
 
+assert(appliedItemLobbyPatches.size === [...itemLobbyPatches.values()].flat().length,
+  "Not every item-mode(lobby) patch was applied."); // item-mode(lobby)
 const garage = await readFile(garageFile, "utf8");
 const oldImport = 'from "./index-DoW2rQpI.js";';
 assert(garage.includes(oldImport), "Garage chunk import path changed.");

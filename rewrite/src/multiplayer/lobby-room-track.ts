@@ -1,5 +1,7 @@
 /** Resolves and paints the current room's selected or random track card. */
 
+import { itemTrackCatalog, type TrackLibrary } from "../resources/track-catalog";
+
 interface ByteEntry { bytes(): Promise<Uint8Array> }
 interface DecodedPng { width: number; height: number; pixels: ArrayLike<number> }
 interface TrackCard { id: string; title: string; path: string }
@@ -43,6 +45,8 @@ export interface LobbyRoomTrackDependencies {
   canvas(image: DecodedPng): unknown;
   roadblockTracks(library: LobbyRoomTrackHost["library"]): Promise<TrackCard[]>;
   theme(metadata: Record<string, unknown>): string | undefined;
+  /** Tracks of 道具赛 rooms; defaults to the library's item catalog. */
+  itemTracks?(library: LobbyRoomTrackHost["library"]): Promise<TrackCard[]>;
 }
 
 export async function loadLobbyRoomTrack(host: LobbyRoomTrackHost,
@@ -84,9 +88,13 @@ export async function loadLobbyRoomTrack(host: LobbyRoomTrackHost,
     return;
   }
   try {
-    const tracks = await (dependencies.mode(host.room) === "roadblock"
+    const gameplay = dependencies.mode(host.room);
+    const tracks = await (gameplay === "roadblock"
       ? dependencies.roadblockTracks(host.library)
-      : host.library.timeAttackTrackCatalog());
+      : gameplay === "item"
+        ? (dependencies.itemTracks ?? (library =>
+          itemTrackCatalog(library as unknown as TrackLibrary)))(host.library)
+        : host.library.timeAttackTrackCatalog());
     const track = tracks.find(candidate => candidate.id === trackId);
     if (!track) throw new Error("本地资源中没有房主选择的赛道");
     const resource = host.library.get(track.path);

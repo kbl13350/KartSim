@@ -57,6 +57,15 @@ const REWARD_LABEL = {
 
 const folder = "stage_/mqGameFinal";
 
+/**
+ * Result layout: individual (`false`), speed team (`true`) or item team. 组队道具赛
+ * is won by the team of the first finisher without points, like the original
+ * item result line (item_line_template@zz has no TP column and itemResultPanel
+ * no score box), so it keeps the team rows and win icon but drops the TP
+ * column and the TP board.
+ */
+export type ResultTeamMode = boolean | "item-team";
+
 function named(node: ResultNode, name: string, deps: ResultViewDependencies): ResultNode | undefined {
   return node.children.find(child => deps.attribute(child, "name") === name);
 }
@@ -74,14 +83,18 @@ export class MultiplayerResultView {
   pageWidth = 0;
   teamScores?: Record<number, number>;
   winningTeam?: number;
+  /** 组队道具赛 results show no team points. */
+  hidePoints = false;
   rewards = new Map<string, RaceReward>();
   private newPageClock!: ResultViewDependencies["newPageClock"];
 
   static async load(library: unknown, root: unknown, race: ResultRace,
-    localPlayerId: unknown, teamMode: boolean = false,
+    localPlayerId: unknown, layout: ResultTeamMode = false,
     deps: ResultViewDependencies): Promise<MultiplayerResultView> {
     const screen = new this();
     screen.newPageClock = deps.newPageClock;
+    const teamMode = layout !== false;
+    screen.hidePoints = layout === "item-team";
     const teamStyles = teamMode ? await deps.loadTeams(library) : undefined;
     const localTeam = race.roster.find(player => player.playerId === localPlayerId)?.team;
     const localDye = teamStyles && localTeam
@@ -139,22 +152,10 @@ export class MultiplayerResultView {
 
     const otherPanels: ResultNode[] = [];
     const winIcons: ResultNode[] = [];
-    if (teamStyles) {
+    if (teamStyles && !screen.hidePoints) {
       const scorePage = await deps.loadBml(library, folder, "speedTeam_RightPage1@zz");
       const background = named(scorePage, "background", deps);
       const scoreBox = named(scorePage, "scoreBox", deps);
-      const winIcon = named(await deps.loadBml(library, folder, "team_RightPage2@cn"),
-        "resultWinteam", deps);
-      if (!winIcon) throw Error("组队赛结果缺少 resultWinteam。");
-      const iconHeight = Number(deps.attribute(winIcon, "windowSize")!.split(" ")[1]);
-      if (!Number.isFinite(iconHeight)) throw Error("组队赛胜利图标高度无效。");
-      for (const teamNumber of [1, 2]) {
-        winIcons.push(deps.cloneNode(winIcon, {
-          name: `teamWin${teamNumber}`,
-          texture: teamNumber === 1 ? "redWin@cn" : "blueWin@cn",
-          align: "right,top", adjust: `0 -${iconHeight}`,
-        }));
-      }
       const scoreTemplate = scoreBox!.children[0]!;
       const scoreWidth = Number(deps.attribute(scoreTemplate, "leftTopWH")!.split(" ")[2]);
       const scorePanels = ["blue", "red"].map((alias, order) => {
@@ -174,6 +175,20 @@ export class MultiplayerResultView {
         { ...background!, name: "Container" },
         { ...scoreBox!, name: "Container", children: scorePanels },
       ]));
+    }
+    if (teamStyles) {
+      const winIcon = named(await deps.loadBml(library, folder, "team_RightPage2@cn"),
+        "resultWinteam", deps);
+      if (!winIcon) throw Error("组队赛结果缺少 resultWinteam。");
+      const iconHeight = Number(deps.attribute(winIcon, "windowSize")!.split(" ")[1]);
+      if (!Number.isFinite(iconHeight)) throw Error("组队赛胜利图标高度无效。");
+      for (const teamNumber of [1, 2]) {
+        winIcons.push(deps.cloneNode(winIcon, {
+          name: `teamWin${teamNumber}`,
+          texture: teamNumber === 1 ? "redWin@cn" : "blueWin@cn",
+          align: "right,top", adjust: `0 -${iconHeight}`,
+        }));
+      }
     }
 
     const definition: ResultNode = {
@@ -213,7 +228,8 @@ export class MultiplayerResultView {
       visible: race.roster.find(player => player.playerId === result.playerId)?.team ===
         Number(teamPart[2]),
     };
-    if (part === "tp") return { text: String(result.points) };
+    if (part === "tp") return this.hidePoints
+      ? { visible: false } : { text: String(result.points) };
     if (part === "reward") {
       const reward = this.rewards.get(String(result.playerId));
       return reward ? { visible: true, text: formatRaceReward(reward) } : { visible: false };

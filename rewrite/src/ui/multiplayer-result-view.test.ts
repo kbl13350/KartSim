@@ -153,3 +153,33 @@ test("account rewards from race.rewards show beside each finisher", async () => 
     view.dispose();
   }
 });
+
+test("组队道具赛 results keep the team rows and win icon without TP", async () => {
+  const race = { roster: [
+    { playerId: "local", team: 2, name: "Alice" },
+    { playerId: "peer", team: 1, name: "Bob" },
+  ] };
+  const speed = harness();
+  const item = harness();
+  await MultiplayerResultView.load({}, {}, race, "local", true, speed.deps);
+  const view = await MultiplayerResultView.load({}, {}, race, "local", "item-team", item.deps);
+  const panels = (options: typeof item.options) => options!.definition.children
+    .map(child => attribute(child, "name") ?? child.name);
+  // No TP board on the right; the rows and the list are the speed team ones.
+  assert.deepEqual(panels(speed.options), ["resultCon", "resultList", "teamRight"]);
+  assert.deepEqual(panels(item.options), ["resultCon", "resultList"]);
+  assert.deepEqual(item.options!.definition.children[1], speed.options!.definition.children[1]);
+  // The first finisher's team (blue) won although red scored more points.
+  view.show([
+    { playerId: "local", points: 10, rank: 1, elapsedMs: 70_000 },
+    { playerId: "peer", points: 8, rank: 2, elapsedMs: 71_000 },
+  ], 1000, { teamScores: { 1: 18, 2: 10 }, winningTeam: 2 });
+  const state = (name: string) => item.options!.state(node(name));
+  assert.deepEqual(state("row0/tp"), { visible: false });
+  assert.deepEqual(state("row1/tp"), { visible: false });
+  assert.deepEqual(state("teamWin2"), { visible: true });
+  assert.deepEqual(state("teamWin1"), { visible: false });
+  assert.deepEqual(state("row0/team2"), { visible: true });
+  assert.deepEqual(state("row0/rank"), { text: "1" });
+  view.dispose();
+});

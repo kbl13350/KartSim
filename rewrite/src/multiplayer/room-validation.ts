@@ -1,11 +1,14 @@
 /** Validation of the full `room` server event payload (release function `bP`). */
 
+import { ITEM_CHANNELS, isItemChannel, isItemRaceRules, itemChannelMismatch } from "./lobby-item-mode";
+
 export type ResourceVersion = "p3528" | "p3543" | "p3553";
 export type RoomMode = "individual" | "team";
-export type Gameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp";
+export type Gameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp" |
+  "item";
 export type RoomPhase = "open" | "loading" | "countdown" | "racing" | "finished";
 export type ChannelName = "speedIndiCombine" | "speedTeamCombine" |
-  "speedIndiInfinit" | "speedTeamInfinit";
+  "speedIndiInfinit" | "speedTeamInfinit" | "itemIndiCombine" | "itemTeamCombine";
 
 export interface RoomEquipment {
   itemIds: Record<number, number>;
@@ -79,6 +82,8 @@ export interface RaceSnapshot {
     limitMs: 180000; noRunnerManualReset: true };
   roadblockOutcome?: { runnerWon: boolean; reason: "finish" | "timeout" | "runner-left";
     endAt: number };
+  /** Item race rules (ITEM_MODE.md 5); item rooms only. */
+  item?: { ruleset: "web-item-v1"; table: "indi" | "team" };
   /** Account rewards after the race (ECONOMY.md 2.1); see account/rewards.ts. */
   rewards?: Record<string, { exp: number; lucci: number }>;
 }
@@ -115,11 +120,15 @@ const channelRules: Record<ChannelName, { mode: RoomMode; speed: 4 | 7 }> = {
   speedTeamCombine: { mode: "team", speed: 7 },
   speedIndiInfinit: { mode: "individual", speed: 4 },
   speedTeamInfinit: { mode: "team", speed: 4 },
+  itemIndiCombine: { mode: ITEM_CHANNELS.itemIndiCombine.mode, speed: 7 },
+  itemTeamCombine: { mode: ITEM_CHANNELS.itemTeamCombine.mode, speed: 7 },
 };
 const gameplayNames = new Set<Gameplay>([
-  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp",
+  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item",
 ]);
 const randomTrackCodes = new Set([0, 3, 4, 5, 6, 7, 8, 30, 40]);
+/** Item rooms draw the item hot 1-5, all, new and reverse pools; 40 is 竞速随机. */
+const itemRandomTrackCodes = new Set([0, 3, 4, 5, 6, 7, 8, 30]);
 const equipmentSlots = [
   1, 2, 3, 4, 8, 9, 10, 11, 12, 16, 17, 18, 20, 21, 52, 26, 27, 30, 31,
   32, 36, 43, 45, 44, 46, 58, 59, 61, 70, 68, 69, 71, 76, 77, 78,
@@ -170,7 +179,9 @@ function channel(value: unknown): value is ChannelName {
 
 function gameplayForChannel(gameplay: unknown, channelName: unknown,
   version: unknown): boolean {
-  if ((gameplay !== undefined && !validGameplay(gameplay)) || !channel(channelName)) return false;
+  if ((gameplay !== undefined && !validGameplay(gameplay)) || !channel(channelName) ||
+      itemChannelMismatch(gameplay, channelName)) return false;
+  if (gameplay === "item") return version === undefined || version === "p3553";
   if (gameplay === "roadblock" || gameplay === "giant") {
     return channelName === "speedIndiCombine" && (version === undefined || version === "p3553");
   }
@@ -264,6 +275,9 @@ function validModeData(race: Data, gameplay: Gameplay, rosterIds: Set<string>): 
   if (gameplay === "giant" ?
       !(record(race.giant) && race.giant.ruleset === "p948-giant-p3553-web-v1" &&
         giantTracks.has(String(race.trackId))) : race.giant !== undefined) return false;
+  if (gameplay === "item" ?
+      !isItemRaceRules(race.item, race.channelName === "itemTeamCombine") :
+      race.item !== undefined) return false;
   return true;
 }
 
@@ -328,6 +342,9 @@ function validOrdinaryRace(room: Data, race: Data, rosterIds: Set<string>): bool
       if (race.winningTeam !== 1 && race.winningTeam !== 2) return false;
       if (!record(race.teamScores) || !integer(race.teamScores[1], 0, 39) ||
           !integer(race.teamScores[2], 0, 39)) return false;
+      // 组队道具赛: the first finisher's team wins; points do not decide it.
+      if (isItemChannel(room.channelName) &&
+          !firstFinisherTeamWon(race, race.winningTeam)) return false;
     } else if (race.winningTeam !== undefined || race.teamScores !== undefined) return false;
     const seen = new Set<string>();
     for (const [index, result] of race.results.entries()) {
@@ -341,6 +358,15 @@ function validOrdinaryRace(room: Data, race: Data, rosterIds: Set<string>): bool
       race.winningTeam !== undefined || race.teamScores !== undefined) return false;
   return room.phase === "loading" ? race.startAt === undefined :
     finiteNonnegative(race.startAt) && (race.loadedIds as unknown[]).length > 0;
+}
+
+/** The rank 1 result finished and belongs to the winning team. */
+function firstFinisherTeamWon(race: Data, winningTeam: 1 | 2): boolean {
+  const first = (race.results as unknown[])[0];
+  if (!record(first) || first.elapsedMs === null) return false;
+  const member = (race.roster as unknown[]).find(entry =>
+    record(entry) && entry.playerId === String(first.playerId));
+  return record(member) && member.team === winningTeam;
 }
 
 /** Mirrors the released client's acceptance boundary for JSON room snapshots. */
@@ -358,7 +384,8 @@ export function isValidRoomSnapshot(value: unknown): value is RoomSnapshot {
       (value.trackId !== undefined && !trackId(value.trackId)) ||
       (value.randomTrackCode !== undefined &&
         (typeof value.randomTrackCode !== "number" ||
-          !randomTrackCodes.has(value.randomTrackCode) || value.resourceVersion !== "p3553" ||
+          !(value.gameplay === "item" ? itemRandomTrackCodes : randomTrackCodes)
+            .has(value.randomTrackCode) || value.resourceVersion !== "p3553" ||
           value.trackId !== undefined)) ||
       (value.trackId === undefined && value.randomTrackCode === undefined) ||
       (value.autoStartAt !== undefined &&

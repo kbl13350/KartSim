@@ -93,9 +93,10 @@ function run(kind, options = {}) {
     rp: options.rp ? { id: 1,
       draws: { local: { kartId: 7, flyingPetId: 8 } } } : undefined,
     roadblock: options.roadblock ? { runnerId: "local" } : undefined,
+    item: options.raceItem,
   };
   const mode = options.lte ? "lte" : options.giant ? "giant" :
-    options.rp ? "rp" : options.roadblock ? "roadblock" : "ordinary";
+    options.rp ? "rp" : options.roadblock ? "roadblock" : options.item ? "item" : "ordinary";
   const assets = {
     raceId: 3,
     participants: options.missingVehicle ? [] : [{
@@ -107,7 +108,8 @@ function run(kind, options = {}) {
     }],
     map: { data: { trackId: "track" }, scene: {}, renderScene: {},
       skydome: {}, admission: {} },
-    drivingMode: mode === "ordinary" ? undefined : { kind: mode },
+    drivingMode: mode === "ordinary" ? undefined
+      : mode === "item" ? { kind: mode, team: !!options.team } : { kind: mode },
     mode: options.team ? "team" : "individual",
     speed: options.speed ?? 4,
     rp: room.rp,
@@ -153,6 +155,24 @@ test("local race asset validation and runtime construction match release", () =>
     { wrongTrack: true }, { rp: true, wrongRpItem: true },
   ]) {
     assert.deepEqual(run("rewritten", scenario), run("original", scenario),
+      JSON.stringify(scenario));
+  }
+});
+
+test("item races need their race.item and keep the team gauge unfed", () => {
+  const team = { ruleset: "web-item-v1", table: "team" };
+  const built = run("rewritten", { item: true, team: true, speed: 7, raceItem: team });
+  assert.equal(built.error, undefined);
+  // makePhysics(params, shape, team, team infinite, network team gauge, ...): the
+  // gauge stays network-driven, so without team-gauge events it never fills.
+  const physics = built.calls.find(call => Array.isArray(call) && call[0] === "physics created");
+  assert.deepEqual(physics[1].slice(0, 4), [true, false, true, { kind: "item", team: true }]);
+  for (const scenario of [
+    { item: true, team: true, speed: 7 },
+    { item: true, team: true, speed: 7, raceItem: { ruleset: "web-item-v1", table: "indi" } },
+    { team: true, speed: 7, raceItem: team },
+  ]) {
+    assert.equal(run("rewritten", scenario).error, "道具赛身份与本机玩法不一致。",
       JSON.stringify(scenario));
   }
 });

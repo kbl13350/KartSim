@@ -1,5 +1,7 @@
 /** Gameplay channel names and the original room creation dropdown template. */
 
+import { itemModeLabel } from "./lobby-item-mode";
+
 export interface RoomOptionNode {
   name: string;
   children: RoomOptionNode[];
@@ -16,6 +18,10 @@ export function roomChannelNames(mode: string,
   ordinary: Record<string, string>, rp: Record<string, string>):
     Record<string, string> {
   if (mode === "roadblock") return { speedIndiCombine: "挡人模式（Web）" };
+  if (mode === "item") return {
+    itemIndiCombine: itemModeLabel(false),
+    itemTeamCombine: itemModeLabel(true),
+  };
   if (mode === "giant") return { speedIndiCombine: "巨人模式" };
   if (mode === "rp") return rp;
   if (mode === "lte") return {

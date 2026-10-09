@@ -254,3 +254,116 @@ test("a player who joined after the start waits outside the race roster", () => 
     assert.equal(isValidRoomSnapshot(value), true, phase);
   }
 });
+
+/** An item room: the item channel of its mode, gameplay "item" and race.item. */
+function itemRoom(options: { mode?: "individual" | "team"; phase?: string;
+  randomTrackCode?: number } = {}): Fixture {
+  const mode = options.mode ?? "individual";
+  const value = room({ mode, phase: options.phase, randomTrackCode: options.randomTrackCode,
+    trackId: "village_C01" });
+  const channelName = mode === "team" ? "itemTeamCombine" : "itemIndiCombine";
+  value.gameplay = "item";
+  value.channelName = channelName;
+  if (value.race) {
+    value.race.gameplay = "item";
+    value.race.channelName = channelName;
+    value.race.item = { ruleset: "web-item-v1", table: mode === "team" ? "team" : "indi" };
+  }
+  return value;
+}
+
+test("item rooms are valid on the item channels in every phase", () => {
+  for (const phase of ["open", "loading", "countdown", "racing", "finished"]) {
+    for (const mode of ["individual", "team"] as const) {
+      assert.equal(isValidRoomSnapshot(itemRoom({ phase, mode })), true, `${mode}/${phase}`);
+    }
+  }
+  for (const code of [0, 3, 4, 5, 6, 7, 8, 30]) {
+    assert.equal(isValidRoomSnapshot(itemRoom({ randomTrackCode: code })), true, `random ${code}`);
+  }
+});
+
+test("item rooms reject mismatched channels, rules and random codes", () => {
+  const variants: Array<[string, Fixture, (value: Fixture) => void]> = [
+    ["item gameplay on a speed channel", itemRoom(), value => {
+      value.channelName = "speedIndiCombine";
+    }],
+    ["ordinary room on an item channel", room(), value => {
+      value.channelName = "itemIndiCombine";
+    }],
+    ["ordinary room without gameplay on an item channel", room(), value => {
+      delete value.gameplay;
+      value.channelName = "itemIndiCombine";
+    }],
+    ["grip on an item channel", room({ gameplay: "grip" }), value => {
+      value.channelName = "itemIndiCombine";
+    }],
+    ["item channel with the wrong mode", itemRoom(), value => { value.mode = "team"; }],
+    ["item channel at speed 4", itemRoom(), value => { value.speed = 4; }],
+    ["item room before p3553", itemRoom(), value => { value.resourceVersion = "p3543"; }],
+    ["竞速随机 in an item room", itemRoom({ randomTrackCode: 40 }), () => {}],
+    ["race.item missing", itemRoom({ phase: "loading" }), value => { delete value.race.item; }],
+    ["race.item ruleset", itemRoom({ phase: "racing" }), value => {
+      value.race.item.ruleset = "web-item-v2";
+    }],
+    ["race.item team table in an individual room", itemRoom({ phase: "racing" }), value => {
+      value.race.item.table = "team";
+    }],
+    ["race.item individual table in a team room", itemRoom({ phase: "racing", mode: "team" }),
+      value => { value.race.item.table = "indi"; }],
+    ["race.item in a speed race", room({ phase: "racing" }), value => {
+      value.race.item = { ruleset: "web-item-v1", table: "indi" };
+    }],
+    ["race gameplay drifted", itemRoom({ phase: "racing" }), value => {
+      value.race.gameplay = "ordinary";
+    }],
+  ];
+  for (const [label, base, mutate] of variants) {
+    const value = copy(base); mutate(value);
+    assert.equal(isValidRoomSnapshot(value), false, label);
+  }
+  // The speed lobby keeps 竞速随机.
+  assert.equal(isValidRoomSnapshot(room({ randomTrackCode: 40 })), true);
+});
+
+test("组队道具赛 is won by the first finisher's team", () => {
+  const finished = itemRoom({ phase: "finished", mode: "team" });
+  // p1 (team 1) finished first; points do not decide the winner.
+  finished.race.teamScores = { 1: 10, 2: 18 };
+  assert.equal(isValidRoomSnapshot(finished), true);
+  const wrongTeam = copy(finished);
+  wrongTeam.race.winningTeam = 2;
+  assert.equal(isValidRoomSnapshot(wrongTeam), false);
+  const blueFirst = copy(finished);
+  blueFirst.race.results = [blueFirst.race.results[1], blueFirst.race.results[0]]
+    .map((result: Fixture, index: number) => ({ ...result, rank: index + 1,
+      elapsedMs: index === 0 ? 1000 : null }));
+  blueFirst.race.finishes = [{ playerId: "p2", elapsedMs: 1000 }];
+  blueFirst.race.winningTeam = 2;
+  assert.equal(isValidRoomSnapshot(blueFirst), true);
+  const noFinisher = copy(finished);
+  noFinisher.race.results[0].elapsedMs = null;
+  assert.equal(isValidRoomSnapshot(noFinisher), false);
+  // The speed team rule is unchanged: the server may pick either team.
+  const speed = room({ phase: "finished", mode: "team" });
+  speed.race.winningTeam = 2;
+  assert.equal(isValidRoomSnapshot(speed), true);
+  const individual = itemRoom({ phase: "finished" });
+  individual.race.winningTeam = 1;
+  assert.equal(isValidRoomSnapshot(individual), false);
+});
+
+test("the generated room event parser accepts item rooms and room lists", () => {
+  const accepted = { type: "room", room: itemRoom({ phase: "racing", mode: "team" }) };
+  assert.deepEqual(zo0(accepted), accepted);
+  const rejected = copy(accepted);
+  delete rejected.room.race.item;
+  assert.equal(zo0(rejected), undefined);
+  const summary = { roomId: "room-1", name: "道具", mode: "team", capacity: 8,
+    speedVersion: "国服", channelName: "itemTeamCombine", speed: 7, gameplay: "item",
+    count: 2, locked: false, resourceVersion: "p3553", randomTrackCode: 3 };
+  const rooms = { type: "rooms", page: 0, total: 1, rooms: [summary] };
+  assert.deepEqual(zo0(rooms), rooms);
+  assert.equal(zo0({ ...rooms, rooms: [{ ...summary, gameplay: "ordinary" }] }), undefined);
+  assert.equal(zo0({ ...rooms, rooms: [{ ...summary, mode: "individual" }] }), undefined);
+});

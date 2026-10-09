@@ -12,6 +12,8 @@ export interface TrackPickerActionHost {
     onConfirm(selection: TrackPickerConfirmation): void;
     getFavoriteCount(): number;
     onFavoriteChange(id: string, favorite: boolean): void;
+    /** Game types the room offers; a type outside it cannot be switched on. */
+    gameTypes?: readonly string[];
   };
   assets: { themes: Array<{ id: string }> };
   selectedTheme?: string;
@@ -58,8 +60,12 @@ export function selectTrackTheme(host: TrackPickerActionHost, theme: string): vo
   host.selectedTheme = theme;
   if (theme === "1024" && previous !== "1024") {
     const track = host.options.tracks.find(item => item.id === host.selectedTrackId);
-    host.itemEnabled = track?.gameType === "item";
-    host.speedEnabled = track?.gameType !== "item";
+    const gameType = track?.gameType === "item" ? "item" : "speed";
+    // The random tab shows one game type: the selected track's, if the room offers it.
+    const shown = trackGameTypeOffered(host.options, gameType)
+      ? gameType : host.options.gameTypes?.[0] ?? gameType;
+    host.itemEnabled = shown === "item";
+    host.speedEnabled = shown !== "item";
   }
   host.search.value = "";
   host.searchQuery = "";
@@ -68,8 +74,15 @@ export function selectTrackTheme(host: TrackPickerActionHost, theme: string): vo
   host.render();
 }
 
+/** A 道具赛 room offers only 道具; other pickers offer both game types. */
+export function trackGameTypeOffered(options: { gameTypes?: readonly string[] },
+  gameType: string): boolean {
+  return !options.gameTypes || options.gameTypes.includes(gameType);
+}
+
 /** Radio buttons are exclusive on the random tab and independent elsewhere. */
 export function toggleTrackGameType(host: TrackPickerActionHost, gameType: string): void {
+  if (!trackGameTypeOffered(host.options, gameType)) return;
   if (host.selectedTheme === "1024") {
     host.itemEnabled = gameType === "item";
     host.speedEnabled = gameType === "speed";

@@ -149,3 +149,59 @@ test("lobby room creation form template, modes, input and guards match release",
       await observe(false, variant), variant);
   }
 });
+
+test("道具赛 room creation switches between the two item channels", async () => {
+  const node = (name: string, children: LobbyDialogNode[] = [],
+    extra: Record<string, unknown> = {}): LobbyDialogNode => ({ name, children, ...extra });
+  const rows = ["2", "3", "4", "5", "6", "7", "8"].map(value =>
+    node(`row${value}`, [], { text: value }));
+  // The release combo boxes are ComboBox elements named by their `name` attribute.
+  const roomRoot = node("방만들기", [node("ComboBox", [], { id: "gameStyle" }),
+    node("ComboBox", [node("Skip", rows)], { id: "joinNum", frame: "frame", listFrame: "list" }),
+    node("joinTeamGame"), node("roomName"), node("roomPassword"), node("isPassword"),
+    node("createRoom"), node("cancelRoom")]);
+  const attribute = (target: LobbyDialogNode, name: string) => target[name] as string | undefined;
+  const clone = (target: LobbyDialogNode, fields: Record<string, string>,
+    children?: LobbyDialogNode[]) => ({ ...target, ...fields, children: children ?? target.children });
+  const modes = { itemIndiCombine: "individual", itemTeamCombine: "team" } as const;
+  const view = { show() {}, focus() {}, render() {}, dispose() {} };
+  const submitted: unknown[] = [];
+  const open = async (channel: string | undefined, mode: "individual" | "team") => {
+    let settings: Record<string, unknown> | undefined;
+    const deps = {
+      async loadMessageTemplate() { throw new Error("unused"); },
+      async loadDefinition() { return node("root", [roomRoot]); },
+      async decorateDefinition(_library: unknown, tree: LobbyDialogNode) { return tree; },
+      clone,
+      nodeName: (target: LobbyDialogNode) => attribute(target, "id") ?? target.name,
+      attribute,
+      async loadView(options: Record<string, unknown>) { settings = options; return view; },
+      channelNames: (gameplay: string) => roomChannelNames(gameplay, {}, {}),
+      channelKey: roomChannelKey,
+      dropdown: (combo: LobbyDialogNode, template: LobbyDialogNode, values: string[]) =>
+        roomStyleDropdown(combo, template, values, { attribute, clone }),
+      channelMode: (key: string) => modes[key as keyof typeof modes],
+    } satisfies LobbyRoomFormDependencies;
+    class Modern { busy = false; view = view; }
+    await showLobbyRoomCreationForm(() => new Modern(), { library: {}, cancel() {} }, mode,
+      "玩家甲", (value, selected) => submitted.push([value, selected]), channel, "item", deps);
+    return (name: string) =>
+      (settings!.state as (target: LobbyDialogNode) => Record<string, unknown>)(node(name));
+  };
+  const field = await open("itemIndiCombine", "individual");
+  const style = () => field("gameStyle").select as { value: string; values: string[];
+    change(value: string): void };
+  assert.deepEqual(style().values, ["个人道具赛", "组队道具赛"]);
+  assert.equal(style().value, "个人道具赛");
+  (field("joinNum").select as { change(value: string): void }).change("3");
+  style().change("组队道具赛");
+  assert.equal(style().value, "组队道具赛");
+  assert.equal(field("joinTeamGame").visible, true);
+  assert.equal((field("joinTeamGame").select as { value: string }).value, "4");
+  (field("createRoom").action as () => void)();
+  assert.deepEqual(submitted, [[{ name: "玩家甲的房间", capacity: 4, password: "" },
+    "itemTeamCombine"]]);
+  // Without a channel the read-only label names the item game.
+  const fallback = await open(undefined, "team");
+  assert.equal(fallback("gameStyle").text, "组队道具赛");
+});

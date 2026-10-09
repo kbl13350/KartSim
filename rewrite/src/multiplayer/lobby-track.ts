@@ -1,3 +1,4 @@
+import { itemRandomTrackGroups, itemTrackCatalog, type TrackLibrary } from "../resources/track-catalog";
 import { formatMultiplayerError } from "./errors";
 import type { Gameplay, LobbyRoom } from "./lobby-actions";
 import type { ChangingModal } from "./lobby-dialogs";
@@ -53,6 +54,8 @@ export interface LobbyTrackHost {
 export interface TrackSelectOptions {
   library: LobbyTrackHost["options"]["library"];
   root: unknown;
+  /** Game types the picker offers; item rooms offer only 道具 (absent: both). */
+  gameTypes?: readonly ("item" | "speed")[];
   tracks: TrackChoice[];
   selectedTrackId: string;
   randomGroups: RandomTrackGroup[];
@@ -73,6 +76,34 @@ export interface LobbyTrackDependencies {
   isGiantTrack(trackId: string): boolean;
   randomRules: RandomTrackRule[];
   loadView(options: TrackSelectOptions): Promise<TrackSelectView>;
+  /** Tracks and random cards of item rooms; defaults to the library's item catalog. */
+  itemTracks?(library: LobbyTrackHost["options"]["library"]):
+    Promise<{ tracks: TrackChoice[]; groups: RandomTrackGroup[] }>;
+}
+
+/** The item track catalog and item random cards of a resource library. */
+export async function loadItemTrackChoices(library: unknown):
+  Promise<{ tracks: TrackChoice[]; groups: RandomTrackGroup[] }> {
+  const source = library as TrackLibrary;
+  return {
+    tracks: (await itemTrackCatalog(source)).map(track => ({ ...track })),
+    groups: (await itemRandomTrackGroups(source)).map(group => ({ ...group })),
+  };
+}
+
+/**
+ * Random track codes keep their numbers in item rooms (3-7 人气, 0 全部,
+ * 8 新图, 30 反向) but name the item groups, which the server draws from its
+ * item pools; 竞速随机 (40) has no item counterpart.
+ */
+export function lobbyRandomTrackRules<Rule extends RandomTrackRule>(
+  gameplay: Gameplay | undefined, rules: readonly Rule[]): Rule[] {
+  if (gameplay !== "item") return rules as Rule[];
+  return rules.flatMap(rule => {
+    const [gameType, type, level] = rule.groupId.split(":");
+    return gameType === "speed" && type !== "speedAll" && level !== undefined
+      ? [{ ...rule, groupId: `item:${type}:${level}` }] : [];
+  });
 }
 
 /** Open the track picker while the host retains room editing rights. */
@@ -94,30 +125,37 @@ export async function chooseLobbyTrack(host: LobbyTrackHost,
   try {
     if (!(await host.mutate({ type: "changing", roomId: room.roomId, changing: true })) ||
         ((modal.entered = true), !host.isChangingModalCurrent(modal))) return;
-    const catalog = await host.options.library.timeAttackTrackCatalog();
+    // 道具赛 rooms pick from the item catalog and the item random cards only.
+    const item = deps.gameplay(room) === "item";
+    const itemChoices = item
+      ? await (deps.itemTracks ?? loadItemTrackChoices)(host.options.library) : undefined;
+    const catalog = itemChoices?.tracks ?? await host.options.library.timeAttackTrackCatalog();
     const tracks = deps.gameplay(room) === "giant"
       ? catalog.filter(track => deps.isGiantTrack(track.id)) : catalog;
     if (!host.isChangingModalCurrent(modal)) return;
+    const rules = lobbyRandomTrackRules(deps.gameplay(room), deps.randomRules);
     const groups = room.resourceVersion === "p3553"
-      ? (await host.options.library.timeAttackRandomTrackGroups()).filter(group =>
-          deps.randomRules.some(rule => rule.groupId === group.id &&
-            (deps.gameplay(room) !== "giant" || rule.code === 0)))
+      ? (itemChoices?.groups ?? await host.options.library.timeAttackRandomTrackGroups())
+        .filter(group => rules.some(rule => rule.groupId === group.id &&
+          (deps.gameplay(room) !== "giant" || rule.code === 0)))
       : [];
     const names = groups.length
       ? await host.options.library.timeAttackRandomTrackNames() : new Map<string, string>();
     if (!host.isChangingModalCurrent(modal)) return;
     const favorites = host.options.trackFavorites;
-    const selectedTrackId = room.trackId ??
-      (tracks.some(track => track.id === host.options.initialTrackId)
+    const listed = (id: string | undefined) => tracks.some(track => track.id === id);
+    const selectedTrackId = (item && !listed(room.trackId) ? undefined : room.trackId) ??
+      (listed(host.options.initialTrackId)
         ? host.options.initialTrackId : tracks[0]?.id) ?? "";
     const view = await deps.loadView({
       library: host.options.library,
       root: host.options.root,
+      ...(item ? { gameTypes: ["item"] as const } : {}),
       tracks,
       selectedTrackId,
       randomGroups: groups,
       randomTrackNames: names,
-      selectedRandomGroupId: deps.randomRules.find(rule =>
+      selectedRandomGroupId: rules.find(rule =>
         rule.code === room.randomTrackCode)?.groupId,
       favoriteTrackIds: favorites?.ids(tracks) ?? host.favoriteTracks,
       getFavoriteCount: () => favorites?.count() ?? host.favoriteTracks.size,
@@ -157,7 +195,8 @@ export async function confirmLobbyTrack(host: LobbyTrackHost,
   if (!host.isChangingModalCurrent(modal) || host.busy) return;
   const room = host.state.room!;
   const randomRule = choice.kind === "random"
-    ? rules.find(rule => rule.groupId === choice.group.id) : undefined;
+    ? lobbyRandomTrackRules(room.gameplay, rules).find(rule => rule.groupId === choice.group.id)
+    : undefined;
   if (choice.kind === "random" && !randomRule) return;
   host.trackSelect?.dispose();
   host.trackSelect = undefined;

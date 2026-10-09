@@ -227,16 +227,21 @@ function trackTheme(track: TrackMetadata): string | undefined {
   return track.theme ?? THEMES.find(theme => track.id.startsWith(theme));
 }
 
-/** Resolve metadata to exact model assets, including reverse track siblings. */
-export async function timeAttackTrackCatalog(library: TrackLibrary): Promise<TrackChoice[]> {
+/**
+ * Resolve accepted metadata to exact model assets, followed by the reverse
+ * siblings `reverseAllowed` keeps.
+ */
+async function resolveTrackCatalog(library: TrackLibrary,
+  accept: (metadata: TrackMetadata) => "item" | "speed" | undefined,
+  reverseAllowed: (metadata: TrackMetadata) => boolean): Promise<TrackChoice[]> {
   const models = new Map(library.mapAssets().map(file => [
     folderName(file.virtualPath).replace(/^track_/, "").toLowerCase(), file,
   ]));
   const normal: TrackChoice[] = [];
   const reversed: TrackChoice[] = [];
   for (const metadata of await library.trackMetadataCatalog()) {
-    const gameType = metadata.gameType ?? "speed";
-    if ((gameType !== "item" && gameType !== "speed") || !selectable(metadata)) continue;
+    const gameType = accept(metadata);
+    if (!gameType) continue;
     const model = models.get((metadata.folder ?? metadata.id).toLowerCase());
     const theme = trackTheme(metadata);
     if (!model || !theme || !metadata.cnTitle || metadata.difficulty === undefined) continue;
@@ -248,7 +253,8 @@ export async function timeAttackTrackCatalog(library: TrackLibrary): Promise<Tra
       gameType,
       difficulty: metadata.difficulty,
     });
-    const reverse = library.findSibling(model.virtualPath, ["track_rvs.1s"]);
+    const reverse = reverseAllowed(metadata)
+      ? library.findSibling(model.virtualPath, ["track_rvs.1s"]) : undefined;
     if (reverse) reversed.push({
       id: `${metadata.id}_rvs`,
       path: reverse.virtualPath,
@@ -260,6 +266,113 @@ export async function timeAttackTrackCatalog(library: TrackLibrary): Promise<Tra
     });
   }
   return [...normal, ...reversed];
+}
+
+/** Resolve metadata to exact model assets, including reverse track siblings. */
+export async function timeAttackTrackCatalog(library: TrackLibrary): Promise<TrackChoice[]> {
+  return resolveTrackCatalog(library, metadata => {
+    const gameType = metadata.gameType ?? "speed";
+    return (gameType === "item" || gameType === "speed") && selectable(metadata)
+      ? gameType : undefined;
+  }, () => true);
+}
+
+/** Regional availability from trackLocale@cn; only item rooms apply it. */
+export interface TrackLocaleRule {
+  blocked?: boolean;
+  choosable?: boolean;
+  /** The practice track (城镇 自由练习场) is marked here, not in track@zz. */
+  isOnlyTraining?: boolean;
+  /** Item cube theme folder that replaces the track's own theme. */
+  customItemCube?: string;
+}
+
+export interface TrackLocaleRules {
+  /** `<track id>` rows. */
+  tracks: ReadonlyMap<string, TrackLocaleRule>;
+  /** `<track_rvs refId>` rows: the reverse tracks this region offers. */
+  reverse: ReadonlyMap<string, TrackLocaleRule>;
+}
+
+const trackLocaleRuleCache = new WeakMap<object, Promise<TrackLocaleRules>>();
+
+function lenientBoolean(value: string | undefined): boolean | undefined {
+  const normalized = value?.trim().toLowerCase();
+  return normalized === "true" ? true : normalized === "false" ? false : undefined;
+}
+
+function localeRule(node: BinaryXmlNode): TrackLocaleRule {
+  const blocked = lenientBoolean(attribute(node, "blocked"));
+  const choosable = lenientBoolean(attribute(node, "choosable"));
+  const isOnlyTraining = lenientBoolean(attribute(node, "isOnlyTraining"));
+  const customItemCube = attribute(node, "customItemCube")?.trim();
+  return {
+    ...(blocked === undefined ? {} : { blocked }),
+    ...(choosable === undefined ? {} : { choosable }),
+    ...(isOnlyTraining === undefined ? {} : { isOnlyTraining }),
+    ...(customItemCube ? { customItemCube } : {}),
+  };
+}
+
+/** Parse the `blocked`, `choosable`, `isOnlyTraining` and `customItemCube` rows of trackLocale@cn. */
+export function trackLocaleRulesFromBml(root: BinaryXmlNode): TrackLocaleRules {
+  const tracks = new Map<string, TrackLocaleRule>();
+  const reverse = new Map<string, TrackLocaleRule>();
+  for (const node of root.children) {
+    if (node.name === "track") {
+      const id = attribute(node, "id");
+      if (id) tracks.set(id, localeRule(node));
+    } else if (node.name === "track_rvs") {
+      const id = attribute(node, "refId");
+      if (id) reverse.set(id, localeRule(node));
+    }
+  }
+  return { tracks, reverse };
+}
+
+/** The trackLocale@cn rules of a library, read once. */
+export function trackLocaleRules(library: Pick<TrackLibrary, "files">): Promise<TrackLocaleRules> {
+  let rules = trackLocaleRuleCache.get(library);
+  if (!rules) {
+    rules = (async () => {
+      const locale = library.files.find(file =>
+        file.name.toLowerCase() === "tracklocale@cn.bml" &&
+        (/track_?\/common\//i.test(file.virtualPath) || /track_common/i.test(file.sourceName)));
+      return locale ? trackLocaleRulesFromBml(decodeBinaryXml(await locale.bytes()))
+        : { tracks: new Map(), reverse: new Map() };
+    })();
+    trackLocaleRuleCache.set(library, rules);
+  }
+  return rules;
+}
+
+function available(rule: TrackLocaleRule | undefined): boolean {
+  return rule?.blocked !== true && rule?.choosable !== false && rule?.isOnlyTraining !== true;
+}
+
+/**
+ * Whether an item room may race on a track: `gameType="item"` (the five
+ * `isOnlyItemTrack` tracks included), not blocked or unchoosable in track@zz
+ * or trackLocale@cn, and not a crazy, roadblock-only or training track. On
+ * p3553 every track this keeps has item cubes in its track.1s; the only
+ * cube-less item track with a model is the training track village_I11.
+ */
+export function itemTrackSelectable(metadata: TrackMetadata, rule?: TrackLocaleRule): boolean {
+  return metadata.gameType === "item" && metadata.laps !== undefined &&
+    metadata.choosable !== false && metadata.blocked !== true && metadata.crazy !== true &&
+    metadata.isOnlyRoadBlockTrack !== true && metadata.isOnlyTraining !== true &&
+    available(rule);
+}
+
+/**
+ * Tracks of 道具赛 rooms (ITEM_MODE.md 2). A reverse track needs its
+ * trackLocale@cn `track_rvs` row, which lists the region's reverse tracks.
+ */
+export async function itemTrackCatalog(library: TrackLibrary): Promise<TrackChoice[]> {
+  const rules = await trackLocaleRules(library);
+  return resolveTrackCatalog(library,
+    metadata => itemTrackSelectable(metadata, rules.tracks.get(metadata.id)) ? "item" : undefined,
+    metadata => rules.reverse.has(metadata.id) && available(rules.reverse.get(metadata.id)));
 }
 
 const SPECIAL_RANDOM_TYPES = new Set(["hot1", "hot2", "hot3", "hot4", "hot5", "crazy", "clubSpeed"]);
@@ -350,6 +463,17 @@ export async function timeAttackRandomTrackGroups(library: TrackLibrary): Promis
   const root = decodeBinaryXml(await random.bytes());
   const tracks = await library.timeAttackTrackCatalog();
   return randomTrackGroupsFromBml(root, tracks).filter(group => group.trackIds.length > 0);
+}
+
+/** Random cards of 道具赛 rooms: the item groups drawn from the item track catalog. */
+export async function itemRandomTrackGroups(library: TrackLibrary): Promise<RandomTrackGroup[]> {
+  const random = library.files.find(file =>
+    file.name.toLowerCase() === "randomtrack@cn.bml" &&
+    (/track_?\/common\//i.test(file.virtualPath) || /track_common/i.test(file.sourceName)));
+  if (!random) return [];
+  const root = decodeBinaryXml(await random.bytes());
+  return randomTrackGroupsFromBml(root, await itemTrackCatalog(library))
+    .filter(group => group.gameType === "item" && group.trackIds.length > 0);
 }
 
 export async function timeAttackRandomTrackNames(library: TrackLibrary): Promise<Map<string, string>> {

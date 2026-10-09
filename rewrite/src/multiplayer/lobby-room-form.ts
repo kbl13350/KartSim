@@ -2,6 +2,7 @@
 
 import type { LobbyDialogNode, LobbyDialogOptions, LobbyDialogSession,
   LobbyDialogViewDependencies } from "./lobby-dialog-views";
+import { itemModeLabel } from "./lobby-item-mode";
 
 interface RoomSettings { name: string; capacity: number; password: string }
 interface CanvasLike {
@@ -131,7 +132,8 @@ export async function showLobbyRoomCreationForm<T extends LobbyDialogSession>(
             canvas.stroke();
             canvas.restore();
           },
-        } : { text: mode === "team" ? "组队竞速" : "个人竞速" };
+        } : { text: gameplay === "item" ? itemModeLabel(mode === "team")
+          : mode === "team" ? "组队竞速" : "个人竞速" };
         case "roomName": return {
           disabled: dialog.busy, label: "房间名称",
           input: { value: roomName, maxLength: 18,

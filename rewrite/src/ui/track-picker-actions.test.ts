@@ -5,7 +5,7 @@ import test from "node:test";
 import {
   changeFavoriteTrack, commitTrackSearch, confirmTrackSelection,
   placeInitialThemeOffset, searchTracks, selectTrackTheme,
-  toggleTrackGameType, type TrackPickerActionHost,
+  toggleTrackGameType, trackGameTypeOffered, type TrackPickerActionHost,
 } from "./track-picker-actions";
 import { matchingRandomGroup } from "./track-picker";
 
@@ -106,4 +106,32 @@ test("track picker theme, search, filters, confirmation and favorite mutations m
     return snapshots;
   };
   assert.deepEqual(run(false), run(true));
+});
+
+test("a picker limited to 道具 ignores the 竞速 switch on both tabs", () => {
+  assert.equal(trackGameTypeOffered({}, "speed"), true);
+  assert.equal(trackGameTypeOffered({ gameTypes: ["item"] }, "speed"), false);
+  assert.equal(trackGameTypeOffered({ gameTypes: ["item"] }, "item"), true);
+  const events: unknown[] = [];
+  const host = {
+    options: { tracks: [], favoriteTrackIds: new Set<string>(), gameTypes: ["item"],
+      onConfirm: () => {}, getFavoriteCount: () => 0, onFavoriteChange: () => {} },
+    assets: { themes: [] }, selectedTheme: "1024", itemEnabled: true, speedEnabled: false,
+    search: { value: "", blur: () => {} }, searchQuery: "", themeOffset: 0, trackOffset: 0,
+    pageSize: () => 4, resetTrackScrollbar: () => {}, render: () => {},
+    remapRandomSelection: (gameType: string) => events.push(["remap", gameType]),
+    selectTheme: (theme: string) => events.push(["theme", theme]),
+    searchTracks: (query: string) => events.push(["search", query]),
+  } as TrackPickerActionHost;
+  toggleTrackGameType(host, "speed");
+  host.selectedTheme = "village";
+  toggleTrackGameType(host, "speed");
+  assert.deepEqual([host.itemEnabled, host.speedEnabled, events], [true, false, []]);
+  toggleTrackGameType(host, "item");
+  assert.deepEqual([host.itemEnabled, events], [false, [["theme", "village"]]]);
+  // The random tab falls back to 道具 when the selected track is not offered.
+  Object.assign(host, { selectedTheme: "village", selectedTrackId: "missing",
+    itemEnabled: false, speedEnabled: false });
+  selectTrackTheme(host, "1024");
+  assert.deepEqual([host.itemEnabled, host.speedEnabled], [true, false]);
 });

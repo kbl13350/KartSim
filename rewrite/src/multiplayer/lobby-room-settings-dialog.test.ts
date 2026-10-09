@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { showLobbyRoomSettings } from "./lobby-room-settings-dialog";
+import { roomSettingsMode, showLobbyRoomSettings } from "./lobby-room-settings-dialog";
 import type { LobbyDialogNode, LobbyDialogViewDependencies } from
   "./lobby-dialog-views";
 
@@ -111,5 +111,31 @@ test("lobby room settings template, input, password and busy guards match releas
     "missing-template", "busy", "whitespace"] as const) {
     assert.deepEqual(await observe(true, variant),
       await observe(false, variant), variant);
+  }
+});
+
+test("道具赛 room settings show the item game", async () => {
+  assert.equal(roomSettingsMode({ mode: "team", gameplay: "item" }), "itemTeam");
+  assert.equal(roomSettingsMode({ mode: "individual", gameplay: "item" }), "itemIndi");
+  assert.equal(roomSettingsMode({ mode: "team", gameplay: "grip" }), "team");
+  assert.equal(roomSettingsMode({ mode: "individual" }), "individual");
+  for (const [mode, text] of [["itemTeam", "组队道具赛"], ["itemIndi", "个人道具赛"],
+    ["team", "组队竞速"]] as const) {
+    let captured: Record<string, unknown> | undefined;
+    const view = { show() {}, focus() {}, render() {}, dispose() {} };
+    const node = (name: string): LobbyDialogNode => ({ name, children: [] });
+    const deps = {
+      async loadMessageTemplate() { throw new Error("unused"); },
+      async loadDefinition() { return { name: "root", children: [node("방설정변경")] }; },
+      async decorateDefinition(_library: unknown, tree: LobbyDialogNode) { return tree; },
+      clone: (target: LobbyDialogNode, fields: Record<string, string>) => ({ ...target, ...fields }),
+      nodeName: (target: LobbyDialogNode) => target.name,
+      async loadView(settings: Record<string, unknown>) { captured = settings; return view; },
+    } satisfies LobbyDialogViewDependencies;
+    class Modern { busy = false; view = view; }
+    await showLobbyRoomSettings(() => new Modern(), { library: {}, cancel() {} }, mode,
+      { name: "房间", password: "" }, () => {}, deps);
+    const state = captured!.state as (target: LobbyDialogNode) => Record<string, unknown>;
+    assert.equal(state(node("gameType")).text, text, mode);
   }
 });

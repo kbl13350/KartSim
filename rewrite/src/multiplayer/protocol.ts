@@ -79,7 +79,7 @@ export interface RoomsMessage {
 export const SERVER_EVENT_TYPES = [
   "welcome", "clock", "rooms", "room", "room-settings", "chat", "race-chat", "left",
   "error", "team-gauge", "giant-state", "award-motion", "latency-probe", "latency",
-  "latency-ack", "p2p-signal", "p2p-relay", "p2p-accepted",
+  "latency-ack", "p2p-signal", "p2p-relay", "p2p-accepted", "item",
 ] as const;
 
 export type ServerEventType = (typeof SERVER_EVENT_TYPES)[number];
@@ -90,6 +90,62 @@ export type ServerMessage = WelcomeMessage | ClockMessage | ErrorMessage |
 
 /** Requests are extensible as new lobby/gameplay modules are implemented. */
 export interface ClientRequest { type: string; requestId?: never; [key: string]: unknown }
+
+/**
+ * 道具赛 requests (ITEM_MODE.md 5): one `item` type, told apart by `action`.
+ * `sequence` rises by exactly one per racer and race. Points are in client
+ * (three.js) coordinates.
+ */
+interface ItemRequestBase { type: "item"; roomId: string; raceId: string; sequence: number }
+export type ItemRequest = ItemRequestBase & (
+  | { action: "cube"; cubeId: number; capacity: 2 | 3 }
+  | { action: "use"; itemId: number; targetId?: string;
+    point?: { x: number; y: number; z: number } }
+  | { action: "place"; useId: number; point: { x: number; y: number; z: number } }
+  | { action: "hit"; useId: number; itemId: number; result: "hit" | "blocked";
+    by?: "shield" | "angel" | "emp" | "escape"; hazardId?: number }
+  | { action: "swap" }
+  | { action: "change" });
+
+/** Server error codes of rejected item requests; none of them fails the race. */
+export const ITEM_ERROR_CODES = [
+  "ITEM_UNAVAILABLE", "ITEM_NOT_HELD", "ITEM_LOCKED", "INVALID_SEQUENCE",
+  "INVALID_USE", "INVALID_TARGET",
+] as const;
+
+function point(value: unknown): boolean {
+  return record(value) && [value.x, value.y, value.z].every(axis =>
+    typeof axis === "number" && Number.isFinite(axis) && Math.abs(axis) <= 1_000_000);
+}
+
+/** Check an item request before it is sent; the bounds match the server event parser. */
+export function isValidItemRequest(value: unknown): value is ItemRequest {
+  if (!record(value) || value.type !== "item" || !boundedString(value.roomId, 1, 64) ||
+      !boundedString(value.raceId, 1, 64) ||
+      !safeInteger(value.sequence, 1, Number.MAX_SAFE_INTEGER)) return false;
+  const item = (id: unknown) => safeInteger(id, 0, 255);
+  switch (value.action) {
+    case "cube":
+      return safeInteger(value.cubeId, 1, 4096) && (value.capacity === 2 || value.capacity === 3);
+    case "use":
+      return item(value.itemId) &&
+        (value.targetId === undefined || boundedString(value.targetId, 1, 64)) &&
+        (value.point === undefined || point(value.point));
+    case "place":
+      return safeInteger(value.useId, 1, Number.MAX_SAFE_INTEGER) && point(value.point);
+    case "hit":
+      return safeInteger(value.useId, 0, Number.MAX_SAFE_INTEGER) && item(value.itemId) &&
+        (value.result === "hit" || value.result === "blocked") &&
+        (value.by === undefined || (value.result === "blocked" &&
+          ["shield", "angel", "emp", "escape"].includes(String(value.by)))) &&
+        (value.hazardId === undefined || safeInteger(value.hazardId, 0, 4096));
+    case "swap":
+    case "change":
+      return true;
+    default:
+      return false;
+  }
+}
 
 function record(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);

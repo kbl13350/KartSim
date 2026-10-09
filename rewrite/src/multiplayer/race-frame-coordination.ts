@@ -1,3 +1,4 @@
+import { teamGaugeEnabled } from "./lobby-item-mode";
 import { chargerDurationScale, computeCatchupScales, SlipstreamBoost,
   type RacePoint, type SlipstreamPeer } from "./race-driving-scales";
 
@@ -214,7 +215,7 @@ export function updateActiveRaceFrame(host: RaceFrameHost, nowMs: number,
       });
     }
 
-    if (host.assets.mode === "team" && host.assets.speed !== 4 &&
+    if (teamGaugeEnabled(host.assets) &&
       host.assets.drivingMode?.kind !== "grip" &&
       ((host.teamCharge = Math.fround(
         host.teamCharge + physics.consumeMultiplayerTeamCharge(),

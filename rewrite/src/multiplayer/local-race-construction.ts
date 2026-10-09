@@ -1,3 +1,5 @@
+import { isItemRace, isItemRaceRules } from "./lobby-item-mode";
+
 export interface LocalRaceConstructionOps {
   validateStartSlots(room: any): void;
   hasLteMode(lte: any): boolean;
@@ -55,6 +57,11 @@ export function initializeLocalRace(
   })) {
     throw new Error("RP 分配与参与者实际装配不一致。");
   }
+  if (isItemRace(assets.drivingMode)
+    ? !isItemRaceRules(room.item, assets.drivingMode?.team === true)
+    : room.item !== undefined) {
+    throw new Error("道具赛身份与本机玩法不一致。");
+  }
   owner.lte = assets.drivingMode?.kind === "lte" ? ops.makeLte() : undefined;
   if ((assets.drivingMode?.kind === "giant") !== ops.hasGiantMode(room.giant)) {
     throw new Error("巨人冻结身份与玩法不一致。");
@@ -67,6 +74,9 @@ export function initializeLocalRace(
     localParticipant.vehicle.collisionShape,
     assets.mode === "team",
     assets.mode === "team" && assets.speed === 4,
+    // Item team races keep the network-driven gauge but never feed it: they
+    // neither subscribe to team-gauge nor send team-charge. Passing false
+    // here would start the offline local gauge instead (driving/team-gauge.ts).
     assets.mode === "team" && assets.speed !== 4,
     assets.drivingMode,
     owner.lte?.motion,

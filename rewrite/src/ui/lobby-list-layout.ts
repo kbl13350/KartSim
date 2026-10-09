@@ -5,7 +5,10 @@
  * categories and filter boxes narrow that page by room mode and speed.
  */
 
-export type LobbyGameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp";
+import { isItemChannel } from "../multiplayer/lobby-item-mode";
+
+export type LobbyGameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp" |
+  "item";
 
 /** Room summary fields the list shows; the server sends these per room. */
 export interface LobbyListRoom {
@@ -68,8 +71,14 @@ export const LOBBY_TABS: readonly LobbyTab[] = [
       channel: "speedIndiInfinit", channels: ["speedIndiInfinit", "speedTeamInfinit"],
       filter: ["indiInfinit", "teamInfinit"] },
   ] },
-  { id: "item", title: "道具赛", art: "rpRace", picture: "tab-item.webp", categories: [],
-    unavailable: "道具赛暂未开放，请先体验竞速赛或 ETC 里的娱乐模式。" },
+  // The original 아이템카테고리 page: cn_아개_통합_0 / cn_아팀_통합_0 (mq_window@cn).
+  { id: "item", title: "道具赛", art: "rpRace", picture: "tab-item.webp", p3553Only: true,
+    categories: [
+      { id: "itemIndi", title: "个人道具赛", subtitle: "个人", gameplay: "item",
+        channel: "itemIndiCombine", channels: ["itemIndiCombine"], filter: ["indi"] },
+      { id: "itemTeam", title: "组队道具赛", subtitle: "团体", gameplay: "item",
+        channel: "itemTeamCombine", channels: ["itemTeamCombine"], filter: ["team"] },
+    ] },
   { id: "etc", title: "ETC", art: "giantRace", picture: "tab-etc.webp", p3553Only: true, categories: [
     { id: "grip", title: "抓地模式", subtitle: "个人/团体", gameplay: "grip",
       channel: "speedIndiCombine", channels: PAIR },
@@ -152,6 +161,8 @@ export function lobbyTabAvailable(tab: LobbyTab, version: string | undefined): b
 /** The category a channel and gameplay open on: an exact channel match first. */
 export function categoryForChannel(channel: string | undefined,
   gameplay: string = "ordinary"): LobbyCategory | undefined {
+  // An item channel carries only item gameplay.
+  if (isItemChannel(channel)) gameplay = "item";
   const all = LOBBY_TABS.flatMap(tab => tab.categories)
     .filter(category => category.gameplay === gameplay);
   if (gameplay === "ordinary" && !channel) return lobbyCategory(DEFAULT_LOBBY_CATEGORY)?.category;
@@ -204,6 +215,7 @@ export function visibleLobbyRooms(state: LobbyListUiState,
 
 const GAMEPLAY_NAMES: Record<string, string> = {
   grip: "抓地", shadow: "幽灵", roadblock: "挡人", giant: "巨人", rp: "RP", lte: "LTE",
+  item: "道具",
 };
 
 /** 模式 column: 个人赛, 团体赛, 无限个人, 无限团体, or the special mode name. */

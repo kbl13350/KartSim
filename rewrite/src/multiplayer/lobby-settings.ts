@@ -1,6 +1,7 @@
 import { formatMultiplayerError } from "./errors";
 import { isPlayableGameplay } from "./gameplay-admission";
 import { currentEquipmentField } from "./lobby-actions";
+import { roomSettingsMode } from "./lobby-room-settings-dialog";
 import type { Gameplay, LobbyRoom } from "./lobby-actions";
 
 export interface RoomSettings {
@@ -65,7 +66,7 @@ export async function changeLobbyRoomInfo(host: LobbySettingsHost,
     if (settings.type !== "room-settings" || settings.roomId !== room.roomId) {
       throw new Error("房间设置响应不一致。");
     }
-    const dialog = await loadDialog(host.dialogOptions(), room.mode, settings, update => {
+    const dialog = await loadDialog(host.dialogOptions(), roomSettingsMode(room), settings, update => {
       if (!current() || host.busy) return;
       if (update.name === settings.name && update.password === settings.password) {
         host.cancelDialog();
