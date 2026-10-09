@@ -13,6 +13,8 @@ import type { ReadyFlowController } from "./ready-flow";
 import { currentRoomSubject, localRiderName, type ReadyHouseController,
   type ReadyHouseLibrary } from "./ready-house";
 import { leaveStory, loadStoryMenu, openStoryChapter } from "./ready-story";
+import { claimProEmblem, leaveLicense, openLicenseStep, refreshLicenseMenu, startLicenseQualify,
+  takeLicenseLevel, type ReadyLicenseController } from "./ready-license";
 import type { ReadyShopController } from "./ready-shop";
 import { openReadyLottery, type LotteryScreen, type ReadyLotteryController } from "./ready-lottery";
 import { openShopUnlessRacing } from "./ready-shop-guard";
@@ -174,6 +176,10 @@ export async function openReadyHome(controller: ReadyHomeController,
       onHover: () => host.getInterfaceAudio()?.playHover(),
       onActivate: () => host.getInterfaceAudio()?.playClick(),
       onCategory: category => {
+        const license = controller as ReadyLicenseController;
+        if (category !== "cat_riderSchool") leaveLicense(license);
+        // The standing may have changed since the page was read.
+        if (category === "cat_riderSchool") void refreshLicenseMenu(license);
         if (category !== "cat_scenario") return;
         // Progress may have changed since the list was read.
         void loadStoryMenu(controller).then(chapters => {
@@ -182,6 +188,10 @@ export async function openReadyHome(controller: ReadyHomeController,
           `故事模式读取失败：${error instanceof Error ? error.message : String(error)}`));
       },
       onStoryChapter: name => { void openStoryChapter(controller, name); },
+      onLicenseStep: step => { void openLicenseStep(controller as ReadyLicenseController, step); },
+      onLicenseTake: level => { void takeLicenseLevel(controller as ReadyLicenseController, level); },
+      onLicenseQualify: track => { void startLicenseQualify(controller as ReadyLicenseController, track); },
+      onLicenseEmblem: () => { void claimProEmblem(controller as ReadyLicenseController); },
     });
     let lobby: LobbyHomeView;
     const account = activeBrowserSession();
@@ -237,6 +247,7 @@ export async function openReadyHome(controller: ReadyHomeController,
             // Both are pages of this view; story windows belong to 单人游戏.
             event.stopImmediatePropagation();
             leaveStory(controller);
+            leaveLicense(controller as ReadyLicenseController);
             controller.homePage = button.dataset.taskbarButton === "gotoHome" ? "home" : "single";
             view.setPage(controller.homePage);
             host.getInterfaceAudio()?.playClick();
@@ -244,7 +255,14 @@ export async function openReadyHome(controller: ReadyHomeController,
           // Settings, the shop and 好友聊天系统 are dialogs over the menu.
           case "설정":
           case "상점":
-          case "messengerButton": return;
+          case "club":
+          case "messengerButton":
+          // The taskbar menus (奖励箱, 迷你提示窗, 任务, 聊天, 查找车手) too.
+          case "goRewardBox":
+          case "noticer":
+          case "questDialog":
+          case "toggle_gchat":
+          case "findRiderButton": return;
           default:
             view.captureBackdrop();
             closeReadyHomeWhenCovered(controller);
@@ -320,6 +338,7 @@ export function closeReadyHome(controller: ReadyHomeController): void {
   controller.accountPanel?.close();
   controller.activeHome = undefined;
   leaveStory(controller);
+  leaveLicense(controller as ReadyLicenseController);
   view.dispose();
   const shell = controller.host.shell as { current?: string; modal?: unknown };
   if (!controller.disposed && shell.current === "Ready" && !shell.modal &&

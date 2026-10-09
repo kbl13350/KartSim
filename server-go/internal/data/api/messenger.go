@@ -648,3 +648,19 @@ func (b messengerBackend) Send(ctx context.Context, from, to, text, clientID str
 func (b messengerBackend) Read(ctx context.Context, accountID, with string, upTo int64) error {
 	return b.a.markRead(ctx, accountID, with, upTo)
 }
+
+// ChatProfile names a 聊天系统 sender: its nickname and club.
+func (b messengerBackend) ChatProfile(ctx context.Context, accountID string) (messenger.ChatProfile, error) {
+	account, found, err := b.a.store.AccountByID(ctx, accountID)
+	if err != nil {
+		return messenger.ChatProfile{}, err
+	}
+	if !found {
+		return messenger.ChatProfile{}, errLoginRequired
+	}
+	club, _, err := b.a.store.ClubOf(ctx, accountID, b.a.nowMillis())
+	if err != nil {
+		return messenger.ChatProfile{}, err
+	}
+	return messenger.ChatProfile{Nickname: account.Nickname, ClubID: club.ID, ClubName: club.Name}, nil
+}

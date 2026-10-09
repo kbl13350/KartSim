@@ -3,6 +3,9 @@ import { messengerTrayAlert } from "../ui/messenger-tray";
 import { suspendMessengerWindow, toggleMessengerWindow, type MessengerWindowOptions } from "../ui/messenger-window";
 import { openReadyHouse } from "./ready-house";
 import type { ReadyShopController } from "./ready-shop";
+import { openReadyClub, type ReadyClubController } from "./ready-club";
+import { ensureReadyNoticer, openReadyFindRider, openReadyQuests, openReadyRewardBox, suspendReadyMenus,
+  toggleReadyChat, toggleReadyNoticer, type ReadyMenusController } from "./ready-menus";
 import { openShopUnlessRacing } from "./ready-shop-guard";
 import { goReadyHome, openReadyHome, preloadReadyHome, syncReadyHome,
   type ReadyHomeController } from "./ready-home";
@@ -274,9 +277,19 @@ export async function enterTimeAttackReady(
         }).catch(error => host.hud.showDebugText(
           `好友聊天系统：${error instanceof Error ? error.message : String(error)}`, "error"));
       },
+      onClub: () => { void openReadyClub(controller as unknown as ReadyClubController); },
+      onRewardBox: () => { void openReadyRewardBox(controller as ReadyMenusController); },
+      onQuest: () => { void openReadyQuests(controller as ReadyMenusController); },
+      onNoticer: () => toggleReadyNoticer(controller as ReadyMenusController),
+      onChat: () => toggleReadyChat(controller as ReadyMenusController),
+      onFindRider: () => { void openReadyFindRider(controller as ReadyMenusController); },
       messengerAlert: messengerTrayAlert(library as unknown as MessengerLibrary),
-      onVisibilityChange: (visible: boolean) => suspendMessengerWindow(!visible),
+      onVisibilityChange: (visible: boolean) => {
+        suspendMessengerWindow(!visible);
+        suspendReadyMenus(controller as ReadyMenusController, !visible);
+      },
     });
+    ensureReadyNoticer(controller as ReadyMenusController);
 
     const view = await dependencies.loadReadyView({
       library,

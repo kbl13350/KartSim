@@ -133,6 +133,49 @@
     </section>
 
     <section>
+      <h2>奖励箱赠送</h2>
+      <p class="muted">赠送放入玩家的奖励箱，保管 30 天，由玩家在游戏内领取。道具填“分类:编号”（如 24:862），天数 0 为永久。</p>
+      <form id="gift-form">
+        <label>用户名<input name="username" required maxlength="24"></label>
+        <label>类型
+          <select name="kind">
+            <option value="lucci">金币</option>
+            <option value="koin">酷币</option>
+            <option value="coupon">点券</option>
+            <option value="item">道具</option>
+          </select>
+        </label>
+        <label id="gift-item-label" hidden>道具（分类:编号）<input name="item" maxlength="24" placeholder="24:862"></label>
+        <label>数量<input name="count" type="number" min="1" max="1000000" step="1" required value="1"></label>
+        <label id="gift-days-label" hidden>天数<input name="days" type="number" min="0" max="3650" step="1" value="0"></label>
+        <label>说明（最多 60 字，留空为“管理员赠送”）<input name="message" maxlength="60"></label>
+        <button class="primary" type="submit">赠送</button>
+      </form>
+      <div id="gift-status" class="status" role="status"></div>
+    </section>
+
+    <section>
+      <h2>迷你提示窗公告</h2>
+      <p class="muted">公告显示在游戏任务栏的迷你提示窗中（与奖励箱、任务的系统提醒一起轮播）。时段留空表示不限。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>标题</th><th>内容</th><th>时段</th><th>设置人</th><th></th></tr></thead>
+          <tbody id="notices"></tbody>
+        </table>
+      </div>
+      <form id="notice-form" style="margin-top:12px">
+        <input name="id" type="hidden" value="0">
+        <label>标题（最多 40 字）<input name="title" required maxlength="40"></label>
+        <label>内容（最多 400 字，“|”换行）<textarea name="message" rows="3" cols="36" required maxlength="400"></textarea></label>
+        <label>开始（留空不限）<input name="start" type="datetime-local" step="1"></label>
+        <label>结束（留空不限）<input name="end" type="datetime-local" step="1"></label>
+        <button class="primary" type="submit" id="notice-save">发布</button>
+        <button type="button" id="notice-cancel" hidden>取消编辑</button>
+      </form>
+      <div id="notice-status" class="status" role="status"></div>
+    </section>
+
+    <section>
       <h2>邀请码</h2>
       <p class="muted">邀请码仅在邀请注册模式（KART_REGISTRATION=invite）下需要；开放注册时也可填写，填写后即被消耗。</p>
       <button id="invite" class="primary" type="button">生成邀请码</button>

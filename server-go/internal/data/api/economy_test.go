@@ -203,7 +203,7 @@ func TestOpenRegistrationCreatesAnEconomy(t *testing.T) {
 	}
 	for name, want := range map[string][]string{
 		"account":  {"admin", "createdAt", "nickname", "username"},
-		"progress": {"exp", "glove", "gloveName", "level", "levelExp", "maxLevel", "nextLevelExp"},
+		"progress": {"exp", "glove", "gloveName", "level", "levelExp", "license", "maxLevel", "nextLevelExp", "proUntil", "tryLevel"},
 		"wallet":   {"coupon", "koin", "lucci"},
 		"stats":    {"podiums", "points", "races", "wins"},
 	} {

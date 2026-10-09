@@ -1,3 +1,5 @@
+import { trackMetadataOverride } from "../resources/track-overrides";
+
 export interface TrackMapOwner {
   assetHost: {
     generationValue(): unknown;
@@ -77,6 +79,8 @@ export async function loadTrackMap(
     p3553CourseSound: mode === "speed-individual" ||
       ops.resourceVersion("p3553") === "p3553",
     lteCoins: lteCoinSource !== undefined,
+    // 驾照考试 courses hand their tutorial route tags to the license race.
+    ...(mode === "time-attack" && trackMetadataOverride(trackId) ? { riderSchool: true } : {}),
   });
   const lensFlarePoint = ops.lensFlareAnchor(model);
   const dummySounds = mode === "speed-individual" ||
@@ -141,7 +145,8 @@ export async function loadTrackMap(
 
   const metadata = lte
     ? { id: trackId, cnTitle: trackId, laps: 1 }
-    : await owner.assetHost.getLibrary()?.trackMetadata(trackId);
+    : await owner.assetHost.getLibrary()?.trackMetadata(trackId) ??
+      (mode === "time-attack" ? trackMetadataOverride(trackId) : undefined);
   if (!metadata)
     throw new Error(`${trackId} 缺少权威 track@zz.bml metadata。`);
   const gameType = metadata.gameType ?? "speed";

@@ -1,4 +1,7 @@
+import { showAccountToast, type OverlayDocument } from "../account/account-dialogs";
+import { activeBrowserSession } from "../account/account-runtime";
 import { accountOwnedEquipment, garageViewCatalog } from "../account/garage-ownership";
+import { channelLicenseWarning } from "../license/license-model";
 import type { ReadyOptions, ReadySelection } from "./ready-flow";
 import { selectionKeep } from "./ready-garage";
 import { closeReadyLottery } from "./ready-lottery";
@@ -112,6 +115,9 @@ export async function openReadyMultiplayer(controller: ReadyMultiplayerControlle
 
   const garage = host.shell.modal === "garage" ? controller.activeGarage : undefined;
   if (!host.shell.enterMultiplayerLobby(garage ? "garage" : "ready")) return;
+  // channel.xml licenseLevel: the CN client only advises (joinChannelWarning).
+  const warning = channelLicenseWarning(channel, activeBrowserSession()?.summary()?.progress.license ?? 0);
+  if (warning) showAccountToast(host.root.ownerDocument as unknown as OverlayDocument, warning);
   host.setReadyOptions(deps.sanitizeReadyOptions(host.getReadyOptions()));
   garage?.freeze();
 

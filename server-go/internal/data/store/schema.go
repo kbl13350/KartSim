@@ -505,6 +505,186 @@ var migrations = []migration{
 			PRIMARY KEY (activity)
 		) ` + tableTail,
 	}},
+	// Version 9: 驾照考试 (RIDER_SCHOOL.md).
+	{version: 9, statements: []string{
+		// The licenses taken: level is the highest of 新手 (1) to L1 (5); a
+		// PRO license lasts until pro_until and was taken in pro_period.
+		`CREATE TABLE IF NOT EXISTS license_state (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			level TINYINT NOT NULL DEFAULT 0,
+			pro_until BIGINT NOT NULL DEFAULT 0,
+			pro_period CHAR(7) ` + idColumn + ` NOT NULL DEFAULT '',
+			pro_count INT NOT NULL DEFAULT 0,
+			last_run_at BIGINT NOT NULL DEFAULT 0,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id),
+			CONSTRAINT fk_license_state_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// Cleared steps; PRO steps are kept per mission period ("2026-09").
+		`CREATE TABLE IF NOT EXISTS license_clears (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			step INT NOT NULL,
+			period CHAR(7) ` + idColumn + ` NOT NULL DEFAULT '',
+			best_ms INT NOT NULL,
+			cleared_at BIGINT NOT NULL,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, step, period),
+			CONSTRAINT fk_license_clears_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// Best times on the PRO qualification tracks.
+		`CREATE TABLE IF NOT EXISTS license_records (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			track_id VARCHAR(40) ` + idColumn + ` NOT NULL,
+			best_ms INT NOT NULL,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, track_id),
+			CONSTRAINT fk_license_records_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// One row per run request: the idempotency key and the stored answer.
+		`CREATE TABLE IF NOT EXISTS license_runs (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			request_id CHAR(36) ` + idColumn + ` NOT NULL,
+			kind VARCHAR(8) ` + idColumn + ` NOT NULL,
+			ref INT NOT NULL,
+			result_json TEXT NOT NULL,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, request_id),
+			KEY idx_license_runs_created (created_at),
+			CONSTRAINT fk_license_runs_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+	}},
+	// Version 10: 俱乐部 (CLUB.md).
+	{version: 10, statements: []string{
+		// facility levels hq/racing/rider/bank 1-5; cs is the activity points
+		// upgrades spend, cs_week those of the week starting on week; a club
+		// with break_at is disbanded once that time passes.
+		`CREATE TABLE IF NOT EXISTS clubs (
+			id BIGINT NOT NULL AUTO_INCREMENT,
+			name VARCHAR(40) NOT NULL,
+			intro VARCHAR(1000) NOT NULL,
+			mark INT NOT NULL,
+			frame INT NOT NULL,
+			master_id CHAR(36) ` + idColumn + ` NOT NULL,
+			hq TINYINT NOT NULL DEFAULT 1,
+			racing TINYINT NOT NULL DEFAULT 1,
+			rider TINYINT NOT NULL DEFAULT 1,
+			bank TINYINT NOT NULL DEFAULT 1,
+			budget BIGINT NOT NULL DEFAULT 0,
+			cs BIGINT NOT NULL DEFAULT 0,
+			cs_week BIGINT NOT NULL DEFAULT 0,
+			week CHAR(10) ` + idColumn + ` NOT NULL DEFAULT '',
+			auto_join TINYINT NOT NULL DEFAULT 0,
+			break_at BIGINT NULL,
+			created_at BIGINT NOT NULL,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (id),
+			UNIQUE KEY uq_clubs_name (name),
+			KEY idx_clubs_cs (cs),
+			KEY idx_clubs_break (break_at),
+			CONSTRAINT chk_clubs_budget CHECK (budget >= 0),
+			CONSTRAINT chk_clubs_cs CHECK (cs >= 0)
+		) ` + tableTail,
+		// One club per account; grade 1 会长, 2 管理层, 3 优秀会员, 4 会员.
+		`CREATE TABLE IF NOT EXISTS club_members (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			club_id BIGINT NOT NULL,
+			grade TINYINT NOT NULL,
+			joined_at BIGINT NOT NULL,
+			cs_week BIGINT NOT NULL DEFAULT 0,
+			week CHAR(10) ` + idColumn + ` NOT NULL DEFAULT '',
+			cs_total BIGINT NOT NULL DEFAULT 0,
+			donated_total BIGINT NOT NULL DEFAULT 0,
+			donated_day CHAR(10) ` + idColumn + ` NOT NULL DEFAULT '',
+			PRIMARY KEY (account_id),
+			KEY idx_club_members_club (club_id, grade),
+			CONSTRAINT fk_club_members_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE,
+			CONSTRAINT fk_club_members_club FOREIGN KEY (club_id) REFERENCES clubs (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// One pending application per account.
+		`CREATE TABLE IF NOT EXISTS club_applications (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			club_id BIGINT NOT NULL,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id),
+			KEY idx_club_applications_club (club_id, created_at),
+			CONSTRAINT fk_club_applications_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE,
+			CONSTRAINT fk_club_applications_club FOREIGN KEY (club_id) REFERENCES clubs (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// When an account last left a club (the 24-hour rejoin cooldown).
+		`CREATE TABLE IF NOT EXISTS club_leaves (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			left_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id),
+			CONSTRAINT fk_club_leaves_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		`CREATE TABLE IF NOT EXISTS club_donations (
+			id BIGINT NOT NULL AUTO_INCREMENT,
+			club_id BIGINT NOT NULL,
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			amount BIGINT NOT NULL,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (id),
+			KEY idx_club_donations_club (club_id, id),
+			CONSTRAINT fk_club_donations_club FOREIGN KEY (club_id) REFERENCES clubs (id) ON DELETE CASCADE,
+			CONSTRAINT fk_club_donations_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// 赛事中心 welfare taken, per Beijing day and slot.
+		`CREATE TABLE IF NOT EXISTS club_welfare (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			day CHAR(10) ` + idColumn + ` NOT NULL,
+			slot TINYINT NOT NULL,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, day, slot),
+			CONSTRAINT fk_club_welfare_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+	}},
+	// Version 11: 奖励箱, quests and notices (MENUS.md 1 to 3).
+	{version: 11, statements: []string{
+		// Waiting rewards: an item (category/item_id/count/days) or a
+		// currency amount (currency + count); claimed_at once taken.
+		`CREATE TABLE IF NOT EXISTS reward_box (
+			id BIGINT NOT NULL AUTO_INCREMENT,
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			source VARCHAR(16) ` + idColumn + ` NOT NULL,
+			message VARCHAR(200) NOT NULL,
+			name VARCHAR(100) NOT NULL,
+			category INT NOT NULL DEFAULT 0,
+			item_id INT NOT NULL DEFAULT 0,
+			count INT NOT NULL,
+			days INT NOT NULL DEFAULT 0,
+			currency VARCHAR(8) ` + idColumn + ` NOT NULL DEFAULT '',
+			created_at BIGINT NOT NULL,
+			expires_at BIGINT NOT NULL,
+			claimed_at BIGINT NULL,
+			PRIMARY KEY (id),
+			KEY idx_reward_box_account (account_id, claimed_at, expires_at),
+			KEY idx_reward_box_expires (expires_at),
+			CONSTRAINT fk_reward_box_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// Quest progress per period ("" for quests that never reset);
+		// completed_at once the target was reached and the reward filed.
+		`CREATE TABLE IF NOT EXISTS quest_progress (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			quest_id INT NOT NULL,
+			period CHAR(10) ` + idColumn + ` NOT NULL DEFAULT '',
+			value BIGINT NOT NULL DEFAULT 0,
+			completed_at BIGINT NULL,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, quest_id, period),
+			CONSTRAINT fk_quest_progress_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// Admin notices for the 迷你提示窗, shown between start_at and end_at.
+		`CREATE TABLE IF NOT EXISTS notices (
+			id BIGINT NOT NULL AUTO_INCREMENT,
+			title VARCHAR(40) NOT NULL,
+			message VARCHAR(400) NOT NULL,
+			start_at BIGINT NULL,
+			end_at BIGINT NULL,
+			updated_by VARCHAR(64) NOT NULL,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (id)
+		) ` + tableTail,
+	}},
 }
 
 // LatestSchemaVersion is the version Migrate brings a database to.

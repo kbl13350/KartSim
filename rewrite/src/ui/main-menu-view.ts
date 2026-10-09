@@ -2,6 +2,7 @@ import { CanvasHitController, type CanvasHitRegion } from "./canvas-hit-controll
 import { C9, Ft, G1, T, V0, ct, f5, m9, p2, s2, st } from "../generated/formats.js";
 import { U1 } from "../generated/library.js";
 import { scrollbarGeometry } from "./scrollbar";
+import { loadRiderSchoolArt, type RiderSchoolArt } from "./rider-school-art";
 
 /**
  * The release MainMenuStage home, stage_mainMenu.rho/mq_window@cn.bml
@@ -36,6 +37,8 @@ export interface MainMenuAssets {
   story?: StoryTabArt;
   /** The lobby 活动 buttons (eventMenu.xml), four states each. */
   events?: Array<{ id: LobbyEventId; label: string; states: Texture[] }>;
+  /** 驾照考试 page art; the tab keeps its overview without it. */
+  riderSchool?: RiderSchoolArt;
 }
 
 export type LobbyEventId = "treasureHunt" | "gacha";
@@ -86,6 +89,50 @@ export interface StoryTabArt {
     images: Map<string, Texture> };
 }
 
+/** One step card on a license page. */
+export interface LicenseMenuStep {
+  step: number;
+  name: string;
+  /** missionIcon_* states 1-4. */
+  icon?: Texture[];
+  cleared: boolean;
+  open: boolean;
+  /** Right of the card: the clear condition and best time. */
+  detail: string;
+}
+
+/** A license tab: 新手 … L1 (steps) or PRO (pro). */
+export interface LicenseMenuLevel {
+  level: number;
+  /** The clearLevelN badge. */
+  taken: boolean;
+  /** Why it cannot be played yet. */
+  lock?: string;
+  steps: LicenseMenuStep[];
+  canTake: boolean;
+}
+
+/** The PRO tab: the qualification (riderSchoolPro1) until its emblem is earned, then the missions. */
+export interface LicenseMenuPro {
+  qualified: boolean;
+  emblem?: Texture;
+  emblemName: string;
+  rows: Array<{ track: string; title: string; record: string }>;
+  canClaim: boolean;
+  /** The period's time trial and duel (riderSchoolPro2 button0 / button1). */
+  missions: LicenseMenuStep[];
+  canTake: boolean;
+  /** "PRO驾照有效期至 …" when held. */
+  status?: string;
+}
+
+export interface LicenseMenu {
+  /** The tab shown first. */
+  selected: number;
+  levels: LicenseMenuLevel[];
+  pro: LicenseMenuPro;
+}
+
 export interface MainMenuOptions {
   /** 计时赛竞争战: the release lobby shortcut into single-play time attack. */
   onTimeAttack(): void;
@@ -101,6 +148,14 @@ export interface MainMenuOptions {
   onCategory?(category: SingleCategory): void;
   /** A story chapter card was clicked. */
   onStoryChapter?(name: string): void;
+  /** 驾照考试: a step card or a PRO mission was clicked. */
+  onLicenseStep?(step: number): void;
+  /** 驾照考试: 获得驾照 of a license tab. */
+  onLicenseTake?(level: number): void;
+  /** 驾照考试: a PRO qualification track row was clicked. */
+  onLicenseQualify?(track: string): void;
+  /** 驾照考试: 获得徽章 of the PRO qualification. */
+  onLicenseEmblem?(): void;
 }
 
 const ROOTS = ["stage_/mainMenu", "stage_/common", "zeta_/cn/stage/mainMenu",
@@ -136,7 +191,7 @@ export const SINGLE_CATEGORIES = ["cat_timeAttack", "cat_riderSchool", "cat_scen
   "cat_trainingCenter", "cat_replay"] as const;
 export type SingleCategory = typeof SINGLE_CATEGORIES[number];
 /** Categories whose page fills the right side; the others show the overview. */
-const RIGHT_FILLED = new Set<string>(["cat_timeAttack", "cat_scenario"]);
+const RIGHT_FILLED = new Set<string>(["cat_timeAttack", "cat_scenario", "cat_riderSchool"]);
 /** Labels for the release mode cards, whose names are baked into their art. */
 export const SINGLE_LABELS: Record<string, string> = {
   cat_timeAttack: "计时赛", cat_riderSchool: "驾照考试", cat_scenario: "故事模式",
@@ -150,6 +205,8 @@ export const SINGLE_LABELS: Record<string, string> = {
   replay_my: "我的回放", replay_league: "联赛回放", replay_other: "其他回放",
 };
 const NOTICE_MS = 2_600;
+/** riderSchoolPage GridSelector "grid": one column of 750×74 step cards, 4 px apart. */
+const LICENSE_CARD = { width: 750, height: 74, gap: 4 };
 /** GridSelector "scenario_bnt_list": two columns of 272×134 cards, 8/4 px apart. */
 const STORY_CARD = { width: 272, height: 134, gapX: 8, gapY: 4 };
 
@@ -269,14 +326,18 @@ export async function loadMainMenuAssets(library: MainMenuLibrary): Promise<Main
       texture(["zeta_/cn/loading"], name)))).filter((item): item is Texture => !!item);
     const backdrop = await texture(["zeta_/cn/loading"], BACKDROP);
     sharedBackdrop = backdrop ?? sharedBackdrop;
-    const story = await loadStoryTabArt(root, texture,
-      () => s2Promise(find(["gui_/monocoque"], "frame", ".bml")));
+    const frames = () => s2Promise(find(["gui_/monocoque"], "frame", ".bml"));
+    const story = await loadStoryTabArt(root, texture, frames);
+    const riderSchool = await loadRiderSchoolArt(library, texture, frames as never).catch(error => {
+      console.warn("[main menu] 驾照考试 art", error);
+      return undefined;
+    });
     const events = (await Promise.all(LOBBY_EVENTS.map(async entry => ({
       id: entry.id, label: entry.label,
       states: await Promise.all([1, 2, 3, 4].map(index => texture(ROOTS, `${entry.image}${index}`))),
     })))).filter((entry): entry is { id: LobbyEventId; label: string; states: Texture[] } =>
       entry.states.every(Boolean));
-    return { root, textures, strings, channels, banners, backdrop, font, story, events };
+    return { root, textures, strings, channels, banners, backdrop, font, story, events, riderSchool };
   } catch (error) {
     G1(font);
     throw error;
@@ -360,6 +421,10 @@ export class MainMenuView {
   private storyRow = 0;
   private storyFocus?: string;
   private storyListRect?: Rect;
+  private license?: LicenseMenu;
+  private licenseLevel?: number;
+  /** The right panel's title strip, where the license pages are laid out. */
+  private rightTitleRect?: Rect;
 
   constructor(readonly root: HTMLElement, readonly assets: MainMenuAssets,
     readonly options: MainMenuOptions) {
@@ -429,6 +494,24 @@ export class MainMenuView {
     this.options.onCategory?.(category);
   }
 
+  /** The 驾照考试 tabs; undefined while they load. */
+  setLicenseMenu(menu: LicenseMenu | undefined): void {
+    this.license = menu;
+    this.render();
+  }
+
+  /** The license tab shown on the 驾照考试 page. */
+  get selectedLicense(): number {
+    return this.licenseLevel ?? this.license?.selected ?? 1;
+  }
+
+  selectLicense(level: number): void {
+    this.licenseLevel = level;
+    const lock = this.license?.levels.find(entry => entry.level === level)?.lock;
+    if (lock) this.showNotice(lock);
+    this.render();
+  }
+
   /** Chapters for the 故事模式 tab; undefined while they load. */
   setStoryChapters(chapters: StoryMenuChapter[] | undefined): void {
     this.story = chapters;
@@ -492,6 +575,7 @@ export class MainMenuView {
       if (this.currentPage === "single" ? !name || name === SINGLE_PAGE
         : !name || SHOWN.has(name)) this.draw(child, rect);
     }
+    if (this.currentPage === "single" && this.category === "cat_riderSchool") this.drawRiderSchool();
     if (this.notice) this.drawNotice(this.notice);
     this.buttons.update(this.regions);
   }
@@ -499,17 +583,18 @@ export class MainMenuView {
   private draw(node: MainMenuNode, parent: Rect, menu?: string): void {
     const name = attribute(node, "name") ?? "";
     if (node.name === "Skip" || (attribute(node, "visible") === "false" &&
-        name !== SINGLE_PAGE)) return;
+        name !== SINGLE_PAGE && !this.forcedVisible(name))) return;
     if (!this.singleNodeShown(node, name)) return;
-    const textures = this.assets.textures.get(node);
+    const textures = this.assets.textures.get(node) ?? this.assets.riderSchool?.textures.get(node);
     const rect = V0(node, parent, undefined, textures?.[0]) as Rect;
 
-    if (node.name === "ImageButton" && textures) {
+    if ((node.name === "ImageButton" || node.name === "ImageBoardButton") && textures) {
       // The same category names sit in two tab menus; keep their hit keys apart.
       const key = menu ? `${menu}:${name}` : name;
       const action = this.action(name);
-      const selected = node.name === "ImageButton" && name === this.category &&
-        (menu === "singleplay_cats" || menu === "singleplay_subCats");
+      const selected = (name === this.category &&
+        (menu === "singleplay_cats" || menu === "singleplay_subCats")) ||
+        (this.category === "cat_riderSchool" && name === `riderSchool_Level${this.selectedLicense}`);
       const state = selected ? 2 : action ? st(key, this.hovered, this.pressed) : 3;
       ct(this.context, textures[state]!, rect);
       if (action) this.regions.push({ key, rect, label: this.label(node, name),
@@ -523,9 +608,64 @@ export class MainMenuView {
       else this.context.drawImage(texture.image, rect.x, rect.y, rect.width, rect.height);
     }
 
+    if (name === "rightTitleName") this.rightTitleRect = parent;
     if (name === "favoriteChannel") this.drawChannels(rect);
     if (name === "promotionNew") this.drawBanner(rect);
     if (name === "scenario_bnt_list") this.drawStoryList(rect);
+    if (this.category === "cat_riderSchool" && this.currentPage === "single") {
+      if (name === "grid") this.drawLicenseSteps(rect);
+      if (name === "mainEmblemText" && this.license) {
+        const lines = (this.assets.strings.get("licenseProInfo2") ?? "")
+          .replace("%s", this.license.pro.emblemName).replaceAll("&apos;", "'").split("|");
+        lines.forEach((line, index) => m9(this.context, line,
+          { x: rect.x, y: rect.y + index * 24, width: 560, height: 22 }, {
+            family: FONT_FAMILY, size: 16, kind: "label", color: "rgb(42,55,80)", align: "left",
+            verticalAlign: "top", stroke: 0, strokeColor: "black" }));
+      }
+      if (name === "mainEmblem0" && this.license?.pro.emblem) {
+        const emblem = this.license.pro.emblem;
+        this.context.drawImage(emblem.image, rect.x, rect.y, rect.width, rect.height);
+      }
+      const row = /^proTrackName([0-2])$/.exec(name);
+      const entry = row && this.license?.pro.rows[Number(row[1])];
+      if (entry && this.options.onLicenseQualify) {
+        const key = `license-qualify:${entry.track}`;
+        if (this.hovered === key) {
+          this.context.save();
+          this.context.strokeStyle = "rgba(16,136,199,.9)";
+          this.context.lineWidth = 2;
+          this.context.strokeRect(parent.x + 1, parent.y + 1, parent.width - 2, parent.height - 2);
+          this.context.restore();
+        }
+        this.regions.push({ key, rect: parent, label: `资格审核：${entry.title}`, activate: () => {
+          this.options.onActivate?.();
+          this.options.onLicenseQualify!(entry.track);
+        } });
+      }
+      const mission = /^button([01])$/.exec(name);
+      const step = mission && this.license?.pro.missions[Number(mission[1])];
+      if (step?.cleared) {
+        const clear = node.children.find(child => attribute(child, "name") === "clear");
+        const clearTexture = clear && this.assets.riderSchool?.textures.get(clear)?.[0];
+        if (clear && clearTexture) {
+          const at = V0(clear, rect, undefined, clearTexture) as Rect;
+          this.context.drawImage(clearTexture.image, at.x, at.y, at.width, at.height);
+        }
+      }
+      if (step) {
+        // The boards are the same every period: name the period's course on them.
+        for (const [dy, color] of [[1, "rgba(0,0,0,.8)"], [0, "white"]] as const)
+          m9(this.context, `${step.name}    ${step.detail}`, { x: rect.x + 24, y: rect.y + rect.height - 46 + dy,
+            width: rect.width - 48, height: 30 }, { family: FONT_FAMILY, size: 18, kind: "label", color,
+            align: "left", verticalAlign: "center", stroke: 0, strokeColor: "black" });
+      }
+      if (step && !step.open) {
+        this.context.save();
+        this.context.fillStyle = "rgba(255,255,255,.45)";
+        this.context.fillRect(rect.x, rect.y, rect.width, rect.height);
+        this.context.restore();
+      }
+    }
     if (name === "scenario_grid") this.drawStoryInfo(rect);
     if (name === "scenario_bnt_listBar") this.drawStoryScrollbar(rect);
     // promotionRadioGroup's windowRect is degenerate; centre the dots on the strip.
@@ -556,9 +696,129 @@ export class MainMenuView {
     if (name === "timeAttack_train") return () => (this.options.onPractice ??
       this.options.onTimeAttack)();
     if (name === "timeAttack_competitive") return () => this.options.onTimeAttack();
+    const license = /^riderSchool_Level([1-6])$/.exec(name);
+    if (license) return () => this.selectLicense(Number(license[1]));
+    if (this.category === "cat_riderSchool" && this.license) {
+      const level = this.selectedLicense;
+      const tab = this.license.levels.find(entry => entry.level === level);
+      if (name === "updateLevel") {
+        const can = level === 6 ? this.license.pro.canTake : tab?.canTake;
+        return can && this.options.onLicenseTake ? () => this.options.onLicenseTake!(level) : undefined;
+      }
+      if (name === "rewardEmblem")
+        return this.license.pro.canClaim && this.options.onLicenseEmblem
+          ? () => this.options.onLicenseEmblem!() : undefined;
+      const mission = /^button([01])$/.exec(name);
+      if (mission) {
+        const step = this.license.pro.missions[Number(mission[1])];
+        return step?.open && this.options.onLicenseStep ? () => this.options.onLicenseStep!(step.step) : undefined;
+      }
+    }
     if (SINGLE_LABELS[name])
       return () => this.showNotice(`${SINGLE_LABELS[name]}暂未开放`);
     return undefined;
+  }
+
+  /** Release nodes the license pages show although they ship hidden. */
+  private forcedVisible(name: string): boolean {
+    const badge = /^clearLevel([1-6])$/.exec(name);
+    if (badge && this.category === "cat_riderSchool")
+      return !!this.license?.levels.find(entry => entry.level === Number(badge[1]))?.taken;
+    return false;
+  }
+
+  /** Texts the license pages fill in. */
+  private licenseText(name: string): string | undefined {
+    if (this.currentPage !== "single" || this.category !== "cat_riderSchool") return undefined;
+    if (name === "rightTitleName") return this.assets.strings.get("license") ?? "驾照考试";
+    const pro = this.license?.pro;
+    if (!pro) return undefined;
+    const row = /^proTrack(Name|Record)([0-2])$/.exec(name);
+    if (row) {
+      const entry = pro.rows[Number(row[2])];
+      return row[1] === "Name" ? entry?.title ?? "" : entry?.record ?? "-";
+    }
+    // Drawn line by line where the page is laid out.
+    if (name === "mainEmblemText") return "";
+    return undefined;
+  }
+
+  /** The selected license tab's page on the right: riderSchoolPage, Pro1 or Pro2. */
+  private drawRiderSchool(): void {
+    const art = this.assets.riderSchool;
+    const title = this.rightTitleRect;
+    if (!art || !title) return;
+    const window = { x: title.x, y: title.y, width: 776, height: 634 };
+    const area = { x: window.x, y: window.y + 48, width: 776, height: 586 };
+    if (!this.license) {
+      this.drawStoryText("正在读取驾照信息…", area, 18, "rgb(42,55,80)", "center");
+      return;
+    }
+    const level = this.selectedLicense;
+    if (level === 6) {
+      const pro = this.license.pro;
+      const tab = this.license.levels.find(entry => entry.level === 6);
+      if (tab?.lock) {
+        this.draw(art.page, window);
+        this.drawStoryText(tab.lock, { ...area, y: area.y + 160, height: 40 }, 18, "rgb(42,55,80)", "center");
+        return;
+      }
+      this.draw(pro.qualified ? art.pro2 : art.pro1, window);
+      if (!pro.qualified)
+        this.drawStoryText("* 点击完成条件，即可用标准速度进行资格审核计时赛。",
+          { x: area.x + 17, y: area.y + 495, width: 480, height: 20 }, 16, "rgb(42,55,80)", "left");
+      if (pro.status)
+        this.drawStoryText(pro.status, { x: area.x + 17, y: area.y + 455, width: 480, height: 24 }, 16,
+          "rgb(16,136,199)", "left");
+      return;
+    }
+    this.draw(art.page, window);
+  }
+
+  /** riderSchoolPage "grid": the license's step cards (riderSchoolStepCard). */
+  private drawLicenseSteps(grid: Rect): void {
+    const art = this.assets.riderSchool;
+    const tab = this.license?.levels.find(entry => entry.level === this.selectedLicense);
+    if (!art || !tab || this.selectedLicense === 6) return;
+    const context = this.context;
+    const x = grid.x + (grid.width - LICENSE_CARD.width) / 2;
+    const color = (key: string, fallback: string): string => mainMenuColor(attribute(art.card, key), fallback);
+    tab.steps.forEach((step, index) => {
+      const box = { x, y: grid.y + index * (LICENSE_CARD.height + LICENSE_CARD.gap),
+        width: LICENSE_CARD.width, height: LICENSE_CARD.height };
+      const key = `license-step:${step.step}`;
+      const state = step.open ? st(key, this.hovered, this.pressed) : 3;
+      const frame = art.frames[state] ?? art.frames[0];
+      const image = frame && art.frameImages.get(frame.texture);
+      if (frame && image) C9(context, frame, image.image, box);
+      const icon = step.icon?.[state] ?? step.icon?.[0];
+      // iconPos "-41 2": the icon is centred 41 px in from the card's left edge.
+      if (icon) context.drawImage(icon.image, box.x + 41 - icon.width / 2,
+        box.y + (box.height - icon.height) / 2 + 2, icon.width, icon.height);
+      const textColor = !step.open ? color("disabledTextColor", "rgb(103,103,103)")
+        : state === 1 ? color("overTextColor", "rgb(16,136,199)")
+          : state === 2 ? color("clickedTextColor", "rgb(48,73,81)") : color("textColor", "rgb(42,55,80)");
+      m9(context, `${index + 1}. ${step.name}`, { x: box.x + 83, y: box.y, width: 360, height: box.height }, {
+        family: FONT_FAMILY, size: 20, kind: "label", color: textColor, align: "left",
+        verticalAlign: "center", stroke: 0, strokeColor: "black" });
+      m9(context, step.detail, { x: box.x + 400, y: box.y, width: 220, height: box.height }, {
+        family: FONT_FAMILY, size: 14, kind: "label", color: step.open ? "rgb(72,106,163)" : "rgb(130,130,130)",
+        align: "right", verticalAlign: "center", stroke: 0, strokeColor: "black" });
+      const clear = art.card.children.find(child => attribute(child, "name") === "clear");
+      const clearTexture = clear && art.textures.get(clear)?.[0];
+      if (step.cleared && clear && clearTexture) {
+        const at = V0(clear, box, undefined, clearTexture) as Rect;
+        context.drawImage(clearTexture.image, at.x, at.y, at.width, at.height);
+      }
+      if (step.open && this.options.onLicenseStep)
+        this.regions.push({ key, rect: box, label: step.name, activate: () => {
+          this.options.onActivate?.();
+          this.options.onLicenseStep!(step.step);
+        } });
+    });
+    if (tab.lock)
+      this.drawStoryText(tab.lock, { x: grid.x, y: grid.y + 6 * (LICENSE_CARD.height + LICENSE_CARD.gap) - 30,
+        width: grid.width, height: 24 }, 16, "rgb(200,60,60)", "center");
   }
 
   private drawStoryList(rect: Rect): void {
@@ -725,6 +985,8 @@ export class MainMenuView {
   }
 
   private text(node: MainMenuNode): string | undefined {
+    const override = this.licenseText(attribute(node, "name") ?? "");
+    if (override !== undefined) return override;
     const raw = attribute(node, "text");
     if (!raw) return undefined;
     const key = /^#sb\(([^)]+)\)$/.exec(raw)?.[1];

@@ -29,6 +29,11 @@ export interface StoryRaceRequest {
   laps?: number;
   /** Tracing (追击) / Escape (逃脱): judged every frame against the rival ghost. */
   chase?: ChaseRule;
+  /**
+   * 驾照考试: the step's time limit in ms from GO. The mission timer counts
+   * it down and running out fails the race.
+   */
+  timeLimitMs?: number;
   /** Put the player's own kart, rider and Ready options back. */
   restore(): void;
   /** Clear rule of a finished race, asked at the finish line for the mission result. */

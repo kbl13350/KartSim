@@ -118,6 +118,14 @@ func (s *Store) SaveSettlement(ctx context.Context, in Settlement) (duplicate bo
 				if err := countCareerRace(ctx, tx, in, racer); err != nil {
 					return err
 				}
+				// A member's race adds to its club's activity points (CLUB.md).
+				if err := addClubActivity(ctx, tx, racer.AccountID, raceClubPoints(racer), in.CreatedAt); err != nil {
+					return err
+				}
+				// And to the rider's quests (MENUS.md 2).
+				if err := addQuestProgress(ctx, tx, racer.AccountID, raceQuestResult(in, racer), in.CreatedAt); err != nil {
+					return err
+				}
 			}
 		}
 		credited, err = s.creditRaceRewards(ctx, tx, in)

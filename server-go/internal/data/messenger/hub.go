@@ -110,6 +110,8 @@ type Backend interface {
 	Send(ctx context.Context, from, to, text, clientID string) (message Message, duplicate bool, err error)
 	// Read moves the account's read mark of a conversation.
 	Read(ctx context.Context, accountID, with string, upTo int64) error
+	// ChatProfile names a chat sender: nickname and club (聊天系统).
+	ChatProfile(ctx context.Context, accountID string) (ChatProfile, error)
 }
 
 // Options tune the hub; zero values use the defaults in brackets.
@@ -207,6 +209,10 @@ type account struct {
 	// rosterApplied < rosterGen (the latest load failed).
 	rosterGen, rosterApplied uint64
 	commands                 limiter
+	// 聊天系统: the sockets get chat lines once joined; chatClub is the
+	// club whose channel they hear.
+	chatJoined bool
+	chatClub   int64
 }
 
 // peer is the presence state of an account that is connected or that a
@@ -243,6 +249,7 @@ type Hub struct {
 	accounts  map[string]*account
 	peers     map[string]*peer
 	chat      map[string]*chatState
+	rooms     map[string]*chatRoom // 聊天系统 histories by channel key
 	seq       uint64
 	wg        sync.WaitGroup // socket handlers and background loads
 }
@@ -262,6 +269,7 @@ func New(backend Backend, opts Options) *Hub {
 		accounts: map[string]*account{},
 		peers:    map[string]*peer{},
 		chat:     map[string]*chatState{},
+		rooms:    map[string]*chatRoom{},
 	}
 	h.ctx, h.cancel = context.WithCancel(context.Background())
 	return h

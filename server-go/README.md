@@ -94,7 +94,7 @@
 
 ### 管理页面与发放货币
 
-管理页面是数据服务上的静态网页 `<数据服务 origin>/multiplayer/admin`（本机默认 <http://127.0.0.1:8787/multiplayer/admin>，`run-lan.sh` 下也可经前端代理访问 `https://<IP>:8780/multiplayer/admin`；启动脚本会打印地址）。用 `KART_ADMIN_USERNAMES` 中的账号登录（token 只保存在页面内存中），可以搜索账号（等级、经验、余额、库存数量、是否已领取礼包），给账号增加或扣除点券、金币、K币或经验并填写备注。所有发放都写流水（原因 `admin`），余额与经验不会被扣成负数。
+管理页面是数据服务上的静态网页 `<数据服务 origin>/multiplayer/admin`（本机默认 <http://127.0.0.1:8787/multiplayer/admin>，`run-lan.sh` 下也可经前端代理访问 `https://<IP>:8780/multiplayer/admin`；启动脚本会打印地址）。用 `KART_ADMIN_USERNAMES` 中的账号登录（token 只保存在页面内存中），可以搜索账号（等级、经验、余额、库存数量、是否已领取礼包），给账号增加或扣除点券、金币、K币或经验并填写备注。所有发放都写流水（原因 `admin`），余额与经验不会被扣成负数。管理页面还可以设置抽奖活动、向玩家的奖励箱赠送道具或货币、发布迷你提示窗公告（见 [`MENUS.md`](MENUS.md)）。
 
 1. 指定管理员（顺序很重要）：先设置名单再启动，`KART_ADMIN_USERNAMES=alice ./run-full-local.sh`（compose 写在 `.env`）。`alice` 已有账号时直接生效；尚未注册时，kart-data 日志会报错并打印引导邀请码（`grep -i invitation`，也可预先设置 `KART_BOOTSTRAP_INVITE`），名单中的用户名只能用邀请码注册（任何模式下都是，否则 400 `INVALID_INVITE`，防止抢注）。在游戏登录界面注册时，开放注册下点“有邀请码？”展开可选的邀请码栏填入（`invite` 模式下邀请码栏直接显示）；也可以用接口注册：
    ```sh
@@ -449,6 +449,41 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `GET /api/lottery/items` | 商店目录以外的道具名称 |
 | `GET`/`PUT /api/admin/lottery` | 管理员查看与设置活动开关、开放时段、每日免费道具（管理页面“抽奖活动”） |
 
+### 驾照考试（车手学校）
+
+单人游戏的驾照考试（新手、初级、L3、L2、L1、PRO）由数据服务记录通关、发首通奖励、颁发驾照，规则与接口见 [`RIDER_SCHOOL.md`](RIDER_SCHOOL.md)。驾照表 `internal/data/license/license.json` 由 `rewrite/tools/export-license-data.mjs` 从原版 `etc_/riderSchool`（任务表、驾照与奖励、对决对手录像）和 `stock.kml` 导出（**不要手改**）。
+
+| 路径 | 说明 |
+| --- | --- |
+| `GET /api/license` | 驾照表与账号的驾照状态（已通过的关、当前驾照、PRO 资格与本期任务） |
+| `POST /api/license/run` | 提交通过的一关（首通发原版奖励） |
+| `POST /api/license/take` | 全部关卡通过后领取驾照（PRO 有效 90 天，每两个月一期可续） |
+| `POST /api/license/qualify`、`POST /api/license/emblem` | PRO 资格审核成绩与领取资格徽章 |
+
+### 俱乐部
+
+俱乐部的创建、目录与申请、职位管理、解散、俱乐部基地（总部、赛事中心、车手中心、银行的升级，捐助，每日福利）与会员活跃度由数据服务处理，原版规则与自定数值见 [`CLUB.md`](CLUB.md)。徽章与标志框表 `internal/data/club/club.json` 由 `rewrite/tools/export-club-data.mjs` 从 `etc_/clubMark` 导出（**不要手改**）。
+
+| 路径 | 说明 |
+| --- | --- |
+| `GET /api/club`、`GET /api/club/list`、`GET /api/club/info/{id}` | 自己的俱乐部与会员、俱乐部目录、单个俱乐部 |
+| `POST /api/club/create`、`/apply`、`/apply/cancel`、`/leave`、`/break`、`/break/cancel` | 创建（100,000 金币）、申请、取消申请、退出、解散、取消解散 |
+| `GET /api/club/applicants`、`POST /api/club/applicants/decide`、`POST /api/club/members`、`PUT /api/club` | 申请审核、职位变更与踢除、简介与自动加入 |
+| `GET /api/club/house`、`POST /api/club/donate`、`/upgrade`、`/name`、`/mark`、`/welfare` | 俱乐部基地、捐助、设施升级、改名、改徽章、领取福利 |
+
+### 任务栏菜单：奖励箱、任务、迷你提示窗、聊天、查找车手
+
+奖励箱（任务奖励、俱乐部福利、管理员赠送，保管 30 天）、每日/每周任务、迷你提示窗（系统提醒与管理员公告）、全服/俱乐部聊天和车手信息由数据服务处理，规则与接口见 [`MENUS.md`](MENUS.md)。管理页面可以发布迷你提示窗公告、向玩家奖励箱赠送道具或货币。
+
+| 路径 | 说明 |
+| --- | --- |
+| `GET /api/reward-box`、`POST /api/reward-box/claim` | 奖励箱、领取（每次最多 8 条） |
+| `GET /api/quests` | 任务与本周期进度 |
+| `GET /api/notices` | 迷你提示窗（奖励箱、任务提醒与管理员公告） |
+| `GET /api/riders/{nickname}` | 车手信息 |
+| `POST /api/admin/reward-box`、`GET`/`PUT /api/admin/notices`、`DELETE /api/admin/notices/{id}` | 管理员赠送、公告管理 |
+| WebSocket `chat-join` / `chat` / `chat-leave` | 全部聊天与俱乐部聊天（走 `/api/messenger/ws`） |
+
 ### 游戏节点（`:8788` 等）
 
 | 路径 | 用途 |
@@ -496,7 +531,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `account_counters`、`account_login_days` | 成就计数（多人赛按模式与赛道主题的胜利/完赛/未完赛、连续未完赛、计时赛完赛）、登录过的北京日期 |
 | `account_careers`、`account_emblems` | 已完成的成就（完成时间）、拥有的徽章（来源、代表徽章槽 `main_slot`） |
 
-`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4，小屋成就与徽章的表在 v5，道具图鉴奖励的表在 v6，开箱记录与赛车探险队的表在 v7，抽奖（`lottery_draws`、`lottery_counters`、`lottery_daily`、`lottery_activities`）在 v8。
+`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4，小屋成就与徽章的表在 v5，道具图鉴奖励的表在 v6，开箱记录与赛车探险队的表在 v7，抽奖（`lottery_draws`、`lottery_counters`、`lottery_daily`、`lottery_activities`）在 v8，驾照考试（`license_state`、`license_clears`、`license_records`、`license_runs`）在 v9，俱乐部（`clubs`、`club_members`、`club_applications`、`club_leaves`、`club_donations`、`club_welfare`）在 v10，奖励箱、任务与迷你提示窗公告（`reward_box`、`quest_progress`、`notices`）在 v11。kart-data 每小时还会清理 30 天前已领取或过期的奖励箱记录与 14 天前的任务周期。
 
 ### Redis 键（前缀 `KART_REDIS_PREFIX`，默认 `kart:`）
 

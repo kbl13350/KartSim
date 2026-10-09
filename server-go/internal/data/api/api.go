@@ -20,9 +20,11 @@ import (
 
 	"kartsim/internal/data/cache"
 	"kartsim/internal/data/career"
+	"kartsim/internal/data/club"
 	"kartsim/internal/data/config"
 	"kartsim/internal/data/economy"
 	"kartsim/internal/data/expedition"
+	"kartsim/internal/data/license"
 	"kartsim/internal/data/lottery"
 	"kartsim/internal/data/messenger"
 	"kartsim/internal/data/myroom"
@@ -114,6 +116,10 @@ type API struct {
 	lottery         *lottery.Data
 	lotteryItemsDoc catalogDocument
 	lotteryRand     func() lottery.Rand
+
+	license    *license.Data
+	licenseDoc licenseTable
+	clubData   *club.Data
 }
 
 // New builds the API.
@@ -231,6 +237,13 @@ func New(opts Options) *API {
 	if a.lotteryRand = opts.LotteryRand; a.lotteryRand == nil {
 		a.lotteryRand = newLotteryRand
 	}
+	if a.license, err = license.Default(); err != nil {
+		panic(err) // the embedded data is checked by the license tests
+	}
+	a.licenseDoc = newLicenseTable(a.license)
+	if a.clubData, err = club.Default(); err != nil {
+		panic(err) // the embedded data is checked by the club tests
+	}
 	return a
 }
 
@@ -323,6 +336,39 @@ func (a *API) PublicHandler() http.Handler {
 	route("POST /api/lottery/gacha/draw", a.gachaDraw)
 	route("POST /api/lottery/packs/buy", a.buyPack)
 	route("POST /api/lottery/daily", a.claimLotteryDaily)
+	route("GET /api/license", a.getLicense)
+	route("POST /api/license/run", a.runLicenseStep)
+	route("POST /api/license/take", a.takeLicense)
+	route("POST /api/license/qualify", a.qualifyLicense)
+	route("POST /api/license/emblem", a.claimLicenseEmblem)
+	route("GET /api/club", a.getClub)
+	route("GET /api/club/list", a.listClubs)
+	route("GET /api/club/info/{id}", a.clubDetail)
+	route("POST /api/club/create", a.createClub)
+	route("POST /api/club/apply", a.applyClub)
+	route("POST /api/club/apply/cancel", a.cancelClubApplication)
+	route("GET /api/club/applicants", a.clubApplicants)
+	route("POST /api/club/applicants/decide", a.decideClubApplicant)
+	route("POST /api/club/leave", a.leaveClub)
+	route("POST /api/club/members", a.clubMemberChange)
+	route("PUT /api/club", a.updateClub)
+	route("POST /api/club/break", a.breakClub)
+	route("POST /api/club/break/cancel", a.cancelClubBreak)
+	route("GET /api/club/house", a.clubHouse)
+	route("POST /api/club/donate", a.donateClub)
+	route("POST /api/club/upgrade", a.upgradeClub)
+	route("POST /api/club/name", a.renameClub)
+	route("POST /api/club/mark", a.changeClubMark)
+	route("POST /api/club/welfare", a.claimClubWelfare)
+	route("GET /api/reward-box", a.rewardBox)
+	route("POST /api/reward-box/claim", a.claimRewardBox)
+	route("POST /api/admin/reward-box", a.adminRewardBox)
+	route("GET /api/quests", a.listQuests)
+	route("GET /api/notices", a.listNotices)
+	route("GET /api/admin/notices", a.adminNotices)
+	route("PUT /api/admin/notices", a.adminSaveNotice)
+	route("DELETE /api/admin/notices/{id}", a.adminDeleteNotice)
+	route("GET /api/riders/{nickname}", a.riderCard)
 	route("GET /api/admin/lottery", a.adminLottery)
 	route("PUT /api/admin/lottery", a.adminSaveLottery)
 	mux.Handle("GET /api/myroom/ws", a.rooms)

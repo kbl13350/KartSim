@@ -10,6 +10,12 @@ export interface TrackAdmissionOptions {
   warp?: { inType?: string };
   p3553CourseSound?: boolean;
   lteCoins?: boolean;
+  /**
+   * A 驾照考试 course: its "event:<name>" route tags (turnLeft, driftLeft,
+   * booster, waterbomb, devil…) script the rider school tutorial and are
+   * handed to the license race instead of blocking the track.
+   */
+  riderSchool?: boolean;
 }
 
 export interface TrackAdmissionModel {
@@ -71,6 +77,24 @@ export function flashRouteRecord(road: TrackObjectOccurrence, roadIndex: number,
   };
 }
 
+/** A rider school tutorial tag, consumed by the license race's hint panel. */
+export function riderSchoolRouteRecord(road: TrackObjectOccurrence, roadIndex: number,
+  recordIndex: number, surface: string, source: unknown, mode: string) {
+  return {
+    occurrence: {
+      kind: "route-surface", index: roadIndex, encoding: road.encoding, objectId: road.id,
+      className: road.value.kind, name: road.value.name, detail: `${recordIndex}:${surface}`,
+    },
+    mode, source,
+    producer: "TRACKDATA#TRK-COURSE ToRoadRecord.surfaceTag",
+    consumer: "RiderSchool stage tutorial event (license hint panel)",
+    owner: "license race",
+    lifecycle: "route in shows the hint; scripted items are not run on the Web",
+    order: "kart slot12 后，stage publication 前",
+    decision: "admit", reason: "route-event-rider-school",
+  };
+}
+
 /** Make one route-surface ledger entry with the exact owner and reason chosen by v39.11. */
 export function routeSurfaceRecord(
   road: TrackObjectOccurrence,
@@ -87,6 +111,8 @@ export function routeSurfaceRecord(
     (mode === "speed-individual" && isIndividualRouteTag(surface));
   const kind = classify ? ops.routeSurfaceKind(surface) : undefined;
   if (kind === "flash") return flashRouteRecord(road, roadIndex, recordIndex, source, mode);
+  if (options.riderSchool && mode === "time-attack" && /^event:\w+$/.test(surface))
+    return riderSchoolRouteRecord(road, roadIndex, recordIndex, surface, source, mode);
 
   const empty = surface.length === 0;
   const rail = surface === "rail";

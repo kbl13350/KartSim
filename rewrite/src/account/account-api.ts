@@ -101,6 +101,9 @@ export function parseAccountSummary(value: unknown): AccountSummary {
       nextLevelExp: typeof next === "number" && Number.isFinite(next) ? Math.max(0, next) : null,
       glove: text(progress.glove), gloveName: text(progress.gloveName),
       maxLevel: Math.max(level, Math.floor(finiteNumber(progress.maxLevel, level))),
+      tryLevel: Math.min(5, Math.max(1, Math.floor(finiteNumber(progress.tryLevel, 1)))),
+      license: Math.min(6, count(progress.license)),
+      proUntil: count(progress.proUntil),
     },
     wallet: {
       coupon: count(wallet.coupon), lucci: count(wallet.lucci), koin: count(wallet.koin),

@@ -1,4 +1,5 @@
 import { updateStoryChase, type ChaseStage } from "../story/story-chase";
+import { updateLicenseTimer, type LicenseTimerStage } from "../license/license-race";
 
 // Presentation owners still come from the generated client. Their renderer,
 // physics and asset types will be narrowed as those systems are migrated.
@@ -136,6 +137,8 @@ export function updateTimeAttackStage(
   }
   // Story Tracing / Escape: the gap panel and the per-frame verdict.
   updateStoryChase(stage as unknown as ChaseStage, rawNowMs);
+  // 驾照考试: the mission timer and its time limit.
+  updateLicenseTimer(stage as unknown as LicenseTimerStage, rawNowMs);
   mark?.("kt-ghost");
 
   const cameraState = host.getPhysics().driveCameraRuntime();
