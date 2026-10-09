@@ -68,6 +68,6 @@
 | `item-effects.ts` | 打转、困住、炸飞、反向、减速、缩小、挡停、磁铁牵引八种效果；每个物理切片推进一次，困住/炸飞/挡停时以运动学路径代替物理子步，位姿变化随运动帧同步给远端 |
 | `physics-parameters.ts` | 发行版 `jt0` 的调参记录，末尾追加道具赛字段（道具槽容量、道具加速时间、道具起步与加速系数） |
 
-道具赛中漂移照常、漂移结束后的瞬间加速（状态 2）照常，但漂移和速度不再充能加速器（`accumulateDriftCharge`、`accumulateSpeedCharge`、`updateModeInventory`、组队集气均关闭）；起步加速使用 `startBoosterTimeItem` 与 `startForwardAccelItem`；加速状态的加速系数使用 `boostAccelFactorOnlyItem`。`use-item-or-booster`/`reorder-items` 在道具赛不再消耗或交换槽位，按键由 `src/input/item-input.ts` 转为道具指令。
+道具赛中漂移照常、漂移结束后的瞬间加速（状态 2）照常，但漂移和速度不再充能加速器（`accumulateDriftCharge`、`accumulateSpeedCharge`、`updateModeInventory`、组队集气均关闭）；起步加速使用 `startBoosterTimeItem` 与 `startForwardAccelItem`；加速状态的加速系数使用 `boostAccelFactorOnlyItem`。道具赛没有双重加速：`refreshDualBoosterReady` 在道具赛中与未开启双重加速的引擎一样直接返回，加速道具不会自动进入状态 10。`use-item-or-booster`/`reorder-items` 在道具赛不再消耗或交换槽位，按键由 `src/input/item-input.ts` 转为道具指令。
 
 `item-effects.test.ts`、`item-mode.test.ts` 用真实 `AL` 在平面测试路面（`item-test-fixtures.ts`）上验证每种效果的时间线；`physics-parameters.test.ts` 对全部可查询车辆逐字段比较发行版 `jt0`。原有发行版差分测试保持不变，非道具赛路径没有行为变化。
