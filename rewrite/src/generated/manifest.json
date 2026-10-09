@@ -1849,8 +1849,8 @@
     },
     {
       "file": "vehicle.js",
-      "bytes": 186623,
-      "sha256": "4df6a048df06e5d349375f9e171a26cc0265063e5fa085d78c6129950dd44c65",
+      "bytes": 186743,
+      "sha256": "946dfb579160f32907a4a60c4f5294cb8ddce971e3bc0243f8cc25a148c5f2b3",
       "imports": 183,
       "exports": 104
     },
@@ -1877,8 +1877,8 @@
     },
     {
       "file": "multiplayer.js",
-      "bytes": 36817,
-      "sha256": "0ada87ff76e21686a4ff926900d0eed127b96989f7ce95ce9a66db7ed7a38f07",
+      "bytes": 36929,
+      "sha256": "bd34d53ad95bb27b44a5c70b79c20e0f3aaa44b09e2a4a484ee12999d22339e8",
       "imports": 98,
       "exports": 18
     },

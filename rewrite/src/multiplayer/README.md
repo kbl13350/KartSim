@@ -28,6 +28,11 @@ bundle. It can be developed independently of the original minified code.
 - `server-events.ts`: validation for every observed server control event.
 - `room-validation.ts`: full room and race snapshot validation from the release.
 - `room-state.ts`: authoritative room revision, departure and recent-chat state.
+- `individual-rider-colors.ts`: individual rooms dress each racer in its slot's
+  basic dye (red, yellow, orange, green, light jade, blue, purple, pink),
+  shuffled per room ID, for the lobby previews, the race outfits and the rank
+  and minimap colours; the release kept everyone's own dye there. The race
+  loader `A40` takes it through a patch in `tools/generate-modules.mjs`.
 - `errors.ts`: multiplayer error messages shown by the release.
 - `lobby-actions.ts`: room listing, joining, leaving, chat, team and settings commands.
 - `lobby-events.ts`: readable room-event orchestration and UI state transitions.
