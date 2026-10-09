@@ -60,8 +60,12 @@ export function selectTrackTheme(host: TrackPickerActionHost, theme: string): vo
   host.selectedTheme = theme;
   if (theme === "1024" && previous !== "1024") {
     const track = host.options.tracks.find(item => item.id === host.selectedTrackId);
-    host.itemEnabled = track?.gameType === "item";
-    host.speedEnabled = track?.gameType !== "item";
+    const gameType = track?.gameType === "item" ? "item" : "speed";
+    // The random tab shows one game type: the selected track's, if the room offers it.
+    const shown = trackGameTypeOffered(host.options, gameType)
+      ? gameType : host.options.gameTypes?.[0] ?? gameType;
+    host.itemEnabled = shown === "item";
+    host.speedEnabled = shown !== "item";
   }
   host.search.value = "";
   host.searchQuery = "";

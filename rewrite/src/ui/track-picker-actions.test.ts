@@ -129,4 +129,9 @@ test("a picker limited to 道具 ignores the 竞速 switch on both tabs", () => 
   assert.deepEqual([host.itemEnabled, host.speedEnabled, events], [true, false, []]);
   toggleTrackGameType(host, "item");
   assert.deepEqual([host.itemEnabled, events], [false, [["theme", "village"]]]);
+  // The random tab falls back to 道具 when the selected track is not offered.
+  Object.assign(host, { selectedTheme: "village", selectedTrackId: "missing",
+    itemEnabled: false, speedEnabled: false });
+  selectTrackTheme(host, "1024");
+  assert.deepEqual([host.itemEnabled, host.speedEnabled], [true, false]);
 });
