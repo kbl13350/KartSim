@@ -1,4 +1,6 @@
-import { admitTrackObject, type TrackAdmissionOps, type TrackObjectOccurrence } from "./track-object-admission";
+import {
+  admitItemGameTrackObject, admitTrackObject, type TrackAdmissionOps, type TrackObjectOccurrence,
+} from "./track-object-admission";
 
 export interface TrackAdmissionOptions {
   weather?: {
@@ -10,6 +12,8 @@ export interface TrackAdmissionOptions {
   warp?: { inType?: string };
   p3553CourseSound?: boolean;
   lteCoins?: boolean;
+  /** Item race on the speed-individual path: admit cubes and item hazards. */
+  itemGame?: boolean;
 }
 
 export interface TrackAdmissionModel {
@@ -193,6 +197,9 @@ export function buildTrackAdmissionLedger(
   const occurrences = model.root.trackObjectOccurrences;
   if (!occurrences || occurrences.length !== model.root.trackObjects.length)
     throw new Error("TrackContainer 缺少完整 Object47 occurrence provenance。");
+  const itemGame = options.itemGame === true;
+  if (itemGame && (mode !== "speed-individual" || options.lteCoins === true))
+    throw new Error("道具赛准入只用于 speed-individual 多人赛道。");
   const records: any[] = [];
   const lensFlareCount = model.root.trackObjects.filter(object =>
     object.kind === "ToDummy" && object.name === "lensflare").length;
@@ -227,8 +234,11 @@ export function buildTrackAdmissionLedger(
   }
 
   for (const [index, occurrence] of occurrences.entries()) {
-    records.push(admitTrackObject(occurrence, index, mode, source,
-      lensFlareCount, options.p3553CourseSound === true, options.lteCoins === true, ops));
+    records.push(itemGame
+      ? admitItemGameTrackObject(occurrence, index, source, lensFlareCount,
+        options.p3553CourseSound === true, ops)
+      : admitTrackObject(occurrence, index, mode, source,
+        lensFlareCount, options.p3553CourseSound === true, options.lteCoins === true, ops));
     if (occurrence.value.kind !== "ToRoad") continue;
     const road = occurrence.value as TrackObjectOccurrence["value"] &
       { records: { surface: string }[] };
