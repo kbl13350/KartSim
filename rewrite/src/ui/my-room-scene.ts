@@ -4,9 +4,10 @@ import {
   type Material, type Object3D,
 } from "three";
 import { CR, SR, TR, W1, Yb, sn, xR, y9 } from "../generated/formats.js";
-import { FI, Tr, p5, xa } from "../generated/library.js";
+import { FI, Ma, Tr, p5, xa } from "../generated/library.js";
 import { Jv, Lt, T4 } from "../generated/ui.js";
-import { ag, pk } from "../generated/vehicle.js";
+import { ag, hr, pk } from "../generated/vehicle.js";
+import { S4 } from "../generated/world.js";
 import type { GarageCatalogEntry } from "../resources/garage-catalog";
 import type { LocalProfile } from "./local-profile";
 import type { MyRoomEnvironment, MyRoomResourceLibrary } from "./my-room-catalog";
@@ -49,9 +50,124 @@ type RoomAvatar = Awaited<ReturnType<typeof Jv>>;
 type WalkingScene = Awaited<ReturnType<typeof TR>>;
 type CharacterFile = RoomFile & { containerId?: string; canonicalPath?: string; name?: string };
 
+/** A goggle, headband, hand item or aura worn by a walking rider. */
+interface WornItem {
+  scene?: { object: Object3D; update?(elapsed: number, camera: unknown, width: number, height: number): void };
+  dispose(): void;
+}
+
+/** A flying pet following a walking rider. */
+interface FollowingPet {
+  mount(owner: unknown): void;
+  update(elapsed: number, camera: unknown, width: number, height: number): void;
+  dispose(): void;
+}
+
 interface WalkingAvatar {
   scene: WalkingScene;
   motion: InstanceType<typeof ag>;
+  /** The character's own meshes (ground and head height ignore what it wears). */
+  body: Object3D[];
+  worn: WornItem[];
+  pet?: FollowingPet;
+}
+
+/**
+ * Where each item a character wears goes, as Ready dresses the rider
+ * (ui.js Jv): goggle, headband and hand item on decoration sockets.
+ */
+const WORN_SOCKETS: ReadonlyArray<[kind: string, category: number, part: number, slot: number]> = [
+  ["goggle", 8, 3, 0], ["headBand", 11, 3, 3], ["handGearL", 16, 4, 0],
+];
+
+interface DressingLibrary {
+  timeAttackDecorationItem(category: number, itemId: number): Promise<{ internalId: string; decorationTrans?: unknown }>;
+}
+
+interface DecoratedCharacter {
+  getDecorationSocket(part: number, slot: number): Object3D | undefined;
+  getDecorationOwner(): Object3D;
+  reset?(): void;
+}
+
+/**
+ * Dress a walking rider like Ready's: goggle, headband, hand item, aura and
+ * flying pet from its equipment. A piece that fails to load is left off.
+ */
+async function dressWalkingAvatar(library: MyRoomSceneLibrary, subject: MyRoomSceneSubject,
+  avatar: WalkingAvatar): Promise<void> {
+  const items = subject.profile.equipment.itemIds;
+  const character = avatar.scene as unknown as DecoratedCharacter;
+  const dressing = library as unknown as DressingLibrary;
+  const load = async (kind: string, category: number) => {
+    const item = await dressing.timeAttackDecorationItem(category, items[category]!);
+    return await hr(library, kind, item.internalId, subject.environment, subject.stageBinding, {
+      convertClientCoordinates: false, trans: item.decorationTrans,
+      ...(kind === "goggle" ? { goggleType: (subject.character as { goggleType?: string }).goggleType ?? "" } : {}),
+    }) as WornItem;
+  };
+  for (const [kind, category, part, slot] of WORN_SOCKETS) {
+    if (!items[category]) continue;
+    try {
+      const worn = await load(kind, category);
+      const socket = character.getDecorationSocket(part, slot);
+      if (!socket || !worn.scene) {
+        worn.dispose();
+        continue;
+      }
+      socket.add(worn.scene.object);
+      avatar.worn.push(worn);
+    } catch (error) {
+      console.warn(`小屋人物 ${kind} 加载失败`, error);
+    }
+  }
+  if (items[26]) {
+    try {
+      const aura = await load("aura", 26);
+      if (aura.scene) {
+        character.getDecorationOwner().add(aura.scene.object);
+        avatar.worn.push(aura);
+      } else aura.dispose();
+    } catch (error) {
+      console.warn("小屋人物光环加载失败", error);
+    }
+  }
+  if (items[52]) {
+    try {
+      const item = await Ma(library, items[52]);
+      if (item) {
+        const colors = await Yb(library, items[2] ?? 0);
+        const pet = await S4.preview({ library, item, environment: subject.environment,
+          binding: subject.stageBinding, colors }) as FollowingPet;
+        pet.mount(character.getDecorationOwner());
+        avatar.pet = pet;
+      }
+    } catch (error) {
+      console.warn("小屋飞行宠物加载失败", error);
+    }
+  }
+  character.reset?.();
+}
+
+function updateWalkingAvatar(avatar: WalkingAvatar, elapsed: number, camera: unknown, width: number,
+  height: number): void {
+  avatar.scene.update(elapsed, camera as never, width, height);
+  for (const worn of avatar.worn) worn.scene?.update?.(elapsed, camera, width, height);
+  avatar.pet?.update(elapsed, camera, width, height);
+}
+
+function disposeWalkingAvatar(avatar: WalkingAvatar | undefined): void {
+  if (!avatar) return;
+  for (const worn of avatar.worn) worn.dispose();
+  avatar.pet?.dispose();
+  avatar.scene.dispose();
+}
+
+/** The character's own meshes in world space. */
+function bodyBounds(avatar: WalkingAvatar): Box3 {
+  const bounds = new Box3();
+  for (const mesh of avatar.body) bounds.expandByObject(mesh, false);
+  return bounds.isEmpty() ? new Box3().setFromObject(avatar.scene.object) : bounds;
 }
 
 export interface MyRoomSceneSubject {
@@ -71,6 +187,9 @@ interface ParkedDisplay {
   ground: number;
   needsGrounding: boolean;
 }
+
+/** A rider's head on the canvas after a frame (CSS pixels); id "" is the local rider. */
+export interface MyRoomHead { id: string; x: number; y: number }
 
 /** Where a rider stands and whether it walks (the room socket's pose). */
 export interface MyRoomPose { x: number; y: number; z: number; yaw: number; moving: boolean }
@@ -184,7 +303,18 @@ async function loadWalkingAvatar(library: MyRoomSceneLibrary,
       primaryColor: colors?.primary ?? 0,
       highColor: colors?.high ?? 0,
   });
-  return { scene, motion };
+  const body: Object3D[] = [];
+  scene.object.traverse((object: Object3D) => {
+    if ((object as Mesh).isMesh) body.push(object);
+  });
+  const avatar: WalkingAvatar = { scene, motion, body, worn: [] };
+  try {
+    await dressWalkingAvatar(library, subject, avatar);
+  } catch (error) {
+    disposeWalkingAvatar(avatar);
+    throw error;
+  }
+  return avatar;
 }
 
 export interface MyRoomSceneAnchors {
@@ -481,6 +611,8 @@ export class MyRoomSceneView {
   private lastPoseMoving = false;
   /** Reports the local rider's walking (throttled) for the room socket. */
   onLocalMove?: (pose: MyRoomPose) => void;
+  /** After each drawn frame: where the riders' heads are (name tags, talk balloons). */
+  onFrame?: (heads: MyRoomHead[]) => void;
   private subjectGeneration = 0;
   private anchors?: MyRoomSceneAnchors;
   private frame?: MyRoomSceneFrame;
@@ -676,7 +808,7 @@ export class MyRoomSceneView {
       this.kartNeedsGrounding = true;
       this.placeSubject();
       previous && Lt(previous);
-      previousWalking?.scene.dispose();
+      disposeWalkingAvatar(previousWalking);
       this.setStatus("WASD / 方向键行走 · 滚轮缩放");
       void this.setDisplayKarts(subject.displayKarts ?? []);
       return true;
@@ -688,7 +820,7 @@ export class MyRoomSceneView {
       return false;
     } finally {
       if (next) Lt(next);
-      nextWalking?.scene.dispose();
+      disposeWalkingAvatar(nextWalking);
     }
   }
 
@@ -817,7 +949,7 @@ export class MyRoomSceneView {
     } catch (error) {
       console.warn("小屋车手模型加载失败", error);
     } finally {
-      walking?.scene.dispose();
+      disposeWalkingAvatar(walking);
     }
   }
 
@@ -834,7 +966,7 @@ export class MyRoomSceneView {
     this.remotes.delete(id);
     remote.root.removeFromParent();
     remote.ground.clear();
-    remote.walking?.scene.dispose();
+    disposeWalkingAvatar(remote.walking);
     remote.walking = undefined;
   }
 
@@ -908,9 +1040,9 @@ export class MyRoomSceneView {
       turn = Math.atan2(Math.sin(turn), Math.cos(turn));
       remote.root.rotation.y += turn * Math.min(1, delta * 12);
       remote.walking.motion.submitMotion(remote.moving || distance > 0.15 ? 4 : 3);
-      remote.walking.scene.update(elapsed, this.camera, width, height);
+      updateWalkingAvatar(remote.walking, elapsed, this.camera, width, height);
       if (remote.needsGrounding) {
-        const bounds = new Box3().setFromObject(remote.walking.scene.object);
+        const bounds = bodyBounds(remote.walking);
         const ground = this.riderGroundY - bounds.min.y;
         if (Number.isFinite(ground) && Math.abs(ground) < 20) remote.ground.position.y += ground;
         remote.needsGrounding = false;
@@ -984,7 +1116,7 @@ export class MyRoomSceneView {
     for (const [id, entry] of this.visitorKarts) this.removeVisitorKart(id, entry);
     this.avatar && Lt(this.avatar);
     this.clearDisplays();
-    this.walkingAvatar?.scene.dispose();
+    disposeWalkingAvatar(this.walkingAvatar);
     this.playerRoot.clear();
     this.parkedKartRoot.clear();
     this.room?.dispose();
@@ -1060,10 +1192,10 @@ export class MyRoomSceneView {
           this.subject.stageBinding.beginFrame(elapsed);
           this.avatar.kart.animation.updateCurrentState(elapsed);
           T4(this.avatar, elapsed, this.camera, this.root.clientWidth, this.root.clientHeight);
-          this.walkingAvatar?.scene.update(elapsed, this.camera,
+          if (this.walkingAvatar) updateWalkingAvatar(this.walkingAvatar, elapsed, this.camera,
             this.root.clientWidth, this.root.clientHeight);
           if (this.avatarNeedsGrounding && this.anchors && this.walkingAvatar) {
-            const bounds = new Box3().setFromObject(this.walkingAvatar.scene.object);
+            const bounds = bodyBounds(this.walkingAvatar);
             const offset = this.riderGroundY - bounds.min.y;
             if (Number.isFinite(offset) && Math.abs(offset) < 20)
               this.characterGroundRoot.position.y += offset;
@@ -1104,9 +1236,29 @@ export class MyRoomSceneView {
         this.setStatus(`原版小屋场景渲染失败：${error instanceof Error ? error.message : String(error)}`, true);
         return;
       }
+      if (this.onFrame) this.onFrame(this.riderHeads());
     }
     this.startRendering();
   };
+
+  /** The riders' head tops projected onto the canvas. */
+  riderHeads(): MyRoomHead[] {
+    const heads: MyRoomHead[] = [];
+    const width = this.root.clientWidth;
+    const height = this.root.clientHeight;
+    const add = (id: string, avatar: WalkingAvatar | undefined) => {
+      if (!avatar || !avatar.scene.object.visible) return;
+      const bounds = bodyBounds(avatar);
+      if (bounds.isEmpty()) return;
+      const top = new Vector3((bounds.min.x + bounds.max.x) / 2, bounds.max.y,
+        (bounds.min.z + bounds.max.z) / 2).project(this.camera);
+      if (top.z < -1 || top.z > 1) return;
+      heads.push({ id, x: (top.x + 1) / 2 * width, y: (1 - top.y) / 2 * height });
+    };
+    if (!this.showcase) add("", this.walkingAvatar);
+    for (const remote of this.remotes.values()) add(remote.id, remote.walking);
+    return heads;
+  }
 
   private readonly onPointerDown = (): void => {
     this.canvas.focus();

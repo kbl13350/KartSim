@@ -1,5 +1,5 @@
 import { CanvasHitController, type CanvasHitRegion } from "./canvas-hit-controller";
-import { G1, T, V0, ct, f5, m9, p2, s2, st } from "../generated/formats.js";
+import { G1, T, V0, ct, f5, m9, p2, s2, st, ve } from "../generated/formats.js";
 import { U1 } from "../generated/library.js";
 
 /**
@@ -76,6 +76,8 @@ export interface MyRoomHudOptions {
 
 const FOLDERS = ["stage_/myRoom", "stage_/common"];
 const FONT_FAMILY = "KartSim My Room";
+/** The HUD's font, loaded while the room is open (the name tags use it too). */
+export const MY_ROOM_FONT_FAMILY = FONT_FAMILY;
 /** The stage is laid out at 1600x900; the bottom 7.333% is the shared taskbar. */
 const STAGE = { x: 0, y: 0, width: 1600, height: 900 };
 const VISIBLE_HEIGHT = 900 * (1 - 0.07333333);
@@ -96,6 +98,28 @@ const RIDER_CARD = /^riderCard(\d)$/;
 
 const attribute = (node: MyRoomHudNode, name: string): string | undefined =>
   T(node, name) as string | undefined;
+
+/** A chat line broken into rows no wider than width (measure gives a text's width). */
+export function wrapMyRoomChatLine(text: string, width: number, measure: (text: string) => number): string[] {
+  const rows: string[] = [];
+  let row = "";
+  for (const character of text) {
+    if (row && measure(row + character) > width) {
+      rows.push(row);
+      row = character.trim() ? character : "";
+    } else row += character;
+  }
+  if (row || rows.length === 0) rows.push(row);
+  return rows;
+}
+
+/**
+ * The riders shown on riderCard0..7: everyone in the room one after another
+ * by seat (the owner's seat first), so an empty seat leaves no gap.
+ */
+export function myRoomRiderRows<Rider extends { slot: number }>(riders: readonly Rider[]): Rider[] {
+  return [...riders].sort((a, b) => a.slot - b.slot);
+}
 
 /** `%s` / `%d` placeholders in the release string bag. */
 export function formatMyRoomString(template: string, value: string | number): string {
@@ -311,10 +335,9 @@ export class MyRoomHud {
   private draw(node: MyRoomHudNode, parent: Rect): void {
     const name = attribute(node, "name") ?? "";
     if (SKIPPED.has(name) || node.name === "ToolTipWindow" || node.name === "RenderPanel") return;
-    const cardSlot = RIDER_CARD.exec(name)?.[1];
+    const cardRow = RIDER_CARD.exec(name)?.[1];
     const outerCard = this.card;
-    if (cardSlot !== undefined)
-      this.card = this.options.room().riders.find(rider => rider.slot === Number(cardSlot));
+    if (cardRow !== undefined) this.card = myRoomRiderRows(this.options.room().riders)[Number(cardRow)];
     try {
       this.drawNode(node, name, parent);
     } finally {
@@ -404,16 +427,27 @@ export class MyRoomHud {
     });
   }
 
+  /** The latest lines that fit chatHistoryRgn, long messages wrapped to its width. */
   private drawHistory(rect: Rect): void {
     const lineHeight = 22;
-    const lines = this.history.slice(-CHAT_LIMIT);
-    lines.forEach((line, index) => {
-      m9(this.context, line, {
-        x: rect.x + 8, y: rect.y + rect.height - (lines.length - index) * lineHeight - 4,
-        width: rect.width - 16, height: lineHeight,
+    const font = { family: FONT_FAMILY, size: 14, stroke: 1 };
+    const width = rect.width - 16;
+    const rows = this.history.slice(-CHAT_LIMIT).flatMap(line => wrapMyRoomChatLine(line, width,
+      text => (ve(this.context, text, font) as { width: number }).width));
+    const shown = rows.slice(-Math.max(1, Math.floor((rect.height - 4) / lineHeight)));
+    const context = this.context;
+    context.save();
+    context.beginPath();
+    context.rect(rect.x, rect.y, rect.width, rect.height);
+    context.clip();
+    shown.forEach((line, index) => {
+      m9(context, line, {
+        x: rect.x + 8, y: rect.y + rect.height - (shown.length - index) * lineHeight - 4,
+        width, height: lineHeight,
       }, { family: FONT_FAMILY, size: 14, kind: "label", color: "white",
         align: "left", verticalAlign: "center", stroke: 1, strokeColor: "black" });
     });
+    context.restore();
   }
 
   private placeChatInput(rect: Rect): void {
