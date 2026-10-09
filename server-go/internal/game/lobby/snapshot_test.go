@@ -259,20 +259,28 @@ func TestStaleLoadingTimerLeavesTheNextRaceAlone(t *testing.T) {
 	room = h.command(players[0], map[string]any{"type": "start", "roomId": roomID, "revision": room["revision"]})
 	firstRace := raceOf(room)["raceId"]
 	h.clock.Advance(10 * time.Second)
-	room = h.command(players[0], map[string]any{"type": "load-failed", "roomId": roomID, "raceId": firstRace})
+	h.must(players[0], map[string]any{"type": "load-failed", "roomId": roomID, "raceId": firstRace})
+	room = h.command(players[1], map[string]any{"type": "load-failed", "roomId": roomID, "raceId": firstRace})
+	assertEqual(t, room["raceError"], "LOAD_FAILED")
 	room = h.command(players[0], map[string]any{"type": "start", "roomId": roomID, "revision": room["revision"]})
-	h.must(players[0], map[string]any{"type": "loaded", "roomId": roomID, "raceId": raceOf(room)["raceId"]})
+	secondRace := raceOf(room)["raceId"]
+	h.must(players[0], map[string]any{"type": "loaded", "roomId": roomID, "raceId": secondRace})
 	// The first race's timer fires during the second race and must not touch it.
 	h.clock.Advance(20*time.Second + 500*time.Millisecond)
 	latest := object(h.sink(players[1]).last(t)["room"])
 	assertEqual(t, latest["phase"], "loading")
+	// Not in Java (which cancelled the race, LOAD_TIMEOUT): the racer who has
+	// not loaded drops out and the other starts.
 	h.clock.Advance(10 * time.Second)
 	latest = object(h.sink(players[1]).last(t)["room"])
-	assertEqual(t, latest["phase"], "open")
-	assertEqual(t, latest["raceError"], "LOAD_TIMEOUT")
-	if _, ok := latest["race"]; ok {
-		t.Fatal("timed-out race still present")
+	assertEqual(t, latest["phase"], "countdown")
+	assertEqual(t, raceOf(latest)["raceId"], secondRace)
+	assertEqual(t, raceOf(latest)["loadedIds"], []any{players[0].playerID})
+	if _, ok := latest["raceError"]; ok {
+		t.Fatal("started race carries a race error")
 	}
+	assertEqual(t, h.errorCode(players[1], map[string]any{"type": "loaded", "roomId": roomID,
+		"raceId": secondRace}), "NOT_RACE_PARTICIPANT")
 }
 
 func TestBroadcastRecipients(t *testing.T) {

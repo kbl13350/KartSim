@@ -144,6 +144,49 @@ test("remote fleet packet, prediction, collision and departure match release", (
   assert.deepEqual(run(false), run(true));
 });
 
+// Not in the release, whose server cancelled the race when a racer left: a
+// racer who leaves the room mid-race disappears and stops colliding.
+test("a racer who left the room is hidden and no longer collides", () => {
+  const item = fixture(false);
+  const { fleet } = item;
+  fleet.bindClock({ offsetMs: 0 });
+  item.emitMotion(packet("peer-a", 1));
+  item.emitMotion(packet("peer-b", 1));
+  item.setNow(1_010);
+  fleet.update(1_010, { bypass: false, locked: false });
+  const colliding = () => {
+    const ids: string[] = [];
+    fleet.forEachCollisionBody(undefined, (_body, _scale, id) => ids.push(id));
+    return ids;
+  };
+  assert.deepEqual(colliding(), ["peer-a", "peer-b"]);
+  assert.equal(fleet.presentationVisible("peer-b", 1_010), true);
+  assert.equal(fleet.hasDeparted("peer-b"), false);
+
+  fleet.updateRoom({ roomId: "room", race: { raceId: "race" },
+    members: [{ playerId: "me" }, { playerId: "peer-a" }] });
+  assert.deepEqual(colliding(), ["peer-a"]);
+  assert.equal(fleet.presentationVisible("peer-b", 1_010), false);
+  assert.equal(fleet.presentationVisible("peer-a", 1_010), true);
+  assert.equal(fleet.hasDeparted("peer-b"), true);
+  fleet.dispose();
+});
+
+// Not in the release: past loading, a racer who has not loaded was dropped
+// by the server; it stays in the room but is out of the race.
+test("a racer dropped while loading is out of the race", () => {
+  const { fleet } = fixture(false);
+  const members = [{ playerId: "me" }, { playerId: "peer-a" }, { playerId: "peer-b" }];
+  fleet.updateRoom({ roomId: "room", phase: "loading",
+    race: { raceId: "race", loadedIds: ["me"] }, members });
+  assert.deepEqual([...fleet.departed], []);
+  fleet.updateRoom({ roomId: "room", phase: "countdown",
+    race: { raceId: "race", loadedIds: ["me", "peer-a"] }, members });
+  assert.deepEqual([...fleet.departed], ["peer-b"]);
+  assert.equal(fleet.presentationVisible("peer-b", 1_000), false);
+  fleet.dispose();
+});
+
 test("giant ordered state and reset match release", () => {
   function run(released: boolean) {
     const item = fixture(released, true);
