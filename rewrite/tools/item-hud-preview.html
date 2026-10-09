@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>道具赛 HUD 预览</title>
+  <style>
+    body { margin: 0; background: #1d2633; color: #e8edf3; font: 14px sans-serif; }
+    #hud { display: block; width: 100%; max-width: 1600px; aspect-ratio: 16 / 9; }
+    #bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 12px; }
+    #controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    #status { opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <!-- Dev-only: npm run dev, then open /tools/item-hud-preview.html. Not in the game build. -->
+  <canvas id="hud" width="1600" height="900"></canvas>
+  <div id="bar"><div id="controls"></div><span id="status">…</span></div>
+  <script type="module" src="/src/ui/item-hud-preview.ts"></script>
+</body>
+</html>
