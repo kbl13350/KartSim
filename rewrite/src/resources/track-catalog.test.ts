@@ -9,8 +9,8 @@ import { attribute, decodeBinaryXml, type BinaryXmlNode } from "../codecs/binary
 import { RhoReader } from "../codecs/rho";
 import type { RhoArchiveIndex } from "./archive-index";
 import {
-  mapAssets, mapCatalog, timeAttackRandomTrackGroups,
-  timeAttackRandomTrackNames, timeAttackTrackCatalog, trackMetadata,
+  itemRandomTrackGroups, itemTrackCatalog, mapAssets, mapCatalog, timeAttackRandomTrackGroups,
+  timeAttackRandomTrackNames, timeAttackTrackCatalog, trackLocaleRules, trackMetadata,
   trackMetadataCatalog, trackTitles, type TrackLibrary, type TrackResource,
 } from "./track-catalog";
 
@@ -235,4 +235,83 @@ test("真实 p3553 赛道档案索引及 BML 与原始 release 生成相同赛�
   assert.deepEqual(await authored.timeAttackRandomTrackNames(), await original.timeAttackRandomTrackNames());
   assert.ok(authoredTracks.some(track => track.id === "forest_I01" && track.title === "森林 木桶"));
   assert.ok(authoredTracks.some(track => track.id.endsWith("_rvs") && track.reverse === true));
+});
+
+test("道具赛赛道：item 类型含仅道具赛道，排除 trackLocale@cn 屏蔽、不可选与练习赛道", async () => {
+  const track = node("trackList", {}, [
+    node("track", { id: "ice_peak", gameType: "speed", laps: "3", difficulty: "2" }),
+    node("track", { id: "village_C01", gameType: "item", laps: "3", difficulty: "3",
+      isOnlyItemTrack: "true" }),
+    node("track", { id: "desert_town", gameType: "item", laps: "2", difficulty: "1", theme: "desert" }),
+    node("track", { id: "tomb_locked", gameType: "item", laps: "3", difficulty: "2" }),
+    node("track", { id: "tomb_runner", gameType: "item", laps: "3", difficulty: "2" }),
+    node("track", { id: "tomb_practice", gameType: "item", laps: "1", difficulty: "0" }),
+    node("track", { id: "tomb_zz", gameType: "item", laps: "3", difficulty: "2", choosable: "false" }),
+  ]);
+  const locale = node("trackLocale", {}, [
+    node("track", { id: "ice_peak", name: "冰峰" }),
+    node("track", { id: "village_C01", name: "城镇 手指（道具）" }),
+    node("track", { id: "desert_town", name: "沙漠镇" }),
+    node("track", { id: "tomb_locked", name: "墓地 锁", blocked: "true" }),
+    node("track", { id: "tomb_runner", name: "[奔跑车手]墓地", choosable: "false" }),
+    node("track", { id: "tomb_practice", name: "墓地 练习", isOnlyTraining: "true" }),
+    node("track", { id: "tomb_zz", name: "墓地 不可选" }),
+    node("track_rvs", { refId: "village_C01" }),
+    node("track_rvs", { refId: "tomb_locked" }),
+    node("track_rvs", { refId: "ice_peak" }),
+    node("track_crz", { refId: "desert_town", name: "沙漠 疯狂" }),
+  ]);
+  const random = node("randomTrack", {}, [
+    node("RandomTrackSet", { randomType: "hot1", gameType: "item", level: "1" }, [
+      node("track", { id: "tomb_locked" }), node("track", { id: "village_C01" }),
+      node("track", { id: "ice_peak" }),
+    ]),
+    node("RandomTrackSet", { randomType: "hot1", gameType: "speed", level: "1" }, [
+      node("track", { id: "ice_peak" }), node("track", { id: "village_C01" }),
+    ]),
+    node("RandomTrackList", { randomType: "reverse" }, [
+      node("track", { id: "village_C01_rvs" }), node("track", { id: "ice_peak_rvs" }),
+    ]),
+  ]);
+  const files = [
+    file("track_/common/track@zz.bml", encode(track)),
+    file("track_/common/trackLocale@cn.bml", encode(locale)),
+    file("track_/common/randomTrack@cn.bml", encode(random)),
+    ...["ice_peak", "village_C01", "desert_town", "tomb_locked", "tomb_runner",
+      "tomb_practice", "tomb_zz"].flatMap(id => [file(`track_/${id}/track.1s`),
+      file(`track_/${id}/track_rvs.1s`)]),
+  ].filter(entry => entry.virtualPath !== "track_/desert_town/track_rvs.1s");
+  const authored = library(AuthoredLibrary, files);
+  const original = library(ReleaseLibrary, files);
+
+  const items = await itemTrackCatalog(authored);
+  assert.deepEqual(items.map(entry => [entry.id, entry.gameType, entry.title]), [
+    ["village_C01", "item", "城镇 手指（道具）"],
+    ["desert_town", "item", "沙漠镇"],
+    // Only reverse tracks with a trackLocale@cn track_rvs row of an offered track.
+    ["village_C01_rvs", "item", "[反]城镇 手指（道具）"],
+  ]);
+  // Time attack and speed rooms keep the release catalog: no item-only tracks,
+  // no trackLocale@cn overrides and every reverse sibling.
+  const timeAttack = await authored.timeAttackTrackCatalog();
+  assert.deepEqual(timeAttack, await original.timeAttackTrackCatalog());
+  assert.ok(!timeAttack.some(entry => entry.id === "village_C01"));
+  assert.ok(timeAttack.some(entry => entry.id === "tomb_locked"));
+  assert.ok(timeAttack.some(entry => entry.id === "tomb_runner_rvs"));
+
+  const rules = await trackLocaleRules(authored);
+  assert.equal(rules, await trackLocaleRules(authored));
+  assert.deepEqual(rules.tracks.get("tomb_locked"), { blocked: true });
+  assert.deepEqual(rules.tracks.get("tomb_runner"), { choosable: false });
+  assert.deepEqual(rules.tracks.get("tomb_practice"), { isOnlyTraining: true });
+  assert.deepEqual(rules.reverse.get("village_C01"), {});
+  assert.equal(rules.reverse.has("desert_town"), false);
+
+  const groups = await itemRandomTrackGroups(authored);
+  assert.deepEqual(groups.map(group => [group.id, group.trackIds]), [
+    ["item:reverse:0", ["village_C01_rvs"]],
+    ["item:hot1:1", ["village_C01"]],
+    ["item:all:0", ["village_C01", "desert_town"]],
+  ]);
+  assert.ok(groups.every(group => group.gameType === "item"));
 });
