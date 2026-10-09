@@ -615,8 +615,10 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     const group = useGroup(event.useId);
     this.show(group, fx.launch, s, s, s + fx.launch.lifeMs, onKart(event.userId));
     this.play(fx.bornSound, s, { kind: "kart", playerId: event.userId }, group);
+    // Each target's removal is its own: a cloud blocked on that kart never covered it.
     for (const target of event.targets)
-      this.play(fx.removeSound, s + fx.coverMs, { kind: "kart", playerId: target, onlyLocal: true }, group);
+      this.play(fx.removeSound, s + fx.coverMs, { kind: "kart", playerId: target, onlyLocal: true },
+        targetGroup(event.useId, target));
   }
 
   launchCurse(record: UseRecord, fx: CurseFx): void {

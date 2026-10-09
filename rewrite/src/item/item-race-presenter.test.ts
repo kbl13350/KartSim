@@ -5,7 +5,7 @@ import { ItemIdx, loadItemCatalog, type ItemCatalog } from "./item-catalog";
 import type {
   FxAudioContext, FxAudioParam, FxAudioSource, FxModelData, FxModelNode, FxRenderedScene, ItemFxOps,
 } from "./item-fx-assets";
-import { ITEM_FX_TUNING } from "./item-fx-plan";
+import { ITEM_FX_TUNING, type CloudFx } from "./item-fx-plan";
 import {
   loadItemRacePresenter, type ItemPresenterFrame, type ItemPresenterPose, type ItemPresenterVec3,
   type ItemRacePresenterImpl,
@@ -252,6 +252,26 @@ test("late events start part-way: the animation is anchored to the server timeli
   assert.deepEqual(cloud.updates, [5016]);
   at(4800 + 666);
   assert.deepEqual(models(presenter), []);
+});
+
+test("a cloud blocked on my kart never sounds its removal; one that covers me does", async () => {
+  const { presenter, at, played } = await setup();
+  const { coverMs } = presenter.plan.items.get(ItemIdx.cloud2) as CloudFx;
+  const removals = () => played.filter(sound => sound.path.endsWith("cloud2/disappear.ogg")).length;
+  // My kart sits in a water bubble (escape immunity): no cover, so no removal either.
+  presenter.used({ useId: 60, itemId: ItemIdx.cloud2, userId: "B", targets: ["A"], startMs: 0, etaMs: 0 });
+  at(0);
+  presenter.hit({ useId: 60, itemId: ItemIdx.cloud2, victimId: "A", userId: "B", result: "blocked", by: "escape",
+    atMs: 500 });
+  at(coverMs);
+  at(coverMs + 16);
+  assert.equal(removals(), 0);
+
+  presenter.used({ useId: 61, itemId: ItemIdx.cloud2, userId: "B", targets: ["A"], startMs: 20_000, etaMs: 0 });
+  at(20_000);
+  presenter.hit({ useId: 61, itemId: ItemIdx.cloud2, victimId: "A", userId: "B", result: "hit", atMs: 20_500 });
+  at(20_000 + coverMs);
+  assert.equal(removals(), 1);
 });
 
 test("bananas are tossed behind the kart, lie for Set.life and go when run over", async () => {
