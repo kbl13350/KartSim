@@ -65,8 +65,8 @@ import {
   createPlayer, discoverCluster, enterGameWhenFree,
 } from "./lib/kart-client.mjs";
 import {
-  AREA_ITEMS, distanceBetween, hitDelayMs, hitEffect, hitReport, itemPoint, parseArgs, readAccount,
-  RECORDER_SNIPPET, recordedRace, RouteWalker, slotOffset,
+  AREA_ITEMS, clientToThree, distanceBetween, hitDelayMs, hitEffect, hitReport, itemPoint, parseArgs, readAccount,
+  RECORDER_SNIPPET, recordedRace, RouteWalker, slotOffset, threeToClient,
 } from "./lib/item-bot-lib.mjs";
 import {
   browserAccepts, browserEventValidation, ITEM, ITEM_NAMES, ITEM_RULES, ItemChannel, kartSample, loadItemData,
@@ -458,22 +458,22 @@ function onItemEvent(race, event) {
         at(race, event.startAt + 200, async () => {
           const point = itemPoint(ITEM.barricade, race.pose ?? { position: { x: 0, y: 0, z: 0 },
             forward: { x: 0, y: 0, z: -1 } }, options.speed);
-          const reply = await race.items.send("place", { useId: event.useId, point });
+          const reply = await race.items.send("place", { useId: event.useId, point: threeToClient(point) });
           if (reply.type === "error") {
             log(`barricade place refused: ${reply.code}`);
             return;
           }
           info(`placed ${nameOf(event.playerId)}'s barricade 70 m ahead`);
-          addArea(race, event, reply.point);
+          addArea(race, event, clientToThree(reply.point));
         });
       }
-      if (event.point) addArea(race, event, event.point);
+      if (event.point) addArea(race, event, clientToThree(event.point));
       return;
     }
     case "placed": {
       const used = race.uses.get(event.useId);
       info(`${nameOf(event.playerId)}'s ${itemName(event.itemId)} placed`);
-      if (used) addArea(race, used, event.point);
+      if (used) addArea(race, used, clientToThree(event.point));
       return;
     }
     case "hit": {
@@ -544,7 +544,7 @@ async function useItem(race, idx) {
     const target = aimTarget(race);
     if (target) fields.targetId = target;
   }
-  if (rule.point) fields.point = itemPoint(idx, pose, options.speed);
+  if (rule.point) fields.point = threeToClient(itemPoint(idx, pose, options.speed));
   const until = race.clock.now() + 5000;
   for (;;) {
     const reply = await race.items.send("use", fields);
@@ -555,9 +555,9 @@ async function useItem(race, idx) {
       if (idx === ITEM.timeBomb) {
         // The user reports where its time bomb explodes, where it is then.
         at(race, reply.startAt + 3000, async () => {
-          const placed = await race.items.send("place", { useId: reply.useId, point: { ...race.pose.position } });
+          const placed = await race.items.send("place", { useId: reply.useId, point: threeToClient(race.pose.position) });
           if (placed.type === "error") log(`time bomb place refused: ${placed.code}`);
-          else addArea(race, reply, placed.point);
+          else addArea(race, reply, clientToThree(placed.point));
         });
       }
       return;

@@ -430,12 +430,19 @@ export const AREA_ITEMS = Object.freeze({
     until: data => itemLife(data, ITEM.barricade, "StateUse") + itemLife(data, ITEM.barricade, "StateActive") },
 });
 
+/**
+ * Protocol points are client z-up coordinates (rewrite/src/item/item-race-rules.ts
+ * threeToClient / clientToThreePoint); the bot works in three.js coordinates.
+ */
+export const threeToClient = point => ({ x: point.x, y: -point.z || 0, z: point.y });
+export const clientToThree = point => ({ x: point.x, y: point.z, z: -point.y || 0 });
+
 /** Three.js distance between two points. */
 export const distanceBetween = (a, b) => lengthOf(sub(a, b));
 
 /**
  * The point an item is thrown to or dropped at from a pose (three.js
- * coordinates, protocol.ts): a banana 4 m behind the kart, a water bomb
+ * coordinates; convert with threeToClient before sending): a banana 4 m behind the kart, a water bomb
  * where the kart will be in 1 s plus 20 m ahead, a barricade 70 m ahead of
  * its target, a time bomb where the kart is (ITEM_MODE.md appendix B).
  */
