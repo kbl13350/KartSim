@@ -57,6 +57,8 @@ export interface MyRoomHudOptions {
   onEmblem(): void;
   /** 图鉴 (the owner) and 浏览图鉴 (a visitor): the 道具图鉴 window. */
   onDictionary(): void;
+  /** 探险队 (the owner): the 赛车探险队 window. */
+  onExpedition(): void;
   onFindRider(): void;
   onRandomVisit(): void;
   /** The owner removes a visitor (the rider card's kick button). */
@@ -78,12 +80,12 @@ const FONT_FAMILY = "KartSim My Room";
 const STAGE = { x: 0, y: 0, width: 1600, height: 900 };
 const VISIBLE_HEIGHT = 900 * (1 - 0.07333333);
 /**
- * Menu buttons with a Web feature. The others (道具组合, 探险队, 查看道具, 查看信息)
- * are drawn in their disabled state. 随机进入 is enabled here although the
+ * Menu buttons with a Web feature. The others (道具组合, 查看道具, 查看信息) are
+ * drawn in their disabled state. 随机进入 is enabled here although the
  * release BML ships it disabled.
  */
 const OWNER_BUTTONS = new Set(["garageOpen", "myCareerOpen", "myEmblemOpen", "roomAdminOpen",
-  "findRiderOpen", "randomVisitOpen", "itemDictionary"]);
+  "findRiderOpen", "randomVisitOpen", "itemDictionary", "expeditionOpen"]);
 const VISITOR_BUTTONS = new Set(["garageOpen", "careerOpen", "emblemOpen", "findRiderOpen",
   "randomVisitOpen", "itemDictionaryVisit"]);
 const CHAT_BUTTONS = new Set(["hideChat", "openChat"]);
@@ -438,6 +440,7 @@ export class MyRoomHud {
     else if (name === "myCareerOpen" || name === "careerOpen") this.options.onCareer();
     else if (name === "myEmblemOpen" || name === "emblemOpen") this.options.onEmblem();
     else if (name === "itemDictionary" || name === "itemDictionaryVisit") this.options.onDictionary();
+    else if (name === "expeditionOpen") this.options.onExpedition();
     else if (name === "findRiderOpen") this.options.onFindRider();
     else if (name === "randomVisitOpen") this.options.onRandomVisit();
     else if (name === "kick" && rider) this.options.onKick(rider.accountId);

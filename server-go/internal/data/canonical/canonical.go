@@ -1,0 +1,164 @@
+// Package canonical computes the content version of the generated data
+// documents (careers.json, expedition.json, lottery.json …): the SHA-256 of
+// rewrite/tools/economy-export/canonical.mjs's canonical JSON of the
+// document without its "version" field. Tests compare it with the stored
+// version so a hand edit is caught.
+package canonical
+
+import (
+	"bytes"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"fmt"
+	"sort"
+	"strconv"
+	"unicode/utf8"
+)
+
+// canonicalJSON reproduces rewrite/tools/economy-export/canonical.mjs:
+// JSON.stringify of a value whose object keys were inserted in sorted
+// order. JavaScript enumerates integer-like keys first (ascending
+// numerically), then string keys in insertion order.
+func canonicalJSON(buffer *bytes.Buffer, value any) error {
+	switch v := value.(type) {
+	case map[string]any:
+		keys := make([]string, 0, len(v))
+		for key := range v {
+			keys = append(keys, key)
+		}
+		sort.Slice(keys, func(i, j int) bool { return jsKeyLess(keys[i], keys[j]) })
+		buffer.WriteByte('{')
+		for index, key := range keys {
+			if index > 0 {
+				buffer.WriteByte(',')
+			}
+			writeJSString(buffer, key)
+			buffer.WriteByte(':')
+			if err := canonicalJSON(buffer, v[key]); err != nil {
+				return err
+			}
+		}
+		buffer.WriteByte('}')
+	case []any:
+		buffer.WriteByte('[')
+		for index, item := range v {
+			if index > 0 {
+				buffer.WriteByte(',')
+			}
+			if err := canonicalJSON(buffer, item); err != nil {
+				return err
+			}
+		}
+		buffer.WriteByte(']')
+	case string:
+		writeJSString(buffer, v)
+	case json.Number:
+		if _, err := strconv.ParseInt(v.String(), 10, 64); err != nil {
+			return fmt.Errorf("non-integer number %s", v)
+		}
+		buffer.WriteString(v.String())
+	case bool:
+		buffer.WriteString(strconv.FormatBool(v))
+	case nil:
+		buffer.WriteString("null")
+	default:
+		return fmt.Errorf("unexpected %T", value)
+	}
+	return nil
+}
+
+func arrayIndex(key string) (uint64, bool) {
+	if key == "" || (len(key) > 1 && key[0] == '0') {
+		return 0, false
+	}
+	value, err := strconv.ParseUint(key, 10, 32)
+	return value, err == nil && value < 1<<32-1
+}
+
+func jsKeyLess(a, b string) bool {
+	ai, aIndex := arrayIndex(a)
+	bi, bIndex := arrayIndex(b)
+	switch {
+	case aIndex && bIndex:
+		return ai < bi
+	case aIndex != bIndex:
+		return aIndex
+	}
+	return utf16Less(a, b)
+}
+
+// utf16Less orders strings by UTF-16 code units like Array.prototype.sort.
+func utf16Less(a, b string) bool {
+	unitsA, unitsB := utf16Units(a), utf16Units(b)
+	for i := 0; i < len(unitsA) && i < len(unitsB); i++ {
+		if unitsA[i] != unitsB[i] {
+			return unitsA[i] < unitsB[i]
+		}
+	}
+	return len(unitsA) < len(unitsB)
+}
+
+func utf16Units(s string) []uint16 {
+	units := make([]uint16, 0, len(s))
+	for _, r := range s {
+		if r >= 0x10000 {
+			r -= 0x10000
+			units = append(units, uint16(0xd800+(r>>10)), uint16(0xdc00+(r&0x3ff)))
+		} else {
+			units = append(units, uint16(r))
+		}
+	}
+	return units
+}
+
+// writeJSString escapes like JSON.stringify: quote, backslash and control
+// characters only; everything else is written as UTF-8.
+func writeJSString(buffer *bytes.Buffer, s string) {
+	buffer.WriteByte('"')
+	for _, r := range s {
+		switch r {
+		case '"':
+			buffer.WriteString(`\"`)
+		case '\\':
+			buffer.WriteString(`\\`)
+		case '\b':
+			buffer.WriteString(`\b`)
+		case '\f':
+			buffer.WriteString(`\f`)
+		case '\n':
+			buffer.WriteString(`\n`)
+		case '\r':
+			buffer.WriteString(`\r`)
+		case '\t':
+			buffer.WriteString(`\t`)
+		default:
+			if r < 0x20 {
+				fmt.Fprintf(buffer, `\u%04x`, r)
+			} else {
+				var encoded [utf8.UTFMax]byte
+				buffer.Write(encoded[:utf8.EncodeRune(encoded[:], r)])
+			}
+		}
+	}
+	buffer.WriteByte('"')
+}
+
+// Version returns a document's stored version and the version its content
+// hashes to.
+func Version(document []byte) (stored, computed string, err error) {
+	decoder := json.NewDecoder(bytes.NewReader(document))
+	decoder.UseNumber()
+	var root map[string]any
+	if err := decoder.Decode(&root); err != nil {
+		return "", "", err
+	}
+	stored, _ = root["version"].(string)
+	delete(root, "version")
+	var buffer bytes.Buffer
+	if err := canonicalJSON(&buffer, root); err != nil {
+		return "", "", err
+	}
+	sum := sha256.Sum256(buffer.Bytes())
+	return stored, hex.EncodeToString(sum[:]), nil
+}

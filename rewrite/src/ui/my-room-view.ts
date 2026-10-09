@@ -9,6 +9,9 @@ import { openMyRoomAdmin, type MyRoomAdminDialog, type MyRoomAdminKart } from ".
 import { openMyRoomCareer, type MyRoomCareerLibrary, type MyRoomCareerWindow } from "./my-room-career";
 import { openMyRoomDictionary, type DictionaryItemInfo, type DictionaryPictureSource,
   type MyRoomDictionaryWindow } from "./my-room-dictionary";
+import { openMyRoomExpedition, type ExpeditionTracks, type MyRoomExpeditionWindow } from "./my-room-expedition";
+import type { ExpeditionApi } from "../myroom/expedition-api";
+import type { BmlLibrary } from "./bml-canvas";
 import type { MyRoomEnvironment } from "./my-room-catalog";
 import { askRoomPassword, openFindRiderDialog } from "./my-room-dialogs";
 import { openMyRoomEmblems, type MyRoomEmblemDialog } from "./my-room-emblems";
@@ -32,6 +35,12 @@ export interface MyRoomSocial {
   dictionaryPictures?(): DictionaryPictureSource;
   /** Re-reads the account (the wallet after a K币 reward). */
   refreshAccount(): void;
+  /** The 赛车探险队 service. */
+  expedition?: ExpeditionApi;
+  /** Track titles and thumbnails for the expedition's missions. */
+  expeditionTracks?(): Promise<ExpeditionTracks>;
+  /** A box's or token's stuff.rho icon (loads in the background; redraw calls back). */
+  stuffIcon?(category: number, itemId: number, loaded: () => void): CanvasImageSource | undefined;
 }
 
 export interface MyRoomViewOptions {
@@ -134,6 +143,7 @@ export class MyRoomView {
   private adminOpening = false;
   private career?: MyRoomCareerWindow;
   private dictionary?: MyRoomDictionaryWindow;
+  private expedition?: MyRoomExpeditionWindow;
   private emblems?: MyRoomEmblemDialog;
   /** A dialog of the room menu is open or opening (find, career, emblems…). */
   private dialogBusy = false;
@@ -213,6 +223,7 @@ export class MyRoomView {
     this.career?.dispose();
     this.emblems?.dispose();
     this.dictionary?.dispose();
+    this.expedition?.dispose();
     this.hud?.dispose();
     this.sceneView?.dispose();
     this.element.remove();
@@ -272,6 +283,7 @@ export class MyRoomView {
         onCareer: () => void this.openCareer(),
         onEmblem: () => void this.openEmblems(),
         onDictionary: () => void this.openDictionary(),
+        onExpedition: () => void this.openExpedition(),
         onFindRider: () => void this.openFindRider(),
         onRandomVisit: () => void this.randomVisit(),
         onKick: accountId => void this.kick(accountId),
@@ -570,6 +582,45 @@ export class MyRoomView {
         }).then(window => {
           if (this.disposed) window.dispose();
           else this.dictionary = window;
+        }, error => {
+          pictures?.dispose();
+          reject(error);
+        });
+      });
+    });
+  }
+
+  /** 探险队: the owner's 赛车探险队 (visitors have no expedition button). */
+  private openExpedition(): Promise<void> {
+    const social = this.options.social;
+    const api = social?.expedition;
+    if (!social || !api || this.visiting) return Promise.resolve();
+    return this.withDialog(async () => {
+      const [view, crew, items, tracks] = await Promise.all([api.view(), api.crew(),
+        social.dictionaryItems().catch(() => new Map<string, DictionaryItemInfo>()),
+        social.expeditionTracks?.() ?? Promise.resolve({ title: () => undefined, card: async () => undefined })]);
+      if (this.disposed) return;
+      await new Promise<void>((resolve, reject) => {
+        const pictures = social.dictionaryPictures?.();
+        let window: MyRoomExpeditionWindow | undefined;
+        let redraw = () => undefined as void;
+        openMyRoomExpedition({
+          library: this.options.library as unknown as BmlLibrary,
+          root: this.options.root, api, view, crew, items, tracks,
+          ...(pictures ? { pictures } : {}),
+          stuffIcon: (category, itemId) => social.stuffIcon?.(category, itemId, () => redraw()),
+          notice: (title, message) => social.notice(title, message),
+          onAccountChange: () => social.refreshAccount(),
+          onClose: () => {
+            this.expedition = undefined;
+            resolve();
+            if (!this.disposed) this.sceneView?.canvas.focus();
+          },
+        }).then(opened => {
+          window = opened;
+          redraw = () => window?.render();
+          if (this.disposed) opened.dispose();
+          else this.expedition = opened;
         }, error => {
           pictures?.dispose();
           reject(error);

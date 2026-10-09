@@ -23,6 +23,8 @@
     SERVER_BUSY: "服务器繁忙，请稍后再试",
     DATA_SERVICE_UNAVAILABLE: "数据服务暂时不可用",
     INTERNAL_ERROR: "服务器内部错误",
+    INVALID_ACTIVITY: "活动无效",
+    INVALID_REQUEST: "设置无效（结束时间须晚于开始时间，每日道具须为已知道具，数量 1–1000，最多 8 种）",
   };
   const currencyNames = { coupon: "点券", lucci: "金币", koin: "K币", exp: "经验" };
 
@@ -90,6 +92,7 @@
     $("login-panel").hidden = true;
     $("console").hidden = false;
     search("");
+    loadLottery();
   }
 
   function signOut() {
@@ -224,6 +227,146 @@
     } finally {
       button.disabled = false;
     }
+  });
+
+  // ---- 抽奖活动 (LOTTERY.md 5) ----
+  let lotteryNames = new Map();
+  let editing = null;
+
+  function itemsText(items) {
+    return items && items.length
+      ? items.map((item) => (item.name || item.category + ":" + item.itemId) + " ×" + item.count +
+        (item.days ? "（" + item.days + "天）" : "")).join("，")
+      : "无";
+  }
+
+  function periodText(start, end) {
+    if (start == null && end == null) return "不限";
+    return (start == null ? "…" : formatTime(start)) + " ~ " + (end == null ? "…" : formatTime(end));
+  }
+
+  function stateText(activity, now) {
+    if (!activity.enabled) return "已关闭";
+    if (activity.open) return "开放中";
+    if (activity.start != null && now < activity.start) return "未开始";
+    return "已结束";
+  }
+
+  function localInput(ms) {
+    if (ms == null) return "";
+    const date = new Date(ms - new Date(ms).getTimezoneOffset() * 60000);
+    return date.toISOString().slice(0, 19);
+  }
+
+  function renderLottery(result) {
+    lotteryNames = new Map(result.lotteries.map((row) => [row.itemId, row.name]));
+    const rows = result.activities.map((activity) => {
+      const tr = document.createElement("tr");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = "编辑";
+      button.addEventListener("click", () => editLottery(activity));
+      const actions = document.createElement("td");
+      actions.append(button);
+      tr.append(cell(activity.name + "（" + activity.activity + "）"), cell(stateText(activity, result.serverTime)),
+        cell(periodText(activity.start, activity.end)), cell(activity.hasDaily ? itemsText(activity.daily) : "-"),
+        cell((activity.originalStart || "…").slice(0, 10) + " ~ " + (activity.originalEnd || "…").slice(0, 10)),
+        cell(activity.custom ? activity.updatedBy + " " + formatTime(activity.updatedAt) : "默认"), actions);
+      return tr;
+    });
+    $("lottery-activities").replaceChildren(...rows);
+    const options = result.lotteries.map((row) => {
+      const option = document.createElement("option");
+      option.value = String(row.itemId);
+      option.textContent = row.itemId + " " + row.name;
+      return option;
+    });
+    $("lottery-pick").replaceChildren(...options);
+  }
+
+  async function loadLottery() {
+    const status = $("lottery-status");
+    try {
+      renderLottery(await call("GET", "/api/admin/lottery"));
+    } catch (error) {
+      show(status, error.message, "error");
+    }
+  }
+
+  function editLottery(activity) {
+    editing = activity;
+    const form = $("lottery-form");
+    form.activity.value = activity.activity;
+    form.enabled.value = String(activity.enabled !== false);
+    form.start.value = localInput(activity.start);
+    form.end.value = localInput(activity.end);
+    form.daily.value = activity.custom && activity.daily
+      ? activity.daily.map((item) => item.category + ":" + item.itemId + " " + item.count + (item.days ? " " + item.days : "")).join("\n")
+      : "";
+    $("lottery-daily-label").hidden = !activity.hasDaily;
+    form.hidden = false;
+    show($("lottery-status"), "正在编辑 " + (activity.name || activity.activity) +
+      (activity.hasDaily ? "；默认每日免费：" + itemsText(activity.defaultDaily) : ""));
+  }
+
+  $("lottery-add").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const itemId = Number($("lottery-pick").value);
+    if (!itemId) return;
+    editLottery({ activity: "lottery:" + itemId, name: lotteryNames.get(itemId) || String(itemId), enabled: true,
+      hasDaily: false });
+  });
+
+  $("lottery-cancel").addEventListener("click", () => {
+    $("lottery-form").hidden = true;
+    editing = null;
+    show($("lottery-status"), "");
+  });
+
+  function parseDaily(text) {
+    const lines = text.split(/\n/).map((line) => line.trim()).filter(Boolean);
+    return lines.map((line) => {
+      const match = /^(\d+)\s*:\s*(\d+)\s+(\d+)(?:\s+(\d+))?$/.exec(line);
+      if (!match) throw new Error("无法识别：" + line);
+      return { category: Number(match[1]), itemId: Number(match[2]), count: Number(match[3]), days: Number(match[4] || 0) };
+    });
+  }
+
+  async function saveLottery(body) {
+    const status = $("lottery-status");
+    show(status, "正在保存…");
+    try {
+      const saved = await call("PUT", "/api/admin/lottery", body);
+      show(status, (body.reset ? "已恢复默认：" : "已保存：") + saved.name + "，" + stateText(saved, Date.now()), "ok");
+      $("lottery-form").hidden = true;
+      editing = null;
+      loadLottery();
+    } catch (error) {
+      show(status, error.message, "error");
+    }
+  }
+
+  $("lottery-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const body = { activity: form.activity.value, enabled: form.enabled.value === "true" };
+    if (form.start.value) body.start = new Date(form.start.value).getTime();
+    if (form.end.value) body.end = new Date(form.end.value).getTime();
+    if (editing && editing.hasDaily && form.daily.value.trim()) {
+      try {
+        body.daily = parseDaily(form.daily.value);
+      } catch (error) {
+        show($("lottery-status"), error.message, "error");
+        return;
+      }
+    }
+    saveLottery(body);
+  });
+
+  $("lottery-reset").addEventListener("click", () => {
+    if (!editing) return;
+    if (!window.confirm("恢复 " + (editing.name || editing.activity) + " 的默认设置（一直开放、默认每日道具）？")) return;
+    saveLottery({ activity: editing.activity, reset: true });
   });
 
   $("invite").addEventListener("click", async () => {

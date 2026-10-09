@@ -27,7 +27,7 @@
   section h2 { font-size: 16px; margin: 0 0 12px; }
   form { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
   label { display: grid; gap: 4px; font-size: 12px; color: var(--muted); }
-  input, select { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line);
+  input, select, textarea { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line);
     border-radius: 6px; padding: 6px 8px; min-width: 0; }
   input[type=number] { width: 140px; }
   button { font: inherit; border: 1px solid var(--line); background: var(--row); color: var(--text);
@@ -104,6 +104,32 @@
         <button class="primary" type="submit">提交</button>
       </form>
       <div id="grant-status" class="status" role="status"></div>
+    </section>
+
+    <section>
+      <h2>抽奖活动</h2>
+      <p class="muted">没有自定义设置的活动一直开放（不按原版日期）。“精品道具场”的开关作用于所有扭蛋；单个扭蛋可另行关闭或设置时段。每日免费道具每个北京日领取一次。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>活动</th><th>状态</th><th>开放时段</th><th>每日免费</th><th>原版时段</th><th>设置人</th><th></th></tr></thead>
+          <tbody id="lottery-activities"></tbody>
+        </table>
+      </div>
+      <form id="lottery-add" style="margin-top:12px">
+        <label>设置其他扭蛋<select name="lottery" id="lottery-pick"></select></label>
+        <button type="submit">编辑</button>
+      </form>
+      <form id="lottery-form" hidden style="margin-top:12px">
+        <label>活动<input name="activity" readonly></label>
+        <label>开放<select name="enabled"><option value="true">开放</option><option value="false">关闭</option></select></label>
+        <label>开始（留空不限）<input name="start" type="datetime-local" step="1"></label>
+        <label>结束（留空不限）<input name="end" type="datetime-local" step="1"></label>
+        <label id="lottery-daily-label">每日免费（每行“分类:编号 数量”，留空用默认）<textarea name="daily" rows="3" cols="28"></textarea></label>
+        <button class="primary" type="submit">保存</button>
+        <button type="button" id="lottery-reset">恢复默认</button>
+        <button type="button" id="lottery-cancel">取消</button>
+      </form>
+      <div id="lottery-status" class="status" role="status"></div>
     </section>
 
     <section>

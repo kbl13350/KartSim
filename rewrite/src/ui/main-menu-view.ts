@@ -34,7 +34,21 @@ export interface MainMenuAssets {
   backdrop?: Texture;
   font: FontFace;
   story?: StoryTabArt;
+  /** The lobby 活动 buttons (eventMenu.xml), four states each. */
+  events?: Array<{ id: LobbyEventId; label: string; states: Texture[] }>;
 }
+
+export type LobbyEventId = "treasureHunt" | "gacha";
+
+/**
+ * The lobby 活动 buttons the rewrite runs (zeta_/cn/content/eventMenu.xml
+ * TreasureHuntBtn event_thg_0 and LimitedGachaBtn limitedGacha_0; the latter
+ * opens the 精品道具场).
+ */
+const LOBBY_EVENTS: ReadonlyArray<{ id: LobbyEventId; label: string; image: string }> = [
+  { id: "treasureHunt", label: "寻宝活动", image: "event_thg_0" },
+  { id: "gacha", label: "精品道具", image: "limitedGacha_0" },
+];
 
 export type MainMenuPage = "home" | "single";
 
@@ -257,7 +271,12 @@ export async function loadMainMenuAssets(library: MainMenuLibrary): Promise<Main
     sharedBackdrop = backdrop ?? sharedBackdrop;
     const story = await loadStoryTabArt(root, texture,
       () => s2Promise(find(["gui_/monocoque"], "frame", ".bml")));
-    return { root, textures, strings, channels, banners, backdrop, font, story };
+    const events = (await Promise.all(LOBBY_EVENTS.map(async entry => ({
+      id: entry.id, label: entry.label,
+      states: await Promise.all([1, 2, 3, 4].map(index => texture(ROOTS, `${entry.image}${index}`))),
+    })))).filter((entry): entry is { id: LobbyEventId; label: string; states: Texture[] } =>
+      entry.states.every(Boolean));
+    return { root, textures, strings, channels, banners, backdrop, font, story, events };
   } catch (error) {
     G1(font);
     throw error;

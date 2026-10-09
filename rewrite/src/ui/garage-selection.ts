@@ -43,7 +43,11 @@ export interface GarageSelectionDependencies<Item extends GarageCatalogItem = Ga
 
 export interface GarageSelectionHost<Item extends GarageCatalogItem = GarageCatalogItem> {
   options: {
-    catalog: { karts: Item[]; characters: Item[]; equipment: Item[] };
+    catalog: { karts: Item[]; characters: Item[]; equipment: Item[];
+      /** Counted items without a model (精品道具: boxes, materials). */
+      stuff?: Item[] };
+    /** A 精品道具 card was chosen (a box opens). */
+    onUseItem?(item: Item): void;
     onConfirm(selection: { kart: Item; character: Item;
       equipment: GarageSelectionProfile["equipment"] }): void;
     onCancel(): void;
@@ -220,6 +224,7 @@ export function garageCategoryItems<Item extends GarageCatalogItem>(
   deps: GarageSelectionDependencies<Item>,
 ): Item[] {
   if (host.category === "favorite") return host.favoriteCategoryItems();
+  if (host.category === "lottery") return host.options.catalog.stuff ?? [];
   if (host.category === "using") return allGarageItems(host, deps)
     .filter(item => garageItemInUse(item, host.draftProfile.equipment));
   if (host.category === "deco" || host.category === "equip") return host.decorationItems();
@@ -283,6 +288,10 @@ export function selectGarageSubCategory(host: GarageSelectionHost, category: str
 export function selectGarageItem<Item extends GarageCatalogItem>(
   host: GarageSelectionHost<Item>, item: Item, deps: GarageSelectionDependencies<Item>,
 ): void {
+  if (item.kind === "stuff") {
+    host.options.onUseItem?.(item);
+    return;
+  }
   if (item.kind === "kart") {
     if (deps.blockedKartItem(item.itemId)) return;
     const family = deps.legacyFamily(item.systemKey);

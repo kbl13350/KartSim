@@ -23,8 +23,8 @@ const (
 
 const (
 	dayMillis = 24 * 60 * 60 * 1000
-	// MaxQuantity bounds a count item (balloons and the like are sold in
-	// packs of up to 100 and never consumed today).
+	// MaxQuantity bounds a count item (balloon packs, boxes and the
+	// 探险币; items.go uses some of them up).
 	MaxQuantity = 1_000_000
 )
 
@@ -132,10 +132,11 @@ func readSummary(ctx context.Context, q queryer, accountID string) (summary Acco
 	return summary, true, coupon.Valid && exp.Valid, nil
 }
 
-// Inventory lists the account's unexpired items.
+// Inventory lists the account's unexpired items. A used-up stack (quantity
+// 0: lottery materials) stays in the table for the 道具图鉴 but is not listed.
 func (s *Store) Inventory(ctx context.Context, accountID string, now int64) ([]InventoryItem, error) {
 	rows, err := s.db.QueryContext(ctx, `SELECT category, item_id, system_key, quantity, expires_at, source
-		FROM inventory_items WHERE account_id = ? AND (expires_at IS NULL OR expires_at > ?)
+		FROM inventory_items WHERE account_id = ? AND quantity > 0 AND (expires_at IS NULL OR expires_at > ?)
 		ORDER BY category, item_id, system_key`, accountID, now)
 	if err != nil {
 		return nil, err
@@ -177,7 +178,7 @@ func (s *Store) OwnedAmong(ctx context.Context, accountID string, refs []ItemRef
 		args = append(args, ref.Category, ref.ItemID, ref.SystemKey)
 	}
 	rows, err := s.db.QueryContext(ctx, `SELECT category, item_id, system_key, expires_at FROM inventory_items
-		WHERE account_id = ? AND (expires_at IS NULL OR expires_at > ?)
+		WHERE account_id = ? AND quantity > 0 AND (expires_at IS NULL OR expires_at > ?)
 		AND (category, item_id, system_key) IN (`+strings.Join(tuples, ", ")+`)`, args...)
 	if err != nil {
 		return nil, err

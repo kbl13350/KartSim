@@ -18,6 +18,12 @@ import type { MyRoomSocial } from "../ui/my-room-view";
 import { itemKey, type DictionaryItemInfo } from "../ui/my-room-dictionary";
 import { fetchShopCatalog } from "../shop/shop-api";
 import { createItemPictures } from "./shop-preview";
+import { garageStuffSupport } from "./garage-stuff";
+import { ExpeditionApi } from "../myroom/expedition-api";
+import { loadStuffInfo, stuffKey, type StuffLibrary } from "../account/stuff-items";
+import { ImageCache, type MyRoomDataLibrary } from "../myroom/myroom-data";
+import { loadTrackCard } from "../ui/track-picker-window-assets";
+import { p2 } from "../generated/formats.js";
 
 /** The release GarageDialog ("我的物品") opened from the room menu. */
 interface HouseGarageView { show(): void; dispose(): void }
@@ -88,6 +94,7 @@ function roomSocial(controller: ReadyHouseController, library: ReadyHouseLibrary
   catalog: ItemInventoryCatalog): MyRoomSocial | undefined {
   const session = activeBrowserSession();
   if (!session) return undefined;
+  prepareStuffIcons(library);
   return {
     api: new MyRoomApi(session),
     connection: new MyRoomConnection({ url: myRoomSocketUrl(session.backendOrigin),
@@ -100,11 +107,47 @@ function roomSocial(controller: ReadyHouseController, library: ReadyHouseLibrary
       for (const item of (await fetchShopCatalog(session)).items)
         items.set(itemKey(item.category, item.itemId), { name: item.name, internalId: item.internalId,
           ...(item.kartType !== undefined ? { kartType: item.kartType } : {}) });
+      // System karts (item 0, the starter practice kart) are named by the garage catalog.
+      const system = catalog.karts.find(kart => kart.itemId === 0);
+      if (system && !items.has(itemKey(3, 0))) items.set(itemKey(3, 0), { name: system.title, internalId: "" });
       return items;
     },
     dictionaryPictures: () => createItemPictures(library),
     refreshAccount: () => { void session.refresh().catch(() => undefined); },
+    expedition: new ExpeditionApi(session),
+    expeditionTracks: async () => {
+      const tracks = new Map((await (library as unknown as { timeAttackTrackCatalog(): Promise<Array<{
+        id: string; path: string; title: string }>> }).timeAttackTrackCatalog()).map(track => [track.id, track]));
+      return {
+        title: id => tracks.get(id)?.title,
+        card: async id => {
+          const track = tracks.get(id);
+          return track ? (await loadTrackCard(library as never, track.path, { decodePng: p2 } as never)).image
+            : undefined;
+        },
+      };
+    },
+    stuffIcon: (category, itemId, loaded) => {
+      stuffIcons.loaded = loaded;
+      const path = stuffIcons.info?.get(stuffKey(category, itemId))?.icon;
+      return path ? stuffIcons.cache?.get(path) : undefined;
+    },
   };
+}
+
+/** stuff.rho icons for the expedition's reward boxes. */
+const stuffIcons: {
+  cache?: ImageCache;
+  info?: ReadonlyMap<string, { icon?: string }>;
+  loaded(): void;
+} = { loaded: () => undefined };
+
+function prepareStuffIcons(library: unknown): void {
+  stuffIcons.cache ??= new ImageCache(library as MyRoomDataLibrary, () => stuffIcons.loaded());
+  if (!stuffIcons.info) void loadStuffInfo(library as StuffLibrary).then(info => {
+    stuffIcons.info = info;
+    stuffIcons.loaded();
+  }, () => undefined);
 }
 
 /** Keep the in-memory profile and its local/server mirror together. */
@@ -149,20 +192,27 @@ async function openHouseInventory(controller: ReadyHouseController,
   controller.inventoryOpening = true;
   try {
     // 我的物品 lists what the account owns, with rentals' remaining time.
-    const catalog = garageViewCatalog(await library.timeAttackGarageCatalog(),
+    const ownedCatalog = async () => garageViewCatalog(await library.timeAttackGarageCatalog(),
       selectionKeep(selection));
+    const catalog = await ownedCatalog();
     if (controller.disposed || host.shell.modal !== "house" ||
         controller.activeHouse !== house) return;
     const garageController = controller as unknown as ReadyGarageController;
     let view!: HouseGarageView;
+    // 精品道具: boxes open here.
+    const stuff = await garageStuffSupport({ library, root: host.root,
+      view: () => view as unknown as { options: { catalog: Record<string, unknown> }; render(): void } | undefined,
+      refreshCatalog: ownedCatalog as unknown as () => Promise<Record<string, unknown>> });
     const close = (): void => {
+      stuff.dispose();
       view.dispose();
       if (controller.activeHouseGarage === view) controller.activeHouseGarage = undefined;
       controller.activeHouse?.inventoryClosed();
     };
     view = await C7.load({
       library, root: host.root, stageBinding: host.toonStageBinding,
-      environment, catalog, profile: host.getProfile(),
+      environment, catalog: { ...(catalog as object), stuff: stuff.stuff }, profile: host.getProfile(),
+      stuffIcon: stuff.stuffIcon, onUseItem: stuff.onUseItem,
       selectedKartItemId: selection.vehicleItemId,
       // System karts (the starter practice kart) all have item id 0.
       selectedKartSystemKey: selection.vehicleSystemKey,

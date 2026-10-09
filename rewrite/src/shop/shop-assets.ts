@@ -211,12 +211,35 @@ export function loadShopArt(library: ShopArtLibrary): Promise<ShopArt> {
   return pending;
 }
 
+const layoutCache = new WeakMap<object, Map<string, Promise<ShopArt>>>();
+
+/**
+ * Loads (once per library and request) the images and frames of other
+ * original layouts the same way (the lottery screens): images are looked
+ * up in roots, frames in gui_/monocoque. Missing pieces are skipped.
+ */
+export function loadLayoutArt(library: ShopArtLibrary, roots: readonly string[], images: Iterable<string>,
+  frames: Iterable<string> = []): Promise<ShopArt> {
+  const imageList = [...new Set(images)].sort();
+  const frameList = [...new Set(frames)].sort();
+  const key = JSON.stringify([roots, imageList, frameList]);
+  let byKey = layoutCache.get(library);
+  if (!byKey) layoutCache.set(library, byKey = new Map());
+  let pending = byKey.get(key);
+  if (!pending) {
+    pending = load(library, imageList, frameList, roots);
+    byKey.set(key, pending);
+    pending.catch(() => byKey!.delete(key));
+  }
+  return pending;
+}
+
 async function load(library: ShopArtLibrary, images: readonly string[],
-  frames: readonly string[]): Promise<ShopArt> {
+  frames: readonly string[], roots: readonly string[] = SHOP_ART_ROOTS): Promise<ShopArt> {
   const properties = new Map<string, string>();
   const sizes = new Map<string, { width: number; height: number }>();
   await Promise.all(images.map(async name => {
-    const entry = find(library, SHOP_ART_ROOTS, name);
+    const entry = find(library, roots, name);
     if (!entry) return;
     try {
       const decoded = await decode(entry);

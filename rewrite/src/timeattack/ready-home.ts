@@ -14,6 +14,7 @@ import { currentRoomSubject, localRiderName, type ReadyHouseController,
   type ReadyHouseLibrary } from "./ready-house";
 import { leaveStory, loadStoryMenu, openStoryChapter } from "./ready-story";
 import type { ReadyShopController } from "./ready-shop";
+import { openReadyLottery, type LotteryScreen, type ReadyLotteryController } from "./ready-lottery";
 import { openShopUnlessRacing } from "./ready-shop-guard";
 
 /**
@@ -198,6 +199,13 @@ export async function openReadyHome(controller: ReadyHomeController,
         backdrop: assets.backdrop,
         boardArt: BOARD_ART,
         fontFamily: MAIN_MENU_FONT_FAMILY,
+        ...(account && assets.events?.length ? {
+          // 活动: the 寻宝 board and the 精品道具场.
+          events: assets.events,
+          onEvent: (id: string) => {
+            void openReadyLottery(controller as unknown as ReadyLotteryController, id as LotteryScreen);
+          },
+        } : {}),
         onEntry: entry => openQuickEntry(controller, entry),
         onHover: () => host.getInterfaceAudio()?.playHover(),
         onActivate: () => host.getInterfaceAudio()?.playClick(),
