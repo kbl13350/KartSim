@@ -10,6 +10,13 @@
 | `item-cubes.ts` | `ItemCubeField`：所有道具箱共用一个装配场景（每箱一个包装节点 + 旋转节点 + 模型副本，几何同池、材质与贴图共享），类别 2 配对对象 `GoItemCube[]`，每位车手各自的 stay → eaten（`Eaten.life` 隐藏、`fired01` 特效跟随本机车、`eaten.ogg`）→ stay |
 | `item-hazards.ts` | 赛道预置香蕉/地雷/隐形地雷/水雷：位置跟随嵌套场景世界矩阵，进入半径触发，同一物件 3 秒冷却；画面由赛道场景自身渲染 |
 | `item-race-map.ts` | 道具房间判定、载图时的道具来源（目录按资源库缓存）、比赛装配时的道具箱与危险物 owner |
+| `item-fx-plan.ts` | 表现层的模型/音效表：按 base 0 状态解析每个道具的 `firing`（使用者车上）、`fired`（受害者车上）、`item`（道具物体本身）模型与对应音效、状态时长；`ITEM_FX_TUNING`（[还原] 常量） |
+| `item-fx-assets.ts` | 表现层资源：模型解码一次、每个模型一个副本池（载入时预装配，需要时后台补装，单模型上限 8）、共享贴图缓存；UFO 的 1 型颜色关键帧转成装配器支持的 0 型；定时水炸弹车上水球（取自水炸弹模型）；音效解码与播放（比赛音频路由，限 24 个同时播放） |
+| `item-race-presenter.ts` | 道具赛表现层（契约 `ItemRacePresenter`）：投射物（追踪、弧线、哑弹）、投掷与放置物、车身效果（水泡、蓝盾、飞碟、闪电、恶魔、护盾、天使、电磁波、磁铁、车上水球）、命中/格挡表现与音效（按镜头距离衰减与左右声像）；`loadItemRacePresenter` 在 A40 中创建为 `assets.itemPresenter` |
+
+表现层约定：所有坐标为 three.js 世界坐标（与 `body.position`、道具箱相同），时间为比赛表现时钟毫秒。原版模型都以车为原点（客户端 z 向上、车头朝 −y），所以每个模型挂在一个与车相同基底（right、up、forward）的节点下。事件迟到时动画按服务器时间线从中途开始；音效迟到超过 300 ms 则丢弃。同一 `useId` 的重复 `used`/`hit`、`used` 与 `kartEffect` 对同一车同一效果的重复开始都只保留一个表现。
+
+开发预览（不进构建）：`npm run dev` 后打开 `http://127.0.0.1:8780/tools/item-fx-preview.html`，三辆假车 A（蓝，本机）、B（绿）、C（红）之间逐个播放全部道具；`?item=rocket` 直接播放一个场景，`?move=1` 让车行驶。
 
 道具箱编号：静态箱用 `instanceOrdinal`（每个 `track*.1s` 内 1..N 唯一），移动箱用 `2048 + 可动物件 instanceOrdinal`，都落在 `cube` 请求允许的 1..4096。少数原版移动箱（`fengshen_I03`–`I05` 的 `mo_ic042`、`mo_ic044`）变换与 PRS 均为 NaN，无法到达，载入时跳过。
 
