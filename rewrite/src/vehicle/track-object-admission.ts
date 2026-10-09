@@ -299,3 +299,77 @@ export function admitTrackObject(
   }
   return blockedTrackObject(base, "movable-consumer-unclosed");
 }
+
+/** Track-placed item hazards an item race admits (ltejump stays excluded). */
+export const ITEM_GAME_HAZARD_TYPES: readonly string[] = ["banana", "mine", "mineHidden", "waterMine"];
+
+/** Whether an occurrence is an item cube or item hazard owned by the item race. */
+export function itemGameObjectKind(value: TrackObjectOccurrence["value"]):
+  "cube" | "moving-cube" | "hazard" | undefined {
+  if (value.kind === "ToItemCube") return "cube";
+  if (value.kind !== "ToMovableObject") return undefined;
+  const type = movableObjectType(value);
+  if (type === "itemCube") return "moving-cube";
+  return ITEM_GAME_HAZARD_TYPES.includes(type) ? "hazard" : undefined;
+}
+
+/**
+ * Item races (道具个人赛/组队) keep every speed-individual decision and add the
+ * item-game objects: static and moving item cubes, the pre-placed hazards, and
+ * `onlyItemGame` movables, which fall through to their own type as the
+ * release's item branch does. The ledger mode stays "speed-individual" so the
+ * normal coordinator token and every other consumer are unchanged.
+ */
+export function admitItemGameTrackObject(
+  entry: TrackObjectOccurrence,
+  index: number,
+  source: unknown,
+  lensFlareCount: number,
+  courseSoundEnabled: boolean,
+  ops: TrackAdmissionOps,
+): TrackAdmissionRecord {
+  const mode = "speed-individual";
+  const object = entry.value;
+  const kind = itemGameObjectKind(object);
+  if (!kind) {
+    return admitTrackObject(entry, index, mode, source, lensFlareCount,
+      courseSoundEnabled, false, { ...ops, isItemOnlyMovable: () => false });
+  }
+  const base = {
+    occurrence: {
+      kind: "track-object" as const,
+      index,
+      encoding: entry.encoding,
+      objectId: entry.id,
+      className: object.kind,
+      name: object.name,
+      detail: object.kind === "ToMovableObject" ? movableObjectType(object) : undefined,
+    },
+    mode,
+    source,
+  };
+  if (kind === "hazard") {
+    return {
+      ...base,
+      producer: "TRACKDATA ToMovableObject item type + nested scene + live PRS matrices",
+      consumer: "ItemHazardField category-2 pair -> local hit report",
+      owner: "item race ItemHazardField; nested scene rendered by the track scene",
+      lifecycle: "map setup -> enter radius -> per-hazard 3000ms cooldown -> race teardown",
+      order: "track render matrices N -> kart slot12 -> category-2 pair N+1",
+      decision: "admit",
+      reason: "item-hazard-admitted",
+    };
+  }
+  return {
+    ...base,
+    producer: kind === "cube"
+      ? "TRACKDATA ToItemCube transform + instanceOrdinal"
+      : "TRACKDATA ToMovableObject itemCube nested PRS anchor",
+    consumer: "ItemCubeField category-2 pair -> cube grant request",
+    owner: "item race ItemCubeField, per-player stay/eaten state",
+    lifecycle: "map setup -> stay -> Eaten.life hidden -> stay -> race teardown",
+    order: "kart slot12 -> category-2 pair -> next frame state update",
+    decision: "admit",
+    reason: kind === "cube" ? "item-cube-admitted" : "moving-item-cube-admitted",
+  };
+}

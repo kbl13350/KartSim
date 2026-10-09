@@ -1,3 +1,5 @@
+import { itemGameObjectKind } from "./track-object-admission";
+
 export interface TrackMapOwner {
   assetHost: {
     generationValue(): unknown;
@@ -43,6 +45,30 @@ export interface TrackMapOps {
     metadata: any, options: any): Promise<any>;
   warpNextCamera(model: any, scene: any): any;
   configureSkydome(object: any): void;
+  /** Item races: catalog, cube and hazard sources of the loaded track. */
+  loadItemGame?(library: any, model: any, trackId: string): Promise<{
+    catalog: unknown; cubes: unknown; hazards: unknown;
+  }>;
+}
+
+/**
+ * Nested roots of the item-game movables. Hazards render through the track
+ * scene; moving-cube anchors are matrix-only roots whose world matrices the
+ * cube field follows. Their pose overrides already come from the admitted
+ * movables.
+ */
+export function itemGameRoots(movingObjects: any[]): { roots: any[]; matrixOnly: any[] } {
+  const roots: any[] = [];
+  const matrixOnly: any[] = [];
+  for (const entry of movingObjects) {
+    const kind = itemGameObjectKind(entry);
+    if (kind !== "hazard" && kind !== "moving-cube") continue;
+    if (!entry.object || typeof entry.object !== "object" || entry.object.kind !== "node")
+      throw new Error(`ToMovableObject ${entry.name} 缺少道具赛嵌套场景。`);
+    roots.push(entry.object);
+    if (kind === "moving-cube") matrixOnly.push(entry.object);
+  }
+  return { roots, matrixOnly };
 }
 
 /** Builds all physical, animated and visual ownership for a track asset. */
@@ -54,7 +80,10 @@ export async function loadTrackMap(
   admit: (model: any, course: any) => any,
   lte = false,
   ops: TrackMapOps,
+  itemGame = false,
 ): Promise<any> {
+  if (itemGame && (mode !== "speed-individual" || lte))
+    throw new Error("道具赛地图只走 speed-individual 准入。");
   const generation = owner.assetHost.generationValue();
   const asset = owner.assetHost.requireAsset(path);
   if (asset.extension !== "1s" ||
@@ -66,6 +95,10 @@ export async function loadTrackMap(
   const lteCoinSource = lte && library
     ? await ops.loadLteCoins(library, model) : undefined;
   if (lte && !lteCoinSource) throw Error("LTE 专属图缺少金币原件。");
+  if (itemGame && (!library || !ops.loadItemGame))
+    throw new Error("道具赛地图缺少道具资源库。");
+  const itemSources = itemGame
+    ? await ops.loadItemGame!(library, model, trackId) : undefined;
   const [weather, warp] = await Promise.all([
     library ? ops.loadWeather(library, path) : undefined,
     library ? ops.loadWarp(library, path) : undefined,
@@ -77,6 +110,7 @@ export async function loadTrackMap(
     p3553CourseSound: mode === "speed-individual" ||
       ops.resourceVersion("p3553") === "p3553",
     lteCoins: lteCoinSource !== undefined,
+    ...(itemGame ? { itemGame: true } : {}),
   });
   const lensFlarePoint = ops.lensFlareAnchor(model);
   const dummySounds = mode === "speed-individual" ||
@@ -96,6 +130,8 @@ export async function loadTrackMap(
   const matrixRoots = ops.additionalMatrixRoots(model, course);
   const rootPoseOverrides = new Map(movingObjects.map(
     (entry: any) => [entry.object, entry.transform]));
+  const itemRoots = itemGame ? itemGameRoots(movingObjects)
+    : { roots: [], matrixOnly: [] };
   const admittedObjects = movingObjects.flatMap((entry: any) => {
     const result = ops.admitMovingObject(entry);
     return result.status === "admit" ? [result] : [];
@@ -170,13 +206,13 @@ export async function loadTrackMap(
     const advertisements = await ops.loadAdvertisements(
       owner.assetHost.getLibrary(), metadata);
     const currentLibrary = owner.assetHost.getLibrary();
-    const matrixOnlyRoots = eventProjections.flatMap((projection: any) => {
+    const matrixOnlyRoots = [...eventProjections.flatMap((projection: any) => {
       const candidates = ops.textureCandidates(projection.renderRoot).candidates;
       return candidates.length > 0 && candidates.every((candidate: any) =>
         ops.textureStatus(currentLibrary, path, metadata,
           candidate.state.texture.value, advertisements).status === "missing")
         ? [projection.renderRoot] : [];
-    });
+    }), ...itemRoots.matrixOnly];
     environment = await ops.loadEnvironment(owner.assetHost.getLibrary());
     renderScene = await ops.loadScene(model, owner.assetHost.getLibrary(),
       path, metadata, {
@@ -184,6 +220,7 @@ export async function loadTrackMap(
           ...admittedObjects.map((entry: any) => entry.renderRoot),
           ...eventProjections.map((entry: any) => entry.renderRoot),
           ...matrixRoots,
+          ...itemRoots.roots,
         ],
         matrixOnlyRoots,
         rootPoseOverrides,
@@ -257,6 +294,11 @@ export async function loadTrackMap(
     eventProjections,
     dummySounds,
     lteCoinSource,
+    ...(itemSources ? {
+      itemCatalog: itemSources.catalog,
+      itemCubeSource: itemSources.cubes,
+      itemHazardSource: itemSources.hazards,
+    } : {}),
   };
 }
 
@@ -275,5 +317,10 @@ export function loadMultiplayerMap(owner: { loadMap(...args: any[]): any },
     throw new Error("LTE 专属图仅准入 P3553。");
   if (mode === "lte" && !isLteTrack(trackId))
     throw Error("LTE 专属图身份不匹配。");
+  if (mode === "item") {
+    // Item races keep the speed-individual admission plus the item-game objects.
+    if (version("p3553") !== "p3553") throw new Error("道具赛仅准入 P3553。");
+    return owner.loadMap(path, trackId, "speed-individual", admit, false, true);
+  }
   return owner.loadMap(path, trackId, "speed-individual", admit, mode === "lte");
 }
