@@ -36,6 +36,8 @@ export interface RaceSessionUpdateHost {
       /** Item races: Ctrl/Alt/Z router and the item controller that receives the commands. */
       itemInput?: ItemInputRouter;
       items?: { handleCommand(command: ItemCommand, nowMs: number): void };
+      /** Item races: the Alt swap sound and short notices (the Z item changer). */
+      itemRace?: { consumeSlotChangerSound(): boolean; consumeStatusMessage(): string | undefined };
     };
     update(nowMs: number, applied: unknown, suspended: boolean): RaceSessionAction[];
   };
@@ -70,7 +72,7 @@ export interface RaceSessionUpdateHost {
     showRoadBlockReset(nowMs: number): void;
     hide(): void;
   };
-  chat?: { setAllowed(allowed: boolean): void };
+  chat?: { setAllowed(allowed: boolean): void; notice?(text: string): void };
   scene: {
     awardInput(transitions: unknown[], cancelled: boolean): void;
     startBoostGaugeFull(): void;
@@ -203,6 +205,9 @@ export function updateRaceSession(host: RaceSessionUpdateHost,
       host.host.autoForward.isActive(snapshot));
     if (host.disposed) return;
     if (physics.consumeSpeedSlotReordered()) host.host.playSlotChanger();
+    if (local.itemRace?.consumeSlotChangerSound()) host.host.playSlotChanger();
+    const itemNotice = local.itemRace?.consumeStatusMessage();
+    if (itemNotice) host.chat?.notice?.(itemNotice);
     host.chat?.setAllowed(
       lifecycle.state === dependencies.states.Ready ||
       (lifecycle.state === dependencies.states.Countdown &&

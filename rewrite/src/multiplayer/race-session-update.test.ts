@@ -164,7 +164,8 @@ test("multiplayer session input, reset, publish and failure ticks match release"
 });
 
 function itemRaceSession(transitions: Array<{ action: number; down: boolean }>,
-  options: { cancelled?: boolean; state?: number; inverted?: boolean; router?: ItemInputRouter } = {}) {
+  options: { cancelled?: boolean; state?: number; inverted?: boolean; router?: ItemInputRouter;
+    slotChanger?: boolean; notice?: string } = {}) {
   const events: unknown[][] = [];
   const effects = {
     steeringInverted: options.inverted ?? false,
@@ -189,6 +190,10 @@ function itemRaceSession(transitions: Array<{ action: number; down: boolean }>,
         itemInput: options.router ?? new ItemInputRouter(),
         items: {
           handleCommand(command: unknown, nowMs: number) { events.push(["item", command, nowMs]); },
+        },
+        itemRace: {
+          consumeSlotChangerSound() { return options.slotChanger ?? false; },
+          consumeStatusMessage() { return options.notice; },
         },
         cancelModeDrivingInput() {},
         isStartBoosterWindow() { return false; },
@@ -217,11 +222,12 @@ function itemRaceSession(transitions: Array<{ action: number; down: boolean }>,
       },
       clientFramerate: { sample() {} },
       touchControls: { setAutoForwardActive() {} },
-      playSlotChanger() {},
+      playSlotChanger() { events.push(["slot-changer"]); },
       renderer: undefined,
       status() {},
     },
     controls,
+    chat: { setAllowed() {}, notice(text: string) { events.push(["notice", text]); } },
     scene: { awardInput() {}, startBoostGaugeFull() {}, update() {}, resultComplete: false },
     requestLeave() {},
     fail(error: unknown) { throw error; },
@@ -268,4 +274,12 @@ test("a devil hit inverts the steering snapshot; cancelled input drops a held ai
     { action: DrivingAction.ReorderItems, down: true },
   ], { state: states.Countdown });
   assert.deepEqual(countdown.events.filter(event => event[0] === "item" || event[0] === "driving"), []);
+});
+
+test("an item swap plays the slot changer sound and item notices reach the race chat", () => {
+  const quiet = itemRaceSession([]);
+  assert.ok(!quiet.events.some(event => event[0] === "slot-changer" || event[0] === "notice"));
+  const { events } = itemRaceSession([], { slotChanger: true, notice: "道具变更卡暂未开放。" });
+  assert.deepEqual(events.filter(event => event[0] === "slot-changer" || event[0] === "notice"),
+    [["slot-changer"], ["notice", "道具变更卡暂未开放。"]]);
 });

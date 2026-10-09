@@ -9,6 +9,8 @@ interface Body {
 
 interface GiantState { main: number; [key: string]: unknown }
 
+interface CameraBasis { right: Vec3; forward: Vec3; up: Vec3 }
+
 export interface RacePresenterCameraHost {
   warpCameraFrozen: boolean;
   cameraMode: string;
@@ -25,6 +27,8 @@ export interface RacePresenterCameraHost {
       physics: {
         body: Body;
         giant?: GiantState;
+        /** 道具赛: a steady basis while the kart spins or flips (item-effects cameraBasis). */
+        itemEffects?: { readonly cameraBasis?: CameraBasis };
         driveCameraRuntime(): { eventScaleSecondary: { z: number } } &
           Record<string, unknown>;
       };
@@ -114,9 +118,12 @@ export function updateRacePresenterCamera(host: RacePresenterCameraHost,
     z: Math.fround(body.position.z + shake.z),
   };
   host.cameraWave.update(nowMs, routeSurface, body, position);
+  // A spinning or launched kart keeps the camera on the road, not on the kart.
+  const itemBasis = physics.itemEffects?.cameraBasis;
   const view = host.drive.update({
     timestampMs: nowMs,
-    body: { ...body, position },
+    body: itemBasis ? { ...body, right: itemBasis.right, forward: itemBasis.forward,
+      up: itemBasis.up, position } : { ...body, position },
     routeSurface,
     ...physics.driveCameraRuntime(),
   });

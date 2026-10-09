@@ -72,6 +72,8 @@ export interface RaceFrameHost {
     update(nowMs: number, options: { bypass: boolean; locked: boolean }): void;
     resetGiants(): void;
   };
+  /** 道具赛: timelines, area checks and aiming run before the local physics step. */
+  itemRace?: { update(nowMs: number): void };
   slipstream: SlipstreamBoost;
   remoteSlipstreams: Map<string, SlipstreamBoost>;
   room?: { phase: string; race?: { loadedIds: readonly string[] } };
@@ -178,6 +180,7 @@ export function updateActiveRaceFrame(host: RaceFrameHost, nowMs: number,
       });
     }
 
+    host.itemRace?.update(nowMs);
     const actions = host.local.update(nowMs, frame);
     if (host.local.giant) {
       if (!host.giantCleared &&

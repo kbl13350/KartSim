@@ -132,11 +132,21 @@ test("an item team race freezes race.item and needs no team gauge channel", () =
   room.item = { ruleset: "web-item-v1", table: "team", extra: 1 };
   delete connection.sendTeamCharge;
   delete connection.subscribeTeamGauge;
+  // The item race needs the item channel and the item catalog.
+  assert.throws(() => new ActiveRaceCoordinator(assets, room, connection, () => 10, () => {},
+    60, deps), /道具赛通道/);
+  connection.sendItem = async () => ({});
+  connection.subscribeItem = () => { log.push(["subscribeItem"]); return () => log.push(["offItem"]); };
+  assets.itemCatalog = { get: () => undefined };
   const owner = new ActiveRaceCoordinator(assets, room, connection, () => 10, () => {}, 60, deps);
   assert.deepEqual(owner.itemIdentity, { ruleset: "web-item-v1", table: "team" });
   assert.ok(Object.isFrozen(owner.itemIdentity));
   assert.equal(owner.offTeam, undefined);
   assert.ok(!log.some(entry => entry[0] === "subscribe"));
+  assert.ok(owner.itemRace);
+  assert.equal(owner.local.items, owner.itemRace);
+  assert.equal(owner.local.itemRace, owner.itemRace);
+  assert.ok(log.some(entry => entry[0] === "subscribeItem"));
   // A speed team race at standard speed still requires it.
   const speed = fixture("team");
   speed.assets.speed = 7;

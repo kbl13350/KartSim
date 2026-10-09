@@ -1,4 +1,6 @@
 import { freezeItemRaceRules, teamGaugeEnabled } from "./lobby-item-mode";
+import { createActiveItemRace } from "./item-race-wiring";
+import type { ItemRaceController } from "../item/item-race-controller";
 
 export interface ActiveRaceCoordinatorDependencies {
   normalizeRp(value: unknown): unknown;
@@ -53,6 +55,8 @@ export class ActiveRaceCoordinator {
   giantIdentity: unknown;
   /** Frozen `race.item` of a 道具赛 race. */
   itemIdentity: unknown;
+  /** 道具赛: the local item race controller (also `local.items`). */
+  itemRace: ItemRaceController | undefined;
   giantSequence = 0;
   giantSend = Promise.resolve();
   giantCleared = false;
@@ -104,6 +108,7 @@ export class ActiveRaceCoordinator {
         try { onError(error); }
         finally { this.dispose(); }
       }, this.cadence);
+      this.itemRace = createActiveItemRace(this, room, now);
       const balance = assets.participants.find((player: any) =>
         player.playerId === connection.playerId).collisionBalance;
       this.local.queueRemoteKart({

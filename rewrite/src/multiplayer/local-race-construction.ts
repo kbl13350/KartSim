@@ -116,4 +116,31 @@ export function initializeLocalRace(
     () => owner.lifecycle.state === ops.racingState &&
       owner.resetState.phase === 0 && !owner.warpNext.blocksDriving(),
   );
+  attachItemRaceFields(owner, assets, ops);
+}
+
+/**
+ * Item races (道具赛): the cubes and the item presenter join the track group,
+ * and the cube and hazard fields pair with the local kart. Their callbacks go
+ * to `owner.itemRace`, the item race controller the race coordinator creates
+ * once the race connection exists.
+ */
+function attachItemRaceFields(owner: any, assets: any, ops: LocalRaceConstructionOps): void {
+  if (!isItemRace(assets.drivingMode)) return;
+  if (assets.itemCubes) owner.track.group.add(assets.itemCubes.object);
+  if (assets.itemPresenter?.object) owner.track.group.add(assets.itemPresenter.object);
+  const collecting = () => owner.lifecycle.state === ops.racingState &&
+    owner.resetState.phase === 0 && !owner.warpNext.blocksDriving();
+  assets.itemCubes?.attach(
+    owner.coordinator,
+    () => owner.physics.body.position,
+    collecting,
+    (cubeId: number) => owner.itemRace?.cube(cubeId),
+  );
+  assets.itemHazards?.attach(
+    owner.coordinator,
+    () => owner.physics.body.position,
+    () => collecting() && !owner.physics.itemEffects?.immune,
+    (hazard: { id: number; itemIdx: number; position?: unknown }) => owner.itemRace?.hazard(hazard),
+  );
 }

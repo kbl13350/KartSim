@@ -193,3 +193,13 @@ test("an item team race never sends 组队集气", async () => {
     assert.deepEqual(sent, kind === "item" ? [] : [["team.send", 2.5, 1]], kind);
   }
 });
+
+test("the item race controller runs before the local physics step", () => {
+  const item = fixture(false);
+  const order: unknown[] = [];
+  const update = item.host.local.update;
+  item.host.local.update = (nowMs, frame) => { order.push(["local", nowMs]); return update(nowMs, frame); };
+  item.host.itemRace = { update: nowMs => { order.push(["item", nowMs]); } };
+  item.host.update(500, { tick: 500 }, false);
+  assert.deepEqual(order, [["item", 500], ["local", 500]]);
+});

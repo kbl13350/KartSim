@@ -123,11 +123,31 @@ function run(kind, options = {}) {
       calls.push(["coins attached", position().x, available()]);
     },
   };
+  if (options.itemFields) {
+    assets.itemCubes = {
+      object: "cubes",
+      attach(_coordinator, position, available, onPickup) {
+        calls.push(["cubes attached", position().x, available()]);
+        onPickup(5);
+      },
+    };
+    assets.itemHazards = {
+      attach(_coordinator, position, available, onTrigger) {
+        calls.push(["hazards attached", position().x, available()]);
+        onTrigger({ id: 4, itemIdx: 17 });
+      },
+    };
+    assets.itemPresenter = { object: "item presenter" };
+  }
   const owner = {
     lifecycle: { state: "Racing" },
     resetState: { phase: 0 },
     warpNext: { blocksDriving: () => false },
     handleLocalRouteTag: tag => calls.push(["route tag", tag]),
+    ...(options.itemFields ? { itemRace: {
+      cube: id => calls.push(["cube", id]),
+      hazard: hazard => calls.push(["hazard", hazard.id, hazard.itemIdx]),
+    } } : {}),
   };
   let error;
   try {
@@ -175,4 +195,19 @@ test("item races need their race.item and keep the team gauge unfed", () => {
     assert.equal(run("rewritten", scenario).error, "道具赛身份与本机玩法不一致。",
       JSON.stringify(scenario));
   }
+});
+
+test("item races put the cubes and the item presenter on the track and pair them with the kart", () => {
+  const built = run("rewritten", { item: true, speed: 7, itemFields: true,
+    raceItem: { ruleset: "web-item-v1", table: "indi" } });
+  assert.equal(built.error, undefined);
+  const tail = built.calls.slice(built.calls.findIndex(call => call[0] === "group add"));
+  assert.deepEqual(tail, [
+    ["group add", "cubes"], ["group add", "item presenter"],
+    ["cubes attached", 10, true], ["cube", 5],
+    ["hazards attached", 10, true], ["hazard", 4, 17], ["route tag", "rail"],
+  ]);
+  // Speed races never touch item fields, even when present.
+  const speed = run("rewritten", { itemFields: true });
+  assert.ok(!speed.calls.some(call => Array.isArray(call) && call[0] === "cubes attached"));
 });

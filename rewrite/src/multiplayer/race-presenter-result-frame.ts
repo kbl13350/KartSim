@@ -1,8 +1,9 @@
 /** Early result-screen branch of the multiplayer race presenter frame. */
+import { updateRacePresenterItems, type RacePresenterItemsHost } from "./race-presenter-items";
 
 export interface RacePresenterResultHost {
   disposed: boolean;
-  runtime: {
+  runtime: RacePresenterItemsHost["runtime"] & {
     giantEffectsEnded: boolean;
     local: {
       scheduledStartAtMs: number;
@@ -25,7 +26,7 @@ export interface RacePresenterResultHost {
   resultComplete: unknown;
   resultView: { update(nowMs: number): unknown };
   hud: { hideTimeGap(): void };
-  assets: {
+  assets: RacePresenterItemsHost["assets"] & {
     map: { stageBinding: { beginFrame(nowMs: number): void } };
     lteCoins?: { update(nowMs: number, camera: unknown,
       width: number, height: number): void };
@@ -69,6 +70,7 @@ export function presentRaceResultFrame(host: RacePresenterResultHost,
     host.assets, host.views);
   host.roadblockResult?.update(nowMs, host.camera, width, height);
   host.runtime.local.track.updateRender(nowMs, host.camera, width, height);
+  updateRacePresenterItems(host, nowMs, width, height);
   host.assets.lteCoins?.update(nowMs, host.camera, width, height);
   dependencies.render(host.scene, host.camera, false);
   if (host.runtime.local.track.skydome) {

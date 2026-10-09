@@ -9,6 +9,13 @@ import {
 import type { LocalRaceDependencies } from "./local-race-runtime.js";
 import { ItemInputRouter, type ItemCommandHandler } from "../input/item-input.js";
 
+/** What the local owner calls on the item race controller. */
+export interface LocalItemRace {
+  cube(cubeId: number): void;
+  hazard(trigger: { id: number; itemIdx: number; position?: { x: number; y: number; z: number } }): void;
+  dispose(): void;
+}
+
 /** Factories for state owners supplied by the recovered game runtime. */
 export interface LocalRaceControllerDependencies {
   construction: LocalRaceConstructionOps;
@@ -55,6 +62,8 @@ export class LocalRaceController {
   /** Item races (道具赛): Ctrl/Alt/Z routing and the item controller that owns the slots. */
   readonly itemInput = new ItemInputRouter();
   items: ItemCommandHandler | undefined;
+  /** Item races: the controller behind `items` (cube and hazard callbacks, frame updates). */
+  itemRace: LocalItemRace | undefined;
 
   constructor(assets: any, room: any, playerId: string,
     dependencies: LocalRaceControllerDependencies) {
@@ -68,6 +77,16 @@ export class LocalRaceController {
 
   consumeLocalRouteTags(): string[] { return this.pendingRouteTags.splice(0); }
   consumeWarpActions(): any[] { return this.pendingWarpActions.splice(0); }
+
+  /** Item races: the local racer races (started, not finished); items may be used and hit it. */
+  itemRacing(): boolean {
+    return !this.disposed && this.lifecycle.state === this.dependencies.runtime.states.Racing;
+  }
+
+  /** Item races: a reset or a warp holds the kart; it neither uses, collects nor gets hit. */
+  itemSuspended(): boolean {
+    return this.resetState.phase !== 0 || this.warpNext.blocksDriving();
+  }
 
   lteAvailable(): boolean {
     return !this.disposed &&
@@ -152,6 +171,7 @@ export class LocalRaceController {
     this.roadBlockResetNoticePending = false;
     this.lte?.dispose();
     this.giant?.dispose();
+    this.itemRace?.dispose();
     if (this.giant) this.physics.clearGiantRaceEffects();
     this.physics.itemEffects?.clear();
     this.warpNext.reset();

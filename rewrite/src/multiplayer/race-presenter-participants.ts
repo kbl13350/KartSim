@@ -1,4 +1,5 @@
 /** Updates each racer presentation after the multiplayer camera is positioned. */
+import { updateRacePresenterItems, type RacePresenterItemsHost } from "./race-presenter-items";
 
 interface Vec3 { x: number; y: number; z: number }
 interface RacePose { position: Vec3; visualScale?: unknown; [key: string]: unknown }
@@ -78,14 +79,14 @@ interface RacerRemoteRuntime {
 export interface RacePresenterParticipantsHost {
   playerId: unknown;
   camera: unknown;
-  assets: {
+  assets: RacePresenterItemsHost["assets"] & {
     map: { stageBinding: { beginFrame(nowMs: number): void } };
     lteCoins?: SceneUpdater;
     rain?: SceneUpdater;
     snow?: SceneUpdater;
     participants: RacerAsset[];
   };
-  runtime: {
+  runtime: RacePresenterItemsHost["runtime"] & {
     local: {
       physics: LocalPhysics;
       track: { updateRender(nowMs: number, camera: unknown,
@@ -146,6 +147,7 @@ export function updateRacePresenterParticipants(host: RacePresenterParticipantsH
   const { physics, track } = runtime.local;
   assets.map.stageBinding.beginFrame(nowMs);
   track.updateRender(nowMs, camera, width, height);
+  updateRacePresenterItems(host, nowMs, width, height);
   assets.lteCoins?.update(nowMs, camera, width, height);
   assets.rain?.update(nowMs, camera, width, height);
   assets.snow?.update(nowMs, camera, width, height);

@@ -1,4 +1,5 @@
 /** Publishes rank, time gap, tachometer and the final multiplayer scene frame. */
+import { feedRacePresenterItemHud, type RacePresenterItemHudHost } from "./race-presenter-items";
 
 interface RaceRankRow { participantId: unknown; [key: string]: unknown }
 interface RaceRankBoard {
@@ -12,7 +13,7 @@ interface RaceResult { playerId: unknown; elapsedMs: number | null }
 export interface RacePresenterHudHost {
   playerId: unknown;
   race: { roster: Array<{ playerId: unknown; name: string }> };
-  runtime: {
+  runtime: RacePresenterItemHudHost["runtime"] & {
     local: {
       lifecycle: { state: unknown };
       physics: {
@@ -41,7 +42,7 @@ export interface RacePresenterHudHost {
     out(playerId: unknown): boolean;
   };
   views: Map<unknown, unknown>;
-  hud: {
+  hud: RacePresenterItemHudHost["hud"] & {
     markerTints(): unknown;
     startTeamBoostGaugeFull(): void;
     update(local: unknown, nowMs: number,
@@ -120,6 +121,7 @@ export function finishRacePresenterFrame(host: RacePresenterHudHost,
   host.action2d.setFinishDeadline(local.lifecycle.state === dependencies.racingState
     ? runtime.finishDeadline : undefined);
   if (physics.consumeTeamGaugeFullAnimation()) hud.startTeamBoostGaugeFull();
+  feedRacePresenterItemHud(host, nowMs);
   hud.update(local, nowMs, remotePoses, board);
   if (hud.timeGapEnabled && host.warpHudHidden) hud.hideTimeGap();
   if (hud.timeGapEnabled && !host.warpHudHidden) {

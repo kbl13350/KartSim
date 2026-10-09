@@ -43,6 +43,9 @@ export interface RaceChatDependencies {
 
 const fontFamily = "KartSim Multiplayer Race Chat";
 const messageLifetimeMs = 5000;
+/** Local race notices (not chat messages), e.g. the item race Z key. */
+const noticeColor = "#ffd200";
+const maxNotices = 3;
 
 function enterKey(event: KeyboardEvent): boolean {
   return event.key === "Enter" || event.code === "Enter";
@@ -75,6 +78,8 @@ export class RaceChatOverlay {
   sending = false;
   disposed = false;
   messages = new Map<number, { message: RaceChatMessage; until: number }>();
+  /** Not in the release: local one-line notices drawn under the chat lines. */
+  notices: Array<{ text: string; until: number }> = [];
   hideTimer?: number;
   roomChannel = false;
   loadingLine?: string;
@@ -185,6 +190,14 @@ export class RaceChatOverlay {
     this.renderMessages();
   }
 
+  /** Show a local notice line for the chat message lifetime; nothing is sent. */
+  notice(text: string): void {
+    if (this.disposed || !text) return;
+    this.notices.push({ text, until: this.dependencies.nowMs() + messageLifetimeMs });
+    while (this.notices.length > maxNotices) this.notices.shift();
+    this.renderMessages();
+  }
+
   renderMessages(): void {
     if (this.hideTimer !== undefined) {
       this.dependencies.clearTimer(this.hideTimer);
@@ -210,24 +223,28 @@ export class RaceChatOverlay {
       context.strokeText(this.loadingLine, 12, 10, canvas.width - 24);
       context.fillText(this.loadingLine, 12, 10, canvas.width - 24);
     }
-    const lines = current.map(({ message }) => ({
+    const notices = (this.notices ?? []).filter(entry => entry.until > nowMs);
+    if (this.notices) this.notices = notices;
+    const lines = [...current.map(({ message }) => ({
       message, text: this.dependencies.parseChat(message.text, this.emotions).text,
-    })).filter(line => line.text).slice(-(this.loadingLine ? 4 : 5));
-    lines.forEach(({ message, text }, index) => {
-      context.fillStyle = message.playerId === this.connection.playerId
-        ? "#a3ff2a" : "#fff";
-      const line = messageText({ ...message, text });
+    })).filter(line => line.text).map(({ message, text }) => ({
+      color: message.playerId === this.connection.playerId ? "#a3ff2a" : "#fff",
+      line: messageText({ ...message, text }),
+    })), ...notices.map(entry => ({ color: noticeColor, line: entry.text }))]
+      .slice(-(this.loadingLine ? 4 : 5));
+    lines.forEach(({ color, line }, index) => {
+      context.fillStyle = color;
       const y = canvas.height - 56 - (lines.length - 1 - index) * 19;
       context.strokeText(line, 12, y, canvas.width - 24);
       context.fillText(line, 12, y, canvas.width - 24);
     });
-    this.log.textContent = [this.loadingLine,
-      ...lines.map(({ message, text }) => messageText({ ...message, text }))]
+    this.log.textContent = [this.loadingLine, ...lines.map(({ line }) => line)]
       .filter(Boolean).join("\n");
     this.log.scrollTop = this.log.scrollHeight;
-    if (current.length) {
+    const expiries = [...current, ...notices].map(entry => entry.until);
+    if (expiries.length) {
       this.hideTimer = this.dependencies.setTimer(() => this.renderMessages(),
-        Math.max(1, Math.ceil(Math.min(...current.map(entry => entry.until)) - nowMs)));
+        Math.max(1, Math.ceil(Math.min(...expiries) - nowMs)));
     }
   }
 
