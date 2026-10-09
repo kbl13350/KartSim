@@ -44,6 +44,8 @@ const (
 	RaceWin    = "win"
 	RaceFinish = "finish"
 	RaceRetire = "retire"
+	// RaceDistance counts meters driven (route progress) instead of races.
+	RaceDistance = "distance"
 )
 
 // Counter names besides RaceCounter.
@@ -51,7 +53,13 @@ const (
 	CounterRetireStreak    = "race.retire.streak"
 	CounterRetireStreakMax = "race.retire.streakMax"
 	CounterTimeAttack      = "timeattack.finish"
+	// CounterCameraDistance is the meters raced with a replay camera.
+	CounterCameraDistance = "race.distance.camera"
 )
+
+// metersPerCareerUnit converts meters to the distance careers' clearValue
+// unit, 0.1 km (森林主题赛道累积完成500Km is clearValue 5000).
+const metersPerCareerUnit = 100
 
 // MaxTheme is the largest career themeId.
 const MaxTheme = 35
@@ -158,6 +166,10 @@ func (d *Data) Value(c *Career, f Facts) (value int64, tracked bool) {
 		return raceCount(f, RaceFinish, c), true
 	case 43:
 		return raceCount(f, RaceRetire, c), true
+	case 46: // 주행 - 거리 누적, by theme
+		return raceCount(f, RaceDistance, c) / metersPerCareerUnit, true
+	case 50: // 녹화 카메라 장착 + 거리 누적
+		return f.Counters[CounterCameraDistance] / metersPerCareerUnit, true
 	case 49:
 		done := int64(0)
 		for _, id := range c.Multi {

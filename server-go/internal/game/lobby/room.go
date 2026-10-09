@@ -252,7 +252,9 @@ type race struct {
 	shownRewards []rewards.RacerReward
 	rates        rewards.Rates
 
-	giantStates         map[string]giantState
+	giantStates map[string]giantState
+	// progress is each racer's furthest accepted route distance (meters).
+	progress            map[string]float64
 	teamChargeSequences map[string]int
 	teamGaugeSequences  map[int]int
 	teamGaugeTargets    map[int]float64

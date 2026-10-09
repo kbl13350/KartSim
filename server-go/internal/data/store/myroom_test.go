@@ -40,8 +40,9 @@ func TestCareerRaceCounters(t *testing.T) {
 	}
 	t.Cleanup(func() { datatest.Exec(t, db, "DELETE FROM race_outcomes WHERE race_id LIKE ?", "career-"+u+"-%") })
 	race(1, false, false, 0,
-		store.SettledResult{PlayerID: "p0", AccountID: ids[0], Name: "a", Rank: 1, ElapsedMs: elapsed(90_000)},
-		store.SettledResult{PlayerID: "p1", AccountID: ids[1], Name: "b", Rank: 2})
+		store.SettledResult{PlayerID: "p0", AccountID: ids[0], Name: "a", Rank: 1, ElapsedMs: elapsed(90_000),
+			DistanceMeters: 4_200, Camera: true},
+		store.SettledResult{PlayerID: "p1", AccountID: ids[1], Name: "b", Rank: 2, DistanceMeters: 1_000})
 	race(2, true, true, 2,
 		store.SettledResult{PlayerID: "p0", AccountID: ids[0], Name: "a", Rank: 2, ElapsedMs: elapsed(91_000), Team: 1},
 		store.SettledResult{PlayerID: "p1", AccountID: ids[1], Name: "b", Rank: 3, Team: 2},
@@ -65,6 +66,8 @@ func TestCareerRaceCounters(t *testing.T) {
 		career.RaceCounter(career.RaceFinish, career.GameSpeedIndividual, forest): 1,
 		career.RaceCounter(career.RaceFinish, career.GameInfiniteTeam, forest):    1,
 		career.CounterRetireStreak: 0,
+		career.RaceCounter(career.RaceDistance, career.GameSpeedIndividual, forest): 4_200,
+		career.CounterCameraDistance: 4_200,
 	}
 	for name, value := range want {
 		if a.Counters[name] != value {
@@ -79,6 +82,10 @@ func TestCareerRaceCounters(t *testing.T) {
 		b.Counters[career.RaceCounter(career.RaceWin, career.GameInfiniteTeam, forest)] != 1 ||
 		b.Counters[career.CounterRetireStreak] != 2 || b.Counters[career.CounterRetireStreakMax] != 2 {
 		t.Errorf("b counters %v", b.Counters)
+	}
+	if b.Counters[career.RaceCounter(career.RaceDistance, career.GameSpeedIndividual, forest)] != 1_000 ||
+		b.Counters[career.CounterCameraDistance] != 0 {
+		t.Errorf("b distance counters %v", b.Counters)
 	}
 	if c.Counters[career.RaceCounter(career.RaceWin, career.GameInfiniteTeam, forest)] != 1 {
 		t.Errorf("c counters %v", c.Counters)

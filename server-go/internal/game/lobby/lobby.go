@@ -1197,6 +1197,7 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 		rosterAccounts:      map[string]string{},
 		rosterTeams:         map[string]int{},
 		giantStates:         map[string]giantState{},
+		progress:            map[string]float64{},
 		teamChargeSequences: map[string]int{},
 		teamGaugeSequences:  map[int]int{},
 		teamGaugeTargets:    map[int]float64{},
@@ -1638,7 +1639,8 @@ func (l *Lobby) saveResults(r *room) {
 			elapsed = &value
 		}
 		results = append(results, contract.RaceResult{PlayerID: row.playerID,
-			AccountID: accountID, Name: name, Rank: row.rank, ElapsedMs: elapsed, Points: row.points})
+			AccountID: accountID, Name: name, Rank: row.rank, ElapsedMs: elapsed, Points: row.points,
+			DistanceMeters: int(math.Round(rc.progress[row.playerID]))})
 	}
 	granted := make([]contract.RaceReward, 0, len(rc.rewards))
 	for _, reward := range rc.rewards {

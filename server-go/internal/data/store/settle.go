@@ -58,6 +58,10 @@ type SettledResult struct {
 	ElapsedMs *int
 	Points    int
 	Team      int // 1 or 2 in a team race, else 0
+	// DistanceMeters is how far along the track the racer got; Camera says
+	// it raced with a replay camera (item category 12) equipped.
+	DistanceMeters int
+	Camera         bool
 }
 
 // SaveSettlement stores a race once. The outcome row is the idempotency key:
@@ -239,8 +243,9 @@ func addStats(ctx context.Context, tx *sql.Tx, racer SettledResult, at int64) (b
 
 // countCareerRace adds one race to the career tallies of a registered
 // racer: a finish or a retire (no finish time), a win (rank 1 with a time;
-// in a team race, being on the winning team), each by race class and track
-// theme, and the consecutive-retire streak.
+// in a team race, being on the winning team) and the meters driven, each by
+// race class and track theme (and the meters with a replay camera), and the
+// consecutive-retire streak.
 func countCareerRace(ctx context.Context, tx *sql.Tx, in Settlement, racer SettledResult) error {
 	data, err := career.Default()
 	if err != nil {
@@ -260,6 +265,12 @@ func countCareerRace(ctx context.Context, tx *sql.Tx, in Settlement, racer Settl
 	}
 	if won {
 		deltas[career.RaceCounter(career.RaceWin, gameType, theme)] = 1
+	}
+	if racer.DistanceMeters > 0 {
+		deltas[career.RaceCounter(career.RaceDistance, gameType, theme)] = int64(racer.DistanceMeters)
+		if racer.Camera {
+			deltas[career.CounterCameraDistance] = int64(racer.DistanceMeters)
+		}
 	}
 	if err := addCounters(ctx, tx, racer.AccountID, deltas, in.CreatedAt); err != nil {
 		return err

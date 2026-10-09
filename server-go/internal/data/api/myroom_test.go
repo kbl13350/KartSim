@@ -155,8 +155,10 @@ func TestSettlementRaceClass(t *testing.T) {
 	request := contract.RaceSettlement{RaceID: "race-1", RoomID: "room-1", Mode: "team", Gameplay: "ordinary",
 		TrackID: "forest_I01", FinishedAt: 1,
 		Snapshot: []byte(`{"mode":"team","race":{"channelName":"speedTeamInfinit","winningTeam":2,
-			"roster":[{"playerId":"p1","team":1},{"playerId":"p2","team":2},{"playerId":"p3","team":null}]}}`),
-		Results: []contract.RaceResult{{PlayerID: "p1", Rank: 1}, {PlayerID: "p2", Rank: 2}, {PlayerID: "p3", Rank: 3}}}
+			"roster":[{"playerId":"p1","team":1,"equipment":{"itemIds":{"12":1}}},{"playerId":"p2","team":2},
+			{"playerId":"p3","team":null}]}}`),
+		Results: []contract.RaceResult{{PlayerID: "p1", Rank: 1, DistanceMeters: 5_000},
+			{PlayerID: "p2", Rank: 2, DistanceMeters: -5}, {PlayerID: "p3", Rank: 3, DistanceMeters: 9_000_000}}}
 	settlement, ok := settlementFromRequest(request, 10)
 	if !ok || !settlement.Team || !settlement.Infinite || settlement.WinningTeam != 2 {
 		t.Fatalf("settlement %+v %v", settlement, ok)
@@ -164,6 +166,11 @@ func TestSettlementRaceClass(t *testing.T) {
 	if teams := []int{settlement.Results[0].Team, settlement.Results[1].Team, settlement.Results[2].Team}; teams[0] != 1 ||
 		teams[1] != 2 || teams[2] != 0 {
 		t.Fatalf("teams %v", teams)
+	}
+	results := settlement.Results
+	if !results[0].Camera || results[1].Camera || results[0].DistanceMeters != 5_000 ||
+		results[1].DistanceMeters != 0 || results[2].DistanceMeters != maxRaceDistanceMeters {
+		t.Fatalf("camera and distance %+v", results)
 	}
 	request.Mode = "individual"
 	request.Snapshot = []byte(`{"race":{"channelName":"speedIndiCombine"}}`)

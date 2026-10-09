@@ -3,6 +3,7 @@ package lobby
 import (
 	"encoding/binary"
 	"encoding/hex"
+	"math"
 	"strings"
 	"testing"
 	"time"
@@ -104,4 +105,61 @@ func TestMotionRelayFiltering(t *testing.T) {
 	expect("finished", [4]int{2, 3, 1, 0})
 	// Clients outside any room are ignored.
 	h.lobby.RelayMotion(h.newClient(), motionFrame(roomID, raceID, a.playerID, 0xFF, 200))
+}
+
+// progressFrame is a kinematic frame of kind whose route distance is distance.
+func progressFrame(roomID, raceID, playerID string, kind int, distance float64) []byte {
+	frame := motionFrame(roomID, raceID, playerID, 0xFF, motionHeaderLength+kinematicPayloadLength(kind))
+	frame[2] = byte(kind)
+	if len(frame) >= progressOffset+8 { // kinds 2 and 3 have no progress section
+		binary.LittleEndian.PutUint64(frame[progressOffset:], math.Float64bits(distance))
+	}
+	return frame
+}
+
+func TestKinematicPayloadLengths(t *testing.T) {
+	// payload.ts decodeKinematicSample base lengths, plus 12 for visual scale (9, 10).
+	want := map[int]int{1: 0, 2: 80, 3: 108, 4: 124, 5: 128, 6: 137, 7: 149, 8: 166, 9: 161, 10: 178, 11: 0}
+	for kind, length := range want {
+		if got := kinematicPayloadLength(kind); got != length {
+			t.Errorf("kind %d: %d, want %d", kind, got, length)
+		}
+	}
+}
+
+// The settlement carries each racer's furthest route progress while racing,
+// capped by 500 km/h since the start; later, shorter, malformed, non-finite
+// and post-finish reports do not count.
+func TestRaceProgressDistance(t *testing.T) {
+	h := newHarness(t)
+	a, b := h.connect("A"), h.connect("B")
+	roomID, raceID := h.startRace([]*Client{a, b}, "ordinary", "speedIndiCombine", 2)
+	send := func(c *Client, kind int, distance float64) {
+		h.lobby.RelayMotion(c, progressFrame(roomID, raceID, c.playerID, kind, distance))
+	}
+	send(a, 10, 50) // no time since the start yet
+	h.clock.Advance(20 * time.Second)
+	send(a, 10, 1500)
+	send(a, 10, 1200) // backwards keeps the furthest
+	send(a, 4, 1800)  // kind 4 carries progress too
+	short := progressFrame(roomID, raceID, a.playerID, 10, 2600)
+	h.lobby.RelayMotion(a, short[:len(short)-1])
+	send(a, 3, 2700) // no progress section
+	send(b, 10, 1e7) // capped: 20 s x 140 m/s + 100 m
+	send(b, 10, math.NaN())
+	h.must(a, map[string]any{"type": "finish", "roomId": roomID, "raceId": raceID, "elapsedMs": 20_000})
+	send(a, 10, 2500) // after its finish
+	h.must(b, map[string]any{"type": "finish", "roomId": roomID, "raceId": raceID, "elapsedMs": 21_000})
+
+	settlements := h.recorder.settlements()
+	if len(settlements) != 1 {
+		t.Fatalf("settlements %d", len(settlements))
+	}
+	distances := map[string]int{}
+	for _, result := range settlements[0].Results {
+		distances[result.PlayerID] = result.DistanceMeters
+	}
+	if distances[a.playerID] != 1800 || distances[b.playerID] != 2900 {
+		t.Fatalf("distances %v", distances)
+	}
 }

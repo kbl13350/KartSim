@@ -2,6 +2,7 @@ package lobby
 
 import (
 	"encoding/binary"
+	"math"
 	"slices"
 )
 
@@ -32,6 +33,9 @@ func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 		formatUUID(frame[36:52]) != c.playerID || !slices.Contains(r.race.loadedIDs, c.playerID) {
 		return
 	}
+	if r.phase == "racing" {
+		r.race.recordProgress(c.playerID, frame, l.clock.Now())
+	}
 	recipientMask := int(frame[3])
 	for _, m := range r.members {
 		if m.playerID == c.playerID || recipientMask&(1<<m.slot) == 0 ||
@@ -41,5 +45,69 @@ func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 		if recipient := l.clients[m.playerID]; recipient != nil {
 			recipient.sink.Binary(frame)
 		}
+	}
+}
+
+// Race progress: the kinematic kinds 4..10 (rewrite payload.ts) carry the
+// racer's route distance as a little-endian float64, in meters, at payload
+// offset 108.
+const (
+	motionHeaderLength = 56
+	progressOffset     = motionHeaderLength + 108
+	// A reported distance is capped at what 500 km/h since the start (plus
+	// a little slack) could cover.
+	maxRaceSpeed  = 140.0 // m/s
+	progressSlack = 100.0 // m
+)
+
+// kinematicPayloadLength is the payload length of a kinematic motion kind
+// (payload.ts decodeKinematicSample), or 0 for kind 1.
+func kinematicPayloadLength(kind int) int {
+	var length int
+	switch {
+	case kind < 2 || kind > 10:
+		return 0
+	case kind == 8 || kind == 10:
+		length = 166
+	case kind >= 7:
+		length = 149
+	case kind == 6:
+		length = 137
+	case kind == 5:
+		length = 128
+	case kind == 4:
+		length = 124
+	case kind == 3:
+		length = 108
+	default:
+		length = 80
+	}
+	if kind >= 9 {
+		length += 12
+	}
+	return length
+}
+
+// recordProgress keeps the furthest route distance a racer reported while
+// racing and before its finish. Frames of another length than their kind
+// implies, non-finite or non-positive distances are ignored.
+func (rc *race) recordProgress(playerID string, frame []byte, now int64) {
+	kind := int(frame[2])
+	if kind < 4 || len(frame) != motionHeaderLength+kinematicPayloadLength(kind) ||
+		rc.startAt == nil || now <= *rc.startAt {
+		return
+	}
+	for _, finished := range rc.finishes {
+		if finished.playerID == playerID {
+			return
+		}
+	}
+	distance := math.Float64frombits(binary.LittleEndian.Uint64(frame[progressOffset:]))
+	if math.IsNaN(distance) || math.IsInf(distance, 0) || distance <= 0 {
+		return
+	}
+	distance = min(distance, float64(now-*rc.startAt)/1000*maxRaceSpeed+progressSlack)
+	if distance > rc.progress[playerID] {
+		rc.progress[playerID] = distance
 	}
 }

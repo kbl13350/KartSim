@@ -189,3 +189,27 @@ func TestLucciZeroDateAndUntracked(t *testing.T) {
 		t.Fatalf("untracked career = %+v", p)
 	}
 }
+
+func TestDistanceCareers(t *testing.T) {
+	data := defaultData(t)
+	forest := mustCareer(t, data, 250) // 森林郊游 1阶段: 500 km on forest tracks
+	if forest.Type != 46 || forest.Theme != 1 || forest.Clear != 5000 {
+		t.Fatalf("career 250 = %+v", forest)
+	}
+	f := emptyFacts()
+	f.Counters[RaceCounter(RaceDistance, GameSpeedIndividual, 1)] = 300_000
+	f.Counters[RaceCounter(RaceDistance, GameInfiniteTeam, 1)] = 199_999
+	f.Counters[RaceCounter(RaceDistance, GameSpeedTeam, 3)] = 1_000_000 // another theme
+	if p := data.Progress(forest, f); p.Value != 4999 || p.State != StatePlaying || p.Untracked {
+		t.Fatalf("forest distance = %+v", p)
+	}
+	f.Counters[RaceCounter(RaceDistance, GameSpeedTeam, 1)] = 1
+	if p := data.Progress(forest, f); p.Value != 5000 || p.State != StateComplete {
+		t.Fatalf("forest distance reached = %+v", p)
+	}
+	vlog := mustCareer(t, data, 243) // 跑跑vlog 1阶段: 50 km with a replay camera
+	f.Counters[CounterCameraDistance] = 50_000
+	if p := data.Progress(vlog, f); vlog.Type != 50 || p.Value != 500 || p.State != StateComplete {
+		t.Fatalf("camera distance = %+v %+v", vlog, p)
+	}
+}

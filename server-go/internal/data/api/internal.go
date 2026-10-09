@@ -367,24 +367,39 @@ func settlementFromRequest(request contract.RaceSettlement, now int64) (store.Se
 			Rank:      result.Rank,
 			ElapsedMs: result.ElapsedMs,
 			Points:    result.Points,
-			Team:      teams[result.PlayerID],
+			Team:      teams[result.PlayerID].team,
+			Camera:    teams[result.PlayerID].camera,
+			// A race is far shorter than this; anything else is clamped.
+			DistanceMeters: min(max(result.DistanceMeters, 0), maxRaceDistanceMeters),
 		})
 	}
 	return settlement, true
 }
 
+// maxRaceDistanceMeters bounds the distance one racer is credited per race.
+const maxRaceDistanceMeters = 200_000
+
+// rosterCareer is what the careers need of one roster member.
+type rosterCareer struct {
+	team   int  // 1 or 2 in a team race, else 0
+	camera bool // a replay camera (item category 12) is equipped
+}
+
 // raceClass sets what the careers need to classify a race (a team race, an
 // infinite-boost channel, the winning team) from the settlement's mode and
-// snapshot, and returns each roster player's team. A snapshot without those
-// fields counts as an individual speed race.
-func raceClass(settlement *store.Settlement, request contract.RaceSettlement) map[string]int {
+// snapshot, and returns each roster player's team and replay camera. A
+// snapshot without those fields counts as an individual speed race.
+func raceClass(settlement *store.Settlement, request contract.RaceSettlement) map[string]rosterCareer {
 	var snapshot struct {
 		Race struct {
 			ChannelName string `json:"channelName"`
 			WinningTeam int    `json:"winningTeam"`
 			Roster      []struct {
-				PlayerID string `json:"playerId"`
-				Team     *int   `json:"team"`
+				PlayerID  string `json:"playerId"`
+				Team      *int   `json:"team"`
+				Equipment struct {
+					ItemIDs map[string]int `json:"itemIds"`
+				} `json:"equipment"`
 			} `json:"roster"`
 		} `json:"race"`
 	}
@@ -394,13 +409,15 @@ func raceClass(settlement *store.Settlement, request contract.RaceSettlement) ma
 	if snapshot.Race.WinningTeam == 1 || snapshot.Race.WinningTeam == 2 {
 		settlement.WinningTeam = snapshot.Race.WinningTeam
 	}
-	teams := make(map[string]int, len(snapshot.Race.Roster))
+	members := make(map[string]rosterCareer, len(snapshot.Race.Roster))
 	for _, member := range snapshot.Race.Roster {
+		entry := rosterCareer{camera: member.Equipment.ItemIDs["12"] > 0}
 		if member.Team != nil && (*member.Team == 1 || *member.Team == 2) {
-			teams[member.PlayerID] = *member.Team
+			entry.team = *member.Team
 		}
+		members[member.PlayerID] = entry
 	}
-	return teams
+	return members
 }
 
 func (a *API) saveRace(w http.ResponseWriter, r *http.Request) error {

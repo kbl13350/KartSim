@@ -113,6 +113,10 @@ type RaceResult struct {
 	Rank      int    `json:"rank"`
 	ElapsedMs *int   `json:"elapsedMs"`
 	Points    int    `json:"points"`
+	// DistanceMeters is how far along the track the racer got: the
+	// furthest route progress its motion frames reported while racing,
+	// bounded by the time since the start (the distance careers).
+	DistanceMeters int `json:"distanceMeters,omitempty"`
 }
 
 // RaceSettlement is sent once per finished race. Snapshot is the outcome
