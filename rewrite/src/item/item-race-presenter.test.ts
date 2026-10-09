@@ -507,6 +507,55 @@ test("the magnet field points at its target and ends with the pull", async () =>
   assert.deepEqual(models(presenter), []);
 });
 
+test("a self effect the controller already ended is not brought back by the late use reply", async () => {
+  const { presenter, at } = await setup();
+  const balloon = "item/waterBomb/item00.1s#carriedBalloon";
+  // A shield pressed at the last moment blocks a missile before its reply arrives.
+  at(992);
+  presenter.kartEffect("A", "shield", 992, 2000);
+  at(1008);
+  assert.deepEqual(models(presenter), ["item/shield/firing00.1s"]);
+  presenter.endKartEffect("A", "shield");
+  at(1024);
+  assert.deepEqual(models(presenter), []);
+  presenter.used({ useId: 9, itemId: ItemIdx.shield, userId: "A", targets: [], startMs: 1040, etaMs: 0 });
+  at(1104);
+  assert.deepEqual(models(presenter), [], "the spent shield stays gone");
+  at(2500);
+  assert.deepEqual(models(presenter), []);
+
+  // A time bomb whose balloon the end of my race removed, and a pull that arrived early.
+  presenter.kartEffect("A", "timeBomb", 3000, 3000);
+  presenter.kartEffect("A", "pull", 3000, 3000);
+  at(3016);
+  assert.deepEqual(models(presenter), ["item/magnet/item01.1s", balloon]);
+  presenter.endKartEffect("A", "timeBomb");
+  presenter.endKartEffect("A", "pull");
+  at(3032);
+  presenter.used({ useId: 10, itemId: ItemIdx.timeBomb, userId: "A", targets: [], startMs: 3040, etaMs: 0 });
+  presenter.used({ useId: 11, itemId: ItemIdx.magnet, userId: "A", targets: ["C"], startMs: 3040, etaMs: 0 });
+  at(3100);
+  assert.deepEqual(models(presenter), []);
+
+  // The next press starts the shield again, and its reply keeps that one visual.
+  presenter.kartEffect("A", "shield", 8000, 2000);
+  presenter.used({ useId: 12, itemId: ItemIdx.shield, userId: "A", targets: [], startMs: 8050, etaMs: 0 });
+  at(8100);
+  assert.deepEqual(models(presenter), ["item/shield/firing00.1s"]);
+  at(10_100);
+  assert.deepEqual(models(presenter), []);
+
+  // A remote racer's next shield shows from its use alone.
+  presenter.used({ useId: 13, itemId: ItemIdx.shield, userId: "B", targets: [], startMs: 11_000, etaMs: 0 });
+  at(11_016);
+  presenter.endKartEffect("B", "shield");
+  at(11_032);
+  assert.deepEqual(models(presenter), []);
+  presenter.used({ useId: 14, itemId: ItemIdx.shield, userId: "B", targets: [], startMs: 11_100, etaMs: 0 });
+  at(11_116);
+  assert.deepEqual(models(presenter), ["item/shield/firing00.1s"]);
+});
+
 test("spin, launch and barrier add nothing; track hazards show their hit", async () => {
   const { presenter, at, played } = await setup();
   for (const kind of ["spin", "launch", "barrier"] as const) presenter.kartEffect("B", kind, 0, 1500);
