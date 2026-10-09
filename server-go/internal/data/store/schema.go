@@ -423,7 +423,7 @@ var migrations = []migration{
 		) ` + tableTail,
 	}},
 	// 道具图鉴 rewards: how many collected dictionary items were rewarded.
-	{version: 101, statements: []string{
+	{version: 6, statements: []string{
 		`CREATE TABLE IF NOT EXISTS account_dictionary (
 			account_id CHAR(36) ` + idColumn + ` NOT NULL,
 			rewarded INT NOT NULL DEFAULT 0,

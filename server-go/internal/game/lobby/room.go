@@ -252,12 +252,13 @@ type race struct {
 	shownRewards []rewards.RacerReward
 	rates        rewards.Rates
 
-	giantStates map[string]giantState
-	// progress is each racer's furthest accepted route distance (meters).
-	progress            map[string]float64
+	giantStates         map[string]giantState
 	teamChargeSequences map[string]int
 	teamGaugeSequences  map[int]int
 	teamGaugeTargets    map[int]float64
+
+	// progress is each racer's furthest accepted route distance (meters).
+	progress map[string]float64
 }
 
 func (r *race) inRoster(playerID string) bool { return slices.Contains(r.rosterIDs, playerID) }
