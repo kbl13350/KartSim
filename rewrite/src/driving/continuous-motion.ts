@@ -32,6 +32,9 @@ export interface ContinuousMotionContext {
     mass: number;
     slipBrake: number;
     startForwardAccelSpeed: number;
+    /** Item races only; missing values fall back to the speed-race fields. */
+    startForwardAccelItem?: number;
+    boostAccelFactorOnlyItem?: number;
     transAccelFactor: number;
     useTransformBooster: number;
     wallCollGaugeMinVelBound: number;
@@ -63,6 +66,7 @@ export interface ContinuousMotionContext {
   scratch: { v0: Vector3; v1: Vector3; v2: Vector3; v3: Vector3 };
   giant?: { forceBonus?: number };
   speedRaceMode?: { kind: string };
+  itemMode?: boolean;
 }
 
 const f32 = Math.fround;
@@ -155,13 +159,16 @@ export function applyLongitudinalForce(context: ContinuousMotionContext, seconds
   if (input.forward > 0 && !controlsLocked) {
     let driveForce = f32(f32(runtime.liveForwardAccel + (context.giant?.forceBonus ?? 0)) *
       f32(runtime.driveScale));
-    if (runtime.physicsState === 1) driveForce = f32(tuning.startForwardAccelSpeed);
+    // Item races use the item start acceleration and booster factor.
+    if (runtime.physicsState === 1) driveForce = f32(context.itemMode
+      ? tuning.startForwardAccelItem ?? tuning.startForwardAccelSpeed : tuning.startForwardAccelSpeed);
     let boosterFactor = f32(1);
     if (runtime.physicsState >= 1 && runtime.physicsState <= 11) {
       const transformAnimation = runtime.physicsState !== 2 &&
         [2, 4, 5, 6].includes(runtime.animationSlot);
       boosterFactor = tuning.useTransformBooster && transformAnimation
-        ? f32(tuning.transAccelFactor) : f32(tuning.boostAccelFactor);
+        ? f32(tuning.transAccelFactor) : f32(context.itemMode
+          ? tuning.boostAccelFactorOnlyItem ?? tuning.boostAccelFactor : tuning.boostAccelFactor);
     }
     if (runtime.physicsState === 2 && context.speedRaceMode?.kind !== "grip") {
       boosterFactor = f32(boosterFactor * f32(tuning.driftBoostMulAccelFactor));

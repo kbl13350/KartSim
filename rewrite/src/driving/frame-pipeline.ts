@@ -30,6 +30,8 @@ export interface VehicleStepContext {
     processWallCollision(nowMs: number, physicsState: number, protectedPress: boolean): void;
   };
   giantObstacleLowHit: boolean;
+  /** Item races: victim effects advanced once per slice; a spin removes drive and grip. */
+  itemEffects?: { readonly suppressesDrive: boolean; beginSubstep(seconds: number): void };
   updateStateTimer(seconds: number): void;
   updateDriftLifecycleTimers(seconds: number): void;
   tryConsumeNormalBooster(input: DrivingInput): boolean;
@@ -103,6 +105,8 @@ export function advancePhysicsSubstep(
 
   vehicle.updateStateTimer(seconds);
   vehicle.updateDriftLifecycleTimers(seconds);
+  vehicle.itemEffects?.beginSubstep(seconds);
+  const itemSpin = vehicle.itemEffects?.suppressesDrive === true;
   if (vehicle.nitroSeamlessRequest && vehicle.tryConsumeNormalBooster(input))
     vehicle.nitroSeamlessRequest = false;
   vehicle.scanSpecialRoad(track);
@@ -130,7 +134,7 @@ export function advancePhysicsSubstep(
         addVector(force, hoverForce);
       }
       vehicle.applySuspension(seconds, force, torque);
-      if (!vehicle.runtime.driveSteeringSuppressed)
+      if (!vehicle.runtime.driveSteeringSuppressed && !itemSpin)
         vehicle.applyLongitudinal(seconds, input, force);
       if (vehicle.runtime.delayedDriftRequest && vehicle.speedRaceMode?.kind !== "grip") {
         vehicle.runtime.delayedDriftRequest = false;
@@ -140,7 +144,7 @@ export function advancePhysicsSubstep(
           vehicle.runtime.driftTailLatch = vehicle.runtime.localForwardSpeed > 0;
         }
       }
-      if (!vehicle.runtime.driveSteeringSuppressed)
+      if (!vehicle.runtime.driveSteeringSuppressed && !itemSpin)
         vehicle.applySteeringAndTires(seconds, input, force, torque);
     }
     vehicle.applyRoadConsumers(seconds, force);

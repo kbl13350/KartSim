@@ -1108,7 +1108,8 @@
     "k40",
     "F40",
     "D40",
-    "Ea"
+    "Ea",
+    "jt0"
   ],
   "handwrittenMotionBlurEffect": true,
   "retiredMotionBlurHelpers": [
@@ -1849,15 +1850,15 @@
     },
     {
       "file": "vehicle.js",
-      "bytes": 186743,
-      "sha256": "946dfb579160f32907a4a60c4f5294cb8ddce971e3bc0243f8cc25a148c5f2b3",
+      "bytes": 183824,
+      "sha256": "90207b7d07b847de8d5b24c3eddc48aa12035dd6b26026e6eec8825ee861d419",
       "imports": 183,
       "exports": 104
     },
     {
       "file": "driving.js",
-      "bytes": 22235,
-      "sha256": "dc94583c838e84d8aa7e9190cb3660d29ca65eb244c1ddd579ed3f1920ccb2f2",
+      "bytes": 22637,
+      "sha256": "47fef8f929d2c356a748672e490eb1b8ba8774f6d90c9f21f1f61f6cf8a54d0f",
       "imports": 45,
       "exports": 9
     },

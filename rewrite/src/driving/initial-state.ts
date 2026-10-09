@@ -1,4 +1,5 @@
 /** Fresh physical and presentation state for one vehicle. */
+import { itemSlotCapacityFor } from "./item-mode";
 
 export interface Vector3 {
   x: number;
@@ -14,11 +15,14 @@ export interface VehicleTuningForInitialization {
   suspensionNegativeDamping?: number;
   chargerEnabled: boolean;
   speedSlotCapacity: number;
+  itemSlotCapacity?: number;
   mass: number;
 }
 
 export interface VehicleInitializationContext {
   tuning: VehicleTuningForInitialization;
+  /** Item races keep item indices in the slot store, sized by itemSlotCapacity. */
+  itemMode?: boolean;
 }
 
 const vector = (x = 0, y = 0, z = 0): Vector3 => ({ x, y, z });
@@ -254,8 +258,9 @@ export function createVehicleRuntime(vehicle: VehicleInitializationContext): Veh
   runtime.chargerDurationScale = 1;
   runtime.gravityDivisor = 1;
   runtime.chargerEnabled = tuning.chargerEnabled;
-  runtime.speedSlots = Array.from({ length: tuning.speedSlotCapacity }, () => -1);
-  runtime.speedSlotDisabled = Array.from({ length: tuning.speedSlotCapacity }, () => false);
+  const slotCapacity = vehicle.itemMode ? itemSlotCapacityFor(tuning) : tuning.speedSlotCapacity;
+  runtime.speedSlots = Array.from({ length: slotCapacity }, () => -1);
+  runtime.speedSlotDisabled = Array.from({ length: slotCapacity }, () => false);
   runtime.massGravityForce = Math.fround(Math.fround(tuning.mass) * Math.fround(9.8));
   runtime.gravity = vector(0, Math.fround(-58.80000305175781), 0);
   runtime.contactWorking = true;

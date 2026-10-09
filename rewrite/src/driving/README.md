@@ -57,3 +57,17 @@
 ## 剩余边界
 
 可读方法实现不代表整套车辆物理依赖已移出生成模块。原类的 24 个字段初始化仍由生成代码完成；`$40` 帧时钟、`ni0` 物理临时缓存及部分几何/碰撞辅助仍是发行版声明。构造器方法体调用手写初始化函数，但字段初始化按 JavaScript 原类顺序保留。对这些依赖做类级整体替换前，需要逐项迁移并验证。
+
+## 道具赛（item）扩展
+
+`drivingMode.kind === "item"` 时构造器把 `AL` 标记为道具赛车辆（`itemMode`），并挂上受害效果 owner（`itemEffects`）。这些成员由 `tools/generate-modules.mjs` 中标记 `item-mode(driving)` 的补丁追加到生成类，行为全部在手写模块里：
+
+| 模块 | 内容 |
+| --- | --- |
+| `item-mode.ts` | 道具槽沿用 `runtime.speedSlots`，容量取 `itemSlotCapacity`（2 或 3），保存任意道具编号（-1 为空）；`setItemSlots`/`itemSlots`/`itemSlotCapacity`；`startItemBooster` 以物理状态 3 持续 `itemBoosterTime` |
+| `item-effects.ts` | 打转、困住、炸飞、反向、减速、缩小、挡停、磁铁牵引八种效果；每个物理切片推进一次，困住/炸飞/挡停时以运动学路径代替物理子步，位姿变化随运动帧同步给远端 |
+| `physics-parameters.ts` | 发行版 `jt0` 的调参记录，末尾追加道具赛字段（道具槽容量、道具加速时间、道具起步与加速系数） |
+
+道具赛中漂移照常、漂移结束后的瞬间加速（状态 2）照常，但漂移和速度不再充能加速器（`accumulateDriftCharge`、`accumulateSpeedCharge`、`updateModeInventory`、组队集气均关闭）；起步加速使用 `startBoosterTimeItem` 与 `startForwardAccelItem`；加速状态的加速系数使用 `boostAccelFactorOnlyItem`。`use-item-or-booster`/`reorder-items` 在道具赛不再消耗或交换槽位，按键由 `src/input/item-input.ts` 转为道具指令。
+
+`item-effects.test.ts`、`item-mode.test.ts` 用真实 `AL` 在平面测试路面（`item-test-fixtures.ts`）上验证每种效果的时间线；`physics-parameters.test.ts` 对全部可查询车辆逐字段比较发行版 `jt0`。原有发行版差分测试保持不变，非道具赛路径没有行为变化。

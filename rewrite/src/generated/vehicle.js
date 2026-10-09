@@ -2,6 +2,7 @@
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
 
+import { vehiclePhysicsParameters } from "../driving/physics-parameters.ts";
 import { createMqTachometerClass } from "../vehicle/mq-tachometer-renderer.ts";
 import { individualRiderDye } from "../multiplayer/individual-rider-colors.ts";
 import { createMotionBlurEffectClass } from "../vehicle/motion-blur-effect.ts";
@@ -2965,77 +2966,7 @@ function cv(n) {
   };
 }
 
-function jt0(n, e, t) {
-  const i = Math.fround(n.mass),
-    r = Math.fround(Math.fround(i * 58.80000305175781) * 0.5);
-  return {
-    draftMulAccelFactor: n.draftMulAccelFactor,
-    draftTick: n.draftTick,
-    chargerEnabled: t === 9,
-    chargerSystemBoosterUseCount: n.chargerSystemBoosterUseCount,
-    chargerSystemUseTime: n.chargerSystemUseTime,
-    dualBoosterEnabled: t > 6,
-    dualBoosterTickMin: n.dualBoosterTickMin,
-    dualBoosterTickMax: n.dualBoosterTickMax,
-    dualMulAccelFactor: n.dualMulAccelFactor,
-    dualTransLowSpeed: n.dualTransLowSpeed,
-    mass: n.mass,
-    suspensionSpring: r,
-    suspensionPositiveDamping: 0,
-    suspensionNegativeDamping: Math.fround(r * 0.20000000298023224),
-    airFriction: n.airFriction,
-    dragFactor: n.dragFactor,
-    forwardAccel: n.forwardAccel,
-    backwardAccel: n.backwardAccel,
-    gripBrake: n.gripBrake,
-    slipBrake: n.slipBrake,
-    maxSteerDeg: n.maxSteerDeg,
-    steerConstraint: n.steerConstraint,
-    frontGripFactor: n.frontGripFactor,
-    rearGripFactor: n.rearGripFactor,
-    driftTrigFactor: n.driftTrigFactor,
-    driftTrigTime: n.driftTrigTime,
-    driftSlipFactor: n.driftSlipFactor,
-    driftEscapeForce: n.driftEscapeForce,
-    cornerDrawFactor: n.cornerDrawFactor,
-    driftLeanFactor: n.driftLeanFactor,
-    steerLeanFactor: n.steerLeanFactor,
-    driftMaxGauge: n.driftMaxGauge,
-    driftGaguePreservePercent: n.driftGaguePreservePercent,
-    wallCollGaugeCooldownTime: n.wallCollGaugeCooldownTime,
-    wallCollGaugeMaxVelLoss: n.wallCollGaugeMaxVelLoss,
-    chargeInstAccelGaugeByBoost: n.chargeInstAccelGaugeByBoost,
-    chargeInstAccelGaugeByGrip: n.chargeInstAccelGaugeByGrip,
-    chargeInstAccelGaugeByWall: n.chargeInstAccelGaugeByWall,
-    chargeInstAccelGaugeByBoostAdded: n.chargeInstAccelGaugeByBoostAdded,
-    chargeInstAccelGaugeByWallAdded: n.chargeInstAccelGaugeByWallAdded,
-    instAccelFactor: n.instAccelFactor,
-    instAccelGaugeCooldownTime: n.instAccelGaugeCooldownTime,
-    instAccelGaugeLength: n.instAccelGaugeLength,
-    instAccelGaugeMinUsable: n.instAccelGaugeMinUsable,
-    instAccelGaugeMinVelBound: n.instAccelGaugeMinVelBound,
-    instAccelGaugeMinVelLoss: n.instAccelGaugeMinVelLoss,
-    wallCollGaugeMinVelBound: n.wallCollGaugeMinVelBound,
-    wallCollGaugeMinVelLoss: n.wallCollGaugeMinVelLoss,
-    normalBoosterTime: n.normalBoosterTime,
-    teamBoosterTime: n.teamBoosterTime,
-    startBoosterTimeSpeed: n.startBoosterTimeSpeed,
-    startForwardAccelSpeed: n.startForwardAccelSpeed,
-    transAccelFactor: n.transAccelFactor,
-    boostAccelFactor: n.boostAccelFactor,
-    driftBoostMulAccelFactor: n.driftBoostMulAccelFactor,
-    driftBoostTick: n.driftBoostTick,
-    useTransformBooster: n.useTransformBooster !== 0,
-    chargeBoostBySpeed: n.chargeBoostBySpeed,
-    chargeBoostBySpeedAdded: n.chargeBoostBySpeedAdded,
-    driftGaugeFactor: n.driftGaugeFactor,
-    motorcycleType: n.motorcycleType !== 0,
-    speedSlotCapacity: n.speedSlotCapacity,
-    autoChargeLowSpeed: e.autoChargeLowSpeed,
-    driftGaugeReset: e.driftGaugeReset,
-    wheelPosition: e.wheelPosition,
-  };
-}
+function jt0(spec, visual, engineGrade) { return vehiclePhysicsParameters(spec, visual, engineGrade); }
 
 function $h(n, e, t) {
   const i = j0(n, e);

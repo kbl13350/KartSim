@@ -41,6 +41,8 @@ export type DrivingCommand =
 
 export interface DrivingCommandContext {
   speedRaceMode?: { kind: string };
+  /** Item races route Ctrl/Alt to the item controller instead of the nitro slots. */
+  itemMode?: boolean;
   runtime: {
     driftDecay: number;
     activeDrift: boolean;
@@ -93,10 +95,12 @@ export function handleVehicleDrivingCommand(
       vehicle.stopDrift();
       return;
     case "use-item-or-booster":
+      if (vehicle.itemMode) return;
       vehicle.startNormalBooster(input);
       vehicle.armDualBooster();
       return;
     case "reorder-items":
+      if (vehicle.itemMode) return;
       vehicle.reorderSpeedSlots();
       return;
     case "instant-acceleration":
@@ -351,6 +355,7 @@ export function applyVehicleKartPairResponse(
 }
 
 export interface VehicleControlSettings {
+  itemMode?: boolean;
   runtime: {
     raceMotionLocked: boolean;
     physicsState: number;
@@ -370,14 +375,16 @@ export interface VehicleControlSettings {
     animationSlot: number;
     animationInput?: unknown;
   };
-  tuning: { startBoosterTimeSpeed: number };
+  tuning: { startBoosterTimeSpeed: number; startBoosterTimeItem?: number };
   state: { boostTime: number };
 }
 
 export function startVehicleRaceBooster(vehicle: VehicleControlSettings): void {
-  const { runtime } = vehicle;
+  const { runtime, tuning } = vehicle;
   if (runtime.physicsState !== 0) return;
-  const duration = Math.max(0, Math.trunc(vehicle.tuning.startBoosterTimeSpeed));
+  // Item races use StartBoosterTimeItem; the release only knew the speed variant.
+  const duration = Math.max(0, Math.trunc(vehicle.itemMode
+    ? tuning.startBoosterTimeItem ?? tuning.startBoosterTimeSpeed : tuning.startBoosterTimeSpeed));
   runtime.physicsState = 1;
   runtime.stateRemainingMs = duration;
   vehicle.state.boostTime = duration * 0.001;
@@ -401,6 +408,7 @@ export function restoreVehicleResetInteraction(vehicle: VehicleControlSettings):
 }
 
 export interface VehicleModeInventoryContext {
+  itemMode?: boolean;
   runtime: { committedGauge: number; speedSlots: number[] };
   tuning: { driftMaxGauge: number };
   state: { nitro: number };
@@ -411,6 +419,8 @@ export interface VehicleModeInventoryContext {
 const isNitroSlot = (slot: number) => slot === 6 || slot === 14;
 
 export function updateVehicleModeInventory(vehicle: VehicleModeInventoryContext): boolean {
+  // Item races have no drift gauge booster; boosters come only from item boxes.
+  if (vehicle.itemMode) return false;
   const gaugeMax = float(Math.max(vehicle.tuning.driftMaxGauge, 1));
   if (vehicle.runtime.committedGauge !== gaugeMax) return false;
   vehicle.clearResetGaugeRefill();

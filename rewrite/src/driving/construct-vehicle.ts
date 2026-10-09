@@ -1,4 +1,5 @@
 import type { Vector3 } from "./continuous-motion";
+import { installVehicleItemMode, type ItemModeVehicle } from "./item-mode";
 
 export interface VehicleCollisionDimensions {
   rawHalfWidth: number;
@@ -15,6 +16,7 @@ export interface VehicleRaceMode {
 
 export interface VehicleConstructionContext {
   externalTeamGauge: boolean;
+  itemMode?: boolean;
   speedRaceMode?: VehicleRaceMode;
   lteMotion?: unknown;
   giant?: unknown;
@@ -65,6 +67,9 @@ export function initializeVehicle(
   if ((speedRaceMode?.kind === "giant") !== !!giant) {
     throw new Error("巨人玩法与规则 owner 不一致。");
   }
+  // Item races size the slot store from itemSlotCapacity when the runtime is created.
+  const itemMode = speedRaceMode?.kind === "item";
+  if (itemMode) vehicle.itemMode = true;
   if (speedRaceMode) {
     validateRaceMode(speedRaceMode);
     if (speedRaceMode.team !== teamBooster) {
@@ -93,4 +98,6 @@ export function initializeVehicle(
     z: Math.fround(dimensions.rawHeight),
   };
   if (checkClientFramerate) vehicle.clock.enableRhythmCheck();
+  // The constructed AL carries every member the item owner needs.
+  if (itemMode) installVehicleItemMode(vehicle as unknown as ItemModeVehicle);
 }

@@ -95,7 +95,10 @@ export function createBodyParamSpec(input: BodyParamInput, speed: number,
     startForwardAccelSpeed: startAcceleration(number("StartForwardAccelFactorSpeed", 0), forwardAccel),
     driftGaguePreservePercent: f32(number("DriftGaguePreservePercent", 0)),
     useExtendedAfterBooster: boolean("UseExtendedAfterBooster", 0),
-    boostAccelFactorOnlyItem: f32(number("BoostAccelFactorOnlyItem", 1.5)),
+    // Kart XML spells the item booster factor BoosterAccelFactorItem; the release
+    // parser only read BoostAccelFactorOnlyItem, which no BodyParam file contains.
+    boostAccelFactorOnlyItem: f32(number("BoostAccelFactorOnlyItem",
+      number("BoosterAccelFactorItem", 1.5))),
     antiCollideBalance: f32(number("antiCollideBalance", 1)),
     dualBoosterSetAuto: boolean("dualBoosterSetAuto", 0),
     dualBoosterTickMin: number("dualBoosterTickMin", 40),
