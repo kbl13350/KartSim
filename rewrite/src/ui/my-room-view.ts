@@ -15,7 +15,10 @@ import type { BmlLibrary } from "./bml-canvas";
 import type { MyRoomEnvironment } from "./my-room-catalog";
 import { askRoomPassword, openFindRiderDialog } from "./my-room-dialogs";
 import { openMyRoomEmblems, type MyRoomEmblemDialog } from "./my-room-emblems";
-import { MyRoomHud, loadMyRoomHudAssets, type MyRoomHudLibrary, type MyRoomHudRider } from "./my-room-hud";
+import { MY_ROOM_FONT_FAMILY, MyRoomHud, loadMyRoomHudAssets, type MyRoomHudLibrary,
+  type MyRoomHudRider } from "./my-room-hud";
+import { MY_ROOM_BALLOON_MS, MyRoomRiderLabels, type MyRoomLabel } from "./my-room-labels";
+import type { MyRoomDataLibrary } from "../myroom/myroom-data";
 import { MyRoomSceneView, type MyRoomRemoteRider, type MyRoomSceneLibrary,
   type MyRoomSceneSubject, type MyRoomVisitorKart } from "./my-room-scene";
 
@@ -156,6 +159,10 @@ export class MyRoomView {
   private etcPassword?: string;
   private releaseEvents?: () => void;
   private readonly gloves: ImageCache;
+  /** Name tags and talk balloons over the riders. */
+  private labels?: MyRoomRiderLabels;
+  /** Talk balloons up, by account id ("" for the local rider outside a live room). */
+  private readonly balloons = new Map<string, { text: string; until: number }>();
 
   constructor(readonly options: MyRoomViewOptions) {
     this.profile = options.profile;
@@ -183,6 +190,9 @@ export class MyRoomView {
     if (this.disposed) return;
     this.element.hidden = false;
     this.sceneView ??= new MyRoomSceneView(this.scene, this.options.library);
+    this.labels ??= new MyRoomRiderLabels(this.scene, this.options.library as unknown as MyRoomDataLibrary,
+      MY_ROOM_FONT_FAMILY);
+    this.sceneView.onFrame = heads => this.labels?.draw(heads, id => this.riderLabel(id));
     void this.sceneView.setEnvironment(this.environment());
     if (this.options.subject) void this.sceneView.setSubject({ ...this.options.subject,
       displayKarts: this.displayKartEntries() });
@@ -235,6 +245,7 @@ export class MyRoomView {
     this.expedition?.dispose();
     this.hud?.dispose();
     this.sceneView?.dispose();
+    this.labels?.dispose();
     this.element.remove();
     this.previousFocus?.isConnected && this.previousFocus.focus();
   }
@@ -296,7 +307,12 @@ export class MyRoomView {
         onFindRider: () => void this.openFindRider(),
         onRandomVisit: () => void this.randomVisit(),
         onKick: accountId => void this.kick(accountId),
-        onChat: text => !!this.room && !!this.options.social?.connection.chat(text),
+        onChat: text => {
+          if (this.room && this.options.social?.connection.chat(text)) return true;
+          // Not in a live room: the line shows here only, with its balloon.
+          this.showBalloon("", text);
+          return false;
+        },
         gloveImage: glove => {
           const path = gloveIconPath(glove);
           return path ? this.gloves.get(path) : undefined;
@@ -414,6 +430,7 @@ export class MyRoomView {
       }
       case "chat":
         this.hud?.addChatLine(`${event.nickname} : ${event.text}`);
+        this.showBalloon(event.accountId, event.text);
         return;
       case "chat-error":
         this.hud?.addChatLine(event.code === "CHAT_DISABLED" ? MY_ROOM_TEXT.chatDisabled
@@ -739,6 +756,20 @@ export class MyRoomView {
       this.options.onClose();
     }
   };
+
+  private showBalloon(accountId: string, text: string): void {
+    this.balloons.set(accountId, { text, until: performance.now() + MY_ROOM_BALLOON_MS });
+  }
+
+  /** The name tag and balloon over a rider ("" is the local rider). */
+  private riderLabel(id: string): MyRoomLabel | undefined {
+    const accountId = id || this.room?.self || "";
+    const name = this.members.get(accountId)?.nickname ?? (id ? undefined : this.options.ownerName);
+    if (!name) return undefined;
+    const balloon = this.balloons.get(accountId);
+    if (balloon && balloon.until <= performance.now()) this.balloons.delete(accountId);
+    return { name, ...(balloon && balloon.until > performance.now() ? { balloon: balloon.text } : {}) };
+  }
 
   private setStatus(message: string | undefined): void {
     this.status.textContent = message ?? "";

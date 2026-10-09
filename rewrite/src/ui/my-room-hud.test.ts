@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { formatMyRoomString, myRoomHudColor, myRoomHudTextRender,
-  readMyRoomStringBag, type MyRoomHudNode } from "./my-room-hud";
+import { formatMyRoomString, myRoomHudColor, myRoomHudTextRender, myRoomRiderRows,
+  readMyRoomStringBag, wrapMyRoomChatLine, type MyRoomHudNode } from "./my-room-hud";
+import { balloonLayout } from "./my-room-labels";
 
 const element = (name: string, attributes: Record<string, string>,
   children: MyRoomHudNode[] = []): MyRoomHudNode => ({
@@ -29,4 +30,26 @@ test("release label colours and text renders map to canvas styles", () => {
   assert.equal(myRoomHudColor(undefined, "black"), "black");
   assert.deepEqual(myRoomHudTextRender("outline14"), { size: 14, stroke: 1 });
   assert.deepEqual(myRoomHudTextRender("bold16"), { size: 16, stroke: 0 });
+});
+
+test("the rider list packs the riders in seat order without gaps", () => {
+  const riders = [{ slot: 5, name: "e" }, { slot: 2, name: "b" }, { slot: 0, name: "owner" }];
+  assert.deepEqual(myRoomRiderRows(riders).map(rider => rider.name), ["owner", "b", "e"]);
+  assert.deepEqual(myRoomRiderRows([{ slot: 3 }, { slot: 1 }]), [{ slot: 1 }, { slot: 3 }]);
+});
+
+test("long chat lines wrap to the history box width", () => {
+  const measure = (text: string) => text.length * 10;
+  assert.deepEqual(wrapMyRoomChatLine("abcdefg", 30, measure), ["abc", "def", "g"]);
+  assert.deepEqual(wrapMyRoomChatLine("ab cd", 30, measure), ["ab ", "cd"]);
+  assert.deepEqual(wrapMyRoomChatLine("abc def", 30, measure), ["abc", "def"]);
+  assert.deepEqual(wrapMyRoomChatLine("", 30, measure), [""]);
+  assert.deepEqual(wrapMyRoomChatLine("你好😀", 20, measure), ["你好", "😀"]);
+});
+
+test("talk balloons grow one row per wrapped line", () => {
+  const one = balloonLayout(1, 1);
+  assert.deepEqual(one, { width: 140, height: 61, text: { x: 10, y: 14, width: 120, height: 19 } });
+  assert.equal(balloonLayout(3, 1).height - one.height, 38);
+  assert.equal(balloonLayout(2, 0.5).width, 70);
 });

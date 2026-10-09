@@ -3,6 +3,7 @@
 // Stable minified names are retained for behavioral parity.
 
 import { createMqTachometerClass } from "../vehicle/mq-tachometer-renderer.ts";
+import { individualRiderDye } from "../multiplayer/individual-rider-colors.ts";
 import { createMotionBlurEffectClass } from "../vehicle/motion-blur-effect.ts";
 import { collectDummySounds, TrackDummySurroundAudio, StandaloneEventSurroundAudio, unsupportedEventSound } from "../vehicle/track-surround-audio.ts";
 import { ReadyCameraController, warpNextCamera } from "../vehicle/ready-camera.ts";
@@ -6184,7 +6185,7 @@ async function A40(n, e, t, i, r, s) {
           ? l0.equipment.itemIds[70]
           : Q && F.team
             ? Q[F.team - 1].dyeId
-            : void 0,
+            : individualRiderDye(e, F.slot),
         O0 = c ? jM(l0, z, F0) : l0,
         z0 = M.characters.find((x0) => x0.itemId === O0.equipment.itemIds[1]);
       if (!j || !z0 || j.engineGrade === void 0)
@@ -6247,7 +6248,7 @@ async function A40(n, e, t, i, r, s) {
       ($ && S.push(() => $.dispose()), w());
       const o0 = F0 ?? O2.equipment.itemIds[70],
         c0 = await (
-          Q
+          Q || F0 !== void 0
             ? new ul(
                 rd(n, {
                   ...O2,

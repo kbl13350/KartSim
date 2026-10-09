@@ -8,6 +8,7 @@ import { loadMultiplayerSessionToken, saveMultiplayerSessionToken, clearMultipla
 import { accountOverlayStyle, accountPanelStyle, accountErrorMessages, styleAccountButtons, formatAccountServiceError, currentMultiplayerOrigin, multiplayerAccountEndpoint, multiplayerAuthHeaders } from "../multiplayer/account-ui-support.ts";
 import { loadLobbyAvatarAppearance } from "../multiplayer/lobby-avatar-appearance.ts";
 import { lobbyRiderSlots, roadblockRunnerId, decorateRoadblockRiders, wrapLobbyChatBubble } from "../multiplayer/lobby-room-helpers.ts";
+import { decorateIndividualRiders } from "../multiplayer/individual-rider-colors.ts";
 import { multiplayerReadyOptions } from "../multiplayer/ready-options.ts";
 import { MultiplayerLobbyController } from "../multiplayer/lobby-controller.ts";
 import { ReadyController } from "../timeattack/ready-controller.ts";
@@ -335,7 +336,7 @@ function FT(room, playerId) { return lobbyRiderSlots(room, playerId); }
 
 function TF(room) { return roadblockRunnerId(room, G2); }
 
-function DT(room, colors) { return decorateRoadblockRiders(room, colors, TF(room)); }
+function DT(room, colors) { return decorateIndividualRiders(decorateRoadblockRiders(room, colors, TF(room))); }
 
 async function Ll0(library, roadblock = false) { return loadLobbyRoomTemplate(library, roadblock, roomTemplateDependencies); }
 
