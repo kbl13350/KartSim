@@ -342,6 +342,17 @@ func TestMessengerChatFloodHTTP(t *testing.T) {
 	if flood.MutedUntil != clock.millis()+10_000 {
 		t.Fatalf("muted until %d, now %d", flood.MutedUntil, clock.millis())
 	}
+	// A resend of a stored message (a client retrying after its socket dropped) is a duplicate,
+	// not CHAT_FLOOD, even while muted.
+	var resent struct {
+		Duplicate bool `json:"duplicate"`
+	}
+	h.post("/api/messenger/messages", map[string]string{"to": idB, "text": "x",
+		"clientId": "40000000-0000-4000-8000-000000000000"}, bearerHeader(tokenA)).
+		expect(t, http.StatusOK, "").json(t, &resent)
+	if !resent.Duplicate {
+		t.Fatal("resend was not answered as a duplicate")
+	}
 	clock.advance(10 * time.Second)
 	h.post("/api/messenger/messages", map[string]string{"to": idB, "text": "x",
 		"clientId": "40000000-0000-4000-8000-000000000009"}, bearerHeader(tokenA)).expect(t, http.StatusOK, "")

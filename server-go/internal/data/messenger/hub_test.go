@@ -26,6 +26,7 @@ type fakeBackend struct {
 	invisible map[string]bool
 	inGame    map[string]bool
 	gameErr   error
+	rosterErr map[string]error // Roster fails once for these accounts
 	revoked   map[string]bool
 	clientIDs map[string]Message
 	nextID    int64
@@ -34,7 +35,7 @@ type fakeBackend struct {
 
 func newFakeBackend() *fakeBackend {
 	return &fakeBackend{friends: map[string][]string{}, invisible: map[string]bool{}, inGame: map[string]bool{},
-		revoked: map[string]bool{}, clientIDs: map[string]Message{}}
+		rosterErr: map[string]error{}, revoked: map[string]bool{}, clientIDs: map[string]Message{}}
 }
 
 func (b *fakeBackend) befriend(x, y string) {
@@ -61,6 +62,10 @@ func (b *fakeBackend) Welcome(_ context.Context, accountID string) (any, error) 
 func (b *fakeBackend) Roster(_ context.Context, accountID string) (Roster, error) {
 	b.mu.Lock()
 	defer b.mu.Unlock()
+	if err := b.rosterErr[accountID]; err != nil {
+		delete(b.rosterErr, accountID)
+		return Roster{}, err
+	}
 	roster := Roster{Invisible: b.invisible[accountID]}
 	for _, friend := range b.friends[accountID] {
 		roster.Friends = append(roster.Friends, RosterFriend{AccountID: friend, Invisible: b.invisible[friend]})
@@ -366,6 +371,24 @@ func TestFriendsChanged(t *testing.T) {
 	h.backend.befriend("a", "b")
 	h.hub.FriendsChanged("a", "b")
 	time.Sleep(100 * time.Millisecond)
+	a.ws.Close()
+	b.expectPresence("a", Offline)
+}
+
+// A friend list reload that fails is retried by the next reconcile.
+func TestFailedRosterReloadRetried(t *testing.T) {
+	h := newTestHub(t, Options{})
+	a := h.connect("a")
+	b := h.connect("b")
+	h.backend.befriend("a", "b")
+	h.backend.mu.Lock()
+	h.backend.rosterErr["b"] = errors.New("mysql went away")
+	h.backend.mu.Unlock()
+	h.hub.FriendsChanged("a", "b")
+	time.Sleep(100 * time.Millisecond)
+	h.hub.Reconcile(context.Background())
+	time.Sleep(100 * time.Millisecond)
+	// b's reload failed once; after the retry b watches a again.
 	a.ws.Close()
 	b.expectPresence("a", Offline)
 }

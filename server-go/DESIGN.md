@@ -292,7 +292,7 @@ State        = { me: Me, settings: Settings, friends: Friend[], incoming: Incomi
 | `POST /api/messenger/friends/remove` | `{accountId}` → `{ok: true}`（双方都失去好友关系） | 404 `FRIEND_NOT_FOUND` |
 | `POST /api/messenger/friends/favorite` | `{accountId, favorite: bool}` → `{friend: Friend}` | 404 `FRIEND_NOT_FOUND` |
 | `POST /api/messenger/outbox/clear` | `{}` → `{deleted: n}`（隐藏我已被同意/拒绝的请求卡片，待处理的保留） | |
-| `POST /api/messenger/blocks/add` | `{accountId}` → `{block: Block}`（同时删除双方的好友关系与两个方向的请求；重复屏蔽返回原来的记录） | 404 `PLAYER_NOT_FOUND`，400 `CANNOT_BLOCK_SELF`，409 `BLOCK_LIMIT` |
+| `POST /api/messenger/blocks/add` | `{accountId}` → `{block: Block}`（同时删除双方的好友关系与两个方向的请求，只保留我被拒绝（含过期自动拒绝）的那条请求：它从我的发件箱隐藏，到过期才删除，所以先屏蔽再解除不能绕过拒绝冷却；重复屏蔽返回原来的记录） | 404 `PLAYER_NOT_FOUND`，400 `CANNOT_BLOCK_SELF`，409 `BLOCK_LIMIT` |
 | `POST /api/messenger/blocks/remove` | `{accountId}` → `{ok: true}` | 404 `BLOCK_NOT_FOUND` |
 | `PUT /api/messenger/settings` | `Settings`（三个字段都必填）→ `Settings` | 400 `INVALID_REQUEST` |
 | `GET /api/messenger/messages?with=<accountId>&before=<messageId?>&limit=<1..100，默认 30>` | → `{messages: Message[]（旧 → 新）, hasMore: bool}`，只含我的清除标记之后的消息 | 400 `INVALID_ACCOUNT_ID`（`with` 不是 UUID 或是自己），400 `INVALID_REQUEST`（`before`/`limit` 非法） |
@@ -340,12 +340,12 @@ private_conversations(account_id FK, peer_id FK, last_message_id, last_message_a
 - 所有账号列都是 `ON DELETE CASCADE` 外键（测试清理靠删除账号）。MySQL 不允许在带级联动作的外键列上加 CHECK（错误 3823），所以“不能是自己”和 `low_id < high_id` 由代码保证；`state IN (…)` 与 `unread >= 0` 有 CHECK。`private_messages.sender_id` 总是 `low_id` 或 `high_id` 之一，不另设外键；`body` 比接口允许的 30 码点宽，以后放宽限制不用迁移。
 - `friend_requests`：`pending` 的 `expires_at` = 创建 + 7 天，到期自动拒绝（原版 autoRefuseStr）；`accepted`/`refused` 的 `resolved_at` 为处理时间，`expires_at` = 处理 + 7 天，到期删除（原版 autoDeleteStr）。`sender_hidden` 是发送者清理掉的卡片，行保留到 `expires_at`，因此拒绝的冷却（到下一个北京时间 06:00，原版 refuseConfirm）仍然有效。再次请求同一个人时替换旧的结果行。
 - `private_conversations`：发消息时发件人的行 `last_read_id` 推进到这条消息、`unread` 清零，收件人的行 `unread + 1`，双方 `hidden` 清零；`read` 在行锁下按 `id > max(last_read_id, cleared_up_to)` 重新数未读；`hide` 把 `cleared_up_to` 与 `last_read_id` 设为最后一条消息。
-- 事务：好友关系、请求与屏蔽的变更都在 READ COMMITTED + 死锁重试（`inEconomyTx`）中，先按账号 ID 升序用 `INSERT … ON DUPLICATE KEY UPDATE` 锁住双方的 `messenger_settings` 行（不存在时创建默认行），所以每个账号的这些变更串行执行，上限计数没有竞态；账号已被删除（外键失败）映射为 `PLAYER_NOT_FOUND`（或相应的“找不到”）。发消息先查 `clientId` 去重，再用 `FOR SHARE` 读发件人一侧的好友行（并发的删除好友或屏蔽要等它提交，之后不会再有消息写入），插入消息后按账号 ID 升序更新两个会话行，双向同时发消息不会死锁。
+- 事务：好友关系、请求与屏蔽的变更都在 READ COMMITTED + 死锁重试（`inEconomyTx`）中，先按账号 ID 升序用 `INSERT … ON DUPLICATE KEY UPDATE` 锁住双方的 `messenger_settings` 行（不存在时创建默认行），所以每个账号的这些变更串行执行，上限计数没有竞态；账号已被删除（外键失败）映射为 `PLAYER_NOT_FOUND`（或相应的“找不到”）。发消息先查 `clientId` 去重（在刷屏检查之前：断线后用 HTTP 重发同一条消息不消耗刷屏额度，也不会被 `CHAT_FLOOD` 拒绝），再用 `FOR SHARE` 读发件人一侧的好友行（并发的删除好友或屏蔽要等它提交，之后不会再有消息写入），插入消息后按账号 ID 升序更新两个会话行，双向同时发消息不会死锁。
 
 ### 9.6 hub（`internal/data/messenger`）
 
 - 连接的读写模型照搬游戏节点 `internal/game/ws`（每连接一个读协程、一个写协程与按字节计的有界队列、令牌桶），但不导入 `internal/game`。hub 方法从不阻塞在连接上；调用 MySQL/Redis 时使用 hub 自己的 5 秒超时上下文，不使用升级请求的上下文。
-- 状态：已连接账号（连接列表、好友集合、命令限流）与“对等方”（已连接账号本身及其好友：观察者集合、隐身、是否在游戏、最近推送的在线状态）。账号的第一个连接 hello 时加载好友列表（含好友的隐身设置）并向 Redis 查询本人和好友是否在游戏；好友关系变化（同意、删除、屏蔽）后重新加载双方的列表。每次加载与每个隐身/游戏在线读数都带序号，旧的读数不会覆盖新的。每 10 秒的核对同时重试加载失败的好友列表并清理闲置的刷屏计数。
+- 状态：已连接账号（连接列表、好友集合、命令限流）与“对等方”（已连接账号本身及其好友：观察者集合、隐身、是否在游戏、最近推送的在线状态）。账号的第一个连接 hello 时加载好友列表（含好友的隐身设置）并向 Redis 查询本人和好友是否在游戏；好友关系变化（同意、删除、屏蔽）后重新加载双方的列表。每次加载与每个隐身/游戏在线读数都带序号，旧的读数不会覆盖新的。只有最新一次请求的加载能生效；每 10 秒的核对重试最新一次没有生效（失败）的好友列表加载，并清理闲置的刷屏计数。
 - `presence-account` 的游戏在线用 `cache.Cluster.AccountsInGame`：`MGET presence-account:{id}`，再 `MGET node:{nodeId}` 确认节点仍在注册（与 `NameOnline` 相同的规则）。Redis 不可用时保留上次已知的游戏在线；新加载的视为不在游戏。
 - 关闭：`server.go` 在关闭 HTTP 监听之前调用 `ShutdownMessenger`（`http.Server.Shutdown` 不跟踪已升级的连接），所有连接以 1001 关闭。
 

@@ -22,7 +22,10 @@ let current: MessengerService | undefined;
 let viewer: ((room: ChatRoom) => boolean) | undefined;
 let noticeListener: ((kind: string, nickname: string) => void) | undefined;
 const changeListeners = new Set<() => void>();
-let keyTarget: { element: HTMLElement; handle(event: KeyboardEvent): void } | undefined;
+interface KeyTarget { element: HTMLElement; handle(event: KeyboardEvent): void }
+let keyTarget: KeyTarget | undefined;
+/** The window's own modal dialogs (加为好友, confirmations), appended to the game root. */
+const dialogTargets = new Set<KeyTarget>();
 let keyGuard = false;
 
 /**
@@ -37,16 +40,30 @@ function installKeyGuard(): void {
   for (const type of ["keydown", "keyup", "keypress"] as const) {
     window.addEventListener(type, event => {
       const target = event.target as Node | null;
-      if (!keyTarget || !target || !keyTarget.element.contains(target)) return;
+      if (!target) return;
+      const owner = keyTarget?.element.contains(target) ? keyTarget
+        : [...dialogTargets].find(dialog => dialog.element.contains(target));
+      if (!owner) return;
       event.stopImmediatePropagation();
-      keyTarget.handle(event);
+      owner.handle(event);
     }, true);
   }
 }
 
 /** The window's element and key handler (undefined when it is disposed). */
-export function setMessengerKeyTarget(target: typeof keyTarget): void {
+export function setMessengerKeyTarget(target: KeyTarget | undefined): void {
   keyTarget = target;
+}
+
+/**
+ * Keys in one of the window's dialogs: the guard keeps them from the pages
+ * under it and hands them to `handle` (the dialog's own listeners never see
+ * them). Returns the release.
+ */
+export function guardMessengerDialog(target: KeyTarget): () => void {
+  installKeyGuard();
+  dialogTargets.add(target);
+  return () => { dialogTargets.delete(target); };
 }
 
 function announce(): void {
@@ -68,6 +85,8 @@ export function startMessenger(session: BrowserAccountSession): MessengerService
     token: () => session.isClosed || session.expired ? undefined : session.sessionToken,
     viewing: room => viewer?.(room) ?? false,
     onNotice: (kind, nickname) => noticeListener?.(kind, nickname),
+    // Logged out elsewhere or expired: the account read gets the 401 that signs this page out.
+    onSessionEnded: () => { void session.refresh().catch(() => undefined); },
   });
   current = { session, store, api, connection, serverNow: () => session.serverNow() };
   connection.start();

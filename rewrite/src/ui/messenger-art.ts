@@ -140,6 +140,7 @@ const RUNTIME_IMAGES = [
   "msg_condition_online", "msg_condition_offline", "msg_condition_ingame", "msg_condition_away",
   "msg_icon_friend_0", "msg_icon_friend_1", "msg_icon_friend_2",
   "msg_list_new_1", "msg_list_new_2",
+  "msg_tab_message_popup_selected1",
   "emoticonPopup_bg",
 ];
 
@@ -331,6 +332,13 @@ export interface MessengerEmoticons {
 
 const emoticonCache = new WeakMap<object, Promise<MessengerEmoticons | undefined>>();
 
+/** XML text by its byte order mark (emoticon@cn.xml is UTF-16LE), UTF-8 without one. */
+export function decodeText(bytes: Uint8Array): string {
+  if (bytes[0] === 0xff && bytes[1] === 0xfe) return new TextDecoder("utf-16le").decode(bytes.subarray(2));
+  if (bytes[0] === 0xfe && bytes[1] === 0xff) return new TextDecoder("utf-16be").decode(bytes.subarray(2));
+  return new TextDecoder().decode(bytes);
+}
+
 /** etc_/emoticon emoticon@cn.xml and its set_1 sheet ("/微笑/" … typed into chat). */
 export function loadMessengerEmoticons(library: MessengerLibrary): Promise<MessengerEmoticons | undefined> {
   let pending = emoticonCache.get(library);
@@ -338,8 +346,7 @@ export function loadMessengerEmoticons(library: MessengerLibrary): Promise<Messe
     pending = (async () => {
       const definition = find(library, ["etc_/emoticon"], "emoticon@cn", ".xml");
       if (!definition) return undefined;
-      const xml = new DOMParser().parseFromString(new TextDecoder().decode(await definition.bytes()),
-        "application/xml");
+      const xml = new DOMParser().parseFromString(decodeText(await definition.bytes()), "application/xml");
       const set = xml.querySelector("set");
       const sheet = set && find(library, ["etc_/emoticon"], set.getAttribute("texture") ?? "set_1");
       if (!set || !sheet) return undefined;

@@ -278,6 +278,11 @@ export class MessengerWindow {
   private readonly greeted = new Set<string>();
   private focusedInput?: HTMLInputElement;
   private busy = 0;
+  /** Aborts the window's open dialogs (a race starts, the window is disposed). */
+  private dialogs = new AbortController();
+  /** 加为好友 is open (or opening): a second click does not stack another. */
+  private addingFriend = false;
+  private readonly onVisibility = () => this.queueRender();
 
   static async load(options: MessengerWindowOptions): Promise<MessengerWindow> {
     const [art, emoticons] = await Promise.all([
@@ -322,6 +327,7 @@ export class MessengerWindow {
     this.dom.named("mainview").hidden = true;
     this.dom.named("tooltip").hidden = true;
     this.dom.named("addFriend2Chat").hidden = true;
+    this.dom.named("AddInviteChat").classList.add("ks-m-popup");
 
     this.tooltip = element("div", "ks-m-tooltip");
     this.tooltip.hidden = true;
@@ -404,8 +410,14 @@ export class MessengerWindow {
   /** While the taskbar is hidden (races) the window stays closed but keeps its state. */
   setSuspended(suspended: boolean): void {
     this.suspended = suspended;
-    if (suspended) this.closePopups();
+    if (suspended) {
+      this.closePopups();
+      this.dialogs.abort();
+      this.dialogs = new AbortController();
+    }
     this.applyVisibility();
+    // What changed while hidden (messages, presence, mail) shows at once; the room on screen is read.
+    if (!suspended) this.render();
   }
 
   private applyVisibility(): void {
@@ -422,6 +434,8 @@ export class MessengerWindow {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.dialogs.abort();
+    document.removeEventListener("visibilitychange", this.onVisibility);
     this.unsubscribe?.();
     this.releaseService();
     this.resizeObserver.disconnect();
@@ -504,6 +518,8 @@ export class MessengerWindow {
     const { strings } = this.art;
     const named = (name: string, type?: string) => this.dom.named(name, type);
     setMessengerKeyTarget({ element: this.layer, handle: this.onKey });
+    // Coming back to the tab reads the room on screen.
+    document.addEventListener("visibilitychange", this.onVisibility);
     document.addEventListener("pointerdown", this.onOutside, true);
     // Nothing under the window reacts to what happens on it.
     for (const type of ["pointerdown", "pointerup", "click", "dblclick", "contextmenu", "wheel"] as const)
@@ -525,6 +541,7 @@ export class MessengerWindow {
     const main = (tab: MainTab) => this.click(named(tab, "ImageButton"), () => {
       this.mainTab = tab;
       this.closePopups();
+      this.closeInvite();
       this.render();
     });
     main("friendPage");
@@ -653,31 +670,42 @@ export class MessengerWindow {
     }
   }
 
+  /** A release notice; none while the window is suspended for a race. */
   private notice(message: string): Promise<boolean> {
+    if (this.suspended || this.disposed) return Promise.resolve(false);
     return openMessengerMessage(this.options.library, this.options.root,
-      this.art.strings.get("messenger") ?? "好友聊天系统", message);
+      this.art.strings.get("messenger") ?? "好友聊天系统", message, {}, this.dialogs.signal)
+      .catch(() => false);
   }
 
   private confirm(title: string, message: string): Promise<boolean> {
+    if (this.suspended || this.disposed) return Promise.resolve(false);
     return openMessengerMessage(this.options.library, this.options.root, title, message,
-      { yes: "确定", no: this.art.strings.get("cancel") ?? "取消" });
+      { yes: "确定", no: this.art.strings.get("cancel") ?? "取消" }, this.dialogs.signal)
+      .catch(() => false);
   }
 
   private async addFriend(): Promise<void> {
-    if (!this.service) return;
-    await openAddFriendDialog(this.options.library, this.options.root, (nickname, dialog) => {
-      const service = this.service;
-      if (!service) return;
-      dialog.setBusy(true);
-      void service.api.requestFriend(nickname).then(async () => {
-        dialog.close();
-        void service.connection.sync();
-        await this.notice(this.art.strings.get("successAddFriend") ?? "已完成好友申请。");
-      }, async error => {
-        dialog.setBusy(false);
-        await this.notice(errorText(this.art, error));
-      });
-    }, () => undefined);
+    if (!this.service || this.suspended || this.addingFriend) return;
+    this.addingFriend = true;
+    try {
+      await openAddFriendDialog(this.options.library, this.options.root, (nickname, dialog) => {
+        const service = this.service;
+        if (!service) return;
+        dialog.setBusy(true);
+        void service.api.requestFriend(nickname).then(async () => {
+          dialog.close();
+          void service.connection.sync();
+          await this.notice(this.art.strings.get("successAddFriend") ?? "已完成好友申请。");
+        }, async error => {
+          dialog.setBusy(false);
+          await this.notice(errorText(this.art, error));
+        });
+      }, () => { this.addingFriend = false; }, this.dialogs.signal);
+    } catch (error) {
+      this.addingFriend = false;
+      await this.notice(errorText(this.art, error));
+    }
   }
 
   private async respond(accountId: string, accept: boolean): Promise<void> {
@@ -702,8 +730,11 @@ export class MessengerWindow {
     const { confirmStrings, strings } = this.art;
     if (!await this.confirm(confirmStrings.get("blockFriend") ?? "屏蔽好友",
       strings.get("inquireBlockFriend") ?? "要屏蔽好友吗？")) return;
-    await this.run(service => service.api.block(friend.accountId));
-    this.service?.store.closeRoom(friend.accountId);
+    const blocked = await this.run(async service => {
+      await service.api.block(friend.accountId);
+      return true;
+    });
+    if (blocked) this.service?.store.closeRoom(friend.accountId);
   }
 
   private async unblock(accountId: string): Promise<void> {
@@ -771,12 +802,17 @@ export class MessengerWindow {
       store.addSystemLine(room.peerId, formatString(strings.get("offlineChat") ?? "%s处于离线状态", room.nickname));
   }
 
+  /** A room became the active one: its release lines and its history. */
+  private enterRoom(room: ChatRoom): void {
+    this.greet(room, false);
+    if (!room.loaded) void this.service?.connection.loadOlder(room.peerId);
+  }
+
   private selectRoom(room: ChatRoom): void {
     const service = this.service;
     if (!service) return;
     service.store.selectRoom(room.peerId);
-    this.greet(room, false);
-    if (!room.loaded) void service.connection.loadOlder(room.peerId);
+    this.enterRoom(room);
     const input = editInput(this.dom.named("chatInput"));
     input.value = room.draft;
     this.render();
@@ -789,6 +825,7 @@ export class MessengerWindow {
     service.store.closeRoom(room.peerId);
     this.greeted.delete(room.peerId);
     const next = service.store.activeRoom;
+    if (next) this.enterRoom(next);
     editInput(this.dom.named("chatInput")).value = next?.draft ?? "";
     if (room.lastMessageId > 0) await this.run(api => api.api.hideConversation(room.peerId));
   }
@@ -850,7 +887,8 @@ export class MessengerWindow {
     if (!this.emoticonPanel) {
       const panel = element("div", "ks-m-emopanel");
       const background = this.art.images.get("emoticonPopup_bg");
-      // mainview GCEmoticonSelect (220,425 218×122 in the window), selectEmoticon's emoList inside.
+      // mainview GCEmoticonSelect: windowRect "220 425 218 122" is its corner plus selectEmoticon's
+      // 218×122 (read as x1 y1 x2 y2 it would be empty), emoList inside.
       place(panel, { x: 220, y: 425, width: 218, height: 122 });
       if (background) panel.style.background = `url("${background.url}") 0 0/100% 100% no-repeat`;
       emoticons.list.slice(0, 32).forEach((emoticon, index) => {
@@ -1043,9 +1081,9 @@ export class MessengerWindow {
     return this.art.strings.get(presence) ?? presence;
   }
 
-  private friendGroups(): Array<{ key: GroupKey; title: string; friends: Friend[] }> {
+  private friendGroups(searched = true): Array<{ key: GroupKey; title: string; friends: Friend[] }> {
     const friends = [...(this.service?.store.state?.friends ?? [])].sort(byNickname);
-    const query = this.search.trim().toLowerCase();
+    const query = searched ? this.search.trim().toLowerCase() : "";
     const shown = query ? friends.filter(friend => friend.nickname.toLowerCase().includes(query)) : friends;
     const { strings } = this.art;
     const favorite = shown.filter(friend => friend.favorite);
@@ -1220,7 +1258,7 @@ export class MessengerWindow {
           update: row => check(row, "blockGameInvite", state?.settings.blockGameInvites ?? false),
         },
       ];
-      for (const group of this.friendGroups()) {
+      for (const group of this.friendGroups(false)) {
         const open = !this.collapsed.has(`settings:${group.key}`);
         rows.push(this.headerRow("settings", group.key, group.title, open, true));
         if (!open) continue;
@@ -1288,7 +1326,12 @@ export class MessengerWindow {
     const empty = this.dom.named("notExistChat");
     exist.hidden = rooms.length === 0;
     empty.hidden = rooms.length !== 0;
-    if (store && rooms.length && !store.activeRoom) store.activeRoomId = rooms[0]!.peerId;
+    if (store && rooms.length && !store.activeRoom) {
+      store.activeRoomId = rooms[0]!.peerId;
+      this.enterRoom(rooms[0]!);
+    }
+    // 邀请好友 is only offered while there is no room.
+    if (rooms.length) this.closeInvite();
     this.renderInvite();
     if (!store || rooms.length === 0) return;
     const active = store.activeRoom!;
@@ -1331,10 +1374,11 @@ export class MessengerWindow {
     this.dom.named("guideStr").hidden = input.value !== "" || this.focusedInput === input;
     this.renderLog(active);
 
-    // Read receipts while the room is in view.
-    if (this.viewing(active)) {
-      store.markRead(active.peerId);
-      if (active.lastMessageId > (this.readSent.get(active.peerId) ?? 0)) {
+    // Read receipts while the room is in view, once its history is on screen. A count the
+    // service restored (a receipt that was lost) is sent again.
+    if (active.loaded && this.viewing(active)) {
+      const hadUnread = store.markRead(active.peerId);
+      if (hadUnread || active.lastMessageId > (this.readSent.get(active.peerId) ?? 0)) {
         this.readSent.set(active.peerId, active.lastMessageId);
         service!.connection.markRead(active.peerId);
       }

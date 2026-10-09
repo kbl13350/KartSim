@@ -47,8 +47,11 @@ export class MessengerStore {
   activeRoomId?: string;
   /** Chat is muted until this client time (CHAT_FLOOD). */
   mutedUntil = 0;
-  /** Rooms the player closed (退出) during this session, until a new message reopens them. */
-  private readonly closed = new Set<string>();
+  /**
+   * Rooms the player closed (退出) during this session, with the newest
+   * message id known then: a newer message (live or in a snapshot) reopens them.
+   */
+  private readonly closed = new Map<string, number>();
   private readonly listeners = new Set<() => void>();
   private notifying = false;
   private notifyAgain = false;
@@ -99,10 +102,14 @@ export class MessengerStore {
       const room = this.room(conversation.accountId);
       if (room) {
         this.syncRoom(room, conversation);
-      } else if (!this.closed.has(conversation.accountId) && this.rooms.length < MAX_CHAT_ROOMS) {
-        const created = this.createRoom(conversation.accountId, conversation.nickname);
-        this.syncRoom(created, conversation);
-        this.rooms.push(created);
+      } else {
+        const closedAt = this.closed.get(conversation.accountId);
+        if (closedAt !== undefined && conversation.lastMessageId > closedAt) this.closed.delete(conversation.accountId);
+        if (!this.closed.has(conversation.accountId) && this.rooms.length < MAX_CHAT_ROOMS) {
+          const created = this.createRoom(conversation.accountId, conversation.nickname);
+          this.syncRoom(created, conversation);
+          this.rooms.push(created);
+        }
       }
     }
     for (const room of this.rooms) {
@@ -162,8 +169,9 @@ export class MessengerStore {
   closeRoom(peerId: string): void {
     const index = this.rooms.findIndex(room => room.peerId === peerId);
     if (index < 0) return;
+    const conversation = this.state?.conversations.find(entry => entry.accountId === peerId);
+    this.closed.set(peerId, Math.max(this.rooms[index]!.lastMessageId, conversation?.lastMessageId ?? 0));
     this.rooms.splice(index, 1);
-    this.closed.add(peerId);
     if (this.activeRoomId === peerId)
       this.activeRoomId = this.rooms[Math.min(index, this.rooms.length - 1)]?.peerId;
     this.changed();
@@ -182,7 +190,8 @@ export class MessengerStore {
       .map(message => ({ kind: "message", message }) as ChatLine);
     if (older) {
       room.lines.unshift(...fresh);
-      room.hasMore = hasMore;
+      // After 橡皮擦 nothing older is shown again.
+      room.hasMore = hasMore && !(messages.length && messages[0]!.id <= room.erasedUpTo);
     } else {
       // The newest page after a (re)connect: merge by id after the loaded lines.
       for (const line of fresh) this.insertMessage(room, line as ChatLine & { kind: "message" });
@@ -226,9 +235,11 @@ export class MessengerStore {
       room = this.createRoom(peerId, this.friend(peerId)?.nickname ?? "");
       this.rooms.push(room);
     }
+    // A message the snapshot already counted (pushed while the welcome was on its way) counts once.
+    const counted = message.id <= room.lastMessageId;
     this.insertMessage(room, { kind: "message", message });
     room.lastMessageId = Math.max(room.lastMessageId, message.id);
-    if (message.from !== me && !viewing(room)) room.unread++;
+    if (message.from !== me && !counted && !viewing(room)) room.unread++;
     this.changed();
     return room;
   }

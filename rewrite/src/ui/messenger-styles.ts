@@ -46,12 +46,13 @@ export const MESSENGER_STYLES = `
 .ks-msgr :is(button.ks-m:hover:not(:disabled),.ks-m-row:hover)>.ks-m-img{background-image:var(--i2,var(--i1))}
 .ks-msgr :is(button.ks-m:active:not(:disabled),.ks-m[aria-selected=true])>.ks-m-img{background-image:var(--i3,var(--i1))}
 .ks-msgr button.ks-m:disabled>.ks-m-img{background-image:var(--i4,var(--i1))}
-/* ImageCheckButton list_check_01..05: off, on, on+over, off+over, disabled. */
-.ks-msgr .ks-m-ImageCheckButton>.ks-m-img{background-image:var(--i1)}
-.ks-msgr .ks-m-ImageCheckButton:hover:not(:disabled)>.ks-m-img{background-image:var(--i4,var(--i1))}
-.ks-msgr .ks-m-ImageCheckButton[aria-checked=true]>.ks-m-img{background-image:var(--i2,var(--i1))}
-.ks-msgr .ks-m-ImageCheckButton[aria-checked=true]:hover:not(:disabled)>.ks-m-img{background-image:var(--i3,var(--i2,var(--i1)))}
-.ks-msgr .ks-m-ImageCheckButton:disabled>.ks-m-img{background-image:var(--i5,var(--i1))}
+/* ImageCheckButton list_check_01..05: off, on, on+over, off+over, disabled
+   (button.… so these outrank the generic button states above). */
+.ks-msgr button.ks-m-ImageCheckButton>.ks-m-img{background-image:var(--i1)}
+.ks-msgr button.ks-m-ImageCheckButton:is(:hover,:active):not(:disabled)>.ks-m-img{background-image:var(--i4,var(--i1))}
+.ks-msgr button.ks-m-ImageCheckButton[aria-checked=true]>.ks-m-img{background-image:var(--i2,var(--i1))}
+.ks-msgr button.ks-m-ImageCheckButton[aria-checked=true]:is(:hover,:active):not(:disabled)>.ks-m-img{background-image:var(--i3,var(--i2,var(--i1)))}
+.ks-msgr button.ks-m-ImageCheckButton:disabled>.ks-m-img{background-image:var(--i5,var(--i1))}
 
 /* Frames painted at the node size: normal, over, clicked, disabled. */
 .ks-m-frame{background:var(--f0) 0 0/100% 100% no-repeat}

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { chatRuns, colorRuns, formatString, imageSeries } from "./messenger-art";
+import { chatRuns, colorRuns, decodeText, formatString, imageSeries } from "./messenger-art";
 
 test("release format strings fill %s, %d and %02d in order", () => {
   assert.equal(formatString("对话(%d)", 3), "对话(3)");
@@ -31,4 +31,10 @@ test("chat text splits into text and emoticon runs", () => {
     { text: "hi" }, { emoticon: smile }, { emoticon: cry }, { text: " a/b/" },
   ]);
   assert.deepEqual(chatRuns("plain", undefined), [{ text: "plain" }]);
+});
+
+test("XML text follows its byte order mark", () => {
+  const utf16 = new Uint8Array([0xff, 0xfe, 0x3c, 0x00, 0x61, 0x00, 0x3e, 0x00]);
+  assert.equal(decodeText(utf16), "<a>");
+  assert.equal(decodeText(new TextEncoder().encode("<b/>")), "<b/>");
 });

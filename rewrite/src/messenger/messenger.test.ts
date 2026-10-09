@@ -249,3 +249,67 @@ test("socket URL and client ids", () => {
   assert.equal(messengerSocketUrl("http://127.0.0.1:8787"), "ws://127.0.0.1:8787/api/messenger/ws");
   assert.match(newClientId(), /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
 });
+
+test("a closed room reopens from a snapshot with a newer message, and a snapshot-counted push counts once", () => {
+  const store = new MessengerStore();
+  store.applyState(parseMessengerState(stateJson()));
+  store.closeRoom(BOB);
+  store.applyState(parseMessengerState(stateJson()));
+  assert.equal(store.rooms.length, 0, "same last message: stays closed");
+  store.applyState(parseMessengerState(stateJson({
+    conversations: [{ accountId: BOB, nickname: "Bob", lastMessageId: 9, lastMessageAt: 90, unread: 1, lastReadId: 7 }],
+  })));
+  assert.equal(store.rooms.length, 1);
+  assert.equal(store.rooms[0]!.unread, 1);
+  store.receive(message(9, BOB, ME), () => false);
+  assert.equal(store.rooms[0]!.unread, 1, "message 9 was already in the snapshot's count");
+  store.receive(message(10, BOB, ME), () => false);
+  assert.equal(store.rooms[0]!.unread, 2);
+});
+
+test("a send waiting on a socket that drops is retried over HTTP with its clientId", async () => {
+  const h = harness();
+  h.connection.start();
+  h.sockets[0]!.open();
+  h.sockets[0]!.push({ type: "welcome", accountId: ME, serverTime: 1, state: stateJson() });
+  const sending = h.connection.send(BOB, "http", "keep-me");
+  h.sockets[0]!.drop(1006);
+  assert.equal((await sending).id, 50);
+  assert.deepEqual(h.posted.at(-1), { path: "/api/messenger/messages", body: { to: BOB, text: "http", clientId: "keep-me" } });
+  h.connection.stop();
+});
+
+test("a socket that never gets through still reads the state over HTTP", async () => {
+  const h = harness();
+  h.connection.start();
+  h.sockets[0]!.drop(1006);
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(h.posted.filter(call => call.path === "/api/messenger/state").length, 1);
+  assert.equal(h.store.state?.serverTime, 99);
+  h.connection.stop();
+});
+
+test("after a reconnect the newest messages are paged back until they meet the loaded log", async () => {
+  const store = new MessengerStore();
+  const pages: string[] = [];
+  const all = Array.from({ length: 80 }, (_unused, index) => message(index + 1, BOB, ME));
+  // The service answers at most 25 messages a page here, so 41..80 takes two pages.
+  const api = new MessengerApi({
+    async requestJson(path) {
+      pages.push(path);
+      const query = new URLSearchParams(path.split("?")[1]);
+      const before = Number(query.get("before") ?? Infinity), limit = Number(query.get("limit"));
+      const older = all.filter(entry => entry.id < before).slice(-Math.min(limit, 25));
+      return { messages: older, hasMore: older[0]!.id > 1 };
+    },
+  });
+  const connection = new MessengerConnection({ api, store, url: "ws://x", token: () => "t",
+    openSocket: () => new FakeSocket(), viewing: () => false });
+  store.applyState(parseMessengerState(stateJson({ conversations: [] })));
+  store.openRoom(BOB, "Bob");
+  store.addHistory(BOB, all.slice(10, 40), true, false);
+  await connection.loadLatest(BOB);
+  const ids = store.room(BOB)!.lines.flatMap(line => line.kind === "message" ? [line.message.id] : []);
+  assert.deepEqual(ids, Array.from({ length: 70 }, (_unused, index) => index + 11), "no hole between 40 and 51");
+  assert.equal(pages.length, 2);
+});

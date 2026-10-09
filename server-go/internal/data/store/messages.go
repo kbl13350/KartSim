@@ -46,6 +46,11 @@ func scanMessage(scan func(...any) error) (PrivateMessage, error) {
 	return message, err
 }
 
+// MessageByClientID is the message sender stored under clientID, if any.
+func (s *Store) MessageByClientID(ctx context.Context, sender, clientID string) (PrivateMessage, bool, error) {
+	return messageByClientID(ctx, s.db, sender, clientID)
+}
+
 func messageByClientID(ctx context.Context, q queryer, sender, clientID string) (PrivateMessage, bool, error) {
 	message, err := scanMessage(q.QueryRowContext(ctx, "SELECT "+messageColumns+
 		" FROM private_messages WHERE sender_id = ? AND client_id = ?", sender, clientID).Scan)

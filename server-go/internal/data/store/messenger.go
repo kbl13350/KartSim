@@ -539,8 +539,17 @@ func (s *Store) AddBlock(ctx context.Context, me, target string, now int64) (Blo
 			WHERE (account_id = ? AND friend_id = ?) OR (account_id = ? AND friend_id = ?)`, me, target, target, me); err != nil {
 			return err
 		}
-		_, err = tx.ExecContext(ctx, `DELETE FROM friend_requests
-			WHERE (from_id = ? AND to_id = ?) OR (from_id = ? AND to_id = ?)`, me, target, target, me)
+		// The target's request to me goes. Mine goes too, except a refused one (or a pending
+		// one past its expiry, refused automatically): it stays, hidden from my outbox, until
+		// it expires, so blocking and unblocking cannot skip the refusal cooldown.
+		if _, err := tx.ExecContext(ctx, `DELETE FROM friend_requests
+			WHERE (from_id = ? AND to_id = ?)
+			   OR (from_id = ? AND to_id = ? AND (state = 'accepted' OR (state = 'pending' AND expires_at > ?)))`,
+			target, me, me, target, now); err != nil {
+			return err
+		}
+		_, err = tx.ExecContext(ctx, "UPDATE friend_requests SET sender_hidden = 1 WHERE from_id = ? AND to_id = ?",
+			me, target)
 		return err
 	})
 	return block, err

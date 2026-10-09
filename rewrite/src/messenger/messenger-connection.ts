@@ -68,6 +68,9 @@ export function messengerSocketUrl(backendOrigin: string): string {
 }
 
 interface PendingSend {
+  to: string;
+  text: string;
+  clientId: string;
   resolve(message: ChatMessage): void;
   reject(error: unknown): void;
   timer: ReturnType<typeof setTimeout>;
@@ -163,16 +166,25 @@ export class MessengerConnection {
     socket.onerror = () => undefined;
     socket.onclose = event => {
       if (this.socket !== socket) return;
+      const welcomed = this.welcomed;
       this.socket = undefined;
       this.welcomed = false;
       if (this.pingTimer !== undefined) this.clearTimer(this.pingTimer);
       this.pingTimer = undefined;
       for (const [id, pending] of this.sends) {
         this.clearTimer(pending.timer);
-        pending.reject(new AccountServiceError("MESSENGER_OFFLINE"));
         this.sends.delete(id);
+        if (event.code === CLOSE_SESSION_ENDED) {
+          pending.reject(new AccountServiceError("MESSENGER_OFFLINE"));
+        } else {
+          // The frame may or may not have been stored: the same clientId over HTTP cannot duplicate it.
+          this.options.api.send(pending.to, pending.text, pending.clientId).then(pending.resolve, pending.reject);
+        }
       }
       if (this.stopped) return;
+      // A socket that never got through (a proxy without WebSocket, the service restarting):
+      // the window still shows the state read over HTTP.
+      if (!welcomed && !this.options.store.state && event.code !== CLOSE_SESSION_ENDED) void this.sync();
       if (event.code === CLOSE_SESSION_ENDED) {
         this.stop();
         this.options.onSessionEnded?.();
@@ -299,10 +311,25 @@ export class MessengerConnection {
     return this.syncing;
   }
 
-  /** The newest page of a room, merged after its loaded lines. */
+  /**
+   * The newest messages after a (re)connect, paged back until they reach the
+   * lines the room already holds (or 20 pages), so no gap is left in the log.
+   */
   async loadLatest(peerId: string): Promise<void> {
-    const page = await this.options.api.messages(peerId).catch(() => undefined);
-    if (page && !this.stopped) this.options.store.addHistory(peerId, page.messages, page.hasMore, false);
+    const { store } = this.options;
+    const room = store.room(peerId);
+    if (!room) return;
+    let known = room.erasedUpTo;
+    for (const line of room.lines) if (line.kind === "message") known = Math.max(known, line.message.id);
+    let before: number | undefined;
+    for (let pages = 0; pages < 20 && !this.stopped; pages++) {
+      const page = await this.options.api.messages(peerId, before, 100).catch(() => undefined);
+      if (!page || this.stopped) return;
+      store.addHistory(peerId, page.messages, page.hasMore, false);
+      const oldest = page.messages[0]?.id;
+      if (!page.hasMore || oldest === undefined || oldest <= known) return;
+      before = oldest;
+    }
   }
 
   /** An older page before the room's first loaded message. */
@@ -316,6 +343,9 @@ export class MessengerConnection {
       const page = await this.options.api.messages(peerId,
         room.loaded && first?.kind === "message" ? first.message.id : undefined);
       if (!this.stopped) store.addHistory(peerId, page.messages, page.hasMore, room.loaded);
+    } catch (error) {
+      // The room stays as it was; the next open or scroll tries again.
+      if (errorCode(error) !== "LOGIN_REQUIRED") console.warn("好友聊天记录读取失败", error);
     } finally {
       room.loading = false;
     }
@@ -332,7 +362,7 @@ export class MessengerConnection {
         // The socket may be stuck: the same clientId over HTTP cannot duplicate it.
         this.options.api.send(to, text, clientId).then(resolve, reject);
       }, SEND_TIMEOUT_MS);
-      this.sends.set(requestId, { resolve, reject, timer });
+      this.sends.set(requestId, { to, text, clientId, resolve, reject, timer });
       try {
         socket.send(JSON.stringify({ type: "send", to, text, clientId, requestId }));
       } catch (error) {

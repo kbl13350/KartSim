@@ -482,8 +482,10 @@ func trimMessage(text string) string {
 }
 
 // sendMessage is the message rule shared by HTTP and the socket: the
-// client id (INVALID_REQUEST_ID), the text (INVALID_MESSAGE), the chat
-// flood limit (CHAT_FLOOD), then friendship (NOT_FRIENDS).
+// client id (INVALID_REQUEST_ID), the text (INVALID_MESSAGE), a repeat of a
+// stored client id (answered as a duplicate without spending the chat
+// limit, so a resend over HTTP after a dropped socket goes through), the
+// chat flood limit (CHAT_FLOOD), then friendship (NOT_FRIENDS).
 func (a *API) sendMessage(ctx context.Context, from, to, text, clientID string) (messenger.Message, bool, error) {
 	clientID, err := requestID(clientID)
 	if err != nil {
@@ -495,6 +497,11 @@ func (a *API) sendMessage(ctx context.Context, from, to, text, clientID string) 
 	}
 	if !validAccountID(to) {
 		return messenger.Message{}, false, errNotFriends
+	}
+	if previous, found, err := a.store.MessageByClientID(ctx, from, clientID); err != nil {
+		return messenger.Message{}, false, err
+	} else if found {
+		return messageJSON(previous), true, nil
 	}
 	if allowed, mutedUntil := a.hub.AllowChat(from); !allowed {
 		return messenger.Message{}, false, &messenger.FloodError{MutedUntil: mutedUntil}

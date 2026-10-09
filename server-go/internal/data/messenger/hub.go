@@ -202,8 +202,9 @@ type account struct {
 	conns   []*conn         // hello'd sockets, oldest first
 	friends map[string]bool // as of the last applied roster
 	grace   *time.Timer
-	// Roster loads are numbered; only a newer one than the last applied
-	// load may apply, so a slow load never undoes a faster later one.
+	// Roster loads are numbered; only the latest requested load may apply,
+	// so a slow load never undoes a later one. Reconcile retries while
+	// rosterApplied < rosterGen (the latest load failed).
 	rosterGen, rosterApplied uint64
 	commands                 limiter
 }
@@ -485,7 +486,9 @@ func (h *Hub) loadRoster(a *account) {
 
 	h.mu.Lock()
 	defer h.mu.Unlock()
-	if h.accounts[a.id] != a || gen <= a.rosterApplied {
+	// Only the latest requested load applies: an older one finishing late
+	// would install a friend list from before the change that superseded it.
+	if h.accounts[a.id] != a || gen != a.rosterGen {
 		return
 	}
 	a.rosterApplied = gen
@@ -604,7 +607,8 @@ func (h *Hub) Reconcile(ctx context.Context) {
 	}
 	var unloaded []*account
 	for _, a := range h.accounts {
-		if a.rosterApplied == 0 {
+		// Never loaded, or the latest reload failed (or is still on its way).
+		if a.rosterApplied < a.rosterGen || a.rosterApplied == 0 {
 			unloaded = append(unloaded, a)
 		}
 	}

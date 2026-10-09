@@ -511,3 +511,36 @@ func TestMessagesCrossing(t *testing.T) {
 		t.Fatalf("%d messages, %v", len(page), err)
 	}
 }
+
+// Blocking and unblocking keeps a refusal's cooldown: the blocker's refused
+// request stays (hidden from the outbox) until it expires.
+func TestBlockKeepsRefusalCooldown(t *testing.T) {
+	db := datatest.MySQL(t)
+	st := store.New(db)
+	ctx := context.Background()
+	ids, nicknames := messengerAccounts(t, db, 2)
+	a, b := ids[0], ids[1]
+	now := time.Date(2026, 10, 9, 10, 0, 0, 0, beijing).UnixMilli()
+	if _, err := st.SendFriendRequest(ctx, a, nicknames[1], now); err != nil {
+		t.Fatal(err)
+	}
+	if _, _, err := st.RespondFriendRequest(ctx, b, a, false, now+1000); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := st.AddBlock(ctx, a, b, now+2000); err != nil {
+		t.Fatal(err)
+	}
+	if state := messengerState(t, st, a, now+3000); len(state.Outgoing) != 0 {
+		t.Fatalf("the refused card stays in the blocker's outbox: %+v", state.Outgoing)
+	}
+	if err := st.RemoveBlock(ctx, a, b); err != nil {
+		t.Fatal(err)
+	}
+	_, err := st.SendFriendRequest(ctx, a, nicknames[1], now+4000)
+	expectCode(t, err, "REQUEST_COOLDOWN")
+	// After 06:00 the next day the request goes through again.
+	tomorrow := time.Date(2026, 10, 10, 6, 0, 1, 0, beijing).UnixMilli()
+	if _, err := st.SendFriendRequest(ctx, a, nicknames[1], tomorrow); err != nil {
+		t.Fatal(err)
+	}
+}
