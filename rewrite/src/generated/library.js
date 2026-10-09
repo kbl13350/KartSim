@@ -30,6 +30,26 @@ import { loadMultiplayerWindowAssets } from "../ui/multiplayer-window-assets.ts"
 import { activateLobbyListEntry } from "../ui/lobby-list-actions.ts";
 import { drawLobbyListNode } from "../ui/lobby-list-draw.ts";
 import { personalBoostFrame, teamBoostFrame } from "../ui/race-hud-boost.ts";
+import { buildItemSlotCommands, loadItemSlotDefinition } from "../ui/item-slot-hud.ts";
+import { ItemHud } from "../ui/item-hud.ts";
+import { readStoredItemHudOptions } from "../ui/item-hud-options.ts";
+import { giantControllerDuration as itemHudControllerDuration } from "../ui/giant-boost-hud-model.ts";
+import { collectItemHudPlayPanels, finalizeItemHudPlayPanels } from "../ui/item-hud-play-panels.ts";
+const itemSlotDependencies = { attribute: T, numbers: j2, parseBml: s2, decodeTexture: p2, findResource: ln };
+const itemHudDependencies = {
+  attribute: T, numbers: j2, parseBml: s2, decodeTexture: p2, findResource: U1,
+  geometry: lt, place: l5, createRenderer: () => new fn(new Map()),
+  cloud: {
+    attribute: T, parseBml: s2, findResource: U1, parseModel: y9,
+    collectPlayPanels: collectItemHudPlayPanels, finalizePlay: finalizeItemHudPlayPanels,
+    loadPlayScene: (binding, library) => Rw(binding, library),
+    createPlayRuntime: (binding, scene, tick) => new Iw(binding, scene, tick),
+    createRenderer: runtimes => new fn(runtimes),
+    makeUi: d5, layoutUi: dn, materialize: dt,
+    controllerDuration: itemHudControllerDuration,
+  },
+  warn: message => console.warn(message),
+};
 const raceHudDependencies = { createShadow: texture => new xJ(texture), createRenderer: () => new fn(new Map()), createCache: () => new O5(), createRankPresentation: () => new UQ(), createGaugePulse: Jp, loadClassicGauge: (library, kind) => jl.load(library, kind), validateTick: Pw, buildSpeedSlots: XJ, buildTimeCommands: jJ, buildRankCommands: JJ, buildTeamGaugeCommands: YJ, materializeDrawOrder: dt, requireDrawNode: Xl, scaleGauge: Os, alignMarker: nI, advanceGaugePulse: jR, nativeSine: Ro, get reorderDurationMs() { return px; } };
 const lobbyListDrawDependencies = { attribute: T, rectangle: V0, modeForButton: Zc, get interactiveNames() { return aQ; }, imageState: st, drawTexture: ct, fitRoomTitle: CX, measure: ve, drawText: m9, randomTrack: X6, get fontFamily() { return Yp; }, showRoomStatus: true };
 const lobbyListRenderDependencies = { viewport: Sr, modeForButton: Zc, roomLabel: rR };
@@ -68,6 +88,9 @@ const multiplayerRaceHudDependencies = {
   resolveDye: We, loadHudAssets: eI, attribute: T, loadMinimap: oI,
   createHud: (assets, minimap) => new tI(assets, minimap),
   loadGiant: library => Fw.load(library), normalizeRank: XM,
+  // item-mode(hud): the item race layer and the saved item options.
+  loadItemHud: (library, options) => ItemHud.load(library, itemHudDependencies, options),
+  itemHudOptions: () => readStoredItemHudOptions(),
   get racingState() { return X2.Racing; },
   viewportWidth: H2, viewportHeight: $2,
 };
@@ -3484,8 +3507,6 @@ const l3 = "stage_/speedIndiGame",
   u3 = "stage_speedIndiGame.rho",
   dx = "stage_/speedTeamGame",
   fx = "stage_speedTeamGame.rho",
-  Zr = "item/slot",
-  Qr = "item.rho",
   px = 350,
   HJ = `${l3}/screenui.bml`,
   gx = "ingameShadow",
@@ -3568,39 +3589,7 @@ function jJ(n, e, t, i, r) {
   );
 }
 
-function XJ(n, e, t, i, r, s) {
-  const o = [],
-    a = [];
-  e.forEach((l, u) => {
-    if (l !== -1 && l !== 6 && l !== 14)
-      throw new Error(`P3528 boost-only item slot 不接受 id=${l}。`);
-    const h = u === 0 ? n.current : n.reserve,
-      d = sI(n, u, e.length),
-      f = bx(
-        h.node,
-        n.frameTextureName,
-        n.frameTexture,
-        d,
-        f00(h.uvPixels, n.frameTexture),
-      );
-    if ((o.push(f), l === -1)) return;
-    const p = t[u] ? Math.floor((r - i) / 100) % 2 === 0 : l === 14,
-      v = rI(d, -h.adjust),
-      w =
-        s === void 0 || e.length !== 2
-          ? v
-          : d00(u00(n, 1 - u, e.length), v, h00(Math.max(0, Math.min(1, s))));
-    a[u] = bx(
-      h.node,
-      p ? "item14" : "item6",
-      p ? n.teamBoostTexture : n.boostTexture,
-      w,
-      p00(),
-    );
-  });
-  const c = s === void 0 ? a : [...a].reverse();
-  return [...o, ...c.filter((l) => l !== void 0)];
-}
+function XJ(definition, slots, disabled, windowStartMs, timeMs, reorderProgress, overlay) { return buildItemSlotCommands(definition, slots, disabled, windowStartMs, timeMs, reorderProgress, overlay); }
 
 function YJ(n, e, t, i, r, s) {
   const o = dt(
@@ -3771,29 +3760,7 @@ async function r00(n, e) {
   };
 }
 
-async function s00(n, e) {
-  const [t, i] = await Promise.all([
-      ln(n, `${Zr}/slot_template.bml`, Qr).bytes().then(s2),
-      ln(n, `${Zr}/slot_frameResource.bml`, Qr).bytes().then(s2),
-    ]),
-    r = i.children.find((l) => T(l, "name") === e);
-  if (!r)
-    throw new Error(`P3528 ItemSlot frame=${e} 不在 slot_frameResource。`);
-  const s = zs(r, "texture"),
-    [o, a, c] = await Promise.all([
-      lh(n, `${Zr}/${s}.png`, Qr),
-      lh(n, `${Zr}/item6.png`, Qr),
-      lh(n, `${Zr}/item14.png`, Qr),
-    ]);
-  return {
-    frameTextureName: s,
-    frameTexture: o,
-    boostTexture: a,
-    teamBoostTexture: c,
-    current: Ax(Mx(t, "2")),
-    reserve: Ax(Mx(t, "1")),
-  };
-}
+async function s00(library, frame) { return loadItemSlotDefinition(library, frame, itemSlotDependencies); }
 
 function o00(n) {
   const e = new Map(),
@@ -3811,20 +3778,6 @@ function yx(n, e, t) {
   (n.set(w1(e, "min"), `${t}-min`),
     n.set(w1(e, "sec"), `${t}-sec`),
     n.set(w1(e, "mil"), `${t}-mil`));
-}
-
-function Ax(n) {
-  const [e, t, i, r] = j2(zs(n, "rc"), 4, "Slot.rc"),
-    [s, o, a, c] = j2(zs(n, "uvRc"), 4, "Slot.uvRc"),
-    l = Number(zs(n, "adjustValue"));
-  if (!Number.isInteger(l) || l < 0)
-    throw new Error(`P3528 Slot.adjustValue=${l} 无效。`);
-  return {
-    node: n,
-    rect: { left: e, top: t, right: C2(e + i), bottom: C2(t + r) },
-    uvPixels: { left: s, top: o, right: a, bottom: c },
-    adjust: l,
-  };
 }
 
 function nI(n, e) {
@@ -3845,18 +3798,6 @@ function Xl(n, e, t) {
   return i;
 }
 
-function bx(n, e, t, i, r) {
-  return {
-    kind: "panel",
-    node: n,
-    textureName: e,
-    texture: t,
-    worldRect: i,
-    framebufferRect: Yl(i, -0.5, -0.5),
-    uv: r,
-  };
-}
-
 async function J6(n, e, t, i) {
   return new Map(
     await Promise.all(i.map(async (r) => [r, await a00(n, e, t, r)])),
@@ -3875,9 +3816,7 @@ async function a00(n, e, t, i) {
   throw new Error(`${e}/${i}.png 缺少 P3528 CN→ZZ texture。`);
 }
 
-async function lh(n, e, t) {
-  return p2(await ln(n, e, t).bytes());
-}
+
 
 function ln(n, e, t) {
   return iI(n.canonicalCandidates(e), e, t);
@@ -3921,13 +3860,6 @@ function w1(n, e) {
   return t[0];
 }
 
-function Mx(n, e) {
-  const t = n.children.filter((i) => i.name === "Slot" && T(i, "type") === e);
-  if (t.length !== 1)
-    throw new Error(`P3528 Slot type=${e} 数量必须为 1，实际 ${t.length}。`);
-  return t[0];
-}
-
 function zs(n, e) {
   const t = T(n, e);
   if (t === void 0) throw new Error(`P3528 ${n.name}.${e} 缺失。`);
@@ -3954,52 +3886,6 @@ function Yl(n, e, t) {
     right: C2(n.right + e),
     bottom: C2(n.bottom + t),
   };
-}
-
-function rI(n, e) {
-  return {
-    left: C2(n.left - e),
-    top: C2(n.top - e),
-    right: C2(n.right + e),
-    bottom: C2(n.bottom + e),
-  };
-}
-
-function sI(n, e, t) {
-  const i = e === 0 ? n.current : n.reserve;
-  return Yl(i.rect, 24 + (t - e - 1) * 82, 24);
-}
-
-function u00(n, e, t) {
-  const i = e === 0 ? n.current : n.reserve;
-  return rI(sI(n, e, t), -i.adjust);
-}
-
-function h00(n) {
-  return 1 - (1 - n) ** 3;
-}
-
-function d00(n, e, t) {
-  const i = (r, s) => C2(r + (s - r) * t);
-  return {
-    left: i(n.left, e.left),
-    top: i(n.top, e.top),
-    right: i(n.right, e.right),
-    bottom: i(n.bottom, e.bottom),
-  };
-}
-
-function f00(n, e) {
-  return {
-    left: C2(n.left / e.width),
-    top: C2(n.top / e.height),
-    right: C2(n.right / e.width),
-    bottom: C2(n.bottom / e.height),
-  };
-}
-
-function p00() {
-  return { left: 0, top: 0, right: 1, bottom: 1 };
 }
 
 function g00(n, e) {

@@ -1,5 +1,6 @@
 /** Owns the in-race HUD, its optional classic gauges and the draw command list. */
 import { personalBoostFrame, teamBoostFrame, type RaceHudBoostFrame } from "./race-hud-boost";
+import type { ItemSlotOverlay } from "./item-slot-hud";
 
 export interface RaceHudGauge {
   state: { full: boolean };
@@ -48,8 +49,10 @@ export interface RaceHudDependencies {
   loadClassicGauge(library: unknown, kind: "team-main" | "personal" |
     "team-contribution"): Promise<RaceHudGauge>;
   validateTick(timeMs: number, label: string): number;
+  /** Release XJ, now item-slot-hud.ts; `overlay` only in item races. */
   buildSpeedSlots(definition: unknown, slots: unknown, disabled: unknown,
-    windowStartMs: unknown, timeMs: number, reorderProgress?: number): unknown[];
+    windowStartMs: unknown, timeMs: number, reorderProgress?: number,
+    overlay?: ItemSlotOverlay): unknown[];
   buildTimeCommands(definition: unknown, input: unknown, width: number,
     height: number, cache: RaceHudCache): unknown[];
   buildRankCommands(definition: unknown, rank: unknown, width: number,
@@ -89,6 +92,10 @@ export interface RaceHudInput {
   speedSlots: unknown;
   speedSlotDisabled: unknown;
   speedSlotWindowStartMs: unknown;
+  /** Item race: lock overlay and countdown over the slots. */
+  itemSlotOverlay?: ItemSlotOverlay;
+  /** Item race: the controller's own swap progress instead of the HUD timer. */
+  slotReorderProgress?: number;
 }
 
 export class RaceHudController {
@@ -113,6 +120,8 @@ export class RaceHudController {
   slotReorderActive = false;
   slotReorderAnchorMs?: number;
   hasCommands = false;
+  /** The rank rows as last laid out (the item HUD puts scanning icons beside them). */
+  rankRows?: unknown[];
 
   constructor(readonly definition: RaceHudDefinition,
     readonly minimap: RaceHudMinimap,
@@ -196,6 +205,7 @@ export class RaceHudController {
     this.slotReorderActive = false;
     this.slotReorderAnchorMs = undefined;
     this.hasCommands = false;
+    this.rankRows = undefined;
     this.renderer.update([], 0);
   }
 
@@ -217,10 +227,14 @@ export class RaceHudController {
         row => (row.local ? this.definition.rank.rows.local :
           this.definition.rank.rows.other).height),
     };
+    this.rankRows = rank?.rows;
+    const reorder = input.slotReorderProgress ?? this.slotReorderProgress(tick);
     const commands = [
-      ...this.dependencies.buildSpeedSlots(this.definition.items,
-        input.speedSlots, input.speedSlotDisabled,
-        input.speedSlotWindowStartMs, tick, this.slotReorderProgress(tick)),
+      ...(input.itemSlotOverlay ? this.dependencies.buildSpeedSlots(this.definition.items,
+        input.speedSlots, input.speedSlotDisabled, input.speedSlotWindowStartMs, tick,
+        reorder, input.itemSlotOverlay) : this.dependencies.buildSpeedSlots(
+        this.definition.items, input.speedSlots, input.speedSlotDisabled,
+        input.speedSlotWindowStartMs, tick, reorder)),
       ...(this.timeInfoVisible ? this.dependencies.buildTimeCommands(
         this.definition.time, input, width, height, this.timeDrawCache) : []),
       ...(this.classicBoost ? [] : this.buildBoostGaugeCommands(
