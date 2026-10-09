@@ -60,7 +60,7 @@
 
 抽奖请求以 `requestId` 幂等（`lottery_draws` 保存结果，同一 id 重放返回原结果；类型、对象或次数不同 409 `REQUEST_ID_CONFLICT`）；一次也没抽成的请求不保存，可用同一 id 重试。货币道具的流水原因为 `lottery`（每日免费为 `lotterydaily`）。
 
-## 7. 存储（schema v8，分支上暂为 103）
+## 7. 存储（schema v8）
 
 ```
 lottery_draws(account_id, request_id, kind 'treasure'|'gacha', ref, count, result_json, created_at, PK(account_id, request_id))
@@ -73,7 +73,7 @@ lottery_activities(activity PK, enabled, start_at NULL, end_at NULL, daily_json 
 
 ## 8. 与“我的物品”开箱的关系
 
-“我的物品”的开箱（`POST /api/inventory/open`，赛车探险队分支）与这里共用 `lottery.json`，但保留它自己的规则：按原版 rewardList 期限（过期 `LOTTERY_NOT_IN_PERIOD`）、把列出的奖池合并后只抽一件、`rpLimit` 需要经验、抽到已永久拥有的单件道具时按原版 `retryCount` 重抽。精品道具场打开同一个箱子时按本文规则（每个奖池各一件、管理员开关、已拥有则停止不消耗）。两边的规则以后如需统一再定。
+“我的物品”的开箱（`POST /api/inventory/open`，与赛车探险队一起实现）与这里共用 `lottery.json`，但保留它自己的规则：按原版 rewardList 期限（过期 `LOTTERY_NOT_IN_PERIOD`）、把列出的奖池合并后只抽一件、`rpLimit` 需要经验、抽到已永久拥有的单件道具时按原版 `retryCount` 重抽。精品道具场打开同一个箱子时按本文规则（每个奖池各一件、管理员开关、已拥有则停止不消耗）。两边的规则以后如需统一再定。
 
 ## 9. 前端
 

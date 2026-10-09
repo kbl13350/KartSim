@@ -433,10 +433,8 @@ var migrations = []migration{
 			CONSTRAINT fk_account_dictionary_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
 		) ` + tableTail,
 	}},
-	// Box openings and the 赛车探险队. TODO(myroom-social): renumber to the
-	// next free version when this branch merges; 102 keeps it clear of
-	// versions added on main meanwhile (shared development databases).
-	{version: 102, statements: []string{
+	// Box openings and the 赛车探险队.
+	{version: 7, statements: []string{
 		// One row per opened box: the request id makes a retry return the
 		// same draw.
 		`CREATE TABLE IF NOT EXISTS box_openings (
@@ -461,10 +459,7 @@ var migrations = []migration{
 	}},
 	// Lotteries (LOTTERY.md): 寻宝 and 精品道具场 draws, their 保底 counters,
 	// the daily free materials and the admin's activity settings.
-	// TODO(gacha-lottery): renumber after the box/expedition migration (102)
-	// when these branches merge; 103 keeps it clear of versions added on main
-	// meanwhile (shared development databases).
-	{version: 103, statements: []string{
+	{version: 8, statements: []string{
 		// One row per draw request: the idempotency key and the stored answer.
 		`CREATE TABLE IF NOT EXISTS lottery_draws (
 			account_id CHAR(36) ` + idColumn + ` NOT NULL,
