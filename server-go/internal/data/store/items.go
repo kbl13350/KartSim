@@ -132,7 +132,7 @@ func consumeItem(ctx context.Context, tx *sql.Tx, accountID string, category, it
 	return held - count, err
 }
 
-// inventoryRow reads one item's row (system_key '').
+// inventoryRow reads one item's row (the empty system key).
 func inventoryRow(ctx context.Context, q queryer, accountID string, category, itemID int) (InventoryItem, error) {
 	item := InventoryItem{Category: category, ItemID: itemID}
 	var expires sql.NullInt64

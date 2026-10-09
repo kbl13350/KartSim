@@ -415,6 +415,23 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 道具图鉴的道具表 `internal/data/career/dictionary.json` 与成就数据一起由 `export-career-data.mjs` 从原版 `zeta_/cn/content/itemDictionary.xml` 导出（10 类 3684 件，**不要手改**）。账号曾经拥有过的道具都算收藏（库存里过期的租用道具也算，与原版“期限制道具也可以激活道具图鉴”一致）；图鉴类成就（类型 12–23）也只数图鉴里列出的道具。`account_dictionary.rewarded` 记录已发过奖励的件数，领取时在钱包行锁内补发差额并写 `wallet_ledger`（原因 `dictionary`，ref 为领取后的累计件数）。
 
+### 小屋：赛车探险队与开箱
+
+赛车探险队（原版 `racingExpedition`，小屋菜单“探险队”）由数据服务运行；任务表 `internal/data/expedition/expedition.json` 由 `rewrite/tools/export-expedition-data.mjs` 从原版 `zeta_/cn/content/racingExpedition/racingExpeditionMission.xml`（规则、加成表、94 个任务）和 `stock.kml`（奖励道具）导出，**不要手改**。规则：每周四 06:00（北京时间）换一批 10 个任务，优先从账号凑得出的属性里抽（账号同时有该属性的角色和卡丁车），同时发 10 个探险币（34:879，原版在商城卖，本项目改为每周赠送）；进行中和待领奖的任务跨周保留。一个任务派 1–3 组“角色＋卡丁车”和可选的一位好友出发，需至少有一个属性匹配的角色和一辆属性匹配的卡丁车（原版 `expeditionStartCondition`）；同一角色/卡丁车不能同时出两个任务，同一好友每天（06:00 刷新）只能助力一次。任务耗时为原版小时数（难度 1–5：8/16/24/32/40 小时），出发后按服务器时间计时。
+
+角色与卡丁车的属性（都市、世界、大地、森林、海洋、传说、神秘、特殊）原版由服务器决定、客户端数据里没有，本项目按道具类别和 ID 的 FNV 哈希固定分配（`expedition.Specific`）。加成也是本项目对原版常量表的解读：属性匹配的角色奖励 +5%（`bonusConstChar`×`bonusConstCharSpecific1`），卡丁车按车库升级等级查 `kartBodyTuning` 缩短时间（0 级 4.5% … 5 级 27%，随难度递减，合计最多 50%），带四个强化部件的经典升级按部件等级合计查 `reinforcePart` 给基础奖励加点（约为基础奖励的 22%），好友属性匹配奖励 +5%、不匹配 +2.5%。奖励：难度的 `basicReward`（120–500）加部件点数，按任务的 `bonusType` 发经验（×1）、金币（×8）或各一半，再乘奖励加成；另发任务的原版奖励箱（探险队补给箱 ×1–3、红宝石盒、蛋白石盒）。经验与金币写流水（原因 `expedition`，ref 为“周起始:任务号”），不受每日上限限制。
+
+开箱：类别 24 的道具是箱子，开箱表 `internal/data/lottery/lottery.json` 由 `rewrite/tools/export-lottery-data.mjs` 从原版 `zeta_/cn/lottery/lottery.xml`、`stock.kml` 与 `item.kml` 导出（214 种箱子，**不要手改**）。开一个箱子消耗 1 个，按当时生效的 `rewardList` 引用的奖励集按 `prob` 权重抽一个 stock 发放（`needOther` 需要钥匙、`rpLimit` 需要经验、`retryCount` 抽到已永久拥有的道具时重抽，均按原版）；`box_openings` 以请求 ID 保存结果，重试返回同一结果。可叠加道具（箱子 24、材料 34、56、62、部件碎片 67，以及商城里的计数道具如气球）发放时数量累加；用掉后数量降到 0 但保留记录（图鉴与成就仍记得曾经拥有）。
+
+| 路径 | 用途与错误 |
+| --- | --- |
+| `GET /api/expedition` | 本周探险队：`{"missions":[{"slot","mission","specific","trackId","theme","bonusType","difficulty","hours","added","state","started","ends","crew","friend","bonus":{"time","reward","points"},"exp","lucci","reward":{"stockId","name","items"},"completeCost"}],"started","limit","added","canAdd","tokens","weekStart","weekEnds","dayEnds","serverTime","rules"}`；`state` 为 `ready`（未开始）、`blocked`（无法进行：凑不出匹配的角色和卡丁车）、`running`、`done`（待领奖）；`rules` 含加成表，供客户端预览 |
+| `GET /api/expedition/crew` | 可派出的 `characters`、`karts`（含 `level`、`parts`）与 `friends`（含 `specific`、`usedToday`） |
+| `POST /api/expedition/start` | `{"slot","crew":[{"character","kart","kartKey?"}],"friend?"}` → 同 `GET`；400 `INVALID_CREW`，409 `MISSION_STARTED`/`NO_MATCHING_CREW`/`CREW_BUSY`/`FRIEND_USED`/`NOT_FRIEND`，404 `UNKNOWN_MISSION` |
+| `POST /api/expedition/tokens` | 探险币：`{"action":"reduce","slot","count"}`（每个缩短 30 分钟）、`complete`（按剩余时间每 30 分钟 1 个，立即完成）、`change`（2 个，换掉未开始的任务）、`add`（3 个，所有任务都已开始后加一个，每周最多 10 个）→ 同 `GET`；409 `ITEM_NOT_ENOUGH`/`MISSION_NOT_IN_PROGRESS`/`MISSION_STARTED`/`CANNOT_ADD_MISSION` |
+| `POST /api/expedition/claim` | `{"slot"}` → `{"expedition","exp","lucci","items","inventory","levelUps"}`；409 `MISSION_NOT_COMPLETE` |
+| `POST /api/inventory/open` | 开一个箱子：`{"itemId","requestId"}` → `{"box","stockId","rewards":[{"category","itemId","count","days","name"}],"left","items"}`（`items` 为变动后的库存行）；404 `NOT_A_BOX`，409 `ITEM_NOT_ENOUGH`/`LOTTERY_NOT_IN_PERIOD`/`NEED_OTHER_ITEM`/`REQUEST_ID_CONFLICT`，403 `LOTTERY_UNDER_RP_LIMIT` |
+
 小屋设置（环境、名称、代表车、聊天开关、两组密码）仍保存在账号档案 `myRoom` 中；数据服务读取它来判断访客能否进入，响应里只带 `locked`/`etcLocked`，不返回密码。
 
 账号、档案与历史接口的校验规则、错误码与 Java 版一致；密码哈希格式（PBKDF2-SHA256，120000 次）与会话摘要格式也相同，因此旧数据可以直接迁移。
@@ -466,7 +483,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `account_counters`、`account_login_days` | 成就计数（多人赛按模式与赛道主题的胜利/完赛/未完赛、连续未完赛、计时赛完赛）、登录过的北京日期 |
 | `account_careers`、`account_emblems` | 已完成的成就（完成时间）、拥有的徽章（来源、代表徽章槽 `main_slot`） |
 
-`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4，小屋成就与徽章的表在 v5，道具图鉴奖励的表在 v6。
+`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4，小屋成就与徽章的表在 v5，道具图鉴奖励的表在 v6，开箱记录与赛车探险队的表在 v7（分支上暂为 102）。
 
 ### Redis 键（前缀 `KART_REDIS_PREFIX`，默认 `kart:`）
 

@@ -23,8 +23,8 @@ const (
 
 const (
 	dayMillis = 24 * 60 * 60 * 1000
-	// MaxQuantity bounds a count item (balloons and the like are sold in
-	// packs of up to 100 and never consumed today).
+	// MaxQuantity bounds a count item (balloon packs, boxes and the
+	// 探险币; items.go uses some of them up).
 	MaxQuantity = 1_000_000
 )
 

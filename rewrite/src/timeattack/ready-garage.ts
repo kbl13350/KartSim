@@ -1,5 +1,6 @@
 import { garageViewCatalog } from "../account/garage-ownership";
 import type { ReadyOptions, ReadySelection } from "./ready-flow";
+import { garageStuffSupport } from "./garage-stuff";
 
 interface GarageChoice {
   kart: { path: string; itemId: number; systemKey: string; title: string };
@@ -108,17 +109,24 @@ export async function openReadyGarage(controller: ReadyGarageController,
   host.shell.openModal("garage");
   try {
     // Only owned, unexpired items; the current selection stays listed.
-    const catalog = garageViewCatalog(await library.timeAttackGarageCatalog(),
+    const ownedCatalog = async () => garageViewCatalog(await library.timeAttackGarageCatalog(),
       selectionKeep(selection));
+    const catalog = await ownedCatalog();
     let view!: GarageView;
+    // 精品道具: boxes open here.
+    const stuff = await garageStuffSupport({ library, root: host.root,
+      view: () => view as unknown as { options: { catalog: Record<string, unknown> }; render(): void } | undefined,
+      refreshCatalog: ownedCatalog as unknown as () => Promise<Record<string, unknown>> });
     const close = () => {
+      stuff.dispose();
       view.dispose();
       if (controller.activeGarage === view) controller.activeGarage = undefined;
       if (host.shell.modal === "garage") host.shell.closeModal("garage");
     };
     view = await deps.loadGarage({
       library, root: host.root, stageBinding: host.toonStageBinding,
-      environment, catalog, profile: host.getProfile(),
+      environment, catalog: { ...(catalog as object), stuff: stuff.stuff }, profile: host.getProfile(),
+      stuffIcon: stuff.stuffIcon, onUseItem: stuff.onUseItem,
       selectedKartItemId: selection.vehicleItemId,
       // System karts (the starter practice kart) all have item id 0.
       selectedKartSystemKey: selection.vehicleSystemKey,

@@ -334,9 +334,10 @@ test("garage selector static asset loading constructs the same view", async () =
   assert.deepEqual(snapshot(rewrittenView, actual), snapshot(originalView, expected));
 });
 
-test("Web garage tabs hide 锁定 and 网吧 and open 使用 as the in-use list", () => {
+test("Web garage tabs hide 锁定 and 网吧, open 使用 as the in-use list and add 精品道具", () => {
   assert.deepEqual(webGarageTopTabs.map(tab => tab.key),
-    ["favoriteItem", "kartBody", "character", "equip", "useful", "deco"]);
+    ["favoriteItem", "kartBody", "character", "equip", "useful", "deco", "lottery"]);
   assert.equal(webGarageTopTabs.find(tab => tab.key === "useful")?.category, "using");
+  assert.equal(webGarageTopTabs.find(tab => tab.key === "lottery")?.category, "lottery");
   assert.equal(releaseGarageTopTabs.length, 8);
 });

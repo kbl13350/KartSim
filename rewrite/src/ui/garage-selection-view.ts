@@ -19,10 +19,15 @@ export const releaseGarageTopTabs: readonly GarageTopTab[] = [
   { key: "deco", category: "deco" },
 ];
 
-/** Web tabs: 锁定 and 网吧 have no Web data and are hidden; 使用 lists items in use. */
-export const webGarageTopTabs: readonly GarageTopTab[] = releaseGarageTopTabs
+/**
+ * Web tabs: 锁定 and 网吧 have no Web data and are hidden; 使用 lists items in
+ * use; 精品道具 (atMyRoom@cn's lottery category) lists the counted items
+ * without a model (boxes to open, the 探险币 and other materials).
+ */
+export const webGarageTopTabs: readonly GarageTopTab[] = [...releaseGarageTopTabs
   .filter(tab => tab.key !== "lockedItem" && tab.key !== "pcCafe")
-  .map(tab => tab.key === "useful" ? { ...tab, category: "using" } : tab);
+  .map(tab => tab.key === "useful" ? { ...tab, category: "using" } : tab),
+{ key: "lottery", category: "lottery" }];
 
 type AnyFunction = (...args: any[]) => any;
 /** Host services retain the release's asset, canvas and DOM implementations. */
@@ -410,6 +415,10 @@ export function createGarageSelectionViewClass(ops: GarageSelectionViewOps) {
     }
 
     drawCard(item: any, rect: GarageHit["rect"]): void {
+      if (item.kind === "stuff") {
+        this.drawStuffCard(item, rect);
+        return;
+      }
       const equipped = item.itemId === this.draftProfile.equipment.itemIds[ops.equipmentSlot[item.kind]] &&
         (item.kind !== "kart" || item.itemId !== 0 ||
           item.systemKey === this.draftProfile.equipment.systemKart);
@@ -428,6 +437,29 @@ export function createGarageSelectionViewClass(ops: GarageSelectionViewOps) {
         ops.drawFrame(this.context, this.assets.selectedFrame, this.assets.frame01.image, rect);
       this.drawFavoriteCheck(item, rect);
       // Rentals from the account inventory show their remaining time.
+      drawOwnershipBadge(this.context, item, rect, GARAGE_FONT);
+    }
+    /** A counted item: its stuff.rho icon (options.stuffIcon) and how many are left. */
+    drawStuffCard(item: any, rect: GarageHit["rect"]): void {
+      const hovered = this.hovered === ops.itemKey(item);
+      ops.drawCardImage(this.context, this.assets.card, {
+        x: hovered ? 0 : rect.width, y: 0, width: rect.width, height: rect.height,
+      }, rect);
+      this.drawCardTitle(item, rect);
+      const area = ops.cardRect(this.assets.cardDefinition, rect);
+      const icon = this.options.stuffIcon?.(item);
+      if (icon?.width && icon.height) {
+        const scale = Math.min(area.width / icon.width, area.height / icon.height, 1.6);
+        const width = icon.width * scale;
+        const height = icon.height * scale;
+        this.context.drawImage(icon, area.x + (area.width - width) / 2, area.y + (area.height - height) / 2,
+          width, height);
+      }
+      ops.drawLabel(this.context, `×${item.quantity}`,
+        { x: rect.x + 8, y: rect.y + rect.height - 30, width: rect.width - 18, height: 20 }, {
+          family: GARAGE_FONT, size: 14, stroke: 1, kind: "label", color: "white",
+          strokeColor: "rgba(42, 55, 80, 0.95)", align: "right", verticalAlign: "center",
+        });
       drawOwnershipBadge(this.context, item, rect, GARAGE_FONT);
     }
     drawFavoriteCheck(item: any, rect: GarageHit["rect"]): void {
@@ -485,7 +517,7 @@ export function createGarageSelectionViewClass(ops: GarageSelectionViewOps) {
         const item = items[grid.firstItem + index];
         return { item, kartShadow: item.kind === "kart" ? true : undefined,
           rect: ops.cardRect(this.assets.cardDefinition, rect) };
-      });
+      }).filter((card: { item: any }) => card.item?.kind !== "stuff");
     }
     drawSearch(): void {
       const rect = this.rect("searchBtn");
