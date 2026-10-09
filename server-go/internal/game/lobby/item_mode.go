@@ -156,14 +156,16 @@ func (l *Lobby) itemCommand(c *Client, in Request) (obj, error) {
 		return nil, fail(http.StatusConflict, "INVALID_SEQUENCE")
 	}
 	rc.itemSequences[c.playerID] = sequence
-	if r.phase != "racing" {
+	now := l.clock.Now()
+	// The race runs from startAt; the timer that switches the phase may
+	// fire a moment later.
+	if r.phase != "racing" && (r.phase != "countdown" || rc.startAt == nil || now < *rc.startAt) {
 		return nil, fail(http.StatusBadRequest, "RACE_NOT_RUNNING")
 	}
 	action, err := in.text("action", 1, 20)
 	if err != nil {
 		return nil, err
 	}
-	now := l.clock.Now()
 	switch action {
 	case "cube":
 		return l.itemCube(r, c, in, sequence, now)

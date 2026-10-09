@@ -342,9 +342,18 @@ func TestItemRequestChecksAndSequence(t *testing.T) {
 	assertEqual(t, ir.reject(a, "swap", nil), "INVALID_SEQUENCE")
 	ir.sequences[a] = 1
 	assertEqual(t, ir.reject(a, "swap", nil), "INVALID_USE") // nothing to swap
+	// From startAt the race runs even before the phase timer fires.
+	setPhase := func(phase string) {
+		h.lobby.mu.Lock()
+		defer h.lobby.mu.Unlock()
+		h.lobby.rooms[roomID].phase = phase
+	}
+	setPhase("countdown")
+	assertEqual(t, ir.reject(a, "swap", nil), "INVALID_USE")
+	setPhase("racing")
 	ir.sequences[a] = 5
 	assertEqual(t, ir.reject(a, "swap", nil), "INVALID_SEQUENCE")
-	ir.sequences[a] = 2
+	ir.sequences[a] = 3
 	assertEqual(t, ir.reject(a, "dance", nil), "INVALID_ACTION")
 	assertEqual(t, ir.reject(a, "change", nil), "ITEM_CHANGER_UNAVAILABLE")
 	assertEqual(t, ir.reject(a, "cube", map[string]any{"capacity": 2}), "INVALID_CUBEID")

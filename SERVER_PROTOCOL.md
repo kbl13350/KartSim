@@ -143,7 +143,7 @@
 
 **名次与抽取。** 服务器按运动帧里的**当前**路线距离排名（已完赛者按完赛顺序在前，离开者不计）：第 1 名 top；其余 `p=(名次-2)/(人数-1)`，`p<1/3` high、`p<2/3` mid，否则 low；只有 1 人时 top。按名次组权重抽取；`slotLock`、`angel`、`thunderbolt` 每位车手每局最多获得 2 次，达到后从表里剔除重抽，`booster` 不受限制。
 
-**请求** `{"type":"item","roomId","raceId","sequence","action",…}`。先检查：非道具赛 `ITEM_UNAVAILABLE`，未载入 `RACE_NOT_RUNNING`；`sequence` 必须是该车手上一个序号 +1，否则 409 `INVALID_SEQUENCE`。序号一经接受即被用掉，之后无论请求成功与否都不再重用（客户端可以连续发送，不必等回复）；随后非 `racing` 阶段返回 `RACE_NOT_RUNNING`。被拒绝的道具请求只回普通错误 `{"type":"error","code"}`，不改变任何状态，**不会让比赛失败**；道具槽以最近一次成功回复里的 `slots` 为准（槽只因本人的请求变化）。已完赛的车手 `cube`/`use`/`place`/`swap` 返回 `INVALID_USE`（`hit` 仍可上报）。
+**请求** `{"type":"item","roomId","raceId","sequence","action",…}`。先检查：非道具赛 `ITEM_UNAVAILABLE`，未载入 `RACE_NOT_RUNNING`；`sequence` 必须是该车手上一个序号 +1，否则 409 `INVALID_SEQUENCE`。序号一经接受即被用掉，之后无论请求成功与否都不再重用（客户端可以连续发送，不必等回复）；随后比赛未在进行（服务器时间早于 `startAt`，或已结束）时返回 `RACE_NOT_RUNNING`。被拒绝的道具请求只回普通错误 `{"type":"error","code"}`，不改变任何状态，**不会让比赛失败**；道具槽以最近一次成功回复里的 `slots` 为准（槽只因本人的请求变化）。已完赛的车手 `cube`/`use`/`place`/`swap` 返回 `INVALID_USE`（`hit` 仍可上报）。
 
 | `action` | 字段 | 服务器处理 | 回复（只给发送者） | 广播（房间其他成员） |
 | --- | --- | --- | --- | --- |
