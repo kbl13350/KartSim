@@ -5,7 +5,7 @@ import { ScrollbarController } from "./scrollbar";
 import { TouchPageSwipe } from "./touch-swipe";
 import { gridLayout, gridLayoutConfig, gridPageSize, gridStepSize } from "./grid-layout";
 import { TrackPickerWindow, createTrackPickerWindowClass,
-  type TrackPickerWindowDependencies } from "./track-picker-window";
+  type TrackPickerWindowDependencies, type TrackPickerWindowOptions } from "./track-picker-window";
 import type {
   TrackPickerWindowAssets, TrackPickerWindowImage, TrackPickerWindowNode,
   TrackPickerWindowFrame,
@@ -368,4 +368,54 @@ test("whole track picker lifecycle, cards, random group and pointer behavior mat
   const readable = await exercise(true);
   const packaged = await exercise(false);
   assert.deepEqual(readable, packaged);
+});
+
+test("an item room picker opens on 道具 only and cannot switch 竞速 on", () => {
+  const events: unknown[] = [];
+  const previous = {
+    document: globalThis.document, window: globalThis.window,
+    ResizeObserver: globalThis.ResizeObserver,
+  };
+  const { assets, options, ops } = fixture(events);
+  globalThis.document = { createElement: (tag: string) => new Element(tag, events) } as unknown as Document;
+  globalThis.window = { addEventListener: () => {}, removeEventListener: () => {} } as
+    unknown as Window & typeof globalThis;
+  globalThis.ResizeObserver = class { observe() {} disconnect() {} } as unknown as typeof ResizeObserver;
+  const alphas: number[] = [];
+  canvasContext = {
+    imageSmoothingEnabled: true, fillStyle: "", strokeStyle: "", lineWidth: 0,
+    set globalAlpha(value: number) { alphas.push(value); },
+    save: () => {}, restore: () => {},
+    clearRect: () => {}, fillRect: () => {}, strokeRect: () => {}, drawImage: () => {},
+  };
+  const WindowClass = createTrackPickerWindowClass(ops);
+  const render = WindowClass.prototype.render;
+  WindowClass.prototype.render = function () {};
+  try {
+    const tracks = options.tracks.map(track => ({ ...track, gameType: "item" }));
+    const view = new WindowClass({ ...options, tracks, randomGroups: [], gameTypes: ["item"] } as
+      unknown as TrackPickerWindowOptions, assets);
+    assert.deepEqual([view.itemEnabled, view.speedEnabled], [true, false]);
+    view.toggleGameType("speed");
+    assert.deepEqual([view.itemEnabled, view.speedEnabled], [true, false]);
+    view.selectedTheme = "1024";
+    view.toggleGameType("speed");
+    assert.deepEqual([view.itemEnabled, view.speedEnabled], [true, false]);
+    view.selectedTheme = "mabi";
+    view.hits = [];
+    view.drawFilters();
+    assert.deepEqual(view.hits.map(hit => hit.id), ["filter:item"]);
+    assert.deepEqual(alphas, [0.45]);
+    view.dispose();
+    // Without gameTypes both stay on, as in the release.
+    const both = new WindowClass(options as unknown as TrackPickerWindowOptions, assets);
+    assert.deepEqual([both.itemEnabled, both.speedEnabled], [true, true]);
+    both.dispose();
+  } finally {
+    WindowClass.prototype.render = render;
+    globalThis.document = previous.document;
+    globalThis.window = previous.window;
+    globalThis.ResizeObserver = previous.ResizeObserver;
+    canvasContext = undefined;
+  }
 });

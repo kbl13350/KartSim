@@ -9,7 +9,7 @@ import {
 import {
   changeFavoriteTrack, commitTrackSearch, confirmTrackSelection,
   placeInitialThemeOffset, searchTracks, selectTrackTheme, toggleTrackGameType,
-  type TrackPickerActionHost, type TrackPickerConfirmation,
+  trackGameTypeOffered, type TrackPickerActionHost, type TrackPickerConfirmation,
 } from "./track-picker-actions";
 import {
   filteredTracks, gameTypeEnabled, matchingRandomGroup, randomGroupsForDisplay,
@@ -34,6 +34,8 @@ export interface TrackPickerRandomGroup extends SelectableRandomGroup {
 export interface TrackPickerWindowOptions {
   root: HTMLElement;
   library: TrackPickerWindowLibrary;
+  /** Game types offered; 道具赛 rooms pass ["item"] (absent: both, independently). */
+  gameTypes?: readonly ("item" | "speed")[];
   tracks: TrackPickerTrack[];
   randomGroups?: TrackPickerRandomGroup[];
   randomTrackNames?: Map<string, string>;
@@ -337,6 +339,9 @@ export class TrackPickerWindow {
       this.itemEnabled = random.gameType === "item";
       this.speedEnabled = random.gameType === "speed";
     }
+    // Item rooms open with only 道具 checked; 竞速 stays off.
+    this.itemEnabled &&= trackGameTypeOffered(options, "item");
+    this.speedEnabled &&= trackGameTypeOffered(options, "speed");
     const track = options.tracks.find(candidate => candidate.id === options.selectedTrackId);
     if (!track) throw new Error("P3528 SelectTrackEx 当前赛道不在 mode 9 候选中。");
     this.selectedTheme = this.selectedRandomGroupId === undefined ? track.theme : "1024";
@@ -518,26 +523,34 @@ export class TrackPickerWindow {
     const radio = this.node(`randomRadio.${gameType}`);
     const rectangle = this.windows.get(radio)!;
     const id = `filter:${gameType}`;
+    const offered = trackGameTypeOffered(this.options, gameType);
     const image = this.assets.randomRadioButton?.[Number(checked) +
-      (this.hovered === id ? 2 : 0)];
+      (offered && this.hovered === id ? 2 : 0)];
     if (!image) return;
+    this.context.save();
+    if (!offered) this.context.globalAlpha = 0.45;
     drawImage(this.context, image, rectangle);
     const label = radio.children[0]!;
     const labelRect = this.windows.get(label)!;
     this.drawLabel(label, { ...labelRect, y: rectangle.y, height: rectangle.height });
-    this.addHit({ id, kind: gameType, rect: rectangle });
+    this.context.restore();
+    if (offered) this.addHit({ id, kind: gameType, rect: rectangle });
   }
 
   drawCheck(gameType: string, checked: boolean): void {
     const radio = this.node(`radio.${gameType}`);
     const rectangle = this.windows.get(radio)!;
     const id = `filter:${gameType}`;
-    const state = Number(checked) + (this.hovered === id ? 2 : 0);
+    const offered = trackGameTypeOffered(this.options, gameType);
+    const state = Number(checked) + (offered && this.hovered === id ? 2 : 0);
+    this.context.save();
+    if (!offered) this.context.globalAlpha = 0.45;
     this.dependencies.paintFrame(this.context, this.assets.checkFrames[state]!,
       this.assets.frame.image, rectangle);
     const label = radio.children[0]!;
     this.drawLabel(label, this.windows.get(label)!);
-    this.addHit({ id, kind: gameType, rect: rectangle });
+    this.context.restore();
+    if (offered) this.addHit({ id, kind: gameType, rect: rectangle });
   }
 
   drawTracks(): void {

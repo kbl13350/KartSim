@@ -12,6 +12,8 @@ export interface TrackPickerActionHost {
     onConfirm(selection: TrackPickerConfirmation): void;
     getFavoriteCount(): number;
     onFavoriteChange(id: string, favorite: boolean): void;
+    /** Game types the room offers; a type outside it cannot be switched on. */
+    gameTypes?: readonly string[];
   };
   assets: { themes: Array<{ id: string }> };
   selectedTheme?: string;
@@ -68,8 +70,15 @@ export function selectTrackTheme(host: TrackPickerActionHost, theme: string): vo
   host.render();
 }
 
+/** A 道具赛 room offers only 道具; other pickers offer both game types. */
+export function trackGameTypeOffered(options: { gameTypes?: readonly string[] },
+  gameType: string): boolean {
+  return !options.gameTypes || options.gameTypes.includes(gameType);
+}
+
 /** Radio buttons are exclusive on the random tab and independent elsewhere. */
 export function toggleTrackGameType(host: TrackPickerActionHost, gameType: string): void {
+  if (!trackGameTypeOffered(host.options, gameType)) return;
   if (host.selectedTheme === "1024") {
     host.itemEnabled = gameType === "item";
     host.speedEnabled = gameType === "speed";
