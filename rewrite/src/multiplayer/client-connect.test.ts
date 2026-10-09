@@ -203,3 +203,78 @@ test("WebRTC sends the entry ticket in hello and no bearer token to the game ser
   assert.equal("ticket" in (anonymous.requests[0] as Record<string, unknown>), false);
   anonymous.target.dispose();
 });
+
+class FakeSocket extends EventTarget {
+  readyState = 0;
+  binaryType = "blob";
+  bufferedAmount = 0;
+  sent: unknown[] = [];
+  constructor(readonly url: string) {
+    super();
+    queueMicrotask(() => { this.readyState = 1; this.dispatchEvent(new Event("open")); });
+  }
+  send(data: unknown): void { this.sent.push(data); }
+  close(): void { this.readyState = 3; this.dispatchEvent(new Event("close")); }
+}
+
+function autoHarness(offerStatus: number) {
+  const peer = new FakePeer();
+  const sockets: FakeSocket[] = [];
+  const events: string[] = [];
+  const host = {
+    peer: undefined, control: undefined, motion: undefined, abort: undefined, heartbeat: undefined,
+    iceRefresh: undefined, disconnectTimer: undefined, peerTransport: undefined,
+    decoder: new GameMotionDecoder(), cancelConnect: undefined,
+    nextId: 0, pending: new Map(), clock: new ClockSynchronizer(),
+    raceLatencies: new Map(), playerId: undefined,
+    motionListeners: new Set(), echoRtt: new MotionRoundTripTracker(),
+    listeners: new Set([() => events.push("message")]),
+    closeListeners: new Set([() => events.push("closed")]),
+    request: async (message: { type: string }) => {
+      events.push(`request:${message.type}`);
+      return message.type === "hello" ? { type: "welcome", playerId, capabilities: [] } : { type: message.type };
+    },
+    acceptMotion: () => {}, acceptMotionMessage: () => {},
+    dispose: () => { events.push("dispose"); },
+  } as unknown as ClientConnectionHost;
+  const connect = () => connectGameClient(host, "https://example.org/multiplayer/offer", "Tester", "p3553", {}, "",
+    true, "kt1.entry.ticket", {
+      transport: "auto",
+      validateControlMessage: value => value as ServerControlEvent,
+      peerFactory: () => peer as unknown as RTCPeerConnection,
+      webSocketFactory: url => {
+        const socket = new FakeSocket(url);
+        sockets.push(socket);
+        return socket as unknown as WebSocket;
+      },
+      fetchImpl: (async () => new Response(JSON.stringify(offerStatus === 200
+        ? { type: "answer", sdp: "answer-sdp" } : { error: "USE_WEBSOCKET" }), { status: offerStatus })) as typeof fetch,
+      now: () => 140,
+    });
+  return { host, peer, sockets, events, connect };
+}
+
+test("auto uses the WebRTC channels when the node answers the offer", async () => {
+  const { host, peer, sockets, events, connect } = autoHarness(200);
+  const welcome = await connect();
+  assert.equal(welcome.type, "welcome");
+  assert.equal(sockets.length, 0);
+  assert.equal(host.peer, peer as unknown as RTCPeerConnection);
+  assert.equal(events.filter(event => event === "request:hello").length, 1);
+  clearInterval(host.heartbeat);
+});
+
+test("auto falls back to the WebSocket with the unused ticket and keeps the client's listeners", async () => {
+  const { host, peer, sockets, events, connect } = autoHarness(501);
+  const welcome = await connect();
+  assert.equal(welcome.type, "welcome");
+  assert.equal(peer.connectionState, "closed", "the WebRTC attempt is closed");
+  assert.equal(sockets.length, 1);
+  assert.equal(sockets[0]!.url, "wss://example.org/multiplayer/ws");
+  // Hello went once, over the WebSocket; the attempt neither disposed the client nor ran its close listeners.
+  assert.deepEqual(events.filter(event => event.startsWith("request:hello") || event === "dispose" ||
+    event === "closed"), ["request:hello"]);
+  assert.equal(host.listeners.size, 1);
+  assert.equal(host.closeListeners.size, 1);
+  clearInterval(host.heartbeat);
+});

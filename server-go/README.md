@@ -38,7 +38,7 @@
 2. 浏览器 `POST <数据服务>/multiplayer/game-servers/ticket`，请求体 `{"nodeId":"game-1"}`，带 `Authorization: Bearer <会话 token>`。默认没有游客（`KART_ALLOW_GUESTS=false`）：不带 Bearer 401 `LOGIN_REQUIRED`；账号还没领取新手礼包 403 `ONBOARDING_REQUIRED`。数据服务签发一次性票据：
    `kt1.` + base64url(JSON 声明) + `.` + base64url(HMAC-SHA256(KART_CLUSTER_SECRET, "kt1." + 载荷))。
    声明含目标节点 `node`、数据节点 `data`、随机 `nonce`、签发/过期时间（有效期 2 分钟）、游客标记 `guest`，账号票据另含账号 ID、用户名、昵称与管理员标记。
-3. 浏览器连接 `<游戏服 origin>/multiplayer/ws`（origin 为 `null` 时用数据服务的 origin，即同源代理），`hello` 中带上 `ticket` 与当前装备。游戏节点本地验签，依次检查过期、节点、数据节点与 nonce 未用过；游客票据在 `KART_ALLOW_GUESTS=false` 时被拒绝（`LOGIN_REQUIRED`）；账号使用票据中的昵称。随后在本节点内去重昵称与账号（一个账号同时只能有一个会话），在锁外向数据服务核对装备归属（不拥有时 403 `ITEM_NOT_OWNED`，浏览器重读库存、换回新手装备后用新票据重试），再请求数据服务在全集群占用该昵称与账号。
+3. 浏览器先用 WebRTC 连接：`POST <游戏服 origin>/multiplayer/offer` 交换 SDP，打开两个数据通道（`control` 有序可靠，承载 JSON 命令与事件；`motion` 无序、不重传，承载二进制运动帧）；8 秒内打不开（UDP 不通、节点关闭了 WebRTC 返回 501 `USE_WEBSOCKET`、经数据服务同源代理）就改连 `<游戏服 origin>/multiplayer/ws`（origin 为 `null` 时用数据服务的 origin，即同源代理）。两种连接的协议相同，见下文“WebRTC 传输”。`hello` 中带上 `ticket` 与当前装备（WebRTC 失败时票据还没用过，WebSocket 用同一张）。游戏节点本地验签，依次检查过期、节点、数据节点与 nonce 未用过；游客票据在 `KART_ALLOW_GUESTS=false` 时被拒绝（`LOGIN_REQUIRED`）；账号使用票据中的昵称。随后在本节点内去重昵称与账号（一个账号同时只能有一个会话），在锁外向数据服务核对装备归属（不拥有时 403 `ITEM_NOT_OWNED`，浏览器重读库存、换回新手装备后用新票据重试），再请求数据服务在全集群占用该昵称与账号。
 4. **每次连接尝试都要重新申请票据**（包括昵称冲突后的重试），票据用过一次即作废。
 
 `hello` 失败时回复 `{"type":"error","requestId":…,"code":…}`，与票据和入场相关的错误码（按检查顺序）：
@@ -187,7 +187,7 @@ node --import tsx tools/export-economy-data.mjs --out DIR  # 写到其他目录�
 ./run-lan.sh
 ```
 
-数据服务与游戏节点监听 `0.0.0.0` 并信任任意主机名（`KART_LAN_HOSTS='*'`）；前端以自签名证书提供 HTTPS（其他设备需要安全上下文），并把 `/multiplayer/ws` 代理到唯一的游戏节点（`KART_LAN_GAME_BACKEND`），其余 `/multiplayer/`、`/api/` 代理到数据服务（`KART_LAN_BACKEND`，好友私聊的 WebSocket `/api/messenger/ws` 也转发升级）。该节点以 `KART_PUBLIC_ORIGIN=same-origin` 运行，列表中的 origin 为 `null`，浏览器因此连接页面同源的 `wss://`。内部 API 仍只监听 127.0.0.1。终端会打印各网卡的 `https://<IP>:8780/` 地址，每台设备首次访问时需要信任证书；管理页面同样经代理提供（`https://<IP>:8780/multiplayer/admin`）。数据服务信任本机代理转发的 `X-Forwarded-For`（`KART_TRUSTED_PROXIES=127.0.0.1/32,::1/128`），注册限流因此按各设备的地址计算。
+数据服务与游戏节点监听 `0.0.0.0` 并信任任意主机名（`KART_LAN_HOSTS='*'`）；前端以自签名证书提供 HTTPS（其他设备需要安全上下文），并把 `/multiplayer/ws` 与 WebRTC 信令 `/multiplayer/offer` 代理到唯一的游戏节点（`KART_LAN_GAME_BACKEND`；WebRTC 的 UDP 由各设备直连该节点的局域网地址），其余 `/multiplayer/`、`/api/` 代理到数据服务（`KART_LAN_BACKEND`，好友私聊的 WebSocket `/api/messenger/ws` 也转发升级）。该节点以 `KART_PUBLIC_ORIGIN=same-origin` 运行，列表中的 origin 为 `null`，浏览器因此连接页面同源的 `wss://`。内部 API 仍只监听 127.0.0.1。终端会打印各网卡的 `https://<IP>:8780/` 地址，每台设备首次访问时需要信任证书；管理页面同样经代理提供（`https://<IP>:8780/multiplayer/admin`）。数据服务信任本机代理转发的 `X-Forwarded-For`（`KART_TRUSTED_PROXIES=127.0.0.1/32,::1/128`），注册限流因此按各设备的地址计算。
 
 ### Docker Compose
 
@@ -315,6 +315,10 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `KART_MEMORY_LIMIT_MB` | `0`（不限） | 设置后等同 `GOMEMLIMIT`；存活堆超过它的 90% 时拒绝新连接（HTTP 503）和新 `hello`（503 `SERVER_BUSY`），已在房间的玩家不受影响。为 0 或 ≥ 64 |
 | `KART_HELLO_TIMEOUT` | `15s` | 连接后在这段时间内没有完成 `hello` 就以 1008 关闭（Go 时长格式，1s–5m） |
 | `KART_ALLOW_GUESTS` | `false` | 为 `false` 时游客票据的 `hello` 返回 401 `LOGIN_REQUIRED`；应与数据服务相同 |
+| `KART_WEBRTC` | `true` | 是否提供 WebRTC 数据通道（`POST /multiplayer/offer`）；关闭后浏览器都用 WebSocket |
+| `KART_WEBRTC_UDP_PORT` | `0` | 所有 WebRTC 连接共用的 UDP 端口（防火墙与容器发布它）；0 表示每个连接随机端口。端口被占用时节点照常启动，只提供 WebSocket（日志报错） |
+| `KART_WEBRTC_PUBLIC_IPS` | 空 | 逗号分隔的 IP，替换 ICE 候选中的网卡地址（1:1 NAT、云主机、容器发布端口时填浏览器访问本机所用的地址） |
+| `KART_WEBRTC_LOOPBACK` | `true` | 是否也提供 127.0.0.1 候选（浏览器与节点在同一台机器时可用）；容器内应设 `false` |
 
 ### 启动脚本（`run-full-local.sh` / `run-lan.sh`）
 
@@ -490,8 +494,17 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | --- | --- |
 | `GET /multiplayer/healthz` | `{"protocolVersion":39,"ruleset":"launcher-room-v1","transport":"websocket","service":"game","nodeId":"game-1","connections":3,"players":2,"rooms":1,"heapMB":4}`：后四项是当前连接数、已 `hello` 的玩家数、房间数与存活堆（MiB），便于监控 |
 | `GET /multiplayer/ws` | WebSocket 控制通道（JSON）与二进制运动帧，协议见 `SERVER_PROTOCOL.md`；无 `Origin` 头或同源/可信 Origin 才接受 |
+| `POST /multiplayer/offer` | WebRTC 信令：`{"type":"offer","sdp"}` → `{"type":"answer","sdp"}`（服务端一次给出全部 ICE 候选，不用 trickle）。`KART_WEBRTC=false` 或 UDP 端口不可用时 501 `USE_WEBSOCKET`；连接数、内存与关停的限制同 WebSocket（503）；SDP 不合法 400 `INVALID_OFFER` |
 
-其他路径 404。
+其他路径 404。健康检查另有 `webrtc` 字段，表示本节点是否提供 WebRTC。
+
+#### WebRTC 传输
+
+游戏节点用 [pion/webrtc](https://github.com/pion/webrtc) 实现与浏览器原版客户端相同的两个协商好的数据通道：`control`（id 0，有序可靠）与 `motion`（id 1，无序、`maxRetransmits: 0`）。命令、回复与房间推送走 `control`，与 WebSocket 文本帧完全相同；运动帧走 `motion`：丢包或迟到的帧不会像 TCP 那样挡住后面更新的帧，网络抖动时其他车手的位置更新更及时。限流、`hello`、发送缓冲、空闲超时（90 秒没有消息）与 WebSocket 相同；ICE 断开超过 10 秒或失败即视为掉线。
+
+- 端口：默认每个连接随机一个 UDP 端口；生产环境设 `KART_WEBRTC_UDP_PORT`，所有连接共用这一个 UDP 端口，防火墙放行它即可（TCP 的 HTTP 端口照常经反向代理）。
+- 地址：节点在网卡地址上收发 UDP；在 NAT、云主机或容器后面时用 `KART_WEBRTC_PUBLIC_IPS` 写浏览器能访问到的地址（它替换候选地址）。UDP 不经过 Nginx，浏览器直连节点。
+- 浏览器在 8 秒内打不开数据通道时自动改用 WebSocket，所以 UDP 被挡的网络照常能玩，只是运动帧回到 TCP。前端可用 `VITE_MULTIPLAYER_TRANSPORT=websocket` 强制只用 WebSocket（`webrtc` 只用 WebRTC，默认 `auto`）。
 
 ### 内部 API（`KART_INTERNAL_LISTEN`，只给游戏节点）
 
@@ -671,13 +684,19 @@ server {
         proxy_read_timeout 120s;
         proxy_send_timeout 120s;
     }
+    location = /multiplayer/offer {
+        # WebRTC 信令；之后的 UDP 由浏览器直连节点（KART_WEBRTC_UDP_PORT，防火墙放行）。
+        proxy_pass http://10.0.0.21:8788;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
     location = /multiplayer/healthz {
         proxy_pass http://10.0.0.21:8788;
     }
 }
 ```
 
-对应设置：数据服务 `KART_PUBLIC_ORIGIN=https://kart.example.com`、`KART_LAN_HOSTS=kart.example.com`、`KART_TRUSTED_PROXIES=<Nginx 到 kart-data 的来源地址>`（同机时默认的回环地址即可；否则注册与登录限流会把所有玩家算作 Nginx 一个 IP）；游戏节点 1 `KART_PUBLIC_ORIGIN=https://game1.example.com`、`KART_LAN_HOSTS=kart.example.com,game1.example.com`。数据服务的 location 不要传 `X-Forwarded-Host`，否则 `auth/config` 会按“同源开发代理”返回 `backendOrigin: null`（设置了 `KART_PUBLIC_ORIGIN` 时以它为准）。
+对应设置：数据服务 `KART_PUBLIC_ORIGIN=https://kart.example.com`、`KART_LAN_HOSTS=kart.example.com`、`KART_TRUSTED_PROXIES=<Nginx 到 kart-data 的来源地址>`（同机时默认的回环地址即可；否则注册与登录限流会把所有玩家算作 Nginx 一个 IP）；游戏节点 1 `KART_PUBLIC_ORIGIN=https://game1.example.com`、`KART_LAN_HOSTS=kart.example.com,game1.example.com`，WebRTC 设 `KART_WEBRTC_UDP_PORT=<固定 UDP 端口>`（防火墙放行该 UDP 端口），节点在 NAT 后面时再设 `KART_WEBRTC_PUBLIC_IPS=<公网 IP>`。数据服务的 location 不要传 `X-Forwarded-Host`，否则 `auth/config` 会按“同源开发代理”返回 `backendOrigin: null`（设置了 `KART_PUBLIC_ORIGIN` 时以它为准）。
 
 ## 备份与运维
 

@@ -136,3 +136,30 @@ func TestAllowGuestsSetting(t *testing.T) {
 		t.Errorf("KART_ALLOW_GUESTS=maybe: %v", err)
 	}
 }
+
+func TestWebRTCSettings(t *testing.T) {
+	cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !cfg.WebRTC || cfg.WebRTCUDPPort != 0 || len(cfg.WebRTCPublicIPs) != 0 || !cfg.WebRTCLoopback {
+		t.Fatalf("WebRTC defaults %+v", cfg)
+	}
+	cfg, err = FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret, "KART_WEBRTC": "off",
+		"KART_WEBRTC_UDP_PORT": "8790", "KART_WEBRTC_PUBLIC_IPS": " 203.0.113.7, 2001:db8::1 ",
+		"KART_WEBRTC_LOOPBACK": "false"}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if cfg.WebRTC || cfg.WebRTCUDPPort != 8790 || strings.Join(cfg.WebRTCPublicIPs, ",") != "203.0.113.7,2001:db8::1" ||
+		cfg.WebRTCLoopback {
+		t.Fatalf("WebRTC overrides %+v", cfg)
+	}
+	for name, value := range map[string]string{"KART_WEBRTC": "maybe", "KART_WEBRTC_UDP_PORT": "70000",
+		"KART_WEBRTC_PUBLIC_IPS": "game.example.com", "KART_WEBRTC_LOOPBACK": "2"} {
+		if _, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret, name: value})); err == nil ||
+			!strings.Contains(err.Error(), name) {
+			t.Fatalf("%s=%s: %v", name, value, err)
+		}
+	}
+}

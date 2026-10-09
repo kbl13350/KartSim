@@ -34,11 +34,48 @@ export interface ClientConnectionHost extends ClientControlHost {
 
 export interface ClientConnectDependencies {
   validateControlMessage(value: unknown): ServerControlEvent | undefined;
-  transport?: "webrtc" | "websocket";
+  /**
+   * "webrtc" (the release default), "websocket", or "auto": WebRTC data
+   * channels first, the WebSocket when they cannot open (UDP blocked, a node
+   * without WebRTC answering 501).
+   */
+  transport?: "webrtc" | "websocket" | "auto";
+  /** Internal to "auto": a WebRTC attempt that fails before hello leaves the client usable. */
+  fallback?: boolean;
   peerFactory?: (configuration: RTCConfiguration) => RTCPeerConnection;
   webSocketFactory?: (url: string) => WebSocket;
   fetchImpl?: typeof fetch;
   now?: () => number;
+}
+
+/** How long "auto" waits for the data channels before taking the WebSocket. */
+const FALLBACK_OPEN_MS = 8_000;
+
+/** The WebRTC channels did not open; nothing was sent to the game server yet. */
+export class WebRtcUnavailableError extends Error {
+  constructor(readonly reason: unknown) {
+    super(`WebRTC unavailable: ${reason instanceof Error ? reason.message : String(reason)}`);
+    this.name = "WebRtcUnavailableError";
+  }
+}
+
+/** Close a WebRTC attempt without ending the client (its listeners stay). */
+function retirePeer(host: ClientConnectionHost, peer: RTCPeerConnection): void {
+  if (host.peer !== peer) return;
+  host.peer = undefined;
+  host.abort?.abort();
+  host.abort = undefined;
+  clearTimeout(host.disconnectTimer);
+  host.disconnectTimer = undefined;
+  const cancel = host.cancelConnect;
+  host.cancelConnect = undefined;
+  const { control, motion } = host;
+  host.control = undefined;
+  host.motion = undefined;
+  control?.close();
+  motion?.close();
+  peer.close();
+  cancel?.(new Error("WebRTC unavailable"));
 }
 
 /**
@@ -55,6 +92,18 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
     return connectWebSocketGameClient(host, offerUrl, name, resourceVersion,
       equipment, initial, raceRuntime, ticket, dependencies);
   }
+  if (dependencies.transport === "auto") {
+    try {
+      return await connectGameClient(host, offerUrl, name, resourceVersion, equipment, initial,
+        raceRuntime, ticket, { ...dependencies, transport: "webrtc", fallback: true });
+    } catch (error) {
+      if (!(error instanceof WebRtcUnavailableError)) throw error;
+      // The ticket was not presented yet: the same one admits the WebSocket.
+      const { connectWebSocketGameClient } = await import("./client-websocket");
+      return connectWebSocketGameClient(host, offerUrl, name, resourceVersion,
+        equipment, initial, raceRuntime, ticket, dependencies);
+    }
+  }
   if (host.peer) throw new Error("Connection already exists");
   const createPeer = dependencies.peerFactory ??
     (configuration => new RTCPeerConnection(configuration));
@@ -63,6 +112,15 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
   const peer = createPeer({ iceServers: [] });
   host.peer = peer;
   host.abort = new AbortController();
+  // With a fallback, failing before hello retires only this peer (the
+  // client's listeners stay for the WebSocket); afterwards it ends the client.
+  const early = dependencies.fallback === true;
+  let helloSent = false;
+  const fail = () => {
+    if (host.peer !== peer) return;
+    if (early && !helloSent) retirePeer(host, peer);
+    else host.dispose();
+  };
   const control = peer.createDataChannel("control", { negotiated: true, id: 0, ordered: true });
   const motion = peer.createDataChannel("motion", {
     negotiated: true, id: 1, ordered: false, maxRetransmits: 0,
@@ -73,7 +131,7 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
   motion.onmessage = event => {
     if (host.peer === peer) host.acceptMotion(event.data);
   };
-  motion.onclose = () => { if (host.peer === peer) host.dispose(); };
+  motion.onclose = () => fail();
 
   control.onmessage = event => {
     if (host.peer !== peer) return;
@@ -82,17 +140,17 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
     catch { host.dispose(); return; }
     receiveGameControlEvent(host, raw, dependencies.validateControlMessage, now);
   };
-  control.onclose = () => { if (host.peer === peer) host.dispose(); };
+  control.onclose = () => fail();
   peer.onconnectionstatechange = () => {
     if (host.peer !== peer) return;
     if (peer.connectionState === "disconnected") {
       host.disconnectTimer ??= setTimeout(() => {
-        if (host.peer === peer && peer.connectionState === "disconnected") host.dispose();
+        if (host.peer === peer && peer.connectionState === "disconnected") fail();
       }, 3_000);
     } else {
       clearTimeout(host.disconnectTimer);
       host.disconnectTimer = undefined;
-      if (peer.connectionState === "failed" || peer.connectionState === "closed") host.dispose();
+      if (peer.connectionState === "failed" || peer.connectionState === "closed") fail();
     }
   };
 
@@ -101,8 +159,9 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
     host.cancelConnect = reject;
     deadline = setTimeout(() => {
       reject(new Error("WebRTC connection timeout"));
-      host.dispose();
-    }, 20_000);
+      if (early && !helloSent) fail();
+      else host.dispose();
+    }, early ? FALLBACK_OPEN_MS : 20_000);
   });
   const negotiate = async () => {
     const open = new Promise<void>(resolve => { control.onopen = () => resolve(); });
@@ -142,6 +201,9 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
 
   try {
     await Promise.race([negotiate(), timeout]);
+    helloSent = true;
+    // "auto" timed only the channels' opening; hello has its own deadline.
+    if (early) clearTimeout(deadline);
     const welcome = await host.request({ type: "hello", protocolVersion: PROTOCOL_VERSION,
       ruleset: ROOM_RULESET, resourceVersion, name, equipment, initial, raceRuntime,
       ...(ticket ? { ticket } : {}) });
@@ -190,6 +252,10 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
     rememberConnectedClient(host);
     return welcome;
   } catch (error) {
+    if (early && !helloSent) {
+      fail();
+      throw new WebRtcUnavailableError(error);
+    }
     if (host.peer === peer) host.dispose();
     throw error;
   } finally {

@@ -100,12 +100,20 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 		opts.WS.Busy = memory.busy
 	}
 	sockets := ws.NewServer(rooms, cfg.Network, opts.WS)
+	if cfg.WebRTC {
+		// Without WebRTC (a taken UDP port) browsers keep the WebSocket.
+		if err := sockets.EnableWebRTC(ws.RTCOptions{UDPPort: cfg.WebRTCUDPPort, PublicIPs: cfg.WebRTCPublicIPs,
+			IncludeLoopback: cfg.WebRTCLoopback}); err != nil {
+			log.Error("WebRTC transport unavailable; players connect over WebSocket", "error", err)
+		}
+	}
 
 	a := &App{cfg: cfg, log: log, data: data, agent: agent, outbox: box,
 		lobby: rooms, ws: sockets, memory: memory}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /multiplayer/healthz", a.health)
 	mux.Handle("GET /multiplayer/ws", sockets)
+	mux.Handle("POST /multiplayer/offer", sockets.OfferHandler())
 	mux.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
 		apierr.WriteError(w, apierr.New(http.StatusNotFound, "NOT_FOUND"))
 	})
@@ -113,7 +121,7 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 	return a, nil
 }
 
-// Handler serves /multiplayer/healthz and /multiplayer/ws.
+// Handler serves /multiplayer/healthz, /multiplayer/ws and /multiplayer/offer.
 func (a *App) Handler() http.Handler { return a.handler }
 
 // Lobby exposes the room authority (tests).
@@ -136,9 +144,11 @@ func (a *App) health(w http.ResponseWriter, _ *http.Request) {
 		HeapMB             uint64 `json:"heapMB"`
 		OutboxPending      int    `json:"outboxPending"`
 		OutboxWriteFailing bool   `json:"outboxWriteFailing"`
+		// WebRTC: the node also answers /multiplayer/offer (data channels).
+		WebRTC bool `json:"webrtc"`
 	}{contract.ProtocolVersion, contract.Ruleset, "websocket", "game", a.cfg.NodeID,
 		a.ws.Connections(), players, rooms, a.memory.heapBytes() >> 20,
-		a.outbox.Len(), a.outbox.WriteFailing()})
+		a.outbox.Len(), a.outbox.WriteFailing(), a.ws.WebRTCEnabled()})
 }
 
 // Start registers the node with the data service (immediately, then every
@@ -213,7 +223,8 @@ func (a *App) Run(ctx context.Context) error {
 	a.log.Info("game node listening", "addr", listener.Addr().String(), "node", a.cfg.NodeID,
 		"origin", a.cfg.PublicOrigin, "data", a.cfg.DataInternalURL, "capacity", a.cfg.MaxPlayers,
 		"maxConnections", a.cfg.MaxConnections, "maxRooms", a.cfg.MaxRooms,
-		"memoryLimitMB", a.cfg.MemoryLimitMB, "allowGuests", a.cfg.AllowGuests)
+		"memoryLimitMB", a.cfg.MemoryLimitMB, "allowGuests", a.cfg.AllowGuests,
+		"webrtc", a.ws.WebRTCEnabled(), "webrtcUDPPort", a.cfg.WebRTCUDPPort)
 	served := make(chan error, 1)
 	go func() { served <- server.Serve(listener) }()
 

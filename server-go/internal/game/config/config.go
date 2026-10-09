@@ -54,6 +54,15 @@ type Config struct {
 
 	// HeartbeatInterval is 5 s; tests shorten it.
 	HeartbeatInterval time.Duration
+
+	// WebRTC transport (POST /multiplayer/offer, internal/game/ws/rtc.go):
+	// KART_WEBRTC (default true), KART_WEBRTC_UDP_PORT (0: a random port
+	// per peer), KART_WEBRTC_PUBLIC_IPS (1:1 NAT addresses) and
+	// KART_WEBRTC_LOOPBACK (default true: 127.0.0.1 candidates too).
+	WebRTC          bool
+	WebRTCUDPPort   int
+	WebRTCPublicIPs []string
+	WebRTCLoopback  bool
 }
 
 // ListenAddr is the host:port the HTTP server binds.
@@ -152,6 +161,33 @@ func FromEnv(getenv func(string) string) (Config, error) {
 		problems = append(problems, errors.New("KART_ALLOW_GUESTS 必须是 true 或 false"))
 	}
 	cfg.AllowGuests = allowGuests
+
+	webRTC, ok := parseBool(env("KART_WEBRTC", "true"))
+	if !ok {
+		problems = append(problems, errors.New("KART_WEBRTC 必须是 true 或 false"))
+	}
+	cfg.WebRTC = webRTC
+	udpPort, err := strconv.Atoi(env("KART_WEBRTC_UDP_PORT", "0"))
+	if err != nil || udpPort < 0 || udpPort > 65535 {
+		problems = append(problems, errors.New("KART_WEBRTC_UDP_PORT 必须是 0（随机端口）或 1–65535 的端口号"))
+	}
+	cfg.WebRTCUDPPort = udpPort
+	for _, raw := range strings.Split(getenv("KART_WEBRTC_PUBLIC_IPS"), ",") {
+		ip := strings.TrimSpace(raw)
+		if ip == "" {
+			continue
+		}
+		if net.ParseIP(ip) == nil {
+			problems = append(problems, fmt.Errorf("KART_WEBRTC_PUBLIC_IPS：%q 不是 IP 地址", ip))
+			continue
+		}
+		cfg.WebRTCPublicIPs = append(cfg.WebRTCPublicIPs, ip)
+	}
+	loopback, ok := parseBool(env("KART_WEBRTC_LOOPBACK", "true"))
+	if !ok {
+		problems = append(problems, errors.New("KART_WEBRTC_LOOPBACK 必须是 true 或 false"))
+	}
+	cfg.WebRTCLoopback = loopback
 
 	lanHosts := getenv("KART_LAN_HOSTS")
 	if lanHosts == "" {

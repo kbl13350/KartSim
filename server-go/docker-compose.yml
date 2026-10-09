@@ -6,7 +6,7 @@
 # 账号经济（开放注册、等级、点券/金币/K币、库存、商店、管理页面 /multiplayer/admin）的
 # 变量见 .env.example 与 README.md“账号经济”；奖励倍率同时传给数据服务与游戏节点。
 #
-# 对宿主机只发布 8787（数据服务）、8788/8789（两个游戏节点），默认只绑定 127.0.0.1
+# 对宿主机只发布 8787（数据服务）、8788/8789（两个游戏节点的 TCP 与 WebRTC 的 UDP），默认只绑定 127.0.0.1
 # （.env 中的 KART_BIND_ADDR）。两个网络：backend（internal，无外网）只有 mysql、redis
 # 与 kart-data；cluster 有 kart-data 与游戏节点。游戏节点因此只能访问 kart-data 的
 # 8787/8790，连不到 MySQL 与 Redis（Redis 中的会话缓存等同登录凭据）。数据服务内部 API
@@ -60,6 +60,11 @@ x-game-env: &game-env
   # 游客开关与数据服务取相同的值。奖励倍率不用传：游戏节点从数据服务的心跳响应得到
   # KART_EXP_RATE/KART_LUCCI_RATE，结束快照 race.rewards 显示乘倍率后的数值（与入账一致）。
   KART_ALLOW_GUESTS: ${KART_ALLOW_GUESTS:-false}
+  # WebRTC 数据通道（运动帧走 UDP）：每个节点一个固定 UDP 端口，候选地址改写为浏览器访问宿主机的 IP。
+  # 浏览器连不上时自动改用 WebSocket。
+  KART_WEBRTC: ${KART_WEBRTC:-true}
+  KART_WEBRTC_PUBLIC_IPS: ${KART_WEBRTC_PUBLIC_IPS:-127.0.0.1}
+  KART_WEBRTC_LOOPBACK: "false"
 
 services:
   mysql:
@@ -159,8 +164,10 @@ services:
       KART_NODE_ID: game-1
       KART_NODE_NAME: ${KART_GAME_1_NAME:-游戏服 1}
       KART_PUBLIC_ORIGIN: ${KART_GAME_1_PUBLIC_ORIGIN:-http://127.0.0.1:8788}
+      KART_WEBRTC_UDP_PORT: "8788"
     ports:
       - "${KART_BIND_ADDR:-127.0.0.1}:8788:8788"
+      - "${KART_BIND_ADDR:-127.0.0.1}:8788:8788/udp"
     volumes:
       - game-1-outbox:/var/lib/kart/outbox
 
@@ -172,8 +179,10 @@ services:
       KART_NODE_ID: game-2
       KART_NODE_NAME: ${KART_GAME_2_NAME:-游戏服 2}
       KART_PUBLIC_ORIGIN: ${KART_GAME_2_PUBLIC_ORIGIN:-http://127.0.0.1:8789}
+      KART_WEBRTC_UDP_PORT: "8789"
     ports:
       - "${KART_BIND_ADDR:-127.0.0.1}:8789:8789"
+      - "${KART_BIND_ADDR:-127.0.0.1}:8789:8789/udp"
     volumes:
       - game-2-outbox:/var/lib/kart/outbox
 

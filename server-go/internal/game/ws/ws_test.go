@@ -395,8 +395,11 @@ func TestFloodDoesNotDisconnectOtherMembers(t *testing.T) {
 	if reply := request(victim, `{"type":"clock","clientTick":1,"requestId":"q"}`); reply["type"] != "clock" {
 		t.Fatalf("victim: %v", reply)
 	}
-	if s.Connections() != 1 {
-		t.Fatalf("connections %d", s.Connections())
+	// The attacker's cleanup may still be running on its reader goroutine.
+	for deadline := time.Now().Add(5 * time.Second); s.Connections() != 1; time.Sleep(10 * time.Millisecond) {
+		if time.Now().After(deadline) {
+			t.Fatalf("connections %d", s.Connections())
+		}
 	}
 }
 
