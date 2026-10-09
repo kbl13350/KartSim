@@ -1,4 +1,5 @@
 import { closeReadyHome, type ReadyHomeController } from "./ready-home";
+import { closeReadyLottery } from "./ready-lottery";
 import { closeReadyShop } from "./ready-shop";
 interface Disposable { dispose(): void }
 
@@ -60,6 +61,7 @@ export function disposeReadyController(host: ReadyControllerStateHost): void {
   host.disposed = true;
   closeReadyHome(host as unknown as ReadyHomeController);
   closeReadyShop(host as unknown as { activeShop?: { close(): void } });
+  closeReadyLottery(host as unknown as { activeLottery?: { close(): void } });
   host.activeItemInventory?.dispose();
   host.activeItemInventory = undefined;
   host.activeHouse?.dispose();
@@ -96,6 +98,7 @@ export function releaseReadyForRace(host: ReadyControllerStateHost): void {
   closeReadyHome(host as unknown as ReadyHomeController);
   // A race never runs under the shop (nor under one still loading).
   closeReadyShop(host as unknown as { activeShop?: { close(): void } });
+  closeReadyLottery(host as unknown as { activeLottery?: { close(): void } });
   host.activeItemInventory?.dispose();
   host.activeItemInventory = undefined;
   host.activeHouse?.dispose();

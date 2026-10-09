@@ -1,6 +1,7 @@
 import { accountOwnedEquipment, garageViewCatalog } from "../account/garage-ownership";
 import type { ReadyOptions, ReadySelection } from "./ready-flow";
 import { selectionKeep } from "./ready-garage";
+import { closeReadyLottery } from "./ready-lottery";
 import { closeReadyShop } from "./ready-shop";
 
 interface Profile {
@@ -135,7 +136,10 @@ export async function openReadyMultiplayer(controller: ReadyMultiplayerControlle
     onPageAudio: (page: string) => host.getBgm()?.playMultiplayer(page),
     onRaceVisibility: (visible: boolean) => {
       // The race covers everything; the shop is not modal to it.
-      if (visible) closeReadyShop(controller);
+      if (visible) {
+        closeReadyShop(controller);
+        closeReadyLottery(controller as unknown as { activeLottery?: { close(): void } });
+      }
       controller.activeTaskbar?.setVisible(!visible);
     },
     initialTrackId: host.getSelection()?.trackId,

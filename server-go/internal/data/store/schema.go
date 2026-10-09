@@ -457,6 +457,54 @@ var migrations = []migration{
 			CONSTRAINT fk_account_expedition_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
 		) ` + tableTail,
 	}},
+	// Lotteries (LOTTERY.md): 寻宝 and 精品道具场 draws, their 保底 counters,
+	// the daily free materials and the admin's activity settings.
+	{version: 8, statements: []string{
+		// One row per draw request: the idempotency key and the stored answer.
+		`CREATE TABLE IF NOT EXISTS lottery_draws (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			request_id CHAR(36) ` + idColumn + ` NOT NULL,
+			kind VARCHAR(16) ` + idColumn + ` NOT NULL,
+			ref INT NOT NULL,
+			count INT NOT NULL,
+			result_json MEDIUMTEXT NOT NULL,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, request_id),
+			KEY idx_lottery_draws_recent (account_id, created_at),
+			CONSTRAINT fk_lottery_draws_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// 保底 state: treasure-hunt counted draws per 保底 reward
+		// ("hunt:<id>:<stockId>") and lottery mileage points ("mileage:<itemId>").
+		`CREATE TABLE IF NOT EXISTS lottery_counters (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			counter VARCHAR(48) ` + idColumn + ` NOT NULL,
+			value BIGINT NOT NULL DEFAULT 0,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, counter),
+			CONSTRAINT fk_lottery_counters_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// Daily free materials claimed, per activity and Beijing day.
+		`CREATE TABLE IF NOT EXISTS lottery_daily (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			activity VARCHAR(40) ` + idColumn + ` NOT NULL,
+			day CHAR(10) ` + idColumn + ` NOT NULL,
+			created_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, activity, day),
+			CONSTRAINT fk_lottery_daily_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// Admin settings of an activity ("treasureHunt", "gacha", "lottery:<itemId>");
+		// without a row the activity is open with the built-in daily items.
+		`CREATE TABLE IF NOT EXISTS lottery_activities (
+			activity VARCHAR(40) ` + idColumn + ` NOT NULL,
+			enabled TINYINT NOT NULL,
+			start_at BIGINT NULL,
+			end_at BIGINT NULL,
+			daily_json TEXT NULL,
+			updated_by VARCHAR(64) NOT NULL,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (activity)
+		) ` + tableTail,
+	}},
 }
 
 // LatestSchemaVersion is the version Migrate brings a database to.

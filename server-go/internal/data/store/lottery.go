@@ -75,8 +75,8 @@ func (s *Store) OpenBox(ctx context.Context, data *lottery.Data, accountID strin
 		if box.RpLimit > 0 && l.exp < int64(box.RpLimit) {
 			return errBoxRpLimit
 		}
-		if box.NeedOther > 0 {
-			if _, err := consumeItem(ctx, tx, accountID, lottery.Category, box.NeedOther, 1, now); err != nil {
+		if box.Key > 0 {
+			if _, err := consumeItem(ctx, tx, accountID, lottery.Category, box.Key, 1, now); err != nil {
 				if errors.Is(err, errNotEnoughItems) {
 					return errNeedOtherItem
 				}

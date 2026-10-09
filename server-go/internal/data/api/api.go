@@ -74,6 +74,12 @@ type Options struct {
 	Messenger messenger.Options
 	// MyRoom tunes the My Room visit sockets (GET /api/myroom/ws).
 	MyRoom myroom.Options
+
+	// Lottery is the lottery data (LOTTERY.md); the embedded tables when nil.
+	Lottery *lottery.Data
+	// LotteryRand makes the randomness of one draw request; a ChaCha8
+	// generator seeded from crypto/rand when nil (tests fix it).
+	LotteryRand func() lottery.Rand
 }
 
 // API serves the public and internal handlers.
@@ -103,8 +109,11 @@ type API struct {
 	careers        *career.Data
 	dictionary     *career.Dictionary
 	expedition     *expedition.Data
-	lottery        *lottery.Data
 	rooms          *myroom.Hub
+
+	lottery         *lottery.Data
+	lotteryItemsDoc catalogDocument
+	lotteryRand     func() lottery.Rand
 }
 
 // New builds the API.
@@ -208,14 +217,20 @@ func New(opts Options) *API {
 	if a.expedition, err = expedition.Default(); err != nil {
 		panic(err)
 	}
-	if a.lottery, err = lottery.Default(); err != nil {
-		panic(err)
-	}
 	roomOptions := opts.MyRoom
 	roomOptions.CheckOrigin = network.CheckWebSocketOrigin
 	roomOptions.Now = now
 	roomOptions.Logger = logger
 	a.rooms = myroom.New(roomBackend{a}, roomOptions)
+	if a.lottery = opts.Lottery; a.lottery == nil {
+		if a.lottery, err = lottery.Default(); err != nil {
+			panic(err) // the embedded data is checked by the lottery tests
+		}
+	}
+	a.lotteryItemsDoc = lotteryItemsDocument(a.lottery)
+	if a.lotteryRand = opts.LotteryRand; a.lotteryRand == nil {
+		a.lotteryRand = newLotteryRand
+	}
 	return a
 }
 
@@ -300,6 +315,16 @@ func (a *API) PublicHandler() http.Handler {
 	route("POST /api/expedition/start", a.startExpedition)
 	route("POST /api/expedition/tokens", a.expeditionTokens)
 	route("POST /api/expedition/claim", a.claimExpedition)
+	route("GET /api/lottery/items", a.lotteryItems)
+	route("GET /api/lottery/treasure-hunt", a.treasureHuntState)
+	route("POST /api/lottery/treasure-hunt/draw", a.treasureHuntDraw)
+	route("GET /api/lottery/gacha", a.gachaList)
+	route("GET /api/lottery/gacha/{itemId}", a.gachaDetail)
+	route("POST /api/lottery/gacha/draw", a.gachaDraw)
+	route("POST /api/lottery/packs/buy", a.buyPack)
+	route("POST /api/lottery/daily", a.claimLotteryDaily)
+	route("GET /api/admin/lottery", a.adminLottery)
+	route("PUT /api/admin/lottery", a.adminSaveLottery)
 	mux.Handle("GET /api/myroom/ws", a.rooms)
 
 	return recoverPanics(a.network.CORS(jsonFallback(mux)))

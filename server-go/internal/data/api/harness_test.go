@@ -19,6 +19,7 @@ import (
 
 	"kartsim/internal/data/cache"
 	"kartsim/internal/data/datatest"
+	"kartsim/internal/data/lottery"
 	"kartsim/internal/data/messenger"
 	"kartsim/internal/data/store"
 	"kartsim/internal/shared/contract"
@@ -58,6 +59,7 @@ type harnessOptions struct {
 	trustedProxies []netip.Prefix
 	redisHook      redis.Hook
 	messenger      messenger.Options // short offline grace unless set
+	lotteryRand    func() lottery.Rand
 }
 
 // generousLimits keep rate limiting active but out of the way.
@@ -110,6 +112,7 @@ func newHarness(t *testing.T, opts harnessOptions) *harness {
 		Limits:         &limits,
 		TrustedProxies: opts.trustedProxies,
 		Messenger:      opts.messenger,
+		LotteryRand:    opts.lotteryRand,
 	})
 	h.public = httptest.NewServer(h.api.PublicHandler())
 	h.internal = httptest.NewServer(h.api.InternalHandler())
