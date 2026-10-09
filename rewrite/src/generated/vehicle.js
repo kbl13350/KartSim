@@ -27,6 +27,7 @@ import { loadRaceCharacters } from "../vehicle/race-character-loading.ts";
 import { loadVehicleRuntime } from "../vehicle/load-vehicle-runtime.ts";
 import { loadVehicleAsset } from "../vehicle/load-vehicle-asset.ts";
 import { loadTrackMap, loadTimeAttackMap, loadMultiplayerMap } from "../vehicle/load-track-map.ts";
+import { isItemRaceRoom, loadItemGameTrackSources, loadItemRaceFields } from "../item/item-race-map.ts";
 import { KartAudioRuntime, loadKartAudio, decodeMotorAudio, parseRoadSoundConfig } from "../vehicle/kart-audio-runtime.ts";
 import { loadCharacterAsset } from "../vehicle/load-character-asset.ts";
 import { SlipstreamVisual, loadSlipstreamVisual, SlipstreamAudio, loadSlipstreamAudio } from "../vehicle/slipstream-effects.ts";
@@ -77,6 +78,8 @@ const kartAudioOps = { route: S9, setGain: he, setLoop: w4, roadSoundEnabled: BQ
 const kartAudioLoadOps = { decodeMotor: (context, bytes) => decodeMotorAudio(context, bytes, S30), decodeAudio: Q9, parseRoadConfig: bytes => parseRoadSoundConfig(bytes, s2, T), createContext: () => new AudioContext() };
 const vehicleAssetOps = { resolveKartIdentity: b4, tachometerSelection: O50, useClassicHud: E50, resourceVersion: Bt, loadClassicTachometer: () => uv.load(), loadTachometerConfig: $50, makeTacho1: config => new fv(config), makeMqTacho: config => new Fk(config), loadNineTacho: (...args) => p7.load(...args), loadV1Tacho: (...args) => Ta.load(...args), loadXGenTacho: (...args) => Gr.load(...args), loadAudio: (...args) => pv.load(...args), loadEffects: (...args) => Ca.load(...args), loadTrails: (...args) => Ea.load(...args), makeDriftSetup: Ze0, loadDriftEffects: (...args) => iv.load(...args), loadMotionBlur: (...args) => sv.load(...args), loadZetAir: (...args) => lv.load(...args), loadShockWave: (...args) => av.load(...args), loadExhaust: (...args) => rv.load(...args), loadCrash: (...args) => nv.load(...args), loadCharger: (...args) => tv.load(...args), loadLampFlares: (...args) => s6.load(...args), kartModelRoot: J5, loadShadow: (...args) => fr.load(...args), paintColor: We, loadDecoration: Jw, loadAccessory: hr, physicsParams: jt0, rootExtent: el, collisionShape: v90, disposeObject: u5 };
 const trackMapOps = { decodeModel: y9, assetProvenance: X30, loadLteCoins: A10, loadWeather: A30, loadWarp: b30, validateCourse: Y30, lensFlareAnchor: c30, dummySounds: Vn0, extractRoad: YW, mapMovingObjects: K30, additionalMatrixRoots: j30, admitMovingObject: Um, parseEventProjection: $k, makeEventRuntime: projection => new Kn0(projection), hasDeferredRoad: mo, isDeferredRoadMaterial: Fl, unsupportedRoad: NG, hasRail: Ri, loadRailConfig: w30, loadRailCapture: y30, resourceVersion: Bt, isLteTrack: Vw, loadAdmission: J30, loadMultiplayerAdmission: Z30, makeReadyCamera: model => new I30(model), loadAdvertisements: Ln0, textureCandidates: hB, textureStatus: sn, loadEnvironment: library => rn.load(library), loadScene: c5, warpNextCamera: O30, configureSkydome: i40 };
+const itemWorldFieldOps = { createObject: () => new T2(), originalAsset: nl, decodeModel: y9, decodeAudio: Q9, loadModel: c5, routeAudio: S9 };
+trackMapOps.loadItemGame = loadItemGameTrackSources;
 const characterAssetOps = { resolveIdentity: pk, chooseCostume: CR, decodeMotion: FI, linkedMotionNames: qp, specialMotionNames: HY, standardMotionNames: WY, linkedController: s40, specialController: o40, standardController: r40, awardController: (...args) => new b10(...args), faceTextureSources: SR, collectFaceMotionAssets: xR, palette: We, parseModel: xa, createScene: TR };
 const slipstreamVisualOps = { decodeModel: y9, loadModel: c5 };
 const slipstreamAudioOps = { loop: w4, connect: S9 };
@@ -5743,7 +5746,7 @@ class ul {
     async loadVehicleRuntime(path, textureKey, plateId, library, environment, stageBinding, profile = this.assetHost.userProfile, kartItemId, engineGrade, coatingTextureOverride, scope, convertClientCoordinates, deferEnvironment = false) { return loadVehicleRuntime(this, path, textureKey, plateId, library, environment, stageBinding, profile, kartItemId, engineGrade, coatingTextureOverride, scope, convertClientCoordinates, deferEnvironment, vehicleRuntimeOps); }
     loadAssetMap(path, trackId) { return loadTimeAttackMap(this, path, trackId, J30); }
     loadMultiplayerMap(path, trackId, mode) { return loadMultiplayerMap(this, path, trackId, mode, Bt, Vw, Z30); }
-    async loadMap(path, trackId, mode, admit, lte = false) { return loadTrackMap(this, path, trackId, mode, admit, lte, trackMapOps); }
+    async loadMap(path, trackId, mode, admit, lte = false, itemGame = false) { return loadTrackMap(this, path, trackId, mode, admit, lte, trackMapOps, itemGame); }
 }
 
 function i40(n) {
@@ -6116,7 +6119,7 @@ async function A40(n, e, t, i, r, s) {
     C = await (
       G2(e) === "lte"
         ? _.loadMultiplayerMap(E.path, E.id, "lte")
-        : _.loadMultiplayerMap(E.path, E.id)
+        : _.loadMultiplayerMap(E.path, E.id, isItemRaceRoom(e) ? "item" : void 0)
     ).catch((D) => {
       const V = D instanceof Error ? D.message : String(D);
       throw new Error(`赛道 ${E.id}（${E.path}）加载失败：${V}`, { cause: D });
@@ -6141,6 +6144,8 @@ async function A40(n, e, t, i, r, s) {
       ? await jw.load(g, C.lteCoinSource, C.environment, C.stageBinding, i)
       : void 0;
     (D && S.push(() => D.dispose()), w());
+    const itemRaceFields = await loadItemRaceFields(g, C, i, itemWorldFieldOps);
+    (itemRaceFields && S.push(() => itemRaceFields.dispose()), w());
     const V = C.lensFlarePoint ? await w7.load(g, C.lensFlarePoint) : void 0;
     (V && S.push(() => V.dispose()), w());
     const K = C.data.weather?.rainEnabled
@@ -6293,6 +6298,9 @@ async function A40(n, e, t, i, r, s) {
     return {
       rp: t.rp ? mI(t.rp) : void 0,
       lteCoins: D,
+      itemCatalog: itemRaceFields?.catalog,
+      itemCubes: itemRaceFields?.cubes,
+      itemHazards: itemRaceFields?.hazards,
       roadblockRunnerId: t.roadblock?.runnerId,
       channel: y,
       checkClientFramerate: b,

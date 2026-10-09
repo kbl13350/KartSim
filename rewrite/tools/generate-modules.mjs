@@ -400,6 +400,40 @@ const vehicleAssetLoaderMethodOverrides = new Map([
   ["loadMultiplayerMap", "  loadMultiplayerMap(path, trackId, mode) { return loadMultiplayerMap(this, path, trackId, mode, Bt, Vw, Z30); }"],
   ["loadMap", "  async loadMap(path, trackId, mode, admit, lte = false) { return loadTrackMap(this, path, trackId, mode, admit, lte, trackMapOps); }"],
 ]);
+// item-mode(world): item races (道具赛) load their map through the
+// speed-individual admission with an item-game flag (cubes, moving cubes,
+// onlyItemGame objects and track hazards admitted), and A40 builds the per-race
+// cube and hazard owners next to the LTE coins. Everything else is unchanged.
+vehicleAssetLoaderMethodOverrides.set("loadMap", "  async loadMap(path, trackId, mode, admit, lte = false, itemGame = false) { return loadTrackMap(this, path, trackId, mode, admit, lte, trackMapOps, itemGame); }");
+const itemWorldVehicleImports = [
+  'import { isItemRaceRoom, loadItemGameTrackSources, loadItemRaceFields } from "../item/item-race-map.ts";',
+];
+const itemWorldVehicleOps = [
+  "const itemWorldFieldOps = { createObject: () => new T2(), originalAsset: nl, decodeModel: y9, decodeAudio: Q9, loadModel: c5, routeAudio: S9 };",
+  "trackMapOps.loadItemGame = loadItemGameTrackSources;",
+];
+// A40 (multiplayer race assets): pick the item admission from the room itself,
+// because drivingMode is only derived at the end of A40.
+const itemWorldRaceAssetPatches = [
+  [`: _.loadMultiplayerMap(E.path, E.id)`,
+    `: _.loadMultiplayerMap(E.path, E.id, isItemRaceRoom(e) ? "item" : void 0)`],
+  [`    (D && S.push(() => D.dispose()), w());`,
+    `    (D && S.push(() => D.dispose()), w());
+    const itemRaceFields = await loadItemRaceFields(g, C, i, itemWorldFieldOps);
+    (itemRaceFields && S.push(() => itemRaceFields.dispose()), w());`],
+  [`      lteCoins: D,`,
+    `      lteCoins: D,
+      itemCatalog: itemRaceFields?.catalog,
+      itemCubes: itemRaceFields?.cubes,
+      itemHazards: itemRaceFields?.hazards,`],
+];
+function applyItemWorldPatches(text, patches) {
+  for (const [from, to] of patches) {
+    assert(text.split(from).length === 2, `item-mode(world) patch anchor changed: ${from}`);
+    text = text.replace(from, to);
+  }
+  return text;
+}
 const vehicleSlipstreamOverrides = new Set(["mv", "wv"]);
 const vehicleStartGridOverrides = new Set(["iL", "rL"]);
 const vehicleNormalCoordinatorOverrides = new Set(["vL", "U40", "yL", "as", "J8"]);
@@ -2079,11 +2113,12 @@ const iv = createDriftEffectClass(driftEffectDependencies);`,
     assert(original.includes(teamDye) && original.includes(dyedCharacters),
       "Race rider dye selection changed.");
     bodies.get("vehicle").push({ at: node.start,
-      text: original.replace(teamDye, `: Q && F.team
+      // item-mode(world): applyItemWorldPatches adds the item map flag and owners.
+      text: applyItemWorldPatches(original.replace(teamDye, `: Q && F.team
             ? Q[F.team - 1].dyeId
             : individualRiderDye(e, F.slot),`).replace(dyedCharacters, `c0 = await (
           Q || F0 !== void 0
-            ? new ul(`) });
+            ? new ul(`), itemWorldRaceAssetPatches) });
     continue;
   }
   if (declarationName === "qc0") {
@@ -4505,6 +4540,7 @@ function renderModule(name) {
     lines.push('import { loadVehicleRuntime } from "../vehicle/load-vehicle-runtime.ts";');
     lines.push('import { loadVehicleAsset } from "../vehicle/load-vehicle-asset.ts";');
     lines.push('import { loadTrackMap, loadTimeAttackMap, loadMultiplayerMap } from "../vehicle/load-track-map.ts";');
+    lines.push(...itemWorldVehicleImports); // item-mode(world)
     lines.push('import { KartAudioRuntime, loadKartAudio, decodeMotorAudio, parseRoadSoundConfig } from "../vehicle/kart-audio-runtime.ts";');
     lines.push('import { loadCharacterAsset } from "../vehicle/load-character-asset.ts";');
     lines.push('import { SlipstreamVisual, loadSlipstreamVisual, SlipstreamAudio, loadSlipstreamAudio } from "../vehicle/slipstream-effects.ts";');
@@ -4893,6 +4929,7 @@ function awardPodiumLoadDependencies() { return {
     lines.push('const kartAudioLoadOps = { decodeMotor: (context, bytes) => decodeMotorAudio(context, bytes, S30), decodeAudio: Q9, parseRoadConfig: bytes => parseRoadSoundConfig(bytes, s2, T), createContext: () => new AudioContext() };');
     lines.push('const vehicleAssetOps = { resolveKartIdentity: b4, tachometerSelection: O50, useClassicHud: E50, resourceVersion: Bt, loadClassicTachometer: () => uv.load(), loadTachometerConfig: $50, makeTacho1: config => new fv(config), makeMqTacho: config => new Fk(config), loadNineTacho: (...args) => p7.load(...args), loadV1Tacho: (...args) => Ta.load(...args), loadXGenTacho: (...args) => Gr.load(...args), loadAudio: (...args) => pv.load(...args), loadEffects: (...args) => Ca.load(...args), loadTrails: (...args) => Ea.load(...args), makeDriftSetup: Ze0, loadDriftEffects: (...args) => iv.load(...args), loadMotionBlur: (...args) => sv.load(...args), loadZetAir: (...args) => lv.load(...args), loadShockWave: (...args) => av.load(...args), loadExhaust: (...args) => rv.load(...args), loadCrash: (...args) => nv.load(...args), loadCharger: (...args) => tv.load(...args), loadLampFlares: (...args) => s6.load(...args), kartModelRoot: J5, loadShadow: (...args) => fr.load(...args), paintColor: We, loadDecoration: Jw, loadAccessory: hr, physicsParams: jt0, rootExtent: el, collisionShape: v90, disposeObject: u5 };');
     lines.push('const trackMapOps = { decodeModel: y9, assetProvenance: X30, loadLteCoins: A10, loadWeather: A30, loadWarp: b30, validateCourse: Y30, lensFlareAnchor: c30, dummySounds: Vn0, extractRoad: YW, mapMovingObjects: K30, additionalMatrixRoots: j30, admitMovingObject: Um, parseEventProjection: $k, makeEventRuntime: projection => new Kn0(projection), hasDeferredRoad: mo, isDeferredRoadMaterial: Fl, unsupportedRoad: NG, hasRail: Ri, loadRailConfig: w30, loadRailCapture: y30, resourceVersion: Bt, isLteTrack: Vw, loadAdmission: J30, loadMultiplayerAdmission: Z30, makeReadyCamera: model => new I30(model), loadAdvertisements: Ln0, textureCandidates: hB, textureStatus: sn, loadEnvironment: library => rn.load(library), loadScene: c5, warpNextCamera: O30, configureSkydome: i40 };');
+    lines.push(...itemWorldVehicleOps); // item-mode(world)
     lines.push('const characterAssetOps = { resolveIdentity: pk, chooseCostume: CR, decodeMotion: FI, linkedMotionNames: qp, specialMotionNames: HY, standardMotionNames: WY, linkedController: s40, specialController: o40, standardController: r40, awardController: (...args) => new b10(...args), faceTextureSources: SR, collectFaceMotionAssets: xR, palette: We, parseModel: xa, createScene: TR };');
     lines.push('const slipstreamVisualOps = { decodeModel: y9, loadModel: c5 };');
     lines.push('const slipstreamAudioOps = { loop: w4, connect: S9 };');
