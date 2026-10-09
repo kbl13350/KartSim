@@ -145,6 +145,8 @@ interface ActiveEffect {
 
 const f32 = Math.fround;
 const MAGNET_STATE = 16;
+/** Unconsumed events are dropped oldest first beyond this many. */
+const MAX_PENDING_EVENTS = 64;
 const TAU = Math.PI * 2;
 
 const copy = (vector: Vector3): Vector3 => ({ x: vector.x, y: vector.y, z: vector.z });
@@ -301,7 +303,7 @@ export class VehicleItemEffects {
   /** Forget all effects after the physics runtime was rebuilt by a full reset. */
   resetState(): void {
     for (const kind of this.effects.keys())
-      this.events.push({ kind, phase: "end", atMs: this.clockMs, reason: "cleared" });
+      this.record({ kind, phase: "end", atMs: this.clockMs, reason: "cleared" });
     this.effects.clear();
     this.kinds.clear();
     this.escapeShieldEndMs = 0;
@@ -381,7 +383,12 @@ export class VehicleItemEffects {
   private begin(effect: ActiveEffect): void {
     this.effects.set(effect.kind, effect);
     this.kinds.add(effect.kind);
-    this.events.push({ kind: effect.kind, phase: "start", atMs: this.clockMs });
+    this.record({ kind: effect.kind, phase: "start", atMs: this.clockMs });
+  }
+
+  private record(event: ItemEffectEvent): void {
+    this.events.push(event);
+    if (this.events.length > MAX_PENDING_EVENTS) this.events.shift();
   }
 
   /** A hostile hit cancels drift, boosters and a running magnet pull. */
@@ -462,7 +469,7 @@ export class VehicleItemEffects {
     if (!effect) return;
     this.effects.delete(kind);
     this.kinds.delete(kind);
-    this.events.push({ kind, phase: "end", atMs: this.clockMs, reason });
+    this.record({ kind, phase: "end", atMs: this.clockMs, reason });
     const vehicle = this.vehicle;
     const body = vehicle.body;
     if (HELD_KINDS.has(kind) && reason !== "replaced") {

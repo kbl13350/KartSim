@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
-import { ITEM_EFFECT_TUNING, type ItemEffectEvent } from "./item-effects";
+import { ITEM_EFFECT_TUNING, type ItemEffectEvent, type ItemEffectKind } from "./item-effects";
 import { integrateVehicleRoadOrientation } from "./orientation-integration";
 import {
   createItemDriver, neutralInput, throttleInput, type TestDriver, type TestVehicle,
@@ -371,4 +372,52 @@ test("apply validates kinds and durations", () => {
   assert.equal(effects.apply("spin", 2000, { elapsedMs: 2000 }), false, "already over");
   assert.equal(effects.apply("spin", 2000, { elapsedMs: 500 }), true);
   assert.equal(effects.remainingMs("spin"), 1500);
+});
+
+/** Base-0 state lives of an original `item.rho/<folder>/item.bml` (first block wins). */
+function itemLives(folder: string): Map<string, number> {
+  const xml = readFileSync(new URL(
+    `../../../recovered/data-full/item.rho/${folder}/item.bml.xml`, import.meta.url), "utf8");
+  const lives = new Map<string, number>();
+  for (const match of xml.matchAll(/<state name="([^"]+)" life="(\d+)"/g))
+    if (!lives.has(match[1]!)) lives.set(match[1]!, Number(match[2]));
+  return lives;
+}
+
+test("original item.bml lives drive every victim timeline to the millisecond", () => {
+  const cases: Array<[string, ItemEffectKind, string]> = [
+    ["banana", "spin", "Affect"],
+    ["waterBomb", "trap", "Affect"],
+    ["waterFly", "trap", "Affect"],
+    ["timeBomb", "trap", "Affect"],
+    ["waterMine", "trap", "Affect"],
+    ["rocket", "launch", "Affect"],
+    ["mine", "launch", "Affect"],
+    ["devil", "reverse", "Affect"],
+    ["ufo", "slow", "Affect"],
+    ["thunderbolt", "shrink", "Affect"],
+    ["barricade", "barrier", "StateAffect"],
+    ["magnet", "pull", "Use"],
+  ];
+  const waterBomb = itemLives("waterBomb");
+  assert.equal(waterBomb.get("EscapeAffect"), ITEM_EFFECT_TUNING.escapeImmunityMs);
+  assert.ok(ITEM_EFFECT_TUNING.launchAirMs < itemLives("rocket").get("Affect")!,
+    "a missile lands before its Affect ends");
+  for (const [folder, kind, state] of cases) {
+    const lives = itemLives(folder);
+    const life = lives.get(state)!;
+    assert.ok(life > 0, `${folder}.${state}`);
+    const driver = cruising(1000);
+    const effects = driver.vehicle.itemEffects;
+    const escape = lives.get("EscapeAffect");
+    assert.equal(effects.apply(kind, life, {
+      escapeImmunityMs: escape, target: () => ({ x: 0, y: 0, z: 1e6 }),
+    }), true, folder);
+    driver.run(life - 8, throttleInput, 8);
+    assert.ok(effects.active.has(kind), `${folder} still running at ${life - 8} ms`);
+    driver.run(8, throttleInput, 8);
+    assert.equal(effects.active.has(kind), false, `${folder} ends at ${life} ms`);
+    assert.deepEqual(ends(effects.consumeEvents()), [[kind, "expired"]], folder);
+    if (kind === "trap") assert.equal(effects.escapeShieldRemainingMs, escape, folder);
+  }
 });
