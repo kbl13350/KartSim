@@ -7,6 +7,8 @@ export interface LobbyLifecycleHost {
     status(message: string, error?: boolean): void;
     toggleAutoReady?: () => boolean | undefined;
     autoReadyEnabled?: () => boolean;
+    /** The game server connection was lost; without it the page shows the message instead. */
+    onDisconnected?: () => void;
   };
   client: {
     subscribe(listener: (event: unknown) => void): () => void;
@@ -14,7 +16,7 @@ export interface LobbyLifecycleHost {
     dispose(): void;
   };
   state: { room?: LobbyRoom };
-  lobby?: Disposable & { setEnabled(enabled: boolean): void; setInert(inert: boolean): void };
+  lobby?: Disposable & { setEnabled(enabled: boolean): void; setInert(inert: boolean): void; show?(): void };
   roomView?: Disposable & {
     update(room: LobbyRoom, busy: boolean, connected: boolean): void;
     activateReadyShortcut(): void;
@@ -55,8 +57,19 @@ export function bindLobbyClient(host: LobbyLifecycleHost): void {
     host.connected = false;
     host.startCoordinator?.reset();
     host.cancelDialog();
+    // The server already took this player out of the room. The cached
+    // snapshot (still racing or on the podium) could never be left without
+    // a connection, so drop it and show the room list behind it.
+    if (host.state.room) {
+      host.state.room = undefined;
+      ++host.generation;
+      host.roomView?.dispose();
+      host.roomView = undefined;
+      host.lobby?.show?.();
+    }
     host.render();
-    host.options.status("联机服务已断开。请返回单人游戏，再重新进入多人游戏。", true);
+    if (host.options.onDisconnected) host.options.onDisconnected();
+    else host.options.status("联机服务已断开。请返回单人游戏，再重新进入多人游戏。", true);
   });
 }
 
