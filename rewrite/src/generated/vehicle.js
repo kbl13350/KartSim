@@ -31,6 +31,7 @@ import { loadVehicleRuntime } from "../vehicle/load-vehicle-runtime.ts";
 import { loadVehicleAsset } from "../vehicle/load-vehicle-asset.ts";
 import { loadTrackMap, loadTimeAttackMap, loadMultiplayerMap } from "../vehicle/load-track-map.ts";
 import { isItemRaceRoom, loadItemGameTrackSources, loadItemRaceFields } from "../item/item-race-map.ts";
+import { loadItemRacePresenter } from "../item/item-race-presenter.ts"; // item-mode(fx)
 import { KartAudioRuntime, loadKartAudio, decodeMotorAudio, parseRoadSoundConfig } from "../vehicle/kart-audio-runtime.ts";
 import { loadCharacterAsset } from "../vehicle/load-character-asset.ts";
 import { SlipstreamVisual, loadSlipstreamVisual, SlipstreamAudio, loadSlipstreamAudio } from "../vehicle/slipstream-effects.ts";
@@ -83,6 +84,7 @@ const vehicleAssetOps = { resolveKartIdentity: b4, tachometerSelection: O50, use
 const trackMapOps = { decodeModel: y9, assetProvenance: X30, loadLteCoins: A10, loadWeather: A30, loadWarp: b30, validateCourse: Y30, lensFlareAnchor: c30, dummySounds: Vn0, extractRoad: YW, mapMovingObjects: K30, additionalMatrixRoots: j30, admitMovingObject: Um, parseEventProjection: $k, makeEventRuntime: projection => new Kn0(projection), hasDeferredRoad: mo, isDeferredRoadMaterial: Fl, unsupportedRoad: NG, hasRail: Ri, loadRailConfig: w30, loadRailCapture: y30, resourceVersion: Bt, isLteTrack: Vw, loadAdmission: J30, loadMultiplayerAdmission: Z30, makeReadyCamera: model => new I30(model), loadAdvertisements: Ln0, textureCandidates: hB, textureStatus: sn, loadEnvironment: library => rn.load(library), loadScene: c5, warpNextCamera: O30, configureSkydome: i40 };
 const itemWorldFieldOps = { createObject: () => new T2(), originalAsset: nl, decodeModel: y9, decodeAudio: Q9, loadModel: c5, routeAudio: S9 };
 trackMapOps.loadItemGame = loadItemGameTrackSources;
+const itemPresenterOps = { originalAsset: nl, decodeModel: y9, decodeAudio: Q9, loadModel: c5, routeAudio: S9, setGain: he }; // item-mode(fx)
 const characterAssetOps = { resolveIdentity: pk, chooseCostume: CR, decodeMotion: FI, linkedMotionNames: qp, specialMotionNames: HY, standardMotionNames: WY, linkedController: s40, specialController: o40, standardController: r40, awardController: (...args) => new b10(...args), faceTextureSources: SR, collectFaceMotionAssets: xR, palette: We, parseModel: xa, createScene: TR };
 const slipstreamVisualOps = { decodeModel: y9, loadModel: c5 };
 const slipstreamAudioOps = { loop: w4, connect: S9 };
@@ -6088,6 +6090,10 @@ async function A40(n, e, t, i, r, s) {
     (D && S.push(() => D.dispose()), w());
     const itemRaceFields = await loadItemRaceFields(g, C, i, itemWorldFieldOps);
     (itemRaceFields && S.push(() => itemRaceFields.dispose()), w());
+    const itemPresenter = itemRaceFields // item-mode(fx)
+      ? await loadItemRacePresenter(g, itemRaceFields.catalog, C.environment, C.stageBinding, i, itemPresenterOps)
+      : void 0;
+    (itemPresenter && S.push(() => itemPresenter.dispose()), w());
     const V = C.lensFlarePoint ? await w7.load(g, C.lensFlarePoint) : void 0;
     (V && S.push(() => V.dispose()), w());
     const K = C.data.weather?.rainEnabled
@@ -6243,6 +6249,7 @@ async function A40(n, e, t, i, r, s) {
       itemCatalog: itemRaceFields?.catalog,
       itemCubes: itemRaceFields?.cubes,
       itemHazards: itemRaceFields?.hazards,
+      itemPresenter, // item-mode(fx)
       roadblockRunnerId: t.roadblock?.runnerId,
       channel: y,
       checkClientFramerate: b,
