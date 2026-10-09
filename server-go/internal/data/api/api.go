@@ -19,9 +19,11 @@ import (
 	"unicode/utf8"
 
 	"kartsim/internal/data/cache"
+	"kartsim/internal/data/career"
 	"kartsim/internal/data/config"
 	"kartsim/internal/data/economy"
 	"kartsim/internal/data/messenger"
+	"kartsim/internal/data/myroom"
 	"kartsim/internal/data/store"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/netcfg"
@@ -68,6 +70,8 @@ type Options struct {
 	// Messenger tunes the friends and private chat sockets (DESIGN.md 9);
 	// its Origin policy, clock and logger are the API's.
 	Messenger messenger.Options
+	// MyRoom tunes the My Room visit sockets (GET /api/myroom/ws).
+	MyRoom myroom.Options
 }
 
 // API serves the public and internal handlers.
@@ -94,6 +98,8 @@ type API struct {
 	limiter        *cache.Limiter
 	limits         RateLimits
 	hub            *messenger.Hub
+	careers        *career.Data
+	rooms          *myroom.Hub
 }
 
 // New builds the API.
@@ -186,6 +192,16 @@ func New(opts Options) *API {
 	hubOptions.Now = now
 	hubOptions.Logger = logger
 	a.hub = messenger.New(messengerBackend{a}, hubOptions)
+	careers, err := career.Default()
+	if err != nil {
+		panic(err) // the embedded data is checked by the career tests
+	}
+	a.careers = careers
+	roomOptions := opts.MyRoom
+	roomOptions.CheckOrigin = network.CheckWebSocketOrigin
+	roomOptions.Now = now
+	roomOptions.Logger = logger
+	a.rooms = myroom.New(roomBackend{a}, roomOptions)
 	return a
 }
 
@@ -254,6 +270,14 @@ func (a *API) PublicHandler() http.Handler {
 	// The socket outlives requestTimeout and writes no error body once
 	// upgraded, so it is not wrapped by serve.
 	mux.Handle("GET /api/messenger/ws", a.hub)
+
+	route("GET /api/careers", a.listCareers)
+	route("POST /api/careers/complete", a.completeCareer)
+	route("GET /api/emblems", a.listEmblems)
+	route("POST /api/emblems/main", a.setMainEmblems)
+	route("POST /api/myroom/careers", a.visitCareers)
+	route("POST /api/myroom/emblems", a.visitEmblems)
+	mux.Handle("GET /api/myroom/ws", a.rooms)
 
 	return recoverPanics(a.network.CORS(jsonFallback(mux)))
 }

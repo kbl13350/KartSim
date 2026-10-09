@@ -324,6 +324,7 @@ func (a *API) logout(w http.ResponseWriter, r *http.Request) error {
 		}
 		a.cache.Invalidate(r.Context(), "session:"+tokenHash)
 		a.hub.CloseSession(tokenHash) // its messenger sockets close with 4001
+		a.rooms.CloseSession(tokenHash)
 	}
 	return writeJSON(w, http.StatusOK, map[string]bool{"ok": true})
 }

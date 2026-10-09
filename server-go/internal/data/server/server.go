@@ -172,6 +172,9 @@ func serve(ctx context.Context, cfg config.Config, logger *slog.Logger, service 
 	if err := service.ShutdownMessenger(shutdownCtx); err != nil {
 		logger.Warn("messenger shutdown incomplete", "error", err)
 	}
+	if err := service.ShutdownMyRoom(shutdownCtx); err != nil {
+		logger.Warn("my room shutdown incomplete", "error", err)
+	}
 	for _, server := range servers {
 		if err := server.Shutdown(shutdownCtx); err != nil {
 			logger.Warn("shutdown incomplete", "addr", server.Addr, "error", err)

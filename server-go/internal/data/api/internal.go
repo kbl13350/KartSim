@@ -348,6 +348,7 @@ func settlementFromRequest(request contract.RaceSettlement, now int64) (store.Se
 		CreatedAt: createdAt,
 		Results:   make([]store.SettledResult, 0, len(request.Results)),
 	}
+	teams := raceClass(&settlement, request)
 	for _, result := range request.Results {
 		name := result.Name
 		if name == "" {
@@ -366,9 +367,40 @@ func settlementFromRequest(request contract.RaceSettlement, now int64) (store.Se
 			Rank:      result.Rank,
 			ElapsedMs: result.ElapsedMs,
 			Points:    result.Points,
+			Team:      teams[result.PlayerID],
 		})
 	}
 	return settlement, true
+}
+
+// raceClass sets what the careers need to classify a race (a team race, an
+// infinite-boost channel, the winning team) from the settlement's mode and
+// snapshot, and returns each roster player's team. A snapshot without those
+// fields counts as an individual speed race.
+func raceClass(settlement *store.Settlement, request contract.RaceSettlement) map[string]int {
+	var snapshot struct {
+		Race struct {
+			ChannelName string `json:"channelName"`
+			WinningTeam int    `json:"winningTeam"`
+			Roster      []struct {
+				PlayerID string `json:"playerId"`
+				Team     *int   `json:"team"`
+			} `json:"roster"`
+		} `json:"race"`
+	}
+	_ = json.Unmarshal(request.Snapshot, &snapshot)
+	settlement.Team = request.Mode == "team"
+	settlement.Infinite = strings.HasSuffix(snapshot.Race.ChannelName, "Infinit")
+	if snapshot.Race.WinningTeam == 1 || snapshot.Race.WinningTeam == 2 {
+		settlement.WinningTeam = snapshot.Race.WinningTeam
+	}
+	teams := make(map[string]int, len(snapshot.Race.Roster))
+	for _, member := range snapshot.Race.Roster {
+		if member.Team != nil && (*member.Team == 1 || *member.Team == 2) {
+			teams[member.PlayerID] = *member.Team
+		}
+	}
+	return teams
 }
 
 func (a *API) saveRace(w http.ResponseWriter, r *http.Request) error {

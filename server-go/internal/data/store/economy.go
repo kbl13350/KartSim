@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"strings"
 
+	"kartsim/internal/data/career"
 	"kartsim/internal/data/economy"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/rewards"
@@ -596,6 +597,10 @@ func (s *Store) SettleTimeAttack(ctx context.Context, run TimeAttackRun) (TimeAt
 				run.AccountID, run.RequestID, run.TrackID, run.ElapsedMs, string(encoded), run.Now); err != nil {
 				return err
 			}
+		}
+		// Every settled run is a finished time-attack race (career type 28).
+		if err := addCounters(ctx, tx, run.AccountID, map[string]int64{career.CounterTimeAttack: 1}, run.Now); err != nil {
+			return err
 		}
 		_, err = tx.ExecContext(ctx, `INSERT INTO timeattack_state(account_id, last_settle_at, last_request_id,
 			last_track_id, last_elapsed_ms, last_result_json) VALUES(?, ?, ?, ?, ?, ?) AS incoming

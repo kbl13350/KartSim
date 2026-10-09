@@ -382,6 +382,48 @@ var migrations = []migration{
 			CONSTRAINT fk_private_conversations_peer FOREIGN KEY (peer_id) REFERENCES accounts (id) ON DELETE CASCADE
 		) ` + tableTail,
 	}},
+	// My Room careers and emblems. TODO(myroom-social): renumber to the next
+	// free version when this branch merges; 100 keeps it clear of versions
+	// added on main meanwhile (shared development databases).
+	{version: 100, statements: []string{
+		// Race and time-attack tallies the careers count (career.RaceCounter).
+		`CREATE TABLE IF NOT EXISTS account_counters (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			counter VARCHAR(48) ` + idColumn + ` NOT NULL,
+			value BIGINT NOT NULL DEFAULT 0,
+			updated_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, counter),
+			CONSTRAINT fk_account_counters_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// Beijing days ("YYYY-MM-DD") an account signed in on (date careers).
+		`CREATE TABLE IF NOT EXISTS account_login_days (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			day CHAR(10) ` + idColumn + ` NOT NULL,
+			PRIMARY KEY (account_id, day),
+			CONSTRAINT fk_account_login_days_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		`CREATE TABLE IF NOT EXISTS account_careers (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			career_id INT NOT NULL,
+			completed_at BIGINT NOT NULL,
+			PRIMARY KEY (account_id, career_id),
+			KEY idx_account_careers_recent (account_id, completed_at),
+			CONSTRAINT fk_account_careers_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+		// main_slot is the representative slot (0, 1) or NULL; MySQL lets
+		// several rows share NULL in the unique key.
+		`CREATE TABLE IF NOT EXISTS account_emblems (
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			emblem_id INT NOT NULL,
+			source VARCHAR(16) ` + idColumn + ` NOT NULL,
+			ref INT NOT NULL DEFAULT 0,
+			created_at BIGINT NOT NULL,
+			main_slot TINYINT NULL,
+			PRIMARY KEY (account_id, emblem_id),
+			UNIQUE KEY uq_account_emblems_slot (account_id, main_slot),
+			CONSTRAINT fk_account_emblems_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+	}},
 }
 
 // LatestSchemaVersion is the version Migrate brings a database to.

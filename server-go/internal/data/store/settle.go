@@ -7,6 +7,7 @@ import (
 	"math"
 	"slices"
 
+	"kartsim/internal/data/career"
 	"kartsim/internal/data/economy"
 	"kartsim/internal/shared/rewards"
 )
@@ -25,6 +26,11 @@ type Settlement struct {
 	// RewardDay (a Beijing day) apply here.
 	Rewards   []SettledReward
 	RewardDay string
+	// The race class the careers count: a team race, an infinite-boost
+	// channel, and the winning team of a team race (0 when unknown).
+	Team        bool
+	Infinite    bool
+	WinningTeam int
 }
 
 // SettledReward is what one account earned in a race.
@@ -51,6 +57,7 @@ type SettledResult struct {
 	Rank      int
 	ElapsedMs *int
 	Points    int
+	Team      int // 1 or 2 in a team race, else 0
 }
 
 // SaveSettlement stores a race once. The outcome row is the idempotency key:
@@ -99,8 +106,14 @@ func (s *Store) SaveSettlement(ctx context.Context, in Settlement) (duplicate bo
 			} else if added == 0 || racer.AccountID == "" {
 				continue
 			}
-			if err := addStats(ctx, tx, racer, in.CreatedAt); err != nil {
+			registered, err := addStats(ctx, tx, racer, in.CreatedAt)
+			if err != nil {
 				return err
+			}
+			if registered {
+				if err := countCareerRace(ctx, tx, in, racer); err != nil {
+					return err
+				}
 			}
 		}
 		credited, err = s.creditRaceRewards(ctx, tx, in)
@@ -196,10 +209,11 @@ func (s *Store) creditRaceRewards(ctx context.Context, tx *sql.Tx, in Settlement
 	return credited, nil
 }
 
-func addStats(ctx context.Context, tx *sql.Tx, racer SettledResult, at int64) error {
+// addStats reports whether racer's account exists.
+func addStats(ctx context.Context, tx *sql.Tx, racer SettledResult, at int64) (bool, error) {
 	registered, err := exists(ctx, tx, "SELECT 1 FROM accounts WHERE id = ?", racer.AccountID)
 	if err != nil || !registered {
-		return err
+		return false, err
 	}
 	wins, podiums, points := 0, 0, 0
 	if racer.ElapsedMs != nil {
@@ -220,7 +234,37 @@ func addStats(ctx context.Context, tx *sql.Tx, racer SettledResult, at int64) er
 			points = player_stats.points + incoming.points,
 			updated_at = GREATEST(player_stats.updated_at, incoming.updated_at)`,
 		racer.AccountID, wins, podiums, points, at)
-	return err
+	return err == nil, err
+}
+
+// countCareerRace adds one race to the career tallies of a registered
+// racer: a finish or a retire (no finish time), a win (rank 1 with a time;
+// in a team race, being on the winning team), each by race class and track
+// theme, and the consecutive-retire streak.
+func countCareerRace(ctx context.Context, tx *sql.Tx, in Settlement, racer SettledResult) error {
+	data, err := career.Default()
+	if err != nil {
+		return err
+	}
+	gameType := career.RaceGameType(in.Team, in.Infinite)
+	theme := data.ThemeOf(in.TrackID)
+	finished := racer.ElapsedMs != nil
+	kind := career.RaceRetire
+	if finished {
+		kind = career.RaceFinish
+	}
+	deltas := map[string]int64{career.RaceCounter(kind, gameType, theme): 1}
+	won := finished && racer.Rank == 1
+	if in.Team {
+		won = in.WinningTeam != 0 && racer.Team == in.WinningTeam
+	}
+	if won {
+		deltas[career.RaceCounter(career.RaceWin, gameType, theme)] = 1
+	}
+	if err := addCounters(ctx, tx, racer.AccountID, deltas, in.CreatedAt); err != nil {
+		return err
+	}
+	return countRetireStreak(ctx, tx, racer.AccountID, !finished, in.CreatedAt)
 }
 
 // SaveRoomRules upserts the rules of one room. An update older than the

@@ -109,6 +109,7 @@ func (a *API) accountSummary(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
+	a.recordLoginDay(r.Context(), account.ID)
 	summary, err := a.summary(r, account)
 	if err != nil {
 		return err
@@ -295,6 +296,7 @@ func (a *API) putAccountProfile(w http.ResponseWriter, r *http.Request) error {
 	if err := a.store.SaveAccountProfile(ctx, account.ID, doc, a.nowMillis()); err != nil {
 		return err
 	}
+	a.rooms.RefreshOwner(account.ID) // room settings and looks live in the profile
 	writeRaw(w, http.StatusOK, []byte(doc))
 	return nil
 }
