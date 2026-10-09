@@ -813,6 +813,22 @@
     "Ko0",
     "eT"
   ],
+  "handwrittenItemHudSlots": [
+    "XJ",
+    "s00"
+  ],
+  "retiredItemHudSlotHelpers": [
+    "Ax",
+    "Mx",
+    "bx",
+    "d00",
+    "f00",
+    "h00",
+    "p00",
+    "rI",
+    "sI",
+    "u00"
+  ],
   "handwrittenWorldLocalDirectoryOverrides": [
     "io0",
     "ro0",
@@ -1829,8 +1845,8 @@
     },
     {
       "file": "library.js",
-      "bytes": 223429,
-      "sha256": "8d88874753f0bc6959c020c15493a80fca34c3f28068c6b304ab1e7273ada120",
+      "bytes": 221844,
+      "sha256": "f193bf690ab45c0c659f16341134ce93d6a6be360ba4e6d259f32c0dddf0be13",
       "imports": 128,
       "exports": 156
     },

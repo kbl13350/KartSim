@@ -6,6 +6,7 @@ import type {
   SettingsWindowImage, SettingsWindowNode, SettingsWindowResource,
   SettingsWindowResourceLibrary,
 } from "./settings-window-assets";
+import { withItemHudOptions } from "./item-hud-options";
 import {
   activateSettingsControl, applySettingsGraphicsPreset, applySettingsPreset,
   changeSettingsVolume, closeSettingsCombo, moveSettingsSelection,
@@ -114,6 +115,9 @@ const CHECK_FIELDS: Record<string, string> = {
   setDualBoostAuto: "dualBoostAuto", toonLine: "toonLine", shadow: "shadow",
   inGameFlyingPetVisible: "inGameFlyingPetVisible", raceAnonymous: "raceAnonymous",
   raceTimeGap: "raceTimeGap", classicHud: "classicHud", onAutoReady: "autoReady",
+  // item-mode(hud): the in-race item options are real settings now.
+  itemStateNotice: "itemStateNotice", itemStateTotalNotice: "itemStateTotalNotice",
+  dispIngameItemInfoCard: "dispIngameItemInfoCard",
 };
 
 function attribute(node: SettingsNode, name: string): string | undefined {
@@ -151,8 +155,14 @@ function repeatedKeyIndex(index: number): number {
 }
 
 function staticCheckState(name: string): boolean {
-  return ["dispIngameStressMirror", "itemStateNotice", "itemStateTotalNotice",
-    "dispIngameName", "dispIngameItemInfoCard", "dispIngameTeamColor"].includes(name);
+  return ["dispIngameStressMirror", "dispIngameName", "dispIngameTeamColor"].includes(name);
+}
+
+/** A check box: its draft field (undefined for the fixed ones) and whether it is on. */
+export function settingsCheckState(draft: Readonly<Record<string, unknown>>,
+  name: string): { field?: string; checked: boolean } {
+  const field = CHECK_FIELDS[name];
+  return field ? { field, checked: Boolean(draft[field]) } : { checked: staticCheckState(name) };
 }
 
 function graphicsPreset(draft: SettingsWindowDraft): string {
@@ -210,7 +220,7 @@ export class SettingsWindow {
     readonly dependencies: SettingsWindowDependencies =
       (new.target as typeof SettingsWindow).dependencies) {
     if (!dependencies) throw new Error("设置窗口缺少运行依赖。");
-    this.draft = { ...options.initial };
+    this.draft = withItemHudOptions({ ...options.initial });
     this.raceSpeed = options.initialSpeed;
     this.raceVersion = options.initialVersion ?? dependencies.defaultVersion;
     this.tab = dependencies.tabs[0]!;
@@ -502,8 +512,7 @@ export class SettingsWindow {
 
   drawCheck(node: SettingsNode, rectangle: UiRectangle, owner?: SettingsNode): void {
     const id = attribute(node, "name") ?? "";
-    const field = CHECK_FIELDS[id];
-    const checked = field ? Boolean(this.draft[field]) : staticCheckState(id);
+    const { field, checked } = settingsCheckState(this.draft, id);
     this.drawFrame(this.assets.frames.get("DefaultCheckButton")![Number(checked)]!, rectangle);
     const label = [...node.children, ...(owner?.children ?? [])]
       .find(child => child.name === "Label");

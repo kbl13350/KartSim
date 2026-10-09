@@ -644,6 +644,19 @@ const localRaceMethodOverrides = new Map([
   ["elapsedMs", "  elapsedMs(nowMs) { return localRaceElapsedMs(this, localRaceDependencies, nowMs); }"],
   ["update", "  update(nowMs, stepSeconds) { return updateLocalRace(this, localRaceDependencies, nowMs, stepSeconds); }"],
 ]);
+// item-mode(hud): the race HUD item slots. XJ (boost-only slot commands)
+// and s00 (slot definition) are src/ui/item-slot-hud.ts, which keeps the
+// speed race commands and adds any item icon, 3 slots, the lock overlay and
+// countdown; the release helpers only they used (Ax, Mx, bx, …) retire.
+const itemHudSlotOverrides = new Map([
+  ["XJ", "function XJ(definition, slots, disabled, windowStartMs, timeMs, reorderProgress, overlay) { return buildItemSlotCommands(definition, slots, disabled, windowStartMs, timeMs, reorderProgress, overlay); }"],
+  ["s00", "async function s00(library, frame) { return loadItemSlotDefinition(library, frame, itemSlotDependencies); }"],
+]);
+const retiredItemHudSlotHelpers = new Set([
+  "Ax", "Mx", "bx", "rI", "sI", "u00", "h00", "d00", "f00", "p00",
+]);
+const replacedItemHudSlots = new Set();
+const retiredItemHudSlots = new Set();
 const lifecycleOverrides = new Set(["GF", "OT", "Z1"]);
 const raceSessionMethodOverrides = new Map([
   ["raceConnection", "  raceConnection(roomId, raceId, signal) { return createRaceConnection(this, roomId, raceId, signal); }"],
@@ -1808,6 +1821,19 @@ const iv = createDriftEffectClass(driftEffectDependencies);`,
       : node.type === "VariableDeclaration" && node.declarations.length === 1
         ? node.declarations[0].id.name
         : undefined;
+  // item-mode(hud): item slot builder (see itemHudSlotOverrides).
+  if ((itemHudSlotOverrides.has(declarationName) ||
+      retiredItemHudSlotHelpers.has(declarationName)) &&
+      originalSection(node.start) === "library") {
+    assert(node.type === "FunctionDeclaration",
+      `Item slot HUD declaration ${declarationName} changed.`);
+    if (itemHudSlotOverrides.has(declarationName)) {
+      bodies.get("library").push({ at: node.start,
+        text: itemHudSlotOverrides.get(declarationName) });
+      replacedItemHudSlots.add(declarationName);
+    } else retiredItemHudSlots.add(declarationName);
+    continue;
+  }
   if (node.type === "VariableDeclaration" &&
       node.declarations[0]?.id?.name === "o6") {
     assert(originalSection(node.start) === "vehicle" &&
@@ -4003,6 +4029,10 @@ assert(groupNames(retiredLibraryHudAndConfirmation) ===
   "$M, AQ, CQ, I00, Ju, Lx, MQ, PR, Px, SQ, bQ, cI, ig, jr, lI, xQ, yQ, zM" &&
   groupNames(replacedLibraryHudAndConfirmation) === "Dw, FR, Fw, _w, pQ",
 `The confirmation and multiplayer HUD source clusters were not all replaced: retired=${groupNames(retiredLibraryHudAndConfirmation)} replaced=${groupNames(replacedLibraryHudAndConfirmation)}.`);
+// item-mode(hud)
+assert(groupNames(replacedItemHudSlots) === "XJ, s00" &&
+  groupNames(retiredItemHudSlots) === "Ax, Mx, bx, d00, f00, h00, p00, rI, sI, u00",
+`The item slot HUD declarations were not all replaced: replaced=${groupNames(replacedItemHudSlots)} retired=${groupNames(retiredItemHudSlots)}.`);
 assert(groupNames(replacedLibraryResultViews) === "Bo, Tw",
   "The multiplayer result views were not both replaced.");
 assert(replacedDerivedOverlayRenderer && replacedModelBinaryCursor &&
@@ -4786,6 +4816,29 @@ function renderModule(name) {
     lines.push('import { activateLobbyListEntry } from "../ui/lobby-list-actions.ts";');
     lines.push('import { drawLobbyListNode } from "../ui/lobby-list-draw.ts";');
     lines.push('import { personalBoostFrame, teamBoostFrame } from "../ui/race-hud-boost.ts";');
+    // item-mode(hud): item slots and the item race HUD layer.
+    lines.push('import { buildItemSlotCommands, loadItemSlotDefinition } from "../ui/item-slot-hud.ts";');
+    lines.push('import { ItemHud } from "../ui/item-hud.ts";');
+    lines.push('import { readStoredItemHudOptions } from "../ui/item-hud-options.ts";');
+    lines.push('import { giantControllerDuration as itemHudControllerDuration } from "../ui/giant-boost-hud-model.ts";');
+    lines.push('import { collectItemHudPlayPanels, finalizeItemHudPlayPanels } from "../ui/item-hud-play-panels.ts";');
+    lines.push(`const itemSlotDependencies = { attribute: T, numbers: j2, parseBml: s2, decodeTexture: p2, findResource: ln };
+const itemHudDependencies = {
+  attribute: T, numbers: j2, parseBml: s2, decodeTexture: p2, findResource: U1,
+  geometry: lt, place: l5, createRenderer: () => new fn(new Map()),
+  cloud: {
+    attribute: T, parseBml: s2, findResource: U1, parseModel: y9,
+    collectPlayPanels: collectItemHudPlayPanels, finalizePlay: finalizeItemHudPlayPanels,
+    loadPlayScene: (binding, library) => Rw(binding, library, { convertClientCoordinates: false }),
+    createPlayRuntime: (binding, scene, tick) => new Iw(binding, scene, tick),
+    createRenderer: runtimes => new fn(runtimes),
+    makeUi: d5, layoutUi: dn, materialize: dt,
+    controllerDuration: itemHudControllerDuration,
+    // The cover's billboards and hierarchy culling need a perspective camera.
+    createCamera: () => new Z9(),
+  },
+  warn: message => console.warn(message),
+};`);
     lines.push('const raceHudDependencies = { createShadow: texture => new xJ(texture), createRenderer: () => new fn(new Map()), createCache: () => new O5(), createRankPresentation: () => new UQ(), createGaugePulse: Jp, loadClassicGauge: (library, kind) => jl.load(library, kind), validateTick: Pw, buildSpeedSlots: XJ, buildTimeCommands: jJ, buildRankCommands: JJ, buildTeamGaugeCommands: YJ, materializeDrawOrder: dt, requireDrawNode: Xl, scaleGauge: Os, alignMarker: nI, advanceGaugePulse: jR, nativeSine: Ro, get reorderDurationMs() { return px; } };');
     lines.push('const lobbyListDrawDependencies = { attribute: T, rectangle: V0, modeForButton: Zc, get interactiveNames() { return aQ; }, imageState: st, drawTexture: ct, fitRoomTitle: CX, measure: ve, drawText: m9, randomTrack: X6, get fontFamily() { return Yp; }, showRoomStatus: true };');
     lines.push('const lobbyListRenderDependencies = { viewport: Sr, modeForButton: Zc, roomLabel: rR };');
@@ -4824,6 +4877,9 @@ const multiplayerRaceHudDependencies = {
   resolveDye: We, loadHudAssets: eI, attribute: T, loadMinimap: oI,
   createHud: (assets, minimap) => new tI(assets, minimap),
   loadGiant: library => Fw.load(library), normalizeRank: XM,
+  // item-mode(hud): the item race layer and the saved item options.
+  loadItemHud: (library, options) => ItemHud.load(library, itemHudDependencies, options),
+  itemHudOptions: () => readStoredItemHudOptions(),
   get racingState() { return X2.Racing; },
   viewportWidth: H2, viewportHeight: $2,
 };`);
@@ -6822,6 +6878,8 @@ const manifest = {
     retiredDriftTextureSelector,
   retiredFormatDeclarations: [...retiredFormatDeclarations].sort(),
   handwrittenWorldHudOverrides: [...worldHudOverrides],
+  handwrittenItemHudSlots: [...replacedItemHudSlots].sort(),
+  retiredItemHudSlotHelpers: [...retiredItemHudSlots].sort(),
   handwrittenWorldLocalDirectoryOverrides: [...worldLocalDirectoryOverrides],
   handwrittenCanvasContextDiagnostics: replacedCanvasContextDiagnostics,
   handwrittenTouchLayoutEditor: replacedTouchLayoutEditor,
