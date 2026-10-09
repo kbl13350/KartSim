@@ -102,6 +102,14 @@ export class TimeAttackResultOverlay {
     this.renderer.update([], 0);
   }
 
+  /** Merge values that arrive later (the settled account reward) into the shown result. */
+  patch(values: Record<string, unknown>): void {
+    if (!this.values) return;
+    this.values = { ...this.values, ...values };
+    this.width = -1;
+    this.height = -1;
+  }
+
   render(context: CanvasRenderingContext2D,
     width: number, height: number): void {
     if (!this.values) return;

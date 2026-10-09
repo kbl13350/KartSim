@@ -1,4 +1,7 @@
+import { accountOwnedEquipment, garageViewCatalog } from "../account/garage-ownership";
 import type { ReadyOptions, ReadySelection } from "./ready-flow";
+import { selectionKeep } from "./ready-garage";
+import { closeReadyShop } from "./ready-shop";
 
 interface Profile {
   favoriteTracks: unknown[];
@@ -18,6 +21,8 @@ interface Lobby {
   dispose(): void;
   leaveRoom(reason: string): Promise<boolean>;
   networkDiagnostics(): unknown[];
+  /** Select a channel's room list once connected (MultiplayerLobbyController.list). */
+  list?(channel: string, page: number, quiet?: boolean, gameplay?: string): Promise<void>;
 }
 
 interface Notice {
@@ -65,6 +70,7 @@ export interface ReadyMultiplayerController {
   activeSettings?: { setRoomSpeed(speed: number, version: string): void };
   activeTaskbar?: { setVisible(visible: boolean): void };
   activeWindowNotice?: Notice;
+  activeShop?: { close(): void };
   readyToonEnvironment?: unknown;
   closeMultiplayer(openReady?: boolean, restoreReady?: boolean): void;
   multiplayerGarageOptions(): Promise<unknown>;
@@ -83,11 +89,21 @@ export interface ReadyMultiplayerDependencies {
   favoriteTrackIds(favorites: unknown[], scope: unknown): unknown;
   createNotice(root: HTMLElement): Notice;
   createLobby(options: Record<string, unknown>): Lobby;
+  /**
+   * A game node refused unowned equipment (403 ITEM_NOT_OWNED): re-read the
+   * inventory and replace unowned items in the live profile
+   * (account-startup repairEquipmentForMultiplayer).
+   */
+  repairEquipment?(): Promise<void>;
 }
+
+/** Commands whose equipment is replaced by the repaired gear before sending them again. */
+const GEAR_COMMANDS = new Set(["create", "join"]);
 
 /** Create the lobby, bind its UI callbacks, then open its login/connection flow. */
 export async function openReadyMultiplayer(controller: ReadyMultiplayerController,
-  deps: ReadyMultiplayerDependencies): Promise<void> {
+  deps: ReadyMultiplayerDependencies, channel?: string,
+  gameplay = "ordinary"): Promise<void> {
   if (controller.disposed || controller.multiplayer) return;
   const host = controller.host;
   const library = host.getLibrary();
@@ -99,11 +115,16 @@ export async function openReadyMultiplayer(controller: ReadyMultiplayerControlle
   garage?.freeze();
 
   let becameVisible = false;
+  // Game nodes refuse unowned gear, so only owned items leave this client.
+  const equipment = () => accountOwnedEquipment(deps.initialEquipment(host.getProfile()));
   const lobby = deps.createLobby({
     library,
     root: host.root,
     nickname: deps.nickname() ?? "",
     version: deps.version("p3553"),
+    // The room list opens on the category of a home quick entry.
+    lobbyChannel: channel,
+    lobbyGameplay: channel ? gameplay : undefined,
     raceLoader: host.multiplayerRaceLoader,
     prepareAudio: async () => {
       const bgm = host.getBgm();
@@ -112,10 +133,22 @@ export async function openReadyMultiplayer(controller: ReadyMultiplayerControlle
     },
     audioContext: () => host.getAudioContext(),
     onPageAudio: (page: string) => host.getBgm()?.playMultiplayer(page),
-    onRaceVisibility: (visible: boolean) => controller.activeTaskbar?.setVisible(!visible),
+    onRaceVisibility: (visible: boolean) => {
+      // The race covers everything; the shop is not modal to it.
+      if (visible) closeReadyShop(controller);
+      controller.activeTaskbar?.setVisible(!visible);
+    },
     initialTrackId: host.getSelection()?.trackId,
-    initialEquipment: deps.initialEquipment(host.getProfile()),
-    currentEquipment: () => deps.initialEquipment(host.getProfile()),
+    initialEquipment: equipment(),
+    currentEquipment: equipment,
+    repairEquipment: async (command: Record<string, unknown>) => {
+      if (!deps.repairEquipment) return undefined;
+      await deps.repairEquipment();
+      if (command.type === "equipment")
+        return { ...command, equipment: accountOwnedEquipment(command.equipment) };
+      return GEAR_COMMANDS.has(String(command.type))
+        ? { ...command, equipment: equipment() } : undefined;
+    },
     initial: host.getProfile().initial,
     garage: {
       options: () => controller.multiplayerGarageOptions(),
@@ -169,6 +202,8 @@ export async function openReadyMultiplayer(controller: ReadyMultiplayerControlle
   try {
     await lobby.open();
     if (controller.multiplayer !== lobby || controller.disposed) return;
+    // A home quick entry opens straight onto its room list.
+    if (channel) await lobby.list?.(channel, 0, false, gameplay);
   } catch (error) {
     if (controller.multiplayer !== lobby) return;
     const cancelled = error instanceof Error && error.message === "ACCOUNT_CANCELLED";
@@ -208,7 +243,8 @@ export async function readyMultiplayerGarageOptions(controller: ReadyMultiplayer
     environment,
     root: host.root,
     stageBinding: host.toonStageBinding,
-    catalog: await library.timeAttackGarageCatalog(),
+    // The room garage lists only owned items (game nodes refuse unowned equipment).
+    catalog: garageViewCatalog(await library.timeAttackGarageCatalog(), selectionKeep(selection)),
     profile: host.getProfile(),
     selectedKartItemId: selection.vehicleItemId,
     selectedKartSystemKey: selection.vehicleSystemKey,

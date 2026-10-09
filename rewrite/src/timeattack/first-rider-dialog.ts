@@ -87,6 +87,8 @@ export class FirstRiderDialog {
   cellHits: RiderHit[] = [];
   step = 1;
   name = "";
+  /** Account nickname limit while open for an account; the BML maxChar otherwise. */
+  nameLimit?: number;
   isOpen_ = false;
   pending?: Promise<RiderRegistration>;
   resolvePending?: (registration: RiderRegistration) => void;
@@ -209,14 +211,20 @@ export class FirstRiderDialog {
     if (this.raf) this.raf = this.dependencies.requestFrame(this.onFrame);
   };
 
-  open(): Promise<RiderRegistration> {
+  /**
+   * Show step 1. An account starts from its nickname (`name`) with the
+   * account limit (`maxLength`, 16) instead of the BML maxChar.
+   */
+  open(options?: { name?: string; maxLength?: number }): Promise<RiderRegistration> {
     if (this.disposed)
       return Promise.reject(new Error("车手注册窗口已释放。"));
     if (this.isOpen_)
       return this.pending ?? Promise.reject(new Error("车手注册窗口未就绪。"));
     this.step = 1;
     this.name = "";
-    this.input.value = "";
+    this.nameLimit = options?.maxLength;
+    this.input.maxLength = options?.maxLength ?? this.blueprint.maxChar;
+    this.input.value = options?.name ?? "";
     this.isOpen_ = true;
     this.element.hidden = false;
     this.ensurePreview();
@@ -228,7 +236,7 @@ export class FirstRiderDialog {
   }
 
   submitStep1(): void {
-    const name = normalizeRiderName(this.input.value, this.blueprint.maxChar);
+    const name = normalizeRiderName(this.input.value, this.nameLimit ?? this.blueprint.maxChar);
     if (!name) return;
     this.name = name;
     this.step = 2;

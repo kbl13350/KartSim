@@ -9,7 +9,7 @@ export type TimeAttackAction =
   | { kind: "countdown-go" }
   | { kind: "pause-race" }
   | { kind: "resume-race" }
-  | { kind: "finish"; elapsedMs: number }
+  | { kind: "finish"; elapsedMs: number; missionCleared?: boolean }
   | { kind: "switch-surround-camera" }
   | { kind: "play-result-bgm"; beatTarget: boolean }
   | { kind: "final-lap" }
@@ -81,6 +81,8 @@ export class TimeAttackLifecycle {
   pauseAnchorRawMs = 0;
   finalLapShown = false;
   returnedToReady = false;
+  /** Story Tracing / Escape: the race was decided before the finish line. */
+  forcedResult: "cleared" | "failed" | undefined = undefined;
 
   constructor(previousBestMs: number | null = null) {
     this.previousBestMs = previousBestMs;
@@ -105,6 +107,7 @@ export class TimeAttackLifecycle {
     this.pauseAnchorRawMs = 0;
     this.finalLapShown = false;
     this.returnedToReady = false;
+    this.forcedResult = undefined;
     return [{ kind: "ready-camera" }];
   }
 
@@ -171,6 +174,23 @@ export class TimeAttackLifecycle {
     return this.startAtMs !== 0 &&
       clockMs(this.startAtMs + 100) >= now &&
       clockMs(this.startAtMs - 100) <= now;
+  }
+
+  /**
+   * Story Tracing / Escape: end the race now, as the finish line does. Time
+   * attack never calls this.
+   */
+  forceFinish(rawNowMs: number, result: { failed: boolean }): TimeAttackAction[] {
+    if (this.phase !== 2 || this.finishAtMs !== 0) return [];
+    const now = clockMs(clockMs(rawNowMs) - this.pausedTotalMs);
+    this.finishAtMs = now;
+    this.finishElapsedMs = clockMs(now - this.startAtMs);
+    this.forcedResult = result.failed ? "failed" : "cleared";
+    return [
+      { kind: "finish", elapsedMs: this.finishElapsedMs, missionCleared: !result.failed },
+      { kind: "switch-surround-camera" },
+      { kind: "play-result-bgm", beatTarget: !result.failed },
+    ];
   }
 
   acceptLocalCompletion(): void {
@@ -240,6 +260,8 @@ export class TimeAttackLifecycle {
   updateFinishAccepted(now: number): TimeAttackAction[] {
     if (!isAfter(now, this.finishAtMs + 3000)) return [];
     this.phase = 4;
+    // A failed chase has no lap time to show: the retire banner ends it.
+    if (this.forcedResult === "failed") return [];
     const bestMs = this.previousBestMs === null
       ? this.finishElapsedMs
       : Math.min(this.previousBestMs, this.finishElapsedMs);

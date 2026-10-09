@@ -166,3 +166,19 @@ test("first-rider image loading and per-library cache match release", async () =
     readableFixture.ops), readable);
   assert.equal(await original._d0(releasedFixture.library), released);
 });
+
+test("starter colors come from newRiderItem@cn (6/4/5/7), not the @zz list", async () => {
+  const { ops, library, resources } = fixture();
+  resources.set(paths.cn, node("newRiderItem", {}, [
+    node("character", { id: "2" }), node("character", { id: "3" }),
+    ...["6", "4", "5", "7"].map(id => node("color", { id })),
+  ]));
+  resources.set(paths.zz, node("newRiderItem", {}, [
+    node("character", { id: "5" }),
+    ...["1", "4", "5", "7"].map(id => node("color", { id })),
+  ]));
+  const blueprint = await loadRiderBlueprint(library, ops);
+  assert.deepEqual(blueprint.itemWhitelist, {
+    characters: [2, 3], paints: [6, 4, 5, 7], dyes: [6, 4, 5, 7],
+  });
+});

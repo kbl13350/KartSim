@@ -165,3 +165,11 @@ test("taskbar canvas, accessibility buttons, compositing and disposal match rele
     globalThis.ResizeObserver = priorObserver;
   }
 });
+
+test("the tray 상점 button opens the account shop", () => {
+  const open = () => undefined;
+  const bar = { options: { onShop: open } } as unknown as Taskbar;
+  assert.equal(Taskbar.prototype.actionFor.call(bar, "상점"), open);
+  const without = { options: {} } as unknown as Taskbar;
+  assert.equal(Taskbar.prototype.actionFor.call(without, "상점"), undefined);
+});

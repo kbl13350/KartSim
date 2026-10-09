@@ -1,6 +1,6 @@
 # KartSim 本地镜像
 
-项目包含前端 v39.11、前端图片/Worker/WASM、p3553 清单中的 1695 个游戏容器文件（约 3.49 GiB）、APK 素材与分析文件、可开发的 TypeScript 工程及本地 Java 服务。大型游戏资源通过 Git LFS 上传；依赖、构建产物和带本机路径的 JADX 反编译输出不进入仓库。
+项目包含前端 v39.11、前端图片/Worker/WASM、p3553 清单中的 1695 个游戏容器文件（约 3.49 GiB）、APK 素材与分析文件、可开发的 TypeScript 工程及本地 Go 服务端（`server-go/`；早期的 Java 版保留在 `server/` 仅作参考）。大型游戏资源通过 Git LFS 上传；依赖、构建产物和带本机路径的 JADX 反编译输出不进入仓库。
 
 克隆仓库前请安装 Git LFS，并在仓库目录中确认资源已拉取：
 
@@ -21,19 +21,29 @@ git lfs pull
 
 浏览器打开 <http://127.0.0.1:8765/>，首次进入时选“使用在线资源”。这里的“在线资源”会从本机 `mirror/p3553` 读取；浏览器会把当前游戏需要的容器缓存在自身存储中。默认只绑定本机地址。要换端口可运行 `./run-local.sh 9000`。
 
-## 可开发版与 Java 服务端一起运行
+## 可开发版与 Go 服务端一起运行
+
+服务端在 [`server-go/`](server-go/README.md)：一个数据服务 `kart-data`（账号、账号经济、档案、历史、游戏服列表与入场票据，唯一访问 MySQL 与 Redis 的进程）加若干游戏节点 `kart-game`（房间与比赛在内存中，玩家经 WebSocket 连接）。需要 Go 1.26+、Node.js 22+、MySQL 8.4 和 Redis 7。首次使用先准备数据库：
+
+```sh
+brew install mysql@8.4 redis && brew services start mysql@8.4 && brew services start redis
+mysql -h127.0.0.1 -P3306 -uroot -p < server-go/scripts/init-mysql.sql
+# 或者用 Docker：docker compose -f server-go/scripts/dev-deps.compose.yml up -d
+```
 
 已下载资源后，执行：
 
 ```sh
-./run-full-local.sh
+./run-full-local.sh                 # KART_GAME_NODES=2 ./run-full-local.sh 可同时启动两个游戏节点
 ```
 
-它会构建并启动 `server/` 中的 Java 21 服务，再启动 `rewrite/` 中的前端。前端地址由终端打印（默认 <http://127.0.0.1:8780/>），Java 服务默认监听 <http://127.0.0.1:8787/>。首次构建会下载 Maven 和前端依赖。按 Ctrl-C 结束两个进程。服务端数据保存在 `server/data/kart.db`；详细 API、存储与代码导航见 [`server/README.md`](server/README.md)，原客户端协议与本地扩展的区别见 [`SERVER_PROTOCOL.md`](SERVER_PROTOCOL.md)。
+它先检查端口、MySQL 与 Redis（不可用时打印启动和建库命令），构建 `server-go/bin/kart-data` 与 `kart-game`，依次启动数据服务（<http://127.0.0.1:8787/>）和游戏节点（8788 起），再启动 `rewrite/` 中的前端。前端地址与管理页面地址（<http://127.0.0.1:8787/multiplayer/admin>）由终端打印（前端默认 <http://127.0.0.1:8780/>）。按 Ctrl-C 结束全部进程。MySQL 与 Redis 不在默认地址时设置 `KART_MYSQL_DSN`、`KART_REDIS_ADDR`。开发用集群密钥自动生成在 `server-go/data/cluster-secret`。`./run-lan.sh` 让局域网设备通过 HTTPS 访问（单个游戏节点经前端同源代理）。生产部署用 `server-go/docker-compose.yml`。环境变量、API、Redis 键、发件箱、旧 SQLite 数据迁移与分布式部署见 [`server-go/README.md`](server-go/README.md)；原客户端协议与本地扩展的区别见 [`SERVER_PROTOCOL.md`](SERVER_PROTOCOL.md)。
 
-本地可开发版用 WebSocket 连接 Java 服务，支持游客大厅及普通、抓地、幽灵、挡人、巨人、RP 和 LTE Web 试玩的房间与赛程流程。挡人模式需要至少五人；LTE 目前包含专用赛道与 Z/X 躲闪，自动补氮气和香蕉事件尚未实现。档案、计时赛摘要、多人赛果及挡人胜负写入 SQLite；完整 Ghost 回放帧仍由浏览器 IndexedDB 保存。原始镜像运行方式保持发行版的远端多人配置。
+打开游戏必须先登录：默认开放注册（用户名、昵称、密码），没有游客模式；新账号在新车手对话框中领取新手礼包（练习车 + 皮蛋/黑妞二选一 + 喷漆与染色）后进入主界面。账号有等级与经验、点券/金币/K币三种货币和库存，商店按原版货币与期限出售车库能装备的物品，联机比赛与计时赛按原版规则奖励经验和金币，车库只能装备自己拥有的物品。管理员由 `KART_ADMIN_USERNAMES` 指定（例如 `KART_ADMIN_USERNAMES=alice ./run-full-local.sh`），在管理页面查询账号并发放点券、金币、K币或经验；`KART_REGISTRATION=invite|closed` 可改为邀请码注册或关闭注册。详见 [`server-go/README.md`](server-go/README.md)“账号经济”与 [`server-go/ECONOMY.md`](server-go/ECONOMY.md)。
 
-四种新增模式的服务端联调可在 Java 服务运行后执行 `node server-special-smoke.mjs`；该检查使用真实前端房间与事件校验器，覆盖建房、开赛、模式数据、结算和回房，巨人模式还检查状态广播。建议使用临时 `KART_DATA_DIR` 运行测试服务，以免将测试赛果写进日常数据库。
+进入联机大厅时，前端先向数据服务取游戏服列表（只有一个时自动进入），为选中的服申请一次性入场票据（需要登录），再用 WebSocket 连接该游戏节点；会话 token 不会发给游戏节点。支持普通、抓地、幽灵、挡人、巨人、RP 和 LTE Web 试玩的房间与赛程流程。挡人模式需要至少五人；LTE 目前包含专用赛道与 Z/X 躲闪，自动补氮气和香蕉事件尚未实现。档案、计时赛摘要、多人赛果及挡人胜负写入 MySQL（赛果经游戏节点的发件箱异步提交，稍后出现在历史接口中）；完整 Ghost 回放帧仍由浏览器 IndexedDB 保存。原始镜像运行方式保持发行版的远端多人配置。
+
+服务运行后可执行端到端检查：`node server-smoke.mjs` 覆盖游戏服列表、票据规则、大厅、房间与个人/组队比赛、比赛奖励及结算；`node server-special-smoke.mjs` 覆盖四种新增模式的建房、开赛、模式数据、奖励、结算和回房，巨人模式还检查状态广播。两者都使用真实前端房间与事件校验器；没有游客后它们会注册测试账号并领取新手礼包（注册按 IP 每小时限 5 次，脚本为每个账号发送不同的 `X-Forwarded-For`，本机 `run-full-local.sh` 启动的服务默认信任它；其他部署可用 `KART_SMOKE_ACCOUNTS=用户名:密码,…` 提供已有账号），并会在所连集群的 MySQL 中留下测试账号与赛果，请对测试部署运行。`server-go/test/auth-smoke.mjs`（账号、邀请、票据、发件箱）与 `server-go/test/economy-smoke.mjs`（注册、新手礼包、商店、库存、奖励、流水、管理接口）会自行启动服务并使用临时数据库，例如 `KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6379 node server-go/test/economy-smoke.mjs`；`node server-go/test/run-cluster-smokes.mjs`（同样的变量）会启动临时集群并对它运行上面两个脚本和 `server-go/test/smoke.mjs`。见 `server-go/README.md`“测试”。
 
 ## 重新下载或校验资源
 
@@ -45,7 +55,7 @@ python3 download_resources.py
 
 ## 范围
 
-源站当前实际运行并公开提供完整清单的是 p3553。前端还提及 p3528、p3543，但这两个版本的清单及容器在已检查的源站地址不可用，因此镜像只包含可取得的 p3553 完整资源。`run-local.sh` 启动的发行版镜像仍指向源站远程多人后端；本地 Java 服务请使用上面的可开发版启动方式。
+源站当前实际运行并公开提供完整清单的是 p3553。前端还提及 p3528、p3543，但这两个版本的清单及容器在已检查的源站地址不可用，因此镜像只包含可取得的 p3553 完整资源。`run-local.sh` 启动的发行版镜像仍指向源站远程多人后端；本地服务端请使用上面的可开发版启动方式。
 
 ## Service Worker 资源路由
 

@@ -1,0 +1,188 @@
+# KartSim 单机集群：MySQL 8.4 + Redis 7 + 数据服务 kart-data + 两个游戏节点 kart-game。
+#
+#   install -m 600 .env.example .env    # 只有自己可读；填写密码、KART_CLUSTER_SECRET 与 KART_ADMIN_USERNAMES
+#   docker compose up -d --build
+#
+# 账号经济（开放注册、等级、点券/金币/K币、库存、商店、管理页面 /multiplayer/admin）的
+# 变量见 .env.example 与 README.md“账号经济”；奖励倍率同时传给数据服务与游戏节点。
+#
+# 对宿主机只发布 8787（数据服务）、8788/8789（两个游戏节点），默认只绑定 127.0.0.1
+# （.env 中的 KART_BIND_ADDR）。两个网络：backend（internal，无外网）只有 mysql、redis
+# 与 kart-data；cluster 有 kart-data 与游戏节点。游戏节点因此只能访问 kart-data 的
+# 8787/8790，连不到 MySQL 与 Redis（Redis 中的会话缓存等同登录凭据）。数据服务内部 API
+# （8790）不发布到宿主机。分布式部署与反向代理见 README.md。
+name: kartsim
+
+x-image: &image
+  image: kartsim-server:local
+  build:
+    context: .
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+x-game: &game
+  <<: *image
+  command: ["kart-game"]
+  restart: unless-stopped
+  # 只在 cluster 网络：能访问 kart-data，访问不到 MySQL 与 Redis。
+  networks: [cluster]
+  # 关闭时向玩家发送 1001、通知数据服务下线并最多冲刷发件箱 5 秒。
+  stop_grace_period: 15s
+  logging: *logging
+  depends_on:
+    kart-data:
+      condition: service_healthy
+  healthcheck:
+    test: ["CMD-SHELL", "wget -q -T 3 -O /dev/null http://127.0.0.1:$${KART_GAME_PORT}/multiplayer/healthz || exit 1"]
+    interval: 10s
+    timeout: 5s
+    retries: 3
+    start_period: 10s
+
+x-game-env: &game-env
+  KART_GAME_ADDR: 0.0.0.0
+  KART_DATA_INTERNAL_URL: http://kart-data:8790
+  KART_DATA_NODE_ID: data-1
+  KART_CLUSTER_SECRET: ${KART_CLUSTER_SECRET:?请在 .env 中设置 KART_CLUSTER_SECRET（至少 32 个字符）}
+  KART_MAX_PLAYERS: ${KART_MAX_PLAYERS:-400}
+  KART_MAX_ROOMS: ${KART_MAX_ROOMS:-200}
+  KART_MEMORY_LIMIT_MB: ${KART_MEMORY_LIMIT_MB:-0}
+  # 留空时使用程序默认值（见 README“kart-game”变量表）。
+  KART_MAX_CONNECTIONS: ${KART_MAX_CONNECTIONS:-}
+  KART_SEND_BUFFER_BYTES: ${KART_SEND_BUFFER_BYTES:-}
+  KART_HELLO_TIMEOUT: ${KART_HELLO_TIMEOUT:-}
+  KART_OUTBOX_DIR: /var/lib/kart/outbox
+  KART_LAN_HOSTS: ${KART_LAN_HOSTS:-}
+  # 游客开关与数据服务取相同的值。奖励倍率不用传：游戏节点从数据服务的心跳响应得到
+  # KART_EXP_RATE/KART_LUCCI_RATE，结束快照 race.rewards 显示乘倍率后的数值（与入账一致）。
+  KART_ALLOW_GUESTS: ${KART_ALLOW_GUESTS:-false}
+
+services:
+  mysql:
+    image: mysql:8.4
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_as_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?请在 .env 中设置 MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: kartsim
+      MYSQL_USER: kart
+      MYSQL_PASSWORD: ${KART_MYSQL_PASSWORD:?请在 .env 中设置 KART_MYSQL_PASSWORD}
+    networks: [backend]
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./scripts/docker-mysql-init.sql:/docker-entrypoint-initdb.d/10-kartsim.sql:ro
+    healthcheck:
+      # 首次初始化期间入口脚本的临时实例不监听 TCP，所以只有正式实例就绪后才算健康。
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$${MYSQL_ROOT_PASSWORD}\" mysqladmin ping -h 127.0.0.1 -uroot --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+    restart: unless-stopped
+    logging: *logging
+
+  redis:
+    image: redis:7
+    # Redis 只保存缓存、在线昵称与节点注册，均可重建，因此不做持久化。
+    command: ["sh", "-c", "exec redis-server --requirepass \"$${REDISCLI_AUTH}\" --save '' --appendonly no"]
+    environment:
+      REDISCLI_AUTH: ${KART_REDIS_PASSWORD:?请在 .env 中设置 KART_REDIS_PASSWORD}
+    networks: [backend]
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+    logging: *logging
+
+  kart-data:
+    <<: *image
+    command: ["kart-data"]
+    environment:
+      KART_DATA_ADDR: 0.0.0.0
+      KART_DATA_PORT: "8787"
+      # 内部 API 必须对游戏节点容器可达，所以监听 0.0.0.0；它没有出现在 ports 中，宿主机与公网访问不到。
+      KART_INTERNAL_LISTEN: 0.0.0.0:8790
+      KART_MYSQL_DSN: kart:${KART_MYSQL_PASSWORD}@tcp(mysql:3306)/kartsim?charset=utf8mb4&collation=utf8mb4_0900_as_ci
+      KART_REDIS_ADDR: redis:6379
+      KART_REDIS_PASSWORD: ${KART_REDIS_PASSWORD}
+      KART_REDIS_PREFIX: ${KART_REDIS_PREFIX:-}
+      KART_CLUSTER_SECRET: ${KART_CLUSTER_SECRET:?请在 .env 中设置 KART_CLUSTER_SECRET（至少 32 个字符）}
+      KART_DATA_NODE_ID: data-1
+      KART_LAN_HOSTS: ${KART_LAN_HOSTS:-}
+      KART_PUBLIC_ORIGIN: ${KART_DATA_PUBLIC_ORIGIN:-}
+      KART_BOOTSTRAP_INVITE: ${KART_BOOTSTRAP_INVITE:-}
+      # 账号经济（README“账号经济”）。KART_ADMIN_USERNAMES 中的账号可使用 /multiplayer/admin。
+      KART_REGISTRATION: ${KART_REGISTRATION:-open}
+      KART_ALLOW_GUESTS: ${KART_ALLOW_GUESTS:-false}
+      KART_ADMIN_USERNAMES: ${KART_ADMIN_USERNAMES:-}
+      KART_EXP_RATE: ${KART_EXP_RATE:-1}
+      KART_LUCCI_RATE: ${KART_LUCCI_RATE:-1}
+      KART_STARTING_LUCCI: ${KART_STARTING_LUCCI:-10000}
+      # 信任其 X-Forwarded-For 的反向代理（注册限流按真实客户端 IP 计算）；留空为回环地址，见 .env.example。
+      KART_TRUSTED_PROXIES: ${KART_TRUSTED_PROXIES:-}
+    # backend 访问 MySQL/Redis；cluster 对游戏节点提供 8790，并承载发布的 8787。
+    networks: [backend, cluster]
+    ports:
+      - "${KART_BIND_ADDR:-127.0.0.1}:8787:8787"
+    expose:
+      - "8790"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -T 3 -O /dev/null http://127.0.0.1:8787/multiplayer/healthz || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    stop_grace_period: 15s
+    logging: *logging
+
+  kart-game-1:
+    <<: *game
+    environment:
+      <<: *game-env
+      KART_GAME_PORT: "8788"
+      KART_NODE_ID: game-1
+      KART_NODE_NAME: ${KART_GAME_1_NAME:-游戏服 1}
+      KART_PUBLIC_ORIGIN: ${KART_GAME_1_PUBLIC_ORIGIN:-http://127.0.0.1:8788}
+    ports:
+      - "${KART_BIND_ADDR:-127.0.0.1}:8788:8788"
+    volumes:
+      - game-1-outbox:/var/lib/kart/outbox
+
+  kart-game-2:
+    <<: *game
+    environment:
+      <<: *game-env
+      KART_GAME_PORT: "8789"
+      KART_NODE_ID: game-2
+      KART_NODE_NAME: ${KART_GAME_2_NAME:-游戏服 2}
+      KART_PUBLIC_ORIGIN: ${KART_GAME_2_PUBLIC_ORIGIN:-http://127.0.0.1:8789}
+    ports:
+      - "${KART_BIND_ADDR:-127.0.0.1}:8789:8789"
+    volumes:
+      - game-2-outbox:/var/lib/kart/outbox
+
+networks:
+  # internal：容器之间互通，但没有出网路由，也不能发布端口。
+  backend:
+    internal: true
+  # 普通 bridge 网络：发布的 8787/8788/8789 经它对宿主机可达。
+  cluster: {}
+
+volumes:
+  mysql-data:
+  # 每个游戏节点一个发件箱卷：数据服务暂时不可用时，赛果留在这里，重启后继续补发。
+  game-1-outbox:
+  game-2-outbox:

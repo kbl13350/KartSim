@@ -30,6 +30,10 @@ export interface TaskbarOptions {
   onHouse?: () => void;
   onSinglePlayer?: () => void;
   onMultiplayer?: () => void;
+  /** gotoHome: return to the main menu home. */
+  onHome?: () => void;
+  /** 상점: the account shop (server-go/ECONOMY.md 7.6). */
+  onShop?: () => void;
   onHover?: () => void;
   onActivate?: () => void;
 }
@@ -142,6 +146,7 @@ export class Taskbar {
     const element = document.createElement("button");
     const label = this.assets.labels.get(button.name) ?? button.name;
     element.type = "button";
+    element.dataset.taskbarButton = button.name;
     element.title = label;
     element.setAttribute("aria-label", label);
     element.disabled = !this.actionFor(button.name);
@@ -222,6 +227,8 @@ export class Taskbar {
     if (name === "마이룸") return this.options.onHouse;
     if (name === "singleplay") return this.options.onSinglePlayer;
     if (name === "multiplay") return this.options.onMultiplayer;
+    if (name === "gotoHome") return this.options.onHome;
+    if (name === "상점") return this.options.onShop;
     return undefined;
   }
 }

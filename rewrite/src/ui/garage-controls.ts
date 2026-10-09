@@ -188,12 +188,35 @@ function showFactoryPage(host: GarageControlsHost, equipment: GarageControlsEqui
   host.updateCards();
 }
 
+export const GARAGE_PRACTICE_NOTICE = "练习车不支持部件、强化、改装或外观修改。";
+
+/**
+ * The part list is a three-column grid, so bare text sat in its first card
+ * cell. The notice covers the whole list instead and stands in its middle,
+ * over the board's empty card frames, in the garage's white outlined text.
+ */
+function practiceNotice(): HTMLElement {
+  const notice = document.createElement("div");
+  notice.className = "garage-parts-notice garage-practice-notice";
+  notice.setAttribute("role", "status");
+  notice.textContent = GARAGE_PRACTICE_NOTICE;
+  const style: Record<string, string> = {
+    position: "absolute", inset: "0", display: "flex",
+    "align-items": "center", "justify-content": "center",
+    "box-sizing": "border-box", padding: "0 24px", "pointer-events": "none",
+    "text-shadow": "1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000",
+  };
+  for (const [name, value] of Object.entries(style)) notice.style.setProperty(name, value);
+  return notice;
+}
+
 function showPracticeVehicle(host: GarageControlsHost): void {
   for (const button of host.slotControls.values()) button.replaceChildren();
   host.info.replaceChildren();
   host.vehicleFunctions.replaceChildren();
   host.removePart.disabled = true;
-  host.inventory.textContent = "练习车不支持部件、强化、改装或外观修改。";
+  // clearTransientInventory emptied the list.
+  host.inventory.append(practiceNotice());
   host.updatePageVisibility();
   host.updateCards();
 }

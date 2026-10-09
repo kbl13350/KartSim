@@ -1,3 +1,6 @@
+import { MissionResultAction, StoryAction2D } from "../story/mission-result-action";
+import type { StoryRaceRequest } from "../story/story-race";
+
 /**
  * Construct every owner needed by a solo race before the application publishes it.
  *
@@ -5,6 +8,8 @@
  * Keeping the orchestration here makes acquisition and failure cleanup editable.
  */
 export interface SoloRaceSelection {
+  /** Story mode: rival ghosts and lap count for this race. */
+  story?: StoryRaceRequest;
   mapPath?: string;
   trackId?: string;
   vehiclePath?: string;
@@ -123,6 +128,7 @@ export async function buildSoloRaceAssets(
     let map: any;
     try {
       map = await builder.loadAssetMap(selection.mapPath, selection.trackId);
+      if (selection.story?.laps) map.data.lapTarget = selection.story.laps;
     } catch (error) {
       closeNewAudio();
       throw new Error(`赛道载入失败：${error instanceof Error ? error.message : String(error)}`);
@@ -210,9 +216,12 @@ export async function buildSoloRaceAssets(
     let rankColors: any;
     try {
       const recordKey = host.timeAttackRecordKey(selection, raceOptions);
-      const ghostRecord = raceOptions.showGhost &&
-        host.timeAttackRecords.get(recordKey)?.hasGhost === true
-        ? await host.ghostStore.get(recordKey) : undefined;
+      // Story races bring their rival ghosts instead of the local record.
+      const ghostRecord = selection.story
+        ? { participants: selection.story.ghosts }
+        : raceOptions.showGhost &&
+          host.timeAttackRecords.get(recordKey)?.hasGhost === true
+          ? await host.ghostStore.get(recordKey) : undefined;
       if (ghostRecord) {
         for (const participant of ghostRecord.participants) {
           const slot = participant.equipment.startSlot;
@@ -252,6 +261,16 @@ export async function buildSoloRaceAssets(
       if (vehicle.classicHud)
         await gameplayUi.loadClassicBoost(host.getLibrary(), teamBooster);
       action2D = ops.createAction2D(await ops.loadAction2D(host.getLibrary()));
+      if (selection.story) {
+        // The mission result animation is a bonus: race on without it if it cannot load.
+        try {
+          action2D = new StoryAction2D(action2D,
+            await MissionResultAction.load(host.getLibrary(), audioContext));
+        } catch (error) {
+          host.hud.showDebugText(`任务结果动画未能载入：${
+            error instanceof Error ? error.message : String(error)}`, "error");
+        }
+      }
       result = ops.createResult(await ops.loadResult(host.getLibrary()));
       if (ops.versionTag("p3553") === "p3553") {
         const trackDirectory = map.path.replaceAll("\\", "/").split("/").at(-2);

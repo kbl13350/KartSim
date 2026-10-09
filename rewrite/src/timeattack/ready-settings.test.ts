@@ -177,3 +177,30 @@ test("lobby settings music refresh, close, shortcut and environment release matc
   }
   assert.deepEqual(await run(false), await run(true));
 });
+
+test("while the shop is open or loading, Ready and room shortcuts do nothing behind it", () => {
+  const key = (code: string, events: unknown[]) => ({ code, repeat: false,
+    preventDefault: () => { events.push(["prevent", code]); } }) as unknown as KeyboardEvent;
+  for (const multiplayer of [false, true]) {
+    for (const shop of ["open", "opening"] as const) {
+      const { controller, events } = fixture(multiplayer);
+      let roomShortcuts = 0;
+      if (controller.multiplayer) {
+        controller.multiplayer.handleRoomShortcut = () => { roomShortcuts++; return true; };
+      }
+      if (shop === "open") controller.activeShop = { close() {} };
+      else controller.shopOpening = true;
+      // Handled (true) so the application's option toggles (F6–F8) and Escape-to-pause skip it too.
+      assert.equal(handleReadyShortcut(controller, key("F5", events)), true);
+      assert.equal(handleReadyShortcut(controller, key("KeyP", events)), true);
+      assert.equal(handleReadyShortcut(controller, key("F6", events)), true);
+      const blocked = { roomShortcuts, events: [...events] };
+      // No training race, quick join or room ready; F5 does not reload the page either.
+      assert.deepEqual(blocked, { roomShortcuts: 0, events: [["prevent", "F5"]] });
+      controller.activeShop = undefined;
+      controller.shopOpening = false;
+      assert.equal(handleReadyShortcut(controller, key("F5", events)), true);
+      assert.ok(multiplayer ? roomShortcuts > 0 : events.includes("training"));
+    }
+  }
+});

@@ -153,3 +153,12 @@ test("multiplayer podium and roadblock result transitions match release", () => 
     assert.deepEqual(observe(true, scenario), observe(false, scenario), scenario);
   }
 });
+
+test("roadblock races announce the local player's reward", async () => {
+  const { announceRoadblockReward } = await import("./race-presenter-results");
+  const shown: string[] = [];
+  announceRoadblockReward({ runner: { exp: 60, lucci: 90 }, other: { exp: 1, lucci: 1 } },
+    "runner", message => shown.push(message));
+  announceRoadblockReward(undefined, "runner", message => shown.push(message));
+  assert.deepEqual(shown, ["本局奖励 +60经验 +90金币"]);
+});

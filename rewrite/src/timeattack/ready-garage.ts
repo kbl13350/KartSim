@@ -1,3 +1,4 @@
+import { garageViewCatalog } from "../account/garage-ownership";
 import type { ReadyOptions, ReadySelection } from "./ready-flow";
 
 interface GarageChoice {
@@ -76,6 +77,14 @@ export interface ReadyGarageDependencies {
   defaultVersion: string;
 }
 
+/** The equipped kart and rider every garage view must list (it fails closed otherwise). */
+export function selectionKeep(selection: ReadySelection | undefined): {
+  kartItemId?: number; kartSystemKey?: string; characterItemId?: number;
+} {
+  return { kartItemId: selection?.vehicleItemId, kartSystemKey: selection?.vehicleSystemKey,
+    characterItemId: selection?.characterItemId };
+}
+
 function showNotice(controller: ReadyGarageController, deps: ReadyGarageDependencies,
   message: unknown, kind: unknown, details: unknown): void {
   controller.activeWindowNotice ??= deps.createNotice(controller.host.root);
@@ -98,7 +107,9 @@ export async function openReadyGarage(controller: ReadyGarageController,
   }
   host.shell.openModal("garage");
   try {
-    const catalog = await library.timeAttackGarageCatalog();
+    // Only owned, unexpired items; the current selection stays listed.
+    const catalog = garageViewCatalog(await library.timeAttackGarageCatalog(),
+      selectionKeep(selection));
     let view!: GarageView;
     const close = () => {
       view.dispose();
@@ -181,9 +192,11 @@ export async function openReadyGarageX(controller: ReadyGarageController,
         controller.multiplayer !== lobby) return;
     controller.closeMultiplayer(false, false);
     if (controller.disposed) return;
-    selection = controller.host.getSelection() ?? selection;
     options = controller.host.getReadyOptions();
   }
+  // Callers may hold an older selection (the taskbar is built once); GarageX
+  // fails closed unless it opens on the equipment Ready shows now.
+  selection = controller.host.getSelection() ?? selection;
   if (controller.readyModalBusy()) {
     restoreReady();
     return;
@@ -205,7 +218,8 @@ export async function openReadyGarageX(controller: ReadyGarageController,
   try {
     const view = await deps.loadGarageX({
       library, taskbar: controller.activeTaskbar, environment,
-      catalog: await library.timeAttackGarageCatalog(), root: host.root,
+      catalog: garageViewCatalog(await library.timeAttackGarageCatalog(),
+        selectionKeep(selection)), root: host.root,
       stageBinding: host.toonStageBinding, profile: host.getProfile(),
       speed: deps.speed(options), version: options.version ?? deps.defaultVersion,
       selectedKartItemId: selection.vehicleItemId,

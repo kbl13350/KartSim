@@ -1,5 +1,9 @@
-/** Settings for the Java service that runs beside the local game. */
+/** Settings for the multiplayer services that run beside the local game. */
 export interface LocalMultiplayerConfig {
+  /**
+   * The data service: accounts, profiles, history, the game server list and
+   * entry tickets. Game servers are reached at the origins that list names.
+   */
   backendOrigin: string;
   frontendOrigins: string[];
   transport: "websocket" | "webrtc";
@@ -13,7 +17,7 @@ declare global {
 
 export interface LocalConfigEnvironment {
   VITE_MULTIPLAYER_BACKEND_ORIGIN?: string;
-  /** LAN play: the dev server proxies the backend on the page's own origin. */
+  /** LAN play: the dev server proxies the data and game services on the page's own origin. */
   VITE_MULTIPLAYER_SAME_ORIGIN?: string;
   VITE_MULTIPLAYER_TRANSPORT?: string;
 }

@@ -51,3 +51,43 @@ test("多人大厅所有入口的分发与发行版一致", async () => {
     }
   }
 });
+
+test("标签、分类和筛选只改界面状态并请求对应列表", () => {
+  const events: unknown[][] = [];
+  const host: LobbyListActionHost = {
+    hits: ["tab:etc", "tab:item", "cat:speedTeam", "cat:speedCustom", "filter:team",
+      "roomRight"].map(name => ({ name })),
+    rooms: [], channelName: "speedIndiCombine", page: 2, gameplay: "ordinary",
+    render: () => { events.push(["render"]); },
+    options: {
+      version: "p3553",
+      onMode: (...args) => { events.push(["mode", ...args]); },
+      onUnavailable: (title, message) => { events.push(["unavailable", title, message]); },
+    },
+  };
+  const modeForButton = () => undefined;
+  const isChannel = () => false;
+
+  activateLobbyListEntry(host, "cat:speedCustom", modeForButton, isChannel);
+  // Same list: the page stays.
+  assert.deepEqual(events.splice(0), [["render"], ["mode", "speedIndiCombine", 2, "ordinary"]]);
+  assert.equal(host.lobbyUi?.loading, true);
+
+  activateLobbyListEntry(host, "cat:speedTeam", modeForButton, isChannel);
+  assert.deepEqual(events.splice(0), [["render"], ["mode", "speedTeamCombine", 0, "ordinary"]]);
+
+  activateLobbyListEntry(host, "filter:team", modeForButton, isChannel);
+  assert.deepEqual(events.splice(0), [["render"]]);
+  assert.equal(host.lobbyUi?.filters.team, false);
+
+  activateLobbyListEntry(host, "tab:item", modeForButton, isChannel);
+  assert.equal(events.splice(0)[0]![0], "unavailable");
+  assert.equal(host.lobbyUi?.tab, "speed");
+
+  activateLobbyListEntry(host, "tab:etc", modeForButton, isChannel);
+  assert.deepEqual(events.splice(0), [["render"], ["mode", "speedIndiCombine", 0, "grip"]]);
+  assert.deepEqual([host.lobbyUi?.tab, host.lobbyUi?.category], ["etc", "grip"]);
+
+  activateLobbyListEntry(host, "roomRight", modeForButton, isChannel);
+  assert.deepEqual(events.splice(0), [["mode", "speedIndiCombine", 3, "ordinary"]]);
+});

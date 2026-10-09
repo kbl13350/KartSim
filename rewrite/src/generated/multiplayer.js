@@ -23,9 +23,16 @@ import { LobbyEmotionAudio } from "../multiplayer/lobby-emotion-audio.ts";
 import { LobbyAvatarPreviews } from "../multiplayer/lobby-avatar-previews.ts";
 import { createLobbyAvatarCamera } from "../multiplayer/lobby-avatar-camera.ts";
 import { multiplayerBackendOrigin, multiplayerEndpoint } from "../multiplayer/backend-origin.ts";
-import { requestMultiplayerAccount, enterMultiplayerAccount } from "../multiplayer/account-service.ts";
+import { requestMultiplayerAccount, enterMultiplayerAccount, multiplayerAccountFromSession } from "../multiplayer/account-service.ts";
+import { currentAccountSession } from "../account/account-session.ts";
+import { accountTokenStore } from "../account/account-token-store.ts";
+import { multiplayerSessionToken } from "../account/account-runtime.ts";
+import { accountOwnedEquipment } from "../account/garage-ownership.ts";
+import { repairEquipmentForMultiplayer } from "../app/account-startup.ts";
 import { AccountLoginDialog } from "../multiplayer/account-login-dialog.ts";
 import { chooseGuestNickname } from "../multiplayer/guest-nickname.ts";
+import { chooseGameServer, requestGameServerEntry } from "../multiplayer/game-servers.ts";
+import { showGameServerPicker } from "../multiplayer/game-server-dialog.ts";
 import { roomChannelNames, roomChannelKey, roomStyleDropdown } from "../multiplayer/lobby-room-options.ts";
 import { chooseSignedInAccount } from "../multiplayer/account-choice-dialog.ts";
 import { addLobbyEmotionWheel, buildLobbyRoomTemplate, loadLobbyRoomTemplate } from "../multiplayer/lobby-room-template.ts";
@@ -81,7 +88,7 @@ import { Bt, L40, No, S40, Y3, d6 } from "./vehicle.js";
 import { $v, Br, E4, Ga, Hg, IP, NP, Ng, Ue, Uo, cP, nT, ua0, ut, xP, y6, yP, ze, zo0 } from "./world.js";
 import { C7, Js, Jv, Lt, Qv, T4, Tc0, _7, ds, ey, oy, ry, ty, w80 } from "./ui.js";
 
-const multiplayerTokenStore = { get cache() { return S6; }, storage: () => sessionStorage };
+const multiplayerTokenStore = accountTokenStore;
 const accountProgressDependencies = { get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons) };
 const lobbyAvatarAppearanceDependencies = { loadRoleTeams: library => fa(library), paintColors: (library, itemId, slot) => We(library, itemId, slot), cosmetics: (equipment, member) => BI(equipment, member) };
 const multiplayerClientStateFactories = { createDecoder: () => new d6(), createLatencyTracker: () => new gl0(), createClock: () => new L40() };
@@ -126,6 +133,8 @@ const accountRequestDependencies = { authEndpoint: action => ly(action), authori
 const accountLoginDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error) };
 const accountEntryDependencies = { backendOrigin: () => jo(), pageUrl: () => window.location.href, pageOrigin: () => window.location.origin, endpoint: (path, pageUrl) => Ko(path, pageUrl), fetch: (url, options) => fetch(url, options), loadAccount: () => Xo('me'), chooseAccount: (root, account, signal) => Al0(root, account, signal), showLogin: (root, signal) => new CF(root, signal).wait() };
 const guestNicknameDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: action => ly(action), fetch: (url, options) => fetch(url, options), get errorMessages() { return uy; }, formatError: error => C6(error) };
+const gameServerPickerDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons) };
+const gameServerDependencies = { endpoint: path => Ko(path, window.location.href), backendOrigin: () => jo(), pageUrl: () => window.location.href, fetch: (url, options) => fetch(url, options), storage: () => localStorage, pick: (root, options, selected, signal) => showGameServerPicker(gameServerPickerDependencies, root, options, selected, signal) };
 const roomDropdownDependencies = { attribute: (node, name) => T(node, name), clone: (node, attributes, children) => children === undefined ? h2(node, attributes) : h2(node, attributes, children) };
 const accountChoiceDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: (path, pageUrl) => Ko(path, pageUrl), pageUrl: () => window.location.href, requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error), authEndpoint: action => ly(action), authorizationHeaders: () => nm(), fetch: (url, options) => fetch(url, options), backendOrigin: () => jo(), clearToken: origin => SF(origin), showLogin: (root, signal) => new CF(root, signal).wait() };
 const lobbyDialogViewDependencies = { loadMessageTemplate: library => _w(library), loadDefinition: (library, folder, name) => F9(library, folder, name), decorateDefinition: (library, definition, folder) => C8(library, definition, folder), clone: (node, attributes, children) => children === undefined ? h2(node, attributes) : h2(node, attributes, children), nodeName: node => T(node, 'name'), loadView: options => te.load(options) };
@@ -140,6 +149,7 @@ const readyControllerServices = {
     sanitizeReadyOptions: Hl0, nickname: im, get version() { return Bt; },
     initialEquipment: zw, get favoriteTrackIds() { return nT; },
     createNotice: root => new ds(root), createLobby: options => new Wl0(options),
+    repairEquipment: () => repairEquipmentForMultiplayer(),
   },
   createNotice: root => new ds(root),
   loadToonEnvironment: library => rn.load(library),
@@ -162,10 +172,15 @@ const multiplayerLobbyServices = {
   open: {
     get protocolVersion() { return Uo; }, pageUrl: () => window.location.href,
     endpoint: Ko, fetchHealth: (url, signal) => fetch(url, { cache: "no-store", signal }),
-    showAccountProgress: vl0, loadAccount: yl0, chooseNickname: PT,
+    showAccountProgress: vl0, loadAccount: () => multiplayerAccountFromSession(currentAccountSession()),
     loadLobby: options => Ew.load(options),
     notice: (options, title, message) => b1.notice(options, title, message),
-    sessionToken: url => xF(ay(url)), rememberNickname: EF,
+    chooseGameServer: (root, signal, failed) =>
+      chooseGameServer(gameServerDependencies, root, signal, failed),
+    enterGameServer: (server, sessionToken, signal) =>
+      requestGameServerEntry(gameServerDependencies, server, sessionToken, signal),
+    sessionToken: url => multiplayerSessionToken(ay(url), xF),
+    repairEquipment: () => repairEquipmentForMultiplayer(),
     createClient: () => new LT(),
   },
   loadingView: (library, root) => gy.load(library, root), receive: (...args) => RI(...args),
@@ -180,7 +195,7 @@ const multiplayerLobbyServices = {
     }, undefined);
     return TimeAttackGarageView.load(options);
   },
-  normalizeEquipment: (profile, choice) => zw({ ...profile, equipment: choice.equipment }),
+  normalizeEquipment: (profile, choice) => accountOwnedEquipment(zw({ ...profile, equipment: choice.equipment })),
   track: {
     gameplay: G2, isGiantTrack: Zl, get randomRules() { return Yc; },
     loadView: options => _7.load(options),
@@ -231,7 +246,7 @@ class LT extends MultiplayerClientState {
   subscribeMotion(listener) { return subscribeGameMotion(this, listener); }
   captureClock() { return captureNetworkClock(this); }
   static sameOriginUrl(pageUrl) { return sameOriginOfferUrl(pageUrl); }
-  async connect(offerUrl, name, resourceVersion, equipment, initial, raceRuntime = false, token) { return connectGameClient(this, offerUrl, name, resourceVersion, equipment, initial, raceRuntime, token, { validateControlMessage: zo0, transport: configuredTransport() }); }
+  async connect(offerUrl, name, resourceVersion, equipment, initial, raceRuntime = false, ticket) { return connectGameClient(this, offerUrl, name, resourceVersion, equipment, initial, raceRuntime, ticket, { validateControlMessage: zo0, transport: configuredTransport() }); }
   request(message) { return sendControlRequest(this, message); }
   subscribe(listener) { return subscribeControl(this, listener); }
   onClose(listener) { return onClientClose(this, listener); }
@@ -268,9 +283,9 @@ async function Xo(action, fields) { return requestMultiplayerAccount(accountRequ
 
 class CF extends AccountLoginDialog { constructor(root, signal) { super(root, signal, accountLoginDependencies); } }
 
-async function yl0(root, signal) { return enterMultiplayerAccount(accountEntryDependencies, root, signal); }
 
-async function PT(root, previousName, signal, forcePrompt = false) { return chooseGuestNickname(guestNicknameDependencies, root, previousName, signal, forcePrompt); }
+
+
 
 function Al0(root, account, signal) { return chooseSignedInAccount(accountChoiceDependencies, root, account, signal); }
 

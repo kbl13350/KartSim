@@ -98,3 +98,25 @@ export async function enterMultiplayerAccount(
     return account;
   }
 }
+
+/** The account part of a signed-in data-service session that multiplayer needs. */
+export interface MultiplayerAccountSession {
+  refresh(): Promise<void>;
+  summary(): { account: { nickname: string }; onboarded: boolean } | undefined;
+}
+
+/**
+ * Multiplayer entry for the startup account (ECONOMY.md 0, 7): every player is
+ * already signed in, so no dialog is shown. The session is re-read to check
+ * that the token is still valid and the starter kit was claimed; the game node
+ * uses the account nickname from the ticket.
+ */
+export async function multiplayerAccountFromSession(
+  session: MultiplayerAccountSession | undefined): Promise<{ nickname: string }> {
+  if (!session) throw new Error("LOGIN_REQUIRED");
+  await session.refresh();
+  const summary = session.summary();
+  if (!summary) throw new Error("LOGIN_REQUIRED");
+  if (!summary.onboarded) throw new Error("ONBOARDING_REQUIRED");
+  return { nickname: summary.account.nickname };
+}

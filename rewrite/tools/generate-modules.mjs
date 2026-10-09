@@ -92,6 +92,46 @@ const formatKartIdentityOverrides = new Map([
   ["N3", "function N3(kart) { return kartCatalogIdentity(kart); }"],
   ["GZ", "function GZ(key) { return stableSystemKartKey(key); }"],
 ]);
+// Time attack result reward slots (server-go/ECONOMY.md 7.7): the release bound
+// RP and Lucci to a constant " +0"; they now read the settled account reward.
+const formatTimeAttackRewardOverrides = new Map([
+  ["mX", `function mX(n, e, t) {
+  const i = new Map();
+  return (
+    uM(i, ue(n, "timeinfo"), "elapsed"),
+    uM(i, ue(n, "bestinfo"), "best"),
+    i.set(ue(ue(e, "crashInfo"), "count"), "crash-count"),
+    i.set(ue(ue(e, "boosterInfo"), "count"), "booster-count"),
+    i.set(ue(t, "RP"), "reward-exp"),
+    i.set(ue(t, "Lucci"), "reward-lucci"),
+    i
+  );
+}`],
+  ["wX", `function wX(n, e, t, i) {
+  if (n === void 0) return;
+  if (n === "crash-count") return i.crash;
+  if (n === "booster-count") return i.booster;
+  if (n === "reward-exp") return i.exp;
+  if (n === "reward-lucci") return i.lucci;
+  const [r, s] = n.split("-");
+  return (r === "elapsed" ? e : t)[s];
+}`],
+  ["gX", `function gX(n, e, t, i) {
+  const r = Eo(e.elapsedMs),
+    s = Eo(e.bestMs),
+    o = {
+      crash: hM(e.crashCount, "crashCount"),
+      booster: hM(e.boosterCount, "boosterCount"),
+      exp: timeAttackRewardText(e.rewardExp),
+      lucci: timeAttackRewardText(e.rewardLucci),
+    },
+    a = dn(n.windowTree, t, i, {
+      visibility: (c) => (n.visiblePanels.has(c) ? !0 : void 0),
+      text: (c) => wX(n.textBindings.get(c), r, s, o),
+    });
+  return dt(a, n.textures);
+}`],
+]);
 const formatFontLayoutOverrides = new Map([
   ["pa", "function pa(layout, text) { return layoutSpriteFont(layout, text); }"],
   ["$B", "function $B(layout, text, glyphs) { return layoutSpriteFontInto(layout, text, glyphs); }"],
@@ -583,7 +623,7 @@ const clientMethodOverrides = new Map([
   ["subscribeMotion", "  subscribeMotion(listener) { return subscribeGameMotion(this, listener); }"],
   ["captureClock", "  captureClock() { return captureNetworkClock(this); }"],
   ["sameOriginUrl", "  static sameOriginUrl(pageUrl) { return sameOriginOfferUrl(pageUrl); }"],
-  ["connect", "  async connect(offerUrl, name, resourceVersion, equipment, initial, raceRuntime = false, token) { return connectGameClient(this, offerUrl, name, resourceVersion, equipment, initial, raceRuntime, token, { validateControlMessage: zo0, transport: configuredTransport() }); }"],
+  ["connect", "  async connect(offerUrl, name, resourceVersion, equipment, initial, raceRuntime = false, ticket) { return connectGameClient(this, offerUrl, name, resourceVersion, equipment, initial, raceRuntime, ticket, { validateControlMessage: zo0, transport: configuredTransport() }); }"],
   ["request", "  request(message) { return sendControlRequest(this, message); }"],
   ["subscribe", "  subscribe(listener) { return subscribeControl(this, listener); }"],
   ["onClose", "  onClose(listener) { return onClientClose(this, listener); }"],
@@ -617,7 +657,7 @@ const lobbyActionMethodOverrides = new Map([
     chooseNickname: PT,
     loadLobby: options => Ew.load(options),
     notice: (options, title, message) => b1.notice(options, title, message),
-    sessionToken: url => xF(ay(url)),
+    sessionToken: url => multiplayerSessionToken(ay(url), xF),
     rememberNickname: EF,
     createClient: () => new LT(),
   }); }`],
@@ -649,7 +689,7 @@ const lobbyActionMethodOverrides = new Map([
         return { TimeAttackGarageView };
       }, undefined);
       return TimeAttackGarageView.load(options);
-    }, (profile, choice) => zw({ ...profile, equipment: choice.equipment })); }`],
+    }, (profile, choice) => accountOwnedEquipment(zw({ ...profile, equipment: choice.equipment }))); }`],
   ["confirmGarage", "  async confirmGarage(choice, roomId, modal) { return confirmLobbyGarage(this, choice, roomId, modal); }"],
   ["chooseTrack", "  async chooseTrack() { return chooseLobbyTrack(this, { gameplay: G2, isGiantTrack: Zl, randomRules: Yc, loadView: options => _7.load(options) }); }"],
   ["confirmTrack", "  async confirmTrack(modal, choice) { return confirmLobbyTrack(this, modal, choice, Yc); }"],
@@ -682,6 +722,7 @@ const readyMethodOverrides = new Map([
     favoriteTrackIds: nT,
     createNotice: root => new ds(root),
     createLobby: options => new Wl0(options),
+    repairEquipment: () => repairEquipmentForMultiplayer(),
   }); }`],
   ["multiplayerGarageOptions", "  async multiplayerGarageOptions() { return readyMultiplayerGarageOptions(this, root => new ds(root)); }"],
   ["applyMultiplayerGarage", "  applyMultiplayerGarage(choice) { return applyReadyMultiplayerGarage(this, choice); }"],
@@ -796,8 +837,11 @@ const applicationMethodOverrides = new Map([
   ["ghostRecordMenu", "  ghostRecordMenu() { return createGhostRecordMenu(this, configuration => new vd0(configuration), bl0); }"],
   ["selectGhostTrack", "  async selectGhostTrack(selection, speed, booster, version) { return selectGhostTrack(this, selection, speed, booster, version); }"],
   ["currentGhostRecordKey", "  currentGhostRecordKey() { return currentGhostRecordKey(this, Pt.recordKey); }"],
-  ["loadVersionedResources", "  async loadVersionedResources() { return loadStartupResources(this, { localResourcesSupported: io0, recoverLocalSource: ro0, defaultSourceName: so0, versionId: Bt, loadVersionedSources: uo0, loadLibrary: (sources, indexes) => Sw.load(sources, void 0, indexes), loadProfile: Ta0, defaultProfile: gr, resolveSelection: Rf0, isSpecialKartId: n3, displayKartName: Mw, localNickname: im }); }"],
-  ["applyNewRiderRegistration", "  async applyNewRiderRegistration() { return registerNewRider(this, { loadEnvironment: library => rn.load(library), loadDialog: (library, root, options, context) => Fy.load(library, root, options, context), saveProfile: cT, saveNickname: EF }); }"],
+  // Account economy (server-go/ECONOMY.md 7): login gate before the profile,
+  // inventory fallback before the startup selection, and account onboarding
+  // instead of the local-nickname first-rider trigger.
+  ["loadVersionedResources", "  async loadVersionedResources() { return loadStartupResources(this, { localResourcesSupported: io0, recoverLocalSource: ro0, defaultSourceName: so0, versionId: Bt, loadVersionedSources: uo0, loadLibrary: (sources, indexes) => Sw.load(sources, void 0, indexes), loadProfile: Ta0, defaultProfile: gr, resolveSelection: Rf0, isSpecialKartId: n3, displayKartName: Mw, localNickname: im, ensureAccount: () => ensureStartupAccount(this), sanitizeProfile: (profile, catalog) => sanitizeStartupProfile(profile, catalog, cT), needsRiderRegistration: () => accountNeedsRiderRegistration(), retryProfile: error => retryStartupProfile(this, error) }); }"],
+  ["applyNewRiderRegistration", "  async applyNewRiderRegistration() { const dependencies = { loadEnvironment: library => rn.load(library), loadDialog: (library, root, options, context) => Fy.load(library, root, options, context), saveProfile: cT, saveNickname: EF }; return activeBrowserSession() ? registerAccountRider(this, dependencies) : registerNewRider(this, dependencies); }"],
   ["prepareStartupReady", "  async prepareStartupReady(library, selection, vehicleTitle) { return prepareStartupReady(this, library, selection, vehicleTitle, { createAudioContext: () => new AudioContext(), applyAudioOptions: Qc, loadBgm: (source, metadata, random, context) => P7.load(source, metadata, random, context), loadInterfaceAudio: (source, context) => Ny.load(source, context) }); }"],
   ["startRace", "  startRace(selection) { return startSinglePlayerRace(this, selection, Af0); }"],
   ["returnToReady", "  async returnToReady() { return returnToReady(this, eT); }"],
@@ -1350,6 +1394,7 @@ const replacedFormatObstacles = new Set();
 const replacedFormatTrackAdmission = new Set();
 const replacedFormatKartIdentity = new Set();
 const replacedFormatFontLayout = new Set();
+const replacedFormatTimeAttackRewards = new Set();
 const retiredFormatFont = new Set();
 let retiredKartIdentityEmptySet = false;
 let retiredTrackNameCompare = false;
@@ -1786,6 +1831,14 @@ const iv = createDriftEffectClass(driftEffectDependencies);`,
     bodies.get("formats").push({ at: node.start,
       text: formatKartIdentityOverrides.get(declarationName) });
     replacedFormatKartIdentity.add(declarationName);
+    continue;
+  }
+  if (formatTimeAttackRewardOverrides.has(declarationName)) {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "formats",
+      `Time attack result declaration ${declarationName} changed.`);
+    bodies.get("formats").push({ at: node.start,
+      text: formatTimeAttackRewardOverrides.get(declarationName) });
+    replacedFormatTimeAttackRewards.add(declarationName);
     continue;
   }
   if (formatFontLayoutOverrides.has(declarationName)) {
@@ -3838,6 +3891,8 @@ assert(replacedFormatRoadDescriptors.size === formatRoadDescriptorOverrides.size
   replacedFormatObstacles.size === formatObstacleOverrides.size &&
   groupNames(retiredFormatDeclarations) === groupNames(retiredFormatSource),
 "The road descriptor, road extraction, and moving obstacle declarations were not all replaced.");
+assert(replacedFormatTimeAttackRewards.size === formatTimeAttackRewardOverrides.size,
+  "The time attack result reward bindings were not all replaced.");
 assert(replacedFormatTrackAdmission.size === formatTrackAdmissionOverrides.size &&
   replacedFormatKartIdentity.size === formatKartIdentityOverrides.size &&
   replacedFormatFontLayout.size === formatFontLayoutOverrides.size &&
@@ -4256,6 +4311,7 @@ function renderModule(name) {
     lines.push('import { extractTrackRoute, itemGameOnly, readTrackSettings, soloTrackMode, trackRuntimeIssues } from "../resources/track-model-admission.ts";');
     lines.push('import { blockedKartMessage, defaultLegacyKartState, isBlockedKartId, kartCatalogIdentity, legacyKartFamilies, legacyKartStateForAlias, requirePlayableKartId, resolveKartSelection, stableSystemKartKey } from "../resources/system-kart-identity.ts";');
     lines.push('import { layoutSpriteFont, layoutSpriteFontInto, spriteFontLayoutForPanel } from "../resources/font-glyph-layout.ts";');
+    lines.push('import { timeAttackRewardText } from "../timeattack/result-rewards.ts";');
     lines.push('import { warmRendererResources } from "../resources/renderer-warmup.ts";');
     lines.push('import { extractTrackRoads } from "../resources/track-road-extraction.ts";');
     lines.push('import { anyRoadIssue, isMovableRoad, movingRoadIssue, roadRail, roadSound, roadSurface, staticRoadIssue } from "../resources/track-road-descriptor.ts";');
@@ -4536,9 +4592,16 @@ function renderModule(name) {
     lines.push('import { LobbyAvatarPreviews } from "../multiplayer/lobby-avatar-previews.ts";');
     lines.push('import { createLobbyAvatarCamera } from "../multiplayer/lobby-avatar-camera.ts";');
     lines.push('import { multiplayerBackendOrigin, multiplayerEndpoint } from "../multiplayer/backend-origin.ts";');
-    lines.push('import { requestMultiplayerAccount, enterMultiplayerAccount } from "../multiplayer/account-service.ts";');
+    lines.push('import { requestMultiplayerAccount, enterMultiplayerAccount, multiplayerAccountFromSession } from "../multiplayer/account-service.ts";');
+    lines.push('import { currentAccountSession } from "../account/account-session.ts";');
+    lines.push('import { accountTokenStore } from "../account/account-token-store.ts";');
+    lines.push('import { multiplayerSessionToken } from "../account/account-runtime.ts";');
+    lines.push('import { accountOwnedEquipment } from "../account/garage-ownership.ts";');
+    lines.push('import { repairEquipmentForMultiplayer } from "../app/account-startup.ts";');
     lines.push('import { AccountLoginDialog } from "../multiplayer/account-login-dialog.ts";');
     lines.push('import { chooseGuestNickname } from "../multiplayer/guest-nickname.ts";');
+    lines.push('import { chooseGameServer, requestGameServerEntry } from "../multiplayer/game-servers.ts";');
+    lines.push('import { showGameServerPicker } from "../multiplayer/game-server-dialog.ts";');
     lines.push('import { roomChannelNames, roomChannelKey, roomStyleDropdown } from "../multiplayer/lobby-room-options.ts";');
     lines.push('import { chooseSignedInAccount } from "../multiplayer/account-choice-dialog.ts";');
     lines.push('import { addLobbyEmotionWheel, buildLobbyRoomTemplate, loadLobbyRoomTemplate } from "../multiplayer/lobby-room-template.ts";');
@@ -4596,6 +4659,8 @@ function renderModule(name) {
     lines.push('import { createPresenterHost, createReadyHost, getOrCreatePresenter, getOrCreateReadyCoordinator } from "../app/host-bridges.ts";');
     lines.push('import { createGhostRecordMenu, currentGhostRecordKey, mountGhostRecordMenu, selectGhostTrack } from "../app/ghost-menu.ts";');
     lines.push('import { loadStartupResources, prepareStartupReady, registerNewRider } from "../app/startup-resources.ts";');
+    lines.push('import { accountNeedsRiderRegistration, ensureStartupAccount, registerAccountRider, retryStartupProfile, sanitizeStartupProfile, setAccountProfileWriter } from "../app/account-startup.ts";');
+    lines.push('import { activeBrowserSession } from "../account/account-runtime.ts";');
     lines.push('import { createDrivingPipelineHost, createRaceBuilderHost, getOrCreateDrivingPipeline, getOrCreateRaceBuilder } from "../app/runtime-hosts.ts";');
     lines.push('import { getOrCreateRecordService, updateKartBoosterState } from "../app/race-services.ts";');
     lines.push('import { devToolsTrackObjects, devToolsTrackObjectsSource, devToolsTrackOwner } from "../app/track-diagnostics.ts";');
@@ -4619,7 +4684,7 @@ function renderModule(name) {
     lines.push('import { createModelRecordDecoders, isModelElement } from "../resources/model-record-decoders.ts";');
     lines.push('import { KartBoosterEffectHost, KartBoosterSharedSources, boosterKindForState, waveKindForState } from "../vehicle/kart-booster-effects.ts";');
     lines.push('import { defaultCnSpeedType, findSpeedTypeEntry } from "../physics/speed-baseline.ts";');
-    lines.push('const multiplayerResultDependencies = { loadBml: F9, attribute: T, cloneNode: h2, loadTeams: fa, loadDye: Pj, loadView: options => te.load(options), smoothImages: Co, stageHeight: $2, formatTime: Eo, newPageClock: time => new Vj(time) };');
+    lines.push('const multiplayerResultDependencies = { loadBml: F9, attribute: T, cloneNode: h2, loadTeams: fa, loadDye: Pj, loadView: options => te.load(options), smoothImages: Co, stageHeight: $2, formatTime: Eo, newPageClock: time => new Vj(time), showRewards: true };');
     lines.push('const roadblockResultDependencies = { loadBml: F9, attribute: T, cloneNode: h2, rectangle: V0, numberTokens: j2, loadView: options => te.load(options), projectTexture: fQ };');
     lines.push('const derivedOverlayDependencies = { attribute: T, smoothImages: Co, smoothPixels: image => OR(UB(new Uint8ClampedArray(image.pixels), image.width, image.height)), setPlayCamera: Aa };');
     lines.push('import { isPlayableGameplay } from "../multiplayer/gameplay-admission.ts";');
@@ -4634,7 +4699,7 @@ function renderModule(name) {
     lines.push('import { drawLobbyListNode } from "../ui/lobby-list-draw.ts";');
     lines.push('import { personalBoostFrame, teamBoostFrame } from "../ui/race-hud-boost.ts";');
     lines.push('const raceHudDependencies = { createShadow: texture => new xJ(texture), createRenderer: () => new fn(new Map()), createCache: () => new O5(), createRankPresentation: () => new UQ(), createGaugePulse: Jp, loadClassicGauge: (library, kind) => jl.load(library, kind), validateTick: Pw, buildSpeedSlots: XJ, buildTimeCommands: jJ, buildRankCommands: JJ, buildTeamGaugeCommands: YJ, materializeDrawOrder: dt, requireDrawNode: Xl, scaleGauge: Os, alignMarker: nI, advanceGaugePulse: jR, nativeSine: Ro, get reorderDurationMs() { return px; } };');
-    lines.push('const lobbyListDrawDependencies = { attribute: T, rectangle: V0, modeForButton: Zc, get interactiveNames() { return aQ; }, imageState: st, drawTexture: ct, fitRoomTitle: CX, measure: ve, drawText: m9, randomTrack: X6, get fontFamily() { return Yp; } };');
+    lines.push('const lobbyListDrawDependencies = { attribute: T, rectangle: V0, modeForButton: Zc, get interactiveNames() { return aQ; }, imageState: st, drawTexture: ct, fitRoomTitle: CX, measure: ve, drawText: m9, randomTrack: X6, get fontFamily() { return Yp; }, showRoomStatus: true };');
     lines.push('const lobbyListRenderDependencies = { viewport: Sr, modeForButton: Zc, roomLabel: rR };');
     lines.push('const multiplayerWindowAssetDependencies = { loadBml: F9, findResource: U1, decodeTexture: p2, frame: Ft, attribute: T, buttonStyle: m4, parseBml: s2, loadFont: f5, get fontFamily() { return Sn; } };');
     lines.push('const multiplayerWindowDrawDependencies = { attribute: T, rectangle: V0, innerRectangle: E9, paintFrame: C9, color: E8, charLayout: ga, charGlyphs: pa, paintImageButton: ct, numbers: j2, drawText: m9, comboEntries: OM, captionRectangle: f3, nodeConfig: an, get fontFamily() { return Sn; } };');
@@ -4700,6 +4765,7 @@ const multiplayerRaceHudDependencies = {
   lines.push("");
   if (name === "app") {
     lines.push('const startupSelectionDependencies = { defaultProfile: gr, resolveSystemKart: b4, isSpecialKartId: n3, displayKartName: Mw, startTrack: jf };');
+    lines.push('setAccountProfileWriter(cT);');
     lines.push('const applicationConstructionDependencies = { outputColorSpace: qe, makeKartView: scene => new Vg(scene), makeHud: (root, actions) => new $o0(root, actions), collectEngineDiagnostics: jo0, makeAssets: hud => new Jo0(hud), makeInput: () => new jl0(), makeCanvasDiagnostics: (...args) => new qs0(...args), makeTouchControls: (...args) => new l60(...args), makeBlackBar: root => new yr0({ root }), makeResizeObserver: callback => new ResizeObserver(callback) };');
     lines.push("");
   }
@@ -4953,7 +5019,8 @@ function awardPodiumLoadDependencies() { return {
     lines.push("");
   }
   if (name === "multiplayer") {
-    lines.push("const multiplayerTokenStore = { get cache() { return S6; }, storage: () => sessionStorage };");
+    // The startup account login (localStorage, 30 days) is the multiplayer session.
+    lines.push("const multiplayerTokenStore = accountTokenStore;");
     lines.push("const accountProgressDependencies = { get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons) };");
     lines.push("const lobbyAvatarAppearanceDependencies = { loadRoleTeams: library => fa(library), paintColors: (library, itemId, slot) => We(library, itemId, slot), cosmetics: (equipment, member) => BI(equipment, member) };");
     lines.push("const multiplayerClientStateFactories = { createDecoder: () => new d6(), createLatencyTracker: () => new gl0(), createClock: () => new L40() };");
@@ -4998,6 +5065,8 @@ function awardPodiumLoadDependencies() { return {
     lines.push("const accountLoginDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error) };");
     lines.push("const accountEntryDependencies = { backendOrigin: () => jo(), pageUrl: () => window.location.href, pageOrigin: () => window.location.origin, endpoint: (path, pageUrl) => Ko(path, pageUrl), fetch: (url, options) => fetch(url, options), loadAccount: () => Xo('me'), chooseAccount: (root, account, signal) => Al0(root, account, signal), showLogin: (root, signal) => new CF(root, signal).wait() };");
     lines.push("const guestNicknameDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: action => ly(action), fetch: (url, options) => fetch(url, options), get errorMessages() { return uy; }, formatError: error => C6(error) };");
+    lines.push("const gameServerPickerDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons) };");
+    lines.push("const gameServerDependencies = { endpoint: path => Ko(path, window.location.href), backendOrigin: () => jo(), pageUrl: () => window.location.href, fetch: (url, options) => fetch(url, options), storage: () => localStorage, pick: (root, options, selected, signal) => showGameServerPicker(gameServerPickerDependencies, root, options, selected, signal) };");
     lines.push("const roomDropdownDependencies = { attribute: (node, name) => T(node, name), clone: (node, attributes, children) => children === undefined ? h2(node, attributes) : h2(node, attributes, children) };");
     lines.push("const accountChoiceDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: (path, pageUrl) => Ko(path, pageUrl), pageUrl: () => window.location.href, requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error), authEndpoint: action => ly(action), authorizationHeaders: () => nm(), fetch: (url, options) => fetch(url, options), backendOrigin: () => jo(), clearToken: origin => SF(origin), showLogin: (root, signal) => new CF(root, signal).wait() };");
     lines.push("const lobbyDialogViewDependencies = { loadMessageTemplate: library => _w(library), loadDefinition: (library, folder, name) => F9(library, folder, name), decorateDefinition: (library, definition, folder) => C8(library, definition, folder), clone: (node, attributes, children) => children === undefined ? h2(node, attributes) : h2(node, attributes, children), nodeName: node => T(node, 'name'), loadView: options => te.load(options) };");
@@ -5012,6 +5081,7 @@ function awardPodiumLoadDependencies() { return {
     sanitizeReadyOptions: Hl0, nickname: im, get version() { return Bt; },
     initialEquipment: zw, get favoriteTrackIds() { return nT; },
     createNotice: root => new ds(root), createLobby: options => new Wl0(options),
+    repairEquipment: () => repairEquipmentForMultiplayer(),
   },
   createNotice: root => new ds(root),
   loadToonEnvironment: library => rn.load(library),
@@ -5034,10 +5104,15 @@ function awardPodiumLoadDependencies() { return {
   open: {
     get protocolVersion() { return Uo; }, pageUrl: () => window.location.href,
     endpoint: Ko, fetchHealth: (url, signal) => fetch(url, { cache: "no-store", signal }),
-    showAccountProgress: vl0, loadAccount: yl0, chooseNickname: PT,
+    showAccountProgress: vl0, loadAccount: () => multiplayerAccountFromSession(currentAccountSession()),
     loadLobby: options => Ew.load(options),
     notice: (options, title, message) => b1.notice(options, title, message),
-    sessionToken: url => xF(ay(url)), rememberNickname: EF,
+    chooseGameServer: (root, signal, failed) =>
+      chooseGameServer(gameServerDependencies, root, signal, failed),
+    enterGameServer: (server, sessionToken, signal) =>
+      requestGameServerEntry(gameServerDependencies, server, sessionToken, signal),
+    sessionToken: url => multiplayerSessionToken(ay(url), xF),
+    repairEquipment: () => repairEquipmentForMultiplayer(),
     createClient: () => new LT(),
   },
   loadingView: (library, root) => gy.load(library, root), receive: (...args) => RI(...args),
@@ -5052,7 +5127,7 @@ function awardPodiumLoadDependencies() { return {
     }, undefined);
     return TimeAttackGarageView.load(options);
   },
-  normalizeEquipment: (profile, choice) => zw({ ...profile, equipment: choice.equipment }),
+  normalizeEquipment: (profile, choice) => accountOwnedEquipment(zw({ ...profile, equipment: choice.equipment })),
   track: {
     gameplay: G2, isGiantTrack: Zl, get randomRules() { return Yc; },
     loadView: options => _7.load(options),

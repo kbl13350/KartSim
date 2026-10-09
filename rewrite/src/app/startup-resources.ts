@@ -103,6 +103,21 @@ export interface ResourceLoadingDependencies {
   isSpecialKartId(itemId: number | undefined): boolean;
   displayKartName(itemId: number | undefined): string;
   localNickname(): string;
+  /**
+   * Account login gate (server-go/ECONOMY.md 7.1): runs after the resources
+   * load and before the profile is read; resolves only with a signed-in account.
+   */
+  ensureAccount?(): Promise<void>;
+  /** Replace equipment the account does not own before the startup selection. */
+  sanitizeProfile?(profile: RiderProfile, catalog: RiderCatalog): RiderProfile;
+  /** Whether the first-rider dialog runs; the release asks when no local nickname is saved. */
+  needsRiderRegistration?(): boolean;
+  /**
+   * The account profile could not be read: explain it and resolve when the
+   * player chooses 重试 (like the login gate). Without it the failure is the
+   * loading error.
+   */
+  retryProfile?(error: unknown): Promise<void>;
 }
 
 /** Ignore results from superseded generations at every asynchronous boundary. */
@@ -141,13 +156,35 @@ export async function loadStartupResources(
     ]);
     if (!host.assets.isCurrent(generation)) return;
 
-    const profile = dependencies.loadProfile();
+    if (dependencies.ensureAccount) {
+      await dependencies.ensureAccount();
+      if (!host.assets.isCurrent(generation)) return;
+    }
+    let profile = dependencies.loadProfile();
     if (profile instanceof Promise) {
-      host.userProfile = (await profile) ?? dependencies.defaultProfile();
+      let loaded: RiderProfile | undefined;
+      for (;;) {
+        try {
+          loaded = await profile;
+          break;
+        } catch (error) {
+          if (!dependencies.retryProfile || !host.assets.isCurrent(generation)) throw error;
+          await dependencies.retryProfile(error);
+          if (!host.assets.isCurrent(generation)) return;
+          profile = dependencies.loadProfile();
+          if (!(profile instanceof Promise)) {
+            loaded = profile;
+            break;
+          }
+        }
+      }
+      host.userProfile = loaded ?? dependencies.defaultProfile();
       if (!host.assets.isCurrent(generation)) return;
     } else {
       host.userProfile = profile ?? dependencies.defaultProfile();
     }
+    if (dependencies.sanitizeProfile)
+      host.userProfile = dependencies.sanitizeProfile(host.userProfile, garageCatalog);
     const startup = dependencies.resolveSelection(garageCatalog, maps, host.userProfile);
     host.assets.install(library, mounted);
     await host.prepareStartupReady(library, startup.selection, startup.vehicleTitle);
@@ -172,7 +209,9 @@ export async function loadStartupResources(
       );
     }
     host.hud.finishLoading();
-    if (dependencies.localNickname() === "") await host.applyNewRiderRegistration();
+    const registerRider = dependencies.needsRiderRegistration
+      ? dependencies.needsRiderRegistration() : dependencies.localNickname() === "";
+    if (registerRider) await host.applyNewRiderRegistration();
   } catch (error) {
     if (host.assets.isCurrent(generation)) {
       host.hud.showLoadingError(error instanceof Error ? error.message : String(error));
@@ -181,7 +220,7 @@ export async function loadStartupResources(
 }
 
 export interface RiderDialog {
-  open(): Promise<{
+  open(options?: { name?: string; maxLength?: number }): Promise<{
     name: string;
     characterItemId: number;
     paintItemId: number;

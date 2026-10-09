@@ -1,4 +1,5 @@
 /** Garage selector presentation and input shell. Equipment decisions live in garage-selection. */
+import { drawOwnershipBadge } from "./ownership-badge";
 
 export const GARAGE_WIDTH = 1600;
 export const GARAGE_HEIGHT = 900;
@@ -426,6 +427,8 @@ export function createGarageSelectionViewClass(ops: GarageSelectionViewOps) {
       if (equipped)
         ops.drawFrame(this.context, this.assets.selectedFrame, this.assets.frame01.image, rect);
       this.drawFavoriteCheck(item, rect);
+      // Rentals from the account inventory show their remaining time.
+      drawOwnershipBadge(this.context, item, rect, GARAGE_FONT);
     }
     drawFavoriteCheck(item: any, rect: GarageHit["rect"]): void {
       const key = this.favoriteKey(item);

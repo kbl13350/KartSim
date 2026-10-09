@@ -1,3 +1,5 @@
+import { closeReadyHome, type ReadyHomeController } from "./ready-home";
+import { closeReadyShop } from "./ready-shop";
 interface Disposable { dispose(): void }
 
 export interface FavoriteTrack { themeId: string; trackId: string }
@@ -56,6 +58,8 @@ export interface ReadyControllerStateHost {
 /** Release owned Ready and multiplayer UI objects. */
 export function disposeReadyController(host: ReadyControllerStateHost): void {
   host.disposed = true;
+  closeReadyHome(host as unknown as ReadyHomeController);
+  closeReadyShop(host as unknown as { activeShop?: { close(): void } });
   host.activeItemInventory?.dispose();
   host.activeItemInventory = undefined;
   host.activeHouse?.dispose();
@@ -89,6 +93,9 @@ export function refreshReadyRecord(host: ReadyControllerStateHost): void {
   host.activeTimeAttackReady?.refreshRecord();
 }
 export function releaseReadyForRace(host: ReadyControllerStateHost): void {
+  closeReadyHome(host as unknown as ReadyHomeController);
+  // A race never runs under the shop (nor under one still loading).
+  closeReadyShop(host as unknown as { activeShop?: { close(): void } });
   host.activeItemInventory?.dispose();
   host.activeItemInventory = undefined;
   host.activeHouse?.dispose();
@@ -124,7 +131,8 @@ export function closeReadyMultiplayer(host: ReadyControllerStateHost,
   lobby.dispose();
   if (host.host.shell.current === "MultiplayerLobby") host.host.shell.leaveMultiplayerLobby();
   if (restoreReady) {
-    host.activeTimeAttackReady?.unfreeze();
+    // Leaving for 首页: Ready stays frozen under home.
+    if (!(host as { activeHome?: unknown }).activeHome) host.activeTimeAttackReady?.unfreeze();
     host.activeTimeAttackReady?.show();
     host.host.getBgm()?.playReady();
   }

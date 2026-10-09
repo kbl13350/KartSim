@@ -175,3 +175,19 @@ test("joining sends the gear chosen since connecting so the race roster matches"
   assert.deepEqual(events.find(event => Array.isArray(event) && event[0] === "mutate"),
     ["mutate", { type: "join", roomId: "open", password: "", equipment }]);
 });
+
+test("快速开始只看列表当前显示的房间，没有可加入的就打开创建房间", async () => {
+  const { host, events } = fixture();
+  const joined: string[] = [];
+  let created = 0;
+  host.join = async target => { joined.push(target.roomId); };
+  Object.assign(host, { create: async () => { created++; } });
+  host.rooms = [summary("team"), summary("indi"), summary("locked", { locked: true })];
+  Object.assign(host.lobby!, { visibleRoomIndexes: () => [1, 2] });
+  await quickJoinLobbyRoom(host);
+  assert.deepEqual(joined, ["indi"]);
+  Object.assign(host.lobby!, { visibleRoomIndexes: () => [2] });
+  await quickJoinLobbyRoom(host);
+  assert.deepEqual([joined, created], [["indi"], 1]);
+  assert.ok(!events.some(event => Array.isArray(event) && event[0] === "status"));
+});

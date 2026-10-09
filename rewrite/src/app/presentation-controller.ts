@@ -25,6 +25,8 @@ export class PresentationController {
   lastUpdateMs = 0;
   maxRafDelayMs = 0;
   previousRenderTime: number;
+  unpresentedSeconds = 0;
+  redrawOnly = false;
   presentationClockMs = 0;
   fps = 60;
   frameTimeSeconds = 0;

@@ -1,4 +1,6 @@
 import type { TimeAttackAction } from "./lifecycle";
+import { storyRaceOf } from "../story/story-race";
+import { settleBrowserTimeAttackRun } from "./timeattack-settle";
 
 interface Action2D {
   scheduleStart(atMs: number): void;
@@ -6,6 +8,8 @@ interface Action2D {
   showFinalLap(nowMs: number): void;
   showFinish(nowMs: number): void;
   showNewRecord(nowMs: number): void;
+  /** Story races: the release mission success / fail animation. */
+  showMissionResult?(success: boolean, nowMs: number): void;
 }
 
 interface CountdownAudio {
@@ -17,6 +21,8 @@ interface CountdownAudio {
 
 interface TimeAttackResultView {
   show(result: { elapsedMs: number; bestMs: number; [key: string]: unknown }): void;
+  /** Later values for the shown result: the settled account reward. */
+  patch?(values: Record<string, unknown>): void;
 }
 
 /** Minimal interface between the handwritten action logic and release presenter. */
@@ -35,6 +41,7 @@ export interface TimeAttackActionStage {
       cameraMode?: string;
       readyCamera?: { start(): void };
       pendingCharacterFinishMotion: number;
+      selection?: unknown;
       lifecycle: {
         effectiveTime(rawNowMs: number): number;
         resultBeatTarget(): boolean;
@@ -139,14 +146,19 @@ export function handleTimeAttackFinishAction(
 ): boolean {
   const { host } = stage;
   switch (action.kind) {
-    case "finish":
+    case "finish": {
       host.session.pendingCharacterFinishMotion =
         host.session.lifecycle.resultBeatTarget() ? 12 : 13;
       host.getPhysics().setRaceMotionLocked(true);
       host.hud.finishPerformanceRace();
-      stage.action2D.showFinish(host.session.lifecycle.effectiveTime(rawNowMs));
+      const nowMs = host.session.lifecycle.effectiveTime(rawNowMs);
+      stage.action2D.showFinish(nowMs);
+      // A story race shows whether the mission is met at the finish line.
+      const cleared = storyRaceOf(host.session.selection)?.judge?.(action.elapsedMs);
+      if (cleared !== undefined) stage.action2D.showMissionResult?.(cleared, nowMs);
       host.session.lifecycle.acceptLocalCompletion();
       return true;
+    }
     case "switch-surround-camera":
       host.session.cameraMode = "surround";
       host.surroundCameraman.reset();
@@ -181,10 +193,18 @@ export function showTimeAttackResult(
   if (!result) throw new Error("TimeAttack result renderer 尚未建立。");
   const counts = host.getPhysics().timeAttackResultCounts();
   result.show({ elapsedMs: action.elapsedMs, bestMs: action.bestMs, ...counts });
-  if (action.bestMs === action.elapsedMs) {
+  // The signed-in account's reward fills the RP/Lucci slots once the data service credits it.
+  if (!storyRaceOf(host.session.selection)) {
+    const trackId = (host.session.selection as { trackId?: unknown } | undefined)?.trackId;
+    void settleBrowserTimeAttackRun(typeof trackId === "string" ? trackId : undefined,
+      action.elapsedMs, result, message => host.hud.showDebugText(message, "error"));
+  }
+  // A story race is not a time attack record.
+  if (action.bestMs === action.elapsedMs && !storyRaceOf(host.session.selection)) {
     stage.action2D.showNewRecord(host.session.lifecycle.effectiveTime(rawNowMs));
   }
-  if (action.isNewRecord) {
+  // Story races do not touch the time attack records.
+  if (action.isNewRecord && !storyRaceOf(host.session.selection)) {
     host.promoteTimeAttackRecord(action.elapsedMs, counts).catch(error => {
       host.hud.showDebugText(
         `TimeAttack record 保存失败：${error instanceof Error ? error.message : String(error)}`,

@@ -9,6 +9,8 @@ import { disposeApplicationRuntime } from "../app/application-disposal.ts";
 import { createPresenterHost, createReadyHost, getOrCreatePresenter, getOrCreateReadyCoordinator } from "../app/host-bridges.ts";
 import { createGhostRecordMenu, currentGhostRecordKey, mountGhostRecordMenu, selectGhostTrack } from "../app/ghost-menu.ts";
 import { loadStartupResources, prepareStartupReady, registerNewRider } from "../app/startup-resources.ts";
+import { accountNeedsRiderRegistration, ensureStartupAccount, registerAccountRider, retryStartupProfile, sanitizeStartupProfile, setAccountProfileWriter } from "../app/account-startup.ts";
+import { activeBrowserSession } from "../account/account-runtime.ts";
 import { createDrivingPipelineHost, createRaceBuilderHost, getOrCreateDrivingPipeline, getOrCreateRaceBuilder } from "../app/runtime-hosts.ts";
 import { getOrCreateRecordService, updateKartBoosterState } from "../app/race-services.ts";
 import { devToolsTrackObjects, devToolsTrackObjectsSource, devToolsTrackOwner } from "../app/track-diagnostics.ts";
@@ -29,6 +31,7 @@ import { EF, Ne, Ql0, Xl0, Zl0, bl0, im, jl0, ql0 } from "./multiplayer.js";
 import { Af0, Bd0, Fy, Gf0, Kh0, Mf0, Nh0, Ny, P7, Pt, _f0, bf0, if0, jf, l60, n60, vd0, vf0 } from "./timeattack.js";
 
 const startupSelectionDependencies = { defaultProfile: gr, resolveSystemKart: b4, isSpecialKartId: n3, displayKartName: Mw, startTrack: jf };
+setAccountProfileWriter(cT);
 const applicationConstructionDependencies = { outputColorSpace: qe, makeKartView: scene => new Vg(scene), makeHud: (root, actions) => new $o0(root, actions), collectEngineDiagnostics: jo0, makeAssets: hud => new Jo0(hud), makeInput: () => new jl0(), makeCanvasDiagnostics: (...args) => new qs0(...args), makeTouchControls: (...args) => new l60(...args), makeBlackBar: root => new yr0({ root }), makeResizeObserver: callback => new ResizeObserver(callback) };
 
 class Bf0 {
@@ -168,8 +171,8 @@ class Bf0 {
     advanceResetCompletion(nowMs) { return shellRouting.advanceResetCompletion(this, nowMs); }
     updateHud() { return shellRouting.updateHud(this); }
     updateActiveRaceCamera(nowMs) { return shellRouting.updateActiveRaceCamera(this, nowMs); }
-    async loadVersionedResources() { return loadStartupResources(this, { localResourcesSupported: io0, recoverLocalSource: ro0, defaultSourceName: so0, versionId: Bt, loadVersionedSources: uo0, loadLibrary: (sources, indexes) => Sw.load(sources, void 0, indexes), loadProfile: Ta0, defaultProfile: gr, resolveSelection: Rf0, isSpecialKartId: n3, displayKartName: Mw, localNickname: im }); }
-    async applyNewRiderRegistration() { return registerNewRider(this, { loadEnvironment: library => rn.load(library), loadDialog: (library, root, options, context) => Fy.load(library, root, options, context), saveProfile: cT, saveNickname: EF }); }
+    async loadVersionedResources() { return loadStartupResources(this, { localResourcesSupported: io0, recoverLocalSource: ro0, defaultSourceName: so0, versionId: Bt, loadVersionedSources: uo0, loadLibrary: (sources, indexes) => Sw.load(sources, void 0, indexes), loadProfile: Ta0, defaultProfile: gr, resolveSelection: Rf0, isSpecialKartId: n3, displayKartName: Mw, localNickname: im, ensureAccount: () => ensureStartupAccount(this), sanitizeProfile: (profile, catalog) => sanitizeStartupProfile(profile, catalog, cT), needsRiderRegistration: () => accountNeedsRiderRegistration(), retryProfile: error => retryStartupProfile(this, error) }); }
+    async applyNewRiderRegistration() { const dependencies = { loadEnvironment: library => rn.load(library), loadDialog: (library, root, options, context) => Fy.load(library, root, options, context), saveProfile: cT, saveNickname: EF }; return activeBrowserSession() ? registerAccountRider(this, dependencies) : registerNewRider(this, dependencies); }
     async prepareStartupReady(library, selection, vehicleTitle) { return prepareStartupReady(this, library, selection, vehicleTitle, { createAudioContext: () => new AudioContext(), applyAudioOptions: Qc, loadBgm: (source, metadata, random, context) => P7.load(source, metadata, random, context), loadInterfaceAudio: (source, context) => Ny.load(source, context) }); }
     startRace(selection) { return startSinglePlayerRace(this, selection, Af0); }
     replaceTrack(track) { return shellRouting.replaceTrack(this, track); }

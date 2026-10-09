@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>KartSim 管理后台</title>
+<style>
+  :root {
+    --bg: #f4f5f7; --panel: #ffffff; --text: #1f2328; --muted: #656d76; --line: #d0d7de;
+    --accent: #0969da; --accent-text: #ffffff; --danger: #cf222e; --ok: #1a7f37; --row: #f6f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --panel: #161b22; --text: #e6edf3; --muted: #8d96a0; --line: #30363d;
+      --accent: #2f81f7; --accent-text: #ffffff; --danger: #f85149; --ok: #3fb950; --row: #1c2128;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.5 -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
+  header h1 { font-size: 18px; margin: 0; }
+  main { max-width: 1100px; margin: 0 auto; padding: 16px; display: grid; gap: 16px; }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  section h2 { font-size: 16px; margin: 0 0 12px; }
+  form { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
+  label { display: grid; gap: 4px; font-size: 12px; color: var(--muted); }
+  input, select { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--line);
+    border-radius: 6px; padding: 6px 8px; min-width: 0; }
+  input[type=number] { width: 140px; }
+  button { font: inherit; border: 1px solid var(--line); background: var(--row); color: var(--text);
+    border-radius: 6px; padding: 6px 14px; cursor: pointer; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+  button:disabled { opacity: .6; cursor: default; }
+  .muted { color: var(--muted); }
+  .status { min-height: 1.5em; margin-top: 8px; }
+  .status.error { color: var(--danger); }
+  .status.ok { color: var(--ok); }
+  .table-wrap { overflow-x: auto; margin-top: 12px; }
+  table { border-collapse: collapse; width: 100%; white-space: nowrap; }
+  th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); }
+  th { font-size: 12px; color: var(--muted); font-weight: 600; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.selectable { cursor: pointer; }
+  tr.selectable:hover { background: var(--row); }
+  code.invite { font-size: 16px; padding: 4px 8px; background: var(--row); border-radius: 6px; user-select: all; }
+  [hidden] { display: none !important; }
+  @media (max-width: 640px) { form { flex-direction: column; align-items: stretch; } input[type=number] { width: auto; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>KartSim 管理后台</h1>
+  <div id="who" hidden><span id="who-name"></span> <button id="logout" type="button">退出登录</button></div>
+</header>
+<main>
+  <section id="login-panel">
+    <h2>管理员登录</h2>
+    <form id="login-form" autocomplete="on">
+      <label>用户名<input name="username" autocomplete="username" required maxlength="24"></label>
+      <label>密码<input name="password" type="password" autocomplete="current-password" required maxlength="128"></label>
+      <button class="primary" type="submit">登录</button>
+    </form>
+    <div id="login-status" class="status" role="status"></div>
+    <p class="muted">登录令牌只保存在本页面内存中，关闭或刷新页面后需要重新登录。</p>
+  </section>
+
+  <div id="console" hidden>
+    <section>
+      <h2>查询账号</h2>
+      <form id="search-form">
+        <label>用户名或昵称（留空显示最新注册的账号）<input name="q" maxlength="64"></label>
+        <button class="primary" type="submit">查询</button>
+      </form>
+      <div id="search-status" class="status" role="status"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>用户名</th><th>昵称</th><th>等级</th><th>经验</th><th>点券</th><th>金币</th><th>K币</th>
+            <th>库存物品</th><th>新手礼包</th><th>管理员</th><th>注册时间</th>
+          </tr></thead>
+          <tbody id="accounts"></tbody>
+        </table>
+      </div>
+      <p class="muted">点击一行可将用户名填入下方发放表单。</p>
+    </section>
+
+    <section>
+      <h2>发放 / 扣除</h2>
+      <form id="grant-form">
+        <label>用户名<input name="username" required maxlength="24"></label>
+        <label>类型
+          <select name="currency">
+            <option value="coupon">点券</option>
+            <option value="lucci">金币</option>
+            <option value="koin">K币</option>
+            <option value="exp">经验</option>
+          </select>
+        </label>
+        <label>数量（负数为扣除）<input name="amount" type="number" step="1" required></label>
+        <label>备注（必填，写入流水）<input name="note" required maxlength="200"></label>
+        <button class="primary" type="submit">提交</button>
+      </form>
+      <div id="grant-status" class="status" role="status"></div>
+    </section>
+
+    <section>
+      <h2>邀请码</h2>
+      <p class="muted">邀请码仅在邀请注册模式（KART_REGISTRATION=invite）下需要；开放注册时也可填写，填写后即被消耗。</p>
+      <button id="invite" class="primary" type="button">生成邀请码</button>
+      <div class="status"><code id="invite-code" class="invite" hidden></code></div>
+      <div id="invite-status" class="status" role="status"></div>
+    </section>
+  </div>
+</main>
+<script src="/multiplayer/admin/admin.js"></script>
+</body>
+</html>

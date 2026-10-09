@@ -142,22 +142,6 @@ export function drawLobbyListNode(
         bounds.width, bounds.height);
     }
     host.context.restore();
-    if (mode?.gameplay === "lte") {
-      host.context.save();
-      host.context.fillStyle = "rgba(8, 23, 46, 0.96)";
-      host.context.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
-      host.context.fillStyle = "#fff4b3";
-      host.context.font = `bold 28px ${dependencies.fontFamily}`;
-      host.context.textAlign = "center";
-      host.context.textBaseline = "middle";
-      host.context.fillText("LTE Web试玩", bounds.x + bounds.width / 2,
-        bounds.y + bounds.height / 2 - 10);
-      host.context.fillStyle = "#ffffff";
-      host.context.font = `18px ${dependencies.fontFamily}`;
-      host.context.fillText("三图随机 · Z/X 躲闪",
-        bounds.x + bounds.width / 2, bounds.y + bounds.height / 2 + 27);
-      host.context.restore();
-    }
     if (mode && "gameplay" in mode && host.mode &&
         mode.gameplay === host.gameplay) {
       host.context.save();

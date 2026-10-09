@@ -1,4 +1,5 @@
 import { formatMultiplayerError } from "./errors";
+import type { GameServer, GameServerEntry } from "./game-servers";
 import type { Gameplay, RoomSummary } from "./lobby-actions";
 
 export interface LobbyOpenView {
@@ -8,7 +9,7 @@ export interface LobbyOpenView {
 
 export interface LobbyOpenClient {
   connect(url: string, nickname: string, version: string, equipment: unknown,
-    initial: string, raceRuntime: boolean, token: string | undefined):
+    initial: string, raceRuntime: boolean, ticket: string | undefined):
     Promise<{ type: string; playerId?: string }>;
   dispose(): void;
 }
@@ -19,6 +20,8 @@ export interface LobbyOpenHost {
     nickname?: string;
     version: string;
     initialEquipment: unknown;
+    /** Equipment after the live profile changed (Ready passes the saved profile). */
+    currentEquipment?(): unknown;
     initial: string;
     raceLoader?: unknown;
     prepareAudio?(): Promise<void> | void;
@@ -63,17 +66,64 @@ export interface LobbyOpenDependencies {
     close(): void;
     fail(message: string): Promise<void> | void;
   };
+  /** The signed-in account (ECONOMY.md 0: no guests); undefined means not signed in. */
   loadAccount(root: unknown, signal: AbortSignal): Promise<{ nickname: string } | undefined>;
-  chooseNickname(root: unknown, suggestion: string, signal: AbortSignal,
-    retry?: boolean): Promise<string>;
   loadLobby(options: Record<string, unknown>): Promise<LobbyOpenView>;
   notice(options: unknown, title: string, message: string): unknown;
+  /**
+   * List the game servers and let the player pick one (see game-servers.ts).
+   * `failed` holds node IDs this lobby could not enter; they are not offered.
+   */
+  chooseGameServer(root: unknown, signal: AbortSignal,
+    failed?: ReadonlySet<string>): Promise<GameServer>;
+  /** Request a fresh one-time ticket from the data service for one attempt. */
+  enterGameServer(server: GameServer, sessionToken: string | undefined,
+    signal: AbortSignal): Promise<GameServerEntry>;
   sessionToken(pageUrl: string): string | undefined;
-  rememberNickname(nickname: string): void;
   createClient(): LobbyOpenClient;
+  /**
+   * hello refused equipment the account does not own (403 ITEM_NOT_OWNED):
+   * refresh the inventory and replace unowned items in the live profile.
+   */
+  repairEquipment?(): Promise<void>;
 }
 
-/** Authenticate, mount the lobby and establish the room control connection. */
+/**
+ * Ticket, upgrade and hello failures that concern the chosen game node only.
+ * The lobby is already mounted when they arrive, so the player is offered the
+ * other servers instead of being left in a disconnected lobby.
+ */
+const REPICK_CODES = [
+  "GAME_SERVER_FULL", "GAME_SERVER_NOT_FOUND", "SERVER_FULL", "SERVER_BUSY",
+  "SERVER_SHUTTING_DOWN", "TICKET_WRONG_NODE", "DATA_NODE_MISMATCH",
+  "PROTOCOL_MISMATCH", "WebSocket connection failed", "WebSocket connection timeout",
+];
+const MAX_REPICKS = 3;
+
+/** Pick a game server behind the service progress view, reporting failures in it. */
+async function selectGameServer(host: LobbyOpenHost, deps: LobbyOpenDependencies,
+  failed?: ReadonlySet<string>): Promise<GameServer> {
+  const signal = host.accountAbort.signal;
+  const progress = deps.showAccountProgress(host.options.root, signal);
+  try {
+    const server = await deps.chooseGameServer(host.options.root, signal, failed);
+    progress.close();
+    return server;
+  } catch (error) {
+    if (signal.aborted ||
+        (error instanceof Error && error.message === "ACCOUNT_CANCELLED")) {
+      progress.close();
+    } else {
+      await progress.fail(`无法进入游戏服务器：${formatMultiplayerError(error)}`);
+    }
+    throw error;
+  }
+}
+
+/**
+ * Authenticate with the data service, choose a game server, mount the lobby
+ * and connect to that server with a fresh one-time ticket per attempt.
+ */
 export async function openMultiplayerLobby(host: LobbyOpenHost,
   deps: LobbyOpenDependencies): Promise<void> {
   const progress = deps.showAccountProgress(host.options.root, host.accountAbort.signal);
@@ -98,10 +148,15 @@ export async function openMultiplayerLobby(host: LobbyOpenHost,
     throw error;
   }
 
+  if (!account) {
+    // Every player signs in at startup; there is no guest nickname path.
+    await progress.fail(`无法打开多人游戏：${formatMultiplayerError(new Error("LOGIN_REQUIRED"))}`);
+    throw new Error("LOGIN_REQUIRED");
+  }
   progress.close();
   if (host.disposed) return;
-  host.accountNickname = account?.nickname ?? await deps.chooseNickname(
-    host.options.root, host.options.nickname ?? "", host.accountAbort.signal);
+  host.accountNickname = account.nickname;
+  let server = await selectGameServer(host, deps);
   if (host.disposed) return;
   await host.options.prepareAudio?.();
   if (host.disposed) return;
@@ -129,32 +184,62 @@ export async function openMultiplayerLobby(host: LobbyOpenHost,
   host.bindClient();
   host.options.status("多人大厅已打开，正在连接房间服务…");
 
+  const replaceClient = () => {
+    host.client.dispose();
+    host.client = deps.createClient();
+    host.bindClient();
+  };
+  const failed = new Set<string>();
+  let repicks = 0;
+  let equipment = host.options.initialEquipment;
+  let repaired = false;
   try {
     let response: { type: string; playerId?: string };
     for (;;) {
       try {
-        const pageUrl = deps.pageUrl();
+        // Tickets are single-use, so every attempt asks for a new one. Only the
+        // data service sees the session token; the game server gets the ticket.
+        const entry = await deps.enterGameServer(server,
+          deps.sessionToken(deps.pageUrl()), host.accountAbort.signal);
+        if (host.disposed) return;
         response = await host.client.connect(
-          deps.endpoint("offer", pageUrl), host.accountNickname,
-          host.options.version, host.options.initialEquipment,
-          host.options.initial, !!host.options.raceLoader,
-          deps.sessionToken(pageUrl));
+          entry.offerUrl, host.accountNickname,
+          host.options.version, equipment,
+          host.options.initial, !!host.options.raceLoader, entry.ticket);
         break;
       } catch (error) {
-        if (account || host.disposed || !(error instanceof Error) ||
-            !["GUEST_NAME_TAKEN", "INVALID_GUEST_NAME"].includes(error.message)) {
-          throw error;
+        if (host.disposed || !(error instanceof Error)) throw error;
+        if (error.message === "ITEM_NOT_OWNED" && deps.repairEquipment && !repaired) {
+          // A rental ran out since the profile was read: fall back and retry once.
+          repaired = true;
+          replaceClient();
+          await deps.repairEquipment();
+          if (host.disposed) return;
+          equipment = host.options.currentEquipment?.() ?? equipment;
+          continue;
         }
-        host.client.dispose();
-        host.client = deps.createClient();
-        host.bindClient();
-        host.accountNickname = await deps.chooseNickname(host.options.root,
-          host.accountNickname ?? "", host.accountAbort.signal, true);
+        if (!REPICK_CODES.includes(error.message) || repicks >= MAX_REPICKS) throw error;
+        // The chosen node refused this player; offer the others and try again.
+        repicks++;
+        failed.add(server.nodeId);
+        replaceClient();
+        host.options.status(`多人游戏：${formatMultiplayerError(error)}`, true);
+        try {
+          server = await selectGameServer(host, deps, failed);
+        } catch (repick) {
+          if (host.disposed) return;
+          if (repick instanceof Error && repick.message === "ACCOUNT_CANCELLED") {
+            host.options.status("多人游戏：未进入游戏服务器。请返回单人游戏，再重新进入多人游戏。", true);
+            return;
+          }
+          throw repick;
+        }
+        if (host.disposed) return;
+        host.options.status("多人大厅已打开，正在连接房间服务…");
       }
     }
     if (host.disposed) return;
     if (response.type !== "welcome") throw new Error("房间服务身份未确认");
-    if (!account) deps.rememberNickname(host.accountNickname);
     host.playerId = response.playerId!;
     host.connected = true;
     host.render();

@@ -10,13 +10,21 @@ export interface PresentationSchedulerEnvironment {
   disposeTasks?(): void;
 }
 
-/** Owns one cancellable presentation request, independently of the physics clock. */
+/**
+ * Owns one cancellable presentation request, independently of the physics clock.
+ * Unlocked requests are delivered by message tasks between display refreshes and
+ * by the next display refresh, whichever comes first; only the latter presents.
+ */
 export class PresentationScheduler {
   private nextId = 0;
-  private pending?: { id: number; handle: number; unlocked: boolean };
+  private nextFrameToken = 0;
+  private pending?: { id: number; callback: PresentationCallback; unlocked: boolean; task?: number };
+  private displayFrame?: { token: number; handle: number };
   private lastTaskAtMs = -Infinity;
   disposed = false;
   lastFrameUnlocked = false;
+  /** Whether the frame being delivered runs in a display refresh and should draw. */
+  lastFramePresents = true;
 
   constructor(private readonly environment: PresentationSchedulerEnvironment) {}
 
@@ -24,39 +32,68 @@ export class PresentationScheduler {
     if (this.disposed) return 0;
     if (this.pending) return this.pending.id;
     const id = ++this.nextId;
-    this.enqueue(id, callback, unlocked && this.environment.isVisible());
+    const pending = { id, callback, unlocked: unlocked && this.environment.isVisible() };
+    this.pending = pending;
+    if (pending.unlocked) this.postTask(pending);
+    this.requestDisplayFrame();
     return id;
   }
 
-  private enqueue(id: number, callback: PresentationCallback, unlocked: boolean): void {
-    const deliver = (atMs?: number) => {
-      if (this.disposed || this.pending?.id !== id) return;
-      this.pending = undefined;
-      // A tab can become hidden after an asynchronous task has already been posted.
-      if (unlocked && !this.environment.isVisible()) {
-        this.enqueue(id, callback, false);
-        return;
-      }
-      const nowMs = this.environment.nowMs();
-      this.lastFrameUnlocked = unlocked;
-      if (unlocked) this.lastTaskAtMs = nowMs;
-      callback(atMs ?? nowMs);
-    };
+  private postTask(pending: { id: number; task?: number }): void {
     // The simulation deliberately ignores duplicate integer milliseconds. Avoid
     // filling the task queue with frames that cannot advance that clock.
     const delayMs = Math.max(0, 1 - (this.environment.nowMs() - this.lastTaskAtMs));
-    const handle = unlocked
-      ? this.environment.requestTask(() => deliver(), delayMs)
-      : this.environment.requestFrame(deliver);
-    this.pending = { id, handle, unlocked };
+    pending.task = this.environment.requestTask(() => this.deliverTask(pending.id), delayMs);
+  }
+
+  /** A pending refresh survives task deliveries, so each refresh presents once. */
+  private requestDisplayFrame(): void {
+    if (this.displayFrame) return;
+    const token = ++this.nextFrameToken;
+    const handle = this.environment.requestFrame(atMs => {
+      if (this.displayFrame?.token !== token) return;
+      this.displayFrame = undefined;
+      this.deliverDisplayFrame(atMs);
+    });
+    this.displayFrame = { token, handle };
+  }
+
+  private deliverTask(id: number): void {
+    const pending = this.pending;
+    if (this.disposed || pending?.id !== id) return;
+    pending.task = undefined;
+    // A tab can become hidden after an asynchronous task has already been posted;
+    // the display refresh that is still pending delivers the frame instead.
+    if (!this.environment.isVisible()) {
+      pending.unlocked = false;
+      return;
+    }
+    this.pending = undefined;
+    const nowMs = this.environment.nowMs();
+    this.lastFrameUnlocked = true;
+    this.lastFramePresents = false;
+    this.lastTaskAtMs = nowMs;
+    pending.callback(nowMs);
+  }
+
+  private deliverDisplayFrame(atMs: number): void {
+    const pending = this.pending;
+    if (this.disposed || !pending) return;
+    if (pending.task !== undefined) this.environment.cancelTask(pending.task);
+    this.pending = undefined;
+    this.lastFrameUnlocked = pending.unlocked;
+    this.lastFramePresents = true;
+    if (pending.unlocked) this.lastTaskAtMs = this.environment.nowMs();
+    pending.callback(atMs);
   }
 
   cancel(): void {
     const pending = this.pending;
+    const displayFrame = this.displayFrame;
     this.pending = undefined;
-    if (!pending) return;
-    if (pending.unlocked) this.environment.cancelTask(pending.handle);
-    else this.environment.cancelFrame(pending.handle);
+    this.displayFrame = undefined;
+    if (pending?.task !== undefined) this.environment.cancelTask(pending.task);
+    if (displayFrame) this.environment.cancelFrame(displayFrame.handle);
   }
 
   dispose(): void {
@@ -67,7 +104,7 @@ export class PresentationScheduler {
   }
 }
 
-/** Message tasks yield to input and rendering without waiting for display refresh. */
+/** Message tasks advance between display refreshes and yield to input and rendering. */
 export function createBrowserPresentationScheduler(): PresentationScheduler {
   const channel = typeof MessageChannel === "undefined" ? undefined : new MessageChannel();
   const tasks = new Map<number, { callback: () => void; timer?: ReturnType<typeof setTimeout> }>();

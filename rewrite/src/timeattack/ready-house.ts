@@ -7,7 +7,8 @@ import type { MyRoomSceneLibrary, MyRoomSceneSubject } from "../ui/my-room-scene
 import { MyRoomView } from "../ui/my-room-view";
 import { loadLocalRiderNickname } from "../multiplayer/account-local-state";
 import type { ReadyFlowController } from "./ready-flow";
-import { selectReadyGarage, type ReadyGarageController } from "./ready-garage";
+import { selectReadyGarage, selectionKeep, type ReadyGarageController } from "./ready-garage";
+import { garageViewCatalog } from "../account/garage-ownership";
 
 /** The release GarageDialog ("我的物品") opened from the room menu. */
 interface HouseGarageView { show(): void; dispose(): void }
@@ -25,12 +26,12 @@ export interface ReadyHouseController extends ReadyFlowController {
   };
 }
 
-type ReadyHouseLibrary = MyRoomSceneLibrary & {
+export type ReadyHouseLibrary = MyRoomSceneLibrary & {
   timeAttackGarageCatalog(): Promise<ItemInventoryCatalog>;
 };
 
 /** Match the displayed models to the exact Ready selection, including system karts. */
-function currentRoomSubject(controller: ReadyHouseController,
+export function currentRoomSubject(controller: ReadyHouseController,
   catalog: ItemInventoryCatalog): MyRoomSceneSubject | undefined {
   const selection = controller.host.getSelection();
   const environment = controller.readyToonEnvironment;
@@ -91,7 +92,9 @@ async function openHouseInventory(controller: ReadyHouseController,
     throw new Error("我的物品缺少资源库或当前装备身份。");
   controller.inventoryOpening = true;
   try {
-    const catalog = await library.timeAttackGarageCatalog();
+    // 我的物品 lists what the account owns, with rentals' remaining time.
+    const catalog = garageViewCatalog(await library.timeAttackGarageCatalog(),
+      selectionKeep(selection));
     if (controller.disposed || host.shell.modal !== "house" ||
         controller.activeHouse !== house) return;
     const garageController = controller as unknown as ReadyGarageController;
@@ -170,7 +173,7 @@ function roomKart(item: FavoriteItem, catalog: ItemInventoryCatalog) {
     (item.itemId !== 0 || kart.systemKey === item.systemKart));
 }
 
-function localRiderName(): string {
+export function localRiderName(): string {
   try {
     return loadLocalRiderNickname(() => localStorage) || "车手";
   } catch {
@@ -199,7 +202,9 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
       environments,
       profile: controller.host.getProfile() as LocalProfile,
       ownerName: localRiderName(),
-      starredKarts: starredRoomKarts(controller.host.getProfile() as LocalProfile, catalog),
+      // Representative karts are chosen from owned karts; parked ones still render.
+      starredKarts: starredRoomKarts(controller.host.getProfile() as LocalProfile,
+        garageViewCatalog(catalog, selectionKeep(controller.host.getSelection()))),
       resolveKart: item => roomKart(item, catalog),
       onProfileChange: profile => saveReadyHouseProfile(controller, profile),
       onOpenInventory: () => openHouseInventory(controller, library),
@@ -215,6 +220,8 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
           const button = event.target instanceof Element
             ? event.target.closest("button") : null;
           if (!button || !element.contains(button) || button.disabled) return;
+          // The shop opens over the room.
+          if (button.dataset.taskbarButton === "상점") return;
           if (button.getAttribute("aria-label") === "小屋")
             event.stopImmediatePropagation();
           closeReadyHouse(controller);

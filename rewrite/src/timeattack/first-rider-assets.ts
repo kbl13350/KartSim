@@ -177,10 +177,14 @@ export async function loadRiderBlueprint(library: RiderResourceLibrary,
     if (list!.name !== "newRiderItem")
       throw new Error("newRiderItem 根节点不是 newRiderItem。");
   }
+  // The CN list names both the characters (皮蛋 2, 黑妞 3) and the colors
+  // (6/4/5/7); the generic @zz colors (1/4/5/7) apply only when @cn has none.
+  const cnColors = listedItems(characters!, "color", attribute);
+  const starterColors = cnColors.length ? cnColors : listedItems(colors!, "color", attribute);
   const itemWhitelist = {
     characters: listedItems(characters!, "character", attribute),
-    paints: listedItems(colors!, "color", attribute),
-    dyes: listedItems(colors!, "color", attribute),
+    paints: starterColors,
+    dyes: [...starterColors],
   };
   const dialog = window!.children.find(child => child.name === "CaptionWindow");
   if (!dialog) throw new Error("原车手注册窗口缺少 CaptionWindow。");

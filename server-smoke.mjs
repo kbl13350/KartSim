@@ -1,22 +1,42 @@
 #!/usr/bin/env node
 /**
- * End-to-end probe for the local Java lobby server.
+ * End-to-end probe for the local Go services: the data service (kart-data)
+ * and its game nodes (kart-game).
  *
  * Run: node server-smoke.mjs
- * Override: KART_SERVER_BASE=http://127.0.0.1:8787 KART_WS_URL=ws://127.0.0.1:8787/multiplayer/ws node server-smoke.mjs
+ * Override:
+ *   KART_DATA_ORIGIN=http://127.0.0.1:8787        data service (legacy name: KART_SERVER_BASE)
+ *   KART_GAME_ORIGINS=http://127.0.0.1:8788,...   test these game nodes instead of the listed origins
+ *   KART_GAME_NODE=game-1                         node used for the room/race flows
+ *   KART_SMOKE_TIMEOUT_MS / KART_SMOKE_SETTLE_TIMEOUT_MS
+ *   KART_SMOKE_ACCOUNTS=user:password,...         existing onboarded accounts to use instead of
+ *                                                 registering new ones (needed when registration
+ *                                                 is invite-only/closed or the rate limit applies)
+ *   KART_SMOKE_FORWARDED_FOR=0                    do not send per-player X-Forwarded-For
+ *   KART_SMOKE_ALLOW_NO_VALIDATORS=1              warn instead of failing when the frontend
+ *                                                 validators are installed but cannot be loaded
+ * Players enter like the browser: there are no guests, so each player is an
+ * account (open registration → starter kit) → game-server list → one-time
+ * Bearer ticket from the data service → WebSocket hello {ticket, starter
+ * equipment} on the chosen node. Registration is rate limited (5 per hour
+ * per client IP); every player sends its own X-Forwarded-For, honoured by
+ * kart-data from KART_TRUSTED_PROXIES (default loopback, which covers a
+ * cluster started by run-full-local.sh and tested from the same machine).
  * Requires Node.js 22+ for its built-in fetch and WebSocket implementations.
  */
 
 import assert from "node:assert/strict";
 import { randomBytes } from "node:crypto";
+import { existsSync } from "node:fs";
+import {
+  EQUIPMENT_SLOTS, assertRaceRewards, checkAdmission, createPlayer, discoverCluster, enterGame,
+  expectRoomRules, expectSettlement, httpOk, readSettings,
+} from "./server-go/test/lib/kart-client.mjs";
 
-const origin = (process.env.KART_SERVER_BASE ?? "http://127.0.0.1:8787").replace(/\/+$/, "");
-const websocketUrl = process.env.KART_WS_URL ??
-  `${origin.replace(/^http:/, "ws:").replace(/^https:/, "wss:")}/multiplayer/ws`;
-const timeoutMs = Number(process.env.KART_SMOKE_TIMEOUT_MS ?? 7000);
-assert.ok(Number.isFinite(timeoutMs) && timeoutMs >= 1000, "Invalid KART_SMOKE_TIMEOUT_MS");
+const settings = readSettings();
+const origin = settings.dataOrigin;
+const timeoutMs = settings.timeoutMs;
 const protocolVersion = 39;
-const ruleset = "launcher-room-v1";
 const channelRules = {
   speedIndiCombine: { mode: "individual", speed: 7 },
   speedTeamCombine: { mode: "team", speed: 7 },
@@ -26,10 +46,14 @@ const channelRules = {
 const randomTrackCodes = new Set([0, 3, 4, 5, 6, 7, 8, 30, 40]);
 
 // Use the same handwritten validators that guard the real browser UI when the
-// rewrite dependencies are installed. The HTTP/WS probe remains runnable alone.
-let validateServerEvent;
-try {
-  const { tsImport } = await import("./rewrite/node_modules/tsx/dist/esm/api/index.mjs");
+// rewrite dependencies are installed. The HTTP/WS probe remains runnable alone
+// without rewrite/node_modules, but once they are installed a validator module
+// that fails to load (a syntax or import error in rewrite/src/multiplayer)
+// fails the run instead of silently turning it into an unvalidated pass.
+const tsxApi = new URL("./rewrite/node_modules/tsx/dist/esm/api/index.mjs", import.meta.url);
+
+async function loadServerEventValidator() {
+  const { tsImport } = await import(tsxApi.href);
   const { isValidRoomSnapshot } = await tsImport("./rewrite/src/multiplayer/room-validation.ts", import.meta.url);
   const { parseServerEvent } = await tsImport("./rewrite/src/multiplayer/server-events.ts", import.meta.url);
   const dependencies = {
@@ -47,23 +71,25 @@ try {
     },
     validRandomTrackCode: code => randomTrackCodes.has(code),
   };
-  validateServerEvent = message => parseServerEvent(message, dependencies);
-} catch (error) {
-  console.warn(`Frontend strict validators unavailable: ${error instanceof Error ? error.message : error}`);
+  return message => parseServerEvent(message, dependencies) !== undefined;
 }
-const equipmentSlots = [
-  1, 2, 3, 4, 8, 9, 10, 11, 12, 16, 17, 18, 20, 21, 52, 26, 27, 30,
-  31, 32, 36, 43, 45, 44, 46, 58, 59, 61, 70, 68, 69, 71, 76, 77, 78,
-];
 
-function equipment() {
-  const browserDefaults = { 1: 2, 2: 1, 3: 387, 70: 1 };
-  return {
-    itemIds: Object.fromEntries(equipmentSlots.map(slot => [slot, browserDefaults[slot] ?? 0])),
-    kartSerial: 0,
-    valueAt3E: 0,
-    exceedType: 0,
-  };
+let validateServerEvent;
+if (!existsSync(tsxApi)) {
+  console.warn("Frontend strict validators unavailable: rewrite/node_modules is missing " +
+    "(run npm ci in rewrite/ to check events with them)");
+} else {
+  try {
+    validateServerEvent = await loadServerEventValidator();
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    if (process.env.KART_SMOKE_ALLOW_NO_VALIDATORS !== "1") {
+      console.error(`FAIL: the frontend validators could not be loaded: ${reason}\n` +
+        "Fix rewrite/src/multiplayer, or set KART_SMOKE_ALLOW_NO_VALIDATORS=1 to run without them.");
+      process.exit(1);
+    }
+    console.warn(`Frontend strict validators unavailable: ${reason}`);
+  }
 }
 
 function assertStartSlots(race) {
@@ -96,136 +122,51 @@ function assertRoomBasics(room, expectedPlayerId) {
   assert.equal(typeof member.ready, "boolean");
   assert.equal(member.team, null);
   assert.ok(member.equipment && typeof member.equipment.itemIds === "object");
-  assert.equal(Object.keys(member.equipment.itemIds).length, equipmentSlots.length);
-  for (const slot of equipmentSlots) {
+  assert.equal(Object.keys(member.equipment.itemIds).length, EQUIPMENT_SLOTS.length);
+  for (const slot of EQUIPMENT_SLOTS) {
     assert.ok(Number.isInteger(member.equipment.itemIds[slot]), `Equipment category ${slot} is invalid`);
   }
 }
 
-async function jsonRequest(path, options = {}) {
-  const response = await fetch(`${origin}/multiplayer/${path}`, {
-    signal: AbortSignal.timeout(timeoutMs),
-    ...options,
-  });
-  const body = await response.json();
-  assert.ok(response.ok, `${path} returned HTTP ${response.status}: ${JSON.stringify(body)}`);
-  assert.ok(body && typeof body === "object" && !Array.isArray(body), `${path} did not return a JSON object`);
-  return body;
-}
-
-class ControlSocket {
-  constructor(socket) {
-    this.socket = socket;
-    this.nextId = 0;
-    this.events = [];
-    this.waiters = new Set();
-    this.failure = undefined;
-    socket.addEventListener("message", event => {
-      let message;
-      try { message = JSON.parse(String(event.data)); }
-      catch { return this.failAll(new Error("WebSocket emitted invalid JSON")); }
-      if (validateServerEvent && !validateServerEvent(message)) {
-        return this.failAll(new Error(`Frontend rejected server event: ${JSON.stringify(message)}`));
-      }
-      const index = [...this.waiters].findIndex(waiter => waiter.predicate(message));
-      if (index < 0) this.events.push(message);
-      else [...this.waiters][index].resolve(message);
-    });
-    socket.addEventListener("close", () => this.failAll(new Error("WebSocket closed during smoke test")));
-    socket.addEventListener("error", () => this.failAll(new Error("WebSocket failed during smoke test")));
-  }
-
-  static async connect(url) {
-    const socket = new WebSocket(url);
-    await new Promise((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Error(`WebSocket open timed out: ${url}`)), timeoutMs);
-      socket.addEventListener("open", () => { clearTimeout(timer); resolve(); }, { once: true });
-      socket.addEventListener("error", () => { clearTimeout(timer); reject(new Error(`WebSocket open failed: ${url}`)); }, { once: true });
-    });
-    return new ControlSocket(socket);
-  }
-
-  waitFor(predicate) {
-    if (this.failure) return Promise.reject(this.failure);
-    const found = this.events.findIndex(predicate);
-    if (found >= 0) return Promise.resolve(this.events.splice(found, 1)[0]);
-    return new Promise((resolve, reject) => {
-      const waiter = {
-        predicate,
-        resolve: message => { clearTimeout(timer); this.waiters.delete(waiter); resolve(message); },
-        reject: error => { clearTimeout(timer); this.waiters.delete(waiter); reject(error); },
-      };
-      const timer = setTimeout(() => waiter.reject(new Error("Timed out waiting for control message")), timeoutMs);
-      this.waiters.add(waiter);
-    });
-  }
-
-  failAll(error) {
-    this.failure ??= error;
-    for (const waiter of [...this.waiters]) waiter.reject(error);
-  }
-
-  async request(fields) {
-    const requestId = String(++this.nextId);
-    const reply = this.waitFor(message => message?.requestId === requestId);
-    this.socket.send(JSON.stringify({ ...fields, requestId }));
-    const message = await reply;
-    assert.notEqual(message.type, "error", `${fields.type} failed: ${message.code}`);
-    return message;
-  }
-
-  close() { this.socket.close(); }
-}
-
-async function openGuest(name) {
-  const control = await ControlSocket.connect(websocketUrl);
-  const welcome = await control.request({
-    type: "hello",
-    protocolVersion,
-    ruleset,
-    resourceVersion: "p3553",
-    name,
-    equipment: equipment(),
-    initial: "",
-    raceRuntime: true,
-  });
-  assert.equal(welcome.type, "welcome");
-  assert.equal(welcome.protocolVersion, protocolVersion);
-  assert.equal(welcome.ruleset, ruleset);
-  assert.ok(typeof welcome.playerId === "string" && welcome.playerId.length > 0);
-  assert.ok(Array.isArray(welcome.capabilities));
-  return { control, welcome };
+function jsonRequest(path, options = {}) {
+  return httpOk(origin, `/multiplayer/${path}`, { timeoutMs, ...options });
 }
 
 const suffix = randomBytes(4).toString("hex");
-const firstName = `SmokeA${suffix}`;
-const secondName = `SmokeB${suffix}`;
 let first;
 let second;
 
 try {
   const health = await jsonRequest("healthz");
   assert.equal(health.protocolVersion, protocolVersion);
-  console.log("✓ healthz: protocolVersion 39");
+  assert.equal(health.service, "data");
+  console.log("✓ healthz: protocolVersion 39 (data service)");
 
   const auth = await jsonRequest("auth/config");
-  assert.equal(auth.loginRequired, false, "Smoke test expects local guest mode (loginRequired:false)");
+  assert.equal(auth.loginRequired, true, "Accounts are required: auth/config must report loginRequired:true");
+  assert.ok(["open", "invite", "closed"].includes(auth.registration),
+    `auth/config.registration must be open, invite or closed, got ${JSON.stringify(auth.registration)}`);
+  assert.equal(typeof auth.guests, "boolean", "auth/config.guests must be a boolean");
   assert.ok(auth.backendOrigin === null || auth.backendOrigin === origin,
-    "auth/config backendOrigin differs from local server origin");
-  for (const name of [firstName, secondName]) {
-    const check = await jsonRequest("auth/guest-name", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name }),
-    });
-    assert.equal(check.available, true, `Guest name ${name} is unavailable`);
-  }
-  console.log("✓ auth/config and guest-name");
+    "auth/config backendOrigin differs from the data service origin");
+  console.log(`✓ auth/config: registration ${auth.registration}, guests ${auth.guests}`);
 
-  first = await openGuest(firstName);
-  second = await openGuest(secondName);
+  const cluster = await discoverCluster(settings);
+  const node = cluster.servers[0];
+  console.log(`✓ game-servers: ${cluster.servers.map(server =>
+    `${server.nodeId} ${server.players}/${server.capacity}`).join(", ")} (data node ${cluster.dataNode})`);
+  const holder = await createPlayer(cluster, `Hold${suffix}`);
+  const firstAccount = await createPlayer(cluster, `SmokeA${suffix}`, { starter: { character: 2, paint: 6, dye: 6 } });
+  const secondAccount = await createPlayer(cluster, `SmokeB${suffix}`, { starter: { character: 3, paint: 4, dye: 5 } });
+  const firstName = firstAccount.nickname;
+  console.log("✓ three accounts registered and onboarded (starter kit claimed)");
+
+  await checkAdmission(cluster, { holder, suffix, validate: validateServerEvent, settleMs: settings.settleMs });
+
+  first = await enterGame(cluster, node, firstAccount, { validate: validateServerEvent });
+  second = await enterGame(cluster, node, secondAccount, { validate: validateServerEvent });
   assert.notEqual(first.welcome.playerId, second.welcome.playerId);
-  console.log("✓ WebSocket hello/welcome for two players");
+  console.log(`✓ Bearer ticket + WebSocket hello/welcome for two accounts on ${node.nodeId}`);
 
   for (const guest of [first, second]) {
     const tick = performance.now();
@@ -240,7 +181,7 @@ try {
   const created = await first.control.request({
     type: "create", name: roomName, capacity: 2, password: "",
     channelName: "speedIndiCombine", gameplay: "ordinary",
-    mode: "individual", speed: 7, speedVersion: "国服",
+    mode: "individual", speed: 7, speedVersion: "国服", equipment: firstAccount.equipment,
   });
   assert.equal(created.type, "room");
   const room = created.room;
@@ -267,7 +208,8 @@ try {
   assert.equal(summary.locked, false);
   console.log("✓ list-ordinary contains the created room");
 
-  const joined = await second.control.request({ type: "join", roomId: room.roomId, password: "" });
+  const joined = await second.control.request({ type: "join", roomId: room.roomId, password: "",
+    equipment: secondAccount.equipment });
   assert.equal(joined.type, "room");
   assert.equal(joined.room.roomId, room.roomId);
   assertRoomBasics(joined.room, second.welcome.playerId);
@@ -314,7 +256,13 @@ try {
   assert.equal(finished.room.phase, "finished");
   assert.equal(finished.room.race.results.length, 2);
   assert.equal(finished.room.race.raceOverAt, finished.room.race.finishDeadline + 6000);
-  console.log("✓ finish/result snapshot accepted");
+  const rewards = assertRaceRewards(finished.room.race, [first.welcome.playerId, second.welcome.playerId],
+    { label: "individual race" });
+  // Both finished within 10 s of server time after the start: race.results keep
+  // the reported ranks, but both earn the same unfinished reward (ECONOMY.md 2.1).
+  assert.deepEqual(rewards[first.welcome.playerId], rewards[second.welcome.playerId],
+    `finishes within 10 s of the start earn the unfinished reward: ${JSON.stringify(rewards)}`);
+  console.log(`✓ finish/result snapshot accepted; race.rewards ${JSON.stringify(rewards)}`);
 
   const firstReturn = await first.control.request({ type: "return-room", roomId: room.roomId, raceId });
   assert.equal(firstReturn.room.phase, "finished");
@@ -322,18 +270,29 @@ try {
   assert.equal(secondReturn.room.phase, "open");
   console.log("✓ both players returned to open room");
 
+  await expectSettlement(cluster, {
+    raceId, roomId: room.roomId, gameplay: "ordinary", timeoutMs: settings.settleMs,
+    racers: [
+      { name: firstName, playerId: first.welcome.playerId, rank: 1, elapsedMs: 60_000, points: 10 },
+      { name: secondAccount.nickname, playerId: second.welcome.playerId, rank: 2, elapsedMs: 65_000, points: 8 },
+    ],
+  });
+  const rules = await expectRoomRules(cluster, room.roomId, settings.settleMs);
+  assert.equal(rules.settings.name, roomName);
+  console.log("✓ race-results, race-outcomes and room-rules reached the data service");
+
   await first.control.request({ type: "leave", roomId: room.roomId,
     revision: secondReturn.room.revision });
   await second.control.request({ type: "leave", roomId: room.roomId });
   const teamCreated = await first.control.request({
     type: "create", name: `Team${suffix}`, capacity: 2, password: "",
     channelName: "speedTeamCombine", gameplay: "ordinary",
-    mode: "team", speed: 7, speedVersion: "国服",
+    mode: "team", speed: 7, speedVersion: "国服", equipment: firstAccount.equipment,
   });
   assert.equal(teamCreated.room.mode, "team");
   const teamRoomId = teamCreated.room.roomId;
   const teamJoined = await second.control.request({
-    type: "join", roomId: teamRoomId, password: "",
+    type: "join", roomId: teamRoomId, password: "", equipment: secondAccount.equipment,
   });
   assert.deepEqual(new Set(teamJoined.room.members.map(member => member.team)), new Set([1, 2]));
   const randomTrack = await first.control.request({ type: "random-track",
@@ -379,9 +338,20 @@ try {
   assert.ok(teamFinished.room.race.winningTeam === 1 || teamFinished.room.race.winningTeam === 2);
   assert.ok(Number.isInteger(teamFinished.room.race.teamScores[1]));
   assert.ok(Number.isInteger(teamFinished.room.race.teamScores[2]));
-  console.log("✓ team race with random track and team scores accepted");
+  assertRaceRewards(teamFinished.room.race, [first.welcome.playerId, second.welcome.playerId],
+    { label: "team race" });
+  const teamSettled = await expectSettlement(cluster, {
+    raceId: teamRaceId, roomId: teamRoomId, gameplay: "ordinary", timeoutMs: settings.settleMs,
+  });
+  assert.equal(teamSettled.outcome.snapshot.mode, "team");
+  assert.equal(teamSettled.outcome.snapshot.race.winningTeam, teamFinished.room.race.winningTeam);
+  console.log("✓ team race with random track and team scores accepted and settled");
 
-  console.log("PASS: Java server HTTP/auth/WebSocket lobby and race-state smoke test" +
+  // Broadcasts that reached a player after its last request (e.g. the finished
+  // team-race snapshot for the first player) were validated but not awaited.
+  await first.control.drain();
+  await second.control.drain();
+  console.log("PASS: Go data service, accounts, entry tickets and game-node lobby/race smoke test" +
     (validateServerEvent ? " (real frontend validators)" : " (validators unavailable)"));
 } catch (error) {
   console.error("FAIL:", error instanceof Error ? error.message : error);

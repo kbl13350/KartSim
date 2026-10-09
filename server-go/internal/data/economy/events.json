@@ -1,0 +1,7 @@
+{
+  "generatedFrom": "rewrite/tools/export-economy-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: zeta_/cn/content/tcCashEvent.xml (periods are Beijing time), rewards resolved through zeta_/cn/shop/data/stock.kml and zeta_/cn/shop/data/item.kml. Display only: the data service grants no reward. Do not edit by hand.",
+  "tcCashEvents": [
+    {"eventPeriod":{"end":"2026-10-15T05:59:59+08:00","start":"2026-09-17T06:00:00+08:00"},"eventType":"use","rewardPeriod":{"end":"2026-10-22T05:59:59+08:00","start":"2026-09-17T06:00:00+08:00"},"steps":[{"reward":{"category":24,"count":10,"days":0,"iconHint":"etc","itemId":1242,"name":"[活动]光明骑士幸运宝石"},"step":1,"stockId":32336,"value":1000},{"reward":{"category":67,"count":200,"days":0,"iconHint":"etc","itemId":3,"name":"迅 部件碎片"},"step":2,"stockId":29631,"value":2000},{"reward":{"category":24,"count":40,"days":0,"iconHint":"etc","itemId":1242,"name":"[活动]光明骑士幸运宝石"},"step":3,"stockId":32396,"value":5000},{"reward":{"category":71,"count":1,"days":0,"iconHint":"slotBg","itemId":16,"name":"孔明灯车手栏背景"},"step":4,"stockId":32344,"value":8000}]}
+  ],
+  "version": "8bd1847aacb7a8612ca4fd6580d7bb39a7a748016cde3f307015a94c33f02d4f"
+}

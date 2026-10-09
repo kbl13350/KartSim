@@ -1,3 +1,4 @@
+import { storyRaceOf, storyRaceOutcome } from "../story/story-race";
 import type { ReadySelection } from "../timeattack/ready-flow";
 
 interface Disposable {
@@ -110,7 +111,14 @@ export async function returnToReady(
       );
     }
     await application.audio.context?.resume();
+    // A story race goes back to story mode with its outcome; Ready is rebuilt
+    // underneath with the player's own kart and rider.
+    const session = application.session as { selection?: unknown } | undefined;
+    const story = storyRaceOf(session?.selection);
+    const outcome = story ? storyRaceOutcome(session) : undefined;
+    story?.restore();
     await application.enterTimeAttackReady();
+    if (story && outcome) story.onReturn(outcome);
   } catch (error) {
     application.hud.showDebugText(
       `Ready stage fail-closed：${error instanceof Error ? error.message : String(error)}`,

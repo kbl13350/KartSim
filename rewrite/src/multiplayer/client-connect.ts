@@ -40,15 +40,19 @@ export interface ClientConnectDependencies {
   now?: () => number;
 }
 
-/** Connect the game client to its server-negotiated WebRTC channels. */
+/**
+ * Connect the game client to its server-negotiated WebRTC channels, or to the
+ * game server's WebSocket. `ticket` is the data service's one-time entry
+ * ticket; it is presented in `hello` and is not a bearer credential.
+ */
 export async function connectGameClient(host: ClientConnectionHost, offerUrl: string,
   name: string, resourceVersion: string, equipment: unknown, initial: string,
-  raceRuntime = false, token: string | undefined,
+  raceRuntime = false, ticket: string | undefined,
   dependencies: ClientConnectDependencies): Promise<ServerControlEvent> {
   if (dependencies.transport === "websocket") {
     const { connectWebSocketGameClient } = await import("./client-websocket");
     return connectWebSocketGameClient(host, offerUrl, name, resourceVersion,
-      equipment, initial, raceRuntime, token, dependencies);
+      equipment, initial, raceRuntime, ticket, dependencies);
   }
   if (host.peer) throw new Error("Connection already exists");
   const createPeer = dependencies.peerFactory ??
@@ -117,8 +121,7 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
     if (host.peer !== peer) throw new Error("Connection cancelled");
     const response = await fetchImpl(offerUrl, {
       method: "POST", credentials: "same-origin",
-      headers: { "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ type: "offer", sdp: peer.localDescription?.sdp }),
       signal: host.abort!.signal,
     });
@@ -139,7 +142,8 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
   try {
     await Promise.race([negotiate(), timeout]);
     const welcome = await host.request({ type: "hello", protocolVersion: PROTOCOL_VERSION,
-      ruleset: ROOM_RULESET, resourceVersion, name, equipment, initial, raceRuntime });
+      ruleset: ROOM_RULESET, resourceVersion, name, equipment, initial, raceRuntime,
+      ...(ticket ? { ticket } : {}) });
     if (welcome.type !== "welcome") throw new Error("Expected welcome");
     host.playerId = welcome.playerId;
 
@@ -151,8 +155,7 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
       const fetchIce = async (): Promise<RTCIceServer[]> => {
         try {
           const response = await fetchImpl(iceUrl.href, {
-            credentials: "same-origin", cache: "no-store",
-            headers: token ? { Authorization: `Bearer ${token}` } : {},
+            credentials: "same-origin", cache: "no-store", headers: {},
             signal: AbortSignal.any([host.abort!.signal, AbortSignal.timeout(3_000)]),
           });
           if (!response.ok) return sanitizeIceServers(undefined);

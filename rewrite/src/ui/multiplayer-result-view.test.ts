@@ -128,3 +128,28 @@ for (const teamMode of [false, true]) {
     assert.deepEqual(readable.events, original.events);
   });
 }
+
+test("account rewards from race.rewards show beside each finisher", async () => {
+  for (const teamMode of [false, true]) {
+    const readable = harness();
+    const race = { roster: [
+      { playerId: "local", team: teamMode ? 1 : null, name: "Alice" },
+      { playerId: "peer", team: teamMode ? 2 : null, name: "Bob" },
+    ] };
+    const view = await MultiplayerResultView.load({}, {}, race, "local", teamMode,
+      { ...readable.deps, showRewards: true });
+    const rows = readable.options!.definition.children[1]!.children;
+    const reward = rows[0]!.children.find(child => attribute(child, "name") === "row0/reward");
+    assert.ok(reward, "row 0 has a reward label");
+    assert.equal(attribute(reward!, "leftTopWH"), "300 15 196 30");
+    assert.equal(attribute(reward!, "textAlign"), "right,vcenter");
+    view.show([
+      { playerId: "local", points: 10, rank: 1, elapsedMs: 81_000 },
+      { playerId: "peer", points: 0, rank: 2, elapsedMs: null },
+    ], 1000, { rewards: { local: { exp: 121, lucci: 180 }, peer: { exp: "x", lucci: 1 } } });
+    assert.deepEqual(readable.options!.state(node("row0/reward")),
+      { visible: true, text: "+121经验 +180金币" });
+    assert.deepEqual(readable.options!.state(node("row1/reward")), { visible: false });
+    view.dispose();
+  }
+});
