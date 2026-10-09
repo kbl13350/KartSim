@@ -1,7 +1,9 @@
+import { measureGameServerLatency } from "../multiplayer/server-latency";
 import { formatDiagnosticsLines } from "./engine-diagnostics";
 import { PerformanceCounter } from "./performance-counter";
 
 const PANEL_REFRESH_MS = 250;
+const LATENCY_PROBE_MS = 2_000;
 
 interface HudCallbacks {
   returnToReady(): void;
@@ -38,6 +40,16 @@ function sumProgress(entries: Iterable<{ loaded: number; total: number }>) {
     total += entry.total;
   }
   return { loaded, total };
+}
+
+/**
+ * F10 overlay text: the game-server round trip, then the frame rate. Only the
+ * frame rate without a game server; `null` (no clock reply) shows `--`.
+ */
+export function formatNetStats(latencyMs: number | null | undefined, fps: number): string {
+  const frames = `FPS ${Math.round(fps)}`;
+  if (latencyMs === undefined) return frames;
+  return `延迟 ${latencyMs === null ? "--" : `${Math.round(latencyMs)} ms`}  ${frames}`;
 }
 
 /** Writes text to the clipboard, with a fallback for older browsers. */
@@ -97,7 +109,10 @@ export function captureUiTransition(root: HTMLElement): () => void {
   return () => canvas.remove();
 }
 
-/** Owns startup progress, pause controls and the F2/F3 performance panels. */
+/**
+ * Owns startup progress, pause controls, the F2/F3 performance panels and
+ * the F10 game-server latency/FPS readout.
+ */
 export class HudOverlay {
   element: HTMLElement;
   systemElement = document.createElement("section");
@@ -108,6 +123,7 @@ export class HudOverlay {
   debugEnginePanel: HTMLElement;
   debugEngineOutput: HTMLElement;
   copyEngineButton: HTMLButtonElement;
+  netStats: HTMLElement;
   callbacks: HudCallbacks;
   pauseOverlay: HTMLElement;
   loadingView: HTMLElement;
@@ -122,6 +138,14 @@ export class HudOverlay {
   nextDebugRefreshMs = 0;
   engineVisible = false;
   nextEngineRefreshMs = 0;
+  netStatsVisible = false;
+  nextNetStatsRefreshMs = 0;
+  /** Bumped on every F10 toggle so a probe from an earlier showing is dropped. */
+  netStatsShowing = 0;
+  latencyTimer = 0;
+  latencyProbing = false;
+  /** Undefined without a game server; null when its clock reply failed. */
+  latencyMs?: number | null;
   copyLabelTimer = 0;
   latestState: unknown;
   latestFps = 0;
@@ -185,6 +209,24 @@ export class HudOverlay {
       "[data-hud='debug-engine-output']");
     this.copyEngineButton = requiredElement(this.debugEnginePanel,
       "[data-action='copy-engine']");
+    this.netStats = document.createElement("div");
+    this.netStats.dataset.hud = "net-stats";
+    this.netStats.hidden = true;
+    // One line at the very top edge, above the race lap counter.
+    Object.assign(this.netStats.style, {
+      position: "absolute",
+      top: "max(2px, env(safe-area-inset-top))",
+      right: "max(4px, env(safe-area-inset-right))",
+      padding: "1px 6px",
+      borderRadius: "3px",
+      color: "#ffe14d",
+      background: "rgba(0, 0, 0, 0.45)",
+      font: "700 12px/16px Consolas, 'Courier New', monospace",
+      whiteSpace: "pre",
+      textShadow: "0 1px 2px #000",
+      pointerEvents: "none",
+    });
+    this.element.append(this.netStats);
     this.performanceCounter = new PerformanceCounter();
     this.callbacks = callbacks;
     this.pauseOverlay = requiredElement(this.systemElement, ".pause-overlay");
@@ -212,6 +254,7 @@ export class HudOverlay {
     this.copyPerformanceButton?.removeEventListener("click", this.onCopyPerformance);
     this.copyEngineButton?.removeEventListener("click", this.onCopyEngine);
     window.clearTimeout(this.copyLabelTimer);
+    if (this.netStatsVisible) this.setNetStatsVisible(false);
     this.performanceCounter?.dispose();
     this.element.remove();
     this.systemElement.remove();
@@ -227,6 +270,7 @@ export class HudOverlay {
     const now = performance.now();
     this.refreshDebugPanel(now);
     this.refreshEnginePanel(now);
+    this.refreshNetStats(now);
   }
 
   probeSnapshot(): void {}
@@ -348,8 +392,42 @@ export class HudOverlay {
       this.debugEnginePanel?.classList.toggle("is-visible", this.engineVisible);
       this.nextEngineRefreshMs = 0;
       this.refreshEnginePanel(performance.now(), true);
+    } else if (event.code === "F10") {
+      event.preventDefault();
+      this.setNetStatsVisible(!this.netStatsVisible);
     }
   };
+
+  setNetStatsVisible(visible: boolean): void {
+    this.netStatsVisible = visible;
+    this.netStats.hidden = !visible;
+    this.netStatsShowing++;
+    this.latencyMs = undefined;
+    window.clearInterval(this.latencyTimer);
+    this.latencyTimer = 0;
+    if (!visible) return;
+    this.refreshNetStats(performance.now(), true);
+    this.probeLatency();
+    this.latencyTimer = window.setInterval(this.probeLatency, LATENCY_PROBE_MS);
+  }
+
+  probeLatency = (): void => {
+    if (this.latencyProbing || document.visibilityState === "hidden") return;
+    this.latencyProbing = true;
+    const showing = this.netStatsShowing;
+    measureGameServerLatency().catch(() => null).then(latencyMs => {
+      this.latencyProbing = false;
+      if (showing !== this.netStatsShowing) return;
+      this.latencyMs = latencyMs;
+      this.refreshNetStats(performance.now(), true);
+    });
+  };
+
+  refreshNetStats(now: number, force = false): void {
+    if (!this.netStatsVisible || (!force && now < this.nextNetStatsRefreshMs)) return;
+    this.nextNetStatsRefreshMs = now + PANEL_REFRESH_MS;
+    this.netStats.textContent = formatNetStats(this.latencyMs, this.latestFps);
+  }
 
   onCopyPerformance = (): void => {};
 

@@ -1,6 +1,7 @@
 import { GameMotionDecoder, type DecodedGameMotion } from "./payload";
 import { ClockSynchronizer, MotionRoundTripTracker } from "./network-timing";
 import type { RaceScope, PodiumScope } from "./race-session";
+import { forgetConnectedClient } from "./server-latency";
 
 export interface ControlRequest {
   type: string;
@@ -98,6 +99,7 @@ export function onClientClose(host: ClientControlHost, listener: () => void): ()
 export function disposeClient(host: ClientControlHost): void {
   const peer = host.peer;
   host.peer = undefined;
+  forgetConnectedClient(host);
   host.abort?.abort();
   host.abort = undefined;
   clearInterval(host.heartbeat);

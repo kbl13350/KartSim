@@ -2,6 +2,7 @@ import { sanitizeIceServers } from "./http";
 import { PeerMesh } from "./peer-mesh";
 import { PROTOCOL_VERSION, ROOM_RULESET } from "./protocol";
 import { receiveGameControlEvent } from "./client-control-receiver";
+import { rememberConnectedClient } from "./server-latency";
 import type { ClientControlHost, ControlRequest } from "./client-control";
 import type { DecodedGameMotion } from "./payload";
 
@@ -186,6 +187,7 @@ export async function connectGameClient(host: ClientConnectionHost, offerUrl: st
     host.heartbeat = setInterval(() => {
       void ping().catch(() => { if (host.peer === peer) host.dispose(); });
     }, 10_000);
+    rememberConnectedClient(host);
     return welcome;
   } catch (error) {
     if (host.peer === peer) host.dispose();

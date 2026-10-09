@@ -2,6 +2,7 @@ import { receiveGameControlEvent } from "./client-control-receiver";
 import type { ClientConnectDependencies, ClientConnectionHost,
   ServerControlEvent } from "./client-connect";
 import { PROTOCOL_VERSION, ROOM_RULESET } from "./protocol";
+import { rememberConnectedClient } from "./server-latency";
 
 /** The existing lobby still asks for /offer; a game server uses one WS channel. */
 export function websocketUrlForOffer(offerUrl: string): string {
@@ -111,6 +112,7 @@ export async function connectWebSocketGameClient(host: ClientConnectionHost,
     host.heartbeat = setInterval(() => {
       void ping().catch(() => { if (host.peer === session) host.dispose(); });
     }, 10_000);
+    rememberConnectedClient(host);
     return welcome;
   } catch (error) {
     if (host.peer === session) host.dispose();

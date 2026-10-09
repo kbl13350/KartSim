@@ -19,7 +19,8 @@ const OriginalHud = new Function("Uo", "ko0", "qo0",
   return $o0;`,
 )(39, PerformanceCounter, formatDiagnosticsLines);
 
-function runHud(Hud, isOriginal) {
+/** Runs `body` with fake document/window/performance globals around a HUD root. */
+function withHudEnvironment(body) {
   const events = [];
   const nodes = new Map();
   class Element {
@@ -70,6 +71,12 @@ function runHud(Hud, isOriginal) {
       events.push(["timer", duration]);
       return 17;
     },
+    setInterval: (callback, duration) => {
+      events.push(["interval", duration]);
+      win.intervalCallback = callback;
+      return 23;
+    },
+    clearInterval: id => events.push(["clear interval", id]),
   };
   const root = new Element("root");
   root.ownerDocument = doc;
@@ -80,7 +87,24 @@ function runHud(Hud, isOriginal) {
     document: doc, window: win, performance: { now: () => 1_000 },
   })) Object.defineProperty(globalThis, name,
     { configurable: true, writable: true, value });
+  const restore = () => {
+    for (const name of globals) {
+      const descriptor = previous[name];
+      if (descriptor) Object.defineProperty(globalThis, name, descriptor);
+      else delete globalThis[name];
+    }
+  };
+  let result;
   try {
+    result = body({ root, events, win });
+  } finally {
+    if (!(result instanceof Promise)) restore();
+  }
+  return result instanceof Promise ? result.finally(restore) : result;
+}
+
+function runHud(Hud, isOriginal) {
+  return withHudEnvironment(({ root, events }) => {
     const callbacks = { returnToReady() {}, collectEngineDiagnostics: () => null };
     const hud = isOriginal ? new Hud(root, callbacks) :
       new Hud(root, callbacks, "39.11");
@@ -129,17 +153,52 @@ function runHud(Hud, isOriginal) {
     hud.dispose();
     return { events, snapshot, disposed: [hud.element.removed,
       hud.systemElement.removed] };
-  } finally {
-    for (const name of globals) {
-      const descriptor = previous[name];
-      if (descriptor) Object.defineProperty(globalThis, name, descriptor);
-      else delete globalThis[name];
-    }
-  }
+  });
 }
 
 test("HUD startup, pause, loading and F2/F3 panels match release", () => {
   assert.deepEqual(runHud(HudOverlay, false), runHud(OriginalHud, true));
+});
+
+test("F10 toggles the yellow game-server latency and FPS readout and its probe timer", async () => {
+  await withHudEnvironment(async ({ root, events, win }) => {
+    const hud = new HudOverlay(root, { returnToReady() {} }, "39.11");
+    const stats = hud.netStats;
+    assert.equal(stats.dataset.hud, "net-stats");
+    assert.equal(stats.hidden, true);
+    assert.equal(stats.style.color, "#ffe14d");
+    assert.ok(hud.element.children.includes(stats));
+    hud.updateEngine(59.6);
+    let prevented = 0;
+    const press = () => hud.onDebugKeyDown({ code: "F10", repeat: false,
+      preventDefault() { prevented++; } });
+
+    press();
+    assert.equal(stats.hidden, false);
+    assert.deepEqual(events.filter(event => event[0] === "interval"), [["interval", 2_000]]);
+    assert.equal(stats.textContent, "FPS 60");
+    // No game server is connected here: the probe settles empty.
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(hud.latencyProbing, false);
+    hud.latencyMs = 31.2;
+    hud.updateEngine(30);
+    assert.equal(stats.textContent, "FPS 60", "refresh is throttled");
+    hud.refreshNetStats(performance.now(), true);
+    assert.equal(stats.textContent, "延迟 31 ms  FPS 30");
+
+    press();
+    assert.equal(stats.hidden, true);
+    assert.equal(hud.latencyMs, undefined);
+    assert.ok(events.some(event => event[0] === "clear interval" && event[1] === 23));
+    assert.equal(prevented, 2);
+    press();
+    events.length = 0;
+    hud.dispose();
+    assert.equal(hud.netStatsVisible, false);
+    assert.ok(events.some(event => event[0] === "clear interval" && event[1] === 23),
+      "dispose stops the probe timer");
+    assert.equal(typeof win.intervalCallback, "function");
+  });
 });
 
 test("transition screenshot composites visible canvas layers like release", () => {
