@@ -5,9 +5,10 @@
 //
 // Sources: item/slot/itemProb_indi@zz.bml and itemProb_team2@cn.bml (the
 // rank-group weights), zeta_/cn/content/itemGameRestrictionItemCount.xml (the
-// per-race caps), item/<folder>/item.bml (base-0 state lifetimes),
-// track_/common/track@zz.bml, trackLocale@cn.bml and randomTrack@cn.bml with
-// the track models (the item track list and its random pools).
+// per-race caps), item/<folder>/item.bml (base-0 state lifetimes), and the
+// client's item track catalog and random groups (src/resources/track-catalog.ts
+// itemTrackCatalog / itemRandomTrackGroups) with the track models (the item
+// track list and its random pools).
 
 const attr = (node, name) => node.attributes.find(item => item.name === name)?.value;
 
@@ -147,54 +148,25 @@ export function cubeCount(model) {
 }
 
 /**
- * trackLocale@cn rows that close a track: blocked="true" or
- * choosable="false" on <track id> or on <track_rvs refId> (the "<id>_rvs"
- * reverse variant).
+ * Track rows from the client's item TrackChoice list (itemTrackCatalog): the
+ * server offers exactly these tracks, so every one of them must hold item
+ * cubes in its exact model (.1s, including the _rvs variant). onlyItem marks
+ * the isOnlyItemTrack rows.
  */
-export function closedLocaleTracks(root) {
-  const closed = new Set();
-  for (const node of root?.children ?? []) {
-    const id = node.name === "track" ? attr(node, "id")
-      : node.name === "track_rvs" && attr(node, "refId") ? `${attr(node, "refId")}_rvs` : undefined;
-    if (!id) continue;
-    if (attr(node, "blocked")?.toLowerCase() === "true" || attr(node, "choosable")?.toLowerCase() === "false")
-      closed.add(id);
-  }
-  return closed;
-}
-
-/**
- * The metadata the item track list starts from: gameType="item" rows of
- * track@zz. isOnlyItemTrack is cleared so the client's catalog rules
- * (timeAttackTrackCatalog, which drops item-only tracks for time attack)
- * keep them: item rooms are exactly where those tracks belong.
- */
-export function itemTrackMetadata(metadata) {
-  return metadata.filter(track => track.gameType === "item")
-    .map(track => ({ ...track, isOnlyItemTrack: undefined }));
-}
-
-/**
- * Track rows from the client's TrackChoice list of item tracks: those not
- * closed in trackLocale@cn (a closed track closes its reverse variant too)
- * whose exact model (.1s, including the _rvs variant) holds item cubes.
- * onlyItem marks the isOnlyItemTrack rows.
- */
-export function trackRows(choices, { closed, cubes, onlyItem }, problem) {
+export function trackRows(choices, { cubes, onlyItem }, problem) {
   const rows = [];
   const seen = new Set();
   for (const choice of choices) {
-    if (choice.gameType !== "item") continue;
+    if (choice.gameType !== "item") { problem(`track ${choice.id} is not an item track`); continue; }
     if (seen.has(choice.id)) { problem(`track ${choice.id} listed twice`); continue; }
     seen.add(choice.id);
-    if (closed.has(choice.id) || closed.has(choice.id.replace(/_rvs$/, ""))) continue;
     const count = cubes.get(choice.id) ?? 0;
-    if (count <= 0) continue;
+    if (count <= 0) { problem(`track ${choice.id} has no item cube`); continue; }
     rows.push({ id: choice.id, title: choice.title, cubes: count,
       onlyItem: onlyItem.has(choice.id.replace(/_rvs$/, "")) || undefined,
       reverse: choice.reverse ? true : undefined });
   }
-  if (rows.length === 0) problem("no item track has item cubes");
+  if (rows.length === 0) problem("no item track");
   return rows;
 }
 
@@ -215,15 +187,17 @@ export const RANDOM_CODES = [
 ];
 
 /**
- * The pools of the random codes, from the client's random groups
- * (randomTrackGroupsFromBml over the item choices) restricted to the
- * exported track rows.
+ * The pools of the random codes: the client's item random groups
+ * (itemRandomTrackGroups), whose tracks must all be exported track rows.
  */
 export function randomPools(groups, rows, problem) {
   const allowed = new Set(rows.map(row => row.id));
   return RANDOM_CODES.map(({ code, group }) => {
     const found = groups.find(candidate => candidate.id === group);
-    const tracks = (found?.trackIds ?? []).filter(id => allowed.has(id));
+    const tracks = (found?.trackIds ?? []).filter(id => {
+      if (!allowed.has(id)) problem(`random code ${code} (${group}): ${id} is not an exported track`);
+      return allowed.has(id);
+    });
     if (tracks.length === 0) problem(`random code ${code} (${group}) has no item track`);
     return { code, group, tracks };
   });

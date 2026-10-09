@@ -1,6 +1,6 @@
 {
   "defaultTrack": "desert_I03",
-  "generatedFrom": "rewrite/tools/export-item-mode-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: weights from item/slot/itemProb_indi@zz.bml (indi) and item/slot/itemProb_team2@cn.bml (team), caps from zeta_/cn/content/itemGameRestrictionItemCount.xml, base-0 state lifetimes (ms) from item/<folder>/item.bml, item tracks from track_/common/track@zz.bml gameType=\"item\" rows with a track model (client catalog rules, isOnlyItemTrack kept) minus track_/common/trackLocale@cn.bml blocked / choosable=\"false\" rows, keeping models with item cubes; random pools from track_/common/randomTrack@cn.bml (client random groups over those tracks); defaultTrack is the first hot1 track. Do not edit by hand.",
+  "generatedFrom": "rewrite/tools/export-item-mode-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: weights from item/slot/itemProb_indi@zz.bml (indi) and item/slot/itemProb_team2@cn.bml (team), caps from zeta_/cn/content/itemGameRestrictionItemCount.xml, base-0 state lifetimes (ms) from item/<folder>/item.bml, item tracks: the client's itemTrackCatalog (rewrite/src/resources/track-catalog.ts: track_/common/track@zz.bml gameType=\"item\" rows, isOnlyItemTrack kept, with track_/common/trackLocale@cn.bml rules; a reverse track needs its track_rvs row), each with item cubes in its model; random pools: the client's itemRandomTrackGroups (track_/common/randomTrack@cn.bml); defaultTrack is the first hot1 track. Do not edit by hand.",
   "items": [
     {"idx":2,"name":"devil","states":{"Affect":3000,"Escape":2000,"Preaffect":1000,"SpecialShield":2000,"Use":500}},
     {"idx":3,"name":"ufo","states":{"Affect":3000,"BonusAffect":3000,"HeadBandAffect":1500,"PostAffect":500,"Shield":1500,"Use":1500}},
@@ -194,20 +194,14 @@
     {"cubes":51,"id":"fengshen_I04","title":"封神传说 蛟龙藏身处"},
     {"cubes":41,"id":"fengshen_I05","title":"封神传说 金鳌岛运河"},
     {"cubes":24,"id":"forest_I01_rvs","reverse":true,"title":"[反]森林 木桶"},
-    {"cubes":29,"id":"forest_I02_rvs","reverse":true,"title":"[反]森林 蘑菇洞穴"},
     {"cubes":27,"id":"forest_I04_rvs","reverse":true,"title":"[反]森林 奇石"},
     {"cubes":30,"id":"forest_I05_rvs","reverse":true,"title":"[反]森林 瀑布"},
     {"cubes":37,"id":"forest_I07_rvs","reverse":true,"title":"[反]森林 熊猫乐园"},
-    {"cubes":36,"id":"desert_I01_rvs","reverse":true,"title":"[反]沙漠 地狱沙丘"},
-    {"cubes":36,"id":"desert_I02_rvs","reverse":true,"title":"[反]沙漠 金字塔"},
-    {"cubes":39,"id":"desert_I03_rvs","reverse":true,"title":"[反]沙漠 绿洲"},
-    {"cubes":35,"id":"desert_I04_rvs","reverse":true,"title":"[反]沙漠 市场"},
     {"cubes":35,"id":"desert_I05_rvs","reverse":true,"title":"[反]沙漠 水库"},
     {"cubes":31,"id":"village_I01_rvs","reverse":true,"title":"[反]城镇 钟楼"},
     {"cubes":39,"id":"village_I04_rvs","reverse":true,"title":"[反]城镇 运河"},
     {"cubes":46,"id":"village_I05_rvs","reverse":true,"title":"[反]城镇 水路"},
     {"cubes":35,"id":"ice_I02_rvs","reverse":true,"title":"[反]冰河 冰鲨墓地"},
-    {"cubes":41,"id":"ice_I03_rvs","reverse":true,"title":"[反]冰河 冰雪企鹅岛"},
     {"cubes":30,"id":"ice_I04_rvs","reverse":true,"title":"[反]冰河 冰水晶洞穴"},
     {"cubes":44,"id":"ice_I05_rvs","reverse":true,"title":"[反]冰河 极速"},
     {"cubes":34,"id":"tomb_I01_rvs","reverse":true,"title":"[反]墓地 幽灵峡谷"},
@@ -218,12 +212,8 @@
     {"cubes":40,"id":"northeu_I05_rvs","reverse":true,"title":"[反]太空 极限跳跃"},
     {"cubes":35,"id":"northeu_I06_rvs","reverse":true,"title":"[反]太空 喷射滑坡"},
     {"cubes":33,"id":"northeu_I07_rvs","reverse":true,"title":"[反]太空 基地"},
-    {"cubes":52,"id":"factory_I01_rvs","reverse":true,"title":"[反]工厂 机械战场"},
-    {"cubes":48,"id":"factory_I02_rvs","reverse":true,"title":"[反]工厂 巨型齿轮"},
-    {"cubes":58,"id":"factory_I03_rvs","reverse":true,"title":"[反]工厂 探险之路"},
     {"cubes":39,"id":"pirate_I01_rvs","reverse":true,"title":"[反]海盗 藏宝营地"},
     {"cubes":41,"id":"pirate_I04_rvs","reverse":true,"title":"[反]海盗 暴风山寨"},
-    {"cubes":31,"id":"fairy_I03_rvs","reverse":true,"title":"[反]童话世界 旋转木马"},
     {"cubes":43,"id":"moonhill_I02_rvs","reverse":true,"title":"[反]月光之城 都市风情"},
     {"cubes":45,"id":"moonhill_I04_rvs","reverse":true,"title":"[反]月光之城 小镇铁路"},
     {"cubes":32,"id":"moonhill_I05_rvs","reverse":true,"title":"[反]月光之城 逃脱地铁"},
@@ -233,5 +223,5 @@
     {"cubes":36,"id":"china_I06_rvs","reverse":true,"title":"[反]龙行华夏 龙之无尽路"},
     {"cubes":76,"id":"mabi_I01_rvs","reverse":true,"title":"[反]洛奇 迪尔科内尔"}
   ],
-  "version": "f700e90c11e2def4e378da6f6505916063a28aa7772b87b214a337a624eb8f3d"
+  "version": "946b6fec02a3188af7475d17cc0ef51d3f9649556a538d484a78ea0c6b840363"
 }

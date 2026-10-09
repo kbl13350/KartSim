@@ -129,7 +129,7 @@ node --import tsx tools/export-economy-data.mjs --out DIR  # 写到其他目录�
 
 ### 道具赛数据（概率表与道具赛道）
 
-游戏节点运行道具赛（道具个人赛 / 组队道具赛，规则见 [`../rewrite/ITEM_MODE.md`](../rewrite/ITEM_MODE.md)，协议见 [`../SERVER_PROTOCOL.md`](../SERVER_PROTOCOL.md)“本地新增：道具赛”）所需的数据 `internal/game/itemmode/itemmode.json` 同样由导出工具从 `mirror/p3553` 生成并 `go:embed` 编入 kart-game，**不要手改**：个人 `item/slot/itemProb_indi@zz.bml`（14 种）与组队 `itemProb_team2@cn.bml`（19 种）的 top/high/mid/low 权重、`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限（道具锁、天使、闪电每局 2 次，加速器不限）、这 19 种道具 `item.bml` 第一组状态的时长（毫秒）、道具房间可选的 197 条赛道（含反向与 5 条道具专用图，只保留 `track.1s` 里确有道具箱的）、随机码 3–7/0/8/30 对应的道具随机池，以及默认赛道（道具 hot1 第一条）。
+游戏节点运行道具赛（道具个人赛 / 组队道具赛，规则见 [`../rewrite/ITEM_MODE.md`](../rewrite/ITEM_MODE.md)，协议见 [`../SERVER_PROTOCOL.md`](../SERVER_PROTOCOL.md)“本地新增：道具赛”）所需的数据 `internal/game/itemmode/itemmode.json` 同样由导出工具从 `mirror/p3553` 生成并 `go:embed` 编入 kart-game，**不要手改**：个人 `item/slot/itemProb_indi@zz.bml`（14 种）与组队 `itemProb_team2@cn.bml`（19 种）的 top/high/mid/low 权重、`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限（道具锁、天使、闪电每局 2 次，加速器不限）、这 19 种道具 `item.bml` 第一组状态的时长（毫秒）、道具房间可选的 187 条赛道（158 条道具图含 5 条道具专用图，加 29 条反向；与浏览器道具房间的选图目录完全一致，每条都有道具箱）、随机码 3–7/0/8/30 对应的道具随机池，以及默认赛道（道具 hot1 第一条）。
 
 ```sh
 cd rewrite
@@ -138,7 +138,7 @@ node --import tsx tools/export-item-mode-data.mjs --check    # 提交的 JSON �
 node --test tools/item-mode-export/item-mode.test.mjs        # 导出规则单测，并与 recovered/data-full 的原版表交叉核对
 ```
 
-赛道筛选直接运行浏览器的赛道目录规则（`trackMetadataCatalog`、`timeAttackTrackCatalog`、`randomTrackGroupsFromBml`，保留 `isOnlyItemTrack`），再去掉 `trackLocale@cn` 中 `blocked`/`choosable="false"` 的赛道，并用前端的 `.1s` 解码器统计每个模型的 `ToItemCube` 与移动道具箱。kart-game 启动时解析它（失败则不启动）；`go test ./internal/game/itemmode` 校验版本号与内容一致。
+赛道表与随机池直接取浏览器道具房间的选图目录（`rewrite/src/resources/track-catalog.ts` 的 `itemTrackCatalog`、`itemRandomTrackGroups`：`trackLocale@cn` 规则、反向赛道需要 `track_rvs` 行），并用前端的 `.1s` 解码器统计每个模型的 `ToItemCube` 与移动道具箱（目录里每条赛道都必须有，否则导出失败）。`rewrite/tools/item-mode-export/item-mode.test.mjs` 在有 `mirror/p3553` 时比对已提交的 JSON 与浏览器目录，二者不一致即失败。kart-game 启动时解析它（失败则不启动）；`go test ./internal/game/itemmode` 校验版本号与内容一致。
 
 ### 限流与反向代理
 
