@@ -14,8 +14,8 @@
  */
 import type { ItemCommand, ItemCommandHandler } from "../input/item-input";
 import type {
-  ItemGrantEvent, ItemHitEvent, ItemPlacedEvent, ItemScanEvent, ItemServerEvent, ItemSlotsEvent,
-  ItemUsedEvent,
+  ItemEscapedEvent, ItemGrantEvent, ItemHitEvent, ItemPlacedEvent, ItemScanEvent, ItemServerEvent,
+  ItemSlotsEvent, ItemUsedEvent,
 } from "../multiplayer/server-events";
 import type {
   ItemAimPhase, ItemHudLogEntry, ItemHudNotice, ItemHudState,
@@ -179,6 +179,12 @@ interface OwnTimeBomb {
 
 interface TimeWindow { from: number; until: number }
 
+/** The trap holding the local kart (for the escape notice). */
+interface LocalTrap { useId: number; hazardId?: number }
+
+/** A remote racer's bubble: its blue shield starts at its end, or at its early escape. */
+interface RemoteTrap { useId: number; hazardId?: number; untilMs: number; escapeShieldMs: number }
+
 type HitSource = "area" | "targeted" | "hazard";
 
 const NO_UNDO = (): void => {};
@@ -209,6 +215,7 @@ export class ItemRaceController implements ItemCommandHandler {
   readonly scans = new Map<string, { slots: readonly number[]; until: number }>();
   /** My time bombs by request token, each placed when it explodes. */
   readonly bombs = new Map<number, OwnTimeBomb>();
+  readonly remoteTraps = new Map<string, RemoteTrap>();
   readonly notices: ItemHudNotice[] = [];
   readonly log: ItemHudLogEntry[] = [];
   readonly lockWindows: TimeWindow[] = [];
@@ -218,6 +225,7 @@ export class ItemRaceController implements ItemCommandHandler {
   empUntil = 0;
   aim: AimState | undefined;
   aimScreen: { x: number; y: number } | undefined;
+  localTrap: LocalTrap | undefined;
   infoCard: { itemIdx: number; until: number } | undefined;
   abuseUntil: number | undefined;
   reorderStartedAt: number | undefined;
@@ -314,6 +322,7 @@ export class ItemRaceController implements ItemCommandHandler {
         this.checkAreas(nowMs);
       }
       this.presentLocalEffects(nowMs);
+      this.updateRemoteTraps(nowMs);
       this.prune(nowMs);
     });
   }
@@ -392,6 +401,8 @@ export class ItemRaceController implements ItemCommandHandler {
     this.angelUntil = 0;
     this.empUntil = 0;
     this.bombs.clear();
+    this.remoteTraps.clear();
+    this.localTrap = undefined;
     this.boosterToken = undefined;
     this.pullToken = undefined;
     this.infoCard = undefined;
@@ -415,6 +426,7 @@ export class ItemRaceController implements ItemCommandHandler {
     this.areas.clear();
     this.uses.clear();
     this.bombs.clear();
+    this.remoteTraps.clear();
   }
 
   // ---- local commands -----------------------------------------------------
@@ -741,6 +753,9 @@ export class ItemRaceController implements ItemCommandHandler {
         case "scan":
           this.onScan(event);
           break;
+        case "escaped":
+          this.onEscaped(event);
+          break;
         default:
           // grant and slots only answer this racer's own requests.
           break;
@@ -920,14 +935,38 @@ export class ItemRaceController implements ItemCommandHandler {
       if (kind) {
         const start = this.remoteEffectStart(record, behaviour, now);
         this.kartEffect(event.playerId, kind, start, behaviour.effectMs);
-        if (kind === "trap" && behaviour.escapeShieldMs)
-          this.kartEffect(event.playerId, "escapeShield", start + behaviour.effectMs, behaviour.escapeShieldMs);
+        // The blue shield follows the bubble's end, or the racer's early escape.
+        if (kind === "trap" && behaviour.escapeShieldMs) {
+          this.remoteTraps.set(event.playerId, { useId: event.useId,
+            ...(event.hazardId !== undefined ? { hazardId: event.hazardId } : {}),
+            untilMs: start + behaviour.effectMs, escapeShieldMs: behaviour.escapeShieldMs });
+        }
       }
     }
     if (event.useId === 0 || !event.userId) return;
     this.addLog(event.userId, event.playerId, event.itemId, event.result === "blocked", now);
     if (event.userId === this.playerId && event.result === "hit")
       this.addGoodNotice(record, event.itemId, event.playerId, now);
+  }
+
+  /** A remote racer mashed out of its bubble: it ends now and the blue shield starts. */
+  private onEscaped(event: ItemEscapedEvent): void {
+    const trap = this.remoteTraps.get(event.playerId);
+    const now = this.options.now();
+    if (!trap || trap.useId !== event.useId || trap.hazardId !== event.hazardId ||
+        now >= trap.untilMs) return;
+    this.remoteTraps.delete(event.playerId);
+    this.endKartEffect(event.playerId, "trap");
+    this.kartEffect(event.playerId, "escapeShield", now, trap.escapeShieldMs);
+  }
+
+  /** Remote bubbles that ran their full time: the blue shield starts at their end. */
+  private updateRemoteTraps(nowMs: number): void {
+    for (const [playerId, trap] of this.remoteTraps) {
+      if (nowMs < trap.untilMs) continue;
+      this.remoteTraps.delete(playerId);
+      this.kartEffect(playerId, "escapeShield", trap.untilMs, trap.escapeShieldMs);
+    }
   }
 
   private onScan(event: ItemScanEvent): void {
@@ -1038,16 +1077,22 @@ export class ItemRaceController implements ItemCommandHandler {
   }
 
   /** Apply a landed hit; false when the kart cannot take its physics effect now. */
-  private applyHit(hit: { behaviour: ItemBehaviour; effectAt: number }, nowMs: number): boolean {
+  private applyHit(hit: { useId: number; hazardId?: number; behaviour: ItemBehaviour; effectAt: number },
+    nowMs: number): boolean {
     const { behaviour, effectAt } = hit;
     const kind = physicsEffect(behaviour.effect);
     if (kind) {
       const effects = this.options.physics.itemEffects;
       if (!effects) return true;
-      return effects.apply(kind, behaviour.effectMs, {
+      const applied = effects.apply(kind, behaviour.effectMs, {
         elapsedMs: Math.max(0, nowMs - effectAt),
         ...(behaviour.escapeShieldMs !== undefined ? { escapeImmunityMs: behaviour.escapeShieldMs } : {}),
       });
+      if (applied && kind === "trap") {
+        this.localTrap = { useId: hit.useId,
+          ...(hit.useId === 0 && hit.hazardId !== undefined ? { hazardId: hit.hazardId } : {}) };
+      }
+      return applied;
     }
     if (behaviour.effect === "cloud")
       this.cloudWindows.push({ from: effectAt, until: effectAt + behaviour.effectMs });
@@ -1068,6 +1113,7 @@ export class ItemRaceController implements ItemCommandHandler {
       const kind = event.kind as ItemKartEffect;
       if (event.phase === "end") {
         this.endKartEffect(this.playerId, kind);
+        if (event.kind === "trap") this.localTrapEnded(event.reason);
         continue;
       }
       const running = effects.effects?.get(event.kind);
@@ -1087,6 +1133,19 @@ export class ItemRaceController implements ItemCommandHandler {
       this.escapeShieldShown = false;
       this.endKartEffect(this.playerId, "escapeShield");
     }
+  }
+
+  /** My bubble ended: an early escape (left/right mashing) tells the others to end it too. */
+  private localTrapEnded(reason: string | undefined): void {
+    const trap = this.localTrap;
+    this.localTrap = undefined;
+    if (!trap || reason !== "escaped" || this.ended) return;
+    const fields: Record<string, unknown> = { useId: trap.useId };
+    if (trap.useId === 0) {
+      if (trap.hazardId === undefined) return;
+      fields.hazardId = trap.hazardId;
+    }
+    this.send("escape", fields).catch(error => this.warn("脱出水泡通知被拒绝", error));
   }
 
   private kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number): void {
@@ -1204,6 +1263,7 @@ export class ItemRaceController implements ItemCommandHandler {
     this.angelUntil = 0;
     this.empUntil = 0;
     this.bombs.clear();
+    this.localTrap = undefined;
     this.infoCard = undefined;
   }
 

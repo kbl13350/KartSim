@@ -40,6 +40,8 @@ function serve(f: ControllerFixture, slots: number[] = [-1, -1]) {
         return { type: "item", action: "placed", playerId: SELF, ...fields };
       case "slots":
         return { type: "item", action: "slots", slots: [...state.slots] };
+      case "escape":
+        return { type: "item", action: "escaped", playerId: SELF, ...fields };
       default:
         throw new Error("INVALID_ACTION");
     }
@@ -593,8 +595,11 @@ test("remote hits drive the presenter, the log and merged good notices", async (
   const hit = f.presenter.of("hit")[0]![0] as Record<string, unknown>;
   assert.equal(hit.victimId, MATE);
   assert.deepEqual(hit.position, { x: 3, y: 0, z: 3 });
-  assert.deepEqual(f.presenter.of("kartEffect").slice(-2), [
-    [MATE, "trap", 1500, 1000], [MATE, "escapeShield", 2500, 2000]]);
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [MATE, "trap", 1500, 1000]);
+  // The blue shield starts when the bubble ends (or when the racer escapes early).
+  at(f, 2500);
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [MATE, "escapeShield", 2500, 2000]);
+  f.state.now = 1600;
   assert.deepEqual(f.controller.hudState(1600).log.map(row =>
     [row.attacker, row.victim, row.itemIdx, row.failed, row.team]), [["对手", "队友", 4, false, "blue"]]);
   // A banana run over by someone else disappears.
@@ -947,4 +952,66 @@ test("a spin or barricade the held kart cannot take is not reported; the banana 
   g.physics.itemEffects.refuse.add("spin");
   g.controller.hazard({ id: 3, itemIdx: ItemIdx.banana });
   assert.equal(g.connection.of("hit").length, 1);
+});
+
+test("my early escape from a bubble is reported once", async () => {
+  const f = controllerFixture();
+  serve(f);
+  at(f, 0);
+  used(f, { useId: 21, itemId: ItemIdx.waterBomb, startAt: server(0),
+    point: threeToClient({ x: 0, y: 0, z: 0 }) });
+  at(f, 1000);
+  assert.deepEqual(f.connection.of("hit"), [{ useId: 21, itemId: 9, result: "hit" }]);
+  const effects = f.physics.itemEffects;
+  effects.events.push({ kind: "trap", phase: "end", atMs: 1500, reason: "escaped" });
+  at(f, 1500);
+  assert.deepEqual(f.connection.of("escape"), [{ useId: 21 }]);
+  effects.events.push({ kind: "trap", phase: "end", atMs: 1600, reason: "escaped" });
+  at(f, 1600);
+  assert.equal(f.connection.of("escape").length, 1);
+  // A bubble that simply runs out is not an escape; a water mine escapes with its hazard id.
+  f.controller.hazard({ id: 5, itemIdx: ItemIdx.waterMine });
+  effects.events.push({ kind: "trap", phase: "end", atMs: 3600, reason: "expired" });
+  at(f, 3600);
+  assert.equal(f.connection.of("escape").length, 1);
+  effects.immune = false;
+  f.controller.hazard({ id: 6, itemIdx: ItemIdx.waterMine });
+  effects.events.push({ kind: "trap", phase: "end", atMs: 4200, reason: "escaped" });
+  at(f, 4200);
+  assert.deepEqual(f.connection.of("escape").at(-1), { useId: 0, hazardId: 6 });
+});
+
+test("a remote racer's early escape ends its bubble and starts its blue shield then", () => {
+  const f = controllerFixture({ teamRace: true });
+  serve(f);
+  at(f, 1000);
+  used(f, { useId: 30, itemId: ItemIdx.waterFly, playerId: RIVAL, targets: [MATE],
+    startAt: server(1000), etaMs: 500 });
+  f.state.now = 1500;
+  f.connection.emit({ action: "hit", playerId: MATE, useId: 30, itemId: 4, userId: RIVAL, result: "hit" });
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [MATE, "trap", 1500, 1000]);
+  f.state.now = 2000;
+  f.connection.emit({ action: "escaped", playerId: MATE, useId: 30, itemId: 4 });
+  assert.deepEqual(f.presenter.of("endKartEffect").at(-1), [MATE, "trap"]);
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [MATE, "escapeShield", 2000, 2000]);
+  at(f, 2600);
+  assert.equal(f.presenter.of("kartEffect").filter(call => call[1] === "escapeShield").length, 1);
+
+  // Without an escape the blue shield starts when the bubble ends.
+  const g = controllerFixture();
+  serve(g);
+  at(g, 1000);
+  g.state.now = 1200;
+  g.connection.emit({ action: "hit", playerId: OTHER, useId: 0, itemId: ItemIdx.waterMine, result: "hit",
+    hazardId: 4 });
+  assert.deepEqual(g.presenter.of("kartEffect").at(-1), [OTHER, "trap", 1200, 2000]);
+  at(g, 3199);
+  assert.equal(g.presenter.of("kartEffect").length, 1);
+  at(g, 3216);
+  assert.deepEqual(g.presenter.of("kartEffect").at(-1), [OTHER, "escapeShield", 3200, 2000]);
+  // A late escape changes nothing.
+  g.state.now = 3300;
+  g.connection.emit({ action: "escaped", playerId: OTHER, useId: 0, itemId: ItemIdx.waterMine, hazardId: 4 });
+  assert.equal(g.presenter.of("kartEffect").length, 2);
+  assert.equal(g.presenter.of("endKartEffect").length, 0);
 });
