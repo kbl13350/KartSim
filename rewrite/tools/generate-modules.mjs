@@ -4764,11 +4764,13 @@ const itemHudDependencies = {
   cloud: {
     attribute: T, parseBml: s2, findResource: U1, parseModel: y9,
     collectPlayPanels: collectItemHudPlayPanels, finalizePlay: finalizeItemHudPlayPanels,
-    loadPlayScene: (binding, library) => Rw(binding, library),
+    loadPlayScene: (binding, library) => Rw(binding, library, { convertClientCoordinates: false }),
     createPlayRuntime: (binding, scene, tick) => new Iw(binding, scene, tick),
     createRenderer: runtimes => new fn(runtimes),
     makeUi: d5, layoutUi: dn, materialize: dt,
     controllerDuration: itemHudControllerDuration,
+    // The cover's billboards and hierarchy culling need a perspective camera.
+    createCamera: () => new Z9(),
   },
   warn: message => console.warn(message),
 };`);

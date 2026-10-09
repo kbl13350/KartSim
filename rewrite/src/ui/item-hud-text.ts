@@ -26,7 +26,7 @@ export interface HudTextContext {
 export interface HudTextCanvas {
   width: number;
   height: number;
-  getContext(kind: "2d"): HudTextContext | null;
+  getContext(kind: "2d", options?: { willReadFrequently?: boolean }): HudTextContext | null;
 }
 
 /** The game's CJK face (loaded at startup), as the rank board uses it. */
@@ -73,7 +73,8 @@ export class HudTextRasterizer {
   private render(spec: HudTextSpec): HudImage | undefined {
     if (this.canvas === undefined) this.canvas = this.createCanvas() ?? null;
     const canvas = this.canvas;
-    const context = canvas?.getContext("2d");
+    // Every string is read back once into a texture.
+    const context = canvas?.getContext("2d", { willReadFrequently: true });
     if (!canvas || !context) return undefined;
     const lines = spec.text.split("\n");
     let size = spec.style.size;

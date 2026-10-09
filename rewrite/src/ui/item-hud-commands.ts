@@ -302,29 +302,32 @@ function changerCommands(assets: ItemHudAssets, state: ItemHudState): HudPanelCo
   return commands;
 }
 
-/** scanning: the radar mark and opponents' slots (Slot type 0) beside their rank rows. */
+/**
+ * scanning: each opponent's slots beside their rank row, one Slot type 0
+ * cell per slot (the 30×30 frame of slot.png) with slot_scanning (23×23)
+ * as its backdrop and the item_s icon on top [还原: native layout].
+ */
 function scanCommands(assets: ItemHudAssets, input: ItemHudFrameInput): HudPanelCommand[] {
   const { state, rank } = input;
   if (!state.scan?.length || !rank) return [];
   const commands: HudPanelCommand[] = [];
   const small = input.smallSlot;
+  const size = small ? small.frame.rect.right - small.frame.rect.left : 30;
+  const backdrop = assets.scanning.texture;
   for (const row of rank.rows) {
     if (row.local) continue;
     const scan = state.scan.find(entry => entry.playerId === row.participantId);
     if (!scan) continue;
-    const top = rank.top + row.y;
+    const top = rank.top + row.y + Math.floor((rank.rowHeight - size) / 2);
     let left = rank.left + row.x + rank.rowWidth + 4;
-    const mark = assets.scanning.texture;
-    const markTop = top + Math.floor((rank.rowHeight - mark.height) / 2);
-    commands.push(hudPanel(assets.scanning.node, "slot_scanning", mark,
-      { left, top: markTop, right: left + mark.width, bottom: markTop + mark.height }));
-    left += mark.width + 2;
     for (const idx of scan.slots) {
-      const size = small ? small.frame.rect.right - small.frame.rect.left : 30;
-      const slotTop = top + Math.floor((rank.rowHeight - size) / 2);
-      const rect = { left, top: slotTop, right: left + size, bottom: slotTop + size };
+      const rect = { left, top, right: left + size, bottom: top + size };
       if (small) commands.push(hudPanel(small.frame.node, small.textureName, small.texture, rect,
         normalized(small.frame.uvPixels, small.texture)));
+      const inner = { left: left + Math.floor((size - backdrop.width) / 2),
+        top: top + Math.floor((size - backdrop.height) / 2) };
+      commands.push(hudPanel(assets.scanning.node, "slot_scanning", backdrop, { ...inner,
+        right: inner.left + backdrop.width, bottom: inner.top + backdrop.height }));
       const icon = idx >= 0 ? input.smallIcon(idx) : undefined;
       if (icon) {
         const inset = small?.frame.adjust ?? 0;

@@ -266,13 +266,15 @@ test("透视镜：对手名次行右侧显示道具槽小图标", () => {
       { participantId: "p3", x: 2, y: 66 },
     ] },
   });
+  // Row p2 at y 33 of the list at (0, 310): cells right of the 245 px row.
   assert.deepEqual(commands.map(command => [command.textureName, command.worldRect]), [
-    ["slot_scanning", { left: 251, top: 347, right: 274, bottom: 370 }],
-    ["slot", { left: 276, top: 343, right: 306, bottom: 373 }],
-    ["item_s7", { left: 276, top: 343, right: 306, bottom: 373 }],
-    ["slot", { left: 308, top: 343, right: 338, bottom: 373 }],
+    ["slot", { left: 251, top: 343, right: 281, bottom: 373 }],
+    ["slot_scanning", { left: 254, top: 346, right: 277, bottom: 369 }],
+    ["item_s7", { left: 251, top: 343, right: 281, bottom: 373 }],
+    ["slot", { left: 283, top: 343, right: 313, bottom: 373 }],
+    ["slot_scanning", { left: 286, top: 346, right: 309, bottom: 369 }],
   ]);
-  assert.deepEqual(commands[1]!.uv, { left: 0, top: Math.fround(98 / 128),
+  assert.deepEqual(commands[0]!.uv, { left: 0, top: Math.fround(98 / 128),
     right: Math.fround(30 / 256), bottom: 1 });
   assert.deepEqual(frame({ scan: [{ playerId: "p2", slots: [7] }] }), []);
 });
