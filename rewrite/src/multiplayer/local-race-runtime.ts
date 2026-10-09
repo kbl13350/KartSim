@@ -60,13 +60,17 @@ export function checkLocalRaceAutomaticReset(
     race.requestReset(false);
   }
   // A kart held by an item (bubble, missile, barricade, banana spin) is stopped on
-  // purpose; neither the wall timers nor the low-speed timer may reset it.
-  if (race.physics.itemEffects?.suppressesAutomaticReset) {
+  // purpose; neither the wall timers nor the low-speed timer may reset it. They ask
+  // again every slice while the kart is still stuck, so their requests are dropped.
+  // A crush asks only once: its request waits in the item effects until the hold ends.
+  const itemEffects = race.physics.itemEffects;
+  if (itemEffects?.suppressesAutomaticReset) {
     race.physics.consumeAutomaticResetRequest();
     race.lowSpeedResetStartedAtMs = 0;
     return;
   }
-  if (race.physics.consumeAutomaticResetRequest()) {
+  const crushed = itemEffects?.consumeCrushReset() === true;
+  if (race.physics.consumeAutomaticResetRequest() || crushed) {
     race.requestReset(false);
     return;
   }

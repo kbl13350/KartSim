@@ -57,6 +57,44 @@ test("an item hold suppresses the wall and low-speed automatic resets", () => {
   assert.equal(physics.runtime.fullPhysicsBypass, true);
 });
 
+test("a crush during a banana spin resets the kart once the spin ends", () => {
+  const { race, physics, resets } = itemRace();
+  physics.itemEffects.apply("spin", 2000);
+  // A directional press obstacle flattens the spinning kart: a one-shot reset request.
+  physics.activateDirectionalPress(2);
+  checkLocalRaceAutomaticReset(race, dependencies, 9000, 1 / 60);
+  assert.deepEqual(resets, [], "no reset while the spin suppresses automatic resets");
+  checkLocalRaceAutomaticReset(race, dependencies, 9016, 1 / 60);
+  assert.deepEqual(resets, []);
+
+  physics.itemEffects.end("spin");
+  checkLocalRaceAutomaticReset(race, dependencies, 9032, 1 / 60);
+  assert.deepEqual(resets, [false], "the crush reset was kept, not discarded");
+  race.resetState = { phase: 0 };
+  checkLocalRaceAutomaticReset(race, dependencies, 9048, 1 / 60);
+  assert.deepEqual(resets, [false], "and it fires only once");
+});
+
+test("wall timer requests during an item hold are dropped, not deferred", () => {
+  const { race, physics, resets } = itemRace();
+  physics.itemEffects.apply("spin", 2000);
+  physics.runtime.automaticResetRequest = true;
+  checkLocalRaceAutomaticReset(race, dependencies, 9000, 1 / 60);
+  physics.itemEffects.end("spin");
+  checkLocalRaceAutomaticReset(race, dependencies, 9016, 1 / 60);
+  assert.deepEqual(resets, []);
+});
+
+test("a crush outside an item hold resets once, as in speed races", () => {
+  const { race, physics, resets } = itemRace();
+  physics.activateDirectionalPress(2);
+  checkLocalRaceAutomaticReset(race, dependencies, 9000, 1 / 60);
+  assert.deepEqual(resets, [false]);
+  race.resetState = { phase: 0 };
+  checkLocalRaceAutomaticReset(race, dependencies, 9016, 1 / 60);
+  assert.deepEqual(resets, [false]);
+});
+
 test("falling off the track still resets a kart that is held by an item", () => {
   const { race, physics, resets } = itemRace();
   physics.itemEffects.apply("barrier", 500);

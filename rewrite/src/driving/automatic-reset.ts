@@ -14,6 +14,8 @@ export interface CollisionResetContext {
   };
   body: { linearVelocity: Vector3; angularVelocity: Vector3 };
   flyingPetListeners: Array<(active: boolean) => void>;
+  /** Item races: keeps the crush reset while an item effect suppresses automatic resets. */
+  itemEffects?: { requestCrushReset(): void };
   setVisualScaleMode(mode: number): void;
   advanceAutomaticResetTimer(elapsed: number, interrupted: boolean,
     seconds: number, threshold: number): number;
@@ -78,6 +80,7 @@ export function activateDirectionalCollisionPress(
   vehicle.flyingPetListeners.forEach(listener => listener(false));
   vehicle.runtime.obstacleSuppressionRemainingMs = 2_000;
   vehicle.runtime.automaticResetRequest = true;
+  vehicle.itemEffects?.requestCrushReset();
 }
 
 /** Enter a hard press and stop both linear and angular motion. */
