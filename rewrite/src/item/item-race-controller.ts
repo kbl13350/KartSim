@@ -1250,6 +1250,13 @@ export class ItemRaceController implements ItemCommandHandler {
   private endLocalRace(): void {
     this.ended = true;
     this.cancelAim();
+    for (const hit of this.incoming.values()) {
+      // A cloud still on its way never covers a finished racer: the presenter
+      // drops what it queued for me (the cover's removal sound).
+      if (hit.behaviour.effect !== "cloud") continue;
+      this.presenterCall(presenter => presenter.hit({ useId: hit.useId, itemId: hit.itemId,
+        victimId: this.playerId, userId: hit.userId, result: "blocked", atMs: this.nowMs }));
+    }
     this.incoming.clear();
     this.areas.clear();
     this.lockWindows.length = 0;

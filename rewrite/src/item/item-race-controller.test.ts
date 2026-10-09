@@ -1015,3 +1015,17 @@ test("a remote racer's early escape ends its bubble and starts its blue shield t
   assert.equal(g.presenter.of("kartEffect").length, 2);
   assert.equal(g.presenter.of("endKartEffect").length, 0);
 });
+
+test("a cloud still on its way when I finish never covers me, so the presenter drops it", () => {
+  const f = controllerFixture();
+  serve(f);
+  at(f, 1000);
+  used(f, { useId: 4, itemId: ItemIdx.cloud2, targets: [SELF], startAt: server(1000) });
+  used(f, { useId: 5, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(1000), etaMs: 900 });
+  f.state.racing = false;
+  at(f, 1300);
+  const hits = f.presenter.of("hit").map(call => call[0] as Record<string, unknown>);
+  assert.deepEqual(hits.map(hit => [hit.useId, hit.victimId, hit.result, hit.by]),
+    [[4, SELF, "blocked", undefined]]);
+  assert.equal(f.connection.of("hit").length, 0, "nothing is reported after the finish");
+});
