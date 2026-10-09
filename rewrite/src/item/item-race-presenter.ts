@@ -24,9 +24,9 @@ import {
  * angel, emp, timeBomb, magnet) and again from `kartEffect` keeps one visual,
  * and the local racer's own effect that `endKartEffect` already ended (a
  * shield spent on a block before the use's reply) is not brought back by the
- * reply's `used`. Visuals that should already be running when an event arrives late start
- * part-way through their animation; sounds more than `soundLateMs` late are
- * dropped.
+ * reply's `used`. Visuals that should already be running when an event
+ * arrives late start part-way through their animation; sounds more than
+ * `soundLateMs` late are dropped.
  */
 
 export interface ItemPresenterVec3 { x: number; y: number; z: number }
@@ -257,8 +257,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
   readonly loops = new Map<string, { playing: FxPlayingSound; anchor: SoundAnchor }>();
   readonly uses = new Map<number, UseRecord>();
   readonly slots = new Map<string, KartSlot>();
-  /** The planned span of slots `endKartEffect` cut short, by slot key, until the slot starts again. */
-  readonly endedSlots = new Map<string, { startMs: number; endMs: number }>();
+  /** The planned end of slots `endKartEffect` cut short, by slot key, until the slot starts again. */
+  readonly endedSlots = new Map<string, number>();
   /** The last item that hit each racer (the trap bubble follows it). */
   readonly trapCause = new Map<string, { fx: ItemFx; atMs: number }>();
   readonly placement: Placement = {
@@ -443,7 +443,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     if (!slot) return;
     const now = this.nowMs;
     if (slot.endMs <= now) return;
-    this.endedSlots.set(slotKey(playerId, kind), { startMs: slot.startMs, endMs: slot.endMs });
+    this.endedSlots.set(slotKey(playerId, kind), slot.endMs);
     this.retimeSlot(slot, Math.max(now, slot.startMs));
   }
 
@@ -714,8 +714,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
    */
   endedOwnEffect(key: string, playerId: string, startMs: number): boolean {
     if (playerId !== this.localPlayerId) return false;
-    const ended = this.endedSlots.get(key);
-    return ended !== undefined && startMs < ended.endMs;
+    const plannedEnd = this.endedSlots.get(key);
+    return plannedEnd !== undefined && startMs < plannedEnd;
   }
 
   scheduleAfter(slot: KartSlot, key: string): void {
@@ -875,8 +875,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       if (now - record.event.startMs > ITEM_FX_TUNING.useLifetimeMs) this.uses.delete(useId);
     for (const [key, slot] of this.slots)
       if (slot.endMs <= now && (!slot.after?.visual || this.ended(slot.after.visual))) this.slots.delete(key);
-    for (const [key, ended] of this.endedSlots)
-      if (now - ended.endMs > ITEM_FX_TUNING.useLifetimeMs) this.endedSlots.delete(key);
+    for (const [key, plannedEnd] of this.endedSlots)
+      if (now - plannedEnd > ITEM_FX_TUNING.useLifetimeMs) this.endedSlots.delete(key);
   }
 
   /**
