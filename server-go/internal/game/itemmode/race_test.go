@@ -10,7 +10,8 @@ import (
 // teamRace is a 组队道具赛 of a1, a2 (team 1) and b1, b2 (team 2).
 func teamRace(t *testing.T, random Random) *Race {
 	t.Helper()
-	r, err := NewRace(defaultData(t), TableTeam, []Member{{"a1", 1}, {"b1", 2}, {"a2", 1}, {"b2", 2}}, random)
+	r, err := NewRace(defaultData(t), TableTeam, []Member{{ID: "a1", Team: 1}, {ID: "b1", Team: 2},
+		{ID: "a2", Team: 1}, {ID: "b2", Team: 2}}, random, Options{RaceID: "race-team"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -20,7 +21,8 @@ func teamRace(t *testing.T, random Random) *Race {
 // soloRace is a 道具个人赛 of p1..p4.
 func soloRace(t *testing.T, random Random) *Race {
 	t.Helper()
-	r, err := NewRace(defaultData(t), TableIndividual, []Member{{"p1", 0}, {"p2", 0}, {"p3", 0}, {"p4", 0}}, random)
+	r, err := NewRace(defaultData(t), TableIndividual, []Member{{ID: "p1"}, {ID: "p2"}, {ID: "p3"}, {ID: "p4"}},
+		random, Options{RaceID: "race-solo"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -52,7 +54,7 @@ func wantErr(t *testing.T, err, want error) {
 }
 
 func TestNewRaceNeedsATable(t *testing.T) {
-	if _, err := NewRace(defaultData(t), "duo", nil, nil); err == nil {
+	if _, err := NewRace(defaultData(t), "duo", nil, nil, Options{}); err == nil {
 		t.Fatal("unknown table accepted")
 	}
 	if teamRace(t, nil).TableKind() != TableTeam || soloRace(t, nil).TableKind() != TableIndividual {
@@ -150,11 +152,14 @@ func TestTestCubeGrantsTheNamedItem(t *testing.T) {
 		!slices.Equal(grant.Slots, []int{Rocket, Devil}) {
 		t.Fatalf("full %+v", grant)
 	}
-	// Only items of the race's table: the individual table has no slot lock.
-	_, _, err = r.TestCube("p2", 1, 2, SlotLock, 0, standings)
+	// Only race items (a table or a special item): 0 (cloud) and 200 are not.
+	_, _, err = r.TestCube("p2", 1, 2, 0, 0, standings)
 	wantErr(t, err, ErrInvalidTestItem)
-	_, _, err = r.TestCube("p2", 1, 2, Mine, 0, standings)
+	_, _, err = r.TestCube("p2", 1, 2, 200, 0, standings)
 	wantErr(t, err, ErrInvalidTestItem)
+	if grant, _, err := r.TestCube("p4", 1, 2, Mine, 0, standings); err != nil || grant.ItemID != Mine {
+		t.Fatalf("special item test grant %+v %v", grant, err)
+	}
 	// Caps do not stop test grants, but test grants count toward them.
 	team := teamRace(t, &picks{})
 	teamStandings := order("b1", "b2", "a1", "a2")
@@ -244,7 +249,7 @@ func TestUseTargets(t *testing.T) {
 		{"a1", Scanning, "", nil, []string{"a1", "a2"}},    //
 		{"a1", Booster, "", nil, []string{"a1"}},           // self
 		{"a1", Shield, "", nil, []string{"a1"}},            //
-		{"a1", EMP, "", nil, []string{"a1"}},               //
+		{"a1", EMP, "", nil, []string{}},                   // nobody under a UFO: no effect
 		{"a1", Rocket, "b2", nil, []string{"b2"}},          // aimed
 		{"a1", Rocket, "", nil, []string{}},                // misfire
 		{"a1", Magnet, "b1", nil, []string{"b1"}},          //
@@ -363,7 +368,10 @@ func TestSlotLock(t *testing.T) {
 	if err := use("b2", Booster, 3_000); err != nil { // the user's team is not locked
 		t.Fatal(err)
 	}
-	r.Swap("a1", 3_000, standings)
+	r.racers["a1"].slotCards = Infinite
+	if _, _, err := r.Swap("a1", 3_000, standings); err != nil { // the slot changer works under a lock
+		t.Fatal(err)
+	}
 	if err := use("a1", Angel, 3_500); err != nil { // the angel works under a lock
 		t.Fatal(err)
 	}
@@ -382,11 +390,12 @@ func TestScanShowsOpponentSlotsToTheTeam(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	// The scan takes effect after Use (500) and lasts Affect (8000).
 	want := []ScanNotice{
-		{Viewer: "a1", Subject: "b1", Slots: []int{Shield, Banana}, Until: 18_000},
-		{Viewer: "a1", Subject: "b2", Slots: []int{Empty, Empty}, Until: 18_000},
-		{Viewer: "a2", Subject: "b1", Slots: []int{Shield, Banana}, Until: 18_000},
-		{Viewer: "a2", Subject: "b2", Slots: []int{Empty, Empty}, Until: 18_000},
+		{Viewer: "a1", Subject: "b1", Slots: []int{Shield, Banana}, Until: 18_500},
+		{Viewer: "a1", Subject: "b2", Slots: []int{Empty, Empty}, Until: 18_500},
+		{Viewer: "a2", Subject: "b1", Slots: []int{Shield, Banana}, Until: 18_500},
+		{Viewer: "a2", Subject: "b2", Slots: []int{Empty, Empty}, Until: 18_500},
 	}
 	if !slices.EqualFunc(result.Notices, want, sameNotice) {
 		t.Fatalf("scan snapshot %+v", result.Notices)
@@ -397,6 +406,7 @@ func TestScanShowsOpponentSlotsToTheTeam(t *testing.T) {
 		notices[0].Subject != "b2" || notices[0].Slots[0] == Empty {
 		t.Fatalf("grant notices %+v", notices)
 	}
+	r.racers["b1"].slotCards = 1
 	if _, notices, _ := r.Swap("b1", 13_000, standings); len(notices) != 2 ||
 		!slices.Equal(notices[0].Slots, []int{Banana, Shield}) {
 		t.Fatalf("swap notices %+v", notices)
@@ -405,7 +415,7 @@ func TestScanShowsOpponentSlotsToTheTeam(t *testing.T) {
 	if _, notices, _ := r.Cube("a2", 1, 2, 14_000, standings); notices != nil {
 		t.Fatalf("teammate notices %+v", notices)
 	}
-	if _, notices, _ := r.Cube("b2", 2, 2, 18_000, standings); notices != nil {
+	if _, notices, _ := r.Cube("b2", 2, 2, 18_500, standings); notices != nil {
 		t.Fatalf("expired scan %+v", notices)
 	}
 }
@@ -559,6 +569,7 @@ func TestHazardHits(t *testing.T) {
 
 func TestSwapNeedsTwoItems(t *testing.T) {
 	r := soloRace(t, nil)
+	r.racers["p1"].slotCards = Infinite
 	standings := order("p1", "p2")
 	_, _, err := r.Swap("p1", 0, standings)
 	wantErr(t, err, ErrInvalidUse)
