@@ -174,15 +174,14 @@ func TestAdminLedgerMergesBothLedgers(t *testing.T) {
 
 // The new columns and tables of the admin console exist after Migrate,
 // and its migrations re-apply over a database that has them (a crash
-// before the version was recorded, or the second-round columns of 121 on
-// a database that applied the first 120).
+// before the version was recorded).
 func TestAdminSchema(t *testing.T) {
 	db := datatest.MySQL(t)
-	if _, err := db.Exec("DELETE FROM schema_migrations WHERE version = 121"); err != nil {
+	if _, err := db.Exec("DELETE FROM schema_migrations WHERE version = 13"); err != nil {
 		t.Fatal(err)
 	}
 	if err := store.Migrate(context.Background(), db, datatest.Logger()); err != nil {
-		t.Fatalf("re-applying version 121: %v", err)
+		t.Fatalf("re-applying version 13: %v", err)
 	}
 	for _, column := range []string{"register_ip", "last_login_at", "last_login_ip", "banned_until", "ban_reason",
 		"last_seen_at", "last_seen_ip"} {

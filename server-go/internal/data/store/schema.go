@@ -692,14 +692,11 @@ var migrations = []migration{
 			PRIMARY KEY (id)
 		) ` + tableTail,
 	}},
-	// Version 120: the admin console (ADMIN.md 2). TEMPORARY number while the
-	// console is built on its own branch: at the merge it becomes the next
-	// free version, and development databases get their schema_migrations
-	// row renumbered. Registers and logins with the client address and
-	// browser (kept 180 days), each account's register and latest login
-	// address and its ban, and indexes for the admin lists, which page by
-	// time or filter by account.
-	{version: 120, statements: []string{
+	// Version 12: the admin console (ADMIN.md 2). Registers and logins with
+	// the client address and browser (kept 180 days), each account's
+	// register and latest login address and its ban, and indexes for the
+	// admin lists, which page by time or filter by account.
+	{version: 12, statements: []string{
 		`CREATE TABLE IF NOT EXISTS login_records (
 			id BIGINT NOT NULL AUTO_INCREMENT,
 			account_id CHAR(36) ` + idColumn + ` NOT NULL,
@@ -729,15 +726,11 @@ var migrations = []migration{
 		{table: "lottery_draws", name: "idx_lottery_draws_created", columns: "created_at"},
 		{table: "race_results", name: "idx_race_results_account", columns: "account_id, created_at"},
 	}},
-	// Version 121: the admin console's second round (ADMIN.md 5): when and
+	// Version 13: the admin console's second round (ADMIN.md 5): when and
 	// from where each account was last active with a session token (written
 	// at most every 5 minutes), sortable, and the reward-box list's time
-	// index. TEMPORARY number like 120, and a
-	// separate version only because development databases already applied
-	// the first 120: at the merge both are renumbered (120 and 121 become
-	// the next two free versions, or one), and the schema_migrations rows of
-	// development databases with them.
-	{version: 121, columns: []tableColumn{
+	// index.
+	{version: 13, columns: []tableColumn{
 		{table: "accounts", name: "last_seen_at", definition: "BIGINT NOT NULL DEFAULT 0"},
 		{table: "accounts", name: "last_seen_ip", definition: "VARCHAR(45) NOT NULL DEFAULT ''"},
 	}, indexes: []tableIndex{

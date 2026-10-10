@@ -29,7 +29,7 @@
 
 ## 2. 数据
 
-- 新迁移（开发期间用临时版本 **120**，合并到 main 时改成下一个正式编号，并把开发库里的 `schema_migrations` 行同步改号）：
+- 新迁移（schema 版本 **12**）：
   - `login_records`：`id` 自增、`account_id`、`kind`（`register` | `login`）、`ip` VARCHAR(45)、`user_agent` VARCHAR(255)、`at` BIGINT；索引 `(account_id, at)`、`(at)`、`(ip)`。
   - `accounts` 增加：`register_ip` VARCHAR(45) 默认 ''、`last_login_at` BIGINT 默认 0、`last_login_ip` VARCHAR(45) 默认 ''、`banned_until` BIGINT 默认 0、`ban_reason` VARCHAR(200) 默认 ''。
   - 管理列表用的索引：`accounts(created_at)`、`accounts(last_login_at)`、`wallet_ledger(created_at)`、`exp_ledger(created_at)`、`admin_grants(created_at)`、`purchases(created_at)`、`lottery_draws(created_at)`、`race_results(account_id, created_at)`。`login_records.account_id` 是随账号删除的外键。加列、加索引前先查 `information_schema`，迁移中断后可以重跑。
@@ -107,7 +107,7 @@
 
 ## 5. 第二轮（审查与浏览器验收后的补充）
 
-- **活跃时间**：`accounts` 增加 `last_seen_at` BIGINT 默认 0、`last_seen_ip` VARCHAR(45) 默认 ''，以及索引 `accounts(last_seen_at)`。开发库已经应用过第一版迁移 120，所以这两列放在**临时迁移 121**（`ensureColumn`/`ensureIndex`，可以重跑）；合并到 main 时 120 与 121 一起改成正式编号（可以合成一个），开发库的 `schema_migrations` 行同步改号。任何带会话令牌、处理成功（2xx）的请求都更新它们，同一账号最多每 5 分钟写一次（Redis `SET NX EX`，键按账号和北京日区分，所以零点后的第一个请求不会被节流挡住；没有 Redis 或 Redis 出错时用进程内节流）；注册与登录成功时也一并写入。每个账号每个北京日第一次用已保存的令牌活动、而当天还没有 `register`/`login`/`resume` 记录时，写一条 `login_records`，`kind` = `resume`（带当时的 IP 与浏览器，前端显示“自动登录”）。概览的“今日登录人数”`logins.uniqueToday` 统计今天有 `register`/`login`/`resume` 记录的不同账号；`logins.today` 仍是今天的 `login` 次数；`recentLogins` 仍只列 `login`。`AccountRow` 增加 `lastSeenAt`（没有为 `null`）`, lastSeenIp`（没有为空串）；用户列表排序增加 `lastSeenAt`，`q` 也匹配 `last_seen_ip`；登录记录的 `kind` 筛选接受 `resume`。
+- **活跃时间**：`accounts` 增加 `last_seen_at` BIGINT 默认 0、`last_seen_ip` VARCHAR(45) 默认 ''，以及索引 `accounts(last_seen_at)`。这两列放在迁移 **13**（`ensureColumn`/`ensureIndex`，可以重跑），同一迁移还给 `reward_box(created_at)` 加了索引供奖励箱列表使用。任何带会话令牌、处理成功（2xx）的请求都更新它们，同一账号最多每 5 分钟写一次（Redis `SET NX EX`，键按账号和北京日区分，所以零点后的第一个请求不会被节流挡住；没有 Redis 或 Redis 出错时用进程内节流）；注册与登录成功时也一并写入。每个账号每个北京日第一次用已保存的令牌活动、而当天还没有 `register`/`login`/`resume` 记录时，写一条 `login_records`，`kind` = `resume`（带当时的 IP 与浏览器，前端显示“自动登录”）。概览的“今日登录人数”`logins.uniqueToday` 统计今天有 `register`/`login`/`resume` 记录的不同账号；`logins.today` 仍是今天的 `login` 次数；`recentLogins` 仍只列 `login`。`AccountRow` 增加 `lastSeenAt`（没有为 `null`）`, lastSeenIp`（没有为空串）；用户列表排序增加 `lastSeenAt`，`q` 也匹配 `last_seen_ip`；登录记录的 `kind` 筛选接受 `resume`。
 - **物品数**：`inventoryCount` 只算数量大于 0 且未过期的物品（与玩家自己的“我的物品”一致）；物品列表接口仍列出全部行。
 - **解封**：`bannedUntil: 0`（或早于现在）解封时同时清空 `banReason`，除非同一请求里给了新原因；请求里带回的原因与库里的相同时不算新原因，照样清空。
 - **超级管理员**：`KART_ADMIN_USERNAMES` 里的账号只能由自己修改；其他管理员对它们的 PATCH / 踢下线返回 409 `PROTECTED_ADMIN`（先判断 `CANNOT_MODIFY_SELF`：自己踢自己、撤销自己的管理员、封禁自己仍是那个错误）。
