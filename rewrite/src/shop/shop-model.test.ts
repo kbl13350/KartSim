@@ -301,8 +301,10 @@ test("真实目录的原版布局：卡丁车全部以迅引擎卡片开头，�
   assert.deepEqual(names(queryShop(index, query({ tab: "kartBody" })).slice(0, 6)),
     ["概念车I 迅", "概念车S 迅-S", "概念车S 迅-B", "概念车S 迅-L", "棉花糖 迅", "爆烈 迅"]);
   assert.deepEqual(names(index.list(RECOMMEND_TAB, "new")), ["SVIP通行证手杖", "雯雯"]);
-  assert.equal(index.list("useful").length, 13);
-  assert.deepEqual(names(index.list("useful", "card").slice(0, 2)), ["双倍金币卡", "双倍经验卡"]);
+  assert.equal(index.list("useful").length, 15);
+  // The original useful/card page: the item changer vouchers (cards 3975, 3976), then the double cards.
+  assert.deepEqual(names(index.list("useful", "card").slice(0, 4)),
+    ["道具变更卡使用券", "道具换位卡使用券", "双倍金币卡", "双倍经验卡"]);
   assert.equal(index.list("package").length, 0);
   assert.equal(index.list("useful", "specialKit").length, 0);
   assert.equal(displayOffer(index.entry(3, 1518)!)!.price, 59);

@@ -26,7 +26,8 @@ export const DISCOUNT_TOLERANCE_POINTS = 2;
  * are recommand / kartBody / character / package / equip / useful; the
  * SubCats come from the current shopCat.xml cards where the original lists
  * the kind (balloon, headband, goggle, color, dye; handGearL under equip/etc;
- * rpLucciBonus under useful/card; headPhone under useful/etc; characters in
+ * rpLucciBonus and the item changer vouchers (slotChanger) under useful/card;
+ * headPhone under useful/etc; characters in
  * character, which has no SubCats). Kinds no current card lists follow
  * itemCat2ShopCat.bml: pets and flying pets are character-tab kinds (8001),
  * the 8004 decoration kinds go to equip/etc (the mall has no decoration
@@ -41,6 +42,8 @@ export const KIND_SHOP_CATEGORY = {
   uniform: ["equip", "etc"], decal: ["equip", "etc"], ridColor: ["equip", "etc"], slotBg: ["equip", "etc"],
   rpLucciBonus: ["useful", "card"], goItemSkinCard: ["useful", "card"], tachometer: ["useful", "card"],
   headPhone: ["useful", "etc"],
+  // The item changer vouchers: the current useful/card page lists cards 3975/3976.
+  slotChanger: ["useful", "card"],
 };
 
 /**

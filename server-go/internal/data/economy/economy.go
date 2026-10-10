@@ -68,10 +68,12 @@ const (
 	MarkLimited  = "limited"  // eventbuycount@cn 限购; some offer is Limited
 )
 
-// Kinds maps every sellable category to its itemTable kind. It is the set
-// of categories the garage can equip (rewrite garage-catalog.ts).
+// Kinds maps every sellable category to its itemTable kind: the categories
+// the garage can equip (rewrite garage-catalog.ts), plus the item changer
+// vouchers (7 slotChanger, rewrite/ITEM_MODE.md C.6), which no equipment
+// slot holds.
 var Kinds = map[int]string{
-	1: "character", 2: "color", 3: "kart", 4: "plate", 8: "goggle", 9: "balloon",
+	1: "character", 2: "color", 3: "kart", 4: "plate", 7: "slotChanger", 8: "goggle", 9: "balloon",
 	11: "headBand", 12: "headPhone", 16: "handGearL", 18: "uniform", 20: "decal",
 	21: "pet", 26: "aura", 27: "skidMark", 31: "ridColor", 32: "rpLucciBonus",
 	52: "flyingPet", 58: "goItemSkinCard", 61: "tachometer", 70: "dye", 71: "slotBg",

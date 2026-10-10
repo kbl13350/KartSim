@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -8,6 +9,7 @@ import (
 	"time"
 
 	"kartsim/internal/data/datatest"
+	"kartsim/internal/data/store"
 	"kartsim/internal/shared/contract"
 	"kartsim/internal/shared/rewards"
 )
@@ -78,6 +80,54 @@ func TestEquipmentVerifyReportsChangerCards(t *testing.T) {
 	clock.advance(time.Minute)
 	if got := verify(); got.Item != 7 {
 		t.Fatalf("expired item voucher: %+v", got)
+	}
+}
+
+// The shop sells the vouchers on their original cards (stockCard.xml
+// 3975/3976: 1/7/30 days for 10/45/140 点券); a purchase is a rental that
+// makes the matching changer unlimited, and buying again extends it.
+func TestChangerVouchersFromTheShop(t *testing.T) {
+	clock := newFakeClock(economyNoon)
+	h := newHarness(t, harnessOptions{mysql: true, now: clock.now})
+	u := datatest.Unique()
+	id, token := h.register("vs_"+u, "Vs"+u)
+	h.claimStarter(token, 2, 6, 4)
+	h.setWallet(id, store.Wallet{Coupon: 200})
+	for _, offer := range []struct {
+		id         string
+		item, days int
+		price      int64
+	}{{"s27494", 3, 1, 10}, {"s27478", 3, 7, 45}, {"s27479", 3, 30, 140},
+		{"s27495", 4, 1, 10}, {"s27480", 4, 7, 45}, {"s27481", 4, 30, 140}} {
+		item, ok := h.api.economy.Catalog.ItemByKey(7, offer.item)
+		if !ok || item.Kind != "slotChanger" || item.ShopCategory != "useful" || item.ShopSubCategory != "card" {
+			t.Fatalf("7:%d in the catalog: %+v", offer.item, item)
+		}
+		found := false
+		for _, o := range item.Offers {
+			found = found || (o.OfferID == offer.id && o.Days == offer.days && o.Price == offer.price && o.Currency == "coupon")
+		}
+		if !found || len(item.Offers) != 3 {
+			t.Fatalf("7:%d offers %+v", offer.item, item.Offers)
+		}
+	}
+	if _, ok := h.api.economy.Catalog.ItemByKey(7, 1); ok {
+		t.Fatal("the counted 道具换位卡 is on sale (it comes from card packs)")
+	}
+	buy := func(offerID string) {
+		t.Helper()
+		h.post("/api/shop/purchase", map[string]string{"offerId": offerID, "requestId": uuid()}, bearerHeader(token)).
+			expect(t, http.StatusOK, "")
+	}
+	buy("s27480") // 换位卡使用券, 7 days
+	buy("s27495") // and one more day
+	cards, err := h.api.store.Changers(context.Background(), id, clock.millis())
+	if err != nil || cards.Slot != -1 || cards.Item != 0 || cards.SlotUntil == nil ||
+		*cards.SlotUntil != clock.millis()+8*86_400_000 {
+		t.Fatalf("after buying vouchers: %+v %v", cards, err)
+	}
+	if wallet := h.wallet(id); wallet.Coupon != 200-45-10 {
+		t.Fatalf("wallet %+v", wallet)
 	}
 }
 

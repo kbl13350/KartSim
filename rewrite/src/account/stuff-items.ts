@@ -1,14 +1,21 @@
 /**
- * Counted items without a garage model: boxes (category 24, opened with
- * 开启), materials such as the 探险币 (34), K币 items (56), 62 and parts
- * fragments (67). Their CN names come from zeta_/cn/shop/data/item.kml and
- * their icons from stuff.rho (etc_/itemTable.kml names the resource:
- * <lottery id='1228' name='탐험대배낭상자'/> -> stuff/lottery/탐험대배낭상자.png).
+ * Counted items without a garage model: the item changer cards (category 7:
+ * 道具换位卡, 道具变更卡 and their timed 使用券, rewrite/ITEM_MODE.md C.6),
+ * boxes (category 24, opened with 开启), materials such as the 探险币 (34),
+ * K币 items (56), 62 and parts fragments (67). Their CN names come from
+ * zeta_/cn/shop/data/item.kml and their icons from stuff.rho
+ * (etc_/itemTable.kml names the resource: <lottery id='1228'
+ * name='탐험대배낭상자'/> -> stuff/lottery/탐험대배낭상자.png; the changer cards'
+ * stuff/card/*.1s are models, so they are listed without an icon).
  */
 import { x1 } from "../generated/formats.js";
 import type { InventoryItem } from "./account-session";
+import { remainingLabel } from "./ownership";
 
-export const STUFF_CATEGORIES: ReadonlySet<number> = new Set([24, 34, 56, 62, 67]);
+export const STUFF_CATEGORIES: ReadonlySet<number> = new Set([7, 24, 34, 56, 62, 67]);
+
+/** The item changer cards (道具换位卡 7:1, 道具变更卡 7:2, 使用券 7:3 / 7:4). */
+export const CHANGER_CATEGORY = 7;
 
 /** Boxes, the only stuff 我的物品 can use (开启). */
 export const BOX_CATEGORY = 24;
@@ -97,8 +104,11 @@ export function garageStuffItems(inventory: readonly InventoryItem[], info: Read
     .sort((a, b) => a.category - b.category || a.itemId - b.itemId)
     .map(item => {
       const known = info.get(stuffKey(item.category, item.itemId));
+      // A timed item (the changer vouchers) shows what is left of it.
+      const left = item.expiresAt === null || item.expiresAt === undefined ? undefined
+        : remainingLabel(item.expiresAt, now);
       return { kind: "stuff", category: item.category, itemId: item.itemId,
         title: known?.name ?? `${item.category}-${item.itemId}`, quantity: item.quantity,
-        ...(known?.icon ? { icon: known.icon } : {}) };
+        ...(known?.icon ? { icon: known.icon } : {}), ...(left ? { ownershipLabel: left } : {}) };
     });
 }

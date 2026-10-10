@@ -78,8 +78,15 @@ const KIND_TAB = {
   aura: ["equip", "aura"], skidMark: ["equip", "skidMark"], plate: ["equip", "plate"],
   uniform: ["equip", "etc"], decal: ["equip", "etc"], ridColor: ["equip", "etc"], slotBg: ["equip", "etc"],
   headPhone: ["equip", "etc"], rpLucciBonus: ["equip", "etc"], goItemSkinCard: ["equip", "etc"],
-  tachometer: ["equip", "etc"],
+  tachometer: ["equip", "etc"], slotChanger: ["equip", "etc"],
 };
+
+// Consumables the shop sells although the garage cannot equip them, by
+// itemTable kind: the item changer cards (category 7, <slotChanger>;
+// rewrite/ITEM_MODE.md C.6). Only the ones the original sells on a current
+// card are listed (the 使用券 vouchers, stockCard.xml 3975/3976: 1/7/30
+// days for 10/45/140 点券); they never get estimated prices.
+const CONSUMABLE_CATEGORY = { slotChanger: 7 };
 // itemCat2ShopCat.bml shopCat groups -> our tab (pcCafe/event groups 99xx are ignored).
 const BML_GROUP_TAB = { 8001: "character", 8002: "kartBody", 8003: "equip", 8004: "equip",
   8005: "equip", 8007: "equip" };
@@ -147,12 +154,13 @@ const SOURCES = {
   shopStrings: "stage_/mqShop/stage_stringBag.bml",
   baseStrings: "etc_/baseStringBag.xml",
   tcCashEvents: "zeta_/cn/content/tcCashEvent.xml",
+  itemTable: "etc_/itemTable.kml",
 };
 
 const garage = await library.timeAttackGarageCatalog();
 const timeAttackTracks = await library.timeAttackTrackCatalog();
 const [stocks, cards, shopCatRefs, shopItems, shopGroups, newRider, newRiderDefaults, levelTableRoot,
-  levelRewardText, shopStrings, baseStrings, tcCashEvents] = await Promise.all([
+  levelRewardText, shopStrings, baseStrings, tcCashEvents, itemTable] = await Promise.all([
   parseXmlAt(SOURCES.stocks).then(parseStocks),
   parseXmlAt(SOURCES.cards).then(parseStockCards),
   parseXmlAt(SOURCES.shopCat).then(parseShopCats),
@@ -165,6 +173,7 @@ const [stocks, cards, shopCatRefs, shopItems, shopGroups, newRider, newRiderDefa
   parseBmlAt(SOURCES.shopStrings).then(root => parseStringBag(root)),
   parseXmlAt(SOURCES.baseStrings).then(root => parseStringBag(root)),
   parseXmlAt(SOURCES.tcCashEvents).then(parseTcCashEvents),
+  parseXmlAt(SOURCES.itemTable),
 ]);
 // #sb(key) in the stage_mqShop layouts: the stage's own bag first, then the base bag.
 const shopLabel = key => shopStrings.get(key) || baseStrings.get(key) || undefined;
@@ -202,6 +211,30 @@ for (const kind of Object.keys(KIND_CATEGORY))
 for (const kind of garageKinds)
   if (!(kind in KIND_CATEGORY)) problem(`garage catalog kind ${kind} has no category mapping`);
 
+// The consumables with an original offer on a current card.
+const currentRefs = currentCardRefs(shopCatRefs, cards);
+const consumables = new Map();
+for (const node of itemTable.children) {
+  const category = CONSUMABLE_CATEGORY[node.name];
+  const itemId = Number(attr(node, "id"));
+  if (category === undefined || !Number.isSafeInteger(itemId) || itemId <= 0) continue;
+  const key = `${category}:${itemId}`;
+  consumables.set(key, { category, itemId, kind: node.name, internalId: attr(node, "name")?.trim(),
+    name: shopItems.get(key)?.name });
+}
+const consumableOffers = selectOriginalOffers(consumables, stocks, currentRefs).offers;
+const soldConsumables = new Set();
+for (const [key, entry] of consumables) {
+  // Only what a current card sells: the old 道具换位卡 / 道具变更卡 packs are
+  // on sale in stock.kml but on no card (the cards come from boxes).
+  if (!(consumableOffers.get(key) ?? []).some(offer => offer.carded)) continue;
+  if (!entry.internalId || !entry.name) { problem(`${key}: consumable without a name`); continue; }
+  if (shopItems.get(key)?.isAdditional) { problem(`${key}: a counted consumable on a card`); continue; }
+  addSellable(entry);
+  soldConsumables.add(key);
+}
+if (soldConsumables.size === 0) problem("no item changer voucher on sale");
+
 // Balloons are the count-based (isAdditional) kind: the original sells them
 // only in packs. Every item of such a category is treated as count-based,
 // including rows item.kml does not describe.
@@ -225,7 +258,6 @@ const isRentalOnly = key => rentalOnlyCategories.has(sellable.get(key).category)
 
 /* ---------- offers ---------- */
 
-const currentRefs = currentCardRefs(shopCatRefs, cards);
 const missingCards = new Set(shopCatRefs.filter(ref => !cards.has(ref.cardId)).map(ref => ref.cardId));
 const original = selectOriginalOffers(sellable, stocks, currentRefs);
 const poolOf = key => {
@@ -236,12 +268,17 @@ const poolOf = key => {
     `cat:${item.category}`, `sub:${tab}/${subTab}`, `tab:${tab}`, "all",
   ];
 };
-const estimated = estimateOffers({ sellable, originalOffers: original.offers, poolOf, isCountBased,
+// Consumables neither get nor shape estimated prices.
+const equippable = new Map([...sellable].filter(([key]) => !soldConsumables.has(key)));
+const estimated = estimateOffers({ sellable: equippable,
+  originalOffers: new Map([...original.offers].filter(([key]) => !soldConsumables.has(key))), poolOf, isCountBased,
   isRentalOnly });
 
 const finalOffers = new Map();
 for (const key of sellable.keys()) {
-  const offers = (original.offers.get(key) ?? estimated.estimates.get(key) ?? []).map(offer => ({
+  // A consumable is sold on the terms of its current cards only (ITEM_MODE.md C.6).
+  const offers = (original.offers.get(key) ?? estimated.estimates.get(key) ?? [])
+    .filter(offer => !soldConsumables.has(key) || offer.carded).map(offer => ({
     offerId: offer.offerId, currency: offer.currency, price: offer.price, days: offer.days,
     count: offer.count, source: offer.source, minExp: offer.minExp > 0 ? offer.minExp : undefined,
   })).sort(compareOffers);
@@ -365,6 +402,7 @@ const generatedFrom = `rewrite/tools/export-economy-data.mjs over mirror/${manif
   `revision ${manifest.revision}: sellable set = rewrite garage catalog ` +
   `(loadTimeAttackGarageCatalog), offers from ${SOURCES.stocks}, ${SOURCES.cards}, ` +
   `${SOURCES.shopCat}, names ${SOURCES.items}, tabs checked against ${SOURCES.shopGroups}, ` +
+  `plus the item changer vouchers (${SOURCES.itemTable} <slotChanger>) on sale on a current card, ` +
   `shop layout from ${SOURCES.shopCat} (${layout.latest} for 推荐) with labels from ${SOURCES.shopStrings} ` +
   `and ${SOURCES.baseStrings}, starter from ${SOURCES.newRider} and ${SOURCES.newRiderDefaults}. ` +
   "Do not edit by hand.";
