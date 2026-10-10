@@ -1,7 +1,7 @@
 import { serverError } from "./errors";
 import { MultiplayerHttpClient } from "./http";
-import { decodeMotionFrame, encodeMotionFrame, isNewerSequence,
-  type MotionFrame, type MotionPayloadKind } from "./motion";
+import { decodeMotionFrame, encodeMotionFrame, isNewerSequence, MOTION_MASK_OFFSET,
+  motionRaceTag, type MotionFrame, type MotionPayloadKind } from "./motion";
 import { PeerMesh, parsePeerSignal, type PeerDiagnostic } from "./peer-mesh";
 import { parseServerMessage, PROTOCOL_VERSION, ROOM_RULESET,
   type HelloRequest, type RoomSnapshot,
@@ -38,7 +38,11 @@ interface PendingRequest {
 interface MotionScope {
   roomId: string;
   raceId: string;
+  raceTag: number;
   members: Set<string>;
+  /** Local room slot and the members by slot (motion frames carry slots). */
+  slot: number;
+  players: Map<number, string>;
   recipientMask: number;
   enabled: boolean;
   sequence: number;
@@ -302,15 +306,19 @@ export class MultiplayerTransport {
       member.playerId !== playerId && loaded.has(member.playerId) ? mask | (1 << member.slot) : mask, 0);
     const enabled = (room.phase === "loading" && loaded.has(playerId)) ||
       room.phase === "countdown" || room.phase === "racing";
+    const slot = room.members.find((member) => member.playerId === playerId)!.slot;
+    const players = new Map(room.members.map((member) => [member.slot, member.playerId]));
     const previous = this.scope;
     if (previous?.roomId === room.roomId && previous.raceId === room.race.raceId) {
       previous.members = new Set(room.members.map((member) => member.playerId));
+      previous.slot = slot;
+      previous.players = players;
       previous.recipientMask = recipientMask;
       previous.enabled = enabled;
     } else {
       this.scope = {
-        roomId: room.roomId, raceId: room.race.raceId,
-        members: new Set(room.members.map((member) => member.playerId)),
+        roomId: room.roomId, raceId: room.race.raceId, raceTag: motionRaceTag(room.race.raceId),
+        members: new Set(room.members.map((member) => member.playerId)), slot, players,
         recipientMask, enabled, sequence: 0, received: new Map(),
       };
     }
@@ -327,14 +335,13 @@ export class MultiplayerTransport {
     const sequence = (scope.sequence + 1) >>> 0;
     try {
       const frame = encodeMotionFrame({
-        roomId: scope.roomId, raceId: scope.raceId, playerId: this.playerId,
-        sequence, recipientMask: 0, kind, payload,
+        slot: scope.slot, raceTag: scope.raceTag, sequence, recipientMask: 0, kind, payload,
       });
       const direct = this.peerMesh?.send(frame, sequence, mask);
       const relayMask = direct?.relayMask ?? mask;
       let sent = direct?.sent ?? false;
       if (relayMask && channel?.readyState === "open" && channel.bufferedAmount <= 8_192) {
-        frame[3] = relayMask;
+        frame[MOTION_MASK_OFFSET] = relayMask;
         channel.send(frame);
         sent = true;
       }
@@ -385,12 +392,13 @@ export class MultiplayerTransport {
 
   private acceptMotionFrame(frame: MotionFrame, fromServer: boolean): void {
     const scope = this.scope;
-    if (!scope || frame.roomId !== scope.roomId || frame.raceId !== scope.raceId ||
-        frame.playerId === this.playerId || !scope.members.has(frame.playerId)) return;
-    const last = scope.received.get(frame.playerId);
+    const playerId = scope?.players.get(frame.slot);
+    if (!scope || frame.raceTag !== scope.raceTag || playerId === undefined ||
+        playerId === this.playerId || !scope.members.has(playerId)) return;
+    const last = scope.received.get(playerId);
     if (last !== undefined && !isNewerSequence(frame.sequence, last)) return;
-    scope.received.set(frame.playerId, frame.sequence);
-    if (fromServer) this.peerMesh?.receivedFromServer(frame);
+    scope.received.set(playerId, frame.sequence);
+    if (fromServer) this.peerMesh?.receivedFromServer({ playerId });
     for (const listener of this.motionListeners) listener(frame);
   }
 

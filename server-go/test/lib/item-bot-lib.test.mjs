@@ -9,8 +9,8 @@ import { join } from "node:path";
 import { test } from "node:test";
 import {
   AREA_ITEMS, distanceBetween, hitDelayMs, hitEffect, hitReport, itemIndex, itemPoint, parseArgs, parseShift,
-  parseUseSchedule, quaternionFromMatrix, readAccount, RECORDER_SNIPPET, recordedRace, routeBasis, RouteWalker,
-  shotsOf, slotOffset,
+  parseUseSchedule, protocol40Frame, quaternionFromMatrix, readAccount, RECORDER_SNIPPET, recordedRace, routeBasis,
+  RouteWalker, shotsOf, slotOffset,
 } from "./item-bot-lib.mjs";
 import { ITEM, loadItemData, repoRoot } from "./item-race.mjs";
 
@@ -183,22 +183,48 @@ async function recorded(encoder, samples) {
 }
 
 test("recordings: the longest race, decoded, from the moment the kart moved", async t => {
-  assert.match(RECORDER_SNIPPET, /0x4d && bytes\[1\] === 0x4b/); // motion magic 19277, little-endian
+  assert.match(RECORDER_SNIPPET, /bytes\[0\] >= 1 && bytes\[0\] <= 10/); // protocol 40: the kind comes first
+  assert.match(RECORDER_SNIPPET, /RTCDataChannel\.prototype/);
   if (!haveTsx) return t.skip("rewrite/node_modules missing");
   const payload = await browser("rewrite/src/multiplayer/payload.ts");
   const { kartSample } = await import("./item-race.mjs");
-  const ids = { roomId: "00000000-0000-4000-8000-000000000001", playerId: "00000000-0000-4000-8000-000000000002" };
-  const sample = (tick, speed) => kartSample({ tick, observedPlayerId: ids.playerId,
+  const sample = (tick, speed) => kartSample({ tick, observedSlot: 2,
     pose: { position: { x: 0, y: 0, z: -tick / 100 }, velocity: { x: 0, y: 0, z: -speed } },
     progress: { distance: tick / 100, lap: 1 } });
-  const long = await recorded(new payload.GameMotionEncoder({ ...ids, raceId: "00000000-0000-4000-8000-0000000000aa" }),
+  const encoder = raceId => new payload.GameMotionEncoder({ raceId, slot: 2 });
+  const long = await recorded(encoder("aa000000-0000-4000-8000-0000000000aa"),
     [sample(1000, 0), sample(1064, 0), sample(1128, 5), sample(1192, 10)]);
-  const short = await recorded(new payload.GameMotionEncoder({ ...ids, raceId: "00000000-0000-4000-8000-0000000000bb" }),
-    [sample(9000, 3)]);
-  const race = recordedRace({ version: 1, frames: [...short, ...long, "AAAA"] }, new payload.GameMotionDecoder());
-  assert.deepEqual([race.samples.length, race.races, race.invalid, race.startTick], [4, 2, 1, 1028]);
+  const short = await recorded(encoder("bb000000-0000-4000-8000-0000000000bb"), [sample(9000, 3)]);
+  // A later race with the same tag starts its sequence over.
+  const again = await recorded(encoder("aa111111-0000-4000-8000-0000000000aa"), [sample(500, 1), sample(564, 1)]);
+  const race = recordedRace({ version: 2, frames: [...short, ...long, long[3], ...again, "AAAA"] },
+    new payload.GameMotionDecoder());
+  assert.deepEqual([race.samples.length, race.races, race.invalid, race.startTick], [4, 3, 1, 1028]);
   assert.equal(recordedRace({ frames: long, startTick: 1100 }, new payload.GameMotionDecoder()).startTick, 1100);
   assert.throws(() => recordedRace({ frames: [] }, new payload.GameMotionDecoder()), /no frames/);
+});
+
+test("recordings: version 1 frames (the release's 56-byte header) are converted", async t => {
+  if (!haveTsx) return t.skip("rewrite/node_modules missing");
+  const payload = await browser("rewrite/src/multiplayer/payload.ts");
+  const { kartSample } = await import("./item-race.mjs");
+  const sample = kartSample({ tick: 4000, observedSlot: 0, pose: { position: { x: 0, y: 0, z: -40 } },
+    progress: { distance: 40, lap: 1 } });
+  const current = new payload.GameMotionEncoder({ raceId: "cc000000-0000-4000-8000-0000000000cc", slot: 0 })
+    .encode(sample, 9, 4);
+  // The release's layout of the same frame: magic, kind, mask, three UUIDs, sequence, a 16-byte observed UUID.
+  const body = current.subarray(8);
+  const release = new Uint8Array(56 + body.length + 15);
+  release.set([0x4d, 0x4b, current[0], current[1]]);
+  release.set([0xcc], 20);
+  release.set(current.subarray(4, 8), 52);
+  release.set(body.subarray(0, 150), 56);
+  release.set(body.subarray(151), 56 + 166);
+  assert.deepEqual([...protocol40Frame(release)], [...current.slice(0, 2), 0, 0xcc, ...current.subarray(4)]);
+  assert.equal(protocol40Frame(current), current);
+  const race = recordedRace({ version: 1, frames: [Buffer.from(release).toString("base64")] },
+    new payload.GameMotionDecoder());
+  assert.deepEqual([race.samples.length, race.invalid, race.samples[0].raceProgress.distance], [1, 0, 40]);
 });
 
 test("items on the bot: arrival, report, hold-up and points", () => {

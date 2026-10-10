@@ -1,3 +1,4 @@
+import type { LicenseMissionSpec } from "../license/license-mission";
 import type { ChaseRule } from "./story-chase";
 
 /**
@@ -34,6 +35,8 @@ export interface StoryRaceRequest {
    * it down and running out fails the race.
    */
   timeLimitMs?: number;
+  /** 驾照考试: the step's own mission (license-mission.ts). */
+  license?: LicenseMissionSpec;
   /** Put the player's own kart, rider and Ready options back. */
   restore(): void;
   /** Clear rule of a finished race, asked at the finish line for the mission result. */

@@ -1,3 +1,6 @@
+import { licenseRouteTag } from "../license/license-mission";
+import { routeSurfaceKind, routeTagFamily } from "../world/route-tag";
+
 export interface RouteSurfaceListenerDependencies {
   routeEffect(tag: string): string;
 }
@@ -8,6 +11,11 @@ export function handleRouteSurfaceTag(listener: any, tag: string,
   const host = listener.host;
   if (!host.getPhysics().handleRouteSurfaceTag(tag))
     throw new Error(`${tag} 的 TimeAttack listener 尚未闭合。`);
+  // 驾照考试 tutorial points and scripted attacks belong to the license race.
+  if (routeSurfaceKind(routeTagFamily(tag)) === "rider-school") {
+    licenseRouteTag(listener, tag, listener.milliseconds ?? 0);
+    return;
+  }
   listener.applyWarpNextActions(host.warpNext.enter(tag,
     listener.warpNextEventFrame(tag, eventFrame),
     host.presentationClockMs, host.getTrack().data.warp));

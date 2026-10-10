@@ -54,7 +54,7 @@ import {
 } from "./server-go/test/lib/kart-client.mjs";
 import {
   browserAccepts, browserEventValidation, expectedTargets, grantable, ITEM, ITEM_NAMES, ITEM_RULES, ItemChannel,
-  itemLife, kartSample, loadItemData, MotionInbox, MotionPump, othersMask, rankGroup, ServerClock,
+  itemLife, kartSample, loadItemData, MotionInbox, motionRace, MotionPump, othersMask, rankGroup, ServerClock, slotOf,
 } from "./server-go/test/lib/item-race.mjs";
 
 const settings = readSettings();
@@ -64,7 +64,7 @@ const { isValidRoomSnapshot } = await tsImport(
 const { parseServerEvent } = await tsImport(
   "./rewrite/src/multiplayer/server-events.ts", import.meta.url);
 const { isValidItemRequest } = await tsImport("./rewrite/src/multiplayer/protocol.ts", import.meta.url);
-const { GameMotionDecoder, GameMotionEncoder } = await tsImport(
+const { GameMotionDecoder, GameMotionEncoder, resolveGameMotion } = await tsImport(
   "./rewrite/src/multiplayer/payload.ts", import.meta.url);
 const validation = browserEventValidation(isValidRoomSnapshot);
 /**
@@ -286,7 +286,7 @@ async function careerValues(account) {
 
 /** One racer of an item scenario: its peer, item channel, motion and slot capacity. */
 class ItemRacer {
-  constructor(peer, { roomId, raceId, base, capacity }) {
+  constructor(peer, { roomId, raceId, base, capacity, race }) {
     this.peer = peer;
     this.id = peer.playerId;
     this.label = peer.account.nickname;
@@ -295,7 +295,8 @@ class ItemRacer {
     this.cube = 0;
     this.items = new ItemChannel(peer.control, { roomId, raceId, validRequest: isValidItemRequest,
       label: this.label });
-    this.inbox = new MotionInbox(peer.control.socket, new GameMotionDecoder());
+    // Relayed frames name their sender by slot (protocol 40), resolved through the race's members.
+    this.inbox = new MotionInbox(peer.control.socket, new GameMotionDecoder(), wire => resolveGameMotion(wire, race));
     // The server's own slots pushes (the race start, per-kart gains).
     peer.control.socket.addEventListener("message", event => {
       if (typeof event.data !== "string") return;
@@ -720,7 +721,7 @@ async function itemRace(team) {
         `${room.race.trackId} is not in the browser's item track catalog (本局赛道不在当前资源目录中。)`);
     }
     racers.push(...ordered.map((peer, index) => new ItemRacer(peer, { roomId, raceId,
-      base: ITEM_RACE_BASES[index], capacity: index === 0 ? 3 : 2 })));
+      base: ITEM_RACE_BASES[index], capacity: index === 0 ? 3 : 2, race: motionRace(room) })));
     const [first, second, third, fourth] = racers;
     // Not loaded yet: refused before the sequence check.
     await second.items.expectError("cube", { cubeId: 1, capacity: 2 }, "RACE_NOT_RUNNING", { consumed: false });
@@ -756,8 +757,8 @@ async function itemRace(team) {
     for (const [index, racer] of racers.entries()) {
       racer.pump = new MotionPump({
         socket: racer.peer.control.socket, clock, mask: othersMask(room, racer.id),
-        encoder: new GameMotionEncoder({ roomId, raceId, playerId: racer.id }),
-        sample: at => kartSample({ tick: 0, observedPlayerId: racer.id,
+        encoder: new GameMotionEncoder({ raceId, slot: slotOf(room, racer.id) }),
+        sample: at => kartSample({ tick: 0, observedSlot: slotOf(room, racer.id),
           pose: { position: { x: index * 2, y: 0, z: -race.distance(racer.id, at) },
             velocity: { x: 0, y: 0, z: -ITEM_RACE_SPEED } },
           progress: { distance: race.distance(racer.id, at), lap: 1 } }),
@@ -771,6 +772,7 @@ async function itemRace(team) {
     assert.ok(relayed?.payload.raceProgress, `${fourth.label} received no motion of ${first.label}`);
     assert.ok(Math.abs(relayed.payload.raceProgress.distance - race.distance(first.id)) < 10);
     assert.equal(fourth.inbox.invalid, 0, "the browser decoder rejected relayed motion frames");
+    assert.equal(fourth.inbox.unresolved, 0, "relayed motion frames named no racer of this race");
     console.log(`✓ ${label}: room, item tracks and random tracks, loading and motion frames on ${room.race.trackId}`);
 
     // Grants: the first cube fixes the slot count (3 here), the same cube

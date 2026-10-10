@@ -324,7 +324,7 @@ func (h *harness) sink(c *Client) *recordingSink { return h.sinks[c] }
 
 func helloRequest(name, token string) map[string]any {
 	return map[string]any{"type": "hello",
-		"protocolVersion": 39, "ruleset": "launcher-room-v1",
+		"protocolVersion": 40, "ruleset": "launcher-room-v1",
 		"resourceVersion": "p3553", "name": name, "initial": "",
 		"raceRuntime": true, "equipment": equipment(), "ticket": token}
 }

@@ -99,7 +99,9 @@ func TestLicenseAPI(t *testing.T) {
 	// Runs keep the pace of the clock.
 	h.post("/api/license/run", map[string]any{"requestId": newUUID(), "step": 2, "elapsedMs": 9000}, auth).
 		expect(t, http.StatusTooManyRequests, "TOO_MANY_ATTEMPTS")
-	run(2, 50000).expect(t, http.StatusOK, "")
+	// 获得道具 is an item mission with its release 10 s.
+	run(2, 10001).expect(t, http.StatusConflict, "MISSION_FAILED")
+	run(2, 9500).expect(t, http.StatusOK, "")
 	// 弯道练习 1 has 13 s.
 	run(3, 13001).expect(t, http.StatusConflict, "MISSION_FAILED")
 	run(3, 12000).expect(t, http.StatusOK, "")
@@ -107,8 +109,12 @@ func TestLicenseAPI(t *testing.T) {
 	run(4, 1).expect(t, http.StatusBadRequest, "INVALID_ELAPSED_MS")
 
 	h.post("/api/license/take", map[string]int{"level": 1}, auth).expect(t, http.StatusConflict, "LICENSE_INCOMPLETE")
-	for _, step := range []int{4, 5, 6} {
-		run(step, 20000).expect(t, http.StatusOK, "")
+	// 导弹练习 30 s, 磁铁练习 5.5 s, 漂移 1 25 s.
+	for _, step := range []struct {
+		step    int
+		elapsed int64
+	}{{4, 20000}, {5, 5000}, {6, 20000}} {
+		run(step.step, step.elapsed).expect(t, http.StatusOK, "")
 	}
 	h.post("/api/license/take", map[string]int{"level": 2}, auth).expect(t, http.StatusConflict, "LICENSE_LOCKED")
 	h.post("/api/license/take", map[string]int{"level": 1}, auth).expect(t, http.StatusOK, "").json(t, fresh(&body))
@@ -122,13 +128,13 @@ func TestLicenseAPI(t *testing.T) {
 	// L2 steps pay koin; PRO needs L1 and the qualification.
 	datatest.Exec(t, h.db, "UPDATE account_progress SET exp = 100000000, level = 60 WHERE account_id = ?", id)
 	datatest.Exec(t, h.db, "UPDATE license_state SET level = 3 WHERE account_id = ?", id)
-	run(19, 30000).expect(t, http.StatusOK, "").json(t, fresh(&body))
+	run(19, 4000).expect(t, http.StatusOK, "").json(t, fresh(&body))
 	if body.Run.Reward == nil || body.Run.Reward.Items[0].Currency != "koin" || body.Account.Wallet.Koin < 20 ||
 		body.State.TryLevel != 5 {
 		t.Fatalf("step 19 %+v", body)
 	}
 	duel, _, _, _ := data.Step(21)
-	run(20, 60000).expect(t, http.StatusOK, "")
+	run(20, 20000).expect(t, http.StatusOK, "")
 	run(21, duel.RivalMs).expect(t, http.StatusConflict, "MISSION_FAILED")
 	run(21, duel.RivalMs-1).expect(t, http.StatusOK, "")
 

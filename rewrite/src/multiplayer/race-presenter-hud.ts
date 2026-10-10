@@ -10,6 +10,9 @@ interface RaceRankBoard {
 interface RaceProgress { distance?: number; lap?: number; [key: string]: unknown }
 interface RaceResult { playerId: unknown; elapsedMs: number | null }
 
+/** Rank progress of a racer that left before reporting any: behind everyone. */
+const OUT_WITHOUT_PROGRESS: RaceProgress = Object.freeze({ distance: -Number.MAX_VALUE, lap: 0 });
+
 export interface RacePresenterHudHost {
   playerId: unknown;
   race: { roster: Array<{ playerId: unknown; name: string }> };
@@ -93,19 +96,18 @@ export function finishRacePresenterFrame(host: RacePresenterHudHost,
     ? undefined : runtime.latencyMs(id);
   const tints = hud.markerTints();
   // Not in the release: a racer out of the race before it reported any
-  // progress (it never loaded, or left first) would keep the progress board
-  // from ever forming, so it is left off the board.
-  const roster = race.roster.some(racer => remotes.hasDeparted(racer.playerId))
-    ? race.roster.filter(racer => !remotes.hasDeparted(racer.playerId) ||
-      host.rankRoster.progress(racer.playerId) !== undefined)
-    : race.roster;
-  const progressBoard = dependencies.rankByProgress(roster, playerId,
-    id => host.rankRoster.progress(id), tints,
-    runtime.finishSnapshot(), latency);
+  // progress (it never loaded, or left while the race was starting) would
+  // keep the progress board from ever forming, so it ranks last there. It
+  // stays on the board: the release board throws when its racers or slots
+  // change during a race, which stopped the race for everyone still in it.
+  const progress = (id: unknown) => host.rankRoster.progress(id) ??
+    (remotes.hasDeparted(id) ? OUT_WITHOUT_PROGRESS : undefined);
+  const progressBoard = dependencies.rankByProgress(race.roster, playerId,
+    progress, tints, runtime.finishSnapshot(), latency);
   physics.giant?.setRank(progressBoard === undefined
     ? undefined : progressBoard.rank! - 1);
 
-  let board = progressBoard ?? dependencies.rankFallback(roster,
+  let board = progressBoard ?? dependencies.rankFallback(race.roster,
     playerId, hud.markerTints(), id => remotes.rankDisconnected(id)
       ? undefined : runtime.latencyMs(id));
   const results = runtime.resultSnapshot();

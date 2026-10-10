@@ -1,4 +1,5 @@
-export const PROTOCOL_VERSION = 39;
+/** 40 since motion frames name racers by room slot (motion.ts); the release is 39. */
+export const PROTOCOL_VERSION = 40;
 export const ROOM_RULESET = "launcher-room-v1";
 
 export type ResourceVersion = "p3528" | "p3543" | "p3553";

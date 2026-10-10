@@ -29,7 +29,7 @@ func TestDefaults(t *testing.T) {
 		!slices.Equal(cfg.TrustedProxies, DefaultTrustedProxies) {
 		t.Fatalf("unexpected economy defaults: %+v", cfg)
 	}
-	if cfg.MessengerMaxConnections != 5000 || cfg.MessengerSendBufferBytes != 262144 {
+	if cfg.MessengerMaxConnections != 5000 || cfg.MessengerSendBufferBytes != 262144 || !cfg.WSCompression {
 		t.Fatalf("unexpected messenger defaults: %+v", cfg)
 	}
 }
@@ -39,8 +39,9 @@ func TestMessengerSettings(t *testing.T) {
 		"KART_CLUSTER_SECRET":              secret,
 		"KART_MESSENGER_MAX_CONNECTIONS":   " 120 ",
 		"KART_MESSENGER_SEND_BUFFER_BYTES": "65536",
+		"KART_WS_COMPRESSION":              "off",
 	}))
-	if err != nil || cfg.MessengerMaxConnections != 120 || cfg.MessengerSendBufferBytes != 65536 {
+	if err != nil || cfg.MessengerMaxConnections != 120 || cfg.MessengerSendBufferBytes != 65536 || cfg.WSCompression {
 		t.Fatalf("got %+v, %v", cfg, err)
 	}
 	for name, values := range map[string]map[string]string{
@@ -136,6 +137,7 @@ func TestRejectsInvalidSettings(t *testing.T) {
 		"bad lucci":        {"KART_CLUSTER_SECRET": secret, "KART_STARTING_LUCCI": "-5"},
 		"fraction lucci":   {"KART_CLUSTER_SECRET": secret, "KART_STARTING_LUCCI": "1.5"},
 		"bad proxy":        {"KART_CLUSTER_SECRET": secret, "KART_TRUSTED_PROXIES": "10.0.0.0/8,proxy.local"},
+		"bad compression":  {"KART_CLUSTER_SECRET": secret, "KART_WS_COMPRESSION": "gzip"},
 	}
 	for name, values := range cases {
 		if _, err := FromEnv(env(values)); err == nil {

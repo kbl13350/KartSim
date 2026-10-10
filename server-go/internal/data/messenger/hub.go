@@ -119,7 +119,7 @@ type Options struct {
 	MaxConnections  int           // [5000] sockets, hello'd or not; more get HTTP 503 SERVER_BUSY
 	MaxPerAccount   int           // [4] sockets per account; another closes the oldest with 4002
 	SendBufferLimit int           // [262144] queued bytes per socket; more closes it with 1008
-	ReadLimit       int64         // [8 KiB] per message
+	ReadLimit       int64         // [8 KiB] per message, also once decompressed
 	HelloTimeout    time.Duration // [10 s] until the hello frame
 	ReadTimeout     time.Duration // [90 s] without any frame
 	PingInterval    time.Duration // [30 s]
@@ -138,8 +138,12 @@ type Options struct {
 	ChatMute  time.Duration
 	// CheckOrigin is the upgrader's Origin policy (netcfg.CheckWebSocketOrigin).
 	CheckOrigin func(*http.Request) bool
-	Now         func() time.Time // the chat limiter clock [time.Now]
-	Logger      *slog.Logger
+	// DisableCompression never negotiates permessage-deflate
+	// (KART_WS_COMPRESSION=false); otherwise text of wsdeflate.MinBytes or
+	// more goes compressed to browsers that offer it.
+	DisableCompression bool
+	Now                func() time.Time // the chat limiter clock [time.Now]
+	Logger             *slog.Logger
 }
 
 func (o *Options) defaults() {
@@ -262,8 +266,9 @@ func New(backend Backend, opts Options) *Hub {
 		opts:    opts,
 		log:     opts.Logger,
 		upgrader: websocket.Upgrader{
-			HandshakeTimeout: 10 * time.Second,
-			CheckOrigin:      opts.CheckOrigin,
+			HandshakeTimeout:  10 * time.Second,
+			CheckOrigin:       opts.CheckOrigin,
+			EnableCompression: !opts.DisableCompression,
 		},
 		conns:    map[*conn]struct{}{},
 		accounts: map[string]*account{},

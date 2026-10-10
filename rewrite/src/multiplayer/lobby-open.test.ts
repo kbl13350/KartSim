@@ -5,6 +5,7 @@ import test from "node:test";
 import type { GameServer } from "./game-servers";
 import { openMultiplayerLobby, type LobbyOpenClient, type LobbyOpenDependencies,
   type LobbyOpenHost } from "./lobby-open";
+import { PROTOCOL_VERSION } from "./protocol";
 
 const source = readFileSync(new URL("../../../recovered/formatted/index.js", import.meta.url), "utf8");
 const classStart = source.indexOf("class Wl0 {");
@@ -42,12 +43,12 @@ function fixture(account: { nickname: string } | undefined,
     }, dispose: () => events.push(["dispose", number]) };
   };
   const deps: LobbyOpenDependencies = {
-    protocolVersion: 39,
+    protocolVersion: PROTOCOL_VERSION,
     pageUrl: () => "http://127.0.0.1:8780/",
     endpoint: (path, pageUrl) => new URL(`/multiplayer/${path}`, pageUrl).href,
     fetchHealth: async (url, signal) => {
       events.push(["health", url, signal.aborted]);
-      return { ok: true, json: async () => ({ protocolVersion: options.version ?? 39 }) };
+      return { ok: true, json: async () => ({ protocolVersion: options.version ?? PROTOCOL_VERSION }) };
     },
     showAccountProgress: (_root, signal) => {
       events.push(["progress", signal.aborted]);

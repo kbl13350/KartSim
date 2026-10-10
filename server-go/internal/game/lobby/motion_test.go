@@ -4,36 +4,26 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"math"
-	"strings"
 	"testing"
 	"time"
 )
 
-func uuidBytes(id string) []byte {
-	b, err := hex.DecodeString(strings.ReplaceAll(id, "-", ""))
-	if err != nil || len(b) != 16 {
-		panic("bad uuid " + id)
-	}
-	return b
-}
-
-// motionFrame is a frame of length: the kinematic kind of that payload
-// length with a payload the browsers accept (an identity quaternion, unit
-// collision scales, at the origin), or kind 1 with a zero payload, which
-// they refuse, for any other length.
-func motionFrame(roomID, raceID, playerID string, mask byte, length int) []byte {
+// motionFrame is a protocol 40 frame of the given length: the recipient
+// mask, the slot the client claims and raceID's tag, and the kinematic kind
+// of that payload length with a payload the browsers accept (an identity
+// quaternion, unit collision scales, at the origin), or kind 1 with a zero
+// payload, which they refuse, for any other length.
+func motionFrame(raceID string, slot, mask byte, length int) []byte {
 	frame := make([]byte, length)
-	binary.LittleEndian.PutUint16(frame, motionMagic)
-	frame[2] = 1
-	frame[3] = mask
-	copy(frame[4:20], uuidBytes(roomID))
-	copy(frame[20:36], uuidBytes(raceID))
-	copy(frame[36:52], uuidBytes(playerID))
+	frame[0] = 1
+	frame[motionMaskOffset] = mask
+	frame[motionSlotOffset] = slot
+	frame[motionRaceTagOffset] = motionRaceTag(raceID)
 	for kind := 2; kind <= 10; kind++ {
 		if length != motionHeaderLength+kinematicPayloadLength(kind) {
 			continue
 		}
-		frame[2] = byte(kind)
+		frame[0] = byte(kind)
 		payload := frame[motionHeaderLength:]
 		binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(1))
 		if kind >= 6 {
@@ -53,7 +43,7 @@ func TestMotionRelayFiltering(t *testing.T) {
 
 	a, b, c := racers[0], racers[1], racers[2]
 	// No race yet: nothing is relayed.
-	h.lobby.RelayMotion(a, motionFrame(roomID, roomID, a.playerID, 0xFF, 136))
+	h.lobby.RelayMotion(a, motionFrame(roomID, 0, 0xFF, 88))
 
 	room = h.command(a, map[string]any{"type": "start", "roomId": roomID, "revision": room["revision"]})
 	raceID := raceOf(room)["raceId"].(string)
@@ -74,59 +64,65 @@ func TestMotionRelayFiltering(t *testing.T) {
 	expect("before race", [4]int{})
 
 	// Loading: only loaded racers named by the mask receive, never the sender.
-	h.lobby.RelayMotion(a, motionFrame(roomID, raceID, a.playerID, 0xFF, 136))
+	h.lobby.RelayMotion(a, motionFrame(raceID, 0, 0xFF, 88))
 	expect("loaded peer", [4]int{0, 1, 0, 0})
 	// The recipient mask is by slot: slot 1 (b) cleared.
-	h.lobby.RelayMotion(a, motionFrame(roomID, raceID, a.playerID, 0xFD, 136))
+	h.lobby.RelayMotion(a, motionFrame(raceID, 0, 0xFD, 88))
 	expect("mask without b", [4]int{0, 1, 0, 0})
 	// A racer that has not loaded cannot send.
-	h.lobby.RelayMotion(c, motionFrame(roomID, raceID, c.playerID, 0xFF, 136))
+	h.lobby.RelayMotion(c, motionFrame(raceID, 2, 0xFF, 88))
 	expect("unloaded sender", [4]int{0, 1, 0, 0})
 
+	otherRace := motionFrame(raceID, 1, 0xFF, 88)
+	otherRace[motionRaceTagOffset] ^= 0xFF
 	dropped := map[string][]byte{
-		"spoofed player": motionFrame(roomID, raceID, a.playerID, 0xFF, 136),
-		"wrong room":     motionFrame(raceID, raceID, b.playerID, 0xFF, 136),
-		"wrong race":     motionFrame(roomID, roomID, b.playerID, 0xFF, 136),
-		"too short":      motionFrame(roomID, raceID, b.playerID, 0xFF, 135),
-		"too long":       motionFrame(roomID, raceID, b.playerID, 0xFF, 235),
+		"another race": otherRace,
+		"too short":    motionFrame(raceID, 1, 0xFF, 87),
+		"too long":     motionFrame(raceID, 1, 0xFF, 172),
 	}
-	badMagic := motionFrame(roomID, raceID, b.playerID, 0xFF, 136)
-	badMagic[0] ^= 1
-	dropped["bad magic"] = badMagic
+	// A release frame (56-byte header, magic 19277) is dropped by its kind byte.
+	release := make([]byte, 136)
+	binary.LittleEndian.PutUint16(release, 19_277)
+	release[2] = 1
+	dropped["release frame"] = release
 	for _, kind := range []byte{0, 11, 0x80} {
-		frame := motionFrame(roomID, raceID, b.playerID, 0xFF, 136)
-		frame[2] = kind
+		frame := motionFrame(raceID, 1, 0xFF, 88)
+		frame[0] = kind
 		dropped["payload type "+hex.EncodeToString([]byte{kind})] = frame
 	}
 	for name, frame := range dropped {
 		h.lobby.RelayMotion(b, frame)
 		expect(name, [4]int{0, 1, 0, 0})
 	}
-	h.lobby.RelayMotion(b, motionFrame(roomID, raceID, b.playerID, 0xFF, 234))
+	// The node stamps the sender's own slot: b claiming a's slot 0 is relayed as slot 1.
+	h.lobby.RelayMotion(b, motionFrame(raceID, 0, 0xFF, 171))
 	expect("max length", [4]int{1, 1, 0, 0})
+	if got := h.sink(a).frames[0]; len(got) != 171 || got[motionSlotOffset] != 1 {
+		t.Fatalf("relayed frame: %d bytes, slot %d", len(got), got[motionSlotOffset])
+	}
 
 	// Countdown and racing relay to every loaded racer.
 	h.must(c, map[string]any{"type": "loaded", "roomId": roomID, "raceId": raceID})
-	h.lobby.RelayMotion(a, motionFrame(roomID, raceID, a.playerID, 0xFF, 234))
+	h.lobby.RelayMotion(a, motionFrame(raceID, 0, 0xFF, 171))
 	expect("countdown", [4]int{1, 2, 1, 0})
 	h.clock.Advance(3 * time.Second)
-	h.lobby.RelayMotion(c, motionFrame(roomID, raceID, c.playerID, 0xFF, 234))
+	h.lobby.RelayMotion(c, motionFrame(raceID, 2, 0xFF, 171))
 	expect("racing", [4]int{2, 3, 1, 0})
 
 	// A finished race relays nothing.
 	for _, p := range racers {
 		h.must(p, map[string]any{"type": "finish", "roomId": roomID, "raceId": raceID, "elapsedMs": 1})
 	}
-	h.lobby.RelayMotion(a, motionFrame(roomID, raceID, a.playerID, 0xFF, 234))
+	h.lobby.RelayMotion(a, motionFrame(raceID, 0, 0xFF, 171))
 	expect("finished", [4]int{2, 3, 1, 0})
 	// Clients outside any room are ignored.
-	h.lobby.RelayMotion(h.newClient(), motionFrame(roomID, raceID, a.playerID, 0xFF, 234))
+	h.lobby.RelayMotion(h.newClient(), motionFrame(raceID, 0, 0xFF, 171))
 }
 
 // progressFrame is a kinematic frame of kind whose route distance is distance.
-func progressFrame(roomID, raceID, playerID string, kind int, distance float64) []byte {
-	frame := motionFrame(roomID, raceID, playerID, 0xFF, motionHeaderLength+kinematicPayloadLength(kind))
-	frame[2] = byte(kind)
+func progressFrame(raceID string, kind int, distance float64) []byte {
+	frame := motionFrame(raceID, 0, 0xFF, motionHeaderLength+kinematicPayloadLength(kind))
+	frame[0] = byte(kind)
 	if len(frame) >= progressOffset+8 { // kinds 2 and 3 have no progress section
 		binary.LittleEndian.PutUint64(frame[progressOffset:], math.Float64bits(distance))
 	}
@@ -135,7 +131,7 @@ func progressFrame(roomID, raceID, playerID string, kind int, distance float64) 
 
 func TestKinematicPayloadLengths(t *testing.T) {
 	// payload.ts decodeKinematicSample base lengths, plus 12 for visual scale (9, 10).
-	want := map[int]int{1: 0, 2: 80, 3: 108, 4: 124, 5: 128, 6: 137, 7: 149, 8: 166, 9: 161, 10: 178, 11: 0}
+	want := map[int]int{1: 0, 2: 80, 3: 108, 4: 124, 5: 128, 6: 137, 7: 149, 8: 151, 9: 161, 10: 163, 11: 0}
 	for kind, length := range want {
 		if got := kinematicPayloadLength(kind); got != length {
 			t.Errorf("kind %d: %d, want %d", kind, got, length)
@@ -152,14 +148,14 @@ func TestRaceProgressDistance(t *testing.T) {
 	a, b := h.connect("A"), h.connect("B")
 	roomID, raceID := h.startRace([]*Client{a, b}, "ordinary", "speedIndiCombine", 2)
 	send := func(c *Client, kind int, distance float64) {
-		h.lobby.RelayMotion(c, progressFrame(roomID, raceID, c.playerID, kind, distance))
+		h.lobby.RelayMotion(c, progressFrame(raceID, kind, distance))
 	}
 	send(a, 10, 50) // no time since the start yet
 	h.clock.Advance(20 * time.Second)
 	send(a, 10, 1500)
 	send(a, 10, 1200) // backwards keeps the furthest
 	send(a, 4, 1800)  // kind 4 carries progress too
-	short := progressFrame(roomID, raceID, a.playerID, 10, 2600)
+	short := progressFrame(raceID, 10, 2600)
 	h.lobby.RelayMotion(a, short[:len(short)-1])
 	send(a, 3, 2700) // no progress section
 	send(b, 10, 1e7) // capped: 20 s x 140 m/s + 100 m + village_R01's longest section (429 m)

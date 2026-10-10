@@ -1,6 +1,6 @@
 export type RouteSurfaceKind =
   | "empty" | "rail" | "rain" | "snow" | "rail-rain" | "warpnext"
-  | "shake" | "wave" | "zoom" | "lensflare" | "flash" | "unclosed" | "noop";
+  | "shake" | "wave" | "zoom" | "lensflare" | "flash" | "rider-school" | "unclosed" | "noop";
 
 /** Classifies legacy route surface labels before game effects are dispatched. */
 export function routeSurfaceKind(label: string): RouteSurfaceKind {
@@ -16,6 +16,9 @@ export function routeSurfaceKind(label: string): RouteSurfaceKind {
       label === "zoom20.100" || label === "zoom20.050") return "zoom";
   if (label === "lensflare") return "lensflare";
   if (label === "flash") return "flash";
+  // 驾照考试 tutorial and scripted-attack points (event:turnLeft, event:waterbomb…):
+  // admitted on license courses only (track-admission-ledger), run by the license race.
+  if (/^event:\w+$/.test(label)) return "rider-school";
   if (label === "petSuccess" || label === "flyingPetDisable" ||
       label === "flyingPetEnable" || label.startsWith("event") ||
       label.startsWith("shake") || label.startsWith("wave") ||

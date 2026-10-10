@@ -10,7 +10,8 @@
 // - Binary motion frames built with the browser's own codec
 //   (rewrite/src/multiplayer/payload.ts GameMotionEncoder, passed in by the
 //   caller through tsx): kind 10 kinematic samples with race progress, like
-//   OutgoingRaceMotionSender sends in a non-ordinary race.
+//   OutgoingRaceMotionSender sends in a non-ordinary race. Protocol 40 frames
+//   name racers by room slot (rewrite/src/multiplayer/motion.ts).
 // - ItemChannel: the racer's `item` requests with the strict per-racer
 //   sequence, checked with the browser's request validator
 //   (protocol.ts isValidItemRequest) and paced below the node's text rate
@@ -251,9 +252,10 @@ export function wireVector(vector) {
  * (OutgoingRaceMotionSender with presentation, progress, collision, routing
  * and visual scale). `pose` holds three.js world vectors: position,
  * velocity (m/s) and, optionally, quaternion [w, x, y, z] of the body
- * (world.js PL); `progress` is {distance, lap, finishElapsedMs?}.
+ * (world.js PL); `progress` is {distance, lap, finishElapsedMs?};
+ * `observedSlot` is the sender's own room slot, as the browser routes.
  */
-export function kartSample({ tick, pose, progress, observedPlayerId, speedKmh = 0,
+export function kartSample({ tick, pose, progress, observedSlot, speedKmh = 0,
   collisionActive = true }) {
   const velocity = pose.velocity ?? { x: 0, y: 0, z: 0 };
   const forwardSpeed = Math.hypot(velocity.x, velocity.y, velocity.z);
@@ -280,9 +282,20 @@ export function kartSample({ tick, pose, progress, observedPlayerId, speedKmh = 
       ...(progress.finishElapsedMs === undefined ? {} : { finishElapsedMs: progress.finishElapsedMs }),
     },
     collision: { active: collisionActive, scaleX: 1, scaleY: 1 },
-    routing: { motionMode: 0, observedPlayerId },
+    routing: { motionMode: 0, observedSlot },
     visualScale: { x: 1, y: 1, z: 1 },
   };
+}
+
+/** A member's room slot in a room snapshot. */
+export function slotOf(room, playerId) {
+  return room.members.find(member => member.playerId === playerId).slot;
+}
+
+/** The race view resolveGameMotion names senders through: the members by slot. */
+export function motionRace(room) {
+  return { roomId: room.roomId, raceId: room.race.raceId,
+    players: new Map(room.members.map(member => [member.slot, member.playerId])) };
 }
 
 /** The recipient mask of every other member of a room snapshot (by slot). */
@@ -295,7 +308,7 @@ export function othersMask(room, playerId) {
  * Sends one racer's motion frames every `intervalMs` (the browser sends one
  * per 64 ms bucket) until stop(). `sample(nodeNow)` returns the kinematic
  * sample to send (its tick is filled in) or undefined to skip a beat;
- * `encoder` is a browser GameMotionEncoder for the racer's identity.
+ * `encoder` is a browser GameMotionEncoder for the racer's race and slot.
  */
 export class MotionPump {
   constructor({ socket, encoder, clock, sample, mask, intervalMs = 64 }) {
@@ -339,18 +352,23 @@ export class MotionPump {
 
 /**
  * Collects the binary motion frames a socket receives, decoded with the
- * browser's GameMotionDecoder (`decoder`); invalid frames are counted.
+ * browser's GameMotionDecoder (`decoder`) and named by `resolve(wire)` (the
+ * browser's resolveGameMotion for the current race, or undefined before it
+ * is known). Invalid frames are counted, and so are frames it cannot name.
  */
 export class MotionInbox {
-  constructor(socket, decoder) {
+  constructor(socket, decoder, resolve) {
     this.frames = [];
     this.invalid = 0;
+    this.unresolved = 0;
     this.latest = new Map();
     socket.binaryType = "arraybuffer";
     socket.addEventListener("message", event => {
       if (typeof event.data === "string") return;
-      const decoded = decoder.decode(new Uint8Array(event.data));
-      if (!decoded) { this.invalid++; return; }
+      const wire = decoder.decode(new Uint8Array(event.data));
+      if (!wire) { this.invalid++; return; }
+      const decoded = resolve(wire);
+      if (!decoded) { this.unresolved++; return; }
       this.frames.push(decoded);
       this.latest.set(decoded.playerId, decoded);
       for (const listener of this.listeners) listener(decoded);

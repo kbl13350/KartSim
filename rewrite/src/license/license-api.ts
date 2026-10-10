@@ -18,8 +18,41 @@ export interface LicenseSession {
 export const PRO_LEVEL = 6;
 export const LICENSE_NAMES = ["新手", "初级", "L3", "L2", "L1", "PRO"] as const;
 
-/** time: inside timeMs (0 none); rival: before the rival ghost; finish: reach the goal. */
-export type LicenseRule = "time" | "rival" | "finish";
+/**
+ * time: finish inside timeMs; rival: before the rival ghost; drill: 行驶练习's
+ * key prompts; item: an item mission, inside timeMs with its own objective;
+ * finish: the item missions with AI karts, finishing is enough.
+ */
+export type LicenseRule = "time" | "rival" | "drill" | "item" | "finish";
+
+/**
+ * The release riderSchool@cn.xml attributes of a step besides track, time
+ * and laps (license.mjs), as the race sets the step up.
+ */
+export interface LicenseStepSetup {
+  /** time: the step's original limit in ms (0 none), also where the Web build does not enforce it yet. */
+  limitMs?: number;
+  /** itemSlotCnt (absent: the usual two). */
+  slotCount?: number;
+  /** itemslot0 / itemslot1: what the slots hold at GO. */
+  slots?: string[];
+  /** cubeItem: what every item box on the course gives. */
+  cubeItem?: string;
+  /** targetName: the stage_riderSchoolItem model placed at the course's target dummies. */
+  targetName?: string;
+  targetArrow?: boolean;
+  goalArrow?: boolean;
+  /** nonLimitItem: the given item comes back after use. */
+  nonLimitItem?: boolean;
+  /** oneTime: the changer card is used once. */
+  oneTime?: boolean;
+  /** startTutoScene: the stage_common action scene played at GO. */
+  startTutoScene?: string;
+  wrongWayOff?: boolean;
+  /** showTimeUI='FALSE': the elapsed time is hidden (the mission timer stays). */
+  showTimeUI?: boolean;
+  hideMiniMap?: boolean;
+}
 
 export interface LicenseStep {
   step: number;
@@ -37,6 +70,7 @@ export interface LicenseStep {
   stockId: number;
   rival?: { kartId: number; characterId: number; ksv: string };
   rivalMs?: number;
+  setup: LicenseStepSetup;
 }
 
 export interface LicenseDefinition {
@@ -143,7 +177,27 @@ function list(value: unknown, what: string): unknown[] {
   return value;
 }
 
-const RULES = new Set(["time", "rival", "finish"]);
+const RULES = new Set(["time", "rival", "drill", "item", "finish"]);
+
+function parseSetup(value: unknown): LicenseStepSetup {
+  if (value === undefined || value === null) return {};
+  const row = record(value, "step setup");
+  const setup: LicenseStepSetup = {};
+  const flag = (key: keyof LicenseStepSetup) => {
+    if (typeof row[key] === "boolean") (setup as Record<string, unknown>)[key] = row[key];
+  };
+  const name = (key: keyof LicenseStepSetup) => {
+    if (typeof row[key] === "string" && row[key]) (setup as Record<string, unknown>)[key] = row[key];
+  };
+  if (row.limitMs !== undefined) setup.limitMs = integer(row.limitMs, "setup limit");
+  if (row.slotCount !== undefined) setup.slotCount = integer(row.slotCount, "setup slots", 1);
+  if (row.slots !== undefined)
+    setup.slots = list(row.slots, "setup slot items").map(item => text(item, "setup slot item"));
+  for (const key of ["cubeItem", "targetName", "startTutoScene"] as const) name(key);
+  for (const key of ["targetArrow", "goalArrow", "nonLimitItem", "oneTime", "wrongWayOff", "showTimeUI",
+    "hideMiniMap"] as const) flag(key);
+  return setup;
+}
 
 function parseStep(value: unknown): LicenseStep {
   const row = record(value, "license step");
@@ -155,6 +209,7 @@ function parseStep(value: unknown): LicenseStep {
     track: text(row.track, "step track"),
     laps: optionalInteger(row.laps, "step laps"), speed: optionalInteger(row.speed, "step speed"),
     timeMs: optionalInteger(row.timeMs, "step time"), stockId: integer(row.stockId, "step stock", 1),
+    setup: parseSetup(row.setup),
   };
   if (row.rival !== undefined) {
     const rival = record(row.rival, "step rival");

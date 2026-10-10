@@ -171,6 +171,21 @@ func TestItemChangersSetting(t *testing.T) {
 	}
 }
 
+func TestWebSocketCompression(t *testing.T) {
+	cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret}))
+	if err != nil || !cfg.WSCompression {
+		t.Fatalf("default: %v, %v", cfg.WSCompression, err)
+	}
+	cfg, err = FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret, "KART_WS_COMPRESSION": "false"}))
+	if err != nil || cfg.WSCompression {
+		t.Fatalf("false: %v, %v", cfg.WSCompression, err)
+	}
+	_, err = FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret, "KART_WS_COMPRESSION": "gzip"}))
+	if err == nil || !strings.Contains(err.Error(), "KART_WS_COMPRESSION") {
+		t.Fatalf("gzip: %v", err)
+	}
+}
+
 func TestWebRTCSettings(t *testing.T) {
 	cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret}))
 	if err != nil {

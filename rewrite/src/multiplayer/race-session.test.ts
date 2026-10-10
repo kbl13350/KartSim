@@ -92,6 +92,7 @@ test("race commands, scoped event delivery and abort cleanup match release", asy
   const run = async (released: boolean) => {
     const { host, commands, subscriptions, motionSubscriptions } = fixture();
     host.motionScope = { roomId, raceId, members: new Set([self, peer]),
+      slot: 0, players: new Map([[0, self], [2, peer]]),
       sequence: 0, received: new Map(), enabled: true, recipientMask: 4 };
     const original = Object.assign(new Original(), host);
     const target = released ? original : host;
@@ -135,4 +136,18 @@ test("race commands, scoped event delivery and abort cleanup match release", asy
     return { initial, commands, events, afterAbort };
   };
   assert.deepEqual(await run(false), await run(true));
+});
+
+test("the race scope maps room slots to members for motion frames", () => {
+  const { host } = fixture();
+  const value = room();
+  bindRaceScope(host, value);
+  const own = value.members.find(member => member.playerId === self)!;
+  assert.equal(host.motionScope?.slot, own.slot);
+  assert.deepEqual([...host.motionScope!.players],
+    value.members.map(member => [member.slot, member.playerId]));
+  const moved = { ...value, members: value.members.map(member =>
+    member.playerId === peer ? { ...member, slot: 6 } : member) };
+  bindRaceScope(host, moved);
+  assert.equal(host.motionScope?.players.get(6), peer);
 });

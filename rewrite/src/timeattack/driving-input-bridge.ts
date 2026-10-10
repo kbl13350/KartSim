@@ -1,5 +1,7 @@
 /** Routes keyboard, touch, and gamepad actions into the time-attack vehicle. */
 
+import { activeLicenseItems } from "../license/license-item-race";
+
 export interface DrivingCommand {
   kind: string;
 }
@@ -89,6 +91,8 @@ export function drainTimeAttackDrivingInput(bridge: DrivingInputBridgeHost,
   dependencies: DrivingInputBridgeDependencies): void {
   const host = bridge.host;
   const drained = host.input.drain();
+  // 驾照考试 item steps: the race's item race (license-item-race.ts).
+  const items = activeLicenseItems();
   if (drained.cancelled) {
     host.drivingInput.cancel();
     host.autoForward.cancel();
@@ -96,6 +100,7 @@ export function drainTimeAttackDrivingInput(bridge: DrivingInputBridgeHost,
     host.getPhysics().cancelControls();
     host.getLampFlares()?.resetInputVisibility();
     host.gamepad.reset();
+    items?.cancelInput();
   }
   const phase = host.getLifecycle().phase;
   const active = dependencies.activeRace(host.getLifecycle());
@@ -103,14 +108,17 @@ export function drainTimeAttackDrivingInput(bridge: DrivingInputBridgeHost,
     phase === dependencies.racingPhase &&
       !host.getLifecycle().isStartBoosterWindow(nowMs));
   const gamepad = host.gamepad.poll(host.getGamepadPads(), host.getGamepadMap());
-  const transitions = gamepad.length === 0 ? drained.transitions
+  const all = gamepad.length === 0 ? drained.transitions
     : [...drained.transitions, ...gamepad];
+  // 驾照考试 item steps: Ctrl, Alt and Z are item keys (道具赛), not the nitro.
+  const transitions = items
+    ? items.routeInput(all, nowMs, phase === dependencies.racingPhase) : all;
   if (transitions.some(transition => transition.sourceKind === "gamepad" &&
     transition.down && transition.action === dependencies.forwardAction)) {
     host.resumeGamepadAutoForward();
   }
   host.drivingInput.dispatch(transitions, (transition, state) =>
-    host.autoForward.dispatch(transition, state,
+    host.autoForward.dispatch(items ? items.reverseEffect(transition) : transition, state,
       host.drivingInput.snapshot(), command =>
         bridge.handleDrivingCommand(command, nowMs, inputTime)));
 }

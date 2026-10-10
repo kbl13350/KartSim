@@ -22,7 +22,7 @@ func KinematicPayloadLength(kind int) int {
 	case kind < 2 || kind > 10:
 		return 0
 	case kind == 8 || kind == 10:
-		length = 166
+		length = 151 // routing: motion mode and observed slot (protocol 40; the release: a 16-byte UUID)
 	case kind == 7 || kind == 9:
 		length = 149
 	case kind == 6:
@@ -70,6 +70,10 @@ func nonzeroQuaternion(b []byte, offset int) bool {
 	}
 	return finite32(norm) && norm > 0
 }
+
+// maxMotionSlot is the highest room slot a frame may name (motion.ts
+// MAX_MOTION_SLOT).
+const maxMotionSlot = 7
 
 // validReset is payload.ts validReset: the reset started at most 2 s before
 // the frame (uint32 arithmetic).
@@ -139,11 +143,14 @@ func ValidPayload(kind int, b []byte) bool {
 		default:
 			return false
 		}
+		if b[150] > maxMotionSlot {
+			return false
+		}
 	}
 	if kind >= 9 {
 		offset := 149
 		if kind == 10 {
-			offset = 166
+			offset = 151
 		}
 		if !finiteAll(b, offset, 3) {
 			return false

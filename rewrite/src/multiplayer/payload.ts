@@ -1,6 +1,8 @@
 import {
   decodeMotionFrame,
   encodeMotionFrame,
+  MAX_MOTION_SLOT,
+  motionRaceTag,
   type MotionPayloadKind,
 } from "./motion";
 
@@ -74,7 +76,8 @@ export interface MotionCollision {
 
 export interface MotionRouting {
   motionMode: number;
-  observedPlayerId: string;
+  /** Room slot of the racer the distance cadence measures (protocol 40; the release sent its UUID). */
+  observedSlot: number;
 }
 
 export interface KinematicMotionSample {
@@ -96,6 +99,16 @@ export interface KinematicMotionSample {
 
 export type GameMotionSample = DrivingMotionSample | KinematicMotionSample;
 
+/** A motion frame as the wire names its sender: a room slot and a race tag. */
+export interface WireGameMotion {
+  slot: number;
+  raceTag: number;
+  sequence: number;
+  recipientMask?: number;
+  payload: GameMotionSample;
+}
+
+/** A motion frame resolved against the receiver's race: who sent it, in which race. */
 export interface DecodedGameMotion {
   roomId: string;
   raceId: string;
@@ -105,7 +118,28 @@ export interface DecodedGameMotion {
   payload: GameMotionSample;
 }
 
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+/** The receiver's view of one race: its members by room slot. */
+export interface MotionRaceView {
+  roomId: string;
+  raceId: string;
+  players: ReadonlyMap<number, string>;
+}
+
+/**
+ * Name the sender of a wire frame through the receiver's race, or undefined
+ * for a frame of another race or of a slot nobody holds (not malformed: a
+ * frame may cross a room change).
+ */
+export function resolveGameMotion(motion: WireGameMotion, race: MotionRaceView): DecodedGameMotion | undefined {
+  const playerId = race.players.get(motion.slot);
+  if (playerId === undefined || motion.raceTag !== motionRaceTag(race.raceId)) return undefined;
+  return {
+    roomId: race.roomId, raceId: race.raceId, playerId, sequence: motion.sequence,
+    ...(motion.recipientMask ? { recipientMask: motion.recipientMask } : {}),
+    payload: motion.payload,
+  };
+}
+
 const integer = (value: number, max: number): boolean =>
   Number.isInteger(value) && value >= 0 && value <= max;
 const finiteF32 = (value: number): boolean => Number.isFinite(Math.fround(value));
@@ -244,7 +278,7 @@ function validCollision(collision: MotionCollision): boolean {
     [collision.scaleX, collision.scaleY].every(value => finiteF32(value) && Math.fround(value) > 0);
 }
 function validRouting(routing: MotionRouting): boolean {
-  return [0, 1, 2, 3, 5, 6].includes(routing.motionMode) && UUID.test(routing.observedPlayerId);
+  return [0, 1, 2, 3, 5, 6].includes(routing.motionMode) && integer(routing.observedSlot, MAX_MOTION_SLOT);
 }
 function validScale(scale: { x: number; y: number; z: number }): boolean {
   return [scale.x, scale.y, scale.z].every(finiteF32);
@@ -277,7 +311,7 @@ export function encodeKinematicSample(sample: KinematicMotionSample): Uint8Array
   if (sample.visualScale && (!sample.presentation?.animation || !validScale(sample.visualScale))) {
     throw new Error("Invalid motion visual scale");
   }
-  const baseLength = sample.routing ? 166 : sample.presentation?.animation ? 149
+  const baseLength = sample.routing ? 151 : sample.presentation?.animation ? 149
     : sample.collision ? 137 : sample.resetStartedAt !== undefined ? 128
       : sample.raceProgress ? 124 : sample.presentation ? 108 : 80;
   const bytes = new Uint8Array(baseLength + (sample.visualScale ? 12 : 0));
@@ -324,13 +358,10 @@ export function encodeKinematicSample(sample: KinematicMotionSample): Uint8Array
   }
   if (sample.routing) {
     view.setUint8(149, sample.routing.motionMode);
-    const hex = sample.routing.observedPlayerId.replaceAll("-", "");
-    for (let index = 0; index < 16; index++) {
-      view.setUint8(150 + index, Number.parseInt(hex.slice(index * 2, index * 2 + 2), 16));
-    }
+    view.setUint8(150, sample.routing.observedSlot);
   }
   if (sample.visualScale) {
-    const offset = sample.routing ? 166 : 149;
+    const offset = sample.routing ? 151 : 149;
     [sample.visualScale.x, sample.visualScale.y, sample.visualScale.z].forEach((value, index) =>
       view.setFloat32(offset + index * 4, value, true));
   }
@@ -346,7 +377,7 @@ export function decodeKinematicSample(bytes: Uint8Array, kind: MotionPayloadKind
   const hasAnimation = kind >= 7;
   const hasRouting = kind === 8 || kind === 10;
   const hasScale = kind >= 9;
-  const baseLength = hasRouting ? 166 : hasAnimation ? 149 : hasCollision ? 137
+  const baseLength = hasRouting ? 151 : hasAnimation ? 149 : hasCollision ? 137
     : hasReset ? 128 : hasProgress ? 124 : hasPresentation ? 108 : 80;
   if (bytes.byteLength !== baseLength + (hasScale ? 12 : 0)) return undefined;
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
@@ -404,16 +435,12 @@ export function decodeKinematicSample(bytes: Uint8Array, kind: MotionPayloadKind
   if (resetStartedAt !== undefined && !validReset(tick, resetStartedAt)) return undefined;
   let routing: MotionRouting | undefined;
   if (hasRouting) {
-    const hex = Array.from(bytes.subarray(150, 166), value => value.toString(16).padStart(2, "0")).join("");
-    routing = {
-      motionMode: view.getUint8(149),
-      observedPlayerId: `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`,
-    };
+    routing = { motionMode: view.getUint8(149), observedSlot: view.getUint8(150) };
     if (!validRouting(routing)) return undefined;
   }
   let visualScale: KinematicMotionSample["visualScale"];
   if (hasScale) {
-    const offset = hasRouting ? 166 : 149;
+    const offset = hasRouting ? 151 : 149;
     visualScale = { x: view.getFloat32(offset, true),
       y: view.getFloat32(offset + 4, true), z: view.getFloat32(offset + 8, true) };
     if (!validScale(visualScale)) return undefined;
@@ -440,12 +467,15 @@ function wireKind(sample: GameMotionSample): MotionPayloadKind {
         : kinematic.raceProgress ? 4 : kinematic.presentation ? 3 : 2;
 }
 
-/** Full frame encoder with stable participant identity. */
+/** Full frame encoder for one racer (its room slot) in one race. */
 export class GameMotionEncoder {
-  constructor(readonly identity: { roomId: string; raceId: string; playerId: string }) {
-    for (const id of [identity.roomId, identity.raceId, identity.playerId]) {
-      if (!UUID.test(id)) throw new Error("Invalid motion identity");
-    }
+  readonly slot: number;
+  readonly raceTag: number;
+
+  constructor(identity: { raceId: string; slot: number }) {
+    if (!integer(identity.slot, MAX_MOTION_SLOT)) throw new Error("Invalid motion slot");
+    this.slot = identity.slot;
+    this.raceTag = motionRaceTag(identity.raceId);
   }
 
   encode(sample: GameMotionSample, sequence: number, recipientMask = 0): Uint8Array {
@@ -454,13 +484,13 @@ export class GameMotionEncoder {
     const payload = kind === 1 ? encodeDrivingSample(sample as DrivingMotionSample)
       : encodeKinematicSample(sample as KinematicMotionSample);
     if (!integer(recipientMask, 255)) throw new Error("Invalid recipient mask");
-    return encodeMotionFrame({ ...this.identity, sequence, recipientMask, kind, payload });
+    return encodeMotionFrame({ slot: this.slot, raceTag: this.raceTag, sequence, recipientMask, kind, payload });
   }
 }
 
-/** Full frame decoder. Invalid network packets yield undefined. */
+/** Full frame decoder. Invalid network packets yield undefined; resolveGameMotion names the sender. */
 export class GameMotionDecoder {
-  decode(input: Uint8Array | ArrayBuffer | ArrayBufferView): DecodedGameMotion | undefined {
+  decode(input: Uint8Array | ArrayBuffer | ArrayBufferView): WireGameMotion | undefined {
     let frame;
     try {
       frame = decodeMotionFrame(input);
@@ -469,8 +499,7 @@ export class GameMotionDecoder {
       : decodeKinematicSample(frame.payload, frame.kind);
     if (!sample) return undefined;
     return {
-      roomId: frame.roomId, raceId: frame.raceId, playerId: frame.playerId,
-      sequence: frame.sequence,
+      slot: frame.slot, raceTag: frame.raceTag, sequence: frame.sequence,
       ...(frame.recipientMask ? { recipientMask: frame.recipientMask } : {}),
       payload: sample,
     };

@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-var payloadLengths = map[int]int{1: 113, 2: 80, 3: 108, 4: 124, 5: 128, 6: 137, 7: 149, 8: 166, 9: 161, 10: 178}
+var payloadLengths = map[int]int{1: 113, 2: 80, 3: 108, 4: 124, 5: 128, 6: 137, 7: 149, 8: 151, 9: 161, 10: 163}
 
 // payload builds a valid payload of kind at pos (wire axes) with route
 // distance and lap (kinds 4..10); resetAt marks a reset frame.
@@ -104,7 +104,8 @@ func TestValidPayload(t *testing.T) {
 		"dual mode":            func(b []byte) { b[138] = 2 },
 		"negative speed":       func(b []byte) { binary.LittleEndian.PutUint32(b[141:], math.Float32bits(-1)) },
 		"motion mode":          func(b []byte) { b[149] = 4 },
-		"NaN visual scale":     func(b []byte) { binary.LittleEndian.PutUint32(b[170:], math.Float32bits(float32(math.NaN()))) },
+		"observed slot":        func(b []byte) { b[150] = 8 },
+		"NaN visual scale":     func(b []byte) { binary.LittleEndian.PutUint32(b[155:], math.Float32bits(float32(math.NaN()))) },
 	} {
 		b := payload(10, 3000, [3]float64{1, 2, 3}, 10, 1, nil)
 		mutate(b)

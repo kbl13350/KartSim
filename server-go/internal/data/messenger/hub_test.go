@@ -164,6 +164,19 @@ func (h *testHub) dial() *client {
 	return &client{t: h.t, ws: ws}
 }
 
+// dialCompressed dials offering permessage-deflate, like a browser, and
+// returns the negotiated extensions.
+func (h *testHub) dialCompressed() (*client, string) {
+	h.t.Helper()
+	dialer := websocket.Dialer{EnableCompression: true}
+	ws, response, err := dialer.Dial(h.url, nil)
+	if err != nil {
+		h.t.Fatal(err)
+	}
+	h.t.Cleanup(func() { ws.Close() })
+	return &client{t: h.t, ws: ws}, response.Header.Get("Sec-WebSocket-Extensions")
+}
+
 // connect dials and says hello as accountID, returning after the welcome.
 func (h *testHub) connect(accountID string) *client {
 	h.t.Helper()
@@ -276,6 +289,24 @@ func TestHelloAndLogin(t *testing.T) {
 	// Logout closes the session's sockets.
 	h.hub.CloseSession("key-token-a")
 	c.expectClose(CloseSessionEnded)
+}
+
+func TestCompressionAndInflatedReadLimit(t *testing.T) {
+	h := newTestHub(t, Options{})
+	c, extensions := h.dialCompressed()
+	if !strings.Contains(extensions, "permessage-deflate") {
+		t.Fatalf("extension not negotiated: %q", extensions)
+	}
+	c.send(map[string]any{"type": "hello", "token": "token-alice"})
+	c.expect("welcome")
+	// About 1 KiB on the wire, 1 MiB once inflated (the limit is 8 KiB).
+	c.send(map[string]any{"type": "ping", "pad": strings.Repeat("x", 1<<20)})
+	c.expectClose(websocket.CloseMessageTooBig)
+
+	h = newTestHub(t, Options{DisableCompression: true})
+	if _, extensions := h.dialCompressed(); extensions != "" {
+		t.Fatalf("negotiated %q with compression disabled", extensions)
+	}
 }
 
 func TestPlainRequestsAndCapacity(t *testing.T) {

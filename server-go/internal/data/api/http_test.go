@@ -20,7 +20,7 @@ func TestHealthIceOffer(t *testing.T) {
 	h := newHarness(t, harnessOptions{})
 	var health map[string]any
 	h.get("/multiplayer/healthz", nil).expect(t, http.StatusOK, "").json(t, &health)
-	if health["protocolVersion"] != float64(39) || health["ruleset"] != "launcher-room-v1" ||
+	if health["protocolVersion"] != float64(40) || health["ruleset"] != "launcher-room-v1" ||
 		health["transport"] != "websocket" || health["service"] != "data" || health["dataNode"] != "data-test" {
 		t.Fatalf("health %v", health)
 	}

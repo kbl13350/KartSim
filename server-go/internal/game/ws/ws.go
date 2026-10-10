@@ -27,11 +27,12 @@ import (
 	"kartsim/internal/game/lobby"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/netcfg"
+	"kartsim/internal/shared/wsdeflate"
 )
 
 // Options tune the connections; zero values use the defaults.
 type Options struct {
-	ReadLimit       int64         // 64 KiB per message
+	ReadLimit       int64         // 64 KiB per message, also once decompressed
 	ReadTimeout     time.Duration // 90 s without any frame closes the socket
 	PingInterval    time.Duration // 30 s
 	WriteTimeout    time.Duration // 5 s per frame, like Spring's send-time limit
@@ -39,6 +40,11 @@ type Options struct {
 	// MaxConnections caps open sockets, hello'd or not; further upgrades get
 	// HTTP 503 (KART_MAX_CONNECTIONS). Zero means no cap.
 	MaxConnections int
+	// DisableCompression never negotiates permessage-deflate
+	// (KART_WS_COMPRESSION=false). Otherwise JSON text of
+	// wsdeflate.MinBytes or more goes compressed to browsers that offer it;
+	// motion frames never do.
+	DisableCompression bool
 	// HelloTimeout closes a socket that has not completed hello in time
 	// (KART_HELLO_TIMEOUT). Zero disables it.
 	HelloTimeout time.Duration
@@ -127,8 +133,9 @@ func NewServer(l *lobby.Lobby, network *netcfg.Network, opts Options) *Server {
 		opts:  opts,
 		log:   opts.Logger,
 		upgrader: websocket.Upgrader{
-			HandshakeTimeout: 10 * time.Second,
-			CheckOrigin:      network.CheckWebSocketOrigin,
+			HandshakeTimeout:  10 * time.Second,
+			CheckOrigin:       network.CheckWebSocketOrigin,
+			EnableCompression: !opts.DisableCompression,
 		},
 		conns: map[*conn]struct{}{},
 	}
@@ -278,7 +285,7 @@ func (s *Server) readLoop(c *conn) {
 		return err
 	})
 	for {
-		kind, data, err := socket.ReadMessage()
+		kind, data, err := wsdeflate.Read(socket, s.opts.ReadLimit)
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseNormalClosure,
 				websocket.CloseGoingAway, websocket.CloseNoStatusReceived) &&
@@ -442,7 +449,7 @@ type wsLink struct {
 
 func (l *wsLink) write(f frame) error {
 	_ = l.socket.SetWriteDeadline(time.Now().Add(l.writeTimeout))
-	return l.socket.WriteMessage(f.kind, f.data)
+	return wsdeflate.Write(l.socket, f.kind, f.data)
 }
 
 func (l *wsLink) ping() error {

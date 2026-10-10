@@ -84,16 +84,22 @@ export function findOpenStep(table: LicenseTable, state: LicenseState, step: num
   return undefined;
 }
 
-/** Clear rule of a finished run, as the server judges it. */
-export function judgeLicenseRun(step: LicenseStep, elapsedMs: number): boolean {
+/**
+ * Clear rule of a finished run, as the server judges it. `objective` is the
+ * step's own mission (行驶练习's key prompts, an item mission's targets); the
+ * server cannot see it and takes the client's word.
+ */
+export function judgeLicenseRun(step: LicenseStep, elapsedMs: number, objective = true): boolean {
   if (step.rule === "time") return step.timeMs === 0 || elapsedMs <= step.timeMs;
   if (step.rule === "rival") return elapsedMs < (step.rivalMs ?? 0);
+  if (step.rule === "drill") return objective;
+  if (step.rule === "item") return objective && elapsedMs <= step.timeMs;
   return true;
 }
 
-/** The race time limit: the step's own, or the rival's time for a duel (none for item missions). */
+/** The race time limit: the step's own (time and item missions; a duel has none). */
 export function licenseTimeLimit(step: LicenseStep): number {
-  if (step.rule === "time") return step.timeMs;
+  if (step.rule === "time" || step.rule === "item") return step.timeMs;
   return 0;
 }
 

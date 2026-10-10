@@ -105,7 +105,9 @@ export function openMessengerMessage(library: MessengerLibrary, root: HTMLElemen
               if (!view) return;
               const { lines, lineHeight } = view.wrapLabel(message, rect.width, size);
               const step = lineHeight + 4;
-              const top = rect.y + Math.max(0, (rect.height - lines.length * step) / 2);
+              // Centred on the message area, which is one line high: more lines grow up and
+              // down alike, so the last one stays above the divider.
+              const top = rect.y + (rect.height - lines.length * step) / 2;
               view.paintLabelLines(context, lines, { ...rect, y: top, height: step }, size, color, step);
             },
           };

@@ -28,8 +28,8 @@ import { join } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import { createPlayer, enterGameWhenFree } from "./lib/kart-client.mjs";
 import {
-  browserAccepts, browserEventValidation, ITEM, ItemChannel, kartSample, MotionInbox, MotionPump, othersMask,
-  repoRoot, ServerClock,
+  browserAccepts, browserEventValidation, ITEM, ItemChannel, kartSample, MotionInbox, motionRace, MotionPump,
+  othersMask, repoRoot, ServerClock, slotOf,
 } from "./lib/item-race.mjs";
 import { runLocalCluster } from "./lib/local-cluster.mjs";
 
@@ -78,12 +78,14 @@ await runLocalCluster("item-bot-check", {
 
   const { control, welcome } = await enterGameWhenFree(cluster, node, human, { validate, timeoutMs: 15_000 });
   ctx.track(control);
-  const inbox = new MotionInbox(control.socket, new payload.GameMotionDecoder());
   let room = (await control.request({ type: "create", name: `Bot${ctx.id}`, password: "", capacity: 2,
     channelName: "itemIndiCombine", gameplay: "item", mode: "individual", speed: 7, speedVersion: "国服",
     equipment: human.equipment })).room;
   room = (await control.request({ type: "track", roomId: room.roomId, trackId: TRACK })).room;
   const roomId = room.roomId;
+  // Relayed frames name their sender by slot, resolved through the latest room snapshot.
+  const inbox = new MotionInbox(control.socket, new payload.GameMotionDecoder(),
+    wire => room.race && payload.resolveGameMotion(wire, motionRace(room)));
 
   bot = spawn(process.execPath, [join(repoRoot, "server-go/test/item-bot.mjs"), "--accounts", accountsFile,
     "--data", cluster.dataOrigin, "--use", "rocket@3s,banana@5s", "--speed", String(BOT_SPEED), "--once"],
@@ -114,8 +116,8 @@ await runLocalCluster("item-bot-check", {
 
   // The human stays near the start.
   pump = new MotionPump({ socket: control.socket, clock, mask: othersMask(room, welcome.playerId),
-    encoder: new payload.GameMotionEncoder({ roomId, raceId, playerId: welcome.playerId }),
-    sample: () => kartSample({ tick: 0, observedPlayerId: welcome.playerId,
+    encoder: new payload.GameMotionEncoder({ raceId, slot: slotOf(room, welcome.playerId) }),
+    sample: () => kartSample({ tick: 0, observedSlot: slotOf(room, welcome.playerId),
       pose: { position: { x: 0, y: 0, z: 0 } }, progress: { distance: 5, lap: 1 } }) }).start();
   const items = new ItemChannel(control, { roomId, raceId, validRequest: isValidItemRequest, label: "human" });
   const progressAt = () => {
@@ -139,7 +141,7 @@ await runLocalCluster("item-bot-check", {
   const frame = inbox.latest.get(botId);
   assert.ok(frame, "no motion from the bot");
   const sample = frame.payload;
-  assert.equal(sample.routing?.observedPlayerId, botId);
+  assert.equal(sample.routing?.observedSlot, slotOf(room, botId));
   assert.equal(sample.collision?.active, true);
   assert.ok(sample.visualScale && sample.presentation?.animation);
   assert.ok(Math.abs(Math.hypot(...sample.quaternion) - 1) < 1e-3, "the quaternion is not a unit");

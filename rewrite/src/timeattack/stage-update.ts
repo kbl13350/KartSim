@@ -1,5 +1,7 @@
 import { updateStoryChase, type ChaseStage } from "../story/story-chase";
+import { updateLicenseMission, type LicenseMissionStage } from "../license/license-mission";
 import { updateLicenseTimer, type LicenseTimerStage } from "../license/license-race";
+import { licenseItemsOf } from "../license/license-item-race";
 
 // Presentation owners still come from the generated client. Their renderer,
 // physics and asset types will be narrowed as those systems are migrated.
@@ -137,7 +139,8 @@ export function updateTimeAttackStage(
   }
   // Story Tracing / Escape: the gap panel and the per-frame verdict.
   updateStoryChase(stage as unknown as ChaseStage, rawNowMs);
-  // 驾照考试: the mission timer and its time limit.
+  // 驾照考试: the step's own mission, then the mission timer and its time limit.
+  updateLicenseMission(stage as unknown as LicenseMissionStage, rawNowMs);
   updateLicenseTimer(stage as unknown as LicenseTimerStage, rawNowMs);
   mark?.("kt-ghost");
 
@@ -295,6 +298,9 @@ export function updateTimeAttackStage(
   host.workProfiler?.mark("kart-audio", dependencies.nowMs());
   host.getTrack().updateRender(host.session.lifecycle.effectiveTime(rawNowMs),
     host.camera, dependencies.worldAxis, dependencies.depthAxis);
+  // 驾照考试 item steps: the boxes, targets and item effects follow the track scene.
+  licenseItemsOf(host.session)?.present(host.camera, Number(dependencies.worldAxis),
+    Number(dependencies.depthAxis));
   host.updateDevToolsTrackObjects(host.session.lifecycle.effectiveTime(rawNowMs),
     dependencies.worldAxis, dependencies.depthAxis);
   host.workProfiler?.mark("track-render", dependencies.nowMs());

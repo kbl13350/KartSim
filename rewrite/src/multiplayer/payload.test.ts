@@ -3,10 +3,11 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { runInNewContext } from "node:vm";
 import { fileURLToPath } from "node:url";
+import { MOTION_HEADER_BYTES } from "./motion";
 import {
   GameMotionDecoder, GameMotionEncoder,
   decodeDrivingSample, decodeKinematicSample,
-  encodeDrivingSample, encodeKinematicSample,
+  encodeDrivingSample, encodeKinematicSample, resolveGameMotion,
   type DrivingMotionSample, type KinematicMotionSample,
 } from "./payload";
 
@@ -32,6 +33,8 @@ const identity = {
   raceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
   playerId: "01234567-89ab-cdef-0123-456789abcdef",
 };
+// Protocol 40 names the sender by slot (and the race by its first byte).
+const wire = { raceId: identity.raceId, slot: 3 };
 const plain = (value: unknown): unknown => JSON.parse(JSON.stringify(value));
 const bytes = (value: Uint8Array): number[] => Array.from(value);
 
@@ -63,9 +66,18 @@ const animation = {
   physicsState: 2, dualMode: 1, dualBoosterState: 3, dualTeam: true,
   chargerActive: false, displaySpeedKmh: 144.4, dualReadyRemainingMs: 500,
 } as const;
-const routing = {
-  motionMode: 5, observedPlayerId: "99999999-8888-7777-6666-555555555555",
-} as const;
+// The release routes by player UUID (16 bytes at payload offset 150), protocol 40 by slot (1 byte).
+const observedPlayerId = "99999999-8888-7777-6666-555555555555";
+const routing = { motionMode: 5, observedSlot: 6 } as const;
+const releaseSample = (sample: KinematicMotionSample): unknown => sample.routing
+  ? { ...sample, routing: { motionMode: sample.routing.motionMode, observedPlayerId } } : sample;
+/** The release payload with its routing UUID replaced by the slot byte. */
+const slotRouted = (release: Uint8Array, sample: KinematicMotionSample): number[] => sample.routing
+  ? [...release.subarray(0, 150), sample.routing.observedSlot, ...release.subarray(166)] : bytes(release);
+const releasePayload = (decoded: unknown): unknown => {
+  const payload = (decoded as { payload: { routing?: { motionMode: number } } }).payload;
+  return payload.routing ? { ...payload, routing: { ...routing, motionMode: payload.routing.motionMode } } : payload;
+};
 
 test("kind-1 driving payload matches released bytes and parser", () => {
   const samples: DrivingMotionSample[] = [driving, {
@@ -79,7 +91,7 @@ test("kind-1 driving payload matches released bytes and parser", () => {
   }
 });
 
-test("kinematic kinds 2 through 10 match released frame bytes and parser", () => {
+test("kinematic kinds 2 through 10 match released payloads, routing by slot", () => {
   const samples: KinematicMotionSample[] = [
     kinematic,
     { ...kinematic, presentation },
@@ -93,36 +105,43 @@ test("kinematic kinds 2 through 10 match released frame bytes and parser", () =>
     { ...kinematic, presentation: { ...presentation, animation }, raceProgress, collision, routing,
       visualScale: { x: 1.1, y: 1.2, z: 1.3 } },
   ];
-  const actualEncoder = new GameMotionEncoder(identity);
+  const actualEncoder = new GameMotionEncoder(wire);
   const referenceEncoder = new release.S40(identity);
   const actualDecoder = new GameMotionDecoder();
   const referenceDecoder = new release.d6();
+  const players = new Map([[3, identity.playerId]]);
   for (const [index, sample] of samples.entries()) {
     const actualPayload = encodeKinematicSample(sample);
-    assert.deepEqual(bytes(actualPayload), bytes(release.T40(sample)), `payload ${index}`);
+    const referencePayload = release.T40(releaseSample(sample) as KinematicMotionSample);
+    assert.deepEqual(bytes(actualPayload), slotRouted(referencePayload, sample), `payload ${index}`);
     const actualFrame = actualEncoder.encode(sample, index + 1, 3);
-    const referenceFrame = referenceEncoder.encode(sample, index + 1, 3);
-    assert.deepEqual(bytes(actualFrame), bytes(referenceFrame), `frame ${index}`);
-    assert.deepEqual(plain(actualDecoder.decode(actualFrame)),
-      plain(referenceDecoder.decode(referenceFrame)), `decode ${index}`);
+    const referenceFrame = referenceEncoder.encode(releaseSample(sample), index + 1, 3);
+    assert.deepEqual(bytes(actualFrame.subarray(MOTION_HEADER_BYTES)), bytes(actualPayload), `frame ${index}`);
+    assert.equal(referenceFrame.length - actualFrame.length, sample.routing ? 63 : 48, `saved ${index}`);
+    const decoded = actualDecoder.decode(actualFrame)!;
+    const reference = referenceDecoder.decode(referenceFrame);
+    assert.deepEqual(plain(resolveGameMotion(decoded, { ...identity, players })),
+      plain({ ...(reference as object), payload: releasePayload(reference) }), `decode ${index}`);
     assert.deepEqual(plain(decodeKinematicSample(actualPayload, (index + 2) as 2)),
-      plain((referenceDecoder.decode(referenceFrame) as { payload: unknown }).payload),
-      `payload decode ${index}`);
+      plain(releasePayload(reference)), `payload decode ${index}`);
   }
 });
 
-test("invalid network payloads are rejected like the released decoder", () => {
-  const valid = new GameMotionEncoder(identity).encode(kinematic, 1);
-  const bad = [valid.subarray(0, 40), valid.subarray(0, valid.length - 1), valid.slice()];
-  bad[2]![2] = 255;
-  for (const packet of bad) {
-    assert.equal(new GameMotionDecoder().decode(packet), undefined);
-    assert.equal(new release.d6().decode(packet), undefined);
-  }
+test("invalid network payloads are rejected", () => {
+  const valid = new GameMotionEncoder(wire).encode(kinematic, 1);
+  assert.ok(new GameMotionDecoder().decode(valid));
+  const bad = [valid.subarray(0, 40), valid.subarray(0, valid.length - 1), valid.slice(), valid.slice(),
+    valid.slice()];
+  bad[2]![0] = 255; // kind
+  bad[3]![2] = 8; // slot
+  bad[4]![0] = 3; // kind 3 needs a longer payload
+  for (const packet of bad) assert.equal(new GameMotionDecoder().decode(packet), undefined);
+  // The release's own frames do not parse as protocol 40.
+  assert.equal(new GameMotionDecoder().decode(new release.S40(identity).encode(kinematic, 1)), undefined);
 });
 
 test("encoder validation and malformed floats keep released behavior", () => {
-  const current = new GameMotionEncoder(identity);
+  const current = new GameMotionEncoder(wire);
   const reference = new release.S40(identity);
   for (const [sample, sequence, mask] of [
     [kinematic, -1, 0], [kinematic, 0x1_0000_0000, 0],
@@ -138,7 +157,17 @@ test("encoder validation and malformed floats keep released behavior", () => {
     assert.equal((actualError as Error)?.message, (referenceError as Error)?.message);
   }
   const packet = current.encode(kinematic, 3);
-  new DataView(packet.buffer).setFloat32(56 + 4, Infinity, true);
+  new DataView(packet.buffer).setFloat32(MOTION_HEADER_BYTES + 4, Infinity, true);
   assert.equal(new GameMotionDecoder().decode(packet), undefined);
-  assert.equal(new release.d6().decode(packet), undefined);
+  assert.throws(() => new GameMotionEncoder({ ...wire, slot: 8 }));
+  assert.throws(() => new GameMotionEncoder({ ...wire, raceId: "race-1" }));
+});
+
+test("resolution names the sender through the race and drops other races and empty slots", () => {
+  const decoded = new GameMotionDecoder().decode(new GameMotionEncoder(wire).encode(kinematic, 5, 9))!;
+  const race = { roomId: identity.roomId, raceId: identity.raceId, players: new Map([[3, identity.playerId]]) };
+  assert.deepEqual(plain(resolveGameMotion(decoded, race)), plain({ roomId: identity.roomId,
+    raceId: identity.raceId, playerId: identity.playerId, sequence: 5, recipientMask: 9, payload: kinematic }));
+  assert.equal(resolveGameMotion(decoded, { ...race, players: new Map([[2, identity.playerId]]) }), undefined);
+  assert.equal(resolveGameMotion(decoded, { ...race, raceId: "abaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" }), undefined);
 });

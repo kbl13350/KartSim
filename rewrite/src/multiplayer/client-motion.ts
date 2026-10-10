@@ -1,5 +1,6 @@
-import { isNewerSequence } from "./motion";
-import { GameMotionEncoder, type DecodedGameMotion, type GameMotionSample } from "./payload";
+import { isNewerSequence, MOTION_MASK_OFFSET } from "./motion";
+import { GameMotionEncoder, resolveGameMotion, type DecodedGameMotion, type GameMotionSample,
+  type WireGameMotion } from "./payload";
 import type { PeerDiagnostic } from "./peer-mesh";
 import type { RaceScope } from "./race-session";
 import type { ClockSample, ClockSynchronizer } from "./network-timing";
@@ -12,7 +13,7 @@ export interface ClientMotionHost {
   playerId?: string;
   motionScope?: ClientMotionScope;
   motion?: Pick<RTCDataChannel, "readyState" | "bufferedAmount" | "send">;
-  decoder: { decode(input: Uint8Array): DecodedGameMotion | undefined };
+  decoder: { decode(input: Uint8Array): WireGameMotion | undefined };
   peerTransport?: {
     send(frame: Uint8Array, sequence: number, recipientMask: number):
       { relayMask: number; sent: boolean };
@@ -24,15 +25,19 @@ export interface ClientMotionHost {
   dispose(): void;
 }
 
-/** A malformed server motion packet retires the connection, as in the release. */
+/**
+ * A malformed server motion packet retires the connection, as in the release;
+ * a well-formed one of another race or of an unknown slot is dropped.
+ */
 export function acceptServerMotion(host: ClientMotionHost, input: unknown): void {
   const bytes = input instanceof ArrayBuffer ? new Uint8Array(input)
     : ArrayBuffer.isView(input) ? new Uint8Array(input.buffer, input.byteOffset, input.byteLength)
       : undefined;
   if (!bytes) { host.dispose(); return; }
-  const message = host.decoder.decode(bytes);
-  if (!message) { host.dispose(); return; }
-  acceptGameMotion(host, message, true);
+  const motion = host.decoder.decode(bytes);
+  if (!motion) { host.dispose(); return; }
+  const message = host.motionScope && resolveGameMotion(motion, host.motionScope);
+  if (message) acceptGameMotion(host, message, true);
 }
 
 /** Scope and sequence filtering shared by direct peer and server traffic. */
@@ -59,13 +64,14 @@ export function sendGameMotion(host: ClientMotionHost, sample: GameMotionSample,
   const recipients = scope.recipientMask & (requestedMask ?? 255);
   if (!recipients) return false;
   const sequence = (scope.sequence + 1) >>> 0;
-  scope.encoder ??= new GameMotionEncoder({ roomId: scope.roomId,
-    raceId: scope.raceId, playerId: host.playerId });
+  if (scope.encoder?.slot !== scope.slot) {
+    scope.encoder = new GameMotionEncoder({ raceId: scope.raceId, slot: scope.slot });
+  }
   const bytes = scope.encoder.encode(sample, sequence);
   const direct = host.peerTransport?.send(bytes, sequence, recipients);
   let sent = direct?.sent ?? false;
   if (!direct || direct.relayMask) {
-    bytes[3] = direct?.relayMask ?? recipients;
+    bytes[MOTION_MASK_OFFSET] = direct?.relayMask ?? recipients;
     if (channel?.readyState === "open" && channel.bufferedAmount <= 8_192) {
       try { channel.send(bytes as Uint8Array<ArrayBuffer>); sent = true; }
       catch { host.dispose(); return false; }

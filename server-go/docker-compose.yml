@@ -55,6 +55,8 @@ x-game-env: &game-env
   KART_MAX_CONNECTIONS: ${KART_MAX_CONNECTIONS:-}
   KART_SEND_BUFFER_BYTES: ${KART_SEND_BUFFER_BYTES:-}
   KART_HELLO_TIMEOUT: ${KART_HELLO_TIMEOUT:-}
+  # WebSocket 压缩（大的 JSON 消息），与数据服务取相同的值。
+  KART_WS_COMPRESSION: ${KART_WS_COMPRESSION:-true}
   KART_OUTBOX_DIR: /var/lib/kart/outbox
   KART_LAN_HOSTS: ${KART_LAN_HOSTS:-}
   # 游客开关与数据服务取相同的值。奖励倍率不用传：游戏节点从数据服务的心跳响应得到
@@ -135,6 +137,8 @@ services:
       # 好友私聊 WebSocket 的连接上限与每连接发送缓冲；留空为程序默认值（5000、262144）。
       KART_MESSENGER_MAX_CONNECTIONS: ${KART_MESSENGER_MAX_CONNECTIONS:-}
       KART_MESSENGER_SEND_BUFFER_BYTES: ${KART_MESSENGER_SEND_BUFFER_BYTES:-}
+      # 好友私聊与小屋 WebSocket 的压缩，与游戏节点取相同的值。
+      KART_WS_COMPRESSION: ${KART_WS_COMPRESSION:-true}
     # backend 访问 MySQL/Redis；cluster 对游戏节点提供 8790，并承载发布的 8787。
     networks: [backend, cluster]
     ports:

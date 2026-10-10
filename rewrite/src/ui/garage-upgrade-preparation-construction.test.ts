@@ -27,6 +27,7 @@ class ElementStub {
   height = 0;
   disabled = false;
   attrs: Record<string, string> = {};
+  style: Record<string, string> = {};
   children: ElementStub[] = [];
   listeners = new Map<string, (event: KeyboardEvent) => void>();
   constructor(readonly name: string, readonly owner: { activeElement?: ElementStub },
@@ -54,7 +55,8 @@ class ElementStub {
     return {
       name: this.name, className: this.className, text: this.textContent,
       width: this.width, height: this.height, disabled: this.disabled,
-      attrs: { ...this.attrs }, listeners: [...this.listeners.keys()],
+      attrs: { ...this.attrs }, style: { ...this.style },
+      listeners: [...this.listeners.keys()],
       children: this.children.map(child => child.snapshot()),
     };
   }
@@ -141,7 +143,15 @@ function run(released: boolean, canvasAvailable: boolean) {
 }
 
 test("upgrade preparation canvas, keyboard trap and loading match Ja constructor", () => {
-  assert.deepEqual(run(false, true), run(true, true));
+  const released = run(true, true) as { surface: { children: Array<{
+    children: Array<{ name: string; style: Record<string, string> }> }> } };
+  // Deliberate change: the release left the control box 0 px high, so the
+  // Garage overlay rasterizer skipped every label and button in it.
+  const controls = released.surface.children[0]!.children[1]!;
+  assert.equal(controls.name, "div");
+  assert.deepEqual(controls.style, {});
+  controls.style = { position: "absolute", inset: "0" };
+  assert.deepEqual(run(false, true), released);
 });
 
 test("upgrade preparation missing canvas fails at the same construction point", () => {

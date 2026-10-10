@@ -4,6 +4,7 @@ import (
 	"encoding/binary"
 	"math"
 	"net/http/httptest"
+	"strconv"
 	"testing"
 	"time"
 
@@ -15,17 +16,15 @@ import (
 	"kartsim/internal/shared/ticket"
 )
 
-// motionFrame is a kind 2 frame (the smallest the browsers accept) of
-// playerID at pos (wire axes) with tick.
-func motionFrame(roomID, raceID, playerID string, sequence uint32, pos [3]float32, tick uint32) []byte {
-	frame := make([]byte, 56+80)
-	binary.LittleEndian.PutUint16(frame, 19_277)
-	frame[2], frame[3] = 2, 0xFF
-	copy(frame[4:], uuidBytes(roomID))
-	copy(frame[20:], uuidBytes(raceID))
-	copy(frame[36:], uuidBytes(playerID))
-	binary.LittleEndian.PutUint32(frame[52:], sequence)
-	payload := frame[56:]
+// motionFrame is a protocol 40 kind 2 frame (the smallest the browsers
+// accept) of raceID with sequence, at pos (wire axes) with tick; the node
+// stamps the sender's slot.
+func motionFrame(raceID string, sequence uint32, pos [3]float32, tick uint32) []byte {
+	frame := make([]byte, 8+80)
+	tag, _ := strconv.ParseUint(raceID[:2], 16, 8)
+	frame[0], frame[1], frame[3] = 2, 0xFF, byte(tag)
+	binary.LittleEndian.PutUint32(frame[4:], sequence)
+	payload := frame[8:]
 	binary.LittleEndian.PutUint32(payload, tick)
 	for i, v := range pos {
 		binary.LittleEndian.PutUint32(payload[4+4*i:], math.Float32bits(v))
@@ -69,7 +68,7 @@ func TestAntiCheatKick(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	send(motionFrame(roomID, raceID, aliceID, 1, [3]float32{0, 0, 0}, now))
+	send(motionFrame(raceID, 1, [3]float32{0, 0, 0}, now))
 	for len(bob.frames) == 0 {
 		if m, err := bob.read(); err != nil {
 			t.Fatal(err)
@@ -78,7 +77,7 @@ func TestAntiCheatKick(t *testing.T) {
 		}
 	}
 	n.clock.Advance(64 * time.Millisecond)
-	send(motionFrame(roomID, raceID, aliceID, 2, [3]float32{2_000, 0, 0}, now+64))
+	send(motionFrame(raceID, 2, [3]float32{2_000, 0, 0}, now+64))
 
 	kicked := alice.waitFor(func(m map[string]any) bool { return m["type"] == "error" })
 	if kicked["code"] != "CHEAT_DETECTED" || kicked["check"] != "TELEPORT" || kicked["requestId"] != nil {

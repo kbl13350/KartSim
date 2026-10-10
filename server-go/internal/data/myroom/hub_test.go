@@ -104,12 +104,16 @@ type testHub struct {
 	nowMu   sync.Mutex
 }
 
-func newTestHub(t *testing.T) *testHub {
+func newTestHub(t *testing.T) *testHub { return newTestHubWith(t, Options{}) }
+
+func newTestHubWith(t *testing.T, opts Options) *testHub {
 	t.Helper()
 	backend := newFakeBackend()
 	th := &testHub{t: t, backend: backend, now: time.UnixMilli(1_000_000)}
-	hub := New(backend, Options{Logger: slog.New(slog.NewTextHandler(io.Discard, nil)), Now: th.clock,
-		ChatRate: 1000, ChatBurst: 1000})
+	opts.Logger = slog.New(slog.NewTextHandler(io.Discard, nil))
+	opts.Now = th.clock
+	opts.ChatRate, opts.ChatBurst = 1000, 1000
+	hub := New(backend, opts)
 	th.hub = hub
 	server := httptest.NewServer(hub)
 	t.Cleanup(func() {
@@ -234,6 +238,39 @@ func TestHelloRequired(t *testing.T) {
 			}
 			return
 		}
+	}
+}
+
+func TestCompressionAndInflatedReadLimit(t *testing.T) {
+	dial := func(h *testHub) (*wsClient, string) {
+		t.Helper()
+		dialer := websocket.Dialer{EnableCompression: true}
+		ws, response, err := dialer.Dial(h.url, nil)
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Cleanup(func() { ws.Close() })
+		return &wsClient{t: t, ws: ws}, response.Header.Get("Sec-WebSocket-Extensions")
+	}
+	c, extensions := dial(newTestHub(t))
+	if !strings.Contains(extensions, "permessage-deflate") {
+		t.Fatalf("extension not negotiated: %q", extensions)
+	}
+	c.send(map[string]any{"type": "hello", "token": "token-alice"})
+	c.expect("welcome")
+	// About 1 KiB on the wire, 1 MiB once inflated (the limit is 4 KiB).
+	c.send(map[string]any{"type": "ping", "pad": strings.Repeat("x", 1<<20)})
+	for {
+		if _, err := c.read(); err != nil {
+			if !websocket.IsCloseError(err, websocket.CloseMessageTooBig) {
+				t.Fatalf("inflated message: %v", err)
+			}
+			break
+		}
+	}
+
+	if _, extensions := dial(newTestHubWith(t, Options{DisableCompression: true})); extensions != "" {
+		t.Fatalf("negotiated %q with compression disabled", extensions)
 	}
 }
 

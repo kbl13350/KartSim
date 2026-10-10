@@ -4,7 +4,7 @@ import test from "node:test";
 
 import { receiveGameControlEvent } from "./client-control-receiver";
 import type { ClientConnectionHost } from "./client-connect";
-import { SERVER_EVENT_TYPES, isValidItemRequest, parseServerMessage } from "./protocol";
+import { SERVER_EVENT_TYPES, isValidItemRequest, parseServerMessage, PROTOCOL_VERSION } from "./protocol";
 import { parseServerEvent, type ServerEventValidation } from "./server-events";
 
 const source = readFileSync(new URL("../../../recovered/formatted/index.js", import.meta.url), "utf8");
@@ -24,7 +24,9 @@ const deps: ServerEventValidation = {
   validRandomTrackCode: code => code === 8,
 };
 const releaseParser = new Function("bP", "W6", "To", "X6", "t20",
-  `${source.slice(constants, roomParser)}\n${source.slice(eventParser, afterParser)}\nreturn zo0;`)(
+  // The release's protocol version, raised to ours (motion frames by slot, protocol 40).
+  `${source.slice(constants, roomParser).replace("const Uo = 39,", `const Uo = ${PROTOCOL_VERSION},`)}
+${source.slice(eventParser, afterParser)}\nreturn zo0;`)(
     deps.validRoom, deps.validChannel, deps.validGameplay,
     (code: number) => deps.validRandomTrackCode(code) ? { code } : undefined,
     (value: Record<string, unknown>) => Number.isInteger(value.main) &&
@@ -53,7 +55,7 @@ test("all control envelope branches and giant-state projection match release", (
       kind: "offer", sdp: "v=0\nm=audio 9 RTP/AVP 0" },
     { type: "p2p-relay", roomId, raceId, playerId },
     { type: "p2p-accepted", roomId, raceId },
-    { type: "welcome", playerId, protocolVersion: 39,
+    { type: "welcome", playerId, protocolVersion: PROTOCOL_VERSION,
       ruleset: "launcher-room-v1", capabilities: ["p2p-motion"] },
     { type: "team-gauge", roomId, raceId, team: 1, sequence: 4, target: 0.7 },
     { type: "giant-state", roomId, raceId, playerId, sequence: 2,

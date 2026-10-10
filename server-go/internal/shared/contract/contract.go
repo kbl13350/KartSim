@@ -24,7 +24,9 @@ const (
 	PathEquipmentVerify = "/internal/v1/equipment/verify"
 	PathAntiCheat       = "/internal/v1/anti-cheat"
 
-	ProtocolVersion = 39
+	// ProtocolVersion is 40 since motion frames name racers by room slot
+	// (game/lobby/motion.go); the release is 39.
+	ProtocolVersion = 40
 	Ruleset         = "launcher-room-v1"
 )
 

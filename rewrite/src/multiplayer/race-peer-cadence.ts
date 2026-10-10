@@ -18,7 +18,8 @@ export interface CadenceRoom {
 
 export interface CadenceMotion {
   kind: string;
-  routing?: { observedPlayerId?: string; motionMode?: number };
+  /** observedSlot names a racer by room slot (protocol 40; the release sent its player ID). */
+  routing?: { observedSlot?: number; motionMode?: number };
   resetStartedAt?: number;
 }
 
@@ -38,6 +39,7 @@ export interface CadencePeerState {
 /** Selects distant peer motion recipients and scales stale collision contact. */
 export class RacePeerCadence {
   localId: string;
+  localSlot: number | undefined;
   peers = new Map<string, CadencePeerState>();
   lastTick = 0;
   previousMode: number | undefined;
@@ -51,7 +53,10 @@ export class RacePeerCadence {
     this.raceId = race.raceId;
     this.special = specialMode;
     for (const participant of race.roster) {
-      if (participant.playerId === localId) continue;
+      if (participant.playerId === localId) {
+        this.localSlot = participant.slot;
+        continue;
+      }
       const itemId = participant.equipment?.itemIds[12];
       if (typeof itemId !== "number" || !Number.isInteger(itemId) ||
         itemId < 0 || itemId > 65_535 || this.peers.has(participant.playerId)) {
@@ -77,6 +82,7 @@ export class RacePeerCadence {
       this.dispose();
       return;
     }
+    this.localSlot = room.members.find(member => member.playerId === this.localId)!.slot;
     for (const [id, peer] of this.peers) {
       const member = room.members.find(candidate => candidate.playerId === id);
       if (!member) {
@@ -104,9 +110,21 @@ export class RacePeerCadence {
     const peer = this.peers.get(id);
     if (!peer || this.disposed) return;
     const routing = motion.kind === "kinematic" ? motion.routing : undefined;
-    peer.target = routing?.observedPlayerId;
+    peer.target = this.playerAt(routing?.observedSlot);
     peer.motionMode = routing?.motionMode;
     peer.resetting = motion.kind === "kinematic" && motion.resetStartedAt !== undefined;
+  }
+
+  /** The room slot of a racer (the local one included), as motion routing names it. */
+  slotOf(id: string): number | undefined {
+    return id === this.localId ? this.localSlot : this.peers.get(id)?.slot;
+  }
+
+  private playerAt(slot: number | undefined): string | undefined {
+    if (slot === undefined) return undefined;
+    if (slot === this.localSlot) return this.localId;
+    for (const [id, peer] of this.peers) if (peer.slot === slot) return id;
+    return undefined;
   }
 
   select(

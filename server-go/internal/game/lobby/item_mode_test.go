@@ -121,7 +121,7 @@ func (ir *itemRace) reject(c *Client, action string, fields map[string]any) stri
 
 // at reports c's route distance (and lap) in a motion frame.
 func (ir *itemRace) at(c *Client, distance float64, lap uint32) {
-	frame := progressFrame(ir.roomID, ir.raceID, c.playerID, 10, distance)
+	frame := progressFrame(ir.raceID, 10, distance)
 	binary.LittleEndian.PutUint32(frame[lapOffset:], lap)
 	ir.h.lobby.RelayMotion(c, frame)
 }

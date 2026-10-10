@@ -86,7 +86,7 @@ func TestHelloValidationOrderMatchesJava(t *testing.T) {
 		code   string
 	}{
 		{"protocol before ticket", func(r map[string]any) { r["protocolVersion"] = 38 }, "PROTOCOL_MISMATCH"},
-		{"protocol type", func(r map[string]any) { r["protocolVersion"] = 39.0 + 0.5 }, "INVALID_PROTOCOLVERSION"},
+		{"protocol type", func(r map[string]any) { r["protocolVersion"] = 40.0 + 0.5 }, "INVALID_PROTOCOLVERSION"},
 		{"ruleset", func(r map[string]any) { r["ruleset"] = "other" }, "PROTOCOL_MISMATCH"},
 		{"resource version", func(r map[string]any) { r["resourceVersion"] = "p9999" }, "RESOURCE_VERSION_UNSUPPORTED"},
 		{"name", func(r map[string]any) { r["name"] = "" }, "INVALID_NAME"},
@@ -118,7 +118,7 @@ func TestHelloNamesAndPresence(t *testing.T) {
 	alice := h.newClient()
 	welcome := h.must(alice, helloRequest("Alice", h.guestTicket()))
 	assertEqual(t, welcome, map[string]any{"type": "welcome", "playerId": alice.playerID,
-		"protocolVersion": 39, "ruleset": "launcher-room-v1", "capabilities": []any{}})
+		"protocolVersion": 40, "ruleset": "launcher-room-v1", "capabilities": []any{}})
 	assertEqual(t, h.presence.claims, []contract.PresenceClaimRequest{{NodeID: testNodeID,
 		PlayerID: alice.playerID, Name: "Alice", Guest: true}})
 	assertEqual(t, h.errorCode(alice, helloRequest("Other", h.guestTicket())), "ALREADY_CONNECTED")

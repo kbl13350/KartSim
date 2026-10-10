@@ -1,4 +1,9 @@
 import { downloadRaceTrack } from "../resources/resource-manager";
+import { vI } from "../generated/library.js";
+import { LicenseItemRace } from "../license/license-item-race";
+import { licenseSceneNames } from "../license/license-mission";
+import { itemRaceVehicleSpec } from "../physics/item-race-tuning";
+import { LicenseScenes } from "../license/license-scenes";
 import { MissionTimerPanel } from "../license/mission-timer-panel";
 import { MissionResultAction, StoryAction2D } from "../story/mission-result-action";
 import type { StoryRaceRequest } from "../story/story-race";
@@ -104,13 +109,23 @@ export async function buildSoloRaceAssets(
   const library = host.getLibrary();
   const flyingPetItem = await ops.flyingPetItem(library,
     host.userProfile.equipment.itemIds[52]);
-  const physicsSpec = flyingPetItem
+  const timeAttackSpec = flyingPetItem
     ? ops.applyFlyingPetSpec(spec, kart.engineGrade ?? 0, garageState, speed,
       (await ops.loadBodyParameter(library, kart.path,
         kart.systemKey)).parameter.value,
       await ops.loadFlyingPetAbility(library, flyingPetItem.internalId),
       (value: any) => ops.finalizeSpec(value, version, speed))
     : ops.finalizeSpec(tunedSpec, version, speed);
+  // 驾照考试 item steps drive the item race kart (道具赛): its booster item, its
+  // item slots (itemSlotCnt, else two) and no drift boosters.
+  const licenseItemStep = selection.story?.license?.rule === "item"
+    ? selection.story.license : undefined;
+  const itemMode = licenseItemStep ? vI(2) : undefined;
+  const physicsSpec = licenseItemStep
+    ? { ...itemRaceVehicleSpec(timeAttackSpec, itemMode, bodyParameter,
+      host.userProfile.equipment.itemIds[52]),
+    itemSlotCapacity: licenseItemStep.setup.slotCount === 1 ? 1 : 2 }
+    : timeAttackSpec;
   const particleRequest = ops.particleModification(garageState,
     kart.engineGrade, teamBooster ? "team" : "personal", speed);
   let particleBanner: any;
@@ -210,10 +225,14 @@ export async function buildSoloRaceAssets(
       throw new Error(`人物载入失败：${error instanceof Error ? error.message : String(error)}`);
     }
 
-    const physics = ops.createPhysics(vehicle.physicsParams,
-      vehicle.collisionShape, raceOptions.booster !== 0,
-      raceOptions.speed === 4);
+    const physics = itemMode
+      ? ops.createPhysics(vehicle.physicsParams, vehicle.collisionShape, false,
+        raceOptions.speed === 4, false, itemMode)
+      : ops.createPhysics(vehicle.physicsParams,
+        vehicle.collisionShape, raceOptions.booster !== 0,
+        raceOptions.speed === 4);
     let track: any, rain: any, rainAudio: any, snow: any;
+    let licenseItems: LicenseItemRace | undefined;
     let gameplayUi: any, action2D: any, result: any, trackInfoCard: any;
     let pause: any, countdownAudio: any, eventEffects: any, eventAudio: any;
     let dummyAudio: any, linkedPresentation: any, flyingPet: any;
@@ -264,13 +283,32 @@ export async function buildSoloRaceAssets(
       const minimap = await ops.loadMinimap(host.getLibrary(), map.path,
         map.metadata, map.minimap, map.environment, map.stageBinding,
         ghostSources.length);
-      gameplayUi = ops.createGameplayUi(tachometer, minimap);
-      if (vehicle.classicHud)
+      // Item races have no N2O gauge (ITEM_MODE.md §1).
+      gameplayUi = ops.createGameplayUi(licenseItemStep
+        ? { ...tachometer, boostVisible: false, teamBoostVisible: false } : tachometer, minimap);
+      // 驾照考试 hideMiniMap / showTimeUI='FALSE' (riderSchool@cn.xml).
+      const licenseSetup = selection.story?.license?.setup;
+      if (licenseSetup?.hideMiniMap) gameplayUi.setMinimapVisible?.(false);
+      if (licenseSetup?.showTimeUI === false) gameplayUi.setTimeInfoVisible?.(false);
+      if (vehicle.classicHud && !licenseItemStep)
         await gameplayUi.loadClassicBoost(host.getLibrary(), teamBooster);
-      action2D = ops.createAction2D(await ops.loadAction2D(host.getLibrary()));
+      if (licenseItemStep) {
+        if (!map.licenseModel) throw new Error("驾照道具关卡缺少赛道原件。");
+        licenseItems = await LicenseItemRace.load({
+          library: host.getLibrary(), spec: licenseItemStep, trackId: selection.trackId,
+          model: map.licenseModel, environment: map.environment, stageBinding: map.stageBinding,
+          audioContext, physics, slots: gameplayUi.definition?.items,
+          warn: message => host.hud.showDebugText(message, "error"),
+        });
+      }
+      map.licenseModel = undefined;
+      // Story races also load retire@zz (未完成) for a failed mission.
+      action2D = ops.createAction2D(await ops.loadAction2D(host.getLibrary(), Boolean(selection.story)));
       if (selection.story) {
         // The mission result animation is a bonus: race on without it if it cannot load.
         try {
+          // Loaded first: if it fails, nothing else of the overlay is left to release.
+          const mission = await MissionResultAction.load(host.getLibrary(), audioContext);
           // 驾照考试 steps with a time limit count it down on the release mission timer.
           const timer = selection.story.timeLimitMs
             ? await MissionTimerPanel.load(host.getLibrary()).catch(error => {
@@ -278,8 +316,12 @@ export async function buildSoloRaceAssets(
                 error instanceof Error ? error.message : String(error)}`, "error");
               return undefined;
             }) : undefined;
-          action2D = new StoryAction2D(action2D,
-            await MissionResultAction.load(host.getLibrary(), audioContext), timer);
+          // 驾照考试 key prompts and the course's tutorial hints.
+          const license = selection.story.license;
+          const scenes = license ? await LicenseScenes.load(host.getLibrary(),
+            licenseSceneNames(license, map.data.licenseEvents),
+            warning => host.hud.showDebugText(warning, "error")) : undefined;
+          action2D = new StoryAction2D(action2D, mission, timer, scenes);
         } catch (error) {
           host.hud.showDebugText(`任务结果动画未能载入：${
             error instanceof Error ? error.message : String(error)}`, "error");
@@ -434,6 +476,7 @@ export async function buildSoloRaceAssets(
       gameplayUi.setLocalMarkerTint(rankColors[0]);
     } catch (error) {
       disposeNewBgm();
+      licenseItems?.dispose();
       flyingPet?.dispose();
       for (const ghost of ghosts) ghost.view.dispose();
       track?.dispose();
@@ -479,6 +522,7 @@ export async function buildSoloRaceAssets(
       nextTrackDummyAudio: dummyAudio,
       nextLinkedCharacterPresentation: linkedPresentation,
       nextFlyingPet: flyingPet, nextGhosts: ghosts, rankColors,
+      nextLicenseItems: licenseItems,
       selectedVehicle: kart, generation,
       particleModificationBanner: particleBanner,
       particleModificationBannerRequest: particleRequest,

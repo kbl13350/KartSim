@@ -26,10 +26,10 @@ func (h *harness) connectClosing(name string) (*Client, *closingSink) {
 	return c, sink
 }
 
-// kartFrame is c's kind 10 frame at x meters east with route distance and
-// lap, ticked with the lobby clock.
-func (h *harness) kartFrame(roomID, raceID string, c *Client, x, distance float64, lap int) []byte {
-	frame := progressFrame(roomID, raceID, c.playerID, 10, distance)
+// kartFrame is a kind 10 frame of raceID at x meters east with route
+// distance and lap, ticked with the lobby clock.
+func (h *harness) kartFrame(raceID string, x, distance float64, lap int) []byte {
+	frame := progressFrame(raceID, 10, distance)
 	payload := frame[motionHeaderLength:]
 	binary.LittleEndian.PutUint32(payload, uint32(h.clock.Now()))
 	binary.LittleEndian.PutUint32(payload[4:], math.Float32bits(float32(x)))
@@ -48,9 +48,9 @@ func TestAntiCheatKicksATeleport(t *testing.T) {
 	honest, _ := h.connectClosing("Honest")
 	roomID, raceID := h.startRace([]*Client{cheater, honest}, "ordinary", "speedIndiCombine", 2)
 
-	h.lobby.RelayMotion(cheater, h.kartFrame(roomID, raceID, cheater, 0, 10, 1))
+	h.lobby.RelayMotion(cheater, h.kartFrame(raceID, 0, 10, 1))
 	h.clock.Advance(64 * time.Millisecond)
-	h.lobby.RelayMotion(cheater, h.kartFrame(roomID, raceID, cheater, 2_000, 14, 1))
+	h.lobby.RelayMotion(cheater, h.kartFrame(raceID, 2_000, 14, 1))
 	if got := h.sink(honest).frameCount(); got != 1 {
 		t.Fatalf("honest racer got %d frames, want only the first", got)
 	}
@@ -73,7 +73,7 @@ func TestAntiCheatKicksATeleport(t *testing.T) {
 	if code := h.errorCode(cheater, map[string]any{"type": "clock", "clientTick": 1}); code != "CHEAT_DETECTED" {
 		t.Fatalf("command after the kick: %s", code)
 	}
-	h.lobby.RelayMotion(cheater, h.kartFrame(roomID, raceID, cheater, 2_000, 20, 1))
+	h.lobby.RelayMotion(cheater, h.kartFrame(raceID, 2_000, 20, 1))
 	if got := h.sink(honest).frameCount(); got != 1 {
 		t.Fatalf("a kicked racer's frame was relayed")
 	}
@@ -81,7 +81,7 @@ func TestAntiCheatKicksATeleport(t *testing.T) {
 
 	// The honest racer finishes; the cheater ranks last, without a reward.
 	h.clock.Advance(100 * time.Second)
-	h.lobby.RelayMotion(honest, h.kartFrame(roomID, raceID, honest, 0, 6_900, 3))
+	h.lobby.RelayMotion(honest, h.kartFrame(raceID, 0, 6_900, 3))
 	h.must(honest, map[string]any{"type": "finish", "roomId": roomID, "raceId": raceID, "elapsedMs": 100_000})
 	settlement := h.recorder.settlements()[0]
 	if len(settlement.Results) != 2 || settlement.Results[0].PlayerID != honest.playerID ||
@@ -114,8 +114,8 @@ func TestAntiCheatPassesAnHonestRace(t *testing.T) {
 		if distance >= float64(lap)*track.Lap {
 			lap++
 		}
-		h.lobby.RelayMotion(a, h.kartFrame(roomID, raceID, a, x, distance, lap))
-		h.lobby.RelayMotion(b, h.kartFrame(roomID, raceID, b, x+3, distance-5, lap))
+		h.lobby.RelayMotion(a, h.kartFrame(raceID, x, distance, lap))
+		h.lobby.RelayMotion(b, h.kartFrame(raceID, x+3, distance-5, lap))
 	}
 	elapsed := h.clock.Now() - start
 	h.must(a, map[string]any{"type": "finish", "roomId": roomID, "raceId": raceID, "elapsedMs": elapsed})
@@ -188,7 +188,7 @@ func TestBadFramesAreNeverRelayed(t *testing.T) {
 		raceID := raceOf(room)["raceId"].(string)
 		h.must(a, map[string]any{"type": "loaded", "roomId": roomID, "raceId": raceID})
 		h.must(b, map[string]any{"type": "loaded", "roomId": roomID, "raceId": raceID})
-		frame := motionFrame(roomID, raceID, a.playerID, 0xFF, 234)
+		frame := motionFrame(raceID, 0, 0xFF, motionHeaderLength+kinematicPayloadLength(10))
 		binary.LittleEndian.PutUint32(frame[motionHeaderLength+16:], 0) // a zero quaternion
 		h.lobby.RelayMotion(a, frame)
 		if got := h.sink(b).frameCount(); got != 0 {
@@ -210,10 +210,10 @@ func TestAntiCheatLogMode(t *testing.T) {
 	h := cheatHarness(t, anticheat.ModeLog)
 	a, aSink := h.connectClosing("A")
 	b, _ := h.connectClosing("B")
-	roomID, raceID := h.startRace([]*Client{a, b}, "ordinary", "speedIndiCombine", 2)
+	_, raceID := h.startRace([]*Client{a, b}, "ordinary", "speedIndiCombine", 2)
 	for i := range 4 {
 		h.clock.Advance(64 * time.Millisecond)
-		h.lobby.RelayMotion(a, h.kartFrame(roomID, raceID, a, float64(i)*2_000, 10, 1))
+		h.lobby.RelayMotion(a, h.kartFrame(raceID, float64(i)*2_000, 10, 1))
 	}
 	reports := h.cheatReports()
 	if len(reports) != 1 || reports[0].Code != "TELEPORT" || reports[0].Action != contract.AntiCheatLog {

@@ -13,6 +13,7 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+	"sync/atomic"
 	"syscall"
 	"testing"
 	"time"
@@ -24,6 +25,7 @@ import (
 	"kartsim/internal/shared/contract"
 	"kartsim/internal/shared/netcfg"
 	"kartsim/internal/shared/ticket"
+	"kartsim/internal/shared/wsdeflate"
 )
 
 type nopPresence struct{}
@@ -98,6 +100,113 @@ func TestReadLimitClosesTheConnection(t *testing.T) {
 	if err := readUntilError(t, conn); !websocket.IsCloseError(err, websocket.CloseMessageTooBig) &&
 		!strings.Contains(err.Error(), "reset") && !strings.Contains(err.Error(), "EOF") {
 		t.Fatalf("oversized message: %v", err)
+	}
+}
+
+// countingConn counts the bytes a client reads from the wire.
+type countingConn struct {
+	net.Conn
+	read *atomic.Int64
+}
+
+func (c countingConn) Read(p []byte) (int, error) {
+	n, err := c.Conn.Read(p)
+	c.read.Add(int64(n))
+	return n, err
+}
+
+// dialCompressed connects offering permessage-deflate, like a browser.
+func dialCompressed(t *testing.T, url string) (*websocket.Conn, string, *atomic.Int64) {
+	t.Helper()
+	read := &atomic.Int64{}
+	dialer := websocket.Dialer{EnableCompression: true,
+		NetDialContext: func(ctx context.Context, network, address string) (net.Conn, error) {
+			conn, err := (&net.Dialer{}).DialContext(ctx, network, address)
+			if err != nil {
+				return nil, err
+			}
+			return countingConn{Conn: conn, read: read}, nil
+		}}
+	conn, resp, err := dialer.Dial(url, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = conn.Close() })
+	return conn, resp.Header.Get("Sec-WebSocket-Extensions"), read
+}
+
+func TestCompressesRoomSnapshots(t *testing.T) {
+	_, url := start(t, Options{})
+	request := func(conn *websocket.Conn, read *atomic.Int64, payload string) ([]byte, int64) {
+		t.Helper()
+		before := read.Load()
+		if err := conn.WriteMessage(websocket.TextMessage, []byte(payload)); err != nil {
+			t.Fatal(err)
+		}
+		_ = conn.SetReadDeadline(time.Now().Add(5 * time.Second))
+		for {
+			_, data, err := conn.ReadMessage()
+			if err != nil {
+				t.Fatal(err)
+			}
+			var m map[string]any
+			_ = json.Unmarshal(data, &m)
+			if m["requestId"] == "q" {
+				return data, read.Load() - before
+			}
+		}
+	}
+	hello := func(name string) (*websocket.Conn, *atomic.Int64) {
+		t.Helper()
+		conn, extensions, read := dialCompressed(t, url)
+		if !strings.Contains(extensions, "permessage-deflate") {
+			t.Fatalf("extension not negotiated: %q", extensions)
+		}
+		welcome, _ := request(conn, read, `{"type":"hello","requestId":"q","protocolVersion":40,`+
+			`"ruleset":"launcher-room-v1","resourceVersion":"p3553","name":"`+name+`","ticket":"any"}`)
+		if !strings.Contains(string(welcome), `"welcome"`) {
+			t.Fatalf("hello: %s", welcome)
+		}
+		return conn, read
+	}
+	alice, aliceRead := hello("Alice")
+	created, _ := request(alice, aliceRead, `{"type":"create","requestId":"q","name":"R","capacity":8,`+
+		`"channelName":"speedIndiCombine","mode":"individual","speed":7,"speedVersion":"国服"}`)
+	var room struct {
+		Room struct{ RoomID string } `json:"room"`
+	}
+	if err := json.Unmarshal(created, &room); err != nil || room.Room.RoomID == "" {
+		t.Fatalf("create: %s", created)
+	}
+	bob, bobRead := hello("Bob")
+	joined, wire := request(bob, bobRead, `{"type":"join","requestId":"q","roomId":"`+room.Room.RoomID+`"}`)
+	if !strings.Contains(string(joined), `"type":"room"`) || len(joined) < wsdeflate.MinBytes {
+		t.Fatalf("join: %d bytes: %s", len(joined), joined)
+	}
+	// Uncompressed it would take the payload plus a frame header.
+	if wire >= int64(len(joined)) {
+		t.Fatalf("a %d-byte snapshot took %d bytes on the wire", len(joined), wire)
+	}
+}
+
+func TestCompressionCanBeDisabled(t *testing.T) {
+	_, url := start(t, Options{DisableCompression: true})
+	if _, extensions, _ := dialCompressed(t, url); extensions != "" {
+		t.Fatalf("negotiated %q", extensions)
+	}
+}
+
+// A compressed message is limited by its inflated size, not its wire size.
+func TestReadLimitAppliesAfterDecompression(t *testing.T) {
+	_, url := start(t, Options{})
+	conn, _, _ := dialCompressed(t, url)
+	// About 1 KiB on the wire, 1 MiB once inflated (the limit is 64 KiB).
+	bomb := `{"type":"clock","pad":"` + strings.Repeat("x", 1<<20) + `"}`
+	if err := conn.WriteMessage(websocket.TextMessage, []byte(bomb)); err != nil {
+		t.Fatal(err)
+	}
+	if err := readUntilError(t, conn); !websocket.IsCloseError(err, websocket.CloseMessageTooBig) {
+		t.Fatalf("inflated message: %v", err)
 	}
 }
 
@@ -189,7 +298,7 @@ func TestHelloTimeoutClosesSilentSockets(t *testing.T) {
 	_, url := start(t, Options{HelloTimeout: 100 * time.Millisecond})
 	silent := dial(t, url)
 	greeted := dial(t, url)
-	hello := `{"type":"hello","requestId":"1","protocolVersion":39,"ruleset":"launcher-room-v1",` +
+	hello := `{"type":"hello","requestId":"1","protocolVersion":40,"ruleset":"launcher-room-v1",` +
 		`"resourceVersion":"p3553","name":"Greeter","ticket":"any"}`
 	if err := greeted.WriteMessage(websocket.TextMessage, []byte(hello)); err != nil {
 		t.Fatal(err)
@@ -344,7 +453,7 @@ func TestFloodDoesNotDisconnectOtherMembers(t *testing.T) {
 	s, url := start(t, Options{SendBufferLimit: 64 << 10})
 	hello := func(conn *websocket.Conn, name string) {
 		t.Helper()
-		payload := `{"type":"hello","requestId":"h","protocolVersion":39,"ruleset":"launcher-room-v1",` +
+		payload := `{"type":"hello","requestId":"h","protocolVersion":40,"ruleset":"launcher-room-v1",` +
 			`"resourceVersion":"p3553","name":"` + name + `","ticket":"any"}`
 		if err := conn.WriteMessage(websocket.TextMessage, []byte(payload)); err != nil {
 			t.Fatal(err)
@@ -502,7 +611,7 @@ func TestEvictClosesTheSocketAndFreesTheSeat(t *testing.T) {
 	}
 	hello := func(conn *websocket.Conn, name string) string {
 		t.Helper()
-		welcome := request(conn, `{"type":"hello","requestId":"q","protocolVersion":39,"ruleset":"launcher-room-v1",`+
+		welcome := request(conn, `{"type":"hello","requestId":"q","protocolVersion":40,"ruleset":"launcher-room-v1",`+
 			`"resourceVersion":"p3553","name":"`+name+`","ticket":"any"}`)
 		id, _ := welcome["playerId"].(string)
 		if id == "" {
@@ -569,7 +678,7 @@ func TestRefusalFieldsReachTheClient(t *testing.T) {
 		server.Close()
 	})
 	conn := dial(t, "ws"+strings.TrimPrefix(server.URL, "http"))
-	hello := `{"type":"hello","requestId":"h1","protocolVersion":39,"ruleset":"launcher-room-v1",` +
+	hello := `{"type":"hello","requestId":"h1","protocolVersion":40,"ruleset":"launcher-room-v1",` +
 		`"resourceVersion":"p3553","name":"Banned","ticket":"any"}`
 	if err := conn.WriteMessage(websocket.TextMessage, []byte(hello)); err != nil {
 		t.Fatal(err)

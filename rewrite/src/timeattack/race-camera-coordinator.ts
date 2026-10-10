@@ -66,9 +66,12 @@ export class RaceCameraCoordinator {
       z: Math.fround(body.position.z + shake.z),
     };
     this.cameraWave.update(timestampMs, routeSurface, body, shakenPosition);
+    // 驾照考试 item steps: a spinning or launched kart keeps the camera on the road (道具赛).
+    const itemBasis = vehicle.itemEffects?.cameraBasis;
     const driveState = this.driveCameraman.update({
       timestampMs,
-      body: { ...body, position: shakenPosition },
+      body: itemBasis ? { ...body, right: itemBasis.right, forward: itemBasis.forward,
+        up: itemBasis.up, position: shakenPosition } : { ...body, position: shakenPosition },
       routeSurface,
       ...vehicle.driveCameraRuntime(),
     });

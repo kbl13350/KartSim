@@ -101,6 +101,11 @@ export function drawGaragePreparation(host: GaragePreparationRenderHost,
     context.drawImage(image, 0, 0, image.width / 3, image.height,
       rect.x, rect.y, rect.width, rect.height);
   }
+  const mark = assets.images.get("tuning_infomark_1");
+  for (const name of ["helpMark1", "helpMark2"]) {
+    const rect = assets.rects.get(name);
+    if (mark && rect) context.drawImage(mark, rect.x, rect.y, rect.width, rect.height);
+  }
   const preview = preparationPreviewCard(host);
   if (preview) presenter.drawCard(context, preview.item, preview.rect);
   drawPreparationCards(context, presenter, preparationCards(host),

@@ -52,9 +52,12 @@ function runCadence(released: boolean, mode = "ordinary") {
       { playerId: "b", slot: 2 }, { playerId: "c", slot: 3 }],
   };
   cadence.updateRoom(room); record("room");
-  cadence.observe("a", { kind: "kinematic", routing: { observedPlayerId: "me", motionMode: 0 } });
-  cadence.observe("b", { kind: "kinematic", routing: { observedPlayerId: "me", motionMode: 0 } });
-  cadence.observe("c", { kind: "kinematic", routing: { observedPlayerId: "a", motionMode: 0 } });
+  // The release names the observed racer by player ID, protocol 40 by slot.
+  const observed = (id: string, slot: number) => ({ kind: "kinematic",
+    routing: released ? { observedPlayerId: id, motionMode: 0 } : { observedSlot: slot, motionMode: 0 } });
+  cadence.observe("a", observed("me", 0));
+  cadence.observe("b", observed("me", 0));
+  cadence.observe("c", observed("a", 1));
   cadence.recordReceipt("a", 4_294_967_100);
   cadence.recordReceipt("a", 42);
   cadence.recordReceipt("b", 1_000);

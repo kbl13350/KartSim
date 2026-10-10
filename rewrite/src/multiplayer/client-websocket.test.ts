@@ -7,7 +7,7 @@ import { disposeClient, sendControlRequest } from "./client-control";
 import { websocketUrlForOffer } from "./client-websocket";
 import { ClockSynchronizer, MotionRoundTripTracker } from "./network-timing";
 import { GameMotionDecoder } from "./payload";
-import { parseServerMessage } from "./protocol";
+import { parseServerMessage, PROTOCOL_VERSION } from "./protocol";
 
 class FakeSocket extends EventTarget {
   readyState = 0;
@@ -21,7 +21,7 @@ class FakeSocket extends EventTarget {
     if (typeof data !== "string") return;
     const request = JSON.parse(data) as { type: string; requestId: string; clientTick?: number };
     if (request.type === "hello") this.receive({ type: "welcome", requestId: request.requestId,
-      playerId: "player-a", protocolVersion: 39, ruleset: "launcher-room-v1", capabilities: [] });
+      playerId: "player-a", protocolVersion: PROTOCOL_VERSION, ruleset: "launcher-room-v1", capabilities: [] });
     if (request.type === "clock") this.receive({ type: "clock", requestId: request.requestId,
       clientTick: request.clientTick, serverTick: 120 });
     if (request.type === "list-ordinary") this.receive({ type: "rooms", requestId: request.requestId,

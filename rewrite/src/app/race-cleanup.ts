@@ -13,6 +13,8 @@ interface RaceSession {
   physics?: { hardCancelControls(): void };
   coordinator?: Disposable;
   ghosts: Array<{ view: Disposable }>;
+  /** 驾照考试 item steps' item race. */
+  licenseItems?: Disposable;
   outlineBatch?: Disposable;
   vehicleRender?: Disposable;
   flyingPet?: Disposable;
@@ -106,6 +108,10 @@ export function releaseRaceForReady(
 
   for (const ghost of session.ghosts) ghost.view.dispose();
   session.ghosts = [];
+  if (session.licenseItems) {
+    session.licenseItems.dispose();
+    session.licenseItems = undefined;
+  }
   session.outlineBatch?.dispose();
   session.outlineBatch = undefined;
   host.ghostRecorder = undefined;
