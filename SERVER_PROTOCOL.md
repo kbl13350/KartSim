@@ -135,39 +135,49 @@
 
 ### 本地新增：道具赛
 
-规则约定见 [`rewrite/ITEM_MODE.md`](rewrite/ITEM_MODE.md)；服务器数据 `server-go/internal/game/itemmode/itemmode.json` 由 `rewrite/tools/export-item-mode-data.mjs` 从原版资源导出（**不要手改**）：个人 `item/slot/itemProb_indi@zz.bml`、组队 `itemProb_team2@cn.bml` 的名次组权重，`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限，19 种道具 `item.bml` 第一组状态的时长，道具赛道表、随机池与默认赛道。
+规则约定见 [`rewrite/ITEM_MODE.md`](rewrite/ITEM_MODE.md)（第 3 阶段：附录 C）；服务器数据 `server-go/internal/game/itemmode/itemmode.json` 由 `rewrite/tools/export-item-mode-data.mjs` 从原版资源导出（**不要手改**）：个人 `item/slot/itemProb_indi@zz.bml`、组队 `itemProb_team2@cn.bml` 的名次组权重，`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限，19 种道具 `item.bml` 第一组状态的时长，道具赛道表（含 `track@zz` 等级）、随机池与默认赛道；第 3 阶段另有变更卡重抽表、49 种特殊道具（变体 base 及其状态时长）、按车辆的 `transformByKart`/`fired2Gain`/`firing2Gain`/`animalBooster`（基础文件加 `@cn` 按行覆盖）、`transform@zz`、`itemTable.kml` 加 `@cn` 的道具赛特性、46 辆迅引擎道具车与 12 个结算称号（见 `server-go/README.md`“道具赛数据”）。
 
 **房间。** `create` 用 `channelName:"itemIndiCombine"`（`mode:"individual"`）或 `"itemTeamCombine"`（`mode:"team"`，人数为偶数）、`speed:7`、`gameplay:"item"`，需要 p3553（`RESOURCE_VERSION_UNSUPPORTED`）；道具频道只接受 `item`，`item` 只能在道具频道（都返回 `INVALID_CHANNEL`）。`list-gameplay {"gameplay":"item"}` 列出道具房间，`list-ordinary` 不含它们。新房间默认赛道是道具 hot1 组第一条有道具箱的赛道（`desert_I03`）。`track` 只接受导出的道具赛道，即浏览器道具房间选图目录 `itemTrackCatalog`（`rewrite/src/resources/track-catalog.ts`）的全部赛道：`track@zz` 中 `gameType="item"`、含 5 条 `isOnlyItemTrack`，去掉 `trackLocale@cn` 中 `blocked="true"`/`choosable="false"`/练习场的，反向赛道须有未封禁的 `trackLocale@cn` `track_rvs` 行；每条的 `track.1s`/`track_rvs.1s` 里都有道具箱；共 187 条，其中 29 条反向（服务器多出一条客户端没有的赛道，开赛时浏览器会报“本局赛道不在当前资源目录中。”，导出测试会拦住这种差异），其他返回 `TRACK_NOT_ITEM`；`random-track` 接受 3–7（hot1–hot5）、0（全部）、8（新图）、30（反向），开赛时从对应的道具池抽取，40（竞速随机）返回 `INVALID_TRACK`。开赛后载入窗口 90 秒。比赛快照在 `race` 最后追加 `"item":{"ruleset":"web-item-v1","table":"indi"|"team"}`。组队道具赛没有集气，`team-charge` 返回 `TEAM_GAUGE_UNAVAILABLE`。
 
-**结果。** 个人道具赛与竞速相同（按完赛时间排名，第一名冲线后 10 秒结束）。组队道具赛 `winningTeam` 是**最先冲线者**（`results` 第一名）的队伍；`teamScores` 仍按完赛积分给出（0–39，供前端校验），胜方 ×1.2 奖励跟随 `winningTeam`，积分持平也照给。数据服务把道具赛计入成就的 gameType 2（个人）/ 4（组队）、6（道具全部）和 0（全部比赛）。
+**结果。** 个人道具赛与竞速相同（按完赛时间排名，第一名冲线后 10 秒结束）。组队道具赛 `winningTeam` 是**最先冲线者**（`results` 第一名）的队伍；`teamScores` 仍按完赛积分给出（0–39，供前端校验），胜方 ×1.2 奖励跟随 `winningTeam`，积分持平也照给。数据服务把道具赛计入成就的 gameType 2（个人）/ 4（组队）、6（道具全部）和 0（全部比赛）。道具赛的 `finish` 可带 `perfectStart:true|false`（起步加速是否成功，其他玩法忽略）；`race.results[]` 每行加 `titles`（字符串数组，按 `title_icons/namemap@zz` 顺序）：`perfectAim` 百发百中（有攻击命中且没有被挡下的攻击）、`ironWall` 铁壁防御（天使 5 次）、`turret` 炮台模式（各类导弹 10 次）、`flyKing` 苍蝇之王（水苍蝇类 10 次）、`carpetBomb` 地毯式轰炸（投掷水炸弹类 10 次）、`cloudyDay` 阴云密布（乌云类 10 次）、`magnetic` 莫名吸引（磁铁类 10 次）、`invasion` 入侵地球（飞碟 10 次）、`speedWar` 速度战（加速器与特殊加速器 10 次）、`perfectStart` 完美起步、`onlyOne` 唯我独尊（第 1 名完赛，且每次过线——运动帧圈数增加——时都领先）、`safetyFirst` 安全第一（完赛且全程没有报过 `result:"hit"`）。结算的 `results[].titles` 相同。`race.rewards` 的金币含赛中金币（不乘倍率），结算条目另列 `bonusLucci`；用掉的道具换位卡/变更卡随结算 `consumed` 扣除（见“本地新增：账号经济”与 `server-go/ECONOMY.md`）。
 
-**名次与抽取。** 服务器按运动帧里的**当前**路线距离排名（已完赛者按完赛顺序在前，离开者不计）：第 1 名 top；其余 `p=(名次-2)/(人数-1)`，`p<1/3` high、`p<2/3` mid，否则 low；只有 1 人时 top。按名次组权重抽取；`slotLock`、`angel`、`thunderbolt` 每位车手每局最多获得 2 次，达到后从表里剔除重抽，`booster` 不受限制。
+**名次与抽取。** 服务器按运动帧里的**当前**路线距离排名（已完赛者按完赛顺序在前，离开者不计）：第 1 名 top；其余 `p=(名次-2)/(人数-1)`，`p<1/3` high、`p<2/3` mid，否则 low；只有 1 人时 top。按名次组权重抽取；`slotLock`、`angel`、`thunderbolt` 每位车手每局最多获得 2 次，达到后从表里剔除重抽，`booster` 不受限制。抽到的道具再依次经过（ITEM_MODE.md C.3）：`transform@zz`（赛道等级 0/1 时定时水炸弹 13→水炸弹 9；等级 0/2/3/4 的反向赛道上大魔王 2→R博士 23）→ 车辆的 `transformByKart`（按概率替换）→ `animalBooster`（得到加速器且该车有此行时按概率变成特殊加速器 31，图标 `item/slot/animal<iconId>.png`）。车辆按开赛时冻结的装备（`race.roster[i].equipment.itemIds["3"]`）算；练习车（itemId 0）没有这些表。
 
-**请求** `{"type":"item","roomId","raceId","sequence","action",…}`。先检查：非道具赛 `ITEM_UNAVAILABLE`，未载入 `RACE_NOT_RUNNING`；`sequence` 必须是该车手上一个序号 +1，否则 409 `INVALID_SEQUENCE`。序号一经接受即被用掉，之后无论请求成功与否都不再重用（客户端可以连续发送，不必等回复）；随后比赛未在进行（服务器时间早于 `startAt`，或已结束）时返回 `RACE_NOT_RUNNING`。被拒绝的道具请求只回普通错误 `{"type":"error","code"}`，不改变任何状态，**不会让比赛失败**；道具槽以最近一次成功回复里的 `slots` 为准（槽只因本人的请求变化）。已完赛的车手 `cube`/`use`/`place`/`swap` 返回 `INVALID_USE`（`hit`、`escape`、`slots` 仍可发送）。
+**请求** `{"type":"item","roomId","raceId","sequence","action",…}`。先检查：非道具赛 `ITEM_UNAVAILABLE`，未载入 `RACE_NOT_RUNNING`；`sequence` 必须是该车手上一个序号 +1，否则 409 `INVALID_SEQUENCE`。序号一经接受即被用掉，之后无论请求成功与否都不再重用（客户端可以连续发送，不必等回复）；随后比赛未在进行（服务器时间早于 `startAt`，或已结束）时返回 `RACE_NOT_RUNNING`。被拒绝的道具请求只回普通错误 `{"type":"error","code"}`，不改变任何状态，**不会让比赛失败**；道具槽以最近一次带 `slots` 的回复或推送为准（槽只因本人的请求或下文的服务器推送变化）。已完赛的车手 `cube`/`use`/`place`/`swap`/`change` 返回 `INVALID_USE`（`hit`、`escape`、`slots` 仍可发送）。
+
+带 `slots` 的回复与推送都同时带 `changers:{"slot","item","itemArmed"}`：道具换位卡（7:1）、道具变更卡（7:2）剩余张数，有未过期的使用券（7:4 / 7:3）时为 -1（无限，不扣卡）；`itemArmed` = 槽 0 的道具获得后还没变更过（吃箱、获得表、开局道具都会重新允许）。卡数在开赛时从数据服务读取（装备核对的回答），本局内由服务器记账、赛后结算扣除（游客为 0；游戏节点 `KART_ITEM_CHANGERS=infinite` 时所有人 -1）。槽里有特殊加速器且该车有图标时另带 `slotIcons`（与 `slots` 等长，0 为道具自己的图标）。
 
 | `action` | 字段 | 服务器处理 | 回复（只给发送者） | 广播（房间其他成员） |
 | --- | --- | --- | --- | --- |
-| `cube` | `cubeId` 1–4096（赛道道具箱 `instanceOrdinal`）、`capacity`（道具槽数，夹到 2–3，本局第一次报告后固定）；仅开发测试：`testItemId` | 同一道具箱 10 秒内再次吃到且中间没吃别的箱子：不给（`abusing`）；槽满：不给（`full`）；否则按名次组抽取放进第一个空槽。带 `testItemId`（本局概率表里的道具）时不抽取、直接给该道具（不受每局上限限制，但计入次数），只有游戏节点开了 `KART_ITEM_TEST_GRANTS=true` 才接受，否则 403 `ITEM_TEST_GRANTS_DISABLED`；表里没有的道具 `INVALID_TESTITEMID`。浏览器从不发送它 | `{"action":"grant","sequence","cubeId","itemId":整数或 null,"reason"?:"abusing"\|"full","slots"}` | 无（透视期间给透视方发 `scan`） |
-| `use` | `itemId`（必须等于槽 0）、瞄准类可带 `targetId`、香蕉和水炸弹必须带 `point:{x,y,z}`（原版客户端 z 向上坐标，即 three.js 的 `(x, -z, y)`） | 槽 0 不是该道具 `ITEM_NOT_HELD`；被道具锁 `ITEM_LOCKED`（天使除外）；缺 `point` `INVALID_POINT`；瞄准的不是在赛对手 `INVALID_TARGET`。按下表决定 `targets`，分配 `useId`（本局从 1 递增），`startAt` 为服务器当前毫秒，追踪类按名次距离差算 `etaMs`；取走槽 0、其余前移 | 广播内容加 `sequence`、`slots` | `{"action":"used","playerId","useId","itemId","targets":[…],"startAt","etaMs","point"?}` |
+| `cube` | `cubeId` 1–4096（赛道道具箱 `instanceOrdinal`）、`capacity`（道具槽数，夹到 2–3，本局第一次报告后固定）；仅开发测试：`testItemId` | 同一道具箱 10 秒内再次吃到且中间没吃别的箱子：不给（`abusing`）；槽满：不给（`full`）；否则按名次组抽取并经过上述变换，放进第一个空槽。车有 `lucciItemCube` 时（非刷箱）按其概率得 10 金币（推送 `lucci`）。带 `testItemId`（任一道具赛道具，含特殊道具）时不抽取、不变换、直接给该道具（不受每局上限限制，但计入次数），只有游戏节点开了 `KART_ITEM_TEST_GRANTS=true` 才接受，否则 403 `ITEM_TEST_GRANTS_DISABLED`；不是道具赛道具 `INVALID_TESTITEMID`。浏览器从不发送它 | `{"action":"grant","sequence","cubeId","itemId":整数或 null,"iconId"?（特殊加速器图标）,"reason"?:"abusing"\|"full","slots","slotIcons"?,"changers"}` | 无（透视期间给透视方发 `scan`） |
+| `use` | `itemId`（必须等于槽 0）、瞄准类可带 `targetId`、投掷/放置类（香蕉、水炸弹及其变体、地雷类、水雷、废油弹、弹性陷阱）必须带 `point:{x,y,z}`（原版客户端 z 向上坐标，即 three.js 的 `(x, -z, y)`） | 槽 0 不是该道具 `ITEM_NOT_HELD`；被道具锁 `ITEM_LOCKED`（天使除外）；缺 `point` `INVALID_POINT`；瞄准的不是在赛对手 `INVALID_TARGET`。按下表决定 `targets`，分配 `useId`（本局从 1 递增），`startAt` 为服务器当前毫秒，追踪类按名次距离差算 `etaMs`；车有 `useTwoRocket`（导弹 7）或 `useTwoGoldRocket`（黄金导弹类 32/102/107/126）时 `count:2`（两枚，同一目标，第二枚晚 200 ms）；取走槽 0、其余前移，然后按使用者的车掷 `firing2Gain`（得到的道具放进第一个空槽，推送 `slots`，`reason:"gain"`）；磁铁/黄金磁铁的目标按其车掷 `fired2Gain`（被吸也算被击中） | 广播内容加 `sequence`、`slots`、`slotIcons`?、`changers` | `{"action":"used","playerId","useId","itemId","targets":[…],"startAt","etaMs","point"?,"count"?:2}` |
 | `place` | `useId`、`point` | 路障只接受其目标（被锁定的第一名）上报落点，定时水炸弹只接受使用者上报爆点；每个 `useId` 一次，否则 `INVALID_USE` | 广播内容加 `sequence` | `{"action":"placed","useId","itemId","playerId":使用者,"point"}` |
-| `hit` | `useId`（赛道预置危险物为 0，另带 `hazardId` 1–4096）、`itemId`、`result:"hit"\|"blocked"`、可选 `by:"shield"\|"angel"\|"emp"\|"escape"` | 受害者自报：`useId` 须在 60 秒内且道具相符（`INVALID_USE`）；受害者须是该道具能打到的人（`INVALID_TARGET`，见下）；`by` 须能挡住该道具（`INVALID_BY`；`hit` 不能带 `by`）。同一受害者对同一 `useId` 只记一次，重复上报原样返回第一次的结果、不再广播；赛道危险物同一受害者 3 秒内只记一次。香蕉被第一次命中即移除（`removed:true`），之后再报 `INVALID_USE` | 广播内容加 `sequence` | `{"action":"hit","playerId":受害者,"useId","itemId","userId"?:使用者（赛道危险物没有使用者，省略该字段；前端校验不接受 null）,"result","by"?,"hazardId"?,"removed"?}` |
-| `escape` | `useId`（赛道预置水雷为 0，另带 `hazardId` 1–4096） | 被困车手连按左右提前脱出水泡时自报：须是本人报过 `result:"hit"` 的困住类命中——水炸弹、水苍蝇、定时水炸弹（`useId` 60 秒内），或赛道水雷（该 `hazardId` 最近一次命中）；否则 `INVALID_USE`。每次命中只记一次，重复发送原样回复、不再广播 | 广播内容加 `sequence` | `{"action":"escaped","playerId":被困者,"useId","itemId","hazardId"?}`：其他客户端此时结束该车的水泡并开始蓝盾 |
-| `swap` | — | 槽 0、1 都有道具时交换（道具锁期间也可以），否则 `INVALID_USE` | `{"action":"slots","sequence","slots"}` | 无 |
-| `slots` | — | 不改变任何状态；被拒绝的请求不带 `slots`，客户端可用它重新取得权威道具槽（浏览器在 `use`/`swap` 被拒绝、可能与服务器不一致时发送） | `{"action":"slots","sequence","slots"}` | 无 |
-| `change` | — | 道具变更卡（第 3 阶段）；目前一律 `ITEM_CHANGER_UNAVAILABLE` | — | — |
+| `hit` | `useId`（赛道预置危险物为 0，另带 `hazardId` 1–4096）、`itemId`、`result:"hit"\|"blocked"`、可选 `by:"shield"\|"angel"\|"escape"\|"kart"\|"pet"\|"eat"`、可选 `variant:"small"\|"headband"\|"bonus"\|"quick"\|"balloon"`、可选 `shot` 0/1（双发导弹的第几枚；赛道危险物不带） | 受害者自报：`useId` 须在 60 秒内且道具相符（`INVALID_USE`）；受害者须是该道具能打到的人（`INVALID_TARGET`，见下）；`shot` 须是这次使用发出的（`INVALID_SHOT`）；`by` 须能挡住该道具（`INVALID_BY`；`hit` 不能带 `by`；`emp` 不再是防御，一律 `INVALID_BY`）；`variant` 须成立（`INVALID_VARIANT`）——装备类的 `by`/`variant` 按受害者冻结的装备与共享掷骰校验（见下文“装备特性”）。同一受害者对同一 `useId`（双发导弹：同一 `shot`）只记一次，重复上报原样返回第一次的结果、不再广播；赛道危险物同一受害者 3 秒内只记一次。放置类陷阱（香蕉、巨型香蕉、地雷类、弹性陷阱、废油弹）被第一次命中或被吃掉（`by:"eat"`）即移除（`removed:true`），之后再报 `INVALID_USE`。新的命中（`result:"hit"`，或被吃掉）按受害者的车掷 `fired2Gain`（推送 `slots`，`reason:"gain"`）；`variant` 是 `bonus`/`balloon` 时受害者得 10 金币（推送 `lucci`）；毒性水炸弹类、毒性水苍蝇、符咒命中后服务器给受害者加道具锁（见下表） | 广播内容加 `sequence` | `{"action":"hit","playerId":受害者,"useId","itemId","userId"?:使用者（赛道危险物没有使用者，省略该字段；前端校验不接受 null）,"result","by"?,"variant"?,"shot"?（只在 1 时出现）,"hazardId"?,"removed"?}` |
+| `escape` | `useId`（赛道预置水雷为 0，另带 `hazardId` 1–4096） | 被困车手连按左右提前脱出水泡时自报：须是本人报过 `result:"hit"` 的困住类命中——水炸弹类、水苍蝇类、定时水炸弹类、水雷（`useId` 60 秒内），或赛道水雷（该 `hazardId` 最近一次命中）；符咒的方向键 QTE 提前脱出也用它（同时结束符咒的道具锁）；否则 `INVALID_USE`。每次命中只记一次，重复发送原样回复、不再广播 | 广播内容加 `sequence` | `{"action":"escaped","playerId":被困者,"useId","itemId","hazardId"?}`：其他客户端此时结束该车的水泡并开始蓝盾 |
+| `swap` | — | 道具换位卡（Alt，ITEM_MODE.md C.6）：没有卡也没有使用券 `ITEM_CHANGER_UNAVAILABLE`；槽 0、1 都有道具才交换（道具锁期间也可以），否则 `INVALID_USE`；扣 1 张卡（使用券不扣） | `{"action":"slots","sequence","slots","slotIcons"?,"changers"}` | 无 |
+| `slots` | — | 不改变任何状态；被拒绝的请求不带 `slots`，客户端可用它重新取得权威道具槽（浏览器在 `use`/`swap` 被拒绝、可能与服务器不一致时发送） | `{"action":"slots","sequence","slots","slotIcons"?,"changers"}` | 无 |
+| `change` | — | 道具变更卡（Z，ITEM_MODE.md C.6）：没有卡也没有使用券 `ITEM_CHANGER_UNAVAILABLE`；槽 0 为空 `INVALID_USE`；槽 0 的道具获得后已经变更过 `ITEM_CHANGER_USED`；被道具锁 `ITEM_LOCKED`。从变更表（个人 `itemProb_indiChanger@zz`、组队 `itemProb_teamChanger2@cn`）按当前名次组重抽槽 0（套每局上限，再经过同样的变换——`changerTuto01@cn`“一定几率出现特殊道具”），扣 1 张卡（使用券不扣），直到下一个新道具前不能再变更 | `{"action":"slots","sequence","slots","slotIcons"?,"changers"}` | 无 |
 
-所有回复与事件都是 `{"type":"item","roomId","raceId","action",…}`；`slots` 每槽一个值，空槽为 -1。服务器另发（无请求）：`{"action":"scan","playerId":被透视者,"slots","until"}`，只发给透视方队伍的在赛车手——使用透视镜时立即发一份每名在赛对手的道具槽，之后在 `until`（`startAt`+8000）之前对手道具槽每次变化都再发。所有时刻都是服务器时钟毫秒（与 `serverTick`、`startAt` 同一基准）。
+所有回复与事件都是 `{"type":"item","roomId","raceId","action",…}`；`slots` 每槽一个值，空槽为 -1。服务器另发（无请求，不带 `sequence`）：
+
+- `{"action":"scan","playerId":被透视者,"slots","until"}`，只发给透视方队伍的在赛车手——使用透视镜时立即发一份每名在赛对手的道具槽，之后在 `until`（`startAt`+`Use` 500+`Affect` 8000）之前对手道具槽每次变化（含获得表推送）都再发。
+- `{"action":"slots","slots","slotIcons"?,"changers"}`：倒计时开始时（房间快照 `phase:"countdown"` 之后，发起命令的玩家也先收到这份快照）发给每名已载入车手，告诉它开局的道具槽与卡数；迅引擎道具车（导出的 46 辆）另带 `"reason":"start","itemId"`——开局从 `itemProb_indi@zz` 的 14 种道具里等概率抽一个放进槽 0（经过同样的变换，组队赛也用这张表）。
+- `{"action":"slots","slots","slotIcons"?,"changers","reason":"gain","itemId"}`：`fired2Gain`/`firing2Gain` 得到的道具（不再经过变换；满槽丢弃）。`reason` 一定与 `itemId` 同时出现。
+- `{"action":"lucci","amount","reason"}`，只发给得到赛中金币的车手：`reason` 为 `itemCube`（金币道具箱）、`ufo`（奇奇被飞碟击中）、`balloon`（气球爆掉）、`mine`（吃掉地雷）；每次 10，每局最多 200（`amount` 是这次实得的数）。
+
+所有时刻都是服务器时钟毫秒（与 `serverTick`、`startAt` 同一基准）。
 
 | 道具（idx） | `targets` | 谁可以报 `hit` | 可挡的 `by`（另可 `escape`） | 服务器时间线 |
 | --- | --- | --- | --- | --- |
-| booster 6、shield 10、emp 12 | 自己 | 无 | — | — |
-| angel 11、scanning 109 | 本队在赛车手（自己在前） | 无 | — | 透视：`until`=`startAt`+8000 |
+| booster 6、shield 10 | 自己 | 无 | — | — |
+| emp 12 | 本队（含自己）**此刻正处于飞碟减速**的在赛车手：生效时刻 `startAt`+`Use`（500）落在其已上报的飞碟命中窗口内（落地 `startAt`+`etaMs` 起 `Affect` 3000，头饰 `HeadBandAffect` 1500，奇奇 `BonusAffect` 3000；允许上报晚到 1 秒），这些命中随即视为解除；没有人中飞碟时 `targets:[]`，道具照样用掉、没有任何效果 | 无 | — | — |
+| angel 11、scanning 109 | 本队在赛车手（自己在前） | 无 | — | 从 `startAt`+`Use`（500）起生效；透视：`until`=`startAt`+500+8000 |
 | magnet 5 | `targetId`（无锁定则空） | 无 | — | — |
 | rocket 7 | `targetId`（无锁定则空=哑弹） | 目标 | shield、angel | `etaMs`=距离差/100 m/s，夹到 [300, 1500] |
 | guideRocket 33 | 第一名对手 | 目标 | shield、angel | 同导弹 |
 | randomRocket 127 | 随机一名领先的对手 | 目标 | shield、angel | 同导弹 |
 | waterFly 4 | 正前方最近的对手（跳过队友） | 目标 | shield、angel | 距离差/60 m/s，夹到 [300, 2000] |
-| ufo 3 | 第一名对手 | 目标 | shield、angel、emp | 距离差/60 m/s，夹到 [300, 1500] |
+| ufo 3 | 第一名对手 | 目标 | —（护盾、天使都不挡，`bonusStageProperty@tw.xml:53`；只有电磁波能解除） | 距离差/60 m/s，夹到 [300, 1500] |
 | barricade 113 | 第一名对手（由其 `place` 落点） | 使用者的对手 | shield、angel | — |
 | devil 2、slotLock 110 | 所有对手 | 目标 | —（都不挡） | 道具锁：`startAt`+2000 起锁 3000 ms，期间除天使外 `use` 返回 `ITEM_LOCKED` |
 | thunderbolt 111 | 所有领先的对手 | 目标 | angel | — |
@@ -176,8 +186,45 @@
 | waterBomb 9 | 无（`point` 落点） | 使用者的对手 | angel | — |
 | timeBomb 13 | 无（使用者 `place` 爆点） | 任何人（含自己和队友） | angel | — |
 | 赛道预置 banana 8、mine 17、waterMine 37 | — | 任何人（`useId:0` + `hazardId`） | shield、angel | 同一受害者 3 秒内只记一次 |
+| 导弹换皮 30、32、102、107、126，致盲减速导弹 99、131、108、136，舞狮导弹 134 | `targetId`（同导弹） | 目标 | shield、angel | 同导弹，`etaMs` 取各自变体的 `Use` |
+| 电磁导弹 104、像素导弹 117 | `targetId` | 使用者的对手（目标与磁场范围内的对手） | shield、angel | 同导弹 |
+| 雪精灵 112 | `targetId` | 目标 | angel | 同导弹 |
+| 水炸弹变体 20、34、47、27、44 | 无（`point` 落点） | 使用者的对手 | angel | 27/44 命中后道具锁 `Affect`+`PostAffect`（2000+5000；`variant:"quick"` 时 500+5000） |
+| 定时水炸弹变体 21、35、28 | 无（使用者 `place`） | 任何人 | angel | 28 同上加锁 |
+| 水苍蝇变体 118、119，蜜蜂 132 | 正前方最近的对手 | 目标 | shield、angel | 119 命中后道具锁 `Affect`+`AfterBoost`（1000+2000） |
+| 定时水炸弹苍蝇 120 | 正前方最近的对手 | 使用者的对手（目标与爆炸范围内的对手） | shield、angel | — |
+| 地雷类 17、45、82、83、129、130，巨型香蕉 85，弹性陷阱 25，废油弹 46 | 无（`point` 放置） | 任何人 | shield、angel | 首次命中或被吃掉后移除 |
+| 水雷 37 | 无（`point` 放置） | 任何人（爆炸范围内都可报） | shield、angel | 可 `escape` |
+| 黄金盾牌 36、保护盾 81 | 自己 | 无 | — | 无敌窗口 `startAt` 起 `Use`+`Affect`（500+2500 / 500+4000，再加 1 秒上报余量）：期间该车对乌云类（114、115、1）以外的任何道具都可报 `by:"shield"`（含大魔王类、飞碟）；道具锁开始时在此窗口内的目标不被锁 |
+| 超级盾牌 18、黄金磁铁 103（同磁铁瞄准）、隐身 101、特殊加速器 31 | 自己（黄金磁铁：`targetId`） | 无 | — | — |
+| 警灯 24、防护警灯 106 | 自己 | 使用者的对手（被撞开的车自报） | angel | — |
+| 黑云 1、115 | 所有落后的对手 | 目标 | — | — |
+| R博士 23、恶魔阿哥 38 | 所有对手 | 目标 | — | — |
+| 龙卷风 135 | 第一名对手（由其 `place` 落点） | 使用者的对手 | shield、angel | — |
+| 符咒 137 | 第一名对手 | 目标 | shield、angel | 距离差/60 m/s，夹到 [300, 1500]；命中后道具锁 `Affect` 4000，`escape` 提前结束 |
 
-“对手”是另一队的车手（个人赛为其他所有人），且只算仍在比赛（未完赛、未退出）的车手；距离差用使用者与目标的当前路线距离。客户端在 `startAt` 之后按 `rewrite/ITEM_MODE.md` 附录 B 的时间线表现效果。
+“对手”是另一队的车手（个人赛为其他所有人），且只算仍在比赛（未完赛、未退出）的车手；距离差用使用者与目标的当前路线距离。客户端在 `startAt` 之后按 `rewrite/ITEM_MODE.md` 附录 B、C.4 的时间线表现效果。护盾能挡的道具 = 该变体 `item.bml` 有 `Shield`/`StateShield`/`RocketShield` 状态的道具（飞碟除外），`go test ./internal/game/itemmode` 按导出数据核对。
+
+**装备特性（ITEM_MODE.md C.2）。** 受害者按开赛时冻结的装备（`race.roster[i].equipment.itemIds`：车 `"3"`、角色 `"1"`、宠物 `"21"`、气球 `"9"`、头饰 `"11"`）自己判定，服务器用同一个确定性掷骰复核：`roll = fnv1a32("raceId|useId|hazardId|victimId|kind") % 100`（UTF-8 字节、32 位 FNV-1a，没有的 id 写 0），`roll < 概率` 即成立；概率取 `itemTable.kml` 叠加 `@cn` 的道具赛值（`"p"` 或 `"p道具赛,p对AI"` 取第一个数，-1 当 0）。同一个 `kind` 车和宠物共用一次掷骰（较大的概率决定），双发导弹的两枚也共用。向量见 `rewrite/src/item/item-roll-vectors.json` 与 `itemmode/phase3_test.go`。
+
+| `by` / `variant` | 道具 | 需要（`kind`） |
+| --- | --- | --- |
+| `by:"kart"` / `"pet"` | 导弹 7、可乐导弹 30、黄金导弹类 32/102/107/126 | 车/宠物 `rocket`（`rocket`） |
+| `by:"kart"` / `"pet"` | 水苍蝇类 4/118/119/120 | 车/宠物 `waterfly`（`waterfly`）；车另可用 `onlyWaterBomb`（`waterBomb`），须有 `allflyToAllBomb`（全部苍蝇）或 `waterflyToWaterBomb`（只 4） |
+| `by:"kart"` | 水炸弹 9 | 车 `onlyWaterBomb`（`waterBomb`） |
+| `by:"pet"` | 水炸弹类 9/13/20/21/27/28/34/35/44/47；冰冻 34/35 | 宠物 `waterBomb`（`waterBomb`）；宠物 `snowBomb`（`snowBomb`） |
+| `by:"kart"` / `"pet"` | 大魔王 2、R博士 23、恶魔阿哥 38 | 车/宠物 `devil`（`devil`） |
+| `by:"eat"` | 香蕉 8、巨型香蕉 85（含赛道预置） | 车 `banana`；`ice_` 开头的赛道再看 `iceBanana`（`banana`） |
+| `by:"kart"` / `"eat"` | 地雷 17、129、130；蛋蛋弹类 45/82/83 须车有 `mineWithEggMine` 或 `mineWithKindOfEgg`（含赛道预置） | 车 `mine`（`mine`）；`eat` 还须车有 `eatMine` |
+| `by:"kart"` / `"eat"` | 弹性陷阱 25 | 车 `forceZone`（`forceZone`）；`eat` 还须 `eatForceZone` |
+| `by:"kart"` | 水雷 37（含赛道预置） | 车 `waterMine`（`waterMine`） |
+| `by:"kart"` | 警灯 24、防护警灯 106 | 车 `siren`（`siren`） |
+| `variant:"quick"` | 水炸弹类、水苍蝇类、水雷（`result:"hit"`） | 车 `waterAngel`（`waterAngel`） |
+| `variant:"headband"` | 飞碟 3 | 头饰 `probability`（`headband`） |
+| `variant:"bonus"` | 飞碟 3（`result:"hit"`，得 10 金币） | 角色 `lucciUfo`（`lucciUfo`） |
+| `variant:"bonus"` + `by:"eat"` | 被吃掉的地雷类 / 弹性陷阱（`result:"blocked"`，得 10 金币） | 上面的 `eat` 成立，且角色 `lucciMine`（`lucciMine`）/ `lucciForceZone`（`lucciForceZone`） |
+| `variant:"balloon"` | 导弹 7、追踪导弹 33、随机导弹 127、可乐导弹 30（黄金导弹类不行；`result:"hit"`，得 10 金币） | 气球 `prob`（`balloon`） |
+| `variant:"small"` | 有 `AffectSmall` 状态的道具（`result:"hit"`） | 无（较轻的命中） |
 
 赛后数据由游戏节点经本地发件箱异步提交给数据服务，按 `raceId` 幂等写入 MySQL，因此历史接口会在比赛结束后稍晚一点出现该局。可运行 `node server-special-smoke.mjs` 让真实前端校验器检查四种模式的双端协议、赛程、巨人广播、`race.rewards`、回房以及结算是否到达数据服务。脚本会注册五个测试账号（每个账号带自己的 `X-Forwarded-For`，数据服务须信任运行脚本的地址，见 `server-go/README.md`“测试”），并写入所连集群的 MySQL；请对测试部署运行。
 

@@ -48,6 +48,7 @@
 - 奖励放在比赛快照新字段 `race.rewards`（`{playerId: {exp, lucci}}`，所有玩法都有，含没有名次结果的挡人模式）（乘配置倍率后的值，与入账一致）和结算 `contract.RaceSettlement.Rewards`（`[{playerId, accountId, exp, lucci}]`，倍率前的基础值）；`race.results[]` 保持 Java 原样。客户端立即显示；数据服务在结算事务中入账（幂等键 = raceId + accountId）。
 - 每日上限（按**数据服务收到结算时**的北京时间自然日，不采用游戏节点上报的完成时间）：比赛经验 20,000、比赛金币 30,000；超出部分不入账（`/api/account` 反映真实值）。完成时间早于 24 小时前的结算只保存比赛记录、不发奖励。
 - 单条奖励上限 = 公式最大值（8 人、Combine 频道、组队胜方的第 1 名：经验 145 / 金币 216，倍率前），超出的条目丢弃并记录警告。
+- 道具赛的赛中金币（`rewrite/ITEM_MODE.md` C.8）：金币道具箱（车 `lucciItemCube`）、奇奇被飞碟击中（角色 `lucciUfo`）、气球爆掉、吃掉地雷（角色 `lucciMine`）每次 10，每人每局最多 200（`contract.MaxBonusLucci`）。游戏节点累计在本局，`race.rewards` 显示的金币 = 倍率后的比赛金币 + 赛中金币；结算条目另列 `bonusLucci`（不乘倍率，也不随结算倍率变化）。数据服务入账 = `ApplyRate(lucci) + bonusLucci`，与比赛金币一起计入每日上限；`bonusLucci` 不在 0–200 时只丢弃赛中金币并记录警告（比赛金币照常入账）。中途离开、没有奖励条目的车手赛中金币也不发。
 - 结算携带游戏节点显示奖励时用的倍率（`RaceSettlement.expRate/lucciRate`）；数据服务在 [0, max(10, 当前配置)] 范围内采用它，保证显示值与入账值一致。
 
 ### 2.2 计时赛
@@ -93,6 +94,7 @@
 - `rpLimit` 保留为“需要经验 ≥ rpLimit”购买条件。
 - 原版没有任何可用单品报价的物品：按“该分类原版报价中出现最多的货币”给估价；永久价 = 同分类（卡丁车再按发动机等级）原版永久价中位数；同时提供 30 天价 = 永久价 × 原版数据中 30 天/永久价格比的中位数（取整）。估价报价标记 `source:"estimated"`。
 - `isAdditional`（按个数卖，如“气球 50 个”）的物品：记录数量，当前游戏不消耗，按“拥有”处理；同物品再次购买累加数量。
+- 道具换位卡 / 道具变更卡（category 7，itemTable `<slotChanger>`，`rewrite/ITEM_MODE.md` C.6）：车库不能装备，但商城照原版只卖当前卡片上的使用券——`stockCard.xml` 3975 道具变更卡使用券（7:3）、3976 道具换位卡使用券（7:4），各 1/7/30 天 10/45/140 点券（只取这几张卡片的 stock；`stock.kml` 里不在任何卡片上的旧金币报价不卖），放在使用/卡片类（`useful/card`，原版顺序在双倍卡之前），重写版页签装备/其他；不参与也不影响任何估价。按个数计的 7:1 道具换位卡、7:2 道具变更卡（`isAdditional`）没有当前卡片，不在商城出售，仍由道具卡包等既有来源发放、在库存中累加。使用券是普通限时物品：再买从到期时间顺延。道具赛开赛时游戏节点从装备核对的回答里读取每位车手的卡数（有未过期的使用券时为 -1，无限），赛后结算扣除用掉的卡（见第 6 节内部接口）。
 - 旧页签 `tabs`/`tab`/`subTab`（重写版自己的分法：卡丁车 道具车/竞速车、角色 角色/宠物/飞行宠物、装备 气球…其他）保留不变，供现有前端使用；原版商城布局用下面的新字段。
 - 当前卡片：`shopCat.xml` 中“最新推荐页”与其他 ShopCat（`hide` 除外）引用的、`stockCard.xml` 中存在、`isOnSale=1` 且 `saleFlag≠1` 的卡片。最新推荐页 = `salePeriod` 为开放式（`…~*`）的 `recommand<N>`（多个时取开始最晚的；没有开放式时取开始最晚的），即 `recommand233`；更早的周页已结束。导出不看当前时间、也不看卡片自己的 `salePeriod`，结果确定。“同一（货币、期限、数量）优先当前卡片的 stock”用的也是这组卡片（与改之前的全部推荐页相比，报价没有任何变化）。一张卡片“列出”某物品 = 卡片的某个 stock 是该物品的单品 stock（不论该 stock 是否成为报价）。
 
@@ -253,9 +255,9 @@ daily_rewards(account_id, day CHAR(10), kind VARCHAR(16), count INT, exp BIGINT,
 
 | 路径 | 说明 |
 | --- | --- |
-| `POST /internal/v1/equipment/verify` | `{accountId, equipment}` → 200 `{ok, validUntil?}`（`validUntil` = 所查租用物品最早到期时间）或 409 `ITEM_NOT_OWNED`（列出不拥有的槽位）。游戏节点先在大厅锁内执行命令本身的校验，必然失败的命令（未 hello、不在房间、房间不存在等）不会触发核对；需要核对时在锁外调用，再重新执行命令。肯定结果缓存到 min(validUntil, 核对后 10 分钟)，否定结果缓存 10 秒；每连接限 2 次/秒（突发 10，超出 429 `RATE_LIMITED`），全节点最多 32 个并发核对（超出 503 `DATA_SERVICE_UNAVAILABLE`）。hello/create/join/equipment 携带不拥有的装备返回 403 `ITEM_NOT_OWNED`；`ready` 核对发送者自己的装备，`start` 重新核对缓存已过期的所有成员，不拥有者被取消准备且开赛失败（403 `ITEM_NOT_OWNED`） |
+| `POST /internal/v1/equipment/verify` | `{accountId, equipment}` → 200 `{ok, validUntil?, changers}`（`validUntil` = 所查租用物品最早到期时间；`changers` = `{slot, item, slotUntil?, itemUntil?}`：7:1 道具换位卡与 7:2 道具变更卡的张数，有未过期的 7:4 / 7:3 使用券时为 -1，`slotUntil`/`itemUntil` 为该使用券到期时间，永久的省略）或 409 `ITEM_NOT_OWNED`（列出不拥有的槽位）。道具赛开赛时（`start`）不用缓存，重新核对每位有账号的成员，以取得当时的卡数（数据服务不可达或本连接额度用完时，仍可用缓存中的肯定结果开赛，但这些车手本局没有卡）。游戏节点先在大厅锁内执行命令本身的校验，必然失败的命令（未 hello、不在房间、房间不存在等）不会触发核对；需要核对时在锁外调用，再重新执行命令。肯定结果缓存到 min(validUntil, 核对后 10 分钟)，否定结果缓存 10 秒；每连接限 2 次/秒（突发 10，超出 429 `RATE_LIMITED`），全节点最多 32 个并发核对（超出 503 `DATA_SERVICE_UNAVAILABLE`）。hello/create/join/equipment 携带不拥有的装备返回 403 `ITEM_NOT_OWNED`；`ready` 核对发送者自己的装备，`start` 重新核对缓存已过期的所有成员，不拥有者被取消准备且开赛失败（403 `ITEM_NOT_OWNED`） |
 | 在线占用（`PresenceClaim`/`Release` 带 `accountId`） | 账号键 `presence-account:{accountId}`（与昵称键同 TTL 与接管规则）；被其他在线会话占用时 409 `ACCOUNT_ONLINE`；心跳续期账号键，被他人占用的列入 `Conflicts` |
-| `PathRaces`（已有） | `RaceSettlement.Rewards` 列出每位车手倍率前的基础经验与金币；数据服务按账号入账、处理升级、写流水、应用每日上限 |
+| `PathRaces`（已有） | `RaceSettlement.Rewards` 列出每位车手倍率前的基础经验与金币（道具赛另带赛中金币 `bonusLucci`，见 2.1）；数据服务按账号入账、处理升级、写流水、应用每日上限。道具赛另带 `consumed:[{playerId, accountId, category:7, itemId:1\|2, count}]`（本局用掉的道具换位卡/道具变更卡，使用券不计）：数据服务在同一事务、按 raceId 幂等地从库存扣除（不低于 0；结算超过 24 小时只存记录不发奖励时也照样扣除），其他分类或 itemId、`count` 不在 1–10,000 的结算整个拒绝（400 `INVALID_SETTLEMENT`）。结果行 `results[].titles` 是道具赛结算称号（只随快照保存） |
 | 心跳响应 `Conflicts` | 昵称占用已被其他节点接管的玩家 ID，游戏节点须断开这些连接 |
 | 心跳响应 `expRate`/`lucciRate` | 数据服务的 `KART_EXP_RATE`/`KART_LUCCI_RATE`；游戏节点保存最新值，把快照 `race.rewards` 显示为 `rewards.ApplyRate(基础值, 倍率)`，结算仍发送基础值 |
 
