@@ -64,3 +64,23 @@
 | 现有 | `/api/admin/lottery`、`/api/admin/reward-box`、`/api/admin/notices`、`/multiplayer/admin/invites` | 保持不变 |
 
 错误统一沿用 `{error, code}`；未登录 401、非管理员 403。
+
+## 4. 返回字段（JSON 一律小驼峰；时间为毫秒；没有的值给 `null` 或空串，前端显示“—”）
+
+- `AccountRow`：`id, username, nickname, admin, createdAt, registerIp, lastLoginAt, lastLoginIp, bannedUntil, banReason, banned`（`bannedUntil > now`）`, level, exp, coupon, lucci, koin, inventoryCount, onboarded, online`（`null` 或 `{nodeId, nodeName}`）
+- `GET /api/admin/me` → `{id, username, nickname}`
+- `GET /api/admin/accounts/{id}` → `{account: AccountRow, club: null | {id, name, grade}, sessions: 有效会话数, logins: LoginRow[20], races: RaceParticipantRow[20]}`
+- `PATCH /api/admin/accounts/{id}` 请求 `{nickname?, admin?, bannedUntil?`（0 = 解封）`, banReason?, password?}` → `AccountRow`；错误码沿用注册的 `NICKNAME_TAKEN`、`INVALID_ACCOUNT_FIELD`，以及 `CANNOT_MODIFY_SELF`
+- `POST /api/admin/accounts/{id}/kick` → `{sessions: 作废的会话数, game: 是否通知了游戏节点}`
+- `InventoryRow`：`id, category, categoryName, itemId, name, systemKey, quantity, expiresAt, source, createdAt, updatedAt`
+- `LoginRow`：`id, at, kind, accountId, username, nickname, ip, userAgent`
+- `OnlineRow`：`playerId, name, guest, accountId, username, nodeId, nodeName`
+- `GET /api/admin/nodes` → `{now, nodes: NodeRow[], data: {version, goVersion, startedAt, goroutines, heapMB, mysql: {ok, latencyMs, error}, redis: {ok, latencyMs, error}}}`；`NodeRow`：`nodeId, name, origin, players, capacity, rooms, full, startedAt, seenAt, protocolVersion, status`（`ok` | `stale`（心跳超过 15 秒）| `full`）`, stats`（`null` 或 `{heapMB, goroutines, connections, races, version}`）
+- `LedgerRow`：`id, at, accountId, username, nickname, currency`（`coupon` | `lucci` | `koin` | `exp`）`, delta, balanceAfter, reason, refId, note`
+- `GrantRow`：`at, admin, requestId, accountId, username, nickname, currency, amount, note`
+- `RaceRow`：`raceId, roomId, at, gameplay, trackId, players, participants: RaceParticipantRow[]`（按名次）；`RaceParticipantRow`：`raceId, at, gameplay, trackId, rank, name, accountId, username, elapsedMs, points`
+- `PurchaseRow`：`id, at, accountId, username, nickname, offerId, category, itemId, name, currency, price, days, count`
+- `LotteryDrawRow`：`at, requestId, accountId, username, nickname, kind, ref, count, summary`（中文物品名拼成的一句话）`, result`（原始结果对象）
+- `BoxOpeningRow`：`at, requestId, accountId, username, nickname, boxId, boxName, stockId, summary, result`
+- `ClubRow`：`id, name, masterId, masterUsername, masterNickname, members, hq, racing, rider, bank, budget, cs, csWeek, autoJoin, createdAt, breakAt`
+- `GET /api/admin/overview` → `{now, accounts: {total, today, admins, banned}, logins: {today, uniqueToday}, online: {players, accounts, guests}, nodes: {total, healthy}, rooms, races: {today}, coupon: {spentToday, grantedToday}, recentRegistrations: AccountRow[10], recentLogins: LoginRow[10]}`；“今天”指北京时间 0 点起
