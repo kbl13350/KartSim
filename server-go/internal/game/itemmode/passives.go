@@ -100,9 +100,9 @@ func (r *Race) equipmentBlocks(h hitContext, by string) bool {
 			// Flies counted as water bombs take the onlyWaterBomb roll.
 			counted := r.chance(h.equipment, HolderKart, "allflyToAllBomb") > 0 ||
 				(h.item == WaterFly && r.chance(h.equipment, HolderKart, "waterflyToWaterBomb") > 0)
-			return counted && r.roll(h, HolderKart, "onlyWaterBomb", RollOnlyWaterBomb)
+			return counted && r.roll(h, HolderKart, "onlyWaterBomb", RollWaterBomb)
 		case h.item == WaterBomb:
-			return r.roll(h, HolderKart, "onlyWaterBomb", RollOnlyWaterBomb)
+			return r.roll(h, HolderKart, "onlyWaterBomb", RollWaterBomb)
 		case in(devilFamily):
 			return r.roll(h, HolderKart, "devil", RollDevil)
 		case r.mineCovered(h):
@@ -145,15 +145,14 @@ func (r *Race) equipmentBlocks(h hitContext, by string) bool {
 }
 
 // mineCovered reports whether the kart's mine passive covers the item: the
-// mines, and the egg mines with mineWithEggMine / mineWithKindOfEgg.
+// mines, and the egg mines (duck, egg, gold egg) with mineWithEggMine or
+// mineWithKindOfEgg (ITEM_MODE.md C.2).
 func (r *Race) mineCovered(h hitContext) bool {
-	switch {
-	case slices.Contains(mineFamily, h.item):
-		return true
-	case slices.Contains(eggMines, h.item) && r.chance(h.equipment, HolderKart, "mineWithEggMine") > 0:
+	if slices.Contains(mineFamily, h.item) {
 		return true
 	}
-	return slices.Contains(kindOfEggs, h.item) && r.chance(h.equipment, HolderKart, "mineWithKindOfEgg") > 0
+	return slices.Contains(eggMines, h.item) && (r.chance(h.equipment, HolderKart, "mineWithEggMine") > 0 ||
+		r.chance(h.equipment, HolderKart, "mineWithKindOfEgg") > 0)
 }
 
 // variantHolds reports whether the victim's equipment gives the hit its

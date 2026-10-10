@@ -23,25 +23,28 @@ func fnv1a32(s string) uint32 {
 	return hash
 }
 
-// Roll kinds: the kind of each shared roll is the passive it rolls for
-// (one roll per passive and hit: a kart and a pet with the same passive
-// share it, and both shots of a double rocket share it).
+// Roll kinds: the kind of each shared roll names the defended item family or
+// the equipment ability (one roll per kind and hit: a kart and a pet with
+// the same passive share it, so the better chance decides, and both shots
+// of a double rocket share it). The browser uses the same kinds
+// (rewrite/src/item/item-roll.ts ItemRollKind).
 const (
-	RollRocket        = "rocket"        // kart / pet rocket
-	RollWaterFly      = "waterfly"      // kart / pet waterfly
-	RollWaterBomb     = "waterBomb"     // pet waterBomb
-	RollOnlyWaterBomb = "onlyWaterBomb" // kart onlyWaterBomb (and flies counted as bombs)
-	RollDevil         = "devil"         // kart / pet devil
-	RollSnowBomb      = "snowBomb"      // pet snowBomb
-	RollBanana        = "banana"        // kart banana / iceBanana (eaten)
-	RollMine          = "mine"          // kart mine
-	RollForceZone     = "forceZone"     // kart forceZone
-	RollWaterMine     = "waterMine"     // kart waterMine
-	RollSiren         = "siren"         // kart siren
-	RollWaterAngel    = "waterAngel"    // kart waterAngel (VariantQuick)
-	RollHeadband      = "headband"      // headBand probability (VariantHeadband)
-	RollBalloon       = "balloon"       // balloon prob (VariantBalloon)
-	RollLucciUFO      = "lucciUfo"      // character lucciUfo (VariantBonus on a UFO)
-	RollLucciMine     = "lucciMine"     // character lucciMine (VariantBonus on an eaten mine)
-	RollLucciForce    = "lucciForceZone"
+	RollRocket   = "rocket"   // kart / pet rocket
+	RollWaterFly = "waterfly" // kart / pet waterfly
+	// RollWaterBomb is the water-bomb family's roll: the pet's waterBomb, and
+	// the kart's onlyWaterBomb on a water bomb (or a fly it counts as one).
+	RollWaterBomb  = "waterBomb"
+	RollDevil      = "devil"      // kart / pet devil
+	RollSnowBomb   = "snowBomb"   // pet snowBomb
+	RollBanana     = "banana"     // kart banana / iceBanana (eaten)
+	RollMine       = "mine"       // kart mine
+	RollForceZone  = "forceZone"  // kart forceZone
+	RollWaterMine  = "waterMine"  // kart waterMine
+	RollSiren      = "siren"      // kart siren
+	RollWaterAngel = "waterAngel" // kart waterAngel (VariantQuick)
+	RollHeadband   = "headband"   // headBand probability (VariantHeadband)
+	RollBalloon    = "balloon"    // balloon prob (VariantBalloon)
+	RollLucciUFO   = "lucciUfo"   // character lucciUfo (VariantBonus on a UFO)
+	RollLucciMine  = "lucciMine"  // character lucciMine (VariantBonus on an eaten mine)
+	RollLucciForce = "lucciForceZone"
 )

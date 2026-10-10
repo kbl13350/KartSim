@@ -137,13 +137,20 @@ func (ir *itemRace) grant(c *Client, cubeID int, group itemmode.Group, idx int) 
 	return reply
 }
 
+// isStartPush reports whether an item event is the race start's slots push
+// (it has no sequence: no request asked for it).
+func isStartPush(event map[string]any) bool {
+	_, replied := event["sequence"]
+	return event["action"] == "slots" && !replied && (event["reason"] == nil || event["reason"] == "start")
+}
+
 // itemEvents are the item events c received, but the race start's slots
 // push (startPushes).
 func itemEvents(t *testing.T, h *harness, c *Client) []map[string]any {
 	t.Helper()
 	var events []map[string]any
 	for _, event := range h.sink(c).events(t) {
-		if event["type"] == "item" && event["reason"] != "start" {
+		if event["type"] == "item" && !isStartPush(event) {
 			events = append(events, event)
 		}
 	}
@@ -155,7 +162,7 @@ func startPushes(t *testing.T, h *harness, c *Client) []map[string]any {
 	t.Helper()
 	var events []map[string]any
 	for _, event := range h.sink(c).events(t) {
-		if event["type"] == "item" && event["reason"] == "start" {
+		if event["type"] == "item" && isStartPush(event) {
 			events = append(events, event)
 		}
 	}

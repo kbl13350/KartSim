@@ -10,6 +10,7 @@ import (
 	"testing"
 	"time"
 
+	"kartsim/internal/game/itemmode"
 	"kartsim/internal/shared/contract"
 	"kartsim/internal/shared/ticket"
 )
@@ -22,10 +23,12 @@ type fakeOwnership struct {
 	mu      sync.Mutex
 	unowned map[int]bool
 	rentals map[int]time.Time
-	err     error
-	calls   []string // accountID + " " + equipment
-	block   chan struct{}
-	entered chan struct{}
+	// changers are the changer cards an account's answers report.
+	changers map[string]itemmode.Changers
+	err      error
+	calls    []string // accountID + " " + equipment
+	block    chan struct{}
+	entered  chan struct{}
 }
 
 func (o *fakeOwnership) VerifyEquipment(_ context.Context, accountID string, equipment json.RawMessage) (OwnershipAnswer, error) {
@@ -46,6 +49,9 @@ func (o *fakeOwnership) VerifyEquipment(_ context.Context, accountID string, equ
 		return OwnershipAnswer{}, err
 	}
 	answer := OwnershipAnswer{Owned: true}
+	if changers, ok := o.changers[accountID]; ok {
+		answer.Changers = &changers
+	}
 	for _, item := range value.ItemIDs {
 		if o.unowned[item] {
 			return OwnershipAnswer{}, nil

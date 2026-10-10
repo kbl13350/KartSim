@@ -361,10 +361,9 @@ var (
 	snowFamily   = []int{SnowBomb, TimeSnowBomb}
 	bananaFamily = []int{Banana, BigBanana}
 	// mineFamily: the kart mine defence; the egg mines need mineWithEggMine
-	// (duck, egg) or mineWithKindOfEgg (every egg kind).
+	// or mineWithKindOfEgg.
 	mineFamily  = []int{Mine, SpringMine, CogWheelMine}
-	eggMines    = []int{DuckMine, EggMine}
-	kindOfEggs  = []int{DuckMine, EggMine, GoldEggMine}
+	eggMines    = []int{DuckMine, EggMine, GoldEggMine}
 	sirenFamily = []int{Siren, SirenShield}
 	// waterTraps: what a waterAngel kart escapes at once.
 	waterTraps = append(append([]int{WaterMine}, waterBombFamily...), flyFamily...)

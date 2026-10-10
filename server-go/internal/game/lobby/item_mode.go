@@ -146,8 +146,9 @@ func equipmentOf(raw json.RawMessage) itemmode.Equipment {
 }
 
 // flushItemStart sends each loaded racer of a countdown that just began its
-// start slots (the 迅 item karts' start item, ITEM_MODE.md C.3) and changer
-// cards: {"action":"slots","reason":"start","itemId"?}.
+// slots and changer cards: {"action":"slots","slots","changers"}, with
+// "reason":"start","itemId" for a 迅 item kart's start item (ITEM_MODE.md
+// C.3).
 func (l *Lobby) flushItemStart(r *room) {
 	rc := r.race
 	if rc == nil || !rc.itemStartPending || rc.items == nil {
@@ -171,10 +172,11 @@ func (l *Lobby) emitSlots(r *room, notice itemmode.SlotsNotice) {
 	if client := l.clients[notice.PlayerID]; client != nil && client.roomID == r.id {
 		event := itemEvent(r, "slots", field{"slots", notice.Slots})
 		event = withIcons(event, notice.Icons)
-		event = append(event, field{"changers", changersObj(r.race.items.Changers(notice.PlayerID))},
-			field{"reason", notice.Reason})
+		event = append(event, field{"changers", changersObj(r.race.items.Changers(notice.PlayerID))})
+		// A reason always comes with the item it explains; a racer that
+		// starts empty is told its slots and changers alone.
 		if notice.ItemID != itemmode.NoItem {
-			event = append(event, field{"itemId", notice.ItemID})
+			event = append(event, field{"reason", notice.Reason}, field{"itemId", notice.ItemID})
 		}
 		client.emit(encode(event))
 	}

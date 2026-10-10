@@ -11,6 +11,7 @@ import (
 	"testing"
 	"time"
 
+	"kartsim/internal/game/itemmode"
 	"kartsim/internal/shared/contract"
 )
 
@@ -60,6 +61,15 @@ func TestOwnershipVerify(t *testing.T) {
 		if got.Owned != tc.owned || !got.ValidUntil.Equal(tc.validUntil) || (err != nil) != tc.failed {
 			t.Errorf("%s: answer %+v err %v", tc.name, got, err)
 		}
+	}
+	// The changer cards: counts, and -1 for a voucher.
+	mu.Lock()
+	answer.status, answer.body = http.StatusOK, contract.EquipmentVerifyResponse{OK: true,
+		Changers: &contract.Changers{Slot: 12, Item: -1, ItemUntil: &rentalEnds}}
+	mu.Unlock()
+	if got, err := ownership.VerifyEquipment(context.Background(), "acc-1", equipment); err != nil ||
+		got.Changers == nil || *got.Changers != (itemmode.Changers{Slot: 12, Item: itemmode.Infinite}) {
+		t.Errorf("changers: %+v %v", got, err)
 	}
 	data.mu.Lock()
 	var sent contract.EquipmentVerifyRequest
