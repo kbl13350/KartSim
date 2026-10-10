@@ -667,3 +667,6 @@ func (c *Cluster) Nodes(ctx context.Context) ([]Node, error) {
 	})
 	return nodes, nil
 }
+
+// Ping checks that Redis answers (the admin console's status page).
+func (c *Cluster) Ping(ctx context.Context) error { return c.rdb.Ping(ctx).Err() }

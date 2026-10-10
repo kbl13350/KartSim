@@ -802,63 +802,6 @@ func (s *Store) AccountIDByUsername(ctx context.Context, username string) (strin
 	return id, err == nil, err
 }
 
-// AdminAccountRow is one account in the admin search.
-type AdminAccountRow struct {
-	Account        Account
-	CreatedAt      int64
-	Exp            int64
-	Wallet         Wallet
-	InventoryCount int
-	Onboarded      bool
-}
-
-// AdminAccounts finds up to limit accounts whose username or nickname
-// contains query (newest first when query is empty). An account that has
-// not used the economy yet shows the starting lucci it will receive.
-func (s *Store) AdminAccounts(ctx context.Context, query string, limit int, now int64) ([]AdminAccountRow, error) {
-	if query == "" {
-		return s.adminAccounts(ctx, now, "ORDER BY a.created_at DESC, a.id LIMIT ?", limit)
-	}
-	pattern := "%" + escapeLike(query) + "%"
-	return s.adminAccounts(ctx, now, "WHERE a.username LIKE ? OR a.nickname LIKE ? ORDER BY a.username LIMIT ?",
-		pattern, pattern, limit)
-}
-
-// AdminAccount returns the admin view of one account.
-func (s *Store) AdminAccount(ctx context.Context, accountID string, now int64) (AdminAccountRow, bool, error) {
-	rows, err := s.adminAccounts(ctx, now, "WHERE a.id = ?", accountID)
-	if err != nil || len(rows) == 0 {
-		return AdminAccountRow{}, false, err
-	}
-	return rows[0], true, nil
-}
-
-func (s *Store) adminAccounts(ctx context.Context, now int64, tail string, args ...any) ([]AdminAccountRow, error) {
-	rows, err := s.db.QueryContext(ctx, `SELECT a.id, a.username, a.nickname, a.admin, a.created_at,
-			COALESCE(p.exp, 0), COALESCE(w.coupon, 0), COALESCE(w.lucci, ?), COALESCE(w.koin, 0),
-			(SELECT COUNT(*) FROM inventory_items i WHERE i.account_id = a.id AND (i.expires_at IS NULL OR i.expires_at > ?)),
-			EXISTS(SELECT 1 FROM account_onboarding o WHERE o.account_id = a.id)
-		FROM accounts a
-		LEFT JOIN wallets w ON w.account_id = a.id
-		LEFT JOIN account_progress p ON p.account_id = a.id
-		`+tail, append([]any{s.rules.StartingLucci, now}, args...)...)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	list := []AdminAccountRow{}
-	for rows.Next() {
-		var row AdminAccountRow
-		if err := rows.Scan(&row.Account.ID, &row.Account.Username, &row.Account.Nickname, &row.Account.Admin,
-			&row.CreatedAt, &row.Exp, &row.Wallet.Coupon, &row.Wallet.Lucci, &row.Wallet.Koin, &row.InventoryCount,
-			&row.Onboarded); err != nil {
-			return nil, err
-		}
-		list = append(list, row)
-	}
-	return list, rows.Err()
-}
-
 // escapeLike quotes the LIKE metacharacters (the default escape is \).
 func escapeLike(value string) string {
 	return strings.NewReplacer(`\`, `\\`, `%`, `\%`, `_`, `\_`).Replace(value)

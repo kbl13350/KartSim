@@ -1,8 +1,13 @@
 package api
 
 import (
-	_ "embed"
+	"context"
+	"embed"
+	"io/fs"
 	"net/http"
+	"path"
+	"strconv"
+	"strings"
 	"unicode/utf8"
 
 	"kartsim/internal/data/economy"
@@ -10,22 +15,32 @@ import (
 	"kartsim/internal/shared/apierr"
 )
 
-// The admin console: a static page (GET /multiplayer/admin) that signs in
+// The admin console (ADMIN.md): a single-page app (GET /multiplayer/admin,
+// built from server-go/admin-ui into adminui/ and embedded) that signs in
 // through the normal login and keeps the token in memory only, and the
 // admin API it calls. Every admin endpoint needs a session of an admin
 // (stored admin flag or KART_ADMIN_USERNAMES).
 
-//go:embed admin.html
-var adminHTML []byte
+//go:embed all:adminui
+var adminUI embed.FS
 
-//go:embed admin.js
-var adminJS []byte
+// adminFiles is the console build (index.html and assets/); tests swap it.
+var adminFiles = func() fs.FS {
+	files, err := fs.Sub(adminUI, "adminui")
+	if err != nil {
+		panic(err) // adminui is a constant directory of this package
+	}
+	return files
+}()
 
 const (
-	maxAdminResults = 50
-	maxAdminQuery   = 64
-	maxGrantAmount  = 1_000_000_000
-	maxGrantNote    = 200
+	maxAdminQuery  = 64
+	maxGrantAmount = 1_000_000_000
+	maxGrantNote   = 200
+
+	defaultPageSize = 20
+	maxPageSize     = 100
+	maxPage         = 1_000_000
 )
 
 var (
@@ -33,10 +48,11 @@ var (
 	errInvalidNote   = apierr.New(http.StatusBadRequest, "INVALID_NOTE")
 	errInvalidQuery  = apierr.New(http.StatusBadRequest, "INVALID_QUERY")
 	errUnknownTarget = apierr.New(http.StatusNotFound, "ACCOUNT_NOT_FOUND")
+	errAssetNotFound = apierr.New(http.StatusNotFound, "NOT_FOUND")
 )
 
-// adminPageHeaders lock the console down: only its own script, no framing,
-// no referrer, never cached.
+// adminPageHeaders lock the console down: only its own scripts, styles and
+// fonts, no framing, no referrer, never cached.
 func adminPageHeaders(w http.ResponseWriter, contentType string) {
 	header := w.Header()
 	header.Set("Content-Type", contentType)
@@ -45,68 +61,199 @@ func adminPageHeaders(w http.ResponseWriter, contentType string) {
 	header.Set("X-Frame-Options", "DENY")
 	header.Set("Referrer-Policy", "no-referrer")
 	header.Set("Content-Security-Policy", "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; "+
-		"connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'")
+		"connect-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; "+
+		"frame-ancestors 'none'")
 }
 
 func (a *API) adminPage(w http.ResponseWriter, _ *http.Request) error {
-	adminPageHeaders(w, "text/html; charset=utf-8")
-	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write(adminHTML)
-	return nil
-}
-
-func (a *API) adminScript(w http.ResponseWriter, _ *http.Request) error {
-	adminPageHeaders(w, "text/javascript; charset=utf-8")
-	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write(adminJS)
-	return nil
-}
-
-// adminAccountJSON is one account in the admin console.
-type adminAccountJSON struct {
-	ID             string       `json:"id"`
-	Username       string       `json:"username"`
-	Nickname       string       `json:"nickname"`
-	Admin          bool         `json:"admin"`
-	CreatedAt      int64        `json:"createdAt"`
-	Level          int          `json:"level"`
-	Exp            int64        `json:"exp"`
-	Wallet         store.Wallet `json:"wallet"`
-	InventoryCount int          `json:"inventoryCount"`
-	Onboarded      bool         `json:"onboarded"`
-}
-
-func (a *API) adminAccountView(row store.AdminAccountRow) adminAccountJSON {
-	account := a.withAdmin(row.Account)
-	return adminAccountJSON{
-		ID: account.ID, Username: account.Username, Nickname: account.Nickname, Admin: account.Admin,
-		CreatedAt: row.CreatedAt, Level: a.economy.Levels.LevelForExp(row.Exp).Level, Exp: row.Exp,
-		Wallet: row.Wallet, InventoryCount: row.InventoryCount, Onboarded: row.Onboarded,
-	}
-}
-
-// adminAccounts searches accounts by username or nickname (?q=, contains;
-// the newest accounts without q), at most 50.
-func (a *API) adminAccounts(w http.ResponseWriter, r *http.Request) error {
-	if _, err := a.requireAdmin(r); err != nil {
-		return err
-	}
-	query := ""
-	if q := queryParam(r, "q"); q != nil {
-		query = *q
-	}
-	if !utf8.ValidString(query) || utf8.RuneCountInString(query) > maxAdminQuery {
-		return errInvalidQuery
-	}
-	rows, err := a.store.AdminAccounts(r.Context(), query, maxAdminResults, a.nowMillis())
+	page, err := fs.ReadFile(adminFiles, "index.html")
 	if err != nil {
 		return err
 	}
-	accounts := make([]adminAccountJSON, len(rows))
-	for i, row := range rows {
-		accounts[i] = a.adminAccountView(row)
+	adminPageHeaders(w, "text/html; charset=utf-8")
+	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write(page)
+	return nil
+}
+
+// adminAssetTypes are the Content-Types of the console build's files; any
+// other file is served as application/octet-stream.
+var adminAssetTypes = map[string]string{
+	".js": "text/javascript; charset=utf-8", ".mjs": "text/javascript; charset=utf-8",
+	".css": "text/css; charset=utf-8", ".json": "application/json", ".map": "application/json",
+	".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif",
+	".webp": "image/webp", ".ico": "image/x-icon", ".woff": "font/woff", ".woff2": "font/woff2", ".ttf": "font/ttf",
+	".txt": "text/plain; charset=utf-8",
+}
+
+// adminAsset serves a file of the console build's assets/ directory. Vite
+// names them by content hash, so they are cached for good.
+func (a *API) adminAsset(w http.ResponseWriter, r *http.Request) error {
+	name := r.PathValue("path")
+	if !fs.ValidPath(name) || strings.Contains(name, `\`) {
+		return errAssetNotFound
 	}
-	return writeJSON(w, http.StatusOK, map[string]any{"accounts": accounts})
+	body, err := fs.ReadFile(adminFiles, "assets/"+name)
+	if err != nil {
+		return errAssetNotFound // missing, or a directory
+	}
+	contentType, known := adminAssetTypes[strings.ToLower(path.Ext(name))]
+	if !known {
+		contentType = "application/octet-stream"
+	}
+	adminPageHeaders(w, contentType)
+	w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+	w.WriteHeader(http.StatusOK)
+	_, _ = w.Write(body)
+	return nil
+}
+
+// listJSON is the body of every admin list.
+type listJSON[T any] struct {
+	Items    []T `json:"items"`
+	Total    int `json:"total"`
+	Page     int `json:"page"`
+	PageSize int `json:"pageSize"`
+}
+
+// adminList is the common query of an admin list (ADMIN.md 3): ?page=
+// (from 1), pageSize= (1-100, 20), q= (at most 64 characters, matched as
+// a substring), sort= (one of the list's keys), order=asc|desc, from= and
+// to= (inclusive Unix ms).
+type adminList struct {
+	page, pageSize int
+	store.AdminPage
+}
+
+// parseAdminList reads the common query. sorts are the list's sort keys,
+// the first being the default; the order defaults to desc, or to asc when
+// ascending is set.
+func parseAdminList(r *http.Request, ascending bool, sorts ...string) (adminList, error) {
+	values := r.URL.Query()
+	list := adminList{page: 1, pageSize: defaultPageSize}
+	number := func(name string, low, high int64) (int64, bool, error) {
+		text := values.Get(name)
+		if text == "" {
+			return 0, false, nil
+		}
+		value, err := strconv.ParseInt(text, 10, 64)
+		if err != nil || value < low || value > high {
+			return 0, false, errInvalidQuery
+		}
+		return value, true, nil
+	}
+	if value, set, err := number("page", 1, maxPage); err != nil {
+		return list, err
+	} else if set {
+		list.page = int(value)
+	}
+	if value, set, err := number("pageSize", 1, maxPageSize); err != nil {
+		return list, err
+	} else if set {
+		list.pageSize = int(value)
+	}
+	for _, bound := range []struct {
+		name   string
+		target **int64
+	}{{"from", &list.From}, {"to", &list.To}} {
+		if value, set, err := number(bound.name, 0, 1<<53); err != nil {
+			return list, err
+		} else if set {
+			*bound.target = &value
+		}
+	}
+	query := strings.TrimSpace(values.Get("q"))
+	if !utf8.ValidString(query) || utf8.RuneCountInString(query) > maxAdminQuery {
+		return list, errInvalidQuery
+	}
+	list.Query = query
+	list.Sort = sorts[0]
+	if sort := values.Get("sort"); sort != "" {
+		known := false
+		for _, key := range sorts {
+			known = known || key == sort
+		}
+		if !known {
+			return list, errInvalidQuery
+		}
+		list.Sort = sort
+	}
+	switch values.Get("order") {
+	case "":
+		list.Desc = !ascending
+	case "asc":
+		list.Desc = false
+	case "desc":
+		list.Desc = true
+	default:
+		return list, errInvalidQuery
+	}
+	list.Offset, list.Limit = (list.page-1)*list.pageSize, list.pageSize
+	return list, nil
+}
+
+// answer writes a page of a list.
+func answerList[T any](w http.ResponseWriter, list adminList, items []T, total int) error {
+	if items == nil {
+		items = []T{}
+	}
+	return writeJSON(w, http.StatusOK, listJSON[T]{Items: items, Total: total, Page: list.page, PageSize: list.pageSize})
+}
+
+// emptyList answers a list whose filter cannot match.
+func emptyList[T any](w http.ResponseWriter, list adminList) error {
+	return answerList(w, list, []T{}, 0)
+}
+
+// flagParam reads a filter switch: 1 or true; absent, 0 or false is off.
+func flagParam(r *http.Request, name string) (bool, error) {
+	switch r.URL.Query().Get(name) {
+	case "", "0", "false":
+		return false, nil
+	case "1", "true":
+		return true, nil
+	}
+	return false, errInvalidQuery
+}
+
+// tokenParam reads an ASCII filter value (a kind, a currency, a reason, a
+// track): "" when absent, 400 INVALID_QUERY when not printable ASCII.
+func tokenParam(r *http.Request, name string, max int) (string, error) {
+	value := r.URL.Query().Get(name)
+	if value != "" && !validASCIIID(value, max) {
+		return "", errInvalidQuery
+	}
+	return value, nil
+}
+
+// oneOfParam reads a filter value that must be one of allowed ("" when absent).
+func oneOfParam(r *http.Request, name string, allowed ...string) (string, error) {
+	value := r.URL.Query().Get(name)
+	if value == "" {
+		return "", nil
+	}
+	for _, option := range allowed {
+		if value == option {
+			return value, nil
+		}
+	}
+	return "", errInvalidQuery
+}
+
+// accountParam reads a list's account filter (?account=): an account id or
+// a username (any case). matched is false when it names no account, so
+// the list is empty.
+func (a *API) accountParam(ctx context.Context, r *http.Request) (id string, matched bool, err error) {
+	value := strings.TrimSpace(r.URL.Query().Get("account"))
+	switch {
+	case value == "":
+		return "", true, nil
+	case len(value) == 36 && validASCIIID(value, 36):
+		return value, true, nil
+	case !validUsername(&value):
+		return "", false, nil
+	}
+	return a.store.AccountIDByUsername(ctx, value)
 }
 
 // adminGrant adds to or takes from an account's coupon, lucci, koin or exp
@@ -115,7 +262,8 @@ func (a *API) adminAccounts(w http.ResponseWriter, r *http.Request) error {
 // has reason "admin", ref "<admin>:<requestId>" and the note. The request id
 // stands for one grant: repeating it with the same account, currency and
 // amount changes nothing and answers duplicate:true, reusing it with others
-// is 409 REQUEST_ID_CONFLICT. Without a requestId the server picks one.
+// is 409 REQUEST_ID_CONFLICT. Without a requestId the server picks one. The
+// answer's account is an AccountRow plus its wallet.
 func (a *API) adminGrant(w http.ResponseWriter, r *http.Request) error {
 	var request struct {
 		Username  string `json:"username"`
@@ -172,9 +320,13 @@ func (a *API) adminGrant(w http.ResponseWriter, r *http.Request) error {
 	if !found {
 		return errUnknownTarget
 	}
+	type grantedAccount struct {
+		accountRowJSON
+		Wallet store.Wallet `json:"wallet"`
+	}
 	return writeJSON(w, http.StatusOK, struct {
 		store.GrantResult
-		RequestID string           `json:"requestId"`
-		Account   adminAccountJSON `json:"account"`
-	}{result, id, a.adminAccountView(row)})
+		RequestID string         `json:"requestId"`
+		Account   grantedAccount `json:"account"`
+	}{result, id, grantedAccount{a.accountRows(ctx, []store.AdminAccountRow{row}, now)[0], row.Wallet}})
 }

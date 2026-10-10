@@ -120,6 +120,11 @@ type API struct {
 	license    *license.Data
 	licenseDoc licenseTable
 	clubData   *club.Data
+
+	// The admin console: when this API was built (the data service's start)
+	// and the track titles by id.
+	startedAt   int64
+	trackTitles map[string]string
 }
 
 // New builds the API.
@@ -244,6 +249,11 @@ func New(opts Options) *API {
 	if a.clubData, err = club.Default(); err != nil {
 		panic(err) // the embedded data is checked by the club tests
 	}
+	a.startedAt = a.nowMillis()
+	a.trackTitles = make(map[string]string, len(tracks.Tracks))
+	for _, track := range tracks.Tracks {
+		a.trackTitles[track.ID] = track.Title
+	}
 	return a
 }
 
@@ -267,7 +277,7 @@ func (a *API) PublicHandler() http.Handler {
 	route("POST /multiplayer/auth/logout", a.logout)
 	route("POST /multiplayer/admin/invites", a.createInvite)
 	route("GET /multiplayer/admin", a.adminPage)
-	route("GET /multiplayer/admin/admin.js", a.adminScript)
+	route("GET /multiplayer/admin/assets/{path...}", a.adminAsset)
 	route("GET /multiplayer/ice", a.ice)
 	route("POST /multiplayer/offer", a.offer)
 	route("GET /multiplayer/game-servers", a.gameServers)
@@ -292,8 +302,24 @@ func (a *API) PublicHandler() http.Handler {
 	route("POST /api/shop/purchase", a.purchase)
 	route("GET /api/shop/spend-event", a.shopSpendEvent)
 	route("POST /api/timeattack/settle", a.settleTimeAttack)
+	route("GET /api/admin/me", a.adminMe)
+	route("GET /api/admin/overview", a.adminOverview)
 	route("GET /api/admin/accounts", a.adminAccounts)
+	route("GET /api/admin/accounts/{id}", a.adminAccountDetail)
+	route("PATCH /api/admin/accounts/{id}", a.adminPatchAccount)
+	route("POST /api/admin/accounts/{id}/kick", a.adminKick)
+	route("GET /api/admin/accounts/{id}/inventory", a.adminInventory)
 	route("POST /api/admin/grant", a.adminGrant)
+	route("GET /api/admin/logins", a.adminLogins)
+	route("GET /api/admin/online", a.adminOnline)
+	route("GET /api/admin/nodes", a.adminNodes)
+	route("GET /api/admin/ledger", a.adminLedger)
+	route("GET /api/admin/grants", a.adminGrants)
+	route("GET /api/admin/races", a.adminRaces)
+	route("GET /api/admin/purchases", a.adminPurchases)
+	route("GET /api/admin/lottery-draws", a.adminLotteryDraws)
+	route("GET /api/admin/box-openings", a.adminBoxOpenings)
+	route("GET /api/admin/clubs", a.adminClubs)
 
 	route("GET /api/messenger/state", a.messengerState)
 	route("POST /api/messenger/friends/request", a.friendRequest)
@@ -400,7 +426,8 @@ func jsonFallback(mux *http.ServeMux) http.Handler {
 			return
 		}
 		var allowed []string
-		for _, method := range []string{http.MethodGet, http.MethodPut, http.MethodPost} {
+		for _, method := range []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodPatch,
+			http.MethodDelete} {
 			probe := r.Clone(r.Context())
 			probe.Method = method
 			if _, pattern := mux.Handler(probe); pattern != "" {
