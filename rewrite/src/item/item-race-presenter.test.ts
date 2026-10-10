@@ -1066,6 +1066,15 @@ test("dropped mines go off once at their first hit; the water mine bursts where 
   assert.deepEqual(models(presenter), ["item/common/미사일폭발.1s"], "the duck is gone");
   assert.equal(played.at(-1)!.path, "sound_/fx/item/mine/exploding.ogg");
 
+  // A mine that meets a shield goes off all the same.
+  presenter.used({ useId: 62, itemId: 82, userId: "A", targets: [], startMs: 3000, etaMs: 0, point });
+  at(3500);
+  assert.ok(models(presenter).includes("item/mine/치킨bomb.1s"));
+  presenter.hit({ useId: 62, itemId: 82, victimId: "C", result: "blocked", by: "shield", atMs: 4000 });
+  at(4000);
+  assert.ok(!models(presenter).includes("item/mine/치킨bomb.1s"));
+  assert.ok(models(presenter).includes("item/common/쉴드방어.1s"));
+
   presenter.used({ useId: 60, itemId: 37, userId: "A", targets: [], startMs: 5000, etaMs: 0, point });
   at(5500);
   presenter.hit({ useId: 60, itemId: 37, victimId: "B", result: "hit", atMs: 6000 });

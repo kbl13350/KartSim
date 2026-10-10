@@ -422,6 +422,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       return;
     }
     if (event.result === "blocked") {
+      // A mine that met a shield went off all the same.
+      if (record && fx.kind === "throw" && fx.consumed && event.by !== "escape") this.spend(record);
       if (event.by === undefined || event.by === "escape") return;
       const look = event.by === "kart" || event.by === "pet" ? fx.special : fx.block;
       this.show(`hit:${victim}`, look.model, at, at, at + (look.model?.lifeMs ?? 0), onKart(victim));
