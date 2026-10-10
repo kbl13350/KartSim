@@ -69,3 +69,28 @@ In `ek`'s fallback, the requested speed/version checks the SpeedType table and
 adds a source suffix. The spec itself comes from the car's speed-7 row; no
 target-speed baseline numbers are added. This is confirmed by whole-object
 differential assertions, not only source-label comparisons.
+
+## Item-race overlays
+
+`item-race-tuning.ts` adjusts the spec of an item-race (道具赛) kart after the
+lookup above; the generated race loader (`A40`, marker `item-mode(p3p)` in
+`tools/generate-modules.mjs`) calls `itemRaceVehicleSpec(spec, drivingMode,
+kartParameter, flyingPetId)` with the kart's own `param@cn.xml` (else
+`param.xml`) document it already loaded. For every other driving mode the spec
+object is returned unchanged, so the captured tables, `ek`/`JI` and the parity
+tests above are untouched.
+
+- `boostAccelFactorOnlyItem`: the captured CN table has 1.5 on every row; the
+  kart XML's `BoosterAccelFactorItem` (1.6–1.8 on over 300 catalog karts)
+  replaces it, with the BodyParam precedence (`BoostAccelFactorOnlyItem` first).
+- `itemBoosterTime`: flying pets in tune group 204 (`EnchanterAddSpec
+  itemBoosterTime='250'`) add 250 ms. `data/item-race-tuning.json` holds the
+  flying-pet groups of `etc_/itemTable@cn.xml` and the group specs of
+  `zeta_/cn/enchant/enchant.xml`; regenerate it with
+  `node src/physics/extract-item-race-tuning.mjs` (`--check` reports a stale
+  file). Only `itemBoosterTime` is applied; the other groups (team booster,
+  acceleration, cornering) would change speed races.
+
+`item-race-tuning.test.ts` re-exports the JSON from `recovered/data-full`,
+checks every catalog kart's factor against its parameter file, and checks the
+generated loader line.

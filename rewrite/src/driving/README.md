@@ -64,12 +64,21 @@
 
 | 模块 | 内容 |
 | --- | --- |
-| `item-mode.ts` | 道具槽沿用 `runtime.speedSlots`，容量取 `itemSlotCapacity`（2 或 3），保存任意道具编号（-1 为空）；`setItemSlots`/`itemSlots`/`itemSlotCapacity`；`startItemBooster` 以物理状态 3 持续 `itemBoosterTime`；服务器拒绝该次使用时 `cancelItemBooster` 结束物理状态 3 并撤回加速计数 |
-| `item-effects.ts` | 打转、困住、炸飞、反向、减速、缩小、挡停、磁铁牵引八种效果；每个物理切片推进一次，困住/炸飞/挡停时以运动学路径代替物理子步，位姿变化随运动帧同步给远端 |
-| `physics-parameters.ts` | 发行版 `jt0` 的调参记录，末尾追加道具赛字段（道具槽容量、道具加速时间、道具起步与加速系数） |
+| `item-mode.ts` | 道具槽沿用 `runtime.speedSlots`，容量取 `itemSlotCapacity`（2 或 3），保存任意道具编号（-1 为空）；`setItemSlots`/`itemSlots`/`itemSlotCapacity`；`startItemBooster(kind = "item", { durationMs }?)` 以物理状态 3 持续 `itemBoosterTime`（加速器）/`animalBoosterTime`（特殊加速器 31）/`superBoosterTime`（超级盾牌 18），或 `durationMs`（警灯）；服务器拒绝该次使用时 `cancelItemBooster` 结束物理状态 3 并撤回加速计数 |
+| `item-effects.ts` | 打转、困住、炸飞、反向、减速、缩小、挡停、磁铁牵引、弹回（knockback）、定住（hold）十种效果；每个物理切片推进一次，困住/炸飞/挡停/定住时以运动学路径代替物理子步，位姿变化随运动帧同步给远端 |
+| `physics-parameters.ts` | 发行版 `jt0` 的调参记录，末尾追加道具赛字段（道具槽容量、道具/特殊/超级加速时间、道具起步与加速系数、脱出瞬间加速开关） |
 
 道具赛中漂移照常、漂移结束后的瞬间加速（状态 2）照常，但漂移和速度不再充能加速器（`accumulateDriftCharge`、`accumulateSpeedCharge`、`updateModeInventory`、组队集气均关闭）；起步加速使用 `startBoosterTimeItem` 与 `startForwardAccelItem`；加速状态的加速系数使用 `boostAccelFactorOnlyItem`，地面（`applyLongitudinalForce`）与全 3D 轨道（`applyVehicleRailDynamics`）相同。道具赛没有双重加速：`refreshDualBoosterReady` 在道具赛中与未开启双重加速的引擎一样直接返回，加速道具不会自动进入状态 10。`use-item-or-booster`/`reorder-items` 在道具赛不再消耗或交换槽位，按键由 `src/input/item-input.ts` 转为道具指令。
 
 道具效果压制自动复位期间（打转或困住/炸飞/挡停），撞墙与障碍计时器的复位请求被丢弃（卡住时每个切片都会重新请求），低速计时器清零；定向挤压（`activateDirectionalPress`）只请求一次复位，因此同时记入 `itemEffects.requestCrushReset()`，由多人本机 owner 在压制结束后执行，`clear`/`resetState` 时清除。
+
+第三阶段（ITEM_MODE.md 附录 C）：
+
+- 反向分三种：`apply("reverse", ms, { mode })`，`"steering"`（大魔王，默认）、`"forwardBack"`（恶魔阿哥 38）、`"all"`（R博士 23）。`steeringInverted`/`forwardBackSwapped`/`reverseMode` 由多人会话每帧写进 `DrivingInputAccumulator`（`setSteeringInverted`/`setForwardReverseSwap`，累加器保持与发行版一致）；会话再用 `itemReverseDrivingEffect`（`src/input/item-input.ts`）改写上报的指令：前后颠倒时后退键是 `forward-down/up`，左右颠倒时漂移方向跟随实际转向。
+- 反向、减速、缩小可带 `source`（例如道具编号）：每个来源有自己的结束时间，`end(kind, source)` 只去掉该来源（电磁波只解除飞碟的减速，没有飞碟减速时返回 false、什么都不发生）；`hasSource(kind, source)` 查询。
+- `knockback`（弹性陷阱 25，`Affect` 500）：水平速度改为车头反方向（入口前向速度的一半，8–25 m/s，或 `speed`），期间关闭驱动与轮胎、保留碰撞，速度按指数衰减。
+- `hold`（符咒 137 `Affect` 4000、电磁导弹 `AffectMain` 2000、龙卷风 `StateAffect` 2000）：像挡停一样停在原地但按时长，不能用道具；两次 hold 取较晚的结束；不会把空中的炸飞拉回地面；水泡可以替换它。`directionPress`/`consumeDirectionPresses` 记录定住期间的方向键（符咒 QTE），`escapeHold(delayMs)` 提前结束（`EscapeAffect` 500 期间仍定住）并报告 `escaped`；`escapeImmunityMs` 可在结束后给蓝盾式免疫（默认 0）。
+- `trap` 选项 `quick`（waterAngel 快速逃脱）：水泡只持续 500 ms；`afterBoost`（默认 true）：车辆 `useExtendedAfterBooster` 或 `useExtendedAfterBoosterMore` 时水泡结束（到时或挣脱）后 1000 ms 内按 ↑（`forward-down`）进入物理状态 2，时长 `driftBoostTick`（缺省 0.5 s），系数 `boostAccelFactorOnlyItem × driftBoostMulAccelFactor`，与漂移后瞬间加速同一路径；新的命中、清除或复位关闭窗口。
+- `boostAccelFactorOnlyItem` 在道具赛装配时由车辆自己的 `param@cn.xml`（或 `param.xml`）的 `BoosterAccelFactorItem` 覆盖（`src/physics/item-race-tuning.ts`，生成的 A40 中标记 `item-mode(p3p)`），飞行宠物调校组 204 给 `itemBoosterTime` +250；竞速与计时赛的参数对象不变。
 
 `item-effects.test.ts`、`item-mode.test.ts` 用真实 `AL` 在平面测试路面（`item-test-fixtures.ts`）上验证每种效果的时间线；`physics-parameters.test.ts` 对全部可查询车辆逐字段比较发行版 `jt0`。原有发行版差分测试保持不变，非道具赛路径没有行为变化。

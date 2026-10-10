@@ -32,6 +32,7 @@ import { loadVehicleAsset } from "../vehicle/load-vehicle-asset.ts";
 import { loadTrackMap, loadTimeAttackMap, loadMultiplayerMap } from "../vehicle/load-track-map.ts";
 import { isItemRaceRoom, loadItemGameTrackSources, loadItemRaceFields } from "../item/item-race-map.ts";
 import { loadItemRacePresenter } from "../item/item-race-presenter.ts"; // item-mode(fx)
+import { itemRaceVehicleSpec } from "../physics/item-race-tuning.ts"; // item-mode(p3p)
 import { KartAudioRuntime, loadKartAudio, decodeMotorAudio, parseRoadSoundConfig } from "../vehicle/kart-audio-runtime.ts";
 import { loadCharacterAsset } from "../vehicle/load-character-asset.ts";
 import { SlipstreamVisual, loadSlipstreamVisual, SlipstreamAudio, loadSlipstreamAudio } from "../vehicle/slipstream-effects.ts";
@@ -6172,6 +6173,7 @@ async function A40(n, e, t, i, r, s) {
           )
         : h6(e6(o2, j.engineGrade, G0, e.speed), u.version, u.speed);
       e.speed === 4 && (E0 = { ...E0, driftMaxGauge: Lo });
+      E0 = itemRaceVehicleSpec(E0, vI(SX(e)), R2, r0.itemIds[52]); // item-mode(p3p)
       const f2 = G20(l0, j.engineGrade, z && !X && !t.rp ? a : void 0),
         O2 = c ? jM(f2, z, F0) : f2;
       m40(j, O2);

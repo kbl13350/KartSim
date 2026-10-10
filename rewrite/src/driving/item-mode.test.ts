@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 import { bundledVehicleSpecCatalog } from "../physics/bundled";
-import { itemSlotCapacityFor } from "./item-mode";
+import { itemRaceVehicleSpec } from "../physics/item-race-tuning";
+import { itemBoosterDurationMs, itemSlotCapacityFor } from "./item-mode";
 import {
   admittedItemMode, createItemDriver, createSpeedDriver, testTuning, throttleInput,
   type TestDriver,
@@ -256,4 +258,85 @@ test("a booster item the server refused is cancelled", () => {
   assert.equal(pulled.vehicle.cancelItemBooster(), false);
   assert.equal(pulled.vehicle.runtime.physicsState, 16);
   assert.equal(createSpeedDriver(373).vehicle.cancelItemBooster(), false);
+});
+
+// ---- phase 3: booster kinds and the item-race kart overlays ----
+
+/** The kart's own BodyParam attributes, as the race loader reads `param@cn.xml` (else `param.xml`). */
+function kartParameterAttributes(folder: string): Record<string, string> {
+  const base = new URL(`../../../recovered/data-full/DataPack2/kart_/${folder}/`, import.meta.url);
+  let xml: string;
+  try { xml = readFileSync(new URL("param@cn.xml", base), "utf8"); }
+  catch { xml = readFileSync(new URL("param.xml", base), "utf8"); }
+  const tag = /<BodyParam\b([\s\S]*?)\/?>/.exec(xml)![1]!;
+  const attributes: Record<string, string> = {};
+  for (const match of tag.matchAll(/([\w.]+)\s*=\s*(?:'([^']*)'|"([^"]*)")/g))
+    attributes[match[1]!] ??= match[2] ?? match[3]!;
+  return attributes;
+}
+
+test("item boosts: the booster item, the special booster and the super shield run their own times", () => {
+  const tuning = testTuning(373);
+  assert.equal(itemBoosterDurationMs(tuning), 3000);
+  assert.equal(itemBoosterDurationMs(tuning, "animal"), 4000);
+  assert.equal(itemBoosterDurationMs(tuning, "super"), 3500);
+  for (const [kind, expected] of [["item", 3000], ["animal", 4000], ["super", 3500]] as const) {
+    const driver = createItemDriver(373);
+    driver.run(1000);
+    assert.equal(driver.vehicle.startItemBooster(kind), true, kind);
+    assert.equal(driver.vehicle.runtime.physicsState, 3);
+    assert.equal(driver.vehicle.runtime.stateRemainingMs, expected, kind);
+    assert.equal(driver.vehicle.state.boostTime, expected * 0.001);
+  }
+  const siren = createItemDriver(373);
+  siren.run(1000);
+  assert.equal(siren.vehicle.startItemBooster("item", { durationMs: 3000 }), true);
+  assert.equal(siren.vehicle.runtime.stateRemainingMs, 3000);
+  assert.equal(siren.vehicle.startItemBooster("item", { durationMs: 0 }), false);
+  assert.throws(() => siren.vehicle.startItemBooster("rocket"), /未知的道具加速/);
+  // The special booster lasts longer on the same item factor.
+  const animal = createItemDriver(373);
+  const item = createItemDriver(373);
+  for (const driver of [animal, item]) driver.run(1000);
+  animal.vehicle.startItemBooster("animal");
+  item.vehicle.startItemBooster("item");
+  assert.deepEqual(trajectory(animal, 2900), trajectory(item, 2900));
+  animal.run(600);
+  item.run(600);
+  assert.equal(animal.vehicle.runtime.physicsState, 3);
+  assert.equal(item.vehicle.runtime.physicsState, 0);
+});
+
+test("item races boost with the kart XML BoosterAccelFactorItem and the flying pet's 204 bonus", () => {
+  const attributes = kartParameterAttributes("justice_Z7GT"); // kart 373 正义 HT+
+  assert.equal(attributes.BoosterAccelFactorItem, "1.65");
+  const spec = bundledVehicleSpecCatalog().lookup(373, 7).spec;
+  assert.equal(spec.boostAccelFactorOnlyItem, 1.5, "the captured CN table");
+  const mode = { kind: "item" };
+  const overlaid = itemRaceVehicleSpec(spec, mode, { body: { attributes: Object.entries(attributes)
+    .map(([name, value]) => ({ name, value })) } }, 5 /* 卡啾-玄武, tune group 204 */);
+  assert.equal(overlaid.boostAccelFactorOnlyItem, f32(1.65));
+  assert.equal(overlaid.itemBoosterTime, 3250);
+  assert.equal(itemRaceVehicleSpec(spec, { kind: "speed" }, attributes, 5), spec,
+    "speed races keep the release spec");
+
+  const tuning = testTuning(373, {
+    boostAccelFactorOnlyItem: overlaid.boostAccelFactorOnlyItem,
+    itemBoosterTime: overlaid.itemBoosterTime,
+  });
+  const item = createItemDriver(373, tuning);
+  item.run(1000);
+  assert.equal(item.vehicle.startItemBooster(), true);
+  assert.equal(item.vehicle.runtime.stateRemainingMs, 3250);
+  const reference = createSpeedDriver(373, { normalBoosterTime: 3250, boostAccelFactor: f32(1.65) });
+  reference.run(1000);
+  reference.vehicle.runtime.speedSlots[0] = 6;
+  assert.equal(reference.vehicle.startNormalBooster(throttleInput), true);
+  const boosted = trajectory(item, 3000);
+  assert.deepEqual(boosted, trajectory(reference, 3000));
+  const table = createItemDriver(373);
+  table.run(1000);
+  table.vehicle.startItemBooster();
+  const tableRun = trajectory(table, 3000);
+  assert.ok(boosted.at(-2)! > tableRun.at(-2)! + 1, "1.65 pulls ahead of the table's 1.5");
 });

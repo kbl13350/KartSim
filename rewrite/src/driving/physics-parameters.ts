@@ -2,9 +2,9 @@
  * The AL tuning record built from a kart spec (`jt0` in the release).
  *
  * The release copied only the speed-race fields. Item races also need the
- * item slot capacity, item booster time and the item start-boost and booster
- * factors, so they are appended after the release fields. Speed and
- * time-attack physics never read them.
+ * item slot capacity, the item, special (animal) and super booster times and
+ * the item start-boost and booster factors, so they are appended after the
+ * release fields. Speed and time-attack physics never read them.
  */
 
 /** The spec columns read here; `VehicleSpec` from the physics catalog satisfies it. */
@@ -73,6 +73,8 @@ export interface PhysicsParameterSpec {
   boostAccelFactorOnlyItem: number;
   useExtendedAfterBooster: number;
   useExtendedAfterBoosterMore: number;
+  animalBoosterTime: number;
+  superBoosterTime: number;
 }
 
 export interface PhysicsParameterVisual {
@@ -161,6 +163,9 @@ export function vehiclePhysicsParameters(spec: PhysicsParameterSpec,
     boostAccelFactorOnlyItem: spec.boostAccelFactorOnlyItem,
     useExtendedAfterBooster: spec.useExtendedAfterBooster !== 0,
     useExtendedAfterBoosterMore: spec.useExtendedAfterBoosterMore !== 0,
+    // The special booster (31) and the super shield (18) boost times.
+    animalBoosterTime: spec.animalBoosterTime,
+    superBoosterTime: spec.superBoosterTime,
   };
 }
 

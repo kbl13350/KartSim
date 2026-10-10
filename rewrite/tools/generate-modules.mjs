@@ -454,6 +454,17 @@ itemWorldRaceAssetPatches.push(
     `      itemHazards: itemRaceFields?.hazards,
       itemPresenter, // item-mode(fx)`],
 );
+// item-mode(p3p): item races drive with the kart XML's BoosterAccelFactorItem
+// and the flying pet's tune-group itemBoosterTime (src/physics/item-race-tuning.ts).
+// R2 is the kart's param@cn/param document A40 already loaded; vI(SX(e)) is the
+// race's driving mode (unchanged spec outside item races).
+itemWorldVehicleImports.push(
+  'import { itemRaceVehicleSpec } from "../physics/item-race-tuning.ts"; // item-mode(p3p)');
+itemWorldRaceAssetPatches.push(
+  [`      e.speed === 4 && (E0 = { ...E0, driftMaxGauge: Lo });`,
+    `      e.speed === 4 && (E0 = { ...E0, driftMaxGauge: Lo });
+      E0 = itemRaceVehicleSpec(E0, vI(SX(e)), R2, r0.itemIds[52]); // item-mode(p3p)`],
+);
 const vehicleSlipstreamOverrides = new Set(["mv", "wv"]);
 const vehicleStartGridOverrides = new Set(["iL", "rL"]);
 const vehicleNormalCoordinatorOverrides = new Set(["vL", "U40", "yL", "as", "J8"]);
@@ -1161,7 +1172,8 @@ const itemModeDrivingMembers = [
   "  get itemSlotCapacity() { return VehicleItemMode.vehicleItemSlotCapacity(this); }",
   "  setItemSlots(slots) { return VehicleItemMode.setVehicleItemSlots(this, slots); }",
   "  itemSlots() { return VehicleItemMode.vehicleItemSlots(this); }",
-  "  startItemBooster() { return VehicleItemMode.startVehicleItemBooster(this); }",
+  // item-mode(p3p): the special booster (31) and super shield (18) boosts.
+  "  startItemBooster(kind, options) { return VehicleItemMode.startVehicleItemBooster(this, kind, options); }",
   // item-mode(fixa): a booster item the server refused ends its booster.
   "  cancelItemBooster() { return VehicleItemMode.cancelVehicleItemBooster(this); }",
 ];
