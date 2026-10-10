@@ -83,6 +83,26 @@ const logins: Row[] = Array.from({ length: 260 }, (_, i) => {
     username: account.username, nickname: account.nickname, ip: `10.1.${i % 9}.${i % 254}`, userAgent: pick(userAgents, i) }
 })
 
+const cheatChecks = [
+  ['TELEPORT', '64 ms 内坐标移动 1830 m（上限 63 m）'],
+  ['FINISH_EARLY', '完赛时路线进度 2105 m（2 圈至少 6017 m）'],
+  ['CLOCK', '运动帧时钟比服务器快 7420 ms（上限 5000 ms）'],
+  ['CUBE_RATE', '4000 ms 内吃到 9 个不同的道具箱（上限 8 个）'],
+  ['BAD_FRAME', '运动帧格式无效（类型 10，负载 178 字节）'],
+  ['SPEED', '1536 ms 内直线移动 590 m，约 1383 km/h（上限 720 km/h）'],
+]
+const antiCheat: Row[] = Array.from({ length: 48 }, (_, i) => {
+  const guest = i % 11 === 5
+  const account = pick(accounts, i * 13 + 1)
+  const [code, detail] = pick(cheatChecks, i)
+  return { id: 500 - i, at: now - i * 47 * minute, code, detail, action: i % 7 === 3 ? 'log' : 'kick',
+    accountId: guest ? '' : account.id, username: guest ? '' : account.username, nickname: guest ? '' : account.nickname,
+    name: guest ? `游客${i}` : account.nickname, playerId: `bbbbbbbb-0000-4000-8000-${String(i).padStart(12, '0')}`,
+    nodeId: i % 3 === 0 ? 'game-2' : 'game-1', roomId: `cccccccc-0000-4000-8000-${String(i).padStart(12, '0')}`,
+    raceId: `dddddddd-0000-4000-8000-${String(i).padStart(12, '0')}`, trackId: i % 2 ? 'village_R01' : 'desert_I03',
+    trackName: i % 2 ? '城镇 高速公路' : '沙漠 遗迹探险', gameplay: i % 2 ? 'ordinary' : 'item' }
+})
+
 const reasons = ['race', 'purchase', 'admin', 'lottery', 'levelup', 'clubdonate', 'rewardbox', 'mystery']
 const currencies = ['coupon', 'lucci', 'koin', 'exp']
 const ledger: Row[] = Array.from({ length: 330 }, (_, i) => {
@@ -405,6 +425,7 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
       races: races.flatMap((race) => (race.participants as Row[]).filter((p) => p.accountId === account.id)).slice(0, 20) })
   }
   if (path === '/api/admin/logins') return send(res, 200, list(logins, params, { search: ['username', 'nickname', 'ip'], filters: ['kind', 'account', 'ip'] }))
+  if (path === '/api/admin/anti-cheat') return send(res, 200, list(antiCheat, params, { search: ['name', 'username', 'nickname', 'detail', 'playerId', 'roomId', 'raceId'], filters: ['code', 'action', 'account', 'node'] }))
   if (path === '/api/admin/online') {
     if (redisDown) return send(res, 200, { items: [], total: 0, page: 1, pageSize: Number(params.get('pageSize') || 20) })
     const online = accounts.filter((row) => row.online).map((row, i) => ({ playerId: `p-${i}`, name: row.nickname, guest: false,

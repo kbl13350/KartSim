@@ -63,6 +63,31 @@ export interface LoginRow {
   userAgent: string
 }
 
+/** One anti-cheat record of a game node (ANTICHEAT.md 4). */
+export interface AntiCheatRow {
+  id: number
+  at: number
+  /** The failed check: TELEPORT, SPEED, CLOCK, PROGRESS, LAP, FINISH_*, CUBE_RATE, BAD_FRAME. */
+  code: string
+  /** The measured values, in Chinese. */
+  detail: string
+  /** kick: the racer was kicked; log: only recorded (KART_ANTICHEAT=log). */
+  action: 'kick' | 'log' | string
+  /** '' for a guest. */
+  accountId: string
+  username: string
+  nickname: string
+  /** The racer's name at the time. */
+  name: string
+  playerId: string
+  nodeId: string
+  roomId: string
+  raceId: string
+  trackId: string
+  trackName: string
+  gameplay: string
+}
+
 export interface RaceParticipantRow {
   raceId: string
   at: number

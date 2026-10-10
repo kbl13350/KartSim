@@ -738,6 +738,31 @@ var migrations = []migration{
 		// The admin reward-box list sorts and filters by when an entry came.
 		{table: "reward_box", name: "idx_reward_box_created", columns: "created_at"},
 	}},
+	// Version 14: the game nodes' anti-cheat records (ANTICHEAT.md 4), one
+	// row per racer kicked (or, in log mode, noted), kept 180 days. Guests
+	// have no account, so the account is not a foreign key.
+	{version: 14, statements: []string{
+		`CREATE TABLE IF NOT EXISTS anti_cheat_events (
+			id BIGINT NOT NULL AUTO_INCREMENT,
+			event_id CHAR(36) ` + idColumn + ` NOT NULL,
+			node_id VARCHAR(64) ` + idColumn + ` NOT NULL,
+			account_id VARCHAR(36) ` + idColumn + ` NOT NULL DEFAULT '',
+			player_id VARCHAR(64) ` + idColumn + ` NOT NULL,
+			name VARCHAR(64) NOT NULL,
+			room_id VARCHAR(64) ` + idColumn + ` NOT NULL DEFAULT '',
+			race_id VARCHAR(64) ` + idColumn + ` NOT NULL DEFAULT '',
+			track_id VARCHAR(64) ` + idColumn + ` NOT NULL DEFAULT '',
+			gameplay VARCHAR(16) ` + idColumn + ` NOT NULL DEFAULT '',
+			code VARCHAR(32) ` + idColumn + ` NOT NULL,
+			detail VARCHAR(255) NOT NULL DEFAULT '',
+			action VARCHAR(8) ` + idColumn + ` NOT NULL,
+			at BIGINT NOT NULL,
+			PRIMARY KEY (id),
+			UNIQUE KEY uk_anti_cheat_events_event (event_id),
+			KEY idx_anti_cheat_events_at (at),
+			KEY idx_anti_cheat_events_account (account_id, at)
+		) ` + tableTail,
+	}},
 }
 
 // LatestSchemaVersion is the version Migrate brings a database to.

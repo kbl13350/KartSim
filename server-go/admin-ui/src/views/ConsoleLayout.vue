@@ -3,6 +3,7 @@ import { ref, type Component } from 'vue'
 import { Refresh, SwitchButton, UserFilled } from '@element-plus/icons-vue'
 import { provideTabs, TABS } from '../composables/useTabs'
 import { logout, session } from '../session'
+import AntiCheatTab from './AntiCheatTab.vue'
 import ClubsTab from './ClubsTab.vue'
 import DrawsTab from './DrawsTab.vue'
 import GrantsTab from './GrantsTab.vue'
@@ -26,6 +27,7 @@ const views: Record<string, Component> = {
   overview: OverviewTab,
   users: UsersTab,
   logins: LoginsTab,
+  'anti-cheat': AntiCheatTab,
   online: OnlineTab,
   nodes: NodesTab,
   ledger: LedgerTab,

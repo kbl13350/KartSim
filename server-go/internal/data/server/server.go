@@ -234,7 +234,8 @@ func sweep(ctx context.Context, st *store.Store, logger *slog.Logger) {
 // accumulate. It also refuses friend requests nobody answered in time,
 // drops request results past their outbox time and deletes private
 // messages (and conversations) older than messageRetention, old 奖励箱
-// entries, past quest periods and login records older than loginRetention.
+// entries, past quest periods, and login and anti-cheat records older than
+// loginRetention.
 func sweepOnce(ctx context.Context, st *store.Store, logger *slog.Logger, now time.Time) {
 	sweepCtx, cancel := context.WithTimeout(ctx, time.Minute)
 	defer cancel()
@@ -277,6 +278,13 @@ func sweepOnce(ctx context.Context, st *store.Store, logger *slog.Logger, now ti
 		logger.Warn("login record cleanup failed", "error", err)
 	} else if logins > 0 {
 		logger.Info("old login records removed", "count", logins)
+	}
+	// Anti-cheat records are kept as long as the login records (ANTICHEAT.md 4).
+	cheats, err := st.PruneAntiCheatEvents(sweepCtx, now.Add(-loginRetention).UnixMilli(), sweepBatch)
+	if err != nil && !errors.Is(err, context.Canceled) {
+		logger.Warn("anti-cheat record cleanup failed", "error", err)
+	} else if cheats > 0 {
+		logger.Info("old anti-cheat records removed", "count", cheats)
 	}
 }
 

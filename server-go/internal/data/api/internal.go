@@ -84,6 +84,7 @@ func (a *API) InternalHandler() http.Handler {
 	route(contract.PathRoomRules, a.saveRoomRules)
 	route(contract.PathRaces, a.saveRace)
 	route(contract.PathEquipmentVerify, a.verifyEquipment)
+	route(contract.PathAntiCheat, a.saveAntiCheat)
 
 	routes := jsonFallback(mux)
 	expected := sha256.Sum256(a.secret)

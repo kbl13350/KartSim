@@ -121,6 +121,37 @@ export function loginKindTag(kind: string | null | undefined): TagType {
   return (kind && loginKindTags[kind]) || 'info'
 }
 
+/** The anti-cheat checks (ANTICHEAT.md 2). */
+export const antiCheatChecks: Record<string, string> = {
+  TELEPORT: '坐标瞬移',
+  SPEED: '移动速度异常',
+  CLOCK: '时钟加速',
+  PROGRESS: '赛道进度异常',
+  LAP: '圈数异常',
+  FINISH_TIME: '完赛时间异常',
+  FINISH_EARLY: '未跑完就完赛',
+  FINISH_FAST: '完赛过快',
+  CUBE_RATE: '道具箱拾取过快',
+  BAD_FRAME: '运动帧格式无效',
+}
+
+export function antiCheatCheck(code: string | null | undefined): string {
+  return (code && antiCheatChecks[code]) || text(code)
+}
+
+export const antiCheatCheckOptions = Object.entries(antiCheatChecks).map(([value, label]) => ({ value, label }))
+
+export const antiCheatActions: Record<string, { label: string; type: TagType }> = {
+  kick: { label: '已踢出', type: 'danger' },
+  log: { label: '仅记录', type: 'warning' },
+}
+
+export const antiCheatActionOptions = Object.entries(antiCheatActions).map(([value, { label }]) => ({ value, label }))
+
+export function antiCheatAction(action: string | null | undefined): { label: string; type: TagType } {
+  return (action && antiCheatActions[action]) || { label: text(action), type: 'info' }
+}
+
 export const drawKindNames: Record<string, string> = { treasure: '寻宝', gacha: '精品道具场' }
 
 export function drawKindName(kind: string | null | undefined): string {

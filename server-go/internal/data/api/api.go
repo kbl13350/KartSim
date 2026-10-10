@@ -320,6 +320,7 @@ func (a *API) PublicHandler() http.Handler {
 	route("GET /api/admin/accounts/{id}/game", a.adminAccountGame)
 	route("POST /api/admin/grant", a.adminGrant)
 	route("GET /api/admin/logins", a.adminLogins)
+	route("GET /api/admin/anti-cheat", a.adminAntiCheat)
 	route("GET /api/admin/online", a.adminOnline)
 	route("GET /api/admin/nodes", a.adminNodes)
 	route("GET /api/admin/ledger", a.adminLedger)
