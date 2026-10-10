@@ -252,6 +252,38 @@ test("item race results show the titles: icons right aligned, the name cycling e
   view.dispose();
 });
 
+test("item race rewards sit between the titles and the time, clear of titleCont", async () => {
+  // titleCont 270 0 210 40 draws up to 270 + 90 (viewIcons); the individual
+  // row's time label starts at 549, the team row's centred time near 510.
+  const layouts = [
+    [false, 549, { "row0/reward": "+88经验 +120金币" }],
+    ["item-team", 510, { "row0/reward0": "+88经验", "row0/reward1": "+120金币" }],
+  ] as const;
+  for (const [layout, timeLeft, texts] of layouts) {
+    const readable = harness();
+    const titles = ITEM_RESULT_TITLES.map(title => node("title", title.match));
+    const loadBml: ResultViewDependencies["loadBml"] = async (library, folder, name) =>
+      name === "namemap@zz" ? node("namemap", {}, titles) : readable.deps.loadBml(library, folder, name);
+    const race = { gameplay: "item", roster: [{ playerId: "local", team: layout ? 1 : null, name: "Alice" }] };
+    const view = await MultiplayerResultView.load({}, {}, race, "local", layout,
+      { ...readable.deps, loadBml, showRewards: true });
+    const rows = readable.options!.definition.children[1]!.children;
+    const labels = rows[0]!.children.filter(child => attribute(child, "name")!.startsWith("row0/reward"));
+    assert.deepEqual(labels.map(label => attribute(label, "name")), Object.keys(texts));
+    for (const label of labels) {
+      const [left, , width] = attribute(label, "leftTopWH")!.split(" ").map(Number);
+      assert.ok(left! > 270 + 90 && left! + width! < timeLeft, attribute(label, "leftTopWH"));
+      assert.equal(attribute(label, "textRender"), "outline16");
+      assert.equal(attribute(label, "textAlign"), "right,vcenter");
+    }
+    view.show([{ playerId: "local", points: 10, rank: 1, elapsedMs: 70_000, titles: ["onlyOne"] }],
+      1000, { rewards: { local: { exp: 88, lucci: 120 } } });
+    for (const [name, text] of Object.entries(texts))
+      assert.deepEqual(readable.options!.state(node(name)), { visible: true, text });
+    view.dispose();
+  }
+});
+
 test("speed races keep the release result row (no title icons)", async () => {
   const readable = harness();
   const race = { gameplay: "speed", roster: [{ playerId: "local", team: null, name: "Alice" }] };

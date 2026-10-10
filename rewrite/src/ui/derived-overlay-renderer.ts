@@ -1,9 +1,9 @@
 /** Three.js renderer for the legacy 2D tachometer and embedded Play1S panels. */
 
 import {
-  AddEquation, BufferAttribute, BufferGeometry, Camera, CustomBlending, DataTexture,
-  DynamicDrawUsage, GreaterEqualDepth, LessEqualDepth, LinearFilter, Mesh, NearestFilter,
-  NoColorSpace, OneMinusSrcAlphaFactor, RawShaderMaterial, RepeatWrapping, RGBAFormat,
+  AddEquation, BufferAttribute, BufferGeometry, Camera, ClampToEdgeWrapping, CustomBlending,
+  DataTexture, DynamicDrawUsage, GreaterEqualDepth, LessEqualDepth, LinearFilter, Mesh,
+  NearestFilter, NoColorSpace, OneMinusSrcAlphaFactor, RawShaderMaterial, RGBAFormat,
   Scene, SrcAlphaFactor, UnsignedByteType, Vector2, Vector4, type WebGLRenderer,
 } from "three";
 
@@ -282,7 +282,10 @@ export class DerivedOverlayRenderer {
       texture = new DataTexture(pixels, image.width, image.height, RGBAFormat, UnsignedByteType);
       texture.colorSpace = NoColorSpace;
       texture.flipY = false;
-      texture.wrapS = texture.wrapT = RepeatWrapping;
+      // The release repeats; smoothed (linear) panels then blend their opposite
+      // edge into the first pixel row, e.g. tacho_12_baseBG_1's opaque bottom
+      // row drew a dark line across the top of the XUN tachometer.
+      texture.wrapS = texture.wrapT = ClampToEdgeWrapping;
       texture.magFilter = texture.minFilter = smooth ? LinearFilter : NearestFilter;
       texture.generateMipmaps = false;
       texture.unpackAlignment = 1;
