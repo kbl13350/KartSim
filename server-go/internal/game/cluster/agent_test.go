@@ -433,7 +433,10 @@ func TestHeartbeatCarriesNodeState(t *testing.T) {
 	defer server.Close()
 	agent := NewAgent(NewDataClient(server.URL+"/", []byte(secret)), NodeInfo{NodeID: "game-1",
 		Name: "一号", Origin: "https://kart.example", Capacity: 50}, 20*time.Millisecond, quiet)
-	agent.SetSource(source{players: []contract.OnlinePlayer{{PlayerID: "p1", Name: "Alice"}}})
+	agent.SetSource(source{players: []contract.OnlinePlayer{{PlayerID: "p1", Name: "Alice", Room: "一起跑"}}})
+	agent.SetStats(func() *contract.NodeStats {
+		return &contract.NodeStats{HeapMB: 12, Goroutines: 34, Connections: 2, Races: 1, Version: "dev"}
+	})
 	ctx, cancel := context.WithCancel(context.Background())
 	done := make(chan struct{})
 	go func() {
@@ -459,9 +462,13 @@ func TestHeartbeatCarriesNodeState(t *testing.T) {
 	first := beats[0]
 	mu.Unlock()
 	if first.NodeID != "game-1" || first.Name != "一号" || first.Origin != "https://kart.example" ||
-		first.Capacity != 50 || first.Rooms != 1 || len(first.Players) != 1 ||
+		first.Capacity != 50 || first.Rooms != 1 || len(first.Players) != 1 || first.Players[0].Room != "一起跑" ||
 		first.ProtocolVersion != contract.ProtocolVersion {
 		t.Fatalf("heartbeat %+v", first)
+	}
+	if first.Stats == nil || *first.Stats != (contract.NodeStats{HeapMB: 12, Goroutines: 34, Connections: 2, Races: 1,
+		Version: "dev"}) {
+		t.Fatalf("heartbeat stats %+v", first.Stats)
 	}
 	if err := agent.Leave(context.Background()); err != nil {
 		t.Fatal(err)

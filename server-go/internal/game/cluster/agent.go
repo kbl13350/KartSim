@@ -48,6 +48,7 @@ type Agent struct {
 
 	mu          sync.Mutex
 	source      Source
+	stats       func() *contract.NodeStats
 	onConflicts func(playerIDs []string)
 	queue       []queuedRelease
 	retries     []queuedRelease            // failed releases, resent at the next tick
@@ -102,6 +103,14 @@ func (a *Agent) SetSource(source Source) {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 	a.source = source
+}
+
+// SetStats sets where heartbeats read the node's load figures from (the
+// admin console's node page); heartbeats carry none without it.
+func (a *Agent) SetStats(stats func() *contract.NodeStats) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	a.stats = stats
 }
 
 // SetConflictHandler sets what receives the heartbeat's Conflicts: the
@@ -386,7 +395,7 @@ func (a *Agent) abandonReleases() {
 
 func (a *Agent) heartbeat(ctx context.Context) {
 	a.mu.Lock()
-	source := a.source
+	source, stats := a.source, a.stats
 	a.mu.Unlock()
 	players, rooms := []contract.OnlinePlayer{}, 0
 	if source != nil {
@@ -401,6 +410,9 @@ func (a *Agent) heartbeat(ctx context.Context) {
 		Players:         players,
 		StartedAt:       a.startedAt,
 		ProtocolVersion: contract.ProtocolVersion,
+	}
+	if stats != nil {
+		req.Stats = stats()
 	}
 	callCtx, cancel := context.WithTimeout(ctx, a.timeout)
 	defer cancel()
