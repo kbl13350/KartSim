@@ -244,6 +244,15 @@ type racer struct {
 	lucci          int
 }
 
+// count records a drawn item for the per-race caps (which limit the
+// draws), and the item it became when a transform changed it.
+func (p *racer) count(drawn, got int) {
+	p.obtained[drawn]++
+	if got != drawn {
+		p.obtained[got]++
+	}
+}
+
 func (p *racer) locked(now int64) bool {
 	return slices.ContainsFunc(p.locks, func(w window) bool { return w.covers(now) })
 }
@@ -433,9 +442,10 @@ func (r *Race) Start(ids []string) []SlotsNotice {
 		}
 		notice := SlotsNotice{PlayerID: id, ItemID: NoItem, Reason: ReasonStart}
 		if r.data.XunKart(p.equipment.Kart) && p.slots.Len() == 0 {
-			idx, icon := r.obtain(p, indi[r.random.IntN(len(indi))].Idx)
+			drawn := indi[r.random.IntN(len(indi))].Idx
+			idx, icon := r.obtain(p, drawn)
 			p.slots.AddIcon(idx, icon)
-			p.obtained[idx]++
+			p.count(drawn, idx)
 			p.itemArmed = true
 			notice.ItemID = idx
 		}
@@ -495,10 +505,10 @@ func (r *Race) cube(playerID string, cubeID, capacity, forced int, now int64, st
 		p.obtained[forced]++
 		grant.ItemID, grant.Icon = forced, icon
 	default:
-		if idx, ok := r.draw(p, r.table, playerID, standings); ok {
-			idx, icon := r.obtain(p, idx)
+		if drawn, ok := r.draw(p, r.table, playerID, standings); ok {
+			idx, icon := r.obtain(p, drawn)
 			p.slots.AddIcon(idx, icon)
-			p.obtained[idx]++
+			p.count(drawn, idx)
 			grant.ItemID, grant.Icon = idx, icon
 		}
 	}
@@ -1093,7 +1103,7 @@ func (r *Race) Change(playerID string, now int64, standings []Racer) ([]int, int
 	}
 	idx, icon := r.obtain(p, drawn)
 	p.slots.ReplaceFirst(idx, icon)
-	p.obtained[idx]++
+	p.count(drawn, idx)
 	p.itemArmed = false
 	if p.itemCards > 0 {
 		p.itemCards--

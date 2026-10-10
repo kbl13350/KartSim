@@ -284,6 +284,15 @@ func TestGrantTransforms(t *testing.T) {
 	if grant.ItemID != AnimalBoost || grant.Icon != 241 || !slices.Equal(grant.Icons, []int{241, 0}) {
 		t.Fatalf("kart 250 grant %+v", grant)
 	}
+	// A capped item a transform gives counts toward its cap, and so does the
+	// drawn item: kart 1489 turns a water bomb into a thunderbolt (20 %).
+	r = equippedRace(t, TableIndividual,
+		&picks{values: []int{pickIn(t, TableIndividual, GroupHigh, WaterBomb), 5}}, "forest_I01",
+		Member{ID: "p1"}, Member{ID: "p2", Equipment: Equipment{Kart: 1489}})
+	if grant, _, _ := r.Cube("p2", 1, 2, 0, order("p1", "p2")); grant.ItemID != Thunderbolt ||
+		r.racers["p2"].obtained[Thunderbolt] != 1 || r.racers["p2"].obtained[WaterBomb] != 1 {
+		t.Fatalf("kart 1489 grant %+v, obtained %v", grant, r.racers["p2"].obtained)
+	}
 	// transform@zz: a time bomb is a water bomb on a level-1 track, and on a
 	// reverse level-2 track a devil is Dr. R.
 	team := func(track string) *Race {
