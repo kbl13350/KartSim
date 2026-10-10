@@ -43,3 +43,28 @@ func TestLimiterWindows(t *testing.T) {
 		t.Fatal("no error while Redis fails")
 	}
 }
+
+// Once lets one call per window through.
+func TestLimiterOnce(t *testing.T) {
+	server := miniredis.RunT(t)
+	client := redis.NewClient(&redis.Options{Addr: server.Addr(), MaxRetries: -1})
+	t.Cleanup(func() { client.Close() })
+	limiter := NewLimiter(client, "kt:")
+	ctx := context.Background()
+	for i, want := range []bool{true, false, false} {
+		if got, err := limiter.Once(ctx, "seen:a", 5*time.Minute); err != nil || got != want {
+			t.Fatalf("call %d: %v %v", i, got, err)
+		}
+	}
+	if first, _ := limiter.Once(ctx, "seen:b", 5*time.Minute); !first {
+		t.Fatal("another key was held back")
+	}
+	server.FastForward(5 * time.Minute)
+	if first, _ := limiter.Once(ctx, "seen:a", 5*time.Minute); !first {
+		t.Fatal("a new window was held back")
+	}
+	server.SetError("ERR down")
+	if _, err := limiter.Once(ctx, "seen:c", time.Minute); err == nil {
+		t.Fatal("error hidden")
+	}
+}

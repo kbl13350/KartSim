@@ -42,10 +42,55 @@ export const accountErrorMessages: Record<string, string> = {
   ACCOUNT_ONLINE: "该账号已在其他地方在线，请先退出另一处登录。",
   PRICE_CHANGED: "价格已变化，请刷新商店后重试。",
   REQUEST_ID_CONFLICT: "请求编号与之前的请求冲突，请重试。",
+  // A ban without its end time and reason (accountBanMessage adds them).
+  ACCOUNT_BANNED: "账号已被封禁。",
 };
+
+/** Bans ending in 2099 or later are permanent (the admin console's 永久 is 2100-01-01). */
+const PERMANENT_BAN_FROM = Date.UTC(2099, 0, 1);
+
+/**
+ * Unix ms as Beijing "YYYY-MM-DD HH:mm", whatever the browser's time zone,
+ * rounded up to the minute so the shown end is never before the real one.
+ */
+function beijingMinute(ms: number): string {
+  const minute = Math.ceil(ms / 60_000) * 60_000;
+  return new Date(minute + 8 * 3_600_000).toISOString().slice(0, 16).replace("T", " ");
+}
+
+/**
+ * The text for a banned account (server-go/ADMIN.md 5): "账号已被封禁，解封时间：
+ * 2026-10-11 12:00（原因：外挂）" with the end in Beijing time, "账号已被永久封禁"
+ * from 2099 on, and without the parts the refusal did not carry. The reason
+ * is an admin's free text: callers show the result as text, never as HTML.
+ */
+export function formatBanMessage(until: unknown, reason: unknown): string {
+  const why = typeof reason === "string" && reason.trim() ? `（原因：${reason.trim()}）` : "";
+  if (typeof until !== "number" || !Number.isFinite(until) || until <= 0) {
+    return why ? `账号已被封禁${why}` : "账号已被封禁。";
+  }
+  if (until >= PERMANENT_BAN_FROM) return `账号已被永久封禁${why}`;
+  return `账号已被封禁，解封时间：${beijingMinute(until)}${why}`;
+}
+
+/**
+ * The ban text for an ACCOUNT_BANNED refusal, undefined for other errors.
+ * The login's AccountServiceError and the game server's error frame both
+ * keep the response as `body`, with `until` (Unix ms) and `reason`.
+ */
+export function accountBanMessage(error: unknown): string | undefined {
+  if (!(error instanceof Error)) return undefined;
+  const code = (error as { code?: unknown }).code ?? error.message;
+  if (code !== "ACCOUNT_BANNED") return undefined;
+  const body = (error as { body?: unknown }).body;
+  const fields = body && typeof body === "object" ? body as { until?: unknown; reason?: unknown } : {};
+  return formatBanMessage(fields.until, fields.reason);
+}
 
 export function formatAccountServiceError(error: unknown,
   messages: Record<string, string> = accountErrorMessages): string {
+  const banned = accountBanMessage(error);
+  if (banned) return banned;
   return error instanceof Error ? messages[error.message] ?? error.message
     : String(error);
 }

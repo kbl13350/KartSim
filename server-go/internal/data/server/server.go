@@ -39,6 +39,8 @@ const (
 	messageRetention = 30 * 24 * time.Hour
 	// questRetention keeps the past fortnight of daily and weekly quest rows.
 	questRetention = 14 * 24 * time.Hour
+	// loginRetention is how long register and login records are kept (ADMIN.md 2).
+	loginRetention = 180 * 24 * time.Hour
 	// sweepBatch bounds the rows one sweep deletes per table.
 	sweepBatch = 10_000
 )
@@ -184,6 +186,8 @@ func serve(ctx context.Context, cfg config.Config, logger *slog.Logger, service 
 			logger.Warn("shutdown incomplete", "addr", server.Addr, "error", err)
 		}
 	}
+	// Activity writes started by the last requests finish before MySQL closes.
+	service.WaitActivity()
 	stop()
 	background.Wait()
 	return result
@@ -232,7 +236,7 @@ func sweep(ctx context.Context, st *store.Store, logger *slog.Logger) {
 // accumulate. It also refuses friend requests nobody answered in time,
 // drops request results past their outbox time and deletes private
 // messages (and conversations) older than messageRetention, old 奖励箱
-// entries and past quest periods.
+// entries, past quest periods and login records older than loginRetention.
 func sweepOnce(ctx context.Context, st *store.Store, logger *slog.Logger, now time.Time) {
 	sweepCtx, cancel := context.WithTimeout(ctx, time.Minute)
 	defer cancel()
@@ -269,6 +273,12 @@ func sweepOnce(ctx context.Context, st *store.Store, logger *slog.Logger, now ti
 		logger.Warn("quest progress cleanup failed", "error", err)
 	} else if quests > 0 {
 		logger.Info("old quest progress removed", "count", quests)
+	}
+	logins, err := st.PruneLoginRecords(sweepCtx, now.Add(-loginRetention).UnixMilli(), sweepBatch)
+	if err != nil && !errors.Is(err, context.Canceled) {
+		logger.Warn("login record cleanup failed", "error", err)
+	} else if logins > 0 {
+		logger.Info("old login records removed", "count", logins)
 	}
 }
 

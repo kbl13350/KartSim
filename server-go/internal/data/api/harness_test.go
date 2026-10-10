@@ -114,7 +114,14 @@ func newHarness(t *testing.T, opts harnessOptions) *harness {
 		Messenger:      opts.messenger,
 		LotteryRand:    opts.lotteryRand,
 	})
-	h.public = httptest.NewServer(h.api.PublicHandler())
+	// Activity writes run in the background after a response; the test
+	// server finishes each response only once they are done, so tests can
+	// read them.
+	public := h.api.PublicHandler()
+	h.public = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		public.ServeHTTP(w, r)
+		h.api.WaitActivity()
+	}))
 	h.internal = httptest.NewServer(h.api.InternalHandler())
 	t.Cleanup(h.public.Close)
 	t.Cleanup(h.internal.Close)

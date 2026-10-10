@@ -208,3 +208,37 @@ test("the store lists its cached containers, removes them and reports to listene
   assert.equal(await store.remove("a.rho"), false);
   assert.deepEqual([...await store.cachedNames()], []);
 });
+
+test("a cached container that vanished from OPFS downloads again on the next read", async () => {
+  const directory = memoryDirectory();
+  const gone = new Set<string>();
+  const open = directory.getFileHandle.bind(directory);
+  // Like a browser that cleared the file after getFile(): the held Blob's reads fail.
+  directory.getFileHandle = async (name: string, options?: { create?: boolean }) => {
+    const handle = await open(name, options);
+    return { ...handle, getFile: async () => {
+      const blob = await handle.getFile();
+      return { size: blob.size, slice: (start?: number, end?: number) => ({ arrayBuffer: async () => {
+        if (gone.has(name)) throw new DOMException("gone", "NotFoundError");
+        return blob.slice(start, end).arrayBuffer();
+      } }) } as unknown as Blob;
+    } };
+  };
+  const remove = directory.removeEntry!.bind(directory);
+  directory.removeEntry = async (name: string) => {
+    gone.delete(name);
+    await remove(name);
+  };
+  let fetches = 0;
+  const store = new ContainerStore({
+    manifest: { version: "p3553", revision: "r1", files: [{ name: "a.rho", size: 3, mtimeMs: 0, sha256: "" }] } as never,
+    storage: { getDirectory: async () => directory, estimate: async () => ({ quota: 1e9, usage: 0 }) },
+    fetcher: (async () => { fetches++; return new Response("abc"); }) as never,
+  });
+  assert.equal(new TextDecoder().decode(await store.readRange("a.rho", 0, 3)), "abc");
+  gone.add("a.rho");
+  directory.files.delete("a.rho");
+  // The store still holds the first Blob: its read fails, the file downloads again.
+  assert.equal(new TextDecoder().decode(await store.readRange("a.rho", 0, 3)), "abc");
+  assert.equal(fetches, 2);
+});

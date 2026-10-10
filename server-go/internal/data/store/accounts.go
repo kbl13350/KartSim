@@ -38,13 +38,40 @@ type Registration struct {
 	TokenHash        string
 	SessionExpiresAt int64
 	CreatedAt        int64
+	// IP and UserAgent are where the registration came from: the account's
+	// register and latest login address and its "register" login record.
+	IP        string
+	UserAgent string
+}
+
+// Login record kinds (login_records.kind). A resume is the first activity
+// of a Beijing day with a session token kept from an earlier login (the
+// client remembers it for 30 days), see SeenActivity.
+const (
+	LoginKindRegister = "register"
+	LoginKindLogin    = "login"
+	LoginKindResume   = "resume"
+)
+
+// LoginRecord is where a successful login came from.
+type LoginRecord struct {
+	IP        string // the client address; "" when unknown
+	UserAgent string // at most 255 bytes
+	At        int64
 }
 
 var (
 	errUsernameTaken = apierr.New(http.StatusConflict, "USERNAME_TAKEN")
 	errNicknameTaken = apierr.New(http.StatusConflict, "NICKNAME_TAKEN")
 	errInvalidInvite = apierr.New(http.StatusBadRequest, "INVALID_INVITE")
+	errBanned        = apierr.New(http.StatusForbidden, "ACCOUNT_BANNED")
 )
+
+// bannedError refuses a login of an account banned until until (Unix ms)
+// for reason; the error body carries both.
+func bannedError(until int64, reason string) error {
+	return errBanned.With(map[string]any{"until": until, "reason": reason})
+}
 
 // accountConflict maps a duplicate-key error on accounts to the API code.
 func accountConflict(err error) error {
@@ -150,10 +177,15 @@ func (s *Store) Register(ctx context.Context, in Registration) (Account, error) 
 				admin = !anyAccount
 			}
 			account = Account{ID: in.ID, Username: in.Username, Nickname: in.Nickname, Admin: admin}
-			if _, err := tx.ExecContext(ctx, `INSERT INTO accounts(id, username, nickname, password_hash, admin, created_at)
-				VALUES(?, ?, ?, ?, ?, ?)`, account.ID, account.Username, account.Nickname, in.PasswordHash, account.Admin,
-				in.CreatedAt); err != nil {
+			if _, err := tx.ExecContext(ctx, `INSERT INTO accounts(id, username, nickname, password_hash, admin, created_at,
+				register_ip, last_login_at, last_login_ip, last_seen_at, last_seen_ip) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+				account.ID, account.Username, account.Nickname, in.PasswordHash, account.Admin, in.CreatedAt, in.IP,
+				in.CreatedAt, in.IP, in.CreatedAt, in.IP); err != nil {
 				return accountConflict(err)
+			}
+			if err := insertLoginRecord(ctx, tx, account.ID, LoginKindRegister,
+				LoginRecord{IP: in.IP, UserAgent: in.UserAgent, At: in.CreatedAt}); err != nil {
+				return err
 			}
 			if in.InviteHash != "" {
 				if _, err := tx.ExecContext(ctx, "UPDATE invites SET used_by = ? WHERE code_hash = ?", account.ID, in.InviteHash); err != nil {
@@ -192,54 +224,191 @@ func (s *Store) LoginAccount(ctx context.Context, username string) (Account, str
 	return account, hash, err == nil, err
 }
 
-// CreateSession stores a session token digest.
-func (s *Store) CreateSession(ctx context.Context, tokenHash, accountID string, expiresAt int64) error {
-	_, err := s.db.ExecContext(ctx,
-		"INSERT INTO sessions(token_hash, account_id, expires_at) VALUES(?, ?, ?)", tokenHash, accountID, expiresAt)
+// CreateSession stores a session token digest for a verified login and
+// records it (see loginSession).
+func (s *Store) CreateSession(ctx context.Context, tokenHash, accountID string, expiresAt int64,
+	record LoginRecord) error {
+	return inTx(ctx, s.db, nil, func(tx *sql.Tx) error {
+		if err := lockLoginAccount(ctx, tx, accountID, record.At); err != nil {
+			return err
+		}
+		return loginSession(ctx, tx, tokenHash, accountID, expiresAt, record)
+	})
+}
+
+// CreateExclusiveSession stores a session token digest for a verified
+// login, records it (see loginSession) and ends every other session of the
+// account (single sign-on: a new login replaces the old ones). It returns
+// the digests it ended. Logins of one account are serialized on the
+// account row, so two racing logins leave exactly the later one.
+func (s *Store) CreateExclusiveSession(ctx context.Context, tokenHash, accountID string,
+	expiresAt int64, record LoginRecord) ([]string, error) {
+	var replaced []string
+	err := inTx(ctx, s.db, nil, func(tx *sql.Tx) error {
+		var err error
+		if err = lockLoginAccount(ctx, tx, accountID, record.At); err != nil {
+			return err
+		}
+		if replaced, err = endSessions(ctx, tx, accountID); err != nil {
+			return err
+		}
+		return loginSession(ctx, tx, tokenHash, accountID, expiresAt, record)
+	})
+	return replaced, err
+}
+
+// lockLoginAccount locks the account row of a login and refuses a banned
+// account (403 ACCOUNT_BANNED with until and reason). A ban takes the same
+// lock, so no login of a banned account ends with a session.
+func lockLoginAccount(ctx context.Context, tx *sql.Tx, accountID string, now int64) error {
+	var (
+		bannedUntil int64
+		reason      string
+	)
+	err := tx.QueryRowContext(ctx, "SELECT banned_until, ban_reason FROM accounts WHERE id = ? FOR UPDATE", accountID).
+		Scan(&bannedUntil, &reason)
+	if errors.Is(err, sql.ErrNoRows) {
+		return errAccountNotFound
+	} else if err != nil {
+		return err
+	}
+	if bannedUntil > now {
+		return bannedError(bannedUntil, reason)
+	}
+	return nil
+}
+
+// CheckNotBanned refuses an account banned at now (403 ACCOUNT_BANNED with
+// until and reason); an unknown account passes.
+func (s *Store) CheckNotBanned(ctx context.Context, accountID string, now int64) error {
+	var (
+		bannedUntil int64
+		reason      string
+	)
+	err := s.db.QueryRowContext(ctx, "SELECT banned_until, ban_reason FROM accounts WHERE id = ?", accountID).
+		Scan(&bannedUntil, &reason)
+	if errors.Is(err, sql.ErrNoRows) {
+		return nil
+	} else if err != nil {
+		return err
+	}
+	if bannedUntil > now {
+		return bannedError(bannedUntil, reason)
+	}
+	return nil
+}
+
+// loginSession inserts the session of a login with its login record and
+// the account's latest login (and activity) time and address; the caller
+// holds the account row lock (lockLoginAccount).
+func loginSession(ctx context.Context, tx *sql.Tx, tokenHash, accountID string, expiresAt int64,
+	record LoginRecord) error {
+	if _, err := tx.ExecContext(ctx, "INSERT INTO sessions(token_hash, account_id, expires_at) VALUES(?, ?, ?)",
+		tokenHash, accountID, expiresAt); err != nil {
+		return err
+	}
+	if _, err := tx.ExecContext(ctx, `UPDATE accounts SET last_login_at = ?, last_login_ip = ?,
+		last_seen_at = GREATEST(last_seen_at, ?), last_seen_ip = ? WHERE id = ?`,
+		record.At, record.IP, record.At, record.IP, accountID); err != nil {
+		return err
+	}
+	return insertLoginRecord(ctx, tx, accountID, LoginKindLogin, record)
+}
+
+// SeenActivity notes that an account was active with a session token at
+// record.At from record.IP (accounts.last_seen_at and last_seen_ip; an
+// older time never replaces a newer one). The first activity of a Beijing
+// day (dayStart is its midnight) of an account without a register, login
+// or resume record that day also writes a resume record with the address
+// and browser, so a player who keeps a remembered token counts among the
+// day's logins. It reports whether it wrote one; an unknown account is
+// ignored. Callers throttle it (once per account every few minutes).
+func (s *Store) SeenActivity(ctx context.Context, accountID string, record LoginRecord, dayStart int64) (bool, error) {
+	resumed := false
+	err := inTx(ctx, s.db, nil, func(tx *sql.Tx) error {
+		resumed = false
+		var seen int64
+		err := tx.QueryRowContext(ctx, "SELECT last_seen_at FROM accounts WHERE id = ? FOR UPDATE", accountID).Scan(&seen)
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil
+		} else if err != nil || record.At < seen {
+			return err
+		}
+		if _, err := tx.ExecContext(ctx, "UPDATE accounts SET last_seen_at = ?, last_seen_ip = ? WHERE id = ?",
+			record.At, record.IP, accountID); err != nil {
+			return err
+		}
+		if seen >= dayStart || record.At < dayStart {
+			return nil
+		}
+		recorded, err := exists(ctx, tx, "SELECT 1 FROM login_records WHERE account_id = ? AND at >= ? LIMIT 1",
+			accountID, dayStart)
+		if err != nil || recorded {
+			return err
+		}
+		resumed = true
+		return insertLoginRecord(ctx, tx, accountID, LoginKindResume, record)
+	})
+	return resumed, err
+}
+
+func insertLoginRecord(ctx context.Context, tx *sql.Tx, accountID, kind string, record LoginRecord) error {
+	_, err := tx.ExecContext(ctx, "INSERT INTO login_records(account_id, kind, ip, user_agent, at) VALUES(?, ?, ?, ?, ?)",
+		accountID, kind, record.IP, record.UserAgent, record.At)
 	return err
 }
 
-// CreateExclusiveSession stores a session token digest and ends every
-// other session of the account (single sign-on: a new login replaces the
-// old ones). It returns the digests it ended. Logins of one account are
-// serialized on the account row, so two racing logins leave exactly the
-// later one.
-func (s *Store) CreateExclusiveSession(ctx context.Context, tokenHash, accountID string,
-	expiresAt int64) ([]string, error) {
-	var replaced []string
+// endSessions deletes every session of an account and returns their
+// digests; the caller holds the account row lock.
+func endSessions(ctx context.Context, tx *sql.Tx, accountID string) ([]string, error) {
+	rows, err := tx.QueryContext(ctx, "SELECT token_hash FROM sessions WHERE account_id = ?", accountID)
+	if err != nil {
+		return nil, err
+	}
+	var ended []string
+	for rows.Next() {
+		var hash string
+		if err := rows.Scan(&hash); err != nil {
+			rows.Close()
+			return nil, err
+		}
+		ended = append(ended, hash)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if len(ended) == 0 {
+		return nil, nil
+	}
+	_, err = tx.ExecContext(ctx, "DELETE FROM sessions WHERE account_id = ?", accountID)
+	return ended, err
+}
+
+// RevokeSessions deletes every session of an account (an admin's kick)
+// and returns their digests. 404 ACCOUNT_NOT_FOUND for an unknown account.
+func (s *Store) RevokeSessions(ctx context.Context, accountID string) ([]string, error) {
+	var ended []string
 	err := inTx(ctx, s.db, nil, func(tx *sql.Tx) error {
-		replaced = nil
 		var locked string
-		if err := tx.QueryRowContext(ctx, "SELECT id FROM accounts WHERE id = ? FOR UPDATE", accountID).
-			Scan(&locked); err != nil {
-			if errors.Is(err, sql.ErrNoRows) {
-				return errAccountNotFound
-			}
+		err := tx.QueryRowContext(ctx, "SELECT id FROM accounts WHERE id = ? FOR UPDATE", accountID).Scan(&locked)
+		if errors.Is(err, sql.ErrNoRows) {
+			return errAccountNotFound
+		} else if err != nil {
 			return err
 		}
-		rows, err := tx.QueryContext(ctx, "SELECT token_hash FROM sessions WHERE account_id = ?", accountID)
-		if err != nil {
-			return err
-		}
-		for rows.Next() {
-			var hash string
-			if err := rows.Scan(&hash); err != nil {
-				rows.Close()
-				return err
-			}
-			replaced = append(replaced, hash)
-		}
-		if err := rows.Close(); err != nil {
-			return err
-		}
-		if _, err := tx.ExecContext(ctx, "DELETE FROM sessions WHERE account_id = ?", accountID); err != nil {
-			return err
-		}
-		_, err = tx.ExecContext(ctx, "INSERT INTO sessions(token_hash, account_id, expires_at) VALUES(?, ?, ?)",
-			tokenHash, accountID, expiresAt)
+		ended, err = endSessions(ctx, tx, accountID)
 		return err
 	})
-	return replaced, err
+	return ended, err
+}
+
+// PruneLoginRecords deletes login records older than before, at most limit.
+func (s *Store) PruneLoginRecords(ctx context.Context, before int64, limit int) (int64, error) {
+	result, err := s.db.ExecContext(ctx, "DELETE FROM login_records WHERE at < ? LIMIT ?", before, limit)
+	if err != nil {
+		return 0, err
+	}
+	return result.RowsAffected()
 }
 
 // SessionAccount resolves an unexpired session digest to its account and expiry.

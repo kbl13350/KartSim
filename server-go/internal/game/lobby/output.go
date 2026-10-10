@@ -2,7 +2,9 @@ package lobby
 
 import (
 	"encoding/json"
+	"maps"
 	"math"
+	"slices"
 	"strconv"
 	"strings"
 	"unicode/utf8"
@@ -59,8 +61,16 @@ func (r Reply) Encode(requestID string) []byte {
 }
 
 // ErrorMessage is the WebSocket error reply {"type":"error","code",…}.
-func ErrorMessage(code, requestID string) []byte {
+// fields are further members (a refusal's own, such as ACCOUNT_BANNED's
+// until and reason), in name order; they never replace type, code or
+// requestId.
+func ErrorMessage(code string, fields map[string]any, requestID string) []byte {
 	body := obj{{"type", "error"}, {"code", code}}
+	for _, name := range slices.Sorted(maps.Keys(fields)) {
+		if name != "type" && name != "code" && name != "requestId" {
+			body = append(body, field{name, fields[name]})
+		}
+	}
 	if requestID != "" {
 		body = append(body, field{"requestId", requestID})
 	}

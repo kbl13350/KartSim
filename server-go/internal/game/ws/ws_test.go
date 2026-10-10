@@ -8,6 +8,7 @@ import (
 	"log/slog"
 	"maps"
 	"net"
+	"net/http"
 	"net/http/httptest"
 	"slices"
 	"strconv"
@@ -20,6 +21,7 @@ import (
 	"github.com/gorilla/websocket"
 
 	"kartsim/internal/game/lobby"
+	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/contract"
 	"kartsim/internal/shared/netcfg"
 	"kartsim/internal/shared/ticket"
@@ -651,5 +653,39 @@ func TestEvictClosesTheSocketAndFreesTheSeat(t *testing.T) {
 	}
 	if players, _ := s.lobby.Counts(); players != 1 {
 		t.Fatalf("players %d", players)
+	}
+}
+
+// bannedPresence refuses every claim like the data service refuses a
+// banned account.
+type bannedPresence struct{}
+
+func (bannedPresence) Claim(context.Context, contract.PresenceClaimRequest) error {
+	return apierr.New(http.StatusForbidden, "ACCOUNT_BANNED").With(map[string]any{
+		"until": json.RawMessage("1800000000000"), "reason": json.RawMessage(`"外挂"`)})
+}
+func (bannedPresence) Release(contract.PresenceReleaseRequest) {}
+
+// A refused hello carries the refusal's own members, so a banned player
+// learns until when and why (ADMIN.md 5).
+func TestRefusalFieldsReachTheClient(t *testing.T) {
+	l := lobby.New(lobby.Options{NodeID: "game-ws", Presence: bannedPresence{}, Tickets: anyTickets{},
+		AllowGuests: true})
+	s := NewServer(l, netcfg.LoopbackOnly(), Options{Logger: slog.New(slog.NewTextHandler(io.Discard, nil))})
+	server := httptest.NewServer(s)
+	t.Cleanup(func() {
+		_ = s.Shutdown(context.Background())
+		server.Close()
+	})
+	conn := dial(t, "ws"+strings.TrimPrefix(server.URL, "http"))
+	hello := `{"type":"hello","requestId":"h1","protocolVersion":40,"ruleset":"launcher-room-v1",` +
+		`"resourceVersion":"p3553","name":"Banned","ticket":"any"}`
+	if err := conn.WriteMessage(websocket.TextMessage, []byte(hello)); err != nil {
+		t.Fatal(err)
+	}
+	_ = conn.SetReadDeadline(time.Now().Add(5 * time.Second))
+	want := `{"type":"error","code":"ACCOUNT_BANNED","reason":"外挂","until":1800000000000,"requestId":"h1"}`
+	if _, data, err := conn.ReadMessage(); err != nil || string(data) != want {
+		t.Fatalf("hello: %s %v, want %s", data, err, want)
 	}
 }

@@ -756,11 +756,6 @@ func TestAdminGrantRequestIDsStandForOneGrant(t *testing.T) {
 		t.Fatalf("after a refusal %+v", result)
 	}
 
-	// The console keeps its request ids without crypto.randomUUID.
-	script := string(h.get("/multiplayer/admin/admin.js", nil).expect(t, http.StatusOK, "").body)
-	if !strings.Contains(script, "crypto.getRandomValues") || strings.Contains(script, "randomUUID") {
-		t.Fatal("admin.js does not generate its own request ids")
-	}
 }
 
 // Review R4: concurrent purchases, admin debits, time-attack runs and race

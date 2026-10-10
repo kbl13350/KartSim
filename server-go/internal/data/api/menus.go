@@ -7,7 +7,6 @@ import (
 	"unicode/utf8"
 
 	"kartsim/internal/data/economy"
-	"kartsim/internal/data/lottery"
 	"kartsim/internal/data/messenger"
 	"kartsim/internal/data/quest"
 	"kartsim/internal/data/store"
@@ -119,12 +118,7 @@ func (a *API) adminRewardBox(w http.ResponseWriter, r *http.Request) error {
 		entry.Name = map[economy.Currency]string{economy.Lucci: "金币", economy.Koin: "酷币",
 			economy.Coupon: "点券"}[currency]
 	} else {
-		name := a.lottery.ItemName(lottery.ItemKey{Category: request.Category, ItemID: request.ItemID}, nil)
-		if name == "" {
-			if item, ok := a.economy.Catalog.ItemByKey(request.Category, request.ItemID); ok {
-				name = item.Name
-			}
-		}
+		name := a.itemName(request.Category, request.ItemID, "")
 		if name == "" {
 			return errInvalidBoxGift
 		}

@@ -2,10 +2,11 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { accountErrorMessages, accountOverlayStyle, accountPanelStyle,
-  currentMultiplayerOrigin, formatAccountServiceError,
+import { accountBanMessage, accountErrorMessages, accountOverlayStyle, accountPanelStyle,
+  currentMultiplayerOrigin, formatAccountServiceError, formatBanMessage,
   multiplayerAccountEndpoint, multiplayerAuthHeaders,
   styleAccountButtons } from "./account-ui-support";
+import { AccountServiceError } from "../account/account-api";
 
 const release = readFileSync(new URL("../../../recovered/formatted/index.js", import.meta.url), "utf8");
 const start = release.indexOf("const jo =");
@@ -75,6 +76,8 @@ const addedCodes = [
   "ITEM_NOT_OWNED", "INSUFFICIENT_FUNDS", "ALREADY_OWNED", "EXP_REQUIRED", "OFFER_NOT_FOUND",
   "RATE_LIMITED", "STORAGE_QUOTA_EXCEEDED", "INVALID_NICKNAME", "STARTER_ALREADY_CLAIMED",
   "INVALID_STARTER", "ACCOUNT_ONLINE", "PRICE_CHANGED", "REQUEST_ID_CONFLICT",
+  // An admin's ban (server-go/ADMIN.md 5).
+  "ACCOUNT_BANNED",
 ];
 
 test("multiplayer account URL, headers, style and error text match release", () => {
@@ -90,4 +93,31 @@ test("multiplayer account URL, headers, style and error text match release", () 
     "账号名须为 3–24 位字母、数字或下划线；昵称 1–16 字；密码至少 8 位。");
   messages.INVALID_ACCOUNT_FIELDS = released.messages.INVALID_ACCOUNT_FIELDS!;
   assert.deepEqual({ ...rewritten, messages }, released);
+});
+
+test("a banned account sees until when (Beijing time) and why, never the raw code", () => {
+  // 2026-10-11 04:30 UTC is 12:30 in Beijing.
+  const until = Date.UTC(2026, 9, 11, 4, 30);
+  assert.equal(formatBanMessage(until, "外挂"), "账号已被封禁，解封时间：2026-10-11 12:30（原因：外挂）");
+  assert.equal(formatBanMessage(until, " "), "账号已被封禁，解封时间：2026-10-11 12:30");
+  // Seconds round up: a ban ending at 12:29:10 is shown as ending at 12:30.
+  assert.equal(formatBanMessage(until - 50_000, ""), "账号已被封禁，解封时间：2026-10-11 12:30");
+  // The admin console's 永久 is 2100-01-01 Beijing time.
+  assert.equal(formatBanMessage(Date.UTC(2099, 11, 31, 16), "刷分"), "账号已被永久封禁（原因：刷分）");
+  assert.equal(formatBanMessage(undefined, "外挂"), "账号已被封禁（原因：外挂）");
+  assert.equal(formatBanMessage("soon", undefined), "账号已被封禁。");
+
+  // The login's 403 body.
+  const login = new AccountServiceError("ACCOUNT_BANNED", 403,
+    { error: "ACCOUNT_BANNED", until, reason: "<b>外挂</b>" });
+  assert.equal(accountBanMessage(login), "账号已被封禁，解封时间：2026-10-11 12:30（原因：<b>外挂</b>）");
+  assert.equal(formatAccountServiceError(login), accountBanMessage(login));
+  // A game server error frame kept as the error's body (hello).
+  const hello = Object.assign(new Error("ACCOUNT_BANNED"),
+    { body: { type: "error", code: "ACCOUNT_BANNED", until, reason: "外挂" } });
+  assert.equal(formatAccountServiceError(hello), "账号已被封禁，解封时间：2026-10-11 12:30（原因：外挂）");
+  // Without the fields (an older game server) the code still reads as text.
+  assert.equal(formatAccountServiceError(new Error("ACCOUNT_BANNED")), "账号已被封禁。");
+  assert.equal(accountBanMessage(new Error("ACCOUNT_ONLINE")), undefined);
+  assert.equal(accountBanMessage("ACCOUNT_BANNED"), undefined);
 });

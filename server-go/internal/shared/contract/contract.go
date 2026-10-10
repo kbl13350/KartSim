@@ -7,7 +7,10 @@
 // the HTTP status of the apierr package.
 package contract
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"math"
+)
 
 const (
 	ClusterKeyHeader = "X-Kart-Cluster-Key"
@@ -30,6 +33,13 @@ const (
 type OnlinePlayer struct {
 	PlayerID string `json:"playerId"`
 	Name     string `json:"name"`
+	// Room is the name of the room the player is in; absent in the lobby
+	// and from older nodes (shown by the admin console only).
+	Room string `json:"room,omitempty"`
+	// AccountID is the account the player claimed at hello; absent for
+	// guests and from older nodes. The data service rebuilds the node's
+	// account mapping from it when Redis lost it (a restart or a flush).
+	AccountID string `json:"accountId,omitempty"`
 }
 
 // HeartbeatRequest registers or refreshes a game node (every 5 s). Origin is
@@ -44,6 +54,29 @@ type HeartbeatRequest struct {
 	Players         []OnlinePlayer `json:"players"`
 	StartedAt       int64          `json:"startedAt"`
 	ProtocolVersion int            `json:"protocolVersion"`
+	// Stats are the node's load figures for the admin console; absent from
+	// older nodes.
+	Stats *NodeStats `json:"stats,omitempty"`
+}
+
+// NodeStats are a game node's process and load figures (ADMIN.md 2): the
+// heap in use, goroutines, open client connections, rooms currently racing
+// (loading, countdown or racing) and the build version. HeapMB is rounded
+// to 0.1 MB; older nodes send whole numbers, which decode the same. (A data
+// service older than this field's float type refuses a fractional value,
+// so data services are updated before game nodes.)
+type NodeStats struct {
+	HeapMB      float64 `json:"heapMB"`
+	Goroutines  int     `json:"goroutines"`
+	Connections int     `json:"connections"`
+	Races       int     `json:"races"`
+	Version     string  `json:"version"`
+}
+
+// RoundMB is a byte count in MB rounded to 0.1 (NodeStats.HeapMB and the
+// data service's own heap), so an idle process shows 0.6 MB instead of 0.
+func RoundMB(bytes uint64) float64 {
+	return math.Round(float64(bytes)/(1<<20)*10) / 10
 }
 
 // HeartbeatResponse confirms the registration.

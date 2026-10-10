@@ -130,9 +130,15 @@ func (a *API) heartbeat(w http.ResponseWriter, r *http.Request) error {
 		return errInvalidHeartbeat
 	}
 	for _, player := range request.Players {
-		if !validASCIIID(player.PlayerID, 64) || !validText(player.Name, 64) {
+		if !validASCIIID(player.PlayerID, 64) || !validText(player.Name, 64) ||
+			(player.Room != "" && !validText(player.Room, 64)) ||
+			(player.AccountID != "" && !validASCIIID(player.AccountID, 36)) {
 			return errInvalidHeartbeat
 		}
+	}
+	if stats := request.Stats; stats != nil && (stats.HeapMB < 0 || stats.Goroutines < 0 || stats.Connections < 0 ||
+		stats.Races < 0 || (stats.Version != "" && !validText(stats.Version, 64))) {
+		return errInvalidHeartbeat
 	}
 	now := a.nowMillis()
 	result, err := a.cluster.Heartbeat(r.Context(), cache.Node{
@@ -145,10 +151,16 @@ func (a *API) heartbeat(w http.ResponseWriter, r *http.Request) error {
 		StartedAt:       request.StartedAt,
 		ProtocolVersion: request.ProtocolVersion,
 		SeenAt:          now,
+		Stats:           request.Stats,
 	}, request.Players)
 	if err != nil {
 		a.log.Warn("heartbeat not stored", "node", request.NodeID, "error", err)
 		return errServiceUnavailable
+	}
+	if result.ListErr != nil {
+		// Only the admin console's online list and offline-node record are
+		// missing; the presence refresh and its conflicts stand.
+		a.log.Warn("heartbeat online list not stored", "node", request.NodeID, "error", result.ListErr)
 	}
 	if result.Freed > 0 {
 		a.log.Info("game node restarted; released the names of its previous process", "node", request.NodeID,
@@ -209,6 +221,13 @@ func (a *API) presenceClaim(w http.ResponseWriter, r *http.Request) error {
 	} else if !validText(request.Name, 64) {
 		return errInvalidName
 	}
+	if request.AccountID != "" && a.store != nil { // tests run presence without MySQL
+		// An entry ticket issued just before a ban stays valid for minutes;
+		// the banned account still does not get back into a game.
+		if err := a.store.CheckNotBanned(r.Context(), request.AccountID, a.nowMillis()); err != nil {
+			return err
+		}
+	}
 	presence := cache.Presence{NodeID: request.NodeID, PlayerID: request.PlayerID, Name: request.Name,
 		AccountID: request.AccountID}
 	outcome, err := a.cluster.ClaimPresence(r.Context(), presence)
@@ -217,7 +236,7 @@ func (a *API) presenceClaim(w http.ResponseWriter, r *http.Request) error {
 		// the script may have run: release it, or the name and account stay
 		// locked until they expire. The release only deletes this player's
 		// own values.
-		a.releaseLateClaim(r.Context(), presence)
+		a.releaseLateClaim(r.Context(), presence, "request canceled")
 		return errServiceUnavailable
 	}
 	if err != nil {
@@ -230,22 +249,39 @@ func (a *API) presenceClaim(w http.ResponseWriter, r *http.Request) error {
 	case cache.NameTaken:
 		return errNicknameTaken
 	}
+	if request.AccountID != "" && a.store != nil {
+		// A ban commits before it marks the account's presence
+		// (adminEndSessions), so a ban that came between the first check and
+		// the claim either finds this claim and marks it, or committed before
+		// this second check sees it. Either way the banned account is not
+		// left in the game.
+		if err := a.store.CheckNotBanned(r.Context(), request.AccountID, a.nowMillis()); err != nil {
+			a.releaseLateClaim(r.Context(), presence, "account banned")
+			if _, refused := apierr.As(err); !refused {
+				a.log.Warn("presence claim: ban check unavailable", "node", request.NodeID, "error", err)
+				return errServiceUnavailable
+			}
+			return err
+		}
+	}
 	if request.AccountID != "" {
 		a.hub.GameChanged(request.AccountID) // friends see "inGame"
 	}
 	return writeJSON(w, http.StatusOK, contract.OK{OK: true})
 }
 
-// releaseLateClaim frees a claim whose request was canceled.
-func (a *API) releaseLateClaim(ctx context.Context, request cache.Presence) {
+// releaseLateClaim frees a claim that is not answered as made: its request
+// was canceled, or the account turned out to be banned (why says which).
+// It works on a context the request's end does not cancel.
+func (a *API) releaseLateClaim(ctx context.Context, request cache.Presence, why string) {
 	releaseCtx, cancel := context.WithTimeout(context.WithoutCancel(ctx), lateReleaseTimeout)
 	defer cancel()
 	if err := a.cluster.ReleasePresence(releaseCtx, request); err != nil {
-		a.log.Warn("late presence claim not released; it expires on its own", "node", request.NodeID,
-			"player", request.PlayerID, "error", err)
+		a.log.Warn("presence claim not released; it expires on its own", "node", request.NodeID,
+			"player", request.PlayerID, "why", why, "error", err)
 		return
 	}
-	a.log.Info("released a presence claim whose request was canceled", "node", request.NodeID, "player", request.PlayerID)
+	a.log.Info("released a presence claim", "node", request.NodeID, "player", request.PlayerID, "why", why)
 }
 
 func (a *API) presenceRelease(w http.ResponseWriter, r *http.Request) error {

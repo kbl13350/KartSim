@@ -48,6 +48,7 @@ type Agent struct {
 
 	mu          sync.Mutex
 	source      Source
+	stats       func() *contract.NodeStats
 	onConflicts func(playerIDs []string)
 	queue       []queuedRelease
 	retries     []queuedRelease            // failed releases, resent at the next tick
@@ -104,6 +105,14 @@ func (a *Agent) SetSource(source Source) {
 	a.source = source
 }
 
+// SetStats sets where heartbeats read the node's load figures from (the
+// admin console's node page); heartbeats carry none without it.
+func (a *Agent) SetStats(stats func() *contract.NodeStats) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	a.stats = stats
+}
+
 // SetConflictHandler sets what receives the heartbeat's Conflicts: the
 // player IDs whose nickname claim another node now holds. It runs on the
 // heartbeat goroutine and must not block for long; the node disconnects
@@ -117,9 +126,9 @@ func (a *Agent) SetConflictHandler(handler func(playerIDs []string)) {
 // Claim reserves a nickname, and an account player's account, cluster-wide.
 // It first waits (briefly) for an earlier release of the same name or
 // account from this node (a quick reconnect, possibly after a rename), then
-// calls the data service. INVALID_GUEST_NAME, NICKNAME_TAKEN and
-// ACCOUNT_ONLINE pass through; every other failure is 503
-// DATA_SERVICE_UNAVAILABLE.
+// calls the data service. INVALID_GUEST_NAME, NICKNAME_TAKEN,
+// ACCOUNT_ONLINE and ACCOUNT_BANNED pass through; every other failure is
+// 503 DATA_SERVICE_UNAVAILABLE.
 func (a *Agent) Claim(ctx context.Context, req contract.PresenceClaimRequest) error {
 	a.waitReleased(ctx, releaseKeys(req.Name, req.AccountID))
 	callCtx, cancel := context.WithTimeout(ctx, a.timeout)
@@ -129,7 +138,7 @@ func (a *Agent) Claim(ctx context.Context, req contract.PresenceClaimRequest) er
 		return nil
 	}
 	if rejected, ok := apierr.As(err); ok && (rejected.Code == "INVALID_GUEST_NAME" ||
-		rejected.Code == "NICKNAME_TAKEN" || rejected.Code == "ACCOUNT_ONLINE") {
+		rejected.Code == "NICKNAME_TAKEN" || rejected.Code == "ACCOUNT_ONLINE" || rejected.Code == "ACCOUNT_BANNED") {
 		return rejected
 	}
 	// The data service may have stored the claim and then answered late or
@@ -386,7 +395,7 @@ func (a *Agent) abandonReleases() {
 
 func (a *Agent) heartbeat(ctx context.Context) {
 	a.mu.Lock()
-	source := a.source
+	source, stats := a.source, a.stats
 	a.mu.Unlock()
 	players, rooms := []contract.OnlinePlayer{}, 0
 	if source != nil {
@@ -401,6 +410,9 @@ func (a *Agent) heartbeat(ctx context.Context) {
 		Players:         players,
 		StartedAt:       a.startedAt,
 		ProtocolVersion: contract.ProtocolVersion,
+	}
+	if stats != nil {
+		req.Stats = stats()
 	}
 	callCtx, cancel := context.WithTimeout(ctx, a.timeout)
 	defer cancel()

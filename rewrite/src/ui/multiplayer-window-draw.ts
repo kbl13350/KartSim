@@ -13,6 +13,8 @@ export interface WindowNodeState {
   action?: () => void;
   input?: {
     password?: boolean; maxLength: number; value: string;
+    /** The browser's autofill hint (username, current-password, new-password); "off" when left out. */
+    autocomplete?: string;
     change(value: string): void;
     submit?(): void; blurOnEmptyEnter?: boolean;
   };
@@ -30,6 +32,45 @@ export interface WindowNodeState {
   label?: string;
   checked?: boolean;
   expanded?: boolean;
+}
+
+interface FramePiece { x: number; y: number; width: number; height: number }
+interface EdgedFrame extends WindowFrame {
+  caption?: FramePiece; bottom?: FramePiece;
+  captionLeftMargin?: number; captionRightMargin?: number;
+  bottomLeftMargin?: number; bottomRightMargin?: number;
+}
+
+const solidFrames = new WeakMap<WindowFrame, WindowFrame>();
+
+/** The margins of an edge piece, leaving its middle at least 1 px wide. */
+function solidMargins(piece: FramePiece | undefined, left = 0, right = 0): [number, number] {
+  if (!piece || piece.width < 2 || piece.height <= 0 || piece.width - left - right > 0) return [left, right];
+  const kept = Math.min(left, piece.width - 1);
+  return [kept, piece.width - kept - 1];
+}
+
+/**
+ * Release frames whose caption or bottom margins take the whole piece
+ * (InnerFrame and TitleCapBottomGrey: 9 + 9 of 18 px) leave a 0 px middle,
+ * which the frame painter skips, so the dialog's white shows through as a
+ * strip. Their middle stretches the 1 px column at the boundary instead.
+ * Frames without such a piece are passed on unchanged.
+ */
+export function solidFrame(frame: WindowFrame): WindowFrame {
+  const cached = solidFrames.get(frame);
+  if (cached) return cached;
+  const edged = frame as EdgedFrame;
+  const [captionLeftMargin, captionRightMargin] = solidMargins(edged.caption, edged.captionLeftMargin,
+    edged.captionRightMargin);
+  const [bottomLeftMargin, bottomRightMargin] = solidMargins(edged.bottom, edged.bottomLeftMargin,
+    edged.bottomRightMargin);
+  const solid = captionLeftMargin === (edged.captionLeftMargin ?? 0) &&
+    captionRightMargin === (edged.captionRightMargin ?? 0) &&
+    bottomLeftMargin === (edged.bottomLeftMargin ?? 0) && bottomRightMargin === (edged.bottomRightMargin ?? 0)
+    ? frame : { ...edged, captionLeftMargin, captionRightMargin, bottomLeftMargin, bottomRightMargin };
+  solidFrames.set(frame, solid);
+  return solid;
 }
 
 export interface WindowButton {
@@ -135,7 +176,7 @@ export function drawMultiplayerWindowNode(
   if (state.select)
     host.comboRects.set(node, frame ? dependencies.innerRectangle(frame, rect) : rect);
   if (frame?.texture)
-    dependencies.paintFrame(host.context, frame,
+    dependencies.paintFrame(host.context, solidFrame(frame),
       host.images.get(frame.texture)!.image, rect);
 
   const color = attribute(node, "color");
@@ -274,7 +315,7 @@ export function drawMultiplayerWindowNode(
     if (control instanceof HTMLInputElement && state.input) {
       control.type = state.input.password ? "password" : "text";
       control.maxLength = state.input.maxLength;
-      control.autocomplete = "off";
+      control.autocomplete = (state.input.autocomplete ?? "off") as AutoFill;
       if (control.value !== state.input.value) control.value = state.input.value;
     }
     if (state.select) {

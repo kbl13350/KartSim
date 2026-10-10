@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	"kartsim/internal/data/config"
 	"kartsim/internal/data/store"
@@ -212,6 +213,7 @@ func (a *API) register(w http.ResponseWriter, r *http.Request) error {
 	token := randomCode(32)
 	tokenHash := digest(token)
 	now := a.now()
+	origin := a.loginRecord(r, now.UnixMilli())
 	account, err := a.store.Register(ctx, store.Registration{
 		ID:               newUUID(),
 		Username:         *username,
@@ -222,6 +224,8 @@ func (a *API) register(w http.ResponseWriter, r *http.Request) error {
 		TokenHash:        tokenHash,
 		SessionExpiresAt: now.Add(sessionLifetime).UnixMilli(),
 		CreatedAt:        now.UnixMilli(),
+		IP:               origin.IP,
+		UserAgent:        origin.UserAgent,
 	})
 	if err != nil {
 		return err
@@ -237,7 +241,9 @@ func (a *API) register(w http.ResponseWriter, r *http.Request) error {
 // login checks a password. Attempts are limited per client IP, and failed
 // attempts per (username, client network), before any hashing; both limits
 // fail open. Failures from one network never lock other clients out of an
-// account.
+// account. Only once the password is verified, a banned account is refused
+// (403 ACCOUNT_BANNED with until and reason); a successful login is
+// recorded with the client address and browser (login_records).
 func (a *API) login(w http.ResponseWriter, r *http.Request) error {
 	fields, err := stringFields(w, r)
 	if err != nil {
@@ -285,12 +291,14 @@ func (a *API) login(w http.ResponseWriter, r *http.Request) error {
 	// Single sign-on: this login ends the account's other sessions. An
 	// admin opening the console ("console": true) keeps them, so the admin
 	// page does not sign its user out of the game.
-	expiresAt := a.now().Add(sessionLifetime).UnixMilli()
+	now := a.now()
+	expiresAt := now.Add(sessionLifetime).UnixMilli()
+	origin := a.loginRecord(r, now.UnixMilli())
 	if console := fields["console"]; console != nil && *console == "true" && a.withAdmin(account).Admin {
-		err = a.store.CreateSession(ctx, tokenHash, account.ID, expiresAt)
+		err = a.store.CreateSession(ctx, tokenHash, account.ID, expiresAt, origin)
 	} else {
 		var replaced []string
-		if replaced, err = a.store.CreateExclusiveSession(ctx, tokenHash, account.ID, expiresAt); err == nil {
+		if replaced, err = a.store.CreateExclusiveSession(ctx, tokenHash, account.ID, expiresAt, origin); err == nil {
 			a.endReplacedSessions(ctx, account, replaced)
 		}
 	}
@@ -310,23 +318,78 @@ func (a *API) login(w http.ResponseWriter, r *http.Request) error {
 // heartbeat.
 func (a *API) endReplacedSessions(ctx context.Context, account store.Account, replaced []string) {
 	for _, hash := range replaced {
-		a.cache.Invalidate(ctx, "session:"+hash)
 		a.cache.Put(ctx, "session-replaced:"+hash, account.ID, replacedTTL)
-		a.hub.CloseSession(hash)
-		a.rooms.CloseSession(hash)
 	}
-	if a.cluster == nil {
-		return
-	}
-	if marked, err := a.cluster.ReplaceAccount(ctx, account.ID, account.Nickname); err != nil {
-		a.log.Warn("game session of a replaced login not ended; it ends when it disconnects",
-			"account", account.ID, "error", err)
-	} else if marked {
+	a.closeSessions(ctx, replaced)
+	if a.endGameSession(ctx, account) {
 		a.log.Info("a new login replaces the account's live game session", "account", account.ID)
 	}
 	if len(replaced) > 0 {
 		a.log.Info("a new login ended the account's other sessions", "account", account.ID, "sessions", len(replaced))
 	}
+}
+
+// closeSessions finishes sessions whose rows were deleted: their cached
+// lookups are invalidated (the token answers LOGIN_REQUIRED, or what the
+// caller stored) and their messenger and My Room sockets close (4001).
+func (a *API) closeSessions(ctx context.Context, hashes []string) {
+	for _, hash := range hashes {
+		a.cache.Invalidate(ctx, "session:"+hash)
+		a.hub.CloseSession(hash)
+		a.rooms.CloseSession(hash)
+	}
+}
+
+// endGameSession makes the game node serving the account, if any,
+// disconnect it at its next heartbeat; nickname is the name the session
+// plays under. It reports whether a live game session was marked.
+func (a *API) endGameSession(ctx context.Context, account store.Account) bool {
+	if a.cluster == nil {
+		return false
+	}
+	// The session change is committed: mark the game session even if the
+	// caller's request ends now (like releaseLateClaim).
+	markCtx, cancel := context.WithTimeout(context.WithoutCancel(ctx), lateReleaseTimeout)
+	defer cancel()
+	marked, err := a.cluster.ReplaceAccount(markCtx, account.ID, account.Nickname)
+	if err != nil {
+		a.log.Warn("game session not ended; it ends when it disconnects", "account", account.ID, "error", err)
+	}
+	return marked
+}
+
+// maxUserAgent is the most bytes of a User-Agent a login record keeps.
+const maxUserAgent = 255
+
+// loginRecord describes where a register or login request came from: the
+// client address (trusted-proxy aware, like the rate limits) and the
+// User-Agent as valid UTF-8 without control characters, cut to
+// maxUserAgent bytes on a character boundary.
+func (a *API) loginRecord(r *http.Request, at int64) store.LoginRecord {
+	ip := ""
+	if client := a.clientIP(r); client.IsValid() {
+		ip = client.String()
+	}
+	agent := strings.Map(func(r rune) rune {
+		if isISOControl(r) {
+			return -1
+		}
+		return r
+	}, strings.ToValidUTF8(r.UserAgent(), ""))
+	return store.LoginRecord{IP: ip, UserAgent: truncateUTF8(agent, maxUserAgent), At: at}
+}
+
+// truncateUTF8 cuts valid UTF-8 to at most limit bytes without splitting a
+// character.
+func truncateUTF8(value string, limit int) string {
+	if len(value) <= limit {
+		return value
+	}
+	cut := limit
+	for cut > 0 && !utf8.RuneStart(value[cut]) {
+		cut--
+	}
+	return value[:cut]
 }
 
 func (a *API) me(w http.ResponseWriter, r *http.Request) error {
@@ -403,6 +466,8 @@ func bearer(r *http.Request) *string {
 	return &token
 }
 
+// requireAccount resolves a Bearer session token to its account; the
+// request then counts as the account's activity if it succeeds (serve).
 func (a *API) requireAccount(ctx context.Context, token *string) (store.Account, error) {
 	account, found, err := a.findAccount(ctx, token)
 	if err != nil {
@@ -416,6 +481,7 @@ func (a *API) requireAccount(ctx context.Context, token *string) (store.Account,
 		}
 		return store.Account{}, errLoginRequired
 	}
+	sawAccount(ctx, account.ID)
 	return account, nil
 }
 

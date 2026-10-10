@@ -1,3 +1,4 @@
+import { serverError } from "./errors";
 import { MultiplayerHttpClient } from "./http";
 import { decodeMotionFrame, encodeMotionFrame, isNewerSequence, MOTION_MASK_OFFSET,
   motionRaceTag, type MotionFrame, type MotionPayloadKind } from "./motion";
@@ -363,7 +364,7 @@ export class MultiplayerTransport {
       if (pending) {
         clearTimeout(pending.timer);
         this.pending.delete(message.requestId);
-        if (message.type === "error") pending.reject(new Error(message.code));
+        if (message.type === "error") pending.reject(serverError(message));
         else if (pending.clockTick !== undefined &&
             (message.type !== "clock" || message.clientTick !== pending.clockTick)) {
           pending.reject(new Error("Invalid clock reply"));

@@ -123,9 +123,12 @@ export class ContainerStore {
     try {
       return await blob.slice(start, end).arrayBuffer();
     } catch (error) {
-      // A browser may evict an OPFS file after getFile(). Retry once.
-      if (!(error instanceof DOMException) || error.name !== "NotReadableError") throw error;
+      // A browser may evict or clear an OPFS file after getFile() (NotReadableError,
+      // or NotFoundError once the entry is gone): download it again, once.
+      if (!(error instanceof DOMException) || (error.name !== "NotReadableError" && error.name !== "NotFoundError"))
+        throw error;
       this.inFlight.delete(file.name.toLowerCase());
+      try { await (await this.directory()).removeEntry?.(file.name); } catch { /* Already gone. */ }
       blob = await this.ensure(file.name);
       return blob.slice(start, end).arrayBuffer();
     }

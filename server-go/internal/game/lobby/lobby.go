@@ -273,13 +273,18 @@ func (l *Lobby) Close() {
 	l.closed = true
 }
 
-// Online lists the hello'd players and the room count for the heartbeat.
+// Online lists the hello'd players (with the name of the room each is in
+// and the account each claimed) and the room count for the heartbeat.
 func (l *Lobby) Online() ([]contract.OnlinePlayer, int) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 	players := make([]contract.OnlinePlayer, 0, len(l.clients))
 	for _, c := range l.clients {
-		players = append(players, contract.OnlinePlayer{PlayerID: c.playerID, Name: c.name})
+		player := contract.OnlinePlayer{PlayerID: c.playerID, Name: c.name, AccountID: c.accountID}
+		if r := l.rooms[c.roomID]; r != nil {
+			player.Room = r.name
+		}
+		players = append(players, player)
 	}
 	slices.SortFunc(players, func(a, b contract.OnlinePlayer) int { return cmp.Compare(a.Name, b.Name) })
 	return players, len(l.rooms)
@@ -290,6 +295,20 @@ func (l *Lobby) Counts() (players, rooms int) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 	return len(l.clients), len(l.rooms)
+}
+
+// Racing reports the rooms whose race is under way: loading, counting down
+// or racing (the heartbeat's stats).
+func (l *Lobby) Racing() int {
+	l.mu.Lock()
+	defer l.mu.Unlock()
+	racing := 0
+	for _, r := range l.rooms {
+		if r.phase == "loading" || r.phase == "countdown" || r.phase == "racing" {
+			racing++
+		}
+	}
+	return racing
 }
 
 // Admitted reports whether c has completed hello.

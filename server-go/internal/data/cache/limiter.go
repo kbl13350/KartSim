@@ -57,3 +57,16 @@ func (l *Limiter) Count(ctx context.Context, key string) (int64, error) {
 	}
 	return count, nil
 }
+
+// Once reports whether this call starts a window for key: true the first
+// time, false until the window ends (SET NX with an expiry). It throttles a
+// recurring write to one per window across the data service.
+func (l *Limiter) Once(ctx context.Context, key string, window time.Duration) (bool, error) {
+	opCtx, cancel := context.WithTimeout(ctx, opTimeout)
+	defer cancel()
+	first, err := l.rdb.SetNX(opCtx, l.prefix+key, 1, window).Result()
+	if err != nil {
+		return false, fmt.Errorf("throttle %s: %w", key, err)
+	}
+	return first, nil
+}

@@ -3,6 +3,8 @@ package lobby
 import (
 	"testing"
 	"time"
+
+	"kartsim/internal/shared/contract"
 )
 
 // Not in Java (which cancelled the race with MEMBER_LEFT, LOAD_FAILED or
@@ -334,3 +336,38 @@ func TestRoadblockLoadFailures(t *testing.T) {
 	assertEqual(t, room["phase"], "open")
 	assertEqual(t, room["raceError"], "LOAD_TIMEOUT")
 }
+
+// The heartbeat lists each player's room and account, and the stats count
+// the rooms whose race is under way.
+func TestOnlineRoomsAndRacing(t *testing.T) {
+	h := newHarness(t)
+	alice, bob, carol := h.connect("Alice"), h.connect("Bob"), h.connect("Carol")
+	h.create([]*Client{carol}, "ordinary", "speedIndiCombine", 2)
+	if h.lobby.Racing() != 0 {
+		t.Fatal("an open room counts as racing")
+	}
+	h.startLoading([]*Client{alice, bob}, "ordinary", 2)
+	if racing := h.lobby.Racing(); racing != 1 {
+		t.Fatalf("racing %d", racing)
+	}
+	players, rooms := h.lobby.Online()
+	if rooms != 2 || len(players) != 3 {
+		t.Fatalf("online %v rooms %d", players, rooms)
+	}
+	for _, player := range players {
+		if player.Room != "Special Race" {
+			t.Fatalf("player %+v", player)
+		}
+	}
+	h.lobby.Disconnect(carol)
+	h.connect("Dave")
+	h.connectAccount("Erin", "acc-erin")
+	for _, player := range onlinePlayers(h.lobby.Online()) {
+		lobby := player.Name == "Dave" || player.Name == "Erin"
+		if lobby != (player.Room == "") || (player.Name == "Erin") != (player.AccountID == "acc-erin") {
+			t.Fatalf("player %+v", player)
+		}
+	}
+}
+
+func onlinePlayers(players []contract.OnlinePlayer, _ int) []contract.OnlinePlayer { return players }

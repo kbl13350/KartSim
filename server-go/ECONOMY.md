@@ -246,9 +246,9 @@ daily_rewards(account_id, day CHAR(10), kind VARCHAR(16), count INT, exp BIGINT,
 | `POST /api/shop/purchase` | `{offerId, requestId, expectedPrice?, expectedCurrency?}` → `{wallet, item, purchaseId}`；错误 `OFFER_NOT_FOUND`、`INSUFFICIENT_FUNDS`、`ALREADY_OWNED`、`EXP_REQUIRED`、`PRICE_CHANGED`（与当前报价不符，409）、`REQUEST_ID_CONFLICT`；浏览器每个购买对话框一个 `requestId`，对话框内“重试”复用。扣款永远是报价的 `price`（`originalPrice` 只用于显示，限购不限制次数） |
 | `GET /api/shop/spend-event` | 需登录（Bearer）。商城累计消费活动（3.4）：`{event, spent, active, serverTime}`。`event` 为当前显示的活动（`{eventType, eventPeriod{start,end}, rewardPeriod{start,end}, steps[{step, value, stockId, reward{name, category, itemId, count, days, iconHint}}]}`，显示期 = 活动开始至奖励领取期结束），`spent` = 该账号在活动期 `[start, end+1s)` 内商店购买花费的点券（`wallet_ledger` 中 `reason='purchase'`、`currency='coupon'` 的扣款合计；管理员扣款、金币/K币不算），`active` = 现在是否仍在活动期内（活动期后、领奖期内为 `false`，`spent` 不再增长）。没有显示中的活动时 `{"event": null, "spent": 0, "active": false, "serverTime"}`。只读，奖励不发放 |
 | `POST /api/timeattack/settle` | `{trackId, elapsedMs, requestId}` → `{exp, lucci, newRecord, capped, bestMs, levelUps, summary}`；错误见 2.2 |
-| `GET /multiplayer/admin` | 管理员网页（静态 HTML，登录后调用以下接口） |
+| `GET /multiplayer/admin` | 管理后台（单页应用，登录后调用 `/api/admin/*`，见 `ADMIN.md`） |
 | `POST /api/admin/grant` | 管理员给账号加/减货币或经验 `{username, currency, amount, note, requestId?}`（currency 为 coupon/lucci/koin/exp），写流水；余额不能为负（409 `INSUFFICIENT_FUNDS`/`INSUFFICIENT_EXP`），也不能超过 10^12（409 `BALANCE_LIMIT`） |
-| `GET /api/admin/accounts?q=` | 查询账号（等级、余额、库存数量） |
+| `GET /api/admin/accounts` | 查询账号（等级、余额、物品数等；分页，参数与字段见 `ADMIN.md` 第 3–5 节） |
 | `POST /multiplayer/admin/invites` | 保留 |
 
 内部（游戏节点）：
@@ -263,7 +263,7 @@ daily_rewards(account_id, day CHAR(10), kind VARCHAR(16), count INT, exp BIGINT,
 
 ## 7. 前端
 
-1. 启动登录门：资源加载后、主界面前，若无有效 token 则显示登录/注册界面（原版风格对话框；注册字段：用户名、昵称、密码、确认密码；邀请码在 invite 模式必填，开放模式下折叠为可选的“有邀请码？”，管理员用户名注册时使用）。token 存 localStorage（记住登录 30 天）。退出登录回到登录界面。
+1. 启动登录门：资源加载后、主界面前，若无有效 token 则显示登录/注册界面（游戏风格窗口，由发行版窗口渲染器绘制：CaptionDialog、DefaultEdit 输入框与 TextButton，盖在启动加载画面之上；连接中与“重试”提示同样风格；资源未就绪时退回 HTML 对话框。注册字段：用户名、昵称、密码、确认密码；邀请码在 invite 模式必填，开放模式下折叠为可选的“有邀请码？”，管理员用户名注册时使用）。token 存 localStorage（记住登录 30 天）。退出登录回到登录界面。
 2. 新账号引导：第 4 节的新车手对话框，领取礼包后进入主界面。
 3. 档案：登录后档案改为账号绑定（`/api/account/profile`，服务端为准）；旧的浏览器档案首次登录时只迁移收藏、小屋设置等偏好，装备按库存修正。
 4. 拥有过滤：车库（Ready 选道具、GarageX、小屋“我的物品”、联机选车）只显示库存中未过期的物品，并显示剩余期限；当前选择必须在列表中。

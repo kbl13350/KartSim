@@ -338,7 +338,7 @@ func (s *Server) handleText(c *conn, data []byte) bool {
 		s.closeFlooder(c)
 		return false
 	case err != nil:
-		c.Text(lobby.ErrorMessage(s.errorCode(err), requestID))
+		c.Text(lobby.ErrorMessage(s.errorCode(err), errorFields(err), requestID))
 	case requestID != "":
 		c.Text(reply.Encode(requestID))
 	}
@@ -394,6 +394,14 @@ func (s *Server) errorCode(err error) string {
 	}
 	s.log.Error("WebSocket command failed", "error", err)
 	return "INTERNAL_ERROR"
+}
+
+// errorFields are the further members of a refusal (nil for most).
+func errorFields(err error) map[string]any {
+	if rejected, ok := apierr.As(err); ok {
+		return rejected.Fields
+	}
+	return nil
 }
 
 func (s *Server) handle(c *conn, req lobby.Request) (reply lobby.Reply, err error) {
