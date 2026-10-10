@@ -9,7 +9,35 @@
 
 export type ItemAimPhase = "aiming" | "inrange" | "ontarget";
 export type ItemTeamColor = "solo" | "red" | "blue";
+/** Cards owned (x<n>, at most three digits drawn), "infinite" (a valid voucher) or 0 (none: row hidden). */
 export type ItemChangerCount = number | "infinite";
+
+/**
+ * The 道具换位卡 (Alt) and 道具变更卡 (Z) rows (ITEM_MODE.md C.6): what the
+ * server's `changers` says the racer holds, and whether the key would act
+ * now (a row that cannot is drawn with its disableUv frames).
+ */
+export interface ItemHudChangers {
+  slot: ItemChangerCount;
+  item: ItemChangerCount;
+  slotUsable: boolean;
+  itemUsable: boolean;
+}
+
+/** Screen covers of the special items (ITEM_MODE.md C.4); darkCloud is cloud2Effect_1. */
+export type ItemHudOverlayKind =
+  | "tiger" | "panther" | "delivery" | "dinoClaw" | "honey" | "oil" | "lion" | "darkCloud";
+
+export interface ItemHudOverlay {
+  kind: ItemHudOverlayKind;
+  /** HUD clock time the cover is released (it then plays its own fade out). */
+  untilMs: number;
+  /** 0..1; the goggles' see-through factor applies to the dark cloud. */
+  opacity: number;
+}
+
+/** talisman (符咒) escape keys, shown with its uiEffect arrows. */
+export type ItemTalismanKey = "up" | "down" | "left" | "right";
 
 /** One row of itemStateNotice: "bad" = I was hit, "good" = my item took effect. */
 export interface ItemHudNotice {
@@ -47,20 +75,49 @@ export interface ItemHudState {
   lock?: { remainingMs: number };
   /** Time bomb on my kart: countdown. */
   timeBomb?: { remainingMs: number };
-  /** Alt (换位卡) and Z (变更卡) cards; 0 hides the row. */
-  slotChanger: ItemChangerCount;
-  itemChanger: ItemChangerCount;
+  /** Alt (换位卡) and Z (变更卡) rows from the server's `changers`. */
+  changers?: ItemHudChangers;
+  /**
+   * Phase-2 rows without a usable flag (drawn usable); `changers` wins.
+   * @deprecated feed `changers`.
+   */
+  slotChanger?: ItemChangerCount;
+  /** @deprecated feed `changers`. */
+  itemChanger?: ItemChangerCount;
   /** Lock-on reticle at a 1600×900 stage position. */
   aim?: { phase: ItemAimPhase; x: number; y: number };
   /** I am targeted. */
   warning?: "rocket" | "waterfly";
-  /** cloud2 screen cover; variant is the item.bml base (0 rainbow, 1 ink, 2 fairy). */
+  /**
+   * cloud2 screen cover; variant is the item.bml base (0 rainbow, 1 ink, 2
+   * fairy). `opacity` (0..1) is the cover's strength: 1 − the goggles' (or
+   * kart's) `trans`, ITEM_MODE.md C.2.
+   */
   cloud?: { opacity: number; variant?: 0 | 1 | 2 };
+  /** A special item's screen cover (tiger claws, honey, oil, the dark cloud …). */
+  overlay?: ItemHudOverlay;
+  /**
+   * Per slot, the special booster's icon (`animalBooster` iconId → item/slot/
+   * animal<iconId>.png) for a slot holding item 31; undefined keeps item<idx>.png.
+   */
+  slotIcons?: readonly (number | undefined)[];
+  /** HUD clock time the XUN start item reached slot 0 (12thEngineEffect flash). */
+  startItemFlash?: number;
+  /** The latest in-race lucci gain (the server's `lucci` event). */
+  lucci?: { amount: number; atMs: number };
+  /** Bottom-left tutorial board during the countdown (changerTuto / avoidTeamkill). */
+  tutorial?: "changer" | "avoidTeamkill";
+  /** talisman: the escape keys to press in order and how many are done. */
+  talisman?: { keys: readonly ItemTalismanKey[]; done: number; failedAtMs?: number };
   /** The item box abuse message shows until this time. */
   abuseUntil?: number;
   notices: readonly ItemHudNotice[];
   log: readonly ItemHudLogEntry[];
-  /** Item description balloon over the current slot. */
+  /**
+   * Item description balloon over the current slot. The HUD shows the
+   * race's first card as the 查看道具说明 prompt (itemDescList first /
+   * first_desc) and every later one as name, icon and Ctrl, then description.
+   */
   infoCard?: { itemIdx: number };
   /** scanning (透视镜): opponents' slots next to their rank rows. */
   scan?: readonly ItemHudScan[];
@@ -82,8 +139,6 @@ export function emptyItemHudState(capacity: 2 | 3 = 2): ItemHudState {
   return {
     slots: Array<number>(capacity).fill(-1),
     capacity,
-    slotChanger: 0,
-    itemChanger: 0,
     notices: [],
     log: [],
   };

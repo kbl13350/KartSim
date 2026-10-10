@@ -13,10 +13,51 @@ export interface ResultEntry {
   points: number;
   elapsedMs: number | null;
   rank: number;
+  /** Item race result titles (ITEM_MODE.md C.9), internal keys. */
+  titles?: readonly string[];
 }
 
 export interface ResultRace {
   roster: Array<{ playerId: unknown; team?: number | null; name: string }>;
+  /** The room's gameplay and channel: item races show the result titles. */
+  gameplay?: unknown;
+  channelName?: unknown;
+}
+
+/**
+ * The item race result titles (stage_mqGameFinal title_icons/namemap@zz, in
+ * its order): the server's internal key, the condition of the namemap row it
+ * matches, and the Chinese name ([还原]: the data has no CN string,
+ * ITEM_MODE.md C.9). 백발백중 has no icon in the archive.
+ */
+export const ITEM_RESULT_TITLES: ReadonlyArray<{
+  key: string; match: Record<string, string>; korean: string; chinese: string; icon: boolean;
+}> = [
+  { key: "perfectAim", match: { fail: "0" }, korean: "백발백중", chinese: "百发百中", icon: false },
+  { key: "ironWall", match: { item: "angel" }, korean: "철벽방어", chinese: "铁壁防御", icon: true },
+  { key: "turret", match: { item: "rocket" }, korean: "터렛모드", chinese: "炮台模式", icon: true },
+  { key: "flyKing", match: { item: "waterFly" }, korean: "파리대왕", chinese: "苍蝇之王", icon: true },
+  { key: "carpetBomb", match: { item: "waterBomb" }, korean: "융단폭격", chinese: "地毯式轰炸", icon: true },
+  { key: "cloudyDay", match: { item: "cloud" }, korean: "구름낀날", chinese: "阴云密布", icon: true },
+  { key: "magnetic", match: { item: "magnet" }, korean: "왠지끌려", chinese: "莫名吸引", icon: true },
+  { key: "invasion", match: { item: "ufo" }, korean: "지구침공", chinese: "入侵地球", icon: true },
+  { key: "speedWar", match: { item: "booster" }, korean: "스피드전", chinese: "速度战", icon: true },
+  { key: "perfectStart", match: { custom: "1" }, korean: "완벽출발", chinese: "完美起步", icon: true },
+  { key: "onlyOne", match: { custom: "2" }, korean: "유아독존", chinese: "唯我独尊", icon: true },
+  { key: "safetyFirst", match: { custom: "3" }, korean: "안전제일", chinese: "安全第一", icon: true },
+];
+
+/** PopList titleCont focusTick: the title name changes every 1600 ms. */
+export const ITEM_RESULT_TITLE_TICK_MS = 1600;
+/** viewIcons (0 5 90 40, right aligned, listGap 1) holds four 20×20 icons. */
+const TITLE_ICON_SIZE = 20;
+const TITLE_ICON_STEP = TITLE_ICON_SIZE + 1;
+const TITLE_LIST_WIDTH = 90;
+const TITLE_FRAME_WIDTH = 70;
+
+function isItemResultRace(race: ResultRace): boolean {
+  return race.gameplay === "item" ||
+    (typeof race.channelName === "string" && /^item/.test(race.channelName));
 }
 
 export interface ResultView {
@@ -86,6 +127,11 @@ export class MultiplayerResultView {
   /** 组队道具赛 results show no team points. */
   hidePoints = false;
   rewards = new Map<string, RaceReward>();
+  /** Item races: the result titles (internal key → namemap row), in namemap order. */
+  titles?: Array<(typeof ITEM_RESULT_TITLES)[number]>;
+  /** The page clock's time of the last update and the show time (the title cycle). */
+  nowMs = 0;
+  shownAtMs = 0;
   private newPageClock!: ResultViewDependencies["newPageClock"];
 
   static async load(library: unknown, root: unknown, race: ResultRace,
@@ -118,10 +164,12 @@ export class MultiplayerResultView {
     const rowHeight = Number(deps.attribute(rowTemplate, "windowRect")!.split(" ")[3]);
     const listMargin = deps.attribute(list, "listMargin")!.split(" ").map(Number);
 
+    if (isItemResultRace(race)) screen.titles = await itemResultTitles(library, deps);
     const rows = race.roster.map((_, index) => {
       const left = listMargin[0]!;
       const top = listMargin[1]! + index * rowHeight;
-      const copy = prefixedCopy(rowTemplate, `row${index}/`, deps);
+      const copy = withTitleIcons(prefixedCopy(rowTemplate, `row${index}/`, deps), index,
+        screen.titles, deps);
       const nameLabel = deps.showRewards
         ? copy.children.find(child => deps.attribute(child, "name") === `row${index}/id`)
         : undefined;
@@ -234,6 +282,8 @@ export class MultiplayerResultView {
       const reward = this.rewards.get(String(result.playerId));
       return reward ? { visible: true, text: formatRaceReward(reward) } : { visible: false };
     }
+    const title = this.titleState(part!, result);
+    if (title) return title;
     if (["timeCon2", "titleCont", "team"].includes(part!)) return { visible: false };
     if (part === "colorBg" || part === "meLine")
       return { visible: result.playerId === localPlayerId };
@@ -249,19 +299,50 @@ export class MultiplayerResultView {
     return {};
   }
 
+  /**
+   * titleCont of an item race row: the row's title icons right aligned in
+   * viewIcons (the focused one with its `_2` icon), and titleFrame popping
+   * the focused title's name beside them, the focus moving every 1600 ms.
+   */
+  private titleState(part: string, result: ResultEntry): Record<string, unknown> | undefined {
+    if (!this.titles) return undefined;
+    const owned = this.titles.filter(title => result.titles?.includes(title.key));
+    const isTitlePart = part === "titleCont" || part === "titleFrame" || part === "title" ||
+      part === "viewIcons" || part.startsWith("titleIcon/");
+    if (!isTitlePart) return undefined;
+    if (owned.length === 0) return { visible: false };
+    const focus = Math.floor(Math.max(0, this.nowMs - this.shownAtMs) / ITEM_RESULT_TITLE_TICK_MS) %
+      owned.length;
+    const icons = owned.filter(title => title.icon).slice(-Math.floor(TITLE_LIST_WIDTH / TITLE_ICON_STEP));
+    const iconsLeft = TITLE_LIST_WIDTH - icons.length * TITLE_ICON_STEP;
+    if (part === "titleCont" || part === "viewIcons") return { visible: true };
+    if (part === "titleFrame") return { visible: true, offsetX: iconsLeft - TITLE_FRAME_WIDTH - 2 };
+    if (part === "title") return { visible: true, text: owned[focus]!.chinese };
+    const [, key, frame] = part.split("/");
+    const at = icons.findIndex(title => title.key === key);
+    const focused = owned[focus]!.key === key;
+    if (at < 0 || (frame === "2") !== focused) return { visible: false };
+    return { visible: true, offsetX: iconsLeft + at * TITLE_ICON_STEP };
+  }
+
   show(results: ResultEntry[], time = performance.now(),
     outcome?: { teamScores?: Record<number, number>; winningTeam?: number;
       rewards?: unknown }): void {
     this.teamScores = outcome?.teamScores;
     this.winningTeam = outcome?.winningTeam;
     this.rewards = parseRaceRewards(outcome?.rewards);
-    this.results = results.map(result => ({ ...result }));
+    this.results = results.map(result => ({ ...result,
+      ...(Array.isArray(result.titles) ? { titles: result.titles.filter(title =>
+        typeof title === "string") } : {}) }));
     this.page = this.newPageClock(time);
     this.pageOffset = -this.pageWidth;
+    this.nowMs = time;
+    this.shownAtMs = time;
     this.view.show();
   }
 
   update(time: number): boolean {
+    this.nowMs = time;
     if (!this.page) return false;
     const page = this.page.update(time);
     this.pageOffset = page.offset * this.pageWidth;
@@ -273,4 +354,40 @@ export class MultiplayerResultView {
   dispose(): void {
     this.view.dispose();
   }
+}
+
+/** namemap@zz rows mapped to the internal title keys; the built-in table when it cannot be read. */
+async function itemResultTitles(library: unknown,
+  deps: ResultViewDependencies): Promise<Array<(typeof ITEM_RESULT_TITLES)[number]>> {
+  try {
+    const namemap = await deps.loadBml(library, `${folder}/title_icons`, "namemap@zz");
+    const titles: Array<(typeof ITEM_RESULT_TITLES)[number]> = [];
+    for (const row of namemap.children) {
+      const title = ITEM_RESULT_TITLES.find(entry => Object.entries(entry.match)
+        .every(([name, value]) => deps.attribute(row, name) === value));
+      if (title) titles.push({ ...title, korean: deps.attribute(row, "name") ?? title.korean });
+    }
+    if (titles.length === ITEM_RESULT_TITLES.length) return titles;
+  } catch {
+    // The table below mirrors namemap@zz.
+  }
+  return [...ITEM_RESULT_TITLES];
+}
+
+/** Every title icon of the row (normal `_1` and focused `_2`), inside its titleCont. */
+function withTitleIcons(row: ResultNode, index: number,
+  titles: ReadonlyArray<(typeof ITEM_RESULT_TITLES)[number]> | undefined,
+  deps: ResultViewDependencies): ResultNode {
+  if (!titles) return row;
+  const contName = `row${index}/titleCont`;
+  const add = (node: ResultNode): ResultNode => deps.attribute(node, "name") === contName
+    ? deps.cloneNode(node, {}, [...node.children, ...titles.filter(title => title.icon).flatMap(title =>
+      ["1", "2"].map(frame => deps.cloneNode({ name: "Panel", text: "", attributes: [], children: [] }, {
+        name: `row${index}/titleIcon/${title.key}/${frame}`,
+        leftTopWH: `0 10 ${TITLE_ICON_SIZE} ${TITLE_ICON_SIZE}`,
+        texture: `${title.korean}_${frame}`, resourceRoot: `${folder}/title_icons`,
+        alphaBlend: "true", visible: "false",
+      }, [])))])
+    : deps.cloneNode(node, {}, node.children.map(add));
+  return add(row);
 }

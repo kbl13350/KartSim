@@ -22,6 +22,16 @@ export interface ItemHudLayerOptions {
   capacity: 2 | 3;
   slots?: ItemSlotDefinition;
   options?: ItemHudOptions;
+  /** Item names and descriptions of the race's item catalog (special items included). */
+  describe?(idx: number): { name: string; description: string } | undefined;
+  /** Item ids whose icons load with the HUD (the catalog's items). */
+  itemIds?: readonly number[];
+}
+
+/** What the HUD reads of the race's item catalog (item-catalog.ts ItemCatalog). */
+interface ItemHudCatalog {
+  items: ReadonlyArray<{ idx: number }>;
+  get(idx: number): { title: string; description: string } | undefined;
 }
 
 export interface MultiplayerHudDependencies {
@@ -130,9 +140,18 @@ export class MultiplayerRaceHud {
       if (itemRace) {
         if (!dependencies.loadItemHud) throw new Error("道具赛 HUD 未接入。");
         const capacity = itemSlotCapacity(local.vehicle.physicsParams?.itemSlotCapacity);
+        const catalog = race.itemCatalog as ItemHudCatalog | undefined;
         hud.item = await dependencies.loadItemHud(library, {
           capacity, slots: ui.definition?.items,
           options: dependencies.itemHudOptions?.(),
+          ...(catalog ? {
+            describe: (idx: number) => {
+              const item = catalog.get(idx);
+              return item && (item.title || item.description)
+                ? { name: item.title, description: item.description } : undefined;
+            },
+            itemIds: catalog.items.map(item => item.idx),
+          } : {}),
         });
         hud.item.setState(emptyItemHudState(capacity));
       }
@@ -249,6 +268,7 @@ export function itemSlotInput(state: ItemHudState): {
       locked: lockMs !== undefined && lockMs > 0,
       // One slotTimer: the time bomb is the more urgent countdown.
       countdownMs: bombMs !== undefined && bombMs > 0 ? bombMs : lockMs,
+      ...(state.slotIcons ? { icons: state.slotIcons } : {}),
     },
     ...(state.reorderProgress !== undefined
       ? { slotReorderProgress: state.reorderProgress } : {}),

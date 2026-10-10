@@ -1,4 +1,6 @@
 /** Updates each racer presentation after the multiplayer camera is positioned. */
+import type { Object3D } from "three";
+import { applyItemKartPresentation } from "../item/item-kart-presentation";
 import { updateRacePresenterItems, type RacePresenterItemsHost } from "./race-presenter-items";
 
 interface Vec3 { x: number; y: number; z: number }
@@ -24,6 +26,8 @@ interface VehicleAsset {
     update(nowMs: number, camera: unknown, imported: boolean): void;
   };
   trails: {
+    /** The trail effects, outside the racer view root (hidden with an invisible kart). */
+    object?: { visible: boolean };
     setState(boost: number, nowMs: number): void;
     update(nowMs: number, camera: unknown, imported: boolean): void;
   };
@@ -34,7 +38,7 @@ interface VehicleAsset {
       scene: SceneUpdater;
     };
   }>;
-  decoration?: { scene: SceneUpdater };
+  decoration?: { scene: SceneUpdater & { object?: { visible: boolean } } };
 }
 interface RacerAsset {
   playerId: unknown;
@@ -201,6 +205,13 @@ export function updateRacePresenterParticipants(host: RacePresenterParticipantsH
       ? runtime.local.resetVisible(nowMs) &&
         runtime.local.warpNext.presentationVisible(nowMs)
       : runtime.remotes.presentationVisible(racer.playerId, nowMs);
+    // item-mode(fx): an invisible (tigerGhost) kart and a popping balloon.
+    const itemLook = assets.itemPresenter?.kartPresentation;
+    if (itemLook) applyItemKartPresentation({
+      root: view.root as unknown as Object3D,
+      extras: [racer.vehicle.trails.object],
+      balloon: racer.vehicle.decoration?.scene.object,
+    }, itemLook.call(assets.itemPresenter, String(racer.playerId), nowMs));
     const motion = presentation?.motion;
     const linked = host.linkedPresentations.get(racer.playerId);
     const linkedMotion = motion

@@ -66,6 +66,8 @@ export interface ItemSlotTimer {
 export class ItemSlotResources {
   readonly icons = new Map<number, SlotImage | null>();
   readonly smallIcons = new Map<number, SlotImage | null>();
+  /** item/slot/animal<iconId>.png: the special booster (31) of a kart with an animalBooster row. */
+  readonly animalIcons = new Map<number, SlotImage | null>();
   freeze?: SlotImage;
   timer?: ItemSlotTimer;
   /** Ids whose icon failed to load (an iconGuide noIcon id, for example). */
@@ -83,6 +85,11 @@ export class ItemSlotResources {
   /** item/slot/item_s<idx>.png (Slot type 0), or undefined while it loads. */
   smallIcon(idx: number): SlotImage | undefined {
     return this.cached(this.smallIcons, `item_s${idx}`, idx);
+  }
+
+  /** item/slot/animal<iconId>.png (84×84, like item<idx>.png), or undefined while it loads. */
+  animalIcon(iconId: number): SlotImage | undefined {
+    return this.cached(this.animalIcons, `animal${iconId}`, iconId);
   }
 
   /** Icons, small icons, the lock overlay and the countdown digits. */
@@ -157,6 +164,8 @@ export interface ItemSlotOverlay {
   locked?: boolean;
   /** slotTimer countdown over the current slot (lock or time bomb). */
   countdownMs?: number;
+  /** Per slot, an animal booster icon id drawn instead of item<idx>.png (ITEM_MODE.md C.3). */
+  icons?: ReadonlyArray<number | undefined>;
 }
 
 const slotFolder = "item/slot";
@@ -369,6 +378,14 @@ export function buildItemSlotCommands(definition: ItemSlotDefinition,
       icons[index] = slotPanel(frame.node, team ? "item14" : "item6",
         team ? definition.teamBoostTexture : definition.boostTexture, target, fullUv());
       return;
+    }
+    const animal = overlay?.icons?.[index];
+    if (animal !== undefined && Number.isInteger(animal) && animal >= 0) {
+      const image = definition.resources?.animalIcon(animal);
+      if (image) {
+        icons[index] = slotPanel(frame.node, `animal${animal}`, image, target, fullUv());
+        return;
+      }
     }
     const icon = definition.resources?.icon(id);
     if (icon) icons[index] = slotPanel(frame.node, `item${id}`, icon, target, fullUv());

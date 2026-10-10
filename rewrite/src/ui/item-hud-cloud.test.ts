@@ -4,8 +4,8 @@ import { PerspectiveCamera, Vector3 } from "three";
 
 import type { HudNode } from "./item-hud-assets";
 import {
-  ITEM_CLOUD_HOLD_MS, ItemHudCloud, aimCloudCamera,
-  type CloudPlayBinding, type ItemHudCloudDependencies,
+  ITEM_CLOUD_FADE_IN_MS, ITEM_CLOUD_HOLD_MS, ITEM_HUD_OVERLAY_MODELS, ItemHudCloud, aimCloudCamera,
+  modelCameraMatrices, type CloudPlayBinding, type ItemHudCloudDependencies,
 } from "./item-hud-cloud";
 import { openMirrorLibrary } from "./item-hud-test-support";
 import { giantControllerDuration } from "./giant-boost-hud-model";
@@ -54,7 +54,7 @@ function fixture() {
 
 test("cloud2Effect 的三个 Play1SPanel 经发行版绑定为全屏遮挡", async () => {
   const { deps, events, updates, cameras } = fixture();
-  const cloud = await ItemHudCloud.load(library, deps, 5);
+  const cloud = await ItemHudCloud.load(library, deps, 5, false);
   assert.deepEqual(cloud.bindings.map(binding => [binding.name, binding.sceneName]), [
     ["cloud2Effect_0", "무지개구름_화면가림"],
     ["cloud2Effect_1", "먹물구름_화면가림"],
@@ -107,22 +107,26 @@ test("cloud2Effect 的三个 Play1SPanel 经发行版绑定为全屏遮挡", asy
   assert.deepEqual(events.splice(0), [["scene-update", "cloud2Effect_1", 520, 1],
     ["scene-update", "cloud2Effect_1", 20 + ITEM_CLOUD_HOLD_MS, 1]]);
 
-  // Same variant at a lower opacity keeps holding; opacity 0 releases it.
+  // Same variant at a lower strength (goggles' trans) holds that far into its fade in;
+  // opacity 0 releases it.
   cloud.update({ opacity: 0.4, variant: 1 }, 6000);
   assert.deepEqual(events.splice(0), []);
+  const hold = Math.round(ITEM_CLOUD_FADE_IN_MS * 0.4);
+  runtime.update(6500);
+  assert.deepEqual(events.splice(0), [["scene-update", "cloud2Effect_1", 20 + hold, 1]]);
   cloud.update({ opacity: 0 }, 7000);
   assert.equal(cloud.active, 1);
   runtime.update(7500);
   assert.deepEqual(events.splice(0),
-    [["scene-update", "cloud2Effect_1", 20 + ITEM_CLOUD_HOLD_MS + 500, 1]]);
+    [["scene-update", "cloud2Effect_1", 20 + hold + 500, 1]]);
   updates();
   // The fade out ends with the model's 3000 ms.
-  cloud.update(undefined, 7000 + 3000 - ITEM_CLOUD_HOLD_MS - 1);
+  cloud.update(undefined, 7000 + 3000 - hold - 1);
   assert.equal(cloud.active, 1);
-  cloud.update(undefined, 7000 + 3000 - ITEM_CLOUD_HOLD_MS);
+  cloud.update(undefined, 7000 + 3000 - hold);
   assert.equal(cloud.active, undefined);
   assert.deepEqual(events.splice(0), [["stop", "cloud2Effect_1"]]);
-  assert.deepEqual(updates().at(-1), [[], 8500]);
+  assert.deepEqual(updates().at(-1), [[], 7000 + 3000 - hold]);
 
   cloud.update({ opacity: 1 }, 9000);
   assert.deepEqual(events.splice(0), [["play", "cloud2Effect_0", 3000, 0, 9000]]);
@@ -161,4 +165,59 @@ test("乌云相机默认值", () => {
   aimCloudCamera(camera, { node: { name: "Play1SPanel", attributes: [], children: [] },
     name: "x", scene: {} });
   assert.deepEqual(camera.position.toArray(), [0, -70, 0]);
+});
+
+test("特殊道具遮挡：原版模型自带相机（正交 tan(fov/2)·323.221 宽），乌云与黑云共存", async () => {
+  const { deps, events, updates } = fixture();
+  // The assembled scenes report the client world of their camera node.
+  const world = [-1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1];
+  const withCamera: ItemHudCloudDependencies = { ...deps,
+    loadPlayScene: async binding => ({
+      update: (time: number) => events.push(["scene-update", binding.name, time]),
+      clientWorldElements: () => world,
+    }) };
+  const cloud = await ItemHudCloud.load(library, withCamera, 0);
+  const overlays = cloud.bindings.slice(3);
+  assert.deepEqual(overlays.map(binding => [binding.name, binding.scenePath]),
+    Object.entries(ITEM_HUD_OVERLAY_MODELS).map(([kind, model]) =>
+      [`itemOverlay_${kind}`, `${model.folder}/${model.scene}.1s`]));
+  // Tiger, panther, delivery, dino claw and lion animate 5000 ms; honey and oil 3000 ms.
+  assert.deepEqual(cloud.durations.slice(3), [5000, 5000, 5000, 5000, 5000, 3000, 3000]);
+  // Each model's ReCamera: projection mode 1, 161.075°, near 31, far 306.
+  const config = { projectionMode: 1, fieldOfViewDegrees: 161.07537841796875, nearClip: 31, farClip: 306 };
+  const expected = modelCameraMatrices(world, config, 900 / 1600);
+  assert.ok(Math.abs(2 / expected.projection[0]! - 1939.3) < 0.1, "about 1939 units across (tan 80.54° × 323.221)");
+  assert.ok(Math.abs(expected.projection[5]! / expected.projection[0]! - 16 / 9) < 1e-5, "16:9");
+  assert.deepEqual(expected.projection.slice(12), [0, 0, 0, 1], "orthographic");
+  events.splice(0);
+  updates();
+
+  cloud.update(undefined, 100, { kind: "tiger", untilMs: 4100, opacity: 1 });
+  assert.deepEqual(events.splice(0), [["play", "itemOverlay_tiger", 5000, 0, 100]]);
+  let [[commands]] = updates() as [[Array<Record<string, any>>, number]];
+  assert.deepEqual(commands.map(command => command.binding.name), ["itemOverlay_tiger"]);
+  assert.deepEqual([commands[0]!.view, commands[0]!.projection], [expected.view, expected.projection]);
+  // A cloud (at the goggles' 0.3) at the same time as the claws: both covers draw.
+  const tiger = { kind: "tiger" as const, untilMs: 4100, opacity: 1 };
+  cloud.update({ opacity: 0.3, variant: 1 }, 200, tiger);
+  assert.deepEqual(events.splice(0), [["play", "cloud2Effect_1", 3000, 0, 200]]);
+  [[commands]] = updates() as [[Array<Record<string, any>>, number]];
+  assert.deepEqual(commands.map(command => command.binding.name).sort(), ["cloud2Effect_1", "itemOverlay_tiger"]);
+  // The cloud draws through the Play1S view, the claws through their own camera.
+  assert.notDeepEqual(commands.find(command => command.binding.name === "cloud2Effect_1")!.view, expected.view);
+  // The tiger cover holds half way (2500 ms) until its end, then plays its fade out.
+  assert.equal(cloud.sceneTime(3, 3000), 100 + 2500);
+  assert.equal(cloud.sceneTime(1, 3000), 200 + Math.round(ITEM_CLOUD_FADE_IN_MS * 0.3));
+  cloud.update({ opacity: 0.3, variant: 1 }, 4100, tiger);
+  assert.equal(cloud.phases.get(3)?.kind, "out");
+  cloud.update({ opacity: 0.3, variant: 1 }, 4100 + 2500, tiger);
+  assert.equal(cloud.phases.has(3), false);
+  assert.ok(events.some(event => event[0] === "stop" && event[1] === "itemOverlay_tiger"));
+  // The dark clouds (1, 115) cover with the ink cloud, cloud2Effect_1.
+  cloud.update(undefined, 7000);
+  cloud.update(undefined, 12_000);
+  events.splice(0);
+  cloud.update(undefined, 12_100, { kind: "darkCloud", untilMs: 22_100, opacity: 1 });
+  assert.deepEqual(events.splice(0), [["play", "cloud2Effect_1", 3000, 0, 12_100]]);
+  cloud.dispose();
 });

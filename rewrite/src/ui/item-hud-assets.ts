@@ -83,6 +83,26 @@ export interface ChangerRow {
   glyphs: string;
 }
 
+/** itemInfoCard's ctrl CharPanel: the Ctrl key in two frames ("1" up, "2" pressed). */
+export interface InfoCardKey extends PlacedNode {
+  texture: HudImage;
+  textureName: string;
+  glyphWidth: number;
+  glyphHeight: number;
+  glyphs: string;
+}
+
+/** One bottom-left tutorial board (changerTuto / avoidTeamkill, 223×106). */
+export interface TutorialBoard {
+  /** img1, img2 with their textures. */
+  images: Array<PlacedNode & { textureName: string }>;
+}
+
+/** talisman/uiEffect.bml: five key panels, each with a bigger "big" panel for the key to press. */
+export interface TalismanPanels {
+  keys: Array<{ panel: PlacedNode; big: PlacedNode }>;
+}
+
 export interface ItemHudAssets {
   textures: Map<string, HudImage>;
   crosshairs: Record<ItemAimPhase, { node: HudNode; texture: HudImage; name: string }>;
@@ -95,7 +115,13 @@ export interface ItemHudAssets {
     affectTimeMs: number;
   };
   log: { rows: LogRow[]; colors: Record<ItemTeamColor, { attacker: string; victim: string }> };
-  infoCard: { root: HudRect; balloons: Record<2 | 3, PlacedNode>; text: PlacedLabel };
+  infoCard: { root: HudRect; balloons: Record<2 | 3, PlacedNode>; text: PlacedLabel;
+    /** itemIcon (46×46; its own texture is the 설정아이콘_01 wrench of the first prompt). */
+    icon: PlacedNode & { textureName: string };
+    name: PlacedLabel;
+    key: InfoCardKey };
+  tutorials: { changer: TutorialBoard; avoidTeamkill: TutorialBoard };
+  talisman?: TalismanPanels;
   changers: { slot: ChangerRow; item: ChangerRow };
   abuse: { node: HudNode; texture: HudImage; text: HudNode };
   scanning: { node: HudNode; texture: HudImage };
@@ -281,7 +307,8 @@ export async function loadItemHudAssets(library: unknown,
   deps: ItemHudAssetDependencies): Promise<ItemHudAssets> {
   const loader = new AssetLoader(library, deps);
   const attribute = deps.attribute;
-  const [screenUi, slotChanger, itemChanger, firingWarning, notice, totalNotice, infoCard] =
+  const [screenUi, slotChanger, itemChanger, firingWarning, notice, totalNotice, infoCard,
+    changerTuto, avoidTeamkill, talismanUi] =
     await Promise.all([
       loader.bml(speedIndiGame, "screenui"),
       loader.bml(speedIndiGame, "slotChanger"),
@@ -290,6 +317,9 @@ export async function loadItemHudAssets(library: unknown,
       loader.bml(windowTemplate, "itemStateNotice"),
       loader.bml(windowTemplate, "itemStateTotalNotice"),
       loader.bml(windowTemplate, "itemInfoCard"),
+      loader.bml(windowTemplate, "changerTuto"),
+      loader.bml(windowTemplate, "avoidTeamkill"),
+      loader.bml(talismanFolder, "uiEffect").catch(() => undefined),
     ]);
   const placeholderIcons = new Set(["item4", "item10"]);
   await Promise.all([
@@ -306,6 +336,9 @@ export async function loadItemHudAssets(library: unknown,
     loader.texture("crosshairb", ["item/common"]),
     loader.texture("crosshairc", ["item/common"]),
     loader.texture("slot_scanning", ["item/slot"]),
+    loader.treeTextures(changerTuto), loader.treeTextures(avoidTeamkill),
+    talismanUi ? Promise.all(TALISMAN_TEXTURES.map(name => loader.texture(name, [talismanFolder])))
+      : undefined,
   ]);
   const textures = loader.textures;
 
@@ -351,6 +384,14 @@ export async function loadItemHudAssets(library: unknown,
     return { node, rect: infoRects.get(node)! };
   };
   const desc = balloon("itemDesc");
+  const icon = balloon("itemIcon");
+  const name = balloon("itemName");
+  const ctrl = balloon("ctrl");
+  const ctrlTexture = attribute(ctrl.node, "texture");
+  const [keyWidth, keyHeight] = deps.numbers(attribute(ctrl.node, "fontSize") ?? "", 2, "ctrl.fontSize");
+  if (!ctrlTexture || !textures.has(ctrlTexture)) throw new Error("道具说明卡缺少 Ctrl 键贴图。");
+  const iconTexture = attribute(icon.node, "texture");
+  if (!iconTexture || !textures.has(iconTexture)) throw new Error("道具说明卡缺少图标贴图。");
 
   const abuseNode = syntheticNode("itemCubeAbusingMsg", { texture: "itemCubeAbusingMsgBg" });
 
@@ -380,7 +421,16 @@ export async function loadItemHudAssets(library: unknown,
       root: infoRects.get(infoCard)!,
       balloons: { 2: balloon("itemDescPanel1"), 3: balloon("itemDescPanel2") },
       text: { ...desc, style: labelStyle(desc.node, attribute) },
+      icon: { ...icon, textureName: iconTexture },
+      name: { ...name, style: labelStyle(name.node, attribute) },
+      key: { ...ctrl, texture: textures.get(ctrlTexture)!, textureName: ctrlTexture,
+        glyphWidth: keyWidth!, glyphHeight: keyHeight!, glyphs: attribute(ctrl.node, "fontStr") ?? "12" },
     },
+    tutorials: {
+      changer: tutorialBoard(changerTuto, textures, deps),
+      avoidTeamkill: tutorialBoard(avoidTeamkill, textures, deps),
+    },
+    talisman: talismanUi ? talismanPanels(talismanUi, textures, deps) : undefined,
     changers: {
       slot: changerRow(slotChanger, CHANGER_CONTAINER, loader),
       item: changerRow(itemChanger, CHANGER_CONTAINER, loader),
@@ -392,7 +442,69 @@ export async function loadItemHudAssets(library: unknown,
   };
 }
 
+const talismanFolder = "item/talisman";
+/** talisman/uiEffect's key textures (item/talisman/talisman_<key>_<normal|press>[_big].png). */
+export const TALISMAN_TEXTURES: readonly string[] = ["up", "down", "left", "right"].flatMap(key =>
+  ["normal", "press"].flatMap(state => [`talisman_${key}_${state}`, `talisman_${key}_${state}_big`]));
+
+/**
+ * changerTuto / avoidTeamkill: a 223×106 board at the bottom left whose
+ * images give their place as `clientRect` (x y w h inside the board), which
+ * the release geometry does not take; the board itself is laid out as usual.
+ */
+function tutorialBoard(root: HudNode, textures: Map<string, HudImage>,
+  deps: ItemHudAssetDependencies): TutorialBoard {
+  const bare = { ...root, children: [] };
+  const board = layoutTemplate(bare, STAGE_RECT, textures, deps).get(bare)!;
+  const images = ["img1", "img2"].map(name => {
+    const node = childNamed(root, name, deps.attribute);
+    const textureName = deps.attribute(node, "texture");
+    if (!textureName || !textures.has(textureName)) throw new Error(`教程板 ${name} 缺少贴图。`);
+    const [x, y, width, height] = deps.numbers(deps.attribute(node, "clientRect") ?? "", 4, `${name}.clientRect`);
+    const rect = { left: board.left + x!, top: board.top + y!, right: board.left + x! + width!,
+      bottom: board.top + y! + height! };
+    return { node, rect, textureName };
+  });
+  return { images };
+}
+
+/** uiEffect's container gives its size as a two-number windowRect ("810 248"): a windowSize. */
+function sizedWindow(node: HudNode, deps: ItemHudAssetDependencies): HudNode {
+  const rect = deps.attribute(node, "windowRect");
+  const attributes = rect && rect.trim().split(/\s+/).length === 2
+    ? node.attributes.map(entry => entry.name === "windowRect" ? { name: "windowSize", value: entry.value } : entry)
+    : node.attributes;
+  return { ...node, attributes, children: node.children.map(child => sizedWindow(child, deps)) };
+}
+
+function talismanPanels(source: HudNode, textures: Map<string, HudImage>,
+  deps: ItemHudAssetDependencies): TalismanPanels | undefined {
+  const root = sizedWindow(source, deps);
+  let rects: Map<HudNode, HudRect>;
+  try { rects = layoutTemplate(root, STAGE_RECT, textures, deps); }
+  catch { return undefined; }
+  const keys = [0, 1, 2, 3, 4].map(index => {
+    const panel = childNamed(root, String(index), deps.attribute);
+    const big = childNamed(panel, "big", deps.attribute);
+    return { panel: { node: panel, rect: rects.get(panel)! }, big: { node: big, rect: rects.get(big)! } };
+  });
+  return { keys };
+}
+
 export interface ItemDescription { name: string; description: string }
+
+/**
+ * itemDescList `first` / `first_desc` ("查看道具说明" / "在[设置]中可以关闭道具说明"):
+ * the race's first item card (itemInfoCard with its default wrench icon).
+ */
+export async function loadInfoCardPrompt(library: unknown,
+  deps: ItemHudAssetDependencies): Promise<ItemDescription> {
+  const strings = await stringBag(library, "itemDescList", deps);
+  const name = strings.get("first");
+  const description = strings.get("first_desc");
+  if (!name || !description) throw new Error("itemDescList 缺少 first / first_desc。");
+  return { name, description };
+}
 
 function decodeText(bytes: Uint8Array): string {
   if (bytes[0] === 0xff && bytes[1] === 0xfe) return new TextDecoder("utf-16le").decode(bytes.subarray(2));

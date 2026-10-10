@@ -42,6 +42,15 @@ export interface ItemHudFrameInput {
   state: ItemHudState;
   options: ItemHudOptions;
   timeMs: number;
+  /**
+   * The info card on screen: how long it has shown, and whether it is the
+   * race's first card (the `first`/`first_desc` prompt with the wrench).
+   */
+  infoCard?: { ageMs: number; first: boolean };
+  /** itemDescList first / first_desc. */
+  prompt?: ItemDescription;
+  /** item/lucci/plus<amount>@cn.png ("+10 金币"), undefined while it loads or for other amounts. */
+  lucciImage?(amount: number): HudImage | undefined;
   /** item/itemStateNotice/item<idx>.png (45×45), undefined while it loads. */
   noticeIcon(idx: number): HudImage | undefined;
   /** item/slot/item_s<idx>.png (30×30). */
@@ -67,6 +76,17 @@ export const ITEM_WARNING_LAMP_MS = 250;
 /** The item box abuse message: centred on the stage [还原]. */
 export const ITEM_ABUSE_TOP = 300;
 export const ITEM_ABUSE_FADE_MS = 300;
+/**
+ * The info card first shows the item (name, icon, Ctrl) then its
+ * description [还原: itemInfoCard holds both layouts in the same balloon].
+ */
+export const ITEM_INFO_HEAD_MS = 1500;
+/** itemInfoCard ctrl: the Ctrl key's up and pressed frames alternate [还原]. */
+export const ITEM_INFO_KEY_FRAME_MS = 300;
+/** Changer counts: "x" and at most three digits (changerNum is 60 px: 4 glyphs). */
+export const ITEM_CHANGER_MAX_COUNT = 999;
+/** The lucci gain ("+10 金币"): centred between the two itemStateNotice columns [还原]. */
+export const ITEM_LUCCI_TOP = 560;
 
 const fullUv = (): HudRect => ({ left: 0, top: 0, right: 1, bottom: 1 });
 
@@ -175,16 +195,11 @@ export function buildItemHudCommands(assets: ItemHudAssets,
       { left, top, right: left + width, bottom: top + height }));
   }
 
-  if (input.options.dispIngameItemInfoCard && state.infoCard) {
-    const description = input.describe(state.infoCard.itemIdx);
-    if (description) {
-      const balloon = assets.infoCard.balloons[state.capacity === 3 ? 3 : 2];
-      const name = assets.textures.get(balloonTexture(balloon.node, assets))!;
-      push(hudPanel(balloon.node, balloonTexture(balloon.node, assets), name, balloon.rect));
-      const lines = [description.name, ...description.description.split("|")].filter(Boolean);
-      push(textPanel(input, assets.infoCard.text, lines.join("\n"), assets.infoCard.text.style));
-    }
-  }
+  if (input.options.dispIngameItemInfoCard && state.infoCard)
+    over.push(...infoCardCommands(assets, input, state.infoCard.itemIdx));
+
+  if (state.tutorial) over.push(...tutorialCommands(assets, state));
+  if (state.talisman) over.push(...talismanCommands(assets, state.talisman));
 
   if (input.options.itemStateNotice) {
     for (const kind of ["bad", "good"] as const) {
@@ -203,6 +218,23 @@ export function buildItemHudCommands(assets: ItemHudAssets,
         logAlpha(timeMs - entry.at))));
   }
 
+  if (state.lucci) {
+    const alpha = noticeAlpha(timeMs - state.lucci.atMs, assets.notices.lifeTimeMs,
+      assets.notices.affectTimeMs);
+    const image = alpha > 0 ? input.lucciImage?.(state.lucci.amount) : undefined;
+    if (image) {
+      const left = Math.floor((STAGE_WIDTH - image.width) / 2);
+      push(hudPanel(assets.abuse.node, `lucci_plus${state.lucci.amount}`, image,
+        { left, top: ITEM_LUCCI_TOP, right: left + image.width, bottom: ITEM_LUCCI_TOP + image.height },
+        fullUv(), alpha));
+    } else if (alpha > 0) {
+      const rect = { left: 600, top: ITEM_LUCCI_TOP, right: 1000, bottom: ITEM_LUCCI_TOP + 32 };
+      push(textPanel(input, { node: assets.abuse.text, rect }, `+${state.lucci.amount} 金币`,
+        { color: "rgba(255,222,0,1)", outline: "black", size: 20, align: "center", verticalAlign: "center" },
+        alpha));
+    }
+  }
+
   if (state.abuseUntil !== undefined && timeMs < state.abuseUntil) {
     const left = state.abuseUntil - timeMs;
     const alpha = left >= ITEM_ABUSE_FADE_MS ? 255 : Math.round(255 * left / ITEM_ABUSE_FADE_MS);
@@ -216,6 +248,73 @@ export function buildItemHudCommands(assets: ItemHudAssets,
       alpha));
   }
   return { over };
+}
+
+/**
+ * itemInfoCard: first the item (itemName, the item's 45×45 notice icon in
+ * itemIcon, the Ctrl key pressing in ctrl), then its description in
+ * itemDesc. The race's first card is the prompt: first with the template's
+ * own wrench icon, then first_desc.
+ */
+function infoCardCommands(assets: ItemHudAssets, input: ItemHudFrameInput,
+  itemIdx: number): HudPanelCommand[] {
+  const card = assets.infoCard;
+  const first = input.infoCard?.first === true;
+  const description = first ? input.prompt : input.describe(itemIdx);
+  if (!description) return [];
+  const commands: HudPanelCommand[] = [];
+  const push = (command: HudPanelCommand | undefined) => { if (command) commands.push(command); };
+  const balloon = card.balloons[input.state.capacity === 3 ? 3 : 2];
+  const balloonName = balloonTexture(balloon.node, assets);
+  push(hudPanel(balloon.node, balloonName, assets.textures.get(balloonName)!, balloon.rect));
+  const age = input.infoCard?.ageMs ?? 0;
+  if (age < ITEM_INFO_HEAD_MS && description.name) {
+    push(textPanel(input, card.name, description.name, card.name.style));
+    const icon = first ? assets.textures.get(card.icon.textureName) : input.noticeIcon(itemIdx);
+    if (icon) {
+      const rect = alignedRect({ width: Math.min(icon.width, 45), height: Math.min(icon.height, 45) },
+        card.icon.rect, { align: "center", verticalAlign: "center" });
+      push(hudPanel(card.icon.node, first ? card.icon.textureName : `notice${itemIdx}`, icon, rect));
+    }
+    if (!first) {
+      const key = card.key;
+      const frame = Math.floor(age / ITEM_INFO_KEY_FRAME_MS) % key.glyphs.length;
+      const left = key.rect.left;
+      push(hudPanel(key.node, key.textureName, key.texture,
+        { left, top: key.rect.top, right: left + key.glyphWidth, bottom: key.rect.top + key.glyphHeight },
+        normalized({ left: frame * key.glyphWidth, top: 0, right: (frame + 1) * key.glyphWidth,
+          bottom: key.glyphHeight }, key.texture)));
+    }
+    return commands;
+  }
+  const lines = description.description.split("|").filter(Boolean);
+  push(textPanel(input, card.text, (lines.length ? lines : [description.name]).join("\n"), card.text.style));
+  return commands;
+}
+
+/** changerTuto (img2 has Alt and Z, img1 Z only) or avoidTeamkill, bottom left. */
+function tutorialCommands(assets: ItemHudAssets, state: ItemHudState): HudPanelCommand[] {
+  const board = state.tutorial === "avoidTeamkill" ? assets.tutorials.avoidTeamkill : assets.tutorials.changer;
+  const slotRow = changerRows(state)[0];
+  const image = state.tutorial === "changer" && !slotRow ? board.images[0]! : board.images[1]!;
+  return [hudPanel(image.node, image.textureName, assets.textures.get(image.textureName)!, image.rect)];
+}
+
+/** talisman/uiEffect: the five keys, the next one to press big, the pressed ones lit. */
+function talismanCommands(assets: ItemHudAssets,
+  talisman: NonNullable<ItemHudState["talisman"]>): HudPanelCommand[] {
+  const panels = assets.talisman;
+  if (!panels) return [];
+  const commands: HudPanelCommand[] = [];
+  talisman.keys.slice(0, panels.keys.length).forEach((key, index) => {
+    const { panel, big } = panels.keys[index]!;
+    const current = index === talisman.done;
+    const name = `talisman_${key}_${index < talisman.done ? "press" : "normal"}${current ? "_big" : ""}`;
+    const texture = assets.textures.get(name);
+    if (texture) commands.push(hudPanel(current ? big.node : panel.node, name, texture,
+      current ? big.rect : panel.rect));
+  });
+  return commands;
 }
 
 function balloonTexture(node: HudNode, assets: ItemHudAssets): string {
@@ -267,27 +366,39 @@ function logCommands(assets: ItemHudAssets, input: ItemHudFrameInput, index: num
   return commands;
 }
 
+/** The changer rows to draw: Alt (slotChanger / changerinfo) and Z (itemChanger / retryInfo). */
+export function changerRows(state: ItemHudState):
+  Array<{ which: "slot" | "item"; count: number | "infinite"; usable: boolean } | undefined> {
+  const shown = (count: unknown): count is number | "infinite" =>
+    count === "infinite" || (Number.isInteger(count) && (count as number) > 0);
+  const changers = state.changers;
+  const rows: Array<[("slot" | "item"), unknown, boolean]> = changers
+    ? [["slot", changers.slot, changers.slotUsable], ["item", changers.item, changers.itemUsable]]
+    : [["slot", state.slotChanger, true], ["item", state.itemChanger, true]];
+  return rows.map(([which, count, usable]) => shown(count) ? { which, count, usable } : undefined);
+}
+
 function changerCommands(assets: ItemHudAssets, state: ItemHudState): HudPanelCommand[] {
   const commands: HudPanelCommand[] = [];
   const offset = changerOffset(slotRowRight(state.capacity));
   const changer = assets.textures.get("changer")!;
   const digits = assets.textures.get("time_num")!;
   const infinity = assets.textures.get("changerItem_num_infinite")!;
-  const rows: Array<[ChangerRow, ItemHudState["slotChanger"]]> = [
-    [assets.changers.slot, state.slotChanger], [assets.changers.item, state.itemChanger],
-  ];
-  for (const [row, count] of rows) {
-    if (count !== "infinite" && !(Number.isInteger(count) && count > 0)) continue;
+  for (const entry of changerRows(state)) {
+    if (!entry) continue;
+    const { count, usable } = entry;
+    const row: ChangerRow = entry.which === "slot" ? assets.changers.slot : assets.changers.item;
     commands.push(hudPanel(row.key.node, "changer", changer, moved(row.key.rect, offset.x, offset.y),
-      normalized(row.keyUv.enabled, changer)));
+      normalized(usable ? row.keyUv.enabled : row.keyUv.disabled, changer)));
     commands.push(hudPanel(row.card.node, "changer", changer,
-      moved(row.card.rect, offset.x, offset.y), normalized(row.cardUv.enabled, changer)));
+      moved(row.card.rect, offset.x, offset.y), normalized(usable ? row.cardUv.enabled : row.cardUv.disabled,
+        changer)));
     if (count === "infinite") {
       commands.push(hudPanel(row.infinity.node, "changerItem_num_infinite", infinity,
         moved(row.infinity.rect, offset.x, offset.y)));
       continue;
     }
-    const text = `x${Math.min(count, 99)}`;
+    const text = `x${Math.min(count, ITEM_CHANGER_MAX_COUNT)}`;
     const rect = moved(row.number.rect, offset.x, offset.y);
     for (let index = 0; index < text.length; index++) {
       const glyph = row.glyphs.indexOf(text[index]!);
