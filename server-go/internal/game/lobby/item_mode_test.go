@@ -137,12 +137,25 @@ func (ir *itemRace) grant(c *Client, cubeID int, group itemmode.Group, idx int) 
 	return reply
 }
 
-// itemEvents are the item events c received.
+// itemEvents are the item events c received, but the race start's slots
+// push (startPushes).
 func itemEvents(t *testing.T, h *harness, c *Client) []map[string]any {
 	t.Helper()
 	var events []map[string]any
 	for _, event := range h.sink(c).events(t) {
-		if event["type"] == "item" {
+		if event["type"] == "item" && event["reason"] != "start" {
+			events = append(events, event)
+		}
+	}
+	return events
+}
+
+// startPushes are the race start's slots pushes c received.
+func startPushes(t *testing.T, h *harness, c *Client) []map[string]any {
+	t.Helper()
+	var events []map[string]any
+	for _, event := range h.sink(c).events(t) {
+		if event["type"] == "item" && event["reason"] == "start" {
 			events = append(events, event)
 		}
 	}
@@ -341,7 +354,7 @@ func TestItemRequestChecksAndSequence(t *testing.T) {
 	ir.sequences[a] = 0
 	assertEqual(t, ir.reject(a, "swap", nil), "INVALID_SEQUENCE")
 	ir.sequences[a] = 1
-	assertEqual(t, ir.reject(a, "swap", nil), "INVALID_USE") // nothing to swap
+	assertEqual(t, ir.reject(a, "swap", nil), "ITEM_CHANGER_UNAVAILABLE") // no card
 	// From startAt the race runs even before the phase timer fires.
 	setPhase := func(phase string) {
 		h.lobby.mu.Lock()
@@ -349,7 +362,7 @@ func TestItemRequestChecksAndSequence(t *testing.T) {
 		h.lobby.rooms[roomID].phase = phase
 	}
 	setPhase("countdown")
-	assertEqual(t, ir.reject(a, "swap", nil), "INVALID_USE")
+	assertEqual(t, ir.reject(a, "swap", nil), "ITEM_CHANGER_UNAVAILABLE")
 	setPhase("racing")
 	ir.sequences[a] = 5
 	assertEqual(t, ir.reject(a, "swap", nil), "INVALID_SEQUENCE")
@@ -404,9 +417,12 @@ func TestItemRequestChecksAndSequence(t *testing.T) {
 
 // teamItemRace starts an item team race of a1, b1, a2, b2 (players 0..3;
 // a = team 1) placed b1, a1, b2, a2 by their motion frames.
-func teamItemRace(t *testing.T) (*harness, *itemRace, []*Client) {
+func teamItemRace(t *testing.T, setup ...func(*harness)) (*harness, *itemRace, []*Client) {
 	t.Helper()
 	h := newHarness(t)
+	for _, f := range setup {
+		f(h)
+	}
 	players := h.connectN(4)
 	ir := h.startItemRace(players, "itemTeamCombine")
 	for i, p := range []*Client{players[1], players[0], players[3], players[2]} {
@@ -422,9 +438,10 @@ func TestItemGrantsByLiveRank(t *testing.T) {
 	// and high the banana, mid the EMP, low the devil.
 	reply := ir.rawReply(b1, "cube", map[string]any{"cubeId": 3, "capacity": 2})
 	assertEqual(t, keysOf(t, []byte(reply)), []string{"type", "roomId", "raceId", "action", "sequence",
-		"cubeId", "itemId", "slots"})
+		"cubeId", "itemId", "slots", "changers"})
 	assertEqual(t, decodeObject(t, []byte(reply)), map[string]any{"type": "item", "roomId": ir.roomID,
-		"raceId": ir.raceID, "action": "grant", "sequence": 1, "cubeId": 3, "itemId": 8, "slots": []int{8, -1}})
+		"raceId": ir.raceID, "action": "grant", "sequence": 1, "cubeId": 3, "itemId": 8, "slots": []int{8, -1},
+		"changers": map[string]any{"slot": 0, "item": 0, "itemArmed": true}})
 	for _, c := range []struct {
 		racer *Client
 		want  int
@@ -485,10 +502,10 @@ func TestItemCubeAbuseAndFullSlots(t *testing.T) {
 	// The same cube again: nothing, whatever capacity it claims now.
 	abusing := ir.rawReply(p0, "cube", map[string]any{"cubeId": 5, "capacity": 3})
 	assertEqual(t, keysOf(t, []byte(abusing)), []string{"type", "roomId", "raceId", "action", "sequence",
-		"cubeId", "itemId", "reason", "slots"})
+		"cubeId", "itemId", "reason", "slots", "changers"})
 	assertEqual(t, decodeObject(t, []byte(abusing)), map[string]any{"type": "item", "roomId": ir.roomID,
 		"raceId": ir.raceID, "action": "grant", "sequence": 2, "cubeId": 5, "itemId": nil,
-		"reason": "abusing", "slots": []int{8, -1}})
+		"reason": "abusing", "slots": []int{8, -1}, "changers": map[string]any{"slot": 0, "item": 0, "itemArmed": true}})
 	assertEqual(t, ir.send(p0, "cube", map[string]any{"cubeId": 6, "capacity": 2})["slots"], []int{8, 8})
 	full := ir.send(p0, "cube", map[string]any{"cubeId": 7, "capacity": 2})
 	assertEqual(t, []any{full["itemId"], full["reason"], full["slots"]}, []any{nil, "full", []int{8, 8}})
@@ -506,7 +523,7 @@ func TestItemUseTargetsHitsAndBroadcasts(t *testing.T) {
 	event := map[string]any{"type": "item", "roomId": ir.roomID, "raceId": ir.raceID, "action": "used",
 		"playerId": a2.playerID, "useId": 1, "itemId": 33, "targets": []string{b1.playerID},
 		"startAt": h.clock.Now(), "etaMs": 1500} // 300 m at 100 m/s, capped by Use 1500
-	assertEqual(t, without(used, "sequence", "slots"), event)
+	assertEqual(t, without(used, "sequence", "slots", "changers"), event)
 	assertEqual(t, []any{used["sequence"], used["slots"]}, []any{2, []int{-1, -1}})
 	for _, peer := range []*Client{a1, b1, b2} {
 		assertEqual(t, itemEvents(t, h, peer), []map[string]any{event})
@@ -543,7 +560,8 @@ func TestItemUseTargetsHitsAndBroadcasts(t *testing.T) {
 }
 
 func TestItemSlotLock(t *testing.T) {
-	h, ir, players := teamItemRace(t)
+	// KART_ITEM_CHANGERS=infinite: everyone may swap.
+	h, ir, players := teamItemRace(t, func(h *harness) { h.lobby.itemChangers = true })
 	a1, b2 := players[0], players[3]
 	ir.grant(b2, 1, itemmode.GroupMid, itemmode.SlotLock)
 	ir.grant(a1, 1, itemmode.GroupHigh, itemmode.Rocket)
@@ -564,7 +582,8 @@ func TestItemSlotLock(t *testing.T) {
 	assertEqual(t, ir.reject(a1, "use", map[string]any{"itemId": 7}), "ITEM_LOCKED")
 	swapped := ir.send(a1, "swap", nil)
 	assertEqual(t, without(swapped, "sequence"), map[string]any{"type": "item", "roomId": ir.roomID,
-		"raceId": ir.raceID, "action": "slots", "slots": []int{11, 7}})
+		"raceId": ir.raceID, "action": "slots", "slots": []int{11, 7},
+		"changers": map[string]any{"slot": -1, "item": -1, "itemArmed": true}})
 	angel := ir.send(a1, "use", map[string]any{"itemId": 11})
 	assertEqual(t, angel["targets"], []string{a1.playerID, players[2].playerID})
 	assertEqual(t, ir.reject(a1, "use", map[string]any{"itemId": 7}), "ITEM_LOCKED")
@@ -583,7 +602,7 @@ func TestItemScanShowsOpponentSlots(t *testing.T) {
 	assertEqual(t, used["targets"], []string{b1.playerID, b2.playerID})
 	scan := func(subject *Client, slots []int) map[string]any {
 		return map[string]any{"type": "item", "roomId": ir.roomID, "raceId": ir.raceID, "action": "scan",
-			"playerId": subject.playerID, "slots": slots, "until": start + 8_000}
+			"playerId": subject.playerID, "slots": slots, "until": start + 8_500} // Use 500 + Affect 8000
 	}
 	scans := func(c *Client) []map[string]any {
 		var out []map[string]any
@@ -607,7 +626,7 @@ func TestItemScanShowsOpponentSlots(t *testing.T) {
 			t.Fatalf("%s was shown scans", p.name)
 		}
 	}
-	h.clock.Advance(7 * time.Second)
+	h.clock.Advance(7500 * time.Millisecond)
 	ir.grant(a2, 2, itemmode.GroupLow, itemmode.Booster)
 	assertEqual(t, len(scans(b1)), 3)
 }
@@ -666,7 +685,8 @@ func TestItemEscapeAndSlots(t *testing.T) {
 	ir.grant(b2, 2, itemmode.GroupMid, itemmode.Booster)
 	slots := ir.send(b2, "slots", nil)
 	assertEqual(t, without(slots, "sequence"), map[string]any{"type": "item", "roomId": ir.roomID,
-		"raceId": ir.raceID, "action": "slots", "slots": []int{itemmode.WaterFly, itemmode.Booster}})
+		"raceId": ir.raceID, "action": "slots", "slots": []int{itemmode.WaterFly, itemmode.Booster},
+		"changers": map[string]any{"slot": 0, "item": 0, "itemArmed": true}})
 	assertEqual(t, slots["sequence"], ir.sequences[b2])
 	fly := ir.send(b2, "use", map[string]any{"itemId": itemmode.WaterFly})
 	assertEqual(t, fly["targets"], []string{a1.playerID})
@@ -762,8 +782,8 @@ func TestItemTestGrants(t *testing.T) {
 	assertEqual(t, []any{grant["itemId"], grant["reason"], grant["slots"]}, []any{float64(7), nil, []int{7, -1}})
 	abusing := ir.send(p0, "cube", map[string]any{"cubeId": 1, "capacity": 2, "testItemId": 2})
 	assertEqual(t, []any{abusing["itemId"], abusing["reason"]}, []any{nil, "abusing"})
-	assertEqual(t, ir.reject(p0, "cube", map[string]any{"cubeId": 2, "capacity": 2, "testItemId": 110}),
-		"INVALID_TESTITEMID") // the slot lock is a team item
+	assertEqual(t, ir.reject(p0, "cube", map[string]any{"cubeId": 2, "capacity": 2, "testItemId": 200}),
+		"INVALID_TESTITEMID") // no such race item
 	assertEqual(t, ir.reject(p0, "cube", map[string]any{"cubeId": 2, "capacity": 2, "testItemId": "rocket"}),
 		"INVALID_TESTITEMID")
 	used := ir.send(p0, "use", map[string]any{"itemId": 7, "targetId": p1.playerID})

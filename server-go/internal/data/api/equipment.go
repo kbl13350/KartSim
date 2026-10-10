@@ -155,10 +155,11 @@ func writeItemNotOwned(w http.ResponseWriter, missing []contract.EquipmentSlot) 
 }
 
 // verifyEquipment is the game nodes' ownership check (contract
-// PathEquipmentVerify): 200 {ok:true, validUntil?}, or 409 ITEM_NOT_OWNED
-// with the slots in missing. validUntil is the earliest expiry of the
-// rented items checked; a node must not trust the answer after it. An
-// unknown account owns nothing.
+// PathEquipmentVerify): 200 {ok:true, validUntil?, changers}, or 409
+// ITEM_NOT_OWNED with the slots in missing. validUntil is the earliest
+// expiry of the rented items checked; a node must not trust the answer
+// after it. changers are the account's item changer cards. An unknown
+// account owns nothing.
 func (a *API) verifyEquipment(w http.ResponseWriter, r *http.Request) error {
 	var request contract.EquipmentVerifyRequest
 	if err := decodeJSON(w, r, &request); err != nil {
@@ -182,7 +183,15 @@ func (a *API) verifyEquipment(w http.ResponseWriter, r *http.Request) error {
 	if len(missing) > 0 {
 		return writeItemNotOwned(w, missing)
 	}
-	return writeJSON(w, http.StatusOK, contract.EquipmentVerifyResponse{OK: true, ValidUntil: validUntil})
+	// The item changer cards an item race starting now gives the racer
+	// (rewrite/ITEM_MODE.md C.6).
+	cards, err := a.store.Changers(r.Context(), request.AccountID, a.nowMillis())
+	if err != nil {
+		return err
+	}
+	return writeJSON(w, http.StatusOK, contract.EquipmentVerifyResponse{OK: true, ValidUntil: validUntil,
+		Changers: &contract.Changers{Slot: cards.Slot, Item: cards.Item, SlotUntil: cards.SlotUntil,
+			ItemUntil: cards.ItemUntil}})
 }
 
 // starterFallback is what replaces equipment the account no longer owns

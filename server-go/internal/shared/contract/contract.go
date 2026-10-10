@@ -117,6 +117,9 @@ type RaceResult struct {
 	// furthest route progress its motion frames reported while racing,
 	// bounded by the time since the start (the distance careers).
 	DistanceMeters int `json:"distanceMeters,omitempty"`
+	// Titles are an item race racer's result titles (rewrite/ITEM_MODE.md
+	// C.9: perfectAim, ironWall, …), as race.results shows them.
+	Titles []string `json:"titles,omitempty"`
 }
 
 // RaceSettlement is sent once per finished race. Snapshot is the outcome
@@ -143,6 +146,11 @@ type RaceSettlement struct {
 	ExpRate    *float64 `json:"expRate,omitempty"`
 	LucciRate  *float64 `json:"lucciRate,omitempty"`
 	FinishedAt int64    `json:"finishedAt"`
+	// Consumed are the consumables racers used up in the race (an item
+	// race's changer cards, rewrite/ITEM_MODE.md C.6). The data service
+	// takes them from the accounts' inventories in the settlement's
+	// transaction (never below 0, once per RaceID).
+	Consumed []ConsumedItem `json:"consumed,omitempty"`
 }
 
 // RaceReward is the experience and lucci one racer earned in a race.
@@ -151,6 +159,34 @@ type RaceReward struct {
 	AccountID string `json:"accountId,omitempty"`
 	Exp       int    `json:"exp"`
 	Lucci     int    `json:"lucci"`
+	// BonusLucci is an item race's in-race lucci (rewrite/ITEM_MODE.md C.8,
+	// at most MaxBonusLucci): credited on top of Lucci, without the rate
+	// (race.rewards shows the sum).
+	BonusLucci int `json:"bonusLucci,omitempty"`
+}
+
+// MaxBonusLucci bounds a racer's in-race lucci in one race.
+const MaxBonusLucci = 200
+
+// The item changer cards (category 7 slotChanger, rewrite/ITEM_MODE.md C.6).
+const (
+	CategoryChanger = 7
+	// ItemSlotChanger is the 道具换位卡 (counted), ItemItemChanger the
+	// 道具变更卡 (counted); ItemItemVoucher the 道具变更卡使用券 and
+	// ItemSlotVoucher the 道具换位卡使用券 (rentals: unlimited while valid).
+	ItemSlotChanger = 1
+	ItemItemChanger = 2
+	ItemItemVoucher = 3
+	ItemSlotVoucher = 4
+)
+
+// ConsumedItem is how many of an inventory item one racer used up.
+type ConsumedItem struct {
+	PlayerID  string `json:"playerId"`
+	AccountID string `json:"accountId"`
+	Category  int    `json:"category"`
+	ItemID    int    `json:"itemId"`
+	Count     int    `json:"count"`
 }
 
 // RaceSettlementResponse reports whether the race was new.
@@ -214,4 +250,18 @@ type EquipmentVerifyResponse struct {
 	// that are rentals; absent when all are permanent. A node must not reuse
 	// a positive answer after this time.
 	ValidUntil *int64 `json:"validUntil,omitempty"`
+	// Changers are the account's item changer cards, which an item race
+	// reads from the check made at its start.
+	Changers *Changers `json:"changers,omitempty"`
+}
+
+// Changers are an account's item changer cards (rewrite/ITEM_MODE.md C.6):
+// Slot the 道具换位卡 (7:1) count and Item the 道具变更卡 (7:2) count, each
+// -1 while the account holds an unexpired voucher (7:4 / 7:3), whose expiry
+// (Unix ms; absent for a permanent one) is SlotUntil / ItemUntil.
+type Changers struct {
+	Slot      int    `json:"slot"`
+	Item      int    `json:"item"`
+	SlotUntil *int64 `json:"slotUntil,omitempty"`
+	ItemUntil *int64 `json:"itemUntil,omitempty"`
 }

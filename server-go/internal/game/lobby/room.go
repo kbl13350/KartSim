@@ -208,6 +208,9 @@ type resultRow struct {
 	rank      int
 	elapsedMs *int
 	points    int
+	// titles are an item race racer's result titles (ITEM_MODE.md C.9);
+	// nil in other races.
+	titles []string
 }
 
 // giantState is the last accepted giant state of one racer.
@@ -228,6 +231,8 @@ type race struct {
 	rosterNames     map[string]string
 	rosterTeams     map[string]int // 0 in individual mode
 	startSlots      []int          // slot of rosterIDs[i]
+	// rosterEquipment is the frozen equipment of rosterIDs[i].
+	rosterEquipment []json.RawMessage
 	loadedIDs       []string
 	returnedIDs     []string
 	finishes        []finishRow
@@ -273,6 +278,17 @@ type race struct {
 	item          obj
 	items         *itemmode.Race
 	itemSequences map[string]int
+	// itemStartPending: the countdown started and the racers' start slots
+	// (the 迅 item karts' start item, everyone's changers) go out after the
+	// snapshot announcing it.
+	itemStartPending bool
+	// perfectStart: the racer's finish reported a successful start boost;
+	// lapTrailed: the racer crossed the line at least once while not
+	// leading (the 完美起步 / 唯我独尊 titles).
+	perfectStart map[string]bool
+	lapTrailed   map[string]bool
+	// bonusLucci is each rewarded racer's in-race lucci (settled apart).
+	bonusLucci map[string]int
 }
 
 // routeSample is a racer's latest route progress from its motion frames.
@@ -358,6 +374,9 @@ func (r *race) snapshot() obj {
 			}
 			rows[i] = obj{{"playerId", row.playerID}, {"rank", row.rank},
 				{"elapsedMs", elapsed}, {"points", row.points}}
+			if row.titles != nil {
+				rows[i] = append(rows[i], field{"titles", row.titles})
+			}
 		}
 		value = append(value, field{"results", rows})
 	}

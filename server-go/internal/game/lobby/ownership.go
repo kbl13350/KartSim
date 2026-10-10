@@ -9,6 +9,8 @@ import (
 	"slices"
 	"sync"
 	"time"
+
+	"kartsim/internal/game/itemmode"
 )
 
 // Ownership asks the data service whether an account owns every item of an
@@ -27,6 +29,11 @@ type OwnershipAnswer struct {
 	// (contract.EquipmentVerifyResponse.ValidUntil); zero when every item is
 	// permanent. A positive answer is never reused after it.
 	ValidUntil time.Time
+	// Changers are the account's item changer cards
+	// (contract.EquipmentVerifyResponse.Changers): counts, or
+	// itemmode.Infinite with a valid voucher; nil when not reported. An item
+	// race reads them from a check made at its start.
+	Changers *itemmode.Changers
 }
 
 // Limits of the equipment checks (ECONOMY.md 6). The data service call is
@@ -86,9 +93,11 @@ func errNotOwned() error { return fail(http.StatusForbidden, "ITEM_NOT_OWNED") }
 
 type verifyKey struct{ account, equipment string }
 
-// ownershipCheck carries one command's own answers across its re-runs.
+// ownershipCheck carries one command's own answers across its re-runs, and
+// the changer cards each account's answer reported.
 type ownershipCheck struct {
-	answers map[verifyKey]verifyOutcome
+	answers  map[verifyKey]verifyOutcome
+	changers map[string]itemmode.Changers
 }
 
 func (k *ownershipCheck) set(item verifyItem, outcome verifyOutcome) {
@@ -202,13 +211,29 @@ func (s *sessionOwnership) take(now time.Time) bool {
 // verifier, a guest, no equipment), else ITEM_NOT_OWNED, 503
 // DATA_SERVICE_UNAVAILABLE, 429 RATE_LIMITED, or a *verifyNeeded.
 func (l *Lobby) owns(check *ownershipCheck, c *Client, account string, equipment json.RawMessage) error {
+	return l.ownsChecked(check, c, account, equipment, false)
+}
+
+// ownsChecked is owns; fresh skips the session's remembered answers, so the
+// command asks the data service itself (an item race's start, which reads
+// the changer cards of that answer). When that call cannot be made (the
+// data service is unavailable, or the connection's budget is spent) a
+// remembered positive answer still stands, without changer cards.
+func (l *Lobby) ownsChecked(check *ownershipCheck, c *Client, account string, equipment json.RawMessage, fresh bool) error {
 	if l.ownership == nil || account == "" || equipment == nil {
 		return nil
 	}
 	if check != nil {
 		if outcome, ok := check.answers[verifyKey{account, string(equipment)}]; ok {
+			if fresh && (outcome == outcomeUnavailable || outcome == outcomeRateLimited) &&
+				c.ownership.lookup(account, equipment, l.wall()) == cacheOwned {
+				return nil
+			}
 			return outcome.err()
 		}
+	}
+	if fresh {
+		return &verifyNeeded{items: []verifyItem{{client: c, account: account, equipment: equipment}}}
 	}
 	switch c.ownership.lookup(account, equipment, l.wall()) {
 	case cacheOwned:
@@ -259,6 +284,12 @@ func (l *Lobby) verify(ctx context.Context, c *Client, check *ownershipCheck, it
 			continue
 		}
 		item.client.ownership.remember(item.account, item.equipment, answers[i], now)
+		if answers[i].Changers != nil {
+			if check.changers == nil {
+				check.changers = map[string]itemmode.Changers{}
+			}
+			check.changers[item.account] = *answers[i].Changers
+		}
 		if answers[i].Owned {
 			check.set(item, outcomeOwned)
 		} else {

@@ -1,6 +1,7 @@
 package store
 
 import (
+	"cmp"
 	"context"
 	"database/sql"
 	"errors"
@@ -33,6 +34,17 @@ type Settlement struct {
 	Infinite    bool
 	Item        bool
 	WinningTeam int
+	// Consumed are the consumables racers used up (an item race's changer
+	// cards), taken from the inventories when the race is new.
+	Consumed []ConsumedItem
+}
+
+// ConsumedItem is how many of an inventory stack an account used up.
+type ConsumedItem struct {
+	AccountID string
+	Category  int
+	ItemID    int
+	Count     int
 }
 
 // SettledReward is what one account earned in a race.
@@ -75,7 +87,9 @@ type SettledResult struct {
 // only the best ranked is stored. In the same transaction each rewarded
 // account is credited its exp and lucci within the daily race caps, with
 // level-ups (ledger reasons "race" and "levelup"). Rewards of unknown
-// accounts are skipped.
+// accounts are skipped. The consumables racers used up (Consumed) are taken
+// from their stacks in the same transaction, never below 0; a duplicate
+// race takes nothing again.
 func (s *Store) SaveSettlement(ctx context.Context, in Settlement) (duplicate bool, credited []CreditedReward, err error) {
 	in.Results = bestResultPerAccount(in.Results)
 	err = inEconomyTx(ctx, s.db, nil, func(tx *sql.Tx) error {
@@ -130,10 +144,41 @@ func (s *Store) SaveSettlement(ctx context.Context, in Settlement) (duplicate bo
 				}
 			}
 		}
-		credited, err = s.creditRaceRewards(ctx, tx, in)
-		return err
+		if credited, err = s.creditRaceRewards(ctx, tx, in); err != nil {
+			return err
+		}
+		return consume(ctx, tx, in.Consumed, in.CreatedAt)
 	})
 	return duplicate, credited, err
+}
+
+// consume takes used-up consumables from their stacks (never below 0), in
+// account, category and item order. A stack the account does not hold, or
+// has used up, stays as it is.
+func consume(ctx context.Context, tx *sql.Tx, consumed []ConsumedItem, at int64) error {
+	totals := map[ConsumedItem]int{}
+	for _, item := range consumed {
+		if item.AccountID != "" && item.Count > 0 {
+			key := ConsumedItem{AccountID: item.AccountID, Category: item.Category, ItemID: item.ItemID}
+			totals[key] = min(totals[key]+item.Count, MaxQuantity)
+		}
+	}
+	keys := make([]ConsumedItem, 0, len(totals))
+	for key := range totals {
+		keys = append(keys, key)
+	}
+	slices.SortFunc(keys, func(a, b ConsumedItem) int {
+		return cmp.Or(cmp.Compare(a.AccountID, b.AccountID), cmp.Compare(a.Category, b.Category),
+			cmp.Compare(a.ItemID, b.ItemID))
+	})
+	for _, key := range keys {
+		if _, err := tx.ExecContext(ctx, `UPDATE inventory_items SET quantity = GREATEST(quantity - ?, 0),
+			updated_at = ? WHERE account_id = ? AND category = ? AND item_id = ? AND system_key = '' AND quantity > 0`,
+			totals[key], at, key.AccountID, key.Category, key.ItemID); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 // bestResultPerAccount keeps, for each account id, only its best ranked

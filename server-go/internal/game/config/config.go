@@ -49,6 +49,10 @@ type Config struct {
 	// (KART_ITEM_TEST_GRANTS, default false): a development switch for test
 	// bots and manual testing, never for a public deployment.
 	ItemTestGrants bool
+	// ItemChangersInfinite gives every item racer unlimited item changers
+	// (KART_ITEM_CHANGERS=infinite; default inventory: the cards and
+	// vouchers each account owns), a playtest switch.
+	ItemChangersInfinite bool
 	// Memory guards (DESIGN.md 4.5).
 	MaxConnections  int           // WebSockets including those without hello
 	MaxRooms        int           // rooms on this node
@@ -171,6 +175,14 @@ func FromEnv(getenv func(string) string) (Config, error) {
 		problems = append(problems, errors.New("KART_ITEM_TEST_GRANTS 必须是 true 或 false"))
 	}
 	cfg.ItemTestGrants = itemTestGrants
+
+	switch changers := env("KART_ITEM_CHANGERS", "inventory"); changers {
+	case "inventory":
+	case "infinite":
+		cfg.ItemChangersInfinite = true
+	default:
+		problems = append(problems, errors.New("KART_ITEM_CHANGERS 必须是 inventory 或 infinite"))
+	}
 
 	webRTC, ok := parseBool(env("KART_WEBRTC", "true"))
 	if !ok {

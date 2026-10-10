@@ -110,9 +110,29 @@ func (rc *race) recordProgress(playerID string, frame []byte, now int64) {
 		return
 	}
 	distance = min(distance, float64(now-*rc.startAt)/1000*maxRaceSpeed+progressSlack)
-	rc.current[playerID] = routeSample{distance: distance,
-		lap: int(binary.LittleEndian.Uint32(frame[lapOffset:]))}
+	previous, seen := rc.current[playerID]
+	sample := routeSample{distance: distance, lap: int(binary.LittleEndian.Uint32(frame[lapOffset:]))}
+	rc.current[playerID] = sample
 	if distance > rc.progress[playerID] {
 		rc.progress[playerID] = distance
 	}
+	if rc.items != nil && seen && sample.lap > previous.lap && !rc.leads(playerID) {
+		// Crossed the line while not leading: no 唯我独尊 (ITEM_MODE.md C.9).
+		rc.lapTrailed[playerID] = true
+	}
+}
+
+// leads reports whether a racer leads the live order: nobody has finished
+// and no other racer still in the race is further along the route.
+func (rc *race) leads(playerID string) bool {
+	if len(rc.finishes) > 0 {
+		return false
+	}
+	distance := rc.current[playerID].distance
+	for _, id := range rc.loadedIDs {
+		if id != playerID && !rc.isOut(id) && rc.current[id].distance > distance {
+			return false
+		}
+	}
+	return true
 }

@@ -116,6 +116,11 @@ type Options struct {
 	// ("testItemId", KART_ITEM_TEST_GRANTS): a development switch for test
 	// bots; otherwise such a request answers ITEM_TEST_GRANTS_DISABLED.
 	ItemTestGrants bool
+	// ItemChangersInfinite gives every item racer unlimited item changers
+	// (KART_ITEM_CHANGERS=infinite, a playtest switch like the original's
+	// infinite changers at PC cafés); otherwise each racer has the cards
+	// and vouchers it owns.
+	ItemChangersInfinite bool
 }
 
 // Client is one WebSocket connection. Its fields are guarded by Lobby.mu.
@@ -166,6 +171,9 @@ type Lobby struct {
 	items       *itemmode.Data
 	itemRandom  func() itemmode.Random
 	itemTests   bool
+	// itemChangers gives every item racer unlimited changers
+	// (KART_ITEM_CHANGERS=infinite).
+	itemChangers bool
 
 	// verifySlots bounds the equipment checks in flight (a semaphore).
 	verifySlots chan struct{}
@@ -195,26 +203,27 @@ var (
 // New returns an empty lobby.
 func New(opts Options) *Lobby {
 	l := &Lobby{
-		nodeID:      opts.NodeID,
-		clock:       opts.Clock,
-		wall:        opts.WallClock,
-		presence:    opts.Presence,
-		tickets:     opts.Tickets,
-		recorder:    opts.Recorder,
-		ownership:   opts.Ownership,
-		allowGuests: opts.AllowGuests,
-		maxPlayers:  opts.MaxPlayers,
-		maxRooms:    opts.MaxRooms,
-		busy:        opts.Busy,
-		rates:       opts.Rates,
-		log:         opts.Logger,
-		items:       opts.ItemMode,
-		itemRandom:  opts.ItemRandom,
-		itemTests:   opts.ItemTestGrants,
-		verifySlots: make(chan struct{}, maxConcurrentVerifies),
-		rooms:       map[string]*room{},
-		clients:     map[string]*Client{},
-		pending:     map[*Client]pendingHello{},
+		nodeID:       opts.NodeID,
+		clock:        opts.Clock,
+		wall:         opts.WallClock,
+		presence:     opts.Presence,
+		tickets:      opts.Tickets,
+		recorder:     opts.Recorder,
+		ownership:    opts.Ownership,
+		allowGuests:  opts.AllowGuests,
+		maxPlayers:   opts.MaxPlayers,
+		maxRooms:     opts.MaxRooms,
+		busy:         opts.Busy,
+		rates:        opts.Rates,
+		log:          opts.Logger,
+		items:        opts.ItemMode,
+		itemRandom:   opts.ItemRandom,
+		itemTests:    opts.ItemTestGrants,
+		itemChangers: opts.ItemChangersInfinite,
+		verifySlots:  make(chan struct{}, maxConcurrentVerifies),
+		rooms:        map[string]*room{},
+		clients:      map[string]*Client{},
+		pending:      map[*Client]pendingHello{},
 	}
 	if l.clock == nil {
 		l.clock = SystemClock()
@@ -1315,6 +1324,8 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 		teamGaugeTargets:    map[int]float64{},
 		current:             map[string]routeSample{},
 		itemSequences:       map[string]int{},
+		perfectStart:        map[string]bool{},
+		lapTrailed:          map[string]bool{},
 	}
 	for _, m := range r.members {
 		rc.roster = append(rc.roster, m.snapshot())
@@ -1323,10 +1334,11 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 		rc.rosterAccounts[m.playerID] = m.accountID
 		rc.rosterNames[m.playerID] = m.name
 		rc.rosterTeams[m.playerID] = m.team
+		rc.rosterEquipment = append(rc.rosterEquipment, m.equipment)
 	}
 	r.race = rc
 	addRaceData(r, rc)
-	l.startItemRace(r, rc)
+	l.startItemRace(r, rc, check)
 	r.kickVote = nil
 	r.phase = "loading"
 	r.raceError = ""
@@ -1350,12 +1362,15 @@ func (l *Lobby) membersOwnEquipment(r *room, check *ownershipCheck) error {
 	need := &verifyNeeded{}
 	var refused []*member
 	var failure error
+	// An item race reads each racer's changer cards from a check made now
+	// (ITEM_MODE.md C.6), so remembered answers do not count.
+	fresh := r.gameplay == "item"
 	for _, m := range r.members {
 		session := l.clients[m.playerID]
 		if session == nil {
 			continue
 		}
-		err := l.owns(check, session, m.accountID, m.equipment)
+		err := l.ownsChecked(check, session, m.accountID, m.equipment, fresh)
 		var more *verifyNeeded
 		switch {
 		case err == nil:
@@ -1445,6 +1460,7 @@ func (l *Lobby) startCountdownWhenLoaded(r *room) {
 			func() { l.roadblockTimeout(roomID, raceID) })
 	}
 	r.phase = "countdown"
+	rc.itemStartPending = rc.items != nil
 	roomID, raceID := r.id, rc.id
 	l.schedule(3*time.Second, func() { l.beginRace(roomID, raceID) })
 }
@@ -1504,6 +1520,15 @@ func (l *Lobby) finish(c *Client, in Request) (obj, error) {
 	}
 	if rc.hasFinished(c.playerID) {
 		return nil, fail(http.StatusBadRequest, "ALREADY_FINISHED")
+	}
+	if r.gameplay == "item" && in.hasNonNull("perfectStart") {
+		// Not in Java: an item race finish says whether the start boost
+		// succeeded (the 完美起步 title, ITEM_MODE.md C.9).
+		perfect, err := in.booleanField("perfectStart")
+		if err != nil {
+			return nil, err
+		}
+		rc.perfectStart[c.playerID] = perfect
 	}
 	rc.finishes = append(rc.finishes, finishRow{playerID: c.playerID, elapsedMs: elapsed,
 		serverAt: l.clock.Now()})
@@ -1706,6 +1731,11 @@ func (l *Lobby) finalizeRace(roomID, raceID string) {
 				row.points = finishPoints[index]
 			}
 		}
+		if rc.items != nil {
+			row.titles = rc.items.Titles(id, itemmode.TitleFacts{Finished: row.elapsedMs != nil,
+				First: index == 0 && row.elapsedMs != nil, PerfectStart: rc.perfectStart[id],
+				LapLeader: !rc.lapTrailed[id]})
+		}
 		rc.results = append(rc.results, row)
 	}
 	if r.mode == "team" {
@@ -1784,13 +1814,14 @@ func (l *Lobby) saveResults(r *room) {
 		}
 		results = append(results, contract.RaceResult{PlayerID: row.playerID,
 			AccountID: accountID, Name: name, Rank: row.rank, ElapsedMs: elapsed, Points: row.points,
-			DistanceMeters: int(math.Round(rc.progress[row.playerID]))})
+			DistanceMeters: int(math.Round(rc.progress[row.playerID])), Titles: row.titles})
 	}
 	granted := make([]contract.RaceReward, 0, len(rc.rewards))
 	for _, reward := range rc.rewards {
 		// Guests have no account ID: shown their reward, never credited.
 		granted = append(granted, contract.RaceReward{PlayerID: reward.PlayerID,
-			AccountID: rc.rosterAccounts[reward.PlayerID], Exp: int(reward.Exp), Lucci: int(reward.Lucci)})
+			AccountID: rc.rosterAccounts[reward.PlayerID], Exp: int(reward.Exp), Lucci: int(reward.Lucci),
+			BonusLucci: rc.bonusLucci[reward.PlayerID]})
 	}
 	l.recorder.SaveRace(contract.RaceSettlement{
 		NodeID:     l.nodeID,
@@ -1802,6 +1833,7 @@ func (l *Lobby) saveResults(r *room) {
 		Snapshot:   encode(snapshot),
 		Results:    results,
 		Rewards:    granted,
+		Consumed:   itemConsumed(rc),
 		ExpRate:    settledRate(rc.rates.Exp),
 		LucciRate:  settledRate(rc.rates.Lucci),
 		FinishedAt: l.wall().UnixMilli(),
@@ -1910,6 +1942,17 @@ func (l *Lobby) setRewards(r *room, in rewards.RaceInput, excluded []string) {
 	rc.shownRewards = make([]rewards.RacerReward, len(rc.rewards))
 	for i, reward := range rc.rewards {
 		rc.shownRewards[i] = rewards.RacerReward{PlayerID: reward.PlayerID, Reward: rc.rates.Apply(reward.Reward)}
+	}
+	// An item race's in-race lucci (ITEM_MODE.md C.8) adds to what the
+	// rewarded racers are shown, unscaled; it is settled apart (bonusLucci).
+	if rc.items != nil {
+		rc.bonusLucci = map[string]int{}
+		for i, reward := range rc.rewards {
+			if bonus := rc.items.BonusLucci(reward.PlayerID); bonus > 0 {
+				rc.bonusLucci[reward.PlayerID] = bonus
+				rc.shownRewards[i].Lucci += int64(bonus)
+			}
+		}
 	}
 }
 
@@ -2130,11 +2173,21 @@ func availableSlot(r *room, team int) int {
 }
 
 func (l *Lobby) broadcastRoom(r *room, except *Client) {
+	starting := r.race != nil && r.race.itemStartPending
+	if starting {
+		// The item race start goes out after the snapshot of its countdown,
+		// to every racer: the command's sender too gets that snapshot first
+		// (its reply repeats it).
+		except = nil
+	}
 	payload := encode(roomReply(r))
 	for _, m := range r.members {
 		if recipient := l.clients[m.playerID]; recipient != nil && recipient != except {
 			recipient.emitSnapshot(r.id, payload)
 		}
+	}
+	if starting {
+		l.flushItemStart(r)
 	}
 }
 

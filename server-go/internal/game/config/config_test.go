@@ -154,6 +154,23 @@ func TestItemTestGrantsSetting(t *testing.T) {
 	}
 }
 
+func TestItemChangersSetting(t *testing.T) {
+	cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret}))
+	if err != nil || cfg.ItemChangersInfinite {
+		t.Fatalf("default: infinite changers %v (%v)", cfg.ItemChangersInfinite, err)
+	}
+	for value, want := range map[string]bool{"inventory": false, "infinite": true} {
+		cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret, "KART_ITEM_CHANGERS": value}))
+		if err != nil || cfg.ItemChangersInfinite != want {
+			t.Errorf("KART_ITEM_CHANGERS=%s: %v %v", value, cfg.ItemChangersInfinite, err)
+		}
+	}
+	_, err = FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret, "KART_ITEM_CHANGERS": "true"}))
+	if err == nil || !strings.Contains(err.Error(), "KART_ITEM_CHANGERS") {
+		t.Errorf("KART_ITEM_CHANGERS=true: %v", err)
+	}
+}
+
 func TestWebRTCSettings(t *testing.T) {
 	cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret}))
 	if err != nil {

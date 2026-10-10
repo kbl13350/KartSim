@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"time"
 
+	"kartsim/internal/game/itemmode"
 	"kartsim/internal/game/lobby"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/contract"
@@ -40,6 +41,11 @@ func (o *Ownership) VerifyEquipment(ctx context.Context, accountID string, equip
 		answer := lobby.OwnershipAnswer{Owned: resp.OK}
 		if resp.ValidUntil != nil {
 			answer.ValidUntil = time.UnixMilli(*resp.ValidUntil)
+		}
+		if resp.Changers != nil {
+			// -1 (a voucher) is itemmode.Infinite; nothing below it.
+			answer.Changers = &itemmode.Changers{Slot: max(resp.Changers.Slot, itemmode.Infinite),
+				Item: max(resp.Changers.Item, itemmode.Infinite)}
 		}
 		return answer, nil
 	}

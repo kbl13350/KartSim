@@ -373,8 +373,26 @@ func settlementFromRequest(request contract.RaceSettlement, now int64) (store.Se
 			DistanceMeters: min(max(result.DistanceMeters, 0), maxRaceDistanceMeters),
 		})
 	}
+	// The changer cards item racers used up (rewrite/ITEM_MODE.md C.6): one
+	// entry per racer and card at most, never more than a race could use.
+	if len(request.Consumed) > 2*maxRaceResults {
+		return store.Settlement{}, false
+	}
+	for _, used := range request.Consumed {
+		if !validASCIIID(used.AccountID, 36) || used.Category != contract.CategoryChanger ||
+			(used.ItemID != contract.ItemSlotChanger && used.ItemID != contract.ItemItemChanger) ||
+			used.Count < 1 || used.Count > maxConsumedPerRace {
+			return store.Settlement{}, false
+		}
+		settlement.Consumed = append(settlement.Consumed, store.ConsumedItem{AccountID: used.AccountID,
+			Category: used.Category, ItemID: used.ItemID, Count: used.Count})
+	}
 	return settlement, true
 }
+
+// maxConsumedPerRace bounds the cards one racer can use up in one race (a
+// swap or change per item request is far fewer).
+const maxConsumedPerRace = 10_000
 
 // maxRaceDistanceMeters bounds the distance one racer is credited per race.
 const maxRaceDistanceMeters = 200_000
@@ -488,6 +506,13 @@ func (a *API) raceRewards(request contract.RaceSettlement) []store.SettledReward
 				"maxExp", maxRaceReward.Exp, "maxLucci", maxRaceReward.Lucci)
 			continue
 		}
+		bonus := reward.BonusLucci
+		if bonus < 0 || bonus > contract.MaxBonusLucci {
+			// An item race's in-race lucci is at most 200 (ITEM_MODE.md C.8).
+			a.log.Warn("race bonus lucci out of range; not credited", "node", request.NodeID,
+				"race", request.RaceID, "player", reward.PlayerID, "bonusLucci", bonus, "max", contract.MaxBonusLucci)
+			bonus = 0
+		}
 		if !ratesChosen {
 			expRate = a.settlementRate(request, "exp", request.ExpRate, a.rates.Exp)
 			lucciRate = a.settlementRate(request, "lucci", request.LucciRate, a.rates.Lucci)
@@ -496,7 +521,8 @@ func (a *API) raceRewards(request contract.RaceSettlement) []store.SettledReward
 		credits = append(credits, store.SettledReward{
 			AccountID: reward.AccountID,
 			Exp:       rewards.ApplyRate(int64(reward.Exp), expRate),
-			Lucci:     rewards.ApplyRate(int64(reward.Lucci), lucciRate),
+			// The bonus is credited as earned, without the rate.
+			Lucci: rewards.ApplyRate(int64(reward.Lucci), lucciRate) + int64(bonus),
 		})
 	}
 	return credits

@@ -9,9 +9,11 @@ package lobby
 // sequence is accepted it is used up, even when the request is then
 // rejected (a rejection is an ordinary error reply that changes nothing and
 // does not end the race), so a client numbers its requests without waiting
-// for the replies. Each accepted cube, use and swap reply carries the
-// racer's authoritative slots; a slots request asks for them alone (a
-// client that lost track after a rejection).
+// for the replies. Each accepted cube, use, swap and change reply carries
+// the racer's authoritative slots and changer cards; a slots request asks
+// for them alone (a client that lost track after a rejection). Slots the
+// server changes on its own (a per-kart table's gain, the race start) are
+// pushed as {"action":"slots","reason"}.
 
 import (
 	crand "crypto/rand"
@@ -24,6 +26,7 @@ import (
 	"slices"
 
 	"kartsim/internal/game/itemmode"
+	"kartsim/internal/shared/contract"
 )
 
 const itemRuleset = "web-item-v1"
@@ -96,8 +99,11 @@ func (l *Lobby) chooseTrack(r *room) string {
 
 // startItemRace sets up the item state of a starting item race and its
 // race.item ruleset: individual rooms draw from the indi table, team rooms
-// from the team table.
-func (l *Lobby) startItemRace(r *room, rc *race) {
+// from the team table. Each racer races with its frozen equipment (the
+// passives, ITEM_MODE.md C.2) and the changer cards the start's ownership
+// check reported (C.6; none for guests, or every racer unlimited with
+// KART_ITEM_CHANGERS=infinite).
+func (l *Lobby) startItemRace(r *room, rc *race, check *ownershipCheck) {
 	if r.gameplay != "item" || l.items == nil {
 		return
 	}
@@ -108,14 +114,128 @@ func (l *Lobby) startItemRace(r *room, rc *race) {
 	members := make([]itemmode.Member, len(rc.rosterIDs))
 	for i, id := range rc.rosterIDs {
 		members[i] = itemmode.Member{ID: id, Team: rc.rosterTeams[id]}
+		if i < len(rc.rosterEquipment) {
+			members[i].Equipment = equipmentOf(rc.rosterEquipment[i])
+		}
+		switch account := rc.rosterAccounts[id]; {
+		case l.itemChangers:
+			members[i].Changers = itemmode.Changers{Slot: itemmode.Infinite, Item: itemmode.Infinite}
+		case account != "" && check != nil:
+			members[i].Changers = check.changers[account]
+		}
 	}
-	items, err := itemmode.NewRace(l.items, table, members, l.itemRandom())
+	items, err := itemmode.NewRace(l.items, table, members, l.itemRandom(),
+		itemmode.Options{RaceID: rc.id, TrackID: rc.trackID})
 	if err != nil {
 		l.log.Error("item race not started", "error", err)
 		return
 	}
 	rc.items = items
 	rc.item = obj{{"ruleset", itemRuleset}, {"table", table}}
+}
+
+// equipmentOf reads the passive slots of a frozen equipment document.
+func equipmentOf(raw json.RawMessage) itemmode.Equipment {
+	var doc struct {
+		ItemIDs map[string]int `json:"itemIds"`
+	}
+	if json.Unmarshal(raw, &doc) != nil {
+		return itemmode.Equipment{}
+	}
+	return itemmode.EquipmentFromItemIDs(doc.ItemIDs)
+}
+
+// flushItemStart sends each loaded racer of a countdown that just began its
+// start slots (the 迅 item karts' start item, ITEM_MODE.md C.3) and changer
+// cards: {"action":"slots","reason":"start","itemId"?}.
+func (l *Lobby) flushItemStart(r *room) {
+	rc := r.race
+	if rc == nil || !rc.itemStartPending || rc.items == nil {
+		return
+	}
+	rc.itemStartPending = false
+	var loaded []string
+	for _, id := range rc.loadedIDs {
+		if !rc.isOut(id) {
+			loaded = append(loaded, id)
+		}
+	}
+	for _, notice := range rc.items.Start(loaded) {
+		l.emitSlots(r, notice)
+	}
+}
+
+// emitSlots pushes a racer's slots the server changed on its own, then the
+// scan notices they cause.
+func (l *Lobby) emitSlots(r *room, notice itemmode.SlotsNotice) {
+	if client := l.clients[notice.PlayerID]; client != nil && client.roomID == r.id {
+		event := itemEvent(r, "slots", field{"slots", notice.Slots})
+		event = withIcons(event, notice.Icons)
+		event = append(event, field{"changers", changersObj(r.race.items.Changers(notice.PlayerID))},
+			field{"reason", notice.Reason})
+		if notice.ItemID != itemmode.NoItem {
+			event = append(event, field{"itemId", notice.ItemID})
+		}
+		client.emit(encode(event))
+	}
+	if notice.Reason == itemmode.ReasonGain {
+		l.emitScans(r, r.race.items.ScanNotices(notice.PlayerID, l.clock.Now()))
+	}
+}
+
+// emitLucci tells a racer it earned in-race lucci.
+func (l *Lobby) emitLucci(r *room, notice *itemmode.LucciNotice) {
+	if notice == nil {
+		return
+	}
+	if client := l.clients[notice.PlayerID]; client != nil && client.roomID == r.id {
+		client.emit(encode(itemEvent(r, "lucci", field{"amount", notice.Amount}, field{"reason", notice.Reason})))
+	}
+}
+
+// changersObj is a reply's "changers": the cards left (-1 with a voucher)
+// and whether the item changer may act on slot 0.
+func changersObj(state itemmode.ChangerState) obj {
+	return obj{{"slot", state.Slot}, {"item", state.Item}, {"itemArmed", state.ItemArmed}}
+}
+
+// withIcons adds "slotIcons" (per-slot special booster icon ids, 0 for the
+// item's own icon) when a held item has one.
+func withIcons(event obj, icons []int) obj {
+	if icons != nil {
+		event = append(event, field{"slotIcons", icons})
+	}
+	return event
+}
+
+// slotsReply is a reply carrying the racer's slots and changer cards.
+func (l *Lobby) slotsReply(r *room, playerID string, sequence int) obj {
+	items := r.race.items
+	reply := itemEvent(r, "slots", field{"sequence", sequence}, field{"slots", items.Slots(playerID)})
+	reply = withIcons(reply, items.Icons(playerID))
+	return append(reply, field{"changers", changersObj(items.Changers(playerID))})
+}
+
+// itemConsumed are the changer cards the race used up, for the settlement.
+func itemConsumed(rc *race) []contract.ConsumedItem {
+	if rc.items == nil {
+		return nil
+	}
+	var consumed []contract.ConsumedItem
+	for _, id := range rc.rosterIDs {
+		account := rc.rosterAccounts[id]
+		slot, item := rc.items.Consumed(id)
+		if account == "" {
+			continue
+		}
+		for _, used := range []struct{ itemID, count int }{{contract.ItemSlotChanger, slot}, {contract.ItemItemChanger, item}} {
+			if used.count > 0 {
+				consumed = append(consumed, contract.ConsumedItem{PlayerID: id, AccountID: account,
+					Category: contract.CategoryChanger, ItemID: used.itemID, Count: used.count})
+			}
+		}
+	}
+	return consumed
 }
 
 // itemStandings are the race's standings for item draws and targets: the
@@ -180,18 +300,23 @@ func (l *Lobby) itemCommand(c *Client, in Request) (obj, error) {
 		return l.itemEscape(r, c, in, sequence, now)
 	case "slots":
 		// A resynchronisation: the racer's current slots; nothing changes.
-		return itemEvent(r, "slots", field{"sequence", sequence}, field{"slots", rc.items.Slots(c.playerID)}), nil
+		return l.slotsReply(r, c.playerID, sequence), nil
 	case "swap":
-		slots, notices, err := rc.items.Swap(c.playerID, now, itemStandings(rc))
+		// 道具换位卡 (Alt): a card or the voucher (ITEM_MODE.md C.6).
+		_, notices, err := rc.items.Swap(c.playerID, now, itemStandings(rc))
 		if err != nil {
 			return nil, itemFailure(err)
 		}
 		l.emitScans(r, notices)
-		return itemEvent(r, "slots", field{"sequence", sequence}, field{"slots", slots}), nil
+		return l.slotsReply(r, c.playerID, sequence), nil
 	case "change":
-		// The item changer (道具变更卡, Z) comes with the kart and
-		// accessory abilities (ITEM_MODE.md 9, phase 3).
-		return nil, fail(http.StatusBadRequest, "ITEM_CHANGER_UNAVAILABLE")
+		// 道具变更卡 (Z): a card or the voucher, once per new item.
+		_, _, notices, err := rc.items.Change(c.playerID, now, itemStandings(rc))
+		if err != nil {
+			return nil, itemFailure(err)
+		}
+		l.emitScans(r, notices)
+		return l.slotsReply(r, c.playerID, sequence), nil
 	}
 	return nil, invalid("action")
 }
@@ -230,11 +355,18 @@ func (l *Lobby) itemCube(r *room, c *Client, in Request, sequence int, now int64
 		itemID = grant.ItemID
 	}
 	reply := itemEvent(r, "grant", field{"sequence", sequence}, field{"cubeId", cubeID}, field{"itemId", itemID})
+	if grant.Icon != 0 {
+		reply = append(reply, field{"iconId", grant.Icon})
+	}
 	if grant.Reason != "" {
 		reply = append(reply, field{"reason", grant.Reason})
 	}
-	reply = append(reply, field{"slots", grant.Slots})
+	reply = withIcons(append(reply, field{"slots", grant.Slots}), grant.Icons)
+	reply = append(reply, field{"changers", changersObj(r.race.items.Changers(c.playerID))})
 	l.emitScans(r, notices)
+	if grant.Lucci > 0 {
+		l.emitLucci(r, &itemmode.LucciNotice{PlayerID: c.playerID, Amount: grant.Lucci, Reason: itemmode.LucciItemCube})
+	}
 	return reply, nil
 }
 
@@ -265,9 +397,17 @@ func (l *Lobby) itemUse(r *room, c *Client, in Request, sequence int, now int64)
 	if use.Point != nil {
 		event = append(event, field{"point", pointObj(*use.Point)})
 	}
+	if use.Count > 1 {
+		// A double rocket (useTwoRocket / useTwoGoldRocket, ITEM_MODE.md C.2).
+		event = append(event, field{"count", use.Count})
+	}
 	l.broadcastPeerEvent(r, c, event)
 	l.emitScans(r, result.Notices)
-	return append(slices.Clone(event), field{"sequence", sequence}, field{"slots", result.Slots}), nil
+	for _, gain := range result.Gains {
+		l.emitSlots(r, gain)
+	}
+	reply := withIcons(append(slices.Clone(event), field{"sequence", sequence}, field{"slots", result.Slots}), result.Icons)
+	return append(reply, field{"changers", changersObj(r.race.items.Changers(c.playerID))}), nil
 }
 
 func (l *Lobby) itemPlace(r *room, c *Client, in Request, sequence int, now int64) (obj, error) {
@@ -292,8 +432,14 @@ func (l *Lobby) itemPlace(r *room, c *Client, in Request, sequence int, now int6
 	return append(slices.Clone(event), field{"sequence", sequence}), nil
 }
 
-// hitDefences are the "by" values of a hit report.
-var hitDefences = []string{itemmode.ByShield, itemmode.ByAngel, itemmode.ByEMP, itemmode.ByEscape}
+// hitDefences are the "by" values of a hit report, and hitVariants its
+// "variant" values (ITEM_MODE.md C.7).
+var (
+	hitDefences = []string{itemmode.ByShield, itemmode.ByAngel, itemmode.ByEMP, itemmode.ByEscape,
+		itemmode.ByKart, itemmode.ByPet, itemmode.ByEat}
+	hitVariants = []string{itemmode.VariantSmall, itemmode.VariantHeadband, itemmode.VariantBonus,
+		itemmode.VariantQuick, itemmode.VariantBalloon}
+)
 
 func (l *Lobby) itemHit(r *room, c *Client, in Request, sequence int, now int64) (obj, error) {
 	useID, err := in.integer("useId", 0, math.MaxInt32)
@@ -320,6 +466,21 @@ func (l *Lobby) itemHit(r *room, c *Client, in Request, sequence int, now int64)
 		}
 		by = *value
 	}
+	variant := ""
+	if value, err := in.optionalText("variant", 10); err != nil {
+		return nil, err
+	} else if value != nil {
+		if !slices.Contains(hitVariants, *value) {
+			return nil, invalid("variant")
+		}
+		variant = *value
+	}
+	shot := 0
+	if in.hasNonNull("shot") {
+		if shot, err = in.integer("shot", 0, 1); err != nil {
+			return nil, err
+		}
+	}
 	hazardID := 0
 	if useID == 0 {
 		// A track-placed hazard (banana, mine, waterMine) has no use.
@@ -328,7 +489,7 @@ func (l *Lobby) itemHit(r *room, c *Client, in Request, sequence int, now int64)
 		}
 	}
 	hit, fresh, err := r.race.items.Hit(itemmode.HitRequest{VictimID: c.playerID, UseID: useID,
-		ItemID: itemID, Result: result, By: by, HazardID: hazardID, Now: now})
+		ItemID: itemID, Result: result, By: by, Variant: variant, Shot: shot, HazardID: hazardID, Now: now})
 	if err != nil {
 		return nil, itemFailure(err)
 	}
@@ -343,6 +504,12 @@ func (l *Lobby) itemHit(r *room, c *Client, in Request, sequence int, now int64)
 	if hit.By != "" {
 		event = append(event, field{"by", hit.By})
 	}
+	if hit.Variant != "" {
+		event = append(event, field{"variant", hit.Variant})
+	}
+	if hit.Shot != 0 {
+		event = append(event, field{"shot", hit.Shot})
+	}
 	if hit.HazardID != 0 {
 		event = append(event, field{"hazardId", hit.HazardID})
 	}
@@ -350,9 +517,13 @@ func (l *Lobby) itemHit(r *room, c *Client, in Request, sequence int, now int64)
 		event = append(event, field{"removed", true})
 	}
 	// A repeated report answers the recorded hit again without telling the
-	// others twice.
+	// others twice, nor gaining or paying again.
 	if fresh {
 		l.broadcastPeerEvent(r, c, event)
+		if hit.Gain != nil {
+			l.emitSlots(r, *hit.Gain)
+		}
+		l.emitLucci(r, hit.Lucci)
 	}
 	return append(slices.Clone(event), field{"sequence", sequence}), nil
 }

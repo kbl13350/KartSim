@@ -208,6 +208,70 @@ func (s *Store) OwnedAmong(ctx context.Context, accountID string, refs []ItemRef
 	return owned, rows.Err()
 }
 
+// The item changer cards (category 7, rewrite/ITEM_MODE.md C.6): the
+// 道具换位卡 (7:1) and 道具变更卡 (7:2) stack; the 道具变更卡使用券 (7:3)
+// and 道具换位卡使用券 (7:4) are rentals, unlimited while they last.
+const (
+	CategoryChanger = 7
+	itemSlotChanger = 1
+	itemItemChanger = 2
+	itemItemVoucher = 3
+	itemSlotVoucher = 4
+)
+
+// ChangerCards are an account's item changer cards: the slot (7:1) and
+// item (7:2) card counts, each -1 while the matching voucher (7:4 / 7:3) is
+// unexpired; SlotUntil / ItemUntil are such a voucher's expiry (nil when it
+// is permanent).
+type ChangerCards struct {
+	Slot, Item           int
+	SlotUntil, ItemUntil *int64
+}
+
+// Changers returns an account's item changer cards at now (Unix ms).
+func (s *Store) Changers(ctx context.Context, accountID string, now int64) (ChangerCards, error) {
+	var cards ChangerCards
+	rows, err := s.db.QueryContext(ctx, `SELECT item_id, quantity, expires_at FROM inventory_items
+		WHERE account_id = ? AND category = ? AND item_id IN (?, ?, ?, ?) AND system_key = '' AND quantity > 0
+		AND (expires_at IS NULL OR expires_at > ?)`, accountID, CategoryChanger,
+		itemSlotChanger, itemItemChanger, itemItemVoucher, itemSlotVoucher, now)
+	if err != nil {
+		return cards, err
+	}
+	defer rows.Close()
+	var slotVoucher, itemVoucher bool
+	for rows.Next() {
+		var (
+			itemID, quantity int
+			expires          sql.NullInt64
+		)
+		if err := rows.Scan(&itemID, &quantity, &expires); err != nil {
+			return cards, err
+		}
+		var until *int64
+		if expires.Valid {
+			until = &expires.Int64
+		}
+		switch itemID {
+		case itemSlotChanger:
+			cards.Slot = quantity
+		case itemItemChanger:
+			cards.Item = quantity
+		case itemSlotVoucher:
+			slotVoucher, cards.SlotUntil = true, until
+		case itemItemVoucher:
+			itemVoucher, cards.ItemUntil = true, until
+		}
+	}
+	if slotVoucher {
+		cards.Slot = -1
+	}
+	if itemVoucher {
+		cards.Item = -1
+	}
+	return cards, rows.Err()
+}
+
 // Onboarding returns the account's claimed starter choice.
 func (s *Store) Onboarding(ctx context.Context, accountID string) (StarterChoice, bool, error) {
 	var choice StarterChoice
