@@ -1,3 +1,4 @@
+import { downloadRaceTrack } from "../resources/resource-manager";
 import { MissionTimerPanel } from "../license/mission-timer-panel";
 import { MissionResultAction, StoryAction2D } from "../story/mission-result-action";
 import type { StoryRaceRequest } from "../story/story-race";
@@ -60,8 +61,13 @@ export async function buildSoloRaceAssets(
   const generation = host.generationValue();
   const classicHud = host.gameOptions.classicHud;
   const teamBooster = raceOptions.booster === 1;
-  await host.preloadContainers(selection.mapPath, selection.vehiclePath,
-    selection.characterPath, selection.vehicleSystemKey);
+  // The track's own containers, theme textures and music, and the race
+  // basics download now, while the race loads (not ahead of time).
+  await Promise.all([
+    host.preloadContainers(selection.mapPath, selection.vehiclePath,
+      selection.characterPath, selection.vehicleSystemKey),
+    downloadRaceTrack(selection.mapPath),
+  ]);
 
   const catalog = await host.getLibrary()?.timeAttackGarageCatalog();
   const kart = catalog && ops.findKart(catalog.karts, selection.vehicleItemId,

@@ -1,3 +1,4 @@
+import { bindLoadingBadge, createResourceButton } from "../ui/resource-panel";
 import { activeBrowserSession } from "../account/account-runtime";
 import { logoutAccount } from "../app/account-startup";
 import { openAccountPanel, type AccountPanelDocument, type AccountPanelHandle } from "../ui/account-panel";
@@ -219,7 +220,12 @@ export async function openReadyHome(controller: ReadyHomeController,
         onEntry: entry => openQuickEntry(controller, entry),
         onHover: () => host.getInterfaceAudio()?.playHover(),
         onActivate: () => host.getInterfaceAudio()?.playClick(),
+        // 资源下载: the resource groups, passive and active downloads.
+        topBarExtra: createResourceButton(host.root, {
+          onActivate: () => host.getInterfaceAudio()?.playClick(),
+        }),
       });
+      bindLoadingBadge(host.root);
     } catch (error) {
       single.dispose();
       throw error;

@@ -1,3 +1,4 @@
+import { ensureFeatureResources } from "../ui/resource-panel";
 import { garageViewCatalog } from "../account/garage-ownership";
 import type { ReadyOptions, ReadySelection } from "./ready-flow";
 import { garageStuffSupport } from "./garage-stuff";
@@ -209,6 +210,11 @@ export async function openReadyGarageX(controller: ReadyGarageController,
   // fails closed unless it opens on the equipment Ready shows now.
   selection = controller.host.getSelection() ?? selection;
   if (controller.readyModalBusy()) {
+    restoreReady();
+    return;
+  }
+  await ensureFeatureResources(controller.host.root, "garage").catch(() => undefined);
+  if (controller.disposed || controller.readyModalBusy()) {
     restoreReady();
     return;
   }

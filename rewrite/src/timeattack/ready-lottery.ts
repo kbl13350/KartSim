@@ -1,3 +1,4 @@
+import { ensureFeatureResources } from "../ui/resource-panel";
 /**
  * Opening the lottery screens (src/lottery: 寻宝 and the 精品道具场) from the
  * lobby 活动 buttons. One screen at a time; it covers the page (taskbar
@@ -54,6 +55,8 @@ export async function openReadyLottery(controller: ReadyLotteryController, scree
     pictures = undefined;
   };
   try {
+    await ensureFeatureResources(controller.host.root, "lottery");
+    if (controller.disposed) return;
     try { pictures = createItemPictures(library); } catch { pictures = undefined; }
     const open = await openers[screen]();
     const audio = () => controller.host.getInterfaceAudio?.();

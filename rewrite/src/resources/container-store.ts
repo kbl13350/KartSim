@@ -26,6 +26,8 @@ export interface DirectoryHandle {
   getDirectoryHandle(name: string, options?: { create?: boolean }): Promise<DirectoryHandle>;
   getFileHandle(name: string, options?: { create?: boolean }): Promise<FileHandle>;
   removeEntry?(name: string): Promise<void>;
+  /** OPFS lists its entries; stores without it check each container instead. */
+  keys?(): AsyncIterable<string>;
 }
 
 export interface OpfsStorage {
@@ -79,6 +81,7 @@ export class ContainerStore {
   private readonly fallbackWriter?: ContainerStoreOptions["fallbackWriter"];
   private readonly byName: Map<string, ContainerSpec>;
   private readonly inFlight = new Map<string, Promise<Blob>>();
+  private readonly listeners = new Set<(progress: ContainerProgress) => void>();
   private directoryPromise?: Promise<DirectoryHandle>;
 
   constructor(options: ContainerStoreOptions) {
@@ -144,6 +147,47 @@ export class ContainerStore {
       }
     };
     await Promise.all(Array.from({ length: Math.min(concurrency, files.length) }, worker));
+  }
+
+  /** Also report progress to listener (the resource download panel); returns the removal. */
+  addProgressListener(listener: (progress: ContainerProgress) => void): () => void {
+    this.listeners.add(listener);
+    return () => { this.listeners.delete(listener); };
+  }
+
+  /**
+   * The containers whose OPFS copy is complete (length as in the manifest).
+   * Containers read from the local Data directory are not in OPFS and are
+   * not listed.
+   */
+  async cachedNames(): Promise<Set<string>> {
+    const directory = await this.directory();
+    const cached = new Set<string>();
+    const check = async (file: ContainerSpec) => {
+      const blob = await this.existing(directory, file.name);
+      if (blob?.size === file.size) cached.add(file.name);
+    };
+    if (directory.keys) {
+      const present = new Set<string>();
+      for await (const key of directory.keys()) present.add(key.toLowerCase());
+      await Promise.all(this.manifest.files.filter(file => present.has(file.name.toLowerCase())).map(check));
+    } else {
+      await Promise.all(this.manifest.files.map(check));
+    }
+    return cached;
+  }
+
+  /**
+   * Deletes the OPFS copy of a container (to free space); the next read
+   * downloads it again. Returns whether a copy was removed.
+   */
+  async remove(name: string): Promise<boolean> {
+    const file = this.spec(name);
+    const directory = await this.directory();
+    if (!(await this.existing(directory, file.name))) return false;
+    this.inFlight.delete(file.name.toLowerCase());
+    await directory.removeEntry?.(file.name);
+    return true;
   }
 
   async ensure(name: string): Promise<Blob> {
@@ -269,6 +313,10 @@ export class ContainerStore {
   }
 
   private progress(phase: DownloadPhase, file: ContainerSpec, loadedBytes: number): void {
-    this.onProgress?.({ phase, file: file.name, loadedBytes, totalBytes: file.size });
+    const progress = { phase, file: file.name, loadedBytes, totalBytes: file.size };
+    this.onProgress?.(progress);
+    for (const listener of this.listeners) {
+      try { listener(progress); } catch (error) { console.warn(error); }
+    }
   }
 }

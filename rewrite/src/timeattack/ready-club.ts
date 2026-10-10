@@ -1,3 +1,4 @@
+import { ensureFeatureResources } from "../ui/resource-panel";
 import { activeBrowserSession } from "../account/account-runtime";
 import { ClubApi } from "../club/club-api";
 import { ClubScreen, type ClubLibrary } from "../club/club-screen";
@@ -24,6 +25,8 @@ export async function openReadyClub(controller: ReadyClubController): Promise<vo
   }
   controller.clubOpening = true;
   try {
+    await ensureFeatureResources(host.root, "club");
+    if (controller.disposed) return;
     const screen = await ClubScreen.open({
       library: library as ClubLibrary, root: host.root, api: new ClubApi(session),
       level: () => session.summary()?.progress.level ?? 1,

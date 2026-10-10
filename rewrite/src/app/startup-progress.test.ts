@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { currentResourceManager } from "../resources/resource-manager";
 import { StartupProgress } from "./startup-progress";
 import { loadStartupResources, type ResourceLoadingDependencies, type StartupHost,
   type StartupLibrary } from "./startup-resources";
@@ -31,8 +32,9 @@ function deferred<T = void>() {
 }
 const settle = () => new Promise<void>(resolve => setImmediate(resolve));
 
-function harness() {
+function harness(mountedExtra: object = {}) {
   const samples: number[] = [];
+  const bars: unknown[][] = [];
   const errors: string[] = [];
   let generation = 0, finishes = 0, starts = 0, downloads = 0;
   const gates = { sources: deferred(), library: deferred(), garage: deferred(),
@@ -51,7 +53,7 @@ function harness() {
       isCurrent: (value: number) => value === generation, install() {} },
     hud: { beginStartupLoading: () => { starts++; samples.push(0); },
       setStartupProgress: (percent: number) => samples.push(percent),
-      setLoadingProgress: () => { downloads++; },
+      setLoadingProgress: (...args: unknown[]) => { downloads++; bars.push(args); },
       chooseResourceSource: async () => undefined, showDebugText() {},
       finishLoading: () => { finishes++; samples.push(100); },
       showLoadingError: (message: string) => errors.push(message) },
@@ -71,7 +73,7 @@ function harness() {
     loadVersionedSources: async (_version, progress) => {
       byteProgress = progress;
       await gates.sources.promise;
-      return { sources: [], archiveIndexes: {} };
+      return { sources: [], archiveIndexes: {}, ...mountedExtra };
     },
     loadLibrary: async (_sources, _indexes, progress) => {
       indexProgress = progress;
@@ -85,11 +87,39 @@ function harness() {
     isSpecialKartId: () => false, displayKartName: () => "test", localNickname: () => "test",
     needsRiderRegistration: () => false,
   };
-  return { host, dependencies, gates, samples, errors,
+  return { host, dependencies, gates, samples, errors, bars,
     counts: () => ({ finishes, starts, downloads }), cancel: () => generation++,
     lateIndex: () => indexProgress?.({ current: 100, total: 100, filename: "test" }),
     lateBytes: () => byteProgress?.({ file: "test.rho", loadedBytes: 100, totalBytes: 100 }) };
 }
+
+test("首页 resources download before the catalogs, on the 当前下载 bar, keeping the release percentages", async () => {
+  const ensured: string[] = [];
+  const gate = deferred();
+  const store = {
+    list: () => [{ name: "gui_font.rho", size: 10 }, { name: "stage_common.rho", size: 20 },
+      { name: "effect.rho", size: 5 }],
+    ensure: async (name: string) => { ensured.push(name); await gate.promise; },
+    cachedNames: async () => new Set<string>(),
+    remove: async () => false,
+    addProgressListener: () => () => undefined,
+  };
+  const state = harness({ store, archiveIndexes: { rho5: [] } });
+  const run = loadStartupResources(state.host, state.dependencies);
+  state.gates.sources.resolve(); state.gates.library.resolve(); await settle();
+  assert.deepEqual(ensured.sort(), ["gui_font.rho", "stage_common.rho"], "only 首页, all at once");
+  assert.equal(currentResourceManager()?.group("home")?.bytes, 30);
+  assert.deepEqual(state.bars.at(-1), ["resource:首页", 0, 30, "首页资源"]);
+  assert.equal(state.samples.at(-1), 20, "the catalogs wait for 首页");
+  gate.resolve(); await settle();
+  assert.deepEqual(state.bars.at(-1), ["resource:首页", 30, 30, "首页资源"]);
+  for (const name of ["maps", "garage", "account", "profile", "ready"] as const) {
+    state.gates[name].resolve(); await settle();
+  }
+  await run;
+  assert.equal(state.samples.at(-1), 100);
+  assert.deepEqual(ensured.sort(), ["gui_font.rho", "stage_common.rho"], "nothing else ahead of time");
+});
 
 test("startup tracks archive parsing, both catalogs, login, profile and scene before reaching 100", async () => {
   const state = harness();

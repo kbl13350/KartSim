@@ -1,3 +1,4 @@
+import { ensureFeatureResources } from "../ui/resource-panel";
 import type { FavoriteItem, LocalProfile } from "../ui/local-profile";
 import type { MyRoomAdminKart } from "../ui/my-room-admin";
 import type { ItemInventoryCatalog } from "../ui/item-inventory";
@@ -32,6 +33,8 @@ type GarageChoice = Parameters<typeof selectReadyGarage>[3];
 
 export interface ReadyHouseController extends ReadyFlowController {
   activeHouse?: MyRoomView;
+  /** 小屋's resources are downloading before it opens. */
+  houseOpening?: boolean;
   activeHouseGarage?: HouseGarageView;
   inventoryOpening?: boolean;
   houseTaskbarRelease?: () => void;
@@ -297,6 +300,15 @@ export async function openReadyHouse(controller: ReadyHouseController, visit?: s
   const library = controller.host.getLibrary() as
     ReadyHouseLibrary | undefined;
   if (!library) return;
+  if (controller.houseOpening) return;
+  controller.houseOpening = true;
+  try {
+    await ensureFeatureResources(controller.host.root, "myroom");
+  } catch { /* Pages read on demand. */ } finally {
+    controller.houseOpening = false;
+  }
+  if (controller.disposed || controller.activeHouse || controller.readyModalBusy() ||
+      !controller.activeTimeAttackReady) return;
   if (!controller.host.shell.openModal("house")) return;
   controller.activeTimeAttackReady.freeze();
   try {

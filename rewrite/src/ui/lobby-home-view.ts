@@ -103,6 +103,8 @@ export interface LobbyHomeOptions {
   onCharge?(currency: LobbyChargeCurrency): void;
   /** Clicking the rider glove, level or name (the account panel). */
   onAccount?(): void;
+  /** Shown after the wallet in the top bar (the 资源下载 button). */
+  topBarExtra?: HTMLElement;
   /** Promotion carousel pictures. */
   banners: readonly LobbyImage[];
   /** Shown until the 3D lobby has been drawn. */
@@ -284,6 +286,8 @@ export class LobbyHomeView {
       onHover: () => this.options.onHover?.(),
       onActivate: () => this.options.onActivate?.(),
     });
+    if (options.topBarExtra)
+      (this.topBar.element.querySelector(".ks-lobby-wallet") ?? this.topBar.element).append(options.topBarExtra);
     node.append(this.sceneRoot, element("div", "ks-lobby-shade"), this.topBar.element,
       this.buildQuickEntries(), this.buildPromo(), this.notice, this.settings);
     this.notice.hidden = true;

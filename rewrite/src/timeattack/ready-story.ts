@@ -1,3 +1,4 @@
+import { ensureFeatureResources } from "../ui/resource-panel";
 import { ksvCompression } from "../codecs/ksv-compression";
 import { decodeKsvFile } from "../game/ghost/ksv-codec";
 import { U1 } from "../generated/library.js";
@@ -198,6 +199,7 @@ export async function openStoryChapter(controller: ReadyStoryController, name: s
   controller.storyBusy = true;
   const started = generation(controller);
   try {
+    await ensureFeatureResources(controller.host.root, "story").catch(() => undefined);
     const chapter = await chapterOf(story, name);
     const [steps, map] = await Promise.all([story.loadSteps(name), story.loadMap(name)]);
     if (stale(controller, started)) return;

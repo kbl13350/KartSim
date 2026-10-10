@@ -13,6 +13,8 @@ export interface LegacyResourceBundle {
   readonly version: ResourceVersion;
   readonly sources: readonly ArchiveSource[];
   readonly archiveIndexes: ArchiveIndex;
+  /** The OPFS cache behind the sources (resource download panel, priority loading). */
+  readonly store: ContainerStore;
   preloadContainers(names: Iterable<string>): Promise<void>;
 }
 
@@ -49,6 +51,7 @@ export async function loadLegacyResourceBundle(
     version,
     sources: manifest.files.map(file => store.source(file.name)),
     archiveIndexes,
+    store,
     preloadContainers: names => store.preload(names),
   };
 }

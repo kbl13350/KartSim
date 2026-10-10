@@ -142,13 +142,16 @@ export function nodesUnder(definition: Node, name: string): WeakSet<Node> {
   return found;
 }
 
+/** Closing punctuation never starts a line; it hangs at the end of the previous one. */
+const HANGING = new Set([..."，。、；：？！）》」』】,.;:?!)%"]);
+
 /** Lines of text wrapped to a width ("|" and "\n" break lines). */
 export function wrapText(context: CanvasRenderingContext2D, text: string, width: number): string[] {
   const lines: string[] = [];
   for (const paragraph of text.split(/\||\n/)) {
     let current = "";
     for (const character of paragraph) {
-      if (current && context.measureText(current + character).width > width) {
+      if (current && !HANGING.has(character) && context.measureText(current + character).width > width) {
         lines.push(current);
         current = "";
       }

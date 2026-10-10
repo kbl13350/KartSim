@@ -1,3 +1,4 @@
+import { downloadRaceTrack } from "../resources/resource-manager";
 /** Resource and connection assembly for a live multiplayer race. */
 export interface MultiplayerRaceLoaderDependencies {
   createToonStageBinding(): unknown;
@@ -55,6 +56,9 @@ export function createMultiplayerRaceLoader(
       const checkCancellation = () => {
         if (signal.aborted) throw new Error("本局装配已取消。");
       };
+      checkCancellation();
+      // The room's track downloads as the race loads (resource-manager).
+      await downloadRaceTrack(room?.trackId);
       checkCancellation();
       const raceAssets = await deps.loadRaceAssets(
         { ...source, toonStageBinding: deps.createToonStageBinding() },

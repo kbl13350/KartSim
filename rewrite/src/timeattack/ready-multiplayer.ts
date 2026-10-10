@@ -1,3 +1,4 @@
+import { ensureFeatureResources } from "../ui/resource-panel";
 import { showAccountToast, type OverlayDocument } from "../account/account-dialogs";
 import { activeBrowserSession } from "../account/account-runtime";
 import { accountOwnedEquipment, garageViewCatalog } from "../account/garage-ownership";
@@ -70,6 +71,8 @@ export interface ReadyMultiplayerController {
   };
   disposed: boolean;
   multiplayer?: Lobby;
+  /** The lobby's resources are downloading before it opens. */
+  multiplayerOpening?: boolean;
   activeGarage?: { freeze(): void; unfreeze(): void; dispose(): void };
   activeTimeAttackReady?: { freeze(): void; unfreeze(): void; hide(): void; show(): void };
   activeSettings?: { setRoomSpeed(speed: number, version: string): void };
@@ -110,10 +113,17 @@ const GEAR_COMMANDS = new Set(["create", "join"]);
 export async function openReadyMultiplayer(controller: ReadyMultiplayerController,
   deps: ReadyMultiplayerDependencies, channel?: string,
   gameplay = "ordinary"): Promise<void> {
-  if (controller.disposed || controller.multiplayer) return;
+  if (controller.disposed || controller.multiplayer || controller.multiplayerOpening) return;
   const host = controller.host;
   const library = host.getLibrary();
   if (!library) return;
+  controller.multiplayerOpening = true;
+  try {
+    await ensureFeatureResources(host.root, "multiplayer");
+  } catch { /* Pages read on demand. */ } finally {
+    controller.multiplayerOpening = false;
+  }
+  if (controller.disposed || controller.multiplayer) return;
 
   const garage = host.shell.modal === "garage" ? controller.activeGarage : undefined;
   if (!host.shell.enterMultiplayerLobby(garage ? "garage" : "ready")) return;
