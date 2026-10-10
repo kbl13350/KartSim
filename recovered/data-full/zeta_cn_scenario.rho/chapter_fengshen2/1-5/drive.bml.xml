@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="7"/>
-  <Tracing isFixedKart="true" fixedKartId="1523" isFixedChar="true" fixedCharId="481" kartId="1562" colorId="1" dyeId="43" characterId="474" uniformId="0" characterName="妲己">
-    <LevelContent level="0" track="fengshen_I03" laps="3" ksv="1-5" distance="30" startOffset="2300"/>
-  </Tracing>
-</Root>

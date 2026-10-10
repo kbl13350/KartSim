@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="bigTimeBomb">
-  <state name="Use" life="3000" itemFx="어비스_필살기 피격" fired="어비스배틀팀필살기"/>
-  <state name="Set" life="1000" item="물방울터짐" size="15.0" itemFx="set"/>
-  <state name="Affect" life="2000" fired="물방울갇힘_일반" firedFx="trapped"/>
-  <state name="Shield" life="1000" fired="쉴드방어" firedFx="shield"/>
-  <state name="End" life="0"/>
-</item>

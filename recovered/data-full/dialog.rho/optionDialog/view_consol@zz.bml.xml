@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="context" windowRect="0 0 396 470" align="hcenter">
-  <CaptionWindow name="backPlane" windowSize="476 440" adjust="0 3" frame="PopupWindow" align="hcenter" caption="Type command../" textRender="bold">
-    <Label name="cout" windowSize="460 380" adjust="0 5" frame="DefaultEdit" align="hcenter" multiLine="true"/>
-    <Edit name="cin" windowSize="460 20" align="hcenter;bottom" frame="DefaultEdit" maxChar="127"/>
-  </CaptionWindow>
-</Container>

@@ -6,36 +6,36 @@
 
 | 类别 | 地址与用途 | 来源 |
 | --- | --- | --- |
-| 原协议 | `<backendOrigin>/multiplayer/healthz` 等 HTTP 端点 | `rewrite/src/multiplayer/http.ts:82-84` |
-| 原协议 | `POST /multiplayer/offer` 交换 WebRTC SDP；`control` DataChannel 是有序 JSON，协商 ID 0；`motion` 是无序二进制，协商 ID 1 | `rewrite/src/multiplayer/client-connect.ts:50-59,147-171` |
+| 原协议 | `<backendOrigin>/multiplayer/healthz` 等 HTTP 端点 | `client/src/multiplayer/http.ts:82-84` |
+| 原协议 | `POST /multiplayer/offer` 交换 WebRTC SDP；`control` DataChannel 是有序 JSON，协商 ID 0；`motion` 是无序二进制，协商 ID 1 | `client/src/multiplayer/client-connect.ts:50-59,147-171` |
 | 本地新增 | `GET <backendOrigin>/multiplayer/game-servers` 取在线游戏服列表，`POST <backendOrigin>/multiplayer/game-servers/ticket` 为选中的游戏服申请一次性入场票据 | `server-go/DESIGN.md` §1、§3.2；`server-go/internal/shared/contract` |
 | 本地新增 | `<游戏服 origin>/multiplayer/ws`（如 `ws://127.0.0.1:8788/multiplayer/ws`）以 WebSocket 承载相同的 `control` JSON 消息与二进制运动帧；`hello` 必须带账号票据 | 本地实现与前端适配器的约定；原版前端没有这个 WebSocket 入口 |
 | 本地新增 | `<backendOrigin>/api/account`、`/api/inventory`、`/api/shop/*`、`/api/timeattack/settle`、`/api/admin/*` 与管理页面 `/multiplayer/admin`：账号经济（等级、三种货币、库存、商店、奖励） | `server-go/ECONOMY.md`；见下文“本地新增：账号经济” |
 
 **本地新增：WebSocket 压缩。**游戏节点的 `/multiplayer/ws` 与数据服务的 `/api/messenger/ws`、`/api/myroom/ws` 在浏览器提供时协商 `permessage-deflate`（RFC 7692，双方都不保留上下文）。服务端只压缩 512 字节及以上的 JSON 文本（房间快照约压到 1/5），二进制运动帧与短消息照常发送；浏览器自行决定是否压缩上行消息，服务端按解压后的大小检查单条上限。压缩由浏览器透明处理，消息内容与前端代码都不变；WebRTC 数据通道不压缩。部署可用 `KART_WS_COMPRESSION=false` 关闭。
 
-`backendOrigin` 指**数据服务**（默认 `http://127.0.0.1:8787`）：账号、档案、历史、游戏服列表与票据都走它。实时连接则走玩家选中的游戏节点（默认第一个在 `127.0.0.1:8788`），游戏服列表中 `origin` 为 `null` 的节点经 `backendOrigin` 同源代理（局域网模式与单节点反向代理部署）。前端从 `/multiplayer-config.js` 读取 `backendOrigin`；原配置位于 `mirror/multiplayer-config.js`，本地页面来源须列入 `frontendOrigins`。配置校验见 `rewrite/src/multiplayer/config.ts:16-53`。原版多人入口先校验服务端协议版本，随后处理账号或游客昵称，最后建立实时连接，见 `rewrite/src/multiplayer/lobby-open.ts:76-171`；本地版在昵称确定后、建立连接前插入“选服 + 申请票据”。
+`backendOrigin` 指**数据服务**（默认 `http://127.0.0.1:8787`）：账号、档案、历史、游戏服列表与票据都走它。实时连接则走玩家选中的游戏节点（默认第一个在 `127.0.0.1:8788`），游戏服列表中 `origin` 为 `null` 的节点经 `backendOrigin` 同源代理（局域网模式与单节点反向代理部署）。前端从 `/multiplayer-config.js` 读取 `backendOrigin`；原配置位于 `mirror/multiplayer-config.js`，本地页面来源须列入 `frontendOrigins`。配置校验见 `client/src/multiplayer/config.ts:16-53`。原版多人入口先校验服务端协议版本，随后处理账号或游客昵称，最后建立实时连接，见 `client/src/multiplayer/lobby-open.ts:76-171`；本地版在昵称确定后、建立连接前插入“选服 + 申请票据”。
 
 ## HTTP 接口
 
-以下路径均以 `/multiplayer/` 开头。请求和响应为 JSON，错误响应使用 `{ "error": "错误代码" }`；前端会把非成功响应中的 `error` 作为错误码，见 `rewrite/src/multiplayer/http.ts:110-124`。表中的方法、字段均为**原协议**。
+以下路径均以 `/multiplayer/` 开头。请求和响应为 JSON，错误响应使用 `{ "error": "错误代码" }`；前端会把非成功响应中的 `error` 作为错误码，见 `client/src/multiplayer/http.ts:110-124`。表中的方法、字段均为**原协议**。
 
 | 方法 | 路径 | 请求 | 成功响应 | 前端证据 |
 | --- | --- | --- | --- | --- |
-| GET | `healthz` | 无 | `{ "protocolVersion": 40 }`；必须与前端的版本相同（原版为 39；**本地版为 40**，运动帧格式不同，见“运动数据”） | `rewrite/src/multiplayer/http.ts:126-136` |
-| GET | `auth/config` | 可带 Bearer token | `{ "loginRequired": false, "backendOrigin": "http://127.0.0.1:8787" }`（前端在 8780）；只有前后端同源时才可用 `null` | `rewrite/src/multiplayer/http.ts:138-149` |
-| POST | `auth/guest-name` | `{ "name": "游客昵称" }` | `{ "available": true }` | `rewrite/src/multiplayer/http.ts:151-160` |
-| POST | `auth/register` | `{ "username", "nickname", "password", "invite" }` | `{ "account": { "nickname", "admin"?: boolean } }` | `rewrite/src/multiplayer/http.ts:162-176`；`rewrite/src/generated/multiplayer.js:390-401` |
-| POST | `auth/login` | `{ "username", "password" }` | `{ "account": { "nickname" }, "token": "43 字符会话令牌" }` | `rewrite/src/multiplayer/http.ts:167-180` |
-| GET | `auth/me` | Bearer token | `{ "account": { "nickname" } }` | `rewrite/src/multiplayer/http.ts:182-184` |
-| POST | `auth/nickname` | `{ "nickname" }`，Bearer token | `{ "account": { "nickname" } }` | `rewrite/src/multiplayer/http.ts:186-188` |
-| POST | `auth/logout` | `{}`，Bearer token | 成功状态即可 | `rewrite/src/multiplayer/http.ts:190-196` |
-| POST | `offer` | `{ "type": "offer", "sdp": "..." }` | `{ "type": "answer", "sdp": "..." }` | `rewrite/src/multiplayer/http.ts:198-207` |
-| GET | `ice` | 无 | `{ "iceServers": [...] }`；前端只接受固定 STUN 和 Cloudflare TURN 地址 | `rewrite/src/multiplayer/http.ts:23-65,209-217` |
+| GET | `healthz` | 无 | `{ "protocolVersion": 40 }`；必须与前端的版本相同（原版为 39；**本地版为 40**，运动帧格式不同，见“运动数据”） | `client/src/multiplayer/http.ts:126-136` |
+| GET | `auth/config` | 可带 Bearer token | `{ "loginRequired": false, "backendOrigin": "http://127.0.0.1:8787" }`（前端在 8780）；只有前后端同源时才可用 `null` | `client/src/multiplayer/http.ts:138-149` |
+| POST | `auth/guest-name` | `{ "name": "游客昵称" }` | `{ "available": true }` | `client/src/multiplayer/http.ts:151-160` |
+| POST | `auth/register` | `{ "username", "nickname", "password", "invite" }` | `{ "account": { "nickname", "admin"?: boolean } }` | `client/src/multiplayer/http.ts:162-176`；`client/src/generated/multiplayer.js:390-401` |
+| POST | `auth/login` | `{ "username", "password" }` | `{ "account": { "nickname" }, "token": "43 字符会话令牌" }` | `client/src/multiplayer/http.ts:167-180` |
+| GET | `auth/me` | Bearer token | `{ "account": { "nickname" } }` | `client/src/multiplayer/http.ts:182-184` |
+| POST | `auth/nickname` | `{ "nickname" }`，Bearer token | `{ "account": { "nickname" } }` | `client/src/multiplayer/http.ts:186-188` |
+| POST | `auth/logout` | `{}`，Bearer token | 成功状态即可 | `client/src/multiplayer/http.ts:190-196` |
+| POST | `offer` | `{ "type": "offer", "sdp": "..." }` | `{ "type": "answer", "sdp": "..." }` | `client/src/multiplayer/http.ts:198-207` |
+| GET | `ice` | 无 | `{ "iceServers": [...] }`；前端只接受固定 STUN 和 Cloudflare TURN 地址 | `client/src/multiplayer/http.ts:23-65,209-217` |
 
-`/multiplayer/admin` 是管理员界面的链接，不是已观察到的 JSON 调用（`rewrite/src/generated/multiplayer.js:569-572`）；本地数据服务在这个地址提供管理页面（见“本地新增：账号经济”）。原版 `auth/register` 返回账号但前端仍会再调用 `auth/login` 获取令牌；**本地版** `auth/register` 直接返回 `{ "account": {…}, "token": "…" }`（注册即登录），请求体的 `invite` 只在邀请码模式、或注册 `KART_ADMIN_USERNAMES` 中的管理员用户名时需要（任何注册模式下都是，否则 400 `INVALID_INVITE`；开放注册的登录界面把它折叠为可选的“有邀请码？”），密码 8–128 位，按客户端 IP 限流（429 `TOO_MANY_ATTEMPTS`），关闭注册时 403 `REGISTRATION_CLOSED`。`auth/login` 的失败次数按（用户名、客户端网段 IPv4 /24 或 IPv6 /64）计数，其他网段的失败不会锁住该用户名；密码正确但账号被管理员封禁时返回 403 `{"error":"ACCOUNT_BANNED","until":到期毫秒,"reason":"原因"}`（密码错误仍是 401 `INVALID_CREDENTIALS`，不暴露封禁），前端显示“账号已被封禁，解封时间：…（原因：…）”。令牌格式是 43 个 URL 安全字符，存入 `sessionStorage`，键为 `kartsim.multiplayer.session:<backendOrigin>`；账号/信令请求通过 `Authorization: Bearer <token>` 传递（`rewrite/src/multiplayer/http.ts:23,86-107`）。游客模式下 `auth/me` 可返回 `401 {"error":"LOGIN_REQUIRED"}`，前端会转而询问游客昵称（`rewrite/src/generated/multiplayer.js:432-459`）。**本地版不再提供游客模式**（`KART_ALLOW_GUESTS=false` 为默认）：`auth/config` 返回 `{"loginRequired":true,"backendOrigin":…,"registration":"open"|"invite"|"closed","guests":false}`，前端在进入主界面前显示登录/注册界面。
+`/multiplayer/admin` 是管理员界面的链接，不是已观察到的 JSON 调用（`client/src/generated/multiplayer.js:569-572`）；本地数据服务在这个地址提供管理页面（见“本地新增：账号经济”）。原版 `auth/register` 返回账号但前端仍会再调用 `auth/login` 获取令牌；**本地版** `auth/register` 直接返回 `{ "account": {…}, "token": "…" }`（注册即登录），请求体的 `invite` 只在邀请码模式、或注册 `KART_ADMIN_USERNAMES` 中的管理员用户名时需要（任何注册模式下都是，否则 400 `INVALID_INVITE`；开放注册的登录界面把它折叠为可选的“有邀请码？”），密码 8–128 位，按客户端 IP 限流（429 `TOO_MANY_ATTEMPTS`），关闭注册时 403 `REGISTRATION_CLOSED`。`auth/login` 的失败次数按（用户名、客户端网段 IPv4 /24 或 IPv6 /64）计数，其他网段的失败不会锁住该用户名；密码正确但账号被管理员封禁时返回 403 `{"error":"ACCOUNT_BANNED","until":到期毫秒,"reason":"原因"}`（密码错误仍是 401 `INVALID_CREDENTIALS`，不暴露封禁），前端显示“账号已被封禁，解封时间：…（原因：…）”。令牌格式是 43 个 URL 安全字符，存入 `sessionStorage`，键为 `kartsim.multiplayer.session:<backendOrigin>`；账号/信令请求通过 `Authorization: Bearer <token>` 传递（`client/src/multiplayer/http.ts:23,86-107`）。游客模式下 `auth/me` 可返回 `401 {"error":"LOGIN_REQUIRED"}`，前端会转而询问游客昵称（`client/src/generated/multiplayer.js:432-459`）。**本地版不再提供游客模式**（`KART_ALLOW_GUESTS=false` 为默认）：`auth/config` 返回 `{"loginRequired":true,"backendOrigin":…,"registration":"open"|"invite"|"closed","guests":false}`，前端在进入主界面前显示登录/注册界面。
 
-**本地实现差异：**数据服务的 `POST /multiplayer/offer` 返回 `501 USE_LOCAL_WEBSOCKET`，由本地前端适配器改连游戏服的 `/multiplayer/ws`；`GET /multiplayer/ice` 返回空列表（与 Java 版 `server/src/main/java/local/kartsim/server/HttpApi.java:74-80` 相同）。前端适配器见 `rewrite/src/multiplayer/client-websocket.ts:6-17,46-54`。`healthz` 另返回 `"service":"data"` 与 `dataNode`；游戏节点自己的 `healthz` 返回 `"service":"game"` 与 `nodeId`。
+**本地实现差异：**数据服务的 `POST /multiplayer/offer` 返回 `501 USE_LOCAL_WEBSOCKET`，由本地前端适配器改连游戏服的 `/multiplayer/ws`；`GET /multiplayer/ice` 返回空列表（与 Java 版 `server/src/main/java/local/kartsim/server/HttpApi.java:74-80` 相同）。前端适配器见 `client/src/multiplayer/client-websocket.ts:6-17,46-54`。`healthz` 另返回 `"service":"data"` 与 `dataNode`；游戏节点自己的 `healthz` 返回 `"service":"game"` 与 `nodeId`。
 
 ### 本地新增：游戏服列表与入场票据
 
@@ -50,7 +50,7 @@
 
 ## 实时 JSON 消息
 
-以下消息名称和字段均为**原协议**，只把传输换成了本地新增的 WebSocket。每个客户端请求带字符串 `requestId`；服务端的对应答复必须回显同一 ID。前端等待响应最多 10 秒，且最多保留 32 个未完成请求（`rewrite/src/multiplayer/client-control.ts:54-83`）。服务端还可发送无 `requestId` 的房间广播。
+以下消息名称和字段均为**原协议**，只把传输换成了本地新增的 WebSocket。每个客户端请求带字符串 `requestId`；服务端的对应答复必须回显同一 ID。前端等待响应最多 10 秒，且最多保留 32 个未完成请求（`client/src/multiplayer/client-control.ts:54-83`）。服务端还可发送无 `requestId` 的房间广播。
 
 ### 握手与时钟
 
@@ -58,7 +58,7 @@
 {"type":"hello","requestId":"1","protocolVersion":40,"ruleset":"launcher-room-v1","resourceVersion":"p3553","name":"Alice","equipment":{"itemIds":{"1":2,"2":6,"3":0,"70":4,"4":0,"…":0},"kartSerial":0,"valueAt3E":0,"exceedType":0,"systemKart":"practiceKart"},"initial":"","raceRuntime":true,"ticket":"kt1.…"}
 ```
 
-回复须为 `{ "type":"welcome", "requestId":"1", "playerId":"...", "protocolVersion":40, "ruleset":"launcher-room-v1", "capabilities":[] }`（原版为 39）。`playerId` 长度 1–64；若没有 P2P 运动转发能力，请返回空 `capabilities`，前端才不会额外启动 P2P ICE/信令流程。字段来源：`rewrite/src/multiplayer/client-connect.ts:168-199` 和 `rewrite/src/multiplayer/server-events.ts:54-58`。
+回复须为 `{ "type":"welcome", "requestId":"1", "playerId":"...", "protocolVersion":40, "ruleset":"launcher-room-v1", "capabilities":[] }`（原版为 39）。`playerId` 长度 1–64；若没有 P2P 运动转发能力，请返回空 `capabilities`，前端才不会额外启动 P2P ICE/信令流程。字段来源：`client/src/multiplayer/client-connect.ts:168-199` 和 `client/src/multiplayer/server-events.ts:54-58`。
 
 **本地新增 `ticket`：**游戏节点先按原顺序校验协议版本、规则集、资源版本与 `name`，然后要求字符串 `ticket`，依次检查：缺失 `TICKET_REQUIRED`；格式或签名错误 `TICKET_INVALID`；过期 `TICKET_EXPIRED`；签给其他节点 `TICKET_WRONG_NODE`；来自其他数据服务 `DATA_NODE_MISMATCH`；已用过 `TICKET_REUSED`；游客票据而节点未开启 `KART_ALLOW_GUESTS` 时 `LOGIN_REQUIRED`（默认如此，`hello` 实际上要求账号票据）。账号票据使用其中的昵称并忽略 `name`（开启游客时游客使用请求中的 `name`）。`hello` 携带的 `equipment` 会向数据服务核对归属：账号不拥有或已过期时返回 403 `ITEM_NOT_OWNED`（不占用昵称；浏览器重读库存、换回新手装备后用新票据重试），数据服务不可达时 `DATA_SERVICE_UNAVAILABLE`。昵称在本节点内不区分大小写去重（`NICKNAME_TAKEN`），本节点上同一账号已有会话时 `ACCOUNT_ONLINE`（同一账号在同一节点重复进入时昵称相同，通常先得到 `NICKNAME_TAKEN`）；这两项在核对装备之前。核对通过后由数据服务在全集群占用昵称与账号：账号被管理员封禁 `ACCOUNT_BANNED`（封禁前领到、还没过期的票据也进不来；错误帧另带数据服务给出的 `until`、`reason`，即 `{"type":"error","code":"ACCOUNT_BANNED","reason":…,"until":…}`），账号已在其他节点在线 `ACCOUNT_ONLINE`（先于昵称检查，所以跨节点重复进入得到它），昵称冲突 `NICKNAME_TAKEN`，数据服务不可达 `DATA_SERVICE_UNAVAILABLE`。一个账号全集群同时只能有一个会话。本节点满员 `SERVER_FULL`、内存紧张 `SERVER_BUSY`（这两项在校验票据之前返回，不消耗票据），节点正在关闭 `SERVER_SHUTTING_DOWN`。Java 版的 `token` 字段不再使用（出现也被忽略）。断开连接时释放昵称与账号占用。连接后 15 秒内（`KART_HELLO_TIMEOUT`）未完成 `hello` 的连接以 1008 关闭；待发送数据积压超过 `KART_SEND_BUFFER_BYTES` 的连接同样以 1008 关闭。节点房间数达到 `KART_MAX_ROOMS` 时 `create` 返回 `ROOM_LIMIT_REACHED`。
 
@@ -69,24 +69,24 @@
 {"type":"clock","requestId":"2","clientTick":123.5,"serverTick":456.7}
 ```
 
-连接时会连续校时三次，以后每 10 秒发一次；比赛的 `startAt` 等时刻必须使用与 `serverTick` 相同的服务端单调时钟基准（`rewrite/src/multiplayer/client-connect.ts:206-214`；`rewrite/src/multiplayer/race-start-coordinator.ts:129-157`）。本地服务端的 `serverTick` 是所连游戏节点进程启动以来的单调毫秒；同一房间的玩家都在同一节点上，所以不需要跨节点对时。
+连接时会连续校时三次，以后每 10 秒发一次；比赛的 `startAt` 等时刻必须使用与 `serverTick` 相同的服务端单调时钟基准（`client/src/multiplayer/client-connect.ts:206-214`；`client/src/multiplayer/race-start-coordinator.ts:129-157`）。本地服务端的 `serverTick` 是所连游戏节点进程启动以来的单调毫秒；同一房间的玩家都在同一节点上，所以不需要跨节点对时。
 
 ### 大厅与房间
 
 | 客户端请求类型 | 必要/常见字段 | 对应结果与说明 | 来源 |
 | --- | --- | --- | --- |
-| `list-ordinary` / `list-gameplay` | `page`；后者另有 `gameplay` | `rooms`：`page,total,rooms`，每页最多 10 项 | `rewrite/src/multiplayer/lobby-actions.ts:83-125` |
-| `create` | `name,capacity,password,channelName,mode,speed,speedVersion`，普通模式含 `gameplay:"ordinary"` | `room`；建房表单本身不发送赛道，服务端须设定有效默认赛道 | `rewrite/src/multiplayer/lobby-settings.ts:101-123`；`rewrite/src/generated/multiplayer.js:3264-3278` |
-| `join` | `roomId,password` | `room`；已锁房间先让用户填密码 | `rewrite/src/multiplayer/lobby-actions.ts:208-220` |
-| `leave` | `roomId,revision` | `left` 或新房间状态 | `rewrite/src/multiplayer/lobby-actions.ts:128-155` |
-| `ready` / `start` | `roomId,revision,ready?` | 更新后的 `room`；开始时进入 `loading` | `rewrite/src/multiplayer/lobby-room-view.ts:77-89` |
-| `team` / `slot` / `kick` / `kick-vote` / `transfer-host` | `roomId,revision` 与各自目标字段 | 更新后的 `room` | `rewrite/src/multiplayer/lobby-actions.ts:229-237`；`rewrite/src/multiplayer/lobby-room-view.ts:99-116`；`rewrite/src/multiplayer/lobby-dialogs.ts:149-154` |
-| `track` / `random-track` | `roomId,revision,trackId` 或 `randomTrackCode` | 更新后的 `room` | `rewrite/src/multiplayer/lobby-track.ts:164-170` |
-| `equipment` / `changing` | `roomId,equipment` 或 `roomId,changing` | 更新后的 `room`；**本地新增**：装备含账号不拥有的物品时 `ITEM_NOT_OWNED` | `rewrite/src/multiplayer/lobby-garage.ts:79,115-117` |
-| `get-room-settings` / `room-settings` | `roomId`；更新另带 `revision,name,password` | `room-settings` 或 `room` | `rewrite/src/multiplayer/lobby-settings.ts:45-65`；`rewrite/src/multiplayer/lobby-actions.ts:240-253` |
-| `chat` | `roomId,text` | `chat` 事件，内容带 `sequence,playerId,name,text` | `rewrite/src/multiplayer/lobby-actions.ts:195-205`；`rewrite/src/multiplayer/server-events.ts:22-25,94-95` |
+| `list-ordinary` / `list-gameplay` | `page`；后者另有 `gameplay` | `rooms`：`page,total,rooms`，每页最多 10 项 | `client/src/multiplayer/lobby-actions.ts:83-125` |
+| `create` | `name,capacity,password,channelName,mode,speed,speedVersion`，普通模式含 `gameplay:"ordinary"` | `room`；建房表单本身不发送赛道，服务端须设定有效默认赛道 | `client/src/multiplayer/lobby-settings.ts:101-123`；`client/src/generated/multiplayer.js:3264-3278` |
+| `join` | `roomId,password` | `room`；已锁房间先让用户填密码 | `client/src/multiplayer/lobby-actions.ts:208-220` |
+| `leave` | `roomId,revision` | `left` 或新房间状态 | `client/src/multiplayer/lobby-actions.ts:128-155` |
+| `ready` / `start` | `roomId,revision,ready?` | 更新后的 `room`；开始时进入 `loading` | `client/src/multiplayer/lobby-room-view.ts:77-89` |
+| `team` / `slot` / `kick` / `kick-vote` / `transfer-host` | `roomId,revision` 与各自目标字段 | 更新后的 `room` | `client/src/multiplayer/lobby-actions.ts:229-237`；`client/src/multiplayer/lobby-room-view.ts:99-116`；`client/src/multiplayer/lobby-dialogs.ts:149-154` |
+| `track` / `random-track` | `roomId,revision,trackId` 或 `randomTrackCode` | 更新后的 `room` | `client/src/multiplayer/lobby-track.ts:164-170` |
+| `equipment` / `changing` | `roomId,equipment` 或 `roomId,changing` | 更新后的 `room`；**本地新增**：装备含账号不拥有的物品时 `ITEM_NOT_OWNED` | `client/src/multiplayer/lobby-garage.ts:79,115-117` |
+| `get-room-settings` / `room-settings` | `roomId`；更新另带 `revision,name,password` | `room-settings` 或 `room` | `client/src/multiplayer/lobby-settings.ts:45-65`；`client/src/multiplayer/lobby-actions.ts:240-253` |
+| `chat` | `roomId,text` | `chat` 事件，内容带 `sequence,playerId,name,text` | `client/src/multiplayer/lobby-actions.ts:195-205`；`client/src/multiplayer/server-events.ts:22-25,94-95` |
 
-客户端还发送 `loaded`、`load-failed`、`finish`、`return-room`、`race-chat`、`team-charge`、`giant-state`、`award-motion`、`item`（本地新增，道具赛，见下文“本地新增：道具赛”）、`latency-reply`，高级 P2P 模式还会发送 `p2p-signal` / `p2p-relay`（`rewrite/src/multiplayer/race-start-coordinator.ts:157-172`；`rewrite/src/multiplayer/race-session.ts:134-200`；`rewrite/src/multiplayer/peer-mesh.ts:205,427`）。服务端可发出的已观察事件类型集合见 `rewrite/src/multiplayer/protocol.ts:76-81`，字段校验见 `rewrite/src/multiplayer/server-events.ts:36-127`。不认识的请求要回 `{"type":"error","requestId":"原请求 ID","code":"错误码"}`，避免客户端一直等待。
+客户端还发送 `loaded`、`load-failed`、`finish`、`return-room`、`race-chat`、`team-charge`、`giant-state`、`award-motion`、`item`（本地新增，道具赛，见下文“本地新增：道具赛”）、`latency-reply`，高级 P2P 模式还会发送 `p2p-signal` / `p2p-relay`（`client/src/multiplayer/race-start-coordinator.ts:157-172`；`client/src/multiplayer/race-session.ts:134-200`；`client/src/multiplayer/peer-mesh.ts:205,427`）。服务端可发出的已观察事件类型集合见 `client/src/multiplayer/protocol.ts:76-81`，字段校验见 `client/src/multiplayer/server-events.ts:36-127`。不认识的请求要回 `{"type":"error","requestId":"原请求 ID","code":"错误码"}`，避免客户端一直等待。
 
 **本地新增：装备归属。**账号只能使用库存中未过期的物品。`create`、`join`、`equipment` 携带的 `equipment` 由游戏节点在不持有大厅锁时向数据服务核对（`/internal/v1/equipment/verify`）：含不拥有的物品时回复 `{"type":"error","code":"ITEM_NOT_OWNED"}`，命令不生效（按 Java 校验顺序在应用装备处返回）；数据服务不可达时 `DATA_SERVICE_UNAVAILABLE`。`ready`（`ready:true`）核对发送者自己的装备；`start` 重新核对缓存已过期的所有成员，不拥有者被取消准备（房间广播新的 `revision`）且 `start` 返回 `ITEM_NOT_OWNED`；`start` 时同一账号占两个座位返回 `ACCOUNT_ONLINE`。每个会话缓存核对结果：肯定结果用到 min(`validUntil`, 核对后 10 分钟)，否定结果 10 秒。需要核对的命令每个连接每秒 2 次（突发 10），超出回复 429 `RATE_LIMITED`；全节点同时最多 32 个核对，超出 `DATA_SERVICE_UNAVAILABLE`。此外每个连接的文本命令有通用限流（每秒 30 次、突发 60；`create`/`track`/`random-track`/`room-settings` 另限每秒 5 次、突发 20），超出同样回复 `RATE_LIMITED`，持续超出的连接以 1008 关闭。只核对商店出售的分类（角色、喷漆、卡丁车、宠物、气球、头饰……）与系统车：`itemIds[3]` 为 0 时由 `systemKart` 指明系统车，新手礼包的练习车是 `systemKart:"practiceKart"`；改装部件、涂装等其他槽位不核对。新账号的装备就是新手礼包：角色 `itemIds[1]` 为 2 或 3，喷漆 `itemIds[2]` 与染色 `itemIds[70]` 为 6/4/5/7 之一，`itemIds[3]=0` 加 `systemKart:"practiceKart"`。
 
@@ -115,15 +115,15 @@
 
 **本地新增 `race.rewards`：**比赛有结果后（`finished` 阶段），快照的 `race` 末尾多一个字段 `rewards`，即 `{ "<playerId>": { "exp": 88, "lucci": 120 } }`，每位载入完成的车手一项，所有玩法都有（挡人模式没有名次结果，也按 `server-go/ECONOMY.md` 2.1 的规则折算）；`race.results` 保持原样。数值已乘数据服务的奖励倍率 `KART_EXP_RATE`/`KART_LUCCI_RATE`（游戏节点从心跳响应得到，用与入账相同的 `rewards.ApplyRate` 换算），结算发给数据服务的是倍率前的基础值（另带显示时用的倍率）；数据服务乘倍率、按收到结算时的北京时间自然日套每日上限后入账（按 `raceId` 与账号幂等；完成时间早于 24 小时前的结算不发奖励），实际入账以 `GET /api/account` 为准。防刷规则只影响 `rewards`：服务器观察到的比赛时长（`finish` 到达时间 − `startAt`）不足 10 秒，或客户端 `elapsedMs` 比它短 3 秒以上的完赛按未完赛计奖；挡人模式开跑 10 秒内结束时所有人按未完赛，中途离开房间的车手没有奖励项（名次赛中完赛后才离开的照常有）；组队平局时双方都没有胜方加成（`winningTeam` 仍按原样输出）。例如倍率为 1 时两人 `speedIndiCombine` 个人赛：第 1 名经验 88、金币 120，第 2 名经验 33、金币 40；经验倍率 1.5、金币倍率 2 时第 1 名显示经验 132、金币 240。
 
-`revision` 从 1 开始，每次状态更新递增；客户端会丢弃旧版本和自己已离开的房间（`rewrite/src/multiplayer/room-state.ts:20-45`）。频道决定模式和速度：`speedIndiCombine` / `speedTeamCombine` 是速度 7，`speedIndiInfinit` / `speedTeamInfinit` 是速度 4（`rewrite/src/multiplayer/room-validation.ts:111-116`）；本地新增的道具频道 `itemIndiCombine`（个人）/ `itemTeamCombine`（组队）是速度 7，只用于 `gameplay:"item"`。房间必须有 `trackId` 或 p3553 的 `randomTrackCode`；人数 2–8，成员 ID 与槽位唯一、房主必须在成员中。装备若出现必须满足完整 34 个分类和数值范围；比赛的 `roster` 每人必须有有效装备（`rewrite/src/multiplayer/room-validation.ts:193-225,344-408`）。房间阶段为 `open → loading → countdown/racing → finished`，非 `open` 阶段必须附有效 `race`。**与 Java 不同：**比赛中（`loading`/`countdown`/`racing`）有车手离开房间时不再取消整局，其他车手继续比赛、跑完为止；离开者从 `members` 消失但仍在 `roster` 中，已载入的在 `results` 中按未完赛排在最后，服务端不再等它载入或完赛；浏览器把它标为退出、隐藏它的赛车并取消碰撞。只有挡人模式载入阶段跑者离开（或已凑不齐 5 名载入车手）、或所有车手都离开时才取消（`raceError: "MEMBER_LEFT"`）。同样，`load-failed` 与载入超时只把该车手移出本局（从 `loadedIds` 删除，留在房间等下一局，之后的比赛命令返回 `NOT_RACE_PARTICIPANT`），其他人载入完即开赛；只有本局无法开始时才取消（`LOAD_FAILED`/`LOAD_TIMEOUT`）。`loading` 之后不在 `loadedIds` 中的 `roster` 车手即已被移出。详见 `server-go/DESIGN.md` 4.3。具体赛果字段、结束时限与团队得分约束见 `rewrite/src/multiplayer/room-validation.ts:305-341`。
+`revision` 从 1 开始，每次状态更新递增；客户端会丢弃旧版本和自己已离开的房间（`client/src/multiplayer/room-state.ts:20-45`）。频道决定模式和速度：`speedIndiCombine` / `speedTeamCombine` 是速度 7，`speedIndiInfinit` / `speedTeamInfinit` 是速度 4（`client/src/multiplayer/room-validation.ts:111-116`）；本地新增的道具频道 `itemIndiCombine`（个人）/ `itemTeamCombine`（组队）是速度 7，只用于 `gameplay:"item"`。房间必须有 `trackId` 或 p3553 的 `randomTrackCode`；人数 2–8，成员 ID 与槽位唯一、房主必须在成员中。装备若出现必须满足完整 34 个分类和数值范围；比赛的 `roster` 每人必须有有效装备（`client/src/multiplayer/room-validation.ts:193-225,344-408`）。房间阶段为 `open → loading → countdown/racing → finished`，非 `open` 阶段必须附有效 `race`。**与 Java 不同：**比赛中（`loading`/`countdown`/`racing`）有车手离开房间时不再取消整局，其他车手继续比赛、跑完为止；离开者从 `members` 消失但仍在 `roster` 中，已载入的在 `results` 中按未完赛排在最后，服务端不再等它载入或完赛；浏览器把它标为退出、隐藏它的赛车并取消碰撞。只有挡人模式载入阶段跑者离开（或已凑不齐 5 名载入车手）、或所有车手都离开时才取消（`raceError: "MEMBER_LEFT"`）。同样，`load-failed` 与载入超时只把该车手移出本局（从 `loadedIds` 删除，留在房间等下一局，之后的比赛命令返回 `NOT_RACE_PARTICIPANT`），其他人载入完即开赛；只有本局无法开始时才取消（`LOAD_FAILED`/`LOAD_TIMEOUT`）。`loading` 之后不在 `loadedIds` 中的 `roster` 车手即已被移出。详见 `server-go/DESIGN.md` 4.3。具体赛果字段、结束时限与团队得分约束见 `client/src/multiplayer/room-validation.ts:305-341`。
 
 真实比赛装载器还要求 `race.startSlots`：键必须恰好覆盖 `race.roster` 中的每个 `playerId`，值是互不重复的 0–7 整数起跑位。这个条件目前没有包含在 `room-validation.ts` 的静态校验里，但缺失会使浏览器在载入赛道时返回“本局缺少完整起跑位表”（`recovered/formatted/index.js:77081-77100`）。本地端到端脚本会单独检查它。
 
-`rooms` 列表中的每个摘要必须含 `roomId,name,mode,capacity,speedVersion,channelName,speed,gameplay,resourceVersion,count,locked`，以及 `trackId` 或 `randomTrackCode`；额外的 `gaming` 可帮助前端判断是否可快速加入（`rewrite/src/multiplayer/server-events.ts:107-124`）。
+`rooms` 列表中的每个摘要必须含 `roomId,name,mode,capacity,speedVersion,channelName,speed,gameplay,resourceVersion,count,locked`，以及 `trackId` 或 `randomTrackCode`；额外的 `gaming` 可帮助前端判断是否可快速加入（`client/src/multiplayer/server-events.ts:107-124`）。
 
 ### 本地特殊玩法
 
-模式规则、房间与赛程在 `server-go/internal/game/lobby`，逐行移植自 Java 版 `server/src/main/java/local/kartsim/server/GameModes.java` 与 `LobbyService.java`。每个服务端快照都必须通过 `rewrite/src/multiplayer/room-validation.ts`：
+模式规则、房间与赛程在 `server-go/internal/game/lobby`，逐行移植自 Java 版 `server/src/main/java/local/kartsim/server/GameModes.java` 与 `LobbyService.java`。每个服务端快照都必须通过 `client/src/multiplayer/room-validation.ts`：
 
 所有模式的结束快照都带 `race.rewards`，奖励随结算入账。
 
@@ -137,9 +137,9 @@
 
 ### 本地新增：道具赛
 
-规则约定见 [`rewrite/ITEM_MODE.md`](rewrite/ITEM_MODE.md)（第 3 阶段：附录 C）；服务器数据 `server-go/internal/game/itemmode/itemmode.json` 由 `rewrite/tools/export-item-mode-data.mjs` 从原版资源导出（**不要手改**）：个人 `item/slot/itemProb_indi@zz.bml`、组队 `itemProb_team2@cn.bml` 的名次组权重，`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限，19 种道具 `item.bml` 第一组状态的时长，道具赛道表（含 `track@zz` 等级）、随机池与默认赛道；第 3 阶段另有变更卡重抽表、49 种特殊道具（变体 base 及其状态时长）、按车辆的 `transformByKart`/`fired2Gain`/`firing2Gain`/`animalBooster`（基础文件加 `@cn` 按行覆盖）、`transform@zz`、`itemTable.kml` 加 `@cn` 的道具赛特性、46 辆迅引擎道具车与 12 个结算称号（见 `server-go/README.md`“道具赛数据”）。
+规则约定见 [`client/ITEM_MODE.md`](client/ITEM_MODE.md)（第 3 阶段：附录 C）；服务器数据 `server-go/internal/game/itemmode/itemmode.json` 由 `client/tools/export-item-mode-data.mjs` 从原版资源导出（**不要手改**）：个人 `item/slot/itemProb_indi@zz.bml`、组队 `itemProb_team2@cn.bml` 的名次组权重，`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限，19 种道具 `item.bml` 第一组状态的时长，道具赛道表（含 `track@zz` 等级）、随机池与默认赛道；第 3 阶段另有变更卡重抽表、49 种特殊道具（变体 base 及其状态时长）、按车辆的 `transformByKart`/`fired2Gain`/`firing2Gain`/`animalBooster`（基础文件加 `@cn` 按行覆盖）、`transform@zz`、`itemTable.kml` 加 `@cn` 的道具赛特性、46 辆迅引擎道具车与 12 个结算称号（见 `server-go/README.md`“道具赛数据”）。
 
-**房间。** `create` 用 `channelName:"itemIndiCombine"`（`mode:"individual"`）或 `"itemTeamCombine"`（`mode:"team"`，人数为偶数）、`speed:7`、`gameplay:"item"`，需要 p3553（`RESOURCE_VERSION_UNSUPPORTED`）；道具频道只接受 `item`，`item` 只能在道具频道（都返回 `INVALID_CHANNEL`）。`list-gameplay {"gameplay":"item"}` 列出道具房间，`list-ordinary` 不含它们。新房间默认赛道是道具 hot1 组第一条有道具箱的赛道（`desert_I03`）。`track` 只接受导出的道具赛道，即浏览器道具房间选图目录 `itemTrackCatalog`（`rewrite/src/resources/track-catalog.ts`）的全部赛道：`track@zz` 中 `gameType="item"`、含 5 条 `isOnlyItemTrack`，去掉 `trackLocale@cn` 中 `blocked="true"`/`choosable="false"`/练习场的，反向赛道须有未封禁的 `trackLocale@cn` `track_rvs` 行；每条的 `track.1s`/`track_rvs.1s` 里都有道具箱；共 187 条，其中 29 条反向（服务器多出一条客户端没有的赛道，开赛时浏览器会报“本局赛道不在当前资源目录中。”，导出测试会拦住这种差异），其他返回 `TRACK_NOT_ITEM`；`random-track` 接受 3–7（hot1–hot5）、0（全部）、8（新图）、30（反向），开赛时从对应的道具池抽取，40（竞速随机）返回 `INVALID_TRACK`。开赛后载入窗口 90 秒。比赛快照在 `race` 最后追加 `"item":{"ruleset":"web-item-v1","table":"indi"|"team"}`。组队道具赛没有集气，`team-charge` 返回 `TEAM_GAUGE_UNAVAILABLE`。
+**房间。** `create` 用 `channelName:"itemIndiCombine"`（`mode:"individual"`）或 `"itemTeamCombine"`（`mode:"team"`，人数为偶数）、`speed:7`、`gameplay:"item"`，需要 p3553（`RESOURCE_VERSION_UNSUPPORTED`）；道具频道只接受 `item`，`item` 只能在道具频道（都返回 `INVALID_CHANNEL`）。`list-gameplay {"gameplay":"item"}` 列出道具房间，`list-ordinary` 不含它们。新房间默认赛道是道具 hot1 组第一条有道具箱的赛道（`desert_I03`）。`track` 只接受导出的道具赛道，即浏览器道具房间选图目录 `itemTrackCatalog`（`client/src/resources/track-catalog.ts`）的全部赛道：`track@zz` 中 `gameType="item"`、含 5 条 `isOnlyItemTrack`，去掉 `trackLocale@cn` 中 `blocked="true"`/`choosable="false"`/练习场的，反向赛道须有未封禁的 `trackLocale@cn` `track_rvs` 行；每条的 `track.1s`/`track_rvs.1s` 里都有道具箱；共 187 条，其中 29 条反向（服务器多出一条客户端没有的赛道，开赛时浏览器会报“本局赛道不在当前资源目录中。”，导出测试会拦住这种差异），其他返回 `TRACK_NOT_ITEM`；`random-track` 接受 3–7（hot1–hot5）、0（全部）、8（新图）、30（反向），开赛时从对应的道具池抽取，40（竞速随机）返回 `INVALID_TRACK`。开赛后载入窗口 90 秒。比赛快照在 `race` 最后追加 `"item":{"ruleset":"web-item-v1","table":"indi"|"team"}`。组队道具赛没有集气，`team-charge` 返回 `TEAM_GAUGE_UNAVAILABLE`。
 
 **结果。** 个人道具赛与竞速相同（按完赛时间排名，第一名冲线后 10 秒结束）。组队道具赛 `winningTeam` 是**最先冲线者**（`results` 第一名）的队伍；`teamScores` 仍按完赛积分给出（0–39，供前端校验），胜方 ×1.2 奖励跟随 `winningTeam`，积分持平也照给。数据服务把道具赛计入成就的 gameType 2（个人）/ 4（组队）、6（道具全部）和 0（全部比赛）。道具赛的 `finish` 可带 `perfectStart:true|false`（起步加速是否成功，其他玩法忽略）；`race.results[]` 每行加 `titles`（字符串数组，按 `title_icons/namemap@zz` 顺序）：`perfectAim` 百发百中（有攻击命中且没有被挡下的攻击）、`ironWall` 铁壁防御（天使 5 次）、`turret` 炮台模式（各类导弹 10 次）、`flyKing` 苍蝇之王（水苍蝇类 10 次）、`carpetBomb` 地毯式轰炸（投掷水炸弹类 10 次）、`cloudyDay` 阴云密布（乌云类 10 次）、`magnetic` 莫名吸引（磁铁类 10 次）、`invasion` 入侵地球（飞碟 10 次）、`speedWar` 速度战（加速器与特殊加速器 10 次）、`perfectStart` 完美起步、`onlyOne` 唯我独尊（第 1 名完赛，且每次过线——运动帧圈数增加——时都领先）、`safetyFirst` 安全第一（完赛且全程没有报过 `result:"hit"`）。结算的 `results[].titles` 相同。`race.rewards` 的金币含赛中金币（不乘倍率），结算条目另列 `bonusLucci`；用掉的道具换位卡/变更卡随结算 `consumed` 扣除（见“本地新增：账号经济”与 `server-go/ECONOMY.md`）。
 
@@ -205,9 +205,9 @@
 | 龙卷风 135 | 第一名对手（由其 `place` 落点） | 使用者的对手 | shield、angel | — |
 | 符咒 137 | 第一名对手 | 目标 | shield、angel | 距离差/60 m/s，夹到 [300, 1500]；命中后道具锁 `Affect` 4000，`escape` 提前结束 |
 
-“对手”是另一队的车手（个人赛为其他所有人），且只算仍在比赛（未完赛、未退出）的车手；距离差用使用者与目标的当前路线距离。客户端在 `startAt` 之后按 `rewrite/ITEM_MODE.md` 附录 B、C.4 的时间线表现效果。护盾能挡的道具 = 该变体 `item.bml` 有 `Shield`/`StateShield`/`RocketShield` 状态的道具（飞碟除外），`go test ./internal/game/itemmode` 按导出数据核对。
+“对手”是另一队的车手（个人赛为其他所有人），且只算仍在比赛（未完赛、未退出）的车手；距离差用使用者与目标的当前路线距离。客户端在 `startAt` 之后按 `client/ITEM_MODE.md` 附录 B、C.4 的时间线表现效果。护盾能挡的道具 = 该变体 `item.bml` 有 `Shield`/`StateShield`/`RocketShield` 状态的道具（飞碟除外），`go test ./internal/game/itemmode` 按导出数据核对。
 
-**装备特性（ITEM_MODE.md C.2）。** 受害者按开赛时冻结的装备（`race.roster[i].equipment.itemIds`：车 `"3"`、角色 `"1"`、宠物 `"21"`、气球 `"9"`、头饰 `"11"`）自己判定，服务器用同一个确定性掷骰复核：`roll = fnv1a32("raceId|useId|hazardId|victimId|kind") % 100`（UTF-8 字节、32 位 FNV-1a，没有的 id 写 0），`roll < 概率` 即成立；概率取 `itemTable.kml` 叠加 `@cn` 的道具赛值（`"p"` 或 `"p道具赛,p对AI"` 取第一个数，-1 当 0）。同一个 `kind` 车和宠物共用一次掷骰（较大的概率决定），双发导弹的两枚也共用。向量见 `rewrite/src/item/item-roll-vectors.json` 与 `itemmode/phase3_test.go`。
+**装备特性（ITEM_MODE.md C.2）。** 受害者按开赛时冻结的装备（`race.roster[i].equipment.itemIds`：车 `"3"`、角色 `"1"`、宠物 `"21"`、气球 `"9"`、头饰 `"11"`）自己判定，服务器用同一个确定性掷骰复核：`roll = fnv1a32("raceId|useId|hazardId|victimId|kind") % 100`（UTF-8 字节、32 位 FNV-1a，没有的 id 写 0），`roll < 概率` 即成立；概率取 `itemTable.kml` 叠加 `@cn` 的道具赛值（`"p"` 或 `"p道具赛,p对AI"` 取第一个数，-1 当 0）。同一个 `kind` 车和宠物共用一次掷骰（较大的概率决定），双发导弹的两枚也共用。向量见 `client/src/item/item-roll-vectors.json` 与 `itemmode/phase3_test.go`。
 
 | `by` / `variant` | 道具 | 需要（`kind`） |
 | --- | --- | --- |
@@ -255,7 +255,7 @@
 
 **原协议** 的比赛运动数据不是 JSON。原版 `motion` 通道帧为 56 字节头加 80–178 字节载荷；小端魔数为 `19277`，头中有载荷类型、接收者掩码、房间/比赛/玩家 UUID 和 32 位序号。
 
-**本地版（协议 40）改了帧头，与原版不兼容。** 三个 UUID 每帧重复 48 字节，而游戏节点从连接本身就知道发送者在哪个房间、哪场比赛，所以帧头只剩 8 字节（`rewrite/src/multiplayer/motion.ts`、`server-go/internal/game/lobby/motion.go`）：
+**本地版（协议 40）改了帧头，与原版不兼容。** 三个 UUID 每帧重复 48 字节，而游戏节点从连接本身就知道发送者在哪个房间、哪场比赛，所以帧头只剩 8 字节（`client/src/multiplayer/motion.ts`、`server-go/internal/game/lobby/motion.go`）：
 
 | 偏移 | 长度 | 字段 |
 | --- | --- | --- |
@@ -274,7 +274,7 @@
 
 ## 数据存储事实与本地新增方案
 
-原版下载物没有服务端实现。当前单人档案写在浏览器 `localStorage` 的 `kartrider-web:p3528:user-profile-v2`，结构含 `equipment,initial,favoriteTracks,favoriteItems,garage`（`rewrite/src/ui/local-profile.ts:1-39,172-212`）；本地昵称另存 `kartsim.local-nickname`（`rewrite/src/generated/multiplayer.js:621-635`）。计时赛摘要在 `kartrider-web:p3553:time-attack-records-v1`，旧版键是 p3528；Ghost 完整帧保存在 IndexedDB（`rewrite/src/game/ghost-records.ts:22-23,71-99`；`rewrite/src/game/ghost/record-store.ts:156-211`）。约 3.49 GiB 的游戏资源容器由静态服务提供并在浏览器 OPFS 缓存，不属于账号数据库（`rewrite/src/resources/container-store.ts:71-123`）。
+原版下载物没有服务端实现。当前单人档案写在浏览器 `localStorage` 的 `kartrider-web:p3528:user-profile-v2`，结构含 `equipment,initial,favoriteTracks,favoriteItems,garage`（`client/src/ui/local-profile.ts:1-39,172-212`）；本地昵称另存 `kartsim.local-nickname`（`client/src/generated/multiplayer.js:621-635`）。计时赛摘要在 `kartrider-web:p3553:time-attack-records-v1`，旧版键是 p3528；Ghost 完整帧保存在 IndexedDB（`client/src/game/ghost-records.ts:22-23,71-99`；`client/src/game/ghost/record-store.ts:156-211`）。约 3.49 GiB 的游戏资源容器由静态服务提供并在浏览器 OPFS 缓存，不属于账号数据库（`client/src/resources/container-store.ts:71-123`）。
 
 **本地新增** 的服务端持久化记录账号、会话、个人资料、房间规则和比赛结果。原前端不会自动访问新的资料或记录接口；前端适配器必须显式读取、写入并处理版本冲突。房间的实时内存状态和持久化历史是分开的：房间只存在于所在游戏节点的内存中，节点重启后房间不恢复；账号、资料与成绩由数据服务写入 MySQL，任一进程重启都可恢复。具体新增 REST 路径以本地实现为准；不要把它们误认为原站已有接口。
 
@@ -290,4 +290,4 @@
 | GET | `/api/room-rules` | 最近 100 份房间规则 `roomId,settings,updatedAt` |
 | GET | `/api/player-stats?name=` | 注册账号累计统计 `nickname,races,wins,podiums,points,updatedAt`；没有时 404 `PLAYER_NOT_FOUND` |
 
-`ownerId` 必须是 UUID，`recordId` 只接受 1–100 位字母、数字、下划线和短横线。所有资料/记录请求带 `X-Profile-Key`：首次 PUT 绑定该所有者的 43 字符密钥，之后读写需要同一密钥。前端将稳定 `ownerId` 和密钥保存在本机（`rewrite/src/ui/profile-sync.ts:4-38,52-55`）。游客每次联机握手可能分配新的 `playerId`，不能把它当持久资料 ID。原 Ghost 记录键含 NUL 分隔符（`rewrite/src/game/ghost-records.ts:25-33`），写入新接口前应使用稳定的 URL 安全编码或摘要。当前前端只同步 Ghost **摘要**，完整回放帧仍在浏览器 IndexedDB，见 `rewrite/src/game/ghost-summary-sync.ts:15-36`。数据服务把这些数据保存在 MySQL，热点读取经 Redis 缓存；表结构、Redis 键与旧 SQLite（`server/data/kart.db`）迁移方法见 [`server-go/README.md`](server-go/README.md)。
+`ownerId` 必须是 UUID，`recordId` 只接受 1–100 位字母、数字、下划线和短横线。所有资料/记录请求带 `X-Profile-Key`：首次 PUT 绑定该所有者的 43 字符密钥，之后读写需要同一密钥。前端将稳定 `ownerId` 和密钥保存在本机（`client/src/ui/profile-sync.ts:4-38,52-55`）。游客每次联机握手可能分配新的 `playerId`，不能把它当持久资料 ID。原 Ghost 记录键含 NUL 分隔符（`client/src/game/ghost-records.ts:25-33`），写入新接口前应使用稳定的 URL 安全编码或摘要。当前前端只同步 Ghost **摘要**，完整回放帧仍在浏览器 IndexedDB，见 `client/src/game/ghost-summary-sync.ts:15-36`。数据服务把这些数据保存在 MySQL，热点读取经 Redis 缓存；表结构、Redis 键与旧 SQLite（`server/data/kart.db`）迁移方法见 [`server-go/README.md`](server-go/README.md)。

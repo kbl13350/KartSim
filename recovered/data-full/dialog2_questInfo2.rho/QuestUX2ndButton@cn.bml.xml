@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QuestUX2ndButton name="questBtnTemplate" windowRect="0 0 285 26" selectedTexture1="btn_진행중_5" autoLoadImage1="btn_진행중_" selectedTexture2="btn_완료_5" autoLoadImage2="btn_완료_" selectedTexture3="btn_진행불가_5" autoLoadImage3="btn_진행불가_" focusedUv="0 0 285 26" ordinaryUv="0 0 0 0">
-  <ImageButton name="questBtn" windowRect="0 0 285 26 " alphaBlend="true"/>
-  <Panel name="pc" windowSize="30 17 " adjust="43 0" texture="iconpc방cn" alphaBlend="true" align="vcenter" visible="false"/>
-  <Panel name="newButton" windowSize="15 17" adjust="267 -2" texture="img_queNew" alphaBlend="true" visible="false"/>
-  <Panel name="clearIcon" windowSize="15 17" adjust="267 -2" texture="img_queFin" alphaBlend="true" visible="false"/>
-  <Label name="resetType" windowSize="55 29 " adjust="10 0" textColor="black" textAlign="vcenter" textRender="bold"/>
-  <Label name="title" windowSize="170 29 " adjust="77 0" textColor="black" textAlign="vcenter"/>
-</QuestUX2ndButton>

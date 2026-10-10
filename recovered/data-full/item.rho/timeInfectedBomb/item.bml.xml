@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="timeInfectedBomb">
-  <state name="Use" life="3000" itemFx="firing"/>
-  <state name="Set" life="1000" item="물방울터짐" size="15.0" itemFx="set"/>
-  <state name="Affect" life="2000" fired="fired02" firedFx="trapped"/>
-  <state name="PostAffect" life="5000" fired="녹색열쇠" firedFx="locked"/>
-  <state name="SpecialShield" life="2000"/>
-</item>

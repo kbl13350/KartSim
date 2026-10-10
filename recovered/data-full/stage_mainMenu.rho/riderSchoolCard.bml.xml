@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StateButton windowRect="0 0 104 134" frame="PopupButton" iconSet="드리프트" textColor="white" textRender="bold" textAlign="hcenter" stringPos="0 6" iconAlign="center">
-  <Panel name="clear" windowRect="0 0 72 72" align="right;bottom" texture="img_clearIcon" alphaBlend="true" visible="false"/>
-</StateButton>

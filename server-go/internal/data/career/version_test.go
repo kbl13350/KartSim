@@ -15,7 +15,7 @@ import (
 // The helpers below repeat economy/version_test.go: careers.json uses the
 // same canonical version as the economy documents (canonical.mjs).
 
-// canonicalJSON reproduces rewrite/tools/economy-export/canonical.mjs:
+// canonicalJSON reproduces client/tools/economy-export/canonical.mjs:
 // JSON.stringify of a value whose object keys were inserted in sorted
 // order. JavaScript enumerates integer-like keys first (ascending
 // numerically), then string keys in insertion order.
@@ -165,7 +165,7 @@ func TestEmbeddedVersionMatchesContent(t *testing.T) {
 	stored, computed := contentVersion(t, embedded)
 	if stored != computed {
 		t.Errorf("careers.json: version %s, content hashes to %s; regenerate with "+
-			"`node --import tsx tools/export-career-data.mjs` in rewrite/ instead of editing by hand",
+			"`node --import tsx tools/export-career-data.mjs` in client/ instead of editing by hand",
 			stored, computed)
 	}
 }

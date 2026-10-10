@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- (2022.06.23 Update) 네모 산타의 비밀공간 / 메디아 / 이온 X / 통합속도 적용 -->
-<!-- (2022.10.20 Update) 연습카트 V1 기준 기록 및 설정 반영 -->
-<!-- 캐릭터 : 메디아 / 탑승 카트 : 이온 V1 -->
-<OutRun kartId='1400'	characterId='212' colorId='40' dyeId='61' track='nemo_R01'	 gameSpeed='7'>
-	<LevelContent level='7' ksv='PRO_10_nemo_R01_7'/>
-</OutRun>

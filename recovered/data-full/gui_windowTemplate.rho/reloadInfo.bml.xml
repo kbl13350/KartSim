@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container windowRect="0 0 98 98" visible="false">
-  <ImageBoard name="bg" windowSize="98 98" align="center" image="reloadBg" alphaBlend="true"/>
-  <Panel name="f1" clientRect="0 0 98 98" alphaBlend="true" texture="reload_f1" visible="false"/>
-  <Panel name="f2" clientRect="0 0 98 98" alphaBlend="true" texture="reload_f2" visible="false"/>
-  <Panel name="f3" clientRect="0 0 98 98" alphaBlend="true" texture="reload_f3" visible="false"/>
-  <Panel name="disBg" clientRect="0 0 98 98" alphaBlend="true" texture="reload0" visible="false"/>
-  <Panel name="enBg" clientRect="0 0 98 98" alphaBlend="true" texture="reload1" visible="false"/>
-</Container>

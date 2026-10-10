@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <TimeAttack track="village_S01" laps="1" isFixedKart="true" fixedKartId="888" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" timeLimit="15000" timeValue="13000;14000;25000;15000;26000;2000"/>
-  </TimeAttack>
-</Root>

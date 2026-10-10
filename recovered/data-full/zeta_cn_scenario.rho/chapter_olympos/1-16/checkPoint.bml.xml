@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <MaxSpeed track="olympos_S01" laps="1" isFixedKart="true" fixedKartId="1273" isFixedChar="true" fixedCharId="327">
-    <LevelContent level="0" speedValue="180;190;210;170;185;160;210;" timeLimit="90000"/>
-  </MaxSpeed>
-</Root>

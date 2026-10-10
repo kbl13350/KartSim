@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow kartId="510" characterId="3" uniformId="95" colorId="9" dyeId="9" characterName="热血·琳" isFixedKart="true" fixedKartId="683" isFixedChar="true" fixedCharId="75">
-    <LevelContent level="0" ksv="beach_1-16" track="beach_R02" laps="3"/>
-  </Shadow>
-</Root>

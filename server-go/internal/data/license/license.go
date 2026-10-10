@@ -1,7 +1,7 @@
 // Package license is the 驾照考试 (rider school) table: six licenses of
 // mission steps, the reward stock of each step and the PRO qualification,
 // exported from the release DataPack1 etc_/riderSchool files
-// (rewrite/tools/export-license-data.mjs). See server-go/RIDER_SCHOOL.md.
+// (client/tools/export-license-data.mjs). See server-go/RIDER_SCHOOL.md.
 package license
 
 import (

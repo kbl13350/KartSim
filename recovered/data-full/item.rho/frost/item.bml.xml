@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="frost">
-  <state name="Use" life="200" itemFx="눈구름"/>
-  <state name="Set" life="3000" item="산타필살기" size="12.0"/>
-  <state name="Affect" life="4500" itemFx="서리"/>
-  <state name="Disappear" life="2000"/>
-  <state name="SpecialShield" life="1000"/>
-</item>

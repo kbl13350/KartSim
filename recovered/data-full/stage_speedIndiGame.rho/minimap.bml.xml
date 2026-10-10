@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Minimap name="minimap" windowSize="250 250" adjust="17 0" align="right;vcenter" depthBias="-0.1">
-  <Label name="alignDesc" leftTopWH="5 15 25 10" text="" textColor="white" textRender="outline16"/>
-</Minimap>

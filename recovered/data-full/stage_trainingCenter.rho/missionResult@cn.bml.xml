@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="ScreenUI" windowRect="fullscreen" enable="false">
-  <Panel name="guideSuccess" windowSize="412 120" adjust="0 -200" texture="text_success@cn" align="center" alphaBlend="true" visible="false"/>
-  <Panel name="missionSuccess" windowSize="412 120" adjust="0 -200" texture="text_successMission@cn" align="center" alphaBlend="true" visible="false"/>
-  <Panel name="guideFail" windowSize="412 120" adjust="0 -200" texture="text_fail@cn" align="center" alphaBlend="true" visible="false"/>
-  <Panel name="missionFail" windowSize="412 120" adjust="0 -200" texture="text_failMission@cn" align="center" alphaBlend="true" visible="false"/>
-</Container>

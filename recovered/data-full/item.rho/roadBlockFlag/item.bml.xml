@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="roadBlockFlag">
-  <state name="Stay" life="0"/>
-  <state name="Runner" life="0" fired="runner_flag"/>
-</item>

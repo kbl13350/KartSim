@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="ufo">
-  <state name="Use" life="1500" firing="firing00" fired="fired00" firingFx="using" firedFx="affecting"/>
-  <state name="Affect" life="3000" fired="fired01"/>
-  <state name="PostAffect" life="500" fired="fired02"/>
-  <state name="BonusAffect" life="3000" item="루찌획득" fired="fired01" firedFx="eaten"/>
-  <state name="HeadBandAffect" life="1500" fired="fired03"/>
-  <state name="Shield" life="1500"/>
-</item>

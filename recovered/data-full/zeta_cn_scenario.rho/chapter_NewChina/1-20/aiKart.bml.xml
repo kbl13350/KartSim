@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <AiKart id="1" track="china_I01" isFixedKart="true" fixedKartId="854" laps="3" gameType="item">
-    <LevelContent level="0" item="Rocket;WaterBomb;Booster;Magnet;Angel;WaterFly;Ufo;Shield" aiItemLevel="2">
-      <AiKart characterId="25" kartId="935" colorId="1" dyeId="1" balloonId="0" speed="50" accel="40" startTick="0"/>
-    </LevelContent>
-  </AiKart>
-</Root>

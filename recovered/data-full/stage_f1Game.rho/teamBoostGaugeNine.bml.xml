@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel name="mqBoostTeam" leftTopTex="0 512" texture="nine_n2o_team" alphaBlend="true" enable="false" align="bottom;hcenter" adjust="0 70">
-  <Panel name="teamFull" leftTopTex="0 0" texture="nine_n2o_team_full" textureOp="modulate" alphaBlend="true" visible="false"/>
-  <Panel name="teamGauge" leftTopWH="53 5 148 14" texture="nine_n2o_team_bar" uvRect="53 5 201 19" alphaBlend="true"/>
-  <Panel name="teamBar" leftTopTex="0 1" texture="nine_n2o_solo_marker" textureOp="modulate" alphaBlend="true"/>
-</Panel>

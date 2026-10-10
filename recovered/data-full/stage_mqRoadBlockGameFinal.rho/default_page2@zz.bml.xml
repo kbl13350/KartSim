@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container leftTopWH="24 25 460 743">
-  <Panel name="runnerHeader" leftTopTex="1 -32" texture="runnerHeader@zz" alphaBlend="true"/>
-  <Panel name="blockerHeader" leftTopTex="1 79" texture="blockerHeader@zz" alphaBlend="true"/>
-  <List name="resultList" leftTopWH="0 0 438 743" frame="NoFrame" scrollType="vertical" listGap="0" upButton="NoFrame" downButton="NoFrame" upButtonBullet="" downButtonBullet="" scrollButton="NoFrame" scrollArea="NoFrame" scrollBarVisible="false" listMargin="10 10 0 0"/>
-</Container>

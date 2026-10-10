@@ -1,4 +1,4 @@
-// Item race (道具赛, rewrite/ITEM_MODE.md) helpers shared by the end-to-end
+// Item race (道具赛, client/ITEM_MODE.md) helpers shared by the end-to-end
 // scripts: ../../../server-special-smoke.mjs (the item scenarios) and
 // ../item-bot.mjs (the test bot for manual browser testing).
 //
@@ -8,10 +8,10 @@
 //   included, is on it) and motion ticks on it, as the browser's
 //   MotionClockMapping produces them.
 // - Binary motion frames built with the browser's own codec
-//   (rewrite/src/multiplayer/payload.ts GameMotionEncoder, passed in by the
+//   (client/src/multiplayer/payload.ts GameMotionEncoder, passed in by the
 //   caller through tsx): kind 10 kinematic samples with race progress, like
 //   OutgoingRaceMotionSender sends in a non-ordinary race. Protocol 40 frames
-//   name racers by room slot (rewrite/src/multiplayer/motion.ts).
+//   name racers by room slot (client/src/multiplayer/motion.ts).
 // - ItemChannel: the racer's `item` requests with the strict per-racer
 //   sequence, checked with the browser's request validator
 //   (protocol.ts isValidItemRequest) and paced below the node's text rate

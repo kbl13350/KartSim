@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <AiKart id="1" track="castle_I02" isFixedKart="true" fixedKartId="19" laps="1" gameType="item">
-    <LevelContent level="0" item="Rocket;WaterBomb;Booster;Magnet;Angel;WaterFly;Ufo;Shield" aiItemLevel="2">
-      <AiKart characterId="11" uniformId="67" kartId="24" colorId="1" dyeId="1" balloonId="0" speed="45" accel="25" startTick="0" characterName="皮德"/>
-    </LevelContent>
-  </AiKart>
-</Root>

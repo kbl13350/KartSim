@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <ItemAttack isFixedKart="true" fixedKartId="95" isFixedChar="true" fixedCharId="1">
-    <LevelContent level="0" track="china_R02_sn11" laps="1" timeLimit="120000" RocketCount="12" targetBlockName="targetBlock2"/>
-  </ItemAttack>
-</Root>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <TimeAttack track="camelot_S01" laps="1" isFixedKart="true" fixedKartId="1220" isFixedChar="true" fixedCharId="314">
-    <LevelContent level="0" timeLimit="10000" timeValue="7000;5000;7000;8000;8000;6000"/>
-  </TimeAttack>
-</Root>

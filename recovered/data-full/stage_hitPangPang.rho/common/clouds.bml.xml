@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container leftTopWH="0 0 104 520" depthBias="90">
-  <Play1SPanel name="cloud0" scene="HT_备抚" leftTopWH="0 -50 200 200" defaultCameraPos="0.0 -1.3 0.0" defaultSpotPos="0.0 2.0 0.0" zoom="1.3" clearZBefore="true" clearZAfter="true" enable="false"/>
-  <Play1SPanel name="cloud1" scene="HT_备抚" leftTopWH="0 40 200 200" defaultCameraPos="0.0 -1.3 0.0" defaultSpotPos="0.0 2.0 0.0" zoom="1.3" clearZBefore="true" clearZAfter="true" enable="false"/>
-  <Play1SPanel name="cloud2" scene="HT_备抚" leftTopWH="0 130 200 200" defaultCameraPos="0.0 -1.3 0.0" defaultSpotPos="0.0 2.0 0.0" zoom="1.3" clearZBefore="true" clearZAfter="true" enable="false"/>
-  <Play1SPanel name="cloud3" scene="HT_备抚" leftTopWH="0 220 200 200" defaultCameraPos="0.0 -1.3 0.0" defaultSpotPos="0.0 2.0 0.0" zoom="1.3" clearZBefore="true" clearZAfter="true" enable="false"/>
-  <Play1SPanel name="cloud4" scene="HT_备抚" leftTopWH="0 310 200 200" defaultCameraPos="0.0 -1.3 0.0" defaultSpotPos="0.0 2.0 0.0" zoom="1.3" clearZBefore="true" clearZAfter="true" enable="false"/>
-  <Play1SPanel name="cloud5" scene="HT_备抚" leftTopWH="0 400 200 200" defaultCameraPos="0.0 -1.3 0.0" defaultSpotPos="0.0 2.0 0.0" zoom="1.3" clearZBefore="true" clearZAfter="true" enable="false"/>
-</Container>

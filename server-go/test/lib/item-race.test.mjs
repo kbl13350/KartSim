@@ -1,7 +1,7 @@
 // Unit checks for the item race helpers the smoke and the test bot share; no
 // services needed. The motion codec round trip and the event validators use
 // the browser's modules through tsx and are skipped without `npm ci` in
-// rewrite/.
+// client/.
 //   node --test test/lib/item-race.test.mjs        (from server-go/)
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
@@ -13,9 +13,9 @@ import {
   transformedOnTrack, wireVector,
 } from "./item-race.mjs";
 
-const haveTsx = existsSync(join(repoRoot, "rewrite/node_modules/tsx/dist/esm/api/index.mjs"));
+const haveTsx = existsSync(join(repoRoot, "client/node_modules/tsx/dist/esm/api/index.mjs"));
 const browser = async specifier => {
-  const { tsImport } = await import(join(repoRoot, "rewrite/node_modules/tsx/dist/esm/api/index.mjs"));
+  const { tsImport } = await import(join(repoRoot, "client/node_modules/tsx/dist/esm/api/index.mjs"));
   return tsImport(join(repoRoot, specifier), import.meta.url);
 };
 
@@ -160,8 +160,8 @@ test("motion pump: one frame per beat to the other racers' slots", async () => {
 });
 
 test("kart samples encode and decode with the browser's codec", async t => {
-  if (!haveTsx) return t.skip("rewrite/node_modules missing");
-  const payload = await browser("rewrite/src/multiplayer/payload.ts");
+  if (!haveTsx) return t.skip("client/node_modules missing");
+  const payload = await browser("client/src/multiplayer/payload.ts");
   const room = { roomId: "00000000-0000-4000-8000-000000000001",
     race: { raceId: "00000000-0000-4000-8000-000000000002" },
     members: [{ playerId: "00000000-0000-4000-8000-000000000003", slot: 3 },
@@ -184,9 +184,9 @@ test("kart samples encode and decode with the browser's codec", async t => {
 });
 
 test("browser validators: item events the browser would drop count as rejected", async t => {
-  if (!haveTsx) return t.skip("rewrite/node_modules missing");
+  if (!haveTsx) return t.skip("client/node_modules missing");
   const [{ parseServerEvent }, { isValidRoomSnapshot }] = await Promise.all([
-    browser("rewrite/src/multiplayer/server-events.ts"), browser("rewrite/src/multiplayer/room-validation.ts")]);
+    browser("client/src/multiplayer/server-events.ts"), browser("client/src/multiplayer/room-validation.ts")]);
   const validation = browserEventValidation(isValidRoomSnapshot);
   assert.ok(validation.validChannel("itemTeamCombine", "team", 7));
   assert.ok(!validation.validChannel("itemTeamCombine", "individual", 7));

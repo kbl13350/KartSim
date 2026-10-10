@@ -410,7 +410,7 @@ func settlementFromRequest(request contract.RaceSettlement, now int64) (store.Se
 			DistanceMeters: min(max(result.DistanceMeters, 0), maxRaceDistanceMeters),
 		})
 	}
-	// The changer cards item racers used up (rewrite/ITEM_MODE.md C.6): one
+	// The changer cards item racers used up (client/ITEM_MODE.md C.6): one
 	// entry per racer and card at most, never more than a race could use.
 	if len(request.Consumed) > 2*maxRaceResults {
 		return store.Settlement{}, false

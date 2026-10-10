@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow kartId="45" characterId="9" uniformId="0" colorId="1" dyeId="1" characterName="海盗船长" isFixedKart="true" fixedKartId="794" isFixedChar="true" fixedCharId="102">
-    <LevelContent level="0" ksv="1920_1-7" track="pirate_I04" laps="3"/>
-  </Shadow>
-</Root>

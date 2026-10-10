@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<rankMarkList>
-	<rankMark grade='1' minPercent='5'	key='S'/>
-	<rankMark grade='2' minPercent='10'	key='A'/>
-	<rankMark grade='3' minPercent='15' key='B'/>
-	<rankMark grade='4' minPercent='30' key='C'/>
-	<rankMark grade='5' minPercent='45' key='D'/>
-	<rankMark grade='6' minPercent='60' key='E'/>
-</rankMarkList>

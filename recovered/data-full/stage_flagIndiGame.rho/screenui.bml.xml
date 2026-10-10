@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="screenUI" windowRect="fullscreen">
-  <Panel leftTopWH="fullscreen" texture="ingame_shadow" alphaBlend="true"/>
-  <XmlFile file="scoreUi"/>
-  <XmlFile file="timeUi"/>
-  <XmlFile file="rankBoard"/>
-</Container>

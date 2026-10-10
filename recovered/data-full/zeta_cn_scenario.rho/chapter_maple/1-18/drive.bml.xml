@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Escape isFixedKart="true" fixedKartId="1336" fixedCharId="2" isFixedChar="true" kartId="1421" characterId="408" colorId="93" dyeId="9" characterName="路西德">
-    <LevelContent level="0" track="tomb_I01" laps="3" ksv="1-18" distance="20" startOffset="-1500"/>
-  </Escape>
-</Root>

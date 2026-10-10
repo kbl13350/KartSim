@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Stage className="TrainingCenterDriftDetectStage" addResFolder="/stage/common/;/stage/speedIndiGame/;/stage/itemIndiGame/;/stage/trainingCenter/" topmostWindow="mq_window@zz" stringBag="stage_stringBag"/>

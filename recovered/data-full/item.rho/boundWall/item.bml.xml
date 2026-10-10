@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="boundWall">
-  <state name="Use" life="300" item="폭탄로봇_use"/>
-  <state name="Set" life="6000" item="폭탄로봇_set" size="2.0"/>
-  <state name="Affect" life="1500" item="미사일폭발" fired="미사일폭발" firedFx="affect2"/>
-  <state name="AffectSmall" life="1000" fired="fired03" item="미사일폭발" firedFx="exploding"/>
-  <state name="Shield" life="1000" fired="쉴드방어" firedFx="shield"/>
-  <state name="AfterBoost" life="3000"/>
-</item>

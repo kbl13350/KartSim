@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="7"/>
-  <Delivery isFixedKart="true" fixedKartId="1336" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" track="village_I02" collision="8" labs="3" timeLimit="115000" laps="3"/>
-  </Delivery>
-</Root>

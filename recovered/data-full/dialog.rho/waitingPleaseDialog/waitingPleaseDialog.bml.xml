@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel windowRect="fullscreen" enable="true" visible="true" color="100 0 0 0" alphaBlend="true" alphaTest="true">
-  <ImageBoard windowSize="686 470" image="낚시터이동중팝업@zz" align="center" alphaBlend="true"/>
-</Panel>

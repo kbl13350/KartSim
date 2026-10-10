@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window name="stepInfo" leftTopWH="0 0 424 32" enable="true" visible="true">
-  <ImageBoard leftTopWH="0 0 616 32" image="kartPass_popup_rewardAllSlot" alphaBlend="true" alphaTest="true" enable="true" visible="true"/>
-  <Panel name="passType" leftTopWH="3 3 124 26" alphaBlend="true" enable="true"/>
-  <ColorLabel name="step" leftTopWH="73 3 54 26" text="step" textColor="255 245 250 255" textRender="bold16" textAlign="center" autoWrap="true" enable="true" visible="true"/>
-  <Label name="reward" leftTopWH="138 0 480 32" text="reward" textColor="255 88 105 129" textRender="bold16" textAlign="left;vcenter" autoWrap="true" enable="true" visible="true"/>
-</Window>

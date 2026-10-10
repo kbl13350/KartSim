@@ -474,7 +474,7 @@ export const AREA_ITEMS = Object.freeze({
 });
 
 /**
- * Protocol points are client z-up coordinates (rewrite/src/item/item-race-rules.ts
+ * Protocol points are client z-up coordinates (client/src/item/item-race-rules.ts
  * threeToClient / clientToThreePoint); the bot works in three.js coordinates.
  */
 export const threeToClient = point => ({ x: point.x, y: -point.z || 0, z: point.y });

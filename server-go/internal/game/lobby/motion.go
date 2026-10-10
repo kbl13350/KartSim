@@ -10,7 +10,7 @@ import (
 	"kartsim/internal/game/anticheat"
 )
 
-// Motion frames are the binary race channel. Protocol 40 (rewrite motion.ts)
+// Motion frames are the binary race channel. Protocol 40 (client motion.ts)
 // has an 8-byte header — payload kind, recipient slot mask, the sender's
 // room slot, the race tag (the first byte of the race UUID) and a uint32
 // sequence — plus an 80–163 byte payload. The release's 56-byte header named
@@ -94,7 +94,7 @@ func badFrameDetail(kind, length int) string {
 	return fmt.Sprintf("运动帧格式无效（类型 %d，负载 %d 字节）", kind, length)
 }
 
-// Race progress: the kinematic kinds 4..10 (rewrite payload.ts) carry the
+// Race progress: the kinematic kinds 4..10 (client payload.ts) carry the
 // racer's route distance as a little-endian float64, in meters, at payload
 // offset 108, and its lap as a little-endian uint32 at 116.
 const (

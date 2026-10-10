@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Stage className="BossGameStage" addResFolder="/stage/itemIndiGame/;/stage/speedIndiGame/;/stage/aiItemTeamGame/;/stage/common/" topmostWindow="mq_window@zz" stringBag="stage_stringBag"/>

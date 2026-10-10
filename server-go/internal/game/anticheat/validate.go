@@ -7,7 +7,7 @@ import (
 
 // CodeBadFrame: a motion payload the browser's decoder refuses. A browser
 // that receives such a frame drops its whole game connection
-// (rewrite/src/multiplayer/client-motion.ts acceptServerMotion), so relaying
+// (client/src/multiplayer/client-motion.ts acceptServerMotion), so relaying
 // one would disconnect every other racer; no honest client sends one, its
 // encoder refuses the same values.
 const CodeBadFrame = "BAD_FRAME"

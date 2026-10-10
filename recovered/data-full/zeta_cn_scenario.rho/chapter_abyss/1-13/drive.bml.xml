@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="1108" isFixedChar="true" fixedCharId="9" kartId="1175" colorId="60" dyeId="60" characterId="290" uniformId="0" characterName="奈琳">
-    <LevelContent level="0" track="abyss_I01" laps="3" ksv="1-13" distance="30" startOffset="1500"/>
-  </Tracing>
-</Root>

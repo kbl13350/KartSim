@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <Shadow isFixedKart="true" fixedKartId="3" kartId="8" characterId="4" colorId="4" dyeId="4" characterName="葱头">
-    <LevelContent level="0" ksv="Step11_1분 43초77" track="gold_I01" laps="3"/>
-  </Shadow>
-</Root>

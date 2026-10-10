@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TextButton windowRect="0 0 480 72" frame="ComboBox">
-  <Panel name="itemWindow" leftTopWH="0 0 60 60" texture="f_lucci" align="vcenter" alphaBlend="true">
-    <ItemWindow name="itemPanel" windowRect="0 0 60 60"/>
-  </Panel>
-  <Label name="itemName" leftTopWH="80 5 400 0" text="sample" multiLine="true" textRender="bold16" textColor="255 42 55 80"/>
-  <Label name="itemDesc" windowRect="80 30 455 56" text="아무말마뭉" multiLine="true" autoWrap="true" textRender="bold14" textColor="255 42 55 80"/>
-</TextButton>

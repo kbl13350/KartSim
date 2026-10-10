@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Tracing isFixedKart="true" fixedKartId="13" kartId="3" characterId="12" uniformId="31" colorId="4" dyeId="4" characterName="波利斯 雅克布">
-    <LevelContent level="0" track="tomb_I04" laps="3" ksv="Step6_1분55초26" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

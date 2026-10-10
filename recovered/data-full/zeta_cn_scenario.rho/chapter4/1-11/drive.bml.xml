@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Tracing isFixedKart="true" fixedKartId="888" isFixedChar="true" fixedCharId="2" kartId="919" colorId="1" dyeId="1" characterId="1" uniformId="27" characterName="幽灵车手">
-    <LevelContent level="0" track="forest_I02" laps="2" ksv="chapter4_1_11" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

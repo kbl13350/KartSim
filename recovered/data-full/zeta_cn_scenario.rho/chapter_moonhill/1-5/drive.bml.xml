@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Tracing isFixedKart="true" fixedKartId="19" kartId="24" characterId="2" uniformId="45" colorId="2" dyeId="2" characterName="R军团列兵">
-    <LevelContent level="0" track="moonhill_I04" laps="3" ksv="step_5" distance="20" startOffset="2000"/>
-  </Tracing>
-</Root>

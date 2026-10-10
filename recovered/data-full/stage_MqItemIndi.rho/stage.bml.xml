@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<MultiStage>
-  <revolution className="MqTestItemIndiGameStage" addResFolder="/stage/common/" topmostWindow="stage_window@zz"/>
-  <monocoque className="MqTestItemIndiGameStage" addResFolder="/stage/itemIndiGame/;/stage/speedIndiGame/;/stage/common/;" topmostWindow="mq_window@zz"/>
-</MultiStage>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window name="bg" windowRect="0 0 640 410" texture="privacy_footer">
-  <Window name="header" windowRect="0 0 640 50" texture="privacy_header"/>
-  <Window name="main" windowRect="0 50 640 350" texture="privacy_footer"/>
-  <Window name="footer" windowRect="0 350 640 409" texture="privacy_footer">
-    <GdiButton name="ok" leftTopWH="230 11 98 35" autoLoadImage="agree_0"/>
-    <GdiButton name="cancel" leftTopWH="340 11 98 35" autoLoadImage="agree_n_0"/>
-  </Window>
-</Window>

@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Stage className="TimeAttackStage" addResFolder="/stage/common/;/stage/gameFinalIndi/;/stage/speedIndiGame/;/stage/speedTeamGame/;/stage/mainMenu/;/dialog2/selectTrackEx" topmostWindow="mq_window@zz" stringBag="stage_stringBag"/>

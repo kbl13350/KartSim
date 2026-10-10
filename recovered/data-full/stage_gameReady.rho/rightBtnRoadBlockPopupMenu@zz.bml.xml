@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="rightBtnMenu" windowRect="0 0 186 40" visible="false" depthBias="150">
-  <ImageButton name="changeRoomMaster" leftTopTex="-93 -26" autoLoadImage="btn_masterChange_" text="#sb(roomMasterAndRunnerChange)" stringPos="0 16" textAlign="hcenter" textRender="outline" textColor="white" textColor2="255 3 139 237" overTextRender="outline" overTextColor="white" overTextColor2="255 3 139 237" clickedTextRender="outline" clickedTextColor="255 212 237 254" clickedTextColor2="255 1 138 231" disabledTextRender="outline" disabledTextColor="255 210 210 210" disabledTextColor2="255 125 125 125" depthBias="250" alphaBlend="true"/>
-</Container>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GarageCard name="garageCardTemplate" windowRect="0 0 63 63" alphaBlend="true">
-  <Panel name="cardBG" leftTopWH="0 0 52 52" texture="vip_popup_slotBG" alphaBlend="true" enable="false" visible="true" align="center"/>
-  <Window name="shopItemContainer" windowRect="0 0 55 55" align="center" enable="false"/>
-  <Container name="itemNameContainer" windowRect="0 0 55 55" enable="false" visible="false">
-    <Label name="itemNameLabel" align="center" autoSizing="true"/>
-  </Container>
-</GarageCard>

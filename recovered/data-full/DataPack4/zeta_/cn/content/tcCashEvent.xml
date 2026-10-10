@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<tcCashEventList>
-		<tcCashEvent eventPeriod='2026-09-17T06:00:00~2026-10-15T05:59:59' rewardPeriod='2026-09-17T06:00:00~2026-10-22T05:59:59' eventType='use'>
-				<reward step='1' value='1000' stockId='32336' />
-				<reward step='2' value='2000' stockId='29631' />
-				<reward step='3' value='5000' stockId='32396' />
-				<reward step='4' value='8000' stockId='32344' />
-		</tcCashEvent>
-</tcCashEventList>

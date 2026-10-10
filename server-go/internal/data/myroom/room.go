@@ -21,10 +21,10 @@ import (
 const MaxMembers = 8
 
 // DefaultEnvironment is the room environment of a profile without one
-// (myRoom.bml ID 16 tomb_M01, rewrite local-profile.ts).
+// (myRoom.bml ID 16 tomb_M01, client local-profile.ts).
 const DefaultEnvironment = 16
 
-// Settings are the room settings of an owner's profile (rewrite
+// Settings are the room settings of an owner's profile (client
 // local-profile.ts MyRoomProfile, edited in the roomAdmin dialog).
 type Settings struct {
 	EnvironmentID int               `json:"environmentId"`

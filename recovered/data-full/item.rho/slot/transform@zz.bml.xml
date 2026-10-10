@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<transforms>
-  <item name="timeBomb" srcIdx="13" level="0" destIdx="9" probability="100"/>
-  <item name="timeBomb" srcIdx="13" level="1" destIdx="9" probability="100"/>
-  <item name="devil" srcIdx="2" isReverse="true" level="0" destIdx="23" probability="100"/>
-  <item name="devil" srcIdx="2" isReverse="true" level="2" destIdx="23" probability="100"/>
-  <item name="devil" srcIdx="2" isReverse="true" level="3" destIdx="23" probability="100"/>
-  <item name="devil" srcIdx="2" isReverse="true" level="4" destIdx="23" probability="100"/>
-</transforms>

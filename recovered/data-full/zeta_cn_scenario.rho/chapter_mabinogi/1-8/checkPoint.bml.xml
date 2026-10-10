@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <TimeAttack track="mabi_S01" laps="2" isFixedKart="true" fixedKartId="1336" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" timeLimit="20000" timeValue="5000;5000;10000;10000;10000;15000;10000;5000;5000;5000;9000;9000;10000;9000;8000;0;"/>
-  </TimeAttack>
-</Root>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ImageButton name="아이템" windowRect="0 0 190 43" autoLoadImage="themeSelect_btn_slot_" textAlign="vcenter" textRender="bold16" textColor="255 135 146 167" overTextColor="255 142 196 243" clickedTextColor="white" disabledTextColor="255 102 102 102" stringPos="48 0" enable="true" alphaBlend="true" alphaTest="true">
-  <Panel name="themeIcon" leftTopWH="10 6 30 30" align="vcenter" texture="random_1" enable="false" alphaBlend="true"/>
-  <Panel name="selectedTheme" leftTopWH="0 20 34 15" align="hcenter" texture="img_trackSelectIcon" enable="false" alphaBlend="true" visible="false"/>
-</ImageButton>

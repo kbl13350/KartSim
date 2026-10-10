@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="1"/>
-  <Tracing isFixedKart="true" fixedKartId="20" isFixedChar="true" fixedCharId="2" kartId="71" colorId="6" dyeId="6" characterId="2" uniformId="99" characterName="可疑的声音">
-    <LevelContent level="0" track="brodi_I02" laps="3" ksv="Brodi_7_1" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

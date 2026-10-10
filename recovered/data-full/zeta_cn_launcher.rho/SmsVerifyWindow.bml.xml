@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window name="bg" windowRect="0 0 253 180">
-  <Window name="captchaBg" windowRect="0 0 253 180" texture="sms_box"/>
-  <Edit id="750101" name="bigEdit" windowRect="35 84 215 98" limitText="24" textColor="white" isOnlyDigit="true" textBkColor="0 8 71 119" visible="false"/>
-  <GdiButton name="ok" windowRect="0 92 73 118" align="bottom" adjust="50 13" autoLoadImage="button_A_0"/>
-  <GdiButton name="cancel" windowRect="0 92 73 118" align="bottom" adjust="138 13" autoLoadImage="button_B_0"/>
-</Window>

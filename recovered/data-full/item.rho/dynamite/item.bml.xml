@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="dynamite">
-  <state name="Use" life="2000" item="item00" itemFx="use"/>
-  <state name="Set" life="1000" item="item01" itemFx="set"/>
-  <state name="Affect" life="1500" fired="fired00" item="item02" itemFx="affect"/>
-  <state name="SpecialShield" life="2000"/>
-  <state name="AfterBoost" life="0"/>
-</item>

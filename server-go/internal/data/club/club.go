@@ -1,6 +1,6 @@
 // Package club holds the 俱乐部 rules: the release club marks and frames
 // (club.json, exported from DataPack1 etc_/clubMark by
-// rewrite/tools/export-club-data.mjs) and the numbers the release kept on
+// client/tools/export-club-data.mjs) and the numbers the release kept on
 // its servers, chosen here and documented in server-go/CLUB.md.
 package club
 

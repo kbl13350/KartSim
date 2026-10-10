@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="mqBoost" windowSize="192 32" adjust="416 677">
-  <Container windowSize="207 88" adjust="3 -8">
-    <Panel name="teamFull" windowRect="-4 23 188 42" texture="1024_오토봇" uvRect="0 133 192 152" textureOp="modulate" alphaBlend="true" visible="false"/>
-    <Panel name="teamGauge" windowRect="36 29 183 36" texture="1024_오토봇" uvRect="0 125 147 132" alphaBlend="true"/>
-    <Panel name="teamBar" windowRect="50 24 58 41" texture="1024_오토봇" uvRect="202 133 210 150" textureOp="modulate" alphaBlend="true"/>
-  </Container>
-</Container>

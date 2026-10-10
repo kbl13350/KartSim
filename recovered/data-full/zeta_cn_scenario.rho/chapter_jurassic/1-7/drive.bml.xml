@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="1"/>
-  <Shadow kartId="868" characterId="145" uniformId="0" colorId="17" dyeId="17" characterName="露西" isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" ksv="Jurassic_1-7" track="forest_I05" laps="2"/>
-  </Shadow>
-</Root>

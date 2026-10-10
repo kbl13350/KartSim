@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Tracing isFixedKart="true" fixedKartId="888" isFixedChar="true" fixedCharId="2" kartId="875" characterId="15" uniformId="58" colorId="1" dyeId="1" characterName="海盗水手">
-    <LevelContent level="0" track="village_I01" laps="3" ksv="CH3_4" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

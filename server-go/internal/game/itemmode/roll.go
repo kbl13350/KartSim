@@ -7,7 +7,7 @@ import "strconv"
 // "raceId|useId|hazardId|victimId|kind" modulo 100; a passive with chance p
 // succeeds when Roll < p. useId and hazardId are 0 when the hit has none.
 // The TypeScript twin and Go use the vectors of
-// rewrite/src/item/item-roll-vectors.json.
+// client/src/item/item-roll-vectors.json.
 func Roll(raceID string, useID, hazardID int, victimID, kind string) int {
 	key := raceID + "|" + strconv.Itoa(useID) + "|" + strconv.Itoa(hazardID) + "|" + victimID + "|" + kind
 	return int(fnv1a32(key) % 100)
@@ -27,7 +27,7 @@ func fnv1a32(s string) uint32 {
 // the equipment ability (one roll per kind and hit: a kart and a pet with
 // the same passive share it, so the better chance decides, and both shots
 // of a double rocket share it). The browser uses the same kinds
-// (rewrite/src/item/item-roll.ts ItemRollKind).
+// (client/src/item/item-roll.ts ItemRollKind).
 const (
 	RollRocket   = "rocket"   // kart / pet rocket
 	RollWaterFly = "waterfly" // kart / pet waterfly

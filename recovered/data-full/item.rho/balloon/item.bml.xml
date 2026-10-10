@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="balloon">
-  <state name="Stay" life="0"/>
-  <state name="Affect" life="1000" itemFx="affect"/>
-  <state name="Reborn" life="1000" fired="루찌획득" itemFx="reborn" firedFx="eaten"/>
-  <state name="Stay" life="0"/>
-  <state name="Affect" life="1000" itemFx="affect"/>
-  <state name="Reborn" life="1000" itemFx="reborn"/>
-</item>

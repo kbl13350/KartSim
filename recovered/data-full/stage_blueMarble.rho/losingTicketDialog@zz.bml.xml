@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window texture="breakbox" leftTopTex="0 0" align="center">
-  <Panel windowRect="fullscreen" align="center" color="200 0 0 0" alphaBlend="true"/>
-  <ImageBoard name="bg" windowSize="844 552" align="center" adjust="0 -54" image="breakbox" alphaBlend="true"/>
-  <Label name="title" windowSize="487 33" align="center" adjust="0 7" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="title" textAlign="center" textRender="bold20"/>
-  <Label name="body" windowSize="487 83" align="center" adjust="0 78" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="body" textAlign="center" textRender="bold16"/>
-  <ImageButton name="okButton" windowSize="168 54" align="center" adjust="0 193" text="#sb(ok)" autoLoadImage="ok_0" alphaBlend="true" textRender="bold20" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
-</Window>

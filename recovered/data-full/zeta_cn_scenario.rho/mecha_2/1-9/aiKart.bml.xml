@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <AiKart id="1" track="mechanic_I01" isFixedKart="true" fixedKartId="15" isFixedChar="true" fixedCharId="2" laps="3" gameType="item">
-    <LevelContent level="0" item="Rocket;WaterBomb;Booster;Magnet;WaterFly;Shield;Ufo" aiItemLevel="4">
-      <AiKart characterId="45" uniformId="0" kartId="418" colorId="4" dyeId="4" balloonId="0" speed="44" accel="38" startTick="0" characterName="葱头卡奥斯"/>
-    </LevelContent>
-  </AiKart>
-</Root>

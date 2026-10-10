@@ -22,7 +22,7 @@
 
 ## 2. 数据（`internal/data/license/license.json`）
 
-由 `rewrite/tools/export-license-data.mjs` 从 mirror/p3553 导出（`--check` 校验是否过期；`go test ./internal/data/license` 校验版本号，**不要手改**）：
+由 `client/tools/export-license-data.mjs` 从 mirror/p3553 导出（`--check` 校验是否过期；`go test ./internal/data/license` 校验版本号，**不要手改**）：
 
 - `licenses`：6 个驾照，每关 `step`（原版编号 1–42）、`mission`（原版任务 id）、`rule`（`drill` / `time` / `rival` / `item` / `finish`，见第 1 节）、`name`、`icon`、`track`、`laps`（0 为赛道默认）、`speed`、`timeMs`（`time` 与 `item` 规则的限时，`time` 为 0 时不限时）、`stockId`（原版首通奖励）。对决另有 `rival`（对手车辆、人物、录像）与 `rivalMs`（录像成绩，要跑得比它快）。
 - 每关的 `setup`：`riderSchool@cn.xml` 里的其余原版设定，数据服务原样转给浏览器：`limitMs`（原版 `time`，含尚未按限时判定的 AI 道具任务）、`slotCount`（`itemSlotCnt`）、`slots`（`itemslot0/1`）、`cubeItem`、`targetName`、`targetArrow`、`goalArrow`、`nonLimitItem`、`oneTime`、`startTutoScene`、`wrongWayOff`、`showTimeUI`（`FALSE` 时隐藏计时信息，任务计时器照常显示）、`hideMiniMap`（隐藏小地图）。

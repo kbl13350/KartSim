@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <TimeAttack track="pirate_R02_sn05" laps="1" isFixedKart="true" fixedKartId="1107" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" timeLimit="13000" timeValue="10000;9000;10000;6000;15000;8000;11000;3000"/>
-  </TimeAttack>
-</Root>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed=""/>
-  <TimeAttack>
-    <LevelContent level="0" track="forest_I01" laps="3" timeLimit="100000"/>
-  </TimeAttack>
-</Root>

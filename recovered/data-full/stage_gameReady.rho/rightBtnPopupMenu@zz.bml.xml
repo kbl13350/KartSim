@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="rightBtnMenu" windowRect="0 0 156 44" visible="false" depthBias="150">
-  <ImageButton name="changeRoomMaster" leftTopTex="-78 -22" autoLoadImage="btn_masterChange_@zz" depthBias="250" alphaBlend="true"/>
-</Container>

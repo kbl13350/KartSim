@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="swordAttack">
-  <state name="Use" life="2200" fired="삼국지배틀팀필살기_시작" firedFx="필살기타격"/>
-  <state name="Set" life="5100" fired="삼국지배틀팀필살기_발동"/>
-  <state name="Remove" life="350" fired="삼국지배틀팀필살기_퇴장"/>
-  <state name="SpecialShield" life="350" fired="삼국지배틀팀필살기_퇴장"/>
-</item>

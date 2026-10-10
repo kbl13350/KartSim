@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Delivery isFixedKart="true" fixedKartId="111" isFixedChar="true" fixedCharId="1">
-    <LevelContent level="0" track="moonhill_I03_sn07" collision="5" lab="1" timeLimit="60000" laps="1"/>
-  </Delivery>
-</Root>

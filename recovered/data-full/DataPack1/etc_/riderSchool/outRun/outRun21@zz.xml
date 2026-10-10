@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- (2021.10.28 Update) 비치 해변 드라이브 / 투투 -> 월드 뉴욕 대질주 / 크리스로 변경 -->
-<!-- (2022.01.06 Update) 중국 통합 속도 반영 -->
-<!-- (2022.01.14 Update) 대만 통합 속도 반영 -->
-<!-- (2022.10.20 Update) 연습카트 V1 기준 기록 및 설정 반영 -->
-<!-- 케릭터 : 크리스 / 탑승 카트 : 흑기사 V1 -->
-<OutRun kartId='1430'	characterId='190' colorId='61' dyeId='59' track='world_R01'	gameSpeed='7'>
-	<LevelContent level='7' ksv='L2_3_world_R01_7'/>
-</OutRun>

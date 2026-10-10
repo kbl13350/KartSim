@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GarageCard name="garageCardTemplate" windowRect="0 0 166 118" texture="tuning_upgradePopup_list_n" alphaBlend="true">
-  <Window name="shopItemContainer" windowRect="0 0 166 118" align="center" enable="false"/>
-  <Panel name="selected" leftTopWH="0 0 166 118" texture="tuning_upgradePopup_list_s" alphaBlend="true" enable="false" visible="false"/>
-  <Panel name="12TuningLevel" windowSize="30 28" align="top;right" adjust="8 8" texture="tuning_mark_s_1" alphaBlend="true" enable="false" visible="false"/>
-  <Panel name="exceedType" windowSize="35 35" align="top;left" adjust="3 3" alphaBlend="true" enable="false" visible="false"/>
-</GarageCard>

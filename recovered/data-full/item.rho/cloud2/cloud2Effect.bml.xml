@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="cloud2Effect" windowRect="fullscreen" align="center">
-  <Play1SPanel name="cloud2Effect_0" scene="무지개구름_화면가림" windowRect="fullscreen" align="center" defaultCameraPos="0.0 -70.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" stop="true" clearZBefore="true" clearZAfter="true" enable="false"/>
-  <Play1SPanel name="cloud2Effect_1" scene="먹물구름_화면가림" windowRect="fullscreen" align="center" defaultCameraPos="0.0 -70.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" stop="true" clearZBefore="true" clearZAfter="true" enable="false"/>
-  <Play1SPanel name="cloud2Effect_2" scene="요정구름_화면가림" windowRect="fullscreen" align="center" defaultCameraPos="0.0 -70.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="1.0" stop="true" clearZBefore="true" clearZAfter="true" enable="false"/>
-</Container>

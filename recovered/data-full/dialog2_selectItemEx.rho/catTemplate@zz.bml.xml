@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Button name="아이템" windowRect="0 0 68 55" frame="MenuSelectButton" intersectAll="true" iconSetRecur="아이템" iconInfix="_" iconAlign="hcenter" iconPos="0 -5" stateText="치장" stateTextAlign="hcenter" stateTextPos="0 36" stateTextColor="black"/>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="7"/>
-  <Shadow isFixedKart="true" fixedKartId="1420" fixedCharId="406" isFixedChar="true" kartId="1417" characterId="403" colorId="94" dyeId="94" characterName="品克缤">
-    <LevelContent level="0" track="forest_I01" laps="3" ksv="1-4"/>
-  </Shadow>
-</Root>

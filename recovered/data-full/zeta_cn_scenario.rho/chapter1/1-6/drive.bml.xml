@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <TimeAttack isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" track="forest_I04" laps="3" timeLimit="105000"/>
-    <LevelContent level="1" track="forest_I04" laps="3" timeLimit="105000"/>
-  </TimeAttack>
-</Root>

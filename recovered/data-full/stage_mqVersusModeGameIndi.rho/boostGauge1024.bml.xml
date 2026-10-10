@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel name="mqBoost" windowSize="192 32" adjust="416 677" texture="1024_04@zz" uvRect="0 33 192 65" alphaBlend="true" enable="false">
-  <Container windowSize="207 88" adjust="3 -8">
-    <Panel name="full" windowRect="-2 7 188 29" texture="800_03@zz" uvRect="0 102 190 124" textureOp="modulate" alphaBlend="true" visible="false"/>
-    <Panel name="gauge" windowRect="36 12 183 24" texture="800_03@zz" uvRect="0 89 147 101" alphaBlend="true"/>
-    <Panel name="bar" windowRect="33 7 41 29" texture="800_03@zz" uvRect="193 133 201 155" textureOp="modulate" alphaBlend="true"/>
-  </Container>
-</Panel>

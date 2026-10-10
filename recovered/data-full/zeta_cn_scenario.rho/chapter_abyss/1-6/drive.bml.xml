@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="1175" isFixedChar="true" fixedCharId="289" kartId="1162" colorId="8" dyeId="8" characterId="60" uniformId="0" characterName="黑杰克">
-    <LevelContent level="0" track="village_I01" laps="3" ksv="1-6" distance="30" startOffset="2000"/>
-  </Tracing>
-</Root>

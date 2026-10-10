@@ -1,5 +1,5 @@
 {
-  "generatedFrom": "rewrite/tools/export-economy-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: the rewrite time-attack track catalog (timeAttackTrackCatalog: track_/common/track@zz.bml rows with a track model, plus their _rvs reverse models). Do not edit by hand.",
+  "generatedFrom": "client/tools/export-economy-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: the rewrite time-attack track catalog (timeAttackTrackCatalog: track_/common/track@zz.bml rows with a track model, plus their _rvs reverse models). Do not edit by hand.",
   "tracks": [
     {"gameType":"item","id":"forest_I01","title":"森林 木桶"},
     {"gameType":"item","id":"forest_I10","title":"森林 瀑布滑道"},
@@ -370,5 +370,5 @@
     {"gameType":"item","id":"mabi_I01_rvs","reverse":true,"title":"[反]洛奇 迪尔科内尔"},
     {"gameType":"speed","id":"mabi_R01_rvs","reverse":true,"title":"[反]洛奇 艾明马恰"}
   ],
-  "version": "7aed90cadc03e6ab911fc6ad51aada62d9f539383f6977e1004764f18b002ff0"
+  "version": "f7b0fb74a59608fde9038cee41053bac83f13677bd079eca5df0f79541065c05"
 }

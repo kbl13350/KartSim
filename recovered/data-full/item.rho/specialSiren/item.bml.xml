@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="specialSiren">
-  <state name="Use" life="5000" itemFx="sirenSelf"/>
-  <state name="Affect" life="2000" firedFx="trapped"/>
-</item>

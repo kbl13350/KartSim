@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="infectedWaterFly">
-  <state name="Use" life="2000" item="item00" itemFx="firing"/>
-  <state name="Affect" life="1000" item="item01" fired="fired01" firedFx="fired"/>
-  <state name="EscapeAffect" life="2000" fired="fired01" firedFx="trapped" firing="파란방패"/>
-  <state name="Shield" life="1000" fired="쉴드방어" firedFx="shield"/>
-  <state name="SpecialShield" life="2000"/>
-  <state name="AfterBoost" life="2000" fired="녹색열쇠" firedFx="locked"/>
-</item>

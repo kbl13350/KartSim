@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <TimeAttack isFixedKart="true" fixedKartId="40" isFixedChar="true" fixedCharId="6">
-    <LevelContent level="0" track="fairy_I04" laps="3" timeLimit="165000"/>
-  </TimeAttack>
-</Root>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow name="captionWnd" frame="CaptionDialog" windowRect="100 100 455 265" caption="Caption" captionPos="0 1" captionColor="black" align="center" setCloseButton="">
-  <Panel name="iconPanel" windowRect="13 21 44 51" uvRect="0 0 31 30" texture="대화상자정보" alphaBlend="true"/>
-  <Label name="lblMsg" windowRect="55 24 325 94" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="black" text="Message"/>
-  <StateButton name="okButton" windowRect="75 62 151 91" iconSet="메인메뉴구입@zz"/>
-  <TextButton name="cancelButton" text="#sb(ok)" windowRect="185 66 257 88" altTextRender="outline"/>
-</CaptionWindow>

@@ -1,6 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<Container windowRect='5 18 74 60'>
-	<ItemWindow name='item' windowRect='0 0 69 42'>
-		<Panel windowRect='-6 -21 74 46' texture='배찌카드1' alphaBlend='true' enable='false' depthBias='124'/>
-	</ItemWindow>
-</Container>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <MaxSpeed track="jurassic_S01" laps="2" isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" speedValue="175;140;200;180;190;180;180;160;200;180;230;180" timeLimit="120000"/>
-  </MaxSpeed>
-</Root>

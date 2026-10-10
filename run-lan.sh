@@ -27,7 +27,7 @@ export KART_GAME_PUBLIC_ORIGIN=same-origin
 # 其他设备需要 HTTPS 才有游戏所需的安全上下文 API。每次运行都重新生成自签名证书，
 # 覆盖本机当前的全部地址；每台设备的浏览器会询问一次是否信任。
 ips=$(ifconfig | awk '/inet /{print $2}')
-cert_dir="$root/rewrite/.lan-cert"
+cert_dir="$root/client/.lan-cert"
 mkdir -p "$cert_dir"
 chmod 700 "$cert_dir"
 san="DNS:localhost,DNS:$(hostname)"

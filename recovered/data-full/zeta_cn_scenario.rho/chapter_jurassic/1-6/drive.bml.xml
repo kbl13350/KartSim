@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="868" isFixedChar="true" fixedCharId="145" kartId="849" colorId="6" dyeId="6" characterId="2" characterName="皮蛋">
-    <LevelContent level="0" track="forest_I04" laps="3" ksv="Jurassic_1-6" distance="30" startOffset="2000"/>
-  </Tracing>
-</Root>

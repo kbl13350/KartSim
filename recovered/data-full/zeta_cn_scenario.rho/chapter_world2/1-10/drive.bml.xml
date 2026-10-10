@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="932" isFixedChar="true" fixedCharId="60" kartId="963" colorId="1" dyeId="1" characterId="204" characterName="阿泰尔">
-    <LevelContent level="0" track="world_I03" laps="2" ksv="WORLD_EP_world_I03_0" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

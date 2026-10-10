@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="0"/>
-  <MaxSpeed track="nemo_S03" laps="1" isFixedKart="true" fixedKartId="998" isFixedChar="true" fixedCharId="208">
-    <LevelContent level="0" speedValue="220;280;280;280;" timeLimit="40000"/>
-  </MaxSpeed>
-</Root>

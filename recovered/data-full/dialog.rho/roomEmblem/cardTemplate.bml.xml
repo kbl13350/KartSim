@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel name="frame" windowRect="0 0 80 80" texture="img_slotEmblemBG" alphaBlend="true">
-  <Panel name="emblem" windowRect="9 9 60 60" align="center" uvRect="0 0 51 51" alphaBlend="true"/>
-</Panel>

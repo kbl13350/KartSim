@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<fired2Gain>
-  <item kartId="33" firedItemIdx="timeBomb" gainItemIdx="waterFly" probability="50"/>
-  <item kartId="33" firedItemIdx="waterBomb" gainItemIdx="waterFly" probability="50"/>
-  <item kartId="33" firedItemIdx="waterMine" gainItemIdx="waterFly" probability="50"/>
-</fired2Gain>

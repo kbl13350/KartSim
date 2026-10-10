@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="38" isFixedChar="true" fixedCharId="101" kartId="41" colorId="9" dyeId="9" characterId="12" uniformId="68" characterName="卡尔市长">
-    <LevelContent level="0" track="mine_I01" laps="3" ksv="1920_1-16" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

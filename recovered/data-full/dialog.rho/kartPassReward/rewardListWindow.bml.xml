@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow name="captionDlgFrame" windowRect="0 0 682 613" frame="CaptionDialog" caption="#sb(kartPassReward)" align="center" setCloseButton="ok">
-  <Window windowSize="640 444" adjust="0 16" align="hcenter" frame="InputBoxBg2" alphaBlend="true" visible="true">
-    <List name="rewardList" leftTopWH="5 5 628 432" listGap="3" listMargin="0 0 0 0" upButton="NoFrame" downButton="NoFrame" scrollButton="MixVerticalScrollButton" scrollArea="MixVerticalScrollArea" scrollWidth="6" autoScroll="true"/>
-  </Window>
-  <ColorLabel name="rewardListStr" windowSize="240 20" adjust="0 70" align="hcenter|bottom" text="" textColor="255 42 55 80" textRender="bold14" textAlign="center" visible="true" enable="true"/>
-  <Window name="okCancelHSection" windowSize="640 1" adjust="0 58" align="hcenter|bottom" frame="HSection"/>
-  <TextButton name="ok" windowSize="134 40" adjust="0 4" align="hcenter|bottom" text="#sb(ok)" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220" alphaBlend="true"/>
-</CaptionWindow>

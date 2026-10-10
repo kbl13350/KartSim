@@ -1,6 +1,6 @@
 package lobby
 
-// Item races (道具个人赛 / 组队道具赛, rewrite/ITEM_MODE.md): rooms of the
+// Item races (道具个人赛 / 组队道具赛, client/ITEM_MODE.md): rooms of the
 // gameplay "item" in the channels itemIndiCombine and itemTeamCombine. The
 // rules live in internal/game/itemmode; this file checks the "item"
 // requests (ITEM_MODE.md 5) and turns the results into item events.

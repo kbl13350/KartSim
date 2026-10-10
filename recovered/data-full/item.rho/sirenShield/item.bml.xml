@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="sirenShield">
-  <state name="Use" life="200" firing="라쳇쉴드_시작"/>
-  <state name="Affect" life="2000" fired="당함" firedFx="trapped"/>
-  <state name="Siren" life="2000" firing="라쳇쉴드_진행" itemFx="사이렌 실드_발동"/>
-</item>

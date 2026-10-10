@@ -14,7 +14,7 @@
 
 ## 2. 数据（`internal/data/lottery/lottery.json`）
 
-由 `rewrite/tools/export-lottery-data.mjs` 从 mirror/p3553 导出（`--check` 校验是否过期；`go test ./internal/data/lottery` 校验版本号，**不要手改**）：
+由 `client/tools/export-lottery-data.mjs` 从 mirror/p3553 导出（`--check` 校验是否过期；`go test ./internal/data/lottery` 校验版本号，**不要手改**）：
 
 - `lotteries`：`zeta_/cn/lottery/lottery.xml` 中每个以 24 类道具为 id 的抽奖（210 个）。`sets` 为 rewardList 引用的奖池，**每次使用从每个奖池各抽一件**（原版“可获得共6种道具”的礼盒即 6 个奖池）。`key` 为 `needOther`：每次使用另外消耗 1 个的钥匙道具（幸运车胎、变形齿轮）；`clientNeedOther` 只是客户端显示用的道具，不消耗。`start`/`end` 是原版期限，只作参考。
 - `rewardSets`：奖池，`weight` 为原版 `prob`（0 永不抽中），`notice` 为原版 `needToNotice`（精品道具），`summary` 为“可获得道具”列表的顺序。
@@ -79,4 +79,4 @@ lottery_activities(activity PK, enabled, start_at NULL, end_at NULL, daily_json 
 
 - 大厅右侧“活动”面板（原版 mq 大厅 `eventmenu_pop`，按钮图 `stage_/mainMenu` 的 `event_thg_0x`、`limitedGacha_0x`）：寻宝活动、精品道具。
 - 两个界面按原版 BML（运行时从资源库读取 `stage_window@zz`）用商店的 BML 组件渲染在 1080 高的虚拟屏幕上，全屏覆盖（含任务栏），Esc 或右上角关闭。原版 3D 场景（格子特效、扭蛋机背景、道具模型）用原版 2D 贴图代替：结果光效 `아이템출현광원_<稀有度>`、扭蛋背景 `통합가챠BG_<尺寸>`，道具图片用商店的车库快照。
-- 代码：`rewrite/src/lottery/`（`lottery-api.ts` 接口与校验，`treasure-hunt-view.ts`，`gacha-view.ts`，`lottery-shell.ts` 共用的全屏舞台、对话框与“兑换”窗口），入口 `rewrite/src/timeattack/ready-lottery.ts`。
+- 代码：`client/src/lottery/`（`lottery-api.ts` 接口与校验，`treasure-hunt-view.ts`，`gacha-view.ts`，`lottery-shell.ts` 共用的全屏舞台、对话框与“兑换”窗口），入口 `client/src/timeattack/ready-lottery.ts`。

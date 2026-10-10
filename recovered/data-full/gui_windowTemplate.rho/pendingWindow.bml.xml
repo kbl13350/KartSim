@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window mame="PendingWindow" windowRect="0 0 215 42">
-  <TonPopupMenu name="pendingQuest" windowRect="0 0 310 0" frame="PopupWindow" textRender="bold" caption="#sb(quest)" captionPosAdjust="0 5" captionAlign="center" captionTextColor="black" flipUpDown="false" adjustLeftTop="-10 0" depthBias="-100" PopupMenuAnimPack="pendingup" alphaBlend="true"/>
-  <TonPopupMenu name="pendingScenario" windowRect="0 0 290 0" frame="PopupWindow" textRender="bold" caption="#sb(scenario)" captionPosAdjust="0 5" captionAlign="center" captionTextColor="black" flipUpDown="false" adjustLeftTop="-110 0" PopupMenuAnimPack="pendingup" depthBias="-100" alphaBlend="true" visible="false"/>
-  <TonPopupMenu name="pendingCareer" windowRect="0 0 290 0" frame="PopupWindow" textRender="bold" caption="#sb(career)" captionPosAdjust="0 5" captionAlign="center" captionTextColor="black" flipUpDown="false" adjustLeftTop="-110 0" PopupMenuAnimPack="pendingup" depthBias="-100" alphaBlend="true" visible="false"/>
-</Window>

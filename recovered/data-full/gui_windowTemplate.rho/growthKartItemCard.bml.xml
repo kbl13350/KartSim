@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GarageCard name="garageCardTemplate" windowRect="0 0 150 118" texture="upgradekart_list" alphaBlend="true">
-  <Window name="shopItemContainer" windowRect="0 0 150 118" align="center" enable="false"/>
-  <Panel name="checkButton" windowSize="150 118" texture="upgradekart_list_select" alphaBlend="true" visible="false" enable="true"/>
-</GarageCard>

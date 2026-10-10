@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <TimeAttack isFixedKart="true" fixedKartId="1174" isFixedChar="true" fixedCharId="291">
-    <LevelContent level="0" track="abyss_I01" laps="1" timeLimit="0"/>
-  </TimeAttack>
-</Root>

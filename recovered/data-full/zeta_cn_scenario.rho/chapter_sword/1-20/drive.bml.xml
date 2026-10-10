@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow isFixedKart="true" fixedKartId="1090" fixedCharId="242" isFixedChar="true" kartId="1089" characterId="241" colorId="72" dyeId="72" characterName="月熙">
-    <LevelContent level="0" ksv="chapter_sword_1-20" track="sword_R01" laps="2"/>
-  </Shadow>
-</Root>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="tombStone">
-  <state name="Use" life="935" item="무쇠더미_use" size="1.0"/>
-  <state name="PreSet" life="1000" item="무쇠더미_PreSet" size="4.3"/>
-  <state name="Set" life="4000" item="무쇠더미_set" itemFx="비석 올라옴" size="4.3"/>
-  <state name="Affect" life="1000" item="무쇠더미_Affect" itemFx="비석 부서짐"/>
-  <state name="Disappear" life="500" item="무쇠더미_Disappear" itemFx="비석 사라짐"/>
-  <state name="Shield" life="1000" item="무쇠더미_Disappear" fired="쉴드방어" firedFx="shield" itemFx="비석 부서짐"/>
-</item>

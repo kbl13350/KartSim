@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="1091" isFixedChar="true" fixedCharId="242" characterId="2" uniformId="0" kartId="849" colorId="6" dyeId="6" characterName="皮蛋">
-    <LevelContent level="0" track="forest_I04" laps="3" ksv="chapter_sword_1-14" distance="20" startOffset="1500"/>
-  </Tracing>
-</Root>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Delivery isFixedKart="true" fixedKartId="1135" isFixedChar="true" fixedCharId="3">
-    <LevelContent level="0" track="abyss_R04" collision="10" laps="2" timeLimit="115000"/>
-  </Delivery>
-</Root>

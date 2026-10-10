@@ -1,5 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<Container windowRect='0 0 80 67'>
-	<ItemWindow name='item' windowSize='52 52' adjust='15 15' align='hcenter'/>
-	<Panel leftTopTex='14 -1' texture='배찌카드1' alphaBlend='true' enable='false' depthBias='124'/>
-</Container>

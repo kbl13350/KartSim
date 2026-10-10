@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="dynamite">
-  <state name="Use" life="2000" item="mos_1" itemFx="use"/>
-  <state name="Set" life="1000" item="mos_2" itemFx="set"/>
-  <state name="Affect" life="3000" fired="mos_3" itemFx="affect"/>
-</item>

@@ -184,7 +184,7 @@ type RaceResult struct {
 	// furthest route progress its motion frames reported while racing,
 	// bounded by the time since the start (the distance careers).
 	DistanceMeters int `json:"distanceMeters,omitempty"`
-	// Titles are an item race racer's result titles (rewrite/ITEM_MODE.md
+	// Titles are an item race racer's result titles (client/ITEM_MODE.md
 	// C.9: perfectAim, ironWall, …), as race.results shows them.
 	Titles []string `json:"titles,omitempty"`
 }
@@ -214,7 +214,7 @@ type RaceSettlement struct {
 	LucciRate  *float64 `json:"lucciRate,omitempty"`
 	FinishedAt int64    `json:"finishedAt"`
 	// Consumed are the consumables racers used up in the race (an item
-	// race's changer cards, rewrite/ITEM_MODE.md C.6). The data service
+	// race's changer cards, client/ITEM_MODE.md C.6). The data service
 	// takes them from the accounts' inventories in the settlement's
 	// transaction (never below 0, once per RaceID).
 	Consumed []ConsumedItem `json:"consumed,omitempty"`
@@ -226,7 +226,7 @@ type RaceReward struct {
 	AccountID string `json:"accountId,omitempty"`
 	Exp       int    `json:"exp"`
 	Lucci     int    `json:"lucci"`
-	// BonusLucci is an item race's in-race lucci (rewrite/ITEM_MODE.md C.8,
+	// BonusLucci is an item race's in-race lucci (client/ITEM_MODE.md C.8,
 	// at most MaxBonusLucci): credited on top of Lucci, without the rate
 	// (race.rewards shows the sum).
 	BonusLucci int `json:"bonusLucci,omitempty"`
@@ -235,7 +235,7 @@ type RaceReward struct {
 // MaxBonusLucci bounds a racer's in-race lucci in one race.
 const MaxBonusLucci = 200
 
-// The item changer cards (category 7 slotChanger, rewrite/ITEM_MODE.md C.6).
+// The item changer cards (category 7 slotChanger, client/ITEM_MODE.md C.6).
 const (
 	CategoryChanger = 7
 	// ItemSlotChanger is the 道具换位卡 (counted), ItemItemChanger the
@@ -322,7 +322,7 @@ type EquipmentVerifyResponse struct {
 	Changers *Changers `json:"changers,omitempty"`
 }
 
-// Changers are an account's item changer cards (rewrite/ITEM_MODE.md C.6):
+// Changers are an account's item changer cards (client/ITEM_MODE.md C.6):
 // Slot the 道具换位卡 (7:1) count and Item the 道具变更卡 (7:2) count, each
 // -1 while the account holds an unexpired voucher (7:4 / 7:3), whose expiry
 // (Unix ms; absent for a permanent one) is SlotUntil / ItemUntil.

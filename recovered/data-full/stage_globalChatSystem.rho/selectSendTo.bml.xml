@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window name="selectSendTo" windowRect="0 0 69 50">
-  <GridSelector name="sendToList" windowRect="0 0 69 50" alignStyle="horizontal" alignSize="1" maxLine="2" alignMargin="0 0" clientMargin="0 0 0 0"/>
-</Window>

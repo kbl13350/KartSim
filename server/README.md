@@ -69,4 +69,4 @@ node test/auth-smoke.mjs
 
 ## 扩展
 
-新增一条联机命令时，在 `LobbyService.handle` 分派，在对应方法中校验房间成员、阶段和字段，然后更新 `Room` 并递增 `revision`。新快照应先用 `rewrite/src/multiplayer/room-validation.ts` 验证，因为客户端会丢弃不合格式的事件。HTTP 存取逻辑集中于 `StorageApi` 和 `HistoryApi`；表结构及事务只在 `Database` 中管理。
+新增一条联机命令时，在 `LobbyService.handle` 分派，在对应方法中校验房间成员、阶段和字段，然后更新 `Room` 并递增 `revision`。新快照应先用 `client/src/multiplayer/room-validation.ts` 验证，因为客户端会丢弃不合格式的事件。HTTP 存取逻辑集中于 `StorageApi` 和 `HistoryApi`；表结构及事务只在 `Database` 中管理。

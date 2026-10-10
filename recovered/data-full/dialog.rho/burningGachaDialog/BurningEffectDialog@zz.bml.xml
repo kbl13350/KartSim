@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window enable="true" leftTopWH="0 0 800 600" align="center">
-  <Panel windowRect="fullscreen" align="center" color="200 0 0 0" alphaBlend="true"/>
-  <Container leftTopWH="160 88 800 600"/>
-</Window>

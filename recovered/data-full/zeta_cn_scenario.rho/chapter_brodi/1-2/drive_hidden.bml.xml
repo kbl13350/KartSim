@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="1"/>
-  <TimeAttack>
-    <LevelContent level="0" track="village_R03" laps="1" timeLimit="100000"/>
-  </TimeAttack>
-</Root>

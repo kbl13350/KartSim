@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="Escapable" clientRect="0 0 800 600" align="hcenter">
-  <BlinkButton name="key_left" windowRect="222 477 382 587" visible="false" hasDiable="false" blinkGap="80" alphaBlend="true" autoLoadImage="key_left0@zz"/>
-  <BlinkButton name="key_right" windowRect="418 477 578 587" visible="false" hasDiable="false" blinkGap="80" alphaBlend="true" autoLoadImage="key_right0@zz"/>
-</Container>

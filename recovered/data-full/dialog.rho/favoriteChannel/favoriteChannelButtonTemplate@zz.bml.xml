@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ImageCheckButton name="slot" windowRect="0 0 96 26" autoImage="btn_radio_" alphaBlend="true" checkedTextRender="bold14" uncheckedTextRender="bold14" textPos="25 -3" checkedTextColor="255 42 55 80" uncheckedTextColor="255 168 183 195"/>

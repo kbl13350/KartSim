@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow isFixedKart="true" fixedKartId="1175" fixedCharId="289" isFixedChar="true" kartId="1135" characterId="3" colorId="2" dyeId="2" characterName="黑妞">
-    <LevelContent level="0" ksv="1-4" track="fairy_I03" laps="3"/>
-  </Shadow>
-</Root>

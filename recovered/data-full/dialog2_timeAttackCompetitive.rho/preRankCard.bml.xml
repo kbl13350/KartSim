@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window leftTopWH="0 8 716 68" visible="true">
-  <Label name="chapterSeason" leftTopWH="13 8 224 68" textRender="bold14" textAlign="center" textColor="255 84 100 129"/>
-  <Panel name="gradeIcon" leftTopWH="300 22 46 40" texture="s_경쟁전_등급_미참여" alphaBlend="true"/>
-  <Label name="gradeText" leftTopWH="360 8 130 68" textRender="bold14" text="-" textAlign="left, vcenter" textColor="255 84 100 129"/>
-  <Label name="rankPercentage" leftTopWH="480 8 224 68" textRender="bold14" text="-" textAlign="center" textColor="255 84 100 129"/>
-</Window>

@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- (2022.06.23 Update) 어비스 스카이라인 / 머구리 / 가피시 X / 통합속도 적용 -->
-<!-- (2022.10.20 Update) 연습카트 V1 기준 기록 및 설정 반영 -->
-<!-- 캐릭터 : 루시드 / 탑승 카트 : 위험지역 총알택시 -->
-<OutRun kartId='1421'	characterId='408' colorId='1' dyeId='1' track='maple_R03'	 gameSpeed='7'>
-	<LevelContent level='7' ksv='PRO_12_maple_R03_7'/>
-</OutRun>

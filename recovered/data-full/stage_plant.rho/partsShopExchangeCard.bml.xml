@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TextButton name="exc_" windowRect="0 0 70 70" frame="NoFrame" alphaBlend="true" altRelativePos="-16 -58" useOrgImageRect="true">
-  <Window name="itemPanelBg" windowRect="3 3 67 67" frame="BlackBorderDarkPanel" enable="false" alphaBlend="true"/>
-  <ItemWindow name="itemPanel" windowRect="10 10 55 55" enable="false" alphaBlend="true"/>
-  <Panel windowRect="0 0 29 28" align="bottom;right" texture="green_star" alphaBlend="true" enable="false">
-    <Label name="itemCount" windowRect="0 8 1 15" autoSizing="true" text="999" align="hcenter"/>
-  </Panel>
-</TextButton>

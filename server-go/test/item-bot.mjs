@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * 道具赛 test bot: a second racer for testing item races by hand in the
- * browser (rewrite/ITEM_MODE.md, SERVER_PROTOCOL.md "本地新增：道具赛").
+ * browser (client/ITEM_MODE.md, SERVER_PROTOCOL.md "本地新增：道具赛").
  *
  * It logs in with an existing account (the password is read from a JSON file
  * and never printed), enters the game node like the browser (one-time
@@ -22,14 +22,14 @@
  * drives into, and it places the barricades aimed at it. A hit that would
  * stop or slow a kart stops or slows it too (route mode). After the race it
  * returns to the room and gets ready again (--once: leaves instead).
- * Phase 3 (rewrite/ITEM_MODE.md appendix C): it follows its changer cards
+ * Phase 3 (client/ITEM_MODE.md appendix C): it follows its changer cards
  * (the replies' changers; without a 道具换位卡 or voucher it uses the item in
  * slot 0 instead of swapping), logs the server's slots pushes (the race
  * start, per-kart gains) and in-race lucci, reports both missiles of a
  * double rocket (shot 0 and 1), can claim a perfect start at its finish
  * (--perfect-start, the 完美起步 title) and logs the result titles.
  *
- * Usage, from the repository root (Node.js 22+, `npm ci` in rewrite/):
+ * Usage, from the repository root (Node.js 22+, `npm ci` in client/):
  *   KART_ITEM_TEST_GRANTS=true ./run-full-local.sh      # your stack, with test grants
  *   # create an item room in the browser, then:
  *   node server-go/test/item-bot.mjs --accounts server-go/data/dev-test-accounts.json --account bob \
@@ -119,21 +119,21 @@ const itemName = idx => ITEM_NAMES[idx] ?? `item ${idx}`;
 
 /* ---------- browser modules ---------- */
 
-const rewriteModules = resolve(repoRoot, "rewrite/node_modules/tsx/dist/esm/api/index.mjs");
+const rewriteModules = resolve(repoRoot, "client/node_modules/tsx/dist/esm/api/index.mjs");
 if (!existsSync(rewriteModules)) {
-  console.error("item-bot: run `npm ci` in rewrite/ first (the bot uses the browser's own modules through tsx)");
+  console.error("item-bot: run `npm ci` in client/ first (the bot uses the browser's own modules through tsx)");
   process.exit(1);
 }
 const { tsImport } = await import(rewriteModules);
 const load = specifier => tsImport(resolve(repoRoot, specifier), import.meta.url);
 const [{ parseServerEvent }, { isValidRoomSnapshot }, { isValidItemRequest }, payload, { buildTrackCourseGraph },
   { projectSectionDistance }] = await Promise.all([
-  load("rewrite/src/multiplayer/server-events.ts"),
-  load("rewrite/src/multiplayer/room-validation.ts"),
-  load("rewrite/src/multiplayer/protocol.ts"),
-  load("rewrite/src/multiplayer/payload.ts"),
-  load("rewrite/src/resources/track-course-graph.ts"),
-  load("rewrite/src/world/route.ts"),
+  load("client/src/multiplayer/server-events.ts"),
+  load("client/src/multiplayer/room-validation.ts"),
+  load("client/src/multiplayer/protocol.ts"),
+  load("client/src/multiplayer/payload.ts"),
+  load("client/src/resources/track-course-graph.ts"),
+  load("client/src/world/route.ts"),
 ]);
 const validation = browserEventValidation(isValidRoomSnapshot);
 const itemData = loadItemData();
@@ -157,8 +157,8 @@ if (!haveMirror && !recording) {
   process.exit(1);
 }
 const courseAssets = haveMirror ? (async () => {
-  const { loadResourceLibrary } = await load("rewrite/tools/economy-export/resource-library.mjs");
-  const { itemTrackCatalog } = await load("rewrite/src/resources/track-catalog.ts");
+  const { loadResourceLibrary } = await load("client/tools/economy-export/resource-library.mjs");
+  const { itemTrackCatalog } = await load("client/src/resources/track-catalog.ts");
   const { library, formats } = await loadResourceLibrary(repoRoot, "p3553", mirrorRoot);
   return { library, formats, catalog: await itemTrackCatalog(library),
     metadata: await library.trackMetadataCatalog() };

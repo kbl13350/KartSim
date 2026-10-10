@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GarageCard name="disassembleResultCard" leftTopWH="0 0 180 152" texture="unique4_x" alphaBlend="true">
-  <Container name="shopItemContainer" windowSize="180 103" adjust="0 40" enable="false"/>
-  <Label name="itemNameLabel" leftTopWH="4 4 172 36" textAlign="center" enable="false" textRender="bold16"/>
-  <Label name="leftCount" leftTopWH="0 44 172 20" autoSizing="false" text="#sb(count)" textAlign="right" textRender="bold14" textColor="255 30 30 30" enable="false" visible="false"/>
-  <Play1SPanel name="effect" scene="effect4" leftTopWH="0 0 422 422" align="center" defaultCameraPos="0.0 -1.3 0.0" defaultSpotPos="0.0 2.0 0.0" zoom="1.0" clearZBefore="true" clearZAfter="true" enable="false"/>
-</GarageCard>

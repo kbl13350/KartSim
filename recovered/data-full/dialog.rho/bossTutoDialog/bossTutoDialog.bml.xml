@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow caption="#sb(bossTutoCaption)" align="center" windowRect="270 150 620 420" frame="CaptionDialog" captionPos="0 1" captionColor="black" setCloseButton="okay">
-  <Window name="contentFrame" windowRect="-2 10 162 165" frame="InnerFrame">
-    <Panel windowRect="0 -2 153 145" texture="revolution_mini"/>
-  </Window>
-  <Label windowRect="172 35 325 175" text="#sb(bossGameInfo)" multiLine="true" autoWrap="true" lineGap="3"/>
-  <TextButton name="neverSeeAgain" windowRect="9 175 125 199" text="#sb(neverSeeAgain)"/>
-  <TextButton name="okay" windowRect="220 175 315 199" text="#sb(ok)"/>
-</CaptionWindow>

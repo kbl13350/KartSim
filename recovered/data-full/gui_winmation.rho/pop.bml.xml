@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ButtonAni name="jelly">
-  <Normal>
-    <ScaleTon>
-      <Phase at="1" tick="0" scale="0.0 0.0 0.0"/>
-      <Phase at="2" tick="100" scale="1.0 1.0 1.0"/>
-    </ScaleTon>
-  </Normal>
-</ButtonAni>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="ScreenUI" windowRect="fullscreen" enable="false">
-  <Panel windowRect="fullscreen" texture="ingame_shadow" alphaBlend="true"/>
-  <Container name="escmenu" windowSize="130 13" adjust="0 178" visible="false" align="right">
-    <Panel leftTopTex="0 0" texture="tutoesc@zz" alphaBlend="true"/>
-  </Container>
-  <XmlFile file="timeInfo@zz"/>
-</Container>

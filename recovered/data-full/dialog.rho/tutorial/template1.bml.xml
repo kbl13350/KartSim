@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window name="template1" windowRect="0 0 746 328" align="center">
-  <ImageBoard name="image" alphaBlend="true" align="hcenter"/>
-</Window>

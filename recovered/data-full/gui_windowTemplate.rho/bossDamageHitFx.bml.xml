@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TonPanel name="bossDamageHitFx" windowRect="0 0 82 29" alphaBlend="true" textureOp="modulate" panelAnimPack="damageHit" isExcuteChildAnim="true">
-  <TonCharPanel name="static_char" windowRect="80 38 188 38" texture="cricnt2630" fontSize="60 71" fontPos="0 0" fontStr="-1234567|890" text="-30" alphaBlend="true" align="hcenter" textureOp="modulate" panelAnimPack="damageHitChild"/>
-</TonPanel>

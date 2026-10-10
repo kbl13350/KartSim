@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel name="mqBoost" leftTopTex="0 512" texture="n2o_solo" alphaBlend="true" enable="false" align="bottom;hcenter" adjust="0 70">
-  <Panel name="full" leftTopTex="0 0" texture="n2o_solo_full" textureOp="modulate" alphaBlend="true" visible="false"/>
-  <Panel name="gauge" leftTopWH="44 7 147 12" texture="n2o_solo_bar" uvRect="44 7 190 19" alphaBlend="true"/>
-  <Panel name="bar" leftTopTex="0 2" texture="n2o_solo_marker" textureOp="modulate" alphaBlend="true"/>
-</Panel>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="magnet">
-  <state name="Aim" life="0" auxFx0="aiming" auxFx1="inrange" auxFx2="ontarget" auxFx3="misfire"/>
-  <state name="Use" life="3000" item="item01" itemFx="using"/>
-</item>

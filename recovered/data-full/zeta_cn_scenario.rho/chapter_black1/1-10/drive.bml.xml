@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <TimeAttack isFixedKart="true" fixedKartId="95" isFixedChar="true" fixedCharId="2" isMinimapHide="true">
-    <LevelContent level="0" track="gold_I04_sn01" laps="1" timeLimit="27000"/>
-  </TimeAttack>
-</Root>

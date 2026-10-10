@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Shadow isFixedKart="true" fixedKartId="10" kartId="151" characterId="2" goggleId="67" uniformId="46" headBand="1" colorId="8" dyeId="8" characterName="R军团少尉">
-    <LevelContent level="0" ksv="step_15" track="factory_R02" laps="3"/>
-  </Shadow>
-</Root>

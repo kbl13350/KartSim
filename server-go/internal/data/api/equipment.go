@@ -184,7 +184,7 @@ func (a *API) verifyEquipment(w http.ResponseWriter, r *http.Request) error {
 		return writeItemNotOwned(w, missing)
 	}
 	// The item changer cards an item race starting now gives the racer
-	// (rewrite/ITEM_MODE.md C.6).
+	// (client/ITEM_MODE.md C.6).
 	cards, err := a.store.Changers(r.Context(), request.AccountID, a.nowMillis())
 	if err != nil {
 		return err

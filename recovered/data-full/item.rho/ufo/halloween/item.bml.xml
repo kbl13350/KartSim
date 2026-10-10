@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="ufo">
-  <state name="Use" life="1500" firing="할로윈UFO사용" fired="할로윈UFO공격1" firingFx="using" firedFx="affecting"/>
-  <state name="Affect" life="3000" fired="할로윈UFO공격2"/>
-  <state name="PostAffect" life="500" fired="할로윈UFO공격3"/>
-  <state name="BonusAffect" life="3000" item="루찌획득" fired="할로윈UFO공격2" firedFx="eaten"/>
-  <state name="HeadBandAffect" life="1500" fired="할로윈UFO전자파"/>
-  <state name="Shield" life="1500"/>
-</item>

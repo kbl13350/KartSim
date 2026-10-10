@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow isFixedKart="true" fixedKartId="1380" fixedCharId="382" isFixedChar="true" kartId="1381" characterId="381" colorId="61" dyeId="27" characterName="马赫">
-    <LevelContent level="0" ksv="1-18" track="mabi_R02" laps="2"/>
-  </Shadow>
-</Root>

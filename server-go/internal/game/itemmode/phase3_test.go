@@ -94,9 +94,9 @@ func TestRollVectors(t *testing.T) {
 		}
 	}
 	// The browser's fixture, when this checkout has it.
-	raw, err := os.ReadFile(filepath.Join("..", "..", "..", "..", "rewrite", "src", "item", "item-roll-vectors.json"))
+	raw, err := os.ReadFile(filepath.Join("..", "..", "..", "..", "client", "src", "item", "item-roll-vectors.json"))
 	if errors.Is(err, os.ErrNotExist) {
-		t.Skip("rewrite/src/item/item-roll-vectors.json not in this checkout")
+		t.Skip("client/src/item/item-roll-vectors.json not in this checkout")
 	} else if err != nil {
 		t.Fatal(err)
 	}

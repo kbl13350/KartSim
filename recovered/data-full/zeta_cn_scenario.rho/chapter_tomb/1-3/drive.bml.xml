@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="7"/>
-  <Tracing isFixedKart="true" fixedKartId="1630" isFixedChar="true" fixedCharId="226" kartId="1528" colorId="5" dyeId="7" characterId="5" uniformId="0" characterName="胖墩">
-    <LevelContent level="0" track="tomb_R01" laps="3" ksv="1-3" distance="30" startOffset="2500"/>
-  </Tracing>
-</Root>

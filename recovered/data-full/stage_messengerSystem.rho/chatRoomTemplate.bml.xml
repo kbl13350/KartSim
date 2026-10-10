@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ChatListPanel name="chatRoom" leftTopWH="0 0 93 39" texture="msg_btn_slot_normal" alphaBlend="true" visible="true">
-  <Panel name="new" leftTopWH="0 0 93 39" texture="msg_btn_slot_newmessage" alphaBlend="true" enable="false" visible="false"/>
-  <Panel name="selected" leftTopWH="0 0 93 39" texture="msg_btn_slot_selected" alphaBlend="true" enable="false" visible="false"/>
-  <Panel name="mouseOn" leftTopWH="0 0 93 39" texture="msg_btn_slot_over" alphaBlend="true" enable="false" visible="false"/>
-  <Label name="shortRoomName" leftTopWH="10 0 82 39" textRender="bold14" textAlign="left;vcenter" textColor="255 135 146 167" alphaBlend="true" autoWrap="true" indent="0 -4"/>
-  <List name="chatHistory" leftTopWH="98 3 307 468" autoScroll="true" listMargin="0 0 0 0" visible="false"/>
-  <Panel name="notice_alert" leftTopWH="-3 -1 14 14" texture="icon_notice_s" alphaBlend="true" enable="false" visible="false"/>
-</ChatListPanel>

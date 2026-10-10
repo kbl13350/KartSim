@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Escape isFixedKart="true" fixedKartId="1220" fixedCharId="314" isFixedChar="true" kartId="1140" characterId="317" colorId="84" dyeId="84" characterName="莫德雷德">
-    <LevelContent level="0" track="forest_I05" laps="3" ksv="1-10" distance="20" startOffset="-1500"/>
-  </Escape>
-</Root>

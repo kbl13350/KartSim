@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<railList>
-  <rail id="normal" minVelocity="50" maxVelocity="300" accelFactor="1" resistFactor="1" gravityFactor="0.5"/>
-  <rail id="highSpeed" minVelocity="300" maxVelocity="350" accelFactor="2" resistFactor="1" gravityFactor="0.5"/>
-  <rail id="kazamaspeed01" minVelocity="250" maxVelocity="300" accelFactor="1" resistFactor="1" gravityFactor="0.5"/>
-</railList>

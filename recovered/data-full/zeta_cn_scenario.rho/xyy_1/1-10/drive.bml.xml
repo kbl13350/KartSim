@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <Delivery isFixedKart="true" fixedKartId="445" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" track="forest_R02" collision="3" lab="1" timeLimit="210000" laps="2"/>
-  </Delivery>
-</Root>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow name="tutorial" windowRect="0 0 746 328" frame="CaptionDialog" caption="#sb(title)" captionPos="0 1" captionColor="black" align="center">
-  <Container name="context" windowRect="0 0 400 320" align="hcenter"/>
-  <Container name="buttonGroup" windowRect="0 0 200 50" align="hcenter;bottom">
-    <TextButton name="prev" windowRect="0 0 90 23" align="vcenter" text="#sb(prev)" altTextRender="outline"/>
-    <TextButton name="next" windowRect="0 0 90 23" align="center" text="#sb(next)" altTextRender="outline"/>
-    <TextButton name="ok" windowRect="0 0 90 23" align="right;vcenter" text="#sb(ok)" altTextRender="outline"/>
-  </Container>
-</CaptionWindow>

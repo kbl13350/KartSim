@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow kartId="943" characterId="24" uniformId="41" colorId="1" dyeId="1" isFixedKart="true" fixedKartId="919" characterName="木兰">
-    <LevelContent level="0" ksv="리부트_3단계_village_I05_1분49초" track="village_I05" laps="3"/>
-  </Shadow>
-</Root>

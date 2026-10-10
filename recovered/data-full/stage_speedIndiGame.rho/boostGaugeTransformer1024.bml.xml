@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container leftTopWH="0 0 1024 768">
-  <Panel name="mqBoost" leftTopWH="305 677 192 32" texture="1024_오토봇" uvRect="6 329 199 361" alphaBlend="true" enable="false" align="hcenter">
-    <Panel name="full" leftTopWH="-3 0 197 25" texture="800_오토봇" uvRect="0 102 197 123" textureOp="modulate" alphaBlend="true" visible="false"/>
-    <Panel name="gauge" windowRect="41 6 188 18" texture="800_오토봇" uvRect="0 89 147 101" alphaBlend="true"/>
-    <Panel name="bar" leftTopWH="40 0 8 22" texture="800_오토봇" uvRect="202 133 208 153" textureOp="modulate" alphaBlend="true"/>
-  </Panel>
-</Container>

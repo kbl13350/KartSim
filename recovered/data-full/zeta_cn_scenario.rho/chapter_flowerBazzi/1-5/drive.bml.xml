@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="524" isFixedChar="true" fixedCharId="91" kartId="531" colorId="1" dyeId="1" characterId="90" uniformId="0" characterName="道明宝宝">
-    <LevelContent level="0" track="castle_I04" laps="3" ksv="event-5" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

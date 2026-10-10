@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="headBand">
-  <state name="Stay" life="0"/>
-  <state name="Affect" life="1200"/>
-  <state name="AffectHomming" life="500"/>
-  <state name="Reborn" life="500"/>
-</item>

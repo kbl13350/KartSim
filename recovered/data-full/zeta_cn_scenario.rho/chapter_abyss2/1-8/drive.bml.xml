@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow isFixedKart="true" fixedKartId="1200" fixedCharId="19" isFixedChar="true" kartId="1174" characterId="305" colorId="82" dyeId="82" characterName="赫凯特">
-    <LevelContent level="0" ksv="1-8" track="abyss_R01" laps="2"/>
-  </Shadow>
-</Root>

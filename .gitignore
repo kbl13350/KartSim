@@ -22,9 +22,9 @@
 **/*cookies*.txt
 **/*cookie*.jar
 
-# Generated analysis output with machine-specific decompiler headers
-/apk_analysis/jadx/
-/apk_analysis/decompiled/*
-!/apk_analysis/decompiled/il2cpp_metadata_index.py
-/apk_analysis/extracted/assets/bin/Data/Managed/etc/mono/
-/apk_analysis/raw_bundles/
+# Not published (README.md "What is not open source"): decompiled / reconstructed
+# release code, extracted configuration and APK analysis. They stay in local
+# checkouts only.
+/recovered
+/apk_analysis
+/mirror/assets/*.decompiled

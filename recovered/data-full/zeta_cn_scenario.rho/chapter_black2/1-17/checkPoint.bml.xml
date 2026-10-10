@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <MaxSpeed track="moonhill_R01_sn16" laps="1" isFixedKart="true" fixedKartId="111" isFixedChar="true" fixedCharId="1">
-    <LevelContent level="0" speedValue="180;185;180;145;220;190;145;190" timeLimit="75000"/>
-  </MaxSpeed>
-</Root>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="0"/>
-  <Delivery isFixedKart="true" fixedKartId="999" isFixedChar="true" fixedCharId="209">
-    <LevelContent level="0" track="nemo_S02" collision="2" timeLimit="35000" laps="1"/>
-  </Delivery>
-</Root>

@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<BodyParam
-	ForwardAccelForce='10.0'
-	BackwardAccelForce='50.0'
-
-	DescCornering='2'
-	DescEnchantCap = '20'
-
-/>

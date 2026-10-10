@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="875" isFixedChar="true" fixedCharId="2" kartId="875" characterId="5" uniformId="0" colorId="7" dyeId="7" characterName="胖墩">
-    <LevelContent level="0" track="ice_I02" laps="3" ksv="ice_I02_0" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

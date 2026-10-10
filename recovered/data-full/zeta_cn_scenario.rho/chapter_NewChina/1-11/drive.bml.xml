@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="849" kartId="875" characterId="21" uniformId="43" colorId="1" dyeId="1" characterName="门神">
-    <LevelContent level="0" track="ice_I05" laps="3" ksv="리부트_11단계_ice_I05_1분51초" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

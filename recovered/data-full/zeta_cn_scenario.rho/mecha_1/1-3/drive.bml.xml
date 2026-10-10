@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <Escape isFixedKart="true" fixedKartId="14" isFixedChar="true" fixedCharId="2" kartId="413" characterId="1" uniformId="0" colorId="1" dyeId="1" characterName="迪斯欧德R" miniNpc="true">
-    <LevelContent level="0" track="desert_I02" laps="3" ksv="desert_I02_1" distance="20" startOffset="-1200"/>
-  </Escape>
-</Root>

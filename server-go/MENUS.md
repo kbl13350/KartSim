@@ -1,6 +1,6 @@
 # 任务栏菜单：奖励箱、任务、迷你提示窗、聊天、查找车手
 
-本文是任务栏其余五个按钮的约定，补充 `ECONOMY.md`。数据（奖励、任务进度、公告、聊天记录、车手资料）都以**数据服务**为准；浏览器只显示。前端在 `rewrite/src/menus/`，由 `rewrite/src/timeattack/ready-menus.ts` 接到任务栏。
+本文是任务栏其余五个按钮的约定，补充 `ECONOMY.md`。数据（奖励、任务进度、公告、聊天记录、车手资料）都以**数据服务**为准；浏览器只显示。前端在 `client/src/menus/`，由 `client/src/timeattack/ready-menus.ts` 接到任务栏。
 
 | 按钮（`tray@cn`） | 窗口（原版资源） | 说明 |
 | --- | --- | --- |

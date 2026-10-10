@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="7"/>
-  <TimeAttack isFixedKart="true" fixedKartId="1523" isFixedChar="true" fixedCharId="481">
-    <LevelContent level="0" track="fengshen_I03" laps="3" timeLimit="108000"/>
-  </TimeAttack>
-</Root>

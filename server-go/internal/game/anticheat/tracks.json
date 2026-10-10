@@ -1,5 +1,5 @@
 {
-  "generatedFrom": "mirror/p3553 track metadata (laps) and track.1s routes (formats.YW), by rewrite/tools/export-track-data.mjs",
+  "generatedFrom": "mirror/p3553 track metadata (laps) and track.1s routes (formats.YW), by client/tools/export-track-data.mjs",
   "tracks": [
     {"id":"abyss_I01","laps":3,"lap":2414,"drive":2414,"jump":213},
     {"id":"abyss_I02","laps":3,"lap":2318,"drive":2318,"jump":405},

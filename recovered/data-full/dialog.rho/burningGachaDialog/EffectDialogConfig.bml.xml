@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Config>
-  <Camera windowSize="1024" deltaX="0" deltaY="0.07" zoom="1.4" camPosX="0" camPosY="1" camPosZ="-3.4" camSpotX="0" camSpotY="0.5" camSpotZ="0"/>
-  <Camera windowSize="800" deltaX="0.32" deltaY="-0.178" zoom="1.4" camPosX="0" camPosY="1" camPosZ="-3.4" camSpotX="0" camSpotY="0.5" camSpotZ="0"/>
-</Config>

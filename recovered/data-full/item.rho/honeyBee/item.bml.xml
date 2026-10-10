@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="honeyBee">
-  <state name="Use" life="2000" item="item00" itemFx="firing"/>
-  <state name="Affect" life="4000"/>
-  <state name="Shield" life="1000" fired="쉴드방어" firedFx="shield"/>
-  <state name="SpecialShield" life="2000"/>
-  <state name="AfterBoost" life="0"/>
-</item>

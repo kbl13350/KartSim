@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="cloud">
-  <state name="Use" life="200"/>
-  <state name="Set" life="5000"/>
-  <state name="Remove" life="3000"/>
-  <state name="SpecialShield" life="2000"/>
-</item>

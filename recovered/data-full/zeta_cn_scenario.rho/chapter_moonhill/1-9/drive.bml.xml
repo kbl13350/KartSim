@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Tracing isFixedKart="true" fixedKartId="10" kartId="151" characterId="20" colorId="1" dyeId="1" characterName="尼欧">
-    <LevelContent level="0" track="moonhill_R01" laps="2" ksv="step_9" distance="20" startOffset="2000"/>
-  </Tracing>
-</Root>

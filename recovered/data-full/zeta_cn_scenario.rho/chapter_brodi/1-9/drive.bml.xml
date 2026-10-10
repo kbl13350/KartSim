@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="1"/>
-  <Shadow isFixedKart="true" fixedKartId="10" fixedCharId="2" isFixedChar="true" kartId="71" characterId="2" uniformId="99" colorId="6" dyeId="6" characterName="A0">
-    <LevelContent level="0" ksv="Brodi_9_1" track="factory_R03" laps="2"/>
-  </Shadow>
-</Root>

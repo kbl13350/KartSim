@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <MaxSpeed track="mine_S01" laps="3" isFixedKart="true" fixedKartId="1170" isFixedChar="true" fixedCharId="1">
-    <LevelContent level="0" speedValue="185;180;240;185;240;190;185;245;190;245;200;195;250;195;250" timeLimit="115000"/>
-  </MaxSpeed>
-</Root>

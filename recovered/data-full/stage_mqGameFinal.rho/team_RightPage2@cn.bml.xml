@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="Desktop" leftTopWH="355 0 324 164" adjust="0 -350" align="vcenter">
-  <Panel name="resultWinteam" windowSize="324 92" alphaBlend="true" align="bottom" visible="true"/>
-  <Panel name="resultPerfect" leftTopTex="0 0" texture="perpect@zz" alphaBlend="true" align="right" visible="true"/>
-</Container>

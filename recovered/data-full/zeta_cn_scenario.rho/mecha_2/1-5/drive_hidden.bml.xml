@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Shadow kartId="265" characterId="9" colorId="1" dyeId="1" characterName="海盗船长">
-    <LevelContent level="0" ksv="mechanic_I01_hidden" track="mechanic_I01" laps="3"/>
-  </Shadow>
-</Root>

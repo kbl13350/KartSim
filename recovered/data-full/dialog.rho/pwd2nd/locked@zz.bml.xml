@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel windowSize="326 499" adjust="0 0" align="center" texture="bg" alphaBlend="true">
-  <Label name="caption" windowSize="326 20" adjust="0 2" align="hcenter" text="#sb(pwd2ndCaption)" textRender="bold" textAlign="center"/>
-  <Label windowSize="326 60" adjust="0 30" align="hcenter" text="#sb(lockedText)" multiLine="true" autoWrap="true" lineGap="4" textAlign="hcenter"/>
-  <Label windowSize="326 20" adjust="0 106" align="hcenter" text="#sb(lockedWebText)" textAlign="center" textColor="white"/>
-  <TextButton name="okButton" windowSize="70 20" adjust="0 450" align="hcenter" text="#sb(ok)"/>
-</Panel>

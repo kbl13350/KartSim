@@ -15,7 +15,7 @@
 // otherwise everything is skipped; KART_BIN_DIR, KART_SMOKE_SKIP_BUILD=1,
 // KART_SMOKE_PORTS=18800-18849, KART_SMOKE_KEEP=1, KART_SMOKE_VERBOSE=1, …).
 // KART_SMOKE_TIMEOUT_MS and KART_SMOKE_SETTLE_TIMEOUT_MS are passed on to the
-// scripts. server-special-smoke.mjs needs `npm ci` in rewrite/ and is skipped
+// scripts. server-special-smoke.mjs needs `npm ci` in client/ and is skipped
 // without it.
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
@@ -57,8 +57,8 @@ await runLocalCluster("run-cluster-smokes", {
     KART_SMOKE_SETTLE_TIMEOUT_MS: process.env.KART_SMOKE_SETTLE_TIMEOUT_MS ?? String(ctx.settleMs) });
   const failed = [];
   for (const name of selected) {
-    if (name === "special" && !existsSync(join(root, "rewrite/node_modules/tsx"))) {
-      console.log(`\n- ${name}: skipped (run npm ci in rewrite/ first)`);
+    if (name === "special" && !existsSync(join(root, "client/node_modules/tsx"))) {
+      console.log(`\n- ${name}: skipped (run npm ci in client/ first)`);
       continue;
     }
     console.log(`\n===== ${name}: ${scripts[name]} =====`);

@@ -6,7 +6,7 @@ func TestEmbeddedDictionaryVersionMatchesContent(t *testing.T) {
 	stored, computed := contentVersion(t, embeddedDictionary)
 	if stored != computed {
 		t.Errorf("dictionary.json: version %s, content hashes to %s; regenerate with "+
-			"`node --import tsx tools/export-career-data.mjs` in rewrite/ instead of editing by hand",
+			"`node --import tsx tools/export-career-data.mjs` in client/ instead of editing by hand",
 			stored, computed)
 	}
 }

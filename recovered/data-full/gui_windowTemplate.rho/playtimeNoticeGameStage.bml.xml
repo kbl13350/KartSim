@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window name="noticeBox" windowSize="500 46" adjust="10 5" align="bottom|left" visible="false" enable="false">
-  <Panel windowSize="438 46" adjust="0 0" texture="img_ingameTextBG" alphaBlend="true" enable="false"/>
-  <Label name="noticeLabel" windowSize="438 46" adjust="15 5" multiLine="true" textColor="yellow" textAlign="left" text=""/>
-</Window>

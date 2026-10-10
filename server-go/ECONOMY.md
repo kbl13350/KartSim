@@ -48,7 +48,7 @@
 - 奖励放在比赛快照新字段 `race.rewards`（`{playerId: {exp, lucci}}`，所有玩法都有，含没有名次结果的挡人模式）（乘配置倍率后的值，与入账一致）和结算 `contract.RaceSettlement.Rewards`（`[{playerId, accountId, exp, lucci}]`，倍率前的基础值）；`race.results[]` 保持 Java 原样。客户端立即显示；数据服务在结算事务中入账（幂等键 = raceId + accountId）。
 - 每日上限（按**数据服务收到结算时**的北京时间自然日，不采用游戏节点上报的完成时间）：比赛经验 20,000、比赛金币 30,000；超出部分不入账（`/api/account` 反映真实值）。完成时间早于 24 小时前的结算只保存比赛记录、不发奖励。
 - 单条奖励上限 = 公式最大值（8 人、Combine 频道、组队胜方的第 1 名：经验 145 / 金币 216，倍率前），超出的条目丢弃并记录警告。
-- 道具赛的赛中金币（`rewrite/ITEM_MODE.md` C.8）：金币道具箱（车 `lucciItemCube`）、奇奇被飞碟击中（角色 `lucciUfo`）、气球爆掉、吃掉地雷（角色 `lucciMine`）每次 10，每人每局最多 200（`contract.MaxBonusLucci`）。游戏节点累计在本局，`race.rewards` 显示的金币 = 倍率后的比赛金币 + 赛中金币；结算条目另列 `bonusLucci`（不乘倍率，也不随结算倍率变化）。数据服务入账 = `ApplyRate(lucci) + bonusLucci`，与比赛金币一起计入每日上限；`bonusLucci` 不在 0–200 时只丢弃赛中金币并记录警告（比赛金币照常入账）。中途离开、没有奖励条目的车手赛中金币也不发。
+- 道具赛的赛中金币（`client/ITEM_MODE.md` C.8）：金币道具箱（车 `lucciItemCube`）、奇奇被飞碟击中（角色 `lucciUfo`）、气球爆掉、吃掉地雷（角色 `lucciMine`）每次 10，每人每局最多 200（`contract.MaxBonusLucci`）。游戏节点累计在本局，`race.rewards` 显示的金币 = 倍率后的比赛金币 + 赛中金币；结算条目另列 `bonusLucci`（不乘倍率，也不随结算倍率变化）。数据服务入账 = `ApplyRate(lucci) + bonusLucci`，与比赛金币一起计入每日上限；`bonusLucci` 不在 0–200 时只丢弃赛中金币并记录警告（比赛金币照常入账）。中途离开、没有奖励条目的车手赛中金币也不发。
 - 结算携带游戏节点显示奖励时用的倍率（`RaceSettlement.expRate/lucciRate`）；数据服务在 [0, max(10, 当前配置)] 范围内采用它，保证显示值与入账值一致。
 
 ### 2.2 计时赛
@@ -67,7 +67,7 @@
 
 ### 3.1 导出
 
-构建期工具 `rewrite/tools/export-economy-data.mjs`（在 `rewrite/` 下运行 `node --import tsx tools/export-economy-data.mjs`；`--check` 在提交的 JSON 过期时退出码 1）。它直接执行浏览器的资源库与 `loadTimeAttackGarageCatalog`，保证与车库目录完全一致，从 `mirror/p3553` 读取：
+构建期工具 `client/tools/export-economy-data.mjs`（在 `client/` 下运行 `node --import tsx tools/export-economy-data.mjs`；`--check` 在提交的 JSON 过期时退出码 1）。它直接执行浏览器的资源库与 `loadTimeAttackGarageCatalog`，保证与车库目录完全一致，从 `mirror/p3553` 读取：
 
 - `etc_/itemTable.kml`、`zeta_/cn/shop/data/item.kml`（名称、描述、`isAdditional`）
 - `zeta_/cn/shop/data/stock.kml`（价格、货币、期限 `expireDay`、数量 `itemCount`、`rpLimit`、`restriction`、`isOnceADay`）
@@ -76,11 +76,11 @@
 - `zeta_/cn/content/tcCashEvent.xml`（商城累计消费活动，见 3.4）
 - `etc_/level/leveltable@cn.xml`、`levelupreward@cn.xml`（等级表、K币奖励表）
 
-输出 `server-go/internal/data/economy/catalog.json`、`levels.json`、计时赛赛道表 `tracks.json` 与商城活动 `events.json`（`go:embed`，数据服务以此为准），各带版本号（内容 SHA-256）。规则实现在 `rewrite/tools/economy-export/`（`offers.mjs` 报价、`shop-layout.mjs` 原版商城布局、`events.mjs` 活动），单元测试 `node --test tools/economy-export/economy-export.test.mjs`。
+输出 `server-go/internal/data/economy/catalog.json`、`levels.json`、计时赛赛道表 `tracks.json` 与商城活动 `events.json`（`go:embed`，数据服务以此为准），各带版本号（内容 SHA-256）。规则实现在 `client/tools/economy-export/`（`offers.mjs` 报价、`shop-layout.mjs` 原版商城布局、`events.mjs` 活动），单元测试 `node --test tools/economy-export/economy-export.test.mjs`。
 
 ### 3.2 商品与报价规则
 
-- 可售物品 = rewrite 车库目录（`loadTimeAttackGarageCatalog`，即资源齐全、能显示能装备的物品）中 category ∈ 车库可装备分类的全部物品；系统车（itemId 0）不卖。
+- 可售物品 = client 车库目录（`loadTimeAttackGarageCatalog`，即资源齐全、能显示能装备的物品）中 category ∈ 车库可装备分类的全部物品；系统车（itemId 0）不卖。
 - 报价（offer）只取**单品** stock（stock 内只有这一件物品）且 `isOnSale=true`、有价格；剔除占位价（金币 ≥ 1,000,000 或 0、点券 ≥ 100,000）、活动象征价（金币 ≤ 9，如 1 金币的活动兑换）、幸运币（priceType 2）、`isOnceADay`、`restriction` 中含 `notLucconBuy`/`notrefundable` 以外限制（情侣 `couple*`、`1`、`5`、`8`）的 stock；礼包（多物品 stock）不卖。
 - 新手颜色以 `newRiderItem@cn` 为准（6/4/5/7）；前端新车手对话框也必须读取 `@cn` 版本（不是 `@zz` 的 1/4/5/7）。
 - 约 27% 的可售物品（含 355 辆卡丁车）在 `item.kml` 里没有中文名，商店与车库一样显示 `内部名 (itemId)`。
@@ -94,7 +94,7 @@
 - `rpLimit` 保留为“需要经验 ≥ rpLimit”购买条件。
 - 原版没有任何可用单品报价的物品：按“该分类原版报价中出现最多的货币”给估价；永久价 = 同分类（卡丁车再按发动机等级）原版永久价中位数；同时提供 30 天价 = 永久价 × 原版数据中 30 天/永久价格比的中位数（取整）。估价报价标记 `source:"estimated"`。
 - `isAdditional`（按个数卖，如“气球 50 个”）的物品：记录数量，当前游戏不消耗，按“拥有”处理；同物品再次购买累加数量。
-- 道具换位卡 / 道具变更卡（category 7，itemTable `<slotChanger>`，`rewrite/ITEM_MODE.md` C.6）：车库不能装备，但商城照原版只卖当前卡片上的使用券——`stockCard.xml` 3975 道具变更卡使用券（7:3）、3976 道具换位卡使用券（7:4），各 1/7/30 天 10/45/140 点券（只取这几张卡片的 stock；`stock.kml` 里不在任何卡片上的旧金币报价不卖），放在使用/卡片类（`useful/card`，原版顺序在双倍卡之前），重写版页签装备/其他；不参与也不影响任何估价。按个数计的 7:1 道具换位卡、7:2 道具变更卡（`isAdditional`）没有当前卡片，不在商城出售，仍由道具卡包等既有来源发放、在库存中累加。使用券是普通限时物品：再买从到期时间顺延。道具赛开赛时游戏节点从装备核对的回答里读取每位车手的卡数（有未过期的使用券时为 -1，无限），赛后结算扣除用掉的卡（见第 6 节内部接口）。
+- 道具换位卡 / 道具变更卡（category 7，itemTable `<slotChanger>`，`client/ITEM_MODE.md` C.6）：车库不能装备，但商城照原版只卖当前卡片上的使用券——`stockCard.xml` 3975 道具变更卡使用券（7:3）、3976 道具换位卡使用券（7:4），各 1/7/30 天 10/45/140 点券（只取这几张卡片的 stock；`stock.kml` 里不在任何卡片上的旧金币报价不卖），放在使用/卡片类（`useful/card`，原版顺序在双倍卡之前），重写版页签装备/其他；不参与也不影响任何估价。按个数计的 7:1 道具换位卡、7:2 道具变更卡（`isAdditional`）没有当前卡片，不在商城出售，仍由道具卡包等既有来源发放、在库存中累加。使用券是普通限时物品：再买从到期时间顺延。道具赛开赛时游戏节点从装备核对的回答里读取每位车手的卡数（有未过期的使用券时为 -1，无限），赛后结算扣除用掉的卡（见第 6 节内部接口）。
 - 旧页签 `tabs`/`tab`/`subTab`（重写版自己的分法：卡丁车 道具车/竞速车、角色 角色/宠物/飞行宠物、装备 气球…其他）保留不变，供现有前端使用；原版商城布局用下面的新字段。
 - 当前卡片：`shopCat.xml` 中“最新推荐页”与其他 ShopCat（`hide` 除外）引用的、`stockCard.xml` 中存在、`isOnSale=1` 且 `saleFlag≠1` 的卡片。最新推荐页 = `salePeriod` 为开放式（`…~*`）的 `recommand<N>`（多个时取开始最晚的；没有开放式时取开始最晚的），即 `recommand233`；更早的周页已结束。导出不看当前时间、也不看卡片自己的 `salePeriod`，结果确定。“同一（货币、期限、数量）优先当前卡片的 stock”用的也是这组卡片（与改之前的全部推荐页相比，报价没有任何变化）。一张卡片“列出”某物品 = 卡片的某个 stock 是该物品的单品 stock（不论该 stock 是否成为报价）。
 
@@ -274,10 +274,10 @@ daily_rewards(account_id, day CHAR(10), kind VARCHAR(16), count INT, exp BIGINT,
 
 ## 8. 前端模块约定（并行开发用）
 
-账号核心（`rewrite/src/account/`，由账号/车库工作负责）对外导出，商店模块只依赖这些接口：
+账号核心（`client/src/account/`，由账号/车库工作负责）对外导出，商店模块只依赖这些接口：
 
 ```ts
-// rewrite/src/account/account-session.ts
+// client/src/account/account-session.ts
 export type Currency = "coupon" | "lucci" | "koin";
 export interface AccountSummary {
   account: { username: string; nickname: string; admin: boolean; createdAt: number };
@@ -304,10 +304,10 @@ export interface AccountSession {
 export function currentAccountSession(): AccountSession | undefined;
 ```
 
-商店（`rewrite/src/shop/`，由商店界面工作负责）对外导出：
+商店（`client/src/shop/`，由商店界面工作负责）对外导出：
 
 ```ts
-// rewrite/src/shop/shop-view.ts
+// client/src/shop/shop-view.ts
 export interface ShopOpenOptions {
   root: HTMLElement;                  // 挂载容器（全屏覆盖）
   library: unknown;                   // 资源库（读取 stage_mqShop / dialog2_buyItem 素材与 3D 预览）
@@ -319,4 +319,4 @@ export interface ShopOpenOptions {
 export function openShop(options: ShopOpenOptions): Promise<{ close(): void }>;
 ```
 
-`rewrite/package.json` 的 `npm test` 需包含 `src/account/*.test.ts` 与 `src/shop/*.test.ts`。
+`client/package.json` 的 `npm test` 需包含 `src/account/*.test.ts` 与 `src/shop/*.test.ts`。

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window texture="05_휴식" leftTopTex="0 0" align="center">
-  <Panel windowRect="-1024 -768 1024 768" color="200 0 0 0" alphaBlend="true"/>
-  <Panel name="bg" leftTopTex="0 0" texture="05_휴식" alphaBlend="true"/>
-  <Label name="title" leftTopWH="154 152 110 20" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="title" textAlign="center" textRender="bold"/>
-  <Label name="body" leftTopWH="60 188 290 50" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" textColor="white" text="body" textAlign="center"/>
-  <ImageButton name="okButton" text="#sb(ok)" autoLoadImage="ok_0" leftTopTex="348 268" alphaBlend="true" textColor="white" textRender="bold"/>
-</Window>

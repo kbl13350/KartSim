@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="0"/>
-  <Escape isFixedKart="true" fixedKartId="998" isFixedChar="true" fixedCharId="208" kartId="1003" colorId="1" dyeId="1" characterId="212" uniformId="0" characterName="麦迪娅">
-    <LevelContent level="0" track="nemo_R02" laps="1" ksv="nemo_1-19" distance="20" startOffset="-1500"/>
-  </Escape>
-</Root>

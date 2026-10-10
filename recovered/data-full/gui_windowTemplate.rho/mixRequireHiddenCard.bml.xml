@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GarageCard name="mixRequireItemCard" windowRect="0 0 90 90" texture="mix_img_mixItemBG1" alphaBlend="true">
-  <Panel name="hiddenPanel" windowRect="0 0 90 90" texture="mix_img_mixItemHidden" alphaBlend="true"/>
-  <Window name="shopItemContainer" leftTopWH="0 0 90 70" adjust="0 0" enable="false"/>
-  <Container name="itemNameContainer" windowRect="0 67 90 90" enable="true" visible="true">
-    <Label name="itemNameLabel" text="?" autoSizing="true" textColor="255 210 210 210" align="center"/>
-  </Container>
-</GarageCard>

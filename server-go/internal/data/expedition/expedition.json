@@ -1,7 +1,7 @@
 {
   "basic": {"addMissionTokens":3,"buyableMissions":10,"changeMissionTokens":2,"friendResetHour":6,"reduceMinutes":30,"reduceTimeTokens":1,"resetHour":6,"resetWeekday":4,"token":{"category":34,"item":879},"weeklyMissions":10},
   "bonus": {"character":50,"characterMatched":1000,"characterUnmatched":0,"kartBody":6,"lucci":8000,"rp":1000,"rpLucci":500},
-  "generatedFrom": "rewrite/tools/export-expedition-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: zeta_/cn/content/racingExpedition/racingExpeditionMission.xml (rules, bonus constants in thousandths, kart tuning by difficulty 1-5 in tenths of a percent, reinforced parts in reward points, missions) and the reward stocks' items from zeta_/cn/shop/data/stock.kml. Do not edit by hand.",
+  "generatedFrom": "client/tools/export-expedition-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: zeta_/cn/content/racingExpedition/racingExpeditionMission.xml (rules, bonus constants in thousandths, kart tuning by difficulty 1-5 in tenths of a percent, reinforced parts in reward points, missions) and the reward stocks' items from zeta_/cn/shop/data/stock.kml. Do not edit by hand.",
   "kartTuning": {"0":[45,43,41,39,38],"1":[90,86,83,79,75],"2":[135,129,124,118,113],"3":[180,173,165,158,150],"4":[225,216,206,197,188],"5":[270,259,248,236,225]},
   "missions": [
     {"bonusType":0,"difficulty":4,"hours":32,"id":1,"specific":0,"stockId":31900,"theme":3,"trackId":"village_R03"},
@@ -103,5 +103,5 @@
   "rewardStocks": {"24721":{"items":[{"category":24,"count":1,"days":0,"itemId":1007}],"name":"红宝石盒(1 个)"},"24723":{"items":[{"category":24,"count":1,"days":0,"itemId":1008}],"name":"蛋白石盒(1 个)"},"31895":{"items":[{"category":24,"count":1,"days":0,"itemId":1228}],"name":"探险队补给箱(1 个)"},"31899":{"items":[{"category":24,"count":2,"days":0,"itemId":1228}],"name":"探险队补给箱(2 个)"},"31900":{"items":[{"category":24,"count":3,"days":0,"itemId":1228}],"name":"探险队补给箱(3 个)"}},
   "rewards": {"1":120,"2":230,"3":330,"4":420,"5":500},
   "specifics": {"0":0,"1":1,"2":2,"3":1,"4":2,"5":3,"6":1,"7":2},
-  "version": "047e7ba8c58a32554450a202139e3b31332592e9676824e87f14b3877b61b835"
+  "version": "1023586c56e8dbb0dde80cabcdbf59dcdaf572484e514807e7dd7d9610650222"
 }

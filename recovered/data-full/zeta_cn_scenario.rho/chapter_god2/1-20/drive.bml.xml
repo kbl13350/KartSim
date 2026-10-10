@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Escape isFixedKart="true" fixedKartId="1123" fixedCharId="261" isFixedChar="true" kartId="1122" characterId="259" colorId="27" dyeId="27" characterName="托尔">
-    <LevelContent level="0" ksv="1-20" track="god_R03" laps="2" distance="20" startOffset="-2500"/>
-  </Escape>
-</Root>

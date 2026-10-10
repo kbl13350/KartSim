@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="7"/>
-  <Shadow isFixedKart="true" fixedKartId="1463" fixedCharId="78" isFixedChar="true" kartId="1483" characterId="450" colorId="1" dyeId="1" characterName="凌凌">
-    <LevelContent level="0" track="china_R03" laps="2" ksv="1-4"/>
-  </Shadow>
-</Root>

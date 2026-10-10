@@ -186,7 +186,7 @@ func (lim Limits) ProgressCap(track *Track, lap int, racedMs int64) float64 {
 	return allowed
 }
 
-// Motion payload layout (rewrite/src/multiplayer/payload.ts), offsets
+// Motion payload layout (client/src/multiplayer/payload.ts), offsets
 // within the payload after the frame header.
 const (
 	kinematicPositionOffset = 4   // float32 x, y, z (meters, wire axes: z is up)

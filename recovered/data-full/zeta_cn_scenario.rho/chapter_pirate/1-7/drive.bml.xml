@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="888" isFixedChar="true" fixedCharId="1" kartId="881" colorId="1" dyeId="1" characterId="15" uniformId="58" characterName="海盗水手">
-    <LevelContent level="0" track="pirate_I02" laps="3" ksv="pirate_I02_0" distance="30" startOffset="700"/>
-  </Tracing>
-</Root>

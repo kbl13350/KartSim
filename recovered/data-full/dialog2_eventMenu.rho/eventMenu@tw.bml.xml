@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container windowRect="0 0 800 600">
-  <CaptionWindow name="eventMenu" frame="CaptionDialog" caption="活動訊息" windowRect="210 75 670 290" captionPos="0 1" captionColor="black" setCloseButton="cancelButton">
-    <GridSelector name="이벤트메뉴" windowRect="0 0 300 250" frame="MainTooltip" alignStyle="horizontal" alignSize="5" alignMargin="20 0" clientMargin="10 -30 10 80" useAlphaFade="true"/>
-    <TextButton name="cancelButton" windowRect="184 124 256 147" text="#sb(cancel)" align="hcenter" altTextRender="outline"/>
-  </CaptionWindow>
-</Container>

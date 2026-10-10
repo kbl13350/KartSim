@@ -13,6 +13,6 @@ func TestEmbeddedVersionMatchesContent(t *testing.T) {
 	}
 	if stored != computed {
 		t.Errorf("lottery.json: version %s, content hashes to %s; regenerate with "+
-			"`node --import tsx tools/export-lottery-data.mjs` in rewrite/ instead of editing by hand", stored, computed)
+			"`node --import tsx tools/export-lottery-data.mjs` in client/ instead of editing by hand", stored, computed)
 	}
 }

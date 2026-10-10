@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Escape isFixedKart="true" fixedKartId="1091" fixedCharId="242" isFixedChar="true" kartId="1092" characterId="241" colorId="72" dyeId="72" characterName="月熙">
-    <LevelContent level="0" track="sword_R01" laps="2" ksv="chapter_sword_1-3" distance="20" startOffset="-1500"/>
-  </Escape>
-</Root>

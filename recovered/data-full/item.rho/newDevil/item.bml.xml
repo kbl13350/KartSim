@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="newDevil">
-  <state name="Use" life="500" firing="firing00" itemFx="using"/>
-  <state name="Preaffect" life="1000" fired="fired01" firedFx="affecting"/>
-  <state name="Affect" life="5000" fired="fired02"/>
-  <state name="Escape" life="2000" fired="fired03" firedFx="trapped"/>
-  <state name="SpecialShield" life="2000" fired="강시_방어효과" firedFx="trapped"/>
-</item>

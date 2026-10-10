@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="slotLock">
-  <state name="Use" life="2000" firing="firing00" itemFx="자물쇠 사용"/>
-  <state name="Affect" life="1000" fired="fired" firedFx="자물쇠 피격"/>
-  <state name="Postaffect" life="2000"/>
-</item>

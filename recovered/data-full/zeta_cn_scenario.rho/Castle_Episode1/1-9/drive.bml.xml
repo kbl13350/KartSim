@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <Shadow isFixedKart="true" fixedKartId="9" kartId="9" characterId="2" uniformId="64" colorId="4" dyeId="4" characterName="克鲁伊">
-    <LevelContent laps="3" level="0" ksv="forest_I06_2" track="forest_I06"/>
-  </Shadow>
-</Root>

@@ -14,7 +14,7 @@ import (
 	"kartsim/internal/shared/rewards"
 )
 
-// Item races (rewrite/ITEM_MODE.md C.6, C.8): the changer cards the
+// Item races (client/ITEM_MODE.md C.6, C.8): the changer cards the
 // equipment check reports, their consumption at settlement, and the in-race
 // lucci.
 

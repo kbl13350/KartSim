@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StringBag>
-  <k n="difficultyCautionMsg">
-    <m c="kr" v="※ [예] 선택 시 특별 보상이 감소하며 변경된 난이도로 고정됩니다."/>
-    <m c="cn" v="※ [例]选择时减少特别奖励并确定为当前变更难度。"/>
-    <m c="tw" v="※ [是]選擇時，特別獎勵減少，且固定為變更的難度。"/>
-  </k>
-</StringBag>

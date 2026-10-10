@@ -14,9 +14,9 @@
  * KART_SMOKE_FORWARDED_FOR=0. Registration is rate limited (5 per hour per
  * client IP): each account sends its own X-Forwarded-For, honoured by
  * kart-data from KART_TRUSTED_PROXIES (default loopback). Requires `npm ci`
- * in rewrite/ and Node.js 22+.
+ * in client/ and Node.js 22+.
  *
- * The 道具赛 scenarios (个人道具赛 and 组队道具赛, rewrite/ITEM_MODE.md,
+ * The 道具赛 scenarios (个人道具赛 and 组队道具赛, client/ITEM_MODE.md,
  * SERVER_PROTOCOL.md "本地新增：道具赛") race four accounts: create in the
  * item channel with gameplay item, item track and random-track rules, join,
  * start, loaded, binary motion frames with race progress encoded by the
@@ -58,14 +58,14 @@ import {
 } from "./server-go/test/lib/item-race.mjs";
 
 const settings = readSettings();
-const { tsImport } = await import("./rewrite/node_modules/tsx/dist/esm/api/index.mjs");
+const { tsImport } = await import("./client/node_modules/tsx/dist/esm/api/index.mjs");
 const { isValidRoomSnapshot } = await tsImport(
-  "./rewrite/src/multiplayer/room-validation.ts", import.meta.url);
+  "./client/src/multiplayer/room-validation.ts", import.meta.url);
 const { parseServerEvent } = await tsImport(
-  "./rewrite/src/multiplayer/server-events.ts", import.meta.url);
-const { isValidItemRequest } = await tsImport("./rewrite/src/multiplayer/protocol.ts", import.meta.url);
+  "./client/src/multiplayer/server-events.ts", import.meta.url);
+const { isValidItemRequest } = await tsImport("./client/src/multiplayer/protocol.ts", import.meta.url);
 const { GameMotionDecoder, GameMotionEncoder, resolveGameMotion } = await tsImport(
-  "./rewrite/src/multiplayer/payload.ts", import.meta.url);
+  "./client/src/multiplayer/payload.ts", import.meta.url);
 const validation = browserEventValidation(isValidRoomSnapshot);
 /**
  * The browser's acceptance of a server event; an item event it would turn
@@ -270,9 +270,9 @@ const clientItemTracks = await (async () => {
     console.log("- mirror/p3553 not found: item race tracks are checked against itemmode.json only");
     return undefined;
   }
-  const { loadResourceLibrary } = await tsImport("./rewrite/tools/economy-export/resource-library.mjs",
+  const { loadResourceLibrary } = await tsImport("./client/tools/economy-export/resource-library.mjs",
     import.meta.url);
-  const { itemTrackCatalog } = await tsImport("./rewrite/src/resources/track-catalog.ts", import.meta.url);
+  const { itemTrackCatalog } = await tsImport("./client/src/resources/track-catalog.ts", import.meta.url);
   const { library } = await loadResourceLibrary(root.replace(/\/$/, ""), "p3553", mirrorRoot.replace(/\/$/, ""));
   return new Set((await itemTrackCatalog(library)).map(choice => choice.id));
 })();

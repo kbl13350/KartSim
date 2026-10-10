@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StringBag>
-  <k n="pcCafeShowcaseConfirmCloseTitle">
-    <m c="kr" v="카트라이더 체험하기"/>
-  </k>
-  <k n="pcCafeShowcaseConfirmClose">
-    <m c="kr" v="카트라이더 체험하기가 진행 중입니다.|체험하기를 종료하시겠습니까?"/>
-  </k>
-</StringBag>

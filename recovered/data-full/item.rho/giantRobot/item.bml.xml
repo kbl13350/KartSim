@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="giantRobot">
-  <state name="Use" life="3000" firing="firing00" itemFx="giantRobotSelf"/>
-  <state name="Affect" life="2000" fired="당함" firedFx="trapped" firing="당함" firingFx="trapped"/>
-</item>

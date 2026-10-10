@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="7" checkWrongway="false" setResetPosToLastCheckPoint="true"/>
-  <ItemAttackCheckPoint isFixedKart="true" fixedKartId="1420" isFixedChar="true" fixedCharId="404" isMinimapHide="true">
-    <LevelContent level="0" track="maple_S03" laps="1" timeLimit="120000" timeValue="90000;60000;30000;30000;" RocketCount="5" targetBlockName="targetOrgel"/>
-  </ItemAttackCheckPoint>
-</Root>

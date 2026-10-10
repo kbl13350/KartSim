@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="7"/>
-  <Escape isFixedKart="true" fixedKartId="1523" fixedCharId="474" isFixedChar="true" kartId="1523" characterId="476" colorId="6" dyeId="8" characterName="妲己">
-    <LevelContent level="0" track="fengshen_I01" laps="3" ksv="1-4" distance="30" startOffset="-2000"/>
-  </Escape>
-</Root>

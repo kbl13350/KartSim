@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
-  <CaptionWindow name="captionDlgFrame" windowRect="0 0 642 422" frame="CaptionDialog" caption="#sb(timerGiftEvent)" align="center" setCloseButton="cancelButton">
-    <ImageBoard image="img_timeEventWnd" windowSize="628 372" align="center" alphaBlend="true">
-      <ColorLabel name="lblMsg" windowSize="474 52" multiLine="true" align="center" textAlign="center" adjust="0 78" autoWrap="true" lineGap="1" textColor="255 42 55 80" text="#sb(timerGiftEventMsg)" textRender="bold16"/>
-      <TextButton name="okButton" text="#sb(go2Scenario)" windowSize="132 38" adjust="0 14" align="bottom,hcenter" textRender="bold16" textColor="white" overTextColor="white" clickedTextColor="255 24 55 104" disabledTextColor="255 220 220 220"/>
-    </ImageBoard>
-  </CaptionWindow>
-</Panel>

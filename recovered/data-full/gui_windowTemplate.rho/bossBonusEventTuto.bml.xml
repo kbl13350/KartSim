@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="tutorialBoard" clientRect="10 475 233 581" alphaBlend="true" alphaTest="true" visible="true">
-  <Panel name="img1" clientRect="0 0 223 106" texture="은상자노티스@zz" alphaBlend="true" alphaTest="true" visible="false"/>
-  <Panel name="img2" clientRect="0 0 223 106" texture="금상자노티스@zz" alphaBlend="true" alphaTest="true" visible="false"/>
-</Container>

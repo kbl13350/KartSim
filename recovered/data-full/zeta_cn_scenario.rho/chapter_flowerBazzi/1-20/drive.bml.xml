@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow kartId="524" characterId="91" uniformId="0" colorId="4" dyeId="4" characterName="杉雯雯" isFixedKart="true" fixedKartId="531" isFixedChar="true" fixedCharId="90">
-    <LevelContent level="0" ksv="event-20" track="village_R01" laps="2"/>
-  </Shadow>
-</Root>

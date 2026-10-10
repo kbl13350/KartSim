@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Scene>
-  <BackGround texture="riderSchool"/>
-  <Char id="dao" pos="8 0" emotion="stop3"/>
-  <Msg name="皮蛋" string="竞速赛的基础已经打好了，既然学习的速度如此惊人，就进入下一阶段-道具赛基础学习环节吧！"/>
-  <Enter/>
-</Scene>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <TimeAttack isFixedKart="true" fixedKartId="1170" isFixedChar="true" fixedCharId="1" isMinimapHide="true">
-    <LevelContent level="0" track="camelot_S02" laps="1" timeLimit="60000"/>
-  </TimeAttack>
-</Root>

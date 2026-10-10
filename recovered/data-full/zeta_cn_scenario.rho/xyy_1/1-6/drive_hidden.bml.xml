@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <TimeAttack>
-    <LevelContent level="0" track="xyy_R01" laps="2" timeLimit="170000"/>
-  </TimeAttack>
-</Root>

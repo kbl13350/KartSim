@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="movingUfo">
-  <state name="Use" life="1000" item="item00" itemFx="use"/>
-  <state name="Move" life="5000" item="item01" itemFx="move" size="5.0"/>
-  <state name="Affect" life="2000" fired="fired00" firedFx="affect"/>
-  <state name="Disappear" life="1000" item="item02" itemFx="disappear"/>
-  <state name="SpecialShield" life="1000" fired="item02" itemFx="disappear"/>
-  <state name="AfterBoost" life="0"/>
-</item>

@@ -289,8 +289,8 @@ fi
 cluster_secret=$KART_CLUSTER_SECRET
 unset KART_CLUSTER_SECRET
 
-if [[ ! -d "$root/rewrite/node_modules" ]]; then
-  (cd "$root/rewrite" && npm ci)
+if [[ ! -d "$root/client/node_modules" ]]; then
+  (cd "$root/client" && npm ci)
 fi
 
 echo "构建 Go 服务…"
@@ -485,7 +485,7 @@ fi
 echo "启动前端（地址由 Vite 打印）…"
 # KART_VITE_HOST（由 run-lan.sh 设置）覆盖 `npm run dev` 中的回环地址。
 # 后写的 --port/--host 覆盖 dev 脚本里的值（Vite 对重复选项取最后一个）。
-(cd "$root/rewrite" && exec npm run dev -- --port "$vite_port" ${KART_VITE_HOST:+--host "$KART_VITE_HOST"}) &
+(cd "$root/client" && exec npm run dev -- --port "$vite_port" ${KART_VITE_HOST:+--host "$KART_VITE_HOST"}) &
 client_pid=$!
 
 # 任一进程退出就结束整个会话（EXIT 时统一清理）。

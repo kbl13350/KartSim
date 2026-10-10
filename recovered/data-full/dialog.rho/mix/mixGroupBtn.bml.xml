@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ImageButton leftTopTex="0 0" autoLoadImage="mix_img_btn_tab_" alphaBlend="true" align="hcenter" textRender="bold16" textAlign="vcenter" stringPos="18 0" textColor="255 93 112 133" overTextColor="255 45 145 245" overTextRender="bold16" clickedTextColor="255 255 255 255" clickedTextRender="bold16" disabledTextColor="white" disabledTextRender="bold16">
-  <Label leftTopWH="10 0 44 52" name="mixNameLabel"/>
-  <Panel name="event" leftTopWH="5 3 44 20" texture="mix_img_tag_event@zz" alphaBlend="true" visible="false" click="true"/>
-  <Panel name="mixable" leftTopWH="222 2 20 22" texture="icon_notice" alphaBlend="true" visible="false"/>
-</ImageButton>

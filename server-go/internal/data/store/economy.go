@@ -208,7 +208,7 @@ func (s *Store) OwnedAmong(ctx context.Context, accountID string, refs []ItemRef
 	return owned, rows.Err()
 }
 
-// The item changer cards (category 7, rewrite/ITEM_MODE.md C.6): the
+// The item changer cards (category 7, client/ITEM_MODE.md C.6): the
 // 道具换位卡 (7:1) and 道具变更卡 (7:2) stack; the 道具变更卡使用券 (7:3)
 // and 道具换位卡使用券 (7:4) are rentals, unlimited while they last.
 const (

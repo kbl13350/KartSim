@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TextButton leftTopWH="0 0 260 20" frame="SelectBtn" textAlign="vcenter" textColor="black">
-  <Label name="inviteMember" leftTopWH="200 3 70 20" text="#sb(doInvite)" altTextRender="outline"/>
-</TextButton>

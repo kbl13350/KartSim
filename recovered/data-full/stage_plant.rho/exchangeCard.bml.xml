@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ImageButton name="exc_" windowRect="0 0 70 70" frame="SelectBtn" alphaBlend="true" altRelativePos="-16 -58" useOrgImageRect="true">
-  <Panel windowRect="0 0 29 28" align="bottom;right" texture="star_box" alphaBlend="true" enable="false">
-    <Label name="itemCount" windowRect="0 10 1 16" autoSizing="true" text="999" align="hcenter"/>
-  </Panel>
-</ImageButton>

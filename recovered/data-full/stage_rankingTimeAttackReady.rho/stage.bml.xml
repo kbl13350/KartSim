@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<MultiStage>
-  <revolution className="TimeAttackReadyStage" addResFolder="/stage/common/" topmostWindow="stage_window@zz" stringBag="stage_stringBag"/>
-  <monocoque className="TimeAttackReadyStage" addResFolder="/stage/common/" topmostWindow="mq_window@zz" stringBag="stage_stringBag"/>
-</MultiStage>

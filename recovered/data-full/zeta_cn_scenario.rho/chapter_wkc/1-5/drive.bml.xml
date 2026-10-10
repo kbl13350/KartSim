@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="1"/>
-  <Tracing isFixedKart="true" fixedKartId="25" kartId="456" characterId="2" uniformId="0" colorId="8" dyeId="8" isFixedChar="true" fixedCharId="2" characterName="天才赛车手" miniNpc="true">
-    <LevelContent level="0" track="forest_I04" laps="3" ksv="WKC_2" distance="30" startOffset="1000"/>
-  </Tracing>
-</Root>

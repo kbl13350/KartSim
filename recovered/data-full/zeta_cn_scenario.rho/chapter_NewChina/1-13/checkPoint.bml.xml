@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <MaxSpeed track="tomb_S01" laps="2" isFixedKart="true" fixedKartId="875">
-    <LevelContent level="0" speedValue="182;195;250;230;190;195;205;199;240;251" timeLimit="75000"/>
-  </MaxSpeed>
-</Root>

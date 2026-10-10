@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel name="totalTeam" leftTopTex="0 0" texture="ScoreBox_duo_white_2" alphaBlend="true" textureOp="modulate" align="bottom">
-  <Panel name="teamNorm" leftTopTex="0 10" align="hcenter" texture="red@zz" alphaBlend="true"/>
-  <TpBoard name="tpBoard" windowSize="105 39" align="hcenter,bottom" adjust="0 12" texture="score_num@zz" alphaBlend="true" fontSize="35 39" fontPos="0 0" text="000" fontStr="0123456789" charNum="3" maxSpinSpeed="200" breakVal="300" minStopSpeed="100" minSpinSpeed="80" slowestSpinSpeed="40" slowestBreakVal="40"/>
-</Panel>

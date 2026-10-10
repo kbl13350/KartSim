@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow windowRect="0 0 293 213" captionPos="0 1" captionColor="black" frame="CaptionDialog" caption="#sb(mainCaption)" align="center" setCloseButton="cancelButton">
-  <Label windowRect="8 6 9 20" text="#sb(registerRid)"/>
-  <Edit name="IdEdit" frame="DefaultEdit" windowRect="8 25 138 47" maxChar="20"/>
-  <Label name="static1" windowRect="8 65 9 74" text="#sb(registerMessage)"/>
-  <Edit name="MessageEdit" windowRect="8 82 250 104" maxChar="32"/>
-  <TextButton name="okButton" windowRect="10 123 122 145" text="#sb(registerOk)" altTextRender="outline"/>
-  <TextButton name="cancelButton" windowRect="153 125 245 145" text="#sb(cancel)" altTextRender="outline"/>
-</CaptionWindow>

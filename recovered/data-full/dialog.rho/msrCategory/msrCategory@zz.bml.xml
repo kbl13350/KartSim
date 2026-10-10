@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow frame="CaptionDialog" windowRect="0 0 255 120" caption="#sb(mainCaption0)" captionPos="0 1" captionColor="black" align="center" setCloseButton="cancelButton">
-  <Label name="static1" windowRect="8 11 9 25" text="#sb(groupName)"/>
-  <Edit name="editbox" windowRect="85 5 208 27" maxChar="12"/>
-  <TextButton name="okButton" windowRect="20 33 102 55" text="#sb(ok)" altTextRender="outline"/>
-  <TextButton name="cancelButton" windowRect="115 33 195 55" text="#sb(cancel)" altTextRender="outline"/>
-</CaptionWindow>

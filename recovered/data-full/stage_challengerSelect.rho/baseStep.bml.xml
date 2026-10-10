@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ImageButton leftTopTex="0 0" autoLoadImage="일반미션0" alphaBlend="true" alphaTest="true" visible="true">
-  <CharPanel name="stepIndex" windowSize="28 20" adjust="0 -8" texture="미션숫자" enable="false" fontSize="14 20" fontPos="0 0" fontStr="1234567890" text="0" alphaTest="true" alphaBlend="true" align="center"/>
-  <CharPanel name="clear" windowSize="45 14" adjust="0 8" texture="star" enable="false" fontSize="15 14" fontPos="0 0" fontStr="01" text="100" alphaTest="true" alphaBlend="true" align="center"/>
-  <Panel name="lock" leftTopTex="18 17" texture="미션자물쇠" visible="false" enable="false" alphaTest="true" alphaBlend="true"/>
-  <Panel name="select" leftTopTex="6 5" texture="선택표시" visible="false" enable="false" alphaTest="true" alphaBlend="true"/>
-</ImageButton>

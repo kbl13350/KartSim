@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow frame="CaptionDialog" clientSize="288 98" align="center" depthBias="257" caption="#sb(notice)">
-  <Panel name="icon" leftTopWH="0 12 44 44" align="hcenter" texture="대화상자정보" alphaBlend="true"/>
-  <ColorLabel name="message" leftTopWH="0 63 270 24" align="hcenter" frameSet="GlassButton" fillTrans="true" multiLine="true" autoWrap="true" lineGap="0" textColor="255 42 55 80" text="Message" textRender="bold16" textAlign="center"/>
-</CaptionWindow>

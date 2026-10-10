@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel name="shadow" windowRect="fullscreen" color="128 0 0 0" alphaBlend="true">
-  <Panel name="jump" windowRect="0 0 494 346" texture="팝업창_이동정보_백판" align="center" alphaBlend="true">
-    <Label name="caption" windowRect="180 60 320 100" textRender="outline" textColor="white" textAlign="center" enable="false"/>
-    <Label name="text" windowRect="50 140 444 203" textRender="default" textColor="white" textAlign="center" enable="false" autoWrap="true" multiLine="true"/>
-    <ImageButton name="okButton" windowRect="225 273 279 328" autoLoadImage="확인버튼_0" textColor="white" textRender="outline" text="#sb(ok)" textAlign="center" alphaBlend="true"/>
-  </Panel>
-</Panel>

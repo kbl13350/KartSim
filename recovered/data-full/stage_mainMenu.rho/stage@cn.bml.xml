@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<MultiStage>
-  <revolution className="MainMenuStage" addResFolder="/stage/common/" topmostWindow="stage_window@zz" stringBag="stage_stringBag"/>
-  <monocoque className="MainMenuStage" addResFolder="/stage/common/;/zeta/cn/stage/mainMenu/;/zeta/cn/stage/mainMenu/favoriteChannel;/dialog2/selectTrackEx/;/stage/mainMenu/versusMode/;/stage/mainMenu/clubRace/;/stage/mainMenu/riderSchool/;/stage/mainMenu/simulationGame/;/stage/mainMenu/competitive/;/stage/mqTierMatchingReady/;/stage/mainMenu/rotationMode/;/stage/common/rotationMode/;/stage/common/rotationMode/guide/;/stage/common/rotationMode/modeButton/;/stage/mainMenu/trainingCenter/" topmostWindow="mq_window@zz" stringBag="stage_stringBag"/>
-</MultiStage>

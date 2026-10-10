@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Delivery isFixedKart="true" fixedKartId="875">
-    <LevelContent level="0" track="desert_I02" collision="5" laps="3" timeLimit="117000"/>
-  </Delivery>
-</Root>

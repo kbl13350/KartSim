@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StringBag>
-  <k n="checkTachSpeed">
-    <m c="kr" v="타코미터 속도 확인!"/>
-    <m c="cn" v="确认仪表盘速度！"/>
-    <m c="tw" v=""/>
-  </k>
-</StringBag>

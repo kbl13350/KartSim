@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow kartId="957" characterId="18" colorId="8" dyeId="8" isFixedKart="true" fixedKartId="888" isFixedChar="true" fixedCharId="15" characterName="多多">
-    <LevelContent level="0" ksv="desert_I05_0" track="desert_I05" laps="3"/>
-  </Shadow>
-</Root>

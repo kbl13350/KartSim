@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="943" isFixedChar="true" fixedCharId="2" kartId="849" colorId="1" dyeId="1" characterId="1" characterName="宝宝">
-    <LevelContent level="0" track="northeu_I02" laps="3" ksv="1-9" distance="20" startOffset="1200"/>
-  </Tracing>
-</Root>

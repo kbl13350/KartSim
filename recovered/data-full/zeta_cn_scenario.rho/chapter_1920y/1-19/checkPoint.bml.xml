@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <MaxSpeed track="steam_S01" laps="2" isFixedKart="true" fixedKartId="794" isFixedChar="true" fixedCharId="102">
-    <LevelContent level="0" speedValue="190;180;200;220;170;200" timeLimit="90000"/>
-  </MaxSpeed>
-</Root>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Escape isFixedKart="true" fixedKartId="510" isFixedChar="true" fixedCharId="21" fixedUniformId="96" kartId="615" characterId="76" uniformId="0" colorId="37" dyeId="37" characterName="罗杰">
-    <LevelContent level="0" track="moonhill_R01" laps="2" ksv="beach_2-8" distance="20" startOffset="-1000"/>
-  </Escape>
-</Root>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="932" isFixedChar="true" fixedCharId="60" kartId="1112" characterId="262" uniformId="0" colorId="4" dyeId="4" characterName="洛基">
-    <LevelContent level="0" track="god_I01" laps="3" ksv="1-13" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

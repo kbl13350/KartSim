@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window leftTopWH="0 0 101 20" adjust="9 5" align="right,bottom" visible="false">
-  <Panel name="text" leftTopTex="0 0" texture="난이도text@zz" alphaBlend="true"/>
-  <CharPanel name="chars" windowSize="63 15" texture="난이도원" fontSize="13 15" fontStr="01" text="0" spaceOffset="-3" alphaBlend="true" align="right,vcenter"/>
-</Window>

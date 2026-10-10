@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GrandPrixSeasonGrade>
-  <Grade minValue="2000"/>
-  <Grade minValue="1800"/>
-  <Grade minValue="1600"/>
-  <Grade minValue="1500"/>
-  <Grade minValue="0"/>
-</GrandPrixSeasonGrade>

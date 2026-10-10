@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel name="selectEmoticon" windowSize="218 122" adjust="-45 20" texture="emoticonPopup_bg" alphaBlend="true">
-  <GridSelector name="emoList" windowRect="10 5 233 145" alignStyle="horizontal" alignSize="8" maxLine="4" alignMargin="3 2" clientMargin="0 0 0 0"/>
-  <Label name="pageNum" windowSize="100 25" adjust="0 -3" text="0 / 99" textRender="outline" textColor="white" textColor2="black" textAlign="center" align="hcenter;bottom" visible="false"/>
-  <ImageButton name="prevPage" windowSize="14 14" adjust="35 1 " autoLoadImage="보이기_0" useDisableState="true" altTextRender="outline" alphaBlend="true" alphaTest="true" align="bottom" visible="false"/>
-  <ImageButton name="nextPage" windowSize="14 14" adjust="98 1 " autoLoadImage="숨기기_0" useDisableState="true" altTextRender="outline" alphaBlend="true" alphaTest="true" align="bottom" visible="false"/>
-</Panel>

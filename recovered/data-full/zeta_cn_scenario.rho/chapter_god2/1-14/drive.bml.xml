@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow isFixedKart="true" fixedKartId="1112" fixedCharId="262" isFixedChar="true" kartId="1112" characterId="261" colorId="4" dyeId="4" characterName="变为洛基的黑杰克">
-    <LevelContent level="0" ksv="1-14" track="god_I03" laps="3"/>
-  </Shadow>
-</Root>

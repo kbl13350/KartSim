@@ -12,7 +12,7 @@ import (
 // The 道具图鉴 (item dictionary): which items it lists, by category in
 // display order, items hidden until a date (embargo), and the reward per
 // newly collected item. dictionary.json is generated with careers.json by
-// rewrite/tools/export-career-data.mjs from zeta_/cn/content/itemDictionary.xml.
+// client/tools/export-career-data.mjs from zeta_/cn/content/itemDictionary.xml.
 //
 // An item counts as collected once the account has ever had it (expired
 // rentals included, as the original tip 期限制道具也可以激活道具图鉴 says); the

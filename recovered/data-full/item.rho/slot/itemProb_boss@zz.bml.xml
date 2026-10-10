@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items>
-  <item name="rocket" idx="7" highrank="0" midrank="0" lowrank="0" isAccumulable="true" accumCnt="3" maxAccum="10" eatTextureIndex="15"/>
-  <item name="goldRocketForBoss" idx="75" highrank="0" midrank="0" lowrank="0" isAccumulable="true" accumCnt="3" maxAccum="10" eatTextureIndex="15" slotTextureIndex="32"/>
-  <item name="straightRocket" idx="73" highrank="7" midrank="4" lowrank="1"/>
-  <item name="waterBombForBoss" idx="74" highrank="3" midrank="5" lowrank="2"/>
-  <item name="angel" idx="11" highrank="0" midrank="1" lowrank="1"/>
-  <item name="booster" idx="6" highrank="0" midrank="0" lowrank="6"/>
-</items>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <TimeAttack isFixedKart="true" fixedKartId="868" isFixedChar="true" fixedCharId="145">
-    <LevelContent level="0" track="jurassic_R01" laps="2" timeLimit="0"/>
-  </TimeAttack>
-</Root>

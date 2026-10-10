@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="tutorialBoard" windowSize="567 319" align="center" adjust="0 -170" alphaBlend="true">
-  <ControlWindow windowSize="567 319" align="center" fadeInLength="100" showLength="1000" fadeOutLength="100" visible="false">
-    <ImageBoard name="img1" windowSize="567 319" image="aprilFoolPop@zz" alphaBlend="true" visible="true"/>
-  </ControlWindow>
-</Container>

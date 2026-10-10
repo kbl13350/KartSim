@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel name="closeReconfirm" windowRect="0 0 248 99" align="hcenter" texture="new_box" alphaBlend="true">
-  <Container name="closeSet" windowRect="0 48 186 78" align="hcenter">
-    <TextButton name="close_yes" windowSize="82 30" altTextRender="outline" text="#sb(yes)"/>
-    <TextButton name="close_no" windowSize="82 30" align="right" altTextRender="outline" text="#sb(no)"/>
-  </Container>
-  <Label windowRect="18 12 300 166" textRender="outline" textColor="white" text="#sb(chat_closeReconfirm)" autoWrap="true" multiLine="true"/>
-</Panel>

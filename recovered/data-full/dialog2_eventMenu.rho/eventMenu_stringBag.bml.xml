@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StringBag>
-  <k n="eventMenu">
-    <m c="kr" v="이벤트"/>
-    <m c="cn" v="活动"/>
-    <m c="id" v="Event"/>
-  </k>
-</StringBag>

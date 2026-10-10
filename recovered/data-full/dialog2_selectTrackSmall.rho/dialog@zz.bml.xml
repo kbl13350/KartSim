@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow name="트랙선택" windowRect="0 0 300 500" frame="CaptionDialog" caption="#sb(selectTrackCaption)" captionPos="0 1" captionColor="black" align="center" setCloseButton="close">
-  <Window windowRect="0 0 290 443"/>
-  <List name="trackList" windowRect="20 5 288 405" scrollWidth="15" scrollRigidMove="false" scrollType="vertical" listGap="14" listMargin="2 8 0 2" rigidScroll="true" depthBias="15"/>
-  <TextButton name="close" windowRect="120 414 180 435" text="닫기" altTextRender="outline"/>
-</CaptionWindow>

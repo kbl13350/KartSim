@@ -108,7 +108,7 @@ func TestEmbeddedTracksAndPools(t *testing.T) {
 			t.Errorf("item-only track %s = %+v %v", id, track, ok)
 		}
 	}
-	// The tracks of the client's item catalog (rewrite/src/resources/track-catalog.ts
+	// The tracks of the client's item catalog (client/src/resources/track-catalog.ts
 	// itemTrackCatalog): 158 item tracks and the 29 reverse tracks with an open
 	// trackLocale@cn track_rvs row.
 	reverse := 0

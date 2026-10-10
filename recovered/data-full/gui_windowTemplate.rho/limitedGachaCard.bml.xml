@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GarageCard name="garageCardTemplate" windowRect="0 0 152 130" texture="limitedGacha_selectAll" alphaBlend="true">
-  <Container name="itemNameContainer" windowRect="0 5 152 25" enable="false" visible="true">
-    <Label name="itemNameLabel" windowRect="0 3 152 25" textRender="gulim12" textColor="black" textAlign="center" autoSizing="true" enable="false" align="center"/>
-  </Container>
-  <Window name="shopItemContainer" leftTopWH="0 5 152 130" enable="false"/>
-</GarageCard>

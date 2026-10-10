@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Escape isFixedKart="true" fixedKartId="849" kartId="920" characterId="2" uniformId="76" colorId="8" dyeId="8" isFixedChar="true" fixedCharId="2" characterName="幽灵车手">
-    <LevelContent level="0" track="tomb_I04" laps="3" ksv="chapter4_1_15" distance="20" startOffset="-2000"/>
-  </Escape>
-</Root>

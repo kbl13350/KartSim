@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
-  <ImageBoard windowSize="396 586" adjust="0 0" align="center" image="kartPass_lobby_passShorcutBG@zz" alphaBlend="true" enable="true"/>
-  <ImageButton name="okButton" windowSize="160 34" align="center" adjust="0 245" text="#sb(goKartPass)" autoLoadImage="kartPass_lobby_passShorcut_@zz" alphaBlend="true" alphaTest="true" textColor="255 250 250 250" overTextColor="255 250 250 250" clickedTextColor="255 250 250 250" disabledTextColor="255 78 78 78" textRender="bold16" visible="true" enable="true"/>
-</Panel>

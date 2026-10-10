@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <ItemAttack isFixedKart="true" fixedKartId="117" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" track="moonhill_I01_sn08" laps="1" timeLimit="60000" RocketCount="9" targetBlockName="targetBlock1"/>
-  </ItemAttack>
-</Root>

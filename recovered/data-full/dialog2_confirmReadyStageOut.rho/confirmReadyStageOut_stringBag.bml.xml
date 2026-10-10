@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StringBag>
-  <k n="gameOutWarning">
-    <m c="kr" v="대기실에서 나가게 됩니다."/>
-    <m c="cn" v="确定要离开队友退出房间吗"/>
-    <m c="tw" v="離開待機室。 [確認 / 取消]"/>
-    <m c="jp" v="ロビーから出ます。"/>
-  </k>
-</StringBag>

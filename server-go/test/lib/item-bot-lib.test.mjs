@@ -1,7 +1,7 @@
 // Unit checks for the item test bot's pure parts; no services needed. The
 // checks against the browser's own modules (start slots, kart basis and
 // quaternion, motion codec) load them through tsx and are skipped without
-// `npm ci` in rewrite/.
+// `npm ci` in client/.
 //   node --test test/lib/item-bot-lib.test.mjs        (from server-go/)
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
@@ -14,9 +14,9 @@ import {
 } from "./item-bot-lib.mjs";
 import { ITEM, loadItemData, repoRoot } from "./item-race.mjs";
 
-const haveTsx = existsSync(join(repoRoot, "rewrite/node_modules/tsx/dist/esm/api/index.mjs"));
+const haveTsx = existsSync(join(repoRoot, "client/node_modules/tsx/dist/esm/api/index.mjs"));
 const browser = async specifier => {
-  const { tsImport } = await import(join(repoRoot, "rewrite/node_modules/tsx/dist/esm/api/index.mjs"));
+  const { tsImport } = await import(join(repoRoot, "client/node_modules/tsx/dist/esm/api/index.mjs"));
   return tsImport(join(repoRoot, specifier), import.meta.url);
 };
 const data = loadItemData();
@@ -81,8 +81,8 @@ test("accounts: one, many or {accounts}; never the password in errors", () => {
 
 test("start slots alternate 2 m right and left of the start, like the browser", async t => {
   assert.deepEqual([0, 1, 2, 3, 4, 5, 6, 7].map(slotOffset), [0, -2, 2, -4, 4, -6, 6, -8]);
-  if (!haveTsx) return t.skip("rewrite/node_modules missing");
-  const { raceStartPosition } = await browser("rewrite/src/vehicle/race-start-slots.ts");
+  if (!haveTsx) return t.skip("client/node_modules missing");
+  const { raceStartPosition } = await browser("client/src/vehicle/race-start-slots.ts");
   for (let slot = 0; slot < 8; slot++) {
     const placed = raceStartPosition({ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, slot, () => undefined);
     assert.equal(placed.x, slotOffset(slot), `slot ${slot}`);
@@ -96,9 +96,9 @@ test("kart basis and quaternion on a route frame match the browser's reset and m
   const plain = vector => Object.values(vector).map(value => value + 0); // -0 → 0
   assert.deepEqual([level.right, level.forward, level.up].map(plain), [[-1, 0, 0], [0, 0, -1], [0, 1, 0]]);
   assert.ok(Math.abs(Math.hypot(...level.quaternion) - 1) < 1e-6);
-  if (!haveTsx) return t.skip("rewrite/node_modules missing");
-  const { resetVehicleFromRoute } = await browser("rewrite/src/driving/reset-runtime.ts");
-  const orientation = await browser("rewrite/src/driving/orientation-math.ts");
+  if (!haveTsx) return t.skip("client/node_modules missing");
+  const { resetVehicleFromRoute } = await browser("client/src/driving/reset-runtime.ts");
+  const orientation = await browser("client/src/driving/orientation-math.ts");
   const headings = [{ x: 0, y: 0, z: -1 }, { x: 1, y: 0, z: 0 }, { x: -0.6, y: 0.1, z: 0.79 },
     { x: 0.3, y: -0.2, z: -0.93 }, { x: -1, y: 0, z: 0.001 }, { x: 0, y: 0, z: 1 }];
   for (const heading of headings) {
@@ -185,8 +185,8 @@ async function recorded(encoder, samples) {
 test("recordings: the longest race, decoded, from the moment the kart moved", async t => {
   assert.match(RECORDER_SNIPPET, /bytes\[0\] >= 1 && bytes\[0\] <= 10/); // protocol 40: the kind comes first
   assert.match(RECORDER_SNIPPET, /RTCDataChannel\.prototype/);
-  if (!haveTsx) return t.skip("rewrite/node_modules missing");
-  const payload = await browser("rewrite/src/multiplayer/payload.ts");
+  if (!haveTsx) return t.skip("client/node_modules missing");
+  const payload = await browser("client/src/multiplayer/payload.ts");
   const { kartSample } = await import("./item-race.mjs");
   const sample = (tick, speed) => kartSample({ tick, observedSlot: 2,
     pose: { position: { x: 0, y: 0, z: -tick / 100 }, velocity: { x: 0, y: 0, z: -speed } },
@@ -205,8 +205,8 @@ test("recordings: the longest race, decoded, from the moment the kart moved", as
 });
 
 test("recordings: version 1 frames (the release's 56-byte header) are converted", async t => {
-  if (!haveTsx) return t.skip("rewrite/node_modules missing");
-  const payload = await browser("rewrite/src/multiplayer/payload.ts");
+  if (!haveTsx) return t.skip("client/node_modules missing");
+  const payload = await browser("client/src/multiplayer/payload.ts");
   const { kartSample } = await import("./item-race.mjs");
   const sample = kartSample({ tick: 4000, observedSlot: 0, pose: { position: { x: 0, y: 0, z: -40 } },
     progress: { distance: 40, lap: 1 } });

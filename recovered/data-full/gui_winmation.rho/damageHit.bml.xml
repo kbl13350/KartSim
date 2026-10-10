@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ButtonAni name="jelly">
-  <Active>
-    <PositionTon>
-      <Phase at="1" tick="0" translate="0.0 0.0 0.0"/>
-      <Phase at="2" tick="200" translate="0 -15 0.0"/>
-    </PositionTon>
-  </Active>
-</ButtonAni>

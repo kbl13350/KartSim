@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
-  <CaptionWindow windowSize="430 340" adjust="0 0" frame="CaptionDialog" caption="#sb(helpTitle)" align="center" setCloseButton="closeButton">
-    <Label windowSize="390 200" adjust="0 10" align="hcenter" text="#sb(kartuneHelp)" multiLine="true" lineGap="15" textColor="black" textRender="bold14" autoWrap="true" indent="10 -8"/>
-  </CaptionWindow>
-</Panel>

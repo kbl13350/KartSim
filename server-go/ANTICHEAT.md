@@ -59,7 +59,7 @@
 3. 连接在这条事件写出后以 1008 `anti-cheat` 关闭（`conn.Close` 先冲刷队列，最多等 2 秒；WebRTC 等控制通道确认后再关）；
 4. 关闭前它的命令都回复 403 `CHEAT_DETECTED`，运动帧丢弃；触发踢出的 `finish`/`cube` 请求本身也回复 `CHEAT_DETECTED`。
 
-浏览器记下这条事件，连接关闭时弹出“已被移出比赛：服务器检测到异常操作（坐标瞬移），你已被移出比赛并断开联机。如有疑问请联系管理员。”并回到大厅（`rewrite/src/multiplayer/cheat-kick.ts`）。被踢后可以重新进入多人游戏；需要禁止时由管理员在后台封禁（记录页点账号 → 编辑）。
+浏览器记下这条事件，连接关闭时弹出“已被移出比赛：服务器检测到异常操作（坐标瞬移），你已被移出比赛并断开联机。如有疑问请联系管理员。”并回到大厅（`client/src/multiplayer/cheat-kick.ts`）。被踢后可以重新进入多人游戏；需要禁止时由管理员在后台封禁（记录页点账号 → 编辑）。
 
 ## 4. 记录
 
@@ -70,7 +70,7 @@
 
 ## 5. 赛道数据
 
-`internal/game/anticheat/tracks.json` 由 `rewrite/tools/export-track-data.mjs` 从 `mirror/p3553` 导出（浏览器自己的路线构建 `formats.YW`，与比赛加载一致），每条赛道：
+`internal/game/anticheat/tracks.json` 由 `client/tools/export-track-data.mjs` 从 `mirror/p3553` 导出（浏览器自己的路线构建 `formats.YW`，与比赛加载一致），每条赛道：
 
 | 字段 | 含义 |
 | --- | --- |
@@ -82,7 +82,7 @@
 | `warps` | 各传送的落点（下一路段首帧），运动帧坐标系 `[x, -z, y]`，米 |
 
 ```bash
-cd rewrite
+cd client
 node --import tsx tools/export-track-data.mjs                    # 重新导出
 node --import tsx tools/export-track-data.mjs --check            # 过期则退出码 1
 node --import tsx tools/export-track-data.mjs --mirror ../../KartSim   # worktree 没有 mirror/p3553 时读另一个检出

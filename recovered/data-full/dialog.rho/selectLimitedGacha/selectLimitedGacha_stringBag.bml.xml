@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StringBag>
-  <k n="limitGacha">
-    <m c="kr" v="한정 아이템"/>
-    <m c="cn" v="限量道具"/>
-    <m c="tw" v="限定道具"/>
-  </k>
-</StringBag>

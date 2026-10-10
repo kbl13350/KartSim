@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="spring">
-  <state name="Spring" life="610" fired="fired01"/>
-  <state name="AfterBoost" life="0"/>
-</item>

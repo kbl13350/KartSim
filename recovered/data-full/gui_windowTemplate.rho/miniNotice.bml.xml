@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window name="miniNotice" windowRect="-20 -47 140 3">
-  <Label name="notice" windowRect="0 0 210 50" align="center" autoWrap="true" frame="DefaultTooltipNew" text="#sb(newQuestCompleteNotice)" multiLine="true" textRender="bold14" textColor="white" textAlign="center"/>
-</Window>

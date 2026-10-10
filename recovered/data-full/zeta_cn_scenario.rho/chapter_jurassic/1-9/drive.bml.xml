@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="1"/>
-  <Escape isFixedKart="true" fixedKartId="849" isFixedChar="true" fixedCharId="2" kartId="865" colorId="1" dyeId="1" characterId="9" characterName="海盗船长">
-    <LevelContent level="0" track="beach_I01" laps="3" ksv="Jurassic_1-9" distance="30" startOffset="-2000"/>
-  </Escape>
-</Root>

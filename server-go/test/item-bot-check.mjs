@@ -17,7 +17,7 @@
 //   KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6379 \
 //     node test/item-bot-check.mjs            (from server-go/)
 //
-// Needs mirror/p3553 and `npm ci` in rewrite/ (skipped otherwise); the other
+// Needs mirror/p3553 and `npm ci` in client/ (skipped otherwise); the other
 // settings are those of lib/local-cluster.mjs.
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
@@ -37,15 +37,15 @@ const TRACK = "abyss_I03";
 const BOT_SPEED = 120; // m/s, under the node's 140 m/s progress cap: a ~32 s race
 
 if (!existsSync(join(repoRoot, "mirror/__p3553/archive-index")) ||
-    !existsSync(join(repoRoot, "rewrite/node_modules/tsx"))) {
-  console.log("SKIP item-bot-check: needs mirror/p3553 and `npm ci` in rewrite/");
+    !existsSync(join(repoRoot, "client/node_modules/tsx"))) {
+  console.log("SKIP item-bot-check: needs mirror/p3553 and `npm ci` in client/");
   process.exit(0);
 }
-const { tsImport } = await import(join(repoRoot, "rewrite/node_modules/tsx/dist/esm/api/index.mjs"));
+const { tsImport } = await import(join(repoRoot, "client/node_modules/tsx/dist/esm/api/index.mjs"));
 const load = specifier => tsImport(join(repoRoot, specifier), import.meta.url);
 const [{ parseServerEvent }, { isValidRoomSnapshot }, { isValidItemRequest }, payload] = await Promise.all([
-  load("rewrite/src/multiplayer/server-events.ts"), load("rewrite/src/multiplayer/room-validation.ts"),
-  load("rewrite/src/multiplayer/protocol.ts"), load("rewrite/src/multiplayer/payload.ts"),
+  load("client/src/multiplayer/server-events.ts"), load("client/src/multiplayer/room-validation.ts"),
+  load("client/src/multiplayer/protocol.ts"), load("client/src/multiplayer/payload.ts"),
 ]);
 const validation = browserEventValidation(isValidRoomSnapshot);
 const validate = message => browserAccepts(parseServerEvent, validation, message);

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ToolTipWindow name="talkBalloon" windowRect="0 25 128 110" frame="GrayBorderToolTip" regStyle="left" autoWrap="true" multiLine="true" vertAutoSizing="true" visible="false" alphaBlend="true" marginRect="0 20 0 -25" color="230 255 255 255">
-  <Label name="nametag" frame="GlassButton" windowRect="0 0 107 20" textColor="blue" textRender="bold" alphaBlend="true"/>
-</ToolTipWindow>

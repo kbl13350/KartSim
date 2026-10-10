@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container windowRect="0 0 550 320" align="center">
-  <Panel windowRect="-193 -23 900 800" enable="true" visible="true" color="100 0 0 0" alphaBlend="true" alphaTest="true" align="center"/>
-  <CaptionWindow name="captionDlgFrame" windowRect="0 0 550 320" frame="CaptionDialog" align="center" caption="#sb(viewTestServer)" captionPos="0 1" captionColor="black">
-    <Label name="testDesc" windowRect="0 0 530 258" frame="GrayPanel" multiLine="true" autoWrap="true" align="hcenter" lineGap="2" enable="false"/>
-    <List name="testDescList" frame="GrayPanel" windowRect="-6 0 523 260" listGap="0" listMargin="0 0 0 0"/>
-    <TextButton name="okButton" align="hcenter" windowRect="0 261 82 281" text="#sb(ok)" altTextRender="outline"/>
-  </CaptionWindow>
-</Container>

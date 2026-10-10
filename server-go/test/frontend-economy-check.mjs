@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // End-to-end check of the account economy through the REAL browser modules
-// (rewrite/src, loaded with tsx) against a temporary local cluster: one
+// (client/src, loaded with tsx) against a temporary local cluster: one
 // kart-data with reward rates other than 1 and two kart-game nodes started by
 // lib/local-cluster.mjs (temporary MySQL database and user, unique Redis
 // prefix, all removed afterwards, also on SIGINT/SIGTERM/SIGHUP).
@@ -30,7 +30,7 @@
 //   KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3307 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6380 \
 //     node test/frontend-economy-check.mjs
 //
-// Needs `npm ci` in rewrite/ (skipped otherwise). Environment: see
+// Needs `npm ci` in client/ (skipped otherwise). Environment: see
 // lib/local-cluster.mjs (KART_SMOKE_PORTS, KART_SMOKE_SKIP_BUILD=1,
 // KART_BIN_DIR, KART_SMOKE_KEEP=1, KART_SMOKE_VERBOSE=1, …).
 import assert from "node:assert/strict";
@@ -46,10 +46,10 @@ import {
 import { poll, randomForwardedFor, randomPassword } from "./lib/kart-client.mjs";
 import { runLocalCluster, serverDir, sqlString } from "./lib/local-cluster.mjs";
 
-const rewriteDir = resolve(serverDir, "../rewrite");
+const rewriteDir = resolve(serverDir, "../client");
 const tsxApi = join(rewriteDir, "node_modules/tsx/dist/esm/api/index.mjs");
 if (!existsSync(tsxApi)) {
-  console.log("SKIP frontend-economy-check: run npm ci in rewrite/ first");
+  console.log("SKIP frontend-economy-check: run npm ci in client/ first");
   process.exit(0);
 }
 const { tsImport } = await import(pathToFileURL(tsxApi).href);

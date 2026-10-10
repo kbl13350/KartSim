@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<item name="movingUfo">
-  <state name="Use" life="2000" item="use00" itemFx="use"/>
-  <state name="Set" life="990" item="set00" itemFx="set"/>
-  <state name="Affect" life="2990" fired="affect00" itemFx="affect"/>
-  <state name="Disappear" life="1000" item="dissappear00" itemFx="disappear"/>
-  <state name="SpecialShield" life="1000" fired="dissappear00" itemFx="disappear"/>
-</item>

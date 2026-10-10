@@ -121,7 +121,7 @@
 `internal/data/economy/catalog.json`、`levels.json` 与计时赛赛道表 `tracks.json`（368 条，`POST /api/timeattack/settle` 只接受其中的 `trackId`）由导出工具从 `mirror/p3553` 的原版资源生成，并以 `go:embed` 编入 kart-data，**不要手改**：
 
 ```sh
-cd rewrite
+cd client
 node --import tsx tools/export-economy-data.mjs            # 重新生成三个 JSON
 node --import tsx tools/export-economy-data.mjs --check    # 提交的 JSON 过期时退出码 1（适合 CI）
 node --import tsx tools/export-economy-data.mjs --out DIR  # 写到其他目录比较
@@ -131,18 +131,18 @@ node --import tsx tools/export-economy-data.mjs --out DIR  # 写到其他目录�
 
 ### 道具赛数据（概率表与道具赛道）
 
-游戏节点运行道具赛（道具个人赛 / 组队道具赛，规则见 [`../rewrite/ITEM_MODE.md`](../rewrite/ITEM_MODE.md)，协议见 [`../SERVER_PROTOCOL.md`](../SERVER_PROTOCOL.md)“本地新增：道具赛”）所需的数据 `internal/game/itemmode/itemmode.json` 同样由导出工具从 `mirror/p3553` 生成并 `go:embed` 编入 kart-game，**不要手改**：个人 `item/slot/itemProb_indi@zz.bml`（14 种）与组队 `itemProb_team2@cn.bml`（19 种）的 top/high/mid/low 权重、`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限（道具锁、天使、闪电每局 2 次，加速器不限）、这 19 种道具 `item.bml` 第一组状态的时长（毫秒）、道具房间可选的 187 条赛道（158 条道具图含 5 条道具专用图，加 29 条反向；与浏览器道具房间的选图目录完全一致，每条都有道具箱）、随机码 3–7/0/8/30 对应的道具随机池，以及默认赛道（道具 hot1 第一条）。
+游戏节点运行道具赛（道具个人赛 / 组队道具赛，规则见 [`../client/ITEM_MODE.md`](../client/ITEM_MODE.md)，协议见 [`../SERVER_PROTOCOL.md`](../SERVER_PROTOCOL.md)“本地新增：道具赛”）所需的数据 `internal/game/itemmode/itemmode.json` 同样由导出工具从 `mirror/p3553` 生成并 `go:embed` 编入 kart-game，**不要手改**：个人 `item/slot/itemProb_indi@zz.bml`（14 种）与组队 `itemProb_team2@cn.bml`（19 种）的 top/high/mid/low 权重、`zeta_/cn/content/itemGameRestrictionItemCount.xml` 的获得上限（道具锁、天使、闪电每局 2 次，加速器不限）、这 19 种道具 `item.bml` 第一组状态的时长（毫秒）、道具房间可选的 187 条赛道（158 条道具图含 5 条道具专用图，加 29 条反向；与浏览器道具房间的选图目录完全一致，每条都有道具箱）、随机码 3–7/0/8/30 对应的道具随机池，以及默认赛道（道具 hot1 第一条）。
 
 第 3 阶段（`ITEM_MODE.md` 附录 C）的数据也在同一个文件里，同样从原版读取：变更卡重抽表 `itemProb_indiChanger@zz` / `itemProb_teamChanger2@cn`；按车辆的获得表 `item/slot/transformByKart`、`fired2Gain`、`firing2Gain`、`animalBooster`（基础文件加 `@cn` 按行覆盖，去掉 bossOnly、夺旗赛与取消为 0/-1 的行；577/179/63/138 行）；全局变换 `transform@zz` 与每条道具赛道的 `track@zz` 等级（没写的按 0）；49 种特殊道具（idx、`item.rho` 文件夹与变体 base，以及该变体各状态的时长，导出时逐个核对 `item.bml`、`item/slot/item<idx>.png` 与 `itemDescList`）；`etc_/itemTable.kml` 叠加 `itemTable@cn.xml` 后的道具赛特性（车、宠物、角色、气球、头饰；取第一个数，-1 当 0）；`enchantCatalog.xml` 各特性键防御的道具（供测试核对）；46 辆开局自带道具的迅引擎道具车（引擎 12、有 `ItemSlotCapacity`、默认 exceed 类型的 `chargerSystemboosterUseCount` 为 0）；`title_icons/namemap@zz` 的 12 个结算称号。规则单测与原版交叉核对在 `tools/item-mode-export/item-phase3.test.mjs`。
 
 ```sh
-cd rewrite
+cd client
 node --import tsx tools/export-item-mode-data.mjs            # 重新生成 itemmode.json
 node --import tsx tools/export-item-mode-data.mjs --check    # 提交的 JSON 过期时退出码 1
 node --test tools/item-mode-export/item-mode.test.mjs        # 导出规则单测，并与 recovered/data-full 的原版表交叉核对
 ```
 
-赛道表与随机池直接取浏览器道具房间的选图目录（`rewrite/src/resources/track-catalog.ts` 的 `itemTrackCatalog`、`itemRandomTrackGroups`：`trackLocale@cn` 规则、反向赛道需要 `track_rvs` 行），并用前端的 `.1s` 解码器统计每个模型的 `ToItemCube` 与移动道具箱（目录里每条赛道都必须有，否则导出失败）。`rewrite/tools/item-mode-export/item-mode.test.mjs` 在有 `mirror/p3553` 时比对已提交的 JSON 与浏览器目录，二者不一致即失败。kart-game 启动时解析它（失败则不启动）；`go test ./internal/game/itemmode` 校验版本号与内容一致。
+赛道表与随机池直接取浏览器道具房间的选图目录（`client/src/resources/track-catalog.ts` 的 `itemTrackCatalog`、`itemRandomTrackGroups`：`trackLocale@cn` 规则、反向赛道需要 `track_rvs` 行），并用前端的 `.1s` 解码器统计每个模型的 `ToItemCube` 与移动道具箱（目录里每条赛道都必须有，否则导出失败）。`client/tools/item-mode-export/item-mode.test.mjs` 在有 `mirror/p3553` 时比对已提交的 JSON 与浏览器目录，二者不一致即失败。kart-game 启动时解析它（失败则不启动）；`go test ./internal/game/itemmode` 校验版本号与内容一致。
 
 ### 限流与反向代理
 
@@ -226,7 +226,7 @@ docker compose logs kart-data | grep -i "account economy"   # 注册方式、游
 
 账号经济的变量也在 `.env` 中：`KART_REGISTRATION`（默认 `open`）、`KART_ADMIN_USERNAMES`（管理员用户名；部署后用 `docker compose logs kart-data | grep -i invitation` 打印的引导邀请码注册它们）、`KART_ALLOW_GUESTS`、`KART_EXP_RATE`/`KART_LUCCI_RATE`（只传给数据服务，游戏节点经心跳响应得到）、`KART_STARTING_LUCCI` 与 `KART_TRUSTED_PROXIES`。前面放宿主机 Nginx 时务必按 `.env.example` 设置 `KART_TRUSTED_PROXIES`，否则所有玩家共用一个注册限流额度。管理页面经发布的 8787 端口（或 Nginx 的 `/multiplayer/`）访问：`/multiplayer/admin`。
 
-Compose 只运行服务端。开发前端时在 `rewrite/` 运行 `npm run dev`，它默认连接 `http://127.0.0.1:8787`；对外提供服务时请按下文“分布式部署”在前面放反向代理。
+Compose 只运行服务端。开发前端时在 `client/` 运行 `npm run dev`，它默认连接 `http://127.0.0.1:8787`；对外提供服务时请按下文“分布式部署”在前面放反向代理。
 
 ### 手动构建与运行
 
@@ -248,7 +248,7 @@ go vet ./... && go test -race ./...
 KART_TEST_MYSQL_DSN='kart:kart@tcp(127.0.0.1:3306)/kartsim_test?charset=utf8mb4&collation=utf8mb4_0900_as_ci' go test -race ./...
 ```
 
-未设置 `KART_TEST_MYSQL_DSN` 时跳过 MySQL 相关单测；Redis 相关单测使用 miniredis。不需要运行服务的 Node 单测：`node --test test/lib/kart-client.test.mjs test/lib/economy.test.mjs test/launcher.test.mjs test/lib/item-race.test.mjs test/lib/item-bot-lib.test.mjs`（测试客户端与新手装备、端到端脚本用来预测奖励与等级的规则移植、`run-full-local.sh` 对非法配置的拒绝与 DSN 脱敏，以及道具赛脚本与测试机器人的共用部分：名次组、目标规则、道具请求序号、运动帧、路线行驶；有 `rewrite/node_modules` 时还与浏览器自己的起跑位、车身朝向与运动编解码逐项比对）。
+未设置 `KART_TEST_MYSQL_DSN` 时跳过 MySQL 相关单测；Redis 相关单测使用 miniredis。不需要运行服务的 Node 单测：`node --test test/lib/kart-client.test.mjs test/lib/economy.test.mjs test/launcher.test.mjs test/lib/item-race.test.mjs test/lib/item-bot-lib.test.mjs`（测试客户端与新手装备、端到端脚本用来预测奖励与等级的规则移植、`run-full-local.sh` 对非法配置的拒绝与 DSN 脱敏，以及道具赛脚本与测试机器人的共用部分：名次组、目标规则、道具请求序号、运动帧、路线行驶；有 `client/node_modules` 时还与浏览器自己的起跑位、车身朝向与运动编解码逐项比对）。
 
 端到端脚本（Node.js 22+，无 npm 依赖；共用 [`test/lib/kart-client.mjs`](test/lib/kart-client.mjs)，自带集群的脚本另用 [`test/lib/local-cluster.mjs`](test/lib/local-cluster.mjs)，奖励与等级规则在 [`test/lib/economy.mjs`](test/lib/economy.mjs)）：
 
@@ -257,13 +257,13 @@ KART_TEST_MYSQL_DSN='kart:kart@tcp(127.0.0.1:3306)/kartsim_test?charset=utf8mb4&
 | `node test/smoke.mjs` | 集群已运行 | 档案/记录读写与密钥；注册三个账号并领取新手礼包；票据规则（拒绝游客、同一账号只能有一个在线会话：同节点 `NICKNAME_TAKEN`、另一节点 `ACCOUNT_ONLINE`）；两个账号完成一局并检查 `race.rewards`（开跑 10 秒内完成，双方都只得未完赛奖励）；赛果、完整赛程、房间规则到达数据服务，奖励入账 |
 | `node test/auth-smoke.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis | 自行构建并启动 kart-data（`KART_REGISTRATION=invite`，管理员用户名用 `KART_BOOTSTRAP_INVITE` 注册）与两个 kart-game（临时 MySQL 库和账号、唯一 Redis 前缀），验证邀请、注册、登录、改名、token、档案密钥、内部 API 鉴权、拒绝游客与未领取礼包的票据、票据（含伪造的过期/错数据节点/游客票据）、跨节点昵称与账号占用（`presence-account` 键，另一节点 `ACCOUNT_ONLINE`）、数据服务停机期间的结算经发件箱补发并入账（立即完赛按未完赛奖励）、玩家统计、结算幂等以及数据服务重启后的持久化；结束时全部清理 |
 | `node test/economy-smoke.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis | 自行启动开放注册的 kart-data（测试管理员与 `KART_BOOTSTRAP_INVITE`、倍率 1、初始金币 10000）与两个 kart-game，验证：注册返回 token、密码 8–128、首位注册者不是管理员、按 IP 限流 429；管理员用户名不带邀请码（或大小写不同、邀请码错误）400 `INVALID_INVITE`，日志打印引导邀请码，用它注册后成为管理员、邀请码不能再用；`auth/config` 字段；游客票据与游客 `hello` 被拒；领取礼包前 403；礼包白名单（400）、幂等与库存；`/api/account` 钱包与 Lv.1；目录 ETag/304/gzip；`INSUFFICIENT_FUNDS` → 管理员发放 → 过期的 `expectedPrice`/`expectedCurrency` 409 `PRICE_CHANGED`（不扣款）→ 购买 → `ALREADY_OWNED`、`EXP_REQUIRED`、`OFFER_NOT_FOUND`、限时购买与续期、`requestId` 重放、换商品 409 `REQUEST_ID_CONFLICT`；账号档案 409 `ITEM_NOT_OWNED`；`hello`/`create`/`join`/`equipment` 的不拥有装备；一个账号一个会话（同节点 `NICKNAME_TAKEN`，另一节点及改名后 `ACCOUNT_ONLINE`）；两局比赛：立即完赛双方只得未完赛奖励，等满 10 秒服务器时间后完赛者得名次奖励、上报时间比服务器观察短 3 秒以上者按未完赛（`race.results` 名次不变），入账、升级奖励、战绩，重复投递不重复入账；结算携带的倍率（`expRate`/`lucciRate`）、超过 24 小时与超过单条上限的结算只记赛果不发奖励；MySQL 流水与余额一致；计时赛奖励、个人最佳、400 `INVALID_ELAPSED_MS`/`INVALID_TRACK`、节奏限制 429 `TOO_MANY_ATTEMPTS`、`requestId` 重放与 409 `REQUEST_ID_CONFLICT`；管理页面、账号搜索、发放与扣除、非管理员被拒、发放 `requestId` 重放 `duplicate:true`、换参数 409 `REQUEST_ID_CONFLICT`；`KART_REGISTRATION=closed` 重启后注册 403 而余额与库存保留；任何退出路径（含 Ctrl-C）都清理。比赛与计时赛要等真实时间，约 1 分钟 |
-| `node ../server-smoke.mjs` | 集群已运行 | 在上述规则基础上用真实前端校验器检查大厅、房间、个人赛与组队赛快照及 `race.rewards`（个人赛开跑 10 秒内完成，双方奖励相同，即未完赛奖励）（需要 `rewrite/node_modules`，没有时跳过校验器；已安装但校验器加载失败时直接失败，设置 `KART_SMOKE_ALLOW_NO_VALIDATORS=1` 才降级为警告） |
-| `node ../server-special-smoke.mjs` | 集群已运行、`rewrite/node_modules` | 注册五个账号，检查挡人、巨人、RP、LTE 四种模式的房间、赛程、广播、`race.rewards`（都在开跑 10 秒内结束，所有人得相同的未完赛奖励）与结算；再用四个账号跑个人道具赛与组队道具赛：道具频道与玩法、道具赛道与随机码规则（有 `mirror/p3553` 时还核对浏览器的道具赛道目录）、用浏览器编码器发送带名次进度的运动帧、按名次组抽取（刷箱、满槽、三槽）、开赛时的道具槽推送（带换位/变更卡数）、换位与变更（集群给了使用券时成功、没有卡时 `ITEM_CHANGER_UNAVAILABLE`）、`transform@zz` 变换后的道具（组队赛固定在等级 2 的反向赛道）、各类道具的目标、放置、命中/格挡、香蕉移除、赛道危险物、透视镜（`Use` 之后生效）、道具锁、完赛（`perfectStart`，组队按最先冲线者的队伍获胜）、结算称号、结算与道具赛成就；所有道具请求都过浏览器的请求校验、所有事件都过浏览器的事件校验（会变成 `INVALID_ITEM_EVENT` 的道具事件算失败）。道具来自真实抽取，脚本会刷箱直到拿到需要的道具（`KART_SMOKE_ITEM_BUDGET_MS`，默认每种 90 秒）；`KART_SMOKE_ITEM_ONLY=1` 只跑道具赛；约 1 分钟 |
-| `node test/item-bot-check.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis，`rewrite/node_modules`，`mirror/p3553` | 自行启动打开 `KART_ITEM_TEST_GRANTS`（道具换位卡按库存：机器人没有卡时先用掉槽 0 的道具）的临时集群，由脚本扮演玩家建道具房间，启动测试机器人 `test/item-bot.mjs`：它登录、找到房间、准备、载入，沿赛道路线行驶（运动帧用浏览器编解码器核对）、按时使用导弹和香蕉、上报玩家的导弹与大魔王命中（被导弹炸飞时停下）、跑完 3 圈完赛、`--once` 后离开且不打印密码；约 1 分钟 |
+| `node ../server-smoke.mjs` | 集群已运行 | 在上述规则基础上用真实前端校验器检查大厅、房间、个人赛与组队赛快照及 `race.rewards`（个人赛开跑 10 秒内完成，双方奖励相同，即未完赛奖励）（需要 `client/node_modules`，没有时跳过校验器；已安装但校验器加载失败时直接失败，设置 `KART_SMOKE_ALLOW_NO_VALIDATORS=1` 才降级为警告） |
+| `node ../server-special-smoke.mjs` | 集群已运行、`client/node_modules` | 注册五个账号，检查挡人、巨人、RP、LTE 四种模式的房间、赛程、广播、`race.rewards`（都在开跑 10 秒内结束，所有人得相同的未完赛奖励）与结算；再用四个账号跑个人道具赛与组队道具赛：道具频道与玩法、道具赛道与随机码规则（有 `mirror/p3553` 时还核对浏览器的道具赛道目录）、用浏览器编码器发送带名次进度的运动帧、按名次组抽取（刷箱、满槽、三槽）、开赛时的道具槽推送（带换位/变更卡数）、换位与变更（集群给了使用券时成功、没有卡时 `ITEM_CHANGER_UNAVAILABLE`）、`transform@zz` 变换后的道具（组队赛固定在等级 2 的反向赛道）、各类道具的目标、放置、命中/格挡、香蕉移除、赛道危险物、透视镜（`Use` 之后生效）、道具锁、完赛（`perfectStart`，组队按最先冲线者的队伍获胜）、结算称号、结算与道具赛成就；所有道具请求都过浏览器的请求校验、所有事件都过浏览器的事件校验（会变成 `INVALID_ITEM_EVENT` 的道具事件算失败）。道具来自真实抽取，脚本会刷箱直到拿到需要的道具（`KART_SMOKE_ITEM_BUDGET_MS`，默认每种 90 秒）；`KART_SMOKE_ITEM_ONLY=1` 只跑道具赛；约 1 分钟 |
+| `node test/item-bot-check.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis，`client/node_modules`，`mirror/p3553` | 自行启动打开 `KART_ITEM_TEST_GRANTS`（道具换位卡按库存：机器人没有卡时先用掉槽 0 的道具）的临时集群，由脚本扮演玩家建道具房间，启动测试机器人 `test/item-bot.mjs`：它登录、找到房间、准备、载入，沿赛道路线行驶（运动帧用浏览器编解码器核对）、按时使用导弹和香蕉、上报玩家的导弹与大魔王命中（被导弹炸飞时停下）、跑完 3 圈完赛、`--once` 后离开且不打印密码；约 1 分钟 |
 | `node test/run-cluster-smokes.mjs [smoke] [server-smoke] [special]` | `KART_SMOKE_MYSQL_ADMIN`，Redis | 自行启动临时集群（开放注册、两个游戏节点），依次对它运行上面三个“集群已运行”的脚本，结束后清理；不想把测试数据写进开发集群时用它 |
-| `node test/frontend-economy-check.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis，`rewrite/node_modules` | 自行启动临时集群（倍率经验 1.5、金币 2，两个游戏节点），用 tsx 直接运行浏览器的真实模块（`rewrite/src/account/*`、`shop-api.ts`/`shop-model.ts`、`game-servers.ts`、`client-websocket.ts` 与严格的事件/房间校验器、`timeattack-settle.ts`）：登录门注册（开放注册折叠的“有邀请码？”；管理员用户名不带邀请码 `INVALID_INVITE`，用引导邀请码注册）→ 首次登录迁移偏好与 404 `PROFILE_NOT_FOUND` → 新手礼包（`source:"starter"`、重复领取）→ 车库拥有过滤 → 档案保存与 409 `ITEM_NOT_OWNED` 修复 → 商店目录 ETag/304 → `ShopPurchaser` 余额不足 → 管理员发放 → 旧价格 `PRICE_CHANGED`（中文提示、不扣款）→ 购买与租用 → 票据与进入游戏服（练习车、买来的车、免费槽位）→ 同一账号在另一节点 `ACCOUNT_ONLINE` → 两个账号比赛（等满 10 秒服务器时间再完赛）→ 解析 `race.rewards`（显示值 = 倍率后的入账值）→ 刷新账号与升级提示 → 计时赛结算（间隔 10 秒以上；过于频繁的 `TOO_MANY_ATTEMPTS` 与无效赛道 `INVALID_TRACK` 静默无奖励）与升级 → 过期租用在档案读取与 `hello`（`ITEM_NOT_OWNED` 后修复重进）时回退；约 1 分钟 |
+| `node test/frontend-economy-check.mjs` | `KART_SMOKE_MYSQL_ADMIN`，Redis，`client/node_modules` | 自行启动临时集群（倍率经验 1.5、金币 2，两个游戏节点），用 tsx 直接运行浏览器的真实模块（`client/src/account/*`、`shop-api.ts`/`shop-model.ts`、`game-servers.ts`、`client-websocket.ts` 与严格的事件/房间校验器、`timeattack-settle.ts`）：登录门注册（开放注册折叠的“有邀请码？”；管理员用户名不带邀请码 `INVALID_INVITE`，用引导邀请码注册）→ 首次登录迁移偏好与 404 `PROFILE_NOT_FOUND` → 新手礼包（`source:"starter"`、重复领取）→ 车库拥有过滤 → 档案保存与 409 `ITEM_NOT_OWNED` 修复 → 商店目录 ETag/304 → `ShopPurchaser` 余额不足 → 管理员发放 → 旧价格 `PRICE_CHANGED`（中文提示、不扣款）→ 购买与租用 → 票据与进入游戏服（练习车、买来的车、免费槽位）→ 同一账号在另一节点 `ACCOUNT_ONLINE` → 两个账号比赛（等满 10 秒服务器时间再完赛）→ 解析 `race.rewards`（显示值 = 倍率后的入账值）→ 刷新账号与升级提示 → 计时赛结算（间隔 10 秒以上；过于频繁的 `TOO_MANY_ATTEMPTS` 与无效赛道 `INVALID_TRACK` 静默无奖励）与升级 → 过期租用在档案读取与 `hello`（`ITEM_NOT_OWNED` 后修复重进）时回退；约 1 分钟 |
 
-自带集群的脚本都以 `KART_ANTICHEAT=log` 启动游戏节点（它们的比赛不开车就完赛，会被反作弊踢出；`item-bot-check` 里只有沿路线行驶的测试机器人，不应产生任何反作弊记录）。worktree 没有 `mirror/p3553` 时，`server-special-smoke.mjs` 与 `test/item-bot.mjs` 可用 `KART_MIRROR_ROOT=<带 mirror 的检出>` 读另一个检出的资源（`rewrite/tools/export-*.mjs` 的同类参数是 `--mirror`）。
+自带集群的脚本都以 `KART_ANTICHEAT=log` 启动游戏节点（它们的比赛不开车就完赛，会被反作弊踢出；`item-bot-check` 里只有沿路线行驶的测试机器人，不应产生任何反作弊记录）。worktree 没有 `mirror/p3553` 时，`server-special-smoke.mjs` 与 `test/item-bot.mjs` 可用 `KART_MIRROR_ROOT=<带 mirror 的检出>` 读另一个检出的资源（`client/tools/export-*.mjs` 的同类参数是 `--mirror`）。
 
 ```sh
 # 自带集群（会构建 server-go/bin；已构建可加 KART_SMOKE_SKIP_BUILD=1 或 KART_BIN_DIR=…）
@@ -273,7 +273,7 @@ KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0
 node test/smoke.mjs && node ../server-smoke.mjs && node ../server-special-smoke.mjs
 # 或者对一个临时集群运行这三个脚本
 KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6379 node test/run-cluster-smokes.mjs
-# 浏览器真实模块对临时集群的账号经济全流程（需要 rewrite/ 下 npm ci）
+# 浏览器真实模块对临时集群的账号经济全流程（需要 client/ 下 npm ci）
 KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6379 node test/frontend-economy-check.mjs
 # 只跑道具赛冒烟（临时集群）与道具赛测试机器人的端到端检查
 KART_SMOKE_ITEM_ONLY=1 KART_SMOKE_MYSQL_ADMIN='-h127.0.0.1 -P3306 -uroot' KART_SMOKE_REDIS_ADDR=127.0.0.1:6379 node test/run-cluster-smokes.mjs special
@@ -438,7 +438,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 ### 小屋：成就、徽章与拜访
 
-成就（原版 Career，`dialog2_newCareer`）与徽章由数据服务判定和保存；判定数据 `internal/data/career/careers.json` 由 `rewrite/tools/export-career-data.mjs` 从原版 `etc_/career/newCareer@cn.xml`、`etc_/emblem/emblem@cn.xml` 与计时赛赛道主题导出（`go test ./internal/data/career` 校验版本号，**不要手改**）。全部 1198 条成就都会列出；能统计的类型（经验、注册天数、节日登录、好友数、金币使用与持有、道具图鉴收集、徽章、小屋代表车/代表徽章、计时赛完赛、多人赛按主题与模式的胜利/完赛/未完赛（竞速、无限加速与道具赛：道具赛按 gameType 2 个人 / 4 组队计，6 为道具赛全部，0 包含所有比赛；道具俱乐部赛 8 不会出现）、连续未完赛、按主题累计行驶距离、带回放摄像机的累计行驶距离、复合成就）实时计算进度，其余（会员、情侣、俱乐部、驾照、部件分解等）返回 `untracked:true`，永远停在未完成。行驶距离由游戏节点从运动帧的赛道进度（米）取每名车手本局的最远值（不超过“开赛后秒数×140 m/s + 100 m”，冲线后不再增加），随结算的 `distanceMeters` 上报，数据服务按赛道主题累加（单局最多 200 km；成就的 `clearValue` 单位是 0.1 km）；阵容装备里有回放摄像机（类别 12）时另记一份摄像机距离。前置成就（`preClearCareerId`）未完成时 `locked:true`。完成成就（点击完成）只发成就积分与原版 `rewardEmblemId` 徽章，原版道具奖励不发放。比赛与计时赛结算时在 `account_counters` 累加对应计数；获取 `GET /api/account` 时记录北京日期（节日登录成就）。
+成就（原版 Career，`dialog2_newCareer`）与徽章由数据服务判定和保存；判定数据 `internal/data/career/careers.json` 由 `client/tools/export-career-data.mjs` 从原版 `etc_/career/newCareer@cn.xml`、`etc_/emblem/emblem@cn.xml` 与计时赛赛道主题导出（`go test ./internal/data/career` 校验版本号，**不要手改**）。全部 1198 条成就都会列出；能统计的类型（经验、注册天数、节日登录、好友数、金币使用与持有、道具图鉴收集、徽章、小屋代表车/代表徽章、计时赛完赛、多人赛按主题与模式的胜利/完赛/未完赛（竞速、无限加速与道具赛：道具赛按 gameType 2 个人 / 4 组队计，6 为道具赛全部，0 包含所有比赛；道具俱乐部赛 8 不会出现）、连续未完赛、按主题累计行驶距离、带回放摄像机的累计行驶距离、复合成就）实时计算进度，其余（会员、情侣、俱乐部、驾照、部件分解等）返回 `untracked:true`，永远停在未完成。行驶距离由游戏节点从运动帧的赛道进度（米）取每名车手本局的最远值（不超过“开赛后秒数×140 m/s + 100 m”，冲线后不再增加），随结算的 `distanceMeters` 上报，数据服务按赛道主题累加（单局最多 200 km；成就的 `clearValue` 单位是 0.1 km）；阵容装备里有回放摄像机（类别 12）时另记一份摄像机距离。前置成就（`preClearCareerId`）未完成时 `locked:true`。完成成就（点击完成）只发成就积分与原版 `rewardEmblemId` 徽章，原版道具奖励不发放。比赛与计时赛结算时在 `account_counters` 累加对应计数；获取 `GET /api/account` 时记录北京日期（节日登录成就）。
 
 | 路径 | 用途与错误 |
 | --- | --- |
@@ -456,11 +456,11 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 ### 小屋：赛车探险队与开箱
 
-赛车探险队（原版 `racingExpedition`，小屋菜单“探险队”）由数据服务运行；任务表 `internal/data/expedition/expedition.json` 由 `rewrite/tools/export-expedition-data.mjs` 从原版 `zeta_/cn/content/racingExpedition/racingExpeditionMission.xml`（规则、加成表、94 个任务）和 `stock.kml`（奖励道具）导出，**不要手改**。规则：每周四 06:00（北京时间）换一批 10 个任务，优先从账号凑得出的属性里抽（账号同时有该属性的角色和卡丁车），同时发 10 个探险币（34:879，原版在商城卖，本项目改为每周赠送）；进行中和待领奖的任务跨周保留。一个任务派 1–3 组“角色＋卡丁车”和可选的一位好友出发，需至少有一个属性匹配的角色和一辆属性匹配的卡丁车（原版 `expeditionStartCondition`）；同一角色/卡丁车不能同时出两个任务，同一好友每天（06:00 刷新）只能助力一次。任务耗时为原版小时数（难度 1–5：8/16/24/32/40 小时），出发后按服务器时间计时。
+赛车探险队（原版 `racingExpedition`，小屋菜单“探险队”）由数据服务运行；任务表 `internal/data/expedition/expedition.json` 由 `client/tools/export-expedition-data.mjs` 从原版 `zeta_/cn/content/racingExpedition/racingExpeditionMission.xml`（规则、加成表、94 个任务）和 `stock.kml`（奖励道具）导出，**不要手改**。规则：每周四 06:00（北京时间）换一批 10 个任务，优先从账号凑得出的属性里抽（账号同时有该属性的角色和卡丁车），同时发 10 个探险币（34:879，原版在商城卖，本项目改为每周赠送）；进行中和待领奖的任务跨周保留。一个任务派 1–3 组“角色＋卡丁车”和可选的一位好友出发，需至少有一个属性匹配的角色和一辆属性匹配的卡丁车（原版 `expeditionStartCondition`）；同一角色/卡丁车不能同时出两个任务，同一好友每天（06:00 刷新）只能助力一次。任务耗时为原版小时数（难度 1–5：8/16/24/32/40 小时），出发后按服务器时间计时。
 
 角色与卡丁车的属性（都市、世界、大地、森林、海洋、传说、神秘、特殊）原版由服务器决定、客户端数据里没有，本项目按道具类别和 ID 的 FNV 哈希固定分配（`expedition.Specific`）。加成也是本项目对原版常量表的解读：属性匹配的角色奖励 +5%（`bonusConstChar`×`bonusConstCharSpecific1`），卡丁车按车库升级等级查 `kartBodyTuning` 缩短时间（0 级 4.5% … 5 级 27%，随难度递减，合计最多 50%），带四个强化部件的经典升级按部件等级合计查 `reinforcePart` 给基础奖励加点（约为基础奖励的 22%），好友属性匹配奖励 +5%、不匹配 +2.5%。奖励：难度的 `basicReward`（120–500）加部件点数，按任务的 `bonusType` 发经验（×1）、金币（×8）或各一半，再乘奖励加成；另发任务的原版奖励箱（探险队补给箱 ×1–3、红宝石盒、蛋白石盒）。经验与金币写流水（原因 `expedition`，ref 为“周起始:任务号”），不受每日上限限制。
 
-开箱：类别 24 的道具是箱子，开箱表与寻宝/精品道具场共用 `internal/data/lottery/lottery.json`（见下文“抽奖”，由 `rewrite/tools/export-lottery-data.mjs` 导出，**不要手改**；210 种箱子，`lottery.xml` 里另有 4 个不是 24 类道具的不导出）。开一个箱子消耗 1 个，按当时生效的 `rewardList` 引用的奖励集按 `prob` 权重抽一个 stock 发放（`needOther` 需要钥匙、`rpLimit` 需要经验、`retryCount` 抽到已永久拥有的道具时重抽，均按原版）；`box_openings` 以请求 ID 保存结果，重试返回同一结果。可叠加道具（箱子 24、材料 34、56、62、部件碎片 67，以及商城里的计数道具如气球）发放时数量累加；用掉后数量降到 0 但保留记录（图鉴与成就仍记得曾经拥有）。
+开箱：类别 24 的道具是箱子，开箱表与寻宝/精品道具场共用 `internal/data/lottery/lottery.json`（见下文“抽奖”，由 `client/tools/export-lottery-data.mjs` 导出，**不要手改**；210 种箱子，`lottery.xml` 里另有 4 个不是 24 类道具的不导出）。开一个箱子消耗 1 个，按当时生效的 `rewardList` 引用的奖励集按 `prob` 权重抽一个 stock 发放（`needOther` 需要钥匙、`rpLimit` 需要经验、`retryCount` 抽到已永久拥有的道具时重抽，均按原版）；`box_openings` 以请求 ID 保存结果，重试返回同一结果。可叠加道具（箱子 24、材料 34、56、62、部件碎片 67，以及商城里的计数道具如气球）发放时数量累加；用掉后数量降到 0 但保留记录（图鉴与成就仍记得曾经拥有）。
 
 | 路径 | 用途与错误 |
 | --- | --- |
@@ -477,7 +477,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 ### 抽奖：寻宝活动与精品道具场
 
-寻宝活动（原版 RouletteStage）与精品道具场（原版 GachaUseStage，通用扭蛋）由数据服务抽奖、扣材料、发道具，规则、概率与接口见 [`LOTTERY.md`](LOTTERY.md)。抽奖表 `internal/data/lottery/lottery.json` 由 `rewrite/tools/export-lottery-data.mjs` 从原版 `lottery.xml`、`treasureHunt.xml`、`lotteryMileage.xml`、`stock.kml`、`item.kml` 导出（**不要手改**）。
+寻宝活动（原版 RouletteStage）与精品道具场（原版 GachaUseStage，通用扭蛋）由数据服务抽奖、扣材料、发道具，规则、概率与接口见 [`LOTTERY.md`](LOTTERY.md)。抽奖表 `internal/data/lottery/lottery.json` 由 `client/tools/export-lottery-data.mjs` 从原版 `lottery.xml`、`treasureHunt.xml`、`lotteryMileage.xml`、`stock.kml`、`item.kml` 导出（**不要手改**）。
 
 | 路径 | 说明 |
 | --- | --- |
@@ -490,7 +490,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 ### 驾照考试（车手学校）
 
-单人游戏的驾照考试（新手、初级、L3、L2、L1、PRO）由数据服务记录通关、发首通奖励、颁发驾照，规则与接口见 [`RIDER_SCHOOL.md`](RIDER_SCHOOL.md)。驾照表 `internal/data/license/license.json` 由 `rewrite/tools/export-license-data.mjs` 从原版 `etc_/riderSchool`（任务表、驾照与奖励、对决对手录像）和 `stock.kml` 导出（**不要手改**）。
+单人游戏的驾照考试（新手、初级、L3、L2、L1、PRO）由数据服务记录通关、发首通奖励、颁发驾照，规则与接口见 [`RIDER_SCHOOL.md`](RIDER_SCHOOL.md)。驾照表 `internal/data/license/license.json` 由 `client/tools/export-license-data.mjs` 从原版 `etc_/riderSchool`（任务表、驾照与奖励、对决对手录像）和 `stock.kml` 导出（**不要手改**）。
 
 | 路径 | 说明 |
 | --- | --- |
@@ -501,7 +501,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 ### 俱乐部
 
-俱乐部的创建、目录与申请、职位管理、解散、俱乐部基地（总部、赛事中心、车手中心、银行的升级，捐助，每日福利）与会员活跃度由数据服务处理，原版规则与自定数值见 [`CLUB.md`](CLUB.md)。徽章与标志框表 `internal/data/club/club.json` 由 `rewrite/tools/export-club-data.mjs` 从 `etc_/clubMark` 导出（**不要手改**）。
+俱乐部的创建、目录与申请、职位管理、解散、俱乐部基地（总部、赛事中心、车手中心、银行的升级，捐助，每日福利）与会员活跃度由数据服务处理，原版规则与自定数值见 [`CLUB.md`](CLUB.md)。徽章与标志框表 `internal/data/club/club.json` 由 `client/tools/export-club-data.mjs` 从 `etc_/clubMark` 导出（**不要手改**）。
 
 | 路径 | 说明 |
 | --- | --- |
@@ -670,7 +670,7 @@ server {
     ssl_certificate     /etc/ssl/kart/fullchain.pem;
     ssl_certificate_key /etc/ssl/kart/privkey.pem;
 
-    root /srv/kartsim/dist;            # rewrite/ 的 npm run build 产物与游戏资源
+    root /srv/kartsim/dist;            # client/ 的 npm run build 产物与游戏资源
     client_max_body_size 8m;
 
     # 压缩：npm run build 已为 JS、CSS、wasm 等生成 .gz，gzip_static 直接发送（主包约 4 MB → 0.45 MB）；
@@ -817,12 +817,12 @@ server {
 | `internal/data/cache` | Redis 旁路缓存、节点注册与在线昵称 |
 | `internal/data/api` | 公网 API（含账号经济、好友私聊与嵌入的管理后台 `adminui/`）与内部 API（含装备核对） |
 | `internal/data/messenger` | 好友私聊的 WebSocket 连接、在线状态 hub、消息与同步推送、刷屏限制 |
-| `internal/data/economy` | 商店目录与等级表（`catalog.json`、`levels.json`，由 `rewrite/tools/export-economy-data.mjs` 生成并 `go:embed`） |
+| `internal/data/economy` | 商店目录与等级表（`catalog.json`、`levels.json`，由 `client/tools/export-economy-data.mjs` 生成并 `go:embed`） |
 | `internal/shared/rewards` | 联机比赛与计时赛奖励公式、每日上限（游戏节点与数据服务共用） |
 | `internal/data/sqlitemigrate` | 旧 SQLite 数据迁移 |
 | `internal/game/config`、`internal/game/app` | 游戏节点配置与组装 |
 | `internal/game/lobby` | 房间、赛程与特殊模式（移植自 `LobbyService`/`Room`/`GameModes`）；道具赛的房间、赛道与 `item` 请求在 `item_mode.go` |
-| `internal/game/itemmode` | 道具赛规则（纯函数，可注入随机源）：名次组、按权重抽取与获得上限、道具槽、目标选择与 `etaMs`、道具锁、透视、刷箱检查、`useId` 与命中记录；第 3 阶段：冻结装备的特性与共享确定性掷骰（`roll.go`）、按车辆的变换与获得表、迅引擎开局道具、49 种特殊道具规则、双发导弹、黄金盾牌、命中后的道具锁、只解除飞碟减速的电磁波、换位/变更卡、赛中金币与结算称号；`itemmode.json` 由 `rewrite/tools/export-item-mode-data.mjs` 生成 |
+| `internal/game/itemmode` | 道具赛规则（纯函数，可注入随机源）：名次组、按权重抽取与获得上限、道具槽、目标选择与 `etaMs`、道具锁、透视、刷箱检查、`useId` 与命中记录；第 3 阶段：冻结装备的特性与共享确定性掷骰（`roll.go`）、按车辆的变换与获得表、迅引擎开局道具、49 种特殊道具规则、双发导弹、黄金盾牌、命中后的道具锁、只解除飞碟减速的电磁波、换位/变更卡、赛中金币与结算称号；`itemmode.json` 由 `client/tools/export-item-mode-data.mjs` 生成 |
 | `internal/game/ws` | WebSocket 读写协程、请求 ID 回复、运动帧中继 |
 | `internal/game/admission` | `hello` 票据校验与 nonce 记忆 |
 | `internal/game/cluster` | 心跳、昵称占用与释放 |

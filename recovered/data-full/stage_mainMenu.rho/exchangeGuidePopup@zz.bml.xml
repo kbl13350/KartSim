@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Window windowRect="0 0 700 480" align="center" alphaBlend="true">
-  <ImageBoard name="eventMain" leftTopTex="-32 6" alphaBlend="true"/>
-  <ImageButton name="okButton" leftTopTex="113 417" autoLoadImage="버튼_체험시작@zz" alphaBlend="true"/>
-</Window>

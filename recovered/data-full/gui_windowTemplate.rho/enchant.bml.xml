@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<SlidingWindow name="enchant" windowRect="0 445 240 485" texture="ingame_tuningTextBg" uvRect="0 0 240 40" alphaBlend="true" enable="false">
-  <Label name="effect" windowSize="240 40" adjust="0 -6" text="sample" textRender="outline16" textColor="white" textColor2="255 0 101 225" textAlign="center" align="center"/>
-</SlidingWindow>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<LampFlare name="boss1">
-  <lampFlare0 texture="Front"/>
-  <lampFlare1 texture="Front"/>
-  <lampFlare2 texture="Back"/>
-  <lampFlare3 texture="Back"/>
-</LampFlare>

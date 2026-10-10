@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<BingoGachaSetSelectButton name="bingoGachaSetSelectBtn" windowRect="0 0 224 244" autoLoadImage="bingo_slot_0" textColor="255 98 52 30" overTextColor="255 143 83 54" clickedTextColor="255 61 30 15" disabledTextColor="255 255 255 255" alphaBlend="true" textAlign="hcenter" stringPos="0 10">
-  <Label name="lastRewardStockName" windowSize="224 20" align="hcenter" adjust="0 14" text="rewardName" textRender="bold16" textColor="255 98 52 30" textAlign="center"/>
-  <ItemWindow name="itemPanel" windowSize="224 244" adjust="0 0" align="hcenter" enable="false" alphaBlend="true" itemCategory="jewel" itemId="1"/>
-  <Label name="playableCount" windowSize="224 18" align="hcenter" adjust="0 185" text="#sb(playableCount)" textRender="bold14" textColor="255 166 101 70" textAlign="center" visible="false"/>
-  <Label name="needMileage" windowSize="224 20" align="hcenter" adjust="0 215" text="#sb(needMileage)" textRender="bold16" textColor="255 42 55 80" textAlign="center"/>
-</BingoGachaSetSelectButton>

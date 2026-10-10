@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<StringBag>
-  <k n="grandprixMatching">
-    <m c="kr" v="매칭중"/>
-    <m c="cn" v="正在配对中"/>
-    <m c="tw" v="正在配對中"/>
-  </k>
-</StringBag>

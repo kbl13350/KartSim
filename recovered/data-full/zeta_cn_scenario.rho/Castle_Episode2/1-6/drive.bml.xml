@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <Escape isFixedKart="true" fixedKartId="24" kartId="9" characterId="11" uniformId="67" colorId="1" dyeId="1" characterName="皮德">
-    <LevelContent level="0" track="castle_R01" laps="2" ksv="step_6" distance="20" startOffset="-1500"/>
-  </Escape>
-</Root>

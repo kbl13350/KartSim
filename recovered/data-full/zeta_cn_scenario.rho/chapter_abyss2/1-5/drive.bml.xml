@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="1175" isFixedChar="true" fixedCharId="289" kartId="1200" colorId="1" dyeId="1" characterId="19" uniformId="0" characterName="茜茜">
-    <LevelContent level="0" track="fairy_I04" laps="3" ksv="1-5" distance="20" startOffset="2000"/>
-  </Tracing>
-</Root>

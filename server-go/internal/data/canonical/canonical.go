@@ -1,6 +1,6 @@
 // Package canonical computes the content version of the generated data
 // documents (careers.json, expedition.json, lottery.json …): the SHA-256 of
-// rewrite/tools/economy-export/canonical.mjs's canonical JSON of the
+// client/tools/economy-export/canonical.mjs's canonical JSON of the
 // document without its "version" field. Tests compare it with the stored
 // version so a hand edit is caught.
 package canonical
@@ -16,7 +16,7 @@ import (
 	"unicode/utf8"
 )
 
-// canonicalJSON reproduces rewrite/tools/economy-export/canonical.mjs:
+// canonicalJSON reproduces client/tools/economy-export/canonical.mjs:
 // JSON.stringify of a value whose object keys were inserted in sorted
 // order. JavaScript enumerates integer-like keys first (ascending
 // numerically), then string keys in insertion order.

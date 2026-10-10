@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow kartId="932" characterId="62" uniformId="0" colorId="1" dyeId="1" characterName="格雷" isFixedKart="true" fixedKartId="931" isFixedChar="true" fixedCharId="188">
-    <LevelContent level="0" ksv="world_R01_0" track="world_R01" laps="1"/>
-  </Shadow>
-</Root>

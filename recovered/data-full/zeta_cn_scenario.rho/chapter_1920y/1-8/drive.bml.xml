@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="794" isFixedChar="true" fixedCharId="102" kartId="794" colorId="20" dyeId="20" characterId="102" uniformId="0" characterName="?">
-    <LevelContent level="0" track="moonhill_I04" laps="3" ksv="1920_1-8" distance="20" startOffset="2000"/>
-  </Tracing>
-</Root>

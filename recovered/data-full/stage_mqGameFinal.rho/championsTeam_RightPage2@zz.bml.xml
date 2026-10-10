@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="Desktop" leftTopWH="150 10 200 308">
-  <Panel name="finalBack" leftTopWH="0 17 373 308" align="hcenter" alphaBlend="true">
-    <Panel name="emotion" windowRect="-33 -76 479 225" alphaBlend="true"/>
-    <Label name="script" windowRect="246 22 457 122" alphaBlend="true" textAlign="center" multiLine="true" textColor="black" textColor2="yellow" textRender="bold"/>
-  </Panel>
-  <Panel name="resultVictory" leftTopWH="0 0 309 68" texture="victory@zz" alphaBlend="true" visible="false" align="hcenter"/>
-  <Panel name="resultPerfect" leftTopWH="0 0 289 77" texture="perpect@zz" alphaBlend="true" visible="false" align="hcenter"/>
-</Container>

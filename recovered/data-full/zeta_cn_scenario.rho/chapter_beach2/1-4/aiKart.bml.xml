@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <AiKart id="1" track="moonhill_I04" isFixedKart="true" fixedKartId="683" laps="3" gameType="item" isFixedChar="true" fixedCharId="75">
-    <LevelContent level="0" item="Rocket;WaterBomb;WaterFly;Shield" aiItemLevel="1">
-      <AiKart characterId="76" kartId="615" colorId="37" dyeId="37" balloonId="0" speed="49" accel="31" startTick="0" characterName="罗杰"/>
-    </LevelContent>
-  </AiKart>
-</Root>

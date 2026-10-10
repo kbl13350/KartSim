@@ -46,16 +46,16 @@ const channelRules = {
 const randomTrackCodes = new Set([0, 3, 4, 5, 6, 7, 8, 30, 40]);
 
 // Use the same handwritten validators that guard the real browser UI when the
-// rewrite dependencies are installed. The HTTP/WS probe remains runnable alone
-// without rewrite/node_modules, but once they are installed a validator module
-// that fails to load (a syntax or import error in rewrite/src/multiplayer)
+// client dependencies are installed. The HTTP/WS probe remains runnable alone
+// without client/node_modules, but once they are installed a validator module
+// that fails to load (a syntax or import error in client/src/multiplayer)
 // fails the run instead of silently turning it into an unvalidated pass.
-const tsxApi = new URL("./rewrite/node_modules/tsx/dist/esm/api/index.mjs", import.meta.url);
+const tsxApi = new URL("./client/node_modules/tsx/dist/esm/api/index.mjs", import.meta.url);
 
 async function loadServerEventValidator() {
   const { tsImport } = await import(tsxApi.href);
-  const { isValidRoomSnapshot } = await tsImport("./rewrite/src/multiplayer/room-validation.ts", import.meta.url);
-  const { parseServerEvent } = await tsImport("./rewrite/src/multiplayer/server-events.ts", import.meta.url);
+  const { isValidRoomSnapshot } = await tsImport("./client/src/multiplayer/room-validation.ts", import.meta.url);
+  const { parseServerEvent } = await tsImport("./client/src/multiplayer/server-events.ts", import.meta.url);
   const dependencies = {
     validRoom: isValidRoomSnapshot,
     validChannel: (channel, mode, speed) =>
@@ -76,8 +76,8 @@ async function loadServerEventValidator() {
 
 let validateServerEvent;
 if (!existsSync(tsxApi)) {
-  console.warn("Frontend strict validators unavailable: rewrite/node_modules is missing " +
-    "(run npm ci in rewrite/ to check events with them)");
+  console.warn("Frontend strict validators unavailable: client/node_modules is missing " +
+    "(run npm ci in client/ to check events with them)");
 } else {
   try {
     validateServerEvent = await loadServerEventValidator();
@@ -85,7 +85,7 @@ if (!existsSync(tsxApi)) {
     const reason = error instanceof Error ? error.message : String(error);
     if (process.env.KART_SMOKE_ALLOW_NO_VALIDATORS !== "1") {
       console.error(`FAIL: the frontend validators could not be loaded: ${reason}\n` +
-        "Fix rewrite/src/multiplayer, or set KART_SMOKE_ALLOW_NO_VALIDATORS=1 to run without them.");
+        "Fix client/src/multiplayer, or set KART_SMOKE_ALLOW_NO_VALIDATORS=1 to run without them.");
       process.exit(1);
     }
     console.warn(`Frontend strict validators unavailable: ${reason}`);

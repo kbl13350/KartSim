@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="1"/>
-  <Shadow isFixedKart="true" fixedKartId="10" kartId="456" characterId="15" uniformId="0" colorId="8" dyeId="8" isFixedChar="true" fixedCharId="2" characterName="天才赛车手" miniNpc="true">
-    <LevelContent level="0" ksv="wkc_R02" track="wkc_R02" laps="1" miniNpc="true"/>
-  </Shadow>
-</Root>

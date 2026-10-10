@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="tutorialBoard" windowSize="223 106" align="left;bottom" adjust="9 8" alphaBlend="true">
-  <Panel name="img1" clientRect="0 0 223 106" texture="spItemTuto_1@zz" alphaBlend="true" visible="false"/>
-  <Panel name="img2" clientRect="0 0 223 106" texture="spItemTuto_2@zz" alphaBlend="true" visible="false"/>
-  <Panel name="img3" clientRect="0 0 223 106" texture="spItemTuto_3@zz" alphaBlend="true" visible="false"/>
-</Container>

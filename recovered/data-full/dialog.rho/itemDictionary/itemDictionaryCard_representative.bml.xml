@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<GarageCard name="garageCardTemplate" windowRect="0 0 126 126" alphaBlend="true" enable="false">
-  <Window name="shopItemContainer" windowRect="0 0 126 126" align="center" enable="false"/>
-</GarageCard>

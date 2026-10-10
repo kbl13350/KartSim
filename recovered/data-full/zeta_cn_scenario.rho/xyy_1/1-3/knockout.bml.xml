@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <KnockOut track="xyy_R01" laps="2" isFixedKart="true" fixedKartId="296" type="rank" isFixedChar="true" fixedCharId="2">
-    <LevelContent level="0" ksv="xyy_R01_1" startOffset="700">
-      <ShadowKart characterId="2" uniformId="87" kartId="111" colorId="9" dyeId="9" characterName="灰太狼"/>
-    </LevelContent>
-  </KnockOut>
-</Root>

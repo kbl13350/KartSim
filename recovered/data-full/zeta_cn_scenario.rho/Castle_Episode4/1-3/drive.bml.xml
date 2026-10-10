@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <Escape isFixedKart="true" fixedKartId="19" kartId="24" characterId="2" uniformId="64" colorId="1" dyeId="1" characterName="克鲁伊">
-    <LevelContent level="0" track="forest_I02" laps="2" ksv="forest_I02_2" distance="20" startOffset="-2000"/>
-  </Escape>
-</Root>

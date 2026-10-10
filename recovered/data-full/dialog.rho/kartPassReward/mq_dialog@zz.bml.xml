@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Panel windowRect="fullscreen" color="100 0 0 0" alphaBlend="true">
-  <Window name="kartPassRewardDialog" windowRect="fullscreen" enable="true" visible="true"/>
-</Panel>

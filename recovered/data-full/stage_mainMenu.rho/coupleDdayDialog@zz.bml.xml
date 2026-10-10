@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow frame="CaptionDialog" enable="true" leftTopWH="0 0 400 251" caption="#sb(congratulation)" captionPos="0 1" captionColor="black" align="center">
-  <Label name="body" leftTopWH="0 10 270 30" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" text="#sb(coupleDdayBody)" textAlign="center" align="hcenter"/>
-  <Label name="coupleItemDesc" leftTopWH="0 136 270 30" fillTrans="true" multiLine="true" autoWrap="true" lineGap="1" text="#sb(coupleDdayDesc)" textAlign="center" align="hcenter"/>
-  <Panel name="bg" leftTopTex="55 40" texture="기념일선물_백판공통" alphaBlend="true" align="hcenter">
-    <ItemWindow name="item1" leftTopWH="30 -3 90 90" itemCategory="card" itemId="30016" visible="true"/>
-  </Panel>
-  <TextButton name="okButton" text="#sb(ok)" leftTopWH="110 168 50 20" alphaBlend="true" textRender="bold" align="hcenter"/>
-</CaptionWindow>

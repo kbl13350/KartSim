@@ -12,7 +12,7 @@ import (
 	"unicode/utf8"
 )
 
-// canonicalJSON reproduces rewrite/tools/economy-export/canonical.mjs:
+// canonicalJSON reproduces client/tools/economy-export/canonical.mjs:
 // JSON.stringify of a value whose object keys were inserted in sorted
 // order. JavaScript enumerates integer-like keys first (ascending
 // numerically), then string keys in insertion order.
@@ -164,7 +164,7 @@ func TestEmbeddedVersionsMatchContent(t *testing.T) {
 		stored, computed := contentVersion(t, document)
 		if stored != computed {
 			t.Errorf("%s: version %s, content hashes to %s; regenerate with "+
-				"`node --import tsx tools/export-economy-data.mjs` in rewrite/ instead of editing by hand",
+				"`node --import tsx tools/export-economy-data.mjs` in client/ instead of editing by hand",
 				name, stored, computed)
 		}
 	}

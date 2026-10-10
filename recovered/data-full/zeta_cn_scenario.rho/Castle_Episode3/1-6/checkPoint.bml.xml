@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <MaxSpeed track="castle_S02" laps="3" isFixedKart="true" fixedKartId="24">
-    <LevelContent level="0" speedValue="175;180;130;220;180;185;140;225;180;190;150;230" timeLimit="125000"/>
-  </MaxSpeed>
-</Root>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Tracing isFixedKart="true" fixedKartId="14">
-    <LevelContent level="0" track="castle_I02" laps="3" ksv="step_2" distance="20" startOffset="2000" kartId="24" characterId="14" uniformId="66" colorId="4" dyeId="4" characterName="当娜"/>
-  </Tracing>
-</Root>

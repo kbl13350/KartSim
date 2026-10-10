@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Container name="koinActionList" windowRect="573 -45 673 -1" frame="DefaultEdit" visible="false">
-  <TextButton windowRect="0 0 100 22" text="#sb(cashInventory)" forceTooltip="false"/>
-  <TextButton name="koinCharge" windowRect="0 22 100 44" text="#sb(koinCharge)" forceTooltip="false"/>
-</Container>

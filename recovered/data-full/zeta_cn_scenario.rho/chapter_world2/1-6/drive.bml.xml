@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Shadow kartId="849" characterId="2" uniformId="0" colorId="6" dyeId="6" characterName="皮蛋" isFixedKart="true" fixedKartId="932" isFixedChar="true" fixedCharId="60">
-    <LevelContent level="0" ksv="WORLD_EP2_village_R12_0" track="village_R12" laps="2"/>
-  </Shadow>
-</Root>

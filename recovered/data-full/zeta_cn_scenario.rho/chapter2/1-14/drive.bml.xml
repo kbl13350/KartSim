@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <Shadow isFixedKart="true" fixedKartId="943" isFixedChar="true" fixedCharId="2" kartId="943" characterId="3" colorId="2" dyeId="2" characterName="黑妞">
-    <LevelContent level="0" ksv="desert_R02_0" track="desert_R02" laps="2"/>
-  </Shadow>
-</Root>

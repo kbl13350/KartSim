@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="2"/>
-  <Escape isFixedKart="true" fixedKartId="10" kartId="45" characterId="9" uniformId="0" colorId="8" dyeId="8" isFixedChar="true" fixedCharId="2" characterName="海盗船长">
-    <LevelContent level="0" track="nymph_R01" laps="2" ksv="Nymph_R01_01" distance="20" startOffset="-1200"/>
-  </Escape>
-</Root>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <TimeAttack isFixedKart="true" fixedKartId="103" isFixedChar="true" fixedCharId="62" isMinimapHide="true">
-    <LevelContent level="0" track="nymph_I01_sn13" laps="1" timeLimit="90000"/>
-  </TimeAttack>
-</Root>

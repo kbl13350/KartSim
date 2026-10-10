@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="0"/>
-  <Tracing isFixedKart="true" fixedKartId="683" isFixedChar="true" fixedCharId="75" kartId="510" colorId="4" dyeId="4" characterId="21" uniformId="96" characterName="普赛克">
-    <LevelContent level="0" track="beach_I02" laps="3" ksv="beach_2-2" distance="20" startOffset="1000"/>
-  </Tracing>
-</Root>

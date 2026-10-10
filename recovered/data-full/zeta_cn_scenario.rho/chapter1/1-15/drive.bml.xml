@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam levelSpec="1"/>
-  <Shadow isFixedKart="true" fixedKartId="919" isFixedChar="true" fixedCharId="2" kartId="943" characterId="4" uniformId="0" colorId="4" dyeId="4" characterName="葱头">
-    <LevelContent level="0" track="ice_I04" laps="3" ksv="ice_I04_0"/>
-    <LevelContent level="1" track="ice_I04" laps="3" ksv="ice_I04_0"/>
-  </Shadow>
-</Root>

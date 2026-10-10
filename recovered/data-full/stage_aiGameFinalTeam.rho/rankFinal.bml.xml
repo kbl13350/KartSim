@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CaptionWindow windowRect="0 0 788 545" caption="#sb(congratulation)" align="center" frame="CaptionDialogBlankClient">
-  <Panel name="win1" windowRect="0 0 512 495" texture="배틀모드 랭크결과창_01"/>
-  <Panel name="win2" windowRect="512 0 763 495" texture="배틀모드 랭크결과창_02"/>
-  <Play1SPanel name="prevStep1" scene="stamprank" windowSize="280 280" adjust="90 -45" defaultCameraPos="0.0 -5.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="0.75" stop="true" clearZBefore="true" visible="false"/>
-  <Play1SPanel name="prevStep2" scene="stamprank" windowSize="280 280" adjust="230 -45" defaultCameraPos="0.0 -5.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="0.75" stop="true" clearZBefore="true" visible="false"/>
-  <Play1SPanel name="prevStep3" scene="stamprank" windowSize="280 280" adjust="370 -45" defaultCameraPos="0.0 -5.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="0.75" stop="true" clearZBefore="true" visible="false"/>
-  <Play1SPanel name="resultStep" scene="rankResult" windowSize="400 400" adjust="160 100" defaultCameraPos="0.0 -5.0 0.0" defaultSpotPos="0.0 0.0 0.0" zoom="0.85" stop="true" clearZBefore="true" visible="false"/>
-</CaptionWindow>

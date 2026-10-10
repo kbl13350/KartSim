@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Root>
-  <BaseParam gameSpeed="7" checkWrongway="false" setResetPosToLastCheckPoint="true"/>
-  <ItemAttackCheckPoint isFixedKart="true" fixedKartId="1523" isFixedChar="true" fixedCharId="474" isMinimapHide="true">
-    <LevelContent level="0" track="fengshen_S03" laps="1" timeLimit="120000" timeValue="90000;60000;30000;30000;" RocketCount="0" targetBlockName="target_gate"/>
-  </ItemAttackCheckPoint>
-</Root>

@@ -15,7 +15,7 @@
     {"id":12,"order":2,"rank":2},
     {"id":13,"order":1,"rank":3}
   ],
-  "generatedFrom": "rewrite/tools/export-club-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: etc_/clubMark/clubMark@cn.xml (marks) and etc_/clubMark/clubFrame/clubFrame@cn.xml (frames). Do not edit by hand.",
+  "generatedFrom": "client/tools/export-club-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: etc_/clubMark/clubMark@cn.xml (marks) and etc_/clubMark/clubFrame/clubFrame@cn.xml (frames). Do not edit by hand.",
   "marks": [
     {"id":1,"level":5,"order":13},
     {"id":2,"level":5,"order":12},
@@ -511,5 +511,5 @@
     {"id":508,"level":5,"order":104},
     {"id":509,"level":5,"order":103}
   ],
-  "version": "59fb86022acc5adef8b6022e638fb11a207d5f615e7d07ce2b5a8881883c4d23"
+  "version": "9aceb0bf4d10c1563a8bf94f24c2a9ddc560af07891ded3f905f9b6093c83e10"
 }

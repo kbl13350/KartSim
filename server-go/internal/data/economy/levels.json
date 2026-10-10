@@ -1,5 +1,5 @@
 {
-  "generatedFrom": "rewrite/tools/export-economy-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: etc_/level/leveltable@cn.xml; koinRewards from etc_/level/levelupreward@cn.xml (category-56 koin stocks in zeta_/cn/shop/data/stock.kml). Do not edit by hand.",
+  "generatedFrom": "client/tools/export-economy-data.mjs over mirror/p3553 revision bf1abbedd946ee683299bf55be2e3f8f2837a1801544a106affff5685c3d42a9: etc_/level/leveltable@cn.xml; koinRewards from etc_/level/levelupreward@cn.xml (category-56 koin stocks in zeta_/cn/shop/data/stock.kml). Do not edit by hand.",
   "koinRewards": {"3":20,"9":20,"15":20,"21":20,"27":20,"33":20,"39":20,"45":20,"51":20,"57":20,"63":20,"69":20,"75":20,"81":20,"87":20,"93":20,"99":20,"105":20,"109":20,"115":30,"121":50},
   "levels": [
     {"glove":"노랑5","gloveName":"黄色手套5","level":0,"nextExp":1,"tryLevel":1},
@@ -131,5 +131,5 @@
     {"glove":"금뱃지무지개","gloveName":"彩虹金徽章","level":126,"tryLevel":5}
   ],
   "rpLimit": 75000000,
-  "version": "297b5a3f61c1db8e63b03a36a865a54f66dfd107b36224d765a7f6cc21de58a0"
+  "version": "f79d5ffa8326c8021b988993da69c64746006e196c0a1ff2a6bd1e92a86fa14a"
 }
