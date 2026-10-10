@@ -1,0 +1,17 @@
+{
+  "algorithm": "fnv1a32(UTF-8 bytes of `${raceId}|${useId}|${hazardId}|${victimId}|${kind}`) % 100; missing ids as 0; success when roll < p",
+  "vectors": [
+    { "raceId": "r1", "useId": 1, "hazardId": 0, "victimId": "p1", "kind": "rocket",
+      "key": "r1|1|0|p1|rocket", "hash": 423947206, "roll": 6 },
+    { "raceId": "race-uuid", "useId": 42, "hazardId": 0, "victimId": "victim", "kind": "devil",
+      "key": "race-uuid|42|0|victim|devil", "hash": 3761782000, "roll": 0 },
+    { "raceId": "x", "useId": 0, "hazardId": 7, "victimId": "v", "kind": "banana",
+      "key": "x|0|7|v|banana", "hash": 3049021301, "roll": 1 },
+    { "raceId": "abc", "useId": 9, "hazardId": 0, "victimId": "def", "kind": "headband",
+      "key": "abc|9|0|def|headband", "hash": 1394802540, "roll": 40 },
+    { "raceId": "r", "useId": 3, "hazardId": 0, "victimId": "a", "kind": "balloon",
+      "key": "r|3|0|a|balloon", "hash": 720693324, "roll": 24 },
+    { "raceId": "车手", "useId": 5, "hazardId": 0, "victimId": "甲", "kind": "lucciUfo",
+      "key": "车手|5|0|甲|lucciUfo", "hash": 124561834, "roll": 34 }
+  ]
+}

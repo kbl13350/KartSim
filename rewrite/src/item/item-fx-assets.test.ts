@@ -174,8 +174,10 @@ test("every item model assembles with the real scene assembler and renders at it
       await new Promise(resolve => setImmediate(resolve));
     }
     const never = [...presenter.models.pools.keys()].filter(key => !seen.has(key));
-    // Only the devil's defence (a kart-ability block, phase 3) never shows here.
-    assert.deepEqual(never, ["item/devil/대마왕_방어효과.1s"]);
+    // Only the devil family's defences (kart-ability blocks, phase 3) never show here.
+    // item-mode(p3c): newDevil and drrMine are in the catalog since phase 3.
+    assert.deepEqual(never, ["item/devil/대마왕_방어효과.1s", "item/drmad/닥터R_방어효과.1s",
+      "item/newDevil/강시_방어효과.1s"]);
   } finally {
     presenter.dispose();
     environment.dispose();

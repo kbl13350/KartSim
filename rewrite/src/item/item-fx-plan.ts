@@ -1,4 +1,4 @@
-import { ITEM_RULES, ItemIdx, type ItemCatalog, type ItemDefinition, type ItemState } from "./item-catalog";
+import { ITEM_RULES, ItemIdx, SPECIAL_ITEM_REGISTRY, type ItemCatalog, type ItemDefinition, type ItemState } from "./item-catalog";
 
 /**
  * What the item race presenter shows and plays for each item (ITEM_MODE.md
@@ -480,6 +480,9 @@ function buildOne(b: PlanBuilder, def: ItemDefinition, common: Common, waterBomb
     case "teamBooster":
       return { ...common, kind: "none" };
     default:
+      // item-mode(p3c): the special items of ITEM_MODE.md C.4 are in the catalog
+      // now; until the phase-3 presenter plans them they show nothing here.
+      if (SPECIAL_ITEM_REGISTRY.some(entry => entry.name === def.name)) return { ...common, kind: "none" };
       throw Error(`道具 ${def.name} 尚无表现定义。`);
   }
 }
