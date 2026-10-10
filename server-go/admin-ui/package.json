@@ -1,0 +1,26 @@
+{
+  "name": "kartsim-admin-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "跑跑卡丁车管理后台（Vue 3 + Element Plus），构建产物由数据服务内嵌提供",
+  "scripts": {
+    "dev": "vite",
+    "dev:mock": "vite --mode mock",
+    "typecheck": "vue-tsc -b",
+    "build": "vue-tsc -b && vite build",
+    "preview:mock": "vite preview --mode mock"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "2.3.2",
+    "element-plus": "2.14.7",
+    "vue": "3.5.43"
+  },
+  "devDependencies": {
+    "@types/node": "25.9.9",
+    "@vitejs/plugin-vue": "6.0.9",
+    "typescript": "6.0.3",
+    "vite": "8.3.4",
+    "vue-tsc": "3.3.12"
+  }
+}
