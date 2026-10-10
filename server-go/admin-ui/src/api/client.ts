@@ -1,4 +1,4 @@
-import { formatTime } from '../utils/time'
+import { formatTime, isPermanent } from '../utils/time'
 
 // The admin API client. The session token lives only in this module (no
 // localStorage, sessionStorage or cookies), like the old console: reloading
@@ -31,7 +31,7 @@ const messages: Record<string, string> = {
   SESSION_REPLACED: '该账号已在其他地方登录，请重新登录',
   ADMIN_REQUIRED: '该账号不是管理员',
   ACCOUNT_BANNED: '该账号已被封禁',
-  ACCOUNT_NOT_FOUND: '找不到该用户名',
+  ACCOUNT_NOT_FOUND: '账号不存在',
   INVALID_ACCOUNT_ID: '账号编号无效',
   INVALID_GRANT: '类型或数量无效（数量不能为 0，绝对值不超过 10 亿）',
   INVALID_NOTE: '请填写备注（最多 200 字）',
@@ -131,7 +131,8 @@ function bannedMessage(data: Record<string, unknown> | null): string {
   const until = typeof data?.until === 'number' ? data.until : 0
   const reason = typeof data?.reason === 'string' ? data.reason : ''
   const details: string[] = []
-  if (until) details.push('至 ' + formatTime(until))
+  // A ban to 2099 or later is 永久, as in the account list and the game client.
+  if (until) details.push(isPermanent(until) ? '永久' : '至 ' + formatTime(until))
   if (reason) details.push('原因：' + reason)
   if (details.length) text += '（' + details.join('，') + '）'
   return text
