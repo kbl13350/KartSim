@@ -172,6 +172,8 @@ test("itemmode.json matches the original tables, caps and lifetimes", { skip: !h
   assert.deepEqual(data.restrictions.unlimited.map(entry => entry.name),
     restriction.filter(row => !row.allowCount).map(row => row.name));
   for (const item of data.items) {
+    // The special items' variants are checked by item-phase3.test.mjs.
+    if (!data.tables.indi.items.concat(data.tables.team.items).some(row => row.idx === item.idx)) continue;
     const folder = item.folder ?? item.name;
     const file = path.join(dataFull, "item.rho", folder, "item.bml.xml");
     if (item.name === "booster") { assert.ok(!existsSync(file)); continue; }
