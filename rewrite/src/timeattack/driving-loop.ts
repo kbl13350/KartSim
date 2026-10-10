@@ -1,3 +1,5 @@
+import { licenseItemsOf } from "../license/license-item-race";
+
 interface RouteProgress { lap: number }
 
 interface DrivingPhysics {
@@ -127,6 +129,10 @@ export function updateTimeAttackDriving(
   if (!host.session.coordinator) {
     throw new Error("TimeAttack normal coordinator 尚未建立。");
   }
+  // 驾照考试 item steps: the item race runs before the physics step (道具赛 order).
+  const licenseItems = licenseItemsOf(host.session);
+  licenseItems?.update(host as never, rawNowMs);
+  if (licenseItems?.consumeSlotChangerSound()) host.audio.interfaceAudio?.playSlotChanger();
   const { schedule, route } = host.session.coordinator.run(effectiveNowMs, drivingSnapshot);
   host.updateTimeAttackRoute(rawNowMs, previousRoute.lap, route.lap);
   if (host.session.lifecycle.phase >= dependencies.countdownPhase &&

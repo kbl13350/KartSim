@@ -66,9 +66,14 @@ export interface ItemModeVehicle extends ItemEffectVehicle {
   state: ItemEffectVehicle["state"] & { nitro: number };
 }
 
-/** Two slots, or three for karts whose `ItemSlotCapacity` is 3 (server clamps to 2..3). */
-export function itemSlotCapacityFor(tuning: { itemSlotCapacity?: number }): 2 | 3 {
-  return Math.trunc(Number(tuning.itemSlotCapacity)) >= 3 ? 3 : 2;
+/**
+ * Two slots, or three for karts whose `ItemSlotCapacity` is 3 (server clamps
+ * to 2..3). One only for a 驾照考试 step with itemSlotCnt 1, whose race sets
+ * it on the spec (no kart has 1).
+ */
+export function itemSlotCapacityFor(tuning: { itemSlotCapacity?: number }): 1 | 2 | 3 {
+  const capacity = Math.trunc(Number(tuning.itemSlotCapacity));
+  return capacity >= 3 ? 3 : capacity === 1 ? 1 : 2;
 }
 
 /** Turn an AL instance into an item-race vehicle; idempotent. */

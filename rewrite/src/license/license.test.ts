@@ -36,7 +36,7 @@ test("the license table and standing parse and refuse malformed rows", () => {
   assert.equal(table.rewards.get(68), "蓝色心型气球(30 个)");
   assert.throws(() => parseLicenseTable({ ...tableBody, proDays: 0 }));
   assert.throws(() => parseLicenseTable({ ...tableBody,
-    licenses: [{ level: 1, name: "新手", steps: [step(1, { rule: "item" })] }] }));
+    licenses: [{ level: 1, name: "新手", steps: [step(1, { rule: "chase" })] }] }));
   const state = parseLicenseState(stateBody({ cleared: [{ step: 1, bestMs: 9000, clearedAt: 5 }],
     records: [{ track: "mine_R01", bestMs: 71000 }] }));
   assert.equal(state.cleared.get(1)?.bestMs, 9000);
@@ -91,6 +91,12 @@ test("clear rules and time limits match the data service", () => {
   assert.ok(judgeLicenseRun(duel, 88979));
   assert.ok(!judgeLicenseRun(duel, 88980));
   assert.ok(judgeLicenseRun({ ...timed, rule: "finish", timeMs: 0 }, 500000));
+  // An item mission: inside its limit, and its own objective (the targets) met.
+  const item = { ...timed, rule: "item" as const, timeMs: 8000 };
+  assert.ok(judgeLicenseRun(item, 8000, true));
+  assert.ok(!judgeLicenseRun(item, 8001, true));
+  assert.ok(!judgeLicenseRun(item, 5000, false));
+  assert.equal(licenseTimeLimit(item), 8000);
   assert.equal(licenseTimeLimit(timed), 13000);
   assert.equal(licenseTimeLimit(duel), 0);
   assert.equal(formatLicenseTime(65320), "1:05.32");

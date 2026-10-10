@@ -7,6 +7,12 @@ interface Action2D {
   showLap(lap: number, nowMs: number): void;
   showFinalLap(nowMs: number): void;
   showFinish(nowMs: number): void;
+  /**
+   * Story races: retire@zz (未完成) for a mission that failed. StoryAction2D
+   * answers false when the banner did not load; the plain release Action2D
+   * (a story race whose mission animation failed) shows it and answers nothing.
+   */
+  showRetire?(nowMs: number): boolean | void;
   showNewRecord(nowMs: number): void;
   /** Story races: the release mission success / fail animation. */
   showMissionResult?(success: boolean, nowMs: number): void;
@@ -138,6 +144,17 @@ export function playTimeAttackActionAudio(
   }
 }
 
+/** 未完成 instead of 完成, when the race's Action2D has the banner. */
+function showRetire(action2D: Action2D, nowMs: number): boolean {
+  if (!action2D.showRetire) return false;
+  try {
+    return action2D.showRetire(nowMs) !== false;
+  } catch {
+    // The release Action2D throws when retire@zz was not loaded with it.
+    return false;
+  }
+}
+
 /** Freeze driving at the finish, show the result, then return to Ready. */
 export function handleTimeAttackFinishAction(
   stage: TimeAttackActionStage,
@@ -147,17 +164,20 @@ export function handleTimeAttackFinishAction(
   const { host } = stage;
   switch (action.kind) {
     case "finish": {
-      host.session.pendingCharacterFinishMotion =
-        host.session.lifecycle.resultBeatTarget() ? 12 : 13;
-      host.getPhysics().setRaceMotionLocked(true);
-      host.hud.finishPerformanceRace();
-      const nowMs = host.session.lifecycle.effectiveTime(rawNowMs);
-      stage.action2D.showFinish(nowMs);
       // A story race shows whether the mission is met at the finish line.
       // A race the stage ended itself (a chase, a 驾照 time limit) carries its verdict.
       const forced = (action as { missionCleared?: boolean }).missionCleared;
       const cleared = forced === false ? false
         : storyRaceOf(host.session.selection)?.judge?.(action.elapsedMs);
+      // The rider cheers (12) or cries (13): over the mission's verdict when
+      // the race has one, else over the record it raced.
+      host.session.pendingCharacterFinishMotion =
+        (cleared ?? host.session.lifecycle.resultBeatTarget()) ? 12 : 13;
+      host.getPhysics().setRaceMotionLocked(true);
+      host.hud.finishPerformanceRace();
+      const nowMs = host.session.lifecycle.effectiveTime(rawNowMs);
+      // 未完成 (retire@zz) instead of 完成 when the mission failed, as the rider school stages do.
+      if (cleared !== false || !showRetire(stage.action2D, nowMs)) stage.action2D.showFinish(nowMs);
       if (cleared !== undefined) stage.action2D.showMissionResult?.(cleared, nowMs);
       host.session.lifecycle.acceptLocalCompletion();
       return true;

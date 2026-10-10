@@ -1,6 +1,7 @@
 package license
 
 import (
+	"strings"
 	"testing"
 	"time"
 
@@ -45,9 +46,21 @@ func TestDefaultTable(t *testing.T) {
 		!duel.Judge(duel.RivalMs-1) || duel.Judge(duel.RivalMs) {
 		t.Fatalf("step 21 = %+v", duel)
 	}
+	// 获得道具: an item mission keeps its release limit (10 s on CN).
 	item, _, _, _ := d.Step(2)
-	if item.Rule != RuleFinish || !item.Judge(500_000) {
+	if item.Rule != RuleItem || item.TimeMs != 10000 || !item.Judge(10000) || item.Judge(10001) {
 		t.Fatalf("step 2 = %+v", item)
+	}
+	// 组队道具赛 needs AI karts: finishing is enough.
+	npc, _, _, _ := d.Step(15)
+	if npc.Rule != RuleFinish || !npc.Judge(500_000) {
+		t.Fatalf("step 15 = %+v", npc)
+	}
+	// 行驶练习: the key drill has no time limit; its set-up travels to the browser.
+	drill, _, _, _ := d.Step(1)
+	if drill.Rule != RuleDrill || drill.TimeMs != 0 || !drill.Judge(500_000) ||
+		!strings.Contains(string(drill.Setup), `"hideMiniMap":true`) {
+		t.Fatalf("step 1 = %+v", drill)
 	}
 	if stock := d.Stocks[12092]; len(stock.Items) != 1 || stock.Items[0].Category != 56 || stock.Items[0].Count != 20 {
 		t.Fatalf("stock 12092 = %+v", stock)

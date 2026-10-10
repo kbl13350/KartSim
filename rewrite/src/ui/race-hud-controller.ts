@@ -105,6 +105,8 @@ export class RaceHudController {
   disposed = false;
   readonly renderer: RaceHudRenderer;
   timeInfoVisible = true;
+  /** 驾照考试 hideMiniMap steps race without the minimap. */
+  minimapVisible = true;
   readonly ingameShadow: ReturnType<RaceHudDependencies["createShadow"]>;
   readonly timeDrawCache: RaceHudCache;
   readonly boostDrawCache: RaceHudCache;
@@ -139,6 +141,7 @@ export class RaceHudController {
 
   enableUiSmoothing(): void { this.renderer.enableUiSmoothing(); }
   setTimeInfoVisible(visible: boolean): void { this.timeInfoVisible = visible; }
+  setMinimapVisible(visible: boolean): void { this.minimapVisible = visible; }
 
   async loadClassicBoost(library: unknown, team = false): Promise<void> {
     if (this.disposed || this.classicBoost)
@@ -266,7 +269,7 @@ export class RaceHudController {
 
   render(camera: unknown, width: number, height: number): void {
     if (this.disposed) return;
-    this.minimap.render(camera, width, height);
+    if (this.minimapVisible) this.minimap.render(camera, width, height);
     this.ingameShadow.render(camera, width, height);
     if (this.classicTeamVisible && this.classicTeamBoost && this.classicBoost) {
       if (!this.classicTeamBoost.state.full && this.classicBoost.state.full) {

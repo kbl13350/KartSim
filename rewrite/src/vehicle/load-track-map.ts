@@ -1,3 +1,4 @@
+import { alignLicenseFrames, alignLicenseSections, licenseEventScenes, markLicenseGoal } from "../license/license-course";
 import { itemGameObjectKind } from "./track-object-admission";
 import { trackMetadataOverride } from "../resources/track-overrides";
 
@@ -122,6 +123,16 @@ export async function loadTrackMap(
   const road = ops.extractRoad(model, mode, {
     forceReverse: /_rvs$/i.test(trackId),
   });
+  // 驾照考试: the open course without a final gate (village_C005) ends at its last gate,
+  // and the course's tutorial points name their hint scenes.
+  const licenseCourse = mode === "time-attack" && trackMetadataOverride(trackId) !== undefined;
+  if (licenseCourse) {
+    markLicenseGoal(road);
+    alignLicenseFrames(road);
+    alignLicenseSections(road);
+  }
+  const licenseEvents = licenseCourse && model.root.kind === "track"
+    ? licenseEventScenes(model.root.trackObjects) : undefined;
   if (model.root.kind !== "track")
     throw new Error(`${path} 缺少 TrackContainer。`);
   const minimaps = model.root.trackObjects.filter(
@@ -283,6 +294,7 @@ export async function loadTrackMap(
       lastSection: road.lastSection,
       start: road.start,
       lapTarget: metadata.laps,
+      ...(licenseEvents ? { licenseEvents } : {}),
     },
     scene,
     renderScene,
@@ -298,6 +310,8 @@ export async function loadTrackMap(
     eventProjections,
     dummySounds,
     lteCoinSource,
+    // 驾照考试 item steps read the course's item boxes and target dummies.
+    ...(licenseCourse ? { licenseModel: model } : {}),
     ...(itemSources ? {
       itemCatalog: itemSources.catalog,
       itemCubeSource: itemSources.cubes,

@@ -46,7 +46,8 @@ export interface ItemHudRankSource {
 }
 
 export interface ItemHudLoadOptions {
-  capacity?: 2 | 3;
+  /** 1 only in a 驾照考试 step (itemSlotCnt 1). */
+  capacity?: 1 | 2 | 3;
   /** The race HUD's slot definition: Slot type 0 and item_s icons for scanning. */
   slots?: ItemSlotDefinition;
   /** Item names and descriptions; the original tables are read when omitted. */

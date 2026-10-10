@@ -27,6 +27,7 @@ export interface ApplicationDisposalHost {
     linkedCharacterRender?: AppDisposable;
     kartEffects?: AppDisposable;
     ghosts: Array<{ view: AppDisposable }>;
+    licenseItems?: AppDisposable;
     outlineBatch?: AppDisposable;
     balloonDecoration?: AppDisposable;
     characterDecorations: Array<{ render: AppDisposable }>;
@@ -112,6 +113,10 @@ export function disposeApplicationRuntime(
   session.kartEffects?.dispose();
   for (const ghost of session.ghosts) ghost.view.dispose();
   session.ghosts = [];
+  if (session.licenseItems) {
+    session.licenseItems.dispose();
+    session.licenseItems = undefined;
+  }
   session.outlineBatch?.dispose();
   session.outlineBatch = undefined;
   session.balloonDecoration?.dispose();

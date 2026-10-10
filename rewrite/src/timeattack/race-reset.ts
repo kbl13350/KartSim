@@ -1,3 +1,4 @@
+import { licenseItemsOf } from "../license/license-item-race";
 import type { TimeAttackAction } from "./lifecycle";
 
 interface Resettable {
@@ -181,6 +182,8 @@ export function restartTimeAttackRace(
   }
   host.ghostRecorder = recorder;
   host.session.coordinator = stage.createCoordinator(admission, track, physics);
+  // 驾照考试 item steps: fresh items and targets, the boxes paired with the new coordinator.
+  licenseItemsOf(host.session)?.restart(host.session.coordinator as never);
   host.getPhysics().setRaceMotionLocked(true);
   host.audio.bgm?.restart();
   stage.ui?.trackInfoCard?.setBgmName(host.audio.bgm?.currentRaceName ?? "");

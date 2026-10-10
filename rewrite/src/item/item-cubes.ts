@@ -126,6 +126,12 @@ export interface ItemCubeField {
   position(cubeId: number): ItemVec3 | undefined;
   /** Whether this player's copy of the cube can be eaten now. */
   available(cubeId: number): boolean;
+  /**
+   * The same field for a new race (a 驾照考试 retry rebuilds only the race
+   * coordinator): every cube is back, the effects stop and the next `attach`
+   * pairs it with the new coordinator.
+   */
+  reset?(): void;
   dispose(): void;
 }
 
@@ -421,6 +427,20 @@ class CubeField<Archive> implements ItemCubeField {
 
   available(cubeId: number): boolean {
     return this.byId.get(cubeId)?.state === "stay";
+  }
+
+  reset(): void {
+    if (this.disposed) return;
+    this.attached = false;
+    for (const entry of this.entries) {
+      entry.state = "stay";
+      entry.eatenAt = 0;
+      if (entry.view) entry.view.visible = true;
+    }
+    for (const effect of this.effects) {
+      effect.active = false;
+      effect.root.visible = false;
+    }
   }
 
   dispose(): void {

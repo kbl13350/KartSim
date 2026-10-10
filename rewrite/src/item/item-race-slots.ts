@@ -18,7 +18,8 @@ export class ItemSlotMirror {
   private nextToken = 1;
 
   constructor(capacity: number) {
-    this.capacity = capacity >= 3 ? 3 : 2;
+    // One slot only in a 驾照考试 step (itemSlotCnt 1).
+    this.capacity = capacity >= 3 ? 3 : capacity === 1 ? 1 : 2;
     this.confirmed = Array<number>(this.capacity).fill(EMPTY_SLOT);
   }
 

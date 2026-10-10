@@ -1,5 +1,5 @@
 import { CanvasHitController, type CanvasHitRegion } from "./canvas-hit-controller";
-import { C9, Ft, G1, T, V0, ct, f5, m9, p2, s2, st } from "../generated/formats.js";
+import { C9, E9, Ft, G1, T, V0, ct, f5, m9, p2, s2, st } from "../generated/formats.js";
 import { U1 } from "../generated/library.js";
 import { scrollbarGeometry } from "./scrollbar";
 import { loadRiderSchoolArt, type RiderSchoolArt } from "./rider-school-art";
@@ -807,7 +807,10 @@ export class MainMenuView {
       const clear = art.card.children.find(child => attribute(child, "name") === "clear");
       const clearTexture = clear && art.textures.get(clear)?.[0];
       if (step.cleared && clear && clearTexture) {
-        const at = V0(clear, box, undefined, clearTexture) as Rect;
+        // The card's children lay out in the RiderSchoolButton client area (46 px borders):
+        // adjust "-40 -1" stamps 过关 over the arrow, 6 px inside the right edge.
+        const client = art.frames[0] ? E9(art.frames[0], box) as Rect : box;
+        const at = V0(clear, client, undefined, clearTexture) as Rect;
         context.drawImage(clearTexture.image, at.x, at.y, at.width, at.height);
       }
       if (step.open && this.options.onLicenseStep)
@@ -990,7 +993,12 @@ export class MainMenuView {
     const raw = attribute(node, "text");
     if (!raw) return undefined;
     const key = /^#sb\(([^)]+)\)$/.exec(raw)?.[1];
-    return key ? this.assets.strings.get(key) : raw;
+    const value = key ? this.assets.strings.get(key) : raw;
+    // licenseInfo1 serves the PRO qualification page (获得徽章) and the license pages, whose
+    // button is 获得驾照: the CN text names the emblem on both (KR 라이센스 획득, TW 駕照獲得).
+    if (key === "licenseInfo1" && this.category === "cat_riderSchool" && this.selectedLicense !== 6)
+      return value?.replace("获得徽章", "获得驾照");
+    return value;
   }
 
   private label(node: MainMenuNode, name: string): string {

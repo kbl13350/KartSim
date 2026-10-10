@@ -68,6 +68,8 @@ export interface SoloRaceResources {
   nextLinkedCharacterPresentation: unknown;
   nextFlyingPet?: RaceDisposable;
   nextGhosts: GhostResource[];
+  /** 驾照考试 item steps: the item race (license-item-race.ts). */
+  nextLicenseItems?: SceneResource;
   rankColors: unknown;
   selectedVehicle: { title: string };
   particleModificationBanner?: RaceDisposable;
@@ -85,6 +87,7 @@ export interface SoloRaceSession {
   outlineBatch?: RaceDisposable;
   kartEffects?: RaceDisposable;
   ghosts: GhostResource[];
+  licenseItems?: SceneResource;
   balloonDecoration?: RaceDisposable;
   characterDecorations: CharacterDecoration[];
   raceAura?: RaceDisposable;
@@ -180,7 +183,7 @@ export async function publishSoloRace(
     nextPause, nextCountdownAudio, nextTrackEventEffects,
     nextTrackEventAudio, nextTrackDummyAudio, nextLinkedCharacterPresentation,
     nextFlyingPet, nextGhosts, rankColors, selectedVehicle,
-    particleModificationBanner, particleModificationBannerRequest, outlineBatch,
+    particleModificationBanner, particleModificationBannerRequest, outlineBatch, nextLicenseItems,
   } = resources;
   const session = host.session;
   const audio = host.audio;
@@ -198,6 +201,10 @@ export async function publishSoloRace(
   session.kartEffects?.dispose();
   for (const ghost of session.ghosts) ghost.view.dispose();
   session.ghosts = [];
+  if (session.licenseItems) {
+    session.licenseItems.dispose();
+    session.licenseItems = undefined;
+  }
   session.balloonDecoration?.dispose();
   session.characterDecorations.forEach(({ render }) => render.dispose());
   session.characterDecorations = [];
@@ -287,6 +294,10 @@ export async function publishSoloRace(
   host.scene.add(session.crashEffect.object);
   host.scene.add(session.simpleShadow.object);
   session.ghosts = [...nextGhosts];
+  if (nextLicenseItems) {
+    session.licenseItems = nextLicenseItems;
+    host.scene.add(nextLicenseItems.object);
+  }
   session.rankColors = rankColors;
   session.localName = host.getLocalNickname();
   session.outlineBatch = outlineBatch;

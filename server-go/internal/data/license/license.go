@@ -38,8 +38,14 @@ const (
 	RuleTime = "time"
 	// RuleRival: finish before the rival ghost's RivalMs.
 	RuleRival = "rival"
-	// RuleFinish: finish the course (item missions, whose items the Web
-	// build does not run).
+	// RuleDrill: 行驶练习's four key prompts (向前/向后/右转/左转), which only the
+	// client sees; no time limit.
+	RuleDrill = "drill"
+	// RuleItem: an item mission: finish inside TimeMs; its own objective
+	// (the targets shot or trapped) only the client sees.
+	RuleItem = "item"
+	// RuleFinish: finish the course (the item missions with AI karts, which
+	// the Web build does not run).
 	RuleFinish = "finish"
 )
 
@@ -64,6 +70,10 @@ type Step struct {
 	StockID int    `json:"stockId"`
 	Rival   *Rival `json:"rival,omitempty"`
 	RivalMs int64  `json:"rivalMs,omitempty"`
+	// Setup is the release set-up the browser races the step with (items in
+	// the slots, cube item, targets, HUD switches, the original limit); the
+	// data service passes it through to GET /api/license.
+	Setup json.RawMessage `json:"setup,omitempty"`
 }
 
 // License is one license and its steps in order.
@@ -150,9 +160,11 @@ func Parse(raw []byte) (*Data, error) {
 			switch s.Rule {
 			case RuleTime:
 				bad = bad || s.TimeMs < 0
+			case RuleItem:
+				bad = bad || s.TimeMs <= 0
 			case RuleRival:
 				bad = bad || s.RivalMs <= 0 || s.Rival == nil
-			case RuleFinish:
+			case RuleDrill, RuleFinish:
 			default:
 				bad = true
 			}
@@ -255,6 +267,8 @@ func (s *Step) Judge(elapsedMs int64) bool {
 	switch s.Rule {
 	case RuleTime:
 		return s.TimeMs == 0 || elapsedMs <= s.TimeMs
+	case RuleItem:
+		return elapsedMs <= s.TimeMs
 	case RuleRival:
 		return elapsedMs < s.RivalMs
 	}

@@ -68,7 +68,8 @@ export interface ItemHudScan {
 export interface ItemHudState {
   /** Item idx per slot, -1 for empty; slot 0 is the current (largest) slot. */
   slots: readonly number[];
-  capacity: 2 | 3;
+  /** 1 only in a 驾照考试 step (itemSlotCnt 1). */
+  capacity: 1 | 2 | 3;
   /** 0..1 of the Alt swap; omitted, the HUD runs its own 350 ms animation. */
   reorderProgress?: number;
   /** Slots locked (slotLock): freeze overlay and countdown. */
@@ -135,7 +136,7 @@ export const ITEM_RACE_ITEM_IDS: readonly number[] = Object.freeze([
   2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 33, 109, 110, 111, 113, 114, 127,
 ]);
 
-export function emptyItemHudState(capacity: 2 | 3 = 2): ItemHudState {
+export function emptyItemHudState(capacity: 1 | 2 | 3 = 2): ItemHudState {
   return {
     slots: Array<number>(capacity).fill(-1),
     capacity,

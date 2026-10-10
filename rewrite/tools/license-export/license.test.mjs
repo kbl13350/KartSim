@@ -12,10 +12,12 @@ const node = (name, attributes = {}, children = []) => ({
 
 test("mission ids map to the Web build's clear rules", () => {
   assert.equal(ruleOf(20), "time");
-  assert.equal(ruleOf(0), "time");
+  assert.equal(ruleOf(0), "drill");
   assert.equal(ruleOf(22), "time");
   assert.equal(ruleOf(21), "rival");
-  for (const item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13]) assert.equal(ruleOf(item), "finish");
+  for (const item of [1, 2, 3, 5, 6, 7, 8, 9, 11]) assert.equal(ruleOf(item), "item");
+  // The missions with AI karts only ask for the finish.
+  for (const npc of [4, 12, 13]) assert.equal(ruleOf(npc), "finish");
 });
 
 test("steps join the locale, rivals and reward stocks", () => {
@@ -23,7 +25,9 @@ test("steps join the locale, rivals and reward stocks", () => {
   const problem = message => problems.push(message);
   const missions = missionRows(node("itemList", {}, [
     node("item", { step: 1, id: 20, icon: "missionIcon_a", track: "village_L01_04", time: 13000 }),
-    node("item", { step: 2, id: 3, icon: "missionIcon_b", track: "village_C005", time: 30000 }),
+    node("item", { step: 2, id: 3, icon: "missionIcon_b", track: "village_C005", time: 30000,
+      itemSlotCnt: 1, itemslot0: "rocket", targetName: "target2", targetArrow: "TRUE", hideMiniMap: "TRUE",
+      nonLimitItem: "TRUE", startTutoScene: "아이템_미사일", showTimeUI: "FALSE" }),
     node("item", { step: 3, id: 21, icon: "missionIcon_c", track: "world_R01" }),
   ]), problem);
   const locale = localeRows(node("itemList", {}, [
@@ -46,9 +50,12 @@ test("steps join the locale, rivals and reward stocks", () => {
   const [timed, item, duel] = rows.licenses[0].steps;
   assert.equal(timed.name, "弯道练习 1");
   assert.equal(timed.timeMs, 13000);
-  // Item missions keep no time limit: the Web build has no items yet.
-  assert.equal(item.rule, "finish");
-  assert.equal(item.timeMs, 0);
+  // Item missions keep their release limit; their set-up travels along in setup.
+  assert.equal(item.rule, "item");
+  assert.equal(item.timeMs, 30000);
+  assert.deepEqual(item.setup, { limitMs: 30000, slotCount: 1, slots: ["rocket"], targetName: "target2",
+    startTutoScene: "아이템_미사일", targetArrow: true, nonLimitItem: true, showTimeUI: false, hideMiniMap: true });
+  assert.deepEqual(timed.setup, { limitMs: 13000 });
   assert.deepEqual(duel.rival, { kartId: 1430, characterId: 190, ksv: "L2_3_world_R01_7" });
   assert.equal(duel.rivalMs, 95300);
   assert.deepEqual(Object.keys(rows.rewardStocks).sort(), ["590", "68"]);

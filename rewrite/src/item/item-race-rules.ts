@@ -240,7 +240,7 @@ export interface AimCandidate { playerId: string; position: Vec3 }
  */
 export function chooseAimTarget(pose: Pick<ItemPresenterPose, "position" | "forward">,
   candidates: readonly AimCandidate[],
-  tuning: Pick<typeof ITEM_RACE_TUNING, "aimRangeM" | "aimConeHalfAngleDegrees"> = ITEM_RACE_TUNING):
+  tuning: { readonly aimRangeM: number; readonly aimConeHalfAngleDegrees: number } = ITEM_RACE_TUNING):
   AimCandidate | undefined {
   const forwardLength = Math.hypot(pose.forward.x, pose.forward.y, pose.forward.z) || 1;
   const cos = Math.cos(tuning.aimConeHalfAngleDegrees * Math.PI / 180);

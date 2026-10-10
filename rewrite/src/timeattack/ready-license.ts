@@ -5,6 +5,7 @@ import { F9, U1, te } from "../generated/library.js";
 import { claimLicenseEmblem, fetchLicense, formatLicenseTime, licenseErrorMessage, PRO_LEVEL,
   qualifyLicense, runLicenseStep, takeLicense, type LicenseState, type LicenseStep,
   type LicenseTable } from "../license/license-api";
+import type { LicenseMissionSpec } from "../license/license-mission";
 import { canTakeLicense, currentLicenseLevel, findOpenStep, judgeLicenseRun, licenseComplete,
   licenseLock, licenseName, licenseSteps, licenseTaken, licenseTimeLimit,
   type LicenseStepView } from "../license/license-model";
@@ -151,8 +152,9 @@ const seconds = (ms: number): string => ms >= 60_000 ? formatLicenseTime(ms)
 export function licenseStepDetail(view: LicenseStepView): string {
   const { step } = view;
   const rule = step.rule === "rival" ? `战胜对手（${formatLicenseTime(step.rivalMs ?? 0)}）`
-    : step.rule === "time" && step.timeMs > 0 ? `限时 ${seconds(step.timeMs)}`
-      : step.rule === "finish" ? "完成比赛（道具简化）" : "完成比赛";
+    : (step.rule === "time" || step.rule === "item") && step.timeMs > 0 ? `限时 ${seconds(step.timeMs)}`
+      : step.rule === "drill" ? "按提示完成驾驶练习"
+        : step.rule === "finish" ? "完成比赛（无 AI 车手）" : "完成比赛";
   return view.bestMs !== undefined ? `${rule}  最佳 ${formatLicenseTime(view.bestMs)}` : rule;
 }
 
@@ -352,7 +354,7 @@ export async function openLicenseStep(controller: ReadyLicenseController, stepId
       return undefined;
     }), READY_ROOTS);
     const reward = data.table.rewards.get(step.stockId) ?? "";
-    const simplified = step.rule === "finish" ? "|（网页版暂无道具玩法，到达终点即可通过）" : "";
+    const simplified = step.rule === "finish" ? "|（网页版暂无 AI 车手，到达终点即可通过）" : "";
     const limit = licenseTimeLimit(step);
     const description = (index: 1 | 2): string =>
       (strings.get(`step${step.step}_${index}`) ?? "") + (index === 2 ? simplified : "");
@@ -439,6 +441,8 @@ interface LicenseRaceSpec {
   practiceKart: boolean;
   ghosts: StoryGhostSource[];
   timeLimitMs: number;
+  /** A 驾照考试 step's own mission (license-mission.ts); none for the PRO qualification. */
+  license?: LicenseMissionSpec;
   judge(elapsedMs: number): boolean;
   onReturn(outcome: StoryRaceOutcome): void;
 }
@@ -471,6 +475,7 @@ async function startRace(controller: ReadyLicenseController, spec: LicenseRaceSp
       ghosts: spec.ghosts,
       ...(spec.track.laps ? { laps: spec.track.laps } : {}),
       ...(spec.timeLimitMs > 0 ? { timeLimitMs: spec.timeLimitMs } : {}),
+      ...(spec.license ? { license: spec.license } : {}),
       restore, judge: spec.judge, onReturn: spec.onReturn,
     },
   };
@@ -493,11 +498,13 @@ async function startLicenseRace(controller: ReadyLicenseController, step: Licens
     const [catalog, course] = await Promise.all([lib.timeAttackGarageCatalog(), licenseCourse(lib, step)]);
     const ghosts = await rivalGhosts(lib, step, course.id, catalog);
     if (stale(controller, started)) return;
+    const license: LicenseMissionSpec = { step: step.step, mission: step.mission, rule: step.rule,
+      setup: step.setup, progress: { objective: false } };
     await startRace(controller, {
       track: step, speed: step.speed || 7, practiceKart: true, ghosts,
-      timeLimitMs: licenseTimeLimit(step),
-      judge: elapsedMs => judgeLicenseRun(step, elapsedMs),
-      onReturn: outcome => { void finishLicenseRun(controller, step, outcome); },
+      timeLimitMs: licenseTimeLimit(step), license,
+      judge: elapsedMs => judgeLicenseRun(step, elapsedMs, license.progress.objective),
+      onReturn: outcome => { void finishLicenseRun(controller, step, outcome, license); },
     }, level);
   } catch (error) {
     message(controller, `驾照考试：${error instanceof Error ? error.message : String(error)}`);
@@ -519,7 +526,12 @@ async function returnToLicense(controller: ReadyLicenseController): Promise<void
 
 const stripColor = (text: string): string => text.replace(/\[color:[^\]]*\]|\[\/color\]/g, "");
 
-function failure(step: LicenseStep, outcome: StoryRaceOutcome): string {
+function failure(step: LicenseStep, outcome: StoryRaceOutcome, license: LicenseMissionSpec): string {
+  if (step.rule === "drill") return "任务失败：没有按照提示完成全部驾驶练习（向前、向后、右转、左转）。";
+  // An item mission's own objective (its targets) was not met.
+  if (step.rule === "item" && !license.progress.objective && license.progress.failure &&
+      !(licenseTimeLimit(step) > 0 && outcome.elapsedMs >= licenseTimeLimit(step)))
+    return license.progress.failure;
   if (!outcome.finished || outcome.cleared === false) {
     return licenseTimeLimit(step) > 0 && outcome.elapsedMs >= licenseTimeLimit(step)
       ? "任务失败：没有在规定时间内完成。" : "任务失败：没有完成比赛。";
@@ -529,11 +541,12 @@ function failure(step: LicenseStep, outcome: StoryRaceOutcome): string {
 }
 
 async function finishLicenseRun(controller: ReadyLicenseController, step: LicenseStep,
-  outcome: StoryRaceOutcome): Promise<void> {
+  outcome: StoryRaceOutcome, license: LicenseMissionSpec): Promise<void> {
   await returnToLicense(controller);
-  const cleared = outcome.cleared ?? (outcome.finished && judgeLicenseRun(step, outcome.elapsedMs));
+  const cleared = outcome.cleared ??
+    (outcome.finished && judgeLicenseRun(step, outcome.elapsedMs, license.progress.objective));
   if (!cleared) {
-    message(controller, failure(step, outcome));
+    message(controller, failure(step, outcome, license));
     return;
   }
   const session = activeBrowserSession();

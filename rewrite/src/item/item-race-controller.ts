@@ -71,6 +71,9 @@ export interface ItemRaceEffectOptions {
   afterBoost?: boolean;
   /** reverse, slow, shrink: the cause (item idx), so EMP can end only a UFO slow. */
   source?: string | number;
+  /** pull: speed gained per second and its cap (else ITEM_EFFECT_TUNING). */
+  acceleration?: number;
+  maximumSpeed?: number;
 }
 
 export type ItemDirection = "left" | "right" | "up" | "down";
@@ -156,6 +159,12 @@ export interface ItemRaceControllerOptions {
   hazardPosition?(hazardId: number): Vec3 | undefined;
   /** The changer cards known before the first reply (the countdown tutorial board). */
   changers?: ItemChangers;
+  /**
+   * Another aim range and magnet pull than the item race's (驾照考试: its
+   * time limits ask for a magnet that locks from the start line).
+   */
+  aimRangeM?: number;
+  pull?: { acceleration?: number; maximumSpeed?: number };
   log?(message: string, error?: unknown): void;
 }
 
@@ -412,7 +421,7 @@ export class ItemRaceController implements ItemCommandHandler {
     if (this.disposed) return;
     this.guard("道具箱处理失败", () => {
       if (this.ended || !this.options.local.racing()) return;
-      const capacity = this.options.physics.itemSlotCapacity >= 3 ? 3 : 2;
+      const capacity = this.slots.capacity;
       this.send("cube", { cubeId, capacity }).then(
         reply => this.guard("道具箱回包处理失败", () => this.onGrant(reply as ItemGrantEvent)),
         error => {
@@ -475,7 +484,7 @@ export class ItemRaceController implements ItemCommandHandler {
 
   /** This frame's item HUD state (MultiplayerRaceHud.setItemState). */
   hudState(nowMs: number): ItemHudFeed {
-    const capacity = this.options.physics.itemSlotCapacity >= 3 ? 3 : 2;
+    const capacity = this.slots.capacity as ItemHudFeed["capacity"];
     const slots = this.slots.slots;
     const locked = this.locked(nowMs);
     const changers = this.changers.hud(slots, locked, this.canAct() && !this.aim);
@@ -826,6 +835,7 @@ export class ItemRaceController implements ItemCommandHandler {
             const pose = this.options.remotes.pose(targetId);
             return pose ? { ...pose.position } : undefined;
           },
+          ...this.options.pull,
         });
         if (!pulled) break;
         // Face the field at the locked target from the release frame, not only from the reply.
@@ -935,7 +945,10 @@ export class ItemRaceController implements ItemCommandHandler {
       this.cancelAim();
       return;
     }
-    const candidate = chooseAimTarget(this.localPose(), this.aimCandidates(nowMs));
+    const candidate = chooseAimTarget(this.localPose(), this.aimCandidates(nowMs), {
+      aimRangeM: this.options.aimRangeM ?? ITEM_RACE_TUNING.aimRangeM,
+      aimConeHalfAngleDegrees: ITEM_RACE_TUNING.aimConeHalfAngleDegrees,
+    });
     if (!candidate) {
       aim.phase = "aiming";
       aim.targetId = undefined;

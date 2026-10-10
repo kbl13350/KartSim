@@ -1,3 +1,6 @@
+import { licenseItemsOf } from "../license/license-item-race";
+import { itemSlotInput } from "../ui/multiplayer-race-hud";
+
 interface ParticipantProgress {
   id: string;
   name: string;
@@ -125,23 +128,33 @@ export function renderGameplayUi(
     throw new Error("TimeAttack gameplay UI 缺少 lapTarget。 ");
   }
   const gauges = host.getPhysics().timeAttackTachometerGauges();
+  // 驾照考试 item steps show the item slots, aim and notices of 道具赛.
+  const items = licenseItemsOf(host.session);
+  const itemState = items?.hudState();
   gameplayUi.update({
     body: host.getPhysics().body,
     currentLap: host.getTrack().getRouteState(host.getPhysics()).lap,
     totalLaps: lapTarget,
     elapsedMs: dependencies.elapsedRaceMs(host.session.lifecycle, nowMs),
     bestMs: host.session.lifecycle.bestLapMs,
-    speedSlots: host.getPhysics().timeAttackSpeedSlots(),
-    speedSlotDisabled: host.getPhysics().timeAttackSpeedSlotDisabled(),
-    speedSlotWindowStartMs: host.getPhysics().timeAttackSpeedSlotWindowStartMs(),
+    ...(itemState ? itemSlotInput(itemState) : {
+      speedSlots: host.getPhysics().timeAttackSpeedSlots(),
+      speedSlotDisabled: host.getPhysics().timeAttackSpeedSlotDisabled(),
+      speedSlotWindowStartMs: host.getPhysics().timeAttackSpeedSlotWindowStartMs(),
+    }),
     boostRatio: gauges.mainRatio,
     teamBoostRatio: gauges.teamRatio,
     teamBooster: gauges.teamBooster,
     rank: stage.rankBoardValues(),
     ghosts: ghostPoses,
   }, nowMs, dependencies.worldAxis, dependencies.depthAxis);
+  items?.hud?.update(nowMs, gameplayUi as never);
   if (!dependencies.isRaceFinished(host.session.lifecycle) &&
       !host.session.warpHud?.hidden) {
+    // The width and height of the HUD canvas.
+    const [width, height] = [Number(dependencies.worldAxis), Number(dependencies.depthAxis)];
+    items?.hud?.renderUnder(host.renderer, width, height);
     gameplayUi.render(host.renderer, dependencies.worldAxis, dependencies.depthAxis);
+    items?.hud?.renderOver(host.renderer, width, height);
   }
 }

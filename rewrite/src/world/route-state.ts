@@ -94,6 +94,10 @@ export function updateRoute(world: RouteWorldHost, vehicle: object,
       if (!crossing) {
         const following = world.sections[edge.section]!.outgoing;
         for (let i = 0; i < following.length; i += 1) {
+          // On a two-section course (驾照考试 village_C005) the next section's way
+          // out leads straight back here through the gate just crossed into this
+          // one; counting it again would bounce between the two sections forever.
+          if (following[i]!.section === sectionIndex) continue;
           if (routeGateCrossing(following[i]!.gate,
             previousPosition, currentPosition) > 0) {
             crossing = true;

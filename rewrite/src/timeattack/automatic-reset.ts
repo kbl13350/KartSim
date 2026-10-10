@@ -6,6 +6,8 @@ interface ResetLifecycle {
 
 interface ResetPhysics {
   body: { position: { y: number } };
+  /** 驾照考试 item steps (道具赛 karts): a held kart is not reset (driving/item-effects.ts). */
+  itemEffects?: { readonly suppressesAutomaticReset?: boolean; consumeCrushReset?(): boolean };
   prepareLowHeightResetPose(): void;
   consumeAutomaticResetRequest(): boolean;
   lowSpeedAutomaticResetActive(snapshot: unknown): boolean;
@@ -68,7 +70,15 @@ export function checkAutomaticReset(
   const { host } = stage;
   if (!racingHasStarted(host.session.lifecycle, nowMs, dependencies.racingPhase)) return;
   const physics = host.getPhysics();
-  if (physics.consumeAutomaticResetRequest()) {
+  // A kart held by an item (bubble, missile) is stopped on purpose: neither the
+  // wall nor the low-speed timer resets it; a crush asks once, when the hold ends.
+  if (physics.itemEffects?.suppressesAutomaticReset) {
+    physics.consumeAutomaticResetRequest();
+    stage.lowSpeedResetStartedAtMs = 0;
+    return;
+  }
+  const crushed = physics.itemEffects?.consumeCrushReset?.() === true;
+  if (physics.consumeAutomaticResetRequest() || crushed) {
     stage.initiateSpeedReset(false);
     return;
   }
