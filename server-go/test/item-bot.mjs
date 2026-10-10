@@ -146,8 +146,12 @@ if (recording) {
     (recording.races > 1 ? ` (the longest of ${recording.races} recorded races)` : ""));
 }
 
-/** The browser's resource library and item track catalog (mirror/p3553), for the course line. */
-const haveMirror = existsSync(resolve(repoRoot, "mirror/__p3553/archive-index"));
+/**
+ * The browser's resource library and item track catalog (mirror/p3553, here
+ * or in the checkout KART_MIRROR_ROOT names), for the course line.
+ */
+const mirrorRoot = process.env.KART_MIRROR_ROOT ? resolve(process.env.KART_MIRROR_ROOT) : repoRoot;
+const haveMirror = existsSync(resolve(mirrorRoot, "mirror/__p3553/archive-index"));
 if (!haveMirror && !recording) {
   console.error("item-bot: driving the course line needs mirror/p3553 (or pass --replay FILE)");
   process.exit(1);
@@ -155,7 +159,7 @@ if (!haveMirror && !recording) {
 const courseAssets = haveMirror ? (async () => {
   const { loadResourceLibrary } = await load("rewrite/tools/economy-export/resource-library.mjs");
   const { itemTrackCatalog } = await load("rewrite/src/resources/track-catalog.ts");
-  const { library, formats } = await loadResourceLibrary(repoRoot);
+  const { library, formats } = await loadResourceLibrary(repoRoot, "p3553", mirrorRoot);
   return { library, formats, catalog: await itemTrackCatalog(library),
     metadata: await library.trackMetadataCatalog() };
 })() : undefined;

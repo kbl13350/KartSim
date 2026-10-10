@@ -253,6 +253,8 @@
 
 **原协议** 的比赛运动数据不是 JSON。服务端 `motion` 通道帧为 56 字节头加 80–178 字节载荷；小端魔数为 `19277`，头中有载荷类型、接收者掩码、房间/比赛/玩家 UUID 和 32 位序号（`rewrite/src/multiplayer/motion.ts:1-74`）。本地 WebSocket 若要支持多人车体同步，需定义二进制帧映射或单独的运动通道；仅完成 JSON 房间协议只能进入大厅和房间，不能保证多人比赛画面同步。这一边界与单人计时赛无关。本地游戏节点在同一条 WebSocket 上接收二进制帧，按 56 字节头中的房间、比赛、玩家 ID 与接收者掩码校验后，只转发给同一节点上同一房间、已载入的其他车手（与 Java 版 `relayMotion` 一致）；运动帧从不经过数据服务。
 
+**本地新增：服务端反作弊**（`server-go/ANTICHEAT.md`）。游戏节点先按浏览器解码器（`payload.ts`）校验载荷，浏览器解不开的帧一律不转发（否则接收方会断开整条连接）；比赛中还检查时钟、坐标跳变与速度、路线进度与圈数，`finish` 检查完赛时间、速度与路线进度，道具赛检查吃箱频率。默认（`KART_ANTICHEAT=kick`）检查失败的车手先收到不带 `requestId` 的 `{"type":"error","code":"CHEAT_DETECTED","check":"TELEPORT"}`（`check` 为检测项），随即按离开处理移出房间与本局，连接在这条消息之后以 1008 `anti-cheat` 关闭；关闭前它的请求都回复 `CHEAT_DETECTED`，运动帧丢弃。浏览器据此提示“已被移出比赛”并回到大厅。
+
 ## 数据存储事实与本地新增方案
 
 原版下载物没有服务端实现。当前单人档案写在浏览器 `localStorage` 的 `kartrider-web:p3528:user-profile-v2`，结构含 `equipment,initial,favoriteTracks,favoriteItems,garage`（`rewrite/src/ui/local-profile.ts:1-39,172-212`）；本地昵称另存 `kartsim.local-nickname`（`rewrite/src/generated/multiplayer.js:621-635`）。计时赛摘要在 `kartrider-web:p3553:time-attack-records-v1`，旧版键是 p3528；Ghost 完整帧保存在 IndexedDB（`rewrite/src/game/ghost-records.ts:22-23,71-99`；`rewrite/src/game/ghost/record-store.ts:156-211`）。约 3.49 GiB 的游戏资源容器由静态服务提供并在浏览器 OPFS 缓存，不属于账号数据库（`rewrite/src/resources/container-store.ts:71-123`）。

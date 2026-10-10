@@ -258,17 +258,22 @@ const ITEM_POINT = { x: 12.5, y: 3.25, z: -40 };
 /** Item careers (server-go/internal/data/career/careers.json, gameType 2/4/6). */
 const ITEM_CAREERS = { indiFinish: 682, indiWin: 688, teamFinish: 694, teamWin: 700, itemRetire: 718 };
 
-/** The browser's item track catalog (track IDs) when mirror/p3553 is present. */
+/**
+ * The browser's item track catalog (track IDs) when mirror/p3553 is present
+ * (here, or in the checkout KART_MIRROR_ROOT names: a worktree checked out
+ * without mirror/p3553).
+ */
 const clientItemTracks = await (async () => {
   const root = fileURLToPath(new URL(".", import.meta.url));
-  if (!existsSync(`${root}mirror/__p3553/archive-index`) || !existsSync(`${root}mirror/__p3553/resources`)) {
+  const mirrorRoot = process.env.KART_MIRROR_ROOT ? `${process.env.KART_MIRROR_ROOT.replace(/\/$/, "")}/` : root;
+  if (!existsSync(`${mirrorRoot}mirror/__p3553/archive-index`) || !existsSync(`${mirrorRoot}mirror/__p3553/resources`)) {
     console.log("- mirror/p3553 not found: item race tracks are checked against itemmode.json only");
     return undefined;
   }
   const { loadResourceLibrary } = await tsImport("./rewrite/tools/economy-export/resource-library.mjs",
     import.meta.url);
   const { itemTrackCatalog } = await tsImport("./rewrite/src/resources/track-catalog.ts", import.meta.url);
-  const { library } = await loadResourceLibrary(root.replace(/\/$/, ""));
+  const { library } = await loadResourceLibrary(root.replace(/\/$/, ""), "p3553", mirrorRoot.replace(/\/$/, ""));
   return new Set((await itemTrackCatalog(library)).map(choice => choice.id));
 })();
 

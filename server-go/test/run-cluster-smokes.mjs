@@ -43,7 +43,10 @@ await runLocalCluster("run-cluster-smokes", {
   dataEnv: { KART_REGISTRATION: "open", KART_ALLOW_GUESTS: "false" },
   // Unlimited item changers: the item scenarios of server-special-smoke.mjs
   // swap and change with them (the card inventories are covered by the Go tests).
-  gameEnv: { KART_ALLOW_GUESTS: "false", KART_ITEM_CHANGERS: "infinite" },
+  // The scripts race without driving and finish at once, which the
+  // anti-cheat would kick (ANTICHEAT.md): it only records here, so the
+  // records still travel the outbox to the data service.
+  gameEnv: { KART_ALLOW_GUESTS: "false", KART_ITEM_CHANGERS: "infinite", KART_ANTICHEAT: "log" },
   nodes: [{ nodeId: "game-1", name: "游戏服 1" }, { nodeId: "game-2", name: "游戏服 2" }],
 }, async ctx => {
   // The scripts get this cluster only: overrides aimed at another one are dropped.

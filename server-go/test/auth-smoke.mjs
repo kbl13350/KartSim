@@ -42,7 +42,9 @@ await runLocalCluster("auth-smoke", {
     // Admins are named explicitly; the first registrant is not assumed to be one.
     KART_ADMIN_USERNAMES: "test_user", KART_ALLOW_GUESTS: "false",
   },
-  gameEnv: { KART_ALLOW_GUESTS: "false" },
+  // Its racers finish without driving the track, which the anti-cheat
+  // would kick (ANTICHEAT.md): it only records here.
+  gameEnv: { KART_ALLOW_GUESTS: "false", KART_ANTICHEAT: "log" },
   nodes: [{ nodeId: "smoke-a", name: "Smoke A" }, { nodeId: "smoke-b", name: "Smoke B" }],
 }, async ctx => {
   const { dataOrigin, internalOrigin, cluster, timeoutMs, settleMs, id, redis, redisPrefix, dataNode } = ctx;

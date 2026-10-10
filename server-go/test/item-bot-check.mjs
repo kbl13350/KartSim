@@ -58,7 +58,9 @@ process.on("exit", () => bot?.kill("SIGTERM"));
 
 await runLocalCluster("item-bot-check", {
   dataEnv: { KART_REGISTRATION: "open", KART_ALLOW_GUESTS: "false" },
-  gameEnv: { KART_ALLOW_GUESTS: "false", KART_ITEM_TEST_GRANTS: "true" },
+  // The scripted human finishes without driving, which the anti-cheat
+  // would kick (ANTICHEAT.md): it only records here (the bot drives).
+  gameEnv: { KART_ALLOW_GUESTS: "false", KART_ITEM_TEST_GRANTS: "true", KART_ANTICHEAT: "log" },
   nodes: [{ nodeId: "game-1", name: "游戏服 1" }],
 }, async ctx => {
   const cluster = ctx.cluster;

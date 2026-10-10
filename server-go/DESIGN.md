@@ -165,6 +165,7 @@ schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`
 | `KART_OUTBOX_DIR` | `./data/outbox-<NODE_ID>` | 结算发件箱（目录权限 0700，文件 0600） |
 | `KART_LAN_HOSTS` | 空 | WebSocket Origin 校验与 CORS |
 | `KART_ALLOW_GUESTS` | `false` | 为 false 时游客票据的 `hello` 返回 401 `LOGIN_REQUIRED` |
+| `KART_ANTICHEAT` | `kick` | 服务端反作弊（[`ANTICHEAT.md`](ANTICHEAT.md)）：`kick` 记录并踢出、`log` 只记录、`off` 不检查；畸形运动帧任何模式都不转发 |
 
 ### 4.2 HTTP
 
@@ -190,6 +191,8 @@ schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`
 - 持久化：Java 中 `saveRules` / `saveResults` 改为生成 `contract.RoomRulesRequest` / `contract.RaceSettlement`（在锁内序列化快照）并写入发件箱，**不在锁内做网络或磁盘慢操作以外的阻塞**（发件箱写文件可在锁内完成，或交给有序队列，但必须保证顺序）。
 - 心跳：每 5 秒 `PathHeartbeat`（在线玩家及其所在房间名、房间数、容量、origin，以及 `stats`：堆占用（含尚未回收的对象）、协程数、连接数、正在载入/倒计时/比赛中的房间数、构建版本）。启动时立即注册一次。
 - 关闭（SIGINT/SIGTERM）：停止接收新连接，向所有连接发送关闭帧 1001，`PathNodeLeave`，发件箱最多冲刷 5 秒；未发出的保留在磁盘，下次启动补发。
+
+- 反作弊（本地新增，规则见 `ANTICHEAT.md`）：运动帧先按浏览器解码器校验负载（不通过的不转发），`racing` 阶段逐帧检查时钟、水平坐标跳变与速度（重置与赛道传送出口豁免）、路线进度与圈数；`finish` 检查完赛时间、完赛速度与路线进度；道具赛检查吃箱频率。赛道数据（圈数、最短单圈、最长路段、传送出口）是 `internal/game/anticheat/tracks.json`，由 `rewrite/tools/export-track-data.mjs` 导出。默认踢出：发 `{"type":"error","code":"CHEAT_DETECTED","check":…}`、按离开处理移出本局、写完后以 1008 关闭；记录经发件箱写入数据服务 `anti_cheat_events`（schema v14）。原有的路线进度封顶改为同一公式（计入传送路段与最长路段）。
 
 - 道具赛（本地新增，规则见 `../rewrite/ITEM_MODE.md`，协议见 `../SERVER_PROTOCOL.md`“本地新增：道具赛”）：频道 `itemIndiCombine`/`itemTeamCombine`（速度 7）只接受 `gameplay:"item"`，反之亦然（`INVALID_CHANNEL`），需要 p3553。赛道、随机池与默认赛道取自 `internal/game/itemmode/itemmode.json`（`TRACK_NOT_ITEM`；随机码 40 `INVALID_TRACK`），载入窗口 90 秒，快照 `race.item` 在 `race` 最后。运动帧除最远进度外还记录每名车手的**当前**路线距离与圈数（负载偏移 108/116），道具抽取与目标按它排名（已完赛者按完赛顺序在前）。`item` 请求全部在大厅锁内同步处理、没有计时器：每名车手一个严格 +1 的序号（接受即消耗，之后被拒绝也不回退），规则在纯包 `internal/game/itemmode`（每局一个 `itemmode.Race`，随机源每局一个 crypto 种子的 PCG，测试可经 `Options.ItemRandom` 注入）；道具锁、透视、`useId` 60 秒有效期与道具箱 10 秒刷箱检查都用时间戳在下一次请求时判断。广播用 `broadcastPeerEvent`（排除发送者），透视结果直接发给透视方队伍。服务器只决定给什么道具、打谁和何时到达；命中由受害者自报（同一 `useId` 每名受害者只记一次，香蕉首次命中即移除），道具效果在各客户端按 `startAt` 表现。组队道具赛不接受 `team-charge`，`winningTeam` 为最先冲线者的队伍（`teamScores` 照常输出），胜方加成跟随它（平分也给）。数据服务把 `gameplay:"item"`（或道具频道）的结算计入成就 gameType 2/4。
 

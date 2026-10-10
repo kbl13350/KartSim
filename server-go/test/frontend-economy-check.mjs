@@ -222,7 +222,9 @@ await runLocalCluster("frontend-economy-check", {
     KART_BOOTSTRAP_INVITE: bootstrapInvite,
     KART_EXP_RATE: String(rates.exp), KART_LUCCI_RATE: String(rates.lucci), KART_STARTING_LUCCI: "10000",
   },
-  gameEnv: { KART_ALLOW_GUESTS: "false" },
+  // Its racers finish without driving the track, which the anti-cheat
+  // would kick (ANTICHEAT.md): it only records here.
+  gameEnv: { KART_ALLOW_GUESTS: "false", KART_ANTICHEAT: "log" },
   nodes: [{ nodeId: "fe-a", name: "前端 A" }, { nodeId: "fe-b", name: "前端 B" }],
 }, async ctx => {
   const { dataOrigin } = ctx;

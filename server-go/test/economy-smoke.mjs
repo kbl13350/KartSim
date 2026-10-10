@@ -85,7 +85,9 @@ await runLocalCluster("economy-smoke", {
     KART_STARTING_LUCCI: String(STARTING_LUCCI),
   },
   // Game nodes learn the rates from heartbeat responses (contract.HeartbeatResponse.ExpRate).
-  gameEnv: { KART_ALLOW_GUESTS: "false" },
+  // Its racers finish without driving the track, which the anti-cheat
+  // would kick (ANTICHEAT.md): it only records here.
+  gameEnv: { KART_ALLOW_GUESTS: "false", KART_ANTICHEAT: "log" },
   nodes: [{ nodeId: "econ-a", name: "Economy A" }, { nodeId: "econ-b", name: "Economy B" }],
 }, async ctx => {
   const { dataOrigin, cluster, timeoutMs, settleMs, dataNode } = ctx;

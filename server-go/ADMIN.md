@@ -127,3 +127,15 @@
 - **俱乐部**：已解散（`break_at` 不晚于现在）的俱乐部 `ClubRow.state = "disbanded"`，解散倒计时中为 `"breaking"`，否则 `"active"`；列表筛选 `state`（`active`/`breaking`/`disbanded`），默认全部。已解散的俱乐部在任意玩家下一次俱乐部操作时才从库里删除，在那之前列表里仍能看到（标为已解散），玩家端与账号详情的 `club` 已不显示它。
 - **抽奖摘要**：寻宝里由保底触发的抽取归入“保底奖励”，与精品道具场的里程保底奖励写法相同，例如“寻宝 10 次：宝宝、…；保底奖励：…”。
 - **游戏客户端**：登录或进入游戏得到 `ACCOUNT_BANNED` 时显示“账号已被封禁，解封时间：YYYY-MM-DD HH:mm（原因：…）”（时间按北京时间），永久封禁（到期在 2099 年及以后，与后台的“永久”一致）显示“账号已被永久封禁（原因：…）”；没有原因时省略括号，拿不到时间（旧游戏节点）时显示“账号已被封禁（原因：…）”或“账号已被封禁。”，不再显示原始错误码。原因按文本显示，不当作 HTML。
+
+## 6. 反作弊记录（schema v14，规则见 [`ANTICHEAT.md`](ANTICHEAT.md)）
+
+- 标签页“反作弊记录”（登录记录之后）：时间、检测项（中文名，悬停看代码）、处理（已踢出 / 仅记录）、账号（点开是账号详情抽屉，可编辑封禁、赠送、踢下线；游客显示“游客”）、当时昵称、详情（测得的数值）、赛道、玩法、节点、比赛（悬停看房间、比赛、车手 ID）。搜索：关键字、账号、检测项、处理、节点、时间范围。
+- 数据：迁移 **14** 新建 `anti_cheat_events`（`event_id` 唯一，游戏节点重投不重复；`account_id` 游客为空串，不设外键），与登录记录一样保留 180 天。
+- 接口：
+
+| 列表 | `q` 匹配 | `from`/`to` 作用于 | `sort` | 其他筛选 |
+|---|---|---|---|---|
+| `anti-cheat` | 当时昵称、用户名、昵称、详情；ASCII 时还有车手、房间、比赛 ID | 时间 | `at` | `code`（检测项）、`action`（`kick`/`log`）、`account`、`node`（节点 ID，完全相同） |
+
+`GET /api/admin/anti-cheat` 返回 `AntiCheatRow`：`id, at, code, detail, action, accountId, username, nickname, name, playerId, nodeId, roomId, raceId, trackId, trackName, gameplay`（`name` 是被记录时的昵称；`username`、`nickname` 是账号现在的，游客与已删除账号为空串；`trackName` 是赛道中文名，没有为空串）。
