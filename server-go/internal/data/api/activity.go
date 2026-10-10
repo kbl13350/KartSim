@@ -75,36 +75,43 @@ func (t *localThrottle) once(key string, now time.Time, window time.Duration) bo
 
 // noteActivity writes an account's activity after a successful request,
 // throttled per account and Beijing day (the first request after midnight
-// is never held back, so the day's resume record is not missed): through
-// Redis (SET NX EX), else in this process.
+// is never held back, so the day's resume record is not missed). The
+// in-process throttle answers most requests without any I/O; a request it
+// lets through hands the write to a background goroutine, so the response
+// never waits for it, where Redis (SET NX EX) keeps several data service
+// processes from writing the same account more than once per window.
 func (a *API) noteActivity(ctx context.Context, r *http.Request, accountID string) {
 	if a.store == nil {
 		return
 	}
-	ctx, cancel := context.WithTimeout(context.WithoutCancel(ctx), activityTimeout)
-	defer cancel()
 	clock := a.now()
 	key := "seen:" + accountID + ":" + rewards.BeijingDay(clock)
-	due := false
-	if a.limiter != nil {
-		first, err := a.limiter.Once(ctx, key, activityEvery)
-		if err == nil {
-			due = first
-		} else {
-			due = a.seenLocal.once(key, clock, activityEvery)
+	if !a.seenLocal.once(key, clock, activityEvery) {
+		return
+	}
+	record := a.loginRecord(r, clock.UnixMilli())
+	midnight := beijingMidnight(clock)
+	ctx = context.WithoutCancel(ctx)
+	a.activity.Go(func() {
+		ctx, cancel := context.WithTimeout(ctx, activityTimeout)
+		defer cancel()
+		if a.limiter != nil {
+			// Without Redis the in-process throttle alone decides.
+			if first, err := a.limiter.Once(ctx, key, activityEvery); err == nil && !first {
+				return
+			}
 		}
-	} else {
-		due = a.seenLocal.once(key, clock, activityEvery)
-	}
-	if !due {
-		return
-	}
-	resumed, err := a.store.SeenActivity(ctx, accountID, a.loginRecord(r, clock.UnixMilli()), beijingMidnight(clock))
-	if err != nil {
-		a.log.Warn("account activity not stored", "account", accountID, "error", err)
-		return
-	}
-	if resumed {
-		a.log.Debug("remembered session resumed", "account", accountID)
-	}
+		resumed, err := a.store.SeenActivity(ctx, accountID, record, midnight)
+		if err != nil {
+			a.log.Warn("account activity not stored", "account", accountID, "error", err)
+			return
+		}
+		if resumed {
+			a.log.Debug("remembered session resumed", "account", accountID)
+		}
+	})
 }
+
+// WaitActivity waits for the activity writes still running in the
+// background, so a shutdown does not close the database under them.
+func (a *API) WaitActivity() { a.activity.Wait() }

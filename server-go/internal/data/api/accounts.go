@@ -347,7 +347,11 @@ func (a *API) endGameSession(ctx context.Context, account store.Account) bool {
 	if a.cluster == nil {
 		return false
 	}
-	marked, err := a.cluster.ReplaceAccount(ctx, account.ID, account.Nickname)
+	// The session change is committed: mark the game session even if the
+	// caller's request ends now (like releaseLateClaim).
+	markCtx, cancel := context.WithTimeout(context.WithoutCancel(ctx), lateReleaseTimeout)
+	defer cancel()
+	marked, err := a.cluster.ReplaceAccount(markCtx, account.ID, account.Nickname)
 	if err != nil {
 		a.log.Warn("game session not ended; it ends when it disconnects", "account", account.ID, "error", err)
 	}

@@ -731,7 +731,8 @@ var migrations = []migration{
 	}},
 	// Version 121: the admin console's second round (ADMIN.md 5): when and
 	// from where each account was last active with a session token (written
-	// at most every 5 minutes), sortable. TEMPORARY number like 120, and a
+	// at most every 5 minutes), sortable, and the reward-box list's time
+	// index. TEMPORARY number like 120, and a
 	// separate version only because development databases already applied
 	// the first 120: at the merge both are renumbered (120 and 121 become
 	// the next two free versions, or one), and the schema_migrations rows of
@@ -741,6 +742,8 @@ var migrations = []migration{
 		{table: "accounts", name: "last_seen_ip", definition: "VARCHAR(45) NOT NULL DEFAULT ''"},
 	}, indexes: []tableIndex{
 		{table: "accounts", name: "idx_accounts_last_seen", columns: "last_seen_at"},
+		// The admin reward-box list sorts and filters by when an entry came.
+		{table: "reward_box", name: "idx_reward_box_created", columns: "created_at"},
 	}},
 }
 

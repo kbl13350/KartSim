@@ -15,6 +15,7 @@ import (
 	"net/http"
 	"net/netip"
 	"strings"
+	"sync"
 	"time"
 	"unicode/utf8"
 
@@ -125,8 +126,10 @@ type API struct {
 	// and the track titles by id.
 	startedAt   int64
 	trackTitles map[string]string
-	// seenLocal throttles activity writes without Redis (noteActivity).
+	// seenLocal throttles activity writes in this process, and activity
+	// tracks the writes running in the background (noteActivity).
 	seenLocal localThrottle
+	activity  sync.WaitGroup
 }
 
 // New builds the API.

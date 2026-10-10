@@ -184,6 +184,8 @@ func serve(ctx context.Context, cfg config.Config, logger *slog.Logger, service 
 			logger.Warn("shutdown incomplete", "addr", server.Addr, "error", err)
 		}
 	}
+	// Activity writes started by the last requests finish before MySQL closes.
+	service.WaitActivity()
 	stop()
 	background.Wait()
 	return result
