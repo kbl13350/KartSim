@@ -49,9 +49,13 @@ export const accountErrorMessages: Record<string, string> = {
 /** Bans ending in 2099 or later are permanent (the admin console's 永久 is 2100-01-01). */
 const PERMANENT_BAN_FROM = Date.UTC(2099, 0, 1);
 
-/** Unix ms as Beijing "YYYY-MM-DD HH:mm", whatever the browser's time zone. */
+/**
+ * Unix ms as Beijing "YYYY-MM-DD HH:mm", whatever the browser's time zone,
+ * rounded up to the minute so the shown end is never before the real one.
+ */
 function beijingMinute(ms: number): string {
-  return new Date(ms + 8 * 3_600_000).toISOString().slice(0, 16).replace("T", " ");
+  const minute = Math.ceil(ms / 60_000) * 60_000;
+  return new Date(minute + 8 * 3_600_000).toISOString().slice(0, 16).replace("T", " ");
 }
 
 /**

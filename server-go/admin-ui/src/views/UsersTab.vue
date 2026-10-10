@@ -53,7 +53,8 @@ function grant(row: AccountRow | null) {
   grantOpen.value = true
 }
 
-// After a kick the account shows 断开中 until its node's next heartbeat.
+// After a kick, a ban or a password reset the account shows 断开中 until
+// its node's next heartbeat, so the list reloads again after it.
 const afterKick = useAfterKick(afterChange)
 
 async function kick(row: AccountRow) {
@@ -165,7 +166,7 @@ function banTip(row: AccountRow) {
       @grant="grant"
       @kick="kick"
     />
-    <EditAccountDialog v-model="editOpen" :account="editing" @saved="afterChange" />
+    <EditAccountDialog v-model="editOpen" :account="editing" @saved="afterKick" />
     <GrantDialog v-model="grantOpen" :username="grantTarget?.username" :account="grantTarget" @done="afterChange" />
   </el-card>
 </template>

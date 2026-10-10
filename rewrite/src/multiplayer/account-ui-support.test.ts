@@ -100,6 +100,8 @@ test("a banned account sees until when (Beijing time) and why, never the raw cod
   const until = Date.UTC(2026, 9, 11, 4, 30);
   assert.equal(formatBanMessage(until, "外挂"), "账号已被封禁，解封时间：2026-10-11 12:30（原因：外挂）");
   assert.equal(formatBanMessage(until, " "), "账号已被封禁，解封时间：2026-10-11 12:30");
+  // Seconds round up: a ban ending at 12:29:10 is shown as ending at 12:30.
+  assert.equal(formatBanMessage(until - 50_000, ""), "账号已被封禁，解封时间：2026-10-11 12:30");
   // The admin console's 永久 is 2100-01-01 Beijing time.
   assert.equal(formatBanMessage(Date.UTC(2099, 11, 31, 16), "刷分"), "账号已被永久封禁（原因：刷分）");
   assert.equal(formatBanMessage(undefined, "外挂"), "账号已被封禁（原因：外挂）");
