@@ -54,3 +54,14 @@ export async function logout(): Promise<void> {
   session.notice = ''
   session.admin = null
 }
+
+/**
+ * Back to the login screen with a notice, e.g. after the admin reset their
+ * own password: the server has already ended every session of the account,
+ * this one included.
+ */
+export async function signOutWith(notice: string): Promise<void> {
+  await endSession()
+  session.notice = notice
+  session.admin = null
+}

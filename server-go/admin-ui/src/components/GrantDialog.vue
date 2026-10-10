@@ -28,6 +28,10 @@ const form = reactive({
 })
 const outcome = ref<{ type: 'success' | 'error'; text: string } | null>(null)
 const submitting = ref(false)
+// Set from the first click until the grant settles, the confirm box
+// included: Enter in a field cannot start a second grant meanwhile (the
+// hidden default button is disabled too, which blocks implicit submission).
+const busy = ref(false)
 
 // Balances shown under the name: the row's, then each grant's result.
 interface Balance { username: string; level: number; exp: number; coupon: number; lucci: number; koin: number }
@@ -56,6 +60,16 @@ function grantRequestId(grant: object): string {
 }
 
 async function submit() {
+  if (busy.value) return
+  busy.value = true
+  try {
+    await sendGrant()
+  } finally {
+    busy.value = false
+  }
+}
+
+async function sendGrant() {
   outcome.value = null
   const target = form.username.trim()
   if (!target) {
@@ -145,11 +159,16 @@ async function submit() {
         <el-input v-model="form.note" maxlength="200" show-word-limit placeholder="必填，写入流水" />
       </el-form-item>
       <el-alert v-if="outcome" :type="outcome.type" :title="outcome.text" :closable="false" show-icon class="outcome" />
-      <button type="submit" hidden />
+      <button type="submit" hidden :disabled="busy" />
     </el-form>
     <template #footer>
       <el-button @click="open = false">关闭</el-button>
-      <el-button :type="(form.amount ?? 0) < 0 ? 'danger' : 'primary'" :loading="submitting" @click="submit">
+      <el-button
+        :type="(form.amount ?? 0) < 0 ? 'danger' : 'primary'"
+        :loading="submitting"
+        :disabled="busy && !submitting"
+        @click="submit"
+      >
         {{ (form.amount ?? 0) < 0 ? '扣除' : '发放' }}
       </el-button>
     </template>

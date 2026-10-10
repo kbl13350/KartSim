@@ -2,24 +2,28 @@
 import { computed, ref, watch } from 'vue'
 import { Coin, Edit, Refresh, SwitchButton } from '@element-plus/icons-vue'
 import { api, errorMessage } from '../api/client'
-import type { AccountDetail, AccountRow, InventoryRow, LedgerRow } from '../api/types'
+import type { AccountDetail, AccountGame, AccountRow, InventoryRow, LedgerRow } from '../api/types'
 import { useNarrow } from '../composables/useNarrow'
 import { usePagedTable } from '../composables/usePagedTable'
 import { isSelf } from '../session'
 import { isDigits } from '../utils/filters'
 import {
-  clubGradeName, currencyOptions, formatNumber, gameplayName, loginKindName, reasonName, sourceName, text,
+  clubGradeName, currencyOptions, formatNumber, gameplayName, loginKindName, loginKindTag, reasonName, sourceName, text,
   userAgentSummary,
 } from '../utils/format'
 import { formatElapsed, formatTime, isPermanent } from '../utils/time'
 import { showError } from '../utils/ui'
+import AccountGameData from './AccountGameData.vue'
 import CurrencyTag from './CurrencyTag.vue'
 import DataTable from './DataTable.vue'
+import OnlineTag from './OnlineTag.vue'
 import SignedNumber from './SignedNumber.vue'
 import TableToolbar from './TableToolbar.vue'
 
 // 账号详情: GET /api/admin/accounts/{id} (account, club, sessions, the last
-// 20 logins and races) plus the paged inventory and ledger of the account.
+// 20 logins and races), plus three lazily loaded inner tabs: the paged
+// inventory and ledger of the account and its game data
+// (GET /api/admin/accounts/{id}/game).
 
 const props = defineProps<{ accountId: string | null }>()
 const open = defineModel<boolean>({ required: true })
@@ -42,14 +46,55 @@ const inventory = usePagedTable<InventoryRow, { category: string }>(
   () => `/api/admin/accounts/${encodeURIComponent(props.accountId ?? '')}/inventory`,
   {
     filters: { category: '' },
+    ready: () => !!props.accountId,
     validate: ({ category }) => (category && !isDigits(category, 6) ? '类别编号须为非负整数' : ''),
   })
+// Ledger of this account: the account filter takes the account id.
 const ledger = usePagedTable<LedgerRow, { currency: string }>('/api/admin/ledger', {
   filters: { currency: '' },
-  fixed: () => ({ account: account.value?.username ?? '' }),
+  ready: () => !!props.accountId,
+  fixed: () => ({ account: props.accountId ?? '' }),
 })
-// Which account each lazily loaded inner list currently shows.
-const shown = { inventory: '', ledger: '' }
+
+// Game data (stats, license, time attack, quests, counters, friends, club).
+const game = ref<AccountGame | null>(null)
+const gameLoading = ref(false)
+const gameFailure = ref('')
+let gameSequence = 0
+
+async function loadGame() {
+  const id = props.accountId
+  if (!id) return
+  const sequence = ++gameSequence
+  gameLoading.value = true
+  gameFailure.value = ''
+  try {
+    const result = await api.get<AccountGame>(`/api/admin/accounts/${encodeURIComponent(id)}/game`)
+    if (sequence !== gameSequence) return
+    game.value = result
+  } catch (error) {
+    if (sequence !== gameSequence) return
+    gameFailure.value = errorMessage(error)
+    showError(error)
+  } finally {
+    if (sequence === gameSequence) gameLoading.value = false
+  }
+}
+
+function clearGame() {
+  gameSequence++
+  game.value = null
+  gameLoading.value = false
+  gameFailure.value = ''
+}
+
+type Inner = 'inventory' | 'ledger' | 'game'
+const inners: Inner[] = ['inventory', 'ledger', 'game']
+const isInner = (name: string): name is Inner => (inners as string[]).includes(name)
+// Which account each inner tab shows, and which of them need a reload when
+// next shown (after 刷新 or reopening the drawer).
+const shown: Record<Inner, string> = { inventory: '', ledger: '', game: '' }
+const stale = new Set<Inner>()
 
 async function reload() {
   const id = props.accountId
@@ -65,41 +110,54 @@ async function reload() {
     failure.value = errorMessage(error)
     showError(error)
   } finally {
-    loading.value = false
+    // A superseded answer leaves the newer account's spinner alone.
+    if (id === props.accountId) loading.value = false
   }
 }
 
+/** Loads the open inner tab: from scratch for a new account, again when stale. */
 function loadInner() {
   const id = props.accountId
-  if (!id || !open.value) return
-  if (tab.value === 'inventory' && shown.inventory !== id) {
-    shown.inventory = id
-    inventory.reset()
-  } else if (tab.value === 'ledger' && shown.ledger !== id && account.value?.id === id) {
-    shown.ledger = id
-    ledger.reset()
+  const name = tab.value
+  if (!id || !open.value || !isInner(name)) return
+  if (shown[name] !== id) {
+    shown[name] = id
+    stale.delete(name)
+    if (name === 'inventory') inventory.reset()
+    else if (name === 'ledger') ledger.reset()
+    else void loadGame()
+  } else if (stale.has(name)) {
+    // Same account: keep the inner tab's search, page and sort.
+    stale.delete(name)
+    if (name === 'inventory') void inventory.load()
+    else if (name === 'ledger') void ledger.load()
+    else void loadGame()
   }
 }
 
-/** Reloads the account and whichever inner list is open. */
+/** Reloads the account and the open inner tab; the other inner tabs reload when shown. */
 function refresh() {
-  void reload().then(() => {
-    if (tab.value === 'inventory') void inventory.load()
-    else if (tab.value === 'ledger') void ledger.load()
-  })
+  for (const name of inners) stale.add(name)
+  void reload().then(loadInner)
 }
 
 watch([open, () => props.accountId], ([isOpen, id], [, previous]) => {
   if (!isOpen || !id) return
   if (id !== previous || !detail.value || detail.value.account.id !== id) {
+    // Another account: nothing of the previous one may show meanwhile, and
+    // its answers still in flight are dropped.
     detail.value = null
     tab.value = 'inventory'
-    shown.inventory = ''
-    shown.ledger = ''
+    for (const name of inners) shown[name] = ''
+    stale.clear()
+    inventory.clear()
+    ledger.clear()
+    clearGame()
     void reload().then(loadInner)
     return
   }
-  void reload()
+  // Reopened on the same account: everything may have changed since.
+  refresh()
 })
 watch(tab, loadInner)
 
@@ -151,10 +209,9 @@ const banText = computed(() => {
           <el-descriptions-item label="有效会话">{{ formatNumber(detail.sessions) }}</el-descriptions-item>
           <el-descriptions-item label="最后登录">{{ formatTime(account.lastLoginAt) }}</el-descriptions-item>
           <el-descriptions-item label="最后登录 IP">{{ text(account.lastLoginIp) }}</el-descriptions-item>
-          <el-descriptions-item label="在线">
-            <el-tag v-if="account.online" type="success" disable-transitions>{{ account.online.nodeName || account.online.nodeId }}</el-tag>
-            <span v-else>离线</span>
-          </el-descriptions-item>
+          <el-descriptions-item label="在线"><OnlineTag :online="account.online" /></el-descriptions-item>
+          <el-descriptions-item label="最后活跃">{{ formatTime(account.lastSeenAt) }}</el-descriptions-item>
+          <el-descriptions-item label="最后活跃 IP">{{ text(account.lastSeenIp) }}</el-descriptions-item>
           <el-descriptions-item label="俱乐部">
             <template v-if="detail.club">{{ detail.club.name }}（{{ clubGradeName(detail.club.grade) }}）</template>
             <template v-else>—</template>
@@ -181,7 +238,15 @@ const banText = computed(() => {
           <el-tab-pane label="物品" name="inventory">
             <TableToolbar :table="inventory" keyword="物品名称 / 物品编号">
               <el-form-item label="类别编号">
-                <el-input v-model="inventory.filters.category" maxlength="6" inputmode="numeric" clearable placeholder="数字" class="narrow-input" />
+                <el-input
+                  v-model="inventory.filters.category"
+                  maxlength="6"
+                  inputmode="numeric"
+                  clearable
+                  placeholder="数字"
+                  class="narrow-input"
+                  @clear="inventory.search()"
+                />
               </el-form-item>
             </TableToolbar>
             <DataTable :table="inventory" size="small" row-key="id">
@@ -211,7 +276,7 @@ const banText = computed(() => {
           </el-tab-pane>
 
           <el-tab-pane label="货币流水" name="ledger">
-            <TableToolbar :table="ledger" range="时间">
+            <TableToolbar :table="ledger" keyword="关联 / 备注" range="时间">
               <el-form-item label="货币">
                 <el-select v-model="ledger.filters.currency" clearable placeholder="全部" class="narrow-input" @change="ledger.search()">
                   <el-option v-for="option in currencyOptions" :key="option.value" :value="option.value" :label="option.label" />
@@ -235,7 +300,7 @@ const banText = computed(() => {
                 <template #default="{ row }">{{ reasonName(row.reason) }}</template>
               </el-table-column>
               <el-table-column label="关联" min-width="160" show-overflow-tooltip>
-                <template #default="{ row }">{{ text(row.refId) }}</template>
+                <template #default="{ row }"><span class="mono">{{ text(row.refId) }}</span></template>
               </el-table-column>
               <el-table-column label="备注" min-width="140" show-overflow-tooltip>
                 <template #default="{ row }">{{ text(row.note) }}</template>
@@ -243,17 +308,21 @@ const banText = computed(() => {
             </DataTable>
           </el-tab-pane>
 
+          <el-tab-pane label="游戏数据" name="game">
+            <AccountGameData :data="game" :loading="gameLoading" :failure="gameFailure" @retry="loadGame" />
+          </el-tab-pane>
+
           <el-tab-pane :label="`登录记录（最近 ${detail.logins?.length ?? 0} 条）`" name="logins">
             <el-table :data="detail.logins ?? []" border stripe size="small" empty-text="暂无记录">
               <el-table-column label="时间" width="170">
                 <template #default="{ row }">{{ formatTime(row.at) }}</template>
               </el-table-column>
-              <el-table-column label="类型" width="80">
+              <el-table-column label="类型" width="96">
                 <template #default="{ row }">
-                  <el-tag :type="row.kind === 'register' ? 'success' : 'info'" disable-transitions>{{ loginKindName(row.kind) }}</el-tag>
+                  <el-tag :type="loginKindTag(row.kind)" disable-transitions>{{ loginKindName(row.kind) }}</el-tag>
                 </template>
               </el-table-column>
-              <el-table-column label="IP" width="150">
+              <el-table-column label="IP" width="150" show-overflow-tooltip>
                 <template #default="{ row }">{{ text(row.ip) }}</template>
               </el-table-column>
               <el-table-column label="浏览器" min-width="200">

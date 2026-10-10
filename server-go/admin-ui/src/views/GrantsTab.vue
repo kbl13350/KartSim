@@ -8,20 +8,27 @@ import SignedNumber from '../components/SignedNumber.vue'
 import TableToolbar from '../components/TableToolbar.vue'
 import { usePagedTable } from '../composables/usePagedTable'
 import { useTab } from '../composables/useTabs'
-import { text } from '../utils/format'
+import { currencyOptions, text } from '../utils/format'
 import { formatTime } from '../utils/time'
 
 // 发放记录: GET /api/admin/grants (admin_grants: grants and deductions; q
-// matches the account's username and nickname and the admin; sort at/amount).
+// matches the account's username and nickname and the admin; currency;
+// sort at/amount).
 
-const table = usePagedTable<GrantRow>('/api/admin/grants')
+const table = usePagedTable<GrantRow, { currency: string }>('/api/admin/grants', { filters: { currency: '' } })
 useTab('grants', () => table.load())
 onMounted(() => table.load())
 </script>
 
 <template>
   <el-card shadow="never" class="page-card">
-    <TableToolbar :table="table" keyword="账号 / 昵称 / 管理员" range="时间" />
+    <TableToolbar :table="table" keyword="账号 / 昵称 / 管理员" range="时间">
+      <el-form-item label="货币">
+        <el-select v-model="table.filters.currency" clearable placeholder="全部" class="filter-select" @change="table.search()">
+          <el-option v-for="option in currencyOptions" :key="option.value" :value="option.value" :label="option.label" />
+        </el-select>
+      </el-form-item>
+    </TableToolbar>
     <DataTable :table="table">
       <el-table-column prop="at" label="时间" width="175" sortable="custom">
         <template #default="{ row }">{{ formatTime(row.at) }}</template>

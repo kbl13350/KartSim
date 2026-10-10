@@ -148,7 +148,7 @@ async function save(body: LotterySave) {
 
 function submit() {
   const activity = editing.value
-  if (!activity) return
+  if (!activity || saving.value) return
   editFailure.value = ''
   const body: LotterySave = { activity: activity.activity, enabled: form.enabled }
   if (form.start) body.start = parseBeijing(form.start)
@@ -170,7 +170,7 @@ function submit() {
 
 async function reset() {
   const activity = editing.value
-  if (!activity) return
+  if (!activity || saving.value) return
   if (!await confirmAction(`恢复 ${activity.name || activity.activity} 的默认设置（一直开放、默认每日道具）？`, '恢复默认')) return
   void save({ activity: activity.activity, reset: true })
 }
@@ -270,7 +270,7 @@ async function reset() {
           </div>
         </el-form-item>
         <el-alert v-if="editFailure" type="error" :title="editFailure" :closable="false" show-icon />
-        <button type="submit" hidden />
+        <button type="submit" hidden :disabled="saving" />
       </el-form>
       <template #footer>
         <el-button @click="editOpen = false">取消</el-button>

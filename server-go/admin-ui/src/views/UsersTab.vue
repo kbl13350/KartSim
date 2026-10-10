@@ -6,7 +6,9 @@ import AccountDrawer from '../components/AccountDrawer.vue'
 import DataTable from '../components/DataTable.vue'
 import EditAccountDialog from '../components/EditAccountDialog.vue'
 import GrantDialog from '../components/GrantDialog.vue'
+import OnlineTag from '../components/OnlineTag.vue'
 import TableToolbar from '../components/TableToolbar.vue'
+import { useAfterKick } from '../composables/useAfterKick'
 import { usePagedTable } from '../composables/usePagedTable'
 import { useNarrow } from '../composables/useNarrow'
 import { useTab } from '../composables/useTabs'
@@ -16,8 +18,9 @@ import { formatNumber, text } from '../utils/format'
 import { formatTime, isPermanent } from '../utils/time'
 
 // 用户管理: GET /api/admin/accounts (q: 账号/昵称/IP; online/banned/admin
-// filters; sort createdAt/lastLoginAt/level/coupon/lucci/koin; from/to on
-// the registration time).
+// filters; sort createdAt/lastLoginAt/lastSeenAt/level/coupon/lucci/koin;
+// from/to on the registration time). 最后活跃 is the last request made with
+// any of the account's sessions, 最后登录 the last password login.
 
 const table = usePagedTable<AccountRow, { online: boolean; banned: boolean; admin: boolean }>(
   '/api/admin/accounts', { filters: { online: false, banned: false, admin: false } })
@@ -50,8 +53,11 @@ function grant(row: AccountRow | null) {
   grantOpen.value = true
 }
 
+// After a kick the account shows 断开中 until its node's next heartbeat.
+const afterKick = useAfterKick(afterChange)
+
 async function kick(row: AccountRow) {
-  if (await kickAccount(row)) afterChange()
+  if (await kickAccount(row)) afterKick()
 }
 
 /** Refreshes the list and the open drawer after an edit, grant or kick. */
@@ -60,8 +66,14 @@ function afterChange() {
   if (drawerOpen.value) drawer.value?.reload()
 }
 
+/** The ban tag (to the minute; the tooltip has the second and the reason). */
 function banLabel(row: AccountRow) {
-  return isPermanent(row.bannedUntil) ? '永久封禁' : `封禁至 ${formatTime(row.bannedUntil)}`
+  return isPermanent(row.bannedUntil) ? '永久封禁' : `封禁至 ${formatTime(row.bannedUntil).slice(0, 16)}`
+}
+
+function banTip(row: AccountRow) {
+  const until = isPermanent(row.bannedUntil) ? '永久封禁' : `封禁至 ${formatTime(row.bannedUntil)}`
+  return `${until}；${row.banReason ? `原因：${row.banReason}` : '未填写原因'}`
 }
 </script>
 
@@ -114,17 +126,20 @@ function banLabel(row: AccountRow) {
       <el-table-column label="最后登录 IP" min-width="130" show-overflow-tooltip>
         <template #default="{ row }">{{ text(row.lastLoginIp) }}</template>
       </el-table-column>
-      <el-table-column label="在线" min-width="110">
-        <template #default="{ row }">
-          <el-tag v-if="row.online" type="success" disable-transitions>{{ row.online.nodeName || row.online.nodeId }}</el-tag>
-          <span v-else class="muted">离线</span>
-        </template>
+      <el-table-column prop="lastSeenAt" label="最后活跃" width="175" sortable="custom">
+        <template #default="{ row }">{{ formatTime(row.lastSeenAt) }}</template>
       </el-table-column>
-      <el-table-column label="状态" min-width="150">
+      <el-table-column label="最后活跃 IP" min-width="130" show-overflow-tooltip>
+        <template #default="{ row }">{{ text(row.lastSeenIp) }}</template>
+      </el-table-column>
+      <el-table-column label="在线" min-width="110">
+        <template #default="{ row }"><OnlineTag :online="row.online" /></template>
+      </el-table-column>
+      <el-table-column label="状态" min-width="290">
         <template #default="{ row }">
           <div class="tags">
             <el-tag v-if="row.admin" type="warning" disable-transitions>管理员</el-tag>
-            <el-tooltip v-if="row.banned" :content="row.banReason ? `原因：${row.banReason}` : '未填写原因'" placement="top">
+            <el-tooltip v-if="row.banned" :content="banTip(row)" placement="top">
               <el-tag type="danger" disable-transitions>{{ banLabel(row) }}</el-tag>
             </el-tooltip>
             <el-tag v-if="!row.onboarded" type="info" disable-transitions>未领新手礼包</el-tag>
@@ -160,5 +175,9 @@ function banLabel(row: AccountRow) {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+}
+/* A tag never truncates; tags that do not fit go to the next line whole. */
+.tags :deep(.el-tag) {
+  flex: none;
 }
 </style>

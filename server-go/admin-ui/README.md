@@ -29,7 +29,7 @@ npm run dev:mock     # 任意用户名/密码可登录；用户名 player 模拟
 MOCK_REDIS_DOWN=1 npm run dev:mock   # 模拟集群注册表（Redis）不可用：概览在线/节点/房间为“—”
 ```
 
-假数据里 `rider7` 模拟 `KART_ADMIN_USERNAMES` 中的账号（撤销管理员后仍是管理员），`admin` 是当前登录的管理员（不能踢自己下线）。
+假数据里 `rider7` 模拟 `KART_ADMIN_USERNAMES` 中的超级管理员（其他管理员编辑或踢下线得到 409 `PROTECTED_ADMIN`），`admin` 是当前登录的管理员（不能踢自己下线；重置自己的密码会作废后台会话并回到登录页）。被踢下线或封禁的在线账号先显示“断开中”，5 秒后离线；节点列表里有一个离线节点（`四区`）和一个内存不足 1 MB 的空闲节点。
 
 ## 构建
 

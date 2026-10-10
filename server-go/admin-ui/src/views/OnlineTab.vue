@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { api } from '../api/client'
 import type { NodeRow, NodesResponse, OnlineRow } from '../api/types'
 import DataTable from '../components/DataTable.vue'
 import TableToolbar from '../components/TableToolbar.vue'
+import { useAfterKick } from '../composables/useAfterKick'
 import { usePagedTable } from '../composables/usePagedTable'
 import { useTab } from '../composables/useTabs'
 import { isSelf } from '../session'
@@ -12,10 +13,15 @@ import { text } from '../utils/format'
 
 // 在线玩家: GET /api/admin/online (from the game nodes' registrations; q
 // matches nickname/account, node narrows to one node; sort name (default),
-// username, node, room).
+// username, node, room). A kicked or banned player, or one whose account
+// logged in elsewhere, stays listed as 断开中 (leaving) until its node's
+// next heartbeat drops it, so the list reloads again a few seconds after a
+// kick.
 
 const table = usePagedTable<OnlineRow, { node: string }>('/api/admin/online', { filters: { node: '' } })
 const nodes = ref<NodeRow[]>([])
+// Offline nodes have no players to filter by.
+const liveNodes = computed(() => nodes.value.filter((node) => node.status !== 'offline'))
 
 async function loadNodes() {
   try {
@@ -33,11 +39,11 @@ function refresh() {
 useTab('online', refresh)
 onMounted(refresh)
 
+const afterKick = useAfterKick(() => void table.load({ silent: true }))
+
 async function kick(row: OnlineRow) {
-  if (!row.accountId) return
-  if (await kickAccount({ id: row.accountId, username: row.username, nickname: row.name })) {
-    void table.load({ silent: true })
-  }
+  if (!row.accountId || row.leaving) return
+  if (await kickAccount({ id: row.accountId, username: row.username, nickname: row.name })) afterKick()
 }
 </script>
 
@@ -46,7 +52,7 @@ async function kick(row: OnlineRow) {
     <TableToolbar :table="table" keyword="昵称 / 账号">
       <el-form-item label="节点">
         <el-select v-model="table.filters.node" clearable filterable placeholder="全部节点" class="filter-select" @change="table.search()">
-          <el-option v-for="node in nodes" :key="node.nodeId" :value="node.nodeId" :label="node.name || node.nodeId" />
+          <el-option v-for="node in liveNodes" :key="node.nodeId" :value="node.nodeId" :label="node.name || node.nodeId" />
         </el-select>
       </el-form-item>
     </TableToolbar>
@@ -54,13 +60,21 @@ async function kick(row: OnlineRow) {
       <el-table-column prop="name" label="昵称" min-width="140" show-overflow-tooltip sortable="custom">
         <template #default="{ row }">{{ text(row.name) }}</template>
       </el-table-column>
+      <el-table-column label="状态" width="90">
+        <template #default="{ row }">
+          <el-tooltip v-if="row.leaving" content="已被踢下线、封禁或在别处登录，节点下次心跳时断开" placement="top">
+            <el-tag type="warning" disable-transitions>断开中</el-tag>
+          </el-tooltip>
+          <el-tag v-else type="success" disable-transitions>在线</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column prop="username" label="账号" min-width="140" sortable="custom">
         <template #default="{ row }">
           <el-tag v-if="row.guest || !row.accountId" type="info" disable-transitions>游客</el-tag>
           <span v-else>{{ text(row.username) }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="node" label="所在节点" min-width="160" sortable="custom">
+      <el-table-column prop="node" label="所在节点" min-width="160" show-overflow-tooltip sortable="custom">
         <template #default="{ row }">
           {{ row.nodeName || row.nodeId }}
           <span v-if="row.nodeName && row.nodeId !== row.nodeName" class="muted mono">（{{ row.nodeId }}）</span>
@@ -78,7 +92,7 @@ async function kick(row: OnlineRow) {
       <el-table-column label="操作" width="100" fixed="right">
         <template #default="{ row }">
           <el-button
-            v-if="row.accountId && !row.guest"
+            v-if="row.accountId && !row.guest && !row.leaving"
             link
             type="danger"
             :disabled="isSelf(row.accountId)"

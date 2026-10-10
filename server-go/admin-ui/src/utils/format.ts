@@ -9,6 +9,14 @@ export function formatNumber(value: number | null | undefined): string {
   return numbers.format(value)
 }
 
+const heap = new Intl.NumberFormat('zh-CN', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+
+/** A heap size in MB with one decimal ("0.6 MB"); "—" when missing. */
+export function formatHeap(value: number | null | undefined): string {
+  if (value === null || value === undefined || !Number.isFinite(value)) return '—'
+  return `${heap.format(value)} MB`
+}
+
 /** +1,234 / -1,234. */
 export function formatSigned(value: number | null | undefined): string {
   if (value === null || value === undefined || !Number.isFinite(value)) return '—'
@@ -99,10 +107,18 @@ export function gameplayName(gameplay: string | null | undefined): string {
 
 export const gameplayOptions = Object.entries(gameplayNames).map(([value, label]) => ({ value, label }))
 
-export const loginKindNames: Record<string, string> = { register: '注册', login: '登录' }
+export const loginKindNames: Record<string, string> = { login: '登录', register: '注册', resume: '自动登录' }
 
 export function loginKindName(kind: string | null | undefined): string {
   return kind ? loginKindNames[kind] ?? kind : '—'
+}
+
+export const loginKindOptions = Object.entries(loginKindNames).map(([value, label]) => ({ value, label }))
+
+const loginKindTags: Record<string, TagType> = { register: 'success', login: 'info', resume: 'primary' }
+
+export function loginKindTag(kind: string | null | undefined): TagType {
+  return (kind && loginKindTags[kind]) || 'info'
 }
 
 export const drawKindNames: Record<string, string> = { treasure: '寻宝', gacha: '精品道具场' }
@@ -116,6 +132,53 @@ const clubGrades: Record<string, string> = { '1': '会长', '2': '管理层', '3
 export function clubGradeName(grade: number | string | null | undefined): string {
   if (grade === null || grade === undefined || grade === '') return '—'
   return clubGrades[String(grade)] ?? String(grade)
+}
+
+/** ClubRow.state. */
+export const clubStates: Record<string, { label: string; type: TagType }> = {
+  active: { label: '正常', type: 'success' },
+  breaking: { label: '解散中', type: 'warning' },
+  disbanded: { label: '已解散', type: 'danger' },
+}
+
+export const clubStateOptions = Object.entries(clubStates).map(([value, { label }]) => ({ value, label }))
+
+export function clubState(state: string | null | undefined): { label: string; type: TagType } {
+  return (state && clubStates[state]) || { label: state || '—', type: 'info' }
+}
+
+/** License levels (驾照: baseStringBag licenseLevel1..6); 0 is none. */
+const licenseLevels: Record<string, string> = { '0': '无', '1': '新手', '2': '初级', '3': 'L3', '4': 'L2', '5': 'L1', '6': 'PRO' }
+
+export function licenseLevelName(level: number | null | undefined): string {
+  if (level === null || level === undefined) return '—'
+  return licenseLevels[String(level)] ?? `等级 ${level}`
+}
+
+/** Reward box sources (rewardMajorType). */
+export const rewardBoxSources: Record<string, { label: string; type: TagType }> = {
+  quest: { label: '任务', type: 'primary' },
+  club: { label: '俱乐部', type: 'success' },
+  admin: { label: '管理员', type: 'warning' },
+}
+
+export const rewardBoxSourceOptions = Object.entries(rewardBoxSources).map(([value, { label }]) => ({ value, label }))
+
+export function rewardBoxSource(source: string | null | undefined): { label: string; type: TagType } {
+  return (source && rewardBoxSources[source]) || { label: source || '—', type: 'info' }
+}
+
+/** RewardBoxRow.state. */
+export const rewardBoxStates: Record<string, { label: string; type: TagType }> = {
+  unclaimed: { label: '未领取', type: 'warning' },
+  claimed: { label: '已领取', type: 'success' },
+  expired: { label: '已过期', type: 'info' },
+}
+
+export const rewardBoxStateOptions = Object.entries(rewardBoxStates).map(([value, { label }]) => ({ value, label }))
+
+export function rewardBoxState(state: string | null | undefined): { label: string; type: TagType } {
+  return (state && rewardBoxStates[state]) || { label: state || '—', type: 'info' }
 }
 
 /** A short "Chrome 140 · Windows" from a user agent ("—" when empty). */
