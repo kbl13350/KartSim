@@ -10,8 +10,9 @@ import { formatNumber, gameplayName, gameplayOptions, text } from '../utils/form
 import { formatElapsed, formatTime } from '../utils/time'
 
 // 比赛记录: GET /api/admin/races (one row per settled race with its
-// participants by rank; gameplay, track, account, from/to). The track filter
-// is a track id (printable ASCII), not the Chinese title.
+// participants by rank; q: 赛道 ID / 房间 ID / 比赛 ID contains; gameplay,
+// track, account, from/to). The track filter is a track id (printable
+// ASCII), not the Chinese title.
 
 const table = usePagedTable<RaceRow, { account: string; gameplay: string; track: string }>(
   '/api/admin/races', {
@@ -35,9 +36,9 @@ function hasReward(participants: RaceParticipantRow[] | null | undefined, key: '
 
 <template>
   <el-card shadow="never" class="page-card">
-    <TableToolbar :table="table" range="时间">
+    <TableToolbar :table="table" keyword="赛道 ID / 房间 / 比赛 ID" range="时间">
       <el-form-item label="账号">
-        <el-input v-model="table.filters.account" maxlength="24" clearable placeholder="用户名" class="filter-input" />
+        <el-input v-model="table.filters.account" maxlength="24" clearable placeholder="用户名" class="filter-input" @clear="table.search()" />
       </el-form-item>
       <el-form-item label="玩法">
         <el-select v-model="table.filters.gameplay" clearable placeholder="全部" class="filter-select" @change="table.search()">
@@ -45,7 +46,7 @@ function hasReward(participants: RaceParticipantRow[] | null | undefined, key: '
         </el-select>
       </el-form-item>
       <el-form-item label="赛道">
-        <el-input v-model="table.filters.track" maxlength="64" clearable placeholder="赛道 ID（英文）" class="filter-input" />
+        <el-input v-model="table.filters.track" maxlength="64" clearable placeholder="赛道 ID（英文）" class="filter-input" @clear="table.search()" />
       </el-form-item>
     </TableToolbar>
     <DataTable :table="table" row-key="raceId">
@@ -102,10 +103,10 @@ function hasReward(participants: RaceParticipantRow[] | null | undefined, key: '
       <el-table-column label="最好成绩" width="110" align="right">
         <template #default="{ row }"><span class="num">{{ formatElapsed(row.participants?.[0]?.elapsedMs) }}</span></template>
       </el-table-column>
-      <el-table-column label="房间" width="90">
-        <template #default="{ row }">{{ text(row.roomId) }}</template>
+      <el-table-column label="房间" min-width="120" show-overflow-tooltip>
+        <template #default="{ row }"><span class="mono">{{ text(row.roomId) }}</span></template>
       </el-table-column>
-      <el-table-column label="比赛 ID" min-width="180" show-overflow-tooltip>
+      <el-table-column label="比赛 ID" min-width="160" show-overflow-tooltip>
         <template #default="{ row }"><span class="mono muted">{{ row.raceId }}</span></template>
       </el-table-column>
     </DataTable>

@@ -12,9 +12,11 @@ import { isAsciiToken } from '../utils/filters'
 import { currencyOptions, formatNumber, reasonName, reasonOptions, text } from '../utils/format'
 import { formatTime } from '../utils/time'
 
-// 货币流水: GET /api/admin/ledger (wallet_ledger and exp_ledger; account,
-// currency, reason, from/to; sort at/delta). A typed reason (allow-create)
-// must be a reason code: printable ASCII, at most 24 characters.
+// 货币流水: GET /api/admin/ledger (wallet_ledger and exp_ledger; q: 关联
+// (refId) / 备注 contains; account, currency, reason, from/to; sort
+// at/delta). A typed reason (allow-create) must be a reason code: printable
+// ASCII, at most 24 characters. The filters are sized so the toolbar fits
+// one line from 1440px.
 
 const table = usePagedTable<LedgerRow, { account: string; currency: string; reason: string }>(
   '/api/admin/ledger', {
@@ -29,9 +31,9 @@ onMounted(() => table.load())
 
 <template>
   <el-card shadow="never" class="page-card">
-    <TableToolbar :table="table" range="时间">
+    <TableToolbar :table="table" keyword="关联 / 备注" range="时间" class="ledger-toolbar">
       <el-form-item label="账号">
-        <el-input v-model="table.filters.account" maxlength="24" clearable placeholder="用户名" class="filter-input" />
+        <el-input v-model="table.filters.account" maxlength="24" clearable placeholder="用户名" class="filter-input" @clear="table.search()" />
       </el-form-item>
       <el-form-item label="货币">
         <el-select v-model="table.filters.currency" clearable placeholder="全部" class="filter-select" @change="table.search()">
@@ -49,6 +51,7 @@ onMounted(() => table.load())
           class="reason-select"
           @change="table.search()"
         >
+          <template #label="{ value }">{{ reasonName(String(value)) }}</template>
           <el-option v-for="option in reasonOptions" :key="option.value" :value="option.value" :label="option.label" />
         </el-select>
       </el-form-item>
@@ -89,6 +92,25 @@ onMounted(() => table.load())
 <style scoped>
 .reason-select {
   width: 200px;
+}
+/* Keyword, three filters, the range and the buttons share one line from
+   1440px (a 1351px toolbar with a classic scrollbar). */
+@media (min-width: 641px) {
+  .ledger-toolbar.toolbar :deep(.keyword) {
+    width: 160px;
+  }
+  .ledger-toolbar .filter-input {
+    width: 110px;
+  }
+  .ledger-toolbar .filter-select {
+    width: 90px;
+  }
+  .ledger-toolbar .reason-select {
+    width: 140px;
+  }
+  .ledger-toolbar.toolbar :deep(.range) {
+    width: 350px;
+  }
 }
 @media (max-width: 640px) {
   .reason-select {

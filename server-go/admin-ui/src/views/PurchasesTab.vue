@@ -7,20 +7,27 @@ import DataTable from '../components/DataTable.vue'
 import TableToolbar from '../components/TableToolbar.vue'
 import { usePagedTable } from '../composables/usePagedTable'
 import { useTab } from '../composables/useTabs'
-import { formatNumber, text } from '../utils/format'
+import { currencyOptions, formatNumber, text } from '../utils/format'
 import { formatTime } from '../utils/time'
 
 // 购买记录: GET /api/admin/purchases (shop purchases; q matches the username,
-// nickname and offer id; sort at/price).
+// nickname and offer id; currency (not exp); sort at/price).
 
-const table = usePagedTable<PurchaseRow>('/api/admin/purchases')
+const table = usePagedTable<PurchaseRow, { currency: string }>('/api/admin/purchases', { filters: { currency: '' } })
+const priceCurrencies = currencyOptions.filter((option) => option.value !== 'exp')
 useTab('purchases', () => table.load())
 onMounted(() => table.load())
 </script>
 
 <template>
   <el-card shadow="never" class="page-card">
-    <TableToolbar :table="table" keyword="账号 / 昵称 / 商品编号" range="时间" />
+    <TableToolbar :table="table" keyword="账号 / 昵称 / 商品编号" range="时间">
+      <el-form-item label="货币">
+        <el-select v-model="table.filters.currency" clearable placeholder="全部" class="filter-select" @change="table.search()">
+          <el-option v-for="option in priceCurrencies" :key="option.value" :value="option.value" :label="option.label" />
+        </el-select>
+      </el-form-item>
+    </TableToolbar>
     <DataTable :table="table" row-key="id">
       <el-table-column prop="at" label="时间" width="175" sortable="custom">
         <template #default="{ row }">{{ formatTime(row.at) }}</template>

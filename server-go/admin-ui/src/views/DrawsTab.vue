@@ -87,7 +87,15 @@ function showResult(title: string, value: unknown) {
       <el-tab-pane label="开箱记录" name="boxes">
         <TableToolbar :table="boxes" keyword="账号 / 昵称" range="时间">
           <el-form-item label="箱子编号">
-            <el-input v-model="boxes.filters.box" maxlength="9" inputmode="numeric" clearable placeholder="箱子物品编号" class="filter-input" />
+            <el-input
+              v-model="boxes.filters.box"
+              maxlength="9"
+              inputmode="numeric"
+              clearable
+              placeholder="箱子物品编号"
+              class="filter-input"
+              @clear="boxes.search()"
+            />
           </el-form-item>
         </TableToolbar>
         <DataTable :table="boxes">
