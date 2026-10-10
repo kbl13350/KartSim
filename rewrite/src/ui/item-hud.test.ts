@@ -158,6 +158,9 @@ test("准星按阶段换图并以舞台坐标居中", () => {
     assert.deepEqual(command!.worldRect, { left: 800 - size / 2, top: 400 - size / 2,
       right: 800 + size / 2, bottom: 400 + size / 2 });
   }
+  // In range the reticle closes from 256 toward the red reticle's 128 as the lock builds.
+  const [half] = frame({ aim: { phase: "inrange", x: 800, y: 400, progress: 0.5 } });
+  assert.deepEqual(half!.worldRect, { left: 800 - 96, top: 400 - 96, right: 800 + 96, bottom: 400 + 96 });
 });
 
 test("我的受击提示：最新 3 条、2000 ms 寿命、后 1000 ms 淡出、可关闭", () => {

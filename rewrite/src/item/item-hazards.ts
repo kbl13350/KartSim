@@ -77,7 +77,9 @@ function hazardRadius(object: ItemTrackObject, kind: ItemHazardKind, catalog: It
     if (!/^\d+(?:\.\d+)?$/.test(size) || !(value > 0)) throw Error(`道具陷阱 ${object.name} size=${size} 无效。`);
     return Math.fround(value);
   }
-  const radius = catalog.get(HAZARD_ITEM_IDX[kind])?.behaviour.radius;
+  // A water mine is touched at its Set size (2.0); its Explode size (10.0) is the burst.
+  const behaviour = catalog.get(HAZARD_ITEM_IDX[kind])?.behaviour;
+  const radius = behaviour?.triggerRadius ?? behaviour?.radius;
   if (radius === undefined) throw Error(`道具 ${kind} 缺少触发半径。`);
   return Math.fround(radius);
 }

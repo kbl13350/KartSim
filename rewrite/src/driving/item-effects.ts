@@ -44,14 +44,21 @@ const TIMED_KINDS: ReadonlySet<ItemEffectKind> = new Set(["reverse", "slow", "sh
 
 /** Reconstructed shapes and scales; item lifetimes are passed to `apply`. */
 export const ITEM_EFFECT_TUNING = Object.freeze({
-  /** Banana: yaw turns over the effect, with the rate falling linearly to zero. */
-  spinTurns: 2,
+  /**
+   * Banana: yaw turns over the effect, with the rate falling linearly to zero.
+   * 0: the kart only loses grip and speed here; the eight turns of the
+   * original's 당함 are drawn by the hit's kart motion (item-kart-motion.ts).
+   */
+  spinTurns: 0,
   /** Banana: horizontal speed decay while the tires have no grip, per second. */
   spinSpeedDecayPerSecond: 1.5,
-  /** Water bubble: float height, rise time and bob. */
-  trapFloatHeight: 0.8,
+  /**
+   * Water bubble: float height, rise time and bob. 0: the bubble model lifts
+   * the drawn kart into itself (its firedkart, 2.2–3.65 m, item-kart-motion.ts).
+   */
+  trapFloatHeight: 0,
   trapRiseMs: 400,
-  trapBobHeight: 0.08,
+  trapBobHeight: 0,
   trapBobPeriodMs: 1200,
   /** Escape mashing: each left/right press shortens the trap, never below the minimum. */
   escapePressMs: 120,
@@ -71,10 +78,14 @@ export const ITEM_EFFECT_TUNING = Object.freeze({
   knockbackMinimumSpeed: 8,
   knockbackMaximumSpeed: 25,
   knockbackSpeedDecayPerSecond: 2,
-  /** Missile and mine: airborne arc with full rolls, then a stop until the effect ends. */
-  launchHeight: 2.5,
+  /**
+   * Missile and mine: airborne arc with full rolls, then a stop until the
+   * effect ends. 0: the kart is held where it was hit and the explosion's
+   * firedkart throws the drawn kart (~11 m, three flips, item-kart-motion.ts).
+   */
+  launchHeight: 0,
   launchAirMs: 1000,
-  launchTurns: 1,
+  launchTurns: 0,
   /** UFO and thunderbolt scales (Appendix B). */
   slowDriveScale: 0.4,
   slowDragScale: 2,

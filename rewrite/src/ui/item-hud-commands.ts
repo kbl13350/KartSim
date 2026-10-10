@@ -188,7 +188,11 @@ export function buildItemHudCommands(assets: ItemHudAssets,
 
   if (state.aim) {
     const crosshair = assets.crosshairs[state.aim.phase];
-    const { width, height } = crosshair.texture;
+    // In range the wide reticle closes in on the red one's size as the lock builds.
+    const red = assets.crosshairs.ontarget.texture;
+    const closing = state.aim.phase === "inrange" ? state.aim.progress ?? 0 : 0;
+    const width = Math.round(crosshair.texture.width + (red.width - crosshair.texture.width) * closing);
+    const height = Math.round(crosshair.texture.height + (red.height - crosshair.texture.height) * closing);
     const left = Math.round(state.aim.x - width / 2);
     const top = Math.round(state.aim.y - height / 2);
     push(hudPanel(crosshair.node, crosshair.name, crosshair.texture,

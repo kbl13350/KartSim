@@ -242,7 +242,7 @@ func TestUseTargets(t *testing.T) {
 		{"a2", RandomRocket, "", []int{1}, []string{"b2"}}, // b1, b2 ahead
 		{"b1", RandomRocket, "", nil, []string{}},          //
 		{"a2", Thunderbolt, "", nil, []string{"b1", "b2"}}, // all opponents ahead
-		{"a1", Cloud, "", nil, []string{"b2"}},             // all opponents behind
+		{"a1", Cloud, "", nil, []string{}},                 // area: stands where it was used
 		{"b2", Devil, "", nil, []string{"a1", "a2"}},       // all opponents
 		{"b2", SlotLock, "", nil, []string{"a1", "a2"}},    //
 		{"a2", Angel, "", nil, []string{"a2", "a1"}},       // own team, user first
@@ -327,7 +327,7 @@ func TestEtaFromRouteGap(t *testing.T) {
 	}{
 		{"p3", "", WaterFly, 833},     // 50 m to p2 at 60 m/s
 		{"p3", "", GuideRocket, 1100}, // 110 m to p1 at 100 m/s
-		{"p4", "", UFO, 1500},         // capped at the UFO's Use 1500
+		{"p4", "", UFO, 0},            // no flight: it lands at Use.life, whatever the gap
 		{"p2", "", WaterFly, 1000},    // 60 m
 		{"p2", "p1", Rocket, 600},     // aimed
 		{"p4", "", RandomRocket, 1500},
@@ -510,14 +510,40 @@ func TestHitReports(t *testing.T) {
 		t.Fatalf("banana repeat %+v %v", repeat, err)
 	}
 
-	// Water bombs and barricades spare the user's team; time bombs do not.
+	// A water bomb catches anyone but its user, teammates too
+	// (bonusStageProperty@cn.xml:103); barricades spare the user's team.
 	waterBomb := use("a1", WaterBomb, "", 0)
-	_, _, err = hit("a2", waterBomb, ResultHit, "", 1_000)
-	wantErr(t, err, ErrInvalidTarget)
 	_, _, err = hit("a1", waterBomb, ResultHit, "", 1_000)
 	wantErr(t, err, ErrInvalidTarget)
-	if _, _, err := hit("b2", waterBomb, ResultHit, "", 1_000); err != nil {
-		t.Fatal(err)
+	for _, victim := range []string{"a2", "b2"} {
+		if _, _, err := hit(victim, waterBomb, ResultHit, "", 1_000); err != nil {
+			t.Fatal(victim, err)
+		}
+	}
+	// The first kart into a barricade breaks it; a tornado stands on.
+	barricade := use("a1", Barricade, "", 0)
+	if broke, _, err := hit("b2", barricade, ResultHit, "", 1_500); err != nil || !broke.Removed {
+		t.Fatalf("barricade %+v %v", broke, err)
+	}
+	_, _, err = hit("b1", barricade, ResultHit, "", 1_600)
+	wantErr(t, err, ErrInvalidUse)
+	tornado := use("a1", AbyssBarricade, "", 0)
+	for _, victim := range []string{"b2", "b1"} {
+		if stood, _, err := hit(victim, tornado, ResultHit, "", 1_500); err != nil || stood.Removed {
+			t.Fatalf("tornado %s %+v %v", victim, stood, err)
+		}
+	}
+	// A cloud stands where it was used: any opponent who drives through it is
+	// covered, the user's team never; shields and angels do not stop it.
+	cloud := use("a1", Cloud, "", 0)
+	_, _, err = hit("a2", cloud, ResultHit, "", 2_000)
+	wantErr(t, err, ErrInvalidTarget)
+	_, _, err = hit("b1", cloud, ResultBlocked, ByShield, 2_000)
+	wantErr(t, err, ErrInvalidBy)
+	for _, victim := range []string{"b1", "b2"} {
+		if _, fresh, err := hit(victim, cloud, ResultHit, "", 2_000); err != nil || !fresh {
+			t.Fatalf("cloud on %s: %v", victim, err)
+		}
 	}
 	timeBomb := use("a1", TimeBomb, "", 0)
 	for _, victim := range []string{"a1", "a2", "b1"} {

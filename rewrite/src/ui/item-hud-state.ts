@@ -86,7 +86,8 @@ export interface ItemHudState {
   /** @deprecated feed `changers`. */
   itemChanger?: ItemChangerCount;
   /** Lock-on reticle at a 1600×900 stage position. */
-  aim?: { phase: ItemAimPhase; x: number; y: number };
+  /** The reticle on the 1600×900 stage; `progress` (0–1) of the lock while in range. */
+  aim?: { phase: ItemAimPhase; x: number; y: number; progress?: number };
   /** I am targeted. */
   warning?: "rocket" | "waterfly";
   /**

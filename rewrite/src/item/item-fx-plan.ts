@@ -86,6 +86,8 @@ export interface FxModel {
    * a newer visual of the model, which waits for a free copy instead.
    */
   readonly placed?: true;
+  /** The state's `itemSize`: how big its `item` model stands on the track (the tornado's 0.5/0.8). */
+  readonly scale?: number;
 }
 
 export type FxSound = string;
@@ -168,6 +170,12 @@ interface Common {
   readonly special: BlockFx;
   /** The kart effects this item causes; kinds it does not list keep the default look. */
   readonly kart: KartVisuals;
+  /**
+   * The hit models whose `firedkart` node moves the victim's kart, by kart
+   * effect (`small`: a small or balloon missile hit), as `.1s` paths
+   * (item-kart-motion.ts decides whether a model really moves it).
+   */
+  readonly motions?: Readonly<Partial<Record<KartMotionKey, string>>>;
   /** The kart effects of a `variant:"headband"` hit (the UFO's HeadBandAffect). */
   readonly headband?: KartVisuals;
   /** A `variant:"small"` or `"balloon"` hit: AffectSmall instead of the impact. */
@@ -213,7 +221,9 @@ export interface UfoFx extends Common {
   readonly kind: "ufo";
   readonly depart: FxModel;
   readonly departSound?: FxSound;
+  /** On the victim from the use on: descends to the hover height over Use. */
   readonly approach: FxModel;
+  /** Use's firedFx `affecting`, on the victim with the approach. */
   readonly arriveSound?: FxSound;
   readonly hover: FxModel;
   readonly leave: FxModel;
@@ -272,15 +282,27 @@ export interface BarricadeFx extends Common {
   readonly active: FxModel;
   readonly end: FxModel;
   readonly endSound?: FxSound;
+  /**
+   * The first kart to hit it breaks it (StateEnd plays then): the barricade,
+   * whose StateEnd sound is 장애물 피격 and which has no StateAffect look. The
+   * tornado stands its full StateActive (StateEnd 용오름_4_사라짐, "goes
+   * away") and its StateAffect is the victim's.
+   */
+  readonly breaks: boolean;
 }
 
-/** cloud2 and the dark clouds: thrown up by the user; the screen cover is the HUD's. */
+/**
+ * cloud2 and the dark clouds: thrown up by the user, the cloud rises (Use
+ * item, born), stands for Set.life and goes (Remove item, disappear) where the
+ * user was; the screen cover of whoever drives through it is the HUD's.
+ */
 export interface CloudFx extends Common {
   readonly kind: "cloud";
   readonly launch?: FxModel;
   readonly bornSound?: FxSound;
-  /** The cover lasts Use + Set; Remove plays its sound for each covered racer. */
-  readonly coverMs: number;
+  readonly born?: FxModel;
+  readonly stand?: FxModel;
+  readonly remove?: FxModel;
   readonly removeSound?: FxSound;
 }
 
@@ -326,7 +348,7 @@ export interface AuraFx extends Common {
   readonly durationMs: number;
   readonly useSound?: FxSound;
   readonly startSound?: FxSound;
-  /** angel covers the whole team (the use's targets); the others only the user. */
+  /** angel and scanning cover the whole team (the use's targets, Affect `fired`); the others only the user. */
   readonly onTargets: boolean;
   /**
    * The use itself starts the model. EMP only plays on the racers it really
@@ -334,6 +356,11 @@ export interface AuraFx extends Common {
    * the controller's `kartEffect` (ITEM_MODE.md C.1).
    */
   readonly fromUse: boolean;
+  /**
+   * The gold and protect shields' own look when they block an attack (their
+   * Defend: firing 쉴드방어, with the shield's sound), whatever the attack.
+   */
+  readonly defend?: BlockFx;
 }
 
 /** booster: the kart's own booster flame and sound (physics state 3). */
@@ -367,6 +394,8 @@ export interface SharedFx {
 export interface ItemFxPlan {
   readonly items: ReadonlyMap<number, ItemFx>;
   readonly shared: SharedFx;
+  /** Every model named as a kart motion (decoded for its `firedkart` track, never pooled). */
+  readonly motionPaths: readonly string[];
   /** Every model the plan can show, deduplicated by pool key. */
   readonly models: readonly FxModel[];
   /** Every sound the plan plays plus the aim sounds the controller asks for. */
@@ -398,6 +427,7 @@ export const UNREFERENCED_ITEM_FILES = Object.freeze({
   blindStartSound: "rocketuse",
   blindEndSound: "rocketend",
   headbandSound: "headBandAffecting",
+  ufoSound: "normalAffecting",
 });
 
 /** sound_fx_charger.rho, mounted at `sound_/fx/charger/`. */
@@ -405,8 +435,23 @@ export const CHARGER_SOUND = "sound_/fx/charger/05_기타_슬롯차저_Large.ogg
 
 const SHIELD_STATES = ["Shield", "StateShield", "RocketShield"];
 
+/** A kart effect, or `small` (a small or balloon missile hit), that may move the kart. */
+export type KartMotionKey = "trap" | "launch" | "small" | "spin" | "hold" | "barrier" | "slow";
+
+/**
+ * Which state's `fired` model moves the kart for each effect: the hit
+ * state of the item (Affect), the missile's AffectSmall/Balloon, the
+ * lockdown's AffectMain/AffectSub, the barricades' StateAffect and the
+ * talisman's Use jolt.
+ */
+const MOTION_STATES: ReadonlyArray<readonly [KartMotionKey, readonly string[]]> = [
+  ["trap", ["Affect"]], ["launch", ["Affect"]], ["small", ["AffectSmall", "Balloon"]], ["spin", ["Affect"]],
+  ["hold", ["AffectMain", "StateAffect", "Use"]], ["barrier", ["StateAffect"]], ["slow", ["AffectSub", "Affect"]],
+];
+
 class PlanBuilder {
   readonly models = new Map<string, FxModel>();
+  readonly motionPaths = new Set<string>();
   readonly sounds = new Set<FxSound>();
   readonly missing: string[] = [];
 
@@ -426,7 +471,8 @@ class PlanBuilder {
     const state = this.state(def, stateName);
     const stem = state?.[attribute];
     if (!state || !stem) return undefined;
-    return this.path(def, stem, lifeMs ?? state.lifeMs);
+    const model = this.path(def, stem, lifeMs ?? state.lifeMs);
+    return model && attribute === "item" && state.itemSize !== undefined ? { ...model, scale: state.itemSize } : model;
   }
 
   /** The first model a state names, by attribute priority. */
@@ -454,6 +500,22 @@ class PlanBuilder {
     const model: FxModel = derive ? { key, path, lifeMs, derive } : { key, path, lifeMs };
     this.models.set(key, model);
     return model;
+  }
+
+  /** The `fired` models that may move the victim's kart, by effect (motion-only models included). */
+  motions(def: ItemDefinition): Partial<Record<KartMotionKey, string>> {
+    const motions: Partial<Record<KartMotionKey, string>> = {};
+    for (const [key, states] of MOTION_STATES) {
+      for (const name of states) {
+        const stem = this.state(def, name)?.fired;
+        const path = stem ? this.catalog.resolveModel(def, stem) : undefined;
+        if (!path) continue;
+        motions[key] = path;
+        this.motionPaths.add(path);
+        break;
+      }
+    }
+    return motions;
   }
 
   /** A sound of a state attribute (`itemFx`, `firingFx`, `firedFx`), with the catalog's fallbacks. */
@@ -531,12 +593,17 @@ class PlanBuilder {
     return { model, ...(after ? { after, afterSound } : {}) };
   }
 
-  /** The blue shield after this item's trap: EscapeAffect's 파란방패, none when the state has no shield model. */
+  /**
+   * The blue shield after this item's trap: EscapeAffect's 파란방패 (none when
+   * the state has no shield model), and its firedFx as the kart breaks out
+   * (`trapped`; the flies fall back to waterBomb/trapped.ogg).
+   */
   escapeShield(def: ItemDefinition): KartVisual | undefined {
     const state = this.state(def, "EscapeAffect");
     if (!state) return undefined;
     const model = this.model(def, "EscapeAffect", "firing") ?? this.model(def, "EscapeAffect", "item");
-    return model ? { model } : {};
+    const sound = this.sound(def, "EscapeAffect", "firedFx");
+    return { ...(model ? { model } : {}), ...(sound ? { sound } : {}) };
   }
 }
 
@@ -568,7 +635,7 @@ export function buildItemFxPlan(catalog: ItemCatalog, extras: ItemFxExtras = {})
     }
     const block = b.block(def, shield);
     const common: Common = {
-      idx: def.idx, name: def.name, family, block, special: b.special(def, block), kart: {},
+      idx: def.idx, name: def.name, family, block, special: b.special(def, block), kart: {}, motions: b.motions(def),
     };
     items.set(def.idx, buildOne(b, def, family, common, { waterBomb, timeBomb }));
   }
@@ -587,9 +654,11 @@ export function buildItemFxPlan(catalog: ItemCatalog, extras: ItemFxExtras = {})
   for (const fx of items.values()) if (fx.kind === "throw")
     b.models.set(fx.set.key, { ...b.models.get(fx.set.key)!, placed: true });
   if (b.missing.length > 0) console.warn(`道具表现资源缺失：${[...new Set(b.missing)].join("、")}`);
+  b.motionPaths.add(shared.trap.path);
   return {
     items,
     shared,
+    motionPaths: [...b.motionPaths],
     models: [...b.models.values()],
     sounds: [...b.sounds],
     sound: (idx, stem) => {
@@ -689,7 +758,9 @@ function buildOne(b: PlanBuilder, def: ItemDefinition, family: ItemFxFamily, com
     case "ufo": {
       const hover = need(b.model(def, "Affect", "fired"), "Affect fired");
       const leave = need(b.model(def, "PostAffect", "fired"), "PostAffect fired");
-      kart.slow = { model: hover, after: leave };
+      // normalAffecting (3831 ms ≈ Affect + PostAffect) is in the folder but named by no state:
+      // the plain hover's own sound, as headBandAffecting is the headband's ([还原]).
+      kart.slow = { model: hover, sound: b.stem(def, UNREFERENCED_ITEM_FILES.ufoSound, true), after: leave };
       const headband = b.model(def, "HeadBandAffect", "fired");
       return withKart({ ...common, kind: "ufo",
         depart: need(b.model(def, "Use", "firing"), "Use firing"),
@@ -770,13 +841,16 @@ function buildOne(b: PlanBuilder, def: ItemDefinition, family: ItemFxFamily, com
         riseSound: b.sound(def, "StateSet", "itemFx"),
         active: need(b.model(def, "StateActive", "item"), "StateActive item"),
         end: need(b.model(def, "StateEnd", "item"), "StateEnd item"),
-        endSound: b.sound(def, "StateEnd", "itemFx") });
+        endSound: b.sound(def, "StateEnd", "itemFx"),
+        breaks: !affect.model && !affect.sound });
     }
     case "cloud":
       return withKart({ ...common, kind: "cloud",
         launch: b.model(def, "Use", "firing"),
         bornSound: b.sound(def, "Use", "itemFx"),
-        coverMs: b.life(def, "Use") + b.life(def, "Set"),
+        born: b.model(def, "Use", "item"),
+        stand: b.model(def, "Set", "item"),
+        remove: b.model(def, "Remove", "item"),
         removeSound: b.sound(def, "Remove", "itemFx") });
     case "curse": {
       // thunderbolt: Warning, then the Preaffect strike; the devils: Preaffect is the warning.
@@ -802,7 +876,9 @@ function buildOne(b: PlanBuilder, def: ItemDefinition, family: ItemFxFamily, com
       return withKart({ ...common, kind: "lock",
         launch: need(b.model(def, "Use", "firing"), "Use firing"),
         launchSound: b.sound(def, "Use", "itemFx"),
-        affect: need(b.model(def, "Affect", "fired"), "Affect fired"),
+        // The lock sits on the kart for the whole lock (Affect + Postaffect, as long as
+        // its sound): the model hops up, hovers and flies off by 2266 ms, then rests.
+        affect: need(b.model(def, "Affect", "fired", b.life(def, "Affect") + b.life(def, "Postaffect")), "Affect fired"),
         affectSound: b.sound(def, "Affect", "firedFx") });
     case "shield":
     case "angel":
@@ -861,9 +937,11 @@ function aura(b: PlanBuilder, def: ItemDefinition, effect: AuraEffect, common: C
       const startSound = b.sound(def, "Affect", "firedFx");
       const kind = effect === "scan" ? undefined : effect;
       if (kind) kart[kind] = { model, sound: startSound };
+      const defend = effect === "invincible"
+        ? { model: b.model(def, "Defend", "firing") ?? common.block.model, sound: common.block.sound } : undefined;
       return { ...common, kind: "aura", effect, model, delayMs: b.life(def, "Use"),
         durationMs: b.life(def, "Affect"), useSound, startSound,
-        onTargets: effect === "angel", fromUse: effect !== "emp" };
+        onTargets: effect === "angel" || effect === "scan", fromUse: effect !== "emp", ...(defend ? { defend } : {}) };
     }
   }
 }

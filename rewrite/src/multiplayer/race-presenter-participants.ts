@@ -1,4 +1,5 @@
 /** Updates each racer presentation after the multiplayer camera is positioned. */
+import { drivenPose, type KartPoseVectors } from "../item/item-kart-motion";
 import type { Object3D } from "three";
 import { applyItemKartPresentation } from "../item/item-kart-presentation";
 import { updateRacePresenterItems, type RacePresenterItemsHost } from "./race-presenter-items";
@@ -166,30 +167,37 @@ export function updateRacePresenterParticipants(host: RacePresenterParticipantsH
       ? runtime.localPresentation
       : runtime.remotes.consumePresentation(racer.playerId);
     let animationSlot: unknown;
+    // item-mode(fx): an item hit moves the drawn kart (its firedkart motion); physics stays put.
+    const hitMotion = assets.itemPresenter?.kartMotion?.call(assets.itemPresenter, String(racer.playerId), nowMs);
     if (isLocal) {
       const body = physics.body;
+      const drawn = hitMotion ? drivenPose(body as unknown as KartPoseVectors, hitMotion) : body;
       animationSlot = view.update({
         ...physics.state,
-        x: body.position.x,
-        y: body.position.y,
-        z: body.position.z,
-        right: body.right,
-        forward: body.forward,
-        up: body.up,
+        x: drawn.position.x,
+        y: drawn.position.y,
+        z: drawn.position.z,
+        right: drawn.right,
+        forward: drawn.forward,
+        up: drawn.up,
       }, nowMs, physics.consumeKartAnimationInput());
       if (animationSlot !== undefined) physics.setAnimationSlot(animationSlot);
     } else {
       const pose = runtime.remotes.copyWebPose(racer.playerId) ??
         host.initialPoses.get(racer.playerId);
       if (pose) {
-        // Not in the release: no minimap marker for a racer who left the room.
-        if (!runtime.remotes.hasDeparted(racer.playerId))
+        // Not in the release: no minimap marker for a racer who left the room, nor for an
+        // invisible (tigerGhost) one on the other teams' maps (敌人暂时看不见自己).
+        const unseen = assets.itemPresenter?.kartPresentation?.call(assets.itemPresenter,
+          String(racer.playerId), nowMs)?.opacity === 0;
+        if (!runtime.remotes.hasDeparted(racer.playerId) && !unseen)
           remotePoses.push({ playerId: racer.playerId, pose });
+        const drawn = hitMotion ? { ...pose, ...drivenPose(pose as unknown as KartPoseVectors, hitMotion) } : pose;
         const projectedPose = {
-          x: pose.position.x,
-          y: pose.position.y,
-          z: pose.position.z,
-          ...pose,
+          x: drawn.position.x,
+          y: drawn.position.y,
+          z: drawn.position.z,
+          ...drawn,
           visualScale: "visualScale" in pose
             ? pose.visualScale : { x: 1, y: 1, z: 1 },
         };

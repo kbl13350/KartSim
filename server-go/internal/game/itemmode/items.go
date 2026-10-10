@@ -123,6 +123,9 @@ const (
 	// hitOpponents: any opponent of the user (avoidItemTeamKill): area items,
 	// placed barricades, a lockdown field, a siren's touch.
 	hitOpponents
+	// hitOthers: anyone but the user, teammates included (a thrown water
+	// bomb: bonusStageProperty@cn.xml:103 水炸弹可以对自己队友使用？ true).
+	hitOthers
 )
 
 // placeRule is who reports where an item is placed (place).
@@ -204,8 +207,16 @@ type rule struct {
 	// escapable: the victim may end the hit early (escape) without a water
 	// trap (the talisman's arrow-key QTE).
 	escapable bool
-	// removed: the first hit removes the placed item (it is eaten or bursts).
+	// removed: the first hit removes the placed item (it is eaten, bursts or
+	// breaks).
 	removed bool
+	// field: the user's opponents but the target are hit by the lockdown
+	// field, which opens only around a target the missile hit.
+	field bool
+	// burst: the state a dropped water mine bursts for (Explode): its first
+	// hit sets it off, the others in the blast count while the state lasts,
+	// then it is gone.
+	burst string
 	// lock: a confirmed hit slot-locks the victim.
 	lock *lockRule
 	// noInvincible: the gold and protect shields do not block it (clouds
@@ -240,7 +251,7 @@ func init() {
 		return rule{target: TargetAheadOne, speed: flySpeed, etaState: "Use", hit: hit, blocks: shieldAndAngel, trap: trap}
 	}
 	thrown := func(lock *lockRule) rule {
-		return rule{target: TargetArea, point: true, hit: hitOpponents, blocks: angelOnly, trap: true, lock: lock}
+		return rule{target: TargetArea, point: true, hit: hitOthers, blocks: angelOnly, trap: true, lock: lock}
 	}
 	timed := func(lock *lockRule) rule {
 		return rule{target: TargetArea, place: placeByUser, hit: hitAnyone, blocks: angelOnly, trap: true, lock: lock}
@@ -249,9 +260,16 @@ func init() {
 		return rule{target: TargetArea, point: true, hit: hitAnyone, blocks: shieldAndAngel, removed: true}
 	}
 	self := rule{target: TargetSelf}
-	cloud := rule{target: TargetAllBehind, hit: hitTargets, noInvincible: true}
+	// Clouds stand where they were used (their Use/Set/Remove models are world
+	// objects; tw cloud2_desc 讓賽道上出現烏雲): the opponents who drive
+	// through one report being covered.
+	cloud := rule{target: TargetArea, point: true, hit: hitOpponents, noInvincible: true}
 	devil := rule{target: TargetAllOpponents, hit: hitTargets}
-	barricade := rule{target: TargetLeader, place: placeByTarget, hit: hitOpponents, blocks: shieldAndAngel}
+	// The first kart into a barricade breaks it (its StateEnd sound is
+	// 장애물 피격); a tornado stands its whole StateActive and goes on time
+	// (StateEnd 용오름_4_사라짐).
+	barricade := rule{target: TargetLeader, place: placeByTarget, hit: hitOpponents, blocks: shieldAndAngel, removed: true}
+	tornado := rule{target: TargetLeader, place: placeByTarget, hit: hitOpponents, blocks: shieldAndAngel}
 	siren := rule{target: TargetSelf, hit: hitOpponents, blocks: angelOnly}
 
 	for idx, r := range map[int]rule{
@@ -267,7 +285,7 @@ func init() {
 		Shield:       self,
 		Angel:        {target: TargetOwnTeam},
 		Devil:        devil,
-		UFO:          {target: TargetLeader, speed: flySpeed, etaState: "Use", hit: hitTargets},
+		UFO:          {target: TargetLeader, hit: hitTargets}, // lands at Use.life, whatever the gap
 		EMP:          {target: TargetUFOSlowed},
 		Thunderbolt:  {target: TargetAllAhead, hit: hitTargets, blocks: angelOnly},
 		Barricade:    barricade,
@@ -283,8 +301,8 @@ func init() {
 		DeliveryRocket: missile(0, shieldAndAngel), DinoClawRocket: missile(0, shieldAndAngel),
 		LionMaskRocket: missile(0, shieldAndAngel),
 		// The lockdown field around the target slows the opponents in it.
-		LockdownRocket: {target: TargetAimed, speed: missileSpeed, etaState: "Use", hit: hitOpponents, blocks: shieldAndAngel},
-		BlockRocket:    {target: TargetAimed, speed: missileSpeed, etaState: "Use", hit: hitOpponents, blocks: shieldAndAngel},
+		LockdownRocket: {target: TargetAimed, speed: missileSpeed, etaState: "Use", hit: hitOpponents, blocks: shieldAndAngel, field: true},
+		BlockRocket:    {target: TargetAimed, speed: missileSpeed, etaState: "Use", hit: hitOpponents, blocks: shieldAndAngel, field: true},
 		Snowman:        missile(0, angelOnly),
 		// Water bomb, time bomb and water fly variants.
 		SnowBomb: thrown(nil), CokeBomb: thrown(nil), PrisonBomb: thrown(nil),
@@ -299,7 +317,7 @@ func init() {
 		Mine: dropped(), DuckMine: dropped(), EggMine: dropped(), GoldEggMine: dropped(),
 		SpringMine: dropped(), CogWheelMine: dropped(), BigBanana: dropped(), ForceZone: dropped(), Oil: dropped(),
 		// The water mine bursts over an area: every racer in it may be trapped.
-		WaterMine: {target: TargetArea, point: true, hit: hitAnyone, blocks: shieldAndAngel, trap: true},
+		WaterMine: {target: TargetArea, point: true, hit: hitAnyone, blocks: shieldAndAngel, trap: true, burst: "Explode"},
 		// Self items.
 		GoldShield: self, ProtectShield: self, SuperShield: self, AnimalBoost: self, TigerGhost: self,
 		Siren: siren, SirenShield: siren,
@@ -307,7 +325,7 @@ func init() {
 		// Clouds, devils, barricades, the talisman.
 		DarkCloud: cloud, DarkCloud2: cloud,
 		NewDevil: devil, DrrMine: devil,
-		AbyssBarricade: barricade,
+		AbyssBarricade: tornado,
 		Talisman: {target: TargetLeader, speed: flySpeed, etaState: "Use", hit: hitTargets, blocks: shieldAndAngel,
 			escapable: true, lock: affectLock},
 	} {

@@ -237,6 +237,21 @@ export const ITEM_RULES = {
   doubleRocketDelayMs: 200,
   /** Siren: an opponent this close to the siren kart is knocked (touch, [还原]). */
   sirenTouchRadiusM: 3,
+  /**
+   * Clouds stand on the track where they were used (tw cloud2_desc 讓賽道上出現烏雲; their
+   * Use/Set/Remove `item` models are world objects): the wall of 무지개구름_2 is ~60 m wide
+   * and ~22 m high (a 3-unit plane scaled 19.9 × 7.2). A racer driving through it is covered.
+   */
+  cloudWallHalfWidthM: 30,
+  cloudWallHeightM: 22,
+  /** A racer within this distance of the wall's plane counts as in it (a reset, a warp). */
+  cloudWallDepthM: 2,
+  /**
+   * The cover (무지개구름_화면가림) is one 3000 ms play: fade in to 300–400 ms, hold, fade
+   * out from 2666. The HUD plays it to 1500, holds for the cover window and plays the
+   * rest, so a 1500 ms window is the original cover; goggles' cloudTime scales the window.
+   */
+  cloudCoverWindowMs: 1500,
 } as const;
 
 export type ItemUseStyle = "instant" | "aim" | "drop" | "throw" | "attach" | "placed";
@@ -299,6 +314,11 @@ export interface ItemBehaviour {
   readonly radius?: number;
   /** A dropped water mine triggers at its Set size (its `radius` is the blast). */
   readonly triggerRadius?: number;
+  /**
+   * A dropped water mine's burst (Explode.life): its first trigger sets it
+   * off, anyone within `radius` is caught while it lasts, then it is gone.
+   */
+  readonly burstMs?: number;
   /** How long a placed object or area exists. */
   readonly lifetimeMs?: number;
   /** Barricade rise time (`StateSet.life`). */
@@ -310,7 +330,10 @@ export interface ItemBehaviour {
   readonly shieldBlocks: boolean;
   /** The angel blocks every attack except the devil family, clouds, the slot lock and the UFO. */
   readonly angelBlocks: boolean;
-  /** Only the time bombs also catch teammates (`avoidItemTeamKill` covers the rest). */
+  /**
+   * The water and time bombs also catch teammates (`avoidItemTeamKill` covers
+   * the rest: missiles, UFO and water flies never do, bonusStageProperty@cn.xml).
+   */
   readonly hitsTeammates: boolean;
   /** Booster physics of a self boost (booster, special booster, super shield). */
   readonly boosterKind?: ItemBoosterKind;
@@ -392,16 +415,19 @@ export function itemModelCandidates(definition: Pick<ItemObjectDefinition, "fold
   return own === common ? [own] : [own, common];
 }
 
-/** Missing original sounds and their stand-ins (spec Appendix B and C.4, last lines). */
+/**
+ * Missing original sounds and their stand-ins (spec Appendix B and C.4, last
+ * lines). The devils (devil, newDevil, drmad) have none: their Escape names a
+ * `trapped` the folders never had, and their one long `affecting` (devil:
+ * 6306 ms = Preaffect + Affect + Escape) already covers the curse; a water
+ * bubble sound there was wrong.
+ */
 export const ITEM_SOUND_FALLBACKS: Readonly<Record<string, string>> = {
-  "devil/trapped": "waterBomb/trapped",
   "waterFly/trapped": "waterBomb/trapped",
   "barricade/shield": "shield/shield",
   "snowWaterFly/trapped": "waterBomb/trapped",
   "infectedWaterFly/trapped": "waterBomb/trapped",
   "waterbombFly/trapped": "waterBomb/trapped",
-  "drmad/trapped": "waterBomb/trapped",
-  "newDevil/trapped": "waterBomb/trapped",
   "oil/eat": "banana/eat",
   "oil/firing": "banana/firing",
   "abyssBarricade/shield": "shield/shield",
@@ -516,13 +542,16 @@ export function itemBehaviour(name: string, states: ReadonlyMap<string, ItemStat
     ...(states.has("EscapeAffect") ? { escapeShieldMs: life("EscapeAffect") } : {}),
     afterBoost: states.has("AfterBoost"),
     ...(optionalLife("PostAffect") ? { postLockMs: life("PostAffect") } : {}),
-    ...(family === "waterBomb" ? { distance: ITEM_RULES.waterBombForwardDistance } : { hitsTeammates: true }),
+    // Both catch teammates (bonusStageProperty@cn.xml:103 水炸弹可以对自己队友使用？ true).
+    hitsTeammates: true,
+    ...(family === "waterBomb" ? { distance: ITEM_RULES.waterBombForwardDistance } : {}),
   });
   const fly = () => attack({
     family: "waterFly", use: "instant", target: "ahead", delayMs: 0, maxEtaMs: life("Use"),
     speed: ITEM_RULES.flyerSpeed, effect: "trap", effectMs: life("Affect"),
-    escapeShieldMs: life("EscapeAffect"), afterBoost: states.has("AfterBoost"),
-    // infectedWaterFly: its AfterBoost (녹색열쇠, `locked`) is the item lock after the bubble.
+    // infectedWaterFly: its AfterBoost (녹색열쇠, `locked`) is the item lock after the bubble,
+    // not the escape boost marker (life 0) of the others, like the infected bombs (none).
+    escapeShieldMs: life("EscapeAffect"), afterBoost: states.has("AfterBoost") && !optionalLife("AfterBoost"),
     ...(optionalLife("AfterBoost") ? { postLockMs: life("AfterBoost") } : {}),
   });
   const dropped = (family: ItemFamily, effect: Pick<ItemBehaviour, "effect" | "effectMs"> &
@@ -539,9 +568,11 @@ export function itemBehaviour(name: string, states: ReadonlyMap<string, ItemStat
     distance: size("StateUse"), riseMs: life("StateSet"), lifetimeMs: life("StateActive"),
     radius: size("StateActive"), effect: "barrier", effectMs: life("StateAffect"),
   });
+  // Left standing where its user was for Set.life; opponents who drive through it are covered.
   const cloud = (overlay?: ItemOverlayKind) => attack({
-    family: "cloud", use: "instant", target: "all-behind", delayMs: life("Use"),
-    effect: "cloud", effectMs: life("Set"), ...(overlay ? { overlay } : {}),
+    family: "cloud", use: "drop", target: "area", delayMs: life("Use"), distance: 0,
+    lifetimeMs: life("Set"), effect: "cloud", effectMs: ITEM_RULES.cloudCoverWindowMs,
+    ...(overlay ? { overlay } : {}),
   });
   switch (name) {
     case "booster":
@@ -566,10 +597,10 @@ export function itemBehaviour(name: string, states: ReadonlyMap<string, ItemStat
     case "cogWheelMine":
       return dropped("mine", { effect: "launch", effectMs: life("Affect") });
     case "waterMine":
-      // Track water mines trap everyone inside the explosion radius; a dropped one triggers at Set size.
+      // A dropped one triggers at Set size and bursts (Explode size, for Explode.life).
       return dropped("waterMine", { effect: "trap", effectMs: life("Affect"),
         escapeShieldMs: life("EscapeAffect"), afterBoost: states.has("AfterBoost"),
-        radius: size("Explode"), triggerRadius: size("Set") });
+        radius: size("Explode"), triggerRadius: size("Set"), burstMs: life("Explode") });
     case "forceZone":
       return dropped("forceZone", { effect: "knockback", effectMs: life("Affect") });
     case "oil":
@@ -654,8 +685,9 @@ export function itemBehaviour(name: string, states: ReadonlyMap<string, ItemStat
     case "drrMine":
       return curse("all");
     case "ufo":
-      return attack({ family: "ufo", use: "instant", target: "first", delayMs: 0, maxEtaMs: life("Use"),
-        speed: ITEM_RULES.flyerSpeed, effect: "slow", effectMs: life("Affect"), factors: ufoFactors });
+      // No flight by distance: Use is a fixed appear-and-descend over the leader (fired00, 1500 ms).
+      return attack({ family: "ufo", use: "instant", target: "first", delayMs: life("Use"),
+        effect: "slow", effectMs: life("Affect"), factors: ufoFactors });
     case "emp":
       // Team-wide, from the end of Use; it only clears a UFO slow that is running (C.1).
       return own({ family: "emp", use: "instant", target: "team", delayMs: life("Use"), effect: "emp",

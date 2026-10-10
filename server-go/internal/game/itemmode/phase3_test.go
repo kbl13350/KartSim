@@ -593,7 +593,7 @@ func TestEMPCuresOnlyUFOSlowedTeammates(t *testing.T) {
 	if !slices.Equal(ufo.Targets, []string{"a1"}) {
 		t.Fatalf("ufo targets %v", ufo.Targets)
 	}
-	landed := ufo.StartAt + int64(ufo.EtaMs)
+	landed := ufo.StartAt + 1_500 // the end of its Use, whatever the gap
 	emp := func(user string, now int64) []string {
 		give(r, user, EMP)
 		result, err := r.UseItem(UseRequest{PlayerID: user, ItemID: EMP, Now: now, Standings: standings})
@@ -624,7 +624,7 @@ func TestEMPCuresOnlyUFOSlowedTeammates(t *testing.T) {
 	// A headband's shorter slow (1500).
 	r.racers["a1"].equipment.HeadBand = 284
 	short := useAs(t, r, "b1", UFO, useIDWhere(t, r, "a1", RollHeadband, below(50)), "", standings)
-	at := short.StartAt + int64(short.EtaMs)
+	at := short.StartAt + 1_500
 	if _, _, err := r.Hit(HitRequest{VictimID: "a1", UseID: short.ID, ItemID: UFO, Result: ResultHit, Variant: VariantHeadband, Now: at}); err != nil {
 		t.Fatal(err)
 	}
@@ -734,6 +734,13 @@ func TestPlacedTrapsAndSirens(t *testing.T) {
 	if _, fresh, err := r.Escape("b1", water.ID, 0, 2_500); err != nil || !fresh {
 		t.Fatalf("water mine escape %v", err)
 	}
+	// The first report set it off: others count while Explode (1000) lasts
+	// (plus the report slack), then it is gone.
+	if _, _, err := r.Hit(HitRequest{VictimID: "b2", UseID: water.ID, ItemID: WaterMine, Result: ResultHit, Now: 4_000}); err != nil {
+		t.Fatalf("water mine burst on b2: %v", err)
+	}
+	_, _, err = r.Hit(HitRequest{VictimID: "a1", UseID: water.ID, ItemID: WaterMine, Result: ResultHit, Now: 4_001})
+	wantErr(t, err, ErrInvalidUse)
 	// A siren knocks opponents only; the angel blocks it.
 	siren := useAs(t, r, "a1", Siren, 0, "", standings)
 	if !slices.Equal(siren.Targets, []string{"a1"}) {
@@ -744,14 +751,27 @@ func TestPlacedTrapsAndSirens(t *testing.T) {
 	if _, _, err := r.Hit(HitRequest{VictimID: "b2", UseID: siren.ID, ItemID: Siren, Result: ResultBlocked, By: ByAngel, Now: 2_000}); err != nil {
 		t.Fatal(err)
 	}
-	// Placed items need a point; lockdown fields reach any opponent.
+	// Placed items need a point; a lockdown field reaches any opponent, once
+	// the missile hit its target (a blocked one opens none).
 	give(r, "b1", Oil)
 	_, err = r.UseItem(UseRequest{PlayerID: "b1", ItemID: Oil, Now: 1_000, Standings: standings})
 	wantErr(t, err, ErrInvalidPoint)
 	lockdown := useAs(t, r, "b1", LockdownRocket, 0, "a1", standings)
-	if _, _, err := r.Hit(HitRequest{VictimID: "a2", UseID: lockdown.ID, ItemID: LockdownRocket, Result: ResultHit, Now: 2_000}); err != nil {
+	field := HitRequest{VictimID: "a2", UseID: lockdown.ID, ItemID: LockdownRocket, Result: ResultHit, Now: 2_000}
+	_, _, err = r.Hit(field)
+	wantErr(t, err, ErrInvalidTarget)
+	if _, _, err := r.Hit(HitRequest{VictimID: "a1", UseID: lockdown.ID, ItemID: LockdownRocket, Result: ResultHit, Now: 1_500}); err != nil {
+		t.Fatal(err)
+	}
+	if _, _, err := r.Hit(field); err != nil {
 		t.Fatalf("lockdown field on a2: %v", err)
 	}
+	blocked := useAs(t, r, "b1", BlockRocket, 0, "a1", standings)
+	if _, _, err := r.Hit(HitRequest{VictimID: "a1", UseID: blocked.ID, ItemID: BlockRocket, Result: ResultBlocked, By: ByShield, Now: 1_500}); err != nil {
+		t.Fatal(err)
+	}
+	_, _, err = r.Hit(HitRequest{VictimID: "a2", UseID: blocked.ID, ItemID: BlockRocket, Result: ResultHit, Now: 2_000})
+	wantErr(t, err, ErrInvalidTarget)
 }
 
 func TestChangerCards(t *testing.T) {

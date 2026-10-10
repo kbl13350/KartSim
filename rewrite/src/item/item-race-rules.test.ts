@@ -4,7 +4,7 @@ import test from "node:test";
 import { ItemIdx, loadItemCatalog } from "./item-catalog";
 import { clientToThree } from "./item-cube-source";
 import {
-  ITEM_RACE_TUNING, bananaPoint, chooseAimTarget, clientToThreePoint, decideHit,
+  ITEM_RACE_TUNING, bananaPoint, chooseAimTarget, clientToThreePoint, decideHit, levelAxis,
   effectStartOffsetMs, kartEffectOf, physicsEffect, projectToStage, teamColor, threeToClient,
   victimsText, warningOf, waterBombPoint,
 } from "./item-race-rules";
@@ -100,6 +100,27 @@ test("warnings follow the families; the lion mask rocket gives none", () => {
   assert.equal(physicsEffect("knockback"), "knockback");
   assert.equal(physicsEffect("invincible"), undefined);
   assert.equal(kartEffectOf("hold"), "hold");
+});
+
+test("the aim candidate is the one closest to the aiming direction; a tracked one holds in a wider cone", () => {
+  const pose = { position: { x: 0, y: 0, z: 0 }, forward: { x: 0, y: 0, z: 1 } };
+  const at = (playerId: string, x: number, z: number) => ({ playerId, position: { x, y: 0, z } });
+  // Steering picks: the centred kart wins over a nearer one off to the side.
+  assert.equal(chooseAimTarget(pose, [at("side", 8, 30), at("centre", 1, 90)])?.playerId, "centre");
+  // The view direction, not the body, is the axis (a drift turns the body).
+  const drifting = { position: pose.position, forward: { x: Math.sin(0.7), y: 0, z: Math.cos(0.7) } };
+  assert.equal(chooseAimTarget(drifting, [at("ahead", 0, 60)]), undefined);
+  assert.equal(chooseAimTarget(drifting, [at("ahead", 0, 60)], { axis: { x: 0, y: 0, z: 1 } })?.playerId, "ahead");
+  // Tracked: kept at 36° (outside the 30° cone, inside the 42° hold cone) and past the range.
+  const wide = at("tracked", Math.tan(36 * Math.PI / 180) * 50, 50);
+  assert.equal(chooseAimTarget(pose, [wide]), undefined);
+  assert.equal(chooseAimTarget(pose, [wide, at("other", 0, 20)], { currentId: "tracked" })?.playerId, "tracked");
+  const far = at("tracked", 0, ITEM_RACE_TUNING.aimRangeM + 20);
+  assert.equal(chooseAimTarget(pose, [far], { currentId: "tracked" })?.playerId, "tracked");
+  assert.equal(chooseAimTarget(pose, [at("tracked", 0, ITEM_RACE_TUNING.aimHoldRangeM + 1)],
+    { currentId: "tracked" }), undefined);
+  // The view axis loses its pitch against the kart's up.
+  assert.deepEqual(levelAxis({ x: 0, y: -0.5, z: 1 }, { x: 0, y: 1, z: 0 }), { x: 0, y: 0, z: 1 });
 });
 
 test("the aim candidate is the nearest opponent ahead inside the cone and range", () => {

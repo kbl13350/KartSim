@@ -143,7 +143,8 @@ test("every item model assembles with the real scene assembler and renders at it
       [ItemIdx.waterFly, "A", ["B"]], [ItemIdx.ufo, "A", ["C"]], [ItemIdx.magnet, "A", ["B"]],
       [ItemIdx.banana, "B", [], { x: 100, y: 10, z: 156 }], [ItemIdx.waterBomb, "A", [], { x: 100, y: 10, z: 125 }],
       [ItemIdx.timeBomb, "C", []], [ItemIdx.barricade, "A", ["C"], { x: 120, y: 10, z: 260 }],
-      [ItemIdx.cloud2, "C", ["A", "B"]], [ItemIdx.thunderbolt, "A", ["B", "C"]], [ItemIdx.devil, "B", ["A", "C"]],
+      [ItemIdx.cloud2, "C", [], { x: 120, y: 10, z: 230 }], [ItemIdx.thunderbolt, "A", ["B", "C"]],
+      [ItemIdx.devil, "B", ["A", "C"]],
       [ItemIdx.shield, "A", ["A"]], [ItemIdx.angel, "B", ["B", "C"]], [ItemIdx.emp, "C", ["C"]],
       [ItemIdx.scanning, "A", ["A"]], [ItemIdx.slotLock, "B", ["A", "C"]],
     ];
@@ -194,7 +195,8 @@ test("every item model assembles with the real scene assembler and renders at it
         presenter.kartEffect("B", "slow", 7800, 1500);
       }],
     ]);
-    for (let now = 5000; now <= 13_000; now += 50) {
+    // Until the cloud (Use 666 + Set 10000 from 5000) has gone.
+    for (let now = 5000; now <= 16_000; now += 50) {
       events.get(now)?.();
       step(now);
       // Copies for overlapping visuals are assembled in the background.
@@ -236,6 +238,49 @@ test("every special item model (ITEM_MODE.md C.4) assembles with the real scene 
       if (meshes === 0) empty.push(key);
     }
     assert.deepEqual(empty, [], "models without meshes are kart-motion tracks (KART_MOTION_MODELS)");
+  } finally {
+    presenter.dispose();
+    environment.dispose();
+  }
+});
+
+test("item hits move the drawn kart with their original firedkart motion", async () => {
+  const { library, formats } = await pipeline();
+  const catalog = await loadItemCatalog(library);
+  const ops: ItemFxOps<MirrorLibrary> = {
+    originalAsset: (archive, path) => uniqueOriginalCoinAsset(archive, path),
+    decodeModel: bytes => formats.y9(bytes) as FxModelData,
+    decodeAudio: () => undefined,
+    loadModel: (data, archive, path, identity, options) => formats.c5(data, archive, path, identity, options),
+    routeAudio: () => {},
+    setGain: () => {},
+  };
+  const environment = await formats.rn.load(library);
+  const presenter = await loadItemRacePresenter(library, catalog, environment, new formats.ha(), undefined, ops);
+  try {
+    const lift = (playerId: string, at: number) => {
+      const motion = presenter.kartMotion(playerId, at);
+      return motion ? new Vector3().setFromMatrixPosition(motion).y : 0;
+    };
+    // The plan names each item's motion model: the fly's own bubble, the missile's explosion, the banana's spin.
+    assert.equal(presenter.plan.items.get(ItemIdx.waterFly)?.motions?.trap, "item/waterFly/fired01.1s");
+    assert.equal(presenter.plan.items.get(ItemIdx.rocket)?.motions?.launch, "item/common/미사일폭발.1s");
+    assert.equal(presenter.plan.items.get(ItemIdx.banana)?.motions?.spin, "item/common/당함.1s");
+    // A water fly traps A: the kart rises into the bubble, then comes down when it breaks out.
+    presenter.kartEffect("A", "trap", 1000, 1000, { itemId: ItemIdx.waterFly });
+    assert.ok(lift("A", 1000) < 0.05);
+    assert.ok(lift("A", 1900) > 3.2, `${lift("A", 1900)}`);
+    presenter.nowMs = 1900;
+    presenter.endKartEffect("A", "trap");
+    assert.ok(lift("A", 1900 + 400) < lift("A", 1900 + 100), "falling back");
+    assert.equal(presenter.kartMotion("A", 1900 + 2000), undefined, "back on the road");
+    // A missile throws B ~11 m and lands it at 1500 ms.
+    presenter.kartEffect("B", "launch", 5000, 1500, { itemId: ItemIdx.rocket });
+    assert.ok(lift("B", 6000) > 10, `${lift("B", 6000)}`);
+    assert.equal(presenter.kartMotion("B", 6600), undefined);
+    // A shield never moves anyone.
+    presenter.kartEffect("C", "shield", 5000, 2000);
+    assert.equal(presenter.kartMotion("C", 5500), undefined);
   } finally {
     presenter.dispose();
     environment.dispose();

@@ -1,4 +1,4 @@
-import type { Camera, Object3D } from "three";
+import type { Camera, Matrix4, Object3D } from "three";
 import { decodeItemBml, type ItemBml, type ItemCatalog } from "./item-catalog";
 import {
   FxModelBank, FxSoundBank, type FxAudioContext, type FxInstance, type FxModelPool,
@@ -6,9 +6,11 @@ import {
 } from "./item-fx-assets";
 import {
   ITEM_FX_TUNING, buildItemFxPlan, type AuraFx, type BarricadeFx, type BeamFx, type CloudFx, type CurseFx,
-  type FxModel, type FxSound, type ItemFx, type ItemFxPlan, type ItemKartEffect, type KartVisual, type LockFx,
+  type BlockFx, type FxModel, type FxSound, type ItemFx, type ItemFxPlan, type ItemKartEffect, type KartMotionKey, type KartVisual,
+  type LockFx,
   type ProjectileFx, type ThrowFx, type TimeBombFx, type UfoFx,
 } from "./item-fx-plan";
+import { KartMotion, atRest, fallingMotion, kartMotionTrack, rigidMotion, type KartMotionTrack } from "./item-kart-motion";
 
 export type { ItemKartEffect } from "./item-fx-plan";
 
@@ -126,12 +128,18 @@ export interface ItemRacePresenter {
    */
   kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number,
     options?: ItemKartEffectOptions): void;
-  endKartEffect(playerId: string, kind: ItemKartEffect): void;
+  endKartEffect(playerId: string, kind: ItemKartEffect, options?: { tail?: boolean }): void;
   sound(itemId: number, stem: string,
     options?: { position?: ItemPresenterVec3; key?: string; loop?: boolean }): void;
   stopSound(key: string): void;
   /** How a racer's kart shows now (invisibility, the balloon popping); undefined = as usual. */
   kartPresentation?(playerId: string, nowMs: number): ItemKartPresentationState | undefined;
+  /**
+   * How an item hit moves this racer's drawn kart now (its `firedkart`
+   * motion, item-kart-motion.ts), in the kart's own frame; undefined when it
+   * does not move.
+   */
+  kartMotion?(playerId: string, nowMs: number): Matrix4 | undefined;
   /** The XUN start item reached the slots: the charger sound (`sound_/fx/charger`). */
   startItemFlash?(atMs: number): void;
   update(frame: ItemPresenterFrame): void;
@@ -244,6 +252,8 @@ function whereKartWas(playerId: string, fallback?: Vec3): Placer {
 interface FxVisual {
   readonly group: string;
   readonly pool: FxModelPool;
+  /** The model's own scale (FxModel.scale). */
+  readonly scale: number;
   /** The animation's time zero (reset time of the model's controllers). */
   anchorMs: number;
   showMs: number;
@@ -318,6 +328,15 @@ const DEFAULT_SOURCE: Partial<Record<ItemKartEffect, number>> = {
 /** Effects of the user's own items: their look follows the user's latest use. */
 const OWN_EFFECTS: ReadonlySet<ItemKartEffect> = new Set(["shield", "angel", "emp", "invincible", "invisible"]);
 
+interface KartMotionEntry {
+  readonly kind: ItemKartEffect;
+  readonly motion: KartMotion;
+  readonly startMs: number;
+  endMs: number;
+  /** Where the motion left the kart when it ended (the fall starts from it). */
+  landing?: Matrix4;
+}
+
 export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
   readonly visuals: FxVisual[] = [];
   readonly requests: SoundRequest[] = [];
@@ -330,6 +349,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
   readonly causes = new Map<string, HitCause>();
   /** Balloons popping: hidden from the hit until Reborn. */
   readonly balloonPops = new Map<string, { fromMs: number; untilMs: number }>();
+  /** Item hits moving karts (oldest first), by racer. */
+  readonly kartMotions = new Map<string, KartMotionEntry[]>();
   readonly placement: Placement = {
     position: vec(), right: vec(), up: vec(), forward: vec(), scale: 1,
   };
@@ -343,6 +364,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     readonly plan: ItemFxPlan,
     readonly models: FxModelBank<Archive>,
     readonly audio: FxSoundBank<Archive>,
+    /** The `firedkart` tracks of the plan's motion models, by path. */
+    readonly motionTracks: ReadonlyMap<string, KartMotionTrack> = new Map(),
   ) {}
 
   get object(): Object3D { return this.models.root; }
@@ -425,7 +448,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       // A mine that met a shield went off all the same.
       if (record && fx.kind === "throw" && fx.consumed && event.by !== "escape") this.spend(record);
       if (event.by === undefined || event.by === "escape") return;
-      const look = event.by === "kart" || event.by === "pet" ? fx.special : fx.block;
+      const look = event.by === "kart" || event.by === "pet" ? fx.special
+        : (event.by === "shield" ? this.invincibleDefend(victim, at) : undefined) ?? fx.block;
       this.show(`hit:${victim}`, look.model, at, at, at + (look.model?.lifeMs ?? 0), onKart(victim));
       this.play(look.sound, at, anchor);
       return;
@@ -439,9 +463,6 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
         if (record && fx.field && victim === record.event.targets[0]) this.lockdownField(record, fx, victim, at);
         break;
       }
-      case "ufo":
-        this.play(fx.arriveSound, at, anchor);
-        break;
       case "throw": {
         this.play(fx.hitSound, at, anchor);
         this.show(`hit:${victim}`, fx.impact, at, at, at + (fx.impact?.lifeMs ?? 0), onKart(victim));
@@ -460,7 +481,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
         this.play(fx.hitSound, at, anchor);
         break;
       case "barricade":
-        if (record?.barricade) this.breakBarricade(record.barricade, fx, at);
+        if (record?.barricade && fx.breaks) this.breakBarricade(record.barricade, fx, at);
         break;
       case "aura":
         // A siren knocked this kart aside.
@@ -477,8 +498,21 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     this.causes.set(victim, { fx, atMs: at, variant: event.variant });
   }
 
+  /** A running gold or protect shield's own block look on this racer at `at`. */
+  invincibleDefend(playerId: string, at: number): BlockFx | undefined {
+    const slot = this.slots.get(slotKey(playerId, "invincible"));
+    if (!slot || at < slot.startMs || at >= slot.endMs || slot.cause?.kind !== "aura") return undefined;
+    return slot.cause.defend;
+  }
+
   removed(useId: number): void {
     if (this.disposed) return;
+    const record = this.uses.get(useId);
+    // A broken barricade plays its StateEnd (from the hit, or now) instead of vanishing.
+    if (record?.fx.kind === "barricade" && record.barricade) {
+      this.breakBarricade(record.barricade, record.fx, this.nowMs);
+      return;
+    }
     this.cancel(useGroup(useId));
   }
 
@@ -487,6 +521,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     if (this.disposed) return;
     const end = startMs + Math.max(0, durationMs);
     const { fx, visual } = this.lookOf(playerId, kind, startMs, options.itemId);
+    this.startKartMotion(playerId, kind, fx, startMs, end);
     if (kind === "invisible") {
       this.slot(playerId, kind, startMs, end - startMs, undefined, { cause: fx });
       const slot = this.slots.get(slotKey(playerId, kind));
@@ -509,14 +544,69 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     });
   }
 
-  endKartEffect(playerId: string, kind: ItemKartEffect): void {
+  endKartEffect(playerId: string, kind: ItemKartEffect, options: { tail?: boolean } = {}): void {
     if (this.disposed) return;
     const slot = this.slots.get(slotKey(playerId, kind));
     if (!slot) return;
+    if (options.tail === false && slot.after) {
+      // The EMP's own fired01 blows the UFO away: its ordinary leave (fired02) does not play too.
+      if (slot.after.visual) this.finish(slot.after.visual);
+      if (slot.after.request) this.dropRequest(slot.after.request);
+      slot.after = undefined;
+    }
     const now = this.nowMs;
     if (slot.endMs <= now) return;
     this.endedSlots.set(slotKey(playerId, kind), slot.endMs);
     this.retimeSlot(slot, Math.max(now, slot.startMs));
+    this.endKartMotion(playerId, kind, now);
+  }
+
+  /**
+   * The hit's kart motion starts with its kart effect, on the effect model's
+   * clock: the item's own model for the effect (a small or balloon missile
+   * hit: its AffectSmall), else the common water bubble for a trap.
+   */
+  startKartMotion(playerId: string, kind: ItemKartEffect, fx: ItemFx | undefined, startMs: number,
+    endMs: number): void {
+    const cause = this.causes.get(playerId);
+    const small = kind === "launch" && !!cause && Math.abs(startMs - cause.atMs) <= ITEM_FX_TUNING.trapCauseWindowMs &&
+      (cause.variant === "small" || cause.variant === "balloon");
+    const key = (small ? "small" : kind) as KartMotionKey;
+    const path = fx?.motions?.[key] ?? (kind === "trap" ? this.plan.shared.trap.path : undefined);
+    const track = path ? this.motionTracks.get(path) : undefined;
+    if (!track || !(endMs > startMs)) return;
+    const list = this.kartMotions.get(playerId) ?? [];
+    list.push({ kind, motion: new KartMotion(track, startMs), startMs, endMs });
+    this.kartMotions.set(playerId, list);
+  }
+
+  /** An effect cut short (an escape, a reset): its kart comes down from where it is. */
+  endKartMotion(playerId: string, kind: ItemKartEffect, nowMs: number): void {
+    const list = this.kartMotions.get(playerId);
+    if (!list) return;
+    for (const entry of list) {
+      if (entry.kind !== kind || entry.endMs <= nowMs) continue;
+      entry.endMs = Math.max(nowMs, entry.startMs);
+      entry.landing = undefined;
+    }
+  }
+
+  kartMotion(playerId: string, nowMs: number): Matrix4 | undefined {
+    if (this.disposed) return undefined;
+    const list = this.kartMotions.get(playerId);
+    if (!list) return undefined;
+    // The newest hit that has started moves the kart; a finished one falls back, then goes.
+    for (let index = list.length - 1; index >= 0; index -= 1) {
+      const entry = list[index]!;
+      if (nowMs < entry.startMs) continue;
+      if (nowMs < entry.endMs) return rigidMotion(entry.motion.at(nowMs));
+      entry.landing ??= rigidMotion(entry.motion.at(entry.endMs));
+      const falling = atRest(entry.landing) ? undefined : fallingMotion(entry.landing, nowMs - entry.endMs);
+      if (falling) return falling;
+      list.splice(index, 1);
+    }
+    if (!list.length) this.kartMotions.delete(playerId);
+    return undefined;
   }
 
   kartPresentation(playerId: string, nowMs: number): ItemKartPresentationState | undefined {
@@ -696,11 +786,13 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     const s = event.startMs;
     this.show(useGroup(event.useId), fx.depart, s, s, s + fx.depart.lifeMs, onKart(event.userId));
     this.play(fx.departSound, s, { kind: "kart", playerId: event.userId }, useGroup(event.useId));
-    const eta = event.etaMs > 0 ? event.etaMs : fx.approach.lifeMs;
-    // The approach ends where the hover starts: anchor it to finish at the arrival.
-    for (const target of event.targets)
-      this.show(targetGroup(event.useId, target), fx.approach, s + eta - fx.approach.lifeMs, s, s + eta,
-        onKart(target));
+    // Use (1500 ms) is the whole approach: fired00 descends over the victim from the use on,
+    // ending at the hover height, with `affecting` (1501 ms) under it.
+    for (const target of event.targets) {
+      const group = targetGroup(event.useId, target);
+      this.show(group, fx.approach, s, s, s + fx.approach.lifeMs, onKart(target));
+      this.play(fx.arriveSound, s, { kind: "kart", playerId: target }, group);
+    }
   }
 
   /** snowman, talisman: thrown from the user (Use firing), landing on the target at the ETA. */
@@ -825,11 +917,26 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     const s = event.startMs;
     const group = useGroup(event.useId);
     this.show(group, fx.launch, s, s, s + (fx.launch?.lifeMs ?? 0), onKart(event.userId));
-    this.play(fx.bornSound, s, { kind: "kart", playerId: event.userId }, group);
-    // Each target's removal is its own: a cloud blocked on that kart never covered it.
-    for (const target of event.targets)
-      this.play(fx.removeSound, s + fx.coverMs, { kind: "kart", playerId: target, onlyLocal: true },
-        targetGroup(event.useId, target));
+    if (!event.point) {
+      this.play(fx.bornSound, s, { kind: "kart", playerId: event.userId }, group);
+      return;
+    }
+    // It stands where its user was, across the road: facing the way the user drove.
+    const where = { ...event.point };
+    let facing: Vec3 | undefined;
+    const face = (frame: ItemPresenterFrame) => {
+      const pose = frame.pose(event.userId);
+      if (pose) facing ??= { ...pose.forward };
+      return facing;
+    };
+    const placer = () => atPoint(() => where, face);
+    const stand = s + (fx.born?.lifeMs ?? 0);
+    const remove = stand + (fx.stand?.lifeMs ?? 0);
+    this.show(group, fx.born, s, s, stand, placer());
+    this.play(fx.bornSound, s, { kind: "point", position: where }, group);
+    this.show(group, fx.stand, stand, stand, remove, placer());
+    this.show(group, fx.remove, remove, remove, remove + (fx.remove?.lifeMs ?? 0), placer());
+    this.play(fx.removeSound, remove, { kind: "point", position: where }, group);
   }
 
   launchCurse(record: UseRecord, fx: CurseFx): void {
@@ -1010,7 +1117,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     place: Placer): FxVisual | undefined {
     const pool = this.models.pool(model);
     if (!pool || !(endMs > showMs)) return undefined;
-    const visual: FxVisual = { group, pool, anchorMs, showMs, endMs, place };
+    const visual: FxVisual = { group, pool, scale: model?.scale ?? 1, anchorMs, showMs, endMs, place };
     this.visuals.push(visual);
     // Copies for overlapping visuals are assembled now, before they are due.
     pool.reserve(this.demand(pool));
@@ -1094,7 +1201,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
         mount.visible = false;
         continue;
       }
-      const { position: p, right: r, up: u, forward: f, scale: k } = out;
+      const { position: p, right: r, up: u, forward: f } = out;
+      const k = out.scale * visual.scale;
       mount.matrix.set(
         r.x * k, u.x * k, f.x * k, p.x,
         r.y * k, u.y * k, f.y * k, p.y,
@@ -1216,6 +1324,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     this.endedSlots.clear();
     this.causes.clear();
     this.balloonPops.clear();
+    this.kartMotions.clear();
   }
 
   dispose(): void {
@@ -1246,6 +1355,21 @@ async function loadOptionalBml<Archive>(archive: Archive, path: string,
  * item set and assemble one copy of each model, so the first use of an item
  * has no hitch. `context` may be omitted to present silently.
  */
+/** The `firedkart` tracks of the motion models (a model that fails to load moves no kart). */
+async function loadKartMotions<Archive>(archive: Archive, paths: readonly string[], ops: ItemFxOps<Archive>):
+  Promise<Map<string, KartMotionTrack>> {
+  const tracks = new Map<string, KartMotionTrack>();
+  await Promise.all(paths.map(async path => {
+    try {
+      const track = kartMotionTrack(path, ops.decodeModel(await ops.originalAsset(archive, path).bytes()) as never);
+      if (track) tracks.set(path, track);
+    } catch (error) {
+      console.warn(`道具车身动作 ${path} 未载入`, error);
+    }
+  }));
+  return tracks;
+}
+
 export async function loadItemRacePresenter<Archive>(
   archive: Archive,
   catalog: ItemCatalog,
@@ -1259,8 +1383,9 @@ export async function loadItemRacePresenter<Archive>(
   const models = new FxModelBank(archive, environment, stageBinding, ops);
   const audio = new FxSoundBank(archive, context, ops);
   try {
-    await Promise.all([models.load(plan.models), audio.load(plan.sounds)]);
-    return new ItemRacePresenterImpl(plan, models, audio);
+    const [, , motions] = await Promise.all([models.load(plan.models), audio.load(plan.sounds),
+      loadKartMotions(archive, plan.motionPaths, ops)]);
+    return new ItemRacePresenterImpl(plan, models, audio, motions);
   } catch (error) {
     audio.dispose();
     models.dispose();

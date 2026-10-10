@@ -31,7 +31,7 @@ function horizontal(vehicle: TestVehicle): { x: number; z: number } {
   return { x: vehicle.body.position.x, z: vehicle.body.position.z };
 }
 
-test("banana spin: two yaw turns without drive or grip, then driving resumes", () => {
+test("banana spin (two turns asked for): yaw turns without drive or grip, then driving resumes", () => {
   const driver = cruising();
   const vehicle = driver.vehicle;
   const effects = vehicle.itemEffects;
@@ -39,7 +39,7 @@ test("banana spin: two yaw turns without drive or grip, then driving resumes", (
   assert.ok(entrySpeed > 40);
   vehicle.runtime.physicsState = 3; // a running booster is cancelled by the hit
   vehicle.runtime.stateRemainingMs = 2000;
-  assert.equal(effects.apply("spin", 2000), true);
+  assert.equal(effects.apply("spin", 2000, { turns: 2 }), true);
   assert.equal(vehicle.runtime.physicsState, 0);
   assert.deepEqual([...effects.active], ["spin"]);
   assert.equal(effects.canUseItem, true);
@@ -77,7 +77,7 @@ test("banana spin: two yaw turns without drive or grip, then driving resumes", (
   assert.ok(driver.horizontalSpeed > slow + 5, "drive and grip are back");
 });
 
-test("water bubble: the kart stops and floats, escape mashing shortens it, then a blue shield", () => {
+test("water bubble: the kart stops where it was, escape mashing shortens it, then a blue shield", () => {
   const driver = cruising();
   const vehicle = driver.vehicle;
   const effects = vehicle.itemEffects;
@@ -91,8 +91,9 @@ test("water bubble: the kart stops and floats, escape mashing shortens it, then 
   assert.deepEqual(horizontal(vehicle), anchor);
   assert.equal(vehicle.body.linearVelocity.x, 0);
   assert.equal(vehicle.body.linearVelocity.z, 0);
-  assert.ok(vehicle.body.position.y > 0.6 && vehicle.body.position.y < 1, `${vehicle.body.position.y}`);
-  assert.equal(vehicle.state.y, vehicle.body.position.y, "the published pose floats too");
+  // The bubble model lifts the drawn kart into itself (item-kart-motion.ts); physics holds it on the road.
+  assert.ok(Math.abs(vehicle.body.position.y) < 0.1, `${vehicle.body.position.y}`);
+  assert.equal(vehicle.state.y, vehicle.body.position.y);
   assert.equal(effects.remainingMs("trap"), 1000);
   driver.run(984);
   assert.ok(effects.active.has("trap"));
@@ -119,6 +120,25 @@ test("water bubble: the kart stops and floats, escape mashing shortens it, then 
   assert.equal(cruising().vehicle.itemEffects.escapePress(), false, "no bubble, nothing to escape");
 });
 
+test("by default physics neither spins, lifts nor rolls a hit kart: the hit's kart motion draws that", () => {
+  for (const kind of ["spin", "launch", "trap"] as const) {
+    const driver = cruising();
+    const vehicle = driver.vehicle;
+    const start = { ...vehicle.body.position };
+    const startHeading = heading(vehicle);
+    assert.equal(vehicle.itemEffects.apply(kind, 1500), true);
+    let highest = 0;
+    let lowestUp = 1;
+    driver.run(1200, throttleInput, 16, current => {
+      highest = Math.max(highest, current.body.position.y - start.y);
+      lowestUp = Math.min(lowestUp, current.body.up.y);
+    });
+    assert.ok(highest < 0.1, `${kind} lift ${highest}`);
+    assert.ok(lowestUp > 0.99, `${kind} roll`);
+    assert.ok(Math.abs(Math.sin(heading(vehicle) - startHeading)) < 0.05, `${kind} turned`);
+  }
+});
+
 test("an escaped bubble ends early and reports the escape", () => {
   const driver = cruising();
   const effects = driver.vehicle.itemEffects;
@@ -133,13 +153,14 @@ test("an escaped bubble ends early and reports the escape", () => {
   assert.equal(effects.escapeShieldRemainingMs, 988);
 });
 
-test("missile launch: a visible roll in the air, back on the anchor, locked for 1500 ms", () => {
+test("missile launch (an arc asked for): a visible roll in the air, back on the anchor, locked for 1500 ms", () => {
   const driver = cruising();
   const vehicle = driver.vehicle;
   const effects = vehicle.itemEffects;
   const anchor = { ...vehicle.body.position };
   const forward = { ...vehicle.body.forward };
-  assert.equal(effects.apply("launch", 1500), true);
+  const arc = { height: 2.5, turns: 1 };
+  assert.equal(effects.apply("launch", 1500, arc), true);
   assert.equal(effects.canUseItem, false);
   assert.equal(effects.immune, false);
   let peak = 0;
@@ -151,12 +172,12 @@ test("missile launch: a visible roll in the air, back on the anchor, locked for 
     if (current.runtime.collisionMotionHit) hit = current.runtime.collisionMotionStrength;
   });
   assert.equal(hit, ITEM_EFFECT_TUNING.launchImpactStrength, "strong crash motion");
-  assert.ok(Math.abs(peak - ITEM_EFFECT_TUNING.launchHeight) < 0.01, `${peak}`);
+  assert.ok(Math.abs(peak - arc.height) < 0.01, `${peak}`);
   driver.run(16);
   assert.ok(vehicle.body.up.y < -0.99, "upside down at the top of the arc");
   const wrench = { force: { x: 0, y: 0, z: 0 }, torque: { x: 0, y: 0, z: 0 } };
   vehicle.copyNetworkWrench(wrench);
-  const arcAcceleration = -8 * ITEM_EFFECT_TUNING.launchHeight /
+  const arcAcceleration = -8 * arc.height /
     (ITEM_EFFECT_TUNING.launchAirMs / 1000) ** 2;
   assert.equal(wrench.force.y, f32(vehicle.tuning.mass * arcAcceleration),
     "remote clients extrapolate the same parabola");

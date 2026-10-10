@@ -45,7 +45,7 @@ test("every model and sound the presenter uses resolves to one original file", a
     assert.ok(sounds.has(`sound_/fx/item/magnet/${stem}.ogg`), stem);
   }
   assert.equal(built.sound(ItemIdx.rocket, "aiming"), "sound_/fx/item/rocket/aiming.ogg");
-  assert.equal(built.sound(ItemIdx.devil, "trapped"), "sound_/fx/item/waterBomb/trapped.ogg");
+  assert.equal(built.sound(ItemIdx.devil, "trapped"), undefined);
   assert.equal(built.sound(ItemIdx.rocket, "nothing"), undefined);
 });
 
@@ -72,8 +72,8 @@ test("the table follows the base-0 item.bml states", async () => {
   assert.deepEqual([ufo.depart.path, ufo.approach.path, ufo.hover.path, ufo.leave.path],
     ["item/ufo/firing00.1s", "item/ufo/fired00.1s", "item/ufo/fired01.1s", "item/ufo/fired02.1s"]);
   assert.deepEqual([ufo.approach.lifeMs, ufo.leave.lifeMs], [1500, 500]);
-  assert.deepEqual([ufo.departSound, ufo.arriveSound],
-    ["sound_/fx/item/ufo/using.ogg", "sound_/fx/item/ufo/affecting.ogg"]);
+  assert.deepEqual([ufo.departSound, ufo.arriveSound, ufo.kart.slow?.sound],
+    ["sound_/fx/item/ufo/using.ogg", "sound_/fx/item/ufo/affecting.ogg", "sound_/fx/item/ufo/normalAffecting.ogg"]);
   // The UFO has no Shield model: a blocked UFO shows the shield's 쉴드방어.
   assert.deepEqual([ufo.block.model?.path, ufo.block.sound],
     ["item/common/쉴드방어.1s", "sound_/fx/item/shield/shield.ogg"]);
@@ -110,9 +110,12 @@ test("the table follows the base-0 item.bml states", async () => {
     ["장애물 발사.ogg", "장애물 등장.ogg", "장애물 피격.ogg"]);
   assert.equal(barricade.block.sound, "sound_/fx/item/shield/shield.ogg");
 
+  // The cloud rises, stands and goes where it was used (its Use, Set and Remove item models).
   const cloud = fx(items.get(ItemIdx.cloud2), "cloud");
-  assert.deepEqual([cloud.launch?.path, cloud.coverMs, cloud.bornSound, cloud.removeSound],
-    ["item/cloud2/무지개구름_사용.1s", 10666, "sound_/fx/item/cloud2/born.ogg", "sound_/fx/item/cloud2/disappear.ogg"]);
+  assert.deepEqual([cloud.launch?.path, cloud.bornSound, cloud.removeSound],
+    ["item/cloud2/무지개구름_사용.1s", "sound_/fx/item/cloud2/born.ogg", "sound_/fx/item/cloud2/disappear.ogg"]);
+  assert.deepEqual([cloud.born, cloud.stand, cloud.remove].map(model => [model?.path.split("/").at(-1), model?.lifeMs]),
+    [["무지개구름_1.1s", 666], ["무지개구름_2.1s", 10000], ["무지개구름3.1s", 666]]);
 
   const thunder = fx(items.get(ItemIdx.thunderbolt), "curse");
   assert.deepEqual([thunder.launch, thunder.warning, thunder.strike!, thunder.affect].map(model =>
@@ -124,12 +127,12 @@ test("the table follows the base-0 item.bml states", async () => {
   assert.deepEqual([devil.launch, devil.warning, devil.affect, devil.after!].map(model =>
     [model.path, model.lifeMs]), [["item/devil/firing00.1s", 500], ["item/devil/fired01.1s", 1000],
     ["item/devil/fired02.1s", 3000], ["item/devil/fired03.1s", 2000]]);
-  assert.equal(devil.afterSound, "sound_/fx/item/waterBomb/trapped.ogg");
+  assert.equal(devil.afterSound, undefined, "no water bubble sound after a curse");
   assert.equal(devil.strike, undefined);
 
   const lock = fx(items.get(ItemIdx.slotLock), "lock");
   assert.deepEqual([lock.launch.path, lock.affect.path, lock.affect.lifeMs],
-    ["item/slotLock/firing00.1s", "item/slotLock/fired.1s", 1000]);
+    ["item/slotLock/firing00.1s", "item/slotLock/fired.1s", 3000]);
 
   const auras = [ItemIdx.shield, ItemIdx.angel, ItemIdx.emp, ItemIdx.scanning]
     .map(idx => fx(items.get(idx), "aura")).map(aura =>
@@ -138,7 +141,7 @@ test("the table follows the base-0 item.bml states", async () => {
   // controller's kartEffect on the racers it frees (C.1).
   assert.deepEqual(auras, [["shield", "item/shield/firing00.1s", 0, 2000, false, true],
     ["angel", "item/angel/fired01.1s", 500, 4000, true, true], ["emp", "item/emp/fired01.1s", 500, 1500, false, false],
-    ["scan", "item/scanning/fired01.1s", 500, 8000, false, true]]);
+    ["scan", "item/scanning/fired01.1s", 500, 8000, true, true]]);
 
   // Track mines and water mines are the droppable mine and water mine (C.4).
   const mine = fx(items.get(ItemIdx.mine), "throw");
@@ -221,7 +224,11 @@ test("every special item (ITEM_MODE.md C.4) is staged from its own folder and va
     ["infectedBomb/호박물폭탄_폭파.1s", "infectedBomb/호박물폭탄_공격당함.1s", 2000, "infectedBomb/호박물폭탄_열쇠.1s",
       undefined],
   ]);
-  assert.deepEqual(fx(items.get(34), "throw").kart.escapeShield, {}, "snowBomb's EscapeAffect has no shield model");
+  assert.deepEqual(fx(items.get(34), "throw").kart.escapeShield, { sound: "sound_/fx/item/snowBomb/trapped.ogg" },
+    "snowBomb's EscapeAffect has no shield model, only its trapped sound");
+  // The water fly breaks out with EscapeAffect's `trapped` (its folder has none: waterBomb's).
+  assert.equal(fx(items.get(ItemIdx.waterFly), "projectile").kart.escapeShield?.sound,
+    "sound_/fx/item/waterBomb/trapped.ogg");
   assert.deepEqual([21, 35, 28].map(idx => tail(fx(items.get(idx), "timeBomb").burst.path)),
     ["timeCokeBomb/item01.1s", "timeSnowBomb/item01.1s", "common/물방울터짐.1s"]);
   // Dropped items: each mine's own model, set where it was dropped; the giant banana; oil; force zone.
@@ -275,6 +282,10 @@ test("every special item (ITEM_MODE.md C.4) is staged from its own folder and va
   // StateAffect's fired02_abyss is a kart-motion track: only its sound plays on the stopped kart.
   assert.deepEqual([tail(abyss.active.path), abyss.kart.hold?.model, tail(abyss.kart.hold?.sound)],
     ["abyssBarricade/item01_abyss.1s", undefined, "abyssBarricade/용오름_3_피격효과음.ogg"]);
+  // The tornado stands its StateActive at its itemSize; the barricade breaks on its first kart.
+  assert.deepEqual([abyss.breaks, abyss.rise.scale, abyss.active.scale, abyss.end.scale], [false, 0.5, 0.8, 0.5]);
+  const barricade = fx(items.get(ItemIdx.barricade), "barricade");
+  assert.deepEqual([barricade.breaks, barricade.active.scale], [true, undefined]);
   assert.deepEqual([1, 115].map(idx => tail(fx(items.get(idx), "cloud").launch?.path)),
     ["cloud/firing00_black.1s", "cloud2/먹물구름_사용.1s"]);
   assert.equal(items.get(31)?.kind, "none");

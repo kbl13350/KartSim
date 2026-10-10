@@ -1,5 +1,8 @@
 /** Chooses and updates the multiplayer race camera for one frame. */
 
+import type { Matrix4 } from "three";
+import { motionOffset } from "../item/item-kart-motion";
+
 interface Vec3 { x: number; y: number; z: number }
 
 interface Body {
@@ -20,6 +23,8 @@ export interface RacePresenterCameraHost {
     map: { readyCamera: { apply(camera: unknown, nowMs: number,
       body: Body): void } };
     participants: Array<{ playerId: unknown }>;
+    /** 道具赛: how an item hit moves the drawn kart (the camera follows its lift, not its flips). */
+    itemPresenter?: { kartMotion?(playerId: string, nowMs: number): Matrix4 | undefined };
   };
   runtime: {
     giantEffectsEnded: boolean;
@@ -112,10 +117,12 @@ export function updateRacePresenterCamera(host: RacePresenterCameraHost,
     host.giantPresentation?.setThreatSound(nearby);
   }
   const shake = host.cameraShake.update(nowMs, routeSurface);
+  const hitMotion = host.assets.itemPresenter?.kartMotion?.(String(host.playerId), nowMs);
+  const lift = hitMotion && itemMotionBasis(body) ? motionOffset(itemMotionBasis(body)!, hitMotion) : undefined;
   const position = {
-    x: Math.fround(body.position.x + shake.x),
-    y: Math.fround(body.position.y + shake.y),
-    z: Math.fround(body.position.z + shake.z),
+    x: Math.fround(body.position.x + shake.x + (lift?.x ?? 0)),
+    y: Math.fround(body.position.y + shake.y + (lift?.y ?? 0)),
+    z: Math.fround(body.position.z + shake.z + (lift?.z ?? 0)),
   };
   host.cameraWave.update(nowMs, routeSurface, body, position);
   // A spinning or launched kart keeps the camera on the road, not on the kart.
@@ -135,4 +142,11 @@ export function updateRacePresenterCamera(host: RacePresenterCameraHost,
       : Math.max(Math.fround(view.horizontalFovDegrees * factor), 65),
     far: track.cameraFar ?? view.far,
   });
+}
+
+/** The body's basis when it has one (a hit motion is in the kart's own frame). */
+function itemMotionBasis(body: Body): { right: Vec3; up: Vec3; forward: Vec3 } | undefined {
+  const basis = body as unknown as Partial<Record<"right" | "up" | "forward", Vec3>>;
+  return basis.right && basis.up && basis.forward
+    ? { right: basis.right, up: basis.up, forward: basis.forward } : undefined;
 }

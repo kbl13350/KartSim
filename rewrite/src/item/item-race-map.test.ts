@@ -134,7 +134,8 @@ test("factory_I03 loads with the item flag: cubes, moving cubes and hazards are 
     assert.equal(hazards.cooldownMs, 3000);
     assert.equal(hazards.hazards[0]!.sound, "mo_프로펠라로봇");
     assert.deepEqual(hazards.hazards.map(hazard => [hazard.id, hazard.kind, hazard.itemIdx, hazard.radius]), [
-      [45, "waterMine", ItemIdx.waterMine, 10], [46, "banana", ItemIdx.banana, 2],
+      // A water mine is touched at its Set size; its Explode size (10) is the burst.
+      [45, "waterMine", ItemIdx.waterMine, 2], [46, "banana", ItemIdx.banana, 2],
       [47, "banana", ItemIdx.banana, 2], [48, "banana", ItemIdx.banana, 2],
     ]);
     // Hazards render through the track scene; their world matrices start at the movable transform.

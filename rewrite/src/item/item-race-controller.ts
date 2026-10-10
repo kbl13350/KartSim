@@ -34,9 +34,9 @@ import {
 } from "./item-passives";
 import type { ItemPresenterPose, ItemRacePresenter } from "./item-race-presenter-contract";
 import {
-  ITEM_RACE_TUNING, bananaPoint, chooseAimTarget, clientToThreePoint, decideHit, distance,
+  ITEM_RACE_TUNING, bananaPoint, chooseAimTarget, clientToThreePoint, decideHit, distance, levelAxis,
   effectStartOffsetMs, kartEffectOf, physicsEffect, projectToStage, sweepOrigin, sweptThrough,
-  teamColor, threeToClient, victimsText, warningOf, waterBombPoint,
+  teamColor, threeToClient, throughWall, victimsText, warningOf, waterBombPoint,
   type EquipmentOutcome, type HitDecision, type ItemHitVariant, type PhysicsItemEffect,
   type ProjectionCamera, type Vec3,
 } from "./item-race-rules";
@@ -218,6 +218,10 @@ interface AreaRecord {
   ownerGraceUntil?: number;
   /** Placed after its window: one check on the next frame. */
   lateCheck?: boolean;
+  /** A standing wall (the clouds): driving through its plane is the hit, not a radius. */
+  wall?: { normal: Vec3; up: Vec3 };
+  /** A water mine that went off: its blast radius, for its burst only. */
+  burst?: true;
 }
 
 /**
@@ -245,6 +249,8 @@ interface AimState {
   phase: ItemAimPhase;
   targetId?: string;
   trackSince: number;
+  /** When the tracked target left the hold cone (the grace runs from here). */
+  lostAt?: number;
   soundPhase?: ItemAimPhase;
 }
 
@@ -256,7 +262,12 @@ interface OwnTimeBomb {
 }
 
 interface TimeWindow { from: number; until: number }
-interface TaggedWindow extends TimeWindow { tag?: string }
+interface CloudWindow extends TimeWindow { variant: 0 | 1 }
+interface TaggedWindow extends TimeWindow {
+  tag?: string;
+  /** The HUD shows the lock from here (an infected bubble's key lock after the bubble). */
+  shownFrom?: number;
+}
 interface OverlayWindow extends TimeWindow { kind: ItemOverlayKind; opacity: number }
 
 /** The trap holding the local kart (for the escape notice). */
@@ -320,7 +331,7 @@ export class ItemRaceController implements ItemCommandHandler {
   readonly proximity = new Map<string, ProximityCheck>();
   /** Reported hits, by `useId:shot`. */
   readonly reported = new Set<string>();
-  readonly scans = new Map<string, { slots: readonly number[]; until: number }>();
+  readonly scans = new Map<string, { slots: readonly number[]; from: number; until: number }>();
   /** My time bombs by request token, each placed when it explodes. */
   readonly bombs = new Map<number, OwnTimeBomb>();
   readonly remoteTraps = new Map<string, RemoteTrap>();
@@ -332,7 +343,8 @@ export class ItemRaceController implements ItemCommandHandler {
   readonly notices: ItemHudNotice[] = [];
   readonly log: ItemHudLogEntry[] = [];
   readonly lockWindows: TaggedWindow[] = [];
-  readonly cloudWindows: TimeWindow[] = [];
+  /** Cloud covers: variant 0 the cloud, 1 the dark (ink) clouds (cloud2Effect_0 / _1). */
+  readonly cloudWindows: CloudWindow[] = [];
   readonly overlays: OverlayWindow[] = [];
   /** Things to do later on the presenter clock (EMP checks, a fly reaching its target). */
   readonly timed: Array<{ at: number; run: () => void }> = [];
@@ -344,6 +356,8 @@ export class ItemRaceController implements ItemCommandHandler {
   localUfoSlowUntil = 0;
   aim: AimState | undefined;
   aimScreen: { x: number; y: number } | undefined;
+  /** The camera of the last presented frame: aiming follows the view direction. */
+  aimCamera: ProjectionCamera | undefined;
   localTrap: LocalTrap | undefined;
   talisman: TalismanQte | undefined;
   infoCard: { itemIdx: number; until: number } | undefined;
@@ -474,6 +488,7 @@ export class ItemRaceController implements ItemCommandHandler {
   present(input: ItemPresentInput): void {
     if (this.disposed) return;
     this.guard("道具表现层更新失败", () => {
+      this.aimCamera = input.camera as ProjectionCamera | undefined;
       this.aimScreen = this.aim ? this.projectAim(input.camera as ProjectionCamera) : undefined;
       this.options.presenter?.update({
         nowMs: input.nowMs, camera: input.camera as never, width: input.width,
@@ -501,21 +516,25 @@ export class ItemRaceController implements ItemCommandHandler {
       const progress = (nowMs - this.reorderStartedAt) / ITEM_RACE_TUNING.slotReorderMs;
       if (progress >= 0 && progress < 1) state.reorderProgress = progress;
     }
-    const lock = this.activeWindow(this.lockWindows, nowMs);
+    const lock = this.activeWindow(this.lockWindows.filter(window => (window.shownFrom ?? window.from) <= nowMs), nowMs);
     if (lock) state.lock = { remainingMs: lock.until - nowMs };
     let explodeAt: number | undefined;
     for (const bomb of this.bombs.values()) explodeAt = Math.min(explodeAt ?? Infinity, bomb.explodeAt);
     if (explodeAt !== undefined) state.timeBomb = { remainingMs: Math.max(0, explodeAt - nowMs) };
-    if (this.aim && this.aimScreen) state.aim = { phase: this.aim.phase, ...this.aimScreen };
+    if (this.aim && this.aimScreen) {
+      state.aim = { phase: this.aim.phase, ...this.aimScreen };
+      if (this.aim.phase === "inrange")
+        state.aim.progress = Math.min(1, Math.max(0, (nowMs - this.aim.trackSince) / ITEM_RACE_TUNING.aimLockMs));
+    }
     const warning = this.currentWarning(nowMs);
     if (warning) state.warning = warning;
-    if (this.activeWindow(this.cloudWindows, nowMs))
-      state.cloud = { opacity: cloudFactors(this.passives).opacity, variant: 0 };
+    const cloud = this.activeWindow(this.cloudWindows, nowMs);
+    if (cloud) state.cloud = { opacity: cloudFactors(this.passives).opacity, variant: cloud.variant };
     const overlay = this.currentOverlay(nowMs);
     if (overlay) state.overlay = { kind: overlay.kind, untilMs: overlay.until, opacity: overlay.opacity };
     if (this.abuseUntil !== undefined && nowMs < this.abuseUntil) state.abuseUntil = this.abuseUntil;
     if (this.infoCard && nowMs < this.infoCard.until) state.infoCard = { itemIdx: this.infoCard.itemIdx };
-    const scan = [...this.scans].filter(([, entry]) => nowMs < entry.until)
+    const scan = [...this.scans].filter(([, entry]) => nowMs >= entry.from && nowMs < entry.until)
       .map(([playerId, entry]) => ({ playerId, slots: entry.slots }));
     if (scan.length) state.scan = scan;
     const icons = this.slotIcons(slots);
@@ -945,25 +964,48 @@ export class ItemRaceController implements ItemCommandHandler {
       this.cancelAim();
       return;
     }
-    const candidate = chooseAimTarget(this.localPose(), this.aimCandidates(nowMs), {
-      aimRangeM: this.options.aimRangeM ?? ITEM_RACE_TUNING.aimRangeM,
-      aimConeHalfAngleDegrees: ITEM_RACE_TUNING.aimConeHalfAngleDegrees,
+    const pose = this.localPose();
+    // 驾照考试 asks for a longer range: the hold range grows with it.
+    const range = this.options.aimRangeM ?? ITEM_RACE_TUNING.aimRangeM;
+    const candidate = chooseAimTarget(pose, this.aimCandidates(nowMs), {
+      axis: this.aimAxis(pose), currentId: aim.targetId,
+      tuning: { ...ITEM_RACE_TUNING, aimRangeM: range,
+        aimHoldRangeM: range * ITEM_RACE_TUNING.aimHoldRangeM / ITEM_RACE_TUNING.aimRangeM },
     });
-    if (!candidate) {
-      aim.phase = "aiming";
-      aim.targetId = undefined;
-    } else if (candidate.playerId !== aim.targetId) {
+    if (candidate && candidate.playerId === aim.targetId) {
+      aim.lostAt = undefined;
+    } else if (aim.targetId !== undefined &&
+        nowMs - (aim.lostAt ??= nowMs) < ITEM_RACE_TUNING.aimLostGraceMs) {
+      // A bend or a jump: the reticle stays on the target (and keeps its lock) a moment.
+    } else if (candidate) {
       aim.targetId = candidate.playerId;
       aim.trackSince = nowMs;
+      aim.lostAt = undefined;
       aim.phase = "inrange";
-    } else if (nowMs - aim.trackSince >= ITEM_RACE_TUNING.aimLockMs) {
-      aim.phase = "ontarget";
+    } else {
+      aim.targetId = undefined;
+      aim.lostAt = undefined;
+      aim.phase = "aiming";
     }
+    if (aim.phase === "inrange" && nowMs - aim.trackSince >= ITEM_RACE_TUNING.aimLockMs) aim.phase = "ontarget";
     if (aim.soundPhase !== aim.phase) {
       aim.soundPhase = aim.phase;
       const definition = this.options.catalog.get(aim.itemId);
       if (definition) this.playAimSound(definition, AIM_PHASE_INDEX[aim.phase], true);
     }
+  }
+
+  /**
+   * The aiming direction: where the camera looks, levelled to the kart (a
+   * drift turns the body but not the view); the kart's forward without a camera.
+   */
+  private aimAxis(pose: ItemPresenterPose): Vec3 {
+    const view = this.aimCamera?.matrixWorldInverse?.elements;
+    if (!view) return pose.forward;
+    // The camera looks down its -z: the world direction is minus the view matrix's third row.
+    const forward = { x: -view[2]!, y: -view[6]!, z: -view[10]! };
+    if (![forward.x, forward.y, forward.z].every(Number.isFinite)) return pose.forward;
+    return levelAxis(forward, pose.up);
   }
 
   /** Opponents still racing, except those a tigerGhost hides (隐身: cannot be locked on). */
@@ -1160,6 +1202,18 @@ export class ItemRaceController implements ItemCommandHandler {
     const me = this.playerId;
     const user = record.userId;
     const opponentOfUser = user !== me && !this.teammates(user, me);
+    if (behaviour.family === "cloud") {
+      // It stands where its user was, facing the way the user drove; opponents who drive
+      // through it are covered (avoidItemTeamKill: never the user's team).
+      if (opponentOfUser && record.point) {
+        const activeFrom = record.startMs + behaviour.delayMs;
+        const area = this.addArea(record, behaviour, record.point, activeFrom,
+          activeFrom + (behaviour.lifetimeMs ?? 0), undefined, ITEM_RULES.cloudWallHalfWidthM / 2);
+        const pose = this.options.remotes.pose(user);
+        if (pose) area.wall = { normal: levelAxis(pose.forward, pose.up), up: { ...pose.up } };
+      }
+      return;
+    }
     if (behaviour.target === "placed") {
       // Dropped traps catch everyone, their user after a grace.
       if (record.point) {
@@ -1178,9 +1232,10 @@ export class ItemRaceController implements ItemCommandHandler {
       case "timeBomb": {
         const activeFrom = record.startMs + behaviour.delayMs;
         const until = activeFrom + (behaviour.lifetimeMs ?? 0);
-        // Water bombs: opponents at the thrown point; time bombs: everyone, placed later.
+        // Water bombs: anyone but their user at the thrown point, teammates too; time bombs:
+        // everyone, placed later.
         if (behaviour.family === "timeBomb") this.addArea(record, behaviour, undefined, activeFrom, until);
-        else if (opponentOfUser && record.point) this.addArea(record, behaviour, record.point, activeFrom, until);
+        else if (user !== me && record.point) this.addArea(record, behaviour, record.point, activeFrom, until);
         return;
       }
       case "siren":
@@ -1189,9 +1244,6 @@ export class ItemRaceController implements ItemCommandHandler {
       case "waterbombFly":
         this.scheduleWaterbombFly(record, behaviour, opponentOfUser);
         return;
-      case "lockdownRocket":
-        if (opponentOfUser) this.scheduleLockdownField(record, behaviour);
-        break;
       default:
         break;
     }
@@ -1211,18 +1263,23 @@ export class ItemRaceController implements ItemCommandHandler {
     const activeFrom = record.startMs + behaviour.delayMs + (behaviour.riseMs ?? 0);
     const area = this.addArea(record, behaviour, undefined, activeFrom,
       activeFrom + (behaviour.lifetimeMs ?? 0));
-    // The targeted leader decides where it lands and tells everyone.
-    if (record.targets[0] !== this.playerId || !this.options.local.racing()) return;
-    const ahead = behaviour.distance ?? ITEM_RACE_TUNING.barricadeAheadM;
-    let point: Vec3 | undefined;
-    try { point = this.options.local.routePointAhead?.(ahead); }
-    catch (error) { this.warn("路障落点路线采样失败", error); }
-    if (!point) {
-      const pose = this.localPose();
-      point = { x: pose.position.x + pose.forward.x * ahead, y: pose.position.y + pose.forward.y * ahead,
-        z: pose.position.z + pose.forward.z * ahead };
-    }
-    this.place(record, area, point);
+    // The targeted leader decides where it lands and tells everyone: StateUse's
+    // size (70 m) ahead of where it is when the barricade comes down (the end of
+    // StateUse), not at the use, which would leave it a few metres to react.
+    if (record.targets[0] !== this.playerId) return;
+    this.at(record.startMs + behaviour.delayMs, () => {
+      if (this.ended || !this.options.local.racing() || !this.uses.has(record.useId)) return;
+      const ahead = behaviour.distance ?? ITEM_RACE_TUNING.barricadeAheadM;
+      let point: Vec3 | undefined;
+      try { point = this.options.local.routePointAhead?.(ahead); }
+      catch (error) { this.warn("路障落点路线采样失败", error); }
+      if (!point) {
+        const pose = this.localPose();
+        point = { x: pose.position.x + pose.forward.x * ahead, y: pose.position.y + pose.forward.y * ahead,
+          z: pose.position.z + pose.forward.z * ahead };
+      }
+      this.place(record, area, point);
+    });
   }
 
   /** An opponent's siren: touching its kart while it runs spins me (I report it, like a hazard). */
@@ -1269,11 +1326,18 @@ export class ItemRaceController implements ItemCommandHandler {
    * plain hit; the others tell it from the main hit because the victim is not
    * the use's target.
    */
-  private scheduleLockdownField(record: UseRecord, behaviour: ItemBehaviour): void {
+  /**
+   * The lockdown field opens CountDown after the missile really hit its
+   * target (the presenter shows it from then too); a blocked missile opens
+   * none. It slows the user's opponents around the target but the target.
+   */
+  private scheduleLockdownField(record: UseRecord, behaviour: ItemBehaviour, hitAtMs: number): void {
     const field = behaviour.field;
     const targetId = record.targets[0];
-    if (!field || !targetId || targetId === this.playerId) return;
-    const from = record.startMs + effectStartOffsetMs(behaviour, record.etaMs) + field.delayMs;
+    const me = this.playerId;
+    if (!field || !targetId || targetId === me || record.userId === me || this.teammates(record.userId, me)) return;
+    if (this.proximity.has(`field:${record.useId}`)) return;
+    const from = hitAtMs + field.delayMs;
     this.proximity.set(`field:${record.useId}`, { key: `field:${record.useId}`, useId: record.useId,
       itemId: record.itemId, userId: record.userId,
       behaviour: { ...behaviour, effect: field.effect, effectMs: field.effectMs,
@@ -1347,9 +1411,12 @@ export class ItemRaceController implements ItemCommandHandler {
       ...(position ? { position: { ...position } } : {}) };
     this.p3(presenter => presenter.hit(hit));
     if (event.removed) this.removeObject(event.useId);
+    else this.burstArea(event.useId, now);
     if (event.result === "blocked" && event.by === "shield")
       this.endKartEffect(event.playerId, "shield");
     const record = this.uses.get(event.useId);
+    if (record && event.result === "hit" && definition?.behaviour.field && event.playerId === record.targets[0])
+      this.scheduleLockdownField(record, definition.behaviour, now);
     if (event.result === "hit" && definition) {
       const behaviour = definition.behaviour;
       // The siren's victims spin; the lockdown field's slow.
@@ -1410,10 +1477,35 @@ export class ItemRaceController implements ItemCommandHandler {
     }
   }
 
+  /**
+   * The server sends a scan at its use, ending at Use + Affect: it shows from
+   * the end of its Use (Affect.life before its end), or on if one already
+   * shows.
+   */
   private onScan(event: ItemScanEvent): void {
     const now = this.options.now();
-    this.scans.set(event.playerId, { slots: [...event.slots],
-      until: this.toLocal(event.until, now) });
+    const until = this.toLocal(event.until, now);
+    const start = until - (this.options.catalog.get(ItemIdx.scanning)?.behaviour.effectMs ?? 0);
+    const previous = this.scans.get(event.playerId);
+    const from = previous && now < previous.until ? Math.min(previous.from, start) : start;
+    this.scans.set(event.playerId, { slots: [...event.slots], from, until });
+  }
+
+  /**
+   * A dropped water mine's first trigger sets it off: for its burst anyone
+   * within the blast radius is caught, then it is gone. False when the use
+   * is not a water mine that has yet to go off.
+   */
+  private burstArea(useId: number, atMs: number): boolean {
+    const area = this.areas.get(useId);
+    const burstMs = area?.behaviour.burstMs;
+    if (!area || area.burst || burstMs === undefined) return false;
+    area.burst = true;
+    area.radius = area.behaviour.radius ?? area.radius;
+    area.activeFrom = atMs;
+    area.activeUntil = atMs + burstMs;
+    delete area.ownerGraceUntil;
+    return true;
   }
 
   /** A banana or mine that was run over (or eaten) disappears for everyone. */
@@ -1446,14 +1538,14 @@ export class ItemRaceController implements ItemCommandHandler {
         const ended = effects?.hasSource ? effects.end("slow", ItemIdx.ufo) : effects?.end("slow");
         if (effects && !ended) continue;
         this.localUfoSlowUntil = 0;
-        this.endKartEffect(target, "slow");
+        this.endKartEffect(target, "slow", { tail: false });
         this.kartEffect(target, "emp", at, behaviour.effectMs);
         continue;
       }
       const until = this.remoteUfoSlows.get(target);
       if (until === undefined || until <= now) continue;
       this.remoteUfoSlows.delete(target);
-      this.endKartEffect(target, "slow");
+      this.endKartEffect(target, "slow", { tail: false });
       this.kartEffect(target, "emp", at, behaviour.effectMs);
     }
   }
@@ -1496,7 +1588,10 @@ export class ItemRaceController implements ItemCommandHandler {
       area.lateCheck = false;
       if (!late && (nowMs < area.activeFrom || nowMs > area.activeUntil)) continue;
       if (area.ownerGraceUntil !== undefined && nowMs < area.ownerGraceUntil) continue;
-      if (distance(position, area.point) > area.radius &&
+      if (area.wall) {
+        if (!throughWall(from, position, { point: area.point, ...area.wall, halfWidth: ITEM_RULES.cloudWallHalfWidthM,
+          height: ITEM_RULES.cloudWallHeightM, depth: ITEM_RULES.cloudWallDepthM })) continue;
+      } else if (distance(position, area.point) > area.radius &&
           !sweptThrough(from, position, area.point, area.radius)) continue;
       this.resolveHit({ useId: area.useId, itemId: area.itemId, userId: area.userId,
         behaviour: area.behaviour, effectAt: nowMs, position: area.point }, nowMs, "area");
@@ -1606,9 +1701,11 @@ export class ItemRaceController implements ItemCommandHandler {
         if ((reply as ItemHitEvent).removed) this.removeObject(hit.useId);
       }),
       error => this.warn(`道具 ${hit.itemId} 命中上报被拒绝`, error));
-    // A dropped trap (banana, mine, …) is spent on its first victim or eater.
-    if (hit.behaviour.target === "placed" && hit.useId > 0 &&
-        (decision.result === "hit" || decision.by === "eat")) this.areas.delete(hit.useId);
+    // A dropped trap (banana, mine, …) is spent on its first victim or eater; a
+    // water mine goes off, whatever stopped it.
+    if (hit.behaviour.target === "placed" && hit.useId > 0 && decision.by !== "escape" &&
+        !this.burstArea(hit.useId, nowMs) && (decision.result === "hit" || decision.by === "eat"))
+      this.areas.delete(hit.useId);
     const presented: ItemRaceHit = { useId: hit.useId, itemId: hit.itemId,
       victimId: this.playerId, ...(hit.userId ? { userId: hit.userId } : {}),
       result: decision.result, ...(decision.by ? { by: decision.by } : {}),
@@ -1650,10 +1747,11 @@ export class ItemRaceController implements ItemCommandHandler {
       if (hit.itemId === ItemIdx.ufo && kind === "slow") this.localUfoSlowUntil = effectAt + durationMs;
       if (behaviour.family === "talisman" && kind === "hold") this.startTalisman(hit, effectAt, durationMs);
     } else if (behaviour.effect === "cloud") {
+      // The dark clouds share the cloud's cover (its ink variant), so another cover (a blind
+      // missile, the bee, oil) still shows beside it.
       const factors = cloudFactors(this.passives);
-      const until = effectAt + behaviour.effectMs * factors.duration;
-      if (behaviour.overlay) this.overlays.push({ kind: behaviour.overlay, from: effectAt, until, opacity: factors.opacity });
-      else this.cloudWindows.push({ from: effectAt, until });
+      this.cloudWindows.push({ from: effectAt, until: effectAt + behaviour.effectMs * factors.duration,
+        variant: behaviour.overlay === "darkCloud" ? 1 : 0 });
     } else if (behaviour.effect === "lock") {
       this.lockWindows.push({ from: effectAt, until: effectAt + behaviour.effectMs });
       if (this.aim && this.aim.itemId !== ItemIdx.angel) this.cancelAim();
@@ -1667,8 +1765,10 @@ export class ItemRaceController implements ItemCommandHandler {
     if (behaviour.lockMs)
       this.lockWindows.push({ from: effectAt, until: effectAt + behaviour.lockMs, tag: `talisman:${hit.useId}` });
     if (behaviour.postLockMs) {
-      const from = effectAt + durationMs;
-      this.lockWindows.push({ from, until: from + behaviour.postLockMs });
+      // Locked from the hit, as the game node counts it (a bubble left early by mashing is
+      // still locked); the key lock shows from the bubble's end.
+      const shownFrom = effectAt + durationMs;
+      this.lockWindows.push({ from: effectAt, until: shownFrom + behaviour.postLockMs, shownFrom });
     }
     if ((behaviour.lockMs || behaviour.postLockMs) && this.aim && this.aim.itemId !== ItemIdx.angel &&
         this.locked(nowMs)) this.cancelAim();
@@ -1784,8 +1884,9 @@ export class ItemRaceController implements ItemCommandHandler {
       : presenter.kartEffect(playerId, kind, startMs, durationMs));
   }
 
-  private endKartEffect(playerId: string, kind: ItemRaceKartEffect): void {
-    this.p3(presenter => presenter.endKartEffect(playerId, kind));
+  private endKartEffect(playerId: string, kind: ItemRaceKartEffect, options?: { tail?: boolean }): void {
+    this.p3(presenter => options ? presenter.endKartEffect(playerId, kind, options)
+      : presenter.endKartEffect(playerId, kind));
   }
 
   private presenterCall(call: (presenter: ItemRacePresenter) => void): void {
@@ -1939,13 +2040,6 @@ export class ItemRaceController implements ItemCommandHandler {
   private endLocalRace(): void {
     this.ended = true;
     this.cancelAim();
-    for (const hit of this.incoming.values()) {
-      // A cloud still on its way never covers a finished racer: the presenter
-      // drops what it queued for me (the cover's removal sound).
-      if (hit.behaviour.effect !== "cloud") continue;
-      this.p3(presenter => presenter.hit({ useId: hit.useId, itemId: hit.itemId,
-        victimId: this.playerId, userId: hit.userId, result: "blocked", atMs: this.nowMs }));
-    }
     this.incoming.clear();
     this.areas.clear();
     this.proximity.clear();

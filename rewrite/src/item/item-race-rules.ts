@@ -13,11 +13,20 @@ export type Vec3 = ItemPresenterVec3;
 
 /** Reconstruction constants of the controller ([还原] in ITEM_MODE.md). */
 export const ITEM_RACE_TUNING = Object.freeze({
-  /** Aiming (rocket, magnet): opponents ahead within this range and half-angle are candidates. */
-  aimRangeM: 150,
-  aimConeHalfAngleDegrees: 25,
-  /** The same candidate must stay in the cone this long before the lock (inrange → ontarget). */
-  aimLockMs: 600,
+  /**
+   * Aiming (rocket, magnet; 骑手学校: hold Ctrl for the green reticle, steer
+   * until it turns red, release): opponents ahead within this range and
+   * half-angle of the view direction are candidates.
+   */
+  aimRangeM: 200,
+  aimConeHalfAngleDegrees: 30,
+  /** A candidate being tracked keeps the reticle within this wider cone and range… */
+  aimHoldHalfAngleDegrees: 42,
+  aimHoldRangeM: 240,
+  /** …and through this long outside it (a bend, a jump) before the reticle lets go. */
+  aimLostGraceMs: 350,
+  /** The same candidate must stay tracked this long before the lock (inrange → ontarget). */
+  aimLockMs: 400,
   /** With no candidate the green reticle sits this far ahead of the kart. */
   aimReticleAheadM: 40,
   /** The reticle aims at this height above a target kart's origin. */
@@ -101,6 +110,36 @@ export function sweepOrigin(from: Vec3 | undefined, to: Vec3, elapsedMs: number)
 export function sweptThrough(from: Vec3 | undefined, to: Vec3, point: Vec3, radius: number): boolean {
   if (!from || !(distance(from, point) > radius)) return false;
   return segmentDistance(from, to, point) <= radius;
+}
+
+/** A standing wall (the clouds): its foot, facing (level, unit) and up. */
+export interface WallArea { point: Vec3; normal: Vec3; up: Vec3; halfWidth: number; height: number; depth: number }
+
+/**
+ * Whether a kart moving from `from` to `to` drove through the wall this
+ * frame: it crossed the wall's plane, or ends within `depth` of it, inside
+ * its width and height.
+ */
+export function throughWall(from: Vec3 | undefined, to: Vec3, wall: WallArea): boolean {
+  const { point, normal, up } = wall;
+  const upLength = Math.hypot(up.x, up.y, up.z) || 1;
+  const u = { x: up.x / upLength, y: up.y / upLength, z: up.z / upLength };
+  // The wall's own sideways direction: up × normal.
+  const side = { x: u.y * normal.z - u.z * normal.y, y: u.z * normal.x - u.x * normal.z, z: u.x * normal.y - u.y * normal.x };
+  const inside = (p: Vec3) => {
+    const d = { x: p.x - point.x, y: p.y - point.y, z: p.z - point.z };
+    const lateral = Math.abs(d.x * side.x + d.y * side.y + d.z * side.z);
+    const height = d.x * u.x + d.y * u.y + d.z * u.z;
+    return lateral <= wall.halfWidth && height >= -wall.depth && height <= wall.height;
+  };
+  const across = (p: Vec3) => (p.x - point.x) * normal.x + (p.y - point.y) * normal.y + (p.z - point.z) * normal.z;
+  const d1 = across(to);
+  if (Math.abs(d1) <= wall.depth && inside(to)) return true;
+  if (!from) return false;
+  const d0 = across(from);
+  if ((d0 < 0) === (d1 < 0) || d0 === d1) return false;
+  const t = d0 / (d0 - d1);
+  return inside({ x: from.x + (to.x - from.x) * t, y: from.y + (to.y - from.y) * t, z: from.z + (to.z - from.z) * t });
 }
 
 const add = (a: Vec3, b: Vec3, scale = 1): Vec3 =>
@@ -234,29 +273,66 @@ export function decideHit(_itemId: number, behaviour: ItemBehaviour,
 
 export interface AimCandidate { playerId: string; position: Vec3 }
 
+type AimTuning = { readonly [K in "aimRangeM" | "aimConeHalfAngleDegrees" | "aimHoldHalfAngleDegrees" |
+  "aimHoldRangeM"]: number };
+
+export interface AimTrackOptions {
+  /** The aiming direction (the view direction); the kart's forward when left out. */
+  axis?: Vec3;
+  /** The candidate being tracked: it stays while inside the wider hold cone and range. */
+  currentId?: string;
+  tuning?: AimTuning;
+}
+
+/** The axis without its component along `up` (a level aiming direction), unit length. */
+export function levelAxis(axis: Vec3, up: Vec3 | undefined): Vec3 {
+  let { x, y, z } = axis;
+  if (up) {
+    const upLength = Math.hypot(up.x, up.y, up.z) || 1;
+    const along = (x * up.x + y * up.y + z * up.z) / (upLength * upLength);
+    x -= up.x * along; y -= up.y * along; z -= up.z * along;
+  }
+  const length = Math.hypot(x, y, z);
+  return length > 1e-6 ? { x: x / length, y: y / length, z: z / length } : axis;
+}
+
 /**
- * The aim candidate: the nearest opponent ahead of the kart inside the aiming
- * cone and range ([还原] constants).
+ * The aim candidate ([还原] constants): the tracked one while it stays inside
+ * the hold cone and range, else the opponent ahead closest to the aiming
+ * direction (steering picks the target), the nearer one on a tie.
  */
 export function chooseAimTarget(pose: Pick<ItemPresenterPose, "position" | "forward">,
-  candidates: readonly AimCandidate[],
-  tuning: { readonly aimRangeM: number; readonly aimConeHalfAngleDegrees: number } = ITEM_RACE_TUNING):
-  AimCandidate | undefined {
-  const forwardLength = Math.hypot(pose.forward.x, pose.forward.y, pose.forward.z) || 1;
-  const cos = Math.cos(tuning.aimConeHalfAngleDegrees * Math.PI / 180);
-  let best: AimCandidate | undefined;
-  let bestDistance = Infinity;
-  for (const candidate of candidates) {
+  candidates: readonly AimCandidate[], options: AimTrackOptions = {}): AimCandidate | undefined {
+  const tuning = options.tuning ?? ITEM_RACE_TUNING;
+  const axis = options.axis ?? pose.forward;
+  const axisLength = Math.hypot(axis.x, axis.y, axis.z) || 1;
+  const measure = (candidate: AimCandidate) => {
     const dx = candidate.position.x - pose.position.x;
     const dy = candidate.position.y - pose.position.y;
     const dz = candidate.position.z - pose.position.z;
     const length = Math.hypot(dx, dy, dz);
-    if (!(length > 0) || length > tuning.aimRangeM) continue;
-    const along = (dx * pose.forward.x + dy * pose.forward.y + dz * pose.forward.z) / forwardLength;
-    if (along <= 0 || along / length < cos) continue;
-    if (length < bestDistance) {
+    const along = (dx * axis.x + dy * axis.y + dz * axis.z) / axisLength;
+    return { length, along, cos: length > 0 ? along / length : -1 };
+  };
+  if (options.currentId !== undefined) {
+    const current = candidates.find(candidate => candidate.playerId === options.currentId);
+    if (current) {
+      const { length, along, cos } = measure(current);
+      if (length > 0 && length <= tuning.aimHoldRangeM && along > 0 &&
+          cos >= Math.cos(tuning.aimHoldHalfAngleDegrees * Math.PI / 180)) return current;
+    }
+  }
+  const minimumCos = Math.cos(tuning.aimConeHalfAngleDegrees * Math.PI / 180);
+  let best: AimCandidate | undefined;
+  let bestScore = -Infinity;
+  for (const candidate of candidates) {
+    const { length, along, cos } = measure(candidate);
+    if (!(length > 0) || length > tuning.aimRangeM || along <= 0 || cos < minimumCos) continue;
+    // Mostly the angle; within a degree or so the nearer kart.
+    const score = cos - length / tuning.aimRangeM * 0.0005;
+    if (score > bestScore) {
       best = candidate;
-      bestDistance = length;
+      bestScore = score;
     }
   }
   return best;

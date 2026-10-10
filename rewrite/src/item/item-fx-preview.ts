@@ -278,22 +278,22 @@ async function main(): Promise<void> {
       [2200, (p, t) => p.kartEffect("B", "escapeShield", t, 2000)],
     ] },
     ufo: { label: "飞碟", steps: [
-      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.ufo, userId: "A", targets: ["C"], startMs: t, etaMs: 1000 })],
-      [1000, (p, t) => {
+      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.ufo, userId: "A", targets: ["C"], startMs: t, etaMs: 0 })],
+      [1500, (p, t) => {
         p.hit({ useId: 0, itemId: ItemIdx.ufo, victimId: "C", result: "hit", atMs: t });
         p.kartEffect("C", "slow", t, 3000);
       }],
     ] },
     ufoEmp: { label: "飞碟被电磁波解除", steps: [
-      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.ufo, userId: "A", targets: ["C"], startMs: t, etaMs: 1000 })],
-      [1000, (p, t) => {
+      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.ufo, userId: "A", targets: ["C"], startMs: t, etaMs: 0 })],
+      [1500, (p, t) => {
         p.hit({ useId: 0, itemId: ItemIdx.ufo, victimId: "C", result: "hit", atMs: t });
         p.kartEffect("C", "slow", t, 3000);
       }],
       [2000, (p, t) => p.used({ useId: 1, itemId: ItemIdx.emp, userId: "C", targets: ["C"], startMs: t, etaMs: 0 })],
       // EMP acts from its Affect state (+500) and only on racers really under a UFO (C.1, C.5).
       [2500, (p, t) => {
-        p.endKartEffect("C", "slow");
+        p.endKartEffect("C", "slow", { tail: false });
         p.kartEffect("C", "emp", t, 1500);
       }],
     ] },

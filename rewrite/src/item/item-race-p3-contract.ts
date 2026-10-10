@@ -43,7 +43,8 @@ export interface ItemRacePresenterP3 extends Omit<ItemRacePresenter, "kartEffect
   hit(event: ItemRaceHit): void;
   kartEffect(playerId: string, kind: ItemRaceKartEffect, startMs: number, durationMs: number,
     options?: ItemRaceKartEffectOptions): void;
-  endKartEffect(playerId: string, kind: ItemRaceKartEffect): void;
+  /** `tail: false`: no closing tail (an EMP blows the UFO away instead of letting it leave). */
+  endKartEffect(playerId: string, kind: ItemRaceKartEffect, options?: { tail?: boolean }): void;
   /** The 迅 start item reached the slots (the charger sound). */
   startItemFlash?(atMs: number): void;
 }

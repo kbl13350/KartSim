@@ -99,10 +99,18 @@ export interface ItemHudCloudDependencies {
   warn?(message: string): void;
 }
 
-/** Where the cloud cover holds while cloud2 lasts: past the 500 ms fade in [还原]. */
+/**
+ * Where the cloud cover holds while it lasts: inside the opaque part of the
+ * 3000 ms play (opaque from 300–400 ms to 2666 ms); the rest plays out after,
+ * so a window of ITEM_RULES.cloudCoverWindowMs shows the original 3 s cover.
+ */
 export const ITEM_CLOUD_HOLD_MS = 1500;
-/** How long the cloud cover models take to fade in (their materials, [还原] from the models). */
-export const ITEM_CLOUD_FADE_IN_MS = 500;
+/**
+ * How long the cloud cover pieces take to fade in: their alpha controllers
+ * rise linearly from 0 to 1 over 300, 366 or 400 ms (무지개구름_화면가림).
+ * A goggles' strength s holds the play at s × this, about alpha s.
+ */
+export const ITEM_CLOUD_FADE_IN_MS = 350;
 
 /** The special items' screen models (item folder and `.1s` stem), by HUD overlay kind. */
 export const ITEM_HUD_OVERLAY_MODELS: Readonly<Record<Exclude<ItemHudOverlayKind, "darkCloud">,

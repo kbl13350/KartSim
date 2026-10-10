@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { ItemIdx } from "./item-catalog";
+import { ITEM_RULES, ItemIdx } from "./item-catalog";
 import { ITEM_RACE_TUNING, threeToClient } from "./item-race-rules";
 import {
   MATE, OTHER, RIVAL, SELF, SERVER_OFFSET_MS, controllerFixture, pose, settle,
@@ -224,28 +224,30 @@ test("someone else's banana spins every kart that runs into it", async () => {
   assert.equal(g.physics.itemEffects.applied.length, 0);
 });
 
-test("a water bomb lands ahead and traps opponents in its blast window", async () => {
+test("a water bomb lands ahead and traps anyone but its user in its blast window, teammates too", async () => {
   const f = controllerFixture({ teamRace: true });
   await holding(f, [9, -1]);
   press(f, 1000);
   assert.deepEqual(f.connection.of("use")[0]!.point, threeToClient({ x: 0, y: 0, z: 30 }));
   await settle();
-  // My own and my teammate's bombs never trap me.
+  // My own bomb never traps me.
   f.physics.body.position = { x: 0, y: 0, z: 30 };
   at(f, 2500);
-  used(f, { useId: 20, itemId: ItemIdx.waterBomb, playerId: MATE, startAt: server(2500),
-    point: threeToClient({ x: 0, y: 0, z: 30 }) });
-  at(f, 4000);
   assert.equal(f.connection.of("hit").length, 0);
   // An opponent's bomb does, with the blue shield after the bubble.
-  used(f, { useId: 21, itemId: ItemIdx.waterBomb, playerId: RIVAL, startAt: server(4000),
+  used(f, { useId: 21, itemId: ItemIdx.waterBomb, playerId: RIVAL, startAt: server(2500),
     point: threeToClient({ x: 0, y: 0, z: 35 }) });
-  at(f, 4900);
+  at(f, 3400);
   assert.equal(f.connection.of("hit").length, 0, "still in the air");
-  at(f, 5100);
+  at(f, 3600);
   assert.deepEqual(f.physics.itemEffects.applied.map(entry => [entry.kind, entry.durationMs,
     entry.options.escapeImmunityMs]), [["trap", 2000, 2000]]);
   assert.deepEqual(f.connection.of("hit"), [{ useId: 21, itemId: 9, result: "hit" }]);
+  // So does a teammate's (bonusStageProperty: 水炸弹可以对自己队友使用？ true).
+  used(f, { useId: 22, itemId: ItemIdx.waterBomb, playerId: MATE, startAt: server(8000),
+    point: threeToClient({ x: 0, y: 0, z: 30 }) });
+  at(f, 9100);
+  assert.deepEqual(f.connection.of("hit").at(-1), { useId: 22, itemId: 9, result: "hit" });
 });
 
 test("rockets aim at the nearest opponent ahead, lock on and fire on release", async () => {
@@ -288,20 +290,28 @@ test("rockets aim at the nearest opponent ahead, lock on and fire on release", a
   assert.deepEqual(f.connection.of("use").at(-1), { itemId: 7 });
 });
 
-test("aiming skips teammates, drops on cancel and switches targets", async () => {
+test("aiming skips teammates, keeps its target, moves on after losing it and drops on cancel", async () => {
   const f = controllerFixture({ teamRace: true });
   await holding(f, [7, -1]);
   f.poses.set(MATE, pose({ x: 0, y: 0, z: 10 }));
   f.poses.set(RIVAL, pose({ x: 0, y: 0, z: 80 }));
   press(f, 1000);
   assert.equal(f.controller.aim?.targetId, RIVAL);
+  // A nearer opponent passing in front does not steal (and restart) the lock.
   f.poses.set(OTHER, pose({ x: 0, y: 0, z: 20 }));
-  at(f, 1500);
+  at(f, 1200);
+  assert.equal(f.controller.aim?.targetId, RIVAL);
+  // The target leaves the hold cone: the reticle stays through the grace, then moves on.
+  f.poses.set(RIVAL, pose({ x: 80, y: 0, z: 10 }));
+  at(f, 1300);
+  assert.equal(f.controller.aim?.targetId, RIVAL);
+  at(f, 1300 + ITEM_RACE_TUNING.aimLostGraceMs);
   assert.equal(f.controller.aim?.targetId, OTHER);
   assert.equal(f.controller.aim?.phase, "inrange");
-  f.controller.handleCommand({ kind: "use", phase: "cancel" }, 1600);
+  assert.equal(f.controller.hudState(1300 + ITEM_RACE_TUNING.aimLostGraceMs).aim?.progress ?? 0, 0);
+  f.controller.handleCommand({ kind: "use", phase: "cancel" }, 1700);
   assert.equal(f.controller.aim, undefined);
-  release(f, 1700);
+  release(f, 1800);
   assert.equal(f.connection.of("use").length, 0);
 });
 
@@ -368,8 +378,8 @@ test("shield, angel, EMP and escape immunity block the hits they cover", async (
   // Neither a shield nor an angel stops the UFO.
   void state;
   press(f, 2000);
-  used(f, { useId: 3, itemId: ItemIdx.ufo, targets: [SELF], startAt: server(2000), etaMs: 500 });
-  at(f, 2500);
+  used(f, { useId: 3, itemId: ItemIdx.ufo, targets: [SELF], startAt: server(2000) });
+  at(f, 3500);
   assert.deepEqual(f.connection.of("hit").at(-1), { useId: 3, itemId: 3, result: "hit" });
   // A teammate's angel covers me against the thunderbolt but not the devil.
   used(f, { useId: 4, itemId: ItemIdx.angel, playerId: MATE, targets: [MATE, SELF],
@@ -385,10 +395,9 @@ test("shield, angel, EMP and escape immunity block the hits they cover", async (
   assert.deepEqual(f.physics.itemEffects.applied.at(-1)?.kind, "reverse");
   // Trapped or under the blue shield: everything is blocked by escape.
   f.physics.itemEffects.immune = true;
-  used(f, { useId: 7, itemId: ItemIdx.cloud2, targets: [SELF], startAt: server(9000) });
-  at(f, 9700);
-  assert.deepEqual(f.connection.of("hit").at(-1), { useId: 7, itemId: 114, result: "blocked", by: "escape" });
-  assert.equal(f.controller.hudState(9700).cloud, undefined);
+  used(f, { useId: 7, itemId: ItemIdx.devil, targets: [SELF], startAt: server(8000) });
+  at(f, 9600);
+  assert.deepEqual(f.connection.of("hit").at(-1), { useId: 7, itemId: 2, result: "blocked", by: "escape" });
   // A reset holds the kart: the hit misses.
   f.physics.itemEffects.immune = false;
   f.state.suspended = true;
@@ -403,16 +412,15 @@ test("devil, thunderbolt and UFO land on the Appendix B timeline", () => {
   at(f, 0);
   used(f, { useId: 1, itemId: ItemIdx.devil, targets: [SELF, OTHER], startAt: server(1000) });
   used(f, { useId: 2, itemId: ItemIdx.thunderbolt, targets: [SELF], startAt: server(1000) });
-  used(f, { useId: 3, itemId: ItemIdx.ufo, targets: [SELF], startAt: server(1000), etaMs: 1200 });
+  // The UFO lands at the end of its Use (1500), however far ahead the leader is.
+  used(f, { useId: 3, itemId: ItemIdx.ufo, targets: [SELF], startAt: server(1000), etaMs: 0 });
   const kinds = () => f.physics.itemEffects.applied.map(entry => [entry.kind, entry.durationMs]);
-  at(f, 2199);
+  at(f, 2499);
   assert.deepEqual(kinds(), []);
-  at(f, 2200);
-  assert.deepEqual(kinds(), [["slow", 3000]]);
   at(f, 2500);
-  assert.deepEqual(kinds(), [["slow", 3000], ["reverse", 3000]]);
+  assert.deepEqual(kinds(), [["reverse", 3000], ["slow", 3000]]);
   at(f, 3100);
-  assert.deepEqual(kinds(), [["slow", 3000], ["reverse", 3000], ["shrink", 1500]]);
+  assert.deepEqual(kinds(), [["reverse", 3000], ["slow", 3000], ["shrink", 1500]]);
 });
 
 test("a slot lock blocks every item but the angel for its window", async () => {
@@ -440,19 +448,60 @@ test("a slot lock blocks every item but the angel for its window", async () => {
   assert.equal(aim(f.controller)?.itemId, 7);
 });
 
-test("the cloud covers the screen from Use until Set ends", () => {
+test("a cloud stands where it was used; driving through it covers the screen once", () => {
+  const f = controllerFixture({ teamRace: true });
+  serve(f);
+  const me = f.physics.body.position;
+  // The rival drives +z; its cloud stands 30 m ahead of me, across the road.
+  f.poses.set(RIVAL, pose({ x: 0, y: 0, z: 40 }));
+  f.poses.set(MATE, pose({ x: 0, y: 0, z: 50 }));
+  at(f, 1000);
+  used(f, { useId: 4, itemId: ItemIdx.cloud2, startAt: server(1000), point: threeToClient({ x: 0, y: 0, z: 30 }) });
+  // My teammate's cloud never covers me (avoidItemTeamKill).
+  used(f, { useId: 5, itemId: ItemIdx.cloud2, playerId: MATE, startAt: server(1000),
+    point: threeToClient({ x: 0, y: 0, z: 31 }) });
+  Object.assign(me, { z: 26 });
+  at(f, 1700);
+  assert.equal(f.controller.hudState(1700).cloud, undefined);
+  // Through the wall: one cover window.
+  Object.assign(me, { z: 32 });
+  at(f, 1800);
+  assert.deepEqual(f.connection.of("hit").map(hit => [hit.useId, hit.result]), [[4, "hit"]]);
+  assert.deepEqual(f.controller.hudState(1800).cloud, { opacity: 1, variant: 0 });
+  at(f, 1800 + ITEM_RULES.cloudCoverWindowMs - 1);
+  assert.ok(f.controller.hudState(1800 + ITEM_RULES.cloudCoverWindowMs - 1).cloud);
+  // Back through it later: no second cover.
+  Object.assign(me, { z: 28 });
+  at(f, 3400);
+  assert.equal(f.controller.hudState(3400).cloud, undefined);
+  assert.equal(f.connection.of("hit").length, 1);
+});
+
+test("a cloud still rising, gone, or beside the road covers nobody", () => {
   const f = controllerFixture();
   serve(f);
+  const me = f.physics.body.position;
+  f.poses.set(RIVAL, pose({ x: 0, y: 0, z: 40 }));
   at(f, 1000);
-  used(f, { useId: 4, itemId: ItemIdx.cloud2, targets: [SELF], startAt: server(1000) });
-  at(f, 1665);
-  assert.equal(f.controller.hudState(1665).cloud, undefined);
-  at(f, 1666);
-  assert.deepEqual(f.controller.hudState(1666).cloud, { opacity: 1, variant: 0 });
-  at(f, 11665);
-  assert.ok(f.controller.hudState(11665).cloud);
-  at(f, 11666);
-  assert.equal(f.controller.hudState(11666).cloud, undefined);
+  used(f, { useId: 4, itemId: ItemIdx.cloud2, startAt: server(1000), point: threeToClient({ x: 0, y: 0, z: 30 }) });
+  // Rising (Use 666): through it at 1600 is nothing.
+  Object.assign(me, { z: 28 });
+  at(f, 1500);
+  Object.assign(me, { z: 33 });
+  at(f, 1600);
+  // Beside it (outside its 30 m half width), driving past it on the far side.
+  Object.assign(me, { x: 35, z: 33 });
+  at(f, 1650);
+  Object.assign(me, { z: 26 });
+  at(f, 2000);
+  Object.assign(me, { z: 34 });
+  at(f, 2100);
+  // Gone after Set (10000).
+  Object.assign(me, { x: 0, z: 26 });
+  at(f, 11_700);
+  Object.assign(me, { z: 34 });
+  at(f, 11_800);
+  assert.equal(f.connection.of("hit").length, 0);
 });
 
 test("the targeted leader places the barricade ahead on its route and can run into it", async () => {
@@ -461,6 +510,11 @@ test("the targeted leader places the barricade ahead on its route and can run in
   f.state.route = { x: 2, y: 1, z: 70 };
   at(f, 1000);
   used(f, { useId: 9, itemId: ItemIdx.barricade, targets: [SELF], startAt: server(1000) });
+  // Measured where I am when it comes down (the end of StateUse), not at the use.
+  assert.deepEqual(f.connection.of("place"), []);
+  at(f, 1999);
+  assert.deepEqual(f.connection.of("place"), []);
+  at(f, 2000);
   assert.deepEqual(f.connection.of("place"), [{ useId: 9, point: threeToClient({ x: 2, y: 1, z: 70 }) }]);
   const placed = f.presenter.of("placed")[0]![0] as Record<string, unknown>;
   assert.deepEqual(placed.point, { x: 2, y: 1, z: 70 });
@@ -477,6 +531,7 @@ test("the targeted leader places the barricade ahead on its route and can run in
   serve(g);
   g.controller.options.local.routePointAhead = () => undefined;
   used(g, { useId: 3, itemId: ItemIdx.barricade, targets: [SELF], startAt: server(0) });
+  at(g, 1000);
   assert.deepEqual(g.connection.of("place")[0]!.point, threeToClient({ x: 0, y: 0, z: 70 }));
 });
 
@@ -559,13 +614,20 @@ test("someone else's time bomb traps everyone near its placed point, even a litt
   assert.equal(h.connection.of("hit").length, 0);
 });
 
-test("scan events show the opponents' slots until their end", () => {
+test("scan events show the opponents' slots from the end of the Use until their end", () => {
   const f = controllerFixture();
   serve(f);
-  at(f, 1000);
+  at(f, 500);
+  // Sent at the use (500), ending at Use 500 + Affect 8000: shown from 1000.
   f.connection.emit({ action: "scan", playerId: RIVAL, slots: [7, -1], until: server(9000) });
+  assert.equal(f.controller.hudState(999).scan, undefined);
+  assert.deepEqual(f.controller.hudState(1000).scan, [{ playerId: RIVAL, slots: [7, -1] }]);
   assert.deepEqual(f.controller.hudState(8999).scan, [{ playerId: RIVAL, slots: [7, -1] }]);
   assert.equal(f.controller.hudState(9000).scan, undefined);
+  // A slot change while it shows, or a second scan, keeps it shown.
+  at(f, 5000);
+  f.connection.emit({ action: "scan", playerId: RIVAL, slots: [9, -1], until: server(13_500) });
+  assert.deepEqual(f.controller.hudState(5000).scan, [{ playerId: RIVAL, slots: [9, -1] }]);
 });
 
 test("track hazards hit the kart and are reported with their id", async () => {
@@ -1106,16 +1168,14 @@ test("a remote racer's early escape ends its bubble and starts its blue shield t
   assert.equal(g.presenter.of("endKartEffect").length, 0);
 });
 
-test("a cloud still on its way when I finish never covers me, so the presenter drops it", () => {
+test("nothing on its way reaches me after I finish", () => {
   const f = controllerFixture();
   serve(f);
   at(f, 1000);
-  used(f, { useId: 4, itemId: ItemIdx.cloud2, targets: [SELF], startAt: server(1000) });
   used(f, { useId: 5, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(1000), etaMs: 900 });
   f.state.racing = false;
   at(f, 1300);
-  const hits = f.presenter.of("hit").map(call => call[0] as Record<string, unknown>);
-  assert.deepEqual(hits.map(hit => [hit.useId, hit.victimId, hit.result, hit.by]),
-    [[4, SELF, "blocked", undefined]]);
+  at(f, 2000);
+  assert.equal(f.presenter.of("hit").length, 0);
   assert.equal(f.connection.of("hit").length, 0, "nothing is reported after the finish");
 });

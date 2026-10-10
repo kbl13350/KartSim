@@ -171,6 +171,9 @@ type Use struct {
 
 	hits    map[shotKey]Hit
 	removed bool
+	// burstAt is when a dropped water mine went off (its first report), 0
+	// before.
+	burstAt int64
 }
 
 type shotKey struct {
@@ -672,6 +675,16 @@ func (r *Race) UseItem(req UseRequest) (UseResult, error) {
 	return result, nil
 }
 
+// fieldOpen reports whether a lockdown missile hit its target, opening its
+// field there.
+func (r *Race) fieldOpen(use *Use) bool {
+	if len(use.Targets) == 0 {
+		return false
+	}
+	primary, ok := use.hits[shotKey{use.Targets[0], 0}]
+	return ok && primary.Result == ResultHit
+}
+
 // cureUFO is an EMP of user taking effect at: the user's team members
 // still racing whose reported UFO hit slows them then (Affect, or
 // HeadBandAffect / BonusAffect for those variants) are cured; nobody when
@@ -700,7 +713,7 @@ func (r *Race) cureUFO(user string, at int64, standings []Racer) []string {
 			case VariantBonus:
 				life = ufo.Life("BonusAffect")
 			}
-			landed := use.StartAt + int64(use.EtaMs)
+			landed := use.StartAt + int64(ufo.Life("Use"))
 			if (window{from: landed - reportSlackMs, until: landed + int64(life)}).covers(at) {
 				hit.cured = true
 				use.hits[key] = hit
@@ -899,6 +912,13 @@ func (r *Race) Hit(req HitRequest) (hit Hit, fresh bool, err error) {
 		if r.teammates(use.PlayerID, req.VictimID) {
 			return Hit{}, false, ErrInvalidTarget
 		}
+		if rule.field && !slices.Contains(use.Targets, req.VictimID) && !r.fieldOpen(use) {
+			return Hit{}, false, ErrInvalidTarget // no field: the missile missed or was blocked
+		}
+	case hitOthers:
+		if req.VictimID == use.PlayerID {
+			return Hit{}, false, ErrInvalidTarget
+		}
 	}
 	if req.Shot < 0 || req.Shot >= use.Count {
 		return Hit{}, false, ErrInvalidShot
@@ -909,12 +929,23 @@ func (r *Race) Hit(req HitRequest) (hit Hit, fresh bool, err error) {
 	if use.removed {
 		return Hit{}, false, ErrInvalidUse
 	}
+	item, _ := r.data.Item(use.ItemID)
+	if rule.burst != "" && use.burstAt != 0 && req.Now > use.burstAt+int64(item.Life(rule.burst))+reportSlackMs {
+		return Hit{}, false, ErrInvalidUse // the burst is over: the mine is gone
+	}
 	lucci, err := r.checkReport(req, h, victim, rule)
 	if err != nil {
 		return Hit{}, false, err
 	}
 	hit.UserID = use.PlayerID
-	if rule.removed {
+	switch {
+	case rule.burst != "":
+		// The first report sets a water mine off, whatever stopped it: the
+		// others in its blast count while it lasts.
+		if use.burstAt == 0 {
+			use.burstAt = req.Now
+		}
+	case rule.removed:
 		// The first report on a placed trap removes it, whatever stopped it.
 		use.removed = true
 		hit.Removed = true

@@ -123,8 +123,11 @@ test("the catalog maps idx, names, folders, CN texts and icons from the original
     for (const state of item.states.values()) {
       for (const stem of [state.item, state.firing, state.fired])
         if (stem) assert.ok(catalog.resolveModel(item, stem), `${item.name} ${state.name} ${stem}`);
-      for (const stem of [state.itemFx, state.firingFx, state.firedFx, ...(state.auxFx ?? [])])
-        if (stem) assert.ok(catalog.resolveSound(item, stem), `${item.name} ${state.name} ${stem}`);
+      for (const stem of [state.itemFx, state.firingFx, state.firedFx, ...(state.auxFx ?? [])]) {
+        // The devils' Escape names a `trapped` their folders never had (silent, no stand-in).
+        if (stem && !(["devil", "newDevil", "drrMine"].includes(item.name) && stem === "trapped"))
+          assert.ok(catalog.resolveSound(item, stem), `${item.name} ${state.name} ${stem}`);
+      }
     }
   }
   const banana = catalog.get(ItemIdx.banana)!;
@@ -132,7 +135,8 @@ test("the catalog maps idx, names, folders, CN texts and icons from the original
   assert.equal(catalog.resolveModel(banana, "item01"), "item/banana/item01.1s");
   assert.equal(catalog.resolveModel(banana, "당함"), "item/common/당함.1s");
   assert.equal(catalog.resolveModel(catalog.cube, "fired01"), "item/itemCube/fired01.1s");
-  assert.equal(catalog.resolveSound(catalog.get(ItemIdx.devil)!, "trapped"), "sound_/fx/item/waterBomb/trapped.ogg");
+  // The devil's Escape `trapped` never existed: no water bubble stand-in (its one long affecting covers it).
+  assert.equal(catalog.resolveSound(catalog.get(ItemIdx.devil)!, "trapped"), undefined);
   assert.equal(catalog.resolveSound(catalog.get(ItemIdx.waterFly)!, "trapped"), "sound_/fx/item/waterBomb/trapped.ogg");
   assert.equal(catalog.resolveSound(catalog.get(ItemIdx.barricade)!, "shield"), "sound_/fx/item/shield/shield.ogg");
   assert.equal(catalog.resolveSound(catalog.get(ItemIdx.booster)!, "booster"), "sound_/fx/item/booster/booster.ogg");
@@ -165,7 +169,8 @@ test("item behaviours reproduce ITEM_MODE.md Appendix B from the parsed duration
   row(ItemIdx.devil, { target: "opponents", delayMs: 500, warningMs: 1000, effect: "reverse",
     effectMs: 3000, shieldBlocks: false, angelBlocks: false });
   // The UFO has a Shield state, but neither shield nor angel stops it (Appendix B, tip.xml:28).
-  row(ItemIdx.ufo, { target: "first", maxEtaMs: 1500, effect: "slow", effectMs: 3000,
+  // No flight by distance: it lands at the end of Use (fired00 is a fixed 1500 ms descent).
+  row(ItemIdx.ufo, { target: "first", delayMs: 1500, maxEtaMs: undefined, effect: "slow", effectMs: 3000,
     factors: { drive: 0.4, drag: 2 }, shieldBlocks: false, angelBlocks: false });
   // EMP covers the team from the end of Use (C.1, C.5).
   row(ItemIdx.emp, { target: "team", delayMs: 500, effect: "emp", effectMs: 1500 });
@@ -173,8 +178,9 @@ test("item behaviours reproduce ITEM_MODE.md Appendix B from the parsed duration
     effectMs: 1500, factors: { scale: 0.6, drive: 0.5 }, shieldBlocks: false, angelBlocks: true });
   row(ItemIdx.barricade, { target: "first", delayMs: 1000, distance: 70, riseMs: 266,
     lifetimeMs: 5000, radius: 4.3, effect: "barrier", effectMs: 500, shieldBlocks: true, angelBlocks: true });
-  row(ItemIdx.cloud2, { target: "all-behind", delayMs: 666, effect: "cloud", effectMs: 10000,
-    shieldBlocks: false, angelBlocks: false });
+  // Stands where it was used for Set.life; whoever drives through gets one 3 s cover (a 1500 ms HUD window).
+  row(ItemIdx.cloud2, { use: "drop", target: "area", distance: 0, delayMs: 666, lifetimeMs: 10000, effect: "cloud",
+    effectMs: 1500, shieldBlocks: false, angelBlocks: false });
   row(ItemIdx.scanning, { target: "team", delayMs: 500, effect: "scan", effectMs: 8000 });
   row(ItemIdx.slotLock, { target: "opponents", delayMs: 2000, effect: "lock", effectMs: 3000,
     shieldBlocks: false, angelBlocks: false });
@@ -183,9 +189,9 @@ test("item behaviours reproduce ITEM_MODE.md Appendix B from the parsed duration
     shieldBlocks: false, angelBlocks: true });
   row(ItemIdx.mine, { use: "drop", delayMs: 500, effect: "launch", effectMs: 1500, radius: 2 });
   row(ItemIdx.waterMine, { effect: "trap", effectMs: 2000, radius: 10, triggerRadius: 2, escapeShieldMs: 2000 });
-  // Only the time bombs catch teammates.
-  assert.deepEqual(catalog.items.filter(item => item.behaviour.hitsTeammates).map(item => item.idx).sort(),
-    [13, 21, 28, 35]);
+  // Only the water and time bombs catch teammates.
+  assert.deepEqual(catalog.items.filter(item => item.behaviour.hitsTeammates).map(item => item.idx)
+    .sort((a, b) => a - b), [9, 13, 20, 21, 27, 28, 34, 35, 44, 47]);
   assert.throws(() => itemBehaviour("unknown", new Map()));
   assert.throws(() => itemBehaviour("banana", new Map()), /item.bml 缺少 \w+ 状态/);
 });
@@ -194,8 +200,9 @@ test("paths, string bags and catalog construction follow the original layout", (
   assert.deepEqual(itemModelCandidates({ folder: "common" }, "fired03"), ["item/common/fired03.1s"]);
   assert.deepEqual(itemSoundCandidates({ folder: "rocket" }, "shooting"),
     ["sound_/fx/item/rocket/shooting.ogg", "sound_/fx/item/rocket/shooting.flac"]);
-  assert.deepEqual(itemSoundCandidates({ folder: "devil" }, "trapped").slice(2),
+  assert.deepEqual(itemSoundCandidates({ folder: "waterFly" }, "trapped").slice(2),
     ["sound_/fx/item/waterBomb/trapped.ogg", "sound_/fx/item/waterBomb/trapped.flac"]);
+  assert.deepEqual(itemSoundCandidates({ folder: "devil" }, "trapped").slice(2), []);
   const texts = stringBagTexts(node("StringBag", {}, [
     node("k", { n: "banana" }, [node("m", { c: "kr", v: "바나나" }), node("m", { c: "cn", v: "香蕉皮" })]),
     node("k", { n: "empty" }, [node("m", { c: "cn", v: "" })]),
@@ -254,8 +261,9 @@ test("the special item registry resolves against item.rho and the slot icons", a
   assert.equal(catalog.get(ItemIdx.tigerGhost)!.states.get("Use")!.fired, "effect_tigerEye");
   // The missing sounds use the C.4 stand-ins.
   const sound = (idx: number, stem: string) => catalog.resolveSound(catalog.get(idx)!, stem);
-  for (const idx of [ItemIdx.snowWaterFly, ItemIdx.infectedWaterFly, ItemIdx.waterbombFly, ItemIdx.drrMine,
-    ItemIdx.newDevil]) assert.equal(sound(idx, "trapped"), "sound_/fx/item/waterBomb/trapped.ogg", String(idx));
+  for (const idx of [ItemIdx.snowWaterFly, ItemIdx.infectedWaterFly, ItemIdx.waterbombFly])
+    assert.equal(sound(idx, "trapped"), "sound_/fx/item/waterBomb/trapped.ogg", String(idx));
+  for (const idx of [ItemIdx.drrMine, ItemIdx.newDevil]) assert.equal(sound(idx, "trapped"), undefined, String(idx));
   assert.equal(sound(ItemIdx.oil, "eat"), "sound_/fx/item/banana/eat.ogg");
   assert.equal(sound(ItemIdx.oil, "firing"), "sound_/fx/item/banana/firing.ogg");
   assert.equal(sound(ItemIdx.abyssBarricade, "shield"), "sound_/fx/item/shield/shield.ogg");
@@ -288,7 +296,7 @@ test("special item behaviours follow ITEM_MODE.md C.4 with each base's durations
   for (const [idx, trap, postLock] of [[34, 3000, undefined], [20, 2500, undefined], [47, 2000, undefined],
     [27, 2000, 5000], [44, 2000, 5000]] as const)
     row(idx, { family: "waterBomb", use: "throw", target: "area", effect: "trap", effectMs: trap,
-      postLockMs: postLock, radius: 10, shieldBlocks: false, angelBlocks: true, hitsTeammates: false });
+      postLockMs: postLock, radius: 10, shieldBlocks: false, angelBlocks: true, hitsTeammates: true });
   // The infected bombs have no EscapeAffect (no blue shield) and no AfterBoost (no escape boost).
   row(27, { escapeShieldMs: undefined, afterBoost: false });
   row(34, { escapeShieldMs: 2000, afterBoost: true });
@@ -296,7 +304,8 @@ test("special item behaviours follow ITEM_MODE.md C.4 with each base's durations
     row(idx, { family: "timeBomb", use: "attach", delayMs: 3000, radius: 15, effectMs: trap,
       postLockMs: postLock, hitsTeammates: true, shieldBlocks: false, angelBlocks: true });
   row(118, { family: "waterFly", target: "ahead", effectMs: 1500, escapeShieldMs: 2000, shieldBlocks: true });
-  row(119, { family: "waterFly", effectMs: 1000, postLockMs: 2000, shieldBlocks: true });
+  row(119, { family: "waterFly", effectMs: 1000, postLockMs: 2000, shieldBlocks: true, afterBoost: false });
+  row(118, { afterBoost: true });
   row(120, { family: "waterbombFly", target: "ahead", maxEtaMs: 2000, effect: "trap", effectMs: 2000,
     escapeShieldMs: 1000, blast: { delayMs: 2000, radius: 15 }, shieldBlocks: true, angelBlocks: true });
   row(132, { family: "honeyBee", target: "ahead", effect: "slow", effectMs: 4000, overlay: "honey",
@@ -320,9 +329,9 @@ test("special item behaviours follow ITEM_MODE.md C.4 with each base's durations
   row(31, { family: "booster", effect: "boost", boosterKind: "animal", effectMs: 4000 });
   row(112, { family: "snowman", use: "aim", effect: "shrink", effectMs: 2000, shieldBlocks: false,
     angelBlocks: true });
-  row(1, { family: "cloud", target: "all-behind", delayMs: 666, effectMs: 30000, overlay: "darkCloud",
+  row(1, { family: "cloud", target: "area", delayMs: 666, lifetimeMs: 30000, effectMs: 1500, overlay: "darkCloud",
     shieldBlocks: false, angelBlocks: false });
-  row(115, { family: "cloud", effectMs: 10000, overlay: "darkCloud", angelBlocks: false });
+  row(115, { family: "cloud", lifetimeMs: 10000, effectMs: 1500, overlay: "darkCloud", angelBlocks: false });
   row(38, { family: "devil", reverseMode: "forwardBack", effectMs: 5000, warningMs: 1000,
     shieldBlocks: false, angelBlocks: false });
   row(23, { family: "devil", reverseMode: "all", effectMs: 5000, angelBlocks: false });

@@ -12,7 +12,7 @@ export interface RacePresenterItemsHost {
     itemCubes?: { update(nowMs: number, camera: unknown, width: number, height: number): void };
     itemHazards?: { update(nowMs: number): void };
     /** item-mode(fx): the kart looks (invisibility, balloons) and the start item's charger sound. */
-    itemPresenter?: Pick<ItemRacePresenter, "kartPresentation" | "startItemFlash">;
+    itemPresenter?: Pick<ItemRacePresenter, "kartPresentation" | "kartMotion" | "startItemFlash">;
   };
   runtime: {
     itemRace?: {
