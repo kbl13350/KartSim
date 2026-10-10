@@ -18,7 +18,7 @@ import { confirmAction } from '../utils/ui'
 // rider's 奖励箱 for 30 days. An item is "分类:编号" with days (0 = permanent);
 // currencies are 金币, 酷币 and 点券. Below it, GET /api/admin/reward-box
 // lists every account's entries (q: 账号/昵称/物品名; source, state,
-// account; sort createdAt).
+// account; from/to bound the arrival time; sort createdAt).
 
 type Kind = Currency | 'item'
 
@@ -143,7 +143,7 @@ function content(row: RewardBoxRow) {
 
     <el-card shadow="never" class="page-card">
       <template #header>奖励箱记录</template>
-      <TableToolbar :table="table" keyword="账号 / 昵称 / 物品名">
+      <TableToolbar :table="table" keyword="账号 / 昵称 / 物品名" range="放入时间">
         <el-form-item label="账号">
           <el-input v-model="table.filters.account" maxlength="24" clearable placeholder="用户名" class="filter-input" @clear="table.search()" />
         </el-form-item>

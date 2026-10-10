@@ -13,9 +13,10 @@ import { text } from '../utils/format'
 
 // 在线玩家: GET /api/admin/online (from the game nodes' registrations; q
 // matches nickname/account, node narrows to one node; sort name (default),
-// username, node, room). A kicked or banned player stays listed as 断开中
-// (leaving) until its node's next heartbeat drops it, so the list reloads
-// again a few seconds after a kick.
+// username, node, room). A kicked or banned player, or one whose account
+// logged in elsewhere, stays listed as 断开中 (leaving) until its node's
+// next heartbeat drops it, so the list reloads again a few seconds after a
+// kick.
 
 const table = usePagedTable<OnlineRow, { node: string }>('/api/admin/online', { filters: { node: '' } })
 const nodes = ref<NodeRow[]>([])
@@ -61,7 +62,7 @@ async function kick(row: OnlineRow) {
       </el-table-column>
       <el-table-column label="状态" width="90">
         <template #default="{ row }">
-          <el-tooltip v-if="row.leaving" content="已踢下线或封禁，节点下次心跳时断开" placement="top">
+          <el-tooltip v-if="row.leaving" content="已被踢下线、封禁或在别处登录，节点下次心跳时断开" placement="top">
             <el-tag type="warning" disable-transitions>断开中</el-tag>
           </el-tooltip>
           <el-tag v-else type="success" disable-transitions>在线</el-tag>

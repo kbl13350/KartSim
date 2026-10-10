@@ -15,7 +15,8 @@ import { copyText, showError } from '../utils/ui'
 // 邀请码: POST /multiplayer/admin/invites makes one. A code is shown only
 // once (the server stores its digest), so the codes of this login are kept
 // in memory; GET /api/admin/invites lists every invite by the digest's
-// first 12 characters (used=1|0; sort createdAt).
+// first 12 characters (q: the digest's start, the user's username or
+// nickname; used=1|0; from/to bound the creation time; sort createdAt).
 
 const creating = ref(false)
 const codes = ref<{ code: string; at: number }[]>([])
@@ -68,8 +69,8 @@ async function copy(code: string) {
 
     <el-card shadow="never" class="page-card">
       <template #header>全部邀请码</template>
-      <p class="page-note">服务器只保存邀请码的摘要，这里显示摘要的前 12 位，无法还原邀请码本身。</p>
-      <TableToolbar :table="table">
+      <p class="page-note">服务器只保存邀请码的摘要，这里显示摘要的前 12 位，无法还原邀请码本身。使用时间是使用者的注册时间（不单独记录使用时间）。</p>
+      <TableToolbar :table="table" keyword="摘要 / 使用者" range="生成时间">
         <el-form-item label="状态">
           <el-select v-model="table.filters.used" clearable placeholder="全部" class="filter-select" @change="table.search()">
             <el-option value="0" label="未使用" />
@@ -94,6 +95,9 @@ async function copy(code: string) {
             <AccountName v-if="row.usedBy" :nickname="row.usedBy.nickname" :username="row.usedBy.username" />
             <span v-else class="muted">—</span>
           </template>
+        </el-table-column>
+        <el-table-column label="使用时间" width="175">
+          <template #default="{ row }">{{ formatTime(row.usedAt) }}</template>
         </el-table-column>
       </DataTable>
     </el-card>

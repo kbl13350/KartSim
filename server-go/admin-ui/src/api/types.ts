@@ -44,7 +44,10 @@ export interface AccountRow {
   koin: number
   inventoryCount: number
   onboarded: boolean
-  /** leaving: kicked or banned, dropped at the node's next heartbeat (断开中). */
+  /**
+   * leaving: kicked, banned or replaced by a newer login elsewhere; the node
+   * drops the session at its next heartbeat (断开中).
+   */
   online: { nodeId: string; nodeName: string; leaving?: boolean } | null
 }
 
@@ -123,7 +126,10 @@ export interface OnlineRow {
   nodeName: string
   /** The room's name; '' in the lobby or on a node that does not report it. */
   room: string
-  /** Kicked or banned: the node drops the player at its next heartbeat (断开中). */
+  /**
+   * Kicked, banned or replaced by a newer login elsewhere: the node drops
+   * the player at its next heartbeat (断开中).
+   */
   leaving?: boolean
 }
 
@@ -304,7 +310,15 @@ export interface AccountGame {
   licenseClears: { step: number; period: string; bestMs: number | null; clearedAt: number | null }[] | null
   licenseRecords: TrackBest[] | null
   timeAttack: TrackBest[] | null
-  quests: { questId: number | string; period: string; value: number; completedAt: number | null; updatedAt: number | null }[] | null
+  /** title: the quest's name ('' when the quest table does not know it). */
+  quests: {
+    questId: number | string
+    title: string
+    period: string
+    value: number
+    completedAt: number | null
+    updatedAt: number | null
+  }[] | null
   counters: { counter: string; value: number; updatedAt: number | null }[] | null
   friends: number
   club: {
@@ -324,6 +338,8 @@ export interface InviteRow {
   createdAt: number
   used: boolean
   usedBy: { accountId: string; username: string; nickname: string } | null
+  /** The using account's registration time (no separate use time is stored); null while unused. */
+  usedAt: number | null
 }
 
 /** GET /api/admin/reward-box. An item (category, itemId, days) or a currency amount. */

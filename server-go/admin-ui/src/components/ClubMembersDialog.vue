@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { watch } from 'vue'
-import { Refresh } from '@element-plus/icons-vue'
 import type { ClubMemberRow, ClubRow } from '../api/types'
 import { useNarrow } from '../composables/useNarrow'
 import { usePagedTable } from '../composables/usePagedTable'
@@ -8,8 +7,10 @@ import { clubGradeName, formatNumber } from '../utils/format'
 import { formatTime } from '../utils/time'
 import AccountName from './AccountName.vue'
 import DataTable from './DataTable.vue'
+import TableToolbar from './TableToolbar.vue'
 
-// 俱乐部成员: GET /api/admin/clubs/{id}/members (paged; sort joinedAt
+// 俱乐部成员: GET /api/admin/clubs/{id}/members (paged; q matches the
+// username and nickname, from/to bound the join time; sort joinedAt
 // (default), grade, csWeek, csTotal, donatedTotal).
 
 const props = defineProps<{ club: ClubRow | null }>()
@@ -20,8 +21,8 @@ const table = usePagedTable<ClubMemberRow>(
   () => `/api/admin/clubs/${encodeURIComponent(String(props.club?.id ?? ''))}/members`,
   { ready: () => !!props.club })
 
-// Each opening starts on page 1 of the club's members, with no rows of the
-// previously shown club.
+// Each opening starts on page 1 of the club's members with no search, and
+// with no rows of the previously shown club.
 watch(open, (value) => {
   if (!value || !props.club) return
   table.clear()
@@ -36,10 +37,9 @@ watch(open, (value) => {
     :width="narrow ? '96%' : '900px'"
     append-to-body
   >
-    <div class="head">
-      <span class="muted">共 {{ formatNumber(table.total) }} 人</span>
-      <el-button :icon="Refresh" size="small" :loading="table.loading" @click="table.load()">刷新</el-button>
-    </div>
+    <TableToolbar :table="table" keyword="账号 / 昵称" range="加入时间">
+      <template #actions><span class="muted count">共 {{ formatNumber(table.total) }} 人</span></template>
+    </TableToolbar>
     <DataTable :table="table" size="small" row-key="accountId" empty-text="没有成员">
       <el-table-column label="成员" min-width="160">
         <template #default="{ row }"><AccountName :nickname="row.nickname" :username="row.username" /></template>
@@ -64,10 +64,7 @@ watch(open, (value) => {
 </template>
 
 <style scoped>
-.head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
+.count {
+  line-height: 32px;
 }
 </style>

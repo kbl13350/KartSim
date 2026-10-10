@@ -150,8 +150,11 @@ const proText = computed(() => {
         :default-sort="{ prop: 'updatedAt', order: 'descending' }"
         empty-text="没有任务进度"
       >
-        <el-table-column prop="questId" label="任务" min-width="110" sortable show-overflow-tooltip>
-          <template #default="{ row }"><span class="mono">{{ text(row.questId) }}</span></template>
+        <el-table-column prop="title" label="任务" min-width="200" sortable show-overflow-tooltip>
+          <template #default="{ row }">
+            {{ row.title || `任务 ${row.questId}` }}
+            <span class="muted mono">#{{ row.questId }}</span>
+          </template>
         </el-table-column>
         <el-table-column prop="period" label="周期" min-width="110" sortable>
           <template #default="{ row }">{{ row.period || '一次性' }}</template>

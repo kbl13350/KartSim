@@ -164,8 +164,11 @@ function clubMembers(club: Row): Row[] {
 
 const invites: Row[] = Array.from({ length: 42 }, (_, i) => {
   const user = i % 3 === 0 ? null : pick(accounts, i * 3 + 2)
-  return { hash: (i * 2654435761 + 0x9e3779b9).toString(16).padStart(12, 'a').slice(0, 12), createdAt: now - i * 11 * 3600_000,
-    used: !!user, usedBy: user ? { accountId: user.id, username: user.username, nickname: user.nickname } : null }
+  const createdAt = now - i * 11 * 3600_000
+  // usedAt is the user's registration time; here a few hours after the invite.
+  return { hash: (i * 2654435761 + 0x9e3779b9).toString(16).padStart(12, 'a').slice(0, 12), createdAt,
+    used: !!user, usedBy: user ? { accountId: user.id, username: user.username, nickname: user.nickname } : null,
+    usedAt: user ? Math.min(now, createdAt + (1 + i % 5) * 3600_000) : null }
 })
 
 const boxNames: Record<string, string> = { lucci: '金币', koin: '酷币', coupon: '点券' }
@@ -194,7 +197,10 @@ function gameData(account: Row): Row {
       bestMs: 88_000 + i * 2345, updatedAt: now - i * 5 * day })),
     timeAttack: Array.from({ length: n % 7 }, (_, i) => ({ trackId: pick(tracks, i + 1), trackName: trackNames[pick(tracks, i + 1)] ?? '',
       bestMs: 91_000 + i * 1789, updatedAt: now - i * 2 * day })),
-    quests: Array.from({ length: n % 6 }, (_, i) => ({ questId: 1001 + i, period: i % 3 === 0 ? '' : i % 3 === 1 ? '2026-10-10' : '2026-W41',
+    // The last quest is one the quest table no longer knows (title '').
+    quests: Array.from({ length: n % 6 }, (_, i) => ({ questId: 1001 + i,
+      title: i === 4 ? '' : pick(['完成 3 场比赛', '每日登录', '获得 1 次冠军', '完成计时赛', '赠送礼物'], i),
+      period: i % 3 === 0 ? '' : i % 3 === 1 ? '2026-10-10' : '2026-W41',
       value: i * 2 + 1, completedAt: i % 2 ? now - i * 3600_000 : null, updatedAt: now - i * 1800_000 })),
     counters: ['race.finish', 'race.win', 'timeattack.finish', 'license.level', 'race.distance.camera'].slice(0, n % 6)
       .map((counter, i) => ({ counter, value: (n + 1) * (i + 3) * 7, updatedAt: now - i * day })),
@@ -269,11 +275,16 @@ async function readBody(req: IncomingMessage): Promise<Row> {
   }
 }
 
+/** A row's field; a dotted key reaches into a nested object (usedBy.username). */
+function field(row: Row, key: string): unknown {
+  return key.split('.').reduce<unknown>((value, part) => (value as Row | null | undefined)?.[part], row)
+}
+
 /** Generic list handling: q over a few fields, equality filters, from/to on `timeKey`, sort, paging. */
 function list(rows: Row[], params: URLSearchParams, options: { search: string[]; filters?: string[]; timeKey?: string }) {
   let result = rows
   const q = params.get('q')?.toLowerCase()
-  if (q) result = result.filter((row) => options.search.some((key) => String(row[key] ?? '').toLowerCase().includes(q)))
+  if (q) result = result.filter((row) => options.search.some((key) => String(field(row, key) ?? '').toLowerCase().includes(q)))
   for (const key of options.filters ?? []) {
     const value = params.get(key)
     if (!value) continue
@@ -426,7 +437,8 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
     return send(res, 200, list(clubMembers(club), params, { search: ['username', 'nickname'], timeKey: 'joinedAt' }))
   }
   if (path === '/api/admin/invites' && method === 'GET') {
-    return send(res, 200, list(invites, params, { search: [], filters: ['used'], timeKey: 'createdAt' }))
+    return send(res, 200, list(invites, params, { search: ['hash', 'usedBy.username', 'usedBy.nickname'], filters: ['used'],
+      timeKey: 'createdAt' }))
   }
   if (path === '/api/admin/reward-box' && method === 'GET') {
     return send(res, 200, list(rewardBox, params, { search: ['username', 'nickname', 'name'], filters: ['source', 'state', 'account'],
@@ -480,7 +492,8 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
     return send(res, 200, { ok: true })
   }
   if (path === '/multiplayer/admin/invites' && method === 'POST') {
-    invites.unshift({ hash: Math.random().toString(16).slice(2, 14).padEnd(12, '0'), createdAt: Date.now(), used: false, usedBy: null })
+    invites.unshift({ hash: Math.random().toString(16).slice(2, 14).padEnd(12, '0'), createdAt: Date.now(), used: false, usedBy: null,
+      usedAt: null })
     return send(res, 200, { invite: Math.random().toString(36).slice(2, 11) + Math.random().toString(36).slice(2, 11) })
   }
   return send(res, 404, { error: 'NOT_FOUND' })
