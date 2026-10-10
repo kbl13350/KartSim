@@ -246,6 +246,7 @@ func TestClaimErrorMapping(t *testing.T) {
 		{0, "", "", false},
 		{409, "NICKNAME_TAKEN", "NICKNAME_TAKEN", false},
 		{409, "ACCOUNT_ONLINE", "ACCOUNT_ONLINE", false},
+		{403, "ACCOUNT_BANNED", "ACCOUNT_BANNED", false},
 		{400, "INVALID_GUEST_NAME", "INVALID_GUEST_NAME", false},
 		{400, "INVALID_REQUEST", "DATA_SERVICE_UNAVAILABLE", true},
 		{401, "CLUSTER_KEY_INVALID", "DATA_SERVICE_UNAVAILABLE", true},

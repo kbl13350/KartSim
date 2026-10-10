@@ -126,9 +126,9 @@ func (a *Agent) SetConflictHandler(handler func(playerIDs []string)) {
 // Claim reserves a nickname, and an account player's account, cluster-wide.
 // It first waits (briefly) for an earlier release of the same name or
 // account from this node (a quick reconnect, possibly after a rename), then
-// calls the data service. INVALID_GUEST_NAME, NICKNAME_TAKEN and
-// ACCOUNT_ONLINE pass through; every other failure is 503
-// DATA_SERVICE_UNAVAILABLE.
+// calls the data service. INVALID_GUEST_NAME, NICKNAME_TAKEN,
+// ACCOUNT_ONLINE and ACCOUNT_BANNED pass through; every other failure is
+// 503 DATA_SERVICE_UNAVAILABLE.
 func (a *Agent) Claim(ctx context.Context, req contract.PresenceClaimRequest) error {
 	a.waitReleased(ctx, releaseKeys(req.Name, req.AccountID))
 	callCtx, cancel := context.WithTimeout(ctx, a.timeout)
@@ -138,7 +138,7 @@ func (a *Agent) Claim(ctx context.Context, req contract.PresenceClaimRequest) er
 		return nil
 	}
 	if rejected, ok := apierr.As(err); ok && (rejected.Code == "INVALID_GUEST_NAME" ||
-		rejected.Code == "NICKNAME_TAKEN" || rejected.Code == "ACCOUNT_ONLINE") {
+		rejected.Code == "NICKNAME_TAKEN" || rejected.Code == "ACCOUNT_ONLINE" || rejected.Code == "ACCOUNT_BANNED") {
 		return rejected
 	}
 	// The data service may have stored the claim and then answered late or

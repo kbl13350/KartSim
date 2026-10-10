@@ -544,7 +544,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | --- | --- | --- |
 | `/internal/v1/nodes/heartbeat` | 启动时与每 5 秒 | 注册/刷新节点（TTL 15 秒），续期在线玩家的昵称与账号占用；可选的 `stats`（`heapMB`、`goroutines`、`connections`、`races`、`version`）与玩家的 `room`（所在房间名）供管理后台显示，旧节点不带也可以；响应带 `conflicts`（昵称或账号已被其他会话占用、须断开的玩家）与奖励倍率 `expRate`/`lucciRate`（游戏节点据此显示 `race.rewards`） |
 | `/internal/v1/nodes/leave` | 优雅关闭 | 删除节点及其全部昵称与账号占用 |
-| `/internal/v1/presence/claim` | `hello` | 原子占用昵称与账号（`presence:{昵称}`、`presence-account:{accountId}`，30 秒 TTL，靠心跳续期；两者都能占用才写入）；占用者节点已消失时可抢占；账号已在其他会话在线 409 `ACCOUNT_ONLINE`（先检查账号），昵称冲突 409 `NICKNAME_TAKEN`，游客名非法 400 `INVALID_GUEST_NAME` |
+| `/internal/v1/presence/claim` | `hello` | 原子占用昵称与账号（`presence:{昵称}`、`presence-account:{accountId}`，30 秒 TTL，靠心跳续期；两者都能占用才写入）；占用者节点已消失时可抢占；账号已在其他会话在线 409 `ACCOUNT_ONLINE`（先检查账号），昵称冲突 409 `NICKNAME_TAKEN`，游客名非法 400 `INVALID_GUEST_NAME`，账号被封禁 403 `ACCOUNT_BANNED`（游戏节点原样转给 `hello`） |
 | `/internal/v1/presence/release` | 连接断开 | 值匹配时释放昵称与账号 |
 | `/internal/v1/room-rules` | 建房、改规则（经发件箱） | upsert `room_rules`，旧的更新不覆盖新的 |
 | `/internal/v1/races` | 比赛结束（经发件箱） | 一个事务内写 `race_outcomes`、`race_results`，累计 `player_stats`，并为 `rewards` 中有 `accountId` 的车手入账经验与金币（乘倍率：采用结算的 `expRate`/`lucciRate`，须在 [0, max(10, 当前配置)] 内；按收到时的北京时间自然日套每日上限；升级奖励、流水）；超过公式最大值（经验 145/金币 216）的条目丢弃并告警，`finishedAt` 早于 24 小时前的结算只保存不入账；按 `raceId` 幂等，重复提交返回 `{"stored":true,"duplicate":true}` 且不重复累计、不重复入账 |

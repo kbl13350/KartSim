@@ -215,6 +215,13 @@ func (a *API) presenceClaim(w http.ResponseWriter, r *http.Request) error {
 	} else if !validText(request.Name, 64) {
 		return errInvalidName
 	}
+	if request.AccountID != "" && a.store != nil { // tests run presence without MySQL
+		// An entry ticket issued just before a ban stays valid for minutes;
+		// the banned account still does not get back into a game.
+		if err := a.store.CheckNotBanned(r.Context(), request.AccountID, a.nowMillis()); err != nil {
+			return err
+		}
+	}
 	presence := cache.Presence{NodeID: request.NodeID, PlayerID: request.PlayerID, Name: request.Name,
 		AccountID: request.AccountID}
 	outcome, err := a.cluster.ClaimPresence(r.Context(), presence)

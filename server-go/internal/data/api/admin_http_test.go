@@ -369,6 +369,9 @@ func TestAdminEditBanAndKick(t *testing.T) {
 	if n := h.count("SELECT COUNT(*) FROM sessions WHERE account_id = ?", target); n != 0 {
 		t.Fatalf("%d sessions of a banned account", n)
 	}
+	// An entry ticket issued before the ban does not get it back into a game.
+	h.call(contract.PathPresenceClaim, contract.PresenceClaimRequest{NodeID: "node-ban", PlayerID: "p-back",
+		Name: "改名" + u, AccountID: target}).expect(t, http.StatusForbidden, "ACCOUNT_BANNED")
 	var banned accountListBody
 	h.adminGet("/api/admin/accounts?banned=1&q="+url.QueryEscape("_"+u), &banned)
 	if banned.Total != 1 || banned.Items[0].ID != target {

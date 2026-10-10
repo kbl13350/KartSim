@@ -274,6 +274,26 @@ func lockLoginAccount(ctx context.Context, tx *sql.Tx, accountID string, now int
 	return nil
 }
 
+// CheckNotBanned refuses an account banned at now (403 ACCOUNT_BANNED with
+// until and reason); an unknown account passes.
+func (s *Store) CheckNotBanned(ctx context.Context, accountID string, now int64) error {
+	var (
+		bannedUntil int64
+		reason      string
+	)
+	err := s.db.QueryRowContext(ctx, "SELECT banned_until, ban_reason FROM accounts WHERE id = ?", accountID).
+		Scan(&bannedUntil, &reason)
+	if errors.Is(err, sql.ErrNoRows) {
+		return nil
+	} else if err != nil {
+		return err
+	}
+	if bannedUntil > now {
+		return bannedError(bannedUntil, reason)
+	}
+	return nil
+}
+
 // loginSession inserts the session of a login with its login record and
 // the account's latest login time and address; the caller holds the
 // account row lock (lockLoginAccount).
