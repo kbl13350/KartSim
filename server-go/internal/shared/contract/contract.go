@@ -58,7 +58,7 @@ type HeartbeatRequest struct {
 }
 
 // NodeStats are a game node's process and load figures (ADMIN.md 2): the
-// live heap, goroutines, open client connections, rooms currently racing
+// heap in use, goroutines, open client connections, rooms currently racing
 // (loading, countdown or racing) and the build version. HeapMB is rounded
 // to 0.1 MB; older nodes send whole numbers, which decode the same. (A data
 // service older than this field's float type refuses a fractional value,

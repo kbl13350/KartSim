@@ -281,8 +281,9 @@ func checkService(ctx context.Context, ping func(context.Context) error) service
 	return serviceCheck{Error: "连接失败：" + message}
 }
 
-// liveHeapMetric is the heap held by live objects at the last GC.
-const liveHeapMetric = "/gc/heap/live:bytes"
+// heapMetric is the heap held by objects, live or not yet swept (the live
+// heap at the last GC stays 0 until the first collection).
+const heapMetric = "/memory/classes/heap/objects:bytes"
 
 // offlineNodes are the nodes seen within cache.NodeSeenTTL that are not
 // among the registered ones (live), as their last heartbeat left them.
@@ -308,8 +309,8 @@ func (a *API) offlineNodes(ctx context.Context, live []cache.NodeOnline) []cache
 // adminNodes lists the game nodes of the registry (status: ok, stale when
 // the last heartbeat is older than 10 s, full), then the nodes seen within
 // a day that are no longer registered (offline, as their last heartbeat
-// left them), and the data service's own build, start, goroutines, live
-// heap (MB, one decimal) and MySQL and Redis checks. nodes is empty while
+// left them), and the data service's own build, start, goroutines, heap
+// in use (MB, one decimal) and MySQL and Redis checks. nodes is empty while
 // Redis is unavailable.
 func (a *API) adminNodes(w http.ResponseWriter, r *http.Request) error {
 	if _, err := a.requireAdmin(r); err != nil {
@@ -347,7 +348,7 @@ func (a *API) adminNodes(w http.ResponseWriter, r *http.Request) error {
 		}
 	}
 	wg.Wait()
-	sample := []metrics.Sample{{Name: liveHeapMetric}}
+	sample := []metrics.Sample{{Name: heapMetric}}
 	metrics.Read(sample)
 	var heapMB float64
 	if sample[0].Value.Kind() == metrics.KindUint64 {
