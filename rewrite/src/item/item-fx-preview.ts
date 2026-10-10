@@ -290,9 +290,11 @@ async function main(): Promise<void> {
         p.hit({ useId: 0, itemId: ItemIdx.ufo, victimId: "C", result: "hit", atMs: t });
         p.kartEffect("C", "slow", t, 3000);
       }],
-      [2000, (p, t) => {
-        p.used({ useId: 1, itemId: ItemIdx.emp, userId: "C", targets: ["C"], startMs: t, etaMs: 0 });
+      [2000, (p, t) => p.used({ useId: 1, itemId: ItemIdx.emp, userId: "C", targets: ["C"], startMs: t, etaMs: 0 })],
+      // EMP acts from its Affect state (+500) and only on racers really under a UFO (C.1, C.5).
+      [2500, (p, t) => {
         p.endKartEffect("C", "slow");
+        p.kartEffect("C", "emp", t, 1500);
       }],
     ] },
     magnet: { label: "磁铁", steps: [
@@ -362,7 +364,7 @@ async function main(): Promise<void> {
     angel: { label: "天使", steps: [
       [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.angel, userId: "A", targets: ["A", "C"], startMs: t, etaMs: 0 })],
     ] },
-    emp: { label: "电磁波", steps: [
+    emp: { label: "电磁波（无人中飞碟：无效果）", steps: [
       [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.emp, userId: "C", targets: ["C"], startMs: t, etaMs: 0 })],
     ] },
     scanning: { label: "透视镜", steps: [
