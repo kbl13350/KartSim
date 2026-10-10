@@ -1,0 +1,44 @@
+{
+  "description": "Flying-pet tune groups (itemTable@cn.xml) and their EnchanterAddSpec (enchant.xml). Item races add itemBoosterTime to the local kart; the other fields would change speed races and are not applied.",
+  "sources": {
+    "itemTable": "recovered/data-full/DataPack1/etc_/itemTable@cn.xml",
+    "enchant": "recovered/data-full/DataPack4/zeta_/cn/enchant/enchant.xml"
+  },
+  "flyingPetTuneGroups": {
+    "2": 201,
+    "3": 202,
+    "4": 203,
+    "5": 204,
+    "6": 205,
+    "8": 201,
+    "9": 202,
+    "10": 203,
+    "11": 204,
+    "12": 206,
+    "14": 201,
+    "15": 202,
+    "16": 203,
+    "17": 204,
+    "18": 205
+  },
+  "tuneGroupSpecs": {
+    "201": {
+      "teamBoosterTime": 250
+    },
+    "202": {
+      "forwardAccel": 3.5
+    },
+    "203": {
+      "cornerDrawFactor": 0.002
+    },
+    "204": {
+      "itemBoosterTime": 250
+    },
+    "205": {
+      "startForwardAccelFactor": 0
+    },
+    "206": {
+      "driftEscapeForce": 0
+    }
+  }
+}

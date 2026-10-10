@@ -165,11 +165,15 @@ test("multiplayer session input, reset, publish and failure ticks match release"
 
 function itemRaceSession(transitions: Array<{ action: number; down: boolean }>,
   options: { cancelled?: boolean; state?: number; inverted?: boolean; router?: ItemInputRouter;
-    slotChanger?: boolean; notice?: string } = {}) {
+    slotChanger?: boolean; notice?: string; forwardBack?: boolean; qte?: boolean } = {}) {
   const events: unknown[][] = [];
   const effects = {
     steeringInverted: options.inverted ?? false,
     escapePress() { events.push(["escape"]); return true; },
+    ...(options.forwardBack !== undefined ? { forwardBackSwapped: options.forwardBack } : {}),
+    ...(options.qte ? {
+      directionPress(direction: string) { events.push(["qte", direction]); return true; },
+    } : {}),
   };
   const controls = new DrivingInputAccumulator();
   const session = {
@@ -282,4 +286,53 @@ test("an item swap plays the slot changer sound and item notices reach the race 
   const { events } = itemRaceSession([], { slotChanger: true, notice: "道具变更卡暂未开放。" });
   assert.deepEqual(events.filter(event => event[0] === "slot-changer" || event[0] === "notice"),
     [["slot-changer"], ["notice", "道具变更卡暂未开放。"]]);
+});
+
+test("a newDevil swaps the pedals and a held kart's arrow presses feed the talisman QTE", () => {
+  const swapped = itemRaceSession([{ action: DrivingAction.Reverse, down: true }],
+    { forwardBack: true });
+  assert.deepEqual(swapped.events.filter(event => event[0] === "driving"), [["driving", "forward-down"]],
+    "the back key is the forward pedal");
+  const snapshot = swapped.session.controls.snapshot();
+  assert.equal(snapshot.forward, 1);
+  assert.equal(snapshot.reverse, 0);
+  const plain = itemRaceSession([{ action: DrivingAction.Reverse, down: true }], { forwardBack: false });
+  assert.deepEqual(plain.events.filter(event => event[0] === "driving"), [["driving", "reverse-down"]]);
+
+  const held = itemRaceSession([
+    { action: DrivingAction.Forward, down: true },
+    { action: DrivingAction.SteerRight, down: true },
+    { action: DrivingAction.Reverse, down: true },
+    { action: DrivingAction.SteerLeft, down: true },
+  ], { qte: true });
+  assert.deepEqual(held.events.filter(event => event[0] === "qte"),
+    [["qte", "up"], ["qte", "right"], ["qte", "down"], ["qte", "left"]]);
+});
+
+test("an item race remembers a start boost for the 完美起步 title", () => {
+  let noted = 0;
+  let state = 0;
+  const transitions = [{ action: DrivingAction.Forward, down: true }];
+  const run = (window: boolean) => {
+    const host = itemRaceSession([]).session as unknown as RaceSessionUpdateHost;
+    const local = host.runtime.local as unknown as Record<string, unknown>;
+    const physics = local.physics as Record<string, unknown>;
+    physics.runtime = { physicsState: 0 };
+    physics.startRaceBooster = () => {
+      (physics.runtime as { physicsState: number }).physicsState = state;
+    };
+    local.isStartBoosterWindow = () => window;
+    local.noteStartBooster = () => { noted += 1; };
+    (host.host.input as unknown as { drain(): unknown }).drain =
+      () => ({ transitions, cancelled: false });
+    updateRaceSession(host, { nowMs: () => 4321, lteKeyMap: lteKeys, states });
+  };
+  state = 1;
+  run(true);
+  assert.equal(noted, 1, "pressed in the window: state 1 started");
+  run(false);
+  assert.equal(noted, 1, "outside the window");
+  state = 0;
+  run(true);
+  assert.equal(noted, 1, "the booster did not start");
 });

@@ -141,3 +141,35 @@ test("disposing the local race owner clears item effects", () => {
   assert.equal(physics.itemEffects.active.size, 0);
   assert.equal(physics.runtime.raceMotionLocked, true);
 });
+
+test("knockback and hold also suppress the automatic resets; a reset ends them", () => {
+  for (const kind of ["knockback", "hold"] as const) {
+    const { race, physics, resets } = itemRace();
+    assert.equal(physics.itemEffects.apply(kind, 500), true);
+    physics.runtime.automaticResetRequest = true;
+    checkLocalRaceAutomaticReset(race, dependencies, 9000, 1 / 60);
+    assert.deepEqual(resets, [], kind);
+    physics.itemEffects.directionPress("up");
+    assert.equal(race.requestReset(true), true);
+    assert.equal(physics.itemEffects.active.size, 0, `${kind} cleared by the reset`);
+    assert.deepEqual(physics.itemEffects.consumeDirectionPresses(), []);
+  }
+  // A reset right after a bubble closes the escape boost window too.
+  const { race, physics } = itemRace();
+  physics.itemEffects.apply("trap", 1000, { escapeImmunityMs: 0 });
+  physics.itemEffects.advanceWithoutPhysics(1000);
+  assert.equal(physics.itemEffects.escapeBoostReady, true);
+  race.requestReset(true);
+  assert.equal(physics.itemEffects.escapeBoostReady, false);
+});
+
+test("the local race owner remembers a start boost for the finish request", () => {
+  const race = Object.create(LocalRaceController.prototype) as LocalRaceController;
+  Object.assign(race, { disposed: false, startBoosted: false });
+  race.noteStartBooster();
+  assert.equal(race.startBoosted, true);
+  const disposed = Object.assign(Object.create(LocalRaceController.prototype),
+    { disposed: true, startBoosted: false }) as LocalRaceController;
+  disposed.noteStartBooster();
+  assert.equal(disposed.startBoosted, false);
+});

@@ -27,8 +27,23 @@ reorder and secondary-item transitions (Ctrl, Alt, Z) out of the drained batch
 before it reaches `DrivingInputAccumulator`, so they never spend or reorder
 nitro slots, and turns them into item commands: use press, use release (or
 cancel when input is dropped), swap and change. Left and right presses are
-also reported as escape presses for a water bubble. The multiplayer session
+also reported as escape presses for a water bubble, and every arrow press is
+reported by its physical key (`up`, `down`, `left`, `right`) to the sink's
+optional `direction` hook, which the session passes to
+`itemEffects.directionPress` for the talisman QTE. The multiplayer session
 update routes the commands to the local race owner's `items` handler.
+
+Item race reverses use the accumulator's two released hooks:
+`setSteeringInverted` swaps left and right in the snapshot and
+`setForwardReverseSwap` swaps the two pedals; the multiplayer session sets
+both every frame from the physics item effects. The accumulator itself stays
+identical to the release (`tests/input-parity.test.mjs` exercises both hooks)
+and still reports the raw keys, so the session passes each reported effect
+through `itemReverseDrivingEffect`: with the pedals swapped the back key
+becomes `forward-down` / `forward-up` (the drift-exit and escape boosts and
+the boost release follow the pedal that drives forward), and with inverted
+steering `drift-start` turns toward the side the kart actually steers.
+Neither hook is set outside item races.
 
 The router tracks which sources (`keyboard:<code>`, `touch:<action>`) hold
 the use key. A second down from a source that is still held means its keyup

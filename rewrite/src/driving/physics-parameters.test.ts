@@ -14,6 +14,7 @@ const releaseParameters = new Function(`${release.slice(start, end)}\nreturn jt0
 const itemFields = [
   "itemSlotCapacity", "itemBoosterTime", "startBoosterTimeItem", "startForwardAccelItem",
   "boostAccelFactorOnlyItem", "useExtendedAfterBooster", "useExtendedAfterBoosterMore",
+  "animalBoosterTime", "superBoosterTime",
 ];
 
 test("the AL tuning record keeps every release field and appends the item columns", () => {
@@ -54,4 +55,6 @@ test("item columns come from the CN kart table", () => {
   assert.equal(tuning.startForwardAccelItem, spec.startForwardAccelItem);
   assert.equal(tuning.boostAccelFactorOnlyItem, 1.5);
   assert.equal(typeof tuning.useExtendedAfterBooster, "boolean");
+  assert.equal(tuning.animalBoosterTime, 4000);
+  assert.equal(tuning.superBoosterTime, 3500);
 });

@@ -4,8 +4,9 @@
  * The owner is created only for `drivingMode.kind === "item"`. It is advanced
  * once per physics slice: `beginSubstep` from the ordinary substep, or
  * `stepHeldSlice` instead of the substep while an effect holds the body
- * kinematically (trapped, launched, stopped by a barricade). Timelines use the
- * physics clock, so a 2000 ms effect lasts exactly 1000 slices of 2 ms.
+ * kinematically (trapped, launched, stopped by a barricade, held by a
+ * talisman or a lockdown field). Timelines use the physics clock, so a
+ * 2000 ms effect lasts exactly 1000 slices of 2 ms.
  *
  * The pose changes are real body changes (position, basis, velocities), so the
  * motion frames that other clients receive already show the spin, the floating
@@ -15,14 +16,31 @@
 import type { Vector3 } from "./continuous-motion";
 
 export type ItemEffectKind =
-  | "spin" | "trap" | "launch" | "reverse" | "slow" | "shrink" | "barrier" | "pull";
+  | "spin" | "trap" | "launch" | "reverse" | "slow" | "shrink" | "barrier" | "pull"
+  | "knockback" | "hold";
 
 export const ITEM_EFFECT_KINDS: readonly ItemEffectKind[] = Object.freeze([
   "spin", "trap", "launch", "reverse", "slow", "shrink", "barrier", "pull",
+  "knockback", "hold",
 ]);
 
+/**
+ * Which keys a reverse effect swaps: left/right (devil 大魔王), forward/back
+ * (newDevil 恶魔阿哥, "暂时颠倒对方的前后键"), or all four (drrMine R博士,
+ * "暂时颠倒对手的所有方向键"; itemDescList.xml:253,258,408).
+ */
+export type ItemReverseMode = "steering" | "forwardBack" | "all";
+export const ITEM_REVERSE_MODES: readonly ItemReverseMode[] = Object.freeze(
+  ["steering", "forwardBack", "all"]);
+
+/** A physical arrow key pressed while a hold lasts (the talisman 符咒 QTE). */
+export type ItemEffectDirection = "left" | "right" | "up" | "down";
+export interface ItemDirectionPress { direction: ItemEffectDirection; atMs: number }
+
 /** Effects that hold the body on a kinematic path instead of running physics. */
-const HELD_KINDS: ReadonlySet<ItemEffectKind> = new Set(["trap", "launch", "barrier"]);
+const HELD_KINDS: ReadonlySet<ItemEffectKind> = new Set(["trap", "launch", "barrier", "hold"]);
+/** Timed kinds that only scale or remap driving; each source keeps its own end. */
+const TIMED_KINDS: ReadonlySet<ItemEffectKind> = new Set(["reverse", "slow", "shrink"]);
 
 /** Reconstructed shapes and scales; item lifetimes are passed to `apply`. */
 export const ITEM_EFFECT_TUNING = Object.freeze({
@@ -40,6 +58,19 @@ export const ITEM_EFFECT_TUNING = Object.freeze({
   escapeMinimumMs: 500,
   /** Blue shield (파란방패) after leaving a bubble; `EscapeAffect.life`. */
   escapeImmunityMs: 2000,
+  /** waterAngel fast escape (`EnchanterWaterEscape`): the bubble ends 500 ms after it formed. */
+  quickTrapMs: 500,
+  /**
+   * Escape boost (UseExtendedAfterBooster / useExtendedAfterBoosterMore): a
+   * forward press this long after a water bubble ends starts the drift instant
+   * boost (ITEM_MODE.md C.5).
+   */
+  escapeBoostWindowMs: 1000,
+  /** Spring trap (弹性陷阱 forceZone): pushed back along the reverse heading, no control. */
+  knockbackRestitution: 0.5,
+  knockbackMinimumSpeed: 8,
+  knockbackMaximumSpeed: 25,
+  knockbackSpeedDecayPerSecond: 2,
   /** Missile and mine: airborne arc with full rolls, then a stop until the effect ends. */
   launchHeight: 2.5,
   launchAirMs: 1000,
@@ -61,7 +92,10 @@ export const ITEM_EFFECT_TUNING = Object.freeze({
   launchImpactStrength: 40,
   barrierImpactStrength: 35,
   spinImpactStrength: 20,
+  knockbackImpactStrength: 25,
   maximumDurationMs: 60_000,
+  /** Unconsumed QTE presses beyond this many are dropped oldest first. */
+  maximumDirectionPresses: 32,
 });
 
 export interface ItemEffectOptions {
@@ -71,8 +105,29 @@ export interface ItemEffectOptions {
   direction?: 1 | -1;
   /** Spin or launch rotations. */
   turns?: number;
-  /** Trap: blue-shield immunity after release (`EscapeAffect.life`). */
+  /**
+   * Trap: blue-shield immunity after release (`EscapeAffect.life`, default
+   * 2000). Hold: the same immunity after it ends (default 0).
+   */
   escapeImmunityMs?: number;
+  /** Trap: the waterAngel fast escape; the bubble lasts `quickTrapMs` (500 ms). */
+  quick?: boolean;
+  /**
+   * Trap: whether the bubble is from the water-bomb / water-fly families, so
+   * its end opens the escape boost window on karts with UseExtendedAfterBooster
+   * (default true: every trap source is a water bubble).
+   */
+  afterBoost?: boolean;
+  /** Reverse: the keys that are swapped (default "steering", the devil). */
+  mode?: ItemReverseMode;
+  /**
+   * Reverse, slow, shrink: the cause of this effect (for example the item idx).
+   * Each source keeps its own end and `end(kind, source)` removes only that
+   * one, so EMP lifts a UFO slow without ending a tiger rocket slow.
+   */
+  source?: string | number;
+  /** Knockback: push-back speed in m/s (default from the entry speed). */
+  speed?: number;
   /** Launch: peak height in metres and airborne time. */
   height?: number;
   airMs?: number;
@@ -118,13 +173,21 @@ export interface ItemEffectVehicle {
   };
   scratch: { force: Vector3; torque: Vector3 };
   state: { boostTime: number };
-  tuning: { mass: number };
+  tuning: {
+    mass: number;
+    /** Escape boost after a water bubble (old engines / V1 and 迅 item karts). */
+    useExtendedAfterBooster?: boolean | number;
+    useExtendedAfterBoosterMore?: boolean | number;
+  };
   setRuntimeScales(scales: { drive?: number; steering?: number; drag?: number }): void;
   triggerEventScale(percentage: number): boolean;
   hardCancelControls(): void;
   updateStateTimer(seconds: number): void;
   updateDriftLifecycleTimers(seconds: number): void;
 }
+
+/** One cause of a timed effect: its own end and, for reverse, the keys it swaps. */
+interface TimedSource { endMs: number; mode: ItemReverseMode }
 
 interface ActiveEffect {
   kind: ItemEffectKind;
@@ -136,11 +199,15 @@ interface ActiveEffect {
   airMs: number;
   escapeImmunityMs: number;
   escaped: boolean;
+  afterBoost: boolean;
   anchor: Vector3;
   basis: ItemEffectBasis;
   target?: () => Vector3 | undefined;
   acceleration: number;
   maximumSpeed: number;
+  speed?: number;
+  /** Reverse, slow and shrink: every source's end; the effect lasts until the last. */
+  sources: Map<string, TimedSource>;
 }
 
 const f32 = Math.fround;
@@ -183,10 +250,14 @@ function finiteOr(value: number | undefined, fallback: number): number {
   return value !== undefined && Number.isFinite(value) ? value : fallback;
 }
 
+const steeringMode = (mode: ItemReverseMode) => mode === "steering" || mode === "all";
+const forwardBackMode = (mode: ItemReverseMode) => mode === "forwardBack" || mode === "all";
+
 /**
- * Timed spin, trap, launch, reverse, slow, shrink, barrier and pull effects.
- * Hit authority (shield, angel, EMP, immunity) belongs to the item controller;
- * `apply` only refuses effects the kart cannot take in its current state.
+ * Timed spin, trap, launch, reverse, slow, shrink, barrier, pull, knockback
+ * and hold effects. Hit authority (shield, angel, EMP, immunity, equipment
+ * passives) belongs to the item controller; `apply` only refuses effects the
+ * kart cannot take in its current state.
  */
 export class VehicleItemEffects {
   readonly vehicle: ItemEffectVehicle;
@@ -194,6 +265,10 @@ export class VehicleItemEffects {
   readonly effects = new Map<ItemEffectKind, ActiveEffect>();
   clockMs = 0;
   escapeShieldEndMs = 0;
+  /** Escape boost window end (physics clock); 0 when closed. */
+  escapeBoostEndMs = 0;
+  /** Arrow keys pressed while a hold lasts, for the talisman QTE. */
+  directionPresses: ItemDirectionPress[] = [];
   pendingImpact: { strength: number; audio: boolean } | undefined;
   appliedDriveScale = 1;
   appliedDragScale = 1;
@@ -220,20 +295,52 @@ export class VehicleItemEffects {
     return this.kinds.has("trap") ? 0 : Math.max(0, this.escapeShieldEndMs - this.clockMs);
   }
 
-  /** Items cannot be used while trapped, launched or stopped by a barricade. */
+  /** Items cannot be used while trapped, launched, stopped or held. */
   get canUseItem(): boolean { return !this.heldEffect(); }
 
   /** The body follows a kinematic path and the physics substep is skipped. */
   get holdsBody(): boolean { return !!this.heldEffect(); }
 
-  /** Drive and tire grip are suppressed while spinning. */
-  get suppressesDrive(): boolean { return this.kinds.has("spin"); }
+  /** Drive and tire grip are suppressed while spinning or knocked back. */
+  get suppressesDrive(): boolean { return this.kinds.has("spin") || this.kinds.has("knockback"); }
 
   get suppressesAutomaticReset(): boolean {
-    return this.kinds.has("spin") || !!this.heldEffect();
+    return this.suppressesDrive || !!this.heldEffect();
   }
 
-  get steeringInverted(): boolean { return this.kinds.has("reverse"); }
+  /** Left and right are swapped (devil, drrMine). */
+  get steeringInverted(): boolean { return this.reverseActive(steeringMode); }
+
+  /** Forward and back are swapped (newDevil, drrMine). */
+  get forwardBackSwapped(): boolean { return this.reverseActive(forwardBackMode); }
+
+  /** The keys a running reverse swaps, or undefined without one. */
+  get reverseMode(): ItemReverseMode | undefined {
+    const steering = this.steeringInverted;
+    const forwardBack = this.forwardBackSwapped;
+    return steering && forwardBack ? "all" : steering ? "steering"
+      : forwardBack ? "forwardBack" : undefined;
+  }
+
+  /** A forward press now starts the escape boost (a water bubble ended moments ago). */
+  get escapeBoostReady(): boolean {
+    return this.clockMs < this.escapeBoostEndMs && !this.heldEffect();
+  }
+
+  get escapeBoostRemainingMs(): number {
+    return this.escapeBoostReady ? Math.max(0, this.escapeBoostEndMs - this.clockMs) : 0;
+  }
+
+  /**
+   * Called on a forward press: true (and the window closes) when the press
+   * should start the drift instant boost after an escape. The vehicle command
+   * enters physics state 2 exactly like a forward press after a drift.
+   */
+  consumeEscapeBoost(): boolean {
+    if (!this.escapeBoostReady || this.vehicle.runtime.fullPhysicsBypass) return false;
+    this.escapeBoostEndMs = 0;
+    return true;
+  }
 
   /** Called by the directional press next to its automatic reset request. */
   requestCrushReset(): void { this.crushResetRequested = true; }
@@ -268,8 +375,11 @@ export class VehicleItemEffects {
   /** Start an effect. Returns false when the kart cannot take it right now. */
   apply(kind: ItemEffectKind, durationMs: number, options: ItemEffectOptions = {}): boolean {
     if (!ITEM_EFFECT_KINDS.includes(kind)) throw new Error(`未知的道具效果 ${String(kind)}。`);
+    if (options.mode !== undefined && !ITEM_REVERSE_MODES.includes(options.mode))
+      throw new Error(`未知的反向方式 ${String(options.mode)}。`);
     if (!Number.isFinite(durationMs) || durationMs <= 0) return false;
-    const duration = Math.min(Math.trunc(durationMs), ITEM_EFFECT_TUNING.maximumDurationMs);
+    let duration = Math.min(Math.trunc(durationMs), ITEM_EFFECT_TUNING.maximumDurationMs);
+    if (kind === "trap" && options.quick) duration = Math.min(duration, ITEM_EFFECT_TUNING.quickTrapMs);
     const elapsed = Math.max(0, Math.trunc(finiteOr(options.elapsedMs, 0)));
     if (elapsed >= duration) return false;
     if (this.vehicle.runtime.fullPhysicsBypass) return false;
@@ -280,9 +390,12 @@ export class VehicleItemEffects {
       case "trap":
       case "launch":
       case "barrier":
+      case "hold":
         return this.startHeld(effect);
       case "spin":
         return this.startSpin(effect);
+      case "knockback":
+        return this.startKnockback(effect);
       case "pull":
         return this.startPull(effect);
       default:
@@ -290,11 +403,33 @@ export class VehicleItemEffects {
     }
   }
 
-  /** End one effect early (EMP removing a UFO, a booster replacing a magnet pull). */
-  end(kind: ItemEffectKind): boolean {
-    if (!this.effects.has(kind)) return false;
+  /**
+   * End one effect early (EMP removing a UFO, a booster replacing a magnet
+   * pull). With a `source`, a reverse, slow or shrink loses only that cause and
+   * keeps running while another one lasts; false when that source is not running.
+   */
+  end(kind: ItemEffectKind, source?: string | number): boolean {
+    const effect = this.effects.get(kind);
+    if (!effect) return false;
+    if (source !== undefined && TIMED_KINDS.has(kind)) {
+      const key = String(source);
+      const running = effect.sources.get(key);
+      if (!running || running.endMs <= this.clockMs) return false;
+      effect.sources.delete(key);
+      const remaining = [...effect.sources.values()].filter(item => item.endMs > this.clockMs);
+      if (remaining.length > 0) {
+        effect.endMs = Math.max(...remaining.map(item => item.endMs));
+        return true;
+      }
+    }
     this.finish(kind, "cancelled");
     return true;
+  }
+
+  /** Whether `source` currently causes `kind` (reverse, slow, shrink). */
+  hasSource(kind: ItemEffectKind, source: string | number): boolean {
+    const running = this.effects.get(kind)?.sources.get(String(source));
+    return running !== undefined && running.endMs > this.clockMs;
   }
 
   /** A left or right press while trapped shortens the bubble. */
@@ -307,10 +442,48 @@ export class VehicleItemEffects {
     return true;
   }
 
+  /**
+   * An arrow key pressed while a hold lasts (the talisman QTE). The presses
+   * are queued for the item controller, which judges the sequence and calls
+   * `escapeHold`; false (nothing queued) without a hold.
+   */
+  directionPress(direction: ItemEffectDirection): boolean {
+    if (!this.effects.has("hold")) return false;
+    if (direction !== "left" && direction !== "right" && direction !== "up" && direction !== "down")
+      return false;
+    this.directionPresses.push({ direction, atMs: this.clockMs });
+    if (this.directionPresses.length > ITEM_EFFECT_TUNING.maximumDirectionPresses)
+      this.directionPresses.shift();
+    return true;
+  }
+
+  consumeDirectionPresses(): ItemDirectionPress[] {
+    const presses = this.directionPresses;
+    this.directionPresses = [];
+    return presses;
+  }
+
+  /**
+   * End a hold early (the talisman QTE succeeded): it ends `delayMs` from now
+   * (the original `EscapeAffect.life`, 500 ms, plays meanwhile), never later
+   * than its own end, and reports `escaped`.
+   */
+  escapeHold(delayMs = 0): boolean {
+    const hold = this.effects.get("hold");
+    if (!hold) return false;
+    const delay = Math.max(0, Math.trunc(finiteOr(delayMs, 0)));
+    hold.endMs = Math.min(hold.endMs, this.clockMs + delay);
+    hold.escaped = true;
+    if (hold.endMs <= this.clockMs) this.finish("hold", "escaped");
+    return true;
+  }
+
   /** End every effect and restore the kart (reset, warp, finish, dispose). */
   clear(): void {
     for (const kind of [...this.effects.keys()]) this.finish(kind, "cleared");
     this.escapeShieldEndMs = 0;
+    this.escapeBoostEndMs = 0;
+    this.directionPresses = [];
     this.pendingImpact = undefined;
     this.crushResetRequested = false;
   }
@@ -322,6 +495,8 @@ export class VehicleItemEffects {
     this.effects.clear();
     this.kinds.clear();
     this.escapeShieldEndMs = 0;
+    this.escapeBoostEndMs = 0;
+    this.directionPresses = [];
     this.pendingImpact = undefined;
     this.crushResetRequested = false;
     this.appliedDriveScale = 1;
@@ -339,6 +514,8 @@ export class VehicleItemEffects {
     this.applyPendingImpact();
     const spin = this.effects.get("spin");
     if (spin) this.applySpin(spin, seconds);
+    const knockback = this.effects.get("knockback");
+    if (knockback) this.applyKnockback(seconds);
     const pull = this.effects.get("pull");
     if (pull) this.applyPull(pull, seconds);
   }
@@ -368,7 +545,22 @@ export class VehicleItemEffects {
   }
 
   private heldEffect(): ActiveEffect | undefined {
-    return this.effects.get("trap") ?? this.effects.get("launch") ?? this.effects.get("barrier");
+    return this.effects.get("trap") ?? this.effects.get("launch") ?? this.effects.get("barrier") ??
+      this.effects.get("hold");
+  }
+
+  private reverseActive(axis: (mode: ItemReverseMode) => boolean): boolean {
+    const reverse = this.effects.get("reverse");
+    if (!reverse) return false;
+    for (const source of reverse.sources.values())
+      if (axis(source.mode) && source.endMs > this.clockMs) return true;
+    return false;
+  }
+
+  /** The escape boost is a property of the kart (both spellings, ITEM_MODE.md C.5). */
+  private get escapeBoostEnabled(): boolean {
+    const tuning = this.vehicle.tuning;
+    return !!tuning.useExtendedAfterBooster || !!tuning.useExtendedAfterBoosterMore;
   }
 
   private createEffect(kind: ItemEffectKind, startMs: number, endMs: number,
@@ -386,13 +578,19 @@ export class VehicleItemEffects {
       airMs: Math.max(1, Math.min(endMs - startMs,
         Math.trunc(finiteOr(options.airMs, tuning.launchAirMs)))),
       escapeImmunityMs: Math.max(0, Math.trunc(finiteOr(options.escapeImmunityMs,
-        tuning.escapeImmunityMs))),
+        kind === "hold" ? 0 : tuning.escapeImmunityMs))),
       escaped: false,
+      afterBoost: kind === "trap" && options.afterBoost !== false,
       anchor: copy(body.position),
       basis: basisOf(body),
       target: options.target,
       acceleration: Math.max(0, finiteOr(options.acceleration, tuning.pullAcceleration)),
       maximumSpeed: Math.max(0, finiteOr(options.maximumSpeed, tuning.pullMaximumSpeed)),
+      ...(options.speed !== undefined && Number.isFinite(options.speed)
+        ? { speed: Math.max(0, options.speed) } : {}),
+      sources: TIMED_KINDS.has(kind)
+        ? new Map([[String(options.source ?? ""), { endMs, mode: options.mode ?? "steering" }]])
+        : new Map(),
     };
   }
 
@@ -407,7 +605,7 @@ export class VehicleItemEffects {
     if (this.events.length > MAX_PENDING_EVENTS) this.events.shift();
   }
 
-  /** A hostile hit cancels drift, boosters and a running magnet pull. */
+  /** A hostile hit cancels drift, boosters, a running magnet pull and an escape boost window. */
   private interrupt(): void {
     const vehicle = this.vehicle;
     vehicle.hardCancelControls();
@@ -418,19 +616,35 @@ export class VehicleItemEffects {
       vehicle.state.boostTime = 0;
     }
     if (this.effects.has("pull")) this.finish("pull", "cancelled");
+    this.escapeBoostEndMs = 0;
+  }
+
+  /** End the sliding effects (spin, knockback) a new hit replaces. */
+  private replaceSliding(): void {
+    for (const kind of ["spin", "knockback"] as const)
+      if (this.effects.has(kind)) this.finish(kind, "replaced");
   }
 
   private startHeld(effect: ActiveEffect): boolean {
     const previous = this.heldEffect();
     if (previous) {
-      // A bubble cannot be replaced; a barricade never interrupts another hold.
+      // A bubble cannot be replaced; a barricade never interrupts another hold;
+      // a hold does not pull a kart out of the air.
       if (previous.kind === "trap" || effect.kind === "barrier") return false;
+      if (effect.kind === "hold" && previous.kind === "launch") return false;
+      if (effect.kind === "hold" && previous.kind === "hold") {
+        // Two holds (a lockdown field and a talisman): the later end wins.
+        previous.endMs = Math.max(previous.endMs, effect.endMs);
+        previous.escapeImmunityMs = Math.max(previous.escapeImmunityMs, effect.escapeImmunityMs);
+        previous.escaped = false;
+        return true;
+      }
       effect.anchor = copy(previous.anchor);
       effect.basis = basisOf(previous.basis);
       this.finish(previous.kind, "replaced");
     }
     this.interrupt();
-    if (this.effects.has("spin")) this.finish("spin", "replaced");
+    this.replaceSliding();
     this.begin(effect);
     if (effect.kind === "launch")
       this.pendingImpact = { strength: ITEM_EFFECT_TUNING.launchImpactStrength, audio: false };
@@ -442,9 +656,35 @@ export class VehicleItemEffects {
   private startSpin(effect: ActiveEffect): boolean {
     if (this.heldEffect()) return false;
     this.interrupt();
-    if (this.effects.has("spin")) this.finish("spin", "replaced");
+    this.replaceSliding();
     this.begin(effect);
     this.pendingImpact = { strength: ITEM_EFFECT_TUNING.spinImpactStrength, audio: false };
+    return true;
+  }
+
+  /**
+   * Spring trap: the horizontal velocity turns to the reverse heading (half the
+   * forward speed, within the minimum and maximum, or `speed`); drive and tire
+   * grip stay off and the speed bleeds away until the effect ends. Collisions
+   * keep running, so the kart cannot be pushed through a wall.
+   */
+  private startKnockback(effect: ActiveEffect): boolean {
+    if (this.heldEffect()) return false;
+    this.interrupt();
+    this.replaceSliding();
+    this.begin(effect);
+    const tuning = ITEM_EFFECT_TUNING;
+    const { forward, linearVelocity: velocity } = this.vehicle.body;
+    const length = Math.hypot(forward.x, forward.z);
+    const headingX = length > 1e-6 ? forward.x / length : 0;
+    const headingZ = length > 1e-6 ? forward.z / length : 1;
+    const forwardSpeed = velocity.x * headingX + velocity.z * headingZ;
+    const speed = effect.speed ?? Math.min(tuning.knockbackMaximumSpeed,
+      Math.max(tuning.knockbackMinimumSpeed, Math.abs(forwardSpeed) * tuning.knockbackRestitution));
+    velocity.x = f32(-headingX * speed);
+    velocity.z = f32(-headingZ * speed);
+    this.setYawRate(0);
+    this.pendingImpact = { strength: tuning.knockbackImpactStrength, audio: false };
     return true;
   }
 
@@ -463,6 +703,14 @@ export class VehicleItemEffects {
   private startTimed(effect: ActiveEffect): boolean {
     const current = this.effects.get(effect.kind);
     if (current) {
+      // A second cause: each source keeps its own end (the same source extends).
+      for (const [key, source] of effect.sources) {
+        const running = current.sources.get(key);
+        current.sources.set(key, running && running.endMs > this.clockMs
+          ? { endMs: Math.max(running.endMs, source.endMs),
+              mode: running.mode === source.mode ? source.mode : "all" }
+          : source);
+      }
       current.endMs = Math.max(current.endMs, effect.endMs);
       return true;
     }
@@ -476,7 +724,7 @@ export class VehicleItemEffects {
     this.clockMs += milliseconds;
     for (const effect of [...this.effects.values()]) {
       if (this.clockMs >= effect.endMs)
-        this.finish(effect.kind, effect.kind === "trap" && effect.escaped ? "escaped" : "expired");
+        this.finish(effect.kind, effect.escaped ? "escaped" : "expired");
     }
   }
 
@@ -491,12 +739,18 @@ export class VehicleItemEffects {
     if (HELD_KINDS.has(kind) && reason !== "replaced") {
       zero(body.linearVelocity);
       zero(body.angularVelocity);
-      // A launch or barricade stop ends on the ground pose it started from.
+      // A launch, barricade stop or hold ends on the ground pose it started from.
       if (kind !== "trap") this.placeOnAnchor(effect);
-      // The blue shield starts on the bubble's own timeline end.
-      if (kind === "trap" && (reason === "expired" || reason === "escaped"))
-        this.escapeShieldEndMs = effect.endMs + effect.escapeImmunityMs;
+      const released = reason === "expired" || reason === "escaped";
+      // The blue shield starts on the bubble's (or hold's) own timeline end.
+      if ((kind === "trap" || kind === "hold") && released && effect.escapeImmunityMs > 0)
+        this.escapeShieldEndMs = Math.max(this.escapeShieldEndMs,
+          effect.endMs + effect.escapeImmunityMs);
+      // A water bubble that ends opens the escape boost window on karts that have it.
+      if (kind === "trap" && released && effect.afterBoost && this.escapeBoostEnabled)
+        this.escapeBoostEndMs = effect.endMs + ITEM_EFFECT_TUNING.escapeBoostWindowMs;
     }
+    if (kind === "hold") this.directionPresses = [];
     if (kind === "pull" && vehicle.runtime.physicsState === MAGNET_STATE) {
       vehicle.runtime.physicsState = 0;
       vehicle.runtime.stateRemainingMs = 0;
@@ -539,6 +793,15 @@ export class VehicleItemEffects {
     const decay = Math.exp(-ITEM_EFFECT_TUNING.spinSpeedDecayPerSecond * seconds);
     body.linearVelocity.x = f32(body.linearVelocity.x * decay);
     body.linearVelocity.z = f32(body.linearVelocity.z * decay);
+  }
+
+  /** Spring trap: the push-back bleeds off; the heading stays put. */
+  private applyKnockback(seconds: number): void {
+    const velocity = this.vehicle.body.linearVelocity;
+    const decay = Math.exp(-ITEM_EFFECT_TUNING.knockbackSpeedDecayPerSecond * seconds);
+    velocity.x = f32(velocity.x * decay);
+    velocity.z = f32(velocity.z * decay);
+    this.setYawRate(0);
   }
 
   /** Magnet: aim the horizontal velocity at the target, like the `MZ` road, and speed up. */

@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { ITEM_EFFECT_TUNING, type ItemEffectEvent, type ItemEffectKind } from "./item-effects";
+import {
+  ITEM_EFFECT_TUNING, type ItemDirectionPress, type ItemEffectEvent, type ItemEffectKind,
+} from "./item-effects";
 import { integrateVehicleRoadOrientation } from "./orientation-integration";
 import {
   createItemDriver, neutralInput, throttleInput, type TestDriver, type TestVehicle,
@@ -420,4 +422,307 @@ test("original item.bml lives drive every victim timeline to the millisecond", (
     assert.deepEqual(ends(effects.consumeEvents()), [[kind, "expired"]], folder);
     if (kind === "trap") assert.equal(effects.escapeShieldRemainingMs, escape, folder);
   }
+});
+
+// ---- phase 3: reverse variants, knockback, hold, quick trap, escape boost ----
+
+function cruisingKart(kartId: number, milliseconds = 3000): TestDriver {
+  const driver = createItemDriver(kartId);
+  driver.run(milliseconds);
+  driver.vehicle.itemEffects.consumeEvents();
+  return driver;
+}
+
+test("reverse modes: devil swaps left/right, newDevil forward/back, drrMine every key", () => {
+  // Original lives: devil Affect 3000, newDevil and drmad (drrMine) Affect 5000.
+  assert.equal(itemLives("devil").get("Affect"), 3000);
+  assert.equal(itemLives("newDevil").get("Affect"), 5000);
+  assert.equal(itemLives("drmad").get("Affect"), 5000);
+  const driver = cruising();
+  const effects = driver.vehicle.itemEffects;
+  assert.equal(effects.reverseMode, undefined);
+  assert.equal(effects.apply("reverse", 3000), true, "the default mode is the devil's");
+  assert.equal(effects.steeringInverted, true);
+  assert.equal(effects.forwardBackSwapped, false);
+  assert.equal(effects.reverseMode, "steering");
+
+  const back = cruising().vehicle.itemEffects;
+  assert.equal(back.apply("reverse", 5000, { mode: "forwardBack", source: 38 }), true);
+  assert.equal(back.steeringInverted, false);
+  assert.equal(back.forwardBackSwapped, true);
+  assert.equal(back.reverseMode, "forwardBack");
+
+  const all = cruising().vehicle.itemEffects;
+  assert.equal(all.apply("reverse", 5000, { mode: "all", source: 23 }), true);
+  assert.equal(all.reverseMode, "all");
+  assert.throws(() => all.apply("reverse", 1000, { mode: "sideways" as never }), /反向方式/);
+
+  // A devil during a newDevil: each keeps its own end; one reverse effect throughout.
+  const both = cruising();
+  const mixed = both.vehicle.itemEffects;
+  mixed.apply("reverse", 5000, { mode: "forwardBack", source: 38 });
+  both.run(1000);
+  mixed.apply("reverse", 3000, { mode: "steering", source: 2 });
+  assert.equal(mixed.reverseMode, "all");
+  assert.equal(mixed.remainingMs("reverse"), 4000);
+  both.run(3008);
+  assert.equal(mixed.reverseMode, "forwardBack", "the devil ended at 4000 ms");
+  both.run(1000);
+  assert.equal(mixed.reverseMode, undefined);
+  const events: ItemEffectEvent[] = mixed.consumeEvents();
+  assert.deepEqual(events.map(event => [event.kind, event.phase]),
+    [["reverse", "start"], ["reverse", "end"]], "one start and one end for the whole reverse");
+});
+
+test("an EMP-style end removes only its own source: no UFO, no effect", () => {
+  const driver = cruising();
+  const vehicle = driver.vehicle;
+  const effects = vehicle.itemEffects;
+  // Tiger rocket (99) slows and blinds for its Affect; no UFO is running.
+  assert.equal(itemLives("tigerRocket").get("Affect"), 4000);
+  effects.apply("slow", 4000, { source: 99 });
+  assert.equal(effects.hasSource("slow", 3), false);
+  assert.equal(effects.end("slow", 3), false, "EMP finds no UFO slow: nothing happens");
+  assert.equal(effects.active.has("slow"), true);
+  assert.equal(vehicle.runtime.driveScale, f32(0.4));
+
+  // A UFO (3) lands on top; EMP lifts the UFO and the tiger slow stays.
+  driver.run(1000);
+  effects.apply("slow", 3000, { source: 3 });
+  assert.equal(effects.hasSource("slow", 3), true);
+  assert.equal(effects.remainingMs("slow"), 3000);
+  assert.equal(effects.end("slow", 3), true);
+  assert.equal(effects.hasSource("slow", 3), false);
+  assert.equal(effects.active.has("slow"), true);
+  assert.equal(effects.remainingMs("slow"), 3000, "back to the tiger rocket's own end");
+  assert.equal(vehicle.runtime.driveScale, f32(0.4));
+  assert.deepEqual(ends(effects.consumeEvents()), []);
+
+  // The last source ends the effect; without a source every cause ends.
+  assert.equal(effects.end("slow", 99), true);
+  assert.equal(effects.active.has("slow"), false);
+  assert.equal(vehicle.runtime.driveScale, 1);
+  assert.deepEqual(ends(effects.consumeEvents()), [["slow", "cancelled"]]);
+  effects.apply("slow", 3000, { source: 3 });
+  effects.apply("slow", 3000, { source: 99 });
+  assert.equal(effects.end("slow"), true);
+  assert.equal(effects.active.size, 0);
+});
+
+test("spring trap knockback: pushed back along the reverse heading for 500 ms without control", () => {
+  const lives = itemLives("forceZone");
+  const life = lives.get("Affect")!;
+  assert.equal(life, 500);
+  const driver = cruising();
+  const vehicle = driver.vehicle;
+  const effects = vehicle.itemEffects;
+  const forward = { ...vehicle.body.forward };
+  const entrySpeed = driver.horizontalSpeed;
+  const start = horizontal(vehicle);
+  vehicle.runtime.physicsState = 3;
+  assert.equal(effects.apply("knockback", life), true);
+  assert.equal(vehicle.runtime.physicsState, 0, "the hit ends a boost");
+  assert.equal(effects.suppressesDrive, true);
+  assert.equal(effects.suppressesAutomaticReset, true);
+  assert.equal(effects.canUseItem, true);
+  assert.equal(effects.holdsBody, false, "collisions keep running");
+  const velocity = vehicle.body.linearVelocity;
+  const along = velocity.x * forward.x + velocity.z * forward.z;
+  assert.ok(Math.abs(along + entrySpeed * ITEM_EFFECT_TUNING.knockbackRestitution) < 0.01 ||
+    along <= -ITEM_EFFECT_TUNING.knockbackMinimumSpeed + 0.01, `${along}`);
+  let hit = 0;
+  driver.run(life - 8, throttleInput, 8, current => {
+    if (current.runtime.collisionMotionHit) hit = current.runtime.collisionMotionStrength;
+    const back = current.body.linearVelocity.x * forward.x + current.body.linearVelocity.z * forward.z;
+    assert.ok(back < 0, "still moving backward with forward held");
+  });
+  assert.equal(hit, ITEM_EFFECT_TUNING.knockbackImpactStrength);
+  const end = horizontal(vehicle);
+  const travelled = (end.x - start.x) * forward.x + (end.z - start.z) * forward.z;
+  assert.ok(travelled < -2, `pushed back ${travelled} m`);
+  assert.ok(vehicle.body.forward.z > 0.999, "the heading stays down the road");
+  assert.ok(effects.active.has("knockback"));
+  driver.run(8, throttleInput, 8);
+  assert.deepEqual(ends(effects.consumeEvents()), [["knockback", "expired"]]);
+  driver.run(1500);
+  const forwardSpeed = vehicle.body.linearVelocity.x * forward.x + vehicle.body.linearVelocity.z * forward.z;
+  assert.ok(forwardSpeed > 5, "drives on afterwards");
+
+  // A fixed push speed; a kart standing still is pushed at the minimum.
+  const still = createItemDriver(373);
+  assert.equal(still.vehicle.itemEffects.apply("knockback", 500), true);
+  assert.ok(Math.abs(still.vehicle.body.linearVelocity.z + ITEM_EFFECT_TUNING.knockbackMinimumSpeed) < 1e-3);
+  const fixed = cruising().vehicle;
+  fixed.itemEffects.apply("knockback", 500, { speed: 12 });
+  assert.ok(Math.abs(fixed.body.linearVelocity.z + 12) < 1e-3);
+  // Never while held; a spin replaces it.
+  const held = cruising().vehicle.itemEffects;
+  held.apply("barrier", 500);
+  assert.equal(held.apply("knockback", 500), false);
+  const spun = cruising().vehicle.itemEffects;
+  spun.apply("knockback", 500);
+  assert.equal(spun.apply("spin", 2000), true);
+  assert.deepEqual(ends(spun.consumeEvents()), [["knockback", "replaced"]]);
+});
+
+test("hold (talisman, lockdown, abyss barricade): stopped in place, no items, QTE escape", () => {
+  assert.equal(itemLives("talisman").get("Affect"), 4000);
+  assert.equal(itemLives("talisman").get("EscapeAffect"), 500);
+  assert.equal(itemLives("lockdownRocket").get("AffectMain"), 2000);
+  assert.equal(itemLives("abyssBarricade").get("StateAffect"), 2000);
+  const driver = cruising();
+  const vehicle = driver.vehicle;
+  const effects = vehicle.itemEffects;
+  const anchor = horizontal(vehicle);
+  assert.equal(effects.directionPress("left"), false, "no hold, no QTE");
+  assert.equal(effects.apply("hold", 4000), true);
+  assert.equal(effects.holdsBody, true);
+  assert.equal(effects.canUseItem, false);
+  assert.equal(effects.immune, false, "a held kart can still be hit");
+  assert.equal(vehicle.startItemBooster(), false);
+  driver.run(1000);
+  assert.deepEqual(horizontal(vehicle), anchor);
+  assert.equal(driver.horizontalSpeed, 0);
+  assert.equal(effects.escapePress(), false, "mashing only breaks bubbles");
+  for (const direction of ["up", "left", "down", "right"] as const)
+    assert.equal(effects.directionPress(direction), true);
+  assert.equal(effects.directionPress("sideways" as never), false);
+  const presses: ItemDirectionPress[] = effects.consumeDirectionPresses();
+  assert.deepEqual(presses.map(press => press.direction),
+    ["up", "left", "down", "right"]);
+  assert.deepEqual(effects.consumeDirectionPresses(), []);
+  // The QTE succeeded: the original EscapeAffect (500 ms) plays, then the kart is free.
+  assert.equal(effects.escapeHold(500), true);
+  assert.equal(effects.remainingMs("hold"), 500);
+  driver.run(496);
+  assert.ok(effects.active.has("hold"));
+  driver.run(8);
+  assert.deepEqual(ends(effects.consumeEvents()), [["hold", "escaped"]]);
+  assert.equal(effects.immune, false, "no protection by default");
+  assert.equal(effects.escapeHold(), false);
+  driver.run(1000);
+  assert.ok(driver.horizontalSpeed > 2);
+
+  // Immediate escape, the expiry path and an immunity window after it.
+  const quickEscape = cruising().vehicle.itemEffects;
+  quickEscape.apply("hold", 2000);
+  quickEscape.directionPress("up");
+  assert.equal(quickEscape.escapeHold(), true);
+  assert.equal(quickEscape.active.has("hold"), false);
+  assert.deepEqual(quickEscape.consumeDirectionPresses(), [], "presses end with the hold");
+  const expiring = cruising();
+  expiring.vehicle.itemEffects.apply("hold", 2000, { escapeImmunityMs: 500 });
+  expiring.run(2000);
+  assert.deepEqual(ends(expiring.vehicle.itemEffects.consumeEvents()), [["hold", "expired"]]);
+  assert.equal(expiring.vehicle.itemEffects.escapeShieldRemainingMs, 500);
+});
+
+test("holds stack with the later end, never lift a launched kart and give way to a bubble", () => {
+  const driver = cruising();
+  const effects = driver.vehicle.itemEffects;
+  effects.apply("hold", 2000);
+  driver.run(1000);
+  assert.equal(effects.apply("hold", 4000), true, "a talisman during a lockdown field");
+  assert.equal(effects.remainingMs("hold"), 4000);
+  assert.equal(effects.apply("hold", 500), true);
+  assert.equal(effects.remainingMs("hold"), 4000, "a shorter hold never cuts it");
+  assert.equal(effects.apply("barrier", 500), false);
+  assert.equal(effects.apply("trap", 2000), true, "a bubble replaces the hold");
+  assert.deepEqual(ends(effects.consumeEvents()), [["hold", "replaced"]]);
+
+  const launched = cruising().vehicle.itemEffects;
+  launched.apply("launch", 1500);
+  assert.equal(launched.apply("hold", 2000), false);
+  const replaced = cruising().vehicle.itemEffects;
+  replaced.apply("hold", 2000);
+  assert.equal(replaced.apply("launch", 1500), true, "a missile still flips a held kart");
+});
+
+test("waterAngel quick escape: the bubble ends 500 ms after it formed", () => {
+  const life = itemLives("waterBomb").get("Affect")!;
+  const driver = cruising();
+  const effects = driver.vehicle.itemEffects;
+  assert.equal(effects.apply("trap", life, { quick: true, escapeImmunityMs: 2000 }), true);
+  assert.equal(effects.remainingMs("trap"), ITEM_EFFECT_TUNING.quickTrapMs);
+  driver.run(496);
+  assert.ok(effects.active.has("trap"));
+  driver.run(8);
+  assert.deepEqual(ends(effects.consumeEvents()), [["trap", "expired"]]);
+  assert.equal(effects.immune, true, "the blue shield still follows");
+  assert.equal(cruising().vehicle.itemEffects.apply("trap", 2000, { quick: true, elapsedMs: 500 }),
+    false, "a quick bubble already over");
+});
+
+test("escape boost: a forward press within 1000 ms of a bubble gives the drift instant boost", () => {
+  // 373 正义 HT+ has UseExtendedAfterBooster; driftBoostTick 0 means the 0.5 s default.
+  const driver = cruisingKart(373);
+  const vehicle = driver.vehicle;
+  const effects = vehicle.itemEffects;
+  assert.equal(vehicle.tuning.useExtendedAfterBooster, true);
+  effects.apply("trap", 2000);
+  vehicle.handleDrivingCommand({ kind: "forward-down" }, throttleInput);
+  assert.equal(vehicle.runtime.physicsState, 0, "not while trapped");
+  driver.run(2000);
+  assert.equal(effects.active.has("trap"), false);
+  assert.equal(effects.escapeBoostReady, true);
+  assert.ok(effects.escapeBoostRemainingMs > 980 && effects.escapeBoostRemainingMs <= 1000);
+  driver.run(500);
+  vehicle.handleDrivingCommand({ kind: "forward-up" }, neutralInput);
+  vehicle.handleDrivingCommand({ kind: "forward-down" }, throttleInput);
+  assert.equal(vehicle.runtime.physicsState, 2);
+  assert.equal(vehicle.runtime.driftLifecycleB44, f32(0.5));
+  assert.equal(effects.escapeBoostReady, false, "one boost per escape");
+  driver.run(496);
+  assert.equal(vehicle.runtime.physicsState, 2);
+  driver.run(16);
+  assert.equal(vehicle.runtime.physicsState, 0);
+
+  // Too late, no ability, not a water bubble, or a forced clear: nothing.
+  const late = cruisingKart(373);
+  late.vehicle.itemEffects.apply("trap", 2000);
+  late.run(3008);
+  late.vehicle.handleDrivingCommand({ kind: "forward-down" }, throttleInput);
+  assert.equal(late.vehicle.runtime.physicsState, 0);
+  const plain = cruisingKart(1);
+  assert.equal(plain.vehicle.tuning.useExtendedAfterBooster, false);
+  assert.equal(plain.vehicle.tuning.useExtendedAfterBoosterMore, false);
+  plain.vehicle.itemEffects.apply("trap", 1000);
+  plain.run(1100);
+  plain.vehicle.handleDrivingCommand({ kind: "forward-down" }, throttleInput);
+  assert.equal(plain.vehicle.runtime.physicsState, 0);
+  const dry = cruisingKart(373);
+  dry.vehicle.itemEffects.apply("trap", 1000, { afterBoost: false });
+  dry.run(1100);
+  assert.equal(dry.vehicle.itemEffects.escapeBoostReady, false);
+  const cleared = cruisingKart(373);
+  cleared.vehicle.itemEffects.apply("trap", 1000);
+  cleared.run(500);
+  cleared.vehicle.itemEffects.clear();
+  assert.equal(cleared.vehicle.itemEffects.escapeBoostReady, false);
+  const rehit = cruisingKart(373);
+  rehit.vehicle.itemEffects.apply("trap", 1000, { escapeImmunityMs: 0 });
+  rehit.run(1100);
+  assert.equal(rehit.vehicle.itemEffects.escapeBoostReady, true);
+  rehit.vehicle.itemEffects.apply("spin", 2000);
+  assert.equal(rehit.vehicle.itemEffects.escapeBoostReady, false, "a new hit closes the window");
+});
+
+test("escape boost on a 迅 item kart: driftBoostTick and driftBoostMulAccelFactor", () => {
+  // 1513 概念车I 迅: useExtendedAfterBoosterMore, driftBoostTick 500, driftBoostMulAccelFactor 1.31.
+  const boosted = cruisingKart(1513, 1500);
+  const reference = cruisingKart(1513, 1500);
+  assert.equal(boosted.vehicle.tuning.useExtendedAfterBoosterMore, true);
+  assert.equal(boosted.vehicle.tuning.driftBoostTick, 500);
+  for (const driver of [boosted, reference]) {
+    driver.vehicle.itemEffects.apply("trap", 1000);
+    driver.run(1100);
+  }
+  boosted.vehicle.handleDrivingCommand({ kind: "forward-up" }, neutralInput);
+  boosted.vehicle.handleDrivingCommand({ kind: "forward-down" }, throttleInput);
+  assert.equal(boosted.vehicle.runtime.physicsState, 2);
+  assert.equal(boosted.vehicle.runtime.driftLifecycleB44, f32(0.5));
+  boosted.run(480);
+  reference.run(480);
+  assert.ok(boosted.horizontalSpeed > reference.horizontalSpeed + 0.5,
+    `${boosted.horizontalSpeed} vs ${reference.horizontalSpeed}`);
 });
