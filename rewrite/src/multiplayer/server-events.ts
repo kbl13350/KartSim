@@ -1,4 +1,10 @@
-import { PROTOCOL_VERSION, ROOM_RULESET } from "./protocol";
+import {
+  ITEM_HIT_BLOCKERS, ITEM_HIT_VARIANTS, PROTOCOL_VERSION, ROOM_RULESET, validHitOutcome,
+  type ItemBlocker, type ItemHitVariant,
+} from "./protocol";
+
+export { ITEM_HIT_BLOCKERS, ITEM_HIT_VARIANTS, validHitOutcome };
+export type { ItemBlocker, ItemHitVariant };
 
 export interface ServerEventValidation {
   validRoom(value: unknown): boolean;
@@ -144,18 +150,33 @@ const ITEM_TARGETS_MAX = 8;
 
 export type ItemSlots = number[];
 export interface ItemPoint { x: number; y: number; z: number }
-export type ItemBlocker = "shield" | "angel" | "emp" | "escape";
+/**
+ * The racer's changer cards (ITEM_MODE.md C.6): `slot` 道具换位卡 and `item`
+ * 道具变更卡 counts, -1 for a voucher (unlimited while it lasts); `itemArmed`
+ * is whether slot 0 holds an item that has not been changed yet.
+ */
+export interface ItemChangers { slot: number; item: number; itemArmed: boolean }
+/**
+ * Per slot, the special booster's `animal<iconId>.png` icon of the racer's
+ * kart, 0 for the item's own icon (the game node sends it with the slots when
+ * a held item has one; not part of ITEM_MODE.md C.7).
+ */
+export type ItemSlotIcons = number[];
 
 interface ItemEventBase { type: "item"; roomId: string; raceId: string; requestId?: string }
 /** Reply to `cube`: the drawn item, or null with the reason nothing was given. */
 export interface ItemGrantEvent extends ItemEventBase {
   action: "grant"; cubeId: number; itemId: number | null;
-  reason?: "full" | "abusing"; slots: ItemSlots; playerId?: string;
+  reason?: "full" | "abusing"; slots: ItemSlots; playerId?: string; changers?: ItemChangers;
+  slotIcons?: ItemSlotIcons;
 }
 /** A use: broadcast to the others, and the reply (with `slots`) to the user. */
 export interface ItemUsedEvent extends ItemEventBase {
   action: "used"; playerId: string; useId: number; itemId: number; targets: string[];
-  startAt: number; etaMs: number; point?: ItemPoint; slots?: ItemSlots;
+  startAt: number; etaMs: number; point?: ItemPoint; slots?: ItemSlots; changers?: ItemChangers;
+  slotIcons?: ItemSlotIcons;
+  /** 2 when the user's kart fires two missiles (useTwoRocket / useTwoGoldRocket). */
+  count?: number;
 }
 /** The landing point of a barricade or a time bomb. */
 export interface ItemPlacedEvent extends ItemEventBase {
@@ -166,11 +187,18 @@ export interface ItemPlacedEvent extends ItemEventBase {
 export interface ItemHitEvent extends ItemEventBase {
   action: "hit"; playerId: string; useId: number; itemId: number; userId?: string;
   result: "hit" | "blocked"; by?: ItemBlocker; removed?: boolean; hazardId?: number;
+  variant?: ItemHitVariant; shot?: 0 | 1;
   slots?: ItemSlots;
 }
-/** Reply to `swap` / `change`. */
+/**
+ * Reply to `swap` / `change` / `slots`, and the server's push when the racer
+ * gains an item outside a cube (`reason:"gain"`, the per-kart gain tables) or
+ * starts with one (`reason:"start"`, the 迅 item karts).
+ */
 export interface ItemSlotsEvent extends ItemEventBase {
-  action: "slots"; slots: ItemSlots; playerId?: string;
+  action: "slots"; slots: ItemSlots; playerId?: string; changers?: ItemChangers;
+  slotIcons?: ItemSlotIcons;
+  reason?: "gain" | "start"; itemId?: number;
 }
 /** An opponent's slots while this team's 透视镜 lasts. */
 export interface ItemScanEvent extends ItemEventBase {
@@ -180,8 +208,12 @@ export interface ItemScanEvent extends ItemEventBase {
 export interface ItemEscapedEvent extends ItemEventBase {
   action: "escaped"; playerId: string; useId: number; itemId: number; hazardId?: number;
 }
+/** In-race lucci for this racer (ITEM_MODE.md C.8), for the HUD notice. */
+export interface ItemLucciEvent extends ItemEventBase {
+  action: "lucci"; amount: number; reason: string;
+}
 export type ItemServerEvent = ItemGrantEvent | ItemUsedEvent | ItemPlacedEvent |
-  ItemHitEvent | ItemSlotsEvent | ItemScanEvent | ItemEscapedEvent;
+  ItemHitEvent | ItemSlotsEvent | ItemScanEvent | ItemEscapedEvent | ItemLucciEvent;
 
 /** What an invalid item event becomes: it rejects its request and changes nothing else. */
 export interface InvalidItemEvent { type: "error"; code: "INVALID_ITEM_EVENT"; requestId?: string }
@@ -229,6 +261,27 @@ const optionalText = (value: unknown) =>
   optional(value, input => text(input, 1, 64) ? input : undefined);
 const optionalSlots = (value: unknown) => optional(value, itemSlots);
 
+/** Card counts above this are not plausible (the boxes pay at most 500 at a time). */
+export const ITEM_CHANGER_MAX = 1_000_000;
+/** Largest in-race lucci notice: the per-race cap of ITEM_MODE.md C.8. */
+export const ITEM_LUCCI_MAX = 200;
+
+function itemChangers(value: unknown): ItemChangers | undefined {
+  if (!record(value) || Object.keys(value).some(key => !["slot", "item", "itemArmed"].includes(key)))
+    return undefined;
+  return integer(value.slot, -1, ITEM_CHANGER_MAX) && integer(value.item, -1, ITEM_CHANGER_MAX) &&
+    typeof value.itemArmed === "boolean"
+    ? { slot: value.slot, item: value.item, itemArmed: value.itemArmed } : undefined;
+}
+const optionalChangers = (value: unknown) => optional(value, itemChangers);
+
+function itemSlotIcons(value: unknown): ItemSlotIcons | undefined {
+  return Array.isArray(value) && value.length >= 2 && value.length <= 3 &&
+    value.every(icon => integer(icon, 0, 65535)) ? [...value] as number[] : undefined;
+}
+const optionalSlotIcons = (value: unknown) => optional(value, itemSlotIcons);
+
+
 /**
  * Strict projection of an `item` server event onto its known fields; any
  * missing, extra-typed or out-of-range field rejects the whole event.
@@ -242,27 +295,39 @@ export function parseItemServerEvent(value: Record<string, unknown>): ItemServer
     case "grant": {
       const slots = itemSlots(value.slots);
       const playerId = optionalText(value.playerId);
+      const changers = optionalChangers(value.changers);
+      const icons = optionalSlotIcons(value.slotIcons);
       const granted = value.itemId !== null;
-      if (!integer(value.cubeId, 1, ITEM_CUBE_ID_MAX) || !slots || !playerId.ok ||
+      if (!integer(value.cubeId, 1, ITEM_CUBE_ID_MAX) || !slots || !playerId.ok || !changers.ok ||
+          !icons.ok || (icons.value !== undefined && icons.value.length !== slots.length) ||
           (granted ? !itemId(value.itemId) || value.reason !== undefined
             : value.reason !== undefined && value.reason !== "full" &&
               value.reason !== "abusing")) return undefined;
       return { ...base, action: "grant", cubeId: value.cubeId,
         itemId: granted ? value.itemId as number : null,
         ...(value.reason === undefined ? {} : { reason: value.reason as "full" | "abusing" }),
-        slots, ...(playerId.value === undefined ? {} : { playerId: playerId.value }) };
+        slots, ...(playerId.value === undefined ? {} : { playerId: playerId.value }),
+        ...(changers.value ? { changers: changers.value } : {}),
+        ...(icons.value ? { slotIcons: icons.value } : {}) };
     }
     case "used": {
       const targets = itemTargets(value.targets);
       const point = optional(value.point, itemPoint);
       const slots = optionalSlots(value.slots);
+      const changers = optionalChangers(value.changers);
+      const icons = optionalSlotIcons(value.slotIcons);
       if (!text(value.playerId, 1, 64) || !useId(value.useId, 1) || !itemId(value.itemId) ||
           !targets || !clock(value.startAt) || !integer(value.etaMs, 0, ITEM_ETA_MAX_MS) ||
-          !point.ok || !slots.ok) return undefined;
+          !point.ok || !slots.ok || !changers.ok || !icons.ok ||
+          (icons.value !== undefined && icons.value.length !== slots.value?.length) ||
+          (value.count !== undefined && value.count !== 2)) return undefined;
       return { ...base, action: "used", playerId: value.playerId, useId: value.useId as number,
         itemId: value.itemId, targets, startAt: value.startAt, etaMs: value.etaMs,
         ...(point.value ? { point: point.value } : {}),
-        ...(slots.value ? { slots: slots.value } : {}) };
+        ...(slots.value ? { slots: slots.value } : {}),
+        ...(changers.value ? { changers: changers.value } : {}),
+        ...(icons.value ? { slotIcons: icons.value } : {}),
+        ...(value.count === 2 ? { count: 2 } : {}) };
     }
     case "placed": {
       const point = itemPoint(value.point);
@@ -280,16 +345,17 @@ export function parseItemServerEvent(value: Record<string, unknown>): ItemServer
       const hazard = value.useId === 0;
       if (!text(value.playerId, 1, 64) || !useId(value.useId, 0) || !itemId(value.itemId) ||
           !userId.ok || (!hazard && userId.value === undefined) ||
-          (value.result !== "hit" && value.result !== "blocked") ||
-          (value.by !== undefined && (value.result !== "blocked" ||
-            !["shield", "angel", "emp", "escape"].includes(String(value.by)))) ||
+          !validHitOutcome(value.result, value.by, value.variant, value.shot) ||
+          (hazard && value.shot !== undefined) ||
           (value.removed !== undefined && typeof value.removed !== "boolean") ||
           (value.hazardId !== undefined && !integer(value.hazardId, 0, ITEM_CUBE_ID_MAX)) ||
           !slots.ok) return undefined;
       return { ...base, action: "hit", playerId: value.playerId, useId: value.useId as number,
         itemId: value.itemId, ...(userId.value === undefined ? {} : { userId: userId.value }),
-        result: value.result,
+        result: value.result as "hit" | "blocked",
         ...(value.by === undefined ? {} : { by: value.by as ItemBlocker }),
+        ...(value.variant === undefined ? {} : { variant: value.variant as ItemHitVariant }),
+        ...(value.shot === undefined ? {} : { shot: value.shot as 0 | 1 }),
         ...(value.removed === undefined ? {} : { removed: value.removed as boolean }),
         ...(value.hazardId === undefined ? {} : { hazardId: value.hazardId as number }),
         ...(slots.value ? { slots: slots.value } : {}) };
@@ -297,9 +363,18 @@ export function parseItemServerEvent(value: Record<string, unknown>): ItemServer
     case "slots": {
       const slots = itemSlots(value.slots);
       const playerId = optionalText(value.playerId);
-      if (!slots || !playerId.ok) return undefined;
+      const changers = optionalChangers(value.changers);
+      const icons = optionalSlotIcons(value.slotIcons);
+      const gained = value.reason !== undefined;
+      if (!slots || !playerId.ok || !changers.ok || !icons.ok ||
+          (icons.value !== undefined && icons.value.length !== slots.length) ||
+          (gained ? (value.reason !== "gain" && value.reason !== "start") || !itemId(value.itemId)
+            : value.itemId !== undefined)) return undefined;
       return { ...base, action: "slots", slots,
-        ...(playerId.value === undefined ? {} : { playerId: playerId.value }) };
+        ...(playerId.value === undefined ? {} : { playerId: playerId.value }),
+        ...(changers.value ? { changers: changers.value } : {}),
+        ...(icons.value ? { slotIcons: icons.value } : {}),
+        ...(gained ? { reason: value.reason as "gain" | "start", itemId: value.itemId as number } : {}) };
     }
     case "scan": {
       const slots = itemSlots(value.slots);
@@ -313,6 +388,11 @@ export function parseItemServerEvent(value: Record<string, unknown>): ItemServer
         return undefined;
       return { ...base, action: "escaped", playerId: value.playerId, useId: value.useId as number,
         itemId: value.itemId, ...(hazard ? { hazardId: value.hazardId as number } : {}) };
+    }
+    case "lucci": {
+      if (!integer(value.amount, 1, ITEM_LUCCI_MAX) || typeof value.reason !== "string" ||
+          !/^[A-Za-z][A-Za-z0-9_-]{0,31}$/.test(value.reason)) return undefined;
+      return { ...base, action: "lucci", amount: value.amount, reason: value.reason };
     }
     default:
       return undefined;

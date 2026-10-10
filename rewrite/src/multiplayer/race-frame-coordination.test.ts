@@ -203,3 +203,33 @@ test("the item race controller runs before the local physics step", () => {
   item.host.update(500, { tick: 500 }, false);
   assert.deepEqual(order, [["item", 500], ["local", 500]]);
 });
+
+test("an item race reports whether its start boost succeeded with the finish", async () => {
+  for (const [itemRace, expected] of [
+    [{ update: () => {}, perfectStart: true }, [["finish.report", 12_345, { perfectStart: true }]]],
+    [{ update: () => {} }, [["finish.report", 12_345, { perfectStart: false }]]],
+    [undefined, [["finish.report", 12_345]]],
+  ] as const) {
+    const race = fixture(false);
+    const reports: unknown[] = [];
+    race.host.connection.reportFinish = (elapsedMs, extra) => {
+      reports.push(extra ? ["finish.report", elapsedMs, extra] : ["finish.report", elapsedMs]);
+      return Promise.resolve();
+    };
+    if (itemRace) race.host.itemRace = itemRace;
+    race.setActions([{ kind: "natural-finish" }]);
+    race.host.update(500, { tick: 500 }, false);
+    await Promise.resolve();
+    assert.deepEqual(reports, expected);
+  }
+  // The race session's note (LocalRaceController.startBoosted) counts too.
+  const noted = fixture(false);
+  const reports: unknown[] = [];
+  noted.host.connection.reportFinish = (elapsedMs, extra) => { reports.push([elapsedMs, extra]); return Promise.resolve(); };
+  noted.host.itemRace = { update: () => {} };
+  noted.host.local.startBoosted = true;
+  noted.setActions([{ kind: "natural-finish" }]);
+  noted.host.update(500, { tick: 500 }, false);
+  await Promise.resolve();
+  assert.deepEqual(reports, [[12_345, { perfectStart: true }]]);
+});

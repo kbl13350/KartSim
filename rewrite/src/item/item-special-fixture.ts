@@ -81,7 +81,7 @@ export const SPECIAL_SOUND_FALLBACKS: Readonly<Record<string, string>> = {
 
 /** Placeholder behaviour: the presenter reads states, never this. */
 const PRESENTER_ONLY: ItemBehaviour = Object.freeze({
-  use: "instant", target: "self", delayMs: 0, warningMs: 0, effect: "boost", effectMs: 0,
+  family: "booster", use: "instant", target: "self", delayMs: 0, warningMs: 0, effect: "boost", effectMs: 0,
   shieldBlocks: false, angelBlocks: false, hitsTeammates: false,
 });
 

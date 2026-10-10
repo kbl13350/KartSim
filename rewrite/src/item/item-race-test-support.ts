@@ -3,7 +3,9 @@
  * Appendix B base-0 lifetimes through the real `itemBehaviour`, fake physics,
  * connection, presenter and remotes. Not part of the game build.
  */
+import type { ItemChangers } from "../multiplayer/server-events";
 import type { ItemState } from "./item-bml";
+import type { ItemPassiveTable } from "./item-passives";
 import { ITEM_REGISTRY, itemBehaviour, type ItemCatalog, type ItemDefinition } from "./item-catalog";
 import {
   ItemRaceController, type ItemRaceControllerOptions, type ItemRaceEffectEvent,
@@ -16,15 +18,33 @@ import type { PhysicsItemEffect, Vec3 } from "./item-race-rules";
 type StateSpec = [name: string, lifeMs: number, extra?: Partial<ItemState>];
 
 const AIM: StateSpec = ["Aim", 0, { auxFx: ["aiming", "inrange", "ontarget", "misfire"] }];
-const ROCKET: StateSpec[] = [AIM, ["Use", 1500], ["Affect", 1500], ["Shield", 1000]];
+const ROCKET: StateSpec[] = [AIM, ["Use", 1500], ["Affect", 1500], ["AffectSmall", 1000], ["Shield", 1000]];
+const BLIND_ROCKET: StateSpec[] = [AIM, ["Use", 1500], ["Affect", 4000], ["AffectSmall", 5000],
+  ["Shield", 1000]];
+const LOCKDOWN: StateSpec[] = [AIM, ["Use", 1500], ["RocketShield", 1000], ["Balloon", 1000],
+  ["CountDown", 500], ["SetEmp", 1000, { size: 15 }], ["EmpShield", 1000], ["AffectMain", 2000],
+  ["AffectSub", 3000]];
+const MINE: StateSpec[] = [["Use", 500], ["Set", 30000, { size: 2 }], ["Affect", 1500],
+  ["AfterBoost", 3000], ["Shield", 3000]];
+const BOMB = (affect: number, escape = true): StateSpec[] => [["Use", 1000], ["Set", 1000, { size: 10 }],
+  ["Affect", affect], ...(escape ? [["EscapeAffect", 2000], ["AfterBoost", 0]] as StateSpec[] :
+    [["PostAffect", 5000]] as StateSpec[])];
+const TIME_BOMB = (affect: number, escape = true): StateSpec[] => [["Use", 3000],
+  ["Set", 1000, { size: 15 }], ["Affect", affect],
+  ...(escape ? [["EscapeAffect", 2000], ["AfterBoost", 0]] as StateSpec[] : [["PostAffect", 5000]] as StateSpec[])];
+const CURSE = (affect: number): StateSpec[] => [["Use", 500], ["Preaffect", 1000], ["Affect", affect],
+  ["Escape", 2000]];
+const BARRICADE = (radius: number, affect: number): StateSpec[] => [["StateUse", 1000, { size: 70 }],
+  ["StateSet", 266, { size: 10 }], ["StateActive", 5000, { size: radius }], ["StateAffect", affect],
+  ["StateShield", 1000]];
 
 /** Base-0 states of the item race set (ITEM_MODE.md appendix B, item.bml lifetimes). */
 export const TEST_ITEM_STATES: Readonly<Record<string, StateSpec[]>> = {
   booster: [],
   teamBooster: [],
   banana: [["Use", 500], ["Set", 30000, { size: 2 }], ["Affect", 2000], ["Shield", 2000]],
-  waterBomb: [["Use", 1000], ["Set", 1000, { size: 10 }], ["Affect", 2000], ["EscapeAffect", 2000]],
-  waterFly: [["Use", 2000], ["Affect", 1000], ["EscapeAffect", 2000], ["Shield", 1000]],
+  waterBomb: BOMB(2000),
+  waterFly: [["Use", 2000], ["Affect", 1000], ["EscapeAffect", 2000], ["Shield", 1000], ["AfterBoost", 0]],
   rocket: ROCKET,
   guideRocket: ROCKET,
   randomRocket: ROCKET,
@@ -32,18 +52,68 @@ export const TEST_ITEM_STATES: Readonly<Record<string, StateSpec[]>> = {
   shield: [["Use", 2000], ["Shield", 1000]],
   angel: [["Use", 500], ["Affect", 4000], ["Defend", 1000]],
   devil: [["Use", 500], ["Preaffect", 1000], ["Affect", 3000], ["Escape", 2000]],
-  ufo: [["Use", 1500], ["Affect", 3000], ["PostAffect", 500], ["Shield", 1500]],
+  ufo: [["Use", 1500], ["Affect", 3000], ["PostAffect", 500], ["BonusAffect", 3000],
+    ["HeadBandAffect", 1500], ["Shield", 1500]],
   emp: [["Use", 500], ["Affect", 1500]],
   thunderbolt: [["Use", 500], ["Warning", 1000], ["Preaffect", 600], ["Affect", 1500]],
-  barricade: [["StateUse", 1000, { size: 70 }], ["StateSet", 266, { size: 10 }],
-    ["StateActive", 5000, { size: 4.3 }], ["StateAffect", 500], ["StateShield", 1000]],
+  barricade: BARRICADE(4.3, 500),
   cloud2: [["Use", 666], ["Set", 10000], ["Remove", 666]],
   scanning: [["Use", 500], ["Affect", 8000]],
   slotLock: [["Use", 2000], ["Affect", 1000], ["Postaffect", 2000]],
-  timeBomb: [["Use", 3000], ["Set", 1000, { size: 15 }], ["Affect", 2000], ["EscapeAffect", 2000]],
-  mine: [["Set", 30000, { size: 2 }], ["Affect", 1500], ["Shield", 1000]],
-  waterMine: [["Set", 30000, { size: 2 }], ["Explode", 1000, { size: 10 }], ["Affect", 2000],
-    ["EscapeAffect", 2000], ["Shield", 1000]],
+  timeBomb: TIME_BOMB(2000),
+  mine: MINE,
+  waterMine: [["Use", 500], ["Set", 30000, { size: 2 }], ["Explode", 1000, { size: 10 }], ["Affect", 2000],
+    ["EscapeAffect", 2000], ["Shield", 2000], ["AfterBoost", 0]],
+  // The special items of ITEM_MODE.md C.4 (their own base's lifetimes).
+  darkCloud: [["Use", 666], ["Set", 30000], ["Remove", 666]],
+  superShield: [["Use", 3000], ["Shield", 1000]],
+  cokeBomb: BOMB(2500),
+  timeCokeBomb: TIME_BOMB(2500),
+  drrMine: CURSE(5000),
+  siren: [["Use", 3000], ["Affect", 2000]],
+  forceZone: [["Use", 500], ["Set", 30000, { size: 3 }], ["Affect", 500], ["Shield", 2000]],
+  infectedBomb: BOMB(2000, false),
+  timeInfectedBomb: TIME_BOMB(2000, false),
+  cokeRocket: ROCKET,
+  animalBooster: [],
+  goldRocket: ROCKET,
+  snowBomb: BOMB(3000),
+  timeSnowBomb: TIME_BOMB(3000),
+  goldShield: [["Use", 500], ["Affect", 2500], ["Defend", 1000]],
+  newDevil: CURSE(5000),
+  pumpkinBomb: BOMB(2000, false),
+  duckMine: MINE,
+  oil: [["Use", 500], ["Set", 30000, { size: 2 }], ["Affect", 2000], ["Shield", 2000]],
+  prisonBomb: BOMB(2000),
+  protectShield: [["Use", 500], ["Affect", 4000], ["Defend", 1000]],
+  eggMine: MINE,
+  goldEggMine: MINE,
+  bigBanana: [["Use", 500], ["Set", 30000, { size: 7.5 }], ["Affect", 2000], ["Shield", 2000]],
+  tigerRocket: BLIND_ROCKET,
+  tigerGhost: [["Use", 500], ["Affect", 7000]],
+  candyRocket: ROCKET,
+  superMagnet: [AIM, ["Use", 3000]],
+  lockdownRocket: LOCKDOWN,
+  sirenShield: [["Use", 200], ["Affect", 2000], ["Siren", 2000]],
+  dinoEggRocket: ROCKET,
+  dinoClawRocket: BLIND_ROCKET,
+  snowman: [AIM, ["Use", 1500], ["Affect", 2000], ["AffectSmall", 2000]],
+  darkCloud2: [["Use", 666], ["Set", 10000], ["Remove", 666]],
+  blockRocket: LOCKDOWN,
+  snowWaterFly: [["Use", 2000], ["Affect", 1500], ["EscapeAffect", 2000], ["Shield", 1000], ["AfterBoost", 0]],
+  infectedWaterFly: [["Use", 2000], ["Affect", 1000], ["EscapeAffect", 2000], ["Shield", 1000],
+    ["AfterBoost", 2000]],
+  waterbombFly: [["Use", 2000], ["CountDown", 2000], ["Active", 1000], ["EscapeAffect", 1000],
+    ["Shield", 1000], ["AfterBoost", 0]],
+  foxTailRocket: ROCKET,
+  springMine: MINE,
+  cogWheelMine: MINE,
+  deliveryRocket: BLIND_ROCKET,
+  honeyBee: [["Use", 2000], ["Affect", 4000], ["Shield", 1000]],
+  lionMaskRocket: [AIM, ["Use", 1500], ["Affect", 2000], ["AffectSmall", 5000], ["Shield", 1000]],
+  abyssBarricade: BARRICADE(4.5, 2000),
+  pantherRocket: BLIND_ROCKET,
+  talisman: [["Use", 1500], ["Affect", 4000], ["EscapeAffect", 500], ["Postaffect", 500], ["Shield", 1000]],
 };
 
 function states(specs: readonly StateSpec[]): Map<string, ItemState> {
@@ -52,21 +122,27 @@ function states(specs: readonly StateSpec[]): Map<string, ItemState> {
 }
 
 /** A catalog with the real behaviours of the item race set. */
-export function testItemCatalog(): Pick<ItemCatalog, "get" | "items"> {
+export function testItemCatalog(extras: Partial<Pick<ItemCatalog, "passives" | "animalBoosters">> = {}):
+  Pick<ItemCatalog, "get" | "items"> & Partial<Pick<ItemCatalog, "passives" | "animalBoosters">> {
+  const statesOf = (name: string) => states(TEST_ITEM_STATES[name] ?? []);
   const items: ItemDefinition[] = ITEM_REGISTRY.map(entry => {
-    const itemStates = states(TEST_ITEM_STATES[entry.name] ?? []);
+    const itemStates = statesOf(entry.name);
     return { idx: entry.idx, name: entry.name, folder: entry.folder, base: entry.base,
       title: entry.name, description: "", states: itemStates,
-      behaviour: itemBehaviour(entry.name, itemStates) };
+      behaviour: itemBehaviour(entry.name, itemStates, { statesOf }) };
   });
   const byIdx = new Map(items.map(item => [item.idx, item]));
-  return { items, get: idx => byIdx.get(idx) };
+  return { items, get: idx => byIdx.get(idx), ...extras };
 }
 
 export class FakeEffects {
   readonly applied: Array<{ kind: PhysicsItemEffect; durationMs: number;
     options: Record<string, unknown> }> = [];
   readonly ended: PhysicsItemEffect[] = [];
+  /** Causes of the timed effects (`options.source`), like VehicleItemEffects. */
+  readonly sources = new Map<string, Set<string>>();
+  directionPresses: Array<{ direction: "left" | "right" | "up" | "down"; atMs: number }> = [];
+  readonly escapedHolds: number[] = [];
   readonly active = new Set<string>();
   events: ItemRaceEffectEvent[] = [];
   immune = false;
@@ -85,11 +161,33 @@ export class FakeEffects {
     }
     this.applied.push({ kind, durationMs, options });
     this.active.add(kind);
+    if (options.source !== undefined) {
+      const set = this.sources.get(kind) ?? new Set<string>();
+      set.add(String(options.source));
+      this.sources.set(kind, set);
+    }
     return true;
   }
-  end(kind: PhysicsItemEffect): boolean {
+  end(kind: PhysicsItemEffect, source?: string | number): boolean {
     this.ended.push(kind);
+    if (source !== undefined) {
+      const set = this.sources.get(kind);
+      if (!set?.delete(String(source))) return false;
+      if (set.size) return true;
+    }
     return this.active.delete(kind);
+  }
+  hasSource(kind: PhysicsItemEffect, source: string | number): boolean {
+    return this.active.has(kind) && (this.sources.get(kind)?.has(String(source)) ?? false);
+  }
+  consumeDirectionPresses(): Array<{ direction: "left" | "right" | "up" | "down"; atMs: number }> {
+    const presses = this.directionPresses;
+    this.directionPresses = [];
+    return presses;
+  }
+  escapeHold(delayMs = 0): boolean {
+    this.escapedHolds.push(delayMs);
+    return this.active.has("hold");
   }
   remainingMs(kind: PhysicsItemEffect): number {
     const effect = this.effects.get(kind);
@@ -115,8 +213,14 @@ export class FakePhysics {
     linearVelocity: { x: 0, y: 0, z: 10 },
   };
   cancelledBoosters = 0;
+  readonly boosterCalls: Array<{ kind?: string; options?: { durationMs?: number } }> = [];
+  readonly runtime = { physicsState: 0 };
   setItemSlots(slots: readonly number[]): void { this.slotsSet.push([...slots]); }
-  startItemBooster(): boolean { this.boosters += 1; return true; }
+  startItemBooster(kind?: string, options?: { durationMs?: number }): boolean {
+    this.boosters += 1;
+    this.boosterCalls.push({ ...(kind ? { kind } : {}), ...(options ? { options } : {}) });
+    return true;
+  }
   cancelItemBooster(): boolean { this.cancelledBoosters += 1; return true; }
 }
 
@@ -129,8 +233,9 @@ export class FakePresenter implements ItemRacePresenter {
   placed(event: unknown): void { this.calls.push(["placed", event]); }
   hit(event: unknown): void { this.calls.push(["hit", event]); }
   removed(useId: number): void { this.calls.push(["removed", useId]); }
-  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number): void {
-    this.calls.push(["kartEffect", playerId, kind, startMs, durationMs]);
+  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number,
+    options?: unknown): void {
+    this.calls.push(["kartEffect", playerId, kind, startMs, durationMs, ...(options ? [options] : [])]);
   }
   endKartEffect(playerId: string, kind: ItemKartEffect): void {
     this.calls.push(["endKartEffect", playerId, kind]);
@@ -139,6 +244,7 @@ export class FakePresenter implements ItemRacePresenter {
     this.calls.push(["sound", itemId, stem, options]);
   }
   stopSound(key: string): void { this.calls.push(["stopSound", key]); }
+  startItemFlash(atMs: number): void { this.calls.push(["startItemFlash", atMs]); }
   update(frame: unknown): void { this.calls.push(["update", frame]); }
   reset(): void { this.calls.push(["reset"]); }
   dispose(): void { this.calls.push(["dispose"]); }
@@ -204,7 +310,9 @@ export function pose(position: Vec3, forward: Vec3 = { x: 0, y: 0, z: 1 }): Item
 }
 
 export function controllerFixture(options: { teamRace?: boolean; presenter?: boolean;
-  capacity?: number } = {}): ControllerFixture {
+  capacity?: number; passives?: ItemPassiveTable; itemIds?: Readonly<Record<string, unknown>>;
+  raceId?: string; trackId?: string; changers?: ItemChangers;
+  animalBoosters?: ItemCatalog["animalBoosters"] } = {}): ControllerFixture {
   const physics = new FakePhysics();
   if (options.capacity) physics.itemSlotCapacity = options.capacity;
   const connection = new FakeItemConnection();
@@ -212,17 +320,23 @@ export function controllerFixture(options: { teamRace?: boolean; presenter?: boo
   const poses = new Map<string, ItemPresenterPose>();
   const state: ControllerFixture["state"] = { racing: true, suspended: false, now: 0 };
   const logs: unknown[] = [];
-  const catalog = testItemCatalog();
+  const catalog = testItemCatalog({ ...(options.passives ? { passives: options.passives } : {}),
+    ...(options.animalBoosters ? { animalBoosters: options.animalBoosters } : {}) });
   const teamRace = options.teamRace ?? false;
+  const itemIds = (playerId: string) => options.itemIds?.[playerId] !== undefined
+    ? { itemIds: options.itemIds[playerId] } : {};
   const controllerOptions: ItemRaceControllerOptions = {
     playerId: SELF,
     roster: [
-      { playerId: SELF, name: "我", team: teamRace ? 1 : null },
-      { playerId: MATE, name: "队友", team: teamRace ? 1 : null },
-      { playerId: RIVAL, name: "对手", team: teamRace ? 2 : null },
-      { playerId: OTHER, name: "路人", team: teamRace ? 2 : null },
+      { playerId: SELF, name: "我", team: teamRace ? 1 : null, ...itemIds(SELF) },
+      { playerId: MATE, name: "队友", team: teamRace ? 1 : null, ...itemIds(MATE) },
+      { playerId: RIVAL, name: "对手", team: teamRace ? 2 : null, ...itemIds(RIVAL) },
+      { playerId: OTHER, name: "路人", team: teamRace ? 2 : null, ...itemIds(OTHER) },
     ],
     teamRace,
+    raceId: options.raceId ?? "race",
+    ...(options.trackId ? { trackId: options.trackId } : {}),
+    ...(options.changers ? { changers: options.changers } : {}),
     catalog,
     physics,
     connection,

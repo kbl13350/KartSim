@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { Mesh, PerspectiveCamera, Vector3, type Object3D } from "three";
 import { uniqueOriginalCoinAsset } from "../vehicle/track-coin-source";
-import { ItemIdx, loadItemCatalog } from "./item-catalog";
+import { ItemIdx, SPECIAL_ITEM_IDS, loadItemCatalog } from "./item-catalog";
 import {
   carriedBalloon, convertUnmappedColorKeys, type FxModelData, type FxModelNode, type ItemFxOps,
 } from "./item-fx-assets";
@@ -77,7 +77,14 @@ function meshCenter(object: Object3D): Vector3 | undefined {
 
 test("every item model assembles with the real scene assembler and renders at its kart", async () => {
   const { library, formats } = await pipeline();
-  const catalog = await loadItemCatalog(library);
+  // The classic items only; the next test plays the special items (ITEM_MODE.md C.4).
+  const full = await loadItemCatalog(library);
+  // Mines and water mines are also track hazards, which this test plays.
+  const special = new Set(SPECIAL_ITEM_IDS.filter(idx => idx !== ItemIdx.mine && idx !== ItemIdx.waterMine));
+  const catalog: typeof full = Object.assign(Object.create(full) as typeof full, {
+    items: full.items.filter(def => !special.has(def.idx)),
+    get: (idx: number) => special.has(idx) ? undefined : full.get(idx),
+  });
   const ops: ItemFxOps<MirrorLibrary> = {
     originalAsset: (archive, path) => uniqueOriginalCoinAsset(archive, path),
     decodeModel: bytes => formats.y9(bytes) as FxModelData,

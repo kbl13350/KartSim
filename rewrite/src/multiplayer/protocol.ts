@@ -103,13 +103,46 @@ export type ItemRequest = ItemRequestBase & (
     point?: { x: number; y: number; z: number } }
   | { action: "place"; useId: number; point: { x: number; y: number; z: number } }
   | { action: "hit"; useId: number; itemId: number; result: "hit" | "blocked";
-    by?: "shield" | "angel" | "emp" | "escape"; hazardId?: number }
+    by?: "shield" | "angel" | "emp" | "escape" | "kart" | "pet" | "eat"; hazardId?: number;
+    /** How the hit differs from the plain effect (ITEM_MODE.md C.2, C.7). */
+    variant?: "small" | "headband" | "bonus" | "quick" | "balloon";
+    /** Which missile of a double-rocket use (used.count 2). */
+    shot?: 0 | 1 }
   | { action: "swap" }
   | { action: "change" }
   /** A trapped racer left its bubble early (useId 0: a track water mine, with hazardId). */
   | { action: "escape"; useId: number; hazardId?: number }
   /** The racer's authoritative slots again, after a rejection left them in doubt. */
   | { action: "slots" });
+
+/** Defences a blocked item hit may name (ITEM_MODE.md 5, C.7). */
+export type ItemBlocker = "shield" | "angel" | "emp" | "escape" | "kart" | "pet" | "eat";
+/** How a landed (or eaten) hit differs from the item's plain effect (ITEM_MODE.md C.2, C.7). */
+export type ItemHitVariant = "small" | "headband" | "bonus" | "quick" | "balloon";
+export const ITEM_HIT_BLOCKERS: readonly ItemBlocker[] =
+  Object.freeze(["shield", "angel", "emp", "escape", "kart", "pet", "eat"]);
+export const ITEM_HIT_VARIANTS: readonly ItemHitVariant[] =
+  Object.freeze(["small", "headband", "bonus", "quick", "balloon"]);
+/**
+ * `by` names a defence of a blocked hit; a variant goes with a landed hit,
+ * except the lucci bonus of a mine the kart ate (`by:"eat"`, `variant:"bonus"`).
+ */
+export function validHitOutcome(result: unknown, by: unknown, variant: unknown, shot: unknown): boolean {
+  if (result !== "hit" && result !== "blocked") return false;
+  if (by !== undefined && (result !== "blocked" || !ITEM_HIT_BLOCKERS.includes(by as ItemBlocker)))
+    return false;
+  if (variant !== undefined) {
+    if (!ITEM_HIT_VARIANTS.includes(variant as ItemHitVariant)) return false;
+    if (result === "blocked" && !(by === "eat" && variant === "bonus")) return false;
+  }
+  return shot === undefined || shot === 0 || shot === 1;
+}
+
+/**
+ * The finish report. In item races it may say the racer's start boost
+ * succeeded (完美起步 title, ITEM_MODE.md C.9).
+ */
+export interface FinishRequest { type: "finish"; elapsedMs: number; perfectStart?: boolean }
 
 /** Server error codes of rejected item requests; none of them fails the race. */
 export const ITEM_ERROR_CODES = [
@@ -139,9 +172,8 @@ export function isValidItemRequest(value: unknown): value is ItemRequest {
       return safeInteger(value.useId, 1, Number.MAX_SAFE_INTEGER) && point(value.point);
     case "hit":
       return safeInteger(value.useId, 0, Number.MAX_SAFE_INTEGER) && item(value.itemId) &&
-        (value.result === "hit" || value.result === "blocked") &&
-        (value.by === undefined || (value.result === "blocked" &&
-          ["shield", "angel", "emp", "escape"].includes(String(value.by)))) &&
+        validHitOutcome(value.result, value.by, value.variant, value.shot) &&
+        (value.useId !== 0 || value.shot === undefined) &&
         (value.hazardId === undefined || safeInteger(value.hazardId, 0, 4096));
     case "escape":
       return safeInteger(value.useId, 0, Number.MAX_SAFE_INTEGER) &&

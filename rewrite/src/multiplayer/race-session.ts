@@ -279,7 +279,13 @@ export function createRaceConnection(host: RaceSessionHost, roomId: string,
           return result;
         })
         : Promise.reject(new Error("Race connection scope expired")),
-    reportFinish: (elapsedMs: number) => requestWhenActive({ type: "finish", elapsedMs }),
+    /**
+     * The local finish. Item races may add `perfectStart` (the start boost
+     * succeeded, for the 完美起步 title); other races never send it.
+     */
+    reportFinish: (elapsedMs: number, extra?: { perfectStart?: boolean }) =>
+      requestWhenActive({ type: "finish", elapsedMs,
+        ...(typeof extra?.perfectStart === "boolean" ? { perfectStart: extra.perfectStart } : {}) }),
     sendMotion: (payload: unknown, mask?: number) => active() && host.sendMotion(payload, mask),
     subscribeMotion: (listener: (motion: DecodedGameMotion) => void) => {
       if (!active()) return () => {};

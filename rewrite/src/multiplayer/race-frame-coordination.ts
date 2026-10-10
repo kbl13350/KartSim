@@ -43,7 +43,7 @@ export interface RaceFrameHost {
   connection: {
     playerId: string;
     resetMotionRtt?(): void;
-    reportFinish?(elapsedMs: number): Promise<unknown>;
+    reportFinish?(elapsedMs: number, extra?: { perfectStart?: boolean }): Promise<unknown>;
     sendTeamCharge(value: number, sequence: number): Promise<unknown>;
     sendGiantState?(packet: unknown, sequence: number): Promise<unknown>;
   };
@@ -61,6 +61,8 @@ export interface RaceFrameHost {
     giant?: { consumePackets(): unknown[] };
     resetSuspended: boolean;
     resetStartedAt?: number;
+    /** Item races: the race session saw the start booster fire (LocalRaceController). */
+    startBoosted?: boolean;
     raceProgress(): { distance: number };
     update(nowMs: number, frame: unknown): { kind: string }[];
   };
@@ -72,8 +74,11 @@ export interface RaceFrameHost {
     update(nowMs: number, options: { bypass: boolean; locked: boolean }): void;
     resetGiants(): void;
   };
-  /** 道具赛: timelines, area checks and aiming run before the local physics step. */
-  itemRace?: { update(nowMs: number): void };
+  /**
+   * 道具赛: timelines, area checks and aiming run before the local physics
+   * step; `perfectStart` (the start boost succeeded) goes with the finish.
+   */
+  itemRace?: { update(nowMs: number): void; readonly perfectStart?: boolean };
   slipstream: SlipstreamBoost;
   remoteSlipstreams: Map<string, SlipstreamBoost>;
   room?: { phase: string; race?: { loadedIds: readonly string[] } };
@@ -211,8 +216,14 @@ export function updateActiveRaceFrame(host: RaceFrameHost, nowMs: number,
         throw new Error("本局连接缺少完赛上报能力。");
       }
       const elapsedMs = host.local.lifecycle.finishedElapsedMs!;
+      // Item races report whether the start boost succeeded (完美起步, ITEM_MODE.md C.9):
+      // noted by the race session when it fired, or seen by the item controller.
+      const perfectStart = host.itemRace ? {
+        perfectStart: host.local.startBoosted === true || host.itemRace.perfectStart === true,
+      } : undefined;
       const report = () => host.disposed ? Promise.resolve()
-        : host.connection.reportFinish!(elapsedMs);
+        : perfectStart ? host.connection.reportFinish!(elapsedMs, perfectStart)
+          : host.connection.reportFinish!(elapsedMs);
       (host.local.giant ? host.giantSend.then(report) : report()).catch(error => {
         if (!host.disposed && host.room?.phase !== "finished") host.onError(error);
       });

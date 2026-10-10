@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { ITEM_CHANGER_NOTICE } from "./item-race-controller";
 import { ItemIdx } from "./item-catalog";
 import { ITEM_RACE_TUNING, threeToClient } from "./item-race-rules";
 import {
@@ -14,32 +13,43 @@ const server = (localMs: number) => localMs + SERVER_OFFSET_MS;
 /** A minimal game node: slots, uses and replies like lobby/item_mode.go. */
 function serve(f: ControllerFixture, slots: number[] = [-1, -1]) {
   const state = { slots: [...slots], useId: 100, targets: [] as string[], etaMs: 0,
-    reject: undefined as string | undefined };
+    reject: undefined as string | undefined, count: undefined as number | undefined,
+    changers: { slot: -1, item: -1, itemArmed: true } as { slot: number; item: number; itemArmed: boolean },
+    change: 6 };
   f.connection.reply = ({ action, fields }: SentItem) => {
     if (state.reject) throw new Error(state.reject);
     const startAt = server(f.state.now);
     switch (action) {
       case "cube":
+        state.changers = { ...state.changers, itemArmed: true };
         return { type: "item", action: "grant", cubeId: fields.cubeId,
-          itemId: state.slots[0] === -1 ? null : state.slots[0], slots: [...state.slots] };
+          itemId: state.slots[0] === -1 ? null : state.slots[0], slots: [...state.slots],
+          changers: { ...state.changers } };
       case "use": {
         if (state.slots[0] !== fields.itemId) throw new Error("ITEM_NOT_HELD");
         state.slots = [...state.slots.slice(1), -1];
         return { type: "item", action: "used", playerId: SELF, useId: ++state.useId,
           itemId: fields.itemId, targets: fields.targetId ? [fields.targetId] : state.targets,
           startAt, etaMs: state.etaMs, ...(fields.point ? { point: fields.point } : {}),
-          slots: [...state.slots] };
+          ...(state.count ? { count: state.count } : {}),
+          slots: [...state.slots], changers: { ...state.changers } };
       }
       case "swap":
         state.slots = [state.slots[1]!, state.slots[0]!, ...state.slots.slice(2)];
-        return { type: "item", action: "slots", slots: [...state.slots] };
+        if (state.changers.slot > 0) state.changers = { ...state.changers, slot: state.changers.slot - 1 };
+        return { type: "item", action: "slots", slots: [...state.slots], changers: { ...state.changers } };
+      case "change":
+        state.slots = [state.change, ...state.slots.slice(1)];
+        state.changers = { ...state.changers, itemArmed: false,
+          item: state.changers.item > 0 ? state.changers.item - 1 : state.changers.item };
+        return { type: "item", action: "slots", slots: [...state.slots], changers: { ...state.changers } };
       case "hit":
         return { type: "item", action: "hit", playerId: SELF, ...fields,
           ...(fields.itemId === ItemIdx.banana && fields.useId ? { removed: true } : {}) };
       case "place":
         return { type: "item", action: "placed", playerId: SELF, ...fields };
       case "slots":
-        return { type: "item", action: "slots", slots: [...state.slots] };
+        return { type: "item", action: "slots", slots: [...state.slots], changers: { ...state.changers } };
       case "escape":
         return { type: "item", action: "escaped", playerId: SELF, ...fields };
       default:
@@ -89,8 +99,10 @@ test("cube grants mirror the server slots, report the capacity and show the card
   assert.deepEqual(hud.slots, [7, -1, -1]);
   assert.equal(hud.capacity, 3);
   assert.deepEqual(hud.infoCard, { itemIdx: 7 });
-  assert.equal(hud.slotChanger, "infinite");
+  // No changers reported: no Alt / Z (no unlimited swaps, C.6).
+  assert.equal(hud.slotChanger, 0);
   assert.equal(hud.itemChanger, 0);
+  assert.deepEqual(hud.changers, { slot: 0, item: 0, slotUsable: false, itemUsable: false });
   at(f, ITEM_RACE_TUNING.infoCardMs);
   assert.equal(f.controller.hudState(ITEM_RACE_TUNING.infoCardMs).infoCard, undefined);
 
@@ -153,7 +165,7 @@ test("a rejected use restores the last confirmed slots and never throws", async 
   assert.ok(f.logs.some(entry => String(entry).includes("ITEM_LOCKED")));
 });
 
-test("shield, angel and EMP start on the key press", async () => {
+test("the shield starts on the key press, the angel when Use ends (C.5)", async () => {
   const f = controllerFixture({ teamRace: true });
   const state = await holding(f, [10, 11]);
   press(f, 1000);
@@ -162,18 +174,11 @@ test("shield, angel and EMP start on the key press", async () => {
   await settle();
   state.targets = [SELF, MATE];
   press(f, 1100);
-  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [SELF, "angel", 1100, 4000]);
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [SELF, "angel", 1600, 4000]);
   await settle();
-  // The teammate's angel starts on the server's startAt.
-  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [MATE, "angel", 1100, 4000]);
-  state.slots = [12, -1];
-  state.targets = [];
-  f.controller.cube(2);
-  await settle();
-  press(f, 1200);
-  assert.deepEqual(f.physics.itemEffects.ended, ["slow"]);
-  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [SELF, "emp", 1200, 1500]);
-  assert.equal(f.controller.empUntil, 2700);
+  // The teammate's angel starts on the server's startAt + Use.life.
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [MATE, "angel", 1600, 4000]);
+  assert.equal(f.controller.angelUntil, 5600);
 });
 
 test("a banana is dropped behind; it catches its user only after the grace", async () => {
@@ -360,12 +365,12 @@ test("shield, angel, EMP and escape immunity block the hits they cover", async (
   assert.ok(f.presenter.calls.some(call => call[0] === "endKartEffect" && call[2] === "shield"));
   assert.deepEqual(f.controller.hudState(1400).log.map(row => [row.failed, row.team]),
     [[true, "blue"], [false, "blue"]]);
-  // EMP against the UFO.
-  state.slots = [12, -1];
+  // Neither a shield nor an angel stops the UFO.
+  void state;
   press(f, 2000);
   used(f, { useId: 3, itemId: ItemIdx.ufo, targets: [SELF], startAt: server(2000), etaMs: 500 });
   at(f, 2500);
-  assert.deepEqual(f.connection.of("hit").at(-1), { useId: 3, itemId: 3, result: "blocked", by: "emp" });
+  assert.deepEqual(f.connection.of("hit").at(-1), { useId: 3, itemId: 3, result: "hit" });
   // A teammate's angel covers me against the thunderbolt but not the devil.
   used(f, { useId: 4, itemId: ItemIdx.angel, playerId: MATE, targets: [MATE, SELF],
     startAt: server(5000) });
@@ -622,12 +627,14 @@ test("remote hits drive the presenter, the log and merged good notices", async (
   assert.deepEqual(good.map(notice => [notice.itemIdx, notice.text, notice.at]), [[2, "对手 等2人", 3500]]);
   assert.deepEqual(f.presenter.of("kartEffect").slice(-2),
     [[RIVAL, "reverse", 3500, 3000], [OTHER, "reverse", 3500, 3000]]);
-  // Remote self-buffs.
+  // Remote self-buffs; an EMP with nobody under a UFO does nothing (C.1).
   used(f, { useId: 40, itemId: ItemIdx.shield, playerId: RIVAL, startAt: server(4000) });
-  used(f, { useId: 41, itemId: ItemIdx.emp, playerId: OTHER, startAt: server(4000) });
-  assert.deepEqual(f.presenter.calls.slice(-3).map(call => call.slice(0, 3)), [
-    ["used", { useId: 41, itemId: 12, userId: OTHER, targets: [], startMs: 4000, etaMs: 0 }],
-    ["kartEffect", OTHER, "emp"], ["endKartEffect", OTHER, "slow"]]);
+  assert.deepEqual(f.presenter.calls.at(-1)!.slice(0, 3), ["kartEffect", RIVAL, "shield"]);
+  used(f, { useId: 41, itemId: ItemIdx.emp, playerId: OTHER, targets: [OTHER, RIVAL], startAt: server(4000) });
+  at(f, 4600);
+  assert.deepEqual(f.presenter.calls.filter(call => call[0] !== "update").at(-1)!.slice(0, 2),
+    ["used", { useId: 41, itemId: 12, userId: OTHER, targets: [OTHER, RIVAL], startMs: 4000, etaMs: 0 }]);
+  assert.equal(f.presenter.of("kartEffect").filter(call => call[1] === "emp").length, 0);
 });
 
 test("Alt swaps the first two slots with the reorder animation and the changer sound", async () => {
@@ -650,13 +657,82 @@ test("Alt swaps the first two slots with the reorder animation and the changer s
   assert.equal(g.connection.of("swap").length, 0);
 });
 
-test("Z asks for nothing and shows a short notice", async () => {
+test("Z redraws slot 0 once per new item and follows the server's changers (C.6)", async () => {
   const f = controllerFixture();
-  await holding(f, [7, 10]);
+  const state = await holding(f, [7, 10]);
+  state.changers = { slot: 3, item: 2, itemArmed: true };
+  f.controller.cube(2);
+  await settle();
+  assert.deepEqual(f.controller.hudState(1000).changers, { slot: 3, item: 2, slotUsable: true, itemUsable: true });
   f.controller.handleCommand({ kind: "change" }, 1000);
-  assert.equal(f.connection.sent.filter(request => request.action === "change").length, 0);
-  assert.equal(f.controller.consumeStatusMessage(), ITEM_CHANGER_NOTICE);
+  assert.deepEqual(f.connection.of("change"), [{}]);
+  assert.equal(f.controller.consumeSlotChangerSound(), true);
+  // In flight: one card less, no second change, no use, no swap.
+  assert.deepEqual(f.controller.hudState(1000).changers, { slot: 3, item: 1, slotUsable: true, itemUsable: false });
+  f.controller.handleCommand({ kind: "change" }, 1001);
+  press(f, 1001);
+  f.controller.handleCommand({ kind: "swap" }, 1001);
+  assert.equal(f.connection.of("change").length, 1);
+  assert.equal(f.connection.of("use").length, 0);
+  assert.equal(f.connection.of("swap").length, 0);
+  await settle();
+  assert.deepEqual(f.controller.hudState(1100).slots, [6, 10]);
+  assert.deepEqual(f.controller.hudState(1100).infoCard, { itemIdx: 6 });
+  // Changed once: Z waits for the next new item.
+  assert.deepEqual(f.controller.hudState(1100).changers, { slot: 3, item: 1, slotUsable: true, itemUsable: false });
+  f.controller.handleCommand({ kind: "change" }, 1200);
+  assert.equal(f.connection.of("change").length, 1);
   assert.equal(f.controller.consumeStatusMessage(), undefined);
+  // A new item re-arms it.
+  f.controller.cube(3);
+  await settle();
+  assert.equal(f.controller.hudState(1300).changers?.itemUsable, true);
+  // A slot lock blocks Z (but not Alt).
+  used(f, { useId: 4, itemId: ItemIdx.slotLock, targets: [SELF], startAt: server(1000) });
+  at(f, 3000);
+  assert.deepEqual(f.controller.hudState(3000).changers, { slot: 3, item: 1, slotUsable: true, itemUsable: false });
+  f.controller.handleCommand({ kind: "change" }, 3000);
+  assert.equal(f.connection.of("change").length, 1);
+  // A refused change keeps the item and the card.
+  at(f, 7000);
+  state.reject = "ITEM_CHANGER_UNAVAILABLE";
+  f.controller.handleCommand({ kind: "change" }, 7000);
+  await settle();
+  assert.equal(f.connection.of("change").length, 2);
+  assert.deepEqual(f.controller.hudState(7000).slots, [6, 10]);
+  assert.equal(f.controller.hudState(7000).changers?.item, 1);
+  assert.ok(f.logs.some(entry => String(entry).includes("ITEM_CHANGER_UNAVAILABLE")));
+});
+
+test("Alt needs a card or a voucher; cards in flight count, a voucher shows ∞", async () => {
+  const f = controllerFixture();
+  const state = await holding(f, [7, 10]);
+  state.changers = { slot: 1, item: 0, itemArmed: true };
+  f.controller.cube(2);
+  await settle();
+  assert.deepEqual(f.controller.hudState(0).changers, { slot: 1, item: 0, slotUsable: true, itemUsable: false });
+  f.controller.handleCommand({ kind: "swap" }, 100);
+  f.controller.handleCommand({ kind: "swap" }, 101);
+  assert.equal(f.connection.of("swap").length, 1, "one card, one swap");
+  assert.deepEqual(f.controller.hudState(101).changers, { slot: 0, item: 0, slotUsable: false, itemUsable: false });
+  await settle();
+  assert.deepEqual(f.controller.hudState(500).slots, [10, 7]);
+  f.controller.handleCommand({ kind: "swap" }, 600);
+  assert.equal(f.connection.of("swap").length, 1);
+  // A voucher: unlimited, shown as ∞; the legacy fields mirror the rows.
+  state.changers = { slot: -1, item: -1, itemArmed: false };
+  f.controller.cube(3);
+  await settle();
+  const hud = f.controller.hudState(700);
+  assert.deepEqual(hud.changers, { slot: "infinite", item: "infinite", slotUsable: true, itemUsable: true });
+  assert.equal(hud.slotChanger, "infinite");
+  assert.equal(hud.itemChanger, "infinite");
+  for (let index = 0; index < 3; index++) f.controller.handleCommand({ kind: "swap" }, 800 + index);
+  assert.deepEqual(f.controller.hudState(803).slots, [7, 10]);
+  await settle();
+  assert.equal(f.connection.of("swap").length, 4);
+  assert.deepEqual(f.controller.hudState(900).slots, [7, 10]);
+  assert.equal(f.controller.hudState(900).changers?.slot, "infinite");
 });
 
 test("no item actions before the start, after the finish or while held", async () => {
@@ -778,7 +854,7 @@ test("a refused booster is taken back and the item cannot boost twice", async ()
   assert.deepEqual(f.controller.hudState(6000).slots, [-1, -1]);
 });
 
-test("a refused shield, EMP or magnet stops covering and pulling the kart", async () => {
+test("a refused shield or magnet stops covering and pulling the kart", async () => {
   const f = controllerFixture();
   const state = await holding(f, [10, 12]);
   state.reject = "ITEM_LOCKED";
@@ -792,15 +868,6 @@ test("a refused shield, EMP or magnet stops covering and pulling the kart", asyn
   at(f, 1300);
   assert.deepEqual(f.connection.of("hit"), [{ useId: 5, itemId: 7, result: "hit" }]);
 
-  // EMP: the window is gone, so a UFO lands.
-  f.controller.handleCommand({ kind: "swap" }, 1400);
-  await settle();
-  state.reject = "ITEM_LOCKED";
-  press(f, 1500);
-  assert.equal(f.controller.empUntil, 3000);
-  await settle();
-  assert.equal(f.controller.empUntil, 0);
-  assert.deepEqual(f.presenter.of("endKartEffect").at(-1), [SELF, "emp"]);
 
   // Magnet aimed at a racer the server says is no longer racing.
   const g = controllerFixture();
@@ -824,10 +891,10 @@ test("a refused angel ends only my own window; a teammate's angel still covers m
   used(f, { useId: 4, itemId: ItemIdx.angel, playerId: MATE, targets: [MATE, SELF], startAt: server(0) });
   state.reject = "ITEM_LOCKED";
   press(f, 1000);
-  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [SELF, "angel", 1000, 4000]);
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [SELF, "angel", 1500, 4000]);
   await settle();
-  // The visual goes back to the teammate's end.
-  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [SELF, "angel", 1000, 3000]);
+  // The visual goes back to the teammate's window (500..4500).
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [SELF, "angel", 500, 4000]);
   state.reject = undefined;
   used(f, { useId: 5, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(3000), etaMs: 500 });
   used(f, { useId: 6, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(4000), etaMs: 500 });
