@@ -125,6 +125,8 @@ type API struct {
 	// and the track titles by id.
 	startedAt   int64
 	trackTitles map[string]string
+	// seenLocal throttles activity writes without Redis (noteActivity).
+	seenLocal localThrottle
 }
 
 // New builds the API.
@@ -312,6 +314,7 @@ func (a *API) PublicHandler() http.Handler {
 	route("PATCH /api/admin/accounts/{id}", a.adminPatchAccount)
 	route("POST /api/admin/accounts/{id}/kick", a.adminKick)
 	route("GET /api/admin/accounts/{id}/inventory", a.adminInventory)
+	route("GET /api/admin/accounts/{id}/game", a.adminAccountGame)
 	route("POST /api/admin/grant", a.adminGrant)
 	route("GET /api/admin/logins", a.adminLogins)
 	route("GET /api/admin/online", a.adminOnline)
@@ -323,6 +326,9 @@ func (a *API) PublicHandler() http.Handler {
 	route("GET /api/admin/lottery-draws", a.adminLotteryDraws)
 	route("GET /api/admin/box-openings", a.adminBoxOpenings)
 	route("GET /api/admin/clubs", a.adminClubs)
+	route("GET /api/admin/clubs/{id}/members", a.adminClubMembers)
+	route("GET /api/admin/invites", a.adminInvites)
+	route("GET /api/admin/reward-box", a.adminRewardBoxList)
 
 	route("GET /api/messenger/state", a.messengerState)
 	route("POST /api/messenger/friends/request", a.friendRequest)
@@ -406,16 +412,21 @@ func (a *API) PublicHandler() http.Handler {
 }
 
 // serve adapts a handlerFunc: it bounds the request time and writes errors.
+// A request that succeeds with a session token notes the account's
+// activity (noteActivity).
 func (a *API) serve(handler handlerFunc) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx, cancel := context.WithTimeout(r.Context(), requestTimeout)
 		defer cancel()
+		ctx, seen := withActivity(ctx)
 		if err := handler(w, r.WithContext(ctx)); err != nil {
 			if _, ok := apierr.As(err); !ok {
 				a.log.Error("request failed", "method", r.Method, "path", r.URL.Path, "error", err)
 				err = apierr.New(http.StatusInternalServerError, "INTERNAL_ERROR")
 			}
 			apierr.WriteError(w, err)
+		} else if seen.accountID != "" {
+			a.noteActivity(ctx, r, seen.accountID)
 		}
 	})
 }

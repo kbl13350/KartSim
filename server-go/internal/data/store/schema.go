@@ -729,6 +729,19 @@ var migrations = []migration{
 		{table: "lottery_draws", name: "idx_lottery_draws_created", columns: "created_at"},
 		{table: "race_results", name: "idx_race_results_account", columns: "account_id, created_at"},
 	}},
+	// Version 121: the admin console's second round (ADMIN.md 5): when and
+	// from where each account was last active with a session token (written
+	// at most every 5 minutes), sortable. TEMPORARY number like 120, and a
+	// separate version only because development databases already applied
+	// the first 120: at the merge both are renumbered (120 and 121 become
+	// the next two free versions, or one), and the schema_migrations rows of
+	// development databases with them.
+	{version: 121, columns: []tableColumn{
+		{table: "accounts", name: "last_seen_at", definition: "BIGINT NOT NULL DEFAULT 0"},
+		{table: "accounts", name: "last_seen_ip", definition: "VARCHAR(45) NOT NULL DEFAULT ''"},
+	}, indexes: []tableIndex{
+		{table: "accounts", name: "idx_accounts_last_seen", columns: "last_seen_at"},
+	}},
 }
 
 // LatestSchemaVersion is the version Migrate brings a database to.

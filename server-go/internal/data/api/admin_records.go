@@ -6,6 +6,7 @@ import (
 
 	"kartsim/internal/data/economy"
 	"kartsim/internal/data/store"
+	"kartsim/internal/shared/apierr"
 )
 
 // The admin console's record lists: currency ledgers, grants, races,
@@ -356,10 +357,13 @@ type clubRowJSON struct {
 	AutoJoin       bool   `json:"autoJoin"`
 	CreatedAt      int64  `json:"createdAt"`
 	BreakAt        *int64 `json:"breakAt"`
+	State          string `json:"state"`
 }
 
 // adminClubs lists clubs: q matches the name and the master's username and
-// nickname; from/to bound the creation time. Sort keys: createdAt
+// nickname; from/to bound the creation time; ?state=active|breaking|
+// disbanded keeps one state (a disbanded club's break_at passed; it is
+// deleted at the next club action of any player). Sort keys: createdAt
 // (default), name, members, cs, csWeek, budget.
 func (a *API) adminClubs(w http.ResponseWriter, r *http.Request) error {
 	if _, err := a.requireAdmin(r); err != nil {
@@ -369,7 +373,11 @@ func (a *API) adminClubs(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	rows, total, err := a.store.AdminClubs(r.Context(), list.AdminPage, a.nowMillis())
+	state, err := oneOfParam(r, "state", store.ClubActive, store.ClubBreaking, store.ClubDisbanded)
+	if err != nil {
+		return err
+	}
+	rows, total, err := a.store.AdminClubs(r.Context(), list.AdminPage, state, a.nowMillis())
 	if err != nil {
 		return err
 	}
@@ -378,7 +386,172 @@ func (a *API) adminClubs(w http.ResponseWriter, r *http.Request) error {
 		items[i] = clubRowJSON{ID: row.ID, Name: row.Name, MasterID: row.MasterID, MasterUsername: row.MasterUsername,
 			MasterNickname: row.MasterNickname, Members: row.Members, HQ: row.HQ, Racing: row.Racing, Rider: row.Rider,
 			Bank: row.Bank, Budget: row.Budget, CS: row.CS, CSWeek: row.CSWeek, AutoJoin: row.AutoJoin,
-			CreatedAt: row.CreatedAt, BreakAt: row.BreakAt}
+			CreatedAt: row.CreatedAt, BreakAt: row.BreakAt, State: row.State}
+	}
+	return answerList(w, list, items, total)
+}
+
+// memberRowJSON is the MemberRow of ADMIN.md 5.
+type memberRowJSON struct {
+	AccountID    string `json:"accountId"`
+	Username     string `json:"username"`
+	Nickname     string `json:"nickname"`
+	Grade        int    `json:"grade"`
+	JoinedAt     int64  `json:"joinedAt"`
+	CSWeek       int64  `json:"csWeek"`
+	CSTotal      int64  `json:"csTotal"`
+	DonatedTotal int64  `json:"donatedTotal"`
+}
+
+// errAdminClubNotFound answers a members list of an unknown club.
+var errAdminClubNotFound = apierr.New(http.StatusNotFound, "CLUB_NOT_FOUND")
+
+// adminClubMembers lists a club's members (any state): q matches the
+// username and nickname; from/to bound the join time. Sort keys: joinedAt
+// (default), grade, csWeek, csTotal, donatedTotal. 404 CLUB_NOT_FOUND for
+// an unknown club.
+func (a *API) adminClubMembers(w http.ResponseWriter, r *http.Request) error {
+	if _, err := a.requireAdmin(r); err != nil {
+		return err
+	}
+	list, err := parseAdminList(r, false, "joinedAt", "grade", "csWeek", "csTotal", "donatedTotal")
+	if err != nil {
+		return err
+	}
+	clubID, err := strconv.ParseInt(r.PathValue("id"), 10, 64)
+	if err != nil || clubID <= 0 {
+		return errAdminClubNotFound
+	}
+	rows, total, found, err := a.store.AdminClubMembers(r.Context(), clubID, list.AdminPage, a.nowMillis())
+	if err != nil {
+		return err
+	}
+	if !found {
+		return errAdminClubNotFound
+	}
+	items := make([]memberRowJSON, len(rows))
+	for i, row := range rows {
+		items[i] = memberRowJSON{AccountID: row.AccountID, Username: row.Username, Nickname: row.Nickname,
+			Grade: row.Grade, JoinedAt: row.JoinedAt, CSWeek: row.CSWeek, CSTotal: row.CSTotal,
+			DonatedTotal: row.DonatedTotal}
+	}
+	return answerList(w, list, items, total)
+}
+
+// inviteHashShown is how much of an invitation's digest the console shows.
+const inviteHashShown = 12
+
+// inviteUserJSON is the account that registered with an invitation.
+type inviteUserJSON struct {
+	AccountID string `json:"accountId"`
+	Username  string `json:"username"`
+	Nickname  string `json:"nickname"`
+}
+
+// inviteRowJSON is the InviteRow of ADMIN.md 5; usedAt is the using
+// account's registration time (null while unused).
+type inviteRowJSON struct {
+	Hash      string          `json:"hash"`
+	CreatedAt int64           `json:"createdAt"`
+	Used      bool            `json:"used"`
+	UsedBy    *inviteUserJSON `json:"usedBy"`
+	UsedAt    *int64          `json:"usedAt"`
+}
+
+// adminInvites lists invitations (only their digests are stored):
+// ?used=1|0; q matches the start of the digest and the using account's
+// username and nickname; from/to bound the creation time. Sort key:
+// createdAt.
+func (a *API) adminInvites(w http.ResponseWriter, r *http.Request) error {
+	if _, err := a.requireAdmin(r); err != nil {
+		return err
+	}
+	list, err := parseAdminList(r, false, "createdAt")
+	if err != nil {
+		return err
+	}
+	var used *bool
+	switch r.URL.Query().Get("used") {
+	case "":
+	case "1", "true":
+		used = new(true)
+	case "0", "false":
+		used = new(false)
+	default:
+		return errInvalidQuery
+	}
+	rows, total, err := a.store.AdminInvites(r.Context(), list.AdminPage, used)
+	if err != nil {
+		return err
+	}
+	items := make([]inviteRowJSON, len(rows))
+	for i, row := range rows {
+		items[i] = inviteRowJSON{Hash: row.Hash[:min(len(row.Hash), inviteHashShown)], CreatedAt: row.CreatedAt,
+			Used: row.UsedBy != nil, UsedAt: row.UsedAt}
+		if row.UsedBy != nil {
+			items[i].UsedBy = &inviteUserJSON{AccountID: row.UsedBy.ID, Username: row.UsedBy.Username,
+				Nickname: row.UsedBy.Nickname}
+		}
+	}
+	return answerList(w, list, items, total)
+}
+
+// rewardBoxRowJSON is the RewardBoxRow of ADMIN.md 5.
+type rewardBoxRowJSON struct {
+	ID        int64  `json:"id"`
+	AccountID string `json:"accountId"`
+	Username  string `json:"username"`
+	Nickname  string `json:"nickname"`
+	Source    string `json:"source"`
+	Message   string `json:"message"`
+	Name      string `json:"name"`
+	Category  int    `json:"category"`
+	ItemID    int    `json:"itemId"`
+	Count     int    `json:"count"`
+	Days      int    `json:"days"`
+	Currency  string `json:"currency"`
+	CreatedAt int64  `json:"createdAt"`
+	ExpiresAt int64  `json:"expiresAt"`
+	ClaimedAt *int64 `json:"claimedAt"`
+	State     string `json:"state"`
+}
+
+// adminRewardBoxList lists the reward box entries of every account:
+// ?source=quest|club|admin, state=unclaimed|claimed|expired, account= (id
+// or username); q matches the username, nickname and the entry's name;
+// from/to bound the arrival time. Sort key: createdAt.
+func (a *API) adminRewardBoxList(w http.ResponseWriter, r *http.Request) error {
+	if _, err := a.requireAdmin(r); err != nil {
+		return err
+	}
+	list, err := parseAdminList(r, false, "createdAt")
+	if err != nil {
+		return err
+	}
+	var filter store.RewardBoxFilter
+	if filter.Source, err = oneOfParam(r, "source", store.BoxSourceQuest, store.BoxSourceClub,
+		store.BoxSourceAdmin); err != nil {
+		return err
+	}
+	if filter.State, err = oneOfParam(r, "state", store.BoxUnclaimed, store.BoxClaimed, store.BoxExpired); err != nil {
+		return err
+	}
+	var matched bool
+	if filter.AccountID, matched, err = a.accountParam(r.Context(), r); err != nil {
+		return err
+	} else if !matched {
+		return emptyList[rewardBoxRowJSON](w, list)
+	}
+	rows, total, err := a.store.AdminRewardBox(r.Context(), list.AdminPage, filter, a.nowMillis())
+	if err != nil {
+		return err
+	}
+	items := make([]rewardBoxRowJSON, len(rows))
+	for i, row := range rows {
+		items[i] = rewardBoxRowJSON{ID: row.ID, AccountID: row.AccountID, Username: row.Username,
+			Nickname: row.Nickname, Source: row.Source, Message: row.Message, Name: row.Name, Category: row.Category,
+			ItemID: row.ItemID, Count: row.Count, Days: row.Days, Currency: row.Currency, CreatedAt: row.CreatedAt,
+			ExpiresAt: row.ExpiresAt, ClaimedAt: row.ClaimedAt, State: row.State}
 	}
 	return answerList(w, list, items, total)
 }

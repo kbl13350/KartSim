@@ -462,6 +462,8 @@ func bearer(r *http.Request) *string {
 	return &token
 }
 
+// requireAccount resolves a Bearer session token to its account; the
+// request then counts as the account's activity if it succeeds (serve).
 func (a *API) requireAccount(ctx context.Context, token *string) (store.Account, error) {
 	account, found, err := a.findAccount(ctx, token)
 	if err != nil {
@@ -475,6 +477,7 @@ func (a *API) requireAccount(ctx context.Context, token *string) (store.Account,
 		}
 		return store.Account{}, errLoginRequired
 	}
+	sawAccount(ctx, account.ID)
 	return account, nil
 }
 

@@ -172,10 +172,20 @@ func TestAdminLedgerMergesBothLedgers(t *testing.T) {
 	}
 }
 
-// The new columns and tables of the admin console exist after Migrate.
+// The new columns and tables of the admin console exist after Migrate,
+// and its migrations re-apply over a database that has them (a crash
+// before the version was recorded, or the second-round columns of 121 on
+// a database that applied the first 120).
 func TestAdminSchema(t *testing.T) {
 	db := datatest.MySQL(t)
-	for _, column := range []string{"register_ip", "last_login_at", "last_login_ip", "banned_until", "ban_reason"} {
+	if _, err := db.Exec("DELETE FROM schema_migrations WHERE version = 121"); err != nil {
+		t.Fatal(err)
+	}
+	if err := store.Migrate(context.Background(), db, datatest.Logger()); err != nil {
+		t.Fatalf("re-applying version 121: %v", err)
+	}
+	for _, column := range []string{"register_ip", "last_login_at", "last_login_ip", "banned_until", "ban_reason",
+		"last_seen_at", "last_seen_ip"} {
 		var name sql.NullString
 		if err := db.QueryRow(`SELECT column_name FROM information_schema.columns
 			WHERE table_schema = DATABASE() AND table_name = 'accounts' AND column_name = ?`, column).Scan(&name); err != nil {
@@ -186,5 +196,74 @@ func TestAdminSchema(t *testing.T) {
 	if err := db.QueryRow(`SELECT COUNT(DISTINCT index_name) FROM information_schema.statistics
 		WHERE table_schema = DATABASE() AND table_name = 'login_records'`).Scan(&indexes); err != nil || indexes != 4 {
 		t.Fatalf("login_records has %d indexes, %v", indexes, err) // the primary key and three keys
+	}
+}
+
+// SeenActivity keeps the newest activity, and the first one of a Beijing
+// day without another record that day writes one resume record.
+func TestSeenActivity(t *testing.T) {
+	db := datatest.MySQL(t)
+	st := store.New(db)
+	ctx := context.Background()
+	u := datatest.Unique()
+	id := "00000000-0000-4000-8000-" + u + "d0"
+	t.Cleanup(func() { datatest.Exec(t, db, "DELETE FROM accounts WHERE id = ?", id) })
+	// 1971, so the login record pruning of other tests leaves these alone.
+	day := time.Date(1971, 5, 1, 0, 0, 0, 0, time.FixedZone("UTC+8", 8*60*60)).UnixMilli()
+	if _, err := st.Register(ctx, store.Registration{ID: id, Username: "seen_" + u, Nickname: "Seen" + u,
+		PasswordHash: "x", TokenHash: "token-s-" + u, SessionExpiresAt: time.Now().Add(time.Hour).UnixMilli(),
+		CreatedAt: day + 1000, IP: "203.0.113.1"}); err != nil {
+		t.Fatal(err)
+	}
+	seen := func() (int64, string) {
+		t.Helper()
+		row, _, err := st.AdminAccount(ctx, id, day)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return row.LastSeenAt, row.LastSeenIP
+	}
+	if at, ip := seen(); at != day+1000 || ip != "203.0.113.1" {
+		t.Fatalf("registered %d %q", at, ip)
+	}
+	// Same day: noted, no resume (the registration is that day's record).
+	if resumed, err := st.SeenActivity(ctx, id, store.LoginRecord{IP: "203.0.113.2", At: day + 5000}, day); err != nil || resumed {
+		t.Fatalf("same day %v, %v", resumed, err)
+	}
+	// An older activity never replaces a newer one.
+	if _, err := st.SeenActivity(ctx, id, store.LoginRecord{IP: "203.0.113.3", At: day + 2000}, day); err != nil {
+		t.Fatal(err)
+	}
+	if at, ip := seen(); at != day+5000 || ip != "203.0.113.2" {
+		t.Fatalf("after an older activity %d %q", at, ip)
+	}
+	// The next day: one resume record, then none.
+	next := day + 86_400_000
+	for i, want := range []bool{true, false} {
+		resumed, err := st.SeenActivity(ctx, id, store.LoginRecord{IP: "203.0.113.4", UserAgent: "UA", At: next + int64(i)},
+			next)
+		if err != nil || resumed != want {
+			t.Fatalf("next day %d: %v, %v", i, resumed, err)
+		}
+	}
+	logins, total, err := st.AdminLogins(ctx, store.AdminPage{Limit: 10, Desc: true},
+		store.LoginFilter{AccountID: id, Kind: store.LoginKindResume})
+	if err != nil || total != 1 || logins[0].At != next || logins[0].IP != "203.0.113.4" || logins[0].UserAgent != "UA" {
+		t.Fatalf("resume records %+v, %v", logins, err)
+	}
+	// A day that already has a login gets no resume record.
+	third := next + 86_400_000
+	if err := st.CreateSession(ctx, "token-t-"+u, id, time.Now().Add(time.Hour).UnixMilli(),
+		store.LoginRecord{At: third + 10}); err != nil {
+		t.Fatal(err)
+	}
+	datatest.Exec(t, db, "UPDATE accounts SET last_seen_at = ? WHERE id = ?", next, id)
+	if resumed, err := st.SeenActivity(ctx, id, store.LoginRecord{At: third + 20}, third); err != nil || resumed {
+		t.Fatalf("a day with a login %v, %v", resumed, err)
+	}
+	// An unknown account is ignored.
+	if resumed, err := st.SeenActivity(ctx, "00000000-0000-4000-8000-"+u+"ff", store.LoginRecord{At: third}, third); err != nil ||
+		resumed {
+		t.Fatalf("unknown account %v, %v", resumed, err)
 	}
 }

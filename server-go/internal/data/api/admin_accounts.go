@@ -9,8 +9,10 @@ import (
 	"strings"
 	"unicode/utf8"
 
+	"kartsim/internal/data/cache"
 	"kartsim/internal/data/store"
 	"kartsim/internal/shared/apierr"
+	"kartsim/internal/shared/contract"
 )
 
 // The admin console's account pages: the account list and detail, edits,
@@ -24,12 +26,20 @@ const (
 	detailRows = 20
 )
 
-var errCannotModifySelf = apierr.New(http.StatusConflict, "CANNOT_MODIFY_SELF")
+var (
+	errCannotModifySelf = apierr.New(http.StatusConflict, "CANNOT_MODIFY_SELF")
+	// errProtectedAdmin refuses another admin's edit or kick of a
+	// KART_ADMIN_USERNAMES account: only the account itself changes it.
+	errProtectedAdmin = apierr.New(http.StatusConflict, "PROTECTED_ADMIN")
+)
 
-// adminOnlineJSON is where an account plays.
+// adminOnlineJSON is where an account plays. Leaving is set while a game
+// node still lists a session that a kick, a ban or a newer login ended: the
+// node drops it at its next heartbeat.
 type adminOnlineJSON struct {
 	NodeID   string `json:"nodeId"`
 	NodeName string `json:"nodeName"`
+	Leaving  bool   `json:"leaving"`
 }
 
 // accountRowJSON is the AccountRow of ADMIN.md 4.
@@ -42,6 +52,8 @@ type accountRowJSON struct {
 	RegisterIP     string           `json:"registerIp"`
 	LastLoginAt    *int64           `json:"lastLoginAt"`
 	LastLoginIP    string           `json:"lastLoginIp"`
+	LastSeenAt     *int64           `json:"lastSeenAt"`
+	LastSeenIP     string           `json:"lastSeenIp"`
 	BannedUntil    *int64           `json:"bannedUntil"`
 	BanReason      string           `json:"banReason"`
 	Banned         bool             `json:"banned"`
@@ -77,7 +89,8 @@ func (a *API) accountRows(ctx context.Context, rows []store.AdminAccountRow, now
 		list[i] = accountRowJSON{
 			ID: account.ID, Username: account.Username, Nickname: account.Nickname, Admin: account.Admin,
 			CreatedAt: row.CreatedAt, RegisterIP: row.RegisterIP, LastLoginAt: nonZero(row.LastLoginAt),
-			LastLoginIP: row.LastLoginIP, BannedUntil: nonZero(row.BannedUntil), BanReason: row.BanReason,
+			LastLoginIP: row.LastLoginIP, LastSeenAt: nonZero(row.LastSeenAt), LastSeenIP: row.LastSeenIP,
+			BannedUntil: nonZero(row.BannedUntil), BanReason: row.BanReason,
 			Banned: row.BannedUntil > now, Level: a.economy.Levels.LevelForExp(row.Exp).Level, Exp: row.Exp,
 			Coupon: row.Wallet.Coupon, Lucci: row.Wallet.Lucci, Koin: row.Wallet.Koin,
 			InventoryCount: row.InventoryCount, Onboarded: row.Onboarded, Online: online[account.ID],
@@ -87,7 +100,10 @@ func (a *API) accountRows(ctx context.Context, rows []store.AdminAccountRow, now
 }
 
 // accountPresence maps the accounts among ids that play on a game node to
-// that node; nil when the cluster registry is unavailable.
+// that node: the node holding the account's presence, or, for an account
+// whose presence a kick, a ban or a newer login ended while a node still
+// lists its old session, that node with leaving set. nil when the cluster
+// registry is unavailable.
 func (a *API) accountPresence(ctx context.Context, ids []string) map[string]*adminOnlineJSON {
 	if a.cluster == nil || len(ids) == 0 {
 		return nil
@@ -97,20 +113,80 @@ func (a *API) accountPresence(ctx context.Context, ids []string) map[string]*adm
 		a.log.Warn("admin: account presence unavailable", "error", err)
 		return nil
 	}
-	if len(nodes) == 0 {
-		return nil
-	}
-	names := map[string]string{}
-	if live, err := a.cluster.Nodes(ctx); err == nil {
-		for _, node := range live {
-			names[node.NodeID] = node.Name
+	wanted := map[string]bool{}
+	for _, id := range ids {
+		if nodes[id] == "" {
+			wanted[id] = true
 		}
 	}
-	online := make(map[string]*adminOnlineJSON, len(nodes))
+	online := map[string]*adminOnlineJSON{}
+	live, ok := a.onlineNodes(ctx)
+	names := map[string]string{}
+	for _, node := range live {
+		names[node.Node.NodeID] = node.Node.Name
+		for _, player := range node.Players {
+			// Listed but no longer holding the account: being dropped.
+			if id := playerAccount(node, player); wanted[id] && online[id] == nil {
+				online[id] = &adminOnlineJSON{NodeID: node.Node.NodeID, NodeName: node.Node.Name, Leaving: true}
+			}
+		}
+	}
+	if !ok {
+		names = nil
+	}
 	for id, node := range nodes {
 		online[id] = &adminOnlineJSON{NodeID: node, NodeName: cmp.Or(names[node], node)}
 	}
+	if len(online) == 0 {
+		return nil
+	}
 	return online
+}
+
+// playerAccount is the account a listed player claimed ("" for guests):
+// the heartbeat's own (newer nodes), else the node's claim map.
+func playerAccount(node cache.NodeOnline, player contract.OnlinePlayer) string {
+	return cmp.Or(player.AccountID, node.Accounts[player.PlayerID])
+}
+
+// liveOnline reads the live nodes' players with whether each account
+// player still holds its account (false: a kick, a ban or a newer login
+// ended the session, and the node drops it at its next heartbeat). ok is
+// false when the cluster registry is unavailable.
+func (a *API) liveOnline(ctx context.Context) (nodes []cache.NodeOnline, leaving map[string]bool, ok bool) {
+	nodes, ok = a.onlineNodes(ctx)
+	if !ok {
+		return nil, nil, false
+	}
+	var ids []string
+	for _, node := range nodes {
+		for _, player := range node.Players {
+			if id := playerAccount(node, player); id != "" {
+				ids = append(ids, id)
+			}
+		}
+	}
+	claims, err := a.cluster.AccountClaims(ctx, ids)
+	if err != nil {
+		a.log.Warn("admin: account presence unavailable", "error", err)
+		return nodes, nil, true
+	}
+	leaving = map[string]bool{}
+	for _, node := range nodes {
+		for _, player := range node.Players {
+			id := playerAccount(node, player)
+			if id != "" && claims[id] != cache.PresenceValue(node.Node.NodeID, player.PlayerID) {
+				leaving[node.Node.NodeID+"|"+player.PlayerID] = true
+			}
+		}
+	}
+	return nodes, leaving, true
+}
+
+// protectedAdmin reports whether an account is named in
+// KART_ADMIN_USERNAMES: only the account itself may edit it.
+func (a *API) protectedAdmin(account store.Account) bool {
+	return a.admins[strings.ToLower(account.Username)]
 }
 
 // adminAccountNames are the KART_ADMIN_USERNAMES.
@@ -134,14 +210,14 @@ func (a *API) adminMe(w http.ResponseWriter, r *http.Request) error {
 }
 
 // adminAccounts lists accounts: q matches the username, nickname and the
-// register and latest login addresses, from/to bound the registration
-// time; online=1, banned=1 and admin=1 filter. Without the cluster
-// registry, online=1 lists nothing.
+// register, latest login and latest activity addresses, from/to bound the
+// registration time; online=1, banned=1 and admin=1 filter. Without the
+// cluster registry, online=1 lists nothing.
 func (a *API) adminAccounts(w http.ResponseWriter, r *http.Request) error {
 	if _, err := a.requireAdmin(r); err != nil {
 		return err
 	}
-	list, err := parseAdminList(r, false, "createdAt", "lastLoginAt", "level", "coupon", "lucci", "koin")
+	list, err := parseAdminList(r, false, "createdAt", "lastLoginAt", "lastSeenAt", "level", "coupon", "lucci", "koin")
 	if err != nil {
 		return err
 	}
@@ -186,7 +262,14 @@ func (a *API) onlineAccountIDs(ctx context.Context) []string {
 		for _, account := range node.Accounts {
 			claimed = append(claimed, account)
 		}
+		for _, player := range node.Players {
+			if player.AccountID != "" {
+				claimed = append(claimed, player.AccountID)
+			}
+		}
 	}
+	slices.Sort(claimed)
+	claimed = slices.Compact(claimed)
 	// Only accounts whose presence is still theirs (not kicked or replaced).
 	live, err := a.cluster.AccountNodes(ctx, claimed)
 	if err != nil {
@@ -321,9 +404,11 @@ func (a *API) adminAccountDetail(w http.ResponseWriter, r *http.Request) error {
 // password the registration length; bad values are 400
 // INVALID_ACCOUNT_FIELDS. An admin cannot take its own admin flag or ban
 // itself (409 CANNOT_MODIFY_SELF); a KART_ADMIN_USERNAMES account stays an
-// admin whatever its stored flag. bannedUntil is Unix ms (0 lifts the ban,
-// and so does a time already past; lifting it clears the reason unless one
-// is given). Banning or setting a password signs the account out
+// admin whatever its stored flag, and only it may edit itself (409
+// PROTECTED_ADMIN for other admins). bannedUntil is Unix ms (0 lifts the
+// ban, and so does a time already past; lifting it clears the reason
+// unless the request gives a new one: the stored reason sent back counts
+// as none). Banning or setting a password signs the account out
 // everywhere (adminEndSessions).
 func (a *API) adminPatchAccount(w http.ResponseWriter, r *http.Request) error {
 	var request struct {
@@ -362,9 +447,6 @@ func (a *API) adminPatchAccount(w http.ResponseWriter, r *http.Request) error {
 		}
 		if *until <= now {
 			*until = 0
-			if request.BanReason == nil {
-				request.BanReason = new(string)
-			}
 		}
 		banning = *until > 0
 	}
@@ -374,6 +456,13 @@ func (a *API) adminPatchAccount(w http.ResponseWriter, r *http.Request) error {
 	}
 	if target.Account.ID == admin.ID && ((request.Admin != nil && !*request.Admin) || banning) {
 		return errCannotModifySelf
+	}
+	if target.Account.ID != admin.ID && a.protectedAdmin(target.Account) {
+		return errProtectedAdmin
+	}
+	if request.BannedUntil != nil && *request.BannedUntil == 0 &&
+		(request.BanReason == nil || *request.BanReason == target.BanReason) {
+		request.BanReason = new(string) // lifting the ban clears its reason
 	}
 	patch := store.AccountPatch{Nickname: request.Nickname, Admin: request.Admin, BannedUntil: request.BannedUntil,
 		BanReason: request.BanReason}
@@ -437,7 +526,8 @@ func (a *API) adminEndSessions(ctx context.Context, account store.Account, ended
 
 // adminKick signs an account out everywhere: {sessions: how many ended,
 // game: whether a live game session was told to end}. An admin cannot
-// kick itself (409 CANNOT_MODIFY_SELF): its console session would end.
+// kick itself (409 CANNOT_MODIFY_SELF): its console session would end; nor
+// a KART_ADMIN_USERNAMES account (409 PROTECTED_ADMIN).
 func (a *API) adminKick(w http.ResponseWriter, r *http.Request) error {
 	admin, err := a.requireAdmin(r)
 	if err != nil {
@@ -449,6 +539,9 @@ func (a *API) adminKick(w http.ResponseWriter, r *http.Request) error {
 	}
 	if target.Account.ID == admin.ID {
 		return errCannotModifySelf
+	}
+	if a.protectedAdmin(target.Account) {
+		return errProtectedAdmin
 	}
 	ctx := r.Context()
 	ended, err := a.store.RevokeSessions(ctx, target.Account.ID)
@@ -545,9 +638,9 @@ func (a *API) adminInventory(w http.ResponseWriter, r *http.Request) error {
 	return answerList(w, list, items, total)
 }
 
-// adminLogins lists register and login records: ?kind=register|login,
-// account= (id or username), ip= (exact); q matches the username, nickname
-// and address; from/to bound the time.
+// adminLogins lists register, login and resume records:
+// ?kind=register|login|resume, account= (id or username), ip= (exact); q
+// matches the username, nickname and address; from/to bound the time.
 func (a *API) adminLogins(w http.ResponseWriter, r *http.Request) error {
 	if _, err := a.requireAdmin(r); err != nil {
 		return err
@@ -557,7 +650,8 @@ func (a *API) adminLogins(w http.ResponseWriter, r *http.Request) error {
 		return err
 	}
 	var filter store.LoginFilter
-	if filter.Kind, err = oneOfParam(r, "kind", store.LoginKindRegister, store.LoginKindLogin); err != nil {
+	if filter.Kind, err = oneOfParam(r, "kind", store.LoginKindRegister, store.LoginKindLogin,
+		store.LoginKindResume); err != nil {
 		return err
 	}
 	if filter.IP, err = tokenParam(r, "ip", 45); err != nil {

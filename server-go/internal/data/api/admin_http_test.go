@@ -123,6 +123,8 @@ type accountRowBody struct {
 	RegisterIP  string
 	LastLoginAt *int64
 	LastLoginIP string
+	LastSeenAt  *int64
+	LastSeenIP  string
 	BannedUntil *int64
 	BanReason   string
 	Banned      bool
@@ -149,7 +151,9 @@ func TestAdminEndpointsNeedAnAdmin(t *testing.T) {
 	for _, path := range []string{"/api/admin/me", "/api/admin/overview", "/api/admin/accounts",
 		"/api/admin/accounts/" + player, "/api/admin/accounts/" + player + "/inventory", "/api/admin/logins",
 		"/api/admin/online", "/api/admin/nodes", "/api/admin/ledger", "/api/admin/grants", "/api/admin/races",
-		"/api/admin/purchases", "/api/admin/lottery-draws", "/api/admin/box-openings", "/api/admin/clubs"} {
+		"/api/admin/purchases", "/api/admin/lottery-draws", "/api/admin/box-openings", "/api/admin/clubs",
+		"/api/admin/accounts/" + player + "/game", "/api/admin/clubs/1/members", "/api/admin/invites",
+		"/api/admin/reward-box"} {
 		h.get(path, nil).expect(t, http.StatusUnauthorized, "LOGIN_REQUIRED")
 		h.get(path, bearerHeader(token)).expect(t, http.StatusForbidden, "ADMIN_REQUIRED")
 	}
@@ -325,11 +329,25 @@ func TestAdminEditBanAndKick(t *testing.T) {
 	if row.Admin {
 		t.Fatalf("admin flag kept %+v", row)
 	}
-	// A KART_ADMIN_USERNAMES admin stays one whatever the stored flag.
-	h.patch(h.listedAdminID, map[string]any{"admin": false}).expect(t, http.StatusOK, "").json(t, &row)
-	if !row.Admin {
+	// Only a KART_ADMIN_USERNAMES account edits itself; it stays an admin
+	// whatever the stored flag.
+	for _, change := range []map[string]any{{"admin": false}, {"nickname": "改" + u},
+		{"bannedUntil": time.Now().Add(time.Hour).UnixMilli()}, {"password": "new-password-123"}} {
+		h.patch(h.listedAdminID, change).expect(t, http.StatusConflict, "PROTECTED_ADMIN")
+	}
+	h.post("/api/admin/accounts/"+h.listedAdminID+"/kick", nil, h.adminHeader).
+		expect(t, http.StatusConflict, "PROTECTED_ADMIN")
+	listedHeader := bearerHeader(h.login(h.listedAdmin, password))
+	send(t, http.MethodPatch, h.public.URL+"/api/admin/accounts/"+h.listedAdminID, map[string]any{"nickname": "名单改" + u},
+		listedHeader).expect(t, http.StatusOK, "").json(t, &row)
+	if !row.Admin || row.Nickname != "名单改"+u {
 		t.Fatalf("listed admin %+v", row)
 	}
+	h.post("/api/admin/accounts/"+h.listedAdminID+"/kick", nil, listedHeader).
+		expect(t, http.StatusConflict, "CANNOT_MODIFY_SELF")
+	// The listed admin edits others like any admin.
+	send(t, http.MethodPatch, h.public.URL+"/api/admin/accounts/"+h.adminID, map[string]any{"nickname": "主管" + u},
+		listedHeader).expect(t, http.StatusOK, "")
 
 	// A ban ends the sessions (also the cached one), the messenger and the
 	// game session; the login is refused only after the password.
@@ -349,7 +367,9 @@ func TestAdminEditBanAndKick(t *testing.T) {
 	}
 	until := time.Now().Add(24 * time.Hour).UnixMilli()
 	h.patch(target, map[string]any{"bannedUntil": until, "banReason": " 外挂 "}).expect(t, http.StatusOK, "").json(t, &row)
-	if !row.Banned || row.BannedUntil == nil || *row.BannedUntil != until || row.BanReason != "外挂" || row.Online != nil {
+	// The node still lists the session until its next heartbeat: leaving.
+	if !row.Banned || row.BannedUntil == nil || *row.BannedUntil != until || row.BanReason != "外挂" ||
+		row.Online == nil || !row.Online.Leaving || row.Online.NodeID != "node-ban" {
 		t.Fatalf("banned %+v", row)
 	}
 	h.get("/api/account", bearerHeader(token)).expect(t, http.StatusUnauthorized, "LOGIN_REQUIRED")
@@ -359,6 +379,10 @@ func TestAdminEditBanAndKick(t *testing.T) {
 		ProtocolVersion: contract.ProtocolVersion}).expect(t, http.StatusOK, "").json(t, &beat)
 	if len(beat.Conflicts) != 1 || beat.Conflicts[0] != "p-ban" {
 		t.Fatalf("conflicts %v", beat.Conflicts)
+	}
+	h.adminGet("/api/admin/accounts/"+target, &detail)
+	if detail.Account.Online != nil {
+		t.Fatalf("online after the heartbeat %+v", detail.Account.Online)
 	}
 	h.post("/multiplayer/auth/login", map[string]string{"username": targetName, "password": "wrong-password"}, nil).
 		expect(t, http.StatusUnauthorized, "INVALID_CREDENTIALS")
@@ -385,10 +409,22 @@ func TestAdminEditBanAndKick(t *testing.T) {
 		t.Fatalf("banned list %+v", banned)
 	}
 
-	// Lifting the ban clears the reason; a time already past lifts it too.
-	h.patch(target, map[string]any{"bannedUntil": 0}).expect(t, http.StatusOK, "").json(t, &row)
+	// Lifting the ban clears the reason, also when the stored reason is
+	// sent back with it; a new reason stays; a time already past lifts the
+	// ban too.
+	h.patch(target, map[string]any{"bannedUntil": 0, "banReason": "外挂"}).expect(t, http.StatusOK, "").json(t, &row)
 	if row.Banned || row.BannedUntil != nil || row.BanReason != "" {
 		t.Fatalf("unbanned %+v", row)
+	}
+	h.patch(target, map[string]any{"bannedUntil": until, "banReason": "刷分"}).expect(t, http.StatusOK, "")
+	h.patch(target, map[string]any{"bannedUntil": 0}).expect(t, http.StatusOK, "").json(t, &row)
+	if row.Banned || row.BanReason != "" {
+		t.Fatalf("unbanned without a reason %+v", row)
+	}
+	h.patch(target, map[string]any{"bannedUntil": until, "banReason": "刷分"}).expect(t, http.StatusOK, "")
+	h.patch(target, map[string]any{"bannedUntil": 0, "banReason": "申诉通过"}).expect(t, http.StatusOK, "").json(t, &row)
+	if row.Banned || row.BanReason != "申诉通过" {
+		t.Fatalf("unbanned with a new reason %+v", row)
 	}
 	h.patch(target, map[string]any{"bannedUntil": time.Now().Add(-time.Hour).UnixMilli(), "banReason": "旧"}).
 		expect(t, http.StatusOK, "").json(t, &row)
@@ -649,7 +685,7 @@ func TestAdminRecordLists(t *testing.T) {
 	// Every list takes each of its sort keys in both orders with a search
 	// and a time range, and refuses other keys.
 	for path, sorts := range map[string][]string{
-		"/api/admin/accounts":                      {"createdAt", "lastLoginAt", "level", "coupon", "lucci", "koin"},
+		"/api/admin/accounts":                      {"createdAt", "lastLoginAt", "lastSeenAt", "level", "coupon", "lucci", "koin"},
 		"/api/admin/accounts/" + id + "/inventory": {"updatedAt", "createdAt", "expiresAt", "category", "quantity"},
 		"/api/admin/logins":                        {"at"},
 		"/api/admin/online":                        {"name", "username", "node", "room"},
@@ -660,6 +696,10 @@ func TestAdminRecordLists(t *testing.T) {
 		"/api/admin/lottery-draws":                 {"at"},
 		"/api/admin/box-openings":                  {"at"},
 		"/api/admin/clubs":                         {"createdAt", "name", "members", "cs", "csWeek", "budget"},
+		"/api/admin/clubs/" + strconv.FormatInt(clubID, 10) + "/members": {"joinedAt", "grade", "csWeek", "csTotal",
+			"donatedTotal"},
+		"/api/admin/invites":    {"createdAt"},
+		"/api/admin/reward-box": {"createdAt"},
 	} {
 		for _, sort := range sorts {
 			for _, order := range []string{"asc", "desc"} {
