@@ -2,8 +2,11 @@ package lobby
 
 import (
 	"encoding/binary"
+	"fmt"
 	"math"
 	"slices"
+
+	"kartsim/internal/game/anticheat"
 )
 
 // Motion frames are the binary race channel: a 56-byte header (little-endian
@@ -17,10 +20,14 @@ const (
 
 // RelayMotion forwards a racer's motion frame to the loaded racers named by
 // the recipient mask (Java relayMotion). Invalid frames are dropped silently.
+// Not in Java: a frame whose payload the browsers cannot decode is never
+// relayed (one would drop each receiver's connection), and while racing the
+// anti-cheat checks each frame (ANTICHEAT.md); the frame that fails a check
+// is not relayed either.
 func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
-	if c.roomID == "" || len(frame) < motionMinLength || len(frame) > motionMaxLength {
+	if c.roomID == "" || c.kicked || len(frame) < motionMinLength || len(frame) > motionMaxLength {
 		return
 	}
 	if binary.LittleEndian.Uint16(frame) != motionMagic || int8(frame[2]) < 1 || int8(frame[2]) > 10 {
@@ -34,8 +41,23 @@ func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 		r.race.isOut(c.playerID) {
 		return
 	}
+	kind, payload := int(frame[2]), frame[motionHeaderLength:]
+	if !anticheat.ValidPayload(kind, payload) {
+		if l.cheatMode != anticheat.ModeOff {
+			l.cheated(r, c, &anticheat.Violation{Code: anticheat.CodeBadFrame,
+				Detail: badFrameDetail(kind, len(payload))})
+		}
+		return
+	}
 	if r.phase == "racing" {
-		r.race.recordProgress(c.playerID, frame, l.clock.Now())
+		if l.cheatMode != anticheat.ModeOff && !r.race.hasFinished(c.playerID) {
+			if sample, ok := anticheat.ParseSample(kind, payload); ok {
+				if v := l.guard(r, c.playerID).Motion(sample, l.clock.Now()); v != nil && l.cheated(r, c, v) {
+					return
+				}
+			}
+		}
+		r.race.recordProgress(c.playerID, frame, l.clock.Now(), l.progressCap(r))
 	}
 	recipientMask := int(frame[3])
 	for _, m := range r.members {
@@ -49,6 +71,11 @@ func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 	}
 }
 
+// badFrameDetail describes a refused payload for the anti-cheat record.
+func badFrameDetail(kind, length int) string {
+	return fmt.Sprintf("运动帧格式无效（类型 %d，负载 %d 字节）", kind, length)
+}
+
 // Race progress: the kinematic kinds 4..10 (rewrite payload.ts) carry the
 // racer's route distance as a little-endian float64, in meters, at payload
 // offset 108, and its lap as a little-endian uint32 at 116.
@@ -56,45 +83,29 @@ const (
 	motionHeaderLength = 56
 	progressOffset     = motionHeaderLength + 108
 	lapOffset          = motionHeaderLength + 116
-	// A reported distance is capped at what 500 km/h since the start (plus
-	// a little slack) could cover.
-	maxRaceSpeed  = 140.0 // m/s
-	progressSlack = 100.0 // m
 )
 
-// kinematicPayloadLength is the payload length of a kinematic motion kind
-// (payload.ts decodeKinematicSample), or 0 for kind 1.
-func kinematicPayloadLength(kind int) int {
-	var length int
-	switch {
-	case kind < 2 || kind > 10:
-		return 0
-	case kind == 8 || kind == 10:
-		length = 166
-	case kind >= 7:
-		length = 149
-	case kind == 6:
-		length = 137
-	case kind == 5:
-		length = 128
-	case kind == 4:
-		length = 124
-	case kind == 3:
-		length = 108
-	default:
-		length = 80
-	}
-	if kind >= 9 {
-		length += 12
-	}
-	return length
+// progressCap bounds the route distance a racer of r's race may have
+// reached by now, at the lap it reports: what 500 km/h covers since the
+// start plus a little slack, and on a track the anti-cheat knows the warp
+// sections of the laps begun and one section more (anticheat.Limits
+// ProgressCap), so a long warp is not cut off.
+func (l *Lobby) progressCap(r *room) func(lap int, racedMs int64) float64 {
+	track := cheatTrack(r)
+	return func(lap int, racedMs int64) float64 { return l.cheatLimits.ProgressCap(track, lap, racedMs) }
 }
+
+// kinematicPayloadLength is the payload length of a kinematic motion kind
+// (payload.ts decodeKinematicSample), or 0 for kind 1: the anti-cheat's
+// table, which validates the payloads.
+func kinematicPayloadLength(kind int) int { return anticheat.KinematicPayloadLength(kind) }
 
 // recordProgress keeps the furthest route distance a racer reported while
 // racing and before its finish, and its latest distance and lap (the live
 // order of an item race). Frames of another length than their kind implies,
-// non-finite or non-positive distances are ignored.
-func (rc *race) recordProgress(playerID string, frame []byte, now int64) {
+// non-finite or non-positive distances are ignored; distances are capped by
+// limit (progressCap).
+func (rc *race) recordProgress(playerID string, frame []byte, now int64, limit func(lap int, racedMs int64) float64) {
 	kind := int(frame[2])
 	if kind < 4 || len(frame) != motionHeaderLength+kinematicPayloadLength(kind) ||
 		rc.startAt == nil || now <= *rc.startAt {
@@ -109,9 +120,10 @@ func (rc *race) recordProgress(playerID string, frame []byte, now int64) {
 	if math.IsNaN(distance) || math.IsInf(distance, 0) || distance <= 0 {
 		return
 	}
-	distance = min(distance, float64(now-*rc.startAt)/1000*maxRaceSpeed+progressSlack)
+	lap := int(binary.LittleEndian.Uint32(frame[lapOffset:]))
+	distance = min(distance, limit(lap, now-*rc.startAt))
 	previous, seen := rc.current[playerID]
-	sample := routeSample{distance: distance, lap: int(binary.LittleEndian.Uint32(frame[lapOffset:]))}
+	sample := routeSample{distance: distance, lap: lap}
 	rc.current[playerID] = sample
 	if distance > rc.progress[playerID] {
 		rc.progress[playerID] = distance

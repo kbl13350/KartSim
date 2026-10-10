@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"kartsim/internal/game/admission"
+	"kartsim/internal/game/anticheat"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/contract"
 	"kartsim/internal/shared/ticket"
@@ -130,9 +131,22 @@ func (s *recordingSink) frameCount() int {
 
 // fakeRecorder replaces the outbox: it keeps what saveRules/saveResults sent.
 type fakeRecorder struct {
-	mu    sync.Mutex
-	rules []contract.RoomRulesRequest
-	races []contract.RaceSettlement
+	mu     sync.Mutex
+	rules  []contract.RoomRulesRequest
+	races  []contract.RaceSettlement
+	cheats []contract.AntiCheatReport
+}
+
+func (r *fakeRecorder) SaveAntiCheat(req contract.AntiCheatReport) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	r.cheats = append(r.cheats, req)
+}
+
+func (r *fakeRecorder) antiCheatReports() []contract.AntiCheatReport {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	return slices.Clone(r.cheats)
 }
 
 func (r *fakeRecorder) SaveRules(req contract.RoomRulesRequest) {
@@ -232,7 +246,16 @@ type harness struct {
 	wall   time.Time // tickets and the lobby's wall clock (equipment checks)
 }
 
+// newHarness runs the lobby without the anti-cheat: the Java fixtures race
+// without motion frames and finish at once. anticheat_test.go turns it on
+// with newHarnessWith.
 func newHarness(t *testing.T) *harness {
+	t.Helper()
+	return newHarnessWith(t, nil)
+}
+
+// newHarnessWith lets the test adjust the lobby options.
+func newHarnessWith(t *testing.T, adjust func(*Options)) *harness {
 	t.Helper()
 	h := &harness{
 		t:        t,
@@ -243,7 +266,7 @@ func newHarness(t *testing.T) *harness {
 		sinks:    map[*Client]*recordingSink{},
 	}
 	h.tickets = admission.New([]byte(testSecret), testNodeID, testDataNode).WithClock(h.now)
-	h.lobby = New(Options{
+	opts := Options{
 		NodeID:    testNodeID,
 		Clock:     h.clock,
 		Presence:  h.presence,
@@ -253,7 +276,12 @@ func newHarness(t *testing.T) *harness {
 		// The Java fixtures connect guests; TestHelloRefusesGuests covers
 		// the default.
 		AllowGuests: true,
-	})
+		AntiCheat:   anticheat.ModeOff,
+	}
+	if adjust != nil {
+		adjust(&opts)
+	}
+	h.lobby = New(opts)
 	t.Cleanup(h.lobby.Close)
 	return h
 }

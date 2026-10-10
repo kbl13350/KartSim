@@ -3,7 +3,6 @@ package app
 import (
 	"context"
 	"crypto/subtle"
-	"encoding/binary"
 	"encoding/hex"
 	"encoding/json"
 	"io"
@@ -21,6 +20,7 @@ import (
 
 	"github.com/gorilla/websocket"
 
+	"kartsim/internal/game/anticheat"
 	"kartsim/internal/game/config"
 	"kartsim/internal/game/outbox"
 	"kartsim/internal/shared/apierr"
@@ -47,6 +47,7 @@ type fakeData struct {
 	releases   []contract.PresenceReleaseRequest
 	rules      []contract.RoomRulesRequest
 	races      []contract.RaceSettlement
+	cheats     []contract.AntiCheatReport
 	presence   map[string]string // lower(name) → nodeId|playerId
 	badKeys    int
 	rulesDown  bool // answer room-rules saves with 503
@@ -138,6 +139,12 @@ func (f *fakeData) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		if decode(&req) {
 			f.races = append(f.races, req)
 			apierr.WriteJSON(w, http.StatusOK, contract.RaceSettlementResponse{Stored: true})
+		}
+	case contract.PathAntiCheat:
+		var req contract.AntiCheatReport
+		if decode(&req) {
+			f.cheats = append(f.cheats, req)
+			apierr.WriteJSON(w, http.StatusOK, contract.OK{OK: true})
 		}
 	case contract.PathEquipmentVerify:
 		if f.verifyDown {
@@ -251,6 +258,9 @@ func startNodeWith(t *testing.T, dataURL string, data *fakeData, adjust func(*co
 		DataNodeID: e2eDataNode, Secret: []byte(e2eSecret), MaxPlayers: 10,
 		OutboxDir: t.TempDir(), Network: netcfg.New(""), HeartbeatInterval: 40 * time.Millisecond,
 		AllowGuests: true,
+		// The end-to-end race finishes without driving; TestAntiCheatKick
+		// turns the anti-cheat on.
+		AntiCheat: anticheat.ModeOff,
 	}
 	if adjust != nil {
 		adjust(&cfg)
@@ -551,12 +561,7 @@ func TestEndToEnd(t *testing.T) {
 	bob.room(map[string]any{"type": "loaded", "roomId": roomID, "raceId": raceID})
 
 	// Motion frames reach the other loaded racer as binary messages.
-	frame := make([]byte, 140)
-	binary.LittleEndian.PutUint16(frame, 19_277)
-	frame[2], frame[3] = 2, 0xFF
-	copy(frame[4:], uuidBytes(roomID))
-	copy(frame[20:], uuidBytes(raceID))
-	copy(frame[36:], uuidBytes(aliceID))
+	frame := motionFrame(roomID, raceID, aliceID, 0, [3]float32{}, 0)
 	if err := alice.conn.WriteMessage(websocket.BinaryMessage, frame); err != nil {
 		t.Fatal(err)
 	}

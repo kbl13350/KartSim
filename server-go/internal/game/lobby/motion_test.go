@@ -17,6 +17,10 @@ func uuidBytes(id string) []byte {
 	return b
 }
 
+// motionFrame is a frame of length: the kinematic kind of that payload
+// length with a payload the browsers accept (an identity quaternion, unit
+// collision scales, at the origin), or kind 1 with a zero payload, which
+// they refuse, for any other length.
 func motionFrame(roomID, raceID, playerID string, mask byte, length int) []byte {
 	frame := make([]byte, length)
 	binary.LittleEndian.PutUint16(frame, motionMagic)
@@ -25,6 +29,18 @@ func motionFrame(roomID, raceID, playerID string, mask byte, length int) []byte 
 	copy(frame[4:20], uuidBytes(roomID))
 	copy(frame[20:36], uuidBytes(raceID))
 	copy(frame[36:52], uuidBytes(playerID))
+	for kind := 2; kind <= 10; kind++ {
+		if length != motionHeaderLength+kinematicPayloadLength(kind) {
+			continue
+		}
+		frame[2] = byte(kind)
+		payload := frame[motionHeaderLength:]
+		binary.LittleEndian.PutUint32(payload[16:], math.Float32bits(1))
+		if kind >= 6 {
+			binary.LittleEndian.PutUint32(payload[128:], math.Float32bits(1))
+			binary.LittleEndian.PutUint32(payload[132:], math.Float32bits(1))
+		}
+	}
 	return frame
 }
 
@@ -91,20 +107,20 @@ func TestMotionRelayFiltering(t *testing.T) {
 
 	// Countdown and racing relay to every loaded racer.
 	h.must(c, map[string]any{"type": "loaded", "roomId": roomID, "raceId": raceID})
-	h.lobby.RelayMotion(a, motionFrame(roomID, raceID, a.playerID, 0xFF, 200))
+	h.lobby.RelayMotion(a, motionFrame(roomID, raceID, a.playerID, 0xFF, 234))
 	expect("countdown", [4]int{1, 2, 1, 0})
 	h.clock.Advance(3 * time.Second)
-	h.lobby.RelayMotion(c, motionFrame(roomID, raceID, c.playerID, 0xFF, 200))
+	h.lobby.RelayMotion(c, motionFrame(roomID, raceID, c.playerID, 0xFF, 234))
 	expect("racing", [4]int{2, 3, 1, 0})
 
 	// A finished race relays nothing.
 	for _, p := range racers {
 		h.must(p, map[string]any{"type": "finish", "roomId": roomID, "raceId": raceID, "elapsedMs": 1})
 	}
-	h.lobby.RelayMotion(a, motionFrame(roomID, raceID, a.playerID, 0xFF, 200))
+	h.lobby.RelayMotion(a, motionFrame(roomID, raceID, a.playerID, 0xFF, 234))
 	expect("finished", [4]int{2, 3, 1, 0})
 	// Clients outside any room are ignored.
-	h.lobby.RelayMotion(h.newClient(), motionFrame(roomID, raceID, a.playerID, 0xFF, 200))
+	h.lobby.RelayMotion(h.newClient(), motionFrame(roomID, raceID, a.playerID, 0xFF, 234))
 }
 
 // progressFrame is a kinematic frame of kind whose route distance is distance.
@@ -128,8 +144,9 @@ func TestKinematicPayloadLengths(t *testing.T) {
 }
 
 // The settlement carries each racer's furthest route progress while racing,
-// capped by 500 km/h since the start; later, shorter, malformed, non-finite
-// and post-finish reports do not count.
+// capped by 500 km/h since the start (plus the track's warps and longest
+// section, anticheat.Limits.ProgressCap); later, shorter, malformed,
+// non-finite and post-finish reports do not count.
 func TestRaceProgressDistance(t *testing.T) {
 	h := newHarness(t)
 	a, b := h.connect("A"), h.connect("B")
@@ -145,7 +162,7 @@ func TestRaceProgressDistance(t *testing.T) {
 	short := progressFrame(roomID, raceID, a.playerID, 10, 2600)
 	h.lobby.RelayMotion(a, short[:len(short)-1])
 	send(a, 3, 2700) // no progress section
-	send(b, 10, 1e7) // capped: 20 s x 140 m/s + 100 m
+	send(b, 10, 1e7) // capped: 20 s x 140 m/s + 100 m + village_R01's longest section (429 m)
 	send(b, 10, math.NaN())
 	h.must(a, map[string]any{"type": "finish", "roomId": roomID, "raceId": raceID, "elapsedMs": 20_000})
 	send(a, 10, 2500) // after its finish
@@ -159,7 +176,7 @@ func TestRaceProgressDistance(t *testing.T) {
 	for _, result := range settlements[0].Results {
 		distances[result.PlayerID] = result.DistanceMeters
 	}
-	if distances[a.playerID] != 1800 || distances[b.playerID] != 2900 {
+	if distances[a.playerID] != 1800 || distances[b.playerID] != 2900+429 {
 		t.Fatalf("distances %v", distances)
 	}
 }

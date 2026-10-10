@@ -13,6 +13,7 @@ import (
 	"time"
 	"unicode/utf8"
 
+	"kartsim/internal/game/anticheat"
 	"kartsim/internal/shared/netcfg"
 	"kartsim/internal/shared/ticket"
 )
@@ -53,6 +54,9 @@ type Config struct {
 	// (KART_ITEM_CHANGERS=infinite; default inventory: the cards and
 	// vouchers each account owns), a playtest switch.
 	ItemChangersInfinite bool
+	// AntiCheat is what the node does about racers failing the anti-cheat
+	// checks (KART_ANTICHEAT=kick|log|off, default kick; ANTICHEAT.md).
+	AntiCheat anticheat.Mode
 	// Memory guards (DESIGN.md 4.5).
 	MaxConnections  int           // WebSockets including those without hello
 	MaxRooms        int           // rooms on this node
@@ -182,6 +186,11 @@ func FromEnv(getenv func(string) string) (Config, error) {
 		cfg.ItemChangersInfinite = true
 	default:
 		problems = append(problems, errors.New("KART_ITEM_CHANGERS 必须是 inventory 或 infinite"))
+	}
+	if mode, err := anticheat.ParseMode(env("KART_ANTICHEAT", "kick")); err != nil {
+		problems = append(problems, err)
+	} else {
+		cfg.AntiCheat = mode
 	}
 
 	webRTC, ok := parseBool(env("KART_WEBRTC", "true"))

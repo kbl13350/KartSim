@@ -470,16 +470,31 @@ type conn struct {
 	queue  []frame
 	queued int // bytes not yet written
 	closed bool
-	wake   chan struct{}
-	done   chan struct{}
-	once   sync.Once
+	// closing: Close queued its close; nothing more is queued.
+	closing bool
+	wake    chan struct{}
+	done    chan struct{}
+	once    sync.Once
 }
 
 type frame struct {
 	kind int
 	data []byte
 	room string // set for a room snapshot push, which a newer one supersedes
+	// close, when set, ends the connection once the frames before it are
+	// written (Close).
+	close *closeNote
 }
+
+type closeNote struct {
+	code   int
+	reason string
+}
+
+// closeFlushTimeout bounds how long Close waits for the frames queued
+// before it (a peer that stopped reading): the connection then closes
+// without them.
+const closeFlushTimeout = 2 * time.Second
 
 func newConn(transport link, opts Options, log *slog.Logger) *conn {
 	c := &conn{link: transport, opts: opts, log: log,
@@ -508,11 +523,28 @@ func (c *conn) Snapshot(roomID string, payload []byte) {
 	c.enqueue(frame{kind: websocket.TextMessage, data: payload, room: roomID})
 }
 
-// Close sends a close frame and drops the socket (lobby.Closer, used to
-// evict a session). It is called under the lobby lock, so the close runs on
-// another goroutine; the reader then fails and the server releases the
-// player like any disconnect.
-func (c *conn) Close(code int, reason string) { go c.closeWith(code, reason) }
+// Close ends the connection (lobby.Closer, used to evict a session or kick
+// a cheater) once the messages queued before it are written, so the event
+// that says why arrives first, at the latest after closeFlushTimeout: it
+// sends a close frame and drops the socket. Nothing queued after it is
+// sent. It is called under the lobby lock, so the close runs on another
+// goroutine; the reader then fails and the server releases the player like
+// any disconnect.
+func (c *conn) Close(code int, reason string) {
+	c.mu.Lock()
+	if c.closed || c.closing {
+		c.mu.Unlock()
+		return
+	}
+	c.closing = true
+	c.queue = append(c.queue, frame{close: &closeNote{code: code, reason: reason}})
+	c.mu.Unlock()
+	select {
+	case c.wake <- struct{}{}:
+	default:
+	}
+	time.AfterFunc(closeFlushTimeout, func() { c.closeWith(code, reason) })
+}
 
 // enqueue never blocks; a peer that falls more than SendBufferLimit bytes
 // behind is disconnected with 1008. Its queue is dropped at once, and the
@@ -521,7 +553,7 @@ func (c *conn) Close(code int, reason string) { go c.closeWith(code, reason) }
 func (c *conn) enqueue(f frame) {
 	data := f.data
 	c.mu.Lock()
-	if c.closed {
+	if c.closed || c.closing {
 		c.mu.Unlock()
 		return
 	}
@@ -566,6 +598,10 @@ func (c *conn) writeLoop() {
 			c.queue = nil
 			c.mu.Unlock()
 			for _, f := range batch {
+				if f.close != nil {
+					c.closeWith(f.close.code, f.close.reason)
+					return
+				}
 				if err := c.link.write(f); err != nil {
 					c.terminate()
 					return

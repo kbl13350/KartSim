@@ -440,8 +440,17 @@ func (p *rtcPeer) write(f frame) error {
 // ping is not needed: ICE keepalives (SetICETimeouts) watch the path.
 func (p *rtcPeer) ping() error { return nil }
 
-// sendClose has nothing to send: a data channel has no close reason.
-func (p *rtcPeer) sendClose(int, string) {}
+// sendClose has no reason to send (a data channel has none), but it gives
+// the control channel up to a second to deliver what was written before
+// (the event saying why): closing aborts the SCTP association, which drops
+// unacknowledged data.
+func (p *rtcPeer) sendClose(int, string) {
+	deadline := time.Now().Add(time.Second)
+	for p.control.ReadyState() == webrtc.DataChannelStateOpen && p.control.BufferedAmount() > 0 &&
+		time.Now().Before(deadline) {
+		time.Sleep(20 * time.Millisecond)
+	}
+}
 
 func (p *rtcPeer) close() error {
 	p.end()

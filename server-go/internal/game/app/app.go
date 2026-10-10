@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"kartsim/internal/game/admission"
+	"kartsim/internal/game/anticheat"
 	"kartsim/internal/game/cluster"
 	"kartsim/internal/game/config"
 	"kartsim/internal/game/itemmode"
@@ -93,6 +94,7 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 		ItemTestGrants: cfg.ItemTestGrants,
 		// A playtest switch (KART_ITEM_CHANGERS=infinite): unlimited changers.
 		ItemChangersInfinite: cfg.ItemChangersInfinite,
+		AntiCheat:            cfg.AntiCheat,
 	})
 	if cfg.ItemTestGrants {
 		log.Warn("item test grants are on (KART_ITEM_TEST_GRANTS): item race clients may choose the items " +
@@ -100,6 +102,9 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 	}
 	if cfg.ItemChangersInfinite {
 		log.Warn("item changers are unlimited for every racer (KART_ITEM_CHANGERS=infinite)")
+	}
+	if cfg.AntiCheat != anticheat.ModeKick {
+		log.Warn("anti-cheat does not kick (KART_ANTICHEAT)", "mode", cfg.AntiCheat.String())
 	}
 	agent.SetSource(rooms)
 	agent.SetConflictHandler(func(playerIDs []string) { rooms.Evict(playerIDs) })
@@ -289,5 +294,14 @@ func (r recorder) SaveRules(req contract.RoomRulesRequest) {
 func (r recorder) SaveRace(req contract.RaceSettlement) {
 	if err := r.box.Enqueue("race", contract.PathRaces, req); err != nil {
 		r.log.Error("race settlement not queued", "race", req.RaceID, "error", err)
+	}
+}
+
+// SaveAntiCheat queues an anti-cheat record (ANTICHEAT.md 4). A kick ends
+// the racer's session, so a client can cause at most one record per
+// session, and in log mode one per check and race.
+func (r recorder) SaveAntiCheat(req contract.AntiCheatReport) {
+	if err := r.box.Enqueue("anti-cheat", contract.PathAntiCheat, req); err != nil {
+		r.log.Error("anti-cheat record not queued", "player", req.PlayerID, "check", req.Code, "error", err)
 	}
 }

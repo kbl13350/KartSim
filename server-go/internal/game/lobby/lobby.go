@@ -19,6 +19,7 @@ import (
 	"sync"
 	"time"
 
+	"kartsim/internal/game/anticheat"
 	"kartsim/internal/game/itemmode"
 	"kartsim/internal/game/names"
 	"kartsim/internal/shared/apierr"
@@ -69,11 +70,12 @@ type Closer interface {
 }
 
 // Recorder takes the records the Java service wrote to SQLite (saveRules,
-// saveResults). It is called with the lobby lock held, in order, and must
-// not block on the network.
+// saveResults), and the anti-cheat's records. It is called with the lobby
+// lock held, in order, and must not block on the network.
 type Recorder interface {
 	SaveRules(contract.RoomRulesRequest)
 	SaveRace(contract.RaceSettlement)
+	SaveAntiCheat(contract.AntiCheatReport)
 }
 
 // Options configure a Lobby.
@@ -121,6 +123,12 @@ type Options struct {
 	// infinite changers at PC cafés); otherwise each racer has the cards
 	// and vouchers it owns.
 	ItemChangersInfinite bool
+	// AntiCheat is what the node does about racers whose reports fail the
+	// anti-cheat checks (KART_ANTICHEAT, ANTICHEAT.md; default kick), and
+	// AntiCheatLimits their thresholds (nil: anticheat.DefaultLimits).
+	// Malformed motion frames are never relayed, whatever the mode.
+	AntiCheat       anticheat.Mode
+	AntiCheatLimits *anticheat.Limits
 }
 
 // Client is one WebSocket connection. Its fields are guarded by Lobby.mu.
@@ -138,6 +146,8 @@ type Client struct {
 	// ownership is the session's remembered equipment checks and its
 	// budget for new ones.
 	ownership sessionOwnership
+	// kicked: the anti-cheat kicked the session; its connection is closing.
+	kicked bool
 }
 
 // NewClient returns a connection that has not said hello yet.
@@ -174,6 +184,8 @@ type Lobby struct {
 	// itemChangers gives every item racer unlimited changers
 	// (KART_ITEM_CHANGERS=infinite).
 	itemChangers bool
+	cheatMode    anticheat.Mode
+	cheatLimits  anticheat.Limits
 
 	// verifySlots bounds the equipment checks in flight (a semaphore).
 	verifySlots chan struct{}
@@ -220,6 +232,8 @@ func New(opts Options) *Lobby {
 		itemRandom:   opts.ItemRandom,
 		itemTests:    opts.ItemTestGrants,
 		itemChangers: opts.ItemChangersInfinite,
+		cheatMode:    opts.AntiCheat,
+		cheatLimits:  anticheat.DefaultLimits(),
 		verifySlots:  make(chan struct{}, maxConcurrentVerifies),
 		rooms:        map[string]*room{},
 		clients:      map[string]*Client{},
@@ -233,6 +247,9 @@ func New(opts Options) *Lobby {
 	}
 	if l.recorder == nil {
 		l.recorder = discardRecorder{}
+	}
+	if opts.AntiCheatLimits != nil {
+		l.cheatLimits = *opts.AntiCheatLimits
 	}
 	if l.maxPlayers <= 0 {
 		l.maxPlayers = 400
@@ -263,8 +280,9 @@ func New(opts Options) *Lobby {
 
 type discardRecorder struct{}
 
-func (discardRecorder) SaveRules(contract.RoomRulesRequest) {}
-func (discardRecorder) SaveRace(contract.RaceSettlement)    {}
+func (discardRecorder) SaveRules(contract.RoomRulesRequest)    {}
+func (discardRecorder) SaveRace(contract.RaceSettlement)       {}
+func (discardRecorder) SaveAntiCheat(contract.AntiCheatReport) {}
 
 // Close stops timers from acting; it is called during shutdown.
 func (l *Lobby) Close() {
@@ -333,6 +351,9 @@ func (l *Lobby) Handle(ctx context.Context, c *Client, in Request) (Reply, error
 	typ, err := in.text("type", 1, 40)
 	if err == nil && typ != "hello" && c.playerID == "" {
 		err = fail(http.StatusBadRequest, "HELLO_REQUIRED")
+	}
+	if c.kicked {
+		err = errCheatDetected()
 	}
 	if err != nil || typ == "hello" {
 		l.mu.Unlock()
@@ -1539,6 +1560,13 @@ func (l *Lobby) finish(c *Client, in Request) (obj, error) {
 	}
 	if rc.hasFinished(c.playerID) {
 		return nil, fail(http.StatusBadRequest, "ALREADY_FINISHED")
+	}
+	if l.cheatMode != anticheat.ModeOff {
+		raced := l.clock.Now() - *rc.startAt
+		v := l.guard(r, c.playerID).Finish(elapsed, raced, rc.progress[c.playerID], othersRacing(rc, c.playerID))
+		if v != nil && l.cheated(r, c, v) {
+			return nil, errCheatDetected()
+		}
 	}
 	if r.gameplay == "item" && in.hasNonNull("perfectStart") {
 		// Not in Java: an item race finish says whether the start boost

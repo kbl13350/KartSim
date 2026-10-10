@@ -22,6 +22,7 @@ const (
 	PathRoomRules       = "/internal/v1/room-rules"
 	PathRaces           = "/internal/v1/races"
 	PathEquipmentVerify = "/internal/v1/equipment/verify"
+	PathAntiCheat       = "/internal/v1/anti-cheat"
 
 	ProtocolVersion = 39
 	Ruleset         = "launcher-room-v1"
@@ -137,6 +138,37 @@ type RoomRulesRequest struct {
 	Rules     json.RawMessage `json:"rules"`
 	UpdatedAt int64           `json:"updatedAt"`
 }
+
+// AntiCheatReport is one anomaly the game node's anti-cheat found
+// (ANTICHEAT.md): a racer it kicked, or with KART_ANTICHEAT=log only
+// noted. The data service stores it idempotently by EventID.
+type AntiCheatReport struct {
+	NodeID    string `json:"nodeId"`
+	EventID   string `json:"eventId"`
+	PlayerID  string `json:"playerId"`
+	AccountID string `json:"accountId,omitempty"` // "" for a guest
+	Name      string `json:"name"`
+	RoomID    string `json:"roomId,omitempty"`
+	RaceID    string `json:"raceId,omitempty"`
+	TrackID   string `json:"trackId,omitempty"`
+	Gameplay  string `json:"gameplay,omitempty"`
+	// Code names the check (AntiCheatCodes), Detail the measured values.
+	Code   string `json:"code"`
+	Detail string `json:"detail"`
+	// Action is AntiCheatKick or AntiCheatLog.
+	Action string `json:"action"`
+	At     int64  `json:"at"`
+}
+
+// Anti-cheat actions: the racer was kicked, or only logged.
+const (
+	AntiCheatKick = "kick"
+	AntiCheatLog  = "log"
+)
+
+// AntiCheatCodes are the anti-cheat checks (ANTICHEAT.md 2).
+var AntiCheatCodes = []string{"BAD_FRAME", "TELEPORT", "SPEED", "CLOCK", "PROGRESS", "LAP", "FINISH_TIME",
+	"FINISH_EARLY", "FINISH_FAST", "CUBE_RATE"}
 
 // RaceResult is one ranked racer of a finished race.
 type RaceResult struct {

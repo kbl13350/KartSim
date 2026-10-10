@@ -25,6 +25,7 @@ import (
 	"net/http"
 	"slices"
 
+	"kartsim/internal/game/anticheat"
 	"kartsim/internal/game/itemmode"
 	"kartsim/internal/shared/contract"
 )
@@ -332,6 +333,11 @@ func (l *Lobby) itemCube(r *room, c *Client, in Request, sequence int, now int64
 	capacity, err := in.integer("capacity", 0, 255)
 	if err != nil {
 		return nil, err
+	}
+	if l.cheatMode != anticheat.ModeOff && !l.itemTests {
+		if v := l.guard(r, c.playerID).Cube(cubeID, now); v != nil && l.cheated(r, c, v) {
+			return nil, errCheatDetected()
+		}
 	}
 	var grant itemmode.Grant
 	var notices []itemmode.ScanNotice
