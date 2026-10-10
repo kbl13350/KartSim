@@ -28,7 +28,7 @@
 
 - 浏览器只把会话 token 发给数据服务；游戏节点永远看不到 token，只验证数据服务签发的票据。
 - 好友与私聊（见下文[“好友与私聊”](#好友与私聊)）也在数据服务：HTTP 接口加一个 WebSocket `/api/messenger/ws`（在线状态、消息与同步提示的推送），消息存在 MySQL。
-- 游戏节点每 5 秒向数据服务发心跳（在线玩家及其所在房间、房间数、容量、公布的 origin，以及内存、协程、连接数等负载数字），数据服务据此生成游戏服列表与管理后台的节点、在线玩家页；节点 15 秒没有心跳就从列表消失。
+- 游戏节点每 5 秒向数据服务发心跳（在线玩家及其所在房间与账号、房间数、容量、公布的 origin，以及内存、协程、连接数等负载数字），数据服务据此生成游戏服列表与管理后台的节点、在线玩家页；节点 15 秒没有心跳就从游戏服列表消失，管理后台再把它作为“离线”列出 24 小时。
 - 比赛结束和房间规则变化后，游戏节点把记录写入本地发件箱，再按顺序投递到数据服务；数据服务暂时不可用时记录不会丢，恢复后自动补发。
 - 比赛奖励：游戏节点在结束快照里给出 `race.rewards`（经验、金币），结算经发件箱送达后由数据服务在同一事务内入账（按 `raceId` + 账号幂等）。余额、库存与等级只以数据服务为准，浏览器和游戏节点都不可信。
 
@@ -94,9 +94,9 @@
 
 ### 管理页面与发放货币
 
-管理后台是数据服务提供的单页应用 `<数据服务 origin>/multiplayer/admin`（本机默认 <http://127.0.0.1:8787/multiplayer/admin>，`run-lan.sh` 下也可经前端代理访问 `https://<IP>:8780/multiplayer/admin`；启动脚本会打印地址）。它用 Vue 3 + Element Plus 写在 [`admin-ui/`](admin-ui)，`npm run build` 的产物提交在 `internal/data/api/adminui/` 并嵌入 kart-data（`go build` 不需要 Node；还没构建时页面只提示构建命令）。用 `KART_ADMIN_USERNAMES` 中的账号登录（token 只保存在页面内存中），可以查看概览统计、搜索与编辑账号（昵称、管理员、封禁、重置密码）、踢下线、查看登录记录、在线玩家、游戏节点与数据服务状态、货币流水、发放记录、比赛、购买、抽奖与开箱记录、俱乐部，给账号增加或扣除点券、金币、K币或经验并填写备注。所有发放都写流水（原因 `admin`），余额与经验不会被扣成负数。管理页面还可以设置抽奖活动、向玩家的奖励箱赠送道具或货币、发布迷你提示窗公告（见 [`MENUS.md`](MENUS.md)）。接口与返回字段见 [`ADMIN.md`](ADMIN.md)。
+管理后台是数据服务提供的单页应用 `<数据服务 origin>/multiplayer/admin`（本机默认 <http://127.0.0.1:8787/multiplayer/admin>，`run-lan.sh` 下也可经前端代理访问 `https://<IP>:8780/multiplayer/admin`；启动脚本会打印地址）。它用 Vue 3 + Element Plus 写在 [`admin-ui/`](admin-ui)，`npm run build` 的产物提交在 `internal/data/api/adminui/` 并嵌入 kart-data（`go build` 不需要 Node，但产物必须存在才能编译；改了 `admin-ui/` 后重新构建并提交产物）。用 `KART_ADMIN_USERNAMES` 中的账号登录（token 只保存在页面内存中），可以查看概览统计、搜索与编辑账号（昵称、管理员、封禁、重置密码）、踢下线、查看账号的游戏数据（战绩、驾照、计时赛、任务、好友、俱乐部）、登录记录、在线玩家、游戏节点（含 24 小时内离线的节点）与数据服务状态、货币流水、发放记录、比赛、购买、抽奖与开箱记录、俱乐部及其成员、邀请码与奖励箱记录，给账号增加或扣除点券、金币、K币或经验并填写备注。`KART_ADMIN_USERNAMES` 中的账号只能由自己修改，其他管理员编辑或踢它们得到 409 `PROTECTED_ADMIN`。所有发放都写流水（原因 `admin`），余额与经验不会被扣成负数。管理页面还可以设置抽奖活动、向玩家的奖励箱赠送道具或货币、发布迷你提示窗公告（见 [`MENUS.md`](MENUS.md)）。接口与返回字段见 [`ADMIN.md`](ADMIN.md)。
 
-注册与每次成功登录都记录时间、客户端 IP（按“限流与反向代理”的可信代理规则取得）与浏览器 UA（`login_records`，保留 180 天）。封禁的账号（封禁到期前）登录时，在密码正确之后返回 403 `ACCOUNT_BANNED`（另带 `until`、`reason`）；封禁、重置密码与踢下线都会作废该账号的所有会话（旧 token 得到 401 `LOGIN_REQUIRED`）、关闭好友聊天与小屋连接，并让游戏服在下一次心跳时断开它。
+注册与每次成功登录都记录时间、客户端 IP（按“限流与反向代理”的可信代理规则取得）与浏览器 UA（`login_records`，保留 180 天）；游戏会记住令牌 30 天，所以每个账号每个北京日第一次用记住的令牌活动（当天没有注册或登录）时另记一条“自动登录”（`resume`），概览的“今日登录人数”包括它们。带令牌的成功请求还会更新账号的最后活跃时间与 IP（每个账号最多每 5 分钟写一次）。封禁的账号（封禁到期前）登录时，在密码正确之后返回 403 `ACCOUNT_BANNED`（另带 `until`、`reason`）；封禁、重置密码与踢下线都会作废该账号的所有会话（旧 token 得到 401 `LOGIN_REQUIRED`）、关闭好友聊天与小屋连接，并让游戏服在下一次心跳时断开它。
 
 1. 指定管理员（顺序很重要）：先设置名单再启动，`KART_ADMIN_USERNAMES=alice ./run-full-local.sh`（compose 写在 `.env`）。`alice` 已有账号时直接生效；尚未注册时，kart-data 日志会报错并打印引导邀请码（`grep -i invitation`，也可预先设置 `KART_BOOTSTRAP_INVITE`），名单中的用户名只能用邀请码注册（任何模式下都是，否则 400 `INVALID_INVITE`，防止抢注）。在游戏登录界面注册时，开放注册下点“有邀请码？”展开可选的邀请码栏填入（`invite` 模式下邀请码栏直接显示）；也可以用接口注册：
    ```sh
@@ -407,7 +407,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `GET /api/shop/catalog` | 商店目录（`catalog.json` 原文，不需要登录）；`ETag` 为目录版本，`If-None-Match` 命中返回 304；支持 gzip |
 | `POST /api/shop/purchase` | `{"offerId","requestId"(UUID),"expectedPrice"?,"expectedCurrency"?}` → `{"wallet","item","purchaseId"}`；同一 `requestId` 重放返回原结果、不重复扣款，换了 `offerId` 409 `REQUEST_ID_CONFLICT`；`expectedPrice`/`expectedCurrency`（商店显示的价格与货币）与当前报价不符 409 `PRICE_CHANGED`（不扣款）；404 `OFFER_NOT_FOUND`、409 `INSUFFICIENT_FUNDS`、409 `ALREADY_OWNED`（已有永久物品）、403 `EXP_REQUIRED`（经验低于 `minExp`）、409 `QUANTITY_LIMIT`、400 `INVALID_REQUEST_ID`。浏览器每个购买对话框生成一个 `requestId`，对话框内重试复用它 |
 | `POST /api/timeattack/settle` | `{"trackId","elapsedMs","requestId"}` → `{"exp","lucci","newRecord","capped","bestMs","levelUps","summary"}`；成绩小于 10 秒或超过 1 小时 400 `INVALID_ELAPSED_MS`，`trackId` 不在 `tracks.json` 中 400 `INVALID_TRACK`；距该账号上一次结算不足 10 秒或不足 `elapsedMs` − 3 秒 429 `TOO_MANY_ATTEMPTS`；同一 `requestId` 重放返回原结果，`trackId` 或 `elapsedMs` 不同 409 `REQUEST_ID_CONFLICT`。超过每日 50 次的跑次只更新最佳成绩（`capped:true`）。浏览器把 `TOO_MANY_ATTEMPTS`、`INVALID_TRACK` 静默当作“本局无奖励” |
-| `GET /api/admin/*` 列表与 `PATCH /api/admin/accounts/{id}` 等 | 管理后台接口（概览、用户、登录记录、在线玩家、节点、流水、发放、比赛、购买、抽奖、开箱、俱乐部）：分页 `{"items","total","page","pageSize"}`，参数与返回字段见 [`ADMIN.md`](ADMIN.md)；非管理员 403 `ADMIN_REQUIRED` |
+| `GET /api/admin/*` 列表与 `PATCH /api/admin/accounts/{id}` 等 | 管理后台接口（概览、用户、账号游戏数据、登录记录、在线玩家、节点、流水、发放、比赛、购买、抽奖、开箱、俱乐部与成员、邀请码、奖励箱）：分页 `{"items","total","page","pageSize"}`，参数与返回字段见 [`ADMIN.md`](ADMIN.md)；非管理员 403 `ADMIN_REQUIRED` |
 | `POST /api/admin/grant` | 管理员发放或扣除：`{"username","currency":"coupon"\|"lucci"\|"koin"\|"exp","amount","note","requestId"?}` → `{"applied","levelUps","duplicate","requestId","account"}`；同一 `requestId` 以相同参数重放返回 `duplicate:true`，参数不同 409 `REQUEST_ID_CONFLICT`；见“管理页面与发放货币” |
 
 ### 好友与私聊
@@ -542,7 +542,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 | 路径 | 调用时机 | 作用 |
 | --- | --- | --- |
-| `/internal/v1/nodes/heartbeat` | 启动时与每 5 秒 | 注册/刷新节点（TTL 15 秒），续期在线玩家的昵称与账号占用；可选的 `stats`（`heapMB`、`goroutines`、`connections`、`races`、`version`）与玩家的 `room`（所在房间名）供管理后台显示，旧节点不带也可以；响应带 `conflicts`（昵称或账号已被其他会话占用、须断开的玩家）与奖励倍率 `expRate`/`lucciRate`（游戏节点据此显示 `race.rewards`） |
+| `/internal/v1/nodes/heartbeat` | 启动时与每 5 秒 | 注册/刷新节点（TTL 15 秒），续期在线玩家的昵称与账号占用；可选的 `stats`（`heapMB` 保留一位小数、`goroutines`、`connections`、`races`、`version`）与玩家的 `room`（所在房间名）供管理后台显示，玩家的 `accountId` 让数据服务在 Redis 丢失账号映射后补回，旧节点不带也可以（新节点的小数 `heapMB` 旧数据服务无法解析，先升级数据服务）；响应带 `conflicts`（昵称或账号已被其他会话占用、须断开的玩家）与奖励倍率 `expRate`/`lucciRate`（游戏节点据此显示 `race.rewards`） |
 | `/internal/v1/nodes/leave` | 优雅关闭 | 删除节点及其全部昵称与账号占用 |
 | `/internal/v1/presence/claim` | `hello` | 原子占用昵称与账号（`presence:{昵称}`、`presence-account:{accountId}`，30 秒 TTL，靠心跳续期；两者都能占用才写入）；占用者节点已消失时可抢占；账号已在其他会话在线 409 `ACCOUNT_ONLINE`（先检查账号），昵称冲突 409 `NICKNAME_TAKEN`，游客名非法 400 `INVALID_GUEST_NAME`，账号被封禁 403 `ACCOUNT_BANNED`（游戏节点原样转给 `hello`） |
 | `/internal/v1/presence/release` | 连接断开 | 值匹配时释放昵称与账号 |
@@ -783,7 +783,7 @@ server {
 | `internal/data/config`、`internal/data/server` | 数据服务配置与组装（MySQL、Redis、两个监听口） |
 | `internal/data/store` | MySQL 表结构、迁移与事务 |
 | `internal/data/cache` | Redis 旁路缓存、节点注册与在线昵称 |
-| `internal/data/api` | 公网 API（含账号经济、好友私聊与管理页面 `admin.html`/`admin.js`）与内部 API（含装备核对） |
+| `internal/data/api` | 公网 API（含账号经济、好友私聊与嵌入的管理后台 `adminui/`）与内部 API（含装备核对） |
 | `internal/data/messenger` | 好友私聊的 WebSocket 连接、在线状态 hub、消息与同步推送、刷屏限制 |
 | `internal/data/economy` | 商店目录与等级表（`catalog.json`、`levels.json`，由 `rewrite/tools/export-economy-data.mjs` 生成并 `go:embed`） |
 | `internal/shared/rewards` | 联机比赛与计时赛奖励公式、每日上限（游戏节点与数据服务共用） |
