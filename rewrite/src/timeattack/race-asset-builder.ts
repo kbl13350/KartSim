@@ -1,3 +1,4 @@
+import { MissionTimerPanel } from "../license/mission-timer-panel";
 import { MissionResultAction, StoryAction2D } from "../story/mission-result-action";
 import type { StoryRaceRequest } from "../story/story-race";
 
@@ -264,8 +265,15 @@ export async function buildSoloRaceAssets(
       if (selection.story) {
         // The mission result animation is a bonus: race on without it if it cannot load.
         try {
+          // 驾照考试 steps with a time limit count it down on the release mission timer.
+          const timer = selection.story.timeLimitMs
+            ? await MissionTimerPanel.load(host.getLibrary()).catch(error => {
+              host.hud.showDebugText(`任务计时器未能载入：${
+                error instanceof Error ? error.message : String(error)}`, "error");
+              return undefined;
+            }) : undefined;
           action2D = new StoryAction2D(action2D,
-            await MissionResultAction.load(host.getLibrary(), audioContext));
+            await MissionResultAction.load(host.getLibrary(), audioContext), timer);
         } catch (error) {
           host.hud.showDebugText(`任务结果动画未能载入：${
             error instanceof Error ? error.message : String(error)}`, "error");

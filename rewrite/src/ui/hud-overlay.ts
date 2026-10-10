@@ -133,6 +133,7 @@ export class HudOverlay {
   loadingFabCopy: HTMLElement;
   loadingFabRing: HTMLElement;
   loadingProgress = new Map<unknown, { loaded: number; total: number }>();
+  startupLoading = false;
   performanceCounter: PerformanceCounter;
   debugVisible = false;
   nextDebugRefreshMs = 0;
@@ -319,8 +320,10 @@ export class HudOverlay {
   }
 
   beginLoading(): void {
+    this.startupLoading = false;
     this.loadingProgress.clear();
     clearProgress(this.loadingLabel);
+    this.loadingLabel.removeAttribute("aria-valuetext");
     clearProgress(this.loadingFabRing);
     this.setLoadingFabVisible(false);
     this.loadingView.classList.remove("is-complete", "has-error");
@@ -329,12 +332,37 @@ export class HudOverlay {
     this.loadingError.hidden = true;
   }
 
+  beginStartupLoading(): void {
+    this.beginLoading();
+    this.startupLoading = true;
+    delete this.loadingView.dataset.downloadItem;
+    delete this.loadingView.dataset.downloadPercent;
+    delete this.loadingView.dataset.downloadLoaded;
+    delete this.loadingView.dataset.downloadTotal;
+    this.setStartupProgress(0, "正在读取资源清单");
+  }
+
+  setStartupProgress(percent: number, message: string): void {
+    if (!this.startupLoading) return;
+    setProgress(this.loadingLabel, Math.max(0, Math.min(99, percent)));
+    this.loadingLabel.setAttribute("aria-valuetext", message);
+  }
+
   /** Resources always load from the online (mirrored) containers; no local Data prompt. */
   chooseResourceSource(_selectLocal?: () => Promise<unknown>): Promise<unknown> {
     return Promise.resolve(undefined);
   }
 
   finishLoading(): void {
+    if (this.startupLoading) {
+      setProgress(this.loadingLabel, 100);
+      this.loadingLabel.setAttribute("aria-valuetext", "加载完成");
+      this.startupLoading = false;
+    }
+    delete this.loadingView.dataset.downloadItem;
+    delete this.loadingView.dataset.downloadPercent;
+    delete this.loadingView.dataset.downloadLoaded;
+    delete this.loadingView.dataset.downloadTotal;
     this.loadingView.classList.add("is-complete");
     this.loadingView.setAttribute("aria-hidden", "true");
     this.setLoadingFabVisible(false);
@@ -343,6 +371,18 @@ export class HudOverlay {
 
   setLoadingProgress(key: unknown, loaded: number, total: number,
     label = "正在加载资源"): void {
+    // Downloads are discovered on demand. Their byte totals describe the
+    // background badge, not completion of parsing, login or scene setup.
+    if (this.startupLoading) {
+      const safeTotal = Math.max(0, total);
+      const safeLoaded = Math.min(safeTotal, Math.max(0, loaded));
+      const percent = safeTotal <= 0 ? 0 : Math.round((safeLoaded / safeTotal) * 10_000) / 100;
+      this.loadingView.dataset.downloadItem = label;
+      this.loadingView.dataset.downloadPercent = String(percent);
+      this.loadingView.dataset.downloadLoaded = String(safeLoaded);
+      this.loadingView.dataset.downloadTotal = String(safeTotal);
+      return;
+    }
     const safeTotal = Math.max(0, total);
     this.loadingProgress.set(key, {
       loaded: Math.min(safeTotal, Math.max(0, loaded)),

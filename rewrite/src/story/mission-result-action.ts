@@ -1,6 +1,7 @@
 import { PerspectiveCamera, Scene, Vector2, Vector4, type Object3D, type WebGLRenderer } from "three";
 import { we } from "../generated/formats.js";
 import { aI, Q9, S9 } from "../generated/library.js";
+import type { MissionTimerPanel } from "../license/mission-timer-panel";
 import { loadRequiredInterfaceAudio, type InterfaceAudioLibrary } from "../timeattack/interface-audio";
 import { giantControllerDuration } from "../ui/giant-boost-hud-model";
 import { applyReadyCameraMatrix, type ReadyCameraData } from "../vehicle/ready-camera";
@@ -189,22 +190,28 @@ interface ReleaseAction2D {
 
 /** The race's release Action2D plus the mission result; story races only. */
 export class StoryAction2D {
-  constructor(readonly release: ReleaseAction2D, readonly mission: MissionResultAction) {}
+  constructor(readonly release: ReleaseAction2D, readonly mission: MissionResultAction,
+    readonly timer?: MissionTimerPanel) {}
   scheduleStart(atMs: number): void { this.release.scheduleStart(atMs); }
   showLap(lap: number, nowMs: number): void { this.release.showLap(lap, nowMs); }
   showFinalLap(nowMs: number): void { this.release.showFinalLap(nowMs); }
   showFinish(nowMs: number): void { this.release.showFinish(nowMs); }
   showNewRecord(nowMs: number): void { this.release.showNewRecord(nowMs); }
   showMissionResult(success: boolean, nowMs: number): void { this.mission.show(success, nowMs); }
+  /** 驾照考试: the time a step has left (undefined hides the timer). */
+  setMissionTime(remainingMs: number | undefined): void { this.timer?.set(remainingMs); }
   reset(): void {
     this.release.reset();
     this.mission.reset();
+    this.timer?.reset();
   }
   render(renderer: WebGLRenderer, nowMs: number, width: number, height: number): void {
+    this.timer?.render(renderer, nowMs, width, height);
     this.release.render(renderer, nowMs, width, height);
     this.mission.render(renderer, nowMs);
   }
   dispose(): void {
+    this.timer?.dispose();
     this.release.dispose();
     this.mission.dispose();
   }

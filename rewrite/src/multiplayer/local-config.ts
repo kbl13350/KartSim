@@ -6,7 +6,8 @@ export interface LocalMultiplayerConfig {
    */
   backendOrigin: string;
   frontendOrigins: string[];
-  transport: "websocket" | "webrtc";
+  /** "auto" (WebRTC, else WebSocket), "webrtc" or "websocket". */
+  transport: "auto" | "websocket" | "webrtc";
 }
 
 declare global {
@@ -42,11 +43,14 @@ export function createLocalMultiplayerConfig(pageOrigin: string,
     throw new Error("An HTTPS game page requires an HTTPS backend");
   }
   const chosen = environment.VITE_MULTIPLAYER_TRANSPORT?.trim();
-  if (chosen && chosen !== "websocket" && chosen !== "webrtc") {
-    throw new Error("VITE_MULTIPLAYER_TRANSPORT must be websocket or webrtc");
+  if (chosen && chosen !== "websocket" && chosen !== "webrtc" && chosen !== "auto") {
+    throw new Error("VITE_MULTIPLAYER_TRANSPORT must be auto, websocket or webrtc");
   }
+  // Game nodes answer WebRTC offers: the motion channel drops a late frame
+  // instead of holding newer ones behind it. A node or network without it
+  // falls back to the WebSocket.
   return { backendOrigin, frontendOrigins: [pageOrigin],
-    transport: (chosen || "websocket") as LocalMultiplayerConfig["transport"] };
+    transport: (chosen || "auto") as LocalMultiplayerConfig["transport"] };
 }
 
 export function installLocalMultiplayerConfig(): LocalMultiplayerConfig {

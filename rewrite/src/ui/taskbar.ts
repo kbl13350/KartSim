@@ -38,6 +38,18 @@ export interface TaskbarOptions {
   onActivate?: () => void;
   /** messengerButton: 好友聊天系统 (ui/messenger-window.ts). */
   onMessenger?: () => void;
+  /** 俱乐部: the club pages. */
+  onClub?: () => void;
+  /** goRewardBox: 奖励箱. */
+  onRewardBox?: () => void;
+  /** noticer: the 迷你提示窗 bubble over the button. */
+  onNoticer?: () => void;
+  /** questDialog: 任务. */
+  onQuest?: () => void;
+  /** toggle_gchat: 聊天系统 (全部聊天 / 俱乐部聊天). */
+  onChat?: () => void;
+  /** findRiderButton: 查找车手. */
+  onFindRider?: () => void;
   /** messengerAlert, the tray's red "!" (ui/messenger-tray.ts). */
   messengerAlert?: {
     active(): boolean;
@@ -251,6 +263,12 @@ export class Taskbar {
     if (name === "gotoHome") return this.options.onHome;
     if (name === "상점") return this.options.onShop;
     if (name === "messengerButton") return this.options.onMessenger;
+    if (name === "club") return this.options.onClub;
+    if (name === "goRewardBox") return this.options.onRewardBox;
+    if (name === "noticer") return this.options.onNoticer;
+    if (name === "questDialog") return this.options.onQuest;
+    if (name === "toggle_gchat") return this.options.onChat;
+    if (name === "findRiderButton") return this.options.onFindRider;
     return undefined;
   }
 }

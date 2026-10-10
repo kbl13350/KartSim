@@ -10,6 +10,7 @@
     INVALID_CREDENTIALS: "用户名或密码错误",
     TOO_MANY_ATTEMPTS: "尝试次数过多，请稍后再试",
     LOGIN_REQUIRED: "登录已失效，请重新登录",
+    SESSION_REPLACED: "该账号已在其他地方登录，请重新登录",
     ADMIN_REQUIRED: "该账号不是管理员",
     ACCOUNT_NOT_FOUND: "找不到该用户名",
     INVALID_GRANT: "类型或数量无效（数量不能为 0，绝对值不超过 10 亿）",
@@ -25,6 +26,10 @@
     INTERNAL_ERROR: "服务器内部错误",
     INVALID_ACTIVITY: "活动无效",
     INVALID_REQUEST: "设置无效（结束时间须晚于开始时间，每日道具须为已知道具，数量 1–1000，最多 8 种）",
+    INVALID_GIFT: "赠送无效（道具须为已知道具，数量 1–1000000，天数 0–3650，说明最多 60 字）",
+    INVALID_NOTICE: "公告无效（标题 1–40 字，内容 1–400 字，结束时间须晚于开始时间）",
+    INVALID_NOTICE_ID: "公告编号无效",
+    NOTICE_NOT_FOUND: "公告不存在或已删除",
   };
   const currencyNames = { coupon: "点券", lucci: "金币", koin: "K币", exp: "经验" };
 
@@ -77,7 +82,7 @@
     try { data = await response.json(); } catch (error) { data = null; }
     if (!response.ok) {
       const code = data && typeof data.error === "string" ? data.error : "HTTP_" + response.status;
-      if (code === "LOGIN_REQUIRED") signOut();
+      if (code === "LOGIN_REQUIRED" || code === "SESSION_REPLACED") signOut();
       const failure = new Error(describe(code));
       failure.code = code;
       throw failure;
@@ -93,6 +98,7 @@
     $("console").hidden = false;
     search("");
     loadLottery();
+    loadNotices();
   }
 
   function signOut() {
@@ -110,8 +116,9 @@
     const status = $("login-status");
     show(status, "正在登录…");
     try {
+      // console: an admin's console login keeps its game login (single sign-on ends the others).
       const login = await call("POST", "/multiplayer/auth/login", {
-        username: form.username.value.trim(), password: form.password.value,
+        username: form.username.value.trim(), password: form.password.value, console: true,
       });
       form.password.value = "";
       if (!login.account || !login.account.admin) {
@@ -163,6 +170,7 @@
       );
       tr.addEventListener("click", () => {
         $("grant-form").username.value = account.username;
+        $("gift-form").username.value = account.username;
         $("grant-form").amount.focus();
       });
       return tr;
@@ -367,6 +375,148 @@
     if (!editing) return;
     if (!window.confirm("恢复 " + (editing.name || editing.activity) + " 的默认设置（一直开放、默认每日道具）？")) return;
     saveLottery({ activity: editing.activity, reset: true });
+  });
+
+  // ---- 奖励箱赠送 (MENUS.md 1) ----
+  function syncGiftKind() {
+    const item = $("gift-form").kind.value === "item";
+    $("gift-item-label").hidden = !item;
+    $("gift-days-label").hidden = !item;
+    $("gift-form").item.required = item;
+  }
+  $("gift-form").kind.addEventListener("change", syncGiftKind);
+
+  $("gift-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const status = $("gift-status");
+    const count = Number(form.count.value);
+    const body = { username: form.username.value.trim(), count, message: form.message.value.trim() };
+    let what = formatNumber(count) + " " + (currencyNames[form.kind.value] || "");
+    if (form.kind.value === "item") {
+      const match = /^(\d+)\s*:\s*(\d+)$/.exec(form.item.value.trim());
+      if (!match) {
+        show(status, "道具请填“分类:编号”", "error");
+        return;
+      }
+      body.category = Number(match[1]);
+      body.itemId = Number(match[2]);
+      body.days = Number(form.days.value) || 0;
+      what = "道具 " + body.category + ":" + body.itemId + " ×" + formatNumber(count) + (body.days ? "（" + body.days + "天）" : "");
+    } else {
+      body.currency = form.kind.value;
+      if (body.currency === "koin") what = formatNumber(count) + " 酷币";
+    }
+    if (!Number.isSafeInteger(count) || count < 1) {
+      show(status, describe("INVALID_GIFT"), "error");
+      return;
+    }
+    if (!window.confirm("确认向 " + body.username + " 的奖励箱赠送 " + what + "？")) return;
+    const button = form.querySelector("button[type=submit]");
+    button.disabled = true;
+    show(status, "正在提交…");
+    try {
+      const result = await call("POST", "/api/admin/reward-box", body);
+      show(status, "已放入 " + body.username + " 的奖励箱：" + result.entry.name + " ×" + formatNumber(result.entry.count) +
+        "，30 天内可领取。", "ok");
+    } catch (error) {
+      show(status, error.message, "error");
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  // ---- 迷你提示窗公告 (MENUS.md 3) ----
+  function editNotice(notice) {
+    const form = $("notice-form");
+    form.id.value = String(notice ? notice.id : 0);
+    form.title.value = notice ? notice.title : "";
+    form.message.value = notice ? notice.message : "";
+    form.start.value = notice && notice.startAt ? localInput(notice.startAt) : "";
+    form.end.value = notice && notice.endAt ? localInput(notice.endAt) : "";
+    $("notice-save").textContent = notice ? "保存修改" : "发布";
+    $("notice-cancel").hidden = !notice;
+    if (notice) form.title.focus();
+  }
+
+  function renderNotices(notices) {
+    const rows = notices.map((notice) => {
+      const tr = document.createElement("tr");
+      const edit = document.createElement("button");
+      edit.type = "button";
+      edit.textContent = "编辑";
+      edit.addEventListener("click", () => {
+        editNotice(notice);
+        show($("notice-status"), "正在编辑：" + notice.title);
+      });
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "删除";
+      remove.addEventListener("click", () => deleteNotice(notice));
+      const actions = document.createElement("td");
+      actions.append(edit, " ", remove);
+      const message = cell(notice.message.length > 40 ? notice.message.slice(0, 40) + "…" : notice.message);
+      message.title = notice.message;
+      tr.append(cell(notice.title), message, cell(periodText(notice.startAt || null, notice.endAt || null)),
+        cell((notice.updatedBy || "") + " " + formatTime(notice.updatedAt)), actions);
+      return tr;
+    });
+    if (!rows.length) {
+      const tr = document.createElement("tr");
+      const td = cell("暂无公告");
+      td.colSpan = 5;
+      td.className = "muted";
+      tr.append(td);
+      rows.push(tr);
+    }
+    $("notices").replaceChildren(...rows);
+  }
+
+  async function loadNotices() {
+    try {
+      renderNotices((await call("GET", "/api/admin/notices")).notices);
+    } catch (error) {
+      show($("notice-status"), error.message, "error");
+    }
+  }
+
+  async function deleteNotice(notice) {
+    if (!window.confirm("删除公告“" + notice.title + "”？")) return;
+    const status = $("notice-status");
+    try {
+      await call("DELETE", "/api/admin/notices/" + notice.id);
+      if (Number($("notice-form").id.value) === notice.id) editNotice(null);
+      show(status, "已删除：" + notice.title, "ok");
+      loadNotices();
+    } catch (error) {
+      show(status, error.message, "error");
+    }
+  }
+
+  $("notice-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const status = $("notice-status");
+    const body = { id: Number(form.id.value) || 0, title: form.title.value.trim(), message: form.message.value.trim() };
+    if (form.start.value) body.startAt = new Date(form.start.value).getTime();
+    if (form.end.value) body.endAt = new Date(form.end.value).getTime();
+    const button = $("notice-save");
+    button.disabled = true;
+    try {
+      await call("PUT", "/api/admin/notices", body);
+      show(status, (body.id ? "已保存：" : "已发布：") + body.title, "ok");
+      editNotice(null);
+      loadNotices();
+    } catch (error) {
+      show(status, error.message, "error");
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  $("notice-cancel").addEventListener("click", () => {
+    editNotice(null);
+    show($("notice-status"), "");
   });
 
   $("invite").addEventListener("click", async () => {

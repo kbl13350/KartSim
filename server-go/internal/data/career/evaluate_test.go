@@ -260,3 +260,35 @@ func TestDistanceCareers(t *testing.T) {
 		t.Fatalf("camera distance = %+v %+v", vlog, p)
 	}
 }
+
+func TestLicenseCareers(t *testing.T) {
+	data, err := Default()
+	if err != nil {
+		t.Fatal(err)
+	}
+	var levels []*Career
+	var pro *Career
+	for i := range data.Careers {
+		switch c := &data.Careers[i]; c.Type {
+		case 30:
+			levels = append(levels, c)
+		case 31:
+			pro = c
+		}
+	}
+	if len(levels) != 6 || pro == nil || pro.Clear != 3 {
+		t.Fatalf("license careers %d, pro %+v", len(levels), pro)
+	}
+	f := emptyFacts()
+	f.Counters[CounterLicenseLevel] = 2
+	for _, c := range levels {
+		value, tracked := data.Value(c, f)
+		if !tracked || value != 2 || data.Reached(c, f) != (c.Clear <= 2) {
+			t.Fatalf("career %d (clear %d): %d %v", c.ID, c.Clear, value, tracked)
+		}
+	}
+	f.Counters[CounterLicensePro] = 3
+	if !data.Reached(pro, f) {
+		t.Fatal("three PRO licenses not reached")
+	}
+}

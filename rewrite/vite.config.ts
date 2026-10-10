@@ -18,10 +18,12 @@ const backend = process.env.KART_LAN_BACKEND ?? "http://127.0.0.1:8787";
 const gameBackend = process.env.KART_LAN_GAME_BACKEND ?? "http://127.0.0.1:8788";
 const lan = lanCert && lanKey ? {
   https: { cert: readFileSync(lanCert), key: readFileSync(lanKey) },
-  // Vite tries these in order, so the WebSocket route must come first. All are
+  // Vite tries these in order, so the game node's routes must come first. All are
   // anchored so /multiplayer-config.js stays a static file.
   proxy: {
     "^/multiplayer/ws(?:[?#]|$)": { target: gameBackend, ws: true, xfwd: true },
+    // WebRTC signaling goes to the game node too; its media path is UDP, direct.
+    "^/multiplayer/offer(?:[?#]|$)": { target: gameBackend, xfwd: true },
     "^/multiplayer/": { target: backend, xfwd: true },
     "^/api/messenger/ws(?:[?#]|$)": { target: backend, ws: true, xfwd: true },
     "^/api/": { target: backend, xfwd: true },

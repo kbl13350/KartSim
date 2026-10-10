@@ -66,12 +66,19 @@ type progressJSON struct {
 	Glove        string `json:"glove"`
 	GloveName    string `json:"gloveName"`
 	MaxLevel     int    `json:"maxLevel"`
+	// TryLevel is the highest license the level may try (1 新手 … 5 L1);
+	// License the license held (0 none … 6 PRO) and ProUntil the end of a
+	// PRO license (Unix ms, 0 never taken).
+	TryLevel int   `json:"tryLevel"`
+	License  int   `json:"license"`
+	ProUntil int64 `json:"proUntil"`
 }
 
 func (a *API) progress(exp int64) progressJSON {
 	level := a.economy.Levels.LevelForExp(exp)
 	progress := progressJSON{Level: level.Level, Exp: level.Exp, LevelExp: level.LevelStartExp,
-		Glove: level.Glove, GloveName: level.GloveName, MaxLevel: level.MaxLevel}
+		Glove: level.Glove, GloveName: level.GloveName, MaxLevel: level.MaxLevel,
+		TryLevel: a.economy.Levels.Levels[level.Level].TryLevel}
 	if level.Level < level.MaxLevel {
 		next := level.NextLevelExp
 		progress.NextLevelExp = &next
@@ -92,7 +99,7 @@ func (a *API) summary(r *http.Request, account store.Account) (summaryJSON, erro
 	return summaryJSON{
 		Account: summaryAccount{Username: loaded.Account.Username, Nickname: loaded.Account.Nickname,
 			Admin: loaded.Account.Admin, CreatedAt: loaded.CreatedAt},
-		Progress:  a.progress(loaded.Exp),
+		Progress:  a.licensed(a.progress(loaded.Exp), loaded.License, loaded.ProUntil),
 		Wallet:    loaded.Wallet,
 		Stats:     loaded.Stats,
 		Onboarded: loaded.Onboarded,

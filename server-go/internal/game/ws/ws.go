@@ -1,5 +1,6 @@
 // Package ws carries the lobby protocol over WebSocket: request/reply JSON
-// in text frames and motion frames in binary frames (the Java LocalWebSocket).
+// in text frames and motion frames in binary frames (the Java LocalWebSocket),
+// or over WebRTC data channels (rtc.go).
 // Each connection has one reader goroutine that handles messages in order
 // and one writer goroutine that drains a bounded queue, so broadcasts made
 // under the lobby lock never block on a slow peer.
@@ -9,6 +10,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"io"
 	"log/slog"
 	"maps"
 	"net"
@@ -20,6 +22,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/gorilla/websocket"
+	"github.com/pion/webrtc/v4"
 
 	"kartsim/internal/game/lobby"
 	"kartsim/internal/shared/apierr"
@@ -81,6 +84,10 @@ type Server struct {
 	upgrading int // requests between the capacity check and registration
 	closing   bool
 	wg        sync.WaitGroup
+
+	// WebRTC transport (rtc.go): nil until EnableWebRTC.
+	rtc    *webrtc.API
+	rtcMux io.Closer
 }
 
 // NewServer returns a WebSocket endpoint for l. Browser origins are checked
@@ -161,7 +168,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		s.mu.Unlock()
 		return // the upgrader already answered with an HTTP error
 	}
-	c := newConn(socket, s.opts, s.log)
+	c := newConn(&wsLink{socket: socket, writeTimeout: s.opts.WriteTimeout}, s.opts, s.log)
 	s.mu.Lock()
 	s.upgrading--
 	if s.closing {
@@ -225,6 +232,7 @@ func (s *Server) Shutdown(ctx context.Context) error {
 	}()
 	select {
 	case <-done:
+		s.closeRTCMux()
 		return nil
 	case <-ctx.Done():
 	}
@@ -235,11 +243,23 @@ func (s *Server) Shutdown(ctx context.Context) error {
 		c.terminate()
 	}
 	<-done
+	s.closeRTCMux()
 	return ctx.Err()
 }
 
+// closeRTCMux releases the WebRTC UDP port once no peer uses it.
+func (s *Server) closeRTCMux() {
+	s.mu.Lock()
+	mux := s.rtcMux
+	s.rtcMux = nil
+	s.mu.Unlock()
+	if mux != nil {
+		_ = mux.Close()
+	}
+}
+
 func (s *Server) readLoop(c *conn) {
-	socket := c.socket
+	socket := c.link.(*wsLink).socket
 	extend := func() { _ = socket.SetReadDeadline(time.Now().Add(s.opts.ReadTimeout)) }
 	socket.SetReadLimit(s.opts.ReadLimit)
 	extend()
@@ -268,28 +288,36 @@ func (s *Server) readLoop(c *conn) {
 			return
 		}
 		extend()
-		switch kind {
-		case websocket.TextMessage:
-			if !utf8.Valid(data) {
-				// Tomcat rejected malformed text frames the same way (RFC 6455 §8.1).
-				c.closeWith(websocket.CloseInvalidFramePayloadData, "invalid UTF-8")
-				return
-			}
-			if !s.handleText(c, data) {
-				return
-			}
-		case websocket.BinaryMessage:
-			now := time.Now()
-			if !c.motion.allow(now) {
-				if !c.strikes.allow(now) {
-					s.closeFlooder(c)
-					return
-				}
-				continue
-			}
-			s.relay(c, data)
+		if !s.receive(c, kind, data) {
+			return
 		}
 	}
+}
+
+// receive handles one client message of either transport: a JSON command
+// (text) or a motion frame (binary). It returns false once the connection
+// was closed (malformed text, flooding).
+func (s *Server) receive(c *conn, kind int, data []byte) bool {
+	switch kind {
+	case websocket.TextMessage:
+		if !utf8.Valid(data) {
+			// Tomcat rejected malformed text frames the same way (RFC 6455 §8.1).
+			c.closeWith(websocket.CloseInvalidFramePayloadData, "invalid UTF-8")
+			return false
+		}
+		return s.handleText(c, data)
+	case websocket.BinaryMessage:
+		now := time.Now()
+		if !c.motion.allow(now) {
+			if !c.strikes.allow(now) {
+				s.closeFlooder(c)
+				return false
+			}
+			return true
+		}
+		s.relay(c, data)
+	}
+	return true
 }
 
 // handleText mirrors LocalWebSocket.handleTextMessage: parse, validate
@@ -385,9 +413,44 @@ var (
 	_ lobby.Closer       = (*conn)(nil)
 )
 
-// conn is one socket with its bounded outbound queue.
+// link is a connection's transport: a WebSocket, or the WebRTC data
+// channels of rtc.go. Frames keep the WebSocket kinds: text is a JSON
+// command or event, binary a motion frame.
+type link interface {
+	write(f frame) error
+	// ping keeps an idle transport alive between writes.
+	ping() error
+	// sendClose tells the peer why the connection ends, where the transport
+	// can (a WebSocket close frame).
+	sendClose(code int, reason string)
+	close() error
+}
+
+// wsLink is a WebSocket transport.
+type wsLink struct {
+	socket       *websocket.Conn
+	writeTimeout time.Duration
+}
+
+func (l *wsLink) write(f frame) error {
+	_ = l.socket.SetWriteDeadline(time.Now().Add(l.writeTimeout))
+	return l.socket.WriteMessage(f.kind, f.data)
+}
+
+func (l *wsLink) ping() error {
+	return l.socket.WriteControl(websocket.PingMessage, nil, time.Now().Add(l.writeTimeout))
+}
+
+func (l *wsLink) sendClose(code int, reason string) {
+	_ = l.socket.WriteControl(websocket.CloseMessage,
+		websocket.FormatCloseMessage(code, reason), time.Now().Add(time.Second))
+}
+
+func (l *wsLink) close() error { return l.socket.Close() }
+
+// conn is one client connection with its bounded outbound queue.
 type conn struct {
-	socket *websocket.Conn
+	link   link
 	client *lobby.Client
 	opts   Options
 	log    *slog.Logger
@@ -410,8 +473,8 @@ type frame struct {
 	room string // set for a room snapshot push, which a newer one supersedes
 }
 
-func newConn(socket *websocket.Conn, opts Options, log *slog.Logger) *conn {
-	c := &conn{socket: socket, opts: opts, log: log,
+func newConn(transport link, opts Options, log *slog.Logger) *conn {
+	c := &conn{link: transport, opts: opts, log: log,
 		text:    newLimiter(opts.TextRate, opts.TextBurst),
 		rules:   newLimiter(opts.RulesRate, opts.RulesBurst),
 		motion:  newLimiter(opts.MotionRate, opts.MotionBurst),
@@ -495,8 +558,7 @@ func (c *conn) writeLoop() {
 			c.queue = nil
 			c.mu.Unlock()
 			for _, f := range batch {
-				_ = c.socket.SetWriteDeadline(time.Now().Add(c.opts.WriteTimeout))
-				if err := c.socket.WriteMessage(f.kind, f.data); err != nil {
+				if err := c.link.write(f); err != nil {
 					c.terminate()
 					return
 				}
@@ -505,8 +567,7 @@ func (c *conn) writeLoop() {
 				c.mu.Unlock()
 			}
 		case <-ticker.C:
-			if err := c.socket.WriteControl(websocket.PingMessage, nil,
-				time.Now().Add(c.opts.WriteTimeout)); err != nil {
+			if err := c.link.ping(); err != nil {
 				c.terminate()
 				return
 			}
@@ -516,13 +577,12 @@ func (c *conn) writeLoop() {
 
 // closeWith sends a close frame, then drops the socket.
 func (c *conn) closeWith(code int, text string) {
-	_ = c.socket.WriteControl(websocket.CloseMessage,
-		websocket.FormatCloseMessage(code, text), time.Now().Add(time.Second))
+	c.link.sendClose(code, text)
 	c.terminate()
 }
 
-// terminate stops the writer and closes the socket; the reader then fails
-// and the server releases the player.
+// terminate stops the writer and closes the transport; the reader then
+// fails and the server releases the player.
 func (c *conn) terminate() {
 	c.once.Do(func() {
 		c.mu.Lock()
@@ -531,7 +591,7 @@ func (c *conn) terminate() {
 		c.queued = 0
 		c.mu.Unlock()
 		close(c.done)
-		_ = c.socket.Close()
+		_ = c.link.close()
 	})
 }
 

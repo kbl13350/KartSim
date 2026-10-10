@@ -31,11 +31,13 @@ type fakeBackend struct {
 	clientIDs map[string]Message
 	nextID    int64
 	hub       *Hub
+	clubs     map[string]int64
 }
 
 func newFakeBackend() *fakeBackend {
 	return &fakeBackend{friends: map[string][]string{}, invisible: map[string]bool{}, inGame: map[string]bool{},
-		rosterErr: map[string]error{}, revoked: map[string]bool{}, clientIDs: map[string]Message{}}
+		rosterErr: map[string]error{}, revoked: map[string]bool{}, clientIDs: map[string]Message{},
+		clubs: map[string]int64{}}
 }
 
 func (b *fakeBackend) befriend(x, y string) {
@@ -111,6 +113,12 @@ func (b *fakeBackend) Send(_ context.Context, from, to, text, clientID string) (
 }
 
 func (b *fakeBackend) Read(context.Context, string, string, int64) error { return nil }
+
+func (b *fakeBackend) ChatProfile(_ context.Context, accountID string) (ChatProfile, error) {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+	return ChatProfile{Nickname: "N" + accountID, ClubID: b.clubs[accountID], ClubName: "club"}, nil
+}
 
 type testHub struct {
 	t       *testing.T

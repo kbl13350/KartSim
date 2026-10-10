@@ -67,6 +67,10 @@ const (
 	CounterTimeAttack      = "timeattack.finish"
 	// CounterCameraDistance is the meters raced with a replay camera.
 	CounterCameraDistance = "race.distance.camera"
+	// CounterLicenseLevel is the highest license taken (1 新手 … 6 PRO) and
+	// CounterLicensePro how many times PRO was taken.
+	CounterLicenseLevel = "license.level"
+	CounterLicensePro   = "license.pro"
 )
 
 // metersPerCareerUnit converts meters to the distance careers' clearValue
@@ -171,6 +175,10 @@ func (d *Data) Value(c *Career, f Facts) (value int64, tracked bool) {
 		return int64(f.MainEmblems), true
 	case 28:
 		return f.Counters[CounterTimeAttack], true
+	case 30: // 라이센스 획득: the license level reached
+		return f.Counters[CounterLicenseLevel], true
+	case 31: // PRO 라이센스 획득 횟수
+		return f.Counters[CounterLicensePro], true
 	case 40:
 		return raceCount(f, RaceWin, c), true
 	case 42:

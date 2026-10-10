@@ -291,7 +291,7 @@ export function localRiderName(): string {
 }
 
 /** Open the saved My Room from Ready, holding a distinct shell modal state. */
-export async function openReadyHouse(controller: ReadyHouseController): Promise<void> {
+export async function openReadyHouse(controller: ReadyHouseController, visit?: string): Promise<void> {
   if (controller.disposed || controller.activeHouse || controller.readyModalBusy() ||
       !controller.activeTimeAttackReady) return;
   const library = controller.host.getLibrary() as
@@ -319,6 +319,7 @@ export async function openReadyHouse(controller: ReadyHouseController): Promise<
       onOpenInventory: () => openHouseInventory(controller, library),
       onClose: () => closeReadyHouse(controller),
       social: roomSocial(controller, library, catalog),
+      ...(visit ? { visit } : {}),
     });
     controller.activeHouse = view;
     try {

@@ -1,6 +1,10 @@
+import { showAccountToast, type OverlayDocument } from "../account/account-dialogs";
+import { activeBrowserSession } from "../account/account-runtime";
 import { accountOwnedEquipment, garageViewCatalog } from "../account/garage-ownership";
+import { channelLicenseWarning } from "../license/license-model";
 import type { ReadyOptions, ReadySelection } from "./ready-flow";
 import { selectionKeep } from "./ready-garage";
+import { goReadyHome, type ReadyHomeController } from "./ready-home";
 import { closeReadyLottery } from "./ready-lottery";
 import { closeReadyShop } from "./ready-shop";
 
@@ -74,6 +78,7 @@ export interface ReadyMultiplayerController {
   activeShop?: { close(): void };
   readyToonEnvironment?: unknown;
   closeMultiplayer(openReady?: boolean, restoreReady?: boolean): void;
+  returnMultiplayerToSinglePlayer(): Promise<void>;
   multiplayerGarageOptions(): Promise<unknown>;
   applyMultiplayerGarage(choice: GarageChoice): void;
   changeFavoriteTrack(track: unknown, favorite: boolean): void;
@@ -112,6 +117,9 @@ export async function openReadyMultiplayer(controller: ReadyMultiplayerControlle
 
   const garage = host.shell.modal === "garage" ? controller.activeGarage : undefined;
   if (!host.shell.enterMultiplayerLobby(garage ? "garage" : "ready")) return;
+  // channel.xml licenseLevel: the CN client only advises (joinChannelWarning).
+  const warning = channelLicenseWarning(channel, activeBrowserSession()?.summary()?.progress.license ?? 0);
+  if (warning) showAccountToast(host.root.ownerDocument as unknown as OverlayDocument, warning);
   host.setReadyOptions(deps.sanitizeReadyOptions(host.getReadyOptions()));
   garage?.freeze();
 
@@ -169,6 +177,15 @@ export async function openReadyMultiplayer(controller: ReadyMultiplayerControlle
     },
     status: (message: string, error: boolean) => {
       if (error) host.hud.showDebugText(message, "error");
+    },
+    // Our own connection dropped (mid-race too): leave multiplayer for the 大厅
+    // (home); 多人游戏 there connects again.
+    onDisconnected: () => {
+      if (controller.multiplayer !== lobby || controller.disposed) return;
+      showAccountToast(host.root.ownerDocument as unknown as OverlayDocument,
+        "与联机服务器的连接已断开，已返回大厅。可以重新进入多人游戏。");
+      void goReadyHome(controller as unknown as ReadyHomeController,
+        () => controller.returnMultiplayerToSinglePlayer());
     },
     autoReadyEnabled: () => host.getGameOptions().autoReady,
     toggleAutoReady: () => {

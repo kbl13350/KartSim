@@ -67,6 +67,51 @@ export function messengerSocketUrl(backendOrigin: string): string {
   return url.href;
 }
 
+/** A 聊天系统 line (server-go messenger/chat.go ChatLine). */
+export interface ChatLine {
+  id: number;
+  channel: "all" | "club";
+  from: string;
+  text: string;
+  at: number;
+}
+
+/** chat-joined: both channels' recent lines and the rider's club. */
+export interface ChatJoined {
+  all: ChatLine[];
+  club: ChatLine[];
+  clubName: string;
+  hasClub: boolean;
+}
+
+/** The 聊天系统 window's feed while it is open. */
+export interface ChatListener {
+  joined(state: ChatJoined): void;
+  line(line: ChatLine): void;
+  connection?(open: boolean): void;
+}
+
+interface PendingChat {
+  resolve(value: Record<string, unknown>): void;
+  reject(error: Error): void;
+  timer: ReturnType<typeof setTimeout>;
+}
+
+export function parseChatLine(value: unknown): ChatLine | undefined {
+  if (!value || typeof value !== "object") return undefined;
+  const line = value as Record<string, unknown>;
+  if (typeof line.id !== "number" || (line.channel !== "all" && line.channel !== "club") ||
+      typeof line.from !== "string" || typeof line.text !== "string" || typeof line.at !== "number") return undefined;
+  return { id: line.id, channel: line.channel, from: line.from, text: line.text, at: line.at };
+}
+
+function parseChatJoined(frame: Record<string, unknown>): ChatJoined {
+  const lines = (value: unknown) => Array.isArray(value)
+    ? value.map(parseChatLine).filter((line): line is ChatLine => !!line) : [];
+  return { all: lines(frame.all), club: lines(frame.club),
+    clubName: typeof frame.clubName === "string" ? frame.clubName : "", hasClub: frame.hasClub === true };
+}
+
 interface PendingSend {
   to: string;
   text: string;
@@ -88,6 +133,8 @@ export class MessengerConnection {
   private syncAgain = false;
   private requestIds = 0;
   private readonly sends = new Map<string, PendingSend>();
+  private readonly chats = new Map<string, PendingChat>();
+  private chatListener?: ChatListener;
   private readonly setTimer: typeof setTimeout;
   private readonly clearTimer: typeof clearTimeout;
   private readonly onOnline = () => {
@@ -125,6 +172,7 @@ export class MessengerConnection {
       pending.reject(new AccountServiceError("MESSENGER_STOPPED"));
       this.sends.delete(id);
     }
+    this.failChats("MESSENGER_STOPPED");
     this.options.store.setConnection(state);
   }
 
@@ -171,6 +219,8 @@ export class MessengerConnection {
       this.welcomed = false;
       if (this.pingTimer !== undefined) this.clearTimer(this.pingTimer);
       this.pingTimer = undefined;
+      this.failChats("MESSENGER_OFFLINE");
+      if (welcomed) this.chatListener?.connection?.(false);
       for (const [id, pending] of this.sends) {
         this.clearTimer(pending.timer);
         this.sends.delete(id);
@@ -231,6 +281,32 @@ export class MessengerConnection {
         this.schedulePing();
         // Rooms with a log may have missed messages while disconnected.
         for (const room of store.rooms) if (room.loaded) void this.loadLatest(room.peerId);
+        if (this.chatListener) {
+          this.chatListener.connection?.(true);
+          this.joinChat();
+        }
+        return;
+      }
+      case "chat-joined": {
+        const pending = typeof frame.requestId === "string" ? this.chats.get(frame.requestId) : undefined;
+        if (pending) {
+          this.chats.delete(frame.requestId as string);
+          this.clearTimer(pending.timer);
+          pending.resolve(frame);
+        }
+        return;
+      }
+      case "chat": {
+        const line = parseChatLine(frame.line);
+        if (line) this.chatListener?.line(line);
+        return;
+      }
+      case "chat-sent": {
+        const pending = typeof frame.requestId === "string" ? this.chats.get(frame.requestId) : undefined;
+        if (!pending) return;
+        this.chats.delete(frame.requestId as string);
+        this.clearTimer(pending.timer);
+        pending.resolve(frame);
         return;
       }
       case "sync":
@@ -260,6 +336,13 @@ export class MessengerConnection {
         return;
       case "error": {
         const code = typeof frame.code === "string" ? frame.code : "MESSENGER_ERROR";
+        const chat = typeof frame.requestId === "string" ? this.chats.get(frame.requestId) : undefined;
+        if (chat) {
+          this.chats.delete(frame.requestId as string);
+          this.clearTimer(chat.timer);
+          chat.reject(new AccountServiceError(code, 0, frame));
+          return;
+        }
         const pending = typeof frame.requestId === "string" ? this.sends.get(frame.requestId) : undefined;
         if (pending) {
           this.sends.delete(frame.requestId as string);
@@ -371,6 +454,63 @@ export class MessengerConnection {
         this.options.api.send(to, text, clientId).then(resolve, reject);
       }
     });
+  }
+
+  private failChats(code: string): void {
+    for (const [id, pending] of this.chats) {
+      this.clearTimer(pending.timer);
+      pending.reject(new AccountServiceError(code));
+      this.chats.delete(id);
+    }
+  }
+
+  /** A chat command answered by its requestId (chat-joined, chat-sent or error). */
+  private chatRequest(frame: Record<string, unknown>): Promise<Record<string, unknown>> {
+    const socket = this.socket;
+    if (!this.open || !socket) return Promise.reject(new AccountServiceError("MESSENGER_OFFLINE"));
+    const requestId = `c${++this.requestIds}`;
+    return new Promise((resolve, reject) => {
+      const timer = this.setTimer(() => {
+        this.chats.delete(requestId);
+        reject(new AccountServiceError("MESSENGER_TIMEOUT"));
+      }, SEND_TIMEOUT_MS);
+      this.chats.set(requestId, { resolve, reject, timer });
+      try {
+        socket.send(JSON.stringify({ ...frame, requestId }));
+      } catch {
+        this.chats.delete(requestId);
+        this.clearTimer(timer);
+        reject(new AccountServiceError("MESSENGER_OFFLINE"));
+      }
+    });
+  }
+
+  private joinChat(): void {
+    const listener = this.chatListener;
+    void this.chatRequest({ type: "chat-join" }).then(frame => {
+      if (this.chatListener === listener) listener?.joined(parseChatJoined(frame));
+    }).catch(() => undefined);
+  }
+
+  /**
+   * Opens (or, with undefined, closes) the 聊天系统 feed: the socket joins
+   * the channels now and after every reconnect.
+   */
+  setChatListener(listener: ChatListener | undefined): void {
+    const had = !!this.chatListener;
+    this.chatListener = listener;
+    if (listener && this.open) this.joinChat();
+    else if (!listener && had && this.open && this.socket) {
+      try { this.socket.send(JSON.stringify({ type: "chat-leave" })); } catch { /* Closing anyway. */ }
+    }
+  }
+
+  /** Sends a 聊天系统 line ("all" or "club"); resolves with the stored line. */
+  async sendChat(channel: "all" | "club", text: string): Promise<ChatLine> {
+    const frame = await this.chatRequest({ type: "chat", channel, text });
+    const line = parseChatLine(frame.line);
+    if (!line) throw new AccountServiceError("INVALID_RESPONSE");
+    return line;
   }
 
   /** The room was read up to its newest message. */

@@ -5,8 +5,12 @@ import { createLocalMultiplayerConfig } from "./local-config";
 test("the local data service is configured without the downloaded remote config", () => {
   assert.deepEqual(createLocalMultiplayerConfig("http://127.0.0.1:8780"), {
     backendOrigin: "http://127.0.0.1:8787",
-    frontendOrigins: ["http://127.0.0.1:8780"], transport: "websocket",
+    frontendOrigins: ["http://127.0.0.1:8780"], transport: "auto",
   });
+  assert.equal(createLocalMultiplayerConfig("http://127.0.0.1:8780",
+    { VITE_MULTIPLAYER_TRANSPORT: "websocket" }).transport, "websocket");
+  assert.throws(() => createLocalMultiplayerConfig("http://127.0.0.1:8780",
+    { VITE_MULTIPLAYER_TRANSPORT: "udp" }));
   assert.deepEqual(createLocalMultiplayerConfig("http://localhost:8780", {
     VITE_MULTIPLAYER_BACKEND_ORIGIN: "http://localhost:9000",
     VITE_MULTIPLAYER_TRANSPORT: "webrtc",

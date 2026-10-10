@@ -12,6 +12,12 @@ export interface AccountSummary {
   progress: {
     level: number; exp: number; levelExp: number; nextLevelExp: number | null;
     glove: string; gloveName: string; maxLevel: number;
+    /** 驾照考试: the highest license the level may try (1 新手 … 5 L1). */
+    tryLevel?: number;
+    /** The license held (0 none, 1 新手 … 5 L1, 6 PRO). */
+    license?: number;
+    /** End of the PRO license, Unix ms; 0 when never taken. */
+    proUntil?: number;
   };
   wallet: Record<Currency, number>;
   stats: { races: number; wins: number; podiums: number; points: number };

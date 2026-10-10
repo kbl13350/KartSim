@@ -38,7 +38,7 @@
 2. 浏览器 `POST <数据服务>/multiplayer/game-servers/ticket`，请求体 `{"nodeId":"game-1"}`，带 `Authorization: Bearer <会话 token>`。默认没有游客（`KART_ALLOW_GUESTS=false`）：不带 Bearer 401 `LOGIN_REQUIRED`；账号还没领取新手礼包 403 `ONBOARDING_REQUIRED`。数据服务签发一次性票据：
    `kt1.` + base64url(JSON 声明) + `.` + base64url(HMAC-SHA256(KART_CLUSTER_SECRET, "kt1." + 载荷))。
    声明含目标节点 `node`、数据节点 `data`、随机 `nonce`、签发/过期时间（有效期 2 分钟）、游客标记 `guest`，账号票据另含账号 ID、用户名、昵称与管理员标记。
-3. 浏览器连接 `<游戏服 origin>/multiplayer/ws`（origin 为 `null` 时用数据服务的 origin，即同源代理），`hello` 中带上 `ticket` 与当前装备。游戏节点本地验签，依次检查过期、节点、数据节点与 nonce 未用过；游客票据在 `KART_ALLOW_GUESTS=false` 时被拒绝（`LOGIN_REQUIRED`）；账号使用票据中的昵称。随后在本节点内去重昵称与账号（一个账号同时只能有一个会话），在锁外向数据服务核对装备归属（不拥有时 403 `ITEM_NOT_OWNED`，浏览器重读库存、换回新手装备后用新票据重试），再请求数据服务在全集群占用该昵称与账号。
+3. 浏览器先用 WebRTC 连接：`POST <游戏服 origin>/multiplayer/offer` 交换 SDP，打开两个数据通道（`control` 有序可靠，承载 JSON 命令与事件；`motion` 无序、不重传，承载二进制运动帧）；8 秒内打不开（UDP 不通、节点关闭了 WebRTC 返回 501 `USE_WEBSOCKET`、经数据服务同源代理）就改连 `<游戏服 origin>/multiplayer/ws`（origin 为 `null` 时用数据服务的 origin，即同源代理）。两种连接的协议相同，见下文“WebRTC 传输”。`hello` 中带上 `ticket` 与当前装备（WebRTC 失败时票据还没用过，WebSocket 用同一张）。游戏节点本地验签，依次检查过期、节点、数据节点与 nonce 未用过；游客票据在 `KART_ALLOW_GUESTS=false` 时被拒绝（`LOGIN_REQUIRED`）；账号使用票据中的昵称。随后在本节点内去重昵称与账号（一个账号同时只能有一个会话），在锁外向数据服务核对装备归属（不拥有时 403 `ITEM_NOT_OWNED`，浏览器重读库存、换回新手装备后用新票据重试），再请求数据服务在全集群占用该昵称与账号。
 4. **每次连接尝试都要重新申请票据**（包括昵称冲突后的重试），票据用过一次即作废。
 
 `hello` 失败时回复 `{"type":"error","requestId":…,"code":…}`，与票据和入场相关的错误码（按检查顺序）：
@@ -94,7 +94,7 @@
 
 ### 管理页面与发放货币
 
-管理页面是数据服务上的静态网页 `<数据服务 origin>/multiplayer/admin`（本机默认 <http://127.0.0.1:8787/multiplayer/admin>，`run-lan.sh` 下也可经前端代理访问 `https://<IP>:8780/multiplayer/admin`；启动脚本会打印地址）。用 `KART_ADMIN_USERNAMES` 中的账号登录（token 只保存在页面内存中），可以搜索账号（等级、经验、余额、库存数量、是否已领取礼包），给账号增加或扣除点券、金币、K币或经验并填写备注。所有发放都写流水（原因 `admin`），余额与经验不会被扣成负数。
+管理页面是数据服务上的静态网页 `<数据服务 origin>/multiplayer/admin`（本机默认 <http://127.0.0.1:8787/multiplayer/admin>，`run-lan.sh` 下也可经前端代理访问 `https://<IP>:8780/multiplayer/admin`；启动脚本会打印地址）。用 `KART_ADMIN_USERNAMES` 中的账号登录（token 只保存在页面内存中），可以搜索账号（等级、经验、余额、库存数量、是否已领取礼包），给账号增加或扣除点券、金币、K币或经验并填写备注。所有发放都写流水（原因 `admin`），余额与经验不会被扣成负数。管理页面还可以设置抽奖活动、向玩家的奖励箱赠送道具或货币、发布迷你提示窗公告（见 [`MENUS.md`](MENUS.md)）。
 
 1. 指定管理员（顺序很重要）：先设置名单再启动，`KART_ADMIN_USERNAMES=alice ./run-full-local.sh`（compose 写在 `.env`）。`alice` 已有账号时直接生效；尚未注册时，kart-data 日志会报错并打印引导邀请码（`grep -i invitation`，也可预先设置 `KART_BOOTSTRAP_INVITE`），名单中的用户名只能用邀请码注册（任何模式下都是，否则 400 `INVALID_INVITE`，防止抢注）。在游戏登录界面注册时，开放注册下点“有邀请码？”展开可选的邀请码栏填入（`invite` 模式下邀请码栏直接显示）；也可以用接口注册：
    ```sh
@@ -200,7 +200,7 @@ node --test tools/item-mode-export/item-mode.test.mjs        # 导出规则单�
 ./run-lan.sh
 ```
 
-数据服务与游戏节点监听 `0.0.0.0` 并信任任意主机名（`KART_LAN_HOSTS='*'`）；前端以自签名证书提供 HTTPS（其他设备需要安全上下文），并把 `/multiplayer/ws` 代理到唯一的游戏节点（`KART_LAN_GAME_BACKEND`），其余 `/multiplayer/`、`/api/` 代理到数据服务（`KART_LAN_BACKEND`，好友私聊的 WebSocket `/api/messenger/ws` 也转发升级）。该节点以 `KART_PUBLIC_ORIGIN=same-origin` 运行，列表中的 origin 为 `null`，浏览器因此连接页面同源的 `wss://`。内部 API 仍只监听 127.0.0.1。终端会打印各网卡的 `https://<IP>:8780/` 地址，每台设备首次访问时需要信任证书；管理页面同样经代理提供（`https://<IP>:8780/multiplayer/admin`）。数据服务信任本机代理转发的 `X-Forwarded-For`（`KART_TRUSTED_PROXIES=127.0.0.1/32,::1/128`），注册限流因此按各设备的地址计算。
+数据服务与游戏节点监听 `0.0.0.0` 并信任任意主机名（`KART_LAN_HOSTS='*'`）；前端以自签名证书提供 HTTPS（其他设备需要安全上下文），并把 `/multiplayer/ws` 与 WebRTC 信令 `/multiplayer/offer` 代理到唯一的游戏节点（`KART_LAN_GAME_BACKEND`；WebRTC 的 UDP 由各设备直连该节点的局域网地址），其余 `/multiplayer/`、`/api/` 代理到数据服务（`KART_LAN_BACKEND`，好友私聊的 WebSocket `/api/messenger/ws` 也转发升级）。该节点以 `KART_PUBLIC_ORIGIN=same-origin` 运行，列表中的 origin 为 `null`，浏览器因此连接页面同源的 `wss://`。内部 API 仍只监听 127.0.0.1。终端会打印各网卡的 `https://<IP>:8780/` 地址，每台设备首次访问时需要信任证书；管理页面同样经代理提供（`https://<IP>:8780/multiplayer/admin`）。数据服务信任本机代理转发的 `X-Forwarded-For`（`KART_TRUSTED_PROXIES=127.0.0.1/32,::1/128`），注册限流因此按各设备的地址计算。
 
 ### Docker Compose
 
@@ -340,6 +340,10 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `KART_HELLO_TIMEOUT` | `15s` | 连接后在这段时间内没有完成 `hello` 就以 1008 关闭（Go 时长格式，1s–5m） |
 | `KART_ALLOW_GUESTS` | `false` | 为 `false` 时游客票据的 `hello` 返回 401 `LOGIN_REQUIRED`；应与数据服务相同 |
 | `KART_ITEM_TEST_GRANTS` | `false` | **仅限开发测试。**为 `true` 时道具赛的 `cube` 请求可以带 `testItemId` 指定拿到的道具（测试机器人 `test/item-bot.mjs --use` 需要它），启动时打印警告；为 `false` 时这种请求返回 403 `ITEM_TEST_GRANTS_DISABLED`。公开部署切勿打开 |
+| `KART_WEBRTC` | `true` | 是否提供 WebRTC 数据通道（`POST /multiplayer/offer`）；关闭后浏览器都用 WebSocket |
+| `KART_WEBRTC_UDP_PORT` | `0` | 所有 WebRTC 连接共用的 UDP 端口（防火墙与容器发布它）；0 表示每个连接随机端口。端口被占用时节点照常启动，只提供 WebSocket（日志报错） |
+| `KART_WEBRTC_PUBLIC_IPS` | 空 | 逗号分隔的 IP，替换 ICE 候选中的网卡地址（1:1 NAT、云主机、容器发布端口时填浏览器访问本机所用的地址） |
+| `KART_WEBRTC_LOOPBACK` | `true` | 是否也提供 127.0.0.1 候选（浏览器与节点在同一台机器时可用）；容器内应设 `false` |
 
 ### 启动脚本（`run-full-local.sh` / `run-lan.sh`）
 
@@ -370,7 +374,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `GET /multiplayer/auth/config` | `{"loginRequired":true,"backendOrigin":…,"registration":"open","guests":false}`；经可信反向代理（`X-Forwarded-Host`）时 `backendOrigin` 为 `null`；设置了 `KART_PUBLIC_ORIGIN` 时返回它；不可信主机 400 `INVALID_HOST` |
 | `POST /multiplayer/auth/guest-name` | `{"name"}` → `{"available"}`：名字合法、不是账号昵称且不在任何游戏服在线；非法 400 `INVALID_GUEST_NAME`（只在开启游客时有用） |
 | `POST /multiplayer/auth/register` | `{"username","nickname","password","invite"?}` → `{"account","token"}`（注册即登录）。用户名 `[A-Za-z0-9_]{3,24}`、昵称 ≤ 16 字、密码 8–128 位，否则 400 `INVALID_ACCOUNT_FIELDS`；`invite` 模式缺少或无效邀请码、`KART_ADMIN_USERNAMES` 中的用户名（任何模式）没有有效邀请码、或开放模式填写了无效邀请码（填写的会被消耗）时 400 `INVALID_INVITE`；`closed` 403 `REGISTRATION_CLOSED`；重名 409 `USERNAME_TAKEN`/`NICKNAME_TAKEN`；限流 429 `TOO_MANY_ATTEMPTS`（见“限流与反向代理”） |
-| `POST /multiplayer/auth/login` | 登录，返回 43 字符会话 token（有效 30 天）；限流 429 `TOO_MANY_ATTEMPTS`（按客户端 IP，失败按用户名与客户端网段） |
+| `POST /multiplayer/auth/login` | 登录，返回 43 字符会话 token（有效 30 天）；限流 429 `TOO_MANY_ATTEMPTS`（按客户端 IP，失败按用户名与客户端网段）。**单点登录**：登录成功会结束该账号的其他所有会话——旧 token 之后的请求得到 401 `SESSION_REPLACED`（7 天内，之后为 `LOGIN_REQUIRED`），旧会话的好友聊天与小屋 WebSocket 立即以 4001 关闭，在游戏服上的旧会话在下一次心跳（≤ 5 秒）时被断开（`conflicts`），新登录可以立刻进入游戏服。浏览器收到 `SESSION_REPLACED` 时提示“您的账号已在其他地方登录”并回到登录页。管理员在管理页面登录（请求体带 `"console": true`）不结束游戏中的会话；普通账号带它没有效果 |
 | `GET /multiplayer/auth/me` | Bearer token 查询账号 |
 | `POST /multiplayer/auth/nickname`、`/multiplayer/auth/logout` | 改名、退出 |
 | `POST /multiplayer/admin/invites` | 管理员创建邀请码 |
@@ -474,14 +478,58 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `GET /api/lottery/items` | 商店目录以外的道具名称 |
 | `GET`/`PUT /api/admin/lottery` | 管理员查看与设置活动开关、开放时段、每日免费道具（管理页面“抽奖活动”） |
 
+### 驾照考试（车手学校）
+
+单人游戏的驾照考试（新手、初级、L3、L2、L1、PRO）由数据服务记录通关、发首通奖励、颁发驾照，规则与接口见 [`RIDER_SCHOOL.md`](RIDER_SCHOOL.md)。驾照表 `internal/data/license/license.json` 由 `rewrite/tools/export-license-data.mjs` 从原版 `etc_/riderSchool`（任务表、驾照与奖励、对决对手录像）和 `stock.kml` 导出（**不要手改**）。
+
+| 路径 | 说明 |
+| --- | --- |
+| `GET /api/license` | 驾照表与账号的驾照状态（已通过的关、当前驾照、PRO 资格与本期任务） |
+| `POST /api/license/run` | 提交通过的一关（首通发原版奖励） |
+| `POST /api/license/take` | 全部关卡通过后领取驾照（PRO 有效 90 天，每两个月一期可续） |
+| `POST /api/license/qualify`、`POST /api/license/emblem` | PRO 资格审核成绩与领取资格徽章 |
+
+### 俱乐部
+
+俱乐部的创建、目录与申请、职位管理、解散、俱乐部基地（总部、赛事中心、车手中心、银行的升级，捐助，每日福利）与会员活跃度由数据服务处理，原版规则与自定数值见 [`CLUB.md`](CLUB.md)。徽章与标志框表 `internal/data/club/club.json` 由 `rewrite/tools/export-club-data.mjs` 从 `etc_/clubMark` 导出（**不要手改**）。
+
+| 路径 | 说明 |
+| --- | --- |
+| `GET /api/club`、`GET /api/club/list`、`GET /api/club/info/{id}` | 自己的俱乐部与会员、俱乐部目录、单个俱乐部 |
+| `POST /api/club/create`、`/apply`、`/apply/cancel`、`/leave`、`/break`、`/break/cancel` | 创建（100,000 金币）、申请、取消申请、退出、解散、取消解散 |
+| `GET /api/club/applicants`、`POST /api/club/applicants/decide`、`POST /api/club/members`、`PUT /api/club` | 申请审核、职位变更与踢除、简介与自动加入 |
+| `GET /api/club/house`、`POST /api/club/donate`、`/upgrade`、`/name`、`/mark`、`/welfare` | 俱乐部基地、捐助、设施升级、改名、改徽章、领取福利 |
+
+### 任务栏菜单：奖励箱、任务、迷你提示窗、聊天、查找车手
+
+奖励箱（任务奖励、俱乐部福利、管理员赠送，保管 30 天）、每日/每周任务、迷你提示窗（系统提醒与管理员公告）、全服/俱乐部聊天和车手信息由数据服务处理，规则与接口见 [`MENUS.md`](MENUS.md)。管理页面可以发布迷你提示窗公告、向玩家奖励箱赠送道具或货币。
+
+| 路径 | 说明 |
+| --- | --- |
+| `GET /api/reward-box`、`POST /api/reward-box/claim` | 奖励箱、领取（每次最多 8 条） |
+| `GET /api/quests` | 任务与本周期进度 |
+| `GET /api/notices` | 迷你提示窗（奖励箱、任务提醒与管理员公告） |
+| `GET /api/riders/{nickname}` | 车手信息 |
+| `POST /api/admin/reward-box`、`GET`/`PUT /api/admin/notices`、`DELETE /api/admin/notices/{id}` | 管理员赠送、公告管理 |
+| WebSocket `chat-join` / `chat` / `chat-leave` | 全部聊天与俱乐部聊天（走 `/api/messenger/ws`） |
+
 ### 游戏节点（`:8788` 等）
 
 | 路径 | 用途 |
 | --- | --- |
 | `GET /multiplayer/healthz` | `{"protocolVersion":39,"ruleset":"launcher-room-v1","transport":"websocket","service":"game","nodeId":"game-1","connections":3,"players":2,"rooms":1,"heapMB":4}`：后四项是当前连接数、已 `hello` 的玩家数、房间数与存活堆（MiB），便于监控 |
 | `GET /multiplayer/ws` | WebSocket 控制通道（JSON）与二进制运动帧，协议见 `SERVER_PROTOCOL.md`；无 `Origin` 头或同源/可信 Origin 才接受 |
+| `POST /multiplayer/offer` | WebRTC 信令：`{"type":"offer","sdp"}` → `{"type":"answer","sdp"}`（服务端一次给出全部 ICE 候选，不用 trickle）。`KART_WEBRTC=false` 或 UDP 端口不可用时 501 `USE_WEBSOCKET`；连接数、内存与关停的限制同 WebSocket（503）；SDP 不合法 400 `INVALID_OFFER` |
 
-其他路径 404。
+其他路径 404。健康检查另有 `webrtc` 字段，表示本节点是否提供 WebRTC。
+
+#### WebRTC 传输
+
+游戏节点用 [pion/webrtc](https://github.com/pion/webrtc) 实现与浏览器原版客户端相同的两个协商好的数据通道：`control`（id 0，有序可靠）与 `motion`（id 1，无序、`maxRetransmits: 0`）。命令、回复与房间推送走 `control`，与 WebSocket 文本帧完全相同；运动帧走 `motion`：丢包或迟到的帧不会像 TCP 那样挡住后面更新的帧，网络抖动时其他车手的位置更新更及时。限流、`hello`、发送缓冲、空闲超时（90 秒没有消息）与 WebSocket 相同；ICE 断开超过 10 秒或失败即视为掉线。
+
+- 端口：默认每个连接随机一个 UDP 端口；生产环境设 `KART_WEBRTC_UDP_PORT`，所有连接共用这一个 UDP 端口，防火墙放行它即可（TCP 的 HTTP 端口照常经反向代理）。
+- 地址：节点在网卡地址上收发 UDP；在 NAT、云主机或容器后面时用 `KART_WEBRTC_PUBLIC_IPS` 写浏览器能访问到的地址（它替换候选地址）。UDP 不经过 Nginx，浏览器直连节点。
+- 浏览器在 8 秒内打不开数据通道时自动改用 WebSocket，所以 UDP 被挡的网络照常能玩，只是运动帧回到 TCP。前端可用 `VITE_MULTIPLAYER_TRANSPORT=websocket` 强制只用 WebSocket（`webrtc` 只用 WebRTC，默认 `auto`）。
 
 ### 内部 API（`KART_INTERNAL_LISTEN`，只给游戏节点）
 
@@ -521,7 +569,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `account_counters`、`account_login_days` | 成就计数（多人赛按模式与赛道主题的胜利/完赛/未完赛、连续未完赛、计时赛完赛）、登录过的北京日期 |
 | `account_careers`、`account_emblems` | 已完成的成就（完成时间）、拥有的徽章（来源、代表徽章槽 `main_slot`） |
 
-`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4，小屋成就与徽章的表在 v5，道具图鉴奖励的表在 v6，开箱记录与赛车探险队的表在 v7，抽奖（`lottery_draws`、`lottery_counters`、`lottery_daily`、`lottery_activities`）在 v8。
+`timeattack_runs` 与 `daily_rewards` 只保留 30 天：kart-data 每小时清理一次（与过期会话一起），同时把过期的好友请求改为拒绝、删除过期的请求结果与 30 天前的私聊消息。账号经济表在 schema v2 引入，`admin_grants`、`timeattack_state` 在 v3，好友私聊的表在 v4，小屋成就与徽章的表在 v5，道具图鉴奖励的表在 v6，开箱记录与赛车探险队的表在 v7，抽奖（`lottery_draws`、`lottery_counters`、`lottery_daily`、`lottery_activities`）在 v8，驾照考试（`license_state`、`license_clears`、`license_records`、`license_runs`）在 v9，俱乐部（`clubs`、`club_members`、`club_applications`、`club_leaves`、`club_donations`、`club_welfare`）在 v10，奖励箱、任务与迷你提示窗公告（`reward_box`、`quest_progress`、`notices`）在 v11。kart-data 每小时还会清理 30 天前已领取或过期的奖励箱记录与 14 天前的任务周期。
 
 ### Redis 键（前缀 `KART_REDIS_PREFIX`，默认 `kart:`）
 
@@ -661,13 +709,19 @@ server {
         proxy_read_timeout 120s;
         proxy_send_timeout 120s;
     }
+    location = /multiplayer/offer {
+        # WebRTC 信令；之后的 UDP 由浏览器直连节点（KART_WEBRTC_UDP_PORT，防火墙放行）。
+        proxy_pass http://10.0.0.21:8788;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
     location = /multiplayer/healthz {
         proxy_pass http://10.0.0.21:8788;
     }
 }
 ```
 
-对应设置：数据服务 `KART_PUBLIC_ORIGIN=https://kart.example.com`、`KART_LAN_HOSTS=kart.example.com`、`KART_TRUSTED_PROXIES=<Nginx 到 kart-data 的来源地址>`（同机时默认的回环地址即可；否则注册与登录限流会把所有玩家算作 Nginx 一个 IP）；游戏节点 1 `KART_PUBLIC_ORIGIN=https://game1.example.com`、`KART_LAN_HOSTS=kart.example.com,game1.example.com`。数据服务的 location 不要传 `X-Forwarded-Host`，否则 `auth/config` 会按“同源开发代理”返回 `backendOrigin: null`（设置了 `KART_PUBLIC_ORIGIN` 时以它为准）。
+对应设置：数据服务 `KART_PUBLIC_ORIGIN=https://kart.example.com`、`KART_LAN_HOSTS=kart.example.com`、`KART_TRUSTED_PROXIES=<Nginx 到 kart-data 的来源地址>`（同机时默认的回环地址即可；否则注册与登录限流会把所有玩家算作 Nginx 一个 IP）；游戏节点 1 `KART_PUBLIC_ORIGIN=https://game1.example.com`、`KART_LAN_HOSTS=kart.example.com,game1.example.com`，WebRTC 设 `KART_WEBRTC_UDP_PORT=<固定 UDP 端口>`（防火墙放行该 UDP 端口），节点在 NAT 后面时再设 `KART_WEBRTC_PUBLIC_IPS=<公网 IP>`。数据服务的 location 不要传 `X-Forwarded-Host`，否则 `auth/config` 会按“同源开发代理”返回 `backendOrigin: null`（设置了 `KART_PUBLIC_ORIGIN` 时以它为准）。
 
 ## 备份与运维
 

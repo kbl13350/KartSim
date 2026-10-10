@@ -460,7 +460,7 @@ func TestEndToEnd(t *testing.T) {
 	healthPrefix := `{"protocolVersion":39,"ruleset":"launcher-room-v1","transport":"websocket","service":"game",` +
 		`"nodeId":"game-e2e","connections":0,"players":0,"rooms":0,"heapMB":`
 	if !strings.HasPrefix(string(health), healthPrefix) ||
-		!strings.HasSuffix(string(health), `,"outboxPending":0,"outboxWriteFailing":false}`) {
+		!strings.HasSuffix(string(health), `,"outboxPending":0,"outboxWriteFailing":false,"webrtc":false}`) {
 		t.Fatalf("healthz %s", health)
 	}
 	resp, err = http.Get(n.server.URL + "/multiplayer/auth/config")

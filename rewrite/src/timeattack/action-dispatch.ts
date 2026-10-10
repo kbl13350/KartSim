@@ -154,7 +154,10 @@ export function handleTimeAttackFinishAction(
       const nowMs = host.session.lifecycle.effectiveTime(rawNowMs);
       stage.action2D.showFinish(nowMs);
       // A story race shows whether the mission is met at the finish line.
-      const cleared = storyRaceOf(host.session.selection)?.judge?.(action.elapsedMs);
+      // A race the stage ended itself (a chase, a 驾照 time limit) carries its verdict.
+      const forced = (action as { missionCleared?: boolean }).missionCleared;
+      const cleared = forced === false ? false
+        : storyRaceOf(host.session.selection)?.judge?.(action.elapsedMs);
       if (cleared !== undefined) stage.action2D.showMissionResult?.(cleared, nowMs);
       host.session.lifecycle.acceptLocalCompletion();
       return true;

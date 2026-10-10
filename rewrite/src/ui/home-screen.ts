@@ -1,5 +1,6 @@
 import type { LobbyHomeView } from "./lobby-home-view";
-import type { MainMenuPage, MainMenuView, SingleCategory, StoryMenuChapter } from "./main-menu-view";
+import type { LicenseMenu, MainMenuPage, MainMenuView, SingleCategory,
+  StoryMenuChapter } from "./main-menu-view";
 
 /**
  * The two pages over Ready that the taskbar's 首页 and 单人游戏 switch between:
@@ -37,6 +38,14 @@ export class HomeScreen {
 
   setStoryChapters(chapters: StoryMenuChapter[] | undefined): void {
     this.single.setStoryChapters(chapters);
+  }
+
+  setLicenseMenu(menu: LicenseMenu | undefined): void {
+    this.single.setLicenseMenu(menu);
+  }
+
+  selectLicense(level: number): void {
+    this.single.selectLicense(level);
   }
 
   showNotice(message: string): void {

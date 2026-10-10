@@ -102,9 +102,11 @@ export function attachAccountSession(host: AccountStartupHost,
     showAccountToast(pageDocument(host),
       `升级啦！Lv.${change.to}${glove ? ` · ${glove}` : ""}`, 5_000);
   });
-  session.onExpired(() => {
+  session.onExpired(reason => {
     stopMessenger();
-    void returnToLogin(host.root, "登录已失效，请重新登录。");
+    void returnToLogin(host.root, reason === "replaced"
+      ? "您的账号已在其他地方登录，这里的登录已失效。如果不是您本人操作，请尽快修改密码。"
+      : "登录已失效，请重新登录。");
   });
   setEquipmentRepairHandler(() => repairAccountEquipment(host));
   // 好友聊天系统: friends see this account online from now on.

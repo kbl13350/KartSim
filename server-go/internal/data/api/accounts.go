@@ -20,6 +20,9 @@ import (
 const (
 	sessionLifetime = 30 * 24 * time.Hour
 	sessionCacheTTL = 5 * time.Minute
+	// replacedTTL is how long a token ended by a newer login answers
+	// SESSION_REPLACED instead of LOGIN_REQUIRED.
+	replacedTTL     = 7 * 24 * time.Hour
 	accountCacheTTL = 10 * time.Minute
 )
 
@@ -30,8 +33,11 @@ var (
 	errInvalidInvite       = apierr.New(http.StatusBadRequest, "INVALID_INVITE")
 	errInvalidCredentials  = apierr.New(http.StatusUnauthorized, "INVALID_CREDENTIALS")
 	errLoginRequired       = apierr.New(http.StatusUnauthorized, "LOGIN_REQUIRED")
-	errAdminRequired       = apierr.New(http.StatusForbidden, "ADMIN_REQUIRED")
-	errRegistrationClosed  = apierr.New(http.StatusForbidden, "REGISTRATION_CLOSED")
+	// errSessionReplaced refuses a token whose session a newer login of the
+	// account ended (single sign-on).
+	errSessionReplaced    = apierr.New(http.StatusUnauthorized, "SESSION_REPLACED")
+	errAdminRequired      = apierr.New(http.StatusForbidden, "ADMIN_REQUIRED")
+	errRegistrationClosed = apierr.New(http.StatusForbidden, "REGISTRATION_CLOSED")
 
 	trailingPort = regexp.MustCompile(`:\d+$`)
 )
@@ -276,7 +282,19 @@ func (a *API) login(w http.ResponseWriter, r *http.Request) error {
 	}
 	token := randomCode(32)
 	tokenHash := digest(token)
-	if err := a.store.CreateSession(ctx, tokenHash, account.ID, a.now().Add(sessionLifetime).UnixMilli()); err != nil {
+	// Single sign-on: this login ends the account's other sessions. An
+	// admin opening the console ("console": true) keeps them, so the admin
+	// page does not sign its user out of the game.
+	expiresAt := a.now().Add(sessionLifetime).UnixMilli()
+	if console := fields["console"]; console != nil && *console == "true" && a.withAdmin(account).Admin {
+		err = a.store.CreateSession(ctx, tokenHash, account.ID, expiresAt)
+	} else {
+		var replaced []string
+		if replaced, err = a.store.CreateExclusiveSession(ctx, tokenHash, account.ID, expiresAt); err == nil {
+			a.endReplacedSessions(ctx, account, replaced)
+		}
+	}
+	if err != nil {
 		return err
 	}
 	a.cache.Fill(ctx, "session:"+tokenHash, account.ID, sessionCacheTTL)
@@ -284,6 +302,31 @@ func (a *API) login(w http.ResponseWriter, r *http.Request) error {
 		Account publicAccount `json:"account"`
 		Token   string        `json:"token"`
 	}{publicView(a.withAdmin(account)), token})
+}
+
+// endReplacedSessions signs the account's older logins out everywhere: their
+// tokens answer SESSION_REPLACED, their messenger and My Room sockets close
+// (4001), and the game node serving the account disconnects it at its next
+// heartbeat.
+func (a *API) endReplacedSessions(ctx context.Context, account store.Account, replaced []string) {
+	for _, hash := range replaced {
+		a.cache.Invalidate(ctx, "session:"+hash)
+		a.cache.Put(ctx, "session-replaced:"+hash, account.ID, replacedTTL)
+		a.hub.CloseSession(hash)
+		a.rooms.CloseSession(hash)
+	}
+	if a.cluster == nil {
+		return
+	}
+	if marked, err := a.cluster.ReplaceAccount(ctx, account.ID, account.Nickname); err != nil {
+		a.log.Warn("game session of a replaced login not ended; it ends when it disconnects",
+			"account", account.ID, "error", err)
+	} else if marked {
+		a.log.Info("a new login replaces the account's live game session", "account", account.ID)
+	}
+	if len(replaced) > 0 {
+		a.log.Info("a new login ended the account's other sessions", "account", account.ID, "sessions", len(replaced))
+	}
 }
 
 func (a *API) me(w http.ResponseWriter, r *http.Request) error {
@@ -366,6 +409,11 @@ func (a *API) requireAccount(ctx context.Context, token *string) (store.Account,
 		return store.Account{}, err
 	}
 	if !found {
+		if token != nil && validToken(*token) {
+			if _, replaced := a.cache.Get(ctx, "session-replaced:"+digest(*token)); replaced {
+				return store.Account{}, errSessionReplaced
+			}
+		}
 		return store.Account{}, errLoginRequired
 	}
 	return account, nil

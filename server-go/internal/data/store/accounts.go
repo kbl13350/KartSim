@@ -199,6 +199,49 @@ func (s *Store) CreateSession(ctx context.Context, tokenHash, accountID string, 
 	return err
 }
 
+// CreateExclusiveSession stores a session token digest and ends every
+// other session of the account (single sign-on: a new login replaces the
+// old ones). It returns the digests it ended. Logins of one account are
+// serialized on the account row, so two racing logins leave exactly the
+// later one.
+func (s *Store) CreateExclusiveSession(ctx context.Context, tokenHash, accountID string,
+	expiresAt int64) ([]string, error) {
+	var replaced []string
+	err := inTx(ctx, s.db, nil, func(tx *sql.Tx) error {
+		replaced = nil
+		var locked string
+		if err := tx.QueryRowContext(ctx, "SELECT id FROM accounts WHERE id = ? FOR UPDATE", accountID).
+			Scan(&locked); err != nil {
+			if errors.Is(err, sql.ErrNoRows) {
+				return errAccountNotFound
+			}
+			return err
+		}
+		rows, err := tx.QueryContext(ctx, "SELECT token_hash FROM sessions WHERE account_id = ?", accountID)
+		if err != nil {
+			return err
+		}
+		for rows.Next() {
+			var hash string
+			if err := rows.Scan(&hash); err != nil {
+				rows.Close()
+				return err
+			}
+			replaced = append(replaced, hash)
+		}
+		if err := rows.Close(); err != nil {
+			return err
+		}
+		if _, err := tx.ExecContext(ctx, "DELETE FROM sessions WHERE account_id = ?", accountID); err != nil {
+			return err
+		}
+		_, err = tx.ExecContext(ctx, "INSERT INTO sessions(token_hash, account_id, expires_at) VALUES(?, ?, ?)",
+			tokenHash, accountID, expiresAt)
+		return err
+	})
+	return replaced, err
+}
+
 // SessionAccount resolves an unexpired session digest to its account and expiry.
 func (s *Store) SessionAccount(ctx context.Context, tokenHash string, now int64) (Account, int64, bool, error) {
 	var (

@@ -63,6 +63,8 @@ export interface MyRoomViewOptions {
   onClose(): void;
   /** Without it the room stays a local, single-rider room. */
   social?: MyRoomSocial;
+  /** A rider whose room opens first (查找车手's 访问小屋); the own room when it cannot. */
+  visit?: string;
 }
 
 // Above Ready's stage layer (1), below the shared dialog layer (3) so the
@@ -202,7 +204,9 @@ export class MyRoomView {
       this.releaseEvents = social.connection.onEvent(this.onRoomEvent);
       this.sceneView.onLocalMove = pose => { if (this.room) social.connection.move(pose); };
       social.connection.start();
-      void this.enterRoom({ own: true });
+      const visit = this.options.visit;
+      void (visit ? this.enterRoom({ nickname: visit }).then(entered => entered || this.enterRoom({ own: true }))
+        : this.enterRoom({ own: true }));
     }
   }
 
@@ -214,6 +218,11 @@ export class MyRoomView {
   /** Back to the player's own room (the taskbar 小屋 button while visiting). */
   goHome(): void {
     if (this.visiting) void this.enterRoom({ own: true });
+  }
+
+  /** Visit a rider's room (查找车手's 访问小屋 while the room is open). */
+  visit(nickname: string): void {
+    void this.enterRoom({ nickname });
   }
 
   /** The inventory overlay calls this when it closes. */

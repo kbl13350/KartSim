@@ -116,6 +116,28 @@ test("client subscription and close handling match release", () => {
   assert.deepEqual(run(false), run(true));
 });
 
+// Not in the release: losing the connection inside a room (racing, on the
+// podium) drops the cached room, which could never be left offline, and
+// hands over to onDisconnected instead of the status line.
+test("losing the connection in a room drops it and reports the disconnect", () => {
+  const { host, events, close } = fixture();
+  const lobby = host.lobby as unknown as Record<string, unknown>;
+  lobby.show = () => events.push("lobby.show");
+  host.options.onDisconnected = () => events.push("disconnected");
+  bindLobbyClient(host);
+  host.state.room = { ...room(), phase: "racing" };
+  events.length = 0;
+  close();
+  assert.equal(host.connected, false);
+  assert.equal(host.state.room, undefined);
+  assert.equal(host.roomView, undefined);
+  assert.equal(host.generation, 1);
+  assert.deepEqual(events, ["start.reset", "cancelDialog", "room.dispose", "lobby.show", "render", "disconnected"]);
+  close();
+  assert.equal(events.at(-1), "disconnected");
+  assert.equal(events.filter(event => event === "disconnected").length, 1);
+});
+
 test("lobby disposal order and idempotence match release", () => {
   const run = (released: boolean) => {
     const { host, events } = fixture();

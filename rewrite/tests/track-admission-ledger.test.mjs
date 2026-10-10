@@ -130,3 +130,20 @@ test("route surface and flash records match the release for all finite tags", ()
   for (const tag of ["start", "event3", "shake12,20", "wave1,2,3,4", "zoom20.050"])
     assert.equal(isIndividualRouteTag(tag), ["start", "shake12,20", "wave1,2,3,4", "zoom20.050"].includes(tag));
 });
+
+test("rider school courses admit their tutorial event tags in time attack only", () => {
+  const f = fixture();
+  const source = { origin: "track.rho" };
+  const blocked = routeSurfaceRecord(f.road, 0, 3, "event:turnLeft", "time-attack", source, 0, {}, f.ops);
+  assert.equal(blocked.decision, "block");
+  const admitted = routeSurfaceRecord(f.road, 0, 3, "event:turnLeft", "time-attack", source, 0,
+    { riderSchool: true }, f.ops);
+  assert.equal(admitted.decision, "admit");
+  assert.equal(admitted.reason, "route-event-rider-school");
+  assert.equal(admitted.occurrence.detail, "3:event:turnLeft");
+  // Other tags keep their release decision on a rider school course.
+  assert.deepEqual(routeSurfaceRecord(f.road, 0, 0, "petSuccess", "time-attack", source, 0, { riderSchool: true }, f.ops),
+    routeSurfaceRecord(f.road, 0, 0, "petSuccess", "time-attack", source, 0, {}, f.ops));
+  assert.equal(routeSurfaceRecord(f.road, 0, 3, "event:turnLeft", "speed-individual", source, 0,
+    { riderSchool: true }, f.ops).decision, "block");
+});

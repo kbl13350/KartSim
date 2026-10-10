@@ -272,3 +272,19 @@ test("a refused token still expires a live session and clears its own token", as
   assert.equal(expiredCalls, 1);
   assert.deepEqual(cleared, [[TEST_ORIGIN, TEST_TOKEN]]);
 });
+
+test("a login elsewhere (SESSION_REPLACED) expires the session with its reason", async () => {
+  const cleared: Array<[string, string]> = [];
+  const account = new BrowserAccountSession({
+    backendOrigin: TEST_ORIGIN, token: TEST_TOKEN,
+    fetch: async () => new Response(JSON.stringify({ error: "SESSION_REPLACED" }), { status: 401 }),
+    clearToken: (origin, token) => cleared.push([origin, token]),
+  });
+  const reasons: string[] = [];
+  account.onExpired(reason => { reasons.push(reason); });
+  await account.authorizedFetch("/api/account");
+  await account.authorizedFetch("/api/inventory");
+  assert.equal(account.expired, true);
+  assert.deepEqual(reasons, ["replaced"]);
+  assert.deepEqual(cleared, [[TEST_ORIGIN, TEST_TOKEN]]);
+});

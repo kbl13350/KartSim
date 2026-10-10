@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<title>小屋宠物与夏日寻宝回归验证</title>
+<style>
+body{margin:0;background:#132739;color:white;font:15px system-ui}header{height:72px;display:flex;align-items:center;gap:12px;padding:0 20px}
+button,select{font:inherit;padding:8px 14px}#root{position:relative;height:calc(100vh - 155px)}
+#log{height:65px;overflow:auto;margin:0;padding:9px 20px;background:#071722;white-space:pre-wrap}
+#metrics{margin-left:auto;max-width:50%;font-size:13px}
+</style>
+<header><button id="house">小屋</button><button id="lottery">夏日寻宝</button>
+<label>飞行宠物 <select id="pets" aria-label="飞行宠物"></select></label><span id="metrics">载入真实游戏资源…</span></header>
+<div id="root"></div><pre id="log">测试抽奖使用固定响应，不消耗账号道具。</pre>
+<script type="module">
+import { loadLegacyResourceBundle } from "/src/resources/legacy-adapter.ts";
+import { Sw } from "/src/generated/library.js";
+import { rn, ha } from "/src/generated/formats.js";
+import { MyRoomSceneView } from "/src/ui/my-room-scene.ts";
+import { loadMyRoomCatalog } from "/src/ui/my-room-catalog.ts";
+import { defaultLocalProfile } from "/src/ui/local-profile.ts";
+import { TreasureHuntView } from "/src/lottery/treasure-hunt-view.ts";
+import { loadLotteryStage, loadStageArt, TREASURE_ROOTS } from "/src/lottery/lottery-layout.ts";
+import { parseTreasureHunt } from "/src/lottery/lottery-api.ts";
+
+const root = document.querySelector("#root"), metrics = document.querySelector("#metrics"), log = document.querySelector("#log");
+const note = text => { log.textContent += "\n" + text; log.scrollTop = log.scrollHeight; };
+window.addEventListener("error", event => note("ERROR: " + event.message));
+window.addEventListener("unhandledrejection", event => note("ERROR: " + event.reason));
+let room, hunt, subject, resultObserver, frameCount = 0, moved = 0, lastShape, draws = 0, started;
+const bundle = await loadLegacyResourceBundle("p3553");
+const library = await Sw.load(bundle.sources, undefined, bundle.archiveIndexes);
+const [catalog, environments, environment] = await Promise.all([
+  library.timeAttackGarageCatalog(), loadMyRoomCatalog(library), rn.load(library)
+]);
+const binding = new ha(), profile = defaultLocalProfile();
+const kart = catalog.karts.find(item => item.itemId === profile.equipment.itemIds[3]) ?? catalog.karts[0];
+const character = catalog.characters.find(item => item.itemId === profile.equipment.itemIds[1]) ?? catalog.characters[0];
+profile.equipment.itemIds[3] = kart.itemId;
+profile.equipment.itemIds[1] = character.itemId;
+const pets = catalog.equipment.filter(item => item.category === 52);
+const select = document.querySelector("#pets");
+for (const pet of pets) select.add(new Option(pet.title + " (" + pet.itemId + ")", pet.itemId));
+select.value = String(pets.find(item => /船长|舰长|海盗/.test(item.title))?.itemId ?? pets[0]?.itemId);
+subject = { kart, character, profile, environment, stageBinding: binding };
+async function house() {
+  resultObserver?.disconnect();
+  hunt?.dispose(); hunt = undefined;
+  room?.dispose(); root.replaceChildren(); frameCount = moved = 0; lastShape = undefined;
+  profile.equipment.itemIds[52] = Number(select.value);
+  room = new MyRoomSceneView(root, library);
+  const ok = await room.setEnvironment(environments.find(item => item.isDefault));
+  if (!ok || !(await room.setSubject(subject))) throw new Error("小屋模型载入失败");
+  note("小屋已载入：" + select.selectedOptions[0].text);
+}
+select.addEventListener("change", () => house().catch(error => note("ERROR: " + error.message)));
+document.querySelector("#house").addEventListener("click", () => house().catch(error => note("ERROR: " + error.message)));
+
+const reward = { category: 9, itemId: 1, name: "测试气球", count: 1, days: 0 };
+const board = () => parseTreasureHunt({ activity: { open: true, enabled: true }, huntId: 3, theme: "summer",
+  slots: Array.from({ length: 9 }, (_, index) => ({ slot: index + 1, rarity: "rare", stockId: index + 1, chance: 1000, items: [reward] })),
+  others: { rewards: 1, chance: 991000 }, materials: {
+    material: { category: 34, itemId: 883, name: "海洋寻宝放大镜", owned: 25 },
+    other: { category: 34, itemId: 834, name: "幸运藏宝图", owned: 25 }
+  }, packs: [], daily: { available: false, claimed: true, items: [] }, rewards: 10 });
+async function lottery() {
+  resultObserver?.disconnect();
+  room?.dispose(); room = undefined; hunt?.dispose(); root.replaceChildren(); draws = 0;
+  const stage = await loadLotteryStage(library, TREASURE_ROOTS, "stage_window@zz");
+  let left = 25;
+  const api = { async treasureHunt() { return board(); }, async treasureDraw(count) {
+    const round = ++draws; started = performance.now();
+    note("请求 " + round + "：" + count + "连抽");
+    await new Promise(resolve => setTimeout(resolve, 80));
+    const duplicate = round === 1, used = duplicate ? 0 : Math.min(left, count);
+    left -= used;
+    return { draws: Array.from({ length: used }, () => ({ stocks: [1], items: [reward], rarity: "rare", slot: 1 })),
+      prizes: [], holdings: new Map([["34:883", left], ["34:834", left]]), counters: new Map(), wallet: { coupon: 0, lucci: 0, koin: 0 },
+      ...(duplicate ? { stopped: { code: "ALREADY_OWNED", item: reward } }
+        : used < count ? { stopped: { code: "INSUFFICIENT_ITEMS", item: { ...reward, name: "海洋寻宝放大镜" } } } : {}) };
+  } };
+  hunt = new TreasureHuntView({ root, library, session: { async refresh() {} }, api,
+    onClose() { hunt = undefined; root.replaceChildren(); } }, stage);
+  hunt.shell.mount();
+  hunt.shell.applyArt(await loadStageArt(library, TREASURE_ROOTS, [hunt.layoutWindow]));
+  await hunt.load();
+  resultObserver = new MutationObserver(records => {
+    if (records.some(record => [...record.addedNodes].some(node => node instanceof Element && node.classList.contains("ks-hunt-popup"))))
+      note("结果显示耗时：" + Math.round(performance.now() - started) + "ms");
+  });
+  resultObserver.observe(root, { childList: true, subtree: true });
+  note("寻宝就绪：第一次为重复道具，后续发放到材料用尽；可验证停止和重入。");
+}
+document.querySelector("#lottery").addEventListener("click", () => lottery().catch(error => note("ERROR: " + error.message)));
+setInterval(() => {
+  if (room) {
+    const pet = room.walkingAvatar?.pet;
+    const positions = pet?.first?.skin?.geometry?.attributes.position?.array;
+    if (positions) {
+      const shape = [...positions.subarray(0, 60)].map(value => value.toFixed(5)).join(",");
+      if (lastShape !== undefined && shape !== lastShape) moved++;
+      lastShape = shape; frameCount++;
+    }
+    metrics.textContent = positions ? `姿态采样 ${frameCount} 次，模型变化 ${moved} 次；WASD 移动、滚轮缩放` : "宠物未载入";
+  } else if (hunt) metrics.textContent = `请求 ${draws} 次 · 跳过动画 ${hunt.shell.element.dataset.skipAnimation} · 连抽 ${hunt.auto ? "进行中" : "已停止"}`;
+}, 200);
+await house();
+</script>
+</html>

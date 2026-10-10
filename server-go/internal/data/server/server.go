@@ -36,6 +36,8 @@ const (
 	economyRetention = 30 * 24 * time.Hour
 	// messageRetention is how long private messages are kept (DESIGN.md 9).
 	messageRetention = 30 * 24 * time.Hour
+	// questRetention keeps the past fortnight of daily and weekly quest rows.
+	questRetention = 14 * 24 * time.Hour
 	// sweepBatch bounds the rows one sweep deletes per table.
 	sweepBatch = 10_000
 )
@@ -227,7 +229,8 @@ func sweep(ctx context.Context, st *store.Store, logger *slog.Logger) {
 // economyRetention, which no request needs any more; all would otherwise
 // accumulate. It also refuses friend requests nobody answered in time,
 // drops request results past their outbox time and deletes private
-// messages (and conversations) older than messageRetention.
+// messages (and conversations) older than messageRetention, old 奖励箱
+// entries and past quest periods.
 func sweepOnce(ctx context.Context, st *store.Store, logger *slog.Logger, now time.Time) {
 	sweepCtx, cancel := context.WithTimeout(ctx, time.Minute)
 	defer cancel()
@@ -250,6 +253,20 @@ func sweepOnce(ctx context.Context, st *store.Store, logger *slog.Logger, now ti
 	} else if pruned != (store.MessengerPrune{}) {
 		logger.Info("messenger cleanup", "refusedRequests", pruned.Refused, "expiredResults", pruned.Results,
 			"messages", pruned.Messages, "conversations", pruned.Conversations)
+	}
+	// 奖励箱 entries taken or expired a retention ago, and quest progress of
+	// past daily and weekly periods (MENUS.md).
+	boxes, err := st.PruneRewardBox(sweepCtx, cutoff.UnixMilli(), sweepBatch)
+	if err != nil && !errors.Is(err, context.Canceled) {
+		logger.Warn("reward box cleanup failed", "error", err)
+	} else if boxes > 0 {
+		logger.Info("old reward box entries removed", "count", boxes)
+	}
+	quests, err := st.PruneQuestProgress(sweepCtx, rewards.BeijingDay(now.Add(-questRetention)), sweepBatch)
+	if err != nil && !errors.Is(err, context.Canceled) {
+		logger.Warn("quest progress cleanup failed", "error", err)
+	} else if quests > 0 {
+		logger.Info("old quest progress removed", "count", quests)
 	}
 }
 

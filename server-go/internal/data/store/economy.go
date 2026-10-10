@@ -11,6 +11,7 @@ import (
 
 	"kartsim/internal/data/career"
 	"kartsim/internal/data/economy"
+	"kartsim/internal/data/quest"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/rewards"
 )
@@ -75,6 +76,10 @@ type AccountSummary struct {
 	Exp       int64
 	Stats     SummaryStats
 	Onboarded bool
+	// License is the highest of 新手..L1 taken and ProUntil the end of the
+	// PRO license (RIDER_SCHOOL.md).
+	License  int
+	ProUntil int64
 }
 
 // StarterChoice is the new-rider gift selection (ECONOMY.md 4).
@@ -113,15 +118,17 @@ func readSummary(ctx context.Context, q queryer, accountID string) (summary Acco
 	err = q.QueryRowContext(ctx, `SELECT a.id, a.username, a.nickname, a.admin, a.created_at,
 			w.coupon, w.lucci, w.koin, p.exp,
 			COALESCE(s.races, 0), COALESCE(s.wins, 0), COALESCE(s.podiums, 0), COALESCE(s.points, 0),
-			o.account_id IS NOT NULL
+			o.account_id IS NOT NULL, COALESCE(ls.level, 0), COALESCE(ls.pro_until, 0)
 		FROM accounts a
 		LEFT JOIN wallets w ON w.account_id = a.id
 		LEFT JOIN account_progress p ON p.account_id = a.id
 		LEFT JOIN player_stats s ON s.account_id = a.id
 		LEFT JOIN account_onboarding o ON o.account_id = a.id
+		LEFT JOIN license_state ls ON ls.account_id = a.id
 		WHERE a.id = ?`, accountID).Scan(&summary.Account.ID, &summary.Account.Username, &summary.Account.Nickname,
 		&summary.Account.Admin, &summary.CreatedAt, &coupon, &lucci, &koin, &exp,
-		&summary.Stats.Races, &summary.Stats.Wins, &summary.Stats.Podiums, &summary.Stats.Points, &summary.Onboarded)
+		&summary.Stats.Races, &summary.Stats.Wins, &summary.Stats.Podiums, &summary.Stats.Points, &summary.Onboarded,
+		&summary.License, &summary.ProUntil)
 	if errors.Is(err, sql.ErrNoRows) {
 		return AccountSummary{}, false, false, nil
 	} else if err != nil {
@@ -601,6 +608,11 @@ func (s *Store) SettleTimeAttack(ctx context.Context, run TimeAttackRun) (TimeAt
 		}
 		// Every settled run is a finished time-attack race (career type 28).
 		if err := addCounters(ctx, tx, run.AccountID, map[string]int64{career.CounterTimeAttack: 1}, run.Now); err != nil {
+			return err
+		}
+		// And a 练习计时赛 quest run (MENUS.md 2).
+		if err := addQuestProgress(ctx, tx, run.AccountID, quest.Race{Channel: quest.ChannelTimeAttack, Finished: true,
+			Rank: 1}, run.Now); err != nil {
 			return err
 		}
 		_, err = tx.ExecContext(ctx, `INSERT INTO timeattack_state(account_id, last_settle_at, last_request_id,

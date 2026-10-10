@@ -387,6 +387,16 @@ func (h *Hub) command(c *conn, data []byte) bool {
 		h.mu.Lock()
 		h.pushLocked(c.accountID, syncFrame, c)
 		h.mu.Unlock()
+	case "chat-join":
+		if err := h.chatJoin(ctx, c, id); err != nil {
+			h.replyError(c, id, err)
+		}
+	case "chat-leave":
+		h.chatLeave(c)
+	case "chat":
+		if err := h.chatSend(ctx, c, id, text(fields["channel"]), text(fields["text"])); err != nil {
+			h.replyError(c, id, err)
+		}
 	default:
 		c.send(errorFrame(codeInvalidRequest, id, 0))
 	}
