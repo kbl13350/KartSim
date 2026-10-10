@@ -28,7 +28,7 @@ import assert from "node:assert/strict";
 import { randomBytes } from "node:crypto";
 import { setTimeout as delay } from "node:timers/promises";
 
-export const PROTOCOL_VERSION = 39;
+export const PROTOCOL_VERSION = 40;
 export const RULESET = "launcher-room-v1";
 export const RESOURCE_VERSION = "p3553";
 export const EQUIPMENT_SLOTS = [

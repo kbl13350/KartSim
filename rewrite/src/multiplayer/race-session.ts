@@ -6,6 +6,10 @@ export interface RaceScope {
   roomId: string;
   raceId: string;
   members: Set<string>;
+  /** Room slot of the local racer, which its motion frames carry. */
+  slot: number;
+  /** Members by room slot, to name the sender of a motion frame. */
+  players: Map<number, string>;
   sequence: number;
   received: Map<string, number>;
   enabled: boolean;
@@ -93,11 +97,15 @@ export function bindRaceScope(host: RaceSessionHost, room?: SessionRoom): void {
       recipientMask |= 1 << member.slot;
     }
   }
+  const slot = room.members.find(member => member.playerId === playerId)!.slot;
+  const players = new Map(room.members.map(member => [member.slot, member.playerId]));
 
   const current = host.motionScope;
   if (current?.roomId === room.roomId && current.raceId === race.raceId) {
     current.enabled = enabled;
     current.members = new Set(room.members.map(member => member.playerId));
+    current.slot = slot;
+    current.players = players;
     current.recipientMask = recipientMask;
     return;
   }
@@ -106,7 +114,7 @@ export function bindRaceScope(host: RaceSessionHost, room?: SessionRoom): void {
   host.motionScope = {
     roomId: room.roomId, raceId: race.raceId,
     members: new Set(room.members.map(member => member.playerId)),
-    sequence: 0, received: new Map(), enabled, recipientMask,
+    slot, players, sequence: 0, received: new Map(), enabled, recipientMask,
   };
 }
 

@@ -2,9 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { resolveBackendOrigin, multiplayerEndpoint } from "./config";
 import { MultiplayerHttpClient, sanitizeIceServers } from "./http";
-import { decodeMotionFrame, encodeMotionFrame, isNewerSequence } from "./motion";
+import { decodeMotionFrame, encodeMotionFrame, isNewerSequence, motionRaceTag } from "./motion";
 import { GameMotionEncoder } from "./payload";
 import { MultiplayerTransport } from "./transport";
+import { PROTOCOL_VERSION } from "./protocol";
 
 const ROOM = "11111111-1111-1111-1111-111111111111";
 const RACE = "22222222-2222-2222-2222-222222222222";
@@ -22,20 +23,33 @@ test("backend configuration checks exact origins and safe paths", () => {
   assert.throws(() => multiplayerEndpoint("https://example.test", "../admin"));
 });
 
-test("motion framing preserves UUIDs, mask, kind, sequence and payload", () => {
+test("motion framing preserves slot, race tag, mask, kind, sequence and payload", () => {
   const payload = Uint8Array.from({ length: 80 }, (_, index) => index);
-  const bytes = encodeMotionFrame({ roomId: ROOM, raceId: RACE, playerId: SELF,
+  assert.equal(motionRaceTag(RACE), 0x22);
+  const bytes = encodeMotionFrame({ slot: 7, raceTag: motionRaceTag(RACE),
     sequence: 0xffff_ffff, recipientMask: 4, kind: 2, payload });
-  assert.equal(bytes.length, 136);
+  assert.equal(bytes.length, 88);
+  assert.deepEqual(Array.from(bytes.subarray(0, 8)), [2, 4, 7, 0x22, 0xff, 0xff, 0xff, 0xff]);
   const frame = decodeMotionFrame(bytes);
   assert.deepEqual({ ...frame, payload: Array.from(frame.payload) }, {
-    roomId: ROOM, raceId: RACE, playerId: SELF, sequence: 0xffff_ffff,
+    slot: 7, raceTag: 0x22, sequence: 0xffff_ffff,
     recipientMask: 4, kind: 2, payload: Array.from(payload),
   });
   assert.equal(isNewerSequence(0, 0xffff_ffff), true);
   assert.equal(isNewerSequence(0xffff_ffff, 0), false);
+  assert.throws(() => encodeMotionFrame({ ...frame, slot: 8 }));
+  assert.throws(() => encodeMotionFrame({ ...frame, payload: new Uint8Array(164) }));
+  assert.throws(() => decodeMotionFrame(bytes.subarray(0, 87)));
+  assert.throws(() => decodeMotionFrame(new Uint8Array(172)));
+  const badSlot = bytes.slice();
+  badSlot[2] = 8;
+  assert.throws(() => decodeMotionFrame(badSlot));
   bytes[0] = 0;
   assert.throws(() => decodeMotionFrame(bytes));
+  // A release frame (magic 19277 first) is rejected by its kind byte.
+  const release = new Uint8Array(136);
+  release.set([0x4d, 0x4b, 2]);
+  assert.throws(() => decodeMotionFrame(release));
 });
 
 test("ICE configuration discards unknown servers and credentials", () => {
@@ -85,7 +99,7 @@ class FakePeer extends EventTarget {
       const request = JSON.parse(json) as { type: string; requestId: string; clientTick?: number };
       queueMicrotask(() => {
         if (request.type === "hello") channel.receive(JSON.stringify({
-          type: "welcome", playerId: SELF, protocolVersion: 39,
+          type: "welcome", playerId: SELF, protocolVersion: PROTOCOL_VERSION,
           ruleset: "launcher-room-v1", capabilities: this.welcomeCapabilities,
           requestId: request.requestId,
         }));
@@ -148,8 +162,14 @@ test("transport handshakes, correlates requests and sends scoped motion", async 
   assert.equal(decodeMotionFrame(wire).recipientMask, 4);
   let seen = 0;
   transport.subscribeMotion(() => { seen++; });
-  peer.channels.get("motion")?.receive(encodeMotionFrame({ roomId: ROOM, raceId: RACE,
-    playerId: OTHER, sequence: 1, recipientMask: 0, kind: 2, payload: new Uint8Array(80) }));
+  peer.channels.get("motion")?.receive(encodeMotionFrame({ slot: 2, raceTag: motionRaceTag(RACE),
+    sequence: 1, recipientMask: 0, kind: 2, payload: new Uint8Array(80) }));
+  assert.equal(seen, 1);
+  // Our own slot, an empty slot and another race are not delivered.
+  for (const [slot, raceTag] of [[0, 0x22], [5, 0x22], [2, 0x23]] as const) {
+    peer.channels.get("motion")?.receive(encodeMotionFrame({ slot, raceTag,
+      sequence: 2, recipientMask: 0, kind: 2, payload: new Uint8Array(80) }));
+  }
   assert.equal(seen, 1);
   transport.close();
   assert.equal(transport.connected, false);
@@ -181,15 +201,13 @@ test("transport routes direct frames, relay probes and received peer motion", as
       position: [1, 2, 3] as const, quaternion: [0, 0, 0, 1] as const,
       linearVelocity: [1, 0, 0] as const, angularVelocity: [0, 0, 0] as const,
       vector5C: [0, 0, 0] as const, vector68: [0, 0, 0] as const };
-    const outgoing = new GameMotionEncoder({ roomId: ROOM, raceId: RACE,
-      playerId: SELF }).encode(sample, 1);
+    const outgoing = new GameMotionEncoder({ raceId: RACE, slot: 0 }).encode(sample, 1);
     assert.equal(transport.sendMotion(2, decodeMotionFrame(outgoing).payload), true);
     assert.equal(direct.channels.get("peer-motion")?.sent.length, 1);
     assert.equal(server.channels.get("motion")?.sent.length, 0);
     let received = 0;
     transport.subscribeMotion(() => { received++; });
-    const incoming = new GameMotionEncoder({ roomId: ROOM, raceId: RACE,
-      playerId: OTHER }).encode(sample, 7);
+    const incoming = new GameMotionEncoder({ raceId: RACE, slot: 2 }).encode(sample, 7);
     direct.channels.get("peer-motion")?.receive(incoming.buffer);
     assert.equal(received, 1);
     server.channels.get("control")?.receive(JSON.stringify({ type: "p2p-relay",

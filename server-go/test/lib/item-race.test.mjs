@@ -9,8 +9,8 @@ import { join } from "node:path";
 import { test } from "node:test";
 import {
   browserAccepts, browserEventValidation, expectedTargets, grantable, groupWeight, ITEM, ITEM_NAMES, ItemChannel,
-  itemLife, kartSample, loadItemData, MotionPump, othersMask, rankGroup, repoRoot, ServerClock, transformedOnTrack,
-  wireVector,
+  itemLife, kartSample, loadItemData, motionRace, MotionPump, othersMask, rankGroup, repoRoot, ServerClock, slotOf,
+  transformedOnTrack, wireVector,
 } from "./item-race.mjs";
 
 const haveTsx = existsSync(join(repoRoot, "rewrite/node_modules/tsx/dist/esm/api/index.mjs"));
@@ -162,19 +162,25 @@ test("motion pump: one frame per beat to the other racers' slots", async () => {
 test("kart samples encode and decode with the browser's codec", async t => {
   if (!haveTsx) return t.skip("rewrite/node_modules missing");
   const payload = await browser("rewrite/src/multiplayer/payload.ts");
-  const ids = { roomId: "00000000-0000-4000-8000-000000000001", raceId: "00000000-0000-4000-8000-000000000002",
-    playerId: "00000000-0000-4000-8000-000000000003" };
-  const sample = kartSample({ tick: 12_345, observedPlayerId: ids.playerId,
+  const room = { roomId: "00000000-0000-4000-8000-000000000001",
+    race: { raceId: "00000000-0000-4000-8000-000000000002" },
+    members: [{ playerId: "00000000-0000-4000-8000-000000000003", slot: 3 },
+      { playerId: "00000000-0000-4000-8000-000000000004", slot: 0 }] };
+  const playerId = room.members[0].playerId;
+  const sample = kartSample({ tick: 12_345, observedSlot: slotOf(room, playerId),
     pose: { position: { x: 1, y: 2, z: -3 }, velocity: { x: 0, y: 0, z: -20 }, quaternion: [1, 0, 0, 0] },
     progress: { distance: 456.5, lap: 2, finishElapsedMs: 61_000 } });
-  const bytes = new payload.GameMotionEncoder(ids).encode(sample, 7, 0b10);
-  assert.equal(bytes[2], 10, "kind 10: routing and visual scale");
-  const decoded = new payload.GameMotionDecoder().decode(bytes);
-  assert.deepEqual([decoded.sequence, decoded.recipientMask, decoded.payload.tick], [7, 2, 12_345]);
+  const bytes = new payload.GameMotionEncoder({ raceId: room.race.raceId, slot: slotOf(room, playerId) })
+    .encode(sample, 7, 0b10);
+  assert.equal(bytes[0], 10, "kind 10: routing and visual scale");
+  assert.equal(bytes.length, 8 + 163);
+  const decoded = payload.resolveGameMotion(new payload.GameMotionDecoder().decode(bytes), motionRace(room));
+  assert.deepEqual([decoded.playerId, decoded.sequence, decoded.recipientMask, decoded.payload.tick],
+    [playerId, 7, 2, 12_345]);
   assert.deepEqual(decoded.payload.position, wireVector({ x: 1, y: 2, z: -3 }));
   assert.deepEqual(decoded.payload.raceProgress, { distance: 456.5, lap: 2, finishElapsedMs: 61_000 });
   assert.equal(decoded.payload.presentation.forwardSpeed, 20);
-  assert.equal(decoded.payload.routing.observedPlayerId, ids.playerId);
+  assert.equal(decoded.payload.routing.observedSlot, 3);
 });
 
 test("browser validators: item events the browser would drop count as rejected", async t => {

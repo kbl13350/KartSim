@@ -1,16 +1,36 @@
-/** Wire framing only. The kart physics payload codec belongs to the race simulation. */
-export const MOTION_HEADER_BYTES = 56;
-export const MOTION_MAGIC = 19_277;
-export const MAX_MOTION_BYTES = MOTION_HEADER_BYTES + 178;
+/**
+ * Wire framing only. The kart physics payload codec belongs to the race simulation.
+ *
+ * Protocol 40 (not the release's): an 8-byte header names the sender by its
+ * room slot and the race by a one-byte tag, where the release's 56-byte
+ * header carried a magic and the room, race and player UUIDs. The receiver
+ * maps the slot to a player through its room snapshot.
+ *
+ *   0  kind           payload kind 1–10
+ *   1  recipientMask  slot bits for the server relay; 0 on direct peer traffic
+ *   2  slot           sender's room slot 0–7 (the server stamps it on relay)
+ *   3  raceTag        motionRaceTag(raceId); frames of another race are dropped
+ *   4  sequence       uint32, little-endian
+ */
+export const MOTION_HEADER_BYTES = 8;
+export const MIN_MOTION_PAYLOAD_BYTES = 80;
+/** The largest payload: kind 10 (payload.ts encodeKinematicSample). */
+export const MAX_MOTION_PAYLOAD_BYTES = 163;
+export const MAX_MOTION_BYTES = MOTION_HEADER_BYTES + MAX_MOTION_PAYLOAD_BYTES;
+/** Offset of the recipient mask, which the sender rewrites per route. */
+export const MOTION_MASK_OFFSET = 1;
+/** Room slots are 0–7, one recipient mask bit each. */
+export const MAX_MOTION_SLOT = 7;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 /** 1 is a driving sample; 2–10 are increasingly detailed kinematic samples. */
 export type MotionPayloadKind = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 export interface MotionFrame {
-  roomId: string;
-  raceId: string;
-  playerId: string;
+  /** Sender's room slot. */
+  slot: number;
+  /** motionRaceTag of the sender's race. */
+  raceTag: number;
   sequence: number;
   kind: MotionPayloadKind;
   /** Zero on direct peer traffic; server relay uses slot bits. */
@@ -19,34 +39,29 @@ export interface MotionFrame {
   payload: Uint8Array;
 }
 
-function uuidBytes(uuid: string): Uint8Array {
-  if (!UUID.test(uuid)) throw new Error(`Invalid motion UUID: ${uuid}`);
-  const hex = uuid.replaceAll("-", "");
-  return Uint8Array.from({ length: 16 }, (_, index) =>
-    Number.parseInt(hex.slice(index * 2, index * 2 + 2), 16));
+/** The race tag: the first byte of the race UUID. */
+export function motionRaceTag(raceId: string): number {
+  if (!UUID.test(raceId)) throw new Error(`Invalid motion race: ${raceId}`);
+  return Number.parseInt(raceId.slice(0, 2), 16);
 }
 
-function readUuid(bytes: Uint8Array): string {
-  const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
-}
+const byte = (value: number, max: number): boolean =>
+  Number.isInteger(value) && value >= 0 && value <= max;
 
 export function encodeMotionFrame(frame: MotionFrame): Uint8Array<ArrayBuffer> {
   if (!Number.isInteger(frame.sequence) || frame.sequence < 0 || frame.sequence > 0xffff_ffff ||
-      !Number.isInteger(frame.recipientMask) || frame.recipientMask < 0 || frame.recipientMask > 255 ||
-      !Number.isInteger(frame.kind) || frame.kind < 1 || frame.kind > 10 ||
-      frame.payload.length < 80 || frame.payload.length > 178) {
+      !byte(frame.recipientMask, 255) || !byte(frame.kind, 10) || frame.kind < 1 ||
+      !byte(frame.slot, MAX_MOTION_SLOT) || !byte(frame.raceTag, 255) ||
+      frame.payload.length < MIN_MOTION_PAYLOAD_BYTES || frame.payload.length > MAX_MOTION_PAYLOAD_BYTES) {
     throw new Error("Invalid motion frame fields");
   }
   const bytes = new Uint8Array(MOTION_HEADER_BYTES + frame.payload.length);
   const view = new DataView(bytes.buffer);
-  view.setUint16(0, MOTION_MAGIC, true);
-  view.setUint8(2, frame.kind);
-  view.setUint8(3, frame.recipientMask);
-  [frame.roomId, frame.raceId, frame.playerId].forEach((uuid, index) => {
-    bytes.set(uuidBytes(uuid), 4 + index * 16);
-  });
-  view.setUint32(52, frame.sequence, true);
+  view.setUint8(0, frame.kind);
+  view.setUint8(MOTION_MASK_OFFSET, frame.recipientMask);
+  view.setUint8(2, frame.slot);
+  view.setUint8(3, frame.raceTag);
+  view.setUint32(4, frame.sequence, true);
   bytes.set(frame.payload, MOTION_HEADER_BYTES);
   return bytes;
 }
@@ -55,20 +70,20 @@ export function decodeMotionFrame(input: ArrayBuffer | ArrayBufferView): MotionF
   const bytes = input instanceof ArrayBuffer
     ? new Uint8Array(input)
     : new Uint8Array(input.buffer, input.byteOffset, input.byteLength);
-  if (bytes.length < MOTION_HEADER_BYTES + 80 || bytes.length > MAX_MOTION_BYTES) {
+  if (bytes.length < MOTION_HEADER_BYTES + MIN_MOTION_PAYLOAD_BYTES || bytes.length > MAX_MOTION_BYTES) {
     throw new Error("Invalid motion frame length");
   }
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
-  if (view.getUint16(0, true) !== MOTION_MAGIC) throw new Error("Invalid motion frame magic");
-  const kind = view.getUint8(2);
+  const kind = view.getUint8(0);
   if (kind < 1 || kind > 10) throw new Error("Invalid motion payload kind");
+  const slot = view.getUint8(2);
+  if (slot > MAX_MOTION_SLOT) throw new Error("Invalid motion slot");
   return {
-    roomId: readUuid(bytes.subarray(4, 20)),
-    raceId: readUuid(bytes.subarray(20, 36)),
-    playerId: readUuid(bytes.subarray(36, 52)),
-    sequence: view.getUint32(52, true),
+    slot,
+    raceTag: view.getUint8(3),
+    sequence: view.getUint32(4, true),
     kind: kind as MotionPayloadKind,
-    recipientMask: view.getUint8(3),
+    recipientMask: view.getUint8(MOTION_MASK_OFFSET),
     payload: bytes.slice(MOTION_HEADER_BYTES),
   };
 }

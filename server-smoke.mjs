@@ -36,7 +36,7 @@ import {
 const settings = readSettings();
 const origin = settings.dataOrigin;
 const timeoutMs = settings.timeoutMs;
-const protocolVersion = 39;
+const protocolVersion = 40;
 const channelRules = {
   speedIndiCombine: { mode: "individual", speed: 7 },
   speedTeamCombine: { mode: "team", speed: 7 },
@@ -140,7 +140,7 @@ try {
   const health = await jsonRequest("healthz");
   assert.equal(health.protocolVersion, protocolVersion);
   assert.equal(health.service, "data");
-  console.log("✓ healthz: protocolVersion 39 (data service)");
+  console.log(`✓ healthz: protocolVersion ${protocolVersion} (data service)`);
 
   const auth = await jsonRequest("auth/config");
   assert.equal(auth.loginRequired, true, "Accounts are required: auth/config must report loginRequired:true");

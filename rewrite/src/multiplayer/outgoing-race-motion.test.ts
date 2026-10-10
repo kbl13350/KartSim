@@ -75,13 +75,20 @@ const presentation: MotionPresentation = {
 };
 const progress: MotionRaceProgress = { distance: 123.5, lap: 2 };
 
-function runSender(released: boolean, withRouting: boolean) {
+// The release routes by player ID, protocol 40 by room slot.
+const slots = new Map([["me", 4]]);
+
+function runSender(released: boolean, withRouting: boolean, slotOf = (id: string) => slots.get(id)) {
   const { source, calls } = makeSource();
   const connection = {
     hasMotionRecipients: true,
     directMotionAvailable(slot: number) { calls.push(["direct", slot]); return slot === 1; },
-    sendMotion(sample: unknown, mask?: number) {
-      calls.push(["send", structuredClone(sample), mask]); return true;
+    sendMotion(sample: any, mask?: number) {
+      const sent = structuredClone(sample);
+      if (sent.routing?.observedPlayerId !== undefined) {
+        sent.routing = { motionMode: sent.routing.motionMode, observedSlot: slots.get(sent.routing.observedPlayerId) };
+      }
+      calls.push(["send", sent, mask]); return true;
     },
   };
   const clock = { encode(timeMs: number) {
@@ -94,7 +101,7 @@ function runSender(released: boolean, withRouting: boolean) {
     cadence: { select(...args: any[]) {
       calls.push(["select", args.slice(0, 4), args[5](1)]);
       return mask;
-    } },
+    }, slotOf },
   } : undefined;
   const sender = released
     ? new release.ki0(source, clock, connection, routing)
@@ -135,4 +142,12 @@ function runSender(released: boolean, withRouting: boolean) {
 test("motion send bucket, cadence, packet composition, and failure state match release", () => {
   assert.deepEqual(runSender(false, true), runSender(true, true));
   assert.deepEqual(runSender(false, false), runSender(true, false));
+  const first = runSender(false, true)[0] as [string, boolean, number, boolean, unknown[]];
+  const sent = first[4].find(call => (call as unknown[])[0] === "send") as [string, { routing: unknown }];
+  assert.deepEqual(sent[1].routing, { motionMode: 0, observedSlot: 4 });
+});
+
+test("routing without a slot for the observed racer fails like incomplete race motion", () => {
+  const [label, result] = runSender(false, true, () => undefined)[0] as [string, unknown];
+  assert.deepEqual([label, result], ["first", "Distance cadence requires full race motion"]);
 });

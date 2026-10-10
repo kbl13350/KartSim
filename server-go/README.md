@@ -375,7 +375,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 | 路径 | 用途 |
 | --- | --- |
-| `GET /multiplayer/healthz` | `{"protocolVersion":39,"ruleset":"launcher-room-v1","transport":"websocket","service":"data","dataNode":"data-1"}` |
+| `GET /multiplayer/healthz` | `{"protocolVersion":40,"ruleset":"launcher-room-v1","transport":"websocket","service":"data","dataNode":"data-1"}`（协议 40：运动帧按座位号命名车手，见 `SERVER_PROTOCOL.md`“运动数据”；原版为 39） |
 | `GET /multiplayer/auth/config` | `{"loginRequired":true,"backendOrigin":…,"registration":"open","guests":false}`；经可信反向代理（`X-Forwarded-Host`）时 `backendOrigin` 为 `null`；设置了 `KART_PUBLIC_ORIGIN` 时返回它；不可信主机 400 `INVALID_HOST` |
 | `POST /multiplayer/auth/guest-name` | `{"name"}` → `{"available"}`：名字合法、不是账号昵称且不在任何游戏服在线；非法 400 `INVALID_GUEST_NAME`（只在开启游客时有用） |
 | `POST /multiplayer/auth/register` | `{"username","nickname","password","invite"?}` → `{"account","token"}`（注册即登录）。用户名 `[A-Za-z0-9_]{3,24}`、昵称 ≤ 16 字、密码 8–128 位，否则 400 `INVALID_ACCOUNT_FIELDS`；`invite` 模式缺少或无效邀请码、`KART_ADMIN_USERNAMES` 中的用户名（任何模式）没有有效邀请码、或开放模式填写了无效邀请码（填写的会被消耗）时 400 `INVALID_INVITE`；`closed` 403 `REGISTRATION_CLOSED`；重名 409 `USERNAME_TAKEN`/`NICKNAME_TAKEN`；限流 429 `TOO_MANY_ATTEMPTS`（见“限流与反向代理”） |
@@ -522,7 +522,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 
 | 路径 | 用途 |
 | --- | --- |
-| `GET /multiplayer/healthz` | `{"protocolVersion":39,"ruleset":"launcher-room-v1","transport":"websocket","service":"game","nodeId":"game-1","connections":3,"players":2,"rooms":1,"heapMB":4}`：后四项是当前连接数、已 `hello` 的玩家数、房间数与存活堆（MiB），便于监控 |
+| `GET /multiplayer/healthz` | `{"protocolVersion":40,"ruleset":"launcher-room-v1","transport":"websocket","service":"game","nodeId":"game-1","connections":3,"players":2,"rooms":1,"heapMB":4}`：后四项是当前连接数、已 `hello` 的玩家数、房间数与存活堆（MiB），便于监控 |
 | `GET /multiplayer/ws` | WebSocket 控制通道（JSON）与二进制运动帧，协议见 `SERVER_PROTOCOL.md`；无 `Origin` 头或同源/可信 Origin 才接受；大的 JSON 消息压缩（`KART_WS_COMPRESSION`） |
 | `POST /multiplayer/offer` | WebRTC 信令：`{"type":"offer","sdp"}` → `{"type":"answer","sdp"}`（服务端一次给出全部 ICE 候选，不用 trickle）。`KART_WEBRTC=false` 或 UDP 端口不可用时 501 `USE_WEBSOCKET`；连接数、内存与关停的限制同 WebSocket（503）；SDP 不合法 400 `INVALID_OFFER` |
 

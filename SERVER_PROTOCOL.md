@@ -22,7 +22,7 @@
 
 | 方法 | 路径 | 请求 | 成功响应 | 前端证据 |
 | --- | --- | --- | --- | --- |
-| GET | `healthz` | 无 | `{ "protocolVersion": 39 }`；必须是整数 39 | `rewrite/src/multiplayer/http.ts:126-136` |
+| GET | `healthz` | 无 | `{ "protocolVersion": 40 }`；必须与前端的版本相同（原版为 39；**本地版为 40**，运动帧格式不同，见“运动数据”） | `rewrite/src/multiplayer/http.ts:126-136` |
 | GET | `auth/config` | 可带 Bearer token | `{ "loginRequired": false, "backendOrigin": "http://127.0.0.1:8787" }`（前端在 8780）；只有前后端同源时才可用 `null` | `rewrite/src/multiplayer/http.ts:138-149` |
 | POST | `auth/guest-name` | `{ "name": "游客昵称" }` | `{ "available": true }` | `rewrite/src/multiplayer/http.ts:151-160` |
 | POST | `auth/register` | `{ "username", "nickname", "password", "invite" }` | `{ "account": { "nickname", "admin"?: boolean } }` | `rewrite/src/multiplayer/http.ts:162-176`；`rewrite/src/generated/multiplayer.js:390-401` |
@@ -55,10 +55,10 @@
 ### 握手与时钟
 
 ```json
-{"type":"hello","requestId":"1","protocolVersion":39,"ruleset":"launcher-room-v1","resourceVersion":"p3553","name":"Alice","equipment":{"itemIds":{"1":2,"2":6,"3":0,"70":4,"4":0,"…":0},"kartSerial":0,"valueAt3E":0,"exceedType":0,"systemKart":"practiceKart"},"initial":"","raceRuntime":true,"ticket":"kt1.…"}
+{"type":"hello","requestId":"1","protocolVersion":40,"ruleset":"launcher-room-v1","resourceVersion":"p3553","name":"Alice","equipment":{"itemIds":{"1":2,"2":6,"3":0,"70":4,"4":0,"…":0},"kartSerial":0,"valueAt3E":0,"exceedType":0,"systemKart":"practiceKart"},"initial":"","raceRuntime":true,"ticket":"kt1.…"}
 ```
 
-回复须为 `{ "type":"welcome", "requestId":"1", "playerId":"...", "protocolVersion":39, "ruleset":"launcher-room-v1", "capabilities":[] }`。`playerId` 长度 1–64；若没有 P2P 运动转发能力，请返回空 `capabilities`，前端才不会额外启动 P2P ICE/信令流程。字段来源：`rewrite/src/multiplayer/client-connect.ts:168-199` 和 `rewrite/src/multiplayer/server-events.ts:54-58`。
+回复须为 `{ "type":"welcome", "requestId":"1", "playerId":"...", "protocolVersion":40, "ruleset":"launcher-room-v1", "capabilities":[] }`（原版为 39）。`playerId` 长度 1–64；若没有 P2P 运动转发能力，请返回空 `capabilities`，前端才不会额外启动 P2P ICE/信令流程。字段来源：`rewrite/src/multiplayer/client-connect.ts:168-199` 和 `rewrite/src/multiplayer/server-events.ts:54-58`。
 
 **本地新增 `ticket`：**游戏节点先按原顺序校验协议版本、规则集、资源版本与 `name`，然后要求字符串 `ticket`，依次检查：缺失 `TICKET_REQUIRED`；格式或签名错误 `TICKET_INVALID`；过期 `TICKET_EXPIRED`；签给其他节点 `TICKET_WRONG_NODE`；来自其他数据服务 `DATA_NODE_MISMATCH`；已用过 `TICKET_REUSED`；游客票据而节点未开启 `KART_ALLOW_GUESTS` 时 `LOGIN_REQUIRED`（默认如此，`hello` 实际上要求账号票据）。账号票据使用其中的昵称并忽略 `name`（开启游客时游客使用请求中的 `name`）。`hello` 携带的 `equipment` 会向数据服务核对归属：账号不拥有或已过期时返回 403 `ITEM_NOT_OWNED`（不占用昵称；浏览器重读库存、换回新手装备后用新票据重试），数据服务不可达时 `DATA_SERVICE_UNAVAILABLE`。昵称在本节点内不区分大小写去重（`NICKNAME_TAKEN`），本节点上同一账号已有会话时 `ACCOUNT_ONLINE`（同一账号在同一节点重复进入时昵称相同，通常先得到 `NICKNAME_TAKEN`）；这两项在核对装备之前。核对通过后由数据服务在全集群占用昵称与账号：账号已在其他节点在线 `ACCOUNT_ONLINE`（先于昵称检查，所以跨节点重复进入得到它），昵称冲突 `NICKNAME_TAKEN`，数据服务不可达 `DATA_SERVICE_UNAVAILABLE`。一个账号全集群同时只能有一个会话。本节点满员 `SERVER_FULL`、内存紧张 `SERVER_BUSY`（这两项在校验票据之前返回，不消耗票据），节点正在关闭 `SERVER_SHUTTING_DOWN`。Java 版的 `token` 字段不再使用（出现也被忽略）。断开连接时释放昵称与账号占用。连接后 15 秒内（`KART_HELLO_TIMEOUT`）未完成 `hello` 的连接以 1008 关闭；待发送数据积压超过 `KART_SEND_BUFFER_BYTES` 的连接同样以 1008 关闭。节点房间数达到 `KART_MAX_ROOMS` 时 `create` 返回 `ROOM_LIMIT_REACHED`。
 
@@ -251,7 +251,22 @@
 
 ## 运动数据
 
-**原协议** 的比赛运动数据不是 JSON。服务端 `motion` 通道帧为 56 字节头加 80–178 字节载荷；小端魔数为 `19277`，头中有载荷类型、接收者掩码、房间/比赛/玩家 UUID 和 32 位序号（`rewrite/src/multiplayer/motion.ts:1-74`）。本地 WebSocket 若要支持多人车体同步，需定义二进制帧映射或单独的运动通道；仅完成 JSON 房间协议只能进入大厅和房间，不能保证多人比赛画面同步。这一边界与单人计时赛无关。本地游戏节点在同一条 WebSocket 上接收二进制帧，按 56 字节头中的房间、比赛、玩家 ID 与接收者掩码校验后，只转发给同一节点上同一房间、已载入的其他车手（与 Java 版 `relayMotion` 一致）；运动帧从不经过数据服务。
+**原协议** 的比赛运动数据不是 JSON。原版 `motion` 通道帧为 56 字节头加 80–178 字节载荷；小端魔数为 `19277`，头中有载荷类型、接收者掩码、房间/比赛/玩家 UUID 和 32 位序号。
+
+**本地版（协议 40）改了帧头，与原版不兼容。** 三个 UUID 每帧重复 48 字节，而游戏节点从连接本身就知道发送者在哪个房间、哪场比赛，所以帧头只剩 8 字节（`rewrite/src/multiplayer/motion.ts`、`server-go/internal/game/lobby/motion.go`）：
+
+| 偏移 | 长度 | 字段 |
+| --- | --- | --- |
+| 0 | 1 | 载荷类型 1–10 |
+| 1 | 1 | 接收者掩码（按房间座位号的位；直连 P2P 帧为 0） |
+| 2 | 1 | 发送者的房间座位号 0–7；游戏节点转发前改写为发送者真实的座位号，不信任客户端填的值 |
+| 3 | 1 | 比赛标记：比赛 UUID 的第一个字节；与发送者当前比赛不符的帧（上一场遗留的）被丢弃 |
+| 4 | 4 | 32 位序号，小端 |
+| 8 | 80–163 | 载荷 |
+
+接收端用房间快照把座位号对应到玩家。载荷与原版相同，只有带路由段的类型 8 和 10 例外：原版在载荷偏移 150 放 16 字节的被观察玩家 UUID，本地版只放 1 字节的座位号（类型 8 载荷 166 → 151 字节，类型 10 载荷 178 → 163 字节）。比赛中最常见的类型 8/10 帧因此从 222/234 字节降到 159/171 字节（少 27–28%）；算上 UDP/DTLS/SCTP 或 TCP 的包头，网络上约少 20%。原版帧的第一个字节是 `0x4d`，按本地格式会被当作非法类型丢弃；前端与游戏节点必须一起升级（旧节点对新前端的 `hello` 返回 `PROTOCOL_MISMATCH`，前端会提示换服务器）。
+
+本地游戏节点在同一条 WebSocket（或 WebRTC `motion` 通道）上接收二进制帧，校验长度、类型、比赛标记、发送者已载入且未离开后，按接收者掩码只转发给同一房间、已载入的其他车手（与 Java 版 `relayMotion` 的转发规则一致）；运动帧从不经过数据服务。
 
 ## 数据存储事实与本地新增方案
 

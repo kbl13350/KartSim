@@ -1,4 +1,4 @@
-import { decodeMotionFrame, isNewerSequence, type MotionFrame } from "./motion";
+import { decodeMotionFrame, isNewerSequence, motionRaceTag, type MotionFrame } from "./motion";
 import { GameMotionDecoder, type DecodedGameMotion } from "./payload";
 import type { RoomSnapshot } from "./protocol";
 
@@ -365,9 +365,9 @@ export class PeerMesh {
     peer.tokens--;
     const frame = this.decoder.decode(bytes);
     const room = this.room;
-    if (!frame || !room?.race || frame.roomId !== room.roomId ||
-        frame.raceId !== room.race.raceId || frame.playerId !== peer.id ||
-        frame.recipientMask) { peer.dropped++; return; }
+    // A direct frame carries its sender's slot, which must be this link's peer.
+    if (!frame || !room?.race || frame.raceTag !== motionRaceTag(room.race.raceId) ||
+        frame.slot !== peer.slot || frame.recipientMask) { peer.dropped++; return; }
     if (peer.lastRtcSequence !== undefined &&
         !isNewerSequence(frame.sequence, peer.lastRtcSequence)) return;
     peer.lastRtcSequence = frame.sequence;
@@ -378,7 +378,8 @@ export class PeerMesh {
       this.control(peer, { type: "motion-ack", sequence: frame.sequence });
     }
     this.options.receiveFrame?.(decodeMotionFrame(bytes));
-    this.options.receive(frame);
+    this.options.receive({ roomId: room.roomId, raceId: room.race.raceId, playerId: peer.id,
+      sequence: frame.sequence, payload: frame.payload });
   }
 
   private control(peer: PeerState, message: Record<string, unknown>): void {

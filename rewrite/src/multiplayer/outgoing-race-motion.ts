@@ -31,6 +31,7 @@ export interface OutgoingMotionRouting {
     select(timeMs: number, motionMode: number, suspended: boolean,
       position: RacePoint, remotePosition: (id: string) => RacePoint | undefined,
       directMotionAvailable: (slot: number) => boolean): number;
+    slotOf(id: string): number | undefined;
   };
   playerId: string;
   position(id: string): RacePoint | undefined;
@@ -144,12 +145,13 @@ export class OutgoingRaceMotionSender {
       sample.visualScale = { ...this.source.state.visualScale };
     }
     if (this.routing) {
-      if (!presentation?.animation || !progress || !collision) {
+      const observedSlot = this.routing.cadence.slotOf(this.routing.playerId);
+      if (!presentation?.animation || !progress || !collision || observedSlot === undefined) {
         throw new Error("Distance cadence requires full race motion");
       }
       sample.routing = {
         motionMode: this.source.networkMotionMode,
-        observedPlayerId: this.routing.playerId,
+        observedSlot,
       };
       return this.connection.sendMotion(sample, recipients);
     }

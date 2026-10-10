@@ -160,7 +160,7 @@ func TestCompressesRoomSnapshots(t *testing.T) {
 		if !strings.Contains(extensions, "permessage-deflate") {
 			t.Fatalf("extension not negotiated: %q", extensions)
 		}
-		welcome, _ := request(conn, read, `{"type":"hello","requestId":"q","protocolVersion":39,`+
+		welcome, _ := request(conn, read, `{"type":"hello","requestId":"q","protocolVersion":40,`+
 			`"ruleset":"launcher-room-v1","resourceVersion":"p3553","name":"`+name+`","ticket":"any"}`)
 		if !strings.Contains(string(welcome), `"welcome"`) {
 			t.Fatalf("hello: %s", welcome)
@@ -296,7 +296,7 @@ func TestHelloTimeoutClosesSilentSockets(t *testing.T) {
 	_, url := start(t, Options{HelloTimeout: 100 * time.Millisecond})
 	silent := dial(t, url)
 	greeted := dial(t, url)
-	hello := `{"type":"hello","requestId":"1","protocolVersion":39,"ruleset":"launcher-room-v1",` +
+	hello := `{"type":"hello","requestId":"1","protocolVersion":40,"ruleset":"launcher-room-v1",` +
 		`"resourceVersion":"p3553","name":"Greeter","ticket":"any"}`
 	if err := greeted.WriteMessage(websocket.TextMessage, []byte(hello)); err != nil {
 		t.Fatal(err)
@@ -451,7 +451,7 @@ func TestFloodDoesNotDisconnectOtherMembers(t *testing.T) {
 	s, url := start(t, Options{SendBufferLimit: 64 << 10})
 	hello := func(conn *websocket.Conn, name string) {
 		t.Helper()
-		payload := `{"type":"hello","requestId":"h","protocolVersion":39,"ruleset":"launcher-room-v1",` +
+		payload := `{"type":"hello","requestId":"h","protocolVersion":40,"ruleset":"launcher-room-v1",` +
 			`"resourceVersion":"p3553","name":"` + name + `","ticket":"any"}`
 		if err := conn.WriteMessage(websocket.TextMessage, []byte(payload)); err != nil {
 			t.Fatal(err)
@@ -609,7 +609,7 @@ func TestEvictClosesTheSocketAndFreesTheSeat(t *testing.T) {
 	}
 	hello := func(conn *websocket.Conn, name string) string {
 		t.Helper()
-		welcome := request(conn, `{"type":"hello","requestId":"q","protocolVersion":39,"ruleset":"launcher-room-v1",`+
+		welcome := request(conn, `{"type":"hello","requestId":"q","protocolVersion":40,"ruleset":"launcher-room-v1",`+
 			`"resourceVersion":"p3553","name":"`+name+`","ticket":"any"}`)
 		id, _ := welcome["playerId"].(string)
 		if id == "" {

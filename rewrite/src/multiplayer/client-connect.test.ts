@@ -6,6 +6,7 @@ import { connectGameClient, type ClientConnectionHost, type ServerControlEvent }
 import { ClockSynchronizer, MotionRoundTripTracker } from "./network-timing";
 import { GameMotionDecoder } from "./payload";
 import { sanitizeIceServers } from "./http";
+import { PROTOCOL_VERSION } from "./protocol";
 
 const source = readFileSync(new URL("../../../recovered/formatted/index.js", import.meta.url), "utf8");
 const first = source.indexOf("class LT {");
@@ -109,7 +110,7 @@ function harness(released: boolean, answer: unknown = { type: "answer", sdp: "an
     `return class { ${source.slice(start, end)} };`)(
       class { constructor() { return peer; } }, fetchImpl,
       (value: unknown) => value as ServerControlEvent,
-      39, "launcher-room-v1", sanitizeIceServers, class {}, { now: () => 140 },
+      PROTOCOL_VERSION, "launcher-room-v1", sanitizeIceServers, class {}, { now: () => 140 },
     ) as new () => ClientConnectionHost & {
       connect(url: string, name: string, version: string, equipment: unknown,
         initial: string, raceRuntime: boolean, token?: string): Promise<ServerControlEvent>;

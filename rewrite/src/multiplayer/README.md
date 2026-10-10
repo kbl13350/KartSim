@@ -16,8 +16,9 @@ bundle. It can be developed independently of the original minified code.
   SDP offer/answer exchange, and sanitized ICE servers.
 - `protocol.ts`: the known control message names, core message types, and
   runtime checks for handshake, clock, room, room-list and error envelopes.
-- `motion.ts`: exact 56-byte motion frame header with UUIDs, kind, recipient
-  mask, sequence and payload bytes.
+- `motion.ts`: the 8-byte motion frame header of protocol 40 (kind, recipient
+  mask, sender room slot, race tag, sequence) and payload bytes; the release
+  used a 56-byte header with room, race and player UUIDs.
 - `payload.ts`: readable encoding and decoding for driving samples and all nine
   kinematic sample shapes; it replaces the release's `S40` and `d6` classes.
 - `peer-mesh.ts`: direct `peer-motion` / `peer-control` links, SDP signaling,
@@ -143,8 +144,9 @@ Entering the lobby after the account is checked:
    mounted lobby offers the server choice again without that node, up to
    three times, and connects with a fresh ticket.
 
-The WebSocket carries the existing protocol version 39 / `launcher-room-v1`
-JSON messages. After `hello`/`welcome`, three `clock` exchanges establish the
+The WebSocket carries the protocol version 40 / `launcher-room-v1` JSON
+messages (the release is 39; 40 changed only the motion frame header, see
+`motion.ts`). After `hello`/`welcome`, three `clock` exchanges establish the
 time offset; later requests and replies carry the same `requestId`. Binary
 race motion frames share this WebSocket.
 
@@ -189,9 +191,9 @@ core fields; add feature-specific validators before using untyped event data.
 | `connect(offerUrl, name, version, equipment, initial, raceRuntime, token)` | `new MultiplayerTransport({ http }).connect({ resourceVersion, name, equipment, initial, raceRuntime })` | Same server SDP exchange, `hello` and three initial clock requests. Backend URL and token now belong to `MultiplayerHttpClient`. |
 | `request(message)`, `subscribe(listener)`, `onClose(listener)` | Same method names | Request ID correlation, 32 pending requests, 64 KiB control backpressure and 10-second default timeout are implemented. |
 | `dispose()` | `close()` | Closes both channels, peer connection and pending requests. Create a new instance to reconnect. |
-| `bindMotionScope(room)` | `bindRoom(room)` | Computes server relay recipients and filters incoming frame identity/sequence. Uses only the room fields represented by `RoomSnapshot`. |
-| `sendMotion(payload, mask)` | `sendMotion(kind, encodedPayload, mask)` | Direct peer and server relay paths use the same wire frame. The race simulation encodes the 80–178 byte payload with `payload.ts`. |
-| `subscribeMotion(listener)` | Same method name | Delivers a validated `MotionFrame` with payload bytes; callers decode with `payload.ts`. |
+| `bindMotionScope(room)` | `bindRoom(room)` | Computes server relay recipients, the members by room slot, and filters incoming frames by race tag, sender slot and sequence. Uses only the room fields represented by `RoomSnapshot`. |
+| `sendMotion(payload, mask)` | `sendMotion(kind, encodedPayload, mask)` | Direct peer and server relay paths use the same wire frame. The race simulation encodes the 80–163 byte payload with `payload.ts`. |
+| `subscribeMotion(listener)` | Same method name | Delivers a validated `MotionFrame` (sender slot, race tag) with payload bytes; callers decode with `payload.ts`. |
 | `captureClock()` | Same method name | Returns an offset/round-trip sample; no separate RTT diagnostic tracker yet. |
 | `raceConnection()` | `createRaceConnection()` | Scoped race command facade checks identity, room, race and abort state on every operation. |
 | `networkDiagnostics()` | Same method name | Returns peer route, latency, traffic and repair counters. |

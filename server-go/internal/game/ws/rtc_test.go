@@ -135,7 +135,7 @@ func (c *rtcClient) request(t *testing.T, payload string) map[string]any {
 	}
 }
 
-const rtcHello = `{"type":"hello","requestId":"h","protocolVersion":39,"ruleset":"launcher-room-v1",` +
+const rtcHello = `{"type":"hello","requestId":"h","protocolVersion":40,"ruleset":"launcher-room-v1",` +
 	`"resourceVersion":"p3553","name":"Rtc","ticket":"any"}`
 
 // A browser's WebRTC offer gets an answer; commands run over the control

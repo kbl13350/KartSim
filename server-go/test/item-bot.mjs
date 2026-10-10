@@ -77,7 +77,7 @@ import {
 } from "./lib/item-bot-lib.mjs";
 import {
   browserAccepts, browserEventValidation, ITEM, ITEM_NAMES, ITEM_RULES, ItemChannel, kartSample, loadItemData,
-  MotionPump, othersMask, repoRoot, ServerClock, wireVector,
+  MotionPump, othersMask, repoRoot, ServerClock, slotOf, wireVector,
 } from "./lib/item-race.mjs";
 
 const USAGE = readFileSync(new URL(import.meta.url), "utf8").match(/\/\*\*\n([\s\S]*?)\*\//)[1]
@@ -255,12 +255,14 @@ if (options.team && joined.room.mode === "team") await ask({ type: "team", roomI
 async function prepareRace(room) {
   const raceId = room.race.raceId;
   const slot = room.race.startSlots?.[state.playerId] ?? 0;
+  // Motion frames name racers by room slot (protocol 40), not by start slot.
+  const memberSlot = slotOf(room, state.playerId);
   const race = {
-    raceId, trackId: room.race.trackId, slot, clock: undefined, startAt: room.race.startAt, room,
+    raceId, trackId: room.race.trackId, slot, memberSlot, clock: undefined, startAt: room.race.startAt, room,
     team: room.race.roster.find(member => member.playerId === state.playerId)?.team ?? null,
     items: new ItemChannel(control, { roomId: state.roomId, raceId, validRequest: isValidItemRequest,
       ratePerSecond: 15, label: player.nickname }),
-    encoder: new payload.GameMotionEncoder({ roomId: state.roomId, raceId, playerId: state.playerId }),
+    encoder: new payload.GameMotionEncoder({ raceId, slot: memberSlot }),
     uses: new Map(), areas: [], effects: [], timers: new Set(), finishSent: false, over: false, cube: 4000,
     pose: undefined, scans: new Set(),
   };
@@ -347,7 +349,7 @@ async function replaySource(race) {
       const [vx, vy, vz] = recorded.linearVelocity;
       const speed = Math.hypot(vx, vy, vz);
       const raw = { ...structuredClone(recorded), position,
-        ...(recorded.routing ? { routing: { ...recorded.routing, observedPlayerId: state.playerId } } : {}) };
+        ...(recorded.routing ? { routing: { ...recorded.routing, observedSlot: race.memberSlot } } : {}) };
       // A reset start is a tick of the recorded race: move it into this one (at most now).
       if (recorded.resetStartedAt !== undefined) {
         raw.resetStartedAt = Math.min(race.clock.tick(now),
@@ -379,7 +381,7 @@ function motionSample(race, now) {
   }
   checkAreas(race, now);
   if (beat.raw) return beat.raw;
-  return kartSample({ tick: 0, pose: beat.pose, observedPlayerId: state.playerId,
+  return kartSample({ tick: 0, pose: beat.pose, observedSlot: race.memberSlot,
     progress: { ...beat.progress, ...(race.finishSent ? { finishElapsedMs: race.finishElapsedMs } : {}) } });
 }
 

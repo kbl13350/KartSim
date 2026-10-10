@@ -76,6 +76,7 @@ import { bindRaceScope, createRaceConnection } from "../multiplayer/race-session
 import { acceptGameMotion, acceptServerMotion, captureNetworkClock, networkDiagnostics as getNetworkDiagnostics, sendGameMotion, subscribeGameMotion } from "../multiplayer/client-motion.ts";
 import { disposeClient, onClientClose, sameOriginOfferUrl, sendControlRequest, subscribeControl } from "../multiplayer/client-control.ts";
 import { connectGameClient } from "../multiplayer/client-connect.ts";
+import { PROTOCOL_VERSION } from "../multiplayer/protocol.ts";
 import { configuredTransport } from "../multiplayer/local-config.ts";
 import { acquireReadyToonEnvironment, enterTimeAttackReady, openTrackSelect, readyStageContext, resolveRandomSelection, selectReadyChoice, selectReadyTrack, startRaceFromReady } from "../timeattack/ready-flow.ts";
 import { changeReadyFavoriteItems, changeReadyFavoriteTrack, closeReadyMultiplayer, disposeReadyController, getReadyWindowNotice, isReadyModalBusy, readyNetworkDiagnostics, refreshReadyRecord, releaseReadyForRace, renderReadyController, returnMultiplayerToSinglePlayer, setReadyWindowNotice, updateReadyWindowNotice } from "../timeattack/ready-controller-state.ts";
@@ -171,7 +172,7 @@ const multiplayerLobbyServices = {
     loadRpNotice: (library, root, race, playerId, audio) => vy.load(library, root, race, playerId, audio),
   },
   open: {
-    get protocolVersion() { return Uo; }, pageUrl: () => window.location.href,
+    get protocolVersion() { return PROTOCOL_VERSION; }, pageUrl: () => window.location.href,
     endpoint: Ko, fetchHealth: (url, signal) => fetch(url, { cache: "no-store", signal }),
     showAccountProgress: vl0, loadAccount: () => multiplayerAccountFromSession(currentAccountSession()),
     loadLobby: options => Ew.load(options),

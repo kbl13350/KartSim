@@ -3,8 +3,6 @@ package app
 import (
 	"context"
 	"crypto/subtle"
-	"encoding/binary"
-	"encoding/hex"
 	"encoding/json"
 	"io"
 	"log/slog"
@@ -400,7 +398,7 @@ func equipment() map[string]any {
 }
 
 func hello(name, token string) map[string]any {
-	value := map[string]any{"type": "hello", "protocolVersion": 39,
+	value := map[string]any{"type": "hello", "protocolVersion": 40,
 		"ruleset": "launcher-room-v1", "resourceVersion": "p3553", "name": name,
 		"initial": "", "equipment": equipment(), "token": "legacy-session-token-is-ignored"}
 	if token != "" {
@@ -418,11 +416,6 @@ func eventually(t *testing.T, what string, cond func() bool) {
 		}
 		time.Sleep(5 * time.Millisecond)
 	}
-}
-
-func uuidBytes(id string) []byte {
-	b, _ := hex.DecodeString(strings.ReplaceAll(id, "-", ""))
-	return b
 }
 
 func TestEndToEnd(t *testing.T) {
@@ -444,7 +437,7 @@ func TestEndToEnd(t *testing.T) {
 		}
 		hb := data.heartbeats[0]
 		if hb.NodeID != e2eNode || hb.Name != "测试节点" || hb.Origin != "http://127.0.0.1:18799" ||
-			hb.Capacity != 10 || hb.ProtocolVersion != 39 || hb.Players == nil || hb.StartedAt <= 0 {
+			hb.Capacity != 10 || hb.ProtocolVersion != contract.ProtocolVersion || hb.Players == nil || hb.StartedAt <= 0 {
 			t.Errorf("heartbeat %+v", hb)
 		}
 	})
@@ -457,7 +450,7 @@ func TestEndToEnd(t *testing.T) {
 	health, _ := io.ReadAll(resp.Body)
 	resp.Body.Close()
 	// heapMB varies; the other load figures are zero on an idle node.
-	healthPrefix := `{"protocolVersion":39,"ruleset":"launcher-room-v1","transport":"websocket","service":"game",` +
+	healthPrefix := `{"protocolVersion":40,"ruleset":"launcher-room-v1","transport":"websocket","service":"game",` +
 		`"nodeId":"game-e2e","connections":0,"players":0,"rooms":0,"heapMB":`
 	if !strings.HasPrefix(string(health), healthPrefix) ||
 		!strings.HasSuffix(string(health), `,"outboxPending":0,"outboxWriteFailing":false,"webrtc":false}`) {
@@ -479,7 +472,7 @@ func TestEndToEnd(t *testing.T) {
 	// Admission: a guest and an account; the session token field is ignored.
 	alice := dial(t, n.wsURL, http.Header{"Origin": {"http://localhost:5173"}})
 	welcome := alice.request(hello("Alice", sign(t, ticket.Claims{Guest: true})))
-	if welcome["type"] != "welcome" || welcome["protocolVersion"] != 39.0 {
+	if welcome["type"] != "welcome" || welcome["protocolVersion"] != 40.0 {
 		t.Fatalf("welcome %v", welcome)
 	}
 	aliceID := welcome["playerId"].(string)
@@ -550,13 +543,12 @@ func TestEndToEnd(t *testing.T) {
 	alice.room(map[string]any{"type": "loaded", "roomId": roomID, "raceId": raceID})
 	bob.room(map[string]any{"type": "loaded", "roomId": roomID, "raceId": raceID})
 
-	// Motion frames reach the other loaded racer as binary messages.
-	frame := make([]byte, 140)
-	binary.LittleEndian.PutUint16(frame, 19_277)
-	frame[2], frame[3] = 2, 0xFF
-	copy(frame[4:], uuidBytes(roomID))
-	copy(frame[20:], uuidBytes(raceID))
-	copy(frame[36:], uuidBytes(aliceID))
+	// Motion frames reach the other loaded racer as binary messages
+	// (protocol 40: kind, recipient mask, slot, race tag, sequence, payload),
+	// with the sender's slot stamped by the node.
+	frame := make([]byte, 8+80)
+	tag, _ := strconv.ParseUint(raceID[:2], 16, 8)
+	frame[0], frame[1], frame[2], frame[3] = 2, 0xFF, 5, byte(tag)
 	if err := alice.conn.WriteMessage(websocket.BinaryMessage, frame); err != nil {
 		t.Fatal(err)
 	}
@@ -567,8 +559,9 @@ func TestEndToEnd(t *testing.T) {
 			bob.backlog = append(bob.backlog, m)
 		}
 	}
+	frame[2] = 0 // alice, the host, holds slot 0
 	if string(bob.frames[0]) != string(frame) {
-		t.Fatal("relayed frame differs")
+		t.Fatalf("relayed frame %v", bob.frames[0][:8])
 	}
 
 	n.clock.Advance(3 * time.Second)

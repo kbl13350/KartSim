@@ -143,63 +143,96 @@ export function readAccount(file, { account, index = 0 } = {}, read = readFileSy
 /**
  * Paste into the browser's DevTools console before the race (or run
  * `node server-go/test/item-bot.mjs --print-recorder`): records every motion
- * frame the page sends (binary WebSocket frames starting with the motion
- * magic 19277), then kartMotionRecording.save() downloads them as JSON for
- * --replay. kartMotionRecording.stop() restores WebSocket.send.
+ * frame the page sends, over WebRTC or WebSocket (binary messages: protocol
+ * 40 motion frames, an 8-byte header with the payload kind 1–10 first), then
+ * kartMotionRecording.save() downloads them as JSON for --replay.
+ * kartMotionRecording.stop() restores the send methods.
  */
 export const RECORDER_SNIPPET = `(() => {
   const frames = [];
-  const send = WebSocket.prototype.send;
-  WebSocket.prototype.send = function (data) {
-    try {
-      const bytes = data instanceof ArrayBuffer ? new Uint8Array(data)
-        : ArrayBuffer.isView(data) ? new Uint8Array(data.buffer, data.byteOffset, data.byteLength) : undefined;
-      if (bytes && bytes.length >= 136 && bytes[0] === 0x4d && bytes[1] === 0x4b) {
-        let text = "";
-        for (const byte of bytes) text += String.fromCharCode(byte);
-        frames.push(btoa(text));
-      }
-    } catch {}
-    return send.call(this, data);
-  };
+  const targets = [WebSocket.prototype, RTCDataChannel.prototype];
+  const sends = targets.map(target => target.send);
+  targets.forEach((target, index) => {
+    target.send = function (data) {
+      try {
+        const bytes = data instanceof ArrayBuffer ? new Uint8Array(data)
+          : ArrayBuffer.isView(data) ? new Uint8Array(data.buffer, data.byteOffset, data.byteLength) : undefined;
+        if (bytes && bytes.length >= 88 && bytes[0] >= 1 && bytes[0] <= 10) {
+          let text = "";
+          for (const byte of bytes) text += String.fromCharCode(byte);
+          frames.push(btoa(text));
+        }
+      } catch {}
+      return sends[index].call(this, data);
+    };
+  });
   window.kartMotionRecording = {
     frames,
     save(name = "kart-motion.json") {
       const link = document.createElement("a");
-      link.href = URL.createObjectURL(new Blob([JSON.stringify({ version: 1, frames })], { type: "application/json" }));
+      link.href = URL.createObjectURL(new Blob([JSON.stringify({ version: 2, frames })], { type: "application/json" }));
       link.download = name;
       link.click();
     },
-    stop() { WebSocket.prototype.send = send; },
+    stop() { targets.forEach((target, index) => { target.send = sends[index]; }); },
   };
   console.log("Recording race motion; after the race run kartMotionRecording.save()");
 })();`;
 
 /**
- * The samples of a recording ({version: 1, frames: [base64 motion frame]},
- * optional startTick), decoded with the browser's GameMotionDecoder: the
- * race with the most frames, in order, with the tick its racer started
- * moving (the recording's startTick when given: the race's startAt on the
- * recorded node's clock).
+ * A version 1 recording frame (the release's 56-byte header: magic 19277,
+ * kind, mask, room/race/player UUIDs, sequence) as protocol 40: the same
+ * payload with the routed kinds' 16-byte observed UUID cut to a slot byte.
+ * Other frames are returned as they are.
+ */
+export function protocol40Frame(bytes) {
+  if (bytes.length < 136 || bytes[0] !== 0x4d || bytes[1] !== 0x4b) return bytes;
+  const kind = bytes[2];
+  let payload = bytes.subarray(56);
+  if ((kind === 8 || kind === 10) && payload.length >= 166) {
+    payload = Uint8Array.of(...payload.subarray(0, 150), 0, ...payload.subarray(166));
+  }
+  const frame = new Uint8Array(8 + payload.length);
+  frame.set([kind, bytes[3], 0, bytes[20]]);
+  frame.set(bytes.subarray(52, 56), 4);
+  frame.set(payload, 8);
+  return frame;
+}
+
+/**
+ * The samples of a recording ({version: 2, frames: [base64 motion frame]},
+ * optional startTick; version 1 frames are converted with protocol40Frame),
+ * decoded with the browser's GameMotionDecoder: the race with the most
+ * frames, in order, with the tick its racer started moving (the recording's
+ * startTick when given: the race's startAt on the recorded node's clock).
+ * A race ends where the race tag changes or the sequence starts over; a
+ * repeated sequence (the same frame on another link) is skipped.
  */
 export function recordedRace(recording, decoder) {
   assert.ok(Array.isArray(recording?.frames) && recording.frames.length > 0, "the recording holds no frames");
-  const races = new Map();
+  const races = [];
+  let race;
   let invalid = 0;
   for (const text of recording.frames) {
-    const decoded = decoder.decode(new Uint8Array(Buffer.from(text, "base64")));
+    const decoded = decoder.decode(protocol40Frame(new Uint8Array(Buffer.from(text, "base64"))));
     if (!decoded || decoded.payload.kind !== "kinematic") { invalid++; continue; }
-    if (!races.has(decoded.raceId)) races.set(decoded.raceId, []);
-    races.get(decoded.raceId).push(decoded.payload);
+    // The same frame sent on another link (a direct peer and the relay).
+    if (race && decoded.raceTag === race.tag && decoded.sequence === race.sequence) continue;
+    if (!race || decoded.raceTag !== race.tag || decoded.sequence < race.sequence) {
+      race = { tag: decoded.raceTag, samples: [] };
+      races.push(race);
+    }
+    race.sequence = decoded.sequence;
+    race.samples.push(decoded.payload);
   }
-  const samples = [...races.values()].sort((a, b) => b.length - a.length)[0] ?? [];
+  const samples = races.map(entry => entry.samples).sort((a, b) => b.length - a.length)[0] ?? [];
   assert.ok(samples.length > 0, "the recording holds no kinematic race motion");
   let startTick = recording.startTick;
   if (!Number.isFinite(startTick)) {
     const moving = samples.find(sample => Math.hypot(...sample.linearVelocity) > 1);
     startTick = (moving ?? samples[0]).tick - (moving ? 100 : 0);
   }
-  return { samples, startTick, invalid, races: races.size };
+  return { samples, startTick, invalid, races: races.length };
 }
 
 /* ---------- route ---------- */

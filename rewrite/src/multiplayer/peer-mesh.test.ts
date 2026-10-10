@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import { isNewerSequence } from "./motion";
-import { GameMotionDecoder, GameMotionEncoder, type DecodedGameMotion } from "./payload";
+import { GameMotionDecoder, GameMotionEncoder, resolveGameMotion, type DecodedGameMotion } from "./payload";
 import { PeerMesh, type PeerSignal } from "./peer-mesh";
 import type { RoomSnapshot } from "./protocol";
 
@@ -85,19 +85,29 @@ function harness(released: boolean, playerId = selfId, remoteId = otherId) {
     send: async (message: Record<string, unknown>) => { commands.push(message); },
     receive: (message: DecodedGameMotion) => { motions.push(message); },
   };
+  // The release checks the UUIDs its decoder returns; protocol 40 frames name
+  // slots, so its decoder resolves them through the test room first.
+  const room = makeRoom(playerId, remoteId);
+  const players = new Map(room.members.map(member => [member.slot, member.playerId]));
+  class ResolvingDecoder {
+    decode(bytes: Uint8Array) {
+      const motion = new GameMotionDecoder().decode(bytes);
+      return motion && resolveGameMotion(motion, { roomId, raceId, players });
+    }
+  }
   const ReleasePeerMesh = new Function("RTCPeerConnection", "d6", "No", "kT", "dl0", "fl0", "crypto", "performance",
     `${source.slice(start, end)}; return pl0;`)(
       class extends FakePeer { constructor() { super(); peers.push(this); } },
-      GameMotionDecoder, isNewerSequence, 8_192, 3_000, 5_000,
+      ResolvingDecoder, isNewerSequence, 8_192, 3_000, 5_000,
       globalThis.crypto, performance,
     ) as new (configuration: typeof options) => MeshApi;
   const mesh: MeshApi = released ? new ReleasePeerMesh(options) : new PeerMesh(options);
-  return { mesh, peers, commands, motions, setTick: (value: number) => { tick = value; },
-    room: makeRoom(playerId, remoteId) };
+  return { mesh, peers, commands, motions, setTick: (value: number) => { tick = value; }, room };
 }
 
-function motionFrom(id: string, sequence: number): Uint8Array {
-  return new GameMotionEncoder({ roomId, raceId, playerId: id }).encode({
+/** A direct frame from the racer in `slot` (makeRoom: 0 is the local racer, 1 the peer). */
+function motionFrom(slot: number, sequence: number, frameRaceId = raceId): Uint8Array {
+  return new GameMotionEncoder({ raceId: frameRaceId, slot }).encode({
     kind: "kinematic", tick: sequence,
     position: [1, 2, 3], quaternion: [0, 0, 0, 1],
     linearVelocity: [4, 0, 0], angularVelocity: [0, 0, 0],
@@ -111,15 +121,18 @@ async function directScenario(released: boolean) {
     mesh.bind(room);
     await new Promise<void>(resolve => setImmediate(resolve));
     const peer = peers[0]!;
-    const frame = motionFrom(selfId, 1);
+    const frame = motionFrom(0, 1);
     const direct = mesh.send(frame, 1, 255);
     mesh.receiveSignal({ type: "p2p-relay", roomId, raceId, playerId: otherId });
     const probing = mesh.send(frame, 2, 255);
     peer.control.receive(JSON.stringify({ type: "motion-ack", sequence: 2 }));
     const restored = mesh.send(frame, 3, 255);
-    const remote = motionFrom(otherId, 7);
+    const remote = motionFrom(1, 7);
     peer.motion.receive(remote.buffer);
     peer.motion.receive(remote.buffer);
+    // Another racer's slot and another race are dropped on this link.
+    peer.motion.receive(motionFrom(0, 8).buffer);
+    peer.motion.receive(motionFrom(1, 9, "33333333-3333-4333-8333-333333333333").buffer);
     setTick(12_000);
     mesh.maintain();
     mesh.updateIceServers([{ urls: "stun:example.org" }]);

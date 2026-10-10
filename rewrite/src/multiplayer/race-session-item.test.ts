@@ -26,6 +26,7 @@ function fixture() {
     subscribeMotion: () => () => {},
     sendMotion: () => true,
     motionScope: { roomId, raceId, members: new Set([self, peer]), sequence: 0,
+      slot: 0, players: new Map([[0, self], [2, peer]]),
       received: new Map(), enabled: true, recipientMask: 4 },
   };
   const abort = new AbortController();
