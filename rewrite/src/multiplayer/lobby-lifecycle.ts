@@ -1,3 +1,4 @@
+import { cheatKickMessage, cheatKickOf, type CheatKick } from "./cheat-kick";
 import type { LobbyRoom } from "./lobby-actions";
 
 interface Disposable { dispose(): void }
@@ -7,8 +8,11 @@ export interface LobbyLifecycleHost {
     status(message: string, error?: boolean): void;
     toggleAutoReady?: () => boolean | undefined;
     autoReadyEnabled?: () => boolean;
-    /** The game server connection was lost; without it the page shows the message instead. */
-    onDisconnected?: () => void;
+    /**
+     * The game server connection was lost (kick: the anti-cheat closed it);
+     * without it the page shows the message instead.
+     */
+    onDisconnected?: (kick?: CheatKick) => void;
   };
   client: {
     subscribe(listener: (event: unknown) => void): () => void;
@@ -32,6 +36,8 @@ export interface LobbyLifecycleHost {
   refresh?: ReturnType<typeof setInterval>;
   leaveConfirmation?: { resolve(value: boolean): void };
   playerId: string;
+  /** The anti-cheat kick announced before the connection closed. */
+  cheatKick?: CheatKick;
   connected: boolean;
   busy: boolean;
   leaving: boolean;
@@ -51,7 +57,11 @@ export interface LobbyLifecycleHost {
 
 export function bindLobbyClient(host: LobbyLifecycleHost): void {
   const client = host.client;
-  client.subscribe(event => host.receive(event));
+  client.subscribe(event => {
+    const kick = cheatKickOf(event);
+    if (kick && host.client === client) host.cheatKick = kick;
+    host.receive(event);
+  });
   client.onClose(() => {
     if (host.disposed || host.client !== client || !host.connected) return;
     host.connected = false;
@@ -68,7 +78,9 @@ export function bindLobbyClient(host: LobbyLifecycleHost): void {
       host.lobby?.show?.();
     }
     host.render();
-    if (host.options.onDisconnected) host.options.onDisconnected();
+    const kick = host.cheatKick;
+    if (host.options.onDisconnected) host.options.onDisconnected(kick);
+    else if (kick) host.options.status(cheatKickMessage(kick), true);
     else host.options.status("联机服务已断开。请返回单人游戏，再重新进入多人游戏。", true);
   });
 }

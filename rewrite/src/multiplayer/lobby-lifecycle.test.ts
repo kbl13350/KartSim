@@ -149,3 +149,31 @@ test("lobby disposal order and idempotence match release", () => {
   };
   assert.deepEqual(run(false), run(true));
 });
+
+// Not in the release: the game node's anti-cheat announces its kick with an
+// unsolicited CHEAT_DETECTED error before closing; the close hands the
+// check to onDisconnected, or shows why on the status line without it.
+test("an anti-cheat kick reaches the disconnect with its check", () => {
+  const { host, message, close } = fixture();
+  let kick: unknown = "none";
+  host.options.onDisconnected = value => { kick = value; };
+  bindLobbyClient(host);
+  message({ type: "error", code: "CHEAT_DETECTED", check: "TELEPORT" });
+  close();
+  assert.deepEqual(kick, { check: "TELEPORT" });
+
+  const plain = fixture();
+  plain.host.options.onDisconnected = value => { kick = value; };
+  bindLobbyClient(plain.host);
+  // A reply to a request is not a kick.
+  plain.message({ type: "error", code: "CHEAT_DETECTED", check: "SPEED", requestId: "r1" });
+  plain.close();
+  assert.equal(kick, undefined);
+
+  const status = fixture();
+  bindLobbyClient(status.host);
+  status.message({ type: "error", code: "CHEAT_DETECTED", check: "FINISH_EARLY" });
+  status.close();
+  assert.deepEqual(status.events.at(-1), ["status",
+    "服务器检测到异常操作（未跑完赛道就完赛），你已被移出比赛并断开联机。如有疑问请联系管理员。", true]);
+});

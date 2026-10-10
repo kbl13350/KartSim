@@ -1,8 +1,9 @@
 import { ensureFeatureResources } from "../ui/resource-panel";
-import { showAccountToast, type OverlayDocument } from "../account/account-dialogs";
+import { showAccountMessage, showAccountToast, type OverlayDocument } from "../account/account-dialogs";
 import { activeBrowserSession } from "../account/account-runtime";
 import { accountOwnedEquipment, garageViewCatalog } from "../account/garage-ownership";
 import { channelLicenseWarning } from "../license/license-model";
+import { cheatKickMessage, type CheatKick } from "../multiplayer/cheat-kick";
 import type { ReadyOptions, ReadySelection } from "./ready-flow";
 import { selectionKeep } from "./ready-garage";
 import { goReadyHome, type ReadyHomeController } from "./ready-home";
@@ -190,10 +191,11 @@ export async function openReadyMultiplayer(controller: ReadyMultiplayerControlle
     },
     // Our own connection dropped (mid-race too): leave multiplayer for the 大厅
     // (home); 多人游戏 there connects again.
-    onDisconnected: () => {
+    onDisconnected: (kick?: CheatKick) => {
       if (controller.multiplayer !== lobby || controller.disposed) return;
-      showAccountToast(host.root.ownerDocument as unknown as OverlayDocument,
-        "与联机服务器的连接已断开，已返回大厅。可以重新进入多人游戏。");
+      const document = host.root.ownerDocument as unknown as OverlayDocument;
+      if (kick) void showAccountMessage(document, "已被移出比赛", cheatKickMessage(kick), "确定");
+      else showAccountToast(document, "与联机服务器的连接已断开，已返回大厅。可以重新进入多人游戏。");
       void goReadyHome(controller as unknown as ReadyHomeController,
         () => controller.returnMultiplayerToSinglePlayer());
     },
