@@ -45,6 +45,12 @@ export const ITEM_FX_TUNING = Object.freeze({
   preloadInstances: 1,
   preloadShared: 2,
   maxInstances: 8,
+  /**
+   * Copies of a placed object (`FxModel.placed`): every banana on the track
+   * stays live for its 30 s and the server does not cap them, so its pool
+   * grows far past the racer count; past this the newest waits for a copy.
+   */
+  placedMaxInstances: 64,
   /** Uses are forgotten after the server's use lifetime. */
   useLifetimeMs: 60_000,
 });
@@ -60,6 +66,12 @@ export interface FxModel {
   readonly derive?: "carriedBalloon";
   /** Copies assembled at load when not `preloadInstances`. */
   readonly preload?: number;
+  /**
+   * An object set on the track for its whole life (the thrown items' Set):
+   * up to `placedMaxInstances` copies, and a shown one is never taken over by
+   * a newer visual of the model, which waits for a free copy instead.
+   */
+  readonly placed?: true;
 }
 
 export type FxSound = string;
@@ -332,6 +344,9 @@ export function buildItemFxPlan(catalog: ItemCatalog): ItemFxPlan {
     (items.get(ItemIdx.angel) as AuraFx | undefined)?.model];
   for (const model of shared2) if (model) b.models.set(model.key,
     { ...b.models.get(model.key)!, preload: ITEM_FX_TUNING.preloadShared });
+  // Thrown objects stay where they were set (a banana for 30 s), as many as were thrown.
+  for (const fx of items.values()) if (fx.kind === "throw")
+    b.models.set(fx.set.key, { ...b.models.get(fx.set.key)!, placed: true });
   if (b.missing.length > 0) console.warn(`道具表现资源缺失：${[...new Set(b.missing)].join("、")}`);
   return {
     items,

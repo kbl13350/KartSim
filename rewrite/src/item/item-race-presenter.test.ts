@@ -5,7 +5,7 @@ import { ItemIdx, loadItemCatalog, type ItemCatalog } from "./item-catalog";
 import type {
   FxAudioContext, FxAudioParam, FxAudioSource, FxModelData, FxModelNode, FxRenderedScene, ItemFxOps,
 } from "./item-fx-assets";
-import { ITEM_FX_TUNING } from "./item-fx-plan";
+import { ITEM_FX_TUNING, type CloudFx } from "./item-fx-plan";
 import {
   loadItemRacePresenter, type ItemPresenterFrame, type ItemPresenterPose, type ItemPresenterVec3,
   type ItemRacePresenterImpl,
@@ -254,6 +254,26 @@ test("late events start part-way: the animation is anchored to the server timeli
   assert.deepEqual(models(presenter), []);
 });
 
+test("a cloud blocked on my kart never sounds its removal; one that covers me does", async () => {
+  const { presenter, at, played } = await setup();
+  const { coverMs } = presenter.plan.items.get(ItemIdx.cloud2) as CloudFx;
+  const removals = () => played.filter(sound => sound.path.endsWith("cloud2/disappear.ogg")).length;
+  // My kart sits in a water bubble (escape immunity): no cover, so no removal either.
+  presenter.used({ useId: 60, itemId: ItemIdx.cloud2, userId: "B", targets: ["A"], startMs: 0, etaMs: 0 });
+  at(0);
+  presenter.hit({ useId: 60, itemId: ItemIdx.cloud2, victimId: "A", userId: "B", result: "blocked", by: "escape",
+    atMs: 500 });
+  at(coverMs);
+  at(coverMs + 16);
+  assert.equal(removals(), 0);
+
+  presenter.used({ useId: 61, itemId: ItemIdx.cloud2, userId: "B", targets: ["A"], startMs: 20_000, etaMs: 0 });
+  at(20_000);
+  presenter.hit({ useId: 61, itemId: ItemIdx.cloud2, victimId: "A", userId: "B", result: "hit", atMs: 20_500 });
+  at(20_000 + coverMs);
+  assert.equal(removals(), 1);
+});
+
 test("bananas are tossed behind the kart, lie for Set.life and go when run over", async () => {
   const { presenter, at, played } = await setup();
   presenter.used({ useId: 7, itemId: ItemIdx.banana, userId: "A", targets: [], startMs: 100, etaMs: 0,
@@ -487,6 +507,75 @@ test("the magnet field points at its target and ends with the pull", async () =>
   assert.deepEqual(models(presenter), []);
 });
 
+test("my own magnet field turns to the locked target once the use names it", async () => {
+  const { presenter, at } = await setup();
+  const toC = [30 / Math.hypot(30, 100), 0, 100 / Math.hypot(30, 100)];
+  // The physics pull starts at the release, a round trip before the reply.
+  presenter.kartEffect("A", "pull", 0, 3000);
+  at(16);
+  assert.ok(nearVec(shown(presenter)[0]!.forward, [0, 0, 1]));
+  presenter.used({ useId: 22, itemId: ItemIdx.magnet, userId: "A", targets: ["C"], startMs: 40, etaMs: 0 });
+  at(100);
+  const fields = shown(presenter);
+  assert.deepEqual(fields.map(entry => entry.model), ["item/magnet/item01.1s"]);
+  assert.ok(nearVec(fields[0]!.forward, toC), JSON.stringify(fields[0]));
+  // A pull started with its target faces it at once, and a restart without one keeps it.
+  at(4000);
+  presenter.kartEffect("A", "pull", 5000, 3000, { target: "C" });
+  presenter.kartEffect("A", "pull", 5010, 3000);
+  at(5016);
+  assert.ok(nearVec(shown(presenter)[0]!.forward, toC));
+});
+
+test("a self effect the controller already ended is not brought back by the late use reply", async () => {
+  const { presenter, at } = await setup();
+  const balloon = "item/waterBomb/item00.1s#carriedBalloon";
+  // A shield pressed at the last moment blocks a missile before its reply arrives.
+  at(992);
+  presenter.kartEffect("A", "shield", 992, 2000);
+  at(1008);
+  assert.deepEqual(models(presenter), ["item/shield/firing00.1s"]);
+  presenter.endKartEffect("A", "shield");
+  at(1024);
+  assert.deepEqual(models(presenter), []);
+  presenter.used({ useId: 9, itemId: ItemIdx.shield, userId: "A", targets: [], startMs: 1040, etaMs: 0 });
+  at(1104);
+  assert.deepEqual(models(presenter), [], "the spent shield stays gone");
+  at(2500);
+  assert.deepEqual(models(presenter), []);
+
+  // A time bomb whose balloon the end of my race removed, and a pull that arrived early.
+  presenter.kartEffect("A", "timeBomb", 3000, 3000);
+  presenter.kartEffect("A", "pull", 3000, 3000);
+  at(3016);
+  assert.deepEqual(models(presenter), ["item/magnet/item01.1s", balloon]);
+  presenter.endKartEffect("A", "timeBomb");
+  presenter.endKartEffect("A", "pull");
+  at(3032);
+  presenter.used({ useId: 10, itemId: ItemIdx.timeBomb, userId: "A", targets: [], startMs: 3040, etaMs: 0 });
+  presenter.used({ useId: 11, itemId: ItemIdx.magnet, userId: "A", targets: ["C"], startMs: 3040, etaMs: 0 });
+  at(3100);
+  assert.deepEqual(models(presenter), []);
+
+  // The next press starts the shield again, and its reply keeps that one visual.
+  presenter.kartEffect("A", "shield", 8000, 2000);
+  presenter.used({ useId: 12, itemId: ItemIdx.shield, userId: "A", targets: [], startMs: 8050, etaMs: 0 });
+  at(8100);
+  assert.deepEqual(models(presenter), ["item/shield/firing00.1s"]);
+  at(10_100);
+  assert.deepEqual(models(presenter), []);
+
+  // A remote racer's next shield shows from its use alone.
+  presenter.used({ useId: 13, itemId: ItemIdx.shield, userId: "B", targets: [], startMs: 11_000, etaMs: 0 });
+  at(11_016);
+  presenter.endKartEffect("B", "shield");
+  at(11_032);
+  assert.deepEqual(models(presenter), []);
+  presenter.used({ useId: 14, itemId: ItemIdx.shield, userId: "B", targets: [], startMs: 11_100, etaMs: 0 });
+  at(11_116);
+  assert.deepEqual(models(presenter), ["item/shield/firing00.1s"]);
+});
+
 test("spin, launch and barrier add nothing; track hazards show their hit", async () => {
   const { presenter, at, played } = await setup();
   for (const kind of ["spin", "launch", "barrier"] as const) presenter.kartEffect("B", kind, 0, 1500);
@@ -562,6 +651,64 @@ test("copies are assembled as soon as overlapping visuals are scheduled, up to t
   at(1600);
   assert.equal(models(presenter).length, 0);
   assert.equal(pool.instances.length, ITEM_FX_TUNING.maxInstances, "copies are kept for later uses");
+});
+
+test("a visual whose copy was taken over this frame does not take another one", async () => {
+  const { presenter, at } = await setup();
+  const pool = presenter.models.pools.get("item/common/미사일폭발.1s")!;
+  // Listed first but due later; the others end in reverse list order.
+  presenter.show("late", pool.model, 1000, 1000, 3000, () => true);
+  for (let index = 1; index <= ITEM_FX_TUNING.maxInstances; index += 1)
+    presenter.show(`early:${index}`, pool.model, 0, 0, 10_000 - index * 1000, () => true);
+  await flush();
+  assert.equal(pool.instances.length, ITEM_FX_TUNING.maxInstances);
+  at(0);
+  assert.equal(models(presenter).length, ITEM_FX_TUNING.maxInstances);
+  // The late one takes the copy of the last-listed one, which ends first.
+  at(1000);
+  assert.equal(models(presenter).length, ITEM_FX_TUNING.maxInstances);
+  assert.equal(presenter.visuals.length, ITEM_FX_TUNING.maxInstances);
+  assert.ok(presenter.visuals.every(visual => visual.instance));
+  at(10_000);
+  assert.deepEqual(models(presenter), []);
+  assert.ok(pool.instances.every(instance => !instance.busy), "every copy is free again");
+});
+
+test("every banana lying on the track shows for its whole Set.life", async () => {
+  const { presenter, at } = await setup();
+  const users = ["A", "B", "C"];
+  for (let index = 0; index < 9; index += 1) {
+    presenter.used({ useId: 50 + index, itemId: ItemIdx.banana, userId: users[index % 3]!, targets: [],
+      startMs: index * 2000, etaMs: 0, point: { x: 10 * (index + 1), y: 0, z: 0 } });
+    await flush();
+    at(index * 2000 + 600);
+  }
+  at(17_000);
+  const peels = shown(presenter).filter(entry => entry.model === "item/banana/item01.1s");
+  assert.deepEqual(peels.map(entry => entry.position[0]).sort((a, b) => a - b),
+    [10, 20, 30, 40, 50, 60, 70, 80, 90]);
+});
+
+test("at the placed-object cap a new banana waits for a copy instead of hiding a live one", async () => {
+  const { presenter, at } = await setup();
+  const cap = ITEM_FX_TUNING.placedMaxInstances;
+  assert.ok(cap > ITEM_FX_TUNING.maxInstances);
+  for (let index = 0; index <= cap; index += 1) {
+    presenter.used({ useId: 100 + index, itemId: ItemIdx.banana, userId: "B", targets: [], startMs: index,
+      etaMs: 0, point: { x: index, y: 0, z: 0 } });
+  }
+  await flush();
+  at(cap + 600);
+  const peels = () => shown(presenter).filter(entry => entry.model === "item/banana/item01.1s")
+    .map(entry => entry.position[0]);
+  assert.equal(peels().length, cap);
+  assert.ok(!peels().includes(cap), "the newest waits");
+  assert.ok(peels().includes(0), "the oldest is still on the track");
+  // One is run over: the waiting banana takes its copy.
+  presenter.removed(100);
+  at(cap + 616);
+  assert.equal(peels().length, cap);
+  assert.ok(peels().includes(cap) && !peels().includes(0));
 });
 
 test("reset forgets everything; dispose releases scenes and sounds", async () => {

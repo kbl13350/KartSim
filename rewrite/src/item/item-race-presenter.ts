@@ -21,10 +21,12 @@ import {
  *
  * Which state's model and sound play when comes from item-fx-plan.ts. Every
  * event is idempotent per visual: a kart effect started from `used` (shield,
- * angel, emp, timeBomb, magnet) and again from `kartEffect` keeps one visual.
- * Visuals that should already be running when an event arrives late start
- * part-way through their animation; sounds more than `soundLateMs` late are
- * dropped.
+ * angel, emp, timeBomb, magnet) and again from `kartEffect` keeps one visual,
+ * and the local racer's own effect that `endKartEffect` already ended (a
+ * shield spent on a block before the use's reply) is not brought back by the
+ * reply's `used`. Visuals that should already be running when an event
+ * arrives late start part-way through their animation; sounds more than
+ * `soundLateMs` late are dropped.
  */
 
 export interface ItemPresenterVec3 { x: number; y: number; z: number }
@@ -88,7 +90,13 @@ export interface ItemRacePresenter {
   hit(event: ItemPresenterHit): void;
   /** A placed object is gone (a banana that was run over). */
   removed(useId: number): void;
-  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number): void;
+  /**
+   * `target` (pull only) is the racer the magnet pulls toward: its field faces
+   * that kart. Without it the field faces the kart's nose until a `used` of the
+   * magnet names its target.
+   */
+  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number,
+    options?: { target?: string }): void;
   endKartEffect(playerId: string, kind: ItemKartEffect): void;
   sound(itemId: number, stem: string,
     options?: { position?: ItemPresenterVec3; key?: string; loop?: boolean }): void;
@@ -191,8 +199,11 @@ interface FxVisual {
   anchorMs: number;
   showMs: number;
   endMs: number;
-  readonly place: Placer;
+  /** Replaced when a later start of a kart effect knows more (the magnet's target). */
+  place: Placer;
   instance?: FxInstance;
+  /** Finished: out of `visuals` for good (a pass over a copy of the list skips it). */
+  done?: boolean;
 }
 
 type SoundAnchor =
@@ -246,6 +257,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
   readonly loops = new Map<string, { playing: FxPlayingSound; anchor: SoundAnchor }>();
   readonly uses = new Map<number, UseRecord>();
   readonly slots = new Map<string, KartSlot>();
+  /** The planned end of slots `endKartEffect` cut short, by slot key, until the slot starts again. */
+  readonly endedSlots = new Map<string, number>();
   /** The last item that hit each racer (the trap bubble follows it). */
   readonly trapCause = new Map<string, { fx: ItemFx; atMs: number }>();
   readonly placement: Placement = {
@@ -281,7 +294,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       case "ufo": return this.launchUfo(record, fx);
       case "magnet":
         this.slot(user, "pull", s, fx.field.lifeMs, fx.field, {
-          target: event.targets[0],
+          target: event.targets[0], fromUse: true,
         });
         return;
       case "throw": return this.launchThrow(record, fx);
@@ -298,7 +311,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
         this.play(fx.useSound, s, { kind: "kart", playerId: user }, group);
         const covered = fx.onTargets && event.targets.length > 0 ? event.targets : [user];
         for (const playerId of covered)
-          this.slot(playerId, fx.effect, s, fx.durationMs, fx.model, { sound: fx.startSound });
+          this.slot(playerId, fx.effect, s, fx.durationMs, fx.model, { sound: fx.startSound, fromUse: true });
         return;
       }
       case "hazard":
@@ -371,7 +384,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     this.cancel(useGroup(useId));
   }
 
-  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number): void {
+  kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number,
+    options: { target?: string } = {}): void {
     if (this.disposed || NO_KART_VISUAL.has(kind)) return;
     const end = startMs + Math.max(0, durationMs);
     const item = (name: string) => [...this.plan.items.values()].find(fx => fx.name === name);
@@ -404,7 +418,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       }
       case "pull": {
         const magnet = item("magnet");
-        if (magnet?.kind === "magnet") this.slot(playerId, kind, startMs, end - startMs, magnet.field);
+        if (magnet?.kind === "magnet") this.slot(playerId, kind, startMs, end - startMs, magnet.field,
+          { target: options.target });
         return;
       }
       case "shield":
@@ -428,6 +443,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     if (!slot) return;
     const now = this.nowMs;
     if (slot.endMs <= now) return;
+    this.endedSlots.set(slotKey(playerId, kind), slot.endMs);
     this.retimeSlot(slot, Math.max(now, slot.startMs));
   }
 
@@ -559,7 +575,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     const user = event.userId;
     const group = useGroup(event.useId);
     this.play(fx.launchSound, s, { kind: "kart", playerId: user }, group);
-    this.kartEffect(user, "timeBomb", s, fx.carried.lifeMs);
+    this.slot(user, "timeBomb", s, fx.carried.lifeMs, fx.carried, { pulse: true, fromUse: true });
     const blast = s + fx.carried.lifeMs;
     let fallback: Vec3 | undefined;
     // The user reports the blast point at the blast; until then it is where the user is.
@@ -615,8 +631,10 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     const group = useGroup(event.useId);
     this.show(group, fx.launch, s, s, s + fx.launch.lifeMs, onKart(event.userId));
     this.play(fx.bornSound, s, { kind: "kart", playerId: event.userId }, group);
+    // Each target's removal is its own: a cloud blocked on that kart never covered it.
     for (const target of event.targets)
-      this.play(fx.removeSound, s + fx.coverMs, { kind: "kart", playerId: target, onlyLocal: true }, group);
+      this.play(fx.removeSound, s + fx.coverMs, { kind: "kart", playerId: target, onlyLocal: true },
+        targetGroup(event.useId, target));
   }
 
   launchCurse(record: UseRecord, fx: CurseFx): void {
@@ -656,19 +674,26 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
 
   /**
    * One visual per racer and effect: a second start while it runs only moves
-   * its end (and does not replay its sound).
+   * its end (and does not replay its sound); one that names a `target` also
+   * turns it toward that kart (the local racer's own magnet starts with the
+   * physics pull, before the use's reply names its target). `fromUse` marks a
+   * start from a `used` event, which never brings back the local racer's own
+   * effect that the controller already ended.
    */
   slot(playerId: string, kind: SlotKind, startMs: number, durationMs: number,
     model: FxModel | undefined, options: { sound?: FxSound; after?: FxModel; afterSound?: FxSound;
-      pulse?: boolean; target?: string } = {}): void {
+      pulse?: boolean; target?: string; fromUse?: boolean } = {}): void {
     const key = slotKey(playerId, kind);
     const end = startMs + Math.max(0, durationMs);
     const existing = this.slots.get(key);
     if (existing && existing.endMs > Math.max(startMs, this.nowMs) && existing.main && !this.ended(existing.main)) {
       this.retimeSlot(existing, end);
+      if (options.target) existing.main.place = this.facing(playerId, options.target);
       return;
     }
+    if (options.fromUse && this.endedOwnEffect(key, playerId, startMs)) return;
     if (existing) this.cancel(key);
+    this.endedSlots.delete(key);
     const slot: KartSlot = { playerId, kind, startMs, endMs: end };
     this.slots.set(key, slot);
     const placer = options.target ? this.facing(playerId, options.target)
@@ -679,6 +704,18 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       slot.after = { model: options.after, sound: options.afterSound };
       this.scheduleAfter(slot, key);
     }
+  }
+
+  /**
+   * The local racer's own effects start at the key press (`kartEffect`), a
+   * round trip before the use's reply: when the controller has ended that one
+   * since (a shield spent on a block, a pull that arrived, the end of the
+   * race), a use starting inside its planned span is the same use.
+   */
+  endedOwnEffect(key: string, playerId: string, startMs: number): boolean {
+    if (playerId !== this.localPlayerId) return false;
+    const plannedEnd = this.endedSlots.get(key);
+    return plannedEnd !== undefined && startMs < plannedEnd;
   }
 
   scheduleAfter(slot: KartSlot, key: string): void {
@@ -780,6 +817,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
   }
 
   finish(visual: FxVisual): void {
+    visual.done = true;
     const index = this.visuals.indexOf(visual);
     if (index >= 0) this.visuals.splice(index, 1);
     if (visual.instance) visual.pool.release(visual.instance);
@@ -795,6 +833,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     this.readListener(frame.camera);
     const out = this.placement;
     for (const visual of [...this.visuals]) {
+      // Taken over by an earlier visual of this pass (steal): it must not take a copy again.
+      if (visual.done) continue;
       if (now >= visual.endMs) {
         this.finish(visual);
         continue;
@@ -835,11 +875,17 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       if (now - record.event.startMs > ITEM_FX_TUNING.useLifetimeMs) this.uses.delete(useId);
     for (const [key, slot] of this.slots)
       if (slot.endMs <= now && (!slot.after?.visual || this.ended(slot.after.visual))) this.slots.delete(key);
+    for (const [key, plannedEnd] of this.endedSlots)
+      if (now - plannedEnd > ITEM_FX_TUNING.useLifetimeMs) this.endedSlots.delete(key);
   }
 
-  /** At the model cap: take the copy of the visual of that model that ends first. */
+  /**
+   * At the model cap: take the copy of the visual of that model that ends
+   * first. A placed object (a banana still live on the track) is never taken
+   * over; the newcomer waits for a free copy.
+   */
   steal(visual: FxVisual): FxInstance | undefined {
-    if (!visual.pool.full) return undefined;
+    if (!visual.pool.full || visual.pool.model.placed) return undefined;
     let victim: FxVisual | undefined;
     for (const other of this.visuals)
       if (other !== visual && other.pool === visual.pool && other.instance &&
@@ -928,6 +974,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     this.audio.stopAll();
     this.uses.clear();
     this.slots.clear();
+    this.endedSlots.clear();
     this.trapCause.clear();
   }
 
