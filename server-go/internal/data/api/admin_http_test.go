@@ -394,7 +394,8 @@ func TestAdminEditBanAndKick(t *testing.T) {
 		expect(t, http.StatusUnauthorized, "INVALID_CREDENTIALS")
 	token = h.login(targetName, "new-password-456")
 
-	// Kicks.
+	// Kicks: the session ends and its messenger socket closes.
+	messenger, _ := h.openMessenger(token)
 	var kicked struct {
 		Sessions int
 		Game     bool
@@ -403,6 +404,7 @@ func TestAdminEditBanAndKick(t *testing.T) {
 	if kicked.Sessions != 1 || kicked.Game {
 		t.Fatalf("kick %+v", kicked)
 	}
+	messenger.expectClose(4001)
 	h.get("/api/account", bearerHeader(token)).expect(t, http.StatusUnauthorized, "LOGIN_REQUIRED")
 	h.post("/api/admin/accounts/"+h.adminID+"/kick", nil, h.adminHeader).expect(t, http.StatusConflict, "CANNOT_MODIFY_SELF")
 	h.post("/api/admin/accounts/no-such-account/kick", nil, h.adminHeader).expect(t, http.StatusNotFound, "ACCOUNT_NOT_FOUND")
