@@ -25,12 +25,62 @@ export interface ItemInputTransition {
   sourceKind?: string;
 }
 
+/** A physical arrow key (driving actions SteerLeft/Right, Forward, Reverse). */
+export type ItemDirectionKey = "left" | "right" | "up" | "down";
+
 export interface ItemInputSink {
   /** Only while racing do presses, swaps and changes become commands. */
   racing: boolean;
   command(command: ItemCommand): void;
   /** A left or right press, used to break out of a water bubble. */
   escape(): void;
+  /**
+   * Every arrow key press, by physical key (not remapped by a reverse), for
+   * the talisman (符咒) QTE while the kart is held.
+   */
+  direction?(direction: ItemDirectionKey): void;
+}
+
+const directionKeys: ReadonlyMap<number, ItemDirectionKey> = new Map([
+  [DrivingAction.SteerLeft, "left"], [DrivingAction.SteerRight, "right"],
+  [DrivingAction.Forward, "up"], [DrivingAction.Reverse, "down"],
+]);
+
+/** The arrow key of a driving action, if it is one. */
+export function itemDirectionKey(action: number): ItemDirectionKey | undefined {
+  return directionKeys.get(action);
+}
+
+/** The keys an item race reverse swaps right now (physics `itemEffects`). */
+export interface ItemReverseState {
+  steeringInverted: boolean;
+  forwardBackSwapped: boolean;
+}
+
+const swappedPedals: Readonly<Record<string, string>> = {
+  "forward-down": "reverse-down", "forward-up": "reverse-up",
+  "reverse-down": "forward-down", "reverse-up": "forward-up",
+};
+
+/**
+ * The driving command an accumulator effect means under an item race reverse.
+ * The released accumulator (`DrivingInputAccumulator`, kept identical for the
+ * input parity test) swaps the snapshot's pedals and steering but reports the
+ * raw keys. With forward and back swapped the back key is the forward pedal,
+ * so its press must start the drift-exit and escape boosts and its release
+ * end a boost; with steering inverted the drift starts toward the side the
+ * kart actually turns. Other effects pass through unchanged (same object).
+ */
+export function itemReverseDrivingEffect<T extends { kind: string; direction?: number }>(
+  effect: T, reverse: ItemReverseState): T {
+  if (reverse.forwardBackSwapped) {
+    const kind = swappedPedals[effect.kind];
+    if (kind) return { ...effect, kind };
+  }
+  if (reverse.steeringInverted && effect.kind === "drift-start" &&
+      (effect.direction === 1 || effect.direction === -1))
+    return { ...effect, direction: -effect.direction };
+  return effect;
 }
 
 /** Source kinds whose holds of one action GameplayInputQueue merges. */
@@ -67,6 +117,8 @@ export class ItemInputRouter {
       if (!isItemAction(transition.action)) {
         if (transition.down && (transition.action === DrivingAction.SteerLeft ||
             transition.action === DrivingAction.SteerRight)) sink.escape();
+        const direction = transition.down ? itemDirectionKey(transition.action) : undefined;
+        if (direction) sink.direction?.(direction);
         driving.push(transition);
         continue;
       }

@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { DrivingAction } from "./driving-input";
-import { ItemInputRouter, isItemAction, type ItemCommand } from "./item-input";
+import {
+  ItemInputRouter, isItemAction, itemDirectionKey, itemReverseDrivingEffect, type ItemCommand,
+} from "./item-input";
 
 function sink(racing = true) {
   const commands: ItemCommand[] = [];
@@ -148,4 +150,50 @@ test("gamepad edges merged after the queue are tracked on their own", () => {
   router.route([key(false)], target);
   assert.deepEqual(target.commands,
     [{ kind: "use", phase: "press" }, { kind: "use", phase: "release" }]);
+});
+
+test("every arrow press reaches the talisman QTE by its physical key", () => {
+  const router = new ItemInputRouter();
+  const directions: string[] = [];
+  const target = Object.assign(sink(), {
+    direction(direction: string) { directions.push(direction); },
+  });
+  const driving = router.route([
+    edge(DrivingAction.Forward, true),
+    edge(DrivingAction.SteerLeft, true),
+    edge(DrivingAction.SteerLeft, false),
+    edge(DrivingAction.Reverse, true),
+    edge(DrivingAction.SteerRight, true),
+    edge(DrivingAction.Drift, true),
+    edge(DrivingAction.UseItemOrBooster, true),
+  ], target);
+  assert.deepEqual(directions, ["up", "left", "down", "right"]);
+  assert.equal(target.escapes, 2, "left and right still shorten a bubble");
+  assert.equal(driving.length, 6, "the arrows still drive");
+  assert.equal(itemDirectionKey(DrivingAction.Drift), undefined);
+  // A sink without the QTE hook is fine.
+  router.route([edge(DrivingAction.Forward, true)], sink());
+});
+
+test("an item race reverse remaps the pedal and drift commands, not the accumulator", () => {
+  const none = { steeringInverted: false, forwardBackSwapped: false };
+  const pedals = { steeringInverted: false, forwardBackSwapped: true };
+  const steering = { steeringInverted: true, forwardBackSwapped: false };
+  const forward = { kind: "forward-down" };
+  assert.equal(itemReverseDrivingEffect(forward, none), forward, "unchanged object without a reverse");
+  assert.deepEqual(itemReverseDrivingEffect(forward, pedals), { kind: "reverse-down" });
+  assert.deepEqual(itemReverseDrivingEffect({ kind: "reverse-down" }, pedals), { kind: "forward-down" });
+  assert.deepEqual(itemReverseDrivingEffect({ kind: "reverse-up" }, pedals), { kind: "forward-up" });
+  assert.deepEqual(itemReverseDrivingEffect({ kind: "forward-up" }, pedals), { kind: "reverse-up" });
+  assert.deepEqual(itemReverseDrivingEffect({ kind: "drift-start", direction: 1 }, steering),
+    { kind: "drift-start", direction: -1 });
+  assert.deepEqual(itemReverseDrivingEffect({ kind: "drift-start", direction: -1 }, pedals),
+    { kind: "drift-start", direction: -1 }, "a pedal swap leaves the drift alone");
+  const all = { steeringInverted: true, forwardBackSwapped: true };
+  assert.deepEqual(itemReverseDrivingEffect({ kind: "reverse-down" }, all), { kind: "forward-down" });
+  assert.deepEqual(itemReverseDrivingEffect({ kind: "drift-start", direction: -1 }, all),
+    { kind: "drift-start", direction: 1 });
+  const reset = { kind: "reset" };
+  assert.equal(itemReverseDrivingEffect(reset, all), reset);
+  assert.equal(itemReverseDrivingEffect({ kind: "drift-stop", active: true }, all).kind, "drift-stop");
 });

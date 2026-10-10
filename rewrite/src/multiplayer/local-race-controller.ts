@@ -64,6 +64,12 @@ export class LocalRaceController {
   items: ItemCommandHandler | undefined;
   /** Item races: the controller behind `items` (cube and hazard callbacks, frame updates). */
   itemRace: LocalItemRace | undefined;
+  /**
+   * Item races: the start booster (physics state 1, pressed within 100 ms of
+   * the start) fired this race. The item controller sends it as the finish
+   * request's `perfectStart` (the 完美起步 title, ITEM_MODE.md C.9).
+   */
+  startBoosted = false;
 
   constructor(assets: any, room: any, playerId: string,
     dependencies: LocalRaceControllerDependencies) {
@@ -86,6 +92,11 @@ export class LocalRaceController {
   /** Item races: a reset or a warp holds the kart; it neither uses, collects nor gets hit. */
   itemSuspended(): boolean {
     return this.resetState.phase !== 0 || this.warpNext.blocksDriving();
+  }
+
+  /** The race session saw the start booster fire (see `startBoosted`). */
+  noteStartBooster(): void {
+    if (!this.disposed) this.startBoosted = true;
   }
 
   lteAvailable(): boolean {
