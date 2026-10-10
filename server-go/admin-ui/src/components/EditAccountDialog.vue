@@ -4,7 +4,7 @@ import { ElMessage } from 'element-plus'
 import { api, errorMessage } from '../api/client'
 import type { AccountPatch, AccountRow } from '../api/types'
 import { useNarrow } from '../composables/useNarrow'
-import { session } from '../session'
+import { isSelf } from '../session'
 import { formatTime, isPermanent, parseBeijing, PERMANENT_BAN, toBeijingString } from '../utils/time'
 import { confirmAction } from '../utils/ui'
 
@@ -26,7 +26,7 @@ const form = reactive({
 const failure = ref('')
 const saving = ref(false)
 
-const self = computed(() => !!props.account && props.account.username === session.admin?.username)
+const self = computed(() => isSelf(props.account?.id))
 const currentBan = computed(() => (props.account?.banned && props.account.bannedUntil ? props.account.bannedUntil : 0))
 
 watch(open, (value) => {
@@ -59,6 +59,14 @@ function nicknameProblem(value: string): string {
   if ([...value].length > 16) return '昵称最多 16 个字'
   if (/[\u0000-\u001f\u007f-\u009f<>]/.test(value)) return '昵称不能包含 < > 或控制字符'
   return ''
+}
+
+/**
+ * The ban reason as sent: one line (line breaks and tabs become spaces), no
+ * edge spaces. The server rejects any control character (validText).
+ */
+function cleanReason(value: string): string {
+  return value.replace(/[\r\n\t]+/g, ' ').trim()
 }
 
 function disabledDate(date: Date) {
@@ -97,10 +105,14 @@ async function save() {
     patch.bannedUntil = until
     changes.push(until ? `封禁至 ${isPermanent(until) ? '永久' : formatTime(until)}` : '解除封禁')
   }
-  const reason = form.banReason.trim()
+  const reason = cleanReason(form.banReason)
   if (reason !== (account.banReason ?? '')) {
     if ([...reason].length > 200) {
       failure.value = '封禁原因最多 200 字'
+      return
+    }
+    if (/[\u0000-\u001f\u007f-\u009f]/.test(reason)) {
+      failure.value = '封禁原因不能包含换行或控制字符'
       return
     }
     patch.banReason = reason
@@ -128,7 +140,13 @@ async function save() {
   saving.value = true
   try {
     const saved = await api.patch<AccountRow>(`/api/admin/accounts/${encodeURIComponent(account.id)}`, patch)
-    ElMessage.success(`已保存：${changes.join('；')}`)
+    // A KART_ADMIN_USERNAMES account stays an admin whatever its stored flag.
+    const kept = patch.admin === false && saved.admin === true
+    const done = kept ? changes.filter((change) => change !== '撤销管理员') : changes
+    if (done.length) ElMessage.success(`已保存：${done.join('；')}`)
+    if (kept) {
+      ElMessage.warning({ message: '该账号在 KART_ADMIN_USERNAMES 中，仍是管理员', duration: 6000, showClose: true })
+    }
     open.value = false
     emit('saved', saved)
   } catch (error) {
@@ -181,7 +199,7 @@ async function save() {
         </div>
       </el-form-item>
       <el-form-item label="封禁原因">
-        <el-input v-model="form.banReason" type="textarea" :rows="2" maxlength="200" show-word-limit placeholder="可留空" />
+        <el-input v-model="form.banReason" maxlength="200" show-word-limit placeholder="可留空；单行，不能换行" />
       </el-form-item>
       <el-form-item label="重置密码">
         <el-input

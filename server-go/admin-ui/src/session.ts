@@ -10,6 +10,11 @@ export const session = reactive({
   notice: '',
 })
 
+/** Whether an account id is the signed-in admin's own account. */
+export function isSelf(accountId: string | null | undefined): boolean {
+  return !!accountId && accountId === session.admin?.id
+}
+
 onUnauthorized((message) => {
   session.admin = null
   session.notice = message

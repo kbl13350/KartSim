@@ -15,7 +15,10 @@ export function hasToken(): boolean {
   return token !== null
 }
 
-/** Registers what happens when an API call answers 401 (back to login). */
+/**
+ * Registers what happens when an API call answers 401, or 403
+ * ADMIN_REQUIRED (the admin flag was taken away): back to login.
+ */
 export function onUnauthorized(handler: (message: string) => void): void {
   unauthorized = handler
 }
@@ -49,9 +52,9 @@ const messages: Record<string, string> = {
   NOTICE_NOT_FOUND: '公告不存在或已删除',
   NICKNAME_TAKEN: '该昵称已被使用',
   INVALID_NICKNAME: '昵称无效（1–16 字，首尾不能是空格，不能包含 < > 和控制字符）',
-  INVALID_ACCOUNT_FIELD: '账号信息无效（昵称 1–16 字，密码 8–128 位，封禁原因最多 200 字）',
-  INVALID_ACCOUNT_FIELDS: '账号信息无效（昵称 1–16 字，密码 8–128 位，封禁原因最多 200 字）',
-  CANNOT_MODIFY_SELF: '不能撤销自己的管理员权限，也不能封禁自己',
+  INVALID_ACCOUNT_FIELD: '账号信息无效（昵称 1–16 字，密码 8–128 位，封禁原因最多 200 字且不能包含换行或控制字符）',
+  INVALID_ACCOUNT_FIELDS: '账号信息无效（昵称 1–16 字，密码 8–128 位，封禁原因最多 200 字且不能包含换行或控制字符）',
+  CANNOT_MODIFY_SELF: '不能对自己执行该操作（撤销管理员、封禁或踢下线）',
   REQUEST_TOO_LARGE: '请求内容过大',
   NOT_FOUND: '接口不存在（数据服务版本可能过旧）',
   METHOD_NOT_ALLOWED: '接口不支持该请求方法',
@@ -104,8 +107,21 @@ export function buildQuery(query?: Query): string {
 }
 
 export interface CallOptions {
-  /** false: a 401 is an ordinary error and does not sign the admin out (the login itself). */
+  /**
+   * false: a 401 or 403 ADMIN_REQUIRED is an ordinary error and does not
+   * sign the admin out (the login itself).
+   */
   auth?: boolean
+}
+
+/** Ends a session the console gives up on; failures do not matter. */
+function dropSession(stale: string): void {
+  void fetch('/multiplayer/auth/logout', {
+    method: 'POST',
+    headers: { Accept: 'application/json', Authorization: 'Bearer ' + stale },
+    cache: 'no-store',
+    credentials: 'omit',
+  }).catch(() => {})
 }
 
 function bannedMessage(data: Record<string, unknown> | null): string {
@@ -147,7 +163,13 @@ export async function call<T>(method: string, path: string, body?: unknown, opti
     const error = code === 'ACCOUNT_BANNED'
       ? new ApiError(code, response.status, record, bannedMessage(record))
       : new ApiError(code, response.status, record)
-    if (response.status === 401 && options.auth !== false && token) {
+    // A 401 means the session is gone; a 403 ADMIN_REQUIRED means another
+    // admin took this account's admin flag mid-session. Either way the
+    // console goes back to login (the 403's session is still live, so it
+    // is ended too).
+    const revoked = response.status === 403 && code === 'ADMIN_REQUIRED'
+    if ((response.status === 401 || revoked) && options.auth !== false && token) {
+      if (revoked) dropSession(token)
       token = null
       unauthorized?.(error.message)
     }

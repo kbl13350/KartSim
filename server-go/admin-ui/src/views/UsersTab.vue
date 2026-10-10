@@ -10,6 +10,7 @@ import TableToolbar from '../components/TableToolbar.vue'
 import { usePagedTable } from '../composables/usePagedTable'
 import { useNarrow } from '../composables/useNarrow'
 import { useTab } from '../composables/useTabs'
+import { isSelf } from '../session'
 import { kickAccount } from '../utils/accounts'
 import { formatNumber, text } from '../utils/format'
 import { formatTime, isPermanent } from '../utils/time'
@@ -136,7 +137,7 @@ function banLabel(row: AccountRow) {
           <el-button link type="primary" @click="showDetail(row)">详情</el-button>
           <el-button link type="primary" @click="edit(row)">编辑</el-button>
           <el-button link type="success" @click="grant(row)">赠送</el-button>
-          <el-button link type="danger" @click="kick(row)">踢下线</el-button>
+          <el-button link type="danger" :disabled="isSelf(row.id)" :title="isSelf(row.id) ? '不能把自己踢下线' : undefined" @click="kick(row)">踢下线</el-button>
         </template>
       </el-table-column>
     </DataTable>

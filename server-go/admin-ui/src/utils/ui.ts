@@ -19,11 +19,11 @@ export async function confirmAction(message: string, title = '请确认',
 }
 
 /**
- * Shows an error as a message, except a 401: the console has already gone
- * back to the login screen, which explains it.
+ * Shows an error as a message, except a 401 or 403 ADMIN_REQUIRED: the
+ * console has already gone back to the login screen, which explains it.
  */
 export function showError(error: unknown): void {
-  if (error instanceof ApiError && error.status === 401) return
+  if (error instanceof ApiError && (error.status === 401 || error.code === 'ADMIN_REQUIRED')) return
   ElMessage.error({ message: errorMessage(error), grouping: true, showClose: true })
 }
 
