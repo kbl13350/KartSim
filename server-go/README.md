@@ -317,6 +317,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `KART_TRUSTED_PROXIES` | 回环地址（`127.0.0.0/8`、`::1`） | 信任其 `X-Forwarded-For` 的反向代理，IP 或 CIDR，逗号分隔；`none` 表示不信任任何代理。用于按真实客户端 IP 限流（见“限流与反向代理”） |
 | `KART_MESSENGER_MAX_CONNECTIONS` | `5000` | 好友私聊 WebSocket 上限（含尚未 `hello` 的连接，1–1,000,000）；超出时升级前返回 HTTP 503 `SERVER_BUSY` |
 | `KART_MESSENGER_SEND_BUFFER_BYTES` | `262144` | 每个好友私聊连接待发送的字节上限（65536–67108864）；积压超过它的连接以 1008 断开 |
+| `KART_WS_COMPRESSION` | `true` | 好友私聊与小屋 WebSocket 是否协商 permessage-deflate 压缩，规则同游戏节点的同名变量；两边应设相同的值 |
 
 启动时连接 MySQL（最多重试 30 秒），在 `GET_LOCK('kartsim_schema')` 下建表与迁移，再连接 Redis。Redis 不可用时缓存降级为直连 MySQL 并告警，但游戏服列表、票据与在线昵称依赖 Redis，这些接口会返回 503 `DATA_SERVICE_UNAVAILABLE`。
 
@@ -340,6 +341,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `KART_SEND_BUFFER_BYTES` | `1048576` | 每个连接待发送的字节上限（≥ 65536）；网络太慢积压超过它的玩家会被以 1008 断开，不影响同房间其他人 |
 | `KART_MEMORY_LIMIT_MB` | `0`（不限） | 设置后等同 `GOMEMLIMIT`；存活堆超过它的 90% 时拒绝新连接（HTTP 503）和新 `hello`（503 `SERVER_BUSY`），已在房间的玩家不受影响。为 0 或 ≥ 64 |
 | `KART_HELLO_TIMEOUT` | `15s` | 连接后在这段时间内没有完成 `hello` 就以 1008 关闭（Go 时长格式，1s–5m） |
+| `KART_WS_COMPRESSION` | `true` | `/multiplayer/ws` 是否协商 permessage-deflate 压缩：浏览器支持时（主流浏览器都支持，自动协商），512 字节及以上的 JSON 消息压缩发送（房间快照约压到 1/5），二进制运动帧和短消息不压；收到的压缩消息按解压后的大小检查 64 KiB 上限。WebRTC 数据通道不压缩。代理或浏览器出现兼容问题时设 `false` |
 | `KART_ALLOW_GUESTS` | `false` | 为 `false` 时游客票据的 `hello` 返回 401 `LOGIN_REQUIRED`；应与数据服务相同 |
 | `KART_ITEM_TEST_GRANTS` | `false` | **仅限开发测试。**为 `true` 时道具赛的 `cube` 请求可以带 `testItemId` 指定拿到的道具（任何道具赛道具，含第 3 阶段的特殊道具；测试机器人 `test/item-bot.mjs --use` 需要它），启动时打印警告；为 `false` 时这种请求返回 403 `ITEM_TEST_GRANTS_DISABLED`。公开部署切勿打开 |
 | `KART_ITEM_CHANGERS` | `inventory` | 道具换位卡 / 道具变更卡：`inventory` 按每位车手开赛时库存里的卡和使用券（`ITEM_MODE.md` C.6）；`infinite` 让所有车手（含游客）本局无限换位与变更、不扣卡，用于试玩（相当于原版关掉的网吧无限卡），启动时打印警告。`test/run-cluster-smokes.mjs` 用 `infinite` |
@@ -521,7 +523,7 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | 路径 | 用途 |
 | --- | --- |
 | `GET /multiplayer/healthz` | `{"protocolVersion":39,"ruleset":"launcher-room-v1","transport":"websocket","service":"game","nodeId":"game-1","connections":3,"players":2,"rooms":1,"heapMB":4}`：后四项是当前连接数、已 `hello` 的玩家数、房间数与存活堆（MiB），便于监控 |
-| `GET /multiplayer/ws` | WebSocket 控制通道（JSON）与二进制运动帧，协议见 `SERVER_PROTOCOL.md`；无 `Origin` 头或同源/可信 Origin 才接受 |
+| `GET /multiplayer/ws` | WebSocket 控制通道（JSON）与二进制运动帧，协议见 `SERVER_PROTOCOL.md`；无 `Origin` 头或同源/可信 Origin 才接受；大的 JSON 消息压缩（`KART_WS_COMPRESSION`） |
 | `POST /multiplayer/offer` | WebRTC 信令：`{"type":"offer","sdp"}` → `{"type":"answer","sdp"}`（服务端一次给出全部 ICE 候选，不用 trickle）。`KART_WEBRTC=false` 或 UDP 端口不可用时 501 `USE_WEBSOCKET`；连接数、内存与关停的限制同 WebSocket（503）；SDP 不合法 400 `INVALID_OFFER` |
 
 其他路径 404。健康检查另有 `webrtc` 字段，表示本节点是否提供 WebRTC。

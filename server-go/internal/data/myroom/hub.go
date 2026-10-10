@@ -79,7 +79,7 @@ type Backend interface {
 type Options struct {
 	MaxConnections  int           // [5000]
 	SendBufferLimit int           // [262144] queued bytes per socket
-	ReadLimit       int64         // [4 KiB] per message
+	ReadLimit       int64         // [4 KiB] per message, also once decompressed
 	HelloTimeout    time.Duration // [10 s]
 	ReadTimeout     time.Duration // [90 s]
 	PingInterval    time.Duration // [30 s]
@@ -96,8 +96,12 @@ type Options struct {
 	ChatBurst   int
 	ChatMute    time.Duration
 	CheckOrigin func(*http.Request) bool
-	Now         func() time.Time
-	Logger      *slog.Logger
+	// DisableCompression never negotiates permessage-deflate
+	// (KART_WS_COMPRESSION=false); otherwise text of wsdeflate.MinBytes or
+	// more goes compressed to browsers that offer it.
+	DisableCompression bool
+	Now                func() time.Time
+	Logger             *slog.Logger
 }
 
 func (o *Options) defaults() {
@@ -241,8 +245,9 @@ func New(backend Backend, opts Options) *Hub {
 		opts:    opts,
 		log:     opts.Logger,
 		upgrader: websocket.Upgrader{
-			HandshakeTimeout: 10 * time.Second,
-			CheckOrigin:      opts.CheckOrigin,
+			HandshakeTimeout:  10 * time.Second,
+			CheckOrigin:       opts.CheckOrigin,
+			EnableCompression: !opts.DisableCompression,
 		},
 		conns:   map[*conn]*client{},
 		rooms:   map[string]*room{},

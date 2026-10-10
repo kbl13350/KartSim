@@ -66,6 +66,7 @@ server-go/
 | `KART_TRUSTED_PROXIES` | 回环地址 | 信任其 `X-Forwarded-For` 的代理（IP/CIDR，`none` 为不信任），用于按客户端 IP 限流 |
 | `KART_MESSENGER_MAX_CONNECTIONS` | `5000` | 好友私聊 WebSocket 上限（含未 hello 的连接），超出时升级前返回 HTTP 503 `SERVER_BUSY`（1–1,000,000） |
 | `KART_MESSENGER_SEND_BUFFER_BYTES` | `262144` | 每个好友私聊连接待发送的字节上限（65536–67108864），超出以 1008 关闭 |
+| `KART_WS_COMPRESSION` | `true` | 好友私聊与小屋 WebSocket 协商 permessage-deflate，规则同游戏节点（4.3 WebSocket 层） |
 
 启动时：连接 MySQL（重试 30 秒）、在 `GET_LOCK('kartsim_schema')` 下执行建表/迁移、连接 Redis（重试）。Redis 不可用时**缓存降级**为直连 MySQL 并告警，但在线昵称与节点注册依赖 Redis，此时 ticket/presence 接口返回 503 `DATA_SERVICE_UNAVAILABLE`。
 
@@ -165,6 +166,7 @@ schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`
 | `KART_OUTBOX_DIR` | `./data/outbox-<NODE_ID>` | 结算发件箱（目录权限 0700，文件 0600） |
 | `KART_LAN_HOSTS` | 空 | WebSocket Origin 校验与 CORS |
 | `KART_ALLOW_GUESTS` | `false` | 为 false 时游客票据的 `hello` 返回 401 `LOGIN_REQUIRED` |
+| `KART_WS_COMPRESSION` | `true` | `/multiplayer/ws` 协商 permessage-deflate，见 4.3 WebSocket 层 |
 
 ### 4.2 HTTP
 
@@ -180,7 +182,7 @@ schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`
 - `now()` 为本进程启动以来的单调毫秒（`time.Since(start).Milliseconds()`），与 Java 一致。同一房间的玩家都在本节点，无需跨节点时钟。
 - JSON 输入：保持 Jackson 语义。`text()` 按码点计数、拒绝 ISO 控制字符（U+0000–001F、U+007F–009F）；`integer()` 只接受 JSON 整数字面量（`5.0`、`1e2` 不算）且在 int32 范围；`booleanField()` 必须是 JSON 布尔；`optionalText()` 缺失或 null 返回空；`input.has("revision")`（含 null）即校验。错误码 `"INVALID_" + 大写键名`。
 - 输出：`Map.of`/`LinkedHashMap` 对应的字段集合必须一致；空列表输出 `[]` 不是 `null`（如 `loadedIds`、roadblock 的 `results: []`）；`team` 在个人模式输出 `null`；`randomTrackCode` 为 0 时也输出；`teamScores` 键为 `"1"`、`"2"`；装备 JSON 原样保留（`json.RawMessage`）；rp 的 `poolRevision` 为字符串 `"[387, 390, 378, 361]"` 的 SHA-256 十六进制。
-- WebSocket 层：每连接一个读协程（顺序处理请求，等同 Spring 的逐条回调）和一个写协程（有界队列；队列满或写超时 5 秒则关闭连接，对应 `ConcurrentWebSocketSessionDecorator`）。文本消息上限 64 KiB；二进制运动帧按 Java `relayMotion` 校验后中继。请求带合法 `requestId`（字符串、非空白、≤64）时回复原样带回；无 `requestId` 的成功请求不回复；错误总是回复 `{"type":"error","code":…,"requestId"?}`。JSON 解析失败回复 `INVALID_REQUEST`。读超时 90 秒（客户端每 10 秒 `clock`），服务端每 30 秒发 ping。
+- WebSocket 层：每连接一个读协程（顺序处理请求，等同 Spring 的逐条回调）和一个写协程（有界队列；队列满或写超时 5 秒则关闭连接，对应 `ConcurrentWebSocketSessionDecorator`）。文本消息上限 64 KiB（压缩消息按解压后的大小计）；二进制运动帧按 Java `relayMotion` 校验后中继。浏览器提供 permessage-deflate 时协商它（不保留上下文，所以不占每连接内存），只压缩 512 字节及以上的文本消息，运动帧不压（`internal/shared/wsdeflate`，`KART_WS_COMPRESSION=false` 关闭）；好友私聊与小屋 WebSocket 用同一规则。请求带合法 `requestId`（字符串、非空白、≤64）时回复原样带回；无 `requestId` 的成功请求不回复；错误总是回复 `{"type":"error","code":…,"requestId"?}`。JSON 解析失败回复 `INVALID_REQUEST`。读超时 90 秒（客户端每 10 秒 `clock`），服务端每 30 秒发 ping。
 - `hello` 改动（票据；账号经济另加的 `LOGIN_REQUIRED`、`ITEM_NOT_OWNED` 与 `race.rewards` 见下文与第 8 节）：版本/规则/资源版本/名字校验顺序同 Java，然后必须有 `ticket`（字符串）：缺失 401 `TICKET_REQUIRED`；签名/格式错 401 `TICKET_INVALID`；过期 401 `TICKET_EXPIRED`；`NodeID` 不是本节点 403 `TICKET_WRONG_NODE`；`DataNode` 不符 403 `DATA_NODE_MISMATCH`；nonce 已用 401 `TICKET_REUSED`（本节点在过期前记住 nonce）。游客用请求中的 `name`；账号用票据中的 `Nickname`（忽略请求 name）。随后本节点内名字不区分大小写去重（同 Java，409 `NICKNAME_TAKEN`），再检查本节点没有该账号的其他会话（409 `ACCOUNT_ONLINE`；同一账号在同一节点重复进入时昵称相同，通常先得到 `NICKNAME_TAKEN`），核对装备后调用数据服务 `PresenceClaim` 占用昵称与账号（网络调用期间**不得**持有全局锁；跨节点的重复进入由它返回 409 `ACCOUNT_ONLINE`）；数据服务不可达 503 `DATA_SERVICE_UNAVAILABLE`。成功后 `welcome` 与 Java 相同。旧字段 `token` 忽略。
 - 断开：释放房间（同 Java `disconnect`），异步 `PresenceRelease`。
 - 比赛中离开房间（`leave` 或断开；**不同于 Java**，Java 在 `loading`/`countdown`/`racing` 阶段有人离开即取消整局并返回 `MEMBER_LEFT`）：只有离开者退出本局，其他车手照常比赛、必须跑完。离开者记入 `race.outIDs`（退出本局的车手），仍在冻结的 `roster` 中；已载入的离开者在 `race.results` 中按未完赛排在最后（排在其他未完赛者之后）。服务端不再等待离开者：`loading` 阶段其余车手都已载入即开始倒计时；`racing` 阶段其余车手都已 `finish` 即立即结算（不等 10 秒完赛窗口）。离开者重新加入房间后按迟到者处理（比赛命令返回 403 `NOT_RACE_PARTICIPANT`，不中继其运动帧，返房也不等它）。仍会取消（`MEMBER_LEFT`）的情况只有：挡人模式 `loading` 阶段跑者离开或已不可能凑齐 5 名载入车手；`loading`/`countdown` 阶段所有车手都已离开。`racing` 阶段所有车手都已离开时，已有人完赛则先结算再开放房间，否则直接开放房间（不带 `raceError`），房间里的迟到者不必等待。挡人模式跑者在 `countdown`/`racing` 阶段离开仍按 `runner-left` 结束。团队积分按开赛时冻结的队伍计算，完赛后离开的车手照常计分。迟到者（不在 `roster` 中）离开从不影响比赛。
@@ -210,7 +212,7 @@ schema v2 另有账号经济表 `account_progress`、`wallets`、`wallet_ledger`
 | `KART_MEMORY_LIMIT_MB` | `0`（不限） | 设置后调用 `debug.SetMemoryLimit`（等同 GOMEMLIMIT），并在堆使用超过其 90% 时拒绝新连接（HTTP 503）和新 hello（503 `SERVER_BUSY`），已在房间的玩家不受影响 |
 | `KART_HELLO_TIMEOUT` | `15s` | 连接后未完成 hello 的超时关闭，防止空连接占用 |
 
-另外：每连接文本消息读上限 64 KiB；未 hello 连接不得创建房间；聊天保持最近 32 条；票据 nonce 记录随过期清理；发件箱只在磁盘，内存中不积压。心跳上报 `players`/`rooms` 让数据服务列表显示负载，满员节点 `full=true`。`/multiplayer/healthz` 增加 `connections`、`players`、`rooms`、`heapMB` 字段便于监控。
+另外：每连接文本消息读上限 64 KiB（按解压后的大小）；未 hello 连接不得创建房间；聊天保持最近 32 条；票据 nonce 记录随过期清理；发件箱只在磁盘，内存中不积压。心跳上报 `players`/`rooms` 让数据服务列表显示负载，满员节点 `full=true`。`/multiplayer/healthz` 增加 `connections`、`players`、`rooms`、`heapMB` 字段便于监控。
 
 ## 5. 前端（rewrite/）
 
@@ -312,7 +314,7 @@ State        = { me: Me, settings: Settings, friends: Friend[], incoming: Incomi
 
 ### 9.4 WebSocket `GET /api/messenger/ws`
 
-- 不经过 `a.serve`（直接 `mux.Handle`，仍有 CORS、panic 恢复与 JSON 404/405），Origin 用 `netcfg.CheckWebSocketOrigin` 校验。不是升级请求 400 `INVALID_REQUEST`；连接数达到 `KART_MESSENGER_MAX_CONNECTIONS` 或正在关闭时升级前 503 `SERVER_BUSY`。只接受文本帧（二进制帧以 1003 关闭，非法 UTF-8 以 1007 关闭），单条上限 8 KiB。
+- 不经过 `a.serve`（直接 `mux.Handle`，仍有 CORS、panic 恢复与 JSON 404/405），Origin 用 `netcfg.CheckWebSocketOrigin` 校验。不是升级请求 400 `INVALID_REQUEST`；连接数达到 `KART_MESSENGER_MAX_CONNECTIONS` 或正在关闭时升级前 503 `SERVER_BUSY`。只接受文本帧（二进制帧以 1003 关闭，非法 UTF-8 以 1007 关闭），单条上限 8 KiB（按解压后的大小）。
 - 第一帧必须在 10 秒内到达：`{"type":"hello","token":"<会话 token>"}` → `{"type":"welcome","accountId","serverTime","state":State}`。token 缺失或无效、第一帧不是 hello、超时：`{"type":"error","code":"LOGIN_REQUIRED"}` 后以 4001 关闭。hello 时 MySQL/Redis 出错：`{"type":"error","code":"DATA_SERVICE_UNAVAILABLE"}` 后以 1011 关闭（客户端稍后重连）。`welcome` 一定是 hello 之后的第一帧（期间的推送排在它后面）。
 - 关闭码：1001 服务关闭；1008 刷屏（每账号所有连接合计每秒 10 条命令、突发 30）或发送缓冲溢出（`KART_MESSENGER_SEND_BUFFER_BYTES`）；4001 会话结束（退出登录立即关闭该会话的所有连接；每 5 分钟用 `findAccount` 复查一次会话，过期或被删除时关闭）；4002 被替换（同一账号超过 4 个连接时关闭最早的一个）。服务端每 30 秒发协议 ping，读超时 90 秒，每帧写超时 5 秒。
 - 客户端 → 服务端（`requestId` 为非空白且不超过 64 字符的字符串时原样带回）：

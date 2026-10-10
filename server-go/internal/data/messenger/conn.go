@@ -6,6 +6,8 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
+
+	"kartsim/internal/shared/wsdeflate"
 )
 
 // conn is one socket with its bounded outbound queue (the game node's
@@ -162,7 +164,7 @@ func (c *conn) writeLoop() {
 					return
 				}
 				_ = c.socket.SetWriteDeadline(time.Now().Add(c.opts.WriteTimeout))
-				if err := c.socket.WriteMessage(websocket.TextMessage, f.data); err != nil {
+				if err := wsdeflate.Write(c.socket, websocket.TextMessage, f.data); err != nil {
 					c.terminate()
 					return
 				}

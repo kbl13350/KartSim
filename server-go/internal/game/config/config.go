@@ -60,6 +60,10 @@ type Config struct {
 	MemoryLimitMB   int           // 0 = no limit
 	HelloTimeout    time.Duration // close connections that do not say hello in time
 
+	// WSCompression negotiates permessage-deflate on /multiplayer/ws
+	// (KART_WS_COMPRESSION, default true).
+	WSCompression bool
+
 	// HeartbeatInterval is 5 s; tests shorten it.
 	HeartbeatInterval time.Duration
 
@@ -161,6 +165,12 @@ func FromEnv(getenv func(string) string) (Config, error) {
 		problems = append(problems, errors.New("KART_HELLO_TIMEOUT 必须是 1s–5m 的时长，例如 15s"))
 	}
 	cfg.HelloTimeout = helloTimeout
+
+	wsCompression, ok := parseBool(env("KART_WS_COMPRESSION", "true"))
+	if !ok {
+		problems = append(problems, errors.New("KART_WS_COMPRESSION 必须是 true 或 false"))
+	}
+	cfg.WSCompression = wsCompression
 
 	cfg.OutboxDir = env("KART_OUTBOX_DIR", "./data/outbox-"+cfg.NodeID)
 

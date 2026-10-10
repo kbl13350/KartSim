@@ -117,6 +117,9 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 	if opts.WS.Busy == nil {
 		opts.WS.Busy = memory.busy
 	}
+	if !cfg.WSCompression {
+		opts.WS.DisableCompression = true
+	}
 	sockets := ws.NewServer(rooms, cfg.Network, opts.WS)
 	if cfg.WebRTC {
 		// Without WebRTC (a taken UDP port) browsers keep the WebSocket.

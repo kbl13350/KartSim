@@ -12,6 +12,8 @@
 | 本地新增 | `<游戏服 origin>/multiplayer/ws`（如 `ws://127.0.0.1:8788/multiplayer/ws`）以 WebSocket 承载相同的 `control` JSON 消息与二进制运动帧；`hello` 必须带账号票据 | 本地实现与前端适配器的约定；原版前端没有这个 WebSocket 入口 |
 | 本地新增 | `<backendOrigin>/api/account`、`/api/inventory`、`/api/shop/*`、`/api/timeattack/settle`、`/api/admin/*` 与管理页面 `/multiplayer/admin`：账号经济（等级、三种货币、库存、商店、奖励） | `server-go/ECONOMY.md`；见下文“本地新增：账号经济” |
 
+**本地新增：WebSocket 压缩。**游戏节点的 `/multiplayer/ws` 与数据服务的 `/api/messenger/ws`、`/api/myroom/ws` 在浏览器提供时协商 `permessage-deflate`（RFC 7692，双方都不保留上下文）。服务端只压缩 512 字节及以上的 JSON 文本（房间快照约压到 1/5），二进制运动帧与短消息照常发送；浏览器自行决定是否压缩上行消息，服务端按解压后的大小检查单条上限。压缩由浏览器透明处理，消息内容与前端代码都不变；WebRTC 数据通道不压缩。部署可用 `KART_WS_COMPRESSION=false` 关闭。
+
 `backendOrigin` 指**数据服务**（默认 `http://127.0.0.1:8787`）：账号、档案、历史、游戏服列表与票据都走它。实时连接则走玩家选中的游戏节点（默认第一个在 `127.0.0.1:8788`），游戏服列表中 `origin` 为 `null` 的节点经 `backendOrigin` 同源代理（局域网模式与单节点反向代理部署）。前端从 `/multiplayer-config.js` 读取 `backendOrigin`；原配置位于 `mirror/multiplayer-config.js`，本地页面来源须列入 `frontendOrigins`。配置校验见 `rewrite/src/multiplayer/config.ts:16-53`。原版多人入口先校验服务端协议版本，随后处理账号或游客昵称，最后建立实时连接，见 `rewrite/src/multiplayer/lobby-open.ts:76-171`；本地版在昵称确定后、建立连接前插入“选服 + 申请票据”。
 
 ## HTTP 接口

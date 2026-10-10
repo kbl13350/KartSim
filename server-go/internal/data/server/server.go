@@ -21,6 +21,7 @@ import (
 	"kartsim/internal/data/config"
 	"kartsim/internal/data/economy"
 	"kartsim/internal/data/messenger"
+	"kartsim/internal/data/myroom"
 	"kartsim/internal/data/store"
 	"kartsim/internal/shared/netcfg"
 	"kartsim/internal/shared/rewards"
@@ -109,7 +110,8 @@ func Run(ctx context.Context, cfg config.Config, logger *slog.Logger) error {
 		TrustedProxies: cfg.TrustedProxies,
 		Limiter:        cache.NewLimiter(rdb, cfg.RedisPrefix),
 		Messenger: messenger.Options{MaxConnections: cfg.MessengerMaxConnections,
-			SendBufferLimit: cfg.MessengerSendBufferBytes},
+			SendBufferLimit: cfg.MessengerSendBufferBytes, DisableCompression: !cfg.WSCompression},
+		MyRoom: myroom.Options{DisableCompression: !cfg.WSCompression},
 	})
 	logger.Info("account economy", "registration", cfg.Registration, "guests", cfg.AllowGuests,
 		"admins", len(cfg.AdminUsernames), "expRate", cfg.ExpRate, "lucciRate", cfg.LucciRate,

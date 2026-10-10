@@ -81,6 +81,10 @@ type Config struct {
 	// Friends and private chat (DESIGN.md 9).
 	MessengerMaxConnections  int // KART_MESSENGER_MAX_CONNECTIONS: messenger sockets, hello'd or not
 	MessengerSendBufferBytes int // KART_MESSENGER_SEND_BUFFER_BYTES: queued bytes per socket
+
+	// WSCompression negotiates permessage-deflate on the messenger and My
+	// Room sockets (KART_WS_COMPRESSION, default true).
+	WSCompression bool
 }
 
 // PublicListen is the host:port of the public HTTP listener.
@@ -154,9 +158,18 @@ func FromEnv(getenv func(string) string) (Config, error) {
 	return cfg, errors.Join(problems...)
 }
 
-// readMessenger reads the messenger socket limits.
+// readMessenger reads the messenger socket limits and the WebSocket
+// compression switch.
 func readMessenger(cfg *Config, first func(...string) string) []error {
 	var problems []error
+	cfg.WSCompression = true
+	if value := first("KART_WS_COMPRESSION"); value != "" {
+		enabled, err := parseBool(value)
+		if err != nil {
+			problems = append(problems, fmt.Errorf("KART_WS_COMPRESSION: %w", err))
+		}
+		cfg.WSCompression = enabled
+	}
 	read := func(name string, target *int, fallback, minimum, maximum int) {
 		*target = fallback
 		value := first(name)

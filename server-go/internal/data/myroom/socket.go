@@ -14,6 +14,7 @@ import (
 	"github.com/gorilla/websocket"
 
 	"kartsim/internal/shared/apierr"
+	"kartsim/internal/shared/wsdeflate"
 )
 
 var (
@@ -95,7 +96,7 @@ func (h *Hub) readLoop(cl *client) {
 		return err
 	})
 	for {
-		kind, data, err := socket.ReadMessage()
+		kind, data, err := wsdeflate.Read(socket, h.opts.ReadLimit)
 		if err != nil {
 			var netErr net.Error
 			if !cl.helloed && errors.As(err, &netErr) && netErr.Timeout() {
