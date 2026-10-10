@@ -18,13 +18,20 @@ const (
 )
 
 // migration is one schema version. DDL auto-commits in MySQL, so every
-// statement must be safe to re-run after a partial failure; indexes on
-// existing tables (CREATE INDEX has no IF NOT EXISTS) are created only when
-// information_schema does not list them yet.
+// statement must be safe to re-run after a partial failure; columns and
+// indexes added to existing tables (MySQL has no ADD COLUMN IF NOT EXISTS
+// or CREATE INDEX IF NOT EXISTS) are created only when information_schema
+// does not list them yet. Columns come before indexes.
 type migration struct {
 	version    int
 	statements []string
+	columns    []tableColumn
 	indexes    []tableIndex
+}
+
+// tableColumn is a column added to an existing table.
+type tableColumn struct {
+	table, name, definition string
 }
 
 // tableIndex is a secondary index added to an existing table.
@@ -685,6 +692,43 @@ var migrations = []migration{
 			PRIMARY KEY (id)
 		) ` + tableTail,
 	}},
+	// Version 120: the admin console (ADMIN.md 2). TEMPORARY number while the
+	// console is built on its own branch: at the merge it becomes the next
+	// free version, and development databases get their schema_migrations
+	// row renumbered. Registers and logins with the client address and
+	// browser (kept 180 days), each account's register and latest login
+	// address and its ban, and indexes for the admin lists, which page by
+	// time or filter by account.
+	{version: 120, statements: []string{
+		`CREATE TABLE IF NOT EXISTS login_records (
+			id BIGINT NOT NULL AUTO_INCREMENT,
+			account_id CHAR(36) ` + idColumn + ` NOT NULL,
+			kind VARCHAR(8) ` + idColumn + ` NOT NULL,
+			ip VARCHAR(45) NOT NULL DEFAULT '',
+			user_agent VARCHAR(255) NOT NULL DEFAULT '',
+			at BIGINT NOT NULL,
+			PRIMARY KEY (id),
+			KEY idx_login_records_account (account_id, at),
+			KEY idx_login_records_at (at),
+			KEY idx_login_records_ip (ip),
+			CONSTRAINT fk_login_records_account FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE
+		) ` + tableTail,
+	}, columns: []tableColumn{
+		{table: "accounts", name: "register_ip", definition: "VARCHAR(45) NOT NULL DEFAULT ''"},
+		{table: "accounts", name: "last_login_at", definition: "BIGINT NOT NULL DEFAULT 0"},
+		{table: "accounts", name: "last_login_ip", definition: "VARCHAR(45) NOT NULL DEFAULT ''"},
+		{table: "accounts", name: "banned_until", definition: "BIGINT NOT NULL DEFAULT 0"},
+		{table: "accounts", name: "ban_reason", definition: "VARCHAR(200) NOT NULL DEFAULT ''"},
+	}, indexes: []tableIndex{
+		{table: "accounts", name: "idx_accounts_created", columns: "created_at"},
+		{table: "accounts", name: "idx_accounts_last_login", columns: "last_login_at"},
+		{table: "wallet_ledger", name: "idx_wallet_ledger_created", columns: "created_at"},
+		{table: "exp_ledger", name: "idx_exp_ledger_created", columns: "created_at"},
+		{table: "admin_grants", name: "idx_admin_grants_created", columns: "created_at"},
+		{table: "purchases", name: "idx_purchases_created", columns: "created_at"},
+		{table: "lottery_draws", name: "idx_lottery_draws_created", columns: "created_at"},
+		{table: "race_results", name: "idx_race_results_account", columns: "account_id, created_at"},
+	}},
 }
 
 // LatestSchemaVersion is the version Migrate brings a database to.
@@ -726,6 +770,11 @@ func Migrate(ctx context.Context, db *sql.DB, logger *slog.Logger) error {
 					return fmt.Errorf("schema version %d: %w", step.version, err)
 				}
 			}
+			for _, column := range step.columns {
+				if err := ensureColumn(ctx, conn, column); err != nil {
+					return fmt.Errorf("schema version %d: %w", step.version, err)
+				}
+			}
 			for _, index := range step.indexes {
 				if err := ensureIndex(ctx, conn, index); err != nil {
 					return fmt.Errorf("schema version %d: %w", step.version, err)
@@ -740,6 +789,21 @@ func Migrate(ctx context.Context, db *sql.DB, logger *slog.Logger) error {
 		}
 		return nil
 	})
+}
+
+// ensureColumn adds column unless the table already has a column of that name.
+func ensureColumn(ctx context.Context, conn *sql.Conn, column tableColumn) error {
+	var present int
+	if err := conn.QueryRowContext(ctx, `SELECT COUNT(*) FROM information_schema.columns
+		WHERE table_schema = DATABASE() AND table_name = ? AND column_name = ?`, column.table, column.name).Scan(&present); err != nil {
+		return err
+	}
+	if present > 0 {
+		return nil
+	}
+	// The names and definitions are constants of this file, never input.
+	_, err := conn.ExecContext(ctx, "ALTER TABLE "+column.table+" ADD COLUMN "+column.name+" "+column.definition)
+	return err
 }
 
 // ensureIndex creates index unless the table already has an index of that name.
