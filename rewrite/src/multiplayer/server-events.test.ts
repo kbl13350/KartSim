@@ -294,6 +294,15 @@ test("phase 3: changers, double rockets, hit outcomes, slot pushes and lucci (IT
       { ...item, requestId: "r3", action: "slots", slots: [6, 7], changers: { slot: 0, item: 0, itemArmed: false } }],
     [{ ...item, action: "lucci", amount: 10, reason: "lucciUfo" },
       { ...item, action: "lucci", amount: 10, reason: "lucciUfo" }],
+    // The node's per-slot special booster icons (0: the item's own).
+    [{ ...item, requestId: "r6", action: "grant", cubeId: 3, itemId: 31, slots: [31, -1], slotIcons: [241, 0] },
+      { ...item, requestId: "r6", action: "grant", cubeId: 3, itemId: 31, slots: [31, -1], slotIcons: [241, 0] }],
+    [{ ...item, action: "slots", slots: [6, 31, -1], slotIcons: [0, 266, 0], reason: "gain", itemId: 31 },
+      { ...item, action: "slots", slots: [6, 31, -1], slotIcons: [0, 266, 0], reason: "gain", itemId: 31 }],
+    [{ ...item, requestId: "r7", action: "used", playerId, useId: 9, itemId: 6, targets: [], startAt: 1,
+      etaMs: 0, slots: [31, -1], slotIcons: [97, 0] },
+    { ...item, requestId: "r7", action: "used", playerId, useId: 9, itemId: 6, targets: [], startAt: 1,
+      etaMs: 0, slots: [31, -1], slotIcons: [97, 0] }],
   ];
   for (const [event, parsed] of accepted)
     assert.deepEqual(parseServerEvent(event, deps), parsed, JSON.stringify(event));
@@ -320,6 +329,11 @@ test("phase 3: changers, double rockets, hit outcomes, slot pushes and lucci (IT
     { ...item, action: "lucci", amount: 201, reason: "x" },
     { ...item, action: "lucci", amount: 10 },
     { ...item, action: "lucci", amount: 10, reason: "a b" },
+    { ...item, action: "grant", cubeId: 3, itemId: 31, slots: [31, -1], slotIcons: [241] },
+    { ...item, action: "grant", cubeId: 3, itemId: 31, slots: [31, -1], slotIcons: [241, -1] },
+    { ...item, action: "slots", slots: [31, -1], slotIcons: "241" },
+    { ...item, action: "used", playerId, useId: 9, itemId: 6, targets: [], startAt: 1, etaMs: 0,
+      slotIcons: [0, 0] },
   ];
   for (const event of invalid)
     assert.deepEqual(parseServerEvent(event, deps), { type: "error", code: "INVALID_ITEM_EVENT" },

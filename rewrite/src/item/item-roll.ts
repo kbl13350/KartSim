@@ -31,8 +31,9 @@ export function fnv1a32(text: string): number {
  * first), so the better of the two probabilities decides.
  */
 export type ItemRollKind =
-  | "rocket" | "waterfly" | "waterBomb" | "devil" | "snowBomb" | "banana" | "mine"
-  | "waterMine" | "siren" | "waterAngel" | "balloon" | "headband" | "lucciUfo";
+  | "rocket" | "waterfly" | "waterBomb" | "devil" | "snowBomb" | "banana" | "mine" | "forceZone"
+  | "waterMine" | "siren" | "waterAngel" | "balloon" | "headband" | "lucciUfo" | "lucciMine"
+  | "lucciForceZone";
 
 export interface ItemRollInput {
   raceId: string;

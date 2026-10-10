@@ -139,6 +139,13 @@ test("equipment defences cover exactly the C.2 item groups", () => {
   // Eating a mine: removed, plus the lucci bonus with a lucciMine character.
   assert.deepEqual(equipmentBlock(with_({ kart: { mine: 100, eatMine: true }, character: { lucciMine: 100 } }), context(17)),
     { by: "eat", kind: "mine", consumed: true, bonus: true });
+  // The bonus has its own roll (lucciMine); the spring trap follows the mine rules (forceZone).
+  const bonusRoll = itemRoll({ raceId: "race", useId: 7, victimId: "me", kind: "lucciMine" });
+  assert.deepEqual(equipmentBlock(with_({ kart: { mine: 100, eatMine: true }, character: { lucciMine: bonusRoll } }),
+    context(17)), { by: "eat", kind: "mine", consumed: true, bonus: false });
+  assert.deepEqual(equipmentBlock(with_({ kart: { forceZone: 100 } }), context(25)), { by: "kart", kind: "forceZone" });
+  assert.deepEqual(equipmentBlock(with_({ kart: { forceZone: 100, eatForceZone: true },
+    character: { lucciForceZone: 100 } }), context(25)), { by: "eat", kind: "forceZone", consumed: true, bonus: true });
   // iceBanana only on ice_ tracks.
   const ice = with_({ kart: { iceBanana: 100 } });
   assert.equal(equipmentBlock(ice, context(8, { trackId: "village_I01" })), undefined);

@@ -27,9 +27,10 @@ export const PASSIVE_SLOTS: Readonly<Record<PassiveTag, string>> = Object.freeze
 /** The attributes the item race reads, per holder (research-6 §1; the rest are cosmetic). */
 const PASSIVE_ATTRIBUTES: Readonly<Record<PassiveTag, readonly string[]>> = Object.freeze({
   kart: ["rocket", "waterfly", "onlyWaterBomb", "waterflyToWaterBomb", "allflyToAllBomb", "devil",
-    "banana", "iceBanana", "mine", "mineWithEggMine", "mineWithKindOfEgg", "eatMine", "waterMine",
-    "siren", "waterAngel", "useTwoRocket", "useTwoGoldRocket", "lucciItemCube", "trans"],
-  character: ["lucciUfo", "lucciMine"],
+    "banana", "iceBanana", "mine", "mineWithEggMine", "mineWithKindOfEgg", "eatMine", "forceZone",
+    "eatForceZone", "waterMine", "siren", "waterAngel", "useTwoRocket", "useTwoGoldRocket",
+    "lucciItemCube", "trans"],
+  character: ["lucciUfo", "lucciMine", "lucciForceZone"],
   pet: ["rocket", "waterfly", "waterBomb", "devil", "snowBomb"],
   goggle: ["trans", "cloudTime"],
   balloon: ["prob"],
@@ -171,12 +172,13 @@ export interface RacerPassives {
   kart: {
     rocket: number; waterfly: number; onlyWaterBomb: number; waterflyToWaterBomb: boolean;
     allflyToAllBomb: boolean; devil: number; banana: number; iceBanana: number; mine: number;
-    mineWithEggMine: boolean; mineWithKindOfEgg: boolean; eatMine: boolean; waterMine: number;
+    mineWithEggMine: boolean; mineWithKindOfEgg: boolean; eatMine: boolean; forceZone: number;
+    eatForceZone: boolean; waterMine: number;
     siren: number; waterAngel: number; useTwoRocket: boolean; useTwoGoldRocket: boolean;
     lucciItemCube: number; trans: number;
   };
   pet: { rocket: number; waterfly: number; waterBomb: number; devil: number; snowBomb: number };
-  character: { lucciUfo: number; lucciMine: number };
+  character: { lucciUfo: number; lucciMine: number; lucciForceZone: number };
   goggle: { trans: number; cloudTime: number };
   balloon: { prob: number };
   headBand: { probability: number };
@@ -211,7 +213,8 @@ export function racerPassives(table: ItemPassiveTable | undefined, itemIds: unkn
       devil: passivePercent(kart.devil), banana: passivePercent(kart.banana),
       iceBanana: passivePercent(kart.iceBanana), mine: passivePercent(kart.mine),
       mineWithEggMine: flag(kart.mineWithEggMine), mineWithKindOfEgg: flag(kart.mineWithKindOfEgg),
-      eatMine: flag(kart.eatMine), waterMine: passivePercent(kart.waterMine),
+      eatMine: flag(kart.eatMine), forceZone: passivePercent(kart.forceZone),
+      eatForceZone: flag(kart.eatForceZone), waterMine: passivePercent(kart.waterMine),
       siren: passivePercent(kart.siren), waterAngel: passivePercent(kart.waterAngel),
       useTwoRocket: flag(kart.useTwoRocket), useTwoGoldRocket: flag(kart.useTwoGoldRocket),
       lucciItemCube: passivePercent(kart.lucciItemCube), trans: fraction(kart.trans, 0, 0, 1),
@@ -221,7 +224,8 @@ export function racerPassives(table: ItemPassiveTable | undefined, itemIds: unkn
       waterBomb: passivePercent(pet.waterBomb), devil: passivePercent(pet.devil),
       snowBomb: passivePercent(pet.snowBomb),
     },
-    character: { lucciUfo: passivePercent(character.lucciUfo), lucciMine: passivePercent(character.lucciMine) },
+    character: { lucciUfo: passivePercent(character.lucciUfo), lucciMine: passivePercent(character.lucciMine),
+      lucciForceZone: passivePercent(character.lucciForceZone) },
     goggle: { trans: fraction(goggle.trans, 0, 0, 1), cloudTime: fraction(goggle.cloudTime, 1, 0, 1) },
     balloon: { prob: passivePercent(balloon.prob) },
     headBand: { probability: passivePercent(headBand.probability) },
@@ -245,6 +249,8 @@ export const BANANA_ITEMS: ReadonlySet<number> = new Set([8, 85]);
 export const MINE_ITEMS: ReadonlySet<number> = new Set([17, 129, 130]);
 export const EGG_MINE_ITEMS: ReadonlySet<number> = new Set([45, 82, 83]);
 export const WATER_MINE_ITEMS: ReadonlySet<number> = new Set([37]);
+/** forceZone (弹性陷阱): the kart's forceZone / eatForceZone, like mine / eatMine (enchantCatalog.xml:21-25). */
+export const FORCE_ZONE_ITEMS: ReadonlySet<number> = new Set([25]);
 export const SIREN_ITEMS: ReadonlySet<number> = new Set([24, 106]);
 /** Traps a waterAngel kart leaves quickly: water bombs, flies and the water mine. */
 export const WATER_TRAP_ITEMS: ReadonlySet<number> = new Set([...WATER_BOMB_ITEMS, ...WATER_FLY_ITEMS, 37]);
@@ -303,9 +309,16 @@ export function equipmentBlock(passives: RacerPassives, context: PassiveRollCont
   }
   if (MINE_ITEMS.has(item) || (EGG_MINE_ITEMS.has(item) && (kart.mineWithEggMine || kart.mineWithKindOfEgg))) {
     if (!roll(context, "mine", kart.mine)) return undefined;
+    // The eaten mine pays the 神秘工头 bonus (EatBonus) on its own roll.
     return kart.eatMine
-      ? { by: "eat", kind: "mine", consumed: true, bonus: character.lucciMine > 0 }
+      ? { by: "eat", kind: "mine", consumed: true, bonus: roll(context, "lucciMine", character.lucciMine) }
       : { by: "kart", kind: "mine" };
+  }
+  if (FORCE_ZONE_ITEMS.has(item)) {
+    if (!roll(context, "forceZone", kart.forceZone)) return undefined;
+    return kart.eatForceZone
+      ? { by: "eat", kind: "forceZone", consumed: true, bonus: roll(context, "lucciForceZone", character.lucciForceZone) }
+      : { by: "kart", kind: "forceZone" };
   }
   if (WATER_MINE_ITEMS.has(item)) return roll(context, "waterMine", kart.waterMine) ? { by: "kart", kind: "waterMine" } : undefined;
   if (SIREN_ITEMS.has(item)) return roll(context, "siren", kart.siren) ? { by: "kart", kind: "siren" } : undefined;

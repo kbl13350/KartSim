@@ -6,7 +6,8 @@
  */
 import type { ItemBehaviour, ItemEffectKind } from "./item-catalog";
 import { ItemIdx } from "./item-catalog";
-import type { ItemKartEffect, ItemPresenterPose, ItemPresenterVec3 } from "./item-race-presenter-contract";
+import type { ItemRaceKartEffect } from "./item-race-p3-contract";
+import type { ItemPresenterPose, ItemPresenterVec3 } from "./item-race-presenter-contract";
 
 export type Vec3 = ItemPresenterVec3;
 
@@ -140,8 +141,8 @@ export function physicsEffect(effect: ItemEffectKind): PhysicsItemEffect | undef
 }
 
 /** The presenter's kart effect of an item effect (the victim's bubble, stars, …). */
-export function kartEffectOf(effect: ItemEffectKind): ItemKartEffect | undefined {
-  return physicsEffect(effect) as ItemKartEffect | undefined;
+export function kartEffectOf(effect: ItemEffectKind): ItemRaceKartEffect | undefined {
+  return physicsEffect(effect);
 }
 
 /**
@@ -192,6 +193,8 @@ export interface HitDecision {
   result: "hit" | "blocked";
   by?: ItemHitBy;
   variant?: ItemHitVariant;
+  /** Blocked by the gold / protect shield (reported as `shield`, the shield item is kept). */
+  invincible?: true;
 }
 
 /** Equipment outcomes of one hit (item-passives.ts), already rolled. */
@@ -207,20 +210,23 @@ export interface EquipmentOutcome {
  * escape blue shield → equipment full defence → shield items (the invincible
  * gold/protect shield, then the one-hit shield) → angel → partial equipment
  * outcomes (balloon, headband, 奇奇) → hit. The slot lock is enforced by the
- * server and always lands; clouds are a screen cover nothing but the escape
- * shield stops. An invincible block names no defence (the node checks `by`
- * per item; "blocked" alone is always accepted).
+ * server: it always lands, except on an invincible racer (the node does not
+ * lock a racer under a gold shield). Clouds are a screen cover nothing but the
+ * escape shield stops. An invincible block is reported as `shield` (the node
+ * accepts it while the victim's gold or protect shield lasts).
  */
 export function decideHit(_itemId: number, behaviour: ItemBehaviour,
   defences: DefenceState, equipment: EquipmentOutcome = {}): HitDecision {
-  if (behaviour.effect === "lock") return { result: "hit" };
+  if (behaviour.effect === "lock") {
+    return defences.invincible ? { result: "blocked", by: "shield", invincible: true } : { result: "hit" };
+  }
   if (defences.suspended) return { result: "blocked" };
   if (defences.immune) return { result: "blocked", by: "escape" };
   if (equipment.block) {
     return { result: "blocked", by: equipment.block.by,
       ...(equipment.block.bonus ? { variant: "bonus" as const } : {}) };
   }
-  if (defences.invincible && behaviour.effect !== "cloud") return { result: "blocked" };
+  if (defences.invincible && behaviour.effect !== "cloud") return { result: "blocked", by: "shield", invincible: true };
   if (defences.shield && behaviour.shieldBlocks) return { result: "blocked", by: "shield" };
   if (defences.angel && behaviour.angelBlocks) return { result: "blocked", by: "angel" };
   return equipment.variant ? { result: "hit", variant: equipment.variant } : { result: "hit" };

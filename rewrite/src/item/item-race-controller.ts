@@ -225,7 +225,8 @@ interface ProximityCheck {
   until: number;
   radius: number;
   center(): Vec3 | undefined;
-  variant?: ItemHitVariant;
+  /** The lockdown field: the hit is the field's AffectSub, not the item's own effect. */
+  field?: boolean;
   /** Checked once at `from` (the burst), else every frame of the window. */
   once: boolean;
 }
@@ -275,8 +276,8 @@ interface HitInput {
   behaviour: ItemBehaviour;
   effectAt: number;
   position?: Vec3;
-  /** A fixed variant (the lockdown field's AffectSub victims: "small"). */
-  variant?: ItemHitVariant;
+  /** The lockdown field's AffectSub (behaviour already carries its effect): no passive applies. */
+  field?: boolean;
 }
 
 const NO_UNDO = (): void => {};
@@ -314,6 +315,8 @@ export class ItemRaceController implements ItemCommandHandler {
   /** My time bombs by request token, each placed when it explodes. */
   readonly bombs = new Map<number, OwnTimeBomb>();
   readonly remoteTraps = new Map<string, RemoteTrap>();
+  /** Remote talisman holds, which a QTE may end early (escaped). */
+  readonly remoteHolds = new Map<string, { useId: number; startMs: number; untilMs: number; escapeMs: number }>();
   /** Remote UFO slows (for EMP) and tigerGhost windows (aiming), by racer. */
   readonly remoteUfoSlows = new Map<string, number>();
   readonly invisible = new Map<string, TimeWindow>();
@@ -339,6 +342,8 @@ export class ItemRaceController implements ItemCommandHandler {
   reorderStartedAt: number | undefined;
   startItemFlashAt: number | undefined;
   lucciNotice: { amount: number; atMs: number } | undefined;
+  /** The special booster icon the server reported for my kart's item 31 (`slotIcons`). */
+  serverAnimalIcon: number | undefined;
   /** The start boost succeeded (physics state 1 seen while racing): 完美起步. */
   perfectStart = false;
   nowMs = 0;
@@ -553,6 +558,7 @@ export class ItemRaceController implements ItemCommandHandler {
     this.invincible = undefined;
     this.localUfoSlowUntil = 0;
     this.remoteUfoSlows.clear();
+    this.remoteHolds.clear();
     this.invisible.clear();
     this.bombs.clear();
     this.remoteTraps.clear();
@@ -567,6 +573,7 @@ export class ItemRaceController implements ItemCommandHandler {
     this.reorderStartedAt = undefined;
     this.startItemFlashAt = undefined;
     this.lucciNotice = undefined;
+    this.serverAnimalIcon = undefined;
     this.notices.length = 0;
     this.log.length = 0;
     this.changers.reset();
@@ -655,6 +662,7 @@ export class ItemRaceController implements ItemCommandHandler {
       reply => this.guard("换位回包处理失败", () => {
         const event = reply as ItemSlotsEvent;
         this.changers.endSwap(event.changers);
+        this.noteIcons(event.slots, event.slotIcons);
         this.slots.confirm(event.slots, token);
         this.applySlots(this.nowMs);
       }),
@@ -681,6 +689,7 @@ export class ItemRaceController implements ItemCommandHandler {
       reply => this.guard("道具变更回包处理失败", () => {
         const event = reply as ItemSlotsEvent;
         this.changers.endChange(event.changers);
+        this.noteIcons(event.slots, event.slotIcons);
         this.slots.confirm(event.slots);
         this.applySlots(this.nowMs);
       }),
@@ -713,6 +722,7 @@ export class ItemRaceController implements ItemCommandHandler {
       reply => this.guard("道具使用回包处理失败", () => {
         const used = reply as ItemUsedEvent;
         this.changers.confirm(used.changers);
+        if (used.slots) this.noteIcons(used.slots, used.slotIcons);
         this.slots.confirm(used.slots, token);
         this.applySlots(this.nowMs);
         this.recordUse(used, true);
@@ -905,6 +915,7 @@ export class ItemRaceController implements ItemCommandHandler {
         this.guard("道具槽同步回包处理失败", () => {
           const event = reply as ItemSlotsEvent;
           this.changers.confirm(event.changers);
+          this.noteIcons(event.slots, event.slotIcons);
           this.slots.confirm(event.slots);
           this.applySlots(this.nowMs);
         });
@@ -1021,6 +1032,7 @@ export class ItemRaceController implements ItemCommandHandler {
   private onGrant(reply: ItemGrantEvent): void {
     if (this.disposed) return;
     this.changers.confirm(reply.changers);
+    this.noteIcons(reply.slots, reply.slotIcons);
     this.slots.confirm(reply.slots);
     this.applySlots(this.nowMs);
     if (reply.itemId === null && reply.reason === "abusing")
@@ -1035,6 +1047,7 @@ export class ItemRaceController implements ItemCommandHandler {
    */
   private onSlotsPush(event: ItemSlotsEvent): void {
     this.changers.confirm(event.changers);
+    this.noteIcons(event.slots, event.slotIcons);
     this.slots.confirm(event.slots);
     this.applySlots(this.nowMs);
     if (event.reason === "start") {
@@ -1238,7 +1251,9 @@ export class ItemRaceController implements ItemCommandHandler {
   /**
    * Lockdown / block rocket (C.4): the target is held (AffectMain, its own hit);
    * CountDown after the impact a field opens at the target and slows the
-   * user's other opponents inside it for AffectSub (variant "small").
+   * user's other opponents inside it for AffectSub. Field victims report a
+   * plain hit; the others tell it from the main hit because the victim is not
+   * the use's target.
    */
   private scheduleLockdownField(record: UseRecord, behaviour: ItemBehaviour): void {
     const field = behaviour.field;
@@ -1249,7 +1264,7 @@ export class ItemRaceController implements ItemCommandHandler {
       itemId: record.itemId, userId: record.userId,
       behaviour: { ...behaviour, effect: field.effect, effectMs: field.effectMs,
         factors: { drive: ITEM_RULES.ufoDriveFactor, drag: ITEM_RULES.ufoDragFactor } },
-      from, until: from + field.lifetimeMs, radius: field.radius, once: false, variant: "small",
+      from, until: from + field.lifetimeMs, radius: field.radius, once: false, field: true,
       center: () => this.options.remotes.pose(targetId)?.position });
   }
 
@@ -1298,7 +1313,8 @@ export class ItemRaceController implements ItemCommandHandler {
       case "headband": return life("HeadBandAffect") ?? behaviour.effectMs;
       case "bonus": return life("BonusAffect") ?? behaviour.effectMs;
       case "quick": return ITEM_RULES.quickEscapeMs;
-      case "small": return behaviour.field?.effectMs ?? behaviour.effectMs;
+      // The reduced missile (AffectSmall) without a balloon.
+      case "small": return life("AffectSmall") ?? behaviour.effectMs;
       default: return behaviour.effectMs;
     }
   }
@@ -1323,15 +1339,21 @@ export class ItemRaceController implements ItemCommandHandler {
     if (event.result === "hit" && definition) {
       const behaviour = definition.behaviour;
       // The siren's victims spin; the lockdown field's slow.
-      const effect = event.variant === "small" ? behaviour.field?.effect ?? behaviour.effect
+      const fieldHit = !!behaviour.field && (event.variant === "small" ||
+        (!!record && !record.targets.includes(event.playerId)));
+      const effect = fieldHit ? behaviour.field!.effect
         : behaviour.family === "siren" ? behaviour.touch?.effect ?? behaviour.effect : behaviour.effect;
       const kind = kartEffectOf(effect);
       const durationMs = behaviour.family === "siren" ? behaviour.touch?.effectMs ?? behaviour.effectMs
-        : this.variantEffectMs(definition, behaviour, event.variant);
+        : fieldHit ? behaviour.field!.effectMs : this.variantEffectMs(definition, behaviour, event.variant);
       if (kind) {
-        const start = this.remoteEffectStart(record, behaviour, now, event);
+        const start = fieldHit ? now : this.remoteEffectStart(record, behaviour, now, event);
         this.kartEffect(event.playerId, kind, start, durationMs, causeOf(definition.idx, classicCause(kind)));
         if (definition.idx === ItemIdx.ufo) this.remoteUfoSlows.set(event.playerId, start + durationMs);
+        if (behaviour.family === "talisman" && effect === "hold") {
+          this.remoteHolds.set(event.playerId, { useId: event.useId, startMs: start, untilMs: start + durationMs,
+            escapeMs: behaviour.escapeShieldMs ?? 0 });
+        }
         // The blue shield follows the bubble's end, or the racer's early escape.
         if (kind === "trap" && behaviour.escapeShieldMs) {
           this.remoteTraps.set(event.playerId, { useId: event.useId,
@@ -1348,8 +1370,16 @@ export class ItemRaceController implements ItemCommandHandler {
 
   /** A remote racer mashed out of its bubble: it ends now and the blue shield starts. */
   private onEscaped(event: ItemEscapedEvent): void {
-    const trap = this.remoteTraps.get(event.playerId);
     const now = this.options.now();
+    const hold = this.remoteHolds.get(event.playerId);
+    if (hold && hold.useId === event.useId && now < hold.untilMs) {
+      // A talisman's QTE succeeded: the hold ends after its EscapeAffect.
+      this.remoteHolds.delete(event.playerId);
+      this.kartEffect(event.playerId, "hold", hold.startMs, now + hold.escapeMs - hold.startMs,
+        { itemId: event.itemId });
+      return;
+    }
+    const trap = this.remoteTraps.get(event.playerId);
     if (!trap || trap.useId !== event.useId || trap.hazardId !== event.hazardId ||
         now >= trap.untilMs) return;
     this.remoteTraps.delete(event.playerId);
@@ -1381,8 +1411,8 @@ export class ItemRaceController implements ItemCommandHandler {
   private remoteEffectStart(record: UseRecord | undefined, behaviour: ItemBehaviour, now: number,
     event: ItemHitEvent): number {
     if (!record || behaviour.target === "placed" || behaviour.target === "area" ||
-        behaviour.effect === "barrier" || behaviour.family === "siren" || behaviour.family === "waterbombFly" ||
-        event.variant === "small") return now;
+        behaviour.effect === "barrier" || behaviour.family === "siren" || behaviour.family === "waterbombFly")
+      return now;
     const shotDelay = event.shot === 1 ? ITEM_RULES.doubleRocketDelayMs : 0;
     return Math.min(now, record.startMs + effectStartOffsetMs(behaviour, record.etaMs) + shotDelay);
   }
@@ -1481,7 +1511,7 @@ export class ItemRaceController implements ItemCommandHandler {
       if (!center || distance(position, center) > check.radius) continue;
       this.resolveHit({ useId: check.useId, itemId: check.itemId, userId: check.userId,
         behaviour: check.behaviour, effectAt: check.once ? check.from : nowMs, position: { ...center },
-        ...(check.variant ? { variant: check.variant } : {}) }, nowMs, check.once ? "targeted" : "area");
+        ...(check.field ? { field: true } : {}) }, nowMs, check.once ? "targeted" : "area");
     }
   }
 
@@ -1529,7 +1559,7 @@ export class ItemRaceController implements ItemCommandHandler {
     if (hit.useId > 0 && this.reported.has(key)) return;
     const effects = this.options.physics.itemEffects;
     const passives = this.passives;
-    const equipment = hit.variant ? {} : this.equipmentOutcome(hit);
+    const equipment = hit.field ? {} : this.equipmentOutcome(hit);
     let decision: HitDecision = decideHit(hit.itemId, hit.behaviour, {
       immune: effects?.immune ?? false,
       shield: nowMs < this.shieldUntil,
@@ -1537,7 +1567,6 @@ export class ItemRaceController implements ItemCommandHandler {
       invincible: !!this.invincible && this.invincible.from <= nowMs && nowMs < this.invincible.until,
       suspended: this.options.local.suspended(),
     }, equipment);
-    if (decision.result === "hit" && hit.variant) decision = { ...decision, variant: hit.variant };
     if (decision.result === "hit" && !decision.variant && hit.behaviour.effect === "trap" &&
         quickEscape(passives, { raceId: this.options.raceId ?? "", useId: hit.useId,
           ...(hit.hazardId !== undefined ? { hazardId: hit.hazardId } : {}),
@@ -1548,7 +1577,7 @@ export class ItemRaceController implements ItemCommandHandler {
     }
     if (hit.useId > 0) this.reported.add(key);
     if (decision.variant === "balloon") this.balloonSpent.add(hit.useId);
-    if (decision.by === "shield") {
+    if (decision.by === "shield" && !decision.invincible) {
       this.shieldUntil = 0;
       this.endKartEffect(this.playerId, "shield");
     }
@@ -1583,7 +1612,7 @@ export class ItemRaceController implements ItemCommandHandler {
   /** Apply a landed hit; false when the kart cannot take its physics effect now. */
   private applyHit(hit: HitInput, nowMs: number, variant: ItemHitVariant | undefined): boolean {
     const { behaviour, effectAt } = hit;
-    const durationMs = hit.variant === "small" ? behaviour.effectMs
+    const durationMs = hit.field ? behaviour.effectMs
       : this.variantEffectMs(this.options.catalog.get(hit.itemId), behaviour, variant);
     const kind = physicsEffect(behaviour.effect);
     if (kind) {
@@ -1667,6 +1696,11 @@ export class ItemRaceController implements ItemCommandHandler {
         effects.escapeHold?.(talisman.escapeMs);
         this.endTalismanLock(talisman.useId, nowMs + talisman.escapeMs);
         this.talisman = undefined;
+        // The node ends its lock too, and the others end the hold (escape → escaped).
+        if (!this.ended) {
+          this.send("escape", { useId: talisman.useId }).catch(
+            error => this.warn("符咒脱出通知被拒绝", error));
+        }
         return;
       }
       talisman.progress = 0;
@@ -1777,12 +1811,24 @@ export class ItemRaceController implements ItemCommandHandler {
       this.infoCard = { itemIdx: first, until: nowMs + ITEM_RACE_TUNING.infoCardMs };
   }
 
-  /** The special booster shows the kart's own `animal<iconId>` icon (C.3). */
+  /**
+   * The special booster shows the kart's own `animal<iconId>` icon (C.3): the
+   * one the server sends with the slots, else the kart's animalBooster row.
+   */
   private slotIcons(slots: readonly number[]): (number | undefined)[] | undefined {
     if (!slots.includes(ItemIdx.animalBooster)) return undefined;
-    const icon = animalBoosterIcon(this.options.catalog.animalBoosters, this.passives.kartId);
+    const icon = this.serverAnimalIcon ??
+      animalBoosterIcon(this.options.catalog.animalBoosters, this.passives.kartId);
     if (icon === undefined) return undefined;
     return slots.map(slot => slot === ItemIdx.animalBooster ? icon : undefined);
+  }
+
+  /** Remember the server's icon for a special booster in these slots. */
+  private noteIcons(slots: readonly number[] | undefined, icons: readonly number[] | undefined): void {
+    if (!slots || !icons) return;
+    slots.forEach((slot, index) => {
+      if (slot === ItemIdx.animalBooster && icons[index]) this.serverAnimalIcon = icons[index];
+    });
   }
 
   /** Bottom-left boards before the start (C.10): team races first, then the changer cards. */
@@ -1930,6 +1976,7 @@ export class ItemRaceController implements ItemCommandHandler {
     }
     for (const [playerId, scan] of this.scans) if (nowMs >= scan.until) this.scans.delete(playerId);
     for (const [playerId, until] of this.remoteUfoSlows) if (until <= nowMs) this.remoteUfoSlows.delete(playerId);
+    for (const [playerId, hold] of this.remoteHolds) if (hold.untilMs <= nowMs) this.remoteHolds.delete(playerId);
     for (const [playerId, window] of this.invisible) if (window.until <= nowMs) this.invisible.delete(playerId);
     let angelsExpired = false;
     for (const [key, window] of this.angels) {

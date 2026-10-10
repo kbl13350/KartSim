@@ -60,14 +60,18 @@ test("defences (C.2): escape, equipment, invincible, shield, angel, then partial
   assert.deepEqual(decide(ItemIdx.cloud2, { shield: true, angel: true }), { result: "hit" });
   assert.deepEqual(decide(ItemIdx.thunderbolt, { shield: true }), { result: "hit" });
   assert.deepEqual(decide(ItemIdx.barricade, { shield: true }), { result: "blocked", by: "shield" });
-  assert.deepEqual(decide(ItemIdx.slotLock, { immune: true, angel: true, suspended: true, invincible: true }),
+  assert.deepEqual(decide(ItemIdx.slotLock, { immune: true, angel: true, suspended: true }),
     { result: "hit" });
+  // The node does not lock a racer under a gold shield.
+  assert.deepEqual(decide(ItemIdx.slotLock, { invincible: true }),
+    { result: "blocked", by: "shield", invincible: true });
   assert.deepEqual(decide(ItemIdx.rocket, { suspended: true }), { result: "blocked" });
   // The UFO: neither the shield nor the angel (only EMP clears it, and only after it landed).
   assert.deepEqual(decide(ItemIdx.ufo, { shield: true, angel: true }), { result: "hit" });
   // The gold / protect shield blocks every attack, the devil family too, but not a cloud.
-  assert.deepEqual(decide(ItemIdx.devil, { invincible: true }), { result: "blocked" });
-  assert.deepEqual(decide(ItemIdx.ufo, { invincible: true, shield: true }), { result: "blocked" });
+  assert.deepEqual(decide(ItemIdx.devil, { invincible: true }), { result: "blocked", by: "shield", invincible: true });
+  assert.deepEqual(decide(ItemIdx.ufo, { invincible: true, shield: true }),
+    { result: "blocked", by: "shield", invincible: true });
   assert.deepEqual(decide(ItemIdx.darkCloud2, { invincible: true }), { result: "hit" });
   // Equipment full defences come before the shield items; the shield is kept.
   assert.deepEqual(decide(ItemIdx.rocket, { shield: true }, { block: { by: "kart" } }),

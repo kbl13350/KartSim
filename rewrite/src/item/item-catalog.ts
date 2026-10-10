@@ -693,7 +693,7 @@ export function itemBehaviour(name: string, states: ReadonlyMap<string, ItemStat
         effect: "invisible", effectMs: life("Affect") });
     case "talisman":
       return attack({ family: "talisman", use: "instant", target: "first", delayMs: 0,
-        maxEtaMs: life("Use"), speed: ITEM_RULES.rocketSpeed, effect: "hold", effectMs: life("Affect"),
+        maxEtaMs: life("Use"), speed: ITEM_RULES.flyerSpeed, effect: "hold", effectMs: life("Affect"),
         lockMs: life("Affect"), escapeShieldMs: life("EscapeAffect") });
     default:
       throw Error(`道具 ${name} 尚无行为定义。`);

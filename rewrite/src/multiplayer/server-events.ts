@@ -156,17 +156,25 @@ export interface ItemPoint { x: number; y: number; z: number }
  * is whether slot 0 holds an item that has not been changed yet.
  */
 export interface ItemChangers { slot: number; item: number; itemArmed: boolean }
+/**
+ * Per slot, the special booster's `animal<iconId>.png` icon of the racer's
+ * kart, 0 for the item's own icon (the game node sends it with the slots when
+ * a held item has one; not part of ITEM_MODE.md C.7).
+ */
+export type ItemSlotIcons = number[];
 
 interface ItemEventBase { type: "item"; roomId: string; raceId: string; requestId?: string }
 /** Reply to `cube`: the drawn item, or null with the reason nothing was given. */
 export interface ItemGrantEvent extends ItemEventBase {
   action: "grant"; cubeId: number; itemId: number | null;
   reason?: "full" | "abusing"; slots: ItemSlots; playerId?: string; changers?: ItemChangers;
+  slotIcons?: ItemSlotIcons;
 }
 /** A use: broadcast to the others, and the reply (with `slots`) to the user. */
 export interface ItemUsedEvent extends ItemEventBase {
   action: "used"; playerId: string; useId: number; itemId: number; targets: string[];
   startAt: number; etaMs: number; point?: ItemPoint; slots?: ItemSlots; changers?: ItemChangers;
+  slotIcons?: ItemSlotIcons;
   /** 2 when the user's kart fires two missiles (useTwoRocket / useTwoGoldRocket). */
   count?: number;
 }
@@ -189,6 +197,7 @@ export interface ItemHitEvent extends ItemEventBase {
  */
 export interface ItemSlotsEvent extends ItemEventBase {
   action: "slots"; slots: ItemSlots; playerId?: string; changers?: ItemChangers;
+  slotIcons?: ItemSlotIcons;
   reason?: "gain" | "start"; itemId?: number;
 }
 /** An opponent's slots while this team's 透视镜 lasts. */
@@ -266,6 +275,12 @@ function itemChangers(value: unknown): ItemChangers | undefined {
 }
 const optionalChangers = (value: unknown) => optional(value, itemChangers);
 
+function itemSlotIcons(value: unknown): ItemSlotIcons | undefined {
+  return Array.isArray(value) && value.length >= 2 && value.length <= 3 &&
+    value.every(icon => integer(icon, 0, 65535)) ? [...value] as number[] : undefined;
+}
+const optionalSlotIcons = (value: unknown) => optional(value, itemSlotIcons);
+
 
 /**
  * Strict projection of an `item` server event onto its known fields; any
@@ -281,8 +296,10 @@ export function parseItemServerEvent(value: Record<string, unknown>): ItemServer
       const slots = itemSlots(value.slots);
       const playerId = optionalText(value.playerId);
       const changers = optionalChangers(value.changers);
+      const icons = optionalSlotIcons(value.slotIcons);
       const granted = value.itemId !== null;
       if (!integer(value.cubeId, 1, ITEM_CUBE_ID_MAX) || !slots || !playerId.ok || !changers.ok ||
+          !icons.ok || (icons.value !== undefined && icons.value.length !== slots.length) ||
           (granted ? !itemId(value.itemId) || value.reason !== undefined
             : value.reason !== undefined && value.reason !== "full" &&
               value.reason !== "abusing")) return undefined;
@@ -290,22 +307,26 @@ export function parseItemServerEvent(value: Record<string, unknown>): ItemServer
         itemId: granted ? value.itemId as number : null,
         ...(value.reason === undefined ? {} : { reason: value.reason as "full" | "abusing" }),
         slots, ...(playerId.value === undefined ? {} : { playerId: playerId.value }),
-        ...(changers.value ? { changers: changers.value } : {}) };
+        ...(changers.value ? { changers: changers.value } : {}),
+        ...(icons.value ? { slotIcons: icons.value } : {}) };
     }
     case "used": {
       const targets = itemTargets(value.targets);
       const point = optional(value.point, itemPoint);
       const slots = optionalSlots(value.slots);
       const changers = optionalChangers(value.changers);
+      const icons = optionalSlotIcons(value.slotIcons);
       if (!text(value.playerId, 1, 64) || !useId(value.useId, 1) || !itemId(value.itemId) ||
           !targets || !clock(value.startAt) || !integer(value.etaMs, 0, ITEM_ETA_MAX_MS) ||
-          !point.ok || !slots.ok || !changers.ok ||
+          !point.ok || !slots.ok || !changers.ok || !icons.ok ||
+          (icons.value !== undefined && icons.value.length !== slots.value?.length) ||
           (value.count !== undefined && value.count !== 2)) return undefined;
       return { ...base, action: "used", playerId: value.playerId, useId: value.useId as number,
         itemId: value.itemId, targets, startAt: value.startAt, etaMs: value.etaMs,
         ...(point.value ? { point: point.value } : {}),
         ...(slots.value ? { slots: slots.value } : {}),
         ...(changers.value ? { changers: changers.value } : {}),
+        ...(icons.value ? { slotIcons: icons.value } : {}),
         ...(value.count === 2 ? { count: 2 } : {}) };
     }
     case "placed": {
@@ -343,13 +364,16 @@ export function parseItemServerEvent(value: Record<string, unknown>): ItemServer
       const slots = itemSlots(value.slots);
       const playerId = optionalText(value.playerId);
       const changers = optionalChangers(value.changers);
+      const icons = optionalSlotIcons(value.slotIcons);
       const gained = value.reason !== undefined;
-      if (!slots || !playerId.ok || !changers.ok ||
+      if (!slots || !playerId.ok || !changers.ok || !icons.ok ||
+          (icons.value !== undefined && icons.value.length !== slots.length) ||
           (gained ? (value.reason !== "gain" && value.reason !== "start") || !itemId(value.itemId)
             : value.itemId !== undefined)) return undefined;
       return { ...base, action: "slots", slots,
         ...(playerId.value === undefined ? {} : { playerId: playerId.value }),
         ...(changers.value ? { changers: changers.value } : {}),
+        ...(icons.value ? { slotIcons: icons.value } : {}),
         ...(gained ? { reason: value.reason as "gain" | "start", itemId: value.itemId as number } : {}) };
     }
     case "scan": {

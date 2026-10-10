@@ -354,10 +354,12 @@ test("gold and protect shields: invincible from the end of Use, not against clou
   at(f, 1000);
   at(f, 1200);
   assert.deepEqual(f.connection.of("hit").slice(1), [
-    { useId: 2, itemId: 7, result: "blocked" },
-    { useId: 3, itemId: 3, result: "blocked" },
+    { useId: 2, itemId: 7, result: "blocked", by: "shield" },
+    { useId: 3, itemId: 3, result: "blocked", by: "shield" },
     { useId: 4, itemId: 114, result: "hit" },
   ]);
+  assert.equal(f.presenter.of("endKartEffect").filter(call => call[1] === "shield").length, 0,
+    "a gold shield is not a spent shield");
   at(f, 3000);
   used(f, { useId: 5, itemId: ItemIdx.rocket, targets: [SELF], startAt: server(3000), etaMs: 300 });
   at(f, 3300);
@@ -469,7 +471,7 @@ test("lockdown rockets hold the target and slow the user's other opponents in th
   at(g, 999);
   assert.equal(g.connection.of("hit").length, 0);
   at(g, 1000);
-  assert.deepEqual(g.connection.of("hit"), [{ useId: 2, itemId: 117, result: "hit", variant: "small" }]);
+  assert.deepEqual(g.connection.of("hit"), [{ useId: 2, itemId: 117, result: "hit" }]);
   assert.deepEqual(applied(g), [["slow", 3000]]);
   // The user's teammates are never in its field; outside the radius nothing happens.
   const h = controllerFixture({ teamRace: true });
@@ -541,10 +543,26 @@ test("the talisman holds and locks me; its five arrows in order end it early", a
   effects.directionPresses.push(...qte.keys.map(direction => ({ direction, atMs: 0 })));
   at(f, 800);
   assert.deepEqual(effects.escapedHolds, [500]);
+  assert.deepEqual(f.connection.of("escape"), [{ useId: 1 }], "the node ends its lock, the others the hold");
   assert.equal(f.controller.hudState(800).talisman, undefined);
   assert.deepEqual(f.controller.hudState(800).lock, { remainingMs: 500 });
   at(f, 1300);
   assert.equal(f.controller.hudState(1300).lock, undefined);
+});
+
+test("someone else's talisman hold ends when they escape it early", () => {
+  const f = controllerFixture();
+  serve(f);
+  at(f, 0);
+  used(f, { useId: 3, itemId: ItemIdx.talisman, targets: [RIVAL], startAt: server(0), etaMs: 500,
+    playerId: OTHER });
+  f.state.now = 500;
+  f.connection.emit({ action: "hit", playerId: RIVAL, useId: 3, itemId: 137, userId: OTHER, result: "hit" });
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [RIVAL, "hold", 500, 4000, { itemId: 137 }]);
+  f.state.now = 1500;
+  f.connection.emit({ action: "escaped", playerId: RIVAL, useId: 3, itemId: 137 });
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [RIVAL, "hold", 500, 1500, { itemId: 137 }]);
+  assert.equal(f.controller.remoteHolds.size, 0);
 });
 
 test("dropped specials: mines launch, the spring trap knocks back, oil covers the screen", () => {
@@ -595,9 +613,13 @@ test("remote hits show the variant's duration; a remote UFO is tracked for EMP",
   assert.deepEqual(f.presenter.of("kartEffect").at(-1), [OTHER, "trap", 1000, 3000, { itemId: 34 }]);
   f.connection.emit({ action: "hit", playerId: OTHER, useId: 13, itemId: 104, userId: MATE, result: "hit" });
   assert.deepEqual(f.presenter.of("kartEffect").at(-1), [OTHER, "hold", 1000, 2000, { itemId: 104 }]);
-  f.connection.emit({ action: "hit", playerId: OTHER, useId: 14, itemId: 117, userId: MATE, result: "hit",
-    variant: "small" });
+  // A lockdown field victim is anyone but the use's target.
+  used(f, { useId: 14, itemId: ItemIdx.blockRocket, playerId: MATE, targets: [RIVAL], startAt: server(0), etaMs: 500 });
+  f.state.now = 1000;
+  f.connection.emit({ action: "hit", playerId: OTHER, useId: 14, itemId: 117, userId: MATE, result: "hit" });
   assert.deepEqual(f.presenter.of("kartEffect").at(-1), [OTHER, "slow", 1000, 3000, { itemId: 117 }]);
+  f.connection.emit({ action: "hit", playerId: RIVAL, useId: 14, itemId: 117, userId: MATE, result: "hit" });
+  assert.deepEqual(f.presenter.of("kartEffect").at(-1), [RIVAL, "hold", 500, 2000, { itemId: 117 }]);
   f.connection.emit({ action: "hit", playerId: MATE, useId: 8, itemId: 2, userId: RIVAL, result: "blocked", by: "kart" });
   assert.equal((f.presenter.of("hit").at(-1)![0] as Record<string, unknown>).by, "kart");
   used(f, { useId: 9, itemId: ItemIdx.emp, playerId: MATE, targets: [MATE, SELF], startAt: server(1000) });
@@ -628,6 +650,17 @@ test("server pushes: gained items, the 迅 start item flash and in-race lucci", 
   hud = f.controller.hudState(300);
   assert.deepEqual(hud.lucci, { amount: 10, atMs: 300 });
   assert.equal(f.controller.hudState(300 + ITEM_RACE_TUNING.lucciNoticeMs).lucci, undefined);
+});
+
+test("the server's slotIcons name the special booster's icon", async () => {
+  const f = controllerFixture();
+  f.connection.reply = ({ fields }) => ({ type: "item", action: "grant", cubeId: fields.cubeId,
+    itemId: 31, slots: [31, -1], slotIcons: [266, 0], changers: { slot: 0, item: 0, itemArmed: true } });
+  f.controller.cube(1);
+  await settle();
+  assert.deepEqual(f.controller.hudState(0).slotIcons, [266, undefined]);
+  f.connection.emit({ action: "slots", slots: [6, 31], reason: "gain", itemId: 6 });
+  assert.deepEqual(f.controller.hudState(0).slotIcons, [undefined, 266]);
 });
 
 test("the special booster shows the kart's animal icon", async () => {
