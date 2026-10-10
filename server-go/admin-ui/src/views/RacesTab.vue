@@ -5,14 +5,21 @@ import DataTable from '../components/DataTable.vue'
 import TableToolbar from '../components/TableToolbar.vue'
 import { usePagedTable } from '../composables/usePagedTable'
 import { useTab } from '../composables/useTabs'
+import { isAsciiToken } from '../utils/filters'
 import { formatNumber, gameplayName, gameplayOptions, text } from '../utils/format'
 import { formatElapsed, formatTime } from '../utils/time'
 
 // 比赛记录: GET /api/admin/races (one row per settled race with its
-// participants by rank; gameplay, track, account, from/to).
+// participants by rank; gameplay, track, account, from/to). The track filter
+// is a track id (printable ASCII), not the Chinese title.
 
 const table = usePagedTable<RaceRow, { account: string; gameplay: string; track: string }>(
-  '/api/admin/races', { filters: { account: '', gameplay: '', track: '' } })
+  '/api/admin/races', {
+    filters: { account: '', gameplay: '', track: '' },
+    validate: ({ track }) => (track && !isAsciiToken(track, 64)
+      ? '赛道须填赛道 ID（英文，如 village_R01），最多 64 个字符，不含空格'
+      : ''),
+  })
 useTab('races', () => table.load())
 onMounted(() => table.load())
 
@@ -21,7 +28,7 @@ function winner(row: RaceRow) {
   return first ? first.name || first.username || '—' : '—'
 }
 
-function hasReward(participants: RaceParticipantRow[] | null | undefined, key: 'lucci' | 'exp' | 'koin') {
+function hasReward(participants: RaceParticipantRow[] | null | undefined, key: 'lucci' | 'exp') {
   return !!participants?.some((p) => typeof p[key] === 'number')
 }
 </script>
@@ -38,7 +45,7 @@ function hasReward(participants: RaceParticipantRow[] | null | undefined, key: '
         </el-select>
       </el-form-item>
       <el-form-item label="赛道">
-        <el-input v-model="table.filters.track" maxlength="64" clearable placeholder="赛道 ID" class="filter-input" />
+        <el-input v-model="table.filters.track" maxlength="64" clearable placeholder="赛道 ID（英文）" class="filter-input" />
       </el-form-item>
     </TableToolbar>
     <DataTable :table="table" row-key="raceId">
@@ -64,14 +71,11 @@ function hasReward(participants: RaceParticipantRow[] | null | undefined, key: '
               <el-table-column label="积分" width="90" align="right">
                 <template #default="{ row: p }">{{ formatNumber(p.points) }}</template>
               </el-table-column>
-              <el-table-column v-if="hasReward(row.participants, 'lucci')" label="金币奖励" width="100" align="right">
-                <template #default="{ row: p }">{{ formatNumber(p.lucci) }}</template>
-              </el-table-column>
-              <el-table-column v-if="hasReward(row.participants, 'koin')" label="K币奖励" width="100" align="right">
-                <template #default="{ row: p }">{{ formatNumber(p.koin) }}</template>
-              </el-table-column>
               <el-table-column v-if="hasReward(row.participants, 'exp')" label="经验奖励" width="100" align="right">
                 <template #default="{ row: p }">{{ formatNumber(p.exp) }}</template>
+              </el-table-column>
+              <el-table-column v-if="hasReward(row.participants, 'lucci')" label="金币奖励" width="100" align="right">
+                <template #default="{ row: p }">{{ formatNumber(p.lucci) }}</template>
               </el-table-column>
             </el-table>
           </div>
@@ -83,8 +87,11 @@ function hasReward(participants: RaceParticipantRow[] | null | undefined, key: '
       <el-table-column label="玩法" width="80">
         <template #default="{ row }"><el-tag type="info" disable-transitions>{{ gameplayName(row.gameplay) }}</el-tag></template>
       </el-table-column>
-      <el-table-column label="赛道" min-width="150" show-overflow-tooltip>
-        <template #default="{ row }">{{ text(row.trackId) }}</template>
+      <el-table-column label="赛道" min-width="190" show-overflow-tooltip>
+        <template #default="{ row }">
+          {{ row.trackName || text(row.trackId) }}
+          <span v-if="row.trackName && row.trackId" class="muted mono">{{ row.trackId }}</span>
+        </template>
       </el-table-column>
       <el-table-column label="人数" width="70" align="right">
         <template #default="{ row }">{{ formatNumber(row.players ?? row.participants?.length) }}</template>

@@ -60,16 +60,17 @@ export interface RaceParticipantRow {
   at: number
   gameplay: string
   trackId: string
+  /** The track's Chinese title ('' when unknown). */
+  trackName: string
   rank: number | null
   name: string
   accountId: string | null
   username: string | null
   elapsedMs: number | null
   points: number | null
-  // Optional reward fields some settlements carry.
-  lucci?: number | null
-  exp?: number | null
-  koin?: number | null
+  /** What the race credited the account; null for guests or nothing credited. */
+  exp: number | null
+  lucci: number | null
 }
 
 export interface AccountDetail {
@@ -115,9 +116,8 @@ export interface OnlineRow {
   username: string | null
   nodeId: string
   nodeName: string
-  // Shown when the node reports it.
-  roomId?: string | number | null
-  roomName?: string | null
+  /** The room's name; '' in the lobby or on a node that does not report it. */
+  room: string
 }
 
 export interface ProbeStatus {
@@ -137,7 +137,8 @@ export interface NodeStats {
 export interface NodeRow {
   nodeId: string
   name: string
-  origin: string
+  /** null: reached through the data service's own origin. */
+  origin: string | null
   players: number
   capacity: number
   rooms: number
@@ -195,6 +196,7 @@ export interface RaceRow {
   at: number
   gameplay: string
   trackId: string
+  trackName: string
   players: number
   participants: RaceParticipantRow[]
 }
@@ -222,7 +224,10 @@ export interface LotteryDrawRow {
   username: string
   nickname: string
   kind: string
+  /** The 寻宝 board, or the 精品道具场 lottery's item id. */
   ref: number
+  /** "寻宝" or the lottery's name. */
+  refName: string
   count: number
   summary: string
   result: unknown
@@ -264,9 +269,10 @@ export interface Overview {
   now: number
   accounts: { total: number; today: number; admins: number; banned: number }
   logins: { today: number; uniqueToday: number }
-  online: { players: number; accounts: number; guests: number }
-  nodes: { total: number; healthy: number }
-  rooms: number
+  // online, nodes and rooms are null while the cluster registry (Redis) is unavailable.
+  online: { players: number; accounts: number; guests: number } | null
+  nodes: { total: number; healthy: number } | null
+  rooms: number | null
   races: { today: number }
   coupon: { spentToday: number; grantedToday: number }
   recentRegistrations: AccountRow[]

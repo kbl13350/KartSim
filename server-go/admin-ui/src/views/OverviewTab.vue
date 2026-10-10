@@ -9,7 +9,9 @@ import { formatNumber, loginKindName, text } from '../utils/format'
 import { formatTime } from '../utils/time'
 import { showError } from '../utils/ui'
 
-// 概览: GET /api/admin/overview ("today" is Beijing time from 00:00).
+// 概览: GET /api/admin/overview ("today" is Beijing time from 00:00). The
+// online, nodes and rooms figures are null while the cluster registry
+// (Redis) is unavailable: those cards show "—" and say so.
 
 const data = ref<Overview | null>(null)
 const loading = ref(false)
@@ -31,16 +33,37 @@ async function load() {
 useTab('overview', load)
 onMounted(load)
 
-const cards = computed(() => {
+interface Card {
+  title: string
+  /** A number shown by el-statistic; null or undefined shows "—". */
+  value?: number | null
+  /** Text shown instead of a number. */
+  text?: string
+  foot: string
+  warn?: boolean
+}
+
+const REGISTRY_DOWN = 'Redis 不可用'
+
+const cards = computed<Card[]>(() => {
   const value = data.value
   if (!value) return []
+  const { online, nodes, rooms } = value
+  const unhealthy = !!nodes && nodes.healthy < nodes.total
   return [
     { title: '注册用户总数', value: value.accounts?.total, foot: `管理员 ${formatNumber(value.accounts?.admins)} · 封禁 ${formatNumber(value.accounts?.banned)}` },
     { title: '今日新增', value: value.accounts?.today, foot: '北京时间 0 点起' },
     { title: '今日登录人数', value: value.logins?.uniqueToday, foot: `共 ${formatNumber(value.logins?.today)} 次登录` },
-    { title: '当前在线', value: value.online?.players, foot: `账号 ${formatNumber(value.online?.accounts)} · 游客 ${formatNumber(value.online?.guests)}` },
-    { title: '游戏节点（正常/总数）', text: `${formatNumber(value.nodes?.healthy)} / ${formatNumber(value.nodes?.total)}`, foot: value.nodes && value.nodes.healthy < value.nodes.total ? '有节点异常' : '全部正常', warn: !!value.nodes && value.nodes.healthy < value.nodes.total },
-    { title: '房间数', value: value.rooms, foot: '所有节点' },
+    online
+      ? { title: '当前在线', value: online.players, foot: `账号 ${formatNumber(online.accounts)} · 游客 ${formatNumber(online.guests)}` }
+      : { title: '当前在线', value: null, foot: REGISTRY_DOWN, warn: true },
+    nodes
+      ? { title: '游戏节点（正常/总数）', text: `${formatNumber(nodes.healthy)} / ${formatNumber(nodes.total)}`,
+          foot: unhealthy ? '有节点异常' : '全部正常', warn: unhealthy }
+      : { title: '游戏节点（正常/总数）', text: '— / —', foot: REGISTRY_DOWN, warn: true },
+    rooms !== null && rooms !== undefined
+      ? { title: '房间数', value: rooms, foot: '所有节点' }
+      : { title: '房间数', value: null, foot: REGISTRY_DOWN, warn: true },
     { title: '今日比赛场次', value: value.races?.today, foot: '已结算' },
     { title: '今日点券消费', value: value.coupon?.spentToday, foot: '商城与抽奖等' },
     { title: '今日发放点券', value: value.coupon?.grantedToday, foot: '管理员发放' },
@@ -60,11 +83,11 @@ const cards = computed(() => {
       </div>
       <div class="stat-grid">
         <el-card v-for="card in cards" :key="card.title" shadow="hover" class="stat-card">
-          <el-statistic v-if="card.text === undefined" :title="card.title" :value="card.value ?? 0" />
+          <el-statistic v-if="card.text === undefined && card.value != null" :title="card.title" :value="card.value" />
           <div v-else class="el-statistic">
             <div class="el-statistic__head">{{ card.title }}</div>
             <div class="el-statistic__content">
-              <span class="el-statistic__number" :class="{ warn: card.warn }">{{ card.text }}</span>
+              <span class="el-statistic__number" :class="{ warn: card.warn }">{{ card.text ?? '—' }}</span>
             </div>
           </div>
           <div class="stat-foot" :class="{ warn: card.warn }">{{ card.foot }}</div>

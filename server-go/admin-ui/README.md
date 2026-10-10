@@ -26,7 +26,10 @@ npm run dev          # http://localhost:5173/multiplayer/admin/
 
 ```sh
 npm run dev:mock     # 任意用户名/密码可登录；用户名 player 模拟“不是管理员”
+MOCK_REDIS_DOWN=1 npm run dev:mock   # 模拟集群注册表（Redis）不可用：概览在线/节点/房间为“—”
 ```
+
+假数据里 `rider7` 模拟 `KART_ADMIN_USERNAMES` 中的账号（撤销管理员后仍是管理员），`admin` 是当前登录的管理员（不能踢自己下线）。
 
 ## 构建
 
@@ -62,7 +65,7 @@ grep -c "<script>" ../internal/data/api/adminui/index.html
 
 | 路径 | 说明 |
 |---|---|
-| `src/api/client.ts` | 请求封装：令牌只保存在内存（`Authorization: Bearer`），错误码转中文提示，401 退回登录页 |
+| `src/api/client.ts` | 请求封装：令牌只保存在内存（`Authorization: Bearer`），错误码转中文提示，401 或 403 `ADMIN_REQUIRED`（中途被撤销管理员）退回登录页 |
 | `src/api/types.ts` | 接口返回字段（ADMIN.md 第 4 节） |
 | `src/session.ts` | 登录（`/multiplayer/auth/login`，`console: true`）、`/api/admin/me` 校验、退出 |
 | `src/composables/usePagedTable.ts` | 服务器端分页表格：分页、关键字、排序、时间范围、筛选 |

@@ -137,7 +137,10 @@ function probe(value: ProbeStatus | null | undefined) {
           </template>
         </el-table-column>
         <el-table-column label="地址" min-width="200" show-overflow-tooltip>
-          <template #default="{ row }"><span class="mono">{{ text(row.origin) }}</span></template>
+          <template #default="{ row }">
+            <span v-if="row.origin" class="mono">{{ row.origin }}</span>
+            <span v-else class="muted">经数据服务（同源）</span>
+          </template>
         </el-table-column>
         <el-table-column label="玩家 / 容量" width="190">
           <template #default="{ row }">

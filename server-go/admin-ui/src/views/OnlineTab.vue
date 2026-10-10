@@ -6,11 +6,13 @@ import DataTable from '../components/DataTable.vue'
 import TableToolbar from '../components/TableToolbar.vue'
 import { usePagedTable } from '../composables/usePagedTable'
 import { useTab } from '../composables/useTabs'
+import { isSelf } from '../session'
 import { kickAccount } from '../utils/accounts'
 import { text } from '../utils/format'
 
 // 在线玩家: GET /api/admin/online (from the game nodes' registrations; q
-// matches nickname/account, node narrows to one node).
+// matches nickname/account, node narrows to one node; sort name (default),
+// username, node, room).
 
 const table = usePagedTable<OnlineRow, { node: string }>('/api/admin/online', { filters: { node: '' } })
 const nodes = ref<NodeRow[]>([])
@@ -49,24 +51,24 @@ async function kick(row: OnlineRow) {
       </el-form-item>
     </TableToolbar>
     <DataTable :table="table" row-key="playerId" empty-text="当前没有在线玩家">
-      <el-table-column label="昵称" min-width="140" show-overflow-tooltip>
+      <el-table-column prop="name" label="昵称" min-width="140" show-overflow-tooltip sortable="custom">
         <template #default="{ row }">{{ text(row.name) }}</template>
       </el-table-column>
-      <el-table-column label="账号" min-width="140">
+      <el-table-column prop="username" label="账号" min-width="140" sortable="custom">
         <template #default="{ row }">
           <el-tag v-if="row.guest || !row.accountId" type="info" disable-transitions>游客</el-tag>
           <span v-else>{{ text(row.username) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="所在节点" min-width="160">
+      <el-table-column prop="node" label="所在节点" min-width="160" sortable="custom">
         <template #default="{ row }">
           {{ row.nodeName || row.nodeId }}
           <span v-if="row.nodeName && row.nodeId !== row.nodeName" class="muted mono">（{{ row.nodeId }}）</span>
         </template>
       </el-table-column>
-      <el-table-column label="所在房间" min-width="140" show-overflow-tooltip>
+      <el-table-column prop="room" label="所在房间" min-width="140" show-overflow-tooltip sortable="custom">
         <template #default="{ row }">
-          <template v-if="row.roomName || row.roomId">{{ row.roomName || '' }} <span class="muted">{{ row.roomId ? '#' + row.roomId : '' }}</span></template>
+          <span v-if="row.room">{{ row.room }}</span>
           <span v-else class="muted">—</span>
         </template>
       </el-table-column>
@@ -75,7 +77,14 @@ async function kick(row: OnlineRow) {
       </el-table-column>
       <el-table-column label="操作" width="100" fixed="right">
         <template #default="{ row }">
-          <el-button v-if="row.accountId && !row.guest" link type="danger" @click="kick(row)">踢下线</el-button>
+          <el-button
+            v-if="row.accountId && !row.guest"
+            link
+            type="danger"
+            :disabled="isSelf(row.accountId)"
+            :title="isSelf(row.accountId) ? '不能把自己踢下线' : undefined"
+            @click="kick(row)"
+          >踢下线</el-button>
           <span v-else class="muted">—</span>
         </template>
       </el-table-column>
