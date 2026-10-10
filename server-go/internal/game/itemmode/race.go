@@ -839,8 +839,8 @@ type HitRequest struct {
 // angel as the item allows (shield for anything but a cloud during the
 // victim's own gold or protect shield), escape, or an equipment defence
 // (kart, pet, eat) that the victim's frozen equipment and the shared roll
-// give. A variant needs the same. The first hit on a placed trap removes it,
-// and later reports on it are rejected. A fresh hit slot-locks its victim
+// give. A variant needs the same. The first report on a placed trap
+// removes it, and later reports on it are rejected. A fresh hit slot-locks its victim
 // when the item does so, lets the victim's kart gain an item (fired2Gain;
 // an eaten banana or mine counts), and pays a bonus variant's lucci.
 func (r *Race) Hit(req HitRequest) (hit Hit, fresh bool, err error) {
@@ -904,7 +904,8 @@ func (r *Race) Hit(req HitRequest) (hit Hit, fresh bool, err error) {
 		return Hit{}, false, err
 	}
 	hit.UserID = use.PlayerID
-	if rule.removed && (req.Result == ResultHit || req.By == ByEat) {
+	if rule.removed {
+		// The first report on a placed trap removes it, whatever stopped it.
 		use.removed = true
 		hit.Removed = true
 	}
