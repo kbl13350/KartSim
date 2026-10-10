@@ -33,6 +33,13 @@ func TestAdminConsoleFiles(t *testing.T) {
 		page.header.Get("X-Frame-Options") != "DENY" {
 		t.Fatalf("admin page %v", page.header)
 	}
+	// The build's base is /multiplayer/admin/, so the slash form is the same
+	// page; nothing else under it is.
+	slash := h.get("/multiplayer/admin/", nil).expect(t, http.StatusOK, "")
+	if string(slash.body) != string(embedded) || slash.header.Get("Content-Security-Policy") != policy {
+		t.Fatalf("admin page with slash: %v", slash.header)
+	}
+	h.get("/multiplayer/admin/users", nil).expect(t, http.StatusNotFound, "NOT_FOUND")
 
 	built := adminFiles
 	t.Cleanup(func() { adminFiles = built })

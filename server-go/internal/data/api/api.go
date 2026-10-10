@@ -276,7 +276,10 @@ func (a *API) PublicHandler() http.Handler {
 	route("POST /multiplayer/auth/nickname", a.nickname)
 	route("POST /multiplayer/auth/logout", a.logout)
 	route("POST /multiplayer/admin/invites", a.createInvite)
+	// The console is built with base /multiplayer/admin/ and its assets use
+	// absolute paths, so the page is served with and without the slash.
 	route("GET /multiplayer/admin", a.adminPage)
+	route("GET /multiplayer/admin/{$}", a.adminPage)
 	route("GET /multiplayer/admin/assets/{path...}", a.adminAsset)
 	route("GET /multiplayer/ice", a.ice)
 	route("POST /multiplayer/offer", a.offer)

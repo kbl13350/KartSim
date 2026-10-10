@@ -16,9 +16,9 @@ import (
 )
 
 // The admin console (ADMIN.md): a single-page app (GET /multiplayer/admin,
-// built from server-go/admin-ui into adminui/ and embedded) that signs in
-// through the normal login and keeps the token in memory only, and the
-// admin API it calls. Every admin endpoint needs a session of an admin
+// with or without the trailing slash; built from server-go/admin-ui into
+// adminui/ and embedded) that signs in through the normal login and keeps
+// the token in memory only, and the admin API it calls. Every admin endpoint needs a session of an admin
 // (stored admin flag or KART_ADMIN_USERNAMES).
 
 //go:embed all:adminui

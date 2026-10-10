@@ -1,6 +1,6 @@
 # 管理后台（Element Plus 版）约定
 
-管理后台仍由数据服务提供：`GET /multiplayer/admin` 返回单页应用，只有管理员（库里 `admin` 标记或 `KART_ADMIN_USERNAMES`）能登录使用。本文是前端（`server-go/admin-ui/`）与后端（数据服务 `/api/admin/*`）的约定。
+管理后台仍由数据服务提供：`GET /multiplayer/admin` 返回单页应用（带斜杠的 `/multiplayer/admin/` 是同一页面，前端构建的 base 即为它，资源在 `/multiplayer/admin/assets/`），只有管理员（库里 `admin` 标记或 `KART_ADMIN_USERNAMES`）能登录使用。本文是前端（`server-go/admin-ui/`）与后端（数据服务 `/api/admin/*`）的约定。
 
 ## 1. 前端
 
