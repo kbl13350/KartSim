@@ -1,6 +1,6 @@
 import { C8, te } from "../generated/library.js";
 import type { AccountSession } from "../account/account-session";
-import { clone, drawFitted, FONT, ImageCache, indexRows, loadBml, loadStrings, mapTree, node, nodeName, paintText,
+import { attribute, clone, drawFitted, FONT, ImageCache, indexRows, loadBml, loadStrings, mapTree, node, nodeName, paintText,
   prepare, resolveStrings, withAttributes, type BmlLibrary, type Node, type NodeState, type Rect,
   type WindowView } from "../ui/bml-kit";
 import { ItemIcons } from "./item-icons";
@@ -61,6 +61,41 @@ export function questLists(quests: Quest[]): Record<ListName, Quest[]> {
 function rewardText(reward: QuestReward): string {
   if (reward.currency || reward.emblem) return reward.name;
   return reward.count > 1 ? `${reward.name} ×${reward.count}` : reward.name;
+}
+
+/** Text sizes (textRender) of the release labels, which default to 16 px. */
+const TEXT_SIZES: Record<string, string> = {
+  period: "bold12", thisQuestStatus: "bold12", lblEmptyConditions: "bold14", QuestHowTo: "bold14",
+  btn_questTipGuide: "bold12", okButton: "bold14", resetType: "bold13", title: "bold13",
+  daily: "bold13", weekly: "bold13", repeat: "bold13", onlyPCRoom: "bold13",
+  dailyDesc: "12", weeklyDesc: "12", repeatDesc: "12", onlyPCRoomDesc: "12",
+};
+
+/**
+ * The release layout with this game's type sizes: captions draw at a fixed
+ * 20 px, so the list and 可进行状态 captions become labels in a smaller
+ * face; the other labels take the sizes above; 任务详情 and 奖励 shrink; the
+ * empty-list line sits inside its list.
+ */
+function restyle(definition: Node, strings: Map<string, string>): Node {
+  const smaller = new Map([[strings.get("mission") ?? "任务详情", "bold14"], [strings.get("reward") ?? "奖励", "bold13"]]);
+  return mapTree(definition, entry => {
+    const name = nodeName(entry);
+    const list = /^captionList_(doing|done)$/.exec(name)?.[1];
+    if (list) return { ...withAttributes(entry, { caption: undefined }), children: [
+      node("Label", { name: `captionText_${list}`, windowSize: "240 26", adjust: "8 -26", textRender: "bold15",
+        textColor: "white", textAlign: "left|vcenter" }), ...entry.children] };
+    if (name === "CaptionQuestStatus") return { ...withAttributes(entry, { caption: undefined }), children: [
+      node("Label", { name: "statusCaptionText", windowSize: "200 20", adjust: "10 -21", textRender: "bold14",
+        textColor: "white", textAlign: "left|vcenter", text: strings.get("enableState") ?? "可进行状态" }),
+      ...entry.children] };
+    if (/^lblEmpltyList_(doing|done)$/.test(name)) return withAttributes(entry, { windowSize: undefined, adjust: undefined,
+      leftTopWH: "0 2 288 29", textRender: "bold13", textAlign: "center" });
+    if (TEXT_SIZES[name]) return withAttributes(entry, { textRender: TEXT_SIZES[name] });
+    const text = attribute(entry, "text");
+    if (entry.name === "Label" && !name && text && smaller.has(text)) return withAttributes(entry, { textRender: smaller.get(text) });
+    return undefined;
+  });
 }
 
 export class QuestScreen {
@@ -154,7 +189,7 @@ export class QuestScreen {
       }
       return undefined;
     });
-    definition = await this.decorate(definition);
+    definition = await this.decorate(restyle(definition, this.strings));
     const prepared = prepare(library, definition, ROOTS);
     const rows: Rows = { doing: new WeakMap(), done: new WeakMap(), reward: new WeakMap() };
     indexRows(prepared, "doingRow", rows.doing);
@@ -201,9 +236,9 @@ export class QuestScreen {
     switch (name) {
       case "cancelButton":
       case "okButton": return { label: this.strings.get("ok") ?? "确认", action: () => this.options.onClose() };
-      case "captionList_doing": return { text: (this.strings.get("doing") ?? "进行中(%d)").replace("%d",
+      case "captionText_doing": return { text: (this.strings.get("doing") ?? "进行中(%d)").replace("%d",
         String(lists.doing.length)) };
-      case "captionList_done": return { text: (this.strings.get("done") ?? "完成(%d)").replace("%d",
+      case "captionText_done": return { text: (this.strings.get("done") ?? "完成(%d)").replace("%d",
         String(lists.done.length)) };
       case "lblEmpltyList_doing": return { visible: !this.collapsed.doing && !lists.doing.length };
       case "lblEmpltyList_done": return { visible: !this.collapsed.done && !lists.done.length };
@@ -214,7 +249,7 @@ export class QuestScreen {
       case "QuestTitleCaption": return { text: quest?.title ?? "" };
       case "period": return { text: !quest ? "" : quest.reset === "none" ? "无期限"
         : `${shortTime(quest.periodStart)} ~ ${shortTime(quest.periodEnd)}` };
-      case "QuestDesc": return paintText(quest?.desc ?? "", { size: 14, color: "black", lineGap: 3 });
+      case "QuestDesc": return paintText(quest?.desc ?? "", { size: 13, color: "black", lineGap: 3 });
       case "thisQuestStatus": return { text: !quest ? "" : quest.completedAt
         ? this.strings.get("questComplete") ?? "完成"
         : quest.locked ? this.strings.get("questDisable") ?? "不可以" : this.strings.get("questEnable") ?? "可以" };
@@ -282,7 +317,7 @@ export class QuestScreen {
         if (icon) drawFitted(context, icon, { x: rect.x + 6, y: rect.y + 6, width: rect.width - 12,
           height: rect.height - 12 }, reward.currency ? 1.4 : 1);
       } };
-      case "rewardLabel": return paintText(rewardText(reward), { size: 14, color: "black", middle: true, bold: true,
+      case "rewardLabel": return paintText(rewardText(reward), { size: 13, color: "black", middle: true, bold: true,
         lineGap: 2 });
     }
     return {};
@@ -317,7 +352,7 @@ export class QuestScreen {
       }
       const text = questProgressText(quest.completedAt ? { ...quest, value: quest.target } : quest, this.strings);
       context.save();
-      context.font = `bold 14px ${FONT}`;
+      context.font = `bold 12px ${FONT}`;
       context.textAlign = "center";
       context.textBaseline = "middle";
       context.lineWidth = 3;

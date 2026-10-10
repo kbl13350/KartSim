@@ -18,6 +18,8 @@ import {
   styleAccountButtons,
 } from "../multiplayer/account-ui-support";
 import { multiplayerBackendOrigin } from "../multiplayer/backend-origin";
+import { gameWindowLibrary, openGameLogin, showGameMessage, showGameStatus } from "../ui/game-login";
+import type { LoginFormRequests } from "./login-form";
 
 export interface LoginGateDependencies {
   backendOrigin(): string;
@@ -131,15 +133,10 @@ function pageDocument(root: HTMLElement): OverlayDocument {
   return root.ownerDocument as unknown as OverlayDocument;
 }
 
-/** The login/register dialog over `root`; resolves once an account signs in. */
-export function showStartupLogin(root: HTMLElement, registration: RegistrationMode,
-  backendOrigin: string, fetchImpl: FetchLike): Promise<AccountCredentials> {
-  const document = root.ownerDocument;
-  const dialog = new AccountLoginDialog(root, undefined, {
-    createElement: tag => document.createElement(tag),
-    overlayStyle: accountOverlayStyle,
-    panelStyle: accountPanelStyle,
-    styleButtons: (...buttons) => styleAccountButtons(...buttons),
+/** What the login form sends, and how its failures read. */
+function startupRequests(registration: RegistrationMode, backendOrigin: string,
+  fetchImpl: FetchLike): LoginFormRequests {
+  return {
     requestAccount: (action, fields) => action === "register"
       ? registerAccount(fetchImpl, backendOrigin, {
         username: fields.username ?? "", nickname: fields.nickname ?? "",
@@ -153,6 +150,29 @@ export function showStartupLogin(root: HTMLElement, registration: RegistrationMo
         ? OPEN_REGISTRATION_INVITE_MESSAGE
         : accountErrorMessages[error.code] ?? loginGateErrorMessage(error))
       : formatAccountServiceError(error)),
+  };
+}
+
+/**
+ * The login/register window over `root`; resolves once an account signs in.
+ * It is drawn in the game's look once startup has loaded the resources,
+ * else as the release HTML dialog.
+ */
+export function showStartupLogin(root: HTMLElement, registration: RegistrationMode,
+  backendOrigin: string, fetchImpl: FetchLike): Promise<AccountCredentials> {
+  const requests = startupRequests(registration, backendOrigin, fetchImpl);
+  const library = gameWindowLibrary();
+  if (library) {
+    return openGameLogin(library, root, startupLoginOptions(registration), requests)
+      .then(value => value as AccountCredentials);
+  }
+  const document = root.ownerDocument;
+  const dialog = new AccountLoginDialog(root, undefined, {
+    createElement: tag => document.createElement(tag),
+    overlayStyle: accountOverlayStyle,
+    panelStyle: accountPanelStyle,
+    styleButtons: (...buttons) => styleAccountButtons(...buttons),
+    ...requests,
   }, startupLoginOptions(registration));
   return dialog.wait().then(value => {
     if (!value) throw new AccountServiceError("ACCOUNT_CANCELLED");
@@ -171,7 +191,19 @@ export function browserLoginGateDependencies(root: HTMLElement): LoginGateDepend
     fetch: fetchImpl,
     tokens: tokenAccess(),
     signIn: (registration, origin) => showStartupLogin(root, registration, origin, fetchImpl),
-    retry: message => showAccountMessage(document, "账号服务", message, "重试"),
-    progress: message => showAccountStatus(document, "账号服务", message),
+    retry: message => showLoginMessage(root, "账号服务", message, "重试"),
+    progress: message => {
+      const library = gameWindowLibrary();
+      return library ? showGameStatus(library, root, "账号服务", message)
+        : showAccountStatus(document, "账号服务", message);
+    },
   };
+}
+
+/** A login-flow message with one button, in the game's look when the resources are loaded. */
+export function showLoginMessage(root: HTMLElement, title: string, message: string,
+  button: string): Promise<void> {
+  const library = gameWindowLibrary();
+  return library ? showGameMessage(library, root, title, message, button)
+    : showAccountMessage(pageDocument(root), title, message, button);
 }

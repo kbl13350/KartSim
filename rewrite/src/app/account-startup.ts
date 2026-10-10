@@ -9,7 +9,7 @@ import {
   accountProfileSync, activeBrowserSession, backgroundTimer, clearAccountSession,
   installAccountSession, lastProfileLoad, setEquipmentRepairHandler,
 } from "../account/account-runtime";
-import { browserLoginGateDependencies, ensureAccountSession } from "../account/login-gate";
+import { browserLoginGateDependencies, ensureAccountSession, showLoginMessage } from "../account/login-gate";
 import {
   CATEGORY, STARTER, ownershipNow, sanitizeProfileEquipment, unownedSlots, type Ownership,
 } from "../account/ownership";
@@ -132,8 +132,7 @@ export async function returnToLogin(root: HTMLElement, message?: string): Promis
   if (expiryTimer !== undefined) clearInterval(expiryTimer);
   expiryTimer = undefined;
   setEquipmentRepairHandler(undefined);
-  const document = root.ownerDocument as unknown as OverlayDocument;
-  if (message) await showAccountMessage(document, "账号", message, "重新登录");
+  if (message) await showLoginMessage(root, "账号", message, "重新登录");
   await ensureAccountSession(browserLoginGateDependencies(root));
   window.location.reload();
 }

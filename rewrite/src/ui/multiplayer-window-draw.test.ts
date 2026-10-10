@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 
-import { drawMultiplayerWindowNode, type MultiplayerWindowDrawDependencies,
+import { drawMultiplayerWindowNode, solidFrame, type MultiplayerWindowDrawDependencies,
   type MultiplayerWindowDrawHost, type WindowNodeState,
   type WindowRect } from "./multiplayer-window-draw";
 import type { WindowNode, WindowSprite } from "./multiplayer-window-assets";
@@ -172,4 +172,18 @@ test("多人窗口 BML 绘制与无障碍控件和发行版一致", async () => 
     globalThis.document = previousDocument;
     globalThis.HTMLInputElement = previousInput;
   }
+});
+
+test("frames whose edge margins take the whole piece keep a 1 px middle (no white strip)", () => {
+  const piece = (x: number, width: number) => ({ x, y: 0, width, height: 8 });
+  // InnerFrame: caption and bottom 18 px wide with 9 + 9 margins.
+  const inner = { texture: "frame01", caption: piece(161, 18), bottom: piece(161, 18), captionLeftMargin: 9,
+    captionRightMargin: 9, bottomLeftMargin: 9, bottomRightMargin: 9 };
+  const solid = solidFrame(inner) as typeof inner;
+  assert.deepEqual([solid.captionLeftMargin, solid.captionRightMargin, solid.bottomLeftMargin, solid.bottomRightMargin],
+    [9, 8, 9, 8]);
+  assert.equal(solidFrame(inner), solid, "cached");
+  const normal = { texture: "frame02", caption: piece(257, 20), bottom: piece(257, 20), captionLeftMargin: 6,
+    captionRightMargin: 6, bottomLeftMargin: 6, bottomRightMargin: 6 };
+  assert.equal(solidFrame(normal), normal, "frames with a middle stay as they are");
 });
