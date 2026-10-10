@@ -32,7 +32,12 @@ export function parseRaceRewards(value: unknown): Map<string, RaceReward> {
 
 /** "+85经验 +120金币" for a result row. */
 export function formatRaceReward(reward: RaceReward): string {
-  return `+${reward.exp}经验 +${reward.lucci}金币`;
+  return formatRaceRewardLines(reward).join(" ");
+}
+
+/** ["+85经验", "+120金币"]: the reward on two lines. */
+export function formatRaceRewardLines(reward: RaceReward): [string, string] {
+  return [`+${reward.exp}经验`, `+${reward.lucci}金币`];
 }
 
 export interface TimeAttackSettlement {

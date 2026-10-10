@@ -1,5 +1,7 @@
 /** Multiplayer finish screen assembled from the game's original BML panels. */
-import { formatRaceReward, parseRaceRewards, type RaceReward } from "../account/rewards";
+import {
+  formatRaceReward, formatRaceRewardLines, parseRaceRewards, type RaceReward,
+} from "../account/rewards";
 
 export interface ResultNode {
   name: string;
@@ -95,6 +97,18 @@ export interface ResultViewDependencies {
 const REWARD_LABEL = {
   leftTopWH: "300 15 196 30", textAlign: "right,vcenter", textColor: "255 255 222 0",
 };
+/**
+ * Item races: titleCont (270 0 210 40) draws the title name and icons up to
+ * x 360 (viewIcons 0 5 90 40, right aligned), so the reward takes the column
+ * from there to the time, in the titles' 16 px font: one line before the
+ * individual row's time label (549), two (exp over lucci) before the team
+ * row's centred time text (about 510 in time 500 0 615 66).
+ */
+const ITEM_REWARD_LABEL = { ...REWARD_LABEL, leftTopWH: "362 15 184 30", textRender: "outline16" };
+const ITEM_TEAM_REWARD_LINES = [
+  { ...ITEM_REWARD_LABEL, leftTopWH: "362 11 131 20" },
+  { ...ITEM_REWARD_LABEL, leftTopWH: "362 31 131 20" },
+];
 
 const folder = "stage_/mqGameFinal";
 
@@ -173,8 +187,11 @@ export class MultiplayerResultView {
       const nameLabel = deps.showRewards
         ? copy.children.find(child => deps.attribute(child, "name") === `row${index}/id`)
         : undefined;
+      const rewardLabels = !screen.titles ? [{ ...REWARD_LABEL, name: `row${index}/reward` }]
+        : !teamMode ? [{ ...ITEM_REWARD_LABEL, name: `row${index}/reward` }]
+        : ITEM_TEAM_REWARD_LINES.map((label, line) => ({ ...label, name: `row${index}/reward${line}` }));
       const row = nameLabel ? deps.cloneNode(copy, {}, [...copy.children,
-        deps.cloneNode(nameLabel, { ...REWARD_LABEL, name: `row${index}/reward` })]) : copy;
+        ...rewardLabels.map(label => deps.cloneNode(nameLabel, label))]) : copy;
       const rectangle = { windowRect: `${left} ${top} ${left + 664} ${top + rowHeight}` };
       if (!teamStyles) {
         return deps.cloneNode(row, rectangle, row.children.map(child =>
@@ -278,9 +295,12 @@ export class MultiplayerResultView {
     };
     if (part === "tp") return this.hidePoints
       ? { visible: false } : { text: String(result.points) };
-    if (part === "reward") {
+    const rewardLine = /^reward([01]?)$/.exec(part!);
+    if (rewardLine) {
       const reward = this.rewards.get(String(result.playerId));
-      return reward ? { visible: true, text: formatRaceReward(reward) } : { visible: false };
+      if (!reward) return { visible: false };
+      return { visible: true, text: rewardLine[1] ? formatRaceRewardLines(reward)[Number(rewardLine[1])]
+        : formatRaceReward(reward) };
     }
     const title = this.titleState(part!, result);
     if (title) return title;

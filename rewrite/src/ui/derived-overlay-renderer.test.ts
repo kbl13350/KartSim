@@ -168,3 +168,17 @@ test("derived overlay smoothing preserves release texture bytes and material fla
   assert.equal(actual.textures.get(image)!.magFilter, expected.textures.get(image)!.magFilter);
   actual.dispose(); expected.dispose();
 });
+
+test("smoothed panels clamp at their edges instead of the release's repeat", () => {
+  const { deps, runtimes } = setup();
+  const renderer = new DerivedOverlayRenderer(runtimes, 8, deps);
+  renderer.enableUiSmoothing();
+  renderer.material({ pixels: new Uint8Array(16), width: 2, height: 2 }, 320, 240);
+  const texture = [...renderer.textures.values()][0]!;
+  // With repeat, linear filtering blends the opposite edge into the first row
+  // (tacho_12_baseBG_1's opaque bottom row became a line above the XUN gauge).
+  assert.equal(texture.magFilter, Three.LinearFilter);
+  assert.equal(texture.wrapS, Three.ClampToEdgeWrapping);
+  assert.equal(texture.wrapT, Three.ClampToEdgeWrapping);
+  renderer.dispose();
+});
