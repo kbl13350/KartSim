@@ -135,7 +135,9 @@ function diskSource(file, name, size) {
  * Returns { library, formats, xml } where formats holds generated helpers
  * (s2 = parseBml, T = attribute) and xml.parseResourceXml is the TS parser.
  */
-export async function loadResourceLibrary(projectRoot, version = "p3553") {
+// mirrorRoot is the checkout whose mirror/ holds the archives (default
+// projectRoot), for a worktree checked out without mirror/p3553.
+export async function loadResourceLibrary(projectRoot, version = "p3553", mirrorRoot = projectRoot) {
   globalThis.document ??= {
     createElement: () => ({ relList: { supports: () => true }, getContext: () => null, style: {} }),
   };
@@ -150,7 +152,7 @@ export async function loadResourceLibrary(projectRoot, version = "p3553") {
   ]);
   installDomParserShim(xml.parseResourceXml);
 
-  const mirror = path.join(projectRoot, "mirror");
+  const mirror = path.join(mirrorRoot, "mirror");
   const manifest = parseResourceManifest(
     JSON.parse(readFileSync(path.join(mirror, `__${version}/resources`), "utf8")), version);
   const indexes = await decodeArchiveIndex(
