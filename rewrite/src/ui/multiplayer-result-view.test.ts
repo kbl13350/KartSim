@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { MultiplayerResultView } from "./multiplayer-result-view";
+import { ITEM_RESULT_TITLES, ITEM_RESULT_TITLE_TICK_MS, MultiplayerResultView } from "./multiplayer-result-view";
 import type { ResultNode, ResultViewDependencies } from "./multiplayer-result-view";
 
 const release = readFileSync(new URL("../../../recovered/formatted/index.js", import.meta.url), "utf8");
@@ -181,5 +181,83 @@ test("组队道具赛 results keep the team rows and win icon without TP", async
   assert.deepEqual(state("teamWin1"), { visible: false });
   assert.deepEqual(state("row0/team2"), { visible: true });
   assert.deepEqual(state("row0/rank"), { text: "1" });
+  view.dispose();
+});
+
+test("item race results show the titles: icons right aligned, the name cycling every 1600 ms", async () => {
+  (globalThis as { document?: unknown }).document ??= {
+    createElement: () => ({ relList: { supports: () => true } }),
+  };
+  const formats = await import("../generated/formats.js") as unknown as {
+    s2(bytes: Uint8Array): ResultNode; T(node: ResultNode, name: string): string | undefined };
+  const { openMirrorLibrary } = await import("./item-hud-test-support");
+  // The real namemap@zz (stage_mqGameFinal.rho title_icons) and the real row template's titleCont.
+  const mirror = openMirrorLibrary(["stage_mqGameFinal.rho"]);
+  const bytes = (path: string) => mirror.exactCanonicalCandidates(path)[0]!.bytes();
+  const namemap = formats.s2(await bytes("stage_/mqGameFinal/title_icons/namemap@zz.bml"));
+  const readable = harness();
+  const row = node("rowTemplate", { windowRect: "0 0 664 44" }, [
+    node("bg"), node("id"), node("rank"), node("time"),
+    node("titleCont", { leftTopWH: "270 0 210 40" }, [
+      node("titleFrame", { windowRect: "0 0 70 30", texture: "titleCont" }, [node("title")]),
+      node("viewIcons", { leftTopWH: "0 5 90 40" }),
+    ]),
+  ]);
+  const loadBml: ResultViewDependencies["loadBml"] = async (library, folder, name) =>
+    name === "namemap@zz" ? { ...namemap, attributes: namemap.attributes } :
+      name === "default_page1_line@zz" ? row : readable.deps.loadBml(library, folder, name);
+  const deps = { ...readable.deps, loadBml, attribute: (value: ResultNode, key: string) =>
+    value.attributes.find(entry => entry.name === key)?.value ?? formats.T(value, key) };
+  const race = { gameplay: "item", channelName: "itemIndiCombine", roster: [
+    { playerId: "local", team: null, name: "Alice" },
+    { playerId: "peer", team: null, name: "Bob" },
+  ] };
+  const view = await MultiplayerResultView.load({}, {}, race, "local", false, deps);
+  assert.deepEqual(view.titles!.map(title => [title.key, title.korean]), ITEM_RESULT_TITLES.map(title =>
+    [title.key, title.korean]), "namemap@zz rows in order");
+  const rows = readable.options!.definition.children[1]!.children;
+  const icons = rows[0]!.children.find(child => attribute(child, "name") === "row0/titleCont")!.children
+    .filter(child => attribute(child, "name")!.startsWith("row0/titleIcon/"));
+  // 11 titles have icons (백발백중 has none), each a normal `_1` and a focused `_2`.
+  assert.equal(icons.length, 22);
+  const turret = icons.find(icon => attribute(icon, "name") === "row0/titleIcon/turret/1")!;
+  assert.deepEqual([attribute(turret, "texture"), attribute(turret, "resourceRoot")],
+    ["터렛모드_1", "stage_/mqGameFinal/title_icons"]);
+  for (const icon of icons)
+    assert.equal(mirror.exactCanonicalCandidates(`stage_/mqGameFinal/title_icons/${attribute(icon, "texture")}.png`)
+      .length, 1, attribute(icon, "texture"));
+
+  view.show([
+    { playerId: "local", points: 10, rank: 1, elapsedMs: 70_000, titles: ["safetyFirst", "turret", "perfectAim"] },
+    { playerId: "peer", points: 0, rank: 2, elapsedMs: null },
+  ], 1000);
+  const state = (name: string) => readable.options!.state(node(name));
+  // Namemap order: 백발백중 (no icon), 터렛모드, 안전제일; the icons sit right aligned in viewIcons.
+  assert.deepEqual(state("row0/titleCont"), { visible: true });
+  assert.deepEqual(state("row0/title"), { visible: true, text: "百发百中" });
+  assert.deepEqual(state("row0/titleIcon/turret/1"), { visible: true, offsetX: 48 });
+  assert.deepEqual(state("row0/titleIcon/turret/2"), { visible: false });
+  assert.deepEqual(state("row0/titleIcon/safetyFirst/1"), { visible: true, offsetX: 69 });
+  assert.deepEqual(state("row0/titleIcon/speedWar/1"), { visible: false });
+  assert.deepEqual(state("row0/titleFrame"), { visible: true, offsetX: 48 - 72 });
+  view.update(1000 + ITEM_RESULT_TITLE_TICK_MS);
+  assert.deepEqual(state("row0/title"), { visible: true, text: "炮台模式" });
+  assert.deepEqual(state("row0/titleIcon/turret/1"), { visible: false });
+  assert.deepEqual(state("row0/titleIcon/turret/2"), { visible: true, offsetX: 48 });
+  view.update(1000 + 2 * ITEM_RESULT_TITLE_TICK_MS);
+  assert.deepEqual(state("row0/title"), { visible: true, text: "安全第一" });
+  // A racer without titles has none.
+  assert.deepEqual(state("row1/titleCont"), { visible: false });
+  assert.deepEqual(state("row1/titleIcon/turret/1"), { visible: false });
+  view.dispose();
+});
+
+test("speed races keep the release result row (no title icons)", async () => {
+  const readable = harness();
+  const race = { gameplay: "speed", roster: [{ playerId: "local", team: null, name: "Alice" }] };
+  const view = await MultiplayerResultView.load({}, {}, race, "local", false, readable.deps);
+  assert.equal(view.titles, undefined);
+  view.show([{ playerId: "local", points: 10, rank: 1, elapsedMs: 70_000, titles: ["turret"] }], 1000);
+  assert.deepEqual(readable.options!.state(node("row0/titleCont")), { visible: false });
   view.dispose();
 });
