@@ -122,7 +122,7 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 	sockets := ws.NewServer(rooms, cfg.Network, opts.WS)
 	// The heartbeat's load figures for the admin console's node page.
 	agent.SetStats(func() *contract.NodeStats {
-		return &contract.NodeStats{HeapMB: int64(memory.heapBytes() >> 20), Goroutines: runtime.NumGoroutine(),
+		return &contract.NodeStats{HeapMB: contract.RoundMB(memory.heapBytes()), Goroutines: runtime.NumGoroutine(),
 			Connections: sockets.Connections(), Races: rooms.Racing(), Version: buildinfo.Version()}
 	})
 	if cfg.WebRTC {

@@ -273,14 +273,14 @@ func (l *Lobby) Close() {
 	l.closed = true
 }
 
-// Online lists the hello'd players (with the name of the room each is in)
-// and the room count for the heartbeat.
+// Online lists the hello'd players (with the name of the room each is in
+// and the account each claimed) and the room count for the heartbeat.
 func (l *Lobby) Online() ([]contract.OnlinePlayer, int) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 	players := make([]contract.OnlinePlayer, 0, len(l.clients))
 	for _, c := range l.clients {
-		player := contract.OnlinePlayer{PlayerID: c.playerID, Name: c.name}
+		player := contract.OnlinePlayer{PlayerID: c.playerID, Name: c.name, AccountID: c.accountID}
 		if r := l.rooms[c.roomID]; r != nil {
 			player.Room = r.name
 		}
