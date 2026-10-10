@@ -1111,29 +1111,28 @@ func TestAdminGrantAndSearch(t *testing.T) {
 	}
 
 	var found struct {
-		Accounts []struct {
+		Items []struct {
 			ID       string
 			Username string
 			Level    int
-			Wallet   store.Wallet
+			Koin     int64
 		}
+		Total int
 	}
 	h.get("/api/admin/accounts?q=arget_"+u, bearerHeader(adminToken)).expect(t, http.StatusOK, "").json(t, &found)
-	if len(found.Accounts) != 1 || found.Accounts[0].ID != targetID || found.Accounts[0].Level != 4 || found.Accounts[0].Wallet.Koin != 50 {
+	if len(found.Items) != 1 || found.Total != 1 || found.Items[0].ID != targetID || found.Items[0].Level != 4 ||
+		found.Items[0].Koin != 50 {
 		t.Fatalf("search %+v", found)
 	}
 	// LIKE metacharacters are literal.
 	h.get("/api/admin/accounts?q=%25", bearerHeader(adminToken)).expect(t, http.StatusOK, "")
 	h.get("/api/admin/accounts", bearerHeader(adminToken)).expect(t, http.StatusOK, "")
 
-	// The console page and its script.
+	// The console page.
 	page := h.get("/multiplayer/admin", nil).expect(t, http.StatusOK, "")
 	if !strings.Contains(string(page.body), "管理后台") || !strings.Contains(page.header.Get("Content-Security-Policy"), "script-src 'self'") ||
 		page.header.Get("Cache-Control") != "no-store" {
 		t.Fatalf("admin page %v", page.header)
-	}
-	if script := h.get("/multiplayer/admin/admin.js", nil).expect(t, http.StatusOK, ""); !strings.HasPrefix(script.header.Get("Content-Type"), "text/javascript") {
-		t.Fatalf("admin script %v", script.header)
 	}
 	// Invites stay admin-only.
 	var invite struct{ Invite string }

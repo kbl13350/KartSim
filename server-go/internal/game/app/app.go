@@ -10,6 +10,7 @@ import (
 	"log/slog"
 	"net"
 	"net/http"
+	"runtime"
 	"sync"
 	"time"
 
@@ -21,6 +22,7 @@ import (
 	"kartsim/internal/game/outbox"
 	"kartsim/internal/game/ws"
 	"kartsim/internal/shared/apierr"
+	"kartsim/internal/shared/buildinfo"
 	"kartsim/internal/shared/contract"
 )
 
@@ -118,6 +120,11 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 		opts.WS.Busy = memory.busy
 	}
 	sockets := ws.NewServer(rooms, cfg.Network, opts.WS)
+	// The heartbeat's load figures for the admin console's node page.
+	agent.SetStats(func() *contract.NodeStats {
+		return &contract.NodeStats{HeapMB: int64(memory.heapBytes() >> 20), Goroutines: runtime.NumGoroutine(),
+			Connections: sockets.Connections(), Races: rooms.Racing(), Version: buildinfo.Version()}
+	})
 	if cfg.WebRTC {
 		// Without WebRTC (a taken UDP port) browsers keep the WebSocket.
 		if err := sockets.EnableWebRTC(ws.RTCOptions{UDPPort: cfg.WebRTCUDPPort, PublicIPs: cfg.WebRTCPublicIPs,

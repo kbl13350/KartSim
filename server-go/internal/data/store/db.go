@@ -257,3 +257,6 @@ func duplicateKey(err error) (string, bool) {
 	}
 	return "", true
 }
+
+// Ping checks that MySQL answers (the admin console's status page).
+func (s *Store) Ping(ctx context.Context) error { return s.db.PingContext(ctx) }

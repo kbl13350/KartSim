@@ -130,9 +130,14 @@ func (a *API) heartbeat(w http.ResponseWriter, r *http.Request) error {
 		return errInvalidHeartbeat
 	}
 	for _, player := range request.Players {
-		if !validASCIIID(player.PlayerID, 64) || !validText(player.Name, 64) {
+		if !validASCIIID(player.PlayerID, 64) || !validText(player.Name, 64) ||
+			(player.Room != "" && !validText(player.Room, 64)) {
 			return errInvalidHeartbeat
 		}
+	}
+	if stats := request.Stats; stats != nil && (stats.HeapMB < 0 || stats.Goroutines < 0 || stats.Connections < 0 ||
+		stats.Races < 0 || (stats.Version != "" && !validText(stats.Version, 64))) {
+		return errInvalidHeartbeat
 	}
 	now := a.nowMillis()
 	result, err := a.cluster.Heartbeat(r.Context(), cache.Node{
@@ -145,6 +150,7 @@ func (a *API) heartbeat(w http.ResponseWriter, r *http.Request) error {
 		StartedAt:       request.StartedAt,
 		ProtocolVersion: request.ProtocolVersion,
 		SeenAt:          now,
+		Stats:           request.Stats,
 	}, request.Players)
 	if err != nil {
 		a.log.Warn("heartbeat not stored", "node", request.NodeID, "error", err)
@@ -208,6 +214,13 @@ func (a *API) presenceClaim(w http.ResponseWriter, r *http.Request) error {
 		}
 	} else if !validText(request.Name, 64) {
 		return errInvalidName
+	}
+	if request.AccountID != "" && a.store != nil { // tests run presence without MySQL
+		// An entry ticket issued just before a ban stays valid for minutes;
+		// the banned account still does not get back into a game.
+		if err := a.store.CheckNotBanned(r.Context(), request.AccountID, a.nowMillis()); err != nil {
+			return err
+		}
 	}
 	presence := cache.Presence{NodeID: request.NodeID, PlayerID: request.PlayerID, Name: request.Name,
 		AccountID: request.AccountID}

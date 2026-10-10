@@ -29,7 +29,17 @@ func TestSweepPrunesOldEconomyHistory(t *testing.T) {
 	for _, day := range []string{"1970-12-31", "1971-01-03"} {
 		datatest.Exec(t, db, "INSERT INTO daily_rewards(account_id, day, kind) VALUES(?, ?, 'timeattack')", id, day)
 	}
+	// Login records are kept 180 days.
+	for kind, at := range map[string]time.Time{"register": now.Add(-181 * 24 * time.Hour), "login": recent} {
+		datatest.Exec(t, db, "INSERT INTO login_records(account_id, kind, ip, user_agent, at) VALUES(?, ?, '', '', ?)",
+			id, kind, at.UnixMilli())
+	}
 	sweepOnce(context.Background(), st, datatest.Logger(), now)
+	var kinds string
+	if err := db.QueryRow("SELECT GROUP_CONCAT(kind) FROM login_records WHERE account_id = ?", id).Scan(&kinds); err != nil ||
+		kinds != "login" {
+		t.Fatalf("login records left: %q, %v", kinds, err)
+	}
 	var request, day string
 	if err := db.QueryRow("SELECT GROUP_CONCAT(request_id) FROM timeattack_runs WHERE account_id = ?", id).Scan(&request); err != nil ||
 		request != "recent" {

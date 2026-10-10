@@ -28,6 +28,9 @@ const (
 type OnlinePlayer struct {
 	PlayerID string `json:"playerId"`
 	Name     string `json:"name"`
+	// Room is the name of the room the player is in; absent in the lobby
+	// and from older nodes (shown by the admin console only).
+	Room string `json:"room,omitempty"`
 }
 
 // HeartbeatRequest registers or refreshes a game node (every 5 s). Origin is
@@ -42,6 +45,20 @@ type HeartbeatRequest struct {
 	Players         []OnlinePlayer `json:"players"`
 	StartedAt       int64          `json:"startedAt"`
 	ProtocolVersion int            `json:"protocolVersion"`
+	// Stats are the node's load figures for the admin console; absent from
+	// older nodes.
+	Stats *NodeStats `json:"stats,omitempty"`
+}
+
+// NodeStats are a game node's process and load figures (ADMIN.md 2): the
+// live heap, goroutines, open client connections, rooms currently racing
+// (loading, countdown or racing) and the build version.
+type NodeStats struct {
+	HeapMB      int64  `json:"heapMB"`
+	Goroutines  int    `json:"goroutines"`
+	Connections int    `json:"connections"`
+	Races       int    `json:"races"`
+	Version     string `json:"version"`
 }
 
 // HeartbeatResponse confirms the registration.
