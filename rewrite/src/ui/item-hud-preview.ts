@@ -6,6 +6,12 @@
  *
  *   npm run dev → http://127.0.0.1:8780/tools/item-hud-preview.html
  *   (?t=9500 freezes the 20 s timeline, ?all=1 shows everything, ?slots=3)
+ *
+ * The phase-3 buttons add one HUD part on top of the timeline for a while:
+ * every special item screen cover (and the dark cloud), the goggles'
+ * thinner cloud, the changer rows (cards, voucher, unusable), the tutorial
+ * boards, a lucci gain, the talisman keys, the XUN start item flash and a
+ * special booster's animal icon.
  */
 
 import { PerspectiveCamera, WebGLRenderer } from "three";
@@ -20,7 +26,7 @@ import type { HudNode } from "./item-hud-assets";
 import { ItemHud, type ItemHudDependencies, type ItemHudRankSource } from "./item-hud";
 import { collectItemHudPlayPanels, finalizeItemHudPlayPanels } from "./item-hud-play-panels";
 import { defaultItemHudOptions } from "./item-hud-options";
-import { emptyItemHudState, type ItemHudState } from "./item-hud-state";
+import { emptyItemHudState, type ItemHudOverlayKind, type ItemHudState } from "./item-hud-state";
 import { ITEM_HUD_FONT_FAMILY } from "./item-hud-text";
 import { buildItemSlotCommands, loadItemSlotDefinition, type ItemSlotDependencies } from "./item-slot-hud";
 import { itemSlotInput } from "./multiplayer-race-hud";
@@ -31,7 +37,7 @@ const dataPacks = ["DataPack1"];
 
 interface PreviewFile {
   name: string; extension: string; virtualPath: string; canonicalPath: string;
-  sourceName: string; sourceKind: string; containerId: string;
+  sourceName: string; sourceKind: string; containerId: string; absenceAuthoritative: boolean;
   bytes(): Promise<Uint8Array>; text(): Promise<string>;
 }
 
@@ -79,8 +85,9 @@ async function loadLibrary(): Promise<PreviewLibrary> {
   const file = (path: string, canonical: string, sourceName: string, sourceKind: string,
     containerId: string, bytes: () => Promise<Uint8Array>): PreviewFile => {
     const name = path.split("/").at(-1)!;
+    // Whole containers are loaded, so a file missing from one is really absent.
     return { name, extension: name.split(".").at(-1)!.toLowerCase(), virtualPath: canonical,
-      canonicalPath: canonical, sourceName, sourceKind, containerId,
+      canonicalPath: canonical, sourceName, sourceKind, containerId, absenceAuthoritative: true,
       bytes, text: async () => decodeText(await bytes()) };
   };
   for (const name of containers) {
@@ -233,11 +240,42 @@ async function main(): Promise<void> {
     controls.append(label);
   }
 
+  // Phase-3 parts layered over the timeline until their time is up.
+  let extras: Array<{ until: number; apply(state: ItemHudState, t: number): void }> = [];
+  const add = (label: string, durationMs: number, apply: (state: ItemHudState, t: number, from: number) => void) =>
+    button(label, () => {
+      const from = Math.floor(clock);
+      extras.push({ until: from + durationMs, apply: (state, t) => apply(state, t, from) });
+    });
+  const overlays: Array<[ItemHudOverlayKind, string, number]> = [["tiger", "老虎", 4000],
+    ["panther", "黑豹", 4000], ["delivery", "特快", 4000], ["dinoClaw", "恐龙爪", 4000], ["lion", "舞狮", 2000],
+    ["honey", "蜜蜂", 4000], ["oil", "废油", 2000], ["darkCloud", "黑云", 10000]];
+  for (const [kind, label, ms] of overlays)
+    add(`遮挡:${label}`, ms + 3000, (state, _t, from) => { state.overlay = { kind, untilMs: from + ms, opacity: 1 }; });
+  add("乌云×护目镜0.3", 10_000, state => { state.cloud = { opacity: 0.3, variant: 0 }; });
+  add("换位卡x123/变更券", 6000, state => {
+    state.changers = { slot: 123, item: "infinite", slotUsable: true, itemUsable: true };
+  });
+  add("变更卡不可用", 6000, state => { state.changers = { slot: 0, item: 5, slotUsable: false, itemUsable: false }; });
+  add("教程:换位/变更", 6000, state => {
+    state.tutorial = "changer";
+    state.changers = { slot: 3, item: 3, slotUsable: true, itemUsable: true };
+  });
+  add("教程:组队", 6000, state => { state.tutorial = "avoidTeamkill"; });
+  add("金币+10", 2500, (state, _t, from) => { state.lucci = { amount: 10, atMs: from }; });
+  add("符咒", 4000, (state, t, from) => {
+    state.talisman = { keys: ["up", "left", "down", "right", "up"], done: Math.min(5, Math.floor((t - from) / 700)) };
+  });
+  add("迅开局道具", 1500, (state, _t, from) => { state.startItemFlash = from; state.slots = [8, -1, -1]; });
+  add("特殊加速器图标", 4000, state => { state.slots = [31, 6, -1]; state.slotIcons = [241]; });
+
   const frame = (now: number) => {
     if (!paused) clock += now - last;
     last = now;
     const t = Math.floor(clock);
     const state = scenario(t, capacity, all);
+    extras = extras.filter(extra => t < extra.until);
+    for (const extra of extras) extra.apply(state, t);
     hud.setState(state);
     hud.update(t, rank);
     const input = itemSlotInput(state);

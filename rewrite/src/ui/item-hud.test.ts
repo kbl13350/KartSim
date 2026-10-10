@@ -5,8 +5,9 @@ import { decodePngRgba } from "../resources/png-decoder";
 import { loadItemDescriptions, loadItemHudAssets, type HudImage, type HudNode,
   type ItemHudAssetDependencies, type ItemHudAssets } from "./item-hud-assets";
 import {
-  ITEM_LOG_LIFE_MS, buildItemHudCommands, liveEntries, logAlpha, noticeAlpha, slotRowRight,
-  warningAlpha, type HudPanelCommand, type HudTextSpec, type ItemHudFrameInput,
+  ITEM_INFO_HEAD_MS, ITEM_INFO_KEY_FRAME_MS, ITEM_LOG_LIFE_MS, ITEM_LUCCI_TOP, buildItemHudCommands,
+  liveEntries, logAlpha, noticeAlpha, slotRowRight, warningAlpha,
+  type HudPanelCommand, type HudTextSpec, type ItemHudFrameInput,
 } from "./item-hud-commands";
 import { ItemHud, type ItemHudDependencies } from "./item-hud";
 import { defaultItemHudOptions } from "./item-hud-options";
@@ -209,9 +210,32 @@ test("全体受击记录：队伍底图与文字颜色、被挡图标、3 秒后
     itemStateTotalNotice: false } }), []);
 });
 
-test("道具说明卡：按槽数选气泡、名称与说明、可关闭", () => {
-  const two = frame({ infoCard: { itemIdx: 7 } });
-  assert.deepEqual(names(two), ["말풍선_슬롯2개_위치값슬롯3과동일", "text:导弹\n发射导弹攻击对手"]);
+test("道具说明卡：先名称、图标与 Ctrl，再说明；按槽数选气泡、可关闭", () => {
+  // itemInfoCard: itemName (10 16 135 62), itemIcon (135 16 181 62), ctrl (188 16 239 67) at adjust 25 115.
+  const card = assets.infoCard;
+  assert.deepEqual([card.name.rect, card.icon.rect, card.key.rect], [
+    { left: 35, top: 131, right: 160, bottom: 177 }, { left: 160, top: 131, right: 206, bottom: 177 },
+    { left: 213, top: 131, right: 264, bottom: 182 },
+  ]);
+  assert.deepEqual([card.icon.textureName, card.key.textureName, card.key.glyphWidth, card.key.glyphs],
+    ["설정아이콘_01", "key_01", 51, "12"]);
+  const head = frame({ infoCard: { itemIdx: 7 } }, 0, { infoCard: { ageMs: 0, first: false } });
+  assert.deepEqual(names(head), ["말풍선_슬롯2개_위치값슬롯3과동일", "text:导弹", "notice7", "key_01"]);
+  assert.deepEqual(head[2]!.worldRect, { left: 160, top: 131, right: 205, bottom: 176 });
+  assert.deepEqual([head[3]!.worldRect, head[3]!.uv], [{ left: 213, top: 131, right: 264, bottom: 182 },
+    { left: 0, top: 0, right: 0.5, bottom: 1 }]);
+  // The Ctrl key presses (frame "2") and lifts again.
+  const pressed = frame({ infoCard: { itemIdx: 7 } }, 0, { infoCard: { ageMs: ITEM_INFO_KEY_FRAME_MS, first: false } });
+  assert.deepEqual(pressed[3]!.uv, { left: 0.5, top: 0, right: 1, bottom: 1 });
+  const body = frame({ infoCard: { itemIdx: 7 } }, 0, { infoCard: { ageMs: ITEM_INFO_HEAD_MS, first: false } });
+  assert.deepEqual(names(body), ["말풍선_슬롯2개_위치값슬롯3과동일", "text:发射导弹攻击对手"]);
+  // The race's first card: 查看道具说明 with the template's wrench, then first_desc.
+  const prompt = { name: "查看道具说明", description: "在[设置]中可以关闭道具说明" };
+  const first = frame({ infoCard: { itemIdx: 7 } }, 0, { infoCard: { ageMs: 0, first: true }, prompt });
+  assert.deepEqual(names(first), ["말풍선_슬롯2개_위치값슬롯3과동일", "text:查看道具说明", "설정아이콘_01"]);
+  assert.deepEqual(names(frame({ infoCard: { itemIdx: 7 } }, 0,
+    { infoCard: { ageMs: ITEM_INFO_HEAD_MS, first: true }, prompt })),
+  ["말풍선_슬롯2개_위치값슬롯3과동일", "text:在[设置]中可以关闭道具说明"]);
   const three = frame({ capacity: 3, slots: [7, -1, -1], infoCard: { itemIdx: 7 } });
   assert.equal(three[0]!.textureName, "말풍선_슬롯3개_위치값슬롯2와동일");
   assert.deepEqual(frame({ infoCard: { itemIdx: 7 } }, 0, { options: { ...defaultItemHudOptions(),
@@ -330,15 +354,27 @@ test("ItemHud：载入原版资源、喂状态、渲染与释放", async () => {
   hud.renderOver({}, 1600, 900);
   assert.equal(renderer.renders, 0);
 
+  // The race's first card is the 查看道具说明 prompt (itemDescList first / first_desc).
+  assert.deepEqual(hud.prompt, { name: "查看道具说明", description: "在[设置]中可以关闭道具说明" });
   hud.setState({ ...emptyItemHudState(2), aim: { phase: "aiming", x: 800, y: 450 },
     infoCard: { itemIdx: 7 } });
   hud.update(20);
   assert.deepEqual(names(hud.commands), ["crosshaira", "말풍선_슬롯2개_위치값슬롯3과동일",
-    "text:导弹\n发射导弹攻击对手"]);
+    "text:查看道具说明", "설정아이콘_01"]);
+  hud.update(20 + ITEM_INFO_HEAD_MS);
+  assert.deepEqual(names(hud.commands), ["crosshaira", "말풍선_슬롯2개_위치값슬롯3과동일",
+    "text:在[设置]中可以关闭道具说明"]);
   hud.renderOver({}, 1600, 900);
   assert.equal(renderer.renders, 1);
+  // Later cards show the item.
+  hud.setState({ ...emptyItemHudState(2), aim: { phase: "aiming", x: 800, y: 450 } });
+  hud.update(5000);
+  hud.setState({ ...emptyItemHudState(2), aim: { phase: "aiming", x: 800, y: 450 }, infoCard: { itemIdx: 7 } });
+  hud.update(6000);
+  assert.deepEqual(names(hud.commands), ["crosshaira", "말풍선_슬롯2개_위치값슬롯3과동일", "text:导弹",
+    "notice7", "key_01"]);
   hud.setOptions({ ...defaultItemHudOptions(), dispIngameItemInfoCard: false });
-  hud.update(30);
+  hud.update(6030);
   assert.deepEqual(names(hud.commands), ["crosshaira"]);
 
   // Notice icons fall back to item_none (booster 6 has no notice icon).
@@ -469,6 +505,24 @@ test("多人 HUD：竞速赛不载入道具层；未接入时道具赛报错", a
   assert.ok(missing.events.some(event => (event as unknown[])[0] === "ui-dispose"));
 });
 
+test("多人 HUD：道具说明与图标取本局道具目录（含特殊道具）；特殊加速器图标进道具槽", async () => {
+  const fixture = multiplayerFixture("item");
+  const catalog = { items: [{ idx: 7 }, { idx: 99 }],
+    get: (idx: number) => idx === 99 ? { title: "老虎导弹", description: "遮挡对手视野|并使车辆减速" }
+      : idx === 7 ? { title: "导弹", description: "" } : undefined };
+  await MultiplayerRaceHud.load({}, { ...fixture.race, itemCatalog: catalog }, "p1", fixture.deps,
+    (ui, tints, anonymous, competition, runner) =>
+      new MultiplayerRaceHud(ui, tints, anonymous, competition, runner, fixture.deps));
+  const [, options] = fixture.events.find(event => (event as unknown[])[0] === "load-item") as
+    [string, { itemIds: number[]; describe(idx: number): unknown }];
+  assert.deepEqual(options.itemIds, [7, 99]);
+  assert.deepEqual(options.describe(99), { name: "老虎导弹", description: "遮挡对手视野|并使车辆减速" });
+  assert.deepEqual(options.describe(7), { name: "导弹", description: "" });
+  assert.equal(options.describe(5), undefined);
+  assert.deepEqual(itemSlotInput({ ...emptyItemHudState(2), slots: [31, 6], slotIcons: [241] }).itemSlotOverlay,
+    { locked: false, countdownMs: undefined, icons: [241] });
+});
+
 test("道具槽输入：锁定与定时水炸弹倒计时", () => {
   assert.deepEqual(itemSlotInput({ ...emptyItemHudState(2), slots: [5] }), {
     speedSlots: [5, -1], speedSlotDisabled: [false, false], speedSlotWindowStartMs: 0,
@@ -479,4 +533,69 @@ test("道具槽输入：锁定与定时水炸弹倒计时", () => {
   assert.deepEqual(itemSlotInput({ ...emptyItemHudState(2), lock: { remainingMs: 0 } })
     .itemSlotOverlay, { locked: false, countdownMs: 0 });
   assert.deepEqual(itemHudSlots({ capacity: 3, slots: [1.5, 7, -4, 9] }), [-1, 7, -1]);
+});
+
+// ---- phase 3 (ITEM_MODE.md C.6, C.10, C.2 lucci) ----
+
+test("换位卡/变更卡（服务器 changers）：x+最多三位、∞、不能用时 disableUv、没有卡就不显示", () => {
+  const commands = frame({ changers: { slot: 500, item: "infinite", slotUsable: true, itemUsable: false } });
+  assert.deepEqual(names(commands), ["changer", "changer", "time_num", "time_num", "time_num", "time_num",
+    "changer", "changer", "changerItem_num_infinite"]);
+  // "x500": 4 glyphs fill changerNum's 60 px (18 + 3 × 14).
+  assert.deepEqual([commands[2]!.worldRect.left, commands[5]!.worldRect.right], [274, 334]);
+  assert.deepEqual(commands[3]!.uv, { left: Math.fround(90 / 198), top: 0, right: Math.fround(108 / 198), bottom: 1 });
+  // Z cannot change now (not armed, locked or no item): keyDisp and exist use disableUv.
+  const { item } = assets.changers;
+  const changer = assets.textures.get("changer")!;
+  assert.deepEqual(commands[6]!.uv, { left: Math.fround(item.keyUv.disabled.left / changer.width),
+    top: Math.fround(item.keyUv.disabled.top / changer.height),
+    right: Math.fround(item.keyUv.disabled.right / changer.width),
+    bottom: Math.fround(item.keyUv.disabled.bottom / changer.height) });
+  assert.deepEqual(commands[7]!.uv.top, Math.fround(item.cardUv.disabled.top / changer.height));
+  // Four digits are capped at x999; no card and no voucher hides the row.
+  const capped = frame({ changers: { slot: 1234, item: 0, slotUsable: true, itemUsable: true } });
+  assert.equal(names(capped).filter(name => name === "time_num").length, 4);
+  assert.equal(names(capped).filter(name => name === "changer").length, 2);
+  assert.deepEqual(frame({ changers: { slot: 0, item: 0, slotUsable: false, itemUsable: false } }), []);
+  // `changers` wins over the phase-2 fields.
+  assert.deepEqual(frame({ slotChanger: "infinite", itemChanger: 3,
+    changers: { slot: 0, item: 0, slotUsable: false, itemUsable: false } }), []);
+});
+
+test("教程板：倒计时时左下角 223×106，持有换位卡用 Alt+Z 图，只有变更卡用 Z 图，组队赛 avoidTeamkill", () => {
+  const both = frame({ tutorial: "changer", changers: { slot: 3, item: 2, slotUsable: true, itemUsable: true } });
+  const board = both.find(command => command.textureName.startsWith("changerTuto"))!;
+  assert.equal(board.textureName, "changerTuto02@zz");
+  assert.deepEqual(board.worldRect, { left: 9, top: 900 - 8 - 106, right: 9 + 223, bottom: 900 - 8 });
+  const zOnly = frame({ tutorial: "changer", changers: { slot: 0, item: "infinite", slotUsable: false,
+    itemUsable: true } });
+  assert.ok(names(zOnly).includes("changerTuto01@zz"));
+  assert.deepEqual(names(frame({ tutorial: "avoidTeamkill" })), ["avoidTeamTuto01@zz"]);
+  // The @zz names load the @cn art.
+  assert.deepEqual([assets.textures.get("changerTuto02@zz")!.width, assets.textures.get("avoidTeamTuto01@zz")!.width],
+    [270, 223]);
+});
+
+test("赛中金币：plus<金额>@cn 图居中，与道具提示同样 2 秒淡出；没有图时写文字", () => {
+  const plus = { width: 128, height: 32, pixels: new Uint8Array(128 * 32 * 4) };
+  const shown = frame({ lucci: { amount: 10, atMs: 1000 } }, 1500, { lucciImage: amount => amount === 10 ? plus : undefined });
+  assert.deepEqual(shown.map(command => [command.textureName, command.worldRect, command.alpha]), [
+    ["lucci_plus10", { left: 736, top: ITEM_LUCCI_TOP, right: 864, bottom: ITEM_LUCCI_TOP + 32 }, undefined],
+  ]);
+  assert.equal(frame({ lucci: { amount: 10, atMs: 1000 } }, 2500, { lucciImage: () => plus })[0]!.alpha, 128);
+  assert.deepEqual(frame({ lucci: { amount: 10, atMs: 1000 } }, 3000, { lucciImage: () => plus }), []);
+  assert.deepEqual(names(frame({ lucci: { amount: 7, atMs: 0 } }, 0, { lucciImage: () => undefined })),
+    ["text:+7 金币"]);
+});
+
+test("符咒：uiEffect 五个方向键，已按亮起，下一个放大", () => {
+  assert.ok(assets.talisman);
+  const commands = frame({ talisman: { keys: ["up", "left", "down", "right", "up"], done: 2 } });
+  assert.deepEqual(names(commands), ["talisman_up_press", "talisman_left_press", "talisman_down_normal_big",
+    "talisman_right_normal", "talisman_up_normal"]);
+  // Container 810×248 centred, 165 above the middle; key 2 is the centre one, its big panel 162×248.
+  assert.deepEqual(commands[2]!.worldRect, { left: 800 - 52 - 29, top: 450 - 165 - 80 - 44,
+    right: 800 - 52 - 29 + 162, bottom: 450 - 165 - 80 - 44 + 248 });
+  assert.deepEqual(commands[0]!.worldRect, { left: 800 - 52 - 308, top: 450 - 165 - 80,
+    right: 800 - 52 - 308 + 104, bottom: 450 - 165 + 80 });
 });

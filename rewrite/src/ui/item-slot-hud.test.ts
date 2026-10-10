@@ -183,3 +183,28 @@ test("图标缺失与加载中只画槽框", async () => {
   assert.deepEqual(second.map(command => command.textureName), ["slot", "slot", "item111"]);
   assert.equal(definition.resources.smallIcon(111)?.width, 30);
 });
+
+test("特殊加速器：持有 31 的槽改用 animalBooster 的 animal<iconId>.png", async () => {
+  const definition = await loadItemSlotDefinition(library, "normal", deps);
+  await definition.resources.prepare([31]);
+  const first = buildItemSlotCommands(definition, [31, 6], [false, false], 0, 0, undefined,
+    { icons: [241, undefined] }) as Array<{ textureName: string; texture: { width: number } }>;
+  // The animal icon loads on first use and shows from the next frame.
+  assert.ok(!first.some(command => command.textureName === "animal241"));
+  await new Promise(resolve => setTimeout(resolve, 50));
+  const commands = buildItemSlotCommands(definition, [31, 6], [false, false], 0, 0, undefined,
+    { icons: [241, undefined] }) as Array<{ textureName: string; texture: { width: number } }>;
+  assert.deepEqual(commands.map(command => command.textureName).filter(name => !name.startsWith("slot")),
+    ["animal241", "item6"]);
+  assert.equal(commands.find(command => command.textureName === "animal241")!.texture.width, 84);
+  // Without an icon id (or one with no art) the item's own icon shows.
+  await definition.resources.prepare([31]);
+  const plain = buildItemSlotCommands(definition, [31, -1], [false, false], 0, 0, undefined, {}) as
+    Array<{ textureName: string }>;
+  assert.ok(plain.some(command => command.textureName === "item31"));
+  buildItemSlotCommands(definition, [31, -1], [false, false], 0, 0, undefined, { icons: [99999] });
+  await new Promise(resolve => setTimeout(resolve, 50));
+  const missing = buildItemSlotCommands(definition, [31, -1], [false, false], 0, 0, undefined,
+    { icons: [99999] }) as Array<{ textureName: string }>;
+  assert.ok(missing.some(command => command.textureName === "item31"));
+});
