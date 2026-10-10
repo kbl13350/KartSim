@@ -1,4 +1,5 @@
 import { reactive } from 'vue'
+import { ElMessage } from 'element-plus'
 import { api, errorMessage, type Query, type QueryValue } from '../api/client'
 import type { Paged } from '../api/types'
 import { parseBeijing } from '../utils/time'
@@ -40,6 +41,11 @@ export interface PagedTableOptions<F> {
   /** Extra query parameters that are not search fields (e.g. the account of a drawer). */
   fixed?: () => Query
   pageSize?: number
+  /**
+   * Checks the (trimmed) filters before a load: a non-empty message is shown
+   * instead of sending a query the server would answer INVALID_QUERY.
+   */
+  validate?: (filters: F) => string
 }
 
 export const PAGE_SIZES = [20, 50, 100]
@@ -65,6 +71,15 @@ export function usePagedTable<T, F extends Record<string, QueryValue> = Record<s
     sortResets: 0,
 
     async load({ silent = false }: { silent?: boolean } = {}) {
+      const filters = {} as Record<string, QueryValue>
+      for (const [key, value] of Object.entries(table.filters as Record<string, QueryValue>)) {
+        filters[key] = typeof value === 'string' ? value.trim() : value
+      }
+      const problem = options.validate?.(filters as F) ?? ''
+      if (problem) {
+        if (!silent) ElMessage.warning({ message: problem, grouping: true, showClose: true })
+        return
+      }
       const id = ++sequence
       const query: Query = { page: table.page, pageSize: table.pageSize }
       const q = table.q.trim()
@@ -77,11 +92,11 @@ export function usePagedTable<T, F extends Record<string, QueryValue> = Record<s
         const from = parseBeijing(table.range[0])
         const to = parseBeijing(table.range[1])
         if (Number.isFinite(from)) query.from = from
-        if (Number.isFinite(to)) query.to = to
+        // The picker ends on a whole second; the server's `to` is an inclusive
+        // millisecond, so the end second's last 999 ms count too.
+        if (Number.isFinite(to)) query.to = to + 999
       }
-      for (const [key, value] of Object.entries(table.filters as Record<string, QueryValue>)) {
-        query[key] = typeof value === 'string' ? value.trim() : value
-      }
+      Object.assign(query, filters)
       Object.assign(query, options.fixed?.() ?? {})
       table.loading = true
       try {

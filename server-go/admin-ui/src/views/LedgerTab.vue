@@ -8,14 +8,21 @@ import SignedNumber from '../components/SignedNumber.vue'
 import TableToolbar from '../components/TableToolbar.vue'
 import { usePagedTable } from '../composables/usePagedTable'
 import { useTab } from '../composables/useTabs'
+import { isAsciiToken } from '../utils/filters'
 import { currencyOptions, formatNumber, reasonName, reasonOptions, text } from '../utils/format'
 import { formatTime } from '../utils/time'
 
 // 货币流水: GET /api/admin/ledger (wallet_ledger and exp_ledger; account,
-// currency, reason, from/to).
+// currency, reason, from/to; sort at/delta). A typed reason (allow-create)
+// must be a reason code: printable ASCII, at most 24 characters.
 
 const table = usePagedTable<LedgerRow, { account: string; currency: string; reason: string }>(
-  '/api/admin/ledger', { filters: { account: '', currency: '', reason: '' } })
+  '/api/admin/ledger', {
+    filters: { account: '', currency: '', reason: '' },
+    validate: ({ reason }) => (reason && !isAsciiToken(reason, 24)
+      ? '原因须为英文原因代码（如 race、purchase），最多 24 个字符，不含空格'
+      : ''),
+  })
 useTab('ledger', () => table.load())
 onMounted(() => table.load())
 </script>
@@ -56,7 +63,7 @@ onMounted(() => table.load())
       <el-table-column label="货币" width="80">
         <template #default="{ row }"><CurrencyTag :currency="row.currency" /></template>
       </el-table-column>
-      <el-table-column label="变化" width="130" align="right">
+      <el-table-column prop="delta" label="变化" width="130" align="right" sortable="custom">
         <template #default="{ row }"><SignedNumber :value="row.delta" /></template>
       </el-table-column>
       <el-table-column label="余额" width="140" align="right">

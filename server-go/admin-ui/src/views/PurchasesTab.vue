@@ -10,7 +10,8 @@ import { useTab } from '../composables/useTabs'
 import { formatNumber, text } from '../utils/format'
 import { formatTime } from '../utils/time'
 
-// 购买记录: GET /api/admin/purchases (shop purchases).
+// 购买记录: GET /api/admin/purchases (shop purchases; q matches the username,
+// nickname and offer id; sort at/price).
 
 const table = usePagedTable<PurchaseRow>('/api/admin/purchases')
 useTab('purchases', () => table.load())
@@ -19,7 +20,7 @@ onMounted(() => table.load())
 
 <template>
   <el-card shadow="never" class="page-card">
-    <TableToolbar :table="table" keyword="账号 / 商品" range="时间" />
+    <TableToolbar :table="table" keyword="账号 / 昵称 / 商品编号" range="时间" />
     <DataTable :table="table" row-key="id">
       <el-table-column prop="at" label="时间" width="175" sortable="custom">
         <template #default="{ row }">{{ formatTime(row.at) }}</template>
@@ -38,7 +39,7 @@ onMounted(() => table.load())
       <el-table-column label="货币" width="80">
         <template #default="{ row }"><CurrencyTag :currency="row.currency" /></template>
       </el-table-column>
-      <el-table-column label="价格" width="120" align="right">
+      <el-table-column prop="price" label="价格" width="120" align="right" sortable="custom">
         <template #default="{ row }"><span class="num">{{ formatNumber(row.price) }}</span></template>
       </el-table-column>
       <el-table-column label="期限" width="80" align="right">

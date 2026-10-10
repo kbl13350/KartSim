@@ -6,13 +6,17 @@ import DataTable from '../components/DataTable.vue'
 import TableToolbar from '../components/TableToolbar.vue'
 import { usePagedTable } from '../composables/usePagedTable'
 import { useTab } from '../composables/useTabs'
+import { isAsciiToken } from '../utils/filters'
 import { loginKindName, text, userAgentSummary } from '../utils/format'
 import { formatTime } from '../utils/time'
 
 // 登录记录: GET /api/admin/logins (kind, account, ip, from/to).
 
 const table = usePagedTable<LoginRow, { kind: string; account: string; ip: string }>(
-  '/api/admin/logins', { filters: { kind: '', account: '', ip: '' } })
+  '/api/admin/logins', {
+    filters: { kind: '', account: '', ip: '' },
+    validate: ({ ip }) => (ip && !isAsciiToken(ip, 45) ? 'IP 地址无效（英文字符，不含空格）' : ''),
+  })
 useTab('logins', () => table.load())
 onMounted(() => table.load())
 </script>
