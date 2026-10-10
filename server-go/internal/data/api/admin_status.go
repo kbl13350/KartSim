@@ -40,7 +40,12 @@ func beijingMidnight(t time.Time) int64 {
 	return time.Date(year, month, day, 0, 0, 0, 0, beijing).UnixMilli()
 }
 
-// nodeStatus is a node's state: ok, stale (late heartbeat) or full.
+// nodeOffline is the status of a node seen within cache.NodeSeenTTL that
+// is no longer registered (stopped, crashed or cut off).
+const nodeOffline = "offline"
+
+// nodeStatus is a registered node's state: ok, stale (late heartbeat) or
+// full.
 func nodeStatus(node cache.Node, now int64) string {
 	switch {
 	case now-node.SeenAt > nodeStaleAfter.Milliseconds():
@@ -53,8 +58,10 @@ func nodeStatus(node cache.Node, now int64) string {
 
 // adminOverview answers the overview's counts, with the latest 10
 // registrations and logins. "Today" starts at the Beijing midnight. The
-// online, nodes and rooms figures are null while the cluster registry is
-// unavailable.
+// online figures leave out sessions being dropped (leaving); nodes counts
+// the registered nodes, the healthy ones and the offline ones (seen within
+// a day). The online, nodes and rooms figures are null while the cluster
+// registry is unavailable.
 func (a *API) adminOverview(w http.ResponseWriter, r *http.Request) error {
 	if _, err := a.requireAdmin(r); err != nil {
 		return err
@@ -84,19 +91,25 @@ func (a *API) adminOverview(w http.ResponseWriter, r *http.Request) error {
 	type nodesJSON struct {
 		Total   int `json:"total"`
 		Healthy int `json:"healthy"`
+		Offline int `json:"offline"`
 	}
 	var (
 		online *onlineJSON
 		nodes  *nodesJSON
 		rooms  *int
 	)
-	if live, ok := a.onlineNodes(ctx); ok {
+	if live, leaving, ok := a.liveOnline(ctx); ok {
 		online, nodes, rooms = &onlineJSON{}, &nodesJSON{Total: len(live)}, new(int)
 		for _, node := range live {
-			online.Players += len(node.Players)
 			for _, player := range node.Players {
-				if node.Accounts[player.PlayerID] != "" {
+				switch {
+				case leaving[node.Node.NodeID+"|"+player.PlayerID]:
+				case playerAccount(node, player) != "":
+					online.Players++
 					online.Accounts++
+				default:
+					online.Players++
+					online.Guests++
 				}
 			}
 			if nodeStatus(node.Node, now) != "stale" {
@@ -104,11 +117,13 @@ func (a *API) adminOverview(w http.ResponseWriter, r *http.Request) error {
 			}
 			*rooms += node.Node.Rooms
 		}
-		online.Guests = online.Players - online.Accounts
+		nodes.Offline = len(a.offlineNodes(ctx, live))
 	}
 	accounts := map[string]int{"total": counts.Accounts, "today": counts.AccountsToday, "admins": counts.Admins,
 		"banned": counts.Banned}
 	coupon := map[string]int64{"spentToday": counts.CouponSpentToday, "grantedToday": counts.CouponGrantedToday}
+	// logins.today counts password logins; uniqueToday the accounts that
+	// registered, logged in or resumed a remembered session today.
 	return writeJSON(w, http.StatusOK, map[string]any{
 		"now":                 now,
 		"accounts":            accounts,
@@ -137,7 +152,9 @@ func (a *API) onlineNodes(ctx context.Context) ([]cache.NodeOnline, bool) {
 	return nodes, true
 }
 
-// onlineRowJSON is the OnlineRow of ADMIN.md 4, with the player's room.
+// onlineRowJSON is the OnlineRow of ADMIN.md 4, with the player's room;
+// leaving marks an account session that a kick, a ban or a newer login
+// ended and that its node drops at its next heartbeat.
 type onlineRowJSON struct {
 	PlayerID  string `json:"playerId"`
 	Name      string `json:"name"`
@@ -147,12 +164,13 @@ type onlineRowJSON struct {
 	NodeID    string `json:"nodeId"`
 	NodeName  string `json:"nodeName"`
 	Room      string `json:"room"`
+	Leaving   bool   `json:"leaving"`
 }
 
-// adminOnline lists the players of the live game nodes' latest heartbeats:
-// q matches the name and username, ?node= keeps one node. Sort keys: name
-// (default, ascending), username, node, room. Empty while the cluster
-// registry is unavailable.
+// adminOnline lists the players of the live game nodes' latest heartbeats,
+// sessions being dropped (leaving) included: q matches the name and
+// username, ?node= keeps one node. Sort keys: name (default, ascending),
+// username, node, room. Empty while the cluster registry is unavailable.
 func (a *API) adminOnline(w http.ResponseWriter, r *http.Request) error {
 	if _, err := a.requireAdmin(r); err != nil {
 		return err
@@ -166,11 +184,13 @@ func (a *API) adminOnline(w http.ResponseWriter, r *http.Request) error {
 		return err
 	}
 	ctx := r.Context()
-	nodes, _ := a.onlineNodes(ctx)
+	nodes, leaving, _ := a.liveOnline(ctx)
 	var ids []string
 	for _, node := range nodes {
-		for _, id := range node.Accounts {
-			ids = append(ids, id)
+		for _, player := range node.Players {
+			if id := playerAccount(node, player); id != "" {
+				ids = append(ids, id)
+			}
 		}
 	}
 	accounts, err := a.store.AccountsByID(ctx, ids)
@@ -184,10 +204,10 @@ func (a *API) adminOnline(w http.ResponseWriter, r *http.Request) error {
 			continue
 		}
 		for _, player := range node.Players {
-			accountID := node.Accounts[player.PlayerID]
+			accountID := playerAccount(node, player)
 			row := onlineRowJSON{PlayerID: player.PlayerID, Name: player.Name, Guest: accountID == "",
 				AccountID: accountID, Username: accounts[accountID].Username, NodeID: node.Node.NodeID,
-				NodeName: node.Node.Name, Room: player.Room}
+				NodeName: node.Node.Name, Room: player.Room, Leaving: leaving[node.Node.NodeID+"|"+player.PlayerID]}
 			if query != "" && !strings.Contains(strings.ToLower(row.Name), query) &&
 				!strings.Contains(strings.ToLower(row.Username), query) {
 				continue
@@ -264,10 +284,33 @@ func checkService(ctx context.Context, ping func(context.Context) error) service
 // liveHeapMetric is the heap held by live objects at the last GC.
 const liveHeapMetric = "/gc/heap/live:bytes"
 
+// offlineNodes are the nodes seen within cache.NodeSeenTTL that are not
+// among the registered ones (live), as their last heartbeat left them.
+func (a *API) offlineNodes(ctx context.Context, live []cache.NodeOnline) []cache.Node {
+	seen, err := a.cluster.SeenNodes(ctx)
+	if err != nil {
+		a.log.Warn("admin: seen node list unavailable", "error", err)
+		return nil
+	}
+	registered := make(map[string]bool, len(live))
+	for _, node := range live {
+		registered[node.Node.NodeID] = true
+	}
+	var offline []cache.Node
+	for _, node := range seen {
+		if !registered[node.NodeID] {
+			offline = append(offline, node)
+		}
+	}
+	return offline
+}
+
 // adminNodes lists the game nodes of the registry (status: ok, stale when
-// the last heartbeat is older than 10 s, full) and the data service's own
-// build, start, goroutines, live heap and MySQL and Redis checks. nodes is
-// empty while Redis is unavailable.
+// the last heartbeat is older than 10 s, full), then the nodes seen within
+// a day that are no longer registered (offline, as their last heartbeat
+// left them), and the data service's own build, start, goroutines, live
+// heap (MB, one decimal) and MySQL and Redis checks. nodes is empty while
+// Redis is unavailable.
 func (a *API) adminNodes(w http.ResponseWriter, r *http.Request) error {
 	if _, err := a.requireAdmin(r); err != nil {
 		return err
@@ -283,24 +326,32 @@ func (a *API) adminNodes(w http.ResponseWriter, r *http.Request) error {
 		redis = serviceCheck{Error: "未配置 Redis"}
 	}
 	nodes := []nodeRowJSON{}
+	row := func(node cache.Node, status string) nodeRowJSON {
+		return nodeRowJSON{NodeID: node.NodeID, Name: node.Name, Origin: nodeOrigin(node), Players: node.Players,
+			Capacity: node.Capacity, Rooms: node.Rooms, Full: node.Full(), StartedAt: node.StartedAt,
+			SeenAt: node.SeenAt, ProtocolVersion: node.ProtocolVersion, Status: status, Stats: node.Stats}
+	}
 	if a.cluster != nil {
 		live, err := a.cluster.Nodes(ctx)
 		if err != nil {
 			a.log.Warn("admin: node list unavailable", "error", err)
-		}
-		for _, node := range live {
-			nodes = append(nodes, nodeRowJSON{NodeID: node.NodeID, Name: node.Name, Origin: nodeOrigin(node),
-				Players: node.Players, Capacity: node.Capacity, Rooms: node.Rooms, Full: node.Full(),
-				StartedAt: node.StartedAt, SeenAt: node.SeenAt, ProtocolVersion: node.ProtocolVersion,
-				Status: nodeStatus(node, now), Stats: node.Stats})
+		} else {
+			registered := make([]cache.NodeOnline, len(live))
+			for i, node := range live {
+				nodes = append(nodes, row(node, nodeStatus(node, now)))
+				registered[i].Node = node
+			}
+			for _, node := range a.offlineNodes(ctx, registered) {
+				nodes = append(nodes, row(node, nodeOffline))
+			}
 		}
 	}
 	wg.Wait()
 	sample := []metrics.Sample{{Name: liveHeapMetric}}
 	metrics.Read(sample)
-	var heapMB int64
+	var heapMB float64
 	if sample[0].Value.Kind() == metrics.KindUint64 {
-		heapMB = int64(sample[0].Value.Uint64() >> 20)
+		heapMB = contract.RoundMB(sample[0].Value.Uint64())
 	}
 	return writeJSON(w, http.StatusOK, map[string]any{
 		"now":   now,

@@ -77,6 +77,24 @@ test("gate errors read in Chinese", () => {
     "无法登录：当前服务器已关闭注册，请联系管理员。");
 });
 
+test("a banned login shows the end time and reason as text", async () => {
+  // 2026-10-11 04:30 UTC is 12:30 in Beijing.
+  const until = Date.UTC(2026, 9, 11, 4, 30);
+  const banned = new AccountServiceError("ACCOUNT_BANNED", 403, { error: "ACCOUNT_BANNED", until, reason: "外挂" });
+  assert.equal(loginGateErrorMessage(banned), "账号已被封禁，解封时间：2026-10-11 12:30（原因：外挂）");
+
+  const document = new FakeDocument();
+  const root = { ownerDocument: document } as unknown as HTMLElement;
+  const service = accountService().on("POST /multiplayer/auth/login", () => ({ status: 403,
+    body: { error: "ACCOUNT_BANNED", until: Date.UTC(2100, 0, 1) - 8 * 3_600_000, reason: "<i>刷分</i>" } }));
+  void showStartupLogin(root, "open", TEST_ORIGIN, service.fetch);
+  const parts = dialogParts(document);
+  parts.username.value = "driver_1";
+  parts.password.value = "password1";
+  await parts.form.fire("submit");
+  assert.equal(parts.errorText.textContent, "账号已被永久封禁（原因：<i>刷分</i>）");
+});
+
 test("startup options: open registration collapses the invite and checks fields first", () => {
   const open = startupLoginOptions("open");
   assert.equal(open.invite, "collapsed");

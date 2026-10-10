@@ -107,20 +107,23 @@
 
 ## 5. 第二轮（审查与浏览器验收后的补充）
 
-- **活跃时间**：`accounts` 增加 `last_seen_at` BIGINT 默认 0、`last_seen_ip` VARCHAR(45) 默认 ''（仍在迁移 120 里）。任何带会话令牌的成功请求都更新它们，同一账号最多每 5 分钟写一次（Redis `SET NX EX` 节流；没有 Redis 时用进程内节流）。每个账号每个北京日第一次用已保存的令牌活动时，写一条 `login_records`，`kind` = `resume`（前端显示“自动登录”）。概览的“今日登录人数”`logins.uniqueToday` 统计今天有 `register`/`login`/`resume` 记录的不同账号；`logins.today` 仍是今天的 `login` 次数。`AccountRow` 增加 `lastSeenAt, lastSeenIp`；用户列表排序增加 `lastSeenAt`；登录记录的 `kind` 筛选接受 `resume`。
-- **物品数**：`inventoryCount` 只算数量大于 0 且未过期的物品。
-- **解封**：`bannedUntil: 0` 解封时同时清空 `banReason`（除非同一请求里给了新原因）。
-- **超级管理员**：`KART_ADMIN_USERNAMES` 里的账号只能由自己修改；其他管理员对它们的 PATCH / 踢下线返回 409 `PROTECTED_ADMIN`。
-- **节点离线**：数据服务把见过的游戏节点记 24 小时（Redis `node-seen:{node}`，内容为最后一份节点信息）。`GET /api/admin/nodes` 里注册表中已没有、但 24 小时内见过的节点以 `status: "offline"` 返回（字段同 `NodeRow`，`seenAt` 为最后心跳）；概览 `nodes` 增加 `offline` 计数。`NodeRow.stats.heapMB` 与数据服务 `heapMB` 改为保留一位小数的数字。
-- **踢下线后的在线状态**：被踢 / 被封的账号在游戏节点下次心跳断开前，在线列表与 `AccountRow.online` 里带 `leaving: true`（前端显示“断开中”），不再显示为普通在线。
+- **活跃时间**：`accounts` 增加 `last_seen_at` BIGINT 默认 0、`last_seen_ip` VARCHAR(45) 默认 ''，以及索引 `accounts(last_seen_at)`。开发库已经应用过第一版迁移 120，所以这两列放在**临时迁移 121**（`ensureColumn`/`ensureIndex`，可以重跑）；合并到 main 时 120 与 121 一起改成正式编号（可以合成一个），开发库的 `schema_migrations` 行同步改号。任何带会话令牌、处理成功（2xx）的请求都更新它们，同一账号最多每 5 分钟写一次（Redis `SET NX EX`，键按账号和北京日区分，所以零点后的第一个请求不会被节流挡住；没有 Redis 或 Redis 出错时用进程内节流）；注册与登录成功时也一并写入。每个账号每个北京日第一次用已保存的令牌活动、而当天还没有 `register`/`login`/`resume` 记录时，写一条 `login_records`，`kind` = `resume`（带当时的 IP 与浏览器，前端显示“自动登录”）。概览的“今日登录人数”`logins.uniqueToday` 统计今天有 `register`/`login`/`resume` 记录的不同账号；`logins.today` 仍是今天的 `login` 次数；`recentLogins` 仍只列 `login`。`AccountRow` 增加 `lastSeenAt`（没有为 `null`）`, lastSeenIp`（没有为空串）；用户列表排序增加 `lastSeenAt`，`q` 也匹配 `last_seen_ip`；登录记录的 `kind` 筛选接受 `resume`。
+- **物品数**：`inventoryCount` 只算数量大于 0 且未过期的物品（与玩家自己的“我的物品”一致）；物品列表接口仍列出全部行。
+- **解封**：`bannedUntil: 0`（或早于现在）解封时同时清空 `banReason`，除非同一请求里给了新原因；请求里带回的原因与库里的相同时不算新原因，照样清空。
+- **超级管理员**：`KART_ADMIN_USERNAMES` 里的账号只能由自己修改；其他管理员对它们的 PATCH / 踢下线返回 409 `PROTECTED_ADMIN`（先判断 `CANNOT_MODIFY_SELF`：自己踢自己、撤销自己的管理员、封禁自己仍是那个错误）。
+- **节点离线**：每次心跳后数据服务把节点信息存为 `node-seen:{node}`（24 小时过期，内容为最后一份节点信息；集合 `nodes-seen` 记录有哪些）。`GET /api/admin/nodes` 在注册表里的节点之后，列出 24 小时内见过、但注册表中已没有的节点，`status: "offline"`（字段同 `NodeRow`，`seenAt` 为最后心跳，`stats` 等为最后一份）；节点正常退出（`leave`）也算离线。概览 `nodes` 增加 `offline` 计数（`total` 仍只算注册表里的节点）。`NodeRow.stats.heapMB` 与数据服务的 `heapMB` 改为保留一位小数的数字（例如 `0.6`）；契约里是浮点数，旧节点发的整数照样能解析。新节点发出的小数旧数据服务无法解析，所以先升级数据服务再升级游戏节点。`node-online` 与 `node-seen` 在心跳刷新在线状态之后写入，写失败只记日志，心跳照常成功并返回冲突列表。
+- **心跳里的账号**：心跳的 `players[]` 另有可选 `accountId`（游客与旧节点没有）。Redis 丢了账号映射（重启、清空）时，数据服务据此补回 `node-accounts` 与账号占用（账号键空着或就是该玩家时）；账号被别人占用时该玩家记为冲突，节点断开它。后台把玩家对应到账号时优先用心跳里的 `accountId`，旧节点用 `node-accounts`。
+- **踢下线后的在线状态**：被踢 / 被封 / 被新登录顶替的会话，在游戏节点下次心跳断开前仍在节点的在线列表里，但它的账号占用（`presence-account`）已不是“该节点|该玩家”。这样的行在在线列表里带 `leaving: true`，`AccountRow.online` 为 `{nodeId, nodeName, leaving: true}`（前端显示“断开中”），不再显示为普通在线；概览的 `online` 计数与用户列表的 `online=1` 都不算它们。`OnlineRow` 与 `AccountRow.online` 一律带 `leaving`（平时为 `false`）。下一次心跳后节点断开它，行就消失。
+- **进入游戏时的封禁检查**：游戏节点为账号占用在线（`hello`）时，数据服务先查封禁、写入占用后**再查一次**：封禁先提交、再标记在线占用，所以与封禁同时发生的 `hello` 要么被封禁的标记踢掉，要么在第二次检查时被拒绝并释放占用。拒绝时游戏节点把数据服务错误体里的其他字段原样放进 WebSocket 错误帧，即 `{"type":"error","code":"ACCOUNT_BANNED","reason":…,"until":…}`。
 - **新接口**（列表接口都遵守 §3 的分页约定）：
 
 | 方法 | 路径 | 说明 |
 |---|---|---|
-| GET | `/api/admin/accounts/{id}/game` | `{stats: null \| {races, wins, podiums, points}, license: null \| {level, proUntil, proCount, lastRunAt}, licenseClears: [{step, period, bestMs, clearedAt}], licenseRecords: [{trackId, trackName, bestMs, updatedAt}], timeAttack: [{trackId, trackName, bestMs, updatedAt}], quests: [{questId, period, value, completedAt, updatedAt}], counters: [{counter, value, updatedAt}], friends: 好友数, club: null \| {id, name, grade, joinedAt, csWeek, csTotal, donatedTotal}}` |
-| GET | `/api/admin/clubs/{id}/members` | 分页；`MemberRow`：`accountId, username, nickname, grade`（1 会长 … 按俱乐部代码）`, joinedAt, csWeek, csTotal, donatedTotal`；排序 `joinedAt, grade, csWeek, csTotal, donatedTotal` |
-| GET | `/api/admin/invites` | 分页；`InviteRow`：`hash`（前 12 位）`, createdAt, used, usedBy: null \| {accountId, username, nickname}`；筛选 `used=1\|0`；排序 `createdAt` |
-| GET | `/api/admin/reward-box` | 分页；`RewardBoxRow`：`id, accountId, username, nickname, source, message, name, category, itemId, count, days, currency, createdAt, expiresAt, claimedAt, state`（`unclaimed` \| `claimed` \| `expired`）；筛选 `source`、`state`、`account`；`q` 匹配账号/昵称/物品名；排序 `createdAt` |
+| GET | `/api/admin/accounts/{id}/game` | `{stats: null \| {races, wins, podiums, points}, license: null \| {level, proUntil, proCount, lastRunAt}, licenseClears: [{step, period, bestMs, clearedAt}], licenseRecords: [{trackId, trackName, bestMs, updatedAt}], timeAttack: [{trackId, trackName, bestMs, updatedAt}], quests: [{questId, title, period, value, completedAt, updatedAt}], counters: [{counter, value, updatedAt}], friends: 好友数, club: null \| {id, name, grade, joinedAt, csWeek, csTotal, donatedTotal}}`。`license.level` 是现在持有的驾照：1 新手 … 5 L1，PRO 有效期内为 6，0 为没有；`proUntil`、`lastRunAt` 为 0 时给 `null`；`licenseClears` 新的在前，`period` 对新手到 L1 为空串；`quests` 按最后变化新的在前，`title` 是任务名（任务表里没有的为空串），`completedAt` 未完成为 `null`；`counters` 按名称；`club` 不在俱乐部或俱乐部已解散时为 `null`，`csWeek` 是本周活跃点；账号不存在 404 `ACCOUNT_NOT_FOUND` |
+| GET | `/api/admin/clubs/{id}/members` | 分页；`MemberRow`：`accountId, username, nickname, grade`（1 会长、2 管理层、3 优秀会员、4 会员）`, joinedAt, csWeek, csTotal, donatedTotal`（`csWeek` 是本周的活跃点）；`q` 匹配用户名、昵称，`from`/`to` 作用于加入时间；排序 `joinedAt, grade, csWeek, csTotal, donatedTotal`；任何状态的俱乐部都能查；俱乐部不存在 404 `CLUB_NOT_FOUND` |
+| GET | `/api/admin/invites` | 分页；`InviteRow`：`hash`（摘要前 12 位，邀请码本身不存）`, createdAt, used, usedBy: null \| {accountId, username, nickname}, usedAt`（`usedAt` 是使用者的注册时间，未使用为 `null`；表里没有单独的使用时间）；筛选 `used=1\|0`（也可写 `true`/`false`）；`q` 匹配摘要开头与使用者的用户名、昵称；`from`/`to` 作用于创建时间；排序 `createdAt` |
+| GET | `/api/admin/reward-box` | 分页；`RewardBoxRow`：`id, accountId, username, nickname, source, message, name, category, itemId, count, days, currency, createdAt, expiresAt, claimedAt, state`（`unclaimed` \| `claimed` \| `expired`；`claimedAt` 未领取为 `null`；货币奖励的 `currency` 为 `coupon`/`lucci`/`koin`，物品为空串）；筛选 `source`（`quest`/`club`/`admin`）、`state`、`account`；`q` 匹配账号、昵称、物品名；`from`/`to` 作用于发放时间；排序 `createdAt`。已领取与已过期的条目在领取或过期 30 天后由每小时的清理删除。`POST` 不变 |
 
-- **俱乐部**：已解散（`break_at` 早于现在）的俱乐部 `ClubRow.state = "disbanded"`，解散倒计时中为 `"breaking"`，否则 `"active"`；列表筛选 `state`，默认全部。
-- **游戏客户端**：登录或进入游戏得到 `ACCOUNT_BANNED` 时显示“账号已被封禁，解封时间：…（原因：…）”，不再显示原始错误码。
+- **俱乐部**：已解散（`break_at` 不晚于现在）的俱乐部 `ClubRow.state = "disbanded"`，解散倒计时中为 `"breaking"`，否则 `"active"`；列表筛选 `state`（`active`/`breaking`/`disbanded`），默认全部。已解散的俱乐部在任意玩家下一次俱乐部操作时才从库里删除，在那之前列表里仍能看到（标为已解散），玩家端与账号详情的 `club` 已不显示它。
+- **抽奖摘要**：寻宝里由保底触发的抽取归入“保底奖励”，与精品道具场的里程保底奖励写法相同，例如“寻宝 10 次：宝宝、…；保底奖励：…”。
+- **游戏客户端**：登录或进入游戏得到 `ACCOUNT_BANNED` 时显示“账号已被封禁，解封时间：YYYY-MM-DD HH:mm（原因：…）”（时间按北京时间），永久封禁（到期在 2099 年及以后，与后台的“永久”一致）显示“账号已被永久封禁（原因：…）”；没有原因时省略括号，拿不到时间（旧游戏节点）时显示“账号已被封禁（原因：…）”或“账号已被封禁。”，不再显示原始错误码。原因按文本显示，不当作 HTML。

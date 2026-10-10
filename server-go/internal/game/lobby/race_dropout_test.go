@@ -337,8 +337,8 @@ func TestRoadblockLoadFailures(t *testing.T) {
 	assertEqual(t, room["raceError"], "LOAD_TIMEOUT")
 }
 
-// The heartbeat lists each player's room, and the stats count the rooms
-// whose race is under way.
+// The heartbeat lists each player's room and account, and the stats count
+// the rooms whose race is under way.
 func TestOnlineRoomsAndRacing(t *testing.T) {
 	h := newHarness(t)
 	alice, bob, carol := h.connect("Alice"), h.connect("Bob"), h.connect("Carol")
@@ -361,8 +361,10 @@ func TestOnlineRoomsAndRacing(t *testing.T) {
 	}
 	h.lobby.Disconnect(carol)
 	h.connect("Dave")
+	h.connectAccount("Erin", "acc-erin")
 	for _, player := range onlinePlayers(h.lobby.Online()) {
-		if (player.Name == "Dave") != (player.Room == "") {
+		lobby := player.Name == "Dave" || player.Name == "Erin"
+		if lobby != (player.Room == "") || (player.Name == "Erin") != (player.AccountID == "acc-erin") {
 			t.Fatalf("player %+v", player)
 		}
 	}

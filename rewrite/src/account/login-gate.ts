@@ -14,7 +14,7 @@ import { tokenAccess, type AccountTokenAccess } from "./account-token-store";
 import { BrowserAccountSession, openStoredSession } from "./browser-session";
 import { AccountLoginDialog, type AccountLoginOptions } from "../multiplayer/account-login-dialog";
 import {
-  accountErrorMessages, accountOverlayStyle, accountPanelStyle, formatAccountServiceError,
+  accountBanMessage, accountErrorMessages, accountOverlayStyle, accountPanelStyle, formatAccountServiceError,
   styleAccountButtons,
 } from "../multiplayer/account-ui-support";
 import { multiplayerBackendOrigin } from "../multiplayer/backend-origin";
@@ -33,6 +33,8 @@ export interface LoginGateDependencies {
 
 /** Chinese text for a failure before an account is signed in. */
 export function loginGateErrorMessage(error: unknown): string {
+  const banned = accountBanMessage(error);
+  if (banned) return banned;
   const code = errorCode(error);
   switch (code) {
     case "DATA_SERVICE_UNAVAILABLE":
@@ -146,11 +148,11 @@ export function showStartupLogin(root: HTMLElement, registration: RegistrationMo
       })
       : loginAccount(fetchImpl, backendOrigin,
         { username: fields.username ?? "", password: fields.password ?? "" }),
-    formatError: error => error instanceof AccountServiceError
+    formatError: error => accountBanMessage(error) ?? (error instanceof AccountServiceError
       ? (error.code === "INVALID_INVITE" && registration === "open"
         ? OPEN_REGISTRATION_INVITE_MESSAGE
         : accountErrorMessages[error.code] ?? loginGateErrorMessage(error))
-      : formatAccountServiceError(error),
+      : formatAccountServiceError(error)),
   }, startupLoginOptions(registration));
   return dialog.wait().then(value => {
     if (!value) throw new AccountServiceError("ACCOUNT_CANCELLED");

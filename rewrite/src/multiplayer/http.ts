@@ -118,7 +118,8 @@ export class MultiplayerHttpClient {
     if (!response.ok) {
       const code = typeof body.error === "string" ? body.error : `HTTP_${response.status}`;
       if (code === "LOGIN_REQUIRED") this.clearToken();
-      throw new Error(code);
+      // The body stays with the error (ACCOUNT_BANNED carries until and reason).
+      throw Object.assign(new Error(code), { body });
     }
     return body;
   }

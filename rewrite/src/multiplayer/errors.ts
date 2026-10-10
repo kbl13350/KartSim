@@ -1,3 +1,14 @@
+import { accountBanMessage } from "./account-ui-support";
+
+/**
+ * A game server error frame as an Error: the message is its code and `body`
+ * the frame, whose further members the messages may use (ACCOUNT_BANNED
+ * carries `until` and `reason`).
+ */
+export function serverError(frame: { code?: unknown }): Error {
+  return Object.assign(new Error(String(frame.code)), { body: frame });
+}
+
 /** Messages shown by the multiplayer UI for server and client failures. */
 const errorMessages: Record<string, string> = {
   GUEST_NAME_TAKEN: "昵称已被使用，请换一个昵称。",
@@ -68,6 +79,9 @@ const errorMessages: Record<string, string> = {
   REQUEST_ID_CONFLICT: "请求编号与之前的请求冲突，请重试。",
   // One live session per account across all game nodes (hello and tickets, 409).
   ACCOUNT_ONLINE: "该账号已在其他地方在线，请先退出另一处登录。",
+  // An admin's ban (hello with an entry ticket from before it); the frame's
+  // until and reason are added by accountBanMessage.
+  ACCOUNT_BANNED: "账号已被封禁。",
   // A game node can be on another build than the data service during a rollout.
   PROTOCOL_MISMATCH: "游戏服务器版本与前端不一致，请选择其他服务器或联系服务器管理员。",
   // Game nodes refuse the WebSocket upgrade (503 full/busy/shutting down, 403
@@ -79,6 +93,8 @@ const errorMessages: Record<string, string> = {
 
 /** Preserve the release's special Error-only translations. */
 export function formatMultiplayerError(error: unknown): string {
+  const banned = accountBanMessage(error);
+  if (banned) return banned;
   if (error instanceof Error) {
     if (error.message === "ROADBLOCK_NEEDS_FIVE") return "挡人模式至少需要五名玩家。";
     if (error.message === "TRACK_UNAVAILABLE") return "该赛道未开放当前玩法。";

@@ -165,11 +165,13 @@ type AdminAccountRow struct {
 	RegisterIP     string
 	LastLoginAt    int64 // 0: never since the login records began
 	LastLoginIP    string
+	LastSeenAt     int64 // 0: not active with a token since the column began
+	LastSeenIP     string
 	BannedUntil    int64 // 0: never banned or unbanned
 	BanReason      string
 	Exp            int64
 	Wallet         Wallet
-	InventoryCount int
+	InventoryCount int // items held: quantity above 0 and not expired
 	Onboarded      bool
 }
 
@@ -186,31 +188,34 @@ type AccountFilter struct {
 }
 
 var accountSorts = map[string]string{
-	"createdAt": "a.created_at", "lastLoginAt": "a.last_login_at", "level": "acc_exp",
+	"createdAt": "a.created_at", "lastLoginAt": "a.last_login_at", "lastSeenAt": "a.last_seen_at", "level": "acc_exp",
 	"coupon": "acc_coupon", "lucci": "acc_lucci", "koin": "acc_koin",
 }
 
 // adminAccountColumns select an AdminAccountRow; the first two parameters
 // are the starting lucci (an account without a wallet row yet shows it)
-// and now (unexpired items count).
+// and now. The item count is what the player's own inventory lists
+// (Inventory): rows with a quantity that have not expired; used-up rows
+// stay for the 道具图鉴 and do not count.
 const adminAccountColumns = `SELECT a.id, a.username, a.nickname, a.admin, a.created_at, a.register_ip,
-		a.last_login_at, a.last_login_ip, a.banned_until, a.ban_reason,
+		a.last_login_at, a.last_login_ip, a.last_seen_at, a.last_seen_ip, a.banned_until, a.ban_reason,
 		COALESCE(p.exp, 0) AS acc_exp, COALESCE(w.coupon, 0) AS acc_coupon, COALESCE(w.lucci, ?) AS acc_lucci,
 		COALESCE(w.koin, 0) AS acc_koin,
-		(SELECT COUNT(*) FROM inventory_items i WHERE i.account_id = a.id AND (i.expires_at IS NULL OR i.expires_at > ?)),
+		(SELECT COUNT(*) FROM inventory_items i WHERE i.account_id = a.id AND i.quantity > 0
+			AND (i.expires_at IS NULL OR i.expires_at > ?)),
 		EXISTS(SELECT 1 FROM account_onboarding o WHERE o.account_id = a.id)
 	FROM accounts a
 	LEFT JOIN wallets w ON w.account_id = a.id
 	LEFT JOIN account_progress p ON p.account_id = a.id`
 
 // AdminAccounts lists accounts: q matches the username, nickname and the
-// register and latest login addresses; From/To bound the registration
-// time. Sort keys: createdAt (default), lastLoginAt, level, coupon, lucci,
-// koin.
+// register, latest login and latest activity addresses; From/To bound the
+// registration time. Sort keys: createdAt (default), lastLoginAt,
+// lastSeenAt, level, coupon, lucci, koin.
 func (s *Store) AdminAccounts(ctx context.Context, page AdminPage, filter AccountFilter,
 	now int64) ([]AdminAccountRow, int, error) {
 	var q adminQuery
-	q.search(page.Query, []string{"a.username", "a.nickname", "a.register_ip", "a.last_login_ip"}, nil)
+	q.search(page.Query, []string{"a.username", "a.nickname", "a.register_ip", "a.last_login_ip", "a.last_seen_ip"}, nil)
 	q.during("a.created_at", page)
 	if filter.IDs != nil {
 		q.in("a.id", filter.IDs)
@@ -250,7 +255,8 @@ func (s *Store) adminAccounts(ctx context.Context, now int64, tail string, args 
 		func(rows *sql.Rows) error {
 			var row AdminAccountRow
 			if err := rows.Scan(&row.Account.ID, &row.Account.Username, &row.Account.Nickname, &row.Account.Admin,
-				&row.CreatedAt, &row.RegisterIP, &row.LastLoginAt, &row.LastLoginIP, &row.BannedUntil, &row.BanReason,
+				&row.CreatedAt, &row.RegisterIP, &row.LastLoginAt, &row.LastLoginIP, &row.LastSeenAt, &row.LastSeenIP,
+				&row.BannedUntil, &row.BanReason,
 				&row.Exp, &row.Wallet.Coupon, &row.Wallet.Lucci, &row.Wallet.Koin, &row.InventoryCount,
 				&row.Onboarded); err != nil {
 				return err
@@ -361,7 +367,7 @@ func (s *Store) AdminUpdateAccount(ctx context.Context, accountID string, patch 
 type AdminOverview struct {
 	Accounts, AccountsToday, Admins, Banned int
 	// LoginsToday counts logins; LoginAccountsToday the accounts that
-	// logged in or registered.
+	// registered, logged in or resumed a remembered session.
 	LoginsToday, LoginAccountsToday int
 	RacesToday                      int
 	// CouponSpent is what accounts paid in coupons (debits other than
@@ -931,7 +937,28 @@ type ClubRow struct {
 	CSWeek         int64 // this week's points (0 when the club earned none yet)
 	AutoJoin       bool
 	CreatedAt      int64
-	BreakAt        *int64 // when a disbanding club goes
+	BreakAt        *int64 // when a disbanding (or disbanded) club goes
+	State          string // ClubActive, ClubBreaking or ClubDisbanded
+}
+
+// Club states in the admin console. A disbanded club (its break_at passed)
+// stays in clubs until a player's club action sweeps it (sweepBrokenClubs);
+// players no longer see it.
+const (
+	ClubActive    = "active"
+	ClubBreaking  = "breaking"
+	ClubDisbanded = "disbanded"
+)
+
+// clubState is the state of a club with break_at at now.
+func clubState(breakAt *int64, now int64) string {
+	switch {
+	case breakAt == nil:
+		return ClubActive
+	case *breakAt > now:
+		return ClubBreaking
+	}
+	return ClubDisbanded
 }
 
 var clubSorts = map[string]string{
@@ -940,12 +967,21 @@ var clubSorts = map[string]string{
 }
 
 // AdminClubs lists clubs, newest first by default: q matches the name and
-// the master's username and nickname; From/To bound the creation time.
-// Sort keys: createdAt, name, members, cs, csWeek, budget.
-func (s *Store) AdminClubs(ctx context.Context, page AdminPage, now int64) ([]ClubRow, int, error) {
+// the master's username and nickname; From/To bound the creation time;
+// state ("" for all) keeps one ClubRow state. Sort keys: createdAt, name,
+// members, cs, csWeek, budget.
+func (s *Store) AdminClubs(ctx context.Context, page AdminPage, state string, now int64) ([]ClubRow, int, error) {
 	var q adminQuery
 	q.search(page.Query, []string{"c.name", "a.username", "a.nickname"}, nil)
 	q.during("c.created_at", page)
+	switch state {
+	case ClubActive:
+		q.add("c.break_at IS NULL")
+	case ClubBreaking:
+		q.add("c.break_at > ?", now)
+	case ClubDisbanded:
+		q.add("c.break_at <= ?", now)
+	}
 	from := " FROM clubs c LEFT JOIN accounts a ON a.id = c.master_id"
 	total, err := s.count(ctx, "SELECT COUNT(*)"+from+q.where(), q.args)
 	if err != nil || total == 0 {
@@ -968,6 +1004,208 @@ func (s *Store) AdminClubs(ctx context.Context, page AdminPage, now int64) ([]Cl
 				return err
 			}
 			row.BreakAt = nullInt(breakAt)
+			row.State = clubState(row.BreakAt, now)
+			list = append(list, row)
+			return nil
+		})
+	return list, total, err
+}
+
+// MemberRow is one member of a club in the admin console; CSWeek is this
+// week's points (0 when the member earned none yet).
+type MemberRow struct {
+	AccountID    string
+	Username     string
+	Nickname     string
+	Grade        int // 1 会长, 2 管理层, 3 优秀会员, 4 会员
+	JoinedAt     int64
+	CSWeek       int64
+	CSTotal      int64
+	DonatedTotal int64
+}
+
+var memberSorts = map[string]string{
+	"joinedAt": "m.joined_at", "grade": "m.grade", "csWeek": "member_cs_week", "csTotal": "m.cs_total",
+	"donatedTotal": "m.donated_total",
+}
+
+// AdminClubMembers lists a club's members, by join time by default: q
+// matches the username and nickname; From/To bound the join time. Sort
+// keys: joinedAt, grade, csWeek, csTotal, donatedTotal. found is false for
+// an unknown club.
+func (s *Store) AdminClubMembers(ctx context.Context, clubID int64, page AdminPage,
+	now int64) (list []MemberRow, total int, found bool, err error) {
+	if found, err = exists(ctx, s.db, "SELECT 1 FROM clubs WHERE id = ?", clubID); err != nil || !found {
+		return []MemberRow{}, 0, found, err
+	}
+	var q adminQuery
+	q.add("m.club_id = ?", clubID)
+	q.search(page.Query, []string{"a.username", "a.nickname"}, nil)
+	q.during("m.joined_at", page)
+	from := " FROM club_members m JOIN accounts a ON a.id = m.account_id"
+	if total, err = s.count(ctx, "SELECT COUNT(*)"+from+q.where(), q.args); err != nil || total == 0 {
+		return []MemberRow{}, total, true, err
+	}
+	tail, args := limit(page, append([]any{club.Week(now)}, q.args...))
+	list = []MemberRow{}
+	err = s.queryRows(ctx, `SELECT m.account_id, a.username, a.nickname, m.grade, m.joined_at,
+			CASE WHEN m.week = ? THEN m.cs_week ELSE 0 END AS member_cs_week, m.cs_total, m.donated_total`+
+		from+q.where()+orderBy(page, memberSorts, "joinedAt", "m.account_id")+tail, args,
+		func(rows *sql.Rows) error {
+			var row MemberRow
+			if err := rows.Scan(&row.AccountID, &row.Username, &row.Nickname, &row.Grade, &row.JoinedAt, &row.CSWeek,
+				&row.CSTotal, &row.DonatedTotal); err != nil {
+				return err
+			}
+			list = append(list, row)
+			return nil
+		})
+	return list, total, true, err
+}
+
+/* ---------- invites and the reward box ---------- */
+
+// InviteRow is one invitation: the digest of its code (the code itself is
+// never stored) and the account that registered with it.
+type InviteRow struct {
+	Hash      string
+	CreatedAt int64
+	UsedBy    *Account // nil while unused
+	UsedAt    *int64   // the using account's registration time
+}
+
+var inviteSorts = map[string]string{"createdAt": "i.created_at"}
+
+// AdminInvites lists invitations, newest first by default: q matches the
+// start of the digest and the using account's username and nickname;
+// From/To bound the creation time; used (nil for all) keeps used or unused
+// ones.
+func (s *Store) AdminInvites(ctx context.Context, page AdminPage, used *bool) ([]InviteRow, int, error) {
+	var q adminQuery
+	if page.Query != "" {
+		parts := []string{"a.username LIKE ?", "a.nickname LIKE ?"}
+		args := []any{"%" + escapeLike(page.Query) + "%", "%" + escapeLike(page.Query) + "%"}
+		if isASCII(page.Query) {
+			parts = append(parts, "i.code_hash LIKE ?")
+			args = append(args, escapeLike(page.Query)+"%")
+		}
+		q.add("("+strings.Join(parts, " OR ")+")", args...)
+	}
+	q.during("i.created_at", page)
+	if used != nil {
+		if *used {
+			q.add("i.used_by IS NOT NULL")
+		} else {
+			q.add("i.used_by IS NULL")
+		}
+	}
+	from := " FROM invites i LEFT JOIN accounts a ON a.id = i.used_by"
+	total, err := s.count(ctx, "SELECT COUNT(*)"+from+q.where(), q.args)
+	if err != nil || total == 0 {
+		return []InviteRow{}, total, err
+	}
+	tail, args := limit(page, q.args)
+	list := []InviteRow{}
+	err = s.queryRows(ctx, `SELECT i.code_hash, i.created_at, i.used_by, a.username, a.nickname, a.created_at`+
+		from+q.where()+orderBy(page, inviteSorts, "createdAt", "i.code_hash")+tail, args,
+		func(rows *sql.Rows) error {
+			var (
+				row                        InviteRow
+				usedBy, username, nickname sql.NullString
+				usedAt                     sql.NullInt64
+			)
+			if err := rows.Scan(&row.Hash, &row.CreatedAt, &usedBy, &username, &nickname, &usedAt); err != nil {
+				return err
+			}
+			if usedBy.Valid {
+				row.UsedBy = &Account{ID: usedBy.String, Username: username.String, Nickname: nickname.String}
+				row.UsedAt = nullInt(usedAt)
+			}
+			list = append(list, row)
+			return nil
+		})
+	return list, total, err
+}
+
+// Reward box entry states in the admin console.
+const (
+	BoxUnclaimed = "unclaimed"
+	BoxClaimed   = "claimed"
+	BoxExpired   = "expired"
+)
+
+// AdminRewardBoxRow is one reward box entry with its account and state.
+type AdminRewardBoxRow struct {
+	RewardBoxEntry
+	AccountID string
+	Username  string
+	Nickname  string
+	ClaimedAt *int64
+	State     string // BoxUnclaimed, BoxClaimed or BoxExpired
+}
+
+// RewardBoxFilter narrows the reward box entries: a source (quest, club,
+// admin), a state, an account; "" keeps all.
+type RewardBoxFilter struct {
+	Source, State, AccountID string
+}
+
+var rewardBoxSorts = map[string]string{"createdAt": "r.created_at"}
+
+// AdminRewardBox lists reward box entries of every account, newest first
+// by default: q matches the username, nickname and the entry's name;
+// From/To bound the arrival time. Taken and expired entries stay listed
+// until the hourly sweep deletes them, 30 days after they were taken or
+// expired (PruneRewardBox).
+func (s *Store) AdminRewardBox(ctx context.Context, page AdminPage, filter RewardBoxFilter,
+	now int64) ([]AdminRewardBoxRow, int, error) {
+	var q adminQuery
+	q.search(page.Query, []string{"a.username", "a.nickname", "r.name"}, nil)
+	q.during("r.created_at", page)
+	if filter.Source != "" {
+		q.add("r.source = ?", filter.Source)
+	}
+	if filter.AccountID != "" {
+		q.add("r.account_id = ?", filter.AccountID)
+	}
+	switch filter.State {
+	case BoxUnclaimed:
+		q.add("r.claimed_at IS NULL AND r.expires_at > ?", now)
+	case BoxClaimed:
+		q.add("r.claimed_at IS NOT NULL")
+	case BoxExpired:
+		q.add("r.claimed_at IS NULL AND r.expires_at <= ?", now)
+	}
+	from := " FROM reward_box r JOIN accounts a ON a.id = r.account_id"
+	total, err := s.count(ctx, "SELECT COUNT(*)"+from+q.where(), q.args)
+	if err != nil || total == 0 {
+		return []AdminRewardBoxRow{}, total, err
+	}
+	tail, args := limit(page, q.args)
+	list := []AdminRewardBoxRow{}
+	err = s.queryRows(ctx, `SELECT r.id, r.source, r.message, r.name, r.category, r.item_id, r.count, r.days,
+			r.currency, r.created_at, r.expires_at, r.claimed_at, r.account_id, a.username, a.nickname`+
+		from+q.where()+orderBy(page, rewardBoxSorts, "createdAt", "r.id")+tail, args,
+		func(rows *sql.Rows) error {
+			var (
+				row     AdminRewardBoxRow
+				claimed sql.NullInt64
+			)
+			entry := &row.RewardBoxEntry
+			if err := rows.Scan(&entry.ID, &entry.Source, &entry.Message, &entry.Name, &entry.Category, &entry.ItemID,
+				&entry.Count, &entry.Days, &entry.Currency, &entry.CreatedAt, &entry.ExpiresAt, &claimed, &row.AccountID,
+				&row.Username, &row.Nickname); err != nil {
+				return err
+			}
+			row.ClaimedAt = nullInt(claimed)
+			switch {
+			case row.ClaimedAt != nil:
+				row.State = BoxClaimed
+			case entry.ExpiresAt <= now:
+				row.State = BoxExpired
+			default:
+				row.State = BoxUnclaimed
+			}
 			list = append(list, row)
 			return nil
 		})

@@ -124,17 +124,23 @@ func (a *API) named(name string, category, itemID int) string {
 }
 
 // drawSummary describes a stored draw request: "寻宝 10 次：…" or
-// "精品道具场「…」3 次：…", with the 保底 prizes and why it stopped early.
+// "精品道具场「…」3 次：…", with the 保底 rewards (the 寻宝 draws that pity
+// forced, and the 精品道具场 mileage prizes) and why it stopped early.
 // result is the parsed result (nil when the JSON is unreadable).
 func (a *API) drawSummary(row store.LotteryDrawRow) (string, any) {
 	var result store.DrawResult
 	if json.Unmarshal([]byte(row.Result), &result) != nil {
 		return "结果无法读取", nil
 	}
-	var items []gotItem
+	var items, pity []gotItem
 	for _, draw := range result.Draws {
 		for _, item := range draw.Items {
-			items = append(items, gotItem{a.named(item.Name, item.Category, item.ItemID), item.Count, item.Days})
+			got := gotItem{a.named(item.Name, item.Category, item.ItemID), item.Count, item.Days}
+			if draw.Pity {
+				pity = append(pity, got)
+			} else {
+				items = append(items, got)
+			}
 		}
 	}
 	title := "寻宝"
@@ -142,14 +148,16 @@ func (a *API) drawSummary(row store.LotteryDrawRow) (string, any) {
 		title = "精品道具场「" + a.lotteryName(row.Ref) + "」"
 	}
 	summary := fmt.Sprintf("%s %d 次：%s", title, len(result.Draws), summarizeItems(items))
-	if len(result.Prizes) > 0 {
-		var prizes []gotItem
-		for _, prize := range result.Prizes {
-			for _, item := range prize.Items {
-				prizes = append(prizes, gotItem{a.named(item.Name, item.Category, item.ItemID), item.Count, item.Days})
-			}
+	if len(items) == 0 && len(pity) > 0 {
+		summary = fmt.Sprintf("%s %d 次", title, len(result.Draws))
+	}
+	for _, prize := range result.Prizes {
+		for _, item := range prize.Items {
+			pity = append(pity, gotItem{a.named(item.Name, item.Category, item.ItemID), item.Count, item.Days})
 		}
-		summary += "；保底奖励：" + summarizeItems(prizes)
+	}
+	if len(pity) > 0 {
+		summary += "；保底奖励：" + summarizeItems(pity)
 	}
 	if result.Stopped != nil {
 		reason, known := map[string]string{store.StopInsufficient: "材料不足", store.StopOwned: "抽到已永久拥有的物品",

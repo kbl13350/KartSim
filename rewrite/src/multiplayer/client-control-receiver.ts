@@ -1,4 +1,5 @@
 import type { ClientConnectionHost, ServerControlEvent } from "./client-connect";
+import { serverError } from "./errors";
 import type { PeerMesh } from "./peer-mesh";
 
 /** Dispatch one validated control event, regardless of its network transport. */
@@ -36,7 +37,7 @@ export function receiveGameControlEvent(host: ClientConnectionHost, raw: unknown
     if (message.type === "error" && pending.clockTick !== undefined) {
       host.echoRtt.failed(message.requestId);
     }
-    if (message.type === "error") pending.reject(new Error(message.code));
+    if (message.type === "error") pending.reject(serverError(message));
     else pending.resolve(message);
   }
   if (message.type === "p2p-signal" || message.type === "p2p-relay") {

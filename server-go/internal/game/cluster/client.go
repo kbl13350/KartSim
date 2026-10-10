@@ -53,7 +53,9 @@ func (c *DataClient) Send(ctx context.Context, path string, body []byte) (int, e
 
 // Call posts request as JSON and decodes a 2xx response into response.
 // Other statuses return an *apierr.Error carrying the status and the
-// {"error": code} of the body (or HTTP_<status> when there is none).
+// {"error": code} of the body (or HTTP_<status> when there is none); the
+// body's other members (ACCOUNT_BANNED's until and reason) are its Fields,
+// so a refusal passed on to the player keeps them.
 func (c *DataClient) Call(ctx context.Context, path string, request, response any) error {
 	body, err := json.Marshal(request)
 	if err != nil {
@@ -64,13 +66,7 @@ func (c *DataClient) Call(ctx context.Context, path string, request, response an
 		return err
 	}
 	if status < 200 || status > 299 {
-		var failure struct {
-			Error string `json:"error"`
-		}
-		if json.Unmarshal(data, &failure) != nil || failure.Error == "" {
-			failure.Error = fmt.Sprintf("HTTP_%d", status)
-		}
-		return apierr.New(status, failure.Error)
+		return refusal(status, data)
 	}
 	if response == nil {
 		return nil
@@ -79,6 +75,26 @@ func (c *DataClient) Call(ctx context.Context, path string, request, response an
 		return fmt.Errorf("decode %s response: %w", path, err)
 	}
 	return nil
+}
+
+// refusal turns a data service error body into an *apierr.Error.
+func refusal(status int, data []byte) *apierr.Error {
+	var members map[string]json.RawMessage
+	var code string
+	if json.Unmarshal(data, &members) != nil || json.Unmarshal(members["error"], &code) != nil || code == "" {
+		return apierr.New(status, fmt.Sprintf("HTTP_%d", status))
+	}
+	rejected := apierr.New(status, code)
+	if len(members) > 1 {
+		fields := make(map[string]any, len(members)-1)
+		for name, value := range members {
+			if name != "error" {
+				fields[name] = value
+			}
+		}
+		rejected = rejected.With(fields)
+	}
+	return rejected
 }
 
 func (c *DataClient) post(ctx context.Context, path string, body []byte) (int, []byte, error) {

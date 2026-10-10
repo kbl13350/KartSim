@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { formatMultiplayerError } from "./errors";
+import { formatMultiplayerError, serverError } from "./errors";
 
 const source = readFileSync(new URL("../../../recovered/formatted/index.js", import.meta.url), "utf8");
 const start = source.indexOf("function C1(n) {");
@@ -69,4 +69,19 @@ test("one live session per account and game-node throttling are explained in Chi
   assert.equal(formatMultiplayerError(new Error("ACCOUNT_ONLINE")),
     "该账号已在其他地方在线，请先退出另一处登录。");
   assert.equal(formatMultiplayerError(new Error("RATE_LIMITED")), "操作太频繁，请稍后再试。");
+});
+
+test("a hello refused for a ban shows the frame's end time and reason", () => {
+  // 2026-10-11 04:30 UTC is 12:30 in Beijing.
+  const frame = { type: "error", code: "ACCOUNT_BANNED", reason: "外挂", until: Date.UTC(2026, 9, 11, 4, 30),
+    requestId: "h1" };
+  const error = serverError(frame);
+  assert.equal(error.message, "ACCOUNT_BANNED");
+  assert.equal(formatMultiplayerError(error), "账号已被封禁，解封时间：2026-10-11 12:30（原因：外挂）");
+  // An older game server sends the code alone.
+  assert.equal(formatMultiplayerError(serverError({ code: "ACCOUNT_BANNED" })), "账号已被封禁。");
+  assert.equal(formatMultiplayerError(new Error("ACCOUNT_BANNED")), "账号已被封禁。");
+  // Other frames keep their usual messages.
+  assert.equal(formatMultiplayerError(serverError({ code: "ACCOUNT_ONLINE" })),
+    "该账号已在其他地方在线，请先退出另一处登录。");
 });

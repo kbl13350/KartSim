@@ -74,6 +74,21 @@ test("multiplayer account request, token changes and errors match release", asyn
   }
 });
 
+test("a banned login reads as the ban's end time and reason", async () => {
+  const deps = {
+    authEndpoint: (name: string) => `https://api.example.com/auth/${name}`,
+    authorizationHeaders: () => ({}),
+    fetch: async () => ({ ok: false, json: async () => ({ error: "ACCOUNT_BANNED",
+      until: Date.UTC(2026, 9, 11, 4, 30), reason: "外挂" }) }),
+    backendOrigin: () => "https://api.example.com",
+    clearToken: () => assert.fail("a ban is not a missing login"),
+    saveToken: () => assert.fail("no token for a banned account"),
+    errorMessages: { ACCOUNT_BANNED: "账号已被封禁。" },
+  } satisfies AccountRequestDependencies;
+  await assert.rejects(requestMultiplayerAccount(deps, "login", { username: "driver", password: "secret" }),
+    { message: "账号已被封禁，解封时间：2026-10-11 12:30（原因：外挂）" });
+});
+
 type EntryVariant = "guest-account" | "guest-login-required" |
   "guest-error" | "config-error" | "origin-error" | "null-same-origin" |
   "required-account" | "required-login" | "required-login-cancel" |

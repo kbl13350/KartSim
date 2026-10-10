@@ -1,9 +1,11 @@
 /** Multiplayer account API requests and the account entry gate. */
 
+import { formatBanMessage } from "./account-ui-support";
+
 interface AccountResponse {
   ok: boolean;
   json(): Promise<{ account?: unknown; token?: string; error?: string;
-    loginRequired?: boolean; backendOrigin?: string | null }>;
+    loginRequired?: boolean; backendOrigin?: string | null; until?: unknown; reason?: unknown }>;
 }
 
 export interface AccountRequestDependencies {
@@ -33,8 +35,9 @@ export async function requestMultiplayerAccount(
     if (code === "LOGIN_REQUIRED") {
       dependencies.clearToken(dependencies.backendOrigin());
     }
-    throw new Error(code === "LOGIN_REQUIRED" ? code :
-      dependencies.errorMessages[code] ?? code);
+    throw new Error(code === "LOGIN_REQUIRED" ? code
+      : code === "ACCOUNT_BANNED" ? formatBanMessage(payload.until, payload.reason)
+        : dependencies.errorMessages[code] ?? code);
   }
   if (action === "login") {
     if (!payload.token) {
