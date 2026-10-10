@@ -1,32 +1,37 @@
 import type { Camera, Object3D } from "three";
-import type { ItemCatalog } from "./item-catalog";
+import { decodeItemBml, type ItemBml, type ItemCatalog } from "./item-catalog";
 import {
   FxModelBank, FxSoundBank, type FxAudioContext, type FxInstance, type FxModelPool,
   type FxPlayingSound, type ItemFxOps,
 } from "./item-fx-assets";
 import {
-  ITEM_FX_TUNING, buildItemFxPlan, type BarricadeFx, type CloudFx, type CurseFx, type FxModel,
-  type FxSound, type ItemFx, type ItemFxPlan, type LockFx, type ProjectileFx, type ThrowFx,
-  type TimeBombFx, type UfoFx,
+  ITEM_FX_TUNING, buildItemFxPlan, type AuraFx, type BarricadeFx, type BeamFx, type CloudFx, type CurseFx,
+  type FxModel, type FxSound, type ItemFx, type ItemFxPlan, type ItemKartEffect, type KartVisual, type LockFx,
+  type ProjectileFx, type ThrowFx, type TimeBombFx, type UfoFx,
 } from "./item-fx-plan";
 
+export type { ItemKartEffect } from "./item-fx-plan";
+
 /**
- * The item race presenter (道具赛表现层, ITEM_MODE.md §7): projectiles, thrown
- * and placed objects, effects on the karts and item sounds, for the local
- * kart and remote karts alike. The race controller calls the event methods;
- * the race presenter calls `update` every frame after the track render
- * update. Coordinates are three.js world space (y-up, the space of the
+ * The item race presenter (道具赛表现层, ITEM_MODE.md §7 and C.4): projectiles,
+ * thrown and placed objects, effects on the karts and item sounds, for the
+ * local kart and remote karts alike. The race controller calls the event
+ * methods; the race presenter calls `update` every frame after the track
+ * render update. Coordinates are three.js world space (y-up, the space of the
  * physics `body.position` and the cube field); times are local milliseconds
  * on the race presenter clock (`toLocalTick` results and `nowMs`).
  *
- * Which state's model and sound play when comes from item-fx-plan.ts. Every
- * event is idempotent per visual: a kart effect started from `used` (shield,
- * angel, emp, timeBomb, magnet) and again from `kartEffect` keeps one visual,
- * and the local racer's own effect that `endKartEffect` already ended (a
- * shield spent on a block before the use's reply) is not brought back by the
- * reply's `used`. Visuals that should already be running when an event
- * arrives late start part-way through their animation; sounds more than
- * `soundLateMs` late are dropped.
+ * Which state's model and sound play when comes from item-fx-plan.ts, which
+ * reads every item from its own folder and variant. Every event is idempotent
+ * per visual: a kart effect started from `used` (shield, angel, timeBomb,
+ * magnet, …) and again from `kartEffect` keeps one visual, and the local
+ * racer's own effect that `endKartEffect` already ended (a shield spent on a
+ * block before the use's reply) is not brought back by the reply's `used`.
+ * A kart effect that starts right after a hit takes the hitting item's look
+ * (the snow bomb's ice, the lockdown's hold, a tiger missile's slow without a
+ * UFO). Visuals that should already be running when an event arrives late
+ * start part-way through their animation; sounds more than `soundLateMs`
+ * late are dropped.
  */
 
 export interface ItemPresenterVec3 { x: number; y: number; z: number }
@@ -48,9 +53,6 @@ export interface ItemPresenterFrame {
   localPlayerId: string;
 }
 
-export type ItemKartEffect = "trap" | "spin" | "launch" | "reverse" | "slow" | "shrink" |
-  "barrier" | "pull" | "shield" | "angel" | "emp" | "escapeShield" | "timeBomb";
-
 export interface ItemPresenterUse {
   useId: number;
   itemId: number;
@@ -59,6 +61,8 @@ export interface ItemPresenterUse {
   startMs: number;
   etaMs: number;
   point?: ItemPresenterVec3;
+  /** Missiles fired at once (`used.count`: 2 for a two-missile kart, the second 200 ms later). */
+  count?: number;
 }
 
 export interface ItemPresenterPlacement {
@@ -70,15 +74,39 @@ export interface ItemPresenterPlacement {
   startMs: number;
 }
 
+/** Hit variants of ITEM_MODE.md C.2/C.7. */
+export type ItemHitVariant = "small" | "headband" | "bonus" | "quick" | "balloon";
+
 export interface ItemPresenterHit {
   useId: number;
   itemId: number;
   victimId: string;
   userId?: string;
   result: "hit" | "blocked";
+  /** shield, angel, emp, escape; kart/pet (an equipment passive, SpecialShield); eat (Eat). */
   by?: string;
   atMs: number;
   position?: ItemPresenterVec3;
+  /** Which missile of a two-missile use (0 or 1); omitted for one. */
+  shot?: number;
+  variant?: ItemHitVariant;
+}
+
+export interface ItemKartEffectOptions {
+  /** pull: the racer the magnet pulls toward; its field faces that kart. */
+  target?: string;
+  /** invisible: this client may see the kart (its own racer and teammates see it translucent). */
+  visibleToMe?: boolean;
+  /** The item that causes the effect, when the caller knows it (a gold vs a protect shield). */
+  itemId?: number;
+}
+
+/** How the race presenter draws one racer's kart this frame (`kartPresentation`). */
+export interface ItemKartPresentationState {
+  /** 1 normal, 0 hidden (invisible to other teams), between: translucent. */
+  opacity: number;
+  /** The balloon accessory: hidden while it pops. */
+  balloonVisible: boolean;
 }
 
 export interface ItemRacePresenter {
@@ -91,16 +119,21 @@ export interface ItemRacePresenter {
   /** A placed object is gone (a banana that was run over). */
   removed(useId: number): void;
   /**
-   * `target` (pull only) is the racer the magnet pulls toward: its field faces
-   * that kart. Without it the field faces the kart's nose until a `used` of the
-   * magnet names its target.
+   * `options.target` (pull only) is the racer the magnet pulls toward: its
+   * field faces that kart. Without it the field faces the kart's nose until a
+   * `used` of the magnet names its target. `options.visibleToMe` decides how
+   * an invisible kart shows here; `options.itemId` names the causing item.
    */
   kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number,
-    options?: { target?: string }): void;
+    options?: ItemKartEffectOptions): void;
   endKartEffect(playerId: string, kind: ItemKartEffect): void;
   sound(itemId: number, stem: string,
     options?: { position?: ItemPresenterVec3; key?: string; loop?: boolean }): void;
   stopSound(key: string): void;
+  /** How a racer's kart shows now (invisibility, the balloon popping); undefined = as usual. */
+  kartPresentation?(playerId: string, nowMs: number): ItemKartPresentationState | undefined;
+  /** The XUN start item reached the slots: the charger sound (`sound_/fx/charger`). */
+  startItemFlash?(atMs: number): void;
   update(frame: ItemPresenterFrame): void;
   /** Forget all transient visuals (e.g. on race restart). */
   reset(): void;
@@ -192,6 +225,22 @@ function atPoint(point: (frame: ItemPresenterFrame) => Vec3 | undefined,
   };
 }
 
+/** Where a kart is when the visual first shows, kept there afterwards. */
+function whereKartWas(playerId: string, fallback?: Vec3): Placer {
+  let point: Vec3 | undefined;
+  let facing: Vec3 | undefined;
+  return atPoint(frame => {
+    if (!point) {
+      const pose = frame.pose(playerId);
+      if (pose) {
+        point = { ...pose.position };
+        facing = { ...pose.forward };
+      } else if (fallback) point = { ...fallback };
+    }
+    return point;
+  }, () => facing);
+}
+
 interface FxVisual {
   readonly group: string;
   readonly pool: FxModelPool;
@@ -223,33 +272,51 @@ interface SoundRequest {
 interface UseRecord {
   readonly event: ItemPresenterUse;
   readonly fx: ItemFx;
-  /** Victims already reported, so a repeated delivery does not replay the hit. */
+  /** Victims (and shots) already reported, so a repeated delivery does not replay the hit. */
   readonly victims: Set<string>;
   placed?: Vec3;
   /** The barricade's sequence once its point is known. */
   barricade?: { active: FxVisual; end: FxVisual; endSound?: SoundRequest };
+  /** A dropped mine went off: later hits of the same use only show on their victim. */
+  spent?: boolean;
 }
 
-/** A kart effect of the contract, or scanning's radar (no physics kind). */
-type SlotKind = ItemKartEffect | "scan";
+/** A kart effect of the contract, or scanning's radar / siren lights (no physics kind). */
+type SlotKind = ItemKartEffect | "scan" | "siren";
 
 interface KartSlot {
   readonly playerId: string;
   readonly kind: SlotKind;
   startMs: number;
   endMs: number;
+  /** The model the slot shows (a refreshed start with another model replaces it). */
+  model?: FxModel;
   /** The visual for the effect's duration. */
   main?: FxVisual;
-  /** A tail after the effect (ufo PostAffect, devil Escape). */
+  /** A tail after the effect (ufo PostAffect, devil Escape, the infected bombs' lock). */
   after?: { model: FxModel; sound?: FxSound; visual?: FxVisual; request?: SoundRequest };
+  /** The item whose look the slot shows (the trap's item gives its escape shield). */
+  cause?: ItemFx;
+  /** invisible: whether this client may see the kart. */
+  visibleToMe?: boolean;
 }
+
+/** The last hit on each racer: a kart effect starting close to it takes its item's look. */
+interface HitCause { fx: ItemFx; atMs: number; variant?: ItemHitVariant }
 
 const useGroup = (useId: number) => `use:${useId}`;
 const targetGroup = (useId: number, playerId: string) => `use:${useId}:${playerId}`;
+const shotGroup = (useId: number, playerId: string, shot: number) => `use:${useId}:${playerId}:shot:${shot}`;
 const slotKey = (playerId: string, kind: SlotKind) => `kart:${playerId}:${kind}`;
 
-/** Effects whose visual the hit already shows, or physics/the kart's crash effect does. */
-const NO_KART_VISUAL: ReadonlySet<ItemKartEffect> = new Set(["spin", "launch", "barrier"]);
+/** The default look of each kart effect: the classic item that causes it (appendix B). */
+const DEFAULT_SOURCE: Partial<Record<ItemKartEffect, number>> = {
+  trap: 9, slow: 3, shrink: 111, reverse: 2, pull: 5, shield: 10, angel: 11, emp: 12,
+  invincible: 36, timeBomb: 13,
+};
+
+/** Effects of the user's own items: their look follows the user's latest use. */
+const OWN_EFFECTS: ReadonlySet<ItemKartEffect> = new Set(["shield", "angel", "emp", "invincible", "invisible"]);
 
 export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
   readonly visuals: FxVisual[] = [];
@@ -259,8 +326,10 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
   readonly slots = new Map<string, KartSlot>();
   /** The planned end of slots `endKartEffect` cut short, by slot key, until the slot starts again. */
   readonly endedSlots = new Map<string, number>();
-  /** The last item that hit each racer (the trap bubble follows it). */
-  readonly trapCause = new Map<string, { fx: ItemFx; atMs: number }>();
+  /** The last item that hit each racer (the next kart effect takes its look). */
+  readonly causes = new Map<string, HitCause>();
+  /** Balloons popping: hidden from the hit until Reborn. */
+  readonly balloonPops = new Map<string, { fromMs: number; untilMs: number }>();
   readonly placement: Placement = {
     position: vec(), right: vec(), up: vec(), forward: vec(), scale: 1,
   };
@@ -292,9 +361,10 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     switch (fx.kind) {
       case "projectile": return this.launchProjectiles(record, fx);
       case "ufo": return this.launchUfo(record, fx);
+      case "beam": return this.launchBeam(record, fx);
       case "magnet":
         this.slot(user, "pull", s, fx.field.lifeMs, fx.field, {
-          target: event.targets[0], fromUse: true,
+          target: event.targets[0], fromUse: true, cause: fx,
         });
         return;
       case "throw": return this.launchThrow(record, fx);
@@ -307,14 +377,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       case "cloud": return this.launchCloud(record, fx);
       case "curse": return this.launchCurse(record, fx);
       case "lock": return this.launchLock(record, fx);
-      case "aura": {
-        this.play(fx.useSound, s, { kind: "kart", playerId: user }, group);
-        const covered = fx.onTargets && event.targets.length > 0 ? event.targets : [user];
-        for (const playerId of covered)
-          this.slot(playerId, fx.effect, s, fx.durationMs, fx.model, { sound: fx.startSound, fromUse: true });
-        return;
-      }
-      case "hazard":
+      case "aura": return this.launchAura(record, fx);
       case "none":
         return;
     }
@@ -334,49 +397,82 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     const fx = record?.fx ?? this.plan.items.get(event.itemId);
     if (!fx) return;
     const victim = event.victimId;
-    if (record?.victims.has(victim)) return;
-    record?.victims.add(victim);
+    const shot = event.shot === 0 || event.shot === 1 ? event.shot : undefined;
+    const report = shot === undefined ? victim : `${victim}#${shot}`;
+    if (record?.victims.has(report)) return;
+    record?.victims.add(report);
     const at = event.atMs;
     const anchor: SoundAnchor = { kind: "kart", playerId: victim };
+    const where = event.position ? { ...event.position } : undefined;
     // A projectile (or the UFO's approach) at this victim is spent by the hit;
-    // a blocked attack also drops its warnings and strikes on the victim.
-    if (record && (event.result === "blocked" || fx.kind === "projectile" || fx.kind === "ufo"))
-      this.cancel(targetGroup(event.useId, victim));
-    if (event.result === "blocked") {
-      if (event.by === undefined || event.by === "escape") return;
-      this.show(`hit:${victim}`, fx.block.model, at, at, at + (fx.block.model?.lifeMs ?? 0), onKart(victim));
-      this.play(fx.block.sound, at, anchor);
+    // a blocked attack also drops its warnings, strikes and its attached bomb.
+    if (record) {
+      if (event.result === "blocked" || event.by === "eat") this.cancel(targetGroup(event.useId, victim));
+      else if (fx.kind === "projectile") this.cancel(shot === undefined
+        ? `${targetGroup(event.useId, victim)}:shot` : shotGroup(event.useId, victim, shot));
+      else if (fx.kind === "ufo" || fx.kind === "beam") this.cancel(targetGroup(event.useId, victim));
+    }
+    if (event.by === "eat") {
+      // Eaten by an equipment passive: Eat (바나나먹기) on the eater, EatBonus's lucci.
+      this.show(`hit:${victim}`, fx.eat?.model, at, at, at + (fx.eat?.model?.lifeMs ?? 0), onKart(victim));
+      this.play(fx.eat?.sound, at, anchor);
+      if (event.variant === "bonus")
+        this.show(`hit:${victim}`, fx.eat?.bonus, at, at, at + (fx.eat?.bonus?.lifeMs ?? 0), onKart(victim));
+      if (record && fx.kind === "throw" && fx.consumed) this.spend(record);
       return;
     }
+    if (event.result === "blocked") {
+      if (event.by === undefined || event.by === "escape") return;
+      const look = event.by === "kart" || event.by === "pet" ? fx.special : fx.block;
+      this.show(`hit:${victim}`, look.model, at, at, at + (look.model?.lifeMs ?? 0), onKart(victim));
+      this.play(look.sound, at, anchor);
+      return;
+    }
+    const small = event.variant === "small" || event.variant === "balloon" ? fx.small : undefined;
     switch (fx.kind) {
-      case "projectile":
-        this.show(`hit:${victim}`, fx.impact, at, at, at + (fx.impact?.lifeMs ?? 0), onKart(victim));
-        this.play(fx.impactSound, at, anchor);
+      case "projectile": {
+        const impact = small ?? { model: fx.impact, sound: fx.impactSound };
+        this.show(`hit:${victim}`, impact.model, at, at, at + (impact.model?.lifeMs ?? 0), onKart(victim));
+        this.play(impact.sound, at, anchor);
+        if (record && fx.field && victim === record.event.targets[0]) this.lockdownField(record, fx, victim, at);
         break;
+      }
       case "ufo":
         this.play(fx.arriveSound, at, anchor);
         break;
-      case "throw":
+      case "throw": {
+        this.play(fx.hitSound, at, anchor);
+        this.show(`hit:${victim}`, fx.impact, at, at, at + (fx.impact?.lifeMs ?? 0), onKart(victim));
+        this.play(fx.impactSound, at, anchor);
+        const point = record?.placed ?? record?.event.point ?? where;
+        if (!record?.spent) {
+          const object = point ? atPoint(() => point, () => undefined) : onKart(victim);
+          this.show(`hit:${victim}`, fx.itemImpact, at, at, at + (fx.itemImpact?.lifeMs ?? 0), object);
+          this.show(`hit:${victim}`, fx.burst, at, at, at + (fx.burst?.lifeMs ?? 0), object);
+          this.play(fx.burstSound, at, point ? { kind: "point", position: point } : anchor);
+        }
+        if (record && fx.consumed) this.spend(record);
+        break;
+      }
       case "timeBomb":
         this.play(fx.hitSound, at, anchor);
         break;
       case "barricade":
         if (record?.barricade) this.breakBarricade(record.barricade, fx, at);
         break;
-      case "hazard": {
-        this.show(`hit:${victim}`, fx.impact, at, at, at + (fx.impact?.lifeMs ?? 0), onKart(victim));
-        this.play(fx.impactSound, at, anchor);
-        const where = event.position ? { ...event.position } : undefined;
-        const burst = where ? atPoint(() => where, () => undefined) : onKart(victim);
-        this.show(`hit:${victim}`, fx.burst, at, at, at + (fx.burst?.lifeMs ?? 0), burst);
-        this.play(fx.burstSound, at, where ? { kind: "point", position: where } : anchor);
+      case "aura":
+        // A siren knocked this kart aside.
         this.play(fx.hitSound, at, anchor);
         break;
-      }
       default:
         break;
     }
-    this.trapCause.set(victim, { fx, atMs: at });
+    if (event.variant === "bonus" && fx.bonus) {
+      this.show(`hit:${victim}`, fx.bonus.model, at, at, at + (fx.bonus.model?.lifeMs ?? 0), onKart(victim));
+      this.play(fx.bonus.sound, at, anchor);
+    }
+    if (event.variant === "balloon") this.popBalloon(victim, at);
+    this.causes.set(victim, { fx, atMs: at, variant: event.variant });
   }
 
   removed(useId: number): void {
@@ -385,56 +481,30 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
   }
 
   kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number,
-    options: { target?: string } = {}): void {
-    if (this.disposed || NO_KART_VISUAL.has(kind)) return;
+    options: ItemKartEffectOptions = {}): void {
+    if (this.disposed) return;
     const end = startMs + Math.max(0, durationMs);
-    const item = (name: string) => [...this.plan.items.values()].find(fx => fx.name === name);
-    switch (kind) {
-      case "trap": {
-        const cause = this.trapCause.get(playerId);
-        const recent = cause && Math.abs(startMs - cause.atMs) <= ITEM_FX_TUNING.trapCauseWindowMs;
-        const bubble = (recent && "trap" in cause.fx ? cause.fx.trap : undefined) ?? this.plan.shared.trap;
-        this.slot(playerId, kind, startMs, end - startMs, bubble);
-        return;
-      }
-      case "escapeShield":
-        this.slot(playerId, kind, startMs, end - startMs, this.plan.shared.escapeShield);
-        return;
-      case "slow": {
-        const ufo = item("ufo") as UfoFx | undefined;
-        if (ufo) this.slot(playerId, kind, startMs, end - startMs, ufo.hover, { after: ufo.leave });
-        return;
-      }
-      case "shrink": {
-        const thunder = item("thunderbolt") as CurseFx | undefined;
-        if (thunder) this.slot(playerId, kind, startMs, end - startMs, thunder.affect, { sound: thunder.affectSound });
-        return;
-      }
-      case "reverse": {
-        const devil = item("devil") as CurseFx | undefined;
-        if (devil) this.slot(playerId, kind, startMs, end - startMs, devil.affect,
-          { after: devil.after, afterSound: devil.afterSound });
-        return;
-      }
-      case "pull": {
-        const magnet = item("magnet");
-        if (magnet?.kind === "magnet") this.slot(playerId, kind, startMs, end - startMs, magnet.field,
-          { target: options.target });
-        return;
-      }
-      case "shield":
-      case "angel":
-      case "emp": {
-        const aura = [...this.plan.items.values()].find(fx => fx.kind === "aura" && fx.effect === kind);
-        if (aura?.kind === "aura") this.slot(playerId, kind, startMs, end - startMs, aura.model, { sound: aura.startSound });
-        return;
-      }
-      case "timeBomb": {
-        const bomb = item("timeBomb") as TimeBombFx | undefined;
-        if (bomb) this.slot(playerId, kind, startMs, end - startMs, bomb.carried, { pulse: true });
-        return;
-      }
+    const { fx, visual } = this.lookOf(playerId, kind, startMs, options.itemId);
+    if (kind === "invisible") {
+      this.slot(playerId, kind, startMs, end - startMs, undefined, { cause: fx });
+      const slot = this.slots.get(slotKey(playerId, kind));
+      if (slot) slot.visibleToMe = options.visibleToMe === true;
+      return;
     }
+    if (kind === "escapeShield") {
+      // The trap that just ended names its blue shield (none for the snow bombs).
+      const trap = this.slots.get(slotKey(playerId, "trap"));
+      const look = trap?.cause?.kart.escapeShield ??
+        (trap?.cause ? undefined : visual) ?? { model: this.plan.shared.escapeShield };
+      this.slot(playerId, kind, startMs, end - startMs, look.model, { cause: trap?.cause });
+      return;
+    }
+    if (!visual) return;
+    const fallbackTrap = kind === "trap" && !visual.model ? this.plan.shared.trap : undefined;
+    this.slot(playerId, kind, startMs, end - startMs, visual.model ?? fallbackTrap, {
+      sound: visual.sound, after: visual.after, afterSound: visual.afterSound,
+      pulse: visual.pulse || kind === "timeBomb", target: options.target, cause: fx,
+    });
   }
 
   endKartEffect(playerId: string, kind: ItemKartEffect): void {
@@ -445,6 +515,24 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     if (slot.endMs <= now) return;
     this.endedSlots.set(slotKey(playerId, kind), slot.endMs);
     this.retimeSlot(slot, Math.max(now, slot.startMs));
+  }
+
+  kartPresentation(playerId: string, nowMs: number): ItemKartPresentationState | undefined {
+    if (this.disposed) return undefined;
+    const invisible = this.slots.get(slotKey(playerId, "invisible"));
+    const hidden = invisible && invisible.startMs <= nowMs && nowMs < invisible.endMs;
+    const pop = this.balloonPops.get(playerId);
+    const popping = pop !== undefined && pop.fromMs <= nowMs && nowMs < pop.untilMs;
+    if (!hidden && !popping) return undefined;
+    return {
+      opacity: !hidden ? 1 : invisible.visibleToMe ? ITEM_FX_TUNING.ghostOpacity : 0,
+      balloonVisible: !popping,
+    };
+  }
+
+  startItemFlash(atMs: number): void {
+    if (this.disposed) return;
+    this.play(this.plan.shared.chargerSound, atMs, { kind: "screen" }, "startItem");
   }
 
   sound(itemId: number, stem: string,
@@ -470,54 +558,135 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     }
   }
 
+  /**
+   * The look of a kart effect on a racer: the named item's, else the item
+   * that just hit it, else (the user's own effects) the item of its latest
+   * use, else the classic item that causes this effect. Spin, launch,
+   * barrier, hold and knockback have no default look (the hit, the physics or
+   * the kart's crash effect already shows them).
+   */
+  lookOf(playerId: string, kind: ItemKartEffect, startMs: number, itemId?: number):
+  { fx?: ItemFx; visual?: KartVisual } {
+    const named = itemId !== undefined ? this.plan.items.get(itemId) : undefined;
+    if (named) return { fx: named, visual: named.kart[kind] ?? this.defaultLook(kind) };
+    const cause = this.causes.get(playerId);
+    if (cause && Math.abs(startMs - cause.atMs) <= ITEM_FX_TUNING.trapCauseWindowMs) {
+      const variant = cause.variant === "headband" ? cause.fx.headband?.[kind] : undefined;
+      const visual = variant ?? cause.fx.kart[kind];
+      if (visual) return { fx: cause.fx, visual };
+    }
+    if (OWN_EFFECTS.has(kind)) {
+      const own = this.latestOwnUse(playerId, kind, startMs);
+      if (own?.kart[kind]) return { fx: own, visual: own.kart[kind] };
+    }
+    return { visual: this.defaultLook(kind) };
+  }
+
+  defaultLook(kind: ItemKartEffect): KartVisual | undefined {
+    if (kind === "invisible") return {};
+    const source = DEFAULT_SOURCE[kind];
+    const fx = source === undefined ? undefined : this.plan.items.get(source);
+    if (kind === "timeBomb") {
+      const bomb = fx?.kind === "timeBomb" ? fx : undefined;
+      return bomb ? { model: bomb.carried, pulse: true } : undefined;
+    }
+    return fx?.kart[kind] ?? (kind === "trap" ? { model: this.plan.shared.trap } : undefined);
+  }
+
+  /** The user's (or, for angel, the covered racer's) latest use of an item with that effect. */
+  latestOwnUse(playerId: string, kind: ItemKartEffect, startMs: number): ItemFx | undefined {
+    let best: UseRecord | undefined;
+    for (const record of this.uses.values()) {
+      if (!record.fx.kart[kind]) continue;
+      const mine = record.event.userId === playerId ||
+        (kind === "angel" && record.event.targets.includes(playerId));
+      if (!mine || record.event.startMs > startMs + ITEM_FX_TUNING.trapCauseWindowMs) continue;
+      if (!best || record.event.startMs > best.event.startMs) best = record;
+    }
+    return best?.fx;
+  }
+
   // ---- per item --------------------------------------------------------------
 
   launchProjectiles(record: UseRecord, fx: ProjectileFx): void {
     const { event } = record;
     const s = event.startMs;
     const user = event.userId;
-    this.play(fx.launchSound, s, { kind: "kart", playerId: user }, useGroup(event.useId));
+    const shots = Math.max(1, Math.min(2, Math.trunc(event.count ?? 1)));
+    this.show(useGroup(event.useId), fx.launch, s, s, s + (fx.launch?.lifeMs ?? 0), onKart(user));
     const lift = ITEM_FX_TUNING.projectileLiftM;
-    if (event.targets.length === 0) {
-      // Misfire: straight ahead at the item's speed for Use.life, then gone.
-      let origin: Vec3 | undefined, forward: Vec3 | undefined;
-      this.show(useGroup(event.useId), fx.flight, s, s, s + fx.flight.lifeMs, (frame, now, out) => {
-        if (!origin) {
-          const pose = frame.pose(user);
-          if (!pose) return false;
-          origin = addScaled(vec(), pose.position, pose.up, lift);
-          forward = { ...pose.forward };
-        }
-        addScaled(out.position, origin, forward!, fx.speed * Math.max(0, now - s) / 1000);
-        return pointAlong(out, forward!);
-      });
-      return;
-    }
-    const eta = event.etaMs > 0 ? event.etaMs : fx.flight.lifeMs;
-    for (const target of event.targets) {
-      let origin: Vec3 | undefined;
-      let goal: Vec3 | undefined;
-      const tangent = vec();
-      this.show(targetGroup(event.useId, target), fx.flight, s, s, s + eta + ITEM_FX_TUNING.projectileHoldMs,
-        (frame, now, out) => {
-          const targetPose = frame.pose(target);
-          if (targetPose) goal = addScaled(goal ?? vec(), targetPose.position, targetPose.up, lift);
+    for (let shot = 0; shot < shots; shot += 1) {
+      const fired = s + shot * ITEM_FX_TUNING.secondShotDelayMs;
+      this.play(fx.launchSound, fired, { kind: "kart", playerId: user }, useGroup(event.useId));
+      if (event.targets.length === 0) {
+        // Misfire: straight ahead at the item's speed for Use.life, then gone.
+        let origin: Vec3 | undefined, forward: Vec3 | undefined;
+        this.show(useGroup(event.useId), fx.flight, fired, fired, fired + fx.flight.lifeMs, (frame, now, out) => {
           if (!origin) {
             const pose = frame.pose(user);
             if (!pose) return false;
             origin = addScaled(vec(), pose.position, pose.up, lift);
+            forward = { ...pose.forward };
           }
-          if (!goal) return false;
-          // Homing: re-aim at the target's current pose every frame, on a slight arc.
-          const p = Math.min(1, Math.max(0, (now - s) / eta));
-          const height = fx.arcM * 4 * p * (1 - p);
-          out.position.x = origin.x + (goal.x - origin.x) * p;
-          out.position.y = origin.y + (goal.y - origin.y) * p + height;
-          out.position.z = origin.z + (goal.z - origin.z) * p;
-          addScaled(tangent, sub(goal, origin), WORLD_UP, fx.arcM * 4 * (1 - 2 * p));
-          return pointAlong(out, tangent) || pointAlong(out, targetPose?.forward ?? vec(0, 0, 1));
+          addScaled(out.position, origin, forward!, fx.speed * Math.max(0, now - fired) / 1000);
+          return pointAlong(out, forward!);
         });
+        continue;
+      }
+      const eta = event.etaMs > 0 ? event.etaMs : fx.flight.lifeMs;
+      for (const target of event.targets) {
+        let origin: Vec3 | undefined;
+        let goal: Vec3 | undefined;
+        const tangent = vec();
+        this.show(shotGroup(event.useId, target, shot), fx.flight, fired, fired,
+          fired + eta + ITEM_FX_TUNING.projectileHoldMs, (frame, now, out) => {
+            const targetPose = frame.pose(target);
+            if (targetPose) goal = addScaled(goal ?? vec(), targetPose.position, targetPose.up, lift);
+            if (!origin) {
+              const pose = frame.pose(user);
+              if (!pose) return false;
+              origin = addScaled(vec(), pose.position, pose.up, lift);
+            }
+            if (!goal) return false;
+            // Homing: re-aim at the target's current pose every frame, on a slight arc.
+            const p = Math.min(1, Math.max(0, (now - fired) / eta));
+            const height = fx.arcM * 4 * p * (1 - p);
+            out.position.x = origin.x + (goal.x - origin.x) * p;
+            out.position.y = origin.y + (goal.y - origin.y) * p + height;
+            out.position.z = origin.z + (goal.z - origin.z) * p;
+            addScaled(tangent, sub(goal, origin), WORLD_UP, fx.arcM * 4 * (1 - 2 * p));
+            return pointAlong(out, tangent) || pointAlong(out, targetPose?.forward ?? vec(0, 0, 1));
+          });
+      }
     }
+    if (fx.attach) for (const target of event.targets) this.attachBomb(record, fx, target);
+  }
+
+  /**
+   * waterbombFly: on arrival it ticks on its target for CountDown (the time
+   * bomb's balloon, faster toward the end), then bursts there for Active. A
+   * blocked arrival cancels it with the target's group.
+   */
+  attachBomb(record: UseRecord, fx: ProjectileFx, target: string): void {
+    const attach = fx.attach!;
+    const { event } = record;
+    const arrival = event.startMs + (event.etaMs > 0 ? event.etaMs : fx.flight.lifeMs);
+    const blast = arrival + attach.countdownMs;
+    const group = `${targetGroup(event.useId, target)}:attach`;
+    this.show(group, attach.carried, arrival, arrival, blast,
+      this.pulsing(target, arrival, () => blast));
+    this.show(group, attach.burst, blast, blast, blast + (attach.burst?.lifeMs ?? 0), whereKartWas(target));
+    this.play(attach.burstSound, blast, { kind: "kart", playerId: target }, group);
+  }
+
+  /** lockdown / block missile: CountDown on the target, then its field (SetEmp) where the target is. */
+  lockdownField(record: UseRecord, fx: ProjectileFx, target: string, at: number): void {
+    const field = fx.field!;
+    const group = `${targetGroup(record.event.useId, target)}:field`;
+    this.play(field.countdownSound, at, { kind: "kart", playerId: target }, group);
+    const open = at + field.countdownMs;
+    this.show(group, field.model, open, open, open + (field.model?.lifeMs ?? 0), whereKartWas(target));
+    this.play(field.sound, open, { kind: "kart", playerId: target }, group);
   }
 
   launchUfo(record: UseRecord, fx: UfoFx): void {
@@ -532,6 +701,24 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
         onKart(target));
   }
 
+  /** snowman, talisman: thrown from the user (Use firing), landing on the target at the ETA. */
+  launchBeam(record: UseRecord, fx: BeamFx): void {
+    const { event } = record;
+    const s = event.startMs;
+    const user = event.userId;
+    const group = useGroup(event.useId);
+    this.show(group, fx.depart, s, s, s + (fx.depart?.lifeMs ?? 0), onKart(user));
+    this.play(fx.departSound, s, { kind: "kart", playerId: user }, group);
+    const eta = event.etaMs > 0 ? event.etaMs : fx.approach?.lifeMs ?? fx.depart?.lifeMs ?? 0;
+    for (const target of event.targets) {
+      const approach = fx.approach;
+      const span = Math.min(approach?.lifeMs ?? 0, eta);
+      this.show(targetGroup(event.useId, target), approach, s + eta - (approach?.lifeMs ?? 0),
+        s + eta - span, s + eta, onKart(target));
+      this.play(fx.arriveSound, s + eta, { kind: "kart", playerId: target }, targetGroup(event.useId, target));
+    }
+  }
+
   launchThrow(record: UseRecord, fx: ThrowFx): void {
     const { event } = record;
     const s = event.startMs;
@@ -541,7 +728,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     let start: Vec3 | undefined;
     let fallback: Vec3 | undefined;
     let direction: Vec3 | undefined;
-    const target = () => event.point ?? fallback;
+    const target = () => record.placed ?? event.point ?? fallback;
     const capture = (frame: ItemPresenterFrame) => {
       if (start) return true;
       const pose = frame.pose(user);
@@ -563,10 +750,16 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
       out.position.z = start!.z + (goal.z - start!.z) * p;
       return faceAlong(out, direction!, WORLD_UP) || pointAlong(out, direction!);
     });
-    this.show(group, fx.set, land, land, land + fx.set.lifeMs,
+    this.show(`${group}:set`, fx.set, land, land, land + fx.set.lifeMs,
       atPoint(frame => capture(frame) ? target() : undefined, () => direction));
     this.play(fx.setSound, land, event.point ? { kind: "point", position: { ...event.point } }
-      : { kind: "kart", playerId: user }, group);
+      : { kind: "kart", playerId: user }, `${group}:set`);
+  }
+
+  /** A mine went off (or was eaten): the object leaves the track. */
+  spend(record: UseRecord): void {
+    record.spent = true;
+    this.cancel(`${useGroup(record.event.useId)}:set`);
   }
 
   launchTimeBomb(record: UseRecord, fx: TimeBombFx): void {
@@ -575,7 +768,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     const user = event.userId;
     const group = useGroup(event.useId);
     this.play(fx.launchSound, s, { kind: "kart", playerId: user }, group);
-    this.slot(user, "timeBomb", s, fx.carried.lifeMs, fx.carried, { pulse: true, fromUse: true });
+    this.slot(user, "timeBomb", s, fx.carried.lifeMs, fx.carried, { pulse: true, fromUse: true, cause: fx });
     const blast = s + fx.carried.lifeMs;
     let fallback: Vec3 | undefined;
     // The user reports the blast point at the blast; until then it is where the user is.
@@ -629,7 +822,7 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     const { event } = record;
     const s = event.startMs;
     const group = useGroup(event.useId);
-    this.show(group, fx.launch, s, s, s + fx.launch.lifeMs, onKart(event.userId));
+    this.show(group, fx.launch, s, s, s + (fx.launch?.lifeMs ?? 0), onKart(event.userId));
     this.play(fx.bornSound, s, { kind: "kart", playerId: event.userId }, group);
     // Each target's removal is its own: a cloud blocked on that kart never covered it.
     for (const target of event.targets)
@@ -670,38 +863,80 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     }
   }
 
+  /**
+   * Self items: the use sound and intro on the user, then the model on the
+   * covered karts from the Affect state on. EMP (only on racers it freed)
+   * and invisibility (depends on who looks) wait for the controller's
+   * `kartEffect`.
+   */
+  launchAura(record: UseRecord, fx: AuraFx): void {
+    const { event } = record;
+    const s = event.startMs;
+    const user = event.userId;
+    const group = useGroup(event.useId);
+    this.play(fx.useSound, s, { kind: "kart", playerId: user }, group);
+    this.show(group, fx.intro, s, s, s + (fx.intro?.lifeMs ?? 0), onKart(user));
+    this.play(fx.introSound, s, { kind: "kart", playerId: user }, group);
+    if (!fx.fromUse) return;
+    const begin = s + fx.delayMs;
+    const kind: SlotKind = fx.effect;
+    const covered = fx.onTargets && event.targets.length > 0 ? event.targets : [user];
+    for (const playerId of covered)
+      this.slot(playerId, kind, begin, fx.durationMs, fx.model, { sound: fx.startSound, fromUse: true, cause: fx });
+  }
+
+  /** A balloon took a missile: it pops (hidden) for Affect, then Reborn pays lucci (루찌획득). */
+  popBalloon(victim: string, at: number): void {
+    const balloon = this.plan.shared.balloon;
+    if (!balloon) return;
+    const reborn = at + balloon.popMs;
+    this.balloonPops.set(victim, { fromMs: at, untilMs: reborn });
+    const anchor: SoundAnchor = { kind: "kart", playerId: victim };
+    this.play(balloon.popSound, at, anchor);
+    this.show(`hit:${victim}`, balloon.reborn, reborn, reborn, reborn + (balloon.reborn?.lifeMs ?? 0),
+      onKart(victim));
+    this.play(balloon.rebornSound, reborn, anchor);
+    this.play(balloon.eatenSound, reborn, anchor);
+  }
+
   // ---- kart effect slots -----------------------------------------------------
 
   /**
    * One visual per racer and effect: a second start while it runs only moves
    * its end (and does not replay its sound); one that names a `target` also
    * turns it toward that kart (the local racer's own magnet starts with the
-   * physics pull, before the use's reply names its target). `fromUse` marks a
-   * start from a `used` event, which never brings back the local racer's own
-   * effect that the controller already ended.
+   * physics pull, before the use's reply names its target), and a use that
+   * shows another model (a protect shield after the default gold one)
+   * replaces it. `fromUse` marks a start from a `used` event, which never
+   * brings back the local racer's own effect that the controller already
+   * ended.
    */
   slot(playerId: string, kind: SlotKind, startMs: number, durationMs: number,
     model: FxModel | undefined, options: { sound?: FxSound; after?: FxModel; afterSound?: FxSound;
-      pulse?: boolean; target?: string; fromUse?: boolean } = {}): void {
+      pulse?: boolean; target?: string; fromUse?: boolean; cause?: ItemFx } = {}): void {
     const key = slotKey(playerId, kind);
     const end = startMs + Math.max(0, durationMs);
     const existing = this.slots.get(key);
-    if (existing && existing.endMs > Math.max(startMs, this.nowMs) && existing.main && !this.ended(existing.main)) {
-      this.retimeSlot(existing, end);
-      if (options.target) existing.main.place = this.facing(playerId, options.target);
+    const running = existing && existing.endMs > Math.max(startMs, this.nowMs) &&
+      (existing.main ? !this.ended(existing.main) : existing.model === undefined);
+    if (running && existing && (!options.fromUse || existing.model?.key === model?.key)) {
+      this.retimeSlot(existing, Math.max(existing.endMs, end));
+      if (options.target && existing.main) existing.main.place = this.facing(playerId, options.target);
+      if (options.cause && !existing.cause) existing.cause = options.cause;
       return;
     }
-    if (options.fromUse && this.endedOwnEffect(key, playerId, startMs)) return;
+    if (options.fromUse && !running && this.endedOwnEffect(key, playerId, startMs)) return;
+    const begin = running && existing ? Math.min(existing.startMs, startMs) : startMs;
     if (existing) this.cancel(key);
     this.endedSlots.delete(key);
-    const slot: KartSlot = { playerId, kind, startMs, endMs: end };
+    const slot: KartSlot = { playerId, kind, startMs: begin, endMs: end, model, cause: options.cause };
     this.slots.set(key, slot);
     const placer = options.target ? this.facing(playerId, options.target)
-      : options.pulse ? this.pulsing(playerId, startMs, () => slot.endMs) : onKart(playerId);
-    slot.main = this.show(key, model, startMs, startMs, end, placer);
-    this.play(options.sound, startMs, { kind: "kart", playerId }, key);
-    if (options.after) {
-      slot.after = { model: options.after, sound: options.afterSound };
+      : options.pulse ? this.pulsing(playerId, begin, () => slot.endMs) : onKart(playerId);
+    slot.main = this.show(key, model, begin, begin, end, placer);
+    if (!running) this.play(options.sound, begin, { kind: "kart", playerId }, key);
+    if (options.after || options.afterSound) {
+      slot.after = { model: options.after!, sound: options.afterSound };
       this.scheduleAfter(slot, key);
     }
   }
@@ -723,8 +958,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     if (!after) return;
     if (after.visual) this.finish(after.visual);
     if (after.request) this.dropRequest(after.request);
-    after.visual = this.show(key, after.model, slot.endMs, slot.endMs, slot.endMs + after.model.lifeMs,
-      onKart(slot.playerId));
+    after.visual = after.model ? this.show(key, after.model, slot.endMs, slot.endMs,
+      slot.endMs + after.model.lifeMs, onKart(slot.playerId)) : undefined;
     after.request = this.play(after.sound, slot.endMs, { kind: "kart", playerId: slot.playerId }, key);
   }
 
@@ -874,9 +1109,11 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     for (const [useId, record] of this.uses)
       if (now - record.event.startMs > ITEM_FX_TUNING.useLifetimeMs) this.uses.delete(useId);
     for (const [key, slot] of this.slots)
-      if (slot.endMs <= now && (!slot.after?.visual || this.ended(slot.after.visual))) this.slots.delete(key);
+      if (slot.endMs <= now && (!slot.after?.visual || this.ended(slot.after.visual)) &&
+        !(slot.kind === "trap" && now - slot.endMs < ITEM_FX_TUNING.trapCauseWindowMs)) this.slots.delete(key);
     for (const [key, plannedEnd] of this.endedSlots)
       if (now - plannedEnd > ITEM_FX_TUNING.useLifetimeMs) this.endedSlots.delete(key);
+    for (const [playerId, pop] of this.balloonPops) if (pop.untilMs <= now) this.balloonPops.delete(playerId);
   }
 
   /**
@@ -975,7 +1212,8 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     this.uses.clear();
     this.slots.clear();
     this.endedSlots.clear();
-    this.trapCause.clear();
+    this.causes.clear();
+    this.balloonPops.clear();
   }
 
   dispose(): void {
@@ -984,6 +1222,20 @@ export class ItemRacePresenterImpl<Archive> implements ItemRacePresenter {
     this.disposed = true;
     this.audio.dispose();
     this.models.dispose();
+  }
+}
+
+/** `item/balloon/item.bml`: the balloon accessory's states (its pop when it takes a missile). */
+export const BALLOON_ITEM_BML = "item/balloon/item.bml";
+
+async function loadOptionalBml<Archive>(archive: Archive, path: string,
+  ops: ItemFxOps<Archive>): Promise<ItemBml | undefined> {
+  try {
+    const bytes = await ops.originalAsset(archive, path).bytes();
+    return bytes instanceof Uint8Array ? decodeItemBml(bytes) : undefined;
+  } catch (error) {
+    console.warn(`道具表现：${path} 未载入，气球爆开只播放导弹的小爆炸。`, error);
+    return undefined;
   }
 }
 
@@ -1000,7 +1252,8 @@ export async function loadItemRacePresenter<Archive>(
   context: FxAudioContext | undefined,
   ops: ItemFxOps<Archive>,
 ): Promise<ItemRacePresenterImpl<Archive>> {
-  const plan = buildItemFxPlan(catalog);
+  const balloon = await loadOptionalBml(archive, BALLOON_ITEM_BML, ops);
+  const plan = buildItemFxPlan(catalog, { balloon });
   const models = new FxModelBank(archive, environment, stageBinding, ops);
   const audio = new FxSoundBank(archive, context, ops);
   try {

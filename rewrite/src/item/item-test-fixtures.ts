@@ -83,4 +83,5 @@ export function loadMirrorLibrary(names: readonly string[]): Promise<MirrorLibra
 }
 
 /** Containers holding item definitions, sounds, descriptions and track tables. */
-export const ITEM_CONTAINERS = ["item.rho", "sound_fx_item.rho", "track_common.rho", "DataPack1_*"];
+export const ITEM_CONTAINERS = ["item.rho", "sound_fx_item.rho", "sound_fx_charger.rho", "track_common.rho",
+  "DataPack1_*"];

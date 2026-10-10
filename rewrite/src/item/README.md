@@ -15,13 +15,17 @@
 | `item-race-slots.ts` | 道具槽镜像：已确认的服务器道具槽 + 未回包的使用/换位（先进先出），被拒绝时退回 |
 | `item-race-presenter-contract.ts` | 重新导出表现层契约（定义在 `item-race-presenter.ts`） |
 | `item-race-test-support.ts` | 测试用假对象：按附录 B 生命周期构造的道具目录（与原版目录逐项一致，见 `item-race-rules.test.ts`）、假物理/连接/表现层 |
-| `item-fx-plan.ts` | 表现层的模型/音效表：按 base 0 状态解析每个道具的 `firing`（使用者车上）、`fired`（受害者车上）、`item`（道具物体本身）模型与对应音效、状态时长；`ITEM_FX_TUNING`（[还原] 常量） |
+| `item-fx-plan.ts` | 表现层的模型/音效表：每个道具按目录给出的文件夹与变体（base，不再固定 base 0）解析 `firing`（使用者车上）、`fired`（受害者车上）、`item`（道具物体本身）模型与对应音效、状态时长；`ITEM_FX_FAMILY` 按附录 C.4 的族（导弹换皮、致盲导弹、电磁导弹、水苍蝇、定时水炸弹苍蝇、放置物、投掷物、自身道具、符咒/雪精灵……）决定怎么播；每个道具自带各车身效果的样子（`kart`）、装备挡下（SpecialShield）、头饰/金币/气球等命中变体、被吃掉（Eat/EatBonus）；`ITEM_FX_TUNING`（[还原] 常量） |
 | `item-fx-assets.ts` | 表现层资源：模型解码一次、每个模型一个副本池（载入时预装配，需要时后台补装，单模型上限 8；留在赛道上的放置物（香蕉等）上限 64，且不会被新表现抢走副本）、共享贴图缓存；UFO 的 1 型颜色关键帧转成装配器支持的 0 型；定时水炸弹车上水球（取自水炸弹模型）；音效解码与播放（比赛音频路由，限 24 个同时播放） |
 | `item-race-presenter.ts` | 道具赛表现层（契约 `ItemRacePresenter`）：投射物（追踪、弧线、哑弹）、投掷与放置物、车身效果（水泡、蓝盾、飞碟、闪电、恶魔、护盾、天使、电磁波、磁铁、车上水球）、命中/格挡表现与音效（按镜头距离衰减与左右声像）；`loadItemRacePresenter` 在 A40 中创建为 `assets.itemPresenter` |
+| `item-kart-presentation.ts` | 把表现层的 `kartPresentation`（隐身、气球爆开）应用到赛车视图：其他队伍完全隐藏车与尾焰，自己与队友半透明（每个网格绘制前后切换常量 alpha 混合，最后绘制）；气球配件爆开时隐藏 |
+| `item-special-fixture.ts` | 测试与开发预览用：附录 C.4 的 49 种特殊道具登记行（idx、名称、文件夹、base），给还没有它们的目录补上（真正的登记在 `item-catalog.ts`） |
+
+第三阶段（附录 C）：车身效果增加 `invincible`（黄金盾牌/保护盾）、`invisible`（隐身，`options.visibleToMe`）、`hold`（电磁导弹、符咒、龙卷风）、`knockback`（弹性陷阱）；命中带 `shot`（双发导弹各自一发，间隔 200 ms）与 `variant`（`small`/`balloon`：AffectSmall，气球按 `item/balloon/item.bml` 先爆开再 Reborn 出金币；`headband`：飞碟 HeadBandAffect fired03 + headBandAffecting；`bonus`：루찌획득）；`by:"kart"|"pet"` 显示道具自己的 SpecialShield（大魔王 대마왕_방어효과 等），`by:"eat"` 显示 바나나먹기 与 eat 音效。紧跟在命中之后开始的车身效果用命中道具的样子（冰冻水炸弹的冰、毒性水炸弹之后的道具锁、老虎导弹的减速没有飞碟），否则用经典道具的样子；自己的效果（护盾/无敌）跟随自己最近一次使用的道具。电磁导弹命中后 CountDown 500 ms 在目标处展开磁场 1000 ms；定时水炸弹苍蝇到达后挂在目标车上倒计时再爆开；电磁波只在被它解除飞碟的车上显示（控制器的 `kartEffect`）。`startItemFlash(atMs)` 播放迅引擎开局道具的充能音效（`sound_/fx/charger`）。
 
 表现层约定：所有坐标为 three.js 世界坐标（与 `body.position`、道具箱相同），时间为比赛表现时钟毫秒。原版模型都以车为原点（客户端 z 向上、车头朝 −y），所以每个模型挂在一个与车相同基底（right、up、forward）的节点下。事件迟到时动画按服务器时间线从中途开始；音效迟到超过 300 ms 则丢弃。同一 `useId` 的重复 `used`/`hit`、`used` 与 `kartEffect` 对同一车同一效果的重复开始都只保留一个表现。本机自己的效果（护盾、天使、电磁波、定时水炸弹、磁铁）在按键时就开始；若回包前已被控制器结束（护盾挡下攻击、比赛结束等），迟到的 `used` 回包不会再显示它。
 
-开发预览（不进构建）：`npm run dev` 后打开 `http://127.0.0.1:8780/tools/item-fx-preview.html`，三辆假车 A（蓝，本机）、B（绿）、C（红）之间逐个播放全部道具；`?item=rocket` 直接播放一个场景，`?move=1` 让车行驶。
+开发预览（不进构建）：`npm run dev` 后打开 `http://127.0.0.1:8780/tools/item-fx-preview.html`，三辆假车 A（蓝，本机）、B（绿）、C（红）之间逐个播放全部道具（含 49 种特殊道具与双发、气球、头饰、金币、装备防御、吃掉等命中变体）；`?item=rocket` 或 `?item=special:104` 直接播放一个场景，`?move=1` 让车行驶。
 
 道具箱编号：静态箱用 `instanceOrdinal`（每个 `track*.1s` 内 1..N 唯一），移动箱用 `2048 + 可动物件 instanceOrdinal`，都落在 `cube` 请求允许的 1..4096。少数原版移动箱（`fengshen_I03`–`I05` 的 `mo_ic042`、`mo_ic044`）变换与 PRS 均为 NaN，无法到达，载入时跳过。
 

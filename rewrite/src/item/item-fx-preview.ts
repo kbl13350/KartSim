@@ -6,7 +6,13 @@
  * presenter the way the race controller does.
  *
  *   npm run dev → http://127.0.0.1:8780/tools/item-fx-preview.html
- *   (?item=rocket starts one scenario, ?move=1 lets the karts drive)
+ *   (?item=rocket starts one scenario, ?item=special:99 one special item,
+ *   ?move=1 lets the karts drive)
+ *
+ * Every special item of ITEM_MODE.md C.4 has its own button (staged by its
+ * presentation family, from its own folder and variant), and the hit
+ * variants (two missiles, balloon, headband, lucci bonus, equipment
+ * defence, eating) have theirs.
  */
 
 import {
@@ -22,14 +28,18 @@ import type { ArchiveSource } from "../resources/container-store";
 import { uniqueOriginalCoinAsset } from "../vehicle/track-coin-source";
 import { ItemIdx, loadItemCatalog, type ItemCatalogLibrary } from "./item-catalog";
 import type { FxModelData, ItemFxOps } from "./item-fx-assets";
+import { ITEM_FX_FAMILY } from "./item-fx-plan";
+import { applyItemKartPresentation } from "./item-kart-presentation";
 import {
   loadItemRacePresenter, type ItemPresenterPose, type ItemPresenterVec3, type ItemRacePresenter,
 } from "./item-race-presenter";
+import { SPECIAL_ITEM_ROWS, withSpecialItems } from "./item-special-fixture";
 
 /** Mount folders of the containers the presenter reads (the game takes them from aaa.pk). */
 const containers: Record<string, string> = {
   "item.rho": "item/",
   "sound_fx_item.rho": "sound_/fx/item/",
+  "sound_fx_charger.rho": "sound_/fx/charger/",
   "theme_common.rho": "theme_/common/",
 };
 const dataPacks = ["DataPack1"];
@@ -121,10 +131,82 @@ type Events = Pick<ItemRacePresenter, "used" | "placed" | "hit" | "removed" | "k
 type Step = [atMs: number, run: (presenter: Events, now: number) => void];
 const TRACK_HAZARDS: readonly number[] = [ItemIdx.mine, ItemIdx.waterMine];
 
+/**
+ * A special item staged by its family the way the race controller drives it
+ * (A uses it; B is ahead, C further ahead).
+ */
+function specialSteps(idx: number, lifeOf: (state: string) => number,
+  at: (id: string, ahead: number, side?: number) => ItemPresenterVec3): Step[] {
+  const family = ITEM_FX_FAMILY.get(idx);
+  const affect = lifeOf("Affect") || lifeOf("AffectMain") || lifeOf("StateAffect") || 2000;
+  // The karts' poses exist once the preview runs: points are taken when a step runs.
+  const use = (targets: string[], etaMs = 1000, extra: () => object = () => ({})): Step =>
+    [0, (p, t) => p.used({ useId: 0, itemId: idx, userId: "A", targets, startMs: t, etaMs, ...extra() })];
+  const hit = (victim: string, kind: Parameters<Events["kartEffect"]>[1] | undefined, ms: number,
+    durationMs = affect): Step => [ms, (p, t) => {
+    p.hit({ useId: 0, itemId: idx, victimId: victim, result: "hit", atMs: t });
+    if (kind) p.kartEffect(victim, kind, t, durationMs);
+  }];
+  switch (family) {
+    case "rocket": return [use(["B"], 800), hit("B", "launch", 800, 1500)];
+    case "blindRocket":
+      return [use(["B"], 800), hit("B", idx === 134 ? "spin" : "slow", 800)];
+    case "lockdown": return [use(["B"], 800), hit("B", "hold", 800, lifeOf("AffectMain")),
+      hit("C", "slow", 1300, lifeOf("AffectSub"))];
+    case "fly": return idx === 132 ? [use(["B"], 1200), hit("B", "slow", 1200)]
+      : [use(["B"], 1200), hit("B", "trap", 1200),
+        [1200 + affect, (p, t) => p.kartEffect("B", "escapeShield", t, lifeOf("EscapeAffect"))]];
+    case "bombFly": {
+      const blast = 1200 + lifeOf("CountDown");
+      return [use(["B"], 1200), hit("B", "trap", blast, 2000), hit("C", "trap", blast, 2000),
+        [blast + 2000, (p, t) => p.kartEffect("B", "escapeShield", t, lifeOf("EscapeAffect"))]];
+    }
+    case "beam": return [use(["B"], 1500), hit("B", idx === 112 ? "shrink" : "hold", 1500)];
+    case "drop": {
+      const kind = idx === 25 ? "knockback" : idx === 8 || idx === 85 ? "spin"
+        : idx === 37 ? "trap" : idx === 46 ? undefined : "launch";
+      return [[0, (p, t) => p.used({ useId: 0, itemId: idx, userId: "B", targets: [], startMs: t, etaMs: 0,
+        point: at("B", -5) })], hit("A", kind, 3000)];
+    }
+    case "throw": return [use([], 0, () => ({ point: at("B", 0) })), hit("B", "trap", lifeOf("Use")),
+      [lifeOf("Use") + affect, (p, t) => p.kartEffect("B", "escapeShield", t, lifeOf("EscapeAffect") || 2000)]];
+    case "timeBomb": return [
+      [0, (p, t) => {
+        p.used({ useId: 0, itemId: idx, userId: "A", targets: [], startMs: t, etaMs: 0 });
+        p.kartEffect("A", "timeBomb", t, lifeOf("Use"));
+      }],
+      [lifeOf("Use"), (p, t) => {
+        p.placed({ useId: 0, itemId: idx, userId: "A", point: at("A", 0), startMs: t - lifeOf("Use") });
+        p.hit({ useId: 0, itemId: idx, victimId: "B", result: "hit", atMs: t });
+        p.kartEffect("B", "trap", t, affect);
+      }]];
+    case "barricade": return [use(["C"], 0),
+      [200, (p, t) => p.placed({ useId: 0, itemId: idx, userId: "C", point: at("C", 25), startMs: t - 200 })],
+      hit("C", "hold", 3000, lifeOf("StateAffect"))];
+    case "cloud": return [[0, (p, t) => p.used({ useId: 0, itemId: idx, userId: "C", targets: ["A", "B"],
+      startMs: t, etaMs: 0 })]];
+    case "curse": return [use(["B", "C"], 0),
+      [lifeOf("Use") + lifeOf("Preaffect"), (p, t) => {
+        for (const victim of ["B", "C"]) p.kartEffect(victim, "reverse", t, affect);
+      }]];
+    case "magnet": return [[0, (p, t) => {
+      p.used({ useId: 0, itemId: idx, userId: "A", targets: ["B"], startMs: t, etaMs: 0 });
+      p.kartEffect("A", "pull", t, lifeOf("Use"));
+      p.kartEffect("A", "shield", t, lifeOf("Use"));
+    }]];
+    case "invincible": return [use(["A"], 0)];
+    case "invisible": return [use(["A"], 0), [lifeOf("Use"), (p, t) => {
+      p.kartEffect("A", "invisible", t, affect, { visibleToMe: true });
+    }]];
+    case "siren": return [use(["A"], 0), hit("B", "spin", 600, affect)];
+    default: return [use(["A"], 0)];
+  }
+}
+
 async function main(): Promise<void> {
   const library = await loadLibrary();
   status("载入道具目录与表现层…");
-  const catalog = await loadItemCatalog(library);
+  const catalog = await withSpecialItems(await loadItemCatalog(library), library);
   const audio = new AudioContext();
   const ops: ItemFxOps<PreviewLibrary> = {
     originalAsset: (archive, path) => uniqueOriginalCoinAsset(archive, path),
@@ -289,6 +371,52 @@ async function main(): Promise<void> {
     slotLock: { label: "道具锁", steps: [
       [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.slotLock, userId: "A", targets: ["B", "C"], startMs: t, etaMs: 0 })],
     ] },
+    rocketTwice: { label: "双发导弹", steps: [
+      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.rocket, userId: "A", targets: ["B"], startMs: t, etaMs: 800,
+        count: 2 })],
+      [800, (p, t) => { p.hit({ useId: 0, itemId: ItemIdx.rocket, victimId: "B", result: "hit", atMs: t, shot: 0 }); }],
+      [1000, (p, t) => { p.hit({ useId: 0, itemId: ItemIdx.rocket, victimId: "B", result: "hit", atMs: t, shot: 1 }); }],
+    ] },
+    balloon: { label: "气球挡导弹", steps: [
+      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.rocket, userId: "A", targets: ["B"], startMs: t, etaMs: 800 })],
+      [800, (p, t) => {
+        p.hit({ useId: 0, itemId: ItemIdx.rocket, victimId: "B", result: "hit", atMs: t, variant: "balloon" });
+        p.kartEffect("B", "launch", t, 1000);
+      }],
+    ] },
+    headband: { label: "头饰缩短飞碟", steps: [
+      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.ufo, userId: "A", targets: ["C"], startMs: t, etaMs: 1000 })],
+      [1000, (p, t) => {
+        p.hit({ useId: 0, itemId: ItemIdx.ufo, victimId: "C", result: "hit", atMs: t, variant: "headband" });
+        p.kartEffect("C", "slow", t, 1500);
+      }],
+    ] },
+    ufoBonus: { label: "奇奇飞碟金币", steps: [
+      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.ufo, userId: "A", targets: ["C"], startMs: t, etaMs: 1000 })],
+      [1000, (p, t) => {
+        p.hit({ useId: 0, itemId: ItemIdx.ufo, victimId: "C", result: "hit", atMs: t, variant: "bonus" });
+        p.kartEffect("C", "slow", t, 3000);
+      }],
+    ] },
+    devilDefence: { label: "车辆防御大魔王", steps: [
+      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.devil, userId: "B", targets: ["A", "C"], startMs: t, etaMs: 0 })],
+      [1500, (p, t) => {
+        p.hit({ useId: 0, itemId: ItemIdx.devil, victimId: "A", result: "blocked", by: "kart", atMs: t });
+        p.kartEffect("C", "reverse", t, 3000);
+      }],
+    ] },
+    bananaEat: { label: "吃掉香蕉皮", steps: [
+      [0, (p, t) => p.used({ useId: 0, itemId: ItemIdx.banana, userId: "B", targets: [], startMs: t, etaMs: 0,
+        point: at("B", -4) })],
+      [3000, (p, t) => {
+        p.hit({ useId: 0, itemId: ItemIdx.banana, victimId: "A", result: "blocked", by: "eat", atMs: t });
+        p.removed(0);
+      }],
+    ] },
+    mineEatBonus: { label: "吃掉地雷得金币", steps: [
+      [0, (p, t) => p.hit({ useId: 0, itemId: ItemIdx.mine, victimId: "A", result: "blocked", by: "eat",
+        variant: "bonus", atMs: t })],
+    ] },
     hazards: { label: "地雷/水雷", steps: [
       [0, (p, t) => {
         p.hit({ useId: 0, itemId: ItemIdx.mine, victimId: "B", result: "hit", atMs: t });
@@ -298,6 +426,14 @@ async function main(): Promise<void> {
       }],
     ] },
   };
+
+  for (const row of SPECIAL_ITEM_ROWS) {
+    const definition = catalog.get(row.idx);
+    if (!definition) continue;
+    const lifeOf = (state: string) => definition.states.get(state)?.lifeMs ?? 0;
+    scenarios[`special:${row.idx}`] = { label: `${row.idx} ${definition.title}`,
+      steps: specialSteps(row.idx, lifeOf, at) };
+  }
 
   // Scripted steps run on the presenter clock; each scenario gets fresh use ids.
   let pending: Array<{ atMs: number; run: (now: number) => void }> = [];
@@ -345,6 +481,8 @@ async function main(): Promise<void> {
     for (const kart of karts) {
       const position = kart.base.clone().add(new Vector3(0, 0, travel));
       kart.view.position.copy(position);
+      kart.view.visible = true;
+      applyItemKartPresentation({ root: kart.view }, presenter.kartPresentation(kart.id, now));
       poses.set(kart.id, { position: { x: position.x, y: position.y, z: position.z },
         forward: { x: 0, y: 0, z: 1 }, up: { x: 0, y: 1, z: 0 }, right: { x: 1, y: 0, z: 0 } });
     }

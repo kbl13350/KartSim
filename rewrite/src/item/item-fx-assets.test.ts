@@ -8,6 +8,7 @@ import {
 } from "./item-fx-assets";
 import { ITEM_FX_TUNING } from "./item-fx-plan";
 import { loadItemRacePresenter, type ItemPresenterFrame, type ItemPresenterPose } from "./item-race-presenter";
+import { SPECIAL_ITEM_ROWS, withSpecialItems } from "./item-special-fixture";
 import { loadMirrorLibrary, type MirrorLibrary } from "./item-test-fixtures";
 
 function node(name: string, children: FxModelNode[] = [], slots: unknown[] = new Array(11)): FxModelNode {
@@ -166,6 +167,25 @@ test("every item model assembles with the real scene assembler and renders at it
         presenter.kartEffect("B", "escapeShield", 6800, 2000);
       }],
       [7100, () => presenter.kartEffect("B", "shrink", 7100, 1500)],
+      // Phase 3: EMP on a freed racer, a headband / a lucci UFO, eating, a passive devil block.
+      [7200, () => {
+        presenter.kartEffect("C", "emp", 7200, 1500);
+        presenter.hit({ useId: 0, itemId: ItemIdx.banana, victimId: "B", result: "blocked", by: "eat", atMs: 7200 });
+        presenter.hit({ useId: 0, itemId: ItemIdx.mine, victimId: "A", result: "blocked", by: "eat",
+          variant: "bonus", atMs: 7200 });
+        presenter.hit({ useId: 19, itemId: ItemIdx.devil, victimId: "C", result: "blocked", by: "kart", atMs: 7200 });
+      }],
+      [7300, () => {
+        presenter.used({ useId: 40, itemId: ItemIdx.ufo, userId: "A", targets: ["B"], startMs: 7300, etaMs: 500 });
+        presenter.used({ useId: 41, itemId: ItemIdx.mine, userId: "C", targets: [], startMs: 7300, etaMs: 0,
+          point: { x: 120, y: 10, z: 196 } });
+        presenter.used({ useId: 42, itemId: ItemIdx.waterMine, userId: "C", targets: [], startMs: 7300, etaMs: 0,
+          point: { x: 120, y: 10, z: 194 } });
+      }],
+      [7800, () => {
+        presenter.hit({ useId: 40, itemId: ItemIdx.ufo, victimId: "B", result: "hit", variant: "headband", atMs: 7800 });
+        presenter.kartEffect("B", "slow", 7800, 1500);
+      }],
     ]);
     for (let now = 5000; now <= 13_000; now += 50) {
       events.get(now)?.();
@@ -174,8 +194,41 @@ test("every item model assembles with the real scene assembler and renders at it
       await new Promise(resolve => setImmediate(resolve));
     }
     const never = [...presenter.models.pools.keys()].filter(key => !seen.has(key));
-    // Only the devil's defence (a kart-ability block, phase 3) never shows here.
-    assert.deepEqual(never, ["item/devil/대마왕_방어효과.1s"]);
+    // Only the UFO's lucci bonus (an equipment passive) and the balloon's reborn share 루찌획득.
+    assert.deepEqual(never, []);
+  } finally {
+    presenter.dispose();
+    environment.dispose();
+  }
+});
+
+test("every special item model (ITEM_MODE.md C.4) assembles with the real scene assembler", async () => {
+  const { library, formats } = await pipeline();
+  const catalog = await withSpecialItems(await loadItemCatalog(library), library);
+  const ops: ItemFxOps<MirrorLibrary> = {
+    originalAsset: (archive, path) => uniqueOriginalCoinAsset(archive, path),
+    decodeModel: bytes => formats.y9(bytes) as FxModelData,
+    decodeAudio: () => undefined,
+    loadModel: (data, archive, path, identity, options) => formats.c5(data, archive, path, identity, options),
+    routeAudio: () => {},
+    setGain: () => {},
+  };
+  const environment = await formats.rn.load(library);
+  const presenter = await loadItemRacePresenter(library, catalog, environment, new formats.ha(), undefined, ops);
+  try {
+    assert.ok(presenter.plan.shared.balloon, "item/balloon/item.bml is read at load");
+    const special = new Set<string>();
+    for (const row of SPECIAL_ITEM_ROWS) for (const value of Object.values(presenter.plan.items.get(row.idx)!))
+      if (value && typeof value === "object" && "key" in value) special.add((value as { key: string }).key);
+    assert.ok(special.size >= 40, `${special.size} special models`);
+    const empty: string[] = [];
+    for (const [key, pool] of presenter.models.pools) {
+      assert.equal(pool.failure, undefined, key);
+      let meshes = 0;
+      pool.instances[0]!.scene.object.traverse(child => { if ((child as Mesh).isMesh) meshes += 1; });
+      if (meshes === 0) empty.push(key);
+    }
+    assert.deepEqual(empty, [], "models without meshes are kart-motion tracks (KART_MOTION_MODELS)");
   } finally {
     presenter.dispose();
     environment.dispose();

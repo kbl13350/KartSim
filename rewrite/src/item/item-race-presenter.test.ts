@@ -10,6 +10,7 @@ import {
   loadItemRacePresenter, type ItemPresenterFrame, type ItemPresenterPose, type ItemPresenterVec3,
   type ItemRacePresenterImpl,
 } from "./item-race-presenter";
+import { SPECIAL_ITEM_ROWS, withSpecialItems } from "./item-special-fixture";
 import { ITEM_CONTAINERS, loadMirrorLibrary } from "./item-test-fixtures";
 
 /**
@@ -19,7 +20,12 @@ import { ITEM_CONTAINERS, loadMirrorLibrary } from "./item-test-fixtures";
  */
 
 let catalogLoad: Promise<ItemCatalog> | undefined;
-const catalog = () => catalogLoad ??= loadMirrorLibrary(ITEM_CONTAINERS).then(loadItemCatalog);
+/** The classic set plus every special item of ITEM_MODE.md C.4, on the real data. */
+const catalog = () => catalogLoad ??= loadMirrorLibrary(ITEM_CONTAINERS)
+  .then(async library => withSpecialItems(await loadItemCatalog(library), library));
+/** Original bytes for the item.bml files the presenter reads at load (the balloon's states). */
+const originalBytes = async (path: string) =>
+  (await loadMirrorLibrary(ITEM_CONTAINERS)).exactCanonicalCandidates(path)[0]!.bytes();
 
 class FakeScene implements FxRenderedScene {
   object = new Group();
@@ -69,7 +75,7 @@ function harness() {
     createStereoPanner: () => ({ pan: new FakeParam(), disconnect() {} }),
   };
   const ops: ItemFxOps<string> = {
-    originalAsset: (_archive, path) => ({ bytes: async () => path }),
+    originalAsset: (_archive, path) => ({ bytes: async () => path.endsWith(".bml") ? originalBytes(path) : path }),
     decodeModel: bytes => ({ root: node(String(bytes), [node("Point01"), node("물방울-중심", [node("balloon")])]) }),
     decodeAudio: (_context, bytes) => `buffer:${String(bytes)}`,
     loadModel: async (data: FxModelData, _archive, path) => {
@@ -471,21 +477,29 @@ test("self items keep one visual per kart however often they are started; angel 
   at(2010);
   assert.deepEqual(models(presenter), [], "consumed by a block");
 
+  // The angel covers the team from its Affect state on, after the 500 ms Use (ITEM_MODE.md C.5).
   presenter.used({ useId: 17, itemId: ItemIdx.angel, userId: "A", targets: ["A", "C"], startMs: 3000, etaMs: 0 });
-  presenter.kartEffect("C", "angel", 3000, 4000);
+  presenter.kartEffect("C", "angel", 3500, 4000);
   at(3000);
+  assert.deepEqual(models(presenter), []);
+  at(3500);
   assert.deepEqual(models(presenter), ["item/angel/fired01.1s", "item/angel/fired01.1s"]);
   const angelSounds = played.filter(sound => sound.path.includes("/angel/")).map(sound => sound.path.split("/").at(-1));
   assert.deepEqual(angelSounds.sort(), ["affecting.ogg", "affecting.ogg", "using.ogg"]);
-  at(7000);
+  at(7500);
   assert.deepEqual(models(presenter), []);
 
+  // EMP shows only on the racers it frees from a UFO (the controller's kartEffect).
   presenter.used({ useId: 18, itemId: ItemIdx.emp, userId: "B", targets: ["B"], startMs: 8000, etaMs: 0 });
   presenter.used({ useId: 19, itemId: ItemIdx.scanning, userId: "A", targets: ["A", "C"], startMs: 8000, etaMs: 0 });
   presenter.used({ useId: 20, itemId: ItemIdx.slotLock, userId: "A", targets: ["B", "C"], startMs: 8000, etaMs: 0 });
   presenter.used({ useId: 21, itemId: ItemIdx.booster, userId: "A", targets: ["A"], startMs: 8000, etaMs: 0 });
   await flush();
   at(8000);
+  assert.deepEqual(models(presenter), ["item/slotLock/firing00.1s"]);
+  assert.ok(played.some(sound => sound.path === "sound_/fx/item/emp/using.ogg"));
+  presenter.kartEffect("C", "emp", 8500, 1500);
+  at(8500);
   assert.deepEqual(models(presenter), ["item/emp/fired01.1s", "item/scanning/fired01.1s",
     "item/slotLock/firing00.1s"]);
   at(10_000);
@@ -733,4 +747,352 @@ test("reset forgets everything; dispose releases scenes and sounds", async () =>
   presenter.used({ useId: 42, itemId: ItemIdx.rocket, userId: "A", targets: ["B"], startMs: 3000, etaMs: 500 });
   at(3000);
   presenter.dispose();
+});
+
+// ---- phase 3: special items, hit variants, new kart effects (ITEM_MODE.md C.2, C.4) ----
+
+test("every special item has a staging from its own folder and variant", async () => {
+  const { presenter, at } = await setup();
+  for (const row of SPECIAL_ITEM_ROWS) assert.ok(presenter.plan.items.get(row.idx), `${row.idx} ${row.name}`);
+  // A use, hit and the end of each one never throws.
+  let useId = 900;
+  for (const row of SPECIAL_ITEM_ROWS) {
+    presenter.used({ useId, itemId: row.idx, userId: "A", targets: ["B"], startMs: 0, etaMs: 800,
+      point: { x: 0, y: 0, z: 30 } });
+    presenter.hit({ useId, itemId: row.idx, victimId: "B", result: "hit", atMs: 800 });
+    useId += 1;
+  }
+  for (const time of [0, 400, 800, 2000, 5000, 40_000]) at(time);
+});
+
+test("two missiles of one use fly 200 ms apart and each hit spends its own (useTwoRocket)", async () => {
+  const { presenter, at, played } = await setup();
+  presenter.used({ useId: 30, itemId: ItemIdx.rocket, userId: "A", targets: ["B"], startMs: 1000, etaMs: 800,
+    count: 2 });
+  await flush();
+  at(1000);
+  assert.deepEqual(models(presenter), ["item/rocket/item01.1s"]);
+  at(1200);
+  assert.deepEqual(models(presenter), ["item/rocket/item01.1s", "item/rocket/item01.1s"]);
+  assert.equal(played.filter(sound => sound.path.endsWith("rocket/shooting.ogg")).length, 2);
+  presenter.hit({ useId: 30, itemId: ItemIdx.rocket, victimId: "B", result: "hit", atMs: 1800, shot: 0 });
+  at(1800);
+  assert.deepEqual(models(presenter), ["item/common/미사일폭발.1s", "item/rocket/item01.1s"]);
+  // The second missile is blocked by a shield the first did not break.
+  presenter.hit({ useId: 30, itemId: ItemIdx.rocket, victimId: "B", result: "blocked", by: "shield",
+    atMs: 2000, shot: 1 });
+  at(2000);
+  assert.deepEqual(models(presenter), ["item/common/미사일폭발.1s", "item/common/쉴드방어.1s"]);
+  // A repeated report of either shot changes nothing.
+  presenter.hit({ useId: 30, itemId: ItemIdx.rocket, victimId: "B", result: "hit", atMs: 2000, shot: 1 });
+  at(2016);
+  assert.deepEqual(models(presenter), ["item/common/미사일폭발.1s", "item/common/쉴드방어.1s"]);
+});
+
+test("equipment defences: SpecialShield looks, eating a banana and a mine that pays lucci", async () => {
+  const { presenter, at, played } = await setup();
+  // A kart that defends the devil family shows 대마왕_방어효과 (devil SpecialShield).
+  presenter.used({ useId: 31, itemId: ItemIdx.devil, userId: "B", targets: ["A", "C"], startMs: 0, etaMs: 0 });
+  presenter.hit({ useId: 31, itemId: ItemIdx.devil, victimId: "A", result: "blocked", by: "kart", atMs: 600 });
+  at(600);
+  assert.ok(models(presenter).includes("item/devil/대마왕_방어효과.1s"));
+  // The warning on the defended kart is gone; C still has its own.
+  assert.deepEqual(models(presenter).filter(model => model.endsWith("fired01.1s")), ["item/devil/fired01.1s"]);
+  // newDevil's own defence model (강시_방어효과).
+  presenter.used({ useId: 32, itemId: 38, userId: "B", targets: ["A"], startMs: 3000, etaMs: 0 });
+  presenter.hit({ useId: 32, itemId: 38, victimId: "A", result: "blocked", by: "pet", atMs: 3500 });
+  at(3500);
+  assert.ok(models(presenter).includes("item/newDevil/강시_방어효과.1s"));
+  // A missile blocked by a passive (no SpecialShield model) shows the ordinary shield block.
+  presenter.used({ useId: 33, itemId: ItemIdx.rocket, userId: "B", targets: ["A"], startMs: 6000, etaMs: 500 });
+  presenter.hit({ useId: 33, itemId: ItemIdx.rocket, victimId: "A", result: "blocked", by: "kart", atMs: 6500 });
+  at(6500);
+  assert.deepEqual(models(presenter), ["item/common/쉴드방어.1s"]);
+
+  // A banana eaten (by:"eat"): 바나나먹기 on the eater and the eat sound; no spin look.
+  presenter.used({ useId: 34, itemId: ItemIdx.banana, userId: "B", targets: [], startMs: 10_000, etaMs: 0,
+    point: { x: 0, y: 0, z: 4 } });
+  at(10_500);
+  presenter.hit({ useId: 34, itemId: ItemIdx.banana, victimId: "A", result: "blocked", by: "eat", atMs: 11_000 });
+  presenter.removed(34);
+  at(11_000);
+  assert.deepEqual(models(presenter), ["item/common/바나나먹기.1s"]);
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/banana/eat.ogg");
+  at(13_000);
+  assert.deepEqual(models(presenter), []);
+
+  // A track mine eaten by an eatMine kart of a lucciMine character: EatBonus's 루찌획득 too.
+  presenter.hit({ useId: 0, itemId: ItemIdx.mine, victimId: "A", result: "blocked", by: "eat", variant: "bonus",
+    atMs: 14_000 });
+  at(14_000);
+  assert.deepEqual(models(presenter), ["item/common/루찌획득.1s", "item/common/바나나먹기.1s"]);
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/mine/eat.ogg");
+});
+
+test("a balloon takes the missile: AffectSmall, it pops for Affect and pays lucci at Reborn", async () => {
+  const { presenter, at, played } = await setup();
+  const balloon = presenter.plan.shared.balloon!;
+  assert.deepEqual([balloon.popMs, balloon.rebornMs, balloon.reborn?.path],
+    [1000, 1000, "item/common/루찌획득.1s"]);
+  presenter.used({ useId: 40, itemId: ItemIdx.rocket, userId: "A", targets: ["B"], startMs: 0, etaMs: 600 });
+  presenter.hit({ useId: 40, itemId: ItemIdx.rocket, victimId: "B", result: "hit", variant: "balloon", atMs: 600 });
+  assert.equal(presenter.kartPresentation("B", 599), undefined);
+  at(600);
+  // AffectSmall: 미사일폭발 for 1000 ms instead of 1500 (its fired03 is the kart's motion).
+  assert.deepEqual(models(presenter), ["item/common/미사일폭발.1s"]);
+  assert.deepEqual(presenter.kartPresentation("B", 600), { opacity: 1, balloonVisible: false });
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/balloon/affect.ogg");
+  at(1600);
+  assert.deepEqual(models(presenter), ["item/common/루찌획득.1s"]);
+  assert.equal(presenter.kartPresentation("B", 1600), undefined, "the balloon is back");
+  assert.deepEqual(played.slice(-2).map(sound => sound.path.split("/").at(-1)), ["reborn.ogg", "eaten.ogg"]);
+});
+
+test("a headband shortens the UFO to HeadBandAffect; Kiki's lucciUfo bonus pays lucci", async () => {
+  const { presenter, at, played } = await setup();
+  presenter.used({ useId: 41, itemId: ItemIdx.ufo, userId: "A", targets: ["B"], startMs: 0, etaMs: 900 });
+  presenter.hit({ useId: 41, itemId: ItemIdx.ufo, victimId: "B", result: "hit", variant: "headband", atMs: 900 });
+  presenter.kartEffect("B", "slow", 900, 1500);
+  at(900);
+  assert.deepEqual(models(presenter), ["item/ufo/fired03.1s", "item/ufo/firing00.1s"]);
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/ufo/headBandAffecting.ogg");
+  at(2400);
+  assert.deepEqual(models(presenter), [], "no PostAffect after a headband");
+
+  presenter.used({ useId: 42, itemId: ItemIdx.ufo, userId: "A", targets: ["B"], startMs: 5000, etaMs: 900 });
+  presenter.hit({ useId: 42, itemId: ItemIdx.ufo, victimId: "B", result: "hit", variant: "bonus", atMs: 5900 });
+  presenter.kartEffect("B", "slow", 5900, 3000);
+  at(5900);
+  assert.deepEqual(models(presenter), ["item/common/루찌획득.1s", "item/ufo/fired01.1s", "item/ufo/firing00.1s"]);
+  assert.ok(played.some(sound => sound.path === "sound_/fx/item/ufo/eaten.ogg"));
+});
+
+test("invisible: other teams lose the kart, its own team sees it translucent", async () => {
+  const { presenter, at, played } = await setup();
+  presenter.used({ useId: 43, itemId: 101, userId: "B", targets: ["B"], startMs: 0, etaMs: 0 });
+  at(0);
+  // The use shows ghost base 1's effect_tigerEye on the user during Use (500 ms).
+  assert.deepEqual(models(presenter), ["item/ghost/effect_tigerEye.1s"]);
+  assert.ok(played.some(sound => sound.path === "sound_/fx/item/ghost/usingTiger.ogg"));
+  assert.equal(presenter.kartPresentation("B", 400), undefined, "the use alone does not hide it");
+  presenter.kartEffect("B", "invisible", 500, 7000, { visibleToMe: false });
+  assert.deepEqual(presenter.kartPresentation("B", 500), { opacity: 0, balloonVisible: true });
+  presenter.kartEffect("C", "invisible", 500, 7000, { visibleToMe: true });
+  assert.deepEqual(presenter.kartPresentation("C", 600),
+    { opacity: ITEM_FX_TUNING.ghostOpacity, balloonVisible: true });
+  at(7500);
+  assert.equal(presenter.kartPresentation("B", 7500), undefined);
+  // Hidden effects end early with the controller.
+  presenter.kartEffect("B", "invisible", 8000, 7000, { visibleToMe: false });
+  at(8100);
+  presenter.endKartEffect("B", "invisible");
+  assert.equal(presenter.kartPresentation("B", 8100), undefined);
+});
+
+test("gold and protect shields: the invincible look follows the user's own item", async () => {
+  const { presenter, at, played } = await setup();
+  // My own key press starts the default (gold) look; the reply of a protect shield replaces it.
+  at(0);
+  presenter.kartEffect("A", "invincible", 0, 4000);
+  at(10);
+  assert.deepEqual(models(presenter), ["item/goldShield/fired01.1s"]);
+  presenter.used({ useId: 44, itemId: 81, userId: "A", targets: ["A"], startMs: 0, etaMs: 0 });
+  at(20);
+  assert.ok(played.some(sound => sound.path === "sound_/fx/item/goldShield/protectusing.ogg"));
+  assert.deepEqual(models(presenter), ["item/goldShield/fired02.1s"]);
+  at(4500);
+  assert.deepEqual(models(presenter), []);
+  // A remote user's gold shield: Use (500), then Affect for 2500.
+  presenter.used({ useId: 45, itemId: 36, userId: "B", targets: ["B"], startMs: 5000, etaMs: 0 });
+  presenter.kartEffect("B", "invincible", 5500, 2500);
+  at(5400);
+  assert.deepEqual(models(presenter), []);
+  at(5500);
+  assert.deepEqual(models(presenter), ["item/goldShield/fired01.1s"]);
+  at(8000);
+  assert.deepEqual(models(presenter), []);
+  // superShield: the shield item's base 1 (GoldS) for 3000.
+  presenter.used({ useId: 46, itemId: 18, userId: "C", targets: ["C"], startMs: 9000, etaMs: 0 });
+  at(9000);
+  assert.deepEqual(models(presenter), ["item/shield/GoldS.1s"]);
+});
+
+test("slow-and-blind missiles: no explosion and no UFO, their own cues; the lion spins", async () => {
+  const { presenter, at, played } = await setup();
+  presenter.used({ useId: 50, itemId: 99, userId: "A", targets: ["B"], startMs: 0, etaMs: 600 });
+  at(0);
+  assert.deepEqual(models(presenter), ["item/tigerRocket/missile_tiger.1s"]);
+  presenter.hit({ useId: 50, itemId: 99, victimId: "B", result: "hit", atMs: 600 });
+  presenter.kartEffect("B", "slow", 600, 4000);
+  at(600);
+  assert.deepEqual(models(presenter), [], "the claws are the victim's screen cover (HUD)");
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/tigerRocket/rocketuse.ogg");
+  at(4600);
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/tigerRocket/rocketend.ogg");
+  // Without a hit just before it, a slow is the UFO's.
+  presenter.kartEffect("B", "slow", 10_000, 3000);
+  at(10_000);
+  assert.deepEqual(models(presenter), ["item/ufo/fired01.1s"]);
+
+  presenter.used({ useId: 51, itemId: 134, userId: "A", targets: ["C"], startMs: 20_000, etaMs: 700 });
+  at(20_000);
+  assert.deepEqual(models(presenter), ["item/lionMaskRocket/missile_lion.1s"]);
+  presenter.hit({ useId: 51, itemId: 134, victimId: "C", result: "hit", atMs: 20_700 });
+  presenter.kartEffect("C", "spin", 20_700, 2000);
+  at(20_700);
+  assert.deepEqual(models(presenter), []);
+});
+
+test("lockdown missile: holds its target, opens its field after CountDown and slows the others", async () => {
+  const { presenter, at, played, karts } = await setup();
+  presenter.used({ useId: 52, itemId: 104, userId: "A", targets: ["B"], startMs: 0, etaMs: 600 });
+  at(0);
+  assert.deepEqual(models(presenter), ["item/lockdownRocket/EMP투척.1s", "item/lockdownRocket/EMP투척_01.1s"]);
+  presenter.hit({ useId: 52, itemId: 104, victimId: "B", result: "hit", atMs: 600 });
+  presenter.kartEffect("B", "hold", 600, 2000);
+  at(600);
+  assert.deepEqual(models(presenter), ["item/lockdownRocket/EMP투척_01.1s", "item/lockdownRocket/락다운이펙_진행.1s"]);
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/lockdownRocket/countdown.ogg");
+  karts.get("B")!.position = { x: 2, y: 0, z: 62 };
+  at(1100);
+  const field = shown(presenter).find(entry => entry.model.endsWith("EMP_피격.1s"))!;
+  assert.ok(nearVec(field.position, [2, 0, 62]), "the field opens where the target is at CountDown's end");
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/lockdownRocket/setEmp.ogg");
+  // C, inside the field, reports its own hit: AffectSub's 간접타겟이펙트 and shock.
+  presenter.hit({ useId: 52, itemId: 104, victimId: "C", result: "hit", atMs: 1100 });
+  presenter.kartEffect("C", "slow", 1100, 3000);
+  at(1116);
+  assert.ok(models(presenter).includes("item/lockdownRocket/간접타겟이펙트.1s"));
+  assert.ok(!models(presenter).includes("item/ufo/fired01.1s"));
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/lockdownRocket/shock.ogg");
+  at(2100);
+  assert.ok(!models(presenter).some(model => model.endsWith("EMP_피격.1s")), "the field lasts SetEmp (1000 ms)");
+});
+
+test("waterbombFly ticks on its target, bursts there and traps with the common bubble", async () => {
+  const { presenter, at, played } = await setup();
+  presenter.used({ useId: 53, itemId: 120, userId: "A", targets: ["B"], startMs: 0, etaMs: 1000 });
+  at(0);
+  assert.deepEqual(models(presenter), ["item/waterbombFly/item00.1s"]);
+  at(1000);
+  const ticking = shown(presenter).find(entry => entry.model === "item/waterBomb/item00.1s#carriedBalloon")!;
+  assert.ok(ticking.position[1] > 2, "the balloon rides above the target");
+  assert.ok(nearVec([ticking.position[0], ticking.position[2]], [0, 60]));
+  at(3000);
+  assert.ok(models(presenter).includes("item/waterbombFly/item01.1s"));
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/timeBomb/set.ogg");
+  presenter.hit({ useId: 53, itemId: 120, victimId: "B", result: "hit", atMs: 3000 });
+  presenter.kartEffect("B", "trap", 3000, 2000);
+  at(3016);
+  assert.ok(models(presenter).includes("item/common/물방울갇힘_일반.1s"));
+  at(5000);
+  presenter.kartEffect("B", "escapeShield", 5000, 1000);
+  at(5016);
+  assert.deepEqual(models(presenter), ["item/common/파란방패.1s"]);
+
+  // A blocked arrival drops the countdown and the burst.
+  presenter.used({ useId: 54, itemId: 120, userId: "A", targets: ["C"], startMs: 10_000, etaMs: 1000 });
+  presenter.hit({ useId: 54, itemId: 120, victimId: "C", result: "blocked", by: "shield", atMs: 11_000 });
+  at(11_000);
+  at(13_000);
+  assert.ok(!models(presenter).some(model => model.startsWith("item/waterbombFly")));
+});
+
+test("talisman and snowman land on their target from the user", async () => {
+  const { presenter, at, played, scenes } = await setup();
+  presenter.used({ useId: 55, itemId: 137, userId: "A", targets: ["B"], startMs: 0, etaMs: 1200 });
+  at(0);
+  assert.deepEqual(models(presenter), ["item/talisman/부적_사용.1s"]);
+  assert.ok(scenes.every(scene => scene.path !== "item/talisman/fired00.1s"), "fired00 is a kart-motion track");
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/talisman/아이템 사용_B.ogg");
+  at(1200);
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/talisman/아이템 피격.ogg");
+  presenter.hit({ useId: 55, itemId: 137, victimId: "B", result: "hit", atMs: 1200 });
+  presenter.kartEffect("B", "hold", 1200, 4000);
+  at(1216);
+  assert.ok(models(presenter).includes("item/talisman/부적_피격.1s"));
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/talisman/피격 디버프.ogg");
+
+  presenter.used({ useId: 56, itemId: 112, userId: "A", targets: ["C"], startMs: 10_000, etaMs: 900 });
+  at(10_000);
+  assert.deepEqual(models(presenter), ["item/snowman/firing.1s"]);
+  presenter.hit({ useId: 56, itemId: 112, victimId: "C", result: "hit", atMs: 10_900 });
+  presenter.kartEffect("C", "shrink", 10_900, 2000);
+  at(10_900);
+  assert.ok(models(presenter).includes("item/snowman/fired.1s"));
+  assert.ok(!models(presenter).some(model => model.startsWith("item/thunderbolt")));
+});
+
+test("special water bombs: their own bubbles, no blue shield after ice, the item lock after poison", async () => {
+  const { presenter, at, played } = await setup();
+  presenter.used({ useId: 57, itemId: 34, userId: "A", targets: [], startMs: 0, etaMs: 0, point: { x: 0, y: 0, z: 60 } });
+  at(0);
+  assert.deepEqual(models(presenter), ["item/snowBomb/item00.1s"]);
+  at(1000);
+  assert.deepEqual(models(presenter), ["item/snowBomb/item01.1s"]);
+  presenter.hit({ useId: 57, itemId: 34, victimId: "B", result: "hit", atMs: 1000 });
+  presenter.kartEffect("B", "trap", 1000, 3000);
+  at(1016);
+  assert.deepEqual(models(presenter), ["item/snowBomb/fired02.1s", "item/snowBomb/item01.1s"]);
+  at(4000);
+  presenter.kartEffect("B", "escapeShield", 4000, 2000);
+  at(4016);
+  assert.deepEqual(models(presenter), [], "snowBomb's EscapeAffect has no 파란방패");
+
+  presenter.used({ useId: 58, itemId: 27, userId: "A", targets: [], startMs: 6000, etaMs: 0, point: { x: 0, y: 0, z: 60 } });
+  presenter.hit({ useId: 58, itemId: 27, victimId: "B", result: "hit", atMs: 7000 });
+  presenter.kartEffect("B", "trap", 7000, 2000);
+  at(7016);
+  assert.ok(models(presenter).includes("item/infectedBomb/fired02.1s"));
+  // Escaping early brings the lock forward.
+  at(7500);
+  presenter.endKartEffect("B", "trap");
+  at(7516);
+  assert.ok(models(presenter).includes("item/common/녹색열쇠.1s"));
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/infectedBomb/locked.ogg");
+  at(12_500);
+  assert.ok(!models(presenter).includes("item/common/녹색열쇠.1s"), "PostAffect lasts 5000 ms");
+});
+
+test("dropped mines go off once at their first hit; the water mine bursts where it lies", async () => {
+  const { presenter, at, played } = await setup();
+  const point = { x: 0, y: 0, z: -4 };
+  presenter.used({ useId: 59, itemId: 45, userId: "A", targets: [], startMs: 0, etaMs: 0, point });
+  at(500);
+  assert.deepEqual(models(presenter), ["item/mine/duckbomb_제자리.1s"]);
+  presenter.hit({ useId: 59, itemId: 45, victimId: "B", result: "hit", atMs: 2000 });
+  presenter.kartEffect("B", "launch", 2000, 1500);
+  at(2000);
+  assert.deepEqual(models(presenter), ["item/common/미사일폭발.1s"], "the duck is gone");
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/mine/exploding.ogg");
+
+  presenter.used({ useId: 60, itemId: 37, userId: "A", targets: [], startMs: 5000, etaMs: 0, point });
+  at(5500);
+  presenter.hit({ useId: 60, itemId: 37, victimId: "B", result: "hit", atMs: 6000 });
+  presenter.hit({ useId: 60, itemId: 37, victimId: "C", result: "hit", atMs: 6000 });
+  at(6000);
+  const bursts = shown(presenter).filter(entry => entry.model === "item/waterMine/item03.1s");
+  assert.equal(bursts.length, 1, "one burst for every victim of the explosion");
+  assert.ok(nearVec(bursts[0]!.position, [0, 0, -4]));
+  assert.ok(!models(presenter).includes("item/waterMine/bubble.1s"));
+});
+
+test("hold, knockback, spin, launch and barrier without a cause add nothing; the start item sounds the charger", async () => {
+  const { presenter, at, played } = await setup();
+  for (const kind of ["hold", "knockback", "spin", "launch", "barrier"] as const)
+    presenter.kartEffect("B", kind, 0, 1500);
+  at(10);
+  assert.deepEqual(models(presenter), []);
+  // abyssBarricade's StateAffect (fired02_abyss) when it stops a kart.
+  presenter.used({ useId: 61, itemId: 135, userId: "A", targets: ["B"], startMs: 1000, etaMs: 0 });
+  presenter.placed({ useId: 61, itemId: 135, userId: "B", point: { x: 0, y: 0, z: 100 }, startMs: 1000 });
+  presenter.hit({ useId: 61, itemId: 135, victimId: "B", result: "hit", atMs: 3000 });
+  presenter.kartEffect("B", "hold", 3000, 2000);
+  at(3000);
+  // Its StateAffect model is a kart-motion track; the stop sounds.
+  assert.equal(played.at(-1)!.path, "sound_/fx/item/abyssBarricade/용오름_3_피격효과음.ogg");
+  presenter.startItemFlash(4000);
+  at(4000);
+  assert.equal(played.at(-1)!.path, "sound_/fx/charger/05_기타_슬롯차저_Large.ogg");
+  assert.equal(played.at(-1)!.volume, 1);
 });
