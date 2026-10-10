@@ -313,7 +313,8 @@ await runLocalCluster("frontend-economy-check", {
       karts: [{ itemId: 0, systemKey: "practiceKart", path: "kart_/practiceV1" },
         ...catalog.items.filter(item => item.category === 3).map(item => ({ itemId: item.itemId }))],
       characters: catalog.items.filter(item => item.category === 1).map(item => ({ itemId: item.itemId })),
-      equipment: [...catalog.items.filter(item => item.category !== 1 && item.category !== 3)
+      // The garage equips no item changer voucher (category 7, sold in the shop only).
+      equipment: [...catalog.items.filter(item => item.category !== 1 && item.category !== 3 && item.category !== 7)
         .map(item => ({ category: item.category, itemId: item.itemId })),
       { category: 43, itemId: 5 }, { category: 68, itemId: 1 }],
     };
@@ -371,7 +372,9 @@ await runLocalCluster("frontend-economy-check", {
     const fresh = await shopApi.fetchShopCatalog(alice);
     const again = await shopApi.fetchShopCatalog(alice);
     const catalogRequests = alice.fetchLog.filter(entry => entry.url.endsWith("/api/shop/catalog"));
-    assert.equal(fresh.items.length, 6032, "6,032 sellable items");
+    // 6,032 garage items and the two item changer vouchers (7:3, 7:4).
+    assert.equal(fresh.items.length, 6034, "6,034 sellable items");
+    assert.deepEqual(fresh.items.filter(item => item.category === 7).map(item => item.itemId), [3, 4]);
     assert.equal(again, fresh, "a 304 keeps the cached catalog object");
     assert.deepEqual(catalogRequests.map(entry => entry.status), [200, 304]);
     assert.equal(catalogRequests[1].ifNoneMatch, `"${fresh.version}"`);
