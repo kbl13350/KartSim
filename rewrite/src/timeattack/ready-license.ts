@@ -1,3 +1,4 @@
+import { ensureFeatureResources } from "../ui/resource-panel";
 import { activeBrowserSession } from "../account/account-runtime";
 import { p2, T } from "../generated/formats.js";
 import { F9, U1, te } from "../generated/library.js";
@@ -332,6 +333,7 @@ export async function openLicenseStep(controller: ReadyLicenseController, stepId
   const found = findOpenStep(data.table, data.state, stepId);
   if (!found) return;
   controller.licenseBusy = true;
+  await ensureFeatureResources(controller.host.root, "license").catch(() => undefined);
   const started = generation(controller);
   try {
     const { view: stepView, level } = found;

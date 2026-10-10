@@ -1,3 +1,5 @@
+import { installResourceManager, type ResourceLibraryApi, type ResourceStoreApi } from "../resources/resource-manager";
+import type { Rho5PackSpec } from "../resources/resource-groups";
 import { StartupProgress, type StartupWork } from "./startup-progress";
 
 /** Resource bootstrap, first-rider registration, and Ready-stage preparation. */
@@ -126,6 +128,41 @@ export interface ResourceLoadingDependencies {
   retryProfile?(error: unknown): Promise<void>;
 }
 
+/**
+ * Installs the resource manager over the mounted container store and
+ * downloads the 首页 group before the rest of startup reads it, showing its
+ * bytes on the startup screen's 当前下载 bar (the overall percentages stay
+ * the release's). A failure (no space) is reported and startup goes on:
+ * pages then read on demand. Returns whether it waited (a manager was
+ * installed).
+ */
+async function prefetchHomeResources(mounted: MountedStartupSources, library: unknown,
+  status: (message: string) => void, bytes: (loaded: number, total: number) => void,
+  warn: (message: string) => void): Promise<boolean> {
+  const store = (mounted as { store?: ResourceStoreApi }).store;
+  const indexes = mounted.archiveIndexes as { rho5?: readonly Rho5PackSpec[] } | undefined;
+  if (!store || typeof store.cachedNames !== "function") return false;
+  const lookup = library as Partial<ResourceLibraryApi>;
+  const manager = installResourceManager(store, indexes?.rho5 ?? [],
+    typeof lookup.entriesUnderCanonicalPrefix === "function" ? lookup as ResourceLibraryApi : undefined);
+  await manager.ready;
+  const home = manager.group("home");
+  if (!home || !manager.missing(home.containers).length) return true;
+  const job = manager.download(home.containers, { label: "首页资源", priority: "high", groupId: "home" });
+  status("正在优先下载首页资源");
+  const show = () => bytes(job.doneBytes(), job.totalBytes);
+  const release = manager.subscribe(show);
+  show();
+  try {
+    await job.done;
+  } catch (error) {
+    warn(`首页资源预下载未完成（${error instanceof Error ? error.message : String(error)}），进入后按需下载。`);
+  } finally {
+    release();
+  }
+  return true;
+}
+
 /** Ignore results from superseded generations at every asynchronous boundary. */
 export async function loadStartupResources(
   host: StartupHost,
@@ -136,6 +173,8 @@ export async function loadStartupResources(
   const progress = new StartupProgress();
   let active = true;
   let finished = false;
+  // While the 首页 group downloads, its total replaces the per-container bytes.
+  let prefetching = false;
   const report = (work: StartupWork, current: number, total: number, message: string): void => {
     if (active && host.hud.setStartupProgress && host.assets.isCurrent(generation))
       host.hud.setStartupProgress(progress.update(work, current, total), message);
@@ -150,7 +189,7 @@ export async function loadStartupResources(
     const mounted = await dependencies.loadVersionedSources(
       dependencies.versionId("p3553"),
       progress => {
-        if ((!active && !finished) ||
+        if (prefetching || (!active && !finished) ||
             (host.hud.setStartupProgress && !host.assets.isCurrent(generation))) return;
         host.hud.setLoadingProgress(
           `resource:${progress.file.toLowerCase()}`,
@@ -170,6 +209,22 @@ export async function loadStartupResources(
     if (library.files.length === 0) {
       throw new Error(library.errors[0] ?? "没有成功读取任何资源文件。");
     }
+    // 首页优先: the home screen's containers download first, in parallel and
+    // with their bytes shown; everything else downloads when a page needs it
+    // (tracks when a race loads) or from the 资源下载 panel.
+    prefetching = true;
+    let prefetched = false;
+    try {
+      prefetched = await prefetchHomeResources(mounted, library,
+        message => report("library", 1, 1, message),
+        (loaded, total) => {
+          if (host.assets.isCurrent(generation)) host.hud.setLoadingProgress("resource:首页", loaded, total, "首页资源");
+        },
+        message => host.hud.showDebugText(message, "error"));
+    } finally {
+      prefetching = false;
+    }
+    if (prefetched && !host.assets.isCurrent(generation)) return;
     report("library", 1, 1, "正在加载车辆与赛道目录");
 
     const [garageCatalog, maps] = await Promise.all([

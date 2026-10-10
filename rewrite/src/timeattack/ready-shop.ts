@@ -1,3 +1,4 @@
+import { ensureFeatureResources } from "../ui/resource-panel";
 /**
  * Opening the shop (server-go/ECONOMY.md 7.6) from the taskbar 상점 button and
  * the lobby top bar "+" buttons. The shop itself is src/shop/shop-view.ts; this
@@ -199,6 +200,14 @@ export async function openReadyShop(controller: ReadyShopController, initialTab?
   if (!library) return;
   controller.shopOpening = true;
   controller.shopCancelled = false;
+  // Passive download: the shop's own resources first, the item art after.
+  try {
+    await ensureFeatureResources(controller.host.root, "shop");
+  } catch { /* Pages read on demand. */ }
+  if (controller.disposed || controller.shopCancelled) {
+    controller.shopOpening = false;
+    return;
+  }
   let purchased = false;
   let closed = false;
   const garageX = garageXOpen(controller);
