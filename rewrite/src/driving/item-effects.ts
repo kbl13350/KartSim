@@ -198,6 +198,11 @@ export class VehicleItemEffects {
   appliedDriveScale = 1;
   appliedDragScale = 1;
   events: ItemEffectEvent[] = [];
+  /**
+   * A crush (directional press) asked for a reset. Unlike the wall timers it
+   * asks only once, so the race owner keeps it until no effect suppresses resets.
+   */
+  crushResetRequested = false;
 
   constructor(vehicle: ItemEffectVehicle) {
     this.vehicle = vehicle;
@@ -229,6 +234,15 @@ export class VehicleItemEffects {
   }
 
   get steeringInverted(): boolean { return this.kinds.has("reverse"); }
+
+  /** Called by the directional press next to its automatic reset request. */
+  requestCrushReset(): void { this.crushResetRequested = true; }
+
+  consumeCrushReset(): boolean {
+    const requested = this.crushResetRequested;
+    this.crushResetRequested = false;
+    return requested;
+  }
 
   /**
    * A stable basis for the chase camera while the body spins or flips, so the
@@ -298,6 +312,7 @@ export class VehicleItemEffects {
     for (const kind of [...this.effects.keys()]) this.finish(kind, "cleared");
     this.escapeShieldEndMs = 0;
     this.pendingImpact = undefined;
+    this.crushResetRequested = false;
   }
 
   /** Forget all effects after the physics runtime was rebuilt by a full reset. */
@@ -308,6 +323,7 @@ export class VehicleItemEffects {
     this.kinds.clear();
     this.escapeShieldEndMs = 0;
     this.pendingImpact = undefined;
+    this.crushResetRequested = false;
     this.appliedDriveScale = 1;
     this.appliedDragScale = 1;
   }

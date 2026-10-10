@@ -187,6 +187,30 @@ test("a booster item runs physics state 3 for itemBoosterTime with BoostAccelFac
   assert.deepEqual(trajectory(fallback, 1000), trajectory(fallbackReference, 1000));
 });
 
+test("a booster item never chains into the dual booster, even on a dual-booster engine", () => {
+  const tuning = testTuning(373, { dualBoosterEnabled: true });
+  assert.notEqual(tuning.itemBoosterTime, tuning.normalBoosterTime);
+  const states = (driver: TestDriver) => {
+    const seen: number[] = [];
+    driver.run(3500, throttleInput, 16, vehicle => {
+      if (seen.at(-1) !== vehicle.runtime.physicsState) seen.push(vehicle.runtime.physicsState);
+    });
+    return seen;
+  };
+  const item = createItemDriver(373, { dualBoosterEnabled: true });
+  item.run(1500);
+  assert.equal(item.vehicle.startItemBooster(), true);
+  assert.deepEqual(states(item), [3, 0], "no automatic state 10 inside the item booster");
+  assert.equal(item.vehicle.runtime.dualReadyRemainingMs, 0);
+
+  // Speed races keep the released automatic dual booster.
+  const speed = createSpeedDriver(373, { dualBoosterEnabled: true });
+  speed.run(1500);
+  speed.vehicle.runtime.speedSlots[0] = 6;
+  assert.equal(speed.vehicle.startNormalBooster(throttleInput), true);
+  assert.ok(states(speed).includes(10));
+});
+
 test("a booster item is refused while the kart is locked, held or reset", () => {
   const item = createItemDriver(373);
   item.vehicle.setRaceMotionLocked(true);

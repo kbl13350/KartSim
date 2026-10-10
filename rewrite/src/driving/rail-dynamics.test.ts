@@ -155,3 +155,30 @@ test("rail entry transitions and scalar recovery match release", () => {
     state.runtime.railPoint = vector(1.4, 0.3, 7.3);
   });
 });
+
+test("item races drive full-3D rail boosts with BoostAccelFactorOnlyItem", () => {
+  const input = { forward: 1, reverse: 0, steer: 0.2 };
+  const railForce = (released: boolean, edit: (state: Scenario) => void) => {
+    const state = scenario();
+    state.runtime.physicsState = 3;
+    edit(state);
+    const force = vector(1, 2, 3), torque = vector(4, 5, 6);
+    if (released) original.applyFull3DRail.call(state, 0.016, input, {}, force, torque);
+    else applyVehicleRailDynamics(state, 0.016, input, {}, force, torque);
+    return force;
+  };
+  const itemKart = (state: Scenario) => Object.assign(state, { itemMode: true,
+    tuning: { ...state.tuning, boostAccelFactor: 1.844, boostAccelFactorOnlyItem: 1.5 } });
+  // The item booster pushes as if the kart's speed-race factor were the item factor.
+  assert.deepEqual(railForce(false, itemKart),
+    railForce(true, state => { state.tuning.boostAccelFactor = 1.5; }));
+  // Without an item factor the speed factor stays; speed races ignore the item factor.
+  assert.deepEqual(railForce(false, state => {
+    itemKart(state);
+    delete (state.tuning as { boostAccelFactorOnlyItem?: number }).boostAccelFactorOnlyItem;
+  }), railForce(true, state => { state.tuning.boostAccelFactor = 1.844; }));
+  assert.deepEqual(railForce(false, state => {
+    itemKart(state);
+    (state as { itemMode?: boolean }).itemMode = false;
+  }), railForce(true, state => { state.tuning.boostAccelFactor = 1.844; }));
+});

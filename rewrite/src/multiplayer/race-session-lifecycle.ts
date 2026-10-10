@@ -2,10 +2,23 @@
 
 interface RoomSnapshot { phase: string; members?: unknown[] }
 
+type ListenerTarget = Pick<EventTarget, "addEventListener" | "removeEventListener">;
+
+/** Where an item race watches for focus loss: the page's window and document. */
+export interface FocusLossTargets {
+  window: ListenerTarget;
+  document: ListenerTarget & { readonly visibilityState: string };
+}
+
+function pageFocusTargets(): FocusLossTargets | undefined {
+  return typeof window === "undefined" || typeof document === "undefined"
+    ? undefined : { window, document };
+}
+
 export interface RaceSessionLifecycleHost {
   runtime: {
     local: {
-      physics: { speedRaceMode?: { kind: string } };
+      physics: { speedRaceMode?: { kind: string }; itemMode?: boolean };
     };
     bindClock(clock: unknown): void;
     updateRoom(room: RoomSnapshot): void;
@@ -48,6 +61,8 @@ export interface RaceSessionLifecycleHost {
   resultVisible: boolean;
   roomPhase?: string;
   now: number;
+  /** Item races: removes the window blur and page hide listeners. */
+  stopFocusLossWatch?: () => void;
   showWaiting(): void;
   requestLeave(): void;
   dispose(): void;
@@ -103,8 +118,31 @@ export function raceSessionPresentingResults(
     : host.runtime.resultSnapshot() !== undefined;
 }
 
+/**
+ * Item races: a key held while the window loses focus (Alt+Tab, a system
+ * shortcut such as Ctrl+Left switching the macOS Space) never sends its keyup
+ * here. Losing focus or hiding the page cancels every held input, as focusing
+ * a text field does, so the item key cannot stay held for the rest of the race.
+ */
+export function watchRaceSessionFocusLoss(host: RaceSessionLifecycleHost,
+  targets: FocusLossTargets | undefined = pageFocusTargets()): void {
+  if (!targets || host.stopFocusLossWatch) return;
+  const cancel = () => {
+    if (host.active && !host.disposed) host.host.input.cancelAll();
+  };
+  const visibility = () => {
+    if (targets.document.visibilityState === "hidden") cancel();
+  };
+  targets.window.addEventListener("blur", cancel);
+  targets.document.addEventListener("visibilitychange", visibility);
+  host.stopFocusLossWatch = () => {
+    targets.window.removeEventListener("blur", cancel);
+    targets.document.removeEventListener("visibilitychange", visibility);
+  };
+}
+
 export function showRaceSessionWaiting(host: RaceSessionLifecycleHost,
-  nowMs: () => number): void {
+  nowMs: () => number, focusTargets?: FocusLossTargets): void {
   if (host.disposed) throw new Error("多人比赛已释放。");
   if (host.active) return;
   host.now = nowMs();
@@ -117,6 +155,8 @@ export function showRaceSessionWaiting(host: RaceSessionLifecycleHost,
   host.scene.startAudio();
   host.host.input.cancelAll();
   host.host.input.setEnabled(true);
+  if (host.runtime.local.physics.itemMode)
+    watchRaceSessionFocusLoss(host, focusTargets);
   host.host.autoForward.cancel();
   host.host.renderer.domElement.focus();
   host.host.status("本机加载完成，等待其他玩家和统一起跑通知。");
@@ -176,6 +216,8 @@ export function exitRaceSession(host: RaceSessionLifecycleHost): void {
 export function disposeRaceSession(host: RaceSessionLifecycleHost): void {
   if (host.disposed) return;
   host.disposed = true;
+  host.stopFocusLossWatch?.();
+  host.stopFocusLossWatch = undefined;
   if (host.active) {
     host.host.input.setEnabled(false);
     host.host.input.cancelAll();

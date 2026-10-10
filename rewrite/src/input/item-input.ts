@@ -19,6 +19,10 @@ export interface ItemCommandHandler {
 export interface ItemInputTransition {
   action: number;
   down: boolean;
+  /** Physical source (`keyboard:ControlLeft`, `touch:5`); edges without one share a source. */
+  source?: string;
+  /** `keyboard`, `touch` or `gamepad`; defaults to the source prefix. */
+  sourceKind?: string;
 }
 
 export interface ItemInputSink {
@@ -27,6 +31,17 @@ export interface ItemInputSink {
   command(command: ItemCommand): void;
   /** A left or right press, used to break out of a water bubble. */
   escape(): void;
+}
+
+/** Source kinds whose holds of one action GameplayInputQueue merges. */
+const queueMergedKinds: ReadonlySet<string> = new Set(["keyboard", "touch"]);
+
+/**
+ * The input queue passes a keyboard edge only while no touch source holds the
+ * action, and a touch edge only while no key holds it.
+ */
+function mergedByQueue(kind: string, otherKind: string): boolean {
+  return kind !== otherKind && queueMergedKinds.has(kind) && queueMergedKinds.has(otherKind);
 }
 
 const itemActions: ReadonlySet<number> = new Set([
@@ -43,8 +58,8 @@ export function isItemAction(action: number): boolean {
  * transition is returned unchanged and in order for the driving accumulator.
  */
 export class ItemInputRouter {
-  /** Physical sources (keys, touch, gamepad) currently holding the use action. */
-  useHeld = 0;
+  /** Physical sources (keys, touch, gamepad) holding the use action, with their kind. */
+  readonly useSources = new Map<string, string>();
 
   route<T extends ItemInputTransition>(transitions: readonly T[], sink: ItemInputSink): T[] {
     const driving: T[] = [];
@@ -56,7 +71,8 @@ export class ItemInputRouter {
         continue;
       }
       if (transition.action === DrivingAction.UseItemOrBooster) {
-        this.routeUse(transition.down, sink);
+        const source = transition.source ?? "unknown";
+        this.routeUse(source, transition.sourceKind ?? source.split(":")[0]!, transition.down, sink);
       } else if (transition.down && sink.racing) {
         sink.command(transition.action === DrivingAction.ReorderItems
           ? { kind: "swap" } : { kind: "change" });
@@ -67,25 +83,36 @@ export class ItemInputRouter {
 
   /** Drop a held use key without firing (input cancelled or driving stopped). */
   cancel(sink: Pick<ItemInputSink, "command">): void {
-    if (this.useHeld === 0) return;
-    this.useHeld = 0;
+    if (this.useSources.size === 0) return;
+    this.useSources.clear();
     sink.command({ kind: "use", phase: "cancel" });
   }
 
-  routeUse(down: boolean, sink: ItemInputSink): void {
+  /**
+   * Press on the first held source, release when the last one lets go. A
+   * keyboard edge also ends touch holds and a touch edge ends keyboard holds:
+   * the input queue lets the edge through only when the other kind holds
+   * nothing, so it swallowed their releases.
+   */
+  routeUse(source: string, kind: string, down: boolean, sink: ItemInputSink): void {
+    const held = this.useSources;
     if (down) {
-      this.useHeld += 1;
-      if (this.useHeld > 1) return;
-      if (!sink.racing) {
-        // A key held through the start or a reset never fires on its release.
-        this.useHeld = 0;
-        return;
-      }
-      sink.command({ kind: "use", phase: "press" });
+      // A held source pressed again, or a stale hold of the other queue kind,
+      // means a release was lost (the key went up while another window had
+      // focus): drop the stale hold and start over with a fresh press.
+      if (held.has(source) || [...held.values()].some(heldKind => mergedByQueue(kind, heldKind)))
+        this.cancel(sink);
+      const first = held.size === 0;
+      // A key held through the start or a reset never fires on its release.
+      if (first && !sink.racing) return;
+      held.set(source, kind);
+      if (first) sink.command({ kind: "use", phase: "press" });
       return;
     }
-    if (this.useHeld === 0) return;
-    this.useHeld -= 1;
-    if (this.useHeld === 0) sink.command({ kind: "use", phase: "release" });
+    if (held.size === 0) return;
+    for (const [heldSource, heldKind] of held)
+      if (mergedByQueue(kind, heldKind)) held.delete(heldSource);
+    held.delete(source);
+    if (held.size === 0) sink.command({ kind: "use", phase: "release" });
   }
 }

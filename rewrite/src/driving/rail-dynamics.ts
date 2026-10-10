@@ -44,10 +44,14 @@ export interface RailDynamicsContext extends RailFrameContext {
     useTransformBooster: boolean;
     transAccelFactor: number;
     boostAccelFactor: number;
+    /** Item races: the booster factor of every boost state (BoostAccelFactorOnlyItem). */
+    boostAccelFactorOnlyItem?: number;
     gripBrake: number;
     maxSteerDeg: number;
     mass: number;
   };
+  /** Item races (道具赛) boost with the item factor, as `applyLongitudinalForce` does. */
+  itemMode?: boolean;
   produceRailFrame(seconds: number, track: RailFrameTrack): boolean;
   commitDriftGauge(): void;
 }
@@ -127,7 +131,8 @@ export function applyVehicleRailDynamics(
       let boostFactor: number | undefined;
       if (runtime.physicsState >= 1 && runtime.physicsState <= 11) {
         const transformed = tuning.useTransformBooster && [2, 4, 5, 6].includes(runtime.animationSlot);
-        boostFactor = float(transformed ? tuning.transAccelFactor : tuning.boostAccelFactor);
+        boostFactor = float(transformed ? tuning.transAccelFactor : vehicle.itemMode
+          ? tuning.boostAccelFactorOnlyItem ?? tuning.boostAccelFactor : tuning.boostAccelFactor);
       }
       const driveForce = scaled(direction, input.forward);
       scale(driveForce, config.accelFactor);

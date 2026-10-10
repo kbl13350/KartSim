@@ -88,3 +88,64 @@ test("left and right presses are escape presses and still steer", () => {
   assert.deepEqual(router.route([left, leftUp, right], target), [left, leftUp, right]);
   assert.equal(target.escapes, 2);
 });
+
+test("a down from a source whose release was lost starts a fresh press", () => {
+  // Ctrl held to aim, then a system shortcut (Ctrl+Left switches the macOS Space)
+  // takes focus and the keyup goes to another window.
+  const router = new ItemInputRouter();
+  const target = sink();
+  router.route([edge(5, true, "keyboard:ControlLeft")], target);
+  router.route([edge(5, true, "keyboard:ControlLeft")], target);
+  router.route([edge(5, false, "keyboard:ControlLeft")], target);
+  router.route([edge(5, true, "keyboard:ControlLeft")], target);
+  router.route([edge(5, false, "keyboard:ControlLeft")], target);
+  assert.deepEqual(target.commands, [
+    { kind: "use", phase: "press" },
+    { kind: "use", phase: "cancel" },
+    { kind: "use", phase: "press" },
+    { kind: "use", phase: "release" },
+    { kind: "use", phase: "press" },
+    { kind: "use", phase: "release" },
+  ]);
+});
+
+test("keyboard and touch or gamepad holds merged by the input queue never leave the use key stuck", () => {
+  // The queue drops one kind's edges while the other kind holds the action, and it
+  // tracks keyboard holds per action, so RightCtrl's release below never arrives.
+  const router = new ItemInputRouter();
+  const target = sink();
+  const key = (code: string, down: boolean) => ({ action: 5, down, source: `keyboard:${code}`, sourceKind: "keyboard" });
+  const pad = (down: boolean) => ({ action: 5, down, source: "touch:5", sourceKind: "touch" });
+  router.route([key("ControlLeft", true), key("ControlRight", true)], target);
+  router.route([key("ControlLeft", false)], target);
+  router.route([pad(true)], target);
+  router.route([pad(false)], target);
+  assert.deepEqual(target.commands.at(-1), { kind: "use", phase: "release" });
+  const used = target.commands.length;
+  router.route([pad(true)], target);
+  router.route([pad(false)], target);
+  assert.deepEqual(target.commands.slice(used),
+    [{ kind: "use", phase: "press" }, { kind: "use", phase: "release" }]);
+
+  // Keyboard down, touch down (dropped by the queue), keyboard up (dropped), touch up.
+  const merged = new ItemInputRouter();
+  const mergedTarget = sink();
+  merged.route([key("ControlLeft", true)], mergedTarget);
+  merged.route([pad(false)], mergedTarget);
+  assert.deepEqual(mergedTarget.commands,
+    [{ kind: "use", phase: "press" }, { kind: "use", phase: "release" }]);
+  merged.route([key("ControlLeft", true)], mergedTarget);
+  assert.deepEqual(mergedTarget.commands.at(-1), { kind: "use", phase: "press" });
+});
+
+test("gamepad edges merged after the queue are tracked on their own", () => {
+  const router = new ItemInputRouter();
+  const target = sink();
+  const key = (down: boolean) => ({ action: 5, down, source: "keyboard:ControlLeft", sourceKind: "keyboard" });
+  const pad = (down: boolean) => ({ action: 5, down, source: "gamepad:3", sourceKind: "gamepad" });
+  router.route([key(true), pad(true), pad(false)], target);
+  assert.deepEqual(target.commands, [{ kind: "use", phase: "press" }], "the key still holds the aim");
+  router.route([key(false)], target);
+  assert.deepEqual(target.commands,
+    [{ kind: "use", phase: "press" }, { kind: "use", phase: "release" }]);
+});

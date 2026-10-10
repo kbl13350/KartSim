@@ -162,7 +162,9 @@ export function armVehicleDualBooster(vehicle: BoosterStateContext): void {
 /** Calculate dual-booster readiness from elapsed boost ticks and speed. */
 export function refreshVehicleDualBoosterReady(vehicle: BoosterStateContext): number | undefined {
   const { runtime, tuning } = vehicle;
-  if (!tuning.dualBoosterEnabled) {
+  // Item races have no dual booster: the booster item (state 3 for itemBoosterTime)
+  // must not arm or auto-chain into state 10 on a dual-booster engine.
+  if (!tuning.dualBoosterEnabled || vehicle.itemMode) {
     runtime.dualReadyRemainingMs = 0;
     return;
   }
