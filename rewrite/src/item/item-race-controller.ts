@@ -610,6 +610,8 @@ export class ItemRaceController implements ItemCommandHandler {
           },
         });
         if (!pulled) return NO_UNDO;
+        // Face the field at the locked target from the release frame, not only from the reply.
+        this.kartEffect(this.playerId, "pull", nowMs, behaviour.effectMs, { target: targetId });
         this.pullToken = token;
         return () => {
           if (this.pullToken !== token) return;
@@ -1161,8 +1163,9 @@ export class ItemRaceController implements ItemCommandHandler {
     this.send("escape", fields).catch(error => this.warn("脱出水泡通知被拒绝", error));
   }
 
-  private kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number): void {
-    this.presenterCall(presenter => presenter.kartEffect(playerId, kind, startMs, durationMs));
+  private kartEffect(playerId: string, kind: ItemKartEffect, startMs: number, durationMs: number,
+    options?: { target?: string }): void {
+    this.presenterCall(presenter => presenter.kartEffect(playerId, kind, startMs, durationMs, options));
   }
 
   private endKartEffect(playerId: string, kind: ItemKartEffect): void {
