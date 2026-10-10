@@ -22,7 +22,7 @@ const node = (name: string, properties: Record<string, string> = {},
 const attribute = (source: GarageAssetNode, name: string): string | undefined =>
   source.attributes.find(value => value.name === name)?.value;
 
-type Variant = "normal" | "with-font" | "missing-main" |
+type Variant = "normal" | "with-font" | "with-help" | "missing-main" |
   "missing-frame" | "missing-arrow-state" | "missing-rect" |
   "missing-arrow" | "missing-image" | "card-mismatch";
 
@@ -48,6 +48,14 @@ async function run(released: boolean, variant: Variant): Promise<unknown> {
       arrowColor: "255 1 2 3", overArrowColor: "255 2 3 4",
       clickedArrowColor: "255 3 4 5", disabledArrowColor: "255 4 5 6" }),
     node("Icon", { texture: "icon_lucci" }));
+  if (variant === "with-help")
+    children.push(node("Label", { text: "#sb(tuningTargetKart)" }),
+      node("Container", { name: "helpStr" }, [
+        node("Panel", { texture: "tuning_infomark_1" }),
+        node("Label", { text: "#sb(helpStr1)" }),
+        node("Panel", { texture: "tuning_infomark_1" }),
+        node("Label", { text: "#sb(helpStr2)" }),
+      ]));
   if (variant === "missing-rect")
     children.splice(children.findIndex(child => attribute(child, "name") === "curLevel"), 1);
   if (variant === "missing-arrow")
@@ -75,6 +83,8 @@ async function run(released: boolean, variant: Variant): Promise<unknown> {
     [`${cardDirectory}normal-card.png`, new Uint8Array([3])],
     [`${cardDirectory}selected-card.png`, new Uint8Array([4])],
   ]);
+  if (variant === "with-help")
+    resources.set(`${layoutDirectory}tuning_infomark_1.png`, new Uint8Array([5]));
   if (variant === "missing-image")
     resources.delete(`${cardDirectory}selected-card.png`);
   if (variant === "with-font")
@@ -160,4 +170,18 @@ test("upgrade preparation layout, arrows, images and cleanup match release ja", 
     "missing-arrow-state", "missing-rect", "missing-arrow", "missing-image",
     "card-mismatch"] as const)
     assert.deepEqual(await run(false, variant), await run(true, variant), variant);
+});
+
+test("the kart list caption, bubble tips and their info marks keep their boxes", async () => {
+  const { error, snapshot } = await run(false, "with-help") as {
+    error?: string; snapshot: { rects: Array<[string, unknown]>; images: string[] } };
+  assert.equal(error, undefined);
+  const names = snapshot.rects.map(([name]) => name);
+  for (const name of ["tuningTargetLabel", "kartListLabel", "helpStr",
+    "helpStr1", "helpStr2", "helpMark1", "helpMark2"])
+    assert.ok(names.includes(name), name);
+  assert.ok(snapshot.images.includes("tuning_infomark_1"));
+  const normal = await run(false, "normal") as { snapshot: { images: string[] } };
+  assert.ok(!normal.snapshot.images.includes("tuning_infomark_1"),
+    "the info mark loads only for a layout that has one");
 });

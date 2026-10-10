@@ -102,11 +102,19 @@ export async function loadGaragePreparationAssets(
     const style = frameNode ? dependencies.frameStyle(frameNode) : undefined;
     const bounds = dependencies.childRect(adjusted, parent, style);
     const text = dependencies.attribute(node, "text");
+    const texture = dependencies.attribute(node, "texture");
     const alias = text === "#sb(tuningSlotNum)" ? "tuningSlotLabel" :
       text === "#sb(tuningPoint)" ? "tuningPointLabel" :
         text === "#sb(tuningTargetKart)" && !rects.has("tuningTargetLabel") ?
           "tuningTargetLabel" : undefined;
-    const key = name ?? alias ?? node.name;
+    // The release drew neither the kart list caption nor the two tips in the
+    // helpStr bubble; keep their authored boxes and info marks by name.
+    const unnamed = text === "#sb(tuningTargetKart)" ? "kartListLabel" :
+      text === "#sb(helpStr1)" ? "helpStr1" :
+        text === "#sb(helpStr2)" ? "helpStr2" :
+          texture === "tuning_infomark_1" ?
+            (rects.has("helpMark1") ? "helpMark2" : "helpMark1") : undefined;
+    const key = name ?? alias ?? unnamed ?? node.name;
     if (key === "kartSelector") selector = node;
     if (key === "preItemList" || key === "nextItemList") {
       const direction = dependencies.attribute(node, "arrowDir");
@@ -126,7 +134,6 @@ export async function loadGaragePreparationAssets(
           `${key} disabledArrowColor`),
       });
     }
-    const texture = dependencies.attribute(node, "texture");
     if (texture === "icon_ethisChipset" || texture === "icon_lucci")
       icons.push({ token: texture, rect: bounds });
     rects.set(key, bounds);
@@ -173,6 +180,8 @@ export async function loadGaragePreparationAssets(
         path: `${dependencies.cardDirectory}${normalTexture}.png` },
       { token: "cardSelected",
         path: `${dependencies.cardDirectory}${selectedTexture}.png` },
+      ...rects.has("helpMark1") ? [{ token: "tuning_infomark_1",
+        path: `${dependencies.layoutDirectory}tuning_infomark_1.png` }] : [],
     ];
     const settled = await Promise.allSettled(requestedImages.map(async image => {
       const blob = new Blob([new Uint8Array(

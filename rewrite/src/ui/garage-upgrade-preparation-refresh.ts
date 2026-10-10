@@ -25,6 +25,15 @@ export interface GaragePreparationRefreshAssets extends GaragePreparationControl
   fontFamily?: string;
 }
 
+/**
+ * The tips in the helpStr bubble. The release helpStr1/2 are about failure
+ * odds that rise after each failed try; local upgrades always succeed.
+ */
+export const PREPARATION_TIPS = [
+  "强化一定会成功，放心升级吧~",
+  "最高可强化到 5 级，强化点数随等级增加，性能槽最多 3 个！",
+] as const;
+
 export type GaragePreparationRefreshHost =
   GaragePreparationHost & GaragePreparationControlHost & {
     assets?: GaragePreparationRefreshAssets;
@@ -104,10 +113,26 @@ export function refreshGaragePreparation(host: GaragePreparationRefreshHost,
     ? "逐级强化：点击升级后提升 1 级。\n强化完成后立即写入当前车辆。"
     : "一键升满：点击升级后直接提升至 5 级。\n强化完成后立即写入当前车辆。";
   methodPanel.append(help);
-  addPreparationLabel(host, "离线目录：" + host.state.candidates.length + "辆",
+  if (assets.rects.has("kartListLabel"))
+    addPreparationLabel(host, "强化车辆", "kartListLabel", "list-caption");
+  // kart12TuningLevelUp_stringBag kartCount: the list is the owned XUN karts.
+  addPreparationLabel(host, "持有车辆： " + host.state.candidates.length + "辆",
     "kartCount", "count");
   addPreparationLabel(host, host.state.page + 1 + " / " + host.state.pages,
     "pageInfo", "fee");
+  const bubble = assets.rects.get("helpStr");
+  PREPARATION_TIPS.forEach((text, index) => {
+    const label = assets.rects.get("helpStr" + (index + 1));
+    if (!bubble || !label) return;
+    const element = document.createElement("div");
+    element.className = "garage-preparation-label help";
+    element.textContent = text;
+    // .help pads 20 px for the info mark, which sits 20 px left of the label.
+    placePreparationControl(host, element, {
+      x: label.x - 20, y: label.y,
+      width: bubble.x + bubble.width - label.x + 20, height: label.height,
+    });
+  });
   for (const arrow of assets.pageArrows) {
     const previous = arrow.name === "preItemList";
     const button = createPreparationButton(host,

@@ -30,7 +30,7 @@ const oldCards = new Function(sourceOf("en") + ";return en;")() as
 const oldPanel = new Function(sourceOf("Ya") + ";return Ya;")() as
   typeof fillPreparationMethodPanel;
 
-function fixture(released: boolean, disposed = false, loaded = true) {
+function fixture(released: boolean, disposed = false, loaded = true, help = false) {
   const events: unknown[] = [];
   const image = (name: string) => ({ name, width: 90, height: 45 });
   const images = new Map([
@@ -38,6 +38,7 @@ function fixture(released: boolean, disposed = false, loaded = true) {
     ["tuning_arrow_g", image("arrow-first")],
     ["tuning_arrow_g_s", image("arrow-more")],
     ["cardNormal", image("normal")], ["cardSelected", image("selected")],
+    ...help ? [["tuning_infomark_1", image("info-mark")] as const] : [],
   ]);
   const context = {
     canvas: { getBoundingClientRect: () => ({ width: 800, height: 450 }) },
@@ -75,6 +76,10 @@ function fixture(released: boolean, disposed = false, loaded = true) {
       ["arrow0", { x: 21, y: 22, width: 30, height: 31 }],
       ["arrow1", { x: 41, y: 42, width: 50, height: 51 }],
       ["arrow2", { x: 61, y: 62, width: 70, height: 71 }],
+      ...help ? [
+        ["helpMark1", { x: 81, y: 82, width: 14, height: 14 }],
+        ["helpMark2", { x: 81, y: 106, width: 14, height: 14 }],
+      ] as const : [],
     ]),
     cardLayout: {
       width: 80, height: 50, columns: 2, horizontalMargin: 6,
@@ -180,4 +185,20 @@ test("vehicle card backgrounds, previews and selected overlay match en/Ja.draw",
   events.length = 0;
   oldCards(context, presenter, cards, 2, normal, selected);
   assert.deepEqual(rewritten, events);
+});
+
+test("the bubble info marks draw over the board after the arrows", () => {
+  const rewritten = fixture(false, false, true, true);
+  const original = fixture(true, false, true, false);
+  rewritten.draw();
+  original.draw();
+  const expected = structuredClone(original.snapshot());
+  const lastArrow = expected.events.length - 1 - [...expected.events].reverse()
+    .findIndex(event => Array.isArray(event) && event[0] === "draw-image" &&
+      event[1] === "arrow-more");
+  assert.ok(lastArrow > 0 && lastArrow < expected.events.length);
+  expected.events.splice(lastArrow + 1, 0,
+    ["draw-image", "info-mark", 81, 82, 14, 14],
+    ["draw-image", "info-mark", 81, 106, 14, 14]);
+  assert.deepEqual(rewritten.snapshot(), expected);
 });

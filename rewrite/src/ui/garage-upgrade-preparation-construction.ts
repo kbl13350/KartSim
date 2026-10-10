@@ -45,6 +45,10 @@ export function initializeGaragePreparation(
   host.status.className = "garage-preparation-status";
   host.status.setAttribute("role", "status");
   host.status.textContent = "正在加载原版强化窗口…";
+  // The release left this box unsized (0 px high, its controls are absolute):
+  // the Garage overlay rasterizer skips a zero-size box with everything in it,
+  // so no caption, label or button of the dialog was drawn. Span the dialog.
+  Object.assign(host.controls.style, { position: "absolute", inset: "0" });
   host.element.append(canvas, host.controls, host.status);
   surface.append(host.element);
   host.cancelButton();

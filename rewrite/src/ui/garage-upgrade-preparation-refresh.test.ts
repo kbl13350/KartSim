@@ -3,7 +3,8 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import { parse } from "@babel/parser";
 
-import { refreshGaragePreparation } from "./garage-upgrade-preparation-refresh";
+import { PREPARATION_TIPS, refreshGaragePreparation } from
+  "./garage-upgrade-preparation-refresh";
 import { compareGarageUpgradeLevels, preparationMethodPanelRect } from
   "./garage-upgrade-preparation-render";
 import { GarageUpgradePreparationState } from "./garage-progression-session";
@@ -159,7 +160,7 @@ function fixture(released: boolean) {
     globalThis.document = oldDocument;
     globalThis.ResizeObserver = oldObserver;
   };
-  return { refresh, snapshot, controls, restore };
+  return { refresh, snapshot, controls, restore, host };
 }
 
 test("upgrade preparation renders BML labels, methods, paging and cards like Ja.refresh", () => {
@@ -178,5 +179,40 @@ test("upgrade preparation renders BML labels, methods, paging and cards like Ja.
       return { initial, maximum, firstPage, selected, final: f.snapshot() };
     } finally { f.restore(); }
   };
-  assert.deepEqual(run(false), run(true));
+  // Deliberate change: the count reads like kart12TuningLevelUp_stringBag
+  // kartCount, since the list is the owned karts, not an offline catalog.
+  const released = JSON.stringify(run(true));
+  assert.ok(released.includes("离线目录：18辆"));
+  assert.deepEqual(run(false), JSON.parse(
+    released.replaceAll("离线目录：18辆", "持有车辆： 18辆")));
+});
+
+test("the kart list caption and the bubble tips use their authored boxes", () => {
+  const f = fixture(false);
+  try {
+    const rects = (f.host as unknown as { assets: { rects: Map<string, unknown> } })
+      .assets.rects;
+    rects.set("kartListLabel", { x: 700, y: 60, width: 100, height: 32 });
+    rects.set("helpStr", { x: 700, y: 600, width: 720, height: 60 });
+    rects.set("helpStr1", { x: 725, y: 607, width: 200, height: 20 });
+    rects.set("helpStr2", { x: 725, y: 631, width: 200, height: 20 });
+    f.refresh();
+    const labels = (f.controls.snapshot() as { children: Array<{
+      className: string; text: string; style: Record<string, string> }> })
+      .children.filter(child => /list-caption|help/.test(child.className))
+      .map(({ className, text, style }) => ({ className, text, style }));
+    const box = (left: number, top: number, width: number, height: number) => ({
+      position: "absolute", left: left + "px", top: top + "px",
+      width: width + "px", height: height + "px",
+    });
+    assert.deepEqual(labels, [
+      { className: "garage-preparation-label list-caption", text: "强化车辆",
+        style: box(700, 60, 100, 32) },
+      // The release .help style pads 20 px for the info mark left of the label.
+      { className: "garage-preparation-label help", text: PREPARATION_TIPS[0],
+        style: box(705, 607, 715, 20) },
+      { className: "garage-preparation-label help", text: PREPARATION_TIPS[1],
+        style: box(705, 631, 715, 20) },
+    ]);
+  } finally { f.restore(); }
 });
