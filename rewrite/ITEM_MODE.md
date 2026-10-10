@@ -59,7 +59,7 @@
 | `cube` | `cubeId`(1..4096)、`capacity`(2/3) | 刷箱检查、满槽检查、按名次抽取 | `{action:"grant", cubeId, itemId:int\|null, reason?:"full"\|"abusing", slots}` | 无（扫描期间给扫描方发 `scan`） |
 | `use` | `itemId`、可选 `targetId`（瞄准类）、可选 `point:{x,y,z}`（投掷/放置点，客户端坐标） | 校验 slot0==itemId、未被锁（天使除外）；按附录 B 决定 `targets`；分配 `useId`；`startAt`=服务器当前毫秒；对追踪类按名次距离差算 `etaMs` | `{action:"used", …, slots}` | `{action:"used", playerId, useId, itemId, targets, startAt, etaMs, point?}` |
 | `place` | `useId`、`point` | 路障（被锁定的第 1 名客户端计算落点）、定时水炸弹（使用者计算爆点）；只接受该 useId 规定的上报者 | 同广播 | `{action:"placed", useId, itemId, playerId, point}` |
-| `hit` | `useId`（预置赛道危险物为 0）、`itemId`、`result:"hit"\|"blocked"`、可选 `by:"shield"\|"angel"\|"emp"\|"escape"`、可选 `hazardId` | 受害者自报；校验 useId 存活（60 秒内）、该受害者未报过、受害者是目标或区域/放置类；香蕉被首次命中即移除 | 同广播 | `{action:"hit", playerId:受害者, useId, itemId, userId, result, by?, removed?}` |
+| `hit` | `useId`（预置赛道危险物为 0）、`itemId`、`result:"hit"\|"blocked"`、可选 `by:"shield"\|"angel"\|"escape"\|"kart"\|"pet"\|"eat"`（只配 blocked）、可选 `variant`（只配 hit，附录 C.7）、可选 `shot`、可选 `hazardId` | 受害者自报；校验 useId 存活（60 秒内）、该受害者未报过、受害者是目标或区域/放置类；香蕉被首次命中即移除 | 同广播 | `{action:"hit", playerId:受害者, useId, itemId, userId, result, by?, removed?}` |
 | `swap` | — | 持有道具换位卡（扣 1 张）或换位卡使用券、槽 0 与槽 1 都有道具时交换（附录 C.6） | `{action:"slots", slots, changers}` | 无 |
 | `change` | — | 持有道具变更卡（扣 1 张）或变更卡使用券，且槽 0 的道具是新获得后还没变更过：按当前名次组从变更表随机重抽槽 0（附录 C.6） | `{action:"slots", slots, changers}` | 无 |
 
@@ -309,3 +309,17 @@ interface ItemHudState { slots: number[]; capacity: 2|3; reorderProgress?: numbe
 
 ### C.10 界面补充
 道具说明卡：本局第一次显示 `first`/`first_desc`（扳手图标），之后显示名称 + 图标 + Ctrl 动画 + 说明；倒计时期间左下角显示教程板（持有换位/变更卡时 `changerTuto`，组队赛 `avoidTeamkill`）。
+
+## 附录 D：实现与本规格的差异（按原版数据修正）
+
+- 电磁波不是“挡”（不接受 `by:"emp"`）：`used.targets` 是当时正处于飞碟减速、被它解除的本队车手，没有人就是空数组，什么都不发生。
+- 提前挣脱水泡时受害者发 `escape {useId}`，服务器向其他人转发 `{action:"escaped", playerId, useId, itemId, hazardId?}`；被拒的使用会撤回本机已触发的效果，并用 `slots` 请求取回服务器的道具槽。
+- 变更卡重抽同样经过限制与变换表（`changerTuto01@cn`“一定几率出现特殊道具”，而变更表里特殊道具权重为 0）；迅车开局道具也走完整变换（含 `transform@zz`）。
+- `fired2Gain` 在被吃掉（香蕉防御 100% 的车也有香蕉→加速器的获得行）和被磁铁吸时也触发（`fired2Gain@cn:24` 有 magnet 行）。
+- 22 条道具赛道在 `track@zz` 里没有 `level`，按 0 处理（定时水炸弹在这些赛道上变成水炸弹）。
+- 毒性水炸弹类（27、44、28）的 `item.bml` 没有 EscapeAffect / AfterBoost，所以没有蓝盾和脱出加速，结束后显示钥匙锁模型；冰冻水炸弹的 EscapeAffect 没有蓝盾模型。
+- 黄金盾牌、保护盾、隐身和天使、电磁波、透视镜一样在 Use（500 ms）之后生效；黄金盾牌期间也不会被道具锁锁住。
+- 被丢下的水雷只困住踩到的车（延迟 1 秒的 10 m 爆炸需要新的触发消息，暂未做）；赛道预置地雷被吃掉后暂不从路上移除。
+- 卡丁车 972/1263 的 cloud2→黑云按数据给 idx 1（Set 30000）；`cokeRocketWorldCup` 没有 idx，按 30 发放。
+- 3 槽车的 Alt 只交换槽 0 与槽 1；称号“铁壁防御”因天使每局最多 2 次基本拿不到（原版数据如此）。
+- 赛中金币每人每局最多 200，结算时单独列 `bonusLucci`，不乘经验/金币倍率。
