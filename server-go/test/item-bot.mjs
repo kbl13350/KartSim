@@ -22,6 +22,12 @@
  * drives into, and it places the barricades aimed at it. A hit that would
  * stop or slow a kart stops or slows it too (route mode). After the race it
  * returns to the room and gets ready again (--once: leaves instead).
+ * Phase 3 (rewrite/ITEM_MODE.md appendix C): it follows its changer cards
+ * (the replies' changers; without a 道具换位卡 or voucher it uses the item in
+ * slot 0 instead of swapping), logs the server's slots pushes (the race
+ * start, per-kart gains) and in-race lucci, reports both missiles of a
+ * double rocket (shot 0 and 1), can claim a perfect start at its finish
+ * (--perfect-start, the 完美起步 title) and logs the result titles.
  *
  * Usage, from the repository root (Node.js 22+, `npm ci` in rewrite/):
  *   KART_ITEM_TEST_GRANTS=true ./run-full-local.sh      # your stack, with test grants
@@ -48,6 +54,7 @@
  *   --replay FILE     replay a recording instead of driving the course line
  *   --shift auto|0|x,y,z  move a replay (three.js meters; auto: onto the bot's start slot)
  *   --load-delay MS   wait before answering loaded
+ *   --perfect-start   say the start boost succeeded when finishing (完美起步)
  *   --once            leave after one race
  *   --print-recorder  print the DevTools snippet that records your motion, then exit
  *   --quiet           log only the race events
@@ -66,7 +73,7 @@ import {
 } from "./lib/kart-client.mjs";
 import {
   AREA_ITEMS, clientToThree, distanceBetween, hitDelayMs, hitEffect, hitReport, itemPoint, parseArgs, readAccount,
-  RECORDER_SNIPPET, recordedRace, RouteWalker, slotOffset, threeToClient,
+  RECORDER_SNIPPET, recordedRace, RouteWalker, shotsOf, slotOffset, threeToClient,
 } from "./lib/item-bot-lib.mjs";
 import {
   browserAccepts, browserEventValidation, ITEM, ITEM_NAMES, ITEM_RULES, ItemChannel, kartSample, loadItemData,
@@ -365,7 +372,8 @@ function motionSample(race, now) {
   if (beat.finished && !race.finishSent && race.startAt !== undefined && now > race.startAt) {
     race.finishSent = true;
     race.finishElapsedMs = beat.finishElapsedMs ?? Math.max(0, Math.round(now - race.startAt));
-    ask({ type: "finish", roomId: state.roomId, raceId: race.raceId, elapsedMs: race.finishElapsedMs })
+    ask({ type: "finish", roomId: state.roomId, raceId: race.raceId, elapsedMs: race.finishElapsedMs,
+      ...(options.perfectStart ? { perfectStart: true } : {}) })
       .then(reply => { if (reply) log(`finished in ${(race.finishElapsedMs / 1000).toFixed(2)} s`); })
       .catch(error => log(`finish failed: ${error.message}`));
   }
@@ -398,16 +406,18 @@ function at(race, time, callback) {
   race.timers.add(timer);
 }
 
-/** Reports a hit by an item use on the bot and lets it hold the bot up. */
-async function reportHit(race, used) {
+/** Reports a hit by an item use on the bot (one missile of it: shot) and lets it hold the bot up. */
+async function reportHit(race, used, shot) {
   const report = hitReport(used.itemId, options.defend);
-  const reply = await race.items.send("hit", { useId: used.useId, itemId: used.itemId, ...report });
+  const reply = await race.items.send("hit", { useId: used.useId, itemId: used.itemId, ...report,
+    ...(shot === undefined ? {} : { shot }) });
   const what = used.useId === 0 ? `${itemName(used.itemId)} on the track` : `${itemName(used.itemId)} of ${nameOf(used.playerId)}`;
   if (reply.type === "error") {
     log(`hit report on ${what} refused: ${reply.code}`);
     return;
   }
-  log(`${reply.result === "hit" ? "hit by" : `blocked (${reply.by})`} ${what}${reply.removed ? ", removed" : ""}`);
+  log(`${reply.result === "hit" ? "hit by" : `blocked (${reply.by})`} ${what}` +
+    `${shot === undefined ? "" : ` (missile ${shot + 1} of 2)`}${reply.removed ? ", removed" : ""}`);
   const effect = reply.result === "hit" ? hitEffect(itemData, used.itemId) : undefined;
   if (effect && !recording) {
     const now = race.clock.now();
@@ -448,10 +458,13 @@ function onItemEvent(race, event) {
       race.uses.set(event.useId, event);
       const onMe = event.targets.includes(state.playerId);
       info(`${nameOf(event.playerId)} used ${itemName(event.itemId)}` +
+        (event.count === 2 ? " ×2" : "") +
         (event.targets.length ? ` → ${event.targets.map(nameOf).join(", ")}` : "") +
         (event.etaMs ? ` (eta ${event.etaMs} ms)` : ""));
       if (onMe && ITEM_RULES[event.itemId]?.hit === "targets") {
-        at(race, event.startAt + hitDelayMs(itemData, event), () => reportHit(race, event));
+        for (const { delayMs, shot } of shotsOf(event)) {
+          at(race, event.startAt + hitDelayMs(itemData, event) + delayMs, () => reportHit(race, event, shot));
+        }
       }
       if (event.itemId === ITEM.barricade && event.targets[0] === state.playerId) {
         // The targeted leader works out where the barricade lands.
@@ -480,9 +493,17 @@ function onItemEvent(race, event) {
       if (event.removed) race.areas = race.areas.filter(area => area.used.useId !== event.useId);
       const what = event.useId === 0 ? `a track ${itemName(event.itemId)}` : `${nameOf(event.userId)}'s ${itemName(event.itemId)}`;
       info(`${nameOf(event.playerId)} ${event.result === "hit" ? "was hit by" : `blocked (${event.by})`} ${what}` +
-        `${event.removed ? " (removed)" : ""}`);
+        `${event.variant ? ` [${event.variant}]` : ""}${event.removed ? " (removed)" : ""}`);
       return;
     }
+    case "slots":
+      // The server's own push: the race start (changer cards, a 迅 start item) or a per-kart gain.
+      race.items.pushed(event);
+      if (event.itemId !== undefined) info(`${event.reason === "start" ? "started with" : "gained"} ${itemName(event.itemId)}`);
+      return;
+    case "lucci":
+      info(`earned ${event.amount} lucci (${event.reason})`);
+      return;
     case "scan":
       if (!race.scans.has(event.playerId)) {
         race.scans.add(event.playerId);
@@ -501,7 +522,7 @@ async function runSchedule(race) {
     const slots = race.items.slots ?? [-1, -1];
     if (slots[0] !== planned.idx) {
       if (slots[1] === planned.idx) {
-        await race.items.send("swap");
+        await swapOrUse(race);
       } else {
         race.cube = race.cube >= 4096 ? 3000 : race.cube + 1;
         const grant = await race.items.send("cube", { cubeId: race.cube, capacity: 2, testItemId: planned.idx });
@@ -526,13 +547,26 @@ async function runSchedule(race) {
             "grants (KART_ITEM_TEST_GRANTS); rebuild it from this checkout");
           return;
         }
-        if (grant.slots[0] !== planned.idx && grant.slots[1] === planned.idx) await race.items.send("swap");
+        if (grant.slots[0] !== planned.idx && grant.slots[1] === planned.idx) await swapOrUse(race);
       }
     }
     await race.clock.until(race.startAt + planned.atMs);
     if (race.over) return;
     await useItem(race, planned.idx);
   }
+}
+
+/**
+ * Brings slot 1 forward: a swap with a 道具换位卡 or its voucher, otherwise
+ * by using the item in slot 0 first.
+ */
+async function swapOrUse(race) {
+  if ((race.items.changers?.slot ?? 0) !== 0) {
+    const reply = await race.items.send("swap");
+    if (reply.type === "item") return;
+    log(`swap refused: ${reply.code}`);
+  }
+  await useItem(race, race.items.slots[0]);
 }
 
 /** Uses the item in slot 0 (retrying through a slot lock for 5 s). */
@@ -627,7 +661,8 @@ async function onRoom(room) {
     if (room.phase === "finished" && !race.over) {
       endRace(race);
       const results = room.race.results.map(row => `${row.rank}. ${nameOf(row.playerId)} ` +
-        (row.elapsedMs === null ? "—" : `${(row.elapsedMs / 1000).toFixed(2)} s`)).join("  ");
+        (row.elapsedMs === null ? "—" : `${(row.elapsedMs / 1000).toFixed(2)} s`) +
+        (row.titles?.length ? ` [${row.titles.join(", ")}]` : "")).join("  ");
       log(`race over: ${results}${room.race.winningTeam ? `; team ${room.race.winningTeam} wins` : ""}`);
       if (options.once) {
         await delay(3000);

@@ -21,11 +21,15 @@
  * item channel with gameplay item, item track and random-track rules, join,
  * start, loaded, binary motion frames with race progress encoded by the
  * browser's payload codec (so the node ranks the racers and draws by rank
- * group), cube grants (abusing, full, 3 slots), swap, change, slots, uses
- * of the items with the targets the server must pick, place, hit/blocked,
- * escape, the removed banana, track hazards, scans, the slot lock, finish (the item team
- * result: the first finisher's team wins) and the settlement and item
- * careers. Every item request passes the browser's request validator and
+ * group, with the track transforms of transform@zz), the race start's
+ * slots push with the racer's changer cards, cube grants (abusing, full, 3
+ * slots), swap and change (道具换位卡 / 道具变更卡: with the cards or vouchers
+ * the cluster gives, KART_ITEM_CHANGERS=infinite under
+ * server-go/test/run-cluster-smokes.mjs, else refused for card-less
+ * accounts), slots, uses of the items with the targets the server must pick,
+ * place, hit/blocked, escape, the removed banana, track hazards, scans, the
+ * slot lock, finish (perfectStart; the item team result: the first
+ * finisher's team wins), result titles, and the settlement and item careers. Every item request passes the browser's request validator and
  * every server event the browser's event validators (an item event the
  * browser would turn into INVALID_ITEM_EVENT fails the smoke). Items come
  * from the real rank-group draws, so a scenario farms cubes until a racer
@@ -49,7 +53,7 @@ import {
   waitUntilRaceCounts,
 } from "./server-go/test/lib/kart-client.mjs";
 import {
-  browserAccepts, browserEventValidation, expectedTargets, groupWeight, ITEM, ITEM_NAMES, ITEM_RULES, ItemChannel,
+  browserAccepts, browserEventValidation, expectedTargets, grantable, ITEM, ITEM_NAMES, ITEM_RULES, ItemChannel,
   itemLife, kartSample, loadItemData, MotionInbox, MotionPump, othersMask, rankGroup, ServerClock,
 } from "./server-go/test/lib/item-race.mjs";
 
@@ -287,6 +291,16 @@ class ItemRacer {
     this.items = new ItemChannel(peer.control, { roomId, raceId, validRequest: isValidItemRequest,
       label: this.label });
     this.inbox = new MotionInbox(peer.control.socket, new GameMotionDecoder());
+    // The server's own slots pushes (the race start, per-kart gains).
+    peer.control.socket.addEventListener("message", event => {
+      if (typeof event.data !== "string") return;
+      try { this.items.pushed(JSON.parse(event.data)); } catch { /* not JSON */ }
+    });
+  }
+
+  /** Whether the racer can swap (a 道具换位卡 or its voucher). */
+  get canSwap() {
+    return (this.items.changers?.slot ?? 0) !== 0;
   }
 
   /** The racer's slots as the server keeps them (two empty slots before its first cube). */
@@ -327,9 +341,11 @@ async function drawCube(race, racer) {
     return grant;
   }
   assert.equal(grant.reason, undefined);
-  assert.ok(groupWeight(itemData, race.table, grant.itemId, group) > 0,
+  assert.ok(grantable(itemData, race.table, grant.itemId, group, race.trackId),
     `${racer.label} (rank ${rank} of ${race.standings.length}: ${group}) drew ${itemName(grant.itemId)}, ` +
-    `which has no ${group} weight in the ${race.table} table`);
+    `which has no ${group} weight in the ${race.table} table (nor is a transform of one on ${race.trackId})`);
+  assert.deepEqual(Object.keys(grant.changers ?? {}).sort(), ["item", "itemArmed", "slot"]);
+  assert.equal(grant.changers.itemArmed, true, "a new item arms the item changer");
   assert.deepEqual(grant.slots, slotsWith(before.length === racer.capacity ? before :
     Array(racer.capacity).fill(-1), grant.itemId));
   race.draws[group] = (race.draws[group] ?? 0) + 1;
@@ -426,7 +442,7 @@ async function obtain(race, candidates, idx) {
         holder ??= racer;
         return;
       }
-      if (slots[1] === idx) {
+      if (slots[1] === idx && racer.canSwap) {
         const swapped = await racer.items.request("swap");
         assert.deepEqual(swapped.slots, [slots[1], slots[0], ...slots.slice(2)]);
       } else if (slots.includes(-1)) {
@@ -448,12 +464,13 @@ const itemEventOn = (racer, action, useId, extra = () => true) => racer.peer.wai
   message?.type === "item" && message.action === action && message.useId === useId && extra(message),
 `${action} ${useId} at ${racer.label}`);
 
-/** A broadcast copy of a reply: no requestId, sequence or slots. */
+/** A broadcast copy of a reply: no requestId, sequence, slots or changer cards. */
 function assertBroadcastOf(event, reply) {
   assert.equal(event.requestId, undefined);
   assert.equal(event.sequence, undefined);
   assert.equal(event.slots, undefined);
-  const { requestId, sequence, slots, ...shared } = reply;
+  assert.equal(event.changers, undefined);
+  const { requestId, sequence, slots, slotIcons, changers, ...shared } = reply;
   assert.deepEqual({ ...event }, shared);
 }
 
@@ -542,7 +559,8 @@ async function teamItems(race) {
   // 透视镜: the scanning team sees every racing opponent's slots, then each change.
   const scanner = await obtain(race, [first, second], ITEM.scanning);
   const scan = await useItem(race, scanner);
-  const until = scan.startAt + itemLife(itemData, ITEM.scanning, "Affect");
+  // It takes effect after Use and lasts Affect (ITEM_MODE.md C.5).
+  const until = scan.startAt + itemLife(itemData, ITEM.scanning, "Use") + itemLife(itemData, ITEM.scanning, "Affect");
   const viewers = [scanner, mateOf(scanner)];
   const watched = opponentsOf(scanner);
   for (const viewer of viewers) {
@@ -660,9 +678,15 @@ async function itemRace(team) {
       await host.expectError({ type: "track", roomId, trackId }, "TRACK_NOT_ITEM");
     }
     await host.expectError({ type: "random-track", roomId, randomTrackCode: 40 }, "INVALID_TRACK");
-    room = team ? (await host.request({ type: "random-track", roomId, randomTrackCode: 30 })).room
-      : (await host.request({ type: "track", roomId, trackId: "village_C01" })).room;
-    assert.deepEqual([room.trackId, room.randomTrackCode], team ? [undefined, 30] : ["village_C01", undefined]);
+    if (team) {
+      room = (await host.request({ type: "random-track", roomId, randomTrackCode: 30 })).room;
+      assert.deepEqual([room.trackId, room.randomTrackCode], [undefined, 30]);
+    }
+    // A level-2 track, where transform@zz keeps the time bomb (levels 0/1 make
+    // it a water bomb); on the reverse one a devil is Dr. R.
+    const raceTrack = team ? "forest_I05_rvs" : "village_C01";
+    room = (await host.request({ type: "track", roomId, trackId: raceTrack })).room;
+    assert.deepEqual([room.trackId, room.randomTrackCode], [raceTrack, undefined]);
     for (const peer of peers.slice(1)) {
       room = (await peer.request({ type: "join", roomId, password: "", equipment: peer.account.equipment })).room;
     }
@@ -684,9 +708,8 @@ async function itemRace(team) {
     const raceId = room.race.raceId;
     assertStartSlots(room.race);
     assert.deepEqual(room.race.item, { ruleset: "web-item-v1", table });
-    const pool = itemData.randomPools.find(entry => entry.code === 30).tracks;
-    assert.ok(team ? pool.includes(room.race.trackId) : room.race.trackId === "village_C01",
-      `race track ${room.race.trackId}`);
+    assert.equal(room.race.trackId, raceTrack);
+    if (team) assert.ok(itemData.randomPools.find(entry => entry.code === 30).tracks.includes(raceTrack));
     if (clientItemTracks) {
       assert.ok(clientItemTracks.has(room.race.trackId),
         `${room.race.trackId} is not in the browser's item track catalog (本局赛道不在当前资源目录中。)`);
@@ -699,13 +722,25 @@ async function itemRace(team) {
     for (const peer of peers) room = (await peer.request({ type: "loaded", roomId, raceId })).room;
     assert.equal(room.phase, "countdown");
     const startAt = room.race.startAt;
+    // After the countdown snapshot each racer is told its slots and changer
+    // cards (the practice kart is no 迅 item kart: no start item).
+    for (const racer of racers) {
+      const pushed = await racer.peer.waitFor(message => message?.type === "item" && message.raceId === raceId &&
+        message.action === "slots" && message.sequence === undefined, `${racer.label}: start slots`);
+      assert.deepEqual([pushed.slots, pushed.reason, pushed.itemId], [[-1, -1], undefined, undefined]);
+      assert.equal(pushed.changers.itemArmed, false);
+      racer.items.pushed(pushed);
+    }
+    const changers = first.items.changers;
+    const vouchers = changers.slot === -1 && changers.item === -1;
+    assert.ok(vouchers || (changers.slot >= 0 && changers.item >= 0), `changers ${JSON.stringify(changers)}`);
     // Before startAt the sequence is used up and the request refused.
     await first.items.expectError("cube", { cubeId: 1, capacity: 3 }, "RACE_NOT_RUNNING");
     await first.items.expectError("cube", { cubeId: 1, capacity: 3 }, "INVALID_SEQUENCE", { sequence: 1 });
 
     const clock = await ServerClock.sync(host.control);
     const race = {
-      label, table, roomId, raceId, startAt, clock, teams, racers,
+      label, table, roomId, raceId, startAt, clock, teams, racers, trackId: raceTrack,
       standings: racers.map(racer => racer.id), draws: {}, used: new Set(), locks: [],
       /** A racer's route distance at node time `at` (every racer moves at ITEM_RACE_SPEED). */
       distance(id, at = clock.now()) {
@@ -744,17 +779,31 @@ async function itemRace(team) {
     const held = second.slots;
     const full = await second.items.request("cube", { cubeId: second.nextCube(), capacity: 2 });
     assert.deepEqual([full.itemId, full.reason, full.slots], [null, "full", held]);
-    const swapped = await second.items.request("swap");
-    assert.deepEqual(swapped.slots, [held[1], held[0]]);
-    await fourth.items.expectError("swap", {}, "INVALID_USE");
-    await fourth.items.expectError("change", {}, "ITEM_CHANGER_UNAVAILABLE");
-    const notHeld = swapped.slots[0] === ITEM.booster ? ITEM.rocket : ITEM.booster;
+    let current = held;
+    if (vouchers) {
+      // 道具换位卡使用券: swaps for free; 道具变更卡使用券: redraws slot 0 once per new item.
+      const swapped = await second.items.request("swap");
+      assert.deepEqual([swapped.slots, swapped.changers], [[held[1], held[0]], { slot: -1, item: -1, itemArmed: true }]);
+      await fourth.items.expectError("swap", {}, "INVALID_USE");
+      await fourth.items.expectError("change", {}, "INVALID_USE");
+      const changed = await second.items.request("change");
+      assert.deepEqual([changed.action, changed.slots[1], changed.changers], ["slots", held[0],
+        { slot: -1, item: -1, itemArmed: false }]);
+      await second.items.expectError("change", {}, "ITEM_CHANGER_USED");
+      current = changed.slots;
+    } else {
+      // Accounts without cards or vouchers have no changer.
+      await second.items.expectError("swap", {}, "ITEM_CHANGER_UNAVAILABLE");
+      await second.items.expectError("change", {}, "ITEM_CHANGER_UNAVAILABLE");
+    }
+    const notHeld = current[0] === ITEM.booster ? ITEM.rocket : ITEM.booster;
     await second.items.expectError("use", { itemId: notHeld }, "ITEM_NOT_HELD");
     // The browser asks for its slots again after a rejection that may have left it apart.
     const resync = await second.items.request("slots");
-    assert.deepEqual([resync.action, resync.slots], ["slots", swapped.slots]);
+    assert.deepEqual([resync.action, resync.slots], ["slots", current]);
     await third.items.expectError("swap", {}, "INVALID_SEQUENCE", { sequence: third.items.sequence + 5 });
-    console.log("  ✓ grants by rank group, abusing, full slots, 3 slots, swap, change, slots and wrong items refused");
+    console.log(`  ✓ start push, grants by rank group, abusing, full slots, 3 slots, ` +
+      `${vouchers ? "swap and change with vouchers" : "no changer without cards"}, slots and wrong items refused`);
 
     if (team) await teamItems(race);
     else await individualItems(race);
@@ -774,7 +823,9 @@ async function itemRace(team) {
     const finishers = racers.filter(racer => racer !== retired);
     const elapsedBase = Math.trunc(clock.now() - startAt);
     for (const [index, racer] of finishers.entries()) {
-      room = (await racer.peer.request({ type: "finish", roomId, raceId, elapsedMs: elapsedBase + index * 1000 })).room;
+      // The first finisher says its start boost succeeded (完美起步).
+      room = (await racer.peer.request({ type: "finish", roomId, raceId, elapsedMs: elapsedBase + index * 1000,
+        ...(index === 0 ? { perfectStart: true } : {}) })).room;
       racer.pump.stop();
       if (index === 0) {
         // A finished racer draws and uses nothing any more.
@@ -785,6 +836,10 @@ async function itemRace(team) {
     const results = room.race.results;
     assert.deepEqual(results.map(row => row.playerId), [...finishers, ...(retired ? [retired] : [])]
       .map(racer => racer.id));
+    // Result titles (ITEM_MODE.md C.9): every row has them; the first
+    // finisher's perfect start is one.
+    for (const row of results) assert.ok(Array.isArray(row.titles), `${row.playerId}: titles ${row.titles}`);
+    assert.ok(results[0].titles.includes("perfectStart"), `first finisher's titles ${results[0].titles}`);
     if (team) {
       const winner = teams[first.id];
       const loser = winner === 1 ? 2 : 1;
@@ -801,6 +856,7 @@ async function itemRace(team) {
       racers: results.map(row => ({ name: racers.find(racer => racer.id === row.playerId).label,
         playerId: row.playerId, rank: row.rank })), timeoutMs: settings.settleMs });
     assert.deepEqual(outcome.snapshot.race.item, { ruleset: "web-item-v1", table });
+    assert.deepEqual(outcome.snapshot.race.results.map(row => row.titles), results.map(row => row.titles));
     if (team) assert.equal(outcome.snapshot.race.winningTeam, teams[first.id]);
 
     // Item careers: finishes and wins of gameType 2 (个人) / 4 (组队), item retires (gameType 6).

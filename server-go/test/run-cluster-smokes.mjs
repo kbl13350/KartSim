@@ -41,7 +41,9 @@ let child;
 process.on("exit", () => child?.kill("SIGTERM"));
 await runLocalCluster("run-cluster-smokes", {
   dataEnv: { KART_REGISTRATION: "open", KART_ALLOW_GUESTS: "false" },
-  gameEnv: { KART_ALLOW_GUESTS: "false" },
+  // Unlimited item changers: the item scenarios of server-special-smoke.mjs
+  // swap and change with them (the card inventories are covered by the Go tests).
+  gameEnv: { KART_ALLOW_GUESTS: "false", KART_ITEM_CHANGERS: "infinite" },
   nodes: [{ nodeId: "game-1", name: "游戏服 1" }, { nodeId: "game-2", name: "游戏服 2" }],
 }, async ctx => {
   // The scripts get this cluster only: overrides aimed at another one are dropped.

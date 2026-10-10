@@ -10,7 +10,7 @@ import { test } from "node:test";
 import {
   AREA_ITEMS, distanceBetween, hitDelayMs, hitEffect, hitReport, itemIndex, itemPoint, parseArgs, parseShift,
   parseUseSchedule, quaternionFromMatrix, readAccount, RECORDER_SNIPPET, recordedRace, routeBasis, RouteWalker,
-  slotOffset,
+  shotsOf, slotOffset,
 } from "./item-bot-lib.mjs";
 import { ITEM, loadItemData, repoRoot } from "./item-race.mjs";
 
@@ -37,6 +37,13 @@ test("options: defaults, values and refusals", () => {
     assert.throws(() => parseArgs(argv, {}), Error, argv.join(" "));
   }
   assert.deepEqual(parseShift("0"), { x: 0, y: 0, z: 0 });
+  assert.equal(defaults.perfectStart, false);
+  assert.equal(parseArgs(["--perfect-start"], {}).perfectStart, true);
+});
+
+test("a double rocket is reported missile by missile", () => {
+  assert.deepEqual(shotsOf({ count: 2 }), [{ delayMs: 0, shot: 0 }, { delayMs: 200, shot: 1 }]);
+  assert.deepEqual(shotsOf({}), [{ delayMs: 0 }]);
 });
 
 test("--use: item names, aliases, indices and times", () => {

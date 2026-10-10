@@ -14,7 +14,7 @@ export const DEFAULT_ACCOUNTS_FILE = "server-go/data/dev-test-accounts.json";
 /** Bot driving speed along the route (m/s) when --speed is not given: about 90 km/h. */
 export const DEFAULT_SPEED = 25;
 
-const BOOLEAN_FLAGS = new Set(["once", "print-recorder", "quiet", "help"]);
+const BOOLEAN_FLAGS = new Set(["once", "print-recorder", "quiet", "help", "perfect-start"]);
 const VALUE_FLAGS = new Set(["accounts", "account", "index", "data", "node", "room", "password", "team", "speed",
   "use", "target", "defend", "replay", "shift", "load-delay"]);
 
@@ -52,6 +52,7 @@ export function parseArgs(argv, env = process.env) {
     printRecorder: raw["print-recorder"] === true,
     once: raw.once === true,
     quiet: raw.quiet === true,
+    perfectStart: raw["perfect-start"] === true,
     accounts: raw.accounts ?? DEFAULT_ACCOUNTS_FILE,
     account: raw.account,
     index: number("index", 0, 0, 1000),
@@ -383,6 +384,15 @@ export function hitDelayMs(data, used) {
     case ITEM.slotLock: return life("Use");
     default: return ITEM_RULES[used.itemId]?.speed ? used.etaMs : life("Use");
   }
+}
+
+/**
+ * The hit reports of a use on the bot: one per missile ({shot} for a double
+ * rocket, used.count 2; the second arrives 200 ms after the first,
+ * ITEM_MODE.md C.2), as [{delayMs, shot?}] from the first arrival.
+ */
+export function shotsOf(used) {
+  return used.count === 2 ? [{ delayMs: 0, shot: 0 }, { delayMs: 200, shot: 1 }] : [{ delayMs: 0 }];
 }
 
 /**

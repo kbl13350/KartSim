@@ -8,8 +8,9 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 import {
-  browserAccepts, browserEventValidation, expectedTargets, groupWeight, ITEM, ItemChannel, itemLife, kartSample,
-  loadItemData, MotionPump, othersMask, rankGroup, repoRoot, ServerClock, wireVector,
+  browserAccepts, browserEventValidation, expectedTargets, grantable, groupWeight, ITEM, ITEM_NAMES, ItemChannel,
+  itemLife, kartSample, loadItemData, MotionPump, othersMask, rankGroup, repoRoot, ServerClock, transformedOnTrack,
+  wireVector,
 } from "./item-race.mjs";
 
 const haveTsx = existsSync(join(repoRoot, "rewrite/node_modules/tsx/dist/esm/api/index.mjs"));
@@ -56,6 +57,25 @@ test("expected targets follow the server's rules", () => {
   assert.deepEqual(expectedTargets(ITEM.randomRocket, "p3", ["p1", "p2", "p3"], solo), ["p1", "p2"]);
 });
 
+test("phase 3: the UFO and EMP rules, special item names and the track transforms", () => {
+  const data = loadItemData();
+  const standings = ["b1", "a1", "b2", "a2"];
+  const teams = { a1: 1, a2: 1, b1: 2, b2: 2 };
+  // The EMP acts only on teammates under a UFO slow: none known here.
+  assert.deepEqual(expectedTargets(ITEM.emp, "a1", standings, teams), []);
+  assert.deepEqual(expectedTargets(ITEM.drrMine, "a1", standings, teams), ["b1", "b2"]);
+  assert.equal(ITEM_NAMES[137], "talisman");
+  assert.equal(ITEM_NAMES[ITEM.cloud2], "cloud2");
+  // A time bomb is a water bomb on a level-1 track, not on a level-2 one;
+  // a devil is Dr. R on a reverse level-2 track.
+  assert.equal(transformedOnTrack(data, ITEM.timeBomb, "forest_I01"), ITEM.waterBomb);
+  assert.equal(transformedOnTrack(data, ITEM.timeBomb, "village_C01"), ITEM.timeBomb);
+  assert.equal(transformedOnTrack(data, ITEM.devil, "forest_I05_rvs"), ITEM.drrMine);
+  assert.ok(grantable(data, "team", ITEM.drrMine, "low", "forest_I05_rvs"));
+  assert.ok(!grantable(data, "team", ITEM.drrMine, "low", "village_C01"));
+  assert.ok(grantable(data, "team", ITEM.waterBomb, "mid", "forest_I01"));
+});
+
 /** A control socket double: answers each request with replies[type](request). */
 function fakeControl(replies) {
   const sent = [];
@@ -94,6 +114,18 @@ test("item channel: one sequence per accepted request, in call order", async () 
   assert.equal(items.sequence, 4, "an explicit wrong sequence does not move the counter");
   await assert.rejects(new ItemChannel(control, { roomId: "r", raceId: "x", validRequest: () => false })
     .send("cube", { cubeId: 1, capacity: 2 }), /would not send/);
+  // The changer cards of the replies and the server's slots pushes (no sequence) are followed.
+  const withCards = new ItemChannel(fakeControl(() => ({ type: "item", action: "slots", slots: [7, 8],
+    changers: { slot: 2, item: -1, itemArmed: true } })), { roomId: "r", raceId: "x", validRequest: () => true,
+    ratePerSecond: 1000 });
+  await withCards.send("swap");
+  assert.deepEqual(withCards.changers, { slot: 2, item: -1, itemArmed: true });
+  withCards.pushed({ type: "item", raceId: "x", action: "slots", slots: [8, 5], reason: "gain", itemId: 5,
+    changers: { slot: 2, item: -1, itemArmed: true } });
+  assert.deepEqual(withCards.slots, [8, 5]);
+  withCards.pushed({ type: "item", raceId: "other", action: "slots", slots: [1, 1] });
+  withCards.pushed({ type: "item", raceId: "x", action: "slots", sequence: 3, slots: [2, 2] });
+  assert.deepEqual(withCards.slots, [8, 5], "other races and replies are not pushes");
 });
 
 test("server clock: the offset of the fastest round trip; ticks are uint32 node milliseconds", async () => {

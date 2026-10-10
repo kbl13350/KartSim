@@ -30,10 +30,14 @@ export const ITEM_DATA_PATH = join(repoRoot, "server-go/internal/game/itemmode/i
 /** Item indices (ITEM_MODE.md appendix B; server-go/internal/game/itemmode/items.go). */
 export const ITEM = Object.freeze({
   devil: 2, ufo: 3, waterFly: 4, magnet: 5, booster: 6, rocket: 7, banana: 8, waterBomb: 9,
-  shield: 10, angel: 11, emp: 12, timeBomb: 13, mine: 17, guideRocket: 33, waterMine: 37,
+  shield: 10, angel: 11, emp: 12, timeBomb: 13, mine: 17, drrMine: 23, guideRocket: 33, waterMine: 37,
   scanning: 109, slotLock: 110, thunderbolt: 111, barricade: 113, cloud2: 114, randomRocket: 127,
 });
-export const ITEM_NAMES = Object.freeze(Object.fromEntries(Object.entries(ITEM).map(([name, idx]) => [idx, name])));
+/** Item names by idx: the table items above, and every special item of itemmode.json (C.4). */
+export const ITEM_NAMES = Object.freeze(Object.fromEntries([
+  ...JSON.parse(readFileSync(ITEM_DATA_PATH, "utf8")).items.map(item => [item.idx, item.name]),
+  ...Object.entries(ITEM).map(([name, idx]) => [idx, name]),
+]));
 
 /**
  * How the server picks each item's targets and who may report a hit
@@ -51,8 +55,12 @@ export const ITEM_RULES = Object.freeze({
   [ITEM.shield]: { target: "self" },
   [ITEM.angel]: { target: "ownTeam" },
   [ITEM.devil]: { target: "allOpponents", hit: "targets", blocks: [] },
-  [ITEM.ufo]: { target: "leader", speed: 60, hit: "targets", blocks: ["shield", "angel", "emp"] },
-  [ITEM.emp]: { target: "self" },
+  // A transform@zz destination: a devil drawn on a reverse track of level 0/2/3/4.
+  [ITEM.drrMine]: { target: "allOpponents", hit: "targets", blocks: [] },
+  // Neither the shield nor the angel blocks a UFO; only an EMP cures it (C.1, C.5).
+  [ITEM.ufo]: { target: "leader", speed: 60, hit: "targets", blocks: [] },
+  // The EMP takes the user's team members under a UFO slow when it takes effect.
+  [ITEM.emp]: { target: "ufoSlowed" },
   [ITEM.thunderbolt]: { target: "allAhead", hit: "targets", blocks: ["angel"] },
   [ITEM.barricade]: { target: "leader", place: "target", hit: "opponents", blocks: ["shield", "angel"] },
   [ITEM.cloud2]: { target: "allBehind", hit: "targets", blocks: [] },
@@ -109,8 +117,32 @@ export function expectedTargets(idx, user, standings, teams, aimed) {
     case "allBehind": return opponents(position + 1, standings.length);
     case "allOpponents": return opponents(0, standings.length);
     case "aimed": return aimed ? [aimed] : [];
+    // ufoSlowed: nobody unless a teammate reported a UFO hit (callers that
+    // report one work out the cure themselves).
     default: return [];
   }
+}
+
+/**
+ * Whether a cube grant of `idx` fits the racer's rank group `group` of
+ * `table`: an item with weight there, or the transform@zz destination of
+ * one on this track (a time bomb is a water bomb on level-0/1 tracks; a
+ * devil is Dr. R on reverse tracks of level 0/2/3/4). The starter practice
+ * kart has no per-kart transforms.
+ */
+export function grantable(data, table, idx, group, trackId) {
+  if (groupWeight(data, table, idx, group) > 0) return true;
+  const track = data.tracks.find(entry => entry.id === trackId);
+  return Boolean(track) && data.trackTransforms.some(row => row.dst === idx && row.level === track.level &&
+    (!row.reverse || track.reverse) && groupWeight(data, table, row.src, group) > 0);
+}
+
+/** The track transform destination of a drawn `idx` on `trackId`, or idx itself. */
+export function transformedOnTrack(data, idx, trackId) {
+  const track = data.tracks.find(entry => entry.id === trackId);
+  const row = track && data.trackTransforms.find(entry => entry.src === idx && entry.level === track.level &&
+    (!entry.reverse || track.reverse));
+  return row ? row.dst : idx;
 }
 
 /* ---------- the browser's event validators ---------- */
@@ -354,7 +386,20 @@ export class ItemChannel {
     this.gapMs = 1000 / ratePerSecond;
     this.lastAt = 0;
     this.slots = undefined;
+    /** The racer's changer cards from the last reply carrying them ({slot, item, itemArmed}). */
+    this.changers = undefined;
     this.queue = Promise.resolve();
+  }
+
+  /**
+   * Takes the slots and changers of a server push ({"action":"slots"}
+   * without a sequence: the race start, a per-kart gain).
+   */
+  pushed(event) {
+    if (event?.type !== "item" || event.raceId !== this.raceId || event.action !== "slots" ||
+      event.sequence !== undefined) return;
+    if (Array.isArray(event.slots)) this.slots = event.slots;
+    if (event.changers) this.changers = event.changers;
   }
 
   /**
@@ -384,6 +429,7 @@ export class ItemChannel {
     const used = consumed ?? !(reply.type === "error" && CHECKED_BEFORE_SEQUENCE.has(reply.code));
     if (used && number === this.sequence + 1) this.sequence = number;
     if (reply.type === "item" && Array.isArray(reply.slots)) this.slots = reply.slots;
+    if (reply.type === "item" && reply.changers) this.changers = reply.changers;
     return reply;
   }
 
