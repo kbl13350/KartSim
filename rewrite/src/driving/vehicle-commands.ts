@@ -43,6 +43,8 @@ export interface DrivingCommandContext {
   speedRaceMode?: { kind: string };
   /** Item races route Ctrl/Alt to the item controller instead of the nitro slots. */
   itemMode?: boolean;
+  /** Item races: a forward press just after a water bubble starts the escape boost. */
+  itemEffects?: { consumeEscapeBoost(): boolean };
   runtime: {
     driftDecay: number;
     activeDrift: boolean;
@@ -110,12 +112,11 @@ export function handleVehicleDrivingCommand(
     case "forward-down":
       runtime.forwardOneShot = true;
       if (runtime.driftLifecycleB50 > 0 && vehicle.speedRaceMode?.kind !== "grip") {
-        runtime.driftLifecycleB50 = 0;
-        runtime.driftLifecycleB44 = tuning.driftBoostTick
-          ? float(float(tuning.driftBoostTick) / float(1000)) : float(0.5);
-        runtime.physicsState = 2;
-        runtime.stateRemainingMs = 0;
-        state.boostTime = 0;
+        startDriftInstantBoost(vehicle);
+      } else if (vehicle.itemEffects?.consumeEscapeBoost()) {
+        // Item races (ITEM_MODE.md C.5): UseExtendedAfterBooster(More) karts get
+        // the same instant boost (state 2, driftBoostTick) after a water bubble.
+        startDriftInstantBoost(vehicle);
       }
       return;
     case "forward-up":
@@ -131,6 +132,17 @@ export function handleVehicleDrivingCommand(
     case "unsupported-action":
       return;
   }
+}
+
+/** The drift-exit instant boost (瞬间加速): physics state 2 for `driftBoostTick` (0.5 s without one). */
+function startDriftInstantBoost(vehicle: DrivingCommandContext): void {
+  const { runtime, tuning, state } = vehicle;
+  runtime.driftLifecycleB50 = 0;
+  runtime.driftLifecycleB44 = tuning.driftBoostTick
+    ? float(float(tuning.driftBoostTick) / float(1000)) : float(0.5);
+  runtime.physicsState = 2;
+  runtime.stateRemainingMs = 0;
+  state.boostTime = 0;
 }
 
 export interface BoosterCommandContext {
