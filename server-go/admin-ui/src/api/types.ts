@@ -31,6 +31,9 @@ export interface AccountRow {
   registerIp: string | null
   lastLoginAt: number | null
   lastLoginIp: string | null
+  /** The last request made with one of the account's sessions (written at most every 5 minutes). */
+  lastSeenAt: number | null
+  lastSeenIp: string | null
   bannedUntil: number | null
   banReason: string | null
   banned: boolean
@@ -41,13 +44,15 @@ export interface AccountRow {
   koin: number
   inventoryCount: number
   onboarded: boolean
-  online: { nodeId: string; nodeName: string } | null
+  /** leaving: kicked or banned, dropped at the node's next heartbeat (断开中). */
+  online: { nodeId: string; nodeName: string; leaving?: boolean } | null
 }
 
 export interface LoginRow {
   id: number
   at: number
-  kind: 'register' | 'login' | string
+  /** resume: the first activity of a Beijing day on a saved token (自动登录). */
+  kind: 'register' | 'login' | 'resume' | string
   accountId: string
   username: string
   nickname: string
@@ -118,6 +123,8 @@ export interface OnlineRow {
   nodeName: string
   /** The room's name; '' in the lobby or on a node that does not report it. */
   room: string
+  /** Kicked or banned: the node drops the player at its next heartbeat (断开中). */
+  leaving?: boolean
 }
 
 export interface ProbeStatus {
@@ -127,6 +134,7 @@ export interface ProbeStatus {
 }
 
 export interface NodeStats {
+  /** Live heap after the last GC, in MB with one decimal. */
   heapMB: number
   goroutines: number
   connections: number
@@ -146,7 +154,8 @@ export interface NodeRow {
   startedAt: number
   seenAt: number
   protocolVersion: number | string
-  status: 'ok' | 'stale' | 'full' | string
+  /** offline: no longer registered but seen in the last 24 hours (seenAt is its last heartbeat). */
+  status: 'ok' | 'stale' | 'full' | 'offline' | string
   stats: NodeStats | null
 }
 
@@ -263,6 +272,78 @@ export interface ClubRow {
   autoJoin: boolean
   createdAt: number
   breakAt: number | null
+  /** active, breaking (解散倒计时中) or disbanded (break_at has passed). */
+  state: 'active' | 'breaking' | 'disbanded' | string
+}
+
+/** GET /api/admin/clubs/{id}/members. */
+export interface ClubMemberRow {
+  accountId: string
+  username: string
+  nickname: string
+  /** 1 会长 … (the club code's grades). */
+  grade: number | string
+  joinedAt: number | null
+  csWeek: number
+  csTotal: number
+  donatedTotal: number
+}
+
+/** A best time on a track (time attack, PRO qualification). */
+export interface TrackBest {
+  trackId: string
+  trackName: string
+  bestMs: number | null
+  updatedAt: number | null
+}
+
+/** GET /api/admin/accounts/{id}/game. */
+export interface AccountGame {
+  stats: { races: number; wins: number; podiums: number; points: number } | null
+  license: { level: number; proUntil: number | null; proCount: number; lastRunAt: number | null } | null
+  licenseClears: { step: number; period: string; bestMs: number | null; clearedAt: number | null }[] | null
+  licenseRecords: TrackBest[] | null
+  timeAttack: TrackBest[] | null
+  quests: { questId: number | string; period: string; value: number; completedAt: number | null; updatedAt: number | null }[] | null
+  counters: { counter: string; value: number; updatedAt: number | null }[] | null
+  friends: number
+  club: {
+    id: number | string
+    name: string
+    grade: number | string
+    joinedAt: number | null
+    csWeek: number
+    csTotal: number
+    donatedTotal: number
+  } | null
+}
+
+/** GET /api/admin/invites. Codes are stored hashed: hash is the digest's first 12 characters. */
+export interface InviteRow {
+  hash: string
+  createdAt: number
+  used: boolean
+  usedBy: { accountId: string; username: string; nickname: string } | null
+}
+
+/** GET /api/admin/reward-box. An item (category, itemId, days) or a currency amount. */
+export interface RewardBoxRow {
+  id: number | string
+  accountId: string
+  username: string
+  nickname: string
+  source: 'quest' | 'club' | 'admin' | string
+  message: string
+  name: string
+  category: number
+  itemId: number
+  count: number
+  days: number
+  currency: Currency | '' | string
+  createdAt: number
+  expiresAt: number | null
+  claimedAt: number | null
+  state: 'unclaimed' | 'claimed' | 'expired' | string
 }
 
 export interface Overview {
@@ -271,7 +352,8 @@ export interface Overview {
   logins: { today: number; uniqueToday: number }
   // online, nodes and rooms are null while the cluster registry (Redis) is unavailable.
   online: { players: number; accounts: number; guests: number } | null
-  nodes: { total: number; healthy: number } | null
+  /** offline: nodes gone from the registry but seen in the last 24 hours. */
+  nodes: { total: number; healthy: number; offline?: number } | null
   rooms: number | null
   races: { today: number }
   coupon: { spentToday: number; grantedToday: number }

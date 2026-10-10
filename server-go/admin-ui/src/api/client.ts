@@ -55,6 +55,8 @@ const messages: Record<string, string> = {
   INVALID_ACCOUNT_FIELD: '账号信息无效（昵称 1–16 字，密码 8–128 位，封禁原因最多 200 字且不能包含换行或控制字符）',
   INVALID_ACCOUNT_FIELDS: '账号信息无效（昵称 1–16 字，密码 8–128 位，封禁原因最多 200 字且不能包含换行或控制字符）',
   CANNOT_MODIFY_SELF: '不能对自己执行该操作（撤销管理员、封禁或踢下线）',
+  PROTECTED_ADMIN: '该账号是 KART_ADMIN_USERNAMES 指定的超级管理员，只能由本人修改',
+  CLUB_NOT_FOUND: '俱乐部不存在',
   REQUEST_TOO_LARGE: '请求内容过大',
   NOT_FOUND: '接口不存在（数据服务版本可能过旧）',
   METHOD_NOT_ALLOWED: '接口不支持该请求方法',

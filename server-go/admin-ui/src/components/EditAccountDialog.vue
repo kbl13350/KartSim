@@ -4,12 +4,14 @@ import { ElMessage } from 'element-plus'
 import { api, errorMessage } from '../api/client'
 import type { AccountPatch, AccountRow } from '../api/types'
 import { useNarrow } from '../composables/useNarrow'
-import { isSelf } from '../session'
+import { isSelf, signOutWith } from '../session'
 import { formatTime, isPermanent, parseBeijing, PERMANENT_BAN, toBeijingString } from '../utils/time'
 import { confirmAction } from '../utils/ui'
 
 // 编辑账号: PATCH /api/admin/accounts/{id} with only the changed fields
-// {nickname?, admin?, bannedUntil? (0 = 解封), banReason?, password?}.
+// {nickname?, admin?, bannedUntil? (0 = 解封), banReason?, password?}. A
+// password reset ends every session of the account, so resetting one's own
+// password signs the console out as well.
 
 const props = defineProps<{ account: AccountRow | null }>()
 const open = defineModel<boolean>({ required: true })
@@ -25,6 +27,9 @@ const form = reactive({
 })
 const failure = ref('')
 const saving = ref(false)
+// From the first click until the request settles, the confirm box included:
+// Enter in a field cannot start a second save meanwhile.
+const busy = ref(false)
 
 const self = computed(() => isSelf(props.account?.id))
 const currentBan = computed(() => (props.account?.banned && props.account.bannedUntil ? props.account.bannedUntil : 0))
@@ -48,8 +53,10 @@ function banForever() {
   form.bannedUntil = toBeijingString(PERMANENT_BAN)
 }
 
+/** Lifting a ban also clears its reason (the server does the same unless a new one is sent). */
 function unban() {
   form.bannedUntil = null
+  form.banReason = ''
 }
 
 /** Registration's nickname rule (validName(16)): no blank, no edge spaces, no control characters or < >. */
@@ -77,6 +84,16 @@ function disabledDate(date: Date) {
 }
 
 async function save() {
+  if (busy.value) return
+  busy.value = true
+  try {
+    await saveChanges()
+  } finally {
+    busy.value = false
+  }
+}
+
+async function saveChanges() {
   const account = props.account
   if (!account) return
   failure.value = ''
@@ -131,8 +148,12 @@ async function save() {
     return
   }
   const sensitive = patch.password !== undefined || (patch.bannedUntil ?? 0) > 0 || patch.admin !== undefined
+  // Resetting one's own password ends this console session too.
+  const ownPassword = patch.password !== undefined && isSelf(account.id)
   if (!await confirmAction(`确认对 ${account.nickname}（${account.username}）：${changes.join('；')}？` +
-    (patch.password !== undefined ? '\n重置密码后该账号需要用新密码登录。' : '') +
+    (ownPassword
+      ? '\n这是你自己的账号：重置密码会作废它的所有会话，包括当前管理后台，保存后需要用新密码重新登录。'
+      : patch.password !== undefined ? '\n重置密码后该账号需要用新密码登录。' : '') +
     ((patch.bannedUntil ?? 0) > 0 ? '\n封禁会立即踢下线并作废所有会话。' : ''),
   '保存修改', { type: sensitive ? 'warning' : 'info', danger: sensitive })) {
     return
@@ -140,6 +161,12 @@ async function save() {
   saving.value = true
   try {
     const saved = await api.patch<AccountRow>(`/api/admin/accounts/${encodeURIComponent(account.id)}`, patch)
+    if (ownPassword) {
+      open.value = false
+      ElMessage.success('密码已重置，请用新密码重新登录')
+      await signOutWith('密码已重置，请用新密码重新登录')
+      return
+    }
     // A KART_ADMIN_USERNAMES account stays an admin whatever its stored flag.
     const kept = patch.admin === false && saved.admin === true
     const done = kept ? changes.filter((change) => change !== '撤销管理员') : changes
@@ -190,7 +217,7 @@ async function save() {
             <el-button size="small" :disabled="self" @click="banFor(7)">7天</el-button>
             <el-button size="small" :disabled="self" @click="banFor(30)">30天</el-button>
             <el-button size="small" type="danger" plain :disabled="self" @click="banForever">永久</el-button>
-            <el-button size="small" type="success" plain :disabled="!form.bannedUntil" @click="unban">解封</el-button>
+            <el-button size="small" type="success" plain :disabled="!form.bannedUntil" title="解除封禁并清空封禁原因" @click="unban">解封</el-button>
           </div>
           <div class="hint">
             当前：{{ currentBan ? (isPermanent(currentBan) ? '永久封禁' : `封禁至 ${formatTime(currentBan)}`) : '未封禁' }}
@@ -210,13 +237,14 @@ async function save() {
           autocomplete="new-password"
           placeholder="留空不修改；8–128 位"
         />
+        <div v-if="self" class="hint">重置自己的密码会让当前管理后台退出，需要用新密码重新登录。</div>
       </el-form-item>
       <el-alert v-if="failure" type="error" :title="failure" :closable="false" show-icon />
-      <button type="submit" hidden />
+      <button type="submit" hidden :disabled="busy" />
     </el-form>
     <template #footer>
       <el-button @click="open = false">取消</el-button>
-      <el-button type="primary" :loading="saving" @click="save">保存</el-button>
+      <el-button type="primary" :loading="saving" :disabled="busy && !saving" @click="save">保存</el-button>
     </template>
   </el-dialog>
 </template>

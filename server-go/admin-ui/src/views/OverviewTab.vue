@@ -5,13 +5,15 @@ import { api, errorMessage } from '../api/client'
 import type { Overview } from '../api/types'
 import AccountName from '../components/AccountName.vue'
 import { useTab } from '../composables/useTabs'
-import { formatNumber, loginKindName, text } from '../utils/format'
+import { formatNumber, loginKindName, loginKindTag, text } from '../utils/format'
 import { formatTime } from '../utils/time'
 import { showError } from '../utils/ui'
 
 // 概览: GET /api/admin/overview ("today" is Beijing time from 00:00). The
 // online, nodes and rooms figures are null while the cluster registry
-// (Redis) is unavailable: those cards show "—" and say so.
+// (Redis) is unavailable: those cards show "—" and say so. 今日登录人数
+// counts accounts that registered, logged in or came back on a saved token
+// (自动登录) today; logins.today is the number of password logins.
 
 const data = ref<Overview | null>(null)
 const loading = ref(false)
@@ -50,16 +52,20 @@ const cards = computed<Card[]>(() => {
   if (!value) return []
   const { online, nodes, rooms } = value
   const unhealthy = !!nodes && nodes.healthy < nodes.total
+  const offline = nodes?.offline ?? 0
+  const nodeFoot = [unhealthy ? `超时 ${formatNumber(nodes!.total - nodes!.healthy)}` : '',
+    offline ? `离线 ${formatNumber(offline)}（24 小时内）` : ''].filter(Boolean).join(' · ') || '全部正常'
   return [
     { title: '注册用户总数', value: value.accounts?.total, foot: `管理员 ${formatNumber(value.accounts?.admins)} · 封禁 ${formatNumber(value.accounts?.banned)}` },
     { title: '今日新增', value: value.accounts?.today, foot: '北京时间 0 点起' },
-    { title: '今日登录人数', value: value.logins?.uniqueToday, foot: `共 ${formatNumber(value.logins?.today)} 次登录` },
+    { title: '今日登录人数', value: value.logins?.uniqueToday,
+      foot: `含注册与自动登录 · 密码登录 ${formatNumber(value.logins?.today)} 次` },
     online
       ? { title: '当前在线', value: online.players, foot: `账号 ${formatNumber(online.accounts)} · 游客 ${formatNumber(online.guests)}` }
       : { title: '当前在线', value: null, foot: REGISTRY_DOWN, warn: true },
     nodes
       ? { title: '游戏节点（正常/总数）', text: `${formatNumber(nodes.healthy)} / ${formatNumber(nodes.total)}`,
-          foot: unhealthy ? '有节点异常' : '全部正常', warn: unhealthy }
+          foot: nodeFoot, warn: unhealthy || offline > 0 }
       : { title: '游戏节点（正常/总数）', text: '— / —', foot: REGISTRY_DOWN, warn: true },
     rooms !== null && rooms !== undefined
       ? { title: '房间数', value: rooms, foot: '所有节点' }
@@ -104,7 +110,7 @@ const cards = computed<Card[]>(() => {
               <el-table-column label="注册时间" width="170">
                 <template #default="{ row }">{{ formatTime(row.createdAt) }}</template>
               </el-table-column>
-              <el-table-column label="注册 IP" min-width="130">
+              <el-table-column label="注册 IP" min-width="130" show-overflow-tooltip>
                 <template #default="{ row }">{{ text(row.registerIp) }}</template>
               </el-table-column>
             </el-table>
@@ -117,15 +123,15 @@ const cards = computed<Card[]>(() => {
               <el-table-column label="时间" width="170">
                 <template #default="{ row }">{{ formatTime(row.at) }}</template>
               </el-table-column>
-              <el-table-column label="类型" width="70">
+              <el-table-column label="类型" width="90">
                 <template #default="{ row }">
-                  <el-tag size="small" :type="row.kind === 'register' ? 'success' : 'info'" disable-transitions>{{ loginKindName(row.kind) }}</el-tag>
+                  <el-tag size="small" :type="loginKindTag(row.kind)" disable-transitions>{{ loginKindName(row.kind) }}</el-tag>
                 </template>
               </el-table-column>
               <el-table-column label="账号" min-width="140">
                 <template #default="{ row }"><AccountName :nickname="row.nickname" :username="row.username" /></template>
               </el-table-column>
-              <el-table-column label="IP" min-width="130">
+              <el-table-column label="IP" min-width="130" show-overflow-tooltip>
                 <template #default="{ row }">{{ text(row.ip) }}</template>
               </el-table-column>
             </el-table>

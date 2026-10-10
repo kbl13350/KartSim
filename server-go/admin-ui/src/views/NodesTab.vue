@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { Refresh } from '@element-plus/icons-vue'
 import { api, errorMessage } from '../api/client'
 import type { NodeRow, NodesResponse, ProbeStatus } from '../api/types'
 import { useNarrow } from '../composables/useNarrow'
 import { useTab } from '../composables/useTabs'
-import { formatNumber, text, type TagType } from '../utils/format'
+import { formatHeap, formatNumber, text, type TagType } from '../utils/format'
 import { formatAgo, formatDuration, formatTime } from '../utils/time'
 import { showError } from '../utils/ui'
 
 // 服务器节点: GET /api/admin/nodes. Refreshes every 5 seconds while this tab
-// is on screen; relative times use the server's `now`.
+// is on screen; relative times use the server's `now`. Nodes that left the
+// registry but were seen in the last 24 hours come back as status
+// "offline" with their last report: they are listed last, greyed out.
 
 const INTERVAL = 5000
 const data = ref<NodesResponse | null>(null)
@@ -54,6 +56,28 @@ const statusTags: Record<string, { type: TagType; label: string }> = {
   ok: { type: 'success', label: '正常' },
   stale: { type: 'danger', label: '超时' },
   full: { type: 'warning', label: '满员' },
+  offline: { type: 'danger', label: '离线' },
+}
+
+const isOffline = (row: NodeRow) => row.status === 'offline'
+
+// Live nodes first, in the server's order, then the offline ones.
+const rows = computed(() => {
+  const nodes = data.value?.nodes ?? []
+  return [...nodes.filter((row) => !isOffline(row)), ...nodes.filter(isOffline)]
+})
+const offlineCount = computed(() => rows.value.filter(isOffline).length)
+
+function rowClass({ row }: { row: NodeRow }) {
+  return isOffline(row) ? 'offline-row' : ''
+}
+
+/** 运行时长: until now, or until the last heartbeat of an offline node. */
+function uptime(row: NodeRow) {
+  if (!row.startedAt) return '—'
+  return isOffline(row)
+    ? `运行 ${formatDuration((row.seenAt || row.startedAt) - row.startedAt)} 后离线`
+    : `已运行 ${formatDuration((data.value?.now ?? Date.now()) - row.startedAt)}`
 }
 
 function status(row: NodeRow) {
@@ -98,7 +122,7 @@ function probe(value: ProbeStatus | null | undefined) {
           {{ formatTime(data.data.startedAt) }}
           <span class="muted">（已运行 {{ formatDuration(data.now - data.data.startedAt) }}）</span>
         </el-descriptions-item>
-        <el-descriptions-item label="内存">{{ data.data.heapMB != null ? `${formatNumber(data.data.heapMB)} MB` : '—' }}</el-descriptions-item>
+        <el-descriptions-item label="内存">{{ formatHeap(data.data.heapMB) }}</el-descriptions-item>
         <el-descriptions-item label="协程数">{{ formatNumber(data.data.goroutines) }}</el-descriptions-item>
         <el-descriptions-item label="数据库 / Redis">
           <div class="probes">
@@ -121,17 +145,27 @@ function probe(value: ProbeStatus | null | undefined) {
     <el-card shadow="never" class="page-card">
       <template #header>
         <div class="card-head">
-          <span>游戏节点（{{ data?.nodes?.length ?? 0 }}）</span>
+          <span>游戏节点（{{ rows.length - offlineCount }}<template v-if="offlineCount"> · 离线 {{ offlineCount }}</template>）</span>
+          <span v-if="offlineCount" class="muted small">离线节点保留 24 小时，显示最后一次心跳时的数据</span>
         </div>
       </template>
-      <el-table v-loading="loading && !data" :data="data?.nodes ?? []" border stripe row-key="nodeId" empty-text="没有已注册的游戏节点">
+      <el-table
+        v-loading="loading && !data"
+        :data="rows"
+        border
+        stripe
+        row-key="nodeId"
+        :row-class-name="rowClass"
+        empty-text="没有已注册的游戏节点"
+        class="nodes-table"
+      >
         <el-table-column label="节点" min-width="170" fixed="left">
           <template #default="{ row }">
-            <div>{{ row.name || row.nodeId }}</div>
-            <div class="muted mono">{{ row.nodeId }}</div>
+            <div class="ellipsis" :title="row.name || row.nodeId">{{ row.name || row.nodeId }}</div>
+            <div class="muted mono ellipsis" :title="row.nodeId">{{ row.nodeId }}</div>
           </template>
         </el-table-column>
-        <el-table-column label="状态" width="80">
+        <el-table-column label="状态" width="80" class-name="status-cell">
           <template #default="{ row }">
             <el-tag :type="status(row).type" disable-transitions>{{ status(row).label }}</el-tag>
           </template>
@@ -153,7 +187,7 @@ function probe(value: ProbeStatus | null | undefined) {
         <el-table-column label="启动时间 / 运行时长" width="190">
           <template #default="{ row }">
             <div>{{ formatTime(row.startedAt) }}</div>
-            <div class="muted">已运行 {{ row.startedAt ? formatDuration((data?.now ?? Date.now()) - row.startedAt) : '—' }}</div>
+            <div class="muted">{{ uptime(row) }}</div>
           </template>
         </el-table-column>
         <el-table-column label="最后心跳" width="170">
@@ -165,8 +199,8 @@ function probe(value: ProbeStatus | null | undefined) {
         <el-table-column label="协议" width="70" align="right">
           <template #default="{ row }">{{ text(row.protocolVersion) }}</template>
         </el-table-column>
-        <el-table-column label="内存" width="90" align="right">
-          <template #default="{ row }">{{ row.stats?.heapMB != null ? `${formatNumber(row.stats.heapMB)} MB` : '—' }}</template>
+        <el-table-column label="内存" width="100" align="right">
+          <template #default="{ row }">{{ formatHeap(row.stats?.heapMB) }}</template>
         </el-table-column>
         <el-table-column label="协程" width="80" align="right">
           <template #default="{ row }">{{ formatNumber(row.stats?.goroutines) }}</template>
@@ -213,5 +247,14 @@ function probe(value: ProbeStatus | null | undefined) {
 .error-text {
   color: var(--el-color-danger);
   font-size: 12px;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* An offline node keeps its last report, greyed out; its 离线 tag stays clear. */
+.nodes-table :deep(.offline-row > td:not(.status-cell) .cell) {
+  opacity: 0.55;
 }
 </style>
