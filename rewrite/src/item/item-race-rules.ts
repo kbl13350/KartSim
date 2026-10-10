@@ -51,6 +51,11 @@ export const ITEM_RACE_TUNING = Object.freeze({
    */
   sweepMaxSpeedMps: 120,
   sweepSlackM: 1,
+  /** The 迅 start item's slot flash and the in-race lucci notice stay in the HUD state this long. */
+  startItemFlashKeepMs: 3000,
+  lucciNoticeMs: 3000,
+  /** Talisman QTE: arrows to press in order (uiEffect.bml has panels 0–4). */
+  talismanArrows: 5,
 });
 
 /** Inverse of W's clientToThree (x, z, -y): three.js → client z-up coordinates. */
@@ -123,12 +128,12 @@ export function effectStartOffsetMs(behaviour: ItemBehaviour, etaMs: number): nu
   return flight + behaviour.warningMs;
 }
 
-/** Physics effects of `physics.itemEffects`. */
+/** Physics effects of `physics.itemEffects` (phase 3 adds knockback and hold). */
 export type PhysicsItemEffect = "spin" | "trap" | "launch" | "reverse" | "slow" | "shrink" |
-  "barrier" | "pull";
+  "barrier" | "pull" | "knockback" | "hold";
 
 const PHYSICS_EFFECTS: ReadonlySet<string> = new Set(
-  ["spin", "trap", "launch", "reverse", "slow", "shrink", "barrier", "pull"]);
+  ["spin", "trap", "launch", "reverse", "slow", "shrink", "barrier", "pull", "knockback", "hold"]);
 
 export function physicsEffect(effect: ItemEffectKind): PhysicsItemEffect | undefined {
   return PHYSICS_EFFECTS.has(effect) ? effect as PhysicsItemEffect : undefined;
@@ -136,11 +141,26 @@ export function physicsEffect(effect: ItemEffectKind): PhysicsItemEffect | undef
 
 /** The presenter's kart effect of an item effect (the victim's bubble, stars, …). */
 export function kartEffectOf(effect: ItemEffectKind): ItemKartEffect | undefined {
-  return physicsEffect(effect);
+  return physicsEffect(effect) as ItemKartEffect | undefined;
 }
 
-/** HUD warning while a projectile flies at me ([还原]: the UFO uses the rocket vignette). */
-export function warningOf(itemId: number): "rocket" | "waterfly" | undefined {
+/**
+ * HUD warning while a projectile flies at me ([还原]: the UFO, the talisman
+ * and the aimed specials use the rocket vignette, the flies and the bee the
+ * water-fly one); the lion mask rocket gives none (itemDescList.xml:1148).
+ */
+export function warningOf(itemId: number, behaviour?: ItemBehaviour): "rocket" | "waterfly" | undefined {
+  if (behaviour) {
+    if (behaviour.noWarning) return undefined;
+    switch (behaviour.family) {
+      case "rocket": case "blindRocket": case "lockdownRocket": case "snowman": case "ufo": case "talisman":
+        return "rocket";
+      case "waterFly": case "waterbombFly": case "honeyBee":
+        return "waterfly";
+      default:
+        return undefined;
+    }
+  }
   switch (itemId) {
     case ItemIdx.rocket:
     case ItemIdx.guideRocket:
@@ -159,32 +179,51 @@ export interface DefenceState {
   immune: boolean;
   shield: boolean;
   angel: boolean;
-  emp: boolean;
+  /** Gold shield / protect shield (黄金盾牌, 保护盾): every attack but clouds and the slot lock. */
+  invincible?: boolean;
   /** A reset or a warp holds the kart: nothing lands. */
   suspended: boolean;
 }
 
+export type ItemHitBy = "shield" | "angel" | "emp" | "escape" | "kart" | "pet" | "eat";
+export type ItemHitVariant = "small" | "headband" | "bonus" | "quick" | "balloon";
+
 export interface HitDecision {
   result: "hit" | "blocked";
-  by?: "shield" | "angel" | "emp" | "escape";
+  by?: ItemHitBy;
+  variant?: ItemHitVariant;
+}
+
+/** Equipment outcomes of one hit (item-passives.ts), already rolled. */
+export interface EquipmentOutcome {
+  /** A full defence: the kart or pet blocks it, or the kart eats the banana/mine. */
+  block?: { by: "kart" | "pet" | "eat"; bonus?: boolean };
+  /** A partial outcome when nothing else stops the hit. */
+  variant?: "balloon" | "headband" | "bonus";
 }
 
 /**
- * Whether an attack lands (ITEM_MODE.md §6): escape immunity first, then the
- * EMP against the UFO (it is the UFO's own counter, so it goes before the
- * shield is spent), the shield for items with a Shield state and the angel
- * for everything but devil, cloud and slot lock. The slot lock is enforced by
- * the server and always lands.
+ * Whether an attack lands (ITEM_MODE.md §6, C.2), in the order reset/warp →
+ * escape blue shield → equipment full defence → shield items (the invincible
+ * gold/protect shield, then the one-hit shield) → angel → partial equipment
+ * outcomes (balloon, headband, 奇奇) → hit. The slot lock is enforced by the
+ * server and always lands; clouds are a screen cover nothing but the escape
+ * shield stops. An invincible block names no defence (the node checks `by`
+ * per item; "blocked" alone is always accepted).
  */
-export function decideHit(itemId: number, behaviour: ItemBehaviour,
-  defences: DefenceState): HitDecision {
+export function decideHit(_itemId: number, behaviour: ItemBehaviour,
+  defences: DefenceState, equipment: EquipmentOutcome = {}): HitDecision {
   if (behaviour.effect === "lock") return { result: "hit" };
   if (defences.suspended) return { result: "blocked" };
   if (defences.immune) return { result: "blocked", by: "escape" };
-  if (itemId === ItemIdx.ufo && defences.emp) return { result: "blocked", by: "emp" };
+  if (equipment.block) {
+    return { result: "blocked", by: equipment.block.by,
+      ...(equipment.block.bonus ? { variant: "bonus" as const } : {}) };
+  }
+  if (defences.invincible && behaviour.effect !== "cloud") return { result: "blocked" };
   if (defences.shield && behaviour.shieldBlocks) return { result: "blocked", by: "shield" };
   if (defences.angel && behaviour.angelBlocks) return { result: "blocked", by: "angel" };
-  return { result: "hit" };
+  return equipment.variant ? { result: "hit", variant: equipment.variant } : { result: "hit" };
 }
 
 export interface AimCandidate { playerId: string; position: Vec3 }

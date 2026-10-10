@@ -3,7 +3,7 @@ import test from "node:test";
 
 import { ItemIdx } from "../item/item-catalog";
 import { FakePhysics, FakePresenter, testItemCatalog } from "../item/item-race-test-support";
-import { createActiveItemRace, serverToLocalMs, type ActiveItemRaceHost } from "./item-race-wiring";
+import { createActiveItemRace, rosterItemIds, serverToLocalMs, type ActiveItemRaceHost } from "./item-race-wiring";
 import { updateRacePresenterCamera, type RacePresenterCameraHost } from "./race-presenter-camera";
 import { feedRacePresenterItemHud, updateRacePresenterItems } from "./race-presenter-items";
 
@@ -129,4 +129,19 @@ test("the item race controller joins the local owner with the race's clock and r
   assert.deepEqual(options.hazardPosition!(7), { x: 7, y: 0, z: 0 });
   assert.equal(options.now(), 42);
   assert.equal(options.catalog.get(ItemIdx.rocket)?.behaviour.effect, "launch");
+  assert.equal(options.raceId, undefined);
+
+  // The frozen race equipment reaches the controller (passives, ITEM_MODE.md C.1).
+  const equipment = { itemIds: { "1": 10, "3": 75, "21": 3 }, kartSerial: 0, valueAt3E: 0, exceedType: 0 };
+  const equipped = createActiveItemRace(wiringHost(), { raceId: "race-7", trackId: "ice_I01",
+    roster: [{ playerId: "self", name: "我", team: 1, equipment }, { playerId: "rival", team: 2,
+      equipment: "bad" }] }, () => 0)!;
+  assert.deepEqual(equipped.options.roster[0], { playerId: "self", name: "我", team: 1,
+    itemIds: { "1": 10, "3": 75, "21": 3 } });
+  assert.deepEqual(equipped.options.roster[1], { playerId: "rival", name: "", team: 2 });
+  assert.equal(equipped.options.raceId, "race-7");
+  assert.equal(equipped.options.trackId, "ice_I01");
+  assert.equal(equipped.passives.kartId, 75);
+  assert.equal(rosterItemIds(undefined), undefined);
+  assert.equal(rosterItemIds({}), undefined);
 });

@@ -12,7 +12,7 @@ import { isItemRace } from "./lobby-item-mode";
 export interface ActiveItemRaceHost {
   assets: {
     drivingMode?: { kind: string; team?: boolean };
-    itemCatalog?: Pick<ItemCatalog, "get">;
+    itemCatalog?: Pick<ItemCatalog, "get"> & Partial<Pick<ItemCatalog, "passives" | "animalBoosters">>;
     itemPresenter?: ItemRacePresenter;
     itemHazards?: { position(id: number): Vec3 | undefined };
   };
@@ -34,8 +34,22 @@ export interface ActiveItemRaceHost {
   mapping?: { offsetMs: number };
 }
 
+/**
+ * The race snapshot part the item race reads: the frozen roster with each
+ * racer's race equipment (passives, ITEM_MODE.md C.1 — never the display
+ * profiles, which anonymous and competition rooms rewrite), the race id (the
+ * passive roll seed) and the track (iceBanana).
+ */
 export interface ItemRaceRoster {
-  roster: ReadonlyArray<{ playerId: string; name?: string; team?: 1 | 2 | null }>;
+  raceId?: unknown;
+  trackId?: unknown;
+  roster: ReadonlyArray<{ playerId: string; name?: string; team?: 1 | 2 | null; equipment?: unknown }>;
+}
+
+/** `equipment.itemIds` of a roster entry, if it has one. */
+export function rosterItemIds(equipment: unknown): unknown {
+  return equipment && typeof equipment === "object"
+    ? (equipment as { itemIds?: unknown }).itemIds : undefined;
 }
 
 /** `toLocalTick` of the race clock: server milliseconds → local presenter milliseconds. */
@@ -59,9 +73,15 @@ export function createActiveItemRace(host: ActiveItemRaceHost, race: ItemRaceRos
   const subscribeItem = connection.subscribeItem.bind(connection);
   const controller = new ItemRaceController({
     playerId: connection.playerId,
-    roster: race.roster.map(entry => ({ playerId: entry.playerId, name: entry.name ?? "",
-      team: entry.team === 1 || entry.team === 2 ? entry.team : null })),
+    roster: race.roster.map(entry => {
+      const itemIds = rosterItemIds(entry.equipment);
+      return { playerId: entry.playerId, name: entry.name ?? "",
+        team: entry.team === 1 || entry.team === 2 ? entry.team : null,
+        ...(itemIds !== undefined ? { itemIds } : {}) };
+    }),
     teamRace: assets.drivingMode?.team === true,
+    ...(typeof race.raceId === "string" ? { raceId: race.raceId } : {}),
+    ...(typeof race.trackId === "string" ? { trackId: race.trackId } : {}),
     catalog: assets.itemCatalog,
     physics: local.physics,
     connection: { sendItem, subscribeItem },

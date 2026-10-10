@@ -25,13 +25,19 @@ bundle. It can be developed independently of the original minified code.
 - `network-timing.ts`: clock offset and race request RTT state; it replaces
   `L40` and `gl0`.
 - `race-session.ts`: member permissions and the abort-scoped race command API,
-  including the serialized 道具赛 `sendItem` (strict per-racer sequence) and
-  `subscribeItem`.
+  including the serialized 道具赛 `sendItem` (strict per-racer sequence),
+  `subscribeItem` and the item race's `finish` `perfectStart` flag.
 - `item-race-wiring.ts`, `race-presenter-items.ts`: 道具赛 assembly (the item
-  race controller on the local owner) and its frame updates (cubes, hazards,
-  item presenter, item HUD state).
-- `server-events.ts`: validation for every observed server control event.
-- `room-validation.ts`: full room and race snapshot validation from the release.
+  race controller on the local owner, with the frozen roster equipment
+  `race.roster[i].equipment.itemIds`, the race id as the passive roll seed and
+  the track id) and its frame updates (cubes, hazards, item presenter, item
+  HUD state).
+- `server-events.ts`: validation for every observed server control event; item
+  events are strict (phase 3: `changers`, `used.count`, hit `variant`/`shot`
+  and the `kart`/`pet`/`eat` defences, the `slots` push with `reason`/`itemId`,
+  `lucci`) and an invalid one only rejects its own request.
+- `room-validation.ts`: full room and race snapshot validation from the release;
+  item race result rows may carry the known `titles` keys (ITEM_MODE.md C.9).
 - `room-state.ts`: authoritative room revision, departure and recent-chat state.
 - `individual-rider-colors.ts`: individual rooms dress each racer in its slot's
   basic dye (red, yellow, orange, green, light jade, blue, purple, pink),

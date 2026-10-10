@@ -47,14 +47,12 @@ test("effects start after the projectile ETA or the delay, plus the warning", ()
   assert.equal(warningOf(ItemIdx.devil), undefined);
 });
 
-test("defences: escape, EMP against the UFO, shield, angel; the slot lock always lands", () => {
-  const none = { immune: false, shield: false, angel: false, emp: false, suspended: false };
-  const decide = (idx: number, defences: Partial<typeof none>) =>
-    decideHit(idx, behaviour(idx), { ...none, ...defences });
+test("defences (C.2): escape, equipment, invincible, shield, angel, then partial outcomes", () => {
+  const none = { immune: false, shield: false, angel: false, invincible: false, suspended: false };
+  const decide = (idx: number, defences: Partial<typeof none>, equipment = {}) =>
+    decideHit(idx, behaviour(idx), { ...none, ...defences }, equipment);
   assert.deepEqual(decide(ItemIdx.rocket, {}), { result: "hit" });
   assert.deepEqual(decide(ItemIdx.rocket, { immune: true, shield: true }), { result: "blocked", by: "escape" });
-  assert.deepEqual(decide(ItemIdx.ufo, { emp: true, shield: true }), { result: "blocked", by: "emp" });
-  assert.deepEqual(decide(ItemIdx.rocket, { emp: true }), { result: "hit" });
   assert.deepEqual(decide(ItemIdx.rocket, { shield: true, angel: true }), { result: "blocked", by: "shield" });
   assert.deepEqual(decide(ItemIdx.waterBomb, { shield: true }), { result: "hit" });
   assert.deepEqual(decide(ItemIdx.waterBomb, { angel: true }), { result: "blocked", by: "angel" });
@@ -62,9 +60,42 @@ test("defences: escape, EMP against the UFO, shield, angel; the slot lock always
   assert.deepEqual(decide(ItemIdx.cloud2, { shield: true, angel: true }), { result: "hit" });
   assert.deepEqual(decide(ItemIdx.thunderbolt, { shield: true }), { result: "hit" });
   assert.deepEqual(decide(ItemIdx.barricade, { shield: true }), { result: "blocked", by: "shield" });
-  assert.deepEqual(decide(ItemIdx.slotLock, { immune: true, angel: true, suspended: true }),
+  assert.deepEqual(decide(ItemIdx.slotLock, { immune: true, angel: true, suspended: true, invincible: true }),
     { result: "hit" });
   assert.deepEqual(decide(ItemIdx.rocket, { suspended: true }), { result: "blocked" });
+  // The UFO: neither the shield nor the angel (only EMP clears it, and only after it landed).
+  assert.deepEqual(decide(ItemIdx.ufo, { shield: true, angel: true }), { result: "hit" });
+  // The gold / protect shield blocks every attack, the devil family too, but not a cloud.
+  assert.deepEqual(decide(ItemIdx.devil, { invincible: true }), { result: "blocked" });
+  assert.deepEqual(decide(ItemIdx.ufo, { invincible: true, shield: true }), { result: "blocked" });
+  assert.deepEqual(decide(ItemIdx.darkCloud2, { invincible: true }), { result: "hit" });
+  // Equipment full defences come before the shield items; the shield is kept.
+  assert.deepEqual(decide(ItemIdx.rocket, { shield: true }, { block: { by: "kart" } }),
+    { result: "blocked", by: "kart" });
+  assert.deepEqual(decide(ItemIdx.mine, {}, { block: { by: "eat", bonus: true } }),
+    { result: "blocked", by: "eat", variant: "bonus" });
+  assert.deepEqual(decide(ItemIdx.rocket, { immune: true }, { block: { by: "pet" } }),
+    { result: "blocked", by: "escape" });
+  // Partial outcomes only when nothing stops the hit.
+  assert.deepEqual(decide(ItemIdx.rocket, {}, { variant: "balloon" }), { result: "hit", variant: "balloon" });
+  assert.deepEqual(decide(ItemIdx.rocket, { shield: true }, { variant: "balloon" }),
+    { result: "blocked", by: "shield" });
+  assert.deepEqual(decide(ItemIdx.ufo, { angel: true }, { variant: "headband" }),
+    { result: "hit", variant: "headband" });
+});
+
+test("warnings follow the families; the lion mask rocket gives none", () => {
+  const warn = (idx: number) => warningOf(idx, behaviour(idx));
+  for (const idx of [ItemIdx.rocket, ItemIdx.goldRocket, ItemIdx.tigerRocket, ItemIdx.lockdownRocket,
+    ItemIdx.snowman, ItemIdx.ufo, ItemIdx.talisman, ItemIdx.guideRocket]) assert.equal(warn(idx), "rocket", String(idx));
+  for (const idx of [ItemIdx.waterFly, ItemIdx.snowWaterFly, ItemIdx.waterbombFly, ItemIdx.honeyBee])
+    assert.equal(warn(idx), "waterfly", String(idx));
+  for (const idx of [ItemIdx.lionMaskRocket, ItemIdx.devil, ItemIdx.banana, ItemIdx.cloud2])
+    assert.equal(warn(idx), undefined, String(idx));
+  assert.equal(physicsEffect("hold"), "hold");
+  assert.equal(physicsEffect("knockback"), "knockback");
+  assert.equal(physicsEffect("invincible"), undefined);
+  assert.equal(kartEffectOf("hold"), "hold");
 });
 
 test("the aim candidate is the nearest opponent ahead inside the cone and range", () => {
