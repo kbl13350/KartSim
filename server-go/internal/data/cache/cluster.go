@@ -42,6 +42,9 @@ type Node struct {
 	StartedAt       int64  `json:"startedAt"`
 	ProtocolVersion int    `json:"protocolVersion"`
 	SeenAt          int64  `json:"seenAt"`
+	// Stats are the load figures of the latest heartbeat; nil from nodes
+	// that send none.
+	Stats *contract.NodeStats `json:"stats,omitempty"`
 }
 
 // Full reports whether the node accepts no more players.
@@ -56,7 +59,9 @@ func (n Node) Full() bool { return n.Players >= n.Capacity }
 // same rules (PresenceTTL, refreshed by heartbeats, taken over once the
 // owner node is no longer registered). node-players:{node} lists the names a
 // node holds and node-accounts:{node} maps its players to their accounts,
-// since heartbeats only carry player ids and names.
+// since heartbeats only carry player ids and names. node-online:{node}
+// keeps the player list of the node's latest heartbeat (the admin
+// console's online page) for as long as the node entry.
 //
 // The Lua scripts touch a few keys they compute themselves (the owner's
 // node:{id}, a node's presence keys); that is fine on a standalone Redis or
@@ -87,6 +92,7 @@ func (c *Cluster) nodeAccountsKey(nodeID string) string {
 func (c *Cluster) accountKey(accountID string) string {
 	return c.prefix + "presence-account:" + accountID
 }
+func (c *Cluster) nodeOnlineKey(nodeID string) string { return c.prefix + "node-online:" + nodeID }
 
 // heartbeatScript stores the node, re-registers it in the node set and
 // refreshes each listed player's presence: a key holding this player's value
@@ -208,7 +214,8 @@ type HeartbeatResult struct {
 	Freed int
 }
 
-// Heartbeat registers or refreshes node and the presence of its players.
+// Heartbeat registers or refreshes node and the presence of its players,
+// and keeps the players (but those in conflict) as the node's online list.
 func (c *Cluster) Heartbeat(ctx context.Context, node Node, players []contract.OnlinePlayer) (HeartbeatResult, error) {
 	encoded, err := json.Marshal(node)
 	if err != nil {
@@ -231,16 +238,31 @@ func (c *Cluster) Heartbeat(ctx context.Context, node Node, players []contract.O
 		return HeartbeatResult{}, errors.New("heartbeat: empty script reply")
 	}
 	result := HeartbeatResult{Freed: int(reply[0])}
+	conflicting := map[int64]bool{}
 	for _, index := range reply[1:] {
 		if index >= 0 && index < int64(len(players)) {
 			result.Conflicts = append(result.Conflicts, players[index].PlayerID)
+			conflicting[index] = true
 		}
+	}
+	online := make([]contract.OnlinePlayer, 0, len(players)-len(conflicting))
+	for i, player := range players {
+		if !conflicting[int64(i)] {
+			online = append(online, player)
+		}
+	}
+	list, err := json.Marshal(online)
+	if err != nil {
+		return result, err
+	}
+	if err := c.rdb.Set(ctx, c.nodeOnlineKey(node.NodeID), list, NodeTTL).Err(); err != nil {
+		return result, fmt.Errorf("heartbeat online list: %w", err)
 	}
 	return result, nil
 }
 
 // leaveScript removes a node and every name and account it still holds.
-// KEYS: node, nodes, node-players, node-epoch, node-accounts.
+// KEYS: node, nodes, node-players, node-epoch, node-accounts, node-online.
 // ARGV: node id, presence key prefix, account key prefix.
 var leaveScript = redis.NewScript(`
 local owned = ARGV[1] .. '|'
@@ -258,7 +280,7 @@ for j = 1, #entries, 2 do
     redis.call('DEL', key)
   end
 end
-redis.call('DEL', KEYS[1], KEYS[3], KEYS[4], KEYS[5])
+redis.call('DEL', KEYS[1], KEYS[3], KEYS[4], KEYS[5], KEYS[6])
 redis.call('SREM', KEYS[2], ARGV[1])
 return 1
 `)
@@ -266,7 +288,7 @@ return 1
 // Leave unregisters a node and frees its nicknames and accounts.
 func (c *Cluster) Leave(ctx context.Context, nodeID string) error {
 	keys := []string{c.nodeKey(nodeID), c.nodesKey(), c.nodePlayersKey(nodeID), c.nodeEpochKey(nodeID),
-		c.nodeAccountsKey(nodeID)}
+		c.nodeAccountsKey(nodeID), c.nodeOnlineKey(nodeID)}
 	if err := leaveScript.Run(ctx, c.rdb, keys, nodeID, c.presenceKey(""), c.accountKey("")).Err(); err != nil {
 		return fmt.Errorf("node leave: %w", err)
 	}
@@ -474,7 +496,21 @@ func (c *Cluster) NameOnline(ctx context.Context, name string) (bool, error) {
 // (presence-account:{id}) whose node is still registered: the same "node
 // must still exist" rule as NameOnline. Only accounts in game are listed.
 func (c *Cluster) AccountsInGame(ctx context.Context, ids []string) (map[string]bool, error) {
-	inGame := map[string]bool{}
+	nodes, err := c.AccountNodes(ctx, ids)
+	if err != nil {
+		return nil, err
+	}
+	inGame := make(map[string]bool, len(nodes))
+	for id := range nodes {
+		inGame[id] = true
+	}
+	return inGame, nil
+}
+
+// AccountNodes maps each of ids that is in game (see AccountsInGame) to
+// the id of the node serving it.
+func (c *Cluster) AccountNodes(ctx context.Context, ids []string) (map[string]string, error) {
+	inGame := map[string]string{}
 	if len(ids) == 0 {
 		return inGame, nil
 	}
@@ -513,10 +549,51 @@ func (c *Cluster) AccountsInGame(ctx context.Context, ids []string) (map[string]
 			continue // the node vanished; its claims are stale
 		}
 		for _, id := range owners[nodes[i]] {
-			inGame[id] = true
+			inGame[id] = nodes[i]
 		}
 	}
 	return inGame, nil
+}
+
+// NodeOnline is a live node with the player list of its latest heartbeat
+// and the accounts its players claimed (player id -> account id; guests
+// have none).
+type NodeOnline struct {
+	Node     Node
+	Players  []contract.OnlinePlayer
+	Accounts map[string]string
+}
+
+// Online lists the live nodes (ordered like Nodes) with their players.
+func (c *Cluster) Online(ctx context.Context) ([]NodeOnline, error) {
+	nodes, err := c.Nodes(ctx)
+	if err != nil || len(nodes) == 0 {
+		return []NodeOnline{}, err
+	}
+	pipe := c.rdb.Pipeline()
+	lists := make([]*redis.StringCmd, len(nodes))
+	accounts := make([]*redis.MapStringStringCmd, len(nodes))
+	for i, node := range nodes {
+		lists[i] = pipe.Get(ctx, c.nodeOnlineKey(node.NodeID))
+		accounts[i] = pipe.HGetAll(ctx, c.nodeAccountsKey(node.NodeID))
+	}
+	if _, err := pipe.Exec(ctx); err != nil && !errors.Is(err, redis.Nil) {
+		return nil, fmt.Errorf("online list: %w", err)
+	}
+	online := make([]NodeOnline, len(nodes))
+	for i, node := range nodes {
+		online[i] = NodeOnline{Node: node, Players: []contract.OnlinePlayer{}, Accounts: accounts[i].Val()}
+		text, err := lists[i].Result()
+		if errors.Is(err, redis.Nil) {
+			continue // expired since Nodes read the node
+		} else if err != nil {
+			return nil, fmt.Errorf("online list: %w", err)
+		}
+		if err := json.Unmarshal([]byte(text), &online[i].Players); err != nil {
+			return nil, fmt.Errorf("decode online list %s: %w", node.NodeID, err)
+		}
+	}
+	return online, nil
 }
 
 // Node returns one live node.

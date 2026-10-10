@@ -554,3 +554,67 @@ func TestAccountsInGame(t *testing.T) {
 		t.Fatal("lookup error hidden")
 	}
 }
+
+// The admin console's online list: each live node with the players of its
+// latest heartbeat (but those in conflict), their rooms and accounts.
+func TestOnlineListsTheLatestHeartbeat(t *testing.T) {
+	cluster, server := newTestCluster(t)
+	ctx := context.Background()
+	if online, err := cluster.Online(ctx); err != nil || len(online) != 0 {
+		t.Fatalf("no nodes: %v, %v", online, err)
+	}
+	stats := &contract.NodeStats{HeapMB: 40, Goroutines: 21, Connections: 3, Races: 1, Version: "abc"}
+	register(t, cluster, Node{NodeID: "game-a", Name: "A", Capacity: 10, Stats: stats})
+	register(t, cluster, Node{NodeID: "game-b", Name: "B", Capacity: 10})
+	claimPresence(t, cluster, "game-a", "p1", "Ann", "acc-1")
+	claimPresence(t, cluster, "game-a", "p2", "Guest", "")
+	claimPresence(t, cluster, "game-b", "p3", "Bob", "acc-2")
+	ann := contract.OnlinePlayer{PlayerID: "p1", Name: "Ann", Room: "快来"}
+	guest := contract.OnlinePlayer{PlayerID: "p2", Name: "Guest"}
+	register(t, cluster, Node{NodeID: "game-a", Name: "A", Capacity: 10, Stats: stats}, ann, guest)
+	// p9 claims a name game-b holds: it is in conflict and not listed.
+	register(t, cluster, Node{NodeID: "game-b", Name: "B", Capacity: 10},
+		contract.OnlinePlayer{PlayerID: "p3", Name: "Bob"}, contract.OnlinePlayer{PlayerID: "p9", Name: "Ann"})
+
+	online, err := cluster.Online(ctx)
+	if err != nil || len(online) != 2 {
+		t.Fatalf("online %v, %v", online, err)
+	}
+	a, b := online[0], online[1]
+	if a.Node.NodeID != "game-a" || a.Node.Stats == nil || *a.Node.Stats != *stats || len(a.Players) != 2 ||
+		a.Players[0] != ann || a.Players[1] != guest || len(a.Accounts) != 1 || a.Accounts["p1"] != "acc-1" {
+		t.Fatalf("node a %+v", a)
+	}
+	if b.Node.NodeID != "game-b" || b.Node.Stats != nil || len(b.Players) != 1 || b.Players[0].PlayerID != "p3" ||
+		b.Accounts["p3"] != "acc-2" {
+		t.Fatalf("node b %+v", b)
+	}
+	if nodes, err := cluster.AccountNodes(ctx, []string{"acc-1", "acc-2", "acc-3"}); err != nil || len(nodes) != 2 ||
+		nodes["acc-1"] != "game-a" || nodes["acc-2"] != "game-b" {
+		t.Fatalf("account nodes %v, %v", nodes, err)
+	}
+	if ttl := server.TTL("kt:node-online:game-a"); ttl != NodeTTL {
+		t.Fatalf("online list ttl %s", ttl)
+	}
+	// A replaced account (an admin kick) is no longer in game at once.
+	if marked, err := cluster.ReplaceAccount(ctx, "acc-1", "Ann"); err != nil || !marked {
+		t.Fatalf("replace %v, %v", marked, err)
+	}
+	if nodes, err := cluster.AccountNodes(ctx, []string{"acc-1"}); err != nil || len(nodes) != 0 {
+		t.Fatalf("account nodes after replace %v, %v", nodes, err)
+	}
+	// Leaving drops the list with the node.
+	if err := cluster.Leave(ctx, "game-a"); err != nil {
+		t.Fatal(err)
+	}
+	if server.Exists("kt:node-online:game-a") {
+		t.Fatal("online list outlived the node")
+	}
+	if online, err := cluster.Online(ctx); err != nil || len(online) != 1 || online[0].Node.NodeID != "game-b" {
+		t.Fatalf("online after leave %v, %v", online, err)
+	}
+	server.SetError("ERR down")
+	if _, err := cluster.Online(ctx); err == nil {
+		t.Fatal("online error hidden")
+	}
+}
