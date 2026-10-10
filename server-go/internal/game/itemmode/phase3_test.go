@@ -534,6 +534,10 @@ func TestHitVariants(t *testing.T) {
 	}
 	_, err = report(member(Equipment{}), Banana, 0, VariantSmall, "", ResultHit)
 	wantErr(t, err, ErrInvalidVariant)
+	// A lockdown field's slow (AffectSub) is the small form too.
+	if _, err := report(member(Equipment{}), BlockRocket, 0, VariantSmall, "", ResultHit); err != nil {
+		t.Fatal(err)
+	}
 	// 神秘工头 in an eating kart earns lucci from the mine it eats.
 	r = member(Equipment{Kart: 153, Character: 16})
 	if hit, err := report(r, Mine, 0, VariantBonus, ByEat, ResultBlocked); err != nil || hit.Lucci == nil || hit.Lucci.Reason != LucciMine || !hit.Removed {

@@ -175,10 +175,12 @@ func (r *Race) variantHolds(h hitContext, result, by, variant string) (ok bool, 
 	}
 	switch variant {
 	case VariantSmall:
-		// A milder missile hit (AffectSmall) has no equipment condition.
+		// A milder hit has no equipment condition: a missile's AffectSmall,
+		// or a lockdown field's AffectSub on a racer near the target.
 		item, _ := r.data.Item(h.item)
 		_, small := item.States["AffectSmall"]
-		return small, ""
+		_, field := item.States["AffectSub"]
+		return small || field, ""
 	case VariantHeadband:
 		return h.item == UFO && r.roll(h, HolderHeadBand, "probability", RollHeadband), ""
 	case VariantBonus:

@@ -224,7 +224,7 @@
 | `variant:"bonus"` | 飞碟 3（`result:"hit"`，得 10 金币） | 角色 `lucciUfo`（`lucciUfo`） |
 | `variant:"bonus"` + `by:"eat"` | 被吃掉的地雷类 / 弹性陷阱（`result:"blocked"`，得 10 金币） | 上面的 `eat` 成立，且角色 `lucciMine`（`lucciMine`）/ `lucciForceZone`（`lucciForceZone`） |
 | `variant:"balloon"` | 导弹 7、追踪导弹 33、随机导弹 127、可乐导弹 30（黄金导弹类不行；`result:"hit"`，得 10 金币） | 气球 `prob`（`balloon`） |
-| `variant:"small"` | 有 `AffectSmall` 状态的道具（`result:"hit"`） | 无（较轻的命中） |
+| `variant:"small"` | 有 `AffectSmall` 状态的道具，或电磁导弹/像素导弹磁场里被减速（`AffectSub`）的车（`result:"hit"`） | 无（较轻的命中） |
 
 赛后数据由游戏节点经本地发件箱异步提交给数据服务，按 `raceId` 幂等写入 MySQL，因此历史接口会在比赛结束后稍晚一点出现该局。可运行 `node server-special-smoke.mjs` 让真实前端校验器检查四种模式的双端协议、赛程、巨人广播、`race.rewards`、回房以及结算是否到达数据服务。脚本会注册五个测试账号（每个账号带自己的 `X-Forwarded-For`，数据服务须信任运行脚本的地址，见 `server-go/README.md`“测试”），并写入所连集群的 MySQL；请对测试部署运行。
 

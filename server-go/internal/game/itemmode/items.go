@@ -162,7 +162,8 @@ const (
 )
 
 // Hit variants (ITEM_MODE.md C.2/C.7): a hit whose effect an equipment
-// passive changed. VariantSmall is the reduced missile (AffectSmall);
+// passive changed. VariantSmall is the reduced missile (AffectSmall) or a
+// lockdown field's slow on a racer near the target (AffectSub);
 // VariantHeadband the UFO cut short by a headband (HeadBandAffect);
 // VariantBonus the UFO or eaten mine that pays the character's lucci
 // (BonusAffect, EatBonus); VariantQuick the water trap left at once
