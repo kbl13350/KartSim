@@ -66,6 +66,9 @@ function editNotice(notice: Notice | null) {
 }
 
 async function save() {
+  // Enter in 标题 submits the form: a second Enter while the first request
+  // is in flight must not publish the notice twice.
+  if (saving.value) return
   editFailure.value = ''
   const body: { id: number; title: string; message: string; startAt?: number; endAt?: number } = {
     id: Number(form.id) || 0,
@@ -174,7 +177,7 @@ async function remove(notice: Notice) {
           </div>
         </el-form-item>
         <el-alert v-if="editFailure" type="error" :title="editFailure" :closable="false" show-icon />
-        <button type="submit" hidden />
+        <button type="submit" hidden :disabled="saving" />
       </el-form>
       <template #footer>
         <el-button @click="editOpen = false">取消</el-button>
