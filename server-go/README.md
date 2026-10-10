@@ -702,6 +702,18 @@ server {
         proxy_read_timeout 120s;
         proxy_send_timeout 120s;
     }
+    # 小屋实时拜访的 WebSocket（数据服务），同上。
+    location = /api/myroom/ws {
+        proxy_pass http://10.0.0.10:8787;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 120s;
+        proxy_send_timeout 120s;
+    }
     location ^~ /api/ {
         proxy_pass http://10.0.0.10:8787;
         proxy_set_header Host $host;
