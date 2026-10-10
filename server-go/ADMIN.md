@@ -104,3 +104,23 @@
 - `BoxOpeningRow`：`at, requestId, accountId, username, nickname, boxId, boxName, stockId, summary, result`（`summary` 例如“开启 迷你宝箱：宝宝”）
 - `ClubRow`：`id, name, masterId, masterUsername, masterNickname, members, hq, racing, rider, bank, budget, cs, csWeek, autoJoin, createdAt, breakAt`（`csWeek` 是本周的活跃点，`breakAt` 是正在解散的俱乐部的解散时间，否则 `null`）
 - `GET /api/admin/overview` → `{now, accounts: {total, today, admins, banned}, logins: {today, uniqueToday}, online: {players, accounts, guests}, nodes: {total, healthy}, rooms, races: {today}, coupon: {spentToday, grantedToday}, recentRegistrations: AccountRow[10], recentLogins: LoginRow[10]}`；“今天”指北京时间 0 点起。`logins.today` 是登录次数，`uniqueToday` 是今天登录或注册过的账号数；`admins` 含 `KART_ADMIN_USERNAMES`；`nodes.healthy` 是没有超时的节点；`coupon.spentToday` 是点券的支出（不含管理员扣除），`grantedToday` 是管理员发放的点券；`recentLogins` 只列登录（不含注册）。Redis 不可用时 `online`、`nodes`、`rooms` 为 `null`
+
+## 5. 第二轮（审查与浏览器验收后的补充）
+
+- **活跃时间**：`accounts` 增加 `last_seen_at` BIGINT 默认 0、`last_seen_ip` VARCHAR(45) 默认 ''（仍在迁移 120 里）。任何带会话令牌的成功请求都更新它们，同一账号最多每 5 分钟写一次（Redis `SET NX EX` 节流；没有 Redis 时用进程内节流）。每个账号每个北京日第一次用已保存的令牌活动时，写一条 `login_records`，`kind` = `resume`（前端显示“自动登录”）。概览的“今日登录人数”`logins.uniqueToday` 统计今天有 `register`/`login`/`resume` 记录的不同账号；`logins.today` 仍是今天的 `login` 次数。`AccountRow` 增加 `lastSeenAt, lastSeenIp`；用户列表排序增加 `lastSeenAt`；登录记录的 `kind` 筛选接受 `resume`。
+- **物品数**：`inventoryCount` 只算数量大于 0 且未过期的物品。
+- **解封**：`bannedUntil: 0` 解封时同时清空 `banReason`（除非同一请求里给了新原因）。
+- **超级管理员**：`KART_ADMIN_USERNAMES` 里的账号只能由自己修改；其他管理员对它们的 PATCH / 踢下线返回 409 `PROTECTED_ADMIN`。
+- **节点离线**：数据服务把见过的游戏节点记 24 小时（Redis `node-seen:{node}`，内容为最后一份节点信息）。`GET /api/admin/nodes` 里注册表中已没有、但 24 小时内见过的节点以 `status: "offline"` 返回（字段同 `NodeRow`，`seenAt` 为最后心跳）；概览 `nodes` 增加 `offline` 计数。`NodeRow.stats.heapMB` 与数据服务 `heapMB` 改为保留一位小数的数字。
+- **踢下线后的在线状态**：被踢 / 被封的账号在游戏节点下次心跳断开前，在线列表与 `AccountRow.online` 里带 `leaving: true`（前端显示“断开中”），不再显示为普通在线。
+- **新接口**（列表接口都遵守 §3 的分页约定）：
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | `/api/admin/accounts/{id}/game` | `{stats: null \| {races, wins, podiums, points}, license: null \| {level, proUntil, proCount, lastRunAt}, licenseClears: [{step, period, bestMs, clearedAt}], licenseRecords: [{trackId, trackName, bestMs, updatedAt}], timeAttack: [{trackId, trackName, bestMs, updatedAt}], quests: [{questId, period, value, completedAt, updatedAt}], counters: [{counter, value, updatedAt}], friends: 好友数, club: null \| {id, name, grade, joinedAt, csWeek, csTotal, donatedTotal}}` |
+| GET | `/api/admin/clubs/{id}/members` | 分页；`MemberRow`：`accountId, username, nickname, grade`（1 会长 … 按俱乐部代码）`, joinedAt, csWeek, csTotal, donatedTotal`；排序 `joinedAt, grade, csWeek, csTotal, donatedTotal` |
+| GET | `/api/admin/invites` | 分页；`InviteRow`：`hash`（前 12 位）`, createdAt, used, usedBy: null \| {accountId, username, nickname}`；筛选 `used=1\|0`；排序 `createdAt` |
+| GET | `/api/admin/reward-box` | 分页；`RewardBoxRow`：`id, accountId, username, nickname, source, message, name, category, itemId, count, days, currency, createdAt, expiresAt, claimedAt, state`（`unclaimed` \| `claimed` \| `expired`）；筛选 `source`、`state`、`account`；`q` 匹配账号/昵称/物品名；排序 `createdAt` |
+
+- **俱乐部**：已解散（`break_at` 早于现在）的俱乐部 `ClubRow.state = "disbanded"`，解散倒计时中为 `"breaking"`，否则 `"active"`；列表筛选 `state`，默认全部。
+- **游戏客户端**：登录或进入游戏得到 `ACCOUNT_BANNED` 时显示“账号已被封禁，解封时间：…（原因：…）”，不再显示原始错误码。
