@@ -1041,14 +1041,15 @@ export class ItemRaceController implements ItemCommandHandler {
 
   /**
    * The server's own slot changes (C.3, C.7): an item gained from the per-kart
-   * gain tables (`gain`) or the 迅 start item (`start`). The server sends it
-   * after the reply of the request that caused it, so my pending operations
-   * still apply on top.
+   * gain tables (`gain`), the 迅 start item (`start`), or the start slots and
+   * cards. While my own use or swap is in flight the push is not applied: it
+   * may already contain that operation (the node pushes a use's gains before
+   * its reply), and the reply carries the slots after both.
    */
   private onSlotsPush(event: ItemSlotsEvent): void {
     this.changers.confirm(event.changers);
     this.noteIcons(event.slots, event.slotIcons);
-    this.slots.confirm(event.slots);
+    if (this.slots.pending.length === 0) this.slots.confirm(event.slots);
     this.applySlots(this.nowMs);
     if (event.reason === "start") {
       const at = this.options.now();

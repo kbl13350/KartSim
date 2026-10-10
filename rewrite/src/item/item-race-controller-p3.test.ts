@@ -652,6 +652,30 @@ test("server pushes: gained items, the 迅 start item flash and in-race lucci", 
   assert.equal(f.controller.hudState(300 + ITEM_RACE_TUNING.lucciNoticeMs).lucci, undefined);
 });
 
+test("a gain pushed while my use is in flight waits for the use's reply", async () => {
+  const f = controllerFixture();
+  serve(f);
+  f.connection.reply = ({ fields }) => ({ type: "item", action: "grant", cubeId: fields.cubeId, itemId: 5,
+    slots: [5, 7], changers: { slot: 0, item: 0, itemArmed: true } });
+  f.controller.cube(1);
+  await settle();
+  let resolve: (value: unknown) => void = () => {};
+  f.connection.reply = () => new Promise(done => { resolve = done; });
+  f.poses.set(RIVAL, pose({ x: 0, y: 0, z: 40 }));
+  press(f, 0);
+  at(f, ITEM_RACE_TUNING.aimLockMs);
+  f.state.now = 700;
+  f.controller.handleCommand({ kind: "use", phase: "release" }, 700);
+  assert.deepEqual(f.controller.hudState(700).slots, [7, -1]);
+  // The node pushes the magnet's firing2Gain before the use's reply.
+  f.connection.emit({ action: "slots", slots: [7, 6], reason: "gain", itemId: 6 });
+  assert.deepEqual(f.controller.hudState(700).slots, [7, -1], "not shifted twice");
+  resolve({ type: "item", action: "used", playerId: SELF, useId: 50, itemId: 5, targets: [RIVAL],
+    startAt: server(700), etaMs: 0, slots: [7, 6] });
+  await settle();
+  assert.deepEqual(f.controller.hudState(700).slots, [7, 6]);
+});
+
 test("the server's slotIcons name the special booster's icon", async () => {
   const f = controllerFixture();
   f.connection.reply = ({ fields }) => ({ type: "item", action: "grant", cubeId: fields.cubeId,
