@@ -34,7 +34,7 @@ npm run verify
 ./run-built.sh
 ```
 
-打包版默认地址为 <http://127.0.0.1:8781/>。`dist/` 中的资源目录是指向 `../mirror` 的相对符号链接，因此应连同本工程和镜像一起使用；它并不是独立的 3.49 GiB 离线安装包。可以给 `run-built.sh` 传入端口号。
+打包版默认地址为 <http://127.0.0.1:8781/>。`dist/` 中的资源目录是指向 `../mirror` 的相对符号链接，因此应连同本工程和镜像一起使用；它并不是独立的 3.49 GiB 离线安装包。可以给 `run-built.sh` 传入端口号。构建最后为 JS、CSS、wasm 等文件旁边生成 `.gz` 副本（约 6.4 MiB → 1.2 MiB），部署时由 Nginx 的 `gzip_static` 直接发送，见 `server-go/README.md` 的 Nginx 示例；`run-built.sh` 不使用它们。
 
 ## 代码地图
 
@@ -59,6 +59,7 @@ npm run verify
 | `src/generated/` | 从 v39.11 发行包按语法边界拆出的兼容模块 | 自动生成，仍有压缩名称；不要直接编辑 |
 | `tools/generate-modules.mjs` | 检验源包哈希、拆模块、计算跨模块依赖、注入手写替代模块 | 可维护的迁移工具 |
 | `tools/link-build-assets.mjs` | 为打包版链接镜像资源、复制小型运行文件 | 构建工具 |
+| `tools/precompress-build.mjs` | 为 `dist/` 中可压缩的文件生成 `.gz` 副本（供 Nginx `gzip_static`），不进入链接的资源目录 | 构建工具 |
 
 启动后，`src/main.ts` 注册 Service Worker，安装赛道世界方法，再加载 `src/generated/app.js`。`Sw.load` 与 `Sw` 的资源业务方法由生成器接到新代码。兼容模块维持尚未迁移的菜单、渲染及业务方法。生成器把已验证的驾驶、资源、车辆表现、界面交互、应用控制、影子记录、计时赛和联机实现接入运行路径。新逻辑优先在对应 TypeScript 目录实现，再通过生成器的 override 接入；请勿直接修改 `src/generated/`。生成细节见 `tools/README.md`。
 

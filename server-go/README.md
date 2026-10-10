@@ -668,6 +668,21 @@ server {
     root /srv/kartsim/dist;            # rewrite/ 的 npm run build 产物与游戏资源
     client_max_body_size 8m;
 
+    # 压缩：npm run build 已为 JS、CSS、wasm 等生成 .gz，gzip_static 直接发送（主包约 4 MB → 0.45 MB）；
+    # 其余文本与数据服务返回的 JSON 现场压缩。.rho/.rho5 等游戏资源本身已压缩，不在 gzip_types 中。
+    # Nginx 默认只压缩 text/html，不写 gzip_types 时 JS 会原样传输。
+    gzip on;
+    gzip_static on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_comp_level 5;
+    gzip_types text/css application/javascript application/json application/wasm;
+
+    # 资源清单是没有扩展名的 JSON，每次进入游戏都不经缓存读取（约 330 KB，压缩后约 100 KB）。
+    location ~ ^/__p[0-9]+/resources$ {
+        default_type application/json;
+    }
+
     location ^~ /multiplayer/ {
         proxy_pass http://10.0.0.10:8787;
         proxy_set_header Host $host;
