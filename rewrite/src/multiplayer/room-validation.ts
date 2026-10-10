@@ -54,6 +54,24 @@ export interface RaceResult {
   rank: number;
   elapsedMs: number | null;
   points: number;
+  /** 道具赛 result titles (ITEM_MODE.md C.9), internal keys; item races only. */
+  titles?: ItemRaceTitle[];
+}
+
+/**
+ * Item race result titles (`stage_mqGameFinal.rho/title_icons/namemap@zz.bml`,
+ * ITEM_MODE.md C.9), in the namemap order.
+ */
+export const ITEM_RACE_TITLES = [
+  "perfectAim", "ironWall", "turret", "flyKing", "carpetBomb", "cloudyDay", "magnetic",
+  "invasion", "speedWar", "perfectStart", "onlyOne", "safetyFirst",
+] as const;
+export type ItemRaceTitle = (typeof ITEM_RACE_TITLES)[number];
+
+function validTitles(value: unknown): value is ItemRaceTitle[] {
+  return Array.isArray(value) && value.length <= ITEM_RACE_TITLES.length &&
+    value.every(title => ITEM_RACE_TITLES.includes(title as ItemRaceTitle)) &&
+    new Set(value).size === value.length;
 }
 
 export interface RaceSnapshot {
@@ -351,7 +369,9 @@ function validOrdinaryRace(room: Data, race: Data, rosterIds: Set<string>): bool
       if (!record(result) || !(race.loadedIds as unknown[]).includes(String(result.playerId)) ||
           seen.has(String(result.playerId)) || result.rank !== index + 1 ||
           !(result.elapsedMs === null || integer(result.elapsedMs, 0, 4294967294)) ||
-          typeof result.points !== "number" || !integer(result.points + 5, 0, 15)) return false;
+          typeof result.points !== "number" || !integer(result.points + 5, 0, 15) ||
+          (result.titles !== undefined &&
+            (!isItemChannel(room.channelName) || !validTitles(result.titles)))) return false;
       seen.add(String(result.playerId));
     }
   } else if (race.raceOverAt !== undefined || race.results !== undefined ||

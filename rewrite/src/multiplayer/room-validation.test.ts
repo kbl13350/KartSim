@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { isValidRoomSnapshot } from "./room-validation";
+import { ITEM_RACE_TITLES, isValidRoomSnapshot } from "./room-validation";
 
 globalThis.document = { createElement: () => ({ relList: { supports: () => true } }) } as unknown as Document;
 const { G2, To, W6, _X, sR, tt } = await import("../generated/formats.js");
@@ -366,4 +366,28 @@ test("the generated room event parser accepts item rooms and room lists", () => 
   assert.deepEqual(zo0(rooms), rooms);
   assert.equal(zo0({ ...rooms, rooms: [{ ...summary, gameplay: "ordinary" }] }), undefined);
   assert.equal(zo0({ ...rooms, rooms: [{ ...summary, mode: "individual" }] }), undefined);
+});
+
+test("item race results may carry the known titles (ITEM_MODE.md C.9), nothing else may", () => {
+  const finished = itemRoom({ phase: "finished" });
+  finished.race.results[0].titles = ["perfectAim", "turret", "perfectStart", "onlyOne", "safetyFirst"];
+  finished.race.results[1].titles = [];
+  assert.equal(isValidRoomSnapshot(finished), true);
+  const every = copy(finished);
+  every.race.results[0].titles = [...ITEM_RACE_TITLES];
+  assert.equal(isValidRoomSnapshot(every), true);
+  assert.equal(ITEM_RACE_TITLES.length, 12);
+  for (const [label, titles] of [
+    ["unknown title", ["perfectAim", "fastest"]],
+    ["duplicate title", ["turret", "turret"]],
+    ["not a list", "turret"],
+    ["not strings", [1]],
+  ] as const) {
+    const value = copy(finished);
+    value.race.results[0].titles = titles;
+    assert.equal(isValidRoomSnapshot(value), false, label);
+  }
+  const speed = room({ phase: "finished" });
+  speed.race.results[0].titles = ["perfectAim"];
+  assert.equal(isValidRoomSnapshot(speed), false, "speed races have no titles");
 });

@@ -185,3 +185,25 @@ test("item events reach subscribers by room and race, without the replies", asyn
   host.motionScope = undefined;
   assert.equal(typeof connection.subscribeItem(() => {}), "function");
 });
+
+test("the finish report carries perfectStart only when the race gives it (完美起步)", async () => {
+  const { connection, requests, answer } = fixture();
+  const plain = connection.reportFinish(12345);
+  await answer({});
+  await plain;
+  const perfect = connection.reportFinish(12000, { perfectStart: true });
+  await answer({});
+  await perfect;
+  const missed = connection.reportFinish(13000, { perfectStart: false });
+  await answer({});
+  await missed;
+  const ignored = connection.reportFinish(14000, { perfectStart: "yes" as unknown as boolean });
+  await answer({});
+  await ignored;
+  assert.deepEqual(requests, [
+    { type: "finish", elapsedMs: 12345, roomId, raceId },
+    { type: "finish", elapsedMs: 12000, perfectStart: true, roomId, raceId },
+    { type: "finish", elapsedMs: 13000, perfectStart: false, roomId, raceId },
+    { type: "finish", elapsedMs: 14000, roomId, raceId },
+  ]);
+});

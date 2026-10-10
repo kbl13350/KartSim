@@ -250,3 +250,96 @@ test("the item event type and item requests are part of the client protocol", ()
     { ...request, type: "giant-state", action: "swap" },
   ]) assert.equal(isValidItemRequest(invalid), false, JSON.stringify(invalid));
 });
+
+test("phase 3: changers, double rockets, hit outcomes, slot pushes and lucci (ITEM_MODE.md C.7)", () => {
+  const changers = { slot: 12, item: -1, itemArmed: true };
+  const accepted: Array<[unknown, unknown]> = [
+    [{ ...item, requestId: "r1", action: "grant", cubeId: 3, itemId: 7, slots, changers },
+      { ...item, requestId: "r1", action: "grant", cubeId: 3, itemId: 7, slots, changers }],
+    [{ ...item, requestId: "r2", action: "used", playerId, useId: 4, itemId: 7, targets: ["b"],
+      startAt: 5, etaMs: 300, count: 2, slots: [-1, -1], changers },
+    { ...item, requestId: "r2", action: "used", playerId, useId: 4, itemId: 7, targets: ["b"],
+      startAt: 5, etaMs: 300, slots: [-1, -1], changers, count: 2 }],
+    [{ ...item, action: "hit", playerId: "b", useId: 4, itemId: 7, userId: playerId, result: "hit",
+      variant: "balloon", shot: 1 },
+    { ...item, action: "hit", playerId: "b", useId: 4, itemId: 7, userId: playerId, result: "hit",
+      variant: "balloon", shot: 1 }],
+    [{ ...item, action: "hit", playerId: "b", useId: 5, itemId: 2, userId: playerId, result: "blocked",
+      by: "kart" },
+    { ...item, action: "hit", playerId: "b", useId: 5, itemId: 2, userId: playerId, result: "blocked",
+      by: "kart" }],
+    [{ ...item, action: "hit", playerId: "b", useId: 6, itemId: 8, userId: playerId, result: "blocked",
+      by: "eat", removed: true },
+    { ...item, action: "hit", playerId: "b", useId: 6, itemId: 8, userId: playerId, result: "blocked",
+      by: "eat", removed: true }],
+    // A mine the kart ate, with the lucciMine bonus.
+    [{ ...item, action: "hit", playerId, useId: 0, itemId: 17, result: "blocked", by: "eat",
+      variant: "bonus", hazardId: 3 },
+    { ...item, action: "hit", playerId, useId: 0, itemId: 17, result: "blocked", by: "eat",
+      variant: "bonus", hazardId: 3 }],
+    ...(["small", "headband", "bonus", "quick"] as const).map(variant => [
+      { ...item, action: "hit", playerId, useId: 7, itemId: 3, userId: "b", result: "hit", variant },
+      { ...item, action: "hit", playerId, useId: 7, itemId: 3, userId: "b", result: "hit", variant },
+    ] as [unknown, unknown]),
+    [{ ...item, action: "hit", playerId, useId: 7, itemId: 7, userId: "b", result: "blocked", by: "pet",
+      shot: 0 },
+    { ...item, action: "hit", playerId, useId: 7, itemId: 7, userId: "b", result: "blocked", by: "pet",
+      shot: 0 }],
+    // The server's pushes: a gained item, the 迅 start item.
+    [{ ...item, action: "slots", slots: [8, 6], changers, reason: "gain", itemId: 6 },
+      { ...item, action: "slots", slots: [8, 6], changers, reason: "gain", itemId: 6 }],
+    [{ ...item, action: "slots", slots: [33, -1, -1], changers, reason: "start", itemId: 33 },
+      { ...item, action: "slots", slots: [33, -1, -1], changers, reason: "start", itemId: 33 }],
+    [{ ...item, requestId: "r3", action: "slots", slots: [6, 7], changers: { slot: 0, item: 0, itemArmed: false } },
+      { ...item, requestId: "r3", action: "slots", slots: [6, 7], changers: { slot: 0, item: 0, itemArmed: false } }],
+    [{ ...item, action: "lucci", amount: 10, reason: "lucciUfo" },
+      { ...item, action: "lucci", amount: 10, reason: "lucciUfo" }],
+  ];
+  for (const [event, parsed] of accepted)
+    assert.deepEqual(parseServerEvent(event, deps), parsed, JSON.stringify(event));
+  const invalid: unknown[] = [
+    { ...item, action: "grant", cubeId: 3, itemId: 7, slots, changers: { slot: -2, item: 0, itemArmed: true } },
+    { ...item, action: "grant", cubeId: 3, itemId: 7, slots, changers: { slot: 1, item: 0 } },
+    { ...item, action: "grant", cubeId: 3, itemId: 7, slots, changers: { slot: 1, item: 0, itemArmed: 1 } },
+    { ...item, action: "grant", cubeId: 3, itemId: 7, slots, changers: { slot: 1.5, item: 0, itemArmed: true } },
+    { ...item, action: "grant", cubeId: 3, itemId: 7, slots, changers: { slot: 1, item: 0, itemArmed: true, x: 1 } },
+    { ...item, action: "grant", cubeId: 3, itemId: 7, slots, changers: [1, 0, true] },
+    { ...item, action: "used", playerId, useId: 4, itemId: 7, targets: [], startAt: 5, etaMs: 0, count: 1 },
+    { ...item, action: "used", playerId, useId: 4, itemId: 7, targets: [], startAt: 5, etaMs: 0, count: 3 },
+    { ...item, action: "hit", playerId, useId: 7, itemId: 3, userId: "b", result: "hit", variant: "big" },
+    { ...item, action: "hit", playerId, useId: 7, itemId: 3, userId: "b", result: "blocked", by: "kart",
+      variant: "headband" },
+    { ...item, action: "hit", playerId, useId: 7, itemId: 3, userId: "b", result: "blocked", variant: "bonus" },
+    { ...item, action: "hit", playerId, useId: 7, itemId: 3, userId: "b", result: "hit", by: "eat" },
+    { ...item, action: "hit", playerId, useId: 7, itemId: 7, userId: "b", result: "hit", shot: 2 },
+    { ...item, action: "hit", playerId, useId: 0, itemId: 8, result: "hit", shot: 0, hazardId: 1 },
+    { ...item, action: "slots", slots, reason: "gain" },
+    { ...item, action: "slots", slots, reason: "cube", itemId: 6 },
+    { ...item, action: "slots", slots, itemId: 6 },
+    { ...item, action: "lucci", amount: 0, reason: "x" },
+    { ...item, action: "lucci", amount: 201, reason: "x" },
+    { ...item, action: "lucci", amount: 10 },
+    { ...item, action: "lucci", amount: 10, reason: "a b" },
+  ];
+  for (const event of invalid)
+    assert.deepEqual(parseServerEvent(event, deps), { type: "error", code: "INVALID_ITEM_EVENT" },
+      JSON.stringify(event));
+  // Requests: the new defences, variants and shots.
+  const request = { type: "item", roomId, raceId, sequence: 1 };
+  for (const valid of [
+    { ...request, action: "hit", useId: 9, itemId: 2, result: "blocked", by: "kart" },
+    { ...request, action: "hit", useId: 9, itemId: 7, result: "blocked", by: "pet", shot: 1 },
+    { ...request, action: "hit", useId: 0, itemId: 8, result: "blocked", by: "eat", hazardId: 2 },
+    { ...request, action: "hit", useId: 0, itemId: 17, result: "blocked", by: "eat", variant: "bonus", hazardId: 2 },
+    { ...request, action: "hit", useId: 9, itemId: 7, result: "hit", variant: "balloon", shot: 0 },
+    { ...request, action: "hit", useId: 9, itemId: 9, result: "hit", variant: "quick" },
+    { ...request, action: "hit", useId: 9, itemId: 104, result: "hit", variant: "small" },
+  ]) assert.equal(isValidItemRequest(valid), true, JSON.stringify(valid));
+  for (const invalid of [
+    { ...request, action: "hit", useId: 9, itemId: 7, result: "hit", variant: "huge" },
+    { ...request, action: "hit", useId: 9, itemId: 7, result: "blocked", by: "kart", variant: "balloon" },
+    { ...request, action: "hit", useId: 9, itemId: 7, result: "hit", shot: 2 },
+    { ...request, action: "hit", useId: 0, itemId: 8, result: "hit", shot: 0, hazardId: 2 },
+    { ...request, action: "hit", useId: 9, itemId: 7, result: "blocked", by: "goggle" },
+  ]) assert.equal(isValidItemRequest(invalid), false, JSON.stringify(invalid));
+});
