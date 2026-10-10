@@ -19,7 +19,7 @@ import (
 	"sync"
 	"time"
 
-	"kartsim/internal/game/anticheat"
+	"kartsim/internal/game/cheat"
 	"kartsim/internal/game/itemmode"
 	"kartsim/internal/game/names"
 	"kartsim/internal/shared/apierr"
@@ -123,12 +123,10 @@ type Options struct {
 	// infinite changers at PC cafés); otherwise each racer has the cards
 	// and vouchers it owns.
 	ItemChangersInfinite bool
-	// AntiCheat is what the node does about racers whose reports fail the
-	// anti-cheat checks (KART_ANTICHEAT, ANTICHEAT.md; default kick), and
-	// AntiCheatLimits their thresholds (nil: anticheat.DefaultLimits).
-	// Malformed motion frames are never relayed, whatever the mode.
-	AntiCheat       anticheat.Mode
-	AntiCheatLimits *anticheat.Limits
+	// AntiCheat checks what racers report (the anti-cheat plugin,
+	// ANTICHEAT.md; nil: nothing is checked). Malformed motion frames are
+	// never relayed, with or without it.
+	AntiCheat cheat.Guard
 }
 
 // Client is one WebSocket connection. Its fields are guarded by Lobby.mu.
@@ -184,8 +182,7 @@ type Lobby struct {
 	// itemChangers gives every item racer unlimited changers
 	// (KART_ITEM_CHANGERS=infinite).
 	itemChangers bool
-	cheatMode    anticheat.Mode
-	cheatLimits  anticheat.Limits
+	antiCheat    cheat.Guard
 
 	// verifySlots bounds the equipment checks in flight (a semaphore).
 	verifySlots chan struct{}
@@ -232,8 +229,7 @@ func New(opts Options) *Lobby {
 		itemRandom:   opts.ItemRandom,
 		itemTests:    opts.ItemTestGrants,
 		itemChangers: opts.ItemChangersInfinite,
-		cheatMode:    opts.AntiCheat,
-		cheatLimits:  anticheat.DefaultLimits(),
+		antiCheat:    opts.AntiCheat,
 		verifySlots:  make(chan struct{}, maxConcurrentVerifies),
 		rooms:        map[string]*room{},
 		clients:      map[string]*Client{},
@@ -247,9 +243,6 @@ func New(opts Options) *Lobby {
 	}
 	if l.recorder == nil {
 		l.recorder = discardRecorder{}
-	}
-	if opts.AntiCheatLimits != nil {
-		l.cheatLimits = *opts.AntiCheatLimits
 	}
 	if l.maxPlayers <= 0 {
 		l.maxPlayers = 400
@@ -932,6 +925,7 @@ func (l *Lobby) racerLeft(r *room, playerID string) {
 			r.raceError = "MEMBER_LEFT"
 		}
 		r.phase = "open"
+		r.race.endCheat()
 		r.race = nil
 	}
 	r.revision++
@@ -947,6 +941,7 @@ func (l *Lobby) continueLoading(r *room, reason string) {
 	if len(racers(r)) == 0 || (r.gameplay == "roadblock" &&
 		(rc.isOut(rc.roadblockRunner) || loadableRacers(r) < 5)) {
 		r.phase = "open"
+		r.race.endCheat()
 		r.race = nil
 		r.raceError = reason
 		return
@@ -989,6 +984,7 @@ func allFinished(r *room) bool {
 }
 
 func (l *Lobby) removeRoom(r *room) {
+	r.race.endCheat()
 	delete(l.rooms, r.id)
 	if i := slices.Index(l.order, r); i >= 0 {
 		l.order = slices.Delete(l.order, i, i+1)
@@ -1501,6 +1497,7 @@ func (l *Lobby) startCountdownWhenLoaded(r *room) {
 	}
 	r.phase = "countdown"
 	rc.itemStartPending = rc.items != nil
+	l.startCheatRace(r)
 	roomID, raceID := r.id, rc.id
 	l.schedule(3*time.Second, func() { l.beginRace(roomID, raceID) })
 }
@@ -1561,12 +1558,13 @@ func (l *Lobby) finish(c *Client, in Request) (obj, error) {
 	if rc.hasFinished(c.playerID) {
 		return nil, fail(http.StatusBadRequest, "ALREADY_FINISHED")
 	}
-	if l.cheatMode != anticheat.ModeOff {
-		raced := l.clock.Now() - *rc.startAt
-		v := l.guard(r, c.playerID).Finish(elapsed, raced, rc.progress[c.playerID], othersRacing(rc, c.playerID))
-		if v != nil && l.cheated(r, c, v) {
+	if g := l.guard(r, c.playerID); g != nil {
+		v, stats := g.Finish(cheat.Finish{ElapsedMs: elapsed, RacedMs: l.clock.Now() - *rc.startAt,
+			Progress: rc.progress[c.playerID], ExpectFrames: othersRacing(rc, c.playerID)})
+		if l.cheated(r, c, v) {
 			return nil, errCheatDetected()
 		}
+		l.logCheatStats(r, c, stats)
 	}
 	if r.gameplay == "item" && in.hasNonNull("perfectStart") {
 		// Not in Java: an item race finish says whether the start boost
@@ -1670,6 +1668,9 @@ func (l *Lobby) giantState(c *Client, in Request) (obj, error) {
 	return event, nil
 }
 
+// maxTeamCharge bounds one team-charge report.
+const maxTeamCharge = 1e12
+
 // teamCharge sums the team's drift charge and publishes the next normalized
 // meter target.
 func (l *Lobby) teamCharge(c *Client, in Request) (obj, error) {
@@ -1695,8 +1696,14 @@ func (l *Lobby) teamCharge(c *Client, in Request) (obj, error) {
 		return nil, fail(http.StatusConflict, "INVALID_SEQUENCE")
 	}
 	amount, ok := in.number("charge")
-	if !ok || math.IsInf(amount, 0) || math.IsNaN(amount) || amount <= 0 || amount > 100_000 {
+	// Not in Java (which capped a report at 100000): a drift's charge is
+	// uncapped and the charger multiplies a wall hit's by 100, so a legit
+	// report may be far larger; the target is capped at a full gauge anyway.
+	if !ok || math.IsInf(amount, 0) || math.IsNaN(amount) || amount <= 0 || amount > maxTeamCharge {
 		return nil, fail(http.StatusBadRequest, "INVALID_CHARGE")
+	}
+	if g := l.guard(r, c.playerID); g != nil && l.cheated(r, c, g.TeamCharge(amount, l.clock.Now())) {
+		return nil, errCheatDetected()
 	}
 	target := math.Min(1.0, rc.teamGaugeTargets[team]+amount/8_000.0)
 	rc.teamChargeSequences[c.playerID] = sequence
@@ -1835,6 +1842,7 @@ func closeRaceWhenReturned(r *room) {
 		return
 	}
 	r.phase = "open"
+	r.race.endCheat()
 	r.race = nil
 	r.raceError = ""
 	for _, m := range r.members {

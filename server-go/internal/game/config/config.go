@@ -13,7 +13,6 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"kartsim/internal/game/anticheat"
 	"kartsim/internal/shared/netcfg"
 	"kartsim/internal/shared/ticket"
 )
@@ -54,9 +53,12 @@ type Config struct {
 	// (KART_ITEM_CHANGERS=infinite; default inventory: the cards and
 	// vouchers each account owns), a playtest switch.
 	ItemChangersInfinite bool
-	// AntiCheat is what the node does about racers failing the anti-cheat
-	// checks (KART_ANTICHEAT=kick|log|off, default kick; ANTICHEAT.md).
-	AntiCheat anticheat.Mode
+	// AntiCheatPlugin is the anti-cheat plugin to load
+	// (KART_ANTICHEAT_PLUGIN: a path, or off; empty: the default places,
+	// ANTICHEAT.md), and AntiCheatEnv the KART_ANTICHEAT* settings handed
+	// to it (AntiCheatSettings).
+	AntiCheatPlugin string
+	AntiCheatEnv    map[string]string
 	// Memory guards (DESIGN.md 4.5).
 	MaxConnections  int           // WebSockets including those without hello
 	MaxRooms        int           // rooms on this node
@@ -197,11 +199,7 @@ func FromEnv(getenv func(string) string) (Config, error) {
 	default:
 		problems = append(problems, errors.New("KART_ITEM_CHANGERS 必须是 inventory 或 infinite"))
 	}
-	if mode, err := anticheat.ParseMode(env("KART_ANTICHEAT", "kick")); err != nil {
-		problems = append(problems, err)
-	} else {
-		cfg.AntiCheat = mode
-	}
+	cfg.AntiCheatPlugin = env("KART_ANTICHEAT_PLUGIN", "")
 
 	webRTC, ok := parseBool(env("KART_WEBRTC", "true"))
 	if !ok {
@@ -273,4 +271,18 @@ func hasControl(value string) bool {
 		}
 	}
 	return false
+}
+
+// AntiCheatSettings picks the KART_ANTICHEAT* variables (but
+// KART_ANTICHEAT_PLUGIN) of an environment (os.Environ): the anti-cheat
+// plugin reads its own settings from them.
+func AntiCheatSettings(environ []string) map[string]string {
+	settings := map[string]string{}
+	for _, entry := range environ {
+		name, value, ok := strings.Cut(entry, "=")
+		if ok && strings.HasPrefix(name, "KART_ANTICHEAT") && name != "KART_ANTICHEAT_PLUGIN" {
+			settings[name] = value
+		}
+	}
+	return settings
 }

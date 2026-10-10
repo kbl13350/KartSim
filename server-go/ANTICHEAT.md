@@ -1,97 +1,101 @@
 # 服务端反作弊（游戏节点）
 
-游戏节点只转发运动帧、不跑物理：车的位置、路线进度、圈数、完赛时间、吃到的道具箱都由各自的浏览器上报。服务器无法知道车“真正”在哪里，能做的是拒绝**诚实客户端不可能发出**的上报，并把发出这种上报的车手及时踢出比赛。代码在 `internal/game/anticheat`（纯逻辑，可单测）与 `internal/game/lobby/anticheat.go`（接入大厅）。
+游戏节点只转发运动帧、不跑物理：车的位置、路线进度、圈数、完赛时间和吃到的道具箱都由各自的浏览器上报。反作弊在服务端检查这些上报，发现诚实客户端不可能发出的上报时，记录并及时把该车手踢出比赛。
 
-阈值都故意放得很宽：误踢会让诚实玩家白跑一局，所以每项检查只在物理或赛道数据**排除**了的情况下触发，而不是“看起来不寻常”就触发。
+检测规则放在一个**可选插件** `anticheat.wasm` 里，节点在启动时加载。插件源码**不公开**：公开的规则等于告诉外挂作者怎样刚好不越线。仓库只提交编译好的插件（`plugins/anticheat.wasm`）。本文只说明宿主侧：怎样安装插件、踢出流程、记录格式和插件接口。
 
-## 1. 配置
+## 1. 宿主与插件的分工
+
+| 部分 | 位置 | 公开 |
+| --- | --- | --- |
+| 运动帧格式校验：浏览器解码器解不开的帧一律不转发（否则接收方会断开整条游戏连接） | `internal/game/lobby/motion_payload.go` | 是，没有插件也生效 |
+| 把比赛事件交给插件（开赛、运动帧、完赛、道具使用、吃箱、团队集气、结束），执行插件的处理结果 | `internal/game/lobby/anticheat.go`、`internal/game/cheat` | 是 |
+| 插件加载器（WebAssembly，由 [wazero](https://wazero.io) 在进程内运行，纯 Go，节点仍是静态二进制） | `internal/game/cheat/plugin` | 是 |
+| 具体检测项与阈值 | `plugins/anticheat.wasm` | 只提供编译产物 |
+
+没有插件时，节点照常运行，只做格式校验，不做其他检查。启动日志会打印 `no anti-cheat plugin`。
+
+## 2. 安装与配置
+
+kart-game 启动时按顺序查找插件，用找到的第一个：
+
+1. `KART_ANTICHEAT_PLUGIN` 指定的路径。设为 `off`（或 `none`）则不加载插件；指定的文件不存在时节点启动失败。
+2. 可执行文件旁边的 `plugins/anticheat.wasm`。
+3. 可执行文件上一级目录的 `plugins/anticheat.wasm`，即仓库里 `server-go/bin/kart-game` 对应的 `server-go/plugins/`。
+4. `<可执行文件目录>/../lib/kart/plugins/anticheat.wasm`，即 Docker 镜像里的 `/usr/local/lib/kart/plugins/`。
+5. 工作目录下的 `plugins/anticheat.wasm`。
+
+加载成功时，日志打印 `anti-cheat plugin loaded`，带路径、插件名、版本和处理方式。
+
+- **本机**：`run-full-local.sh` 会把 `server-go/plugins/*.wasm` 复制到运行目录，`test/lib/local-cluster.mjs` 启动的临时集群直接使用 `server-go/plugins/`。
+- **Docker**：镜像把 `plugins/` 复制到 `/usr/local/lib/kart/plugins/`。要换成更新的插件、又不想重建镜像，可以挂载文件，再用 `KART_ANTICHEAT_PLUGIN` 指定它：
+
+```yaml
+services:
+  game:
+    volumes:
+      - ./anticheat.wasm:/opt/kart/anticheat.wasm:ro
+    environment:
+      KART_ANTICHEAT_PLUGIN: /opt/kart/anticheat.wasm
+```
+
+所有以 `KART_ANTICHEAT` 开头的环境变量（`KART_ANTICHEAT_PLUGIN` 除外）都会原样交给插件，由插件解释。随仓库提供的插件支持：
 
 | 变量 | 默认 | 说明 |
 | --- | --- | --- |
-| `KART_ANTICHEAT` | `kick` | `kick`：记录并踢出；`log`：只记录（同一车手同一局每项只记一次）、不踢，供线上调参；`off`：不检查。非 `kick` 时启动打印警告 |
+| `KART_ANTICHEAT` | `kick` | `kick`：记录并踢出；`log`：只记录、不踢，供线上观察；`off`：不检查 |
 
-不论哪种模式，浏览器无法解码的运动帧都**不转发**（见 2.1）。`KART_ITEM_TEST_GRANTS=true`（开发开关）时不检查道具箱频率，测试机器人会快速吃箱。
+自带集群的测试脚本（`test/run-cluster-smokes.mjs`、`auth-smoke.mjs`、`economy-smoke.mjs`、`frontend-economy-check.mjs`、`item-bot-check.mjs`）用 `KART_ANTICHEAT=log` 启动游戏节点，因为它们的比赛不开车、开赛即报完赛。
 
-`test/run-cluster-smokes.mjs`、`auth-smoke.mjs`、`economy-smoke.mjs`、`frontend-economy-check.mjs`、`item-bot-check.mjs` 的比赛不开车、开赛即报完赛，因此用 `KART_ANTICHEAT=log` 启动临时集群（记录照常经发件箱送到数据服务）。
-
-## 2. 检测项
-
-检测项代码即 `contract.AntiCheatCodes`，后台“反作弊记录”页显示中文名。
-
-### 2.1 运动帧（`RelayMotion`）
-
-| 代码 | 名称 | 触发条件 | 依据 |
-| --- | --- | --- | --- |
-| `BAD_FRAME` | 运动帧格式无效 | 负载不符合浏览器解码器：`payload.ts` 的 `decodeKinematicSample`（类型 2–10：长度、19 个浮点数有限、灯光标志 ≤15 且字节 99 为 0、`visualScaleMode` ≤3、进度距离有限、圈数 ≤65535、碰撞标志 ≤3、重置时刻在帧前 2 秒内或为 0、碰撞缩放 >0、动画标志 ≤3、`dualMode` ∈ {0,1,3}、显示速度与剩余时间 ≥0、`motionMode` ∈ {0,1,2,3,5,6}、被观察座位号 ≤7（协议 40 的路由段：类型 8/10 载荷 151/163 字节）、视觉缩放有限）、`decodeDrivingSample`（类型 1），以及远端预测器的拒绝（四元数为零、类型 1 的特殊运动） | 浏览器收到一个解不开的帧会**断开自己的整条游戏连接**（`client-motion.ts` `acceptServerMotion`）：转发它等于把房间里所有人踢下线。诚实客户端的编码器拒绝同样的值 |
-| `CLOCK` | 时钟加速 | 帧的 tick 比服务器时钟快 5 秒以上 | tick 是 `performance.now()` 加上开局时按最小往返测得的服务器时钟偏移（误差为半个往返）；接收方把快 2 秒以上的帧当作无效。加速齿轮类外挂让 tick 越跑越快 |
-| `TELEPORT` | 坐标瞬移 | 两帧之间水平移动超过 200 m/s × 间隔 + 50 m，且既不是重置也不是赛道传送 | 引擎、氮气、尾流、双喷叠加约 131 m/s；跳台路面（JM/DJ）可瞬时给到约 198 m/s。高度不查：6 g 下坠、跳台上下速度很大，垂直瞬移也没有好处 |
-| `SPEED` | 移动速度异常 | 3 秒窗口内的水平直线距离超过 200 m/s × 跨度 + 30 m（窗口至少跨 1.5 秒） | 同上；抓“每帧都不算瞬移、但持续过快” |
-| `PROGRESS` | 赛道进度异常 | ① 相邻两帧路线距离增加超过 140 m/s × 间隔 + 本赛道最长路段 + 100 m；② 有赛道数据时，路线距离超过 140 m/s × 开赛以来秒数 + 100 m + 已开始的圈数 × 本赛道全部传送路段长度 + 最长路段 | 路线距离按路段累加：走捷径越过一段、落上轨道、传送都会一次加上整段长度（最长约 3.2 km）。服务器原有的进度封顶（计入结算距离）改用同一公式，否则长传送赛道上诚实玩家的进度会被截断 |
-| `LAP` | 圈数异常 | 相邻两帧圈数增加超过 1；或圈数超过本赛道圈数 + 1 | 圈数只在进入首路段时 +1，完赛时为圈数 + 1 |
-
-- **重置豁免**：帧带重置标志（类型 5，或类型 6–10 碰撞标志 bit1）且重置开始不超过 2.5 秒、与上一次重置开始相隔至少 1.5 秒（浏览器一次重置持续 2 秒，约 0.5 秒时把车放回当前路段起点）。这期间及之后一帧不比较位置。
-- **传送豁免**：落点（水平）在本赛道某个传送出口 60 m + 200 m/s × 间隔以内，且该车手最近一分钟传送不超过 6 次。标准传送 3 秒黑幕后瞬移、“仙子”传送立即瞬移，两种都没有标志，只能按出口位置认。没有赛道数据时（见第 5 节）改为：跨越跳变的路线距离变化不超过 3.5 km。
-- **乱序**：WebRTC 运动通道无序，tick 不大于已检查帧的帧直接跳过（不比较）。
-- 只在 `racing` 阶段、该车手完赛前检查；`loading`/`countdown` 阶段只做 `BAD_FRAME`。触发检查的那一帧不转发。
-
-### 2.2 完赛（`finish`）
-
-| 代码 | 名称 | 触发条件 |
-| --- | --- | --- |
-| `FINISH_TIME` | 完赛时间异常 | 上报的 `elapsedMs` 比服务器观察到的比赛时长（收到 `finish` − `startAt`）短 20 秒以上（原有的奖励规则仍是短 3 秒以上不计完赛奖励） |
-| `FINISH_FAST` | 完赛过快 | 服务器观察到的比赛时长少于 圈数 × 本赛道可行驶长度（传送路段按 0 m）× 0.9 ÷ 140 m/s（城镇高速公路 2 圈约 44 秒） |
-| `FINISH_EARLY` | 未跑完就完赛 | 还有其他车手在本局里（他们一直在接收该车手的运动帧）时，该车手上报过的最远路线距离不到 圈数 × 本赛道最短单圈 × 0.9 − 200 m；没有赛道数据时不到每秒 15 m |
-
-挡人模式的跑者完赛走原有逻辑，不检查。LTE 按 1 圈计（浏览器把 LTE 地图当一圈跑）。只剩一名车手时浏览器不发运动帧，此时不检查进度（`FINISH_TIME`、`FINISH_FAST` 照常）。
-
-### 2.3 道具赛（`item` 的 `cube`）
-
-| 代码 | 名称 | 触发条件 |
-| --- | --- | --- |
-| `CUBE_RATE` | 道具箱拾取过快 | 2 秒内上报吃到超过 15 个不同的道具箱（连续重复同一个箱子不计；原有规则对它本来就不给道具）。道具箱每排 5–8 个、间距 4 m，排与排最近 23 m（village_C01 平均 42 m），高速时每秒可过 7 排、偶尔一排碰两个，所以只拦截脚本刷箱 |
+插件出错时（陷入 trap、回复格式不对），节点会关闭这个插件，打印一次 `anti-cheat plugin failed`，之后不再做检查，比赛照常进行。
 
 ## 3. 踢出
 
-`kick` 模式下检查失败时（`lobby.cheated`）：
+插件要求踢出时（`lobby.cheated`），节点依次：
 
-1. 发给该连接一条不带 `requestId` 的错误事件 `{"type":"error","code":"CHEAT_DETECTED","check":"<检测项>"}`；
-2. 立即把它移出房间与本局（与断线同样处理：本局记为退出，未完赛者排最后、没有奖励）；
-3. 连接在这条事件写出后以 1008 `anti-cheat` 关闭（`conn.Close` 先冲刷队列，最多等 2 秒；WebRTC 等控制通道确认后再关）；
-4. 关闭前它的命令都回复 403 `CHEAT_DETECTED`，运动帧丢弃；触发踢出的 `finish`/`cube` 请求本身也回复 `CHEAT_DETECTED`。
+1. 给该连接发一条不带 `requestId` 的错误事件 `{"type":"error","code":"CHEAT_DETECTED","check":"<检测项>"}`；
+2. 立即把它移出房间和本局，按断线处理：本局记为退出，未完赛者排在最后，没有奖励；
+3. 这条事件写出后，以 1008 `anti-cheat` 关闭连接。`conn.Close` 会先冲刷队列，最多等 2 秒；WebRTC 等控制通道确认后再关；
+4. 关闭前，它的命令都回复 403 `CHEAT_DETECTED`，运动帧一律丢弃；触发踢出的 `finish`、`cube` 请求本身也回复 `CHEAT_DETECTED`。
 
-浏览器记下这条事件，连接关闭时弹出“已被移出比赛：服务器检测到异常操作（坐标瞬移），你已被移出比赛并断开联机。如有疑问请联系管理员。”并回到大厅（`client/src/multiplayer/cheat-kick.ts`）。被踢后可以重新进入多人游戏；需要禁止时由管理员在后台封禁（记录页点账号 → 编辑）。
+浏览器收到这条事件后，在连接关闭时弹出“已被移出比赛”的提示，然后回到大厅（`client/src/multiplayer/cheat-kick.ts`）。被踢后可以重新进入多人游戏；要禁止某个账号，由管理员在后台封禁（在记录页点账号，再点编辑）。
 
 ## 4. 记录
 
-- 游戏节点把每次处理写成 `contract.AntiCheatReport`（节点、事件 UUID、车手、账号、当时昵称、房间、比赛、赛道、玩法、检测项、详情、`kick`/`log`、时间），经**发件箱**投递到 `POST /internal/v1/anti-cheat`。踢出会结束会话，所以一个连接最多产生一条；`log` 模式每人每局每项一条。
-- 数据服务存入 `anti_cheat_events`（**schema v14**），按事件 UUID 幂等；详情超过 255 字会截断、控制字符换成空格；未知检测项照存并打印警告。与登录记录一样保留 180 天（每日清理）。
-- 后台“反作弊记录”页：`GET /api/admin/anti-cheat`（通用列表参数；`code`、`action=kick|log`、`account`（ID 或用户名）、`node`（精确）；`q` 匹配当时昵称、用户名、昵称、详情与车手/房间/比赛 ID），返回 `AntiCheatRow`：`id, at, code, detail, action, accountId, username, nickname, name, playerId, nodeId, roomId, raceId, trackId, trackName, gameplay`（游客的账号字段为空串）。
-- **部署顺序**：先部署数据服务再部署游戏节点。旧数据服务对新路径回 404，发件箱会无限重试并按序阻塞后面的结算。
+- 游戏节点把每次处理写成 `contract.AntiCheatReport`，经**发件箱**投递到 `POST /internal/v1/anti-cheat`。字段：节点、事件 UUID、车手、账号、当时的昵称、房间、比赛、赛道、玩法、检测项、详情、`kick`/`log`、时间。踢出会结束会话，所以一个连接最多产生一条记录。
+- 检测项代码由插件定义，是大写标识符，最长 32 个字符；详情以检测项的中文名开头。
+- 数据服务把记录存入 `anti_cheat_events`（**schema v14**），按事件 UUID 幂等。详情超过 255 字会截断，控制字符换成空格。与登录记录一样保留 180 天，每天清理。
+- 后台“反作弊记录”页的接口是 `GET /api/admin/anti-cheat`。
+  - 参数：通用列表参数；`code`；`action=kick|log`；`account`（ID 或用户名）；`node`（精确匹配）；`q` 匹配当时昵称、用户名、昵称、详情，以及车手、房间、比赛 ID。
+  - 返回 `AntiCheatRow`：`id, at, code, detail, action, accountId, username, nickname, name, playerId, nodeId, roomId, raceId, trackId, trackName, gameplay`。游客的账号字段为空串。
+- **部署顺序**：先部署数据服务，再部署游戏节点。旧数据服务对新路径会回 404，发件箱会无限重试，并按序阻塞后面的结算。
 
-## 5. 赛道数据
+## 5. 插件接口（ABI 1）
 
-`internal/game/anticheat/tracks.json` 由 `client/tools/export-track-data.mjs` 从 `mirror/p3553` 导出（浏览器自己的路线构建 `formats.YW`，与比赛加载一致），每条赛道：
+插件是一个 WASI reactor 模块（例如 Go 的 `GOOS=wasip1 GOARCH=wasm -buildmode=c-shared`），导出两个函数：
 
-| 字段 | 含义 |
-| --- | --- |
-| `laps` | 圈数（`track@zz` 元数据） |
-| `lap` | 从首路段到末路段的最短路线长度：一圈至少增加的路线距离 |
-| `drive` | 同上，但传送路段按 0 m：一圈至少要开的距离 |
-| `jump` | 最长路段：一次传送、越段捷径或落轨最多加的路线距离 |
-| `warp` | 全部传送路段的长度之和：一圈里传送最多加的路线距离（没有传送的赛道省略） |
-| `warps` | 各传送的落点（下一路段首帧），运动帧坐标系 `[x, -z, y]`，米 |
+- `ac_buffer(size u32) -> u32`：返回一块 `size` 字节缓冲区的地址，宿主把请求写进去；
+- `ac_call(op u32, length u32) -> u64`：处理请求，返回 `回复地址 << 32 | 回复长度`（0 表示空回复）。
 
-```bash
-cd client
-node --import tsx tools/export-track-data.mjs                    # 重新导出
-node --import tsx tools/export-track-data.mjs --check            # 过期则退出码 1
-node --import tsx tools/export-track-data.mjs --mirror ../../KartSim   # worktree 没有 mirror/p3553 时读另一个检出
-```
+调用一次只有一个。各操作的编码见 `internal/game/cheat/plugin/plugin.go` 的 `op*` 常量：JSON 请求和回复使用 `internal/game/cheat` 的字段名，二进制部分是小端序。
 
-模型按浏览器的查找规则取（元数据 `folder` 或 `id` 目录里唯一的 `track.1s`），同目录有 `track_rvs.1s` 时另导出反向赛道 `<id>_rvs`（圈数相同）。LTE 专属图（`jurassic_R02`、`beach_R05`、`moonhill_R06`）不在赛道元数据里，没有数据。只有 `p3553` 资源版本的房间使用赛道数据；其他版本（只有普通玩法）退回无数据的规则。资源或路线构建改动后需要重新导出。
+| op | 名称 | 时机 |
+| --- | --- | --- |
+| 1 | init | 加载时：交给插件 ABI 版本与 `KART_ANTICHEAT*` 设置，插件回报名称、版本和处理方式 |
+| 2 | race | 比赛进入倒计时 |
+| 3 | racer | 某名车手第一次需要检查 |
+| 4 | motion | 每个运动帧（附带宿主格式校验的结果） |
+| 5 | finish | 车手上报完赛（可以附带统计，节点会打成 INFO 日志 `anti-cheat stats`） |
+| 6 | itemUse | 道具赛：服务器接受了一次道具使用 |
+| 7 | cube | 道具赛：吃到道具箱 |
+| 8 | teamCharge | 组队竞速：团队集气上报 |
+| 9 | progressCap | 计入结算的路线进度上限（插件不回答时用宿主的默认公式） |
+| 10 | endRace | 比赛结束，或房间被移除 |
+
+回复里的 `Violation` 是 `{"code","detail","action"}`，其中 `action` 为 `kick` 或 `log`。测试用的最小插件见 `internal/game/cheat/plugin/testdata/testplugin`。
 
 ## 6. 局限
 
-- 服务器只能拒绝不可能的上报。把速度改成“快但仍在物理范围内”（低于 140 m/s 平均、低于 200 m/s 瞬时）、在合法范围内伪造路线距离、谎报命中/格挡道具，都检查不出来；需要更严时可先用 `log` 模式在线上收集数据再收紧 `anticheat.DefaultLimits`。
-- 前提是运动帧都经过服务器：Go 节点不开启 P2P 运动（`welcome.capabilities` 为空）。若以后开启 `p2p-motion`，直连的帧服务器看不到。
-- 团队充能（`team-charge`）、巨人模式状态、领奖动作未纳入（充能在“充能器 + 碰撞”时可合法放大 100 倍，难以给出不误判的上限）；指令洪泛由连接层限流处理（超限 429，持续超限 1008 断开）。
+- 服务器只能拒绝不可能出现的上报；在物理允许范围内的作弊检查不出来。
+- 前提是运动帧都经过服务器：Go 节点不开启 P2P 运动（`welcome.capabilities` 为空）。
+- 编译后的插件并非无法分析：WebAssembly 与 Go 二进制都能被反汇编，函数名和常量可以读出来。不公开源码只能提高分析门槛，不能保证规则保密。

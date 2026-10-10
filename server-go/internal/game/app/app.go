@@ -10,12 +10,14 @@ import (
 	"log/slog"
 	"net"
 	"net/http"
+	"os"
 	"runtime"
 	"sync"
 	"time"
 
 	"kartsim/internal/game/admission"
-	"kartsim/internal/game/anticheat"
+	"kartsim/internal/game/cheat"
+	"kartsim/internal/game/cheat/plugin"
 	"kartsim/internal/game/cluster"
 	"kartsim/internal/game/config"
 	"kartsim/internal/game/itemmode"
@@ -45,6 +47,8 @@ type App struct {
 	ws      *ws.Server
 	memory  *memoryGuard
 	handler http.Handler
+	// cheat is the anti-cheat plugin (nil: none).
+	cheat *plugin.Plugin
 
 	agentCancel context.CancelFunc
 	agentDone   chan struct{}
@@ -75,6 +79,14 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 		DataNode: cfg.DataNodeID,
 	}, cfg.HeartbeatInterval, log)
 	memory := newMemoryGuard(cfg.MemoryLimitMB)
+	cheatPlugin, err := loadAntiCheat(cfg, log)
+	if err != nil {
+		return nil, err
+	}
+	var guard cheat.Guard
+	if cheatPlugin != nil {
+		guard = cheatPlugin
+	}
 	rooms := lobby.New(lobby.Options{
 		NodeID:      cfg.NodeID,
 		Clock:       opts.Clock,
@@ -94,7 +106,7 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 		ItemTestGrants: cfg.ItemTestGrants,
 		// A playtest switch (KART_ITEM_CHANGERS=infinite): unlimited changers.
 		ItemChangersInfinite: cfg.ItemChangersInfinite,
-		AntiCheat:            cfg.AntiCheat,
+		AntiCheat:            guard,
 	})
 	if cfg.ItemTestGrants {
 		log.Warn("item test grants are on (KART_ITEM_TEST_GRANTS): item race clients may choose the items " +
@@ -102,9 +114,6 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 	}
 	if cfg.ItemChangersInfinite {
 		log.Warn("item changers are unlimited for every racer (KART_ITEM_CHANGERS=infinite)")
-	}
-	if cfg.AntiCheat != anticheat.ModeKick {
-		log.Warn("anti-cheat does not kick (KART_ANTICHEAT)", "mode", cfg.AntiCheat.String())
 	}
 	agent.SetSource(rooms)
 	agent.SetConflictHandler(func(playerIDs []string) { rooms.Evict(playerIDs) })
@@ -142,7 +151,7 @@ func New(cfg config.Config, log *slog.Logger, opts Options) (*App, error) {
 	}
 
 	a := &App{cfg: cfg, log: log, data: data, agent: agent, outbox: box,
-		lobby: rooms, ws: sockets, memory: memory}
+		lobby: rooms, ws: sockets, memory: memory, cheat: cheatPlugin}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /multiplayer/healthz", a.health)
 	mux.Handle("GET /multiplayer/ws", sockets)
@@ -237,7 +246,33 @@ func (a *App) shutdown(ctx context.Context) error {
 	if err := a.outbox.Close(flushCtx); err != nil {
 		errs = append(errs, fmt.Errorf("flush outbox: %w", err))
 	}
+	if a.cheat != nil {
+		if err := a.cheat.Close(ctx); err != nil {
+			errs = append(errs, fmt.Errorf("close anti-cheat plugin: %w", err))
+		}
+	}
 	return errors.Join(errs...)
+}
+
+// loadAntiCheat loads the anti-cheat plugin (KART_ANTICHEAT_PLUGIN or the
+// default places; ANTICHEAT.md), nil when there is none.
+func loadAntiCheat(cfg config.Config, log *slog.Logger) (*plugin.Plugin, error) {
+	executable, _ := os.Executable()
+	path, err := plugin.Find(cfg.AntiCheatPlugin, executable)
+	if err != nil {
+		return nil, err
+	}
+	if path == "" {
+		log.Info("no anti-cheat plugin: motion frames are only validated (KART_ANTICHEAT_PLUGIN)")
+		return nil, nil
+	}
+	loaded, err := plugin.Load(context.Background(), path, cfg.AntiCheatEnv, log)
+	if err != nil {
+		return nil, err
+	}
+	log.Info("anti-cheat plugin loaded", "path", path, "name", loaded.Name, "version", loaded.Version,
+		"mode", loaded.Mode)
+	return loaded, nil
 }
 
 // Run listens on the configured address until ctx ends, then shuts down.

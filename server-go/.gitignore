@@ -6,3 +6,6 @@
 
 # docker compose 的密码与密钥
 .env
+
+# 反作弊插件的源码只在本地（ANTICHEAT.md）；编译好的 plugins/*.wasm 照常提交
+/plugins/*/

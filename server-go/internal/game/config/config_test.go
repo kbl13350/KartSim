@@ -171,6 +171,28 @@ func TestItemChangersSetting(t *testing.T) {
 	}
 }
 
+func TestAntiCheatSettings(t *testing.T) {
+	cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret}))
+	if err != nil || cfg.AntiCheatPlugin != "" {
+		t.Fatalf("default plugin %q (%v)", cfg.AntiCheatPlugin, err)
+	}
+	cfg, err = FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret, "KART_ANTICHEAT_PLUGIN": "off"}))
+	if err != nil || cfg.AntiCheatPlugin != "off" {
+		t.Fatalf("plugin %q (%v)", cfg.AntiCheatPlugin, err)
+	}
+	settings := AntiCheatSettings([]string{"KART_ANTICHEAT=log", "KART_ANTICHEAT_EXTRA=kick",
+		"KART_ANTICHEAT_PLUGIN=/x.wasm", "KART_GAME_PORT=1", "PATH=/bin", "KART_ANTICHEAT_EMPTY="})
+	want := map[string]string{"KART_ANTICHEAT": "log", "KART_ANTICHEAT_EXTRA": "kick", "KART_ANTICHEAT_EMPTY": ""}
+	if len(settings) != len(want) {
+		t.Fatalf("settings %v", settings)
+	}
+	for name, value := range want {
+		if settings[name] != value {
+			t.Fatalf("settings %v", settings)
+		}
+	}
+}
+
 func TestWebSocketCompression(t *testing.T) {
 	cfg, err := FromEnv(env(map[string]string{"KART_CLUSTER_SECRET": secret}))
 	if err != nil || !cfg.WSCompression {

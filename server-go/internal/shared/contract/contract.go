@@ -154,7 +154,8 @@ type AntiCheatReport struct {
 	RaceID    string `json:"raceId,omitempty"`
 	TrackID   string `json:"trackId,omitempty"`
 	Gameplay  string `json:"gameplay,omitempty"`
-	// Code names the check (AntiCheatCodes), Detail the measured values.
+	// Code names the check (defined by the anti-cheat plugin), Detail the
+	// measured values.
 	Code   string `json:"code"`
 	Detail string `json:"detail"`
 	// Action is AntiCheatKick or AntiCheatLog.
@@ -167,10 +168,6 @@ const (
 	AntiCheatKick = "kick"
 	AntiCheatLog  = "log"
 )
-
-// AntiCheatCodes are the anti-cheat checks (ANTICHEAT.md 2).
-var AntiCheatCodes = []string{"BAD_FRAME", "TELEPORT", "SPEED", "CLOCK", "PROGRESS", "LAP", "FINISH_TIME",
-	"FINISH_EARLY", "FINISH_FAST", "CUBE_RATE"}
 
 // RaceResult is one ranked racer of a finished race.
 type RaceResult struct {

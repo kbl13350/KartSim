@@ -1,22 +1,20 @@
-package anticheat
+package lobby
+
+// Motion payload validation: the browser's decoder rules. A browser that
+// receives a payload it cannot decode drops its whole game connection
+// (client/src/multiplayer/client-motion.ts acceptServerMotion), so the node
+// never relays one; no honest client sends one, its encoder refuses the same
+// values.
 
 import (
 	"encoding/binary"
 	"math"
 )
 
-// CodeBadFrame: a motion payload the browser's decoder refuses. A browser
-// that receives such a frame drops its whole game connection
-// (client/src/multiplayer/client-motion.ts acceptServerMotion), so relaying
-// one would disconnect every other racer; no honest client sends one, its
-// encoder refuses the same values.
-const CodeBadFrame = "BAD_FRAME"
-
-// KinematicPayloadLength is the payload length of a kinematic motion kind
-// 2..10 (payload.ts decodeKinematicSample), or 0 for another kind. It is
-// the one table of the node: the lobby reads route progress with it too,
-// so a wire change (another layout) changes both.
-func KinematicPayloadLength(kind int) int {
+// kinematicPayloadLength is the payload length of a kinematic motion kind
+// 2..10 (payload.ts decodeKinematicSample), or 0 for another kind (kind 1
+// has its own lengths).
+func kinematicPayloadLength(kind int) int {
 	var length int
 	switch {
 	case kind < 2 || kind > 10:
@@ -79,14 +77,14 @@ const maxMotionSlot = 7
 // the frame (uint32 arithmetic).
 func validReset(tick, startedAt uint32) bool { return tick-startedAt <= 2_000 }
 
-// ValidPayload reports whether the browser accepts a motion payload of
+// validPayload reports whether the browser accepts a motion payload of
 // kind: payload.ts decodeKinematicSample (kinds 2..10) and
 // decodeDrivingSample (kind 1), and the remote predictor's checks.
-func ValidPayload(kind int, b []byte) bool {
+func validPayload(kind int, b []byte) bool {
 	if kind == 1 {
 		return validDriving(b)
 	}
-	if kind < 2 || kind > 10 || len(b) != KinematicPayloadLength(kind) {
+	if kind < 2 || kind > 10 || len(b) != kinematicPayloadLength(kind) {
 		return false
 	}
 	// tick, then position, quaternion, linear and angular velocity and two

@@ -140,9 +140,9 @@ func TestKinematicPayloadLengths(t *testing.T) {
 }
 
 // The settlement carries each racer's furthest route progress while racing,
-// capped by 500 km/h since the start (plus the track's warps and longest
-// section, anticheat.Limits.ProgressCap); later, shorter, malformed,
-// non-finite and post-finish reports do not count.
+// capped by 500 km/h since the start (without an anti-cheat plugin's cap);
+// later, shorter, malformed, non-finite and post-finish reports do not
+// count.
 func TestRaceProgressDistance(t *testing.T) {
 	h := newHarness(t)
 	a, b := h.connect("A"), h.connect("B")
@@ -158,7 +158,7 @@ func TestRaceProgressDistance(t *testing.T) {
 	short := progressFrame(raceID, 10, 2600)
 	h.lobby.RelayMotion(a, short[:len(short)-1])
 	send(a, 3, 2700) // no progress section
-	send(b, 10, 1e7) // capped: 20 s x 140 m/s + 100 m + village_R01's longest section (429 m)
+	send(b, 10, 1e7) // capped: 20 s x 140 m/s + 100 m
 	send(b, 10, math.NaN())
 	h.must(a, map[string]any{"type": "finish", "roomId": roomID, "raceId": raceID, "elapsedMs": 20_000})
 	send(a, 10, 2500) // after its finish
@@ -172,7 +172,7 @@ func TestRaceProgressDistance(t *testing.T) {
 	for _, result := range settlements[0].Results {
 		distances[result.PlayerID] = result.DistanceMeters
 	}
-	if distances[a.playerID] != 1800 || distances[b.playerID] != 2900+429 {
+	if distances[a.playerID] != 1800 || distances[b.playerID] != 2900 {
 		t.Fatalf("distances %v", distances)
 	}
 }

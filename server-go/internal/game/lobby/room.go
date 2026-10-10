@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"slices"
 
-	"kartsim/internal/game/anticheat"
+	"kartsim/internal/game/cheat"
 	"kartsim/internal/game/itemmode"
 	"kartsim/internal/shared/rewards"
 )
@@ -291,10 +291,10 @@ type race struct {
 	// bonusLucci is each rewarded racer's in-race lucci (settled apart).
 	bonusLucci map[string]int
 
-	// guards are the racers' anti-cheat states (lobby.guard), cheatLogged
-	// the checks already recorded in log mode ("playerID|code").
-	guards      map[string]*anticheat.Racer
-	cheatLogged map[string]bool
+	// cheat is the race in the anti-cheat plugin (from its countdown) and
+	// guards its racers (lobby.guard).
+	cheat  cheat.Race
+	guards map[string]cheat.Racer
 }
 
 // routeSample is a racer's latest route progress from its motion frames.

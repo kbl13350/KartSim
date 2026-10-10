@@ -349,7 +349,8 @@ smoke 类脚本会在所连集群的 MySQL 中留下测试账号、档案、赛�
 | `KART_ALLOW_GUESTS` | `false` | 为 `false` 时游客票据的 `hello` 返回 401 `LOGIN_REQUIRED`；应与数据服务相同 |
 | `KART_ITEM_TEST_GRANTS` | `false` | **仅限开发测试。**为 `true` 时道具赛的 `cube` 请求可以带 `testItemId` 指定拿到的道具（任何道具赛道具，含第 3 阶段的特殊道具；测试机器人 `test/item-bot.mjs --use` 需要它），启动时打印警告；为 `false` 时这种请求返回 403 `ITEM_TEST_GRANTS_DISABLED`。公开部署切勿打开 |
 | `KART_ITEM_CHANGERS` | `inventory` | 道具换位卡 / 道具变更卡：`inventory` 按每位车手开赛时库存里的卡和使用券（`ITEM_MODE.md` C.6）；`infinite` 让所有车手（含游客）本局无限换位与变更、不扣卡，用于试玩（相当于原版关掉的网吧无限卡），启动时打印警告。`test/run-cluster-smokes.mjs` 用 `infinite` |
-| `KART_ANTICHEAT` | `kick` | 服务端反作弊（[`ANTICHEAT.md`](ANTICHEAT.md)）：`kick` 发现异常（坐标瞬移、移动过快、时钟加速、路线进度或圈数异常、完赛时间/速度/进度不对、道具箱拾取过快、畸形运动帧）即记录并踢出该车手；`log` 只记录（上线调参用）；`off` 不检查。记录在管理后台“反作弊记录”。临时集群脚本（`run-cluster-smokes.mjs` 等，比赛不开车就完赛）用 `log` |
+| `KART_ANTICHEAT_PLUGIN` | 空 | 服务端反作弊插件（[`ANTICHEAT.md`](ANTICHEAT.md)）：空则依次在可执行文件旁的 `plugins/`、上一级的 `plugins/`、`../lib/kart/plugins/`（Docker 镜像）和工作目录的 `plugins/` 找 `anticheat.wasm`；填路径则用该文件（不存在时启动失败）；`off` 不加载（只做运动帧格式校验）。记录在管理后台“反作弊记录” |
+| `KART_ANTICHEAT` | `kick` | 交给反作弊插件的处理方式（随仓库的插件）：`kick` 记录并踢出、`log` 只记录、`off` 不检查。其他 `KART_ANTICHEAT*` 变量也原样交给插件。临时集群脚本（`run-cluster-smokes.mjs` 等，比赛不开车就完赛）用 `log` |
 | `KART_WEBRTC` | `true` | 是否提供 WebRTC 数据通道（`POST /multiplayer/offer`）；关闭后浏览器都用 WebSocket |
 | `KART_WEBRTC_UDP_PORT` | `0` | 所有 WebRTC 连接共用的 UDP 端口（防火墙与容器发布它）；0 表示每个连接随机端口。端口被占用时节点照常启动，只提供 WebSocket（日志报错） |
 | `KART_WEBRTC_PUBLIC_IPS` | 空 | 逗号分隔的 IP，替换 ICE 候选中的网卡地址（1:1 NAT、云主机、容器发布端口时填浏览器访问本机所用的地址） |

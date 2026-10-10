@@ -25,7 +25,6 @@ import (
 	"net/http"
 	"slices"
 
-	"kartsim/internal/game/anticheat"
 	"kartsim/internal/game/itemmode"
 	"kartsim/internal/shared/contract"
 )
@@ -334,10 +333,9 @@ func (l *Lobby) itemCube(r *room, c *Client, in Request, sequence int, now int64
 	if err != nil {
 		return nil, err
 	}
-	if l.cheatMode != anticheat.ModeOff && !l.itemTests {
-		if v := l.guard(r, c.playerID).Cube(cubeID, now); v != nil && l.cheated(r, c, v) {
-			return nil, errCheatDetected()
-		}
+	// Test grants (a development switch) let bots eat cubes at any rate.
+	if g := l.guard(r, c.playerID); g != nil && !l.itemTests && l.cheated(r, c, g.Cube(cubeID, now)) {
+		return nil, errCheatDetected()
 	}
 	var grant itemmode.Grant
 	var notices []itemmode.ScanNotice
@@ -399,6 +397,9 @@ func (l *Lobby) itemUse(r *room, c *Client, in Request, sequence int, now int64)
 		return nil, itemFailure(err)
 	}
 	use := result.Use
+	if g := l.guard(r, c.playerID); g != nil {
+		g.ItemUse(use.ItemID)
+	}
 	event := itemEvent(r, "used", field{"playerId", c.playerID}, field{"useId", use.ID},
 		field{"itemId", use.ItemID}, field{"targets", use.Targets}, field{"startAt", use.StartAt},
 		field{"etaMs", use.EtaMs})

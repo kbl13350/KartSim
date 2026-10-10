@@ -2,7 +2,6 @@ package api
 
 import (
 	"net/http"
-	"slices"
 	"strings"
 
 	"kartsim/internal/data/store"
@@ -45,10 +44,6 @@ func (a *API) saveAntiCheat(w http.ResponseWriter, r *http.Request) error {
 	}, report.Detail))
 	if len(detail) > maxAntiCheatDetail {
 		detail = detail[:maxAntiCheatDetail]
-	}
-	if !slices.Contains(contract.AntiCheatCodes, report.Code) {
-		// A newer node's check: kept as is, logged so it gets a label.
-		a.log.Warn("anti-cheat record with an unknown check", "node", report.NodeID, "code", report.Code)
 	}
 	err := a.store.SaveAntiCheatEvent(r.Context(), store.AntiCheatEvent{
 		EventID: report.EventID, NodeID: report.NodeID, AccountID: report.AccountID,

@@ -12,7 +12,6 @@ import (
 	"time"
 
 	"kartsim/internal/game/admission"
-	"kartsim/internal/game/anticheat"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/contract"
 	"kartsim/internal/shared/ticket"
@@ -246,9 +245,9 @@ type harness struct {
 	wall   time.Time // tickets and the lobby's wall clock (equipment checks)
 }
 
-// newHarness runs the lobby without the anti-cheat: the Java fixtures race
-// without motion frames and finish at once. anticheat_test.go turns it on
-// with newHarnessWith.
+// newHarness runs the lobby without an anti-cheat plugin (the Java
+// fixtures race without motion frames and finish at once); anticheat_test.go
+// gives it a fake one with newHarnessWith.
 func newHarness(t *testing.T) *harness {
 	t.Helper()
 	return newHarnessWith(t, nil)
@@ -276,7 +275,6 @@ func newHarnessWith(t *testing.T, adjust func(*Options)) *harness {
 		// The Java fixtures connect guests; TestHelloRefusesGuests covers
 		// the default.
 		AllowGuests: true,
-		AntiCheat:   anticheat.ModeOff,
 	}
 	if adjust != nil {
 		adjust(&opts)

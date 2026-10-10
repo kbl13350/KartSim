@@ -21,7 +21,6 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"kartsim/internal/game/anticheat"
 	"kartsim/internal/game/config"
 	"kartsim/internal/game/outbox"
 	"kartsim/internal/shared/apierr"
@@ -259,9 +258,9 @@ func startNodeWith(t *testing.T, dataURL string, data *fakeData, adjust func(*co
 		DataNodeID: e2eDataNode, Secret: []byte(e2eSecret), MaxPlayers: 10,
 		OutboxDir: t.TempDir(), Network: netcfg.New(""), HeartbeatInterval: 40 * time.Millisecond,
 		AllowGuests: true,
-		// The end-to-end race finishes without driving; TestAntiCheatKick
-		// turns the anti-cheat on.
-		AntiCheat: anticheat.ModeOff,
+		// No anti-cheat plugin (whatever is installed nearby);
+		// TestAntiCheatKick loads the test plugin.
+		AntiCheatPlugin: "off",
 	}
 	if adjust != nil {
 		adjust(&cfg)

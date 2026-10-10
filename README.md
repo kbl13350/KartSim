@@ -48,6 +48,7 @@ KartSim/
 │   ├── internal/game/       Game node: lobby, rooms, races, item race, WebSocket/WebRTC …
 │   ├── internal/shared/     Contract and helpers shared by both services
 │   ├── admin-ui/            Admin console source (Vue 3 + Element Plus)
+│   ├── plugins/             Compiled anti-cheat plugin (anticheat.wasm)
 │   ├── test/                Smoke tests, cluster tests, item race bots
 │   └── scripts/             MySQL init scripts, dev dependencies (Docker Compose)
 ├── mirror/                  Resources (original release files + p3553 game containers, Git LFS)
@@ -65,14 +66,16 @@ KartSim/
 | `recovered/` | Readable code reconstructed from the original release bundle: formatted code, heuristic de-obfuscation output, analysis notes, a symbol index, and about 11,000 XML/BML configuration files decoded from the resource packs. |
 | `apk_analysis/` | Unpacked and decompiled Android APK of the original game: decompiler output, IL2CPP metadata, and exported textures, icons and models. |
 | `mirror/assets/*.decompiled/` | Decompiled output of the original audio decoder WebAssembly (`.wat`, wasm2c C code). The original `.wasm` itself stays in `mirror/`. |
+| Anti-cheat plugin source | The detection rules of the game node's anti-cheat. Only the compiled plugin `server-go/plugins/anticheat.wasm` is published. The host side is open: plugin loading, the kick flow, the records and the plugin interface. See [`server-go/ANTICHEAT.md`](server-go/ANTICHEAT.md). |
 
-These directories stay in the maintainers' local copies only. They are listed in `.gitignore` and are no longer uploaded.
+These stay in the maintainers' local copies only. They are listed in `.gitignore` and are no longer uploaded.
 
 #### Why they are not open source
 
 1. **Copyright.** They are decompiled or reconstructed from someone else's software. They belong to the original rights holders, so we do not publish them as our source code.
 2. **Not needed to build or run.** The client builds from `client/` and `mirror/`, and the server builds from `server-go/`. These directories were only research material used while rebuilding the game.
 3. **Size and noise.** About 17,000 files and roughly 400 MB of intermediate analysis output. Leaving them out keeps the repository focused on code that can be maintained.
+4. **Anti-cheat.** Publishing the detection rules would show cheat authors exactly how far they can go without being caught. That is why only the compiled plugin is published. A compiled plugin can still be analysed, so this raises the bar rather than guaranteeing secrecy.
 
 What this means in practice:
 
@@ -148,6 +151,7 @@ KartSim/
 │   ├── internal/game/       游戏节点：大厅、房间、比赛、道具赛、WebSocket/WebRTC …
 │   ├── internal/shared/     两个服务共用的协议约定与工具
 │   ├── admin-ui/            管理后台源码（Vue 3 + Element Plus）
+│   ├── plugins/             编译好的反作弊插件（anticheat.wasm）
 │   ├── test/                冒烟测试、集群测试、道具赛机器人
 │   └── scripts/             MySQL 初始化脚本、开发依赖（Docker Compose）
 ├── mirror/                  资源（原版发行文件 + p3553 游戏容器，Git LFS）
@@ -165,14 +169,16 @@ KartSim/
 | `recovered/` | 从原版发行包还原的可读代码：排版代码、启发式反混淆输出、分析笔记、符号索引，以及从资源包解码出的约 1.1 万个 XML/BML 配置。 |
 | `apk_analysis/` | 原版安卓 APK 的解包与反编译结果：反编译输出、IL2CPP 元数据，以及导出的贴图、图标、模型。 |
 | `mirror/assets/*.decompiled/` | 原版音频解码 WebAssembly 的反编译结果（`.wat`、wasm2c 生成的 C 代码）。原始 `.wasm` 仍在 `mirror/` 中。 |
+| 反作弊插件源码 | 游戏节点反作弊的检测规则。只公开编译好的插件 `server-go/plugins/anticheat.wasm`。宿主侧是公开的：插件加载、踢出流程、记录格式、插件接口，见 [`server-go/ANTICHEAT.md`](server-go/ANTICHEAT.md)。 |
 
-这些目录只保留在维护者本地，已写入 `.gitignore`，之后不再上传。
+这些内容只保留在维护者本地，已写入 `.gitignore`，之后不再上传。
 
 #### 为什么不开源
 
 1. **版权**：它们是对他人软件的反编译或还原，权利属于原权利人，我们不把它们当作自己的源码发布。
 2. **构建和运行都不需要**：客户端由 `client/` 和 `mirror/` 构建，服务端由 `server-go/` 构建。这些目录只是重建游戏过程中的研究材料。
 3. **体积与噪音**：约 1.7 万个文件、约 400 MB 的分析中间产物。去掉它们，仓库只保留可以维护的代码。
+4. **反作弊**：公开检测规则，等于告诉外挂作者怎样刚好不被发现，所以只发布编译后的插件。编译产物仍然可以被分析，这样做只是提高门槛，不能保证规则绝对保密。
 
 具体影响：
 
@@ -248,6 +254,7 @@ KartSim/
 │   ├── internal/game/       게임 노드: 로비, 방, 레이스, 아이템전, WebSocket/WebRTC …
 │   ├── internal/shared/     두 서비스가 함께 쓰는 프로토콜 규약과 유틸리티
 │   ├── admin-ui/            관리자 콘솔 소스(Vue 3 + Element Plus)
+│   ├── plugins/             컴파일된 안티치트 플러그인(anticheat.wasm)
 │   ├── test/                스모크 테스트, 클러스터 테스트, 아이템전 봇
 │   └── scripts/             MySQL 초기화 스크립트, 개발용 의존 서비스(Docker Compose)
 ├── mirror/                  리소스(원본 배포 파일 + p3553 게임 컨테이너, Git LFS)
@@ -265,14 +272,16 @@ KartSim/
 | `recovered/` | 원본 배포 번들에서 복원한 읽기용 코드입니다. 정리된 코드, 휴리스틱 난독화 해제 결과, 분석 노트, 심볼 색인, 리소스 팩에서 디코딩한 XML/BML 설정 파일 약 11,000개가 들어 있습니다. |
 | `apk_analysis/` | 원작 안드로이드 APK의 압축 해제·디컴파일 결과입니다. 디컴파일러 출력, IL2CPP 메타데이터, 추출한 텍스처·아이콘·모델이 들어 있습니다. |
 | `mirror/assets/*.decompiled/` | 원본 오디오 디코더 WebAssembly의 디컴파일 결과(`.wat`, wasm2c C 코드)입니다. 원본 `.wasm` 파일은 `mirror/`에 그대로 있습니다. |
+| 안티치트 플러그인 소스 | 게임 노드 안티치트의 탐지 규칙입니다. 컴파일된 플러그인 `server-go/plugins/anticheat.wasm`만 공개합니다. 호스트 쪽(플러그인 로딩, 강제 퇴장 흐름, 기록 형식, 플러그인 인터페이스)은 공개되어 있습니다. [`server-go/ANTICHEAT.md`](server-go/ANTICHEAT.md)를 참고하세요. |
 
-이 디렉터리들은 관리자의 로컬 사본에만 보관됩니다. `.gitignore`에 등록되어 앞으로 업로드되지 않습니다.
+이 내용들은 관리자의 로컬 사본에만 보관됩니다. `.gitignore`에 등록되어 앞으로 업로드되지 않습니다.
 
 #### 공개하지 않는 이유
 
 1. **저작권.** 다른 사람의 소프트웨어를 디컴파일하거나 복원한 결과물입니다. 권리는 원저작권자에게 있으므로 우리 소스 코드로 공개하지 않습니다.
 2. **빌드와 실행에 필요 없음.** 클라이언트는 `client/`와 `mirror/`로, 서버는 `server-go/`로 빌드됩니다. 이 디렉터리들은 게임을 재구축하는 과정에서 쓴 연구 자료일 뿐입니다.
 3. **용량과 잡음.** 파일 약 17,000개, 약 400 MB에 이르는 분석 중간 산출물입니다. 이를 빼야 저장소에 유지보수할 수 있는 코드만 남습니다.
+4. **안티치트.** 탐지 규칙을 공개하면 치트 제작자에게 어디까지 하면 들키지 않는지 알려 주는 셈입니다. 그래서 컴파일된 플러그인만 공개합니다. 컴파일된 결과물도 분석은 가능하므로, 규칙을 완전히 숨긴다기보다 분석 난도를 높이는 조치입니다.
 
 실제 영향:
 

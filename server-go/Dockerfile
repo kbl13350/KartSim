@@ -22,6 +22,9 @@ RUN apk add --no-cache ca-certificates tzdata \
  && chown -R kart:kart /var/lib/kart \
  && chmod 0700 /var/lib/kart /var/lib/kart/outbox
 COPY --from=build /out/ /usr/local/bin/
+# 反作弊插件（可选）：kart-game 会在 /usr/local/lib/kart/plugins 找 anticheat.wasm；
+# 也可以挂载别处的插件，再用 KART_ANTICHEAT_PLUGIN 指定路径。
+COPY plugins/ /usr/local/lib/kart/plugins/
 USER 10001:10001
 WORKDIR /var/lib/kart
 # 容器内必须监听所有网卡才能被端口映射与同一网络的其他容器访问；

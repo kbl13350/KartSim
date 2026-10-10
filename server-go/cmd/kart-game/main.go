@@ -24,6 +24,7 @@ func main() {
 		log.Error("配置无效", "error", err)
 		os.Exit(2)
 	}
+	cfg.AntiCheatEnv = config.AntiCheatSettings(os.Environ())
 	if cfg.MemoryLimitMB > 0 {
 		// Same as GOMEMLIMIT; the node also refuses new players near the limit.
 		debug.SetMemoryLimit(int64(cfg.MemoryLimitMB) << 20)

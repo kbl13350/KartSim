@@ -10,7 +10,7 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"kartsim/internal/game/anticheat"
+	"kartsim/internal/game/cheat/plugin/plugintest"
 	"kartsim/internal/game/config"
 	"kartsim/internal/shared/contract"
 	"kartsim/internal/shared/ticket"
@@ -33,14 +33,15 @@ func motionFrame(raceID string, sequence uint32, pos [3]float32, tick uint32) []
 	return frame
 }
 
-// A racer whose kart jumps 2 km between two frames is told why, taken out
-// of the race, disconnected with 1008, and the data service gets the
-// record; the other racer keeps racing and never sees the jump.
+// With the test plugin (which flags frames more than 1000 m east), a racer
+// whose kart jumps 2 km is told why, taken out of the race, disconnected
+// with 1008, and the data service gets the record; the other racer keeps
+// racing and never sees the jump.
 func TestAntiCheatKick(t *testing.T) {
 	data := newFakeData()
 	dataServer := httptest.NewServer(data)
 	defer dataServer.Close()
-	n := startNodeWith(t, dataServer.URL, data, func(cfg *config.Config) { cfg.AntiCheat = anticheat.ModeKick })
+	n := startNodeWith(t, dataServer.URL, data, func(cfg *config.Config) { cfg.AntiCheatPlugin = plugintest.Build(t) })
 
 	alice := dial(t, n.wsURL, nil)
 	aliceID := alice.request(hello("Alice", sign(t, ticket.Claims{AccountID: "acc-alice", Username: "alice",
@@ -80,7 +81,7 @@ func TestAntiCheatKick(t *testing.T) {
 	send(motionFrame(raceID, 2, [3]float32{2_000, 0, 0}, now+64))
 
 	kicked := alice.waitFor(func(m map[string]any) bool { return m["type"] == "error" })
-	if kicked["code"] != "CHEAT_DETECTED" || kicked["check"] != "TELEPORT" || kicked["requestId"] != nil {
+	if kicked["code"] != "CHEAT_DETECTED" || kicked["check"] != "FAR" || kicked["requestId"] != nil {
 		t.Fatalf("kick event %v", kicked)
 	}
 	for {
@@ -106,7 +107,7 @@ func TestAntiCheatKick(t *testing.T) {
 		r := data.cheats[0]
 		if r.NodeID != e2eNode || r.PlayerID != aliceID || r.AccountID != "acc-alice" || r.Name != "Alice" ||
 			r.RoomID != roomID || r.RaceID != raceID || r.TrackID != "village_R01" || r.Gameplay != "ordinary" ||
-			r.Code != "TELEPORT" || r.Action != contract.AntiCheatKick || r.Detail == "" || len(r.EventID) != 36 ||
+			r.Code != "FAR" || r.Action != contract.AntiCheatKick || r.Detail != "测试：FAR" || len(r.EventID) != 36 ||
 			r.At <= 0 {
 			t.Errorf("record %+v", r)
 		}

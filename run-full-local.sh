@@ -299,6 +299,11 @@ echo "构建 Go 服务…"
 # 运行私有副本：之后在 server-go 里重新 go build 不会替换正在运行的可执行文件。
 runtime_dir=$(mktemp -d "${TMPDIR:-/tmp}/kartsim-local.XXXXXX")
 cp "$server_dir/bin/kart-data" "$server_dir/bin/kart-game" "$runtime_dir/"
+# 反作弊插件（若已在本机打包）随游戏节点一起复制；kart-game 在自身旁边的 plugins/ 里找它。
+if compgen -G "$server_dir/plugins/*.wasm" >/dev/null; then
+  mkdir -p "$runtime_dir/plugins"
+  cp "$server_dir"/plugins/*.wasm "$runtime_dir/plugins/"
+fi
 
 # ------------------------------------------------------------ 进程管理 --------
 
