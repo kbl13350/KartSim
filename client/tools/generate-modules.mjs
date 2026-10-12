@@ -815,7 +815,7 @@ const lobbyActionMethodOverrides = new Map([
   ["refreshAutoReady", "  refreshAutoReady() { return refreshLobbyAutoReady(this); }"],
   ["open", `  async open() { return openMultiplayerLobby(this, {
     protocolVersion: PROTOCOL_VERSION,
-    pageUrl: () => window.location.href,
+    pageUrl: () => networkPageUrl(),
     endpoint: Ko,
     fetchHealth: (url, signal) => fetch(url, { cache: "no-store", signal }),
     showAccountProgress: vl0,
@@ -3061,8 +3061,8 @@ function II(version, speed) { return findSpeedTypeEntry(version, speed); }` });
       groupNames(node.declarations.map(declaration => declaration.id.name)) ===
       groupNames(["jo", "ly", "nm", "G7", "B7", "R7", "uy", "C6"]),
     "The multiplayer account UI declaration group changed.");
-    bodies.get("multiplayer").push({ at: node.start, text: `const jo = () => currentMultiplayerOrigin(() => window.location.href, ay),
-  ly = action => multiplayerAccountEndpoint(action, () => window.location.href, Ko),
+    bodies.get("multiplayer").push({ at: node.start, text: `const jo = () => currentMultiplayerOrigin(() => networkPageUrl(), ay),
+  ly = action => multiplayerAccountEndpoint(action, () => networkPageUrl(), Ko),
   nm = () => multiplayerAuthHeaders(jo, xF),
   G7 = (...buttons) => styleAccountButtons(...buttons),
   B7 = accountOverlayStyle,
@@ -4822,6 +4822,8 @@ function renderModule(name) {
     lines.push('import { showAccountServiceProgress } from "../multiplayer/account-progress.ts";');
     lines.push('import { loadMultiplayerSessionToken, saveMultiplayerSessionToken, clearMultiplayerSessionToken, loadLocalRiderNickname, saveLocalRiderNickname, clearLocalRiderNickname } from "../multiplayer/account-local-state.ts";');
     lines.push('import { accountOverlayStyle, accountPanelStyle, accountErrorMessages, styleAccountButtons, formatAccountServiceError, currentMultiplayerOrigin, multiplayerAccountEndpoint, multiplayerAuthHeaders } from "../multiplayer/account-ui-support.ts";');
+    // The Switch package checks its services against the configured data service, not brewser://.
+    lines.push('import { networkPageOrigin, networkPageUrl } from "../platform/network-page.ts";');
     lines.push('import { loadLobbyAvatarAppearance } from "../multiplayer/lobby-avatar-appearance.ts";');
     lines.push('import { lobbyRiderSlots, roadblockRunnerId, decorateRoadblockRiders, wrapLobbyChatBubble } from "../multiplayer/lobby-room-helpers.ts";');
     lines.push('import { decorateIndividualRiders } from "../multiplayer/individual-rider-colors.ts";');
@@ -5344,12 +5346,12 @@ function awardPodiumLoadDependencies() { return {
     lines.push("const lobbyCountdownMediaDependencies = { parseScene: bytes => y9(bytes), decodeImage: bytes => p2(bytes), createCanvas: image => { const canvas = document.createElement('canvas'); canvas.width = image.width; canvas.height = image.height; canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(image.pixels), image.width, image.height), 0, 0); return canvas; }, alphaFromParsed: parsed => on.fromParsed(parsed), createSoundUrl: bytes => URL.createObjectURL(new Blob([bytes], { type: 'audio/ogg' })), createAudio: url => new Audio(url), revokeSoundUrl: url => URL.revokeObjectURL(url) };");
     lines.push("const accountRequestDependencies = { authEndpoint: action => ly(action), authorizationHeaders: () => nm(), fetch: (url, options) => fetch(url, options), backendOrigin: () => jo(), clearToken: origin => SF(origin), saveToken: (origin, token) => wl0(origin, token), get errorMessages() { return uy; } };");
     lines.push("const accountLoginDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error) };");
-    lines.push("const accountEntryDependencies = { backendOrigin: () => jo(), pageUrl: () => window.location.href, pageOrigin: () => window.location.origin, endpoint: (path, pageUrl) => Ko(path, pageUrl), fetch: (url, options) => fetch(url, options), loadAccount: () => Xo('me'), chooseAccount: (root, account, signal) => Al0(root, account, signal), showLogin: (root, signal) => new CF(root, signal).wait() };");
+    lines.push("const accountEntryDependencies = { backendOrigin: () => jo(), pageUrl: () => networkPageUrl(), pageOrigin: () => networkPageOrigin(), endpoint: (path, pageUrl) => Ko(path, pageUrl), fetch: (url, options) => fetch(url, options), loadAccount: () => Xo('me'), chooseAccount: (root, account, signal) => Al0(root, account, signal), showLogin: (root, signal) => new CF(root, signal).wait() };");
     lines.push("const guestNicknameDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: action => ly(action), fetch: (url, options) => fetch(url, options), get errorMessages() { return uy; }, formatError: error => C6(error) };");
     lines.push("const gameServerPickerDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons) };");
-    lines.push("const gameServerDependencies = { endpoint: path => Ko(path, window.location.href), backendOrigin: () => jo(), pageUrl: () => window.location.href, fetch: (url, options) => fetch(url, options), storage: () => localStorage, pick: (root, options, selected, signal) => showGameServerPicker(gameServerPickerDependencies, root, options, selected, signal) };");
+    lines.push("const gameServerDependencies = { endpoint: path => Ko(path, networkPageUrl()), backendOrigin: () => jo(), pageUrl: () => networkPageUrl(), fetch: (url, options) => fetch(url, options), storage: () => localStorage, pick: (root, options, selected, signal) => showGameServerPicker(gameServerPickerDependencies, root, options, selected, signal) };");
     lines.push("const roomDropdownDependencies = { attribute: (node, name) => T(node, name), clone: (node, attributes, children) => children === undefined ? h2(node, attributes) : h2(node, attributes, children) };");
-    lines.push("const accountChoiceDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: (path, pageUrl) => Ko(path, pageUrl), pageUrl: () => window.location.href, requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error), authEndpoint: action => ly(action), authorizationHeaders: () => nm(), fetch: (url, options) => fetch(url, options), backendOrigin: () => jo(), clearToken: origin => SF(origin), showLogin: (root, signal) => new CF(root, signal).wait() };");
+    lines.push("const accountChoiceDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: (path, pageUrl) => Ko(path, pageUrl), pageUrl: () => networkPageUrl(), requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error), authEndpoint: action => ly(action), authorizationHeaders: () => nm(), fetch: (url, options) => fetch(url, options), backendOrigin: () => jo(), clearToken: origin => SF(origin), showLogin: (root, signal) => new CF(root, signal).wait() };");
     lines.push("const lobbyDialogViewDependencies = { loadMessageTemplate: library => _w(library), loadDefinition: (library, folder, name) => F9(library, folder, name), decorateDefinition: (library, definition, folder) => C8(library, definition, folder), clone: (node, attributes, children) => children === undefined ? h2(node, attributes) : h2(node, attributes, children), nodeName: node => T(node, 'name'), loadView: options => te.load(options) };");
     lines.push("const lobbyDialogCategoryDependencies = { mode: channel => He[channel].mode, validateGameplay: gameplay => MI(gameplay), channelNames: gameplay => NT(gameplay) };");
     lines.push("const lobbyRoomFormDependencies = { ...lobbyDialogViewDependencies, attribute: (node, name) => T(node, name), channelNames: gameplay => NT(gameplay), channelKey: (value, channels) => Ol0(value, channels), dropdown: (combo, template, values) => zl0(combo, template, values), channelMode: key => He[key].mode };");
@@ -5384,7 +5386,7 @@ function awardPodiumLoadDependencies() { return {
     loadRandomTeam: (library, root, race, playerId) => RandomTeamNotice.load(library, root, race, playerId),
   },
   open: {
-    get protocolVersion() { return PROTOCOL_VERSION; }, pageUrl: () => window.location.href,
+    get protocolVersion() { return PROTOCOL_VERSION; }, pageUrl: () => networkPageUrl(),
     endpoint: Ko, fetchHealth: (url, signal) => fetch(url, { cache: "no-store", signal }),
     showAccountProgress: vl0, loadAccount: () => multiplayerAccountFromSession(currentAccountSession()),
     loadLobby: options => Ew.load(options),
@@ -5894,6 +5896,39 @@ function applyBrawlPatches(name, source) {
 }
 // ---- end brawl(lobby) -----------------------------------------------------
 
+// ---- platform(switch) -------------------------------------------------------
+// The Nintendo Switch package (SWITCH.md) changes release defaults through
+// handwritten platform modules; web builds keep the release values. Each
+// substitution must match exactly once.
+const platformImports = new Map([
+  ["world", ['import { platformDefaultGamepadMap } from "../platform/switch-gamepad.ts"; // platform(switch)']],
+]);
+const platformPatches = new Map([
+  ["world", [
+    // Joy-Con defaults for the gamepad map (the release maps an Xbox-style pad).
+    ['const TP = Object.fromEntries(ut.map((n) => [n.index, oa0(n)]));',
+      'const TP = platformDefaultGamepadMap(ut, oa0); // platform(switch)'],
+  ]],
+]);
+const appliedPlatformPatches = new Set();
+function applyPlatformPatches(name, source) {
+  for (const [before, after] of platformPatches.get(name) ?? []) {
+    const first = source.indexOf(before);
+    assert(first >= 0 && source.indexOf(before, first + 1) < 0,
+      `platform(switch) patch target in ${name}.js is missing or ambiguous: ${before.slice(0, 60)}`);
+    source = source.replace(before, () => after);
+    appliedPlatformPatches.add(before);
+  }
+  const header = "// Stable minified names are retained for behavioral parity.\n";
+  const lines = platformImports.get(name);
+  if (lines) {
+    assert(source.includes(header), `${name}.js lost its generated header.`);
+    source = source.replace(header, () => `${header}${lines.join("\n")}\n`);
+  }
+  return source;
+}
+// ---- end platform(switch) ---------------------------------------------------
+
 const generated = [];
 function addHouseShellState(source) {
   const substitutions = [
@@ -5915,6 +5950,7 @@ for (const name of order) {
   if (name === "world") text = addHouseShellState(text);
   text = applyItemLobbyPatches(name, text); // item-mode(lobby)
   text = applyBrawlPatches(name, text); // brawl(lobby)
+  text = applyPlatformPatches(name, text); // platform(switch)
   const filename = `${name}.js`;
   await writeIfChanged(filename, text);
   generated.push({
@@ -5930,6 +5966,8 @@ assert(appliedItemLobbyPatches.size === [...itemLobbyPatches.values()].flat().le
   "Not every item-mode(lobby) patch was applied."); // item-mode(lobby)
 assert(appliedBrawlPatches.size === [...brawlPatches.values()].flat().length,
   "Not every brawl(lobby) patch was applied."); // brawl(lobby)
+assert(appliedPlatformPatches.size === [...platformPatches.values()].flat().length,
+  "Not every platform(switch) patch was applied."); // platform(switch)
 const garage = await readFile(garageFile, "utf8");
 const oldImport = 'from "./index-DoW2rQpI.js";';
 assert(garage.includes(oldImport), "Garage chunk import path changed.");

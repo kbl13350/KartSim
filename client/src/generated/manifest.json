@@ -1887,8 +1887,8 @@
     },
     {
       "file": "world.js",
-      "bytes": 124304,
-      "sha256": "5c7c7f63ebd6c2946b0be18852133f0020569bb57150a240dc7fa03a45f8e23a",
+      "bytes": 124401,
+      "sha256": "e3dc20076c350b936b7f571356babfc9dc5d9465257a530e068af0c61da92bf1",
       "imports": 186,
       "exports": 81
     },
@@ -1901,8 +1901,8 @@
     },
     {
       "file": "multiplayer.js",
-      "bytes": 37722,
-      "sha256": "38e2b25e32f6513d1270e46853c17b568ed5f8630cb03e5399d02a9ad357f120",
+      "bytes": 37772,
+      "sha256": "af33b07e333fd0052bad21f98781f8ddb69a1713cae42d6226d0560f2cb76f8c",
       "imports": 98,
       "exports": 18
     },

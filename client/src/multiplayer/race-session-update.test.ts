@@ -336,3 +336,53 @@ test("an item race remembers a start boost for the 完美起步 title", () => {
   run(true);
   assert.equal(noted, 1, "the booster did not start");
 });
+
+test("multiplayer races read the controller like time attack", () => {
+  const dispatched: unknown[][] = [];
+  const polls: unknown[][] = [];
+  let resets = 0;
+  const pads = [{ connected: true, buttons: [], axes: [] }];
+  const previous = Object.getOwnPropertyDescriptor(globalThis, "navigator");
+  Object.defineProperty(globalThis, "navigator", { configurable: true, value: { getGamepads: () => pads } });
+  try {
+    for (const cancelled of [false, true]) {
+      const session = {
+        active: true, disposed: false, resultVisible: false, now: 0,
+        runtime: {
+          local: {
+            physics: { speedRaceMode: { kind: "ordinary" }, consumeSpeedSlotReordered: () => false, hardCancelControls() {} },
+            lifecycle: { state: states.Racing, countdownStep: 4 },
+            cancelModeDrivingInput() {}, isStartBoosterWindow: () => false, requestReset() {},
+            consumeRoadBlockResetNotice: () => false, handleModeDrivingCommand: () => false, boostGaugeFull: false,
+          },
+          update: () => [],
+        },
+        host: {
+          input: { drain: () => ({ transitions: [{ action: DrivingAction.SteerLeft, down: true }], cancelled }), cancelAll() {} },
+          gamepad: {
+            poll(received: unknown, map: unknown) {
+              polls.push([received, map]);
+              return [{ action: DrivingAction.Forward, down: true }];
+            },
+            reset() { resets++; },
+          },
+          gameOptions: { gamepadMap: { 2: 7 } },
+          autoForward: { cancel() {}, setRaceState() {}, dispatch() {}, apply: (snapshot: unknown) => snapshot, isActive: () => false },
+          clientFramerate: { sample() {} },
+          touchControls: { setAutoForwardActive() {} },
+          playSlotChanger() {}, renderer: {}, status() {},
+        },
+        controls: { cancel() {}, dispatch(transitions: unknown[]) { dispatched.push(transitions); }, snapshot: () => ({}) },
+        scene: { awardInput() {}, startBoostGaugeFull() {}, update() {}, resultComplete: false },
+        requestLeave() {}, fail(error: unknown) { throw error; },
+      } as unknown as RaceSessionUpdateHost;
+      updateRaceSession(session, { nowMs: () => 1000, lteKeyMap: lteKeys, states });
+    }
+  } finally {
+    if (previous) Object.defineProperty(globalThis, "navigator", previous);
+  }
+  assert.deepEqual(polls, [[pads, { 2: 7 }], [pads, { 2: 7 }]]);
+  assert.deepEqual(dispatched[0], [{ action: DrivingAction.SteerLeft, down: true }, { action: DrivingAction.Forward, down: true }]);
+  // A cancelled batch (focus lost) also forgets the held buttons.
+  assert.equal(resets, 1);
+});

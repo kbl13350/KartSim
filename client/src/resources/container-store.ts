@@ -55,6 +55,16 @@ export interface OpfsStorage {
   persist?(): Promise<boolean>;
 }
 
+/**
+ * Containers packaged next to the game (the Switch build reads them from the
+ * SD card, src/platform/bundled-archives.ts): every container counts as
+ * cached, reads go to the reader, and nothing is downloaded or kept in OPFS.
+ */
+export interface BundledArchiveReader {
+  /** Bytes start..end (end exclusive) of a container. */
+  read(name: string, start: number, end: number): Promise<ArrayBuffer>;
+}
+
 export interface ArchiveSource {
   readonly name: string;
   readonly size: number;
@@ -79,6 +89,8 @@ export interface ContainerStoreOptions {
    * off for the session.
    */
   readonly rangeReads?: boolean;
+  /** Read packaged containers instead of downloading them (see BundledArchiveReader). */
+  readonly bundled?: BundledArchiveReader;
 }
 
 /**
@@ -94,6 +106,12 @@ const RANGE_MERGE_GAP = 4;
 const RANGE_CACHE_BYTES = 96 * 1024 * 1024;
 /** Containers this small download whole on the first read (one request, kept in OPFS). */
 const WHOLE_CONTAINER_BYTES = 1024 * 1024;
+/**
+ * Bundled reads this large go straight to the reader; smaller ones share the
+ * block planner and cache, which turns a decoder's many small reads of one
+ * moment into a few reads of the card.
+ */
+const BUNDLED_DIRECT_BYTES = 512 * 1024;
 
 /** The server sent the whole container for a Range request. */
 class RangeUnsupportedError extends Error {}
@@ -112,6 +130,11 @@ function deferred<T>(): Deferred<T> {
   promise.catch(() => undefined);
   return { promise, resolve, reject };
 }
+
+/** Bundled containers never touch OPFS (Brewser has none). */
+const BUNDLED_STORAGE: OpfsStorage = {
+  getDirectory: () => Promise.reject(new Error("内置资源不使用 OPFS。")),
+};
 
 function defaultStorage(): OpfsStorage {
   const storage = globalThis.navigator?.storage;
@@ -135,6 +158,7 @@ export class ContainerStore {
   private readonly fetcher: ResourceFetch;
   private readonly storage: OpfsStorage;
   private readonly localDirectory?: DirectoryHandle;
+  private readonly bundled?: BundledArchiveReader;
   private readonly onProgress?: (progress: ContainerProgress) => void;
   private readonly fallbackWriter?: ContainerStoreOptions["fallbackWriter"];
   private readonly byName: Map<string, ContainerSpec>;
@@ -164,7 +188,8 @@ export class ContainerStore {
     this.manifest = options.manifest;
     this.baseUrl = (options.dataBaseUrl ?? `/${options.manifest.version}`).replace(/\/$/, "");
     this.fetcher = options.fetcher ?? browserFetch;
-    this.storage = options.storage ?? defaultStorage();
+    this.bundled = options.bundled;
+    this.storage = options.storage ?? (options.bundled ? BUNDLED_STORAGE : defaultStorage());
     this.localDirectory = options.localDirectory;
     this.onProgress = options.onProgress;
     this.fallbackWriter = options.fallbackWriter;
@@ -173,6 +198,9 @@ export class ContainerStore {
   }
 
   list(): readonly ContainerSpec[] { return this.manifest.files; }
+
+  /** Whether the containers are packaged with the game (nothing to download). */
+  get isBundled(): boolean { return this.bundled !== undefined; }
 
   spec(name: string): ContainerSpec {
     const file = this.byName.get(name.toLowerCase());
@@ -204,6 +232,11 @@ export class ContainerStore {
     safeRange(start, end, file.size);
     const log = (globalThis as { __KART_READ_LOG__?: unknown }).__KART_READ_LOG__;
     if (Array.isArray(log)) log.push([file.name, start, end, performance.now()]);
+    if (this.bundled) {
+      return this.readsByRange(file, start, end)
+        ? this.readBlocks(file, start, end)
+        : this.readBundled(file, start, end).then(bytes => bytes.buffer as ArrayBuffer);
+    }
     if (this.readsByRange(file, start, end) && !(await this.isComplete(file))) {
       for (let attempt = 0; ; attempt++) {
         try {
@@ -242,6 +275,8 @@ export class ContainerStore {
       const file = this.byName.get(name.toLowerCase());
       if (!file || !list.length || await this.isComplete(file)) return;
       const bytes = list.reduce((sum, [start, end]) => sum + Math.max(0, end - start), 0);
+      // Bundled containers have nothing to download; their large reads go direct.
+      if (this.bundled && !this.readsByRange(file, 0, bytes)) return;
       if (!this.readsByRange(file, 0, bytes)) {
         pending.push(this.ensure(file.name));
         return;
@@ -260,6 +295,10 @@ export class ContainerStore {
   async preload(names: Iterable<string>, concurrency = 3): Promise<void> {
     if (!Number.isSafeInteger(concurrency) || concurrency < 1) {
       throw new RangeError("预加载并发数必须是正整数。");
+    }
+    if (this.bundled) {
+      for (const name of names) this.spec(name);
+      return;
     }
     const files = [...new Map([...names].map(name => {
       const file = this.spec(name);
@@ -287,6 +326,7 @@ export class ContainerStore {
    * not listed.
    */
   async cachedNames(): Promise<Set<string>> {
+    if (this.bundled) return new Set(this.manifest.files.map(file => file.name));
     const directory = await this.directory();
     const cached = new Set<string>();
     const check = async (file: ContainerSpec) => {
@@ -309,6 +349,7 @@ export class ContainerStore {
    */
   async remove(name: string): Promise<boolean> {
     const file = this.spec(name);
+    if (this.bundled) return false;
     const directory = await this.directory();
     this.forget(file.name.toLowerCase());
     if (!(await this.existing(directory, file.name))) return false;
@@ -323,6 +364,7 @@ export class ContainerStore {
    */
   async ensure(name: string, options: { background?: boolean } = {}): Promise<Blob> {
     const file = this.spec(name);
+    if (this.bundled) return this.bundledBlob(file);
     const key = file.name.toLowerCase();
     let pending = this.inFlight.get(key);
     if (!pending) {
@@ -363,6 +405,7 @@ export class ContainerStore {
 
   /** Whether reads of this part of the container go by HTTP Range. */
   private readsByRange(file: ContainerSpec, start: number, end: number): boolean {
+    if (this.bundled) return end - start < BUNDLED_DIRECT_BYTES;
     return this.rangeReads && !this.localDirectory && file.size > WHOLE_CONTAINER_BYTES &&
       (end - start) * 2 < file.size;
   }
@@ -493,6 +536,7 @@ export class ContainerStore {
   }
 
   private async fetchRange(file: ContainerSpec, start: number, end: number): Promise<Uint8Array> {
+    if (this.bundled) return this.readBundled(file, start, end);
     const response = await this.fetcher(this.url(file), {
       cache: "no-store",
       headers: { Range: `bytes=${start}-${end - 1}` },
@@ -548,6 +592,26 @@ export class ContainerStore {
       throw new Error(`${file.name} 分段读取长度不匹配：请求 ${bytes.length}，收到 ${loaded}。`);
     }
     return bytes;
+  }
+
+  /** A packaged container's bytes, checked against the requested length. */
+  private async readBundled(file: ContainerSpec, start: number, end: number): Promise<Uint8Array> {
+    if (end === start) return new Uint8Array(0);
+    const bytes = new Uint8Array(await this.bundled!.read(file.name, start, end));
+    if (bytes.length !== end - start) {
+      throw new Error(`内置资源 ${file.name} 读取长度不符：请求 ${start}-${end}，得到 ${bytes.length} 字节。` +
+        "请确认 SD 卡上的资源文件完整。");
+    }
+    return bytes;
+  }
+
+  /** The Blob shape ensure() returns, reading the packaged container lazily. */
+  private bundledBlob(file: ContainerSpec): Blob {
+    const slice = (start = 0, end = file.size) => ({
+      size: end - start,
+      arrayBuffer: () => this.readRange(file.name, start, end),
+    });
+    return { size: file.size, slice, arrayBuffer: () => this.readRange(file.name, 0, file.size) } as unknown as Blob;
   }
 
   private url(file: ContainerSpec): string {

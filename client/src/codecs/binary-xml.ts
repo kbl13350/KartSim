@@ -1,4 +1,5 @@
 import { decodeText, requireValue } from "./common";
+import { unicodeRegExp } from "../platform/unicode-regexp";
 
 export interface BinaryXmlNode {
   readonly name: string;
@@ -63,7 +64,7 @@ export function attribute(node: BinaryXmlNode, name: string): string | undefined
   return node.attributes.find(item => item.name === name)?.value;
 }
 
-const XML_NAME = /^[\p{L}_:][\p{L}\p{N}_.:-]*$/u;
+const XML_NAME = unicodeRegExp("^[{L}_:][{L}{N}_.:-]*$");
 const escapeText = (text: string): string => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const escapeAttribute = (text: string): string => escapeText(text).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 

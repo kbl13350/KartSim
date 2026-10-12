@@ -18,7 +18,10 @@ import {
   styleAccountButtons,
 } from "../multiplayer/account-ui-support";
 import { multiplayerBackendOrigin } from "../multiplayer/backend-origin";
-import { gameWindowLibrary, openGameLogin, showGameMessage, showGameStatus } from "../ui/game-login";
+import { networkPageOrigin, networkPageUrl, normalizeServerOrigin, saveSwitchServer,
+  switchServerOrigin } from "../platform/network-page";
+import { SWITCH_BUILD } from "../platform/platform";
+import { gameWindowLibrary, openGameLogin, showGameMessage, showGameServerAddress, showGameStatus } from "../ui/game-login";
 import type { LoginFormRequests } from "./login-form";
 
 export interface LoginGateDependencies {
@@ -180,18 +183,30 @@ export function showStartupLogin(root: HTMLElement, registration: RegistrationMo
   });
 }
 
+/**
+ * The Switch package retries with the server address window: the console
+ * can fix or change the address it got from kartsim-switch.json.
+ */
+async function askSwitchServer(root: HTMLElement, message: string): Promise<void> {
+  const library = gameWindowLibrary();
+  const current = switchServerOrigin() ?? "";
+  if (!library) return showLoginMessage(root, "账号服务", message, "重试");
+  const text = `${message}\n${current ? `当前服务器：${current}` : "还没有设置服务器地址。"}`;
+  saveSwitchServer(await showGameServerAddress(library, root, text, current || "http://", normalizeServerOrigin));
+}
+
 /** The browser wiring: window config origin, fetch, localStorage token and DOM overlays. */
 export function browserLoginGateDependencies(root: HTMLElement): LoginGateDependencies {
   const document = pageDocument(root);
   const fetchImpl: FetchLike = (url, init) => fetch(url, init);
   return {
-    backendOrigin: () => multiplayerBackendOrigin(window.location.href,
+    backendOrigin: () => multiplayerBackendOrigin(networkPageUrl(),
       window.__KART_MULTIPLAYER_CONFIG__),
-    pageOrigin: () => window.location.origin,
+    pageOrigin: () => networkPageOrigin(),
     fetch: fetchImpl,
     tokens: tokenAccess(),
     signIn: (registration, origin) => showStartupLogin(root, registration, origin, fetchImpl),
-    retry: message => showLoginMessage(root, "账号服务", message, "重试"),
+    retry: message => SWITCH_BUILD ? askSwitchServer(root, message) : showLoginMessage(root, "账号服务", message, "重试"),
     progress: message => {
       const library = gameWindowLibrary();
       return library ? showGameStatus(library, root, "账号服务", message)

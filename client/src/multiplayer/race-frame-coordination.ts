@@ -3,6 +3,7 @@ import { teamGaugeEnabled } from "./lobby-item-mode";
 import { nearbySlipstreamPeers, SLIPSTREAM_TURNS, slipstreamCandidates } from "./remote-slipstream";
 import { chargerDurationScale, computeCatchupScales, SlipstreamBoost,
   type RacePoint, type SlipstreamPeer } from "./race-driving-scales";
+import { noteDrivingFrame } from "../platform/switch-input";
 
 export interface RaceFrameDependencies {
   racingState: number;
@@ -116,6 +117,10 @@ export function updateActiveRaceFrame(host: RaceFrameHost, nowMs: number,
   frame: unknown, bypassRemotePhysics: boolean,
   dependencies: RaceFrameDependencies): { kind: string }[] {
   if (host.disposed) return [];
+  // The Switch menu cursor stays away during the countdown (racingState - 1) and the race.
+  const state = host.local.lifecycle.state;
+  noteDrivingFrame((state === dependencies.racingState || state === dependencies.racingState - 1) &&
+    host.local.lifecycle.raceoverShown !== true);
   try {
     host.remotePhysicsBypass = bypassRemotePhysics;
     host.remoteFrameUpdated = false;

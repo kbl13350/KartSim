@@ -32,7 +32,51 @@ const lan = lanCert && lanKey ? {
   },
 } : {};
 
-export default defineConfig({
+// `vite build --mode switch` builds the Nintendo Switch package (SWITCH.md):
+// Brewser loads it from the SD card as brewser://apps/<id>/index.html, so
+// paths are relative, and one bundle avoids dynamic import(), which Brewser
+// resolves only for modules it has prefetched. tools/switch/package-brewser.mjs
+// adds the resources and the app manifest.
+// The release stylesheet is copied next to the bundle by the packager, so it
+// leaves the page during the build and comes back as a relative link.
+const releaseStylesheet = '<link rel="stylesheet" href="/assets/index-mDCnV9Uo.css" />';
+const switchEntry = {
+  name: "kartsim-switch-entry",
+  transformIndexHtml: {
+    order: "pre" as const,
+    handler: (html: string) => html.replace('src="/src/main.ts"', 'src="/src/main-switch.ts"')
+      .replace(releaseStylesheet, "<!--release-stylesheet-->")
+      .replace("<title>KartSim 开发版</title>", "<title>KartSim</title>"),
+  },
+};
+const switchStylesheet = {
+  name: "kartsim-switch-stylesheet",
+  transformIndexHtml: {
+    order: "post" as const,
+    handler: (html: string) => html.replace("<!--release-stylesheet-->",
+      releaseStylesheet.replace('href="/assets/', 'href="./assets/')),
+  },
+};
+
+export default defineConfig(({ mode }) => mode === "switch" ? (() => {
+  process.env.VITE_KART_PLATFORM = "switch";
+  return {
+    base: "./",
+    // The release worker (Vorbis fallback) is bundled from the mirror like the web build.
+    publicDir: mirrorDir,
+    plugins: [switchEntry, switchStylesheet],
+    build: {
+      copyPublicDir: false,
+      outDir: "build/switch-web",
+      emptyOutDir: true,
+      target: "es2022",
+      assetsInlineLimit: 0,
+      modulePreload: false,
+      chunkSizeWarningLimit: 20_000,
+      rollupOptions: { output: { codeSplitting: false } },
+    },
+  };
+})() : {
   publicDir: mirrorDir,
   build: { copyPublicDir: false, target: "es2022" },
   server: {

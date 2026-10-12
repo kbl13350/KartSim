@@ -1,4 +1,6 @@
+import { inflateSync } from "fflate";
 import type { ArchiveSource } from "../resources/container-store";
+import { SWITCH_BUILD } from "../platform/platform";
 
 export function requireValue(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -41,8 +43,23 @@ export function concatBytes(first: Uint8Array, second: Uint8Array): Uint8Array {
   return bytes;
 }
 
+/**
+ * The Switch build inflates in one synchronous call: Brewser runs timers once
+ * per frame, so a stream per payload would add frames to every resource read.
+ * Inflation stops at the final deflate block, so Rho5's zero alignment bytes
+ * after the trailer need no retry here.
+ */
+function inflateZlibSync(bytes: Uint8Array, maxBytes: number): Uint8Array {
+  requireValue(bytes.length >= 6 && (bytes[0]! & 0x0f) === 8 && ((bytes[0]! << 8) | bytes[1]!) % 31 === 0 &&
+    (bytes[1]! & 0x20) === 0, "zlib 头无效。");
+  const result = inflateSync(bytes.subarray(2));
+  requireValue(result.length <= maxBytes, `解压结果超过上限 ${maxBytes} 字节。`);
+  return result;
+}
+
 /** Zlib-wrapped deflate, with a decoded-size cap before allocation grows. */
 export async function inflateZlib(bytes: Uint8Array, maxBytes: number): Promise<Uint8Array> {
+  if (SWITCH_BUILD) return inflateZlibSync(bytes, maxBytes);
   requireValue(typeof DecompressionStream !== "undefined", "浏览器不支持 DecompressionStream。");
   const attempt = async (inputBytes: Uint8Array): Promise<Uint8Array> => {
     const copy = new Uint8Array(inputBytes);

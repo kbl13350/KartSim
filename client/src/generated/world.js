@@ -1,6 +1,7 @@
 // Generated from the verified KartSim v39.11 release bundle.
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
+import { platformDefaultGamepadMap } from "../platform/switch-gamepad.ts"; // platform(switch)
 
 import { installWorldOverrides } from "../world/install.ts";
 import { LocalRaceController } from "../multiplayer/local-race-controller.ts";
@@ -3994,7 +3995,7 @@ function EP(n) {
   );
 }
 
-const TP = Object.fromEntries(ut.map((n) => [n.index, oa0(n)]));
+const TP = platformDefaultGamepadMap(ut, oa0); // platform(switch)
 
 function oa0(n) {
   switch (n.index) {

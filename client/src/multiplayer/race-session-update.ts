@@ -59,6 +59,12 @@ export interface RaceSessionUpdateHost {
       drain(keyMap?: unknown): InputBatch;
       cancelAll(): void;
     };
+    /** The controller edges (the application's GamepadEdgePoller and its map, 设置). */
+    gamepad?: {
+      poll(pads: unknown, keyMap: unknown): InputBatch["transitions"];
+      reset(): void;
+    };
+    gameOptions?: { gamepadMap: unknown };
     autoForward: {
       cancel(): void;
       setRaceState(active: boolean, pendingStart: boolean): void;
@@ -199,8 +205,14 @@ export function updateRaceSession(host: RaceSessionUpdateHost,
   try {
     const local = host.runtime.local;
     const physics = local.physics;
-    const input = host.host.input.drain(
+    const drained = host.host.input.drain(
       physics.speedRaceMode?.kind === "lte" ? dependencies.lteKeyMap : undefined);
+    // Controllers drive here as in time attack (the release read only keys and touch here).
+    const gamepad = host.host.gamepad;
+    if (drained.cancelled) gamepad?.reset();
+    const pads = gamepad && host.host.gameOptions ? globalThis.navigator?.getGamepads?.() : undefined;
+    const pressed = pads ? gamepad!.poll(pads, host.host.gameOptions!.gamepadMap) : [];
+    const input = pressed.length ? { ...drained, transitions: [...drained.transitions, ...pressed] } : drained;
     if (input.cancelled) {
       cancelDriving(host);
       local.cancelModeDrivingInput();

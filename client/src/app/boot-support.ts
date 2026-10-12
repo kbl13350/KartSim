@@ -1,3 +1,5 @@
+import { SWITCH_BUILD } from "../platform/platform";
+
 export interface StartupCatalog {
   karts: { itemId: number; systemKey?: string; path: string; title?: string }[];
   characters: { itemId: number; path: string }[];
@@ -136,6 +138,8 @@ export function mountGameViewport(root: HTMLElement,
 
 /** Reloads only when a new versioned entry script is detected. */
 export function watchFrontendVersion(canReload: () => boolean): () => void {
+  // The Switch package is updated by copying a new one to the SD card.
+  if (SWITCH_BUILD) return () => {};
   const currentScript = document.querySelector<HTMLScriptElement>(
     'script[type="module"][src]')?.src;
   if (!currentScript) return () => {};

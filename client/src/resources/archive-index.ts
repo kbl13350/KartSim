@@ -1,6 +1,8 @@
 import type { ArchiveSource } from "./container-store";
 import { ContainerStore } from "./container-store";
 import { browserFetch, type ResourceFetch, type ResourceManifest } from "./manifest";
+import { strFromU8, unzlibSync } from "fflate";
+import { SWITCH_BUILD } from "../platform/platform";
 
 /** Only fields needed by this layer are typed; the binary codec owns record details. */
 export interface RhoArchiveIndex {
@@ -123,6 +125,10 @@ export async function decodeArchiveIndex(
   const inflater = new DecompressionStream("deflate") as unknown as
     ReadableWritablePair<Uint8Array, Uint8Array>;
   const json = await new Response(compressed.pipeThrough(inflater)).text();
+  return parseArchiveIndexJson(json, manifest);
+}
+
+function parseArchiveIndexJson(json: string, manifest: ResourceManifest): ArchiveIndex {
   const raw = JSON.parse(json, (_key, value: unknown) => {
     if (!object(value) || typeof value.$u8 !== "string" ||
         Object.keys(value).length !== 1) return value;
@@ -138,6 +144,10 @@ export async function loadArchiveIndex(
   url = `/__${manifest.version}/archive-index`,
 ): Promise<ArchiveIndex> {
   const response = await fetcher(url, { cache: "no-store" });
+  if (SWITCH_BUILD && response.status === 200) {
+    // Brewser reads a packaged file whole; inflate it in one call instead of a stream.
+    return parseArchiveIndexJson(strFromU8(unzlibSync(new Uint8Array(await response.arrayBuffer()))), manifest);
+  }
   if (response.status !== 200 || !response.body) {
     throw new Error(`档案索引读取失败：HTTP ${response.status}。`);
   }

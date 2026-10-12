@@ -40,7 +40,9 @@ export interface ReadyBridgeApplication {
     raceAnonymous: Value;
     raceTimeGap: Value;
     classicHud: Value;
+    gamepadMap?: Value;
   };
+  gamepad?: Value;
   session: { selection?: ReadySelection; vehicleTitle: string };
   timeAttackReadyOptions: Value;
   presenter: {
@@ -109,6 +111,9 @@ export function createReadyHost(
       input: application.input,
       autoForward: application.autoForward,
       touchControls: application.touchControls,
+      // Controllers in multiplayer races (race-session-update.ts); read when each race starts.
+      get gamepad() { return application.gamepad; },
+      get gameOptions() { return application.gameOptions; },
       assets: () => application.createRaceBuilderHost(),
       profile: () => application.userProfile,
       audio: () => application.audio.context,

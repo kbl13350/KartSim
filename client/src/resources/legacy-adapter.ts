@@ -8,6 +8,8 @@ import {
   type ContainerStoreOptions,
 } from "./container-store";
 import { loadResourceManifest, type ResourceFetch, type ResourceVersion } from "./manifest";
+import { bundledArchiveReader } from "../platform/bundled-archives";
+import { appAssetUrl, SWITCH_BUILD } from "../platform/platform";
 
 export interface LegacyResourceBundle {
   readonly version: ResourceVersion;
@@ -23,6 +25,8 @@ export interface LegacyAdapterOptions {
   readonly storage?: OpfsStorage;
   readonly dataBaseUrl?: string;
   readonly fallbackWriter?: ContainerStoreOptions["fallbackWriter"];
+  /** Packaged containers (the Switch build's default): no downloads, no OPFS. */
+  readonly bundled?: ContainerStoreOptions["bundled"];
 }
 
 /**
@@ -35,8 +39,10 @@ export async function loadLegacyResourceBundle(
   localDirectory?: DirectoryHandle,
   options: LegacyAdapterOptions = {},
 ): Promise<LegacyResourceBundle> {
-  const manifest = await loadResourceManifest(version, options.fetcher);
-  const archiveIndexes = await loadArchiveIndex(manifest, options.fetcher);
+  // The Switch package carries every container next to index.html (SWITCH.md).
+  const bundled = options.bundled ?? (SWITCH_BUILD && !options.storage ? bundledArchiveReader(version) : undefined);
+  const manifest = await loadResourceManifest(version, options.fetcher, appAssetUrl(`/__${version}/resources`));
+  const archiveIndexes = await loadArchiveIndex(manifest, options.fetcher, appAssetUrl(`/__${version}/archive-index`));
   const store = new ContainerStore({
     manifest,
     storage: options.storage,
@@ -44,6 +50,7 @@ export async function loadLegacyResourceBundle(
     localDirectory,
     onProgress,
     fallbackWriter: options.fallbackWriter,
+    bundled,
     dataBaseUrl: options.dataBaseUrl ??
       (version === "p3528" ? "https://kart-assets.iii.moe/p3528" : `/${version}`),
   });

@@ -6,6 +6,7 @@ import { keyboardActionsForCode } from "../input/action-bindings.ts";
 import { showAccountServiceProgress } from "../multiplayer/account-progress.ts";
 import { loadMultiplayerSessionToken, saveMultiplayerSessionToken, clearMultiplayerSessionToken, loadLocalRiderNickname, saveLocalRiderNickname, clearLocalRiderNickname } from "../multiplayer/account-local-state.ts";
 import { accountOverlayStyle, accountPanelStyle, accountErrorMessages, styleAccountButtons, formatAccountServiceError, currentMultiplayerOrigin, multiplayerAccountEndpoint, multiplayerAuthHeaders } from "../multiplayer/account-ui-support.ts";
+import { networkPageOrigin, networkPageUrl } from "../platform/network-page.ts";
 import { loadLobbyAvatarAppearance } from "../multiplayer/lobby-avatar-appearance.ts";
 import { lobbyRiderSlots, roadblockRunnerId, decorateRoadblockRiders, wrapLobbyChatBubble } from "../multiplayer/lobby-room-helpers.ts";
 import { decorateIndividualRiders } from "../multiplayer/individual-rider-colors.ts";
@@ -137,12 +138,12 @@ const lobbyAvatarPreviewDependencies = { createBinding: () => new ha(), createEm
 const lobbyCountdownMediaDependencies = { parseScene: bytes => y9(bytes), decodeImage: bytes => p2(bytes), createCanvas: image => { const canvas = document.createElement('canvas'); canvas.width = image.width; canvas.height = image.height; canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(image.pixels), image.width, image.height), 0, 0); return canvas; }, alphaFromParsed: parsed => on.fromParsed(parsed), createSoundUrl: bytes => URL.createObjectURL(new Blob([bytes], { type: 'audio/ogg' })), createAudio: url => new Audio(url), revokeSoundUrl: url => URL.revokeObjectURL(url) };
 const accountRequestDependencies = { authEndpoint: action => ly(action), authorizationHeaders: () => nm(), fetch: (url, options) => fetch(url, options), backendOrigin: () => jo(), clearToken: origin => SF(origin), saveToken: (origin, token) => wl0(origin, token), get errorMessages() { return uy; } };
 const accountLoginDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error) };
-const accountEntryDependencies = { backendOrigin: () => jo(), pageUrl: () => window.location.href, pageOrigin: () => window.location.origin, endpoint: (path, pageUrl) => Ko(path, pageUrl), fetch: (url, options) => fetch(url, options), loadAccount: () => Xo('me'), chooseAccount: (root, account, signal) => Al0(root, account, signal), showLogin: (root, signal) => new CF(root, signal).wait() };
+const accountEntryDependencies = { backendOrigin: () => jo(), pageUrl: () => networkPageUrl(), pageOrigin: () => networkPageOrigin(), endpoint: (path, pageUrl) => Ko(path, pageUrl), fetch: (url, options) => fetch(url, options), loadAccount: () => Xo('me'), chooseAccount: (root, account, signal) => Al0(root, account, signal), showLogin: (root, signal) => new CF(root, signal).wait() };
 const guestNicknameDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: action => ly(action), fetch: (url, options) => fetch(url, options), get errorMessages() { return uy; }, formatError: error => C6(error) };
 const gameServerPickerDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons) };
-const gameServerDependencies = { endpoint: path => Ko(path, window.location.href), backendOrigin: () => jo(), pageUrl: () => window.location.href, fetch: (url, options) => fetch(url, options), storage: () => localStorage, pick: (root, options, selected, signal) => showGameServerPicker(gameServerPickerDependencies, root, options, selected, signal) };
+const gameServerDependencies = { endpoint: path => Ko(path, networkPageUrl()), backendOrigin: () => jo(), pageUrl: () => networkPageUrl(), fetch: (url, options) => fetch(url, options), storage: () => localStorage, pick: (root, options, selected, signal) => showGameServerPicker(gameServerPickerDependencies, root, options, selected, signal) };
 const roomDropdownDependencies = { attribute: (node, name) => T(node, name), clone: (node, attributes, children) => children === undefined ? h2(node, attributes) : h2(node, attributes, children) };
-const accountChoiceDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: (path, pageUrl) => Ko(path, pageUrl), pageUrl: () => window.location.href, requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error), authEndpoint: action => ly(action), authorizationHeaders: () => nm(), fetch: (url, options) => fetch(url, options), backendOrigin: () => jo(), clearToken: origin => SF(origin), showLogin: (root, signal) => new CF(root, signal).wait() };
+const accountChoiceDependencies = { createElement: tag => document.createElement(tag), get overlayStyle() { return B7; }, get panelStyle() { return R7; }, styleButtons: (...buttons) => G7(...buttons), endpoint: (path, pageUrl) => Ko(path, pageUrl), pageUrl: () => networkPageUrl(), requestAccount: (action, fields) => Xo(action, fields), formatError: error => C6(error), authEndpoint: action => ly(action), authorizationHeaders: () => nm(), fetch: (url, options) => fetch(url, options), backendOrigin: () => jo(), clearToken: origin => SF(origin), showLogin: (root, signal) => new CF(root, signal).wait() };
 const lobbyDialogViewDependencies = { loadMessageTemplate: library => _w(library), loadDefinition: (library, folder, name) => F9(library, folder, name), decorateDefinition: (library, definition, folder) => C8(library, definition, folder), clone: (node, attributes, children) => children === undefined ? h2(node, attributes) : h2(node, attributes, children), nodeName: node => T(node, 'name'), loadView: options => te.load(options) };
 const lobbyDialogCategoryDependencies = { mode: channel => He[channel].mode, validateGameplay: gameplay => MI(gameplay), channelNames: gameplay => NT(gameplay) };
 const lobbyRoomFormDependencies = { ...lobbyDialogViewDependencies, attribute: (node, name) => T(node, name), channelNames: gameplay => NT(gameplay), channelKey: (value, channels) => Ol0(value, channels), dropdown: (combo, template, values) => zl0(combo, template, values), channelMode: key => He[key].mode };
@@ -177,7 +178,7 @@ const multiplayerLobbyServices = {
     loadRandomTeam: (library, root, race, playerId) => RandomTeamNotice.load(library, root, race, playerId),
   },
   open: {
-    get protocolVersion() { return PROTOCOL_VERSION; }, pageUrl: () => window.location.href,
+    get protocolVersion() { return PROTOCOL_VERSION; }, pageUrl: () => networkPageUrl(),
     endpoint: Ko, fetchHealth: (url, signal) => fetch(url, { cache: "no-store", signal }),
     showAccountProgress: vl0, loadAccount: () => multiplayerAccountFromSession(currentAccountSession()),
     loadLobby: options => Ew.load(options),
@@ -276,8 +277,8 @@ function wl0(origin, token) { return saveMultiplayerSessionToken(origin, token, 
 
 function SF(origin) { return clearMultiplayerSessionToken(origin, multiplayerTokenStore); }
 
-const jo = () => currentMultiplayerOrigin(() => window.location.href, ay),
-  ly = action => multiplayerAccountEndpoint(action, () => window.location.href, Ko),
+const jo = () => currentMultiplayerOrigin(() => networkPageUrl(), ay),
+  ly = action => multiplayerAccountEndpoint(action, () => networkPageUrl(), Ko),
   nm = () => multiplayerAuthHeaders(jo, xF),
   G7 = (...buttons) => styleAccountButtons(...buttons),
   B7 = accountOverlayStyle,

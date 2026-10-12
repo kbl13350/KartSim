@@ -4,8 +4,10 @@
  * mirror/ui/loading) with the overall progress bar and a current download
  * progress bar beneath it showing the downloading asset name and progress.
  */
+import { appAssetUrl, SWITCH_BUILD } from "../platform/platform";
+
 const STYLE = `
-.startup-loading{background:#000 url("/ui/loading/race-loading-1600.png") center/cover no-repeat}
+.startup-loading{background:#000 url("${appAssetUrl("/ui/loading/race-loading-1600.png")}") center/cover no-repeat}
 .startup-loading::after{content:"";position:absolute;inset:auto 0 0;height:42%;background:linear-gradient(to top,rgba(6,16,34,.92),rgba(6,16,34,0));pointer-events:none}
 .startup-loading .startup-loading-copy{z-index:1;left:50%;right:auto;bottom:max(7vh,28px);transform:translateX(-50%);width:min(720px,calc(100vw - 48px));max-width:none;align-items:stretch;gap:10px}
 .startup-loading .startup-loading-label,.startup-loading .startup-frontend-version{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);animation:none}
@@ -87,7 +89,8 @@ export function installStartupLoadingSkin(doc: Document = document): void {
     const downloadFill = element(doc, "div", "ks-download-fill");
     downloadTrack.append(downloadFill);
 
-    const tip = element(doc, "div", "ks-loading-tip", "首次进入需要下载游戏资源，请耐心等待");
+    const tip = element(doc, "div", "ks-loading-tip", SWITCH_BUILD ? "正在读取 SD 卡上的游戏资源"
+      : "首次进入需要下载游戏资源，请耐心等待");
     for (const node of [head, track, downloadHead, downloadTrack, tip]) node.setAttribute("aria-hidden", "true");
     copy.prepend(head, track, downloadHead, downloadTrack, tip);
 

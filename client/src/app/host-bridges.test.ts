@@ -119,8 +119,14 @@ function exerciseReady(rewritten: boolean) {
   const { app, events } = makeApplication(rewritten);
   const host = app.createReadyHost();
   const loader = host.multiplayerRaceLoader;
-  const loaderKeys = Object.keys(loader);
-  const loaderValues = Object.entries(loader).filter(([, value]) => typeof value !== "function");
+  // Controllers in multiplayer races (race-session-update.ts) add these two to the release loader host.
+  const added = new Set(rewritten ? ["gamepad", "gameOptions"] : []);
+  if (rewritten) {
+    assert.equal(loader.gamepad, app.gamepad);
+    assert.equal(loader.gameOptions, app.gameOptions);
+  }
+  const loaderKeys = Object.keys(loader).filter(key => !added.has(key));
+  const loaderValues = Object.entries(loader).filter(([key, value]) => typeof value !== "function" && !added.has(key));
   const hostKeys = Object.keys(host);
   const hostGetters = readProperties(host);
   loader.assets(); loader.profile(); loader.audio(); loader.flyingPetVisible();

@@ -1,4 +1,5 @@
 /** Validated origin and endpoint construction for the multiplayer service. */
+import { SWITCH_BUILD } from "../platform/platform";
 
 export interface MultiplayerOriginConfig {
   frontendOrigins?: unknown;
@@ -34,7 +35,8 @@ export function multiplayerBackendOrigin(pageUrl: string,
   const configured = config?.backendOrigin?.trim() ||
     bundledBackendOrigin?.trim();
   if (!configured) {
-    throw new Error("生产版尚未配置联机后端地址，或网站门禁拦截了 /multiplayer-config.js。请通过门禁后刷新网页。");
+    throw new Error(SWITCH_BUILD ? "还没有设置服务器地址。"
+      : "生产版尚未配置联机后端地址，或网站门禁拦截了 /multiplayer-config.js。请通过门禁后刷新网页。");
   }
   const backend = new URL(configured || pageUrl);
   if (!["http:", "https:"].includes(backend.protocol) ||

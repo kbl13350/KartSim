@@ -11,6 +11,7 @@ import {
   reconcileLobbyCategory, requestLobbyList, trackThemeName, visibleLobbyRooms,
   type LobbyListRoom, type LobbyListUiState, type LobbyTab,
 } from "./lobby-list-layout";
+import { appAssetUrl } from "../platform/platform";
 
 /**
  * The multiplayer room list page: category tabs, a category column, the
@@ -186,7 +187,7 @@ function lobbyPicture(name: string, redraw: () => void): HTMLImageElement | unde
         record.done = true;
         record.waiting.clear();
       });
-      image.src = `/ui/multiplayer/${name}`;
+      image.src = appAssetUrl(`/ui/multiplayer/${name}`);
     }
   }
   if (!entry.done) entry.waiting.add(redraw);

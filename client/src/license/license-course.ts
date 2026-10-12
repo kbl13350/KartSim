@@ -7,6 +7,9 @@
  * turns C005's start and sections the way the road runs.
  */
 import type { Vec3 } from "../world/route";
+import { unicodeRegExp } from "../platform/unicode-regexp";
+
+const SCENE_NAME = unicodeRegExp("^[{L}{N}_@-]+$");
 
 /** The part of a course route (extractRoad / RouteSection) this reads. */
 interface LicenseRoad {
@@ -134,7 +137,7 @@ export function licenseEventScenes(trackObjects: ReadonlyArray<{ kind?: string; 
     const file = scene?.attributes?.find(attribute => attribute.name === "file")?.value;
     // Decoded strings may carry a NUL-terminated tail.
     const name = typeof file === "string" ? file.replace(/\0.*$/, "").trim() : "";
-    if (name && /^[\p{L}\p{N}_@-]+$/u.test(name)) scenes.set(event.name, name);
+    if (name && SCENE_NAME.test(name)) scenes.set(event.name, name);
   }
   return scenes;
 }

@@ -1,6 +1,7 @@
 /** Routes keyboard, touch, and gamepad actions into the time-attack vehicle. */
 
 import { activeLicenseItems } from "../license/license-item-race";
+import { noteDrivingFrame } from "../platform/switch-input";
 
 export interface DrivingCommand {
   kind: string;
@@ -104,6 +105,8 @@ export function drainTimeAttackDrivingInput(bridge: DrivingInputBridgeHost,
   }
   const phase = host.getLifecycle().phase;
   const active = dependencies.activeRace(host.getLifecycle());
+  // The Switch menu cursor stays away while the controller drives.
+  noteDrivingFrame(active);
   host.autoForward.setRaceState(active,
     phase === dependencies.racingPhase &&
       !host.getLifecycle().isStartBoosterWindow(nowMs));

@@ -283,3 +283,64 @@ export function showGameStatus(library: BmlLibrary, root: HTMLElement, title: st
     },
   };
 }
+
+/**
+ * The Switch package's data service address (kartsim-switch.json, or one
+ * entered here and remembered): shown when connecting fails, with the error,
+ * so a console can be pointed at another server without editing the SD card.
+ * Resolves with the address to try next.
+ */
+export async function showGameServerAddress(library: BmlLibrary, root: HTMLElement, message: string,
+  current: string, normalize: (value: string) => string | undefined): Promise<string> {
+  const host = overlayHost(root);
+  const title = "服务器地址";
+  let value = current;
+  let error = "";
+  let chosen!: (origin: string) => void;
+  const done = new Promise<string>(resolve => { chosen = resolve; });
+  let view: WindowView | undefined;
+  const submit = () => {
+    const origin = normalize(value);
+    if (origin) chosen(origin);
+    else {
+      error = "请输入 http:// 或 https:// 开头的服务器地址，例如 http://192.168.1.10:8787";
+      view?.render();
+    }
+  };
+  const definition = node("Panel", { windowRect: "fullscreen" }, [
+    node("CaptionWindow", { name: "serverDialog", windowRect: `0 0 ${WIDTH} 286`, frame: "CaptionDialog",
+      caption: title, captionPos: "0 1", align: "center", textRender: "bold" }, [
+      node("Label", { name: "serverMessage", leftTopWH: `20 14 ${WIDTH - 60} 76` }),
+      node("Label", { name: "serverLabel", leftTopWH: `20 100 ${ROW.label - 12} ${ROW.height}`, textRender: "bold15",
+        textColor: "255 72 106 163", textAlign: "right|vcenter", text: "服务器" }),
+      node("Edit", { name: "server", leftTopWH: `${20 + ROW.label} 100 ${ROW.edit} ${ROW.height}`, frame: "DefaultEdit",
+        textRender: "bold16" }),
+      node("Label", { name: "serverError", leftTopWH: `20 140 ${WIDTH - 60} 24` }),
+      node("Window", { leftTopWH: `0 0 ${WIDTH - 50} 1`, frame: "HSection", align: "hcenter;bottom", adjust: "0 63" }),
+      node("TextButton", { name: "connectButton", leftTopWH: "0 0 150 38", align: "hcenter;bottom", adjust: "0 12",
+        textRender: "bold16" }),
+    ]),
+  ]);
+  try {
+    view = await loadWindow(library, host.element, definition, title, entry => {
+      switch (nodeName(entry)) {
+        case "serverDialog": return { text: title };
+        case "serverMessage": return paintText(message, { size: 13, color: TEXT, align: "center", middle: true, lineGap: 5 });
+        case "serverError": return paintText(error, { size: 13, color: "rgb(205,45,35)", bold: true, middle: true });
+        case "server": return { label: "服务器", input: {
+          value, maxLength: 200, password: false, autocomplete: "url",
+          change: (next: string) => { value = next; error = ""; },
+          submit,
+        } };
+        case "connectButton": return button("连接", submit);
+      }
+      return {};
+    });
+    view.show();
+    view.focus("connectButton");
+    return await done;
+  } finally {
+    view?.dispose();
+    host.dispose();
+  }
+}

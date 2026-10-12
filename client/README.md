@@ -41,6 +41,7 @@ npm run verify
 | 路径 | 内容 | 状态 |
 | --- | --- | --- |
 | `src/main.ts` | Service Worker 注册与应用启动 | 手写 TypeScript |
+| `src/main-switch.ts`、`src/platform/`、`tools/switch/` | Nintendo Switch 版（Brewser 网页运行时）：入口、Brewser 缺失接口、SD 卡内置资源读取、手柄菜单光标与命中测试、字体匹配、服务器地址、打包 | 手写 TypeScript；`npm run build:switch`，说明见 `SWITCH.md` |
 | `src/game/api.ts` | 各系统的稳定、可读导出名 | 手写 TypeScript 门面；实现来自手写或兼容模块 |
 | `src/item/` | 道具赛：道具目录（经典 19 种 + 49 种特殊道具、装备特性）、道具箱与赛道危险物、本机道具控制器、投射物与特效表现层 | 手写 TypeScript；规则与协议见 `ITEM_MODE.md`，模块说明见 `src/item/README.md` |
 | `src/game/ghost-records.ts`、`src/game/ghost/` | 影子记录摘要、帧编解码、KSV 文件格式及 IndexedDB 存取 | 手写 TypeScript，已替换对应发行版业务逻辑；zlib 由固定版本的 `pako` 包提供 |

@@ -22,6 +22,7 @@ import { claimProEmblem, leaveLicense, openLicenseStep, refreshLicenseMenu, star
 import type { ReadyShopController } from "./ready-shop";
 import { openReadyLottery, type LotteryScreen, type ReadyLotteryController } from "./ready-lottery";
 import { openShopUnlessRacing } from "./ready-shop-guard";
+import { appAssetUrl } from "../platform/platform";
 
 /**
  * The lobby home and the release 单人游戏 page shown over Ready. Ready's own
@@ -79,7 +80,7 @@ function openHomeAccountPanel(controller: ReadyHomeController): void {
   });
 }
 /** Mode card art beside the two promotion boards. */
-const BOARD_ART = ["/ui/multiplayer/ordinary-race.png", "/ui/multiplayer/giant-mode.png"] as const;
+const BOARD_ART = [appAssetUrl("/ui/multiplayer/ordinary-race.png"), appAssetUrl("/ui/multiplayer/giant-mode.png")] as const;
 
 /** Longest wait for a destination page before home steps aside anyway. */
 const COVER_TIMEOUT_MS = 15_000;
