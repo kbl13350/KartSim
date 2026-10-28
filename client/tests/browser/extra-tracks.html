@@ -7,7 +7,7 @@ import { PRACTICE_SCENE_IDS } from '/src/resources/practice-scene.ts';
 import { loadRaceBgmPlaylist } from '/src/timeattack/race-bgm-resources.ts';
 import { ha } from '/src/generated/formats.js';
 import { ul } from '/src/generated/vehicle.js';
-import { _L } from '/src/generated/world.js';
+import { _L, IP, nT } from '/src/generated/world.js';
 import { AL } from '/src/generated/driving.js';
 import { installWorldOverrides } from '/src/world/install.ts';
 import { loadLegacyResourceBundle } from '/src/resources/legacy-adapter.ts';
@@ -16,7 +16,12 @@ import { vehiclePhysicsParameters } from '/src/driving/physics-parameters.ts';
 installWorldOverrides(_L);
 const bundle=await loadLegacyResourceBundle('p3553');
 const library=await Sw.load(bundle.sources,undefined,bundle.archiveIndexes);
-const choices=(await library.timeAttackTrackCatalog()).filter(t=>t.resourceCategory);
+const allChoices=await library.timeAttackTrackCatalog();
+// Ready initializes favorites across the entire catalog before opening its picker.
+if(nT([],allChoices).size!==0)throw Error('empty favorites must stay empty');
+if(nT(allChoices.map(IP),allChoices).size!==allChoices.length)throw Error('favorites round-trip lost maps');
+window.favoriteCatalogCount=allChoices.length;
+const choices=allChoices.filter(t=>t.resourceCategory);
 const source={importer:new Tr(),toonStageBinding:new ha(),getLibrary:()=>library,
   generationValue:()=>1,isGenerationCurrent:()=>true,
   requireAsset:path=>{const f=library.get(path);if(!f)throw Error('missing '+path);return f;}};

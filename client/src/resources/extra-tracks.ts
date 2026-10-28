@@ -54,7 +54,8 @@ export function resourceTrackMetadata(track: ResourceTrack, source?: TrackMetada
     ...source,
     id: track.id,
     folder: track.folder,
-    theme: source?.theme ?? track.folder.split("_")[0],
+    // Match registerCityTrack: kartcity is a map ID, not a serializable theme.
+    theme: track.folder === "kartcity" ? "village" : source?.theme ?? track.folder.split("_")[0],
     cnTitle: `${PRACTICE_SCENE_IDS.has(track.folder) ? "[自由探索]" : ""}${track.reverse ? "[反]" : ""}${baseTitle}${suffix}`,
     gameType: source?.gameType === "item" ? "item" : "speed",
     laps: PRACTICE_SCENE_IDS.has(track.folder) ? 99999 : source?.laps ?? 1,

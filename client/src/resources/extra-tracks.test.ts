@@ -89,3 +89,15 @@ test("missing task thumbnails get a Ready card; ambiguous resources still fail",
     else Reflect.deleteProperty(globalThis, "document");
   }
 });
+
+// Use the same serializer and restoration path as Ready's track selector.
+test("all selectable maps initialize and round-trip through the real favorites codec", async () => {
+  const { IP, nT } = await import("../generated/world.js");
+  const choices = await library.timeAttackTrackCatalog();
+  assert.equal(nT([], choices).size, 0);
+  const favorites = choices.map(choice => IP(choice));
+  assert.deepEqual(nT(favorites, choices), new Set(choices.map(choice => choice.id)));
+  const city = choices.find(choice => choice.id === "kartcity")!;
+  assert.deepEqual(IP(city), { themeId: 3, trackId: 506332011 });
+  assert.deepEqual(nT([IP(city)], choices), new Set(["kartcity"]));
+});
