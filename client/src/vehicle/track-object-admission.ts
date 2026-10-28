@@ -250,10 +250,11 @@ export function admitTrackObject(
     return {
       ...base,
       producer: "TRACKDATA ToMovableObject item type + nested scene + live PRS matrices",
-      consumer: "track scene additional root; no item, trigger or collision",
-      owner: "nested render root under the track object manager",
-      lifecycle: "stage setup -> scene traversal -> stage teardown",
-      order: "scene traversal only",
+      consumer: type === "forceZone" ? "track Set model + HazardTraps category-2 pair -> VehicleItemEffects knockback"
+        : "track scene additional root; carried water mines use HazardTraps",
+      owner: "track render root; HazardTraps owns supported local physics effects",
+      lifecycle: "stage setup -> scene traversal / trigger cooldown -> stage teardown",
+      order: "track render matrices -> kart slot12 -> category-2 pair",
       decision: "admit",
       reason: "item-hazard-scenery-admitted",
     };
@@ -315,7 +316,7 @@ export function admitTrackObject(
 }
 
 /** Track-placed item hazards an item race admits (ltejump stays excluded). */
-export const ITEM_GAME_HAZARD_TYPES: readonly string[] = ["banana", "mine", "mineHidden", "waterMine"];
+export const ITEM_GAME_HAZARD_TYPES: readonly string[] = ["banana", "mine", "mineHidden", "waterMine", "forceZone"];
 
 /** Whether an occurrence is an item cube or item hazard owned by the item race. */
 export function itemGameObjectKind(value: TrackObjectOccurrence["value"]):

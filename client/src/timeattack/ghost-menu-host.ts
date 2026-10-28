@@ -1,3 +1,4 @@
+import { findTrackChoice } from "../resources/track-duplicates";
 import { tr } from "../i18n/locale";
 /** Connects the Ghost menu to the local recording library and track catalog. */
 
@@ -98,8 +99,7 @@ export async function resolveGhostMenuTrack(bridge: GhostMenuBridge,
   trackId: string): Promise<unknown> {
   const library = bridge.host.getLibrary();
   if (!library) return;
-  const track = (await library.timeAttackTrackCatalog()).find(candidate =>
-    candidate.id.toLowerCase() === trackId.toLowerCase());
+  const track = findTrackChoice(await library.timeAttackTrackCatalog(), trackId);
   return track ? { track, selection: bridge.host.getSelection() } : undefined;
 }
 

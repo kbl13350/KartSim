@@ -5,6 +5,7 @@ import { loadMirrorLibrary } from "../item/item-test-fixtures";
 import { raceBgmArchiveTracks } from "../timeattack/race-bgm-resources";
 import { buildResourceGroups, findResourceGroup } from "./resource-groups";
 import { mirrorArchives } from "./mirror-archives.test-support";
+import { TAIWAN_TRACKS, isTaiwanTrackFolder } from "./taiwan-tracks";
 import {
   XMAS_DASHBOARD_PATH, XMAS_TRACK_IDS, isXmasTrack, xmasClassicHud, xmasSlotFrame,
   xmasTrackModelPath,
@@ -61,9 +62,11 @@ test("p3553 ships a Christmas model for exactly these ice tracks", () => {
     shipped.set(id, new Set((archive.files as Array<{ name: string }>).map(file => file.name.toLowerCase())));
   }
   const xmas = [...shipped].filter(([, names]) => names.has("track_xmas.1s")).map(([id]) => id).sort();
-  assert.deepEqual(xmas, [...XMAS_TRACK_IDS].sort());
+  assert.deepEqual(xmas.filter(id => !isTaiwanTrackFolder(id)), [...XMAS_TRACK_IDS].sort());
+  assert.deepEqual(xmas.filter(isTaiwanTrackFolder), [...new Set(TAIWAN_TRACKS
+    .filter(track => track.modelFile === "track_xmas.1s").map(track => track.folder))].sort());
   // Every reversible one has its reverse Christmas model.
-  for (const id of xmas) {
+  for (const id of xmas.filter(id => !isTaiwanTrackFolder(id))) {
     const names = shipped.get(id)!;
     assert.equal(names.has("track_xmas_rvs.1s"), names.has("track_rvs.1s"), id);
   }

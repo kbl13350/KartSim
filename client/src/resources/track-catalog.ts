@@ -5,6 +5,8 @@ import { customItemTrackChoices, customMapMetadata, customTrackChoices } from ".
 import { isCustomTrackId } from "../mapeditor/design";
 import { XYY_TRACK_TITLES } from "./xyy-tracks";
 import { trackDisplayTitle } from "./track-names";
+import { taiwanTrack, taiwanTrackMetadata } from "./taiwan-tracks";
+import { deduplicateTrackChoices } from "./track-duplicates";
 
 /** A virtual file mounted from a Rho/Rho5 archive or a loose Data file. */
 export interface TrackResource {
@@ -41,6 +43,7 @@ export interface TrackMetadata {
 }
 
 export interface TrackChoice {
+  duplicateAliases?: readonly TrackChoice[];
   resourceCategory?: ExtraTrackCategory;
   id: string;
   path: string;
@@ -217,6 +220,11 @@ export async function trackTitles(library: TrackLibrary): Promise<Map<string, { 
     titles.set(track.id, title);
     titles.set(track.folder ?? track.id, title);
   }
+  for (const resource of resourceTracks(library)) {
+    const imported = taiwanTrack(resource.id);
+    if (imported && (!titles.has(imported.folder) || imported.modelFile === "track.1s"))
+      titles.set(imported.folder, { title: imported.title, trackId: imported.id });
+  }
   return titles;
 }
 
@@ -226,6 +234,11 @@ export async function trackMetadata(library: TrackLibrary, id: string): Promise<
   if (custom) return custom;
   const override = trackMetadataOverride(id);
   if (override) return override;
+  const imported = taiwanTrackMetadata(id);
+  if (imported) {
+    const resource = resourceTracks(library).find(track => track.id.toLowerCase() === id.toLowerCase());
+    if (resource) return resourceTrackMetadata(resource, imported);
+  }
   const tracks = await library.trackMetadataCatalog();
   const find = (key: string) => tracks.find(track => track.id === key) ??
     tracks.find(track => track.folder === key);
@@ -292,7 +305,7 @@ async function resolveTrackCatalog(library: TrackLibrary,
  * Resolve metadata to exact model assets, including reverse track siblings,
  * then the mounted 地图工坊 maps (custom-tracks.ts).
  */
-export async function timeAttackTrackCatalog(library: TrackLibrary): Promise<TrackChoice[]> {
+export async function timeAttackTrackCatalogAll(library: TrackLibrary): Promise<TrackChoice[]> {
   const release = await resolveTrackCatalog(library, metadata => {
     const gameType = metadata.gameType ?? "speed";
     return (gameType === "item" || gameType === "speed") && selectable(metadata)
@@ -302,6 +315,11 @@ export async function timeAttackTrackCatalog(library: TrackLibrary): Promise<Tra
   const custom = customTrackChoices().filter(choice =>
     library.findSibling(choice.path, ["track.1s"]) !== undefined);
   return custom.length ? [...release, ...custom] : release;
+}
+
+/** The picker hides reviewed aliases; IDs and assets remain in the complete catalog. */
+export async function timeAttackTrackCatalog(library: TrackLibrary): Promise<TrackChoice[]> {
+  return deduplicateTrackChoices(await timeAttackTrackCatalogAll(library));
 }
 
 /** Regional availability from trackLocale@cn; only item rooms apply it. */
@@ -492,7 +510,7 @@ export async function timeAttackRandomTrackGroups(library: TrackLibrary): Promis
     (/track_?\/common\//i.test(file.virtualPath) || /track_common/i.test(file.sourceName)));
   if (!random) return [];
   const root = decodeBinaryXml(await random.bytes());
-  const tracks = (await library.timeAttackTrackCatalog()).filter(track => !track.resourceCategory);
+  const tracks = (await timeAttackTrackCatalogAll(library)).filter(track => !track.resourceCategory);
   return randomTrackGroupsFromBml(root, tracks).filter(group => group.trackIds.length > 0);
 }
 

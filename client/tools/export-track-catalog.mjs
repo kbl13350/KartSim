@@ -6,7 +6,7 @@ import { inflateSync } from "node:zlib";
 import { pathToFileURL } from "node:url";
 import { RhoReader } from "../src/codecs/rho.ts";
 import { Rho5Reader } from "../src/codecs/rho5.ts";
-import { mapAssets, trackMetadataCatalog, trackTitles, timeAttackTrackCatalog } from "../src/resources/track-catalog.ts";
+import { mapAssets, trackMetadataCatalog, trackTitles, timeAttackTrackCatalog, timeAttackTrackCatalogAll } from "../src/resources/track-catalog.ts";
 import { timeAttackTrackRows } from "./economy-export/tracks.mjs";
 import { formatDocument } from "./economy-export/canonical.mjs";
 
@@ -54,6 +54,7 @@ export function indexedTrackLibrary() {
   const library = { files, mapAssets: () => mapAssets(library),
     trackTitles: () => trackTitles(library), trackMetadataCatalog: () => trackMetadataCatalog(library),
     timeAttackTrackCatalog: () => timeAttackTrackCatalog(library),
+    timeAttackTrackCatalogAll: () => timeAttackTrackCatalogAll(library),
     findSibling(path, names) {
       const original = files.find(entry => entry.virtualPath === path);
       const directory = path.slice(0, path.lastIndexOf("/") + 1).toLowerCase();
@@ -68,13 +69,19 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const target = new URL("../../server-go/internal/data/economy/tracks.json", import.meta.url);
   const previous = readFileSync(target, "utf8");
   const document = JSON.parse(previous);
-  const choices = await indexedTrackLibrary().timeAttackTrackCatalog();
+  // The light index and Sw enumerate containers differently. Keep existing row
+  // order so a compatibility-only export does not shuffle every extra track.
+  const previousOrder = new Map(document.tracks.map((row, index) => [row.id, index]));
+  const choices = await indexedTrackLibrary().timeAttackTrackCatalogAll();
   const problems = [];
   document.tracks = timeAttackTrackRows(choices, message => problems.push(message));
+  document.tracks.sort((a, b) =>
+    (previousOrder.get(a.id) ?? Number.MAX_SAFE_INTEGER) - (previousOrder.get(b.id) ?? Number.MAX_SAFE_INTEGER)
+    || a.id.localeCompare(b.id));
   if (problems.length) throw new Error(problems.join("\n"));
   const { text } = formatDocument(document);
   if (process.argv.includes("--check")) {
     if (text !== previous) throw new Error("tracks.json is stale");
   } else writeFileSync(target, text);
-  console.log(`${choices.length} selectable tracks; ${choices.filter(track => track.resourceCategory).length} expanded entries`);
+  console.log(`${choices.length} accepted track IDs (including hidden aliases); ${choices.filter(track => track.resourceCategory).length} expanded entries`);
 }

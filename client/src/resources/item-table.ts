@@ -1,3 +1,4 @@
+import { appendTaiwanVehicleDefinitions } from "./taiwan-vehicles";
 import { translateItemName } from "../i18n/item-names";
 import type { GarageItemDefinition, GarageResource } from "./timeattack-items";
 import { resourceText, tr } from "../i18n/locale";
@@ -265,7 +266,8 @@ export async function itemTableGarageDefinitions(
         tag !== "character" || library.exactCanonicalCandidates(`character_/${name}/model.1s`).length > 0);
     }
     const definitions = parseItemDefinitions(rows);
-    return [...definitions, ...(await systemVehicleDefinitions(library, dependencies))];
+    return appendTaiwanVehicleDefinitions(
+      [...definitions, ...(await systemVehicleDefinitions(library, dependencies))], library);
   })();
   return library.garageDefinitionsPromise;
 }

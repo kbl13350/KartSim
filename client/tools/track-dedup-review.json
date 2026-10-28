@@ -1,0 +1,3759 @@
+{
+  "reviewedOn": "2026-10-28",
+  "policy": "保留反向、明显不同主题/昼夜/天气，以及路线、路面机制、机关或道具布置有实质差异的版本；仅圈数差异不另留地图。旧ID与资源保留用于回放和已有房间。",
+  "originalChoices": 921,
+  "visibleChoices": 796,
+  "hiddenAliases": 125,
+  "duplicateGroups": 103,
+  "method": "All 921 mounted choices were structurally screened. 202 candidate groups were reviewed using native browser sky, fog and materials in five shared camera views. Direction, weather, route surfaces, collision and object differences were checked before merging. Detail views resolve checkpoint gate variants. Screenshots stay in local output/track-dedup/.",
+  "reviews": [
+    {
+      "groupId": "group-9fd3138341c8",
+      "merges": [],
+      "keepDistinct": [
+        "ice_R01_village__boost_charge",
+        "ice_R01_village",
+        "ice_R01_village2",
+        "village_R01_lol",
+        "village_R01_night"
+      ],
+      "reason": "雪路、柏油雪路、普通城镇与夜景是不同可见主题；boost_charge 虽与普通雪路五视角像素一致，实读 2893 个碰撞三角全部为 bcharge，普通版为 1719 个 slip 与 1174 个跳跃表面，驾驶机制不同，保留。",
+      "evidence": [
+        "additional/contact-sheets/group-9fd3138341c8--01.png"
+      ]
+    },
+    {
+      "groupId": "group-0c7368ebe7e0",
+      "merges": [],
+      "keepDistinct": [
+        "village_I03_night_rvs",
+        "village_I03_old_rvs"
+      ],
+      "reason": "夜景与白天旧版全景、天空、照明、建筑色彩明显不同。",
+      "evidence": [
+        "additional/contact-sheets/group-0c7368ebe7e0--01.png"
+      ]
+    },
+    {
+      "groupId": "group-2fde5e8aaac7",
+      "merges": [],
+      "keepDistinct": [
+        "village_I03_night",
+        "village_I03_old"
+      ],
+      "reason": "夜景与白天旧版全景、天空、照明、建筑色彩明显不同。",
+      "evidence": [
+        "additional/contact-sheets/group-2fde5e8aaac7--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a7a3da3f038b",
+      "merges": [],
+      "keepDistinct": [
+        "village_I04_night_rvs",
+        "village_I04_old_rvs"
+      ],
+      "reason": "夜景与白天旧版全景明显不同；圈数5/3和gameType差异另记，不作为唯一保留依据。",
+      "evidence": [
+        "additional/contact-sheets/group-a7a3da3f038b--01.png"
+      ]
+    },
+    {
+      "groupId": "group-af3916be04fd",
+      "merges": [
+        {
+          "canonicalId": "village_I10",
+          "aliasIds": [
+            "facelift_village_I01__jp",
+            "facelift_village_I10",
+            "village_I01__jp"
+          ],
+          "reason": "五视角为同一日本樱花钟楼，路线/碰撞/几何一致；主要差异是广告牌、天空贴图，未改变主题布景。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": null,
+      "evidence": [
+        "additional/contact-sheets/group-af3916be04fd--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a929217d84be",
+      "merges": [
+        {
+          "canonicalId": "village_R11",
+          "aliasIds": [
+            "facelift_village_R11"
+          ],
+          "reason": "九份五视角街巷、山壁、海边和路口一致；主要差异为远处天空云层与广告，路线/碰撞一致。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": null,
+      "evidence": [
+        "additional/contact-sheets/group-a929217d84be--01.png"
+      ]
+    },
+    {
+      "groupId": "group-62de0de51fb2",
+      "merges": [
+        {
+          "canonicalId": "village_B01",
+          "aliasIds": [
+            "village_B02"
+          ],
+          "reason": "体育场布局、中心气球及五视角一致；局部跑道线/气球细节很小，路线碰撞与对象配置一致。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": null,
+      "evidence": [
+        "additional/contact-sheets/group-62de0de51fb2--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f38eba9b602a",
+      "merges": [
+        {
+          "canonicalId": "village_C114",
+          "aliasIds": [
+            "village_C114__jp"
+          ],
+          "reason": "体育场训练道路、路障和五视角一致；仅极小像素/动画误差，碰撞、路线、对象及配置一致。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": null,
+      "evidence": [
+        "additional/contact-sheets/group-f38eba9b602a--01.png"
+      ]
+    },
+    {
+      "groupId": "group-adeaabc12cb8",
+      "merges": [
+        {
+          "canonicalId": "forest_I03",
+          "aliasIds": [
+            "facelift_forest_I03"
+          ],
+          "reason": "普通山谷五视角场景一致，主要为广告牌替换。"
+        },
+        {
+          "canonicalId": "forest_I03__crz",
+          "aliasIds": [
+            "facelift_forest_I03__crz",
+            "facelift_forest_I10"
+          ],
+          "reason": "crz三者均带同位置彩色地面机关，五视角一致，主要广告差别。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "普通与crz机关版单独保留：crz存在彩色道具/机关带，不能跨组吞掉玩法差别。",
+      "evidence": [
+        "additional/contact-sheets/group-adeaabc12cb8--01.png"
+      ]
+    },
+    {
+      "groupId": "group-3beaf82eb7ca",
+      "merges": [
+        {
+          "canonicalId": "facelift_desert_I03__crz",
+          "aliasIds": [
+            "facelift_desert_I12"
+          ],
+          "reason": "新沙漠两者同机关带和五视角场景。"
+        }
+      ],
+      "keepDistinct": [
+        "desert_I03",
+        "desert_I09",
+        "desert_I03__crz",
+        "facelift_desert_I03",
+        "facelift_desert_I09"
+      ],
+      "reason": "原沙漠与新沙漠天空/岩壁/水体/路面颜色明显不同；普通、crz、跑跑人跨栏版机关不同，各保留。",
+      "evidence": [
+        "additional/contact-sheets/group-3beaf82eb7ca--01.png",
+        "additional/contact-sheets/group-3beaf82eb7ca--02.png"
+      ]
+    },
+    {
+      "groupId": "group-2ccf28f7233d",
+      "merges": [],
+      "keepDistinct": [
+        "desert_I07",
+        "facelift_desert_I07"
+      ],
+      "reason": "新旧沙漠水渠的天空、水体、岩壁和隧道材质明显不同。",
+      "evidence": [
+        "additional/contact-sheets/group-2ccf28f7233d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-2c51c72768f9",
+      "merges": [
+        {
+          "canonicalId": "village_I01",
+          "aliasIds": [
+            "facelift_village_I01"
+          ],
+          "reason": "五视角钟楼与道路布景一致，仅广告牌和局部纹理细节变化。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": null,
+      "evidence": [
+        "additional/contact-sheets/group-2c51c72768f9--01.png"
+      ]
+    },
+    {
+      "groupId": "group-d18031600a7d",
+      "merges": [
+        {
+          "canonicalId": "village_I02",
+          "aliasIds": [
+            "facelift_village_I02"
+          ],
+          "reason": "五视角手指道路、花坛、建筑和捷径一致，仅广告牌变化。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": null,
+      "evidence": [
+        "additional/contact-sheets/group-d18031600a7d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-d7ef8043e6bc",
+      "merges": [
+        {
+          "canonicalId": "village_I04",
+          "aliasIds": [
+            "facelift_village_I04"
+          ],
+          "reason": "普通运河五视角与布景一致，仅广告牌变化。"
+        },
+        {
+          "canonicalId": "village_I04__crz",
+          "aliasIds": [
+            "facelift_village_I04__crz",
+            "facelift_village_I15"
+          ],
+          "reason": "crz三者同彩色机关带，五视角布景一致，仅广告变化。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "普通与crz机关版分开保留。",
+      "evidence": [
+        "additional/contact-sheets/group-d7ef8043e6bc--01.png"
+      ]
+    },
+    {
+      "groupId": "group-31107bce62cb",
+      "merges": [
+        {
+          "canonicalId": "village_I08",
+          "aliasIds": [
+            "facelift_village_I08"
+          ],
+          "reason": "破碎钟楼同阴天、损毁建筑、树木和道路五视角；仅广告牌变化。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": null,
+      "evidence": [
+        "additional/contact-sheets/group-31107bce62cb--01.png"
+      ]
+    },
+    {
+      "groupId": "group-6cc9f156bd2d",
+      "merges": [
+        {
+          "canonicalId": "village_R01",
+          "aliasIds": [
+            "facelift_village_R01"
+          ],
+          "reason": "五视角城镇道路、桥梁、草木一致，仅广告差异；路线、碰撞、对象与配置指纹完全相同。"
+        }
+      ],
+      "keepDistinct": [
+        "beach_R11",
+        "moonhill_R07",
+        "northeu_R10",
+        "transFormer_R03_villageR01",
+        "xyy_village_R01"
+      ],
+      "reason": "同路线的 beach、moonhill、northeu、transFormer、xyy 分别呈现橙色海滨、霓虹夜景、紫色星空、金属路面及黄色土路等明显场景变化，逐一保留。",
+      "evidence": [
+        "additional/contact-sheets/group-6cc9f156bd2d--01.png",
+        "additional/contact-sheets/group-6cc9f156bd2d--02.png"
+      ]
+    },
+    {
+      "groupId": "group-457cec34ed8a",
+      "merges": [
+        {
+          "canonicalId": "village_R02",
+          "aliasIds": [
+            "facelift_village_R02"
+          ],
+          "reason": "五视角道路与建筑一致，主要差异为广告；路线、对象、配置完全相同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "新旧广告版本合并；碰撞修订已另核路面属性。",
+      "evidence": [
+        "additional/contact-sheets/group-457cec34ed8a--01.png"
+      ]
+    },
+    {
+      "groupId": "group-82cfc2d65cf4",
+      "merges": [],
+      "keepDistinct": [
+        "village_R13",
+        "village_R13_night"
+      ],
+      "reason": "白昼村庄与夜景灯光、天空明显不同，两版都保留。",
+      "evidence": [
+        "additional/contact-sheets/group-82cfc2d65cf4--01.png"
+      ]
+    },
+    {
+      "groupId": "group-91f5da1dfe9f",
+      "merges": [
+        {
+          "canonicalId": "village_R05",
+          "aliasIds": [
+            "facelift_village_R05"
+          ],
+          "reason": "五视角手指赛道、树木与建筑一致，仅广告变化；路线、碰撞、对象及配置完全相同。"
+        }
+      ],
+      "keepDistinct": [
+        "ice_R05_village"
+      ],
+      "reason": "冰雪版 ice_R05_village 有显著积雪与冰面主题变化，单独保留。",
+      "evidence": [
+        "additional/contact-sheets/group-91f5da1dfe9f--01.png"
+      ]
+    },
+    {
+      "groupId": "group-58bb08a4fe7f",
+      "merges": [
+        {
+          "canonicalId": "village_R07",
+          "aliasIds": [
+            "facelift_village_R07"
+          ],
+          "reason": "五视角城镇道路与建筑一致，仅广告变化；路线、对象和配置完全相同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "新旧广告版本合并；碰撞修订已另核路面属性。",
+      "evidence": [
+        "additional/contact-sheets/group-58bb08a4fe7f--01.png"
+      ]
+    },
+    {
+      "groupId": "group-9ede1273c81f",
+      "merges": [],
+      "keepDistinct": [
+        "ice_I03",
+        "ice_I03__crz"
+      ],
+      "reason": "普通版与 crz 版在圣诞装饰、冰雪建筑及地面机制对象上都有可见或结构差异，分别保留。",
+      "evidence": [
+        "additional/contact-sheets/group-9ede1273c81f--01.png"
+      ]
+    },
+    {
+      "groupId": "group-8db2b1a63d97",
+      "merges": [],
+      "keepDistinct": [
+        "tomb_I04",
+        "tomb_S01"
+      ],
+      "reason": "tomb_S01 带有明显任务检查点门牌，路线 section.surface 含 checkPoint1..5；与普通墓地关卡保留为独立场景。",
+      "evidence": [
+        "additional/contact-sheets/group-8db2b1a63d97--01.png"
+      ]
+    },
+    {
+      "groupId": "group-521a4b527b16",
+      "merges": [],
+      "keepDistinct": [
+        "tomb_R06",
+        "tomb_S04"
+      ],
+      "reason": "S04 在四处检查点位置有 R06 没有的黄黑门楼，且增加 264 个有效碰撞面，因此保留可见与碰撞场景变体。section.surface 的 checkPoint1..4 在当前 routeSurfaceKind 中为 noop，不宣称已有任务触发逻辑。",
+      "evidence": [
+        "additional/contact-sheets/group-521a4b527b16--01.png",
+        "checkpoint-detail/tomb_S04--page1.png",
+        "checkpoint-detail/tomb_S04--page2.png"
+      ]
+    },
+    {
+      "groupId": "group-c3138214fdd0",
+      "merges": [],
+      "keepDistinct": [
+        "mine_R04",
+        "mine_C04"
+      ],
+      "reason": "mine_C04 是 onlyItem 道具版，对象/道具箱配置改变；尽管矿井外观相近，保留两项。",
+      "evidence": [
+        "additional/contact-sheets/group-c3138214fdd0--01.png"
+      ]
+    },
+    {
+      "groupId": "group-13190c230563",
+      "merges": [
+        {
+          "canonicalId": "northeu_I04",
+          "aliasIds": [
+            "northeu_I04_old"
+          ],
+          "reason": "五视角实际道路、建筑与机械布置一致，主要为广告变化；对象与特殊路面属性一致。门 3→4 的边界宽度差 10 单位、普通碰撞三角差 111 属小幅边界修订，归当前正式版。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "确认无明显独立场景变化，微小计圈边界修订不单独占一个选图条目。",
+      "evidence": [
+        "additional/contact-sheets/group-13190c230563--01.png"
+      ]
+    },
+    {
+      "groupId": "group-cde75d6de273",
+      "merges": [
+        {
+          "canonicalId": "factory_I04",
+          "aliasIds": [
+            "factory_A04"
+          ],
+          "reason": "五视角实际道路、建筑与机械布置一致，仅广告变化；路线和对象类型/数量一致，特殊表面属性相同。两个 ToBlackPlane 平移约 0.9597 单位、普通碰撞三角差 22 为小幅边界修订，归当前正式版。"
+        }
+      ],
+      "keepDistinct": [
+        "factory_S02"
+      ],
+      "reason": "factory_S02 明显删去中央坡道，活动对象 5→2、道具箱 51→50，保留任务场景；仅合并 I04/A04 小边界修订版本。",
+      "evidence": [
+        "additional/contact-sheets/group-cde75d6de273--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7d61e9396da2",
+      "merges": [],
+      "keepDistinct": [
+        "factory_R03",
+        "factory_C03"
+      ],
+      "reason": "五视角像素一致，但 factory_C03 比 R03 多 116 个 ToItemCube，道具版配置必须保留。",
+      "evidence": [
+        "additional/contact-sheets/group-7d61e9396da2--01.png"
+      ]
+    },
+    {
+      "groupId": "group-dcc08bd04f56",
+      "merges": [],
+      "keepDistinct": [
+        "moonhill_R01",
+        "moonhill_R01_new"
+      ],
+      "reason": "旧月光都市为夜景，新版为白昼，天空、照明与建筑材料表现明显不同，保留。",
+      "evidence": [
+        "additional/contact-sheets/group-dcc08bd04f56--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f2369c915437",
+      "merges": [],
+      "keepDistinct": [
+        "moonhill_R02",
+        "moonhill_R02_new"
+      ],
+      "reason": "夜间城市与白昼城市主题明显不同，分别保留。",
+      "evidence": [
+        "additional/contact-sheets/group-f2369c915437--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f1af0efe220d",
+      "merges": [
+        {
+          "canonicalId": "moonhill_R04",
+          "aliasIds": [
+            "moonhill_R04_old"
+          ],
+          "reason": "五视角城市夜景、道路与桥梁相同，仅广告变化；路线及配置相同，对象差异仅浮点精度，最大 0.0001221 单位；特殊路面属性数量完全相同，普通碰撞三角仅差 1。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "旧版广告与序列化精度差异，不构成独立场景。",
+      "evidence": [
+        "additional/contact-sheets/group-f1af0efe220d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-138bccf3ad39",
+      "merges": [],
+      "keepDistinct": [
+        "gold_I03",
+        "gold_S02"
+      ],
+      "reason": "gold_S02 任务版删改了木箱/路锥等障碍，活动对象数量不同，部分障碍偏移约 70 单位、道具箱约 23 单位。即使固定视角近同仍保留，不当作圈数差异合并。",
+      "evidence": [
+        "additional/contact-sheets/group-138bccf3ad39--01.png"
+      ]
+    },
+    {
+      "groupId": "group-cc58c383facc",
+      "merges": [],
+      "keepDistinct": [
+        "china_I02",
+        "china_I08",
+        "china_I02__crz"
+      ],
+      "reason": "china_I02 普通版、china_I08 奔跑车手版的红白挡板、china_I02__crz 的彩色地面装置可见且对象配置不同，三者保留。",
+      "evidence": [
+        "additional/contact-sheets/group-cc58c383facc--01.png"
+      ]
+    },
+    {
+      "groupId": "group-198b7d4fd194",
+      "merges": [],
+      "keepDistinct": [
+        "china_R05",
+        "china_R05_night"
+      ],
+      "reason": "龙城正午与夜景天空、照明明显不同，两项保留。",
+      "evidence": [
+        "additional/contact-sheets/group-198b7d4fd194--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7442c3579403",
+      "merges": [
+        {
+          "canonicalId": "beach_I02_old",
+          "aliasIds": [
+            "beach_I02__s"
+          ],
+          "reason": "五视角海岸、码头、水面与道路一致，主要为广告变化；路线、碰撞、对象、配置及比赛参数完全相同，均无道具箱且含 45 个 bcharge 表面三角。"
+        }
+      ],
+      "keepDistinct": [
+        "beach_I02"
+      ],
+      "reason": "普通 beach_I02 有 36 个道具箱且没有这 45 个 bcharge 表面，因此只合并 old 与 s，保留普通版。",
+      "evidence": [
+        "additional/contact-sheets/group-7442c3579403--01.png"
+      ]
+    },
+    {
+      "groupId": "group-0c897813926f",
+      "merges": [
+        {
+          "canonicalId": "beach_I03",
+          "aliasIds": [
+            "beach_I03_old"
+          ],
+          "reason": "五视角海滩、港口和路线一致，仅广告变化；路线与配置完全相同，对象差异只是 LastPose 文本换行，特殊表面数量一致，木桥声音面三角仅差 2。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "广告与模型微小修订，不构成独立主题或玩法。",
+      "evidence": [
+        "additional/contact-sheets/group-0c897813926f--01.png"
+      ]
+    },
+    {
+      "groupId": "group-6e6557629d29",
+      "merges": [],
+      "keepDistinct": [
+        "world_I03",
+        "world_I04",
+        "world_I03__crz"
+      ],
+      "reason": "希腊普通版、奔跑车手版与 crz 版分别具有空地、红白挡板和彩色地面装置，保留三种真实场景配置。",
+      "evidence": [
+        "additional/contact-sheets/group-6e6557629d29--01.png"
+      ]
+    },
+    {
+      "groupId": "group-0935513e7541",
+      "merges": [
+        {
+          "canonicalId": "world_R01",
+          "aliasIds": [
+            "world_R01_old"
+          ],
+          "reason": "五视角纽约街道、建筑与道路一致，仅广告变化；路线与配置完全相同，对象差异只有 LastPose 文本换行，所有特殊表面数量相同，普通碰撞三角差 11。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "纽约新旧广告版本合并。",
+      "evidence": [
+        "additional/contact-sheets/group-0935513e7541--01.png"
+      ]
+    },
+    {
+      "groupId": "group-dbedb36f9817",
+      "merges": [],
+      "keepDistinct": [
+        "world_R10",
+        "world_R10_old"
+      ],
+      "reason": "图像主体相同，但 world_R10_old 新增 217 个 DF0.5 表面三角，木箱障碍位置最多偏移 8.0738 单位，计圈门边界也变化；保留驾驶机制及障碍布置不同的版本。",
+      "evidence": [
+        "additional/contact-sheets/group-dbedb36f9817--01.png"
+      ]
+    },
+    {
+      "groupId": "group-c53f308261b3",
+      "merges": [],
+      "keepDistinct": [
+        "world_R02",
+        "world_C02"
+      ],
+      "reason": "world_C02 道具版的俯瞰存在明显缺省/删改区域，且 onlyItem、道具箱与场景对象配置不同，独立保留。",
+      "evidence": [
+        "additional/contact-sheets/group-c53f308261b3--01.png"
+      ]
+    },
+    {
+      "groupId": "group-4abafca3fc1e",
+      "merges": [],
+      "keepDistinct": [
+        "world_R05",
+        "world_R05_old"
+      ],
+      "reason": "五视角巴黎铁塔主体近同，但旧版与现版重置面三角为 19 vs 40，总碰撞三角 14854 vs 15295；回正区域覆盖及碰撞边界实质不同，保留这一物理边界版本。",
+      "evidence": [
+        "additional/contact-sheets/group-4abafca3fc1e--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a4a213f3fcf8",
+      "merges": [
+        {
+          "canonicalId": "world_R06",
+          "aliasIds": [
+            "world_R06_old"
+          ],
+          "reason": "五视角的比萨建筑、道路、天空一致，仅广告牌不同；唯一动态障碍的类型、属性、transform已核对相同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "additional/contact-sheets/group-a4a213f3fcf8--01.png"
+      ]
+    },
+    {
+      "groupId": "group-6d77b382528f",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "nemo_R02",
+          "reason": "五视角场景一致，但道具版新增195个ToItemCube、isOnlyItemTrack=true，属于实际道具点与玩法差异。"
+        },
+        {
+          "id": "nemo_C02",
+          "reason": "五视角场景一致，但道具版新增195个ToItemCube、isOnlyItemTrack=true，属于实际道具点与玩法差异。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-6d77b382528f--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f31f5893a46b",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "sword_R01",
+          "reason": "与旧版/另一来源存在实际碰撞或路面机制差异，见本组安全复核。"
+        },
+        {
+          "id": "sword_R01_old",
+          "reason": "本项重置区域面积约 69064，sword_R01 约 90440，并跨越明显不同范围；不是三角网格重分，保留重置边界差异。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-f31f5893a46b--01.png"
+      ]
+    },
+    {
+      "groupId": "group-88b15dd3b4e3",
+      "merges": [
+        {
+          "canonicalId": "camelot_R02",
+          "aliasIds": [
+            "camelot_R02_old"
+          ],
+          "reason": "五视角城堡内外、路面、夜色与天空一致，仅地区广告不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "2/3相机在天花板下受遮挡，另外四视角可直接比较；没有依此被遮挡视角作差异判断。",
+      "evidence": [
+        "additional/contact-sheets/group-88b15dd3b4e3--01.png"
+      ]
+    },
+    {
+      "groupId": "group-8f9842d1be45",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "olympos_I02",
+          "reason": "主体场景相同，但S02的起点及终点增加黄黑检查点门；另有道具3圈/竞速1圈规则差异，保留剧情检查点版本。"
+        },
+        {
+          "id": "olympos_S02",
+          "reason": "主体场景相同，但S02的起点及终点增加黄黑检查点门；另有道具3圈/竞速1圈规则差异，保留剧情检查点版本。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-8f9842d1be45--01.png"
+      ]
+    },
+    {
+      "groupId": "group-9614e86cc820",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "olympos_R02",
+          "reason": "主体场景相同，但S01起点及沿途增加黄黑检查点门，属于检查点玩法版本；不仅是2圈/1圈差异。"
+        },
+        {
+          "id": "olympos_S01",
+          "reason": "主体场景相同，但S01起点及沿途增加黄黑检查点门，属于检查点玩法版本；不仅是2圈/1圈差异。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-9614e86cc820--01.png"
+      ]
+    },
+    {
+      "groupId": "group-eff439ec00bd",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "maple_R01",
+          "reason": "针对路线段 2/5/9/14/18/20/23 补拍，S01 真实显示 7 个黄黑门楼，R01 没有；S01 有 2394 个有效碰撞三角，R01 为 2282，新增门楼网格共 112 面。因此保留场景和碰撞差异。"
+        },
+        {
+          "id": "maple_S01",
+          "reason": "针对路线段 2/5/9/14/18/20/23 补拍，S01 真实显示 7 个黄黑门楼，R01 没有；S01 有 2394 个有效碰撞三角，R01 为 2282，新增门楼网格共 112 面。因此保留场景和碰撞差异。"
+        }
+      ],
+      "notes": "routeSurfaceKind(checkPoint1..7) 当前均返回 noop，没有实现检查点任务逻辑；lensflare 是光晕标签，圈数 2 / 1 也不是此项保留依据。保留依据是针对位置补拍确认的真实门楼和已进入碰撞列表的网格。",
+      "evidence": [
+        "additional/contact-sheets/group-eff439ec00bd--01.png",
+        "checkpoint-detail/maple_S01--page1.png",
+        "checkpoint-detail/maple_S01--page2.png",
+        "checkpoint-detail/maple_S01--page3.png"
+      ]
+    },
+    {
+      "groupId": "group-ad43a7a239af",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "fengshen_I02",
+          "reason": "五视角天空、寺庙、道路基本一致，但道具点37与6个不同，且为道具赛/仙人之资剧情关卡两套配置。"
+        },
+        {
+          "id": "fengshen_S06",
+          "reason": "五视角天空、寺庙、道路基本一致，但道具点37与6个不同，且为道具赛/仙人之资剧情关卡两套配置。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-ad43a7a239af--01.png"
+      ]
+    },
+    {
+      "groupId": "group-9819e1d3ae45",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "forest_I04_rvs",
+          "reason": "与旧版/另一来源存在实际碰撞或路面机制差异，见本组安全复核。"
+        },
+        {
+          "id": "facelift_forest_I04_rvs",
+          "reason": "11 个大面积地面在本项为 리셋（触发重置），forest_I04_rvs 为 촋（不触发）；此外 DF0.3 区面积约 657 对 1191，保留实际路面机制差异。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-9819e1d3ae45--01.png"
+      ]
+    },
+    {
+      "groupId": "group-ca1c4ed639d0",
+      "merges": [
+        {
+          "canonicalId": "village_I01_rvs",
+          "aliasIds": [
+            "facelift_village_I01_rvs"
+          ],
+          "reason": "五视角反向钟楼路线、风车与城镇建筑、道路、天空一致，仅地区广告不同；仅合并反向两版。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "additional/contact-sheets/group-ca1c4ed639d0--01.png"
+      ]
+    },
+    {
+      "groupId": "group-3282b4c2d4da",
+      "merges": [
+        {
+          "canonicalId": "village_I02_rvs",
+          "aliasIds": [
+            "facelift_village_I02_rvs"
+          ],
+          "reason": "五视角反向手指道路、建筑、天空相同，仅广告与R门标志画法不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "additional/contact-sheets/group-3282b4c2d4da--01.png"
+      ]
+    },
+    {
+      "groupId": "group-367342c5f7f3",
+      "merges": [
+        {
+          "canonicalId": "village_R01_rvs",
+          "aliasIds": [
+            "facelift_village_R01_rvs"
+          ],
+          "reason": "反向普通/新城镇高速的五视角道路、建筑、蓝天相同，仅广告不同。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "beach_R11_rvs",
+          "reason": "五视角存在明显天空或道路材质主题差异：夕阳、夜景、太空紫色路面、机械道路、黄色土路；分别保留。"
+        },
+        {
+          "id": "moonhill_R07_rvs",
+          "reason": "五视角存在明显天空或道路材质主题差异：夕阳、夜景、太空紫色路面、机械道路、黄色土路；分别保留。"
+        },
+        {
+          "id": "northeu_R10_rvs",
+          "reason": "五视角存在明显天空或道路材质主题差异：夕阳、夜景、太空紫色路面、机械道路、黄色土路；分别保留。"
+        },
+        {
+          "id": "transFormer_R03_villageR01_rvs",
+          "reason": "五视角存在明显天空或道路材质主题差异：夕阳、夜景、太空紫色路面、机械道路、黄色土路；分别保留。"
+        },
+        {
+          "id": "xyy_village_R01_rvs",
+          "reason": "五视角存在明显天空或道路材质主题差异：夕阳、夜景、太空紫色路面、机械道路、黄色土路；分别保留。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-367342c5f7f3--01.png",
+        "additional/contact-sheets/group-367342c5f7f3--02.png"
+      ]
+    },
+    {
+      "groupId": "group-ad3fae4ce6a5",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "china_I01_rvs",
+          "reason": "与旧版/另一来源存在实际碰撞或路面机制差异，见本组安全复核。"
+        },
+        {
+          "id": "china_I01_old_rvs",
+          "reason": "实际碰撞 9 面的阻力 surface 为 DF1.5，而 china_I01_rvs 是 DF0.5；当前物理引擎直接消费 DF 数值，保留驾驶差异。"
+        }
+      ],
+      "notes": "保留天空完整的正式CN版；旧TW源目录仅track_rvs.1s。",
+      "evidence": [
+        "additional/contact-sheets/group-ad3fae4ce6a5--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7c237fb29eeb",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "china_R07_rvs",
+          "reason": "旧版木桥两侧实际多出黄黑立柱；碰撞5910/5926三角且road mesh替换，属于碰撞障碍差异。旧版黑天是原目录缺skydome，不作为保留理由。"
+        },
+        {
+          "id": "china_R07_old_rvs",
+          "reason": "旧版木桥两侧实际多出黄黑立柱；碰撞5910/5926三角且road mesh替换，属于碰撞障碍差异。旧版黑天是原目录缺skydome，不作为保留理由。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-7c237fb29eeb--01.png"
+      ]
+    },
+    {
+      "groupId": "group-009e295134a9",
+      "merges": [
+        {
+          "canonicalId": "village_B01",
+          "aliasIds": [
+            "village_B02"
+          ],
+          "reason": "五视角为同一田径场、看台、天空；中央气球细微纹理/朝向不同。164个金币点、9个dummy、TrackObject字段及规则/配置均相同。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "ice_B01",
+          "reason": "圣诞雪地冰场与田径场主题不同。"
+        },
+        {
+          "id": "village_B03",
+          "reason": "中式建筑、灯笼环绕的场地主题与普通看台不同。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-009e295134a9--01.png"
+      ]
+    },
+    {
+      "groupId": "group-ec228d44a857",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_I02__xmas_rvs",
+          "reason": "五视角冰壁、冰面、水面、天空、起终点材质明显不同；保留新旧冰河圣诞反向两版。"
+        },
+        {
+          "id": "ice_I02_old__xmas_rvs",
+          "reason": "五视角冰壁、冰面、水面、天空、起终点材质明显不同；保留新旧冰河圣诞反向两版。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-ec228d44a857--01.png"
+      ]
+    },
+    {
+      "groupId": "group-aa785e0555c3",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_I03__xmas_rvs",
+          "reason": "五视角冰雪路面、冰壁、天空及电子路牌样式明显不同；保留新旧冰河圣诞反向两版。"
+        },
+        {
+          "id": "ice_I03_old__xmas_rvs",
+          "reason": "五视角冰雪路面、冰壁、天空及电子路牌样式明显不同；保留新旧冰河圣诞反向两版。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-aa785e0555c3--01.png"
+      ]
+    },
+    {
+      "groupId": "group-8830f02b90ac",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_P01",
+          "reason": "冰岛钓场、乡间木码头、夜间邮轮钓场的建筑、背景、材质与昼夜完全不同，三图保留。"
+        },
+        {
+          "id": "mabi_P01",
+          "reason": "冰岛钓场、乡间木码头、夜间邮轮钓场的建筑、背景、材质与昼夜完全不同，三图保留。"
+        },
+        {
+          "id": "moonhill_P01",
+          "reason": "冰岛钓场、乡间木码头、夜间邮轮钓场的建筑、背景、材质与昼夜完全不同，三图保留。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-8830f02b90ac--01.png"
+      ]
+    },
+    {
+      "groupId": "group-74306b0f8b67",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "moonhill_I01_sn08",
+          "reason": "五视角同一夜间工地，但sn08没有ToItemCube，旧常规版有25个；属于任务/道具点差异，非仅1圈/3圈差异。"
+        },
+        {
+          "id": "moonhill_I01_old",
+          "reason": "五视角同一夜间工地，但sn08没有ToItemCube，旧常规版有25个；属于任务/道具点差异，非仅1圈/3圈差异。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-74306b0f8b67--01.png"
+      ]
+    },
+    {
+      "groupId": "group-110f792b600b",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "nemo_S03",
+          "reason": "针对路线段 4/8/13/17 补拍，S03 真实显示 4 个黄黑门楼，S01 没有；S03 有 5485 个有效碰撞三角，S01 为 5421，新增门楼网格共 64 面。因此保留场景和碰撞差异。"
+        },
+        {
+          "id": "nemo_S01",
+          "reason": "针对路线段 4/8/13/17 补拍，S03 真实显示 4 个黄黑门楼，S01 没有；S03 有 5485 个有效碰撞三角，S01 为 5421，新增门楼网格共 64 面。因此保留场景和碰撞差异。"
+        }
+      ],
+      "notes": "routeSurfaceKind(checkPoint1..4) 当前返回 noop，不以已实现的剧情检查点逻辑作为依据。保留依据是实际可见门楼与有效碰撞网格。",
+      "evidence": [
+        "additional/contact-sheets/group-110f792b600b--01.png",
+        "checkpoint-detail/nemo_S03--page1.png",
+        "checkpoint-detail/nemo_S03--page2.png"
+      ]
+    },
+    {
+      "groupId": "group-6b65ce9eb5cb",
+      "merges": [
+        {
+          "canonicalId": "village_R01__cn",
+          "aliasIds": [
+            "facelift_village_R01__cn",
+            "village_R01_cn"
+          ],
+          "reason": "五视角同一中国城镇高速道路、建筑、植被和晴天；差别为广告及白云纹理细节，选择正式CN版。"
+        },
+        {
+          "canonicalId": "village_R01_vn",
+          "aliasIds": [
+            "village_R01__vn"
+          ],
+          "reason": "五视角同一越南门楼、道路、天空及植被，只有广告/亮度细节差异。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "beach_R11__cn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "beach_R11__ru",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "beach_R11__vn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "ice_R01_village__cn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "ice_R01_village__ru",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "ice_R01_village__vn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "ice_R01_village2__cn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "ice_R01_village2__ru",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "ice_R01_village2__vn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "moonhill_R07__cn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "moonhill_R07__ru",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "moonhill_R07__vn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "northeu_R10__cn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "northeu_R10__ru",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "northeu_R10__vn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "village_R01_ru",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "xyy_village_R01__cn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "xyy_village_R01__ru",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        },
+        {
+          "id": "xyy_village_R01__vn",
+          "reason": "夕阳、月夜、太空紫色道路、全冰面、雪景柏油或黄色土路各主题明显不同；同主题跨地区也有中式/俄式/越式门楼和树景差别，分别保留。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-6b65ce9eb5cb--01.png",
+        "additional/contact-sheets/group-6b65ce9eb5cb--02.png",
+        "additional/contact-sheets/group-6b65ce9eb5cb--03.png",
+        "additional/contact-sheets/group-6b65ce9eb5cb--04.png"
+      ]
+    },
+    {
+      "groupId": "group-09d6e75c6152",
+      "merges": [
+        {
+          "canonicalId": "village_R01__d_rvs",
+          "aliasIds": [
+            "facelift_village_R01__d_rvs"
+          ],
+          "reason": "五视角同一普通城镇道路、建筑、晴天天空；只差广告与细微贴图。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "beach_R11__d_rvs",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "ice_R01_village__d_rvs",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "ice_R01_village2__d_rvs",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "moonhill_R07__d_rvs",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "northeu_R10__d_rvs",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "xyy_village_R01__d_rvs",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-09d6e75c6152--01.png",
+        "additional/contact-sheets/group-09d6e75c6152--02.png"
+      ]
+    },
+    {
+      "groupId": "group-0745fdc8ecad",
+      "merges": [
+        {
+          "canonicalId": "village_R01_th",
+          "aliasIds": [
+            "village_R01__th"
+          ],
+          "reason": "五视角同一普通城镇道路、建筑、晴天天空；只差广告与细微贴图。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "beach_R11__th",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "ice_R01_village__th",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "ice_R01_village2__th",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "moonhill_R07__th",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "northeu_R10__th",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        },
+        {
+          "id": "xyy_village_R01__th",
+          "reason": "同一路线却有夕阳/夜景/紫色太空/全冰面/雪景柏油/黄土路等显著环境主题变化，分别保留。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-0745fdc8ecad--01.png",
+        "additional/contact-sheets/group-0745fdc8ecad--02.png"
+      ]
+    },
+    {
+      "groupId": "group-b26aa47d6e7d",
+      "merges": [
+        {
+          "canonicalId": "village_I01__cn",
+          "aliasIds": [
+            "facelift_village_I01__cn",
+            "village_I01_anycall__cn",
+            "village_I01_cn"
+          ],
+          "reason": "五视角同一中国牌楼、灯笼、钟楼、道路与晴天；广告、白云和贴图清晰度差异不构成新场景。"
+        },
+        {
+          "canonicalId": "village_I01__vn",
+          "aliasIds": [
+            "facelift_village_I01__vn",
+            "village_I01_vn"
+          ],
+          "reason": "五视角同一越南门楼、沿路建筑、钟楼、道路；只有广告、白云和贴图清晰度差别。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "village_I01_old",
+          "reason": "旧普通版没有中国牌楼/灯笼或越南门楼和楼阁；与本组两种地区建筑场景区分保留。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-b26aa47d6e7d--01.png",
+        "additional/contact-sheets/group-b26aa47d6e7d--02.png"
+      ]
+    },
+    {
+      "groupId": "group-116e16d94585",
+      "merges": [
+        {
+          "canonicalId": "village_I04__cn",
+          "aliasIds": [
+            "facelift_village_I04__cn",
+            "village_I04_cn"
+          ],
+          "reason": "五视角同为中国运河布景，建筑、道路、天空相同，仅广告及细微材质清晰度差异。"
+        },
+        {
+          "canonicalId": "village_I04_vn",
+          "aliasIds": [
+            "village_I04__vn"
+          ],
+          "reason": "五视角越南运河布景相同。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "中国与越南版实际建筑布景不同，分成两个保留组。",
+      "evidence": [
+        "additional/contact-sheets/group-116e16d94585--01.png"
+      ]
+    },
+    {
+      "groupId": "group-0015ce8ea174",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_A04",
+          "reason": "五视角中指路板、冰屋入口和企鹅朝向不同，保留实际反向布景；碰撞面 7782 / 7893，存在方向相关几何差异。"
+        },
+        {
+          "id": "ice_R06",
+          "reason": "五视角中指路板、冰屋入口和企鹅朝向不同，保留实际反向布景；碰撞面 7782 / 7893，存在方向相关几何差异。"
+        }
+      ],
+      "notes": "两图主路线采样相同且均为竞速 4 圈；保留依据为实际朝向和碰撞内容，不依据 A/R 名字。",
+      "evidence": [
+        "additional/contact-sheets/group-0015ce8ea174--01.png"
+      ]
+    },
+    {
+      "groupId": "group-59f6423139fa",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_I05_old_rvs",
+          "reason": "圣诞版增加圣诞树、糖果装饰和彩灯且启用降雪；普通旧反向版没有这些装饰且不下雪。"
+        },
+        {
+          "id": "ice_I05_old__xmas_rvs",
+          "reason": "圣诞版增加圣诞树、糖果装饰和彩灯且启用降雪；普通旧反向版没有这些装饰且不下雪。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-59f6423139fa--01.png"
+      ]
+    },
+    {
+      "groupId": "group-612c72fb39ae",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "korea_I03",
+          "reason": "与旧版/另一来源存在实际碰撞或路面机制差异，见本组安全复核。"
+        },
+        {
+          "id": "korea_I03_old",
+          "reason": "本项额外约 1826 个普通碰撞三角，普通碰撞面积约 595169 对 341776，超出细微网格修订范围；保留碰撞版本。"
+        }
+      ],
+      "notes": "已核实原始台服目录：旧版只有模型及预览图，没有 skydome；常规目录包含 skydome。旧版黑底属源资源缺失，不是独立夜景。",
+      "evidence": [
+        "additional/contact-sheets/group-612c72fb39ae--01.png"
+      ]
+    },
+    {
+      "groupId": "group-22bdae7e328d",
+      "merges": [
+        {
+          "canonicalId": "korea_R01",
+          "aliasIds": [
+            "korea_R01_old"
+          ],
+          "reason": "五视角白天城市道路和布景相同，旧版源文件夹缺天空。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "korea_R01_night",
+          "reason": "真正夜间版具有暗色道路、建筑材质与夜云天空。"
+        },
+        {
+          "id": "korea_S01",
+          "reason": "实际存在黄色黑色检查点门，保留剧情关卡玩法。"
+        }
+      ],
+      "notes": "已核实原始台服目录：旧版只有模型及预览图，没有 skydome；常规目录包含 skydome。旧版黑底属源资源缺失，不是独立夜景。",
+      "evidence": [
+        "additional/contact-sheets/group-22bdae7e328d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-1b3267c41caa",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "korea_R02",
+          "reason": "与旧版/另一来源存在实际碰撞或路面机制差异，见本组安全复核。"
+        },
+        {
+          "id": "korea_R02_old",
+          "reason": "同名 ToBlackPlane bp009 相对 korea_R02 平移约 13.8 个世界单位，超过本轮允许的微小几何修订；保留屏障边界版本。"
+        }
+      ],
+      "notes": "已核实原始台服目录：旧版只有模型及预览图，没有 skydome；常规目录包含 skydome。旧版黑底属源资源缺失，不是独立夜景。",
+      "evidence": [
+        "additional/contact-sheets/group-1b3267c41caa--01.png"
+      ]
+    },
+    {
+      "groupId": "group-2b27673d6716",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "moonhill_A03_rvs",
+          "reason": "反向 A03 与 I03 实际 R 标志门、雕像和道路边道具不同，道具点 27 / 33；同为道具 3 圈仍保留。"
+        },
+        {
+          "id": "moonhill_I03_rvs",
+          "reason": "反向 A03 与 I03 实际 R 标志门、雕像和道路边道具不同，道具点 27 / 33；同为道具 3 圈仍保留。"
+        }
+      ],
+      "notes": "区别于正向 moonhill_A03/I03 的单独审核结果，不通过目录名字推断玩法。",
+      "evidence": [
+        "additional/contact-sheets/group-2b27673d6716--01.png"
+      ]
+    },
+    {
+      "groupId": "group-ee5f01cec58b",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "park_T01",
+          "reason": "鸟瞰及四近景可见中心喷泉、左侧支路、桥和城堡布局不同；道具点 80 / 48，金币 20 / 0。"
+        },
+        {
+          "id": "village_T02",
+          "reason": "鸟瞰及四近景可见中心喷泉、左侧支路、桥和城堡布局不同；道具点 80 / 48，金币 20 / 0。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-ee5f01cec58b--01.png"
+      ]
+    },
+    {
+      "groupId": "group-5d74c025ddba",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "park_T02",
+          "reason": "同一公园主体，但 T02 在赛道上有实际绿色跳跃/加速板，T03 没有，属于玩法障碍差异。"
+        },
+        {
+          "id": "park_T03",
+          "reason": "同一公园主体，但 T02 在赛道上有实际绿色跳跃/加速板，T03 没有，属于玩法障碍差异。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-5d74c025ddba--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f3578ebc06d1",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "park_T06",
+          "reason": "T07 中心有大型升高圆平台及四条支路，T06 是草地网格；近景可见真实高度遮挡差异，金币数 24 / 28。"
+        },
+        {
+          "id": "park_T07",
+          "reason": "T07 中心有大型升高圆平台及四条支路，T06 是草地网格；近景可见真实高度遮挡差异，金币数 24 / 28。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-f3578ebc06d1--01.png"
+      ]
+    },
+    {
+      "groupId": "group-4c1409309f18",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "village_C113",
+          "reason": "C113 为平坦场地，F01 有抬高外环及中央障碍平台、道具堆；地形和玩法明显不同，道具点 21 / 34。"
+        },
+        {
+          "id": "village_F01",
+          "reason": "C113 为平坦场地，F01 有抬高外环及中央障碍平台、道具堆；地形和玩法明显不同，道具点 21 / 34。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-4c1409309f18--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a33d17bf594d",
+      "merges": [
+        {
+          "canonicalId": "village_I04_old_rvs",
+          "aliasIds": [
+            "village_I04_ru_rvs"
+          ],
+          "reason": "五视角同为白天石板运河、欧洲房屋和蓝天；此反向 ru 文件没有正向俄式新增建筑，仅细微颜色/广告差异。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "village_I04_night_rvs",
+          "reason": "夜空、月亮、道路与发光窗户均为真正夜间材质，保留。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-a33d17bf594d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-b1e5995eb457",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "village_I04_night",
+          "reason": "夜间版有月亮、夜云、暗色道路及发光窗户，旧版为明亮白天蓝天，实际场景明显不同。"
+        },
+        {
+          "id": "village_I04_old",
+          "reason": "夜间版有月亮、夜云、暗色道路及发光窗户，旧版为明亮白天蓝天，实际场景明显不同。"
+        }
+      ],
+      "evidence": [
+        "additional/contact-sheets/group-b1e5995eb457--01.png"
+      ]
+    },
+    {
+      "groupId": "group-125f39919f00",
+      "merges": [
+        {
+          "canonicalId": "village_I04_ru",
+          "aliasIds": [
+            "village_I04__ru"
+          ],
+          "reason": "五视角同一俄罗斯运河：彩色洋葱顶、白色门楼、道路材质均一致。"
+        },
+        {
+          "canonicalId": "village_I04_th",
+          "aliasIds": [
+            "village_I04__th"
+          ],
+          "reason": "五视角同一泰国运河：金色门楼、泰式屋顶、棕榈树及路面一致。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "俄罗斯与泰国不是广告文字变化：实际建筑/植被明显不同，因此保留两个主题。",
+      "evidence": [
+        "additional/contact-sheets/group-125f39919f00--01.png"
+      ]
+    },
+    {
+      "groupId": "group-bf6281513311",
+      "merges": [
+        {
+          "canonicalId": "forest_I01",
+          "aliasIds": [
+            "facelift_forest_I01"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-bf6281513311--01.png"
+      ]
+    },
+    {
+      "groupId": "group-56391a7b236a",
+      "merges": [
+        {
+          "canonicalId": "forest_I02",
+          "aliasIds": [
+            "facelift_forest_I02"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-56391a7b236a--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a7f752c84c2e",
+      "merges": [
+        {
+          "canonicalId": "forest_I03",
+          "aliasIds": [
+            "facelift_forest_I03"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-a7f752c84c2e--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7094bd73ebd7",
+      "merges": [
+        {
+          "canonicalId": "forest_I04",
+          "aliasIds": [
+            "facelift_forest_I04"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-7094bd73ebd7--01.png"
+      ]
+    },
+    {
+      "groupId": "group-81f47116e54a",
+      "merges": [
+        {
+          "canonicalId": "forest_I05",
+          "aliasIds": [
+            "facelift_forest_I05"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-81f47116e54a--01.png"
+      ]
+    },
+    {
+      "groupId": "group-e72f7fd553cf",
+      "merges": [
+        {
+          "canonicalId": "forest_I06",
+          "aliasIds": [
+            "facelift_forest_I06"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-e72f7fd553cf--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7a104d538419",
+      "merges": [
+        {
+          "canonicalId": "forest_I07",
+          "aliasIds": [
+            "facelift_forest_I07"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-7a104d538419--01.png"
+      ]
+    },
+    {
+      "groupId": "group-29ac7d378ab5",
+      "merges": [
+        {
+          "canonicalId": "forest_R02",
+          "aliasIds": [
+            "facelift_forest_R02"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌和桥面石砖细节贴图。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-29ac7d378ab5--01.png"
+      ]
+    },
+    {
+      "groupId": "group-c31e9ea5a0ce",
+      "merges": [
+        {
+          "canonicalId": "forest_R04",
+          "aliasIds": [
+            "facelift_forest_R04"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-c31e9ea5a0ce--01.png"
+      ]
+    },
+    {
+      "groupId": "group-313129fe27a5",
+      "merges": [
+        {
+          "canonicalId": "forest_R05",
+          "aliasIds": [
+            "facelift_forest_R05"
+          ],
+          "reason": "五视角确认相同道路、建筑、植被、昼夜和天空；区别为地区广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-313129fe27a5--01.png"
+      ]
+    },
+    {
+      "groupId": "group-d9a44ce417f0",
+      "merges": [
+        {
+          "canonicalId": "forest_R06",
+          "aliasIds": [
+            "facelift_forest_R06"
+          ],
+          "reason": "五视角确认相同牧场道路、房屋、羊群与天空；仅地区广告不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-d9a44ce417f0--01.png"
+      ]
+    },
+    {
+      "groupId": "group-970300bb2cd6",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I01",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_I01",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-970300bb2cd6--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a2ffa2b61812",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I10",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_I10",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-a2ffa2b61812--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7f4fd304d334",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I02",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_I02",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-7f4fd304d334--01.png"
+      ]
+    },
+    {
+      "groupId": "group-008f4e3f142d",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I03",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_I03",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-008f4e3f142d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-4bab11433bd5",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I04",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_I04",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-4bab11433bd5--01.png"
+      ]
+    },
+    {
+      "groupId": "group-bee1e2fd09cd",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I05",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_I05",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-bee1e2fd09cd--01.png"
+      ]
+    },
+    {
+      "groupId": "group-5c2838c84c36",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I06",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_I06",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-5c2838c84c36--01.png"
+      ]
+    },
+    {
+      "groupId": "group-3df2fd928249",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I08",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_I08",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-3df2fd928249--01.png"
+      ]
+    },
+    {
+      "groupId": "group-56e33da74395",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I09",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_I09",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-56e33da74395--01.png"
+      ]
+    },
+    {
+      "groupId": "group-1445acb077bf",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_R01",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_R01",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-1445acb077bf--01.png"
+      ]
+    },
+    {
+      "groupId": "group-70280eec999f",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_R02",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_R02",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-70280eec999f--01.png"
+      ]
+    },
+    {
+      "groupId": "group-6e2144eb2b59",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_R04",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        },
+        {
+          "id": "facelift_desert_R04",
+          "reason": "天空、道路、山石与建筑的整体色彩和材质均明显不同；保留新旧沙漠场景。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-6e2144eb2b59--01.png"
+      ]
+    },
+    {
+      "groupId": "group-d7f99c174e10",
+      "merges": [
+        {
+          "canonicalId": "village_I03",
+          "aliasIds": [
+            "facelift_village_I03"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-d7f99c174e10--01.png"
+      ]
+    },
+    {
+      "groupId": "group-c38130958bd8",
+      "merges": [
+        {
+          "canonicalId": "village_I12",
+          "aliasIds": [
+            "facelift_village_I12"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-c38130958bd8--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f125e4c1477b",
+      "merges": [
+        {
+          "canonicalId": "village_I04",
+          "aliasIds": [
+            "facelift_village_I04"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-f125e4c1477b--01.png"
+      ]
+    },
+    {
+      "groupId": "group-4d0d5b09661c",
+      "merges": [
+        {
+          "canonicalId": "village_I05",
+          "aliasIds": [
+            "facelift_village_I05"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-4d0d5b09661c--01.png"
+      ]
+    },
+    {
+      "groupId": "group-6afb1ef6f23e",
+      "merges": [
+        {
+          "canonicalId": "village_I15",
+          "aliasIds": [
+            "village_I09"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-6afb1ef6f23e--01.png"
+      ]
+    },
+    {
+      "groupId": "group-c89862783693",
+      "merges": [
+        {
+          "canonicalId": "village_I07",
+          "aliasIds": [
+            "facelift_village_I07"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-c89862783693--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7860ab905aa6",
+      "merges": [
+        {
+          "canonicalId": "village_R01",
+          "aliasIds": [
+            "facelift_village_R01"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-7860ab905aa6--01.png"
+      ]
+    },
+    {
+      "groupId": "group-0dc77ea1c744",
+      "merges": [
+        {
+          "canonicalId": "village_R10",
+          "aliasIds": [
+            "facelift_village_R10"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-0dc77ea1c744--01.png"
+      ]
+    },
+    {
+      "groupId": "group-1c868c38cbc5",
+      "merges": [
+        {
+          "canonicalId": "village_R03",
+          "aliasIds": [
+            "facelift_village_R03"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-1c868c38cbc5--01.png"
+      ]
+    },
+    {
+      "groupId": "group-abfa057247fa",
+      "merges": [
+        {
+          "canonicalId": "village_R12",
+          "aliasIds": [
+            "facelift_village_R12"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-abfa057247fa--01.png"
+      ]
+    },
+    {
+      "groupId": "group-36babcb26c84",
+      "merges": [
+        {
+          "canonicalId": "village_R04",
+          "aliasIds": [
+            "facelift_village_R04"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-36babcb26c84--01.png"
+      ]
+    },
+    {
+      "groupId": "group-15c0f4c26af3",
+      "merges": [
+        {
+          "canonicalId": "village_R05",
+          "aliasIds": [
+            "facelift_village_R05"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-15c0f4c26af3--01.png"
+      ]
+    },
+    {
+      "groupId": "group-1470e431016d",
+      "merges": [
+        {
+          "canonicalId": "village_R06",
+          "aliasIds": [
+            "facelift_village_R06"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-1470e431016d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-9b30c13be57b",
+      "merges": [
+        {
+          "canonicalId": "village_R08",
+          "aliasIds": [
+            "facelift_village_R08"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-9b30c13be57b--01.png"
+      ]
+    },
+    {
+      "groupId": "group-043891e9d29d",
+      "merges": [
+        {
+          "canonicalId": "village_R09",
+          "aliasIds": [
+            "facelift_village_R09"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-043891e9d29d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-99a366ba11d0",
+      "merges": [
+        {
+          "canonicalId": "moonhill_I03",
+          "aliasIds": [
+            "moonhill_A03"
+          ],
+          "reason": "五视角确认道路、建筑、场景、天空一致；仅地区广告、文字或局部旗帜图案不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-99a366ba11d0--01.png"
+      ]
+    },
+    {
+      "groupId": "group-6daf15235d2a",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "china_R12",
+          "reason": "天门山白天与夜晚的天空和环境亮度明显不同。"
+        },
+        {
+          "id": "china_R12_night",
+          "reason": "天门山白天与夜晚的天空和环境亮度明显不同。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-6daf15235d2a--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f1fd5e130e55",
+      "merges": [
+        {
+          "canonicalId": "forest_I01_rvs",
+          "aliasIds": [
+            "facelift_forest_I01_rvs"
+          ],
+          "reason": "五视角确认相同反向路线及场景；仅地区广告和局部铺路/轨道贴图细节不同，正向另组保留。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-f1fd5e130e55--01.png"
+      ]
+    },
+    {
+      "groupId": "group-952479c264a4",
+      "merges": [
+        {
+          "canonicalId": "forest_I02_rvs",
+          "aliasIds": [
+            "facelift_forest_I02_rvs"
+          ],
+          "reason": "五视角确认相同反向路线及场景；仅地区广告和局部铺路/轨道贴图细节不同，正向另组保留。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-952479c264a4--01.png"
+      ]
+    },
+    {
+      "groupId": "group-e53f1339b9c8",
+      "merges": [
+        {
+          "canonicalId": "forest_I03_rvs",
+          "aliasIds": [
+            "facelift_forest_I03_rvs"
+          ],
+          "reason": "五视角确认相同反向路线及场景；仅地区广告和局部铺路/轨道贴图细节不同，正向另组保留。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-e53f1339b9c8--01.png"
+      ]
+    },
+    {
+      "groupId": "group-2a684280ba9c",
+      "merges": [
+        {
+          "canonicalId": "forest_I05_rvs",
+          "aliasIds": [
+            "facelift_forest_I05_rvs"
+          ],
+          "reason": "五视角确认相同反向路线及场景；仅地区广告和局部铺路/轨道贴图细节不同，正向另组保留。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-2a684280ba9c--01.png"
+      ]
+    },
+    {
+      "groupId": "group-b58db753e766",
+      "merges": [
+        {
+          "canonicalId": "forest_I07_rvs",
+          "aliasIds": [
+            "facelift_forest_I07_rvs"
+          ],
+          "reason": "五视角确认相同反向路线及场景；仅地区广告和局部铺路/轨道贴图细节不同，正向另组保留。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-b58db753e766--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7ca028bed15e",
+      "merges": [
+        {
+          "canonicalId": "forest_R02_rvs",
+          "aliasIds": [
+            "facelift_forest_R02_rvs"
+          ],
+          "reason": "五视角确认相同反向路线及场景；仅地区广告和局部铺路/轨道贴图细节不同，正向另组保留。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-7ca028bed15e--01.png"
+      ]
+    },
+    {
+      "groupId": "group-5cc8f1c77643",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I01_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        },
+        {
+          "id": "facelift_desert_I01_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-5cc8f1c77643--01.png"
+      ]
+    },
+    {
+      "groupId": "group-0c16599016a8",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I02_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        },
+        {
+          "id": "facelift_desert_I02_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-0c16599016a8--01.png"
+      ]
+    },
+    {
+      "groupId": "group-bf00adbc0163",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I03_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        },
+        {
+          "id": "facelift_desert_I03_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-bf00adbc0163--01.png"
+      ]
+    },
+    {
+      "groupId": "group-fcf6145db404",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I04_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        },
+        {
+          "id": "facelift_desert_I04_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-fcf6145db404--01.png"
+      ]
+    },
+    {
+      "groupId": "group-2a830f0d8fa8",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_I05_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        },
+        {
+          "id": "facelift_desert_I05_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-2a830f0d8fa8--01.png"
+      ]
+    },
+    {
+      "groupId": "group-8cd05e1fc515",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_R01_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        },
+        {
+          "id": "facelift_desert_R01_rvs",
+          "reason": "反向版本的天空与大范围路面、建筑、岩壁材质明显不同；保留两版反向沙漠。"
+        }
+      ],
+      "evidence": [
+        "contact-sheets/group-8cd05e1fc515--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f90d9a60c875",
+      "merges": [
+        {
+          "canonicalId": "village_I03_rvs",
+          "aliasIds": [
+            "facelift_village_I03_rvs"
+          ],
+          "reason": "五视角确认相同反向路线及场景；仅地区广告和局部铺路/轨道贴图细节不同，正向另组保留。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-f90d9a60c875--01.png"
+      ]
+    },
+    {
+      "groupId": "group-5db4dd5fdbbc",
+      "merges": [
+        {
+          "canonicalId": "village_I04_rvs",
+          "aliasIds": [
+            "facelift_village_I04_rvs"
+          ],
+          "reason": "五视角确认相同反向路线及场景；仅地区广告和局部铺路/轨道贴图细节不同，正向另组保留。"
+        }
+      ],
+      "keepDistinct": [],
+      "evidence": [
+        "contact-sheets/group-5db4dd5fdbbc--01.png"
+      ]
+    },
+    {
+      "groupId": "group-60d535817855",
+      "merges": [
+        {
+          "canonicalId": "ice_I01",
+          "aliasIds": [
+            "ice_I01__xmas"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：冰峰裂谷冰墙、气球、起终点、海面与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-60d535817855--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7a8b67ef218d",
+      "merges": [
+        {
+          "canonicalId": "ice_I02",
+          "aliasIds": [
+            "ice_I02__xmas"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：冰鲨基地圣诞拱门、桥梁、洞穴、海面与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-7a8b67ef218d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-054a210b366f",
+      "merges": [
+        {
+          "canonicalId": "ice_I03",
+          "aliasIds": [
+            "ice_I03__xmas"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：企鹅岛冰壁、圣诞树、终点电子板、海面与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-054a210b366f--01.png"
+      ]
+    },
+    {
+      "groupId": "group-8e0005b1f94c",
+      "merges": [
+        {
+          "canonicalId": "ice_I04",
+          "aliasIds": [
+            "ice_I04__xmas"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：水晶洞穴、雪花、糖果柱、浮冰与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-8e0005b1f94c--01.png"
+      ]
+    },
+    {
+      "groupId": "group-19b4e31ae940",
+      "merges": [
+        {
+          "canonicalId": "ice_I05",
+          "aliasIds": [
+            "ice_I05__xmas"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：极速看台、起终点、弧形冰道与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-19b4e31ae940--01.png"
+      ]
+    },
+    {
+      "groupId": "group-e0ccebc29c89",
+      "merges": [
+        {
+          "canonicalId": "ice_I06",
+          "aliasIds": [
+            "ice_I06__xmas"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：雪球隧道圣诞起点、洞穴、冰墙、装饰与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-e0ccebc29c89--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a37c45511a98",
+      "merges": [
+        {
+          "canonicalId": "ice_R01",
+          "aliasIds": [
+            "ice_R01__xmas"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：滑雪场圣诞树、洞穴、雪坡与阴天天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-a37c45511a98--01.png"
+      ]
+    },
+    {
+      "groupId": "group-baff2138c305",
+      "merges": [
+        {
+          "canonicalId": "ice_R02",
+          "aliasIds": [
+            "ice_R02__xmas"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：破碎雪原浮冰、洞穴、圣诞门与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-baff2138c305--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f1e0b0a2ccb3",
+      "merges": [
+        {
+          "canonicalId": "ice_I01_rvs",
+          "aliasIds": [
+            "ice_I01__xmas_rvs"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：反向冰峰裂谷 R 标记、冰洞气球、企鹅、桥和天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-f1e0b0a2ccb3--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7fdacc634908",
+      "merges": [
+        {
+          "canonicalId": "ice_I02_rvs",
+          "aliasIds": [
+            "ice_I02__xmas_rvs"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：反向冰鲨基地圣诞门、洞穴、黄黑桥架与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-7fdacc634908--01.png"
+      ]
+    },
+    {
+      "groupId": "group-128d677e7b33",
+      "merges": [
+        {
+          "canonicalId": "ice_I03_rvs",
+          "aliasIds": [
+            "ice_I03__xmas_rvs"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：反向企鹅岛电子板、R 标旗、冰墙、圣诞装饰与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-128d677e7b33--01.png"
+      ]
+    },
+    {
+      "groupId": "group-d0cdc04624b1",
+      "merges": [
+        {
+          "canonicalId": "ice_I04_rvs",
+          "aliasIds": [
+            "ice_I04__xmas_rvs"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：反向水晶洞穴、雪花、圣诞门、桥架与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-d0cdc04624b1--01.png"
+      ]
+    },
+    {
+      "groupId": "group-dcef301c84d8",
+      "merges": [
+        {
+          "canonicalId": "ice_I05_rvs",
+          "aliasIds": [
+            "ice_I05__xmas_rvs"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：反向极速看台、弧形冰道、R 标旗及起终点与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-dcef301c84d8--01.png"
+      ]
+    },
+    {
+      "groupId": "group-67883d476b4c",
+      "merges": [
+        {
+          "canonicalId": "ice_F01",
+          "aliasIds": [
+            "ice_F01__xmas"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：冰面竞技场雪坡、冰墙、圣诞装饰与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-67883d476b4c--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f2aca00acc37",
+      "merges": [
+        {
+          "canonicalId": "ice_I02_rvs",
+          "aliasIds": [
+            "ice_I02__xmas_rvs"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：反向冰鲨基地圣诞门、洞穴、黄黑桥架与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "ice_I02_old__xmas_rvs",
+          "reason": "旧圣诞反向版冰墙/地面/海水材质、天空色调及起终点装饰明显不同，保留独立旧场景。"
+        }
+      ],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-f2aca00acc37--01.png"
+      ]
+    },
+    {
+      "groupId": "group-63d8470a47fc",
+      "merges": [
+        {
+          "canonicalId": "ice_I03_rvs",
+          "aliasIds": [
+            "ice_I03__xmas_rvs"
+          ],
+          "reason": "逐图实看统一鸟瞰和四处近景：反向企鹅岛电子板、R 标旗、冰墙、圣诞装饰与天空一致。默认项运行时已选择同一圣诞模型，与显式 xmas 项实际渲染相同；均开启降雪，雨均关闭。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "ice_I03_old__xmas_rvs",
+          "reason": "旧圣诞反向版冰墙/海水材质、天空和绿色电子灯板明显不同，保留独立旧场景。"
+        }
+      ],
+      "notes": "保留现有正式默认 ID；仅把显式圣诞别名归并。正向与反向之间不作合并。",
+      "evidence": [
+        "runtime/contact-sheets/group-63d8470a47fc--01.png"
+      ]
+    },
+    {
+      "groupId": "group-fecb941dc3c3",
+      "merges": [
+        {
+          "canonicalId": "village_I05_rvs",
+          "aliasIds": [
+            "facelift_village_I05_rvs"
+          ],
+          "reason": "五视角道路、水道、楼房、天空一致，仅围栏广告不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "五视角道路、水道、楼房、天空一致，仅围栏广告不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-fecb941dc3c3--01.png"
+      ]
+    },
+    {
+      "groupId": "group-2742901cfbc8",
+      "merges": [
+        {
+          "canonicalId": "village_R01_rvs",
+          "aliasIds": [
+            "facelift_village_R01_rvs"
+          ],
+          "reason": "反向道路、中央桥和街区一致，仅广告牌不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "反向道路、中央桥和街区一致，仅广告牌不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-2742901cfbc8--01.png"
+      ]
+    },
+    {
+      "groupId": "group-2f9ca4585198",
+      "merges": [
+        {
+          "canonicalId": "village_R03_rvs",
+          "aliasIds": [
+            "facelift_village_R03_rvs"
+          ],
+          "reason": "反向公路、桥、草坪与天空一致，路边广告有变化。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "反向公路、桥、草坪与天空一致，路边广告有变化。",
+      "evidence": [
+        "second-half/contact-sheets/group-2f9ca4585198--01.png"
+      ]
+    },
+    {
+      "groupId": "group-91c1c3ca9108",
+      "merges": [
+        {
+          "canonicalId": "beach_I02__s",
+          "aliasIds": [
+            "beach_I02_old"
+          ],
+          "reason": "港口道路、棕榈树、码头和游轮均一致，差异限广告牌。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "港口道路、棕榈树、码头和游轮均一致，差异限广告牌。",
+      "evidence": [
+        "second-half/contact-sheets/group-91c1c3ca9108--01.png"
+      ]
+    },
+    {
+      "groupId": "group-dac46e6b4121",
+      "merges": [
+        {
+          "canonicalId": "facelift_desert_I03__crz",
+          "aliasIds": [
+            "facelift_desert_I12"
+          ],
+          "reason": "两个facelift版本的橙色夕阳、蓝水和石面一致；原版青色天空、青绿水面与较浅沙色构成明显不同场景。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "desert_I03__crz",
+          "reason": "两个facelift版本的橙色夕阳、蓝水和石面一致；原版青色天空、青绿水面与较浅沙色构成明显不同场景。"
+        }
+      ],
+      "reason": "两个facelift版本的橙色夕阳、蓝水和石面一致；原版青色天空、青绿水面与较浅沙色构成明显不同场景。",
+      "evidence": [
+        "second-half/contact-sheets/group-dac46e6b4121--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a3ae1e3fc78a",
+      "merges": [
+        {
+          "canonicalId": "desert_I04_anycall",
+          "aliasIds": [
+            "facelift_desert_I04__anycall"
+          ],
+          "reason": "两个台服版本的夕阳天空及橙色沙地一致；原版青色天空、浅沙地和浅墙整体色调明显不同。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "desert_I04__anycall",
+          "reason": "两个台服版本的夕阳天空及橙色沙地一致；原版青色天空、浅沙地和浅墙整体色调明显不同。"
+        }
+      ],
+      "reason": "两个台服版本的夕阳天空及橙色沙地一致；原版青色天空、浅沙地和浅墙整体色调明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-a3ae1e3fc78a--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f24162251eb2",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "desert_S01",
+          "reason": "青色白天天空/浅色沙地与橙紫夕阳/橙色沙地存在明显场景气氛差异，均保留。"
+        },
+        {
+          "id": "facelift_desert_S01",
+          "reason": "青色白天天空/浅色沙地与橙紫夕阳/橙色沙地存在明显场景气氛差异，均保留。"
+        }
+      ],
+      "reason": "青色白天天空/浅色沙地与橙紫夕阳/橙色沙地存在明显场景气氛差异，均保留。",
+      "evidence": [
+        "second-half/contact-sheets/group-f24162251eb2--01.png"
+      ]
+    },
+    {
+      "groupId": "group-9bec7e5258a9",
+      "merges": [
+        {
+          "canonicalId": "factory_I04__crz",
+          "aliasIds": [
+            "factory_I09"
+          ],
+          "reason": "工厂门、蓝色道路、管道、跳台及光照一致，差异仅显示广告。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "工厂门、蓝色道路、管道、跳台及光照一致，差异仅显示广告。",
+      "evidence": [
+        "second-half/contact-sheets/group-9bec7e5258a9--01.png"
+      ]
+    },
+    {
+      "groupId": "group-626df09902a7",
+      "merges": [
+        {
+          "canonicalId": "forest_I03__crz",
+          "aliasIds": [
+            "facelift_forest_I03__crz",
+            "facelift_forest_I10"
+          ],
+          "reason": "三条的森林、河流、道路和机关位置相同，五视角仅广告图不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "三条的森林、河流、道路和机关位置相同，五视角仅广告图不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-626df09902a7--01.png"
+      ]
+    },
+    {
+      "groupId": "group-ef0bc35a1dfe",
+      "merges": [
+        {
+          "canonicalId": "forest_I04__d_rvs",
+          "aliasIds": [
+            "facelift_forest_I04__d_rvs"
+          ],
+          "reason": "反向奇石、林道、海面及天空一致，差异只在横幅广告。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "反向奇石、林道、海面及天空一致，差异只在横幅广告。",
+      "evidence": [
+        "second-half/contact-sheets/group-ef0bc35a1dfe--01.png"
+      ]
+    },
+    {
+      "groupId": "group-295861ffbec6",
+      "merges": [
+        {
+          "canonicalId": "village_R01__cn",
+          "aliasIds": [
+            "facelift_village_R01__cn",
+            "village_R01_cn"
+          ],
+          "reason": "城镇道路、桥梁、楼群和白天天空一致，仅广告与云层纹理位置小异；沙滩晚霞、月光夜景、太空紫色路面、童话黄色路面保留。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "beach_R11__cn",
+          "reason": "城镇道路、桥梁、楼群和白天天空一致，仅广告与云层纹理位置小异；沙滩晚霞、月光夜景、太空紫色路面、童话黄色路面保留。"
+        },
+        {
+          "id": "moonhill_R07__cn",
+          "reason": "城镇道路、桥梁、楼群和白天天空一致，仅广告与云层纹理位置小异；沙滩晚霞、月光夜景、太空紫色路面、童话黄色路面保留。"
+        },
+        {
+          "id": "northeu_R10__cn",
+          "reason": "城镇道路、桥梁、楼群和白天天空一致，仅广告与云层纹理位置小异；沙滩晚霞、月光夜景、太空紫色路面、童话黄色路面保留。"
+        },
+        {
+          "id": "xyy_village_R01__cn",
+          "reason": "城镇道路、桥梁、楼群和白天天空一致，仅广告与云层纹理位置小异；沙滩晚霞、月光夜景、太空紫色路面、童话黄色路面保留。"
+        }
+      ],
+      "reason": "城镇道路、桥梁、楼群和白天天空一致，仅广告与云层纹理位置小异；沙滩晚霞、月光夜景、太空紫色路面、童话黄色路面保留。",
+      "evidence": [
+        "second-half/contact-sheets/group-295861ffbec6--01.png",
+        "second-half/contact-sheets/group-295861ffbec6--02.png"
+      ]
+    },
+    {
+      "groupId": "group-8830d80d8669",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "beach_R11__ru",
+          "reason": "沙滩晚霞、两种冰雪路面（纯冰与积雪中沥青）、月光夜景、太空紫色道路、城镇白天及童话黄土路面明显不同。"
+        },
+        {
+          "id": "ice_R01_village__ru",
+          "reason": "沙滩晚霞、两种冰雪路面（纯冰与积雪中沥青）、月光夜景、太空紫色道路、城镇白天及童话黄土路面明显不同。"
+        },
+        {
+          "id": "ice_R01_village2__ru",
+          "reason": "沙滩晚霞、两种冰雪路面（纯冰与积雪中沥青）、月光夜景、太空紫色道路、城镇白天及童话黄土路面明显不同。"
+        },
+        {
+          "id": "moonhill_R07__ru",
+          "reason": "沙滩晚霞、两种冰雪路面（纯冰与积雪中沥青）、月光夜景、太空紫色道路、城镇白天及童话黄土路面明显不同。"
+        },
+        {
+          "id": "northeu_R10__ru",
+          "reason": "沙滩晚霞、两种冰雪路面（纯冰与积雪中沥青）、月光夜景、太空紫色道路、城镇白天及童话黄土路面明显不同。"
+        },
+        {
+          "id": "village_R01_ru",
+          "reason": "沙滩晚霞、两种冰雪路面（纯冰与积雪中沥青）、月光夜景、太空紫色道路、城镇白天及童话黄土路面明显不同。"
+        },
+        {
+          "id": "xyy_village_R01__ru",
+          "reason": "沙滩晚霞、两种冰雪路面（纯冰与积雪中沥青）、月光夜景、太空紫色道路、城镇白天及童话黄土路面明显不同。"
+        }
+      ],
+      "reason": "沙滩晚霞、两种冰雪路面（纯冰与积雪中沥青）、月光夜景、太空紫色道路、城镇白天及童话黄土路面明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-8830d80d8669--01.png",
+        "second-half/contact-sheets/group-8830d80d8669--02.png"
+      ]
+    },
+    {
+      "groupId": "group-e155e691f73e",
+      "merges": [
+        {
+          "canonicalId": "village_R01__d_rvs",
+          "aliasIds": [
+            "facelift_village_R01__d_rvs"
+          ],
+          "reason": "城镇反向道路、桥梁、楼群和白天环境一致，仅广告不同；晚霞、月光夜景、太空紫路、童话黄土版本保留。"
+        }
+      ],
+      "keepDistinct": [
+        {
+          "id": "beach_R11__d_rvs",
+          "reason": "城镇反向道路、桥梁、楼群和白天环境一致，仅广告不同；晚霞、月光夜景、太空紫路、童话黄土版本保留。"
+        },
+        {
+          "id": "moonhill_R07__d_rvs",
+          "reason": "城镇反向道路、桥梁、楼群和白天环境一致，仅广告不同；晚霞、月光夜景、太空紫路、童话黄土版本保留。"
+        },
+        {
+          "id": "northeu_R10__d_rvs",
+          "reason": "城镇反向道路、桥梁、楼群和白天环境一致，仅广告不同；晚霞、月光夜景、太空紫路、童话黄土版本保留。"
+        },
+        {
+          "id": "xyy_village_R01__d_rvs",
+          "reason": "城镇反向道路、桥梁、楼群和白天环境一致，仅广告不同；晚霞、月光夜景、太空紫路、童话黄土版本保留。"
+        }
+      ],
+      "reason": "城镇反向道路、桥梁、楼群和白天环境一致，仅广告不同；晚霞、月光夜景、太空紫路、童话黄土版本保留。",
+      "evidence": [
+        "second-half/contact-sheets/group-e155e691f73e--01.png"
+      ]
+    },
+    {
+      "groupId": "group-2ef840b07ee0",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "beach_R11_rvs",
+          "reason": "沙滩晚霞、月光夜景蓝路、太空紫路、变形金属道路及童话黄色道路呈明显不同主题。"
+        },
+        {
+          "id": "moonhill_R07_rvs",
+          "reason": "沙滩晚霞、月光夜景蓝路、太空紫路、变形金属道路及童话黄色道路呈明显不同主题。"
+        },
+        {
+          "id": "northeu_R10_rvs",
+          "reason": "沙滩晚霞、月光夜景蓝路、太空紫路、变形金属道路及童话黄色道路呈明显不同主题。"
+        },
+        {
+          "id": "transFormer_R03_villageR01_rvs",
+          "reason": "沙滩晚霞、月光夜景蓝路、太空紫路、变形金属道路及童话黄色道路呈明显不同主题。"
+        },
+        {
+          "id": "xyy_village_R01_rvs",
+          "reason": "沙滩晚霞、月光夜景蓝路、太空紫路、变形金属道路及童话黄色道路呈明显不同主题。"
+        }
+      ],
+      "reason": "沙滩晚霞、月光夜景蓝路、太空紫路、变形金属道路及童话黄色道路呈明显不同主题。",
+      "evidence": [
+        "second-half/contact-sheets/group-2ef840b07ee0--01.png"
+      ]
+    },
+    {
+      "groupId": "group-4dd2dadaef45",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "beach_R11__th",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部泰国地区主题。"
+        },
+        {
+          "id": "ice_R01_village__th",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部泰国地区主题。"
+        },
+        {
+          "id": "ice_R01_village2__th",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部泰国地区主题。"
+        },
+        {
+          "id": "moonhill_R07__th",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部泰国地区主题。"
+        },
+        {
+          "id": "northeu_R10__th",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部泰国地区主题。"
+        },
+        {
+          "id": "village_R01_th",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部泰国地区主题。"
+        },
+        {
+          "id": "xyy_village_R01__th",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部泰国地区主题。"
+        }
+      ],
+      "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部泰国地区主题。",
+      "evidence": [
+        "second-half/contact-sheets/group-4dd2dadaef45--01.png",
+        "second-half/contact-sheets/group-4dd2dadaef45--02.png"
+      ]
+    },
+    {
+      "groupId": "group-c96c56fa40e2",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "beach_R11__vn",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部越南地区主题。"
+        },
+        {
+          "id": "ice_R01_village__vn",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部越南地区主题。"
+        },
+        {
+          "id": "ice_R01_village2__vn",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部越南地区主题。"
+        },
+        {
+          "id": "moonhill_R07__vn",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部越南地区主题。"
+        },
+        {
+          "id": "northeu_R10__vn",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部越南地区主题。"
+        },
+        {
+          "id": "village_R01_vn",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部越南地区主题。"
+        },
+        {
+          "id": "xyy_village_R01__vn",
+          "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部越南地区主题。"
+        }
+      ],
+      "reason": "各主题天空与路面明显不同，尤其纯冰路与雪地沥青版本可明确区分；保留全部越南地区主题。",
+      "evidence": [
+        "second-half/contact-sheets/group-c96c56fa40e2--01.png",
+        "second-half/contact-sheets/group-c96c56fa40e2--02.png"
+      ]
+    },
+    {
+      "groupId": "group-8bb7c57ebc5a",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "beach_R11",
+          "reason": "晚霞、月光夜景、太空紫路、变形金刚金属路面及童话黄土版明显不同。"
+        },
+        {
+          "id": "moonhill_R07",
+          "reason": "晚霞、月光夜景、太空紫路、变形金刚金属路面及童话黄土版明显不同。"
+        },
+        {
+          "id": "northeu_R10",
+          "reason": "晚霞、月光夜景、太空紫路、变形金刚金属路面及童话黄土版明显不同。"
+        },
+        {
+          "id": "transFormer_R03_villageR01",
+          "reason": "晚霞、月光夜景、太空紫路、变形金刚金属路面及童话黄土版明显不同。"
+        },
+        {
+          "id": "xyy_village_R01",
+          "reason": "晚霞、月光夜景、太空紫路、变形金刚金属路面及童话黄土版明显不同。"
+        }
+      ],
+      "reason": "晚霞、月光夜景、太空紫路、变形金刚金属路面及童话黄土版明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-8bb7c57ebc5a--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a8c77bbd430f",
+      "merges": [
+        {
+          "canonicalId": "facelift_desert_R02_rvs",
+          "aliasIds": [
+            "desert_A02__d_rvs",
+            "facelift_desert_R02__d_rvs"
+          ],
+          "reason": "五视角均为相同晚霞橙色沙漠、水渠桥梁与隧道道路，仅广告与名称不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "五视角均为相同晚霞橙色沙漠、水渠桥梁与隧道道路，仅广告与名称不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-a8c77bbd430f--01.png"
+      ]
+    },
+    {
+      "groupId": "group-356f11d3b78a",
+      "merges": [
+        {
+          "canonicalId": "village_I01__anycall",
+          "aliasIds": [
+            "facelift_village_I01__anycall",
+            "village_I01_anycall",
+            "village_I01_vn__anycall"
+          ],
+          "reason": "三星游乐场时钟、过山车、手机建筑与道路一致，白天云层及广告存在细微差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "三星游乐场时钟、过山车、手机建筑与道路一致，白天云层及广告存在细微差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-356f11d3b78a--01.png"
+      ]
+    },
+    {
+      "groupId": "group-dde00c7e5f8f",
+      "merges": [
+        {
+          "canonicalId": "village_I01__cn",
+          "aliasIds": [
+            "facelift_village_I01__cn",
+            "village_I01_anycall__cn",
+            "village_I01_cn"
+          ],
+          "reason": "中国牌楼、时钟和道路场景一致，白天云层及广告存在细微差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "中国牌楼、时钟和道路场景一致，白天云层及广告存在细微差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-dde00c7e5f8f--01.png"
+      ]
+    },
+    {
+      "groupId": "group-4eeff578f891",
+      "merges": [
+        {
+          "canonicalId": "village_I01__coke",
+          "aliasIds": [
+            "facelift_village_I01__coke",
+            "village_I01_anycall__coke",
+            "village_I01_coke",
+            "village_I01_vn__coke"
+          ],
+          "reason": "可乐主题时钟、建筑和道路一致，仅广告旗帜与白天云层纹理轻微不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "可乐主题时钟、建筑和道路一致，仅广告旗帜与白天云层纹理轻微不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-4eeff578f891--01.png"
+      ]
+    },
+    {
+      "groupId": "group-d45b5082d101",
+      "merges": [
+        {
+          "canonicalId": "village_I01__id",
+          "aliasIds": [
+            "facelift_village_I01__id",
+            "village_I01_id"
+          ],
+          "reason": "棕榈、寺庙、时钟及道路一致，仅白天云层和广告差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "棕榈、寺庙、时钟及道路一致，仅白天云层和广告差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-d45b5082d101--01.png"
+      ]
+    },
+    {
+      "groupId": "group-fb2dfd9fb458",
+      "merges": [
+        {
+          "canonicalId": "village_I01__jp",
+          "aliasIds": [
+            "facelift_village_I01__jp"
+          ],
+          "reason": "樱花、鸟居、东京塔及道路一致，仅广告差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "樱花、鸟居、东京塔及道路一致，仅广告差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-fb2dfd9fb458--01.png"
+      ]
+    },
+    {
+      "groupId": "group-5c373811551d",
+      "merges": [
+        {
+          "canonicalId": "village_I01__ru",
+          "aliasIds": [
+            "facelift_village_I01__ru",
+            "village_I01_ru"
+          ],
+          "reason": "俄式大门、教堂、时钟及道路一致，仅广告和白天云层差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "俄式大门、教堂、时钟及道路一致，仅广告和白天云层差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-5c373811551d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-514f24f88c50",
+      "merges": [
+        {
+          "canonicalId": "village_I01__th",
+          "aliasIds": [
+            "facelift_village_I01__th",
+            "village_I01_th"
+          ],
+          "reason": "泰式寺庙、棕榈、时钟及道路一致，仅广告与云层轻微差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "泰式寺庙、棕榈、时钟及道路一致，仅广告与云层轻微差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-514f24f88c50--01.png"
+      ]
+    },
+    {
+      "groupId": "group-9de84b1527a2",
+      "merges": [
+        {
+          "canonicalId": "village_I01__vn",
+          "aliasIds": [
+            "facelift_village_I01__vn",
+            "village_I01_vn"
+          ],
+          "reason": "越南门楼、木屋、时钟及道路一致，仅广告与白天云层轻微差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "越南门楼、木屋、时钟及道路一致，仅广告与白天云层轻微差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-9de84b1527a2--01.png"
+      ]
+    },
+    {
+      "groupId": "group-e57daf44e81d",
+      "merges": [
+        {
+          "canonicalId": "village_I03__coke",
+          "aliasIds": [
+            "facelift_village_I03__coke",
+            "village_I03_coke"
+          ],
+          "reason": "可乐环道的道路、房屋及瓶形建筑一致；只有白天云层和边砖清晰度小异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "可乐环道的道路、房屋及瓶形建筑一致；只有白天云层和边砖清晰度小异。",
+      "evidence": [
+        "second-half/contact-sheets/group-e57daf44e81d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f4b12b41b8ce",
+      "merges": [
+        {
+          "canonicalId": "village_I04__anycall",
+          "aliasIds": [
+            "facelift_village_I04__anycall",
+            "village_I04_anycall"
+          ],
+          "reason": "三星运河的手机建筑、过山车、摩天轮及道路一致；只有广告和云层差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "三星运河的手机建筑、过山车、摩天轮及道路一致；只有广告和云层差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-f4b12b41b8ce--01.png"
+      ]
+    },
+    {
+      "groupId": "group-e3c4a6be56f9",
+      "merges": [
+        {
+          "canonicalId": "village_I04__cn",
+          "aliasIds": [
+            "facelift_village_I04__cn",
+            "village_I04_cn"
+          ],
+          "reason": "中国运河的牌楼、房屋及道路一致；只有广告和云层差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "中国运河的牌楼、房屋及道路一致；只有广告和云层差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-e3c4a6be56f9--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7e845e85a548",
+      "merges": [
+        {
+          "canonicalId": "village_I04__coke",
+          "aliasIds": [
+            "facelift_village_I04__coke",
+            "village_I04_coke"
+          ],
+          "reason": "可乐运河的道路、房屋、货箱及雕塑一致；只有广告、云层和局部水面贴图小异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "可乐运河的道路、房屋、货箱及雕塑一致；只有广告、云层和局部水面贴图小异。",
+      "evidence": [
+        "second-half/contact-sheets/group-7e845e85a548--01.png"
+      ]
+    },
+    {
+      "groupId": "group-95785fa46fdb",
+      "merges": [
+        {
+          "canonicalId": "village_I04__crz",
+          "aliasIds": [
+            "facelift_village_I04__crz",
+            "facelift_village_I15"
+          ],
+          "reason": "运河场景、彩色道具与加速板位置一致，只有广告差异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "运河场景、彩色道具与加速板位置一致，只有广告差异。",
+      "evidence": [
+        "second-half/contact-sheets/group-95785fa46fdb--01.png"
+      ]
+    },
+    {
+      "groupId": "group-e57fca1f2da6",
+      "merges": [
+        {
+          "canonicalId": "village_I06__d_rvs",
+          "aliasIds": [
+            "facelift_village_I06_rvs",
+            "village_I06_old_rvs"
+          ],
+          "reason": "反向喷泉广场的桥梁、风车、道路和时钟一致，只有广告与白天云层小异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "反向喷泉广场的桥梁、风车、道路和时钟一致，只有广告与白天云层小异。",
+      "evidence": [
+        "second-half/contact-sheets/group-e57fca1f2da6--01.png"
+      ]
+    },
+    {
+      "groupId": "group-21c0ccdf6aa4",
+      "merges": [
+        {
+          "canonicalId": "village_I06",
+          "aliasIds": [
+            "facelift_village_I06"
+          ],
+          "reason": "喷泉广场的桥梁、道路、红绿灯与花坛一致，仅广告不同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "喷泉广场的桥梁、道路、红绿灯与花坛一致，仅广告不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-21c0ccdf6aa4--01.png"
+      ]
+    },
+    {
+      "groupId": "group-90cabd4f727a",
+      "merges": [
+        {
+          "canonicalId": "village_I10",
+          "aliasIds": [
+            "facelift_village_I10"
+          ],
+          "reason": "日本樱花钟楼的道路、土坡、鸟居、樱花与塔楼一致，仅广告与白天云层小异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "日本樱花钟楼的道路、土坡、鸟居、樱花与塔楼一致，仅广告与白天云层小异。",
+      "evidence": [
+        "second-half/contact-sheets/group-90cabd4f727a--01.png"
+      ]
+    },
+    {
+      "groupId": "group-bc55e28c0a1b",
+      "merges": [
+        {
+          "canonicalId": "village_A07__d_rvs",
+          "aliasIds": [
+            "facelift_village_R07_rvs"
+          ],
+          "reason": "命运之桥反向道路、护墙、桥梁及建筑一致，仅广告和起终点标记颜色小异。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "命运之桥反向道路、护墙、桥梁及建筑一致，仅广告和起终点标记颜色小异。",
+      "evidence": [
+        "second-half/contact-sheets/group-bc55e28c0a1b--01.png"
+      ]
+    },
+    {
+      "groupId": "group-370de796cc60",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "forest_R02_new_rvs",
+          "reason": "绿色森林晴天与全场黑暗夜景、白色发光树木明显不同，保留昼夜。"
+        },
+        {
+          "id": "forest_R02_night_rvs",
+          "reason": "绿色森林晴天与全场黑暗夜景、白色发光树木明显不同，保留昼夜。"
+        }
+      ],
+      "reason": "绿色森林晴天与全场黑暗夜景、白色发光树木明显不同，保留昼夜。",
+      "evidence": [
+        "second-half/contact-sheets/group-370de796cc60--01.png"
+      ]
+    },
+    {
+      "groupId": "group-cf5ed9fd96a9",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "forest_R02_new",
+          "reason": "绿色森林晴天与全场黑暗夜景、白色发光树木明显不同，保留昼夜。"
+        },
+        {
+          "id": "forest_R02_night",
+          "reason": "绿色森林晴天与全场黑暗夜景、白色发光树木明显不同，保留昼夜。"
+        }
+      ],
+      "reason": "绿色森林晴天与全场黑暗夜景、白色发光树木明显不同，保留昼夜。",
+      "evidence": [
+        "second-half/contact-sheets/group-cf5ed9fd96a9--01.png"
+      ]
+    },
+    {
+      "groupId": "group-2dbaa1a1e340",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_C001_old__xmas",
+          "reason": "五视角静态场景相同，但 xmas 的原生 snowEnabled=true，普通项为 false，保留降雪版本。"
+        },
+        {
+          "id": "ice_C001_old",
+          "reason": "五视角静态场景相同，但 xmas 的原生 snowEnabled=true，普通项为 false，保留降雪版本。"
+        }
+      ],
+      "reason": "五视角静态场景相同，但 xmas 的原生 snowEnabled=true，普通项为 false，保留降雪版本。",
+      "evidence": [
+        "second-half/contact-sheets/group-2dbaa1a1e340--01.png"
+      ]
+    },
+    {
+      "groupId": "group-dfa2d4b9dc88",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_R01_village__cn",
+          "reason": "全白冰面与带白色车道线、黄色中线的沥青公路明显不同。"
+        },
+        {
+          "id": "ice_R01_village2__cn",
+          "reason": "全白冰面与带白色车道线、黄色中线的沥青公路明显不同。"
+        }
+      ],
+      "reason": "全白冰面与带白色车道线、黄色中线的沥青公路明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-dfa2d4b9dc88--01.png"
+      ]
+    },
+    {
+      "groupId": "group-895bfb3c1b5e",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_R01_village__d_rvs",
+          "reason": "全白冰面与带白色车道线、黄色中线的沥青公路明显不同。"
+        },
+        {
+          "id": "ice_R01_village2__d_rvs",
+          "reason": "全白冰面与带白色车道线、黄色中线的沥青公路明显不同。"
+        }
+      ],
+      "reason": "全白冰面与带白色车道线、黄色中线的沥青公路明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-895bfb3c1b5e--01.png"
+      ]
+    },
+    {
+      "groupId": "group-6aaafc7e0dda",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_R01_village_rvs",
+          "reason": "全白冰面与带白色车道线、黄色中线的沥青公路明显不同。"
+        },
+        {
+          "id": "ice_R01_village2_rvs",
+          "reason": "全白冰面与带白色车道线、黄色中线的沥青公路明显不同。"
+        }
+      ],
+      "reason": "全白冰面与带白色车道线、黄色中线的沥青公路明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-6aaafc7e0dda--01.png"
+      ]
+    },
+    {
+      "groupId": "group-3f5a1da146cc",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "ice_R01_wtf__xmas",
+          "reason": "五视角静态场景相同，但 xmas 的原生 snowEnabled=true，普通项为 false，保留降雪版本。"
+        },
+        {
+          "id": "ice_R01_wtf",
+          "reason": "五视角静态场景相同，但 xmas 的原生 snowEnabled=true，普通项为 false，保留降雪版本。"
+        }
+      ],
+      "reason": "五视角静态场景相同，但 xmas 的原生 snowEnabled=true，普通项为 false，保留降雪版本。",
+      "evidence": [
+        "second-half/contact-sheets/group-3f5a1da146cc--01.png"
+      ]
+    },
+    {
+      "groupId": "group-cb8c3ffe2f36",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "korea_R01_night_rvs",
+          "reason": "首尔夜空和深色路面与蓝天明亮场景明显不同，保留昼夜。"
+        },
+        {
+          "id": "korea_R01_rvs",
+          "reason": "首尔夜空和深色路面与蓝天明亮场景明显不同，保留昼夜。"
+        }
+      ],
+      "reason": "首尔夜空和深色路面与蓝天明亮场景明显不同，保留昼夜。",
+      "evidence": [
+        "second-half/contact-sheets/group-cb8c3ffe2f36--01.png"
+      ]
+    },
+    {
+      "groupId": "group-8d000580b991",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "korea_R01_night",
+          "reason": "首尔夜空和深色路面与蓝天明亮场景明显不同，保留昼夜。"
+        },
+        {
+          "id": "korea_R01",
+          "reason": "首尔夜空和深色路面与蓝天明亮场景明显不同，保留昼夜。"
+        }
+      ],
+      "reason": "首尔夜空和深色路面与蓝天明亮场景明显不同，保留昼夜。",
+      "evidence": [
+        "second-half/contact-sheets/group-8d000580b991--01.png"
+      ]
+    },
+    {
+      "groupId": "group-784a7748181d",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "mine_R05_black",
+          "reason": "black 为黑化道路、灰山与黑色环境，night 为棕色山路、紫色夜空和彩色矿洞；两项纹理引用均全部 found，确属明显不同素材版本。"
+        },
+        {
+          "id": "mine_R05_night",
+          "reason": "black 为黑化道路、灰山与黑色环境，night 为棕色山路、紫色夜空和彩色矿洞；两项纹理引用均全部 found，确属明显不同素材版本。"
+        }
+      ],
+      "reason": "black 为黑化道路、灰山与黑色环境，night 为棕色山路、紫色夜空和彩色矿洞；两项纹理引用均全部 found，确属明显不同素材版本。",
+      "evidence": [
+        "second-half/contact-sheets/group-784a7748181d--01.png"
+      ]
+    },
+    {
+      "groupId": "group-30c024fb8dc2",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "moonhill_I04_new__d_rvs",
+          "reason": "明亮铁路与原月光铁路的夜空、发光蓝路及楼宇照明明显不同。"
+        },
+        {
+          "id": "moonhill_I04__d_rvs",
+          "reason": "明亮铁路与原月光铁路的夜空、发光蓝路及楼宇照明明显不同。"
+        }
+      ],
+      "reason": "明亮铁路与原月光铁路的夜空、发光蓝路及楼宇照明明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-30c024fb8dc2--01.png"
+      ]
+    },
+    {
+      "groupId": "group-b3302bcef051",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "moonhill_R01_new_rvs",
+          "reason": "明亮水城与原水城的夜空、发光蓝路及楼宇照明明显不同。"
+        },
+        {
+          "id": "moonhill_R01_rvs",
+          "reason": "明亮水城与原水城的夜空、发光蓝路及楼宇照明明显不同。"
+        }
+      ],
+      "reason": "明亮水城与原水城的夜空、发光蓝路及楼宇照明明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-b3302bcef051--01.png"
+      ]
+    },
+    {
+      "groupId": "group-3aec414e6437",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "moonhill_R05_new",
+          "reason": "上午台北与夜间台北的天空、建筑照明和发光路面明显不同。"
+        },
+        {
+          "id": "moonhill_R05",
+          "reason": "上午台北与夜间台北的天空、建筑照明和发光路面明显不同。"
+        }
+      ],
+      "reason": "上午台北与夜间台北的天空、建筑照明和发光路面明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-3aec414e6437--01.png"
+      ]
+    },
+    {
+      "groupId": "group-a1c517777ab3",
+      "merges": [
+        {
+          "canonicalId": "village_I01_vn_rvs",
+          "aliasIds": [
+            "village_I01_anycall_rvs"
+          ],
+          "reason": "反向钟楼五视角完全一致，土坡、风车、楼房与广告相同，无额外三星内容。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "反向钟楼五视角完全一致，土坡、风车、楼房与广告相同，无额外三星内容。",
+      "evidence": [
+        "second-half/contact-sheets/group-a1c517777ab3--01.png"
+      ]
+    },
+    {
+      "groupId": "group-f42fe8659e2c",
+      "merges": [
+        {
+          "canonicalId": "village_I04__ru",
+          "aliasIds": [
+            "village_I04_ru"
+          ],
+          "reason": "俄罗斯运河五视角完全一致，教堂、国旗、道路、门楼及天空相同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "俄罗斯运河五视角完全一致，教堂、国旗、道路、门楼及天空相同。",
+      "evidence": [
+        "second-half/contact-sheets/group-f42fe8659e2c--01.png"
+      ]
+    },
+    {
+      "groupId": "group-d5e6454d364e",
+      "merges": [
+        {
+          "canonicalId": "village_I04__th",
+          "aliasIds": [
+            "village_I04_th"
+          ],
+          "reason": "泰国运河五视角完全一致，寺庙、棕榈、道路、门楼及天空相同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "泰国运河五视角完全一致，寺庙、棕榈、道路、门楼及天空相同。",
+      "evidence": [
+        "second-half/contact-sheets/group-d5e6454d364e--01.png"
+      ]
+    },
+    {
+      "groupId": "group-7fbbbe2a0eed",
+      "merges": [
+        {
+          "canonicalId": "village_I04__vn",
+          "aliasIds": [
+            "village_I04_vn"
+          ],
+          "reason": "越南运河五视角完全一致，门楼、屋顶、道路与天空相同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "越南运河五视角完全一致，门楼、屋顶、道路与天空相同。",
+      "evidence": [
+        "second-half/contact-sheets/group-7fbbbe2a0eed--01.png"
+      ]
+    },
+    {
+      "groupId": "group-171164405446",
+      "merges": [
+        {
+          "canonicalId": "village_I06__d",
+          "aliasIds": [
+            "village_I06_old"
+          ],
+          "reason": "旧喷泉广场与 d 项五视角完全一致，桥梁、红绿灯、花坛、道路及广告相同。"
+        }
+      ],
+      "keepDistinct": [],
+      "reason": "旧喷泉广场与 d 项五视角完全一致，桥梁、红绿灯、花坛、道路及广告相同。",
+      "evidence": [
+        "second-half/contact-sheets/group-171164405446--01.png"
+      ]
+    },
+    {
+      "groupId": "group-3142676953d1",
+      "merges": [],
+      "keepDistinct": [
+        {
+          "id": "village_R01_night_rvs",
+          "reason": "夜晚高速公路的月亮、星空、深色植被与亮窗建筑，和旧版蓝天绿色植被明显不同。"
+        },
+        {
+          "id": "village_R01_old_rvs",
+          "reason": "夜晚高速公路的月亮、星空、深色植被与亮窗建筑，和旧版蓝天绿色植被明显不同。"
+        }
+      ],
+      "reason": "夜晚高速公路的月亮、星空、深色植被与亮窗建筑，和旧版蓝天绿色植被明显不同。",
+      "evidence": [
+        "second-half/contact-sheets/group-3142676953d1--01.png"
+      ]
+    }
+  ]
+}

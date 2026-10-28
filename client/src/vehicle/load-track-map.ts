@@ -9,6 +9,8 @@ import { trackMetadataOverride } from "../resources/track-overrides";
 import { minimapProjection } from "../resources/minimap-projection";
 import { isXmasTrack, xmasTrackModelPath } from "../resources/xmas-theme";
 import { isCustomTrackId } from "../mapeditor/design";
+import { taiwanTrack } from "../resources/taiwan-tracks";
+import { findTrackChoice } from "../resources/track-duplicates";
 import { braveMapRoute, validateBraveRoute, type BraveRouteSelection } from "../multiplayer/brave-route";
 
 /** 驾照考试 courses register metadata overrides too; 地图工坊 maps do not take their rules. */
@@ -183,8 +185,8 @@ export async function loadTrackMap(
   ]);
   if (!weather) throw new Error(`${path} 缺少权威 weather config。`);
 
-  const resourcePractice = !lte && !itemGame && Boolean((await library?.timeAttackTrackCatalog?.())
-    ?.find((entry: any) => entry.id === trackId)?.resourceCategory);
+  const resourcePractice = !lte && !itemGame && Boolean(findTrackChoice<any>(
+    await library?.timeAttackTrackCatalog?.() ?? [], trackId)?.resourceCategory);
   const trainingCourse = riderSchoolCourse(trackId) ||
     (indexedVariant && extraTrackCategory({ ...indexedVariant, variant: "" }) === "resource:training");
   const course = ops.validateCourse(model, ops.assetProvenance(asset), mode, {
@@ -202,6 +204,9 @@ export async function loadTrackMap(
     ? ops.dummySounds(model) : [];
   const road = ops.extractRoad(model, mode, {
     forceReverse: brave ? brave.localTeam !== brave.forwardTeam : /_rvs$/i.test(trackId),
+    // Keep the original CN extraction contract; imported boost/jump meshes use
+    // their UV V orientation even when two vertices share the same U value.
+    consistentUvTangents: taiwanTrack(trackId) !== undefined,
     // 卡丁城 and 地图工坊 maps are wider than the release's 2 km road grid.
     roadExtent: trackMetadataOverride(trackId)?.roadExtent,
     practiceScene: PRACTICE_SCENE_IDS.has(trackId) ? trackId : undefined,

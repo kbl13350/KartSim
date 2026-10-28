@@ -2,6 +2,7 @@ import { isCustomTrackId } from "../mapeditor/design";
 import { PRACTICE_SCENE_IDS } from "./practice-scene";
 import type { TrackChoice, TrackLibrary, TrackMetadata, TrackResource } from "./track-catalog";
 import { trackDisplayTitle } from "./track-names";
+import { isTaiwanTrackFolder, taiwanTrack, taiwanTrackForPath, taiwanTrackMetadata } from "./taiwan-tracks";
 
 export const EXTRA_TRACK_CATEGORIES = {
   "resource:mission": "任务关卡",
@@ -36,8 +37,12 @@ export function resourceTracks(library: Pick<TrackLibrary, "files">): ResourceTr
     const reverse = /(?:^|_)rvs(?:_|$)/i.test(variant);
     // Saved replays and settlement data identify reverse tracks by the _rvs suffix.
     const variantName = variant.replace(/^_/, "").split("_").filter(part => part !== "rvs").join("_");
-    const id = variant === "" ? folder! : variant === "_rvs" ? `${folder}_rvs`
-      : `${folder}__${variantName}${reverse ? "_rvs" : ""}`;
+    const imported = taiwanTrackForPath(path);
+    // Complete imported folders may carry sibling models already supplied by CN.
+    // Their presence supports dependencies; only audited TW entries are choices.
+    if (isTaiwanTrackFolder(folder!) && !imported) continue;
+    const id = imported?.id ?? (variant === "" ? folder! : variant === "_rvs" ? `${folder}_rvs`
+      : `${folder}__${variantName}${reverse ? "_rvs" : ""}`);
     result.push({ id, folder: folder!, model, variant, reverse });
   }
   return result;
@@ -52,6 +57,8 @@ export function extraTrackCategory(track: ResourceTrack): ExtraTrackCategory {
 }
 
 export function resourceTrackMetadata(track: ResourceTrack, source?: TrackMetadata): TrackMetadata {
+  const imported = taiwanTrackMetadata(track.id);
+  if (imported) return { ...imported, resourceCategory: extraTrackCategory(track) };
   const baseTitle = source?.cnTitle ?? trackDisplayTitle(track.folder, track.folder, "zh-CN");
   const suffix = track.variant && track.variant !== "_rvs" ? ` (${track.variant.replace(/^_/, "")})` : "";
   return {
@@ -84,9 +91,9 @@ export function extraTrackChoices(library: TrackLibrary, metadata: readonly Trac
     const source = byFolder.get(track.folder.toLowerCase());
     const normalized = resourceTrackMetadata(track, source);
     const base = trackDisplayTitle(track.folder, source?.cnTitle ?? track.folder);
-    const title = PRACTICE_SCENE_IDS.has(track.folder) ? `[自由探索]${base}` : track.variant && track.variant !== "_rvs"
+    const title = taiwanTrack(track.id)?.title ?? (PRACTICE_SCENE_IDS.has(track.folder) ? `[自由探索]${base}` : track.variant && track.variant !== "_rvs"
       ? `${base} (${track.variant.replace(/^_/, "")})`
-      : trackDisplayTitle(track.id, `${track.reverse ? "[反]" : ""}${base}`);
+      : trackDisplayTitle(track.id, `${track.reverse ? "[反]" : ""}${base}`));
     return [{ id: track.id, path: track.model.virtualPath, title,
       theme: normalized.theme!, gameType: normalized.gameType as "item" | "speed",
       difficulty: normalized.difficulty!, reverse: track.reverse || undefined,

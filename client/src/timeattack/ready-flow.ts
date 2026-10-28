@@ -13,6 +13,7 @@ import { goReadyHome, openReadyHome, preloadReadyHome, syncReadyHome,
 import { startDuelRace, type ReadyDuelController } from "./ready-duel";
 import type { DuelRaceRequest } from "../ui/ready-missions";
 import { tellPlayer } from "../ui/game-popups";
+import { expandTrackChoices, visibleTrackId } from "../resources/track-duplicates";
 
 /** The selection carried from the Ready screen into a single-player race. */
 export interface ReadySelection {
@@ -398,7 +399,7 @@ export async function openTrackSelect(
       library,
       root: host.root,
       tracks,
-      selectedTrackId: selection.trackId,
+      selectedTrackId: visibleTrackId(selection.trackId, tracks),
       randomGroups: groups,
       randomTrackNames,
       selectedRandomGroupId: controller.activeRandomGroup?.id,
@@ -457,7 +458,7 @@ export function selectReadyChoice(
     controller.selectReadyTrack(selection, options, choice.track);
     return;
   }
-  const preview = catalog.find(track =>
+  const preview = expandTrackChoices(catalog).find(track =>
     choice.group.trackIds.includes(track.id) && belongsToGroup(choice.group, track.gameType),
   );
   if (!preview) {
@@ -486,7 +487,7 @@ export async function resolveRandomSelection(
   if (!library) throw new Error("随机赛道启动缺少资源库。");
   const catalog = controller.randomTrackCatalog ?? await library.timeAttackTrackCatalog();
   controller.randomTrackCatalog = catalog;
-  const track = controller.randomTrackSession.pick(group, catalog);
+  const track = controller.randomTrackSession.pick(group, expandTrackChoices(catalog));
   return { ...selection, mapPath: track.path, trackId: track.id };
 }
 

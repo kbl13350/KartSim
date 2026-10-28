@@ -54,7 +54,7 @@ export const THEME_TITLES: Readonly<Record<string, string>> = {
   castle: "大城堡", nymph: "精灵", mechanic: "机械", wkc: "WKC", brodi: "未来工厂", park: "跑跑游乐场",
   beach: "滨海大道", steam: "1920", jurassic: "侏罗纪", world: "环游世界", nemo: "像素世界", sword: "刀剑",
   god: "神之国度", abyss: "深渊之都", camelot: "亚瑟传说", olympos: "奥林匹斯", mabi: "洛奇", maple: "冒险岛",
-  fengshen: "封神传说", transFormer: "变形金刚", xyy: "喜羊羊", korea: "韩国",
+  fengshen: "封神传说", transFormer: "变形金刚", xyy: "喜羊羊", korea: "韩国", tw: "台服补充地图",
 };
 
 /**
@@ -91,7 +91,7 @@ const RULES: Rule[] = [
   { id: "tracks", title: "赛道", description: "按主题下载：赛道模型、主题贴图与主题音乐" },
   {
     id: "karts", title: "车辆", description: "全部车辆模型与贴图（选车、比赛、车库、商城预览）",
-    packs: ["DataPack2"],
+    packs: ["DataPack2"], patterns: [/^kart_/],
   },
   {
     id: "characters", title: "角色", description: "全部角色模型与角色语音（比赛、房间与表情）",
@@ -181,6 +181,7 @@ function trackThemes(files: readonly ResourceFileSpec[], packs: readonly Rho5Pac
   for (const file of files) {
     const match = /^track_([A-Za-z0-9]+)_/.exec(baseName(file.name));
     if (match && match[1] !== "common") add(match[1]!, file.name);
+    if (/^sound_bgm_taiwan_/.test(baseName(file.name))) add("tw", file.name);
   }
   for (const pack of packs) {
     if (pack.name !== "DataPack3") continue;
@@ -196,7 +197,8 @@ function trackThemes(files: readonly ResourceFileSpec[], packs: readonly Rho5Pac
   const names = new Map(files.map(file => [baseName(file.name).toLowerCase(), file.name]));
   for (const [theme, set] of themes) {
     for (const extra of [`theme_${theme}`, `sound_bgm_${theme}`, `sound_bgm_${theme}2`, `sound_bgm_${theme}_2`,
-      ...(theme === "ice" ? [`sound_bgm_${XMAS_BGM_THEME}`] : [])]) {
+      ...(theme === "ice" ? [`sound_bgm_${XMAS_BGM_THEME}`] : []),
+      ...(theme === "tw" ? ["sound_taiwan_import"] : [])]) {
       const name = names.get(extra.toLowerCase());
       if (name) set.add(name);
     }

@@ -1,5 +1,6 @@
 import { attribute, decodeBinaryXml, type BinaryXmlNode } from "../codecs/binary-xml";
 import { p2 } from "../generated/formats.js";
+import { expandTrackChoices } from "../resources/track-duplicates";
 
 /**
  * The theme icons of the release track picker (SelectTrackEx themeTabOrder),
@@ -87,7 +88,7 @@ async function load(library: ThemeIconLibrary): Promise<LobbyThemeIcons> {
     if (source) icons.set(entry.id, await decode(source).catch(() => undefined as never));
   }));
   for (const [id, icon] of icons) if (!icon) icons.delete(id);
-  const catalogue = new Map((await library.timeAttackTrackCatalog?.().catch(() => []) ?? [])
+  const catalogue = new Map(expandTrackChoices(await library.timeAttackTrackCatalog?.().catch(() => []) ?? [])
     .map(track => [track.id, track.theme] as const));
   const themeIds = entries.map(entry => entry.id).filter(id => /\D/.test(id));
   return {

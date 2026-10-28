@@ -1,3 +1,4 @@
+import { findTrackChoice } from "../resources/track-duplicates";
 import { translateItemName } from "../i18n/item-names";
 import { ensureFeatureResources } from "../ui/resource-panel";
 import { activeBrowserSession } from "../account/account-runtime";
@@ -415,7 +416,7 @@ interface LicenseCourse { id: string; path: string }
 async function licenseCourse(lib: LicenseLibrary, step: { track: string; laps: number; name: string }):
   Promise<LicenseCourse> {
   const tracks = await lib.timeAttackTrackCatalog();
-  const track = tracks.find(entry => entry.id.toLowerCase() === step.track.toLowerCase());
+  const track = findTrackChoice(tracks, step.track);
   if (track) return track;
   const folder = `track_/${step.track}/`.toLowerCase();
   const model = lib.mapAssets().find(file => file.virtualPath.toLowerCase() === `${folder}track.1s`);

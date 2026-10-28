@@ -12,6 +12,7 @@
  * client rolls them with the shared deterministic roll (item-roll.ts); the
  * game node checks the reported `by` / `variant` with the same roll.
  */
+import { availableTaiwanVehicles } from "../resources/taiwan-vehicles";
 import { decodeBinaryXml } from "../codecs/binary-xml";
 import { parseResourceXml } from "../resources/xml-utf16-parser";
 import type { ItemXmlNode } from "./item-bml";
@@ -53,12 +54,13 @@ function nodeAttributes(node: ItemXmlNode): Record<string, string> {
  * Overlay the itemTable rows: the CN overlay wins attribute by attribute for
  * the same (tag, id); only the passive attributes are kept.
  */
-export function createItemPassiveTable(base: ItemXmlNode, overlay?: ItemXmlNode): ItemPassiveTable {
-  for (const root of [base, overlay]) {
+export function createItemPassiveTable(base: ItemXmlNode, overlay?: ItemXmlNode,
+  ...regional: ItemXmlNode[]): ItemPassiveTable {
+  for (const root of [base, overlay, ...regional]) {
     if (root && root.name !== "itemtable") throw Error("itemTable 根节点不是 itemtable。");
   }
   const tables = new Map<string, Map<number, Record<string, string>>>();
-  for (const root of [base, overlay]) {
+  for (const root of [base, overlay, ...regional]) {
     for (const node of root?.children ?? []) {
       const wanted = PASSIVE_ATTRIBUTES[node.name as PassiveTag];
       if (!wanted) continue;
@@ -102,7 +104,15 @@ export async function loadItemPassiveTable(library: ItemPassiveLibrary): Promise
     base.bytes().then(bytes => parseResourceXml(bytes).root),
     overlay?.bytes().then(bytes => parseResourceXml(bytes).root),
   ]);
-  return createItemPassiveTable(baseRoot as ItemXmlNode, overlayRoot as ItemXmlNode | undefined);
+  const taiwan: ItemXmlNode = {
+    name: "itemtable", attributes: [],
+    children: availableTaiwanVehicles(library).map(({ definition, sourceItemAttributes }) => ({
+      name: "kart", children: [],
+      attributes: Object.entries({ ...sourceItemAttributes, id: String(definition.itemId),
+        name: definition.internalId }).map(([name, value]) => ({ name, value })),
+    })),
+  };
+  return createItemPassiveTable(baseRoot as ItemXmlNode, overlayRoot as ItemXmlNode | undefined, taiwan);
 }
 
 // ---- animal boosters (item/slot/animalBooster[@cn].bml) ----

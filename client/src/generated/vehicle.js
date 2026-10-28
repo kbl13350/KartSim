@@ -33,6 +33,7 @@ import { loadRaceCharacters } from "../vehicle/race-character-loading.ts";
 import { loadVehicleRuntime } from "../vehicle/load-vehicle-runtime.ts";
 import { loadVehicleAsset } from "../vehicle/load-vehicle-asset.ts";
 import { loadTrackMap, loadTimeAttackMap, loadMultiplayerMap } from "../vehicle/load-track-map.ts";
+import { findTrackChoice } from "../resources/track-duplicates.ts";
 import { isItemRaceRoom, loadItemGameTrackSources, loadItemRaceFields } from "../item/item-race-map.ts";
 import { loadItemRacePresenter } from "../item/item-race-presenter.ts"; // item-mode(fx)
 import { loadHazardTraps } from "../item/hazard-traps.ts"; // speed hazard traps
@@ -65,6 +66,7 @@ import { TrackCoinOwner } from "../vehicle/track-coin-owner.ts";
 import { ChargerEffect } from "../vehicle/charger-effect.ts";
 import { RoadDustEffect } from "../vehicle/road-dust-effect.ts";
 import { xmasClassicHud } from "../resources/xmas-theme.ts";
+import { normalizeLegacyTachometerLayout } from "../vehicle/tachometer-legacy-layout.ts";
 import { CoatingOwner } from "../vehicle/coating-owner.ts";
 import { $1, B2, D1, D2, F1, GG, H, IN, J9, M1, R9, S1, T2, TG, Vt, W2, X5, Y2, _0, _9, a5, d3, e9, h3, h9, ir, kl, l1, l2, nn, r1, ra, s1, s5, t9, u1, u9, v1, v2, v9, y1, yr } from "./vendor.js";
 import { Ao, CR, Co, Fl, G2, HG, HY, He, J5, MZ, NG, Nm, O5, P6, PW, Qj, Ri, SR, SX, T, TR, To, UB, Um, W1, W6, WB, WY, We, YW, b4, c5, ca, d5, dn, dt, e3, fa, gw, hB, hX, ie, j0, j2, j6, lt, mo, ow, p2, qG, qp, rn, s2, sX, sn, sw, t3, tt, vw, we, x1, xR, y9, yB, yw, zG } from "./formats.js";
@@ -3825,7 +3827,7 @@ async function $50(n, e) {
     i = n.canonicalCandidates(t);
   if (i.length !== 1)
     throw new Error(`${t} source 数量必须为 1，实际 ${i.length}。`);
-  const r = s2(await i[0].bytes()),
+  const r = normalizeLegacyTachometerLayout(s2(await i[0].bytes()), e.type),
     s = new Set(),
     o = {},
     a = (p) => {
@@ -6053,7 +6055,7 @@ async function A40(n, e, t, i, r, s) {
       g.timeAttackGarageCatalog(),
     ]);
   w();
-  const E = x.find((D) => D.id === t.trackId) ?? cityTrackChoice(g, t.trackId); // city
+  const E = findTrackChoice(x, t.trackId) ?? cityTrackChoice(g, t.trackId); // city
   if (!E) throw new Error("本局赛道不在当前资源目录中。");
   const _ = new ul(rd(n, h[0])),
     C = await (

@@ -61,14 +61,25 @@ test("真实 p3553 清单和索引相互匹配", async () => {
   const manifest = parseResourceManifest(
     JSON.parse(await readFile(manifestPath, "utf8")), "p3553",
   );
-  // 1695 release containers plus the generated ones (卡丁城, the rebuilt 喜羊羊 tracks)
-  const generated = new Set(["track_kartcity.rho", ...XYY_TRACK_CONTAINERS]);
+  // Keep the exact release baseline, excluding every explicitly registered
+  // extension: localized UI, city, rebuilt tracks, and the audited TW imports.
+  const taiwan = JSON.parse(await readFile(path.join(root,
+    "client/tools/taiwan-import/import-manifest.json"), "utf8"));
+  const generated = new Set(["locale_ui.rho", "track_kartcity.rho", ...XYY_TRACK_CONTAINERS,
+    ...taiwan.containers.map(container => container.name)]);
   const extra = manifest.files.filter(file => generated.has(file.name)).length;
   assert.equal(manifest.files.length - extra, 1695);
   const stream = Readable.toWeb(createReadStream(archivePath));
   const index = await decodeArchiveIndex(stream, manifest);
   assert.equal(index.rho.length - extra, 1630);
   assert.equal(index.rho5.length, 4);
+  for (const imported of taiwan.containers) {
+    const spec = manifest.files.find(file => file.name === imported.name);
+    assert.equal(spec?.size, imported.size, `${imported.name} imported size`);
+    assert.equal(spec?.sha256, imported.sha256, `${imported.name} imported SHA-256`);
+    assert.equal(index.rho.find(archive => archive.name === imported.name)?.files.length,
+      imported.files.length, `${imported.name} indexed file count`);
+  }
 
   const storage = { getDirectory: async () => new MemoryDirectory() };
   const catalog = new ArchiveCatalog(new ContainerStore({ manifest, storage }), index);

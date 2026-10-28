@@ -107,7 +107,7 @@ const multiplayerRaceHudDependencies = {
 import { speedTypeEntry as r7 } from "../physics/speed-baseline.ts";
 import { loadSwWithReadableCodec } from "../codecs/sw-compat.ts";
 import { getResource, initializeResourceLookup, resourceCanonicalCandidates, resourceEntriesUnderCanonicalPrefix, resourceExactCanonicalCandidates, resourceFindSibling, resourceHasManifestMount, resourcePhysicalContainerNames, resourceResolveContainerPath } from "../resources/resource-lookup.ts";
-import { mapAssets, mapCatalog, timeAttackRandomTrackGroups, timeAttackRandomTrackNames, timeAttackTrackCatalog, trackMetadata, trackMetadataCatalog, trackTitles } from "../resources/track-catalog.ts";
+import { mapAssets, mapCatalog, timeAttackRandomTrackGroups, timeAttackRandomTrackNames, timeAttackTrackCatalog, timeAttackTrackCatalogAll, trackMetadata, trackMetadataCatalog, trackTitles } from "../resources/track-catalog.ts";
 import { loadVehicleEngineGrades, loadVehicleItemIds, loadVehicleLinkCharacterIds, vehicleAssets, vehicleCatalog, vehicleEngineGrade, vehicleItemId, vehicleLinkCharacterId, vehicleTextureKey } from "../resources/vehicle-identity.ts";
 import { bodyParams, timeAttackGarageCatalog, timeAttackKartItem, timeAttackPlateItem, timeAttackCharacterItem, timeAttackLinkedCharacterItem, timeAttackDecorationItem } from "../resources/timeattack-items.ts";
 import { loadTimeAttackGarageCatalog } from "../resources/garage-catalog.ts";
@@ -852,7 +852,7 @@ async function uQ(n, e) {
         v && w && h.set(v, w);
       });
     const f = new Map(
-      (await n.timeAttackTrackCatalog()).map((p) => [p.id, p.title]),
+      (await timeAttackTrackCatalogAll(n)).map((p) => [p.id, p.title]),
     );
     if (e === "p3553") for (const p of await Cw(n)) f.set(p.id, p.title);
     if (e === "p3553") for (const p of await itemTrackCatalog(n)) f.has(p.id) || f.set(p.id, p.title); // item-mode(lobby)

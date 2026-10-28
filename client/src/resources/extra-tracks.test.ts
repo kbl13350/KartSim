@@ -2,29 +2,31 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { indexedTrackLibrary } from "../../tools/export-track-catalog.mjs";
 import { resourceTracks, extraTrackChoices } from "./extra-tracks";
-import { itemTrackCatalog, timeAttackRandomTrackGroups, trackMetadata, type TrackLibrary } from "./track-catalog";
+import { itemTrackCatalog, timeAttackRandomTrackGroups, timeAttackTrackCatalogAll, trackMetadata, type TrackLibrary } from "./track-catalog";
+import { deduplicateTrackChoices, expandTrackChoices } from "./track-duplicates";
 import { filteredTracks } from "../ui/track-picker";
 import { loadSelectableTrackCard, type TrackPickerResourceLibrary } from "../ui/track-picker-window-assets";
+import { taiwanTrack } from "./taiwan-tracks";
 
 const library = indexedTrackLibrary() as TrackLibrary;
 
-test("every indexed race model and variant is manually selectable, excluding room scenery", async () => {
+test("the full catalog retains every indexed race model and variant, excluding room scenery", async () => {
   const resources = resourceTracks(library);
-  const choices = await library.timeAttackTrackCatalog();
-  assert.equal(resources.length, 559);
-  assert.equal(choices.length, 559);
+  const choices = await timeAttackTrackCatalogAll(library);
+  assert.equal(resources.filter(track => !taiwanTrack(track.id)).length, 559);
+  assert.equal(choices.length, resources.length);
   assert.equal(new Set(choices.map(track => track.id)).size, choices.length);
   for (const choice of choices) assert.equal(!!choice.reverse, choice.id.endsWith("_rvs"), choice.id);
   assert.ok(choices.some(track => track.id === "village_A07__d_rvs"));
   const paths = new Set(choices.map(track => track.path));
   for (const resource of resources) assert.ok(paths.has(resource.model.virtualPath), resource.id);
   assert.ok(!choices.some(track => /myRoom/i.test(track.path)));
-  assert.equal(choices.filter(track => track.theme === "tomb").length, 24);
-  assert.equal(choices.filter(track => track.resourceCategory).length, 188);
+  assert.equal(choices.filter(track => track.theme === "tomb" && !taiwanTrack(track.id)).length, 24);
+  assert.equal(choices.filter(track => track.resourceCategory && !taiwanTrack(track.id)).length, 188);
 });
 
 test("hidden, mission, training, special and variant selections resolve usable race metadata", async () => {
-  for (const choice of await library.timeAttackTrackCatalog()) {
+  for (const choice of await timeAttackTrackCatalogAll(library)) {
     const metadata = await trackMetadata(library, choice.id);
     assert.ok(metadata?.cnTitle, choice.id);
     assert.ok(metadata.laps! >= 1, choice.id);
@@ -57,7 +59,7 @@ test("resource categories, original themes and ID searches can all find task map
     searchQuery: "", itemEnabled: true, speedEnabled: true, selectedTheme: "resource:mission" as string | undefined };
   assert.ok(filteredTracks(state).some(track => track.id === "tomb_S02"));
   state.selectedTheme = "tomb";
-  assert.equal(filteredTracks(state).length, 24);
+  assert.equal(filteredTracks(state).filter(track => !taiwanTrack(track.id)).length, 24);
   state.selectedTheme = undefined;
   state.searchQuery = "TOMB_S02";
   assert.deepEqual(filteredTracks(state).map(track => track.id), ["tomb_S02"]);
@@ -100,6 +102,15 @@ test("all selectable maps initialize and round-trip through the real favorites c
   const city = choices.find(choice => choice.id === "kartcity")!;
   assert.deepEqual(IP(city), { themeId: 3, trackId: 506332011 });
   assert.deepEqual(nT([IP(city)], choices), new Set(["kartcity"]));
+  const tracks = await timeAttackTrackCatalogAll(library);
+  const canonical = tracks.find(track => track.id === "village_R01")!;
+  const alias = tracks.find(track => track.id === "village_R01_cn")!;
+  assert.ok(canonical && alias);
+  const deduplicated = deduplicateTrackChoices([canonical, alias], [
+    { canonicalId: canonical.id, aliasIds: [alias.id] },
+  ]);
+  assert.deepEqual(nT([IP(alias)], deduplicated), new Set([canonical.id]));
+  assert.deepEqual(IP(alias), IP(expandTrackChoices(deduplicated).find(track => track.id === alias.id)!));
 });
 
 
@@ -121,8 +132,8 @@ test("mounted workshop maps keep their authored metadata without duplicate resou
     const choices = await mounted.timeAttackTrackCatalog();
     // This is the picker initialization that used to throw on the synthetic custom theme.
     assert.equal(nT([], choices).size, 0);
-    assert.equal(choices.length, 561);
-    assert.equal(resourceTracks(mounted).length, 559);
+    assert.equal(expandTrackChoices(choices).length, resourceTracks(mounted).length + 2);
+    assert.equal(resourceTracks(mounted).filter(track => !taiwanTrack(track.id)).length, 559);
     for (const summary of summaries) {
       const id = summaryTrackId(summary);
       const entries = choices.filter(choice => choice.id === id);

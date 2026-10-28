@@ -1,3 +1,4 @@
+import { findTrackChoice, visibleTrackId } from "../resources/track-duplicates";
 import { translateItemName } from "../i18n/item-names";
 import { trackDisplayTitle } from "../resources/track-names";
 import { tr } from "../i18n/locale";
@@ -183,7 +184,7 @@ export async function loadReplayMenu(controller: ReadyHomeController, riderName:
     const trackId = trackIdFromGhostKey(key);
     if (titles.has(trackId) || !lib) return;
     titles.set(trackId, undefined);
-    const cased = tracks.find(track => track.id.toLowerCase() === trackId)?.id ?? trackId;
+    const cased = findTrackChoice(tracks, trackId)?.id ?? trackId;
     titles.set(trackId, trackDisplayTitle(cased, (await lib.trackMetadata(cased).catch(() => undefined))?.cnTitle ?? cased));
   }));
   return replayEntries(records, riderName, trackId => titles.get(trackId));
@@ -246,7 +247,8 @@ export async function pickReplayTrack(controller: ReadyReplayController): Promis
       controller.replayTrackSelect = undefined;
     };
     void (_7 as unknown as { load(options: Record<string, unknown>): Promise<{ show(): void; dispose(): void }> }).load({
-      library: lib, root: controller.host.root, tracks, selectedTrackId: state?.track.id, randomGroups: [],
+      library: lib, root: controller.host.root, tracks,
+      selectedTrackId: state && visibleTrackId(state.track.id, tracks), randomGroups: [],
       randomTrackNames: new Map(), favoriteTrackIds: new Set(), getFavoriteCount: () => 0,
       onFavoriteChange: () => {},
       onConfirm: (choice: TrackChoice) => {
@@ -294,7 +296,7 @@ export async function openReplayEntry(controller: ReadyReplayController, entry: 
     const session = activeBrowserSession();
     if (!session) throw new Error(tr("请先登录后再观看录像。"));
     const tracks = await lib.timeAttackTrackCatalog();
-    const track = tracks.find(candidate => candidate.id.toLowerCase() === entry.trackId.toLowerCase());
+    const track = findTrackChoice(tracks, entry.trackId);
     if (!track) throw new Error(tr("赛道 {track} 不在当前目录。", { track: entry.trackTitle }));
     let bytes: Uint8Array;
     try {
@@ -326,7 +328,7 @@ export async function openLocalReplay(controller: ReadyReplayController, entry: 
   try {
     const summary = library.records.get(entry.key) as ReplaySummary | undefined;
     const tracks = await lib.timeAttackTrackCatalog();
-    const track = tracks.find(candidate => candidate.id.toLowerCase() === entry.trackId.toLowerCase());
+    const track = findTrackChoice(tracks, entry.trackId);
     if (!track) throw new Error(tr("赛道 {track} 不在当前目录。", { track: entry.trackTitle }));
     const stored = await library.store.get(entry.key).catch(() => undefined) as
       { participants?: Array<{ equipment?: { playerName?: unknown } }> } | undefined;

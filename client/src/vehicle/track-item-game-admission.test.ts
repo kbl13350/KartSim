@@ -94,6 +94,15 @@ test("the item flag admits cubes and hazards and keeps every other speed-individ
     "hazard", "-", "-", "-", "-", "-", "-", "hazard", "-", "-"]);
 });
 
+test("legacy factory forceZone anchors enter the existing item hazard and speed trap consumers", () => {
+  const spring = movable("mo_forcezone", { type: "forceZone" });
+  assert.equal(itemGameObjectKind(spring.value), "hazard");
+  assert.equal(admitItemGameTrackObject(spring, 0, "TW", 0, false, ops).reason, "item-hazard-admitted");
+  for (const mode of ["time-attack", "speed-individual"])
+    assert.equal(admitTrackObject(spring, 0, mode, "TW", 0, false, false, ops).reason,
+      "item-hazard-scenery-admitted");
+});
+
 const ledgerOps: TrackLedgerOps = {
   ...ops,
   routeSurfaceKind: () => undefined,
@@ -209,6 +218,17 @@ function mapFixture() {
   } };
   return { calls, ops, owner, anchor, banana, collisionBox, library, model };
 }
+
+test("hidden original resource tracks keep their practice admission when opened by replay ID", async () => {
+  const fixture = mapFixture();
+  Object.assign(fixture.library, { timeAttackTrackCatalog: async () => [{
+    id: "factory_I04", duplicateAliases: [{ id: "factory_I03", resourceCategory: "resource:training" }],
+  }] });
+  await loadTrackMap(fixture.owner, "track_/factory_I03/track.1s", "factory_I03",
+    "time-attack", () => "admission", false, fixture.ops);
+  const course = fixture.calls.find(call => call[0] === "course")!;
+  assert.equal((course[4] as { resourcePractice: boolean }).resourcePractice, true);
+});
 
 test("loadTrackMap with the item flag loads item sources and the item roots", async () => {
   const fixture = mapFixture();

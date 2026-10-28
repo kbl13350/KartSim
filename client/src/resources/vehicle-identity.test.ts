@@ -8,6 +8,7 @@ import { inflateSync } from "node:zlib";
 import { Rho5Reader } from "../codecs/rho5";
 import type { ArchiveSource } from "./container-store";
 import type { Rho5ArchiveIndex } from "./archive-index";
+import { taiwanVehicles } from "./taiwan-vehicles";
 import {
   loadVehicleEngineGrades, loadVehicleItemIds, loadVehicleLinkCharacterIds,
   vehicleAssets, vehicleCatalog, vehicleEngineGrade, vehicleItemId,
@@ -142,7 +143,7 @@ test("车辆引擎、物品、角色身份及冲突错误与原版一致", async
   assert.equal(authored.vehicleEngineGradePromise, authored.vehicleEngineGradePromise);
 });
 
-test("真实 p3553 车辆档案索引筛选出的可驾驶模型与原版一致", async () => {
+function indexedVehicleFiles(): VehicleResource[] {
   const index = JSON.parse(inflateSync(readFileSync(path.resolve(project,
     "../mirror/__p3553/archive-index"))).toString("utf8")) as {
     rho: { name: string; files: { path: string }[] }[];
@@ -165,6 +166,11 @@ test("真实 p3553 车辆档案索引筛选出的可驾驶模型与原版一致"
       extension: name.split(".").at(-1)!.toLowerCase(),
       sourceName: archive.name, sourceKind: "rho5", containerId: `rho5:${archive.name}` });
   }
+  return files;
+}
+
+test("真实 p3553 车辆档案索引筛选出的可驾驶模型与原版一致", async () => {
+  const files = indexedVehicleFiles().filter(file => file.sourceName !== "kart_taiwan_import.rho");
   const original = setup(ReleaseLibrary, files);
   const authored = setup(AuthoredLibrary, files);
   const originalModels = original.vehicleAssets();
@@ -173,6 +179,27 @@ test("真实 p3553 车辆档案索引筛选出的可驾驶模型与原版一致"
   assert.equal(authoredModels.length, 1096);
   assert.deepEqual(await authored.vehicleCatalog(), await original.vehicleCatalog());
   assert.ok(authoredModels.some(model => model.virtualPath.includes("kart_")));
+});
+
+test("独立台服车辆包追加 96 个模型，旧四帧枚举规则保持不变", async () => {
+  const files = indexedVehicleFiles().filter(file => file.sourceName === "kart_taiwan_import.rho");
+  const imported = taiwanVehicles.filter(row => row.source === "taiwan");
+  const models = files.filter(file => file.name === "model.1s");
+  assert.equal(models.length, 96);
+  for (const row of imported) {
+    const folder = `${row.definition.internalId}/`;
+    for (const name of ["model.1s", "param.xml", `${row.definition.textureKey}.png`])
+      assert.equal(files.filter(file => file.virtualPath.endsWith(`${folder}${name}`)).length, 1,
+        `${folder}${name}`);
+  }
+  const original = setup(ReleaseLibrary, files);
+  const authored = setup(AuthoredLibrary, files);
+  assert.deepEqual(authored.vehicleAssets(), original.vehicleAssets());
+  // This legacy inventory requires f00..f03. The garage additionally supports
+  // the 11 native models with fewer animation sequences; the import verifier
+  // checks their real available frames and runtime assembly separately.
+  assert.equal(authored.vehicleAssets().length, 85);
+  assert.deepEqual(await authored.vehicleCatalog(), await original.vehicleCatalog());
 });
 
 test("真实 p3553 ItemTable 车辆身份值与原版冲突判定一致", async () => {

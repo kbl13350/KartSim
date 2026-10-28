@@ -425,7 +425,7 @@ const cityRosterPatches = [
 ];
 const cityRaceAssetPatches = [
   [`const E = x.find((D) => D.id === t.trackId);`,
-    `const E = x.find((D) => D.id === t.trackId) ?? cityTrackChoice(g, t.trackId); // city`],
+    `const E = findTrackChoice(x, t.trackId) ?? cityTrackChoice(g, t.trackId); // city`],
   [`    const q = C.data.weather?.snowEnabled
       ? await A7.load(g, n.targetRandom)`,
     `    const q = C.data.weather?.snowEnabled || isCityRace(t) // city
@@ -1761,6 +1761,7 @@ const replacedLobbyPrimitives = new Set();
 const replacedUiSymbols = new Set();
 const retiredUi = new Set();
 const replacedLocalProfileFunctions = new Set();
+let replacedTrackDuplicateFavorites = false;
 const replacedTrackPickerMethods = new Set();
 const replacedLocalRaceMethods = new Set();
 const replacedRemoteMotion = new Set();
@@ -3059,6 +3060,14 @@ function II(version, speed) { return findSpeedTypeEntry(version, speed); }` });
     };
     bodies.get("world").push({ at: node.start, text: wrappers[declarationName] });
     replacedOutgoingRaceMotion.add(declarationName);
+    continue;
+  }
+  if (declarationName === "nT") {
+    assert(node.type === "FunctionDeclaration" && originalSection(node.start) === "world",
+      "Track favorite resolver moved from world.");
+    bodies.get("world").push({ at: node.start,
+      text: "function nT(favorites, tracks) { return duplicateAwareFavoriteTrackIds(favorites, tracks, IP); }" });
+    replacedTrackDuplicateFavorites = true;
     continue;
   }
   if (localProfileFunctionOverrides.has(declarationName)) {
@@ -4502,6 +4511,7 @@ assert(replacedUiSymbols.size === uiSymbolOverrides.size,
 assert(retiredUi.size === retiredUiHelpers.size, "The retired UI helper was not found.");
 assert(replacedLocalProfileFunctions.size === localProfileFunctionOverrides.size,
   "The handwritten local profile helpers were not all found.");
+assert(replacedTrackDuplicateFavorites, "Track favorite resolver was not replaced.");
 assert(replacedTrackPickerMethods.size === trackPickerMethodOverrides.size,
   "The handwritten track picker methods were not all found.");
 assert(replacedLocalRaceMethods.size === localRaceMethodOverrides.size,
@@ -4723,6 +4733,7 @@ function renderModule(name) {
   }
   if (name === "world") {
     lines.push('import { installWorldOverrides } from "../world/install.ts";');
+    lines.push('import { duplicateAwareFavoriteTrackIds } from "../resources/track-duplicates.ts";');
     lines.push('import { LocalRaceController } from "../multiplayer/local-race-controller.ts";');
     lines.push('import { FlyingPetModel, loadFlyingPetModelParts } from "../world/flying-pet-model.ts";');
     lines.push('import { FlyingPetIdleMotion, FlyingPetRaceState, visibleFlyingPet } from "../world/flying-pet-state.ts";');
@@ -4863,6 +4874,7 @@ function renderModule(name) {
     lines.push('import { loadVehicleRuntime } from "../vehicle/load-vehicle-runtime.ts";');
     lines.push('import { loadVehicleAsset } from "../vehicle/load-vehicle-asset.ts";');
     lines.push('import { loadTrackMap, loadTimeAttackMap, loadMultiplayerMap } from "../vehicle/load-track-map.ts";');
+    lines.push('import { findTrackChoice } from "../resources/track-duplicates.ts";');
     lines.push(...itemWorldVehicleImports); // item-mode(world)
     lines.push(...cityVehicleImports); // city
     lines.push('import { KartAudioRuntime, loadKartAudio, decodeMotorAudio, parseRoadSoundConfig } from "../vehicle/kart-audio-runtime.ts";');
@@ -4892,6 +4904,7 @@ function renderModule(name) {
     lines.push('import { ChargerEffect } from "../vehicle/charger-effect.ts";');
     lines.push('import { RoadDustEffect } from "../vehicle/road-dust-effect.ts";');
     lines.push('import { xmasClassicHud } from "../resources/xmas-theme.ts";');
+    lines.push('import { normalizeLegacyTachometerLayout } from "../vehicle/tachometer-legacy-layout.ts";');
     lines.push('import { CoatingOwner } from "../vehicle/coating-owner.ts";');
   }
   if (name === "driving") {
@@ -5161,7 +5174,7 @@ const multiplayerRaceHudDependencies = {
     lines.push('import { speedTypeEntry as r7 } from "../physics/speed-baseline.ts";');
     lines.push('import { loadSwWithReadableCodec } from "../codecs/sw-compat.ts";');
     lines.push('import { getResource, initializeResourceLookup, resourceCanonicalCandidates, resourceEntriesUnderCanonicalPrefix, resourceExactCanonicalCandidates, resourceFindSibling, resourceHasManifestMount, resourcePhysicalContainerNames, resourceResolveContainerPath } from "../resources/resource-lookup.ts";');
-    lines.push('import { mapAssets, mapCatalog, timeAttackRandomTrackGroups, timeAttackRandomTrackNames, timeAttackTrackCatalog, trackMetadata, trackMetadataCatalog, trackTitles } from "../resources/track-catalog.ts";');
+    lines.push('import { mapAssets, mapCatalog, timeAttackRandomTrackGroups, timeAttackRandomTrackNames, timeAttackTrackCatalog, timeAttackTrackCatalogAll, trackMetadata, trackMetadataCatalog, trackTitles } from "../resources/track-catalog.ts";');
     lines.push('import { loadVehicleEngineGrades, loadVehicleItemIds, loadVehicleLinkCharacterIds, vehicleAssets, vehicleCatalog, vehicleEngineGrade, vehicleItemId, vehicleLinkCharacterId, vehicleTextureKey } from "../resources/vehicle-identity.ts";');
     lines.push('import { bodyParams, timeAttackGarageCatalog, timeAttackKartItem, timeAttackPlateItem, timeAttackCharacterItem, timeAttackLinkedCharacterItem, timeAttackDecorationItem } from "../resources/timeattack-items.ts";');
     lines.push('import { loadTimeAttackGarageCatalog } from "../resources/garage-catalog.ts";');
@@ -6045,6 +6058,13 @@ function applyBrawlPatches(name, source) {
 // ---- end brawl(lobby) -----------------------------------------------------
 
 const generated = [];
+function addLegacyTachometerLayout(source) {
+  const before = "  const r = s2(await i[0].bytes()),\n    s = new Set(),";
+  assert(source.split(before).length === 2,
+    "The native tachometer XML layout entry point changed.");
+  return source.replace(before,
+    "  const r = normalizeLegacyTachometerLayout(s2(await i[0].bytes()), e.type),\n    s = new Set(),");
+}
 function addHouseShellState(source) {
   const substitutions = [
     ['    garage: "ReadyGarage",\n    settings: "ReadySettings",',
@@ -6062,6 +6082,12 @@ function addHouseShellState(source) {
 }
 for (const name of order) {
   let text = pruneUnreferencedDeclarations(retireDuplicateArchiveCode(name, renderModule(name)));
+  if (name === "library") {
+    const titleCatalog = '(await n.timeAttackTrackCatalog()).map((p) => [p.id, p.title])';
+    assert(text.split(titleCatalog).length === 2, "Lobby title catalog moved.");
+    text = text.replace(titleCatalog, '(await timeAttackTrackCatalogAll(n)).map((p) => [p.id, p.title])');
+  }
+  if (name === "vehicle") text = addLegacyTachometerLayout(text);
   if (name === "world") text = addHouseShellState(text);
   text = applyItemLobbyPatches(name, text); // item-mode(lobby)
   text = applyBrawlPatches(name, text); // brawl(lobby)

@@ -1,0 +1,85 @@
+<!doctype html><meta charset="utf-8"><title>Taiwan vehicle integration checks</title>
+<style>body{background:#162230;color:white;font:14px system-ui}canvas{width:640px;height:360px}pre{white-space:pre-wrap}</style><pre id="status">Loading resource index…</pre>
+<script type="module">
+import { WebGLRenderer, Scene, PerspectiveCamera, SRGBColorSpace, Box3, Vector3 } from 'three';
+import { Sw, Tr, u5 } from '/src/generated/library.js';
+import { ha } from '/src/generated/formats.js';
+import { ul, JI } from '/src/generated/vehicle.js';
+import { rP, _L } from '/src/generated/world.js';
+import { AL } from '/src/generated/driving.js';
+import { installWorldOverrides } from '/src/world/install.ts';
+import { loadLegacyResourceBundle } from '/src/resources/legacy-adapter.ts';
+import { defaultLocalProfile } from '/src/ui/local-profile.ts';
+import { taiwanVehicles } from '/src/resources/taiwan-vehicles.ts';
+const bundle=await loadLegacyResourceBundle('p3553');
+const library=await Sw.load(bundle.sources,undefined,bundle.archiveIndexes);
+const garage=await library.timeAttackGarageCatalog();
+const profile=defaultLocalProfile();
+const source={importer:new Tr(),toonStageBinding:new ha(),getLibrary:()=>library,
+  userProfile:profile,targetRandom:new rP(),shadow:true,
+  generationValue:()=>1,isGenerationCurrent:()=>true,
+  requireAsset:path=>{const f=library.get(path);if(!f)throw Error('missing '+path);return f;}};
+const loader=new ul(source);
+const tracks=await library.timeAttackTrackCatalog();
+const track=tracks.find(t=>t.id==='forest_I01');
+if(!track)throw Error('Missing baseline track');
+const map=await loader.loadAssetMap(track.path,track.id);
+installWorldOverrides(_L);
+const world=new _L(map.data,map.scene,map.renderScene,map.skydome);
+const renderer=new WebGLRenderer({antialias:false});renderer.outputColorSpace=SRGBColorSpace;
+renderer.setSize(640,360);document.body.append(renderer.domElement);
+const audioContext=new AudioContext();
+const expected=taiwanVehicles.map(row=>row.definition.itemId);
+window.vehicleChoices=garage.karts.filter(kart=>expected.includes(kart.itemId));
+if(window.vehicleChoices.length!==expected.length)throw Error(`Garage exposes ${window.vehicleChoices.length}/${expected.length} TW vehicles`);
+window.testVehicle=async(itemId)=>{
+ const result={itemId};let asset;
+ try{
+  const kart=window.vehicleChoices.find(k=>k.itemId===itemId);if(!kart)throw Error('unknown kart');
+  result.title=kart.title;result.path=kart.path;result.textureKey=kart.textureKey;
+  profile.equipment.itemIds[3]=itemId;
+  const {spec,source:physicsSource}=JI({itemId},7);
+  asset=await loader.loadVehicleAsset(kart.path,itemId,kart.systemKey,spec,kart.internalId??String(itemId),map.environment,map.stageBinding,audioContext);
+  result.loaded=true;result.physicsSource=physicsSource;
+  const object=asset.imported.object;object.updateMatrixWorld(true);
+  const bounds=new Box3().setFromObject(object);const size=bounds.getSize(new Vector3());const center=bounds.getCenter(new Vector3());
+  if(bounds.isEmpty()||!size.toArray().every(Number.isFinite))throw Error('Invalid vehicle bounds');
+  result.bounds=size.toArray();
+  const scene=new Scene();scene.add(object);
+  const distance=Math.max(...size.toArray(),1)*1.7;
+  const camera=new PerspectiveCamera(45,640/360,.01,1000);
+  camera.position.copy(center).add(new Vector3(distance,distance*.65,distance));camera.lookAt(center);
+  asset.imported.renderScene?.update?.(camera,640,360);
+  renderer.render(scene,camera);result.rendered=true;result.triangles=renderer.info.render.triangles;
+  // Construct the same driving controller that races receive from this asset.
+  const controller=new AL(asset.physicsParams,asset.collisionShape);
+  if(!Number.isFinite(controller.displaySpeedKmh()))throw Error('Invalid physics controller');
+  const start=world.getStart();controller.resetFromRouteFrame(start);
+  const ground=world.rayQuery({...start.position,y:start.position.y+10},{x:0,y:-100,z:0},false);
+  if(!ground)throw Error('Baseline track has no starting ground');
+  controller.body.position={...ground.point,y:ground.point.y+.3};world.resetRouteState(controller,controller.body.position);
+  const input={forward:1,reverse:0,steer:0,rawSteer:0,steeringInverted:false,rawDriftHeld:false,derivedDriftHeld:false,actionMarkerWord:0};
+  controller.update(10000,{...input,forward:0},world);
+  let travelled=0,grounded=0;
+  for(let i=1;i<=300;i++){
+   const now=10000+i*16,previous={...controller.body.position};
+   world.updateObstacles(now,previous);world.registerObstaclePair(previous);world.commitObstacleSnapshot();
+   controller.update(now,input,world);world.updateRoute(controller,previous,controller.body.position);
+   if(!Object.values(controller.body.position).every(Number.isFinite))throw Error('Nonfinite driving position');
+   travelled+=Math.hypot(controller.body.position.x-previous.x,controller.body.position.z-previous.z);
+   if(controller.wheels.grounded)grounded++;
+  }
+  result.travelled=travelled;result.groundedFrames=grounded;
+  result.pass=result.loaded&&result.rendered&&result.triangles>0&&travelled>3&&grounded>30;
+ }catch(error){result.error=error.message;result.stack=error.stack;result.pass=false;}
+ finally{
+  if(asset){asset.audio?.dispose(false);
+   for(const key of ['effects','trails','driftEffects','motionBlur','zetAirEffect','shockWaveEffect','exhaustEffect','crashEffect','chargerEffect','roadDust','lampFlares','simpleShadow','decoration','coating','particleModification','tachometerRenderer'])asset[key]?.dispose();
+   asset.accessories.forEach(({render})=>render.dispose());asset.imported.renderScene?.dispose();u5(asset.imported.object);
+  }
+  renderer.renderLists.dispose();
+ }
+ document.querySelector('#status').textContent=JSON.stringify(result,null,2);return result;
+};
+window.ready=true;document.querySelector('#status').textContent=`Ready: ${window.vehicleChoices.length} TW vehicles`;
+</script>

@@ -5,6 +5,7 @@ import { closeReadyMenus } from "./ready-menus";
 import { closeReadyLottery } from "./ready-lottery";
 import { closeReadyShop } from "./ready-shop";
 import { tellPlayer } from "../ui/game-popups";
+import { equivalentTrackChoices } from "../resources/track-duplicates";
 interface Disposable { dispose(): void }
 
 export interface FavoriteTrack { themeId: string; trackId: string }
@@ -154,10 +155,11 @@ export function closeReadyMultiplayer(host: ReadyControllerStateHost,
 export function changeReadyFavoriteTrack(host: ReadyControllerStateHost,
   track: unknown, favorite: boolean,
   normalize: (track: unknown) => FavoriteTrack): void {
-  const id = normalize(track);
+  const identities = equivalentTrackChoices(track).map(normalize);
+  const id = identities[0]!;
   const profile = host.host.getProfile();
   const other = profile.favoriteTracks.filter(entry =>
-    entry.themeId !== id.themeId || entry.trackId !== id.trackId);
+    !identities.some(candidate => entry.themeId === candidate.themeId && entry.trackId === candidate.trackId));
   host.host.setProfile({ ...profile, favoriteTracks: favorite ? [...other, id] : other });
   try {
     host.host.saveProfile();

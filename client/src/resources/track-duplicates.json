@@ -1,0 +1,645 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "canonicalId": "beach_I02__s",
+      "aliasIds": [
+        "beach_I02_old"
+      ]
+    },
+    {
+      "canonicalId": "beach_I03",
+      "aliasIds": [
+        "beach_I03_old"
+      ]
+    },
+    {
+      "canonicalId": "camelot_R02",
+      "aliasIds": [
+        "camelot_R02_old"
+      ]
+    },
+    {
+      "canonicalId": "desert_I04_anycall",
+      "aliasIds": [
+        "facelift_desert_I04__anycall"
+      ]
+    },
+    {
+      "canonicalId": "facelift_desert_I12",
+      "aliasIds": [
+        "facelift_desert_I03__crz"
+      ]
+    },
+    {
+      "canonicalId": "facelift_desert_R02_rvs",
+      "aliasIds": [
+        "desert_A02__d_rvs",
+        "facelift_desert_R02__d_rvs"
+      ]
+    },
+    {
+      "canonicalId": "factory_I04",
+      "aliasIds": [
+        "factory_A04"
+      ]
+    },
+    {
+      "canonicalId": "factory_I04__crz",
+      "aliasIds": [
+        "factory_I09"
+      ]
+    },
+    {
+      "canonicalId": "forest_I01",
+      "aliasIds": [
+        "facelift_forest_I01"
+      ]
+    },
+    {
+      "canonicalId": "forest_I01_rvs",
+      "aliasIds": [
+        "facelift_forest_I01_rvs"
+      ]
+    },
+    {
+      "canonicalId": "forest_I02",
+      "aliasIds": [
+        "facelift_forest_I02"
+      ]
+    },
+    {
+      "canonicalId": "forest_I02_rvs",
+      "aliasIds": [
+        "facelift_forest_I02_rvs"
+      ]
+    },
+    {
+      "canonicalId": "forest_I03",
+      "aliasIds": [
+        "facelift_forest_I03"
+      ]
+    },
+    {
+      "canonicalId": "forest_I03__crz",
+      "aliasIds": [
+        "facelift_forest_I03__crz",
+        "facelift_forest_I10"
+      ]
+    },
+    {
+      "canonicalId": "forest_I03_rvs",
+      "aliasIds": [
+        "facelift_forest_I03_rvs"
+      ]
+    },
+    {
+      "canonicalId": "forest_I04",
+      "aliasIds": [
+        "facelift_forest_I04"
+      ]
+    },
+    {
+      "canonicalId": "forest_I04__d_rvs",
+      "aliasIds": [
+        "facelift_forest_I04__d_rvs"
+      ]
+    },
+    {
+      "canonicalId": "forest_I05",
+      "aliasIds": [
+        "facelift_forest_I05"
+      ]
+    },
+    {
+      "canonicalId": "forest_I05_rvs",
+      "aliasIds": [
+        "facelift_forest_I05_rvs"
+      ]
+    },
+    {
+      "canonicalId": "forest_I06",
+      "aliasIds": [
+        "facelift_forest_I06"
+      ]
+    },
+    {
+      "canonicalId": "forest_I07",
+      "aliasIds": [
+        "facelift_forest_I07"
+      ]
+    },
+    {
+      "canonicalId": "forest_I07_rvs",
+      "aliasIds": [
+        "facelift_forest_I07_rvs"
+      ]
+    },
+    {
+      "canonicalId": "forest_R02",
+      "aliasIds": [
+        "facelift_forest_R02"
+      ]
+    },
+    {
+      "canonicalId": "forest_R02_rvs",
+      "aliasIds": [
+        "facelift_forest_R02_rvs"
+      ]
+    },
+    {
+      "canonicalId": "forest_R04",
+      "aliasIds": [
+        "facelift_forest_R04"
+      ]
+    },
+    {
+      "canonicalId": "forest_R05",
+      "aliasIds": [
+        "facelift_forest_R05"
+      ]
+    },
+    {
+      "canonicalId": "forest_R06",
+      "aliasIds": [
+        "facelift_forest_R06"
+      ]
+    },
+    {
+      "canonicalId": "ice_F01",
+      "aliasIds": [
+        "ice_F01__xmas"
+      ]
+    },
+    {
+      "canonicalId": "ice_I01",
+      "aliasIds": [
+        "ice_I01__xmas"
+      ]
+    },
+    {
+      "canonicalId": "ice_I01_rvs",
+      "aliasIds": [
+        "ice_I01__xmas_rvs"
+      ]
+    },
+    {
+      "canonicalId": "ice_I02",
+      "aliasIds": [
+        "ice_I02__xmas"
+      ]
+    },
+    {
+      "canonicalId": "ice_I02_rvs",
+      "aliasIds": [
+        "ice_I02__xmas_rvs"
+      ]
+    },
+    {
+      "canonicalId": "ice_I03",
+      "aliasIds": [
+        "ice_I03__xmas"
+      ]
+    },
+    {
+      "canonicalId": "ice_I03_rvs",
+      "aliasIds": [
+        "ice_I03__xmas_rvs"
+      ]
+    },
+    {
+      "canonicalId": "ice_I04",
+      "aliasIds": [
+        "ice_I04__xmas"
+      ]
+    },
+    {
+      "canonicalId": "ice_I04_rvs",
+      "aliasIds": [
+        "ice_I04__xmas_rvs"
+      ]
+    },
+    {
+      "canonicalId": "ice_I05",
+      "aliasIds": [
+        "ice_I05__xmas"
+      ]
+    },
+    {
+      "canonicalId": "ice_I05_rvs",
+      "aliasIds": [
+        "ice_I05__xmas_rvs"
+      ]
+    },
+    {
+      "canonicalId": "ice_I06",
+      "aliasIds": [
+        "ice_I06__xmas"
+      ]
+    },
+    {
+      "canonicalId": "ice_R01",
+      "aliasIds": [
+        "ice_R01__xmas"
+      ]
+    },
+    {
+      "canonicalId": "ice_R02",
+      "aliasIds": [
+        "ice_R02__xmas"
+      ]
+    },
+    {
+      "canonicalId": "korea_R01",
+      "aliasIds": [
+        "korea_R01_old"
+      ]
+    },
+    {
+      "canonicalId": "moonhill_I03",
+      "aliasIds": [
+        "moonhill_A03"
+      ]
+    },
+    {
+      "canonicalId": "moonhill_R04",
+      "aliasIds": [
+        "moonhill_R04_old"
+      ]
+    },
+    {
+      "canonicalId": "northeu_I04",
+      "aliasIds": [
+        "northeu_I04_old"
+      ]
+    },
+    {
+      "canonicalId": "village_A07__d_rvs",
+      "aliasIds": [
+        "facelift_village_R07_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_B01",
+      "aliasIds": [
+        "village_B02"
+      ]
+    },
+    {
+      "canonicalId": "village_C114",
+      "aliasIds": [
+        "village_C114__jp"
+      ]
+    },
+    {
+      "canonicalId": "village_I01",
+      "aliasIds": [
+        "facelift_village_I01"
+      ]
+    },
+    {
+      "canonicalId": "village_I01__anycall",
+      "aliasIds": [
+        "facelift_village_I01__anycall",
+        "village_I01_anycall",
+        "village_I01_vn__anycall"
+      ]
+    },
+    {
+      "canonicalId": "village_I01__cn",
+      "aliasIds": [
+        "facelift_village_I01__cn",
+        "village_I01_anycall__cn",
+        "village_I01_cn"
+      ]
+    },
+    {
+      "canonicalId": "village_I01__coke",
+      "aliasIds": [
+        "facelift_village_I01__coke",
+        "village_I01_anycall__coke",
+        "village_I01_coke",
+        "village_I01_vn__coke"
+      ]
+    },
+    {
+      "canonicalId": "village_I01__id",
+      "aliasIds": [
+        "facelift_village_I01__id",
+        "village_I01_id"
+      ]
+    },
+    {
+      "canonicalId": "village_I01__jp",
+      "aliasIds": [
+        "facelift_village_I01__jp",
+        "facelift_village_I10",
+        "village_I10"
+      ]
+    },
+    {
+      "canonicalId": "village_I01__ru",
+      "aliasIds": [
+        "facelift_village_I01__ru",
+        "village_I01_ru"
+      ]
+    },
+    {
+      "canonicalId": "village_I01__th",
+      "aliasIds": [
+        "facelift_village_I01__th",
+        "village_I01_th"
+      ]
+    },
+    {
+      "canonicalId": "village_I01__vn",
+      "aliasIds": [
+        "facelift_village_I01__vn",
+        "village_I01_vn"
+      ]
+    },
+    {
+      "canonicalId": "village_I01_rvs",
+      "aliasIds": [
+        "facelift_village_I01_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_I01_vn_rvs",
+      "aliasIds": [
+        "village_I01_anycall_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_I02",
+      "aliasIds": [
+        "facelift_village_I02"
+      ]
+    },
+    {
+      "canonicalId": "village_I02_rvs",
+      "aliasIds": [
+        "facelift_village_I02_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_I03",
+      "aliasIds": [
+        "facelift_village_I03"
+      ]
+    },
+    {
+      "canonicalId": "village_I03__coke",
+      "aliasIds": [
+        "facelift_village_I03__coke",
+        "village_I03_coke"
+      ]
+    },
+    {
+      "canonicalId": "village_I03_rvs",
+      "aliasIds": [
+        "facelift_village_I03_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_I04",
+      "aliasIds": [
+        "facelift_village_I04"
+      ]
+    },
+    {
+      "canonicalId": "village_I04__anycall",
+      "aliasIds": [
+        "facelift_village_I04__anycall",
+        "village_I04_anycall"
+      ]
+    },
+    {
+      "canonicalId": "village_I04__cn",
+      "aliasIds": [
+        "facelift_village_I04__cn",
+        "village_I04_cn"
+      ]
+    },
+    {
+      "canonicalId": "village_I04__coke",
+      "aliasIds": [
+        "facelift_village_I04__coke",
+        "village_I04_coke"
+      ]
+    },
+    {
+      "canonicalId": "village_I04__crz",
+      "aliasIds": [
+        "facelift_village_I04__crz",
+        "facelift_village_I15"
+      ]
+    },
+    {
+      "canonicalId": "village_I04_ru",
+      "aliasIds": [
+        "village_I04__ru"
+      ]
+    },
+    {
+      "canonicalId": "village_I04_ru_rvs",
+      "aliasIds": [
+        "village_I04_old_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_I04_rvs",
+      "aliasIds": [
+        "facelift_village_I04_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_I04_th",
+      "aliasIds": [
+        "village_I04__th"
+      ]
+    },
+    {
+      "canonicalId": "village_I04_vn",
+      "aliasIds": [
+        "village_I04__vn"
+      ]
+    },
+    {
+      "canonicalId": "village_I05",
+      "aliasIds": [
+        "facelift_village_I05"
+      ]
+    },
+    {
+      "canonicalId": "village_I05_rvs",
+      "aliasIds": [
+        "facelift_village_I05_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_I06",
+      "aliasIds": [
+        "facelift_village_I06"
+      ]
+    },
+    {
+      "canonicalId": "village_I06__d_rvs",
+      "aliasIds": [
+        "facelift_village_I06_rvs",
+        "village_I06_old_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_I06_old",
+      "aliasIds": [
+        "village_I06__d"
+      ]
+    },
+    {
+      "canonicalId": "village_I07",
+      "aliasIds": [
+        "facelift_village_I07"
+      ]
+    },
+    {
+      "canonicalId": "village_I08",
+      "aliasIds": [
+        "facelift_village_I08"
+      ]
+    },
+    {
+      "canonicalId": "village_I12",
+      "aliasIds": [
+        "facelift_village_I12"
+      ]
+    },
+    {
+      "canonicalId": "village_I15",
+      "aliasIds": [
+        "village_I09"
+      ]
+    },
+    {
+      "canonicalId": "village_R01",
+      "aliasIds": [
+        "facelift_village_R01"
+      ]
+    },
+    {
+      "canonicalId": "village_R01__cn",
+      "aliasIds": [
+        "facelift_village_R01__cn",
+        "village_R01_cn"
+      ]
+    },
+    {
+      "canonicalId": "village_R01__d_rvs",
+      "aliasIds": [
+        "facelift_village_R01__d_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_R01_rvs",
+      "aliasIds": [
+        "facelift_village_R01_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_R01_th",
+      "aliasIds": [
+        "village_R01__th"
+      ]
+    },
+    {
+      "canonicalId": "village_R01_vn",
+      "aliasIds": [
+        "village_R01__vn"
+      ]
+    },
+    {
+      "canonicalId": "village_R02",
+      "aliasIds": [
+        "facelift_village_R02"
+      ]
+    },
+    {
+      "canonicalId": "village_R03",
+      "aliasIds": [
+        "facelift_village_R03"
+      ]
+    },
+    {
+      "canonicalId": "village_R03_rvs",
+      "aliasIds": [
+        "facelift_village_R03_rvs"
+      ]
+    },
+    {
+      "canonicalId": "village_R04",
+      "aliasIds": [
+        "facelift_village_R04"
+      ]
+    },
+    {
+      "canonicalId": "village_R05",
+      "aliasIds": [
+        "facelift_village_R05"
+      ]
+    },
+    {
+      "canonicalId": "village_R06",
+      "aliasIds": [
+        "facelift_village_R06"
+      ]
+    },
+    {
+      "canonicalId": "village_R07",
+      "aliasIds": [
+        "facelift_village_R07"
+      ]
+    },
+    {
+      "canonicalId": "village_R08",
+      "aliasIds": [
+        "facelift_village_R08"
+      ]
+    },
+    {
+      "canonicalId": "village_R09",
+      "aliasIds": [
+        "facelift_village_R09"
+      ]
+    },
+    {
+      "canonicalId": "village_R10",
+      "aliasIds": [
+        "facelift_village_R10"
+      ]
+    },
+    {
+      "canonicalId": "village_R11",
+      "aliasIds": [
+        "facelift_village_R11"
+      ]
+    },
+    {
+      "canonicalId": "village_R12",
+      "aliasIds": [
+        "facelift_village_R12"
+      ]
+    },
+    {
+      "canonicalId": "world_R01",
+      "aliasIds": [
+        "world_R01_old"
+      ]
+    },
+    {
+      "canonicalId": "world_R06",
+      "aliasIds": [
+        "world_R06_old"
+      ]
+    }
+  ]
+}

@@ -7,20 +7,21 @@ import type { ItemPairObject, ItemPairWorld, ItemWorldMatrix } from "./item-cube
 import { sweepOrigin, sweptThrough } from "./item-race-rules";
 
 /**
- * Pre-placed item hazards (track bananas, mines, hidden mines and water
- * mines). Their visuals are the movables' own nested scenes, which the item
+ * Pre-placed item hazards (track bananas, mines, hidden mines, water mines
+ * and spring traps). Their visuals are the movables' own nested scenes, which the item
  * race admits into the track scene; this module only tracks where they are and
  * reports when the local kart enters one — also when it crossed one between
  * two frames (a fast kart or a long frame), but not across a reset or warp jump.
  */
 
-export type ItemHazardKind = "banana" | "mine" | "mineHidden" | "waterMine";
+export type ItemHazardKind = "banana" | "mine" | "mineHidden" | "waterMine" | "forceZone";
 
 export const HAZARD_ITEM_IDX: Readonly<Record<ItemHazardKind, number>> = {
   banana: ItemIdx.banana,
   mine: ItemIdx.mine,
   mineHidden: ItemIdx.mine,
   waterMine: ItemIdx.waterMine,
+  forceZone: ItemIdx.forceZone,
 };
 
 export interface ItemHazardDescriptor {
@@ -67,7 +68,7 @@ export interface ItemHazardField {
 }
 
 function isHazardKind(type: string | undefined): type is ItemHazardKind {
-  return type === "banana" || type === "mine" || type === "mineHidden" || type === "waterMine";
+  return type === "banana" || type === "mine" || type === "mineHidden" || type === "waterMine" || type === "forceZone";
 }
 
 function hazardRadius(object: ItemTrackObject, kind: ItemHazardKind, catalog: ItemCatalog): number {

@@ -134,6 +134,19 @@ test("缺失 occurrence 和越界 road 索引保持原版诊断", async () => {
   }
 });
 
+test("TW boost strips use V orientation across a constant-U triangle edge", () => {
+  const strip = mesh("TW boost strip");
+  strip.vertexData!.indices = [0, 1, 2, 2, 1, 3];
+  strip.vertexData!.uvs = [[[0, 1]], [[1, 1]], [[0, 0]], [[1, 0]]];
+  roadOn(strip, "BS3.6");
+  const original = extractTrackRoads(strip, () => undefined).triangles;
+  assert.equal(original[0]!.auxiliaryDirection.z, -original[1]!.auxiliaryDirection.z,
+    "legacy default remains unchanged");
+  const corrected = extractTrackRoads(strip, () => undefined, undefined, true).triangles;
+  assert.deepEqual(corrected[0]!.auxiliaryDirection, corrected[1]!.auxiliaryDirection,
+    "both halves of one boost strip propel the kart in the same UV direction");
+});
+
 test("真实 p3553 赛道的全部路面三角形与发行版一致", async () => {
   const original = await originalRoadExtraction();
   const archiveIndex = JSON.parse(inflateSync(await readFile(path.resolve(project,

@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 import { vehiclePhysicsParameters, type PhysicsParameterSpec } from "../driving/physics-parameters";
 import { bundledVehicleSpecCatalog } from "./bundled";
+import { taiwanVehicle } from "../resources/taiwan-vehicles";
 import {
   ITEM_RACE_TUNING_SOURCES, extractItemRaceTuning, formatItemRaceTuning,
 } from "./extract-item-race-tuning.mjs";
@@ -69,12 +70,22 @@ test("every catalog kart's item booster factor comes from its own parameter file
   assert.ok(karts.length > 1000);
   const factors = new Map<string, number>();
   let overlaid = 0;
+  let imported = 0;
   for (const kart of karts) {
     let spec: PhysicsParameterSpec;
     try { spec = catalog.lookup(kart.itemId, 7).spec as unknown as PhysicsParameterSpec; }
     catch { continue; }
-    assert.equal(spec.boostAccelFactorOnlyItem, 1.5, `${kart.itemId} table value`);
-    const parameter = kartParameter(kart.internalId);
+    const regional = taiwanVehicle(kart.itemId);
+    const parameter = regional?.body ?? kartParameter(kart.internalId);
+    if (regional) {
+      imported += 1;
+      // These entries have no captured CN CSV row. Their base spec already
+      // carries the actual BodyParam value; 50928 is 1.65, for example.
+      assert.equal(spec.boostAccelFactorOnlyItem,
+        kartItemBoosterAccelFactor(parameter) ?? 1.5, `${kart.itemId} own BodyParam`);
+    } else {
+      assert.equal(spec.boostAccelFactorOnlyItem, 1.5, `${kart.itemId} CN table value`);
+    }
     const result = itemRaceVehicleSpec(spec, itemMode, parameter, 0);
     const raw = parameter?.BoostAccelFactorOnlyItem ?? parameter?.BoosterAccelFactorItem;
     if (raw === undefined) {
@@ -90,6 +101,7 @@ test("every catalog kart's item booster factor comes from its own parameter file
     assert.equal(itemRaceVehicleSpec(spec, undefined, parameter, 5), spec);
   }
   assert.ok(overlaid > 300, `${overlaid} karts`);
+  assert.equal(imported, 102, "all imported and previously hidden karts use their own booster factor");
   assert.ok((factors.get("1.7") ?? 0) > 200 && (factors.get("1.65") ?? 0) > 50,
     JSON.stringify([...factors]));
 });

@@ -38,9 +38,11 @@ export function carriedHazards(objects: readonly ItemTrackObject[]): CarriedHaza
   const carried: CarriedHazard[] = [];
   for (const object of objects) {
     const kind = movableType(object);
-    if (kind !== "banana" && kind !== "mine" && kind !== "mineHidden" && kind !== "waterMine") continue;
+    if (kind !== "banana" && kind !== "mine" && kind !== "mineHidden" && kind !== "waterMine" && kind !== "forceZone") continue;
     const root = object.object as SceneNode | undefined;
-    if (!root?.children?.some(child => child.className === "Relement")) continue;
+    // Factory's legacy spring traps are bare Relement anchors. Their Set model
+    // and knockback are both active in speed/time attack, so they must be visible.
+    if (!root || (kind !== "forceZone" && !root.children?.some(child => child.className === "Relement"))) continue;
     const model = propertyAttribute(object, "object", "model");
     if (kind === "mineHidden" && !model) continue;
     carried.push({ name: object.name, kind, anchor: root, ...(model ? { model } : {}) });

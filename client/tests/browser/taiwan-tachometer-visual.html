@@ -1,0 +1,61 @@
+<!doctype html><meta charset="utf-8"><title>Taiwan vehicle integration checks</title>
+<style>body{background:#162230;color:white;font:14px system-ui}canvas{width:1280px;height:720px}pre{white-space:pre-wrap}</style><pre id="status">Loading resource index…</pre>
+<script type="module">
+import { WebGLRenderer, Scene, PerspectiveCamera, SRGBColorSpace, Box3, Vector3 } from 'three';
+import { Sw, Tr, u5 } from '/src/generated/library.js';
+import { ha } from '/src/generated/formats.js';
+import { ul, JI } from '/src/generated/vehicle.js';
+import { rP, _L } from '/src/generated/world.js';
+import { AL } from '/src/generated/driving.js';
+import { installWorldOverrides } from '/src/world/install.ts';
+import { loadLegacyResourceBundle } from '/src/resources/legacy-adapter.ts';
+import { defaultLocalProfile } from '/src/ui/local-profile.ts';
+import { taiwanVehicles } from '/src/resources/taiwan-vehicles.ts';
+const bundle=await loadLegacyResourceBundle('p3553');
+const library=await Sw.load(bundle.sources,undefined,bundle.archiveIndexes);
+const garage=await library.timeAttackGarageCatalog();
+const profile=defaultLocalProfile();
+const source={importer:new Tr(),toonStageBinding:new ha(),getLibrary:()=>library,
+  userProfile:profile,targetRandom:new rP(),shadow:true,
+  generationValue:()=>1,isGenerationCurrent:()=>true,
+  requireAsset:path=>{const f=library.get(path);if(!f)throw Error('missing '+path);return f;}};
+const loader=new ul(source);
+const tracks=await library.timeAttackTrackCatalog();
+const track=tracks.find(t=>t.id==='forest_I01');
+if(!track)throw Error('Missing baseline track');
+const map=await loader.loadAssetMap(track.path,track.id);
+installWorldOverrides(_L);
+const world=new _L(map.data,map.scene,map.renderScene,map.skydome);
+const renderer=new WebGLRenderer({antialias:false});renderer.outputColorSpace=SRGBColorSpace;
+renderer.setSize(1280,720);document.body.append(renderer.domElement);
+const audioContext=new AudioContext();
+const expected=taiwanVehicles.map(row=>row.definition.itemId);
+window.vehicleChoices=garage.karts.filter(kart=>expected.includes(kart.itemId));
+if(window.vehicleChoices.length!==expected.length)throw Error(`Garage exposes ${window.vehicleChoices.length}/${expected.length} TW vehicles`);
+window.preview50119=async(speed=180)=>{
+ if(!window.preview){
+  const kart=window.vehicleChoices.find(k=>k.itemId===50119);
+  profile.equipment.itemIds[3]=50119;
+  const {spec}=JI({itemId:50119},7);
+  const asset=await loader.loadVehicleAsset(kart.path,50119,kart.systemKey,spec,kart.internalId,map.environment,map.stageBinding,audioContext);
+  const object=asset.imported.object;object.updateMatrixWorld(true);
+  const bounds=new Box3().setFromObject(object),size=bounds.getSize(new Vector3()),center=bounds.getCenter(new Vector3());
+  const scene=new Scene();scene.add(object);
+  const distance=Math.max(...size.toArray(),1)*1.7;
+  const camera=new PerspectiveCamera(45,1280/720,.01,1000);camera.position.copy(center).add(new Vector3(distance,distance*.65,distance));camera.lookAt(center);
+  window.preview={asset,scene,camera};
+ }
+ const {asset,scene,camera}=window.preview;
+ asset.imported.renderScene?.update?.(camera,1280,720);
+ renderer.render(scene,camera);
+ asset.tachometerRenderer.update(speed,0,10000,10000,1280,720,false,undefined);
+ asset.tachometerRenderer.render(renderer,1280,720);
+ const commands=asset.tachometerRenderer.renderer.commands;
+ const hand=commands.find(c=>c.node?.attributes.some(a=>a.name==='name'&&a.value==='hand'));
+ const kmh=commands.find(c=>c.node?.attributes.some(a=>a.name==='name'&&a.value==='kmh'));
+ const result={itemId:50119,speed,selection:asset.tachometerSelection,commands:commands.length,hand,kmh};
+ document.querySelector('#status').textContent=`50119 福豬迎祥車 R4（台服） / TW native default dashboard / ${speed} km/h`;
+ window.previewResult=result;return {itemId:50119,speed,selection:asset.tachometerSelection,commands:commands.length,handRect:hand?.framebufferRect,kmhText:kmh?.text};
+};
+window.ready=true;document.querySelector('#status').textContent='Ready: 50119 native dashboard visual check';
+</script>

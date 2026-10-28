@@ -17,7 +17,8 @@ function movable(name: string, ordinal: number, attributes: Record<string, strin
     property: property(attributes), object: { kind: "node", name } };
 }
 
-const radii: Record<number, number> = { [ItemIdx.banana]: 2, [ItemIdx.mine]: 2, [ItemIdx.waterMine]: 10 };
+const radii: Record<number, number> = { [ItemIdx.banana]: 2, [ItemIdx.mine]: 2, [ItemIdx.waterMine]: 10,
+  [ItemIdx.forceZone]: 3 };
 const catalog = { get: (idx: number) => radii[idx] === undefined ? undefined
   : { behaviour: { radius: radii[idx] } } } as unknown as ItemCatalog;
 
@@ -34,6 +35,7 @@ test("hazard sources read type, radius, model and onlyItemGame from the movables
     movable("jump", 5, { type: "ltejump" }),
     movable("cube", 6, { type: "itemCube" }),
     movable("broken", 7, { type: "banana" }, [Number.NaN, 0, 0]),
+    movable("spring", 8, { type: "forceZone" }),
     { kind: "ToItemCube", name: "ic", instanceOrdinal: 1, transform: { position: [0, 0, 0] } },
   ]), catalog);
   assert.equal(source.cooldownMs, ITEM_RULES.hazardCooldownMs);
@@ -43,6 +45,7 @@ test("hazard sources read type, radius, model and onlyItemGame from the movables
     [2, "mine", ItemIdx.mine, 3, "item01_trans", false],
     [3, "mineHidden", ItemIdx.mine, 2, undefined, false],
     [4, "waterMine", ItemIdx.waterMine, 10, undefined, true],
+    [8, "forceZone", ItemIdx.forceZone, 3, undefined, false],
   ]);
   assert.deepEqual(source.hazards[1]!.position, { x: 20, y: 0, z: -0 });
   assert.throws(() => createItemHazardSource(model([movable("a", 1, { type: "banana" }),

@@ -133,6 +133,19 @@ test("Ghost menu catalog lookup, deletion and export match release", async () =>
   }
 });
 
+test("a hidden duplicate ghost loads its original ID and resource path", async () => {
+  const { bridge } = makeFixture("normal", true);
+  const alias = { id: "Track-A-Old", title: "Original", path: "track_/old/track.1s" };
+  bridge.host.getLibrary = () => ({
+    timeAttackTrackCatalog: async () => [{ id: "Track-A", title: "Visible", path: "track_/new/track.1s",
+      duplicateAliases: [alias] }],
+    timeAttackGarageCatalog: async () => ({ karts: [] }),
+  });
+  const resolved = await bridge.resolveTrack("TRACK-A-OLD") as { track: typeof alias };
+  assert.equal(resolved.track, alias);
+  assert.equal(resolved.track.path, "track_/old/track.1s");
+});
+
 test("menu mount exposes the same live host callbacks", async () => {
   const inspect = async (rewritten: boolean) => {
     const { bridge, events, menuOptions } = makeFixture("normal", rewritten);

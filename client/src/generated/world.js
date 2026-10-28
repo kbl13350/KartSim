@@ -5,6 +5,7 @@ import { resourceText } from "../i18n/locale.ts";
 // Stable minified names are retained for behavioral parity.
 
 import { installWorldOverrides } from "../world/install.ts";
+import { duplicateAwareFavoriteTrackIds } from "../resources/track-duplicates.ts";
 import { LocalRaceController } from "../multiplayer/local-race-controller.ts";
 import { FlyingPetModel, loadFlyingPetModelParts } from "../world/flying-pet-model.ts";
 import { FlyingPetIdleMotion, FlyingPetRaceState, visibleFlyingPet } from "../world/flying-pet-state.ts";
@@ -4130,16 +4131,7 @@ function fa0(n) {
 }
 
 function nT(n, e) {
-  return new Set(
-    e
-      .filter((t) => {
-        const i = IP(t);
-        return n.some(
-          (r) => r.themeId === i.themeId && r.trackId === i.trackId,
-        );
-      })
-      .map((t) => t.id),
-  );
+  return duplicateAwareFavoriteTrackIds(n, e, IP);
 }
 
 const C4 = "国服",

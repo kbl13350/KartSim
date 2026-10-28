@@ -166,6 +166,20 @@ test("room track errors, generation cancellation and disposal match release", as
   }
 });
 
+test("rooms using an old duplicate ID keep its original title and asset path", async () => {
+  const { room, events } = makeFixture("normal", true);
+  room.room.trackId = "track-old";
+  room.library.timeAttackTrackCatalog = async () => [{
+    id: "track-current", title: "Current", path: "current/path",
+    duplicateAliases: [{ id: "track-old", title: "Original", path: "original/path" }],
+  }];
+  await room.loadTrack();
+  assert.equal(room.trackTitle, "Original");
+  assert.ok(events.some(event => event[0] === "get-track" && event[1] === "original/path"));
+  assert.ok(events.some(event => event[0] === "track-metadata" && event[1] === "track-old"));
+  assert.ok(!events.some(event => event[0] === "error"));
+});
+
 test("an item room finds its track card in the item catalog", async () => {
   const events: unknown[] = [];
   const host = {

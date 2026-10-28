@@ -11,6 +11,7 @@ import { _L, IP, nT } from '/src/generated/world.js';
 import { AL } from '/src/generated/driving.js';
 import { installWorldOverrides } from '/src/world/install.ts';
 import { loadLegacyResourceBundle } from '/src/resources/legacy-adapter.ts';
+import { expandTrackChoices } from '/src/resources/track-duplicates.ts';
 import { bundledVehicleSpecCatalog } from '/src/physics/bundled.ts';
 import { vehiclePhysicsParameters } from '/src/driving/physics-parameters.ts';
 installWorldOverrides(_L);
@@ -21,7 +22,7 @@ const allChoices=await library.timeAttackTrackCatalog();
 if(nT([],allChoices).size!==0)throw Error('empty favorites must stay empty');
 if(nT(allChoices.map(IP),allChoices).size!==allChoices.length)throw Error('favorites round-trip lost maps');
 window.favoriteCatalogCount=allChoices.length;
-const choices=allChoices.filter(t=>t.resourceCategory);
+const choices=expandTrackChoices(allChoices).filter(t=>t.resourceCategory);
 const source={importer:new Tr(),toonStageBinding:new ha(),getLibrary:()=>library,
   generationValue:()=>1,isGenerationCurrent:()=>true,
   requireAsset:path=>{const f=library.get(path);if(!f)throw Error('missing '+path);return f;}};

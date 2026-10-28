@@ -29,6 +29,9 @@ import { loadItemRacePresenter, type ItemPresenterPose, type ItemRacePresenter }
  *   (an early escape) or Affect.life runs out.
  * - Bare water mines (only a hidden marker, no carrier) stay item-race only,
  *   like their look.
+ * - Legacy factory forceZone anchors retain their Set model and apply the
+ *   existing item knockback with the source BML's Affect duration. They share
+ *   the same trigger field/cooldown; they never enter the water-bubble heuristic.
  */
 
 /**
@@ -45,7 +48,7 @@ export function pressTrapEscape(
 }
 
 /** Items whose looks a trap needs; the effect plan always wants the shield and the water bomb. */
-const TRAP_LOOK_ITEMS: ReadonlySet<number> = new Set([ItemIdx.waterMine, ItemIdx.waterBomb, ItemIdx.shield]);
+const TRAP_LOOK_ITEMS: ReadonlySet<number> = new Set([ItemIdx.waterMine, ItemIdx.waterBomb, ItemIdx.shield, ItemIdx.forceZone]);
 
 /** [还原] Remote bubbles: how still a racer must be, and how soon after touching a mine. */
 export const REMOTE_TRAP_TUNING = Object.freeze({
@@ -119,6 +122,7 @@ export class HazardTraps {
     private readonly trapMs: number,
     private readonly escapeShieldMs: number,
     readonly presenter?: ItemRacePresenter,
+    private readonly knockbackMs = 0,
   ) {
     this.object = presenter?.object ?? new Group();
   }
@@ -147,7 +151,10 @@ export class HazardTraps {
     const attached = this.attached;
     const effects = attached?.physics.itemEffects;
     if (!attached || !effects || this.disposed) return;
-    if (!effects.apply("trap", this.trapMs, { escapeImmunityMs: this.escapeShieldMs, afterBoost: false })) return;
+    const applied = hit.kind === "forceZone"
+      ? this.knockbackMs > 0 && effects.apply("knockback", this.knockbackMs)
+      : effects.apply("trap", this.trapMs, { escapeImmunityMs: this.escapeShieldMs, afterBoost: false });
+    if (!applied) return;
     this.presenter?.hit({ useId: 0, itemId: hit.itemIdx, victimId: attached.playerId, result: "hit",
       atMs: this.nowMs, position: { ...hit.position } });
   }
@@ -187,14 +194,15 @@ export class HazardTraps {
     if (!attached || !effects) return;
     const playerId = attached.playerId;
     for (const event of effects.consumeEvents()) {
-      if (event.kind !== "trap") continue;
+      if (event.kind !== "trap" && event.kind !== "knockback") continue;
       if (event.phase === "end") {
-        this.presenter?.endKartEffect(playerId, "trap");
+        this.presenter?.endKartEffect(playerId, event.kind);
         continue;
       }
-      const running = effects.effects.get("trap");
-      if (running) this.presenter?.kartEffect(playerId, "trap",
-        nowMs - (effects.clockMs - running.startMs), running.endMs - running.startMs);
+      const running = effects.effects.get(event.kind);
+      if (running) this.presenter?.kartEffect(playerId, event.kind,
+        nowMs - (effects.clockMs - running.startMs), running.endMs - running.startMs,
+        event.kind === "knockback" ? { itemId: ItemIdx.forceZone } : undefined);
     }
     const shieldMs = effects.escapeShieldRemainingMs;
     if (shieldMs > 0 && !this.escapeShieldShown) {
@@ -224,6 +232,9 @@ export class HazardTraps {
       const keepMs = tuning.stillWindowMs + tuning.approachWindowMs;
       while (state.trail.length > 2 && nowMs - state.trail[1]!.atMs >= keepMs) state.trail.shift();
       for (const hazard of this.source.hazards) {
+        // Spring hits already move the remote kart through its replicated pose;
+        // the stop-to-bubble heuristic applies only to water mines.
+        if (hazard.kind !== "waterMine") continue;
         const position = this.field?.position(hazard.id);
         const inside = !!position && distance(at, position) <= hazard.radius;
         if (inside && !state.inside.has(hazard.id)) state.touched.set(hazard.id, nowMs);
@@ -288,8 +299,8 @@ export class HazardTraps {
 }
 
 /**
- * The trap owner of a speed or time-attack map: undefined when no carrier
- * holds a water mine. A presenter that cannot load only costs the looks.
+ * The trap owner of a speed or time-attack map: carried water mines and the
+ * legacy factory springs. A presenter that cannot load only costs the looks.
  */
 export async function loadHazardTraps<Archive extends ItemCatalogLibrary>(
   library: Archive,
@@ -298,7 +309,7 @@ export async function loadHazardTraps<Archive extends ItemCatalogLibrary>(
   ops: ItemFxOps<Archive>,
 ): Promise<HazardTraps | undefined> {
   const objects = map.hazardSceneryObjects ?? [];
-  const mines = new Set(carriedHazards(objects).filter(hazard => hazard.kind === "waterMine")
+  const mines = new Set(carriedHazards(objects).filter(hazard => hazard.kind === "waterMine" || hazard.kind === "forceZone")
     .map(hazard => hazard.anchor));
   const trackObjects = objects.filter(object => mines.has(object.object as object));
   if (trackObjects.length === 0) return undefined;
@@ -306,7 +317,11 @@ export async function loadHazardTraps<Archive extends ItemCatalogLibrary>(
   const source = createItemHazardSource({ root: { kind: "track", trackObjects: [...trackObjects] } }, catalog);
   if (source.hazards.length === 0) return undefined;
   const behaviour = catalog.get(ItemIdx.waterMine)?.behaviour;
-  if (!behaviour?.effectMs) throw Error("水雷缺少 Affect 时长。");
+  const spring = catalog.get(ItemIdx.forceZone)?.behaviour;
+  if (source.hazards.some(hazard => hazard.kind === "waterMine") && !behaviour?.effectMs)
+    throw Error("水雷缺少 Affect 时长。");
+  if (source.hazards.some(hazard => hazard.kind === "forceZone") && !spring?.effectMs)
+    throw Error("弹性陷阱缺少 Affect 时长。");
   const scene = map.renderScene;
   const worldMatrix: ItemWorldMatrix | undefined = scene?.clientWorldElements
     ? node => scene.clientWorldElements!(node) : undefined;
@@ -318,5 +333,6 @@ export async function loadHazardTraps<Archive extends ItemCatalogLibrary>(
   } catch (error) {
     console.warn("赛道水雷特效未能载入", error);
   }
-  return new HazardTraps(source, worldMatrix, behaviour.effectMs, behaviour.escapeShieldMs ?? 0, presenter);
+  return new HazardTraps(source, worldMatrix, behaviour?.effectMs ?? 0, behaviour?.escapeShieldMs ?? 0,
+    presenter, spring?.effectMs ?? 0);
 }

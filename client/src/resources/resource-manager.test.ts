@@ -52,6 +52,19 @@ test("groups cover every container; themes gather tracks, textures, music and rh
   assert.equal(trackThemeOf("simulationGame"), undefined);
 });
 
+test("Taiwan additions are downloadable with the vehicle and map groups", () => {
+  const additions = ["kart_taiwan_import.rho", "track_tw_korea_I01.rho",
+    "sound_bgm_taiwan_korea.rho", "sound_taiwan_import.rho",
+    "character_tyrannoBlack.rho"].map(name => ({ name, size: 1 }));
+  const groups = buildResourceGroups([...files, ...additions], packs);
+  assert.ok(findResourceGroup(groups, "karts")!.containers.includes("kart_taiwan_import.rho"));
+  assert.deepEqual(findResourceGroup(groups, "track:tw")!.containers,
+    ["sound_bgm_taiwan_korea.rho", "sound_taiwan_import.rho", "track_tw_korea_I01.rho"]);
+  assert.equal(findResourceGroup(groups, "track:tw")!.title, "台服补充地图");
+  assert.ok(findResourceGroup(groups, "characters")!.containers.includes("character_tyrannoBlack.rho"));
+  assert.ok(additions.every(file => !findResourceGroup(groups, "other")!.containers.includes(file.name)));
+});
+
 test("the release manifest: home stays within separate base and locale image budgets", () => {
   const manifestPath = new URL("../../../mirror/__p3553/resources", import.meta.url);
   const indexPath = new URL("../../../mirror/__p3553/archive-index", import.meta.url);

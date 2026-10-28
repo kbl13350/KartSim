@@ -1,4 +1,5 @@
 import { tr } from "../i18n/locale";
+import { expandTrackChoices } from "../resources/track-duplicates";
 import { ensureFeatureResources } from "../ui/resource-panel";
 import type { FavoriteItem, LocalProfile } from "../ui/local-profile";
 import type { MyRoomAdminKart } from "../ui/my-room-admin";
@@ -123,7 +124,7 @@ function roomSocial(controller: ReadyHouseController, library: ReadyHouseLibrary
     refreshAccount: () => { void session.refresh().catch(() => undefined); },
     expedition: new ExpeditionApi(session),
     expeditionTracks: async () => {
-      const tracks = new Map((await (library as unknown as { timeAttackTrackCatalog(): Promise<Array<{
+      const tracks = new Map(expandTrackChoices(await (library as unknown as { timeAttackTrackCatalog(): Promise<Array<{
         id: string; path: string; title: string }>> }).timeAttackTrackCatalog()).map(track => [track.id, track]));
       return {
         title: id => tracks.get(id)?.title,

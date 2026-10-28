@@ -1,3 +1,4 @@
+import { findTrackChoice } from "../resources/track-duplicates";
 import { activeBrowserSession } from "../account/account-runtime";
 import { getFormulaGroup, type FormulaDifficulty, type FormulaGroupId, type FormulaRound } from "../formula/formula-data";
 import { FormulaChampionship, type FormulaRoundResult } from "../formula/formula-engine";
@@ -139,7 +140,7 @@ async function startRound(controller: ReadyHomeController, session: FormulaSessi
     session.groupId = round === 3 ? 2 : 1;
     const trackId = FORMULA_TRACKS[round - 1]!;
     const catalog = await session.library.timeAttackTrackCatalog();
-    const track = catalog.find(item => item.id.toLowerCase() === trackId.toLowerCase());
+    const track = findTrackChoice(catalog, trackId);
     if (!track) throw new Error(tr("赛道 {track} 不在本地资源中", { track: trackId }));
     if (!current(controller, session)) return;
     const request: FormulaRaceRequest = { difficulty: session.difficulty, groupId: session.groupId, round,

@@ -1,5 +1,6 @@
 import { trackDisplayTitle } from "../resources/track-names";
 import { tr } from "../i18n/locale";
+import { visibleTrackId } from "../resources/track-duplicates";
 /**
  * 排位计时赛 (TIMEATTACK.md): the ranking window over the 单人游戏 page, the
  * ranked entry fee, the ranked run (a solo race carrying a RankedRaceRequest)
@@ -173,7 +174,7 @@ async function pickTrack(controller: ReadyRankingController): Promise<void> {
     const tracks = await lib.timeAttackTrackCatalog();
     const view = await (_7 as unknown as { load(options: Record<string, unknown>): Promise<{ show(): void;
       dispose(): void }> }).load({
-      library: lib, root: controller.host.root, tracks, selectedTrackId: track.id, randomGroups: [],
+      library: lib, root: controller.host.root, tracks, selectedTrackId: visibleTrackId(track.id, tracks), randomGroups: [],
       randomTrackNames: new Map(), favoriteTrackIds: new Set(), getFavoriteCount: () => 0,
       onFavoriteChange: () => {},
       onConfirm: (choice: TrackChoice) => {

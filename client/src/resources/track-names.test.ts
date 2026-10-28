@@ -51,9 +51,18 @@ test("all server tracks and every named resource track have complete display nam
   assert.equal(trackDisplayTitle("forest_I01", undefined, "ko"), "포레스트 통나무");
   assert.equal(trackDisplayTitle("forest_I10", undefined, "ko"), "포레스트 폭포 슬라이드");
   assert.equal(trackDisplayTitle("xyy_R01", undefined, "en"), "Pleasant Goat Wolf Castle");
-  assert.equal(trackDisplayTitle("korea_R01", undefined, "zh-CN"), "韩国 活力首尔");
+  assert.equal(trackDisplayTitle("korea_R01", undefined, "zh-CN"), "韓國 繁華的首爾");
   assert.equal(trackDisplayTitle("mine_S02", undefined, "en"), "Myth Muspelheim");
   assert.equal(trackDisplayTitle("moonhill_R05", undefined, "en"), "Moonhill Taipei Rush");
+});
+
+test("TW imported names stay consistent in Chinese while existing translations remain available", () => {
+  assert.equal(trackDisplayTitle("KOREA_R01", "过期名称", "zh-CN"), "韓國 繁華的首爾");
+  assert.equal(trackDisplayTitle("korea_R01_rvs", undefined, "zh-CN"), "[反]韓國 繁華的首爾");
+  assert.equal(trackDisplayTitle("village_R11", undefined, "zh-CN"), "城鎮 村落九份");
+  assert.equal(trackDisplayTitle("korea_R01", undefined, "en"), trackNames.korea_R01![1]);
+  assert.equal(trackDisplayTitle("korea_R01", undefined, "ko"), trackNames.korea_R01![2]);
+  assert.equal(trackDisplayTitle("village_R01", undefined, "zh-CN"), "城镇 高速公路");
 });
 
 test("reverse and lower-case replay IDs localize while unknown/player map names are preserved", async () => {

@@ -9,9 +9,10 @@ import { attribute, decodeBinaryXml, type BinaryXmlNode } from "../codecs/binary
 import { RhoReader } from "../codecs/rho";
 import type { RhoArchiveIndex } from "./archive-index";
 import { XYY_TRACK_TITLES } from "./xyy-tracks";
+import { trackDisplayTitle } from "./track-names";
 import {
   itemRandomTrackGroups, itemTrackCatalog, mapAssets, mapCatalog, timeAttackRandomTrackGroups,
-  timeAttackRandomTrackNames, timeAttackTrackCatalog, trackLocaleRules, trackMetadata,
+  timeAttackRandomTrackNames, timeAttackTrackCatalog, timeAttackTrackCatalogAll, trackLocaleRules, trackMetadata,
   trackMetadataCatalog, trackTitles, type RandomTrackGroup, type TrackLibrary, type TrackResource,
 } from "./track-catalog";
 
@@ -159,7 +160,7 @@ test("Sw 赛道资产、目录、随机组选项与原始 release 行为一致",
   assert.deepEqual(await authored.trackTitles(), await original.trackTitles());
   assert.deepEqual(await authored.trackMetadata("ice_peak_rvs"), await original.trackMetadata("ice_peak_rvs"));
   assert.deepEqual(await authored.trackMetadata("desert_town"), await original.trackMetadata("desert_town"));
-  const tracks = await authored.timeAttackTrackCatalog();
+  const tracks = await timeAttackTrackCatalogAll(authored);
   assert.deepEqual(tracks.filter(track => !track.resourceCategory), await original.timeAttackTrackCatalog());
   assert.ok(tracks.some(track => track.id === "ice_peak_rvs"));
   assert.ok(tracks.some(track => track.id === "desert_town"));
@@ -169,7 +170,8 @@ test("Sw 赛道资产、目录、随机组选项与原始 release 行为一致",
   assert.ok(groups.some(group => group.id === "speed:reverse:0"));
   assert.deepEqual(await authored.timeAttackRandomTrackNames(), await original.timeAttackRandomTrackNames());
   assert.equal(authored.trackMetadataCatalog(), authored.trackMetadataCatalog());
-  assert.equal(authored.trackTitles(), authored.trackTitles());
+  // Titles are resolved again for the active locale; only raw metadata is cached.
+  assert.deepEqual(await authored.trackTitles(), await authored.trackTitles());
 });
 
 test("Sw 对无效布尔赛道表与缺失随机表保持 release 回退行为", async () => {
@@ -201,6 +203,9 @@ test("真实 p3553 赛道档案索引及 BML 与原始 release 生成相同赛�
 
   const files: TrackResource[] = [];
   for (const archive of rawIndex.rho) {
+    // This release comparison remains about the original CN resources. The
+    // imported model/path/title contract is covered by taiwan-tracks.test.ts.
+    if (/^track_tw_/i.test(archive.name)) continue;
     const mount = archive.name.replace(/\.rho$/i, "");
     for (const raw of archive.files as { path: string; name: string; extension: string }[]) {
       if (!/^(?:track(?:_rvs)?\.1s|track@zz\.bml|trackLocale@cn\.bml|randomTrack@cn\.bml)$/i.test(raw.name)) continue;
@@ -230,15 +235,21 @@ test("真实 p3553 赛道档案索引及 BML 与原始 release 生成相同赛�
   const restored = (id: string) => id.replace(/_rvs$/i, "") in XYY_TRACK_TITLES;
   assert.deepEqual(authoredMetadata.map(track => restored(track.id) ? { ...track, cnTitle: undefined } : track), originalMetadata);
   const originalTracks = await original.timeAttackTrackCatalog();
-  const authoredTracks = await authored.timeAttackTrackCatalog();
+  const authoredTracks = await timeAttackTrackCatalogAll(authored);
   assert.deepEqual(authoredTracks.filter(track => !restored(track.id) && !track.resourceCategory), originalTracks);
   assert.deepEqual(authoredTracks.filter(track => restored(track.id)).map(track => [track.id, track.title, track.theme, track.gameType]), [
     ["xyy_I01", "喜羊羊 青青草原", "xyy", "item"], ["xyy_R01", "喜羊羊 狼堡", "xyy", "speed"], ["xyy_R02", "喜羊羊 羊村", "xyy", "speed"],
   ]);
   assert.equal(authoredMetadata.length, 391);
   assert.equal(originalTracks.length, 262);
+  // Only table-backed aliases get a localized title; raw structural assets
+  // (for example mine_S02) keep their IDs even when a translation exists.
+  const metadataIds = new Set(originalMetadata.map(track => track.id));
   assert.deepEqual((await authored.mapCatalog()).map(map => restored(map.internalId) ? { ...map, name: map.internalId } : map),
-    await original.mapCatalog());
+    ((await original.mapCatalog()) as Array<{ name: string; internalId: string; subtitle: string }>).map(map => {
+      const id = map.subtitle.split(" · ")[0]!;
+      return { ...map, name: metadataIds.has(id) && !restored(id) ? trackDisplayTitle(id, map.name) : map.name };
+    }));
   // 随机组按目录抽图：重建的三张也进「全部」等组
   const withoutRestored = (groups: RandomTrackGroup[]) => groups.map(group => ({ ...group,
     displayTrackIds: group.displayTrackIds.filter(id => !restored(id)), trackIds: group.trackIds.filter(id => !restored(id)) }));
@@ -248,7 +259,15 @@ test("真实 p3553 赛道档案索引及 BML 与原始 release 生成相同赛�
   const names = new Map(await authored.timeAttackRandomTrackNames());
   assert.equal(names.get("xyy_R02"), "喜羊羊 羊村");
   for (const id of names.keys()) if (restored(id)) names.set(id, id.endsWith("_rvs") ? `[反]${id.slice(0, -4)}` : id);
-  assert.deepEqual(names, await original.timeAttackRandomTrackNames());
+  const originalNames = await original.timeAttackRandomTrackNames() as Map<string, string>;
+  const titleAliases = await original.trackTitles();
+  const expectedNames = new Map([...originalNames].map(([id, title]) => {
+    const reverse = id.endsWith("_rvs"), base = reverse ? id.slice(0, -4) : id;
+    const sourceId = titleAliases.get(base)?.trackId ?? base;
+    const fallback = reverse ? `[反]${trackDisplayTitle(sourceId, title.slice(3))}` : title;
+    return [id, restored(sourceId) ? title : trackDisplayTitle(`${sourceId}${reverse ? "_rvs" : ""}`, fallback)];
+  }));
+  assert.deepEqual(names, expectedNames);
   assert.ok(authoredTracks.some(track => track.id === "forest_I01" && track.title === "森林 木桶"));
   assert.ok(authoredTracks.some(track => track.id.endsWith("_rvs") && track.reverse === true));
 });
@@ -309,7 +328,7 @@ test("道具赛赛道：item 类型含仅道具赛道，排除 trackLocale@cn �
   ]);
   // Time attack and speed rooms keep the release catalog: no item-only tracks,
   // no trackLocale@cn overrides and every reverse sibling.
-  const timeAttack = await authored.timeAttackTrackCatalog();
+  const timeAttack = await timeAttackTrackCatalogAll(authored);
   assert.deepEqual(timeAttack.filter(track => !track.resourceCategory), await original.timeAttackTrackCatalog());
   assert.ok(timeAttack.some(entry => entry.id === "village_C01" && entry.resourceCategory));
   assert.ok(timeAttack.some(entry => entry.id === "tomb_locked"));

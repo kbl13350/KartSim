@@ -7,6 +7,7 @@ import { ItemIdx } from "./item-catalog";
 import type { ItemPairObject, ItemPairWorld } from "./item-cubes";
 import type { ItemHazardSource } from "./item-hazards";
 import type { ItemPresenterPose, ItemRacePresenter } from "./item-race-presenter";
+import { carriedHazards } from "./hazard-scenery-items";
 
 const MINE = { x: 0, y: 0.5, z: 30 };
 const TRAP_MS = 2000;
@@ -69,6 +70,38 @@ function driveInto(driver: TestDriver, frame: () => void): number {
   }
   throw Error("the kart never reached the water mine");
 }
+
+test("a legacy track spring renders and knocks a speed kart back with its Affect duration", () => {
+  const anchor = { kind: "node", className: "Relement", children: [] };
+  assert.equal(carriedHazards([{ kind: "ToMovableObject", name: "mo_forcezone", object: anchor,
+    property: { name: "property", attributes: [], children: [{ name: "object", children: [],
+      attributes: [{ name: "type", value: "forceZone" }] }] } }])[0]?.anchor, anchor,
+  "an empty authored anchor still receives the spring's visible Set model");
+  const calls: Call[] = [];
+  const springs: ItemHazardSource = { ...source(), hazards: source().hazards.map(hazard => ({
+    ...hazard, kind: "forceZone", itemIdx: ItemIdx.forceZone, radius: 3,
+  })) };
+  const traps = new HazardTraps(springs, undefined, TRAP_MS, SHIELD_MS, fakePresenter(calls), 500);
+  const driver = createSpeedDriver();
+  const world = fakeWorld();
+  traps.attach(world, { physics: driver.vehicle, playerId: "me", canTrigger: () => true });
+  let hit = false;
+  for (let i = 0; i < 400; i++) {
+    driver.run(16);
+    for (const contact of world.contacts) contact.slot13({}, driver.nowMs);
+    traps.present(driver.nowMs, {}, 640, 360, pose(driver.vehicle.body.position));
+    if (driver.vehicle.itemEffects.active.has("knockback")) { hit = true; break; }
+  }
+  assert.ok(hit, "the kart reaches the authored spring trigger");
+  assert.equal(driver.vehicle.itemEffects.active.has("trap"), false);
+  const start = driver.vehicle.body.position.z;
+  driver.run(400);
+  assert.ok(driver.vehicle.body.position.z < start - 1, "spring reverses the kart's motion");
+  assert.ok(calls.some(call => call[0] === "kartEffect" && call[2] === "knockback" && call[4] === 500));
+  assert.equal((calls.find(call => call[0] === "hit")![1] as { itemId: number }).itemId, ItemIdx.forceZone);
+  driver.run(200);
+  assert.equal(driver.vehicle.itemEffects.active.has("knockback"), false);
+});
 
 test("a speed kart gets item effects and is trapped where it touches a carried water mine", () => {
   const { calls, driver, frame } = setup();

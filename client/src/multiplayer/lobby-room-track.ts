@@ -1,3 +1,4 @@
+import { findTrackChoice } from "../resources/track-duplicates";
 import { tr } from "../i18n/locale";
 /** Resolves and paints the current room's selected or random track card. */
 
@@ -98,10 +99,10 @@ export async function loadLobbyRoomTrack(host: LobbyRoomTrackHost,
         ? (dependencies.itemTracks ?? (library =>
           itemTrackCatalog(library as unknown as TrackLibrary)))(host.library)
         : host.library.timeAttackTrackCatalog());
-    let track = tracks.find(candidate => candidate.id === trackId);
+    let track = findTrackChoice(tracks, trackId);
     // 地图工坊的地图可能是进游戏之后才发布的：向数据服务取来再找一次。
     if (!track && isCustomTrackId(trackId) && await ensurePublishedMap(host.library, trackId)) {
-      track = (await host.library.timeAttackTrackCatalog()).find(candidate => candidate.id === trackId);
+      track = findTrackChoice(await host.library.timeAttackTrackCatalog(), trackId);
     }
     if (!track) throw new Error(tr("本地资源中没有房主选择的赛道"));
     const resource = host.library.get(track.path);

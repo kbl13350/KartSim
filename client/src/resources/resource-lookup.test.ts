@@ -13,6 +13,7 @@ import {
   type ResourceLookup,
 } from "./resource-lookup";
 import { XYY_TRACK_CONTAINERS } from "./xyy-tracks";
+import { readMountManifestDetails } from "../codecs/mount-manifest";
 
 const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const release = readFileSync(path.resolve(project, "../recovered/formatted/index.js"), "utf8");
@@ -130,7 +131,7 @@ test("索引构造、大小写、歧义、同源优先及前缀缓存保持 rele
   }
 });
 
-test("真实 p3553 Rho/Rho5 索引的规范路径与资源查询逐项等同 release", () => {
+test("真实 p3553 Rho/Rho5 索引的规范路径与资源查询逐项等同 release", async () => {
   const index = JSON.parse(inflateSync(readFileSync(path.resolve(project,
     "../mirror/__p3553/archive-index"))).toString("utf8")) as {
     rho: { name: string; files: { path: string }[] }[];
@@ -138,8 +139,11 @@ test("真实 p3553 Rho/Rho5 索引的规范路径与资源查询逐项等同 rel
   };
   const files: ResourceEntry[] = [];
   const mounts = new Set<string>();
+  const manifestBytes = readFileSync(path.resolve(project, "../mirror/p3553/aaa.pk"));
+  const manifest = await readMountManifestDetails(new File([new Uint8Array(manifestBytes)], "aaa.pk"));
+  const declaredMounts = new Map(manifest.mounts.map(mount => [mount.fileName.toLowerCase(), mount.mountPath]));
   index.rho.forEach((archive, archiveIndex) => {
-    const mount = archive.name.replace(/\.rho$/i, "");
+    const mount = declaredMounts.get(archive.name.toLowerCase()) ?? archive.name.replace(/\.rho$/i, "");
     mounts.add(mount);
     archive.files.forEach(file => {
       const virtualPath = `${mount}/${file.path}`;
@@ -152,11 +156,20 @@ test("真实 p3553 Rho/Rho5 索引的规范路径与资源查询逐项等同 rel
     sourceKind: "rho5", containerId: `rho5:${archive.name.toLowerCase()}`,
     absenceAuthoritative: true,
   })));
-  // Release baseline; the generated city and the rebuilt 喜羊羊 tracks vary by build.
-  const generated = new Set(["track_kartcity.rho", ...XYY_TRACK_CONTAINERS]);
+  // Preserve the release count independently of registered extension sizes.
+  const taiwan = JSON.parse(readFileSync(path.resolve(project,
+    "tools/taiwan-import/import-manifest.json"), "utf8")) as {
+    containers: { name: string; mountPath: string; files: { path: string }[] }[];
+  };
+  const generated = new Set(["locale_ui.rho", "track_kartcity.rho", ...XYY_TRACK_CONTAINERS,
+    ...taiwan.containers.map(container => container.name)]);
   const generatedFiles = index.rho.filter(archive => generated.has(archive.name))
     .reduce((count, archive) => count + archive.files.length, 0);
   assert.equal(files.length - generatedFiles, 137609);
+  for (const imported of taiwan.containers) {
+    assert.equal(declaredMounts.get(imported.name.toLowerCase()), imported.mountPath,
+      `${imported.name} uses its canonical mount`);
+  }
   const setup = input(files, mounts);
   const original = new ReleaseLibrary(setup);
   const authored = new AuthoredLibrary(setup);

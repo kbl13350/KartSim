@@ -1,3 +1,4 @@
+import { taiwanVehicle } from "../resources/taiwan-vehicles";
 import { parseKartSpecCsv, speedType, vehicleId, type KartSpecRow } from "./csv";
 import { applyDefaultExceed } from "./default-exceed";
 import { KART_FIELDS, PART_LOCK_FIELDS, type KartField, type PartLockField } from "./fields";
@@ -87,6 +88,15 @@ export class VehicleSpecCatalog {
   lookup(itemId: number | string, speed: number, version: SpeedVersion = "国服"): VehicleSpecResult {
     const id = vehicleId(String(itemId));
     const speedKey = speedType(speed);
+    const regional = taiwanVehicle(id);
+    if (regional) {
+      requireVersion(version, speed);
+      // Race assembly applies h6's requested-speed delta later. Like system
+      // BodyParam cars, keep this spec on the CN 7 baseline to avoid applying
+      // a speed profile twice. TW IDs never consult a same-number CN CSV row.
+      return { spec: createBodyParamSpec(regional.body, 7, "国服"),
+        source: `${regional.source}:${regional.sourceInternalId}:BodyParam+speed-baseline:${version}:${speedKey}` };
+    }
     const directKey = `${id}:${speedKey}`;
     const direct = version === "国服" ? this.find(directKey) : undefined;
     if (direct) return this.result(id, speed, directKey, direct);

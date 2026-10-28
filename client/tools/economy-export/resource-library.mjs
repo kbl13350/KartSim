@@ -93,6 +93,7 @@ export function installDomParserShim(parseResourceXml) {
       walk(root);
       const element = node => ({
         tagName: node.name,
+        hasAttribute: name => node.attributes.some(item => item.name === name),
         getAttribute: name => node.attributes.find(item => item.name === name)?.value ?? null,
       });
       return {

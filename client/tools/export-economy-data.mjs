@@ -12,9 +12,9 @@
 // (src/resources/garage-catalog.ts loadTimeAttackGarageCatalog via the
 // generated Sw library), run in Node over mirror/p3553, so the shop sells
 // exactly what the garage can show and equip. The time-attack track list is
-// the browser's timeAttackTrackCatalog (src/resources/track-catalog.ts) over
-// the same library, so the data service accepts exactly the trackIds the
-// ready flow can settle. The shop layout (ShopCat / SubCat, 推荐 pages,
+// the browser's unfiltered timeAttackTrackCatalogAll (src/resources/track-catalog.ts)
+// over the same library, so old replays and rooms can still settle map aliases
+// hidden from the map picker. The shop layout (ShopCat / SubCat, 推荐 pages,
 // badges, discounts, the card price) follows the original mall
 // (economy-export/shop-layout.mjs); events.json is the shop's tcCash spend
 // event. Exits non-zero on any inconsistency.
@@ -32,6 +32,7 @@ import { attr, parseShopCats, parseShopItems, parseStockCards, parseStocks, pars
 import { coupleItems, layoutShop } from "./economy-export/shop-layout.mjs";
 import { spendEvents } from "./economy-export/events.mjs";
 import { timeAttackTrackRows } from "./economy-export/tracks.mjs";
+import { timeAttackTrackCatalogAll } from "../src/resources/track-catalog.ts";
 
 const rewriteDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const projectRoot = path.resolve(rewriteDir, "..");
@@ -158,7 +159,7 @@ const SOURCES = {
 };
 
 const garage = await library.timeAttackGarageCatalog();
-const timeAttackTracks = await library.timeAttackTrackCatalog();
+const timeAttackTracks = await timeAttackTrackCatalogAll(library);
 const [stocks, cards, shopCatRefs, shopItems, shopGroups, newRider, newRiderDefaults, levelTableRoot,
   levelRewardText, shopStrings, baseStrings, tcCashEvents, itemTable] = await Promise.all([
   parseXmlAt(SOURCES.stocks).then(parseStocks),

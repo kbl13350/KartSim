@@ -185,7 +185,7 @@ function triangleNormal(a: ModelVector3, b: ModelVector3,
 /** Some legacy surface families supply a tangent through UV orientation. */
 function auxiliaryDirection(descriptor: RoadDescriptor, uvs: number[][],
   a: ModelVector3, b: ModelVector3, c: ModelVector3,
-  ai: number, bi: number, ci: number): RoadCollisionPoint {
+  ai: number, bi: number, ci: number, consistentUvTangents: boolean): RoadCollisionPoint {
   const fallback: ModelVector3 = [0, 0, 1];
   const surface = descriptor.road.attributes.find(attribute =>
     attribute.name === "surface")?.value;
@@ -208,7 +208,10 @@ function auxiliaryDirection(descriptor: RoadDescriptor, uvs: number[][],
   const epsilon = f32(9999999747378752e-21);
   let tangent: ModelVector3;
   if (denominator <= epsilon && denominator >= -epsilon)
-    tangent = bcUv[0]! < 0 ? scale(bc, -1) : bc;
+    // This edge has constant U. Its V difference defines its direction, not
+    // its (zero) U difference. TW boost strips can otherwise push neighboring
+    // triangles in opposite directions and pin a kart at their shared edge.
+    tangent = bcUv[consistentUvTangents ? 1 : 0]! < 0 ? scale(bc, -1) : bc;
   else {
     const ratio = f32(acUv[0]! / denominator);
     tangent = add(scale(ab, ratio), scale(ac, f32(1 - ratio)));
@@ -221,7 +224,7 @@ function auxiliaryDirection(descriptor: RoadDescriptor, uvs: number[][],
 /** Walks each model node, inheriting the nearest road declaration and cull mode. */
 export function extractTrackRoads(root: RoadModelNode,
   descriptorIssue: (descriptor: RoadDescriptor) => string | undefined,
-  roadExtent = 2e3): RoadExtraction {
+  roadExtent = 2e3, consistentUvTangents = false): RoadExtraction {
   const triangles: RoadCollisionTriangle[] = [];
   const deferredTriangles: RoadCollisionTriangle[] = [];
   const issues: RoadExtraction["issues"] = [];
@@ -292,7 +295,7 @@ export function extractTrackRoads(root: RoadModelNode,
           a: collisionPoint(a), b: collisionPoint(b), c: collisionPoint(c),
           normal: collisionPoint(normal),
           auxiliaryDirection: auxiliaryDirection(descriptor, geometry.uvs,
-            a, b, c, first, bIndex, cIndex),
+            a, b, c, first, bIndex, cIndex, consistentUvTangents),
           roadDescriptor: descriptor,
           origin: { mesh, localIndices: [first, bIndex, cIndex] },
         };

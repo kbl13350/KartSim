@@ -1,3 +1,4 @@
+import { visibleTrackId } from "../resources/track-duplicates";
 import { tr } from "../i18n/locale";
 import { itemRandomTrackGroups, itemTrackCatalog, type TrackLibrary } from "../resources/track-catalog";
 import { formatMultiplayerError } from "./errors";
@@ -158,7 +159,7 @@ export async function chooseLobbyTrack(host: LobbyTrackHost,
       root: host.options.root,
       ...(item ? { gameTypes: ["item"] as const } : {}),
       tracks,
-      selectedTrackId,
+      selectedTrackId: visibleTrackId(selectedTrackId, tracks),
       randomGroups: groups,
       randomTrackNames: names,
       selectedRandomGroupId: rules.find(rule =>

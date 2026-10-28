@@ -1,3 +1,4 @@
+import { findTrackChoice } from "../resources/track-duplicates";
 import { tr } from "../i18n/locale";
 /**
  * 赛道对决 races (TIMEATTACK.md): the practice window's 开始对决 starts a story
@@ -64,7 +65,7 @@ export async function startDuelRace(controller: ReadyDuelController, selection: 
   const targetMs = duel.stage.targetMs + advantageMs;
   // The duel runs on the event's track, whatever track the window shows.
   const tracks = await library.timeAttackTrackCatalog();
-  const track = tracks.find(entry => entry.id.toLowerCase() === duel.event.trackId.toLowerCase());
+  const track = findTrackChoice(tracks, duel.event.trackId);
   if (!track) throw new Error(tr("赛道 {track} 不在本地资源中", { track: duel.event.trackId }));
   const npc = await duelNpcGhost(library, duel, track.id, catalog);
   const previous = host.getSelection();

@@ -137,6 +137,20 @@ test("track and item favorites, including save failure, match release", () => {
   assert.deepEqual(run(false), run(true));
 });
 
+test("un-starring a canonical map clears saved alias stars without changing unrelated favorites", () => {
+  const { host } = fixture(false);
+  const original = host.host.getProfile();
+  host.host.setProfile({ ...original, favoriteTracks: [
+    { themeId: "town", trackId: "old" }, { themeId: "town", trackId: "canonical" },
+    { themeId: "town", trackId: "other" },
+  ] });
+  const track = { themeId: "town", trackId: "canonical",
+    duplicateAliases: [{ themeId: "town", trackId: "old" }] };
+  changeReadyFavoriteTrack(host, track, false,
+    value => value as { themeId: string; trackId: string });
+  assert.deepEqual(host.host.getProfile().favoriteTracks, [{ themeId: "town", trackId: "other" }]);
+});
+
 test("a race start closes the shop, or cancels one still loading", () => {
   const { host, events } = fixture(false);
   const shopHost = host as unknown as { activeShop?: { close(): void }; shopOpening?: boolean;

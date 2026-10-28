@@ -1,3 +1,4 @@
+import { findTrackChoice } from "../resources/track-duplicates";
 import { gameLocale, tr } from "../i18n/locale";
 import { ensureFeatureResources } from "../ui/resource-panel";
 import { ksvCompression } from "../codecs/ksv-compression";
@@ -250,7 +251,7 @@ async function openStoryStep(controller: ReadyStoryController, chapter: StoryCha
     const mission = await story.loadMission(chapter.name, step);
     const library = story.library as StoryReadyLibrary;
     const tracks = await library.timeAttackTrackCatalog();
-    const track = tracks.find(entry => entry.id.toLowerCase() === mission.track.toLowerCase());
+    const track = findTrackChoice(tracks, mission.track);
     // The release track card, as the time attack Ready view shows it.
     const cardLibrary = library as unknown as StoryTrackCardLibrary;
     const trackCard = track && typeof cardLibrary.trackMetadata === "function"
@@ -402,7 +403,7 @@ async function startStoryRace(controller: ReadyStoryController, chapter: StoryCh
     const previousOptions = host.getReadyOptions();
     const [catalog, tracks] = await Promise.all([library.timeAttackGarageCatalog(),
       library.timeAttackTrackCatalog()]);
-    const track = tracks.find(entry => entry.id.toLowerCase() === mission.track.toLowerCase());
+    const track = findTrackChoice(tracks, mission.track);
     if (!track) throw new Error(tr("赛道 {track} 不在本地资源中", { track: mission.track }));
     const kart = mission.fixedKartId === undefined ? undefined
       : catalog.karts.find(entry => entry.itemId === mission.fixedKartId);
