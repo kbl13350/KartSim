@@ -20,6 +20,14 @@ export interface RailDynamicsContext extends RailFrameContext {
     railPoint: Vector3;
     railConfig?: RailDynamicsConfig;
     motionMode: number;
+    railDriftBoostPending?: boolean;
+    driftTailLatch?: boolean;
+    activeDrift?: boolean;
+    oneSubstepDrift?: boolean;
+    triggerPhase?: boolean;
+    delayedDriftRequest?: boolean;
+    driftLifecycleB50?: number;
+    driftLifecycleB44?: number;
     raceMotionLocked: boolean;
     pressProtected1C0: boolean;
     physicsState: number;
@@ -52,6 +60,7 @@ export interface RailDynamicsContext extends RailFrameContext {
   };
   /** Item races (道具赛) boost with the item factor, as `applyLongitudinalForce` does. */
   itemMode?: boolean;
+  speedRaceMode?: { kind: string };
   produceRailFrame(seconds: number, track: RailFrameTrack): boolean;
   commitDriftGauge(): void;
 }
@@ -173,6 +182,22 @@ export function applyVehicleRailDynamics(
         runtime.motionMode = 3;
         runtime.railEntryMarker = float(0.5);
         vehicle.commitDriftGauge();
+        // Ordinary tire processing is skipped on rails, so finish the captured
+        // road drift here and open its usual one-shot 0.5-second boost window.
+        if (runtime.railDriftBoostPending) {
+          delete runtime.railDriftBoostPending;
+          if (runtime.driftTailLatch && vehicle.speedRaceMode?.kind !== "grip" &&
+              !((runtime.driftLifecycleB50 ?? 0) > 0) && !((runtime.driftLifecycleB44 ?? 0) > 0) &&
+              runtime.physicsState !== 2 && runtime.localForwardSpeed > 0 &&
+              !runtime.raceMotionLocked && !runtime.pressProtected1C0) {
+            runtime.driftLifecycleB50 = float(0.5);
+          }
+          runtime.activeDrift = false;
+          runtime.oneSubstepDrift = false;
+          runtime.triggerPhase = false;
+          runtime.delayedDriftRequest = false;
+          runtime.driftTailLatch = false;
+        }
       }
     } else {
       torque.y = float(torque.y + float(runtime.localRightSpeed * float(1.6)));

@@ -1,0 +1,76 @@
+<!doctype html><meta charset="utf-8"><title>意大利比萨斜塔 轨道实跑</title>
+<style>body{margin:0;background:#101c2a;color:white;font:15px system-ui}header{padding:12px}button{padding:8px;margin-right:10px}canvas{width:100%;max-height:75vh;object-fit:contain}pre{white-space:pre-wrap;padding:8px}#info{position:absolute;top:70px;left:12px;background:#000b;padding:8px;pointer-events:none}</style>
+<header><button id="load">载入真实赛道</button><button id="run" disabled>漂移入轨试跑</button><button id="straight" disabled>直行入轨对照</button><button id="inspect" disabled>查看轨道路线</button></header><div id="info"></div><div id="result" style="padding:12px;color:#8decc4"></div><pre id="log">使用正式赛道、车辆物理及碰撞；只通过驾驶指令触发小喷。</pre>
+<script type="module">
+import {WebGLRenderer,Scene,PerspectiveCamera,SRGBColorSpace,Matrix4,Vector3} from 'three';
+import {Sw,Tr} from '/src/generated/library.js';
+import {ha} from '/src/generated/formats.js';
+import {ul} from '/src/generated/vehicle.js';
+import {_L} from '/src/generated/world.js';
+import {AL} from '/src/generated/driving.js';
+import {installWorldOverrides} from '/src/world/install.ts';
+import {loadLegacyResourceBundle} from '/src/resources/legacy-adapter.ts';
+import {bundledVehicleSpecCatalog} from '/src/physics/bundled.ts';
+import {vehiclePhysicsParameters} from '/src/driving/physics-parameters.ts';
+import {defaultLocalProfile} from '/src/ui/local-profile.ts';
+installWorldOverrides(_L);
+const log=document.querySelector('#log'),info=document.querySelector('#info');
+const note=s=>{log.textContent+='\n'+s};
+window.addEventListener('error',e=>note(e.message));window.addEventListener('unhandledrejection',e=>note(String(e.reason?.stack??e.reason)));
+let world,map,physics,scene,camera,renderer,kart,frames,raf,now=10000,trace=[];
+const input={forward:1,reverse:0,steer:0,rawSteer:0,steeringInverted:false,rawDriftHeld:false,derivedDriftHeld:false,actionMarkerWord:0};
+const controls={...input};
+function render(){const p=physics.body.position,f=physics.body.forward,u=physics.body.up,r=physics.body.right;
+ if(kart){kart.position.set(p.x,p.y,p.z);kart.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(new Vector3(r.x,r.y,r.z),new Vector3(u.x,u.y,u.z),new Vector3(-f.x,-f.y,-f.z)))}
+ camera.position.set(p.x-f.x*9+u.x*5,p.y-f.y*9+u.y*5,p.z-f.z*9+u.z*5);camera.up.set(u.x,u.y,u.z);camera.lookAt(p.x+f.x*10,p.y+f.y*10,p.z+f.z*10);
+ world.updateRender?.(now,camera,1280,720);renderer.render(scene,camera);
+ info.textContent=`${map.metadata.cnTitle??'意大利之旅'} | ${physics.displaySpeedKmh().toFixed(1)} km/h | 轨道模式 ${physics.runtime.motionMode} | 小喷窗口 ${physics.runtime.driftLifecycleB50.toFixed(3)} | 物理状态 ${physics.runtime.physicsState}`;
+}
+document.querySelector('#load').onclick=async()=>{
+ document.querySelector('#load').disabled=true;note('加载索引…');
+ const bundle=await loadLegacyResourceBundle('p3553');const library=await Sw.load(bundle.sources,undefined,bundle.archiveIndexes);
+ const source={importer:new Tr(),toonStageBinding:new ha(),userProfile:defaultLocalProfile(),getLibrary:()=>library,generationValue:()=>1,isGenerationCurrent:()=>true,requireAsset:path=>{const f=library.get(path);if(!f)throw Error(path);return f}};
+ const loader=new ul(source);const tracks=await library.timeAttackTrackCatalog();const choice=tracks.find(t=>t.id==='world_R06');note(JSON.stringify(choice));
+ map=await loader.loadAssetMap(choice.path,choice.id);world=new _L(map.data,map.scene,map.renderScene,map.skydome);scene=new Scene();scene.add(world.group);
+ renderer=new WebGLRenderer({antialias:true});renderer.outputColorSpace=SRGBColorSpace;renderer.setSize(1280,720);document.querySelector('header').after(renderer.domElement);camera=new PerspectiveCamera(65,1280/720,.1,world.cameraFar??3000);
+ const spec=bundledVehicleSpecCatalog().lookup(373,7).spec;const params=vehiclePhysicsParameters(spec,{autoChargeLowSpeed:100,driftGaugeReset:true,wheelPosition:.85},5);physics=new AL(params,{rawHalfWidth:.9,rawHalfLength:1.5,scaleX:1,scaleY:1,rawHeight:1});
+ const garage=await library.timeAttackGarageCatalog();const entry=garage.karts.find(k=>k.itemId===373)??garage.karts[0];note('kart '+JSON.stringify(entry));
+ try {const loaded=await loader.loadVehicleRuntime(entry.path,entry.textureKey,entry.fixedPlateId,library,map.environment,map.stageBinding,source.userProfile,entry.itemId,entry.engineGrade);kart=loaded.imported.object;scene.add(kart)}catch(e){note('车辆模型错误 '+e.message);throw e}
+ frames=map.data.sections.flatMap((s,section)=>s.frames.map((f,index)=>({...f,section,index,tag:s.tag??s.name})));
+ physics.resetFromRouteFrame(world.getStart());world.resetRouteState(physics,physics.body.position);render();note('已载入 '+frames.length+' 路线帧');
+ for(const id of ['run','straight','inspect'])document.querySelector('#'+id).disabled=false;
+};
+document.querySelector('#inspect').onclick=()=>{
+ log.textContent=JSON.stringify(map.data.sections.map((s,i)=>({i,keys:Object.keys(s),surface:s.surface,frames:s.frames.length,first:s.frames[0].position,last:s.frames.at(-1).position})));
+};
+
+function run(drift){
+ cancelAnimationFrame(raf);trace=[];document.querySelector('#result').textContent='正在实跑…';log.textContent=(drift?'漂移':'直行')+'入轨：从入口前约100米静止起跑';
+ const start=map.data.sections[4].frames[0];// Reset at a real route checkpoint; speed, rail mode and boost state remain untouched.
+ physics.resetFromRouteFrame(start);
+ const hit=world.rayQuery({...start.position,y:start.position.y+5},{x:0,y:-20,z:0},false);
+ if(hit)physics.body.position={...hit.point,y:hit.point.y+.3};
+ world.resetRouteState(physics,physics.body.position);world.warpRouteToSection(physics,4);Object.assign(controls,input);now=10000;physics.update(now,{...controls,forward:0},world);
+ let began=false,stopped=false,pressed=false,released=false,t=0,driftAt=0,railAt=0,sprayAt=0,previousMode=0,previousState=0;
+ const noteState=label=>{const r=physics.runtime;note(JSON.stringify({label,t:+t.toFixed(3),speed:+physics.displaySpeedKmh().toFixed(2),mode:r.motionMode,state:r.physicsState,window:r.driftLifecycleB50,pending:!!r.railDriftBoostPending,gauge:r.driftGaugeWindow,active:r.activeDrift,latch:r.driftTailLatch,pos:physics.body.position}));};
+ const tick=()=>{
+  for(let sub=0;sub<2;sub++){
+   t+=.008;now+=8;const r=physics.runtime;const distance=physics.body.position.z-(-265.938385);
+   if(drift&&!began&&distance<17&&r.motionMode<2){began=true;driftAt=t;controls.steer=.3;controls.rawSteer=.3;controls.rawDriftHeld=true;controls.derivedDriftHeld=true;physics.handleDrivingCommand({kind:'drift-start',direction:1},controls);noteState('漂移按下');}
+   if(began&&!stopped&&t-driftAt>.12){controls.steer=-.12;controls.rawSteer=-.12;}
+   if(began&&!stopped&&r.motionMode>=2){stopped=true;controls.steer=0;controls.rawSteer=0;controls.rawDriftHeld=false;controls.derivedDriftHeld=false;physics.handleDrivingCommand({kind:'drift-stop'},controls);noteState('入轨后松漂移');}
+   if(r.motionMode===3&&!railAt)railAt=t;
+   if(railAt&&!released&&t-railAt>.1){released=true;controls.forward=0;physics.handleDrivingCommand({kind:'forward-up'},controls);noteState('松前进');}
+   else if(released&&!pressed){pressed=true;controls.forward=1;physics.handleDrivingCommand({kind:'forward-down'},controls);noteState('重新按前进');if(r.physicsState===2)sprayAt=t;}
+   const old={...physics.body.position};world.updateObstacles(now,old);world.registerObstaclePair(old);world.commitObstacleSnapshot();physics.update(now,controls,world);world.updateRoute(physics,old,physics.body.position,tag=>physics.handleRouteSurfaceTag(tag));
+   if(r.motionMode!==previousMode){previousMode=r.motionMode;noteState('轨道状态变化');}
+   if(r.physicsState!==previousState){previousState=r.physicsState;noteState('加速状态变化');}
+   trace.push({t,mode:r.motionMode,state:r.physicsState,window:r.driftLifecycleB50,speed:physics.displaySpeedKmh()});
+   if((railAt&&t-railAt>1.5)||t>12){render();noteState('结束');const peak=Math.max(...trace.filter(x=>x.mode===3).map(x=>x.speed));const passed=drift?began&&railAt>0&&sprayAt>0:railAt>0&&sprayAt===0;note('结果 '+JSON.stringify({drift,began,railAt,sprayAt,peak,passed}));document.querySelector('#result').textContent=`${passed?'通过':'未通过'}：${drift?'漂移入轨后触发小喷':'直行入轨不赠送小喷'} · 峰值 ${peak.toFixed(2)} km/h · 小喷触发 ${sprayAt.toFixed(3)} s`;return;}
+  }
+  render();raf=requestAnimationFrame(tick);
+ };raf=requestAnimationFrame(tick);
+}
+document.querySelector('#run').onclick=()=>run(true);
+document.querySelector('#straight').onclick=()=>run(false);
+</script>

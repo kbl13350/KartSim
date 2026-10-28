@@ -18,6 +18,14 @@ export interface RailCaptureContext {
   };
   runtime: {
     motionMode: number;
+    /** Only an unfinished road drift can earn a boost when rail alignment ends. */
+    railDriftBoostPending?: boolean;
+    driftTailLatch?: boolean;
+    activeDrift?: boolean;
+    oneSubstepDrift?: boolean;
+    driftGaugeWindow?: boolean;
+    driftLifecycleB50?: number;
+    driftLifecycleB44?: number;
     railCaptureTimeout: number;
     railCaptureDelay: number;
     railConfig?: Record<string, unknown>;
@@ -92,6 +100,11 @@ export function captureVehicleRail(
       runtime.railConfig = { ...track.lookupRailConfig(railId) };
       runtime.railEntryTimerA = float(float(vehicle.tuning.driftTrigTime * runtime.bodySpeed) / float(20));
       runtime.railEntryTimerB = float(vehicle.tuning.driftTrigTime * float(0.5));
+      const unfinishedDrift = !!runtime.driftTailLatch &&
+        !!(runtime.activeDrift || runtime.oneSubstepDrift || runtime.driftGaugeWindow) &&
+        !((runtime.driftLifecycleB50 ?? 0) > 0) && !((runtime.driftLifecycleB44 ?? 0) > 0);
+      if (unfinishedDrift) runtime.railDriftBoostPending = true;
+      else delete runtime.railDriftBoostPending;
       runtime.motionMode = 2;
     }
   }
