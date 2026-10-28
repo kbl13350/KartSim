@@ -7,6 +7,7 @@ import type { TrackDirectory, ManagedTrack } from '../api/types'
 import { useTab } from '../composables/useTabs'
 import { useNarrow } from '../composables/useNarrow'
 import { confirmAction, showError } from '../utils/ui'
+import TrackPreview from '../components/TrackPreview.vue'
 
 const directory = ref<TrackDirectory>({ tracks: [], themes: [], version: '', updatedAt: 0 })
 const loading = ref(false)
@@ -133,13 +134,18 @@ function reset() {
       <el-button link type="primary" @click="load">重新加载</el-button>
     </el-alert>
     <el-table v-loading="loading" :data="rows" row-key="id" border stripe style="width: 100%">
-      <el-table-column label="地图名称" min-width="230">
+      <el-table-column label="地图预览 / 名称" :min-width="narrow ? 240 : 360">
         <template #default="{ row }">
-          {{ row.title }}
-          <div class="muted mono">{{ row.id }}</div>
-          <el-tooltip v-if="row.aliases.length" :content="`这些别名与此地图同步开关：${row.aliases.join('、')}`" placement="top">
-            <span class="alias-note muted">同图别名 {{ row.aliases.length }} 个</span>
-          </el-tooltip>
+          <div class="track-cell">
+            <TrackPreview :id="row.id" :title="row.title" />
+            <div class="track-info">
+              <div>{{ row.title }}</div>
+              <div class="muted mono">{{ row.id }}</div>
+              <el-tooltip v-if="row.aliases.length" :content="`这些别名与此地图同步开关：${row.aliases.join('、')}`" placement="top">
+                <span class="alias-note muted">同图别名 {{ row.aliases.length }} 个</span>
+              </el-tooltip>
+            </div>
+          </div>
         </template>
       </el-table-column>
       <el-table-column label="主题分类" min-width="120">
@@ -175,6 +181,8 @@ function reset() {
 .state-select { width: 135px; }
 .keyword { width: 260px; }
 .theme-actions { padding: 12px; background: var(--el-fill-color-light); border-radius: 4px; }
+.track-cell { display: flex; align-items: center; gap: 12px; padding: 4px 0; }
+.track-info { min-width: 0; overflow-wrap: anywhere; }
 .alias-note { display: inline-block; font-size: 12px; border-bottom: 1px dotted var(--el-text-color-secondary); }
 .load-error { margin-bottom: 12px; }
 .pager { display: flex; justify-content: flex-end; margin-top: 12px; overflow-x: auto; }
@@ -182,5 +190,6 @@ function reset() {
   .toolbar :deep(.el-form-item) { width: 100%; margin-right: 0; }
   .toolbar :deep(.el-form-item__content) { flex: 1; min-width: 0; }
   .theme-select, .state-select, .keyword { width: 100%; }
+  .track-cell { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 </style>

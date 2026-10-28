@@ -1,0 +1,880 @@
+{
+  "schemaVersion": 1,
+  "method": "Native game scene rendered from the exact track model; manually selected unobstructed camera; no generated, borrowed, recolored or masked imagery.",
+  "codeRevision": "ae8c7971ef4e678f97403501fe11fa87e9b478b7",
+  "rendererPage": "client/tests/browser/track-dedup.html",
+  "rendererPageSha256": "4679e2fdda63a3d6c84b06c3313aa6ebd5d32e45de4af7a0ab379489301f6c07",
+  "resourceManifest": "mirror/__p3553/resources",
+  "resourceManifestSha256": "6db458ab24c29a716a693c65392734ab1e073bf8478f5bbdb83a27f1f04c2bb3",
+  "imageConversion": {
+    "inputWidth": 960,
+    "inputHeight": 540,
+    "outputWidth": 352,
+    "outputHeight": 198,
+    "method": "Pillow RGB resize with LANCZOS; whole image, no crop, no aspect-ratio distortion"
+  },
+  "tracks": [
+    {
+      "id": "china_D01",
+      "file": "china_D01.png",
+      "modelArchive": "track_china_D01.rho",
+      "modelPath": "track_/china_D01/track.1s",
+      "runtimeModelPath": "track_/china_D01/track.1s",
+      "modelSha256": "517a7615e5943bfacbff94815ffebebd7d608f9f1472d322190f6e58cf193dd4",
+      "modelBytes": 333994,
+      "imageSha256": "1b36f0cacd491364d4678e51ad5bf9c776966a9c71ea31285e76d073016024fc",
+      "width": 352,
+      "height": 198,
+      "camera": {
+        "key": "angle-1",
+        "label": "角度 1",
+        "fov": 50,
+        "position": [
+          461.8547706703382,
+          50,
+          -426.22690962751335
+        ],
+        "target": [
+          422.9638977050781,
+          32,
+          -465.11778259277344
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ]
+      },
+      "cameraPlan": {
+        "version": 1,
+        "width": 960,
+        "height": 540,
+        "tick": 10000,
+        "bounds": {
+          "min": [
+            392.0069885253906,
+            20,
+            -597.0576171875
+          ],
+          "max": [
+            453.9208068847656,
+            20,
+            -333.1779479980469
+          ]
+        },
+        "routeLength": 566.5942807879718,
+        "primarySections": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "allSections": 8,
+        "views": [
+          {
+            "key": "angle-1",
+            "label": "角度 1",
+            "fov": 50,
+            "position": [
+              461.8547706703382,
+              50,
+              -426.22690962751335
+            ],
+            "target": [
+              422.9638977050781,
+              32,
+              -465.11778259277344
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ]
+          }
+        ]
+      },
+      "nativeEnvironment": {
+        "skyRendered": true,
+        "fog": {
+          "type": "Fog",
+          "name": "",
+          "color": 14545407,
+          "near": 325,
+          "far": 650
+        },
+        "cameraFar": 650,
+        "overviewFogRangeExtended": false
+      },
+      "deterministic": {
+        "tick": 10000,
+        "clockUtc": "2026-10-28T00:00:00.000Z",
+        "randomSeed": "0x4b415254"
+      },
+      "renderedTriangles": 5382,
+      "drawCalls": 72,
+      "variedPixels": 518383,
+      "pageErrors": [],
+      "sourceCapture": "output/track-admin-thumbnail-audit/refined/china_D01/angle-1.png",
+      "sourceCaptureSha256": "5edc79ccf8bd81b9e353528454b0c3d17cbe33cc6b241e1e7e9e9b2511dd4d86",
+      "visuallyReviewed": true,
+      "indexedModelPath": "track_china_D01/track.1s"
+    },
+    {
+      "id": "fengshen_P01",
+      "file": "fengshen_P01.png",
+      "modelArchive": "DataPack3_00002.rho5",
+      "modelPath": "track_/fengshen_P01/track.1s",
+      "runtimeModelPath": "track_/fengshen_P01/track.1s",
+      "modelSha256": "882adf40cd114a1c3a56febe61abf726bfbb96f14ee21cfa334ed9a79c2b248c",
+      "modelBytes": 416466,
+      "imageSha256": "072759ef6dbff2bc9f4883d6b1428aff244fe3626041eb9ee30198e4302ab63f",
+      "width": 352,
+      "height": 198,
+      "camera": {
+        "key": "angle-2",
+        "label": "角度 2",
+        "fov": 50,
+        "position": [
+          83.33790893554688,
+          56.850921630859375,
+          -66.3083724975586
+        ],
+        "target": [
+          83.33790893554688,
+          31.850921630859375,
+          -131.3083724975586
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ]
+      },
+      "cameraPlan": {
+        "version": 1,
+        "width": 960,
+        "height": 540,
+        "tick": 10000,
+        "bounds": {
+          "min": [
+            82.73805541992188,
+            21.850921630859375,
+            -132.24241485595704
+          ],
+          "max": [
+            83.93776245117188,
+            21.850921630859375,
+            -130.37433013916015
+          ]
+        },
+        "routeLength": 2.2201435696730947,
+        "primarySections": [
+          0
+        ],
+        "allSections": 1,
+        "views": [
+          {
+            "key": "angle-2",
+            "label": "角度 2",
+            "fov": 50,
+            "position": [
+              83.33790893554688,
+              56.850921630859375,
+              -66.3083724975586
+            ],
+            "target": [
+              83.33790893554688,
+              31.850921630859375,
+              -131.3083724975586
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ]
+          }
+        ]
+      },
+      "nativeEnvironment": {
+        "skyRendered": true,
+        "fog": {
+          "type": "Fog",
+          "name": "",
+          "color": 16777215,
+          "near": 300,
+          "far": 600
+        },
+        "cameraFar": 600,
+        "overviewFogRangeExtended": false
+      },
+      "deterministic": {
+        "tick": 10000,
+        "clockUtc": "2026-10-28T00:00:00.000Z",
+        "randomSeed": "0x4b415254"
+      },
+      "renderedTriangles": 7499,
+      "drawCalls": 70,
+      "variedPixels": 518387,
+      "pageErrors": [],
+      "sourceCapture": "output/track-admin-thumbnail-audit/custom/fengshen_P01/angle-2.png",
+      "sourceCaptureSha256": "9fe25259d48f58da2538af0177df639f23b5baf29e7d87ea2c5b1915b8ca9838",
+      "visuallyReviewed": true,
+      "indexedModelPath": "track_/fengshen_P01/track.1s"
+    },
+    {
+      "id": "ice_P01",
+      "file": "ice_P01.png",
+      "modelArchive": "track_ice_P01.rho",
+      "modelPath": "track_/ice_P01/track.1s",
+      "runtimeModelPath": "track_/ice_P01/track.1s",
+      "modelSha256": "13680f1a8c1e2ceeb512d0d0a454243286237ef883913b00d2663684f8c02a09",
+      "modelBytes": 618005,
+      "imageSha256": "e4d7cfacb86598533d84616c61787aec766fd9d18e0b8e0b19ed9e318d23e063",
+      "width": 352,
+      "height": 198,
+      "camera": {
+        "key": "third",
+        "label": "路线 1/3",
+        "fov": 65,
+        "position": [
+          156.59152125721178,
+          26.79183578491211,
+          -101.88095085437402
+        ],
+        "target": [
+          121.59152405600163,
+          21.79183578491211,
+          -101.89494782839218
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "routeFraction": 0.3333333333333333,
+        "routePoint": [
+          144.59152221679688,
+          19.79183578491211,
+          -101.88574981689453
+        ]
+      },
+      "cameraPlan": {
+        "version": 1,
+        "width": 960,
+        "height": 540,
+        "tick": 10000,
+        "bounds": {
+          "min": [
+            83.70404815673828,
+            19.79183578491211,
+            -101.8930892944336
+          ],
+          "max": [
+            144.59152221679688,
+            19.79183578491211,
+            -101.88574981689453
+          ]
+        },
+        "routeLength": 121.77495001536474,
+        "primarySections": [
+          0,
+          1
+        ],
+        "allSections": 2,
+        "views": [
+          {
+            "key": "third",
+            "label": "路线 1/3",
+            "fov": 65,
+            "position": [
+              156.59152125721178,
+              26.79183578491211,
+              -101.88095085437402
+            ],
+            "target": [
+              121.59152405600163,
+              21.79183578491211,
+              -101.89494782839218
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "routeFraction": 0.3333333333333333,
+            "routePoint": [
+              144.59152221679688,
+              19.79183578491211,
+              -101.88574981689453
+            ]
+          }
+        ]
+      },
+      "nativeEnvironment": {
+        "skyRendered": true,
+        "fog": {
+          "type": "Fog",
+          "name": "",
+          "color": 16777215,
+          "near": 300,
+          "far": 600
+        },
+        "cameraFar": 600,
+        "overviewFogRangeExtended": false
+      },
+      "deterministic": {
+        "tick": 10000,
+        "clockUtc": "2026-10-28T00:00:00.000Z",
+        "randomSeed": "0x4b415254"
+      },
+      "renderedTriangles": 8649,
+      "drawCalls": 123,
+      "variedPixels": 518396,
+      "pageErrors": [],
+      "sourceCapture": "output/track-admin-thumbnail-audit/rendered/screenshots/ice_P01/ice_P01--third.png",
+      "sourceCaptureSha256": "f861bd048a40ff3ebb87cc4a2bfcfe8243222740719660ce74f2b3dfc5094006",
+      "visuallyReviewed": true,
+      "indexedModelPath": "track_ice_P01/track.1s"
+    },
+    {
+      "id": "mabi_P01",
+      "file": "mabi_P01.png",
+      "modelArchive": "DataPack3_00022.rho5",
+      "modelPath": "track_/mabi_P01/track.1s",
+      "runtimeModelPath": "track_/mabi_P01/track.1s",
+      "modelSha256": "27c008be5047f917c261cc75ce43ed2e0e501ababd7f6253e846abaa26121b58",
+      "modelBytes": 504763,
+      "imageSha256": "9c24ed5b68b8060eec8f0ea4abff974065ffc140cb10cb1c346a5ea6bb8e9faf",
+      "width": 352,
+      "height": 198,
+      "camera": {
+        "key": "angle-3",
+        "label": "角度 3",
+        "fov": 50,
+        "position": [
+          124.18397215351368,
+          82.97702026367188,
+          -110.56648558124806
+        ],
+        "target": [
+          180.75251464843748,
+          42.977020263671875,
+          -167.13502807617186
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ]
+      },
+      "cameraPlan": {
+        "version": 1,
+        "width": 960,
+        "height": 540,
+        "tick": 10000,
+        "bounds": {
+          "min": [
+            177.81097412109375,
+            37.977020263671875,
+            -176.1051544189453
+          ],
+          "max": [
+            183.69405517578122,
+            37.977020263671875,
+            -158.16490173339844
+          ]
+        },
+        "routeLength": 18.880235939132053,
+        "primarySections": [
+          0
+        ],
+        "allSections": 1,
+        "views": [
+          {
+            "key": "angle-3",
+            "label": "角度 3",
+            "fov": 50,
+            "position": [
+              124.18397215351368,
+              82.97702026367188,
+              -110.56648558124806
+            ],
+            "target": [
+              180.75251464843748,
+              42.977020263671875,
+              -167.13502807617186
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ]
+          }
+        ]
+      },
+      "nativeEnvironment": {
+        "skyRendered": true,
+        "fog": {
+          "type": "Fog",
+          "name": "",
+          "color": 16777215,
+          "near": 300,
+          "far": 600
+        },
+        "cameraFar": 600,
+        "overviewFogRangeExtended": false
+      },
+      "deterministic": {
+        "tick": 10000,
+        "clockUtc": "2026-10-28T00:00:00.000Z",
+        "randomSeed": "0x4b415254"
+      },
+      "renderedTriangles": 1963,
+      "drawCalls": 36,
+      "variedPixels": 518399,
+      "pageErrors": [],
+      "sourceCapture": "output/track-admin-thumbnail-audit/custom/mabi_P01/angle-3.png",
+      "sourceCaptureSha256": "46db1db78feeb52638a2be79cde2b327cf748368ca9cb1da288ba778d0ca5b17",
+      "visuallyReviewed": true,
+      "indexedModelPath": "track_/mabi_P01/track.1s"
+    },
+    {
+      "id": "maple_P01",
+      "file": "maple_P01.png",
+      "modelArchive": "DataPack3_00020.rho5",
+      "modelPath": "track_/maple_P01/track.1s",
+      "runtimeModelPath": "track_/maple_P01/track.1s",
+      "modelSha256": "3bc62224d4a6cf22d4ee594f26505fa4652318b729bd03eb551e509174b5f3a3",
+      "modelBytes": 415963,
+      "imageSha256": "106dbd269b35d081c53566e6f6dd1a4c7da929a47534d0da54e33c55873c2fd4",
+      "width": 352,
+      "height": 198,
+      "camera": {
+        "key": "angle-2",
+        "label": "角度 2",
+        "fov": 50,
+        "position": [
+          35.31466064453126,
+          68.5744873046875,
+          -11.58966674804688
+        ],
+        "target": [
+          35.31466064453125,
+          28.5744873046875,
+          -91.58966674804688
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ]
+      },
+      "cameraPlan": {
+        "version": 1,
+        "width": 960,
+        "height": 540,
+        "tick": 10000,
+        "bounds": {
+          "min": [
+            30.15511474609375,
+            23.57447509765625,
+            -95.18143310546876
+          ],
+          "max": [
+            40.47420654296875,
+            23.57449951171875,
+            -87.997900390625
+          ]
+        },
+        "routeLength": 12.573257246161766,
+        "primarySections": [
+          0
+        ],
+        "allSections": 1,
+        "views": [
+          {
+            "key": "angle-2",
+            "label": "角度 2",
+            "fov": 50,
+            "position": [
+              35.31466064453126,
+              68.5744873046875,
+              -11.58966674804688
+            ],
+            "target": [
+              35.31466064453125,
+              28.5744873046875,
+              -91.58966674804688
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ]
+          }
+        ]
+      },
+      "nativeEnvironment": {
+        "skyRendered": true,
+        "fog": {
+          "type": "Fog",
+          "name": "",
+          "color": 16777215,
+          "near": 300,
+          "far": 600
+        },
+        "cameraFar": 600,
+        "overviewFogRangeExtended": false
+      },
+      "deterministic": {
+        "tick": 10000,
+        "clockUtc": "2026-10-28T00:00:00.000Z",
+        "randomSeed": "0x4b415254"
+      },
+      "renderedTriangles": 6302,
+      "drawCalls": 88,
+      "variedPixels": 513779,
+      "pageErrors": [],
+      "sourceCapture": "output/track-admin-thumbnail-audit/custom/maple_P01/angle-2.png",
+      "sourceCaptureSha256": "f6dc4bd655807376b88a0fffaae60f67eec53aad02aeed5a46da21d7ad659cb4",
+      "visuallyReviewed": true,
+      "indexedModelPath": "track_/maple_P01/track.1s"
+    },
+    {
+      "id": "moonhill_P01",
+      "file": "moonhill_P01.png",
+      "modelArchive": "DataPack3_00029.rho5",
+      "modelPath": "track_/moonhill_P01/track.1s",
+      "runtimeModelPath": "track_/moonhill_P01/track.1s",
+      "modelSha256": "5db6b703bd20ac97c91ea13a6a1927a9c4d81437a21981ab0fd70eb647db9e12",
+      "modelBytes": 976090,
+      "imageSha256": "9ec62928584509d58d1e02f2fc1171ded4f475c3f77e065dd55b6e9937be5f31",
+      "width": 352,
+      "height": 198,
+      "camera": {
+        "key": "third",
+        "label": "路线 1/3",
+        "fov": 65,
+        "position": [
+          156.59152125721178,
+          26.79183578491211,
+          -101.88095085437402
+        ],
+        "target": [
+          121.59152405600163,
+          21.79183578491211,
+          -101.89494782839218
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "routeFraction": 0.3333333333333333,
+        "routePoint": [
+          144.59152221679688,
+          19.79183578491211,
+          -101.88574981689453
+        ]
+      },
+      "cameraPlan": {
+        "version": 1,
+        "width": 960,
+        "height": 540,
+        "tick": 10000,
+        "bounds": {
+          "min": [
+            83.70404815673828,
+            19.79183578491211,
+            -101.8930892944336
+          ],
+          "max": [
+            144.59152221679688,
+            19.79183578491211,
+            -101.88574981689453
+          ]
+        },
+        "routeLength": 121.77495001536474,
+        "primarySections": [
+          0,
+          1
+        ],
+        "allSections": 2,
+        "views": [
+          {
+            "key": "third",
+            "label": "路线 1/3",
+            "fov": 65,
+            "position": [
+              156.59152125721178,
+              26.79183578491211,
+              -101.88095085437402
+            ],
+            "target": [
+              121.59152405600163,
+              21.79183578491211,
+              -101.89494782839218
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "routeFraction": 0.3333333333333333,
+            "routePoint": [
+              144.59152221679688,
+              19.79183578491211,
+              -101.88574981689453
+            ]
+          }
+        ]
+      },
+      "nativeEnvironment": {
+        "skyRendered": true,
+        "fog": {
+          "type": "Fog",
+          "name": "",
+          "color": 16777215,
+          "near": 300,
+          "far": 600
+        },
+        "cameraFar": 600,
+        "overviewFogRangeExtended": false
+      },
+      "deterministic": {
+        "tick": 10000,
+        "clockUtc": "2026-10-28T00:00:00.000Z",
+        "randomSeed": "0x4b415254"
+      },
+      "renderedTriangles": 9594,
+      "drawCalls": 143,
+      "variedPixels": 518393,
+      "pageErrors": [],
+      "sourceCapture": "output/track-admin-thumbnail-audit/rendered/screenshots/moonhill_P01/moonhill_P01--third.png",
+      "sourceCaptureSha256": "a2b838f2bd9f240e2fa21baab6ff8fcaa8062712c76685de7c8d032bd9e57899",
+      "visuallyReviewed": true,
+      "indexedModelPath": "track_/moonhill_P01/track.1s"
+    },
+    {
+      "id": "pirate_P01",
+      "file": "pirate_P01.png",
+      "modelArchive": "track_pirate_P01.rho",
+      "modelPath": "track_/pirate_P01/track.1s",
+      "runtimeModelPath": "track_/pirate_P01/track.1s",
+      "modelSha256": "00d722072cfa0febb6b0d433ae414ea7c61039010a71d88b9c024312f2d08e2e",
+      "modelBytes": 392165,
+      "imageSha256": "402cd56f4803674ca260cdf06435f7d0e9388436ade9a8b9f5614686f0e44af9",
+      "width": 352,
+      "height": 198,
+      "camera": {
+        "key": "angle-3",
+        "label": "角度 3",
+        "fov": 50,
+        "position": [
+          43.656448349802766,
+          64.88927459716797,
+          -85.47129209980278
+        ],
+        "target": [
+          100.22499084472656,
+          29.88927459716797,
+          -142.03983459472659
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ]
+      },
+      "cameraPlan": {
+        "version": 1,
+        "width": 960,
+        "height": 540,
+        "tick": 10000,
+        "bounds": {
+          "min": [
+            98.30475158691407,
+            19.392533111572266,
+            -146.4661834716797
+          ],
+          "max": [
+            102.14523010253906,
+            20.38601608276367,
+            -137.61348571777344
+          ]
+        },
+        "routeLength": 9.700852599902822,
+        "primarySections": [
+          0
+        ],
+        "allSections": 1,
+        "views": [
+          {
+            "key": "angle-3",
+            "label": "角度 3",
+            "fov": 50,
+            "position": [
+              43.656448349802766,
+              64.88927459716797,
+              -85.47129209980278
+            ],
+            "target": [
+              100.22499084472656,
+              29.88927459716797,
+              -142.03983459472659
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ]
+          }
+        ]
+      },
+      "nativeEnvironment": {
+        "skyRendered": true,
+        "fog": {
+          "type": "Fog",
+          "name": "",
+          "color": 16777215,
+          "near": 300,
+          "far": 600
+        },
+        "cameraFar": 600,
+        "overviewFogRangeExtended": false
+      },
+      "deterministic": {
+        "tick": 10000,
+        "clockUtc": "2026-10-28T00:00:00.000Z",
+        "randomSeed": "0x4b415254"
+      },
+      "renderedTriangles": 11687,
+      "drawCalls": 95,
+      "variedPixels": 489109,
+      "pageErrors": [],
+      "sourceCapture": "output/track-admin-thumbnail-audit/custom/pirate_P01/angle-3.png",
+      "sourceCaptureSha256": "8bf046b6ede1e76fcb9f23f697586a9200ff130c69834834a3ee277d079d260f",
+      "visuallyReviewed": true,
+      "indexedModelPath": "track_pirate_P01/track.1s"
+    },
+    {
+      "id": "village_C005",
+      "file": "village_C005.png",
+      "modelArchive": "track_village_C005.rho",
+      "modelPath": "track_/village_C005/track.1s",
+      "runtimeModelPath": "track_/village_C005/track.1s",
+      "modelSha256": "af022dfbabd0bf1cd51b5e030fbdbac71bfa37e4c00fabb38d73e97c3f96218b",
+      "modelBytes": 285747,
+      "imageSha256": "0fc2ef0eb0aa7894ad3e2cff583f3863b1fbf333c7b29ba7b370047fa0ef16f6",
+      "width": 352,
+      "height": 198,
+      "camera": {
+        "key": "start",
+        "label": "路线起点",
+        "fov": 65,
+        "position": [
+          357.57952880859375,
+          26.17374038696289,
+          -341.8154296875
+        ],
+        "target": [
+          322.57952880859375,
+          21.17374038696289,
+          -341.8154296875
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "routeFraction": 0,
+        "routePoint": [
+          345.57952880859375,
+          19.17374038696289,
+          -341.8154296875
+        ]
+      },
+      "cameraPlan": {
+        "version": 1,
+        "width": 960,
+        "height": 540,
+        "tick": 10000,
+        "bounds": {
+          "min": [
+            103.49787902832031,
+            19.17374038696289,
+            -341.8154296875
+          ],
+          "max": [
+            393.64447021484375,
+            19.17374038696289,
+            -341.8154296875
+          ]
+        },
+        "routeLength": 580.2931823730469,
+        "primarySections": [
+          0,
+          1
+        ],
+        "allSections": 2,
+        "views": [
+          {
+            "key": "start",
+            "label": "路线起点",
+            "fov": 65,
+            "position": [
+              357.57952880859375,
+              26.17374038696289,
+              -341.8154296875
+            ],
+            "target": [
+              322.57952880859375,
+              21.17374038696289,
+              -341.8154296875
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "routeFraction": 0,
+            "routePoint": [
+              345.57952880859375,
+              19.17374038696289,
+              -341.8154296875
+            ]
+          }
+        ]
+      },
+      "nativeEnvironment": {
+        "skyRendered": true,
+        "fog": {
+          "type": "Fog",
+          "name": "",
+          "color": 16777215,
+          "near": 180,
+          "far": 600
+        },
+        "cameraFar": 600,
+        "overviewFogRangeExtended": false
+      },
+      "deterministic": {
+        "tick": 10000,
+        "clockUtc": "2026-10-28T00:00:00.000Z",
+        "randomSeed": "0x4b415254"
+      },
+      "renderedTriangles": 3246,
+      "drawCalls": 57,
+      "variedPixels": 518162,
+      "pageErrors": [],
+      "sourceCapture": "output/track-admin-thumbnail-audit/rendered/screenshots/village_C005/village_C005--start.png",
+      "sourceCaptureSha256": "a00c469b8a41f46ebfde333af23cf34b21377fbf45c4b0c1774248e3f6e9cff2",
+      "visuallyReviewed": true,
+      "indexedModelPath": "track_village_C005/track.1s"
+    }
+  ]
+}

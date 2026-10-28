@@ -1,0 +1,3982 @@
+{
+  "abyss_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "abyss_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "abyss_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "abyss_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "abyss_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "abyss_R02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "abyss_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "abyss_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "abyss_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "abyss_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_I01__s": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_I02__crz": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_I02__s": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_R01_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "beach_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_R02_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "beach_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "beach_R05": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "beach_R11": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "beach_R11__cn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "beach_R11__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "beach_R11__ru": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "beach_R11__th": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "beach_R11__vn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "beach_R11_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "beach_R12": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "beach_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "brodi_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "brodi_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "brodi_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "brodi_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_S04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_S05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_S06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "camelot_S07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "castle_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_C01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_D01": {
+    "kind": "scene",
+    "width": 352,
+    "height": 198
+  },
+  "china_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I01_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "china_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I02__crz": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I04_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I04_sn10": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I05_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I05_sn12": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I06_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I08": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "china_I09": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I10": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I11": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I12": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_I13": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R01_sn09": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R01_sn10": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "china_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R02_sn11": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R03_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R04_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R05_night": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R05_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "china_R06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R07_old_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "china_R07_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R08_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R09": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R10": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R11": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R12": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R12_night": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_R13": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "china_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_A02": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "desert_A04": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "desert_A04__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "desert_A04_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "desert_F01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "desert_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I01_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "desert_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I02_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "desert_I02_old_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "desert_I02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I02_sn06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I03__crz": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I03_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I04__anycall": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I04_anycall": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "desert_I04_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I05_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "desert_I05_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I09": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "desert_I10": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_I11": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_R01_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "desert_R01_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "desert_R01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_R01_sn17": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_R02_sn15": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_R06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "desert_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "facelift_desert_I01": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I01_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I02": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I02_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I03": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I03_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I04": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I04_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I05": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I05_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I06": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I07": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I08": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I09": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I10": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_I12": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_R01": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_R01_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_R02": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_R02_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_R04": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_desert_S01": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "facelift_forest_I04_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "factory_A04__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "factory_C001": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "factory_C03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_D01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "factory_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I02_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "factory_I02_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "factory_I02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I03_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I04__crz": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I04_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "factory_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_I08": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "factory_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_R01_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "factory_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "factory_S01": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "factory_S02": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "fairy_B01": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "fairy_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fairy_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fairy_I02_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "fairy_I02_old_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "fairy_I02_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "fairy_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fairy_I03_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "fairy_I03_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "fairy_I03_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fairy_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fairy_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fairy_I06": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "fairy_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fairy_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fairy_R02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fairy_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_P01": {
+    "kind": "scene",
+    "width": 352,
+    "height": 198
+  },
+  "fengshen_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_S04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_S05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_S06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "fengshen_S07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_A02__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "forest_B01": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "forest_B02": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "forest_B02_rvs": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "forest_F01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I03__crz": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I03_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I04__d_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I04_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "forest_I04_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I05_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I07_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "forest_I07_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I08": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "forest_I09": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_I10": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_R02_new": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "forest_R02_new_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "forest_R02_night": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "forest_R02_night_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "forest_R02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_R06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_R07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "forest_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "god_D01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "god_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "god_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "god_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "god_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "god_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "god_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I03__crz": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I04_sn01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I04_sn02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I04_sn03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "gold_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_A04": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_A04__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_B01": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "ice_C001": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "ice_C001__xmas": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "ice_C001_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_C001_old__xmas": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_D01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_F01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I02_old__xmas_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_I02_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_I02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I03__crz": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I03_old__xmas_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_I03_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_I03_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I04_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I05_old__xmas_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_I05_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_I05_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I09": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I10": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_I11": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_P01": {
+    "kind": "scene",
+    "width": 352,
+    "height": 198
+  },
+  "ice_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_R01_village": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R01_village2": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_R01_village2__cn": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_R01_village2__d_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_R01_village2__ru": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_R01_village2__th": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_R01_village2__vn": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_R01_village2_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_R01_village__boost_charge": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R01_village__cn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R01_village__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R01_village__ru": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R01_village__th": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R01_village__vn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R01_village_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R01_wtf": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R01_wtf__xmas": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_R05_village": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "ice_R06": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "ice_R07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_R08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "ice_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "jurassic_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "jurassic_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "jurassic_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "jurassic_R01__0": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "jurassic_R02": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "jurassic_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "jurassic_R03_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "jurassic_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "jurassic_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "kartcity": {
+    "kind": "map",
+    "width": 1024,
+    "height": 1024
+  },
+  "korea_I01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_I01_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_I02": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_I02_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "korea_I03": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_I03_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "korea_I03_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_I04": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_I05": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R01_night": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R01_night_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R01_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R02": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R02_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "korea_R02_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R03": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R03_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R04": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_R05": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_S01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "korea_S02": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "mabi_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mabi_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mabi_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mabi_P01": {
+    "kind": "scene",
+    "width": 352,
+    "height": 198
+  },
+  "mabi_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mabi_R01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mabi_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mabi_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mabi_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "maple_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "maple_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "maple_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "maple_P01": {
+    "kind": "scene",
+    "width": 352,
+    "height": 198
+  },
+  "maple_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "maple_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "maple_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "maple_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "maple_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "maple_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mechanic_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mechanic_I02": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "mechanic_K01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mechanic_K02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mechanic_K03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mechanic_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_C04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I02__d_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I02_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "mine_I02_old_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "mine_I02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I04_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "mine_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_I09": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_R01_night": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "mine_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_R05_black": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_R05_night": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "mine_R06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_R07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_R08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "mine_S04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_A03_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I01_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "moonhill_I01_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "moonhill_I01_sn08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I03_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_I03_sn07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I04__d_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_I04_new": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_I04_new__d_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_I04_new_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_I04_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I05_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_P01": {
+    "kind": "scene",
+    "width": 352,
+    "height": 198
+  },
+  "moonhill_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_R01_new": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_R01_new_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_R01_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_R01_sn16": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_R02_new": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "moonhill_R05": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_R05_new": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_R05_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "moonhill_R06": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "moonhill_R07": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "moonhill_R07__cn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "moonhill_R07__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "moonhill_R07__ru": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "moonhill_R07__th": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "moonhill_R07__vn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "moonhill_R07_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "nemo_C02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nemo_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nemo_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nemo_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nemo_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nemo_R01_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "nemo_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nemo_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nemo_S01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "nemo_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nemo_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_D01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I01_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_I01_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I02_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_I02_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_I02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I03_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_I03_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_I03_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I04_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_I04_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I05_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I06_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I07_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I09": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_I10_kd": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_R01_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "northeu_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "northeu_R03_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "northeu_R10": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_R10__cn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_R10__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_R10__ru": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_R10__th": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_R10__vn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "northeu_R10_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "nymph_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nymph_I01_sn13": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nymph_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nymph_I02_sn14": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nymph_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nymph_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nymph_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nymph_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "nymph_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "olympos_I01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "olympos_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "olympos_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "olympos_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "olympos_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "olympos_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "olympos_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "olympos_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "olympos_S04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "park_I01": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "park_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "park_R02": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "park_T01": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "park_T02": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "park_T03": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "park_T04": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "park_T05": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "park_T06": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "park_T07": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "pirate_C001": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "pirate_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_I02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_I04_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_I04_sn04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_P01": {
+    "kind": "scene",
+    "width": 352,
+    "height": 198
+  },
+  "pirate_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_R01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_R02_sn05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_R06_kd": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "pirate_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "steam_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "steam_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "steam_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "steam_R02_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "steam_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "sword_F01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "sword_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "sword_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "sword_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "sword_R01_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "sword_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "sword_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_B01": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "tomb_F01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I01_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "tomb_I01_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "tomb_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I03_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "tomb_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I09": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_I10": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_R01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_R06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_R07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_S02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_S03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "tomb_S04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "transFormer_I01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "transFormer_R01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "transFormer_R01_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "transFormer_R02": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "transFormer_R02_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "transFormer_R03_villageR01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "transFormer_R03_villageR01_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_A06": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_A06__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_A07__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_B01": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_B03": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_B04": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_C005": {
+    "kind": "scene",
+    "width": 352,
+    "height": 198
+  },
+  "village_C01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_C101": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_C102": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "village_C103": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "village_C104": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "village_C105": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "village_C106": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_C107": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_C108": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_C109": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_C110": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_C111": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "village_C112": {
+    "kind": "thumbnail",
+    "width": 134,
+    "height": 92
+  },
+  "village_C113": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_C114": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_C115": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_C115_jp": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_C116": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_F01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01__anycall": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01__cn": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01__coke": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01__id": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01__jp": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01__ru": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01__th": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01__vn": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I01_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I01_vn_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I02_clean": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_I02_clean_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_I02_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I02_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I02_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I03__coke": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I03_night": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_I03_night_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_I03_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I03_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I03_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I04__anycall": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I04__cn": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I04__coke": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I04__crz": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I04_night": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_I04_night_rvs": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_I04_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I04_ru": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I04_ru_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I04_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I04_th": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I04_vn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I05_night": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I05_night_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I05_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I06__d_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I06_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 165
+  },
+  "village_I07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I08": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I11": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I12": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_I13": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I13_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I14": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_I15": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_L01_02": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_L01_04": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L02_01": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L02_03": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_L02_09": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_L03_01": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L03_02": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L03_03": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L03_03__id": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L03_03_short": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L03_04": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L03_05": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L03_05__id": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L03_06": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L03_07": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L04_01": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L04_02": {
+    "kind": "map",
+    "width": 256,
+    "height": 256
+  },
+  "village_L04_03": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L04_05": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L04_06": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_L04_07": {
+    "kind": "map",
+    "width": 512,
+    "height": 512
+  },
+  "village_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R01__cn": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R01__d_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R01_lol": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R01_night": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R01_night_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R01_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R01_ru": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R01_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R01_th": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R01_vn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R03_night": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R03_night_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R03_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R03_old_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R03_rvs": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R07": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R08": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_R09": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_R10": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R11": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "village_R12": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R13": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_R13_night": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "village_R14": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_S01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "village_T02": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "wkc_D01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "wkc_I01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "wkc_I02": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "wkc_L01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R02_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "wkc_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R07": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R09": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R11": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "wkc_R12": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_C02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_I02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_I03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_I03__crz": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_I04": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "world_I05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_R03": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_R04": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_R05": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_R05_old": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "world_R06": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_R10": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "world_R10_old": {
+    "kind": "card",
+    "width": 222,
+    "height": 134
+  },
+  "xyy_I01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "xyy_R01": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "xyy_R02": {
+    "kind": "card",
+    "width": 352,
+    "height": 206
+  },
+  "xyy_village_R01": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "xyy_village_R01__cn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "xyy_village_R01__d_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "xyy_village_R01__ru": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "xyy_village_R01__th": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "xyy_village_R01__vn": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  },
+  "xyy_village_R01_rvs": {
+    "kind": "card",
+    "width": 281,
+    "height": 164
+  }
+}

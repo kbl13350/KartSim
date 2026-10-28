@@ -76,3 +76,15 @@ grep -c "<script>" ../internal/data/api/adminui/index.html
 | `dev/mock.ts` | 仅开发用的假接口 |
 
 “地图管理”提供内置地图的主题分类、搜索、开启/关闭筛选及单图、整主题开关；“自制地图”仍用于地图工坊作品。开发假接口使用同一份生成的内置目录，所有开关仅保存在 mock 进程内，不会写入正式数据库。游戏客户端消费公开 `/api/track-settings`，接口约定见 `../ADMIN.md` 第 12 节。
+
+
+地图列表同时展示从每张地图自身资源容器提取的预览图，可点击或通过键盘放大。普通预览卡缺失时依次使用该地图的缩略图、路线图；没有原始图片的地图使用真实场景渲染截图，界面会标明“路线图”或“场景预览”。正反向地图可以共用同一张原始预览，地图条目与开关仍各自保留。
+
+图片以无损 WebP 随后台构建打包，不需要浏览器下载、解包整个游戏资源库。更新地图资源后，在仓库的 `client/` 目录执行（需已下载的游戏资源与 `cwebp`、`dwebp`）：
+
+```sh
+node --import tsx tools/export-admin-track-previews.mjs
+node --import tsx tools/export-admin-track-previews.mjs --check
+```
+
+随后重新运行本目录的 `npm run build`，一并提交图片索引、来源记录和后台构建产物。
