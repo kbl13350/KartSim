@@ -7,6 +7,7 @@ import { observeOf, updateObserveRanking, type ObservePose, type ObserveState } 
 import { vehicleRoadDust } from "../vehicle/road-dust-effect";
 import { sampleWrongWay, wrongWayOf } from "../ui/wrong-way-warning";
 import { autopilotOf } from "../ui/autopilot-prank";
+import { formulaOf } from "../formula/formula-runtime";
 
 // Presentation owners still come from the generated client. Their renderer,
 // physics and asset types will be narrowed as those systems are migrated.
@@ -109,6 +110,8 @@ export function updateTimeAttackStage(
     if (host.session.warpCameraFrozen) host.session.warpNextCamera(host.camera);
   }
 
+  const formula = formulaOf(host.session);
+  formula?.update(rawNowMs, host);
   host.touchControls.setAutoForwardActive(
     host.autoForward.isActive(host.drivingInput.snapshot()),
   );
@@ -160,7 +163,7 @@ export function updateTimeAttackStage(
       mark?.("kt-ghost-sample");
       ghost.view.update(sample, effectiveNowMs, host.camera,
         dependencies.worldAxis, dependencies.depthAxis, mark);
-      const pose = dependencies.decodeGhostPose(
+      const pose = sample.formulaPose ? Object.assign(poseBuffer[index], sample.formulaPose) : dependencies.decodeGhostPose(
         "sample" in sample ? sample.sample : sample,
         poseBuffer[index],
       );
@@ -298,6 +301,8 @@ export function updateTimeAttackStage(
   animationState = host.updateKartBoosterState(
     effectiveNowMs, cameraState.action8, animationState,
   );
+  if (formula?.state.boosting)
+    host.session.kartEffects?.setState(3, 0, false, false, effectiveNowMs);
   host.session.kartEffects?.update(host.session.lifecycle.effectiveTime(rawNowMs),
     host.camera, dependencies.worldAxis, dependencies.depthAxis);
   host.session.kartTrails?.setState(host.getPhysics().audioState(),

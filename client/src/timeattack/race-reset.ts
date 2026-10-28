@@ -1,6 +1,7 @@
 import { licenseItemsOf } from "../license/license-item-race";
 import { attachRaceHazardTraps } from "./race-hazard-traps";
 import type { TimeAttackAction } from "./lifecycle";
+import { formulaOf } from "../formula/formula-runtime";
 
 interface Resettable {
   reset(): void;
@@ -167,7 +168,9 @@ export function restartTimeAttackRace(
   host.toonStageBinding.setLightFactor(1);
   host.kartView.root.visible = true;
   host.session.track?.resetRender(0, host.camera, dependencies.worldAxis, dependencies.depthAxis);
-  host.currentPlayerSlot = dependencies.selectPlayerSlot(
+  const formula = formulaOf(host.session);
+  formula?.reset();
+  host.currentPlayerSlot = formula ? 0 : dependencies.selectPlayerSlot(
     host.session.ghosts.map(ghost => ghost.startSlot),
   );
   stage.placeAtStart();

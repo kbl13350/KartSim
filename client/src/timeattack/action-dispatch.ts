@@ -5,6 +5,7 @@ import { encodeRunReplay, rankedRaceOf, recordSpeedChannel, replayBase64 } from 
 import { observeOf } from "./replay-observe";
 import { settleBrowserTimeAttackRun } from "./timeattack-settle";
 import { noteReplayRecorded, runRecordKey } from "./ready-replays";
+import { formulaOf } from "../formula/formula-runtime";
 
 interface Action2D {
   scheduleStart(atMs: number): void;
@@ -93,6 +94,7 @@ export function dispatchTimeAttackActions(
 ): void {
   const { host } = stage;
   for (const action of actions) {
+    if (formulaOf(host.session)?.consumes(action)) continue;
     if (action.kind === "schedule-start-effect") {
       stage.action2D.scheduleStart(action.atMs);
       continue;

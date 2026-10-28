@@ -23,6 +23,7 @@ type GhostInput = GhostFrame | {
   renderBasisClient?: unknown;
   velocity?: Vec3;
   speedKmh?: number;
+  formulaPose?: Pose & { stunned?: boolean };
 };
 
 export interface GhostVisualUpdateHost {
@@ -103,7 +104,8 @@ export function updateGhostVisualFrame(host: GhostVisualUpdateHost,
   mark: ((stage: string) => void) | undefined,
   dependencies: GhostVisualUpdateDependencies): void {
   const frame = "sample" in input ? input.sample : input;
-  const pose = dependencies.decodePose(frame, host.poseScratch);
+  const pose = 'formulaPose' in input && input.formulaPose
+    ? input.formulaPose : dependencies.decodePose(frame, host.poseScratch);
   host.root.position.set(pose.position.x, pose.position.y, pose.position.z);
   const basis = "renderBasisClient" in input
     ? dependencies.decodeBasis(input.renderBasisClient, host.basisScratch)
@@ -139,8 +141,8 @@ export function updateGhostVisualFrame(host: GhostVisualUpdateHost,
     instantAccelerationActive: dependencies.instantAcceleration(frame.status),
     motorcycle: host.motorcycle,
     landingTrigger: false,
-    collisionHit: false,
-    collisionStrength: 0,
+    collisionHit: 'formulaPose' in input && input.formulaPose?.stunned === true,
+    collisionStrength: 'formulaPose' in input && input.formulaPose?.stunned ? 1 : 0,
     visualScaleMode: 0,
     linkedPresentationMotion: linkedMotion,
   });

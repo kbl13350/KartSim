@@ -2,6 +2,7 @@ import { tr } from "../i18n/locale";
 import { licenseItemsOf } from "../license/license-item-race";
 import { itemSlotInput } from "../ui/multiplayer-race-hud";
 import { observeOf, type ObserveState } from "./replay-observe";
+import { formulaOf } from "../formula/formula-runtime";
 
 interface ParticipantProgress {
   id: string;
@@ -81,6 +82,14 @@ export function rankBoardValues(
   dependencies: Pick<RaceHudDependencies, "rankParticipants">,
 ): RaceHudRank {
   const { host } = stage;
+  const formula = formulaOf(host.session);
+  if (formula) {
+    const standings = formula.engine.standings();
+    return { rank: standings.find(row => row.id === 0)!.rank, riderCount: 20,
+      rows: standings.map(row => ({ participantId: `formula${row.id}`, slot: row.id,
+        rank: row.rank, local: row.id === 0, name: row.name,
+        color: host.session.rankColors?.[row.id] })) };
+  }
   const participants: ParticipantProgress[] = [
     {
       id: "player",

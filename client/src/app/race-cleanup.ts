@@ -20,6 +20,7 @@ interface RaceSession {
   wrongWay?: Disposable;
   /** 创世 9 自动版. */
   autopilot?: Disposable;
+  formula?: Disposable;
   outlineBatch?: Disposable;
   vehicleRender?: Disposable;
   flyingPet?: Disposable;
@@ -111,6 +112,8 @@ export function releaseRaceForReady(
   session.physics?.hardCancelControls();
   session.coordinator?.dispose();
   session.coordinator = undefined;
+  session.formula?.dispose();
+  session.formula = undefined;
 
   for (const ghost of session.ghosts) ghost.view.dispose();
   session.ghosts = [];

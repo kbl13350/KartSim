@@ -1,0 +1,6190 @@
+{
+  "provenance": {
+    "version": "p3553",
+    "sources": [
+      {
+        "path": "DataPack1/etc_/F1Game/F1Game@cn.xml",
+        "sha256": "3f4d46bdaf22f28ed06fce64ce33c6fd8beb2b6ae3ea231bc9599bb397554e83"
+      },
+      {
+        "path": "DataPack1/etc_/F1Game/F1Game_StringBag.xml",
+        "sha256": "c0fbd6d662674dda4d4a0469302f78a11e45483412e8f6a0fbf00e59ccb1aeff"
+      },
+      {
+        "path": "DataPack1/etc_/F1Game/F1GameReward@cn.xml",
+        "sha256": "8b5b66c1ee395c04092f16e6aec5e1775b1b0e6214b1d19bd471a261612f4b44"
+      },
+      {
+        "path": "DataPack1/etc_/F1Game/aiF1modeChatScript@cn.xml",
+        "sha256": "4d2a8def536aaebea407a7364ba1922e9585b922848966f2fac5195e1d566900"
+      },
+      {
+        "path": "item.rho/crushBooster/item.bml",
+        "sha256": "1308d69b13fb3094879f2c992902e445a9c65db7d7ad55642c18aaf835b82bd6"
+      },
+      {
+        "path": "track_wkc_R01.rho/track.1s",
+        "sha256": "7c18038bc5afc4c1f80d5a1cb0ad7d9edfb0d5852bdffa25e17b12abb09989a9"
+      },
+      {
+        "path": "track_wkc_R03.rho/track.1s",
+        "sha256": "23a5d86f1d0ad42480f09f70cdc9bf3cbef375a97133fc908addd0b34e9908de"
+      },
+      {
+        "path": "track_wkc_R04.rho/track.1s",
+        "sha256": "607acf89fd01d4fbde1d4991c8d15e4f3d5c99565d8685a2ef62b75bda4efe4f"
+      }
+    ],
+    "notes": [
+      "All numeric NPC rows, boost intervals, rewards, missions and Chinese scripts are copied from the named original resources.",
+      "F1Game@cn.xml rider names override the older F1Game_StringBag.xml roster; the two original files disagree.",
+      "BoostInterval is annotated x 1000 in the original XML: exported interval endpoints are seconds.",
+      "rankGrade is zero-based (0-19); public playerRank is one-based (1-20). The way speed/accel map into reconstructed NPC physics is not proven by the data.",
+      "PIT triangles are original surface=pit collision triangles from track.1s, transformed by the same extractTrackRoads used by the client (x,z,-y).",
+      "Aggressive accelerator Use life=2400 ms and Affect life=2000 ms come from item.rho/crushBooster/item.bml.",
+      "Round scoring, tie breaks, player charge rates and NPC physics are not stored in these resources and require reconstructed runtime rules."
+    ]
+  },
+  "groups": [
+    {
+      "id": 1,
+      "opened": true,
+      "riders": [
+        {
+          "id": 1,
+          "name": "尼欧",
+          "characterId": 20,
+          "kartId": 200,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 2,
+          "name": "塞里吾斯",
+          "kartId": 456,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 3,
+          "name": "Pink Motor",
+          "kartId": 460,
+          "colorId": 9,
+          "dyeId": 9,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 4,
+          "name": "贝德",
+          "kartId": 456,
+          "colorId": 2,
+          "dyeId": 2,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 5,
+          "name": "T.O.B",
+          "kartId": 460,
+          "colorId": 3,
+          "dyeId": 3,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 6,
+          "name": "卡伦",
+          "kartId": 456,
+          "colorId": 5,
+          "dyeId": 5,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 7,
+          "name": "载伦",
+          "kartId": 460,
+          "colorId": 4,
+          "dyeId": 4,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 8,
+          "name": "秀米兹",
+          "kartId": 456,
+          "colorId": 6,
+          "dyeId": 6,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 9,
+          "name": "德侯",
+          "kartId": 460,
+          "colorId": 7,
+          "dyeId": 7,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 10,
+          "name": "K.D.K",
+          "kartId": 456,
+          "colorId": 15,
+          "dyeId": 15,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 11,
+          "name": "大话王",
+          "kartId": 460,
+          "colorId": 10,
+          "dyeId": 10,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 12,
+          "name": "鲁德",
+          "kartId": 456,
+          "colorId": 11,
+          "dyeId": 11,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 13,
+          "name": "UM.PRO",
+          "kartId": 460,
+          "colorId": 12,
+          "dyeId": 12,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 14,
+          "name": "克朗",
+          "kartId": 460,
+          "colorId": 2,
+          "dyeId": 2,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 15,
+          "name": "带着面具的女性",
+          "kartId": 456,
+          "colorId": 3,
+          "dyeId": 3,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 16,
+          "name": "尼克",
+          "kartId": 460,
+          "colorId": 4,
+          "dyeId": 4,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 17,
+          "name": "凯特",
+          "kartId": 460,
+          "colorId": 6,
+          "dyeId": 6,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 18,
+          "name": "龙",
+          "kartId": 456,
+          "colorId": 7,
+          "dyeId": 7,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 19,
+          "name": "OTL",
+          "kartId": 460,
+          "colorId": 11,
+          "dyeId": 11,
+          "speedWeight": 0,
+          "accelWeight": 0
+        }
+      ],
+      "boost": {
+        "chase": 1,
+        "yield": 9,
+        "intervals": [
+          {
+            "grade": 1,
+            "veasy": [
+              5,
+              7
+            ],
+            "easy": [
+              3,
+              5
+            ],
+            "normal": [
+              3,
+              4
+            ],
+            "hard": [
+              2,
+              4
+            ]
+          },
+          {
+            "grade": 2,
+            "veasy": [
+              6,
+              12
+            ],
+            "easy": [
+              6,
+              11
+            ],
+            "normal": [
+              6,
+              11
+            ],
+            "hard": [
+              3,
+              8
+            ]
+          },
+          {
+            "grade": 3,
+            "veasy": [
+              8,
+              14
+            ],
+            "easy": [
+              8,
+              13
+            ],
+            "normal": [
+              8,
+              12
+            ],
+            "hard": [
+              4,
+              9
+            ]
+          },
+          {
+            "grade": 4,
+            "veasy": [
+              12,
+              15
+            ],
+            "easy": [
+              11,
+              15
+            ],
+            "normal": [
+              9,
+              15
+            ],
+            "hard": [
+              7,
+              12
+            ]
+          },
+          {
+            "grade": 5,
+            "veasy": [
+              14,
+              18
+            ],
+            "easy": [
+              13,
+              18
+            ],
+            "normal": [
+              11,
+              17
+            ],
+            "hard": [
+              9,
+              15
+            ]
+          },
+          {
+            "grade": 6,
+            "veasy": [
+              17,
+              19
+            ],
+            "easy": [
+              16,
+              19
+            ],
+            "normal": [
+              14,
+              18
+            ],
+            "hard": [
+              12,
+              17
+            ]
+          },
+          {
+            "grade": 7,
+            "veasy": [
+              18,
+              21
+            ],
+            "easy": [
+              17,
+              21
+            ],
+            "normal": [
+              15,
+              20
+            ],
+            "hard": [
+              14,
+              19
+            ]
+          },
+          {
+            "grade": 8,
+            "veasy": [
+              6,
+              20
+            ],
+            "easy": [
+              5,
+              20
+            ],
+            "normal": [
+              3,
+              20
+            ],
+            "hard": [
+              2,
+              20
+            ]
+          },
+          {
+            "grade": 9,
+            "veasy": [
+              13,
+              18
+            ],
+            "easy": [
+              13,
+              18
+            ],
+            "normal": [
+              12,
+              16
+            ],
+            "hard": [
+              9,
+              10
+            ]
+          }
+        ]
+      },
+      "levels": [
+        {
+          "id": 1,
+          "speed": -7,
+          "accel": -2,
+          "step1Spd": 0,
+          "step2Spd": 1,
+          "step3Spd": 0
+        },
+        {
+          "id": 2,
+          "speed": -4,
+          "accel": 2,
+          "step1Spd": 0,
+          "step2Spd": 1,
+          "step3Spd": 0
+        },
+        {
+          "id": 3,
+          "speed": -2,
+          "accel": 3,
+          "step1Spd": 0,
+          "step2Spd": 1,
+          "step3Spd": 0
+        },
+        {
+          "id": 4,
+          "speed": 0,
+          "accel": 3,
+          "step1Spd": 0,
+          "step2Spd": 2,
+          "step3Spd": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "opened": true,
+      "riders": [
+        {
+          "id": 1,
+          "name": "尼欧",
+          "characterId": 20,
+          "kartId": 372,
+          "colorId": 10,
+          "dyeId": 10,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 2,
+          "name": "MR. SUN",
+          "kartId": 456,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 3,
+          "name": "暗.Pink Motor",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 4,
+          "name": "暗.贝德",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 5,
+          "name": "暗. T.O.B",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 6,
+          "name": "暗.卡伦",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 7,
+          "name": "清醒的载伦",
+          "kartId": 460,
+          "colorId": 4,
+          "dyeId": 4,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 8,
+          "name": "暗.秀米兹",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 9,
+          "name": "暗.德侯",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 10,
+          "name": "暗.K.D.K",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 11,
+          "name": "暗.大话王",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 12,
+          "name": "暗.鲁德",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 13,
+          "name": "暗.UM.PRO",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 14,
+          "name": "暗.克朗",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 15,
+          "name": "暗.宝蓝",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 16,
+          "name": "暗.尼克",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 17,
+          "name": "暗.凯特",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 18,
+          "name": "暗.龙",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        },
+        {
+          "id": 19,
+          "name": "暗.OTL",
+          "kartId": 516,
+          "colorId": 8,
+          "dyeId": 8,
+          "speedWeight": 0,
+          "accelWeight": 0
+        }
+      ],
+      "boost": {
+        "chase": 1,
+        "yield": 9,
+        "intervals": [
+          {
+            "grade": 1,
+            "veasy": [
+              4,
+              9
+            ],
+            "easy": [
+              4,
+              7
+            ],
+            "normal": [
+              3,
+              6
+            ],
+            "hard": [
+              3,
+              5
+            ]
+          },
+          {
+            "grade": 2,
+            "veasy": [
+              6,
+              12
+            ],
+            "easy": [
+              6,
+              11
+            ],
+            "normal": [
+              6,
+              11
+            ],
+            "hard": [
+              3,
+              8
+            ]
+          },
+          {
+            "grade": 3,
+            "veasy": [
+              8,
+              14
+            ],
+            "easy": [
+              8,
+              13
+            ],
+            "normal": [
+              8,
+              12
+            ],
+            "hard": [
+              4,
+              9
+            ]
+          },
+          {
+            "grade": 4,
+            "veasy": [
+              12,
+              15
+            ],
+            "easy": [
+              11,
+              15
+            ],
+            "normal": [
+              9,
+              15
+            ],
+            "hard": [
+              7,
+              12
+            ]
+          },
+          {
+            "grade": 5,
+            "veasy": [
+              14,
+              18
+            ],
+            "easy": [
+              13,
+              18
+            ],
+            "normal": [
+              11,
+              17
+            ],
+            "hard": [
+              9,
+              15
+            ]
+          },
+          {
+            "grade": 6,
+            "veasy": [
+              17,
+              19
+            ],
+            "easy": [
+              16,
+              19
+            ],
+            "normal": [
+              14,
+              18
+            ],
+            "hard": [
+              12,
+              17
+            ]
+          },
+          {
+            "grade": 7,
+            "veasy": [
+              18,
+              21
+            ],
+            "easy": [
+              17,
+              21
+            ],
+            "normal": [
+              15,
+              20
+            ],
+            "hard": [
+              14,
+              19
+            ]
+          },
+          {
+            "grade": 8,
+            "veasy": [
+              6,
+              20
+            ],
+            "easy": [
+              5,
+              20
+            ],
+            "normal": [
+              3,
+              20
+            ],
+            "hard": [
+              2,
+              20
+            ]
+          },
+          {
+            "grade": 9,
+            "veasy": [
+              13,
+              18
+            ],
+            "easy": [
+              13,
+              18
+            ],
+            "normal": [
+              12,
+              16
+            ],
+            "hard": [
+              9,
+              10
+            ]
+          }
+        ]
+      },
+      "levels": [
+        {
+          "id": 1,
+          "speed": -3,
+          "accel": -4,
+          "step1Spd": 0,
+          "step2Spd": 1,
+          "step3Spd": 0
+        },
+        {
+          "id": 2,
+          "speed": -1,
+          "accel": 0,
+          "step1Spd": 0,
+          "step2Spd": 1,
+          "step3Spd": 0
+        },
+        {
+          "id": 3,
+          "speed": 0,
+          "accel": 0,
+          "step1Spd": 0,
+          "step2Spd": 1,
+          "step3Spd": 0
+        },
+        {
+          "id": 4,
+          "speed": 1,
+          "accel": 3,
+          "step1Spd": 0,
+          "step2Spd": 2,
+          "step3Spd": 1
+        }
+      ]
+    }
+  ],
+  "rankWeights": [
+    {
+      "rankGrade": [
+        0,
+        1
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 54,
+          "accel": 25,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 54,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 3,
+          "speed": 53,
+          "accel": 24,
+          "bstGrade": 2
+        },
+        {
+          "id": 4,
+          "speed": 53,
+          "accel": 20,
+          "bstGrade": 3
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 3
+        },
+        {
+          "id": 6,
+          "speed": 50,
+          "accel": 21,
+          "bstGrade": 2
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 17,
+          "bstGrade": 3
+        },
+        {
+          "id": 8,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 3
+        },
+        {
+          "id": 9,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 4
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 2
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 27,
+          "bstGrade": 5
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 27,
+          "bstGrade": 5
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 25,
+          "bstGrade": 5
+        },
+        {
+          "id": 16,
+          "speed": 44,
+          "accel": 25,
+          "bstGrade": 5
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 2
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 1
+        }
+      ]
+    },
+    {
+      "rankGrade": [
+        2,
+        3
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 54,
+          "accel": 23,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 53,
+          "accel": 25,
+          "bstGrade": 3
+        },
+        {
+          "id": 3,
+          "speed": 52,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 4,
+          "speed": 53,
+          "accel": 21,
+          "bstGrade": 6
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 4
+        },
+        {
+          "id": 6,
+          "speed": 50,
+          "accel": 21,
+          "bstGrade": 2
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 17,
+          "bstGrade": 4
+        },
+        {
+          "id": 8,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 4
+        },
+        {
+          "id": 9,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 16,
+          "speed": 43,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 25,
+          "bstGrade": 7
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 2
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 1
+        }
+      ]
+    },
+    {
+      "rankGrade": [
+        4,
+        5
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 54,
+          "accel": 23,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 53,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 3,
+          "speed": 53,
+          "accel": 21,
+          "bstGrade": 4
+        },
+        {
+          "id": 4,
+          "speed": 52,
+          "accel": 23,
+          "bstGrade": 4
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 21,
+          "bstGrade": 5
+        },
+        {
+          "id": 6,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 2
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 19,
+          "bstGrade": 4
+        },
+        {
+          "id": 8,
+          "speed": 51,
+          "accel": 21,
+          "bstGrade": 4
+        },
+        {
+          "id": 9,
+          "speed": 50,
+          "accel": 24,
+          "bstGrade": 5
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 28,
+          "bstGrade": 4
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 26,
+          "bstGrade": 3
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 26,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 28,
+          "bstGrade": 6
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 26,
+          "bstGrade": 6
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 16,
+          "speed": 43,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 25,
+          "bstGrade": 7
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 2
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 25,
+          "bstGrade": 3
+        }
+      ]
+    },
+    {
+      "rankGrade": [
+        6,
+        7
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 54,
+          "accel": 22,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 53,
+          "accel": 21,
+          "bstGrade": 3
+        },
+        {
+          "id": 3,
+          "speed": 52,
+          "accel": 25,
+          "bstGrade": 4
+        },
+        {
+          "id": 4,
+          "speed": 52,
+          "accel": 23,
+          "bstGrade": 4
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 21,
+          "bstGrade": 5
+        },
+        {
+          "id": 6,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 2
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 18,
+          "bstGrade": 4
+        },
+        {
+          "id": 8,
+          "speed": 51,
+          "accel": 23,
+          "bstGrade": 4
+        },
+        {
+          "id": 9,
+          "speed": 50,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 5
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 16,
+          "speed": 43,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 25,
+          "bstGrade": 7
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 3
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 25,
+          "bstGrade": 2
+        }
+      ]
+    },
+    {
+      "rankGrade": [
+        8,
+        9
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 53,
+          "accel": 23,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 53,
+          "accel": 22,
+          "bstGrade": 3
+        },
+        {
+          "id": 3,
+          "speed": 52,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 4,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 6,
+          "speed": 51,
+          "accel": 21,
+          "bstGrade": 3
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 17,
+          "bstGrade": 4
+        },
+        {
+          "id": 8,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 4
+        },
+        {
+          "id": 9,
+          "speed": 50,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 5
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 16,
+          "speed": 43,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 25,
+          "bstGrade": 7
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 25,
+          "bstGrade": 4
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 3
+        }
+      ]
+    },
+    {
+      "rankGrade": [
+        10,
+        11
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 53,
+          "accel": 23,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 53,
+          "accel": 22,
+          "bstGrade": 3
+        },
+        {
+          "id": 3,
+          "speed": 52,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 4,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 6,
+          "speed": 51,
+          "accel": 21,
+          "bstGrade": 3
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 17,
+          "bstGrade": 4
+        },
+        {
+          "id": 8,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 9,
+          "speed": 50,
+          "accel": 22,
+          "bstGrade": 6
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 5
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 16,
+          "speed": 43,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 25,
+          "bstGrade": 7
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 25,
+          "bstGrade": 3
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 2
+        }
+      ]
+    },
+    {
+      "rankGrade": [
+        12,
+        13
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 53,
+          "accel": 23,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 53,
+          "accel": 22,
+          "bstGrade": 3
+        },
+        {
+          "id": 3,
+          "speed": 52,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 4,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 6,
+          "speed": 51,
+          "accel": 21,
+          "bstGrade": 3
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 17,
+          "bstGrade": 3
+        },
+        {
+          "id": 8,
+          "speed": 50,
+          "accel": 22,
+          "bstGrade": 4
+        },
+        {
+          "id": 9,
+          "speed": 50,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 5
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 16,
+          "speed": 43,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 25,
+          "bstGrade": 7
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 25,
+          "bstGrade": 4
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 3
+        }
+      ]
+    },
+    {
+      "rankGrade": [
+        14,
+        15
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 53,
+          "accel": 22,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 53,
+          "accel": 21,
+          "bstGrade": 3
+        },
+        {
+          "id": 3,
+          "speed": 52,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 4,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 6,
+          "speed": 51,
+          "accel": 21,
+          "bstGrade": 3
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 17,
+          "bstGrade": 4
+        },
+        {
+          "id": 8,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 4
+        },
+        {
+          "id": 9,
+          "speed": 50,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 5
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 16,
+          "speed": 43,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 25,
+          "bstGrade": 7
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 25,
+          "bstGrade": 4
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 3
+        }
+      ]
+    },
+    {
+      "rankGrade": [
+        16,
+        17
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 52,
+          "accel": 21,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 52,
+          "accel": 21,
+          "bstGrade": 4
+        },
+        {
+          "id": 3,
+          "speed": 52,
+          "accel": 22,
+          "bstGrade": 4
+        },
+        {
+          "id": 4,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 6
+        },
+        {
+          "id": 6,
+          "speed": 51,
+          "accel": 21,
+          "bstGrade": 3
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 17,
+          "bstGrade": 3
+        },
+        {
+          "id": 8,
+          "speed": 51,
+          "accel": 22,
+          "bstGrade": 4
+        },
+        {
+          "id": 9,
+          "speed": 50,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 5
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 16,
+          "speed": 43,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 25,
+          "bstGrade": 6
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 25,
+          "bstGrade": 5
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 30,
+          "bstGrade": 2
+        }
+      ]
+    },
+    {
+      "rankGrade": [
+        18,
+        19
+      ],
+      "riders": [
+        {
+          "id": 1,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 3
+        },
+        {
+          "id": 2,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 4
+        },
+        {
+          "id": 3,
+          "speed": 52,
+          "accel": 21,
+          "bstGrade": 4
+        },
+        {
+          "id": 4,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 5
+        },
+        {
+          "id": 5,
+          "speed": 52,
+          "accel": 20,
+          "bstGrade": 6
+        },
+        {
+          "id": 6,
+          "speed": 51,
+          "accel": 21,
+          "bstGrade": 3
+        },
+        {
+          "id": 7,
+          "speed": 51,
+          "accel": 17,
+          "bstGrade": 3
+        },
+        {
+          "id": 8,
+          "speed": 50,
+          "accel": 22,
+          "bstGrade": 4
+        },
+        {
+          "id": 9,
+          "speed": 50,
+          "accel": 22,
+          "bstGrade": 5
+        },
+        {
+          "id": 10,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 5
+        },
+        {
+          "id": 11,
+          "speed": 50,
+          "accel": 27,
+          "bstGrade": 3
+        },
+        {
+          "id": 12,
+          "speed": 48,
+          "accel": 27,
+          "bstGrade": 4
+        },
+        {
+          "id": 13,
+          "speed": 47,
+          "accel": 27,
+          "bstGrade": 6
+        },
+        {
+          "id": 14,
+          "speed": 46,
+          "accel": 26,
+          "bstGrade": 6
+        },
+        {
+          "id": 15,
+          "speed": 45,
+          "accel": 26,
+          "bstGrade": 6
+        },
+        {
+          "id": 16,
+          "speed": 43,
+          "accel": 26,
+          "bstGrade": 6
+        },
+        {
+          "id": 17,
+          "speed": 42,
+          "accel": 26,
+          "bstGrade": 7
+        },
+        {
+          "id": 18,
+          "speed": 41,
+          "accel": 25,
+          "bstGrade": 5
+        },
+        {
+          "id": 19,
+          "speed": 41,
+          "accel": 23,
+          "bstGrade": 2
+        }
+      ]
+    }
+  ],
+  "rewardTables": [
+    {
+      "grade": "normal",
+      "rewards": [
+        {
+          "id": 1,
+          "lucci": 50,
+          "prob": 10
+        },
+        {
+          "id": 2,
+          "lucci": 30,
+          "prob": 20
+        },
+        {
+          "id": 3,
+          "lucci": 20,
+          "prob": 22
+        },
+        {
+          "id": 4,
+          "lucci": 10,
+          "prob": 10
+        },
+        {
+          "id": 5,
+          "rp": 30,
+          "prob": 3
+        },
+        {
+          "id": 6,
+          "rp": 20,
+          "prob": 10
+        },
+        {
+          "id": 7,
+          "rp": 10,
+          "prob": 15
+        },
+        {
+          "id": 8,
+          "rp": 5,
+          "prob": 10
+        }
+      ]
+    },
+    {
+      "grade": "rare",
+      "rewards": [
+        {
+          "id": 1,
+          "lucci": 200,
+          "prob": 10
+        },
+        {
+          "id": 2,
+          "lucci": 100,
+          "prob": 25
+        },
+        {
+          "id": 3,
+          "lucci": 50,
+          "prob": 10
+        },
+        {
+          "id": 4,
+          "lucci": 30,
+          "prob": 5
+        },
+        {
+          "id": 5,
+          "rp": 50,
+          "prob": 10
+        },
+        {
+          "id": 6,
+          "rp": 30,
+          "prob": 25
+        },
+        {
+          "id": 7,
+          "rp": 20,
+          "prob": 10
+        }
+      ]
+    },
+    {
+      "grade": "pcCafe",
+      "rewards": [
+        {
+          "id": 1,
+          "lucci": 100,
+          "prob": 10
+        },
+        {
+          "id": 2,
+          "lucci": 50,
+          "prob": 20
+        },
+        {
+          "id": 3,
+          "lucci": 30,
+          "prob": 25
+        },
+        {
+          "id": 4,
+          "lucci": 20,
+          "prob": 10
+        },
+        {
+          "id": 5,
+          "rp": 30,
+          "prob": 10
+        },
+        {
+          "id": 6,
+          "rp": 20,
+          "prob": 15
+        },
+        {
+          "id": 7,
+          "rp": 10,
+          "prob": 10
+        }
+      ]
+    }
+  ],
+  "missions": [
+    {
+      "type": 1,
+      "conditions": [
+        {
+          "difficulty": "easy",
+          "condition": 15,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "normal",
+          "condition": 15,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "hard",
+          "condition": 15,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "hard",
+          "condition": 17,
+          "reward": "rare"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "conditions": [
+        {
+          "difficulty": "normal",
+          "condition": 1,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "hard",
+          "condition": 1,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "hard",
+          "condition": 2,
+          "reward": "rare"
+        }
+      ]
+    },
+    {
+      "type": 3,
+      "conditions": [
+        {
+          "difficulty": "easy",
+          "condition": 21,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "normal",
+          "condition": 21,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "hard",
+          "condition": 21,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "hard",
+          "condition": 30,
+          "reward": "rare"
+        }
+      ]
+    },
+    {
+      "type": 5,
+      "conditions": [
+        {
+          "difficulty": "easy",
+          "condition": 2,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "normal",
+          "condition": 2,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "hard",
+          "condition": 2,
+          "reward": "normal"
+        },
+        {
+          "difficulty": "hard",
+          "condition": 3,
+          "reward": "rare"
+        }
+      ]
+    }
+  ],
+  "strings": {
+    "count": "%d 回",
+    "point": "%d 分",
+    "rank": "%d 名",
+    "countFinal": "%d 回 / %d 回 以上",
+    "pointFinal": "%d 分 / %d 分 以上",
+    "rankFinal": "%d 名 / %d 名 以上",
+    "levelFinal": "%s / %s 以上",
+    "over": "以上",
+    "overTwo": "2名 以上",
+    "level_1": "极易",
+    "level_2": "容易",
+    "level_3": "普通",
+    "level_4": "困难",
+    "1_1": "尼欧",
+    "1_2": "MR. SUN",
+    "1_3": "HyperMotor",
+    "1_4": "C-Dragon",
+    "1_5": "Badskill",
+    "1_6": "骑士",
+    "1_7": "P.Y.K",
+    "1_8": "Um Pro",
+    "1_9": "卡丁车王",
+    "1_10": "尼克",
+    "1_11": "罗密",
+    "1_12": "大话王",
+    "1_13": "鲁德",
+    "1_14": "Jean",
+    "1_15": "宝滥",
+    "1_16": "凯特",
+    "1_17": "小五",
+    "1_18": "特德",
+    "1_19": "龙"
+  },
+  "chats": [
+    {
+      "groupId": 1,
+      "scripts": [
+        {
+          "type": 0,
+          "message": "尼欧 : [UserRID]! 这次就用实力见证胜负吧！哈哈哈",
+          "attributes": {
+            "type": "0",
+            "msg": "尼欧 : [UserRID]! 这次就用实力见证胜负吧！哈哈哈"
+          }
+        },
+        {
+          "type": 0,
+          "message": "塞里吾斯 : 哈哈哈哈...尼欧...[UserRID]...",
+          "attributes": {
+            "type": "0",
+            "msg": "塞里吾斯 : 哈哈哈哈...尼欧...[UserRID]..."
+          }
+        },
+        {
+          "type": 0,
+          "message": "Pink Motor : 上次大赛之后，爸爸Hiper Motor失踪了...我一定要找到他！",
+          "attributes": {
+            "type": "0",
+            "msg": "Pink Motor : 上次大赛之后，爸爸Hiper Motor失踪了...我一定要找到他！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "贝德 : 哈哈...哈哈...",
+          "attributes": {
+            "type": "0",
+            "msg": "贝德 : 哈哈...哈哈..."
+          }
+        },
+        {
+          "type": 0,
+          "message": "T.O.B : 能够永恒存在的，绝对不是真理！",
+          "attributes": {
+            "type": "0",
+            "msg": "T.O.B : 能够永恒存在的，绝对不是真理！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "T.O.B : [UserRID]！谢谢你在第一次比赛时拯救了我们的领队，希望你可以加入到我们的团队中来。",
+          "attributes": {
+            "type": "0",
+            "msg": "T.O.B : [UserRID]！谢谢你在第一次比赛时拯救了我们的领队，希望你可以加入到我们的团队中来。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "卡伦 : 载伦，秀米兹…想要继承爸爸的未尽事业吗？呵呵，那就展现出你真正的实力吧！",
+          "attributes": {
+            "type": "0",
+            "msg": "卡伦 : 载伦，秀米兹…想要继承爸爸的未尽事业吗？呵呵，那就展现出你真正的实力吧！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "卡伦 : 载伦，你就算这么跟着我，我也不会看上你的。",
+          "attributes": {
+            "type": "0",
+            "msg": "卡伦 : 载伦，你就算这么跟着我，我也不会看上你的。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "卡伦 : 秀米兹...有点意思，挺有魅力的嘛~",
+          "attributes": {
+            "type": "0",
+            "msg": "卡伦 : 秀米兹...有点意思，挺有魅力的嘛~"
+          }
+        },
+        {
+          "type": 0,
+          "message": "卡伦 : 不是说要找出卡丁车王的继承人吗？",
+          "attributes": {
+            "type": "0",
+            "msg": "卡伦 : 不是说要找出卡丁车王的继承人吗？"
+          }
+        },
+        {
+          "type": 0,
+          "message": "载伦 : 卡伦公主，我对继承人毫无兴趣，只要跟公主在一起，我就心满意足了。",
+          "attributes": {
+            "type": "0",
+            "msg": "载伦 : 卡伦公主，我对继承人毫无兴趣，只要跟公主在一起，我就心满意足了。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "秀米兹 : 载伦，你配不上卡伦公主。",
+          "attributes": {
+            "type": "0",
+            "msg": "秀米兹 : 载伦，你配不上卡伦公主。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "载伦 : 卡伦公主，看到了吗？看到了吗？我帅气的身影！",
+          "attributes": {
+            "type": "0",
+            "msg": "载伦 : 卡伦公主，看到了吗？看到了吗？我帅气的身影！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "德侯 : 哎呦，你们怎么在这里谈起恋爱来了？",
+          "attributes": {
+            "type": "0",
+            "msg": "德侯 : 哎呦，你们怎么在这里谈起恋爱来了？"
+          }
+        },
+        {
+          "type": 0,
+          "message": "恩特莱丝 : 因小卖店大叔（恩克莱斯）出去了，所以我代他来的！",
+          "attributes": {
+            "type": "0",
+            "msg": "恩特莱丝 : 因小卖店大叔（恩克莱斯）出去了，所以我代他来的！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "恩特莱丝 : 瞧一瞧看一看哦，我们有很多既便宜又高质量的商品，走过路过不要错过！",
+          "attributes": {
+            "type": "0",
+            "msg": "恩特莱丝 : 瞧一瞧看一看哦，我们有很多既便宜又高质量的商品，走过路过不要错过！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "K.D.K : 嗨~~ 聚到一起就开始啦~ 呵呵。",
+          "attributes": {
+            "type": "0",
+            "msg": "K.D.K : 嗨~~ 聚到一起就开始啦~ 呵呵。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "K.D.K : 多进行撞击的话，可以获得奖励车辆。",
+          "attributes": {
+            "type": "0",
+            "msg": "K.D.K : 多进行撞击的话，可以获得奖励车辆。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "K.D.K : [UserRID]进入洼地才能使激进加速器的蓄能速度加快！",
+          "attributes": {
+            "type": "0",
+            "msg": "K.D.K : [UserRID]进入洼地才能使激进加速器的蓄能速度加快！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "熏 : [UserRID] 忘记？开玩笑，我怎么能够忘记？",
+          "attributes": {
+            "type": "0",
+            "msg": "熏 : [UserRID] 忘记？开玩笑，我怎么能够忘记？"
+          }
+        },
+        {
+          "type": 0,
+          "message": "熏 : 大话王！闭嘴！闭嘴！闭上你的嘴！",
+          "attributes": {
+            "type": "0",
+            "msg": "熏 : 大话王！闭嘴！闭嘴！闭上你的嘴！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "Pink Motor : 难道爸爸...也进行了如此艰难的比赛吗？",
+          "attributes": {
+            "type": "0",
+            "msg": "Pink Motor : 难道爸爸...也进行了如此艰难的比赛吗？"
+          }
+        },
+        {
+          "type": 0,
+          "message": "贝德 : ...啊…有点晕...",
+          "attributes": {
+            "type": "0",
+            "msg": "贝德 : ...啊…有点晕..."
+          }
+        },
+        {
+          "type": 0,
+          "message": "带着面具的女性 : 收到命令，将会完成命令。",
+          "attributes": {
+            "type": "0",
+            "msg": "带着面具的女性 : 收到命令，将会完成命令。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "T.O.B : 车辆内有一张通向胜利的纸条~",
+          "attributes": {
+            "type": "0",
+            "msg": "T.O.B : 车辆内有一张通向胜利的纸条~"
+          }
+        },
+        {
+          "type": 0,
+          "message": "克朗 : 我是远方北海的统治者，海军队长贾斯丁克朗！海盗船长在哪里？我要和他决战！",
+          "attributes": {
+            "type": "0",
+            "msg": "克朗 : 我是远方北海的统治者，海军队长贾斯丁克朗！海盗船长在哪里？我要和他决战！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "克朗 : 总有一天，我要和海盗船长决一死战！",
+          "attributes": {
+            "type": "0",
+            "msg": "克朗 : 总有一天，我要和海盗船长决一死战！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "凯特 ：哎！第2届大赛！哎！",
+          "attributes": {
+            "type": "0",
+            "msg": "凯特 ：哎！第2届大赛！哎！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "秀米兹 ：卡伦公主，让你的心容纳我吧！",
+          "attributes": {
+            "type": "0",
+            "msg": "秀米兹 ：卡伦公主，让你的心容纳我吧！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "秀米兹 : （呼呼...虽然对不起卡伦公主，但我只在乎卡丁车王的王国。）",
+          "attributes": {
+            "type": "0",
+            "msg": "秀米兹 : （呼呼...虽然对不起卡伦公主，但我只在乎卡丁车王的王国。）"
+          }
+        },
+        {
+          "type": 0,
+          "message": "载伦 : （卡伦公主…到现在我仍然记得第一次见到你的那一天……你非常美丽...）",
+          "attributes": {
+            "type": "0",
+            "msg": "载伦 : （卡伦公主…到现在我仍然记得第一次见到你的那一天……你非常美丽...）"
+          }
+        },
+        {
+          "type": 0,
+          "message": "OTL : 啊啊...为什么会如此绝望…orz",
+          "attributes": {
+            "type": "0",
+            "msg": "OTL : 啊啊...为什么会如此绝望…orz"
+          }
+        },
+        {
+          "type": 0,
+          "message": "尼克 : 鲁德...我们怎么成配角了呀？",
+          "attributes": {
+            "type": "0",
+            "msg": "尼克 : 鲁德...我们怎么成配角了呀？"
+          }
+        },
+        {
+          "type": 0,
+          "message": "鲁德 : 尼克...我们有故事模式，可比重为什么会逐渐减少呢？",
+          "attributes": {
+            "type": "0",
+            "msg": "鲁德 : 尼克...我们有故事模式，可比重为什么会逐渐减少呢？"
+          }
+        },
+        {
+          "type": 0,
+          "message": "塞里吾斯 : 让他们尽情享受吧...",
+          "attributes": {
+            "type": "0",
+            "msg": "塞里吾斯 : 让他们尽情享受吧..."
+          }
+        },
+        {
+          "type": 0,
+          "message": "凯特 : [UserRID]!哈哈哈哈哈哈哈！",
+          "attributes": {
+            "type": "0",
+            "msg": "凯特 : [UserRID]!哈哈哈哈哈哈哈！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "K.D.K : 积分将会通过3局的累积来计算，努力GO GO！",
+          "attributes": {
+            "type": "0",
+            "msg": "K.D.K : 积分将会通过3局的累积来计算，努力GO GO！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "K.D.K : 罗密和罗德结婚后去度蜜月了，呼...我变得好忙啊。",
+          "attributes": {
+            "type": "0",
+            "msg": "K.D.K : 罗密和罗德结婚后去度蜜月了，呼...我变得好忙啊。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "K.D.K : 紧贴在其他车辆的后面会加满激进加速能量。",
+          "attributes": {
+            "type": "0",
+            "msg": "K.D.K : 紧贴在其他车辆的后面会加满激进加速能量。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "大话王 : [UserRID]!别再撞我了！这种时候需要贴近赛道，进行细致的飘移。",
+          "attributes": {
+            "type": "0",
+            "msg": "大话王 : [UserRID]!别再撞我了！这种时候需要贴近赛道，进行细致的飘移。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "T.O.B : 第一届比赛的后遗症让C-Dragon休息了很久。",
+          "attributes": {
+            "type": "0",
+            "msg": "T.O.B : 第一届比赛的后遗症让C-Dragon休息了很久。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "熏 : 抱歉，虽然想赢，但是没有赢你。",
+          "attributes": {
+            "type": "1",
+            "msg": "熏 : 抱歉，虽然想赢，但是没有赢你。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "卡伦 : 载伦，你太无聊了，没什么难度。",
+          "attributes": {
+            "type": "1",
+            "msg": "卡伦 : 载伦，你太无聊了，没什么难度。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "秀米兹 : 卡伦公主，有一手嘛，到此为止吧。",
+          "attributes": {
+            "type": "1",
+            "msg": "秀米兹 : 卡伦公主，有一手嘛，到此为止吧。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "载伦 : 卡伦公主，辛苦了，真是厉害呀！",
+          "attributes": {
+            "type": "1",
+            "msg": "载伦 : 卡伦公主，辛苦了，真是厉害呀！"
+          }
+        },
+        {
+          "type": 1,
+          "message": "载伦 : 啊啊...卡伦公主，真漂亮...",
+          "attributes": {
+            "type": "1",
+            "msg": "载伦 : 啊啊...卡伦公主，真漂亮..."
+          }
+        },
+        {
+          "type": 1,
+          "message": "K.D.K : 出色地完成任务的话，可以获得更好的奖励。",
+          "attributes": {
+            "type": "1",
+            "msg": "K.D.K : 出色地完成任务的话，可以获得更好的奖励。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "K.D.K : 在更高的难度下进行行驶的话，可以获得更多的奖励。",
+          "attributes": {
+            "type": "1",
+            "msg": "K.D.K : 在更高的难度下进行行驶的话，可以获得更多的奖励。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "K.D.K : 根据难度，将会变更赛道。",
+          "attributes": {
+            "type": "1",
+            "msg": "K.D.K : 根据难度，将会变更赛道。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "卡伦 : [UserRID]…我还在想为什么之前爸爸想把他培养成继承人，现在我终于明白了。",
+          "attributes": {
+            "type": "1",
+            "msg": "卡伦 : [UserRID]…我还在想为什么之前爸爸想把他培养成继承人，现在我终于明白了。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "鲁德 : 尼克...加油！",
+          "attributes": {
+            "type": "1",
+            "msg": "鲁德 : 尼克...加油！"
+          }
+        },
+        {
+          "type": 1,
+          "message": "尼克 : 鲁德，我们加油吧...",
+          "attributes": {
+            "type": "1",
+            "msg": "尼克 : 鲁德，我们加油吧..."
+          }
+        },
+        {
+          "type": 1,
+          "message": "大话王 : 完成高难度任务的话可以获得极高奖励，如何获得呢？",
+          "attributes": {
+            "type": "1",
+            "msg": "大话王 : 完成高难度任务的话可以获得极高奖励，如何获得呢？"
+          }
+        },
+        {
+          "type": 1,
+          "message": "尼欧 : 看来此次大赛也不会很简单，有很多有疑问的地方呀！",
+          "attributes": {
+            "type": "1",
+            "msg": "尼欧 : 看来此次大赛也不会很简单，有很多有疑问的地方呀！"
+          }
+        },
+        {
+          "type": 1,
+          "message": "尼欧 : 贝德变得更异常了！",
+          "attributes": {
+            "type": "1",
+            "msg": "尼欧 : 贝德变得更异常了！"
+          }
+        },
+        {
+          "type": 1,
+          "message": "龙 : 带着面具的女性...貌似在哪里见过...莫非...？",
+          "attributes": {
+            "type": "1",
+            "msg": "龙 : 带着面具的女性...貌似在哪里见过...莫非...？"
+          }
+        },
+        {
+          "type": 2,
+          "message": "为什么这样对我 555",
+          "attributes": {
+            "type": "2",
+            "msg": "为什么这样对我 555"
+          }
+        },
+        {
+          "type": 2,
+          "message": "嗨~可不可以不那么做!!!!!!!!!!",
+          "attributes": {
+            "type": "2",
+            "msg": "嗨~可不可以不那么做!!!!!!!!!!"
+          }
+        },
+        {
+          "type": 2,
+          "message": "咳! 竟然针对我!",
+          "attributes": {
+            "type": "2",
+            "msg": "咳! 竟然针对我!"
+          }
+        },
+        {
+          "type": 2,
+          "message": "[UserRID] …走着瞧",
+          "attributes": {
+            "type": "2",
+            "msg": "[UserRID] …走着瞧"
+          }
+        },
+        {
+          "type": 2,
+          "message": "[UserRID]! 我一定要报仇!",
+          "attributes": {
+            "type": "2",
+            "msg": "[UserRID]! 我一定要报仇!"
+          }
+        },
+        {
+          "type": 3,
+          "message": "[UserRID] 我不能让你这样离去，回来!!",
+          "attributes": {
+            "type": "3",
+            "msg": "[UserRID] 我不能让你这样离去，回来!!"
+          }
+        },
+        {
+          "type": 3,
+          "message": "呃..咦??",
+          "attributes": {
+            "type": "3",
+            "msg": "呃..咦??"
+          }
+        },
+        {
+          "type": 3,
+          "message": "晕! 不能就这么罢休，555",
+          "attributes": {
+            "type": "3",
+            "msg": "晕! 不能就这么罢休，555"
+          }
+        },
+        {
+          "type": 3,
+          "message": "超越我，成为最优的车手吧 [UserRID]!",
+          "attributes": {
+            "type": "3",
+            "msg": "超越我，成为最优的车手吧 [UserRID]!"
+          }
+        },
+        {
+          "type": 3,
+          "message": "我是懂得谦让的赛车手，嘎嘎..",
+          "attributes": {
+            "type": "3",
+            "msg": "我是懂得谦让的赛车手，嘎嘎.."
+          }
+        },
+        {
+          "type": 3,
+          "message": "[UserRID], 失误! 失误! 严重失误!",
+          "attributes": {
+            "type": "3",
+            "msg": "[UserRID], 失误! 失误! 严重失误!"
+          }
+        },
+        {
+          "type": 4,
+          "message": "先走啦！[UserRID]",
+          "attributes": {
+            "type": "4",
+            "msg": "先走啦！[UserRID]"
+          }
+        },
+        {
+          "type": 4,
+          "message": "[UserRID], 给我让一下！",
+          "attributes": {
+            "type": "4",
+            "msg": "[UserRID], 给我让一下！"
+          }
+        },
+        {
+          "type": 4,
+          "message": "下一个转弯处等着瞧!",
+          "attributes": {
+            "type": "4",
+            "msg": "下一个转弯处等着瞧!"
+          }
+        },
+        {
+          "type": 4,
+          "message": "快点好不好？",
+          "attributes": {
+            "type": "4",
+            "msg": "快点好不好？"
+          }
+        },
+        {
+          "type": 4,
+          "message": "[UserRID]，非常感谢一直谦让。",
+          "attributes": {
+            "type": "4",
+            "msg": "[UserRID]，非常感谢一直谦让。"
+          }
+        },
+        {
+          "type": 4,
+          "message": "[UserRID], 你是边看电视，边玩吗?",
+          "attributes": {
+            "type": "4",
+            "msg": "[UserRID], 你是边看电视，边玩吗?"
+          }
+        },
+        {
+          "type": 4,
+          "message": "让开!! 我要去洗手间!!",
+          "attributes": {
+            "type": "4",
+            "msg": "让开!! 我要去洗手间!!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID] ! 等等我的话，我会给你介绍对象!",
+          "attributes": {
+            "type": "10",
+            "rank": "1",
+            "msg": "[UserRID] ! 等等我的话，我会给你介绍对象!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "不要得意忘形! 我会马上超越你!!",
+          "attributes": {
+            "type": "10",
+            "rank": "1",
+            "msg": "不要得意忘形! 我会马上超越你!!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID], 你这个家伙真够意思…",
+          "attributes": {
+            "type": "10",
+            "rank": "1",
+            "msg": "[UserRID], 你这个家伙真够意思…"
+          }
+        },
+        {
+          "type": 10,
+          "message": "请成为我的导师! [UserRID]!",
+          "attributes": {
+            "type": "10",
+            "rank": "1",
+            "msg": "请成为我的导师! [UserRID]!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID]是天才…",
+          "attributes": {
+            "type": "10",
+            "rank": "1",
+            "msg": "[UserRID]是天才…"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID]， 一起走吧~ Oh yeah~",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "[UserRID]， 一起走吧~ Oh yeah~"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID] 有才能吗？",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "[UserRID] 有才能吗？"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID] 不是有朋友在帮你吗?",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "[UserRID] 不是有朋友在帮你吗?"
+          }
+        },
+        {
+          "type": 10,
+          "message": "啊! [UserRID], 竟然那么快地….",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "啊! [UserRID], 竟然那么快地…."
+          }
+        },
+        {
+          "type": 10,
+          "message": "[AiRID]! [UserRID] 挡住他!",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "[AiRID]! [UserRID] 挡住他!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID]! 对这个模式，格外地擅长嘛！",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "[UserRID]! 对这个模式，格外地擅长嘛！"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID], 仿佛看到了3年前的我的实力。",
+          "attributes": {
+            "type": "10",
+            "rank": "9",
+            "msg": "[UserRID], 仿佛看到了3年前的我的实力。"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID] 非常不错，但还差得远呢！",
+          "attributes": {
+            "type": "10",
+            "rank": "9",
+            "msg": "[UserRID] 非常不错，但还差得远呢！"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID] … 还不错嘛！！",
+          "attributes": {
+            "type": "10",
+            "rank": "9",
+            "msg": "[UserRID] … 还不错嘛！！"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID], 你要一辈子停留在中等水平吗?",
+          "attributes": {
+            "type": "10",
+            "rank": "9",
+            "msg": "[UserRID], 你要一辈子停留在中等水平吗?"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID]，我们又见面了。",
+          "attributes": {
+            "type": "10",
+            "rank": "9",
+            "msg": "[UserRID]，我们又见面了。"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID]! 集中精神玩游戏!",
+          "attributes": {
+            "type": "10",
+            "rank": "15",
+            "msg": "[UserRID]! 集中精神玩游戏!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID], 用脚？还不错!",
+          "attributes": {
+            "type": "10",
+            "rank": "15",
+            "msg": "[UserRID], 用脚？还不错!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID], 虽然很有才能，但还需要练习?",
+          "attributes": {
+            "type": "10",
+            "rank": "15",
+            "msg": "[UserRID], 虽然很有才能，但还需要练习?"
+          }
+        },
+        {
+          "type": 10,
+          "message": "不可以， 开车没有那样开的！",
+          "attributes": {
+            "type": "10",
+            "rank": "15",
+            "msg": "不可以， 开车没有那样开的！"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID] 很有礼貌的一次比赛… 好感动啊..",
+          "attributes": {
+            "type": "10",
+            "rank": "15",
+            "msg": "[UserRID] 很有礼貌的一次比赛… 好感动啊.."
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID]! 展现你的实力吧! 还没有结束!",
+          "attributes": {
+            "type": "10",
+            "rank": "15",
+            "msg": "[UserRID]! 展现你的实力吧! 还没有结束!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID] 嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻",
+          "attributes": {
+            "type": "10",
+            "rank": "15",
+            "msg": "[UserRID] 嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻"
+          }
+        }
+      ]
+    },
+    {
+      "groupId": 2,
+      "scripts": [
+        {
+          "type": 0,
+          "message": "MR.SUN : 哈哈哈哈，你可以抵挡得住我的暗车手吗？没那么容易！",
+          "attributes": {
+            "type": "0",
+            "msg": "MR.SUN : 哈哈哈哈，你可以抵挡得住我的暗车手吗？没那么容易！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "MR.SUN : 但是，载伦为什么不被病毒感染呢？",
+          "attributes": {
+            "type": "0",
+            "msg": "MR.SUN : 但是，载伦为什么不被病毒感染呢？"
+          }
+        },
+        {
+          "type": 0,
+          "message": "暗.UN.PRO : 呜呜...敬业精神... ",
+          "attributes": {
+            "type": "0",
+            "msg": "暗.UN.PRO : 呜呜...敬业精神... "
+          }
+        },
+        {
+          "type": 0,
+          "message": "尼欧 : 因为觉得有些可疑，所以没有喝饮料，果然是病毒呀！",
+          "attributes": {
+            "type": "0",
+            "msg": "尼欧 : 因为觉得有些可疑，所以没有喝饮料，果然是病毒呀！"
+          }
+        },
+        {
+          "type": 0,
+          "message": "载伦 : 卡伦公主！秀米兹！醒醒！这到底怎么回事...",
+          "attributes": {
+            "type": "0",
+            "msg": "载伦 : 卡伦公主！秀米兹！醒醒！这到底怎么回事..."
+          }
+        },
+        {
+          "type": 0,
+          "message": "尼欧 : [UserRID]!但载伦那孩子怎么不会被感染呢？  ",
+          "attributes": {
+            "type": "0",
+            "msg": "尼欧 : [UserRID]!但载伦那孩子怎么不会被感染呢？  "
+          }
+        },
+        {
+          "type": 0,
+          "message": "暗.秀米兹 : 哈哈，这个王国是我的，王国是我的，王国是我的。",
+          "attributes": {
+            "type": "0",
+            "msg": "暗.秀米兹 : 哈哈，这个王国是我的，王国是我的，王国是我的。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "暗.卡伦 : 哈哈哈...载伦，到这里来吧。我会照顾你的，真的。",
+          "attributes": {
+            "type": "0",
+            "msg": "暗.卡伦 : 哈哈哈...载伦，到这里来吧。我会照顾你的，真的。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "暗.K.D.K : 哈哈...聚到一起的话...哈哈。",
+          "attributes": {
+            "type": "0",
+            "msg": "暗.K.D.K : 哈哈...聚到一起的话...哈哈。"
+          }
+        },
+        {
+          "type": 0,
+          "message": "暗.K.D.K : 哈哈...这次假期...哈哈...期待，哈哈。",
+          "attributes": {
+            "type": "0",
+            "msg": "暗.K.D.K : 哈哈...这次假期...哈哈...期待，哈哈。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "尼欧 : 载伦那家伙，我想培养他。",
+          "attributes": {
+            "type": "1",
+            "msg": "尼欧 : 载伦那家伙，我想培养他。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "尼欧 : MR.SUN...这次是真的完全消失了吗？",
+          "attributes": {
+            "type": "1",
+            "msg": "尼欧 : MR.SUN...这次是真的完全消失了吗？"
+          }
+        },
+        {
+          "type": 1,
+          "message": "[UserRID] : 虽然会有点困难，但应该可以抵挡他们……下次大赛中，一定要全力以赴，击败暗车手！",
+          "attributes": {
+            "type": "1",
+            "msg": "[UserRID] : 虽然会有点困难，但应该可以抵挡他们……下次大赛中，一定要全力以赴，击败暗车手！"
+          }
+        },
+        {
+          "type": 1,
+          "message": "Pink Motor : 啊...头好疼...发生了什么事? 要找到爸爸…",
+          "attributes": {
+            "type": "1",
+            "msg": "Pink Motor : 啊...头好疼...发生了什么事? 要找到爸爸…"
+          }
+        },
+        {
+          "type": 1,
+          "message": "克朗 : 呜...我竟然被这么轻的攻击击倒了…看来要回到北海继续修炼一段时间。",
+          "attributes": {
+            "type": "1",
+            "msg": "克朗 : 呜...我竟然被这么轻的攻击击倒了…看来要回到北海继续修炼一段时间。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "卡伦 : 看似秀米兹更加有魅力...很让人着迷.../秀米兹：（在偷偷看我。。呵呵）",
+          "attributes": {
+            "type": "1",
+            "msg": "卡伦 : 看似秀米兹更加有魅力...很让人着迷.../秀米兹：（在偷偷看我。。呵呵）"
+          }
+        },
+        {
+          "type": 1,
+          "message": "T.O.B : 我们已经接受了两次帮助。真理也坚持不了多久，谢谢。[UserRID]",
+          "attributes": {
+            "type": "1",
+            "msg": "T.O.B : 我们已经接受了两次帮助。真理也坚持不了多久，谢谢。[UserRID]"
+          }
+        },
+        {
+          "type": 1,
+          "message": "载伦 : 我要变强大…变强之后下次要以我的实力来守护公主，一定！",
+          "attributes": {
+            "type": "1",
+            "msg": "载伦 : 我要变强大…变强之后下次要以我的实力来守护公主，一定！"
+          }
+        },
+        {
+          "type": 1,
+          "message": "Pink Motor : 还是没有找到爸爸。要从哪里找到线索呢？...555",
+          "attributes": {
+            "type": "1",
+            "msg": "Pink Motor : 还是没有找到爸爸。要从哪里找到线索呢？...555"
+          }
+        },
+        {
+          "type": 1,
+          "message": "宝蓝 : PinkMotor，我来帮你找到爸爸，还记得我们一起被绑架过吗？",
+          "attributes": {
+            "type": "1",
+            "msg": "宝蓝 : PinkMotor，我来帮你找到爸爸，还记得我们一起被绑架过吗？"
+          }
+        },
+        {
+          "type": 1,
+          "message": "尼欧 : 载伦...最后一定要来找我。我会让你变强大的。",
+          "attributes": {
+            "type": "1",
+            "msg": "尼欧 : 载伦...最后一定要来找我。我会让你变强大的。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "MR.SUN : 不行，我不能就这样输掉...啊...那位...报仇…",
+          "attributes": {
+            "type": "1",
+            "msg": "MR.SUN : 不行，我不能就这样输掉...啊...那位...报仇…"
+          }
+        },
+        {
+          "type": 1,
+          "message": "宝蓝 : 我让所有人陷入困境了...",
+          "attributes": {
+            "type": "1",
+            "msg": "宝蓝 : 我让所有人陷入困境了..."
+          }
+        },
+        {
+          "type": 1,
+          "message": "贝德 : 终于...我找回了我的身体。555，谢谢[UserRID]",
+          "attributes": {
+            "type": "1",
+            "msg": "贝德 : 终于...我找回了我的身体。555，谢谢[UserRID]"
+          }
+        },
+        {
+          "type": 1,
+          "message": "尼欧 : 大家不要自责，这一切的元凶都是MR.SUN。现在元凶已经消失了。",
+          "attributes": {
+            "type": "1",
+            "msg": "尼欧 : 大家不要自责，这一切的元凶都是MR.SUN。现在元凶已经消失了。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "尼欧 : 还没有结束…绝对还有人在暗地帮助MR.SUN。",
+          "attributes": {
+            "type": "1",
+            "msg": "尼欧 : 还没有结束…绝对还有人在暗地帮助MR.SUN。"
+          }
+        },
+        {
+          "type": 1,
+          "message": "鲁德 : 尼克...我们还是去练习吧…比赛刚结束就带来了一堆祸害…这到底是什么传说呀…",
+          "attributes": {
+            "type": "1",
+            "msg": "鲁德 : 尼克...我们还是去练习吧…比赛刚结束就带来了一堆祸害…这到底是什么传说呀…"
+          }
+        },
+        {
+          "type": 2,
+          "message": "!!!    /    MR.SUN : 暗车手们不会这样就被击倒的!",
+          "attributes": {
+            "type": "2",
+            "msg": "!!!    /    MR.SUN : 暗车手们不会这样就被击倒的!"
+          }
+        },
+        {
+          "type": 2,
+          "message": "!!!    /    尼欧 : 好的，就这样，用撞击来一个一个地去除！不要打到我 …",
+          "attributes": {
+            "type": "2",
+            "msg": "!!!    /    尼欧 : 好的，就这样，用撞击来一个一个地去除！不要打到我 …"
+          }
+        },
+        {
+          "type": 2,
+          "message": "!!!!!!!!!!!!!!!!!!!!!!",
+          "attributes": {
+            "type": "2",
+            "msg": "!!!!!!!!!!!!!!!!!!!!!!"
+          }
+        },
+        {
+          "type": 3,
+          "message": "…..     /    MR.SUN : 啊… 不行… [UserRID]变得越来越快!!",
+          "attributes": {
+            "type": "3",
+            "msg": "…..     /    MR.SUN : 啊… 不行… [UserRID]变得越来越快!!"
+          }
+        },
+        {
+          "type": 3,
+          "message": "!!!!     /    尼欧 : 对，就要这样一步一步地前进!",
+          "attributes": {
+            "type": "3",
+            "msg": "!!!!     /    尼欧 : 对，就要这样一步一步地前进!"
+          }
+        },
+        {
+          "type": 3,
+          "message": "…..     /    载伦 : 拜托你拯救所有人! 你是唯一的希望!",
+          "attributes": {
+            "type": "3",
+            "msg": "…..     /    载伦 : 拜托你拯救所有人! 你是唯一的希望!"
+          }
+        },
+        {
+          "type": 4,
+          "message": "!!!    /    尼欧 : 没时间这样磨磨蹭蹭!",
+          "attributes": {
+            "type": "4",
+            "msg": "!!!    /    尼欧 : 没时间这样磨磨蹭蹭!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "!!!    /    贝德 : [UserRID]… 呼… 攻击… 呼…",
+          "attributes": {
+            "type": "10",
+            "rank": "1",
+            "msg": "!!!    /    贝德 : [UserRID]… 呼… 攻击… 呼…"
+          }
+        },
+        {
+          "type": 10,
+          "message": "!!!    /    MR.SUN : [UserRID]，暗车手肯定会追上的。",
+          "attributes": {
+            "type": "10",
+            "rank": "1",
+            "msg": "!!!    /    MR.SUN : [UserRID]，暗车手肯定会追上的。"
+          }
+        },
+        {
+          "type": 10,
+          "message": "!!!    /    载伦 : [UserRID]! 我相信你，请救救卡伦公主吧！",
+          "attributes": {
+            "type": "10",
+            "rank": "1",
+            "msg": "!!!    /    载伦 : [UserRID]! 我相信你，请救救卡伦公主吧！"
+          }
+        },
+        {
+          "type": 10,
+          "message": "!!!    /    尼欧 : 果然很厉害! 应该可以打败暗车手!",
+          "attributes": {
+            "type": "10",
+            "rank": "1",
+            "msg": "!!!    /    尼欧 : 果然很厉害! 应该可以打败暗车手!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "!!!    /    尼欧 : 再努力一次吧!",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "!!!    /    尼欧 : 再努力一次吧!"
+          }
+        },
+        {
+          "type": 10,
+          "message": "!!!    /    MR.SUN : 就这么点实力？仅仅这样，是永远赢不了暗车手的！",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "!!!    /    MR.SUN : 就这么点实力？仅仅这样，是永远赢不了暗车手的！"
+          }
+        },
+        {
+          "type": 10,
+          "message": "!!!    /    暗.宝蓝 : [UserRID]… 挡住…呼~",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "!!!    /    暗.宝蓝 : [UserRID]… 挡住…呼~"
+          }
+        },
+        {
+          "type": 10,
+          "message": "!!!    /    暗.贝德 : [UserRID]… 除掉…",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "!!!    /    暗.贝德 : [UserRID]… 除掉…"
+          }
+        },
+        {
+          "type": 10,
+          "message": "!!!    /    暗.凯特 : 啊…哎呦…呼~",
+          "attributes": {
+            "type": "10",
+            "rank": "5",
+            "msg": "!!!    /    暗.凯特 : 啊…哎呦…呼~"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID]. 仅仅如此吗    /    MR.SUN: 毫无压力！",
+          "attributes": {
+            "type": "10",
+            "rank": "9",
+            "msg": "[UserRID]. 仅仅如此吗    /    MR.SUN: 毫无压力！"
+          }
+        },
+        {
+          "type": 10,
+          "message": "[UserRID]. 仅仅如此吗    /    尼欧: 赶快！",
+          "attributes": {
+            "type": "10",
+            "rank": "9",
+            "msg": "[UserRID]. 仅仅如此吗    /    尼欧: 赶快！"
+          }
+        },
+        {
+          "type": 10,
+          "message": "...    /    尼欧 : 暗车手们...太强了",
+          "attributes": {
+            "type": "10",
+            "rank": "15",
+            "msg": "...    /    尼欧 : 暗车手们...太强了"
+          }
+        },
+        {
+          "type": 10,
+          "message": "...    /    MR.SUN : 如此程度的话，离我们计划不远啦",
+          "attributes": {
+            "type": "10",
+            "rank": "15",
+            "msg": "...    /    MR.SUN : 如此程度的话，离我们计划不远啦"
+          }
+        }
+      ]
+    }
+  ],
+  "cutscenes": [
+    {
+      "type": 101,
+      "message": "尼欧|这次比赛中好像没有持着阴谋的人! 快拿出你真正的实力吧！",
+      "attributes": {
+        "type": "101",
+        "character": "neo_2",
+        "msg": "尼欧|这次比赛中好像没有持着阴谋的人! 快拿出你真正的实力吧！"
+      }
+    },
+    {
+      "type": 102,
+      "message": "皮蛋|虽然有点担心消失的MR.SUN，但现在仍然在比赛，所以，一定要让自己的精神高度集中！尼欧~走吧！",
+      "attributes": {
+        "type": "102",
+        "character": "다오_01",
+        "msg": "皮蛋|虽然有点担心消失的MR.SUN，但现在仍然在比赛，所以，一定要让自己的精神高度集中！尼欧~走吧！"
+      }
+    },
+    {
+      "type": 103,
+      "message": "尼欧|HiperMotor和宝蓝是去了哪里呢??",
+      "attributes": {
+        "type": "103",
+        "character": "neo_1",
+        "msg": "尼欧|HiperMotor和宝蓝是去了哪里呢??"
+      }
+    },
+    {
+      "type": 104,
+      "message": "剧情1|在1届大赛中，因尼欧的帮助阻止了MR. SUN，并由皮蛋获胜了。之后MR.SUN逃亡，HiperMotor，宝蓝，贝德失踪了。",
+      "attributes": {
+        "type": "104",
+        "msg": "剧情1|在1届大赛中，因尼欧的帮助阻止了MR. SUN，并由皮蛋获胜了。之后MR.SUN逃亡，HiperMotor，宝蓝，贝德失踪了。"
+      }
+    },
+    {
+      "type": 105,
+      "message": "剧情2|王国的主人-卡丁车王隐退，作为女儿的卡伦为寻找王国的继承人参加比赛。另外，爱着卡伦的载伦和预想吞掉王国的秀米兹也一同参加。",
+      "attributes": {
+        "type": "105",
+        "msg": "剧情2|王国的主人-卡丁车王隐退，作为女儿的卡伦为寻找王国的继承人参加比赛。另外，爱着卡伦的载伦和预想吞掉王国的秀米兹也一同参加。"
+      }
+    },
+    {
+      "type": 106,
+      "message": "剧情3|Hipor Motor的女儿Pink Motor为了找出父亲的线索而参加。除此之外，第2届大赛中还参加了很多人！结果会如何呢?",
+      "attributes": {
+        "type": "106",
+        "msg": "剧情3|Hipor Motor的女儿Pink Motor为了找出父亲的线索而参加。除此之外，第2届大赛中还参加了很多人！结果会如何呢?"
+      }
+    },
+    {
+      "type": 107,
+      "message": "载伦||无论发生什么事，一定会保全公主的安危。啊…卡伦公主…实在是再漂亮了！",
+      "attributes": {
+        "type": "107",
+        "character": "racer1_웃기",
+        "msg": "载伦||无论发生什么事，一定会保全公主的安危。啊…卡伦公主…实在是再漂亮了！"
+      }
+    },
+    {
+      "type": 201,
+      "message": "尼欧|塞里吾斯有点异常...再详细地了解一下吧。",
+      "attributes": {
+        "type": "201",
+        "character": "neo_1",
+        "msg": "尼欧|塞里吾斯有点异常...再详细地了解一下吧。"
+      }
+    },
+    {
+      "type": 202,
+      "message": "皮蛋||呵…呵…参赛者的眼神变得越来越迷离!发生什么事情了？",
+      "attributes": {
+        "type": "202",
+        "character": "다오_07",
+        "msg": "皮蛋||呵…呵…参赛者的眼神变得越来越迷离!发生什么事情了？"
+      }
+    },
+    {
+      "type": 203,
+      "message": "尼欧|放在宿舍里的这饮料...有些奇怪，不能饮用。",
+      "attributes": {
+        "type": "203",
+        "character": "neo_2",
+        "msg": "尼欧|放在宿舍里的这饮料...有些奇怪，不能饮用。"
+      }
+    },
+    {
+      "type": 204,
+      "message": "第1局后 |带着面具的女性给所有车手们赠送了未知饮料。",
+      "attributes": {
+        "type": "204",
+        "msg": "第1局后 |带着面具的女性给所有车手们赠送了未知饮料。"
+      }
+    },
+    {
+      "type": 202,
+      "message": "鲁德|这饮料是什么呢？是送给所有人的吗? (咽下)… 好喝。",
+      "attributes": {
+        "type": "202",
+        "character": "racer_웃기",
+        "msg": "鲁德|这饮料是什么呢？是送给所有人的吗? (咽下)… 好喝。"
+      }
+    },
+    {
+      "type": 202,
+      "message": "塞里吾斯|尽情享受吧...很快就让你们尝到地狱之苦。",
+      "attributes": {
+        "type": "202",
+        "character": "blackracer_character02",
+        "msg": "塞里吾斯|尽情享受吧...很快就让你们尝到地狱之苦。"
+      }
+    },
+    {
+      "type": 301,
+      "message": "塞里吾斯|我的真实身份是MR.SUN! 成功的感染了所有参与者们！暗车手们~ 快冲！！",
+      "attributes": {
+        "type": "301",
+        "character": "blackracer_character02",
+        "msg": "塞里吾斯|我的真实身份是MR.SUN! 成功的感染了所有参与者们！暗车手们~ 快冲！！"
+      }
+    },
+    {
+      "type": 302,
+      "message": "MR.SUN|塞里吾斯是我的假名! 你可以赢我的暗车手吗?!",
+      "attributes": {
+        "type": "302",
+        "character": "blackracer_character02",
+        "msg": "MR.SUN|塞里吾斯是我的假名! 你可以赢我的暗车手吗?!"
+      }
+    },
+    {
+      "type": 303,
+      "message": "第2局后|车手们喝的饮料是暗病毒!. 除了皮蛋和尼欧,载伦之外都被病毒洗脑黑化了!",
+      "attributes": {
+        "type": "303",
+        "msg": "第2局后|车手们喝的饮料是暗病毒!. 除了皮蛋和尼欧,载伦之外都被病毒洗脑黑化了!"
+      }
+    },
+    {
+      "type": 304,
+      "message": "尼欧|MR.SUN! 重新回来了!洗脑…你不会得逞的!",
+      "attributes": {
+        "type": "304",
+        "character": "neo_2",
+        "msg": "尼欧|MR.SUN! 重新回来了!洗脑…你不会得逞的!"
+      }
+    },
+    {
+      "type": 305,
+      "message": "皮蛋|MR.SUN! 竟然感染了人! 快点解除!!",
+      "attributes": {
+        "type": "305",
+        "character": "다오_06",
+        "msg": "皮蛋|MR.SUN! 竟然感染了人! 快点解除!!"
+      }
+    },
+    {
+      "type": 306,
+      "message": "塞里吾斯|所有人都被感染了!..恩?载伦为什么喝了之后也不被洗脑呢?",
+      "attributes": {
+        "type": "306",
+        "character": "blackracer_character01",
+        "msg": "塞里吾斯|所有人都被感染了!..恩?载伦为什么喝了之后也不被洗脑呢?"
+      }
+    },
+    {
+      "type": 307,
+      "message": "载伦||啊，人们都被感染了!!卡..卡伦公主，我一定会救你!!!!",
+      "attributes": {
+        "type": "307",
+        "character": "racer1_기본",
+        "msg": "载伦||啊，人们都被感染了!!卡..卡伦公主，我一定会救你!!!!"
+      }
+    }
+  ],
+  "boosterDurations": {
+    "boostDurationMs": 2400,
+    "stunDurationMs": 2000
+  },
+  "pitSurfaces": [
+    {
+      "trackId": "wkc_R01",
+      "triangles": [
+        {
+          "mesh": "Object274361580@s0",
+          "a": {
+            "x": 947.9828491210938,
+            "y": 15.293336868286133,
+            "z": -931.2894287109375
+          },
+          "b": {
+            "x": 920.2429809570312,
+            "y": 15.293325424194336,
+            "z": -931.3075561523438
+          },
+          "c": {
+            "x": 920.2429809570312,
+            "y": 15.287956237792969,
+            "z": -842.3917236328125
+          }
+        },
+        {
+          "mesh": "Object274361580@s0",
+          "a": {
+            "x": 920.2429809570312,
+            "y": 15.287956237792969,
+            "z": -842.3917236328125
+          },
+          "b": {
+            "x": 947.9828491210938,
+            "y": 15.28800106048584,
+            "z": -842.328857421875
+          },
+          "c": {
+            "x": 947.9828491210938,
+            "y": 15.293336868286133,
+            "z": -931.2894287109375
+          }
+        },
+        {
+          "mesh": "Object274361580@s0",
+          "a": {
+            "x": 947.9828491210938,
+            "y": 15.28800106048584,
+            "z": -842.328857421875
+          },
+          "b": {
+            "x": 920.2429809570312,
+            "y": 15.287956237792969,
+            "z": -842.3917236328125
+          },
+          "c": {
+            "x": 920.2429809570312,
+            "y": 15.479509353637695,
+            "z": -582.0916748046875
+          }
+        },
+        {
+          "mesh": "Object274361580@s0",
+          "a": {
+            "x": 947.9828491210938,
+            "y": 15.479511260986328,
+            "z": -582.0916748046875
+          },
+          "b": {
+            "x": 920.2429809570312,
+            "y": 15.479509353637695,
+            "z": -582.0916748046875
+          },
+          "c": {
+            "x": 920.2429809570312,
+            "y": 15.255413055419922,
+            "z": -554.4571533203125
+          }
+        },
+        {
+          "mesh": "Object274361580@s0",
+          "a": {
+            "x": 920.2429809570312,
+            "y": 15.479509353637695,
+            "z": -582.0916748046875
+          },
+          "b": {
+            "x": 947.9828491210938,
+            "y": 15.479511260986328,
+            "z": -582.0916748046875
+          },
+          "c": {
+            "x": 947.9828491210938,
+            "y": 15.28800106048584,
+            "z": -842.328857421875
+          }
+        },
+        {
+          "mesh": "Object274361580@s0",
+          "a": {
+            "x": 920.2429809570312,
+            "y": 15.255413055419922,
+            "z": -554.4571533203125
+          },
+          "b": {
+            "x": 947.9828491210938,
+            "y": 15.265316009521484,
+            "z": -554.4571533203125
+          },
+          "c": {
+            "x": 947.9828491210938,
+            "y": 15.479511260986328,
+            "z": -582.0916748046875
+          }
+        }
+      ]
+    },
+    {
+      "trackId": "wkc_R03",
+      "triangles": [
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 571.93115234375,
+            "y": 0.000010968704373226501,
+            "z": -756.7401733398438
+          },
+          "b": {
+            "x": 558.6639404296875,
+            "y": 0.000010964438843075186,
+            "z": -761.2097778320312
+          },
+          "c": {
+            "x": 555.6858520507812,
+            "y": 0.000009123235940933228,
+            "z": -752.1281127929688
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 555.6858520507812,
+            "y": 0.000009123235940933228,
+            "z": -752.1281127929688
+          },
+          "b": {
+            "x": 568.9925537109375,
+            "y": 0.000009153038263320923,
+            "z": -747.7788696289062
+          },
+          "c": {
+            "x": 571.93115234375,
+            "y": 0.000010968704373226501,
+            "z": -756.7401733398438
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 577.3496704101562,
+            "y": 0.00001271069049835205,
+            "z": -774.4910278320312
+          },
+          "b": {
+            "x": 563.9575805664062,
+            "y": 0.00001271069049835205,
+            "z": -778.62255859375
+          },
+          "c": {
+            "x": 562.7631225585938,
+            "y": 0.00001271069049835205,
+            "z": -774.3658447265625
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 579.7218017578125,
+            "y": 0.00001271069049835205,
+            "z": -793.5224609375
+          },
+          "b": {
+            "x": 565.7258911132812,
+            "y": 0.00001271069049835205,
+            "z": -793.1826171875
+          },
+          "c": {
+            "x": 565.7237548828125,
+            "y": 0.00001271069049835205,
+            "z": -790.1553955078125
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 562.7631225585938,
+            "y": 0.00001271069049835205,
+            "z": -774.3658447265625
+          },
+          "b": {
+            "x": 576.0818481445312,
+            "y": 0.00001271069049835205,
+            "z": -770.0263671875
+          },
+          "c": {
+            "x": 577.3496704101562,
+            "y": 0.00001271069049835205,
+            "z": -774.4910278320312
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 561.4884033203125,
+            "y": 0.00001271069049835205,
+            "z": -769.8230590820312
+          },
+          "b": {
+            "x": 574.75048828125,
+            "y": 0.00001271069049835205,
+            "z": -765.3378295898438
+          },
+          "c": {
+            "x": 576.0818481445312,
+            "y": 0.00001271069049835205,
+            "z": -770.0263671875
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 566.3121337890625,
+            "y": 0.0000074960917118005455,
+            "z": -739.6047973632812
+          },
+          "b": {
+            "x": 552.9808349609375,
+            "y": 0.0000074956105891033076,
+            "z": -744.125244140625
+          },
+          "c": {
+            "x": 550.0961303710938,
+            "y": 0.000005759880878031254,
+            "z": -735.5908203125
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 565.7237548828125,
+            "y": 0.00001271069049835205,
+            "z": -790.1553955078125
+          },
+          "b": {
+            "x": 579.6445922851562,
+            "y": 0.00001271069049835205,
+            "z": -787.9511108398438
+          },
+          "c": {
+            "x": 579.7218017578125,
+            "y": 0.00001271069049835205,
+            "z": -793.5224609375
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 565.31884765625,
+            "y": 0.00001271069049835205,
+            "z": -786.5557861328125
+          },
+          "b": {
+            "x": 579.148193359375,
+            "y": 0.00001271069049835205,
+            "z": -784.2239379882812
+          },
+          "c": {
+            "x": 579.6445922851562,
+            "y": 0.00001271069049835205,
+            "z": -787.9511108398438
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 579.6445922851562,
+            "y": 0.00001271069049835205,
+            "z": -787.9511108398438
+          },
+          "b": {
+            "x": 565.7237548828125,
+            "y": 0.00001271069049835205,
+            "z": -790.1553955078125
+          },
+          "c": {
+            "x": 565.31884765625,
+            "y": 0.00001271069049835205,
+            "z": -786.5557861328125
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 550.0961303710938,
+            "y": 0.000005759880878031254,
+            "z": -735.5908203125
+          },
+          "b": {
+            "x": 563.507568359375,
+            "y": 0.00000576245929551078,
+            "z": -731.0523681640625
+          },
+          "c": {
+            "x": 566.3121337890625,
+            "y": 0.0000074960917118005455,
+            "z": -739.6047973632812
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 576.0818481445312,
+            "y": 0.00001271069049835205,
+            "z": -770.0263671875
+          },
+          "b": {
+            "x": 562.7631225585938,
+            "y": 0.00001271069049835205,
+            "z": -774.3658447265625
+          },
+          "c": {
+            "x": 561.4884033203125,
+            "y": 0.00001271069049835205,
+            "z": -769.8230590820312
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 560.715576171875,
+            "y": 0.000004036528480355628,
+            "z": -722.5379638671875
+          },
+          "b": {
+            "x": 547.2174072265625,
+            "y": 0.0000040277300286106765,
+            "z": -727.073974609375
+          },
+          "c": {
+            "x": 544.3331909179688,
+            "y": 0.000002292319550178945,
+            "z": -718.5411376953125
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 533.1837158203125,
+            "y": -0.000004429370164871216,
+            "z": -685.4910888671875
+          },
+          "b": {
+            "x": 546.9736938476562,
+            "y": -0.000004459172487258911,
+            "z": -680.6318359375
+          },
+          "c": {
+            "x": 548.7031860351562,
+            "y": -0.000003390014171600342,
+            "z": -685.9060668945312
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 544.3331909179688,
+            "y": 0.000002292319550178945,
+            "z": -718.5411376953125
+          },
+          "b": {
+            "x": 557.9035034179688,
+            "y": 0.0000022982392238191096,
+            "z": -713.9625244140625
+          },
+          "c": {
+            "x": 560.715576171875,
+            "y": 0.000004036528480355628,
+            "z": -722.5379638671875
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 548.7031860351562,
+            "y": -0.000003390014171600342,
+            "z": -685.9060668945312
+          },
+          "b": {
+            "x": 534.9172973632812,
+            "y": -0.000003375113010406494,
+            "z": -690.6364135742188
+          },
+          "c": {
+            "x": 533.1837158203125,
+            "y": -0.000004429370164871216,
+            "z": -685.4910888671875
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 555.09375,
+            "y": 5.613826488115592e-7,
+            "z": -705.3942260742188
+          },
+          "b": {
+            "x": 541.4564819335938,
+            "y": 5.613931080006296e-7,
+            "z": -710.0303344726562
+          },
+          "c": {
+            "x": 538.57177734375,
+            "y": -0.000001174343992715876,
+            "z": -701.4959106445312
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 534.0526123046875,
+            "y": -0.000004450888809515163,
+            "z": -643.5606689453125
+          },
+          "b": {
+            "x": 520.7184448242188,
+            "y": -0.000004490891569730593,
+            "z": -648.3609008789062
+          },
+          "c": {
+            "x": 518.2821655273438,
+            "y": -0.000004502915544435382,
+            "z": -641.10400390625
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 538.57177734375,
+            "y": -0.000001174343992715876,
+            "z": -701.4959106445312
+          },
+          "b": {
+            "x": 552.29443359375,
+            "y": -0.0000011690390238072723,
+            "z": -696.857666015625
+          },
+          "c": {
+            "x": 555.09375,
+            "y": 5.613826488115592e-7,
+            "z": -705.3942260742188
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 518.2821655273438,
+            "y": -0.000004502915544435382,
+            "z": -641.10400390625
+          },
+          "b": {
+            "x": 531.525634765625,
+            "y": -0.000004449268999451306,
+            "z": -636.3106689453125
+          },
+          "c": {
+            "x": 534.0526123046875,
+            "y": -0.000004450888809515163,
+            "z": -643.5606689453125
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 549.48193359375,
+            "y": -0.0000029082193577778526,
+            "z": -688.28076171875
+          },
+          "b": {
+            "x": 535.709228515625,
+            "y": -0.000002897817694247351,
+            "z": -692.9996948242188
+          },
+          "c": {
+            "x": 534.9172973632812,
+            "y": -0.000003375113010406494,
+            "z": -690.6364135742188
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 539.0955810546875,
+            "y": -0.000004454122063179966,
+            "z": -658.0292358398438
+          },
+          "b": {
+            "x": 525.5923461914062,
+            "y": -0.000004466836799110752,
+            "z": -662.878662109375
+          },
+          "c": {
+            "x": 523.1602783203125,
+            "y": -0.000004478840310184751,
+            "z": -655.6343994140625
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 534.9172973632812,
+            "y": -0.000003375113010406494,
+            "z": -690.6364135742188
+          },
+          "b": {
+            "x": 548.7031860351562,
+            "y": -0.000003390014171600342,
+            "z": -685.9060668945312
+          },
+          "c": {
+            "x": 549.48193359375,
+            "y": -0.0000029082193577778526,
+            "z": -688.28076171875
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 523.1602783203125,
+            "y": -0.000004478840310184751,
+            "z": -655.6343994140625
+          },
+          "b": {
+            "x": 536.5740356445312,
+            "y": -0.000004452505436347565,
+            "z": -650.7947387695312
+          },
+          "c": {
+            "x": 539.0955810546875,
+            "y": -0.000004454122063179966,
+            "z": -658.0292358398438
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 532.904052734375,
+            "y": -0.000004430750777828507,
+            "z": -684.6578979492188
+          },
+          "b": {
+            "x": 546.6699829101562,
+            "y": -0.000004458977855392732,
+            "z": -679.7604370117188
+          },
+          "c": {
+            "x": 546.9736938476562,
+            "y": -0.000004459172487258911,
+            "z": -680.6318359375
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 544.1596069335938,
+            "y": -0.0000044573685045179445,
+            "z": -672.5581665039062
+          },
+          "b": {
+            "x": 530.4737548828125,
+            "y": -0.0000044427451939554885,
+            "z": -677.4189453125
+          },
+          "c": {
+            "x": 528.0341186523438,
+            "y": -0.000004454785539564909,
+            "z": -670.1519775390625
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 546.9736938476562,
+            "y": -0.000004459172487258911,
+            "z": -680.6318359375
+          },
+          "b": {
+            "x": 533.1837158203125,
+            "y": -0.000004429370164871216,
+            "z": -685.4910888671875
+          },
+          "c": {
+            "x": 532.904052734375,
+            "y": -0.000004430750777828507,
+            "z": -684.6578979492188
+          }
+        },
+        {
+          "mesh": "Object90@s0",
+          "a": {
+            "x": 528.0341186523438,
+            "y": -0.000004454785539564909,
+            "z": -670.1519775390625
+          },
+          "b": {
+            "x": 541.6376342773438,
+            "y": -0.000004455751877685543,
+            "z": -665.3223876953125
+          },
+          "c": {
+            "x": 544.1596069335938,
+            "y": -0.0000044573685045179445,
+            "z": -672.5581665039062
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 531.525634765625,
+            "y": -0.000004449268999451306,
+            "z": -636.3106689453125
+          },
+          "b": {
+            "x": 518.2821655273438,
+            "y": -0.000004502915544435382,
+            "z": -641.10400390625
+          },
+          "c": {
+            "x": 516.0118408203125,
+            "y": -0.000004514120519161224,
+            "z": -634.3414306640625
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 516.0118408203125,
+            "y": -0.000004514120519161224,
+            "z": -634.3414306640625
+          },
+          "b": {
+            "x": 529.1856079101562,
+            "y": -0.000004447769242688082,
+            "z": -629.596923828125
+          },
+          "c": {
+            "x": 531.525634765625,
+            "y": -0.000004449268999451306,
+            "z": -636.3106689453125
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 579.148193359375,
+            "y": 0.00001271069049835205,
+            "z": -784.2239379882812
+          },
+          "b": {
+            "x": 565.31884765625,
+            "y": 0.00001271069049835205,
+            "z": -786.5557861328125
+          },
+          "c": {
+            "x": 564.7401123046875,
+            "y": 0.00001271069049835205,
+            "z": -781.411376953125
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 578.2954711914062,
+            "y": 0.00001271069049835205,
+            "z": -777.8217163085938
+          },
+          "b": {
+            "x": 564.7401123046875,
+            "y": 0.00001271069049835205,
+            "z": -781.411376953125
+          },
+          "c": {
+            "x": 563.9575805664062,
+            "y": 0.00001271069049835205,
+            "z": -778.62255859375
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 564.7401123046875,
+            "y": 0.00001271069049835205,
+            "z": -781.411376953125
+          },
+          "b": {
+            "x": 578.2954711914062,
+            "y": 0.00001271069049835205,
+            "z": -777.8217163085938
+          },
+          "c": {
+            "x": 579.148193359375,
+            "y": 0.00001271069049835205,
+            "z": -784.2239379882812
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 563.9575805664062,
+            "y": 0.00001271069049835205,
+            "z": -778.62255859375
+          },
+          "b": {
+            "x": 577.3496704101562,
+            "y": 0.00001271069049835205,
+            "z": -774.4910278320312
+          },
+          "c": {
+            "x": 578.2954711914062,
+            "y": 0.00001271069049835205,
+            "z": -777.8217163085938
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 558.6639404296875,
+            "y": 0.000010964438843075186,
+            "z": -761.2097778320312
+          },
+          "b": {
+            "x": 571.93115234375,
+            "y": 0.000010968704373226501,
+            "z": -756.7401733398438
+          },
+          "c": {
+            "x": 574.75048828125,
+            "y": 0.00001271069049835205,
+            "z": -765.3378295898438
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 535.709228515625,
+            "y": -0.000002897817694247351,
+            "z": -692.9996948242188
+          },
+          "b": {
+            "x": 549.48193359375,
+            "y": -0.0000029082193577778526,
+            "z": -688.28076171875
+          },
+          "c": {
+            "x": 550.545654296875,
+            "y": -0.000002250075340270996,
+            "z": -691.524658203125
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 574.75048828125,
+            "y": 0.00001271069049835205,
+            "z": -765.3378295898438
+          },
+          "b": {
+            "x": 561.4884033203125,
+            "y": 0.00001271069049835205,
+            "z": -769.8230590820312
+          },
+          "c": {
+            "x": 558.6639404296875,
+            "y": 0.000010964438843075186,
+            "z": -761.2097778320312
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 550.545654296875,
+            "y": -0.000002250075340270996,
+            "z": -691.524658203125
+          },
+          "b": {
+            "x": 536.7716064453125,
+            "y": -0.00000225752592086792,
+            "z": -696.1699829101562
+          },
+          "c": {
+            "x": 535.709228515625,
+            "y": -0.000002897817694247351,
+            "z": -692.9996948242188
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 563.507568359375,
+            "y": 0.00000576245929551078,
+            "z": -731.0523681640625
+          },
+          "b": {
+            "x": 550.0961303710938,
+            "y": 0.000005759880878031254,
+            "z": -735.5908203125
+          },
+          "c": {
+            "x": 547.2174072265625,
+            "y": 0.0000040277300286106765,
+            "z": -727.073974609375
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 552.9808349609375,
+            "y": 0.0000074956105891033076,
+            "z": -744.125244140625
+          },
+          "b": {
+            "x": 566.3121337890625,
+            "y": 0.0000074960917118005455,
+            "z": -739.6047973632812
+          },
+          "c": {
+            "x": 568.9925537109375,
+            "y": 0.000009153038263320923,
+            "z": -747.7788696289062
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 547.2174072265625,
+            "y": 0.0000040277300286106765,
+            "z": -727.073974609375
+          },
+          "b": {
+            "x": 560.715576171875,
+            "y": 0.000004036528480355628,
+            "z": -722.5379638671875
+          },
+          "c": {
+            "x": 563.507568359375,
+            "y": 0.00000576245929551078,
+            "z": -731.0523681640625
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 568.9925537109375,
+            "y": 0.000009153038263320923,
+            "z": -747.7788696289062
+          },
+          "b": {
+            "x": 555.6858520507812,
+            "y": 0.000009123235940933228,
+            "z": -752.1281127929688
+          },
+          "c": {
+            "x": 552.9808349609375,
+            "y": 0.0000074956105891033076,
+            "z": -744.125244140625
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 557.9035034179688,
+            "y": 0.0000022982392238191096,
+            "z": -713.9625244140625
+          },
+          "b": {
+            "x": 544.3331909179688,
+            "y": 0.000002292319550178945,
+            "z": -718.5411376953125
+          },
+          "c": {
+            "x": 541.4564819335938,
+            "y": 5.613931080006296e-7,
+            "z": -710.0303344726562
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 565.5274047851562,
+            "y": 0.000006355345249176025,
+            "z": -794.8670043945312
+          },
+          "b": {
+            "x": 565.7258911132812,
+            "y": 0.00001271069049835205,
+            "z": -793.1826171875
+          },
+          "c": {
+            "x": 579.7218017578125,
+            "y": 0.00001271069049835205,
+            "z": -793.5224609375
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 541.4564819335938,
+            "y": 5.613931080006296e-7,
+            "z": -710.0303344726562
+          },
+          "b": {
+            "x": 555.09375,
+            "y": 5.613826488115592e-7,
+            "z": -705.3942260742188
+          },
+          "c": {
+            "x": 557.9035034179688,
+            "y": 0.0000022982392238191096,
+            "z": -713.9625244140625
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 579.7218017578125,
+            "y": 0.00001271069049835205,
+            "z": -793.5224609375
+          },
+          "b": {
+            "x": 566.87939453125,
+            "y": 0,
+            "z": -798.8160400390625
+          },
+          "c": {
+            "x": 565.5274047851562,
+            "y": 0.000006355345249176025,
+            "z": -794.8670043945312
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 552.29443359375,
+            "y": -0.0000011690390238072723,
+            "z": -696.857666015625
+          },
+          "b": {
+            "x": 538.57177734375,
+            "y": -0.000001174343992715876,
+            "z": -701.4959106445312
+          },
+          "c": {
+            "x": 536.7716064453125,
+            "y": -0.00000225752592086792,
+            "z": -696.1699829101562
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 574.503173828125,
+            "y": 0,
+            "z": -821.1333618164062
+          },
+          "b": {
+            "x": 566.87939453125,
+            "y": 0,
+            "z": -798.8160400390625
+          },
+          "c": {
+            "x": 579.7218017578125,
+            "y": 0.00001271069049835205,
+            "z": -793.5224609375
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 536.7716064453125,
+            "y": -0.00000225752592086792,
+            "z": -696.1699829101562
+          },
+          "b": {
+            "x": 550.545654296875,
+            "y": -0.000002250075340270996,
+            "z": -691.524658203125
+          },
+          "c": {
+            "x": 552.29443359375,
+            "y": -0.0000011690390238072723,
+            "z": -696.857666015625
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 579.7218017578125,
+            "y": 0.00001271069049835205,
+            "z": -793.5224609375
+          },
+          "b": {
+            "x": 580.7184448242188,
+            "y": 0.00001271069049835205,
+            "z": -819.911376953125
+          },
+          "c": {
+            "x": 574.503173828125,
+            "y": 0,
+            "z": -821.1333618164062
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 530.4737548828125,
+            "y": -0.0000044427451939554885,
+            "z": -677.4189453125
+          },
+          "b": {
+            "x": 544.1596069335938,
+            "y": -0.0000044573685045179445,
+            "z": -672.5581665039062
+          },
+          "c": {
+            "x": 546.6699829101562,
+            "y": -0.000004458977855392732,
+            "z": -679.7604370117188
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 580.7184448242188,
+            "y": 0.00001271069049835205,
+            "z": -819.911376953125
+          },
+          "b": {
+            "x": 582.0055541992188,
+            "y": 0,
+            "z": -843.1654052734375
+          },
+          "c": {
+            "x": 574.503173828125,
+            "y": 0,
+            "z": -821.1333618164062
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 546.6699829101562,
+            "y": -0.000004458977855392732,
+            "z": -679.7604370117188
+          },
+          "b": {
+            "x": 532.904052734375,
+            "y": -0.000004430750777828507,
+            "z": -684.6578979492188
+          },
+          "c": {
+            "x": 530.4737548828125,
+            "y": -0.0000044427451939554885,
+            "z": -677.4189453125
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 536.5740356445312,
+            "y": -0.000004452505436347565,
+            "z": -650.7947387695312
+          },
+          "b": {
+            "x": 523.1602783203125,
+            "y": -0.000004478840310184751,
+            "z": -655.6343994140625
+          },
+          "c": {
+            "x": 520.7184448242188,
+            "y": -0.000004490891569730593,
+            "z": -648.3609008789062
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 525.5923461914062,
+            "y": -0.000004466836799110752,
+            "z": -662.878662109375
+          },
+          "b": {
+            "x": 539.0955810546875,
+            "y": -0.000004454122063179966,
+            "z": -658.0292358398438
+          },
+          "c": {
+            "x": 541.6376342773438,
+            "y": -0.000004455751877685543,
+            "z": -665.3223876953125
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 520.7184448242188,
+            "y": -0.000004490891569730593,
+            "z": -648.3609008789062
+          },
+          "b": {
+            "x": 534.0526123046875,
+            "y": -0.000004450888809515163,
+            "z": -643.5606689453125
+          },
+          "c": {
+            "x": 536.5740356445312,
+            "y": -0.000004452505436347565,
+            "z": -650.7947387695312
+          }
+        },
+        {
+          "mesh": "Object90@s2",
+          "a": {
+            "x": 541.6376342773438,
+            "y": -0.000004455751877685543,
+            "z": -665.3223876953125
+          },
+          "b": {
+            "x": 528.0341186523438,
+            "y": -0.000004454785539564909,
+            "z": -670.1519775390625
+          },
+          "c": {
+            "x": 525.5923461914062,
+            "y": -0.000004466836799110752,
+            "z": -662.878662109375
+          }
+        }
+      ]
+    },
+    {
+      "trackId": "wkc_R04",
+      "triangles": [
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7178955078125,
+            "y": 15.017004013061523,
+            "z": -1365.260009765625
+          },
+          "b": {
+            "x": 861.7337036132812,
+            "y": 15.017004013061523,
+            "z": -1365.4349365234375
+          },
+          "c": {
+            "x": 861.733642578125,
+            "y": 15.014957427978516,
+            "z": -1378.5150146484375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.733642578125,
+            "y": 15.014957427978516,
+            "z": -1378.5150146484375
+          },
+          "b": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1378.5157470703125
+          },
+          "c": {
+            "x": 838.7178955078125,
+            "y": 15.017004013061523,
+            "z": -1365.260009765625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.354736328125,
+            "y": 15.014961242675781,
+            "z": -1414.8509521484375
+          },
+          "b": {
+            "x": 837.59375,
+            "y": 15.014961242675781,
+            "z": -1419.474609375
+          },
+          "c": {
+            "x": 836.1617431640625,
+            "y": 15.015007019042969,
+            "z": -1419.474609375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 836.1655883789062,
+            "y": 15.014961242675781,
+            "z": -1424.04736328125
+          },
+          "b": {
+            "x": 858.0982055664062,
+            "y": 15.014961242675781,
+            "z": -1424.557373046875
+          },
+          "c": {
+            "x": 854.2428588867188,
+            "y": 15.014957427978516,
+            "z": -1433.7935791015625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 836.1617431640625,
+            "y": 15.015007019042969,
+            "z": -1419.474609375
+          },
+          "b": {
+            "x": 836.1620483398438,
+            "y": 15.015007019042969,
+            "z": -1414.8509521484375
+          },
+          "c": {
+            "x": 838.354736328125,
+            "y": 15.014961242675781,
+            "z": -1414.8509521484375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 858.0982055664062,
+            "y": 15.014961242675781,
+            "z": -1424.557373046875
+          },
+          "b": {
+            "x": 836.1655883789062,
+            "y": 15.014961242675781,
+            "z": -1424.04736328125
+          },
+          "c": {
+            "x": 837.59375,
+            "y": 15.014961242675781,
+            "z": -1419.474609375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 836.1655883789062,
+            "y": 15.014961242675781,
+            "z": -1424.04736328125
+          },
+          "b": {
+            "x": 836.1617431640625,
+            "y": 15.015007019042969,
+            "z": -1419.474609375
+          },
+          "c": {
+            "x": 837.59375,
+            "y": 15.014961242675781,
+            "z": -1419.474609375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 858.0982055664062,
+            "y": 15.014961242675781,
+            "z": -1424.557373046875
+          },
+          "b": {
+            "x": 837.59375,
+            "y": 15.014961242675781,
+            "z": -1419.474609375
+          },
+          "c": {
+            "x": 838.354736328125,
+            "y": 15.014961242675781,
+            "z": -1414.8509521484375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1192.296630859375
+          },
+          "b": {
+            "x": 838.7177734375,
+            "y": 15.014959335327148,
+            "z": -1192.72509765625
+          },
+          "c": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1181.9542236328125
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.354736328125,
+            "y": 15.014961242675781,
+            "z": -1414.8509521484375
+          },
+          "b": {
+            "x": 860.129638671875,
+            "y": 15.014957427978516,
+            "z": -1417.8360595703125
+          },
+          "c": {
+            "x": 858.0982055664062,
+            "y": 15.014961242675781,
+            "z": -1424.557373046875
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1181.9542236328125
+          },
+          "b": {
+            "x": 861.7340087890625,
+            "y": 15.014957427978516,
+            "z": -1181.6292724609375
+          },
+          "c": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1192.296630859375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.7203369140625,
+            "y": 15.014957427978516,
+            "z": -1397.816650390625
+          },
+          "b": {
+            "x": 838.716796875,
+            "y": 15.014957427978516,
+            "z": -1397.62353515625
+          },
+          "c": {
+            "x": 838.7174682617188,
+            "y": 15.014957427978516,
+            "z": -1391.087890625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.7339477539062,
+            "y": 15.014957427978516,
+            "z": -1170.917236328125
+          },
+          "b": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1171.3128662109375
+          },
+          "c": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1160.7138671875
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7174682617188,
+            "y": 15.014957427978516,
+            "z": -1391.087890625
+          },
+          "b": {
+            "x": 861.7360229492188,
+            "y": 15.014957427978516,
+            "z": -1391.0643310546875
+          },
+          "c": {
+            "x": 861.7203369140625,
+            "y": 15.014957427978516,
+            "z": -1397.816650390625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.716796875,
+            "y": 15.014957427978516,
+            "z": -1397.62353515625
+          },
+          "b": {
+            "x": 861.7203369140625,
+            "y": 15.014957427978516,
+            "z": -1397.816650390625
+          },
+          "c": {
+            "x": 861.7053833007812,
+            "y": 15.014957427978516,
+            "z": -1403.9072265625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1275.1240234375
+          },
+          "b": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1275.23779296875
+          },
+          "c": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1267.70703125
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1278.590087890625
+          },
+          "b": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1278.6947021484375
+          },
+          "c": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1275.23779296875
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1267.70703125
+          },
+          "b": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1267.425537109375
+          },
+          "c": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1275.1240234375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1275.23779296875
+          },
+          "b": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1275.1240234375
+          },
+          "c": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1278.590087890625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1266.488037109375
+          },
+          "b": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1266.145751953125
+          },
+          "c": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1267.425537109375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1160.7138671875
+          },
+          "b": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1160.2916259765625
+          },
+          "c": {
+            "x": 861.7339477539062,
+            "y": 15.014957427978516,
+            "z": -1170.917236328125
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1202.765380859375
+          },
+          "b": {
+            "x": 861.7337646484375,
+            "y": 15.014957427978516,
+            "z": -1202.32861328125
+          },
+          "c": {
+            "x": 861.7338256835938,
+            "y": 15.014957427978516,
+            "z": -1212.9771728515625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.7338256835938,
+            "y": 15.014957427978516,
+            "z": -1149.6666259765625
+          },
+          "b": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1150.072265625
+          },
+          "c": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1139.454833984375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.7338256835938,
+            "y": 15.014957427978516,
+            "z": -1212.9771728515625
+          },
+          "b": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1213.3828125
+          },
+          "c": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1202.765380859375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1139.454833984375
+          },
+          "b": {
+            "x": 861.7337646484375,
+            "y": 15.014957427978516,
+            "z": -1139.01806640625
+          },
+          "c": {
+            "x": 861.7338256835938,
+            "y": 15.014957427978516,
+            "z": -1149.6666259765625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1224.0244140625
+          },
+          "b": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1223.6021728515625
+          },
+          "c": {
+            "x": 861.7339477539062,
+            "y": 15.014957427978516,
+            "z": -1234.2279052734375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.7053833007812,
+            "y": 15.014957427978516,
+            "z": -1403.9072265625
+          },
+          "b": {
+            "x": 838.5841674804688,
+            "y": 15.014961242675781,
+            "z": -1403.74755859375
+          },
+          "c": {
+            "x": 838.716796875,
+            "y": 15.014957427978516,
+            "z": -1397.62353515625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.7339477539062,
+            "y": 15.014957427978516,
+            "z": -1234.2279052734375
+          },
+          "b": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1234.6234130859375
+          },
+          "c": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1224.0244140625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7178344726562,
+            "y": 15.017004013061523,
+            "z": -1341.0478515625
+          },
+          "b": {
+            "x": 861.7338256835938,
+            "y": 15.017004013061523,
+            "z": -1341.0205078125
+          },
+          "c": {
+            "x": 861.7337646484375,
+            "y": 15.017004013061523,
+            "z": -1353.5037841796875
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1245.2647705078125
+          },
+          "b": {
+            "x": 861.7340087890625,
+            "y": 15.014957427978516,
+            "z": -1244.9398193359375
+          },
+          "c": {
+            "x": 861.7340698242188,
+            "y": 15.014957427978516,
+            "z": -1255.5673828125
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.7337646484375,
+            "y": 15.017004013061523,
+            "z": -1353.5037841796875
+          },
+          "b": {
+            "x": 838.7178955078125,
+            "y": 15.017004013061523,
+            "z": -1353.5430908203125
+          },
+          "c": {
+            "x": 838.7178344726562,
+            "y": 15.017004013061523,
+            "z": -1341.0478515625
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.7340698242188,
+            "y": 15.014957427978516,
+            "z": -1255.5673828125
+          },
+          "b": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1255.89697265625
+          },
+          "c": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1245.2647705078125
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1316.085693359375
+          },
+          "b": {
+            "x": 861.7339477539062,
+            "y": 15.014957427978516,
+            "z": -1316.0758056640625
+          },
+          "c": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1328.5926513671875
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1267.425537109375
+          },
+          "b": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1267.70703125
+          },
+          "c": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1266.488037109375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1328.5926513671875
+          },
+          "b": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1328.5784912109375
+          },
+          "c": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1316.085693359375
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 861.7340087890625,
+            "y": 15.014957427978516,
+            "z": -1303.5693359375
+          },
+          "b": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1303.6251220703125
+          },
+          "c": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1291.1298828125
+          }
+        },
+        {
+          "mesh": "Object274361538@s0",
+          "a": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1291.1298828125
+          },
+          "b": {
+            "x": 861.7340698242188,
+            "y": 15.014957427978516,
+            "z": -1291.109130859375
+          },
+          "c": {
+            "x": 861.7340087890625,
+            "y": 15.014957427978516,
+            "z": -1303.5693359375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7177734375,
+            "y": 15.014959335327148,
+            "z": -1192.72509765625
+          },
+          "b": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1192.296630859375
+          },
+          "c": {
+            "x": 861.7337646484375,
+            "y": 15.014957427978516,
+            "z": -1202.32861328125
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7337646484375,
+            "y": 15.014957427978516,
+            "z": -1202.32861328125
+          },
+          "b": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1202.765380859375
+          },
+          "c": {
+            "x": 838.7177734375,
+            "y": 15.014959335327148,
+            "z": -1192.72509765625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.4265747070312,
+            "y": 15.014961242675781,
+            "z": -1407.759765625
+          },
+          "b": {
+            "x": 838.354736328125,
+            "y": 15.014961242675781,
+            "z": -1414.8509521484375
+          },
+          "c": {
+            "x": 836.1620483398438,
+            "y": 15.015007019042969,
+            "z": -1414.8509521484375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.6942138671875,
+            "y": 15.014957427978516,
+            "z": -1408.7039794921875
+          },
+          "b": {
+            "x": 838.4265747070312,
+            "y": 15.014961242675781,
+            "z": -1407.759765625
+          },
+          "c": {
+            "x": 838.5841674804688,
+            "y": 15.014961242675781,
+            "z": -1403.74755859375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 836.1620483398438,
+            "y": 15.015007019042969,
+            "z": -1414.8509521484375
+          },
+          "b": {
+            "x": 836.1620483398438,
+            "y": 15.015007019042969,
+            "z": -1407.759765625
+          },
+          "c": {
+            "x": 838.4265747070312,
+            "y": 15.014961242675781,
+            "z": -1407.759765625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.5841674804688,
+            "y": 15.014961242675781,
+            "z": -1403.74755859375
+          },
+          "b": {
+            "x": 861.7053833007812,
+            "y": 15.014957427978516,
+            "z": -1403.9072265625
+          },
+          "c": {
+            "x": 861.6942138671875,
+            "y": 15.014957427978516,
+            "z": -1408.7039794921875
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.5841674804688,
+            "y": 15.014961242675781,
+            "z": -1403.74755859375
+          },
+          "b": {
+            "x": 838.4265747070312,
+            "y": 15.014961242675781,
+            "z": -1407.759765625
+          },
+          "c": {
+            "x": 836.1620483398438,
+            "y": 15.015007019042969,
+            "z": -1407.759765625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7340698242188,
+            "y": 15.014957427978516,
+            "z": -1283.324951171875
+          },
+          "b": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1283.332275390625
+          },
+          "c": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1278.6947021484375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7340698242188,
+            "y": 15.014957427978516,
+            "z": -1291.109130859375
+          },
+          "b": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1291.1298828125
+          },
+          "c": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1283.332275390625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1278.6947021484375
+          },
+          "b": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1278.590087890625
+          },
+          "c": {
+            "x": 861.7340698242188,
+            "y": 15.014957427978516,
+            "z": -1283.324951171875
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1283.332275390625
+          },
+          "b": {
+            "x": 861.7340698242188,
+            "y": 15.014957427978516,
+            "z": -1283.324951171875
+          },
+          "c": {
+            "x": 861.7340698242188,
+            "y": 15.014957427978516,
+            "z": -1291.109130859375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7337036132812,
+            "y": 15.017004013061523,
+            "z": -1365.4349365234375
+          },
+          "b": {
+            "x": 838.7178955078125,
+            "y": 15.017004013061523,
+            "z": -1365.260009765625
+          },
+          "c": {
+            "x": 838.7178955078125,
+            "y": 15.017004013061523,
+            "z": -1353.5430908203125
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 836.1620483398438,
+            "y": 15.015007019042969,
+            "z": -1407.759765625
+          },
+          "b": {
+            "x": 836.162109375,
+            "y": 15.029260635375977,
+            "z": -1403.74755859375
+          },
+          "c": {
+            "x": 838.5841674804688,
+            "y": 15.014961242675781,
+            "z": -1403.74755859375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7178955078125,
+            "y": 15.017004013061523,
+            "z": -1353.5430908203125
+          },
+          "b": {
+            "x": 861.7337646484375,
+            "y": 15.017004013061523,
+            "z": -1353.5037841796875
+          },
+          "c": {
+            "x": 861.7337036132812,
+            "y": 15.017004013061523,
+            "z": -1365.4349365234375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7340087890625,
+            "y": 15.014957427978516,
+            "z": -1181.6292724609375
+          },
+          "b": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1181.9542236328125
+          },
+          "c": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1171.3128662109375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 836.1655883789062,
+            "y": 15.014961242675781,
+            "z": -1424.04736328125
+          },
+          "b": {
+            "x": 836.1495971679688,
+            "y": 15.014961242675781,
+            "z": -1430.729248046875
+          },
+          "c": {
+            "x": 836.1690673828125,
+            "y": 15.014961242675781,
+            "z": -1426.10791015625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1171.3128662109375
+          },
+          "b": {
+            "x": 861.7339477539062,
+            "y": 15.014957427978516,
+            "z": -1170.917236328125
+          },
+          "c": {
+            "x": 861.7340087890625,
+            "y": 15.014957427978516,
+            "z": -1181.6292724609375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 836.1495971679688,
+            "y": 15.014961242675781,
+            "z": -1430.729248046875
+          },
+          "b": {
+            "x": 836.1655883789062,
+            "y": 15.014961242675781,
+            "z": -1424.04736328125
+          },
+          "c": {
+            "x": 854.2428588867188,
+            "y": 15.014957427978516,
+            "z": -1433.7935791015625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1160.2916259765625
+          },
+          "b": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1160.7138671875
+          },
+          "c": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1150.072265625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 854.2428588867188,
+            "y": 15.014957427978516,
+            "z": -1433.7935791015625
+          },
+          "b": {
+            "x": 842.31005859375,
+            "y": 15.014957427978516,
+            "z": -1463.479736328125
+          },
+          "c": {
+            "x": 836.3497314453125,
+            "y": 15.014959335327148,
+            "z": -1463.198974609375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1150.072265625
+          },
+          "b": {
+            "x": 861.7338256835938,
+            "y": 15.014957427978516,
+            "z": -1149.6666259765625
+          },
+          "c": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1160.2916259765625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 836.3497314453125,
+            "y": 15.014959335327148,
+            "z": -1463.198974609375
+          },
+          "b": {
+            "x": 836.1495971679688,
+            "y": 15.014961242675781,
+            "z": -1430.729248046875
+          },
+          "c": {
+            "x": 854.2428588867188,
+            "y": 15.014957427978516,
+            "z": -1433.7935791015625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7337646484375,
+            "y": 15.014957427978516,
+            "z": -1139.01806640625
+          },
+          "b": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1139.454833984375
+          },
+          "c": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1126.795166015625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1213.3828125
+          },
+          "b": {
+            "x": 861.7338256835938,
+            "y": 15.014957427978516,
+            "z": -1212.9771728515625
+          },
+          "c": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1223.6021728515625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1126.795166015625
+          },
+          "b": {
+            "x": 861.7337646484375,
+            "y": 15.014957427978516,
+            "z": -1126.7166748046875
+          },
+          "c": {
+            "x": 861.7337646484375,
+            "y": 15.014957427978516,
+            "z": -1139.01806640625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1223.6021728515625
+          },
+          "b": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1224.0244140625
+          },
+          "c": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1213.3828125
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.4265747070312,
+            "y": 15.014961242675781,
+            "z": -1407.759765625
+          },
+          "b": {
+            "x": 861.6942138671875,
+            "y": 15.014957427978516,
+            "z": -1408.7039794921875
+          },
+          "c": {
+            "x": 860.129638671875,
+            "y": 15.014957427978516,
+            "z": -1417.8360595703125
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1234.6234130859375
+          },
+          "b": {
+            "x": 861.7339477539062,
+            "y": 15.014957427978516,
+            "z": -1234.2279052734375
+          },
+          "c": {
+            "x": 861.7340087890625,
+            "y": 15.014957427978516,
+            "z": -1244.9398193359375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 860.129638671875,
+            "y": 15.014957427978516,
+            "z": -1417.8360595703125
+          },
+          "b": {
+            "x": 838.354736328125,
+            "y": 15.014961242675781,
+            "z": -1414.8509521484375
+          },
+          "c": {
+            "x": 838.4265747070312,
+            "y": 15.014961242675781,
+            "z": -1407.759765625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7340087890625,
+            "y": 15.014957427978516,
+            "z": -1244.9398193359375
+          },
+          "b": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1245.2647705078125
+          },
+          "c": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1234.6234130859375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7360229492188,
+            "y": 15.014957427978516,
+            "z": -1391.0643310546875
+          },
+          "b": {
+            "x": 838.7174682617188,
+            "y": 15.014957427978516,
+            "z": -1391.087890625
+          },
+          "c": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1378.5157470703125
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1255.89697265625
+          },
+          "b": {
+            "x": 861.7340698242188,
+            "y": 15.014957427978516,
+            "z": -1255.5673828125
+          },
+          "c": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1266.145751953125
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1378.5157470703125
+          },
+          "b": {
+            "x": 861.733642578125,
+            "y": 15.014957427978516,
+            "z": -1378.5150146484375
+          },
+          "c": {
+            "x": 861.7360229492188,
+            "y": 15.014957427978516,
+            "z": -1391.0643310546875
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.734130859375,
+            "y": 15.014957427978516,
+            "z": -1266.145751953125
+          },
+          "b": {
+            "x": 838.7177124023438,
+            "y": 15.014957427978516,
+            "z": -1266.488037109375
+          },
+          "c": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1255.89697265625
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1328.5784912109375
+          },
+          "b": {
+            "x": 861.73388671875,
+            "y": 15.014957427978516,
+            "z": -1328.5926513671875
+          },
+          "c": {
+            "x": 861.7338256835938,
+            "y": 15.017004013061523,
+            "z": -1341.0205078125
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7339477539062,
+            "y": 15.014957427978516,
+            "z": -1316.0758056640625
+          },
+          "b": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1316.085693359375
+          },
+          "c": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1303.6251220703125
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 861.7338256835938,
+            "y": 15.017004013061523,
+            "z": -1341.0205078125
+          },
+          "b": {
+            "x": 838.7178344726562,
+            "y": 15.017004013061523,
+            "z": -1341.0478515625
+          },
+          "c": {
+            "x": 838.7178344726562,
+            "y": 15.014957427978516,
+            "z": -1328.5784912109375
+          }
+        },
+        {
+          "mesh": "Object274361538@s1",
+          "a": {
+            "x": 838.7177734375,
+            "y": 15.014957427978516,
+            "z": -1303.6251220703125
+          },
+          "b": {
+            "x": 861.7340087890625,
+            "y": 15.014957427978516,
+            "z": -1303.5693359375
+          },
+          "c": {
+            "x": 861.7339477539062,
+            "y": 15.014957427978516,
+            "z": -1316.0758056640625
+          }
+        }
+      ]
+    }
+  ]
+}

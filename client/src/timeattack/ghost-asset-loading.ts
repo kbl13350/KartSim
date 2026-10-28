@@ -11,6 +11,8 @@ export interface GhostEquipment {
 
 export interface GhostSource {
   equipment: GhostEquipment;
+  /** Original dedicated NPC karts include their rider mesh in the kart. */
+  hideCharacter?: boolean;
 }
 
 export interface GhostKartCatalogEntry {
@@ -111,6 +113,10 @@ export async function loadGhostKartAssets(builder: GhostAssetBuilder,
     scene, importer, itemIds, undefined, undefined, undefined,
     kart.systemKey, signal, !kart.linkCharacterId,
   );
+
+  if (ghost.hideCharacter) return { imported: vehicle.imported, visual: vehicle.visual,
+    character: undefined, onCharacterSize: vehicle.visual.onCharacterSize,
+    linkedCharacter: false, engineGrade, motorcycle };
 
   if (kart.linkCharacterId) {
     if (kart.hideChar || kart.characterAniType !== 0 ||

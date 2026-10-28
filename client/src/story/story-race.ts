@@ -1,6 +1,7 @@
 import type { LicenseMissionSpec } from "../license/license-mission";
 import type { ObserveState } from "../timeattack/replay-observe";
 import type { ChaseRule } from "./story-chase";
+import type { FormulaRaceRequest } from "../formula/formula-race";
 
 /**
  * A story race rides on the solo race selection: the race builder takes its
@@ -17,6 +18,8 @@ export interface StoryGhostSource {
   timeOffsetMs?: number;
   /** A story rival drawn as a solid kart, not the time attack's see-through Ghost. */
   solid?: boolean;
+  /** Dedicated NPC karts already contain a rider model. */
+  hideCharacter?: boolean;
 }
 
 export interface StoryRaceOutcome {
@@ -42,6 +45,8 @@ export interface StoryRaceRequest {
   timeLimitMs?: number;
   /** 驾照考试: the step's own mission (license-mission.ts). */
   license?: LicenseMissionSpec;
+  /** 极速方程: live NPC simulation and three-round championship. */
+  formula?: FormulaRaceRequest;
   /** Put the player's own kart, rider and Ready options back. */
   restore(): void;
   /** Clear rule of a finished race, asked at the finish line for the mission result. */

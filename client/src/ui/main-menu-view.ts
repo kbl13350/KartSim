@@ -201,6 +201,8 @@ export interface MainMenuOptions {
   onReplaySetting?(kind: "speed" | "booster"): void;
   /** 地图工坊 (maps riders made in the map editor, server-go/MAPS.md): the button on the single-play title bar. */
   onCustomGame?(): void;
+  /** 极速方程: single-player championship with 19 release NPCs. */
+  onFormula?(): void;
   /** A favourite channel opens the multiplayer lobby on that channel. */
   onChannel(channel: string): void;
   onHover?(): void;
@@ -710,7 +712,10 @@ export class MainMenuView {
         : !name || SHOWN.has(name)) this.draw(child, rect);
     }
     if (this.currentPage === "single" && this.category === "cat_riderSchool") this.drawRiderSchool();
-    if (this.currentPage === "single" && this.options.onCustomGame) this.drawCustomGameButton();
+    if (this.currentPage === "single") {
+      if (this.options.onCustomGame) this.drawSingleModeButton("customGame", "地图工坊", 540, this.options.onCustomGame);
+      if (this.options.onFormula) this.drawSingleModeButton("formula", "极速方程", 400, this.options.onFormula);
+    }
     this.buttons.update(this.regions);
   }
 
@@ -1235,11 +1240,10 @@ export class MainMenuView {
       verticalAlign: "center", stroke: 0, strokeColor: "black" });
   }
 
-  /** 地图工坊 at the right end of the single-play title bar (a monocoque TextButton). */
-  private drawCustomGameButton(): void {
+  /** Extra single-player modes on the release title bar (monocoque TextButtons). */
+  private drawSingleModeButton(key: string, title: string, x: number, activate: () => void): void {
     const art = this.assets.textButton;
-    const rect = { x: 540, y: 131, width: 128, height: 32 };
-    const key = "customGame";
+    const rect = { x, y: 131, width: 128, height: 32 };
     const state = st(key, this.hovered, this.pressed);
     const frame = art?.frames[state] ?? art?.frames[0];
     if (art && frame) C9(this.context, frame, art.image.image, rect);
@@ -1247,11 +1251,11 @@ export class MainMenuView {
       this.context.fillStyle = state ? "rgb(255,214,120)" : "rgb(240,244,250)";
       this.context.fillRect(rect.x, rect.y, rect.width, rect.height);
     }
-    m9(this.context, tr("地图工坊"), { x: rect.x, y: rect.y + (state === 2 ? 1 : 0), width: rect.width, height: rect.height }, {
+    m9(this.context, tr(title), { x: rect.x, y: rect.y + (state === 2 ? 1 : 0), width: rect.width, height: rect.height }, {
       family: FONT_FAMILY, size: 16, kind: "label", color: "rgb(42,55,80)", align: "center",
       verticalAlign: "center", stroke: 0, strokeColor: "black" });
-    this.regions.push({ key, rect, label: tr("地图工坊"),
-      activate: () => { this.options.onActivate?.(); this.options.onCustomGame?.(); } });
+    this.regions.push({ key, rect, label: tr(title),
+      activate: () => { this.options.onActivate?.(); activate(); } });
   }
 
 

@@ -1,3 +1,4 @@
+import { formulaOf } from "../formula/formula-runtime";
 interface Point3 { x: number; y: number; z: number }
 interface StartFrame { position: Point3 }
 
@@ -58,7 +59,7 @@ export function placeAtStart(
   const start = host.getTrack().getStart();
   host.getPhysics().resetFromRouteFrame(start);
   const body = host.getPhysics().body;
-  const offset = dependencies.slotOffset(host.currentPlayerSlot);
+  const offset = formulaOf(host.session) ? -1.7 : dependencies.slotOffset(host.currentPlayerSlot);
   body.position = {
     x: Math.fround(Math.fround(body.right.x * offset) + body.position.x),
     y: Math.fround(Math.fround(body.right.y * offset) + body.position.y),
@@ -89,7 +90,14 @@ export function seedGhostStart(
   stage.ghostPoses = [];
   if (host.session.ghosts.length === 0) return;
   const body = host.getPhysics().body;
-  for (const ghost of host.session.ghosts) {
+  for (const [index, ghost] of host.session.ghosts.entries()) {
+    const formula = formulaOf(host.session);
+    if (formula) {
+      const pose = formula.startNpc(index);
+      ghost.view.seedStart(pose.position, pose.right, pose.forward, pose.up);
+      stage.ghostRouteProgress.seed(ghost, pose.position);
+      continue;
+    }
     const offset = dependencies.slotOffset(ghost.startSlot);
     let position = {
       x: Math.fround(Math.fround(body.right.x * offset) + frame.position.x),

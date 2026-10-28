@@ -77,6 +77,7 @@ export interface SoloRaceResources {
   nextWrongWay?: RaceDisposable;
   /** 创世 9 自动版 (ui/autopilot-prank.ts). */
   nextAutopilot?: RaceDisposable;
+  nextFormula?: import('../formula/formula-runtime').FormulaRuntime;
   rankColors: unknown;
   selectedVehicle: { title: string };
   particleModificationBanner?: RaceDisposable;
@@ -98,6 +99,7 @@ export interface SoloRaceSession {
   hazardTraps?: SceneResource;
   wrongWay?: RaceDisposable;
   autopilot?: RaceDisposable;
+  formula?: import('../formula/formula-runtime').FormulaRuntime;
   balloonDecoration?: RaceDisposable;
   characterDecorations: CharacterDecoration[];
   raceAura?: RaceDisposable;
@@ -195,7 +197,7 @@ export async function publishSoloRace(
     nextTrackEventAudio, nextTrackDummyAudio, nextLinkedCharacterPresentation,
     nextFlyingPet, nextGhosts, rankColors, selectedVehicle,
     particleModificationBanner, particleModificationBannerRequest, outlineBatch, nextLicenseItems,
-    nextHazardTraps, nextWrongWay, nextAutopilot,
+    nextHazardTraps, nextWrongWay, nextAutopilot, nextFormula,
   } = resources;
   const session = host.session;
   const audio = host.audio;
@@ -203,6 +205,8 @@ export async function publishSoloRace(
   // The loaded resources are ready. Release every previous race owner before
   // exposing the new one to the scene and presenter.
   session.coordinator?.dispose();
+  session.formula?.dispose();
+  session.formula = undefined;
   session.flyingPet?.dispose();
   session.flyingPet = undefined;
   session.vehicleRender?.dispose();
@@ -343,6 +347,7 @@ export async function publishSoloRace(
     dependencies.recordKey(selection, host.getReadyOptions()),
   )?.elapsedMs ?? null;
   session.lifecycle = dependencies.createLifecycle(previousRecord);
+  session.formula = nextFormula;
 
   coatingStage?.validate();
   host.ready.releaseForRace();
@@ -362,4 +367,5 @@ export async function publishSoloRace(
       trackInfoCard: nextTrackInfoCard,
     },
   });
+  nextFormula?.mount();
 }

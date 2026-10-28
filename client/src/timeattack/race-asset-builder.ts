@@ -15,6 +15,7 @@ import { kartAlignedPetOwner } from "../world/flying-pet-mount";
 import { AutopilotPrank, isAutopilotKart, loadAutopilotPrompts } from "../ui/autopilot-prank";
 import type { StoryRaceRequest } from "../story/story-race";
 import { racePlaylistReady } from "./race-bgm-loading";
+import { FormulaRuntime } from "../formula/formula-runtime";
 
 /** The item presenter's model and sound ops (the multiplayer race's itemPresenterOps). */
 const hazardTrapOps = {
@@ -188,6 +189,7 @@ async function buildLoadedSoloRace(
     try {
       map = await builder.loadAssetMap(selection.mapPath, selection.trackId);
       if (selection.story?.laps) map.data.lapTarget = selection.story.laps;
+      if (selection.story?.formula) map.metadata = { ...map.metadata, bgmTheme: 'f1' };
     } catch (error) {
       closeNewAudio();
       throw new Error(`赛道载入失败：${error instanceof Error ? error.message : String(error)}`);
@@ -200,7 +202,8 @@ async function buildLoadedSoloRace(
     let bgm = reuseAudio ? host.audio.bgm : undefined;
     try {
       if (bgm) {
-        if (host.audio.bgmTrackId !== map.metadata.id)
+        if (host.audio.bgmTrackId !== map.metadata.id ||
+            Boolean(host.audio.bgmFormula) !== Boolean(selection.story?.formula))
           await bgm.selectRace(host.getLibrary(), map.metadata);
       } else {
         bgm = await ops.loadRaceBgm(host.getLibrary(), map.metadata,
@@ -208,6 +211,7 @@ async function buildLoadedSoloRace(
       }
       // The race music loadRaceBgm (here or at startup) left decoding.
       await racePlaylistReady(bgm, host.getLibrary(), map.metadata);
+      host.audio.bgmFormula = Boolean(selection.story?.formula);
     } catch (error) {
       disposeMap();
       closeNewAudio();
@@ -276,6 +280,7 @@ async function buildLoadedSoloRace(
     let hazardTraps: HazardTraps | undefined;
     let wrongWay: WrongWayWarning | undefined;
     let autopilot: AutopilotPrank | undefined;
+    let formula: FormulaRuntime | undefined;
     let gameplayUi: any, action2D: any, result: any, trackInfoCard: any;
     let pause: any, countdownAudio: any, eventEffects: any, eventAudio: any;
     let dummyAudio: any, linkedPresentation: any, flyingPet: any;
@@ -294,7 +299,7 @@ async function buildLoadedSoloRace(
       if (ghostRecord) {
         for (const participant of ghostRecord.participants) {
           const slot = participant.equipment.startSlot;
-          if (!Number.isInteger(slot) || slot < 0 || slot > 8) {
+          if (!Number.isInteger(slot) || slot < 0 || slot > (selection.story?.formula ? 19 : 8)) {
             host.hud.showDebugText(
               `幽灵记录缺少有效起跑槽位（${String(slot)}）；旧记录请重新导入 .ksv，本局跳过该影子。`,
               "error");
@@ -302,7 +307,7 @@ async function buildLoadedSoloRace(
           }
           ghostSources.push({ equipment: participant.equipment,
             record: participant.record, timeOffsetMs: participant.timeOffsetMs,
-            solid: participant.solid });
+            solid: participant.solid, hideCharacter: participant.hideCharacter });
         }
       }
       // OB 观看: the console's 退出 leaves like the pause menu's 菜单.
@@ -312,6 +317,8 @@ async function buildLoadedSoloRace(
         lensFlare = await ops.loadLensFlare(host.getLibrary(), map.lensFlarePoint);
       track = ops.createTrack(map.data, map.scene, map.renderScene,
         map.skydome, lensFlare);
+      if (selection.story?.formula)
+        formula = new FormulaRuntime(selection.story.formula, host, track, physics);
       lensFlare = undefined;
       ops.applyTrackFog(host.scene, track);
       ops.prepareScene(host.renderer, map.scene, host.scene, true);
@@ -357,7 +364,7 @@ async function buildLoadedSoloRace(
       }
       // Story races also load retire@zz (未完成) for a failed mission.
       action2D = ops.createAction2D(await ops.loadAction2D(host.getLibrary(), Boolean(selection.story)));
-      if (selection.story) {
+      if (selection.story && !selection.story.formula) {
         // The mission result animation is a bonus: race on without it if it cannot load.
         try {
           // Loaded first: if it fails, nothing else of the overlay is left to release.
@@ -512,7 +519,7 @@ async function buildLoadedSoloRace(
         // Read by setAssets / setDecorations (ghost-visual-assets.ts).
         if (source.solid) ghostView.solid = true;
         ghosts.push({ view: ghostView,
-          playback: ops.createGhostPlayback(source.record,
+          playback: formula ? formula.playback(ghosts.length) : ops.createGhostPlayback(source.record,
             () => host.ghostSamplingMode),
           startSlot: source.equipment.startSlot,
           name: source.equipment.playerName?.trim() || "Ghost",
@@ -551,6 +558,7 @@ async function buildLoadedSoloRace(
       hazardTraps?.dispose();
       wrongWay?.dispose();
       autopilot?.dispose();
+      formula?.dispose();
       flyingPet?.dispose();
       for (const ghost of ghosts) ghost.view.dispose();
       track?.dispose();
@@ -600,6 +608,7 @@ async function buildLoadedSoloRace(
       nextHazardTraps: hazardTraps,
       nextWrongWay: wrongWay,
       nextAutopilot: autopilot,
+      nextFormula: formula,
       selectedVehicle: kart, generation,
       particleModificationBanner: particleBanner,
       particleModificationBannerRequest: particleRequest,

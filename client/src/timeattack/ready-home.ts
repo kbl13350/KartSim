@@ -210,6 +210,8 @@ export async function openReadyHome(controller: ReadyHomeController,
       onPractice: () => closeReadyHome(controller),
       // 地图工坊: the maps every rider made in the map editor (server-go/MAPS.md).
       onCustomGame: () => { void import("./ready-custom-game").then(module => module.openReadyCustomGame(controller)); },
+      onFormula: () => { void import("./ready-formula").then(module => module.openReadyFormula(controller)).catch(error =>
+        controller.activeHome?.single.showNotice(tr("极速方程：{error}", { error: error instanceof Error ? error.message : String(error) }))); },
       // 排位计时赛 (TIMEATTACK.md): the ranking window over this page.
       onRanking: () => { void openRankingWindow(controller as ReadyRankingController); },
       onChannel: channel => {
