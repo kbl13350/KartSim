@@ -156,6 +156,10 @@ export function drawMultiplayerWindowNode(
       (state.visible !== true && attribute(node, "visible") === "false") ||
       node.name === "Skip") return;
 
+  const nodeName = attribute(node, "name") ?? "";
+  // DOM emotion controls also replace the legacy art during animation-only repaint.
+  if (host.paintingOnly && (nodeName === "roomEmotionToggle" || nodeName === "roomEmotionWheel")) return;
+
   const sprites = host.textures.get(node);
   const style = host.styles.get(node);
   const isButton = node.name.includes("Button");
@@ -169,7 +173,6 @@ export function drawMultiplayerWindowNode(
     defaultFrames?.[node.name === "PlaneCheckButton" ? +!!state.checked : 0];
   const rawRect = dependencies.rectangle(node, parent, frame, sprites?.[0], state.size);
   let rect = { ...rawRect, x: rawRect.x + (state.offsetX ?? 0) };
-  const nodeName = attribute(node, "name") ?? "";
   if (!host.paintingOnly && state.input && nodeName === "채팅") rect = roomChatInputRect(host, rect);
   if (!host.paintingOnly && syncRoomEmotionControl(host, node, nodeName, state, rect, attribute)) {
     visibleControls.add(node);
