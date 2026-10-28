@@ -1,3 +1,4 @@
+import { isCustomTrackId } from "../mapeditor/design";
 import { PRACTICE_SCENE_IDS } from "./practice-scene";
 import type { TrackChoice, TrackLibrary, TrackMetadata, TrackResource } from "./track-catalog";
 import { trackDisplayTitle } from "./track-names";
@@ -29,6 +30,9 @@ export function resourceTracks(library: Pick<TrackLibrary, "files">): ResourceTr
     if (!match || paths.has(path.toLowerCase())) continue;
     paths.add(path.toLowerCase());
     const [, folder, variant = ""] = match;
+    // Mounted workshop maps (including drafts) are supplied by customTrackChoices
+    // with their authored theme/title. Never reinterpret their IDs as resource themes.
+    if (isCustomTrackId(folder)) continue;
     const reverse = /(?:^|_)rvs(?:_|$)/i.test(variant);
     // Saved replays and settlement data identify reverse tracks by the _rvs suffix.
     const variantName = variant.replace(/^_/, "").split("_").filter(part => part !== "rvs").join("_");

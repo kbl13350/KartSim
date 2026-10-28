@@ -101,3 +101,42 @@ test("all selectable maps initialize and round-trip through the real favorites c
   assert.deepEqual(IP(city), { themeId: 3, trackId: 506332011 });
   assert.deepEqual(nT([IP(city)], choices), new Set(["kartcity"]));
 });
+
+
+test("mounted workshop maps keep their authored metadata without duplicate resource choices", async () => {
+  const { registerCustomMap, removeCustomMap, summaryTrackId } = await import("../mapeditor/custom-tracks");
+  const { IP, nT } = await import("../generated/world.js");
+  const mounted = Object.assign(indexedTrackLibrary(), {
+    byPath: new Map(), byCanonicalPath: new Map(), byExactCanonicalPath: new Map(),
+  });
+  const summaries = (["server", "local"] as const).map(source => ({
+    id: "test1234", source, name: "工坊收藏回归", author: "test", theme: "forest",
+    laps: 3, difficulty: 2, roadExtent: 100, sha256: source, size: 0, items: 1,
+    files: [{ path: "track.1s", size: 0 }], updatedAt: 1,
+  }));
+  try {
+    for (const summary of summaries) registerCustomMap(mounted, summary, {
+      container: async () => { throw new Error("catalog must not download map geometry"); },
+    });
+    const choices = await mounted.timeAttackTrackCatalog();
+    // This is the picker initialization that used to throw on the synthetic custom theme.
+    assert.equal(nT([], choices).size, 0);
+    assert.equal(choices.length, 561);
+    assert.equal(resourceTracks(mounted).length, 559);
+    for (const summary of summaries) {
+      const id = summaryTrackId(summary);
+      const entries = choices.filter(choice => choice.id === id);
+      assert.equal(entries.length, 1, id);
+      assert.equal(entries[0]!.theme, "forest");
+      assert.equal(entries[0]!.title, summary.source === "local" ? `[草稿] ${summary.name}` : summary.name);
+      assert.equal(entries[0]!.resourceCategory, undefined);
+      assert.deepEqual(nT([IP(entries[0])], choices), new Set([id]));
+      assert.equal((await trackMetadata(mounted, id))?.laps, 3);
+    }
+    const itemChoices = await itemTrackCatalog(mounted);
+    assert.equal(itemChoices.filter(choice => choice.id === "custom_test1234").length, 1);
+    assert.ok(!itemChoices.some(choice => choice.id === "custom_test1234_draft"));
+  } finally {
+    for (const summary of summaries) removeCustomMap(mounted, summaryTrackId(summary));
+  }
+});
