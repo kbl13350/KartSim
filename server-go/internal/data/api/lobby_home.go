@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"kartsim/internal/data/cache"
@@ -43,10 +44,11 @@ var (
 
 // lobbyHome is the data service's global lobby.
 type lobbyHome struct {
-	a         *API
-	lobby     *lobby.Lobby
-	sockets   *ws.Server
-	startedAt int64
+	a              *API
+	lobby          *lobby.Lobby
+	sockets        *ws.Server
+	startedAt      int64
+	disabledTracks atomic.Pointer[map[string]bool]
 
 	mu       sync.Mutex
 	handoffs map[string]*handoffRecord
@@ -66,6 +68,7 @@ type handoffRecord struct {
 
 func newLobbyHome(a *API, compression bool) *lobbyHome {
 	h := &lobbyHome{a: a, startedAt: a.nowMillis(), handoffs: map[string]*handoffRecord{}}
+	h.refreshTrackSettings(context.Background())
 	h.lobby = lobby.New(lobby.Options{
 		NodeID:      contract.LobbyNodeID,
 		Presence:    lobbyPresence{a},
@@ -79,6 +82,7 @@ func newLobbyHome(a *API, compression bool) *lobbyHome {
 		Home:        h,
 		// 地图工坊 maps with item boxes may be raced in item rooms (MAPS.md).
 		CustomItemTrack: a.itemMaps.has,
+		TrackEnabled:    h.trackEnabled,
 	})
 	h.sockets = ws.NewServer(h.lobby, a.network, ws.Options{
 		MaxConnections:     lobbyMaxPlayers + 500,
@@ -301,6 +305,7 @@ func (h *lobbyHome) watch(ctx context.Context) {
 // its sessions' nickname and account claims stay held, and evicts the
 // sessions whose claims went elsewhere (a new login, a kick, a ban).
 func (h *lobbyHome) heartbeat(ctx context.Context) {
+	h.refreshTrackSettings(ctx)
 	if h.a.cluster == nil {
 		return
 	}

@@ -1,0 +1,38 @@
+<!doctype html><meta charset="utf-8"><title>Multiplayer track settings verification</title>
+<style>html,body{margin:0;width:100%;height:100%;background:#162230;color:white;font:14px system-ui}#status{position:absolute;bottom:0;font-size:12px;pointer-events:none}</style><pre id="status">Loading actual resource library…</pre>
+<script type="module">
+import { Sw, Yc, Zl } from '/src/generated/library.js';
+import { G2, ha } from '/src/generated/formats.js';
+import { _7 } from '/src/generated/ui.js';
+import { ul } from '/src/generated/vehicle.js';
+import { isBrawlTrack } from '/src/multiplayer/lobby-brawl-mode.ts';
+import { chooseLobbyTrack, confirmLobbyTrack } from '/src/multiplayer/lobby-track.ts';
+import { loadLegacyResourceBundle } from '/src/resources/legacy-adapter.ts';
+window.__KART_MULTIPLAYER_CONFIG__={backendOrigin:'https://track-settings-fixture.invalid',frontendOrigins:[location.origin],transport:'websocket'};
+const bundle=await loadLegacyResourceBundle('p3553');
+const library=await Sw.load(bundle.sources,undefined,bundle.archiveIndexes);
+const tracks=await library.timeAttackTrackCatalog();
+const groupData=(groups=[])=>groups.map(g=>({id:g.id,trackIds:g.trackIds,displayTrackIds:g.displayTrackIds}));
+window.openLobbyPicker=async(gameplay='ordinary',selected='korea_R01',channelName='speedIndiCombine')=>{
+ window.picker?.dispose();window.picker=undefined;
+ const events=[], statuses=[];
+ const room={roomId:'fixture-room',revision:1,name:'Local verification',phase:'open',speed:7,resourceVersion:'p3553',hostId:'fixture-host',mode:channelName.includes('Team')?'team':'individual',gameplay,channelName,trackId:selected,members:[]};
+ const host={options:{library,root:document.body,initialTrackId:selected,status:(message,error)=>statuses.push({message,error})},state:{room},playerId:'fixture-host',connected:true,disposed:false,busy:false,modalLoading:false,dialogGeneration:0,favoriteTracks:new Set(['korea_R01','korea_I01']),render(){},mutate:async message=>{events.push(message);return true;},isChangingModalCurrent(modal){return this.changingModal===modal&&!this.disposed;},finishChangingLoad(modal,loaded){this.modalLoading=false;events.push({type:'finish',loaded});},cancelDialog(){this.trackSelect?.dispose();this.trackSelect=undefined;this.changingModal=undefined;this.modalLoading=false;},confirmTrack(modal,choice){return confirmLobbyTrack(this,modal,choice,Yc);}};
+ let incoming;
+ await chooseLobbyTrack(host,{gameplay:G2,isGiantTrack:Zl,randomRules:Yc,loadView:async options=>{incoming=options;return _7.load(options);}});
+ const view=host.trackSelect;window.picker=view;window.lobbyFixture=host;
+ return {opened:!!view,gameplay,channelName,roomMode:room.mode,statuses,events,unsupportedBrawlIds:gameplay==='brawl'?view?.options.tracks.filter(t=>!isBrawlTrack(t.id)).map(t=>t.id):undefined,incomingCount:incoming?.tracks.length,count:view?.options.tracks.length,gameTypes:view?.options.gameTypes,selected:view?.options.selectedTrackId,roomTrackId:room.trackId,korea:view?.options.tracks.filter(t=>t.theme==='korea').map(t=>({id:t.id,gameType:t.gameType,reverse:!!t.reverse,path:t.path})),ids:view?.options.tracks.map(t=>t.id),groups:groupData(view?.options.randomGroups),themes:view?.themes?.map(t=>({id:t.id,title:t.title}))};
+};
+window.pickerTheme=(theme)=>{const view=window.picker;if(!view)return[];view.selectTheme(theme);view.placeInitialOffsets();view.render();return view.filteredTracks().map(t=>t.id);};
+window.confirmCurrentPicker=async()=>{const view=window.picker,host=window.lobbyFixture;const chosen=view.filteredTracks()[0];if(!chosen)throw Error('No displayed map');await host.confirmTrack(host.changingModal,{kind:'track',track:chosen});return chosen.id;};
+window.allTrackIds=tracks.flatMap(t=>[t.id,...(t.duplicateAliases??[]).map(a=>a.id)]);
+window.koreaItems=tracks.filter(t=>t.theme==='korea'&&t.gameType==='item');
+window.loadKoreaItem=async(id)=>{
+ const choice=window.koreaItems.find(t=>t.id===id);if(!choice)throw Error('Unknown Korean item map '+id);
+ const host={generationValue:()=>1,isGenerationCurrent:()=>true,requireAsset:path=>{const entry=library.get(path);if(!entry)throw Error('missing '+path);return entry;},getLibrary:()=>library,toonStageBinding:new ha()};
+ let map;
+ try{map=await new ul(host).loadMultiplayerMap(choice.path,choice.id,'item');return {id,path:choice.path,cubes:map.itemCubeSource?.cubes.length,movingCubes:map.itemCubeSource?.cubes.filter(c=>c.anchor).length,cubeModel:map.itemCubeSource?.modelPath,hazards:map.itemHazardSource?.hazards.length,itemCatalog:!!map.itemCatalog,blocks:map.admission?.ledger.records.filter(r=>r.decision==='block').map(r=>({reason:r.reason,name:r.name})),admittedCubes:map.admission?.ledger.records.filter(r=>r.reason==='item-cube-admitted'||r.reason==='moving-item-cube-admitted').length};}
+ finally{map?.renderScene.dispose();map?.skydome?.dispose();map?.environment.dispose();}
+};
+window.ready=true;document.querySelector('#status').textContent='Actual multiplayer chooser → shared native window, local transport fixture';
+</script>

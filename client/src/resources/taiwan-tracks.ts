@@ -18,9 +18,16 @@ export interface TaiwanTrack {
   bgmTheme?: string;
   bgmFile?: string;
   showLapUi?: boolean;
+  /** Original track-table attributes, including the item transformation level. */
+  sourceMetadata?: Readonly<Record<string, string | undefined>>;
 }
 
 export const TAIWAN_TRACKS: readonly TaiwanTrack[] = data.tracks as TaiwanTrack[];
+/** Imported courses verified with the item loader and physical item-cube fields. */
+export const TAIWAN_ITEM_TRACK_IDS: ReadonlySet<string> = new Set([
+  "korea_I01", "korea_I01_rvs", "korea_I02", "korea_I02_old",
+  "korea_I03", "korea_I03_rvs", "korea_I03_old", "korea_I04", "korea_I05",
+]);
 const byId = new Map(TAIWAN_TRACKS.map(track => [track.id.toLowerCase(), track]));
 const byPath = new Map(TAIWAN_TRACKS.map(track => [track.canonicalPath.toLowerCase(), track]));
 const folders = new Set(TAIWAN_TRACKS.map(track => track.folder.toLowerCase()));

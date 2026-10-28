@@ -248,6 +248,11 @@ func (a *API) heartbeat(w http.ResponseWriter, r *http.Request) error {
 		bonus := contract.CurrencyAmounts(settings.Race)
 		resp.RaceBonus = &bonus
 	}
+	disabled, err := a.disabledBuiltinTrackIDs(r.Context())
+	if err != nil {
+		return err
+	}
+	resp.DisabledTrackIDs = &disabled
 	return writeJSON(w, http.StatusOK, resp)
 }
 

@@ -2,6 +2,24 @@
 // millisecond timestamps; missing values are null or ''.
 
 export type Currency = 'coupon' | 'lucci' | 'koin'
+
+export interface ManagedTrack {
+  id: string
+  title: string
+  theme: string
+  themeTitle: string
+  gameType: string
+  reverse: boolean
+  aliases: string[]
+  enabled: boolean
+}
+
+export interface TrackDirectory {
+  tracks: ManagedTrack[]
+  themes: Array<{ id: string; title: string; total: number; enabledCount: number }>
+  version: string
+  updatedAt: number
+}
 export type GrantCurrency = Currency | 'exp'
 
 export interface Paged<T> {

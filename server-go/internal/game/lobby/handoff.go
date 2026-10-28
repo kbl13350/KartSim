@@ -438,6 +438,10 @@ func (l *Lobby) importHandoff(handoff contract.RoomHandoff) error {
 			Item: max(changers.Item, itemmode.Infinite)}
 	}
 	l.launchRace(r, nil, check)
+	if r.race == nil && r.raceError == "NO_ENABLED_TRACKS" {
+		// launchRace's broadcast already returned the unstarted room.
+		return fail(http.StatusBadRequest, "NO_ENABLED_TRACKS")
+	}
 	return nil
 }
 

@@ -68,6 +68,13 @@ function fixture() {
   return { host: host as unknown as LobbyEventHost, events };
 }
 
+test("returning to the room after all random tracks close shows the Chinese policy error", () => {
+  const { host, events } = fixture();
+  receiveLobbyEvent(host, { type: "room", room: makeRoom(2, "open", { raceError: "NO_ENABLED_TRACKS" }) }, roomSpeed);
+  assert.ok(events.some(event => Array.isArray(event) && event[0] === "status" &&
+    event[1] === "当前随机池没有开放的地图，请房主重新选择赛道。" && event[2] === true));
+});
+
 test("chat, room updates, countdown and departure match release event order", () => {
   const run = (released: boolean) => {
     const { host, events } = fixture();

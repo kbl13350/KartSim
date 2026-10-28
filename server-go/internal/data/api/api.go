@@ -347,6 +347,11 @@ func (a *API) PublicHandler() http.Handler {
 	route("POST /api/timeattack/duel/settle", a.settleDuel)
 	route("GET /api/timeattack/featured", a.listFeaturedReplays)
 	route("GET /api/timeattack/featured/replay", a.featuredReplayFile)
+	// Built-in map visibility is separate from the player-made map workshop.
+	route("GET /api/track-settings", a.trackSettings)
+	route("GET /api/admin/tracks", a.adminTracks)
+	route("PATCH /api/admin/tracks/{id}", a.adminSetTrack)
+	route("PATCH /api/admin/track-themes/{theme}", a.adminSetTrackTheme)
 	// 地图工坊 (MAPS.md)
 	route("GET /api/maps", a.listMaps)
 	route("GET /api/maps/mine", a.myMaps)

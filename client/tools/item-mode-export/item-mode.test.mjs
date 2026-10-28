@@ -191,21 +191,24 @@ test("itemmode.json tracks honour trackLocale@cn and the hot1 default", { skip: 
   const ids = new Set(data.tracks.map(track => track.id));
   const common = path.join(dataFull, "track_common.rho");
   const types = new Map(xmlRows(path.join(common, "track@zz.bml.xml"), "track").map(row => [row.id, row.gameType]));
-  for (const id of ids) assert.equal(types.get(id.replace(/_rvs$/, "")), "item", id);
+  const imported = new Set(["korea_I01", "korea_I01_rvs", "korea_I02", "korea_I02_old",
+    "korea_I03", "korea_I03_rvs", "korea_I03_old", "korea_I04", "korea_I05"]);
+  for (const id of ids) if (!imported.has(id)) assert.equal(types.get(id.replace(/_rvs$/, "")), "item", id);
   for (const row of xmlRows(path.join(common, "trackLocale@cn.bml.xml"), "track"))
     if (row.blocked === "true" || row.choosable === "false") assert.ok(!ids.has(row.id), row.id);
   // A reverse track needs an open trackLocale@cn track_rvs row.
   const reverseRows = new Map(xmlRows(path.join(common, "trackLocale@cn.bml.xml"), "track_rvs")
     .map(row => [`${row.refId}_rvs`, row]));
-  for (const track of data.tracks.filter(entry => entry.reverse)) {
+  for (const track of data.tracks.filter(entry => entry.reverse && !imported.has(entry.id))) {
     const row = reverseRows.get(track.id);
     assert.ok(row && row.blocked !== "true" && row.choosable !== "false", track.id);
   }
   for (const id of ["village_C01", "mine_C04", "china_C01", "world_C02", "nemo_C02"])
     assert.equal(data.tracks.find(track => track.id === id)?.onlyItem, true, id);
   // 158 条原版道具赛道 + 按原版 AI 线重建的喜羊羊 青青草原（xyy_I01）
-  assert.equal(data.tracks.filter(track => !track.reverse).length, 159);
-  assert.equal(data.tracks.filter(track => track.reverse).length, 29);
+  assert.equal(data.tracks.filter(track => !track.reverse && !imported.has(track.id)).length, 159);
+  assert.equal(data.tracks.filter(track => track.reverse && !imported.has(track.id)).length, 29);
+  assert.deepEqual(data.tracks.filter(track => imported.has(track.id)).map(track => track.id).sort(), [...imported].sort());
   assert.ok(data.tracks.every(track => track.cubes > 0));
   const random = readFileSync(path.join(common, "randomTrack@cn.bml.xml"), "utf8");
   const hot1 = random.slice(random.indexOf('<RandomTrackSet gameType="item" randomType="hot1"'));

@@ -36,6 +36,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { taiwanTrack } from "../src/resources/taiwan-tracks.ts";
 
 import { formatDocument } from "./economy-export/canonical.mjs";
 import { loadResourceLibrary, normalizeAttributeWhitespace, parseNormalizedXml, uniqueBytes, utf16Bytes }
@@ -233,7 +234,9 @@ const tracks = trackRows(choices, { cubes, onlyItem }, problem);
 // transform@zz keys on the track level: track@zz <track level> or <track_rvs level>.
 const levels = trackLevels(await parseBmlAt(SOURCES.tracks));
 for (const track of tracks) {
-  track.level = levels.get(track.id);
+  const imported = taiwanTrack(track.id);
+  track.level = imported?.sourceMetadata?.level === undefined ? levels.get(track.id)
+    : Number(imported.sourceMetadata.level);
   if (!Number.isSafeInteger(track.level) || track.level < 0) problem(`track ${track.id}: level ${track.level}`);
 }
 const pools = randomPools(await itemRandomTrackGroups(library), tracks, problem);
@@ -251,7 +254,8 @@ const document = formatDocument({
     `${manifest.revision}: weights from ${SOURCES.indi} (indi) and ${SOURCES.team} (team), caps from ` +
     `${SOURCES.restriction}, base-0 state lifetimes (ms) from item/<folder>/item.bml, item tracks: the ` +
     `client's itemTrackCatalog (${SOURCES.catalog}: ${SOURCES.tracks} gameType="item" rows, isOnlyItemTrack ` +
-    `kept, with ${SOURCES.locale} rules; a reverse track needs its track_rvs row), each with item cubes in ` +
+    `kept, with ${SOURCES.locale} rules; a reverse track needs its track_rvs row; plus verified Korea ` +
+    `imports and original levels from taiwan-tracks.json), each with item cubes in ` +
     `its model; random pools: the client's itemRandomTrackGroups (${SOURCES.random}); defaultTrack is the ` +
     "first hot1 track, each track with its track@zz level. Phase 3: changer tables from " +
     `${SOURCES.indiChanger} and ${SOURCES.teamChanger}; special items (idx, folder, variant base) with that ` +

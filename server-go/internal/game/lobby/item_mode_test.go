@@ -245,7 +245,7 @@ func TestItemRoomTracks(t *testing.T) {
 	for _, id := range []string{"village_R01", "tomb_I05", "ice_I01", "forest_I03_rvs", "desert_I03_rvs", "nowhere_I01"} {
 		assertEqual(t, track(id), "TRACK_NOT_ITEM")
 	}
-	for _, id := range []string{"desert_I03", "village_C01", "forest_I01_rvs", "nemo_C02"} {
+	for _, id := range []string{"korea_I01", "korea_I01_rvs", "korea_I02", "korea_I02_old", "korea_I03", "korea_I03_rvs", "korea_I03_old", "korea_I04", "korea_I05", "desert_I03", "village_C01", "forest_I01_rvs", "nemo_C02"} {
 		assertEqual(t, track(id), "")
 	}
 	assertEqual(t, h.recorder.savedRules(t, roomID.(string))["trackId"], "nemo_C02")

@@ -5,7 +5,7 @@ import { customItemTrackChoices, customMapMetadata, customTrackChoices } from ".
 import { isCustomTrackId } from "../mapeditor/design";
 import { XYY_TRACK_TITLES } from "./xyy-tracks";
 import { trackDisplayTitle } from "./track-names";
-import { taiwanTrack, taiwanTrackMetadata } from "./taiwan-tracks";
+import { taiwanTrack, taiwanTrackMetadata, TAIWAN_ITEM_TRACK_IDS } from "./taiwan-tracks";
 import { deduplicateTrackChoices } from "./track-duplicates";
 
 /** A virtual file mounted from a Rho/Rho5 archive or a loose Data file. */
@@ -418,6 +418,11 @@ export async function itemTrackCatalog(library: TrackLibrary): Promise<TrackChoi
   const release = await resolveTrackCatalog(library,
     metadata => itemTrackSelectable(metadata, rules.tracks.get(metadata.id)) ? "item" : undefined,
     metadata => rules.reverse.has(metadata.id) && available(rules.reverse.get(metadata.id)));
+  // CN locale rows omit Korea titles/reverse availability and its original
+  // folders are unmounted. Use the verified TW choices with their exact paths.
+  release.push(...extraTrackChoices(library, await library.trackMetadataCatalog(), release)
+    .filter(track => TAIWAN_ITEM_TRACK_IDS.has(track.id) && track.gameType === "item"));
+
   // 地图工坊：已发布、带道具箱的地图（server-go/MAPS.md）
   const custom = customItemTrackChoices().filter(choice =>
     library.findSibling(choice.path, ["track.1s"]) !== undefined);
@@ -523,8 +528,14 @@ export async function itemRandomTrackGroups(library: TrackLibrary): Promise<Rand
   const root = decodeBinaryXml(await random.bytes());
   // 自制地图不进随机池：游戏节点只从官方道具赛道里抽。
   const catalog = (await itemTrackCatalog(library)).filter(track => !isCustomTrackId(track.id));
+  const importedReverse = catalog.filter(track => track.reverse &&
+    TAIWAN_ITEM_TRACK_IDS.has(track.id)).map(track => track.id);
   return randomTrackGroupsFromBml(root, catalog)
     .filter(group => group.gameType === "item" && group.trackIds.length > 0)
+    .map(group => group.randomType === "reverse" ? { ...group,
+      trackIds: [...new Set([...group.trackIds, ...importedReverse])],
+      displayTrackIds: [...new Set([...group.displayTrackIds, ...importedReverse])],
+    } : group)
     .map(drawableDisplay);
 }
 

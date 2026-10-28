@@ -10,6 +10,7 @@
 
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { Plugin } from 'vite'
+import trackDirectory from '../../internal/data/economy/track-directory.json' with { type: 'json' }
 
 type Row = Record<string, unknown>
 
@@ -19,6 +20,18 @@ const day = 86_400_000
 const pick = <T>(list: T[], i: number): T => list[i % list.length]!
 let translationSettings = { enabled: false, model: 'deepseek-flash', keyConfigured: false }
 const redisDown = process.env.MOCK_REDIS_DOWN === '1'
+const managedTracks = trackDirectory.tracks.map(track => ({ ...track, enabled: true, updatedAt: 0 }))
+let tracksUpdatedAt = 0
+function managedTrackDirectory() {
+  const themes = new Map<string, { id: string; title: string; total: number; enabledCount: number }>()
+  for (const track of managedTracks) {
+    const theme = themes.get(track.theme) ?? { id: track.theme, title: track.themeTitle, total: 0, enabledCount: 0 }
+    theme.total++
+    if (track.enabled) theme.enabledCount++
+    themes.set(track.theme, theme)
+  }
+  return { tracks: managedTracks, themes: [...themes.values()], version: `mock-${tracksUpdatedAt}`, updatedAt: tracksUpdatedAt }
+}
 
 const nodes = [
   { nodeId: 'node-a', name: '一区', origin: 'https://a.example.test', players: 37, capacity: 100, rooms: 6, full: false,
@@ -404,6 +417,10 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
   const path = url.pathname
   const method = req.method ?? 'GET'
   const params = url.searchParams
+  if (path === '/api/track-settings' && method === 'GET') {
+    return send(res, 200, { disabledTrackIds: managedTracks.filter(track => !track.enabled)
+      .flatMap(track => [track.id, ...track.aliases]), version: `mock-${tracksUpdatedAt}`, updatedAt: tracksUpdatedAt })
+  }
   if (!path.startsWith('/api/') && !path.startsWith('/multiplayer/auth/') && path !== '/multiplayer/admin/invites') {
     next()
     return
@@ -594,6 +611,19 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
   if (noticeMatch && method === 'DELETE') {
     notices = notices.filter((row) => row.id !== Number(noticeMatch[1]))
     return send(res, 200, { ok: true })
+  }
+  if (path === '/api/admin/tracks' && method === 'GET') return send(res, 200, managedTrackDirectory())
+  const managedTrackMatch = /^\/api\/admin\/(tracks|track-themes)\/([^/]+)$/.exec(path)
+  if (managedTrackMatch && method === 'PATCH') {
+    const id = decodeURIComponent(managedTrackMatch[2]!)
+    const matching = managedTracks.filter(track => managedTrackMatch[1] === 'track-themes'
+      ? track.theme === id : track.id === id || track.aliases.includes(id))
+    if (!matching.length) return send(res, 404, { error: 'INVALID_TRACK' })
+    const body = await readBody(req)
+    if (typeof body.enabled !== 'boolean') return send(res, 400, { error: 'INVALID_REQUEST' })
+    tracksUpdatedAt = Date.now()
+    for (const track of matching) { track.enabled = body.enabled; track.updatedAt = tracksUpdatedAt }
+    return send(res, 200, managedTrackDirectory())
   }
   if (path === '/api/admin/maps') {
     const rows = maps.map((row) => ({ ...row, state: row.hidden ? 'hidden' : 'public' }))

@@ -136,6 +136,14 @@ test("generated room server event parser uses the handwritten validator", () => 
   assert.equal(zo0(rejected), undefined);
 });
 
+test("an emptied random pool can return an open room with a display-policy error", () => {
+  const returned = { ...room({ randomTrackCode: 0 }), raceError: "NO_ENABLED_TRACKS" };
+  assert.equal(isValidRoomSnapshot(returned), true);
+  const frame = { type: "room", room: returned };
+  assert.deepEqual(zo0(frame), frame);
+  assert.equal(isValidRoomSnapshot({ ...returned, raceError: "UNKNOWN_ERROR" }), false);
+});
+
 test("room fields, members, kick vote and equipment match release", () => {
   const base = room();
   const variants: Array<[string, (value: Fixture) => void]> = [

@@ -98,13 +98,26 @@ func (l *Lobby) validateRandomTrack(r *room, code int) error {
 // chooseTrack picks the race track: an item room's random code draws from
 // its item pool.
 func (l *Lobby) chooseTrack(r *room) string {
-	if r.gameplay == "item" && r.trackID == "" && r.randomTrackCode != nil && l.items != nil {
-		if pool := l.items.Pool(*r.randomTrackCode); len(pool) > 0 {
-			return pool[rand.IntN(len(pool))]
-		}
-		return l.items.DefaultTrack
+	if r.trackID != "" {
+		return r.trackID
 	}
-	return chooseTrack(r)
+	pool := randomTrackPool(r)
+	if r.gameplay == "item" && r.randomTrackCode != nil && l.items != nil {
+		pool = l.items.Pool(*r.randomTrackCode)
+		if len(pool) == 0 {
+			pool = []string{l.items.DefaultTrack}
+		}
+	}
+	enabled := make([]string, 0, len(pool))
+	for _, id := range pool {
+		if l.trackEnabled == nil || l.trackEnabled(id) {
+			enabled = append(enabled, id)
+		}
+	}
+	if len(enabled) == 0 {
+		return ""
+	}
+	return enabled[rand.IntN(len(enabled))]
 }
 
 // startItemRace sets up the item state of a starting item race and its

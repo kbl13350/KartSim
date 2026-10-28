@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // Export the account-economy data (server-go/ECONOMY.md 3.1) from the P3553
 // resources into server-go/internal/data/economy/{catalog.json,levels.json,
-// tracks.json,events.json}.
+// tracks.json,track-directory.json,events.json}.
 //
 // Usage, from client/:
-//   node --import tsx tools/export-economy-data.mjs            write all four files
+//   node --import tsx tools/export-economy-data.mjs            write all economy files
 //   node --import tsx tools/export-economy-data.mjs --check    exit 1 if the files are stale
 //   node --import tsx tools/export-economy-data.mjs --out DIR  write elsewhere
 //
@@ -32,6 +32,7 @@ import { attr, parseShopCats, parseShopItems, parseStockCards, parseStocks, pars
 import { coupleItems, layoutShop } from "./economy-export/shop-layout.mjs";
 import { spendEvents } from "./economy-export/events.mjs";
 import { timeAttackTrackRows } from "./economy-export/tracks.mjs";
+import { trackDirectoryDocument } from "./economy-export/track-directory.mjs";
 import { timeAttackTrackCatalogAll } from "../src/resources/track-catalog.ts";
 
 const rewriteDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -436,6 +437,7 @@ const eventsDoc = formatDocument({
 });
 
 const outputs = [["catalog.json", catalogDoc], ["levels.json", levelsDoc], ["tracks.json", tracksDoc],
+  ["track-directory.json", formatDocument(trackDirectoryDocument(timeAttackTracks))],
   ["events.json", eventsDoc]];
 let stale = [];
 if (problems.length === 0) {

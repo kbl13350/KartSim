@@ -7,6 +7,7 @@ import { chooseLobbyTrack, confirmLobbyTrack, lobbyRandomTrackRules,
   type TrackSelectOptions } from "./lobby-track";
 import type { ChangingModal } from "./lobby-dialogs";
 import type { LobbyRoom } from "./lobby-actions";
+import { BRAWL_TRACK_IDS } from "./brawl-tracks";
 
 const source = readFileSync(new URL("../../../recovered/formatted/index.js", import.meta.url), "utf8");
 const classStart = source.indexOf("class Wl0 {");
@@ -128,6 +129,27 @@ test("item rooms keep the random codes but name the item groups", () => {
     const speed = Yc.find(candidate => candidate.code === rule.code)!;
     assert.deepEqual([rule.title, rule.cardToken], [speed.title, speed.cardToken]);
   }
+});
+
+test("brawl offers only AI-supported tracks and its supported all-random card", async () => {
+  const { host, deps, getOptions } = fixture();
+  const allowed = BRAWL_TRACK_IDS[0]!;
+  host.state.room = { ...room("brawl"), trackId: allowed };
+  host.options.library.timeAttackTrackCatalog = async () => [{ id: allowed }, { id: "korea_R01" }];
+  host.options.library.timeAttackRandomTrackGroups = async () => Yc.map(rule => ({ id: rule.groupId }));
+  deps.randomRules = Yc;
+  await chooseLobbyTrack(host, deps);
+  assert.deepEqual(getOptions()!.tracks.map(track => track.id), [allowed]);
+  assert.deepEqual(getOptions()!.randomGroups.map(group => group.id), ["speed:all:0"]);
+  assert.deepEqual(lobbyRandomTrackRules("brawl", Yc).map(rule => rule.code), [0]);
+
+  const rejected = fixture();
+  rejected.host.state.room = room("brawl");
+  const modal: ChangingModal = { kind: "track", roomId: "room-1", generation: 1,
+    entered: true, released: false, releaseAllowed: true };
+  rejected.host.changingModal = modal;
+  await confirmLobbyTrack(rejected.host, modal, { kind: "random", group: { id: "speed:hot1:1" } }, Yc);
+  assert.ok(!rejected.events.some(event => Array.isArray(event) && event[0] === "mutate"));
 });
 
 test("item rooms pick from the item catalog with only 道具 offered", async () => {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Export just track settlement IDs using the index and lazily read track tables.
-// Unrelated Git LFS archives need not be downloaded. Usage: node --import tsx tools/export-track-catalog.mjs [--check]
+// Export track settlement IDs or the deduplicated admin directory from indexed track tables.
+// Unrelated Git LFS archives need not be downloaded. Usage: node --import tsx tools/export-track-catalog.mjs [--directory] [--check]
 import { readFileSync, openSync, readSync, closeSync, statSync, writeFileSync } from "node:fs";
 import { inflateSync } from "node:zlib";
 import { pathToFileURL } from "node:url";
@@ -9,6 +9,7 @@ import { Rho5Reader } from "../src/codecs/rho5.ts";
 import { mapAssets, trackMetadataCatalog, trackTitles, timeAttackTrackCatalog, timeAttackTrackCatalogAll } from "../src/resources/track-catalog.ts";
 import { timeAttackTrackRows } from "./economy-export/tracks.mjs";
 import { formatDocument } from "./economy-export/canonical.mjs";
+import { trackDirectoryDocument } from "./economy-export/track-directory.mjs";
 
 export function indexedTrackLibrary() {
   const mirror = new URL("../../mirror/", import.meta.url);
@@ -66,7 +67,18 @@ export function indexedTrackLibrary() {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const target = new URL("../../server-go/internal/data/economy/tracks.json", import.meta.url);
+  const directory = process.argv.includes("--directory");
+  const target = new URL(`../../server-go/internal/data/economy/${directory ? "track-directory" : "tracks"}.json`, import.meta.url);
+  if (directory) {
+    const choices = await indexedTrackLibrary().timeAttackTrackCatalogAll();
+    const document = trackDirectoryDocument(choices);
+    const { text } = formatDocument(document);
+    if (process.argv.includes("--check")) {
+      if (text !== readFileSync(target, "utf8")) throw new Error("track-directory.json is stale");
+    } else writeFileSync(target, text);
+    console.log(`${document.tracks.length} canonical admin tracks; ${document.tracks.reduce((count, track) => count + 1 + track.aliases.length, 0)} accepted IDs`);
+    process.exit(0);
+  }
   const previous = readFileSync(target, "utf8");
   const document = JSON.parse(previous);
   // The light index and Sw enumerate containers differently. Keep existing row

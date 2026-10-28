@@ -122,6 +122,9 @@ type HeartbeatResponse struct {
 	// settings for the settlement entries marked finished. Absent from an
 	// older data service: nothing extra is shown.
 	RaceBonus *CurrencyAmounts `json:"raceBonus,omitempty"`
+	// DisabledTrackIDs applies to future random draws only. nil means an older
+	// data service supplied no setting; an empty array explicitly enables all.
+	DisabledTrackIDs *[]string `json:"disabledTrackIds,omitempty"`
 }
 
 // CurrencyAmounts is an amount of each currency (点券, 金币, K币).

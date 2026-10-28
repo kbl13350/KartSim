@@ -195,3 +195,15 @@
 用户管理 → 编辑账号 → GM 玩家可设置或撤销开发者身份。`gm` 是独立于 `admin` 的布尔字段，默认 `false`，不会授予后台权限。数据库迁移 v24 添加 `accounts.gm`；账号列表与详情返回该字段，修改操作写入审计日志。
 
 玩家重新进入大厅后，身份通过服务端签名票据传递，在房间玩家卡片底部显示独立的紫金开发者徽标，与房主及准备标识共存。普通房间、组队、挡人和 50 人乱斗共用此规则；跨节点比赛交接保留身份。文案随客户端语言显示为“开发者” / “Developer” / “개발자”。已连接的玩家需重新进入大厅以刷新身份。
+
+## 12. 内置地图主题与显示开关
+
+“地图管理”列出游戏资源中去重后的内置赛道，支持主题分类、名称/ID/主题搜索、开启/关闭状态筛选、单图开关和整个主题批量开关。“自制地图”继续管理玩家工坊作品。
+
+- 目录来自 `internal/data/economy/track-directory.json`，由客户端 `node --import tsx tools/export-track-catalog.mjs --directory` 生成。地图的主题以资源元数据为准；反向及明显不同场景保留独立条目。同图别名由同一开关控制。
+- `GET /api/admin/tracks`（管理员）返回 `{tracks, themes, version, updatedAt}`。`tracks` 每行包含 `id, title, theme, themeTitle, gameType, reverse, difficulty, aliases, enabled`；`themes` 每行包含 `id, title, total, enabledCount`。列表在浏览器内筛选分页。
+- `PATCH /api/admin/tracks/{id}`（管理员）接收 `{enabled: boolean}`，按标准地图及其别名组设置显示开关。
+- `PATCH /api/admin/track-themes/{theme}`（管理员）接收相同请求，批量设置主题下每张地图的独立开关。操作覆盖该主题的全部地图，不受后台当前搜索/状态筛选影响。两个 PATCH 都返回完整新目录。
+- `GET /api/track-settings`（公开，只读）返回 `{disabledTrackIds, version, updatedAt}`。关闭 ID 同时包含标准 ID 与全部别名。默认全部开启；设置存入 `app_settings`，发布新版与重启后保留。接口不缓存。
+- 关闭影响玩家的选图、收藏选图与随机池；资源文件、旧 ID、正在进行的比赛和历史回放仍保留。打开选图时刷新设置；游戏节点通过既有心跳同步关闭列表，避免多人随机抽中已关闭地图。
+- 无效地图为 `TRACK_NOT_FOUND`，无效主题为 `TRACK_THEME_NOT_FOUND`，无效开关值为 `INVALID_TRACK_SETTINGS` / `INVALID_REQUEST`。管理员修改写入数据服务日志。

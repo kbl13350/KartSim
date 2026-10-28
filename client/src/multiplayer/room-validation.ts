@@ -140,7 +140,7 @@ export interface RoomSnapshot {
   /** 隊伍隨機分配 (team rooms, not in the release): the host lets the server deal the teams at the start. */
   randomTeam?: boolean;
   chat?: ChatMessage[];
-  raceError?: "LOAD_TIMEOUT" | "LOAD_FAILED" | "MEMBER_LEFT" | "HOST_CANCELLED";
+  raceError?: "LOAD_TIMEOUT" | "LOAD_FAILED" | "MEMBER_LEFT" | "HOST_CANCELLED" | "NO_ENABLED_TRACKS";
   race?: RaceSnapshot;
 }
 
@@ -468,7 +468,7 @@ export function isValidRoomSnapshot(value: unknown): value is RoomSnapshot {
         members.slots.has(slot) ||
         (value.mode === "team" ? slot % 4 >= capacity / 2 : slot >= capacity))) ||
       (value.raceError !== undefined &&
-        !["LOAD_TIMEOUT", "LOAD_FAILED", "MEMBER_LEFT", "HOST_CANCELLED"]
+        !["LOAD_TIMEOUT", "LOAD_FAILED", "MEMBER_LEFT", "HOST_CANCELLED", "NO_ENABLED_TRACKS"]
           .includes(String(value.raceError)))) return false;
   if (value.phase === "open") return value.race === undefined;
   const race = value.race;

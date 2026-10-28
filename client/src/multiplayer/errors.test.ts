@@ -4,6 +4,12 @@ import test from "node:test";
 
 import { formatMultiplayerError, serverError } from "./errors";
 
+test("an all-disabled multiplayer random pool has a player-facing explanation", () => {
+  const message = "当前随机池没有开放的地图，请房主重新选择赛道。";
+  assert.equal(formatMultiplayerError("NO_ENABLED_TRACKS"), message);
+  assert.equal(formatMultiplayerError(serverError({ code: "NO_ENABLED_TRACKS" })), message);
+});
+
 const source = readFileSync(new URL("../../../recovered/formatted/index.js", import.meta.url), "utf8");
 const start = source.indexOf("function C1(n) {");
 const end = source.indexOf("function Hl0(n)", start);

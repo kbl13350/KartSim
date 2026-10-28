@@ -1,3 +1,5 @@
+import { trackDisplayEnabled } from "../resources/track-display-settings";
+
 export interface RandomTrackGroup {
   id: string;
   trackIds: string[];
@@ -20,7 +22,8 @@ export class RandomTrackSession {
   activeGroupId: string | undefined;
   used = new Set<string>();
 
-  constructor(readonly random: () => number = Math.random) {}
+  constructor(readonly random: () => number = Math.random,
+    readonly enabled: (id: string) => boolean = trackDisplayEnabled) {}
 
   selectGroup(groupId: string | undefined): void {
     if (this.activeGroupId !== groupId) {
@@ -31,8 +34,12 @@ export class RandomTrackSession {
 
   pick<Track extends RandomTrackCandidate>(group: RandomTrackGroup, tracks: Track[]): Track {
     const eligible = tracks.filter(track =>
-      group.trackIds.includes(track.id) && randomGroupAcceptsGameType(group, track.gameType));
+      this.enabled(track.id) && group.trackIds.includes(track.id) &&
+      randomGroupAcceptsGameType(group, track.gameType));
     if (eligible.length === 0) {
+      if (tracks.some(track => group.trackIds.includes(track.id) &&
+        randomGroupAcceptsGameType(group, track.gameType)))
+        throw new Error("当前随机池没有开放的地图，请重新选择赛道。");
       throw new Error(`随机池 ${group.id} 没有可加载的 ${group.gameType} 赛道。`);
     }
     this.selectGroup(group.id);

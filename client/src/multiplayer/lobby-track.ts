@@ -2,6 +2,7 @@ import { visibleTrackId } from "../resources/track-duplicates";
 import { tr } from "../i18n/locale";
 import { itemRandomTrackGroups, itemTrackCatalog, type TrackLibrary } from "../resources/track-catalog";
 import { formatMultiplayerError } from "./errors";
+import { isBrawlTrack } from "./lobby-brawl-mode";
 import type { Gameplay, LobbyRoom } from "./lobby-actions";
 import type { ChangingModal } from "./lobby-dialogs";
 import { isDraftTrackId } from "../mapeditor/design";
@@ -102,6 +103,7 @@ export async function loadItemTrackChoices(library: unknown):
  */
 export function lobbyRandomTrackRules<Rule extends RandomTrackRule>(
   gameplay: Gameplay | undefined, rules: readonly Rule[]): Rule[] {
+  if (gameplay === "brawl") return rules.filter(rule => rule.code === 0);
   if (gameplay !== "item") return rules as Rule[];
   return rules.flatMap(rule => {
     const [gameType, type, level] = rule.groupId.split(":");
@@ -138,7 +140,8 @@ export async function chooseLobbyTrack(host: LobbyTrackHost,
     const catalog = itemChoices?.tracks ??
       (await host.options.library.timeAttackTrackCatalog()).filter(track => !isDraftTrackId(track.id));
     const tracks = deps.gameplay(room) === "giant"
-      ? catalog.filter(track => deps.isGiantTrack(track.id)) : catalog;
+      ? catalog.filter(track => deps.isGiantTrack(track.id))
+      : deps.gameplay(room) === "brawl" ? catalog.filter(track => isBrawlTrack(track.id)) : catalog;
     if (!host.isChangingModalCurrent(modal)) return;
     const rules = lobbyRandomTrackRules(deps.gameplay(room), deps.randomRules);
     const groups = room.resourceVersion === "p3553"

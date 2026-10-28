@@ -126,6 +126,11 @@ func chooseTrack(r *room) string {
 	if r.trackID != "" {
 		return r.trackID
 	}
+	pool := randomTrackPool(r)
+	return pool[rand.IntN(len(pool))]
+}
+
+func randomTrackPool(r *room) []string {
 	var pool []string
 	switch r.gameplay {
 	case "roadblock":
@@ -139,7 +144,7 @@ func chooseTrack(r *room) string {
 	default:
 		pool = defaultTracks
 	}
-	return pool[rand.IntN(len(pool))]
+	return pool
 }
 
 func addRaceData(r *room, rc *race) {

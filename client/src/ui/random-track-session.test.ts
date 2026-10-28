@@ -72,3 +72,18 @@ test("random pools avoid repeats, reset on group changes and clamp random sample
   };
   assert.deepEqual(run(RandomTrackSession), run(release.Tc0));
 });
+
+test("a changed display policy excludes closed maps even from an already selected random pool", () => {
+  const disabled = new Set<string>();
+  const session = new RandomTrackSession(() => 0, id => !disabled.has(id));
+  const tracks = ["a", "b", "c"].map(id => ({ id, gameType: "speed" }));
+  const group = { id: "all", trackIds: ["a", "b", "c"], gameType: "speed" };
+  assert.equal(session.pick(group, tracks).id, "a");
+  disabled.add("b");
+  assert.equal(session.pick(group, tracks).id, "c");
+  for (let i = 0; i < 10; i++) assert.notEqual(session.pick(group, tracks).id, "b");
+  disabled.add("a"); disabled.add("c");
+  assert.throws(() => session.pick(group, tracks), /当前随机池没有开放的地图/);
+  disabled.delete("b");
+  assert.equal(session.pick(group, tracks).id, "b");
+});

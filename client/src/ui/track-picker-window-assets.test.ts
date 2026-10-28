@@ -6,14 +6,53 @@ import type { BinaryXmlNode } from "../codecs/binary-xml";
 import { attribute } from "../codecs/binary-xml";
 import {
   findTrackPickerNode, loadTrackCard, loadTrackPickerWindowAssets,
-  resolveTrackCardResource, type TrackPickerAssetDependencies,
+  resolveTrackCardResource, trackPickerThemesForTracks, type TrackPickerAssetDependencies,
   type TrackPickerResource, type TrackPickerResourceLibrary,
 } from "./track-picker-window-assets";
+import { filteredTracks } from "./track-picker";
+import { THEME_TITLES } from "../resources/resource-groups";
 
 const release = readFileSync(new URL("../../../recovered/formatted/index.js", import.meta.url), "utf8");
 const start = release.indexOf("const Ai = 1600,");
 const end = release.indexOf("class Tc0 {", start);
 assert.ok(start > 0 && end > start);
+
+test("candidate themes add Korea without changing native tabs or reintroducing duplicate maps", () => {
+  const icon = { width: 1, height: 1, image: {} as HTMLCanvasElement };
+  const themes = [{ id: "0", title: "全部", icon }, { id: "village", title: "城镇", icon }];
+  const tracks = [
+    { id: "village_R01", title: "城镇", theme: "village", gameType: "speed" },
+    { id: "korea_R01", title: "韓國 繁華的首爾", theme: "korea", gameType: "speed",
+      resourceCategory: "resource:extra", duplicateAliases: [{ id: "korea_R01_old" }] },
+    { id: "korea_R01_rvs", title: "[反]韓國 繁華的首爾", theme: "korea", gameType: "speed",
+      resourceCategory: "resource:extra" },
+    { id: "korea_I01", title: "韓國 全州韓屋村", theme: "korea", gameType: "item",
+      resourceCategory: "resource:extra" },
+  ];
+  const actual = trackPickerThemesForTracks(themes, tracks);
+  assert.deepEqual(actual.map(theme => theme.id), ["0", "village", "korea", "resource:extra"]);
+  assert.deepEqual(actual.slice(0, 2), themes);
+  assert.equal(actual.find(theme => theme.id === "korea")?.title, "韩国");
+  assert.equal(actual.find(theme => theme.id === "korea")?.icon, icon);
+  const state = { options: { tracks, favoriteTrackIds: new Set<string>() }, searchQuery: "",
+    selectedTheme: "korea", itemEnabled: true, speedEnabled: true };
+  assert.deepEqual(filteredTracks(state).map(track => track.id), ["korea_R01", "korea_R01_rvs", "korea_I01"]);
+  assert.deepEqual(filteredTracks({ ...state, speedEnabled: false }).map(track => track.id), ["korea_I01"]);
+  assert.deepEqual(trackPickerThemesForTracks(actual, tracks), actual);
+  const koreaIcon = { ...icon, width: 42 };
+  assert.equal(trackPickerThemesForTracks(themes, tracks,
+    [{ id: "korea", title: "韩国", icon: koreaIcon }]).find(theme => theme.id === "korea")?.icon, koreaIcon);
+  assert.deepEqual(themes.map(theme => theme.id), ["0", "village"]);
+});
+
+test("supplemental themes follow available candidates and preserve custom choices", () => {
+  const icon = { width: 1, height: 1, image: {} as HTMLCanvasElement };
+  const themes = [{ id: "0", title: "全部", icon }];
+  assert.deepEqual(trackPickerThemesForTracks(themes, []), themes);
+  const tracks = [{ id: "custom_demo123", title: "自制地图", theme: "custom", gameType: "speed" }];
+  assert.deepEqual(trackPickerThemesForTracks(themes, tracks).map(theme => theme.id), ["0", "custom"]);
+  assert.deepEqual(trackPickerThemesForTracks([], tracks), []);
+});
 
 function node(name: string, values: Record<string, string> = {},
   children: BinaryXmlNode[] = []): BinaryXmlNode {
@@ -74,7 +113,7 @@ function withFakeBrowser<T>(run: () => Promise<T>): Promise<T> {
 }
 
 type Fault = "none" | "random-image" | "missing-main" | "duplicate-main" |
-  "wrong-config-owner" | "missing-random-theme" | "invalid-xml";
+  "wrong-config-owner" | "missing-random-theme" | "invalid-xml" | "extra-korea";
 
 function fixture(fault: Fault = "none") {
   const requests: string[] = [];
@@ -91,6 +130,9 @@ function fixture(fault: Fault = "none") {
   const localBag = node("Bag", {}, [
     node("k", { n: "themeMabinogi" }, [node("m", { c: "cn", v: "马比诺基" })]),
     node("k", { n: "themeMapleStory" }, [node("m", { c: "cn", v: "冒险岛" })]),
+    ...(fault === "extra-korea" ? [
+      node("k", { n: "themeKorea" }, [node("m", { c: "kr", v: "코리아" })]),
+    ] : []),
   ]);
   const mainWindow = node("Window", { name: "selectTrackEx" }, [
     node("TextButton", { name: "ok" }), node("TextButton", { name: "cancel" }),
@@ -132,6 +174,10 @@ function fixture(fault: Fault = "none") {
   }
   const library: TrackPickerResourceLibrary = {
     canonicalCandidates(path) {
+      // Baseline fixtures only contain the configured native themes. Missing
+      // optional artwork probes are separate from the native request parity.
+      const supplemental = Object.keys(THEME_TITLES).some(id => path === `dialog2_/selectTrackEx/${id}_1.png`);
+      if (supplemental && !(fault === "extra-korea" && path.endsWith("/korea_1.png"))) return [];
       requests.push(`candidate:${path}`);
       if (fault === "missing-main" && path.endsWith("trackSelect_img_mainBG.png")) return [];
       if (fault === "random-image" && path.includes("popup_bg_tracklist_title.png")) return [];
@@ -219,6 +265,20 @@ test("native SelectTrackEx assets and random card resources match the release", 
       assert.deepEqual(snapshot(actual), snapshot(expected), fault);
       assert.deepEqual(authored.requests.slice().sort(), packaged.requests.slice().sort(), fault);
     }
+  }));
+
+test("Korea artwork outside the packaged tab order is available only for a candidate theme", async () =>
+  withFakeBrowser(async () => {
+    const built = fixture("extra-korea");
+    const { assets } = await loadTrackPickerWindowAssets(built.library, [], built.dependencies);
+    assert.deepEqual(assets.themes.map(theme => theme.id), ["mabi", "maple"]);
+    assert.deepEqual(assets.supplementalThemes?.map(theme => theme.id), ["korea"]);
+    assert.ok(built.requests.includes("bytes:dialog2_/selectTrackEx/korea_1.png"));
+    const tracks = [{ id: "korea_R01", title: "韓國 繁華的首爾", theme: "korea", gameType: "speed" }];
+    const added = trackPickerThemesForTracks(assets.themes, tracks, assets.supplementalThemes);
+    assert.equal(added.at(-1)?.icon, assets.supplementalThemes?.[0]?.icon);
+    assert.equal(added.at(-1)?.title, "韩国");
+    assert.deepEqual(trackPickerThemesForTracks(assets.themes, [], assets.supplementalThemes), assets.themes);
   }));
 
 test("missing and duplicate required resources reject as in the release", async () =>

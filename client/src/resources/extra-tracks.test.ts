@@ -45,12 +45,15 @@ test("hidden, mission, training, special and variant selections resolve usable r
   assert.equal((await trackMetadata(library, "village_L01_02"))?.resourceCategory, "resource:training");
 });
 
-test("expanded maps stay out of existing random pools and item-room admission", async () => {
+test("expanded maps stay out of speed random pools; only validated Korea item maps enter item rooms", async () => {
   const choices = await library.timeAttackTrackCatalog();
   const extras = new Set(choices.filter(track => track.resourceCategory).map(track => track.id));
   for (const group of await timeAttackRandomTrackGroups(library))
     assert.ok(group.trackIds.every(id => !extras.has(id)), group.id);
-  assert.equal((await itemTrackCatalog(library)).length, 188);
+  const items = await itemTrackCatalog(library);
+  assert.equal(items.filter(track => !taiwanTrack(track.id)).length, 188);
+  assert.equal(items.filter(track => taiwanTrack(track.id)).length, 9);
+  assert.ok(items.filter(track => taiwanTrack(track.id)).every(track => track.theme === "korea"));
 });
 
 test("resource categories, original themes and ID searches can all find task maps", async () => {

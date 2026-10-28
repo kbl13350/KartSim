@@ -74,3 +74,5 @@ grep -c "<script>" ../internal/data/api/adminui/index.html
 | `src/views/` | 每个标签页一个组件 |
 | `src/utils/` | 北京时间、数字与中文标签格式化、确认框等 |
 | `dev/mock.ts` | 仅开发用的假接口 |
+
+“地图管理”提供内置地图的主题分类、搜索、开启/关闭筛选及单图、整主题开关；“自制地图”仍用于地图工坊作品。开发假接口使用同一份生成的内置目录，所有开关仅保存在 mock 进程内，不会写入正式数据库。游戏客户端消费公开 `/api/track-settings`，接口约定见 `../ADMIN.md` 第 12 节。

@@ -11,6 +11,7 @@ export interface TabDefinition {
 export const TABS: TabDefinition[] = [
   { name: 'overview', label: '概览' },
   { name: 'users', label: '用户管理' },
+  { name: 'tracks', label: '地图管理' },
   { name: 'logins', label: '登录记录' },
   { name: 'anti-cheat', label: '反作弊记录' },
   { name: 'online', label: '在线玩家' },

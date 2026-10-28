@@ -117,6 +117,9 @@ type Options struct {
 	// the data service from its own settings. Called with the lobby lock
 	// held; must not block.
 	RaceBonus func() contract.CurrencyAmounts
+	// TrackEnabled filters future random draws (nil: all enabled). Like
+	// RaceBonus, it must not block while the lobby lock is held.
+	TrackEnabled func(trackID string) bool
 	// ItemMode is the item race data (nil: the embedded itemmode.json).
 	ItemMode *itemmode.Data
 	// CustomItemTrack reports whether a published 地图工坊 map (custom_<id>,
@@ -190,24 +193,25 @@ func (c *Client) emitSnapshot(roomID string, payload []byte) {
 
 // Lobby owns every room on this node.
 type Lobby struct {
-	nodeID      string
-	clock       Clock
-	wall        func() time.Time
-	presence    Presence
-	tickets     Tickets
-	recorder    Recorder
-	ownership   Ownership
-	allowGuests bool
-	maxPlayers  int
-	maxRooms    int
-	busy        func() bool
-	rates       func() rewards.Rates
-	raceBonus   func() contract.CurrencyAmounts
-	customItem  func(trackID string) bool
-	log         *slog.Logger
-	items       *itemmode.Data
-	itemRandom  func() itemmode.Random
-	itemTests   bool
+	nodeID       string
+	clock        Clock
+	wall         func() time.Time
+	presence     Presence
+	tickets      Tickets
+	recorder     Recorder
+	ownership    Ownership
+	allowGuests  bool
+	maxPlayers   int
+	maxRooms     int
+	busy         func() bool
+	rates        func() rewards.Rates
+	raceBonus    func() contract.CurrencyAmounts
+	trackEnabled func(trackID string) bool
+	customItem   func(trackID string) bool
+	log          *slog.Logger
+	items        *itemmode.Data
+	itemRandom   func() itemmode.Random
+	itemTests    bool
 	// itemChangers gives every item racer unlimited changers
 	// (KART_ITEM_CHANGERS=infinite).
 	itemChangers bool
@@ -260,6 +264,7 @@ func New(opts Options) *Lobby {
 		busy:         opts.Busy,
 		rates:        opts.Rates,
 		raceBonus:    opts.RaceBonus,
+		trackEnabled: opts.TrackEnabled,
 		log:          opts.Logger,
 		items:        opts.ItemMode,
 		customItem:   opts.CustomItemTrack,
@@ -1504,6 +1509,9 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 	if err := l.membersOwnEquipment(r, check); err != nil {
 		return nil, err
 	}
+	if r.trackID == "" && l.chooseTrack(r) == "" {
+		return nil, fail(http.StatusBadRequest, "NO_ENABLED_TRACKS")
+	}
 	if l.home != nil {
 		// The global lobby: the race runs on a game node.
 		return l.handOff(c, r, check)
@@ -1522,6 +1530,15 @@ func (l *Lobby) launchRace(r *room, c *Client, check *ownershipCheck) {
 		return
 	}
 	loadingWindow := int64(30_000)
+	trackID := l.chooseTrack(r)
+	if trackID == "" {
+		// Settings can change during handoff; never silently fall back to a
+		// disabled default or launch a race with an empty resource path.
+		r.raceError = "NO_ENABLED_TRACKS"
+		r.revision++
+		l.broadcastRoom(r, c)
+		return
+	}
 	switch r.gameplay {
 	case "roadblock", "giant", "rp", "lte", "brave":
 		loadingWindow = 90_000
@@ -1532,7 +1549,7 @@ func (l *Lobby) launchRace(r *room, c *Client, check *ownershipCheck) {
 		id:                  newUUID(),
 		channelName:         r.channelName,
 		gameplay:            r.gameplay,
-		trackID:             l.chooseTrack(r),
+		trackID:             trackID,
 		loadingDeadline:     l.clock.Now() + loadingWindow,
 		rosterAccounts:      map[string]string{},
 		rosterNames:         map[string]string{},

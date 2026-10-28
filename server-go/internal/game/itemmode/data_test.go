@@ -111,15 +111,20 @@ func TestEmbeddedTracksAndPools(t *testing.T) {
 	// The tracks of the client's item catalog (client/src/resources/track-catalog.ts
 	// itemTrackCatalog): 159 item tracks (喜羊羊 青青草原 xyy_I01 rebuilt from the
 	// original AI paths included) and the 29 reverse tracks with an open
-	// trackLocale@cn track_rvs row.
+	// trackLocale@cn track_rvs row, plus 9 verified TW Korea courses (2 reverse).
 	reverse := 0
 	for _, track := range d.Tracks {
 		if track.Reverse {
 			reverse++
 		}
 	}
-	if len(d.Tracks) != 188 || reverse != 29 {
-		t.Errorf("%d item tracks, %d reverse; the client catalog has 188 and 29", len(d.Tracks), reverse)
+	if len(d.Tracks) != 197 || reverse != 31 {
+		t.Errorf("%d item tracks, %d reverse; the client catalog has 197 and 31", len(d.Tracks), reverse)
+	}
+	for _, id := range []string{"korea_I01", "korea_I01_rvs", "korea_I02", "korea_I02_old", "korea_I03", "korea_I03_rvs", "korea_I03_old", "korea_I04", "korea_I05"} {
+		if track, ok := d.Track(id); !ok || track.Cubes == 0 || track.Level < 2 {
+			t.Errorf("Korea item track %s = %+v %v", id, track, ok)
+		}
 	}
 	if track, ok := d.Track("xyy_I01"); !ok || track.Cubes == 0 {
 		t.Errorf("xyy_I01 = %+v %v", track, ok)

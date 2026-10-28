@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { mirrorArchives } from "./mirror-archives.test-support";
+import { TAIWAN_ITEM_TRACK_IDS, taiwanTrack } from "./taiwan-tracks";
 import {
   itemRandomTrackGroups, itemTrackCatalog, mapAssets, timeAttackTrackCatalog,
   trackMetadataCatalog, type TrackLibrary, type TrackResource,
@@ -60,10 +61,14 @@ const library = mirrorTrackLibrary();
 const items = await itemTrackCatalog(library);
 const ids = new Set(items.map(track => track.id));
 
-test("p3553 道具赛赛道目录：159 条道具赛道（含重建的喜羊羊 青青草原）与 29 条反向赛道", async () => {
-  assert.equal(items.filter(track => !track.reverse).length, 159);
+test("p3553 道具赛目录保留原版 188 条，并补充已验证的 9 条韩国道具赛道", async () => {
+  const release = items.filter(track => !taiwanTrack(track.id));
+  assert.equal(release.filter(track => !track.reverse).length, 159);
   assert.ok(ids.has("xyy_I01"), "xyy_I01");
-  assert.equal(items.filter(track => track.reverse).length, 29);
+  assert.equal(release.filter(track => track.reverse).length, 29);
+  assert.deepEqual(items.filter(track => taiwanTrack(track.id)).map(track => track.id).sort(),
+    [...TAIWAN_ITEM_TRACK_IDS].sort());
+  assert.equal(items.filter(track => track.reverse).length, 31);
   assert.ok(items.every(track => track.gameType === "item"));
   // The five isOnlyItemTrack tracks (track@zz.bml) are item rooms' own.
   for (const id of ["village_C01", "mine_C04", "china_C01", "world_C02", "nemo_C02"])
@@ -95,7 +100,9 @@ test("p3553 道具赛随机组：人气 1-5、全部、新图、反向都只抽�
     assert.ok(group.trackIds.length > 0, group.id);
     assert.ok(group.trackIds.every(id => ids.has(id)), group.id);
   }
-  assert.equal(groups.find(group => group.id === "item:all:0")!.trackIds.length, 159);
+  assert.equal(groups.find(group => group.id === "item:all:0")!.trackIds.length, 166);
+  assert.ok(groups.find(group => group.id === "item:all:0")!.trackIds.includes("korea_I05"));
+  assert.ok(groups.find(group => group.id === "item:reverse:0")!.trackIds.includes("korea_I01_rvs"));
   assert.ok(groups.find(group => group.id === "item:reverse:0")!.trackIds
     .every(id => id.endsWith("_rvs")));
 });

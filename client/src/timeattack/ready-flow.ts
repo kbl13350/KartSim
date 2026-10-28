@@ -14,6 +14,7 @@ import { startDuelRace, type ReadyDuelController } from "./ready-duel";
 import type { DuelRaceRequest } from "../ui/ready-missions";
 import { tellPlayer } from "../ui/game-popups";
 import { expandTrackChoices, visibleTrackId } from "../resources/track-duplicates";
+import { refreshTrackDisplaySettings } from "../resources/track-display-settings";
 
 /** The selection carried from the Ready screen into a single-player race. */
 export interface ReadySelection {
@@ -485,6 +486,7 @@ export async function resolveRandomSelection(
   if (!group || selection.story) return selection;
   const library = controller.host.getLibrary();
   if (!library) throw new Error("随机赛道启动缺少资源库。");
+  await refreshTrackDisplaySettings();
   const catalog = controller.randomTrackCatalog ?? await library.timeAttackTrackCatalog();
   controller.randomTrackCatalog = catalog;
   const track = controller.randomTrackSession.pick(group, expandTrackChoices(catalog));

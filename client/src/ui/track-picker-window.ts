@@ -1,4 +1,3 @@
-import { EXTRA_TRACK_CATEGORIES } from "../resources/extra-tracks";
 import { tr } from "../i18n/locale";
 /** The SelectTrackEx window: track cards, random cards, favorites and input. */
 
@@ -21,6 +20,8 @@ import type {
   TrackPickerWindowAssets, TrackPickerWindowNode, TrackPickerWindowImage,
   TrackPickerWindowFrame, TrackPickerWindowLibrary,
 } from "./track-picker-window-assets";
+import { trackPickerThemesForTracks } from "./track-picker-window-assets";
+import { prepareTrackPickerOptions } from "./track-picker-policy";
 
 export interface TrackPickerTrack extends SelectableTrack {
   path: string;
@@ -335,12 +336,8 @@ export class TrackPickerWindow {
         this.render();
       })],
     ]);
-    const icon = assets.themes.find(theme => theme.id === "0")?.icon ?? assets.themes[0]?.icon;
-    if (icon) this.assets = { ...assets, themes: [...assets.themes,
-      ...Object.entries(EXTRA_TRACK_CATEGORIES).filter(([id]) =>
-        options.tracks.some(track => track.resourceCategory === id) &&
-        !assets.themes.some(theme => theme.id === id))
-        .map(([id, title]) => ({ id, title, icon }))] };
+    this.assets = { ...assets, themes: trackPickerThemesForTracks(
+      assets.themes, options.tracks, assets.supplementalThemes) };
     this.selectedTrackId = options.selectedTrackId;
     this.selectedRandomGroupId = options.selectedRandomGroupId;
     const random = options.randomGroups?.find(group => group.id === this.selectedRandomGroupId);
@@ -367,6 +364,7 @@ export class TrackPickerWindow {
   }
 
   static async load(options: TrackPickerWindowOptions): Promise<TrackPickerWindow> {
+    options = await prepareTrackPickerOptions(options);
     if (options.tracks.length === 0)
       throw new Error("P3528 mode 9 没有可选择的普通计时赛赛道。");
     const dependencies = this.dependencies;

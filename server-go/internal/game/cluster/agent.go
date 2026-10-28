@@ -64,7 +64,8 @@ type Agent struct {
 	rates atomic.Pointer[rewards.Rates]
 	// raceBonus is the admin-set per-race grant from the latest heartbeat
 	// response (nil until one reported it).
-	raceBonus atomic.Pointer[contract.CurrencyAmounts]
+	raceBonus      atomic.Pointer[contract.CurrencyAmounts]
+	disabledTracks atomic.Pointer[map[string]bool]
 }
 
 type queuedRelease struct {
@@ -427,6 +428,7 @@ func (a *Agent) heartbeat(ctx context.Context) {
 	if err == nil {
 		a.updateRates(resp)
 		a.updateRaceBonus(resp)
+		a.updateTrackSettings(resp)
 	}
 	a.mu.Lock()
 	wasHealthy, reported := a.healthy, a.reported

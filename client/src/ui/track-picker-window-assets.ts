@@ -2,7 +2,10 @@
 
 import type { BinaryXmlNode } from "../codecs/binary-xml";
 import { attribute } from "../codecs/binary-xml";
-import { resourceText } from "../i18n/locale";
+import { resourceText, tr } from "../i18n/locale";
+import { EXTRA_TRACK_CATEGORIES } from "../resources/extra-tracks";
+import { THEME_TITLES } from "../resources/resource-groups";
+import type { SelectableTrack } from "./track-picker";
 import type { UiRectangle } from "./scrollbar";
 
 export const trackPickerFontFamily = "P3528 Source Han Sans CN Track Select";
@@ -103,8 +106,32 @@ export interface TrackPickerWindowAssets {
   randomDescriptionBackground?: TrackPickerImage;
   randomDescriptionTitle?: TrackPickerImage;
   themes: Array<{ id: string; title: string; icon: TrackPickerImage }>;
+  /** Packaged artwork for themes omitted from the native CN tab order. */
+  supplementalThemes?: Array<{ id: string; title: string; icon: TrackPickerImage }>;
   strings: Map<string, string>;
   font: FontFace;
+}
+
+/** The packaged CN tabs predate imported themes such as Korea. Add only themes
+ * present in this picker's candidates, retaining the native tab order/artwork. */
+export function trackPickerThemesForTracks(
+  themes: TrackPickerWindowAssets["themes"],
+  tracks: readonly SelectableTrack[],
+  supplementalThemes: TrackPickerWindowAssets["themes"] = [],
+): TrackPickerWindowAssets["themes"] {
+  const icon = themes.find(theme => theme.id === "0")?.icon ?? themes[0]?.icon;
+  if (!icon) return themes;
+  const result = [...themes];
+  const seen = new Set(themes.map(theme => theme.id));
+  const append = (id: string, title: string) => {
+    if (!id || seen.has(id)) return;
+    seen.add(id);
+    result.push(supplementalThemes.find(theme => theme.id === id) ?? { id, title: tr(title), icon });
+  };
+  for (const track of tracks) append(track.theme, THEME_TITLES[track.theme] ?? track.theme);
+  for (const [id, title] of Object.entries(EXTRA_TRACK_CATEGORIES))
+    if (tracks.some(track => track.resourceCategory === id)) append(id, title);
+  return result;
 }
 
 /** Stable names consumed by the standalone picker window module. */
@@ -411,6 +438,18 @@ export async function loadTrackPickerWindowAssets(library: TrackPickerResourceLi
   const normalThemes = await Promise.all(configured.filter(theme => theme.id !== "1024")
     .map(async theme => ({ id: theme.id, title: theme.title,
       icon: await loadImage(library, imageName(theme.icon, 1, false), dependencies) })));
+  const supplementalThemes = await Promise.all(Object.keys(THEME_TITLES)
+    .filter(id => !configured.some(theme => theme.id === id))
+    .flatMap(id => {
+      const source = optionalOwnedResource(library,
+        `${selectTrackDirectory}/${imageName(id, 1, false)}.png`, selectTrackOwner);
+      if (!source) return [];
+      return [decodeTrackPickerImage(source, dependencies).then(icon => ({
+        // Omitted themes may only have a Korean StringBag fallback in the CN
+        // pack. Use the localized shared name instead of showing 코리아 in Chinese.
+        id, title: tr(THEME_TITLES[id]!), icon,
+      }))];
+    }));
   let random: Awaited<ReturnType<typeof loadRandomAssets>> | undefined;
   let randomError: unknown;
   if (randomGroups.length > 0) {
@@ -441,6 +480,7 @@ export async function loadTrackPickerWindowAssets(library: TrackPickerResourceLi
       randomDescriptionBackground: random?.descriptionBackground,
       randomDescriptionTitle: random?.descriptionTitle,
       themes, strings, font,
+      ...(supplementalThemes.length ? { supplementalThemes } : {}),
       notice: { ...definitions.notice, frameImage: frame.image, iconImage: noticeIcon.image },
     },
   };
