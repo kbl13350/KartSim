@@ -47,3 +47,35 @@
 ```sh
 node --experimental-strip-types --loader ./src/resources/node-test-loader.mjs --test ./src/resources/resources.test.mjs
 ```
+
+### 全资源手动选图
+
+`extra-tracks.ts` 在原有 `timeAttackTrackCatalog` 后补齐赛道容器中的所有
+`track*.1s` 地图：任务、驾照、特殊模式、扩展赛道和地图变体通过
+`resourceCategory` 分类；`theme` 仍保留真实主题供纹理、音乐及主题筛选使用。
+p3553 共 559 个选项（449 个正向地图及 110 个反向/其他变体），其中新增 188 个。
+`myRoom` 下的同名文件属于小屋场景，不作为赛道。
+
+新增条目保留原圈数，缺失时使用 1 圈；没有中文名时展示资源编号；没有预览图时
+使用编号占位卡。变体 ID 使用 `__` 分隔，反向变体统一以 `_rvs` 结尾，兼容回放和结算。
+原始 BML 不改写；加载时按模型提供手动选图 metadata，不将这些条目加入原来的
+随机赛道池或道具赛房间目录。任务地图可独立选择不代表任务专属玩法已实现。
+
+只更新服务端赛道结算目录可运行 `node --import tsx tools/export-track-catalog.mjs`，
+校验用 `--check`；该命令只读取档案索引和赛道表，不要求下载无关的 LFS 档案。
+完整资源环境仍可使用原有 economy 导出命令。目录覆盖、默认 metadata、分类检索、
+随机池隔离和缺图预览由 `extra-tracks.test.ts` 验证。
+
+新增地图实跑检查：启动 `npm run dev` 后执行
+`PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node tools/test-extra-tracks-browser.mjs`。
+测试会读取真实 p3553 容器，在 Chrome/WebGL 中逐张装配地图、小地图与音乐，
+执行 300 帧原版驾驶物理并检查各路线段的采样，结果写入
+`../output/extra-tracks/browser.json`。可附加地图 ID 单独复测。
+运行前必须将 Git LFS 资源下载完整，资源索引存在不代表容器内容已到本地。
+这属于自动加载与驾驶冒烟检查，不替代所有赛道的完整人工跑圈验收。
+
+独立资源地图的任务金币与脚本事件不启用任务计分；常规赛道和 LTE 专属准入仍保持原规则。
+海外训练变体沿用其基础地图的训练路线规则。卡丁城从普通选图进入时也注册城市碰撞范围。
+`pirate_P01`、`maple_P01`、`fengshen_P01`、`mabi_P01` 缺少可用竞赛路线或带有占位路线，
+标为“自由探索”，使用原场景地面及无终点的复位段，不作为完整计圈赛道。
+海盗与封神场景补的是原有地形网格的碰撞标记，没有添加隐藏平面。

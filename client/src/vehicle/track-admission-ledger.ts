@@ -20,6 +20,8 @@ export interface TrackAdmissionOptions {
    * handed to the license race instead of blocking the track.
    */
   riderSchool?: boolean;
+  /** Independent practice on an extra resource map: mission collectibles have no score owner. */
+  resourcePractice?: boolean;
 }
 
 export interface TrackAdmissionModel {
@@ -117,6 +119,15 @@ export function routeSurfaceRecord(
   if (kind === "flash") return flashRouteRecord(road, roadIndex, recordIndex, source, mode);
   if (options.riderSchool && mode === "time-attack" && /^event:\w+$/.test(surface))
     return riderSchoolRouteRecord(road, roadIndex, recordIndex, surface, source, mode);
+
+  // Scripted mission hints/items do not run in independent driving practice.
+  // Keep physics/camera surface tags on their normal strict admission path.
+  if (options.resourcePractice && !options.itemGame && !options.lteCoins &&
+      (/^event:\w+$/.test(surface) || /^cloud\d+$/.test(surface))) {
+    return { ...riderSchoolRouteRecord(road, roadIndex, recordIndex, surface, source, mode),
+      decision: "omit", reason: "practice-script-omission", consumer: "independent driving practice",
+      owner: "none", lifecycle: "mission script not instantiated" };
+  }
 
   const empty = surface.length === 0;
   const rail = surface === "rail";
@@ -260,6 +271,14 @@ export function buildTrackAdmissionLedger(
   }
 
   for (const [index, occurrence] of occurrences.entries()) {
+    if (options.resourcePractice && !itemGame && !options.lteCoins && occurrence.value.kind === "ToLucci") {
+      records.push({ occurrence: { kind: "track-object", index, encoding: occurrence.encoding,
+        objectId: occurrence.id, className: "ToLucci", name: occurrence.value.name },
+        mode, source, producer: "TRACKDATA ToLucci mission marker",
+        consumer: "independent practice omits mission scoring", owner: "none", lifecycle: "none",
+        order: "no runtime collectible", decision: "omit", reason: "practice-collectible-omission" });
+      continue;
+    }
     records.push(itemGame
       ? admitItemGameTrackObject(occurrence, index, source, lensFlareCount,
         options.p3553CourseSound === true, ops)

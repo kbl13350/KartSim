@@ -3,6 +3,7 @@ export interface SelectableTrack {
   title: string;
   theme: string;
   gameType: string;
+  resourceCategory?: string;
 }
 
 export interface SelectableRandomGroup {
@@ -44,8 +45,8 @@ export function filteredTracks<Track extends SelectableTrack>(
   return state.options.tracks.filter(track => {
     if (!gameTypeEnabled(state, track)) return false;
     if (state.selectedTheme === "favorite") return state.options.favoriteTrackIds.has(track.id);
-    if (state.selectedTheme === undefined) return terms.every(term => track.title.includes(term));
-    return state.selectedTheme === "0" || track.theme === state.selectedTheme;
+    if (state.selectedTheme === undefined) return terms.every(term => `${track.title} ${track.id}`.toLowerCase().includes(term.toLowerCase()));
+    return state.selectedTheme === "0" || track.theme === state.selectedTheme || track.resourceCategory === state.selectedTheme;
   });
 }
 

@@ -1,3 +1,4 @@
+import { EXTRA_TRACK_CATEGORIES } from "../resources/extra-tracks";
 import { tr } from "../i18n/locale";
 /** The SelectTrackEx window: track cards, random cards, favorites and input. */
 
@@ -292,6 +293,7 @@ export class TrackPickerWindow {
   readonly loadingCards = new Set<string>();
   readonly touchSwipe = new TouchPageSwipe(48, 8,
     direction => this.touchSwipeBar?.wheel(direction, undefined as unknown as number) ?? false);
+  readonly failedCards = new Set<string>();
   readonly favoriteStates = new Map<string, number>();
   readonly context: CanvasRenderingContext2D;
   readonly windows: Map<TrackPickerWindowNode, UiRectangle>;
@@ -333,6 +335,12 @@ export class TrackPickerWindow {
         this.render();
       })],
     ]);
+    const icon = assets.themes.find(theme => theme.id === "0")?.icon ?? assets.themes[0]?.icon;
+    if (icon) this.assets = { ...assets, themes: [...assets.themes,
+      ...Object.entries(EXTRA_TRACK_CATEGORIES).filter(([id]) =>
+        options.tracks.some(track => track.resourceCategory === id) &&
+        !assets.themes.some(theme => theme.id === id))
+        .map(([id, title]) => ({ id, title, icon }))] };
     this.selectedTrackId = options.selectedTrackId;
     this.selectedRandomGroupId = options.selectedRandomGroupId;
     const random = options.randomGroups?.find(group => group.id === this.selectedRandomGroupId);
@@ -345,7 +353,7 @@ export class TrackPickerWindow {
     this.speedEnabled &&= trackGameTypeOffered(options, "speed");
     const track = options.tracks.find(candidate => candidate.id === options.selectedTrackId);
     if (!track) throw new Error("P3528 SelectTrackEx 当前赛道不在 mode 9 候选中。");
-    this.selectedTheme = this.selectedRandomGroupId === undefined ? track.theme : "1024";
+    this.selectedTheme = this.selectedRandomGroupId === undefined ? track.resourceCategory ?? track.theme : "1024";
     this.placeInitialOffsets();
     this.prepareElements();
     this.element.className = "client-dialog";
@@ -650,6 +658,11 @@ export class TrackPickerWindow {
       width: right! - left!, height: bottom! - top! };
     const preview = this.cardTextures.get(track.id);
     if (preview) drawFittedCard(this.context, preview, card);
+    else if (track.resourceCategory) {
+      this.context.fillStyle = "#dbe7ef";
+      this.context.fillRect(card.x, card.y, card.width, card.height);
+      this.paintText(track.id, card, 12, "#42566b", "center", "center");
+    }
     const state = this.buttonState(`track:${track.id}`);
     drawImage(this.context, this.assets.cardFrame[state - 1]!, rectangle);
     if (track.id === this.selectedTrackId)
@@ -757,14 +770,18 @@ export class TrackPickerWindow {
     this.filteredTracks()
       .slice(this.trackOffset, this.trackOffset + this.pageSize("thumbList"))
       .forEach(track => {
-        if (this.cardTextures.has(track.id) || this.loadingCards.has(track.id)) return;
+        if (this.cardTextures.has(track.id) || this.loadingCards.has(track.id) || this.failedCards.has(track.id)) return;
         this.loadingCards.add(track.id);
         this.dependencies.loadTrackCard(this.options.library, track.path)
           .then(image => {
             this.cardTextures.set(track.id, image);
             this.render();
           })
-          .catch(error => this.options.onError?.(error))
+          .catch(error => {
+            this.failedCards.add(track.id);
+            if (!track.resourceCategory) this.options.onError?.(error);
+            this.render();
+          })
           .finally(() => this.loadingCards.delete(track.id));
       });
   }

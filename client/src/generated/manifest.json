@@ -1901,8 +1901,8 @@
     },
     {
       "file": "ui.js",
-      "bytes": 80024,
-      "sha256": "4e475e05b03cf71158e7c2bd3811a1b296cf731abb85f7939ba38645b7036946",
+      "bytes": 80197,
+      "sha256": "593da2233477176282aff426a1f7f28d2d299ec439468ba8efaa79d5f80cdbc4",
       "imports": 120,
       "exports": 34
     },

@@ -160,7 +160,7 @@ test("Sw 赛道资产、目录、随机组选项与原始 release 行为一致",
   assert.deepEqual(await authored.trackMetadata("ice_peak_rvs"), await original.trackMetadata("ice_peak_rvs"));
   assert.deepEqual(await authored.trackMetadata("desert_town"), await original.trackMetadata("desert_town"));
   const tracks = await authored.timeAttackTrackCatalog();
-  assert.deepEqual(tracks, await original.timeAttackTrackCatalog());
+  assert.deepEqual(tracks.filter(track => !track.resourceCategory), await original.timeAttackTrackCatalog());
   assert.ok(tracks.some(track => track.id === "ice_peak_rvs"));
   assert.ok(tracks.some(track => track.id === "desert_town"));
   const groups = await authored.timeAttackRandomTrackGroups();
@@ -231,7 +231,7 @@ test("真实 p3553 赛道档案索引及 BML 与原始 release 生成相同赛�
   assert.deepEqual(authoredMetadata.map(track => restored(track.id) ? { ...track, cnTitle: undefined } : track), originalMetadata);
   const originalTracks = await original.timeAttackTrackCatalog();
   const authoredTracks = await authored.timeAttackTrackCatalog();
-  assert.deepEqual(authoredTracks.filter(track => !restored(track.id)), originalTracks);
+  assert.deepEqual(authoredTracks.filter(track => !restored(track.id) && !track.resourceCategory), originalTracks);
   assert.deepEqual(authoredTracks.filter(track => restored(track.id)).map(track => [track.id, track.title, track.theme, track.gameType]), [
     ["xyy_I01", "喜羊羊 青青草原", "xyy", "item"], ["xyy_R01", "喜羊羊 狼堡", "xyy", "speed"], ["xyy_R02", "喜羊羊 羊村", "xyy", "speed"],
   ]);
@@ -310,8 +310,8 @@ test("道具赛赛道：item 类型含仅道具赛道，排除 trackLocale@cn �
   // Time attack and speed rooms keep the release catalog: no item-only tracks,
   // no trackLocale@cn overrides and every reverse sibling.
   const timeAttack = await authored.timeAttackTrackCatalog();
-  assert.deepEqual(timeAttack, await original.timeAttackTrackCatalog());
-  assert.ok(!timeAttack.some(entry => entry.id === "village_C01"));
+  assert.deepEqual(timeAttack.filter(track => !track.resourceCategory), await original.timeAttackTrackCatalog());
+  assert.ok(timeAttack.some(entry => entry.id === "village_C01" && entry.resourceCategory));
   assert.ok(timeAttack.some(entry => entry.id === "tomb_locked"));
   assert.ok(timeAttack.some(entry => entry.id === "tomb_runner_rvs"));
 

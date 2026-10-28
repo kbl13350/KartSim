@@ -5836,13 +5836,21 @@ function pruneUnreferencedDeclarations(rendered) {
 await mkdir(outputDir, { recursive: true });
 async function writeIfChanged(filename, contents) {
   contents = localizeGeneratedModule(filename, contents);
+  if (filename === "ui.js") {
+    contents = contents.replace("loadTrackPickerWindowAssets, loadTrackCard }",
+      "loadTrackPickerWindowAssets, loadTrackCard, loadSelectableTrackCard }")
+      .replace("K5(O80(n, e))", "loadSelectableTrackCard(n, e, { decodePng: p2 })")
+      .replace("loadTrackCard: (library, path) => loadTrackCard(library, path,",
+        "loadTrackCard: (library, path) => loadSelectableTrackCard(library, path,");
+  }
   const target = path.join(outputDir, filename);
   try {
-    if (await readFile(target, "utf8") === contents) return;
+    if (await readFile(target, "utf8") === contents) return contents;
   } catch (error) {
     if (error.code !== "ENOENT") throw error;
   }
   await writeFile(target, contents, "utf8");
+  return contents;
 }
 
 // ---- item-mode(lobby) ----------------------------------------------------
@@ -6056,7 +6064,7 @@ for (const name of order) {
   text = applyItemLobbyPatches(name, text); // item-mode(lobby)
   text = applyBrawlPatches(name, text); // brawl(lobby)
   const filename = `${name}.js`;
-  await writeIfChanged(filename, text);
+  text = await writeIfChanged(filename, text);
   generated.push({
     file: filename,
     bytes: Buffer.byteLength(text),

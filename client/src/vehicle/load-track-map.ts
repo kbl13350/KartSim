@@ -1,3 +1,6 @@
+import { registerCityTrack, CITY_TRACK_ID } from "../city/city-track";
+import { preparePracticeScene, PRACTICE_SCENE_IDS } from "../resources/practice-scene";
+import { extraTrackCategory, resourceTracks } from "../resources/extra-tracks";
 import { alignLicenseFrames, alignLicenseSections, licenseEventScenes, markLicenseGoal } from "../license/license-course";
 import { itemGameObjectKind } from "./track-object-admission";
 import { carriedHazards, loadHazardItemScenery } from "../item/hazard-scenery-items";
@@ -9,7 +12,7 @@ import { isCustomTrackId } from "../mapeditor/design";
 
 /** 驾照考试 courses register metadata overrides too; 地图工坊 maps do not take their rules. */
 function riderSchoolCourse(trackId: string): boolean {
-  return trackMetadataOverride(trackId) !== undefined && !isCustomTrackId(trackId);
+  return trackMetadataOverride(trackId) !== undefined && trackId !== CITY_TRACK_ID && !isCustomTrackId(trackId);
 }
 
 export interface TrackMapOwner {
@@ -144,18 +147,22 @@ export async function loadTrackMap(
 ): Promise<any> {
   if (itemGame && (mode !== "speed-individual" || lte))
     throw new Error("道具赛地图只走 speed-individual 准入。");
+  if (trackId === CITY_TRACK_ID) registerCityTrack();
   const generation = owner.assetHost.generationValue();
   // 冰河圣诞版: the ice tracks with a Christmas model race it (xmas-theme.ts).
   const xmasPath = isXmasTrack(trackId)
     ? xmasTrackModelPath(owner.assetHost.getLibrary(), path, trackId) : undefined;
   if (xmasPath) path = xmasPath;
   const asset = owner.assetHost.requireAsset(path);
+  const library = owner.assetHost.getLibrary();
+  const indexedVariant = library?.files && resourceTracks(library).find(entry =>
+    entry.id === trackId && entry.model.virtualPath === path);
   if (asset.extension !== "1s" ||
-    !/^(?:track|track_rvs|track_xmas|track_xmas_rvs)\.1s$/i.test(asset.name))
+    (!/^(?:track|track_rvs|track_xmas|track_xmas_rvs)\.1s$/i.test(asset.name) && !indexedVariant))
     throw new Error("玩家地图必须来自原始 track.1s 资源。");
 
   const model = ops.decodeModel(await asset.bytes());
-  const library = owner.assetHost.getLibrary();
+  preparePracticeScene(model, trackId);
   const lteCoinSource = lte && library
     ? await ops.loadLteCoins(library, model) : undefined;
   if (lte && !lteCoinSource) throw Error("LTE 专属图缺少金币原件。");
@@ -169,14 +176,18 @@ export async function loadTrackMap(
   ]);
   if (!weather) throw new Error(`${path} 缺少权威 weather config。`);
 
+  const resourcePractice = !lte && !itemGame && Boolean((await library?.timeAttackTrackCatalog?.())
+    ?.find((entry: any) => entry.id === trackId)?.resourceCategory);
+  const trainingCourse = riderSchoolCourse(trackId) ||
+    (indexedVariant && extraTrackCategory({ ...indexedVariant, variant: "" }) === "resource:training");
   const course = ops.validateCourse(model, ops.assetProvenance(asset), mode, {
-    weather, warp,
+    weather, warp, resourcePractice,
     p3553CourseSound: mode === "speed-individual" ||
       ops.resourceVersion("p3553") === "p3553",
     lteCoins: lteCoinSource !== undefined,
     ...(itemGame ? { itemGame: true } : {}),
     // 驾照考试 courses hand their tutorial route tags to the license race.
-    ...(mode === "time-attack" && riderSchoolCourse(trackId) ? { riderSchool: true } : {}),
+    ...(mode === "time-attack" && trainingCourse ? { riderSchool: true } : {}),
   });
   const lensFlarePoint = ops.lensFlareAnchor(model);
   const dummySounds = mode === "speed-individual" ||
@@ -186,10 +197,11 @@ export async function loadTrackMap(
     forceReverse: /_rvs$/i.test(trackId),
     // 卡丁城 and 地图工坊 maps are wider than the release's 2 km road grid.
     roadExtent: trackMetadataOverride(trackId)?.roadExtent,
+    practiceScene: PRACTICE_SCENE_IDS.has(trackId) ? trackId : undefined,
   });
   // 驾照考试: the open course without a final gate (village_C005) ends at its last gate,
   // and the course's tutorial points name their hint scenes.
-  const licenseCourse = mode === "time-attack" && riderSchoolCourse(trackId);
+  const licenseCourse = mode === "time-attack" && trainingCourse;
   if (licenseCourse) {
     markLicenseGoal(road);
     alignLicenseFrames(road);
@@ -201,6 +213,9 @@ export async function loadTrackMap(
     throw new Error(`${path} 缺少 TrackContainer。`);
   const minimaps = model.root.trackObjects.filter(
     (object: any) => object.kind === "ToMinimap");
+  if (trackId === "pirate_P01" && minimaps.length === 0)
+    minimaps.push({ centerX: road.start.position.x, centerY: -road.start.position.z,
+      scale: 1, canvasWidth: 256, canvasHeight: 256, padding: 4 });
   if (minimaps.length !== 1)
     throw new Error(`${path} 的 ToMinimap 数量必须为 1，实际 ${minimaps.length}。`);
 

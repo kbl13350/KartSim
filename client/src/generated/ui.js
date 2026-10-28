@@ -6,7 +6,7 @@ import { resourceText } from "../i18n/locale.ts";
 // Stable minified names are retained for behavioral parity.
 
 import { createTrackPickerWindowClass } from "../ui/track-picker-window.ts";
-import { loadTrackPickerWindowAssets, loadTrackCard } from "../ui/track-picker-window-assets.ts";
+import { loadTrackPickerWindowAssets, loadTrackCard, loadSelectableTrackCard } from "../ui/track-picker-window-assets.ts";
 import { createSettingsWindowClass } from "../ui/settings-window.ts";
 import { loadSettingsWindowAssets, parseOfficialBgmChoices } from "../ui/settings-window-assets.ts";
 import { ScrollbarController as b6, scrollbarGeometry as uT, dragScrollPosition as qa0, stepScrollPosition as nf, scrollPosition as qv, pointInRectangle as bc } from "../ui/scrollbar.ts";
@@ -62,7 +62,7 @@ const settingsInteractionDependencies = { get tabs() { return Ie; }, versions: Q
 const settingsWindowAssetDependencies = { parseBml: s2, decodePng: p2, attribute: T, frameState: Ft, buttonStyle: m4, loadAutoImage: ma, registerFont: f5, scrollbarAssets: Hv };
 const settingsWindowDependencies = { loadAssets: library => loadSettingsWindowAssets(library, settingsWindowAssetDependencies), parseBgmChoices: parseOfficialBgmChoices, releaseFont: G1, configureCanvas: p3, pixelRatio: xe, layoutRect: V0, clientRect: E9, captionPosition: an, captionRect: f3, measureText: ve, paintText: m9, paintFrame: C9, keyboardLabel: SP, gamepadLabel: sa0, gamepadButtons: Hg, validGamepadCode: EP, usedGamepadCode: ca0, browserKeyCode: xP, validKeyCode: CP, get tabs() { return Ie; }, versions: Qd, defaultVersion: C4, versionStatus: Ac, speedChoices: Di, fallbackSpeed: wa0, speedChannel: zv, channelText: VP, keyActions: ut, defaultKeyMap: Br, dialogShortcuts: BP, defaultSound: _P };
 const trackPickerAssetDependencies = { parseBml: s2, decodePng: p2, frame: Ft, buttonStyle: m4, scrollbar: Hv, captionOffset: an, loadFont: f5 };
-const trackPickerWindowDependencies = { loadAssets: (library, groups) => loadTrackPickerWindowAssets(library, groups, trackPickerAssetDependencies), loadTrackCard: (library, path) => loadTrackCard(library, path, { decodePng: p2 }), releaseFont: G1, layoutTree: jc, layoutRect: V0, frameClient: E9, paintFrame: C9, paintText: m9, measureText: ve, configureCanvas: p3, pixelRatio: xe, positionControl: aw, noticeLayout: Wo, paintNotice: qP };
+const trackPickerWindowDependencies = { loadAssets: (library, groups) => loadTrackPickerWindowAssets(library, groups, trackPickerAssetDependencies), loadTrackCard: (library, path) => loadSelectableTrackCard(library, path, { decodePng: p2 }), releaseFont: G1, layoutTree: jc, layoutRect: V0, frameClient: E9, paintFrame: C9, paintText: m9, measureText: ve, configureCanvas: p3, pixelRatio: xe, positionControl: aw, noticeLayout: Wo, paintNotice: qP };
 const readyViewDependencies = { formatRecord: yT, speedChannel: Ue, defaultVersion: ze };
 const readyButtonDrawingDependencies = { paintFrame: ct, paintText: df, translate: Yn };
 const readyMissionDependencies = { layout: V0, paintFrame: C9, innerRect: E9, attribute: T, visible: fF, drawImage: fs, translate: Yn, paintText: df, color: bl, image: pf, requireAttribute: Oi, trackCardPanel: wT, paintButtonFrame: ct, buttonStyle: m4, parseBml: s2, loadPreview: (library, kart, character, environment, stageBinding, profile) => ny.load(library, kart, character, environment, stageBinding, profile), loadTexture: file => K5(file) };
@@ -2089,7 +2089,7 @@ async function R80(n, e, t, i) {
       s.bytes().then(s2),
       o.text(),
       K5(a),
-      K5(O80(n, e)),
+      loadSelectableTrackCard(n, e, { decodePng: p2 }),
       c.bytes().then(s2),
       l.bytes().then(s2),
     ]),

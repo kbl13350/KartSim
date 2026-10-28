@@ -1,3 +1,5 @@
+import { extraTrackChoices, resourceTracks, resourceTrackMetadata, type ExtraTrackCategory } from "./extra-tracks";
+import { trackMetadataOverride } from "./track-overrides";
 import { attribute, decodeBinaryXml, type BinaryXmlNode } from "../codecs/binary-xml";
 import { customItemTrackChoices, customMapMetadata, customTrackChoices } from "../mapeditor/custom-tracks";
 import { isCustomTrackId } from "../mapeditor/design";
@@ -15,6 +17,7 @@ export interface TrackResource {
 }
 
 export interface TrackMetadata {
+  resourceCategory?: ExtraTrackCategory;
   id: string;
   gameType?: string;
   laps?: number;
@@ -38,6 +41,7 @@ export interface TrackMetadata {
 }
 
 export interface TrackChoice {
+  resourceCategory?: ExtraTrackCategory;
   id: string;
   path: string;
   title: string;
@@ -220,10 +224,17 @@ export async function trackMetadata(library: TrackLibrary, id: string): Promise<
   // 地图工坊的自制地图不在赛道表里
   const custom = customMapMetadata(id);
   if (custom) return custom;
+  const override = trackMetadataOverride(id);
+  if (override) return override;
   const tracks = await library.trackMetadataCatalog();
   const find = (key: string) => tracks.find(track => track.id === key) ??
     tracks.find(track => track.folder === key);
-  return find(id) ?? find(id.replace(/_rvs$/i, ""));
+  const source = find(id) ?? find(id.replace(/_rvs$/i, ""));
+  if (source && selectable(source) && source.cnTitle &&
+      ["item", "speed"].includes(source.gameType ?? "speed")) return source;
+  const resource = resourceTracks(library).find(track => track.id.toLowerCase() === id.toLowerCase());
+  return resource ? resourceTrackMetadata(resource, source ??
+    tracks.find(track => (track.folder ?? track.id).toLowerCase() === resource.folder.toLowerCase())) : source;
 }
 
 function selectable(track: TrackMetadata): boolean {
@@ -287,6 +298,7 @@ export async function timeAttackTrackCatalog(library: TrackLibrary): Promise<Tra
     return (gameType === "item" || gameType === "speed") && selectable(metadata)
       ? gameType : undefined;
   }, () => true);
+  release.push(...extraTrackChoices(library, await library.trackMetadataCatalog(), release));
   const custom = customTrackChoices().filter(choice =>
     library.findSibling(choice.path, ["track.1s"]) !== undefined);
   return custom.length ? [...release, ...custom] : release;
@@ -480,7 +492,7 @@ export async function timeAttackRandomTrackGroups(library: TrackLibrary): Promis
     (/track_?\/common\//i.test(file.virtualPath) || /track_common/i.test(file.sourceName)));
   if (!random) return [];
   const root = decodeBinaryXml(await random.bytes());
-  const tracks = await library.timeAttackTrackCatalog();
+  const tracks = (await library.timeAttackTrackCatalog()).filter(track => !track.resourceCategory);
   return randomTrackGroupsFromBml(root, tracks).filter(group => group.trackIds.length > 0);
 }
 

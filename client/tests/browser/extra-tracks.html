@@ -1,0 +1,103 @@
+<!doctype html><meta charset="utf-8"><title>Expanded track driving checks</title>
+<style>body{background:#162230;color:white;font:14px system-ui}canvas{width:640px;height:360px}pre{white-space:pre-wrap}</style><pre id="status">Loading resource index…</pre>
+<script type="module">
+import { WebGLRenderer, Scene, PerspectiveCamera, SRGBColorSpace } from 'three';
+import { Sw, Tr, oI } from '/src/generated/library.js';
+import { PRACTICE_SCENE_IDS } from '/src/resources/practice-scene.ts';
+import { loadRaceBgmPlaylist } from '/src/timeattack/race-bgm-resources.ts';
+import { ha } from '/src/generated/formats.js';
+import { ul } from '/src/generated/vehicle.js';
+import { _L } from '/src/generated/world.js';
+import { AL } from '/src/generated/driving.js';
+import { installWorldOverrides } from '/src/world/install.ts';
+import { loadLegacyResourceBundle } from '/src/resources/legacy-adapter.ts';
+import { bundledVehicleSpecCatalog } from '/src/physics/bundled.ts';
+import { vehiclePhysicsParameters } from '/src/driving/physics-parameters.ts';
+installWorldOverrides(_L);
+const bundle=await loadLegacyResourceBundle('p3553');
+const library=await Sw.load(bundle.sources,undefined,bundle.archiveIndexes);
+const choices=(await library.timeAttackTrackCatalog()).filter(t=>t.resourceCategory);
+const source={importer:new Tr(),toonStageBinding:new ha(),getLibrary:()=>library,
+  generationValue:()=>1,isGenerationCurrent:()=>true,
+  requireAsset:path=>{const f=library.get(path);if(!f)throw Error('missing '+path);return f;}};
+const loader=new ul(source);
+const renderer=new WebGLRenderer({antialias:false});renderer.outputColorSpace=SRGBColorSpace;renderer.setSize(640,360);document.body.append(renderer.domElement);
+const spec=bundledVehicleSpecCatalog().lookup(373,7).spec;
+const params=vehiclePhysicsParameters(spec,{autoChargeLowSpeed:100,driftGaugeReset:true,wheelPosition:.85},5);
+const input={forward:1,reverse:0,steer:0,rawSteer:0,steeringInverted:false,rawDriftHeld:false,derivedDriftHeld:false,actionMarkerWord:0};
+const audioContext=new AudioContext();
+const audioCache=new Map();
+const decodeAudio=(_context, bytes)=>{
+ const key=Array.from(bytes.slice(0,64)).join(',')+':'+bytes.length;
+ if(!audioCache.has(key))audioCache.set(key,audioContext.decodeAudioData(bytes.slice().buffer));
+ return audioCache.get(key);
+};
+window.trackChoices=choices;
+window.testTrack=async(id)=>{
+ const result={id}; let map,world,minimap;
+ try{
+  const choice=choices.find(t=>t.id===id);if(!choice)throw Error('unknown track');
+  map=await loader.loadAssetMap(choice.path,id);result.loaded=true;result.laps=map.metadata.laps;
+  if(PRACTICE_SCENE_IDS.has(id)&&map.metadata.laps!==99999)throw Error("scenery must remain free exploration");
+  const playlist=await loadRaceBgmPlaylist(library,map.metadata,audioContext,decodeAudio);result.music=playlist.names;
+  minimap=await oI(library,map.path,map.metadata,map.minimap,map.environment,map.stageBinding,0);result.minimap=true;
+  world=new _L(map.data,map.scene,map.renderScene,map.skydome);
+  const scene=new Scene();scene.add(world.group);
+  const start=world.getStart();
+  const ground=world.rayQuery({x:start.position.x,y:start.position.y+10,z:start.position.z},{x:0,y:-100,z:0},false);
+  result.startGround=!!ground;
+  const physics=new AL(params,{rawHalfWidth:.9,rawHalfLength:1.5,scaleX:1,scaleY:1,rawHeight:1});
+  physics.resetFromRouteFrame(start);
+  if(ground)physics.body.position={...ground.point,y:ground.point.y+.3};
+  world.resetRouteState(physics,physics.body.position);
+  const origin={...physics.body.position};
+  const camera=new PerspectiveCamera(65,640/360,.1,world.cameraFar??3000);
+  camera.position.set(origin.x+10,origin.y+8,origin.z+12);camera.lookAt(origin.x,origin.y,origin.z);
+  world.updateRender?.(10000,camera,640,360);renderer.render(scene,camera);result.rendered=true;
+  physics.update(10000,{...input,forward:0},world);
+  let grounded=0,travelled=0;
+  for(let i=1;i<=300;i++){
+   const now=10000+i*16;
+   world.updateObstacles(now,physics.body.position);world.registerObstaclePair(physics.body.position);world.commitObstacleSnapshot();
+   const previous={...physics.body.position};
+   const controls=PRACTICE_SCENE_IDS.has(id) && i>(id==="fengshen_P01"?90:45)
+     ? {...input,forward:0,reverse:(physics.body.linearVelocity.x*physics.body.forward.x+physics.body.linearVelocity.y*physics.body.forward.y+physics.body.linearVelocity.z*physics.body.forward.z)>.3?1:0} : input;
+   physics.update(now,controls,world);
+   world.updateRoute(physics,previous,physics.body.position);
+   travelled+=Math.hypot(physics.body.position.x-previous.x,physics.body.position.z-previous.z);
+   if(physics.wheels.grounded)grounded++;
+   if(!Object.values(physics.body.position).every(Number.isFinite))throw Error('nonfinite physics position');
+  }
+  result.travelled=travelled;
+  result.moved=Math.hypot(physics.body.position.x-origin.x,physics.body.position.y-origin.y,physics.body.position.z-origin.z);
+  result.endHeightChange=physics.body.position.y-origin.y;
+  result.groundedFrames=grounded;result.speed=physics.displaySpeedKmh();result.sections=map.data.sections.length;
+  // Check every original section's route sampling, including branches and resets.
+  let samples=0;
+  for(let index=0;index<map.data.sections.length;index++){
+   const section=map.data.sections[index];
+   for(const frame of [section.frames[0],section.frames.at(-1)]){
+    if(!frame)throw Error('empty route section '+index);
+    world.resetRouteState(physics,frame.position);
+    const sample=world.sampleRoute(physics,5);
+    if(!sample || !Object.values(sample.point).every(Number.isFinite))throw Error('invalid route sample '+index);
+    samples++;
+   }
+  }
+  result.routeSamples=samples;
+  result.pass=result.loaded&&result.rendered&&result.startGround&&travelled>3&&grounded>30&&(!PRACTICE_SCENE_IDS.has(id)||result.endHeightChange>-10);
+ }catch(error){result.error=error.message;result.stack=error.stack;result.pass=false;}
+ finally{minimap?.dispose();world?.dispose();if(!world){map?.renderScene?.dispose();map?.skydome?.dispose();}map?.environment?.dispose();renderer.renderLists.dispose();}
+ document.querySelector('#status').textContent=JSON.stringify(result,null,2);return result;
+};
+window.inspectStart=async(id)=>{
+ const choice=choices.find(t=>t.id===id);const map=await loader.loadAssetMap(choice.path,id);
+ const world=new _L(map.data,map.scene,map.renderScene,map.skydome);
+ const check=frame=>({frame,hit:{...world.rayQuery({...frame.position,y:frame.position.y+10},{x:0,y:-100,z:0},false)?.point}});
+ const area=t=>Math.abs((t.b.x-t.a.x)*(t.c.z-t.a.z)-(t.c.x-t.a.x)*(t.b.z-t.a.z));
+ const floors=map.data.collisionTriangles.filter(t=>t.normal.y>.9).sort((a,b)=>area(b)-area(a)).slice(0,8).map(t=>({name:t.origin.mesh.node.name,a:t.a,b:t.b,c:t.c,area:area(t)}));
+ const result={floors,start:check(map.data.start),sections:map.data.sections.map(s=>s.frames.filter((_,i)=>i%Math.max(1,Math.floor(s.frames.length/10))===0).map(check))};
+ world.dispose();map.environment?.dispose();return result;
+};
+window.ready=true;document.querySelector('#status').textContent=`Ready: ${choices.length} additional tracks`;
+</script>

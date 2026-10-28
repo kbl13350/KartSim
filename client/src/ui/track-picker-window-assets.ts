@@ -234,6 +234,29 @@ export function loadTrackCard(library: TrackPickerResourceLibrary, trackPath: st
   return decodeTrackPickerImage(resolveTrackCardResource(library, trackPath), dependencies);
 }
 
+/** Mission and arena containers need not ship a thumbnail. Keep Ready usable. */
+export async function loadSelectableTrackCard(library: TrackPickerResourceLibrary, trackPath: string,
+  dependencies: Pick<TrackPickerAssetDependencies, "decodePng">): Promise<TrackPickerImage> {
+  const track = library.get(trackPath);
+  if (!track) return loadTrackCard(library, trackPath, dependencies);
+  const path = track.canonicalPath ?? track.virtualPath;
+  const directory = path.slice(0, path.lastIndexOf("/") + 1);
+  const card = library.resolveContainerPath(trackPath, `${directory}xt_trackCard.png`);
+  if (card.status !== "missing") return loadTrackCard(library, trackPath, dependencies);
+  const canvas = document.createElement("canvas");
+  canvas.width = 256;
+  canvas.height = 192;
+  const context = canvas.getContext("2d");
+  if (!context) throw new Error("无法创建地图预览。");
+  context.fillStyle = "#dbe7ef";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "#42566b";
+  context.font = "16px sans-serif";
+  context.textAlign = "center";
+  context.fillText(directory.split("/").filter(Boolean).at(-1) ?? "", 128, 96, 240);
+  return { image: canvas, width: canvas.width, height: canvas.height };
+}
+
 function localStrings(root: BinaryXmlNode): Map<string, string> {
   const result = new Map<string, string>();
   for (const entry of root.children) {

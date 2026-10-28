@@ -1,3 +1,4 @@
+import { practiceSceneRoute } from "./practice-scene";
 import { admitMovingObstacle, trackNameEquals } from "./moving-obstacle";
 import { buildTrackCourseGraph, type TrackCourseGraph } from "./track-course-graph";
 import { staticRoadIssue } from "./track-road-descriptor";
@@ -128,13 +129,13 @@ export function trackRuntimeIssues(parsed: ParsedTrackContainer,
 
 /** Build one collision and course record from a parsed TrackContainer. */
 export function extractTrackRoute(parsed: ParsedTrackContainer,
-  mode = "strict", options: { forceReverse?: boolean; roadExtent?: number } = {}): TrackRouteSummary {
+  mode = "strict", options: { forceReverse?: boolean; roadExtent?: number; practiceScene?: string } = {}): TrackRouteSummary {
   if (parsed.root.kind !== "track")
     throw new Error("standalone Relement .1s 不含 TrackContainer 路线数据。");
   const roads = extractTrackRoads(parsed.root.scene, staticRoadIssue, options.roadExtent);
   if (roads.triangles.length + roads.deferredTriangles.length === 0)
     throw new Error("track.1s 不含原版 <property><road/> 碰撞数据。");
-  const route = buildTrackCourseGraph(parsed.root.trackObjects as
+  const route = options.practiceScene ? practiceSceneRoute(roads.triangles, options.practiceScene) : buildTrackCourseGraph(parsed.root.trackObjects as
     Parameters<typeof buildTrackCourseGraph>[0], options.forceReverse === true);
   return {
     containerName: parsed.root.name,

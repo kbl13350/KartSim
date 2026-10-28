@@ -81,7 +81,7 @@ test("p3553 道具赛赛道目录：159 条道具赛道（含重建的喜羊羊 
   assert.ok(!ids.has("village_I02_rvs"), "speed reverse");
   // Time attack still has the same catalog without the item-only tracks.
   const timeAttack = await library.timeAttackTrackCatalog();
-  assert.ok(!timeAttack.some(track => track.id === "village_C01"));
+  assert.ok(timeAttack.some(track => track.id === "village_C01" && track.resourceCategory));
   assert.ok(timeAttack.some(track => track.id === "tomb_I05"));
 });
 
