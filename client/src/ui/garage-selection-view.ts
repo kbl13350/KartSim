@@ -1,3 +1,4 @@
+import { refreshVehicleDisplaySettings, vehicleCatalogDisplayEnabled } from "../resources/vehicle-display-settings";
 import { tr } from "../i18n/locale";
 /** Garage selector presentation and input shell. Equipment decisions live in garage-selection. */
 import { drawOwnershipBadge } from "./ownership-badge";
@@ -179,6 +180,7 @@ export function createGarageSelectionViewClass(ops: GarageSelectionViewOps) {
     }
 
     static async load(options: any): Promise<any> {
+      await refreshVehicleDisplaySettings(true);
       ops.validateKart(options.catalog.karts, options.selectedKartItemId,
         options.selectedKartSystemKey);
       ops.validateCharacter(options.catalog.characters, options.selectedCharacterItemId, tr("人物"));
@@ -335,6 +337,7 @@ export function createGarageSelectionViewClass(ops: GarageSelectionViewOps) {
       this.drawTopTabs();
       this.drawSubTabs();
       this.drawItems();
+      this.drawVehicleDisplayNotice();
       this.drawSearch();
     }
     drawTopTabs(): void {
@@ -394,6 +397,12 @@ export function createGarageSelectionViewClass(ops: GarageSelectionViewOps) {
       if (grid.positionCount > 1)
         ops.drawScrollbar(this.context, this.assets.scrollbar,
           this.assets.frame01.image, scrollbar, this.scroll.buttonState);
+    }
+    drawVehicleDisplayNotice(): void {
+      if (this.category !== "kart" || this.options.catalog.karts.length === 0 ||
+          this.options.catalog.karts.some((kart: any) => vehicleCatalogDisplayEnabled(kart))) return;
+      ops.drawText(this.context, tr("暂无已开启的车辆，当前装备仍会保留。"),
+        this.rect("itemList"), 16, "white", "center", "label");
     }
     showEmptyFavoriteNotice(): void {
       if (this.category === "favorite" && this.filteredItems().length === 0)

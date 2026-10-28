@@ -1,3 +1,4 @@
+import { refreshVehicleDisplaySettings, vehicleCatalogDisplayEnabled } from "../resources/vehicle-display-settings";
 import { itemDisplayName } from "../i18n/item-names";
 import { tr, gameLocale } from "../i18n/locale";
 /**
@@ -875,7 +876,10 @@ class ShopView {
     this.loadAbort = abort;
     if (!this.index) this.showStatus("loading", tr("正在加载商城…"));
     try {
-      const catalog = await fetchShopCatalog(this.options.session, { signal: abort.signal });
+      const [catalog] = await Promise.all([
+        fetchShopCatalog(this.options.session, { signal: abort.signal }),
+        refreshVehicleDisplaySettings(true),
+      ]);
       if (this.disposed || abort.signal.aborted) return;
       const reloaded = this.index !== undefined && this.index.catalog !== catalog;
       if (reloaded) {
@@ -1531,6 +1535,7 @@ class ShopView {
 
   private toggleTryOn(entry: ShopEntry): void {
     const item = entry.item;
+    if (item.category === 3 && !vehicleCatalogDisplayEnabled(item)) return;
     const slot = tryOnSlot(item);
     const request = previewRequest(item, "card");
     if (this.tried.get(slot) === entry.key) {
@@ -1595,6 +1600,10 @@ class ShopView {
 
   private openBuy(entry: ShopEntry): void {
     if (this.dialog || this.disposed) return;
+    if (entry.item.category === 3 && !vehicleCatalogDisplayEnabled(entry.item)) {
+      this.showToast(shopErrorMessage("VEHICLE_DISABLED"));
+      return;
+    }
     this.pinnedKey = undefined;
     this.setActive(undefined);
     // One purchaser per dialog: 重试 inside it repeats the same requestId, a

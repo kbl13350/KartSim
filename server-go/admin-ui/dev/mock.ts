@@ -11,6 +11,7 @@
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { Plugin } from 'vite'
 import trackDirectory from '../../internal/data/economy/track-directory.json' with { type: 'json' }
+import vehicleDirectory from '../../internal/data/economy/vehicle-directory.json' with { type: 'json' }
 
 type Row = Record<string, unknown>
 
@@ -31,6 +32,20 @@ function managedTrackDirectory() {
     themes.set(track.theme, theme)
   }
   return { tracks: managedTracks, themes: [...themes.values()], version: `mock-${tracksUpdatedAt}`, updatedAt: tracksUpdatedAt }
+}
+
+const managedVehicles = vehicleDirectory.vehicles.map(vehicle => ({ ...vehicle, enabled: true }))
+let vehiclesUpdatedAt = 0
+function managedVehicleDirectory() {
+  const categories = new Map<string, { id: string; title: string; total: number; enabledCount: number }>()
+  for (const vehicle of managedVehicles) {
+    const category = categories.get(vehicle.category) ?? { id: vehicle.category, title: vehicle.categoryTitle, total: 0, enabledCount: 0 }
+    category.total++
+    if (vehicle.enabled) category.enabledCount++
+    categories.set(vehicle.category, category)
+  }
+  return { vehicles: managedVehicles, categories: [...categories.values()], version: `mock-${vehiclesUpdatedAt}`,
+    updatedAt: vehiclesUpdatedAt, updatedBy: vehiclesUpdatedAt ? 'admin' : '' }
 }
 
 const nodes = [
@@ -417,6 +432,11 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
   const path = url.pathname
   const method = req.method ?? 'GET'
   const params = url.searchParams
+  if (path === '/api/vehicle-settings' && method === 'GET') {
+    res.setHeader('Cache-Control', 'no-store')
+    return send(res, 200, { disabledVehicleIds: managedVehicles.filter(vehicle => !vehicle.enabled).map(vehicle => vehicle.id),
+      version: `mock-${vehiclesUpdatedAt}`, updatedAt: vehiclesUpdatedAt })
+  }
   if (path === '/api/track-settings' && method === 'GET') {
     return send(res, 200, { disabledTrackIds: managedTracks.filter(track => !track.enabled)
       .flatMap(track => [track.id, ...track.aliases]), version: `mock-${tracksUpdatedAt}`, updatedAt: tracksUpdatedAt })
@@ -611,6 +631,19 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
   if (noticeMatch && method === 'DELETE') {
     notices = notices.filter((row) => row.id !== Number(noticeMatch[1]))
     return send(res, 200, { ok: true })
+  }
+  if (path === '/api/admin/vehicles' && method === 'GET') return send(res, 200, managedVehicleDirectory())
+  const managedVehicleMatch = /^\/api\/admin\/(vehicles|vehicle-categories)\/([^/]+)$/.exec(path)
+  if (managedVehicleMatch && method === 'PATCH') {
+    const id = decodeURIComponent(managedVehicleMatch[2]!)
+    const byCategory = managedVehicleMatch[1] === 'vehicle-categories'
+    const matching = managedVehicles.filter(vehicle => byCategory ? vehicle.category === id : vehicle.id === id)
+    if (!matching.length) return send(res, 404, { error: byCategory ? 'VEHICLE_CATEGORY_NOT_FOUND' : 'VEHICLE_NOT_FOUND' })
+    const body = await readBody(req)
+    if (typeof body.enabled !== 'boolean') return send(res, 400, { error: 'INVALID_VEHICLE_SETTINGS' })
+    vehiclesUpdatedAt = Date.now()
+    for (const vehicle of matching) vehicle.enabled = body.enabled
+    return send(res, 200, managedVehicleDirectory())
   }
   if (path === '/api/admin/tracks' && method === 'GET') return send(res, 200, managedTrackDirectory())
   const managedTrackMatch = /^\/api\/admin\/(tracks|track-themes)\/([^/]+)$/.exec(path)

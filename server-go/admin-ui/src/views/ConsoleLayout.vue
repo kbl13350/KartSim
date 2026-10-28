@@ -16,6 +16,7 @@ import LoginsTab from './LoginsTab.vue'
 import LotteryTab from './LotteryTab.vue'
 import MapsTab from './MapsTab.vue'
 import TracksTab from './TracksTab.vue'
+import VehiclesTab from './VehiclesTab.vue'
 import NodesTab from './NodesTab.vue'
 import NoticesTab from './NoticesTab.vue'
 import OnlineTab from './OnlineTab.vue'
@@ -51,6 +52,7 @@ const views: Record<string, Component> = {
   replays: ReplaysTab,
   maps: MapsTab,
   tracks: TracksTab,
+  vehicles: VehiclesTab,
   invites: InvitesTab,
 }
 

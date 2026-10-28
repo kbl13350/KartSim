@@ -1,7 +1,9 @@
+import { vehicleCatalogDisplayEnabled } from "../resources/vehicle-display-settings";
 export type GaragePage = "parts" | "level" | "factory";
 
 export interface GarageCatalogVehicle {
   itemId: number;
+  systemKey?: string;
   engineGrade?: number;
   identityClass?: string;
   kartType?: number;
@@ -77,7 +79,7 @@ export function selectGaragePage(
       (!dependencies.canCustomize(host.selected.itemId) ||
        !dependencies.progressionLayout(host.selected.engineGrade))) {
     const firstUpgradable = host.options.catalog.karts.find(vehicle =>
-      !dependencies.blockedKart(vehicle.itemId) &&
+      !dependencies.blockedKart(vehicle.itemId) && vehicleCatalogDisplayEnabled(vehicle) &&
       dependencies.canCustomize(vehicle.itemId) &&
       vehicle.identityClass !== "legacy-system-family" &&
       dependencies.progressionLayout(vehicle.engineGrade) !== undefined);
@@ -105,6 +107,7 @@ export function selectGarageKart(
   vehicle: GarageCatalogVehicle,
   validateKart: GarageCatalogNavigationDependencies["validateKart"],
 ): void {
+  if (!vehicleCatalogDisplayEnabled(vehicle)) return;
   validateKart(vehicle.itemId);
   host.transformPreviewStartPending = false;
   host.previewPart = undefined;
@@ -132,7 +135,7 @@ export function filteredGarageKarts(
   const factory = host.pageMode === "factory";
   const query = factory ? "" : host.search.value.trim().toLocaleLowerCase();
   return host.options.catalog.karts.filter(vehicle =>
-    !dependencies.blockedKart(vehicle.itemId) &&
+    !dependencies.blockedKart(vehicle.itemId) && vehicleCatalogDisplayEnabled(vehicle) &&
     vehicle.identityClass !== "legacy-system-family" &&
     (host.pageMode !== "level" ||
       dependencies.canCustomize(vehicle.itemId) &&

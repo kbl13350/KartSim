@@ -1,3 +1,4 @@
+import { vehicleCatalogDisplayEnabled } from "../resources/vehicle-display-settings";
 import { tr } from "../i18n/locale";
 import type { GaragePart, GaragePartSlot } from "./garage-parts-business";
 
@@ -440,7 +441,7 @@ export function updateGarageControls(
       (!family || !dependencies.canCustomize(host.selected.itemId)) &&
       !host.upgradeCatalogEmpty) {
     const fallback = host.options.catalog.karts.find(vehicle =>
-      !dependencies.blockedKart(vehicle.itemId) &&
+      !dependencies.blockedKart(vehicle.itemId) && vehicleCatalogDisplayEnabled(vehicle) &&
       dependencies.canCustomize(vehicle.itemId) &&
       vehicle.identityClass !== "legacy-system-family" &&
       dependencies.progressionFamily(vehicle.engineGrade) !== undefined);

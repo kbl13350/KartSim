@@ -348,6 +348,10 @@ func (a *API) PublicHandler() http.Handler {
 	route("GET /api/timeattack/featured", a.listFeaturedReplays)
 	route("GET /api/timeattack/featured/replay", a.featuredReplayFile)
 	// Built-in map visibility is separate from the player-made map workshop.
+	route("GET /api/vehicle-settings", a.vehicleSettings)
+	route("GET /api/admin/vehicles", a.adminVehicles)
+	route("PATCH /api/admin/vehicles/{id}", a.adminSetVehicle)
+	route("PATCH /api/admin/vehicle-categories/{category}", a.adminSetVehicleCategory)
 	route("GET /api/track-settings", a.trackSettings)
 	route("GET /api/admin/tracks", a.adminTracks)
 	route("PATCH /api/admin/tracks/{id}", a.adminSetTrack)

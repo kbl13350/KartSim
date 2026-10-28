@@ -1,3 +1,4 @@
+import { refreshVehicleDisplaySettings } from "../resources/vehicle-display-settings";
 import { tr, gameLocale } from "../i18n/locale";
 import type { LocalProfile } from "./local-profile";
 import {
@@ -171,6 +172,7 @@ export class ItemInventoryView {
       document.addEventListener("keydown", this.onKeyDown, true);
     }
     this.render();
+    void refreshVehicleDisplaySettings(true).then(() => { if (!this.disposed) this.render(); });
     this.search.focus();
   }
 

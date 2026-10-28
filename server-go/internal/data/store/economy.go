@@ -427,6 +427,9 @@ func (s *Store) Purchase(ctx context.Context, in Purchase) (PurchaseResult, erro
 			return err
 		}
 
+		if err := checkVehiclePurchase(ctx, tx, in.Item); err != nil {
+			return err
+		}
 		if (in.ExpectedPrice != nil && *in.ExpectedPrice != in.Offer.Price) ||
 			(in.ExpectedCurrency != nil && *in.ExpectedCurrency != string(in.Offer.Currency)) {
 			return errPriceChanged

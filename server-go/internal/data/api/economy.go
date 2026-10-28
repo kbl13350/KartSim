@@ -297,6 +297,9 @@ func (a *API) putAccountProfile(w http.ResponseWriter, r *http.Request) error {
 		if len(missing) > 0 {
 			return writeItemNotOwned(w, missing)
 		}
+		if err := a.checkVehicleSwitch(ctx, account.ID, items); err != nil {
+			return err
+		}
 	}
 	if err := a.accountWrite(ctx, account.ID); err != nil {
 		return err

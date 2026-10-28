@@ -1,3 +1,4 @@
+import { garageItemDisplayEnabled } from "../resources/vehicle-display-settings";
 import { itemDisplayName } from "../i18n/item-names";
 import { tr } from "../i18n/locale";
 import type { GarageCatalogEntry, EquipmentCatalogEntry } from "../resources/garage-catalog";
@@ -181,7 +182,7 @@ export function itemInventoryCanUnequip(item: ItemInventoryItem): boolean {
 /** Local Ready can save these asset-backed equipment categories. */
 export function itemInventoryCanEquip(item: ItemInventoryItem,
   now = Date.now()): boolean {
-  return item.quantity !== 0 &&
+  return garageItemDisplayEnabled(item) && item.quantity !== 0 &&
     (item.expiresAt === undefined || item.expiresAt > now);
 }
 
@@ -271,6 +272,7 @@ export function filterItemInventory(items: ItemInventoryItem[], profile: LocalPr
   group: ItemInventoryGroup, query: string, subcategory = "whole"): ItemInventoryItem[] {
   const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
   return items.filter(item =>
+    garageItemDisplayEnabled(item) &&
     (group === "all" || (group === "favorite" ? itemInventoryIsFavorite(item, profile) :
       group === "locked" ? Boolean(item.locked) :
       group === "pcCafe" ? Boolean(item.pcCafe) :

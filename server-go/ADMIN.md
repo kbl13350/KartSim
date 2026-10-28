@@ -207,3 +207,16 @@
 - `GET /api/track-settings`（公开，只读）返回 `{disabledTrackIds, version, updatedAt}`。关闭 ID 同时包含标准 ID 与全部别名。默认全部开启；设置存入 `app_settings`，发布新版与重启后保留。接口不缓存。
 - 关闭影响玩家的选图、收藏选图与随机池；资源文件、旧 ID、正在进行的比赛和历史回放仍保留。打开选图时刷新设置；游戏节点通过既有心跳同步关闭列表，避免多人随机抽中已关闭地图。
 - 无效地图为 `TRACK_NOT_FOUND`，无效主题为 `TRACK_THEME_NOT_FOUND`，无效开关值为 `INVALID_TRACK_SETTINGS` / `INVALID_REQUEST`。管理员修改写入数据服务日志。
+
+
+## 13. 内置车辆分类、预览与显示开关
+
+“车辆管理”按竞速车、道具车、系统车辆分类，支持引擎世代、名称/ID/型号、开启/关闭筛选，单车开关及整个分类的批量开关。每辆车使用自身模型和贴图生成的预览，可点击或通过键盘放大。
+
+- 目录来自 `internal/data/economy/vehicle-directory.json`，在客户端执行 `node --import tsx tools/export-admin-vehicle-directory.mjs` 生成。稳定 ID 为 `catalog:3:<itemId>` 或 `system:<systemKey>`，不依赖中文名。
+- `GET /api/admin/vehicles`（管理员）返回 `{vehicles, categories, version, updatedAt, updatedBy}`。车辆字段为 `id, title, itemId, systemKey?, internalId, category, categoryTitle, engineGrade?, engineTitle, enabled`；分类字段为 `id, title, total, enabledCount`。
+- `PATCH /api/admin/vehicles/{id}` 与 `PATCH /api/admin/vehicle-categories/{category}`（管理员）接收 `{enabled: boolean}`，返回完整新目录。分类操作覆盖该分类全部车辆，不受当前搜索、引擎和状态筛选影响。
+- `GET /api/vehicle-settings`（公开只读）返回 `{disabledVehicleIds, version, updatedAt}`，`Cache-Control: no-store`。默认全部开启；设置存入 `app_settings` 的 `builtinVehicles`，重启和发布后保留。
+- 打开车库、选车、商城和小屋选车界面时刷新设置；关闭车辆从新的选择、收藏、搜索和购买入口隐藏。已拥有的库存、当前装备、已开始的比赛、远征及历史记录保留；全部关闭时保留当前车辆展示并提示暂无可选车辆。重新开启恢复显示。
+- 服务端拒绝新购买和切换到已关闭车辆，返回 409 `VEHICLE_DISABLED`；已成功购买的幂等重试仍返回原凭据，保留当前已装备车辆时可修改其他装备。
+- 无效车辆为 `VEHICLE_NOT_FOUND`，无效分类为 `VEHICLE_CATEGORY_NOT_FOUND`，无效开关值为 `INVALID_VEHICLE_SETTINGS` / `INVALID_REQUEST`。批量修改使用事务和行锁，修改记录管理员及时间并写入日志。

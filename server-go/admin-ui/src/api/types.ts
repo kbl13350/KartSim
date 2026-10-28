@@ -737,3 +737,24 @@ export interface MapRow {
   createdAt: number
   updatedAt: number
 }
+
+/** Complete built-in vehicle inventory, including vehicles currently hidden. */
+export interface ManagedVehicle {
+  id: string
+  title: string
+  itemId: number
+  systemKey?: string
+  internalId: string
+  category: string
+  categoryTitle: string
+  engineGrade?: number
+  engineTitle: string
+  enabled: boolean
+}
+export interface VehicleDirectory {
+  vehicles: ManagedVehicle[]
+  categories: Array<{ id: string; title: string; total: number; enabledCount: number }>
+  version: string
+  updatedAt: number
+  updatedBy?: string
+}

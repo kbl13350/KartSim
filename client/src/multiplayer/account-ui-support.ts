@@ -30,6 +30,7 @@ export const accountErrorMessages: Record<string, string> = {
   REGISTRATION_CLOSED: "当前服务器已关闭注册，请联系管理员。",
   LOGIN_REQUIRED: "登录已失效，请重新登录。",
   ONBOARDING_REQUIRED: "请先完成新车手注册，领取新手礼包。",
+  VEHICLE_DISABLED: "该车辆已关闭，请重新打开选择赛车或车库并更换车辆。",
   ITEM_NOT_OWNED: "装备中有未拥有或已过期的物品，已换回默认装备。",
   INSUFFICIENT_FUNDS: "余额不足。",
   ALREADY_OWNED: "已经永久拥有该物品。",

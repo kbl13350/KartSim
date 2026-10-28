@@ -1,3 +1,4 @@
+import { vehicleCatalogDisplayEnabled } from "../resources/vehicle-display-settings";
 export interface GarageFlowVehicle {
   itemId: number;
   engineGrade?: number;
@@ -96,7 +97,7 @@ export function requestGarageProgression(
   try {
     if (target.kind === "xun" && !prepared) {
       const candidates = host.options.catalog.karts
-        .filter(vehicle => !dependencies.blockedKart(vehicle.itemId) && vehicle.engineGrade === 9)
+        .filter(vehicle => !dependencies.blockedKart(vehicle.itemId) && vehicleCatalogDisplayEnabled(vehicle) && vehicle.engineGrade === 9)
         .map(vehicle => {
           const serial = vehicle.itemId === host.options.profile.equipment.itemIds[3]
             ? host.options.profile.equipment.kartSerial : 0;

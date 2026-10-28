@@ -1,3 +1,4 @@
+import { garageItemDisplayEnabled, vehicleCatalogDisplayEnabled } from "../resources/vehicle-display-settings";
 import { tr } from "../i18n/locale";
 import {
   canFavoriteItem, favoriteItemIdentity, favoriteItemKey, favoriteItemKeys,
@@ -197,7 +198,7 @@ function normalizeSearch(value: string): string {
 export function filteredGarageItems<Item extends GarageCatalogItem>(
   host: GarageSelectionHost<Item> & { categoryItems(): Item[] },
 ): Item[] {
-  const items = host.categoryItems();
+  const items = host.categoryItems().filter(item => garageItemDisplayEnabled(item));
   const terms = host.searchQuery.split(" ").filter(Boolean).map(normalizeSearch);
   return terms.length === 0 ? items : items.filter(item => {
     const title = normalizeSearch(item.title);
@@ -236,7 +237,7 @@ export function garageCategoryItems<Item extends GarageCatalogItem>(
     if (host.subCategory === "character") return host.options.catalog.characters;
     return [...host.options.catalog.characters, ...flyingPets];
   }
-  const karts = host.options.catalog.karts.filter(item => !deps.blockedKartItem(item.itemId));
+  const karts = host.options.catalog.karts.filter(item => !deps.blockedKartItem(item.itemId) && vehicleCatalogDisplayEnabled(item));
   if (host.subCategory === "itemKart") return karts.filter(item => item.kartType === 1);
   if (host.subCategory === "speedkart") return karts.filter(item => item.kartType === 2);
   if (host.subCategory === "legacyMuseum") {
@@ -249,7 +250,7 @@ export function allGarageItems<Item extends GarageCatalogItem>(
   host: GarageSelectionHost<Item>, deps: GarageSelectionDependencies<Item>,
 ): Item[] {
   return [
-    ...host.options.catalog.karts.filter(item => !deps.blockedKartItem(item.itemId)),
+    ...host.options.catalog.karts.filter(item => !deps.blockedKartItem(item.itemId) && vehicleCatalogDisplayEnabled(item)),
     ...host.options.catalog.characters,
     ...host.options.catalog.equipment,
   ];
@@ -294,7 +295,7 @@ export function selectGarageItem<Item extends GarageCatalogItem>(
     return;
   }
   if (item.kind === "kart") {
-    if (deps.blockedKartItem(item.itemId)) return;
+    if (deps.blockedKartItem(item.itemId) || !vehicleCatalogDisplayEnabled(item)) return;
     const family = deps.legacyFamily(item.systemKey);
     if (family) {
       host.appearanceDialog = { item, family };
@@ -308,6 +309,7 @@ export function selectGarageItem<Item extends GarageCatalogItem>(
 export function commitGarageItem<Item extends GarageCatalogItem>(
   host: GarageSelectionHost<Item>, item: Item, deps: GarageSelectionDependencies<Item>,
 ): void {
+  if (!garageItemDisplayEnabled(item)) return;
   if (item.kind === "kart") deps.validateKartItem(item.itemId);
   const { itemIds } = host.draftProfile.equipment;
   if ("category" in item) host.selectDecoration(item);

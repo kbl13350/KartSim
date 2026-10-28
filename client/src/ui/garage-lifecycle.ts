@@ -1,3 +1,4 @@
+import { refreshVehicleDisplaySettings } from "../resources/vehicle-display-settings";
 /** Construction and teardown for the garage view. The factories keep release assets outside this module. */
 export interface GarageLoadOptions {
   library: unknown;
@@ -64,6 +65,7 @@ export async function loadGarageView<Host extends GarageLoadHost>(
   options: GarageLoadOptions,
   dependencies: GarageLoadDependencies<Host>,
 ): Promise<Host> {
+  await refreshVehicleDisplaySettings(true);
   const stage = dependencies.normalizeStage(options.stageWidth ?? dependencies.defaultStageWidth);
   const [assets, previews] = await Promise.all([
     dependencies.loadAssets(options.library, stage.width),

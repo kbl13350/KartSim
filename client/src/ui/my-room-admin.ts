@@ -1,3 +1,4 @@
+import { refreshVehicleDisplaySettings, vehicleCatalogDisplayEnabled } from "../resources/vehicle-display-settings";
 import { tr } from "../i18n/locale";
 import { T } from "../generated/formats.js";
 import { C8, F9, h2, te } from "../generated/library.js";
@@ -48,7 +49,8 @@ const nodeName = (node: MyRoomAdminNode): string | undefined =>
 export function myRoomAdminKartChoices(karts: readonly MyRoomAdminKart[]):
   Array<{ label: string; kart?: MyRoomAdminKart }> {
   const seen = new Map<string, number>();
-  return [{ label: tr(NONE) }, ...karts.map(kart => {
+  return [{ label: tr(NONE) }, ...karts.filter(kart => vehicleCatalogDisplayEnabled({
+    itemId: kart.item.itemId, systemKey: kart.item.systemKart })).map(kart => {
     const count = (seen.get(kart.title) ?? 0) + 1;
     seen.set(kart.title, count);
     return { label: count === 1 ? kart.title : `${kart.title} (${count})`, kart };
@@ -94,6 +96,7 @@ function findTemplate(node: MyRoomAdminNode): MyRoomAdminNode | undefined {
 }
 
 export async function openMyRoomAdmin(options: MyRoomAdminOptions): Promise<MyRoomAdminDialog> {
+  await refreshVehicleDisplaySettings(true);
   const room = options.room;
   let passwordOn = !!room.roomPassword;
   let password = room.roomPassword ?? "";
@@ -103,9 +106,21 @@ export async function openMyRoomAdmin(options: MyRoomAdminOptions): Promise<MyRo
   let environmentId = room.environmentId;
   let bgmId = options.bgmChoices.some(choice => choice.id === room.bgmId) ? room.bgmId! : 0;
   const choices = myRoomAdminKartChoices(options.karts);
+  // Keep a closed currently parked kart unless this slot is explicitly changed.
+  // Its label remains visible as the current value but is absent from selectable options.
+  const retained = new Map<string, MyRoomAdminKart>();
   const chosen = [0, 1].map(index => {
     const saved = room.displayKarts?.[index];
-    return choices.find(choice => sameFavorite(choice.kart?.item, saved))?.label ?? tr(NONE);
+    const current = choices.find(choice => sameFavorite(choice.kart?.item, saved));
+    if (current) return current.label;
+    if (saved) {
+      const kart = options.karts.find(kart => sameFavorite(kart.item, saved)) ??
+        { item: saved, title: `#${saved.itemId}` };
+      const label = tr("{0}（当前保留 {1}）", { "0": kart.title, "1": index + 1 });
+      retained.set(label, kart);
+      return label;
+    }
+    return tr(NONE);
   });
   let busy = false;
 
@@ -134,7 +149,7 @@ export async function openMyRoomAdmin(options: MyRoomAdminOptions): Promise<MyRo
   const save = async (): Promise<void> => {
     if (busy) return;
     busy = true;
-    const karts = chosen.map(label => choices.find(choice => choice.label === label)?.kart)
+    const karts = chosen.map(label => choices.find(choice => choice.label === label)?.kart ?? retained.get(label))
       .filter((kart): kart is MyRoomAdminKart => !!kart)
       .filter((kart, index, all) => all.findIndex(other =>
         sameFavorite(other.item, kart.item)) === index);

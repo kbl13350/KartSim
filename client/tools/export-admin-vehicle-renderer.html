@@ -1,0 +1,63 @@
+<!doctype html><meta charset="utf-8"><title>Native vehicle preview extraction</title>
+<style>html,body{margin:0;background:#e8eef5}canvas{display:block}</style>
+<script type="module">
+import {Sw} from '/src/generated/library.js';
+import {ha,rn,t3} from '/src/generated/formats.js';
+import {E7,Qv,Js} from '/src/generated/ui.js';
+import {loadLegacyResourceBundle} from '/src/resources/legacy-adapter.ts';
+import {kartCatalogIdentity} from '/src/resources/system-kart-identity.ts';
+const WIDTH=440,HEIGHT=300,TICK=10000;
+const bundle=await loadLegacyResourceBundle('p3553');
+const library=await Sw.load(bundle.sources,undefined,bundle.archiveIndexes);
+const {karts}=await library.timeAttackGarageCatalog();
+const environment=await rn.load(library),binding=new ha();
+const panels=await E7.load(library,environment,binding,()=>{},
+  {width:WIDTH,height:HEIGHT},{width:WIDTH,height:HEIGHT},undefined,'preview');
+document.body.append(panels.renderer.domElement);
+const hash=async bytes=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
+window.captureVehicle=async id=>{
+  const kart=karts.find(kart=>kartCatalogIdentity(kart)===id);
+  if(!kart)throw Error('Missing native vehicle '+id);
+  for(const asset of panels.karts.values())Js(asset);
+  panels.karts.clear();
+  // Two source catalog entries ship their real model and paint textures but
+  // lack usable BodyParam data. The native legacy resolver can load that exact
+  // same folder without driving parameters; it never substitutes another kart.
+  const parameterless = new Set(['catalog:3:323','catalog:3:330']);
+  const renderKart = parameterless.has(id) ? {...kart,systemKey:'legacyPractice'} : kart;
+  const card=await Qv(library,renderKart,environment,binding);
+  panels.karts.set(id,card);
+  const {renderer}=panels;
+  renderer.setPixelRatio(1);renderer.setSize(WIDTH,HEIGHT,false);
+  const canvas=document.createElement('canvas');canvas.width=WIDTH;canvas.height=HEIGHT;
+  const context=canvas.getContext('2d');
+  let visiblePixels,minX,minY,maxX,maxY,fitScale=1;
+  const nativeCardCamera=card.cardCamera?.bind(card);
+  if(nativeCardCamera)card.cardCamera=(w,h)=>{const camera=nativeCardCamera(w,h);camera.zoom=.54*fitScale;camera.updateProjectionMatrix();return camera;};
+  for(let attempt=0;attempt<16;attempt++){
+    renderer.setScissorTest(false);renderer.clear(true,true,true);
+    binding.beginFrame(TICK);renderer.setScissorTest(true);renderer.info.reset();
+    panels.renderKartCard(TICK,HEIGHT,kart,{x:0,y:0,width:WIDTH,height:HEIGHT},3.7*fitScale,true);
+    renderer.setScissorTest(false);
+    context.clearRect(0,0,WIDTH,HEIGHT);context.drawImage(renderer.domElement,0,0);
+    const pixels=context.getImageData(0,0,WIDTH,HEIGHT).data;
+    visiblePixels=0;minX=WIDTH;minY=HEIGHT;maxX=-1;maxY=-1;
+    for(let y=0;y<HEIGHT;y++)for(let x=0;x<WIDTH;x++)if(pixels[(y*WIDTH+x)*4+3]>8){
+      visiblePixels++;minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);
+    }
+    if(minX>=12&&minY>=12&&maxX<WIDTH-12&&maxY<HEIGHT-12)break;
+    if(attempt===15)throw Error('Vehicle does not fit preview '+id);
+    fitScale*=.85;
+  }
+  const png=canvas.toDataURL('image/png');
+  if(visiblePixels<100||renderer.info.render.triangles<=0)throw Error('Blank vehicle preview '+id);
+  const resolved=await t3(library,kart.path,renderKart.systemKey),model=resolved.find(['model.1s']);
+  return {id,png,width:WIDTH,height:HEIGHT,visiblePixels,bounds:{minX,minY,maxX,maxY},fitScale,
+    triangles:renderer.info.render.triangles,modelArchive:model.sourceName,
+    modelPath:model.canonicalPath??model.virtualPath,modelSha256:await hash(await model.bytes()),
+    requestedPath:kart.path,internalId:kart.internalId,
+    renderMethod:parameterless.has(id)?'native-same-model-without-driving-parameters':'native-garage-card'};
+};
+window.closeCapture=()=>{panels.dispose();binding.dispose();environment.dispose();};
+window.ready=true;
+</script>

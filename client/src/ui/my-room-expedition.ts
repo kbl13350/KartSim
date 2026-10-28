@@ -1,3 +1,4 @@
+import { refreshVehicleDisplaySettings, vehicleCatalogDisplayEnabled } from "../resources/vehicle-display-settings";
 import { itemDisplayName } from "../i18n/item-names";
 import { tr } from "../i18n/locale";
 import { T } from "../generated/formats.js";
@@ -91,7 +92,7 @@ export function autoFillCrew(mission: Pick<ExpeditionMission, "specific">, crew:
   busy: { characters: Set<number>; karts: Set<string> }): Draft["members"] {
   const characters = crew.characters.filter(item => !busy.characters.has(item.itemId))
     .sort((a, b) => Number(b.specific === mission.specific) - Number(a.specific === mission.specific));
-  const karts = crew.karts.filter(item => !busy.karts.has(kartId(item)))
+  const karts = crew.karts.filter(item => expeditionKartDisplayEnabled(item) && !busy.karts.has(kartId(item)))
     .sort((a, b) => Number(b.specific === mission.specific) - Number(a.specific === mission.specific) ||
       b.level - a.level || b.parts - a.parts);
   const members: Draft["members"] = [];
@@ -101,11 +102,16 @@ export function autoFillCrew(mission: Pick<ExpeditionMission, "specific">, crew:
   return members;
 }
 
+function expeditionKartDisplayEnabled(kart: ExpeditionKart): boolean {
+  return vehicleCatalogDisplayEnabled({ itemId: kart.itemId, systemKey: kart.kartKey });
+}
+
 function kartId(kart: Pick<ExpeditionKart, "itemId" | "kartKey">): string {
   return kart.itemId === 0 ? `0:${kart.kartKey ?? ""}` : String(kart.itemId);
 }
 
 export async function openMyRoomExpedition(options: MyRoomExpeditionOptions): Promise<MyRoomExpeditionWindow> {
+  await refreshVehicleDisplaySettings(true);
   const bml = (folder: string, name: string) => F9(options.library, folder, name) as Promise<BmlNode>;
   const [shared, main, card, crew, crewCard, friendCard, friendDialog, token] = await Promise.all([
     loadBmlShared(options.library, FONT_FAMILY, [[MAIN, "stringBag"], [CREW, "stringBag"]]),
@@ -720,7 +726,7 @@ class ExpeditionWindow implements MyRoomExpeditionWindow {
     return {
       visible: (node, name) => {
         if (name === "noAvailableCharactersLabel") return this.crew.characters.length === 0;
-        if (name === "noAvailableKartsLabel") return this.crew.karts.length === 0;
+        if (name === "noAvailableKartsLabel") return !this.crew.karts.some(expeditionKartDisplayEnabled);
         if (name === "itemListBar") return false;
         void node;
         return undefined;
@@ -737,8 +743,8 @@ class ExpeditionWindow implements MyRoomExpeditionWindow {
         return false;
       },
       button: (node, name) => {
-        if (name === "ok") return { disabled: !overlay.character || !overlay.kart, activate: () => {
-          if (draft && overlay.character && overlay.kart) {
+        if (name === "ok") return { disabled: !overlay.character || !overlay.kart || !expeditionKartDisplayEnabled(overlay.kart), activate: () => {
+          if (draft && overlay.character && overlay.kart && expeditionKartDisplayEnabled(overlay.kart)) {
             draft.members[overlay.member] = { character: overlay.character, kart: overlay.kart };
           }
           this.overlay = undefined;
@@ -758,7 +764,7 @@ class ExpeditionWindow implements MyRoomExpeditionWindow {
     busy: { characters: Set<number>; karts: Set<string> }, mission: ExpeditionMission | undefined): void {
     const rect = { ...area, width: 520, height: 582 };
     const entries: Array<ExpeditionCharacter | ExpeditionKart> = kind === "character" ? this.crew.characters
-      : this.crew.karts;
+      : this.crew.karts.filter(expeditionKartDisplayEnabled);
     const rows = Math.ceil(entries.length / 3);
     const scrollKey = kind === "character" ? "charScroll" : "kartScroll";
     const max = Math.max(0, rows * CREW_STEP.y - rect.height);

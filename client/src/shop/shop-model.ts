@@ -1,3 +1,4 @@
+import { currentVehicleDisplaySettings, vehicleCatalogDisplayEnabled } from "../resources/vehicle-display-settings";
 import { itemDisplayName } from "../i18n/item-names";
 import { tr, gameLocale } from "../i18n/locale";
 /**
@@ -449,8 +450,10 @@ export function queryShop(index: ShopIndex, query: ShopQuery,
   owned?: (entry: ShopEntry) => boolean): readonly ShopEntry[] {
   const search = normalizeSearch(query.search);
   const base = index.sortedList(search ? undefined : query.tab, query.subTab, query.sort, query.currency);
-  if (!search && query.currency === "all" && !(query.hideOwned && owned)) return base;
+  const settings = currentVehicleDisplaySettings();
+  if (!settings.disabledVehicleIds.size && !search && query.currency === "all" && !(query.hideOwned && owned)) return base;
   return base.filter(entry =>
+    (entry.item.category !== 3 || vehicleCatalogDisplayEnabled(entry.item, settings)) &&
     (!search || entry.search.includes(search)) &&
     (query.currency === "all" || entry.cheapest[query.currency] !== undefined) &&
     !(query.hideOwned && owned?.(entry)));

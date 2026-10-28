@@ -20,6 +20,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   INSUFFICIENT_FUNDS: tr("余额不足，无法购买该道具。"),
   ALREADY_OWNED: tr("你已永久拥有该道具，无需重复购买。"),
   EXP_REQUIRED: tr("经验不足，暂时无法购买该道具。"),
+  VEHICLE_DISABLED: tr("该车辆已关闭，请刷新商店后选择其他车辆。"),
   OFFER_NOT_FOUND: tr("该商品已下架或价格已变更，请刷新商店后重试。"),
   PRICE_CHANGED: tr("价格已变化，请刷新商店后重试。"),
   QUANTITY_LIMIT: tr("该道具的数量已达上限，无法继续购买。"),
@@ -65,7 +66,7 @@ export class ShopApiError extends Error {
   get retryable(): boolean { return RETRYABLE_CODES.has(this.code) || this.status >= 500; }
 
   /** The shop's catalog is out of date for this offer; reload it before buying again. */
-  get staleCatalog(): boolean { return this.code === "OFFER_NOT_FOUND" || this.code === "PRICE_CHANGED"; }
+  get staleCatalog(): boolean { return this.code === "VEHICLE_DISABLED" || this.code === "OFFER_NOT_FOUND" || this.code === "PRICE_CHANGED"; }
 
   /** A network failure because the request took longer than the purchase time limit. */
   get timedOut(): boolean {

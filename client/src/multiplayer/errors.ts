@@ -18,6 +18,7 @@ const errorMessages: Record<string, string> = {
   NOT_ENOUGH_PLAYERS: "至少需要两名玩家。",
   TRACK_REQUIRED: "请房主先选择赛道。",
   NO_ENABLED_TRACKS: "当前随机池没有开放的地图，请房主重新选择赛道。",
+  VEHICLE_DISABLED: "该车辆已关闭，请重新打开选择赛车或车库并更换车辆。",
   EQUIPMENT_REQUIRED: "有玩家的装备尚未同步。",
   PLAYERS_NOT_READY: "请等待其他玩家准备，并关闭我的物品。",
   BRAVE_TEAMS_UNBALANCED: "勇者模式需要红蓝两队人数相等，每队至少两人。",

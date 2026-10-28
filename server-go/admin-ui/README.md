@@ -88,3 +88,20 @@ node --import tsx tools/export-admin-track-previews.mjs --check
 ```
 
 随后重新运行本目录的 `npm run build`，一并提交图片索引、来源记录和后台构建产物。
+
+
+“车辆管理”支持竞速、道具、系统车辆分类，引擎世代筛选，名称/ID/型号搜索、状态筛选和单车/整类开关。每辆车展示自身模型、贴图和原始配色的透明预览图，可点击或通过键盘放大。关闭只限制新的选择和购买，已拥有的车辆、当前装备和已开始的比赛保留；接口约定见 `../ADMIN.md` 第 13 节。
+
+车辆图使用原生车库渲染后无损转为 WebP，按像素内容共用文件，车辆身份与开关独立。更新资源时，在 `client/` 中执行（需要本地游戏资源、Playwright/Chrome、`cwebp` 和 `dwebp`）：
+
+```sh
+node --import tsx tools/export-admin-vehicle-directory.mjs
+npm run dev -- --host 127.0.0.1 --port 8780
+# 保持上面的开发服务运行，在另一个终端执行：
+node tools/export-admin-vehicle-capture.mjs --origin=http://127.0.0.1:8780
+node --import tsx tools/export-admin-vehicle-previews.mjs
+node --import tsx tools/export-admin-vehicle-directory.mjs --check
+node --import tsx tools/export-admin-vehicle-previews.mjs --check
+```
+
+捕获脚本可用 `PLAYWRIGHT_MODULE` 指定 Playwright 模块路径，`CHROME_PATH` 指定浏览器程序。原始 PNG 保存在未提交的 `output/vehicle-admin/scenes/`；WebP、索引及模型/渲染来源哈希提交到 `src/assets/vehicle-previews/`，最后重新构建后台并提交构建产物。捕获检查完整目录、非空像素与画面边界，导出检查源模型哈希和无损解码像素；少数原始驾驶参数损坏的车型直接读取同车模型与贴图，来源记录标注该加载方式。

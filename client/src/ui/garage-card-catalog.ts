@@ -1,3 +1,4 @@
+import { currentVehicleDisplaySettings } from "../resources/vehicle-display-settings";
 import { tr } from "../i18n/locale";
 export interface GarageCardVehicle {
   itemId: number;
@@ -62,7 +63,8 @@ export function updateGarageCards(
   const vehicles = host.filteredKarts();
   const pageCount = Math.max(1, Math.ceil(vehicles.length / pageSize));
   host.page = Math.min(Math.max(0, host.page), pageCount - 1);
-  host.pageLabel.textContent = `${host.page + 1} / ${pageCount}`;
+  host.pageLabel.textContent = vehicles.length === 0 && currentVehicleDisplaySettings().disabledVehicleIds.size > 0
+    ? tr("暂无车辆") : `${host.page + 1} / ${pageCount}`;
   host.pageLabel.title = tr("{0} 辆车", { "0": vehicles.length });
   host.controls.querySelectorAll("[data-filter]").forEach(button => {
     button.classList.toggle("selected", Number(button.dataset.filter) === host.filter);
