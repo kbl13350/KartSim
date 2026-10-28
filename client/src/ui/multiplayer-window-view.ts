@@ -91,7 +91,7 @@ export class MultiplayerWindowView {
     this.element.setAttribute("role", options.modal ? "dialog" : "region");
     this.element.setAttribute("aria-label", options.label);
     if (options.modal) this.element.setAttribute("aria-modal", "true");
-    Object.assign(this.element.style, { position: "absolute", inset: "0", userSelect: "none" });
+    Object.assign(this.element.style, { position: "absolute", inset: "0", userSelect: "none", isolation: "isolate" });
     Object.assign(this.canvas.style,
       { position: "absolute", inset: "0", width: "100%", height: "100%" });
     if (options.preserveDisplayPixels) this.canvas.style.imageRendering = "pixelated";

@@ -149,7 +149,7 @@ export async function loadLobbyRoom<T extends ConstructedLobbyRoom>(
   return host;
 }
 
-const editableSelector = "input, textarea, [contenteditable], [contenteditable] *";
+const editableSelector = "input, textarea, [contenteditable], [contenteditable] *, .ks-emotion-panel button, .ks-emotion-panel button *, .ks-emotion-toggle, .ks-emotion-toggle *";
 
 /** Room-local Backquote and digit keys control the original emotion wheel. */
 export function handleLobbyEmotionKey(host: ConstructedLobbyRoom,

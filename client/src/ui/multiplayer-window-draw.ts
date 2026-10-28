@@ -1,3 +1,4 @@
+import { roomChatInputRect, syncRoomEmotionControl } from "./multiplayer-chat-controls";
 import { tr } from "../i18n/locale";
 import type { WindowFrame, WindowNode, WindowSprite } from "./multiplayer-window-assets";
 
@@ -102,7 +103,7 @@ export interface MultiplayerWindowDrawHost {
   buttons: WindowButton[];
   hoverRegions: Array<{ id: string; rect: WindowRect; sound: boolean }>;
   comboRects: Map<WindowNode, WindowRect>;
-  controls: Map<WindowNode, HTMLButtonElement | HTMLInputElement>;
+  controls: Map<WindowNode, HTMLElement & { disabled?: boolean }>;
   element: HTMLElement;
   buttonLayer: { ensure(button: WindowButton): HTMLButtonElement };
   popup: HTMLElement;
@@ -167,7 +168,13 @@ export function drawMultiplayerWindowNode(
   const frame = style?.states[stateIndex]!.frame ??
     defaultFrames?.[node.name === "PlaneCheckButton" ? +!!state.checked : 0];
   const rawRect = dependencies.rectangle(node, parent, frame, sprites?.[0], state.size);
-  const rect = { ...rawRect, x: rawRect.x + (state.offsetX ?? 0) };
+  let rect = { ...rawRect, x: rawRect.x + (state.offsetX ?? 0) };
+  const nodeName = attribute(node, "name") ?? "";
+  if (!host.paintingOnly && state.input && nodeName === "채팅") rect = roomChatInputRect(host, rect);
+  if (!host.paintingOnly && syncRoomEmotionControl(host, node, nodeName, state, rect, attribute)) {
+    visibleControls.add(node);
+    return;
+  }
 
   if (state.pointerBlock)
     host.buttons.push({ key: node, rect, disabled: true, activate() {} });
@@ -306,7 +313,7 @@ export function drawMultiplayerWindowNode(
     if (!state.input && !host.buttons.some(button => button.key === node))
       host.buttons.push(host.canvasButton(node, rect, text, state));
     control.hidden = false;
-    control.disabled = !!state.disabled ||
+    (control as HTMLButtonElement | HTMLInputElement).disabled = !!state.disabled ||
       (!state.action && !state.input && !state.select);
     control.setAttribute("aria-label", state.label ?? text ?? attribute(node, "name") ?? "");
     if (state.checked !== undefined)

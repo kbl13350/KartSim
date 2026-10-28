@@ -25,6 +25,8 @@ export function onUnauthorized(handler: (message: string) => void): void {
 
 const messages: Record<string, string> = {
   NETWORK: '无法连接数据服务',
+  TRANSLATION_KEY_REQUIRED: '请先填写并保存 DeepSeek API Key',
+  TRANSLATION_UNAVAILABLE: '翻译服务不可用，请检查密钥、账户余额和模型，或稍后重试',
   INVALID_CREDENTIALS: '用户名或密码错误',
   TOO_MANY_ATTEMPTS: '尝试次数过多，请稍后再试',
   LOGIN_REQUIRED: '登录已失效，请重新登录',

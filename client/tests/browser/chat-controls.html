@@ -1,0 +1,41 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>多人聊天交互验证</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0c1628;color:#e6f1ff;font:16px system-ui}#root{position:relative;width:min(100vw,1600px);height:min(56.25vw,900px);background:radial-gradient(ellipse at 75% 30%,#214b6d,#101d32 70%)}.heading{position:absolute;left:6%;top:8%;color:#6ce2fc;font-size:clamp(16px,2.2vw,34px)}.sub{position:absolute;left:6%;top:17%;color:#afc4df}.frame{position:absolute;left:6%;top:65%;width:65%;height:25%;border:1px solid #4e7296;background:#142841dd;border-radius:12px}.input-frame{position:absolute;left:6.4%;top:85%;width:64%;height:4%;border:1px solid #496b91;border-radius:8px;background:#e0ebf8}input{position:absolute;background:transparent;border:0;font:16px system-ui;color:#1b3656;padding:4px 8px}#status{position:absolute;left:6%;top:94%;font-size:14px;color:#8fb9d8}
+</style><div id="root"><div class="heading">多人房间聊天</div><div class="sub">点击输入框右侧表情按钮 · 选择表情发送</div><div class="frame"></div><div class="input-frame"></div><div id="status">正在验证…</div></div>
+<script type="module">
+import {roomChatInputRect,placeChatControl,syncRoomEmotionControl} from '/src/ui/multiplayer-chat-controls.ts';
+import {addLobbyEmotionWheel} from '/src/multiplayer/lobby-room-template.ts';
+const root=document.querySelector('#root');
+const attr=(node,name)=>node.attributes.find(a=>a.name===name)?.value;
+const labels=['微笑','大笑','哭泣','生气','得意','鼓掌','惊讶','爱心'];
+const def=addLobbyEmotionWheel({name:'Container',attributes:[],children:[]},labels.map(label=>({label})),{attribute:attr,clone:(node,attrs)=>({...node,attributes:[...node.attributes,...Object.entries(attrs).map(([name,value])=>({name,value}))]})});
+const panel=def.children.find(n=>attr(n,'name')==='roomEmotionWheel'), toggle=def.children.find(n=>attr(n,'name')==='roomEmotionToggle');
+let opened=false, sent='';
+const lines=[{text:'一支笔：下一局我们跑墓地地图吧！',color:'#d9e9ff'},{text:'VEGA: Ready when you are. Good luck!',color:'#d9e9ff'},{text:'[AI] 你准备好就开始，祝你好运！',color:'#8de1f7'},{text:'程序猿：准备好就出发吧 😊',color:'#ffe6a0'}];
+const host={element:root,controls:new Map(),options:{root,state(node){if(node===toggle)return{expanded:opened,action(){opened=!opened;render()}};if(node===panel)return{visible:opened};return{action(){sent=attr(node,'text');opened=false;render()}}}}};
+const input=document.createElement('input');input.setAttribute('aria-label','房间聊天');input.placeholder='按 Enter 发送消息';root.append(input);
+const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=900;canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none';root.append(canvas);
+function render(){
+ const ctx=canvas.getContext('2d');ctx.clearRect(0,0,1600,900);ctx.font='16px system-ui';lines.forEach((line,i)=>{ctx.fillStyle=line.color;ctx.fillText(line.text,111,620+i*28)});
+ placeChatControl(input,roomChatInputRect(host,{x:104,y:766,width:1016,height:34}),root);
+ syncRoomEmotionControl(host,toggle,attr(toggle,'name'),host.options.state(toggle),{},attr);
+ if(opened)syncRoomEmotionControl(host,panel,attr(panel,'name'),host.options.state(panel),{},attr);
+ else if(host.controls.has(panel))host.controls.get(panel).hidden=true;
+ document.querySelector('#status').textContent=sent?'已发送：'+sent:'点击笑脸打开表情面板';
+}
+render();
+const assert=(value,message)=>{if(!value)throw Error(message)};
+const button=host.controls.get(toggle);
+assert(button.style.left==='67.375%','emotion toggle not at input tail');
+button.click();assert(opened,'toggle did not open');
+const popup=host.controls.get(panel);
+assert(popup.querySelectorAll('.ks-emotion-item').length===8,'missing emotions');
+popup.querySelector('.ks-emotion-item').click();assert(!opened && sent==='1 微笑','send did not close');
+button.click();input.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}));assert(!opened,'outside click did not close');
+button.click();popup.querySelector('.ks-emotion-close').click();assert(!opened,'close button failed');
+sent='';render();
+const result=document.createElement('p');result.textContent='6 项交互检查通过：按钮定位、展开、8 个表情、发送收起、点击外部收起、关闭按钮';result.style.cssText='position:absolute;left:6%;top:24%;color:#83d9b4;font-size:12px';root.append(result);
+new ResizeObserver(render).observe(root);
+// Match the game render cadence.
+setInterval(render,300);
+</script></html>

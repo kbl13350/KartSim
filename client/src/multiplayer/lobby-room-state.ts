@@ -1,3 +1,4 @@
+import { translatedRoomChat } from "./chat-translation";
 import { tr } from "../i18n/locale";
 /** Maps a room UI node to its live presentation and command state. */
 
@@ -173,7 +174,8 @@ function memberSlotState(host: LobbyRoomStateHost, name: string,
       textColor: team === 1 ? dependencies.colors.redTeam :
         dependencies.colors.blueTeam,
     };
-    const lines = dependencies.wrapBubble(bubble.text);
+    const translated = member!.playerId !== host.playerId ? translatedRoomChat(host, bubble.text) : undefined;
+    const lines = dependencies.wrapBubble(translated ? `[AI] ${translated}` : bubble.text);
     return { visible: true,
       size: { width: 140, height: 70 + (lines.length - 1) * 19 },
       paint: (canvas: PaintContext, rect: RoomRect) => {
@@ -299,9 +301,11 @@ function roomDetailsState(host: LobbyRoomStateHost, name: string,
       : tr("连接已断开") };
     case "chat": return { lines: (room.chat ?? []).flatMap(line => {
       const text = dependencies.decodeChat(line.text, host.emotions).text;
-      return text ? [{ text: `${line.name}: ${text}`,
-        color: line.playerId === host.playerId
-          ? dependencies.colors.ownChat : dependencies.colors.otherChat }] : [];
+      if (!text) return [];
+      const color = line.playerId === host.playerId ? dependencies.colors.ownChat : dependencies.colors.otherChat;
+      const translated = line.playerId !== host.playerId ? translatedRoomChat(host, text) : undefined;
+      return [{ text: `${line.name}: ${text}`, color },
+        ...(translated ? [{ text: `[AI] ${translated}`, color }] : [])];
     }) };
     case "트랙카드": return { paint: (canvas: PaintContext, rect: RoomRect) => {
       if (host.trackImage) canvas.drawImage(host.trackImage,

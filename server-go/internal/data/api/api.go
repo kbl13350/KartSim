@@ -31,6 +31,7 @@ import (
 	"kartsim/internal/data/myroom"
 	"kartsim/internal/data/store"
 	"kartsim/internal/data/timeattack"
+	"kartsim/internal/data/translation"
 	"kartsim/internal/shared/apierr"
 	"kartsim/internal/shared/contract"
 	"kartsim/internal/shared/netcfg"
@@ -92,12 +93,14 @@ type Options struct {
 
 // API serves the public and internal handlers.
 type API struct {
-	store    *store.Store
-	cache    *cache.Cache
-	cluster  *cache.Cluster
-	network  *netcfg.Network
-	secret   []byte
-	dataNode string
+	translator    *translation.Client
+	translationMu sync.Mutex
+	store         *store.Store
+	cache         *cache.Cache
+	cluster       *cache.Cluster
+	network       *netcfg.Network
+	secret        []byte
+	dataNode      string
 	// nodeRegistry caches the nodes added in the console (nodes.go).
 	nodeRegistry nodeRegistry
 	// lobby is the global lobby (lobby_home.go).
@@ -214,6 +217,7 @@ func New(opts Options) *API {
 			RaceCoupon:     amount(opts.RaceCoupon, store.DefaultRaceCoupon)})
 	}
 	a := &API{
+		translator:     translation.New(),
 		store:          st,
 		cache:          opts.Cache,
 		cluster:        opts.Cluster,
@@ -465,6 +469,10 @@ func (a *API) PublicHandler() http.Handler {
 	route("GET /api/riders/{nickname}", a.riderCard)
 	route("GET /api/admin/lottery", a.adminLottery)
 	route("PUT /api/admin/lottery", a.adminSaveLottery)
+	route("GET /api/admin/translation", a.adminTranslation)
+	route("PUT /api/admin/translation", a.adminSaveTranslation)
+	route("POST /api/admin/translation/test", a.adminTestTranslation)
+	route("POST /api/chat/translate", a.translateChat)
 	route("GET /api/admin/economy", a.adminEconomy)
 	route("PUT /api/admin/economy", a.adminSaveEconomy)
 	// 大厅宣传 (ADMIN.md 10): the lobby home's carousel and promotion boards.

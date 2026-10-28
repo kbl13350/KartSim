@@ -17,6 +17,7 @@ const now = Date.now()
 const minute = 60_000
 const day = 86_400_000
 const pick = <T>(list: T[], i: number): T => list[i % list.length]!
+let translationSettings = { enabled: false, model: 'deepseek-flash', keyConfigured: false }
 const redisDown = process.env.MOCK_REDIS_DOWN === '1'
 
 const nodes = [
@@ -566,6 +567,19 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
       itemId: Number(body.itemId ?? 0), count: Number(body.count), days: Number(body.days ?? 0), currency, createdAt: at,
       expiresAt: at + 30 * day, claimedAt: null, state: 'unclaimed' }, ...rewardBox]
     return send(res, 200, { ok: true, entry: { name, count: body.count } })
+  }
+  if (path === '/api/admin/translation') {
+    if (method === 'PUT') {
+      const body = await readBody(req)
+      const keyConfigured = body.clearKey ? false : !!body.apiKey || translationSettings.keyConfigured
+      if (body.enabled && !keyConfigured && !body.clearKey) return send(res, 400, { error: 'TRANSLATION_KEY_REQUIRED' })
+      translationSettings = { enabled: body.clearKey ? false : !!body.enabled, model: String(body.model), keyConfigured }
+    }
+    return send(res, 200, translationSettings)
+  }
+  if (path === '/api/admin/translation/test' && method === 'POST') {
+    return translationSettings.keyConfigured ? send(res, 200, { text: '你好，准备好比赛了吗？（模拟）' })
+      : send(res, 400, { error: 'TRANSLATION_KEY_REQUIRED' })
   }
   if (path === '/api/admin/notices') {
     if (method === 'PUT') {

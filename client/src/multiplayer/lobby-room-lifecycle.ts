@@ -1,3 +1,4 @@
+import { syncRoomChatTranslations } from "./chat-translation";
 /** Visible room lifecycle, member updates, chat bubbles, and keyboard actions. */
 
 interface RoomMember {
@@ -12,6 +13,7 @@ interface RoomChat {
 }
 
 export interface LobbyRoomSnapshot {
+  id?: string;
   phase: string;
   hostId: unknown;
   members: RoomMember[];
@@ -36,6 +38,7 @@ interface LobbyRoomView {
 
 export interface LobbyRoomLifecycleHost {
   playerId: unknown;
+  emotions?: unknown[];
   actions: {
     canStart?(): boolean;
     onError?(error: unknown): void;
@@ -106,6 +109,7 @@ export function showLobbyRoom(host: LobbyRoomLifecycleHost,
   host.previews?.update(dependencies.previewMembers(host.room, host.roleTeams));
   host.animate();
   host.view.show();
+  syncRoomChatTranslations(host, text => dependencies.parseChat(text, host.emotions ?? []).text);
   host.view.focus("goBackButton");
   void host.loadTrack();
 }
@@ -195,6 +199,7 @@ export function updateLobbyRoom(host: LobbyRoomLifecycleHost,
     if (host.animation !== undefined) dependencies.cancelFrame(host.animation);
     host.animation = undefined;
   }
+  syncRoomChatTranslations(host, text => dependencies.parseChat(text, emotions).text);
   host.view.render();
   void host.loadTrack();
 }

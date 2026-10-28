@@ -7,6 +7,7 @@ import AntiCheatTab from './AntiCheatTab.vue'
 import ClubsTab from './ClubsTab.vue'
 import DrawsTab from './DrawsTab.vue'
 import EconomyTab from './EconomyTab.vue'
+import TranslationTab from './TranslationTab.vue'
 import GrantsTab from './GrantsTab.vue'
 import InvitesTab from './InvitesTab.vue'
 import LedgerTab from './LedgerTab.vue'
@@ -42,6 +43,7 @@ const views: Record<string, Component> = {
   clubs: ClubsTab,
   lottery: LotteryTab,
   economy: EconomyTab,
+  translation: TranslationTab,
   'lobby-promos': LobbyPromoTab,
   'reward-box': RewardBoxTab,
   notices: NoticesTab,
