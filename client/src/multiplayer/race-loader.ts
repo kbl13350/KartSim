@@ -8,6 +8,7 @@ import { AutopilotPrank, loadAutopilotPrompts } from "../ui/autopilot-prank";
 import { isCustomTrackId } from "../mapeditor/design";
 import { ensurePublishedMap } from "../mapeditor/custom-map-loader";
 import { isCityRace } from "../city/city-track";
+import { BraveHud } from "./brave-hud";
 export interface MultiplayerRaceLoaderDependencies {
   createToonStageBinding(): unknown;
   loadRaceAssets(assets: unknown, config: any, room: any, audio: unknown,
@@ -142,11 +143,13 @@ export function createMultiplayerRaceLoader(
           throw new Error("组队赛卡片缺少本机红蓝队身份。");
         const item = isItemRace(raceAssets.drivingMode);
         trackCard = await deps.loadTrackCard({
-          library, root, trackId: room.trackId, trackDirectory: directory,
+          library, root, trackId: room.trackId,
+          trackDirectory: config.gameplay === "brave" ? "village_R07" : directory,
           trackTitle: trackDisplayTitle(room.trackId, raceAssets.map.metadata.cnTitle ?? ""),
           difficulty: raceAssets.map.metadata.difficulty,
           game: {
-            modeKey: item ? itemTrackCardModeKey(config.mode === "team")
+            modeKey: config.gameplay === "brave" ? "DeadRacingTeam"
+              : item ? itemTrackCardModeKey(config.mode === "team")
               : config.mode === "team" ? "SpeedTeam" : "SpeedIndi",
             speed: config.speed,
             team: team === 1 || team === 2 ? team : undefined,
@@ -213,6 +216,10 @@ export function createMultiplayerRaceLoader(
           presenter.autopilot = new AutopilotPrank(presenter.autopilotSeats.has(connection.playerId)
             ? await loadAutopilotPrompts(library, message => console.warn(message)) : undefined);
           checkCancellation();
+        }
+        if (raceAssets.drivingMode?.kind === "brave") {
+          presenter.braveHud = new BraveHud(root, driver.local.physics, connection.playerId,
+            room.roster, connection, () => deps.now());
         }
         presenter.warm(host.renderer, deps.now());
         checkCancellation();

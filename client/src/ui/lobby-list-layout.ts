@@ -9,7 +9,7 @@ import { tr } from "../i18n/locale";
 import { isItemChannel } from "../multiplayer/lobby-item-mode";
 
 export type LobbyGameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp" |
-  "item" | "brawl" | "city";
+  "item" | "brawl" | "brave" | "city";
 
 /** Room summary fields the list shows; the server sends these per room. */
 export interface LobbyListRoom {
@@ -85,6 +85,8 @@ export const LOBBY_TABS: readonly LobbyTab[] = [
       channel: "speedIndiCombine", channels: PAIR },
     { id: "shadow", title: "幽灵模式", subtitle: "标准/无限", gameplay: "shadow",
       channel: "speedIndiCombine", channels: ORDINARY },
+    { id: "brave", title: "勇者组队竞速赛", subtitle: "四人以上 · 两队相向竞速", gameplay: "brave",
+      channel: "speedTeamCombine", channels: ["speedTeamCombine"], filter: ["team"] },
     { id: "roadblock", title: "挡人模式", subtitle: "五人以上", gameplay: "roadblock",
       channel: "speedIndiCombine", channels: ["speedIndiCombine"] },
     { id: "giant", title: "巨人模式", subtitle: "个人", gameplay: "giant",
@@ -222,7 +224,7 @@ export function visibleLobbyRooms(state: LobbyListUiState,
 
 const GAMEPLAY_NAMES: Record<string, string> = {
   grip: "抓地", shadow: "幽灵", roadblock: "挡人", giant: "巨人", rp: "RP", lte: "LTE",
-  item: "道具", brawl: "乱斗",
+  item: "道具", brawl: "乱斗", brave: "勇者",
 };
 
 /** 模式 column: 个人赛, 团体赛, 无限个人, 无限团体, or the special mode name. */

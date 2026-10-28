@@ -1,3 +1,4 @@
+import { freezeBraveRaceRules } from "./lobby-brave-mode";
 import { freezeItemRaceRules, teamGaugeEnabled } from "./lobby-item-mode";
 import { createActiveItemRace } from "./item-race-wiring";
 import type { ItemRaceController } from "../item/item-race-controller";
@@ -55,6 +56,8 @@ export class ActiveRaceCoordinator {
   giantIdentity: unknown;
   /** Frozen `race.item` of a 道具赛 race. */
   itemIdentity: unknown;
+  /** Frozen opposing-direction assignment of a Brave race. */
+  braveIdentity: unknown;
   /** 道具赛: the local item race controller (also `local.items`). */
   itemRace: ItemRaceController | undefined;
   giantSequence = 0;
@@ -75,6 +78,7 @@ export class ActiveRaceCoordinator {
     this.lteIdentity = room.lte ? Object.freeze({ ...room.lte }) : undefined;
     this.giantIdentity = room.giant ? Object.freeze({ ...room.giant }) : undefined;
     this.itemIdentity = freezeItemRaceRules(room.item);
+    this.braveIdentity = freezeBraveRaceRules(room.brave);
     this.collisionFramerate = ops.createCollisionFramerate(
       assets.checkClientFramerate && assets.channel.adjustCollision,
       assets.participants.filter((player: any) => player.playerId !== connection.playerId)

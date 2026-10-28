@@ -1,4 +1,5 @@
 import type { LobbyRoom } from "./lobby-actions";
+import { sameBraveRaceRules } from "./lobby-brave-mode";
 import { sameItemRaceRules } from "./lobby-item-mode";
 
 export interface CoordinatedRace {
@@ -11,6 +12,7 @@ export interface CoordinatedRace {
   lte?: unknown;
   rp?: unknown;
   item?: unknown;
+  brave?: unknown;
   [key: string]: unknown;
 }
 
@@ -114,6 +116,7 @@ export class RaceStartCoordinator {
         !this.rules.sameLte(race.lte, originalRace?.lte) ||
         !this.rules.sameRp(race.rp, originalRace?.rp) ||
         !sameItemRaceRules(race.item, originalRace?.item) ||
+        !sameBraveRaceRules(race.brave, originalRace?.brave) ||
         room.mode !== original.mode || room.speed !== original.speed ||
         room.resourceVersion !== original.resourceVersion ||
         room.name !== original.name || room.speedVersion !== original.speedVersion) {

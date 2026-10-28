@@ -9,6 +9,7 @@ import { trackMetadataOverride } from "../resources/track-overrides";
 import { minimapProjection } from "../resources/minimap-projection";
 import { isXmasTrack, xmasTrackModelPath } from "../resources/xmas-theme";
 import { isCustomTrackId } from "../mapeditor/design";
+import { braveMapRoute, validateBraveRoute, type BraveRouteSelection } from "../multiplayer/brave-route";
 
 /** 驾照考试 courses register metadata overrides too; 地图工坊 maps do not take their rules. */
 function riderSchoolCourse(trackId: string): boolean {
@@ -144,7 +145,13 @@ export async function loadTrackMap(
   lte = false,
   ops: TrackMapOps,
   itemGame = false,
+  brave?: BraveRouteSelection,
 ): Promise<any> {
+  if (brave) {
+    validateBraveRoute(brave, trackId);
+    if (mode !== "speed-individual" || lte || itemGame)
+      throw new Error("勇者竞速地图只走组队竞速准入。");
+  }
   if (itemGame && (mode !== "speed-individual" || lte))
     throw new Error("道具赛地图只走 speed-individual 准入。");
   if (trackId === CITY_TRACK_ID) registerCityTrack();
@@ -194,11 +201,12 @@ export async function loadTrackMap(
     ops.resourceVersion("p3553") === "p3553"
     ? ops.dummySounds(model) : [];
   const road = ops.extractRoad(model, mode, {
-    forceReverse: /_rvs$/i.test(trackId),
+    forceReverse: brave ? brave.localTeam !== brave.forwardTeam : /_rvs$/i.test(trackId),
     // 卡丁城 and 地图工坊 maps are wider than the release's 2 km road grid.
     roadExtent: trackMetadataOverride(trackId)?.roadExtent,
     practiceScene: PRACTICE_SCENE_IDS.has(trackId) ? trackId : undefined,
   });
+  const braveRoute = brave ? braveMapRoute(brave, model, road) : undefined;
   // 驾照考试: the open course without a final gate (village_C005) ends at its last gate,
   // and the course's tutorial points name their hint scenes.
   const licenseCourse = mode === "time-attack" && trainingCourse;
@@ -280,7 +288,7 @@ export async function loadTrackMap(
     throw new Error(`${trackId} 的 gameType=${gameType} 不在 TimeAttack 赛道集合。`);
   if (metadata.blocked === true)
     throw new Error(`${trackId} 被 CN track metadata 标记为 blocked。`);
-  if (metadata.choosable === false)
+  if (metadata.choosable === false && !brave)
     throw new Error(`${trackId} 不允许普通手动选择。`);
   if (!metadata.cnTitle)
     throw new Error(`${trackId} 缺少 trackLocale@cn 标题记录。`);
@@ -379,6 +387,7 @@ export async function loadTrackMap(
       lastSection: road.lastSection,
       start: road.start,
       lapTarget: metadata.laps,
+      ...(braveRoute ? { brave: braveRoute } : {}),
       ...(licenseEvents ? { licenseEvents } : {}),
       // The HUD's Christmas item slot frame and dashboard follow the model.
       ...(xmasPath ? { xmas: true } : {}),
@@ -420,7 +429,13 @@ export function loadMultiplayerMap(owner: { loadMap(...args: any[]): any },
   path: string, trackId: string, mode: string,
   version: (key: string) => string,
   isLteTrack: (trackId: string) => boolean,
-  admit: TrackMapOps["loadMultiplayerAdmission"]): any {
+  admit: TrackMapOps["loadMultiplayerAdmission"], brave?: BraveRouteSelection): any {
+  if (mode === "brave") {
+    validateBraveRoute(brave, trackId);
+    if (version("p3553") !== "p3553") throw new Error("勇者竞速仅准入 P3553。");
+    return owner.loadMap(path, trackId, "speed-individual", admit, false, false, brave);
+  }
+  if (brave) throw new Error("普通比赛不能附带勇者竞速方向。");
   if (mode === "lte" && version("p3553") !== "p3553")
     throw new Error("LTE 专属图仅准入 P3553。");
   if (mode === "lte" && !isLteTrack(trackId))

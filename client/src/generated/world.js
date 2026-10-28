@@ -1,3 +1,4 @@
+import { noteBraveKartContact } from "../multiplayer/brave-signals.ts";
 import { resourceText } from "../i18n/locale.ts";
 // Generated from the verified KartSim v39.11 release bundle.
 // Rebuild with: node tools/generate-modules.mjs
@@ -789,6 +790,7 @@ function Di0(n, e, t, i, r) {
           return;
       }
       n.applyKartPairResponse(dE(f.linear), dE(f.angular), f.strength);
+      noteBraveKartContact(n, l); // brave: actual kart impulse, never a wall/proximity guess
     }
   });
 }

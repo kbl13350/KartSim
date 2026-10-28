@@ -9,6 +9,7 @@ export interface RacePresenterRenderer {
 }
 
 export interface RacePresenterRenderHost {
+  braveHud?: { setVisible(visible: boolean): void };
   disposed: boolean;
   resultVisible: boolean;
   warpHudHidden: boolean;
@@ -68,6 +69,8 @@ export function renderRacePresenterFrame(host: RacePresenterRenderHost,
     } finally {
       renderer.setTransparentSort(null);
     }
+    host.braveHud?.setVisible(!host.resultVisible && !host.warpHudHidden &&
+      host.runtime.local.lifecycle.state < dependencies.postFinishState);
     if (host.resultVisible) return;
     renderer.clearDepth();
     if (!host.warpHudHidden &&

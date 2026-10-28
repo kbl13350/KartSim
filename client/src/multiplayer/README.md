@@ -38,6 +38,11 @@ bundle. It can be developed independently of the original minified code.
 - `race-session.ts`: member permissions and the abort-scoped race command API,
   including the serialized 道具赛 `sendItem` (strict per-racer sequence),
   `subscribeItem` and the item race's `finish` `perfectStart` flag.
+- `lobby-brave-mode.ts`, `brave-route.ts`: 勇者组队竞速赛 admission, frozen
+  team directions and per-team start poses on the same track;
+  `race-motion-slots.ts` shares its frozen slot identities across relay and P2P.
+- `brave-signals.ts`, `brave-hud.ts`: approaching-opponent aim indicators,
+  the local collision red flash and teammate collision warning lamps.
 - `item-race-wiring.ts`, `race-presenter-items.ts`: 道具赛 assembly (the item
   race controller on the local owner, with the frozen roster equipment
   `race.roster[i].equipment.itemIds`, the race id as the passive roll seed and
@@ -187,7 +192,7 @@ For LAN play (`run-lan.sh`), Vite proxies `/multiplayer/ws` to
 `/multiplayer/` and `/api/` paths to `KART_LAN_BACKEND` (the data service). The account-bound profile
 (`/api/account/profile`) and the Ghost summary index synchronize through `ui/profile-sync.ts` and
 `game/ghost-summary-sync.ts`; full Ghost replay frames remain in IndexedDB.
-The local client accepts ordinary, grip, shadow, roadblock, giant, RP, and LTE
+The local client accepts ordinary, grip, shadow, roadblock, giant, RP, LTE and brave
 rooms on P3553. LTE is a Web trial: its race uses only the three dedicated
 tracks, random track code 0, and the existing Z/X dodge control. The server
 must include the frozen `race.lte` metadata and a complete `race.startSlots`
@@ -196,6 +201,73 @@ The LTE trial does not yet implement automatic nitro refill or banana events.
 The original WebRTC path stays available by setting
 `VITE_MULTIPLAYER_TRANSPORT=webrtc` and a compatible backend origin; it also
 presents the entry ticket in `hello` and no longer sends a bearer token.
+
+## 勇者组队竞速赛 (brave)
+
+Enter through the **ETC** gameplay list. The recovered native mode is
+`deadRacingTeam` / game type 31: red and blue race in opposite directions on
+the same track. This implementation uses `gameplay: "brave"`,
+`channelName: "speedTeamCombine"`, P3553 resources and the fixed two-lap
+**城镇 命运之桥** (`village_R07`). Other tracks and every `random-track`
+request, including code 0, are rejected.
+
+Room capacities are 4, 6 or 8. A race requires at least four players, an even
+roster and equal red/blue teams. The random-team switch deals an even roster
+equally before the race is frozen. A departure or load failure before the
+start cancels a race that can no longer meet those constraints; departures
+after the start can leave the remaining racers racing. If an entire team
+leaves, recorded finishes are settled, or the race is cancelled when nobody
+has finished, so the room cannot remain stuck in a race.
+
+The server freezes `race.brave = { ruleset: "web-brave-v1", forwardTeam: 1 | 2 }`
+for each race, randomly choosing the forward team; the other team follows the
+reverse route from the same scene. It also chooses unique random start slots
+inside each team's four-slot grid: team 1 uses 0–3 and team 2 uses 4–7.
+`race.startSlots[playerId]` and `race.roster[].slot` agree, and stay fixed with
+the direction through loading, racing and results. Both relay and P2P motion
+sender identities and recipient masks use these frozen slots, which can differ
+from the room seats even in a four-player room. Returning to the room and
+starting again creates a new race and a new random draw; a draw may repeat.
+
+Results currently use the existing standard team speed-race rank points and
+team-score winner. The mode is not an elimination race. Collision cues add no
+damage, penalties, score or server-authoritative physics:
+
+- Request: `{ type: "brave-collision", roomId, raceId, targetId }`.
+- Event/ack: `{ type: "brave-collision", roomId, raceId, playerId, targetId }`;
+  the ack also carries the request's `requestId`. The server derives `playerId`
+  from the session and broadcasts the event to the other room peers.
+- Only active, loaded, unfinished opponents in the current racing roster are
+  accepted. Each sender has a 300 ms cooldown. When both recent motion samples
+  are available, a distance above 60 m rejects the cue; missing P2P position
+  samples do not make this a physics or scoring check.
+
+The client projects an aim cue onto approaching opponents, flashes red for
+local enemy contact and shows warning lamps for teammates' enemy contacts.
+The recovered warning artwork is incomplete, so these cue visuals are rebuilt
+from the documented behavior; they are not a pixel-identical recreation of the
+original UI. The private, git-ignored `recovered/` inputs are also needed to
+regenerate the compatibility modules; a checkout without them cannot perform
+that regeneration.
+
+From `server-go/`, run the actual four-WebSocket, two-race flow and the ordinary
+two-player team regression (the HTTP data fixture needs no MySQL or Redis):
+
+```sh
+go test ./internal/game/app -run 'TestBraveFourWebSocketClientsRunTwoRaces|TestOrdinaryTeamWebSocketStillStartsWithTwoAndUsesRoomSlots' -count=1
+go test -race ./internal/game/app ./internal/game/lobby -run 'TestBrave|TestOrdinaryTeamWebSocket' -count=1
+```
+
+With Vite running and the original resource containers available, open
+`/tests/browser/brave-race.html` for the real multiplayer asset loader, four
+kart/character assemblies, countdown, five seconds of driving and collision
+cue controls. Add `?reverse=1` to exercise the other direction. This browser
+fixture supplies a test roster and connection; the four real WebSocket
+clients, results and next-race flow are exercised separately by the Go test
+above. Frontend mode, route, motion, identity and actual collision-solver
+checks run with `node --import ./src/physics/node-raw-test-hook.mjs --import tsx
+--test tests/brave-compat.test.mjs src/multiplayer/brave-*.test.ts
+src/multiplayer/lobby-brave-mode.test.ts` from `client/` (as one command).
 
 ## Known boundaries
 

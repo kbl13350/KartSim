@@ -2,6 +2,7 @@
 
 import { brawlGridForward } from "./lobby-brawl-mode";
 import { isAutopilotKart } from "../ui/autopilot-prank";
+import { bravePlayerStart, type BraveStartPoses } from "./brave-route";
 
 interface Vec3 { x: number; y: number; z: number }
 interface SceneMount {
@@ -104,6 +105,7 @@ export interface RacePresenterInitializationInputs {
       };
       startPose: { position: Vec3; right: unknown;
         [key: string]: unknown };
+      braveStartPoses?: BraveStartPoses;
     };
   };
   race: { roster: unknown; startSlots: Record<PropertyKey, unknown> };
@@ -260,9 +262,14 @@ export function initializeRacePresenter(host: RacePresenterInitializationHost,
           dependencies.createGiantAppearance(participant.playerId === playerId,
             vehicleBindings, characterBindings));
       }
-      const startPose = runtime.local.startPose;
+      const brave = assets.drivingMode?.kind === "brave";
+      if (brave && !runtime.local.braveStartPoses)
+        throw new Error("勇者竞速缺少两队冻结起跑姿态。");
+      const braveStart = brave ? bravePlayerStart(race, participant.playerId,
+        runtime.local.braveStartPoses!) : undefined;
+      const startPose = braveStart?.pose ?? runtime.local.startPose;
       const position = dependencies.startPosition(startPose.position,
-        startPose.right, race.startSlots[participant.playerId],
+        startPose.right, braveStart?.slot ?? race.startSlots[participant.playerId],
         (from, to) => track.rayQuery(from, to, false)?.point,
         assets.drivingMode?.kind === "brawl" ? brawlGridForward(startPose.forward as Vec3) : undefined);
       host.initialPoses.set(participant.playerId,

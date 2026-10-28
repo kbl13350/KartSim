@@ -453,6 +453,8 @@ func (l *Lobby) dispatch(c *Client, typ string, in Request, check *ownershipChec
 		return l.returnRoom(c, in)
 	case "giant-state":
 		return l.giantState(c, in)
+	case "brave-collision":
+		return l.braveCollision(c, in)
 	case "team-charge":
 		return l.teamCharge(c, in)
 	case "award-motion":
@@ -1039,6 +1041,15 @@ func (l *Lobby) racerLeft(r *room, playerID string) {
 	rc := r.race
 	rc.markOut(playerID)
 	switch {
+	case r.gameplay == "brave" && r.phase == "countdown" && !braveCanStart(r):
+		cancelBraveRace(r, "MEMBER_LEFT")
+	case r.gameplay == "brave" && r.phase == "racing" && braveTeamGone(r):
+		if len(rc.finishes) > 0 {
+			l.finalizeRace(r.id, rc.id)
+			l.closeAbandonedRace(r)
+			return
+		}
+		cancelBraveRace(r, "MEMBER_LEFT")
 	case r.gameplay == "roadblock" && playerID == rc.roadblockRunner && r.phase != "loading":
 		l.endRoadblock(r, "runner-left", max(l.clock.Now(), *rc.startAt))
 		l.closeAbandonedRace(r)
@@ -1064,10 +1075,11 @@ func (l *Lobby) racerLeft(r *room, playerID string) {
 // continueLoading goes on with a loading race after racers dropped out of
 // it: the countdown starts once the racers still in it have all loaded. The
 // race is cancelled with reason when it can no longer start: no racer is
-// left, or a roadblock race lost its runner or can no longer load five.
+// left, a roadblock race lost its runner or can no longer load five, or a
+// brave race no longer has two equal teams of at least two racers.
 func (l *Lobby) continueLoading(r *room, reason string) {
 	rc := r.race
-	if len(racers(r)) == 0 || (r.gameplay == "roadblock" &&
+	if len(racers(r)) == 0 || (r.gameplay == "brave" && !braveCanStart(r)) || (r.gameplay == "roadblock" &&
 		(rc.isOut(rc.roadblockRunner) || loadableRacers(r) < 5)) {
 		r.phase = "open"
 		r.race.endCheat()
@@ -1458,6 +1470,9 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 	if r.gameplay == "roadblock" && len(r.members) < 5 {
 		return nil, fail(http.StatusBadRequest, "NOT_ENOUGH_PLAYERS")
 	}
+	if err := validateBraveStart(r); err != nil {
+		return nil, err
+	}
 	hasTeam := [3]bool{}
 	for _, m := range r.members {
 		if m.playerID != r.hostID && !m.ready {
@@ -1500,9 +1515,15 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 // launchRace freezes the race of a room whose start passed every check and
 // starts loading it; c (nil for a handed-off room) sent the start.
 func (l *Lobby) launchRace(r *room, c *Client, check *ownershipCheck) {
+	if validateBraveStart(r) != nil {
+		r.raceError = "HOST_CANCELLED"
+		r.revision++
+		l.broadcastRoom(r, c)
+		return
+	}
 	loadingWindow := int64(30_000)
 	switch r.gameplay {
-	case "roadblock", "giant", "rp", "lte":
+	case "roadblock", "giant", "rp", "lte", "brave":
 		loadingWindow = 90_000
 	case "item":
 		loadingWindow = itemLoadingWindowMs
@@ -1664,6 +1685,10 @@ const countdownLeadMs = 7_000
 // racer still in the room has loaded.
 func (l *Lobby) startCountdownWhenLoaded(r *room) {
 	rc := r.race
+	if r.gameplay == "brave" && !braveCanStart(r) {
+		cancelBraveRace(r, "MEMBER_LEFT")
+		return
+	}
 	if !containsAll(rc.loadedIDs, racers(r)) {
 		return
 	}
@@ -1687,6 +1712,12 @@ func (l *Lobby) startCountdownWhenLoaded(r *room) {
 func (l *Lobby) beginRace(roomID, raceID string) {
 	r := l.rooms[roomID]
 	if r == nil || r.race == nil || r.race.id != raceID || r.phase != "countdown" {
+		return
+	}
+	if r.gameplay == "brave" && !braveCanStart(r) {
+		cancelBraveRace(r, "MEMBER_LEFT")
+		r.revision++
+		l.broadcastRoom(r, nil)
 		return
 	}
 	r.phase = "racing"

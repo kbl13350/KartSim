@@ -1,5 +1,6 @@
 import { BRAWL_SLOTS, isBrawl } from "./lobby-brawl-mode";
 import type { RacePoint } from "./race-driving-scales";
+import { raceMotionSlot, type RaceMotionSlots } from "./race-motion-slots";
 
 export interface CadenceParticipant {
   playerId: string;
@@ -9,7 +10,7 @@ export interface CadenceParticipant {
   ai?: true;
 }
 
-export interface CadenceRace {
+export interface CadenceRace extends RaceMotionSlots {
   raceId: string;
   gameplay?: string;
   roster: readonly CadenceParticipant[];
@@ -22,7 +23,7 @@ export interface CadenceRoom {
 
 export interface CadenceMotion {
   kind: string;
-  /** observedSlot names a racer by room slot (protocol 40; the release sent its player ID). */
+  /** observedSlot names a racer by motion slot (protocol 40; the release sent its player ID). */
   routing?: { observedSlot?: number; motionMode?: number };
   resetStartedAt?: number;
 }
@@ -56,15 +57,17 @@ export class RacePeerCadence {
    * each racer by distance itself (a recipient mask names only slots 0–7).
    */
   broadcast: boolean;
+  private readonly motionRace: RaceMotionSlots;
 
   constructor(race: CadenceRace, localId: string, specialMode: boolean) {
     this.localId = localId;
     this.raceId = race.raceId;
     this.special = specialMode;
     this.broadcast = isBrawl(race.gameplay);
+    this.motionRace = race;
     for (const participant of race.roster) {
       if (participant.playerId === localId) {
-        this.localSlot = participant.slot;
+        this.localSlot = raceMotionSlot(race, participant);
         continue;
       }
       if (participant.ai) continue;
@@ -75,7 +78,7 @@ export class RacePeerCadence {
       }
       const fixed = itemId !== 0;
       this.peers.set(participant.playerId, {
-        slot: participant.slot,
+        slot: raceMotionSlot(race, participant),
         fixed,
         tier: fixed ? 1 : 2,
         collisionMode: 0,
@@ -93,15 +96,17 @@ export class RacePeerCadence {
       this.dispose();
       return;
     }
-    this.localSlot = room.members.find(member => member.playerId === this.localId)!.slot;
+    this.localSlot = raceMotionSlot(this.motionRace,
+      room.members.find(member => member.playerId === this.localId)!);
     for (const [id, peer] of this.peers) {
       const member = room.members.find(candidate => candidate.playerId === id);
       if (!member) {
         this.peers.delete(id);
         continue;
       }
-      if (peer.slot !== member.slot) {
-        peer.slot = member.slot;
+      const slot = raceMotionSlot(this.motionRace, member);
+      if (peer.slot !== slot) {
+        peer.slot = slot;
         peer.tier = peer.fixed ? 1 : 2;
         peer.collisionMode = 0;
       }
@@ -126,7 +131,7 @@ export class RacePeerCadence {
     peer.resetting = motion.kind === "kinematic" && motion.resetStartedAt !== undefined;
   }
 
-  /** The room slot of a racer (the local one included), as motion routing names it. */
+  /** The motion slot of a racer (the local one included), as routing names it. */
   slotOf(id: string): number | undefined {
     return id === this.localId ? this.localSlot : this.peers.get(id)?.slot;
   }

@@ -1,5 +1,6 @@
 import { BRAWL_SLOTS, brawlGridForward } from "./lobby-brawl-mode";
 import { isItemRace, isItemRaceRules } from "./lobby-item-mode";
+import { bravePlayerStart, braveRouteSelection, captureBraveStartPoses } from "./brave-route";
 
 export interface LocalRaceConstructionOps {
   validateStartSlots(room: any, slotCount?: number): void;
@@ -41,6 +42,17 @@ export function initializeLocalRace(
   }
   if (assets.map.data.trackId !== room.trackId) {
     throw new Error("本局赛道与已装配资源不一致。");
+  }
+  const brave = assets.drivingMode?.kind === "brave";
+  const braveMap = assets.map.data.brave;
+  if (brave) {
+    const expected = braveRouteSelection(room, localPlayerId);
+    if (assets.mode !== "team" || !braveMap ||
+        braveMap.ruleset !== expected.ruleset || braveMap.forwardTeam !== expected.forwardTeam ||
+        braveMap.localTeam !== expected.localTeam)
+      throw new Error("勇者竞速冻结方向与已装配路线不一致。");
+  } else if (room.brave !== undefined || braveMap !== undefined) {
+    throw new Error("普通比赛不能使用勇者竞速路线。");
   }
   if ((assets.drivingMode?.kind === "lte") !== ops.hasLteMode(room.lte)) {
     throw new Error("LTE Web试玩身份与本机玩法不一致。");
@@ -88,6 +100,12 @@ export function initializeLocalRace(
   owner.track = ops.makeTrack(
     assets.map.data, assets.map.scene, assets.map.renderScene,
     assets.map.skydome, assets.lensFlare);
+  owner.braveStartPoses = brave ? captureBraveStartPoses(braveMap, owner.physics) : undefined;
+  if (brave) {
+    // Validate every slot now, before a remote presentation can be spawned.
+    for (const participant of room.roster)
+      bravePlayerStart(room, participant.playerId, owner.braveStartPoses);
+  }
   owner.physics.resetFromRouteFrame(owner.track.getStart());
   owner.startPose = structuredClone({
     position: owner.physics.body.position,
@@ -98,7 +116,8 @@ export function initializeLocalRace(
   owner.physics.body.position = ops.placeAtStart(
     owner.physics.body.position,
     owner.physics.body.right,
-    room.startSlots[localPlayerId],
+    brave ? bravePlayerStart(room, localPlayerId, owner.braveStartPoses).slot
+      : room.startSlots[localPlayerId],
     (point: any, direction: any) =>
       owner.track.rayQuery(point, direction, false)?.point,
     // 50人乱斗: rows of eight behind the release's row.

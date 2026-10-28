@@ -113,7 +113,7 @@ export function lobbyRandomTrackRules<Rule extends RandomTrackRule>(
 export async function chooseLobbyTrack(host: LobbyTrackHost,
   deps: LobbyTrackDependencies): Promise<void> {
   const room = host.state.room;
-  if ((room && ["roadblock", "lte"].includes(deps.gameplay(room))) ||
+  if ((room && ["roadblock", "lte", "brave"].includes(deps.gameplay(room))) ||
       !room || room.phase !== "open" || room.hostId !== host.playerId ||
       host.disposed || host.roomView?.countdownLocked || host.busy ||
       host.dialog || host.trackSelect || host.garage || host.modalLoading ||
@@ -200,6 +200,7 @@ export async function confirmLobbyTrack(host: LobbyTrackHost,
   rules: RandomTrackRule[]): Promise<void> {
   if (!host.isChangingModalCurrent(modal) || host.busy) return;
   const room = host.state.room!;
+  if (room.gameplay === "brave") return;
   const randomRule = choice.kind === "random"
     ? lobbyRandomTrackRules(room.gameplay, rules).find(rule => rule.groupId === choice.group.id)
     : undefined;

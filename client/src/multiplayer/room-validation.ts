@@ -1,12 +1,13 @@
 /** Validation of the full `room` server event payload (release function `bP`). */
 
+import { BRAVE_CAPACITIES, BRAVE_CHANNEL, BRAVE_TRACK_ID, isBraveRaceRules, isBraveRoster } from "./lobby-brave-mode";
 import { isBrawl, isBrawlRaceRules, isBrawlTrack, roomSlotCount } from "./lobby-brawl-mode";
 import { ITEM_CHANNELS, isItemChannel, isItemRaceRules, itemChannelMismatch } from "./lobby-item-mode";
 
 export type ResourceVersion = "p3528" | "p3543" | "p3553";
 export type RoomMode = "individual" | "team";
 export type Gameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp" |
-  "item" | "brawl";
+  "item" | "brawl" | "brave";
 export type RoomPhase = "open" | "loading" | "countdown" | "racing" | "finished";
 export type ChannelName = "speedIndiCombine" | "speedTeamCombine" |
   "speedIndiInfinit" | "speedTeamInfinit" | "itemIndiCombine" | "itemTeamCombine";
@@ -108,6 +109,8 @@ export interface RaceSnapshot {
   item?: { ruleset: "web-item-v1"; table: "indi" | "team" };
   /** 50人乱斗 rules and AI racers (server-go/BRAWL.md); brawl rooms only. */
   brawl?: { ruleset: "web-brawl-v1"; aiIds: string[] };
+  /** Original opposing-direction team speed rules. */
+  brave?: { ruleset: "web-brave-v1"; forwardTeam: 1 | 2 };
   /** Account rewards after the race (ECONOMY.md 2.1); see account/rewards.ts. */
   rewards?: Record<string, { exp: number; lucci: number }>;
   /** 隊伍隨機分配 (not in the release): the teams of this race were dealt at the start. */
@@ -152,7 +155,7 @@ const channelRules: Record<ChannelName, { mode: RoomMode; speed: 4 | 7 }> = {
   itemTeamCombine: { mode: ITEM_CHANNELS.itemTeamCombine.mode, speed: 7 },
 };
 const gameplayNames = new Set<Gameplay>([
-  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl",
+  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl", "brave",
 ]);
 const randomTrackCodes = new Set([0, 3, 4, 5, 6, 7, 8, 30, 40]);
 /** Item rooms draw the item hot 1-5, all, new and reverse pools; 40 is 竞速随机. */
@@ -209,6 +212,7 @@ function gameplayForChannel(gameplay: unknown, channelName: unknown,
   version: unknown): boolean {
   if ((gameplay !== undefined && !validGameplay(gameplay)) || !channel(channelName) ||
       itemChannelMismatch(gameplay, channelName)) return false;
+  if (gameplay === "brave") return channelName === BRAVE_CHANNEL && version === "p3553";
   if (gameplay === "item") return version === undefined || version === "p3553";
   if (gameplay === "roadblock" || gameplay === "giant" || isBrawl(gameplay)) {
     return channelName === "speedIndiCombine" && (version === undefined || version === "p3553");
@@ -311,6 +315,9 @@ function validModeData(race: Data, gameplay: Gameplay, rosterIds: Set<string>): 
   if (isBrawl(gameplay) ?
       !(isBrawlRaceRules(race.brawl, race.roster as unknown[]) && isBrawlTrack(race.trackId)) :
       race.brawl !== undefined) return false;
+  if (gameplay === "brave" ?
+      !(isBraveRaceRules(race.brave) && race.trackId === BRAVE_TRACK_ID &&
+        isBraveRoster(race.roster)) : race.brave !== undefined) return false;
   return true;
 }
 
@@ -445,7 +452,10 @@ export function isValidRoomSnapshot(value: unknown): value is RoomSnapshot {
       (typeof value.randomTeam !== "boolean" || value.mode !== "team")) return false;
   const capacity = value.capacity as number;
   const gameplay: Gameplay = value.gameplay === undefined ? "ordinary" : value.gameplay as Gameplay;
-  if ((gameplay === "roadblock" &&
+  if ((gameplay === "brave" &&
+        (!BRAVE_CAPACITIES.includes(capacity as 4 | 6 | 8) || value.trackId !== BRAVE_TRACK_ID ||
+          value.randomTrackCode !== undefined)) ||
+      (gameplay === "roadblock" &&
         (capacity < 5 || value.randomTrackCode !== 0 || value.trackId !== undefined)) ||
       (gameplay === "lte" && (value.randomTrackCode !== 0 || value.trackId !== undefined)) ||
       (gameplay === "giant" &&
@@ -470,6 +480,8 @@ export function isValidRoomSnapshot(value: unknown): value is RoomSnapshot {
       !finiteNonnegative(race.loadingDeadline) ||
       !Array.isArray(race.roster) || !Array.isArray(race.loadedIds) ||
       !isValidRoomSnapshot({ ...value, phase: "open", race: undefined, members: race.roster,
+        // Brave start positions are drawn from all four positions on each side.
+        ...(gameplay === "brave" ? { closedSlots: undefined } : {}),
         [rosterCheck]: true })) return false;
   if (race.randomTeam !== undefined &&
       (typeof race.randomTeam !== "boolean" || value.mode !== "team")) return false;

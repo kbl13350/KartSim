@@ -279,6 +279,13 @@ type race struct {
 	roadblock       obj
 	roadblockRunner string
 	roadblockResult obj // roadblockOutcome
+
+	// Brave freezes opposite team directions and grid slots. The maps below
+	// only bound collision HUD notifications; they do not affect the score.
+	brave            obj
+	braveCollisionAt map[string]int64
+	bravePositions   map[string]bravePosition
+
 	// outIDs are the racers out of the race before it finished: they left
 	// the room, or failed to load (load-failed, loading timeout). The race
 	// goes on without them (not in Java, which cancelled it).
@@ -439,6 +446,9 @@ func (r *race) snapshot() obj {
 	}
 	if r.giant != nil {
 		value = append(value, field{"giant", r.giant})
+	}
+	if r.brave != nil {
+		value = append(value, field{"brave", r.brave})
 	}
 	if r.roadblock != nil {
 		value = append(value, field{"roadblock", r.roadblock})

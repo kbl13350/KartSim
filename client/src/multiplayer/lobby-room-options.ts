@@ -1,6 +1,7 @@
 import { tr } from "../i18n/locale";
 /** Gameplay channel names and the original room creation dropdown template. */
 
+import { BRAVE_CHANNEL, BRAVE_LABEL } from "./lobby-brave-mode";
 import { BRAWL_LABEL } from "./lobby-brawl-mode";
 import { itemModeLabel } from "./lobby-item-mode";
 
@@ -19,6 +20,7 @@ export interface RoomDropdownDependencies {
 export function roomChannelNames(mode: string,
   ordinary: Record<string, string>, rp: Record<string, string>):
     Record<string, string> {
+  if (mode === "brave") return { [BRAVE_CHANNEL]: tr(BRAVE_LABEL) };
   if (mode === "roadblock") return { speedIndiCombine: tr("挡人模式（Web）") };
   if (mode === "item") return {
     itemIndiCombine: tr(itemModeLabel(false)),

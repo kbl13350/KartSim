@@ -20,7 +20,7 @@ var (
 	errPlayerNotFound  = apierr.New(http.StatusNotFound, "PLAYER_NOT_FOUND")
 	errInvalidRaceID   = apierr.New(http.StatusBadRequest, "INVALID_RACE_ID")
 
-	gameplays = []string{"ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl"}
+	gameplays = []string{"ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl", "brave"}
 )
 
 // historyName is the Java race-results name rule: at most 18 UTF-16 units

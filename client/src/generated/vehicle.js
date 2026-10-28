@@ -1,3 +1,5 @@
+import { braveRouteSelection } from "../multiplayer/brave-route.ts";
+import { isBraveRaceRules, sameBraveRaceRules, isBraveRoster } from "../multiplayer/lobby-brave-mode.ts";
 // Generated from the verified KartSim v39.11 release bundle.
 // Rebuild with: node tools/generate-modules.mjs
 // Stable minified names are retained for behavioral parity.
@@ -5664,8 +5666,8 @@ class ul {
     async loadRaceCharacters(characterPath, characterItem, kartItem, motionBasis, includeSpecialMotion, environment, stageBinding, award = false) { return loadRaceCharacters(this, characterPath, characterItem, kartItem, motionBasis, includeSpecialMotion, environment, stageBinding, award); }
     async loadVehicleRuntime(path, textureKey, plateId, library, environment, stageBinding, profile = this.assetHost.userProfile, kartItemId, engineGrade, coatingTextureOverride, scope, convertClientCoordinates, deferEnvironment = false) { return loadVehicleRuntime(this, path, textureKey, plateId, library, environment, stageBinding, profile, kartItemId, engineGrade, coatingTextureOverride, scope, convertClientCoordinates, deferEnvironment, vehicleRuntimeOps); }
     loadAssetMap(path, trackId) { return loadTimeAttackMap(this, path, trackId, J30); }
-    loadMultiplayerMap(path, trackId, mode) { return loadMultiplayerMap(this, path, trackId, mode, Bt, Vw, Z30); }
-    async loadMap(path, trackId, mode, admit, lte = false, itemGame = false) { return loadTrackMap(this, path, trackId, mode, admit, lte, trackMapOps, itemGame); }
+    loadMultiplayerMap(path, trackId, mode, brave) { return loadMultiplayerMap(this, path, trackId, mode, Bt, Vw, Z30, brave); }
+    async loadMap(path, trackId, mode, admit, lte = false, itemGame = false, brave) { return loadTrackMap(this, path, trackId, mode, admit, lte, trackMapOps, itemGame, brave); }
 }
 
 function i40(n) {
@@ -5863,6 +5865,8 @@ function m40(n, e) {
 }
 
 function w40(n, e) {
+  if (G2(n) === "brave" ? !isBraveRaceRules(e.brave) || !sameBraveRaceRules(e.brave, n.race?.brave) || !isBraveRoster(e.roster) || e.trackId !== "village_R07" : e.brave !== void 0)
+    throw new Error("勇者模式冻结参数无效。");
   if (
     (MI(G2(n)),
     G2(n) === "rp"
@@ -6055,7 +6059,9 @@ async function A40(n, e, t, i, r, s) {
     C = await (
       G2(e) === "lte"
         ? _.loadMultiplayerMap(E.path, E.id, "lte")
-        : _.loadMultiplayerMap(E.path, E.id, isItemRaceRoom(e) ? "item" : void 0)
+        : G2(e) === "brave"
+          ? _.loadMultiplayerMap(E.path, E.id, "brave", braveRouteSelection(t, r.playerId))
+          : _.loadMultiplayerMap(E.path, E.id, isItemRaceRoom(e) ? "item" : void 0)
     ).catch((D) => {
       const V = D instanceof Error ? D.message : String(D);
       throw new Error(`赛道 ${E.id}（${E.path}）加载失败：${V}`, { cause: D });

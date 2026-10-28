@@ -9,7 +9,8 @@ import (
 
 // Motion frames are the binary race channel. Protocol 40 (client motion.ts)
 // has an 8-byte header — payload kind, recipient slot mask, the sender's
-// room slot, the race tag (the first byte of the race UUID) and a uint32
+// room slot (frozen start slot in brave), the race tag (the first byte of
+// the race UUID) and a uint32
 // sequence — plus an 80–163 byte payload. The release's 56-byte header named
 // the room, race and player by UUID instead; the node knows the sender's
 // room from its connection and stamps its slot, so neither is trusted from
@@ -66,16 +67,17 @@ func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 	}
 	if r.phase == "racing" {
 		r.race.recordProgress(c.playerID, frame, l.clock.Now(), r.race.progressCap)
+		r.race.recordBravePosition(c.playerID, kind, payload, l.clock.Now())
 	}
 	// Receivers name the sender by this slot.
-	frame[motionSlotOffset] = byte(sender.slot)
+	frame[motionSlotOffset] = byte(raceMotionSlot(r, sender))
 	if r.race.brawl != nil {
 		l.relayBrawlMotion(r, c, frame)
 		return
 	}
 	recipientMask := int(frame[motionMaskOffset])
 	for _, m := range r.members {
-		if m.playerID == c.playerID || recipientMask&(1<<m.slot) == 0 ||
+		if m.playerID == c.playerID || recipientMask&(1<<raceMotionSlot(r, m)) == 0 ||
 			!slices.Contains(r.race.loadedIDs, m.playerID) || r.race.isOut(m.playerID) {
 			continue
 		}

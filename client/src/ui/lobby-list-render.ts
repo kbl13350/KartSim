@@ -1,4 +1,4 @@
-import { tr } from "../i18n/locale";
+import { gameLocale, tr } from "../i18n/locale";
 import type { LobbyDrawHost, LobbyLayoutNode, LobbyRect,
   LobbyRoomSummary } from "./lobby-list-draw";
 import { mainMenuBackdrop } from "./main-menu-view";
@@ -402,6 +402,12 @@ function drawTitle(host: LobbyListRenderHost, state: LobbyListUiState,
   const category = lobbyCategory(state.category)?.category;
   text(context, tr(category?.title ?? "多人游戏"), area.x + 2, area.y + area.height / 2, 28,
     "#ffffff", { shadow: true });
+  // Preserve the original Chinese createRoomEx/deadRacingTeam_01 button.
+  // The translated title remains text so every supported language is readable.
+  if (category?.gameplay === "brave" && gameLocale() === "zh-CN") {
+    const art = lobbyPicture("brave-mode.png", () => { if (!host.disposed) host.render?.(); });
+    if (art) context.drawImage(art, area.x + area.width - 109, area.y + 9, 93, 29);
+  }
   if (!category?.custom) return;
   let right = area.x + area.width - 16;
   for (const filter of [...LOBBY_FILTERS].reverse()) {

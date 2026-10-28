@@ -1,4 +1,5 @@
 import { brawlAiIds, isBrawl } from "./lobby-brawl-mode";
+import { raceMotionMembers, raceMotionSlot, type RaceMotionSlots } from "./race-motion-slots";
 import type { DecodedGameMotion } from "./payload";
 import { isValidItemRequest, type RoomMember, type RoomPhase } from "./protocol";
 import type { ItemServerEvent } from "./server-events";
@@ -7,9 +8,9 @@ export interface RaceScope {
   roomId: string;
   raceId: string;
   members: Set<string>;
-  /** Room slot of the local racer, which its motion frames carry. */
+  /** Motion slot of the local racer; brave freezes it with the start grid. */
   slot: number;
-  /** Members by room slot, to name the sender of a motion frame. */
+  /** Members by motion slot, to name the sender of a motion frame. */
   players: Map<number, string>;
   sequence: number;
   received: Map<string, number>;
@@ -31,7 +32,7 @@ export interface SessionRoom {
   members: RoomMember[];
   race?: { raceId: string; loadedIds: string[]; results?: unknown;
     roster?: Array<{ playerId: string; slot?: number }>; returnedIds?: string[];
-    brawl?: { aiIds?: unknown } };
+    brawl?: { aiIds?: unknown } } & RaceMotionSlots;
   raceError?: unknown;
 }
 
@@ -92,6 +93,12 @@ export function bindRaceScope(host: RaceSessionHost, room?: SessionRoom): void {
   }
 
   const race = room.race;
+  const motionMembers = raceMotionMembers(race, room.members);
+  if (!motionMembers.some(member => member.playerId === playerId)) {
+    host.motionScope = undefined;
+    host.raceLatencies.clear();
+    return;
+  }
   const enabled = (room.phase === "loading" && race.loadedIds.includes(playerId)) ||
     room.phase === "countdown" || room.phase === "racing";
   // 50人乱斗: the AI racers send frames under their seats, and the node
@@ -100,18 +107,18 @@ export function bindRaceScope(host: RaceSessionHost, room?: SessionRoom): void {
   const ai = brawlAiIds(race);
   const brawl = isBrawl(room.gameplay);
   let recipientMask = 0;
-  for (const member of room.members) {
+  for (const member of motionMembers) {
     if (member.playerId !== playerId && race.loadedIds.includes(member.playerId)) {
-      recipientMask |= brawl ? 0xff : 1 << member.slot;
+      recipientMask |= brawl ? 0xff : 1 << raceMotionSlot(race, member);
     }
   }
   if (brawl && ai.size > 0) recipientMask = 0xff;
-  const slot = room.members.find(member => member.playerId === playerId)!.slot;
-  const players = new Map(room.members.map(member => [member.slot, member.playerId]));
+  const slot = raceMotionSlot(race, motionMembers.find(member => member.playerId === playerId)!);
+  const players = new Map(motionMembers.map(member => [raceMotionSlot(race, member), member.playerId]));
   for (const entry of race.roster ?? []) {
     if (ai.has(entry.playerId) && entry.slot !== undefined) players.set(entry.slot, entry.playerId);
   }
-  const memberIds = [...room.members.map(member => member.playerId), ...ai];
+  const memberIds = [...motionMembers.map(member => member.playerId), ...ai];
 
   const current = host.motionScope;
   if (current?.roomId === room.roomId && current.raceId === race.raceId) {
@@ -228,6 +235,18 @@ export function createRaceConnection(host: RaceSessionHost, roomId: string,
       active() ? host.peerTransport?.latency(id) ?? host.raceLatencies.get(id) : undefined,
     sendTeamCharge: (charge: number, sequence: number) =>
       requestWhenActive({ type: "team-charge", charge, sequence }),
+    sendBraveCollision: (targetId: string) =>
+      requestWhenActive({ type: "brave-collision", targetId }),
+    subscribeBraveCollision: (listener: (event: { playerId: string; targetId: string }) => void) => {
+      if (!active()) return () => {};
+      return scopedSubscription(host.subscribe.bind(host), event => {
+        if (active() && event.type === "brave-collision" && event.roomId === roomId &&
+            event.raceId === raceId && typeof event.playerId === "string" &&
+            typeof event.targetId === "string" && host.motionScope?.members.has(event.playerId) &&
+            host.motionScope.members.has(event.targetId))
+          listener({ playerId: event.playerId, targetId: event.targetId });
+      });
+    },
     sendGiantState: (state: Record<string, unknown>, sequence: number) =>
       active()
         ? host.request({ type: "giant-state", roomId, raceId, sequence, ...state })

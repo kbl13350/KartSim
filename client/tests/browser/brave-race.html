@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><title>命运之桥勇者模式验证</title>
+<style>
+body{margin:0;background:#17202a;color:white;font:14px system-ui}#view{position:absolute;inset:65px 0 0}canvas{display:block}header{position:relative;z-index:100;padding:12px;background:#071722}button{padding:8px;margin-right:12px}#log{position:absolute;right:12px;top:70px;z-index:100;max-width:550px;white-space:pre-wrap;background:#071722cc;padding:12px;max-height:180px;overflow:auto;pointer-events:none}
+</style>
+<header><button id="start">载入真实四车勇者场景</button><button id="red" disabled>自己受撞红屏</button><button id="team" disabled>队友受撞警灯</button><span id="status">原始资源与正式多人装配流程；测试名单和网络连接</span></header>
+<div id="view"></div><pre id="log"></pre>
+<script type="module">
+import { WebGLRenderer, SRGBColorSpace } from "three";
+import { Sw, Tr } from "/src/generated/library.js";
+import { ha } from "/src/generated/formats.js";
+import { Hs0, _L, rP } from "/src/generated/world.js";
+import { installWorldOverrides } from "/src/world/install.ts";
+import { loadLegacyResourceBundle } from "/src/resources/legacy-adapter.ts";
+import { defaultLocalProfile } from "/src/ui/local-profile.ts";
+import { noteBraveKartContact } from "/src/multiplayer/brave-signals.ts";
+const root=document.querySelector('#view'), log=document.querySelector('#log'), status=document.querySelector('#status');
+const note=value=>{log.textContent+=value+'\n';log.scrollTop=log.scrollHeight;};
+window.addEventListener('error',event=>note('ERROR '+event.message));
+window.addEventListener('unhandledrejection',event=>note('ERROR '+event.reason));
+installWorldOverrides(_L);
+let session,raf,renderer,audio;
+document.querySelector('#start').onclick=async()=>{
+  document.querySelector('#start').disabled=true;
+  document.querySelector('#red').disabled=true;document.querySelector('#team').disabled=true;
+  try {
+    cancelAnimationFrame(raf);session?.dispose();session=undefined;
+    renderer?.dispose();root.replaceChildren();await audio?.close();audio=undefined;log.textContent='';
+    const params=new URLSearchParams(location.search), assetHost=params.get('assets');
+    const options=assetHost?{dataBaseUrl:assetHost+'/p3553',fetcher:(url,init)=>fetch(new URL(url,assetHost),init)}:{};
+    status.textContent='正在加载真实资源…';
+    const bundle=await loadLegacyResourceBundle('p3553',undefined,undefined,options);
+    const library=await Sw.load(bundle.sources,undefined,bundle.archiveIndexes);
+    if(library.errors.length)throw Error(library.errors.join('\n'));
+    note('资源索引成功');
+    const profile=defaultLocalProfile(), ids=['red1','red2','blue1','blue2'];
+    const slots=[2,0,7,4], startSlots=Object.fromEntries(ids.map((id,i)=>[id,slots[i]]));
+    const race={raceId:'brave-browser',channelName:'speedTeamCombine',gameplay:'brave',
+      trackId:'village_R07',brave:{ruleset:'web-brave-v1',forwardTeam:params.get('reverse')==='1'?2:1},
+      roster:ids.map((playerId,i)=>({playerId,name:playerId,slot:slots[i],team:i<2?1:2,
+        initial:'',equipment:structuredClone(profile.equipment)})),startSlots,loadedIds:ids,
+      loadingDeadlineMs:Date.now()+600000,finishes:[],departedIds:[]};
+    const room={roomId:'brave-room',name:'勇者验证',mode:'team',gameplay:'brave',channelName:'speedTeamCombine',
+      capacity:4,speed:7,speedVersion:'国服',resourceVersion:'p3553',trackId:'village_R07',phase:'loading',
+      members:race.roster.map((p,i)=>({...p,slot:[0,1,4,5][i],ready:true})),race};
+    renderer=new WebGLRenderer({antialias:true});renderer.outputColorSpace=SRGBColorSpace;
+    renderer.setSize(root.clientWidth,root.clientHeight);root.append(renderer.domElement);
+    audio=new AudioContext();await audio.resume();
+    const source={importer:new Tr(),targetRandom:new rP(),toonStageBinding:new ha(),shadow:true,userProfile:profile,
+      getLibrary:()=>library,generationValue:()=>1,isGenerationCurrent:()=>true,
+      requireAsset:path=>{const file=library.get(path);if(!file)throw Error('缺少 '+path);return file;}};
+    const off=()=>()=>{}, noop=()=>{}, listeners=new Set();
+    const connection={playerId:'red1',roomId:room.roomId,raceId:race.raceId,hasMotionRecipients:false,
+      leaveRace:async()=>{},reportFinish:async()=>{},sendMotion:()=>true,sendTeamCharge:async()=>{},
+      subscribeTeamGauge:off,subscribeMotion:off,subscribeAwardMotion:off,subscribeRaceChat:off,
+      sendRaceChat:async()=>{},sendAwardMotion:async()=>{},sendBraveCollision:async id=>note('敌车碰撞 '+id),
+      subscribeBraveCollision:listener=>{listeners.add(listener);return()=>listeners.delete(listener);},
+      latencyMs:()=>undefined,directMotionAvailable:()=>false,resetMotionRtt:noop};
+    const bgm={selectRace:async()=>{},startRace:noop,stopRace:noop,startResult:noop,stop:noop,
+      playRace:noop,playResult:noop,playMultiplayerFinish:noop};
+    const host={assets:()=>source,audio:()=>audio,profile:()=>profile,bgm:()=>bgm,renderer,
+      status:note,clientFramerate:undefined,input:{cancelAll:noop,setEnabled:noop},
+      autoForward:{cancel:noop,setRaceState:noop},touchControls:{setAutoForwardActive:noop},
+      publish:noop,release:noop};
+    session=await Hs0(host).prepare(room,race,new AbortController().signal,connection);
+    note('正式多人 loader 成功：四车、人物、两队路线、HUD、结果界面就绪');
+    const local=session.runtime.local, scene=session.scene;
+    note('路线 '+local.track.sections.length+' 段；'+local.track.data.lapTarget+' 圈；forwardTeam='+race.brave.forwardTeam);
+    note('本机车位='+startSlots.red1+'；对方车位='+startSlots.blue1);
+    const begin=performance.now()+6000, origin={...local.physics.body.position};
+    session.runtime.bindClock({offsetMs:0});
+    room.phase='countdown';race.startAt=begin;
+    session.runtime.updateRoom(room);session.runtime.scheduleStart(begin);
+    let started=false, measured=false;
+    const frame=now=>{try{
+      if(now>=begin&&!started){started=true;room.phase='racing';session.runtime.updateRoom(room);}
+      const actions=session.runtime.update(now,{forward:now>=begin&&now<begin+5000?1:0,reverse:0,
+        steer:0,rawSteer:0,steeringInverted:false,rawDriftHeld:false,derivedDriftHeld:false,actionMarkerWord:0},false);
+      scene.update(renderer,now,actions);scene.render(renderer,now);
+      if(now>=begin+5000&&!measured){measured=true;const p=local.physics.body.position;
+        const moved=Math.hypot(p.x-origin.x,p.y-origin.y,p.z-origin.z);
+        note('自动加速5秒位移 '+moved.toFixed(2)+' m，速度 '+local.physics.displaySpeedKmh().toFixed(1)+' km/h');
+        status.textContent=moved>5?'PASS 真实四车装配、倒计时、物理驾驶与勇者HUD':'FAIL 赛车没有移动';}
+      raf=requestAnimationFrame(frame);
+    }catch(error){note(error.stack);status.textContent='FAIL 渲染异常';document.querySelector('#start').disabled=false;}};
+    raf=requestAnimationFrame(frame);
+    document.querySelector('#red').disabled=false;document.querySelector('#team').disabled=false;
+    document.querySelector('#red').onclick=()=>noteBraveKartContact(local.physics,'blue1');
+    document.querySelector('#team').onclick=()=>{for(const listener of listeners)listener({playerId:'red2',targetId:'blue1'});};
+    status.textContent='PASS 真实资源装配成功（按钮验证提示；联机由独立四 WebSocket 测试覆盖）';
+  }catch(error){status.textContent='FAIL '+error.message;note(error.stack);document.querySelector('#start').disabled=false;}
+};
+window.addEventListener('pagehide',()=>{cancelAnimationFrame(raf);session?.dispose();renderer?.dispose();audio?.close();});
+</script></html>

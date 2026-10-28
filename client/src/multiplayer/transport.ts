@@ -3,6 +3,7 @@ import { MultiplayerHttpClient } from "./http";
 import { decodeMotionFrame, encodeMotionFrame, isNewerSequence, MOTION_MASK_OFFSET,
   motionRaceTag, type MotionFrame, type MotionPayloadKind } from "./motion";
 import { PeerMesh, parsePeerSignal, type PeerDiagnostic } from "./peer-mesh";
+import { raceMotionMembers, raceMotionSlot } from "./race-motion-slots";
 import { parseServerMessage, PROTOCOL_VERSION, ROOM_RULESET,
   type HelloRequest, type RoomSnapshot,
   type ServerMessage, type WelcomeMessage } from "./protocol";
@@ -40,7 +41,7 @@ interface MotionScope {
   raceId: string;
   raceTag: number;
   members: Set<string>;
-  /** Local room slot and the members by slot (motion frames carry slots). */
+  /** Local motion slot and members by slot; brave uses the frozen start grid. */
   slot: number;
   players: Map<number, string>;
   recipientMask: number;
@@ -297,20 +298,22 @@ export class MultiplayerTransport {
   bindRoom(room?: RoomSnapshot): void {
     this.peerMesh?.bind(room);
     const playerId = this.playerId;
-    if (!room?.race || !playerId || !room.members.some((member) => member.playerId === playerId)) {
+    const members = raceMotionMembers(room?.race, room?.members ?? []);
+    if (!room?.race || !playerId || !members.some((member) => member.playerId === playerId)) {
       this.scope = undefined;
       return;
     }
     const loaded = new Set(room.race.loadedIds);
-    const recipientMask = room.members.reduce((mask, member) =>
-      member.playerId !== playerId && loaded.has(member.playerId) ? mask | (1 << member.slot) : mask, 0);
+    const recipientMask = members.reduce((mask, member) =>
+      member.playerId !== playerId && loaded.has(member.playerId)
+        ? mask | (1 << raceMotionSlot(room.race, member)) : mask, 0);
     const enabled = (room.phase === "loading" && loaded.has(playerId)) ||
       room.phase === "countdown" || room.phase === "racing";
-    const slot = room.members.find((member) => member.playerId === playerId)!.slot;
-    const players = new Map(room.members.map((member) => [member.slot, member.playerId]));
+    const slot = raceMotionSlot(room.race, members.find((member) => member.playerId === playerId)!);
+    const players = new Map(members.map((member) => [raceMotionSlot(room.race, member), member.playerId]));
     const previous = this.scope;
     if (previous?.roomId === room.roomId && previous.raceId === room.race.raceId) {
-      previous.members = new Set(room.members.map((member) => member.playerId));
+      previous.members = new Set(members.map((member) => member.playerId));
       previous.slot = slot;
       previous.players = players;
       previous.recipientMask = recipientMask;
@@ -318,7 +321,7 @@ export class MultiplayerTransport {
     } else {
       this.scope = {
         roomId: room.roomId, raceId: room.race.raceId, raceTag: motionRaceTag(room.race.raceId),
-        members: new Set(room.members.map((member) => member.playerId)), slot, players,
+        members: new Set(members.map((member) => member.playerId)), slot, players,
         recipientMask, enabled, sequence: 0, received: new Map(),
       };
     }

@@ -35,7 +35,7 @@ var (
 	lteTracks     = []string{"jurassic_R02", "beach_R05", "moonhill_R06"}
 	defaultTracks = []string{"village_R01", "desert_I01", "forest_I01", "ice_I03"}
 
-	gameplays = []string{"ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl"}
+	gameplays = []string{"ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl", "brave"}
 
 	// rpKarts were checked against the local P3553 catalog, model, parameter,
 	// animation-frame and texture resources. The server cannot trust an
@@ -51,6 +51,14 @@ func validateCreation(gameplay, channel, version string, capacity int) error {
 	}
 	if gameplay != "ordinary" && version != "p3553" {
 		return fail(http.StatusBadRequest, "RESOURCE_VERSION_UNSUPPORTED")
+	}
+	if gameplay == "brave" {
+		if channel != "speedTeamCombine" {
+			return fail(http.StatusBadRequest, "INVALID_CHANNEL")
+		}
+		if capacity < 4 || capacity > 8 || capacity%2 != 0 {
+			return fail(http.StatusBadRequest, "INVALID_CAPACITY")
+		}
 	}
 	if (gameplay == "roadblock" || gameplay == "giant" || gameplay == "brawl") && channel != "speedIndiCombine" {
 		return fail(http.StatusBadRequest, "INVALID_CHANNEL")
@@ -73,6 +81,9 @@ func validateCreation(gameplay, channel, version string, capacity int) error {
 }
 
 func initializeTrack(r *room) {
+	if r.gameplay == "brave" {
+		r.trackID = braveTrack
+	}
 	if r.gameplay == "roadblock" || r.gameplay == "lte" {
 		r.trackID = ""
 		code := 0
@@ -82,6 +93,10 @@ func initializeTrack(r *room) {
 
 func validateTrack(r *room, trackID string) error {
 	switch r.gameplay {
+	case "brave":
+		if trackID != braveTrack {
+			return fail(http.StatusBadRequest, "INVALID_TRACK")
+		}
 	case "roadblock", "lte":
 		return fail(http.StatusBadRequest, "TRACK_FIXED_TO_RANDOM")
 	case "giant":
@@ -97,6 +112,9 @@ func validateTrack(r *room, trackID string) error {
 }
 
 func validateRandomTrack(r *room, code int) error {
+	if r.gameplay == "brave" {
+		return fail(http.StatusBadRequest, "INVALID_TRACK")
+	}
 	if (r.gameplay == "roadblock" || r.gameplay == "lte" || r.gameplay == "giant" || r.gameplay == "brawl") &&
 		code != 0 {
 		return fail(http.StatusBadRequest, "INVALID_TRACK")
@@ -126,6 +144,8 @@ func chooseTrack(r *room) string {
 
 func addRaceData(r *room, rc *race) {
 	switch r.gameplay {
+	case "brave":
+		freezeBraveRace(rc)
 	case "roadblock":
 		rc.roadblockRunner = r.hostID
 		rc.roadblock = obj{

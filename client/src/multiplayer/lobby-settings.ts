@@ -1,3 +1,4 @@
+import { BRAVE_CHANNEL, BRAVE_TRACK_ID } from "./lobby-brave-mode";
 import { tr } from "../i18n/locale";
 import { formatMultiplayerError } from "./errors";
 import { isPlayableGameplay } from "./gameplay-admission";
@@ -124,6 +125,8 @@ export async function createLobbyRoom(host: LobbySettingsHost,
       void host.mutate({ type: "create", ...form,
         ...(gameplay === "ordinary" ? { gameplay: "ordinary" } : {}),
         mode, speed, speedVersion: "国服",
+        ...(gameplay === "brave" ? { gameplay, channelName: BRAVE_CHANNEL, mode: "team",
+          speed: 7, resourceVersion: "p3553", trackId: BRAVE_TRACK_ID } : {}),
         ...currentEquipmentField(host.options) });
     }));
 }

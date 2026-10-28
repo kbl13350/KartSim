@@ -1,6 +1,7 @@
 import { decodeMotionFrame, isNewerSequence, motionRaceTag, type MotionFrame } from "./motion";
 import { GameMotionDecoder, type DecodedGameMotion } from "./payload";
 import type { RoomSnapshot } from "./protocol";
+import { raceMotionMembers, raceMotionSlot } from "./race-motion-slots";
 
 const MOTION_BACKPRESSURE_BYTES = 8_192;
 const DISCONNECT_GRACE_MS = 3_000;
@@ -127,14 +128,16 @@ export class PeerMesh {
 
   bind(room?: RoomSnapshot): void {
     if (this.disposed) return;
+    const racers = raceMotionMembers(room?.race, room?.members ?? []);
     const eligible = room?.race && ["loading", "countdown", "racing"].includes(room.phase) &&
-      room.race.loadedIds.includes(this.options.playerId);
+      room.race.loadedIds.includes(this.options.playerId) &&
+      racers.some(member => member.playerId === this.options.playerId);
     if (!eligible || room.roomId !== this.room?.roomId ||
         room.race?.raceId !== this.room?.race?.raceId) this.clear();
     this.room = eligible ? room : undefined;
     if (!this.room?.race) return;
 
-    const members = this.room.members.filter(member =>
+    const members = racers.filter(member =>
       member.playerId !== this.options.playerId &&
       this.room!.race!.loadedIds.includes(member.playerId));
     for (const [id, peer] of this.peers) {
@@ -144,8 +147,9 @@ export class PeerMesh {
     }
     for (const member of members) {
       const peer = this.peers.get(member.playerId);
-      if (peer) peer.slot = member.slot;
-      else this.create(member.playerId, member.slot);
+      const slot = raceMotionSlot(this.room.race, member);
+      if (peer) peer.slot = slot;
+      else this.create(member.playerId, slot);
     }
     this.timer ??= setInterval(() => this.maintain(), 1_000);
   }
@@ -312,9 +316,10 @@ export class PeerMesh {
     let relayMask = 0;
     let sent = false;
     const now = this.now();
-    for (const member of this.room?.members ?? []) {
+    for (const member of raceMotionMembers(this.room?.race, this.room?.members ?? [])) {
       if (member.playerId !== this.options.playerId &&
-          this.room!.race!.loadedIds.includes(member.playerId)) relayMask |= 1 << member.slot;
+          this.room!.race!.loadedIds.includes(member.playerId))
+        relayMask |= 1 << raceMotionSlot(this.room!.race, member);
     }
     relayMask &= requestedMask;
     for (const peer of this.peers.values()) {

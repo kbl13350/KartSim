@@ -280,6 +280,7 @@ function roomDetailsState(host: LobbyRoomStateHost, name: string,
     case "gameType": return { text: mode === "rp"
       ? tr(dependencies.rpChannelNames[room.channelName ?? ""] ?? "")
       : mode === "roadblock" ? tr("挡人模式")
+        : mode === "brave" ? tr("勇者组队竞速赛")
         : mode === "brawl" ? tr(BRAWL_LABEL)
         : mode === "ordinary" ? room.mode === "team" ? tr("组队竞速赛") : tr("个人竞速赛")
           : mode === "item" ? tr(itemModeLabel(room.mode === "team"))
@@ -297,7 +298,7 @@ function roomDetailsState(host: LobbyRoomStateHost, name: string,
           ? tr("自动开始倒数 {value}", { value: String(host.countdownState().remaining) })
           : room.kickVote
             ? tr("移出投票 {value}/{value2}", { value: String(room.kickVote.yesIds.length), value2: String(Math.floor(room.kickVote.eligibleIds.length / 2) + 1) })
-            : tr("等待中")
+            : mode === "brave" ? tr("至少4人，人数均等") : tr("等待中")
       : tr("连接已断开") };
     case "chat": return { lines: (room.chat ?? []).flatMap(line => {
       const text = dependencies.decodeChat(line.text, host.emotions).text;
@@ -385,6 +386,9 @@ function roomCommandState(host: LobbyRoomStateHost, name: string,
       !host.actions.garage, label: tr("选择赛车"), action: host.actions.garage };
     case "트랙": {
       const mode = dependencies.gameplayMode(room);
+      if (mode === "brave") return {
+        disabled: true, label: tr("命运之桥（勇者模式）"),
+      };
       if (mode === "roadblock") return {
         disabled: true, label: tr("全部随机（挡人模式限定24张）"),
       };

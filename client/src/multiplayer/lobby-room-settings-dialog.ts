@@ -6,10 +6,11 @@ import type { LobbyDialogNode, LobbyDialogOptions, LobbyDialogSession,
 import { itemModeLabel } from "./lobby-item-mode";
 
 /** The room's game as the settings dialog names it; item rooms are 道具赛. */
-export type RoomSettingsMode = "team" | "individual" | "itemTeam" | "itemIndi";
+export type RoomSettingsMode = "team" | "individual" | "itemTeam" | "itemIndi" | "brave";
 
 export function roomSettingsMode(room: { mode: string; gameplay?: string }): RoomSettingsMode {
   const team = room.mode === "team";
+  if (room.gameplay === "brave") return "brave";
   return room.gameplay === "item" ? team ? "itemTeam" : "itemIndi"
     : team ? "team" : "individual";
 }
@@ -55,7 +56,7 @@ export async function showLobbyRoomSettings<T extends LobbyDialogSession>(
     state: (node: LobbyDialogNode) => {
       switch (dependencies.nodeName(node)) {
         case "gameType": return {
-          text: mode === "itemTeam" || mode === "itemIndi"
+          text: mode === "brave" ? tr("勇者组队竞速赛") : mode === "itemTeam" || mode === "itemIndi"
             ? tr(itemModeLabel(mode === "itemTeam"))
             : mode === "team" ? tr("组队竞速") : tr("个人竞速"),
         };

@@ -1,3 +1,4 @@
+import { sameBraveRaceRules } from "./lobby-brave-mode";
 import { sameItemRaceRules } from "./lobby-item-mode";
 import type { RacePoint } from "./race-driving-scales";
 
@@ -16,6 +17,7 @@ export interface ActiveRaceRoom {
     lte?: unknown;
     giant?: unknown;
     item?: unknown;
+    brave?: unknown;
     finishDeadline?: number;
     roadblockOutcome?: { endAt?: number };
     raceOverAt?: number;
@@ -51,6 +53,7 @@ export interface RaceRoomRuntimeHost {
   lteIdentity?: unknown;
   giantIdentity?: unknown;
   itemIdentity?: unknown;
+  braveIdentity?: unknown;
   room?: ActiveRaceRoom;
   mapping?: unknown;
   finishDeadline?: number;
@@ -152,7 +155,8 @@ export function updateActiveRaceRoom(
       !dependencies.sameRoadblock(room.race.roadblock, host.roadblockIdentity) ||
       !dependencies.sameLte(room.race.lte, host.lteIdentity) ||
       !dependencies.sameGiant(room.race.giant, host.giantIdentity) ||
-      !sameItemRaceRules(room.race.item, host.itemIdentity)
+      !sameItemRaceRules(room.race.item, host.itemIdentity) ||
+      !sameBraveRaceRules(room.race.brave, host.braveIdentity)
     ))) {
     try {
       host.onError(new Error("比赛期间频道身份发生变化。"));

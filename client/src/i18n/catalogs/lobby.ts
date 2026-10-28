@@ -1,5 +1,13 @@
 /** Lobby and multiplayer interface translations, including original menu fallbacks. */
 export const lobbyTranslations: Record<string, readonly [string, string]> = {
+  "勇者组队竞速赛": ["Brave Team Speed", "데드레이싱 팀전"],
+  "勇者": ["Brave", "데드레이싱"],
+  "四人以上 · 两队相向竞速": ["4+ racers · opposing directions", "4인 이상 · 양 팀 역방향 레이싱"],
+  "至少4人，人数均等": ["4+ · equal teams", "4인 이상 · 팀 균형"],
+  "勇者模式至少需要四名玩家，且红蓝两队人数相等。": ["Brave mode requires at least four racers and equally sized red and blue teams.", "데드레이싱는 4명 이상이 필요하며 레드팀과 블루팀 인원이 같아야 합니다."],
+  "勇者模式需要红蓝两队人数相等，每队至少两人。": ["Brave mode requires equally sized red and blue teams, with at least two racers per team.", "데드레이싱는 팀당 2명 이상이 필요하며 레드팀과 블루팀 인원이 같아야 합니다."],
+  "命运之桥（勇者模式）": ["Bridge of Fate (Brave mode)", "운명의 다리 (데드레이싱)"],
+  "勇者模式冻结参数无效。": ["Invalid frozen Brave mode rules.", "데드레이싱 확정 규칙이 유효하지 않습니다."],
   "开发者": ["Developer", "개발자"],
   "大厅": [
     "Lobby",
@@ -2367,7 +2375,7 @@ export const lobbyTranslations: Record<string, readonly [string, string]> = {
   ],
   "死斗模式": [
     "Deathmatch",
-    "데스매치"
+    "데드레이싱"
   ],
   "每个人都可使用的通行证。": [
     "A pass available to everyone.",

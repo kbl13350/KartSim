@@ -1,5 +1,7 @@
 /** Publishes rank, time gap, tachometer and the final multiplayer scene frame. */
 import { feedRacePresenterItemHud, type RacePresenterItemHudHost } from "./race-presenter-items";
+import type { BraveHud } from "./brave-hud";
+import type { Camera } from "three";
 import { sampleWrongWay, type WrongWayPhysics, type WrongWaySample,
   type WrongWayTrack } from "../ui/wrong-way-warning";
 
@@ -16,12 +18,15 @@ interface RaceResult { playerId: unknown; elapsedMs: number | null }
 const OUT_WITHOUT_PROGRESS: RaceProgress = Object.freeze({ distance: -Number.MAX_VALUE, lap: 0 });
 
 export interface RacePresenterHudHost {
+  braveHud?: BraveHud;
   playerId: unknown;
   race: { roster: Array<{ playerId: unknown; name: string }>; gameplay?: string };
   runtime: RacePresenterItemHudHost["runtime"] & {
     local: {
+      resetSuspended?: boolean;
       lifecycle: { state: unknown };
       physics: WrongWayPhysics & {
+        body: WrongWayPhysics["body"] & { position?: { x: number; y: number; z: number } };
         giant?: { setRank(rank: number | undefined): void };
         consumeTeamGaugeFullAnimation(): boolean;
         consumeTimeAttackTachometerGaugePreserve(): unknown;
@@ -31,6 +36,7 @@ export interface RacePresenterHudHost {
       raceProgress(): RaceProgress | undefined;
     };
     remotes: {
+      copyWebPose?(playerId: string): { position: { x: number; y: number; z: number } } | undefined;
       rankDisconnected(playerId: unknown): boolean;
       hasDeparted(playerId: unknown): boolean;
       raceProgress(playerId: unknown): RaceProgress | undefined;
@@ -131,6 +137,17 @@ export function finishRacePresenterFrame(host: RacePresenterHudHost,
     ? runtime.finishDeadline : undefined);
   host.wrongWay?.update(nowMs, sampleWrongWay(physics, track,
     local.lifecycle.state === dependencies.racingState && !host.warpHudHidden));
+  if (host.braveHud && physics.body.position) {
+    const finished = runtime.finishSnapshot();
+    host.braveHud.update(nowMs, {
+      active: local.lifecycle.state === dependencies.racingState && !host.warpHudHidden &&
+        !local.resetSuspended && !results,
+      camera: host.camera as Camera,
+      position: physics.body.position,
+      pose: id => remotes.hasDeparted(id) ? undefined : remotes.copyWebPose?.(id),
+      finished: id => finished.some(result => result.playerId === id),
+    });
+  }
   if (physics.consumeTeamGaugeFullAnimation()) hud.startTeamBoostGaugeFull();
   feedRacePresenterItemHud(host, nowMs);
   hud.update(local, nowMs, remotePoses, board);

@@ -2,7 +2,7 @@ import type { Gameplay } from "./lobby-actions";
 
 /** Gameplay modes that the local multiplayer client can create and load. */
 const playableModes = new Set<Gameplay>([
-  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl",
+  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl", "brave",
 ]);
 
 export function isPlayableGameplay(value: unknown): value is Gameplay {

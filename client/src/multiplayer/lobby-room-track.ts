@@ -108,8 +108,12 @@ export async function loadLobbyRoomTrack(host: LobbyRoomTrackHost,
     if (!resource) throw new Error(tr("赛道资源缺失"));
     const canonical = (resource.canonicalPath ?? resource.virtualPath)
       .replaceAll("\\", "/");
-    const card = host.library.resolveContainerPath(track.path,
-      `${canonical.slice(0, canonical.lastIndexOf("/") + 1)}xt_trackCard.png`);
+    // The original Brave card lives under R07 even though its model aliases A07.
+    const card = gameplay === "brave"
+      ? { status: "found", entry: dependencies.uiResource(host.library,
+        ["track_/village_R07"], "xt_trackCard") }
+      : host.library.resolveContainerPath(track.path,
+        `${canonical.slice(0, canonical.lastIndexOf("/") + 1)}xt_trackCard.png`);
     if (card.status !== "found") {
       throw new Error(tr("赛道卡片资源缺失或不唯一"));
     }

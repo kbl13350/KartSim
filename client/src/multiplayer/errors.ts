@@ -19,6 +19,7 @@ const errorMessages: Record<string, string> = {
   TRACK_REQUIRED: "请房主先选择赛道。",
   EQUIPMENT_REQUIRED: "有玩家的装备尚未同步。",
   PLAYERS_NOT_READY: "请等待其他玩家准备，并关闭我的物品。",
+  BRAVE_TEAMS_UNBALANCED: "勇者模式需要红蓝两队人数相等，每队至少两人。",
   TEAM_REQUIRED: "红蓝两队都需要有玩家。",
   CLIENT_RACE_UNAVAILABLE: "有玩家尚未接入多人驾驶功能。",
   STALE_RACE: "该局比赛已经结束或取消。",

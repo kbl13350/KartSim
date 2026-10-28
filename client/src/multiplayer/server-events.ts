@@ -69,6 +69,10 @@ export function parseServerEvent(value: unknown,
     }
   }
   switch (event.type) {
+    case "brave-collision":
+      return text(event.roomId, 1, 64) && text(event.raceId, 1, 64) &&
+        text(event.playerId, 1, 64) && text(event.targetId, 1, 64) &&
+        event.playerId !== event.targetId ? event : undefined;
     case "p2p-signal":
       return text(event.roomId, 1, 64) && text(event.raceId, 1, 64) &&
         text(event.playerId, 1, 64) && text(event.generation, 1, 64) &&

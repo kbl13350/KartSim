@@ -6,6 +6,7 @@
 
 import { createHash } from "node:crypto";
 import { localizeGeneratedModule } from "./i18n-generated.mjs";
+import { applyBraveCompatibility } from "./brave-compat.mjs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
@@ -5836,6 +5837,7 @@ function pruneUnreferencedDeclarations(rendered) {
 await mkdir(outputDir, { recursive: true });
 async function writeIfChanged(filename, contents) {
   contents = localizeGeneratedModule(filename, contents);
+  contents = applyBraveCompatibility(filename, contents);
   if (filename === "ui.js") {
     contents = contents.replace("loadTrackPickerWindowAssets, loadTrackCard }",
       "loadTrackPickerWindowAssets, loadTrackCard, loadSelectableTrackCard }")
