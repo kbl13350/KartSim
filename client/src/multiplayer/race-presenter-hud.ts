@@ -1,6 +1,8 @@
 /** Publishes rank, time gap, tachometer and the final multiplayer scene frame. */
 import { feedRacePresenterItemHud, type RacePresenterItemHudHost } from "./race-presenter-items";
 import type { BraveHud } from "./brave-hud";
+import type { DeathmatchHud } from "./deathmatch-hud";
+import type { DeathmatchRuntime } from "./deathmatch-runtime";
 import type { Camera } from "three";
 import { sampleWrongWay, type WrongWayPhysics, type WrongWaySample,
   type WrongWayTrack } from "../ui/wrong-way-warning";
@@ -19,9 +21,11 @@ const OUT_WITHOUT_PROGRESS: RaceProgress = Object.freeze({ distance: -Number.MAX
 
 export interface RacePresenterHudHost {
   braveHud?: BraveHud;
+  deathmatchHud?: DeathmatchHud;
   playerId: unknown;
   race: { roster: Array<{ playerId: unknown; name: string }>; gameplay?: string };
   runtime: RacePresenterItemHudHost["runtime"] & {
+    deathmatch?: DeathmatchRuntime;
     local: {
       resetSuspended?: boolean;
       lifecycle: { state: unknown };
@@ -102,6 +106,8 @@ export function finishRacePresenterFrame(host: RacePresenterHudHost,
   const { runtime, race, playerId, hud } = host;
   const { local, remotes } = runtime;
   const { physics, track } = local;
+  if (host.deathmatchHud && runtime.deathmatch)
+    host.deathmatchHud.update(nowMs, runtime.deathmatch.hudState(nowMs));
   const latency = (id: unknown) => remotes.rankDisconnected(id)
     ? undefined : runtime.latencyMs(id);
   const tints = hud.markerTints();
@@ -133,7 +139,7 @@ export function finishRacePresenterFrame(host: RacePresenterHudHost,
       disconnected: remotes.rankDisconnected(row.participantId),
     })),
   };
-  host.action2d.setFinishDeadline(local.lifecycle.state === dependencies.racingState
+  host.action2d.setFinishDeadline(!runtime.deathmatch && local.lifecycle.state === dependencies.racingState
     ? runtime.finishDeadline : undefined);
   host.wrongWay?.update(nowMs, sampleWrongWay(physics, track,
     local.lifecycle.state === dependencies.racingState && !host.warpHudHidden));
@@ -151,8 +157,8 @@ export function finishRacePresenterFrame(host: RacePresenterHudHost,
   if (physics.consumeTeamGaugeFullAnimation()) hud.startTeamBoostGaugeFull();
   feedRacePresenterItemHud(host, nowMs);
   hud.update(local, nowMs, remotePoses, board);
-  if (hud.timeGapEnabled && host.warpHudHidden) hud.hideTimeGap();
-  if (hud.timeGapEnabled && !host.warpHudHidden) {
+  if (hud.timeGapEnabled && (host.warpHudHidden || runtime.deathmatch)) hud.hideTimeGap();
+  if (hud.timeGapEnabled && !host.warpHudHidden && !runtime.deathmatch) {
     const finishes = runtime.finishSnapshot();
     hud.updateTimeGap(local, nowMs,
       race.roster.filter(racer => host.views.has(racer.playerId)).map(racer => {

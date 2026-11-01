@@ -12,6 +12,8 @@ import { isCustomTrackId } from "../mapeditor/design";
 import { taiwanTrack } from "../resources/taiwan-tracks";
 import { findTrackChoice } from "../resources/track-duplicates";
 import { braveMapRoute, validateBraveRoute, type BraveRouteSelection } from "../multiplayer/brave-route";
+import { deathmatchMapRoute, validateDeathmatchRoute } from "../multiplayer/deathmatch-route";
+import type { DeathmatchState } from "../multiplayer/deathmatch-rules";
 
 /** 驾照考试 courses register metadata overrides too; 地图工坊 maps do not take their rules. */
 function riderSchoolCourse(trackId: string): boolean {
@@ -148,7 +150,13 @@ export async function loadTrackMap(
   ops: TrackMapOps,
   itemGame = false,
   brave?: BraveRouteSelection,
+  deathmatch?: DeathmatchState,
 ): Promise<any> {
+  if (deathmatch) {
+    validateDeathmatchRoute(deathmatch, trackId);
+    if (mode !== "speed-individual" || lte || itemGame || brave)
+      throw new Error("死斗地图只走独立的多人竞技场准入。");
+  }
   if (brave) {
     validateBraveRoute(brave, trackId);
     if (mode !== "speed-individual" || lte || itemGame)
@@ -212,6 +220,7 @@ export async function loadTrackMap(
     practiceScene: PRACTICE_SCENE_IDS.has(trackId) ? trackId : undefined,
   });
   const braveRoute = brave ? braveMapRoute(brave, model, road) : undefined;
+  const deathmatchRoute = deathmatch ? deathmatchMapRoute(deathmatch, model, trackId) : undefined;
   // 驾照考试: the open course without a final gate (village_C005) ends at its last gate,
   // and the course's tutorial points name their hint scenes.
   const licenseCourse = mode === "time-attack" && trainingCourse;
@@ -282,18 +291,21 @@ export async function loadTrackMap(
   if (hasRail && !railConfig)
     throw new Error(`${trackId} 包含 rail descriptor，但导入资源缺少权威 rail.bml。`);
 
-  const metadata = lte
+  const originalMetadata = lte
     ? { id: trackId, cnTitle: trackId, laps: 1 }
     : await owner.assetHost.getLibrary()?.trackMetadata(trackId) ??
       trackMetadataOverride(trackId);
-  if (!metadata)
+  if (!originalMetadata)
     throw new Error(`${trackId} 缺少权威 track@zz.bml metadata。`);
+  // Arena scores are server-owned. A lap target only satisfies the shared world shell;
+  // DeathmatchRuntime disables local lap finishes and the HUD hides lap semantics.
+  const metadata = deathmatch ? { ...originalMetadata, laps: 1, showLapUi: false } : originalMetadata;
   const gameType = metadata.gameType ?? "speed";
   if (mode === "time-attack" && gameType !== "speed" && gameType !== "item")
     throw new Error(`${trackId} 的 gameType=${gameType} 不在 TimeAttack 赛道集合。`);
   if (metadata.blocked === true)
     throw new Error(`${trackId} 被 CN track metadata 标记为 blocked。`);
-  if (metadata.choosable === false && !brave)
+  if (metadata.choosable === false && !brave && !deathmatch)
     throw new Error(`${trackId} 不允许普通手动选择。`);
   if (!metadata.cnTitle)
     throw new Error(`${trackId} 缺少 trackLocale@cn 标题记录。`);
@@ -390,9 +402,10 @@ export async function loadTrackMap(
       sections: road.sections,
       firstSection: road.firstSection,
       lastSection: road.lastSection,
-      start: road.start,
+      start: deathmatchRoute?.starts[0] ?? road.start,
       lapTarget: metadata.laps,
       ...(braveRoute ? { brave: braveRoute } : {}),
+      ...(deathmatchRoute ? { deathmatch: deathmatchRoute } : {}),
       ...(licenseEvents ? { licenseEvents } : {}),
       // The HUD's Christmas item slot frame and dashboard follow the model.
       ...(xmasPath ? { xmas: true } : {}),
@@ -434,7 +447,15 @@ export function loadMultiplayerMap(owner: { loadMap(...args: any[]): any },
   path: string, trackId: string, mode: string,
   version: (key: string) => string,
   isLteTrack: (trackId: string) => boolean,
-  admit: TrackMapOps["loadMultiplayerAdmission"], brave?: BraveRouteSelection): any {
+  admit: TrackMapOps["loadMultiplayerAdmission"], brave?: BraveRouteSelection,
+  deathmatch?: DeathmatchState): any {
+  if (mode === "deathmatch") {
+    validateDeathmatchRoute(deathmatch, trackId);
+    if (version("p3553") !== "p3553" || brave)
+      throw new Error("死斗地图仅准入 P3553 原版竞技场。");
+    return owner.loadMap(path, trackId, "speed-individual", admit, false, false, undefined, deathmatch);
+  }
+  if (deathmatch) throw new Error("普通比赛不能附带死斗规则。");
   if (mode === "brave") {
     validateBraveRoute(brave, trackId);
     if (version("p3553") !== "p3553") throw new Error("勇者竞速仅准入 P3553。");

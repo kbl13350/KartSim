@@ -57,7 +57,7 @@ func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 	}
 	kind, payload := int(frame[0]), frame[motionHeaderLength:]
 	valid := validPayload(kind, payload)
-	if g := l.guard(r, c.playerID); g != nil && (!valid || (r.phase == "racing" && !r.race.hasFinished(c.playerID))) {
+	if g := l.guard(r, c.playerID); r.race.deathmatch == nil && g != nil && (!valid || (r.phase == "racing" && !r.race.hasFinished(c.playerID))) {
 		if l.cheated(r, c, g.Motion(kind, valid, l.clock.Now(), payload)) {
 			return
 		}
@@ -65,8 +65,13 @@ func (l *Lobby) RelayMotion(c *Client, frame []byte) {
 	if !valid {
 		return
 	}
+	if r.race.deathmatch != nil && !l.acceptDeathmatchMotion(r, c.playerID, frame) {
+		return
+	}
 	if r.phase == "racing" {
-		r.race.recordProgress(c.playerID, frame, l.clock.Now(), r.race.progressCap)
+		if r.race.deathmatch == nil {
+			r.race.recordProgress(c.playerID, frame, l.clock.Now(), r.race.progressCap)
+		}
 		r.race.recordBravePosition(c.playerID, kind, payload, l.clock.Now())
 	}
 	// Receivers name the sender by this slot.

@@ -5,6 +5,7 @@ import { mainMenuBackdrop } from "./main-menu-view";
 import { blurredLobbyBackdrop, lobbyHomeBackdrop } from "./lobby-home-backdrop";
 import { X6 } from "../generated/library.js";
 import { lobbyThemeIcons, type LobbyThemeIcons, type ThemeIconLibrary } from "./lobby-theme-icons";
+import { lobbyDeathmatchArt } from "./lobby-deathmatch-art";
 import {
   LOBBY_FILTERS, LOBBY_LAYOUT, LOBBY_LOADING_MS, LOBBY_TABS, categoryForChannel,
   createLobbyListUiState, lobbyCategory, lobbyListLoading, lobbyRoomJoinable,
@@ -48,6 +49,7 @@ export interface LobbyListRenderHost extends LobbyDrawHost {
   lobbyUiBound?: boolean;
   lobbyLoadingTimer?: number;
   lobbyThemeIcons?: LobbyThemeIcons | null;
+  deathmatchArt?: CanvasImageSource[] | null;
   setRooms?(...args: unknown[]): void;
   render?(): void;
   visibleRoomIndexes?(): number[];
@@ -407,6 +409,21 @@ function drawTitle(host: LobbyListRenderHost, state: LobbyListUiState,
   if (category?.gameplay === "brave" && gameLocale() === "zh-CN") {
     const art = lobbyPicture("brave-mode.png", () => { if (!host.disposed) host.render?.(); });
     if (art) context.drawImage(art, area.x + area.width - 109, area.y + 9, 93, 29);
+  }
+  if (category?.gameplay === "deathmatch") {
+    if (host.deathmatchArt === undefined && host.options.library) {
+      host.deathmatchArt = null;
+      void lobbyDeathmatchArt(host.options.library).then(art => {
+        if (!host.disposed) { host.deathmatchArt = art; host.render?.(); }
+      }).catch(() => {});
+    }
+    const key = "deathmatchInfo";
+    const rect = { x: area.x + area.width - 242, y: area.y + 3, width: 226, height: 42 };
+    const art = host.deathmatchArt?.[!host.enabled ? 3 : host.pressed === key ? 2 : host.hovered === key ? 1 : 0];
+    if (art && gameLocale() === "zh-CN") context.drawImage(art, rect.x, rect.y, 124, rect.height);
+    text(context, tr("玩法说明"), rect.x + 132, rect.y + rect.height / 2, 17,
+      host.hovered === key ? "#ffffff" : "#cce6ff");
+    hit(key, rect, tr("死斗模式玩法说明"), !host.enabled);
   }
   if (!category?.custom) return;
   let right = area.x + area.width - 16;

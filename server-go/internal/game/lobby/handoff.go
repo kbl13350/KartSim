@@ -427,6 +427,9 @@ func (l *Lobby) importHandoff(handoff contract.RoomHandoff) error {
 	if err := validateBraveStart(r); err != nil {
 		return fail(http.StatusBadGateway, "INVALID_HANDOFF")
 	}
+	if err := validateDeathmatchStart(r); err != nil {
+		return fail(http.StatusBadGateway, "INVALID_HANDOFF")
+	}
 	r.handoffID = handoff.HandoffID
 	r.raceError = ""
 	l.rooms[r.id] = r

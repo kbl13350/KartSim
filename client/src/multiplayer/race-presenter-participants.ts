@@ -107,6 +107,7 @@ export interface RacePresenterParticipantsHost {
     participants: RacerAsset[];
   };
   runtime: RacePresenterItemsHost["runtime"] & {
+    deathmatch?: { opacity(playerId: string): number };
     local: {
       physics: LocalPhysics;
       track: { updateRender(nowMs: number, camera: unknown,
@@ -254,6 +255,9 @@ export function updateRacePresenterParticipants(host: RacePresenterParticipantsH
       extras: [racer.vehicle.trails.object],
       balloon: racer.vehicle.decoration?.scene.object,
     }, itemLook.call(assets.itemPresenter, String(racer.playerId), nowMs));
+    if (runtime.deathmatch) applyItemKartPresentation({
+      root: view.root as unknown as Object3D, extras: [racer.vehicle.trails.object],
+    }, { opacity: runtime.deathmatch.opacity(String(racer.playerId)), balloonVisible: true });
     const motion = presentation?.motion;
     const linked = host.linkedPresentations.get(racer.playerId);
     const linkedMotion = motion

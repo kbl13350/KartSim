@@ -9,6 +9,7 @@ import { isCustomTrackId } from "../mapeditor/design";
 import { ensurePublishedMap } from "../mapeditor/custom-map-loader";
 import { isCityRace } from "../city/city-track";
 import { BraveHud } from "./brave-hud";
+import { DeathmatchHud } from "./deathmatch-hud";
 export interface MultiplayerRaceLoaderDependencies {
   createToonStageBinding(): unknown;
   loadRaceAssets(assets: unknown, config: any, room: any, audio: unknown,
@@ -204,7 +205,7 @@ export function createMultiplayerRaceLoader(
         await presenter.prepareTrackEvents(library, audio);
         checkCancellation();
         // 逆向提示 is a bonus: race on without it. 卡丁城 is free roam, no wrong way.
-        if (!isCityRace({ trackId })) {
+        if (!isCityRace({ trackId }) && raceAssets.drivingMode?.kind !== "deathmatch") {
           presenter.wrongWay = await WrongWayWarning.load(library, audio).catch((error: unknown) => {
             console.warn("逆向提示未能载入：", error);
             return undefined;
@@ -221,6 +222,8 @@ export function createMultiplayerRaceLoader(
           presenter.braveHud = new BraveHud(root, driver.local.physics, connection.playerId,
             room.roster, connection, () => deps.now());
         }
+        if (raceAssets.drivingMode?.kind === "deathmatch")
+          presenter.deathmatchHud = new DeathmatchHud(root, library, connection.playerId);
         presenter.warm(host.renderer, deps.now());
         checkCancellation();
         chat = await deps.loadRaceChat(library, root, connection, host.status);

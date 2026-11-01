@@ -83,7 +83,7 @@ export interface RoomsMessage {
 export const SERVER_EVENT_TYPES = [
   "welcome", "clock", "rooms", "room", "room-settings", "chat", "race-chat", "left",
   "error", "team-gauge", "giant-state", "award-motion", "latency-probe", "latency",
-  "latency-ack", "p2p-signal", "p2p-relay", "p2p-accepted", "item", "brave-collision",
+  "latency-ack", "p2p-signal", "p2p-relay", "p2p-accepted", "item", "brave-collision", "deathmatch-accepted",
 ] as const;
 
 export type ServerEventType = (typeof SERVER_EVENT_TYPES)[number];

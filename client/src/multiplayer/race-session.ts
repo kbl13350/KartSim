@@ -16,6 +16,7 @@ export interface RaceScope {
   received: Map<string, number>;
   enabled: boolean;
   recipientMask: number;
+  observeOnServer?: boolean;
   encoder?: unknown;
 }
 
@@ -127,6 +128,7 @@ export function bindRaceScope(host: RaceSessionHost, room?: SessionRoom): void {
     current.slot = slot;
     current.players = players;
     current.recipientMask = recipientMask;
+    current.observeOnServer = room.gameplay === "deathmatch";
     return;
   }
 
@@ -135,6 +137,7 @@ export function bindRaceScope(host: RaceSessionHost, room?: SessionRoom): void {
     roomId: room.roomId, raceId: race.raceId,
     members: new Set(memberIds),
     slot, players, sequence: 0, received: new Map(), enabled, recipientMask,
+    observeOnServer: room.gameplay === "deathmatch",
   };
 }
 
@@ -224,8 +227,10 @@ export function createRaceConnection(host: RaceSessionHost, roomId: string,
 
   return Object.freeze({
     playerId, roomId, raceId,
+    get observesMotionOnServer() { return active() && host.motionScope?.observeOnServer === true; },
     get hasMotionRecipients() {
-      return active() && !!host.motionScope?.enabled && host.motionScope.recipientMask !== 0;
+      return active() && !!host.motionScope?.enabled &&
+        (host.motionScope.recipientMask !== 0 || host.motionScope.observeOnServer === true);
     },
     get motionRoundTripMs() { return active() ? host.echoRtt.milliseconds : undefined; },
     resetMotionRtt: () => { if (active()) host.echoRtt.reportAndReset(); },
@@ -237,6 +242,8 @@ export function createRaceConnection(host: RaceSessionHost, roomId: string,
       requestWhenActive({ type: "team-charge", charge, sequence }),
     sendBraveCollision: (targetId: string) =>
       requestWhenActive({ type: "brave-collision", targetId }),
+    sendDeathmatchContact: (targetId: string, sequence: number, lifeSeq: number, targetLifeSeq: number) =>
+      requestWhenActive({ type: "deathmatch-contact", targetId, sequence, lifeSeq, targetLifeSeq }),
     subscribeBraveCollision: (listener: (event: { playerId: string; targetId: string }) => void) => {
       if (!active()) return () => {};
       return scopedSubscription(host.subscribe.bind(host), event => {

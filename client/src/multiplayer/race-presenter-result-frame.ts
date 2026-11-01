@@ -1,9 +1,14 @@
 /** Early result-screen branch of the multiplayer race presenter frame. */
 import { updateRacePresenterItems, type RacePresenterItemsHost } from "./race-presenter-items";
+import type { DeathmatchRuntime } from "./deathmatch-runtime";
+import type { DeathmatchHud } from "./deathmatch-hud";
 
 export interface RacePresenterResultHost {
+  deathmatchHud?: DeathmatchHud;
+  deathmatchResultAt?: number;
   disposed: boolean;
   runtime: RacePresenterItemsHost["runtime"] & {
+    deathmatch?: DeathmatchRuntime;
     giantEffectsEnded: boolean;
     local: {
       scheduledStartAtMs: number;
@@ -64,6 +69,12 @@ export function presentRaceResultFrame(host: RacePresenterResultHost,
   }
   if (!host.resultVisible) return false;
   host.hud.hideTimeGap();
+  if (host.runtime.deathmatch && host.deathmatchHud) {
+    host.deathmatchHud.update(nowMs, host.runtime.deathmatch.hudState(nowMs));
+    host.resultComplete = nowMs - (host.deathmatchResultAt ?? nowMs) >= 12000;
+    dependencies.render(host.scene, host.camera, false);
+    return true;
+  }
   host.resultComplete = host.resultView.update(nowMs);
   host.assets.map.stageBinding.beginFrame(nowMs);
   host.award?.update(nowMs, host.camera, host.runtime.local,

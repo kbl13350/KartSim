@@ -63,7 +63,7 @@ func freezeBraveRace(rc *race) {
 // Brave race slots may differ from the room seats. Binary masks and sender
 // identities must refer to the same frozen slots the clients received.
 func raceMotionSlot(r *room, m *member) int {
-	if r.race.brave != nil {
+	if r.race.brave != nil || r.race.deathmatch != nil {
 		if index := slices.Index(r.race.rosterIDs, m.playerID); index >= 0 {
 			return r.race.startSlots[index]
 		}

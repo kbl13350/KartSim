@@ -21,6 +21,7 @@ export interface OutgoingMotionClock {
 }
 
 export interface OutgoingMotionConnection {
+  observesMotionOnServer?: boolean;
   hasMotionRecipients?: boolean;
   directMotionAvailable?(slot: number): boolean;
   sendMotion(sample: KinematicMotionSample, recipientMask?: number): boolean;
@@ -125,7 +126,7 @@ export class OutgoingRaceMotionSender {
       this.source.body.position, this.routing.position,
       slot => this.connection.directMotionAvailable?.(slot) ?? false,
     );
-    if (recipients === 0) return false;
+    if (recipients === 0 && !this.connection.observesMotionOnServer) return false;
 
     const base = captureOutgoingMotion(this.source, this.clock.encode(nowMs),
       suspended, this.bodyQuaternion);

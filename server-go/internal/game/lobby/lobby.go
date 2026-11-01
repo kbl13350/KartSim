@@ -193,25 +193,25 @@ func (c *Client) emitSnapshot(roomID string, payload []byte) {
 
 // Lobby owns every room on this node.
 type Lobby struct {
-	nodeID       string
-	clock        Clock
-	wall         func() time.Time
-	presence     Presence
-	tickets      Tickets
-	recorder     Recorder
-	ownership    Ownership
-	allowGuests  bool
-	maxPlayers   int
-	maxRooms     int
-	busy         func() bool
-	rates        func() rewards.Rates
-	raceBonus    func() contract.CurrencyAmounts
+	nodeID      string
+	clock       Clock
+	wall        func() time.Time
+	presence    Presence
+	tickets     Tickets
+	recorder    Recorder
+	ownership   Ownership
+	allowGuests bool
+	maxPlayers  int
+	maxRooms    int
+	busy        func() bool
+	rates       func() rewards.Rates
+	raceBonus   func() contract.CurrencyAmounts
 	trackEnabled func(trackID string) bool
-	customItem   func(trackID string) bool
-	log          *slog.Logger
-	items        *itemmode.Data
-	itemRandom   func() itemmode.Random
-	itemTests    bool
+	customItem  func(trackID string) bool
+	log         *slog.Logger
+	items       *itemmode.Data
+	itemRandom  func() itemmode.Random
+	itemTests   bool
 	// itemChangers gives every item racer unlimited changers
 	// (KART_ITEM_CHANGERS=infinite).
 	itemChangers bool
@@ -460,6 +460,10 @@ func (l *Lobby) dispatch(c *Client, typ string, in Request, check *ownershipChec
 		return l.giantState(c, in)
 	case "brave-collision":
 		return l.braveCollision(c, in)
+	case "deathmatch-contact":
+		return l.deathmatchContact(c, in)
+	case "deathmatch-fall":
+		return l.deathmatchFallHint(c, in)
 	case "team-charge":
 		return l.teamCharge(c, in)
 	case "award-motion":
@@ -1046,6 +1050,15 @@ func (l *Lobby) racerLeft(r *room, playerID string) {
 	rc := r.race
 	rc.markOut(playerID)
 	switch {
+	case r.gameplay == "deathmatch" && r.phase == "countdown":
+		cancelBraveRace(r, "MEMBER_LEFT")
+	case r.gameplay == "deathmatch" && r.phase == "racing":
+		rc.deathmatch.removePlayer(playerID)
+		if deathmatchTeamGone(r) {
+			l.endDeathmatch(r, "team-left", l.clock.Now())
+			l.closeAbandonedRace(r)
+			return
+		}
 	case r.gameplay == "brave" && r.phase == "countdown" && !braveCanStart(r):
 		cancelBraveRace(r, "MEMBER_LEFT")
 	case r.gameplay == "brave" && r.phase == "racing" && braveTeamGone(r):
@@ -1084,7 +1097,7 @@ func (l *Lobby) racerLeft(r *room, playerID string) {
 // brave race no longer has two equal teams of at least two racers.
 func (l *Lobby) continueLoading(r *room, reason string) {
 	rc := r.race
-	if len(racers(r)) == 0 || (r.gameplay == "brave" && !braveCanStart(r)) || (r.gameplay == "roadblock" &&
+	if len(racers(r)) == 0 || (r.gameplay == "deathmatch" && len(racers(r)) != 8) || (r.gameplay == "brave" && !braveCanStart(r)) || (r.gameplay == "roadblock" &&
 		(rc.isOut(rc.roadblockRunner) || loadableRacers(r) < 5)) {
 		r.phase = "open"
 		r.race.endCheat()
@@ -1262,6 +1275,9 @@ func (l *Lobby) applyMutation(r *room, m *member, c *Client, typ string, in Requ
 		closed, err := in.booleanField("closed")
 		if err != nil {
 			return err
+		}
+		if r.gameplay == "deathmatch" && closed {
+			return fail(http.StatusBadRequest, "DEATHMATCH_SLOTS_FIXED")
 		}
 		if (r.mode == "team" && slot%4 >= r.capacity/2) || (r.mode != "team" && slot >= r.capacity) {
 			return fail(http.StatusBadRequest, "INVALID_SLOT")
@@ -1478,6 +1494,9 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 	if err := validateBraveStart(r); err != nil {
 		return nil, err
 	}
+	if err := validateDeathmatchStart(r); err != nil {
+		return nil, err
+	}
 	hasTeam := [3]bool{}
 	for _, m := range r.members {
 		if m.playerID != r.hostID && !m.ready {
@@ -1523,7 +1542,7 @@ func (l *Lobby) start(c *Client, in Request, check *ownershipCheck) (obj, error)
 // launchRace freezes the race of a room whose start passed every check and
 // starts loading it; c (nil for a handed-off room) sent the start.
 func (l *Lobby) launchRace(r *room, c *Client, check *ownershipCheck) {
-	if validateBraveStart(r) != nil {
+	if validateBraveStart(r) != nil || validateDeathmatchStart(r) != nil {
 		r.raceError = "HOST_CANCELLED"
 		r.revision++
 		l.broadcastRoom(r, c)
@@ -1540,7 +1559,7 @@ func (l *Lobby) launchRace(r *room, c *Client, check *ownershipCheck) {
 		return
 	}
 	switch r.gameplay {
-	case "roadblock", "giant", "rp", "lte", "brave":
+	case "roadblock", "giant", "rp", "lte", "brave", "deathmatch":
 		loadingWindow = 90_000
 	case "item":
 		loadingWindow = itemLoadingWindowMs
@@ -1702,6 +1721,10 @@ const countdownLeadMs = 7_000
 // racer still in the room has loaded.
 func (l *Lobby) startCountdownWhenLoaded(r *room) {
 	rc := r.race
+	if r.gameplay == "deathmatch" && len(racers(r)) != 8 {
+		cancelBraveRace(r, "MEMBER_LEFT")
+		return
+	}
 	if r.gameplay == "brave" && !braveCanStart(r) {
 		cancelBraveRace(r, "MEMBER_LEFT")
 		return
@@ -1711,6 +1734,9 @@ func (l *Lobby) startCountdownWhenLoaded(r *room) {
 	}
 	startAt := l.clock.Now() + countdownLeadMs
 	rc.startAt = &startAt
+	if r.gameplay == "deathmatch" {
+		l.startDeathmatchCountdown(r)
+	}
 	if r.gameplay == "roadblock" {
 		deadline := startAt + roadblockLimitMs
 		rc.finishDeadline = &deadline
@@ -1731,7 +1757,7 @@ func (l *Lobby) beginRace(roomID, raceID string) {
 	if r == nil || r.race == nil || r.race.id != raceID || r.phase != "countdown" {
 		return
 	}
-	if r.gameplay == "brave" && !braveCanStart(r) {
+	if (r.gameplay == "brave" && !braveCanStart(r)) || (r.gameplay == "deathmatch" && len(racers(r)) != 8) {
 		cancelBraveRace(r, "MEMBER_LEFT")
 		r.revision++
 		l.broadcastRoom(r, nil)
@@ -1765,6 +1791,9 @@ func (l *Lobby) finish(c *Client, in Request) (obj, error) {
 	r, err := l.raceRoom(c, in)
 	if err != nil {
 		return nil, err
+	}
+	if r.gameplay == "deathmatch" {
+		return nil, fail(http.StatusBadRequest, "DEATHMATCH_FINISH_DISABLED")
 	}
 	if r.phase != "racing" {
 		return nil, fail(http.StatusBadRequest, "RACE_NOT_RUNNING")
@@ -1985,6 +2014,9 @@ func (l *Lobby) finalizeRace(roomID, raceID string) {
 	r := l.rooms[roomID]
 	if r == nil || r.race == nil || r.race.id != raceID || r.phase != "racing" {
 		return
+	}
+	if r.gameplay == "deathmatch" {
+		return // Only the authoritative arena state can settle this mode.
 	}
 	rc := r.race
 	deadline := l.clock.Now()

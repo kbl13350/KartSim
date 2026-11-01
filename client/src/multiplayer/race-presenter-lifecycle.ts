@@ -37,6 +37,7 @@ export interface RacePresenterLifecycleHost {
   trackDummyAudio?: Disposable;
   wrongWay?: Disposable;
   braveHud?: Disposable;
+  deathmatchHud?: Disposable;
   autopilot?: Disposable;
   roadblockFlag?: Disposable;
   roadblockHud?: Disposable;
@@ -117,6 +118,8 @@ export function disposeRacePresenter(host: RacePresenterLifecycleHost,
   host.wrongWay = undefined;
   host.braveHud?.dispose();
   host.braveHud = undefined;
+  host.deathmatchHud?.dispose();
+  host.deathmatchHud = undefined;
   host.autopilot?.dispose();
   host.autopilot = undefined;
   if (host.audioStarted) host.bgm?.silence();

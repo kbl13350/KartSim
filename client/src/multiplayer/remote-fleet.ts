@@ -131,6 +131,8 @@ export class RemoteFleet {
   collisionCenter?: () => { x: number; y: number; z: number };
   /** The local track constrains drawn peers to their own road layer. */
   groundTrack?: RemoteGroundTrack;
+  /** Server-authoritative life/protection gating for deathmatch. */
+  collisionAllowed?: (playerId: string) => boolean;
   offGiant?: () => void;
   giantFinished = false;
 
@@ -350,6 +352,7 @@ export class RemoteFleet {
     for (const playerId of this.collisionOrder) {
       // Not in the release: a racer who left the room is no obstacle.
       if (this.departed.has(playerId)) continue;
+      if (this.collisionAllowed && !this.collisionAllowed(playerId)) continue;
       const peer = this.remotes.get(playerId)!;
       const collision = peer.motion.collisionState();
       if (!collision) continue;

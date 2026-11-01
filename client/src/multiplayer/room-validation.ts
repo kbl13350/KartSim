@@ -3,11 +3,14 @@
 import { BRAVE_CAPACITIES, BRAVE_CHANNEL, BRAVE_TRACK_ID, isBraveRaceRules, isBraveRoster } from "./lobby-brave-mode";
 import { isBrawl, isBrawlRaceRules, isBrawlTrack, roomSlotCount } from "./lobby-brawl-mode";
 import { ITEM_CHANNELS, isItemChannel, isItemRaceRules, itemChannelMismatch } from "./lobby-item-mode";
+import { isDeathmatchState, type DeathmatchState } from "./deathmatch-rules";
+import { isDeathmatchTrack } from "./lobby-deathmatch-mode";
+import { validateDeathmatchRace } from "./deathmatch-validation";
 
 export type ResourceVersion = "p3528" | "p3543" | "p3553";
 export type RoomMode = "individual" | "team";
 export type Gameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp" |
-  "item" | "brawl" | "brave";
+  "item" | "brawl" | "brave" | "deathmatch";
 export type RoomPhase = "open" | "loading" | "countdown" | "racing" | "finished";
 export type ChannelName = "speedIndiCombine" | "speedTeamCombine" |
   "speedIndiInfinit" | "speedTeamInfinit" | "itemIndiCombine" | "itemTeamCombine";
@@ -111,6 +114,8 @@ export interface RaceSnapshot {
   brawl?: { ruleset: "web-brawl-v1"; aiIds: string[] };
   /** Original opposing-direction team speed rules. */
   brave?: { ruleset: "web-brave-v1"; forwardTeam: 1 | 2 };
+  deathmatch?: DeathmatchState;
+  startSlots?: Record<string, number>;
   /** Account rewards after the race (ECONOMY.md 2.1); see account/rewards.ts. */
   rewards?: Record<string, { exp: number; lucci: number }>;
   /** 隊伍隨機分配 (not in the release): the teams of this race were dealt at the start. */
@@ -155,7 +160,7 @@ const channelRules: Record<ChannelName, { mode: RoomMode; speed: 4 | 7 }> = {
   itemTeamCombine: { mode: ITEM_CHANNELS.itemTeamCombine.mode, speed: 7 },
 };
 const gameplayNames = new Set<Gameplay>([
-  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl", "brave",
+  "ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl", "brave", "deathmatch",
 ]);
 const randomTrackCodes = new Set([0, 3, 4, 5, 6, 7, 8, 30, 40]);
 /** Item rooms draw the item hot 1-5, all, new and reverse pools; 40 is 竞速随机. */
@@ -213,6 +218,7 @@ function gameplayForChannel(gameplay: unknown, channelName: unknown,
   if ((gameplay !== undefined && !validGameplay(gameplay)) || !channel(channelName) ||
       itemChannelMismatch(gameplay, channelName)) return false;
   if (gameplay === "brave") return channelName === BRAVE_CHANNEL && version === "p3553";
+  if (gameplay === "deathmatch") return channelName === "speedTeamCombine" && version === "p3553";
   if (gameplay === "item") return version === undefined || version === "p3553";
   if (gameplay === "roadblock" || gameplay === "giant" || isBrawl(gameplay)) {
     return channelName === "speedIndiCombine" && (version === undefined || version === "p3553");
@@ -318,7 +324,35 @@ function validModeData(race: Data, gameplay: Gameplay, rosterIds: Set<string>): 
   if (gameplay === "brave" ?
       !(isBraveRaceRules(race.brave) && race.trackId === BRAVE_TRACK_ID &&
         isBraveRoster(race.roster)) : race.brave !== undefined) return false;
+  if (gameplay === "deathmatch" ? !isDeathmatchState(race.deathmatch, rosterIds) : race.deathmatch !== undefined) return false;
   return true;
+}
+
+function validDeathmatchRace(room: Data, race: Data, rosterIds: Set<string>): boolean {
+  try { validateDeathmatchRace(room, race); } catch { return false; }
+  const state = race.deathmatch as DeathmatchState;
+  if (race.roadblock !== undefined || race.roadblockOutcome !== undefined ||
+      race.finishWindowMs !== undefined || race.finishes !== undefined ||
+      (race.chat !== undefined && !validChatList(race.chat)) ||
+      !record(race.teamScores) || race.teamScores[1] !== state.scores[1] || race.teamScores[2] !== state.scores[2]) return false;
+  if (room.phase === "loading") return race.startAt === undefined && race.finishDeadline === undefined &&
+    race.raceOverAt === undefined && race.results === undefined && state.outcome === undefined && race.winningTeam === undefined;
+  if (!finiteNonnegative(race.startAt) || !Array.isArray(race.loadedIds) || race.loadedIds.length !== 8) return false;
+  if (room.phase !== "finished") return race.finishDeadline === race.startAt + state.timeLimitMs &&
+    race.raceOverAt === undefined && race.results === undefined && state.outcome === undefined && race.winningTeam === undefined;
+  const outcome = state.outcome;
+  if (!outcome || outcome.endedAt < race.startAt || outcome.endedAt > race.startAt + state.timeLimitMs ||
+      race.finishDeadline !== outcome.endedAt || race.raceOverAt !== outcome.endedAt + 3000 ||
+      (outcome.winningTeam === 0 ? race.winningTeam !== undefined : race.winningTeam !== outcome.winningTeam) ||
+      !Array.isArray(race.results) || race.results.length !== rosterIds.size) return false;
+  const seen = new Set<string>();
+  return race.results.every((result: unknown, index: number) => {
+    if (!record(result) || !rosterIds.has(String(result.playerId)) || seen.has(String(result.playerId)) ||
+        result.rank !== index + 1 || result.elapsedMs !== null || !integer(result.points, 0, Number.MAX_SAFE_INTEGER) ||
+        result.points !== state.players[String(result.playerId)]?.kills || result.titles !== undefined) return false;
+    seen.add(String(result.playerId));
+    return true;
+  });
 }
 
 function validRoadblockRace(room: Data, race: Data, rosterIds: Set<string>): boolean {
@@ -455,6 +489,9 @@ export function isValidRoomSnapshot(value: unknown): value is RoomSnapshot {
   if ((gameplay === "brave" &&
         (!BRAVE_CAPACITIES.includes(capacity as 4 | 6 | 8) || value.trackId !== BRAVE_TRACK_ID ||
           value.randomTrackCode !== undefined)) ||
+      (gameplay === "deathmatch" && (capacity !== 8 ||
+        (Array.isArray(value.closedSlots) && value.closedSlots.length !== 0) ||
+        (value.randomTrackCode !== undefined ? value.randomTrackCode !== 0 : !isDeathmatchTrack(value.trackId)))) ||
       (gameplay === "roadblock" &&
         (capacity < 5 || value.randomTrackCode !== 0 || value.trackId !== undefined)) ||
       (gameplay === "lte" && (value.randomTrackCode !== 0 || value.trackId !== undefined)) ||
@@ -495,6 +532,7 @@ export function isValidRoomSnapshot(value: unknown): value is RoomSnapshot {
           new Set(race.returnedIds).size !== race.returnedIds.length ||
           !race.returnedIds.every((id: unknown) => typeof id === "string" && rosterIds.has(id)))) ||
       !validModeData(race, gameplay, rosterIds)) return false;
-  return gameplay === "roadblock" ? validRoadblockRace(value, race, rosterIds) :
+  return gameplay === "deathmatch" ? validDeathmatchRace(value, race, rosterIds) :
+    gameplay === "roadblock" ? validRoadblockRace(value, race, rosterIds) :
     validOrdinaryRace(value, race, rosterIds);
 }

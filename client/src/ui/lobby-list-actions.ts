@@ -1,5 +1,6 @@
 import { tr } from "../i18n/locale";
 import { isItemChannel } from "../multiplayer/lobby-item-mode";
+import { DEATHMATCH_LABEL, DEATHMATCH_RULES_HINT } from "../multiplayer/lobby-deathmatch-mode";
 import type { LobbyRoomSummary } from "./lobby-list-draw";
 import {
   createLobbyListUiState, lobbyCategory, lobbyTab, lobbyTabAvailable, requestLobbyList,
@@ -38,6 +39,11 @@ export function activateLobbyListEntry(
   if (!host.hits.some(hit => hit.name === name)) return;
   host.options.onActivate?.();
   const state = host.lobbyUi ??= createLobbyListUiState();
+
+  if (name === "deathmatchInfo" && state.category === "deathmatch") {
+    host.options.onUnavailable?.(tr(DEATHMATCH_LABEL), tr(DEATHMATCH_RULES_HINT));
+    return;
+  }
 
   if (name.startsWith("tab:")) {
     const tab = lobbyTab(name.slice(4));

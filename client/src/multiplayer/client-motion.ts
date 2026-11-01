@@ -63,11 +63,11 @@ export function sendGameMotion(host: ClientMotionHost, sample: GameMotionSample,
   requestedMask?: number): boolean {
   const scope = host.motionScope;
   const channel = host.motion;
-  if (!scope?.enabled || !scope.recipientMask || !host.playerId ||
+  if (!scope?.enabled || (!scope.recipientMask && !scope.observeOnServer) || !host.playerId ||
       (requestedMask !== undefined && (!Number.isInteger(requestedMask) ||
         requestedMask < 0 || requestedMask > 255))) return false;
   const recipients = scope.recipientMask & (requestedMask ?? 255);
-  if (!recipients) return false;
+  if (!recipients && !scope.observeOnServer) return false;
   const sequence = (scope.sequence + 1) >>> 0;
   if (scope.encoder?.slot !== scope.slot) {
     scope.encoder = new GameMotionEncoder({ raceId: scope.raceId, slot: scope.slot });
@@ -75,7 +75,7 @@ export function sendGameMotion(host: ClientMotionHost, sample: GameMotionSample,
   const bytes = scope.encoder.encode(sample, sequence);
   const direct = host.peerTransport?.send(bytes, sequence, recipients);
   let sent = direct?.sent ?? false;
-  if (!direct || direct.relayMask) {
+  if (!direct || direct.relayMask || scope.observeOnServer) {
     bytes[MOTION_MASK_OFFSET] = direct?.relayMask ?? recipients;
     if (channel?.readyState === "open" && channel.bufferedAmount <= 8_192) {
       try { channel.send(bytes as Uint8Array<ArrayBuffer>); sent = true; }

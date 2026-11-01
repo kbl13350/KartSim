@@ -1,4 +1,5 @@
 import { BRAVE_CHANNEL, BRAVE_TRACK_ID } from "./lobby-brave-mode";
+import { DEATHMATCH_CHANNEL } from "./lobby-deathmatch-mode";
 import { tr } from "../i18n/locale";
 import { formatMultiplayerError } from "./errors";
 import { isPlayableGameplay } from "./gameplay-admission";
@@ -127,6 +128,8 @@ export async function createLobbyRoom(host: LobbySettingsHost,
         mode, speed, speedVersion: "国服",
         ...(gameplay === "brave" ? { gameplay, channelName: BRAVE_CHANNEL, mode: "team",
           speed: 7, resourceVersion: "p3553", trackId: BRAVE_TRACK_ID } : {}),
+        ...(gameplay === "deathmatch" ? { gameplay, channelName: DEATHMATCH_CHANNEL, mode: "team",
+          speed: 7, capacity: 8, resourceVersion: "p3553", trackId: undefined, randomTrackCode: 0 } : {}),
         ...currentEquipmentField(host.options) });
     }));
 }

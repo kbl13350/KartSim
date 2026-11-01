@@ -4,7 +4,9 @@ import path from "node:path";
 import test from "node:test";
 import { parse } from "@babel/parser";
 import { applyBraveCompatibility } from "../tools/brave-compat.mjs";
+import { applyDeathmatchCompatibility } from "../tools/deathmatch-compat.mjs";
 import { BraveSignals, noteBraveKartContact } from "../src/multiplayer/brave-signals.ts";
+import { noteDeathmatchKartContact } from "../src/multiplayer/deathmatch-runtime.ts";
 
 const read = relative => readFileSync(new URL(relative, import.meta.url), "utf8");
 const filenames = ["formats.js", "library.js", "vehicle.js", "world.js"];
@@ -57,21 +59,22 @@ test("normal generator writes run brave compatibility after localization", async
 
   const calls = [];
   let disk = worldBeforeContactHook;
-  const writeIfChanged = new Function("localizeGeneratedModule", "applyBraveCompatibility", "path",
+  const writeIfChanged = new Function("localizeGeneratedModule", "applyBraveCompatibility", "applyDeathmatchCompatibility", "path",
     "outputDir", "readFile", "writeFile", `${declarations(source)("writeIfChanged")}\nreturn writeIfChanged;`)(
     (filename, contents) => { calls.push(["localize", filename]); return contents; },
     (filename, contents) => { calls.push(["brave", filename]); return applyBraveCompatibility(filename, contents); },
+    (filename, contents) => { calls.push(["deathmatch", filename]); return applyDeathmatchCompatibility(filename, contents); },
     path, "/memory/generated",
     async filename => { calls.push(["read", filename]); return disk; },
     async (filename, contents) => { calls.push(["write", filename]); disk = contents; },
   );
   await writeIfChanged("world.js", worldBeforeContactHook);
   assert.equal(disk, generated["world.js"]);
-  assert.deepEqual(calls, [["localize", "world.js"], ["brave", "world.js"],
+  assert.deepEqual(calls, [["localize", "world.js"], ["brave", "world.js"], ["deathmatch", "world.js"],
     ["read", "/memory/generated/world.js"], ["write", "/memory/generated/world.js"]]);
   calls.length = 0;
   await writeIfChanged("world.js", worldBeforeContactHook);
-  assert.deepEqual(calls.map(call => call[0]), ["localize", "brave", "read"]);
+  assert.deepEqual(calls.map(call => call[0]), ["localize", "brave", "deathmatch", "read"]);
 });
 
 test("released lobby admission and SX feed the frozen brave mode returned by vI", async () => {
@@ -109,9 +112,9 @@ test("released lobby admission and SX feed the frozen brave mode returned by vI"
 // Execute the actual released pair solver, including overlap/closing-velocity
 // checks, and its real Di0 caller. Collision detection and notice filtering are real.
 const worldDeclaration = declarations(generated["world.js"]);
-const collide = new Function("noteBraveKartContact",
+const collide = new Function("noteBraveKartContact", "noteDeathmatchKartContact",
   ["Y0", "RL", "b9", "Li0", "m2", "uE", "hE", "Pi0", "Nd", "Di0"]
-    .map(worldDeclaration).join("\n") + "\nreturn Di0;")(noteBraveKartContact);
+    .map(worldDeclaration).join("\n") + "\nreturn Di0;")(noteBraveKartContact, noteDeathmatchKartContact);
 
 function collisionFixture(options = {}) {
   const { distance = 1, velocity = 10, active = true } = options;

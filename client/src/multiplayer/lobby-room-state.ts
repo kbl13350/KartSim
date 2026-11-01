@@ -206,7 +206,7 @@ function memberSlotState(host: LobbyRoomStateHost, name: string,
     visible: !!team && part.endsWith(String(team)),
   };
 
-  const closeSlot = isHost && !member && slot?.open && !disabled ? {
+  const closeSlot = dependencies.gameplayMode(room) !== "deathmatch" && isHost && !member && slot?.open && !disabled ? {
     label: tr("关闭席位 {value}", { value: String(slot.slot + 1) }),
     action: () => host.actions.slot(slot.slot, true),
   } : {};
@@ -281,6 +281,7 @@ function roomDetailsState(host: LobbyRoomStateHost, name: string,
       ? tr(dependencies.rpChannelNames[room.channelName ?? ""] ?? "")
       : mode === "roadblock" ? tr("挡人模式")
         : mode === "brave" ? tr("勇者组队竞速赛")
+        : mode === "deathmatch" ? tr("死斗模式")
         : mode === "brawl" ? tr(BRAWL_LABEL)
         : mode === "ordinary" ? room.mode === "team" ? tr("组队竞速赛") : tr("个人竞速赛")
           : mode === "item" ? tr(itemModeLabel(room.mode === "team"))
@@ -298,6 +299,7 @@ function roomDetailsState(host: LobbyRoomStateHost, name: string,
           ? tr("自动开始倒数 {value}", { value: String(host.countdownState().remaining) })
           : room.kickVote
             ? tr("移出投票 {value}/{value2}", { value: String(room.kickVote.yesIds.length), value2: String(Math.floor(room.kickVote.eligibleIds.length / 2) + 1) })
+            : mode === "deathmatch" ? tr("等待8人，红蓝各4人")
             : mode === "brave" ? tr("至少4人，人数均等") : tr("等待中")
       : tr("连接已断开") };
     case "chat": return { lines: (room.chat ?? []).flatMap(line => {

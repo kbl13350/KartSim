@@ -7,6 +7,7 @@ import { XYY_TRACK_TITLES } from "./xyy-tracks";
 import { trackDisplayTitle } from "./track-names";
 import { taiwanTrack, taiwanTrackMetadata, TAIWAN_ITEM_TRACK_IDS } from "./taiwan-tracks";
 import { deduplicateTrackChoices } from "./track-duplicates";
+import { DEATHMATCH_TRACK_IDS, isDeathmatchTrack } from "../multiplayer/lobby-deathmatch-mode";
 
 /** A virtual file mounted from a Rho/Rho5 archive or a loose Data file. */
 export interface TrackResource {
@@ -322,6 +323,21 @@ export async function timeAttackTrackCatalog(library: TrackLibrary): Promise<Tra
   return deduplicateTrackChoices(await timeAttackTrackCatalogAll(library));
 }
 
+/**
+ * The five original arena maps have gameType="death" and no lap requirement.
+ * Only the picker adapter calls them "speed"; their resource metadata remains
+ * unchanged, and they never enter ordinary speed or item room catalogues.
+ */
+export async function deathmatchTrackCatalog(library: TrackLibrary): Promise<TrackChoice[]> {
+  const tracks = await resolveTrackCatalog(library,
+    metadata => metadata.gameType === "death" && isDeathmatchTrack(metadata.id) ? "speed" : undefined,
+    () => false);
+  return DEATHMATCH_TRACK_IDS.flatMap(id => {
+    const track = tracks.find(candidate => candidate.id === id);
+    return track ? [track] : [];
+  });
+}
+
 /** Regional availability from trackLocale@cn; only item rooms apply it. */
 export interface TrackLocaleRule {
   blocked?: boolean;
@@ -422,7 +438,6 @@ export async function itemTrackCatalog(library: TrackLibrary): Promise<TrackChoi
   // folders are unmounted. Use the verified TW choices with their exact paths.
   release.push(...extraTrackChoices(library, await library.trackMetadataCatalog(), release)
     .filter(track => TAIWAN_ITEM_TRACK_IDS.has(track.id) && track.gameType === "item"));
-
   // 地图工坊：已发布、带道具箱的地图（server-go/MAPS.md）
   const custom = customItemTrackChoices().filter(choice =>
     library.findSibling(choice.path, ["track.1s"]) !== undefined);

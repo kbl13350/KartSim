@@ -5007,6 +5007,8 @@ function vI(n) {
     case 2: // item-mode(lobby)
     case 4:
       return Object.freeze({ [Pn]: !0, modeId: n, kind: "item", team: n === 4 });
+    case 58: // deathmatch(lobby)
+      return Object.freeze({ [Pn]: !0, modeId: n, kind: "deathmatch", team: !0 });
     case 31: // brave(lobby)
       return Object.freeze({ [Pn]: !0, modeId: n, kind: "brave", team: !0 });
     case BRAWL_GAME_TYPE: // brawl(lobby)

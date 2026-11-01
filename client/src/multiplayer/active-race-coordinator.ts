@@ -2,6 +2,7 @@ import { freezeBraveRaceRules } from "./lobby-brave-mode";
 import { freezeItemRaceRules, teamGaugeEnabled } from "./lobby-item-mode";
 import { createActiveItemRace } from "./item-race-wiring";
 import type { ItemRaceController } from "../item/item-race-controller";
+import { DeathmatchRuntime } from "./deathmatch-runtime";
 
 export interface ActiveRaceCoordinatorDependencies {
   normalizeRp(value: unknown): unknown;
@@ -60,6 +61,7 @@ export class ActiveRaceCoordinator {
   braveIdentity: unknown;
   /** 道具赛: the local item race controller (also `local.items`). */
   itemRace: ItemRaceController | undefined;
+  deathmatch: DeathmatchRuntime | undefined;
   giantSequence = 0;
   giantSend = Promise.resolve();
   giantCleared = false;
@@ -118,6 +120,8 @@ export class ActiveRaceCoordinator {
         this.remotes.collisionCenter = () => this.local.physics.body.position;
       }
       this.itemRace = createActiveItemRace(this, room, now);
+      if (assets.drivingMode?.kind === "deathmatch")
+        this.deathmatch = new DeathmatchRuntime(this.local, this.remotes, connection, room);
       const balance = assets.participants.find((player: any) =>
         player.playerId === connection.playerId).collisionBalance;
       this.local.queueRemoteKart({

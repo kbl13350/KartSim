@@ -4,6 +4,7 @@ import { tr } from "../i18n/locale";
 import type { LobbyDialogNode, LobbyDialogOptions, LobbyDialogSession,
   LobbyDialogViewDependencies } from "./lobby-dialog-views";
 import { BRAVE_CAPACITIES, BRAVE_CHANNEL, BRAVE_LABEL } from "./lobby-brave-mode";
+import { DEATHMATCH_CHANNEL, DEATHMATCH_LABEL } from "./lobby-deathmatch-mode";
 import { itemModeLabel } from "./lobby-item-mode";
 
 interface RoomSettings { name: string; capacity: number; password: string }
@@ -53,8 +54,8 @@ export async function showLobbyRoomCreationForm<T extends LobbyDialogSession>(
   // 50人乱斗 rooms seat up to 50 (server-go/BRAWL.md), in steps of ten.
   const brawlCapacities = ["10", "20", "30", "40", "50"];
   let capacity = gameplay === "brawl" ? "50" : "8";
-  let mode = gameplay === "brave" ? "team" as const : initialMode;
-  let channel = gameplay === "brave" ? BRAVE_CHANNEL : initialChannel;
+  let mode = gameplay === "brave" || gameplay === "deathmatch" ? "team" as const : initialMode;
+  let channel = gameplay === "deathmatch" ? DEATHMATCH_CHANNEL : gameplay === "brave" ? BRAVE_CHANNEL : initialChannel;
   const folder = "dialog2_/createRoom";
   const raw = await dependencies.loadDefinition(options.library,
     folder, "mq_dialog@zz");
@@ -96,6 +97,13 @@ export async function showLobbyRoomCreationForm<T extends LobbyDialogSession>(
         node.children.map(child => child.name === "Skip"
           ? { ...child, children: child.children.filter(option =>
             ["4", "6", "8"].includes((dependencies.attribute(option, "text") ?? "").trim().split(/\s+/)[0]!)) }
+          : child));
+    }
+    if (name === "joinTeamGame" && gameplay === "deathmatch") {
+      return dependencies.clone(node, { comboListLength: "26" },
+        node.children.map(child => child.name === "Skip"
+          ? { ...child, children: child.children.filter(option =>
+            (dependencies.attribute(option, "text") ?? "").trim().split(/\s+/)[0] === "8") }
           : child));
     }
     if (name === "joinNum" && gameplay === "roadblock") {
@@ -151,7 +159,7 @@ export async function showLobbyRoomCreationForm<T extends LobbyDialogSession>(
             canvas.stroke();
             canvas.restore();
           },
-        } : { text: gameplay === "brave" ? tr(BRAVE_LABEL) : gameplay === "item" ? tr(itemModeLabel(mode === "team"))
+        } : { text: gameplay === "deathmatch" ? tr(DEATHMATCH_LABEL) : gameplay === "brave" ? tr(BRAVE_LABEL) : gameplay === "item" ? tr(itemModeLabel(mode === "team"))
           : mode === "team" ? tr("组队竞速") : tr("个人竞速") };
         case "roomName": return {
           disabled: dialog.busy, label: tr("房间名称"),
@@ -183,12 +191,12 @@ export async function showLobbyRoomCreationForm<T extends LobbyDialogSession>(
           visible: name === (mode === "team" ? "joinTeamGame" : "joinNum"),
           disabled: dialog.busy, label: tr("房间人数"),
           select: { value: capacity,
-            values: gameplay === "brave" ? BRAVE_CAPACITIES.map(String)
+            values: gameplay === "deathmatch" ? ["8"] : gameplay === "brave" ? BRAVE_CAPACITIES.map(String)
               : gameplay === "brawl" ? brawlCapacities
               : gameplay === "roadblock" ? ["5", "6", "7", "8"]
               : mode === "team" ? ["2", "4", "6", "8"]
                 : ["2", "3", "4", "5", "6", "7", "8"],
-            change: (value: string) => { capacity = value; } },
+            change: (value: string) => { capacity = gameplay === "deathmatch" ? "8" : value; } },
         };
         case "createRoom": return {
           disabled: dialog.busy || !roomName.trim() ||

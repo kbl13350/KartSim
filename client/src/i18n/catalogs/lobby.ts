@@ -1,5 +1,19 @@
 /** Lobby and multiplayer interface translations, including original menu fallbacks. */
 export const lobbyTranslations: Record<string, readonly [string, string]> = {
+  "死斗": ["Deathmatch", "데스매치"],
+  "8人 · 红蓝4对4撞落计分": ["8 players · red vs blue knockouts", "8인 · 레드 대 블루 추락 점수전"],
+  "等待8人，红蓝各4人": ["Waiting for 8 · 4 per team", "8인 대기 · 팀당 4명"],
+  "死斗模式需要8名玩家，红蓝两队各4人。": ["Deathmatch needs eight players: four on red and four on blue.", "데스매치는 레드팀 4명과 블루팀 4명, 총 8명이 필요합니다."],
+  "全部随机（死斗模式限定5张）": ["Random (5 Deathmatch arenas)", "랜덤 (데스매치 전용 5개 경기장)"],
+  "死斗模式玩法说明": ["Deathmatch rules", "데스매치 규칙"],
+  "红蓝各4人，把对手撞落赛道得分。先到20分或180秒结束，3秒后复活，复活保护2秒；这些时限与分数为Web重建规则。原版createSpeed1暂按当前标准速度频道运行。": ["Two teams of four score by knocking opponents off the arena. First to 20 points or 180 seconds; respawn after 3 seconds with 2 seconds of protection. These scores and timings are reconstructed Web rules. The original createSpeed1 currently uses the standard speed channel.", "4명씩 두 팀으로 상대를 경기장 밖으로 밀어 점수를 얻습니다. 20점 도달 또는 180초에 종료하며, 3초 후 부활하고 2초간 보호됩니다. 점수와 시간은 웹 복원 규칙입니다. 원본 createSpeed1은 현재 표준 속도 채널을 사용합니다."],
+  "该操作仅限死斗模式。": ["This action is only available in Deathmatch.", "데스매치에서만 가능한 동작입니다."],
+  "死斗模式按撞落积分和比赛时间结算。": ["Deathmatch ends by knockout score and time.", "데스매치는 추락 점수와 경기 시간으로 정산됩니다."],
+  "撞击目标已离开或无法被撞击。": ["The target has left or cannot be hit.", "대상이 떠났거나 충돌할 수 없습니다."],
+  "正在同步撞击位置，请稍候。": ["Synchronizing contact positions. Please wait.", "충돌 위치 동기화 중입니다. 잠시 기다려 주세요."],
+  "撞击仍在冷却中。": ["Contact is still on cooldown.", "충돌 재사용 대기 중입니다."],
+  "复活状态已变化，正在重新同步。": ["Respawn state changed; synchronizing again.", "부활 상태가 변경되어 다시 동기화합니다."],
+  "车辆尚未坠落。": ["The kart has not fallen.", "카트가 아직 추락하지 않았습니다."],
   "勇者组队竞速赛": ["Brave Team Speed", "데드레이싱 팀전"],
   "勇者": ["Brave", "데드레이싱"],
   "四人以上 · 两队相向竞速": ["4+ racers · opposing directions", "4인 이상 · 양 팀 역방향 레이싱"],
@@ -2374,8 +2388,8 @@ export const lobbyTranslations: Record<string, readonly [string, string]> = {
     "엠블럼을 획득하였습니다."
   ],
   "死斗模式": [
-    "Deathmatch",
-    "데드레이싱"
+    "Team Deathmatch",
+    "데스매치 팀전"
   ],
   "每个人都可使用的通行证。": [
     "A pass available to everyone.",

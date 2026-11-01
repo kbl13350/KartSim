@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 import { buildReleaseVehicleData } from "./release-data-builder";
 import { d10 as runtimeD10, h10 as runtimeH10, hn as runtimeHn } from "../generated/data.js";
@@ -8,9 +8,18 @@ const local = (name: string) => readFileSync(new URL(`./data/${name}`, import.me
 const extracted = (name: string) => readFileSync(
   new URL(`../../../recovered/embedded-data/${name}`, import.meta.url), "utf8",
 );
-const { vehiclePhysicsOverrides: originalMap } = await import(
-  "../../../recovered/embedded-data/vehicle-physics-overrides.mjs"
-) as unknown as { vehiclePhysicsOverrides: Map<string, Record<string, number>> };
+const referenceFiles = ["vehicle-physics-h10.csv", "vehicle-physics-d10.csv", "vehicle-physics-overrides.mjs"];
+const missingReferences = referenceFiles.filter(name => !existsSync(
+  new URL(`../../../recovered/embedded-data/${name}`, import.meta.url),
+));
+// Private release captures are not included in public checkouts. Keep their
+// comparisons available when installed, without making them a build dependency.
+const releaseComparison = { skip: missingReferences.length > 0
+  ? `Private recovered/embedded-data fixtures unavailable: ${missingReferences.join(", ")}` : false };
+const referenceUrl = new URL("../../../recovered/embedded-data/vehicle-physics-overrides.mjs", import.meta.url);
+const originalMap = missingReferences.length === 0
+  ? (await import(referenceUrl.href) as { vehiclePhysicsOverrides: Map<string, Record<string, number>> }).vehiclePhysicsOverrides
+  : undefined;
 
 function referenceAliases(map: Map<string, object>): Record<string, string> {
   const firstKey = new Map<object, string>();
@@ -23,12 +32,13 @@ function referenceAliases(map: Map<string, object>): Record<string, string> {
   return aliases;
 }
 
-test("editable CSV strings exactly match the immutable extracted release", () => {
+test("editable CSV strings exactly match the immutable extracted release", releaseComparison, () => {
   assert.equal(local("vehicle-physics-h10.csv"), extracted("vehicle-physics-h10.csv"));
   assert.equal(local("vehicle-physics-d10.csv"), extracted("vehicle-physics-d10.csv"));
 });
 
-test("editable JSON reconstructs every original Map key, value and alias", () => {
+test("editable JSON reconstructs every original Map key, value and alias", releaseComparison, () => {
+  assert.ok(originalMap);
   const aliasesJson = local("vehicle-physics-aliases.json");
   const data = buildReleaseVehicleData(
     local("vehicle-physics-h10.csv"),
@@ -55,12 +65,24 @@ test("editable JSON reconstructs every original Map key, value and alias", () =>
   assert.deepEqual(referenceAliases(data.hn), referenceAliases(originalMap));
 });
 
-test("generated data module exposes the readable files with release semantics", () => {
+test("generated data module exposes the readable files with release semantics", releaseComparison, () => {
+  assert.ok(originalMap);
   assert.equal(runtimeH10, extracted("vehicle-physics-h10.csv"));
   assert.equal(runtimeD10, extracted("vehicle-physics-d10.csv"));
   assert.deepEqual([...runtimeHn.keys()], [...originalMap.keys()]);
   assert.deepEqual(runtimeHn, originalMap);
   assert.deepEqual(referenceAliases(runtimeHn), referenceAliases(originalMap));
+});
+
+test("generated data includes every public vehicle override and preserves declared aliases", () => {
+  const overrides = JSON.parse(local("vehicle-physics-overrides.json")) as Record<string, Record<string, number>>;
+  const aliases = JSON.parse(local("vehicle-physics-aliases.json")) as Record<string, string>;
+  assert.equal(runtimeH10, local("vehicle-physics-h10.csv"));
+  assert.equal(runtimeD10, local("vehicle-physics-d10.csv"));
+  assert.deepEqual([...runtimeHn.keys()], Object.keys(overrides));
+  for (const [key, expected] of Object.entries(overrides)) assert.deepEqual(runtimeHn.get(key), expected, key);
+  assert.deepEqual(referenceAliases(runtimeHn), aliases);
+  for (const [alias, target] of Object.entries(aliases)) assert.equal(runtimeHn.get(alias), runtimeHn.get(target));
 });
 
 test("alias metadata rejects a missing or divergent target", () => {

@@ -1,6 +1,8 @@
 import { sameBraveRaceRules } from "./lobby-brave-mode";
 import { sameItemRaceRules } from "./lobby-item-mode";
 import type { RacePoint } from "./race-driving-scales";
+import type { DeathmatchRuntime } from "./deathmatch-runtime";
+import type { DeathmatchState } from "./deathmatch-rules";
 
 /** Authoritative room changes and resource lifetime for an active multiplayer race. */
 
@@ -18,6 +20,7 @@ export interface ActiveRaceRoom {
     giant?: unknown;
     item?: unknown;
     brave?: unknown;
+    deathmatch?: DeathmatchState;
     finishDeadline?: number;
     roadblockOutcome?: { endAt?: number };
     raceOverAt?: number;
@@ -38,6 +41,7 @@ export interface RaceRoomDependencies {
 }
 
 export interface RaceRoomRuntimeHost {
+  deathmatch?: DeathmatchRuntime;
   disposed: boolean;
   assets: {
     channel: { name: string };
@@ -84,6 +88,7 @@ export interface RaceRoomRuntimeHost {
 }
 
 export interface RaceClockHost {
+  deathmatch?: DeathmatchRuntime;
   disposed: boolean;
   clockBound: boolean;
   remotes: {
@@ -117,6 +122,7 @@ export function bindActiveRaceClock(
     throw new Error("Race clock already bound or released");
   }
   host.remotes.bindClock(mapping);
+  host.deathmatch?.bindClock(mapping as { offsetMs: number });
   if (!host.cadence) throw new Error("Race cadence is not prepared");
   host.sender = dependencies.makeSender(
     host.local.physics, dependencies.makeClock(mapping), host.connection,
@@ -180,6 +186,8 @@ export function updateActiveRaceRoom(
   const deadlineChanged = room.race?.finishDeadline !== undefined &&
     room.race.finishDeadline !== host.room?.race?.finishDeadline;
   host.room = structuredClone(room);
+  if (host.deathmatch && room.race?.deathmatch)
+    host.deathmatch.updateRoom({ ...room.race, deathmatch: room.race.deathmatch }, room.phase);
   host.cadence?.updateRoom(room);
   if (deadlineChanged && host.local.lifecycle.state === dependencies.racingState) {
     host.connection.resetMotionRtt?.();
@@ -188,7 +196,7 @@ export function updateActiveRaceRoom(
   if (host.mapping) {
     host.finishDeadline = room.race?.finishDeadline === undefined ? undefined
       : dependencies.toLocalTick(room.race.finishDeadline, host.mapping);
-    const roadblockEndAt = room.race?.roadblockOutcome?.endAt;
+    const roadblockEndAt = room.race?.deathmatch?.outcome?.endedAt ?? room.race?.roadblockOutcome?.endAt;
     host.local.acceptEndTiming(
       roadblockEndAt === undefined ? host.finishDeadline
         : dependencies.toLocalTick(roadblockEndAt, host.mapping),
@@ -220,6 +228,7 @@ export function disposeActiveRace(host: RaceRoomRuntimeHost): void {
   if (host.disposed) return;
   host.disposed = true;
   host.sender?.dispose();
+  host.deathmatch?.dispose();
   host.sender = undefined;
   host.offTeam?.();
   host.offTeam = undefined;

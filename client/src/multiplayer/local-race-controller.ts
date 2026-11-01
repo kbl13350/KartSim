@@ -8,6 +8,7 @@ import {
 } from "./local-race-runtime.js";
 import type { LocalRaceDependencies } from "./local-race-runtime.js";
 import { ItemInputRouter, type ItemCommandHandler } from "../input/item-input.js";
+import type { DeathmatchRuntime } from "./deathmatch-runtime";
 
 /** What the local owner calls on the item race controller. */
 export interface LocalItemRace {
@@ -70,6 +71,7 @@ export class LocalRaceController {
    * request's `perfectStart` (the 完美起步 title, ITEM_MODE.md C.9).
    */
   startBoosted = false;
+  deathmatch?: DeathmatchRuntime;
 
   constructor(assets: any, room: any, playerId: string,
     dependencies: LocalRaceControllerDependencies) {

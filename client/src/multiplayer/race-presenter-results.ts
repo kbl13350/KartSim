@@ -33,6 +33,7 @@ export function revealRaceLevelUps(award: { showLevelUps?(playerIds: readonly st
 
 interface ResultRow { playerId: unknown; [key: string]: unknown }
 interface RaceSnapshot {
+  deathmatch?: { outcome?: { winningTeam: number } };
   raceId?: unknown;
   roadblock?: { runnerId: unknown };
   roadblockOutcome?: { runnerWon: boolean };
@@ -71,6 +72,7 @@ interface ResultScene {
 }
 
 export interface RacePresenterResultsHost {
+  deathmatchResultAt?: number;
   playerId: unknown;
   cameraShake: { leave(force: boolean): void };
   cameraWave: { leave(): void };
@@ -153,6 +155,17 @@ export function showRacePresenterResults(host: RacePresenterResultsHost,
     throw new Error(tr("本局结果展示资源未就绪。"));
   }
   const snapshot = host.runtime.raceSnapshot();
+  if (snapshot.deathmatch) {
+    // A team score table remains over the arena; racing podiums require finish times.
+    host.deathmatchResultAt = nowMs;
+    host.resultVisible = true;
+    host.assets.draftAudio.reset();
+    const localTeam = (snapshot.roster as Array<{ playerId: unknown; team: number }>)
+      .find(player => player.playerId === host.playerId)?.team;
+    host.bgm?.playResult(snapshot.deathmatch.outcome?.winningTeam === localTeam);
+    refreshAccountAfterRace();
+    return;
+  }
   if (snapshot.roadblock) {
     host.roadblockHud?.hide();
     if (!host.roadblockResult) {

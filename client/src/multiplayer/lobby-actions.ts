@@ -4,7 +4,7 @@ import { isPlayableGameplay } from "./gameplay-admission";
 import type { ActiveRoom } from "./room-state";
 
 export type Gameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp" |
-  "item" | "brawl" | "brave";
+  "item" | "brawl" | "brave" | "deathmatch";
 
 export interface RoomSummary {
   roomId: string;
@@ -87,11 +87,11 @@ export interface LobbyControllerHost {
 const gameplayNames: Record<Gameplay, string> = {
   ordinary: "普通竞速", grip: "抓地模式", shadow: "幽灵模式",
   roadblock: "挡人模式", lte: "LTE Web试玩", giant: "巨人模式", rp: "RP竞速", brawl: "50人乱斗",
-  item: "道具赛", brave: "勇者组队竞速赛",
+  item: "道具赛", brave: "勇者组队竞速赛", deathmatch: "死斗模式",
 };
 const startRuleErrors = new Set([
   "NOT_ENOUGH_PLAYERS", "ROADBLOCK_NEEDS_FIVE", "BRAVE_TEAMS_UNBALANCED", "TRACK_REQUIRED",
-  "EQUIPMENT_REQUIRED", "PLAYERS_NOT_READY", "TEAM_REQUIRED", "CLIENT_RACE_UNAVAILABLE",
+  "EQUIPMENT_REQUIRED", "PLAYERS_NOT_READY", "TEAM_REQUIRED", "CLIENT_RACE_UNAVAILABLE", "DEATHMATCH_TEAMS_UNBALANCED",
 ]);
 
 function supportedGameplay(gameplay: Gameplay): boolean {
@@ -241,6 +241,8 @@ export async function mutateLobbyRoom(host: LobbyControllerHost,
       const code = error instanceof Error ? error.message : String(error);
       const message = command.type === "start" && code === "NOT_ENOUGH_PLAYERS" &&
         host.state.room?.gameplay === "brave" ? tr("勇者模式至少需要四名玩家，且红蓝两队人数相等。")
+        : command.type === "start" && code === "NOT_ENOUGH_PLAYERS" &&
+          host.state.room?.gameplay === "deathmatch" ? tr("死斗模式需要8名玩家，红蓝两队各4人。")
         : commandErrorMessage(command, error);
       if (command.type === "start" &&
           (startRuleErrors.has(code) || code === "ITEM_NOT_OWNED") &&

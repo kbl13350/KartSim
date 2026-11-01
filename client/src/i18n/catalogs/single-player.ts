@@ -2,6 +2,15 @@ import { raceInterfaceTranslations } from "./race-interface";
 /** Single-player menu flows and notices; placeholders keep rider and track data intact. */
 export const singlePlayerTranslations: Record<string, readonly [string, string]> = {
   ...raceInterfaceTranslations,
+  "驾驶技巧资源读取失败，请重新进入游戏。": ["Driving lesson resources could not be loaded. Please reopen the game.", "주행 기술 리소스를 불러오지 못했습니다. 게임에 다시 접속하세요."],
+  "选择课程查看操作说明和教学图，再进入赛道练习。": ["Select a lesson to view its instructions and illustrations, then practice on the track.", "강좌를 선택해 조작법과 설명 그림을 확인한 후 트랙에서 연습하세요."],
+  "选择课程学习驾驶技巧，可随时进入自由练习。": ["Select a driving lesson. Free practice is available at any time.", "강좌를 선택해 주행 기술을 배우고 언제든 자유 연습을 시작하세요."],
+  "自由练习": ["Free practice", "자유 연습"],
+  "自由练习 · 不计闯关奖励": ["Free practice · No mission rewards", "자유 연습 · 미션 보상 없음"],
+  "驾驶技巧读取失败：{error}": ["Driving lesson: {error}", "주행 기술: {error}"],
+  "车手学院：{error}": ["Rider school: {error}", "라이더 스쿨: {error}"],
+  "缺少课程指定车辆：{id}": ["The lesson's required kart is unavailable: {id}", "강좌에 필요한 카트가 없습니다: {id}"],
+  "练习未能开始，请重试。": ["Practice could not start. Please try again.", "연습을 시작하지 못했습니다. 다시 시도하세요."],
   "车手信息": ["Rider Profile", "라이더 정보"],
   "迷你提示窗：请先登录。": ["Notifications: please sign in first.", "알림: 먼저 로그인하세요."],
   "聊天：请先登录。": ["Chat: please sign in first.", "채팅: 먼저 로그인하세요."],

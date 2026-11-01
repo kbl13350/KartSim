@@ -45,6 +45,7 @@ interface MotionScope {
   slot: number;
   players: Map<number, string>;
   recipientMask: number;
+  observeOnServer?: boolean;
   enabled: boolean;
   sequence: number;
   received: Map<string, number>;
@@ -318,11 +319,13 @@ export class MultiplayerTransport {
       previous.players = players;
       previous.recipientMask = recipientMask;
       previous.enabled = enabled;
+      previous.observeOnServer = room.gameplay === "deathmatch";
     } else {
       this.scope = {
         roomId: room.roomId, raceId: room.race.raceId, raceTag: motionRaceTag(room.race.raceId),
         members: new Set(members.map((member) => member.playerId)), slot, players,
         recipientMask, enabled, sequence: 0, received: new Map(),
+        observeOnServer: room.gameplay === "deathmatch",
       };
     }
   }
@@ -331,10 +334,10 @@ export class MultiplayerTransport {
   sendMotion(kind: MotionPayloadKind, payload: Uint8Array, requestedMask = 255): boolean {
     const scope = this.scope;
     const channel = this.motion;
-    if (!scope?.enabled || !scope.recipientMask || !this.playerId ||
+    if (!scope?.enabled || (!scope.recipientMask && !scope.observeOnServer) || !this.playerId ||
         !Number.isInteger(requestedMask) || requestedMask < 0 || requestedMask > 255) return false;
     const mask = scope.recipientMask & requestedMask;
-    if (!mask) return false;
+    if (!mask && !scope.observeOnServer) return false;
     const sequence = (scope.sequence + 1) >>> 0;
     try {
       const frame = encodeMotionFrame({
@@ -343,7 +346,7 @@ export class MultiplayerTransport {
       const direct = this.peerMesh?.send(frame, sequence, mask);
       const relayMask = direct?.relayMask ?? mask;
       let sent = direct?.sent ?? false;
-      if (relayMask && channel?.readyState === "open" && channel.bufferedAmount <= 8_192) {
+      if ((relayMask || scope.observeOnServer) && channel?.readyState === "open" && channel.bufferedAmount <= 8_192) {
         frame[MOTION_MASK_OFFSET] = relayMask;
         channel.send(frame);
         sent = true;

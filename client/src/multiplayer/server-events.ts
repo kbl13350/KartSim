@@ -69,6 +69,10 @@ export function parseServerEvent(value: unknown,
     }
   }
   switch (event.type) {
+    case "deathmatch-accepted":
+      return text(event.roomId, 1, 64) && text(event.raceId, 1, 64) &&
+        (integer(event.sequence, 1, Number.MAX_SAFE_INTEGER) || integer(event.lifeSeq, 0, Number.MAX_SAFE_INTEGER))
+        ? event : undefined;
     case "brave-collision":
       return text(event.roomId, 1, 64) && text(event.raceId, 1, 64) &&
         text(event.playerId, 1, 64) && text(event.targetId, 1, 64) &&

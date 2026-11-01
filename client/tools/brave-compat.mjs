@@ -39,6 +39,13 @@ export function applyBraveCompatibility(filename, contents) {
     'throw new Error("勇者模式冻结参数无效。");');
   for (const [before, after] of patches[filename] ?? []) {
     if (contents.includes(after)) continue;
+    // Deathmatch extends these two existing map wrappers with a separate
+    // final argument. Reapplying Brave must retain that newer consumer.
+    const expanded = after.replaceAll("mode, brave)", "mode, brave, deathmatch)")
+      .replaceAll("Z30, brave)", "Z30, brave, deathmatch)")
+      .replaceAll("itemGame = false, brave)", "itemGame = false, brave, deathmatch)")
+      .replaceAll("itemGame, brave)", "itemGame, brave, deathmatch)");
+    if (expanded !== after && contents.includes(expanded)) continue;
     const at = contents.indexOf(before);
     if (at < 0 || contents.indexOf(before, at + before.length) >= 0)
       throw new Error(`Brave compatibility seam missing or ambiguous in ${filename}: ${before.slice(0, 80)}`);

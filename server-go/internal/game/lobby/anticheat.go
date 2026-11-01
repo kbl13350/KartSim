@@ -23,7 +23,7 @@ const (
 // anti-cheat plugin (Options.AntiCheat).
 func (l *Lobby) startCheatRace(r *room) {
 	rc := r.race
-	if l.antiCheat == nil || rc.startAt == nil || rc.cheat != nil {
+	if l.antiCheat == nil || rc.startAt == nil || rc.cheat != nil || rc.deathmatch != nil {
 		return
 	}
 	rc.cheat = l.antiCheat.StartRace(cheat.RaceInfo{TrackID: rc.trackID, Gameplay: r.gameplay, Mode: r.mode,

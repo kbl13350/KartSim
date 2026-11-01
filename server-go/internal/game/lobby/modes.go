@@ -35,7 +35,7 @@ var (
 	lteTracks     = []string{"jurassic_R02", "beach_R05", "moonhill_R06"}
 	defaultTracks = []string{"village_R01", "desert_I01", "forest_I01", "ice_I03"}
 
-	gameplays = []string{"ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl", "brave"}
+	gameplays = []string{"ordinary", "grip", "shadow", "roadblock", "lte", "giant", "rp", "item", "brawl", "brave", "deathmatch"}
 
 	// rpKarts were checked against the local P3553 catalog, model, parameter,
 	// animation-frame and texture resources. The server cannot trust an
@@ -51,6 +51,14 @@ func validateCreation(gameplay, channel, version string, capacity int) error {
 	}
 	if gameplay != "ordinary" && version != "p3553" {
 		return fail(http.StatusBadRequest, "RESOURCE_VERSION_UNSUPPORTED")
+	}
+	if gameplay == "deathmatch" {
+		if channel != "speedTeamCombine" {
+			return fail(http.StatusBadRequest, "INVALID_CHANNEL")
+		}
+		if capacity != 8 {
+			return fail(http.StatusBadRequest, "INVALID_CAPACITY")
+		}
 	}
 	if gameplay == "brave" {
 		if channel != "speedTeamCombine" {
@@ -81,6 +89,9 @@ func validateCreation(gameplay, channel, version string, capacity int) error {
 }
 
 func initializeTrack(r *room) {
+	if r.gameplay == "deathmatch" {
+		r.trackID = deathmatchTrackIDs[0]
+	}
 	if r.gameplay == "brave" {
 		r.trackID = braveTrack
 	}
@@ -93,6 +104,10 @@ func initializeTrack(r *room) {
 
 func validateTrack(r *room, trackID string) error {
 	switch r.gameplay {
+	case "deathmatch":
+		if deathmatchTrackByID(trackID) == nil {
+			return fail(http.StatusBadRequest, "INVALID_TRACK")
+		}
 	case "brave":
 		if trackID != braveTrack {
 			return fail(http.StatusBadRequest, "INVALID_TRACK")
@@ -115,7 +130,7 @@ func validateRandomTrack(r *room, code int) error {
 	if r.gameplay == "brave" {
 		return fail(http.StatusBadRequest, "INVALID_TRACK")
 	}
-	if (r.gameplay == "roadblock" || r.gameplay == "lte" || r.gameplay == "giant" || r.gameplay == "brawl") &&
+	if (r.gameplay == "roadblock" || r.gameplay == "lte" || r.gameplay == "giant" || r.gameplay == "brawl" || r.gameplay == "deathmatch") &&
 		code != 0 {
 		return fail(http.StatusBadRequest, "INVALID_TRACK")
 	}
@@ -133,6 +148,8 @@ func chooseTrack(r *room) string {
 func randomTrackPool(r *room) []string {
 	var pool []string
 	switch r.gameplay {
+	case "deathmatch":
+		pool = deathmatchTrackIDs
 	case "roadblock":
 		pool = roadblockTracks
 	case "lte":
@@ -149,6 +166,8 @@ func randomTrackPool(r *room) []string {
 
 func addRaceData(r *room, rc *race) {
 	switch r.gameplay {
+	case "deathmatch":
+		freezeDeathmatchRace(rc)
 	case "brave":
 		freezeBraveRace(rc)
 	case "roadblock":

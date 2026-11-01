@@ -1,5 +1,11 @@
 /** Ready, race, replay and result interface text; identity and protocol values stay intact. */
 export const raceInterfaceTranslations: Record<string, readonly [string, string]> = {
+  "率先获得 {score} 分获胜": ["First to {score} points wins", "먼저 {score}점을 획득하면 승리"],
+  "击落 {kills} · 坠落 {deaths}": ["Knockouts {kills} · Falls {deaths}", "격추 {kills} · 추락 {deaths}"],
+  "{seconds} 秒后复活": ["Respawn in {seconds} s", "{seconds}초 후 부활"],
+  "复活保护 {seconds} 秒": ["Respawn protection: {seconds} s", "부활 보호 {seconds}초"],
+  "比赛结束": ["Match finished", "경기 종료"],
+  "平局": ["Draw", "무승부"],
   "名次": ["Place", "위"],
   "胜利": ["Victory", "승리"],
   "完胜": ["Perfect", "퍼펙트"],

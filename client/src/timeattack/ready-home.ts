@@ -26,6 +26,7 @@ import type { ReadyShopController } from "./ready-shop";
 import { openReadyLottery, type LotteryScreen, type ReadyLotteryController } from "./ready-lottery";
 import { openShopUnlessRacing } from "./ready-shop-guard";
 import { tellPlayer } from "../ui/game-popups";
+import type { TrainingWindowHandle } from "../training/training-window";
 
 /**
  * The lobby home and the release 单人游戏 page shown over Ready. Ready's own
@@ -46,6 +47,8 @@ export interface ReadyHomeController extends ReadyFlowController {
   /** Stops the top bar following the account session. */
   homeAccountRelease?: () => void;
   accountPanel?: AccountPanelHandle;
+  trainingWindow?: TrainingWindowHandle;
+  trainingOpening?: boolean;
   multiplayer?: unknown;
   /** The lobby's resources are being read before it is created (ready-multiplayer.ts). */
   multiplayerOpening?: boolean;
@@ -221,6 +224,10 @@ export async function openReadyHome(controller: ReadyHomeController,
       onHover: () => host.getInterfaceAudio()?.playHover(),
       onActivate: () => host.getInterfaceAudio()?.playClick(),
       onCategory: category => {
+        if (category !== "cat_trainingCenter") {
+          controller.trainingWindow?.dispose();
+          controller.trainingWindow = undefined;
+        }
         const license = controller as ReadyLicenseController;
         if (category !== "cat_riderSchool") leaveLicense(license);
         // The standing may have changed since the page was read.
@@ -258,6 +265,29 @@ export async function openReadyHome(controller: ReadyHomeController,
       onLicenseTake: level => { void takeLicenseLevel(controller as ReadyLicenseController, level); },
       onLicenseQualify: track => { void startLicenseQualify(controller as ReadyLicenseController, track); },
       onLicenseEmblem: () => { void claimProEmblem(controller as ReadyLicenseController); },
+      onTrainingLesson: (lesson, catalog) => {
+        if (controller.trainingWindow || controller.trainingOpening) return;
+        controller.trainingOpening = true;
+        void import("../training/training-window").then(module => module.openTrainingLesson({
+          library, root: host.root, lesson, catalog,
+          onActivate: () => host.getInterfaceAudio()?.playClick(),
+          onClose: () => { controller.trainingWindow = undefined; },
+          onStart: () => {
+            controller.trainingWindow = undefined;
+            void import("./ready-training").then(module => module.openTrainingPractice(controller, lesson))
+              .then(started => { if (started) closeReadyHome(controller); })
+              .catch(error => controller.activeHome?.showNotice(error instanceof Error ? error.message : String(error)));
+          },
+        })).then(window => {
+          if (controller.disposed || controller.activeHome !== view ||
+              view.single.singleCategory !== "cat_trainingCenter") window.dispose();
+          else controller.trainingWindow = window;
+        }).catch(error => {
+          if (controller.activeHome === view) view.showNotice(tr("驾驶技巧读取失败：{error}", {
+            error: error instanceof Error ? error.message : String(error),
+          }));
+        }).finally(() => { controller.trainingOpening = false; });
+      },
     });
     let lobby: LobbyHomeView;
     const account = activeBrowserSession();
@@ -409,6 +439,8 @@ async function refreshHomeScene(controller: ReadyHomeController, view: HomeScree
 export function closeReadyHome(controller: ReadyHomeController): void {
   const view = controller.activeHome;
   if (!view) return;
+  controller.trainingWindow?.dispose();
+  controller.trainingWindow = undefined;
   controller.homeTaskbarRelease?.();
   controller.homeTaskbarRelease = undefined;
   controller.homeAccountRelease?.();

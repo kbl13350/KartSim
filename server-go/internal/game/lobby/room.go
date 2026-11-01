@@ -285,6 +285,7 @@ type race struct {
 	brave            obj
 	braveCollisionAt map[string]int64
 	bravePositions   map[string]bravePosition
+	deathmatch       *deathmatchRace
 
 	// outIDs are the racers out of the race before it finished: they left
 	// the room, or failed to load (load-failed, loading timeout). The race
@@ -398,7 +399,7 @@ func (r *race) snapshot() obj {
 		value = append(value, field{"startAt", *r.startAt})
 	}
 	if r.finishDeadline != nil {
-		if r.gameplay != "roadblock" {
+		if r.gameplay != "roadblock" && r.gameplay != "deathmatch" {
 			value = append(value, field{"finishWindowMs", 10_000})
 		}
 		value = append(value, field{"finishDeadline", *r.finishDeadline})
@@ -449,6 +450,9 @@ func (r *race) snapshot() obj {
 	}
 	if r.brave != nil {
 		value = append(value, field{"brave", r.brave})
+	}
+	if r.deathmatch != nil {
+		value = append(value, field{"deathmatch", r.deathmatch.snapshot(r)})
 	}
 	if r.roadblock != nil {
 		value = append(value, field{"roadblock", r.roadblock})

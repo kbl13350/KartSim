@@ -2,7 +2,8 @@ import { findTrackChoice } from "../resources/track-duplicates";
 import { tr } from "../i18n/locale";
 /** Resolves and paints the current room's selected or random track card. */
 
-import { itemTrackCatalog, type TrackLibrary } from "../resources/track-catalog";
+import { deathmatchTrackCatalog, itemTrackCatalog, type TrackLibrary } from "../resources/track-catalog";
+import { DEATHMATCH_RANDOM_LABEL } from "./lobby-deathmatch-mode";
 import { isCustomTrackId } from "../mapeditor/design";
 import { ensurePublishedMap } from "../mapeditor/custom-map-loader";
 
@@ -69,7 +70,8 @@ export async function loadLobbyRoomTrack(host: LobbyRoomTrackHost,
   host.trackTitle = trackId ? tr("正在加载赛道…") : tr("尚未选择赛道");
 
   if (random) {
-    host.trackTitle = dependencies.mode(host.room) === "lte"
+    host.trackTitle = dependencies.mode(host.room) === "deathmatch" ? tr(DEATHMATCH_RANDOM_LABEL)
+      : dependencies.mode(host.room) === "lte"
       ? tr("全部随机（LTE限定3张）") : tr(random.title);
     try {
       const token = dependencies.mode(host.room) === "lte"
@@ -95,6 +97,7 @@ export async function loadLobbyRoomTrack(host: LobbyRoomTrackHost,
     const gameplay = dependencies.mode(host.room);
     const tracks = await (gameplay === "roadblock"
       ? dependencies.roadblockTracks(host.library)
+      : gameplay === "deathmatch" ? deathmatchTrackCatalog(host.library as unknown as TrackLibrary)
       : gameplay === "item"
         ? (dependencies.itemTracks ?? (library =>
           itemTrackCatalog(library as unknown as TrackLibrary)))(host.library)

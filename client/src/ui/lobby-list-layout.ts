@@ -9,7 +9,7 @@ import { tr } from "../i18n/locale";
 import { isItemChannel } from "../multiplayer/lobby-item-mode";
 
 export type LobbyGameplay = "ordinary" | "grip" | "shadow" | "roadblock" | "lte" | "giant" | "rp" |
-  "item" | "brawl" | "brave" | "city";
+  "item" | "brawl" | "brave" | "deathmatch" | "city";
 
 /** Room summary fields the list shows; the server sends these per room. */
 export interface LobbyListRoom {
@@ -86,6 +86,8 @@ export const LOBBY_TABS: readonly LobbyTab[] = [
     { id: "shadow", title: "幽灵模式", subtitle: "标准/无限", gameplay: "shadow",
       channel: "speedIndiCombine", channels: ORDINARY },
     { id: "brave", title: "勇者组队竞速赛", subtitle: "四人以上 · 两队相向竞速", gameplay: "brave",
+      channel: "speedTeamCombine", channels: ["speedTeamCombine"], filter: ["team"] },
+    { id: "deathmatch", title: "死斗模式", subtitle: "8人 · 红蓝4对4撞落计分", gameplay: "deathmatch",
       channel: "speedTeamCombine", channels: ["speedTeamCombine"], filter: ["team"] },
     { id: "roadblock", title: "挡人模式", subtitle: "五人以上", gameplay: "roadblock",
       channel: "speedIndiCombine", channels: ["speedIndiCombine"] },
@@ -224,7 +226,7 @@ export function visibleLobbyRooms(state: LobbyListUiState,
 
 const GAMEPLAY_NAMES: Record<string, string> = {
   grip: "抓地", shadow: "幽灵", roadblock: "挡人", giant: "巨人", rp: "RP", lte: "LTE",
-  item: "道具", brawl: "乱斗", brave: "勇者",
+  item: "道具", brawl: "乱斗", brave: "勇者", deathmatch: "死斗",
 };
 
 /** 模式 column: 个人赛, 团体赛, 无限个人, 无限团体, or the special mode name. */
@@ -264,7 +266,7 @@ export const LOBBY_LAYOUT = {
   height: 900,
   visibleHeight: 834,
   tabs: { x: 40, y: 54, width: 1520, height: 78 },
-  categories: { x: 0, y: 168, width: 380, itemHeight: 74, gap: 6 },
+  categories: { x: 0, y: 168, width: 380, itemHeight: 66, gap: 6 },
   title: { x: 422, y: 150, width: 1138, height: 48 },
   header: { x: 422, y: 204, width: 1122, height: 32 },
   rows: { x: 422, y: 242, width: 1122, height: 44, gap: 5, count: 10 },

@@ -4706,6 +4706,7 @@ const xX = {
   giant: "巨人模式",
   rp: "RP竞速",
   item: "道具赛", // item-mode(lobby)
+  deathmatch: "死斗模式", // deathmatch(lobby)
   brave: "勇者组队竞速赛", // brave(lobby)
   brawl: "50人乱斗", // brawl(lobby)
 };
@@ -4720,6 +4721,7 @@ function cw(n) {
     n === "giant" ||
     n === "rp" ||
     n === "item" || // item-mode(lobby)
+    n === "deathmatch" || // deathmatch(lobby)
     n === "brave" || // brave(lobby)
     n === "brawl" // brawl(lobby)
   );
@@ -4733,6 +4735,7 @@ function G2(n) {
 
 function To(n, e, t) {
   if (n === "brave") return e === "speedTeamCombine" && (t === void 0 || t === "p3553"); // brave(lobby)
+  if (n === "deathmatch") return e === "speedTeamCombine" && (t === void 0 || t === "p3553"); // deathmatch(lobby)
   if (itemChannelMismatch(n, e)) return !1; // item-mode(lobby)
   return (n !== void 0 && !cw(n)) || !$6(e)
     ? !1
@@ -4768,6 +4771,7 @@ function SX(n) {
       return e ? 47 : 46;
     case "item": // item-mode(lobby)
       return e ? 4 : 2;
+    case "deathmatch": return 58; // deathmatch(lobby)
     case "brave": return 31; // brave(lobby)
     case "brawl": // brawl(lobby)
       return BRAWL_GAME_TYPE;
@@ -4794,6 +4798,7 @@ function iR(n) {
 function roomModeLabelSource(n) {
   const e = G2(n);
   if (e === "item") return itemRoomLabel(n.channelName); // item-mode(lobby)
+  if (e === "deathmatch") return "死斗模式"; // deathmatch(lobby)
   if (e === "brave") return "勇者组队竞速赛"; // brave(lobby)
   if (e === "brawl") return BRAWL_LABEL; // brawl(lobby)
   return e === "roadblock"

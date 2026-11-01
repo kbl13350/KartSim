@@ -1,6 +1,7 @@
 import { visibleTrackId } from "../resources/track-duplicates";
 import { tr } from "../i18n/locale";
-import { itemRandomTrackGroups, itemTrackCatalog, type TrackLibrary } from "../resources/track-catalog";
+import { deathmatchTrackCatalog, itemRandomTrackGroups, itemTrackCatalog, type TrackLibrary } from "../resources/track-catalog";
+import { DEATHMATCH_RANDOM_GROUP, DEATHMATCH_RANDOM_LABEL, isDeathmatchTrack } from "./lobby-deathmatch-mode";
 import { formatMultiplayerError } from "./errors";
 import { isBrawlTrack } from "./lobby-brawl-mode";
 import type { Gameplay, LobbyRoom } from "./lobby-actions";
@@ -84,6 +85,7 @@ export interface LobbyTrackDependencies {
   /** Tracks and random cards of item rooms; defaults to the library's item catalog. */
   itemTracks?(library: LobbyTrackHost["options"]["library"]):
     Promise<{ tracks: TrackChoice[]; groups: RandomTrackGroup[] }>;
+  deathmatchTracks?(library: LobbyTrackHost["options"]["library"]): Promise<TrackChoice[]>;
 }
 
 /** The item track catalog and item random cards of a resource library. */
@@ -104,6 +106,8 @@ export async function loadItemTrackChoices(library: unknown):
 export function lobbyRandomTrackRules<Rule extends RandomTrackRule>(
   gameplay: Gameplay | undefined, rules: readonly Rule[]): Rule[] {
   if (gameplay === "brawl") return rules.filter(rule => rule.code === 0);
+  if (gameplay === "deathmatch") return rules.filter(rule => rule.code === 0)
+    .map(rule => ({ ...rule, groupId: DEATHMATCH_RANDOM_GROUP }));
   if (gameplay !== "item") return rules as Rule[];
   return rules.flatMap(rule => {
     const [gameType, type, level] = rule.groupId.split(":");
@@ -133,34 +137,42 @@ export async function chooseLobbyTrack(host: LobbyTrackHost,
         ((modal.entered = true), !host.isChangingModalCurrent(modal))) return;
     // 道具赛 rooms pick from the item catalog and the item random cards only.
     const item = deps.gameplay(room) === "item";
+    const deathmatch = deps.gameplay(room) === "deathmatch";
     // 地图工坊：多人房间只列已发布的地图（本机草稿别人下载不到）；道具房只列带道具箱的。
-    await refreshPublishedMaps(host.options.library);
+    if (!deathmatch) await refreshPublishedMaps(host.options.library);
     const itemChoices = item
       ? await (deps.itemTracks ?? loadItemTrackChoices)(host.options.library) : undefined;
-    const catalog = itemChoices?.tracks ??
-      (await host.options.library.timeAttackTrackCatalog()).filter(track => !isDraftTrackId(track.id));
+    const catalog = deathmatch
+      ? (await (deps.deathmatchTracks ?? (library => deathmatchTrackCatalog(library as unknown as TrackLibrary)
+        .then(tracks => tracks.map(track => ({ ...track })))))(host.options.library)).filter(track => isDeathmatchTrack(track.id))
+      : itemChoices?.tracks ??
+        (await host.options.library.timeAttackTrackCatalog()).filter(track => !isDraftTrackId(track.id));
     const tracks = deps.gameplay(room) === "giant"
       ? catalog.filter(track => deps.isGiantTrack(track.id))
       : deps.gameplay(room) === "brawl" ? catalog.filter(track => isBrawlTrack(track.id)) : catalog;
     if (!host.isChangingModalCurrent(modal)) return;
     const rules = lobbyRandomTrackRules(deps.gameplay(room), deps.randomRules);
-    const groups = room.resourceVersion === "p3553"
+    const groups = deathmatch ? [{ id: DEATHMATCH_RANDOM_GROUP, gameType: "speed", randomType: "all",
+      trackIds: tracks.map(track => track.id), displayTrackIds: tracks.map(track => track.id),
+      selectionGameTypes: ["speed"], cardToken: "allRandom_TimeAttack@zz" }]
+      : room.resourceVersion === "p3553"
       ? (itemChoices?.groups ?? await host.options.library.timeAttackRandomTrackGroups())
         .filter(group => rules.some(rule => rule.groupId === group.id &&
           (deps.gameplay(room) !== "giant" || rule.code === 0)))
       : [];
-    const names = groups.length
+    const names = deathmatch ? new Map([[DEATHMATCH_RANDOM_GROUP, tr(DEATHMATCH_RANDOM_LABEL)]]) : groups.length
       ? await host.options.library.timeAttackRandomTrackNames() : new Map<string, string>();
     if (!host.isChangingModalCurrent(modal)) return;
     const favorites = host.options.trackFavorites;
     const listed = (id: string | undefined) => tracks.some(track => track.id === id);
-    const selectedTrackId = (item && !listed(room.trackId) ? undefined : room.trackId) ??
+    const selectedTrackId = ((item || deathmatch) && !listed(room.trackId) ? undefined : room.trackId) ??
       (listed(host.options.initialTrackId)
         ? host.options.initialTrackId : tracks[0]?.id) ?? "";
     const view = await deps.loadView({
       library: host.options.library,
       root: host.options.root,
       ...(item ? { gameTypes: ["item"] as const } : {}),
+      ...(deathmatch ? { gameTypes: ["speed"] as const } : {}),
       tracks,
       selectedTrackId: visibleTrackId(selectedTrackId, tracks),
       randomGroups: groups,
@@ -205,6 +217,7 @@ export async function confirmLobbyTrack(host: LobbyTrackHost,
   if (!host.isChangingModalCurrent(modal) || host.busy) return;
   const room = host.state.room!;
   if (room.gameplay === "brave") return;
+  if (room.gameplay === "deathmatch" && choice.kind === "track" && !isDeathmatchTrack(choice.track.id)) return;
   const randomRule = choice.kind === "random"
     ? lobbyRandomTrackRules(room.gameplay, rules).find(rule => rule.groupId === choice.group.id)
     : undefined;

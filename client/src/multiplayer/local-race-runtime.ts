@@ -32,6 +32,7 @@ export function requestLocalRaceReset(
   deps: LocalRaceDependencies,
   playerRequested = true,
 ): boolean {
+  if (race.deathmatch || race.assets?.drivingMode?.kind === "deathmatch") return false;
   if (race.disposed || race.lifecycle.state !== deps.states.Racing || race.resetState.phase !== 0)
     return false;
   if (playerRequested && race.isRoadBlockRunner) {
@@ -53,6 +54,11 @@ export function checkLocalRaceAutomaticReset(
   stepSeconds: number,
 ): void {
   if (race.lifecycle.state !== deps.states.Racing) return;
+  if (race.deathmatch) {
+    race.physics.consumeAutomaticResetRequest();
+    race.lowSpeedResetStartedAtMs = 0;
+    return;
+  }
 
   if (race.physics.body.position.y < -5) {
     race.physics.prepareLowHeightResetPose();
@@ -228,6 +234,7 @@ export function localRaceProgress(race: LocalRaceHost): {
   lap: number;
   finishElapsedMs?: number;
 } {
+  if (race.deathmatch) return { distance: 0, lap: 0 };
   const route = race.track.getRouteState(race.physics);
   return {
     distance: route.distance,
@@ -286,7 +293,7 @@ export function updateLocalRace(
     ...race.pendingActions.splice(0),
     ...race.lifecycle.update({
       nowMs: relativeNow,
-      routeProgress: race.roadblock && !race.isRoadBlockRunner
+      routeProgress: race.deathmatch || (race.roadblock && !race.isRoadBlockRunner)
         ? 0 : race.track.getRouteState(race.physics).lap,
       routeTotal: race.track.data.lapTarget,
       resultRosterReady: race.resultsReady,
@@ -322,6 +329,7 @@ export function updateLocalRace(
   }
 
   race.lte?.update(frameClock, race.lteAvailable());
+  race.deathmatch?.update(nowMs);
   race.giant?.setDrivingActive(!race.resetSuspended && !race.warpNext.blocksDriving());
   race.coordinator.run(frameClock, stepSeconds);
   if (race.physics.consumeRailResetRequest()) race.requestReset(false);

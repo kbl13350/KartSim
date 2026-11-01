@@ -23,6 +23,7 @@ interface FreshRacePeer extends SlipstreamPeer {
 }
 
 export interface RaceFrameHost {
+  deathmatch?: { update(nowMs: number): void };
   disposed: boolean;
   remotePhysicsBypass: boolean;
   remoteFrameUpdated: boolean;
@@ -121,7 +122,8 @@ export function updateActiveRaceFrame(host: RaceFrameHost, nowMs: number,
     host.remoteFrameUpdated = false;
     const physics = host.local.physics;
 
-    if (host.local.lifecycle.state === dependencies.racingState) {
+    host.deathmatch?.update(nowMs);
+    if (host.local.lifecycle.state === dependencies.racingState && !host.deathmatch) {
       const peers: FreshRacePeer[] = [];
       const remoteSpeeds = new Map<string, number>();
       host.remoteFrameUpdated = true;
@@ -200,6 +202,7 @@ export function updateActiveRaceFrame(host: RaceFrameHost, nowMs: number,
 
     host.itemRace?.update(nowMs);
     const actions = host.local.update(nowMs, frame);
+    host.deathmatch?.update(nowMs);
     if (host.local.giant) {
       if (!host.giantCleared &&
         (host.local.lifecycle.state === dependencies.resultState ||

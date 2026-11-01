@@ -1,3 +1,4 @@
+import { noteDeathmatchKartContact } from "../multiplayer/deathmatch-runtime.ts";
 import { noteBraveKartContact } from "../multiplayer/brave-signals.ts";
 import { resourceText } from "../i18n/locale.ts";
 // Generated from the verified KartSim v39.11 release bundle.
@@ -792,6 +793,7 @@ function Di0(n, e, t, i, r) {
       }
       n.applyKartPairResponse(dE(f.linear), dE(f.angular), f.strength);
       noteBraveKartContact(n, l); // brave: actual kart impulse, never a wall/proximity guess
+      noteDeathmatchKartContact(n, l);
     }
   });
 }

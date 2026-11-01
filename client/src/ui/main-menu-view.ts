@@ -5,6 +5,8 @@ import { showGameToast } from "./game-popups";
 import { scrollbarGeometry } from "./scrollbar";
 import { loadRiderSchoolArt, type RiderSchoolArt } from "./rider-school-art";
 import { gameLocale, resourceText, tr } from "../i18n/locale";
+import { loadTrainingCatalog, loadTrainingPageArt, type TrainingCatalog,
+  type TrainingLesson, type TrainingPageArt } from "../training/training-catalog";
 
 /**
  * The release MainMenuStage home, stage_mainMenu.rho/mq_window@cn.bml
@@ -41,6 +43,7 @@ export interface MainMenuAssets {
   events?: Array<{ id: LobbyEventId; label: string; states: Texture[] }>;
   /** 驾照考试 page art; the tab keeps its overview without it. */
   riderSchool?: RiderSchoolArt;
+  training?: { catalog: TrainingCatalog; art: TrainingPageArt };
   /** 回放 tab art (replayCard): the card states and its 删除 button. */
   replay?: ReplayTabArt;
   /** The monocoque TextButton frames (four states) for the 地图工坊 button. */
@@ -221,6 +224,8 @@ export interface MainMenuOptions {
   onLicenseQualify?(track: string): void;
   /** 驾照考试: 获得徽章 of the PRO qualification. */
   onLicenseEmblem?(): void;
+  /** 车手学院: open the original illustrated driving lesson. */
+  onTrainingLesson?(lesson: TrainingLesson, catalog: TrainingCatalog): void;
 }
 
 const ROOTS = ["stage_/mainMenu", "stage_/common", "zeta_/cn/stage/mainMenu",
@@ -256,7 +261,7 @@ export const SINGLE_CATEGORIES = ["cat_timeAttack", "cat_riderSchool", "cat_scen
   "cat_trainingCenter", "cat_replay"] as const;
 export type SingleCategory = typeof SINGLE_CATEGORIES[number];
 /** Categories whose page fills the right side; the others show the overview. */
-const RIGHT_FILLED = new Set<string>(["cat_timeAttack", "cat_scenario", "cat_riderSchool", "cat_replay"]);
+const RIGHT_FILLED = new Set<string>(["cat_timeAttack", "cat_scenario", "cat_riderSchool", "cat_trainingCenter", "cat_replay"]);
 /** replayCard: four 750×128 cards a page in the 748×556 list container. */
 const REPLAY_CARD = { width: 750, height: 128, gap: 4, perPage: 4 };
 /** Labels for the release mode cards, whose names are baked into their art. */
@@ -399,13 +404,19 @@ export async function loadMainMenuAssets(library: MainMenuLibrary): Promise<Main
       console.warn("[main menu] 驾照考试 art", error);
       return undefined;
     });
+    const training = await loadTrainingCatalog(library).then(async catalog => ({ catalog,
+      art: await loadTrainingPageArt(library, texture, frames, catalog),
+    })).catch(error => {
+      console.warn("[main menu] 驾驶技巧 art", error);
+      return undefined;
+    });
     const textButton = await loadTextButtonArt(texture, frames).catch(() => undefined);
     const events = (await Promise.all(LOBBY_EVENTS.map(async entry => ({
       id: entry.id, label: entry.label,
       states: await Promise.all([1, 2, 3, 4].map(index => texture(ROOTS, `${entry.image}${index}`))),
     })))).filter((entry): entry is { id: LobbyEventId; label: string; states: Texture[] } =>
       entry.states.every(Boolean));
-    return { root, textures, strings, channels, banners, backdrop, font, story, events, riderSchool, replay,
+    return { root, textures, strings, channels, banners, backdrop, font, story, events, riderSchool, training, replay,
       textButton };
   } catch (error) {
     G1(font);
@@ -522,6 +533,7 @@ export class MainMenuView {
   private storyListRect?: Rect;
   private license?: LicenseMenu;
   private licenseLevel?: number;
+  private trainingLevel = 1;
   /** The right panel's title strip, where the license pages are laid out. */
   private rightTitleRect?: Rect;
 
@@ -606,6 +618,12 @@ export class MainMenuView {
     this.licenseLevel = level;
     const lock = this.license?.levels.find(entry => entry.level === level)?.lock;
     if (lock) this.showNotice(lock);
+    this.render();
+  }
+
+  selectTraining(level: number): void {
+    if (level < 1 || level > 3 || !Number.isInteger(level)) return;
+    this.trainingLevel = level;
     this.render();
   }
 
@@ -712,6 +730,7 @@ export class MainMenuView {
         : !name || SHOWN.has(name)) this.draw(child, rect);
     }
     if (this.currentPage === "single" && this.category === "cat_riderSchool") this.drawRiderSchool();
+    if (this.currentPage === "single" && this.category === "cat_trainingCenter") this.drawTraining();
     if (this.currentPage === "single") {
       if (this.options.onCustomGame) this.drawSingleModeButton("customGame", "地图工坊", 540, this.options.onCustomGame);
       if (this.options.onFormula) this.drawSingleModeButton("formula", "极速方程", 400, this.options.onFormula);
@@ -724,7 +743,8 @@ export class MainMenuView {
     if (node.name === "Skip" || (attribute(node, "visible") === "false" &&
         name !== SINGLE_PAGE && !this.forcedVisible(name))) return;
     if (!this.singleNodeShown(node, name)) return;
-    const textures = this.assets.textures.get(node) ?? this.assets.riderSchool?.textures.get(node);
+    const textures = this.assets.textures.get(node) ?? this.assets.riderSchool?.textures.get(node)
+      ?? this.assets.training?.art.textures.get(node);
     const rect = V0(node, parent, undefined, textures?.[0]) as Rect;
 
     if ((node.name === "ImageButton" || node.name === "ImageBoardButton") && textures) {
@@ -734,6 +754,7 @@ export class MainMenuView {
       const selected = (name === this.category &&
         (menu === "singleplay_cats" || menu === "singleplay_subCats")) ||
         (this.category === "cat_riderSchool" && name === `riderSchool_Level${this.selectedLicense}`) ||
+        (this.category === "cat_trainingCenter" && name === `trainingCenter_Level${this.trainingLevel}`) ||
         (this.category === "cat_replay" && menu === "cats" && name === `replay_${this.replayTab}`);
       const state = selected ? 2 : action ? st(key, this.hovered, this.pressed) : 3;
       ct(this.context, textures[state]!, rect);
@@ -853,6 +874,8 @@ export class MainMenuView {
     if (name === "timeAttack_competitive") return () => this.showNotice(tr("竞争排位赛暂未开放"));
     const license = /^riderSchool_Level([1-6])$/.exec(name);
     if (license) return () => this.selectLicense(Number(license[1]));
+    const training = /^trainingCenter_Level([1-3])$/.exec(name);
+    if (training) return () => this.selectTraining(Number(training[1]));
     if (this.category === "cat_riderSchool" && this.license) {
       const level = this.selectedLicense;
       const tab = this.license.levels.find(entry => entry.level === level);
@@ -928,6 +951,42 @@ export class MainMenuView {
       return;
     }
     this.draw(art.page, window);
+  }
+
+  /** Original trainingCenterPage and RiderSchoolButton lesson cards. */
+  private drawTraining(): void {
+    const title = this.rightTitleRect;
+    if (!title) return;
+    const training = this.assets.training;
+    const area = { x: title.x, y: title.y + 48, width: 776, height: 586 };
+    if (!training) {
+      this.drawStoryText(tr("驾驶技巧资源读取失败，请重新进入游戏。"), area, 18, "rgb(42,55,80)", "center");
+      return;
+    }
+    const { catalog, art } = training;
+    const level = catalog.levels.find(entry => entry.level === this.trainingLevel);
+    this.draw(art.page, { x: title.x, y: title.y, width: 776, height: 634 });
+    this.drawStoryText(level?.title ?? "", { ...area, y: area.y + 338, height: 32 }, 20,
+      "rgb(42,55,80)", "center");
+    this.drawStoryText(tr("选择课程查看操作说明和教学图，再进入赛道练习。"),
+      { ...area, y: area.y + 386, height: 56 }, 17, "rgb(72,106,163)", "center");
+    for (const [index, lesson] of (level?.lessons ?? []).entries()) {
+      const box = { x: area.x + 13, y: area.y + 10 + index * 78, width: 750, height: 74 };
+      const key = `training-lesson:${lesson.id}`;
+      const state = st(key, this.hovered, this.pressed);
+      const frame = art.frames[state] ?? art.frames[0];
+      const image = frame && art.frameImages.get(frame.texture);
+      if (frame && image) C9(this.context, frame, image.image, box);
+      const icon = art.icons.get(lesson.id)?.[state] ?? art.icons.get(lesson.id)?.[0];
+      if (icon) this.context.drawImage(icon.image, box.x + 41 - icon.width / 2,
+        box.y + (box.height - icon.height) / 2 + 2, icon.width, icon.height);
+      m9(this.context, `${index + 1}. ${lesson.title}`, { x: box.x + 83, y: box.y,
+        width: 540, height: box.height }, { family: FONT_FAMILY, size: 20, kind: "label",
+        color: state === 1 ? "rgb(16,136,199)" : "rgb(42,55,80)", align: "left",
+        verticalAlign: "center", stroke: 0, strokeColor: "black" });
+      if (this.options.onTrainingLesson) this.regions.push({ key, rect: box, label: lesson.title,
+        activate: () => { this.options.onActivate?.(); this.options.onTrainingLesson!(lesson, catalog); } });
+    }
   }
 
   /** riderSchoolPage "grid": the license's step cards (riderSchoolStepCard). */
@@ -1269,6 +1328,8 @@ export class MainMenuView {
       return tr(SINGLE_LABELS[this.category] ?? this.assets.strings.get("singlePlay") ?? "单人游戏");
     const raw = attribute(node, "text");
     if (!raw) return undefined;
+    if (raw === "#sb(trainingCenterInfo0)" && this.category === "cat_trainingCenter")
+      return tr("选择课程学习驾驶技巧，可随时进入自由练习。");
     const key = /^#sb\(([^)]+)\)$/.exec(raw)?.[1];
     const value = key ? this.assets.strings.get(key) : raw;
     // The shared StringBag row describes the PRO emblem. Ordinary license

@@ -106,6 +106,9 @@ export interface RacePresenterInitializationInputs {
       startPose: { position: Vec3; right: unknown;
         [key: string]: unknown };
       braveStartPoses?: BraveStartPoses;
+      deathmatchStartPoses?: ReadonlyArray<{
+        position: Vec3; right: Vec3; forward: Vec3; up: Vec3;
+      }>;
     };
   };
   race: { roster: unknown; startSlots: Record<PropertyKey, unknown> };
@@ -267,8 +270,14 @@ export function initializeRacePresenter(host: RacePresenterInitializationHost,
         throw new Error("勇者竞速缺少两队冻结起跑姿态。");
       const braveStart = brave ? bravePlayerStart(race, participant.playerId,
         runtime.local.braveStartPoses!) : undefined;
-      const startPose = braveStart?.pose ?? runtime.local.startPose;
-      const position = dependencies.startPosition(startPose.position,
+      const startSlot = race.startSlots[participant.playerId];
+      const deathmatchStart = assets.drivingMode?.kind === "deathmatch" &&
+        typeof startSlot === "number" && Number.isInteger(startSlot)
+        ? runtime.local.deathmatchStartPoses?.[startSlot] : undefined;
+      if (assets.drivingMode?.kind === "deathmatch" && !deathmatchStart)
+        throw new Error("死斗展示缺少原版出生姿态。");
+      const startPose = deathmatchStart ?? braveStart?.pose ?? runtime.local.startPose;
+      const position = deathmatchStart?.position ?? dependencies.startPosition(startPose.position,
         startPose.right, braveStart?.slot ?? race.startSlots[participant.playerId],
         (from, to) => track.rayQuery(from, to, false)?.point,
         assets.drivingMode?.kind === "brawl" ? brawlGridForward(startPose.forward as Vec3) : undefined);

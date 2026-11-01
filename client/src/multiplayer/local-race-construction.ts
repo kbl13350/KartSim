@@ -44,6 +44,7 @@ export function initializeLocalRace(
     throw new Error("本局赛道与已装配资源不一致。");
   }
   const brave = assets.drivingMode?.kind === "brave";
+  const deathmatch = assets.drivingMode?.kind === "deathmatch";
   const braveMap = assets.map.data.brave;
   if (brave) {
     const expected = braveRouteSelection(room, localPlayerId);
@@ -101,19 +102,26 @@ export function initializeLocalRace(
     assets.map.data, assets.map.scene, assets.map.renderScene,
     assets.map.skydome, assets.lensFlare);
   owner.braveStartPoses = brave ? captureBraveStartPoses(braveMap, owner.physics) : undefined;
+  if (deathmatch) owner.deathmatchStartPoses = assets.map.data.deathmatch.starts.map((frame: any) => {
+    owner.physics.resetFromRouteFrame(frame);
+    const { position, right, forward, up } = owner.physics.body;
+    return structuredClone({ position, right, forward, up });
+  });
   if (brave) {
     // Validate every slot now, before a remote presentation can be spawned.
     for (const participant of room.roster)
       bravePlayerStart(room, participant.playerId, owner.braveStartPoses);
   }
-  owner.physics.resetFromRouteFrame(owner.track.getStart());
+  const deathmatchStart = deathmatch ? assets.map.data.deathmatch?.starts[room.startSlots[localPlayerId]] : undefined;
+  if (deathmatch && !deathmatchStart) throw new Error("死斗原版出生点缺失。");
+  owner.physics.resetFromRouteFrame(deathmatchStart ?? owner.track.getStart());
   owner.startPose = structuredClone({
     position: owner.physics.body.position,
     right: owner.physics.body.right,
     forward: owner.physics.body.forward,
     up: owner.physics.body.up,
   });
-  owner.physics.body.position = ops.placeAtStart(
+  if (!deathmatch) owner.physics.body.position = ops.placeAtStart(
     owner.physics.body.position,
     owner.physics.body.right,
     brave ? bravePlayerStart(room, localPlayerId, owner.braveStartPoses).slot

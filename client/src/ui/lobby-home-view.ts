@@ -61,6 +61,8 @@ export const QUICK_ENTRIES: readonly QuickEntry[] = [
     gameplay: "shadow" },
   { id: "brave", title: "勇者组队竞速赛", kind: "multiplayer", channel: "speedTeamCombine",
     gameplay: "brave" },
+  { id: "deathmatch", title: "死斗模式", kind: "multiplayer", channel: "speedTeamCombine",
+    gameplay: "deathmatch" },
   { id: "roadblock", title: "挡人模式", kind: "multiplayer", channel: "speedIndiCombine",
     gameplay: "roadblock" },
   { id: "giant", title: "巨人模式", kind: "multiplayer", channel: "speedIndiCombine",
