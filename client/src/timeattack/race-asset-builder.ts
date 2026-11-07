@@ -7,6 +7,7 @@ import { loadHazardTraps, type HazardTraps } from "../item/hazard-traps";
 import { uniqueOriginalCoinAsset } from "../vehicle/track-coin-source";
 import { licenseSceneNames } from "../license/license-mission";
 import { itemRaceVehicleSpec } from "../physics/item-race-tuning";
+import { refreshVehicleDisplaySettings } from '../resources/vehicle-display-settings';
 import { LicenseScenes } from "../license/license-scenes";
 import { MissionTimerPanel } from "../license/mission-timer-panel";
 import { MissionResultAction, StoryAction2D } from "../story/mission-result-action";
@@ -86,6 +87,7 @@ export async function buildSoloRaceAssets(
     throw new Error("请先选择一辆已解析车辆、一个人物和一张已解析赛道。");
   }
   ops.validateItemId(selection.vehicleItemId);
+  await refreshVehicleDisplaySettings(true);
   // Nothing downloads whole first: what every race reads is fetched at once,
   // the track, kart and character by range as they load (resource-manager).
   const endRaceLoad = beginRaceLoad();

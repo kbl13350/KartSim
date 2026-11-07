@@ -62,6 +62,8 @@ const messages: Record<string, string> = {
   VEHICLE_NOT_FOUND: '车辆不存在，请刷新车辆目录后重试',
   VEHICLE_CATEGORY_NOT_FOUND: '车辆分类不存在，请刷新车辆目录后重试',
   INVALID_VEHICLE_SETTINGS: '车辆开关设置无效',
+  INVALID_VEHICLE_DETAILS: '车辆数据无效，请检查字段类型、数值范围和最小 / 最大时长',
+  VEHICLE_DETAILS_CONFLICT: '车辆数据已被其他管理员修改或原始数据已更新，请重新加载后再保存',
   VEHICLE_DISABLED: '该车辆已关闭，请更换车辆',
   NOTICE_NOT_FOUND: '公告不存在或已删除',
   NICKNAME_TAKEN: '该昵称已被使用',

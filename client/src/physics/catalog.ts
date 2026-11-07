@@ -4,6 +4,7 @@ import { applyDefaultExceed } from "./default-exceed";
 import { KART_FIELDS, PART_LOCK_FIELDS, type KartField, type PartLockField } from "./fields";
 import { createBodyParamSpec, type BodyParamInput } from "./body-param";
 import { speedBaseline } from "./speed-baseline";
+import { applyManagedVehicleSpec, managedVehicleOverrides } from './managed-vehicle';
 
 export type VehicleSpec = Omit<Record<KartField, number>, PartLockField> & {
   partsLocks: [number, number, number, number, number, number];
@@ -29,9 +30,15 @@ function requireVersion(version: string, speed: number): void {
 }
 
 function completeRow(key: string, row: KartSpecRow): Record<KartField, number> {
-  const missing = KART_FIELDS.filter((field) => row.values[field] === undefined);
+  const [id, speed] = key.split(':');
+  const custom = managedVehicleOverrides({ itemId: Number(id) })?.profiles[speed!];
+  const values = { ...row.values };
+  if (custom) for (const field of KART_FIELDS) {
+    if (values[field] === undefined && custom[field] !== undefined) values[field] = custom[field];
+  }
+  const missing = KART_FIELDS.filter((field) => values[field] === undefined);
   if (missing.length) throw new Error(`kartspec.csv ${key} is missing: ${missing.join(", ")}`);
-  return row.values as Record<KartField, number>;
+  return values as Record<KartField, number>;
 }
 
 function normalizeSpec(values: Record<KartField, number>): VehicleSpec {
@@ -86,6 +93,10 @@ export class VehicleSpecCatalog {
 
   /** `ek`: exact 国服 4/7 row, then standard-speed row 7 plus version suffix. */
   lookup(itemId: number | string, speed: number, version: SpeedVersion = "国服"): VehicleSpecResult {
+    return applyManagedVehicleSpec(this.lookupBase(itemId, speed, version), { itemId: Number(itemId) }, speed, version);
+  }
+
+  private lookupBase(itemId: number | string, speed: number, version: SpeedVersion): VehicleSpecResult {
     const id = vehicleId(String(itemId));
     const speedKey = speedType(speed);
     const regional = taiwanVehicle(id);
@@ -112,7 +123,12 @@ export class VehicleSpecCatalog {
   /** `JI`: ordinary cars use CSV; system cars use their own BodyParam resource. */
   createVehicleParameters(vehicle: VehicleIdentity, speed: number,
     body?: BodyParamInput, version: SpeedVersion = "国服"): VehicleSpecResult {
-    if (vehicle.itemId !== 0) return this.lookup(vehicle.itemId, speed, version);
+    return applyManagedVehicleSpec(this.createBaseParameters(vehicle, speed, body, version), vehicle, speed, version);
+  }
+
+  private createBaseParameters(vehicle: VehicleIdentity, speed: number,
+    body: BodyParamInput | undefined, version: SpeedVersion): VehicleSpecResult {
+    if (vehicle.itemId !== 0) return this.lookupBase(vehicle.itemId, speed, version);
     const key = vehicle.systemKey?.trim();
     if (!key) throw new Error("System vehicle needs a stable identity key");
     speedBaseline(version, speed); // original JI validates the requested speed first

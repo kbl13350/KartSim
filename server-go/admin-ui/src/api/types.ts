@@ -758,3 +758,35 @@ export interface VehicleDirectory {
   updatedAt: number
   updatedBy?: string
 }
+
+export interface VehicleDetailField {
+  key: string
+  label: string
+  group: string
+  type: 'number' | 'boolean' | 'string'
+  integer?: boolean
+  min?: number
+  max?: number
+  unit?: string
+}
+export interface VehicleOverrides {
+  metadata: Record<string, string | number | boolean>
+  profiles: Record<string, Record<string, number>>
+}
+export interface VehicleDetails {
+  vehicle: ManagedVehicle
+  base: {
+    id: string
+    identity: Record<string, string | number | boolean>
+    parameterPath: string
+    body: Record<string, string>
+    profiles: Record<string, Record<string, number>>
+    sources: Record<string, string>
+  }
+  metadataFields: VehicleDetailField[]
+  physicsFields: VehicleDetailField[]
+  overrides: VehicleOverrides
+  version: string
+  updatedAt: number
+  updatedBy: string
+}

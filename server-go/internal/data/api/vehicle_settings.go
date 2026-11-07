@@ -21,9 +21,10 @@ var (
 )
 
 type publicVehicleSettingsJSON struct {
-	DisabledVehicleIDs []string `json:"disabledVehicleIds"`
-	Version            string   `json:"version"`
-	UpdatedAt          int64    `json:"updatedAt"`
+	VehicleOverrides   map[string]economy.VehicleOverrides `json:"vehicleOverrides,omitempty"`
+	DisabledVehicleIDs []string                            `json:"disabledVehicleIds"`
+	Version            string                              `json:"version"`
+	UpdatedAt          int64                               `json:"updatedAt"`
 }
 
 type adminVehicleJSON struct {
@@ -99,15 +100,14 @@ func vehicleSettingsViews(directory *economy.VehicleDirectory, settings store.Bu
 // Visibility settings leave owned inventory, saved equipment, rewards, replay
 // access and in-progress races intact.
 func (a *API) vehicleSettings(w http.ResponseWriter, r *http.Request) error {
-	directory, err := economy.DefaultVehicleDirectory()
-	if err != nil {
-		return err
-	}
 	settings, err := a.builtinVehicleSettings(r.Context())
 	if err != nil {
 		return err
 	}
-	public, _ := vehicleSettingsViews(directory, settings)
+	public, _, err := a.vehicleViews(r.Context(), settings)
+	if err != nil {
+		return err
+	}
 	w.Header().Set("Cache-Control", "no-store")
 	return writeJSON(w, http.StatusOK, public)
 }
@@ -116,15 +116,14 @@ func (a *API) adminVehicles(w http.ResponseWriter, r *http.Request) error {
 	if _, err := a.requireAdmin(r); err != nil {
 		return err
 	}
-	directory, err := economy.DefaultVehicleDirectory()
-	if err != nil {
-		return err
-	}
 	settings, err := a.builtinVehicleSettings(r.Context())
 	if err != nil {
 		return err
 	}
-	_, admin := vehicleSettingsViews(directory, settings)
+	_, admin, err := a.vehicleViews(r.Context(), settings)
+	if err != nil {
+		return err
+	}
 	w.Header().Set("Cache-Control", "no-store")
 	return writeJSON(w, http.StatusOK, admin)
 }
@@ -151,7 +150,7 @@ func (a *API) adminSetBuiltinVehicles(w http.ResponseWriter, r *http.Request, by
 	if request.Enabled == nil {
 		return errInvalidVehicleSetting
 	}
-	directory, err := economy.DefaultVehicleDirectory()
+	directory, _, err := a.vehicleDirectoryWithDetails(r.Context())
 	if err != nil {
 		return err
 	}
@@ -180,7 +179,10 @@ func (a *API) adminSetBuiltinVehicles(w http.ResponseWriter, r *http.Request, by
 	}
 	a.log.Info("admin built-in vehicle visibility", "admin", admin.Username, "target", target,
 		"byCategory", byCategory, "enabled", *request.Enabled, "vehicles", len(ids))
-	_, response := vehicleSettingsViews(directory, settings)
+	_, response, err := a.vehicleViews(r.Context(), settings)
+	if err != nil {
+		return err
+	}
 	w.Header().Set("Cache-Control", "no-store")
 	return writeJSON(w, http.StatusOK, response)
 }

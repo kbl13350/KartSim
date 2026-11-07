@@ -547,6 +547,12 @@ itemWorldRaceAssetPatches.push(
 // R2 is the kart's param@cn/param document A40 already loaded; vI(SX(e)) is the
 // race's driving mode (unchanged spec outside item races).
 itemWorldVehicleImports.push(
+  'import { refreshVehicleDisplaySettings } from "../resources/vehicle-display-settings.ts";');
+itemWorldRaceAssetPatches.push([
+  'async function A40(n, e, t, i, r, s) {',
+  'async function A40(n, e, t, i, r, s) {\n  await refreshVehicleDisplaySettings(true);',
+]);
+itemWorldVehicleImports.push(
   'import { itemRaceVehicleSpec } from "../physics/item-race-tuning.ts"; // item-mode(p3p)');
 itemWorldRaceAssetPatches.push(
   [`      e.speed === 4 && (E0 = { ...E0, driftMaxGauge: Lo });`,

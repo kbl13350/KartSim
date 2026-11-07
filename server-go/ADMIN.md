@@ -220,3 +220,13 @@
 - 打开车库、选车、商城和小屋选车界面时刷新设置；关闭车辆从新的选择、收藏、搜索和购买入口隐藏。已拥有的库存、当前装备、已开始的比赛、远征及历史记录保留；全部关闭时保留当前车辆展示并提示暂无可选车辆。重新开启恢复显示。
 - 服务端拒绝新购买和切换到已关闭车辆，返回 409 `VEHICLE_DISABLED`；已成功购买的幂等重试仍返回原凭据，保留当前已装备车辆时可修改其他装备。
 - 无效车辆为 `VEHICLE_NOT_FOUND`，无效分类为 `VEHICLE_CATEGORY_NOT_FOUND`，无效开关值为 `INVALID_VEHICLE_SETTINGS` / `INVALID_REQUEST`。批量修改使用事务和行锁，修改记录管理员及时间并写入日志。
+
+### 车辆详细数据
+
+车辆管理列表的“详情 / 编辑”可查看全部 1,651 辆车，修改 13 项基础属性与 90 项性能参数。性能按标准（7）和无限加速（4）分别保存，支持中文名称/字段搜索、原始值对照、逐字段恢复和整车恢复。车辆 ID、系统身份、模型路径、原始 BodyParam 属性保留为只读来源。历史参数表的空字段显示为“未提供”，不自动编造数值。
+
+- `GET /api/admin/vehicles/{id}/details`：管理员读取 `{vehicle, base, metadataFields, physicsFields, overrides, version, updatedAt, updatedBy}`。`base.profiles[7]` 是标准值，`base.profiles[4]` 是相对于标准值的档位差异。
+- `PUT /api/admin/vehicles/{id}/details`：提交 `{version, updatedAt, overrides: {metadata, profiles}}`，其中 `version` 与 `updatedAt` 必须来自上次读取。`profiles` 只接受 `"7"` 和 `"4"`；字段名、类型、整数范围、有限数值和双重氮气的最小/最大时长由服务端校验。空对象表示恢复默认，省略单个字段表示恢复该字段。
+- 保存返回完整详情；冲突返回 `409 VEHICLE_DETAILS_CONFLICT`，非法字段返回 `400 INVALID_VEHICLE_DETAILS`。每辆车在现有 `app_settings` 中独立保存，事务锁与版本比较防止并发覆盖，记录最后操作者和保存时间。
+- `/api/vehicle-settings` 增加 `vehicleOverrides`，只下发实际覆盖项，不公开管理员信息。客户端在打开车库及加载比赛时刷新；普通车型、台服车型和系统车共用覆盖逻辑。标准覆盖项适用于其他档位/复古版本的基础参数，国服 4 使用独立覆盖项；零件、宠物和速度规则仍参与后续计算。正在运行的物理对象不会被后台保存直接改写。
+- 基础数据由 `client/tools/export-admin-vehicle-details.mjs` 导出到 `internal/data/economy/vehicle-details.json`，使用实际车库身份、CSV、启动器覆盖与 BodyParam。执行：`cd client && node --import ./src/physics/node-raw-test-hook.mjs --import tsx tools/export-admin-vehicle-details.mjs`；加 `--check` 可验证导出是否过期。

@@ -1,5 +1,6 @@
 import type { ResourceEntry } from "./resource-lookup";
 import { vehicleFolderName } from "./vehicle-identity";
+import { managedVehicleMetadata } from '../physics/managed-vehicle';
 
 export interface GarageResource extends ResourceEntry {
   name: string;
@@ -75,12 +76,12 @@ export async function timeAttackKartItem(
   if (identity.fixedPlateId === undefined || identity.hideChar === undefined ||
       identity.characterAniType === undefined)
     throw new Error(`kart item id ${itemId} 的 ItemKart metadata 不完整。`);
-  return {
+  return managedVehicleMetadata({
     ...identity,
     fixedPlateId: identity.fixedPlateId,
     hideChar: identity.hideChar,
     characterAniType: identity.characterAniType,
-  };
+  });
 }
 
 export async function timeAttackPlateItem(

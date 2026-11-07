@@ -10,8 +10,10 @@
 
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { Plugin } from 'vite'
+import type { VehicleOverrides, VehicleDetails } from '../src/api/types.ts'
 import trackDirectory from '../../internal/data/economy/track-directory.json' with { type: 'json' }
 import vehicleDirectory from '../../internal/data/economy/vehicle-directory.json' with { type: 'json' }
+import vehicleDetailsData from '../../internal/data/economy/vehicle-details.json' with { type: 'json' }
 
 type Row = Record<string, unknown>
 
@@ -36,6 +38,7 @@ function managedTrackDirectory() {
 
 const managedVehicles = vehicleDirectory.vehicles.map(vehicle => ({ ...vehicle, enabled: true }))
 let vehiclesUpdatedAt = 0
+const vehicleDetailSettings = new Map<string, { overrides: VehicleOverrides; updatedAt: number }>()
 function managedVehicleDirectory() {
   const categories = new Map<string, { id: string; title: string; total: number; enabledCount: number }>()
   for (const vehicle of managedVehicles) {
@@ -435,6 +438,7 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
   if (path === '/api/vehicle-settings' && method === 'GET') {
     res.setHeader('Cache-Control', 'no-store')
     return send(res, 200, { disabledVehicleIds: managedVehicles.filter(vehicle => !vehicle.enabled).map(vehicle => vehicle.id),
+      vehicleOverrides: Object.fromEntries([...vehicleDetailSettings].map(([id, value]) => [id, value.overrides])),
       version: `mock-${vehiclesUpdatedAt}`, updatedAt: vehiclesUpdatedAt })
   }
   if (path === '/api/track-settings' && method === 'GET') {
@@ -633,6 +637,44 @@ async function handle(req: IncomingMessage, res: ServerResponse, next: () => voi
     return send(res, 200, { ok: true })
   }
   if (path === '/api/admin/vehicles' && method === 'GET') return send(res, 200, managedVehicleDirectory())
+  const vehicleDetailsMatch = /^\/api\/admin\/vehicles\/([^/]+)\/details$/.exec(path)
+  if (vehicleDetailsMatch && ['GET', 'PUT'].includes(method)) {
+    const id = decodeURIComponent(vehicleDetailsMatch[1]!)
+    const vehicle = managedVehicles.find(vehicle => vehicle.id === id)
+    const base = vehicleDetailsData.vehicles.find(vehicle => vehicle.id === id)
+    if (!vehicle || !base) return send(res, 404, { error: 'VEHICLE_NOT_FOUND' })
+    let settings = vehicleDetailSettings.get(id) ?? { overrides: { metadata: {}, profiles: {} }, updatedAt: 0 }
+    if (method === 'PUT') {
+      const body = await readBody(req)
+      if (body.version !== vehicleDetailsData.version || body.updatedAt !== settings.updatedAt)
+        return send(res, 409, { error: 'VEHICLE_DETAILS_CONFLICT' })
+      const overrides = body.overrides as VehicleOverrides
+      if (!overrides?.metadata || !overrides.profiles) return send(res, 400, { error: 'INVALID_VEHICLE_DETAILS' })
+      for (const [values, fields] of [[overrides.metadata, vehicleDetailsData.metadataFields],
+        ...Object.values(overrides.profiles).map(values => [values, vehicleDetailsData.physicsFields] as const)] as const) {
+        for (const [key, value] of Object.entries(values)) {
+          const field = fields.find(field => field.key === key)
+          if (!field || typeof value !== field.type || (typeof value === 'number' &&
+              (!Number.isFinite(value) || value < (field.min ?? 0) || value > (field.max ?? Infinity) || (field.integer && !Number.isInteger(value)))))
+            return send(res, 400, { error: 'INVALID_VEHICLE_DETAILS' })
+        }
+      }
+      if (Object.keys(overrides.profiles).some(key => key !== '4' && key !== '7')) return send(res, 400, { error: 'INVALID_VEHICLE_DETAILS' })
+      settings = { overrides: structuredClone(overrides), updatedAt: Math.max(Date.now(), settings.updatedAt + 1) }
+      vehicleDetailSettings.set(id, settings)
+      vehiclesUpdatedAt = settings.updatedAt
+      vehicle.title = String(overrides.metadata.title ?? base.identity.title)
+      vehicle.engineGrade = Number(overrides.metadata.engineGrade ?? base.identity.engineGrade)
+      const original = vehicleDirectory.vehicles.find(row => row.id === id)!
+      const names = ['旧版引擎', 'PRO引擎以下', 'SR引擎', 'Z7引擎', 'HT引擎', 'HT+引擎', 'JIU引擎', 'X引擎', 'V1引擎', '迅引擎']
+      vehicle.engineTitle = names[vehicle.engineGrade] ?? original.engineTitle
+      vehicle.category = vehicle.itemId === 0 ? 'system' : Number(overrides.metadata.kartType ?? base.identity.kartType) === 1 ? 'item' : 'speed'
+      vehicle.categoryTitle = vehicle.category === 'system' ? '系统练习车' : vehicle.category === 'item' ? '道具车' : '竞速车'
+    }
+    return send(res, 200, { vehicle, base, overrides: settings.overrides, updatedAt: settings.updatedAt,
+      updatedBy: settings.updatedAt ? 'admin' : '', version: vehicleDetailsData.version,
+      metadataFields: vehicleDetailsData.metadataFields, physicsFields: vehicleDetailsData.physicsFields } as VehicleDetails)
+  }
   const managedVehicleMatch = /^\/api\/admin\/(vehicles|vehicle-categories)\/([^/]+)$/.exec(path)
   if (managedVehicleMatch && method === 'PATCH') {
     const id = decodeURIComponent(managedVehicleMatch[2]!)

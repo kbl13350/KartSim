@@ -2,6 +2,7 @@ import { itemDisplayName } from "../i18n/item-names";
 import { normalizeCanonicalPath } from "./resource-lookup";
 import type { GarageItemDefinition, GarageItemLibrary, GarageResource } from "./timeattack-items";
 import { vehicleFolderName } from "./vehicle-identity";
+import { managedVehicleMetadata } from '../physics/managed-vehicle';
 
 export interface GarageCatalogDependencies {
   parseShopXml(text: string, path: string): Document;
@@ -279,6 +280,7 @@ export async function loadTimeAttackGarageCatalog(
   );
   return {
     karts: catalogEntries("kart", definitions, names, kartModels)
+      .map(managedVehicleMetadata)
       .sort((left, right) => right.itemId - left.itemId),
     characters: catalogEntries("character", definitions, names, characterModels),
     equipment: equipmentEntries(definitions, names, library),

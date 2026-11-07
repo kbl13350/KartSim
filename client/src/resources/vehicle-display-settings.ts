@@ -1,5 +1,13 @@
 /** Public display policy. Resource lookup and replay identities never depend on it. */
+import { VEHICLE_METADATA_FIELDS, VEHICLE_PHYSICS_FIELDS } from '../physics/vehicle-detail-schema';
+
+export interface ManagedVehicleOverrides {
+  metadata: Record<string, string | number | boolean>;
+  profiles: Record<string, Record<string, number>>;
+}
+
 export interface VehicleDisplaySettings {
+  readonly vehicleOverrides?: Readonly<Record<string, ManagedVehicleOverrides>>;
   readonly disabledVehicleIds: ReadonlySet<string>;
   readonly version: string;
   readonly updatedAt: number;
@@ -24,7 +32,33 @@ export function parseVehicleDisplaySettings(value: unknown): VehicleDisplaySetti
       typeof row.version !== "string" || typeof row.updatedAt !== "number" ||
       !Number.isFinite(row.updatedAt) || row.updatedAt < 0)
     throw new Error("Invalid vehicle display settings");
-  return { disabledVehicleIds: new Set(row.disabledVehicleIds.map(id => key(id as string))),
+  const overrides: Record<string, ManagedVehicleOverrides> = {};
+  if (row.vehicleOverrides !== undefined) {
+    if (!row.vehicleOverrides || typeof row.vehicleOverrides !== 'object' || Array.isArray(row.vehicleOverrides))
+      throw new Error('Invalid vehicle overrides');
+    for (const [id, value] of Object.entries(row.vehicleOverrides)) {
+      if (!/^(?:catalog:3:[1-9]\d*|system:[\w.:-]{1,140})$/.test(id) || !value || typeof value !== 'object')
+        throw new Error('Invalid vehicle overrides');
+      const override = value as ManagedVehicleOverrides;
+      for (const [entries, fields] of [[override.metadata, VEHICLE_METADATA_FIELDS],
+        ...Object.entries(override.profiles ?? {}).map(([speed, profile]) => {
+          if (speed !== '4' && speed !== '7') throw new Error('Invalid vehicle speed profile');
+          return [profile, VEHICLE_PHYSICS_FIELDS] as const;
+        })] as const) {
+        if (!entries || typeof entries !== 'object' || Array.isArray(entries)) throw new Error('Invalid vehicle overrides');
+        for (const [name, fieldValue] of Object.entries(entries)) {
+          const field = fields.find(field => field.key === name);
+          if (!field || typeof fieldValue !== field.type ||
+              (typeof fieldValue === 'number' && (!Number.isFinite(fieldValue) ||
+                fieldValue < field.min! || fieldValue > field.max! || (field.integer && !Number.isInteger(fieldValue)))))
+            throw new Error(`Invalid vehicle override ${name}`);
+        }
+      }
+      if (!override.profiles || Array.isArray(override.profiles) || typeof override.profiles !== 'object') throw new Error('Invalid vehicle profiles');
+      overrides[key(id)] = override;
+    }
+  }
+  return { vehicleOverrides: overrides, disabledVehicleIds: new Set(row.disabledVehicleIds.map(id => key(id as string))),
     version: row.version, updatedAt: row.updatedAt };
 }
 

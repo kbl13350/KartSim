@@ -20,6 +20,7 @@
  *   speed races and are not applied here.
  */
 import tuningJson from "./data/item-race-tuning.json?raw";
+import { managedPhysicsFields } from './managed-vehicle';
 
 export interface ItemRaceTuningData {
   flyingPetTuneGroups: Record<string, number>;
@@ -93,7 +94,8 @@ export function itemRaceVehicleSpec<T extends ItemRaceSpecFields>(spec: T,
   flyingPetId: number | undefined,
   data: ItemRaceTuningData = itemRaceTuningData()): T {
   if (drivingMode?.kind !== "item") return spec;
-  const factor = kartItemBoosterAccelFactor(kartParameter);
+  const custom = (spec as T & { [managedPhysicsFields]?: Record<string, number> })[managedPhysicsFields];
+  const factor = custom?.boostAccelFactorOnlyItem ?? kartItemBoosterAccelFactor(kartParameter);
   const bonus = flyingPetItemBoosterBonusMs(flyingPetId, data);
   if (factor === undefined && bonus === 0) return spec;
   return {

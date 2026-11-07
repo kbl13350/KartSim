@@ -8,6 +8,7 @@ import { useTab } from '../composables/useTabs'
 import { useNarrow } from '../composables/useNarrow'
 import { confirmAction, showError } from '../utils/ui'
 import VehiclePreview from '../components/VehiclePreview.vue'
+import VehicleDetailsDrawer from '../components/VehicleDetailsDrawer.vue'
 
 const directory = ref<VehicleDirectory>({ vehicles: [], categories: [], version: '', updatedAt: 0 })
 const loading = ref(false)
@@ -21,6 +22,8 @@ const query = ref('')
 const page = ref(1)
 const pageSize = ref(20)
 const narrow = useNarrow()
+const selectedVehicle = ref<ManagedVehicle>()
+const detailsOpen = ref(false)
 let sequence = 0
 
 const enabledCount = computed(() => directory.value.vehicles.filter(vehicle => vehicle.enabled).length)
@@ -163,11 +166,12 @@ function reset() {
       <el-table-column label="显示状态" width="105">
         <template #default="{ row }"><el-tag :type="row.enabled ? 'success' : 'info'" disable-transitions>{{ row.enabled ? '已开启' : '已关闭' }}</el-tag></template>
       </el-table-column>
-      <el-table-column label="车辆开关" width="130" fixed="right">
+      <el-table-column label="车辆管理" width="180" fixed="right">
         <template #default="{ row }">
           <el-switch :model-value="row.enabled" :loading="busy === row.id" :disabled="!!busy || loading"
             :aria-label="`${row.title}车辆显示开关`" active-text="开" inactive-text="关" inline-prompt
             @change="(value: string | number | boolean) => setVehicle(row, value === true)" />
+          <el-button link type="primary" class="details-button" @click="selectedVehicle = row; detailsOpen = true">详情 / 编辑</el-button>
         </template>
       </el-table-column>
       <template #empty><el-empty :description="!loaded ? '加载中…' : error ? '车辆目录加载失败' : '没有符合筛选条件的车辆'" :image-size="72" /></template>
@@ -177,10 +181,12 @@ function reset() {
         :layout="narrow ? 'total, prev, pager, next' : 'total, sizes, prev, pager, next, jumper'" :pager-count="narrow ? 5 : 7" background />
     </div>
   </el-card>
+  <VehicleDetailsDrawer v-model="detailsOpen" :vehicle="selectedVehicle" @saved="load" />
 </template>
 
 <style scoped>
 .summary, .category-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 18px; }
+.details-button { margin-left: 12px; }
 .summary strong { font-size: 20px; font-variant-numeric: tabular-nums; }
 .toolbar { display: flex; flex-wrap: wrap; }
 .toolbar :deep(.el-form-item) { margin-right: 12px; margin-bottom: 12px; }

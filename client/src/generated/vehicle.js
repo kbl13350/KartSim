@@ -40,6 +40,7 @@ import { isItemRaceRoom, loadItemGameTrackSources, loadItemRaceFields } from "..
 import { loadItemRacePresenter } from "../item/item-race-presenter.ts"; // item-mode(fx)
 import { loadHazardTraps } from "../item/hazard-traps.ts"; // speed hazard traps
 import { itemRaceVehicleSpec } from "../physics/item-race-tuning.ts"; // item-mode(p3p)
+import { refreshVehicleDisplaySettings } from "../resources/vehicle-display-settings.ts";
 import { cityTrackChoice, isCityRace } from "../city/city-track.ts"; // city
 import { KartAudioRuntime, loadKartAudio, decodeMotorAudio, parseRoadSoundConfig } from "../vehicle/kart-audio-runtime.ts";
 import { loadCharacterAsset } from "../vehicle/load-character-asset.ts";
@@ -6016,6 +6017,7 @@ function rd(n, e) {
 }
 
 async function A40(n, e, t, i, r, s) {
+  await refreshVehicleDisplaySettings(true);
   ((e = structuredClone(e)), (t = structuredClone(t)));
   const o = structuredClone(r.profile),
     a = { ...o, equipment: zw(o) },

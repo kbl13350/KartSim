@@ -105,3 +105,5 @@ node --import tsx tools/export-admin-vehicle-previews.mjs --check
 ```
 
 捕获脚本可用 `PLAYWRIGHT_MODULE` 指定 Playwright 模块路径，`CHROME_PATH` 指定浏览器程序。原始 PNG 保存在未提交的 `output/vehicle-admin/scenes/`；WebP、索引及模型/渲染来源哈希提交到 `src/assets/vehicle-previews/`，最后重新构建后台并提交构建产物。捕获检查完整目录、非空像素与画面边界，导出检查源模型哈希和无损解码像素；少数原始驾驶参数损坏的车型直接读取同车模型与贴图，来源记录标注该加载方式。
+
+车辆管理的“详情 / 编辑”抽屉支持基础属性、两个档位的完整性能参数和原始来源查看。保存使用服务端版本检查，冲突时保留当前草稿并提示重新加载；字段校验失败时不能保存，关闭未保存的草稿时会提示。`dev:mock`/`preview:mock` 复用真实导出数据，支持编辑、回读、冲突和恢复默认，模拟修改仅保存在该进程中。
